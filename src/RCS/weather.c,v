@@ -1,0 +1,2800 @@
+head	1.20;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.20
+date	2008.09.09.08.23.37;	author jps;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.09.03.17.34.08;	author myc;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.08.26.04.39.21;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.08.14.23.10.35;	author myc;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.04.05.05.05.42;	author myc;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.03.05.03.03.54;	author myc;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.02.04.01.46.12;	author myc;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2007.11.30.00.37.50;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2007.11.30.00.35.26;	author myc;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2007.09.05.21.49.28;	author myc;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2007.09.04.06.49.19;	author myc;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2007.07.24.01.23.54;	author myc;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2005.03.22.00.43.40;	author rls;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2000.11.19.02.44.02;	author rsd;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.04.18.24.26;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.32;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/*++
+********************************************************************
+* Filename:  weather.c
+*
+* Usage:     Weather functions, and structure initialization
+*
+* Author:    Tim Holcomb (Fingh on Hubis)
+*
+* Last Modified: [10-8-98]
+********************************************************************
+--*/
+
+#include "weather.h"
+
+#include "conf.h"
+#include "sysdep.h"
+
+
+#include "structs.h"
+#include "utils.h"
+#include "comm.h"
+#include "handler.h"
+#include "interpreter.h"
+#include "db.h"
+
+
+/* externals */
+extern struct time_info_data time_info;
+extern struct zone_data *zone_table;
+extern int    top_of_zone_table;   /* used as index to zone_table array */
+extern void send_to_outdoor(char *messg, int zonenum);
+
+/* prevent multiple inclusions since stock files do not contain ifndef's...*/
+void weather_message(struct zone_data *zone, int type, int prev_valueof_type);
+
+void update_weather(long pulse);
+void update_hemisphere();
+
+/* the hemispheres are setup before the game starts.... */
+HEMISPHERE Hemispheres[NUM_HEMISPHERES];
+
+/* signal a possible hange in season. */
+int g_newmonth = 0;
+
+
+void update_weather_and_time(long pulse)
+{
+  another_hour();
+  update_weather(pulse);
+}
+
+
+void another_hour(void)
+{
+  time_info.hours++;
+
+  if (time_info.hours > 23)
+  {	/* Changed by HHS due to bug ??? */
+    time_info.hours -= 24;
+    time_info.day++;
+
+    if (time_info.day > 34)
+    {
+      time_info.day = 0;
+      time_info.month++;
+      g_newmonth = 1;
+
+      if (time_info.month > 15)
+      {
+	      time_info.month = 0;
+	      time_info.year++;
+      } /* month */
+    }   /* day   */
+  }     /* hours */
+
+  update_hemisphere();
+  g_newmonth = 0;
+}       /* end another_hour() */
+
+
+/* place holder for now...will be cool later. */
+void defaultDisaster()
+{
+  return;
+}
+
+/* setup all the climate zones.  these are BASE values, and will be modified
+ * for each actual zone at run-time based on the settings here...
+ */
+CLIMATE Climates[] =                 /* climate type */
+{ /* base_temp,   base_precip,    base_windspeed,  setdisaster() */
+  {TEMP_MILD,     PRECIP_NONE,    WIND_NONE,       NULL             },
+  {TEMP_HOT,      PRECIP_NONE,    WIND_NONE,       defaultDisaster     },
+  {TEMP_MILD,     PRECIP_DRIZZLE, WIND_STRONG,     defaultDisaster    },
+  {TEMP_MILD,     PRECIP_DRIZZLE, WIND_BREEZE,     defaultDisaster},
+  {TEMP_WARM,     PRECIP_LIGHT,   WIND_BREEZE,     defaultDisaster},
+  {TEMP_HOT,      PRECIP_LIGHT,   WIND_BREEZE,     defaultDisaster   },
+  {TEMP_COOL,     PRECIP_LIGHT,   WIND_BREEZE,     defaultDisaster},
+  {TEMP_COLD,     PRECIP_LIGHT,   WIND_STRONG,     defaultDisaster   }
+};
+
+
+void init_weather()
+{
+  int i;
+  int climate;
+
+  /* set up the zones to default for the respective climates */
+  for(i = 0; i < top_of_zone_table; i++)
+  {
+    climate = zone_table[i].climate;
+
+    zone_table[i].temperature   = Climates[climate].base_temperature;
+    zone_table[i].precipitation = Climates[climate].base_precipitation_rate;
+    zone_table[i].wind_speed    = Climates[climate].base_wind_speed;
+    zone_table[i].wind_dir      = number(0,3);  /* cardinal directions */
+    zone_table[i].disaster_type = 0;
+    zone_table[i].disaster_duration = 0;
+
+    switch(Hemispheres[zone_table[i].hemisphere].season)
+    {
+      case WINTER:
+        zone_table[i].temperature   += WINTER_TEMP;
+        zone_table[i].precipitation += WINTER_PREC;
+        break;
+      case SPRING:
+        zone_table[i].temperature   += SPRING_TEMP;
+        zone_table[i].precipitation += SPRING_PREC;
+        break;
+      case SUMMER:
+        zone_table[i].temperature   += SUMMER_TEMP;
+        zone_table[i].precipitation += SUMMER_PREC;
+        break;
+      case AUTUMN:
+        zone_table[i].temperature   += AUTUMN_TEMP;
+        zone_table[i].precipitation += AUTUMN_PREC;
+        break;
+      default:
+        break;
+    }
+  }
+
+} /* end init_weather */
+
+
+int get_precip_type(int temp)
+{
+  if(temp > TEMP_COLD)
+    return PRECIP_TYPE_RAIN;
+  else
+    return PRECIP_TYPE_SNOW;
+}
+
+/* generate the messages to character based on recent changes in weather. */
+void weather_message(struct zone_data *zone, int type, int prev_valueof_type)
+{
+  char *precip[] = {
+    "&6&brain",
+    "&7&bsnow"
+  };
+
+  char *windspeed_type[] = {
+    "!UNUSED!",
+    "&b&6breeze",
+    "&b&6strong wind",
+    "&4gale-force wind",
+    "&4&bhurricane-strength&0 &6wind"
+  };
+
+  char wbuffer[128];
+
+  memset(wbuffer, 0x0, 128);
+
+  switch(type)
+  {
+  case UPDATE_WIND:
+    if(prev_valueof_type)
+    {
+      if(zone->wind_speed > prev_valueof_type)
+        sprintf(wbuffer, "&6The &0%s&0 &6increases to a &0%s.&0\r\n", windspeed_type[prev_valueof_type], windspeed_type[zone->wind_speed]);
+      else if(zone->wind_speed < prev_valueof_type)
+        if(zone->wind_speed)
+          sprintf(wbuffer, "&6The &0%s&0 &6subsides to a &0%s.&0\r\n", windspeed_type[prev_valueof_type], windspeed_type[zone->wind_speed]);
+        else
+          sprintf(wbuffer, "&6The &0%s&0 &6calms and the air becomes still.&0\r\n", windspeed_type[prev_valueof_type]);
+      else
+        sprintf(wbuffer, "&6A &0%s&0 &6continues to blow around you.&0\r\n", windspeed_type[zone->wind_speed]);
+    }
+    else
+    {
+      if(zone->wind_speed)
+        sprintf(wbuffer, "&6A &0%s&0 &6begins to blow around you.&0\r\n", windspeed_type[zone->wind_speed]);
+      else
+        sprintf(wbuffer, "&6The air is calm.&0\r\n");
+    }
+    break;
+
+  case UPDATE_TEMPERATURE:
+    if (zone->temperature > 150)
+      sprintf(wbuffer, "It's hotter than anyone could imagine.\r\n");
+    else if (zone->temperature > 100)
+      sprintf(wbuffer, "It's really, really hot here.\r\n");
+    else if (zone->temperature > 90)
+      sprintf(wbuffer, "It's hot out here.\r\n");
+    else if (zone->temperature > 75)
+      sprintf(wbuffer, "It's nice and warm out.\r\n");
+    else if (zone->temperature > 65)
+      sprintf(wbuffer, "It's mild out today.\r\n");
+    else if (zone->temperature > 50)
+      sprintf(wbuffer, "It's cool out here.\r\n");
+    else if (zone->temperature > 30)
+      sprintf(wbuffer, "It's cold!\r\n");
+    else if (zone->temperature > 0)
+      sprintf(wbuffer, "It's really c-c-c-cold!!\r\n");
+    else
+      sprintf(wbuffer, "It's too c-c-c-cold to be outside!!\r\n");
+    break;
+
+  case UPDATE_PRECIPITATION:
+    if(prev_valueof_type > 3)
+    {
+      if(zone->precipitation > prev_valueof_type)
+        sprintf(wbuffer, "&9&bIt starts %sing &9&bharder.&0\r\n", GET_PRECIP_TYPE(zone));
+      else if (zone->precipitation < prev_valueof_type)
+      {
+        if(zone->precipitation > 3)
+          sprintf(wbuffer, "&5The %s &5starts coming down a little lighter.&0\r\n", GET_PRECIP_TYPE(zone));
+        else
+          sprintf(wbuffer, "&5It stops %sing.&0\r\n", GET_PRECIP_TYPE(zone));
+      }
+      else
+        sprintf(wbuffer, "&5It continues to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+    }
+    else if(prev_valueof_type)
+    {
+      if(zone->precipitation  <= 3)
+      {
+        switch(prev_valueof_type)
+        {
+          case PRECIP_PARTLY_CLOUDY:
+            sprintf(wbuffer, "&4&bThe sky is filled with small &7bil&0&7low&bing white &7c&0&7l&6ou&7d&bs.&0\r\n");
+            break;
+          case PRECIP_MOSTLY_CLOUDY:
+            sprintf(wbuffer, "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the sky.&0\r\n");
+            break;
+          case PRECIP_GRAY_CLOUDS:
+            sprintf(wbuffer, "&9&bOminously dark clouds&0 &4fill the sky, blocking out all &3sunlight.&0\r\n");
+            break;
+        }
+      }
+      else if(zone->precipitation > 3)
+        sprintf(wbuffer, "&9&bIt begins to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+    }
+    else
+    {
+      if(zone->precipitation)
+        sprintf(wbuffer, "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 &4appear in the &bsky.&0\r\n");
+      else
+        sprintf(wbuffer, "&5The &3&bsun&0 &5shows &bbrightly&0 &5in the clear &4&bsky.&0\r\n");
+    }
+    break;
+  default:
+    break;
+
+  } /* end switch(type) */
+
+  send_to_outdoor(wbuffer, (int)zone->number);
+} /* end weather_message() */
+
+void update_wind(struct zone_data* zone)
+{
+  int prev;
+  int change;
+
+  prev = zone->wind_speed;
+
+  /* do we increment or decrement the wind? */
+  change = number(0,2);
+  switch(change)
+  {
+  case 0:
+    zone->wind_speed++;
+    break;
+  case 1:
+    zone->wind_speed--;
+    break;
+  default:
+    /* no change in wind speed */
+    break;
+  } /* end switch() */
+
+  /* see if the wind dir changes, the following dirs are in no
+   * specific order, just create a random sampling.
+   */
+  change = number(0,9);
+  switch(change)
+  {
+  case 1:
+    zone->wind_dir = NORTH;
+    break;
+  case 2:
+    zone->wind_dir = SOUTH;
+    break;
+  case 3:
+    zone->wind_dir = EAST;
+    break;
+  case 4:
+    zone->wind_dir = WEST;
+    break;
+  default:
+    /* wind doesn't change direction */
+    break;
+  }
+
+  /* validate the wind value */
+  if(zone->wind_speed > WIND_HURRICANE)
+    zone->wind_speed = WIND_HURRICANE;
+  else if(zone->wind_speed < WIND_NONE)
+    zone->wind_speed = WIND_NONE;
+
+  /* NOTE: wind_dir is not reported in weather_message
+   *       but is used in do_move()
+   */
+  weather_message(zone, UPDATE_WIND, prev);
+}
+
+void update_temperature(struct zone_data* zone)
+{
+  int prev;
+  int change;
+
+  prev = zone->temperature;
+
+  /* moved season bias to update_hemispehre 10/15/98 -Fingh*/
+
+  /* now change to compensate for wind */
+  change = number(0,5);
+  if(number(0,2))
+  {
+    switch(zone->wind_speed)
+    {
+    case WIND_NONE:
+      zone->temperature += change * 2;
+      break;
+    case WIND_BREEZE:
+      zone->temperature += change;
+      break;
+    case WIND_STRONG:
+      zone->temperature -= change;
+      break;
+    case WIND_GALE:
+      zone->temperature -= change;
+      break;
+    case WIND_HURRICANE:
+      zone->temperature  -= change * 2;
+      break;
+    default:
+      /* no change in temperature */
+      break;
+    }
+  } /* end if() */
+
+  /* adjust for the sun... */
+  if(Hemispheres[zone->hemisphere].sunlight)
+    zone->temperature += number(1, 5);
+  else
+    zone->temperature -= number(1, 5);
+
+  /* make sure temp falls into valid range */
+  if(zone->temperature > TEMP_FIRE_PLANE)
+    zone->temperature = TEMP_FIRE_PLANE;
+  else if(zone->temperature < TEMP_FREEZING)
+    zone->temperature = TEMP_FREEZING;
+
+  weather_message(zone, UPDATE_TEMPERATURE, prev);
+} /* end update_temperature() */
+
+
+void update_precipitation(struct zone_data* zone)
+{
+  int prev;
+  unsigned int change;
+
+  prev = zone->precipitation;
+
+  /* maintain our bias from wind_speed */
+  change = number(0,6) - zone->wind_speed;
+  switch(change)
+  {
+  case 0:
+  case 1:
+    zone->precipitation++;
+    break;
+  case 3:
+  case 4:
+    zone->precipitation--;
+    break;
+  default:
+    /* no change in precipitation */
+    break;
+  }
+
+  /* make sure temp falls into valid range */
+  if(zone->precipitation > PRECIP_DANGEROUS)
+    zone->precipitation = PRECIP_DANGEROUS;
+  else if(zone->precipitation < PRECIP_NONE)
+    zone->precipitation = PRECIP_NONE;
+
+  weather_message(zone, UPDATE_PRECIPITATION, prev);
+}
+
+void update_hemisphere(void)
+{
+  int  hemisphere;
+  int  newtime = 0;
+  int  newseason = 0;
+  int  zindex;
+  char weather_buf[128];
+  char *new_time_string[] =
+  {
+    "&9&bThe night has begun.&0\r\n",
+    "&6&bThe &3sun &6rises in the east.&0\r\n",
+    "&6&bThe day has begun.&0\r\n",
+    "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\r\n"
+  };
+
+  char *new_season_string[] =
+  {
+    "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\r\n",
+    "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\r\n",
+    "Spring gives way to Summer.\r\n",
+    "Summer passes and Autumn begins.\r\n"
+};
+
+  memset(weather_buf, 0x0, 128);
+
+  for(hemisphere = 0; hemisphere < 4; hemisphere++)
+  {
+    switch (time_info.hours)
+    {
+    case 6:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+        Hemispheres[hemisphere].sunlight = SUN_RISE;
+        newtime++;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].sunlight = SUN_SET;
+        newtime++;
+        break;
+      }
+      break;
+    case 7:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+         Hemispheres[hemisphere].sunlight = SUN_LIGHT;
+        newtime++;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+        newtime++;
+       Hemispheres[hemisphere].sunlight = SUN_DARK;
+        break;
+      }
+      break;
+    case 19:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+        newtime++;
+         Hemispheres[hemisphere].sunlight = SUN_SET;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+        newtime++;
+       Hemispheres[hemisphere].sunlight = SUN_RISE;
+        break;
+      }
+      break;
+    case 20:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+         Hemispheres[hemisphere].sunlight = SUN_DARK;
+        newtime++;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+       Hemispheres[hemisphere].sunlight = SUN_LIGHT;
+        newtime++;
+        break;
+      }
+      break;
+    default:
+      break;
+    }
+
+    if(!g_newmonth)
+      continue;
+
+    /* update seasons */
+    newseason = 0;
+    switch(time_info.month)
+    {
+    case 0:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = WINTER;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = SUMMER;
+        newseason++;
+        break;
+      }
+      break;
+    case 4:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = SPRING;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = AUTUMN;
+        newseason++;
+        break;
+      }
+      break;
+    case 8:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = SUMMER;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = WINTER;
+        newseason++;
+        break;
+      }
+      break;
+    case 12:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = AUTUMN;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = SPRING;
+        newseason++;
+        break;
+      default:
+        break;
+      }
+      break;
+    default:
+      break;
+    } /* end switch(month) */
+  } /* end for(hemisphere) */
+
+  if(newtime)
+    for(zindex = 0; zindex <= top_of_zone_table; zindex++)
+      send_to_outdoor(new_time_string[Hemispheres[zone_table[zindex].hemisphere].sunlight],
+          zone_table[zindex].number);
+
+  if(newseason)
+  {
+    for(zindex = 0; zindex <= top_of_zone_table; zindex++)
+    {
+      send_to_outdoor(new_season_string[Hemispheres[zone_table [zindex].hemisphere].season],
+          zone_table[zindex].number);
+    } /* end for(zone) */
+
+    /* re-use the init_weather funct to set the
+     * weather params based on new season
+    */
+    init_weather();
+
+  } /* end if(newseason) */
+
+} /* end update_hemisphere() */
+
+
+void update_weather(long pulse)
+{
+  static int which_update = UPDATE_WIND;
+  int i;
+
+  for(i = 0; i < top_of_zone_table; i++)
+  {
+    if(zone_table[i].climate == CLIMATE_NONE)
+      continue;
+
+    switch(which_update)
+    {
+    case UPDATE_WIND:
+      update_wind(&zone_table[i]);
+      break;
+    case UPDATE_TEMPERATURE:
+      update_temperature(&zone_table[i]);
+      break;
+    case UPDATE_PRECIPITATION:
+      update_precipitation(&zone_table[i]);
+      break;
+    default:
+      break;
+    }
+  } /* end for(zone) */
+
+  if(which_update >= UPDATE_PRECIPITATION)
+     which_update = UPDATE_WIND;
+  else
+     which_update++;
+}
+@
+
+
+1.20
+log
+@Placed sector info into a struct and moved its macros into rooms.h.
+@
+text
+@/***************************************************************************
+ * $Id: weather.c,v 1.19 2008/09/03 17:34:08 myc Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: weather.c                                      Part of FieryMUD *
+ *  Usage: Weather functions, and structure initialization                 *
+ *     By: Tim Holcomb (Fingh on Hubis)                                    *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+
+#include "conf.h"
+#include "sysdep.h"
+
+
+#include "structs.h"
+#include "utils.h"
+#include "comm.h"
+#include "handler.h"
+#include "interpreter.h"
+#include "db.h"
+#include "weather.h"
+#include "math.h"
+
+
+const char *wind_speeds[] = {
+  "",
+  "&8&6breeze",
+  "&8&6strong wind",
+  "&4gale-force wind",
+  "&4&8hurricane-strength &0&6wind",
+  "\n"
+};
+
+const char *precip[] = {
+  "&6&brain",
+  "&7&bsnow",
+  "\n"
+};
+
+const char *daylight_change[] = {
+  "&9&bThe night has begun.&0\r\n",
+  "&6&bThe &3sun &6rises in the east.&0\r\n",
+  "&6&bThe day has begun.&0\r\n",
+  "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\r\n",
+};
+
+const char *seasons[] = {
+  "winter",
+  "spring",
+  "summer",
+  "autumn",
+  "\n"
+};
+
+const char *season_change[] = {
+  "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\r\n",
+  "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\r\n",
+  "Spring gives way to Summer.\r\n",
+  "Summer passes and Autumn begins.\r\n",
+};
+
+/*
+ * Initialize hemisphere data.  Only the names are permanent.  The 
+ * sunlight and season values are re-initialized from time data when
+ * the game boots (and are updated as the game runs).
+ */
+struct hemisphere_data hemispheres[NUM_HEMISPHERES] = {
+  { "Northwestern", SUN_DARK,  WINTER },
+  { "Northeastern", SUN_LIGHT, SUMMER },
+  { "Southwestern", SUN_DARK,  WINTER },
+  { "Southeastern", SUN_LIGHT, SUMMER },
+};
+
+void increment_game_time(void)
+{
+  time_info.hours++;
+  
+  if (time_info.hours >= HOURS_PER_DAY) {
+    time_info.hours = 0;
+    ++time_info.day;
+    if (time_info.day >= DAYS_PER_MONTH) {
+      time_info.day = 0;
+      ++time_info.month;
+      if (time_info.month >= MONTHS_PER_YEAR) {
+        time_info.month = 0;
+        ++time_info.year;
+      }
+      update_season();
+    }
+  }
+  update_daylight();
+}
+
+void update_daylight() {
+  struct descriptor_data *d;
+
+  switch (time_info.hours) {
+    case 6:
+      hemispheres[HEMISPHERE_NORTHEAST].sunlight = SUN_SET;
+      hemispheres[HEMISPHERE_NORTHWEST].sunlight = SUN_RISE;
+      hemispheres[HEMISPHERE_SOUTHEAST].sunlight = SUN_SET;
+      hemispheres[HEMISPHERE_SOUTHWEST].sunlight = SUN_RISE;
+      break;
+    case 7:
+      hemispheres[HEMISPHERE_NORTHEAST].sunlight = SUN_DARK;
+      hemispheres[HEMISPHERE_NORTHWEST].sunlight = SUN_LIGHT;
+      hemispheres[HEMISPHERE_SOUTHEAST].sunlight = SUN_DARK;
+      hemispheres[HEMISPHERE_SOUTHWEST].sunlight = SUN_LIGHT;
+      break;
+    case 19:
+      hemispheres[HEMISPHERE_NORTHEAST].sunlight = SUN_RISE;
+      hemispheres[HEMISPHERE_NORTHWEST].sunlight = SUN_SET;
+      hemispheres[HEMISPHERE_SOUTHEAST].sunlight = SUN_RISE;
+      hemispheres[HEMISPHERE_SOUTHWEST].sunlight = SUN_SET;
+      break;
+    case 20:
+      hemispheres[HEMISPHERE_NORTHEAST].sunlight = SUN_LIGHT;
+      hemispheres[HEMISPHERE_NORTHWEST].sunlight = SUN_DARK;
+      hemispheres[HEMISPHERE_SOUTHEAST].sunlight = SUN_LIGHT;
+      hemispheres[HEMISPHERE_SOUTHWEST].sunlight = SUN_DARK;
+      break;
+    default:
+      /* Don't send daylight change messages. */
+      return;
+  }
+
+  /* Season change: send the message to everybody. */
+  for (d = descriptor_list; d; d = d->next)
+    if (STATE(d) == CON_PLAYING && d->character && AWAKE(d->character) && 
+        CH_OUTSIDE(d->character))
+      write_to_output(daylight_change[hemispheres[IN_HEMISPHERE(d->character)].sunlight], d);
+
+}
+
+void update_season() {
+  struct descriptor_data *d;
+
+  switch (time_info.month) {
+    case 0:
+      hemispheres[HEMISPHERE_NORTHEAST].season = WINTER;
+      hemispheres[HEMISPHERE_NORTHWEST].season = WINTER;
+      hemispheres[HEMISPHERE_SOUTHEAST].season = SUMMER;
+      hemispheres[HEMISPHERE_SOUTHWEST].season = SUMMER;
+      break;
+    case 4:
+      hemispheres[HEMISPHERE_NORTHEAST].season = SPRING;
+      hemispheres[HEMISPHERE_NORTHWEST].season = SPRING;
+      hemispheres[HEMISPHERE_SOUTHEAST].season = AUTUMN;
+      hemispheres[HEMISPHERE_SOUTHWEST].season = AUTUMN;
+      break;
+    case 8:
+      hemispheres[HEMISPHERE_NORTHEAST].season = SUMMER;
+      hemispheres[HEMISPHERE_NORTHWEST].season = SUMMER;
+      hemispheres[HEMISPHERE_SOUTHEAST].season = WINTER;
+      hemispheres[HEMISPHERE_SOUTHWEST].season = WINTER;
+      break;
+    case 12:
+      hemispheres[HEMISPHERE_NORTHEAST].season = AUTUMN;
+      hemispheres[HEMISPHERE_NORTHWEST].season = AUTUMN;
+      hemispheres[HEMISPHERE_SOUTHEAST].season = SPRING;
+      hemispheres[HEMISPHERE_SOUTHWEST].season = SPRING;
+      break;
+    default:
+      /* Don't send new season messages. */
+      return;
+  }
+
+  /* Season change: send the message to everybody. */
+  for (d = descriptor_list; d; d = d->next)
+    if (STATE(d) == CON_PLAYING && d->character && AWAKE(d->character) && 
+        CH_OUTSIDE(d->character))
+      write_to_output(season_change[hemispheres[IN_HEMISPHERE(d->character)].season], d);
+
+  /* Refresh weather for all zones for new season. */
+  init_weather();
+}
+
+static CBP_FUNC(cb_outdoor)
+{
+  struct char_data *ch = object;
+  int zone_rnum = (int) data;
+
+  return (AWAKE(ch) && CH_OUTSIDE(ch) && IN_ZONE_RNUM(ch) == zone_rnum);
+}
+
+
+/* setup all the climate zones.  these are BASE values, and will be modified 
+ * for each actual zone at run-time based on the settings here...
+ */
+struct climate_data climates[NUM_CLIMATES] =
+{ /* climate         temperature    precipitation   wind speed   allowed_disasters */
+  { "None",        TEMP_MILD,     PRECIP_NONE,    WIND_NONE,   DISASTER_NONE },
+  { "Semiarid",    TEMP_HOT,      PRECIP_NONE,    WIND_NONE,   DISASTER_SANDSTORM | DISASTER_HEATWAVE },
+  { "Arid",        TEMP_MILD,     PRECIP_DRIZZLE, WIND_STRONG, DISASTER_SANDSTORM | DISASTER_HEATWAVE },
+  { "Oceanic",     TEMP_MILD,     PRECIP_DRIZZLE, WIND_BREEZE, DISASTER_TSUNAMI | DISASTER_WATERSPOUT | DISASTER_HURRICANE },
+  { "Temperate",   TEMP_WARM,     PRECIP_LIGHT,   WIND_BREEZE, DISASTER_FLOOD | DISASTER_TORNADO | DISASTER_EARTHQUAKE },
+  { "Subtropical", TEMP_HOT,      PRECIP_LIGHT,   WIND_BREEZE, DISASTER_FLOOD | DISASTER_HEATWAVE | DISASTER_HURRICANE },
+  { "Tropical",    TEMP_COOL,     PRECIP_LIGHT,   WIND_BREEZE, DISASTER_HURRICANE | DISASTER_HEATWAVE },
+  { "Subarctic",   TEMP_COLD,     PRECIP_LIGHT,   WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD },
+  { "Arctic",      TEMP_FREEZING, PRECIP_LIGHT,   WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD },
+  { "Alpine",      TEMP_COLD,     PRECIP_LIGHT,   WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD }
+};
+
+
+void init_weather()
+{
+  int i;
+  int climate;
+  
+  /* Initialize weather for each zone based on its climate. */
+  for (i = 0; i < top_of_zone_table; ++i) {
+    climate = zone_table[i].climate;
+
+    zone_table[i].temperature = climates[climate].base_temperature;
+    zone_table[i].precipitation = climates[climate].base_precipitation_rate;
+    zone_table[i].wind_speed = climates[climate].base_wind_speed;
+    zone_table[i].wind_dir = number(0, 3); /* Cardinal directions */
+    zone_table[i].disaster_type = DISASTER_NONE;
+    zone_table[i].disaster_duration = 0;
+
+    switch (hemispheres[zone_table[i].hemisphere].season) {
+      case WINTER:
+        zone_table[i].temperature += WINTER_TEMP;
+        zone_table[i].precipitation += WINTER_PREC;
+        break;
+      case SPRING:
+        zone_table[i].temperature += SPRING_TEMP;
+        zone_table[i].precipitation += SPRING_PREC;
+        break;
+      case SUMMER:
+        zone_table[i].temperature += SUMMER_TEMP;
+        zone_table[i].precipitation += SUMMER_PREC;
+        break;
+      case AUTUMN:
+        zone_table[i].temperature += AUTUMN_TEMP;
+        zone_table[i].precipitation += AUTUMN_PREC;
+        break;
+    }
+
+    /* Check values for correctness. */
+    zone_table[i].temperature = LIMIT(TEMP_FREEZING, zone_table[i].temperature, TEMP_FIRE_PLANE);
+    zone_table[i].precipitation = LIMIT(PRECIP_NONE, zone_table[i].precipitation, PRECIP_DANGEROUS);
+    zone_table[i].wind_speed = LIMIT(WIND_NONE, zone_table[i].wind_speed, WIND_HURRICANE);
+  }
+}
+
+
+char *wind_message(int current, int original) {
+  if (original == WIND_NONE) {
+    if (current == WIND_NONE)
+      strcpy(buf, "&6The air is calm.&0\r\n");
+    else
+      sprintf(buf, "&6A &0%s&0 &6begins to blow around you.&0\r\n", wind_speeds[current]);
+  }
+  else if (current > original)
+    sprintf(buf, "&6The &7%s &6increases to a &7%s.&0\r\n",
+            wind_speeds[original], wind_speeds[current]);
+  else if (current == original)
+    sprintf(buf, "&6A &7%s &6is blowing around you.&0\r\n",
+            wind_speeds[current]);
+  else if (current != WIND_NONE)
+    sprintf(buf, "&6The &7%s &6subsides to a &7%s.&0\r\n", 
+            wind_speeds[original], wind_speeds[current]);
+  else
+    sprintf(buf, "&6The &7%s &6calms and the air becomes still.&0\r\n",
+            wind_speeds[original]);
+  return buf;
+}
+
+
+void update_wind(int zone_rnum)
+{
+  int original, change;
+  struct zone_data* zone = &zone_table[zone_rnum];
+  
+  original = zone->wind_speed;
+  
+  /* Do we increment or decrement the wind? */
+  switch (number(0, 4)) {
+    case 0:
+    case 1:
+      break;
+    case 2:
+    case 3:
+      zone->wind_speed--;
+      break;
+    default:
+      zone->wind_speed++;
+      break;
+  }
+
+  /* see if the wind dir changes, the following dirs are in no 
+   * specific order, just create a random sampling.
+   */
+  change = number(0, 9);
+  if (change <= 3) /* 0 through 3 are cardinal directions */
+    zone->wind_dir = change;
+
+  /* Validate the wind value */
+  if (zone->wind_speed > WIND_HURRICANE)
+    zone->wind_speed = WIND_HURRICANE;
+  else if (zone->wind_speed < WIND_NONE)
+    zone->wind_speed = WIND_NONE;
+
+  cbprintf(cb_outdoor, (void *) zone_rnum, "%s", wind_message(zone->wind_speed, original));
+}
+
+
+char *temperature_message(int temperature) {
+  char *message;
+
+  if (temperature <= 0)
+    message = "It's too c-c-c-cold to be outside!\r\n";
+  else if (temperature <= 30)
+    message = "It's really c-c-c-cold!!\r\n";
+  else if (temperature <= 50)
+    message = "It's cold!\r\n";
+  else if (temperature <= 65)
+    message = "It's cool out here.\r\n";
+  else if (temperature <= 75)
+    message = "It's mild out today.\r\n";
+  else if (temperature <= 90)
+    message = "It's nice and warm out.\r\n";
+  else if (temperature <= 100)
+    message = "It's hot out here.\r\n";
+  else if (temperature <= 150)
+    message = "It's really, really hot here.\r\n";
+  else
+    message = "It's hotter than anyone could imagine!\r\n";
+  return message;
+}
+
+void update_temperature(int zone_rnum)
+{
+  int change;
+  struct zone_data* zone = &zone_table[zone_rnum];
+
+  change = number(0, 5);
+
+  if (number(0, 2))
+    switch (zone->wind_speed) {
+      case WIND_NONE:
+        zone->temperature += change * 2;
+        break;
+      case WIND_BREEZE:
+        zone->temperature += change;
+        break;
+      case WIND_STRONG:
+      case WIND_GALE:
+        zone->temperature -= change;
+        break;
+      case WIND_HURRICANE:
+        zone->temperature -= change * 2;
+        break;
+    }
+
+  /* Adjust for the sun... */
+  switch (hemispheres[zone->hemisphere].sunlight) {
+    case SUN_DARK:
+      zone->temperature -= number(1, 5);
+      break;
+    case SUN_RISE:
+      zone->temperature += number(1, 2);
+      break;
+    case SUN_LIGHT:
+      zone->temperature += number(1, 5);
+      break;
+    case SUN_SET:
+      zone->temperature -= number(1, 2);
+      break;
+  }
+
+  /* Keep temperature in a sane range. */
+  if (zone->temperature > BASE_TEMP(zone) + 30)
+    zone->temperature = BASE_TEMP(zone) + 30 + number(1, 5);
+  else if (zone->temperature < BASE_TEMP(zone) - 30)
+    zone->temperature = BASE_TEMP(zone) - 30 - number(1, 5);
+
+  /* Make sure temp falls in valid range */
+  if (zone->temperature > TEMP_FIRE_PLANE)
+    zone->temperature = TEMP_FIRE_PLANE;
+  else if (zone->temperature < TEMP_FREEZING)
+    zone->temperature = TEMP_FREEZING;
+
+  cbprintf(cb_outdoor, (void *) zone_rnum, "%s", temperature_message(zone->temperature));
+}
+
+
+char *precipitation_message(struct zone_data *zone, int original) {
+  if (original > PRECIP_GRAY_CLOUDS) {
+    if (zone->precipitation > original)
+      sprintf(buf, "&9&8It starts %sing &9&8harder.&0\r\n", GET_PRECIP_TYPE(zone));
+    else if (zone->precipitation == original)
+      sprintf(buf, "&5It continues to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+    else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
+      sprintf(buf, "&5The %s &5starts coming down a little lighter.&0\r\n", GET_PRECIP_TYPE(zone));
+    else
+      sprintf(buf, "&5It continues to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+  }
+  else if (original) {
+    if (zone->precipitation <= PRECIP_GRAY_CLOUDS) {
+      switch (original) {
+        case PRECIP_PARTLY_CLOUDY:
+          strcpy(buf, "&4&8The sky is filled with small &7bil&0&7low&8ing white &7c&0&7l&6ou&7d&8s.&0\r\n");
+          break;
+        case PRECIP_MOSTLY_CLOUDY:
+          strcpy(buf, "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the sky.&0\r\n");
+          break;
+        case PRECIP_GRAY_CLOUDS:
+          if (HEMISPHERE(zone).sunlight == SUN_DARK)
+            strcpy(buf, "&9&bDark, ominous clouds&0 &4cover the sky, shrouding the &7&8moon&8.&0\r\n");
+          else
+            strcpy(buf, "&9&bOminously dark clouds&0 &4fill the sky, blocking out all &3sunlight.&0\r\n");
+          break;
+        default:
+          /* Should not occur. */
+          return "NULL PRECIPITATION\r\n";
+      }
+    }
+    else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
+      sprintf(buf, "&9&8It begins to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+  }
+  else if (zone->precipitation)
+    strcpy(buf, "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 &4appear in the &bsky.&0\r\n");
+  else
+    switch (HEMISPHERE(zone).sunlight) {
+      case SUN_LIGHT:
+      case SUN_RISE:
+        strcpy(buf, "&5The &3&bsun&0 &5shows &bbrightly&0 &5in the clear &4&bsky.&0\r\n");
+        break;
+      case SUN_DARK:
+        strcpy(buf, "&5The &7moon&0 &5shines &8brightly&0 &5in the clear &4sky.&0\r\n");
+        break;
+      case SUN_SET:
+        strcpy(buf, "&5The &3&8sun&0 &5glows &8&1red&0 &5in the clear &4sky.&0\r\n");
+        break;
+      default:
+        /* Should not occur. */
+        return "NULL PRECIPITATION\r\n";
+    }
+  return buf;
+}
+
+
+void update_precipitation(int zone_rnum)
+{
+  int original, change;
+  struct zone_data* zone = &zone_table[zone_rnum];
+  
+  original = zone->precipitation;
+
+  /* maintain our bias from wind_speed */
+  change = number(0, 6) - zone->wind_speed;
+  switch(change) {
+    case 0:
+    case 1:
+      ++zone->precipitation;
+      break;
+    case 3:
+    case 4:
+      --zone->precipitation;
+      break;
+    default:
+      /* no change in precipitation */
+      break;
+  }
+
+  /* Make sure precipitation falls into valid range. */
+  if (zone->precipitation > PRECIP_DANGEROUS)
+    zone->precipitation = PRECIP_DANGEROUS;
+  else if (zone->precipitation < PRECIP_NONE)
+    zone->precipitation = PRECIP_NONE;
+
+  cbprintf(cb_outdoor, (void *) zone_rnum, "%s", precipitation_message(zone, original));
+}
+
+
+/* Update the weather for all zones. */
+void update_weather(long pulse)
+{
+  int i;
+
+  for (i = 0; i < top_of_zone_table; ++i) {
+    if (zone_table[i].climate == CLIMATE_NONE)
+      continue;
+    switch (pulse % (3 * SECS_PER_MUD_HOUR * PASSES_PER_SEC)) {
+      case (0 * SECS_PER_MUD_HOUR * PASSES_PER_SEC):
+        update_wind(i);
+        break;
+      case (1 * SECS_PER_MUD_HOUR * PASSES_PER_SEC):
+        update_temperature(i);
+        break;
+      case (2 * SECS_PER_MUD_HOUR * PASSES_PER_SEC):
+        update_precipitation(i);
+        break;
+      default:
+        log("Bad pulse value encountered in update_weather()");
+        return;
+    }
+  }
+}
+
+/***************************************************************************
+ * $Log: weather.c,v $
+ * Revision 1.19  2008/09/03 17:34:08  myc
+ * Moved liquid information into a def struct array.
+ *
+ * Revision 1.18  2008/08/26 04:39:21  jps
+ * Changed IN_ZONE to IN_ZONE_RNUM or IN_ZONE_VNUM and fixed zone_printf.
+ *
+ * Revision 1.17  2008/08/14 23:10:35  myc
+ * Added a callback function for use with cbprintf that mimics the
+ * old send_to_outdoor functionality.
+ *
+ * Revision 1.16  2008/04/05 05:05:42  myc
+ * Removed SEND_TO_Q macro, so call write_to_output directly.
+ *
+ * Revision 1.15  2008/03/05 03:03:54  myc
+ * Use LIMIT instead of BOUNDED.
+ *
+ * Revision 1.14  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.13  2008/02/04 01:46:12  myc
+ * Making the wind_speeds and precip arrays useable by search_block.
+ *
+ * Revision 1.12  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.11  2007/11/30 00:37:50  myc
+ * Replaced NULLs in update_precipitation() with non-crash-causing
+ * error messages.
+ *
+ * Revision 1.10  2007/11/30 00:35:26  myc
+ * Fixed crash bug stemming from init_weather leaving CLIMATE_NONE zones
+ * with invalid values, causing update_precipitation to return NULL.
+ *
+ * Revision 1.9  2007/09/05 21:49:28  myc
+ * Was sending zone vnums instead of rnums to comm functions.  Also, used
+ * wrong variable signature for world array (which caused crashes): use
+ * "extern struct room_data *world" not "extern struct room_data world[]".
+ *
+ * Revision 1.8  2007/09/04 06:49:19  myc
+ * Cleaned up weather code a lot (a rewrite, really).
+ *
+ * Revision 1.7  2007/07/24 01:23:54  myc
+ * It will no longer say the sun shines brightly at night.
+ *
+ * Revision 1.6  2005/03/22 00:43:40  rls
+ * adjusted the random for weather changing so that the
+ * wind doesn't get as high as often.
+ *
+ * Revision 1.5  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.4  2000/11/19 02:44:02  rsd
+ * altered comment header and included back comments prior
+ * to $log$ being added.
+ *
+ * Revision 1.3  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.2  1999/02/04 18:24:26  mud
+ * indented file
+ * dos2unix
+ *
+ * Revision 1.1  1999/01/29 01:23:32  mud
+ * Initial Revision
+ *
+ ***************************************************************************/
+@
+
+
+1.19
+log
+@Moved liquid information into a def struct array.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.18 2008/08/26 04:39:21 jps Exp myc $
+d134 1
+a134 1
+        OUTSIDE(d->character))
+d175 1
+a175 1
+        OUTSIDE(d->character))
+d187 1
+a187 1
+  return (AWAKE(ch) && OUTSIDE(ch) && IN_ZONE_RNUM(ch) == zone_rnum);
+d509 3
+@
+
+
+1.18
+log
+@Changed IN_ZONE to IN_ZONE_RNUM or IN_ZONE_VNUM and fixed zone_printf.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.17 2008/08/14 23:10:35 myc Exp jps $
+d82 1
+a82 1
+  if (time_info.hours > 23) {
+d85 1
+a85 1
+    if (time_info.day > 34) {
+d88 1
+a88 1
+      if (time_info.month > 15) {
+d509 3
+@
+
+
+1.17
+log
+@Added a callback function for use with cbprintf that mimics the
+old send_to_outdoor functionality.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.16 2008/04/05 05:05:42 myc Exp myc $
+d187 1
+a187 1
+  return (AWAKE(ch) && OUTSIDE(ch) && IN_ZONE(ch) == zone_rnum);
+d509 4
+@
+
+
+1.16
+log
+@Removed SEND_TO_Q macro, so call write_to_output directly.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.15 2008/03/05 03:03:54 myc Exp myc $
+a28 4
+/* externals */
+extern void send_to_outdoor(char *messg, int zonenum);
+
+
+d182 8
+d309 1
+a309 1
+  send_to_outdoor(wind_message(zone->wind_speed, original), zone_rnum);
+d389 1
+a389 1
+  send_to_outdoor(temperature_message(zone->temperature), zone_rnum);
+d478 1
+a478 1
+  send_to_outdoor(precipitation_message(zone, original), zone_rnum);
+d509 3
+@
+
+
+1.15
+log
+@Use LIMIT instead of BOUNDED.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.14 2008/02/09 04:27:47 myc Exp myc $
+d139 1
+a139 1
+      SEND_TO_Q(daylight_change[hemispheres[IN_HEMISPHERE(d->character)].sunlight], d);
+d180 1
+a180 1
+      SEND_TO_Q(season_change[hemispheres[IN_HEMISPHERE(d->character)].season], d);
+d505 3
+@
+
+
+1.14
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.13 2008/02/04 01:46:12 myc Exp myc $
+d241 3
+a243 3
+    zone_table[i].temperature = BOUNDED(TEMP_FREEZING, zone_table[i].temperature, TEMP_FIRE_PLANE);
+    zone_table[i].precipitation = BOUNDED(PRECIP_NONE, zone_table[i].precipitation, PRECIP_DANGEROUS);
+    zone_table[i].wind_speed = BOUNDED(WIND_NONE, zone_table[i].wind_speed, WIND_HURRICANE);
+d505 3
+@
+
+
+1.13
+log
+@Making the wind_speeds and precip arrays useable by search_block.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.12 2008/01/29 21:02:31 myc Exp myc $
+d26 1
+a26 1
+
+d505 3
+@
+
+
+1.12
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.11 2007/11/30 00:37:50 myc Exp myc $
+d38 2
+a39 1
+  "&4&8hurricane-strength &0&6wind"
+d44 2
+a45 1
+  "&7&bsnow"
+d52 1
+a52 1
+  "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\r\n"
+d60 1
+d67 1
+a67 1
+  "Summer passes and Autumn begins.\r\n"
+d505 4
+@
+
+
+1.11
+log
+@Replaced NULLs in update_precipitation() with non-crash-causing
+error messages.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.10 2007/11/30 00:35:26 myc Exp myc $
+a29 3
+extern struct time_info_data time_info;
+extern struct zone_data *zone_table; 
+extern int    top_of_zone_table;   /* used as index to zone_table array */
+a30 2
+extern struct descriptor_data *descriptor_list;
+extern struct room_data *world;
+d32 2
+a33 1
+char *wind_speeds[] = {
+d41 1
+a41 1
+char *precip[] = {
+d46 1
+a46 1
+char *daylight_change[] = {
+d60 1
+a60 1
+char *season_change[] = {
+d502 4
+@
+
+
+1.10
+log
+@Fixed crash bug stemming from init_weather leaving CLIMATE_NONE zones
+with invalid values, causing update_precipitation to return NULL.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.9 2007/09/05 21:49:28 myc Exp $
+d418 1
+a418 1
+          return NULL;
+d440 1
+a440 1
+        return NULL;
+d506 4
+@
+
+
+1.9
+log
+@Was sending zone vnums instead of rnums to comm functions.  Also, used
+wrong variable signature for world array (which caused crashes): use
+"extern struct room_data *world" not "extern struct room_data world[]".
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.8 2007/09/04 06:49:19 myc Exp myc $
+d240 5
+d506 5
+@
+
+
+1.8
+log
+@Cleaned up weather code a lot (a rewrite, really).
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.7 2007/07/24 01:23:54 myc Exp myc $
+d35 1
+a35 1
+extern struct room_data world[];
+d267 1
+a267 1
+void update_wind(struct zone_data* zone)
+d270 1
+d301 1
+a301 1
+  send_to_outdoor(wind_message(zone->wind_speed, original), zone->number);
+d329 1
+a329 1
+void update_temperature(struct zone_data* zone)
+d332 1
+d381 1
+a381 1
+  send_to_outdoor(temperature_message(zone->temperature), zone->number);
+d441 1
+a441 1
+void update_precipitation(struct zone_data* zone)
+d444 1
+d470 1
+a470 1
+  send_to_outdoor(precipitation_message(zone, original), zone->number);
+d484 1
+a484 1
+        update_wind(&zone_table[i]);
+d487 1
+a487 1
+        update_temperature(&zone_table[i]);
+d490 1
+a490 1
+        update_precipitation(&zone_table[i]);
+d501 3
+@
+
+
+1.7
+log
+@It will no longer say the sun shines brightly at night.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.6 2005/03/22 00:43:40 rls Exp myc $
+a13 1
+#include "weather.h"
+d25 2
+d34 2
+d37 7
+a43 2
+/* prevent multiple inclusions since stock files do not contain ifndef's...*/
+void weather_message(struct zone_data *zone, int type, int prev_valueof_type);
+d45 11
+a55 2
+void update_weather(long pulse);
+void update_hemisphere();
+d57 6
+a62 2
+/* the hemispheres are setup before the game starts.... */
+HEMISPHERE Hemispheres[NUM_HEMISPHERES];
+d64 6
+a69 2
+/* signal a possible hange in season. */
+int g_newmonth = 0;
+d71 11
+d83 1
+a83 1
+void update_weather_and_time(long pulse)
+d85 16
+a100 2
+  another_hour();
+  update_weather(pulse);
+d103 2
+d106 40
+a145 26
+void another_hour(void)
+{
+  time_info.hours++;
+  
+  if (time_info.hours > 23) 
+    {	/* Changed by HHS due to bug ??? */
+      time_info.hours -= 24;
+      time_info.day++;
+      
+      if (time_info.day > 34) 
+	{
+	  time_info.day = 0;
+	  time_info.month++;
+	  g_newmonth = 1;
+	  
+	  if (time_info.month > 15) 
+	    {
+	      time_info.month = 0;
+	      time_info.year++;
+	    } /* month */
+	}   /* day   */
+    }     /* hours */
+  
+  update_hemisphere();
+  g_newmonth = 0;
+}       /* end another_hour() */
+d147 35
+d183 2
+a184 4
+/* place holder for now...will be cool later. */
+void defaultDisaster()
+{
+  return;
+d187 1
+d191 12
+a202 10
+CLIMATE Climates[] =                 /* climate type */
+{ /* base_temp,   base_precip,    base_windspeed,  setdisaster() */
+  {TEMP_MILD,     PRECIP_NONE,    WIND_NONE,       NULL             },
+  {TEMP_HOT,      PRECIP_NONE,    WIND_NONE,       defaultDisaster     },
+  {TEMP_MILD,     PRECIP_DRIZZLE, WIND_STRONG,     defaultDisaster    },
+  {TEMP_MILD,     PRECIP_DRIZZLE, WIND_BREEZE,     defaultDisaster},
+  {TEMP_WARM,     PRECIP_LIGHT,   WIND_BREEZE,     defaultDisaster},
+  {TEMP_HOT,      PRECIP_LIGHT,   WIND_BREEZE,     defaultDisaster   },
+  {TEMP_COOL,     PRECIP_LIGHT,   WIND_BREEZE,     defaultDisaster},
+  {TEMP_COLD,     PRECIP_LIGHT,   WIND_STRONG,     defaultDisaster   }
+d211 28
+a238 33
+  /* set up the zones to default for the respective climates */
+  for(i = 0; i < top_of_zone_table; i++)
+    {
+      climate = zone_table[i].climate;
+      
+      zone_table[i].temperature   = Climates[climate].base_temperature;
+      zone_table[i].precipitation = Climates[climate].base_precipitation_rate;
+      zone_table[i].wind_speed    = Climates[climate].base_wind_speed;
+      zone_table[i].wind_dir      = number(0,3);  /* cardinal directions */
+      zone_table[i].disaster_type = 0;
+      zone_table[i].disaster_duration = 0;
+ 
+      switch(Hemispheres[zone_table[i].hemisphere].season)
+	{
+	case WINTER:
+	  zone_table[i].temperature   += WINTER_TEMP; 
+	  zone_table[i].precipitation += WINTER_PREC;
+	  break;
+	case SPRING:
+	  zone_table[i].temperature   += SPRING_TEMP;
+	  zone_table[i].precipitation += SPRING_PREC;
+	  break;
+	case SUMMER:
+	  zone_table[i].temperature   += SUMMER_TEMP;
+	  zone_table[i].precipitation += SUMMER_PREC;
+	  break;
+	case AUTUMN:
+	  zone_table[i].temperature   += AUTUMN_TEMP;
+	  zone_table[i].precipitation += AUTUMN_PREC;
+	  break;
+	default:
+	  break;
+	}
+d240 2
+a241 2
+  
+} /* end init_weather */
+d244 16
+a259 4
+int get_precip_type(int temp)
+{
+  if(temp > TEMP_COLD)
+    return PRECIP_TYPE_RAIN;
+d261 3
+a263 1
+    return PRECIP_TYPE_SNOW;
+a265 116
+/* generate the messages to character based on recent changes in weather. */
+void weather_message(struct zone_data *zone, int type, int prev_valueof_type)
+{
+  char *precip[] = {
+    "&6&brain",
+    "&7&bsnow"
+  };
+  
+  char *windspeed_type[] = {
+    "!UNUSED!",
+    "&b&6breeze",
+    "&b&6strong wind",
+    "&4gale-force wind",
+    "&4&bhurricane-strength&0 &6wind"
+  };
+  
+  char wbuffer[128];
+  
+  memset(wbuffer, 0x0, 128);
+  
+  switch(type)
+    {
+    case UPDATE_WIND:
+      if(prev_valueof_type)
+	{
+	  if(zone->wind_speed > prev_valueof_type)
+	    sprintf(wbuffer, "&6The &0%s&0 &6increases to a &0%s.&0\r\n", windspeed_type[prev_valueof_type], windspeed_type[zone->wind_speed]);
+	  else if(zone->wind_speed < prev_valueof_type)
+	    if(zone->wind_speed)
+	      sprintf(wbuffer, "&6The &0%s&0 &6subsides to a &0%s.&0\r\n", windspeed_type[prev_valueof_type], windspeed_type[zone->wind_speed]);
+	    else
+	      sprintf(wbuffer, "&6The &0%s&0 &6calms and the air becomes still.&0\r\n", windspeed_type[prev_valueof_type]);
+	  else 
+	    sprintf(wbuffer, "&6A &0%s&0 &6continues to blow around you.&0\r\n", windspeed_type[zone->wind_speed]);
+	}
+      else
+	{
+	  if(zone->wind_speed)
+	    sprintf(wbuffer, "&6A &0%s&0 &6begins to blow around you.&0\r\n", windspeed_type[zone->wind_speed]);
+	  else
+	    sprintf(wbuffer, "&6The air is calm.&0\r\n");
+	}
+      break;
+      
+    case UPDATE_TEMPERATURE:
+      if (zone->temperature > 150)
+	sprintf(wbuffer, "It's hotter than anyone could imagine.\r\n");
+      else if (zone->temperature > 100)
+	sprintf(wbuffer, "It's really, really hot here.\r\n");
+      else if (zone->temperature > 90)
+	sprintf(wbuffer, "It's hot out here.\r\n");
+      else if (zone->temperature > 75)
+	sprintf(wbuffer, "It's nice and warm out.\r\n");
+      else if (zone->temperature > 65)
+	sprintf(wbuffer, "It's mild out today.\r\n");
+      else if (zone->temperature > 50)
+	sprintf(wbuffer, "It's cool out here.\r\n");
+      else if (zone->temperature > 30)
+	sprintf(wbuffer, "It's cold!\r\n");
+      else if (zone->temperature > 0)
+	sprintf(wbuffer, "It's really c-c-c-cold!!\r\n");
+      else
+	sprintf(wbuffer, "It's too c-c-c-cold to be outside!!\r\n");
+      break;
+      
+    case UPDATE_PRECIPITATION:
+      if(prev_valueof_type > 3)
+	{
+	  if(zone->precipitation > prev_valueof_type)
+	    sprintf(wbuffer, "&9&bIt starts %sing &9&bharder.&0\r\n", GET_PRECIP_TYPE(zone));
+	  else if (zone->precipitation < prev_valueof_type)
+	    {
+	      if(zone->precipitation > 3)
+		sprintf(wbuffer, "&5The %s &5starts coming down a little lighter.&0\r\n", GET_PRECIP_TYPE(zone));
+	      else
+		sprintf(wbuffer, "&5It stops %sing.&0\r\n", GET_PRECIP_TYPE(zone));
+	    }
+	  else
+	    sprintf(wbuffer, "&5It continues to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+	}
+      else if(prev_valueof_type)
+	{
+	  if(zone->precipitation  <= 3)
+	    {
+	      switch(prev_valueof_type)
+		{
+		case PRECIP_PARTLY_CLOUDY:
+		  sprintf(wbuffer, "&4&bThe sky is filled with small &7bil&0&7low&bing white &7c&0&7l&6ou&7d&bs.&0\r\n");              
+		  break;
+		case PRECIP_MOSTLY_CLOUDY:
+		  sprintf(wbuffer, "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the sky.&0\r\n");
+		  break;
+		case PRECIP_GRAY_CLOUDS:
+		  sprintf(wbuffer, "&9&bOminously dark clouds&0 &4fill the sky, blocking out all &3sunlight.&0\r\n");
+		  break;
+		}
+	    }
+	  else if(zone->precipitation > 3)
+	    sprintf(wbuffer, "&9&bIt begins to %s.&0\r\n", GET_PRECIP_TYPE(zone)); 
+	}
+      else
+	{
+	  if(zone->precipitation)
+	    sprintf(wbuffer, "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 &4appear in the &bsky.&0\r\n");
+	  else if (Hemispheres[zone->hemisphere].sunlight == SUN_DARK ||
+	           Hemispheres[zone->hemisphere].sunlight == SUN_SET)
+	    sprintf(wbuffer, "&5The &3&bsun&0 &5shows &bbrightly&0 &5in the clear &4&bsky.&0\r\n");
+	}
+      break;
+    default:
+      break;
+      
+    } /* end switch(type) */
+  
+  send_to_outdoor(wbuffer, (int)zone->number);
+} /* end weather_message() */
+d269 1
+a269 2
+  int prev;
+  int change;
+d271 1
+a271 1
+  prev = zone->wind_speed;
+d273 2
+a274 4
+  /* do we increment or decrement the wind? */
+  change = number(0,4);
+  switch(change)
+    {
+d285 2
+a286 2
+    } /* end switch() */
+  
+d290 6
+a295 22
+  change = number(0,9);
+  switch(change)
+    {
+    case 1:
+      zone->wind_dir = NORTH;
+      break;
+    case 2:
+      zone->wind_dir = SOUTH;
+      break;
+    case 3:
+      zone->wind_dir = EAST;
+      break;
+    case 4:
+      zone->wind_dir = WEST;
+      break;
+    default:
+      /* wind doesn't change direction */
+      break;
+    }
+  
+  /* validate the wind value */
+  if(zone->wind_speed > WIND_HURRICANE)
+d297 1
+a297 1
+  else if(zone->wind_speed < WIND_NONE)
+d299 27
+a325 5
+  
+  /* NOTE: wind_dir is not reported in weather_message
+   *       but is used in do_move() 
+   */
+  weather_message(zone, UPDATE_WIND, prev);
+a329 1
+  int prev;
+d331 44
+a374 40
+  
+  prev = zone->temperature;
+  
+  /* moved season bias to update_hemispehre 10/15/98 -Fingh*/  
+  
+  /* now change to compensate for wind */
+  change = number(0,5);
+  if(number(0,2))
+    {
+      switch(zone->wind_speed)
+	{
+	case WIND_NONE:
+	  zone->temperature += change * 2;
+	  break;
+	case WIND_BREEZE:
+	  zone->temperature += change;
+	  break;    
+	case WIND_STRONG:
+	  zone->temperature -= change;
+	  break;    
+	case WIND_GALE:
+	  zone->temperature -= change;
+	  break;
+	case WIND_HURRICANE:
+	  zone->temperature  -= change * 2;
+	  break;
+	default:
+	  /* no change in temperature */
+	  break;
+	}
+    } /* end if() */
+  
+  /* adjust for the sun... */
+  if(Hemispheres[zone->hemisphere].sunlight)
+    zone->temperature += number(1, 5);
+  else
+    zone->temperature -= number(1, 5);
+  
+  /* make sure temp falls into valid range */
+  if(zone->temperature > TEMP_FIRE_PLANE)
+d376 1
+a376 1
+  else if(zone->temperature < TEMP_FREEZING)
+d378 59
+a436 3
+  
+  weather_message(zone, UPDATE_TEMPERATURE, prev);
+} /* end update_temperature() */
+d441 1
+a441 4
+  int prev;
+  unsigned int change;
+  
+  prev = zone->precipitation;
+d443 2
+d446 2
+a447 3
+  change = number(0,6) - zone->wind_speed;
+  switch(change)
+    {
+d450 1
+a450 1
+      zone->precipitation++;
+d454 1
+a454 1
+      zone->precipitation--;
+d459 4
+a462 4
+    }
+  
+  /* make sure temp falls into valid range */
+  if(zone->precipitation > PRECIP_DANGEROUS)
+d464 1
+a464 1
+  else if(zone->precipitation < PRECIP_NONE)
+d466 2
+a467 2
+  
+  weather_message(zone, UPDATE_PRECIPITATION, prev);
+a469 189
+void update_hemisphere(void)
+{
+  int  hemisphere;
+  int  newtime = 0;
+  int  newseason = 0;
+  int  zindex;
+  char weather_buf[128];
+  char *new_time_string[] = 
+  {
+    "&9&bThe night has begun.&0\r\n",
+    "&6&bThe &3sun &6rises in the east.&0\r\n",
+    "&6&bThe day has begun.&0\r\n",
+    "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\r\n"
+  };
+  
+  char *new_season_string[] =
+  {
+    "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\r\n",
+    "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\r\n",
+    "Spring gives way to Summer.\r\n",
+    "Summer passes and Autumn begins.\r\n" 
+  };
+  
+  memset(weather_buf, 0x0, 128);
+  
+  for(hemisphere = 0; hemisphere < 4; hemisphere++)
+    {
+      switch (time_info.hours) 
+	{
+	case 6:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_SOUTHWEST:
+	      Hemispheres[hemisphere].sunlight = SUN_RISE;
+	      newtime++;
+	      break;
+	    case HEMISPHERE_NORTHEAST:
+	    case HEMISPHERE_SOUTHEAST:
+	      Hemispheres[hemisphere].sunlight = SUN_SET;
+	      newtime++;
+	      break;
+	    }
+	  break;
+	case 7:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_SOUTHWEST:
+	      Hemispheres[hemisphere].sunlight = SUN_LIGHT;
+	      newtime++;
+	      break;
+	    case HEMISPHERE_NORTHEAST:
+	    case HEMISPHERE_SOUTHEAST:
+	      newtime++;
+	      Hemispheres[hemisphere].sunlight = SUN_DARK;
+	      break;
+	    }
+	  break;
+	case 19:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_SOUTHWEST:
+	      newtime++;
+	      Hemispheres[hemisphere].sunlight = SUN_SET;
+	      break;
+	    case HEMISPHERE_NORTHEAST:
+	    case HEMISPHERE_SOUTHEAST:
+	      newtime++;
+	      Hemispheres[hemisphere].sunlight = SUN_RISE;
+	      break;
+	    }
+	  break;
+	case 20:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_SOUTHWEST:
+	      Hemispheres[hemisphere].sunlight = SUN_DARK;
+	      newtime++;
+	      break;
+	    case HEMISPHERE_NORTHEAST:
+	    case HEMISPHERE_SOUTHEAST:
+	      Hemispheres[hemisphere].sunlight = SUN_LIGHT;
+	      newtime++;
+	      break;
+	    }
+	  break;
+	default:
+	  break;
+	}
+      
+      if(!g_newmonth)
+	continue;
+      
+      /* update seasons */
+      newseason = 0;
+      switch(time_info.month)
+	{
+	case 0:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_NORTHEAST:
+	      Hemispheres[hemisphere].season = WINTER;
+	      newseason++;
+	      break;
+	    case HEMISPHERE_SOUTHWEST:
+	    case HEMISPHERE_SOUTHEAST:
+	      Hemispheres[hemisphere].season = SUMMER;
+	      newseason++;
+	      break;
+	    }
+	  break;
+	case 4:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_NORTHEAST:
+	      Hemispheres[hemisphere].season = SPRING;
+	      newseason++;
+	      break;
+	    case HEMISPHERE_SOUTHWEST:
+	    case HEMISPHERE_SOUTHEAST:
+	      Hemispheres[hemisphere].season = AUTUMN;
+	      newseason++;
+	      break;
+	    }
+	  break;
+	case 8:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_NORTHEAST:
+	      Hemispheres[hemisphere].season = SUMMER;
+	      newseason++;
+	      break;
+	    case HEMISPHERE_SOUTHWEST:
+	    case HEMISPHERE_SOUTHEAST:
+	      Hemispheres[hemisphere].season = WINTER;
+	      newseason++;
+	      break;
+	    }
+	  break;
+	case 12:
+	  switch(hemisphere)
+	    {
+	    case HEMISPHERE_NORTHWEST:
+	    case HEMISPHERE_NORTHEAST:
+	      Hemispheres[hemisphere].season = AUTUMN;
+	      newseason++;
+	      break;
+	    case HEMISPHERE_SOUTHWEST:
+	    case HEMISPHERE_SOUTHEAST:
+	      Hemispheres[hemisphere].season = SPRING;
+	      newseason++;
+	      break;
+	    default:
+	      break;
+	    }
+	  break;
+	default:
+	  break;
+	} /* end switch(month) */
+    } /* end for(hemisphere) */
+  
+  if(newtime)
+    for(zindex = 0; zindex <= top_of_zone_table; zindex++)
+      send_to_outdoor(new_time_string[Hemispheres[zone_table[zindex].hemisphere].sunlight], 
+		      zone_table[zindex].number);
+  
+  if(newseason)
+    {
+      for(zindex = 0; zindex <= top_of_zone_table; zindex++)
+	{
+	  send_to_outdoor(new_season_string[Hemispheres[zone_table [zindex].hemisphere].season], 
+			  zone_table[zindex].number);
+	} /* end for(zone) */
+      
+      /* re-use the init_weather funct to set the 
+       * weather params based on new season
+       */
+      init_weather();
+      
+    } /* end if(newseason) */
+  
+} /* end update_hemisphere() */
+
+d471 1
+a473 1
+  static int which_update = UPDATE_WIND;
+d475 19
+a493 26
+  
+  for(i = 0; i < top_of_zone_table; i++)
+    {
+      if(zone_table[i].climate == CLIMATE_NONE)
+	continue;
+      
+      switch(which_update)
+	{
+	case UPDATE_WIND:
+	  update_wind(&zone_table[i]);
+	  break;
+	case UPDATE_TEMPERATURE:
+	  update_temperature(&zone_table[i]);
+	  break;
+	case UPDATE_PRECIPITATION:
+	  update_precipitation(&zone_table[i]);
+	  break;
+	default:
+	  break;  
+	}
+    } /* end for(zone) */
+  
+  if(which_update >= UPDATE_PRECIPITATION)
+    which_update = UPDATE_WIND;
+  else
+    which_update++;  
+d498 3
+@
+
+
+1.6
+log
+@adjusted the random for weather changing so that the
+wind doesn't get as high as often.
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.5 2002/09/13 02:32:10 jjl Exp $
+d259 2
+a260 1
+	  else  
+d639 4
+@
+
+
+1.5
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: weather.c,v 1.4 2000/11/19 02:44:02 rsd Exp $
+d279 1
+a279 1
+  change = number(0,2);
+d283 1
+a283 1
+      zone->wind_speed++;
+d285 2
+a286 1
+    case 1:
+d290 1
+a290 1
+      /* no change in wind speed */
+d638 3
+@
+
+
+1.4
+log
+@altered comment header and included back comments prior
+to $log$ being added.
+@
+text
+@d1 3
+a3 1
+// $Id: weather.c,v 1.3 1999/09/05 07:00:39 jimmy Exp $
+d635 17
+a651 11
+// $Log: weather.c,v $
+// Revision 1.3  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.2  1999/02/04 18:24:26  mud
+// indented file
+// dos2unix
+//
+// Revision 1.1  1999/01/29 01:23:32  mud
+// Initial Revision
+//
+@
+
+
+1.3
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 10
+a10 10
+// $Id$
+/******************************************************************
+ * Filename:  weather.c                                           *
+ *                                                                *
+ * Usage:     Weather functions, and structure initialization     *
+ *                                                                *
+ * Author:    Tim Holcomb (Fingh on Hubis)                        *
+ *                                                                *
+ * Last Modified: [10-8-98]                                       *
+ ******************************************************************/
+d633 11
+a643 1
+// $Log$
+@
+
+
+1.2
+log
+@indented file
+dos2unix
+@
+text
+@d1 1
+d633 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 9
+a9 11
+/*++
+********************************************************************
+* Filename:  weather.c
+* 
+* Usage:     Weather functions, and structure initialization
+*
+* Author:    Tim Holcomb (Fingh on Hubis)
+*
+* Last Modified: [10-8-98]
+********************************************************************
+--*/
+d54 1
+a54 1
+
+d56 3
+a58 9
+  {	/* Changed by HHS due to bug ??? */
+    time_info.hours -= 24;
+    time_info.day++;
+
+    if (time_info.day > 34) 
+    {
+      time_info.day = 0;
+      time_info.month++;
+      g_newmonth = 1;
+d60 8
+a67 2
+      if (time_info.month > 15) 
+      {
+d70 3
+a72 3
+      } /* month */
+    }   /* day   */
+  }     /* hours */
+d105 1
+a105 1
+
+d108 9
+a116 9
+  {
+    climate = zone_table[i].climate;
+
+    zone_table[i].temperature   = Climates[climate].base_temperature;
+    zone_table[i].precipitation = Climates[climate].base_precipitation_rate;
+    zone_table[i].wind_speed    = Climates[climate].base_wind_speed;
+    zone_table[i].wind_dir      = number(0,3);  /* cardinal directions */
+    zone_table[i].disaster_type = 0;
+    zone_table[i].disaster_duration = 0;
+d118 21
+a138 20
+    switch(Hemispheres[zone_table[i].hemisphere].season)
+    {
+      case WINTER:
+        zone_table[i].temperature   += WINTER_TEMP; 
+        zone_table[i].precipitation += WINTER_PREC;
+        break;
+      case SPRING:
+        zone_table[i].temperature   += SPRING_TEMP;
+        zone_table[i].precipitation += SPRING_PREC;
+        break;
+      case SUMMER:
+        zone_table[i].temperature   += SUMMER_TEMP;
+        zone_table[i].precipitation += SUMMER_PREC;
+        break;
+      case AUTUMN:
+        zone_table[i].temperature   += AUTUMN_TEMP;
+        zone_table[i].precipitation += AUTUMN_PREC;
+        break;
+      default:
+        break;
+d140 1
+a140 2
+  }
+
+d159 1
+a159 1
+
+d167 1
+a167 1
+
+d169 1
+a169 1
+
+d171 1
+a171 1
+
+a172 3
+  {
+  case UPDATE_WIND:
+    if(prev_valueof_type)
+d174 39
+a212 14
+      if(zone->wind_speed > prev_valueof_type)
+        sprintf(wbuffer, "&6The &0%s&0 &6increases to a &0%s.&0\r\n", windspeed_type[prev_valueof_type], windspeed_type[zone->wind_speed]);
+      else if(zone->wind_speed < prev_valueof_type)
+        if(zone->wind_speed)
+          sprintf(wbuffer, "&6The &0%s&0 &6subsides to a &0%s.&0\r\n", windspeed_type[prev_valueof_type], windspeed_type[zone->wind_speed]);
+        else
+          sprintf(wbuffer, "&6The &0%s&0 &6calms and the air becomes still.&0\r\n", windspeed_type[prev_valueof_type]);
+      else 
+        sprintf(wbuffer, "&6A &0%s&0 &6continues to blow around you.&0\r\n", windspeed_type[zone->wind_speed]);
+    }
+    else
+    {
+      if(zone->wind_speed)
+        sprintf(wbuffer, "&6A &0%s&0 &6begins to blow around you.&0\r\n", windspeed_type[zone->wind_speed]);
+d214 38
+a251 37
+        sprintf(wbuffer, "&6The air is calm.&0\r\n");
+    }
+    break;
+
+  case UPDATE_TEMPERATURE:
+    if (zone->temperature > 150)
+      sprintf(wbuffer, "It's hotter than anyone could imagine.\r\n");
+    else if (zone->temperature > 100)
+      sprintf(wbuffer, "It's really, really hot here.\r\n");
+    else if (zone->temperature > 90)
+      sprintf(wbuffer, "It's hot out here.\r\n");
+    else if (zone->temperature > 75)
+      sprintf(wbuffer, "It's nice and warm out.\r\n");
+    else if (zone->temperature > 65)
+      sprintf(wbuffer, "It's mild out today.\r\n");
+    else if (zone->temperature > 50)
+      sprintf(wbuffer, "It's cool out here.\r\n");
+    else if (zone->temperature > 30)
+      sprintf(wbuffer, "It's cold!\r\n");
+    else if (zone->temperature > 0)
+      sprintf(wbuffer, "It's really c-c-c-cold!!\r\n");
+    else
+      sprintf(wbuffer, "It's too c-c-c-cold to be outside!!\r\n");
+    break;
+
+  case UPDATE_PRECIPITATION:
+    if(prev_valueof_type > 3)
+    {
+      if(zone->precipitation > prev_valueof_type)
+        sprintf(wbuffer, "&9&bIt starts %sing &9&bharder.&0\r\n", GET_PRECIP_TYPE(zone));
+      else if (zone->precipitation < prev_valueof_type)
+      {
+        if(zone->precipitation > 3)
+          sprintf(wbuffer, "&5The %s &5starts coming down a little lighter.&0\r\n", GET_PRECIP_TYPE(zone));
+        else
+          sprintf(wbuffer, "&5It stops %sing.&0\r\n", GET_PRECIP_TYPE(zone));
+      }
+d253 12
+a264 35
+        sprintf(wbuffer, "&5It continues to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+    }
+    else if(prev_valueof_type)
+    {
+      if(zone->precipitation  <= 3)
+      {
+        switch(prev_valueof_type)
+        {
+          case PRECIP_PARTLY_CLOUDY:
+            sprintf(wbuffer, "&4&bThe sky is filled with small &7bil&0&7low&bing white &7c&0&7l&6ou&7d&bs.&0\r\n");              
+            break;
+          case PRECIP_MOSTLY_CLOUDY:
+            sprintf(wbuffer, "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the sky.&0\r\n");
+            break;
+          case PRECIP_GRAY_CLOUDS:
+            sprintf(wbuffer, "&9&bOminously dark clouds&0 &4fill the sky, blocking out all &3sunlight.&0\r\n");
+            break;
+        }
+      }
+      else if(zone->precipitation > 3)
+        sprintf(wbuffer, "&9&bIt begins to %s.&0\r\n", GET_PRECIP_TYPE(zone)); 
+    }
+    else
+    {
+      if(zone->precipitation)
+        sprintf(wbuffer, "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 &4appear in the &bsky.&0\r\n");
+      else  
+        sprintf(wbuffer, "&5The &3&bsun&0 &5shows &bbrightly&0 &5in the clear &4&bsky.&0\r\n");
+    }
+    break;
+  default:
+    break;
+
+  } /* end switch(type) */
+
+d272 1
+a272 1
+
+d274 1
+a274 1
+
+d278 12
+a289 12
+  {
+  case 0:
+    zone->wind_speed++;
+    break;
+  case 1:
+    zone->wind_speed--;
+    break;
+  default:
+    /* no change in wind speed */
+    break;
+  } /* end switch() */
+
+d295 18
+a312 18
+  {
+  case 1:
+    zone->wind_dir = NORTH;
+    break;
+  case 2:
+    zone->wind_dir = SOUTH;
+    break;
+  case 3:
+    zone->wind_dir = EAST;
+    break;
+  case 4:
+    zone->wind_dir = WEST;
+    break;
+  default:
+    /* wind doesn't change direction */
+    break;
+  }
+
+d318 1
+a318 1
+
+d329 1
+a329 1
+
+a336 2
+  {
+    switch(zone->wind_speed)
+d338 23
+a360 21
+    case WIND_NONE:
+      zone->temperature += change * 2;
+      break;
+    case WIND_BREEZE:
+      zone->temperature += change;
+      break;    
+    case WIND_STRONG:
+      zone->temperature -= change;
+      break;    
+    case WIND_GALE:
+      zone->temperature -= change;
+      break;
+    case WIND_HURRICANE:
+      zone->temperature  -= change * 2;
+      break;
+    default:
+      /* no change in temperature */
+      break;
+    }
+  } /* end if() */
+
+d366 1
+a366 1
+
+d372 1
+a372 1
+
+d381 1
+a381 1
+
+d383 1
+a383 1
+
+d387 14
+a400 14
+  {
+  case 0:
+  case 1:
+    zone->precipitation++;
+    break;
+  case 3:
+  case 4:
+    zone->precipitation--;
+    break;
+  default:
+    /* no change in precipitation */
+    break;
+  }
+
+d406 1
+a406 1
+
+d424 1
+a424 1
+
+d431 1
+a431 1
+};
+d434 1
+a434 1
+
+a435 2
+  {
+    switch (time_info.hours) 
+d437 139
+a575 66
+    case 6:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+        Hemispheres[hemisphere].sunlight = SUN_RISE;
+        newtime++;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].sunlight = SUN_SET;
+        newtime++;
+        break;
+      }
+      break;
+    case 7:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+         Hemispheres[hemisphere].sunlight = SUN_LIGHT;
+        newtime++;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+        newtime++;
+       Hemispheres[hemisphere].sunlight = SUN_DARK;
+        break;
+      }
+      break;
+    case 19:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+        newtime++;
+         Hemispheres[hemisphere].sunlight = SUN_SET;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+        newtime++;
+       Hemispheres[hemisphere].sunlight = SUN_RISE;
+        break;
+      }
+      break;
+    case 20:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_SOUTHWEST:
+         Hemispheres[hemisphere].sunlight = SUN_DARK;
+        newtime++;
+        break;
+      case HEMISPHERE_NORTHEAST:
+      case HEMISPHERE_SOUTHEAST:
+       Hemispheres[hemisphere].sunlight = SUN_LIGHT;
+        newtime++;
+        break;
+      }
+      break;
+    default:
+      break;
+    }
+
+    if(!g_newmonth)
+      continue;
+a576 71
+    /* update seasons */
+    newseason = 0;
+    switch(time_info.month)
+    {
+    case 0:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = WINTER;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = SUMMER;
+        newseason++;
+        break;
+      }
+      break;
+    case 4:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = SPRING;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = AUTUMN;
+        newseason++;
+        break;
+      }
+      break;
+    case 8:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = SUMMER;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = WINTER;
+        newseason++;
+        break;
+      }
+      break;
+    case 12:
+      switch(hemisphere)
+      {
+      case HEMISPHERE_NORTHWEST:
+      case HEMISPHERE_NORTHEAST:
+        Hemispheres[hemisphere].season = AUTUMN;
+        newseason++;
+        break;
+      case HEMISPHERE_SOUTHWEST:
+      case HEMISPHERE_SOUTHEAST:
+        Hemispheres[hemisphere].season = SPRING;
+        newseason++;
+        break;
+      default:
+        break;
+      }
+      break;
+    default:
+      break;
+    } /* end switch(month) */
+  } /* end for(hemisphere) */
+
+d580 2
+a581 2
+          zone_table[zindex].number);
+      
+a582 2
+  {
+    for(zindex = 0; zindex <= top_of_zone_table; zindex++)
+d584 10
+a593 10
+      send_to_outdoor(new_season_string[Hemispheres[zone_table [zindex].hemisphere].season], 
+          zone_table[zindex].number);
+    } /* end for(zone) */
+
+    /* re-use the init_weather funct to set the 
+     * weather params based on new season
+    */
+    init_weather();
+
+  } /* end if(newseason) */
+d595 2
+a605 5
+  {
+    if(zone_table[i].climate == CLIMATE_NONE)
+      continue;
+
+    switch(which_update)
+d607 18
+a624 13
+    case UPDATE_WIND:
+      update_wind(&zone_table[i]);
+      break;
+    case UPDATE_TEMPERATURE:
+      update_temperature(&zone_table[i]);
+      break;
+    case UPDATE_PRECIPITATION:
+      update_precipitation(&zone_table[i]);
+      break;
+    default:
+      break;  
+    }
+  } /* end for(zone) */
+d627 1
+a627 1
+     which_update = UPDATE_WIND;
+d629 1
+a629 1
+     which_update++;  
+d631 1
+@

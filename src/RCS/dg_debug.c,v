@@ -1,0 +1,387 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	2008.08.18.01.35.38;	author jps;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2001.07.24.19.30.35;	author mtp;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2001.07.12.23.12.25;	author mtp;	state Exp;
+branches;
+next	;
+
+
+desc
+@Allow immos to set/unset trigger variables directly and other debug stuff
+@
+
+
+1.5
+log
+@Replaced all \\n\\r with \\r\\n, not that it was really necessary...
+@
+text
+@/***************************************************************************
+ * $Id: dg_debug.c,v 1.4 2008/01/29 21:02:31 myc Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: dg_debug.c                                     Part of FieryMUD *
+ *  Usage: contains all the trigger debug functions for scripts.           *
+ *  		for example set and unset variables and force triggers     *
+ *  		to run.                                                    *
+ *  $Author: myc $                                                               *
+ *  $Date: 2008/01/29 21:02:31 $                                                                 *
+ *  $Revision: 1.4 $                                                             *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *                                                                         *
+ *  Death's Gate MUD is based on CircleMUD, Copyright (C) 1993, 94.        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "dg_scripts.h"
+#include "utils.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "db.h"
+#include "olc.h"
+
+/*
+ * do_varset
+ *
+ * descr:	set a global variable on a room/mob/obj
+ * usage:	varset {mob|obj|room} <varname> <vnum> [<varval>]
+ *
+ * note:	for mob only works in current room
+ * 		for obj looks in inv, then room (NOT WORN)
+ * see also:	do_varset
+ */
+ACMD(do_varset)
+{
+	extern void add_var(struct trig_var_data **var_list, char *name, char *value);
+	char victtype[10];
+	int vnum;
+
+	skip_spaces(&argument);
+	if (!*argument)
+	{
+		send_to_char ("Usage: varset {mob|obj|room} <vnum> <varname> [<varval>]\r\n",ch);
+		return;
+	}
+
+	argument=one_argument(argument,victtype);
+	if (!*victtype)
+	{
+		send_to_char ("Usage: varset {MOB|OBJ|ROOM} <vnum> <varname> [<varval>]\r\n",ch);
+		return;
+	}
+
+	argument=one_argument(argument,buf);
+	if (!*buf)
+	{
+		send_to_char ("Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\r\n",ch);
+		return;
+	}
+	if (! (vnum = atoi(buf)))
+	{
+		send_to_char ("Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\r\n",ch);
+		return;
+	}
+	argument=one_argument(argument,buf);
+	if (!*buf)
+	{
+		send_to_char ("Usage: varset {mob|obj|room} <vnum> <VARNAME> [<varval>]\r\n",ch);
+		return;
+	}
+
+	/*
+	 * based on type to set, we need to grab the right array to
+	 * pass it to add_var
+	 */
+	if (!str_cmp("mob",victtype))
+	{
+		struct char_data *found_char = NULL;
+		
+		found_char = world[(ch->in_room)].people;
+
+		while (found_char && (GET_MOB_VNUM(found_char) != vnum))
+			found_char = found_char->next_in_room;
+		if (!found_char)
+			send_to_char("Unable to find that mob in this room\r\n",ch);
+		else
+		{
+			if (!SCRIPT(found_char))
+				CREATE(SCRIPT(found_char),struct script_data,1);
+			add_var(&(SCRIPT(found_char)->global_vars),buf,argument);
+		}
+	}
+	else if (!str_cmp("obj",victtype))
+	{
+		struct obj_data *found_obj = NULL;
+		found_obj = ch->carrying;
+		while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
+			found_obj = found_obj->next_content;
+		if (!found_obj)
+		{
+			found_obj = world[(ch->in_room)].contents;
+			while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
+				found_obj = found_obj->next_content;
+		}
+
+		if (!found_obj)
+			send_to_char("Unable to find that obj in inventory or room\r\n",ch);
+		else
+		{
+			if (!SCRIPT(found_obj))
+				CREATE(SCRIPT(found_obj),struct script_data,1);
+			add_var(&(SCRIPT(found_obj)->global_vars),buf,argument);
+		}
+	}
+	else if (!str_cmp("room",victtype))
+	{
+		int rnum = real_room(vnum);
+		if (rnum == NOWHERE)
+			send_to_char("That room does not exist!\r\n",ch);
+		else
+		{
+			if (!SCRIPT(&world[rnum]))
+				CREATE(SCRIPT(&world[rnum]),struct script_data,1);
+			add_var(&(SCRIPT(&world[rnum])->global_vars),buf,argument);
+		}
+	}
+	else
+	{
+		send_to_char ("Usage: varset {MOB|OBJ|ROOM} <vnum> <varname> [<varval>]\r\n",ch);
+	}
+}
+
+/*
+ * do_varunset
+ *
+ * descr:	remove a _global_ variable on a room/mob/obj
+ * usage:	varunset {mob|obj|room} <varname>
+ *
+ * note:	Note the use of RNUM (not vnum which applies to all mobs!)
+ * note:	this just removes the var, to set it to a null value
+ * 		use varset without a value
+ *
+ * see also:	do_varset
+ */
+ACMD(do_varunset)
+{
+	extern void remove_var(struct trig_var_data **var_list, char *name, char *value);
+	char victtype[10];
+	int vnum;
+	skip_spaces(&argument);
+	if (!*argument)
+	{
+		send_to_char ("Usage: varunset {mob|obj|room} <rnum> <varname>\r\n",ch);
+		return;
+	}
+
+	argument=one_argument(argument,victtype);
+	if (!*victtype)
+	{
+		send_to_char ("Usage: varunset {MOB|OBJ|ROOM} <vnum> <varname>\r\n",ch);
+		return;
+	}
+
+	argument=one_argument(argument,buf);
+	if (!*buf)
+	{
+		send_to_char ("Usage: varunset {mob|obj|room} <VNUM> <varname>\r\n",ch);
+		return;
+	}
+	if (! (vnum = atoi(buf)))
+	{
+		send_to_char ("Usage: varunset {mob|obj|room} <VNUM> <varname>\r\n",ch);
+		return;
+	}
+	argument=one_argument(argument,buf);
+	if (!*buf)
+	{
+		send_to_char ("Usage: varunset {mob|obj|room} <vnum> <VARNAME>\r\n",ch);
+		return;
+	}
+
+	/*
+	 * based on type to unset, we need to grab the right array to
+	 * pass it to remove_var
+	 */
+	if (!str_cmp("mob",victtype))
+	{
+		struct char_data *found_char = NULL;
+		
+		found_char = world[(ch->in_room)].people;
+
+		while (found_char && (GET_MOB_VNUM(found_char) != vnum))
+			found_char = found_char->next_in_room;
+		if (!found_char)
+			send_to_char("Unable to find that mob in this room\r\n",ch);
+		else
+			remove_var(&(SCRIPT(found_char)->global_vars),buf,argument);
+	}
+	else if (!str_cmp("obj",victtype))
+	{
+		struct obj_data *found_obj = NULL;
+		found_obj = ch->carrying;
+		while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
+			found_obj = found_obj->next_content;
+		if (!found_obj)
+		{
+			found_obj = world[(ch->in_room)].contents;
+			while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
+				found_obj = found_obj->next_content;
+		}
+
+		if (!found_obj)
+			send_to_char("Unable to find that obj in inventory or room\r\n",ch);
+		else
+			remove_var(&(SCRIPT(found_obj)->global_vars),buf,argument);
+	}
+	else if (!str_cmp("room",victtype))
+	{
+		int rnum = real_room(vnum);
+		if (rnum == NOWHERE)
+			send_to_char("That room does not exist!\r\n",ch);
+		else
+			remove_var(&(SCRIPT(&world[rnum])->global_vars),buf,argument);
+	}
+	else
+	{
+		send_to_char ("Usage: varunset {MOB|OBJ|ROOM} <vnum> <varname>\r\n",ch);
+	}
+}
+
+/*
+ * do_runtrigger
+ *
+ * descr:	force a trigger to run even if conditions are not met
+ * usage:	runtrigger {mob|obj|room} <rnum> <trignum>
+ *
+ * note:	Note the use of RNUM (not vnum which applies to all mobs!)
+ * note:	if the trigger uses external variables, the user will be prompted
+ * 		for them. Examples include %actor% in most triggers
+ */
+ACMD(do_runtrigger)
+{
+}
+@
+
+
+1.4
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_debug.c,v 1.3 2002/09/13 02:32:10 jjl Exp myc $
+d9 3
+a11 3
+ *  $Author: jjl $                                                               *
+ *  $Date: 2002/09/13 02:32:10 $                                                                 *
+ *  $Revision: 1.3 $                                                             *
+d96 1
+a96 1
+			send_to_char("Unable to find that mob in this room\n\r",ch);
+d118 1
+a118 1
+			send_to_char("Unable to find that obj in inventory or room\n\r",ch);
+d130 1
+a130 1
+			send_to_char("That room does not exist!\n\r",ch);
+d206 1
+a206 1
+			send_to_char("Unable to find that mob in this room\n\r",ch);
+d224 1
+a224 1
+			send_to_char("Unable to find that obj in inventory or room\n\r",ch);
+d232 1
+a232 1
+			send_to_char("That room does not exist!\n\r",ch);
+@
+
+
+1.3
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_debug.c,v 1.2 2001/07/24 19:30:35 mtp Exp $
+d9 3
+a11 3
+ *  $Author: mtp $                                                               *
+ *  $Date: 2001/07/24 19:30:35 $                                                                 *
+ *  $Revision: 1.2 $                                                             *
+a34 4
+extern struct room_data *world;
+extern struct index_data *mob_index;
+extern struct index_data *obj_index;
+
+@
+
+
+1.2
+log
+@missing return after error message resulted in duplicate error message
+@
+text
+@d1 3
+a3 1
+// $Id: dg_debug.c,v 1.1 2001/07/12 23:12:25 mtp Exp mtp $
+d10 2
+a11 2
+ *  $Date: 2001/07/12 23:12:25 $                                                                 *
+ *  $Revision: 1.1 $                                                             *
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+// $Id$
+d7 3
+a9 3
+ *  $Author$                                                               *
+ *  $Date$                                                                 *
+ *  $Revision$                                                             *
+d165 1
+d167 2
+@

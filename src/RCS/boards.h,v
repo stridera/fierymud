@@ -1,0 +1,347 @@
+head	1.9;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.9
+date	2008.04.20.17.47.26;	author jps;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2008.02.16.20.26.04;	author myc;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2006.07.26.17.14.48;	author cjd;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2000.11.20.18.36.43;	author rsd;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2000.11.13.02.53.48;	author rsd;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.03.17.22.19.25;	author dce;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.30;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ************************************************************************
+*   File: boards.h                                      Part of CircleMUD *
+*  Usage: header file for bulletin boards                                 *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
+#define NUM_OF_BOARDS		12	/* change if needed! */
+#define MAX_BOARD_MESSAGES 	70      /* arbitrary -- change if needed */
+#define MAX_MESSAGE_LENGTH	8096	/* arbitrary -- change if needed */
+
+#define INDEX_SIZE	   ((NUM_OF_BOARDS*MAX_BOARD_MESSAGES) + 5)
+
+#define BOARD_MAGIC	1048575	/* arbitrary number - see modify.c */
+
+struct board_msginfo {
+   int	slot_num;     /* pos of message in "master index" */
+   char	*heading;     /* pointer to message's heading */
+   int	level;        /* level of poster */
+   int	heading_len;  /* size of header (for file write) */
+   int	message_len;  /* size of message text (for file write) */
+};
+
+struct board_info_type {
+   int	vnum;		/* vnum of this board */
+   int	read_lvl;	/* min level to read messages on this board */
+   int	write_lvl;	/* min level to write messages on this board */
+   int	remove_lvl;	/* min level to remove messages from this board */
+   char	filename[50];	/* file to save this board to */
+   int	rnum;		/* rnum of this board */
+};
+
+#define BOARD_VNUM(i) (board_info[i].vnum)
+#define READ_LVL(i) (board_info[i].read_lvl)
+#define WRITE_LVL(i) (board_info[i].write_lvl)
+#define REMOVE_LVL(i) (board_info[i].remove_lvl)
+#define FILENAME(i) (board_info[i].filename)
+#define BOARD_RNUM(i) (board_info[i].rnum)
+
+#define NEW_MSG_INDEX(i) (msg_index[i][num_of_msgs[i]])
+#define MSG_HEADING(i, j) (msg_index[i][j].heading)
+#define MSG_SLOTNUM(i, j) (msg_index[i][j].slot_num)
+#define MSG_LEVEL(i, j) (msg_index[i][j].level)
+
+int	Board_display_msg(int board_type, struct char_data *ch, char *arg);
+int	Board_show_board(int board_type, struct char_data *ch, char *arg);
+int	Board_remove_msg(int board_type, struct char_data *ch, char *arg);
+void	Board_save_board(int board_type);
+void	Board_load_board(int board_type);
+void	Board_reset_board(int board_num);
+void	Board_write_message(int board_type, struct char_data *ch, char *arg);
+@
+
+
+1.9
+log
+@Exporting board_info[].
+@
+text
+@/***************************************************************************
+ * $Id: boards.h,v 1.8 2008/02/16 20:26:04 myc Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: boards.h                                       Part of FieryMUD *
+ *  Usage: header file for bulletin boards                                 *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#define NUM_OF_BOARDS		14	/* change if needed! */
+#define MAX_BOARD_MESSAGES 	200     /* arbitrary -- change if needed */
+#define MAX_MESSAGE_LENGTH	8096	/* arbitrary -- change if needed */
+
+#define INDEX_SIZE	   ((NUM_OF_BOARDS*MAX_BOARD_MESSAGES) + 5)
+
+#define BOARD_MAGIC	1048575	/* arbitrary number - see modify.c */
+
+struct board_msginfo {
+   int	slot_num;     /* pos of message in "master index" */
+   char	*heading;     /* pointer to message's heading */
+   int	level;        /* level of poster */
+   int	heading_len;  /* size of header (for file write) */
+   int	message_len;  /* size of message text (for file write) */
+};
+
+struct board_info_type {
+   int	vnum;		/* vnum of this board */
+   int	read_lvl;	/* min level to read messages on this board */
+   int	write_lvl;	/* min level to write messages on this board */
+   int	remove_lvl;	/* min level to remove messages from this board */
+   char	filename[50];	/* file to save this board to */
+   int	rnum;		/* rnum of this board */
+};
+
+#define BOARD_VNUM(i) (board_info[i].vnum)
+#define READ_LVL(i) (board_info[i].read_lvl)
+#define WRITE_LVL(i) (board_info[i].write_lvl)
+#define REMOVE_LVL(i) (board_info[i].remove_lvl)
+#define FILENAME(i) (board_info[i].filename)
+#define BOARD_RNUM(i) (board_info[i].rnum)
+
+#define NEW_MSG_INDEX(i) (msg_index[i][num_of_msgs[i]])
+#define MSG_HEADING(i, j) (msg_index[i][j].heading)
+#define MSG_SLOTNUM(i, j) (msg_index[i][j].slot_num)
+#define MSG_LEVEL(i, j) (msg_index[i][j].level)
+
+int	Board_display_msg(int board_type, struct char_data *ch, char *arg);
+int	Board_show_board(int board_type, struct char_data *ch, char *arg);
+int	Board_remove_msg(int board_type, struct char_data *ch, char *arg);
+void	Board_save_board(int board_type);
+void	Board_load_board(int board_type);
+void	Board_reset_board(int board_num);
+void	Board_write_message(int board_type, struct char_data *ch, char *arg);
+void    board_clear_all(void);
+
+extern struct board_info_type board_info[];
+
+/***************************************************************************
+ * $Log: boards.h,v $
+ * Revision 1.8  2008/02/16 20:26:04  myc
+ * Adding functions to free boards at program termination.
+ *
+ * Revision 1.7  2006/07/26 17:14:48  cjd
+ * incremented max_board_number to support new clan boards
+ *
+ * Revision 1.6  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.5  2000/11/20 18:36:43  rsd
+ * Altered comment header, fixed some comment spacing.
+ * Also, added back rlog messages from prior to the
+ * addition of the $log$ string.
+ *
+ * Revision 1.4  2000/11/13 02:53:48  rsd
+ * ooooook, I decrimented the number of boards define as I
+ * removed one of the undefined boards earlier...
+ * doh
+ *
+ * Revision 1.3  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.2  1999/03/17 22:19:25  dce
+ * Max number of messages on a board is now 200.
+ *
+ * Revision 1.1  1999/01/29 01:23:30  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.8
+log
+@Adding functions to free boards at program termination.
+@
+text
+@d2 1
+a2 1
+ * $Id: boards.h,v 1.7 2006/07/26 17:14:48 cjd Exp myc $
+d61 3
+d66 3
+@
+
+
+1.7
+log
+@incremented max_board_number to support new clan boards
+@
+text
+@d2 1
+a2 1
+ * $Id: boards.h,v 1.6 2002/09/13 02:32:10 jjl Exp $
+d60 1
+d63 3
+@
+
+
+1.6
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: boards.h,v 1.5 2000/11/20 18:36:43 rsd Exp $
+d16 1
+a16 1
+#define NUM_OF_BOARDS		11	/* change if needed! */
+d62 3
+@
+
+
+1.5
+log
+@Altered comment header, fixed some comment spacing.
+Also, added back rlog messages from prior to the
+addition of the $log$ string.
+@
+text
+@d1 3
+a3 1
+// $Id: boards.h,v 1.4 2000/11/13 02:53:48 rsd Exp $
+d60 22
+a81 15
+// $Log: boards.h,v $
+// Revision 1.4  2000/11/13 02:53:48  rsd
+// ooooook, I decrimented the number of boards define as I
+// removed one of the undefined boards earlier...
+// doh
+//
+// Revision 1.3  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.2  1999/03/17 22:19:25  dce
+// Max number of messages on a board is now 200.
+//
+// Revision 1.1  1999/01/29 01:23:30  mud
+// Initial revision
+//
+@
+
+
+1.4
+log
+@ooooook, I decrimented the number of boards define as I
+removed one of the undefined boards earlier...
+doh
+@
+text
+@d1 12
+a12 10
+// $Id: boards.h,v 1.3 1999/09/05 07:00:39 jimmy Exp $
+/* ************************************************************************
+*   File: boards.h                                      Part of CircleMUD *
+*  Usage: header file for bulletin boards                                 *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+d15 1
+a15 1
+#define MAX_BOARD_MESSAGES 	200      /* arbitrary -- change if needed */
+d59 5
+d66 6
+@
+
+
+1.3
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d12 1
+a12 1
+#define NUM_OF_BOARDS		12	/* change if needed! */
+d56 4
+a59 1
+// $Log$
+@
+
+
+1.2
+log
+@Max number of messages on a board is now 200.
+@
+text
+@d1 1
+d56 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d12 1
+a12 1
+#define MAX_BOARD_MESSAGES 	70      /* arbitrary -- change if needed */
+@

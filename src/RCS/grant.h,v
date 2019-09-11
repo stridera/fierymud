@@ -1,0 +1,159 @@
+head	1.3;
+access;
+symbols;
+locks
+	myc:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	2008.09.21.04.54.23;	author myc;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2008.07.15.18.53.39;	author myc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.07.15.17.49.24;	author myc;	state Exp;
+branches;
+next	;
+
+
+desc
+@y
+The command grant system.
+@
+
+
+1.3
+log
+@Added grant caches to the player structure to make can_use_command
+take less execution time.
+@
+text
+@/***************************************************************************
+ * $Id: grant.h,v 1.2 2008/07/15 18:53:39 myc Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: grant.h                                        Part of FieryMUD *
+ *  Usage: Header for utilities to facilitate the command grant system     *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+struct grant_type {
+  int grant;
+  char *grantor;
+  int level;
+  struct grant_type *next;
+};
+
+struct command_group {
+  char *alias;
+  char *name;
+  char *description;
+  int minimum_level;
+};
+
+struct olc_command_group {
+  char *alias;
+  char *name;
+  char *description;
+  int minimum_level;
+  int *commands;
+};
+
+struct command_group_info {
+  int *groups;
+};
+
+#define SCMD_GRANT	0
+#define SCMD_REVOKE	1
+#define SCMD_UNGRANT    2
+
+extern ACMD(do_grant);
+extern ACMD(do_gedit);
+
+#define CMD_NOT_GRANTED 0
+#define CMD_GRANTED     1
+#define CMD_REVOKED     2
+
+#define CMD_USEABLE_FOR_LEVEL(ch, cmd) \
+  (cmd_info[(cmd)].minimum_level <= GET_LEVEL(ch))
+
+extern int command_group_number(struct command_group *group);
+extern bool can_use_command(struct char_data *ch, int cmd);
+extern int command_grant_usability(struct char_data *ch, int cmd);
+extern void cache_grants(struct char_data *ch);
+extern void boot_command_groups();
+extern void write_player_grants(FILE *fl, struct char_data *ch);
+extern void read_player_grants(FILE *fl, struct grant_type **list);
+extern void read_player_grant_groups(FILE *fl, struct grant_type **list);
+extern void do_show_command_groups(struct char_data *ch, char *argument);
+extern void do_show_command(struct char_data *ch, char *argument);
+
+/***************************************************************************
+ * $Log: grant.h,v $
+ * Revision 1.2  2008/07/15 18:53:39  myc
+ * Renamed some structs and functions.  Fixed bug in find_command_group.
+ * Added 'show command' and added functionality to 'show group' to
+ * display single command group info.
+ *
+ * Revision 1.1  2008/07/15 17:49:24  myc
+ * Initial revision
+ *
+ *
+ ***************************************************************************/
+@
+
+
+1.2
+log
+@Renamed some structs and functions.  Fixed bug in find_command_group.
+Added 'show command' and added functionality to 'show group' to
+display single command group info.
+@
+text
+@d2 1
+a2 1
+ * $Id: grant.h,v 1.1 2008/07/15 17:49:24 myc Exp myc $
+d44 1
+d49 7
+a55 1
+#ifndef __GRANT_C__
+d58 2
+a65 1
+#endif
+d69 5
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ * $Id: grant.h,v 1.1 $
+d23 1
+a23 1
+struct grant_group {
+d30 1
+a30 1
+struct olc_grant_group {
+d38 4
+d48 2
+a49 1
+extern int grant_group_number(struct grant_group *group);
+d56 2
+d61 3
+@

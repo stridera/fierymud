@@ -1,0 +1,3250 @@
+head	1.64;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.64
+date	2011.08.06.15.22.51;	author rsd;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	2010.06.20.19.53.47;	author mud;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	2009.03.22.03.53.53;	author jps;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	2009.03.08.21.43.27;	author jps;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	2009.03.05.19.00.43;	author myc;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	2009.02.04.21.51.41;	author myc;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	2009.01.19.02.41.41;	author myc;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	2008.09.21.20.40.40;	author jps;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	2008.09.14.18.25.35;	author mud;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	2008.09.14.00.34.34;	author jps;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	2008.09.13.18.06.19;	author jps;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2008.09.13.17.21.39;	author jps;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2008.09.07.01.27.58;	author jps;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2008.09.01.23.47.49;	author jps;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2008.08.29.04.16.26;	author myc;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2008.08.24.19.29.11;	author jps;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2008.08.20.05.03.13;	author jps;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2008.08.19.02.11.14;	author jps;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2008.07.21.18.46.13;	author jps;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2008.06.21.17.28.18;	author jps;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2008.06.20.20.42.53;	author jps;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2008.06.07.19.06.46;	author myc;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2008.05.18.20.16.11;	author jps;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2008.05.12.01.11.17;	author jps;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2008.05.12.00.44.38;	author jps;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2008.05.11.05.51.35;	author jps;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2008.05.10.16.19.50;	author jps;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2008.04.26.23.36.25;	author myc;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2008.04.19.18.17.31;	author jps;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2008.04.13.18.49.57;	author jps;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2008.04.13.01.41.26;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2008.04.13.01.29.53;	author jps;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2008.04.10.02.00.42;	author jps;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2008.04.10.01.55.34;	author jps;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2008.04.06.19.48.52;	author jps;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2008.04.06.04.58.05;	author jps;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2008.04.05.18.17.45;	author jps;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2008.04.05.18.06.35;	author jps;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2008.04.05.17.53.13;	author jps;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2008.04.05.03.46.10;	author jps;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2008.04.04.21.32.31;	author jps;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2008.03.29.16.26.39;	author jps;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2008.03.27.17.29.24;	author jps;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.03.27.00.21.19;	author jps;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.03.26.22.58.11;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.03.26.19.09.08;	author jps;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.03.26.18.15.28;	author jps;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.03.25.22.02.32;	author jps;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.03.25.22.01.00;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.03.25.04.49.44;	author jps;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.03.24.08.45.02;	author jps;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.03.23.19.46.29;	author jps;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.03.23.18.42.02;	author jps;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.03.23.00.26.20;	author jps;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2008.03.22.20.26.21;	author jps;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2008.03.22.19.57.14;	author jps;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2008.03.22.19.09.21;	author jps;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2008.03.18.06.02.32;	author jps;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2008.03.11.02.56.55;	author jps;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2008.01.25.21.05.45;	author myc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.01.05.21.53.56;	author jps;	state Exp;
+branches;
+next	;
+
+
+desc
+@Character (mob/player) functions.
+@
+
+
+1.64
+log
+@Fixed log(buf) to log(%s buf)
+@
+text
+@/***************************************************************************
+ *  File: chars.c                                        Part of FieryMUD  *
+ *  Usage: Source file for characters (mobs and players)                   *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "casting.h"
+#include "math.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "class.h"
+#include "races.h"
+#include "skills.h"
+#include "dg_scripts.h"
+#include "screen.h"
+#include "events.h"
+#include "constants.h"
+#include "fight.h"
+#include "act.h"
+#include "movement.h"
+#include "magic.h"
+#include "composition.h"
+#include "lifeforce.h"
+#include "charsize.h"
+#include "damage.h"
+#include "spell_parser.h"
+
+ACMD(do_flee); /* act.offensive.c */
+
+const char *stats_display =
+"&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
+"&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
+"&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n"
+;
+
+#define Y   TRUE
+#define N   FALSE
+
+int class_ok_race[NUM_RACES][NUM_CLASSES] = {
+  /* RACE    So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
+  /* Hu */ { Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N },
+  /* El */ { Y, Y, Y, N, N, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N },
+  /* Gn */ { Y, Y, N, N, N, N, N, N, Y, N, N, N, Y, N, N, Y, Y, N, N, N, Y, Y, Y, N },
+  /* Dw */ { N, Y, Y, Y, N, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N },
+  /* Tr */ { N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y },
+  /* Dr */ { Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y },
+  /* Du */ { N, Y, Y, Y, N, N, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y },
+  /* Og */ { N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y },
+  /* Or */ { Y, Y, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, Y, N, Y, N, Y, N, Y, Y, Y, Y },
+  /* HE */ { Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N },
+  /* Ba */ { N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, N },
+  /* Ha */ { Y, Y, Y, Y, N, N, N, N, N, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N },
+};
+
+int get_base_saves(struct char_data *ch, int type)
+{
+   /* Here are default values for saving throws: */
+   int saves[NUM_SAVES] = { 105, 115, 105, 110, 110 };
+   int i;
+
+   if (type < 0 || type >= NUM_SAVES) {
+      sprintf(buf, "SYSERR: get_base_saves: invalid type %d", type);
+      log("%s",buf);
+      return 100;
+   }
+
+   if (VALID_CLASS(ch)) {
+      for (i = 0; i < NUM_SAVES; i++)
+         saves[i] = classes[(int)GET_CLASS(ch)].saves[i];
+   } /* else leave the default values */
+
+   /* decrease by 1 point per 2 levels */
+   for (i = 0; i < NUM_SAVES; i++)
+      saves[i] -= (int) (GET_LEVEL(ch)/2);
+
+   /* dwarves, gnomes, and halflings get better saves */
+   /* FIXME: handle in races.c */
+   switch(GET_RACE(ch)) {
+      case RACE_DUERGAR:
+      case RACE_DWARF:
+         saves[SAVING_PARA]  -= (int)(0.125 * GET_VIEWED_CON(ch));
+         saves[SAVING_ROD]   -= (int)(0.1 * GET_VIEWED_CON(ch));
+         saves[SAVING_SPELL] -= (int)(0.1 * GET_VIEWED_CON(ch));
+         break;
+      case RACE_GNOME:
+         saves[SAVING_ROD]   -= (int)(0.1 * GET_VIEWED_CON(ch));
+         saves[SAVING_SPELL] -= (int)(0.1 * GET_VIEWED_CON(ch));
+         break;
+      case RACE_HALFLING:
+         saves[SAVING_PARA]  -= (int)(0.1 * GET_VIEWED_CON(ch));
+         saves[SAVING_ROD]   -= (int)(0.1 * GET_VIEWED_CON(ch));
+         saves[SAVING_SPELL] -= (int)(0.1 * GET_VIEWED_CON(ch));
+         break;
+   }
+
+   /* stats affect saves */
+   saves[SAVING_PARA]    -= (int)(0.5 * (GET_VIEWED_CON(ch) - 90));
+   saves[SAVING_SPELL]   -= (int)(0.5 * (GET_VIEWED_WIS(ch) - 90));
+   saves[SAVING_ROD]     -= (int)(0.5 * (GET_VIEWED_DEX(ch) - 90));
+   saves[SAVING_BREATH]  -= (int)(0.5 * (GET_VIEWED_DEX(ch) - 90));
+
+   return saves[type];
+}
+
+/*
+ * Roll the 6 stats for a PC/NPC... each stat is made of 2*NUMBER.  Where
+ * NUMBER is the best 5 out of 6 rolls of a random number from 3 to 10.
+ * This gives a range of 2*(18-3)=30 TO 2*(60-10)=100.
+ * Each class then decides which priority will be given for the best to worst stats.
+ */
+
+void roll_natural_abils(struct char_data *ch)
+{
+   int i, j, k, temp;
+   ubyte table[6];
+   ubyte rolls[6];
+
+   for (i = 0; i < 6; i++)
+      table[i] = 0;
+   /* loop through each stat */
+   for (i = 0; i < 6; i++) {
+      /* roll a number from 3 to 10 */
+      for (j = 0; j < 6; j++)
+         rolls[j] = number(3, 10);
+      /* sum the best 5 out of 6 */
+      temp = rolls[0] + rolls[1] + rolls[2] + rolls[3] + rolls[4] + rolls[5]
+         - MIN(rolls[0], MIN(rolls[1], MIN(rolls[2], MIN(rolls[3], MIN(rolls[4], rolls[5])))));
+      /* multiply by 2 */
+      temp = temp*2;
+      /* this arranges the rolls from lowest to highest in table[] */
+      for (k = 0; k < 6; k++)
+         if (table[k] < temp) {
+            temp ^= table[k];
+            table[k] ^= temp;
+            temp ^= table[k];
+         }
+   }
+   /* At this point we have six stats from lowest to highest in table[] */
+
+   /* time to give a bonus if necessary */
+
+   /* this sums the total stats into i*/
+   i = 0;
+   for (j = 0; j < 6; j++)
+      i = i + (int)table[j];
+   /* ok lets say average = 450 (75 per) if LESS then this then bonus stats*/
+   /* random spread of bonus 5 stat points */
+   while(i <= 450) {
+      j = number(0, 5);
+      if ((int)table[j] <= 95) {
+         table[j] = (ubyte)((int)table[j] + 5);
+         i = i + 5;
+      }
+   }
+
+   /* Arrange the stats according to the class.  Each class has stats that are
+    * most important; the highest rolled values will be assigned to those stats. */
+   if (VALID_CLASS(ch)) {
+      for (i = 0; i < NUM_STATS; i++) {
+         switch (classes[(int)GET_CLASS(ch)].statorder[i]) {
+            case STAT_STR:
+               GET_NATURAL_STR(ch) = table[i];
+               break;
+            case STAT_DEX:
+               GET_NATURAL_DEX(ch) = table[i];
+               break;
+            case STAT_CON:
+               GET_NATURAL_CON(ch) = table[i];
+               break;
+            case STAT_WIS:
+               GET_NATURAL_WIS(ch) = table[i];
+               break;
+            case STAT_INT:
+               GET_NATURAL_INT(ch) = table[i];
+               break;
+            case STAT_CHA:
+               GET_NATURAL_CHA(ch) = table[i];
+               break;
+            default:
+               sprintf(buf, "SYSERR: roll_natural_abils(): class '%s' statorder is broken",
+                     classes[(int)GET_CLASS(ch)].name);
+               log("%s",buf);
+         }
+      }
+   } else {
+      GET_NATURAL_STR(ch) = table[0];
+      GET_NATURAL_DEX(ch) = table[1];
+      GET_NATURAL_CON(ch) = table[2];
+      GET_NATURAL_WIS(ch) = table[3];
+      GET_NATURAL_INT(ch) = table[4];
+      GET_NATURAL_CHA(ch) = table[5];
+   }
+}
+
+/* this rolls a random skill based on the level of the mob */
+/* Values range from 55 to 1000. --gurlaek 7/3/1999         */
+
+int roll_mob_skill(int level) {
+  int x, tmp, value = number(50, 100); /* ok give him 50-100 to start with */
+
+  for ( x = 1; x < level; x++) {
+    tmp = number(5 , 15);  /* add an additional 5-15 per level */
+    if((value + tmp) <= 1000) {
+      value += tmp;
+    } else {
+      value = 1000;
+    }
+  }
+  return value;
+}
+
+int roll_skill(struct char_data *ch, int skill) {
+  int value = number(50 + 5 * GET_LEVEL(ch), 100 + 15 * GET_LEVEL(ch));
+  int max = return_max_skill(ch, skill);
+  return MIN(value, max);
+}
+
+void rider_flowoff(struct char_data *rider, struct char_data *mount)
+{
+   act("You suddenly find yourself flowing down off $N's back.",
+         FALSE, rider, 0, mount, TO_CHAR);
+   act("$n loses cohesion and flows down off your back.",
+         FALSE, rider, 0, mount, TO_VICT);
+   act("Unable to keep $s seat, $n suddenly flows down from $N's back.",
+         TRUE, rider, 0, mount, TO_NOTVICT);
+   dismount_char(rider);
+}
+
+void rider_fallthrough(struct char_data *rider, struct char_data *mount)
+{
+   act("$N is no longer able to support you, and you fall through $M to the ground.",
+         FALSE, rider, 0, mount, TO_CHAR);
+   act("$n falls through your fluid body and ends up on the ground.",
+         FALSE, rider, 0, mount, TO_VICT);
+   act("$n suddenly finds $mself falling through $N, and ends up on the ground.",
+         FALSE, rider, 0, mount, TO_NOTVICT);
+   dismount_char(rider);
+}
+
+void composition_check(struct char_data *ch)
+{
+   if (GET_LEVEL(ch) >= LVL_IMMORT) return;
+   remove_unsuitable_spells(ch);
+
+   /* See if you're changing your rigidity, and mounted */
+   if (RIDING(ch)) {
+      if (RIGID(ch) && !RIGID(RIDING(ch))) {
+         rider_fallthrough(ch, RIDING(ch));
+      } else if (!RIGID(ch) && RIGID(RIDING(ch))) {
+         rider_flowoff(ch, RIDING(ch));
+      }
+   } else if (RIDDEN_BY(ch) && GET_LEVEL(RIDDEN_BY(ch)) < LVL_IMMORT) {
+      if (RIGID(ch) && !RIGID(RIDDEN_BY(ch))) {
+         rider_flowoff(RIDDEN_BY(ch), ch);
+      } else if (!RIGID(ch) && RIGID(RIDDEN_BY(ch))) {
+         rider_fallthrough(RIDDEN_BY(ch), ch);
+      }
+   }
+}
+
+/* Find the character's susceptibility to a particular type of damage.
+ * The standard value is 100, meaning 100%.  Resistance will result in
+ * a lower value, while vulnerability will result in a higher value.
+ *
+ * Zero is the lowest possible susceptibility, and it means immunity.
+ */
+int susceptibility(struct char_data *ch, int dtype)
+{
+   int sus;
+
+   if (!VALID_COMPOSITION(ch) || !VALID_LIFEFORCE(ch))
+      return 100;
+
+   switch(dtype) {
+      case DAM_SLASH:
+         return compositions[GET_COMPOSITION(ch)].sus_slash;
+      case DAM_PIERCE:
+         return compositions[GET_COMPOSITION(ch)].sus_pierce;
+      case DAM_CRUSH:
+         if (EFF_FLAGGED(ch, EFF_NEGATE_EARTH)) return 0;
+         if (EFF_FLAGGED(ch, EFF_PROT_EARTH))
+            return compositions[GET_COMPOSITION(ch)].sus_crush * 75 / 100;
+         return compositions[GET_COMPOSITION(ch)].sus_crush;
+      case DAM_SHOCK:
+         if (EFF_FLAGGED(ch, EFF_NEGATE_AIR)) return 0;
+         if (EFF_FLAGGED(ch, EFF_PROT_AIR))
+            return compositions[GET_COMPOSITION(ch)].sus_shock * 75 / 100;
+         return compositions[GET_COMPOSITION(ch)].sus_shock;
+      case DAM_FIRE:
+         /* Negate heat: immune */
+         if (EFF_FLAGGED(ch, EFF_NEGATE_HEAT)) return 0;
+         sus = compositions[GET_COMPOSITION(ch)].sus_fire;
+         /* Coldshield: reduce by 25% */
+         if (EFF_FLAGGED(ch, EFF_COLDSHIELD))
+            sus = sus * 75 / 100;
+         /* Protection from fire: reduce by 25% */
+         if (EFF_FLAGGED(ch, EFF_PROT_FIRE))
+            sus = sus * 75 / 100;
+         return sus;
+      case DAM_WATER:
+         return compositions[GET_COMPOSITION(ch)].sus_water;
+      case DAM_COLD:
+         /* Negate cold: immune */
+         if (EFF_FLAGGED(ch, EFF_NEGATE_COLD)) return 0;
+         sus = compositions[GET_COMPOSITION(ch)].sus_cold;
+         /* Fireshield: reduce by 25% */
+         if (EFF_FLAGGED(ch, EFF_FIRESHIELD))
+            sus = sus * 75 / 100;
+         /* Protection from cold: reduce by 25% */
+         if (EFF_FLAGGED(ch, EFF_PROT_COLD))
+            sus = sus * 75 / 100;
+         return sus;
+      case DAM_ACID:
+         return compositions[GET_COMPOSITION(ch)].sus_acid;
+      case DAM_POISON:
+         if (MOB_FLAGGED(ch, MOB_NOPOISON)) return 0;
+         return compositions[GET_COMPOSITION(ch)].sus_poison;
+      case DAM_HEAL:
+         return lifeforces[GET_LIFEFORCE(ch)].sus_heal;
+      case DAM_ALIGN:
+         return 100;
+      case DAM_DISPEL:
+         return lifeforces[GET_LIFEFORCE(ch)].sus_dispel;
+      case DAM_DISCORPORATE:
+         return lifeforces[GET_LIFEFORCE(ch)].sus_discorporate;
+      default:
+         return 100;
+   }
+}
+
+/* Use this to determine whether a victim evades some attack that's
+ * all or nothing, like sleep. */
+bool boolean_attack_evasion(struct char_data *ch, int power, int dtype)
+{
+   return number(1, 100) <
+      MAX(3, 110 + GET_LEVEL(ch) - susceptibility(ch, dtype) - power);
+}
+
+struct obj_data *equipped_weapon(struct char_data *ch)
+{
+  int weapon_position = -1;
+
+  if (GET_EQ(ch, WEAR_WIELD2) &&
+        GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON)
+      weapon_position = WEAR_WIELD2;
+  else if (GET_EQ(ch, WEAR_WIELD) &&
+           GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD)) == ITEM_WEAPON)
+    weapon_position = WEAR_WIELD;
+  else if (GET_EQ(ch, WEAR_2HWIELD) &&
+           GET_OBJ_TYPE(GET_EQ(ch, WEAR_2HWIELD)) == ITEM_WEAPON)
+    weapon_position = WEAR_2HWIELD;
+
+  return weapon_position >= 0 ? GET_EQ(ch, weapon_position) : NULL;
+}
+
+int dam_suscept_adjust(struct char_data *ch, struct char_data *victim, struct obj_data *weapon, int dam, int dtype)
+{
+   if (!victim)
+      return dam;
+   /* Adjust damage for susceptibility */
+   if (ch && !(GET_COMPOSITION(victim) == COMP_ETHER && blessed_blow(ch, weapon)))
+      dam = dam * susceptibility(victim, dtype) / 100;
+   return dam;
+}
+
+const char *align_color(int align)
+{
+  if (align >= 500)
+    return "@@Y";
+  else if (align >= 350)
+    return "@@y";
+  else if (align > -350)
+    return "@@G";
+  else if (align > 500)
+    return "@@r";
+  else
+    return "@@R";
+}
+
+
+/* ALTER_POS
+ *
+ * This is called to modify a character's position and stance, based
+ * on miscellaneous causes.  For example, if a player types "sit",
+ * or if a dragon knocks someone down with its tail, alter_pos() would
+ * be called.  The caller requests a specific stance and/or position
+ * that the character should adopt.
+ *
+ * (This is in contrast to hp_pos_check(), which modifies the stance
+ * and/or position based on health.)
+ *
+ * It's merely a request, however - the function won't make changes
+ * that are inconsistent with a character's condition.  For example,
+ * low hit points or a SLEEP spell would prevent a character
+ * from becoming alert.
+ *
+ * It does not send messages.  That's the responsibility of
+ * the caller.
+ */
+
+void alter_pos(struct char_data *ch, int newpos, int newstance)
+{
+   /* Make stance changes first since they will restrict the available positions. */
+   if (newstance >= 0 && newstance < NUM_STANCES) {
+      if (GET_HIT(ch) > 0) {
+
+         /* When your HP are positive, you have the opportunity to be
+          * awake, sleeping, or stunned. */
+
+         if (newstance > STANCE_SLEEPING && !EFF_FLAGGED(ch, EFF_SLEEP))
+            /* So you wanna be awake?  Don't have a sleep spell on you... */
+            GET_STANCE(ch) = newstance;
+         else if (newstance == STANCE_SLEEPING || newstance == STANCE_STUNNED)
+            GET_STANCE(ch) = newstance;
+
+      } else if (newstance <= STANCE_STUNNED)
+         /* When your HP are <= 0, you can only be stunned or worse. */
+         GET_STANCE(ch) = newstance;
+   }
+
+   if (newpos >= 0 && newpos < NUM_POSITIONS) {
+      switch (newpos) {
+         case POS_PRONE:
+            /* prone position is always available */
+            GET_POS(ch) = newpos;
+            break;
+         case POS_FLYING:
+            /* flying - you need the flag and must be alert or fighting */
+            if (EFF_FLAGGED(ch, EFF_FLY) && GET_STANCE(ch) > STANCE_RESTING)
+               GET_POS(ch) = newpos;
+            break;
+         default:
+            /* if you're awake, you can get any position (except flying) */
+            if (GET_STANCE(ch) > STANCE_SLEEPING)
+               GET_POS(ch) = newpos;
+      }
+   }
+
+   if (CASTING(ch) && !valid_cast_stance(ch, ch->casting.spell)) {
+      STOP_CASTING(ch);
+      act("$n ceases casting $s spell.", FALSE, ch, 0, 0, TO_ROOM);
+      act("You stop casting your spell.", FALSE, ch, 0, 0, TO_CHAR);
+   }
+
+   if (FIGHTING(ch) && GET_STANCE(ch) < STANCE_RESTING)
+      stop_battling(ch);
+   falling_check(ch);
+   mount_pos_check(ch);
+}
+
+void hp_stance_alteration(struct char_data *ch, struct char_data *attacker,
+      int newpos, int newstance, int dam)
+{
+   alter_pos(ch, newpos, newstance);
+
+   if (GET_STANCE(ch) < STANCE_SLEEPING)
+      stop_merciful_attackers(ch);
+
+   /* Sanity check. */
+   if (GET_POS(ch) != newpos || GET_STANCE(ch) != newstance) {
+      sprintf(buf, "ERR: hp_stance_alteration(): Tried to change to %s/%s but alter_pos() left values at %s/%s (for %s)",
+            position_types[newpos], stance_types[newstance],
+            position_types[GET_POS(ch)], stance_types[GET_STANCE(ch)],
+            GET_NAME(ch));
+      mudlog(buf, BRF, LVL_GOD, TRUE);
+   }
+
+   /* Send messages and cause dying. */
+   switch (GET_STANCE(ch)) {
+      case STANCE_MORT:
+        act("$n is mortally wounded, and will die soon if not aided.",
+              TRUE, ch, 0, 0, TO_ROOM);
+        send_to_char("You are mortally wounded, and will die soon if not aided.\r\n",
+              ch);
+        break;
+      case STANCE_INCAP:
+        act("$n is incapacitated and will slowly die, if not aided.",
+              TRUE, ch, 0, 0, TO_ROOM);
+        send_to_char("You are incapacitated an will slowly die, if not aided.\r\n",
+              ch);
+        break;
+      case STANCE_STUNNED:
+        act("$n is stunned, but will probably regain consciousness again.",
+              TRUE, ch, 0, 0, TO_ROOM);
+        send_to_char("You're stunned, but will probably regain consciousness again.\r\n",
+              ch);
+        break;
+      case STANCE_DEAD:
+        die(ch, attacker);
+        act("$n is dead!  R.I.P.", FALSE, ch, 0, 0, TO_ROOM);
+        send_to_char("You are dead!  Sorry...\r\n", ch);
+        break;
+      default:
+        if (dam < 0) {
+           /* Healing */
+           if (GET_STANCE(ch) == STANCE_SLEEPING) {
+              act("$n appears to be stabilized, but $e remains unconscious.",
+                    TRUE, ch, 0, 0, TO_ROOM);
+           } else {
+              act("$n regains consciousness.",
+                    TRUE, ch, 0, 0, TO_ROOM);
+              send_to_char("You regain consciousness.\r\n", ch);
+              look_at_room(ch, FALSE);
+           }
+        }
+   }
+}
+
+/* HP_POS_CHECK
+ *
+ * You've just had your HP modified.  Maybe some other character was
+ * responsible.
+ *
+ * Messages may be sent about any consequences of this HP change.
+ * Your stance and position will be modified if necessary.
+ * You may die.  If so, your killer may receive experience, a trophy
+ * update, and whatever else die() chooses to do.
+ */
+
+void hp_pos_check(struct char_data *ch, struct char_data *attacker, int dam)
+{
+   int newstance = -1, newpos = -1;
+
+   if (DECEASED(ch)) return;
+
+   if (GET_HIT(ch) <= HIT_DEAD) {
+      newpos = POS_PRONE;
+      newstance = STANCE_DEAD;
+   } else if (GET_HIT(ch) <= HIT_MORTALLYW) {
+      newpos = POS_PRONE;
+      newstance = STANCE_MORT;
+   } else if (GET_HIT(ch) <= HIT_INCAP) {
+      newpos = POS_PRONE;
+      newstance = STANCE_INCAP;
+   } else if (GET_HIT(ch) <= 0) {
+      newpos = POS_PRONE;
+      newstance = STANCE_STUNNED;
+   } else if (GET_STANCE(ch) <= STANCE_STUNNED) {
+      /* Char has positive hit points, yet is stunned.
+       * Will recover, waking up if possible. */
+      if (EFF_FLAGGED(ch, EFF_SLEEP)) {
+         newpos = POS_PRONE;
+         newstance = STANCE_SLEEPING;
+      } else {
+         newpos = POS_PRONE;
+         newstance = STANCE_RESTING;
+      }
+   }
+
+   if (newstance != -1 && newpos != -1 &&
+         (GET_POS(ch) != newpos || GET_STANCE(ch) != newstance))
+      hp_stance_alteration(ch, attacker, newpos, newstance, dam);
+
+   /* Send messages about serious damage */
+   if (AWAKE(ch) && dam > 0) {
+     if (dam > (GET_MAX_HIT(ch) >> 2))
+         act("That really did HURT!", FALSE, ch, 0, 0, TO_CHAR);
+     if (GET_HIT(ch) < (GET_MAX_HIT(ch) >> 2)) {
+         sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n",
+            CLRLV(ch, FRED, C_SPR), CLRLV(ch, ANRM, C_SPR));
+         send_to_char(buf2, ch);
+     }
+   }
+}
+
+/***************************************************************************
+ * $Log: chars.c,v $
+ * Revision 1.63  2010/06/20 19:53:47  mud
+ * Log to file errors we might want to see.
+ *
+ * Revision 1.62  2009/03/22 03:53:53  jps
+ * Use correct function to check whether a person's in the right stance
+ * and position to continue casting a spell.
+ *
+ * Revision 1.61  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.60  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.59  2009/03/05 19:00:43  myc
+ * Make dwarves unable to be diabolists and condense the
+ * class_ok_race array.
+ *
+ * Revision 1.58  2009/02/04 21:51:41  myc
+ * Increase fire vs air, decrease fire vs ice.
+ *
+ * Revision 1.57  2009/01/19 02:41:41  myc
+ * Boots fire damage vs ice.
+ *
+ * Revision 1.56  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.55  2008/09/14 18:25:35  mud
+ * Only check for falling off a mount when the rider is not immort.
+ *
+ * Revision 1.54  2008/09/14 00:34:34  jps
+ * Remove some composition restrictions from imms.
+ *
+ * Revision 1.53  2008/09/13 18:06:19  jps
+ * Removing certain spells from characters when in fluid form.
+ *
+ * Revision 1.52  2008/09/13 17:21:39  jps
+ * Check for falling off a mount when it changes position.
+ *
+ * Revision 1.51  2008/09/07 01:27:58  jps
+ * Check for falling when you change your position in an air room.
+ *
+ * Revision 1.50  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.49  2008/08/29 04:16:26  myc
+ * Added reference to act.h header file.
+ *
+ * Revision 1.48  2008/08/24 19:29:11  jps
+ * Apply damage susceptibility reductions to the various physical attack skills.
+ *
+ * Revision 1.47  2008/08/20 05:03:13  jps
+ * Removed the damage type 'magic'.
+ *
+ * Revision 1.46  2008/08/19 02:11:14  jps
+ * Don't apply fluid/rigidity restrictions to immortals.
+ *
+ * Revision 1.45  2008/07/21 18:46:13  jps
+ * Protect against null deref when no attacker is passed to damage_evasion().
+ *
+ * Revision 1.44  2008/06/21 17:28:18  jps
+ * Made more use of the VALID_CLASS macro.
+ *
+ * Revision 1.43  2008/06/20 20:42:53  jps
+ * Don't run death_mtrigger here - it's called within die().
+ *
+ * Revision 1.42  2008/06/07 19:06:46  myc
+ * Moved all object-related constants and structures to objects.h
+ *
+ * Revision 1.41  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.40  2008/05/12 01:11:17  jps
+ * Split out the hp-pos-changing bit so that fleeing can be
+ * made to work again.
+ *
+ * Revision 1.39  2008/05/12 00:44:38  jps
+ * Change susceptibility to discorporate. Magical life force: 120
+ * Elemental: 100
+ *
+ * Revision 1.38  2008/05/11 05:51:35  jps
+ * alter_pos() is now the internal way to change a character's position.
+ * hp_pos_check() should be called after modifying hp. It will change the
+ * position if necessary, for example if the char became unconscious.
+ *
+ * Revision 1.37  2008/05/10 16:19:50  jps
+ * Made EVASIONCLR globally available.
+ *
+ * Revision 1.36  2008/04/26 23:36:25  myc
+ * Added align_color function.
+ *
+ * Revision 1.35  2008/04/19 18:17:31  jps
+ * Give prototyped mobs a height/weight according to the builder's
+ * chosen size.
+ *
+ * Revision 1.34  2008/04/13 18:49:57  jps
+ * Fix sign in boolean_attack_evasion.
+ *
+ * Revision 1.33  2008/04/13 01:41:26  jps
+ * Adding composition_check() function.
+ *
+ * Revision 1.32  2008/04/13 01:29:53  jps
+ * If you change form while mounted, you may well fall down.
+ * Or if your mount changes form.
+ *
+ * Revision 1.31  2008/04/10 02:00:42  jps
+ * Changed acid's verb to corrode.
+ *
+ * Revision 1.30  2008/04/10 01:55:34  jps
+ * Making metal very susceptible to acid.
+ *
+ * Revision 1.29  2008/04/06 19:48:52  jps
+ * Add an adjective to compositions.
+ *
+ * Revision 1.28  2008/04/06 04:58:05  jps
+ * Use coldshield and fireshield when calculating susceptibility
+ * to fire and cold damage.
+ *
+ * Revision 1.27  2008/04/05 18:17:45  jps
+ * More changing of evasion messages.
+ *
+ * Revision 1.26  2008/04/05 18:06:35  jps
+ * Add an action word to damtypes, and use it in damage_evasion_message.
+ *
+ * Revision 1.25  2008/04/05 17:53:13  jps
+ * Add colors to damage types.
+ *
+ * Revision 1.24  2008/04/05 03:46:10  jps
+ * Add a "mass noun" string to composition definitions.
+ *
+ * Revision 1.23  2008/04/04 21:32:31  jps
+ * Change boolean_evasion to incorporate victim level.
+ *
+ * Revision 1.22  2008/03/29 16:26:39  jps
+ * Add an evasion check exclusively for non-damaging attack spells.
+ *
+ * Revision 1.21  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.20  2008/03/27 17:29:24  jps
+ * Ethereal creatures are now attackable when you have the spell
+ * effect of bless or hex.
+ *
+ * Revision 1.19  2008/03/27 00:21:19  jps
+ * Add verbs to damage types. Be more verbose with the evasion messages.
+ *
+ * Revision 1.18  2008/03/26 22:58:11  jps
+ * Use the new rigid field for compositions, and make more balancing
+ * changes to the composition vulnerabilities.
+ *
+ * Revision 1.17  2008/03/26 19:09:08  jps
+ * Fix bug in damage_evasion.
+ *
+ * Revision 1.16  2008/03/26 18:15:28  jps
+ * damage_evasion() will check whether an ethereal creature is
+ * receiving a blessed physical attack, and return false.
+ *
+ * Revision 1.15  2008/03/25 22:02:32  jps
+ * Forgot to rename iron to metal!
+ *
+ * Revision 1.14  2008/03/25 22:01:00  jps
+ * Some resistance based on composition rebalancing.
+ *
+ * Revision 1.13  2008/03/25 04:49:44  jps
+ * Add some functions for seeing what kind of damage people will do
+ *
+ * Revision 1.12  2008/03/24 08:45:02  jps
+ * Adding flag checks to susceptibility().
+ * Implemented damage_evasion(), skill_to_dtype(), and
+ * damage_evasion_message().  That last one needs more work.
+ *
+ * Revision 1.11  2008/03/23 19:46:29  jps
+ * Added compositions stone and bone.
+ *
+ * Revision 1.10  2008/03/23 18:42:02  jps
+ * New damage defines (old ones in spells.h are now obsolete). Added damage
+ * susceptibilities to struct lifedef and struct compdef.
+ *
+ * Revision 1.9  2008/03/23 00:26:20  jps
+ * Add function set_base_composition, which is appropriate for OLC
+ * and "set <foo> composition".
+ * Add list_olc_compositions() which does just that.
+ *
+ * Revision 1.8  2008/03/22 20:26:21  jps
+ * Add functions to convert life force and composition.
+ *
+ * Revision 1.7  2008/03/22 19:57:14  jps
+ * Added lifeforce and composition definitions.
+ *
+ * Revision 1.6  2008/03/22 19:09:21  jps
+ * Use parse_obj_name() instead of the specific parse_size() function.
+ *
+ * Revision 1.5  2008/03/18 06:02:32  jps
+ * Make minimum height and weight 1.
+ *
+ * Revision 1.4  2008/03/11 02:56:55  jps
+ * Added a lot of size-releated information and functions.
+ *
+ * Revision 1.3  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.2  2008/01/25 21:05:45  myc
+ * Removed the barehand_mult and backstab_mult functions.  This
+ * functionality is contained within the hit function now.  Besides,
+ * barehand_mult was poorly named, as it isn't multiplied, but rather
+ * added.
+ *
+ * Revision 1.1  2008/01/05 21:53:56  jps
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.63
+log
+@Log to file errors we might want to see.
+@
+text
+@d76 1
+a76 1
+      log(buf);
+d195 1
+a195 1
+               log(buf);
+d581 3
+@
+
+
+1.62
+log
+@Use correct function to check whether a person's in the right stance
+and position to continue casting a spell.
+@
+text
+@d474 1
+a474 1
+      sprintf(buf, "hp_stance_alteration(): Tried to change to %s/%s but alter_pos() left values at %s/%s (for %s)",
+d478 1
+a478 1
+      mudlog(buf, BRF, LVL_GOD, FALSE);
+d581 4
+@
+
+
+1.61
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d39 1
+d452 1
+a452 1
+   if (CASTING(ch) && (GET_STANCE(ch) < STANCE_ALERT || GET_POS(ch) < POS_STANDING)) {
+d581 3
+@
+
+
+1.60
+log
+@Split lifeforce, composition, charsize, and damage types from chars.c
+@
+text
+@d19 1
+a19 1
+#include "spells.h"
+d580 3
+@
+
+
+1.59
+log
+@Make dwarves unable to be diabolists and condense the
+class_ok_race array.
+@
+text
+@d35 4
+a229 149
+/* name, color, weight_min, weight_max, height_min, height_max */
+struct sizedef sizes[NUM_SIZES] = {
+   /* TINY */        { "tiny", "&b&1", 1, 3, 1, 18 },
+   /* SMALL */       { "small", "&b&8", 5, 40, 19, 42 },
+   /* MEDIUM */      { "medium", "&3", 40, 300, 42, 92 },
+   /* LARGE */       { "large", "&b&4", 300, 1000, 90, 186 },
+   /* HUGE */        { "huge", "&b&3", 1000, 4000, 196, 384 },
+   /* GIANT */       { "giant", "&5", 4000, 16000, 384, 768 },
+   /* GARGANTUAN */  { "gargantuan", "&1", 16000, 64000, 768, 1536 },
+   /* COLOSSAL */    { "colossal", "&2&b", 64000, 256000, 1536, 3072 },
+   /* TITANIC */     { "titanic", "&6&b", 256000, 1024000, 3072, 6144 },
+   /* MOUNTAINOUS */ { "mountainous", "&7&b", 1024000, 4096000, 6144, 12288 }
+};
+
+int parse_size(struct char_data *ch, char *arg)
+{
+   return parse_obj_name(ch, arg, "size", NUM_SIZES,
+         sizes, sizeof(struct sizedef));
+}
+
+/* DAMAGE TYPE */
+/* name, color, verb1st, verb2nd, action */
+
+struct damdef damtypes[NUM_DAMTYPES] = {
+   { "slash", "&3", "slash", "slashes", "slash" },
+   { "pierce", "&3", "pierce", "pierces", "slash" },
+   { "crush", "&3", "crush", "crushes", "crush" },
+   { "shock", "&4&b", "shock", "shocks", "shock" },
+   { "fire", "&1&b", "burn", "burns", "flame" },
+   { "water", "&4", "drown", "drowns", "flood" },
+   { "cold", "&4", "freeze", "freezes", "freeze" },
+   { "acid", "&2", "corrode", "corrodes", "spray" },
+   { "poison", "&2&b", "poison", "poisons", "poison" },
+   { "heal", "&6", "harm", "harms", "harm" },
+   { "align", "&6&b", "rebuke", "rebukes", "retribution" },
+   { "dispel", "&5&b", "dispel", "dispels", "dispersion" },
+   { "discorporate", "&5", "discorporate", "discorporates", "discorporation" },
+   { "mental", "", "punish", "punishes", "punishment" }
+};
+
+int parse_damtype(struct char_data *ch, char *arg)
+{
+   return parse_obj_name(ch, arg, "damage type", NUM_DAMTYPES,
+         damtypes, sizeof(struct damdef));
+}
+
+/* LIFE FORCE */
+
+/* Values:
+ *
+ *   Name, Color,
+ *   SUSCEPTIBILITY: heal, discorporate, dispel magic, mental
+ */
+
+struct lifedef lifeforces[NUM_LIFEFORCES] = {
+   { "life", "&2&b",
+      100, 0, 0, 100
+   },
+   { "undead", "&9&b",
+      75, 50, 0, 100
+   },
+   { "magic", "&4&b",
+      0, 120, 50, 0
+   },
+   { "celestial", "&6",
+      100, 50, 0, 75
+   },
+   { "demonic", "&1&b",
+      100, 50, 0, 75
+   },
+   { "elemental", "&3",
+      50, 100, 0, 50
+   }
+};
+
+int parse_lifeforce(struct char_data *ch, char *arg)
+{
+   return parse_obj_name(ch, arg, "life force", NUM_LIFEFORCES,
+         lifeforces, sizeof(struct lifedef));
+}
+
+void convert_lifeforce(struct char_data *ch, int newlifeforce)
+{
+   /* Nothing complicated yet! */
+   GET_LIFEFORCE(ch) = newlifeforce;
+}
+
+/* COMPOSITION */
+
+/* Values:
+ *
+ *   Name, Mass noun, Adjective, Color, default_dtype, rigid,
+ *   SUSCEPTIBILITY: slash, pierce, crush, shock, fire, water, cold, acid, poison
+ */
+
+struct compdef compositions[NUM_COMPOSITIONS] = {
+   { "flesh", "flesh", "fleshy", "&1", DAM_CRUSH, TRUE,
+      100, 100, 100, 100, 100, 100, 100, 100, 100
+   },
+   { "earth", "earth", "earthy", "&3", DAM_CRUSH, TRUE,
+      90, 120, 50, 75, 75, 120, 40, 80, 0
+   },
+   { "air", "air", "gaseous", "&6", DAM_SHOCK, FALSE,
+      20, 20, 20, 0, 120, 75, 0, 0, 0
+   },
+   { "fire", "fire", "fiery", "&1&b", DAM_FIRE, FALSE,
+      30, 30, 30, 75, 0, 120, 100, 0, 0
+   },
+   { "water", "water", "watery", "&4&b", DAM_WATER, FALSE,
+      120, 60, 40, 100, 50, 0, 120, 0, 0
+   },
+   { "ice", "ice", "icy", "&4", DAM_CRUSH, TRUE,
+      75, 90, 120, 100, 75, 0, 0, 0, 0
+   },
+   { "mist", "mist", "misty", "&6&b", DAM_CRUSH, FALSE,
+      30, 30, 30, 80, 50, 100, 120, 0, 0
+   },
+   { "ether", "nothing", "ethereal", "&5", DAM_SLASH, FALSE,
+      0, 0, 0, 75, 75, 50, 25, 0, 0
+   },
+   { "metal", "metal", "metallic", "&9&b", DAM_CRUSH, TRUE,
+      25, 40, 75, 100, 25, 30, 50, 120, 0
+   },
+   { "stone", "stone", "stony", "&8", DAM_CRUSH, TRUE,
+      50, 75, 90, 0, 50, 75, 50, 100, 0
+   },
+   { "bone", "bone", "bony", "&7&b", DAM_CRUSH, TRUE,
+      80, 50, 120, 25, 120, 100, 25, 100, 0
+   },
+   { "lava", "lava", "fluid", "&1", DAM_FIRE, FALSE,
+      40, 40, 40, 50, 25, 120, 100, 50, 0
+   },
+   { "plant", "plant material", "woody", "&2", DAM_SLASH, TRUE,
+      120, 70, 60, 75, 120, 50, 75, 100, 50
+   }
+};
+
+int parse_composition(struct char_data *ch, char *arg)
+{
+   return parse_obj_name(ch, arg, "composition", NUM_COMPOSITIONS,
+         compositions, sizeof(struct compdef));
+}
+
+void set_base_composition(struct char_data *ch, int newcomposition)
+{
+   BASE_COMPOSITION(ch) = newcomposition;
+   effect_total(ch);
+}
+
+a272 18
+/* This function is an intermediate one, for making modifications without checking
+ * their consequences.  That will be done later. */
+void convert_composition(struct char_data *ch, int newcomposition)
+{
+   GET_COMPOSITION(ch) = newcomposition;
+}
+
+void list_olc_compositions(struct char_data *ch)
+{
+   int i;
+
+   for (i = 0; i < NUM_COMPOSITIONS; i++) {
+      sprintf(buf, "&2% 2d&0) %s%c%s&0\r\n", i, compositions[i].color,
+            UPPER(*(compositions[i].name)), compositions[i].name + 1);
+      send_to_char(buf, ch);
+   }
+}
+
+a342 184
+/* damage_evasion()
+ *
+ * Whether a character avoids some negative effect entirely.
+ * It's based on susceptibility.  If susceptibility to the given damage type is
+ * 100 or more, the character will not evade.  If susceptibility is 0, the
+ * character is guaranteed to evade.  Between that, it curves so that if you're
+ * closer to 100, the probability of evasion is very low.  You have to really
+ * start getting toward 0 susceptibility before evasion becomes very
+ * probable. */
+
+bool damage_evasion(struct char_data *ch, struct char_data *attacker,
+      struct obj_data *weapon, int dtype)
+{
+   int s;
+
+   /* Ether mobs are not immune at all to blessed physical attacks. */
+   if (attacker && ((dtype == DAM_PIERCE || dtype == DAM_SLASH || dtype == DAM_CRUSH) &&
+         GET_COMPOSITION(ch) == COMP_ETHER)) {
+      return !(EFF_FLAGGED(attacker, EFF_BLESS) || EFF_FLAGGED(attacker, EFF_HEX));
+   }
+
+   s = susceptibility(ch, dtype);
+   return number(1, 1000000) > 1000000 - (100 - s) * (100 - s) * (100 - s);
+}
+
+int skill_to_dtype(int skill)
+{
+   switch(skill) {
+      case TYPE_HIT:       return DAM_CRUSH;
+      case TYPE_STING:     return DAM_PIERCE;
+      case TYPE_WHIP:      return DAM_SLASH;
+      case TYPE_SLASH:     return DAM_SLASH;
+      case TYPE_BITE:      return DAM_PIERCE;
+      case TYPE_BLUDGEON:  return DAM_CRUSH;
+      case TYPE_CRUSH:     return DAM_CRUSH;
+      case TYPE_POUND:     return DAM_CRUSH;
+      case TYPE_CLAW:      return DAM_SLASH;
+      case TYPE_MAUL:      return DAM_CRUSH;
+      case TYPE_THRASH:    return DAM_SLASH;
+      case TYPE_PIERCE:    return DAM_PIERCE;
+      case TYPE_BLAST:     return DAM_CRUSH;
+      case TYPE_PUNCH:     return DAM_CRUSH;
+      case TYPE_STAB:      return DAM_PIERCE;
+      default:
+                           return DAM_CRUSH;
+   }
+}
+
+void damage_evasion_message(struct char_data *ch, struct char_data *vict,
+      struct obj_data *weapon, int dtype)
+{
+   int damtype = dtype;
+
+   if (weapon) {
+      damtype = skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT);
+   }
+
+   /* Check for physical attacks against not-so-solid opponents. */
+   if ((damtype == DAM_SLASH || damtype == DAM_PIERCE || damtype == DAM_CRUSH) &&
+         !RIGID(vict)) {
+      if (weapon) {
+         act(EVASIONCLR "Your $o passes harmlessly through $N" EVASIONCLR
+               "!&0", FALSE, ch, weapon, vict, TO_CHAR);
+         act(EVASIONCLR "$n" EVASIONCLR "'s $o passes harmlessly through $N"
+               EVASIONCLR "!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+         act(EVASIONCLR "$n" EVASIONCLR "'s $o passes harmlessly through you.&0",
+               FALSE, ch, weapon, vict, TO_VICT);
+      } else {
+         act(EVASIONCLR "Your fist passes harmlessly through $N" EVASIONCLR
+               "!&0", FALSE, ch, 0, vict, TO_CHAR);
+         act(EVASIONCLR "$n" EVASIONCLR "'s fist passes harmlessly through $N"
+               EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+         act(EVASIONCLR "$n" EVASIONCLR "'s fist passes harmlessly through you.&0",
+               FALSE, ch, 0, vict, TO_VICT);
+      }
+      return;
+   }
+
+   /* For the physical attacks (slash, pierce, crush), the victim is known
+    * to be rigid at this point. */
+   switch (damtype) {
+      case DAM_SLASH:
+         if (weapon) {
+            act(EVASIONCLR "Your $o slides harmlessly off $N" EVASIONCLR
+                  "!&0", FALSE, ch, weapon, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o slides harmlessly off $N"
+                  EVASIONCLR "!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o slides harmlessly off you.&0",
+                  FALSE, ch, weapon, vict, TO_VICT);
+         } else {
+            act(EVASIONCLR "Your blade slides harmlessly off $N" EVASIONCLR
+                  "!&0", FALSE, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s blade slides harmlessly off $N"
+                  EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s blade slides harmlessly off you.&0",
+                  FALSE, ch, 0, vict, TO_VICT);
+         }
+         break;
+      case DAM_PIERCE:
+         if (weapon) {
+            act(EVASIONCLR "Your $o fails to pierce $N" EVASIONCLR
+                  " at all!&0", FALSE, ch, weapon, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o fails to pierce $N"
+                  EVASIONCLR " at all!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o fails to pierce you at all.&0",
+                  FALSE, ch, weapon, vict, TO_VICT);
+         } else {
+            act(EVASIONCLR "You fail to pierce $N" EVASIONCLR " at all!&0",
+                  FALSE, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR " fails to pierce $N" EVASIONCLR
+                  " at all!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR " fails to pierce you at all.&0",
+                  FALSE, ch, 0, vict, TO_VICT);
+         }
+         break;
+      case DAM_CRUSH:
+         if (weapon) {
+            act(EVASIONCLR "Your $o bounces harmlessly off $N" EVASIONCLR
+                  "!&0", FALSE, ch, weapon, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o bounces harmlessly off $N"
+                  EVASIONCLR "!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o bounces harmlessly off you.&0",
+                  FALSE, ch, weapon, vict, TO_VICT);
+         } else {
+            act(EVASIONCLR "Your fist bounces harmlessly off $N" EVASIONCLR
+                  "!&0", FALSE, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s fist bounces harmlessly off $N"
+                  EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s fist bounces harmlessly off you.&0",
+                  FALSE, ch, 0, vict, TO_VICT);
+         }
+         break;
+      case DAM_POISON:
+         sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s $N"
+               EVASIONCLR ", but $E is immune!&0",
+               damtypes[damtype].verb1st);
+         act(buf, FALSE, ch, 0, vict, TO_NOTVICT);
+         sprintf(buf, EVASIONCLR "You try to %s $N" EVASIONCLR
+               ", but $E is immune!&0",
+               damtypes[damtype].verb1st);
+         act(buf, FALSE, ch, 0, vict, TO_CHAR);
+         sprintf(buf, EVASIONCLR "$n" EVASIONCLR
+               " tries to %s you, but you are immune!&0",
+               damtypes[damtype].verb1st);
+         act(buf, FALSE, ch, 0, vict, TO_VICT);
+         break;
+      case DAM_SHOCK:
+      case DAM_FIRE:
+      case DAM_WATER:
+      case DAM_COLD:
+      case DAM_ACID:
+      case DAM_HEAL:
+      case DAM_ALIGN:
+      case DAM_DISPEL:
+      case DAM_DISCORPORATE:
+      default:
+         if (number(1, 3) == 1)
+            sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s $N"
+                  EVASIONCLR ", but $E is completely unaffected!&0",
+                  damtypes[damtype].verb1st);
+         else
+            sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on $N" EVASIONCLR "!",
+                  damtypes[damtype].action);
+         act(buf, FALSE, ch, 0, vict, TO_NOTVICT);
+         if (number(1, 3) == 1)
+            sprintf(buf, EVASIONCLR "You try to %s $N" EVASIONCLR
+                  ", but $E is completely unaffected!&0",
+                  damtypes[damtype].verb1st);
+         else
+            sprintf(buf, EVASIONCLR "Your %s has no effect on $N" EVASIONCLR "!",
+                  damtypes[damtype].action);
+         act(buf, FALSE, ch, 0, vict, TO_CHAR);
+         if (number(1, 3) == 1)
+            sprintf(buf, EVASIONCLR "$n" EVASIONCLR
+                  " tries to %s you, but you are completely unaffected!&0",
+                  damtypes[damtype].verb1st);
+         else
+            sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on you!",
+                  damtypes[damtype].action);
+         act(buf, FALSE, ch, 0, vict, TO_VICT);
+         break;
+   }
+}
+
+a350 7
+int weapon_damtype(struct obj_data *obj)
+{
+   if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
+      return skill_to_dtype(TYPE_HIT + GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE));
+   return DAM_CRUSH;
+}
+
+a367 9
+int physical_damtype(struct char_data *ch)
+{
+   if (equipped_weapon(ch))
+      return weapon_damtype(equipped_weapon(ch));
+   else
+      return COMPOSITION_DAM(ch);
+/*      return skill_to_dtype(ch->mob_specials.attack_type); */
+}
+
+a377 158
+/* Set a character's height and weight. */
+void set_init_height_weight(struct char_data *ch)
+{
+   int race = GET_RACE(ch), defsize;
+
+   /* First give the char a height and weight based on the standard size
+    * of its race. */
+
+   if (race >= 0 && race < NUM_RACES) {
+      defsize = races[race].def_size;
+      if (ch->player.sex == SEX_MALE) {
+         ch->player.base_weight = number(races[race].mweight_lo, races[race].mweight_hi);
+         ch->player.base_height = number(races[race].mheight_lo, races[race].mheight_hi);
+      } else {
+         ch->player.base_weight = number(races[race].fweight_lo, races[race].fweight_hi);
+         ch->player.base_height = number(races[race].fheight_lo, races[race].fheight_hi);
+      }
+   } else {
+      if (GET_SIZE(ch) >= 0 && GET_SIZE(ch) < NUM_SIZES)
+         defsize= GET_SIZE(ch);
+      else
+         defsize = SIZE_MEDIUM;
+      ch->player.base_weight =
+         number(sizes[defsize].weight_min, sizes[defsize].weight_max);
+      ch->player.base_height =
+         number(sizes[defsize].height_min, sizes[defsize].height_max);
+   }
+
+   /* For prototyped mobs, base_size at this point contains the builder's
+    * chosen size.  defsize contians the default size according to race. */
+
+   if (ch->player.base_size != defsize) {
+      /* When a builder has overridden a mob's racial size, we'll give it a
+       * height and weight that are in the builder's chosen size, but
+       * proportional to the race's height/weight range within the race's
+       * standard size. */
+      ch->player.natural_size = ch->player.base_size;
+      ch->player.base_size = defsize;
+      reset_height_weight(ch);
+      ch->player.base_size = ch->player.natural_size;
+      ch->player.base_weight = ch->player.weight;
+      ch->player.base_height = ch->player.height;
+   } else
+      reset_height_weight(ch);
+}
+
+/* reset_height_weight()
+ *
+ * Change a character's height and weight to reflect its size, so that they
+ * are proportional according to the char's base height and weight.
+ *
+ * For example, suppose you're medium size, and your height is 52 inches.
+ * The minimum height of medium is 42 inches, and the maximum is 92.
+ * So you are 10 inches over the minimum, and, you have 1/5 of your
+ * potential within that range.
+ *
+ * This function would cause you to use 1/5 of the available range in
+ * your new size. So, if changing to LARGE, (90 to 186 in) you would
+ * have an available range of 96 in (which is 186 - 90). Your height
+ * will end up as 90 + 96 * (1/5), which is 109 inches.
+ *
+ * Also, due to base values being saved, you would always have the same
+ * values when you change back to your normal size. */
+
+void reset_height_weight(struct char_data *ch)
+{
+   int bsize, asize;
+
+   asize = ch->player.natural_size + ch->player.mod_size;
+
+   if (asize < 0)
+      asize = 0;
+   else if (asize >= NUM_SIZES)
+      asize = NUM_SIZES - 1;
+
+   ch->player.affected_size = asize;
+   bsize = ch->player.base_size;
+
+   if (asize == bsize) {
+      GET_WEIGHT(ch) = ch->player.base_weight;
+      GET_HEIGHT(ch) = ch->player.base_height;
+      return;
+   }
+
+   GET_WEIGHT(ch) = MAX(1, sizes[asize].weight_min +
+      (sizes[asize].weight_max - sizes[asize].weight_min) *
+         (ch->player.base_weight - sizes[bsize].weight_min) /
+            (sizes[bsize].weight_max - sizes[bsize].weight_min));
+
+   GET_HEIGHT(ch) = MAX(1, sizes[asize].height_min +
+      (sizes[asize].height_max - sizes[asize].height_min) *
+         (ch->player.base_height - sizes[bsize].height_min) /
+            (sizes[bsize].height_max - sizes[bsize].height_min));
+}
+
+/* set_base_size()
+ *
+ * Set a character's size, AT creation. */
+
+void set_base_size(struct char_data *ch, int newsize)
+{
+   ch->player.base_size = newsize;
+   ch->player.natural_size = newsize;
+   ch->player.base_height = number(sizes[newsize].height_min, sizes[newsize].height_max);
+   ch->player.base_weight = number(sizes[newsize].weight_min, sizes[newsize].weight_max);
+   reset_height_weight(ch);
+}
+
+/* change_natural_size()
+ *
+ * Bluntly changes a character's natural size.  For use *after* creation.
+ * Probably from a wizard using "set <char> size <foo>". */
+
+void change_natural_size(struct char_data *ch, int newsize)
+{
+   if (newsize == ch->player.natural_size) return;
+   if (newsize < 0 || newsize >= NUM_SIZES) {
+      sprintf(buf, "SYSERR: change_size(): invalid size %d", newsize);
+      log(buf);
+      return;
+   }
+
+   ch->player.natural_size = newsize;
+   reset_height_weight(ch);
+}
+
+/* adjust_size()
+ *
+ * Changes a character's size temporarily. The value given is a difference:
+ * if positive, the char is getting bigger; if negative, the character
+ * is shrinking. */
+
+void adjust_size(struct char_data *ch, int delta)
+{
+   ch->player.mod_size += delta;
+   reset_height_weight(ch);
+}
+
+void show_sizes(struct char_data *ch)
+{
+   int i;
+   char hrange[MAX_STRING_LENGTH];
+   char wrange[MAX_STRING_LENGTH];
+
+   send_to_char("The character sizes are:\r\n\r\n", ch);
+   send_to_char("Idx  Name          Height range                              Weight range\r\n", ch);
+   send_to_char("---  ------------  ----------------------------------------  -------------------------\r\n", ch);
+   for (i = 0; i < NUM_SIZES; i++) {
+      sprintf(hrange, "%-18s - %-18s", statelength(sizes[i].height_min),
+            statelength(sizes[i].height_max));
+      sprintf(wrange, "%-11s - %-11s", stateweight(sizes[i].weight_min),
+            stateweight(sizes[i].weight_max));
+      sprintf(buf, "% 3d  %s%-12s&0  %-40s  %s\r\n", i, sizes[i].color,
+            sizes[i].name, hrange, wrange);
+      send_to_char(buf, ch);
+   }
+}
+
+d580 4
+@
+
+
+1.58
+log
+@Increase fire vs air, decrease fire vs ice.
+@
+text
+@d48 13
+a60 13
+  /*            S, C, T, W, P, A, R, D, Sh,As,M, N, Co, Mo, Be, Pr, Di, My, Ro, Ba, Py, Cr, Il, Hu*/
+  /* Human */ { Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y,  Y,  N,  Y,  Y,  Y,  Y,  Y,  Y,  Y,  Y,  N},
+  /* Elf   */ { Y, Y, Y, N, N, N, Y, Y, N, N, N, N, Y,  N,  N,  Y,  Y,  Y,  Y,  Y,  Y,  Y,  Y,  N},
+  /* Gnome */ { Y, Y, N, N, N, N, N, N, Y, N, N, N, Y,  N,  N,  Y,  Y,  N,  N,  N,  Y,  Y,  Y,  N},
+  /* Dwarf */ { N, Y, Y, Y, N, N, N, N, N, N, Y, N, Y,  N,  Y,  Y,  Y,  N,  Y,  Y,  N,  N,  N,  N},
+  /* troll */ { N, N, N, Y, N, N, N, N, Y, N, Y, N, N,  N,  Y,  N,  N,  N,  Y,  N,  N,  N,  N,  Y},
+  /* DROW  */ { Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y,  N,  N,  N,  Y,  N,  Y,  N,  Y,  Y,  Y,  Y},
+  /* DUER  */ { N, Y, Y, Y, N, N, N, N, N, Y, Y, N, N,  N,  Y,  N,  Y,  N,  Y,  N,  N,  N,  N,  Y},
+  /* OGRE  */ { N, N, N, Y, N, N, N, N, Y, N, Y, N, N,  N,  Y,  N,  N,  N,  Y,  N,  N,  N,  N,  Y},
+  /* ORC   */ { Y, Y, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y,  N,  Y,  N,  Y,  N,  Y,  N,  Y,  Y,  Y,  Y},
+  /* H-E   */ { Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y,  Y,  N,  Y,  N,  N,  Y,  Y,  Y,  Y,  Y,  N},
+  /* BARB  */ { N, N, N, Y, N, N, N, N, Y, N, Y, N, N,  N,  Y,  N,  N,  N,  Y,  N,  N,  N,  N,  N},
+  /* HALFL */ { Y, Y, Y, Y, N, N, N, N, N, N, N, N, Y,  N,  N,  Y,  N,  N,  Y,  Y,  Y,  Y,  Y,  N}
+d1101 3
+@
+
+
+1.57
+log
+@Boots fire damage vs ice.
+@
+text
+@d329 1
+a329 1
+      20, 20, 20, 0, 100, 75, 0, 0, 0
+d338 1
+a338 1
+      75, 90, 120, 100, 120, 0, 0, 0, 0
+d1101 3
+@
+
+
+1.56
+log
+@Keep a list of attackers with each character, so that at the proper times -
+such as char_from_room - they can be stopped from battling.
+@
+text
+@d338 1
+a338 1
+      75, 90, 120, 100, 50, 0, 0, 0, 0
+d1101 4
+@
+
+
+1.55
+log
+@Only check for falling off a mount when the rider is not immort.
+@
+text
+@d979 1
+a979 1
+      stop_fighting(ch);
+d990 1
+a990 1
+      StopMercifulAttackers (ch);
+d1101 3
+@
+
+
+1.54
+log
+@Remove some composition restrictions from imms.
+@
+text
+@d409 1
+a409 1
+   } else if (RIDDEN_BY(ch)) {
+d1101 3
+@
+
+
+1.53
+log
+@Removing certain spells from characters when in fluid form.
+@
+text
+@d399 1
+d403 1
+a403 1
+   if (RIDING(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
+d1101 3
+@
+
+
+1.52
+log
+@Check for falling off a mount when it changes position.
+@
+text
+@d34 1
+d38 4
+a41 4
+const char *stats_display = 
+"&0&7&b[s]&0 Strength	&0&7&b[i]&0 Intelligence\r\n"
+"&0&7&b[w]&0 Wisdom	&0&7&b[c]&0 Constitution\r\n"
+"&0&7&b[d]&0 Dexterity	&0&7&b[m]&0 Charisma\r\n\r\n"
+d125 1
+a125 1
+   
+d399 2
+d417 2
+d1100 3
+@
+
+
+1.51
+log
+@Check for falling when you change your position in an air room.
+@
+text
+@d975 1
+d1095 3
+@
+
+
+1.50
+log
+@Using movement.h/c for movement functions.
+@
+text
+@d974 1
+d1094 3
+@
+
+
+1.49
+log
+@Added reference to act.h header file.
+@
+text
+@a23 1
+
+d33 1
+a36 2
+void dismount_char(struct char_data * ch);
+
+d1093 3
+@
+
+
+1.48
+log
+@Apply damage susceptibility reductions to the various physical attack skills.
+@
+text
+@d33 1
+d1095 3
+@
+
+
+1.47
+log
+@Removed the damage type 'magic'.
+@
+text
+@d726 10
+d1094 3
+@
+
+
+1.46
+log
+@Don't apply fluid/rigidity restrictions to immortals.
+@
+text
+@a258 1
+   { "magic", "&5", "annihilate", "annihilates", "spell" },
+d318 1
+a318 1
+ *   SUSCEPTIBILITY: slash, pierce, crush, shock, fire, water, cold, acid, poison, magic
+d323 1
+a323 1
+      100, 100, 100, 100, 100, 100, 100, 100, 100, 100
+d326 1
+a326 1
+      90, 120, 50, 75, 75, 120, 40, 80, 0, 100
+d329 1
+a329 1
+      20, 20, 20, 0, 100, 75, 0, 0, 0, 100
+d332 1
+a332 1
+      30, 30, 30, 75, 0, 120, 100, 0, 0, 100
+d335 1
+a335 1
+      120, 60, 40, 100, 50, 0, 120, 0, 0, 100
+d338 1
+a338 1
+      75, 90, 120, 100, 50, 0, 0, 0, 0, 100
+d341 1
+a341 1
+      30, 30, 30, 80, 50, 100, 120, 0, 0, 100
+d343 2
+a344 2
+   { "ether", "nothing", "ethereal", "&5", DAM_MAGIC, FALSE,
+      0, 0, 0, 75, 75, 50, 25, 0, 0, 0
+d347 1
+a347 1
+      25, 40, 75, 100, 25, 30, 50, 120, 0, 100
+d350 1
+a350 1
+      50, 75, 90, 0, 50, 75, 50, 100, 0, 100
+d353 1
+a353 1
+      80, 50, 120, 25, 120, 100, 25, 100, 0, 100
+d356 1
+a356 1
+      40, 40, 40, 50, 25, 120, 100, 50, 0, 100
+d359 1
+a359 1
+      120, 70, 60, 75, 120, 50, 75, 100, 50, 100
+a487 2
+      case DAM_MAGIC:
+         return compositions[GET_COMPOSITION(ch)].sus_magic;
+a651 1
+      case DAM_MAGIC:
+d1084 3
+@
+
+
+1.45
+log
+@Protect against null deref when no attacker is passed to damage_evasion().
+@
+text
+@d401 1
+a401 1
+   if (RIDING(ch)) {
+d1088 3
+@
+
+
+1.44
+log
+@Made more use of the VALID_CLASS macro.
+@
+text
+@d520 2
+a521 2
+   if ((dtype == DAM_PIERCE || dtype == DAM_SLASH || dtype == DAM_CRUSH) &&
+         GET_COMPOSITION(ch) == COMP_ETHER) {
+d1088 3
+@
+
+
+1.43
+log
+@Don't run death_mtrigger here - it's called within die().
+@
+text
+@d75 1
+a75 1
+   if (GET_CLASS(ch) >= 0 && GET_CLASS(ch) < NUM_CLASSES) {
+d166 1
+a166 1
+   if (GET_CLASS(ch) >= 0 && GET_CLASS(ch) < NUM_CLASSES) {
+d1088 3
+@
+
+
+1.42
+log
+@Moved all object-related constants and structures to objects.h
+@
+text
+@a1008 1
+        death_mtrigger(ch, (char_data *)NULL );  /* allow mob to run death trigger */
+d1088 3
+@
+
+
+1.41
+log
+@Created fight.h and set dependents.
+@
+text
+@d558 1
+a558 1
+      damtype = skill_to_dtype(GET_OBJ_VAL(weapon, 3) + TYPE_HIT);
+d700 1
+a700 1
+      return skill_to_dtype(TYPE_HIT + GET_OBJ_VAL(obj, 3));
+d1089 3
+@
+
+
+1.40
+log
+@Split out the hp-pos-changing bit so that fleeing can be
+made to work again.
+@
+text
+@d32 1
+a973 2
+   void StopMercifulAttackers (struct char_data *ch); /* fight.c */
+
+d1089 4
+@
+
+
+1.39
+log
+@Change susceptibility to discorporate. Magical life force: 120
+Elemental: 100
+@
+text
+@d970 2
+a971 13
+
+/* HP_POS_CHECK
+ *
+ * You've just had your HP modified.  Maybe some other character was
+ * responsible.
+ *
+ * Messages may be sent about any consequences of this HP change.
+ * Your stance and position will be modified if necessary.
+ * You may die.  If so, your killer may receive experience, a trophy
+ * update, and whatever else die() chooses to do.
+ */
+
+void hp_pos_check(struct char_data *ch, struct char_data *attacker, int dam)
+a972 1
+   int newstance = -1, newpos = -1;
+a974 31
+   if (DECEASED(ch)) return;
+
+   if (GET_HIT(ch) <= HIT_DEAD) {
+      newpos = POS_PRONE;
+      newstance = STANCE_DEAD;
+   } else if (GET_HIT(ch) <= HIT_MORTALLYW) {
+      newpos = POS_PRONE;
+      newstance = STANCE_MORT;
+   } else if (GET_HIT(ch) <= HIT_INCAP) {
+      newpos = POS_PRONE;
+      newstance = STANCE_INCAP;
+   } else if (GET_HIT(ch) <= 0) {
+      newpos = POS_PRONE;
+      newstance = STANCE_STUNNED;
+   } else if (GET_STANCE(ch) <= STANCE_STUNNED) {
+      /* Char has positive hit points, yet is stunned.
+       * Will recover, waking up if possible. */
+      if (EFF_FLAGGED(ch, EFF_SLEEP)) {
+         newpos = POS_PRONE;
+         newstance = STANCE_SLEEPING;
+      } else {
+         newpos = POS_PRONE;
+         newstance = STANCE_RESTING;
+      }
+   }
+
+   if (newstance == -1 || newpos == -1 ||
+         (GET_POS(ch) == newpos && GET_STANCE(ch) == newstance))
+      /* No change in stance or position */
+      return;
+
+d982 1
+a982 1
+      sprintf(buf, "hp_pos_check(): Tried to change to %s/%s but alter_pos() left values at %s/%s (for %s)",
+d1015 2
+a1016 20
+
+      default:   /* >= POSITION SLEEPING */
+        if (dam > 0) {
+           /* Harmful */
+           if (dam > (GET_MAX_HIT(ch) >> 2))
+               act("That really did HURT!", FALSE, ch, 0, 0, TO_CHAR);
+           if (GET_HIT(ch) < (GET_MAX_HIT(ch) >> 2)) {
+               sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n",
+                  CLRLV(ch, FRED, C_SPR), CLRLV(ch, ANRM, C_SPR));
+               send_to_char(buf2, ch);
+               if (MOB_FLAGGED(ch, MOB_WIMPY) && (attacker != ch) &&
+                     !EFF_FLAGGED(ch, EFF_CHARM))
+                  do_flee (ch, "", 0, 0);
+           }
+            if (!IS_NPC(ch) && GET_WIMP_LEV(ch) && (ch != attacker) &&
+                  GET_HIT(ch) < GET_WIMP_LEV(ch)) {
+               send_to_char("You attempt to flee!\r\n", ch);
+               do_flee(ch, "", 0, 0);
+            }
+        } else {
+d1031 57
+d1090 4
+@
+
+
+1.38
+log
+@alter_pos() is now the internal way to change a character's position.
+hp_pos_check() should be called after modifying hp. It will change the
+position if necessary, for example if the char became unconscious.
+@
+text
+@d288 1
+a288 1
+      0, 100, 50, 0
+d297 1
+a297 1
+      50, 75, 0, 50
+d1094 5
+@
+
+
+1.37
+log
+@Made EVASIONCLR globally available.
+@
+text
+@d28 6
+d902 190
+d1094 3
+@
+
+
+1.36
+log
+@Added align_color function.
+@
+text
+@a544 2
+#define evasionclr "&6"
+
+d558 1
+a558 1
+         act(evasionclr "Your $o passes harmlessly through $N" evasionclr
+d560 3
+a562 3
+         act(evasionclr "$n" evasionclr "'s $o passes harmlessly through $N"
+               evasionclr "!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+         act(evasionclr "$n" evasionclr "'s $o passes harmlessly through you.&0",
+d565 1
+a565 1
+         act(evasionclr "Your fist passes harmlessly through $N" evasionclr
+d567 3
+a569 3
+         act(evasionclr "$n" evasionclr "'s fist passes harmlessly through $N"
+               evasionclr "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+         act(evasionclr "$n" evasionclr "'s fist passes harmlessly through you.&0",
+d580 1
+a580 1
+            act(evasionclr "Your $o slides harmlessly off $N" evasionclr
+d582 3
+a584 3
+            act(evasionclr "$n" evasionclr "'s $o slides harmlessly off $N"
+                  evasionclr "!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act(evasionclr "$n" evasionclr "'s $o slides harmlessly off you.&0",
+d587 1
+a587 1
+            act(evasionclr "Your blade slides harmlessly off $N" evasionclr
+d589 3
+a591 3
+            act(evasionclr "$n" evasionclr "'s blade slides harmlessly off $N"
+                  evasionclr "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act(evasionclr "$n" evasionclr "'s blade slides harmlessly off you.&0",
+d597 1
+a597 1
+            act(evasionclr "Your $o fails to pierce $N" evasionclr
+d599 3
+a601 3
+            act(evasionclr "$n" evasionclr "'s $o fails to pierce $N"
+                  evasionclr " at all!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act(evasionclr "$n" evasionclr "'s $o fails to pierce you at all.&0",
+d604 1
+a604 1
+            act(evasionclr "You fail to pierce $N" evasionclr " at all!&0",
+d606 1
+a606 1
+            act(evasionclr "$n" evasionclr " fails to pierce $N" evasionclr
+d608 1
+a608 1
+            act(evasionclr "$n" evasionclr " fails to pierce you at all.&0",
+d614 1
+a614 1
+            act(evasionclr "Your $o bounces harmlessly off $N" evasionclr
+d616 3
+a618 3
+            act(evasionclr "$n" evasionclr "'s $o bounces harmlessly off $N"
+                  evasionclr "!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act(evasionclr "$n" evasionclr "'s $o bounces harmlessly off you.&0",
+d621 1
+a621 1
+            act(evasionclr "Your fist bounces harmlessly off $N" evasionclr
+d623 3
+a625 3
+            act(evasionclr "$n" evasionclr "'s fist bounces harmlessly off $N"
+                  evasionclr "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act(evasionclr "$n" evasionclr "'s fist bounces harmlessly off you.&0",
+d630 2
+a631 2
+         sprintf(buf, evasionclr "$n" evasionclr " tries to %s $N"
+               evasionclr ", but $E is immune!&0",
+d634 1
+a634 1
+         sprintf(buf, evasionclr "You try to %s $N" evasionclr
+d638 1
+a638 1
+         sprintf(buf, evasionclr "$n" evasionclr
+d655 2
+a656 2
+            sprintf(buf, evasionclr "$n" evasionclr " tries to %s $N"
+                  evasionclr ", but $E is completely unaffected!&0",
+d659 1
+a659 1
+            sprintf(buf, evasionclr "$n" evasionclr "'s %s has no effect on $N" evasionclr "!",
+d663 1
+a663 1
+            sprintf(buf, evasionclr "You try to %s $N" evasionclr
+d667 1
+a667 1
+            sprintf(buf, evasionclr "Your %s has no effect on $N" evasionclr "!",
+d671 1
+a671 1
+            sprintf(buf, evasionclr "$n" evasionclr
+d675 1
+a675 1
+            sprintf(buf, evasionclr "$n" evasionclr "'s %s has no effect on you!",
+d898 3
+@
+
+
+1.35
+log
+@Give prototyped mobs a height/weight according to the builder's
+chosen size.
+@
+text
+@d883 14
+d900 4
+@
+
+
+1.34
+log
+@Fix sign in boolean_attack_evasion.
+@
+text
+@d728 4
+a731 1
+   int race = GET_RACE(ch);
+d734 1
+d736 2
+a737 2
+         ch->player.weight = number(races[race].mweight_lo, races[race].mweight_hi);
+         ch->player.height = number(races[race].mheight_lo, races[race].mheight_hi);
+d739 2
+a740 2
+         ch->player.weight = number(races[race].fweight_lo, races[race].fweight_hi);
+         ch->player.height = number(races[race].fheight_lo, races[race].fheight_hi);
+a741 5
+   } else if (GET_SIZE(ch) >= 0 && GET_SIZE(ch) < NUM_SIZES) {
+      ch->player.weight =
+         number(sizes[GET_SIZE(ch)].weight_min, sizes[GET_SIZE(ch)].weight_max);
+      ch->player.height =
+         number(sizes[GET_SIZE(ch)].height_min, sizes[GET_SIZE(ch)].height_max);
+d743 8
+a750 4
+      ch->player.weight =
+         number(sizes[SIZE_MEDIUM].weight_min, sizes[SIZE_MEDIUM].weight_max);
+      ch->player.height =
+         number(sizes[SIZE_MEDIUM].height_min, sizes[SIZE_MEDIUM].height_max);
+d753 16
+a768 3
+   ch->player.natural_size = ch->player.base_size;
+   ch->player.base_weight = ch->player.weight;
+   ch->player.base_height = ch->player.height;
+d774 1
+a774 1
+ * are proportional according to the char's natural height and weight.
+d886 3
+@
+
+
+1.33
+log
+@Adding composition_check() function.
+@
+text
+@d688 1
+a688 1
+   return number(1, 100) >
+d870 3
+@
+
+
+1.32
+log
+@If you change form while mounted, you may well fall down.
+Or if your mount changes form.
+@
+text
+@d29 2
+d391 1
+a391 1
+void convert_composition(struct char_data *ch, int newcomposition)
+a392 2
+   GET_COMPOSITION(ch) = newcomposition;
+
+d403 1
+a403 1
+      } else if (!RIGID(ch) && RIGID(RIDING(ch))) {
+d409 5
+d870 4
+@
+
+
+1.31
+log
+@Changed acid's verb to corrode.
+@
+text
+@d367 22
+a390 1
+   /* Nothing complicated yet! */
+d392 15
+d865 3
+@
+
+
+1.30
+log
+@Making metal very susceptible to acid.
+@
+text
+@d238 1
+d248 1
+a248 1
+   { "acid", "&2", "dissolve", "dissolves", "spray" },
+d829 3
+@
+
+
+1.29
+log
+@Add an adjective to compositions.
+@
+text
+@d338 1
+a338 1
+      25, 40, 75, 100, 25, 30, 50, 75, 0, 100
+d828 3
+@
+
+
+1.28
+log
+@Use coldshield and fireshield when calculating susceptibility
+to fire and cold damage.
+@
+text
+@d308 1
+a308 1
+ *   Name, Mass noun, Color, default_dtype, rigid,
+d313 1
+a313 1
+   { "flesh", "flesh", "&1", DAM_CRUSH, TRUE,
+d316 1
+a316 1
+   { "earth", "earth", "&3", DAM_CRUSH, TRUE,
+d319 1
+a319 1
+   { "air", "air", "&6", DAM_SHOCK, FALSE,
+d322 1
+a322 1
+   { "fire", "fire", "&1&b", DAM_FIRE, FALSE,
+d325 1
+a325 1
+   { "water", "water", "&4&b", DAM_WATER, FALSE,
+d328 1
+a328 1
+   { "ice", "ice", "&4", DAM_CRUSH, TRUE,
+d331 1
+a331 1
+   { "mist", "mist", "&6&b", DAM_CRUSH, FALSE,
+d334 1
+a334 1
+   { "ether", "nothing", "&5", DAM_MAGIC, FALSE,
+d337 1
+a337 1
+   { "metal", "metal", "&9&b", DAM_CRUSH, TRUE,
+d340 1
+a340 1
+   { "stone", "stone", "&8", DAM_CRUSH, TRUE,
+d343 1
+a343 1
+   { "bone", "bone", "&7&b", DAM_CRUSH, TRUE,
+d346 1
+a346 1
+   { "lava", "lava", "&1", DAM_FIRE, FALSE,
+d349 1
+a349 1
+   { "plant", "plant material", "&2", DAM_SLASH, TRUE,
+d828 4
+@
+
+
+1.27
+log
+@More changing of evasion messages.
+@
+text
+@d391 2
+d412 1
+d414 5
+d420 2
+a421 2
+            return compositions[GET_COMPOSITION(ch)].sus_fire * 75 / 100;
+         return compositions[GET_COMPOSITION(ch)].sus_fire;
+d425 1
+d427 5
+d433 2
+a434 2
+            return compositions[GET_COMPOSITION(ch)].sus_cold * 75 / 100;
+         return compositions[GET_COMPOSITION(ch)].sus_cold;
+d828 3
+@
+
+
+1.26
+log
+@Add an action word to damtypes, and use it in damage_evasion_message.
+@
+text
+@a574 23
+      case DAM_SHOCK:
+      case DAM_FIRE:
+      case DAM_WATER:
+      case DAM_COLD:
+      case DAM_ACID:
+      case DAM_MAGIC:
+      case DAM_HEAL:
+      case DAM_ALIGN:
+      case DAM_DISPEL:
+      case DAM_DISCORPORATE:
+         sprintf(buf, evasionclr "$n" evasionclr " tries to %s $N"
+               evasionclr ", but $E is completely unaffected!&0",
+               damtypes[damtype].verb1st);
+         act(buf, FALSE, ch, 0, vict, TO_NOTVICT);
+         sprintf(buf, evasionclr "You try to %s $N" evasionclr
+               ", but $E is completely unaffected!&0",
+               damtypes[damtype].verb1st);
+         act(buf, FALSE, ch, 0, vict, TO_CHAR);
+         sprintf(buf, evasionclr "$n" evasionclr
+               " tries to %s you, but you are completely unaffected!&0",
+               damtypes[damtype].verb1st);
+         act(buf, FALSE, ch, 0, vict, TO_VICT);
+         break;
+d589 10
+d600 15
+a614 2
+         sprintf(buf, evasionclr "Your %s has no effect on $N" evasionclr "!",
+               damtypes[damtype].action);
+d616 7
+a622 5
+         sprintf(evasionclr "$n" evasionclr "'s %s has no effect on $N" evasionclr "!",
+               damtypes[damtype].action);
+         act(buf, FALSE, ch, 0, vict, TO_NOTVICT);
+         sprintf(evasionclr "$n" evasionclr "'s %s has no effect on you!",
+               damtypes[damtype].action);
+d624 1
+d814 3
+@
+
+
+1.25
+log
+@Add colors to damage types.
+@
+text
+@d240 15
+a254 15
+   { "slash", "&3", "slash", "slashes" },
+   { "pierce", "&3", "pierce", "pierces" },
+   { "crush", "&3", "crush", "crushes" },
+   { "shock", "&4&b", "shock", "shocks" },
+   { "fire", "&1&b", "burn", "burns" },
+   { "water", "&4", "drown", "drowns" },
+   { "cold", "&4", "freeze", "freezes" },
+   { "acid", "&2", "dissolve", "dissolves" },
+   { "poison", "&2&b", "poison", "poisons" },
+   { "magic", "&5", "annihilate", "annihilates" },
+   { "heal", "&6", "harm", "harms" },
+   { "align", "&6&b", "rebuke", "rebukes" },
+   { "dispel", "&5&b", "dispel", "dispels" },
+   { "discorporate", "&5", "discorporate", "discorporates" },
+   { "mental", "", "punish", "punishes" }
+d613 9
+a621 6
+         act(evasionclr "Your attack has no effect on $N" evasionclr
+               "!", FALSE, ch, 0, vict, TO_CHAR);
+         act(evasionclr "$n" evasionclr "'s attack has no effect on $N"
+               evasionclr "!", FALSE, ch, 0, vict, TO_NOTVICT);
+         act(evasionclr "$n" evasionclr "'s attack has no effect on you!",
+               FALSE, ch, 0, vict, TO_VICT);
+d811 3
+@
+
+
+1.24
+log
+@Add a "mass noun" string to composition definitions.
+@
+text
+@d240 14
+a253 14
+   { "slash", "", "slash", "slashes" },
+   { "pierce", "", "pierce", "pierces" },
+   { "crush", "", "crush", "crushes" },
+   { "shock", "", "shock", "shocks" },
+   { "fire", "", "burn", "burns" },
+   { "water", "", "drown", "drowns" },
+   { "cold", "", "freeze", "freezes" },
+   { "acid", "", "dissolve", "dissolves" },
+   { "poison", "", "poison", "poisons" },
+   { "magic", "", "annihilate", "annihilates" },
+   { "heal", "", "harm", "harms" },
+   { "align", "", "rebuke", "rebukes" },
+   { "dispel", "", "dispel", "dispels" },
+   { "discorporate", "", "discorporate", "discorporates" },
+d808 3
+@
+
+
+1.23
+log
+@Change boolean_evasion to incorporate victim level.
+@
+text
+@d199 1
+a199 1
+  
+d308 1
+a308 1
+ *   Name, Color, default_dtype, rigid,
+d313 1
+a313 1
+   { "flesh", "&1", DAM_CRUSH, TRUE,
+d316 1
+a316 1
+   { "earth", "&3", DAM_CRUSH, TRUE,
+d319 1
+a319 1
+   { "air", "&6", DAM_SHOCK, FALSE,
+d322 1
+a322 1
+   { "fire", "&1&b", DAM_FIRE, FALSE,
+d325 1
+a325 1
+   { "water", "&4&b", DAM_WATER, FALSE,
+d328 1
+a328 1
+   { "ice", "&4", DAM_CRUSH, TRUE,
+d331 1
+a331 1
+   { "mist", "&6&b", DAM_CRUSH, FALSE,
+d334 1
+a334 1
+   { "ether", "&5", DAM_MAGIC, FALSE,
+d337 1
+a337 1
+   { "metal", "&9&b", DAM_CRUSH, TRUE,
+d340 1
+a340 1
+   { "stone", "&8", DAM_CRUSH, TRUE,
+d343 1
+a343 1
+   { "bone", "&7&b", DAM_CRUSH, TRUE,
+d346 1
+a346 1
+   { "lava", "&1", DAM_FIRE, FALSE,
+d349 1
+a349 1
+   { "plant", "&2", DAM_SLASH, TRUE,
+d808 3
+@
+
+
+1.22
+log
+@Add an evasion check exclusively for non-damaging attack spells.
+@
+text
+@d626 2
+a627 1
+   return number(1, 100) > MAX(3, 2 * (100 - susceptibility(ch, dtype)) - power);
+d808 3
+@
+
+
+1.21
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d622 7
+d807 4
+@
+
+
+1.20
+log
+@Ethereal creatures are now attackable when you have the spell
+effect of bless or hex.
+@
+text
+@d363 1
+a363 1
+   affect_total(ch);
+d400 2
+a401 2
+         if (AFF2_FLAGGED(ch, AFF2_NEGATE_EARTH)) return 0;
+         if (AFF2_FLAGGED(ch, AFF2_PROT_EARTH))
+d405 2
+a406 2
+         if (AFF2_FLAGGED(ch, AFF2_NEGATE_AIR)) return 0;
+         if (AFF2_FLAGGED(ch, AFF2_PROT_AIR))
+d410 2
+a411 2
+         if (AFF2_FLAGGED(ch, AFF2_NEGATE_HEAT)) return 0;
+         if (AFF2_FLAGGED(ch, AFF2_PROT_FIRE))
+d417 2
+a418 2
+         if (AFF2_FLAGGED(ch, AFF2_NEGATE_COLD)) return 0;
+         if (AFF2_FLAGGED(ch, AFF2_PROT_COLD))
+d424 1
+a424 1
+         if (MOB2_FLAGGED(ch, MOB2_NOPOISON)) return 0;
+d459 1
+a459 1
+      return !(AFF3_FLAGGED(attacker, AFF3_BLESS) || AFF3_FLAGGED(attacker, AFF3_HEX));
+d800 4
+@
+
+
+1.19
+log
+@Add verbs to damage types. Be more verbose with the evasion messages.
+@
+text
+@d459 1
+a459 8
+      if (weapon) {
+         /* If you are wielding a weapon, IT must be blessed to
+          * get the benefit.  Your person being blessed is only
+          * relevant when fighting barehand. */
+         if IS_OBJ_STAT(weapon, ITEM_BLESS)
+            return FALSE;
+      } else if (AFF3_FLAGGED(attacker, AFF3_BLESS))
+         return FALSE;
+d800 3
+@
+
+
+1.18
+log
+@Use the new rigid field for compositions, and make more balancing
+changes to the composition vulnerabilities.
+@
+text
+@d240 15
+a254 15
+   { "slash", "" },
+   { "pierce", "" },
+   { "crush", "" },
+   { "shock", "" },
+   { "fire", "" },
+   { "water", "" },
+   { "cold", "" },
+   { "acid", "" },
+   { "poison", "" },
+   { "magic", "" },
+   { "heal", "" },
+   { "align", "" },
+   { "dispel", "" },
+   { "discorporate", "" },
+   { "mental", "" }
+d592 12
+a603 4
+         act(evasionclr "$N" evasionclr " is completely unaffected!&0",
+               FALSE, ch, 0, vict, TO_ROOM);
+         act(evasionclr "You are completely unaffected!&0",
+               FALSE, ch, 0, vict, TO_VICT);
+d606 12
+a617 4
+         act(evasionclr "$N" evasionclr " is immune!&0",
+               FALSE, ch, 0, vict, TO_ROOM);
+         act(evasionclr "You are immune!&0",
+               FALSE, ch, 0, vict, TO_VICT);
+d807 4
+@
+
+
+1.17
+log
+@Fix bug in damage_evasion.
+@
+text
+@d308 1
+a308 1
+ *   Name, Color, default_dtype
+d313 1
+a313 1
+   { "flesh", "&1", DAM_CRUSH,
+d316 2
+a317 2
+   { "earth", "&3", DAM_CRUSH,
+      90, 90, 90, 75, 75, 125, 40, 80, 0, 100
+d319 2
+a320 2
+   { "air", "&6", DAM_SHOCK,
+      20, 20, 20, 0, 75, 75, 75, 0, 0, 100
+d322 2
+a323 2
+   { "fire", "&1&b", DAM_FIRE,
+      30, 30, 30, 75, 0, 125, 100, 0, 0, 100
+d325 2
+a326 2
+   { "water", "&4&b", DAM_WATER,
+      60, 60, 60, 100, 100, 0, 125, 0, 0, 100
+d328 2
+a329 2
+   { "ice", "&4", DAM_CRUSH,
+      75, 90, 125, 100, 100, 0, 0, 0, 0, 100
+d331 2
+a332 2
+   { "mist", "&6&b", DAM_CRUSH,
+      30, 30, 30, 80, 50, 100, 125, 25, 0, 100
+d334 1
+a334 1
+   { "ether", "&5", DAM_MAGIC,
+d337 1
+a337 1
+   { "metal", "&9&b", DAM_CRUSH,
+d340 1
+a340 1
+   { "stone", "&8", DAM_CRUSH,
+d343 2
+a344 2
+   { "bone", "&7&b", DAM_CRUSH,
+      80, 50, 120, 25, 125, 100, 25, 100, 0, 100
+d346 2
+a347 2
+   { "lava", "&1", DAM_FIRE,
+      40, 40, 40, 50, 25, 125, 100, 50, 0, 100
+d349 2
+a350 2
+   { "plant", "&2", DAM_SLASH,
+      80, 70, 100, 75, 125, 50, 75, 100, 50, 100
+d508 2
+a509 5
+   if (
+         (damtype == DAM_SLASH || damtype == DAM_PIERCE || damtype == DAM_CRUSH) &&
+         (GET_COMPOSITION(vict) == COMP_ETHER || GET_COMPOSITION(vict) == COMP_AIR ||
+          GET_COMPOSITION(vict) == COMP_FIRE || GET_COMPOSITION(vict) == COMP_MIST ||
+          GET_COMPOSITION(vict) == COMP_WATER || GET_COMPOSITION(vict) == COMP_MIST)) {
+d528 2
+d791 3
+@
+
+
+1.16
+log
+@damage_evasion() will check whether an ethereal creature is
+receiving a blessed physical attack, and return false.
+@
+text
+@d465 1
+a465 1
+      } else if (AFF3_FLAGGED(ch, AFF3_BLESS))
+d792 4
+@
+
+
+1.15
+log
+@Forgot to rename iron to metal!
+@
+text
+@d451 2
+a452 1
+bool damage_evasion(struct char_data *ch, int dtype)
+d454 1
+a454 1
+   int s = susceptibility(ch, dtype);
+d456 14
+d792 3
+@
+
+
+1.14
+log
+@Some resistance based on composition rebalancing.
+@
+text
+@d337 1
+a337 1
+   { "iron", "&9&b", DAM_CRUSH,
+d777 3
+@
+
+
+1.13
+log
+@Add some functions for seeing what kind of damage people will do
+@
+text
+@d243 1
+a243 2
+   { "earth", "" },
+   { "air", "" },
+d246 1
+d253 2
+a254 1
+   { "discorporate", "" }
+d268 1
+a268 1
+ *   SUSCEPTIBILITY: heal, discorporate, dispel magic
+d273 1
+a273 1
+      100, 0, 0
+d276 1
+a276 1
+      75, 50, 0
+d279 1
+a279 1
+      0, 100, 50
+d282 1
+a282 1
+      100, 50, 0
+d285 1
+a285 1
+      100, 50, 0
+d288 1
+a288 1
+      50, 75, 0
+d308 2
+a309 2
+ *   Name, Color,
+ *   SUSCEPTIBILITY: slash, pierce, crush, earth, air, fire, water, acid, poison, magic
+d313 1
+a313 1
+   { "flesh", "&1",
+d316 2
+a317 2
+   { "earth", "&3",
+      90, 90, 90, 0, 125, 75, 125, 100, 0, 100
+d319 2
+a320 2
+   { "air", "&6",
+      20, 20, 20, 125, 0, 75, 75, 50, 0, 100
+d322 2
+a323 2
+   { "fire", "&1&b",
+      30, 30, 30, 75, 100, 0, 125, 50, 0, 100
+d325 2
+a326 2
+   { "water", "&4&b",
+      60, 60, 60, 100, 100, 125, 0, 0, 0, 100
+d328 2
+a329 2
+   { "ice", "&4",
+      75, 90, 100, 100, 100, 125, 50, 0, 0, 100
+d331 2
+a332 2
+   { "mist", "&6&b",
+      30, 30, 30, 100, 75, 100, 75, 25, 0, 100
+d334 2
+a335 2
+   { "ether", "&5",
+      0, 0, 0, 10, 75, 50, 25, 0, 0, 100
+d337 1
+a337 1
+   { "iron", "&9&b",
+d340 5
+a344 2
+   { "stone", "&8",
+      50, 75, 90, 0, 125, 75, 125, 100, 0, 100
+d346 5
+a350 2
+   { "bone", "&7&b",
+      80, 50, 120, 100, 75, 120, 100, 100, 0, 100
+a399 2
+         return compositions[GET_COMPOSITION(ch)].sus_crush;
+      case DAM_EARTH:
+d402 3
+a404 3
+            return compositions[GET_COMPOSITION(ch)].sus_earth * 75 / 100;
+         return compositions[GET_COMPOSITION(ch)].sus_earth;
+      case DAM_AIR:
+d407 2
+a408 2
+            return compositions[GET_COMPOSITION(ch)].sus_air * 75 / 100;
+         return compositions[GET_COMPOSITION(ch)].sus_air;
+d415 2
+d419 2
+a420 2
+            return compositions[GET_COMPOSITION(ch)].sus_water * 75 / 100;
+         return compositions[GET_COMPOSITION(ch)].sus_water;
+d568 1
+a568 2
+      case DAM_EARTH:
+      case DAM_AIR:
+d571 1
+d628 2
+a629 1
+      return skill_to_dtype(ch->mob_specials.attack_type);
+d777 3
+@
+
+
+1.12
+log
+@Adding flag checks to susceptibility().
+Implemented damage_evasion(), skill_to_dtype(), and
+damage_evasion_message().  That last one needs more work.
+@
+text
+@d474 2
+d492 6
+a497 3
+         act("&3&bYour $o passes harmlessly through $N!&0", FALSE, ch, weapon, vict, TO_CHAR);
+         act("&3&b$n&3&b's $o passes harmlessly through $N!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+         act("&3&b$n&3&b's $o passes harmlessly through you.&0", FALSE, ch, weapon, vict, TO_VICT);
+d499 6
+a504 3
+         act("&3&bYour fist passes harmlessly through $N!&0", FALSE, ch, 0, vict, TO_CHAR);
+         act("&3&b$n&3&b's fist passes harmlessly through $N!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+         act("&3&b$n&3&b's fist passes harmlessly through you.&0", FALSE, ch, 0, vict, TO_VICT);
+d512 6
+a517 3
+            act("&3&bYour $o slides harmlessly off $N!&0", FALSE, ch, weapon, vict, TO_CHAR);
+            act("&3&b$n&3&b's $o slides harmlessly off $N!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act("&3&b$n&3&b's $o slides harmlessly off you.&0", FALSE, ch, weapon, vict, TO_VICT);
+d519 6
+a524 3
+            act("&3&bYour blade slides harmlessly off $N!&0", FALSE, ch, 0, vict, TO_CHAR);
+            act("&3&b$n&3&b's blade slides harmlessly off $N!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act("&3&b$n&3&b's blade slides harmlessly off you.&0", FALSE, ch, 0, vict, TO_VICT);
+d529 6
+a534 3
+            act("&3&bYour $o fails to pierce $N&3&b at all!&0", FALSE, ch, weapon, vict, TO_CHAR);
+            act("&3&b$n&3&b's $o fails to pierce $N&3&b at all!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act("&3&b$n&3&b's $o fails to pierce you at all.&0", FALSE, ch, weapon, vict, TO_VICT);
+d536 6
+a541 3
+            act("&3&bYou fail to pierce $N&3&b at all!&0", FALSE, ch, 0, vict, TO_CHAR);
+            act("&3&b$n&3&b fails to pierce $N&3&b at all!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act("&3&b$n&3&b fails to pierce you at all.&0", FALSE, ch, 0, vict, TO_VICT);
+d546 6
+a551 3
+            act("&3&bYour $o bounces harmlessly off $N!&0", FALSE, ch, weapon, vict, TO_CHAR);
+            act("&3&b$n&3&b's $o bounces harmlessly off $N!&0", FALSE, ch, weapon, vict, TO_NOTVICT);
+            act("&3&b$n&3&b's $o bounces harmlessly off you.&0", FALSE, ch, weapon, vict, TO_VICT);
+d553 6
+a558 3
+            act("&3&bYour fist bounces harmlessly off $N!&0", FALSE, ch, 0, vict, TO_CHAR);
+            act("&3&b$n&3&b's fist bounces harmlessly off $N!&0", FALSE, ch, 0, vict, TO_NOTVICT);
+            act("&3&b$n&3&b's fist bounces harmlessly off you.&0", FALSE, ch, 0, vict, TO_VICT);
+d571 4
+a574 2
+         act("&3&b$N&3&b is completely unaffected!&0", FALSE, ch, 0, vict, TO_ROOM);
+         act("&3&bYou are completely unaffected!&0", FALSE, ch, 0, vict, TO_VICT);
+d577 4
+a580 2
+         act("&3&b$N&3&b is immune!&0", FALSE, ch, 0, vict, TO_ROOM);
+         act("&3&bYou are immune!&0", FALSE, ch, 0, vict, TO_VICT);
+d583 6
+a588 3
+         act("Your attack has no effect on $N!", FALSE, ch, 0, vict, TO_CHAR);
+         act("$n's attack has no effect on $N!", FALSE, ch, 0, vict, TO_NOTVICT);
+         act("$n's attack has no effect on you!", FALSE, ch, 0, vict, TO_VICT);
+d592 32
+d769 5
+@
+
+
+1.11
+log
+@Added compositions stone and bone.
+@
+text
+@d27 1
+d395 3
+d400 3
+d405 3
+d410 3
+d417 1
+d434 125
+d704 3
+@
+
+
+1.10
+log
+@New damage defines (old ones in spells.h are now obsolete). Added damage
+susceptibilities to struct lifedef and struct compdef.
+@
+text
+@d337 6
+d565 4
+@
+
+
+1.9
+log
+@Add function set_base_composition, which is appropriate for OLC
+and "set <foo> composition".
+Add list_olc_compositions() which does just that.
+@
+text
+@d236 25
+d263 6
+d270 18
+a287 6
+   { "life", "&2&b" },
+   { "undead", "&9&b" },
+   { "magic", "&4&b" },
+   { "celestial", "&6" },
+   { "demonic", "&1&b" },
+   { "elemental", "&3" }
+d304 6
+d311 27
+a337 9
+   { "flesh", "&1" },
+   { "earth", "&3" },
+   { "air", "&6" },
+   { "fire", "&1&b" },
+   { "water", "&4&b" },
+   { "ice", "&4" },
+   { "mist", "&6&b" },
+   { "ether", "&5" },
+   { "iron", "&9&b" }
+d369 45
+d559 5
+@
+
+
+1.8
+log
+@Add functions to convert life force and composition.
+@
+text
+@d23 1
+d278 7
+d291 11
+d447 3
+@
+
+
+1.7
+log
+@Added lifeforce and composition definitions.
+@
+text
+@d235 2
+d252 8
+d268 1
+a268 1
+   { "ethereal", "&5" },
+d277 5
+d428 3
+@
+
+
+1.6
+log
+@Use parse_obj_name() instead of the specific parse_size() function.
+@
+text
+@d229 4
+a232 2
+int parse_size(struct char_data *ch, char *arg) {
+   return parse_obj_name(ch, arg, "size", NUM_SIZES, sizes, sizeof(struct sizedef));
+d235 32
+d413 3
+@
+
+
+1.5
+log
+@Make minimum height and weight 1.
+@
+text
+@d229 2
+a230 35
+int parse_size(struct char_data *ch, char *arg)
+{
+   int i, size = SIZE_UNDEFINED, best = SIZE_UNDEFINED;
+
+   if (!*arg){
+      if (ch)
+         send_to_char("What size?\r\n", ch);
+      return SIZE_UNDEFINED;
+   }
+
+   if (isdigit(arg[0])) {
+      size = atoi(arg);
+      if (size < 0 || size >= NUM_SIZES)
+         size = SIZE_UNDEFINED;
+   } else for (i = 0; i < NUM_SIZES; i++) {
+      if (!strncasecmp(arg, sizes[i].name, strlen(arg))) {
+         if (!strcasecmp(arg, sizes[i].name)) {
+            size = i;
+            break;
+         }
+         if (best == SIZE_UNDEFINED)
+            best = i;
+      } else if (is_abbrev(arg, sizes[i].name)) {
+         if (best == SIZE_UNDEFINED)
+            best = i;
+      }
+   }
+
+   if (size == SIZE_UNDEFINED) size = best;
+   if (size == SIZE_UNDEFINED) {
+      if (ch)
+         send_to_char("There is no such size.\r\n", ch);
+   }
+
+   return size;
+d379 3
+@
+
+
+1.4
+log
+@Added a lot of size-releated information and functions.
+@
+text
+@d335 1
+a335 1
+   GET_WEIGHT(ch) = sizes[asize].weight_min +
+d338 1
+a338 1
+            (sizes[bsize].weight_max - sizes[bsize].weight_min);
+d340 1
+a340 1
+   GET_HEIGHT(ch) = sizes[asize].height_min +
+d343 1
+a343 1
+            (sizes[bsize].height_max - sizes[bsize].height_min);
+d412 3
+@
+
+
+1.3
+log
+@Now relying on math header file.
+@
+text
+@d21 2
+d215 194
+d412 3
+@
+
+
+1.2
+log
+@Removed the barehand_mult and backstab_mult functions.  This
+functionality is contained within the hit function now.  Besides,
+barehand_mult was poorly named, as it isn't multiplied, but rather
+added.
+@
+text
+@d20 1
+d216 6
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a212 36
+/* This simply determines how much damage barehand does */
+int barehand_mult(int level)
+{
+  return ((int)(level/4 + number(1, level/2)));
+} 
+
+
+/*
+ * This simply calculates the backstab multiplier based on a character's
+ * level.  This used to be an array, but was changed to be a function so
+ * that it would be easier to add more levels to your MUD.  This doesn't
+ * really create a big performance hit because it's not used very often.
+ */
+int backstab_mult(int level)
+{
+  if (level <= 0)
+    return 1;
+  else if (level <= 14)
+    return 2;
+  else if (level <= 26)
+    return 3;
+  else if (level <= 40)
+    return 4;
+  else if (level <= 56)
+    return 5;
+  else if (level <= 76)
+    return 7;
+  else if (level <= 90)
+    return 9;  
+  else if (level < LVL_IMMORT)
+    return 11;	  /* all remaining mortal levels */
+  else 
+    return 20;	  /* immortals */
+}
+
+
+d215 3
+@

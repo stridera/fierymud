@@ -1,0 +1,1098 @@
+head	1.12;
+access;
+symbols;
+locks
+	mud:1.12; strict;
+comment	@ * @;
+
+
+1.12
+date	2010.06.09.18.28.55;	author mud;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2009.02.12.04.44.30;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2009.02.12.03.24.45;	author myc;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.08.14.23.10.35;	author myc;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2002.09.14.01.20.28;	author jjl;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2002.08.29.17.36.16;	author rsd;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2000.11.22.19.41.14;	author rsd;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.06.10.16.56.28;	author mud;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.31.15.55.02;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* Interface to iSpell
+ * Copyright (c) 1997 Erwin S. Andreasen <erwin@@pip.dknet.dk>
+ *
+ */
+#include "conf.h"
+#include "sysdep.h"
+#include <unistd.h>
+#include <string.h>
+#include <ctype.h>
+#include "structs.h"
+#include "utils.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "db.h"
+#include <sys/wait.h>
+#define Stringify(x) Str(x)
+#define Str(x) #x
+#define MSL MAX_STRING_LENGTH
+#define ISPELL_DICTIONARY "etc/mud.dictionary"
+static FILE *ispell_out;
+static ispell_pid=-1;
+static int to[2], from[2];
+#define ISPELL_BUF_SIZE 1024
+void ispell_init(void)
+{        char ignore_buf[1024];
+#if 0
+        if (IS_SET(sysdata.options, OPT_NO_ISPELL))
+       {        ispell_pid=-1;
+                return;
+        }
+#endif
+        pipe(to);     pipe(from);
+        ispell_pid = fork();
+        if (ispell_pid < 0)
+                log("ispell_init fork %s");
+        else if (ispell_pid == 0) /* child */
+        {       int i;
+       dup2 (to[0], 0); /* this is where we read commands from - make it stdin */
+                close (to[0]);
+                close (to[1]);
+                dup2 (from[1], 1); /* this is where we write stuff to */
+                close (from[0]);
+                close (from[1]);
+             /* Close all the other files */
+                for (i = 2; i < 255; i++)
+                        close (i);
+             execlp ("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *)NULL);
+                exit(1);
+        }
+        else /* ok !*/
+        {       close (to[0]);
+                close (from[1]);
+                ispell_out = fdopen (to[1], "w");
+                setbuf (ispell_out, NULL);
+                #if !defined( sun ) /* that ispell on sun gives no (c) msg */
+                    read (from[0], ignore_buf, 1024);
+                #endif
+        }
+}
+void ispell_done(void)
+{      if (ispell_pid != -1)
+        {       fprintf (ispell_out, "#\n");
+                fclose (ispell_out);  close (from[0]);
+                waitpid(ispell_pid, NULL, 0);
+                ispell_pid = -1;
+        }
+}
+
+char* get_ispell_line (char *word)
+{      static char buf[ISPELL_BUF_SIZE];
+        char buf2[MSL*3];
+        int len;
+        if (ispell_pid == -1)     return NULL;
+        if (word)
+        {       fprintf (ispell_out, "^%s\n", word);
+                fflush (ispell_out);
+        }
+        len = read (from[0], buf2, ISPELL_BUF_SIZE);
+        buf2[len] = '\0';
+        /* Read up to max 1024 characters here */
+        if (sscanf (buf2, "%" Stringify(ISPELL_BUF_SIZE) "[^\n]\n\n", buf) != 1)
+                return NULL;
+        return buf;
+}
+ACMD(do_ispell)
+{      char *pc;
+     if (ispell_pid <= 0)
+        {       send_to_char ("ispell is not running.\r\n",ch);
+                return;
+        }
+     skip_spaces(&argument);
+        if (!argument[0] || strchr (argument, ' '))
+        {       send_to_char ("Invalid input.\r\n",ch);
+                return;
+        }
+        if (argument[0] == '+')
+        {
+            if (GET_LEVEL(ch) < LVL_IMMORT){
+	send_to_char("you may not add entries to list", ch);
+	return;
+	}
+            for (pc = argument+1;*pc; pc++)
+                        if (!isalpha(*pc))
+                        {       sprintf(buf, "'%c' is not a letter.\r\n", *pc);
+					send_to_char(buf, ch);
+                                return;
+                        }
+                fprintf (ispell_out, "*%s\n", argument+1);
+                fflush (ispell_out);
+                return; /* we assume everything is OK.. better be so! */
+        }
+        pc = get_ispell_line(argument);
+        if (!pc)
+        {       send_to_char ("ispell: failed.\r\n",ch);
+                return;
+        }
+        switch (pc[0])
+        {       case '*':    case '+': /* root */      case '-': /* compound */
+                        send_to_char ("Correct.\r\n",ch);
+                        break;
+                case '&': /* miss */
+         sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+	send_to_char(buf, ch);
+                        break;
+               case '?': /* guess */
+          sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+		send_to_char(buf, ch);
+                        break;
+               case '#': /* none */
+                   send_to_char ("Unable to find anything that matches.\r\n",ch);
+                        break;
+               default:
+                        sprintf(buf, "Weird output from ispell: %s\r\n", pc);
+				send_to_char(buf, ch);
+        }
+}
+@
+
+
+1.12
+log
+@Catch attempts to spellcheck numbers and punctuation that
+would cause the mud to hang waiting for a response from the
+spellchecker.
+@
+text
+@/***************************************************************************
+ * $Id: ispell.c,v 1.11 2009/02/12 04:44:30 myc Exp mud $
+ ***************************************************************************/
+/***************************************************************************
+ *  File: ispell.c                                        Part of FieryMUD *
+ *  Usage: Interface to iSpell                                             *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  Copyright (c) 1997 Erwin S. Andreasen <erwin@@pip.dknet.dk>             *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include <unistd.h>
+#include <string.h>
+#include <ctype.h>
+#include "structs.h"
+#include "utils.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "db.h"
+#include <sys/wait.h>
+
+#define STRINGIFY(x)      Str(x)
+#define Str(x)            #x
+#define ISPELL_DICTIONARY "etc/mud.dictionary"
+
+static FILE *ispell_out, *ispell_in;
+static int ispell_pid = -1;
+static int fiery_to_ispell[2], ispell_to_fiery[2];
+bool ispell_name_check(char *);
+
+
+#define ISPELL_BUF_SIZE 1024
+
+void ispell_init(void)
+{        
+  char ignore_buf[1024];
+  int i;
+
+#if 0
+  if (IS_SET(sysdata.options, OPT_NO_ISPELL)) {
+    ispell_pid=-1;
+    return;
+  }
+#endif
+
+  pipe(fiery_to_ispell);
+  pipe(ispell_to_fiery);
+
+  ispell_pid = fork();
+
+  if (ispell_pid < 0)
+    log("ispell_init fork");
+
+  else if (ispell_pid == 0) { /* child */
+    /* Map one end of fiery_to_ispell to STDIN */
+    dup2(fiery_to_ispell[0], 0);
+    close(fiery_to_ispell[0]);
+    close(fiery_to_ispell[1]);
+
+    /* Map one end of ispell_to_fiery to STDOUT */
+    dup2(ispell_to_fiery[1], 1);
+    close(ispell_to_fiery[0]);
+    close(ispell_to_fiery[1]);
+
+    /* Close all the other files */
+    for (i = 2; i < 255; i++)
+      close(i);
+
+    execlp("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *) NULL);
+    exit(1);
+  }
+
+  else { /* ok !*/
+    close(fiery_to_ispell[0]);
+    close(ispell_to_fiery[1]);
+
+    ispell_out = fdopen(fiery_to_ispell[1], "w");
+    setbuf(ispell_out, NULL);
+
+    ispell_in = fdopen(ispell_to_fiery[0], "r");
+    setbuf(ispell_in, NULL);
+
+#if !defined( sun ) /* that ispell on sun gives no (c) msg */
+    fgets(ignore_buf, 1024, ispell_in);
+#endif
+  }
+}
+
+
+void ispell_done(void)
+{      
+  if (ispell_pid != -1) {
+    fprintf(ispell_out, "#\n");
+    fclose(ispell_out);
+    fclose(ispell_in);
+    waitpid(ispell_pid, NULL, 0);
+    ispell_pid = -1;
+  }
+}
+
+const char* get_ispell_line(const char *word)
+{      
+  static char buf[ISPELL_BUF_SIZE];
+  char throwaway[ISPELL_BUF_SIZE];
+
+  if (ispell_pid == -1)
+    return NULL;
+
+  if (word) {
+    fprintf(ispell_out, "^%s\n", word);
+    fflush(ispell_out);
+  }
+
+  fgets(buf, ISPELL_BUF_SIZE, ispell_in);
+  if (*buf && *buf != '\n')
+    fgets(throwaway, ISPELL_BUF_SIZE, ispell_in);
+
+  return buf;
+}
+
+
+void ispell_check(struct descriptor_data *d, const char *word) {
+  const char *pc;
+
+  if (!d)
+    return;
+
+  if (!*word || !(pc = get_ispell_line(word))) {
+    dprintf(d, "Spellchecker failed.\r\n");
+    return;
+  }
+
+  switch (*pc) {
+  case '*':
+  case '+': /* root */
+  case '-': /* compound */
+    dprintf(d, "'%s' is spelled correctly.\r\n", word);
+    break;
+  case '&': /* miss */
+  case '?': /* guess */
+    dprintf(d, "'%s' not found.  Possible words: %s",
+            word, strchr(pc, ':') + 1);
+    break;
+  case '#': /* none */
+    dprintf(d, "Unable to find anything that matches '%s'.\r\n", word);
+    break;
+  case '\n': /* no response at all */
+    dprintf(d, "No response from spellchecker.\r\n");
+    break;
+  default:
+    dprintf(d, "Unknown output from spellchecker: %s\r\n", pc);
+  }
+}
+
+
+ACMD(do_ispell)
+{
+  const char *pc;
+
+  if (ispell_pid < 0) {
+    send_to_char("Spellchecker is not running.\r\n", ch);
+    return;
+  }
+
+  skip_spaces(&argument);
+  if (!*argument || strchr(argument, ' ')) {
+    send_to_char("Invalid input.\r\n", ch);
+    return;
+  }
+
+  if (*argument == '+') {  
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+      send_to_char("You may not add entries to the dictionary.", ch);
+      return;
+    }
+    for (pc = argument + 1; *pc; ++pc)
+      if (!isalpha(*pc)) {
+	cprintf(ch, "'%s' contains non-alphabetic character: %c\r\n", argument, *pc);
+	return;
+      }
+    fprintf(ispell_out, "*%s\n", argument + 1);
+    fflush(ispell_out);
+    return; /* we assume everything is OK.. better be so! */
+  }
+
+  ispell_check(ch->desc, argument);
+}
+
+
+/* Return values for the name check are 0 for no name match for 
+   ispell and a value that will allow the process of character creation
+   to continue, and 1 for a match on a name in ispell and a failure
+   to allow character creation to continue.
+
+   return 0 = good name continue
+   return 1 = bad name bail out
+
+ */
+bool ispell_name_check(char *argument)
+{
+  const char *name;
+
+  if (ispell_pid < 0) {
+    /* ispell is not running. */
+    return 0;
+  }
+
+  if (!(name = get_ispell_line(argument))) {
+    /* for some reason ispell failed */
+    return 0;
+  }
+
+  switch (*name) {
+  case '*':    
+  case '+': /* root */      
+  case '-': /* compound */
+    /* Cases for exact Correct match with dictionary */
+    return 1;
+
+    /* This case will enable harsh name checking w/o it
+       Ducky or Duckman will get through.  Not sure how
+       strict this will be, it may be intolerable. Some
+       testing will have to be done. - RSD 8/29/2002
+     */
+  case '?': /* guess */
+    return 1;
+  case '&': /* miss */
+      return 0;  /* name is good  */
+  case '#': /* none */
+    return 0;
+  default:
+    /* log this later */
+    return 0;
+  }
+}
+
+/***************************************************************************
+ * $Log: ispell.c,v $
+ * Revision 1.11  2009/02/12 04:44:30  myc
+ * Added rudimentary spellchecker to text editor; uses ispell.
+ *
+ * Revision 1.10  2009/02/12 03:24:45  myc
+ * Rewrote ispell to use file descriptors.  Now it works.
+ *
+ * Revision 1.9  2008/08/14 23:10:35  myc
+ * Removed a suspicious %s from a log() call.
+ *
+ * Revision 1.8  2002/09/14 01:20:28  jjl
+ * Fixed the bug gthat  ARGH stupid backspacke key.  Fixed the
+ * bug that blocked out names like Tanle.  Well, nbbug is a bad way
+ * to put it.  It was to strict.  Now it shouldn't be.
+ *
+ * Revision 1.7  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.6  2002/08/29 17:36:16  rsd
+ * added and prototyped a new function ispell_name_check to
+ * be used to check potential player names versus the muds
+ * dictionary.  This may require some tweaking as the checks
+ * can be harsh or light.
+ *
+ * Revision 1.5  2000/11/22 19:41:14  rsd
+ * Lawd, I retabbed the entire file, it was a disaster.
+ * I also added back rlog messages from prior to the
+ * addition of the $log$.
+ *
+ * Revision 1.4  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.3  1999/06/10 16:56:28  mud
+ * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+ * This fixes all of the warnings associated with the new compiler and 
+ * libraries.  Many many curly braces had to be added to "if" statements to
+ * clarify their behavior to the compiler.  The name approval code was also
+ * debugged, and tested to be stable.  The xnames list was converted from an
+ * array to a linked list to allow for on the fly adding of names to the
+ * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0 
+ *
+ * Revision 1.2  1999/01/31 15:55:02  mud
+ * Added standard comment header
+ * indented file to the right some
+ *
+ * Revision 1.1  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.11
+log
+@Added rudimentary spellchecker to text editor; uses ispell.
+@
+text
+@d2 1
+a2 1
+ * $Id: ispell.c,v 1.10 2009/02/12 03:24:45 myc Exp myc $
+d119 2
+a120 1
+  fgets(throwaway, ISPELL_BUF_SIZE, ispell_in);
+d151 3
+d243 3
+@
+
+
+1.10
+log
+@Rewrote ispell to use file descriptors.  Now it works.
+@
+text
+@d2 1
+a2 1
+ * $Id: ispell.c,v 1.9 2008/08/14 23:10:35 myc Exp myc $
+d5 1
+a5 1
+ *  File: ispel.c                                         Part of FieryMUD *
+d105 1
+a105 1
+const char* get_ispell_line(char *word)
+d125 31
+d186 2
+a187 4
+  if (!(pc = get_ispell_line(argument))) {
+    send_to_char("Spellchecker failed.\r\n", ch);
+    return;
+  }
+a188 18
+  switch (*pc) {
+  case '*':
+  case '+': /* root */
+  case '-': /* compound */
+    cprintf(ch, "'%s' is spelled correctly.\r\n", argument);
+    break;
+  case '&': /* miss */
+  case '?': /* guess */
+    cprintf(ch, "'%s' not found.  Possible words: %s",
+            argument, strchr(pc, ':') + 1);
+    break;
+  case '#': /* none */
+    cprintf(ch, "Unable to find anything that matches '%s'.\r\n", argument);
+    break;
+  default:
+    cprintf(ch, "Unknown output from spellchecker: %s\r\n", pc);
+  }
+}
+d239 3
+@
+
+
+1.9
+log
+@Removed a suspicious %s from a log() call.
+@
+text
+@d2 1
+a2 1
+ * $Id: ispell.c,v 1.8 2002/09/14 01:20:28 jjl Exp myc $
+d26 2
+a27 3
+#define Stringify(x) Str(x)
+#define Str(x) #x
+#define MSL MAX_STRING_LENGTH
+d30 3
+a32 3
+static FILE *ispell_out;
+static int ispell_pid=-1;
+static int to[2], from[2];
+d41 2
+d49 4
+a52 1
+  pipe(to);     pipe(from);
+d54 1
+d57 1
+d59 10
+a68 7
+    int i;
+    dup2 (to[0], 0); /* this is where we read commands from - make it stdin */
+    close (to[0]);
+    close (to[1]);
+    dup2 (from[1], 1); /* this is where we write stuff to */
+    close (from[0]);
+    close (from[1]);
+d71 3
+a73 2
+      close (i);
+    execlp ("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *)NULL);
+d75 12
+a86 5
+  } else { /* ok !*/
+    close (to[0]);
+    close (from[1]);
+    ispell_out = fdopen (to[1], "w");
+    setbuf (ispell_out, NULL);
+d88 1
+a88 1
+    read (from[0], ignore_buf, 1024);
+d97 3
+a99 2
+    fprintf (ispell_out, "#\n");
+    fclose (ispell_out);  close (from[0]);
+d105 1
+a105 1
+char* get_ispell_line (char *word)
+d108 5
+a112 3
+  char buf2[MSL*3];
+  int len;
+  if (ispell_pid == -1)     return NULL;
+d114 2
+a115 2
+    fprintf (ispell_out, "^%s\n", word);
+    fflush (ispell_out);
+d117 4
+a120 5
+  len = read (from[0], buf2, ISPELL_BUF_SIZE);
+  buf2[len] = '\0';
+  /* Read up to max 1024 characters here */
+  if (sscanf (buf2, "%" Stringify(ISPELL_BUF_SIZE) "[^\n]\n\n", buf) != 1)
+    return NULL;
+d127 4
+a130 3
+  char *pc;
+  if (ispell_pid <= 0) {
+    send_to_char ("ispell is not running.\r\n",ch);
+d133 1
+d135 2
+a136 2
+  if (!argument[0] || strchr (argument, ' ')) {
+    send_to_char ("Invalid input.\r\n",ch);
+d139 2
+a140 1
+  if (argument[0] == '+') {  
+d142 1
+a142 1
+      send_to_char("you may not add entries to list", ch);
+d145 1
+a145 1
+    for (pc = argument+1;*pc; pc++)
+d147 1
+a147 2
+	sprintf(buf, "'%c' is not a letter.\r\n", *pc);
+	send_to_char(buf, ch);
+d150 2
+a151 2
+    fprintf (ispell_out, "*%s\n", argument+1);
+    fflush (ispell_out);
+d154 3
+a156 3
+  pc = get_ispell_line(argument);
+  if (!pc) {
+    send_to_char ("ispell: failed.\r\n",ch);
+d159 6
+a164 3
+  switch (pc[0]) {
+  case '*':    case '+': /* root */      case '-': /* compound */
+    send_to_char ("Correct.\r\n",ch);
+a166 3
+    sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+    send_to_char(buf, ch);
+    break;
+d168 2
+a169 2
+    sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+    send_to_char(buf, ch);
+d172 1
+a172 1
+    send_to_char ("Unable to find anything that matches.\r\n",ch);
+d175 1
+a175 2
+    sprintf(buf, "Weird output from ispell: %s\r\n", pc);
+    send_to_char(buf, ch);
+d190 1
+a190 1
+  char *name;
+d192 1
+a192 1
+  if (ispell_pid <= 0) {
+d196 2
+a197 2
+  name = get_ispell_line(argument);
+  if (!name) {
+d201 2
+a202 1
+  switch (name[0]) {
+a217 1
+      /*  return 1; */ /* name is bad */
+d228 3
+@
+
+
+1.8
+log
+@Fixed the bug gthat  ARGH stupid backspacke key.  Fixed the
+bug that blocked out names like Tanle.  Well, nbbug is a bad way
+to put it.  It was to strict.  Now it shouldn't be.
+@
+text
+@d2 1
+a2 1
+ * $Id: ispell.c,v 1.7 2002/09/13 02:32:10 jjl Exp $
+d51 1
+a51 1
+    log("ispell_init fork %s");
+d208 5
+@
+
+
+1.7
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: ispell.c,v 1.6 2002/08/29 17:36:16 rsd Exp $
+a192 3
+  case '&': /* miss */
+    /*  return 0;  / * name is good * / */
+    return 1; /* name is bad */
+d195 3
+d208 3
+@
+
+
+1.6
+log
+@added and prototyped a new function ispell_name_check to
+be used to check potential player names versus the muds
+dictionary.  This may require some tweaking as the checks
+can be harsh or light.
+@
+text
+@d1 3
+a3 1
+// $Id: ispell.c,v 1.5 2000/11/22 19:41:14 rsd Exp $
+d194 1
+a194 1
+    //  return 0; /* name is good */
+d206 33
+a238 25
+// $Log: ispell.c,v $
+// Revision 1.5  2000/11/22 19:41:14  rsd
+// Lawd, I retabbed the entire file, it was a disaster.
+// I also added back rlog messages from prior to the
+// addition of the $log$.
+//
+// Revision 1.4  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.3  1999/06/10 16:56:28  mud
+// This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+// This fixes all of the warnings associated with the new compiler and 
+// libraries.  Many many curly braces had to be added to "if" statements to
+// clarify their behavior to the compiler.  The name approval code was also
+// debugged, and tested to be stable.  The xnames list was converted from an
+// array to a linked list to allow for on the fly adding of names to the
+// xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0 
+//
+// Revision 1.2  1999/01/31 15:55:02  mud
+// Added standard comment header
+// indented file to the right some
+//
+// Revision 1.1  mud
+// Initial revision
+//
+@
+
+
+1.5
+log
+@Lawd, I retabbed the entire file, it was a disaster.
+I also added back rlog messages from prior to the
+addition of the $log$.
+@
+text
+@d1 1
+a1 1
+// $Id: ispell.c,v 1.4 1999/09/05 07:00:39 jimmy Exp $
+d32 2
+d157 47
+d205 5
+@
+
+
+1.4
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d3 1
+a3 1
+ *  File: ispel.c                                     NOW Part of FieryMUD *
+d6 2
+d9 1
+d36 82
+a117 34
+    {        char ignore_buf[1024];
+    #if 0
+     if (IS_SET(sysdata.options, OPT_NO_ISPELL))
+       {        ispell_pid=-1;
+       return;
+       }
+    #endif
+     pipe(to);     pipe(from);
+     ispell_pid = fork();
+     if (ispell_pid < 0)
+       log("ispell_init fork %s");
+     else if (ispell_pid == 0) /* child */
+       {       int i;
+       dup2 (to[0], 0); /* this is where we read commands from - make it stdin */
+       close (to[0]);
+       close (to[1]);
+       dup2 (from[1], 1); /* this is where we write stuff to */
+       close (from[0]);
+       close (from[1]);
+       /* Close all the other files */
+       for (i = 2; i < 255; i++)
+	 close (i);
+       execlp ("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *)NULL);
+       exit(1);
+       }
+     else /* ok !*/
+       {       close (to[0]);
+       close (from[1]);
+       ispell_out = fdopen (to[1], "w");
+       setbuf (ispell_out, NULL);
+    #if !defined( sun ) /* that ispell on sun gives no (c) msg */
+       read (from[0], ignore_buf, 1024);
+    #endif
+       }
+d119 5
+a123 6
+    void ispell_done(void)
+    {      if (ispell_pid != -1)
+      {       fprintf (ispell_out, "#\n");
+      fclose (ispell_out);  close (from[0]);
+      waitpid(ispell_pid, NULL, 0);
+      ispell_pid = -1;
+d125 50
+a174 71
+    }
+
+    char* get_ispell_line (char *word)
+    {      static char buf[ISPELL_BUF_SIZE];
+     char buf2[MSL*3];
+     int len;
+     if (ispell_pid == -1)     return NULL;
+     if (word)
+       {       fprintf (ispell_out, "^%s\n", word);
+       fflush (ispell_out);
+       }
+     len = read (from[0], buf2, ISPELL_BUF_SIZE);
+     buf2[len] = '\0';
+     /* Read up to max 1024 characters here */
+     if (sscanf (buf2, "%" Stringify(ISPELL_BUF_SIZE) "[^\n]\n\n", buf) != 1)
+       return NULL;
+     return buf;
+    }
+    ACMD(do_ispell)
+    {      char *pc;
+     if (ispell_pid <= 0)
+       {       send_to_char ("ispell is not running.\r\n",ch);
+       return;
+       }
+     skip_spaces(&argument);
+     if (!argument[0] || strchr (argument, ' '))
+       {       send_to_char ("Invalid input.\r\n",ch);
+       return;
+       }
+     if (argument[0] == '+') 
+       {  
+	 if (GET_LEVEL(ch) < LVL_IMMORT){
+	   send_to_char("you may not add entries to list", ch);
+	   return;
+	 }
+	 for (pc = argument+1;*pc; pc++)
+	   if (!isalpha(*pc))
+	     {       sprintf(buf, "'%c' is not a letter.\r\n", *pc);
+	     send_to_char(buf, ch);
+	     return;
+	     }
+	 fprintf (ispell_out, "*%s\n", argument+1);
+	 fflush (ispell_out);
+	 return; /* we assume everything is OK.. better be so! */
+       }
+     pc = get_ispell_line(argument);
+     if (!pc)
+       {       send_to_char ("ispell: failed.\r\n",ch);
+       return;
+       }
+     switch (pc[0])
+       {       case '*':    case '+': /* root */      case '-': /* compound */
+	 send_to_char ("Correct.\r\n",ch);
+       break;
+       case '&': /* miss */
+	 sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+	 send_to_char(buf, ch);
+	 break;
+       case '?': /* guess */
+	 sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+	 send_to_char(buf, ch);
+	 break;
+       case '#': /* none */
+	 send_to_char ("Unable to find anything that matches.\r\n",ch);
+	 break;
+       default:
+	 sprintf(buf, "Weird output from ispell: %s\r\n", pc);
+	 send_to_char(buf, ch);
+       }
+    }
+// $Log$
+@
+
+
+1.3
+log
+@This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.  This fixes all of the warnings associated
+with the new compiler and libraries.  Many many curly braces had to be added to "if" statements to clarify
+their behavior to the compiler.  The name approval code was also debugged, and tested to be stable.  The xnames
+list was converted from an array to a linked list to allow for on the fly adding of names to the xnames list.
+This code compiles fine under both gcc RH5.2 and egcs RH6.0.
+--Gurlaek 6/10/1999
+@
+text
+@d1 1
+d145 1
+@
+
+
+1.2
+log
+@Added standard comment header
+indented fiele to the right some
+@
+text
+@d26 1
+a26 1
+static ispell_pid=-1;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 4
+/* Interface to iSpell
+ * Copyright (c) 1997 Erwin S. Andreasen <erwin@@pip.dknet.dk>
+ *
+ */
+d19 1
+d24 1
+d28 1
+d30 1
+d32 3
+a34 3
+{        char ignore_buf[1024];
+#if 0
+        if (IS_SET(sysdata.options, OPT_NO_ISPELL))
+d36 9
+a44 9
+                return;
+        }
+#endif
+        pipe(to);     pipe(from);
+        ispell_pid = fork();
+        if (ispell_pid < 0)
+                log("ispell_init fork %s");
+        else if (ispell_pid == 0) /* child */
+        {       int i;
+d46 48
+a93 48
+                close (to[0]);
+                close (to[1]);
+                dup2 (from[1], 1); /* this is where we write stuff to */
+                close (from[0]);
+                close (from[1]);
+             /* Close all the other files */
+                for (i = 2; i < 255; i++)
+                        close (i);
+             execlp ("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *)NULL);
+                exit(1);
+        }
+        else /* ok !*/
+        {       close (to[0]);
+                close (from[1]);
+                ispell_out = fdopen (to[1], "w");
+                setbuf (ispell_out, NULL);
+                #if !defined( sun ) /* that ispell on sun gives no (c) msg */
+                    read (from[0], ignore_buf, 1024);
+                #endif
+        }
+}
+void ispell_done(void)
+{      if (ispell_pid != -1)
+        {       fprintf (ispell_out, "#\n");
+                fclose (ispell_out);  close (from[0]);
+                waitpid(ispell_pid, NULL, 0);
+                ispell_pid = -1;
+        }
+}
+
+char* get_ispell_line (char *word)
+{      static char buf[ISPELL_BUF_SIZE];
+        char buf2[MSL*3];
+        int len;
+        if (ispell_pid == -1)     return NULL;
+        if (word)
+        {       fprintf (ispell_out, "^%s\n", word);
+                fflush (ispell_out);
+        }
+        len = read (from[0], buf2, ISPELL_BUF_SIZE);
+        buf2[len] = '\0';
+        /* Read up to max 1024 characters here */
+        if (sscanf (buf2, "%" Stringify(ISPELL_BUF_SIZE) "[^\n]\n\n", buf) != 1)
+                return NULL;
+        return buf;
+}
+ACMD(do_ispell)
+{      char *pc;
+d95 3
+a97 3
+        {       send_to_char ("ispell is not running.\r\n",ch);
+                return;
+        }
+d99 45
+a143 45
+        if (!argument[0] || strchr (argument, ' '))
+        {       send_to_char ("Invalid input.\r\n",ch);
+                return;
+        }
+        if (argument[0] == '+') 
+        {  
+            if (GET_LEVEL(ch) < LVL_IMMORT){
+	send_to_char("you may not add entries to list", ch);
+	return;
+	}
+            for (pc = argument+1;*pc; pc++)
+                        if (!isalpha(*pc))
+                        {       sprintf(buf, "'%c' is not a letter.\r\n", *pc);
+					send_to_char(buf, ch);
+                                return;
+                        }
+                fprintf (ispell_out, "*%s\n", argument+1);
+                fflush (ispell_out);
+                return; /* we assume everything is OK.. better be so! */
+        }
+        pc = get_ispell_line(argument);
+        if (!pc)
+        {       send_to_char ("ispell: failed.\r\n",ch);
+                return;
+        }
+        switch (pc[0])
+        {       case '*':    case '+': /* root */      case '-': /* compound */
+                        send_to_char ("Correct.\r\n",ch);
+                        break;
+                case '&': /* miss */
+         sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+	send_to_char(buf, ch);
+                        break;
+               case '?': /* guess */
+          sprintf(buf, "Not found. Possible words: %s\r\n", strchr(pc, ':')+1);
+		send_to_char(buf, ch);
+                        break;
+               case '#': /* none */
+                   send_to_char ("Unable to find anything that matches.\r\n",ch);
+                        break;
+               default:
+                        sprintf(buf, "Weird output from ispell: %s\r\n", pc);
+				send_to_char(buf, ch);
+        }
+}
+@

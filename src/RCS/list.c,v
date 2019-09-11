@@ -1,0 +1,152 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2009.06.09.05.43.03;	author myc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Multipurpose memory list.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "list.h"
+#include <stdlib.h>
+#include <assert.h>
+#include <string.h>
+
+/*
+ * This is an implementation of a multi-purpose memory list.
+ *
+ * It can be used to incrementally allocate memory for an array, with 
+ * much better performance than a linked list or continuously-allocated
+ * array (one that grows each time an element is added).
+ *
+ * For example:
+ *
+ *   struct string {
+ *     char *buffer;
+ *     size_t offset;
+ *     size_t length;
+ *   } *str;
+ *   unsigned int i;
+ *   list l = l_init(sizeof(struct string));
+ *   for (i = 0; i < 5; ++i) {
+ *     str = l_alloc(l);
+ *     str->buffer = "Hello!";
+ *     str->offset = i;
+ *     str->length = 6 - i;
+ *   }
+ *   str = l_export(l);
+ *
+ * str now contains a pointer to a block of memory that contains five
+ * string structs.
+ */
+
+
+#define GROWTH_FACTOR       4
+#define BUF_SIZE(list)      ((list)->element_size * (list)->capacity)
+#define ELEMENT(list, idx)  ((list)->elements + ((idx) * (list)->element_size))
+
+
+list l_init(size_t element_size) {
+  list l;
+
+  assert(element_size > 0);
+
+  l = (list) malloc(sizeof(struct memory_list));
+  l->element_size = element_size;
+  l->capacity = GROWTH_FACTOR;
+  l->count = 0;
+  l->elements = malloc(BUF_SIZE(l));
+  memset(l->elements, 0, BUF_SIZE(l));
+
+  return l;
+}
+
+list l_clone(list l) {
+  list clone;
+
+  clone = (list) malloc(sizeof(struct memory_list));
+  clone->element_size = l->element_size;
+  clone->capacity = l->capacity;
+  clone->count = l->count;
+  clone->elements = malloc(BUF_SIZE(clone));
+  memcpy(clone->elements, l->elements, BUF_SIZE(l));
+
+  return clone;
+}
+
+void *l_alloc(list l) {
+  if (l->count == l->capacity) {
+    l->capacity *= GROWTH_FACTOR;
+    l->elements = realloc(l->elements, BUF_SIZE(l));
+    memset(l->elements + (l->count * l->element_size), 0,
+           (l->capacity - l->count) * l->element_size);
+  }
+  l->count++;
+  return ELEMENT(l, l->count - 1);
+}
+
+void l_ensure(list l, size_t capacity) {
+  if (capacity > l->capacity) {
+    size_t diff = capacity - l->capacity;
+    l->capacity = capacity;
+    l->elements = realloc(l->elements, BUF_SIZE(l));
+    memset(l->elements + ((l->capacity - diff) * l->element_size), 0,
+           diff * l->element_size);
+  }
+}
+
+void l_trim(list l) {
+  if (l->count < l->capacity) {
+    l->capacity = l->count;
+    l->elements = realloc(l->elements, BUF_SIZE(l));
+  }
+}
+
+void *l_export(list l) {
+  void *array = l->elements;
+  l_trim(l);
+  free(l);
+  return array;
+}
+
+void l_free(list l) {
+  free(l->elements);
+  free(l);
+}
+
+void l_remove(list l, index_t index) {
+  if (index < l->count) {
+    memmove(ELEMENT(l, index), ELEMENT(l, index + 1),
+            (l->count - index - 1) * l->element_size);
+    l->count--;
+  }
+}
+
+void l_insert(list l, index_t index, void *element) {
+  l_alloc(l);
+  memmove(ELEMENT(l, index + 1), ELEMENT(l, index),
+          (l->count - index) * l->element_size);
+  l->count++;
+  memcpy(ELEMENT(l, index), element, l->element_size);
+}
+
+void *l_append(list l, void *element) {
+  void *ptr = l_alloc(l);
+  memcpy(ptr, element, l->element_size);
+  return ptr;
+}
+@

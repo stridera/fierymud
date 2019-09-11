@@ -1,0 +1,733 @@
+head	1.15;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.15
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.01.13.03.19.53;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.01.12.23.13.20;	author myc;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.01.12.19.08.14;	author myc;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2008.01.03.12.44.03;	author jps;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2002.09.30.01.39.58;	author jjl;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2002.09.30.01.11.09;	author jjl;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2000.11.24.21.17.12;	author rsd;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.02.00.08.11;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/*File: cleric.c*
+*This file was created by Proky to control Cleric type mobs *
+*It is closly related to ai.h, and ai_util.c                *
+*/
+
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "spells.h"
+#include "ai.h"
+
+/*external memory structores*/
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+extern struct room_data *world;
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+
+/*do commands*/
+ACMD(do_get);
+ACMD(do_flee);
+ACMD(do_bash);
+ACMD(do_kick);
+ACMD(do_cast);
+ACMD(do_stand);
+ACMD(do_circle);
+ACMD(do_backstab);
+
+/*external functions*/
+
+
+void sel_thief_mob_spells(struct char_data *ch, struct char_data *victim)
+{
+    int cmd;
+    if (!(victim))
+    {
+        mudlog("No victim in thief update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+    if (GET_MSKILL(ch, SKILL_BACKSTAB))
+        if (!(FIGHTING(ch)))
+        {/*not fighting wack him why not bs*/
+            cmd = find_command("backstab");
+            do_backstab(ch, GET_NAME(victim), cmd, 0);
+            return;
+        }
+    if (GET_MSKILL(ch, SKILL_CIRCLE))
+        if (!(is_tanking(ch)))
+        {
+            cmd = find_command("circle");
+            do_circle(ch, GET_NAME(victim), cmd, 0);
+            return;
+        }
+    if (GET_MSKILL(ch, SKILL_KICK))
+        if (!(is_tanking(ch)))
+        {
+            cmd = find_command("kick");
+            do_kick(ch, GET_NAME(victim), cmd, 0);
+            return;
+        }
+
+}
+@
+
+
+1.15
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@/***************************************************************************
+ * $Id: rogue.c,v 1.14 2008/02/09 04:27:47 myc Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: rogue.c                                        Part of FieryMUD *
+ *  Usage: Control of rogue type mobs, It is closly related to ai.h,       *
+ *         and ai_util.c.                                                  *
+ *     By: Proky of HubisMUD                                               *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "casting.h"
+#include "ai.h"
+#include "skills.h"
+#include "math.h"
+
+/* External functions */
+ACMD(do_backstab);
+ACMD(do_corner);
+ACMD(do_eye_gouge);
+ACMD(do_kick);
+ACMD(do_steal);
+ACMD(do_throatcut);
+
+bool has_piercing_weapon(struct char_data *ch) {
+  if (GET_EQ(ch, WEAR_WIELD) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_WIELD)))
+    return TRUE;
+  if (GET_EQ(ch, WEAR_WIELD2) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_WIELD2)))
+    return TRUE;
+  if (GET_EQ(ch, WEAR_2HWIELD) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_2HWIELD)))
+    return TRUE;
+  return FALSE;
+}
+
+bool rogue_ai_action(struct char_data *ch, struct char_data *victim) {
+  int roll;
+
+  if (!victim) {
+    mudlog("No victim in rogue AI action.", NRM, LVL_GOD, FALSE);
+    return FALSE;
+  }
+
+  /* Success in doing an action? */
+  roll = number(0, 101);
+  if (roll >= GET_LEVEL(ch))
+    return FALSE;
+  roll *= 100 / GET_LEVEL(ch);
+
+  /*
+   * Backstab requires a piercing weapon.
+   */
+  if (CAN_SEE(ch, victim) && roll > 95 && GET_SKILL(ch, SKILL_BACKSTAB) &&
+      has_piercing_weapon(ch) && !is_tanking(ch)) {
+    do_backstab(ch, GET_NAME(victim), 0, 0);
+    return TRUE;
+  }
+
+  if (CAN_SEE(ch, victim) && roll > 94 && GET_SKILL(ch, SKILL_THROATCUT) &&
+      has_piercing_weapon(ch) && !FIGHTING(ch)) {
+    do_throatcut(ch, GET_NAME(victim), 0, 0);
+    return TRUE;
+  }
+
+  if (CAN_SEE(ch, victim) && roll > 70 && GET_SKILL(ch, SKILL_CORNER) &&
+      FIGHTING(ch) == victim && !ch->cornering) {
+    do_corner(ch, GET_NAME(victim), 0, 0);
+    return TRUE;
+  }
+
+  if (CAN_SEE(ch, victim) && roll > 50 && GET_SKILL(ch, SKILL_EYE_GOUGE)) {
+    do_eye_gouge(ch, GET_NAME(victim), 0, 0);
+    return TRUE;
+  }
+
+  if (GET_SKILL(ch, SKILL_KICK)) {
+    do_kick(ch, GET_NAME(victim), 0, 0);
+    return TRUE;
+  }
+
+  return FALSE;  
+}
+
+bool mob_steal(struct char_data *ch) {
+  struct char_data *vict = get_random_char_around(ch, RAND_AGGRO | RAND_PLAYERS);
+
+  if (vict && GET_LEVEL(ch) + 5 > GET_LEVEL(vict)) {
+    if (vict->carrying && CAN_SEE_OBJ(ch, vict->carrying) && number(0, 1))
+      sprintf(buf1, "%s %s", fname(vict->carrying->short_description), GET_NAME(vict));
+    else
+      sprintf(buf1, "%s %s", "coins", GET_NAME(vict));
+    do_steal(ch, buf1, 0, 0);
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/***************************************************************************
+ * $Log: rogue.c,v $
+ * Revision 1.14  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.13  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.12  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.11  2008/01/13 03:19:53  myc
+ * Fixed checks for rogue skills.  Also changed mob_steal to
+ * try and steal the first thing in a player's inventory.
+ *
+ * Revision 1.10  2008/01/12 23:13:20  myc
+ * Moved mob steal code here.
+ *
+ * Revision 1.9  2008/01/12 19:08:14  myc
+ * Rerowte a lot of mob AI functionality.
+ *
+ * Revision 1.8  2008/01/03 12:44:03  jps
+ * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+ * to CLASS_SORCERER.
+ *
+ * Revision 1.7  2002/09/30 01:39:58  jjl
+ * Urgh. Forgot the function prototype for check_guard.
+ *
+ * Revision 1.6  2002/09/30 01:11:09  jjl
+ * Put in checks for guard, so it actually does something.
+ *
+ * Revision 1.5  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.4  2000/11/24 21:17:12  rsd
+ * Altered comment header and added back rlog messgaes from
+ * prior to the addition of the $log$ string.
+ *
+ * Revision 1.3  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.2  1999/02/02 00:08:11  mud
+ * Indented file
+ * added standard and corrected comment header, I don't think
+ * this file controls cleric AI like it claimed.
+ * dos2unix
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.14
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.13 2008/01/29 21:02:31 myc Exp myc $
+d23 1
+a23 1
+#include "spells.h"
+d111 3
+@
+
+
+1.13
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.12 2008/01/26 14:26:31 jps Exp myc $
+d26 1
+d111 4
+@
+
+
+1.12
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.11 2008/01/13 03:19:53 myc Exp jps $
+a26 3
+/* Global variables */
+extern struct room_data *world;
+
+d110 3
+@
+
+
+1.11
+log
+@Fixed checks for rogue skills.  Also changed mob_steal to
+try and steal the first thing in a player's inventory.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.10 2008/01/12 23:13:20 myc Exp myc $
+d25 1
+d113 4
+@
+
+
+1.10
+log
+@Moved mob steal code here.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.9 2008/01/12 19:08:14 myc Exp myc $
+d31 1
+a35 2
+struct char_data* check_guard(struct char_data *ch, struct char_data *victim, 
+			      int gag_output);
+d37 9
+d64 3
+a66 12
+  if (CAN_SEE(ch, victim) && roll > 95 && GET_MSKILL(ch, SKILL_BACKSTAB) &&
+      GET_EQ(ch, WEAR_WIELD) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_WIELD)) &&
+      !is_tanking(ch)) {
+    struct char_data *guard = check_guard(ch, victim, FALSE);
+    if (guard != victim)
+      /* The character the rogue is trying to backstab is being guarded,
+         making it difficult to backstab them, I'd think.  If we're 
+         stepping in, we're not going to be doing so with our back to 
+         them eh? */
+      hit(ch, guard, TYPE_UNDEFINED); 
+    else
+      do_backstab(ch, GET_NAME(victim), 0, 0);
+d69 3
+a71 1
+  else if (CAN_SEE(ch, victim) && roll > 95 && GET_MSKILL(ch, SKILL_THROATCUT) && !FIGHTING(ch)) {
+d75 8
+a82 1
+  else if (CAN_SEE(ch, victim) && roll > 60 && GET_MSKILL(ch, SKILL_EYE_GOUGE)) {
+d86 2
+a87 1
+  else if (GET_MSKILL(ch, SKILL_KICK)) {
+d99 4
+a102 2
+    /* Right now we only support stealing coins. */
+    sprintf(buf1, "%s %s", "coins", GET_NAME(vict));
+d112 3
+@
+
+
+1.9
+log
+@Rerowte a lot of mob AI functionality.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.8 2008/01/03 12:44:03 jps Exp myc $
+a29 1
+ACMD(do_kick);
+d32 2
+d86 13
+d101 3
+@
+
+
+1.8
+log
+@Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+to CLASS_SORCERER.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.7 2002/09/30 01:39:58 jjl Exp jps $
+d26 1
+a26 4
+/*external memory structores*/
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+d28 2
+a29 8
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+
+/*do commands*/
+ACMD(do_get);
+ACMD(do_flee);
+ACMD(do_bash);
+a30 3
+ACMD(do_cast);
+ACMD(do_stand);
+ACMD(do_circle);
+d32 2
+a33 2
+
+/*external functions*/
+d38 45
+a82 59
+void sel_thief_mob_spells(struct char_data *ch, struct char_data *victim)
+{
+  int cmd;
+  if (!(victim))
+    {
+      mudlog("No victim in thief update.", NRM, LVL_GOD, FALSE);
+      return;
+    }
+  if (GET_MSKILL(ch, SKILL_BACKSTAB))
+    if (!(FIGHTING(ch)))
+      {
+	struct char_data *proxy;
+	/*not fighting wack him why not bs*/
+	cmd = find_command("backstab");
+	proxy = check_guard(ch, victim, FALSE); 
+	if (proxy != victim)
+	  {
+	    /* The character the rogue is trying to backstab is being guarded,
+	       making it difficult to backstab them, I'd think. If we're 
+	       stepping in, we're not going to be doing so with our back to 
+	       them eh? */
+	    
+	    hit(ch, proxy, TYPE_UNDEFINED); 
+	  }
+	else
+	  {
+	    do_backstab(ch, GET_NAME(victim), cmd, 0);
+	  };
+	return;
+      }
+  if (GET_MSKILL(ch, SKILL_CIRCLE))
+    if (!(is_tanking(ch)))
+      {
+	struct char_data *proxy;
+
+	proxy = check_guard(ch, victim, FALSE); 
+	
+	if (proxy != victim)
+	  {
+	    /*  The victim has a guard, who will pick up the guy who
+		is circling */ 
+	    hit(ch, proxy, TYPE_UNDEFINED); 
+	  }
+	else
+	  {
+	    cmd = find_command("circle");
+	    do_circle(ch, GET_NAME(victim), cmd, 0);
+
+	  };
+	return;
+      }
+  if (GET_MSKILL(ch, SKILL_KICK))
+    if (!(is_tanking(ch)))
+      {
+	cmd = find_command("kick");
+	do_kick(ch, GET_NAME(victim), cmd, 0);
+	return;
+      }
+  
+d87 4
+@
+
+
+1.7
+log
+@Urgh. Forgot the function prototype for check_guard.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.6 2002/09/30 01:11:09 jjl Exp $
+a33 1
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+d113 3
+@
+
+
+1.6
+log
+@Put in checks for guard, so it actually does something.
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.5 2002/09/13 02:32:10 jjl Exp $
+d47 2
+d114 3
+@
+
+
+1.5
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: rogue.c,v 1.4 2000/11/24 21:17:12 rsd Exp $
+d59 3
+a61 1
+      {/*not fighting wack him why not bs*/
+d63 14
+a76 1
+	do_backstab(ch, GET_NAME(victim), cmd, 0);
+d82 16
+a97 2
+	cmd = find_command("circle");
+	do_circle(ch, GET_NAME(victim), cmd, 0);
+d112 3
+@
+
+
+1.4
+log
+@Altered comment header and added back rlog messgaes from
+prior to the addition of the $log$ string.
+@
+text
+@d1 3
+a3 1
+// $Id: rogue.c,v 1.3 1999/09/05 07:00:39 jimmy Exp $
+d81 19
+a99 13
+// $Log: rogue.c,v $
+// Revision 1.3  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.2  1999/02/02 00:08:11  mud
+// Indented file
+// added standard and corrected comment header, I don't think
+// this file controls cleric AI like it claimed.
+// dos2unix
+//
+// Revision 1.1  1999/01/29 01:23:31  mud
+// Initial revision
+//
+@
+
+
+1.3
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d3 1
+a3 1
+ *  File: rogue.c                                         Part of FieryMUD *
+d6 1
+d8 3
+a10 2
+ *  By: Proky of HubisMUD                                                  *
+ *  Control M's removed by: Scott Davis                                    *
+d79 13
+a91 1
+// $Log$
+@
+
+
+1.2
+log
+@Indented file
+added standard and corrected comment header, I don't think
+this file contriols vcleric AI like it claimed.
+dos2unix
+@
+text
+@d1 1
+d77 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 75
+a75 71
+/*File: cleric.c*
+*This file was created by Proky to control Cleric type mobs *
+*It is closly related to ai.h, and ai_util.c                *
+*/
+
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "spells.h"
+#include "ai.h"
+
+/*external memory structores*/
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+extern struct room_data *world;
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+
+/*do commands*/
+ACMD(do_get);
+ACMD(do_flee);
+ACMD(do_bash);
+ACMD(do_kick);
+ACMD(do_cast);
+ACMD(do_stand);
+ACMD(do_circle);
+ACMD(do_backstab);
+
+/*external functions*/
+
+
+void sel_thief_mob_spells(struct char_data *ch, struct char_data *victim)
+{
+    int cmd;
+    if (!(victim))
+    {
+        mudlog("No victim in thief update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+    if (GET_MSKILL(ch, SKILL_BACKSTAB))
+        if (!(FIGHTING(ch)))
+        {/*not fighting wack him why not bs*/
+            cmd = find_command("backstab");
+            do_backstab(ch, GET_NAME(victim), cmd, 0);
+            return;
+        }
+    if (GET_MSKILL(ch, SKILL_CIRCLE))
+        if (!(is_tanking(ch)))
+        {
+            cmd = find_command("circle");
+            do_circle(ch, GET_NAME(victim), cmd, 0);
+            return;
+        }
+    if (GET_MSKILL(ch, SKILL_KICK))
+        if (!(is_tanking(ch)))
+        {
+            cmd = find_command("kick");
+            do_kick(ch, GET_NAME(victim), cmd, 0);
+            return;
+        }
+
+}
+@

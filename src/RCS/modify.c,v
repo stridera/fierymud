@@ -1,0 +1,5369 @@
+head	1.58;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.58
+date	2011.08.18.00.13.14;	author myc;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	2011.08.06.15.22.51;	author rsd;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	2009.07.16.19.15.54;	author myc;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	2009.06.09.05.45.27;	author myc;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	2009.03.20.23.02.59;	author myc;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	2009.03.20.20.19.51;	author myc;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2009.03.09.04.41.56;	author jps;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2009.03.09.04.33.20;	author jps;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2009.03.03.19.43.44;	author myc;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2009.02.11.17.03.39;	author myc;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2008.08.18.01.35.22;	author jps;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2008.08.16.08.25.40;	author jps;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2008.08.15.03.59.08;	author jps;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2008.08.14.15.40.29;	author jps;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2008.08.14.09.45.22;	author jps;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2008.07.15.17.55.06;	author myc;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2008.07.13.06.34.59;	author myc;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2008.04.05.05.05.42;	author myc;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2008.04.03.02.02.05;	author myc;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2008.03.27.00.52.30;	author jps;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2008.03.22.03.22.38;	author myc;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2008.03.21.16.02.05;	author myc;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2008.03.21.15.58.34;	author myc;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2008.02.02.19.38.20;	author myc;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2008.02.02.05.35.14;	author myc;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2008.01.29.16.51.12;	author myc;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2008.01.26.12.58.14;	author jps;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2007.12.31.02.00.57;	author jps;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2007.12.19.20.54.56;	author myc;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2007.10.25.20.40.05;	author myc;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2007.10.13.05.05.13;	author myc;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2007.10.11.20.14.48;	author myc;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2007.10.02.02.52.27;	author myc;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2007.09.28.20.49.35;	author myc;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2007.09.15.05.03.46;	author myc;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2007.08.08.02.26.36;	author jps;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2007.08.03.22.00.11;	author myc;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2007.07.19.22.19.34;	author jps;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2007.07.02.05.47.31;	author jps;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2007.07.02.04.49.05;	author jps;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2007.07.02.04.23.52;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2007.02.04.18.12.31;	author myc;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2006.11.23.00.36.24;	author jps;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2004.11.11.23.29.19;	author rsd;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2003.06.25.02.21.03;	author jjl;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2003.06.23.01.47.09;	author jjl;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2000.11.28.01.26.52;	author mtp;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2000.11.24.19.03.31;	author rsd;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2000.03.26.21.16.23;	author cso;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.08.08.04.20.34;	author mud;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.31.17.54.05;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ************************************************************************
+*   File: modify.c                                      Part of CircleMUD *
+*  Usage: Run-time modification of game variables                         *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
+#include "conf.h"
+#include "sysdep.h"
+
+
+#include "structs.h"
+#include "utils.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "db.h"
+#include "comm.h"
+#include "spells.h"
+#include "mail.h"
+#include "boards.h"
+#include "olc.h"
+
+void show_string(struct descriptor_data *d, char *input);
+
+ /* action modes for parse_action */
+#define PARSE_FORMAT		0
+#define PARSE_REPLACE		1
+#define PARSE_HELP		2
+#define PARSE_DELETE		3
+#define PARSE_INSERT		4
+#define PARSE_LIST_NORM		5
+#define PARSE_LIST_NUM		6
+#define PARSE_EDIT		7
+
+char *string_fields[] =
+{
+  "name",
+  "short",
+  "long",
+  "description",
+  "title",
+  "delete-description",
+  "\n"
+};
+
+
+/* maximum length for text field x+1 */
+int length[] =
+{
+  15,
+  60,
+  256,
+  240,
+  60
+};
+
+
+/* ************************************************************************
+*  modification of malloc'ed strings                                      *
+************************************************************************ */
+/*  handle some editor commands */
+/*
+ * Handle some editor commands.
+ */
+void parse_action(int command, char *string, struct descriptor_data *d)
+{
+  int indent = 0, rep_all = 0, flags = 0, total_len, replaced;
+  register int j = 0;
+  int i, line_low, line_high;
+  char *s, *t, temp;
+
+  switch (command) {
+  case PARSE_HELP:
+    sprintf(buf,
+	    "Editor command formats: /<letter>\r\n\r\n"
+	    "/a         -  aborts editor\r\n"
+	    "/c         -  clears buffer\r\n"
+	    "/d#        -  deletes a line #\r\n"
+	    "/e# <text> -  changes the line at # with <text>\r\n"
+	    "/f         -  formats text\r\n"
+	    "/fi        -  indented formatting of text\r\n"
+	    "/h         -  list text editor commands\r\n"
+	    "/i# <text> -  inserts <text> before line #\r\n"
+	    "/l         -  lists buffer\r\n"
+	    "/n         -  lists buffer with line numbers\r\n"
+	    "/r 'a' 'b' -  replace 1st occurance of text <a> in buffer with text <b>\r\n"
+	    "/ra 'a' 'b'-  replace all occurances of text <a> within buffer with text <b>\r\n"
+	    "              usage: /r[a] 'pattern' 'replacement'\r\n"
+	    "/s         -  saves text\r\n");
+    SEND_TO_Q(buf, d);
+    break;
+  case PARSE_FORMAT:
+    while (isalpha(string[j]) && j < 2) {
+      switch (string[j]) {
+      case 'i':
+	if (!indent) {
+	  indent = TRUE;
+	  flags += FORMAT_INDENT;
+ 	}
+ 	break;
+      default:
+	break;
+      }
+      j++;
+    }
+    format_text(d->str, flags, d, d->max_str);
+    sprintf(buf, "Text formatted with%s indent.\r\n", (indent ? "" : "out"));
+    SEND_TO_Q(buf, d);
+    break;
+  case PARSE_REPLACE:
+    while (isalpha(string[j]) && j < 2) {
+      switch (string[j]) {
+      case 'a':
+	if (!indent)
+	  rep_all = 1;
+	break;
+      default:
+	break;
+       }
+      j++;
+    }
+    if ((s = strtok(string, "'")) == NULL) {
+      SEND_TO_Q("Invalid format.\r\n", d);
+      return;
+    } else if ((s = strtok(NULL, "'")) == NULL) {
+      SEND_TO_Q("Target string must be enclosed in single quotes.\r\n", d);
+      return;
+    } else if ((t = strtok(NULL, "'")) == NULL) {
+      SEND_TO_Q("No replacement string.\r\n", d);
+      return;
+    } else if ((t = strtok(NULL, "'")) == NULL) {
+      SEND_TO_Q("Replacement string must be enclosed in single quotes.\r\n", d);
+      return;
+    } else if ((total_len = ((strlen(t) - strlen(s)) + strlen(*d->str))) <= d->max_str) {
+      if ((replaced = replace_str(d->str, s, t, rep_all, d->max_str)) > 0) {
+	sprintf(buf, "Replaced %d occurance%sof '%s' with '%s'.\r\n", replaced, ((replaced != 1) ? "s " : " "), s, t);
+	SEND_TO_Q(buf, d);
+      } else if (replaced == 0) {
+	sprintf(buf, "String '%s' not found.\r\n", s);
+	SEND_TO_Q(buf, d);
+      } else
+	SEND_TO_Q("ERROR: Replacement string causes buffer overflow, aborted replace.\r\n", d);
+    } else
+      SEND_TO_Q("Not enough space left in buffer.\r\n", d);
+    break;
+  case PARSE_DELETE:
+    switch (sscanf(string, " %d - %d ", &line_low, &line_high)) {
+    case 0:
+      SEND_TO_Q("You must specify a line number or range to delete.\r\n", d);
+      return;
+    case 1:
+      line_high = line_low;
+      break;
+    case 2:
+       if (line_high < line_low) {
+ 		SEND_TO_Q("That range is invalid.\r\n", d);
+	return;
+       }
+         break;
+    }
+
+    i = 1;
+    total_len = 1;
+    if ((s = *d->str) == NULL) {
+      SEND_TO_Q("Buffer is empty.\r\n", d);
+      return;
+    } else if (line_low > 0) {
+       while (s && (i < line_low))
+ 	if ((s = strchr(s, '\n')) != NULL) {
+ 	  i++;
+	  s++;
+ 	}
+       if ((i < line_low) || (s == NULL)) {
+ 	SEND_TO_Q("Line(s) out of range; not deleting.\r\n", d);
+	return;
+       }
+
+       t = s;
+       while (s && (i < line_high))
+ 	if ((s = strchr(s, '\n')) != NULL) {
+ 	   i++;
+ 	   total_len++;
+ 	   s++;
+ 	}
+    if ((s) && ((s = strchr(s, '\n')) != NULL)) {
+	s++;
+	while (*s != '\0')
+	  *(t++) = *(s++);
+      } else
+	total_len--;
+      *t = '\0';
+      RECREATE(*d->str, char, strlen(*d->str) + 3);
+
+      sprintf(buf, "%d line%sdeleted.\r\n", total_len,
+	      ((total_len != 1) ? "s " : " "));
+      SEND_TO_Q(buf, d);
+    } else {
+      SEND_TO_Q("Invalid line numbers to delete must be higher than 0.\r\n", d);
+      return;
+    }
+    break;
+  case PARSE_LIST_NORM:
+    /*
+     * Note: Rv's buf, buf1, buf2, and arg variables are defined to 32k so
+     * they are probly ok for what to do here.
+     */
+    *buf = '\0';
+    if (*string != '\0')
+      switch (sscanf(string, " %d - %d ", &line_low, &line_high)) {
+      case 0:
+	line_low = 1;
+	line_high = 999999;
+	break;
+      case 1:
+	line_high = line_low;
+	break;
+    } else {
+      line_low = 1;
+      line_high = 999999;
+    }
+
+    if (line_low < 1) {
+      SEND_TO_Q("Line numbers must be greater than 0.\r\n", d);
+      return;
+    } else if (line_high < line_low) {
+      SEND_TO_Q("That range is invalid.\r\n", d);
+      return;
+    }
+    *buf = '\0';
+    if ((line_high < 999999) || (line_low > 1))
+      sprintf(buf, "Current buffer range [%d - %d]:\r\n", line_low, line_high);
+    i = 1;
+    total_len = 0;
+    s = *d->str;
+    while (s && (i < line_low))
+      if ((s = strchr(s, '\n')) != NULL) {
+	i++;
+	s++;
+       }
+    if ((i < line_low) || (s == NULL)) {
+      SEND_TO_Q("Line(s) out of range; no buffer listing.\r\n", d);
+      return;
+    }
+    t = s;
+    while (s && (i <= line_high))
+      if ((s = strchr(s, '\n')) != NULL) {
+	i++;
+	total_len++;
+	s++;
+      }
+    if (s) {
+      temp = *s;
+      *s = '\0';
+      strcat(buf, t);
+      *s = temp;
+    } else
+      strcat(buf, t);
+    /*
+     * This is kind of annoying...but some people like it.
+     */
+#if 0
+    sprintf(buf, "%s\r\n%d line%sshown.\r\n", buf, total_len,
+	((total_len != 1)?"s ":" "));
+#endif
+    page_string(d, buf, TRUE);
+    break;
+  case PARSE_LIST_NUM:
+    /*
+     * Note: Rv's buf, buf1, buf2, and arg variables are defined to 32k so
+     * they are probly ok for what to do here.
+     */
+    *buf = '\0';
+    if (*string != '\0')
+      switch (sscanf(string, " %d - %d ", &line_low, &line_high)) {
+      case 0:
+	line_low = 1;
+	line_high = 999999;
+	break;
+      case 1:
+	line_high = line_low;
+	break;
+    } else {
+      line_low = 1;
+      line_high = 999999;
+    }
+
+    if (line_low < 1) {
+      SEND_TO_Q("Line numbers must be greater than 0.\r\n", d);
+      return;
+    }
+    if (line_high < line_low) {
+      SEND_TO_Q("That range is invalid.\r\n", d);
+      return;
+    }
+    *buf = '\0';
+    i = 1;
+    total_len = 0;
+    s = *d->str;
+    while (s && (i < line_low))
+      if ((s = strchr(s, '\n')) != NULL) {
+	i++;
+	s++;
+       }
+  if ((i < line_low) || (s == NULL)) {
+      SEND_TO_Q("Line(s) out of range; no buffer listing.\r\n", d);
+      return;
+    }
+    t = s;
+    while (s && (i <= line_high))
+      if ((s = strchr(s, '\n')) != NULL) {
+	i++;
+	total_len++;
+	s++;
+	temp = *s;
+	*s = '\0';
+	sprintf(buf, "%s%4d:\r\n", buf, (i - 1));
+	strcat(buf, t);
+	*s = temp;
+	t = s;
+      }
+    if (s && t) {
+      temp = *s;
+      *s = '\0';
+      strcat(buf, t);
+      *s = temp;
+    } else if (t)
+      strcat(buf, t);
+    /*
+     * This is kind of annoying .. seeing as the lines are numbered.
+     */
+#if 0
+     sprintf(buf, "%s\r\n%d numbered line%slisted.\r\n", buf, total_len,
+	((total_len != 1)?"s ":" "));
+#endif
+    page_string(d, buf, TRUE);
+    break;
+
+  case PARSE_INSERT:
+    half_chop(string, buf, buf2);
+    if (*buf == '\0') {
+      SEND_TO_Q("You must specify a line number before which to insert text.\r\n", d);
+      return;
+    }
+    line_low = atoi(buf);
+    strcat(buf2, "\r\n");
+
+    i = 1;
+    *buf = '\0';
+    if ((s = *d->str) == NULL) {
+      SEND_TO_Q("Buffer is empty, nowhere to insert.\r\n", d);
+      return;
+    }
+    if (line_low > 0) {
+       while (s && (i < line_low))
+ 	if ((s = strchr(s, '\n')) != NULL) {
+ 	   i++;
+ 	   s++;
+ 	}
+       if ((i < line_low) || (s == NULL)) {
+ 	 	SEND_TO_Q("Line number out of range; insert aborted.\r\n", d);
+	return;
+       }
+      temp = *s;
+      *s = '\0';
+      if ((strlen(*d->str) + strlen(buf2) + strlen(s + 1) + 3) > d->max_str) {
+	*s = temp;
+	SEND_TO_Q("Insert text pushes buffer over maximum size, insert aborted.\r\n", d);
+	return;
+      }
+      if (*d->str && (**d->str != '\0'))
+	strcat(buf, *d->str);
+      *s = temp;
+      strcat(buf, buf2);
+      if (s && (*s != '\0'))
+	strcat(buf, s);
+      RECREATE(*d->str, char, strlen(buf) + 3);
+
+      strcpy(*d->str, buf);
+      SEND_TO_Q("Line inserted.\r\n", d);
+    } else {
+      SEND_TO_Q("Line number must be higher than 0.\r\n", d);
+      return;
+    }
+    break;
+
+  case PARSE_EDIT:
+    half_chop(string, buf, buf2);
+    if (*buf == '\0') {
+      SEND_TO_Q("You must specify a line number at which to change text.\r\n", d);
+      return;
+    }
+    line_low = atoi(buf);
+    strcat(buf2, "\r\n");
+
+    i = 1;
+    *buf = '\0';
+    if ((s = *d->str) == NULL) {
+      SEND_TO_Q("Buffer is empty, nothing to change.\r\n", d);
+      return;
+    }
+    if (line_low > 0) {
+      /*
+       * Loop through the text counting \\n characters until we get to the line/
+       */
+      while (s && (i < line_low))
+ 	if ((s = strchr(s, '\n')) != NULL) {
+ 	i++;
+    s++;
+ 	}
+      /*
+       * Make sure that there was a THAT line in the text.
+       */
+      if ((i < line_low) || (s == NULL)) {
+	SEND_TO_Q("Line number out of range; change aborted.\r\n", d);
+	return;
+       }
+      /*
+       * If s is the same as *d->str that means I'm at the beginning of the
+       * message text and I don't need to put that into the changed buffer.
+       */
+      if (s != *d->str) {
+	/*
+	 * First things first .. we get this part into the buffer.
+	 */
+	temp = *s;
+	*s = '\0';
+	/*
+	 * Put the first 'good' half of the text into storage.
+	 */
+	strcat(buf, *d->str);
+	*s = temp;
+      }
+      /*
+       * Put the new 'good' line into place.
+       */
+      strcat(buf, buf2);
+      if ((s = strchr(s, '\n')) != NULL) {
+	/*
+	 * This means that we are at the END of the line, we want out of
+	 * there, but we want s to point to the beginning of the line
+	 * AFTER the line we want edited
+	 */
+	s++;
+	/*
+	 * Now put the last 'good' half of buffer into storage.
+	 */
+	strcat(buf, s);
+      }
+      /*
+       * Check for buffer overflow.
+       */
+      if (strlen(buf) > d->max_str) {
+	SEND_TO_Q("Change causes new length to exceed buffer maximum size, aborted.\r\n", d);
+	return;
+      }
+      /*
+       * Change the size of the REAL buffer to fit the new text.
+       */
+      RECREATE(*d->str, char, strlen(buf) + 3);
+      strcpy(*d->str, buf);
+      SEND_TO_Q("Line changed.\r\n", d);
+    } else {
+      SEND_TO_Q("Line number must be higher than 0.\r\n", d);
+       return;
+       }
+    break;
+  default:
+    SEND_TO_Q("Invalid option.\r\n", d);
+    mudlog("SYSERR: invalid command passed to parse_action", BRF, LVL_HEAD_C, TRUE);
+    return;
+  }
+ }
+
+
+/* Add user input to the 'current' string (as defined by d->str) */
+void string_add(struct descriptor_data *d, char *str)
+{
+  FILE *fl;
+  int terminator = 0, action = 0;
+  register int i = 2, j = 0;
+  char actions[MAX_INPUT_LENGTH];
+  extern char *MENU;
+
+  /* determine if this is the terminal string, and truncate if so */
+  /* changed to accept '/<letter>' style editing commands - instead */
+  /* of solitary '@@' to end - (modification of improved_edit patch) */
+  /*   M. Scott 10/15/96 */
+
+  delete_doubledollar(str);
+
+
+	      /* removed old handling of '@@' char */
+    /* if ((terminator = (*str == '@@'))) *str = '\0'; */
+
+   if ((action = (*str == '/'))) {
+    while (str[i] != '\0') {
+      actions[j] = str[i];
+      i++;
+      j++;
+    }
+    actions[j] = '\0';
+    *str = '\0';
+    switch (str[1]) {
+    case 'a':
+      terminator = 2;		/* Working on an abort message, */
+      break;
+    case 'c':
+      if (*(d->str)) {
+	free(*d->str);
+	*(d->str) = NULL;
+	SEND_TO_Q("Current buffer cleared.\r\n", d);
+      } else
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+      break;
+    case 'd':
+      parse_action(PARSE_DELETE, actions, d);
+      break;
+    case 'e':
+      parse_action(PARSE_EDIT, actions, d);
+      break;
+    case 'f':
+      if (*(d->str))
+	parse_action(PARSE_FORMAT, actions, d);
+      else
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+      break;
+    case 'i':
+      if (*(d->str))
+	parse_action(PARSE_INSERT, actions, d);
+      else
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+      break;
+    case 'h':
+      parse_action(PARSE_HELP, actions, d);
+      break;
+    case 'l':
+      if (*d->str)
+	parse_action(PARSE_LIST_NORM, actions, d);
+      else
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+      break;
+    case 'n':
+      if (*d->str)
+	parse_action(PARSE_LIST_NUM, actions, d);
+      else
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+      break;
+    case 'r':
+      parse_action(PARSE_REPLACE, actions, d);
+      break;
+    case 's':
+      terminator = 1;
+      *str = '\0';
+      break;
+    default:
+      SEND_TO_Q("Invalid option.\r\n", d);
+      break;
+    }
+  }
+	  if (!(*d->str)) {
+    if (strlen(str) > d->max_str) {
+      send_to_char("String too long - Truncated.\r\n",
+		   d->character);
+      *(str + d->max_str) = '\0';
+      /* changed this to NOT abort out.. just give warning. */
+     /* terminator = 1; */
+    }
+    CREATE(*d->str, char, strlen(str) + 3);
+
+    strcpy(*d->str, str);
+  } else {
+		 /* if (GET_LEVEL((struct char_data *) d) >= LVL_IMMORT) {
+		  sprintf(buf, "(&0&1M:&0&1&b%d&0&9&b||&0&7&bL&0:&0&7&b%d&0)", d->max_str,(strlen(str) + strlen(*d->str)));
+		  SEND_TO_Q(buf, d);
+		  }*/
+		  if (strlen(str) + strlen(*d->str) > d->max_str) {
+      send_to_char("String too long, limit reached on message.  Last line ignored.\r\n",
+ 		 d->character);
+     /* terminator = 1; */
+    } else {
+           if (!(*d->str = (char *)realloc(*d->str, strlen(*d->str) +
+				      strlen(str) + 3))) {
+	perror("string_add");
+	exit(1);
+      }
+      strcat(*d->str, str);
+    }
+  }
+
+  if (terminator) {
+         /*. OLC Edits .*/
+     extern void oedit_disp_menu(struct descriptor_data *d);
+     extern void oedit_disp_extradesc_menu(struct descriptor_data *d);
+     extern void redit_disp_menu(struct descriptor_data *d);
+     extern void redit_disp_extradesc_menu(struct descriptor_data *d);
+     extern void redit_disp_exit_menu(struct descriptor_data *d);
+     extern void medit_disp_menu(struct descriptor_data *d);
+	 extern void hedit_disp_menu(struct descriptor_data *d);
+	 extern void trigedit_disp_menu(struct descriptor_data *d);
+
+
+#if defined(OASIS_MPROG)
+    extern void medit_change_mprog(struct descriptor_data *d);
+
+    if (STATE(d) == CON_MEDIT) {
+      switch (OLC_MODE(d)) {
+      case MEDIT_D_DESC:
+	medit_disp_menu(d);
+	break;
+      case MEDIT_MPROG_COMLIST:
+	medit_change_mprog(d);
+	break;
+      }
+    }
+#endif
+
+    /*
+     * Here we check for the abort option and reset the pointers.
+     */
+    if ((terminator == 2) &&
+	((STATE(d) == CON_REDIT) ||
+	 (STATE(d) == CON_MEDIT) ||
+	 (STATE(d) == CON_OEDIT) ||
+	 (STATE(d) == CON_TRIGEDIT) ||
+	 (STATE(d) == CON_HEDIT) ||
+	 (STATE(d) == CON_EXDESC) ||
+	 (STATE(d) == CON_TEXTED))) {
+      free(*d->str);
+      if (d->backstr) {
+	*d->str = d->backstr;
+      } else
+ 	*d->str = NULL;
+
+      d->backstr = NULL;
+      d->str = NULL;
+     }
+    /*
+     * This fix causes the editor to NULL out empty messages -- M. Scott
+     * Fixed to fix the fix for empty fixed messages. -- gg
+     */
+    else if ((d->str) && (*d->str) && (**d->str == '\0')) {
+      free(*d->str);
+      *d->str = str_dup("Nothing.\r\n");
+    }
+    if (STATE(d) == CON_MEDIT)
+      medit_disp_menu(d);
+    if (STATE(d) == CON_TRIGEDIT)
+      trigedit_disp_menu(d);
+
+     if (STATE(d) == CON_OEDIT) {
+       switch(OLC_MODE(d)) {
+   case OEDIT_ACTDESC:
+  	oedit_disp_menu(d);
+  	break;
+       case OEDIT_EXTRADESC_DESCRIPTION:
+  	oedit_disp_extradesc_menu(d);
+	break;
+       }
+    } else if (STATE(d) == CON_REDIT) {
+      switch (OLC_MODE(d)) {
+       case REDIT_DESC:
+  	redit_disp_menu(d);
+  	break;
+       case REDIT_EXIT_DESCRIPTION:
+  	redit_disp_exit_menu(d);
+	break;
+      case REDIT_EXTRADESC_DESCRIPTION:
+	redit_disp_extradesc_menu(d);
+	break;
+      }
+	  } else if (STATE(d) == CON_HEDIT)
+		  hedit_disp_menu(d);
+     else if (!d->connected && (PLR_FLAGGED(d->character, PLR_MAILING))) {
+      if ((terminator == 1) && *d->str) {
+	store_mail(d->mail_to, GET_IDNUM(d->character), d->mail_vnum, *d->str);
+	SEND_TO_Q("Message sent!\r\n", d);
+      } else
+	SEND_TO_Q("Mail aborted.\r\n", d);
+      d->mail_to = 0;
+	  d->mail_vnum = NOTHING;
+      free(*d->str);
+      free(d->str);
+    /*  SEND_TO_Q("Message sent!\r\n", d);
+      if (!IS_NPC(d->character))
+	REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);*/
+       } else if (d->mail_to >= BOARD_MAGIC) {
+      Board_save_board(d->mail_to - BOARD_MAGIC);
+	  SEND_TO_Q("Post not aborted, use REMOVE <post #>.\r\n", d);
+      d->mail_to = 0;
+       } else if (STATE(d) == CON_EXDESC) {
+      if (terminator != 1)
+	SEND_TO_Q("Description aborted.\r\n", d);
+      SEND_TO_Q(MENU, d);
+      d->connected = CON_MENU;
+    }
+	   else if (STATE(d) == CON_TEXTED) {
+ 	if (terminator == 1) {
+ 	   if (!(fl = fopen((char *)d->storage, "w"))) {
+ 	      sprintf(buf, "SYSERR: Can't write file '%s'.", d->storage);
+ 	      mudlog(buf, CMP, LVL_HEAD_C, TRUE);
+ 	   }
+ 	   else {
+ 	      if (*d->str) {
+ 		 fputs(stripcr(buf1, *d->str), fl);
+ 	      }
+ 	      fclose(fl);
+ 	      sprintf(buf, "OLC: %s saves '%s'.", GET_NAME(d->character),
+ 		      d->storage);
+ 	      mudlog(buf, CMP, LVL_GOD, TRUE);
+ 	      SEND_TO_Q("Saved.\r\n", d);
+ 	   }
+ 	}
+ 	else SEND_TO_Q("Edit aborted.\r\n", d);
+ 	act("$n stops editing some scrolls.", TRUE, d->character, 0, 0, TO_ROOM);
+ 	free(d->storage);
+ 	d->storage = NULL;
+ 	STATE(d) = CON_PLAYING;
+      }
+	   else if (!d->connected && d->character && !IS_NPC(d->character)) {
+      if (terminator == 1) {
+	if (strlen(*d->str) == 0) {
+	  free(*d->str);
+	  *d->str = NULL;
+	}
+ 	    } else {
+	free(*d->str);
+	if (d->backstr)
+	  *d->str = d->backstr;
+	else
+	  *d->str = NULL;
+	d->backstr = NULL;
+	SEND_TO_Q("Message aborted.\r\n", d);
+      }
+    }
+    if (d->character && !IS_NPC(d->character))
+      REMOVE_BIT(PLR_FLAGS(d->character), PLR_WRITING | PLR_MAILING);
+    if (d->backstr)
+      free(d->backstr);
+    d->backstr = NULL;
+    d->str = NULL;
+ } else if (!action)
+    strcat(*d->str, "\r\n");
+ }
+
+
+
+/* **********************************************************************
+*  Modification of character skills                                     *
+********************************************************************** */
+
+ACMD(do_skillset)
+{
+  extern char *spells[];
+  struct char_data *vict;
+  char name[100], buf2[100], buf[100], help[MAX_STRING_LENGTH];
+  int skill, value, i, qend, temp;
+
+  argument = one_argument(argument, name);
+
+  if (!*name) {			/* no arguments. print an informative text */
+    send_to_char("Syntax: skillset <name> '<skill>' <value>\r\n", ch);
+    strcpy(help, "Skill being one of the following:\n\r");
+    for (i = 0; *spells[i] != '\n'; i++) {
+      if (*spells[i] == '!')
+	continue;
+      sprintf(help + strlen(help), "%18s", spells[i]);
+      if (i % 4 == 3) {
+	strcat(help, "\r\n");
+	send_to_char(help, ch);
+	*help = '\0';
+      }
+    }
+    if (*help)
+      send_to_char(help, ch);
+    send_to_char("\n\r", ch);
+    return;
+  }
+  if (!(vict = get_char_vis(ch, name))) {
+    send_to_char(NOPERSON, ch);
+    return;
+  }
+  skip_spaces(&argument);
+
+  /* If there is no chars in argument */
+  if (!*argument){
+    if (GET_LEVEL(vict) < GET_LEVEL(ch) || ch==vict) {
+      sprintf(help, "Current values of skills:\r\n");
+      for (i = 0; *spells[i] != '\n'; i++) {
+        if (*spells[i] == '!')
+	  continue;
+        sprintf(help,"%s%-20.20s %d\r\n",help,spells[i],GET_ISKILL(vict,i));
+      }
+      page_string(ch->desc, help, 1);
+    }
+    else
+      send_to_char("You are unable to divine any information.", ch);
+    return;
+  }
+  if (*argument == '*'){
+	  i = 0;
+		  do {
+			temp=i+1;
+			SET_SKILL(vict, temp, 1000);
+			if (str_cmp(spells[temp], "!UNUSED!")) {
+			sprintf(buf2, "You change %s's skill level in %s to 100.\n\r", GET_NAME(vict),
+	  spells[temp]);
+			send_to_char(buf2, ch);}
+			i=temp;
+		}while(i<MAX_SKILLS);
+	  return;}
+  if (*argument != '\'') {
+    send_to_char("Skill must be enclosed in: ''\n\r", ch);
+    return;
+  }
+  /* Locate the last quote && lowercase the magic words (if any) */
+
+  for (qend = 1; *(argument + qend) && (*(argument + qend) != '\''); qend++)
+    *(argument + qend) = LOWER(*(argument + qend));
+
+  if (*(argument + qend) != '\'') {
+    send_to_char("Skill must be enclosed in: ''\n\r", ch);
+    return;
+  }
+  strcpy(help, (argument + 1));
+  help[qend - 1] = '\0';
+  if ((skill = find_skill_num(help)) <= 0) {
+    send_to_char("Unrecognized skill.\n\r", ch);
+    return;
+  }
+  argument += qend + 1;		/* skip to next parameter */
+  argument = one_argument(argument, buf);
+
+  if (!*buf) {
+    send_to_char("Learned value expected.\n\r", ch);
+    return;
+   } else if ((value = atoi(buf))< 0) {
+    send_to_char("Minimum value for learned is 0.\n\r", ch);
+    return;
+  } else if (value > 1000) {
+    send_to_char("Max value for learned is 1000.\n\r", ch);
+    return;
+  } else if (IS_NPC(vict)) {
+    send_to_char("You can't set NPC skills.\n\r", ch);
+    return;
+  }
+  sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict),
+	  spells[skill], value);
+  mudlog(buf2, BRF, -1, TRUE);
+
+  SET_SKILL(vict, skill, value);
+
+  sprintf(buf2, "You change %s's %s to %d.\n\r", GET_NAME(vict),
+	  spells[skill], value);
+  send_to_char(buf2, ch);
+
+
+  }
+
+/*********************************************************************
+* New Pagination Code
+* Michael Buselli submitted the following code for an enhanced pager
+* for CircleMUD.  All functions below are his.  --JE 8 Mar 96
+*
+*********************************************************************/
+
+/* #define PAGE_LENGTH     22  * I changed this to be variable -nechtrous*/
+#define PAGE_WIDTH      80
+
+/* Traverse down the string until the begining of the next page has been
+ * reached.  Return NULL if this is the last page of the string.
+ */
+char *next_page(char *str, struct descriptor_data *d)
+{
+  int col = 1, line = 1, spec_code = FALSE, page_length = 22;
+
+  if(d && d->character)
+    if(d->character->page_length > 0 && d->character->page_length < 51)
+      page_length = d->character->page_length;
+  for (;; str++) {
+    /* If end of string, return NULL. */
+    if (*str == '\0')
+      return NULL;
+
+    /* If we're at the start of the next page, return this fact. */
+    else if (line > page_length)
+      return str;
+
+    /* Check for the begining of an ANSI color code block. */
+    else if (*str == '\x1B' && !spec_code)
+      spec_code = TRUE;
+
+    /* Check for the end of an ANSI color code block. */
+    else if (*str == 'm' && spec_code)
+      spec_code = FALSE;
+
+    /* Check for inline ansi too! -nechtrous */
+    else if (*str == '&' && !spec_code) {
+      str++;
+      continue;
+    }
+
+    /* Check for everything else. */
+    else if (!spec_code) {
+      /* Carriage return puts us in column one. */
+      if (*str == '\r')
+	col = 1;
+      /* Newline puts us on the next line. */
+      else if (*str == '\n')
+	line++;
+
+      /* We need to check here and see if we are over the page width,
+       * and if so, compensate by going to the begining of the next line.
+       */
+      else if (col++ > PAGE_WIDTH) {
+	col = 1;
+	line++;
+      }
+    }
+  }
+}
+
+
+/* Function that returns the number of pages in the string. */
+int count_pages(char *str, struct descriptor_data *d)
+{
+  int pages;
+
+  for (pages = 1; (str = next_page(str,d)); pages++);
+  return pages;
+}
+
+
+/* This function assigns all the pointers for showstr_vector for the
+ * page_string function, after showstr_vector has been allocated and
+ * showstr_count set.
+ */
+void paginate_string(char *str, struct descriptor_data *d)
+{
+  int i;
+
+  if (d->showstr_count)
+    *(d->showstr_vector) = str;
+
+  for (i = 1; i < d->showstr_count && str; i++)
+    str = d->showstr_vector[i] = next_page(str,d);
+
+  d->showstr_page = 0;
+}
+
+
+/* The call that gets the paging ball rolling... */
+void page_string(struct descriptor_data *d, char *str, int keep_internal)
+{
+  if (!d)
+    return;
+
+  if (!str || !*str) {
+    send_to_char("", d->character);
+    return;
+  }
+  CREATE(d->showstr_vector, char *, d->showstr_count = count_pages(str,d));
+
+  if (keep_internal) {
+    d->showstr_head = str_dup(str);
+    paginate_string(d->showstr_head, d);
+  } else
+    paginate_string(str, d);
+
+  show_string(d, "");
+}
+
+
+/* The call that displays the next page. */
+void show_string(struct descriptor_data *d, char *input)
+{
+  char buffer[MAX_STRING_LENGTH];
+  int diff;
+
+  one_argument(input, buf);
+
+  /* Q is for quit. :) */
+  if (LOWER(*buf) == 'q') {
+    free(d->showstr_vector);
+    d->showstr_count = 0;
+    if (d->showstr_head) {
+      free(d->showstr_head);
+      d->showstr_head = 0;
+    }
+    return;
+  }
+  /* R is for refresh, so back up one page internally so we can display
+   * it again.
+   */
+  else if (LOWER(*buf) == 'r')
+    d->showstr_page = MAX(0, d->showstr_page - 1);
+
+  /* B is for back, so back up two pages internally so we can display the
+   * correct page here.
+   */
+  else if (LOWER(*buf) == 'b')
+    d->showstr_page = MAX(0, d->showstr_page - 2);
+
+  /* Feature to 'goto' a page.  Just type the number of the page and you
+   * are there!
+   */
+  else if (isdigit(*buf))
+    d->showstr_page = MAX(0, MIN(atoi(buf) - 1, d->showstr_count - 1));
+
+  else if (*buf) {
+    send_to_char(
+		  "Valid commands while paging are RETURN, Q, R, B, or a numeric value.\r\n",
+		  d->character);
+    return;
+  }
+  /* If we're displaying the last page, just send it to the character, and
+   * then free up the space we used.
+   */
+  if (d->showstr_page + 1 >= d->showstr_count) {
+    send_to_char(d->showstr_vector[d->showstr_page], d->character);
+    free(d->showstr_vector);
+    d->showstr_count = 0;
+    if (d->showstr_head) {
+      free(d->showstr_head);
+      d->showstr_head = NULL;
+    }
+  }
+  /* Or if we have more to show.... */
+  else {
+    strncpy(buffer, d->showstr_vector[d->showstr_page],
+	   	diff = ((int)d->showstr_vector[d->showstr_page + 1])
+	    - ((int)d->showstr_vector[d->showstr_page]));
+    buffer[diff] = '\0';
+    send_to_char(buffer, d->character);
+    d->showstr_page++;
+  }
+}
+@
+
+
+1.58
+log
+@Fix compiler warnings.
+@
+text
+@/***************************************************************************
+ * $Id: modify.c,v 1.57 2011/08/06 15:22:51 rsd Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: modify.c                                       Part of FieryMUD *
+ *  Usage: Run-time modification of game variables                         *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "utils.h"
+#include "interpreter.h"
+#include "commands.h"
+#include "handler.h"
+#include "db.h"
+#include "comm.h"
+#include "casting.h"
+#include "mail.h"
+#include "olc.h"
+#include "clan.h"
+#include "skills.h"
+#include "math.h"
+#include "dg_scripts.h"
+#include "screen.h"
+#include "modify.h"
+#include "strings.h"
+
+void parse_action(int command, char *string, struct descriptor_data *d);
+
+ /* action modes for parse_action */
+#define PARSE_FORMAT       0
+#define PARSE_REPLACE      1
+#define PARSE_HELP         2
+#define PARSE_DELETE       3
+#define PARSE_INSERT       4
+#define PARSE_LIST_NORM    5
+#define PARSE_LIST_NUM     6
+#define PARSE_EDIT         7
+
+char *string_fields[] =
+{
+  "name",
+  "short",
+  "long",
+  "description",
+  "title",
+  "delete-description",
+  "\n"
+};
+
+
+/* maximum length for text field x+1 */
+int length[] =
+{
+  15,
+  60,
+  256,
+  240,
+  60
+};
+
+
+/* ************************************************************************
+*  modification of malloc'ed strings                                      *
+************************************************************************ */
+
+/* Basic API function to start writing somewhere. */
+void string_write_limit(struct descriptor_data *d, char **writeto, size_t len, int maxlines)
+{
+  if (!writeto)
+    return;
+
+  if (d->character && !IS_NPC(d->character))
+    SET_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
+
+  /* A pointer to the actual string you are editing. */
+  d->str = writeto;
+  /* The abort buffer: a copy of what you originally edited */
+  d->backstr = (writeto && *writeto && **writeto) ? strdup(*writeto) : NULL;
+  /* The maximum length the final string may consume */
+  d->max_str = len;
+  /* Zero mail_to to make sure the string editor doesn't try to mail
+   * someone.  That means if you use this function with the mailer,
+   * you need to set mail_to after calling this. */
+  d->mail_to = 0;
+  /* If there's a limitation on the number of lines. We do this to ensure
+   * that players don't enter many pages of newlines. */
+  d->max_buffer_lines = maxlines;
+
+  /* Print out data */
+  if (d->backstr) {
+    if (d->character && PRF_FLAGGED(d->character, PRF_LINENUMS))
+      parse_action(PARSE_LIST_NUM, "", d);
+    else
+      write_to_output(d->backstr, d);
+  }
+}
+
+/* Start writing when you don't care about the number of lines. */
+void string_write(struct descriptor_data *d, char **writeto, size_t len)
+{
+   string_write_limit(d, writeto, len, 0);
+}
+
+void mail_write(struct descriptor_data *d, char **writeto, size_t len, long recipient)
+{
+  if (!writeto)
+    CREATE(writeto, char *, 1);
+  string_write(d, writeto, len);
+  d->mail_to = recipient;
+}
+
+/*
+ * Handle some editor commands.
+ */
+void parse_action(int command, char *string, struct descriptor_data *d)
+{
+  int indent = 0, rep_all = 0, flags = 0, replaced;
+  size_t total_len;
+  register int j = 0;
+  int i, line_low, line_high;
+  char *s, *t, temp;
+
+  switch (command) {
+  case PARSE_HELP:
+    write_to_output("Editor command formats: /<letter>\r\n\r\n"
+                    "/a         -  aborts editor\r\n"
+                    "/c         -  clears buffer\r\n"
+                    "/d#        -  deletes a line #\r\n"
+                    "/e# <text> -  changes the line at # with <text>\r\n", d);
+    if (STATE(d) == CON_TRIGEDIT)
+      write_to_output("/f#        -  formats text with given indentation amount\r\n", d);
+    else
+      write_to_output("/f         -  formats text\r\n"
+                      "/fi        -  indented formatting of text\r\n", d);
+    write_to_output("/h         -  list text editor commands\r\n"
+                    "/i# <text> -  inserts <text> before line #\r\n"
+                    "/l         -  lists buffer\r\n"
+                    "/n         -  lists buffer with line numbers\r\n"
+                    "/r 'a' 'b' -  replace 1st occurrence of text <a> in buffer with text <b>\r\n"
+                    "/ra 'a' 'b'-  replace all occurrences of text <a> within buffer with text <b>\r\n"
+                    "              usage: /r[a] 'pattern' 'replacement'\r\n"
+                    "/s         -  saves text\r\n", d);
+    break;
+  case PARSE_FORMAT:
+    if (STATE(d) == CON_TRIGEDIT) {
+      skip_spaces(&string);
+      i = is_number(string) ? atoi(string) : 3;
+      replaced = format_script(d, i);
+      if (replaced)
+        write_to_output("Script formatted.\r\n", d);
+      else
+        write_to_output("Script not formatted.\r\n", d);
+      return;
+    }
+    while (isalpha(string[j]) && j < 2) {
+      if (string[j] == 'i' && !indent) {
+        indent = TRUE;
+        flags += FORMAT_INDENT;
+      }
+      ++j;
+    }
+    format_text(d->str, flags, d, d->max_str);
+    sprintf(buf, "Text formatted with%s indent.\r\n", (indent ? "" : "out"));
+    write_to_output(buf, d);
+    break;
+  case PARSE_REPLACE:
+    while (isalpha(string[j]) && j < 2) {
+      switch (string[j]) {
+      case 'a':
+        if (!indent)
+          rep_all = 1;
+        break;
+      default:
+        break;
+      }
+      j++;
+    }
+    if ((s = strtok(string, "'")) == NULL) {
+      write_to_output("Invalid format.\r\n", d);
+      return;
+    } else if ((s = strtok(NULL, "'")) == NULL) {
+      write_to_output("Target string must be enclosed in single quotes.\r\n", d);
+      return;
+    } else if ((t = strtok(NULL, "'")) == NULL) {
+      write_to_output("No replacement string.\r\n", d);
+      return;
+    } else if ((t = strtok(NULL, "'")) == NULL) {
+      write_to_output("Replacement string must be enclosed in single quotes.\r\n", d);
+      return;
+    } else if ((total_len = ((strlen(t) - strlen(s)) + strlen(*d->str))) <= d->max_str) {
+      if ((replaced = replace_str(d->str, s, t, rep_all, d->max_str)) > 0) {
+        sprintf(buf, "Replaced %d occurrence%sof '%s' with '%s'.\r\n", replaced, ((replaced != 1) ? "s " : " "), s, t);
+        write_to_output(buf, d);
+      } else if (replaced == 0) {
+        sprintf(buf, "String '%s' not found.\r\n", s);
+        write_to_output(buf, d);
+      } else
+        write_to_output("ERROR: Replacement string causes buffer overflow, aborted replace.\r\n", d);
+    } else
+      write_to_output("Not enough space left in buffer.\r\n", d);
+    break;
+  case PARSE_DELETE:
+    switch (sscanf(string, " %d - %d ", &line_low, &line_high)) {
+    case 0:
+      write_to_output("You must specify a line number or range to delete.\r\n", d);
+      return;
+    case 1:
+      line_high = line_low;
+      break;
+    case 2:
+      if (line_high < line_low) {
+        write_to_output("That range is invalid.\r\n", d);
+        return;
+      }
+      break;
+    }
+
+    i = 1;
+    total_len = 1;
+    if ((s = *d->str) == NULL) {
+      write_to_output("Buffer is empty.\r\n", d);
+      return;
+    } else if (line_low > 0) {
+      while (s && (i < line_low))
+         if ((s = strchr(s, '\n')) != NULL) {
+           i++;
+          s++;
+         }
+      if ((i < line_low) || (s == NULL)) {
+         write_to_output("Line(s) out of range; not deleting.\r\n", d);
+        return;
+      }
+
+      t = s;
+      while (s && (i < line_high))
+         if ((s = strchr(s, '\n')) != NULL) {
+          i++;
+          total_len++;
+          s++;
+         }
+      if ((s) && ((s = strchr(s, '\n')) != NULL)) {
+        s++;
+        while (*s != '\0')
+          *(t++) = *(s++);
+      } else
+        total_len--;
+      *t = '\0';
+      RECREATE(*d->str, char, strlen(*d->str) + 3);
+
+      sprintf(buf, "%d line%sdeleted.\r\n", total_len,
+              ((total_len != 1) ? "s " : " "));
+      write_to_output(buf, d);
+    } else {
+      write_to_output("Invalid line numbers to delete must be higher than 0.\r\n", d);
+      return;
+    }
+    break;
+  case PARSE_LIST_NORM:
+    /*
+     * Note: Rv's buf, buf1, buf2, and arg variables are defined to 32k so
+     * they are probly ok for what to do here.
+     */
+    *buf = '\0';
+    if (*string != '\0')
+      switch (sscanf(string, " %d - %d ", &line_low, &line_high)) {
+      case 0:
+        line_low = 1;
+        line_high = 999999;
+        break;
+      case 1:
+        line_high = line_low;
+        break;
+      } else {
+        line_low = 1;
+        line_high = 999999;
+      }
+
+    if (line_low < 1) {
+      write_to_output("Line numbers must be greater than 0.\r\n", d);
+      return;
+    } else if (line_high < line_low) {
+      write_to_output("That range is invalid.\r\n", d);
+      return;
+    }
+    *buf = '\0';
+    if ((line_high < 999999) || (line_low > 1))
+      sprintf(buf, "Current buffer range [%d - %d]:\r\n", line_low, line_high);
+    i = 1;
+    total_len = 0;
+    s = *d->str;
+    while (s && (i < line_low))
+      if ((s = strchr(s, '\n')) != NULL) {
+        i++;
+        s++;
+      }
+    if ((i < line_low) || (s == NULL)) {
+      write_to_output("Line(s) out of range; no buffer listing.\r\n", d);
+      return;
+    }
+    t = s;
+    while (s && (i <= line_high))
+      if ((s = strchr(s, '\n')) != NULL) {
+        i++;
+        total_len++;
+        s++;
+      }
+    if (s) {
+      temp = *s;
+      *s = '\0';
+      strcat(buf, t);
+      *s = temp;
+    } else
+      strcat(buf, t);
+    /*
+     * This is kind of annoying...but some people like it.
+     */
+#if 0
+    sprintf(buf, "%s\r\n%d line%sshown.\r\n", buf, total_len,
+            ((total_len != 1)?"s ":" "));
+#endif
+    page_string_desc(d, buf);
+    break;
+  case PARSE_LIST_NUM:
+    /*
+     * Note: Rv's buf, buf1, buf2, and arg variables are defined to 32k so
+     * they are probly ok for what to do here.
+     */
+    *buf = '\0';
+    if (*string != '\0')
+      switch (sscanf(string, " %d - %d ", &line_low, &line_high)) {
+      case 0:
+        line_low = 1;
+        line_high = 999999;
+        break;
+      case 1:
+        line_high = line_low;
+        break;
+      } else {
+        line_low = 1;
+        line_high = 999999;
+      }
+
+    if (line_low < 1) {
+      write_to_output("Line numbers must be greater than 0.\r\n", d);
+      return;
+    }
+    if (line_high < line_low) {
+      write_to_output("That range is invalid.\r\n", d);
+      return;
+    }
+    *buf = '\0';
+    i = 1;
+    total_len = 0;
+    s = *d->str;
+    while (s && (i < line_low))
+      if ((s = strchr(s, '\n')) != NULL) {
+        i++;
+        s++;
+      }
+    if ((i < line_low) || (s == NULL)) {
+      write_to_output("Line(s) out of range; no buffer listing.\r\n", d);
+      return;
+    }
+    t = s;
+    while (s && (i <= line_high))
+      if ((s = strchr(s, '\n')) != NULL) {
+        i++;
+        total_len++;
+        s++;
+        temp = *s;
+        *s = '\0';
+        sprintf(buf, "%s%4d: ", buf, (i - 1));
+        strcat(buf, t);
+        *s = temp;
+        t = s;
+      }
+    if (s && t) {
+      temp = *s;
+      *s = '\0';
+      strcat(buf, t);
+      *s = temp;
+    } else if (t)
+      strcat(buf, t);
+    page_string_desc(d, buf);
+    break;
+
+  case PARSE_INSERT:
+    half_chop(string, buf, buf2);
+    if (*buf == '\0') {
+      write_to_output("You must specify a line number before which to insert text.\r\n", d);
+      return;
+    }
+    line_low = atoi(buf);
+    strcat(buf2, "\r\n");
+
+    i = 1;
+    *buf = '\0';
+    if ((s = *d->str) == NULL) {
+      write_to_output("Buffer is empty, nowhere to insert.\r\n", d);
+      return;
+    }
+    if (line_low > 0) {
+      while (s && (i < line_low))
+         if ((s = strchr(s, '\n')) != NULL) {
+          i++;
+          s++;
+         }
+      if ((i < line_low) || (s == NULL)) {
+        write_to_output("Line number out of range; insert aborted.\r\n", d);
+        return;
+      }
+      temp = *s;
+      *s = '\0';
+      if ((strlen(*d->str) + strlen(buf2) + strlen(s + 1) + 3) > d->max_str) {
+        *s = temp;
+        write_to_output("Insert text pushes buffer over maximum size, insert aborted.\r\n", d);
+        return;
+      }
+      if (*d->str && (**d->str != '\0'))
+        strcat(buf, *d->str);
+      *s = temp;
+      strcat(buf, buf2);
+      if (s && (*s != '\0'))
+        strcat(buf, s);
+      RECREATE(*d->str, char, strlen(buf) + 3);
+
+      strcpy(*d->str, buf);
+      write_to_output("Line inserted.\r\n", d);
+    } else {
+      write_to_output("Line number must be higher than 0.\r\n", d);
+      return;
+    }
+    break;
+
+  case PARSE_EDIT:
+    half_chop(string, buf, buf2);
+    if (*buf == '\0') {
+      write_to_output("You must specify a line number at which to change text.\r\n", d);
+      return;
+    }
+    line_low = atoi(buf);
+    strcat(buf2, "\r\n");
+
+    i = 1;
+    *buf = '\0';
+    if ((s = *d->str) == NULL) {
+      write_to_output("Buffer is empty, nothing to change.\r\n", d);
+      return;
+    }
+    if (line_low > 0) {
+      /*
+       * Loop through the text counting \\n characters until we get to the line/
+       */
+      while (s && (i < line_low))
+         if ((s = strchr(s, '\n')) != NULL) {
+          i++;
+          s++;
+         }
+      /*
+       * Make sure that there was a THAT line in the text.
+       */
+      if ((i < line_low) || (s == NULL)) {
+        write_to_output("Line number out of range; change aborted.\r\n", d);
+        return;
+      }
+      /*
+       * If s is the same as *d->str that means I'm at the beginning of the
+       * message text and I don't need to put that into the changed buffer.
+       */
+      if (s != *d->str) {
+        /*
+         * First things first .. we get this part into the buffer.
+         */
+        temp = *s;
+        *s = '\0';
+        /*
+         * Put the first 'good' half of the text into storage.
+         */
+        strcat(buf, *d->str);
+        *s = temp;
+      }
+      /*
+       * Put the new 'good' line into place.
+       */
+      strcat(buf, buf2);
+      if ((s = strchr(s, '\n')) != NULL) {
+        /*
+         * This means that we are at the END of the line, we want out of
+         * there, but we want s to point to the beginning of the line
+         * AFTER the line we want edited
+         */
+        s++;
+        /*
+         * Now put the last 'good' half of buffer into storage.
+         */
+        strcat(buf, s);
+      }
+      /*
+       * Check for buffer overflow.
+       */
+      if (strlen(buf) > d->max_str) {
+        write_to_output("Change causes new length to exceed buffer maximum size, aborted.\r\n", d);
+        return;
+      }
+      /*
+       * Change the size of the REAL buffer to fit the new text.
+       */
+      RECREATE(*d->str, char, strlen(buf) + 3);
+      strcpy(*d->str, buf);
+      write_to_output("Line changed.\r\n", d);
+    } else {
+      write_to_output("Line number must be higher than 0.\r\n", d);
+      return;
+    }
+    break;
+  default:
+    write_to_output("Invalid option.\r\n", d);
+    mudlog("SYSERR: invalid command passed to parse_action", BRF, LVL_HEAD_C, TRUE);
+    return;
+  }
+}
+
+
+/* Add user input to the 'current' string (as defined by d->str) */
+void string_add(struct descriptor_data *d, char *str)
+{
+  int terminator = 0, action = 0;
+  register int i = 2, j = 0;
+  char actions[MAX_INPUT_LENGTH], *s;
+
+  delete_doubledollar(str);
+
+  if ((action = (*str == '/'))) {
+    while (str[i] != '\0') {
+      actions[j] = str[i];
+      i++;
+      j++;
+    }
+    actions[j] = '\0';
+    *str = '\0';
+    switch (str[1]) {
+    case 'a':
+      terminator = 2;                /* Working on an abort message, */
+      break;
+    case 'c':
+      if (*(d->str)) {
+        free(*d->str);
+        *(d->str) = NULL;
+        write_to_output("Current buffer cleared.\r\n", d);
+      } else
+        write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 'd':
+      if (*d->str)
+         parse_action(PARSE_DELETE, actions, d);
+      else
+         write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 'e':
+      if (*d->str)
+         parse_action(PARSE_EDIT, actions, d);
+      else
+         write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 'f':
+      if (*(d->str))
+        parse_action(PARSE_FORMAT, actions, d);
+      else
+        write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 'i':
+      if (*(d->str))
+        parse_action(PARSE_INSERT, actions, d);
+      else
+        write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 'h':
+      parse_action(PARSE_HELP, actions, d);
+      break;
+    case 'l':
+      if (*d->str)
+        parse_action(PARSE_LIST_NORM, actions, d);
+      else
+        write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 'n':
+      if (*d->str)
+        parse_action(PARSE_LIST_NUM, actions, d);
+      else
+        write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 'r':
+      if (*d->str)
+         parse_action(PARSE_REPLACE, actions, d);
+      else
+         write_to_output("Current buffer empty.\r\n", d);
+      break;
+    case 's':
+      terminator = 1;
+      *str = '\0';
+      break;
+    default:
+      write_to_output("Invalid option.\r\n", d);
+      break;
+    }
+  }
+
+  /* Comparisons below this point are made with d->max_str - 3.
+   * That leaves 3 spaces after the last text entered by the user: \r\n\0   */
+   if (!(*d->str)) {
+      if (strlen(str) > d->max_str - 3) {
+         send_to_char("String too long - Truncated.\r\n", d->character);
+         *(str + d->max_str) = '\0';
+      }
+      CREATE(*d->str, char, strlen(str) + 3);
+      strcpy(*d->str, str);
+      if (strlen(str))
+         strcat(*d->str, "\r\n");
+   } else if (!action) {
+      if (strlen(str) + strlen(*d->str) > d->max_str - 3) {
+         send_to_char("String too long, limit reached on message.  Last line ignored.\r\n",
+            d->character);
+         return;
+      } else {
+         if (!(*d->str = (char *)realloc(*d->str, strlen(*d->str) +
+               strlen(str) + 3))) {
+            perror("string_add");
+            exit(1);
+         }
+         strcat(*d->str, str);
+         strcat(*d->str, "\r\n");
+      }
+   }
+
+   if (terminator) {
+      /*. OLC Edits .*/
+      extern void oedit_disp_menu(struct descriptor_data *d);
+      extern void oedit_disp_extradesc_menu(struct descriptor_data *d);
+      extern void redit_disp_menu(struct descriptor_data *d);
+      extern void redit_disp_extradesc_menu(struct descriptor_data *d);
+      extern void redit_disp_exit_menu(struct descriptor_data *d);
+      extern void medit_disp_menu(struct descriptor_data *d);
+      extern void hedit_disp_menu(struct descriptor_data *d);
+      extern void trigedit_disp_menu(struct descriptor_data *d);
+
+      /* Check for too many lines */
+      if (terminator == 1 && d->max_buffer_lines > 0 && d->str && *d->str) {
+         for (i = 0, s = *d->str; s; )
+            if ((s = strchr(s, '\n')) != NULL) {
+               i++;
+               s++;
+            }
+         if (i > d->max_buffer_lines) {
+            sprintf(buf, "The buffer has %d lines, which is over the limit of %d.\r\n",
+                  i, d->max_buffer_lines);
+            write_to_output(buf, d);
+            write_to_output("Unable to save.  Use /a if you want to abort.\r\n", d);
+            return;
+         }
+      }
+
+    /*
+     * Here we check for the abort option and reset the pointers.
+     */
+      if ((terminator == 2) &&
+            ((STATE(d) == CON_REDIT) ||
+            (STATE(d) == CON_MEDIT) ||
+            (STATE(d) == CON_OEDIT) ||
+            (STATE(d) == CON_TRIGEDIT) ||
+            (STATE(d) == CON_HEDIT) ||
+            (STATE(d) == CON_EXDESC) ||
+            (STATE(d) == CON_MEDIT))) {
+         free(*d->str);
+         if (d->backstr) {
+            *d->str = d->backstr;
+         } else
+            *d->str = NULL;
+
+         d->backstr = NULL;
+         d->str = NULL;
+      } else if ((d->str) && (*d->str) && (**d->str == '\0')) {
+         free(*d->str);
+         if (STATE(d) == CON_EXDESC)
+            *d->str = strdup("");
+         else
+            *d->str = strdup("Nothing.\r\n");
+      }
+
+      if (STATE(d) == CON_MEDIT)
+         medit_disp_menu(d);
+      if (STATE(d) == CON_TRIGEDIT)
+         trigedit_disp_menu(d);
+      if (STATE(d) == CON_GEDIT)
+         gedit_disp_menu(d);
+      if (STATE(d) == CON_OEDIT) {
+         switch(OLC_MODE(d)) {
+            case OEDIT_ACTDESC:
+               oedit_disp_menu(d);
+               break;
+            case OEDIT_EXTRADESC_DESCRIPTION:
+               oedit_disp_extradesc_menu(d);
+               break;
+         }
+      } else if (STATE(d) == CON_REDIT) {
+         switch (OLC_MODE(d)) {
+            case REDIT_DESC:
+               redit_disp_menu(d);
+               break;
+            case REDIT_EXIT_DESCRIPTION:
+               redit_disp_exit_menu(d);
+               break;
+            case REDIT_EXTRADESC_DESCRIPTION:
+               redit_disp_extradesc_menu(d);
+               break;
+         }
+      } else if (STATE(d) == CON_HEDIT)
+         hedit_disp_menu(d);
+      else if (!d->connected && (PLR_FLAGGED(d->character, PLR_MAILING))) {
+         if ((terminator == 1) && *d->str) {
+            store_mail(d->mail_to, GET_IDNUM(d->character), d->mail_vnum, *d->str);
+            write_to_output("Message sent!\r\n", d);
+         } else {
+            write_to_output("Mail aborted.\r\n", d);
+            if (d->mail_vnum != NOTHING) {
+               struct obj_data *obj = read_object(d->mail_vnum, VIRTUAL);
+               if (obj)
+                 obj_to_char(obj, d->character);
+            }
+         }
+         d->mail_to = 0;
+         d->mail_vnum = NOTHING;
+         free(*d->str);
+         free(d->str);
+         /*  write_to_output("Message sent!\r\n", d);
+        if (!IS_NPC(d->character))
+        REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);*/
+      } else if (STATE(d) == CON_EXDESC) {
+         if (terminator != 1)
+            write_to_output("Description aborted.\r\n", d);
+         STATE(d) = CON_PLAYING;
+      } else if (!d->connected && d->character && !IS_NPC(d->character)) {
+         if (terminator == 1) {
+            if (strlen(*d->str) == 0) {
+               free(*d->str);
+               *d->str = NULL;
+            }
+         } else {
+            free(*d->str);
+            if (d->backstr)
+               *d->str = d->backstr;
+            else
+               *d->str = NULL;
+            d->backstr = NULL;
+            write_to_output("Message aborted.\r\n", d);
+         }
+      }
+      if (d->character && !IS_NPC(d->character)) {
+         REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
+         REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
+      }
+      if (d->backstr)
+         free(d->backstr);
+      d->backstr = NULL;
+      d->str = NULL;
+   }
+}
+
+
+
+/* **********************************************************************
+ *  Modification of character skills                                     *
+ ********************************************************************** */
+
+/* made skillset <vict> only show nonzero skills -321 3/14/00 */
+ACMD(do_skillset)
+{
+  struct char_data *vict;
+  char name[100], buf2[100];
+  int skill, value, i, j, k;
+
+  argument = one_argument(argument, name);
+
+  if (!*name) {                        /* no arguments. print an informative text */
+    send_to_char("Syntax: skillset <name> '<skill>' <value>\r\n", ch);
+    strcpy(buf, "Skill being one of the following:\r\n");
+    for (j = 0, k = 0; j <= TOP_SKILL; ++j) {
+      i = skill_sort_info[j];
+      if (*skills[i].name == '!')
+        continue;
+      sprintf(buf + strlen(buf), "%-18.18s ", skills[i].name);
+      if (k % 4 == 3) { /* last column */
+        strcat(buf, "\r\n");
+        send_to_char(buf, ch);
+        *buf = '\0';
+      }
+      ++k;
+    }
+    if (*buf)
+      send_to_char(buf, ch);
+    send_to_char("\r\n", ch);
+    return;
+  }
+  if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, name)))) {
+    send_to_char(NOPERSON, ch);
+    return;
+  }
+  skip_spaces(&argument);
+
+  /* If there is no chars in argument */
+  if (!*argument){
+    if (GET_LEVEL(vict) < GET_LEVEL(ch) || ch==vict) {
+      strcpy(buf, "Current values of skills:\r\n");
+      for (i = 0; i <= TOP_SKILL; ++i) {
+        if (*skills[i].name == '!' || !GET_ISKILL(vict,i))
+          continue;
+        sprintf(buf, "%s%-20.20s %d\r\n", buf, skills[i].name, GET_ISKILL(vict,i));
+      }
+      page_string(ch, buf);
+    }
+    else
+      send_to_char("You are unable to divine any information.\r\n", ch);
+    return;
+  }
+
+  if (*argument == '*') {
+    for (i = 1; i <= TOP_SKILL; ++i) {
+      SET_SKILL(vict, i, 1000);
+      if (str_cmp(skills[i].name, "!UNUSED!")) {
+        sprintf(buf2, "You change %s's skill level in %s to 100.\r\n", GET_NAME(vict),
+                skills[i].name);
+        send_to_char(buf2, ch);
+      }
+    }
+    return;
+  }
+
+  argument = delimited_arg(argument, arg, '\'');
+
+  if ((skill = find_talent_num(arg, TALENT)) <= 0) {
+    send_to_char("Unrecognized skill.\r\n", ch);
+    return;
+  }
+
+  argument = one_argument(argument, arg);
+
+  if (!*arg) {
+    send_to_char("Learned value expected.\r\n", ch);
+    return;
+  } else if ((value = atoi(arg))< 0) {
+    send_to_char("Minimum value for learned is 0.\r\n", ch);
+    return;
+  } else if (value > 1000) {
+    send_to_char("Max value for learned is 1000.\r\n", ch);
+    return;
+  } else if (IS_NPC(vict)) {
+    send_to_char("You can't set NPC skills.\r\n", ch);
+    return;
+  }
+  sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict),
+          skills[skill].name, value);
+  mudlog(buf2, BRF, -1, TRUE);
+
+  SET_SKILL(vict, skill, value);
+
+  sprintf(buf2, "You change %s's %s to %d.\r\n", GET_NAME(vict),
+          skills[skill].name, value);
+  send_to_char(buf2, ch);
+
+
+}
+
+/******************/
+/*   PAGINATION   */
+/******************/
+
+#define PAGE_WIDTH      120
+#define MAX_MORTAL_PAGEBUF  81920
+#define MAX_IMMORT_PAGEBUF  512000
+
+char paging_pbuf[MAX_STRING_LENGTH];
+char paging_buf[MAX_STRING_LENGTH];
+
+static int get_page_length(struct descriptor_data *d)
+{
+   int page_length = 22;
+
+   if (d) {
+      if (d->original)
+         page_length = GET_PAGE_LENGTH(d->original);
+      else if (d->character)
+         page_length = GET_PAGE_LENGTH(d->character);
+      if (page_length <= 0 || page_length > 50)
+         page_length = 22;
+   }
+
+   return page_length;
+}
+
+static void add_paging_element(struct descriptor_data *d, struct paging_line *pl)
+{
+   int page_length = get_page_length(d);
+
+   if (d->paging_tail) {
+      d->paging_tail->next = pl;
+      d->paging_tail = pl;
+   } else {
+      d->paging_lines = pl;
+      d->paging_tail = pl;
+   }
+
+   /* Recalculate number of pages */
+   d->paging_numlines++;
+   d->paging_numpages = d->paging_numlines / page_length;
+   if (d->paging_numlines % page_length)
+      d->paging_numpages++;
+   d->paging_bufsize += sizeof(struct paging_line) + strlen(pl->line) + 1;
+}
+
+static bool ok_paging_add(struct descriptor_data *d, int size)
+{
+   int maxbuf = MAX_MORTAL_PAGEBUF;
+
+   if (d->paging_skipped) {
+      d->paging_skipped++;
+      return FALSE;
+   }
+
+   if (d->original) {
+      if (GET_LEVEL(d->original) < LVL_IMMORT)
+         maxbuf = MAX_MORTAL_PAGEBUF;
+      else
+         maxbuf = MAX_IMMORT_PAGEBUF;
+   } else if (d->character) {
+      if (GET_LEVEL(d->character) < LVL_IMMORT)
+         maxbuf = MAX_MORTAL_PAGEBUF;
+      else
+         maxbuf = MAX_IMMORT_PAGEBUF;
+   }
+
+   if (d->paging_bufsize + size > maxbuf) {
+      d->paging_skipped++;
+      return FALSE;
+   } else {
+      return TRUE;
+   }
+}
+
+static void add_paging_fragment(struct descriptor_data *d, const char *line, int len)
+{
+   struct paging_line *pl;
+
+   if (ok_paging_add(d, len + 1)) {
+      CREATE(pl, struct paging_line, 1);
+      pl->line = (char *)(malloc(len + 1));
+      memcpy(pl->line, line, len + 1);
+      pl->line[len] = '\0';
+
+      add_paging_element(d, pl);
+   }
+}
+
+static void paging_addstr(struct descriptor_data *d, const char *str)
+{
+   int col = 1, spec_code = FALSE;
+   const char *line_start, *s;
+   char *tmp;
+
+   if (d->paging_fragment) {
+      sprintf(paging_buf, "%s%s", d->paging_fragment, str);
+      free(d->paging_fragment);
+      d->paging_fragment = NULL;
+      line_start = paging_buf;
+   } else {
+      line_start = str;
+   }
+
+   s = line_start;
+
+   for (;; s++) {
+      /* End of string */
+      if (*s == '\0') {
+         if (s != line_start) {
+            tmp = strdup(line_start);
+            d->paging_fragment = tmp;
+         }
+         return;
+
+      /* Check for the begining of an ANSI color code block. */
+      } else if (*s == '\x1B' && !spec_code)
+         spec_code = TRUE;
+
+      /* Check for the end of an ANSI color code block. */
+      else if (*s == 'm' && spec_code)
+         spec_code = FALSE;
+
+      /* Check for inline ansi too! */
+      else if ((*s == CREL || *s == CABS) && !spec_code) {
+         s++;
+         continue;
+
+      /* Check for everything else. */
+      } else if (!spec_code) {
+         /* Carriage return puts us in column one. */
+         if (*s == '\r')
+            col = 1;
+         /* Newline puts us on the next line. */
+         else if (*s == '\n') {
+            add_paging_fragment(d, line_start, s - line_start + 1);
+            line_start = s + 1;
+
+         /* We need to check here and see if we are over the page width,
+          * and if so, compensate by going to the begining of the next line. */
+         } else if (col++ > PAGE_WIDTH) {
+            col = 1;
+            add_paging_fragment(d, line_start, s - line_start);
+            line_start = s;
+         }
+      }
+   }
+}
+
+void paging_printf(const struct char_data *ch, const char *messg, ...)
+{
+   va_list args;
+
+   if (ch->desc && messg && *messg) {
+      va_start(args, messg);
+      vsnprintf(paging_pbuf, sizeof(paging_pbuf), messg, args);
+      va_end(args);
+      paging_addstr(ch->desc, paging_pbuf);
+   }
+}
+
+void desc_paging_printf(struct descriptor_data *d, const char *messg, ...)
+{
+   va_list args;
+
+   if (messg && *messg) {
+      va_start(args, messg);
+      vsnprintf(paging_pbuf, sizeof(paging_pbuf), messg, args);
+      va_end(args);
+      paging_addstr(d, paging_pbuf);
+   }
+}
+
+void free_paged_text(struct descriptor_data *d)
+{
+   struct paging_line *pl, *plnext;
+
+   for (pl = d->paging_lines; pl; pl = plnext) {
+      free(pl->line);
+      plnext = pl->next;
+      free(pl);
+   }
+   if (d->paging_fragment) {
+      free(d->paging_fragment);
+      d->paging_fragment = NULL;
+   }
+   d->paging_lines = NULL;
+   d->paging_tail = NULL;
+   d->paging_numlines = 0;
+   d->paging_numpages = 0;
+   d->paging_curpage = 0;
+   d->paging_bufsize = 0;
+   d->paging_skipped = 0;
+}
+
+struct paging_line *paging_goto_page(struct descriptor_data *d, int page)
+{
+   int destpage = page;
+   int page_length = get_page_length(d);
+   int i, j;
+   struct paging_line *pl;
+
+   /* Decide exactly which page to go to */
+   if (destpage < 0)
+      destpage = 0;
+   else if (destpage >= PAGING_NUMPAGES(d))
+      destpage = PAGING_NUMPAGES(d) - 1;
+
+   PAGING_PAGE(d) = destpage;
+
+   /* Go to it */
+   pl = d->paging_lines;
+   for (i = 0; i < destpage; i++)
+      for (j = 0; j < page_length; j++) {
+         if (!pl->next) {
+            sprintf(buf, "SYSERR: Pager tried to go to page %d, but there were only %d lines at %d per page!",
+                  destpage + 1, j + (i + 1) * page_length, page_length);
+            log("%s",buf);
+         }
+         pl = pl->next;
+      }
+
+   return pl;
+}
+
+void get_paging_input(struct descriptor_data *d, char *input)
+{
+   int i, page_length;
+   struct paging_line *line;
+
+   one_argument(input, buf);
+
+   /* Q is for quit. :) */
+   if (LOWER(*buf) == 'q') {
+      free_paged_text(d);
+      return;
+   }
+   /* R is for refresh */
+   else if (LOWER(*buf) == 'r')
+      line = paging_goto_page(d, PAGING_PAGE(d));
+
+   /* B is for back */
+   else if (LOWER(*buf) == 'b')
+      line = paging_goto_page(d, PAGING_PAGE(d) - 1);
+
+   /* A digit: goto a page */
+   else if (isdigit(*buf))
+      line = paging_goto_page(d, atoi(buf) - 1);
+
+   else if (*buf) {
+   /* Other input: quit the pager */
+      free_paged_text(d);
+      return;
+   } else
+   /* No input: goto the next page */
+      line = paging_goto_page(d, PAGING_PAGE(d) + 1);
+
+   page_length = get_page_length(d);
+   for (i = 0; i < page_length && line; i++) {
+      send_to_char(line->line, d->character);
+      line = line->next;
+   }
+
+   if (!line)
+      free_paged_text(d);
+}
+
+void start_paging_desc(struct descriptor_data *d)
+{
+   int i, page_length = get_page_length(d);
+   struct paging_line *line = d->paging_lines;
+
+   PAGING_PAGE(d) = 0;
+
+   /* Now that the show is on the road, any fragmentary text must be put in
+    * the list of lines with the rest of the text */
+   if (d->paging_fragment) {
+      add_paging_fragment(d, paging_buf, sprintf(paging_buf, "%s\r\n", d->paging_fragment));
+      free(d->paging_fragment);
+      d->paging_fragment = NULL;
+   }
+
+   /* Notify player if there was too much text to fit in the pager */
+   if (d->paging_skipped) {
+      sprintf(buf, "***   OVERFLOW  %d line%s skipped   ***\r\n\r\n",
+            d->paging_skipped, d->paging_skipped == 1 ? "" : "s");
+      send_to_char(buf, d->character);
+   }
+
+   /* Send the initial page of text */
+   for (i = 0; i < page_length && line; i++) {
+      send_to_char(line->line, d->character);
+      line = line->next;
+   }
+
+   /* Was there no more than one page? */
+   if (!line)
+      free_paged_text(d);
+}
+
+/* When you have been accumulating some text to someone and are finished,
+ * start the paging process. */
+void start_paging(struct char_data *ch)
+{
+   if (ch->desc)
+      start_paging_desc(ch->desc);
+}
+
+/* LEGACY !!! */
+void page_line(struct char_data *ch, char *str)
+{
+   if (ch->desc)
+      paging_addstr(ch->desc, str);
+}
+
+void page_string(struct char_data *ch, const char *str)
+{
+   if (ch->desc)
+      page_string_desc(ch->desc, str);
+}
+
+void page_string_desc(struct descriptor_data *d, const char *str)
+{
+   paging_addstr(d, str);
+   if (PAGING(d))
+      start_paging_desc(d);
+}
+
+
+/***************************************************************************
+ * $Log: modify.c,v $
+ * Revision 1.57  2011/08/06 15:22:51  rsd
+ * Fixed log(buf) to log(%s buf)
+ *
+ * Revision 1.56  2009/07/16 19:15:54  myc
+ * Moved command stuff from grant.c to commands.c
+ *
+ * Revision 1.55  2009/06/09 05:45:27  myc
+ * Removing the separate connection state for clan description
+ * editing.  It's no longer necessary with the new editor.
+ *
+ * Revision 1.54  2009/03/20 23:02:59  myc
+ * Remove text editor connection state.  Make paging input
+ * strings declared const.
+ *
+ * Revision 1.53  2009/03/20 20:19:51  myc
+ * Removing dependency upon old board system.
+ *
+ * Revision 1.52  2009/03/09 04:41:56  jps
+ * Put FORMAT_INDENT definition in strings.h
+ *
+ * Revision 1.51  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.50  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.49  2009/03/03 19:43:44  myc
+ * New target finding mechanism in find.c.
+ *
+ * Revision 1.48  2009/02/11 17:03:39  myc
+ * Make some functions static and add desc_paging_printf(),
+ * which is just like paging_printf, but it takes a descriptor
+ * instead of a character.
+ *
+ * Revision 1.47  2008/08/18 01:35:22  jps
+ * Use sprintf silly wabbit or you lose your text!!!!
+ *
+ * Revision 1.46  2008/08/16 08:25:40  jps
+ * Added a desc command so players can edit their descriptions in game.
+ *
+ * Revision 1.45  2008/08/15 03:59:08  jps
+ * Added pprintf for paging, and changed page_string to take a character.
+ *
+ * Revision 1.44  2008/08/14 15:40:29  jps
+ * Added pager buffer size limits.
+ *
+ * Revision 1.43  2008/08/14 09:45:22  jps
+ * Replaced the pager.
+ *
+ * Revision 1.42  2008/07/15 17:55:06  myc
+ * Gedit needs one string editor, so had to modify string_add.
+ *
+ * Revision 1.41  2008/07/13 06:34:59  myc
+ * Bug in 'skillset *': was overwriting player's player_specials pointer.
+ *
+ * Revision 1.40  2008/04/05 05:05:42  myc
+ * Removed SEND_TO_Q macro, so call write_to_output directly.
+ *
+ * Revision 1.39  2008/04/03 02:02:05  myc
+ * Upgraded ansi color handling code.
+ *
+ * Revision 1.38  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.37  2008/03/27 00:52:30  jps
+ * Increased line length so pagination will work when showing lists of mobs.
+ *
+ * Revision 1.36  2008/03/22 03:22:38  myc
+ * All invocations of the string editor now go through string_write()
+ * instead of messing with the descriptor variables itself.  Also added
+ * a toggle, LineNums, to decide whether to do /l or /n when entering
+ * the string editor.
+ *
+ * Revision 1.35  2008/03/21 16:02:05  myc
+ * Added info about script formatter to editor help.
+ *
+ * Revision 1.34  2008/03/21 15:58:34  myc
+ * Added a utility format scripts.
+ *
+ * Revision 1.33  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.32  2008/02/02 19:38:20  myc
+ * Adding string_write to set up a descriptor for string editing.
+ *
+ * Revision 1.31  2008/02/02 05:35:14  myc
+ * Making the skillset command have sorted output.
+ *
+ * Revision 1.30  2008/01/29 16:51:12  myc
+ * Moving skill names to the skilldef struct.
+ *
+ * Revision 1.29  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.28  2008/01/26 12:58:14  jps
+ * Using skills.h.
+ *
+ * Revision 1.27  2007/12/31 02:00:57  jps
+ * Made the general term for spells, skills, chants, and songs 'talent'.
+ * Fixed mskillset to handle all talents.
+ *
+ * Revision 1.26  2007/12/19 20:54:56  myc
+ * Added support editing clan descriptions to the line editor.
+ *
+ * Revision 1.25  2007/10/25 20:40:05  myc
+ * Fixed bug where if you tried to mail an object but aborted the message,
+ * you didn't get the object back.
+ *
+ * Revision 1.24  2007/10/13 05:05:13  myc
+ * do_skillset was using find_skill_num, which restricts the search
+ * to skills.  Is now using id_skill_spell.
+ *
+ * Revision 1.23  2007/10/11 20:14:48  myc
+ * Changed skill defines to support chants and songs as skills, but
+ * slightly distinguished from spells and skills.  TOP_SKILL is the
+ * old MAX_SKILLS.
+ *
+ * Revision 1.22  2007/10/02 02:52:27  myc
+ * Page length is now checked on the original player instead of the mob
+ * for switched/shapechanged players.
+ *
+ * Revision 1.21  2007/09/28 20:49:35  myc
+ * skillset uses the global buffer now.  It also uses delimited_arg(),
+ * instead of parsing the argument string itself.
+ *
+ * Revision 1.20  2007/09/15 05:03:46  myc
+ * Removed a potentially dangerous (small) buffer from the parse_action
+ * function.  It was also unneeded.
+ *
+ * Revision 1.19  2007/08/08 02:26:36  jps
+ * Typo fix
+ *
+ * Revision 1.18  2007/08/03 22:00:11  myc
+ * Fixed some \r\n typoes in send_to_chars.
+ *
+ * Revision 1.17  2007/07/19 22:19:34  jps
+ * Prevent an extra newline from being inserted into the buffer after /c.
+ * Compactify the /n display so that each line takes up only one line.
+ *
+ * Revision 1.16  2007/07/02 05:47:31  jps
+ * Inserted empty buffer checks for several editor commands that
+ * desperately needed it - you could open a new buffer, type /r 'this' 'that',
+ * and instantly crash the mud. Also inserted newline for the first
+ * line just as it is for subsequent lines.
+ *
+ * Revision 1.15  2007/07/02 04:49:05  jps
+ * Comment out some debugging code!
+ *
+ * Revision 1.14  2007/07/02 04:23:52  jps
+ * Adjust call to recently-fixed replace_str.
+ *
+ * Revision 1.13  2007/02/04 18:12:31  myc
+ * Page length now saves as a part of player specials.
+ *
+ * Revision 1.12  2006/11/23 00:36:24  jps
+ * Fix newline-appending and length-checking while editing near
+ * or past the limits of the given buffer in string_add.
+ *
+ * Revision 1.11  2004/11/11 23:29:19  rsd
+ * Altered the output for the help for posting on a board
+ * because the buffer was greater than the 509 bytes
+ * allowed for the compiler not to cry.
+ *
+ * Revision 1.10  2003/06/25 02:21:03  jjl
+ * Revised lay hands to not suck.
+ *
+ * Revision 1.9  2003/06/23 01:47:09  jjl
+ * Added a NOFOLLOW flag, and the "note" command, and show notes <player>
+ *
+ * Revision 1.8  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.7  2000/11/28 01:26:52  mtp
+ * removed some mobprog stuff
+ *
+ * Revision 1.6  2000/11/24 19:03:31  rsd
+ * Altered comment header and added back rlog messages from
+ * prior to the addition of the $log$ string.
+ *
+ * Revision 1.5  2000/03/26 21:16:23  cso
+ * made skillset <vict> show only nonzero skills
+ *
+ * Revision 1.4  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.3  1999/08/08 04:20:34  mud
+ * Changed one of the page_string functions so that if a bogus
+ * character is entered while paging, it falls out of the page
+ * and mops up the memory. Commented out the old send to char
+ * text below it.
+ *
+ * Revision 1.2  1999/01/31 17:54:05  mud
+ * Indented file
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.57
+log
+@Fixed log(buf) to log(%s buf)
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.56 2009/07/16 19:15:54 myc Exp $
+d127 2
+a128 1
+  int indent = 0, rep_all = 0, flags = 0, total_len, replaced;
+d1214 3
+@
+
+
+1.56
+log
+@Moved command stuff from grant.c to commands.c
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.55 2009/06/09 05:45:27 myc Exp myc $
+d1099 1
+a1099 1
+            log(buf);
+d1213 3
+@
+
+
+1.55
+log
+@Removing the separate connection state for clan description
+editing.  It's no longer necessary with the new editor.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.54 2009/03/20 23:02:59 myc Exp myc $
+d22 1
+a653 1
+      extern void gedit_disp_menu(struct descriptor_data *d);
+d1213 4
+@
+
+
+1.54
+log
+@Remove text editor connection state.  Make paging input
+strings declared const.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.53 2009/03/20 20:19:51 myc Exp myc $
+d681 1
+a681 2
+            (STATE(d) == CON_MEDIT) ||
+            (STATE(d) == CON_CLAN_DESC_EDIT))) {
+a749 12
+      } else if (STATE(d) == CON_CLAN_DESC_EDIT) {
+         int clan = find_clan_by_id(d->clan_id);
+         if (clan < 0)
+           write_to_output("That clan is no longer valid.\r\n", d);
+         else if (terminator != 1)
+           write_to_output("Edit aborted.\r\n", d);
+         else {
+           write_to_output("Clan description updated.\r\n", d);
+           save_clan(clan, REAL);
+         }
+         act("$n stops editing a clan description.", TRUE, d->character, 0, 0, TO_ROOM);
+         STATE(d) = CON_PLAYING;
+d1213 4
+@
+
+
+1.53
+log
+@Removing dependency upon old board system.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.52 2009/03/09 04:41:56 jps Exp myc $
+a534 1
+  FILE *fl;
+a680 1
+            (STATE(d) == CON_TEXTED) ||
+a762 19
+      } else if (STATE(d) == CON_TEXTED) {
+         if (terminator == 1) {
+            if (!(fl = fopen((char *)d->storage, "w"))) {
+               sprintf(buf, "SYSERR: Can't write file '%s'.", d->storage);
+               mudlog(buf, CMP, LVL_HEAD_C, TRUE);
+            } else {
+               if (*d->str) {
+                  fputs(stripcr(buf1, *d->str), fl);
+               }
+               fclose(fl);
+               sprintf(buf, "OLC: %s saves '%s'.", GET_NAME(d->character), d->storage);
+               mudlog(buf, CMP, LVL_GOD, TRUE);
+               write_to_output("Saved.\r\n", d);
+            }
+         } else write_to_output("Edit aborted.\r\n", d);
+         act("$n stops editing some scrolls.", TRUE, d->character, 0, 0, TO_ROOM);
+         free(d->storage);
+         d->storage = NULL;
+         STATE(d) = CON_PLAYING;
+d970 1
+a970 1
+static void add_paging_fragment(struct descriptor_data *d, char *line, int len)
+d984 1
+a984 1
+static void paging_addstr(struct descriptor_data *d, char *str)
+d987 2
+a988 1
+   char *line_start, *s, *tmp;
+d1210 1
+a1210 1
+void page_string(struct char_data *ch, char *str)
+d1216 1
+a1216 1
+void page_string_desc(struct descriptor_data *d, char *str)
+d1226 3
+@
+
+
+1.52
+log
+@Put FORMAT_INDENT definition in strings.h
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.51 2009/03/09 04:33:20 jps Exp jps $
+a26 1
+#include "boards.h"
+a748 4
+      } else if (d->mail_to >= BOARD_MAGIC) {
+         Board_save_board(d->mail_to - BOARD_MAGIC);
+         write_to_output("Post not aborted, use REMOVE <post #>.\r\n", d);
+         d->mail_to = 0;
+d1246 3
+@
+
+
+1.51
+log
+@Moved direction information from structs.h, constants.h, and constants.c
+into directions.h and directions.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.50 2009/03/08 23:34:14 jps Exp jps $
+d35 1
+a48 2
+#define FORMAT_INDENT                (1 << 0)
+
+d1251 4
+@
+
+
+1.50
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.49 2009/03/03 19:43:44 myc Exp jps $
+d48 2
+d1252 3
+@
+
+
+1.49
+log
+@New target finding mechanism in find.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.48 2009/02/11 17:03:39 myc Exp myc $
+d25 1
+a25 1
+#include "spells.h"
+d1250 3
+@
+
+
+1.48
+log
+@Make some functions static and add desc_paging_printf(),
+which is just like paging_printf, but it takes a descriptor
+instead of a character.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.47 2008/08/18 01:35:22 jps Exp myc $
+d850 1
+a850 1
+  if (!(vict = get_char_vis(ch, name))) {
+d1250 5
+@
+
+
+1.47
+log
+@Use sprintf silly wabbit or you lose your text!!!!
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.46 2008/08/16 08:25:40 jps Exp jps $
+d930 1
+a930 1
+int get_page_length(struct descriptor_data *d)
+d946 1
+a946 1
+void add_paging_element(struct descriptor_data *d, struct paging_line *pl)
+d966 1
+a966 1
+bool ok_paging_add(struct descriptor_data *d, int size)
+d995 1
+a995 1
+void add_paging_fragment(struct descriptor_data *d, char *line, int len)
+d1009 1
+a1009 1
+void paging_addstr(struct descriptor_data *d, char *str)
+d1080 12
+d1250 3
+@
+
+
+1.46
+log
+@Added a desc command so players can edit their descriptions in game.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.45 2008/08/15 03:59:08 jps Exp jps $
+d832 1
+a832 1
+    strcpy(buf, "Skill being one of the following:\n\r");
+d847 1
+a847 1
+    send_to_char("\n\r", ch);
+d876 1
+a876 1
+        sprintf(buf2, "You change %s's skill level in %s to 100.\n\r", GET_NAME(vict),
+d887 1
+a887 1
+    send_to_char("Unrecognized skill.\n\r", ch);
+d894 1
+a894 1
+    send_to_char("Learned value expected.\n\r", ch);
+d897 1
+a897 1
+    send_to_char("Minimum value for learned is 0.\n\r", ch);
+d900 1
+a900 1
+    send_to_char("Max value for learned is 1000.\n\r", ch);
+d903 1
+a903 1
+    send_to_char("You can't set NPC skills.\n\r", ch);
+d912 1
+a912 1
+  sprintf(buf2, "You change %s's %s to %d.\n\r", GET_NAME(vict),
+d1015 1
+a1015 1
+      printf(paging_buf, "%s%s", d->paging_fragment, str);
+d1238 3
+@
+
+
+1.45
+log
+@Added pprintf for paging, and changed page_string to take a character.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.44 2008/08/14 15:40:29 jps Exp jps $
+d76 1
+a76 1
+void string_write(struct descriptor_data *d, char **writeto, size_t len)
+d94 3
+d107 6
+d538 1
+a538 2
+  char actions[MAX_INPUT_LENGTH];
+  extern char *MENU;
+d656 16
+d700 1
+d756 1
+a756 2
+         write_to_output(MENU, d);
+         d->connected = CON_MENU;
+d1238 3
+@
+
+
+1.44
+log
+@Added pager buffer size limits.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.43 2008/08/14 09:45:22 jps Exp jps $
+d320 1
+a320 1
+    page_string(d, buf);
+d383 1
+a383 1
+    page_string(d, buf);
+d841 1
+a841 1
+      page_string(ch->desc, buf);
+d903 2
+a904 11
+void page_line(struct char_data *ch, char *str)
+{
+   if (ch->desc)
+      add_paging_line(ch->desc, str);
+}
+
+void start_paging(struct char_data *ch)
+{
+   if (ch->desc)
+      start_paging_desc(ch->desc);
+}
+a921 18
+void free_paged_text(struct descriptor_data *d)
+{
+   struct paging_line *pl, *plnext;
+
+   for (pl = d->paging_lines; pl; pl = plnext) {
+      free(pl->line);
+      plnext = pl->next;
+      free(pl);
+   }
+   d->paging_lines = NULL;
+   d->paging_tail = NULL;
+   d->paging_numlines = 0;
+   d->paging_numpages = 0;
+   d->paging_curpage = 0;
+   d->paging_bufsize = 0;
+   d->paging_skipped = 0;
+}
+
+d985 1
+a985 1
+void add_paging_line(struct descriptor_data *d, char *line)
+d987 2
+a988 1
+   struct paging_line *pl;
+d990 7
+a996 5
+   if (ok_paging_add(d, strlen(line) + 1)) {
+      CREATE(pl, struct paging_line, 1);
+      pl->line = strdup(line);
+
+      add_paging_element(d, pl);
+a997 6
+}
+
+void paginate_string(struct descriptor_data *d, char *str)
+{
+   int col = 1, spec_code = FALSE;
+   char *line_start, *s;
+d999 1
+a999 1
+   s = line_start = str;
+d1004 4
+a1007 2
+         if (s != line_start)
+            add_paging_fragment(d, line_start, s - line_start);
+d1044 1
+a1044 1
+void page_string(struct descriptor_data *d, char *str)
+d1046 30
+a1075 3
+   paginate_string(d, str);
+   if (PAGING(d))
+      start_paging_desc(d);
+d1157 9
+d1172 1
+d1178 1
+d1183 29
+d1214 3
+@
+
+
+1.43
+log
+@Replaced the pager.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.42 2008/07/15 17:55:06 myc Exp jps $
+d900 2
+d945 2
+d966 30
+d1002 5
+a1006 4
+   CREATE(pl, struct paging_line, 1);
+   pl->line = (char *)(malloc(len + 1));
+   memcpy(pl->line, line, len + 1);
+   pl->line[len] = '\0';
+d1008 2
+a1009 1
+   add_paging_element(d, pl);
+d1016 3
+a1018 2
+   CREATE(pl, struct paging_line, 1);
+   pl->line = strdup(line);
+d1020 2
+a1021 1
+   add_paging_element(d, pl);
+d1158 6
+d1175 3
+@
+
+
+1.42
+log
+@Gedit needs one string editor, so had to modify string_add.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.41 2008/07/13 06:34:59 myc Exp myc $
+a18 1
+
+d34 1
+a35 1
+void show_string(struct descriptor_data *d, char *input);
+d37 1
+a37 1
+ 
+d39 8
+a46 8
+#define PARSE_FORMAT		0 
+#define PARSE_REPLACE		1 
+#define PARSE_HELP		2 
+#define PARSE_DELETE		3
+#define PARSE_INSERT		4
+#define PARSE_LIST_NORM		5
+#define PARSE_LIST_NUM		6
+#define PARSE_EDIT		7
+d90 1
+a90 1
+  /* Zero mail_to to make sure the string editor doesn't try to mail 
+d121 1
+a121 1
+  
+d169 3
+a171 3
+	if (!indent)
+	  rep_all = 1;
+	break;
+d173 1
+a173 1
+	break;
+d191 2
+a192 2
+	sprintf(buf, "Replaced %d occurrence%sof '%s' with '%s'.\r\n", replaced, ((replaced != 1) ? "s " : " "), s, t);
+	write_to_output(buf, d);
+d194 2
+a195 2
+	sprintf(buf, "String '%s' not found.\r\n", s);
+	write_to_output(buf, d);
+d197 1
+a197 1
+	write_to_output("ERROR: Replacement string causes buffer overflow, aborted replace.\r\n", d);
+d211 2
+a212 2
+	write_to_output("That range is invalid.\r\n", d);
+	return;
+d216 1
+a216 1
+    
+d224 4
+a227 4
+ 	if ((s = strchr(s, '\n')) != NULL) {
+ 	  i++;
+	  s++;
+ 	}
+d229 2
+a230 2
+ 	write_to_output("Line(s) out of range; not deleting.\r\n", d);
+	return;
+d232 1
+a232 1
+      
+d235 5
+a239 5
+ 	if ((s = strchr(s, '\n')) != NULL) {
+	  i++;
+	  total_len++;
+	  s++;
+ 	}
+d241 3
+a243 3
+	s++;
+	while (*s != '\0')
+	  *(t++) = *(s++);
+d245 1
+a245 1
+	total_len--;
+d248 1
+a248 1
+      
+d250 1
+a250 1
+	      ((total_len != 1) ? "s " : " "));
+d260 1
+a260 1
+     * they are probly ok for what to do here. 
+d266 3
+a268 3
+	line_low = 1;
+	line_high = 999999;
+	break;
+d270 2
+a271 2
+	line_high = line_low;
+	break;
+d273 2
+a274 2
+	line_low = 1;
+	line_high = 999999;
+d276 1
+a276 1
+    
+d292 2
+a293 2
+	i++;
+	s++;
+d302 3
+a304 3
+	i++;
+	total_len++;
+	s++;
+d318 1
+a318 1
+	    ((total_len != 1)?"s ":" ")); 
+d320 1
+a320 1
+    page_string(d, buf, TRUE);
+d325 1
+a325 1
+     * they are probly ok for what to do here. 
+d331 3
+a333 3
+	line_low = 1;
+	line_high = 999999;
+	break;
+d335 2
+a336 2
+	line_high = line_low;
+	break;
+d338 2
+a339 2
+	line_low = 1;
+	line_high = 999999;
+d341 1
+a341 1
+    
+d356 2
+a357 2
+	i++;
+	s++;
+d366 9
+a374 9
+	i++;
+	total_len++;
+	s++;
+	temp = *s;
+	*s = '\0';
+	sprintf(buf, "%s%4d: ", buf, (i - 1));
+	strcat(buf, t);
+	*s = temp;
+	t = s;
+d383 1
+a383 1
+    page_string(d, buf, TRUE);
+d385 1
+a385 1
+    
+d394 1
+a394 1
+    
+d403 4
+a406 4
+ 	if ((s = strchr(s, '\n')) != NULL) {
+	  i++;
+	  s++;
+ 	}
+d408 2
+a409 2
+	write_to_output("Line number out of range; insert aborted.\r\n", d);
+	return;
+d414 3
+a416 3
+	*s = temp;
+	write_to_output("Insert text pushes buffer over maximum size, insert aborted.\r\n", d);
+	return;
+d419 1
+a419 1
+	strcat(buf, *d->str);
+d423 1
+a423 1
+	strcat(buf, s);
+d425 1
+a425 1
+      
+d433 1
+a433 1
+    
+d442 1
+a442 1
+    
+d454 4
+a457 4
+ 	if ((s = strchr(s, '\n')) != NULL) {
+	  i++;
+	  s++;
+ 	}
+d462 2
+a463 2
+	write_to_output("Line number out of range; change aborted.\r\n", d);
+	return;
+d470 10
+a479 10
+	/*
+	 * First things first .. we get this part into the buffer.
+	 */
+	temp = *s;
+	*s = '\0';
+	/*
+	 * Put the first 'good' half of the text into storage.
+	 */
+	strcat(buf, *d->str);
+	*s = temp;
+d486 10
+a495 10
+	/*
+	 * This means that we are at the END of the line, we want out of
+	 * there, but we want s to point to the beginning of the line
+	 * AFTER the line we want edited 
+	 */
+	s++;
+	/*
+	 * Now put the last 'good' half of buffer into storage.
+	 */
+	strcat(buf, s);
+d501 2
+a502 2
+	write_to_output("Change causes new length to exceed buffer maximum size, aborted.\r\n", d);
+	return;
+d531 1
+a531 1
+  
+d533 1
+a533 1
+  
+d544 1
+a544 1
+      terminator = 2;		/* Working on an abort message, */
+d548 3
+a550 3
+	free(*d->str);
+	*(d->str) = NULL;
+	write_to_output("Current buffer cleared.\r\n", d);
+d552 1
+a552 1
+	write_to_output("Current buffer empty.\r\n", d);
+d568 1
+a568 1
+	parse_action(PARSE_FORMAT, actions, d);
+d570 1
+a570 1
+	write_to_output("Current buffer empty.\r\n", d);
+d574 1
+a574 1
+	parse_action(PARSE_INSERT, actions, d);
+d576 1
+a576 1
+	write_to_output("Current buffer empty.\r\n", d);
+d583 1
+a583 1
+	parse_action(PARSE_LIST_NORM, actions, d);
+d585 1
+a585 1
+	write_to_output("Current buffer empty.\r\n", d);
+d589 1
+a589 1
+	parse_action(PARSE_LIST_NUM, actions, d);
+d591 1
+a591 1
+	write_to_output("Current buffer empty.\r\n", d);
+d635 1
+a635 1
+  
+d647 1
+a647 1
+    
+d803 1
+a803 1
+  
+d805 2
+a806 2
+  
+  if (!*name) {			/* no arguments. print an informative text */
+d812 1
+a812 1
+	continue;
+d815 3
+a817 3
+	strcat(buf, "\r\n");
+	send_to_char(buf, ch);
+	*buf = '\0';
+d831 1
+a831 1
+  
+d833 1
+a833 1
+  if (!*argument){ 
+d838 1
+a838 1
+	  continue;
+d841 1
+a841 1
+      page_string(ch->desc, buf, 1);
+d843 1
+a843 1
+    else 
+d852 3
+a854 3
+	sprintf(buf2, "You change %s's skill level in %s to 100.\n\r", GET_NAME(vict),
+		skills[i].name);
+	send_to_char(buf2, ch);
+d868 1
+a868 1
+  
+d883 1
+a883 1
+	  skills[skill].name, value);
+d885 1
+a885 1
+  
+d887 1
+a887 1
+  
+d889 1
+a889 1
+	  skills[skill].name, value);
+d891 2
+a892 2
+  
+  
+d895 3
+a897 6
+/*********************************************************************
+ * New Pagination Code
+ * Michael Buselli submitted the following code for an enhanced pager
+ * for CircleMUD.  All functions below are his.  --JE 8 Mar 96
+ *
+ *********************************************************************/
+a898 1
+/* #define PAGE_LENGTH     22  * I changed this to be variable -nechtrous*/
+d901 29
+a929 4
+/* Traverse down the string until the begining of the next page has been
+ * reached.  Return NULL if this is the last page of the string.
+ */
+char *next_page(char *str, struct descriptor_data *d)
+d931 12
+a942 51
+  int col = 1, line = 1, spec_code = FALSE, page_length = 22;
+  
+  if (d) {
+    if (d->original)
+      page_length = GET_PAGE_LENGTH(d->original);
+    else if (d->character)
+      page_length = GET_PAGE_LENGTH(d->character);
+    if (page_length <= 0 || page_length > 50)
+      page_length = 22;
+  }
+  for (;; str++) {
+    /* If end of string, return NULL. */
+    if (*str == '\0')
+      return NULL;
+    
+    /* If we're at the start of the next page, return this fact. */
+    else if (line > page_length)
+      return str;
+    
+    /* Check for the begining of an ANSI color code block. */
+    else if (*str == '\x1B' && !spec_code)
+      spec_code = TRUE;
+    
+    /* Check for the end of an ANSI color code block. */
+    else if (*str == 'm' && spec_code)
+      spec_code = FALSE;
+    
+    /* Check for inline ansi too! -nechtrous */
+    else if ((*str == CREL || *str == CABS) && !spec_code) {
+      str++;
+      continue;
+    }
+    
+    /* Check for everything else. */
+    else if (!spec_code) {
+      /* Carriage return puts us in column one. */
+      if (*str == '\r')
+	col = 1;
+      /* Newline puts us on the next line. */
+      else if (*str == '\n')
+	line++;
+      
+      /* We need to check here and see if we are over the page width,
+       * and if so, compensate by going to the begining of the next line.
+       */
+      else if (col++ > PAGE_WIDTH) {
+	col = 1;
+	line++;
+      }
+    }
+  }
+d945 11
+d957 8
+a964 2
+/* Function that returns the number of pages in the string. */
+int count_pages(char *str, struct descriptor_data *d)
+d966 8
+a973 4
+  int pages;
+  
+  for (pages = 1; (str = next_page(str,d)); pages++);
+  return pages;
+d976 6
+d983 4
+a986 5
+/* This function assigns all the pointers for showstr_vector for the
+ * page_string function, after showstr_vector has been allocated and
+ * showstr_count set.
+ */
+void paginate_string(char *str, struct descriptor_data *d)
+d988 44
+a1031 9
+  int i;
+  
+  if (d->showstr_count)
+    *(d->showstr_vector) = str;
+  
+  for (i = 1; i < d->showstr_count && str; i++)
+    str = d->showstr_vector[i] = next_page(str,d);
+  
+  d->showstr_page = 0;
+d1034 6
+d1041 1
+a1041 2
+/* The call that gets the paging ball rolling... */
+void page_string(struct descriptor_data *d, char *str, int keep_internal)
+d1043 26
+a1068 16
+  if (!d)
+    return;
+  
+  if (!str || !*str) {
+    send_to_char("", d->character);
+    return;
+  }
+  CREATE(d->showstr_vector, char *, d->showstr_count = count_pages(str,d));
+  
+  if (keep_internal) {
+    d->showstr_head = strdup(str);
+    paginate_string(d->showstr_head, d);
+  } else
+    paginate_string(str, d);
+  
+  show_string(d, "");
+d1071 4
+d1076 38
+a1113 2
+/* The call that displays the next page. */
+void show_string(struct descriptor_data *d, char *input)
+d1115 12
+a1126 67
+  char buffer[MAX_STRING_LENGTH];
+  int diff;
+  
+  one_argument(input, buf);
+  
+  /* Q is for quit. :) */
+  if (LOWER(*buf) == 'q') {
+    free(d->showstr_vector);
+    d->showstr_count = 0;
+    if (d->showstr_head) {
+      free(d->showstr_head);
+      d->showstr_head = 0;
+    }
+    return;
+  }
+  /* R is for refresh, so back up one page internally so we can display
+   * it again.
+   */
+  else if (LOWER(*buf) == 'r')
+    d->showstr_page = MAX(0, d->showstr_page - 1);
+  
+  /* B is for back, so back up two pages internally so we can display the
+   * correct page here.
+   */
+  else if (LOWER(*buf) == 'b')
+    d->showstr_page = MAX(0, d->showstr_page - 2);
+  
+  /* Feature to 'goto' a page.  Just type the number of the page and you
+   * are there!
+   */
+  else if (isdigit(*buf))
+    d->showstr_page = MAX(0, MIN(atoi(buf) - 1, d->showstr_count - 1));
+  
+  else if (*buf) {
+    free(d->showstr_vector);
+    d->showstr_count = 0;
+    if (d->showstr_head) {
+      free(d->showstr_head);
+      d->showstr_head = 0;
+    }
+    /*    send_to_char(
+	  "Valid commands while paging are RETURN, Q, R, B, or a numeric value.\r\n",
+	  d->character);
+    */
+    return;
+  }
+  /* If we're displaying the last page, just send it to the character, and
+   * then free up the space we used.
+   */
+  if (d->showstr_page + 1 >= d->showstr_count) {
+    send_to_char(d->showstr_vector[d->showstr_page], d->character);
+    free(d->showstr_vector);
+    d->showstr_count = 0;
+    if (d->showstr_head) {
+      free(d->showstr_head);
+      d->showstr_head = NULL;
+    }
+  }
+  /* Or if we have more to show.... */
+  else {
+    strncpy(buffer, d->showstr_vector[d->showstr_page],
+	    diff = ((int)d->showstr_vector[d->showstr_page + 1])
+	    - ((int)d->showstr_vector[d->showstr_page]));
+    buffer[diff] = '\0';
+    send_to_char(buffer, d->character);
+    d->showstr_page++;
+  }
+d1131 3
+@
+
+
+1.41
+log
+@Bug in 'skillset *': was overwriting player's player_specials pointer.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.40 2008/04/05 05:05:42 myc Exp myc $
+d647 1
+d660 1
+d681 2
+a682 1
+
+d1089 3
+@
+
+
+1.40
+log
+@Removed SEND_TO_Q macro, so call write_to_output directly.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.39 2008/04/03 02:02:05 myc Exp myc $
+d847 1
+a847 2
+    i = 1;
+    do {
+d854 1
+a854 1
+    } while (i++ <= TOP_SKILL);
+d1086 3
+@
+
+
+1.39
+log
+@Upgraded ansi color handling code.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.38 2008/03/28 17:54:53 myc Exp myc $
+d125 5
+a129 5
+    SEND_TO_Q("Editor command formats: /<letter>\r\n\r\n"
+              "/a         -  aborts editor\r\n"
+              "/c         -  clears buffer\r\n"
+              "/d#        -  deletes a line #\r\n"
+              "/e# <text> -  changes the line at # with <text>\r\n", d);
+d131 1
+a131 1
+      SEND_TO_Q("/f#        -  formats text with given indentation amount\r\n", d);
+d133 10
+a142 10
+      SEND_TO_Q("/f         -  formats text\r\n"
+                "/fi        -  indented formatting of text\r\n", d);
+    SEND_TO_Q("/h         -  list text editor commands\r\n"
+              "/i# <text> -  inserts <text> before line #\r\n"
+              "/l         -  lists buffer\r\n"
+              "/n         -  lists buffer with line numbers\r\n"
+              "/r 'a' 'b' -  replace 1st occurrence of text <a> in buffer with text <b>\r\n"
+              "/ra 'a' 'b'-  replace all occurrences of text <a> within buffer with text <b>\r\n"
+              "              usage: /r[a] 'pattern' 'replacement'\r\n"
+              "/s         -  saves text\r\n", d);
+d164 1
+a164 1
+    SEND_TO_Q(buf, d);
+d179 1
+a179 1
+      SEND_TO_Q("Invalid format.\r\n", d);
+d182 1
+a182 1
+      SEND_TO_Q("Target string must be enclosed in single quotes.\r\n", d);
+d185 1
+a185 1
+      SEND_TO_Q("No replacement string.\r\n", d);
+d188 1
+a188 1
+      SEND_TO_Q("Replacement string must be enclosed in single quotes.\r\n", d);
+d193 1
+a193 1
+	SEND_TO_Q(buf, d);
+d196 1
+a196 1
+	SEND_TO_Q(buf, d);
+d198 1
+a198 1
+	SEND_TO_Q("ERROR: Replacement string causes buffer overflow, aborted replace.\r\n", d);
+d200 1
+a200 1
+      SEND_TO_Q("Not enough space left in buffer.\r\n", d);
+d205 1
+a205 1
+      SEND_TO_Q("You must specify a line number or range to delete.\r\n", d);
+d212 1
+a212 1
+	SEND_TO_Q("That range is invalid.\r\n", d);
+d221 1
+a221 1
+      SEND_TO_Q("Buffer is empty.\r\n", d);
+d230 1
+a230 1
+ 	SEND_TO_Q("Line(s) out of range; not deleting.\r\n", d);
+d252 1
+a252 1
+      SEND_TO_Q(buf, d);
+d254 1
+a254 1
+      SEND_TO_Q("Invalid line numbers to delete must be higher than 0.\r\n", d);
+d279 1
+a279 1
+      SEND_TO_Q("Line numbers must be greater than 0.\r\n", d);
+d282 1
+a282 1
+      SEND_TO_Q("That range is invalid.\r\n", d);
+d297 1
+a297 1
+      SEND_TO_Q("Line(s) out of range; no buffer listing.\r\n", d);
+d344 1
+a344 1
+      SEND_TO_Q("Line numbers must be greater than 0.\r\n", d);
+d348 1
+a348 1
+      SEND_TO_Q("That range is invalid.\r\n", d);
+d361 1
+a361 1
+      SEND_TO_Q("Line(s) out of range; no buffer listing.\r\n", d);
+d390 1
+a390 1
+      SEND_TO_Q("You must specify a line number before which to insert text.\r\n", d);
+d399 1
+a399 1
+      SEND_TO_Q("Buffer is empty, nowhere to insert.\r\n", d);
+d409 1
+a409 1
+	SEND_TO_Q("Line number out of range; insert aborted.\r\n", d);
+d416 1
+a416 1
+	SEND_TO_Q("Insert text pushes buffer over maximum size, insert aborted.\r\n", d);
+d428 1
+a428 1
+      SEND_TO_Q("Line inserted.\r\n", d);
+d430 1
+a430 1
+      SEND_TO_Q("Line number must be higher than 0.\r\n", d);
+d438 1
+a438 1
+      SEND_TO_Q("You must specify a line number at which to change text.\r\n", d);
+d447 1
+a447 1
+      SEND_TO_Q("Buffer is empty, nothing to change.\r\n", d);
+d463 1
+a463 1
+	SEND_TO_Q("Line number out of range; change aborted.\r\n", d);
+d502 1
+a502 1
+	SEND_TO_Q("Change causes new length to exceed buffer maximum size, aborted.\r\n", d);
+d510 1
+a510 1
+      SEND_TO_Q("Line changed.\r\n", d);
+d512 1
+a512 1
+      SEND_TO_Q("Line number must be higher than 0.\r\n", d);
+d517 1
+a517 1
+    SEND_TO_Q("Invalid option.\r\n", d);
+d551 1
+a551 1
+	SEND_TO_Q("Current buffer cleared.\r\n", d);
+d553 1
+a553 1
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+d559 1
+a559 1
+         SEND_TO_Q("Current buffer empty.\r\n", d);
+d565 1
+a565 1
+         SEND_TO_Q("Current buffer empty.\r\n", d);
+d571 1
+a571 1
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+d577 1
+a577 1
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+d586 1
+a586 1
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+d592 1
+a592 1
+	SEND_TO_Q("Current buffer empty.\r\n", d);
+d598 1
+a598 1
+         SEND_TO_Q("Current buffer empty.\r\n", d);
+d605 1
+a605 1
+      SEND_TO_Q("Invalid option.\r\n", d);
+d706 1
+a706 1
+            SEND_TO_Q("Message sent!\r\n", d);
+d708 1
+a708 1
+            SEND_TO_Q("Mail aborted.\r\n", d);
+d719 1
+a719 1
+         /*  SEND_TO_Q("Message sent!\r\n", d);
+d724 1
+a724 1
+         SEND_TO_Q("Post not aborted, use REMOVE <post #>.\r\n", d);
+d728 2
+a729 2
+            SEND_TO_Q("Description aborted.\r\n", d);
+         SEND_TO_Q(MENU, d);
+d734 1
+a734 1
+           SEND_TO_Q("That clan is no longer valid.\r\n", d);
+d736 1
+a736 1
+           SEND_TO_Q("Edit aborted.\r\n", d);
+d738 1
+a738 1
+           SEND_TO_Q("Clan description updated.\r\n", d);
+d755 1
+a755 1
+               SEND_TO_Q("Saved.\r\n", d);
+d757 1
+a757 1
+         } else SEND_TO_Q("Edit aborted.\r\n", d);
+d775 1
+a775 1
+            SEND_TO_Q("Message aborted.\r\n", d);
+d1087 3
+@
+
+
+1.38
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.37 2008/03/27 00:52:30 jps Exp myc $
+d34 1
+d937 1
+a937 1
+    else if (*str == '&' && !spec_code) {
+d1087 4
+@
+
+
+1.37
+log
+@Increased line length so pagination will work when showing lists of mobs.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.36 2008/03/22 03:22:38 myc Exp jps $
+d82 1
+a82 1
+    SET_BIT(PLR_FLAGS(d->character), PLR_WRITING);
+d670 1
+a670 1
+            *d->str = str_dup("");
+d672 1
+a672 1
+            *d->str = str_dup("Nothing.\r\n");
+d777 4
+a780 2
+      if (d->character && !IS_NPC(d->character))
+         REMOVE_BIT(PLR_FLAGS(d->character), PLR_WRITING | PLR_MAILING);
+d1003 1
+a1003 1
+    d->showstr_head = str_dup(str);
+d1086 3
+@
+
+
+1.36
+log
+@All invocations of the string editor now go through string_write()
+instead of messing with the descriptor variables itself.  Also added
+a toggle, LineNums, to decide whether to do /l or /n when entering
+the string editor.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.35 2008/03/21 16:02:05 myc Exp myc $
+d899 1
+a899 1
+#define PAGE_WIDTH      80
+d1084 6
+@
+
+
+1.35
+log
+@Added info about script formatter to editor help.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.34 2008/03/21 15:58:34 myc Exp myc $
+d36 1
+d76 1
+a76 1
+void string_write(struct descriptor_data *d, char **writeto, size_t len, long mailto, char *data)
+d78 3
+d84 1
+a84 1
+  d->backstr = data;
+d86 3
+d90 12
+a101 1
+  d->mail_to = mailto;
+d104 7
+d1084 3
+@
+
+
+1.34
+log
+@Added a utility format scripts.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.33 2008/02/09 04:27:47 myc Exp myc $
+d103 6
+a108 3
+              "/e# <text> -  changes the line at # with <text>\r\n"
+              "/f         -  formats text\r\n"
+              "/fi        -  indented formatting of text\r\n", d);
+d1059 3
+@
+
+
+1.33
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.32 2008/02/02 19:38:20 myc Exp myc $
+d33 1
+d116 10
+d127 3
+a129 9
+      switch (string[j]) {
+      case 'i':
+	if (!indent) {
+	  indent = TRUE;
+	  flags += FORMAT_INDENT;
+ 	}
+ 	break;
+      default:
+	break;
+d131 1
+a131 1
+      j++;
+d1056 3
+@
+
+
+1.32
+log
+@Adding string_write to set up a descriptor for string editing.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.31 2008/02/02 05:35:14 myc Exp myc $
+d32 1
+d1051 3
+@
+
+
+1.31
+log
+@Making the skillset command have sorted output.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.30 2008/01/29 16:51:12 myc Exp myc $
+d71 14
+a84 1
+/*  handle some editor commands */
+a497 5
+  /* determine if this is the terminal string, and truncate if so */
+  /* changed to accept '/<letter>' style editing commands - instead */
+  /* of solitary '@@' to end - (modification of improved_edit patch) */
+  /*   M. Scott 10/15/96 */
+  
+a499 4
+  
+  /* removed old handling of '@@' char */
+  /* if ((terminator = (*str == '@@'))) *str = '\0'; */
+  
+a586 4
+/*     if (GET_LEVEL(d->character) >= LVL_IMMORT) {
+       sprintf(buf, "(&0&1M:&0&1&b%d&0&9&b||&0&7&bL&0:&0&7&b%d&0)", d->max_str,(strlen(str) + strlen(*d->str)));
+       SEND_TO_Q(buf, d);
+       }*/
+d1050 3
+@
+
+
+1.30
+log
+@Moving skill names to the skilldef struct.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.29 2008/01/26 14:26:31 jps Exp myc $
+d763 1
+a763 1
+  int skill, value, i;
+d770 2
+a771 1
+    for (i = 1; i <= TOP_SKILL; ++i) {
+d774 2
+a775 2
+      sprintf(buf + strlen(buf), "%18s", skills[i].name);
+      if (i % 4 == 3) {
+d780 1
+d1050 3
+@
+
+
+1.29
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.28 2008/01/26 12:58:14 jps Exp jps $
+d771 1
+a771 1
+      if (*skillnames[i] == '!')
+d773 1
+a773 1
+      sprintf(buf + strlen(buf), "%18s", skillnames[i]);
+d796 1
+a796 1
+        if (*skillnames[i] == '!' || !GET_ISKILL(vict,i))
+d798 1
+a798 1
+        sprintf(buf, "%s%-20.20s %d\r\n", buf, skillnames[i], GET_ISKILL(vict,i));
+d811 1
+a811 1
+      if (str_cmp(skillnames[i], "!UNUSED!")) {
+d813 1
+a813 1
+		skillnames[i]);
+d843 1
+a843 1
+	  skillnames[skill], value);
+d849 1
+a849 1
+	  skillnames[skill], value);
+d1048 3
+@
+
+
+1.28
+log
+@Using skills.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.27 2007/12/31 02:00:57 jps Exp jps $
+a760 1
+  extern char *spells[];
+d771 1
+a771 1
+      if (*spells[i] == '!')
+d773 1
+a773 1
+      sprintf(buf + strlen(buf), "%18s", spells[i]);
+d796 1
+a796 1
+        if (*spells[i] == '!' || !GET_ISKILL(vict,i))
+d798 1
+a798 1
+        sprintf(buf, "%s%-20.20s %d\r\n", buf, spells[i], GET_ISKILL(vict,i));
+d811 1
+a811 1
+      if (str_cmp(spells[i], "!UNUSED!")) {
+d813 1
+a813 1
+		spells[i]);
+d843 1
+a843 1
+	  spells[skill], value);
+d849 1
+a849 1
+	  spells[skill], value);
+d1048 3
+@
+
+
+1.27
+log
+@Made the general term for spells, skills, chants, and songs 'talent'.
+Fixed mskillset to handle all talents.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.26 2007/12/19 20:54:56 myc Exp jps $
+d31 1
+d1049 4
+@
+
+
+1.26
+log
+@Added support editing clan descriptions to the line editor.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.25 2007/10/25 20:40:05 myc Exp myc $
+d822 1
+a822 1
+  if ((skill = id_skill_spell(arg, 0)) <= 0) {
+d1048 3
+@
+
+
+1.25
+log
+@Fixed bug where if you tried to mail an object but aborted the message,
+you didn't get the object back.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.24 2007/10/13 05:05:13 myc Exp myc $
+d30 1
+d622 2
+a623 1
+            (STATE(d) == CON_TEXTED))) {
+d695 12
+d1048 4
+@
+
+
+1.24
+log
+@do_skillset was using find_skill_num, which restricts the search
+to skills.  Is now using id_skill_spell.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.23 2007/10/11 20:14:48 myc Exp myc $
+d669 1
+a669 1
+         } else
+d671 6
+d1034 4
+@
+
+
+1.23
+log
+@Changed skill defines to support chants and songs as skills, but
+slightly distinguished from spells and skills.  TOP_SKILL is the
+old MAX_SKILLS.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.22 2007/10/02 02:52:27 myc Exp myc $
+d802 1
+a802 1
+  if ((skill = find_skill_num(arg)) <= 0) {
+d1028 5
+@
+
+
+1.22
+log
+@Page length is now checked on the original player instead of the mob
+for switched/shapechanged players.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.21 2007/09/28 20:49:35 myc Exp myc $
+d750 1
+a750 1
+    for (i = 1; i < MAX_SKILLS; i++) {
+d775 1
+a775 1
+      for (i = 0; i < MAX_SKILLS; i++) {
+d796 1
+a796 1
+    } while (i++ <= MAX_SKILLS);
+d1028 4
+@
+
+
+1.21
+log
+@skillset uses the global buffer now.  It also uses delimited_arg(),
+instead of parsing the argument string itself.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.20 2007/09/15 05:03:46 myc Exp myc $
+d852 4
+a855 2
+  if(d && d->character)
+    if(GET_PAGE_LENGTH(d->character) > 0 && GET_PAGE_LENGTH(d->character) < 51)
+d857 3
+d1028 4
+@
+
+
+1.20
+log
+@Removed a potentially dangerous (small) buffer from the parse_action
+function.  It was also unneeded.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.19 2007/08/08 02:26:36 jps Exp myc $
+d742 2
+a743 2
+  char name[100], buf2[100], buf[100], help[MAX_STRING_LENGTH];
+  int skill, value, i, qend, temp;
+d749 1
+a749 1
+    strcpy(help, "Skill being one of the following:\n\r");
+d753 1
+a753 1
+      sprintf(help + strlen(help), "%18s", spells[i]);
+d755 3
+a757 3
+	strcat(help, "\r\n");
+	send_to_char(help, ch);
+	*help = '\0';
+d760 2
+a761 2
+    if (*help)
+      send_to_char(help, ch);
+d774 1
+a774 1
+      sprintf(help, "Current values of skills:\r\n");
+d778 1
+a778 1
+        sprintf(help,"%s%-20.20s %d\r\n",help,spells[i],GET_ISKILL(vict,i));
+d780 1
+a780 1
+      page_string(ch->desc, help, 1);
+d786 3
+a788 2
+  if (*argument == '*'){
+    i = 0;
+d790 2
+a791 3
+      temp=i+1;
+      SET_SKILL(vict, temp, 1000);
+      if (str_cmp(spells[temp], "!UNUSED!")) {
+d793 4
+a796 7
+		spells[temp]);
+	send_to_char(buf2, ch);}
+      i=temp;
+    }while(i<MAX_SKILLS);
+    return;}
+  if (*argument != '\'') {
+    send_to_char("Skill must be enclosed in: ''\n\r", ch);
+d799 4
+a802 12
+  /* Locate the last quote && lowercase the magic words (if any) */
+  
+  for (qend = 1; *(argument + qend) && (*(argument + qend) != '\''); qend++)
+    *(argument + qend) = LOWER(*(argument + qend));
+  
+  if (*(argument + qend) != '\'') {
+    send_to_char("Skill must be enclosed in: ''\n\r", ch);
+    return;
+  }
+  strcpy(help, (argument + 1));
+  help[qend - 1] = '\0';
+  if ((skill = find_skill_num(help)) <= 0) {
+d806 2
+a807 2
+  argument += qend + 1;		/* skip to next parameter */
+  argument = one_argument(argument, buf);
+d809 1
+a809 1
+  if (!*buf) {
+d812 1
+a812 1
+  } else if ((value = atoi(buf))< 0) {
+d1023 4
+@
+
+
+1.19
+log
+@Typo fix
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.18 2007/08/03 22:00:11 myc Exp jps $
+a74 1
+  char cbuf[509];
+d82 15
+a96 19
+    sprintf(buf,
+	    "Editor command formats: /<letter>\r\n\r\n"
+	    "/a         -  aborts editor\r\n"
+	    "/c         -  clears buffer\r\n"
+	    "/d#        -  deletes a line #\r\n"
+	    "/e# <text> -  changes the line at # with <text>\r\n"
+	    "/f         -  formats text\r\n"
+	    "/fi        -  indented formatting of text\r\n");
+    sprintf(cbuf,
+	    "/h         -  list text editor commands\r\n"
+	    "/i# <text> -  inserts <text> before line #\r\n"
+	    "/l         -  lists buffer\r\n"
+	    "/n         -  lists buffer with line numbers\r\n"
+	    "/r 'a' 'b' -  replace 1st occurrence of text <a> in buffer with text <b>\r\n"
+	    "/ra 'a' 'b'-  replace all occurrences of text <a> within buffer with text <b>\r\n"
+	    "              usage: /r[a] 'pattern' 'replacement'\r\n"
+	    "/s         -  saves text\r\n");
+    SEND_TO_Q(buf, d);
+    SEND_TO_Q(cbuf, d);
+d1034 3
+@
+
+
+1.18
+log
+@Fixed some \r\n typoes in send_to_chars.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.17 2007/07/19 22:19:34 jps Exp myc $
+d96 2
+a97 2
+	    "/r 'a' 'b' -  replace 1st occurance of text <a> in buffer with text <b>\r\n"
+	    "/ra 'a' 'b'-  replace all occurances of text <a> within buffer with text <b>\r\n"
+d147 1
+a147 1
+	sprintf(buf, "Replaced %d occurance%sof '%s' with '%s'.\r\n", replaced, ((replaced != 1) ? "s " : " "), s, t);
+d1039 3
+@
+
+
+1.17
+log
+@Prevent an extra newline from being inserted into the buffer after /c.
+Compactify the /n display so that each line takes up only one line.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.16 2007/07/02 05:47:31 jps Exp jps $
+d788 1
+a788 1
+      send_to_char("You are unable to divine any information.", ch);
+d1039 4
+@
+
+
+1.16
+log
+@Inserted empty buffer checks for several editor commands that
+desperately needed it - you could open a new buffer, type /r 'this' 'that',
+and instantly crash the mud. Also inserted newline for the first
+line just as it is for subsequent lines.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.15 2007/07/02 04:49:05 jps Exp jps $
+d327 1
+a327 1
+	sprintf(buf, "%s%4d:\r\n", buf, (i - 1));
+a338 7
+    /*
+     * This is kind of annoying .. seeing as the lines are numbered.
+     */
+#if 0
+    sprintf(buf, "%s\r\n%d numbered line%slisted.\r\n", buf, total_len,
+	    ((total_len != 1)?"s ":" ")); 
+#endif
+d583 2
+a584 1
+      strcat(*d->str, "\r\n");
+d1039 6
+@
+
+
+1.15
+log
+@Comment out some debugging code!
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.14 2007/07/02 04:23:52 jps Exp jps $
+d527 4
+a530 1
+      parse_action(PARSE_DELETE, actions, d);
+d533 4
+a536 1
+      parse_action(PARSE_EDIT, actions, d);
+d566 4
+a569 1
+      parse_action(PARSE_REPLACE, actions, d);
+d590 1
+d1045 3
+@
+
+
+1.14
+log
+@Adjust call to recently-fixed replace_str.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.13 2007/02/04 18:12:31 myc Exp jps $
+d582 1
+a582 1
+     if (GET_LEVEL((struct char_data *) d) >= LVL_IMMORT) {
+d585 1
+a585 1
+       }
+d1035 3
+@
+
+
+1.13
+log
+@Page length now saves as a part of player specials.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.12 2006/11/23 00:36:24 jps Exp myc $
+d582 1
+a582 1
+    /* if (GET_LEVEL((struct char_data *) d) >= LVL_IMMORT) {
+d585 1
+a585 1
+       }*/
+d1035 3
+@
+
+
+1.12
+log
+@Fix newline-appending and length-checking while editing near
+or past the limits of the given buffer in string_add.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.11 2004/11/11 23:29:19 rsd Exp jps $
+d865 2
+a866 2
+    if(d->character->page_length > 0 && d->character->page_length < 51)
+      page_length = d->character->page_length;
+d1035 4
+@
+
+
+1.11
+log
+@Altered the output for the help for posting on a board
+because the buffer was greater than the 509 bytes
+allowed for the compiler not to cry.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.10 2003/06/25 02:21:03 jjl Exp $
+d571 11
+a581 12
+  if (!(*d->str)) {
+    if (strlen(str) > d->max_str) {
+      send_to_char("String too long - Truncated.\r\n",
+		   d->character);
+      *(str + d->max_str) = '\0';
+      /* changed this to NOT abort out.. just give warning. */
+      /* terminator = 1; */
+    }
+    CREATE(*d->str, char, strlen(str) + 3);
+    
+    strcpy(*d->str, str);
+  } else {
+d586 25
+a610 24
+    if (strlen(str) + strlen(*d->str) > d->max_str) {
+      send_to_char("String too long, limit reached on message.  Last line ignored.\r\n",
+		   d->character);
+      /* terminator = 1; */
+    } else {
+      if (!(*d->str = (char *)realloc(*d->str, strlen(*d->str) +
+				      strlen(str) + 3))) {
+	perror("string_add");
+	exit(1);
+      }
+      strcat(*d->str, str);
+    }
+  }
+  
+  if (terminator) {
+    /*. OLC Edits .*/
+    extern void oedit_disp_menu(struct descriptor_data *d);
+    extern void oedit_disp_extradesc_menu(struct descriptor_data *d);
+    extern void redit_disp_menu(struct descriptor_data *d);
+    extern void redit_disp_extradesc_menu(struct descriptor_data *d);
+    extern void redit_disp_exit_menu(struct descriptor_data *d);
+    extern void medit_disp_menu(struct descriptor_data *d);
+    extern void hedit_disp_menu(struct descriptor_data *d);
+    extern void trigedit_disp_menu(struct descriptor_data *d);
+d615 112
+a726 14
+    if ((terminator == 2) &&
+	((STATE(d) == CON_REDIT) ||
+	 (STATE(d) == CON_MEDIT) ||
+	 (STATE(d) == CON_OEDIT) ||
+	 (STATE(d) == CON_TRIGEDIT) ||
+	 (STATE(d) == CON_HEDIT) ||
+	 (STATE(d) == CON_EXDESC) ||
+	 (STATE(d) == CON_TEXTED))) {
+      free(*d->str);
+      if (d->backstr) {
+	*d->str = d->backstr;
+      } else
+ 	*d->str = NULL;
+      
+d729 1
+a729 107
+    }
+    /*
+     * This fix causes the editor to NULL out empty messages -- M. Scott 
+     * Fixed to fix the fix for empty fixed messages. -- gg
+     */
+    else if ((d->str) && (*d->str) && (**d->str == '\0')) {
+      free(*d->str);
+      *d->str = str_dup("Nothing.\r\n");
+    }
+    if (STATE(d) == CON_MEDIT)
+      medit_disp_menu(d);
+    if (STATE(d) == CON_TRIGEDIT)
+      trigedit_disp_menu(d);
+    
+    if (STATE(d) == CON_OEDIT) {
+      switch(OLC_MODE(d)) {
+      case OEDIT_ACTDESC:
+  	oedit_disp_menu(d);
+  	break;
+      case OEDIT_EXTRADESC_DESCRIPTION:
+  	oedit_disp_extradesc_menu(d);
+	break;
+      }
+    } else if (STATE(d) == CON_REDIT) {
+      switch (OLC_MODE(d)) {
+      case REDIT_DESC:
+  	redit_disp_menu(d);
+  	break;
+      case REDIT_EXIT_DESCRIPTION:
+  	redit_disp_exit_menu(d);
+	break;
+      case REDIT_EXTRADESC_DESCRIPTION:
+	redit_disp_extradesc_menu(d);
+	break;
+      }
+    } else if (STATE(d) == CON_HEDIT)
+      hedit_disp_menu(d);
+    else if (!d->connected && (PLR_FLAGGED(d->character, PLR_MAILING))) {
+      if ((terminator == 1) && *d->str) {
+	store_mail(d->mail_to, GET_IDNUM(d->character), d->mail_vnum, *d->str);
+	SEND_TO_Q("Message sent!\r\n", d);
+      } else
+	SEND_TO_Q("Mail aborted.\r\n", d);
+      d->mail_to = 0;
+      d->mail_vnum = NOTHING;
+      free(*d->str);
+      free(d->str);
+      /*  SEND_TO_Q("Message sent!\r\n", d);
+	  if (!IS_NPC(d->character))
+	  REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);*/
+    } else if (d->mail_to >= BOARD_MAGIC) {
+      Board_save_board(d->mail_to - BOARD_MAGIC);
+      SEND_TO_Q("Post not aborted, use REMOVE <post #>.\r\n", d);
+      d->mail_to = 0;
+    } else if (STATE(d) == CON_EXDESC) {
+      if (terminator != 1)
+	SEND_TO_Q("Description aborted.\r\n", d);
+      SEND_TO_Q(MENU, d);
+      d->connected = CON_MENU;
+    }
+    else if (STATE(d) == CON_TEXTED) {
+      if (terminator == 1) {
+	if (!(fl = fopen((char *)d->storage, "w"))) {
+	  sprintf(buf, "SYSERR: Can't write file '%s'.", d->storage);
+	  mudlog(buf, CMP, LVL_HEAD_C, TRUE);
+	}
+	else {
+	  if (*d->str) {
+	    fputs(stripcr(buf1, *d->str), fl);
+	  }
+	  fclose(fl);
+	  sprintf(buf, "OLC: %s saves '%s'.", GET_NAME(d->character),
+		  d->storage);
+	  mudlog(buf, CMP, LVL_GOD, TRUE);
+	  SEND_TO_Q("Saved.\r\n", d);
+	}
+      }
+      else SEND_TO_Q("Edit aborted.\r\n", d);
+      act("$n stops editing some scrolls.", TRUE, d->character, 0, 0, TO_ROOM);
+      free(d->storage);
+      d->storage = NULL;
+      STATE(d) = CON_PLAYING;
+    }
+    else if (!d->connected && d->character && !IS_NPC(d->character)) {
+      if (terminator == 1) {
+	if (strlen(*d->str) == 0) {
+	  free(*d->str);
+	  *d->str = NULL;
+	}
+      } else {
+	free(*d->str);
+	if (d->backstr)
+	  *d->str = d->backstr;
+	else
+	  *d->str = NULL;
+	d->backstr = NULL;
+	SEND_TO_Q("Message aborted.\r\n", d);
+      }
+    }
+    if (d->character && !IS_NPC(d->character))
+      REMOVE_BIT(PLR_FLAGS(d->character), PLR_WRITING | PLR_MAILING);
+    if (d->backstr)
+      free(d->backstr);
+    d->backstr = NULL;
+    d->str = NULL;
+  } else if (!action)
+    strcat(*d->str, "\r\n");
+d1035 5
+@
+
+
+1.10
+log
+@Revised lay hands to not suck.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.9 2003/06/23 01:47:09 jjl Exp $
+d75 1
+d90 2
+a91 1
+	    "/fi        -  indented formatting of text\r\n"
+d101 1
+d1043 3
+@
+
+
+1.9
+log
+@Added a NOFOLLOW flag, and the "note" command, and show notes <player>
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.8 2002/09/13 02:32:10 jjl Exp $
+a29 1
+//#include "notes.h"
+d1040 3
+@
+
+
+1.8
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.c,v 1.7 2000/11/28 01:26:52 mtp Exp $
+d30 1
+d1041 3
+@
+
+
+1.7
+log
+@removed some mobprog stuff
+@
+text
+@d1 3
+a3 1
+// $Id: modify.c,v 1.6 2000/11/24 19:03:31 rsd Exp mtp $
+d1038 28
+a1065 23
+// $Log: modify.c,v $
+// Revision 1.6  2000/11/24 19:03:31  rsd
+// Altered comment header and added back rlog messages from
+// prior to the addition of the $log$ string.
+//
+// Revision 1.5  2000/03/26 21:16:23  cso
+// made skillset <vict> show only nonzero skills
+//
+// Revision 1.4  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.3  1999/08/08 04:20:34  mud
+// Changed one of the page_string functions so that if a bogus
+// character is entered while paging, it falls out of the page
+// and mops up the memory. Commented out the old send to char
+// text below it.
+//
+// Revision 1.2  1999/01/31 17:54:05  mud
+// Indented file
+//
+// Revision 1.1  1999/01/29 01:23:31  mud
+// Initial revision
+//
+@
+
+
+1.6
+log
+@Altered comment header and added back rlog messages from
+prior to the addition of the $log$ string.
+@
+text
+@d1 1
+a1 1
+// $Id: modify.c,v 1.5 2000/03/26 21:16:23 cso Exp $
+a606 16
+    
+#if defined(OASIS_MPROG)
+    extern void medit_change_mprog(struct descriptor_data *d);
+    
+    if (STATE(d) == CON_MEDIT) {
+      switch (OLC_MODE(d)) {
+      case MEDIT_D_DESC:
+	medit_disp_menu(d);
+	break;
+      case MEDIT_MPROG_COMLIST:
+	medit_change_mprog(d);
+	break;
+      }
+    }
+#endif
+    
+d1037 4
+@
+
+
+1.5
+log
+@made skillset <vict> show only nonzero skills
+@
+text
+@d1 1
+a1 1
+// $Id: modify.c,v 1.4 1999/09/05 07:00:39 jimmy Exp $
+d3 1
+a3 1
+ *   File: modify.c                                      Part of CircleMUD *
+d8 3
+a10 1
+ *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+a1051 4
+
+
+
+
+d1053 3
+d1058 12
+@
+
+
+1.4
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d755 1
+d768 1
+a768 1
+    for (i = 0; *spells[i] != '\n'; i++) {
+d793 2
+a794 2
+      for (i = 0; *spells[i] != '\n'; i++) {
+        if (*spells[i] == '!')
+d1054 4
+a1057 1
+// $Log$
+@
+
+
+1.3
+log
+@Changed one of the page_string functions so that if a bogus
+character is entered while paging, it falls out of the page
+and mops up the memory. Commented out the old send to char
+text below it.
+@
+text
+@d1 1
+d1053 1
+@
+
+
+1.2
+log
+@Indented file
+@
+text
+@d1 9
+a9 9
+/* ************************************************************************
+*   File: modify.c                                      Part of CircleMUD *
+*  Usage: Run-time modification of game variables                         *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+d1013 10
+a1022 3
+    send_to_char(
+		 "Valid commands while paging are RETURN, Q, R, B, or a numeric value.\r\n",
+		 d->character);
+d1047 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d37 1
+a37 1
+ 
+d74 1
+a74 1
+
+d122 1
+a122 1
+       }
+d158 2
+a159 2
+       if (line_high < line_low) {
+ 		SEND_TO_Q("That range is invalid.\r\n", d);
+d161 2
+a162 2
+       }
+         break;
+d164 1
+a164 1
+
+d171 1
+a171 1
+       while (s && (i < line_low))
+d176 1
+a176 1
+       if ((i < line_low) || (s == NULL)) {
+d179 4
+a182 4
+       }
+       
+       t = s;
+       while (s && (i < line_high))
+d184 3
+a186 3
+ 	   i++;
+ 	   total_len++;
+ 	   s++;
+d188 1
+a188 1
+    if ((s) && ((s = strchr(s, '\n')) != NULL)) {
+d196 1
+a196 1
+
+d220 5
+a224 5
+    } else {
+      line_low = 1;
+      line_high = 999999;
+    }
+
+d242 1
+a242 1
+       }
+d266 1
+a266 1
+	((total_len != 1)?"s ":" ")); 
+d285 5
+a289 5
+    } else {
+      line_low = 1;
+      line_high = 999999;
+    }
+
+d306 2
+a307 2
+       }
+  if ((i < line_low) || (s == NULL)) {
+d335 2
+a336 2
+     sprintf(buf, "%s\r\n%d numbered line%slisted.\r\n", buf, total_len,
+	((total_len != 1)?"s ":" ")); 
+d340 1
+a340 1
+
+d349 1
+a349 1
+
+d357 1
+a357 1
+       while (s && (i < line_low))
+d359 2
+a360 2
+ 	   i++;
+ 	   s++;
+d362 2
+a363 2
+       if ((i < line_low) || (s == NULL)) {
+ 	 	SEND_TO_Q("Line number out of range; insert aborted.\r\n", d);
+d365 1
+a365 1
+       }
+d380 1
+a380 1
+
+d388 1
+a388 1
+
+d397 1
+a397 1
+
+d410 2
+a411 2
+ 	i++;
+    s++;
+d419 1
+a419 1
+       }
+d467 2
+a468 2
+       return;
+       }
+d475 3
+a477 3
+ }
+ 
+ 
+d486 1
+a486 1
+
+d491 1
+a491 1
+
+a492 1
+
+d494 5
+a498 4
+	      /* removed old handling of '@@' char */
+    /* if ((terminator = (*str == '@@'))) *str = '\0'; */
+ 
+   if ((action = (*str == '/'))) {
+d563 1
+a563 1
+	  if (!(*d->str)) {
+d569 1
+a569 1
+     /* terminator = 1; */
+d572 1
+a572 1
+
+d575 5
+a579 5
+		 /* if (GET_LEVEL((struct char_data *) d) >= LVL_IMMORT) {
+		  sprintf(buf, "(&0&1M:&0&1&b%d&0&9&b||&0&7&bL&0:&0&7&b%d&0)", d->max_str,(strlen(str) + strlen(*d->str)));
+		  SEND_TO_Q(buf, d);
+		  }*/
+		  if (strlen(str) + strlen(*d->str) > d->max_str) {
+d581 2
+a582 2
+ 		 d->character);
+     /* terminator = 1; */
+d584 1
+a584 1
+           if (!(*d->str = (char *)realloc(*d->str, strlen(*d->str) +
+d592 1
+a592 1
+
+d594 11
+a604 11
+         /*. OLC Edits .*/
+     extern void oedit_disp_menu(struct descriptor_data *d);
+     extern void oedit_disp_extradesc_menu(struct descriptor_data *d);
+     extern void redit_disp_menu(struct descriptor_data *d);
+     extern void redit_disp_extradesc_menu(struct descriptor_data *d);
+     extern void redit_disp_exit_menu(struct descriptor_data *d);
+     extern void medit_disp_menu(struct descriptor_data *d);
+	 extern void hedit_disp_menu(struct descriptor_data *d);
+	 extern void trigedit_disp_menu(struct descriptor_data *d);
+      
+
+d607 1
+a607 1
+
+d619 1
+a619 1
+
+d639 1
+a639 1
+     }
+d652 4
+a655 4
+      
+     if (STATE(d) == CON_OEDIT) {
+       switch(OLC_MODE(d)) {
+   case OEDIT_ACTDESC:
+d658 1
+a658 1
+       case OEDIT_EXTRADESC_DESCRIPTION:
+d661 1
+a661 1
+       }
+d664 1
+a664 1
+       case REDIT_DESC:
+d667 1
+a667 1
+       case REDIT_EXIT_DESCRIPTION:
+d674 3
+a676 3
+	  } else if (STATE(d) == CON_HEDIT)
+		  hedit_disp_menu(d);
+     else if (!d->connected && (PLR_FLAGGED(d->character, PLR_MAILING))) {
+d683 1
+a683 1
+	  d->mail_vnum = NOTHING;
+d686 4
+a689 4
+    /*  SEND_TO_Q("Message sent!\r\n", d);
+      if (!IS_NPC(d->character))
+	REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);*/
+       } else if (d->mail_to >= BOARD_MAGIC) {
+d691 1
+a691 1
+	  SEND_TO_Q("Post not aborted, use REMOVE <post #>.\r\n", d);
+d693 1
+a693 1
+       } else if (STATE(d) == CON_EXDESC) {
+d699 16
+a714 22
+	   else if (STATE(d) == CON_TEXTED) {
+ 	if (terminator == 1) {
+ 	   if (!(fl = fopen((char *)d->storage, "w"))) {
+ 	      sprintf(buf, "SYSERR: Can't write file '%s'.", d->storage);
+ 	      mudlog(buf, CMP, LVL_HEAD_C, TRUE);
+ 	   }
+ 	   else {
+ 	      if (*d->str) {
+ 		 fputs(stripcr(buf1, *d->str), fl);
+ 	      }
+ 	      fclose(fl);
+ 	      sprintf(buf, "OLC: %s saves '%s'.", GET_NAME(d->character),
+ 		      d->storage);
+ 	      mudlog(buf, CMP, LVL_GOD, TRUE);
+ 	      SEND_TO_Q("Saved.\r\n", d);
+ 	   }
+ 	}
+ 	else SEND_TO_Q("Edit aborted.\r\n", d);
+ 	act("$n stops editing some scrolls.", TRUE, d->character, 0, 0, TO_ROOM);
+ 	free(d->storage);
+ 	d->storage = NULL;
+ 	STATE(d) = CON_PLAYING;
+d716 7
+a722 1
+	   else if (!d->connected && d->character && !IS_NPC(d->character)) {
+d728 1
+a728 1
+ 	    } else {
+d744 1
+a744 1
+ } else if (!action)
+d746 1
+a746 1
+ }
+d751 2
+a752 2
+*  Modification of character skills                                     *
+********************************************************************** */
+d760 1
+a760 1
+
+d762 1
+a762 1
+
+d786 1
+a786 1
+
+d803 11
+a813 11
+	  i = 0;
+		  do {
+			temp=i+1;
+			SET_SKILL(vict, temp, 1000);
+			if (str_cmp(spells[temp], "!UNUSED!")) {
+			sprintf(buf2, "You change %s's skill level in %s to 100.\n\r", GET_NAME(vict),
+	  spells[temp]);
+			send_to_char(buf2, ch);}
+			i=temp;
+		}while(i<MAX_SKILLS);
+	  return;}
+d819 1
+a819 1
+
+d822 1
+a822 1
+
+d835 1
+a835 1
+
+d839 1
+a839 1
+   } else if ((value = atoi(buf))< 0) {
+d852 1
+a852 1
+
+d854 1
+a854 1
+
+a857 1
+
+d859 2
+a860 1
+  }
+d863 5
+a867 5
+* New Pagination Code
+* Michael Buselli submitted the following code for an enhanced pager
+* for CircleMUD.  All functions below are his.  --JE 8 Mar 96
+*
+*********************************************************************/
+d878 1
+a878 1
+
+d886 1
+a886 1
+
+d890 1
+a890 1
+
+d894 1
+a894 1
+
+d898 1
+a898 1
+
+d904 1
+a904 1
+
+d913 1
+a913 1
+
+d930 1
+a930 1
+
+d943 1
+a943 1
+
+d946 1
+a946 1
+
+d949 1
+a949 1
+
+d959 1
+a959 1
+
+d965 1
+a965 1
+
+d971 1
+a971 1
+
+d981 1
+a981 1
+
+d983 1
+a983 1
+
+d999 1
+a999 1
+
+d1005 1
+a1005 1
+
+d1011 1
+a1011 1
+
+d1014 2
+a1015 2
+		  "Valid commands while paging are RETURN, Q, R, B, or a numeric value.\r\n",
+		  d->character);
+d1033 1
+a1033 1
+	   	diff = ((int)d->showstr_vector[d->showstr_page + 1])
+d1040 4
+@

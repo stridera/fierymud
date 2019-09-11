@@ -1,0 +1,2411 @@
+head	1.26;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.26
+date	2009.07.04.16.23.13;	author myc;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2009.03.08.21.43.27;	author jps;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2008.09.14.02.24.11;	author jps;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2008.09.14.02.23.19;	author jps;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2008.09.09.08.23.37;	author jps;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2008.09.04.06.47.36;	author jps;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.03.26.16.44.36;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.01.27.13.43.50;	author jps;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.01.24.15.44.37;	author myc;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.01.13.03.19.53;	author myc;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.01.12.23.13.20;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.01.12.19.08.14;	author myc;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.01.03.12.44.03;	author jps;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2000.11.20.19.26.30;	author rsd;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2000.11.15.03.58.56;	author rsd;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2000.04.05.22.58.13;	author rsd;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.04.24.06.46.52;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.30.19.03.24;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.30;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/*File: cleric.c*
+*This file was created by Proky to control Cleric type mobs *
+*It is closly related to ai.h, and ai_util.c                *
+*/
+
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "spells.h"
+#include "ai.h"
+
+/*external memory structores*/
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+extern struct room_data *world;
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+
+/*do commands*/
+ACMD(do_bash);
+ACMD(do_kick);
+
+/*external functions*/
+
+
+
+void sel_cleric_mob_spells(struct char_data * ch, struct char_data * victim)
+{
+    int giveup;
+    int i = 0;
+    int percent;
+    int mpercent;
+    int mob_circle = 0;
+    int counter = 0; 
+    int spells_circle;
+    int shall_i = 0;
+    if (!(victim))
+    {
+        mudlog("No victim in cleric update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+/*make sure not 0 or greater then 12*/
+    percent = (int)((100 * (float)GET_HIT(ch)) / GET_MAX_HIT(ch));
+    mpercent = (int)((100 * (float)GET_HIT(victim)) / GET_MAX_HIT(victim));	
+	
+    while (counter < GET_LEVEL(ch))
+    {
+	    mob_circle ++;
+	    counter = mob_circle*5 + 1;
+    }
+    counter = 0;
+/*6 or more and it will offense*/
+    
+    /*if mob condition low maybe word out*/
+    if (percent < 15)
+    {
+    /*        spells_circle = SPELL_CIRCLE(SPELL_WORD_OF_RECALL);
+            if (try_cast(ch, ch, spells_circle, SPELL_WORD_OF_RECALL))
+	            return;
+    */}
+        
+    /*check spell up spells*/
+    if (mpercent > 15)
+        if (check_cler_fight_status(ch))
+            return;
+
+    
+    if (percent > 90)
+        shall_i = 10;
+    else if (percent > 60)
+        shall_i = 4;
+    else if (percent < 30)
+        shall_i = 2;
+    if (mpercent < 20)
+        shall_i += 3;
+    else if (mpercent < 10)
+        shall_i += 5;
+
+    /*if shall_i < 6 heal*/
+    if (shall_i < 6) 
+    {
+        if (shall_i < 3)
+            giveup = 3;/*try best spell only*/
+        else
+            giveup = 2;
+        for (i=0;i< CLERIC_HEAL_NO;i++)
+        {
+			
+            if (counter > 3)
+                break;
+            spells_circle = SPELL_CIRCLE(cleric_heal[i]);
+            if ((mob_circle >= spells_circle) && i <= giveup)
+            {
+                counter++;
+	            if(try_cast(ch, ch, spells_circle, cleric_heal[i]))
+	                return;    
+            }
+        }
+    }
+    
+    /*ok if here well kill or harm*/
+    /*area affects first if needed*/
+    i = 0;
+    if (IS_AFFECTED(victim, AFF_GROUP))
+    {   
+        if (number_of_people_in_group(ch, victim))
+        {
+            for (i=0;i< CLERIC_AREA_NO;i++)
+            {
+				
+                if (counter > 3)
+                    break;
+                if (cleric_area[i] == SPELL_HOLY_WORD)
+                {
+                    if (GET_ALIGNMENT(ch) < 500)
+                        continue;
+                    if (!(if_evil_in_group(victim)))
+                        continue;
+                }
+                if (cleric_area[i] == SPELL_UNHOLY_WORD)
+                {
+                    if (GET_ALIGNMENT(ch) > -500)
+                        continue;
+                    if (!(if_good_in_group(victim)))
+                        continue;
+                }
+                spells_circle = SPELL_CIRCLE(cleric_area[i]);
+                if ((mob_circle >= spells_circle))
+                { 
+                    counter++;
+	                if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+	                    return;    
+                }
+            }
+        }
+     }
+    else
+    {/*if got holyword well use it*/
+        for (i=0;i< 2;i++)
+        {
+            spells_circle = SPELL_CIRCLE(cleric_area[i]);
+            if ((mob_circle >= spells_circle))
+            {	
+                if (cleric_area[i] == SPELL_HOLY_WORD)
+                {
+                    if (GET_ALIGNMENT(ch) < 500)
+                        continue;
+                    if (!(if_evil_in_group(victim)))
+                        continue;
+                }
+                if (cleric_area[i] == SPELL_UNHOLY_WORD)
+                {
+                    if (GET_ALIGNMENT(ch) > -500)
+                        continue;
+                    if (!(if_good_in_group(victim)))
+                        continue;
+                }
+                counter++;
+	            if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+	                return;    
+            }
+        }
+
+    }
+    /*try blind*/
+    i = 10;
+    if (mpercent > 80)
+        i = 2;
+    if (!number(0, i))        
+    {
+        if (!affected_by_aff(victim,SPELL_BLINDNESS, AFF_BLIND, 1))
+        {
+            spells_circle = SPELL_CIRCLE(SPELL_BLINDNESS);
+            if ((mob_circle >= spells_circle))
+            {/*try spell*/
+                if(try_cast(ch, victim, spells_circle, SPELL_BLINDNESS))
+                    return;
+            }
+        }
+    }
+    /*single spell targeting*/
+    for (i=0, counter = 0;i< CLERIC_OFFENSE_NO;i++)
+    {
+		if (counter > 2)/*Only Bother with two top spells you can use*/
+               break;
+        spells_circle = SPELL_CIRCLE(cleric_offense[i]);
+        if ((mob_circle >= spells_circle))
+        {
+           if (cleric_offense[i] == SPELL_DISPEL_EVIL)
+           {
+               if (GET_ALIGNMENT(ch) < 500)
+                   continue;
+               if (GET_ALIGNMENT(victim) > -500)
+                    continue;
+           }
+           if (cleric_offense[i] == SPELL_DISPEL_GOOD)
+           {
+               if (GET_ALIGNMENT(ch) > -500)
+                   continue;
+               if (GET_ALIGNMENT(victim) < 500)
+                   continue;
+           }
+           counter++;
+           if(try_cast(ch, victim, spells_circle, cleric_offense[i]))
+	          return;    
+        }
+       
+    }
+
+}
+
+/*this is called if a mob is fighting and needs to spell up*/
+bool check_cler_fight_status(struct char_data *ch)
+{/*while under offense it uses this function*/
+    int spells_circle;
+    int i, mob_circle = 0;
+    i = 0;
+    while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+	    mob_circle++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+
+    /*check harm affects*/
+    for (i=0;i < NUMBER_CL_BAD_OFFENSE_CHECKS;i++)
+    {
+        
+       if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+       {
+           if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+               continue;
+            spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+            if (mob_circle >= spells_circle)
+                if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+                    return TRUE;
+                
+       }
+
+    }
+   
+    for (i=0;i < NUMBER_CL_OFFENSE_CHECKS;i++)
+    {
+       if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+       {
+            spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+            if (mob_circle >= spells_circle)
+                if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+                {    
+                      
+                    if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+                        return TRUE;
+                }
+       }
+
+    }
+
+    return FALSE;
+}
+void check_cler_status(struct char_data *ch)
+{
+int i;
+int spells_circle;
+int mob_circle = 0;
+    if(!IS_MOB(ch) || FIGHTING(ch) || !AWAKE(ch)) 
+        return;	
+    if(ch->desc && ch->desc->original)
+        return;
+    if(MOB_FLAGGED(ch, MOB_CASTING))
+        return;
+    i = 0;
+    while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+	    mob_circle ++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+    /*check harm affects*/
+    for (i=0;i < NUMBER_CL_BAD_CHECKS;i++)
+    {
+        
+       if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+       {
+           if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+               continue;
+            spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+            if (mob_circle >= spells_circle)
+                if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+                    return;
+                
+       }
+
+    }
+    
+    
+    for (i=0;i < NUMBER_OF_CL_CHECKS;i++)
+    {
+       if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+       {
+            if (cl_spells_to_check[i][0] == SPELL_SOULSHIELD)
+                continue;
+            spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+            if (mob_circle >= spells_circle)
+                if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+                {   
+                   if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+                    return;
+                }
+       }
+    }
+}
+
+@
+
+
+1.26
+log
+@Soulshield, holy word, and unholy word now use regular alignment
+checks instead of arbitrary 500 and -500 values.
+@
+text
+@/***************************************************************************
+ * $Id: cleric.c,v 1.25 2009/03/08 23:34:14 jps Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *  File: cleric.c                                        Part of FieryMUD *
+ *  Usage: Control Cleric type mobs, this file is closely related to ai.h  *
+ *         and ai_util.c                                                   *
+ *  By: Ben Horner (Proky of HubisMUD)                                     *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "casting.h"
+#include "ai.h"
+#include "class.h"
+#include "skills.h"
+#include "races.h"
+#include "math.h"
+#include "magic.h"
+#include "lifeforce.h"
+
+/* External functions */
+int mob_cast(struct char_data *ch, struct char_data *tch, struct obj_data *tobj, int spellnum);
+bool affected_by_armor_spells(struct char_data *victim);
+
+/* Clerical spell lists */
+const struct spell_pair mob_cleric_buffs[] = {
+  {SPELL_SOULSHIELD, 0, EFF_SOULSHIELD} ,
+  {SPELL_PROT_FROM_EVIL, 0, EFF_PROTECT_EVIL},
+  {SPELL_ARMOR, 0, 0},
+  {SPELL_DEMONSKIN, 0, 0},
+  {SPELL_GAIAS_CLOAK, 0, 0},
+  {SPELL_BARKSKIN, 0, 0},
+  {SPELL_DEMONIC_MUTATION, 0, 0},
+  {SPELL_DEMONIC_ASPECT, 0, 0},
+  {SPELL_SENSE_LIFE, 0, EFF_SENSE_LIFE},
+  {SPELL_PRAYER, 0, 0},
+  {SPELL_DARK_PRESENCE, 0, 0},
+  {0, 0, 0}
+};
+
+/* These spells should all be castable in combat. */
+const struct spell_pair mob_cleric_hindrances[] = {
+  {SPELL_BLINDNESS, SPELL_CURE_BLIND, EFF_BLIND},
+  {SPELL_POISON, SPELL_REMOVE_POISON, EFF_POISON},
+  {SPELL_DISEASE, SPELL_HEAL, EFF_DISEASE},
+  {SPELL_CURSE, SPELL_REMOVE_CURSE, EFF_CURSE},
+  {SPELL_INSANITY, SPELL_SANE_MIND, EFF_INSANITY},
+  {SPELL_SILENCE, 0, 0}, /* Try to cast this, but there's no cure */
+  {SPELL_ENTANGLE, 0, 0},
+  {0, 0, 0}
+};
+
+const int mob_cleric_offensives[] = {
+  SPELL_FULL_HARM,
+  SPELL_SUNRAY,
+  SPELL_FLAMESTRIKE,
+  SPELL_DIVINE_RAY,
+  SPELL_HARM,
+  SPELL_DESTROY_UNDEAD,
+  SPELL_STYGIAN_ERUPTION,
+  SPELL_DISPEL_EVIL,
+  SPELL_DISPEL_GOOD,
+  SPELL_WRITHING_WEEDS,
+  SPELL_HELL_BOLT,
+  SPELL_DIVINE_BOLT,
+  SPELL_CAUSE_CRITIC,
+  SPELL_CAUSE_SERIOUS,
+  SPELL_CAUSE_LIGHT,
+  0
+};
+
+const int mob_cleric_area_spells[] = {
+  SPELL_HOLY_WORD,
+  SPELL_UNHOLY_WORD,
+  SPELL_EARTHQUAKE,
+  0
+};
+
+const int mob_cleric_heals[] = {
+  SPELL_FULL_HEAL,
+  SPELL_HEAL,
+  SPELL_CURE_CRITIC,
+  SPELL_CURE_SERIOUS,
+  SPELL_CURE_LIGHT,
+  0
+};
+
+
+/*
+ * cleric_ai_action
+ *
+ *
+ */
+bool cleric_ai_action(struct char_data * ch, struct char_data * victim)
+{
+  int my_health, victim_health, i, counter, action = 0;
+
+  if (!victim) {
+    mudlog("No victim in cleric AI action.", NRM, LVL_GOD, FALSE);
+    return FALSE;
+  }
+
+  /* Well no chance of casting any spells today. */
+  if (EFF_FLAGGED(ch, EFF_SILENCE))
+    return FALSE;
+
+  /* Most classes using clerical spells have alignment restrictions. */
+  if ((GET_CLASS(ch) == CLASS_DIABOLIST && !IS_EVIL(ch)) ||
+      (GET_CLASS(ch) == CLASS_PRIEST && !IS_GOOD(ch)) ||
+      (GET_CLASS(ch) == CLASS_PALADIN && !IS_GOOD(ch)) ||
+      (GET_CLASS(ch) == CLASS_RANGER && !IS_GOOD(ch)) ||
+      (GET_CLASS(ch) == CLASS_ANTI_PALADIN && !IS_EVIL(ch)))
+    return FALSE;
+
+  /* Calculate mob and victim health as a percentage. */
+  my_health = (100 * GET_HIT(ch)) / GET_MAX_HIT(ch);
+  victim_health = (100 * GET_HIT(victim)) / GET_MAX_HIT(victim);
+  
+  if (my_health > 90)
+    action = 10;
+  else if (my_health > 60)
+    action = 4;
+  else if (my_health < 30)
+    action = 2;
+  if (victim_health < 20)
+    action += 3;
+  else if (victim_health < 10)
+    action += 5;
+  
+  /* If action < 6 then heal. */
+  if (action < 6 && mob_heal_up(ch))
+    return TRUE;
+
+  
+  /* Otherwise kill or harm in some fashion */
+
+  /* Area effects first if the victim is grouped. */
+  if (group_size(victim) > 1) {
+    counter = 0;
+    for (i = 0; mob_cleric_area_spells[i]; i++) {
+      if (!GET_SKILL(ch, mob_cleric_area_spells[i]))
+        continue;
+      switch (mob_cleric_area_spells[i]) {
+        case SPELL_HOLY_WORD:
+          /* Don't cast if it's suicidal or useless. */
+          if (IS_EVIL(ch) || !evil_in_group(victim))
+            continue;
+          break;
+        case SPELL_UNHOLY_WORD:
+          if (IS_GOOD(ch) || !good_in_group(victim))
+            continue;
+          break;
+        case SPELL_EARTHQUAKE:
+          /* Only cast earthquake outside and in ground. */
+          if (!QUAKABLE(CH_NROOM(ch)))
+            continue;
+          break;
+      }
+      if (mob_cast(ch, victim, NULL, mob_cleric_area_spells[i]))
+        return TRUE;
+      /* Only try the mob's best two spells. */
+      if (++counter >= 2)
+        break;
+    }
+  }
+
+  /* Try to cause an offensive affection. Only attempt one. */
+  for (i = 0; mob_cleric_hindrances[i].spell; i++) {
+    if (!GET_SKILL(ch, mob_cleric_hindrances[i].spell))
+      continue;
+    if (!has_effect(victim, &mob_cleric_hindrances[i])) {
+      if (mob_cast(ch, victim, NULL, mob_cleric_hindrances[i].spell))
+        return TRUE;
+      else
+        break;
+    }
+  }
+
+  /* Now attempt a harming spell. */
+  for (i = 0, counter = 0; mob_cleric_offensives[i]; i++) {
+    switch (mob_cleric_offensives[i]) {
+      case SPELL_DISPEL_EVIL:
+        if (!IS_GOOD(ch) || !IS_EVIL(victim))
+          continue;
+        break;
+      case SPELL_DISPEL_GOOD:
+        if (!IS_EVIL(ch) || !IS_GOOD(victim))
+          continue;
+        break;
+      case SPELL_FLAMESTRIKE:
+        if (!IS_GOOD(ch))
+          continue; /* Not worth casting if alignment is too low */
+        break;        
+      case SPELL_DIVINE_RAY:
+        if (GET_ALIGNMENT(ch) <= 650)
+          continue;
+        break;
+      case SPELL_DESTROY_UNDEAD:
+        if (GET_LIFEFORCE(victim) != LIFE_UNDEAD)
+          continue;
+        break;
+      case SPELL_STYGIAN_ERUPTION:
+        if (!IS_EVIL(ch))
+          continue;
+        break;
+      case SPELL_HELL_BOLT:
+        if (IS_EVIL(victim))
+          continue;
+        break;
+      case SPELL_DIVINE_BOLT:
+        if (IS_GOOD(victim))
+          continue;
+        break;
+    }
+    if (mob_cast(ch, victim, NULL, mob_cleric_offensives[i]))
+      return TRUE;
+    else
+      counter++;
+    /* Only attempt the mob's two best spells.  The rest are worthless. */
+    if (counter > 2)
+      break;
+  }
+
+  return FALSE;
+}
+
+/*
+ * check_cleric_status
+ *
+ * Makes the cleric mob check its spells.  Unlike the sorcerer function of 
+ * similar name, this one shouldn't be called when the mob is in combat.
+ * Cleric spells are all pretty useless in battle.
+ */
+bool check_cleric_status(struct char_data *ch) {
+  int i;
+
+  /* Check bad affects */
+  for (i = 0; mob_cleric_hindrances[i].spell; i++) {
+    if (!GET_SKILL(ch, mob_cleric_hindrances[i].spell))
+      continue;
+
+    /* If the spell can be removed and the mob has it, try to remove it */
+    if (mob_cleric_hindrances[i].remover && has_effect(ch, &mob_cleric_hindrances[i]))
+      if (mob_cast(ch, ch, NULL, mob_cleric_hindrances[i].remover))
+        return TRUE;
+    /* 10% chance to cancel if in combat. */
+    if (FIGHTING(ch) && !number(0, 9))
+      return FALSE;
+  }
+
+  /* Check other spells */
+  for (i = 0; mob_cleric_buffs[i].spell; i++) {
+    if (!GET_SKILL(ch, mob_cleric_buffs[i].spell) ||
+          !check_fluid_spell_ok(ch, ch, mob_cleric_buffs[i].spell, TRUE))
+      continue;
+    switch (mob_cleric_buffs[i].spell) {
+      case SPELL_GAIAS_CLOAK:
+        if (CH_INDOORS(ch) ||
+            SECT(ch->in_room) == SECT_UNDERWATER ||
+            SECT(ch->in_room) == SECT_UNDERDARK)
+          continue;
+        /* The armor spells don't mix. */
+        if (affected_by_armor_spells(ch))
+          continue;
+        break;
+      case SPELL_DEMONSKIN:
+        if (IS_GOOD(ch))
+          continue;
+      case SPELL_ARMOR:
+      case SPELL_BARKSKIN:
+        /* The armor spells don't mix. */
+        if (affected_by_armor_spells(ch))
+          continue;
+        break;
+      case SPELL_DEMONIC_ASPECT:
+      case SPELL_DEMONIC_MUTATION:
+        /* Demonic mutation and demonic aspect don't mix. */
+        if (affected_by_spell(ch, SPELL_DEMONIC_ASPECT) ||
+            affected_by_spell(ch, SPELL_DEMONIC_MUTATION))
+          continue;
+        break;
+      case SPELL_PROT_FROM_EVIL:
+        if (IS_EVIL(ch) || EFF_FLAGGED(ch, EFF_PROTECT_EVIL))
+          continue;
+        break;
+      case SPELL_SOULSHIELD:
+        if (IS_NEUTRAL(ch))
+          continue;
+        if (EFF_FLAGGED(ch, EFF_SOULSHIELD))
+          continue;
+        break;
+      case SPELL_DARK_PRESENCE:
+        if (IS_GOOD(ch) || affected_by_spell(ch, SPELL_BLESS) || 
+            affected_by_spell(ch, SPELL_DARK_PRESENCE))
+          continue;
+        break;
+      default:
+        if (has_effect(ch, &mob_cleric_buffs[i]))
+          continue;
+    }
+    if (mob_cast(ch, ch, NULL, mob_cleric_buffs[i].spell))
+      return TRUE;
+  }
+
+  return FALSE;
+}
+
+/***************************************************************************
+ * $Log: cleric.c,v $
+ * Revision 1.25  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.24  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.23  2008/09/14 02:24:11  jps
+ * Using magic.h.
+ *
+ * Revision 1.22  2008/09/14 02:23:19  jps
+ * Don't attempt to use buffs that can't be used when you're fluid.
+ *
+ * Revision 1.21  2008/09/09 08:23:37  jps
+ * Placed sector info into a struct and moved its macros into rooms.h.
+ *
+ * Revision 1.20  2008/09/04 06:47:36  jps
+ * Changed sector constants to match their strings
+ *
+ * Revision 1.19  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.18  2008/03/26 16:44:36  jps
+ * Replaced all checks for undead race with checks for undead lifeforce.
+ * Replaced the undead race with the plant race.
+ *
+ * Revision 1.17  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.16  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.15  2008/01/27 13:43:50  jps
+ * Moved race and species-related data to races.h/races.c and merged species into races.
+ *
+ * Revision 1.14  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.13  2008/01/24 15:44:37  myc
+ * Fixed checks on some cleric spells in check_cleric_status.
+ *
+ * Revision 1.12  2008/01/13 03:19:53  myc
+ * Got rid of MSKILL references.  Fixed some checks with cleric ai
+ * spellcasting.
+ *
+ * Revision 1.11  2008/01/12 23:13:20  myc
+ * Replaced try_cast with direct calls to mob_cast, which now supports target
+ * objects.
+ *
+ * Revision 1.10  2008/01/12 19:08:14  myc
+ * Rewrote a lot of mob AI functionality.
+ *
+ * Revision 1.9  2008/01/03 12:44:03  jps
+ * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+ * to CLASS_SORCERER.
+ *
+ * Revision 1.8  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.7  2000/11/20 19:26:30  rsd
+ * Delted some white space, and added back rlog comments
+ * from prior to the addition of the $log$ string.
+ *
+ * Revision 1.6  2000/11/15 03:58:56  rsd
+ * Retabbed part of the file so I could figure out where to add
+ * a giant conditional to prevent clerics from casting quake
+ * inside when fighting a group and target an individual
+ * instead *pant*
+ *
+ * Revision 1.5  2000/04/05 22:58:13  rsd
+ * Altered the comment header to standard while browsing the file.
+ *
+ * Revision 1.4  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.3  1999/04/24 06:46:52  jimmy
+ * dos2unix eeek ^M's --gurlaek
+ *
+ * Revision 1.2  1999/01/30 19:03:24  mud
+ * Added standard comment header for credit 
+ * Indented the file
+ *
+ * Revision 1.1  1999/01/29 01:23:30  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.25
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.24 2009/03/08 21:43:27 jps Exp jps $
+d157 1
+a157 1
+          if (GET_ALIGNMENT(ch) < 500 || !evil_in_group(victim))
+d161 1
+a161 1
+          if (GET_ALIGNMENT(ch) > -500 || !good_in_group(victim))
+d298 1
+a298 1
+        if (GET_ALIGNMENT(ch) > -500 && GET_ALIGNMENT(ch) < 500)
+d321 3
+@
+
+
+1.24
+log
+@Split lifeforce, composition, charsize, and damage types from chars.c
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.23 2008/09/14 02:24:11 jps Exp jps $
+d23 1
+a23 1
+#include "spells.h"
+d321 3
+@
+
+
+1.23
+log
+@Using magic.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.22 2008/09/14 02:23:19 jps Exp jps $
+d30 1
+d321 3
+@
+
+
+1.22
+log
+@Don't attempt to use buffs that can't be used when you're fluid.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.21 2008/09/09 08:23:37 jps Exp jps $
+d29 1
+d320 3
+@
+
+
+1.21
+log
+@Placed sector info into a struct and moved its macros into rooms.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.20 2008/09/04 06:47:36 jps Exp jps $
+d262 2
+a263 1
+    if (!GET_SKILL(ch, mob_cleric_buffs[i].spell))
+d319 3
+@
+
+
+1.20
+log
+@Changed sector constants to match their strings
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.19 2008/03/28 17:54:53 myc Exp jps $
+d164 1
+a164 10
+          if (ROOM_FLAGGED(ch->in_room, ROOM_INDOORS) ||
+              SECT(ch->in_room) == SECT_INSIDE ||
+              SECT(ch->in_room) == SECT_SHALLOWS ||
+              SECT(ch->in_room) == SECT_WATER ||
+              SECT(ch->in_room) == SECT_UNDERWATER ||
+              SECT(ch->in_room) == SECT_AIR ||
+              SECT(ch->in_room) == SECT_OCEAN ||
+              SECT(ch->in_room) == SECT_ASTRALPLANE ||
+              SECT(ch->in_room) == SECT_AIRPLANE ||
+              SECT(ch->in_room) == SECT_AVERNUS)
+d266 1
+a266 1
+        if (!OUTSIDE(ch) || SECT(ch->in_room) == SECT_INSIDE ||
+d318 3
+@
+
+
+1.19
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.18 2008/03/26 16:44:36 jps Exp myc $
+d166 2
+a167 2
+              SECT(ch->in_room) == SECT_WATER_SWIM ||
+              SECT(ch->in_room) == SECT_WATER_NOSWIM ||
+d169 1
+a169 1
+              SECT(ch->in_room) == SECT_FLYING ||
+d327 4
+@
+
+
+1.18
+log
+@Replaced all checks for undead race with checks for undead lifeforce.
+Replaced the undead race with the plant race.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.17 2008/02/09 04:27:47 myc Exp jps $
+d36 12
+a47 12
+  {SPELL_SOULSHIELD, 0, AFF2_SOULSHIELD, 2} ,
+  {SPELL_PROT_FROM_EVIL, 0, AFF_PROTECT_EVIL, 1},
+  {SPELL_ARMOR, 0, 0, 0},
+  {SPELL_DEMONSKIN, 0, 0, 0},
+  {SPELL_GAIAS_CLOAK, 0, 0, 0},
+  {SPELL_BARKSKIN, 0, 0, 0},
+  {SPELL_DEMONIC_MUTATION, 0, 0, 0},
+  {SPELL_DEMONIC_ASPECT, 0, 0, 0},
+  {SPELL_SENSE_LIFE, 0, AFF_SENSE_LIFE, 1},
+  {SPELL_PRAYER, 0, 0, 0},
+  {SPELL_DARK_PRESENCE, 0, 0, 0},
+  {0, 0, 0, 0}
+d52 8
+a59 8
+  {SPELL_BLINDNESS, SPELL_CURE_BLIND, AFF_BLIND, 1},
+  {SPELL_POISON, SPELL_REMOVE_POISON, AFF_POISON, 1},
+  {SPELL_DISEASE, SPELL_HEAL, AFF2_DISEASE, 2},
+  {SPELL_CURSE, SPELL_REMOVE_CURSE, AFF_CURSE, 1},
+  {SPELL_INSANITY, SPELL_SANE_MIND, AFF2_INSANITY, 2},
+  {SPELL_SILENCE, 0, 0, 0}, /* Try to cast this, but there's no cure */
+  {SPELL_ENTANGLE, 0, 0, 0},
+  {0, 0, 0, 0}
+d113 1
+a113 1
+  if (AFF2_FLAGGED(ch, AFF2_SILENCE))
+d164 1
+a164 1
+          if (IS_SET(ROOM_FLAGS(ch->in_room), ROOM_INDOORS) ||
+d189 1
+a189 1
+    if (!has_affection(victim, &mob_cleric_hindrances[i])) {
+d261 1
+a261 1
+    if (mob_cleric_hindrances[i].remover && has_affection(ch, &mob_cleric_hindrances[i]))
+d300 1
+a300 1
+        if (IS_EVIL(ch) || AFF_FLAGGED(ch, AFF_PROTECT_EVIL))
+d306 1
+a306 1
+        if (AFF2_FLAGGED(ch, AFF2_SOULSHIELD))
+d315 1
+a315 1
+        if (has_affection(ch, &mob_cleric_buffs[i]))
+d327 4
+@
+
+
+1.17
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.16 2008/01/29 21:02:31 myc Exp myc $
+d217 1
+a217 1
+        if (GET_RACE(victim) != RACE_UNDEAD)
+d327 3
+@
+
+
+1.16
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.15 2008/01/27 13:43:50 jps Exp myc $
+d28 1
+d327 4
+@
+
+
+1.15
+log
+@Moved race and species-related data to races.h/races.c and merged species into races.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.14 2008/01/26 14:26:31 jps Exp jps $
+a28 3
+/* external memory structores */
+extern struct room_data *world;
+
+d326 3
+@
+
+
+1.14
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.13 2008/01/24 15:44:37 myc Exp jps $
+d27 1
+d219 1
+a219 1
+        if (GET_SPECIES(victim) != SPECIES_UNDEAD)
+d329 3
+@
+
+
+1.13
+log
+@Fixed checks on some cleric spells in check_cleric_status.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.12 2008/01/13 03:19:53 myc Exp myc $
+d26 1
+d328 3
+@
+
+
+1.12
+log
+@Got rid of MSKILL references.  Fixed some checks with cleric ai
+spellcasting.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.11 2008/01/12 23:13:20 myc Exp myc $
+d274 12
+a287 2
+      case SPELL_DEMONSKIN:
+      case SPELL_GAIAS_CLOAK:
+d300 1
+a300 1
+        if (IS_EVIL(ch))
+d304 3
+a306 1
+        if (IS_NEUTRAL(ch))
+d310 2
+a311 1
+        if (IS_GOOD(ch) || affected_by_spell(ch, SPELL_BLESS))
+d327 4
+@
+
+
+1.11
+log
+@Replaced try_cast with direct calls to mob_cast, which now supports target
+objects.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.10 2008/01/12 19:08:14 myc Exp myc $
+d27 1
+a27 1
+/*external memory structores*/
+d30 1
+a30 1
+/*external functions*/
+d32 1
+d150 1
+a150 1
+      if (!GET_MSKILL(ch, mob_cleric_area_spells[i]))
+d187 1
+a187 1
+    if (!GET_MSKILL(ch, mob_cleric_hindrances[i].spell))
+d225 3
+a227 3
+       if (IS_EVIL(victim))
+         continue;
+       break;
+d257 1
+a257 1
+    if (!GET_MSKILL(ch, mob_cleric_hindrances[i].spell))
+d259 1
+d271 1
+a271 1
+    if (!GET_MSKILL(ch, mob_cleric_buffs[i].spell))
+d279 1
+a279 4
+        if (affected_by_spell(ch, SPELL_ARMOR) ||
+            affected_by_spell(ch, SPELL_BARKSKIN) ||
+            affected_by_spell(ch, SPELL_DEMONSKIN) ||
+            affected_by_spell(ch, SPELL_GAIAS_CLOAK))
+d289 12
+d314 4
+@
+
+
+1.10
+log
+@Rewrote a lot of mob AI functionality.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.9 2008/01/03 12:44:03 jps Exp myc $
+d31 1
+a31 1
+
+d176 1
+a176 1
+      if (try_cast(ch, victim, mob_cleric_area_spells[i]))
+d189 1
+a189 1
+      if (try_cast(ch, victim, mob_cleric_hindrances[i].spell))
+d232 1
+a232 1
+    if (try_cast(ch, victim, mob_cleric_offensives[i]))
+d260 1
+a260 1
+      if (try_cast(ch, ch, mob_cleric_hindrances[i].remover))
+d294 1
+a294 1
+    if (try_cast(ch, ch, mob_cleric_buffs[i].spell))
+d303 3
+@
+
+
+1.9
+log
+@Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+to CLASS_SORCERER.
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.8 2002/09/13 02:32:10 jjl Exp jps $
+d25 1
+a27 3
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+a28 7
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+
+/*do commands*/
+ACMD(do_bash);
+ACMD(do_kick);
+d32 71
+a102 1
+void sel_cleric_mob_spells(struct char_data * ch, struct char_data * victim)
+d104 22
+a125 16
+  int giveup;
+  int i = 0;
+  int percent;
+  int mpercent;
+  int mob_circle = 0;
+  int counter = 0; 
+  int spells_circle;
+  int shall_i = 0;
+  if (!(victim))
+    {
+      mudlog("No victim in cleric update.", NRM, LVL_GOD, FALSE);
+      return;
+    }
+  /*make sure not 0 or greater then 12*/
+  percent = (int)((100 * (float)GET_HIT(ch)) / GET_MAX_HIT(ch));
+  mpercent = (int)((100 * (float)GET_HIT(victim)) / GET_MAX_HIT(victim));	
+d127 10
+a136 7
+  while (counter < GET_LEVEL(ch))
+    {
+      mob_circle ++;
+      counter = mob_circle*5 + 1;
+    }
+  counter = 0;
+  /*6 or more and it will offense*/
+d138 4
+a141 7
+  /*if mob condition low maybe word out*/
+  if (percent < 15)
+    {
+      /*        spells_circle = SPELL_CIRCLE(SPELL_WORD_OF_RECALL);
+		if (try_cast(ch, ch, spells_circle, SPELL_WORD_OF_RECALL))
+		return;
+      */}
+d143 32
+a174 85
+  /*check spell up spells*/
+  if (mpercent > 15)
+    if (check_cler_fight_status(ch))
+      return;
+    
+  if (percent > 90)
+    shall_i = 10;
+  else if (percent > 60)
+    shall_i = 4;
+  else if (percent < 30)
+    shall_i = 2;
+  if (mpercent < 20)
+    shall_i += 3;
+  else if (mpercent < 10)
+    shall_i += 5;
+  
+  /*if shall_i < 6 heal*/
+  if (shall_i < 6) 
+    {
+      if (shall_i < 3)
+	giveup = 3;/*try best spell only*/
+      else
+	giveup = 2;
+      for (i=0;i< CLERIC_HEAL_NO;i++)
+        {
+	  
+	  if (counter > 3)
+	    break;
+	  spells_circle = SPELL_CIRCLE(cleric_heal[i]);
+	  if ((mob_circle >= spells_circle) && i <= giveup)
+            {
+	      counter++;
+	      if(try_cast(ch, ch, spells_circle, cleric_heal[i]))
+		return;    
+            }
+        }
+    }
+  
+  /*ok if here well kill or harm*/
+  /*area affects first if needed*/
+  i = 0;
+  if (IS_AFFECTED(victim, AFF_GROUP)) {   
+    if (number_of_people_in_group(ch, victim)) {
+      for (i=0;i< CLERIC_AREA_NO;i++) {
+	if (counter > 3) {
+	  break;
+	}
+	if (cleric_area[i] == SPELL_HOLY_WORD) {
+	  if (GET_ALIGNMENT(ch) < 500) {
+	    continue;
+	  }
+	  if (!(if_evil_in_group(victim))) {
+	    continue;
+	  }
+	}
+	if (cleric_area[i] == SPELL_UNHOLY_WORD) {
+	  if (GET_ALIGNMENT(ch) > -500) {
+	    continue;
+	  }
+	  if (!(if_good_in_group(victim))) {
+	      continue;
+	  }
+	}
+	spells_circle = SPELL_CIRCLE(cleric_area[i]);
+	if ((mob_circle >= spells_circle)) { 
+	  counter++;
+
+	  /* NO casting quake inside or where there is no ground! RSD 11/14/2000 */
+ if((cleric_area[i] == SPELL_EARTHQUAKE) && ((SECT(ch->in_room) == SECT_INSIDE ||
+					      SECT(ch->in_room) == SECT_CITY ||
+					      SECT(ch->in_room) == SECT_WATER_SWIM ||
+					      SECT(ch->in_room) == SECT_WATER_NOSWIM ||
+					      SECT(ch->in_room) == SECT_UNDERWATER ||
+					      SECT(ch->in_room) == SECT_FLYING ||
+					      SECT(ch->in_room) == SECT_ASTRALPLANE ||
+					      SECT(ch->in_room) == SECT_AIRPLANE ||
+					      SECT(ch->in_room) == SECT_AVERNUS ||
+					      SECT(ch->in_room) == SECT_UNDERDARK) ||
+					     (IS_SET(ROOM_FLAGS(ch->in_room), ROOM_INDOORS)))) { 
+   break; /* <--- go try a spell that attacks a single person instead */
+	  }
+	  if(try_cast(ch, victim, spells_circle, cleric_area[i])) {
+	    return;
+	  }    
+	}
+d176 5
+a181 27
+  } else {/*if got holyword well use it*/
+    for (i=0;i< 2;i++) {
+      spells_circle = SPELL_CIRCLE(cleric_area[i]);
+      if ((mob_circle >= spells_circle)) {	
+	if (cleric_area[i] == SPELL_HOLY_WORD) {
+	  if (GET_ALIGNMENT(ch) < 500) {
+	    continue;
+	  }
+	  if (!(if_evil_in_group(victim))) {
+		    continue;
+	  }
+	}
+	if (cleric_area[i] == SPELL_UNHOLY_WORD) {
+	  if (GET_ALIGNMENT(ch) > -500) {
+	    continue;
+	  }
+	  if (!(if_good_in_group(victim))) {
+	    continue;
+	  }
+	}
+	counter++;
+	
+	if(try_cast(ch, victim, spells_circle, cleric_area[i])) {
+	  return;
+	}
+      }
+    }  
+d183 10
+a192 15
+  /*try blind*/
+  i = 10;
+  if (mpercent > 80)
+    i = 2;
+  if (!number(0, i))        
+    {
+      if (!affected_by_aff(victim,SPELL_BLINDNESS, AFF_BLIND, 1))
+        {
+	  spells_circle = SPELL_CIRCLE(SPELL_BLINDNESS);
+	  if ((mob_circle >= spells_circle))
+            {/*try spell*/
+	      if(try_cast(ch, victim, spells_circle, SPELL_BLINDNESS))
+		return;
+            }
+        }
+d194 46
+a239 30
+  /*single spell targeting*/
+  for (i=0, counter = 0;i< CLERIC_OFFENSE_NO;i++)
+    {
+      if (counter > 2)/*Only Bother with two top spells you can use*/
+	break;
+      spells_circle = SPELL_CIRCLE(cleric_offense[i]);
+      if ((mob_circle >= spells_circle))
+        {
+	  if (cleric_offense[i] == SPELL_DISPEL_EVIL)
+	    {
+	      if (GET_ALIGNMENT(ch) < 500)
+		continue;
+	      if (GET_ALIGNMENT(victim) > -500)
+		continue;
+	    }
+	  if (cleric_offense[i] == SPELL_DISPEL_GOOD)
+	    {
+	      if (GET_ALIGNMENT(ch) > -500)
+		continue;
+	      if (GET_ALIGNMENT(victim) < 500)
+		continue;
+	    }
+	  counter++;
+	  if(try_cast(ch, victim, spells_circle, cleric_offense[i]))
+	    return;    
+        }
+      
+    }
+  
+}
+a240 42
+/*this is called if a mob is fighting and needs to spell up*/
+bool check_cler_fight_status(struct char_data *ch)
+{/*while under offense it uses this function*/
+  int spells_circle;
+  int i, mob_circle = 0;
+  i = 0;
+  while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+      mob_circle++;
+      i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+  
+  /*check harm affects*/
+  for (i=0;i < NUMBER_CL_BAD_OFFENSE_CHECKS;i++)
+    {
+      
+      if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+	{
+	  if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+	    continue;
+	  spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+	  if (mob_circle >= spells_circle)
+	    if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+	      return TRUE;  
+	}
+    }
+  
+  for (i=0;i < NUMBER_CL_OFFENSE_CHECKS;i++)
+    {
+      if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+	{
+	  spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+	  if (mob_circle >= spells_circle)
+	    if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+	      {    
+		
+		if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+		  return TRUE;
+	      }
+	}
+    }
+  
+d243 9
+a251 2
+void check_cler_status(struct char_data *ch)
+{
+d253 40
+a292 29
+  int spells_circle;
+  int mob_circle = 0;
+  if(!IS_MOB(ch) || FIGHTING(ch) || !AWAKE(ch)) 
+    return;	
+  if(ch->desc && ch->desc->original)
+    return;
+  if(MOB_FLAGGED(ch, MOB_CASTING))
+    return;
+  i = 0;
+  while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+      mob_circle ++;
+      i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+  /*check harm affects*/
+  for (i=0;i < NUMBER_CL_BAD_CHECKS;i++)
+    {
+      
+      if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+	{
+	  if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+	    continue;
+	  spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+	  if (mob_circle >= spells_circle)
+	    if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+	      return;
+	  
+	}
+      
+d294 3
+d298 1
+a298 15
+  for (i=0;i < NUMBER_OF_CL_CHECKS;i++)
+    {
+      if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+	{
+	  if (cl_spells_to_check[i][0] == SPELL_SOULSHIELD)
+	    continue;
+	  spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+	  if (mob_circle >= spells_circle)
+	    if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+	      {   
+		if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+		  return;
+	      }
+	}
+    }
+d303 4
+@
+
+
+1.8
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: cleric.c,v 1.7 2000/11/20 19:26:30 rsd Exp $
+a33 1
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+d335 3
+@
+
+
+1.7
+log
+@Delted some white space, and added back rlog comments
+from prior to the addition of the $log$ string.
+@
+text
+@d1 3
+a3 1
+// $Id: cleric.c,v 1.6 2000/11/15 03:58:56 rsd Exp $
+d334 29
+a362 23
+// $Log: cleric.c,v $
+// Revision 1.6  2000/11/15 03:58:56  rsd
+// Retabbed part of the file so I could figure out where to add
+// a giant conditional to prevent clerics from casting quake
+// inside when fighting a group and target an individual
+// instead *pant*
+//
+// Revision 1.5  2000/04/05 22:58:13  rsd
+// Altered the comment header to standard while browsing the file.
+//
+// Revision 1.4  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.3  1999/04/24 06:46:52  jimmy
+// dos2unix eeek ^M's --gurlaek
+//
+// Revision 1.2  1999/01/30 19:03:24  mud
+// Added standard comment header for credit 
+// Indented the file
+//
+// Revision 1.1  1999/01/29 01:23:30  mud
+// Initial revision
+//
+@
+
+
+1.6
+log
+@Retabbed part of the file so I could figure out where to add
+a giant conditional to prevent clerics from casting quake
+inside when fighting a group and target an individual
+instead *pant*
+@
+text
+@d1 1
+a1 1
+// $Id: cleric.c,v 1.5 2000/04/05 22:58:13 rsd Exp $
+a39 2
+
+
+d79 1
+a79 2
+  
+  
+d260 1
+a260 2
+	      return TRUE;
+	  
+a261 1
+      
+a276 1
+      
+d314 1
+a314 2
+  
+  
+d333 6
+d344 10
+@
+
+
+1.5
+log
+@Altered the comment header to standard while browsing the file.
+@
+text
+@d1 1
+a1 1
+// $Id: cleric.c,v 1.4 1999/09/05 07:00:39 jimmy Exp $
+d119 45
+a163 32
+  if (IS_AFFECTED(victim, AFF_GROUP))
+    {   
+      if (number_of_people_in_group(ch, victim))
+        {
+	  for (i=0;i< CLERIC_AREA_NO;i++)
+            {
+	      
+	      if (counter > 3)
+		break;
+	      if (cleric_area[i] == SPELL_HOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) < 500)
+		    continue;
+		  if (!(if_evil_in_group(victim)))
+		    continue;
+                }
+	      if (cleric_area[i] == SPELL_UNHOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) > -500)
+		    continue;
+		  if (!(if_good_in_group(victim)))
+		    continue;
+                }
+	      spells_circle = SPELL_CIRCLE(cleric_area[i]);
+	      if ((mob_circle >= spells_circle))
+                { 
+		  counter++;
+		  if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+		    return;    
+                }
+            }
+        }
+d165 9
+a173 10
+  else
+    {/*if got holyword well use it*/
+      for (i=0;i< 2;i++)
+        {
+	  spells_circle = SPELL_CIRCLE(cleric_area[i]);
+	  if ((mob_circle >= spells_circle))
+            {	
+	      if (cleric_area[i] == SPELL_HOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) < 500)
+d175 18
+a192 17
+		  if (!(if_evil_in_group(victim)))
+		    continue;
+                }
+	      if (cleric_area[i] == SPELL_UNHOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) > -500)
+		    continue;
+		  if (!(if_good_in_group(victim)))
+		    continue;
+                }
+	      counter++;
+	      if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+		return;    
+            }
+        }
+      
+    }
+d340 3
+@
+
+
+1.4
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d7 5
+a11 2
+ *  Control M's removed by: Scott Davis                                    *
+ **************************************************************************/
+d326 4
+a329 1
+// $Log$
+@
+
+
+1.3
+log
+@dos2unix eeek ^M's --gurlaek
+@
+text
+@d1 1
+d323 1
+@
+
+
+1.2
+log
+@Added standard comment header for credit 
+Indented the file
+@
+text
+@d1 321
+a321 321
+/***************************************************************************
+ *  File: cleric.c                                        Part of FieryMUD *
+ *  Usage: Control Cleric type mobs, this file is closely related to ai.h  *
+ *         and ai_util.c                                                   *
+ *  By: Ben Horner (Proky of HubisMUD)                                     *
+ *  Control M's removed by: Scott Davis                                    *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "spells.h"
+#include "ai.h"
+
+/*external memory structores*/
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+extern struct room_data *world;
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+
+/*do commands*/
+ACMD(do_bash);
+ACMD(do_kick);
+
+/*external functions*/
+
+
+
+void sel_cleric_mob_spells(struct char_data * ch, struct char_data * victim)
+{
+  int giveup;
+  int i = 0;
+  int percent;
+  int mpercent;
+  int mob_circle = 0;
+  int counter = 0; 
+  int spells_circle;
+  int shall_i = 0;
+  if (!(victim))
+    {
+      mudlog("No victim in cleric update.", NRM, LVL_GOD, FALSE);
+      return;
+    }
+  /*make sure not 0 or greater then 12*/
+  percent = (int)((100 * (float)GET_HIT(ch)) / GET_MAX_HIT(ch));
+  mpercent = (int)((100 * (float)GET_HIT(victim)) / GET_MAX_HIT(victim));	
+  
+  while (counter < GET_LEVEL(ch))
+    {
+      mob_circle ++;
+      counter = mob_circle*5 + 1;
+    }
+  counter = 0;
+  /*6 or more and it will offense*/
+  
+  /*if mob condition low maybe word out*/
+  if (percent < 15)
+    {
+      /*        spells_circle = SPELL_CIRCLE(SPELL_WORD_OF_RECALL);
+		if (try_cast(ch, ch, spells_circle, SPELL_WORD_OF_RECALL))
+		return;
+      */}
+  
+  /*check spell up spells*/
+  if (mpercent > 15)
+    if (check_cler_fight_status(ch))
+      return;
+  
+  
+  if (percent > 90)
+    shall_i = 10;
+  else if (percent > 60)
+    shall_i = 4;
+  else if (percent < 30)
+    shall_i = 2;
+  if (mpercent < 20)
+    shall_i += 3;
+  else if (mpercent < 10)
+    shall_i += 5;
+  
+  /*if shall_i < 6 heal*/
+  if (shall_i < 6) 
+    {
+      if (shall_i < 3)
+	giveup = 3;/*try best spell only*/
+      else
+	giveup = 2;
+      for (i=0;i< CLERIC_HEAL_NO;i++)
+        {
+	  
+	  if (counter > 3)
+	    break;
+	  spells_circle = SPELL_CIRCLE(cleric_heal[i]);
+	  if ((mob_circle >= spells_circle) && i <= giveup)
+            {
+	      counter++;
+	      if(try_cast(ch, ch, spells_circle, cleric_heal[i]))
+		return;    
+            }
+        }
+    }
+  
+  /*ok if here well kill or harm*/
+  /*area affects first if needed*/
+  i = 0;
+  if (IS_AFFECTED(victim, AFF_GROUP))
+    {   
+      if (number_of_people_in_group(ch, victim))
+        {
+	  for (i=0;i< CLERIC_AREA_NO;i++)
+            {
+	      
+	      if (counter > 3)
+		break;
+	      if (cleric_area[i] == SPELL_HOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) < 500)
+		    continue;
+		  if (!(if_evil_in_group(victim)))
+		    continue;
+                }
+	      if (cleric_area[i] == SPELL_UNHOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) > -500)
+		    continue;
+		  if (!(if_good_in_group(victim)))
+		    continue;
+                }
+	      spells_circle = SPELL_CIRCLE(cleric_area[i]);
+	      if ((mob_circle >= spells_circle))
+                { 
+		  counter++;
+		  if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+		    return;    
+                }
+            }
+        }
+    }
+  else
+    {/*if got holyword well use it*/
+      for (i=0;i< 2;i++)
+        {
+	  spells_circle = SPELL_CIRCLE(cleric_area[i]);
+	  if ((mob_circle >= spells_circle))
+            {	
+	      if (cleric_area[i] == SPELL_HOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) < 500)
+		    continue;
+		  if (!(if_evil_in_group(victim)))
+		    continue;
+                }
+	      if (cleric_area[i] == SPELL_UNHOLY_WORD)
+                {
+		  if (GET_ALIGNMENT(ch) > -500)
+		    continue;
+		  if (!(if_good_in_group(victim)))
+		    continue;
+                }
+	      counter++;
+	      if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+		return;    
+            }
+        }
+      
+    }
+  /*try blind*/
+  i = 10;
+  if (mpercent > 80)
+    i = 2;
+  if (!number(0, i))        
+    {
+      if (!affected_by_aff(victim,SPELL_BLINDNESS, AFF_BLIND, 1))
+        {
+	  spells_circle = SPELL_CIRCLE(SPELL_BLINDNESS);
+	  if ((mob_circle >= spells_circle))
+            {/*try spell*/
+	      if(try_cast(ch, victim, spells_circle, SPELL_BLINDNESS))
+		return;
+            }
+        }
+    }
+  /*single spell targeting*/
+  for (i=0, counter = 0;i< CLERIC_OFFENSE_NO;i++)
+    {
+      if (counter > 2)/*Only Bother with two top spells you can use*/
+	break;
+      spells_circle = SPELL_CIRCLE(cleric_offense[i]);
+      if ((mob_circle >= spells_circle))
+        {
+	  if (cleric_offense[i] == SPELL_DISPEL_EVIL)
+	    {
+	      if (GET_ALIGNMENT(ch) < 500)
+		continue;
+	      if (GET_ALIGNMENT(victim) > -500)
+		continue;
+	    }
+	  if (cleric_offense[i] == SPELL_DISPEL_GOOD)
+	    {
+	      if (GET_ALIGNMENT(ch) > -500)
+		continue;
+	      if (GET_ALIGNMENT(victim) < 500)
+		continue;
+	    }
+	  counter++;
+	  if(try_cast(ch, victim, spells_circle, cleric_offense[i]))
+	    return;    
+        }
+      
+    }
+  
+}
+
+/*this is called if a mob is fighting and needs to spell up*/
+bool check_cler_fight_status(struct char_data *ch)
+{/*while under offense it uses this function*/
+  int spells_circle;
+  int i, mob_circle = 0;
+  i = 0;
+  while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+      mob_circle++;
+      i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+  
+  /*check harm affects*/
+  for (i=0;i < NUMBER_CL_BAD_OFFENSE_CHECKS;i++)
+    {
+      
+      if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+	{
+	  if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+	    continue;
+	  spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+	  if (mob_circle >= spells_circle)
+	    if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+	      return TRUE;
+	  
+	}
+      
+    }
+  
+  for (i=0;i < NUMBER_CL_OFFENSE_CHECKS;i++)
+    {
+      if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+	{
+	  spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+	  if (mob_circle >= spells_circle)
+	    if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+	      {    
+		
+		if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+		  return TRUE;
+	      }
+	}
+      
+    }
+  
+  return FALSE;
+}
+void check_cler_status(struct char_data *ch)
+{
+  int i;
+  int spells_circle;
+  int mob_circle = 0;
+  if(!IS_MOB(ch) || FIGHTING(ch) || !AWAKE(ch)) 
+    return;	
+  if(ch->desc && ch->desc->original)
+    return;
+  if(MOB_FLAGGED(ch, MOB_CASTING))
+    return;
+  i = 0;
+  while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+      mob_circle ++;
+      i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+  /*check harm affects*/
+  for (i=0;i < NUMBER_CL_BAD_CHECKS;i++)
+    {
+      
+      if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+	{
+	  if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+	    continue;
+	  spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+	  if (mob_circle >= spells_circle)
+	    if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+	      return;
+	  
+	}
+      
+    }
+  
+  
+  for (i=0;i < NUMBER_OF_CL_CHECKS;i++)
+    {
+      if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+	{
+	  if (cl_spells_to_check[i][0] == SPELL_SOULSHIELD)
+	    continue;
+	  spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+	  if (mob_circle >= spells_circle)
+	    if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+	      {   
+		if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+		  return;
+	      }
+	}
+    }
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 5
+/*File: cleric.c*
+*This file was created by Proky to control Cleric type mobs *
+*It is closly related to ai.h, and ai_util.c                *
+*/
+
+d40 9
+a48 9
+    int giveup;
+    int i = 0;
+    int percent;
+    int mpercent;
+    int mob_circle = 0;
+    int counter = 0; 
+    int spells_circle;
+    int shall_i = 0;
+    if (!(victim))
+d50 2
+a51 2
+        mudlog("No victim in cleric update.", NRM, LVL_GOD, FALSE);
+        return;
+d53 5
+a57 5
+/*make sure not 0 or greater then 12*/
+    percent = (int)((100 * (float)GET_HIT(ch)) / GET_MAX_HIT(ch));
+    mpercent = (int)((100 * (float)GET_HIT(victim)) / GET_MAX_HIT(victim));	
+	
+    while (counter < GET_LEVEL(ch))
+d59 2
+a60 2
+	    mob_circle ++;
+	    counter = mob_circle*5 + 1;
+d62 5
+a66 5
+    counter = 0;
+/*6 or more and it will offense*/
+    
+    /*if mob condition low maybe word out*/
+    if (percent < 15)
+d68 24
+a91 24
+    /*        spells_circle = SPELL_CIRCLE(SPELL_WORD_OF_RECALL);
+            if (try_cast(ch, ch, spells_circle, SPELL_WORD_OF_RECALL))
+	            return;
+    */}
+        
+    /*check spell up spells*/
+    if (mpercent > 15)
+        if (check_cler_fight_status(ch))
+            return;
+
+    
+    if (percent > 90)
+        shall_i = 10;
+    else if (percent > 60)
+        shall_i = 4;
+    else if (percent < 30)
+        shall_i = 2;
+    if (mpercent < 20)
+        shall_i += 3;
+    else if (mpercent < 10)
+        shall_i += 5;
+
+    /*if shall_i < 6 heal*/
+    if (shall_i < 6) 
+d93 5
+a97 5
+        if (shall_i < 3)
+            giveup = 3;/*try best spell only*/
+        else
+            giveup = 2;
+        for (i=0;i< CLERIC_HEAL_NO;i++)
+d99 5
+a103 5
+			
+            if (counter > 3)
+                break;
+            spells_circle = SPELL_CIRCLE(cleric_heal[i]);
+            if ((mob_circle >= spells_circle) && i <= giveup)
+d105 3
+a107 3
+                counter++;
+	            if(try_cast(ch, ch, spells_circle, cleric_heal[i]))
+	                return;    
+d111 5
+a115 5
+    
+    /*ok if here well kill or harm*/
+    /*area affects first if needed*/
+    i = 0;
+    if (IS_AFFECTED(victim, AFF_GROUP))
+d117 1
+a117 1
+        if (number_of_people_in_group(ch, victim))
+d119 1
+a119 1
+            for (i=0;i< CLERIC_AREA_NO;i++)
+d121 4
+a124 4
+				
+                if (counter > 3)
+                    break;
+                if (cleric_area[i] == SPELL_HOLY_WORD)
+d126 4
+a129 4
+                    if (GET_ALIGNMENT(ch) < 500)
+                        continue;
+                    if (!(if_evil_in_group(victim)))
+                        continue;
+d131 1
+a131 1
+                if (cleric_area[i] == SPELL_UNHOLY_WORD)
+d133 4
+a136 4
+                    if (GET_ALIGNMENT(ch) > -500)
+                        continue;
+                    if (!(if_good_in_group(victim)))
+                        continue;
+d138 2
+a139 2
+                spells_circle = SPELL_CIRCLE(cleric_area[i]);
+                if ((mob_circle >= spells_circle))
+d141 3
+a143 3
+                    counter++;
+	                if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+	                    return;    
+d147 2
+a148 2
+     }
+    else
+d150 1
+a150 1
+        for (i=0;i< 2;i++)
+d152 2
+a153 2
+            spells_circle = SPELL_CIRCLE(cleric_area[i]);
+            if ((mob_circle >= spells_circle))
+d155 1
+a155 1
+                if (cleric_area[i] == SPELL_HOLY_WORD)
+d157 4
+a160 4
+                    if (GET_ALIGNMENT(ch) < 500)
+                        continue;
+                    if (!(if_evil_in_group(victim)))
+                        continue;
+d162 1
+a162 1
+                if (cleric_area[i] == SPELL_UNHOLY_WORD)
+d164 4
+a167 4
+                    if (GET_ALIGNMENT(ch) > -500)
+                        continue;
+                    if (!(if_good_in_group(victim)))
+                        continue;
+d169 3
+a171 3
+                counter++;
+	            if(try_cast(ch, victim, spells_circle, cleric_area[i]))
+	                return;    
+d174 1
+a174 1
+
+d176 5
+a180 5
+    /*try blind*/
+    i = 10;
+    if (mpercent > 80)
+        i = 2;
+    if (!number(0, i))        
+d182 1
+a182 1
+        if (!affected_by_aff(victim,SPELL_BLINDNESS, AFF_BLIND, 1))
+d184 2
+a185 2
+            spells_circle = SPELL_CIRCLE(SPELL_BLINDNESS);
+            if ((mob_circle >= spells_circle))
+d187 2
+a188 2
+                if(try_cast(ch, victim, spells_circle, SPELL_BLINDNESS))
+                    return;
+d192 2
+a193 2
+    /*single spell targeting*/
+    for (i=0, counter = 0;i< CLERIC_OFFENSE_NO;i++)
+d195 4
+a198 4
+		if (counter > 2)/*Only Bother with two top spells you can use*/
+               break;
+        spells_circle = SPELL_CIRCLE(cleric_offense[i]);
+        if ((mob_circle >= spells_circle))
+d200 17
+a216 17
+           if (cleric_offense[i] == SPELL_DISPEL_EVIL)
+           {
+               if (GET_ALIGNMENT(ch) < 500)
+                   continue;
+               if (GET_ALIGNMENT(victim) > -500)
+                    continue;
+           }
+           if (cleric_offense[i] == SPELL_DISPEL_GOOD)
+           {
+               if (GET_ALIGNMENT(ch) > -500)
+                   continue;
+               if (GET_ALIGNMENT(victim) < 500)
+                   continue;
+           }
+           counter++;
+           if(try_cast(ch, victim, spells_circle, cleric_offense[i]))
+	          return;    
+d218 1
+a218 1
+       
+d220 1
+a220 1
+
+d226 4
+a229 4
+    int spells_circle;
+    int i, mob_circle = 0;
+    i = 0;
+    while (i < GET_LEVEL(ch))
+d231 2
+a232 2
+	    mob_circle++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+d234 3
+a236 3
+
+    /*check harm affects*/
+    for (i=0;i < NUMBER_CL_BAD_OFFENSE_CHECKS;i++)
+d238 12
+a249 12
+        
+       if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+       {
+           if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+               continue;
+            spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+            if (mob_circle >= spells_circle)
+                if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+                    return TRUE;
+                
+       }
+
+d251 2
+a252 2
+   
+    for (i=0;i < NUMBER_CL_OFFENSE_CHECKS;i++)
+d254 12
+a265 12
+       if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+       {
+            spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+            if (mob_circle >= spells_circle)
+                if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+                {    
+                      
+                    if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+                        return TRUE;
+                }
+       }
+
+d267 2
+a268 2
+
+    return FALSE;
+d272 11
+a282 11
+int i;
+int spells_circle;
+int mob_circle = 0;
+    if(!IS_MOB(ch) || FIGHTING(ch) || !AWAKE(ch)) 
+        return;	
+    if(ch->desc && ch->desc->original)
+        return;
+    if(MOB_FLAGGED(ch, MOB_CASTING))
+        return;
+    i = 0;
+    while (i < GET_LEVEL(ch))
+d284 2
+a285 2
+	    mob_circle ++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+d287 2
+a288 2
+    /*check harm affects*/
+    for (i=0;i < NUMBER_CL_BAD_CHECKS;i++)
+d290 16
+a305 16
+        
+       if (GET_MSKILL(ch, cl_bad_spells_to_check[i][1]) > 0)
+       {
+           if (!(affected_by_aff(ch, cl_bad_spells_to_check[i][0], cl_bad_spells_to_check[i][2], cl_bad_spells_to_check[i][3]))) 
+               continue;
+            spells_circle = SPELL_CIRCLE(cl_bad_spells_to_check[i][1]);
+            if (mob_circle >= spells_circle)
+                if (try_cast(ch, ch, spells_circle, cl_bad_spells_to_check[i][1]))
+                    return;
+                
+       }
+
+    }
+    
+    
+    for (i=0;i < NUMBER_OF_CL_CHECKS;i++)
+d307 12
+a318 12
+       if (GET_MSKILL(ch, cl_spells_to_check[i][0]) > 0)
+       {
+            if (cl_spells_to_check[i][0] == SPELL_SOULSHIELD)
+                continue;
+            spells_circle = SPELL_CIRCLE(cl_spells_to_check[i][0]);
+            if (mob_circle >= spells_circle)
+                if (!affected_by_aff(ch, cl_spells_to_check[i][0], cl_spells_to_check[i][1], cl_spells_to_check[i][2])) 
+                {   
+                   if (try_cast(ch, ch, spells_circle, cl_spells_to_check[i][0]))
+                    return;
+                }
+       }
+@

@@ -1,0 +1,3189 @@
+head	1.74;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.74
+date	2012.01.25.17.50.59;	author mud;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	2010.07.02.14.09.16;	author mud;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	2010.04.25.22.57.16;	author mud;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	2010.04.25.22.13.38;	author mud;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	2009.06.09.05.47.39;	author myc;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	2009.03.20.20.19.51;	author myc;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	2009.03.09.04.33.20;	author jps;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	2008.08.10.06.54.33;	author jps;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	2008.04.20.18.11.36;	author jps;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	2008.04.04.06.12.52;	author myc;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	2007.12.19.20.55.41;	author myc;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	2007.11.18.02.15.49;	author rsd;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	2007.08.16.11.54.08;	author jps;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	2007.07.24.23.02.52;	author jps;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	2007.06.25.07.43.27;	author jps;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	2007.03.27.04.27.05;	author myc;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	2006.11.11.23.52.32;	author jps;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	2006.10.06.02.07.18;	author dce;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	2006.10.06.01.54.48;	author dce;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	2006.07.26.17.14.15;	author cjd;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2006.05.08.16.50.32;	author rls;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2004.12.03.07.05.32;	author rsd;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2004.12.03.06.45.21;	author rsd;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2004.12.02.10.05.17;	author mud;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2004.12.01.15.08.37;	author rsd;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2004.10.25.07.46.25;	author rls;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2003.12.11.19.13.52;	author rsd;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2003.06.20.15.10.12;	author rls;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2003.01.04.00.00.46;	author jjl;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2002.10.19.18.29.52;	author jjl;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2001.07.09.19.38.29;	author rsd;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2001.01.13.22.25.27;	author rsd;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2001.01.12.21.51.38;	author rsd;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2001.01.12.04.45.42;	author rsd;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2001.01.12.04.36.31;	author rsd;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2001.01.08.07.16.53;	author rsd;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2001.01.04.22.49.24;	author mtp;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2000.12.29.20.17.35;	author rsd;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2000.11.29.00.19.24;	author mtp;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2000.11.25.02.33.15;	author rsd;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2000.11.18.06.08.03;	author rsd;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2000.11.15.16.14.41;	author rsd;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2000.11.12.07.15.43;	author rsd;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2000.10.19.23.20.52;	author mtp;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2000.10.15.05.27.49;	author cmc;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2000.10.13.20.06.48;	author cmc;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2000.10.13.17.54.13;	author cmc;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2000.09.18.01.46.27;	author rsd;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2000.09.18.01.39.08;	author mud;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2000.09.05.03.20.27;	author rsd;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2000.05.14.05.41.58;	author rsd;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2000.04.23.09.05.25;	author rsd;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2000.03.04.21.35.11;	author rsd;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2000.03.04.21.23.25;	author rsd;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2000.02.14.05.11.39;	author cso;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	99.12.27.18.22.14;	author rsd;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	99.11.22.13.29.10;	author rsd;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	99.11.19.05.31.07;	author cso;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	99.11.16.00.11.44;	author rsd;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	99.08.22.22.39.33;	author mud;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	99.08.14.22.32.09;	author mud;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	99.06.24.02.24.47;	author mud;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	99.06.20.03.59.42;	author mud;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	99.06.11.03.01.25;	author mud;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	99.04.14.02.10.32;	author mud;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	99.04.10.20.30.24;	author mud;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.04.08.16.56.24;	author dce;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.02.17.04.56.10;	author mud;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.02.15.34.47;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.32;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ************************************************************************
+ *   File: spec_assign.c                                 Part of CircleMUD *
+ *  Usage: Functions to assign function pointers to objs/mobs/rooms        *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ************************************************************************ */
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "db.h"
+#include "interpreter.h"
+#include "utils.h"
+
+extern struct room_data *world;
+extern int top_of_world;
+extern int mini_mud;
+extern struct index_data *mob_index;
+extern struct index_data *obj_index;
+
+/* functions to perform assignments */
+
+void ASSIGNMOB(int mob, SPECIAL(fname))
+{
+  if (real_mobile(mob) >= 0)
+    mob_index[real_mobile(mob)].func = fname;
+  else if (!mini_mud) {
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant mob #%d",
+	    mob);
+    log(buf);
+  }
+}
+
+void ASSIGNOBJ(int obj, SPECIAL(fname))
+{
+  if (real_object(obj) >= 0)
+    obj_index[real_object(obj)].func = fname;
+  else if (!mini_mud) {
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant obj #%d",
+	    obj);
+    log(buf);
+  }
+}
+
+void ASSIGNROOM(int room, SPECIAL(fname))
+{
+  if (real_room(room) >= 0)
+    world[real_room(room)].func = fname;
+  else if (!mini_mud) {
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant rm. #%d",
+	    room);
+    log(buf);
+  }
+}
+
+
+/* ********************************************************************
+ *  Assignments                                                        *
+ ******************************************************************** */
+
+/* assign special procedures to mobiles */
+void assign_mobiles(void)
+{
+  SPECIAL(postmaster);
+  SPECIAL(cityguard);
+  SPECIAL(receptionist);
+  SPECIAL(cryogenicist);
+  SPECIAL(guild_guard);
+  SPECIAL(guild);
+  SPECIAL(puff);
+  SPECIAL(fido);
+  SPECIAL(janitor);
+  SPECIAL(mayor);
+  SPECIAL(snake);
+  SPECIAL(thief);
+  SPECIAL(magic_user);
+  SPECIAL(clan0_guard_proc);
+  SPECIAL(archer);
+  SPECIAL(priest_subclasser);
+  SPECIAL(assassin_subclasser);
+  SPECIAL(mercenary_subclasser);
+  SPECIAL(necro_subclasser);
+  SPECIAL(pyro_subclasser);
+  SPECIAL(druid_subclasser);
+  SPECIAL(diabolist_subclasser);
+  void assign_kings_castle(void);
+
+  ASSIGNMOB(1, receptionist);
+  ASSIGNMOB(3005, receptionist);
+  ASSIGNMOB(58701, receptionist);
+  ASSIGNMOB(3061, janitor);
+  ASSIGNMOB(3068, janitor);
+
+  /*
+  ASSIGNMOB(4000, clan0_guard_proc);
+  ASSIGNMOB(55601, assassin_subclasser);
+  ASSIGNMOB(55602, mercenary_subclasser);
+  ASSIGNMOB(8130, receptionist);
+  ASSIGNMOB(4001, receptionist);
+  ASSIGNMOB(32721, receptionist);
+  ASSIGNMOB(30975, receptionist);
+  ASSIGNMOB(9017, receptionist);
+  ASSIGNMOB(1, receptionist);
+  ASSIGNMOB(14769, receptionist);
+  ASSIGNMOB(14738, receptionist);
+  ASSIGNMOB(14770, receptionist);
+  ASSIGNMOB(1, receptionist);
+  ASSIGNMOB(30516, receptionist);
+  */
+  /* Immortal Zone */
+  /*
+  ASSIGNMOB(1200, receptionist);
+  ASSIGNMOB(1201, postmaster);
+  ASSIGNMOB(1202, janitor);
+  ASSIGNMOB(30518, archer);
+  ASSIGNMOB(30519, postmaster);
+  ASSIGNMOB(32013, receptionist);
+  ASSIGNMOB(5804, receptionist);
+  ASSIGNMOB(32226, receptionist);
+  ASSIGNMOB(32000, receptionist);
+  ASSIGNMOB(21051, receptionist);
+  ASSIGNMOB(106, pyro_subclasser);
+  ASSIGNMOB(2330, druid_subclasser);
+  ASSIGNMOB(32020, priest_subclasser);
+  ASSIGNMOB(2311, diabolist_subclasser);
+  ASSIGNMOB(3017, necro_subclasser);
+  */
+}
+
+
+/* assign special procedures to objects */
+void assign_objects(void)
+{
+  SPECIAL(bank);
+  SPECIAL(gen_board);
+  SPECIAL(blind_weapon);
+  SPECIAL(fireball_weapon);
+  SPECIAL(holyw_weapon);
+  SPECIAL(lightning_weapon);
+  SPECIAL(vampiric_weapon);
+  SPECIAL(fullharm_weapon);
+  SPECIAL(curse_weapon);
+  SPECIAL(invis_item);
+  SPECIAL(stone_item);
+  SPECIAL(ship);
+  SPECIAL(rift_portal);
+
+  ASSIGNOBJ(3099, gen_board);   /* Mortal Board */
+  ASSIGNOBJ(47, gen_board);     /* Mortal Board */
+  ASSIGNOBJ(48, gen_board);     /* immortal board */
+  ASSIGNOBJ(65, gen_board);     /* Coder Board */
+  ASSIGNOBJ(66, gen_board);     /* Builder Board */
+
+  /*
+  ASSIGNOBJ(4135, lightning_weapon);
+  ASSIGNOBJ(40806, holyw_weapon);
+  ASSIGNOBJ(15, blind_weapon);
+  ASSIGNOBJ(5704, fullharm_weapon);
+  ASSIGNOBJ(16, fireball_weapon);
+  ASSIGNOBJ(30542, vampiric_weapon);
+  ASSIGNOBJ(17, curse_weapon);
+  ASSIGNOBJ(23004, invis_item);
+  ASSIGNOBJ(23008, stone_item);
+  ASSIGNOBJ(3899, ship);          heart of twilight
+  ASSIGNOBJ(3999, ship);         tavern star
+
+  ASSIGNOBJ(46, gen_board);	 social board
+  ASSIGNOBJ(47, gen_board);	 freeze board
+  ASSIGNOBJ(48, gen_board);	 immortal board
+  ASSIGNOBJ(49, gen_board);	 mortal board
+  ASSIGNOBJ(60, gen_board);	 social board
+  ASSIGNOBJ(61, gen_board);	 freeze board
+  ASSIGNOBJ(62, gen_board);	 immortal board
+  ASSIGNOBJ(63, gen_board);	 mortal board
+  ASSIGNOBJ(64, gen_board);	 social board
+  ASSIGNOBJ(65, gen_board);	 freeze board
+  ASSIGNOBJ(66, gen_board);	 immortal board
+  */
+  /* pyro portal */
+  /*    ASSIGNOBJ(104, rift_portal); */
+
+}
+
+
+
+/* assign special procedures to rooms */
+void assign_rooms(void)
+{
+  extern int dts_are_dumps;
+  int i;
+
+  SPECIAL(dump);
+  SPECIAL(pet_shops);
+  SPECIAL(pray_for_items);
+  SPECIAL(bank);
+  SPECIAL(uklor);
+  SPECIAL(ship_exit);
+  SPECIAL(current_proc);
+  SPECIAL(druid_quest_room);
+  /*SPECIAL(good_justice);*/
+
+
+
+  /*
+  ASSIGNROOM(32356, bank);
+  ASSIGNROOM(22000, bank);
+  ASSIGNROOM(15139, bank);
+  ASSIGNROOM(9022, bank);
+  ASSIGNROOM(14890, pet_shops);
+  ASSIGNROOM(5780, bank);
+  ASSIGNROOM(1204, current_proc);
+  ASSIGNROOM(23000, current_proc);
+  ASSIGNROOM(23237, current_proc);
+  ASSIGNROOM(23238, current_proc);
+  ASSIGNROOM(23239, current_proc);
+  ASSIGNROOM(23240, current_proc);
+  ASSIGNROOM(23241, current_proc);
+  ASSIGNROOM(23242, current_proc);
+  ASSIGNROOM(30881, bank);
+  ASSIGNROOM(30972, bank);
+  ASSIGNROOM(30761, uklor);
+  ASSIGNROOM(5780, bank);
+  ASSIGNROOM(3901, ship_exit);
+  ASSIGNROOM(3801, ship_exit);
+  */
+  /* druid qeust */
+  /*
+  ASSIGNROOM(2475, druid_quest_room);
+  ASSIGNROOM(2460, druid_quest_room);
+  ASSIGNROOM(2498, druid_quest_room);
+  ASSIGNROOM(2499, druid_quest_room);
+  */
+  if (dts_are_dumps)
+    for (i = 0; i < top_of_world; i++)
+      if (IS_SET(ROOM_FLAGS(i), ROOM_DEATH))
+	world[i].func = dump;
+}
+@
+
+
+1.74
+log
+@Adding pet shop to room 8715 in Logging Camp.
+@
+text
+@/**************************************************************************
+ * $Id: spec_assign.c,v 1.73 2010/07/02 14:09:16 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: spec_assign.c                                  Part of FieryMUD *
+ *  Usage: Functions to assign function pointers to objs/mobs/rooms        *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "db.h"
+#include "interpreter.h"
+#include "utils.h"
+#include "specprocs.h"
+
+/* functions to perform assignments */
+
+void ASSIGNMOB(int mob, SPECIAL(fname))
+{
+  if (real_mobile(mob) >= 0)
+    mob_index[real_mobile(mob)].func = fname;
+#ifndef TEST
+  else
+    log("SYSERR: Attempt to assign spec to non-existent mob #%d", mob);
+#endif
+}
+
+void ASSIGNOBJ(int obj, SPECIAL(fname))
+{
+  if (real_object(obj) >= 0)
+    obj_index[real_object(obj)].func = fname;
+#ifndef TEST
+  else
+    log("SYSERR: Attempt to assign spec to non-existent obj #%d", obj);
+#endif
+}
+
+void ASSIGNROOM(int room, SPECIAL(fname))
+{
+  if (real_room(room) >= 0)
+    world[real_room(room)].func = fname;
+#ifndef TEST
+  else
+    log("SYSERR: Attempt to assign spec to non-existent rm. #%d", room);
+#endif
+}
+
+
+/*********************************************************************
+ *                        Assignments                                *
+ *********************************************************************/
+
+/* assign special procedures to mobiles */
+void assign_mobiles(void)
+{
+  SPECIAL(postmaster);
+  SPECIAL(cityguard);
+  SPECIAL(receptionist);
+  SPECIAL(cryogenicist);
+  SPECIAL(guild_guard);
+  SPECIAL(guild);
+  SPECIAL(puff);
+  SPECIAL(janitor);
+
+  /* Anduin */
+
+  ASSIGNMOB(6011, cityguard);
+  ASSIGNMOB(6012, cityguard);
+  ASSIGNMOB(6018, cityguard);
+  ASSIGNMOB(6101, cityguard);
+  ASSIGNMOB(6102, cityguard);
+  ASSIGNMOB(6154, cityguard);
+  ASSIGNMOB(6106, cityguard);
+  ASSIGNMOB(6104, cityguard);
+  ASSIGNMOB(6200, cityguard);
+  ASSIGNMOB(6203, cityguard);
+  ASSIGNMOB(6204, cityguard);
+
+  ASSIGNMOB(6114, guild_guard);  /* mercenary */
+  ASSIGNMOB(6007, guild_guard);  /* diabolist */
+  ASSIGNMOB(6008, guild_guard);  /* antipal */
+  ASSIGNMOB(6040, guild_guard);  /* assassin */
+  ASSIGNMOB(6041, guild_guard);  /* thief */
+  ASSIGNMOB(6175, guild_guard);  /* druid guard */
+  ASSIGNMOB(6216, guild_guard);  /* priest/cleric guard */
+  ASSIGNMOB(6217, guild_guard);  /* paladin */
+  ASSIGNMOB(6219, guild_guard);  /* necro */
+  ASSIGNMOB(6201, guild_guard);  /* pyro */
+  ASSIGNMOB(6202, guild_guard);  /* cryo */
+  ASSIGNMOB(6206, guild_guard);  /* sorceror */
+  ASSIGNMOB(6210, guild_guard);  /* illusionist */
+
+  ASSIGNMOB(6006, guild);  /* Princess Signess */
+  ASSIGNMOB(6007, guild);  /* Ruin Wormheart */
+
+  ASSIGNMOB(6231, guild);   /* the Archmage - not the drunk (6031): RLS */
+  ASSIGNMOB(6032, guild);   /* black priestess */
+  ASSIGNMOB(6080, guild);   /* horsemaster (anti-paladin) */
+  ASSIGNMOB(6020, guild);   /* Doorindark (assassin) */
+
+  ASSIGNMOB(6113, guild);   /* mercenary */
+  ASSIGNMOB(6176, guild);   /* warrior */
+
+  ASSIGNMOB(6220, guild);   /* pyromancer */
+  ASSIGNMOB(6221, guild);   /* cryomancer */
+  ASSIGNMOB(6222, guild);   /* druidess */
+  ASSIGNMOB(6218, guild);   /* Priestess */
+  ASSIGNMOB(6223, guild);   /* necromancer */
+  ASSIGNMOB(6211, guild);   /* illusionist */
+
+  ASSIGNMOB(6227, receptionist);
+  ASSIGNMOB(6171, postmaster);
+  ASSIGNMOB(6115, janitor);
+
+  ASSIGNMOB(6017, receptionist);
+
+  /* End Anduin */
+
+  /* Ickle */
+
+  ASSIGNMOB(10054, receptionist); /* Ickle */
+  ASSIGNMOB(10055, postmaster);
+  ASSIGNMOB(10010, guild_guard);    /*cleric*/
+  ASSIGNMOB(10011, guild_guard);    /*warrior*/
+  ASSIGNMOB(10012, guild_guard);    /*sorceror*/
+  ASSIGNMOB(10013, guild_guard);    /*mercenary*/
+
+  ASSIGNMOB(10000, guild);  /* High Priest of Zalish */
+  ASSIGNMOB(10001, guild);  /* warrior coach */
+  ASSIGNMOB(10002, guild);  /* archmage */
+  ASSIGNMOB(10003, guild);  /* elite mercenary */
+
+  /* End Ickle */
+
+  /* Mielikki */
+
+  ASSIGNMOB(3005, receptionist);
+  ASSIGNMOB(3061, janitor);
+  ASSIGNMOB(3068, janitor);
+  ASSIGNMOB(3095, postmaster);
+  ASSIGNMOB(3014, guild_guard);  /* illusionist */
+  ASSIGNMOB(3024, guild_guard);  /* sorc pyro cryo */
+  ASSIGNMOB(3054, guild_guard);  /* cleric druid priest */
+  ASSIGNMOB(3026, guild_guard);  /* rogue thief assa bard merc */
+  ASSIGNMOB(3027, guild_guard);  /* warrior */
+  ASSIGNMOB(3549, guild_guard);  /* ranger */
+  ASSIGNMOB(5300, guild_guard);  /* paladin */
+  ASSIGNMOB(5302, guild_guard);  /* monk */
+  ASSIGNMOB(16911, guild_guard); /* necro HH */
+
+  ASSIGNMOB(3018, guild);  /* illusionist */
+  ASSIGNMOB(3020, guild);  /* archmage */
+  ASSIGNMOB(3021, guild);  /* high priestess */
+  ASSIGNMOB(3022, guild);  /* master thief */
+  ASSIGNMOB(3023, guild);  /* warrior coach */
+  ASSIGNMOB(3053, guild);  /* high druid */
+  ASSIGNMOB(3490, guild);  /* pyromancer */
+  ASSIGNMOB(3491, guild);  /* cryomancer */
+  ASSIGNMOB(3492, guild);  /* priest */
+  ASSIGNMOB(3504, guild);  /* Galithel Silverwing (ranger) */
+  ASSIGNMOB(5301, guild);  /* Grey Knight (paladin) */
+  ASSIGNMOB(5303, guild);  /* monk */
+  ASSIGNMOB(16910, guild); /* Asiri'Qaxt (necro) */
+
+  /* End Mielikki */
+
+  /* Ogakh */
+
+  ASSIGNMOB(30001, receptionist);
+  ASSIGNMOB(30043, postmaster);
+  ASSIGNMOB(30019, guild);
+  ASSIGNMOB(30016, guild);
+  ASSIGNMOB(30018, guild);
+  ASSIGNMOB(30017, guild);
+  ASSIGNMOB(30058, guild);
+  ASSIGNMOB(30059, guild);
+  ASSIGNMOB(30060, guild);
+  ASSIGNMOB(30061, guild);
+  ASSIGNMOB(30062, guild);
+  ASSIGNMOB(30078, guild); /* Esh - Illusionist */
+  ASSIGNMOB(30039, guild_guard);
+  ASSIGNMOB(30041, guild_guard);
+  ASSIGNMOB(30042, guild_guard);
+  ASSIGNMOB(30040, guild_guard);
+  ASSIGNMOB(30046, guild_guard);
+  ASSIGNMOB(30047, guild_guard);
+  ASSIGNMOB(30048, guild_guard);
+  ASSIGNMOB(30049, guild_guard);
+  ASSIGNMOB(30057, guild_guard);
+  ASSIGNMOB(30079, guild_guard);  /* Illusionist */
+
+  /* End Ogakh */
+
+  /* Nymrill */
+
+  ASSIGNMOB(49500, receptionist);
+  ASSIGNMOB(49514, guild);  /* necro */
+  ASSIGNMOB(49522, guild);  /* sorcerer */
+  ASSIGNMOB(49525, guild);  /* rogue */
+
+  /* End Nymrill */
+
+  /* Others */
+  ASSIGNMOB(1402, receptionist);       /* GoT Guild Hall */
+  ASSIGNMOB(17204, guild_guard);       /* Citadel of Testing guards */
+  ASSIGNMOB(58701, receptionist);      /* Dancing Dolphin Inn */
+  ASSIGNMOB(1, receptionist);          /* Puff */
+}
+
+
+/* assign special procedures to objects */
+void assign_objects(void)
+{
+  SPECIAL(bank);
+  SPECIAL(holyw_weapon);
+  SPECIAL(fire_weapon);
+  SPECIAL(lightning_weapon);
+  SPECIAL(frost_weapon);
+  SPECIAL(vampiric_weapon);
+  SPECIAL(red_recall);
+  SPECIAL(green_recall);
+  SPECIAL(blue_recall);
+  SPECIAL(gray_recall);
+  SPECIAL(summon_dragon);
+
+  ASSIGNOBJ(3056, red_recall);  /* Red scrolls of recall goodness! */
+  ASSIGNOBJ(3057, green_recall);  /* Red scrolls of recall goodness! */
+  ASSIGNOBJ(3058, blue_recall);  /* Red scrolls of recall goodness! */
+  ASSIGNOBJ(30010, gray_recall);  /* Red scrolls of recall goodness! */
+  ASSIGNOBJ(1213, vampiric_weapon);  /* Calian Slayer */
+
+  ASSIGNOBJ(5104, lightning_weapon);  /* stone dagger */
+  ASSIGNOBJ(48804, frost_weapon);  /* lightweight baton */
+  ASSIGNOBJ(6366, fire_weapon);  /* Celestial Betrayer */
+  ASSIGNOBJ(18890, summon_dragon); /* dragonhelm */
+  ASSIGNOBJ(18891, summon_dragon); /* dragonhelm */
+
+  /* Ok, there's a if not defined section here for the difference between the test and production
+     builds.  All assigns on the test mud that are NOT on production should fall into here and
+     as the areas are moved to prodcution they should come out of this section.  RSD */
+
+#ifndef PRODUCTION
+  ASSIGNOBJ(36112, holyw_weapon);  /* Unholy Bane */
+
+#endif
+}
+
+
+/* assign special procedures to rooms */
+void assign_rooms(void)
+{
+  extern int dts_are_dumps;
+  int i;
+
+  SPECIAL(dump);
+  SPECIAL(pet_shop);
+  SPECIAL(bank);
+
+  /* Mielikki */
+  ASSIGNROOM(3030, pet_shop);     /* Kayla's Pet Shop */
+  ASSIGNROOM(3035, dump);         /* The City Dump */
+  ASSIGNROOM(3089, bank);         /* The Mielikki Dump */
+  ASSIGNROOM(3091, pet_shop);     /* Jorhan's Stables */
+
+  /* Anduin */
+  ASSIGNROOM(6228, pet_shop);     /* Shula's Stablehouse */
+  ASSIGNROOM(6230, bank);         /* A Bank */
+
+  /* Ickle */
+  ASSIGNROOM(10011, bank);        /* The Bank of Ickle */
+  ASSIGNROOM(10056, pet_shop);    /* Faric's Stables */
+
+  /* Ogakh */
+  ASSIGNROOM(30012, pet_shop);    /* Arandidor's Dingy Companions */
+  ASSIGNROOM(30026, bank);        /* Ogakh Bank */
+  ASSIGNROOM(30031, pet_shop);    /* Stable */
+
+  /* Logging Camp */
+  ASSIGNROOM(8715, pet_shop);     /* The Stables */
+
+  if (dts_are_dumps)
+    for (i = 0; i < top_of_world; i++)
+      if (ROOM_FLAGGED(i, ROOM_DEATH))
+    world[i].func = dump;
+}
+/***************************************************************************
+ *
+ * $Log: spec_assign.c,v $
+ * Revision 1.73  2010/07/02 14:09:16  mud
+ * Adding cone of cold weapon.
+ *
+ * Revision 1.72  2010/04/25 22:57:16  mud
+ * Changing Celestial Betrayer to shoot fireballs.
+ *
+ * Revision 1.71  2010/04/25 22:13:38  mud
+ * Adding frost weapon spec proc.
+ *
+ * Revision 1.70  2009/06/09 05:47:39  myc
+ * Suppress some 'non-existent object' warnings when building
+ * for test.
+ *
+ * Revision 1.69  2009/03/20 20:19:51  myc
+ * Removing dependency upon old board system.
+ *
+ * Revision 1.68  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.67  2008/08/10 06:54:33  jps
+ * Added illusionist guild guards and guild masters.
+ *
+ * Revision 1.66  2008/04/20 18:11:36  jps
+ * Remove board assignments from obsolete boards.
+ *
+ * Revision 1.65  2008/04/04 06:12:52  myc
+ * Removed several old spec procs.
+ *
+ * Revision 1.64  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.63  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.62  2007/12/19 20:55:41  myc
+ * Getting rid of a defunct spec proc for a defunct clan.
+ *
+ * Revision 1.61  2007/11/18 02:15:49  rsd
+ * Added ifdef for production for wof boards since they are
+ * production specific and not necessary for developer
+ * builds out of the basemuds.
+ *
+ * Revision 1.60  2007/08/16 11:54:08  jps
+ * Remove references to defunct specprocs.
+ *
+ * Revision 1.59  2007/07/24 23:02:52  jps
+ * Minor typo fix.
+ *
+ * Revision 1.58  2007/06/25 07:43:27  jps
+ * Assign new Mielikki cleric guild guard, mob 3054.
+ *
+ * Revision 1.57  2007/03/27 04:27:05  myc
+ * Dragonmount special proc.
+ *
+ * Revision 1.56  2006/11/11 23:52:32  jps
+ * Change Ogakh scroll spelling to "gray"
+ *
+ * Revision 1.55  2006/10/06 02:07:18  dce
+ * Fix a typo'd mob
+ *
+ * Revision 1.54  2006/10/06 01:54:48  dce
+ * Added spec_procs for Ogakh and associated grey recall.
+ *
+ * Revision 1.53  2006/07/26 17:14:15  cjd
+ * Added gen for WoF's clan boards.
+ *
+ * Revision 1.52  2006/05/08 16:50:32  rls
+ * Added GoT innkeeper to defines
+ *
+ * Revision 1.51  2004/12/03 07:05:32  rsd
+ * Ok, moved a few spec assigns around to ifndef production
+ * sections to remove syserrs on boot.
+ *
+ * Revision 1.50  2004/12/03 06:45:21  rsd
+ * Added the spec assigns for Laich's new zone
+ * and moved it to the production side of the ifndef.
+ *
+ * Revision 1.49  2004/12/02 10:05:17  mud
+ * Changed the vnum on the archmage gm from the drunk gnome to the actual Archmage
+ *
+ * Revision 1.48  2004/12/01 15:08:37  rsd
+ * added the archmage in anduin to the guildmasters
+ * list...
+ *
+ * Revision 1.47  2004/10/25 07:46:25  rls
+ * Added priestess in Anduin to guildmaster list.
+ *
+ * Revision 1.46  2003/12/11 19:13:52  rsd
+ * removed the templar as a mielikki guildguard
+ *
+ * Revision 1.45  2003/06/20 15:10:12  rls
+ * Changed vnum of slayer to 1213.. since it floated up by one.
+ *
+ * Revision 1.44  2003/01/04 00:00:46  jjl
+ * Added a receptionist for Laich.
+ *
+ * Revision 1.43  2002/10/19 18:29:52  jjl
+ * New and improved red green and blue scrolls of recall. Yummy!
+ *
+ * Revision 1.42  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.41  2001/07/09 19:38:29  rsd
+ * Added the holy word proc to a paladin quest
+ * weapon.
+ *
+ * Revision 1.40  2001/01/13 22:25:27  rsd
+ * removed more defined rooms from the production section
+ * to prevent production build boot syserrs.
+ *
+ * Revision 1.39  2001/01/12 21:51:38  rsd
+ * Added ifndefs for production to assigns for test not on
+ * production won't cause syserrs on the production boot.
+ * boo yea
+ *
+ * Revision 1.38  2001/01/12 04:45:42  rsd
+ * removed a bogus mobile assign causes a boot syserr
+ * .s
+ *
+ * Revision 1.37  2001/01/12 04:36:31  rsd
+ * Ok, I altered many of the spec_assigns for mobiles and
+ * grouped them by towns.  Also uncommented many old mobiles
+ * that had been comment for some reason so many parts of
+ * the testmud that had unworking banks and reception areas
+ * may actually work now.
+ * I also deleted unused commented assigns that pointed
+ * to bogus things that don't exist anymore.
+ *
+ * Revision 1.36  2001/01/08 07:16:53  rsd
+ * added monk guildmaster
+ *
+ * Revision 1.35  2001/01/04 22:49:24  mtp
+ * added guard 6175 as a guild guard in 6148
+ *
+ * Revision 1.34  2000/12/29 20:17:35  rsd
+ * added necro guildmaster back to active list.
+ *
+ * Revision 1.33  2000/11/29 00:19:24  mtp
+ * checking guild guards for ickle/anduin/mielikki
+ *
+ * Revision 1.32  2000/11/25 02:33:15  rsd
+ * Altered comment header and added back rlog messages
+ * from prior to the addition of the $log$ string.
+ *
+ * Revision 1.31  2000/11/18 06:08:03  rsd
+ * added pzam a tod0 board
+ *
+ * Revision 1.30  2000/11/15 16:14:41  rsd
+ * added the lightning dagger back
+ *
+ * Revision 1.29  2000/11/12 07:15:43  rsd
+ * altered some assigns to get rid of boot errors on test
+ *
+ * Revision 1.28  2000/10/19 23:20:52  mtp
+ * removed diabolist from assigns
+ *
+ * Revision 1.27  2000/10/15 05:27:49  cmc
+ * added teachers to the guild (level gain) code
+ *
+ * Revision 1.26  2000/10/13 20:06:48  cmc
+ * added all non-Mielikki guildmasters to "level gain" procs
+ *
+ * Revision 1.25  2000/10/13 17:54:13  cmc
+ * re-instate Mielikki guildmasters special procedure
+ * if there are guildmasters not in my token world,
+ * they will need to be added for "level gain" to work!
+ *
+ * Revision 1.24  2000/09/18 01:46:27  rsd
+ * altered pet shop assigns
+ *
+ * Revision 1.23  2000/09/18 01:39:08  mud
+ * added some pet shops.
+ *
+ * Revision 1.22  2000/09/05 03:20:27  rsd
+ * added a postmaster to Ickle
+ *
+ * Revision 1.21  2000/05/14 05:41:58  rsd
+ * added kerristone assigns
+ *
+ * Revision 1.20  2000/04/23 09:05:25  rsd
+ * ok, I'm a doofus, altered comment header, and added guild_guard
+ * assign to the citadel of testing guardians.
+ *
+ * Revision 1.19  2000/03/04 21:35:11  rsd
+ * changed the weapon proc assign to the proper weapon.
+ *
+ * Revision 1.18  2000/03/04 21:23:25  rsd
+ * attempted to add a dispel_good_weapon special no luck
+ * I think the failure is associated with the lack of
+ * success surrounding the entire dispel good spell itself.
+ * Also added a weapon to hav ethe vampyric special.
+ *
+ * Revision 1.17  2000/02/14 05:11:39  cso
+ * added various procs for khuzhadam and anduin, and
+ * receptionists for the bazillion new areas as necessary.
+ *
+ * Revision 1.16  1999/12/27 18:22:14  rsd
+ * added the vnum for the mielikki ranger guild guard
+ * /
+ *
+ * Revision 1.15  1999/11/22 13:29:10  rsd
+ * added the assigns to the mielikki guild guards.
+ *
+ * Revision 1.14  1999/11/19 05:31:07  cso
+ * added buncha anduin stuff, moved other things around for readability
+ * Assigned various anduin mobspecs, set mielikki mobspecs alone, added
+ * bank roomspec.
+ *
+ * Revision 1.13  1999/11/16 00:11:44  rsd
+ * added mobile assignment for clan0 guild guard, the town
+ * guild guard assignemnts are to follow
+ *
+ * Revision 1.12  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.11  1999/08/22 22:39:33  mud
+ * added assigns for new vnums for anduin and ickle receptionists.
+ *
+ * Revision 1.10  1999/08/14 22:32:09  mud
+ * added dump proc for the dump in mielikki
+ *
+ * Revision 1.9  1999/06/24 02:24:47  mud
+ * added the diab subclasser and removed the lightning affect from
+ * the stone dagger due to it's spoilage.
+ *
+ * Revision 1.8  1999/06/20 03:59:42  mud
+ * added the fido proc to a mobile for test
+ *
+ * Revision 1.7  1999/06/11 03:01:25  mud
+ * added mob 61000 as a receptionist
+ *
+ * Revision 1.6  1999/04/14 02:10:32  mud
+ * added an assign to an existing weapon proc
+ *
+ * Revision 1.5  1999/04/10 20:30:24  mud
+ * added 10011 room as a bank
+ *
+ * Revision 1.4  1999/04/08 16:56:24  dce
+ * Mail is back!
+ *
+ * Revision 1.3  1999/02/17 04:56:10  mud
+ * Added 3089 as a bank. in the room specials
+ *
+ * Revision 1.2  1999/02/02 15:34:47  mud
+ * dos2unix
+ * Cleaned up comment header some
+ * indented file
+ *
+ * Revision 1.1  1999/01/29 01:23:32  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.73
+log
+@Adding cone of cold weapon.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.72 2010/04/25 22:57:16 mud Exp mud $
+d287 3
+d298 3
+@
+
+
+1.72
+log
+@Changing Celestial Betrayer to shoot fireballs.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.71 2010/04/25 22:13:38 mud Exp mud $
+d227 1
+d242 1
+d295 3
+@
+
+
+1.71
+log
+@Adding frost weapon spec proc.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.70 2009/06/09 05:47:39 myc Exp mud $
+d225 1
+a225 1
+  SPECIAL(frost_weapon);
+d241 1
+a241 1
+  ASSIGNOBJ(6366, frost_weapon);  /* Celestial Betrayer */
+d293 3
+@
+
+
+1.70
+log
+@Suppress some 'non-existent object' warnings when building
+for test.
+@
+text
+@d1 2
+a2 2
+/*e*************************************************************************
+ * $Id: spec_assign.c,v 1.69 2009/03/20 20:19:51 myc Exp myc $
+d225 1
+d241 1
+d293 4
+@
+
+
+1.69
+log
+@Removing dependency upon old board system.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.68 2009/03/09 04:33:20 jps Exp myc $
+d31 4
+a34 5
+  else {
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existent mob #%d",
+        mob);
+    log(buf);
+  }
+d41 4
+a44 5
+  else {
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existent obj #%d",
+        obj);
+    log(buf);
+  }
+d51 4
+a54 5
+  else {
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existent rm. #%d",
+        room);
+    log(buf);
+  }
+d291 3
+@
+
+
+1.68
+log
+@Moved direction information from structs.h, constants.h, and constants.c
+into directions.h and directions.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.67 2008/08/10 06:54:33 jps Exp jps $
+a226 1
+  SPECIAL(gen_board);
+a239 8
+  ASSIGNOBJ(3099, gen_board);   /* Mortal Board */
+  ASSIGNOBJ(48, gen_board);     /* immortal board */
+  ASSIGNOBJ(66, gen_board);     /* Builder Board */
+#ifdef PRODUCTION
+  ASSIGNOBJ(1502, gen_board);   /* WoF board 1*/
+  ASSIGNOBJ(1503, gen_board);   /* WoF board 2*/
+  ASSIGNOBJ(1504, gen_board);   /* WoF board 3*/
+#endif
+d294 4
+@
+
+
+1.67
+log
+@Added illusionist guild guards and guild masters.
+@
+text
+@d1 2
+a2 2
+/***************************************************************************
+ * $Id: spec_assign.c,v 1.66 2008/04/20 18:11:36 jps Exp jps $
+d23 1
+a23 2
+
+extern int mini_mud;
+d31 1
+a31 1
+  else if (!mini_mud) {
+d33 1
+a33 1
+	    mob);
+d42 1
+a42 1
+  else if (!mini_mud) {
+d44 1
+a44 1
+	    obj);
+d53 1
+a53 1
+  else if (!mini_mud) {
+d55 1
+a55 1
+	    room);
+d135 4
+a138 4
+  ASSIGNMOB(10010, guild_guard);	/*cleric*/
+  ASSIGNMOB(10011, guild_guard);	/*warrior*/
+  ASSIGNMOB(10012, guild_guard);	/*sorceror*/
+  ASSIGNMOB(10013, guild_guard);	/*mercenary*/
+d298 1
+a298 1
+	world[i].func = dump;
+d303 3
+@
+
+
+1.66
+log
+@Remove board assignments from obsolete boards.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.65 2008/04/04 06:12:52 myc Exp jps $
+d12 1
+a12 1
+ *  of the Johns Hopkins University                                        * 
+d77 1
+a77 1
+  
+d92 13
+a104 12
+  ASSIGNMOB(6114, guild_guard);	/* mercenary */
+  ASSIGNMOB(6007, guild_guard);	/* diabolist */
+  ASSIGNMOB(6008, guild_guard);	/* antipal */
+  ASSIGNMOB(6040, guild_guard);	/* assassin */
+  ASSIGNMOB(6041, guild_guard);	/* thief */
+  ASSIGNMOB(6175, guild_guard);	/* druid guard */
+  ASSIGNMOB(6216, guild_guard);	/* priest/cleric guard */
+  ASSIGNMOB(6217, guild_guard);	/* paladin */
+  ASSIGNMOB(6219, guild_guard);	/* necro */
+  ASSIGNMOB(6201, guild_guard);	/* pyro */
+  ASSIGNMOB(6202, guild_guard);	/* cryo */
+  ASSIGNMOB(6206, guild_guard);	/* sorceror */
+d108 1
+a108 1
+  
+d113 1
+a113 1
+  
+d116 1
+a116 1
+  
+d122 1
+d148 1
+a148 1
+  /* Mielikki */  
+d154 1
+d164 1
+d177 2
+a178 2
+  
+  /* End Mielikki */  
+d193 1
+d203 2
+a204 1
+  
+d250 1
+a250 1
+  ASSIGNOBJ(1213, vampiric_weapon);  /* Calian Slayer */     
+d261 1
+a261 1
+  ASSIGNOBJ(36112, holyw_weapon);  /* Unholy Bane */     
+d272 1
+a272 1
+  
+d276 1
+a276 1
+  
+d304 3
+@
+
+
+1.65
+log
+@Removed several old spec procs.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.64 2008/03/28 17:54:53 myc Exp myc $
+a236 2
+  ASSIGNOBJ(46, gen_board);     /* Ace's TOD0 Board */
+  ASSIGNOBJ(47, gen_board);     /* Another Mortal Board */
+a237 1
+  ASSIGNOBJ(65, gen_board);     /* Coder Board */
+d298 3
+@
+
+
+1.64
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.63 2008/01/29 21:02:31 myc Exp myc $
+a75 1
+  SPECIAL(fido);
+a76 5
+  SPECIAL(snake);
+  SPECIAL(thief);
+  SPECIAL(magic_user);
+  SPECIAL(archer);
+  void assign_kings_castle(void);
+a124 1
+  ASSIGNMOB(6119, fido);
+a214 64
+
+  /* Ok, there's a if not defined section here for the difference between the test and production
+     builds.  All assigns on the test mud that are NOT on production should fall into here and
+     as the areas are moved to prodcution they should come out of this section.  RSD */
+
+#ifndef PRODUCTION
+  
+/* Kerristone Mobiles Begin List */
+  
+  ASSIGNMOB(14769, receptionist);
+  ASSIGNMOB(14738, receptionist);
+  ASSIGNMOB(14770, receptionist);
+
+  ASSIGNMOB(14756, guild);  /* Varmith (conjurer) */
+  ASSIGNMOB(14757, guild);  /* Lady Mareen (sorceror) */
+  
+  /* Kerristone Mobiles End List */
+
+  /* Easthaven Mobiles Begin List */
+
+  ASSIGNMOB(59437, postmaster);
+  ASSIGNMOB(59420, guild);  /* archmage */
+  ASSIGNMOB(59421, guild);  /* priestess */
+  ASSIGNMOB(59422, guild);  /* thief */
+  ASSIGNMOB(59423, guild);  /* warrior */
+
+  /* Easthaven Mobiles End List */
+
+  /* Lyania Mobiles Begin List */
+
+  ASSIGNMOB(32000, receptionist);
+  
+  /* Lyania Mobiles End List */
+
+  /* Mugnork Mobiles Begin List */
+
+  ASSIGNMOB(30516, receptionist);
+  ASSIGNMOB(30518, archer);
+  ASSIGNMOB(30519, postmaster);
+
+  /* Mugnork Mobiles End List */
+
+  /* Urchet Mobiles Begin List */
+
+  ASSIGNMOB(13004, guild);  /* mage */
+  ASSIGNMOB(13003, receptionist);
+  
+  /* Urchet Mobiles End List */
+
+  /* UnderDark Mobiles Begin List */
+
+  ASSIGNMOB(30999, guild);  /* ??? */
+  ASSIGNMOB(31004, guild);  /* warrior */
+
+  /* UnderDark Mobiles End List */
+
+  /* Others */
+  ASSIGNMOB(8715, fido);
+  ASSIGNMOB(61000, receptionist); /* kul vulrathwhatsit */
+  ASSIGNMOB(5804, receptionist);  /* Grear */
+  ASSIGNMOB(32226, receptionist); /* Bhanrho */
+  ASSIGNMOB(25001, receptionist); /* Gnome? */  
+
+#endif
+a222 2
+  SPECIAL(blind_weapon);
+  SPECIAL(fireball_weapon);
+a225 6
+  SPECIAL(fullharm_weapon);
+  SPECIAL(curse_weapon);
+  SPECIAL(dispel_good_weapon);
+  SPECIAL(invis_item);
+  SPECIAL(stone_item);
+  SPECIAL(ship);
+a260 14
+
+  /*
+    ASSIGNOBJ(40806, holyw_weapon);
+    ASSIGNOBJ(15, blind_weapon);
+    ASSIGNOBJ(5704, fullharm_weapon);
+    ASSIGNOBJ(16, fireball_weapon);
+    ASSIGNOBJ(30542, vampiric_weapon);
+    ASSIGNOBJ(17, curse_weapon);
+    ASSIGNOBJ(23004, invis_item);
+    ASSIGNOBJ(23008, stone_item);
+    ASSIGNOBJ(3899, ship);          heart of twilight
+    ASSIGNOBJ(3999, ship);         tavern star 
+  */
+  
+a272 2
+  SPECIAL(ship_exit);
+  SPECIAL(current_proc);
+d301 4
+@
+
+
+1.63
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.62 2007/12/19 20:55:41 myc Exp myc $
+d390 1
+a390 1
+      if (IS_SET(ROOM_FLAGS(i), ROOM_DEATH))
+d396 4
+@
+
+
+1.62
+log
+@Getting rid of a defunct spec proc for a defunct clan.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.61 2007/11/18 02:15:49 rsd Exp myc $
+a23 2
+extern struct room_data *world;
+extern int top_of_world;
+a24 2
+extern struct index_data *mob_index;
+extern struct index_data *obj_index;
+d396 3
+@
+
+
+1.61
+log
+@Added ifdef for production for wof boards since they are
+production specific and not necessary for developer
+builds out of the basemuds.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.60 2007/08/16 11:54:08 jps Exp $
+a84 1
+  SPECIAL(clan0_guard_proc);
+a221 1
+  ASSIGNMOB(18701, clan0_guard_proc);  /* Balance of Pandor clan hall */
+d400 5
+@
+
+
+1.60
+log
+@Remove references to defunct specprocs.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.59 2007/07/24 23:02:52 jps Exp jps $
+d327 1
+d331 1
+d402 3
+@
+
+
+1.59
+log
+@Minor typo fix.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.58 2007/06/25 07:43:27 jps Exp jps $
+a81 1
+  SPECIAL(mayor);
+a86 7
+  SPECIAL(priest_subclasser);
+  SPECIAL(assassin_subclasser);
+  SPECIAL(mercenary_subclasser);
+  SPECIAL(necro_subclasser);
+  SPECIAL(pyro_subclasser);
+  SPECIAL(druid_subclasser);
+  SPECIAL(diabolist_subclasser);
+d89 2
+a90 1
+  /* Anduin Mobiles Begin List */
+d140 1
+a140 1
+  /* Anduin Mobiles End List */
+d142 1
+a142 1
+  /* Ickle Mobiles Begin List */
+d156 1
+a156 1
+  /* Ickle Mobiles End List */
+d158 1
+a158 1
+  /* Mielikki Mobiles Begin List */  
+d160 1
+a160 1
+  ASSIGNMOB(3005, receptionist); /* Mielikki */
+d186 3
+a188 1
+  /* Mielikki Mobiles End List */  
+a189 1
+  /* Ogakh Mobiles */
+d211 1
+d213 1
+a213 1
+  /* End Ogakh Mobiles */
+a214 1
+  /* Ruins of Nimaeniel */
+a218 1
+  /* End Ruins of Nimaeniel */
+d220 1
+a220 5
+  /* Others in Production */
+  ASSIGNMOB(18701, clan0_guard_proc);
+  ASSIGNMOB(17204, guild_guard); /* Citadel of testing guards */
+  ASSIGNMOB(58701, receptionist);  /* dancing dolphin */
+  ASSIGNMOB(1, receptionist);
+d222 6
+a227 2
+  /* GoT Guild Hall */
+  ASSIGNMOB(1402, receptionist);
+a245 6
+  /* Chilcotin Mobiles Begin List */
+
+  ASSIGNMOB(32642, receptionist);
+
+  /* Chilcotin Mobiles Begin List */
+
+a269 22
+  /* Khuzhadam, dwarf village Mobiles Begin List */
+
+  ASSIGNMOB(61536, receptionist);
+  ASSIGNMOB(61503, cityguard);
+  ASSIGNMOB(61506, cityguard);
+
+  ASSIGNMOB(61500, guild_guard);
+  ASSIGNMOB(61502, guild_guard);
+  ASSIGNMOB(61532, guild_guard);
+  ASSIGNMOB(61533, guild_guard);
+  ASSIGNMOB(61534, guild_guard);
+  ASSIGNMOB(61535, guild_guard);
+
+  ASSIGNMOB(61501, guild);  /* warrior*/
+  ASSIGNMOB(61529, guild);  /* cleric*/
+  ASSIGNMOB(61530, guild);  /* priest */
+  ASSIGNMOB(61533, guild);  /* thief */
+  ASSIGNMOB(61534, guild);  /* mercenary */  
+  ASSIGNMOB(61535, guild);  /* rogue */
+
+  /* Khuzhadam, dwarf village Mobiles End List */
+
+a291 11
+
+  /*  
+      ASSIGNMOB(106, pyro_subclasser);
+      ASSIGNMOB(8501, diabolist_subclasser);
+      ASSIGNMOB(55601, assassin_subclasser);
+      ASSIGNMOB(55602, mercenary_subclasser);
+      ASSIGNMOB(2330, druid_subclasser);
+      ASSIGNMOB(32020, priest_subclasser);
+      ASSIGNMOB(2311, diabolist_subclasser);
+      ASSIGNMOB(3017, necro_subclasser);
+  */
+a310 1
+  SPECIAL(rift_portal);
+a357 3
+  /* pyro portal */
+  /*    ASSIGNOBJ(104, rift_portal); */
+  
+d368 1
+a368 2
+  SPECIAL(pet_shops);
+  SPECIAL(pray_for_items);
+a369 1
+  SPECIAL(uklor);
+a371 35
+  SPECIAL(druid_quest_room);
+  /*SPECIAL(good_justice);*/
+  
+  ASSIGNROOM(3089, bank);
+  ASSIGNROOM(6230, bank);
+  ASSIGNROOM(10011, bank);
+  ASSIGNROOM(30026, bank);
+
+  ASSIGNROOM(3030, pet_shops);
+  ASSIGNROOM(3091, pet_shops);
+  ASSIGNROOM(30012, pet_shops);
+  ASSIGNROOM(30031, pet_shops);
+
+  ASSIGNROOM(6228, pet_shops);
+
+  ASSIGNROOM(10056, pet_shops);
+
+  ASSIGNROOM(3035, dump);
+
+
+  /* Ok, there's a if not defined section here for the difference between the test and production
+     builds.  All assigns on the test mud that are NOT on production should fall into here and
+     as the areas are moved to prodcution they should come out of this section.  RSD */
+
+#ifndef PRODUCTION
+
+  ASSIGNROOM(15139, bank);
+  ASSIGNROOM(14890, pet_shops);
+  ASSIGNROOM(13011, bank);
+  ASSIGNROOM(30881, bank);
+  ASSIGNROOM(30972, bank);
+  ASSIGNROOM(32356, bank);
+  ASSIGNROOM(61531, bank);
+
+  ASSIGNROOM(9022, bank);
+d373 18
+a390 1
+  ASSIGNROOM(5780, bank);
+a391 21
+#endif
+  /*
+    ASSIGNROOM(1204, current_proc);
+    ASSIGNROOM(23000, current_proc); 
+    ASSIGNROOM(23237, current_proc); 
+    ASSIGNROOM(23238, current_proc);
+    ASSIGNROOM(23239, current_proc);
+    ASSIGNROOM(23240, current_proc);
+    ASSIGNROOM(23241, current_proc);
+    ASSIGNROOM(23242, current_proc);
+    ASSIGNROOM(30761, uklor);
+    ASSIGNROOM(3901, ship_exit);
+    ASSIGNROOM(3801, ship_exit);
+  */
+  /* druid qeust */
+  /*
+    ASSIGNROOM(2475, druid_quest_room);
+    ASSIGNROOM(2460, druid_quest_room);
+    ASSIGNROOM(2498, druid_quest_room);
+    ASSIGNROOM(2499, druid_quest_room);
+  */
+d400 3
+@
+
+
+1.58
+log
+@Assign new Mielikki cleric guild guard, mob 3054.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.57 2007/03/27 04:27:05 myc Exp jps $
+d37 1
+a37 1
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant mob #%d",
+d48 1
+a48 1
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant obj #%d",
+d59 1
+a59 1
+    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant rm. #%d",
+d491 3
+@
+
+
+1.57
+log
+@Dragonmount special proc.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.56 2006/11/11 23:52:32 jps Exp myc $
+d172 1
+a172 1
+  /* ASSIGNMOB(3025, guild_guard);   cleric druid */
+d491 3
+@
+
+
+1.56
+log
+@Change Ogakh scroll spelling to "gray"
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.55 2006/10/06 02:07:18 dce Exp jps $
+d362 1
+a362 1
+  
+d380 2
+a381 1
+  
+d388 1
+a388 1
+  ASSIGNOBJ(31112, holyw_weapon);  /* Unholy Bane */     
+d491 3
+@
+
+
+1.55
+log
+@Fix a typo'd mob
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.54 2006/10/06 01:54:48 dce Exp dce $
+d361 1
+a361 1
+  SPECIAL(grey_recall);
+d367 1
+a367 1
+  ASSIGNOBJ(30010, grey_recall);  /* Red scrolls of recall goodness! */
+d490 3
+@
+
+
+1.54
+log
+@Added spec_procs for Ogakh and associated grey recall.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.53 2006/07/26 17:14:15 cjd Exp $
+d197 1
+a197 1
+  ASSIGNMOB(30087, postmaster);
+d490 3
+@
+
+
+1.53
+log
+@Added gen for WoF's clan boards.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.52 2006/05/08 16:50:32 rls Exp $
+d195 25
+d361 1
+d367 1
+d429 1
+d433 2
+d490 3
+@
+
+
+1.52
+log
+@Added GoT innkeeper to defines
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.51 2004/12/03 07:05:32 rsd Exp $
+d342 1
+a342 1
+  ASSIGNOBJ(46, gen_board);     /* Pzam's TOD0 Board */
+d347 3
+d460 3
+@
+
+
+1.51
+log
+@Ok, moved a few spec assigns around to ifndef production
+sections to remove syserrs on boot.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.50 2004/12/03 06:45:21 rsd Exp $
+d208 3
+d457 4
+@
+
+
+1.50
+log
+@Added the spec assigns for Laich's new zone
+and moved it to the production side of the ifndef.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.49 2004/12/02 10:05:17 mud Exp $
+a194 11
+  /* Kerristone Mobiles Begin List */
+  
+  ASSIGNMOB(14769, receptionist);
+  ASSIGNMOB(14738, receptionist);
+  ASSIGNMOB(14770, receptionist);
+
+  ASSIGNMOB(14756, guild);  /* Varmith (conjurer) */
+  ASSIGNMOB(14757, guild);  /* Lady Mareen (sorceror) */
+  
+  /* Kerristone Mobiles End List */
+
+d213 11
+a344 1
+  ASSIGNOBJ(31112, holyw_weapon);  /* Unholy Bane */     
+d348 10
+a395 2
+  ASSIGNROOM(15139, bank);
+  ASSIGNROOM(14890, pet_shops);
+d413 2
+d454 4
+@
+
+
+1.49
+log
+@Changed the vnum on the archmage gm from the drunk gnome to the actual Archmage
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.48 2004/12/01 15:08:37 rsd Exp mud $
+d206 7
+a224 6
+
+  /* Laich's new zone. . . */
+  ASSIGNMOB(49500, receptionist);
+
+
+
+d445 3
+@
+
+
+1.48
+log
+@added the archmage in anduin to the guildmasters
+list...
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.47 2004/10/25 07:46:25 rls Exp $
+d126 1
+a126 1
+  ASSIGNMOB(6031, guild);   /* the Archmage? */
+d444 4
+@
+
+
+1.47
+log
+@Added priestess in Anduin to guildmaster list.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.46 2003/12/11 19:13:52 rsd Exp $
+d126 1
+d444 3
+@
+
+
+1.46
+log
+@removed the templar as a mielikki guildguard
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.45 2003/06/20 15:10:12 rls Exp $
+d136 1
+d443 3
+@
+
+
+1.45
+log
+@Changed vnum of slayer to 1213.. since it floated up by one.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.44 2003/01/04 00:00:46 jjl Exp $
+d170 1
+a170 1
+  ASSIGNMOB(3025, guild_guard);  /* cleric druid */
+d442 3
+@
+
+
+1.44
+log
+@Added a receptionist for Laich.
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.43 2002/10/19 18:29:52 jjl Exp $
+d341 1
+a341 1
+  ASSIGNOBJ(1212, vampiric_weapon);  /* Calian Slayer */     
+d442 3
+@
+
+
+1.43
+log
+@New and improved red green and blue scrolls of recall. Yummy!
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.42 2002/09/13 02:32:10 jjl Exp $
+d215 7
+d442 3
+@
+
+
+1.42
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: spec_assign.c,v 1.41 2001/07/09 19:38:29 rsd Exp $
+d320 3
+d324 4
+d435 3
+@
+
+
+1.41
+log
+@Added the holy word proc to a paladin quest
+weapon.
+@
+text
+@d1 3
+a3 1
+// $Id: spec_assign.c,v 1.40 2001/01/13 22:25:27 rsd Exp $
+d425 153
+a577 147
+//
+// $Log: spec_assign.c,v $
+// Revision 1.40  2001/01/13 22:25:27  rsd
+// removed more defined rooms from the production section
+// to prevent production build boot syserrs.
+//
+// Revision 1.39  2001/01/12 21:51:38  rsd
+// Added ifndefs for production to assigns for test not on
+// production won't cause syserrs on the production boot.
+// boo yea
+//
+// Revision 1.38  2001/01/12 04:45:42  rsd
+// removed a bogus mobile assign causes a boot syserr
+// .s
+//
+// Revision 1.37  2001/01/12 04:36:31  rsd
+// Ok, I altered many of the spec_assigns for mobiles and
+// grouped them by towns.  Also uncommented many old mobiles
+// that had been comment for some reason so many parts of
+// the testmud that had unworking banks and reception areas
+// may actually work now.
+// I also deleted unused commented assigns that pointed
+// to bogus things that don't exist anymore.
+//
+// Revision 1.36  2001/01/08 07:16:53  rsd
+// added monk guildmaster
+//
+// Revision 1.35  2001/01/04 22:49:24  mtp
+// added guard 6175 as a guild guard in 6148
+//
+// Revision 1.34  2000/12/29 20:17:35  rsd
+// added necro guildmaster back to active list.
+//
+// Revision 1.33  2000/11/29 00:19:24  mtp
+// checking guild guards for ickle/anduin/mielikki
+//
+// Revision 1.32  2000/11/25 02:33:15  rsd
+// Altered comment header and added back rlog messages
+// from prior to the addition of the $log$ string.
+//
+// Revision 1.31  2000/11/18 06:08:03  rsd
+// added pzam a tod0 board
+//
+// Revision 1.30  2000/11/15 16:14:41  rsd
+// added the lightning dagger back
+//
+// Revision 1.29  2000/11/12 07:15:43  rsd
+// altered some assigns to get rid of boot errors on test
+//
+// Revision 1.28  2000/10/19 23:20:52  mtp
+// removed diabolist from assigns
+//
+// Revision 1.27  2000/10/15 05:27:49  cmc
+// added teachers to the guild (level gain) code
+//
+// Revision 1.26  2000/10/13 20:06:48  cmc
+// added all non-Mielikki guildmasters to "level gain" procs
+//
+// Revision 1.25  2000/10/13 17:54:13  cmc
+// re-instate Mielikki guildmasters special procedure
+// if there are guildmasters not in my token world,
+// they will need to be added for "level gain" to work!
+//
+// Revision 1.24  2000/09/18 01:46:27  rsd
+// altered pet shop assigns
+//
+// Revision 1.23  2000/09/18 01:39:08  mud
+// added some pet shops.
+//
+// Revision 1.22  2000/09/05 03:20:27  rsd
+// added a postmaster to Ickle
+//
+// Revision 1.21  2000/05/14 05:41:58  rsd
+// added kerristone assigns
+//
+// Revision 1.20  2000/04/23 09:05:25  rsd
+// ok, I'm a doofus, altered comment header, and added guild_guard
+// assign to the citadel of testing guardians.
+//
+// Revision 1.19  2000/03/04 21:35:11  rsd
+// changed the weapon proc assign to the proper weapon.
+//
+// Revision 1.18  2000/03/04 21:23:25  rsd
+// attempted to add a dispel_good_weapon special no luck
+// I think the failure is associated with the lack of
+// success surrounding the entire dispel good spell itself.
+// Also added a weapon to hav ethe vampyric special.
+//
+// Revision 1.17  2000/02/14 05:11:39  cso
+// added various procs for khuzhadam and anduin, and
+// receptionists for the bazillion new areas as necessary.
+//
+// Revision 1.16  1999/12/27 18:22:14  rsd
+// added the vnum for the mielikki ranger guild guard
+// /
+//
+// Revision 1.15  1999/11/22 13:29:10  rsd
+// added the assigns to the mielikki guild guards.
+//
+// Revision 1.14  1999/11/19 05:31:07  cso
+// added buncha anduin stuff, moved other things around for readability
+// Assigned various anduin mobspecs, set mielikki mobspecs alone, added
+// bank roomspec.
+//
+// Revision 1.13  1999/11/16 00:11:44  rsd
+// added mobile assignment for clan0 guild guard, the town
+// guild guard assignemnts are to follow
+//
+// Revision 1.12  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.11  1999/08/22 22:39:33  mud
+// added assigns for new vnums for anduin and ickle receptionists.
+//
+// Revision 1.10  1999/08/14 22:32:09  mud
+// added dump proc for the dump in mielikki
+//
+// Revision 1.9  1999/06/24 02:24:47  mud
+// added the diab subclasser and removed the lightning affect from
+// the stone dagger due to it's spoilage.
+//
+// Revision 1.8  1999/06/20 03:59:42  mud
+// added the fido proc to a mobile for test
+//
+// Revision 1.7  1999/06/11 03:01:25  mud
+// added mob 61000 as a receptionist
+//
+// Revision 1.6  1999/04/14 02:10:32  mud
+// added an assign to an existing weapon proc
+//
+// Revision 1.5  1999/04/10 20:30:24  mud
+// added 10011 room as a bank
+//
+// Revision 1.4  1999/04/08 16:56:24  dce
+// Mail is back!
+//
+// Revision 1.3  1999/02/17 04:56:10  mud
+// Added 3089 as a bank. in the room specials
+//
+// Revision 1.2  1999/02/02 15:34:47  mud
+// dos2unix
+// Cleaned up comment header some
+// indented file
+//
+// Revision 1.1  1999/01/29 01:23:32  mud
+// Initial revision
+//
+@
+
+
+1.40
+log
+@removed more defined rooms from the production section
+to prevent production build boot syserrs.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.39 2001/01/12 21:51:38 rsd Exp $
+d326 1
+d425 4
+@
+
+
+1.39
+log
+@Added ifndefs for production to assigns for test not on
+production won't cause syserrs on the production boot.
+boo yea
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.38 2001/01/12 04:45:42 rsd Exp $
+a363 1
+
+a378 7
+  ASSIGNROOM(32356, bank);
+
+  ASSIGNROOM(9022, bank);
+  
+  ASSIGNROOM(5780, bank);
+  ASSIGNROOM(30881, bank);
+  ASSIGNROOM(30972, bank);
+d392 4
+d424 5
+@
+
+
+1.38
+log
+@removed a bogus mobile assign causes a boot syserr
+.s
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.37 2001/01/12 04:36:31 rsd Exp $
+a144 19
+
+  /* Chilcotin Mobiles Begin List */
+
+  ASSIGNMOB(32642, receptionist);
+
+  /* Chilcotin Mobiles Begin List */
+
+
+  /* Easthaven Mobiles Begin List */
+
+  ASSIGNMOB(59437, postmaster);
+  ASSIGNMOB(59420, guild);  /* archmage */
+  ASSIGNMOB(59421, guild);  /* priestess */
+  ASSIGNMOB(59422, guild);  /* thief */
+  ASSIGNMOB(59423, guild);  /* warrior */
+
+  /* Easthaven Mobiles End List */
+
+
+a160 8
+
+  /* Lyania Mobiles Begin List */
+
+  ASSIGNMOB(32000, receptionist);
+  
+  /* Lyania Mobiles End List */
+
+  
+d191 43
+a242 1
+
+a264 13
+
+  /* Kerristone Mobiles Begin List */
+  
+  ASSIGNMOB(14769, receptionist);
+  ASSIGNMOB(14738, receptionist);
+  ASSIGNMOB(14770, receptionist);
+
+  ASSIGNMOB(14756, guild);  /* Varmith (conjurer) */
+  ASSIGNMOB(14757, guild);  /* Lady Mareen (sorceror) */
+  
+  /* Kerristone Mobiles End List */
+
+
+a271 1
+
+a278 1
+
+a280 3
+  ASSIGNMOB(18701, clan0_guard_proc);
+  ASSIGNMOB(17204, guild_guard); /* Citadel of testing guards */
+  ASSIGNMOB(58701, receptionist);  /* dancing dolphin */
+d285 2
+a286 1
+  ASSIGNMOB(1, receptionist);
+d364 1
+a367 5
+  ASSIGNROOM(13011, bank);
+  ASSIGNROOM(30881, bank);
+  ASSIGNROOM(30972, bank);
+  ASSIGNROOM(32356, bank);
+  ASSIGNROOM(61531, bank);
+d388 13
+d428 4
+@
+
+
+1.37
+log
+@Ok, I altered many of the spec_assigns for mobiles and
+grouped them by towns.  Also uncommented many old mobiles
+that had been comment for some reason so many parts of
+the testmud that had unworking banks and reception areas
+may actually work now.
+I also deleted unused commented assigns that pointed
+to bogus things that don't exist anymore.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.36 2001/01/08 07:16:53 rsd Exp $
+a286 1
+  ASSIGNMOB(21051, receptionist); /* Halfway Valley? */
+d421 9
+@
+
+
+1.36
+log
+@added monk guildmaster
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.35 2001/01/04 22:49:24 mtp Exp $
+d94 2
+a95 2
+
+/* Anduin mobs */
+d121 14
+a134 39
+/* re-instate the guildmasters.. sheesh! */
+  ASSIGNMOB(3020, guild);	/* archmage */
+  ASSIGNMOB(3021, guild);	/* high priestess */
+  ASSIGNMOB(3022, guild);	/* master thief */
+  ASSIGNMOB(3023, guild);	/* warrior coach */
+  ASSIGNMOB(3053, guild);	/* high druid */
+  ASSIGNMOB(3504, guild);	/* Galithel Silverwing (ranger) */
+  ASSIGNMOB(5301, guild);	/* Grey Knight (paladin) */
+  ASSIGNMOB(5303, guild);	/* monk */
+  ASSIGNMOB(16910, guild);      /* Asiri'Qaxt (necro) */
+
+
+
+  ASSIGNMOB(6006, guild);	/* Princess Signess */
+  ASSIGNMOB(6007, guild);	/* Ruin Wormheart */
+
+  ASSIGNMOB(6032, guild);	/* black priestess */
+  ASSIGNMOB(6080, guild);	/* horsemaster (anti-paladin) */
+  ASSIGNMOB(6020, guild);	/* Doorindark (assassin) */
+
+  ASSIGNMOB(6220, guild);	/* pyromancer */
+  ASSIGNMOB(6223, guild);	/* necromancer */
+
+  ASSIGNMOB(10000, guild);	/* High Priest of Zalish */
+  ASSIGNMOB(10001, guild);	/* warrior coach */
+  ASSIGNMOB(10002, guild);	/* archmage */
+  ASSIGNMOB(10003, guild);	/* elite mercenary */
+
+  ASSIGNMOB(14756, guild);	/* Varmith (conjurer) */
+  ASSIGNMOB(14757, guild);	/* Lady Mareen (sorceror) */
+
+  /* old guildmasters perhaps?
+  ASSIGNMOB(6113, guild);
+  ASSIGNMOB(6080, guild);
+  ASSIGNMOB(6020, guild);
+  ASSIGNMOB(6218, guild);
+  ASSIGNMOB(6222, guild);
+  ASSIGNMOB(6221, guild);
+  */
+d143 23
+a165 1
+/* Ickle */
+a171 1
+   
+d173 17
+a189 1
+/* Mielikki mobs */  
+d203 27
+a229 2
+/* Khuzhadam, dwarf village */
+  /* commented out for now 28/11 mtp
+d233 1
+a239 1
+  */
+d241 6
+a246 6
+/* Others */
+  ASSIGNMOB(8715, fido);
+  /*ASSIGNMOB(8501, diabolist_subclasser);*/
+  ASSIGNMOB(18701, clan0_guard_proc);
+
+  ASSIGNMOB(17204, guild_guard); /* Citadel of testing guards */
+d248 1
+a248 1
+  ASSIGNMOB(58701, receptionist);  /* dancing dolphin */
+a249 7
+  ASSIGNMOB(61000, receptionist); /* kul vulrathwhatsit */
+
+  ASSIGNMOB(13003, receptionist);
+  ASSIGNMOB(25001, receptionist);
+  ASSIGNMOB(30516, receptionist);
+  ASSIGNMOB(32000, receptionist);
+  ASSIGNMOB(32642, receptionist);
+d251 1
+a251 1
+  /* Kerristone */
+d256 11
+d268 21
+d292 2
+d296 4
+a299 27
+      ASSIGNMOB(8130, receptionist);
+      ASSIGNMOB(4001, receptionist);
+      ASSIGNMOB(32721, receptionist);
+      ASSIGNMOB(30975, receptionist);
+      ASSIGNMOB(9017, receptionist);
+      ASSIGNMOB(1, receptionist);
+
+      ASSIGNMOB(1, receptionist);
+      ASSIGNMOB(30516, receptionist);
+  */
+  /* Immortal Zone */
+  /*
+    ASSIGNMOB(1200, receptionist);
+    ASSIGNMOB(1201, postmaster);
+    ASSIGNMOB(1202, janitor);
+    ASSIGNMOB(30518, archer);
+    ASSIGNMOB(30519, postmaster);
+    ASSIGNMOB(32013, receptionist);
+    ASSIGNMOB(5804, receptionist);
+    ASSIGNMOB(32226, receptionist);
+    ASSIGNMOB(32000, receptionist);
+    ASSIGNMOB(21051, receptionist);
+    ASSIGNMOB(106, pyro_subclasser);
+    ASSIGNMOB(2330, druid_subclasser);
+    ASSIGNMOB(32020, priest_subclasser);
+    ASSIGNMOB(2311, diabolist_subclasser);
+    ASSIGNMOB(3017, necro_subclasser);
+a332 1
+
+a342 12
+    
+    ASSIGNOBJ(46, gen_board);	 social board
+    ASSIGNOBJ(47, gen_board);	 freeze board
+    ASSIGNOBJ(48, gen_board);	 immortal board
+    ASSIGNOBJ(49, gen_board);	 mortal board
+    ASSIGNOBJ(60, gen_board);	 social board
+    ASSIGNOBJ(61, gen_board);	 freeze board
+    ASSIGNOBJ(62, gen_board);	 immortal board
+    ASSIGNOBJ(63, gen_board);	 mortal board
+    ASSIGNOBJ(64, gen_board);	 social board
+    ASSIGNOBJ(65, gen_board);	 freeze board 
+    ASSIGNOBJ(66, gen_board);	 immortal board 
+d344 1
+a350 1
+
+d387 8
+a395 4
+    ASSIGNROOM(32356, bank);
+    ASSIGNROOM(22000, bank);
+    ASSIGNROOM(9022, bank);
+    ASSIGNROOM(5780, bank);
+a403 2
+    ASSIGNROOM(30881, bank);
+    ASSIGNROOM(30972, bank);
+a404 1
+    ASSIGNROOM(5780, bank);
+d422 3
+@
+
+
+1.35
+log
+@added guard 6175 as a guild guard in 6148
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.34 2000/12/29 20:17:35 rsd Exp mtp $
+d129 1
+d393 3
+@
+
+
+1.34
+log
+@added necro guildmaster back to active list.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.33 2000/11/29 00:19:24 mtp Exp $
+d113 1
+d392 3
+@
+
+
+1.33
+log
+@checking guild guards for ickle/anduin/mielikki
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.31 2000/11/18 06:08:03 rsd Exp $
+d126 3
+a129 1
+  ASSIGNMOB(3504, guild);	/* Galithel Silverwing (ranger) */
+a130 1
+  ASSIGNMOB(5301, guild);	/* Grey Knight (paladin) */
+a156 1
+  ASSIGNMOB(16910, guild);
+d391 3
+@
+
+
+1.32
+log
+@Altered comment header and added back rlog messages
+from prior to the addition of the $log$ string.
+@
+text
+@d108 11
+a118 11
+  ASSIGNMOB(6114, guild_guard);
+  ASSIGNMOB(6008, guild_guard);
+  ASSIGNMOB(6009, guild_guard);
+  ASSIGNMOB(6217, guild_guard);
+  ASSIGNMOB(6216, guild_guard);
+  ASSIGNMOB(6219, guild_guard);
+  ASSIGNMOB(6201, guild_guard);
+  ASSIGNMOB(6202, guild_guard);
+
+  ASSIGNMOB(6206, guild_guard);
+  ASSIGNMOB(6230, guild_guard);
+d169 4
+d180 1
+d182 1
+d184 1
+a184 2
+  ASSIGNMOB(3026, guild_guard);  /* rogue thief assa bard merc */
+  ASSIGNMOB(3024, guild_guard);  /* sorc pyro cryo */
+d186 1
+a187 1
+  ASSIGNMOB(3549, guild_guard);  /* ranger */
+d190 1
+d200 1
+d389 1
+a389 1
+
+d391 4
+@
+
+
+1.31
+log
+@added pzam a tod0 board
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.30 2000/11/15 16:14:41 rsd Exp $
+d384 3
+d454 36
+@
+
+
+1.30
+log
+@added the lightning dagger back
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.29 2000/11/12 07:15:43 rsd Exp $
+d273 2
+a274 1
+  ASSIGNOBJ(47, gen_board);     /* Mortal Board */
+d384 3
+@
+
+
+1.29
+log
+@altered some assigns to get rid of boot errors on test
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.28 2000/10/19 23:20:52 mtp Exp $
+d279 1
+a279 1
+ /* ASSIGNOBJ(5104, lightning_weapon); */  /* stone dagger */
+d383 3
+@
+
+
+1.28
+log
+@removed diabolist from assigns
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.27 2000/10/15 05:27:49 cmc Exp mtp $
+a118 1
+  ASSIGNMOB(6232, guild_guard);
+d136 1
+a136 1
+  ASSIGNMOB(6088, guild);	/* Doorindark (assassin) */
+d161 1
+a161 1
+  ASSIGNMOB(6118, janitor);
+d176 5
+a180 5
+  ASSIGNMOB(3025, guild_guard); /* cleric druid */
+  ASSIGNMOB(3027, guild_guard); /* warrior */
+  ASSIGNMOB(3026, guild_guard); /* rogue thief assa bard merc */
+  ASSIGNMOB(3024, guild_guard); /* sorc pyro cryo */
+  ASSIGNMOB(4500, guild_guard); /* paladin */
+d182 1
+a182 1
+  ASSIGNMOB(3549, guild_guard); /* ranger */
+d383 3
+@
+
+
+1.27
+log
+@added teachers to the guild (level gain) code
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.26 2000/10/13 20:06:48 cmc Exp cmc $
+d198 1
+a198 1
+  ASSIGNMOB(8501, diabolist_subclasser);
+d384 3
+@
+
+
+1.26
+log
+@added all non-Mielikki guildmasters to "level gain" procs
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.25 2000/10/13 17:54:13 cmc Exp cmc $
+d128 2
+d147 3
+d384 3
+@
+
+
+1.25
+log
+@re-instate Mielikki guildmasters special procedure
+if there are guildmasters not in my token world,
+they will need to be added for "level gain" to work!
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.24 2000/09/18 01:46:27 rsd Exp $
+d128 17
+d379 5
+@
+
+
+1.24
+log
+@altered pet shop assigns
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.23 2000/09/18 01:39:08 mud Exp rsd $
+d121 8
+a128 1
+/* commenting out the guildmasters... 
+d136 1
+a136 1
+*/
+d362 3
+@
+
+
+1.23
+log
+@added some pet shops.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.22 2000/09/05 03:20:27 rsd Exp $
+d317 1
+a317 1
+  ASSIGNROOM(10054, pet_shops);
+d355 3
+@
+
+
+1.22
+log
+@added a postmaster to Ickle
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.21 2000/05/14 05:41:58 rsd Exp $
+d312 7
+d355 3
+@
+
+
+1.21
+log
+@added kerristone assigns
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.20 2000/04/23 09:05:25 rsd Exp $
+d140 1
+d348 3
+@
+
+
+1.20
+log
+@ok, I'm a doofus, altered comment header, and added guild_guard
+assign to the citadel of testing guardians.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.19 2000/03/04 21:35:11 rsd Exp $
+d183 6
+d200 1
+a200 3
+      ASSIGNMOB(14769, receptionist);
+      ASSIGNMOB(14738, receptionist);
+      ASSIGNMOB(14770, receptionist);
+d308 2
+a315 1
+    ASSIGNROOM(15139, bank);
+a316 1
+    ASSIGNROOM(14890, pet_shops);
+d347 4
+@
+
+
+1.19
+log
+@changed the weapon proc assign to the proper weapon.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.18 2000/03/04 21:23:25 rsd Exp rsd $
+d3 1
+a3 1
+ *   File: spec_assign.c                                 Part of CircleMUD *
+d8 3
+a10 1
+ *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+d171 2
+d343 3
+@
+
+
+1.18
+log
+@attempted to add a dispel_good_weapon special no luck
+I think the failure is associated with the lack of
+success surrounding the entire dispel good spell itself.
+Also added a weapon to hav ethe vampyric special.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.17 2000/02/14 05:11:39 cso Exp $
+d240 1
+a240 1
+  ASSIGNOBJ(1213, vampiric_weapon);  /* Calian Slayer */     
+d339 6
+@
+
+
+1.17
+log
+@added various procs for khuzhadam and anduin, and
+receptionists for the bazillion new areas as necessary.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.16 1999/12/27 18:22:14 rsd Exp $
+d229 1
+d240 2
+d339 4
+@
+
+
+1.16
+log
+@added the vnum for the mielikki ranger guild guard
+/
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.15 1999/11/22 13:29:10 rsd Exp $
+d115 4
+d153 11
+d173 6
+d290 1
+d292 6
+a297 1
+  ASSIGNROOM(6230, bank);
+d336 4
+@
+
+
+1.15
+log
+@added the assigns to the mielikki guild guards.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.14 1999/11/19 05:31:07 cso Exp $
+d147 1
+a147 3
+  /*  ASSIGNMOB(, guild_guard);  ranger */
+
+
+d309 3
+@
+
+
+1.14
+log
+@added buncha anduin stuff, moved other things around for readability
+Assigned various anduin mobspecs, set mielikki mobspecs alone, added
+bank roomspec.
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.13 1999/11/16 00:11:44 rsd Exp $
+d141 7
+d150 2
+d311 5
+@
+
+
+1.13
+log
+@added mobile assignment for clan0 guild guard, the town
+guild guard assignemnts are to follow
+@
+text
+@d1 1
+a1 1
+// $Id: spec_assign.c,v 1.12 1999/09/05 07:00:39 jimmy Exp $
+d92 45
+a136 2
+  
+  ASSIGNMOB(1, receptionist);
+a137 4
+  ASSIGNMOB(58701, receptionist);
+  ASSIGNMOB(61000, receptionist); 
+  ASSIGNMOB(6017, receptionist); /* Anduin */
+  ASSIGNMOB(10054, receptionist); /* Ickle */
+d141 2
+d147 6
+d263 1
+d302 4
+@
+
+
+1.12
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d104 1
+a106 1
+      ASSIGNMOB(4000, clan0_guard_proc);
+d253 4
+a256 1
+// $Log$
+@
+
+
+1.11
+log
+@added assigns for new vnums for anduin and ickle receptionists.
+@
+text
+@d1 1
+d253 1
+@
+
+
+1.10
+log
+@added dump proc for the dump in mielikki
+@
+text
+@d93 1
+a93 1
+  ASSIGNMOB(3005, receptionist);
+d95 3
+a97 1
+  ASSIGNMOB(61000, receptionist);
+@
+
+
+1.9
+log
+@added the diab subclasser and removed the lightning affect from
+the stone dagger due to it's spoilage.
+/.
+@
+text
+@d213 2
+a214 1
+  
+@
+
+
+1.8
+log
+@added the fido proc to a mobile for test
+ .
+@
+text
+@d100 1
+d161 1
+a161 1
+  ASSIGNOBJ(5104, lightning_weapon);  /* stone dagger */
+@
+
+
+1.7
+log
+@added mob 61000 as a receptionist
+@
+text
+@d99 1
+@
+
+
+1.6
+log
+@added an assign to an existing weapon proc
+@
+text
+@d95 1
+@
+
+
+1.5
+log
+@added 10011 room as a bank
+@
+text
+@d158 1
+d161 1
+a161 1
+    ASSIGNOBJ(4135, lightning_weapon);
+@
+
+
+1.4
+log
+@Mail is back!
+@
+text
+@d208 1
+@
+
+
+1.3
+log
+@Added 3089 as a bank. in the room specials
+@
+text
+@d97 2
+a98 1
+  
+@
+
+
+1.2
+log
+@dos2unix
+Cleaned up comment header some
+indented file
+@
+text
+@d206 1
+a206 1
+  
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/* ************************************************************************
+d9 1
+a9 1
+ ************************************************************************ */
+d61 3
+a63 3
+/* ********************************************************************
+ *  Assignments                                                        *
+ ******************************************************************** */
+d97 1
+a97 1
+
+d99 14
+a112 14
+  ASSIGNMOB(4000, clan0_guard_proc);
+  ASSIGNMOB(55601, assassin_subclasser);
+  ASSIGNMOB(55602, mercenary_subclasser);
+  ASSIGNMOB(8130, receptionist);
+  ASSIGNMOB(4001, receptionist);
+  ASSIGNMOB(32721, receptionist);
+  ASSIGNMOB(30975, receptionist);
+  ASSIGNMOB(9017, receptionist);
+  ASSIGNMOB(1, receptionist);
+  ASSIGNMOB(14769, receptionist);
+  ASSIGNMOB(14738, receptionist);
+  ASSIGNMOB(14770, receptionist);
+  ASSIGNMOB(1, receptionist);
+  ASSIGNMOB(30516, receptionist);
+d116 15
+a130 15
+  ASSIGNMOB(1200, receptionist);
+  ASSIGNMOB(1201, postmaster);
+  ASSIGNMOB(1202, janitor);
+  ASSIGNMOB(30518, archer);
+  ASSIGNMOB(30519, postmaster);
+  ASSIGNMOB(32013, receptionist);
+  ASSIGNMOB(5804, receptionist);
+  ASSIGNMOB(32226, receptionist);
+  ASSIGNMOB(32000, receptionist);
+  ASSIGNMOB(21051, receptionist);
+  ASSIGNMOB(106, pyro_subclasser);
+  ASSIGNMOB(2330, druid_subclasser);
+  ASSIGNMOB(32020, priest_subclasser);
+  ASSIGNMOB(2311, diabolist_subclasser);
+  ASSIGNMOB(3017, necro_subclasser);
+d157 1
+a157 1
+
+d159 23
+a181 23
+  ASSIGNOBJ(4135, lightning_weapon);
+  ASSIGNOBJ(40806, holyw_weapon);
+  ASSIGNOBJ(15, blind_weapon);
+  ASSIGNOBJ(5704, fullharm_weapon);
+  ASSIGNOBJ(16, fireball_weapon);
+  ASSIGNOBJ(30542, vampiric_weapon);
+  ASSIGNOBJ(17, curse_weapon);
+  ASSIGNOBJ(23004, invis_item);
+  ASSIGNOBJ(23008, stone_item);
+  ASSIGNOBJ(3899, ship);          heart of twilight
+  ASSIGNOBJ(3999, ship);         tavern star 
+  
+  ASSIGNOBJ(46, gen_board);	 social board
+  ASSIGNOBJ(47, gen_board);	 freeze board
+  ASSIGNOBJ(48, gen_board);	 immortal board
+  ASSIGNOBJ(49, gen_board);	 mortal board
+  ASSIGNOBJ(60, gen_board);	 social board
+  ASSIGNOBJ(61, gen_board);	 freeze board
+  ASSIGNOBJ(62, gen_board);	 immortal board
+  ASSIGNOBJ(63, gen_board);	 mortal board
+  ASSIGNOBJ(64, gen_board);	 social board
+  ASSIGNOBJ(65, gen_board);	 freeze board 
+  ASSIGNOBJ(66, gen_board);	 immortal board 
+d206 2
+a207 2
+
+
+d209 20
+a228 20
+  ASSIGNROOM(32356, bank);
+  ASSIGNROOM(22000, bank);
+  ASSIGNROOM(15139, bank);
+  ASSIGNROOM(9022, bank);
+  ASSIGNROOM(14890, pet_shops);
+  ASSIGNROOM(5780, bank);
+  ASSIGNROOM(1204, current_proc);
+  ASSIGNROOM(23000, current_proc); 
+  ASSIGNROOM(23237, current_proc); 
+  ASSIGNROOM(23238, current_proc);
+  ASSIGNROOM(23239, current_proc);
+  ASSIGNROOM(23240, current_proc);
+  ASSIGNROOM(23241, current_proc);
+  ASSIGNROOM(23242, current_proc);
+  ASSIGNROOM(30881, bank);
+  ASSIGNROOM(30972, bank);
+  ASSIGNROOM(30761, uklor);
+  ASSIGNROOM(5780, bank);
+  ASSIGNROOM(3901, ship_exit);
+  ASSIGNROOM(3801, ship_exit);
+d232 4
+a235 4
+  ASSIGNROOM(2475, druid_quest_room);
+  ASSIGNROOM(2460, druid_quest_room);
+  ASSIGNROOM(2498, druid_quest_room);
+  ASSIGNROOM(2499, druid_quest_room);
+d242 1
+@

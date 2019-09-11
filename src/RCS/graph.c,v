@@ -1,0 +1,5529 @@
+head	1.53;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.53
+date	2010.06.05.04.43.57;	author mud;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2009.03.09.04.33.20;	author jps;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2009.01.17.00.28.02;	author myc;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2008.09.20.17.51.57;	author jps;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2008.09.20.06.05.06;	author jps;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2008.09.04.06.47.36;	author jps;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2008.09.01.23.47.49;	author jps;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2008.08.18.01.35.38;	author jps;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2008.05.18.20.16.11;	author jps;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2008.05.17.22.03.01;	author jps;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2008.05.17.04.32.25;	author jps;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2008.04.20.04.09.59;	author jps;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2008.04.20.03.54.41;	author jps;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2008.04.19.22.18.27;	author jps;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2008.04.13.19.40.57;	author jps;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2008.04.13.17.46.52;	author jps;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2008.04.07.03.02.54;	author jps;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2008.04.05.18.07.09;	author myc;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2008.03.09.18.10.53;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2008.03.09.06.38.37;	author jps;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2008.02.09.21.07.50;	author myc;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2008.02.09.18.29.11;	author myc;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2008.01.26.12.30.34;	author jps;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2008.01.18.20.30.11;	author myc;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2008.01.12.23.13.20;	author myc;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2008.01.04.01.53.26;	author jps;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2007.12.25.05.41.49;	author jps;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2007.11.18.06.03.30;	author myc;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2007.10.17.18.21.03;	author myc;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2007.08.15.20.48.07;	author myc;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2007.08.03.22.00.11;	author myc;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2007.07.11.23.30.16;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2007.07.02.05.20.09;	author jps;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2007.06.09.18.01.40;	author jps;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2007.04.19.00.53.54;	author jps;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2006.11.11.10.16.47;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2006.11.08.09.16.04;	author jps;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2006.11.08.08.52.42;	author jps;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2006.07.20.07.37.43;	author cjd;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2001.07.08.16.21.25;	author mtp;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2000.11.21.18.45.49;	author rsd;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	99.09.03.23.05.01;	author mtp;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	99.04.30.17.09.14;	author mud;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.04.29.03.47.25;	author jimmy;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.02.20.18.41.36;	author dce;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.31.02.49.06;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ************************************************************************
+*   File: graph.c                                       Part of CircleMUD *
+*  Usage: various graph algorithms                                        *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
+
+#define TRACK_THROUGH_DOORS
+
+/* You can define or not define TRACK_THOUGH_DOORS, above, depending on
+   whether or not you want track to find paths which lead through closed
+   or hidden doors.
+*/
+
+#include "conf.h"
+#include "sysdep.h"
+
+
+#include "structs.h"
+#include "utils.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "db.h"
+#include "spells.h"
+#include "events.h"
+
+/* Externals */
+extern int top_of_world;
+extern struct descriptor_data *descriptor_list;
+extern const char *dirs[];
+extern struct room_data *world;
+extern const char *race_target[];
+struct bfs_queue_struct {
+  int room;
+  char dir;
+  struct bfs_queue_struct *next;
+};
+bool is_aggr_to(struct char_data *ch,struct char_data *target);
+ACMD(do_follow);
+void flush_queues(struct descriptor_data *d);
+ACMD(do_gen_door);
+#define NOT_FOUND_TRACK -5000
+bool cause_single_hunt(struct track_info track, struct char_data *ch, struct char_data *victim, int track_room);
+bool perform_single_track(struct char_data *ch, int track_room);
+static struct bfs_queue_struct *queue_head = 0, *queue_tail = 0;
+struct char_data *find_race(char *arg, struct track_info track, struct char_data *ch);
+bool call_track (bool hunt, struct track_info track, struct char_data *ch, struct char_data *victim, bool follow);
+bool move_fast_track(struct track_info track, struct char_data *ch, int track_room);
+bool is_aggr_to_trackee (struct char_data *ch, struct char_data *target);
+bool cause_single_track(struct track_info track, struct char_data *ch, struct char_data *victim, int track_room);
+int in_range(struct track_info track, struct char_data *ch, int track_room);
+/* Utility macros */
+#define MARK(room) (SET_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define UNMARK(room) (REMOVE_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define IS_MARKED(room) (IS_SET(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define TOROOM(x, y) (world[(x)].dir_option[(y)]->to_room)
+#define IS_CLOSED(x, y) (IS_SET(world[(x)].dir_option[(y)]->exit_info, EX_CLOSED))
+
+#ifdef TRACK_THROUGH_DOORS
+#define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
+			  (TOROOM(x, y) != NOWHERE) &&	\
+			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
+			  (!IS_MARKED(TOROOM(x, y))))
+#else
+#define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
+			  (TOROOM(x, y) != NOWHERE) &&	\
+			  (!IS_CLOSED(x, y)) &&		\
+			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
+			  (!IS_MARKED(TOROOM(x, y))))
+#endif
+
+void bfs_enqueue(int room, int dir)
+{
+  struct bfs_queue_struct *curr;
+
+  CREATE(curr, struct bfs_queue_struct, 1);
+  curr->room = room;
+  curr->dir = dir;
+  curr->next = 0;
+
+  if (queue_tail) {
+    queue_tail->next = curr;
+    queue_tail = curr;
+  } else
+    queue_head = queue_tail = curr;
+}
+
+
+void bfs_dequeue(void)
+{
+  struct bfs_queue_struct *curr;
+
+  curr = queue_head;
+
+  if (!(queue_head = queue_head->next))
+    queue_tail = 0;
+  free(curr);
+}
+
+
+void bfs_clear_queue(void)
+{
+  while (queue_head)
+    bfs_dequeue();
+}
+
+
+/* find_first_step: given a source room and a target room, find the first
+   step on the shortest path from the source to the target.
+
+   Intended usage: in mobile_activity, give a mob a dir to go if they're
+   tracking another mob or a PC.  Or, a 'track' skill for PCs.
+*/
+
+int find_first_step(int src, int target)
+{
+  int curr_dir;
+  int curr_room;
+
+  if (src < 0 || src > top_of_world || target < 0 || target > top_of_world) {
+    log("Illegal value passed to find_first_step (graph.c)");
+    return BFS_ERROR;
+  }
+  if (src == target)
+    return BFS_ALREADY_THERE;
+
+  /* clear marks first */
+  for (curr_room = 0; curr_room <= top_of_world; curr_room++)
+    UNMARK(curr_room);
+
+  MARK(src);
+
+  /* first, enqueue the first steps, saving which direction we're going. */
+  for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
+    if (VALID_EDGE(src, curr_dir)) {
+      MARK(TOROOM(src, curr_dir));
+      bfs_enqueue(TOROOM(src, curr_dir), curr_dir);
+    }
+  /* now, do the classic BFS. */
+  while (queue_head) {
+    if (queue_head->room == target) {
+      curr_dir = queue_head->dir;
+      bfs_clear_queue();
+      return curr_dir;
+    } else {
+      for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
+	if (VALID_EDGE(queue_head->room, curr_dir)) {
+	  MARK(TOROOM(queue_head->room, curr_dir));
+	  bfs_enqueue(TOROOM(queue_head->room, curr_dir), queue_head->dir);
+	}
+      bfs_dequeue();
+    }
+  }
+
+  return BFS_NO_PATH;
+}
+
+
+/************************************************************************
+*  Functions and Commands which use the above fns		        *
+************************************************************************/
+
+EVENTFUNC(track_delayed_event)
+{
+	struct track_delayed_event_obj *track_event = (struct track_delayed_event_obj *) event_obj;
+	struct char_data *ch;
+	struct char_data *victim;
+	struct track_info track;
+	int track_room;
+
+	victim = track_event->victim;
+	ch = track_event->ch;
+	track_room = track_event->track_room;
+	track = track_event->track;
+
+        if(IS_NPC(ch) && !is_aggr_to(ch, victim))
+        {
+          GET_TRACK_EVENTS(ch) = NULL;
+         free(event_obj);
+          return 0;
+        }
+        if(event_target_valid(ch) == 0)
+	{
+	  free(event_obj);
+	  return 0;
+	}
+
+        if(event_target_valid(victim) == 0)
+	{
+	  GET_TRACK_EVENTS(ch) = NULL;
+	  free(event_obj);
+	  return 0;
+	}
+
+	if (!cause_single_track(track, ch, victim, track_room)) {
+           GET_TRACK_EVENTS(ch) = NULL;
+            free(event_obj);
+           return 0;
+        }
+	/*re-que event*/
+	return track.speed;
+}
+
+/*prokys track*/
+
+ACMD(do_track)
+{
+	struct char_data *vict;
+	int num;
+	struct track_info track;
+
+	if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch))
+	{
+		send_to_char("You have no idea how.\r\n", ch);
+		return;
+	}
+
+	num = 1;
+	if ((GET_SKILL(ch, SKILL_TRACK) > num))
+    {
+		track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+		track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/5));
+		track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/4));
+        if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER))
+        {
+            track.range = track.range + 8;
+            track.sense = track.range + 4;
+        }
+        if ((IS_NPC(ch)))
+			if (!(ch->desc && ch->desc->original))
+			{
+				track.speed = (int)(track.speed/2);
+				track.range = (int)((130*track.range)/100);
+			}
+	}
+
+	if ((IS_NPC(ch)))
+		if (!(ch->desc && ch->desc->original))
+			if (GET_TRACK_EVENTS(ch))
+				return;
+
+	if (GET_TRACK_EVENTS(ch))
+	{
+		send_to_char("You stop tracking.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));
+		GET_TRACK_EVENTS(ch) = NULL;
+		return;
+	}
+	one_argument(argument, arg);
+	if (!*arg) {
+		send_to_char("Whom are you trying to track?\r\n", ch);
+		return;
+	}
+
+
+	/*check for evil race*/
+	vict = find_race(arg, track, ch);
+	if (!vict)
+	if (!(vict = get_char_vis(ch, arg))) {
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		if (!(IS_NPC(ch)))
+			if (!(ch->desc && ch->desc->original))
+				WAIT_STATE(ch, PULSE_VIOLENCE);
+		return;
+	}
+
+
+
+	/*Handle Npcs here*/
+	if ((IS_NPC(ch)))
+		if (!(ch->desc && ch->desc->original))
+		{
+			perform_single_track(ch, vict->in_room);
+			return;
+		}
+
+    if (IS_AFFECTED(vict, AFF_NOTRACK)) {
+    send_to_char("Can't find any tracks by that name one.\r\n", ch);
+    return;
+  }
+
+  if ((IS_NPC(ch)))
+	if ((ch->desc && ch->desc->original))
+		if (GET_TRACK_EVENTS(ch))
+			return;
+
+	if (GET_TRACK_EVENTS(ch))
+	{
+		send_to_char("You stop tracking.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));
+		return;
+	}
+
+
+    if ((GET_SKILL(ch, SKILL_TRACK) > num))
+    {
+		if (call_track (FALSE, track, ch, vict, FALSE))
+		{/*if npc dont lag mob*/
+			if (!(IS_NPC(ch)))
+				if (!(ch->desc && ch->desc->original))
+					WAIT_STATE(ch, PULSE_VIOLENCE);
+		}
+	}
+}
+
+
+ACMD(do_hunt)
+{
+	struct char_data *vict;
+	int num;bool follow = FALSE;
+	struct track_info track;
+
+	if (IS_NPC(ch))
+		if (!(ch->desc && ch->desc->original))
+			return;
+
+	if (!GET_SKILL(ch, SKILL_HUNT))
+	{
+		send_to_char("You have no idea how.\r\n", ch);
+		return;
+	}
+
+	num = 1;
+	if ((GET_SKILL(ch, SKILL_HUNT) > num))
+    {
+		track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+		track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+		track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+	}
+
+	if ((IS_NPC(ch)))
+		if (!(ch->desc && ch->desc->original))
+			if (GET_TRACK_EVENTS(ch))
+				return;
+
+
+	if (GET_TRACK_EVENTS(ch))
+	{
+		send_to_char("You stop tracking.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));
+		GET_TRACK_EVENTS(ch) = NULL;
+		return;
+	}
+
+   argument = one_argument(argument, arg);
+   if (!str_cmp(" follow", argument) || !str_cmp(" f", argument))
+   {
+      if ((!GET_CLASS(ch) == CLASS_HUNTER) && (GET_LEVEL(ch) < LVL_IMMORT))
+      {
+         send_to_char("You do not have enough skills to follow someone after hunting", ch);
+         return;
+      }
+      follow = TRUE;
+   }
+
+/*check for second argument :follow*/
+    if (!*arg) {
+		send_to_char("Whom are you trying to hunt?\r\n", ch);
+		return;
+	}
+
+	/*check for evil race*/
+	vict = find_race(arg, track, ch);
+	if (!vict)
+	if (!(vict = get_char_vis(ch, arg))) {
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		if (!(IS_NPC(ch)))
+			if (!(ch->desc && ch->desc->original))
+				WAIT_STATE(ch, PULSE_VIOLENCE);
+		return;
+	}
+
+	if (IS_AFFECTED(vict, AFF_NOTRACK))
+	{
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		return;
+	}
+
+   if ((IS_NPC(ch)))
+	  if (!(ch->desc && ch->desc->original))
+		 if (GET_TRACK_EVENTS(ch))
+			  return;
+
+	if (GET_TRACK_EVENTS(ch))
+	{
+		send_to_char("You stop hunting.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));
+		return;
+	}
+
+   if ((GET_SKILL(ch, SKILL_TRACK) > num))
+    {
+		if (call_track (TRUE, track, ch, vict, follow))
+		{/*if npc dont lag mob*/
+			if (!(IS_NPC(ch)))
+				if (!(ch->desc && ch->desc->original))
+					WAIT_STATE(ch, PULSE_VIOLENCE);
+		}
+	}
+}
+
+
+
+void hunt_victim(struct char_data * ch)
+{
+  ACMD(do_say);
+  extern struct char_data *character_list;
+
+  int dir;
+  byte found;
+  struct char_data *tmp;
+
+  if (!ch || !HUNTING(ch))
+    return;
+
+  /* make sure the char still exists */
+  for (found = 0, tmp = character_list; tmp && !found; tmp = tmp->next)
+    if (HUNTING(ch) == tmp)
+      found = 1;
+
+  if (!found) {
+    do_say(ch, "Damn!  My prey is gone!!", 0, 0);
+    HUNTING(ch) = 0;
+    return;
+  }
+  dir = find_first_step(ch->in_room, HUNTING(ch)->in_room);
+  if (dir < 0) {
+    sprintf(buf, "Damn!  Lost %s!", HMHR(HUNTING(ch)));
+    do_say(ch, buf, 0, 0);
+    HUNTING(ch) = 0;
+    return;
+  } else {
+    perform_move(ch, dir, 1);
+    if (ch->in_room == HUNTING(ch)->in_room)
+      hit(ch, HUNTING(ch), TYPE_UNDEFINED);
+    return;
+  }
+}
+
+
+struct char_data *find_race(char *arg, struct track_info track, struct char_data *ch)
+{/*NUM_RACES */
+	int i; bool found = FALSE;int howclosetar = 10000;
+	struct char_data *tar;int num;
+	struct descriptor_data *d, *next_d;
+	tar = NULL;
+	for (i=0;i< NUM_RACES;i++)
+	{
+		if (!strcmp(arg, race_target[i]))
+		{
+			found = TRUE;
+			break;
+		}
+	}
+	if (found)
+		for (d = descriptor_list; d; d = next_d)
+		{
+			next_d = d->next;
+			if (d->character && GET_RACE(d->character) == i)
+			{
+				if (ch == d->character)
+					continue;
+				if (!(CAN_SEE(ch, d->character)))
+					continue;
+				num = (in_range(track, ch, (d->character)->in_room));
+				if (num == NOT_FOUND_TRACK)
+					continue;
+				else
+				{
+					if (howclosetar > (track.range - num))
+					{
+						howclosetar = track.range - num;
+						tar = d->character;
+					}
+				}
+			}
+	}
+	return tar;
+}
+
+
+
+
+/*function that starts tracking, performs range check
+and sets things up so it all works.  Also handles messaging
+to the user - Proky*/
+
+bool call_track (bool hunt, struct track_info track, struct char_data *ch, struct char_data *victim, bool follow)
+{
+	int num;
+	struct track_delayed_event_obj *track_event;
+	if (track.speed <= 0)
+		track.speed = 5;
+	if (track.range <= 0)
+		track.range = 5;
+	num = in_range(track, ch, victim->in_room);
+
+	if (num == NOT_FOUND_TRACK)
+	{
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		return FALSE;
+	}
+	else if (num >= 0)
+	{
+		num = track.range - num;
+		send_to_char("You begin to search for tracks ....\r\n", ch);
+		CREATE(track_event, struct track_delayed_event_obj, 1);
+		track_event->ch = ch;
+		track_event->victim = victim;
+		track_event->track = track;
+        if (hunt)
+           if (follow)
+		    track_event->track_room = -2;
+           else
+            track_event->track_room = -1;
+        else
+           track_event->track_room = victim->in_room;
+
+		GET_TRACK_EVENTS(ch) = event_create(track_delayed_event, track_event, track.speed);
+		return TRUE;
+	}
+	else
+	{
+		num = track.range - num;
+		if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER))
+		{
+			if ((num - track.range) <= 5)
+			{
+				sprintf(buf, "You find a very very strong sense of %s.\r\n", HMHR(victim));
+				send_to_char(buf, ch);
+			}
+			else if ((num - track.range) <= 10)
+			{
+				sprintf(buf, "You find a strong sense of %s, must be close.\r\n", HMHR(victim));
+				send_to_char(buf, ch);
+			}
+			else
+			{
+				sprintf(buf, "Hmmm you only just sense %s.\r\n", HMHR(victim));
+				send_to_char(buf, ch);
+			}
+		}
+		else
+		{
+			sprintf(buf, "Hmmm you sense %s, must be close\r\n", HMHR(victim));
+			send_to_char(buf, ch);
+		}
+		return FALSE;
+	}
+}
+
+
+
+/*track function that calls event - proky*/
+/*this function will start of the event to track to victim
+It already asumes that distance has been checked already
+-Proky (hunt saves -1 or -2 to track_room as it updates continually*/
+
+
+bool cause_single_track(struct track_info track, struct char_data *ch, struct char_data *victim, int track_room)
+{
+	int direction;int cmd;
+	char doorname[40];
+    if (track_room <= -1)
+    {
+       /*check for person may have gone out of range*/
+      if (in_range(track, ch, victim->in_room) >= 1)
+         direction = find_first_step(ch->in_room, victim->in_room);
+      else
+      {
+         send_to_char("Dam my prey has got away.\r\n", ch);
+         return FALSE;
+      }
+    }
+     else
+	  direction = find_first_step(ch->in_room, track_room);
+	switch (direction) {
+	case BFS_ERROR:
+		return FALSE;
+	case BFS_ALREADY_THERE:
+		send_to_char("The tracks come to a end here!\r\n", ch);
+         if (track_room == -2)
+                {/*follow victim*/
+                    cmd = find_command("follow");
+		            do_follow(ch, victim->player.name, cmd, 0);
+                }
+        return FALSE;
+	case BFS_NO_PATH:
+		return FALSE;
+	default:
+	/*new stuff here rest is a re-check*/
+	/*fighting check casting check*/
+       if (FIGHTING(ch))
+       {
+          send_to_char("You give up the chase for the fight!\r\n", ch);
+          return FALSE;
+       }
+
+         if(PLR_FLAGGED(ch, PLR_CASTING))
+            return TRUE;
+         if ((IS_NPC(ch)))
+	        if (!(ch->desc && ch->desc->original))
+		       if (MOB_FLAGGED(ch, MOB_CASTING))
+                  return TRUE;
+
+   if (track_room <= -1)
+   {/*if hunt stop rangers hunting in town*/
+      if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT))
+      {
+         send_to_char("You loose your victims tracks\r\n", ch);
+         return FALSE;
+      }
+   }
+       if (CAN_GO(ch, direction));
+		{
+           /*check for a door*/
+            if (IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED))
+            {
+               if (EXIT(ch, direction)->keyword)
+               {
+                  one_argument(fname(EXIT(ch, direction)->keyword), doorname);
+                  sprintf(buf, "You try to open a %s\r\n", doorname);
+                  send_to_char(buf, ch);
+                  sprintf(doorname, "%s %s", doorname, dirs[direction]);
+                  cmd = find_command("cmd");
+		          do_gen_door(ch, doorname, cmd, 0);
+                  /*make it cost a bit of time*/
+                  if ((!IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)))
+                     return TRUE;
+               }
+            }
+			sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", dirs[direction]);
+			send_to_char(buf, ch);
+			if (!perform_move(ch, direction, 1))
+            {
+               send_to_char("Something is in your way!!\r\n", ch);
+               return FALSE;
+            }
+			act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+			/*check to see if in room*/
+			if ((ch->in_room == track_room) || (ch->in_room == victim->in_room))
+			{
+				send_to_char("The tracks come to a end here!\r\n", ch);
+                if (track_room == -2)
+                {/*follow victim*/
+                    cmd = find_command("follow");
+		            do_follow(ch, victim->player.name, cmd, 0);
+                }
+				return FALSE;
+			}
+			else
+				return TRUE;
+		}
+	}
+	return FALSE;
+}
+
+/*Proky - This function will determine the range to track*/
+/*NOT_FOUND_TRACK = Cant find person*/
+/*>=1  Yes can within distance*/
+/*<=-1 = Close within extra-sense range
+**NOTE: other value can give: distance = original.range - return*/
+
+int in_range(struct track_info track, struct char_data *ch, int track_room)
+{
+	int direction;
+	int num;
+	if (track.range < (0 - track.sense))
+		return NOT_FOUND_TRACK;/*totally out of range*/
+	direction = find_first_step(track_room, ch->in_room);
+	switch (direction) {
+	case BFS_ERROR:
+	case BFS_NO_PATH:
+		return NOT_FOUND_TRACK;
+	case BFS_ALREADY_THERE:
+		return track.range;
+	default:
+		track.range--;
+		num = (in_range(track, ch, world[track_room].dir_option[direction]->to_room));
+		if (num == NOT_FOUND_TRACK)
+			return NOT_FOUND_TRACK;
+		else
+			return num;
+	}
+}
+
+
+/*This function actually just dones a simple move toward the target
+it starts nothing else at all, returns true if successed*/
+/*it doesnt care if person can go that far it just does it*/
+/*doesnt message doesnt nothin!! - Proky*/
+bool perform_single_track(struct char_data *ch, int track_room)
+{
+	int direction;
+	direction = find_first_step(track_room, ch->in_room);
+	switch (direction) {
+	case BFS_ERROR:
+	case BFS_ALREADY_THERE:
+	case BFS_NO_PATH:
+		return FALSE;
+	default:
+		if (CAN_GO(ch, direction));
+		{
+			direction = find_first_step(ch->in_room, track_room);
+			perform_move(ch, direction, 1);
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+
+
+/*Track function no delay straight to target - Proky*/
+/*recursivly calls track returns 1 if worked, 2 if to far but close, 4 if fail for unkown
+and 0 if fail distance*/
+/*This function should be used if you want 0 lag and instant movement its VERY fast*/
+/*if true then it did the track, if false then some reason it didnt*/
+bool move_fast_track(struct track_info track, struct char_data *ch, int track_room)
+{
+	int direction;
+	if (track.range <= 0)
+		return FALSE;
+	direction = find_first_step(track_room, ch->in_room);
+	switch (direction) {
+	case BFS_ERROR:
+		return FALSE;
+	case BFS_ALREADY_THERE:
+		return TRUE;
+	case BFS_NO_PATH:
+		return FALSE;
+	default:
+		track.range--;
+		if (move_fast_track(track, ch, world[track_room].dir_option[direction]->to_room));
+		{
+			if (CAN_GO(ch, direction));
+			{
+				direction = find_first_step(ch->in_room, track_room);
+				perform_move(ch, direction, 1);
+				return TRUE;
+			}
+		}
+	}
+}
+
+
+
+
+/* Below is Buru's track code thanks man...Banyal*/
+
+ACMD(do_DumbMobTrack)
+{
+
+  struct char_data *vict;
+  int dir, num;
+
+
+  if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch)) {
+    send_to_char("You have no idea how.\r\n", ch);
+    return;
+  }
+  one_argument(argument, arg);
+  if (!*arg) {
+    send_to_char("Whom are you trying to track?\r\n", ch);
+    return;
+  }
+  if (!(vict = get_char_vis(ch, arg))) {
+    send_to_char("No-one around by that name.\r\n", ch);
+    return;
+  }
+/*This below IS the fis to mob track bug but soemhow the memory structure is
+ not the same for this check always fails. In that the is_aggr_to also fails
+ due to same reason, so now only mobs with bot track and memory have memory
+ or have a special attack. I will try to look at this later. Perhaps someone else
+before this can look at is_aggr_to and is_aggro_to_trackee and bring them
+up-to-date with current memory structure. then all will be fixed.... Banyal*/
+/*
+  if(!is_aggr_to_trackee(ch, vict)) {
+  flush_queue(ch);
+    return;
+  }*/
+  if (IS_AFFECTED(vict, AFF_NOTRACK)) {
+    send_to_char("You sense no trail.\r\n", ch);
+    return;
+  }
+  dir = find_first_step(ch->in_room, vict->in_room);
+
+  switch (dir) {
+  case BFS_ERROR:
+    send_to_char("&0Hmm.. something seems to be wrong.&0\r\n", ch);
+	break;
+  case BFS_ALREADY_THERE:
+    send_to_char("&0The trail ends here.&0\r\n", ch);
+	break;
+  case BFS_NO_PATH:
+    sprintf(buf, "&0You can't sense a trail to %s from here.&0\r\n",
+	    HMHR(vict));
+    send_to_char(buf, ch);
+	break;
+  default:
+    num = number(0, 101);	/* 101% is a complete failure */
+    if ((GET_SKILL(ch, SKILL_TRACK) < num) && (!IS_NPC(ch)))
+      do {
+	dir = number(0, NUM_OF_DIRS - 1);
+      } while (!CAN_GO(ch, dir));
+    sprintf(buf, "&0You find signs of a track %s from here!&0\r\n",
+dirs[dir]);
+    send_to_char(buf, ch);
+	perform_move(ch, dir, 1);
+    act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+	WAIT_STATE(ch, PULSE_VIOLENCE);
+  }
+
+
+}
+@
+
+
+1.53
+log
+@Replacing ocean sector type with cave.
+@
+text
+@/***************************************************************************
+ * $Id: graph.c,v 1.52 2009/03/09 04:33:20 jps Exp mud $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: graph.c                                        Part of FieryMUD *
+ *  Usage: various graph algorithms                                        *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+/* This is a safety device to limit the number of rooms a BFS will check.
+ * It'll come in handy for when there's a bug in BFS, or if the mud
+ * happens to have a number of insanely-connected rooms (e.g., 6 unique
+ * rooms from every room) */
+#define MAX_BFS_ROOMS 500
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "utils.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "db.h"
+#include "casting.h"
+#include "events.h"
+#include "races.h"
+#include "skills.h"
+#include "constants.h"
+#include "math.h"
+#include "exits.h"
+#include "rooms.h"
+#include "fight.h"
+#include "movement.h"
+#include "directions.h"
+
+/* Externals */
+ACMD(do_follow);
+void flush_queues(struct descriptor_data *d);
+ACMD(do_gen_door);
+
+struct bfs_queue_struct {
+  int room;
+  char dir;
+  struct bfs_queue_struct *next;
+};
+
+
+typedef struct _tracknode tracknode;
+
+struct _tracknode {
+   room_num room;
+   int direction;
+   tracknode *next;
+};
+
+
+#define NOT_FOUND_TRACK -5000
+static struct bfs_queue_struct *queue_head = 0, *queue_tail = 0;
+struct char_data *find_race(char *arg, struct track_info track, struct char_data *ch);
+bool call_track (bool hunt, struct track_info track, struct char_data *ch,
+      struct char_data *victim, bool follow);
+bool cause_single_track(struct track_info track, struct char_data *ch,
+      struct char_data *victim, int track_room);
+
+/* Utility macros */
+#define MARK(room) (world[room].bfs_distance = 0)
+#define UNMARK(room) (world[room].bfs_distance = -1)
+#define BFS_MARKED(room) (world[room].bfs_distance != -1)
+#define TOROOM(x, y) (world[(x)].exits[(y)]->to_room)
+/*
+#define EXIT_CLOSED(x, y) (IS_SET(world[(x)].exits[(y)]->exit_info, EX_CLOSED))
+#define EXIT_HIDDEN(x, y) (IS_SET(world[(x)].exits[(y)]->exit_info, EX_HIDDEN))
+*/
+
+#define VALID_EDGE(roomvnum, dir, tracker) \
+   (world[(roomvnum)].exits[(dir)] && \
+   (TOROOM(roomvnum, dir) != NOWHERE) && \
+   (!IS_NPC(tracker) || !ROOM_FLAGGED(TOROOM(roomvnum, dir), ROOM_NOTRACK)) && \
+   (!EXIT_IS_HIDDEN(world[roomvnum].exits[dir])) && \
+   (!BFS_MARKED(TOROOM(roomvnum, dir))))
+
+void bfs_enqueue(int room, int dir)
+{
+   struct bfs_queue_struct *curr;
+
+   CREATE(curr, struct bfs_queue_struct, 1);
+   curr->room = room;
+   curr->dir = dir;
+   curr->next = 0;
+
+   if (queue_tail) {
+      queue_tail->next = curr;
+      queue_tail = curr;
+   } else
+      queue_head = queue_tail = curr;
+}
+
+
+void bfs_dequeue(void)
+{
+   struct bfs_queue_struct *curr;
+
+   curr = queue_head;
+
+   if (!(queue_head = queue_head->next))
+      queue_tail = 0;
+   free(curr);
+}
+
+
+void bfs_clear_queue(void)
+{
+   while (queue_head)
+      bfs_dequeue();
+}
+
+
+/* find_first_step: given a source room and a target room, find the first
+    step on the shortest path from the source to the target.
+
+    It's intended for tracking.
+
+    Return values:
+      (ret)      A BFS_* constant indicating the state of the search.
+      distance   The distance of the path (if any was found).
+*/
+
+int find_first_step(int src, int target, struct char_data *tracker, int *distance)
+{
+   int curr_dir;
+   int curr_room;
+
+   if (src < 0 || src > top_of_world || target < 0 || target > top_of_world) {
+      log("Illegal value passed to find_first_step (graph.c)");
+      return BFS_ERROR;
+   }
+
+   if (src == target)
+      return BFS_ALREADY_THERE;
+
+   /* clear marks first */
+   for (curr_room = 0; curr_room <= top_of_world; curr_room++)
+      UNMARK(curr_room);
+
+   world[src].bfs_distance = 0;
+
+   /* first, enqueue the first steps, saving which direction we're going. */
+   for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
+      if (VALID_EDGE(src, curr_dir, tracker)) {
+         world[TOROOM(src, curr_dir)].bfs_distance = 1;
+         bfs_enqueue(TOROOM(src, curr_dir), curr_dir);
+      }
+
+   /* now, do the classic BFS. */
+   while (queue_head) {
+      if (queue_head->room == target) {
+         curr_dir = queue_head->dir;
+         *distance = world[queue_head->room].bfs_distance;
+         bfs_clear_queue();
+         return curr_dir;
+      } else {
+         for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
+            if (VALID_EDGE(queue_head->room, curr_dir, tracker)) {
+               bfs_enqueue(TOROOM(queue_head->room, curr_dir), queue_head->dir);
+               world[TOROOM(queue_head->room, curr_dir)].bfs_distance =
+                  world[queue_head->room].bfs_distance + 1;
+            }
+         bfs_dequeue();
+      }
+   }
+
+   return BFS_NO_PATH;
+}
+
+/* find_track_victim
+ *
+ * Takes a tracker, a name of someone to track, and the maximum
+ * distance.
+ *
+ * Finds the nearest detectable mob by that name.
+ *
+ * Returns an the direction to go (or BFS_[other])
+ * Also indicates the victim found.
+ */
+
+int find_track_victim(struct char_data *ch, char *name, int maxdist, struct char_data **victim) {
+   int i, cdist, roomschecked = 0, result = BFS_NO_PATH;
+   bool found = FALSE;
+   tracknode *start, *current, *new, *end;
+   struct char_data *cd;
+
+   if (!ch || !name || !victim)
+      return BFS_ERROR;
+
+   /* Did you say "track me"? */
+   if (!str_cmp(name, "self") || !str_cmp(name, "me")) {
+      *victim = ch;
+      return BFS_ALREADY_THERE;
+   }
+
+   /* Clear room marks */
+   for (i = 0; i <= top_of_world; i++)
+      UNMARK(i);
+
+   /* Get our nodes started up... */
+   CREATE(start, tracknode, 1);
+   start->room = IN_ROOM(ch);
+   start->direction = BFS_ALREADY_THERE;
+   start->next = NULL;
+   current = start;
+   end = start;
+
+   world[start->room].bfs_distance = 0;
+   cdist = 0;
+   *victim = NULL;
+
+   while (current && !found && cdist < maxdist) {
+      /* Handle a room: current. */
+      cdist = world[current->room].bfs_distance;
+
+      /* Can the tracker see the victim in here? */
+      for (cd = world[current->room].people; cd; cd = cd->next_in_room)
+         if (isname(name, GET_NAMELIST(cd)) && CAN_SEE(ch, cd)) {
+            /* The victim has been found! */
+            found = TRUE;
+            result = current->direction;
+            *victim = cd;
+         }
+
+      if (found || roomschecked++ > MAX_BFS_ROOMS) break;
+
+      /* Didn't find the victim in this room. */
+
+      if (cdist < maxdist)
+         /* Put the rooms around this one on our list of rooms to search. */
+         for (i = 0; i < NUM_OF_DIRS; i++)
+            if (VALID_EDGE(current->room, i, ch)) {
+               world[TOROOM(current->room, i)].bfs_distance = cdist + 1;
+               CREATE(new, tracknode, 1);
+               new->room = TOROOM(current->room, i);
+               new->direction = i;
+               new->next = NULL;
+
+               /* This node goes on the end of our list */
+               end->next = new;
+               end = new;
+            }
+
+      current = current->next;
+   }
+
+   /* Discard the list */
+   for (current = start; current;) {
+      new = current->next;
+      free (current);
+      current = new;
+   }
+
+   return result;
+}
+
+/************************************************************************
+ *  Functions and Commands which use the above fns                        *
+ ************************************************************************/
+
+EVENTFUNC(track_delayed_event)
+{
+   struct track_delayed_event_obj *track_event = (struct track_delayed_event_obj *) event_obj;
+   struct char_data *ch;
+   struct char_data *victim;
+   struct track_info track;
+   int track_room;
+
+   victim = track_event->victim;
+   ch = track_event->ch;
+   track_room = track_event->track_room;
+   track = track_event->track;
+
+   if (!event_target_valid(ch) || !event_target_valid(victim)) {
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return EVENT_FINISHED;
+   }
+
+   if (!cause_single_track(track, ch, victim, track_room)) {
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return EVENT_FINISHED;
+   }
+
+   /* re-queue event*/
+   if (IS_NPC(ch) && MOB_FLAGGED(ch, MOB_SLOW_TRACK))
+      return track.speed + 20;
+   return track.speed;
+}
+
+ACMD(do_track)
+{
+   struct char_data *vict;
+   struct track_info track;
+   int trackskill;
+
+   if (FIGHTING(ch)) {
+      send_to_char("You are too busy to look for a trail.\r\n",ch);
+      return;
+   }
+   if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch)) {
+      send_to_char("You have no idea how.\r\n", ch);
+      return;
+   }
+   if (CONFUSED(ch)) {
+      send_to_char("You're far too confused to track anyone!\r\n", ch);
+      return;
+   }
+
+   /* Give mobs a break on track skill */
+   if (!IS_PC(ch))
+      trackskill = MAX(GET_LEVEL(ch), GET_SKILL(ch, SKILL_TRACK));
+   else
+      trackskill = GET_SKILL(ch, SKILL_TRACK);
+
+   /* Determine the range and speed */
+   track.speed = MAX(3, MIN(20, (int)((101 - trackskill) / 2)));
+   track.sense = MAX(1, (int)(trackskill / 3));
+   track.range = MAX(1, (int)(trackskill / 4));
+   if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {
+      track.range = track.range + 8;
+      track.sense = track.range + 4;
+   }
+   if (IS_NPC(ch))
+      if (!POSSESSED(ch)) {
+         track.speed = (int)(track.speed / 2);
+         track.range = (int)((130 * track.range) / 100);
+      }
+
+   if (IS_NPC(ch))
+      if (!POSSESSED(ch))
+         if (EVENT_FLAGGED(ch, EVENT_TRACK))
+            return;
+
+   /* If you are already tracking, "track" stops you. */
+   if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
+      send_to_char("You stop tracking.\r\n", ch);
+      cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return;
+   }
+
+   /* Figure out who they're trying to track. */
+   one_argument(argument, arg);
+   if (!*arg) {
+      send_to_char("Whom are you trying to track?\r\n", ch);
+      return;
+   }
+
+   find_track_victim(ch, arg, track.range, &vict);
+
+   if (!vict) {
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      if (!IS_NPC(ch) && !POSSESSED(ch))
+            WAIT_STATE(ch, PULSE_VIOLENCE);
+      return;
+   }
+
+   /* Now vict is the person we are trying to track. */
+
+   if (vict == ch) {
+      send_to_char("Awesome!  You've found yourself!\r\n", ch);
+      return;
+   }
+
+   if (vict->in_room == ch->in_room) {
+      act("$E's right here!", FALSE, ch, 0, vict, TO_CHAR);
+      return;
+   }
+
+   if (EFF_FLAGGED(vict, EFF_NOTRACK)) {
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      return;
+   }
+
+   if (IS_NPC(ch))
+      if (POSSESSED(ch))
+         if (EVENT_FLAGGED(ch, EVENT_TRACK))
+            return;
+
+   if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
+      send_to_char("You stop tracking.\r\n", ch);
+      cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+      return;
+   }
+
+   if (call_track (FALSE, track, ch, vict, FALSE)) {
+      /*if npc dont lag mob*/
+      if (!IS_NPC(ch) && !POSSESSED(ch))
+         WAIT_STATE(ch, PULSE_VIOLENCE);
+   }
+   improve_skill(ch, SKILL_TRACK);
+}
+
+
+ACMD(do_hunt)
+{
+   struct char_data *vict;
+   bool follow = FALSE;
+   struct track_info track;
+
+   if (FIGHTING(ch)) {
+      send_to_char("You are too busy to look for a trail.\r\n",ch);
+      return;
+   }
+
+   if (IS_NPC(ch) && !POSSESSED(ch))
+     return;
+
+   if (!GET_SKILL(ch, SKILL_HUNT)) {
+      send_to_char("You have no idea how.\r\n", ch);
+      return;
+   }
+
+   if (CONFUSED(ch)) {
+      send_to_char("You're far too confused to go hunting!\r\n", ch);
+      return;
+   }
+
+   track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+   track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+   track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+
+   if (IS_NPC(ch) && !POSSESSED(ch) && EVENT_FLAGGED(ch, EVENT_TRACK))
+      return;
+
+
+   if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
+      send_to_char("You stop tracking.\r\n", ch);
+      cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return;
+   }
+
+   argument = one_argument(argument, arg);
+   if (!str_cmp(" follow", argument) || !str_cmp(" f", argument)) {
+      if (GET_CLASS(ch) != CLASS_HUNTER && (GET_LEVEL(ch) < LVL_IMMORT)) {
+         send_to_char("You do not have enough skills to follow someone after hunting", ch);
+         return;
+      }
+      follow = TRUE;
+   }
+
+   /*check for second argument :follow*/
+   if (!*arg) {
+      send_to_char("Whom are you trying to hunt?\r\n", ch);
+      return;
+   }
+
+   find_track_victim(ch, arg, track.range, &vict);
+
+   if (!vict) {
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      if (!IS_NPC(ch) && !POSSESSED(ch))
+         WAIT_STATE(ch, PULSE_VIOLENCE);
+      return;
+   }
+
+    /* Now vict is the person we are trying to track. */
+
+    if (vict == ch) {
+         send_to_char("Awesome!   You've found yourself!\r\n", ch);
+         return;
+    }
+
+    if (vict->in_room == ch->in_room) {
+         act("$E's right here!", FALSE, ch, 0, vict, TO_CHAR);
+         return;
+    }
+
+   if (EFF_FLAGGED(vict, EFF_NOTRACK)) {
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      return;
+   }
+
+   if (IS_NPC(ch) && !POSSESSED(ch) && EVENT_FLAGGED(ch, EVENT_TRACK))
+      return;
+
+   if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
+      send_to_char("You stop hunting.\r\n", ch);
+      cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return;
+   }
+
+   if (call_track (TRUE, track, ch, vict, follow)) {
+      /*if npc dont lag mob*/
+      if (!IS_NPC(ch) && !POSSESSED(ch))
+         WAIT_STATE(ch, PULSE_VIOLENCE);
+   }
+   improve_skill(ch, SKILL_HUNT);
+}
+
+
+
+void hunt_victim(struct char_data * ch)
+{
+   ACMD(do_say);
+
+   int dir, dist;
+   byte found;
+   struct char_data *tmp;
+
+   if (!ch || !HUNTING(ch))
+      return;
+
+   /* make sure the char still exists */
+   for (found = 0, tmp = character_list; tmp && !found; tmp = tmp->next)
+      if (HUNTING(ch) == tmp)
+         found = 1;
+
+   if (!found) {
+      do_say(ch, "Damn!   My prey is gone!!", 0, 0);
+      HUNTING(ch) = 0;
+      return;
+   }
+   dir = find_first_step(ch->in_room, HUNTING(ch)->in_room, ch, &dist);
+   if (dir < 0) {
+      sprintf(buf, "Damn!   Lost %s!", HMHR(HUNTING(ch)));
+      do_say(ch, buf, 0, 0);
+      HUNTING(ch) = 0;
+      return;
+   } else {
+      perform_move(ch, dir, 1, FALSE);
+      if (ch->in_room == HUNTING(ch)->in_room)
+         hit(ch, HUNTING(ch), TYPE_UNDEFINED);
+      return;
+   }
+}
+
+
+/* This function initiates tracking.  It checks whether the target is in range
+ * and whether a suitable path exists.  If so, it creates a tracking event for
+ * the tracker. */
+
+bool call_track(bool hunt, struct track_info track, struct char_data *ch,
+         struct char_data *victim, bool follow)
+{
+   int dir, dist;
+   struct track_delayed_event_obj *track_event;
+
+   /* Difficult to track over water */
+   if (
+            SECT(ch->in_room) == SECT_SHALLOWS ||
+            SECT(ch->in_room) == SECT_WATER) {
+       /* With a very high track, you can indeed track over water.
+         * Others will have great difficulty. */
+       int prob = GET_SKILL(ch, SKILL_TRACK) - 5;
+       if (prob < 15) prob = 15;
+       if (random() % 100 > prob) {
+          send_to_char("All traces seem to have been lost in the waves...\r\n", ch);
+          if (!IS_NPC(ch) && !POSSESSED(ch))
+            WAIT_STATE(ch, PULSE_VIOLENCE);
+          return FALSE;
+       }
+   }
+
+   if (track.speed <= 0)
+      track.speed = 5;
+   if (track.range <= 0)
+      track.range = 5;
+
+   dir = find_first_step(IN_ROOM(ch), IN_ROOM(victim), ch, &dist);
+
+   if (dir == BFS_NO_PATH || dist > track.sense) {
+      /* Nope, you got nothing */
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      return FALSE;
+   } else if (dist == 0) {
+      /* Yeah, the target seems to be right here... */
+      send_to_char("Funny, the tracks seem to end right here!\r\n", ch);
+      return FALSE;
+   } else if (dist > track.range ) {
+      /* Out of range, but still sense-able. */
+      if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {
+         if ((dist - track.range) <= 5) {
+            sprintf(buf, "You get a very very strong sense of %s.\r\n", HMHR(victim));
+            send_to_char(buf, ch);
+         } else if ((dist - track.range) <= 10) {
+            act("You sense $M strongly, but you cannot find any tracks.\r\n",
+                  FALSE, ch, 0, victim, TO_CHAR);
+         } else {
+            sprintf(buf, "Hmmm... You only just sense %s.\r\n", HMHR(victim));
+            send_to_char(buf, ch);
+         }
+      } else {
+         act("Hmmm... You sense $M.  $U$E must be close.\r\n",
+               FALSE, ch, 0, victim, TO_CHAR);
+      }
+      return FALSE;
+   } else {
+      /* In range.  Let the tracking commence. */
+      send_to_char("You begin to search for tracks...\r\n", ch);
+      CREATE(track_event, struct track_delayed_event_obj, 1);
+      track_event->ch = ch;
+      track_event->victim = victim;
+      track_event->track = track;
+      if (hunt)
+         if (follow)
+            track_event->track_room = -2;
+         else
+            track_event->track_room = -1;
+      else
+         track_event->track_room = victim->in_room;
+
+      event_create(EVENT_TRACK, track_delayed_event, track_event, TRUE,
+                           &(ch->events), track.speed);
+      SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return TRUE;
+   }
+}
+
+
+/* This function is called by the track event.  It makes the tracker
+ * take one step toward the target, if possible.  The trail might be
+ * lost, or a door might be in the way. */
+
+bool cause_single_track(struct track_info track, struct char_data *ch,
+      struct char_data *victim, int track_room)
+{
+   int direction, cmd, dist;
+   char doorname[40];
+
+   if (track_room <= -1)
+      direction = find_first_step(ch->in_room, victim->in_room, ch, &dist);
+   else
+      direction = find_first_step(ch->in_room, track_room, ch, &dist);
+
+   /* Must check the direction first.  dist will only be meaningful if an
+    * actual direction was returned. */
+
+   switch (direction) {
+      case BFS_ERROR:
+         return FALSE;
+      case BFS_ALREADY_THERE:
+         send_to_char("The tracks come to an end here!\r\n", ch);
+         if (track_room == -2) {/*follow victim*/
+            cmd = find_command("follow");
+            do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+         }
+         return FALSE;
+      case BFS_NO_PATH:
+         return FALSE;
+   }
+
+   /* Has the victim has moved out of range? */
+   if (dist > track.range) {
+      send_to_char("The trail has faded away.\r\n", ch);
+      return FALSE;
+   }
+
+   /* Might lose the trail over water */
+   if (
+            SECT(ch->in_room) == SECT_SHALLOWS ||
+            SECT(ch->in_room) == SECT_WATER) {
+       int prob = GET_SKILL(ch, SKILL_TRACK) - 2;
+       if (prob < 2) prob = 2;
+       if (random() % 100 > prob) {
+          send_to_char("The trail is lost in the churning water.\r\n", ch);
+          return FALSE;
+       }
+   }
+
+   /* Might lose the trail for stealthy people */
+   if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_HIDDENNESS(victim) > number(0, 500)) {
+      send_to_char("You can't seem to find any more tracks.\r\n", ch);
+      return FALSE;
+   }
+
+   /* Can't track while fighting */
+   if (FIGHTING(ch)) {
+      send_to_char("You give up the chase for the fight!\r\n", ch);
+      return FALSE;
+   }
+
+   /* Eh, you started resting? */
+   if (GET_STANCE(ch) < STANCE_ALERT) {
+      send_to_char("You are too relaxed to continue tracking now.\r\n",ch);
+      return FALSE;
+   }
+
+   if (GET_POS(ch) < POS_STANDING) {
+      send_to_char("You stop tracking.\r\n",ch);
+      return FALSE;
+   }
+
+   /* I guess you can pause for a spell. */
+   if (CASTING(ch))
+      return TRUE;
+
+   /* Umm, I don't think this will work. */
+   if (track_room <= -1) {/*if hunt stop rangers hunting in town*/
+      if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT)) {
+         send_to_char("You lose your victim's tracks.\r\n", ch);
+         return FALSE;
+      }
+   }
+
+   /*check for a door*/
+   if (EXIT_IS_CLOSED(CH_EXIT(ch, direction)) && GET_LEVEL(ch) < LVL_GOD) {
+      strcpy(doorname, exit_name(CH_EXIT(ch, direction)));
+      sprintf(buf, "You try to open the %s.\r\n", doorname);
+      send_to_char(buf, ch);
+      sprintf(doorname, "%s %s", doorname, dirs[direction]);
+      cmd = find_command("cmd");
+      do_gen_door(ch, doorname, cmd, 0);
+      if (EXIT_IS_CLOSED(CH_EXIT(ch, direction))) {
+         cprintf(ch, "You stop tracking.\r\n");
+         return FALSE;
+      } else {
+         return TRUE;
+      }
+   }
+
+   /* You get to move toward the victim. */
+   sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", dirs[direction]);
+   send_to_char(buf, ch);
+   if (!perform_move(ch, direction, 1, FALSE))
+      return FALSE;
+   act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+   /*check to see if in room*/
+   if ((ch->in_room == track_room) || (ch->in_room == victim->in_room)) {
+      send_to_char("The tracks come to an end here!\r\n", ch);
+      if (track_room == -2) {/*follow victim*/
+         cmd = find_command("follow");
+         do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+      }
+      return FALSE;
+   }
+
+   return TRUE;
+}
+
+/***************************************************************************
+ * $Log: graph.c,v $
+ * Revision 1.52  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.51  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.50  2009/01/17 00:28:02  myc
+ * Fix possible use of uninitialized variable.
+ *
+ * Revision 1.49  2008/09/20 17:51:57  jps
+ * Stop tracking if you are not successful in opening a door.
+ *
+ * Revision 1.48  2008/09/20 06:05:06  jps
+ * Add macros POSSESSED and POSSESSOR.
+ *
+ * Revision 1.47  2008/09/04 06:47:36  jps
+ * Changed sector constants to match their strings
+ *
+ * Revision 1.46  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.45  2008/08/18 01:35:38  jps
+ * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
+ *
+ * Revision 1.44  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.43  2008/05/17 22:03:01  jps
+ * Moving room-related code into rooms.h and rooms.c.
+ *
+ * Revision 1.42  2008/05/17 04:32:25  jps
+ * Moved exits into exits.h/exits.c and changed the name to "exit".
+ *
+ * Revision 1.41  2008/04/20 04:09:59  jps
+ * Forgot to remove do_dumbmobtrack
+ *
+ * Revision 1.40  2008/04/20 03:54:41  jps
+ * Cut out a lot of deadweight and make mobs use the same tracking
+ * mechanisms as players.
+ *
+ * Revision 1.39  2008/04/19 22:18:27  jps
+ * Remove extra and often incorrect message about why you had to stop tracking.
+ *
+ * Revision 1.38  2008/04/13 19:40:57  jps
+ * Prevent hunting and tracking when confused.
+ *
+ * Revision 1.37  2008/04/13 17:46:52  jps
+ * Now only NPCs are stopped by !TRACK flags.
+ * Also removed a couple of unused functions.
+ *
+ * Revision 1.36  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.35  2008/04/05 18:07:09  myc
+ * Re-implementing stealth for hide points.
+ *
+ * Revision 1.34  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.33  2008/03/09 18:10:53  jps
+ * perform_move may be misdirected now.
+ *
+ * Revision 1.32  2008/03/09 06:38:37  jps
+ * Replaced name with namelist in struct char_data.player. GET_NAME macro
+ * now points to short_descr. The uses of these strings is the same for
+ * NPCs and players.
+ *
+ * Revision 1.31  2008/02/09 21:07:50  myc
+ * Must provide a boolean to event_create saying whether to
+ * free the event obj when done or not.
+ *
+ * Revision 1.30  2008/02/09 18:29:11  myc
+ * The event code now handles freeing of event objects.  The track
+ * event now uses an event flag instead of storing the track event
+ * in a special char_data field.
+ *
+ * Revision 1.29  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.28  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.27  2008/01/26 12:30:34  jps
+ * Use skills.h to import improve_skill().
+ *
+ * Revision 1.26  2008/01/18 20:30:11  myc
+ * Fixing some send_to_char strings that don't end with a newline.
+ *
+ * Revision 1.25  2008/01/12 23:13:20  myc
+ * Removed is_aggr_to_trackee.
+ *
+ * Revision 1.24  2008/01/04 01:53:26  jps
+ * Added races.h file and created global array "races" for much
+ * race-related information.
+ *
+ * Revision 1.23  2007/12/25 05:41:49  jps
+ * Updated event code so the each event type is positively identified.
+ * Events may be tied to objects or characters so that when that object
+ * or character is extracted, its events can be canceled.
+ *
+ * Revision 1.22  2007/11/18 06:03:30  myc
+ * Fix crash bug for when summon is used by mobs.
+ *
+ * Revision 1.21  2007/10/17 18:21:03  myc
+ * Summon now uses the find_track_victim algorithm to locate the closest
+ * target.  find_track_victim can be passed a room flag mask to skip
+ * rooms with those flags.
+ *
+ * Revision 1.20  2007/08/15 20:48:07  myc
+ * Gods tracking no longer open doors.
+ *
+ * Revision 1.19  2007/08/03 22:00:11  myc
+ * Fixed some \r\n typoes in send_to_chars.
+ *
+ * Revision 1.18  2007/07/11 23:30:16  jps
+ * Revert previous change because it introduced a crash bug.
+ *
+ * Revision 1.16  2007/06/09 18:01:40  jps
+ * Make track find the nearest mob of the requested name, rather than
+ * the first mob in the world's list who has the requested name.
+ *
+ * Revision 1.15  2007/04/19 00:53:54  jps
+ * Create macros for stopping spellcasting.
+ *
+ * Revision 1.14  2006/11/11 10:16:47  jps
+ * Make tracking over water much more difficult, except for superb trackers.
+ *
+ * Revision 1.13  2006/11/08 09:16:04  jps
+ * Fixed some loose-lose typos.
+ *
+ * Revision 1.12  2006/11/08 08:52:42  jps
+ * Fix typo 'tracks come to a end here' -> 'an end'
+ *
+ * Revision 1.11  2006/07/20 07:37:43  cjd
+ * Typo fixes.
+ *
+ * Revision 1.10  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.9  2001/07/08 16:21:25  mtp
+ * stop tracking if position < fighting (ie resting or less)
+ *
+ * Revision 1.8  2000/11/21 18:45:49  rsd
+ * y
+ * Altered the comment header and added missing back rlog
+ * messages from prior to the addition of the $log$ string.
+ *
+ * Revision 1.7  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.6  1999/09/03 23:05:01  mtp
+ * added some IS_FIGHTING checks
+ *
+ * Revision 1.5  1999/04/30 17:09:14  mud
+ * reverted to 1.3 due to bad crashbugs. Gurlaek
+ *
+ * Revision 1.4  1999/04/29 03:47:25  jimmy
+ * Nulled some pointers for sanity.  The * room flag ROOM_BFS_MARK
+ * appears to work ok.
+ * --Gurlaek
+ *
+ * Revision 1.3  1999/02/20 18:41:36  dce
+ * Adds improve_skill calls so that players can imprve their skills.
+ *
+ * Revision 1.2  1999/01/31 02:49:06  mud
+ * Added info to comment header
+ * Indented entire file
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.52
+log
+@Moved direction information from structs.h, constants.h, and constants.c
+into directions.h and directions.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.51 2009/03/08 23:34:14 jps Exp jps $
+d556 1
+a556 2
+            SECT(ch->in_room) == SECT_WATER ||
+            SECT(ch->in_room) == SECT_OCEAN) {
+d666 1
+a666 2
+            SECT(ch->in_room) == SECT_WATER ||
+            SECT(ch->in_room) == SECT_OCEAN) {
+d747 4
+@
+
+
+1.51
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.50 2009/01/17 00:28:02 myc Exp jps $
+a24 1
+
+d41 1
+d749 3
+@
+
+
+1.50
+log
+@Fix possible use of uninitialized variable.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.49 2008/09/20 17:51:57 jps Exp myc $
+d32 1
+a32 1
+#include "spells.h"
+d749 3
+@
+
+
+1.49
+log
+@Stop tracking if you are not successful in opening a door.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.48 2008/09/20 06:05:06 jps Exp jps $
+d410 1
+a410 1
+   int num;bool follow = FALSE;
+d431 3
+a433 6
+   num = 1;
+   if (GET_SKILL(ch, SKILL_HUNT) > num) {
+      track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+      track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+      track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+   }
+d497 4
+a500 6
+   if (GET_SKILL(ch, SKILL_TRACK) > num) {
+      if (call_track (TRUE, track, ch, vict, follow)) {
+         /*if npc dont lag mob*/
+         if (!IS_NPC(ch) && !POSSESSED(ch))
+            WAIT_STATE(ch, PULSE_VIOLENCE);
+         }
+d749 3
+@
+
+
+1.48
+log
+@Add macros POSSESSED and POSSESSOR.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.47 2008/09/04 06:47:36 jps Exp jps $
+d700 5
+d725 6
+a730 1
+      return TRUE;
+d754 3
+@
+
+
+1.47
+log
+@Changed sector constants to match their strings
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.46 2008/09/01 23:47:49 jps Exp jps $
+d336 3
+a338 3
+      if (!(ch->desc && ch->desc->original)) {
+         track.speed = (int)(track.speed/2);
+         track.range = (int)((130*track.range)/100);
+a340 1
+   /* If a shapeshifted mob who is already tracking, do nothing */
+d342 1
+a342 1
+      if (!(ch->desc && ch->desc->original))
+d365 1
+a365 2
+      if (!(IS_NPC(ch)))
+         if (!(ch->desc && ch->desc->original))
+d388 1
+a388 1
+      if ((ch->desc && ch->desc->original))
+d398 4
+a401 5
+   if (call_track (FALSE, track, ch, vict, FALSE))
+   {/*if npc dont lag mob*/
+      if (!(IS_NPC(ch)))
+         if (!(ch->desc && ch->desc->original))
+            WAIT_STATE(ch, PULSE_VIOLENCE);
+d418 2
+a419 3
+   if (IS_NPC(ch))
+      if (!(ch->desc && ch->desc->original))
+         return;
+d421 4
+a424 5
+   if (!GET_SKILL(ch, SKILL_HUNT))
+      {
+         send_to_char("You have no idea how.\r\n", ch);
+         return;
+      }
+d426 4
+a429 4
+    if (CONFUSED(ch)) {
+         send_to_char("You're far too confused to go hunting!\r\n", ch);
+         return;
+    }
+d432 5
+a436 6
+   if ((GET_SKILL(ch, SKILL_HUNT) > num))
+      {
+         track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+         track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+         track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+      }
+d438 2
+a439 4
+   if ((IS_NPC(ch)))
+      if (!(ch->desc && ch->desc->original))
+         if (EVENT_FLAGGED(ch, EVENT_TRACK))
+            return;
+d442 6
+a447 7
+   if (EVENT_FLAGGED(ch, EVENT_TRACK))
+      {
+         send_to_char("You stop tracking.\r\n", ch);
+         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+         return;
+      }
+d450 4
+a453 8
+   if (!str_cmp(" follow", argument) || !str_cmp(" f", argument))
+      {
+         if ((!GET_CLASS(ch) == CLASS_HUNTER) && (GET_LEVEL(ch) < LVL_IMMORT))
+            {
+               send_to_char("You do not have enough skills to follow someone after hunting", ch);
+               return;
+            }
+         follow = TRUE;
+d455 2
+d464 1
+a464 1
+    find_track_victim(ch, arg, track.range, &vict);
+d466 6
+a471 7
+    if (!vict) {
+         send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+         if (!(IS_NPC(ch)))
+             if (!(ch->desc && ch->desc->original))
+                  WAIT_STATE(ch, PULSE_VIOLENCE);
+         return;
+    }
+d485 4
+a488 5
+   if (EFF_FLAGGED(vict, EFF_NOTRACK))
+      {
+         send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+         return;
+      }
+d490 2
+a491 4
+   if ((IS_NPC(ch)))
+      if (!(ch->desc && ch->desc->original))
+         if (EVENT_FLAGGED(ch, EVENT_TRACK))
+            return;
+d493 6
+a498 7
+   if (EVENT_FLAGGED(ch, EVENT_TRACK))
+      {
+         send_to_char("You stop hunting.\r\n", ch);
+         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+         return;
+      }
+d500 7
+a506 9
+   if ((GET_SKILL(ch, SKILL_TRACK) > num))
+      {
+         if (call_track (TRUE, track, ch, vict, follow))
+            {/*if npc dont lag mob*/
+               if (!(IS_NPC(ch)))
+                  if (!(ch->desc && ch->desc->original))
+                     WAIT_STATE(ch, PULSE_VIOLENCE);
+            }
+      }
+d569 2
+a570 3
+          if (!(IS_NPC(ch)))
+               if (!(ch->desc && ch->desc->original))
+                     WAIT_STATE(ch, PULSE_VIOLENCE);
+d744 3
+@
+
+
+1.46
+log
+@Using movement.h/c for movement functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.45 2008/08/18 01:35:38 jps Exp jps $
+d578 2
+a579 2
+            SECT(ch->in_room) == SECT_WATER_SWIM ||
+            SECT(ch->in_room) == SECT_WATER_NOSWIM ||
+d690 2
+a691 2
+            SECT(ch->in_room) == SECT_WATER_SWIM ||
+            SECT(ch->in_room) == SECT_WATER_NOSWIM ||
+d763 3
+@
+
+
+1.45
+log
+@Replaced all \\n\\r with \\r\\n, not that it was really necessary...
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.44 2008/05/18 20:16:11 jps Exp jps $
+d41 1
+d763 3
+@
+
+
+1.44
+log
+@Created fight.h and set dependents.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.43 2008/05/17 22:03:01 jps Exp jps $
+d308 1
+a308 1
+      send_to_char("You are too busy to look for a trail.\n\r",ch);
+d416 1
+a416 1
+      send_to_char("You are too busy to look for a trail.\n\r",ch);
+d762 3
+@
+
+
+1.43
+log
+@Moving room-related code into rooms.h and rooms.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.42 2008/05/17 04:32:25 jps Exp jps $
+d40 1
+d762 3
+@
+
+
+1.42
+log
+@Moved exits into exits.h/exits.c and changed the name to "exit".
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.41 2008/04/20 04:09:59 jps Exp jps $
+d38 2
+d730 8
+a737 12
+   if (IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED) && GET_LEVEL(ch) < LVL_GOD) {
+      if (EXIT(ch, direction)->keyword) {
+         one_argument(fname(EXIT(ch, direction)->keyword), doorname);
+         sprintf(buf, "You try to open the %s.\r\n", doorname);
+         send_to_char(buf, ch);
+         sprintf(doorname, "%s %s", doorname, dirs[direction]);
+         cmd = find_command("cmd");
+         do_gen_door(ch, doorname, cmd, 0);
+         /*make it cost a bit of time*/
+         if ((!IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)))
+            return TRUE;
+      }
+d761 3
+@
+
+
+1.41
+log
+@Forgot to remove do_dumbmobtrack
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.40 2008/04/20 03:54:41 jps Exp jps $
+d72 5
+a76 3
+#define TOROOM(x, y) (world[(x)].dir_option[(y)]->to_room)
+#define EXIT_CLOSED(x, y) (IS_SET(world[(x)].dir_option[(y)]->exit_info, EX_CLOSED))
+#define EXIT_HIDDEN(x, y) (IS_SET(world[(x)].dir_option[(y)]->exit_info, EX_HIDDEN))
+d79 1
+a79 1
+   (world[(roomvnum)].dir_option[(dir)] && \
+d82 1
+a82 1
+   (!EXIT_HIDDEN(roomvnum, dir)) && \
+d763 3
+@
+
+
+1.40
+log
+@Cut out a lot of deadweight and make mobs use the same tracking
+mechanisms as players.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.39 2008/04/19 22:18:27 jps Exp jps $
+a758 62
+
+ACMD(do_DumbMobTrack)
+{
+
+   struct char_data *vict;
+   int dir, num, dist;
+
+   if (FIGHTING(ch)) {
+      send_to_char("You are too busy to look for a trail.\n\r",ch);
+      return;
+   }
+
+   if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch)) {
+      send_to_char("You have no idea how.\r\n", ch);
+      return;
+   }
+    if (CONFUSED(ch)) {
+         send_to_char("You're far too confused to track anyone!\r\n", ch);
+         return;
+    }
+   one_argument(argument, arg);
+   if (!*arg) {
+      send_to_char("Whom are you trying to track?\r\n", ch);
+      return;
+   }
+   if (!(vict = get_char_vis(ch, arg))) {
+      send_to_char("No-one around by that name.\r\n", ch);
+      return;
+   }
+   if (EFF_FLAGGED(vict, EFF_NOTRACK)) {
+      send_to_char("You sense no trail.\r\n", ch);
+      return;
+   }
+   dir = find_first_step(ch->in_room, vict->in_room, ch, &dist);
+
+   switch (dir) {
+   case BFS_ERROR:
+      send_to_char("&0Hmm.. something seems to be wrong.&0\r\n", ch);
+      break;
+   case BFS_ALREADY_THERE:
+      send_to_char("&0The trail ends here.&0\r\n", ch);
+      break;
+   case BFS_NO_PATH:
+      sprintf(buf, "&0You can't sense a trail to %s from here.&0\r\n",
+                  HMHR(vict));
+      send_to_char(buf, ch);
+      break;
+   default:
+      num = number(0, 101);            /* 101% is a complete failure */
+      if ((GET_SKILL(ch, SKILL_TRACK) < num) && (!IS_NPC(ch)))
+         do {
+            dir = number(0, NUM_OF_DIRS - 1);
+         } while (!CAN_GO(ch, dir));
+      sprintf(buf, "&0You find signs of a track %s from here!&0\r\n",
+                  dirs[dir]);
+      send_to_char(buf, ch);
+      perform_move(ch, dir, 1, FALSE);
+      act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+      WAIT_STATE(ch, PULSE_VIOLENCE);
+   }
+}
+
+d761 4
+@
+
+
+1.39
+log
+@Remove extra and often incorrect message about why you had to stop tracking.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.38 2008/04/13 19:40:57 jps Exp jps $
+a39 1
+bool is_aggr_to(struct char_data *ch,struct char_data *target);
+a56 1
+   int distance;
+a60 3
+bool cause_single_hunt(struct track_info track, struct char_data *ch,
+      struct char_data *victim, int track_room);
+bool perform_single_track(struct char_data *tracker, int track_room);
+a66 1
+int in_range(struct track_info track, struct char_data *ch, int track_room);
+d69 3
+a71 3
+#define MARK(room) (SET_FLAG(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define UNMARK(room) (REMOVE_FLAG(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define BFS_MARKED(room) (IS_FLAGGED(ROOM_FLAGS(room), ROOM_BFS_MARK))
+d122 5
+a126 2
+    Intended usage: in mobile_activity, give a mob a dir to go if they're
+    tracking another mob or a PC.   Or, a 'track' skill for PCs.
+d129 1
+a129 1
+int find_first_step(int src, int target, struct char_data *tracker)
+d138 1
+d146 1
+a146 1
+   MARK(src);
+d151 1
+a151 1
+         MARK(TOROOM(src, curr_dir));
+d154 1
+d159 1
+a164 1
+               MARK(TOROOM(queue_head->room, curr_dir));
+d166 2
+d188 1
+a188 1
+   int i, roomschecked = 0, result = BFS_NO_PATH;
+a210 1
+   start->distance = maxdist;
+d214 2
+a215 1
+   MARK(start->room);
+d218 1
+a218 1
+   while (!found && current && current->distance > -1) {
+d220 1
+d235 14
+a248 15
+      /* Put the rooms around this one on our list of rooms to search. */
+
+      for (i = 0; i < NUM_OF_DIRS; i++)
+         if (VALID_EDGE(current->room, i, ch)) {
+            MARK(TOROOM(current->room, i));
+            CREATE(new, tracknode, 1);
+            new->room = TOROOM(current->room, i);
+            new->direction = i;
+            new->next = NULL;
+            new->distance = current->distance - 1;
+
+            /* This node goes on the end of our list */
+            end->next = new;
+            end = new;
+         }
+d280 1
+a280 11
+   if (IS_NPC(ch) && !is_aggr_to(ch, victim)) {
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return EVENT_FINISHED;
+   }
+
+   if (event_target_valid(ch) == 0) {
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return EVENT_FINISHED;
+   }
+
+   if (event_target_valid(victim) == 0) {
+d291 2
+a298 1
+   int num;
+d300 1
+d315 6
+d322 11
+a332 8
+   num = 1;
+   if ((GET_SKILL(ch, SKILL_TRACK) > num)) {
+      track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+      track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/5));
+      track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/4));
+      if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {
+         track.range = track.range + 8;
+         track.sense = track.range + 4;
+a333 6
+      if ((IS_NPC(ch)))
+         if (!(ch->desc && ch->desc->original)) {
+            track.speed = (int)(track.speed/2);
+            track.range = (int)((130*track.range)/100);
+         }
+   }
+d336 1
+a336 1
+   if ((IS_NPC(ch)))
+a377 7
+   /*Handle Npcs here*/
+   if ((IS_NPC(ch)))
+      if (!(ch->desc && ch->desc->original)) {
+         perform_single_track(ch, vict->in_room);
+         return;
+      }
+
+d383 1
+a383 1
+   if ((IS_NPC(ch)))
+d394 3
+a396 4
+   if ((GET_SKILL(ch, SKILL_TRACK) > num)) {
+      if (call_track (FALSE, track, ch, vict, FALSE))
+      {/*if npc dont lag mob*/
+         if (!(IS_NPC(ch)))
+d398 1
+a398 2
+         WAIT_STATE(ch, PULSE_VIOLENCE);
+      }
+d528 1
+a528 1
+   int dir;
+d545 1
+a545 1
+   dir = find_first_step(ch->in_room, HUNTING(ch)->in_room, ch);
+d560 3
+a562 3
+/*function that starts tracking, performs range check
+   and sets things up so it all works.   Also handles messaging
+   to the user - Proky*/
+d567 1
+a567 1
+   int num;
+a591 1
+   num = in_range(track, ch, victim->in_room);
+d593 26
+a618 4
+   if (num == NOT_FOUND_TRACK)
+      {
+         send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+         return FALSE;
+d620 11
+a630 13
+   else if (num >= 0)
+      {
+         num = track.range - num;
+         send_to_char("You begin to search for tracks ....\r\n", ch);
+         CREATE(track_event, struct track_delayed_event_obj, 1);
+         track_event->ch = ch;
+         track_event->victim = victim;
+         track_event->track = track;
+         if (hunt)
+            if (follow)
+               track_event->track_room = -2;
+            else
+               track_event->track_room = -1;
+d632 3
+a634 1
+            track_event->track_room = victim->in_room;
+d636 5
+a640 33
+         event_create(EVENT_TRACK, track_delayed_event, track_event, TRUE,
+                              &(ch->events), track.speed);
+         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+         return TRUE;
+      }
+   else
+      {
+         num = track.range - num;
+         if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER))
+            {
+               if ((num - track.range) <= 5)
+                  {
+                     sprintf(buf, "You find a very very strong sense of %s.\r\n", HMHR(victim));
+                     send_to_char(buf, ch);
+                  }
+               else if ((num - track.range) <= 10)
+                  {
+                     sprintf(buf, "You find a strong sense of %s, must be close.\r\n", HMHR(victim));
+                     send_to_char(buf, ch);
+                  }
+               else
+                  {
+                     sprintf(buf, "Hmmm you only just sense %s.\r\n", HMHR(victim));
+                     send_to_char(buf, ch);
+                  }
+            }
+         else
+            {
+               sprintf(buf, "Hmmm you sense %s, must be close.\r\n", HMHR(victim));
+               send_to_char(buf, ch);
+            }
+         return FALSE;
+      }
+d644 3
+d648 2
+a649 7
+/*track function that calls event - proky*/
+/*this function will start of the event to track to victim
+  It already asumes that distance has been checked already
+  -Proky (hunt saves -1 or -2 to track_room as it updates continually*/
+
+
+bool cause_single_track(struct track_info track, struct char_data *ch, struct char_data *victim, int track_room)
+d651 1
+a651 1
+   int direction;int cmd;
+d653 1
+d655 1
+a655 10
+      {
+         /*check for person may have gone out of range*/
+         if (in_range(track, ch, victim->in_room) >= 1)
+            direction = find_first_step(ch->in_room, victim->in_room, ch);
+         else
+            {
+               send_to_char("Dam my prey has got away.\r\n", ch);
+               return FALSE;
+            }
+      }
+d657 24
+a680 1
+      direction = find_first_step(ch->in_room, track_room, ch);
+d697 1
+a697 1
+      send_to_char("You can't seem to find anymore tracks...\r\n", ch);
+d701 3
+a703 2
+   switch (direction) {
+   case BFS_ERROR:
+d705 5
+a709 7
+   case BFS_ALREADY_THERE:
+      send_to_char("The tracks come to an end here!\r\n", ch);
+      if (track_room == -2)
+         {/*follow victim*/
+            cmd = find_command("follow");
+            do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+         }
+d711 11
+a721 14
+   case BFS_NO_PATH:
+      return FALSE;
+   default:
+      /*new stuff here rest is a re-check*/
+      /*fighting check casting check*/
+      if (FIGHTING(ch))
+         {
+            send_to_char("You give up the chase for the fight!\r\n", ch);
+            return FALSE;
+         }
+      if (GET_STANCE(ch) < STANCE_ALERT)
+      {
+                  send_to_char("You are too relaxed to continue tracking now.\r\n",ch);
+                  return FALSE;
+d723 1
+d725 5
+a729 30
+      if (CASTING(ch))
+         return TRUE;
+
+      if (track_room <= -1)
+         {/*if hunt stop rangers hunting in town*/
+            if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT))
+               {
+                  send_to_char("You lose your victim's tracks.\r\n", ch);
+                  return FALSE;
+               }
+         }
+      if (CAN_GO(ch, direction));
+      {
+         /*check for a door*/
+         if (IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED) && GET_LEVEL(ch) < LVL_GOD)
+            {
+               if (EXIT(ch, direction)->keyword)
+                  {
+                     one_argument(fname(EXIT(ch, direction)->keyword), doorname);
+                     sprintf(buf, "You try to open the %s.\r\n", doorname);
+                     send_to_char(buf, ch);
+                     sprintf(doorname, "%s %s", doorname, dirs[direction]);
+                     cmd = find_command("cmd");
+                     do_gen_door(ch, doorname, cmd, 0);
+                     /*make it cost a bit of time*/
+                     if ((!IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)))
+                        return TRUE;
+                  }
+            }
+         sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", dirs[direction]);
+d731 5
+a735 15
+         if (!perform_move(ch, direction, 1, FALSE))
+            return FALSE;
+         act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+         /*check to see if in room*/
+         if ((ch->in_room == track_room) || (ch->in_room == victim->in_room))
+            {
+               send_to_char("The tracks come to an end here!\r\n", ch);
+               if (track_room == -2)
+                  {/*follow victim*/
+                     cmd = find_command("follow");
+                     do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+                  }
+               return FALSE;
+            }
+         else
+a738 32
+   return FALSE;
+}
+
+/*Proky - This function will determine the range to track*/
+/*NOT_FOUND_TRACK = Cant find person*/
+/*>=1  Yes can within distance*/
+/*<=-1 = Close within extra-sense range
+**NOTE: other value can give: distance = original.range - return*/
+
+int in_range(struct track_info track, struct char_data *ch, int track_room)
+{
+   int direction;
+   int num;
+   if (track.range < (0 - track.sense))
+      return NOT_FOUND_TRACK;/*totally out of range*/
+   direction = find_first_step(track_room, ch->in_room, ch);
+   switch (direction) {
+   case BFS_ERROR:
+   case BFS_NO_PATH:
+      return NOT_FOUND_TRACK;
+   case BFS_ALREADY_THERE:
+      return track.range;
+   default:
+      track.range--;
+      num = (in_range(track, ch, world[track_room].dir_option[direction]->to_room));
+      if (num == NOT_FOUND_TRACK)
+         return NOT_FOUND_TRACK;
+      else
+         return num;
+   }
+}
+
+d740 4
+a743 12
+/*This function actually just dones a simple move toward the target
+  it starts nothing else at all, returns true if successed*/
+/*it doesnt care if person can go that far it just does it*/
+/*doesnt message doesnt nothin!! - Proky*/
+bool perform_single_track(struct char_data *tracker, int track_room)
+{
+   int direction;
+   direction = find_first_step(track_room, tracker->in_room, tracker);
+   switch (direction) {
+   case BFS_ERROR:
+   case BFS_ALREADY_THERE:
+   case BFS_NO_PATH:
+d745 7
+a751 6
+   default:
+      if (CAN_GO(tracker, direction));
+      {
+         direction = find_first_step(tracker->in_room, track_room, tracker);
+         perform_move(tracker, direction, 1, FALSE);
+         return TRUE;
+d753 1
+d755 2
+a756 1
+   return FALSE;
+d764 1
+a764 1
+   int dir, num;
+d792 1
+a792 1
+   dir = find_first_step(ch->in_room, vict->in_room, ch);
+d823 3
+@
+
+
+1.38
+log
+@Prevent hunting and tracking when confused.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.37 2008/04/13 17:46:52 jps Exp jps $
+d91 1
+a91 1
+  struct bfs_queue_struct *curr;
+d93 10
+a102 10
+  CREATE(curr, struct bfs_queue_struct, 1);
+  curr->room = room;
+  curr->dir = dir;
+  curr->next = 0;
+
+  if (queue_tail) {
+    queue_tail->next = curr;
+    queue_tail = curr;
+  } else
+    queue_head = queue_tail = curr;
+d108 1
+a108 1
+  struct bfs_queue_struct *curr;
+d110 1
+a110 1
+  curr = queue_head;
+d112 3
+a114 3
+  if (!(queue_head = queue_head->next))
+    queue_tail = 0;
+  free(curr);
+d120 2
+a121 2
+  while (queue_head)
+    bfs_dequeue();
+d126 1
+a126 1
+   step on the shortest path from the source to the target.
+d128 2
+a129 2
+   Intended usage: in mobile_activity, give a mob a dir to go if they're
+   tracking another mob or a PC.  Or, a 'track' skill for PCs.
+d134 2
+a135 2
+  int curr_dir;
+  int curr_room;
+d137 34
+a170 34
+  if (src < 0 || src > top_of_world || target < 0 || target > top_of_world) {
+    log("Illegal value passed to find_first_step (graph.c)");
+    return BFS_ERROR;
+  }
+  if (src == target)
+    return BFS_ALREADY_THERE;
+
+  /* clear marks first */
+  for (curr_room = 0; curr_room <= top_of_world; curr_room++)
+    UNMARK(curr_room);
+
+  MARK(src);
+
+  /* first, enqueue the first steps, saving which direction we're going. */
+  for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
+    if (VALID_EDGE(src, curr_dir, tracker)) {
+      MARK(TOROOM(src, curr_dir));
+      bfs_enqueue(TOROOM(src, curr_dir), curr_dir);
+    }
+  /* now, do the classic BFS. */
+  while (queue_head) {
+    if (queue_head->room == target) {
+      curr_dir = queue_head->dir;
+      bfs_clear_queue();
+      return curr_dir;
+    } else {
+      for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
+        if (VALID_EDGE(queue_head->room, curr_dir, tracker)) {
+          MARK(TOROOM(queue_head->room, curr_dir));
+          bfs_enqueue(TOROOM(queue_head->room, curr_dir), queue_head->dir);
+        }
+      bfs_dequeue();
+    }
+  }
+d172 1
+a172 1
+  return BFS_NO_PATH;
+d268 10
+a277 30
+  struct track_delayed_event_obj *track_event = (struct track_delayed_event_obj *) event_obj;
+  struct char_data *ch;
+  struct char_data *victim;
+  struct track_info track;
+  int track_room;
+
+  victim = track_event->victim;
+  ch = track_event->ch;
+  track_room = track_event->track_room;
+  track = track_event->track;
+
+  if (IS_NPC(ch) && !is_aggr_to(ch, victim)) {
+    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+    return EVENT_FINISHED;
+  }
+
+  if (event_target_valid(ch) == 0) {
+    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+    return EVENT_FINISHED;
+  }
+
+  if (event_target_valid(victim) == 0) {
+    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+    return EVENT_FINISHED;
+  }
+
+  if (!cause_single_track(track, ch, victim, track_room)) {
+    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+    return EVENT_FINISHED;
+  }
+d279 22
+a300 2
+  /* re-queue event*/
+  return track.speed;
+a302 2
+/*prokys track*/
+
+d419 3
+a421 3
+  struct char_data *vict;
+  int num;bool follow = FALSE;
+  struct track_info track;
+d423 2
+a424 7
+  if (FIGHTING(ch)) {
+    send_to_char("You are too busy to look for a trail.\n\r",ch);
+    return;
+  }
+
+  if (IS_NPC(ch))
+    if (!(ch->desc && ch->desc->original))
+d426 1
+d428 3
+a430 5
+  if (!GET_SKILL(ch, SKILL_HUNT))
+    {
+      send_to_char("You have no idea how.\r\n", ch);
+      return;
+    }
+d432 5
+a436 4
+   if (CONFUSED(ch)) {
+      send_to_char("You're far too confused to go hunting!\r\n", ch);
+      return;
+   }
+d438 3
+a440 6
+  num = 1;
+  if ((GET_SKILL(ch, SKILL_HUNT) > num))
+    {
+      track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+      track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+      track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+d443 7
+a449 4
+  if ((IS_NPC(ch)))
+    if (!(ch->desc && ch->desc->original))
+      if (EVENT_FLAGGED(ch, EVENT_TRACK))
+        return;
+d451 4
+a455 7
+  if (EVENT_FLAGGED(ch, EVENT_TRACK))
+    {
+      send_to_char("You stop tracking.\r\n", ch);
+      cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return;
+    }
+d457 7
+a463 10
+  argument = one_argument(argument, arg);
+  if (!str_cmp(" follow", argument) || !str_cmp(" f", argument))
+    {
+      if ((!GET_CLASS(ch) == CLASS_HUNTER) && (GET_LEVEL(ch) < LVL_IMMORT))
+        {
+          send_to_char("You do not have enough skills to follow someone after hunting", ch);
+          return;
+        }
+      follow = TRUE;
+    }
+d465 10
+a474 5
+  /*check for second argument :follow*/
+  if (!*arg) {
+    send_to_char("Whom are you trying to hunt?\r\n", ch);
+    return;
+  }
+d476 3
+a478 7
+   find_track_victim(ch, arg, track.range, &vict);
+
+   if (!vict) {
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      if (!(IS_NPC(ch)))
+         if (!(ch->desc && ch->desc->original))
+            WAIT_STATE(ch, PULSE_VIOLENCE);
+d482 1
+a482 1
+   /* Now vict is the person we are trying to track. */
+d484 7
+a490 4
+   if (vict == ch) {
+      send_to_char("Awesome!  You've found yourself!\r\n", ch);
+      return;
+   }
+d492 1
+a492 4
+   if (vict->in_room == ch->in_room) {
+      act("$E's right here!", FALSE, ch, 0, vict, TO_CHAR);
+      return;
+   }
+d494 3
+a496 4
+  if (EFF_FLAGGED(vict, EFF_NOTRACK))
+    {
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      return;
+d499 3
+a501 11
+  if ((IS_NPC(ch)))
+    if (!(ch->desc && ch->desc->original))
+      if (EVENT_FLAGGED(ch, EVENT_TRACK))
+        return;
+
+  if (EVENT_FLAGGED(ch, EVENT_TRACK))
+    {
+      send_to_char("You stop hunting.\r\n", ch);
+      cancel_event(GET_EVENTS(ch), EVENT_TRACK);
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return;
+d504 29
+a532 10
+  if ((GET_SKILL(ch, SKILL_TRACK) > num))
+    {
+      if (call_track (TRUE, track, ch, vict, follow))
+        {/*if npc dont lag mob*/
+          if (!(IS_NPC(ch)))
+            if (!(ch->desc && ch->desc->original))
+              WAIT_STATE(ch, PULSE_VIOLENCE);
+        }
+    }
+  improve_skill(ch, SKILL_HUNT);
+d539 5
+a543 1
+  ACMD(do_say);
+d545 25
+a569 29
+  int dir;
+  byte found;
+  struct char_data *tmp;
+
+  if (!ch || !HUNTING(ch))
+    return;
+
+  /* make sure the char still exists */
+  for (found = 0, tmp = character_list; tmp && !found; tmp = tmp->next)
+    if (HUNTING(ch) == tmp)
+      found = 1;
+
+  if (!found) {
+    do_say(ch, "Damn!  My prey is gone!!", 0, 0);
+    HUNTING(ch) = 0;
+    return;
+  }
+  dir = find_first_step(ch->in_room, HUNTING(ch)->in_room, ch);
+  if (dir < 0) {
+    sprintf(buf, "Damn!  Lost %s!", HMHR(HUNTING(ch)));
+    do_say(ch, buf, 0, 0);
+    HUNTING(ch) = 0;
+    return;
+  } else {
+    perform_move(ch, dir, 1, FALSE);
+    if (ch->in_room == HUNTING(ch)->in_room)
+      hit(ch, HUNTING(ch), TYPE_UNDEFINED);
+    return;
+  }
+d574 2
+a575 2
+  and sets things up so it all works.  Also handles messaging
+  to the user - Proky*/
+d578 1
+a578 1
+      struct char_data *victim, bool follow)
+d580 2
+a581 2
+  int num;
+  struct track_delayed_event_obj *track_event;
+d583 17
+a599 23
+  /* Difficult to track over water */
+  if (
+        SECT(ch->in_room) == SECT_WATER_SWIM ||
+        SECT(ch->in_room) == SECT_WATER_NOSWIM ||
+        SECT(ch->in_room) == SECT_OCEAN) {
+     /* With a very high track, you can indeed track over water.
+      * Others will have great difficulty. */
+     int prob = GET_SKILL(ch, SKILL_TRACK) - 5;
+     if (prob < 15) prob = 15;
+     if (random() % 100 > prob) {
+       send_to_char("All traces seem to have been lost in the waves...\r\n", ch);
+       if (!(IS_NPC(ch)))
+          if (!(ch->desc && ch->desc->original))
+              WAIT_STATE(ch, PULSE_VIOLENCE);
+       return FALSE;
+     }
+  }
+
+  if (track.speed <= 0)
+    track.speed = 5;
+  if (track.range <= 0)
+    track.range = 5;
+  num = in_range(track, ch, victim->in_room);
+d601 5
+a605 20
+  if (num == NOT_FOUND_TRACK)
+    {
+      send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+      return FALSE;
+    }
+  else if (num >= 0)
+    {
+      num = track.range - num;
+      send_to_char("You begin to search for tracks ....\r\n", ch);
+      CREATE(track_event, struct track_delayed_event_obj, 1);
+      track_event->ch = ch;
+      track_event->victim = victim;
+      track_event->track = track;
+      if (hunt)
+        if (follow)
+          track_event->track_room = -2;
+        else
+          track_event->track_room = -1;
+      else
+        track_event->track_room = victim->in_room;
+d607 30
+a636 11
+      event_create(EVENT_TRACK, track_delayed_event, track_event, TRUE,
+                    &(ch->events), track.speed);
+      SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+      return TRUE;
+    }
+  else
+    {
+      num = track.range - num;
+      if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER))
+        {
+          if ((num - track.range) <= 5)
+d638 15
+a652 2
+              sprintf(buf, "You find a very very strong sense of %s.\r\n", HMHR(victim));
+              send_to_char(buf, ch);
+d654 1
+a654 1
+          else if ((num - track.range) <= 10)
+d656 2
+a657 2
+              sprintf(buf, "You find a strong sense of %s, must be close.\r\n", HMHR(victim));
+              send_to_char(buf, ch);
+d659 2
+a660 13
+          else
+            {
+              sprintf(buf, "Hmmm you only just sense %s.\r\n", HMHR(victim));
+              send_to_char(buf, ch);
+            }
+        }
+      else
+        {
+          sprintf(buf, "Hmmm you sense %s, must be close.\r\n", HMHR(victim));
+          send_to_char(buf, ch);
+        }
+      return FALSE;
+    }
+d673 25
+a697 10
+  int direction;int cmd;
+  char doorname[40];
+  if (track_room <= -1)
+    {
+      /*check for person may have gone out of range*/
+      if (in_range(track, ch, victim->in_room) >= 1)
+        direction = find_first_step(ch->in_room, victim->in_room, ch);
+      else
+        {
+          send_to_char("Dam my prey has got away.\r\n", ch);
+d699 8
+a706 4
+        }
+    }
+  else
+    direction = find_first_step(ch->in_room, track_room, ch);
+d708 22
+a729 36
+  /* Might lose the trail over water */
+  if (
+        SECT(ch->in_room) == SECT_WATER_SWIM ||
+        SECT(ch->in_room) == SECT_WATER_NOSWIM ||
+        SECT(ch->in_room) == SECT_OCEAN) {
+     int prob = GET_SKILL(ch, SKILL_TRACK) - 2;
+     if (prob < 2) prob = 2;
+     if (random() % 100 > prob) {
+       send_to_char("The trail is lost in the churning water.\r\n", ch);
+       return FALSE;
+     }
+  }
+
+  /* Might lose the trail for stealthy people */
+  if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_HIDDENNESS(victim) > number(0, 500)) {
+    send_to_char("You can't seem to find anymore tracks...\r\n", ch);
+    return FALSE;
+  }
+
+  switch (direction) {
+  case BFS_ERROR:
+    return FALSE;
+  case BFS_ALREADY_THERE:
+    send_to_char("The tracks come to an end here!\r\n", ch);
+    if (track_room == -2)
+      {/*follow victim*/
+        cmd = find_command("follow");
+        do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+      }
+    return FALSE;
+  case BFS_NO_PATH:
+    return FALSE;
+  default:
+    /*new stuff here rest is a re-check*/
+    /*fighting check casting check*/
+    if (FIGHTING(ch))
+d731 2
+a732 2
+        send_to_char("You give up the chase for the fight!\r\n", ch);
+        return FALSE;
+a733 5
+    if (GET_STANCE(ch) < STANCE_ALERT)
+    {
+            send_to_char("You are too relaxed to continue tracking now.\r\n",ch);
+            return FALSE;
+    }
+d735 2
+a736 2
+    if (CASTING(ch))
+      return TRUE;
+d738 29
+a766 5
+    if (track_room <= -1)
+      {/*if hunt stop rangers hunting in town*/
+        if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT))
+          {
+            send_to_char("You lose your victim's tracks.\r\n", ch);
+d768 3
+a770 8
+          }
+      }
+    if (CAN_GO(ch, direction));
+    {
+      /*check for a door*/
+      if (IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED) && GET_LEVEL(ch) < LVL_GOD)
+        {
+          if (EXIT(ch, direction)->keyword)
+d772 7
+a778 9
+              one_argument(fname(EXIT(ch, direction)->keyword), doorname);
+              sprintf(buf, "You try to open a %s\r\n", doorname);
+              send_to_char(buf, ch);
+              sprintf(doorname, "%s %s", doorname, dirs[direction]);
+              cmd = find_command("cmd");
+              do_gen_door(ch, doorname, cmd, 0);
+              /*make it cost a bit of time*/
+              if ((!IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)))
+                return TRUE;
+d780 5
+a784 25
+        }
+      sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", dirs[direction]);
+      send_to_char(buf, ch);
+      if (!perform_move(ch, direction, 1, FALSE))
+        {
+          send_to_char("Something is in your way!!\r\n", ch);
+          return FALSE;
+        }
+      act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+      /*check to see if in room*/
+      if ((ch->in_room == track_room) || (ch->in_room == victim->in_room))
+        {
+          send_to_char("The tracks come to an end here!\r\n", ch);
+          if (track_room == -2)
+            {/*follow victim*/
+              cmd = find_command("follow");
+              do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+            }
+          return FALSE;
+        }
+      else
+        return TRUE;
+    }
+  }
+  return FALSE;
+d795 8
+a802 15
+  int direction;
+  int num;
+  if (track.range < (0 - track.sense))
+    return NOT_FOUND_TRACK;/*totally out of range*/
+  direction = find_first_step(track_room, ch->in_room, ch);
+  switch (direction) {
+  case BFS_ERROR:
+  case BFS_NO_PATH:
+    return NOT_FOUND_TRACK;
+  case BFS_ALREADY_THERE:
+    return track.range;
+  default:
+    track.range--;
+    num = (in_range(track, ch, world[track_room].dir_option[direction]->to_room));
+    if (num == NOT_FOUND_TRACK)
+d804 10
+a813 3
+    else
+      return num;
+  }
+d823 16
+a838 16
+  int direction;
+  direction = find_first_step(track_room, tracker->in_room, tracker);
+  switch (direction) {
+  case BFS_ERROR:
+  case BFS_ALREADY_THERE:
+  case BFS_NO_PATH:
+    return FALSE;
+  default:
+    if (CAN_GO(tracker, direction));
+    {
+      direction = find_first_step(tracker->in_room, track_room, tracker);
+      perform_move(tracker, direction, 1, FALSE);
+      return TRUE;
+    }
+  }
+  return FALSE;
+d845 2
+a846 2
+  struct char_data *vict;
+  int dir, num;
+d848 2
+a849 11
+  if (FIGHTING(ch)) {
+    send_to_char("You are too busy to look for a trail.\n\r",ch);
+    return;
+  }
+
+  if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch)) {
+    send_to_char("You have no idea how.\r\n", ch);
+    return;
+  }
+   if (CONFUSED(ch)) {
+      send_to_char("You're far too confused to track anyone!\r\n", ch);
+a851 40
+  one_argument(argument, arg);
+  if (!*arg) {
+    send_to_char("Whom are you trying to track?\r\n", ch);
+    return;
+  }
+  if (!(vict = get_char_vis(ch, arg))) {
+    send_to_char("No-one around by that name.\r\n", ch);
+    return;
+  }
+  if (EFF_FLAGGED(vict, EFF_NOTRACK)) {
+    send_to_char("You sense no trail.\r\n", ch);
+    return;
+  }
+  dir = find_first_step(ch->in_room, vict->in_room, ch);
+
+  switch (dir) {
+  case BFS_ERROR:
+    send_to_char("&0Hmm.. something seems to be wrong.&0\r\n", ch);
+    break;
+  case BFS_ALREADY_THERE:
+    send_to_char("&0The trail ends here.&0\r\n", ch);
+    break;
+  case BFS_NO_PATH:
+    sprintf(buf, "&0You can't sense a trail to %s from here.&0\r\n",
+            HMHR(vict));
+    send_to_char(buf, ch);
+    break;
+  default:
+    num = number(0, 101);        /* 101% is a complete failure */
+    if ((GET_SKILL(ch, SKILL_TRACK) < num) && (!IS_NPC(ch)))
+      do {
+        dir = number(0, NUM_OF_DIRS - 1);
+      } while (!CAN_GO(ch, dir));
+    sprintf(buf, "&0You find signs of a track %s from here!&0\r\n",
+            dirs[dir]);
+    send_to_char(buf, ch);
+    perform_move(ch, dir, 1, FALSE);
+    act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+    WAIT_STATE(ch, PULSE_VIOLENCE);
+  }
+d853 22
+d876 25
+d905 3
+@
+
+
+1.37
+log
+@Now only NPCs are stopped by !TRACK flags.
+Also removed a couple of unused functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.36 2008/04/07 03:02:54 jps Exp jps $
+d319 4
+d440 5
+d862 4
+d912 4
+@
+
+
+1.36
+log
+@Changed the POS/STANCE system so that POS reflects the position
+of your body, while STANCE describes your condition or activity.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.35 2008/04/05 18:07:09 myc Exp jps $
+a15 2
+#define TRACK_THROUGH_DOORS
+
+a21 5
+/* You can define or not define TRACK_THOUGH_DOORS, above, depending on
+   whether or not you want track to find paths which lead through closed
+   or hidden doors.
+*/
+
+d63 3
+a65 2
+bool cause_single_hunt(struct track_info track, struct char_data *ch, struct char_data *victim, int track_room);
+bool perform_single_track(struct char_data *ch, int track_room);
+d68 4
+a71 3
+bool call_track (bool hunt, struct track_info track, struct char_data *ch, struct char_data *victim, bool follow);
+bool move_fast_track(struct track_info track, struct char_data *ch, int track_room);
+bool cause_single_track(struct track_info track, struct char_data *ch, struct char_data *victim, int track_room);
+d73 1
+d77 1
+a77 1
+#define IS_MARKED(room) (IS_FLAGGED(ROOM_FLAGS(room), ROOM_BFS_MARK))
+d79 2
+a80 1
+#define IS_CLOSED(x, y) (IS_SET(world[(x)].dir_option[(y)]->exit_info, EX_CLOSED))
+d82 6
+a87 12
+#ifdef TRACK_THROUGH_DOORS
+#define VALID_EDGE(x, y, m) (world[(x)].dir_option[(y)] &&        \
+                            (TOROOM(x, y) != NOWHERE) &&        \
+                            (!ROOM_FLAGGED(TOROOM(x, y), m)) &&        \
+                            (!IS_MARKED(TOROOM(x, y))))
+#else
+#define VALID_EDGE(x, y, m) (world[(x)].dir_option[(y)] &&        \
+                            (TOROOM(x, y) != NOWHERE) &&        \
+                            (!IS_CLOSED(x, y)) &&                \
+                            (!ROOM_FLAGGED(TOROOM(x, y), m)) &&        \
+                            (!IS_MARKED(TOROOM(x, y))))
+#endif
+d132 1
+a132 1
+int find_first_step(int src, int target)
+d152 1
+a152 1
+    if (VALID_EDGE(src, curr_dir, ROOM_NOTRACK)) {
+d164 1
+a164 1
+        if (VALID_EDGE(queue_head->room, curr_dir, ROOM_NOTRACK)) {
+d186 1
+a186 1
+int find_track_victim(struct char_data *ch, char *name, int maxdist, struct char_data **victim, int room_mask) {
+d236 1
+a236 1
+         if (VALID_EDGE(current->room, i, room_mask)) {
+d358 1
+a358 1
+   find_track_victim(ch, arg, track.range, &vict, ROOM_NOTRACK);
+d475 1
+a475 1
+   find_track_victim(ch, arg, track.range, &vict, ROOM_NOTRACK);
+d551 1
+a551 1
+  dir = find_first_step(ch->in_room, HUNTING(ch)->in_room);
+a565 44
+struct char_data *find_race(char *arg, struct track_info track, struct char_data *ch)
+{/*NUM_RACES */
+  int i; bool found = FALSE;int howclosetar = 10000;
+  struct char_data *tar;int num;
+  struct descriptor_data *d, *next_d;
+  tar = NULL;
+
+  for (i=0;i< NUM_RACES;i++) {
+    if (!strcmp(arg, races[i].name))
+        {
+          found = TRUE;
+          break;
+        }
+    }
+
+  if (found)
+    for (d = descriptor_list; d; d = next_d)
+      {
+        next_d = d->next;
+        if (d->character && GET_RACE(d->character) == i)
+          {
+            if (ch == d->character)
+              continue;
+            if (!(CAN_SEE(ch, d->character)))
+              continue;
+            num = (in_range(track, ch, (d->character)->in_room));
+            if (num == NOT_FOUND_TRACK)
+              continue;
+            else
+              {
+                if (howclosetar > (track.range - num))
+                  {
+                    howclosetar = track.range - num;
+                    tar = d->character;
+                  }
+              }
+          }
+      }
+  return tar;
+}
+
+
+
+
+d570 2
+a571 1
+bool call_track (bool hunt, struct track_info track, struct char_data *ch, struct char_data *victim, bool follow)
+d672 1
+a672 1
+        direction = find_first_step(ch->in_room, victim->in_room);
+d680 1
+a680 1
+    direction = find_first_step(ch->in_room, track_room);
+d795 1
+a795 1
+  direction = find_first_step(track_room, ch->in_room);
+d817 1
+a817 1
+bool perform_single_track(struct char_data *ch, int track_room)
+d820 1
+a820 1
+  direction = find_first_step(track_room, ch->in_room);
+d827 1
+a827 1
+    if (CAN_GO(ch, direction));
+d829 2
+a830 2
+      direction = find_first_step(ch->in_room, track_room);
+      perform_move(ch, direction, 1, FALSE);
+a837 37
+/*Track function no delay straight to target - Proky*/
+/*recursivly calls track returns 1 if worked, 2 if to far but close, 4 if fail for unkown
+  and 0 if fail distance*/
+/*This function should be used if you want 0 lag and instant movement its VERY fast*/
+/*if true then it did the track, if false then some reason it didnt*/
+bool move_fast_track(struct track_info track, struct char_data *ch, int track_room)
+{
+  int direction;
+  if (track.range <= 0)
+    return FALSE;
+  direction = find_first_step(track_room, ch->in_room);
+  switch (direction) {
+  case BFS_ERROR:
+    return FALSE;
+  case BFS_ALREADY_THERE:
+    return TRUE;
+  case BFS_NO_PATH:
+    return FALSE;
+  default:
+    track.range--;
+    if (move_fast_track(track, ch, world[track_room].dir_option[direction]->to_room));
+    {
+      if (CAN_GO(ch, direction));
+      {
+        direction = find_first_step(ch->in_room, track_room);
+        perform_move(ch, direction, 1, FALSE);
+        return TRUE;
+      }
+    }
+  }
+}
+
+
+
+
+/* Below is Buru's track code thanks man...Banyal*/
+
+d866 1
+a866 1
+  dir = find_first_step(ch->in_room, vict->in_room);
+d899 4
+@
+
+
+1.35
+log
+@Re-implementing stealth for hide points.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.34 2008/03/28 17:54:53 myc Exp myc $
+d73 1
+a73 1
+struct char_data *find_race(char *arg, struct track_info track, struct char_data *ch); 
+d86 4
+a89 4
+#define VALID_EDGE(x, y, m) (world[(x)].dir_option[(y)] &&	\
+			    (TOROOM(x, y) != NOWHERE) &&	\
+			    (!ROOM_FLAGGED(TOROOM(x, y), m)) &&	\
+			    (!IS_MARKED(TOROOM(x, y))))
+d91 5
+a95 5
+#define VALID_EDGE(x, y, m) (world[(x)].dir_option[(y)] &&	\
+			    (TOROOM(x, y) != NOWHERE) &&	\
+			    (!IS_CLOSED(x, y)) &&		\
+			    (!ROOM_FLAGGED(TOROOM(x, y), m)) &&	\
+			    (!IS_MARKED(TOROOM(x, y))))
+d101 1
+a101 1
+  
+d106 1
+a106 1
+  
+d118 1
+a118 1
+  
+d120 1
+a120 1
+  
+d136 1
+a136 1
+   
+d145 1
+a145 1
+  
+d152 1
+a152 1
+  
+d156 1
+a156 1
+  
+d158 1
+a158 1
+  
+d173 4
+a176 4
+	if (VALID_EDGE(queue_head->room, curr_dir, ROOM_NOTRACK)) {
+	  MARK(TOROOM(queue_head->room, curr_dir));
+	  bfs_enqueue(TOROOM(queue_head->room, curr_dir), queue_head->dir);
+	}
+d180 1
+a180 1
+  
+d272 1
+a272 1
+ *  Functions and Commands which use the above fns		        *
+d282 1
+a282 1
+  
+d287 1
+a287 1
+  
+d297 1
+a297 1
+  
+d301 2
+a302 2
+  }        
+  
+d318 1
+a318 1
+   struct track_info track; 
+d335 1
+a335 1
+      if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {   
+d344 1
+a344 1
+   } 
+d420 1
+a420 1
+   improve_skill(ch, SKILL_TRACK); 
+d428 1
+a428 1
+  struct track_info track; 
+d434 1
+a434 1
+  
+d438 2
+a439 2
+  
+  if (!GET_SKILL(ch, SKILL_HUNT)) 
+d444 1
+a444 1
+  
+d451 2
+a452 2
+    } 
+  
+d456 3
+a458 3
+	return;
+  
+  
+d466 1
+a466 1
+  
+d468 1
+a468 1
+  if (!str_cmp(" follow", argument) || !str_cmp(" f", argument)) 
+d471 4
+a474 4
+	{
+	  send_to_char("You do not have enough skills to follow someone after hunting", ch);
+	  return;
+	}
+d477 1
+a477 1
+  
+d483 1
+a483 1
+  
+d506 1
+a506 1
+  if (EFF_FLAGGED(vict, EFF_NOTRACK)) 
+d511 1
+a511 1
+  
+d515 2
+a516 2
+	return;
+  
+d524 1
+a524 1
+  
+d528 5
+a532 5
+	{/*if npc dont lag mob*/
+	  if (!(IS_NPC(ch)))
+	    if (!(ch->desc && ch->desc->original))
+	      WAIT_STATE(ch, PULSE_VIOLENCE);
+	}
+d534 1
+a534 1
+  improve_skill(ch, SKILL_HUNT);	
+d542 1
+a542 1
+  
+d546 1
+a546 1
+  
+d549 1
+a549 1
+  
+d554 1
+a554 1
+  
+d584 4
+a587 4
+	{
+	  found = TRUE;
+	  break;
+	}
+d591 1
+a591 1
+    for (d = descriptor_list; d; d = next_d) 
+d593 19
+a611 19
+	next_d = d->next;
+	if (d->character && GET_RACE(d->character) == i)
+	  {	
+	    if (ch == d->character)
+	      continue;
+	    if (!(CAN_SEE(ch, d->character)))
+	      continue;
+	    num = (in_range(track, ch, (d->character)->in_room));
+	    if (num == NOT_FOUND_TRACK)
+	      continue;
+	    else
+	      {
+		if (howclosetar > (track.range - num))
+		  {
+		    howclosetar = track.range - num;
+		    tar = d->character;
+		  }
+	      }
+	  }				
+d651 1
+a651 1
+  
+d666 4
+a669 4
+	if (follow)
+	  track_event->track_room = -2;
+	else
+	  track_event->track_room = -1;
+d671 2
+a672 2
+	track_event->track_room = victim->in_room;
+      
+d682 17
+a698 17
+	{
+	  if ((num - track.range) <= 5)
+	    {
+	      sprintf(buf, "You find a very very strong sense of %s.\r\n", HMHR(victim));
+	      send_to_char(buf, ch);
+	    }
+	  else if ((num - track.range) <= 10)
+	    {
+	      sprintf(buf, "You find a strong sense of %s, must be close.\r\n", HMHR(victim));
+	      send_to_char(buf, ch);
+	    }
+	  else
+	    {
+	      sprintf(buf, "Hmmm you only just sense %s.\r\n", HMHR(victim));
+	      send_to_char(buf, ch);
+	    }
+	}
+d700 4
+a703 4
+	{
+	  sprintf(buf, "Hmmm you sense %s, must be close.\r\n", HMHR(victim));
+	  send_to_char(buf, ch);
+	}
+d724 1
+a724 1
+	direction = find_first_step(ch->in_room, victim->in_room);
+d726 5
+a730 5
+	{
+	  send_to_char("Dam my prey has got away.\r\n", ch);
+	  return FALSE;
+	}
+    } 
+d760 2
+a761 2
+	cmd = find_command("follow");
+	do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+d771 2
+a772 2
+	send_to_char("You give up the chase for the fight!\r\n", ch);
+	return FALSE;
+d774 1
+a774 1
+    if (GET_POS(ch) < POS_FIGHTING)
+d776 2
+a777 2
+	    send_to_char("You are too relaxed to continue tracking now.\r\n",ch);
+	    return FALSE;
+d779 1
+a779 1
+    
+d782 1
+a782 1
+    
+d785 5
+a789 5
+	if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT))
+	  {
+	    send_to_char("You lose your victim's tracks.\r\n", ch);
+	    return FALSE;
+	  }
+d794 15
+a808 15
+      if (IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED) && GET_LEVEL(ch) < LVL_GOD) 
+	{
+	  if (EXIT(ch, direction)->keyword)
+	    {
+	      one_argument(fname(EXIT(ch, direction)->keyword), doorname);
+	      sprintf(buf, "You try to open a %s\r\n", doorname);
+	      send_to_char(buf, ch);
+	      sprintf(doorname, "%s %s", doorname, dirs[direction]);
+	      cmd = find_command("cmd");
+	      do_gen_door(ch, doorname, cmd, 0);
+	      /*make it cost a bit of time*/
+	      if ((!IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)))
+		return TRUE;
+	    }
+	}
+d812 4
+a815 4
+	{
+	  send_to_char("Something is in your way!!\r\n", ch);
+	  return FALSE;
+	}
+d819 9
+a827 9
+	{
+	  send_to_char("The tracks come to an end here!\r\n", ch);
+	  if (track_room == -2)
+	    {/*follow victim*/
+	      cmd = find_command("follow");
+	      do_follow(ch, GET_NAMELIST(victim), cmd, 0);
+	    }
+	  return FALSE;
+	}
+d829 2
+a830 2
+	return TRUE;
+    }		
+d914 3
+a916 3
+	direction = find_first_step(ch->in_room, track_room);
+	perform_move(ch, direction, 1, FALSE);
+	return TRUE;
+d929 1
+a929 1
+  
+d932 1
+a932 1
+  
+d937 1
+a937 1
+  
+d956 1
+a956 1
+  
+d966 1
+a966 1
+	    HMHR(vict));
+d970 1
+a970 1
+    num = number(0, 101);	/* 101% is a complete failure */
+d973 1
+a973 1
+	dir = number(0, NUM_OF_DIRS - 1);
+d975 2
+a976 2
+    sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", 
+	    dirs[dir]);
+d981 3
+a983 3
+  } 
+  
+  
+d988 3
+d1100 1
+a1100 1
+ * 
+@
+
+
+1.34
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.33 2008/03/09 18:10:53 jps Exp myc $
+d747 6
+d988 4
+@
+
+
+1.33
+log
+@perform_move may be misdirected now.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.32 2008/03/09 06:38:37 jps Exp jps $
+d79 3
+a81 3
+#define MARK(room) (SET_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define UNMARK(room) (REMOVE_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define IS_MARKED(room) (IS_SET(ROOM_FLAGS(room), ROOM_BFS_MARK))
+d320 1
+a320 1
+   if(IS_FIGHTING(ch)) {
+d396 1
+a396 1
+   if (IS_AFFECTED(vict, AFF_NOTRACK)) {
+d430 1
+a430 1
+  if(IS_FIGHTING(ch)) {
+d506 1
+a506 1
+  if (IS_AFFECTED(vict, AFF_NOTRACK)) 
+d927 1
+a927 1
+  if(IS_FIGHTING(ch)) {
+d945 1
+a945 1
+  if (IS_AFFECTED(vict, AFF_NOTRACK)) {
+d982 3
+@
+
+
+1.32
+log
+@Replaced name with namelist in struct char_data.player. GET_NAME macro
+now points to short_descr. The uses of these strings is the same for
+NPCs and players.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.31 2008/02/09 21:07:50 myc Exp jps $
+d567 1
+a567 1
+    perform_move(ch, dir, 1);
+d805 1
+a805 1
+      if (!perform_move(ch, direction, 1))
+d876 1
+a876 1
+      perform_move(ch, direction, 1);
+d909 1
+a909 1
+	perform_move(ch, direction, 1);
+d972 1
+a972 1
+    perform_move(ch, dir, 1);
+d982 5
+@
+
+
+1.31
+log
+@Must provide a boolean to event_create saying whether to
+free the event obj when done or not.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.30 2008/02/09 18:29:11 myc Exp myc $
+d231 1
+a231 1
+         if (isname(name, cd->player.name) && CAN_SEE(ch, cd)) {
+d755 1
+a755 1
+	do_follow(ch, victim->player.name, cmd, 0);
+d818 1
+a818 1
+	      do_follow(ch, victim->player.name, cmd, 0);
+d982 4
+@
+
+
+1.30
+log
+@The event code now handles freeing of event objects.  The track
+event now uses an event flag instead of storing the track event
+in a special char_data field.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.29 2008/02/09 04:27:47 myc Exp myc $
+d673 1
+a673 1
+      event_create(EVENT_TRACK, track_delayed_event, track_event,
+a775 4
+    if ((IS_NPC(ch)))
+      if (!(ch->desc && ch->desc->original))
+	if (MOB_FLAGGED(ch, MOB_CASTING))
+	  return TRUE;
+d982 5
+@
+
+
+1.29
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.28 2008/01/29 21:02:31 myc Exp myc $
+d288 9
+a296 11
+  if(IS_NPC(ch) && !is_aggr_to(ch, victim))
+    {
+      GET_TRACK_EVENTS(ch) = NULL;
+      free(event_obj);
+      return 0;
+    }
+  if(event_target_valid(ch) == 0)
+    {
+      free(event_obj);
+      return 0;
+    }        
+d298 4
+a301 6
+  if(event_target_valid(victim) == 0)
+    {
+      GET_TRACK_EVENTS(ch) = NULL;
+      free(event_obj);
+      return 0;
+    }        
+d304 2
+a305 3
+    GET_TRACK_EVENTS(ch) = NULL;
+    free(event_obj);
+    return 0;
+d307 2
+a308 1
+  /*re-que event*/
+d349 1
+a349 1
+         if (GET_TRACK_EVENTS(ch))
+d353 1
+a353 1
+   if (GET_TRACK_EVENTS(ch)) {
+d355 2
+a356 2
+      event_cancel(GET_TRACK_EVENTS(ch));
+      GET_TRACK_EVENTS(ch) = NULL;
+d403 1
+a403 1
+         if (GET_TRACK_EVENTS(ch))
+d406 1
+a406 1
+   if (GET_TRACK_EVENTS(ch)) {
+d408 1
+a408 1
+      event_cancel(GET_TRACK_EVENTS(ch));		
+d455 1
+a455 1
+      if (GET_TRACK_EVENTS(ch))
+d459 1
+a459 1
+  if (GET_TRACK_EVENTS(ch))
+d462 2
+a463 2
+      event_cancel(GET_TRACK_EVENTS(ch));
+      GET_TRACK_EVENTS(ch) = NULL;
+d514 1
+a514 1
+      if (GET_TRACK_EVENTS(ch))
+d517 1
+a517 1
+  if (GET_TRACK_EVENTS(ch))
+d520 2
+a521 1
+      event_cancel(GET_TRACK_EVENTS(ch));		
+d673 3
+a675 3
+      GET_TRACK_EVENTS(ch) =
+         event_create(EVENT_TRACK, track_delayed_event, track_event,
+               &(ch->events), track.speed);
+d986 3
+@
+
+
+1.28
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.27 2008/01/26 12:30:34 jps Exp myc $
+d44 1
+d989 4
+@
+
+
+1.27
+log
+@Use skills.h to import improve_skill().
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.26 2008/01/18 20:30:11 myc Exp jps $
+d43 1
+d46 5
+a50 4
+extern int top_of_world;
+extern struct descriptor_data *descriptor_list;
+extern const char *dirs[];
+extern struct room_data *world;
+d56 1
+a56 4
+bool is_aggr_to(struct char_data *ch,struct char_data *target);
+ACMD(do_follow);
+void flush_queues(struct descriptor_data *d);
+ACMD(do_gen_door);
+a543 1
+  extern struct char_data *character_list;
+d988 3
+@
+
+
+1.26
+log
+@Fixing some send_to_char strings that don't end with a newline.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.25 2008/01/12 23:13:20 myc Exp myc $
+d42 1
+a53 1
+void improve_skill(struct char_data *ch, int skill);
+d990 3
+@
+
+
+1.25
+log
+@Removed is_aggr_to_trackee.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.24 2008/01/04 01:53:26 jps Exp myc $
+d411 1
+a411 1
+      send_to_char("You stop tracking.", ch);
+d465 1
+a465 1
+      send_to_char("You stop tracking.", ch);
+d523 1
+a523 1
+      send_to_char("You stop hunting.", ch);
+d990 3
+@
+
+
+1.24
+log
+@Added races.h file and created global array "races" for much
+race-related information.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.23 2007/12/25 05:41:49 jps Exp jps $
+a75 1
+bool is_aggr_to_trackee (struct char_data *ch, struct char_data *target);
+a952 11
+  /*This below IS the fis to mob track bug but soemhow the memory structure is
+    not the same for this check always fails. In that the is_aggr_to also fails
+    due to same reason, so now only mobs with bot track and memory have memory
+    or have a special attack. I will try to look at this later. Perhaps someone else
+    before this can look at is_aggr_to and is_aggro_to_trackee and bring them
+    up-to-date with current memory structure. then all will be fixed.... Banyal*/
+  /*
+    if(!is_aggr_to_trackee(ch, vict)) {
+    flush_queue(ch);
+    return;
+    }*/
+d990 4
+@
+
+
+1.23
+log
+@Updated event code so the each event type is positively identified.
+Events may be tied to objects or characters so that when that object
+or character is extracted, its events can be canceled.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.22 2007/11/18 06:03:30 myc Exp jps $
+d41 1
+a47 1
+extern const char *race_target[];
+d586 3
+a588 3
+  for (i=0;i< NUM_RACES;i++)
+    {
+      if (!strcmp(arg, race_target[i]))
+d594 1
+d1002 5
+@
+
+
+1.22
+log
+@Fix crash bug for when summon is used by mobs.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.21 2007/10/17 18:21:03 myc Exp myc $
+d677 3
+a679 1
+      GET_TRACK_EVENTS(ch) = event_create(track_delayed_event, track_event, track.speed);
+d1001 3
+@
+
+
+1.21
+log
+@Summon now uses the find_track_victim algorithm to locate the closest
+target.  find_track_victim can be passed a room flag mask to skip
+rooms with those flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.20 2007/08/15 20:48:07 myc Exp myc $
+d202 3
+d999 5
+@
+
+
+1.20
+log
+@Gods tracking no longer open doors.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.19 2007/08/03 22:00:11 myc Exp myc $
+d87 4
+a90 4
+#define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
+			  (TOROOM(x, y) != NOWHERE) &&	\
+			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
+			  (!IS_MARKED(TOROOM(x, y))))
+d92 5
+a96 5
+#define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
+			  (TOROOM(x, y) != NOWHERE) &&	\
+			  (!IS_CLOSED(x, y)) &&		\
+			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
+			  (!IS_MARKED(TOROOM(x, y))))
+d162 1
+a162 1
+    if (VALID_EDGE(src, curr_dir)) {
+d174 1
+a174 1
+	if (VALID_EDGE(queue_head->room, curr_dir)) {
+d196 1
+a196 1
+int find_track_victim(struct char_data *ch, char *name, int maxdist, struct char_data **victim) {
+d243 1
+a243 1
+         if (VALID_EDGE(current->room, i)) {
+d369 1
+a369 1
+   find_track_victim(ch, arg, track.range, &vict);
+d486 1
+a486 1
+   find_track_victim(ch, arg, track.range, &vict);
+d996 3
+@
+
+
+1.19
+log
+@Fixed some \r\n typoes in send_to_chars.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.18 2007/07/11 23:30:16 jps Exp myc $
+d791 1
+a791 1
+      if (IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)) 
+d996 3
+@
+
+
+1.18
+log
+@Revert previous change because it introduced a crash bug.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.16 2007/06/09 18:01:40 jps Exp $
+d356 1
+a356 1
+      send_to_char("You stop tracking.", ch);
+d996 3
+@
+
+
+1.17
+log
+@Make BFS clean up by removing BFS_MARK flags from rooms before returning.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.16 2007/06/09 18:01:40 jps Exp jps $
+a123 1
+  UNMARK(curr->room);
+a170 1
+      UNMARK(src);
+a181 1
+  UNMARK(src);
+a260 1
+      UNMARK(current->room);
+@
+
+
+1.16
+log
+@Make track find the nearest mob of the requested name, rather than
+the first mob in the world's list who has the requested name.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.15 2007/04/19 00:53:54 jps Exp jps $
+d124 1
+d172 1
+d184 1
+d264 1
+d1000 4
+@
+
+
+1.15
+log
+@Create macros for stopping spellcasting.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.14 2006/11/11 10:16:47 jps Exp jps $
+d18 6
+d58 11
+d185 83
+d318 16
+a333 17
+  struct char_data *vict;
+  int num;
+  struct track_info track; 
+  
+  if(IS_FIGHTING(ch)) {
+    send_to_char("You are too busy to look for a trail.\n\r",ch);
+    return;
+  }
+  if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch)) 
+  {
+    send_to_char("You have no idea how.\r\n", ch);
+    return;
+  }
+  
+  num = 1;
+  if ((GET_SKILL(ch, SKILL_TRACK) > num))
+    {
+d337 4
+a340 5
+      if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER))
+        {   
+	  track.range = track.range + 8;
+	  track.sense = track.range + 4;
+        }
+d342 14
+a355 14
+	if (!(ch->desc && ch->desc->original))
+	  {
+	    track.speed = (int)(track.speed/2);
+	    track.range = (int)((130*track.range)/100);
+	  }
+    } 
+  
+  if ((IS_NPC(ch)))
+    if (!(ch->desc && ch->desc->original))
+      if (GET_TRACK_EVENTS(ch))
+	return;
+  
+  if (GET_TRACK_EVENTS(ch))
+    {
+d360 12
+a371 12
+    }
+  one_argument(argument, arg);
+  if (!*arg) {
+    send_to_char("Whom are you trying to track?\r\n", ch);
+    return;
+  }
+  
+  
+  /*check for evil race*/
+  vict = find_race(arg, track, ch);
+  if (!vict)
+    if (!(vict = get_char_vis(ch, arg))) {
+d374 14
+a387 2
+	if (!(ch->desc && ch->desc->original))
+	  WAIT_STATE(ch, PULSE_VIOLENCE);
+d389 22
+a410 9
+    }
+  
+  
+  
+  /*Handle Npcs here*/
+  if ((IS_NPC(ch)))
+    if (!(ch->desc && ch->desc->original))
+    {
+      perform_single_track(ch, vict->in_room);
+d412 11
+a422 30
+    }
+  
+  if (IS_AFFECTED(vict, AFF_NOTRACK)) {
+    send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+    return;
+  }
+  
+  if ((IS_NPC(ch)))
+    if ((ch->desc && ch->desc->original))
+      if (GET_TRACK_EVENTS(ch))
+	return;
+  
+  if (GET_TRACK_EVENTS(ch))
+  {
+    send_to_char("You stop tracking.", ch);
+    event_cancel(GET_TRACK_EVENTS(ch));		
+    return;
+  }
+  
+  
+  if ((GET_SKILL(ch, SKILL_TRACK) > num))
+  {
+    if (call_track (FALSE, track, ch, vict, FALSE))
+    {/*if npc dont lag mob*/
+       if (!(IS_NPC(ch)))
+       if (!(ch->desc && ch->desc->original))
+	  WAIT_STATE(ch, PULSE_VIOLENCE);
+    }
+  }
+  improve_skill(ch, SKILL_TRACK); 
+d486 3
+a488 4
+  /*check for evil race*/
+  vict = find_race(arg, track, ch);
+  if (!vict)
+    if (!(vict = get_char_vis(ch, arg))) {
+d491 9
+a499 2
+	if (!(ch->desc && ch->desc->original))
+	  WAIT_STATE(ch, PULSE_VIOLENCE);
+d501 7
+a507 2
+    }
+  
+d996 3
+@
+
+
+1.14
+log
+@Make tracking over water much more difficult, except for superb trackers.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.13 2006/11/08 09:16:04 jps Exp jps $
+d658 1
+a658 1
+    if(PLR_FLAGGED(ch, PLR_CASTING))
+d881 3
+@
+
+
+1.13
+log
+@Fixed some loose-lose typos.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.12 2006/11/08 08:52:42 jps Exp jps $
+d513 19
+d617 14
+d881 3
+@
+
+
+1.12
+log
+@Fix typo 'tracks come to a end here' -> 'an end'
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.11 2006/07/20 07:37:43 cjd Exp jps $
+d636 1
+a636 1
+	    send_to_char("You loose your victims tracks\r\n", ch);
+d848 3
+@
+
+
+1.11
+log
+@Typo fixes.
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.10 2002/09/13 02:32:10 jjl Exp $
+d669 1
+a669 1
+	  send_to_char("The tracks come to a end here!\r\n", ch);
+d848 3
+@
+
+
+1.10
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: graph.c,v 1.9 2001/07/08 16:21:25 mtp Exp $
+d274 1
+a274 1
+      send_to_char("Can't find any tracks by that name one.\r\n", ch);
+d292 1
+a292 1
+    send_to_char("Can't find any tracks by that name one.\r\n", ch);
+d386 1
+a386 1
+      send_to_char("Can't find any tracks by that name one.\r\n", ch);
+d395 1
+a395 1
+      send_to_char("Can't find any tracks by that name one.\r\n", ch);
+d521 1
+a521 1
+      send_to_char("Can't find any tracks by that name one.\r\n", ch);
+d566 1
+a566 1
+	  sprintf(buf, "Hmmm you sense %s, must be close\r\n", HMHR(victim));
+d602 1
+a602 1
+    send_to_char("The tracks come to a end here!\r\n", ch);
+d848 3
+@
+
+
+1.9
+log
+@stop tracking if position < fighting (ie resting or less)
+@
+text
+@d1 3
+a3 1
+// $Id: graph.c,v 1.8 2000/11/21 18:45:49 rsd Exp $
+d846 35
+a880 30
+// $Log: graph.c,v $
+// Revision 1.8  2000/11/21 18:45:49  rsd
+// y
+// Altered the comment header and added missing back rlog
+// messages from prior to the addition of the $log$ string.
+//
+// Revision 1.7  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.6  1999/09/03 23:05:01  mtp
+// added some IS_FIGHTING checks
+//
+// Revision 1.5  1999/04/30 17:09:14  mud
+// reverted to 1.3 due to bad crashbugs. Gurlaek
+//
+// Revision 1.4  1999/04/29 03:47:25  jimmy
+// Nulled some pointers for sanity.  The * room flag ROOM_BFS_MARK
+// appears to work ok.
+// --Gurlaek
+//
+// Revision 1.3  1999/02/20 18:41:36  dce
+// Adds improve_skill calls so that players can imprve their skills.
+// 
+// Revision 1.2  1999/01/31 02:49:06  mud
+// Added info to comment header
+// Indented entire file
+//
+// Revision 1.1  1999/01/29 01:23:31  mud
+// Initial revision
+//
+@
+
+
+1.8
+log
+@y
+Altered the comment header and added missing back rlog
+messages from prior to the addition of the $log$ string.
+@
+text
+@d1 1
+a1 1
+// $Id: graph.c,v 1.7 1999/09/05 07:00:39 jimmy Exp $
+d617 5
+d845 5
+@
+
+
+1.7
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d3 2
+a4 2
+ *   File: graph.c                                       Part of CircleMUD *
+ *  Usage: various graph algorithms                   NOW Part of FieryMUD *
+d8 3
+a10 1
+ *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+a13 1
+
+d839 25
+a863 3
+
+
+// $Log$
+@
+
+
+1.6
+log
+@added some IS_FIGHTING checks
+@
+text
+@d1 1
+d840 1
+@
+
+
+1.5
+log
+@reverted to 1.3 due to bad crashbugs. Gurlaek
+@
+text
+@d218 4
+d323 5
+d773 4
+@
+
+
+1.4
+log
+@Nulled some pointers for sanity.  The * room flag ROOM_BFS_MARK
+appears to work ok.
+--Gurlaek
+@
+text
+@a103 2
+  /* added by Gurlaek */
+  curr = NULL;
+d134 1
+a134 1
+  for (curr_room = 0; curr_room <= top_of_world; curr_room++) {
+d136 1
+a136 1
+  }
+a185 2
+      /* added by Gurlaek */
+      event_obj = NULL;
+a190 2
+      /* added by Gurlaek */
+      event_obj = NULL;
+a197 2
+      /* added by Gurlaek */
+      event_obj = NULL;
+a203 2
+    /* added by Gurlaek */
+    event_obj = NULL;
+@
+
+
+1.3
+log
+@Adds improve_skill calls so that players can imprve their skills.
+@
+text
+@d104 2
+d136 1
+a136 1
+  for (curr_room = 0; curr_room <= top_of_world; curr_room++)
+d138 1
+a138 1
+  
+d188 2
+d195 2
+d204 2
+d212 2
+@
+
+
+1.2
+log
+@Added info to comment header
+Indented entire file
+@
+text
+@d43 1
+d219 4
+a222 4
+    {
+      send_to_char("You have no idea how.\r\n", ch);
+      return;
+    }
+d278 4
+a281 4
+      {
+	perform_single_track(ch, vict->in_room);
+	return;
+      }
+d294 5
+a298 5
+    {
+      send_to_char("You stop tracking.", ch);
+      event_cancel(GET_TRACK_EVENTS(ch));		
+      return;
+    }
+d302 9
+a310 8
+    {
+      if (call_track (FALSE, track, ch, vict, FALSE))
+	{/*if npc dont lag mob*/
+	  if (!(IS_NPC(ch)))
+	    if (!(ch->desc && ch->desc->original))
+	      WAIT_STATE(ch, PULSE_VIOLENCE);
+	}
+    } 
+d406 2
+a407 1
+    }	
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 9
+a9 9
+/* ************************************************************************
+*   File: graph.c                                       Part of CircleMUD *
+*  Usage: various graph algorithms                                        *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+d80 1
+a80 1
+
+d85 1
+a85 1
+
+d97 1
+a97 1
+
+d99 1
+a99 1
+
+d115 1
+a115 1
+
+d124 1
+a124 1
+
+d131 1
+a131 1
+
+d135 1
+a135 1
+
+d137 1
+a137 1
+
+d159 1
+a159 1
+
+d165 2
+a166 2
+*  Functions and Commands which use the above fns		        *
+************************************************************************/
+d170 37
+a206 37
+	struct track_delayed_event_obj *track_event = (struct track_delayed_event_obj *) event_obj;
+	struct char_data *ch;
+	struct char_data *victim;
+	struct track_info track;
+	int track_room;
+
+	victim = track_event->victim;
+	ch = track_event->ch;
+	track_room = track_event->track_room;
+	track = track_event->track;
+        
+        if(IS_NPC(ch) && !is_aggr_to(ch, victim))
+        {
+          GET_TRACK_EVENTS(ch) = NULL;
+         free(event_obj);
+          return 0;
+        }
+        if(event_target_valid(ch) == 0)
+	{
+	  free(event_obj);
+	  return 0;
+	}        
+
+        if(event_target_valid(victim) == 0)
+	{
+	  GET_TRACK_EVENTS(ch) = NULL;
+	  free(event_obj);
+	  return 0;
+	}        
+
+	if (!cause_single_track(track, ch, victim, track_room)) {
+           GET_TRACK_EVENTS(ch) = NULL;
+            free(event_obj);
+           return 0;
+        }
+	/*re-que event*/
+	return track.speed;
+d213 12
+a224 12
+	struct char_data *vict;
+	int num;
+	struct track_info track; 
+	
+	if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch)) 
+	{
+		send_to_char("You have no idea how.\r\n", ch);
+		return;
+	}
+
+	num = 1;
+	if ((GET_SKILL(ch, SKILL_TRACK) > num))
+d226 4
+a229 4
+		track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+		track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/5));
+		track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/4));
+        if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER))
+d231 2
+a232 2
+            track.range = track.range + 8;
+            track.sense = track.range + 4;
+d234 49
+a282 49
+        if ((IS_NPC(ch)))
+			if (!(ch->desc && ch->desc->original))
+			{
+				track.speed = (int)(track.speed/2);
+				track.range = (int)((130*track.range)/100);
+			}
+	} 
+  
+	if ((IS_NPC(ch)))
+		if (!(ch->desc && ch->desc->original))
+			if (GET_TRACK_EVENTS(ch))
+				return;
+			
+	if (GET_TRACK_EVENTS(ch))
+	{
+		send_to_char("You stop tracking.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));
+		GET_TRACK_EVENTS(ch) = NULL;
+		return;
+	}
+	one_argument(argument, arg);
+	if (!*arg) {
+		send_to_char("Whom are you trying to track?\r\n", ch);
+		return;
+	}
+
+	
+	/*check for evil race*/
+	vict = find_race(arg, track, ch);
+	if (!vict)
+	if (!(vict = get_char_vis(ch, arg))) {
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		if (!(IS_NPC(ch)))
+			if (!(ch->desc && ch->desc->original))
+				WAIT_STATE(ch, PULSE_VIOLENCE);
+		return;
+	}
+
+
+    
+	/*Handle Npcs here*/
+	if ((IS_NPC(ch)))
+		if (!(ch->desc && ch->desc->original))
+		{
+			perform_single_track(ch, vict->in_room);
+			return;
+		}
+
+    if (IS_AFFECTED(vict, AFF_NOTRACK)) {
+d286 1
+a286 1
+ 
+d288 19
+a306 9
+	if ((ch->desc && ch->desc->original))
+		if (GET_TRACK_EVENTS(ch))
+			return;
+			
+	if (GET_TRACK_EVENTS(ch))
+	{
+		send_to_char("You stop tracking.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));		
+		return;
+d308 1
+a308 11
+
+		
+    if ((GET_SKILL(ch, SKILL_TRACK) > num))
+    {
+		if (call_track (FALSE, track, ch, vict, FALSE))
+		{/*if npc dont lag mob*/
+			if (!(IS_NPC(ch)))
+				if (!(ch->desc && ch->desc->original))
+					WAIT_STATE(ch, PULSE_VIOLENCE);
+		}
+	} 
+d314 38
+a351 16
+	struct char_data *vict;
+	int num;bool follow = FALSE;
+	struct track_info track; 
+	
+	if (IS_NPC(ch))
+		if (!(ch->desc && ch->desc->original))
+			return;
+
+	if (!GET_SKILL(ch, SKILL_HUNT)) 
+	{
+		send_to_char("You have no idea how.\r\n", ch);
+		return;
+	}
+
+	num = 1;
+	if ((GET_SKILL(ch, SKILL_HUNT) > num))
+d353 1
+a353 12
+		track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK))/2)));
+		track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+		track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK))/3));
+	} 
+  
+	if ((IS_NPC(ch)))
+		if (!(ch->desc && ch->desc->original))
+			if (GET_TRACK_EVENTS(ch))
+				return;
+			
+	
+	if (GET_TRACK_EVENTS(ch))
+d355 2
+a356 4
+		send_to_char("You stop tracking.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));
+		GET_TRACK_EVENTS(ch) = NULL;
+		return;
+a357 9
+
+   argument = one_argument(argument, arg);
+   if (!str_cmp(" follow", argument) || !str_cmp(" f", argument)) 
+   {
+      if ((!GET_CLASS(ch) == CLASS_HUNTER) && (GET_LEVEL(ch) < LVL_IMMORT))
+      {
+         send_to_char("You do not have enough skills to follow someone after hunting", ch);
+         return;
+      }
+d359 44
+a402 17
+   }
+
+/*check for second argument :follow*/
+    if (!*arg) {
+		send_to_char("Whom are you trying to hunt?\r\n", ch);
+		return;
+	}
+
+	/*check for evil race*/
+	vict = find_race(arg, track, ch);
+	if (!vict)
+	if (!(vict = get_char_vis(ch, arg))) {
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		if (!(IS_NPC(ch)))
+			if (!(ch->desc && ch->desc->original))
+				WAIT_STATE(ch, PULSE_VIOLENCE);
+		return;
+d404 1
+a404 28
+
+	if (IS_AFFECTED(vict, AFF_NOTRACK)) 
+	{
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		return;
+	}
+ 
+   if ((IS_NPC(ch)))
+	  if (!(ch->desc && ch->desc->original))
+		 if (GET_TRACK_EVENTS(ch))
+			  return;
+			
+	if (GET_TRACK_EVENTS(ch))
+	{
+		send_to_char("You stop hunting.", ch);
+		event_cancel(GET_TRACK_EVENTS(ch));		
+		return;
+	}
+
+   if ((GET_SKILL(ch, SKILL_TRACK) > num))
+    {
+		if (call_track (TRUE, track, ch, vict, follow))
+		{/*if npc dont lag mob*/
+			if (!(IS_NPC(ch)))
+				if (!(ch->desc && ch->desc->original))
+					WAIT_STATE(ch, PULSE_VIOLENCE);
+		}
+	}	
+d413 1
+a413 1
+
+d417 1
+a417 1
+
+d420 1
+a420 1
+
+d425 1
+a425 1
+
+d448 7
+a454 5
+	int i; bool found = FALSE;int howclosetar = 10000;
+	struct char_data *tar;int num;
+	struct descriptor_data *d, *next_d;
+	tar = NULL;
+	for (i=0;i< NUM_RACES;i++)
+d456 2
+a457 28
+		if (!strcmp(arg, race_target[i]))
+		{
+			found = TRUE;
+			break;
+		}
+	}
+	if (found)
+		for (d = descriptor_list; d; d = next_d) 
+		{
+			next_d = d->next;
+			if (d->character && GET_RACE(d->character) == i)
+			{	
+				if (ch == d->character)
+					continue;
+				if (!(CAN_SEE(ch, d->character)))
+					continue;
+				num = (in_range(track, ch, (d->character)->in_room));
+				if (num == NOT_FOUND_TRACK)
+					continue;
+				else
+				{
+					if (howclosetar > (track.range - num))
+					{
+						howclosetar = track.range - num;
+						tar = d->character;
+					}
+				}
+			}				
+d459 25
+a483 1
+	return tar;
+d485 2
+a486 2
+                
+	
+d490 2
+a491 2
+and sets things up so it all works.  Also handles messaging
+to the user - Proky*/
+d495 36
+a530 9
+	int num;
+	struct track_delayed_event_obj *track_event;
+	if (track.speed <= 0)
+		track.speed = 5;
+	if (track.range <= 0)
+		track.range = 5;
+	num = in_range(track, ch, victim->in_room);
+
+	if (num == NOT_FOUND_TRACK)
+d532 15
+a546 2
+		send_to_char("Can't find any tracks by that name one.\r\n", ch);
+		return FALSE;
+d548 1
+a548 1
+	else if (num >= 0)
+d550 2
+a551 44
+		num = track.range - num;
+		send_to_char("You begin to search for tracks ....\r\n", ch);
+		CREATE(track_event, struct track_delayed_event_obj, 1);
+		track_event->ch = ch;
+		track_event->victim = victim;
+		track_event->track = track;
+        if (hunt)
+           if (follow)
+		    track_event->track_room = -2;
+           else
+            track_event->track_room = -1;
+        else
+           track_event->track_room = victim->in_room;
+
+		GET_TRACK_EVENTS(ch) = event_create(track_delayed_event, track_event, track.speed);
+		return TRUE;
+	}
+	else
+	{
+		num = track.range - num;
+		if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER))
+		{
+			if ((num - track.range) <= 5)
+			{
+				sprintf(buf, "You find a very very strong sense of %s.\r\n", HMHR(victim));
+				send_to_char(buf, ch);
+			}
+			else if ((num - track.range) <= 10)
+			{
+				sprintf(buf, "You find a strong sense of %s, must be close.\r\n", HMHR(victim));
+				send_to_char(buf, ch);
+			}
+			else
+			{
+				sprintf(buf, "Hmmm you only just sense %s.\r\n", HMHR(victim));
+				send_to_char(buf, ch);
+			}
+		}
+		else
+		{
+			sprintf(buf, "Hmmm you sense %s, must be close\r\n", HMHR(victim));
+			send_to_char(buf, ch);
+		}
+		return FALSE;
+d553 2
+d561 2
+a562 2
+It already asumes that distance has been checked already
+-Proky (hunt saves -1 or -2 to track_room as it updates continually*/
+d567 3
+a569 3
+	int direction;int cmd;
+	char doorname[40];
+    if (track_room <= -1)
+d571 1
+a571 1
+       /*check for person may have gone out of range*/
+d573 1
+a573 1
+         direction = find_first_step(ch->in_room, victim->in_room);
+d575 24
+d600 2
+a601 2
+         send_to_char("Dam my prey has got away.\r\n", ch);
+         return FALSE;
+d603 15
+a617 38
+    } 
+     else
+	  direction = find_first_step(ch->in_room, track_room);
+	switch (direction) {
+	case BFS_ERROR:
+		return FALSE;
+	case BFS_ALREADY_THERE:
+		send_to_char("The tracks come to a end here!\r\n", ch);
+         if (track_room == -2)
+                {/*follow victim*/
+                    cmd = find_command("follow");
+		            do_follow(ch, victim->player.name, cmd, 0);
+                }
+        return FALSE;
+	case BFS_NO_PATH:
+		return FALSE;
+	default:
+	/*new stuff here rest is a re-check*/
+	/*fighting check casting check*/
+       if (FIGHTING(ch))
+       {
+          send_to_char("You give up the chase for the fight!\r\n", ch);
+          return FALSE;
+       }
+         
+         if(PLR_FLAGGED(ch, PLR_CASTING))
+            return TRUE;
+         if ((IS_NPC(ch)))
+	        if (!(ch->desc && ch->desc->original))
+		       if (MOB_FLAGGED(ch, MOB_CASTING))
+                  return TRUE;
+       
+   if (track_room <= -1)
+   {/*if hunt stop rangers hunting in town*/
+      if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT))
+      {
+         send_to_char("You loose your victims tracks\r\n", ch);
+         return FALSE;
+d619 36
+a654 41
+   }
+       if (CAN_GO(ch, direction));
+		{
+           /*check for a door*/
+            if (IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)) 
+            {
+               if (EXIT(ch, direction)->keyword)
+               {
+                  one_argument(fname(EXIT(ch, direction)->keyword), doorname);
+                  sprintf(buf, "You try to open a %s\r\n", doorname);
+                  send_to_char(buf, ch);
+                  sprintf(doorname, "%s %s", doorname, dirs[direction]);
+                  cmd = find_command("cmd");
+		          do_gen_door(ch, doorname, cmd, 0);
+                  /*make it cost a bit of time*/
+                  if ((!IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED)))
+                     return TRUE;
+               }
+            }
+			sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", dirs[direction]);
+			send_to_char(buf, ch);
+			if (!perform_move(ch, direction, 1))
+            {
+               send_to_char("Something is in your way!!\r\n", ch);
+               return FALSE;
+            }
+			act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+			/*check to see if in room*/
+			if ((ch->in_room == track_room) || (ch->in_room == victim->in_room))
+			{
+				send_to_char("The tracks come to a end here!\r\n", ch);
+                if (track_room == -2)
+                {/*follow victim*/
+                    cmd = find_command("follow");
+		            do_follow(ch, victim->player.name, cmd, 0);
+                }
+				return FALSE;
+			}
+			else
+				return TRUE;
+		}		
+d656 5
+a660 1
+	return FALSE;
+d671 19
+a689 19
+	int direction;
+	int num;
+	if (track.range < (0 - track.sense))
+		return NOT_FOUND_TRACK;/*totally out of range*/
+	direction = find_first_step(track_room, ch->in_room);
+	switch (direction) {
+	case BFS_ERROR:
+	case BFS_NO_PATH:
+		return NOT_FOUND_TRACK;
+	case BFS_ALREADY_THERE:
+		return track.range;
+	default:
+		track.range--;
+		num = (in_range(track, ch, world[track_room].dir_option[direction]->to_room));
+		if (num == NOT_FOUND_TRACK)
+			return NOT_FOUND_TRACK;
+		else
+			return num;
+	}
+d694 1
+a694 1
+it starts nothing else at all, returns true if successed*/
+d699 16
+a714 16
+	int direction;
+	direction = find_first_step(track_room, ch->in_room);
+	switch (direction) {
+	case BFS_ERROR:
+	case BFS_ALREADY_THERE:
+	case BFS_NO_PATH:
+		return FALSE;
+	default:
+		if (CAN_GO(ch, direction));
+		{
+			direction = find_first_step(ch->in_room, track_room);
+			perform_move(ch, direction, 1);
+			return TRUE;
+		}
+	}
+	return FALSE;
+d720 1
+a720 1
+and 0 if fail distance*/
+d725 23
+a747 23
+	int direction;
+	if (track.range <= 0)
+		return FALSE;
+	direction = find_first_step(track_room, ch->in_room);
+	switch (direction) {
+	case BFS_ERROR:
+		return FALSE;
+	case BFS_ALREADY_THERE:
+		return TRUE;
+	case BFS_NO_PATH:
+		return FALSE;
+	default:
+		track.range--;
+		if (move_fast_track(track, ch, world[track_room].dir_option[direction]->to_room));
+		{
+			if (CAN_GO(ch, direction));
+			{
+				direction = find_first_step(ch->in_room, track_room);
+				perform_move(ch, direction, 1);
+				return TRUE;
+			}
+		}
+	}
+d757 1
+a757 1
+	
+d761 1
+a761 1
+
+d775 9
+a783 9
+/*This below IS the fis to mob track bug but soemhow the memory structure is
+ not the same for this check always fails. In that the is_aggr_to also fails
+ due to same reason, so now only mobs with bot track and memory have memory
+ or have a special attack. I will try to look at this later. Perhaps someone else
+before this can look at is_aggr_to and is_aggro_to_trackee and bring them
+up-to-date with current memory structure. then all will be fixed.... Banyal*/
+/*
+  if(!is_aggr_to_trackee(ch, vict)) {
+  flush_queue(ch);
+d785 1
+a785 1
+  }*/
+d791 1
+a791 1
+
+d795 1
+a795 1
+	break;
+d798 1
+a798 1
+	break;
+d803 1
+a803 1
+	break;
+d811 1
+a811 1
+dirs[dir]);
+d813 1
+a813 1
+	perform_move(ch, dir, 1);
+d815 1
+a815 1
+	WAIT_STATE(ch, PULSE_VIOLENCE);
+d817 5
+a821 1
+ 
+a822 1
+}
+@

@@ -1,0 +1,200 @@
+head	1.6;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.6
+date	2009.03.20.23.02.59;	author myc;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2009.02.11.17.03.39;	author myc;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2008.08.16.08.22.41;	author jps;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2008.08.15.03.59.08;	author jps;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2008.08.14.09.44.36;	author jps;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.08.14.09.39.02;	author jps;	state Exp;
+branches;
+next	;
+
+
+desc
+@Header file for editing and paging functions.
+@
+
+
+1.6
+log
+@Remove text editor connection state.  Make paging input
+strings declared const.
+@
+text
+@/***************************************************************************
+ * $Id: modify.h,v 1.5 2009/02/11 17:03:39 myc Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *  File: modify.h                                        Part of FieryMUD *
+ *  Usage: header file for string paging and editing                       *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#ifndef __FIERY_MODIFY_H
+#define __FIERY_MODIFY_H
+
+extern void string_write_limit(struct descriptor_data *d, char **writeto, size_t len, int maxlines);
+extern void string_write(struct descriptor_data *d, char **writeto, size_t len);
+extern void mail_write(struct descriptor_data *d, char **writeto, size_t len, long recipient);
+
+/* PAGING */
+
+/* page_string and page_string_desc will also start paging */
+extern void page_string(struct char_data *ch, const char *str);
+extern void page_string_desc(struct descriptor_data *d, const char *str);
+
+/* paging_printf will collect data, but you must then call start_paging */
+extern void paging_printf(const struct char_data *ch, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
+extern void desc_paging_printf(struct descriptor_data *d, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
+
+extern void start_paging(struct char_data *ch);
+extern void start_paging_desc(struct descriptor_data *desc);
+extern void free_paged_text(struct descriptor_data *d);
+extern void get_paging_input(struct descriptor_data *d, char *input);
+
+#define pprintf paging_printf
+#define pdprintf desc_paging_printf
+#define PAGING(d)           (d->paging_numlines)
+#define PAGING_PAGE(d)      (d->paging_curpage)
+#define PAGING_NUMPAGES(d)  (d->paging_numpages)
+
+#endif
+
+/***************************************************************************
+ * $Log: modify.h,v $
+ * Revision 1.5  2009/02/11 17:03:39  myc
+ * Make some functions static and add desc_paging_printf(),
+ * which is just like paging_printf, but it takes a descriptor
+ * instead of a character.
+ *
+ * Revision 1.4  2008/08/16 08:22:41  jps
+ * Added the 'desc' command and took player description-editing out of the pre-game menu.
+ *
+ * Revision 1.3  2008/08/15 03:59:08  jps
+ * Added pprintf for paging, and changed page_string to take a character.
+ *
+ * Revision 1.2  2008/08/14 09:44:36  jps
+ * Eliminate the unused keep_internal parameter from page_string.
+ *
+ * Revision 1.1  2008/08/14 09:39:02  jps
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.5
+log
+@Make some functions static and add desc_paging_printf(),
+which is just like paging_printf, but it takes a descriptor
+instead of a character.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.h,v 1.4 2008/08/16 08:22:41 jps Exp myc $
+d26 2
+a27 2
+extern void page_string(struct char_data *ch, char *str);
+extern void page_string_desc(struct descriptor_data *d, char *str);
+d48 5
+@
+
+
+1.4
+log
+@Added the 'desc' command and took player description-editing out of the pre-game menu.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.h,v 1.3 2008/08/15 03:59:08 jps Exp jps $
+d31 1
+d34 1
+d39 1
+d48 3
+@
+
+
+1.3
+log
+@Added pprintf for paging, and changed page_string to take a character.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.h,v 1.2 2008/08/14 09:44:36 jps Exp jps $
+d19 1
+d45 3
+@
+
+
+1.2
+log
+@Eliminate the unused keep_internal parameter from page_string.
+@
+text
+@d2 1
+a2 1
+ * $Id: modify.h,v 1.1 2008/08/14 09:39:02 jps Exp jps $
+a22 2
+void page_line(struct char_data *ch, char *str);
+void start_paging(struct char_data *ch);
+d24 8
+a31 1
+extern void page_string(struct descriptor_data *d, char *str);
+a32 2
+extern void add_paging_line(struct descriptor_data *d, char *str);
+extern void start_paging_desc(struct descriptor_data *d);
+d35 1
+d44 3
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ * $Id$
+d26 1
+a26 1
+extern void page_string(struct descriptor_data *d, char *str, int keep_internal);
+d39 4
+a42 1
+ * $Log$
+@

@@ -1,0 +1,458 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.7
+date	2008.05.12.00.42.09;	author jps;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2008.05.11.05.57.16;	author jps;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2008.04.05.17.35.42;	author myc;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2008.04.03.16.09.54;	author jps;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2008.04.03.02.02.05;	author myc;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2008.04.02.03.24.44;	author myc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.03.16.00.22.59;	author jps;	state Exp;
+branches;
+next	;
+
+
+desc
+@Functions that deal with player trophies.
+@
+
+
+1.7
+log
+@Return a float for trophy amounts.
+@
+text
+@/***************************************************************************
+ *  File: players.c                                       Part of FieryMUD *
+ *  Usage: Player loading/saving and utility routines.                     *
+ *                                                                         *
+ *  All rights reserved.  See license for complete information.            *
+ *                                                                         *
+ *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "screen.h"
+#include "players.h"
+#include "trophy.h"
+
+/* init_trophy()
+ *
+ * Creates a player's trophy list.  It creates the doubly-linked list of
+ * trophy nodes, numbering TROPHY_LENGTH.
+ */
+
+void init_trophy(struct char_data *ch)
+{
+   struct trophy_node *node;
+   int i;
+
+   /* Destroy existing trophy list (if any) */
+   free_trophy(ch);
+
+   /* Create trophy list */
+   for (i = 0; i < TROPHY_LENGTH; i++) {
+      CREATE(node, struct trophy_node, 1);
+      if (i == 0) {
+         GET_TROPHY(ch) = node;
+         node->prev = node;
+      } else {
+         node->prev = GET_TROPHY(ch)->prev;
+         GET_TROPHY(ch)->prev = node;
+         node->next = GET_TROPHY(ch);
+         GET_TROPHY(ch) = node;
+      }
+      node->kill_type = TROPHY_NONE;
+   }
+}
+
+void add_trophy(struct char_data *ch, int kill_type, int id, float amount)
+{
+   /* Move head node backwards onto oldest */
+   GET_TROPHY(ch)->prev->next = GET_TROPHY(ch);
+   GET_TROPHY(ch) = GET_TROPHY(ch)->prev;
+   GET_TROPHY(ch)->prev->next = NULL;
+
+   /* Use for this kill */
+   GET_TROPHY(ch)->kill_type = kill_type;
+   GET_TROPHY(ch)->id = id;
+   GET_TROPHY(ch)->amount = amount;
+}
+
+void kill_to_trophy(struct char_data *vict, struct char_data *killer, float amount)
+{
+   int kill_type, id;
+   struct trophy_node *node;
+
+   if (IS_NPC(killer)) {
+      sprintf(buf, "SYSERR: Non-player '%s' (%d) in kill_to_trophy()",
+            GET_NAME(killer), GET_MOB_VNUM(killer));
+      mudlog(buf, NRM, LVL_GOD, TRUE);
+      return;
+   }
+
+   if (IS_MOB(vict)) {
+      id = GET_MOB_VNUM(vict);
+      kill_type = TROPHY_MOBILE;
+   } else if (!IS_NPC(vict)) {
+      id = GET_IDNUM(vict);
+      kill_type = TROPHY_PLAYER;
+   } else
+      return;
+
+   for (node = GET_TROPHY(killer); node; node = node->next)
+      if (node->kill_type == kill_type && node->id == id) {
+         node->amount += amount;
+         return;
+      }
+
+   add_trophy(killer, kill_type, id, amount);
+}
+
+void load_trophy(FILE *file, struct char_data *ch)
+{
+   int kill_type, id;
+   float amount;
+   char line[MAX_INPUT_LENGTH + 1];
+   struct trophy_node *node;
+
+   node = GET_TROPHY(ch);
+   if (!node) {
+      sprintf(buf, "SYSERR: Player %s has no trophy list",
+            GET_NAME(ch));
+      mudlog(buf, NRM, LVL_GOD, TRUE);
+      return;
+   }
+
+   do {
+      get_line(file, line);
+      sscanf(line, "%d %d %f", &kill_type, &id, &amount);
+      if (node && kill_type != TROPHY_NONE) {
+         node->kill_type = kill_type;
+         node->id = id;
+         node->amount = amount;
+         node = node->next;
+      }
+   } while (kill_type != TROPHY_NONE);
+}
+
+void save_trophy(FILE *file, struct char_data *ch)
+{
+   struct trophy_node *node;
+
+   if (GET_TROPHY(ch) && GET_TROPHY(ch)->kill_type) {
+      fprintf(file, "trophy:\n");
+      for (node = GET_TROPHY(ch); node; node = node->next)
+         if (node->kill_type != TROPHY_NONE)
+            fprintf(file, "%d %d %f\n", node->kill_type, node->id, node->amount);
+      fprintf(file, "%d 0 0\n", TROPHY_NONE);
+   }
+}
+
+void free_trophy(struct char_data *ch)
+{
+   struct trophy_node *node, *next_node;
+
+   for (node = GET_TROPHY(ch); node; node = next_node) {
+      next_node = node->next;
+      free(node);
+   }
+
+   GET_TROPHY(ch) = NULL;
+}
+
+void show_trophy(struct char_data *ch, struct char_data *vict)
+{
+   struct trophy_node *node;
+   int id;
+   char *name;
+
+   if (IS_NPC(vict)) {
+      send_to_char("Mobs don't have trophies, genius!\r\n",ch);
+      return;
+   }
+
+   if (!GET_TROPHY(vict) || GET_TROPHY(vict)->kill_type == TROPHY_NONE) {
+      if (ch == vict) {
+         sprintf(buf, "%sYour trophy list is empty.%s\r\n", CLR(ch, FGRN),
+               CLR(ch, ANRM));
+      } else {
+         sprintf(buf, "%s%s's trophy list is empty.%s\r\n", CLR(ch, FGRN),
+               GET_NAME(vict), CLR(ch, ANRM));
+      }
+      send_to_char(buf, ch);
+      return;
+   }
+
+   if (ch == vict)
+      sprintf(buf, "%sYour trophy list is:%s\r\n\r\n", CLR(ch, FGRN),
+            CLR(ch, ANRM));
+   else
+      sprintf(buf, "%s%s's trophy list is:%s\r\n\r\n", CLR(ch, FGRN),
+            GET_NAME(vict), CLR(ch, ANRM));
+   send_to_char(buf, ch);
+
+   sprintf(buf, "%s%sKills       Mobiles%s\r\n",
+      CLR(ch, HRED), CLR(ch, AUND), CLR(ch, ANRM));
+   send_to_char(buf, ch);
+
+   for (node = GET_TROPHY(vict); node; node = node->next) {
+
+      if (node->kill_type == TROPHY_MOBILE) {
+         if ((id = real_mobile(node->id)) == NOBODY)
+            continue;
+         name = mob_proto[id].player.short_descr;
+      }
+      else if (node->kill_type == TROPHY_PLAYER) {
+         if (!(name = get_name_by_id(node->id)))
+            continue;
+      } else
+         continue;
+      sprintf(buf, "%s%6.2f     %s%s%s\r\n",
+              node->amount < 4.99 ? CLR(ch, FYEL) :
+              node->amount < 7.99 ? CLR(ch, HYEL) :
+              CLR(ch, HRED),
+              node->amount, CLR(ch, ANRM), name, CLR(ch, ANRM));
+      send_to_char(buf, ch);
+   }
+}
+
+float get_kills_vnum(struct trophy_node *trophy, int vnum)
+{
+  struct trophy_node *node;
+
+  for (node = trophy; node; node = node->next)
+     if (node->kill_type == TROPHY_MOBILE && node->id == vnum)
+        return node->amount;
+
+  return 0;
+}
+
+float get_kills_id(struct trophy_node *trophy, int id)
+{
+  struct trophy_node *node;
+
+  for (node = trophy; node; node = node->next)
+     if (node->kill_type == TROPHY_PLAYER && node->id == id)
+        return node->amount;
+
+  return 0;
+}
+
+float get_trophy_kills(struct char_data *ch, struct char_data *vict)
+{
+  if (IS_NPC(ch)) return 0;
+
+  if (IS_NPC(vict))
+     return get_kills_vnum(GET_TROPHY(ch), GET_MOB_VNUM(vict));
+  else
+     return get_kills_id(GET_TROPHY(ch), GET_ID(vict));
+}
+
+float exp_trophy_modifier(struct char_data *ch, struct char_data *vict)
+{
+  float amount = get_trophy_kills(ch, vict);
+
+  if (amount < 2.01)
+    return 1.0;
+  else if (amount < 3.01)
+    return 0.95;
+  else if (amount < 5.01)
+    return 0.85;
+  else if (amount < 7.01)
+    return 0.65;
+  else if (amount < 10.01)
+    return 0.45;
+  else
+    return 0.3;
+}
+
+/***************************************************************************
+ * $Log: trophy.c,v $
+ * Revision 1.6  2008/05/11 05:57:16  jps
+ * Split up the kill-querying code and add get_tropy_kills, which is
+ * mostly for debugging.
+ *
+ * Revision 1.5  2008/04/05 17:35:42  myc
+ * Get rid of the syserrs about unknown tag 0 in load_player.
+ *
+ * Revision 1.4  2008/04/03 16:09:54  jps
+ * Stop duplicating the code in free_trophy().
+ *
+ * Revision 1.3  2008/04/03 02:02:05  myc
+ * Upgraded ansi color handling code.
+ *
+ * Revision 1.2  2008/04/02 03:24:44  myc
+ * Moved trophy modifier function here.
+ *
+ * Revision 1.1  2008/03/16 00:22:59  jps
+ * Initial revision
+ *
+ **************************************************************************/
+
+@
+
+
+1.6
+log
+@Split up the kill-querying code and add get_tropy_kills, which is
+mostly for debugging.
+@
+text
+@d202 1
+a202 1
+int get_kills_vnum(struct trophy_node *trophy, int vnum)
+d213 1
+a213 1
+int get_kills_id(struct trophy_node *trophy, int id)
+d254 4
+@
+
+
+1.5
+log
+@Get rid of the syserrs about unknown tag 0 in load_player.
+@
+text
+@d202 12
+a213 1
+float exp_trophy_modifier(struct char_data *ch, struct char_data *vict)
+a214 1
+  float amount = 0;
+d217 20
+a236 14
+  /* Check to see if the victim is in the trophy. */
+  for (node = GET_TROPHY(ch); node; node = node->next)
+    if (node->kill_type == TROPHY_PLAYER) {
+      if (!IS_NPC(vict) && node->id == GET_ID(vict)) {
+        amount = node->amount;
+        break;
+      }
+    }
+    else if (node->kill_type == TROPHY_MOBILE) {
+      if (IS_MOB(vict) && node->id == GET_MOB_VNUM(vict)) {
+        amount = node->amount;
+        break;
+      }
+    }
+d254 3
+@
+
+
+1.4
+log
+@Stop duplicating the code in free_trophy().
+@
+text
+@d112 1
+a112 1
+      if (kill_type != TROPHY_NONE && kill_type != 0) {
+d118 1
+a118 1
+   } while (kill_type != 0 && node);
+d130 1
+a130 1
+      fprintf(file, "0 0 0\n");
+d238 3
+@
+
+
+1.3
+log
+@Upgraded ansi color handling code.
+@
+text
+@d29 1
+a29 1
+   struct trophy_node *node, *next_node;
+d33 1
+a33 5
+   for (node = GET_TROPHY(ch); node; node = next_node) {
+      next_node = node->next;
+      free(node);
+   }
+   GET_TROPHY(ch) = NULL;
+d238 3
+@
+
+
+1.2
+log
+@Moved trophy modifier function here.
+@
+text
+@d163 2
+a164 2
+         sprintf(buf, "%sYour trophy list is empty.%s\r\n", CCGRN(ch, C_NRM),
+               CCNRM(ch, C_NRM));
+d166 2
+a167 2
+         sprintf(buf, "%s%s's trophy list is empty.%s\r\n", CCGRN(ch, C_NRM),
+               GET_NAME(vict), CCNRM(ch, C_NRM));
+d174 2
+a175 2
+      sprintf(buf, "%sYour trophy list is:%s\r\n\r\n", CCGRN(ch, C_NRM),
+            CCNRM(ch, C_NRM));
+d177 2
+a178 2
+      sprintf(buf, "%s%s's trophy list is:%s\r\n\r\n", CCGRN(ch, C_NRM),
+            GET_NAME(vict), CCNRM(ch, C_NRM));
+d181 2
+a182 2
+   sprintf(buf, "%s%s%sKills       Mobiles%s\r\n",
+      CCBLD(ch, C_NRM), CCRED(ch, C_NRM), CCUND(ch, C_NRM), CCNRM(ch, C_NRM));
+d197 5
+a201 4
+      sprintf(buf, "%s%s%6.2f     %s%s%s\r\n",
+              (node->amount < 4.99) ? CCNRM(ch, C_NRM) : CCBLD(ch, C_NRM),
+              (node->amount < 7.99) ? CCYEL(ch, C_NRM) : CCRED(ch, C_NRM),
+              node->amount, CCNRM(ch, C_NRM), name, CCNRM(ch, C_NRM));
+d242 3
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d205 34
+d240 4
+a243 1
+ * $Log$
+@

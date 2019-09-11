@@ -1,0 +1,1323 @@
+head	1.11;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.11
+date	2011.08.18.00.13.14;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2011.03.18.16.34.08;	author mud;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2009.06.09.05.48.39;	author myc;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2009.05.15.00.08.44;	author myc;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2009.05.01.05.29.40;	author myc;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2009.03.20.23.26.26;	author myc;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2009.03.17.09.01.41;	author jps;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2009.03.17.07.59.42;	author jps;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2009.03.17.07.55.37;	author jps;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2009.03.09.20.39.40;	author myc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2009.03.09.03.33.03;	author myc;	state Exp;
+branches;
+next	;
+
+
+desc
+@String functions go here.
+@
+
+
+1.11
+log
+@Fix compiler warnings.
+@
+text
+@/***************************************************************************
+ * $Id: strings.c,v 1.10 2011/03/18 16:34:08 mud Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: strings.c                                      Part of FieryMUD *
+ *  Usage: functions for string management                                 *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "screen.h"
+#include "math.h"
+
+/* str_cmp: a case-insensitive version of strcmp */
+/* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
+/* scan 'till found different or end of both                 */
+int str_cmp(const char *arg1, const char *arg2)
+{
+  int chk, i;
+
+  for (i = 0; *(arg1 + i) || *(arg2 + i); i++)
+    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))) {
+      if (chk < 0)
+        return (-1);
+      else
+        return (1);
+    }
+  return (0);
+}
+
+
+/* strn_cmp: a case-insensitive version of strncmp */
+/* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
+/* scan 'till found different, end of both, or n reached     */
+int strn_cmp(const char *arg1, const char *arg2, int n)
+{
+  int chk, i;
+
+  for (i = 0; (*(arg1 + i) || *(arg2 + i)) && (n > 0); i++, n--)
+    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))) {
+      if (chk < 0)
+        return (-1);
+      else
+        return (1);
+    }
+  return (0);
+}
+
+#ifndef strnlen
+size_t strnlen(register const char *str, register size_t maxlen)
+{
+  const char *end = (const char *) memchr(str, '\0', maxlen);
+  return end ? end - str : maxlen;
+}
+#endif
+
+
+char *strdupf(const char *fmt, ...)
+{
+  char buf[MAX_STRING_LENGTH];
+  va_list args;
+
+  va_start(args, fmt);
+  vsnprintf(buf, sizeof(buf), fmt, args);
+  va_end(args);
+
+  return strdup(buf);
+}
+
+
+void sprintbit(long bitvector, const char *names[], char *result)
+{
+  size_t nr, i;
+  char *orig_pos = result;
+
+  /* Assuming 8 bits to a byte... */
+  for (i = 0, nr = 0; (i < sizeof(bitvector) * 8) && bitvector; ++i) {
+    if (IS_SET(bitvector, (1 << i))) {
+      if (*names[nr] != '\n')
+        strcpy(result, names[nr]);
+      else
+        strcpy(result, "UNDEFINED");
+      result += strlen(result);
+      *(result++) = ' ';
+    }
+    if (*names[nr] != '\n')
+      ++nr;
+  }
+
+  if (orig_pos == result)
+    strcpy(result, "NO BITS");
+  else
+    *result = '\0'; /* Nul terminate */
+}
+
+
+void sprinttype(int type, const char *names[], char *result)
+{
+  int nr = 0;
+
+  while (type && *names[nr] != '\n') {
+    type--;
+    nr++;
+  }
+
+  if (*names[nr] != '\n')
+    strcpy(result, names[nr]);
+  else
+    strcpy(result, "UNDEFINED");
+}
+
+
+void sprintflag(char *result, flagvector flags[], int num_flags, const char *names[])
+{
+  int i, nr = 0;
+  char *orig_pos = result;
+
+  for (i = 0; i < num_flags; ++i) {
+    if (IS_FLAGGED(flags, i)) {
+      if (*names[nr] != '\n')
+        strcpy(result, names[nr]);
+      else
+        strcpy(result, "UNDEFINED");
+      result += strlen(result);
+      *(result++) = ' ';
+    }
+    if (*names[nr] != '\n')
+      ++nr;
+  }
+
+  if (orig_pos == result)
+    strcpy(result, "NO FLAGS");
+  else
+    *(result - 1) = '\0'; /* Nul terminate */
+}
+
+
+int sprintascii(char *out, flagvector bits)
+{
+  int i, j = 0;
+  /* 32 bits, don't just add letters to try to get more unless flagvector is also as large. */
+  char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
+
+  for (i = 0; flags[i]; ++i)
+    if (bits & (1 << i))
+      out[j++] = flags[i];
+
+  if (j == 0) /* Didn't write anything. */
+    out[j++] = '0';
+
+  /* Nul terminate the output string. */
+  out[j++] = '\0';
+  return j;
+}
+
+
+
+#define MAX_STR_TOKENS   50
+#define STR_HASH_BUCKETS 32
+#define VALID_STR_TOKEN(tok) ((tok) >= 0 && (tok) < MAX_STR_TOKENS)
+static struct str_token {
+  char *buf;
+  char *pos;
+  size_t size;
+  str_token next_in_hash;
+} str_data[MAX_STR_TOKENS];
+static int next_str_token = 0;
+static str_token str_hash[STR_HASH_BUCKETS] = { NULL };
+#define STR_HASH(addr)   (((unsigned int) (addr)) % STR_HASH_BUCKETS)
+#define SPACE_USED(tok)  ((tok)->pos - (tok)->buf + 1)
+#define SPACE_LEFT(tok)  ((tok)->size - SPACE_USED(tok))
+
+static void kill_str_token(char *buf)
+{
+  str_token x, tok;
+  for (x = str_hash[STR_HASH(buf)]; x; x = x->next_in_hash) {
+    if (x->buf == buf) {
+      if (x == str_hash[STR_HASH(buf)])
+        str_hash[STR_HASH(buf)] = x->next_in_hash;
+      else
+        for (tok = str_hash[STR_HASH(buf)]; tok && tok->next_in_hash; tok = tok->next_in_hash)
+          if (tok->next_in_hash == x)
+            tok->next_in_hash = x->next_in_hash;
+      break;
+    }
+  }
+}
+
+static str_token new_str_token(char *buf, size_t max_size)
+{
+  str_token tok;
+  str_token new_token = &str_data[(next_str_token++) % MAX_STR_TOKENS];
+
+  kill_str_token(buf);
+  kill_str_token(new_token->buf);
+
+  new_token->buf = buf;
+  new_token->pos = buf;
+  new_token->size = max_size;
+  new_token->next_in_hash = NULL;
+
+  for (tok = str_hash[STR_HASH(buf)]; tok && tok->next_in_hash; tok = tok->next_in_hash);
+  if (tok)
+    tok->next_in_hash = new_token;
+  else
+    str_hash[STR_HASH(buf)] = new_token;
+
+  return new_token;
+}
+
+static str_token find_str_token(char *buf)
+{
+  str_token tok;
+  for (tok = str_hash[STR_HASH(buf)]; tok; tok = tok->next_in_hash)
+    if (tok->buf == buf)
+      return tok;
+  return NULL;
+}
+
+static void str_update(str_token token)
+{
+  if (*token->pos)
+    token->pos += strlen(token->pos);
+}
+
+str_token str_start(char *buf, size_t max_size)
+{
+  *buf = '\0';
+  return new_str_token(buf, max_size);
+}
+
+size_t str_space(char *buf)
+{
+  str_token token = find_str_token(buf);
+  str_update(token);
+  return token ? SPACE_LEFT(token) : 0;
+}
+
+void str_cat(char *buf, const char *str)
+{
+  str_token token = find_str_token(buf);
+
+  if (token) {
+    str_update(token);
+    if (SPACE_LEFT(token) > 0) {
+      /* Using strncat because strncpy is stupid */
+      strncat(token->pos, str, SPACE_LEFT(token));
+      str_update(token);
+    }
+  }
+  else
+    strcat(buf, str);
+}
+
+void strn_cat(char *buf, const char *str, size_t size)
+{
+  str_token token = find_str_token(buf);
+
+  if (token) {
+    str_update(token);
+    if (SPACE_LEFT(token) > 0) {
+      /* Using strncat because strncpy is stupid */
+      strncat(token->pos, str, MIN(SPACE_LEFT(token), size));
+      str_update(token);
+    }
+  }
+  else
+    strncat(buf, str, size);
+}
+
+void str_catf(char *buf, const char *format, ...)
+{
+  va_list args;
+  str_token token = find_str_token(buf);
+  int size;
+
+  va_start(args, format);
+
+  if (token) {
+    str_update(token);
+    if (SPACE_LEFT(token) > 0) {
+      size = vsnprintf(token->pos, SPACE_LEFT(token), format, args);
+      token->pos += (size > SPACE_LEFT(token) ? SPACE_LEFT(token) : size);
+    }
+  }
+  else {
+    buf += strlen(buf);
+    vsprintf(buf, format, args);
+  }
+
+  va_end(args);
+}
+
+void strn_catf(char *buf, size_t size, const char *format, ...)
+{
+  va_list args;
+  str_token token = find_str_token(buf);
+  int printed;
+
+  va_start(args, format);
+
+  if (token) {
+    str_update(token);
+    size = MIN(SPACE_LEFT(token), size);
+    if (size > 0) {
+      printed = vsnprintf(token->pos, size, format, args);
+      token->pos += (printed > size ? size : printed);
+    }
+  }
+  else {
+    buf += strlen(buf);
+    vsnprintf(buf, size, format, args);
+  }
+
+  va_end(args);
+}
+
+char *str_end(char *buf)
+{
+  str_token token = find_str_token(buf);
+  if (!token)
+    return buf + strlen(buf);
+  str_update(token);
+  return token->pos;
+}
+
+static struct {
+  int visited;
+  const char *str;
+  int totallen;
+  const char *ellipsis;
+} __ellipsis =  { (1 << 3) - 1, NULL, 0, 0};
+
+
+const void *ellipsis(const char *str, int maxlen, int mode) {
+
+  if (__ellipsis.visited == (1 << 3) - 1 || __ellipsis.str != str) {
+    int clr, vis, i;
+
+    __ellipsis.visited = 0;
+    __ellipsis.str = str;
+
+    for (vis = clr = 0; *str; ++str) {
+      if (*str == CREL || *str == CABS) {
+        ++str;
+        ++clr;
+        if (*str != CREL && *str != CABS)
+          ++clr;
+        else
+          ++vis;
+      }
+      else
+        ++vis;
+      if (vis > maxlen)
+        break;
+    }
+
+    if (vis > maxlen)
+      for (i = 4; i > 0; --i) {
+        --str;
+        if (*(str - 1) == CREL || *(str - 1) == CABS) {
+          --str;
+          clr -= 2;
+          ++i;
+        }
+      }
+
+    __ellipsis.totallen = clr + (vis <= maxlen ? maxlen : maxlen - 3);
+    __ellipsis.ellipsis = vis > maxlen ? ANRM "..." : ANRM;
+
+  }
+
+  __ellipsis.visited |= mode;
+
+  if (mode == __ELLIPSIS_W1 || mode == __ELLIPSIS_W2)
+    return (void *) __ellipsis.totallen;
+  else if (mode == __ELLIPSIS_E)
+    return __ellipsis.ellipsis;
+  else
+    return 0; /* major error */
+}
+
+/* Return pointer to first occurrence in string ct in */
+/* cs, or NULL if not present.  Case insensitive */
+const char *str_str(const char *cs, const char *ct)
+{
+  const char *s, *t;
+
+  if (!cs || !ct)
+    return NULL;
+
+  while (*cs) {
+    t = ct;
+
+    while (*cs && (LOWER(*cs) != LOWER(*t)))
+      cs++;
+
+    s = cs;
+
+    while (*t && *cs && (LOWER(*cs) == LOWER(*t))) {
+      t++;
+      cs++;
+    }
+
+    if (!*t)
+      return s;
+  }
+
+  return NULL;
+}
+
+
+/***************************************************************************
+ * $Log: strings.c,v $
+ * Revision 1.10  2011/03/18 16:34:08  mud
+ * Replace cast to int with unsigned int to avoid negative index for hash
+ * table lookup.
+ *
+ * Revision 1.9  2009/06/09 05:48:39  myc
+ * Moving a large number of functions from here to text.c.
+ *
+ * Revision 1.8  2009/05/15 00:08:44  myc
+ * Adding some comments.
+ *
+ * Revision 1.7  2009/05/01 05:29:40  myc
+ * Added skip_over and skip_chars functions.  Also adding
+ * fetch_word which does the same thing as any_one_arg, but
+ * with const buffers.
+ *
+ * Revision 1.6  2009/03/20 23:26:26  myc
+ * Add additional static buffer to capitalize()
+ *
+ * Revision 1.5  2009/03/17 09:01:41  jps
+ * Add EOL macro and function capitalize()
+ *
+ * Revision 1.4  2009/03/17 07:59:42  jps
+ * Moved str_str to strings.c
+ *
+ * Revision 1.3  2009/03/17 07:55:37  jps
+ * Moved ellipsis string formatting to strings.c.
+ *
+ * Revision 1.2  2009/03/09 20:39:40  myc
+ * Fix bug in strdupf.
+ *
+ * Revision 1.1  2009/03/09 03:33:03  myc
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.10
+log
+@Replace cast to int with unsigned int to avoid negative index for hash
+table lookup.
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.9 2009/06/09 05:48:39 myc Exp mud $
+d82 1
+a82 1
+  long nr, i;
+d424 4
+@
+
+
+1.9
+log
+@Moving a large number of functions from here to text.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.8 2009/05/15 00:08:44 myc Exp myc $
+d169 1
+a169 1
+#define VALID_STR_TOKEN(tok) ((tok) >= 0 && (tok) < 50)
+d178 1
+a178 1
+#define STR_HASH(addr)   (((int) (addr)) % STR_HASH_BUCKETS)
+d424 3
+@
+
+
+1.8
+log
+@Adding some comments.
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.7 2009/05/01 05:29:40 myc Exp myc $
+a79 11
+void smash_tilde(char *str)
+{
+  /* Erase any _line ending_ tildes inserted in the editor.  The load 
+   * mechanism can't handle those yet. -Welcor */
+  char *p = str;
+  for (; *p; p++)
+    if (*p == '~' && (*(p+1)=='\r' || *(p+1)=='\n' || *(p+1)=='\0'))
+      *p=' ';
+}
+
+
+a165 582
+/* substitute appearances of 'pattern' with 'replacement' in string */
+/* and return the # of replacements or -1 if none were made
+ * due to lack of space */
+int replace_str(char **string, const char *pattern, const char *replacement,
+                int rep_all, int max_size) {
+  char *replace_buffer = NULL;
+  char *flow, *jetsam, temp;
+  int len, i;
+
+  if ((int)((strlen(*string) - strlen(pattern)) + strlen(replacement)) >= max_size)
+    return -1;
+
+  CREATE(replace_buffer, char, max_size + 1);
+  i = 0;
+  jetsam = *string;
+  flow = *string;
+  *replace_buffer = '\0';
+  if (rep_all) {
+    while ((flow = (char *)strstr(flow, pattern)) != NULL) {
+      if ((int)((strlen(replace_buffer) + strlen(jetsam) - strlen(pattern) + strlen(replacement))) > max_size) {
+         i = -1;
+         break;
+      }
+      i++;
+      temp = *flow;
+      *flow = '\0';
+      strcat(replace_buffer, jetsam);
+      strcat(replace_buffer, replacement);
+      *flow = temp;
+      flow += strlen(pattern);
+      jetsam = flow;
+    }
+    strcat(replace_buffer, jetsam);
+  } else {
+    if ((flow = (char *)strstr(*string, pattern)) != NULL) {
+      i++;
+      flow += strlen(pattern);
+      len = ((char *)flow - (char *)*string) - strlen(pattern);
+
+      strncpy(replace_buffer, *string, len);
+      strcat(replace_buffer, replacement);
+      strcat(replace_buffer, flow);
+    }
+  }
+  if (i > 0) {
+    RECREATE(*string, char, strlen(replace_buffer) + 3);
+    strcpy(*string, replace_buffer);
+  }
+  free(replace_buffer);
+  return i;
+}
+
+
+/* re-formats message type formatted char * */
+/* (for strings edited with d->str) (mostly olc and mail)     */
+void format_text(char **ptr_string, int mode, struct descriptor_data *d, int maxlen) {
+  int total_chars, cap_next = TRUE, cap_next_next = FALSE;
+  char *flow, *start = NULL, temp;
+  /* warning: do not edit messages with max_str's of over this value */
+  char formated[MAX_STRING_LENGTH];
+
+  flow   = *ptr_string;
+  if (!flow) return;
+
+  if (IS_SET(mode, FORMAT_INDENT)) {
+    strcpy(formated, "   ");
+    total_chars = 3;
+  }
+  else {
+    *formated = '\0';
+    total_chars = 0;
+  }
+
+  while (*flow != '\0') {
+    while ((*flow == '\n') ||
+           (*flow == '\r') ||
+           (*flow == '\f') ||
+           (*flow == '\t') ||
+           (*flow == '\v') ||
+           (*flow == ' ')) flow++;
+
+    if (*flow != '\0') {
+
+      start = flow++;
+      while ((*flow != '\0') &&
+             (*flow != '\n') &&
+             (*flow != '\r') &&
+             (*flow != '\f') &&
+             (*flow != '\t') &&
+             (*flow != '\v') &&
+             (*flow != ' ') &&
+             (*flow != '.') &&
+             (*flow != '?') &&
+             (*flow != '!')) flow++;
+
+      if (cap_next_next) {
+        cap_next_next = FALSE;
+        cap_next = TRUE;
+      }
+
+      /* this is so that if we stopped on a sentance .. we move off the sentance delim. */
+      while ((*flow == '.') || (*flow == '!') || (*flow == '?')) {
+        cap_next_next = TRUE;
+        flow++;
+      }
+
+      temp = *flow;
+      *flow = '\0';
+
+      if ((total_chars + strlen(start) + 1) > 79) {
+        strcat(formated, "\r\n");
+        total_chars = 0;
+      }
+
+      if (!cap_next) {
+        if (total_chars > 0) {
+          strcat(formated, " ");
+          total_chars++;
+        }
+      }
+      else {
+        cap_next = FALSE;
+        *start = UPPER(*start);
+      }
+
+      total_chars += strlen(start);
+      strcat(formated, start);
+
+      *flow = temp;
+    }
+
+    if (cap_next_next) {
+      if ((total_chars + 3) > 79) {
+        strcat(formated, "\r\n");
+        total_chars = 0;
+      }
+      else {
+        strcat(formated, "  ");
+        total_chars += 2;
+      }
+    }
+  }
+
+  /* Trim trailing spaces, + possible extraneous newline. */
+  flow = formated + strlen(formated) - 1;
+  while (flow > formated && isspace(*flow))
+     *(flow--) = 0;
+
+  strcat(formated, "\r\n");
+
+  if ((int)(strlen(formated)) > maxlen) formated[maxlen] = '\0';
+  RECREATE(*ptr_string, char, MIN(maxlen + 1, strlen(formated)+3));
+  strcpy(*ptr_string, formated);
+}
+
+
+/* strips \r's from line */
+char *stripcr(char *dest, const char *src) {
+  int i, length;
+  char *temp;
+
+  if (!dest || !src) return NULL;
+  temp = &dest[0];
+  length = strlen(src);
+  for (i = 0; *src && (i < length); i++, src++)
+    if (*src != '\r') *(temp++) = *src;
+  *temp = '\0';
+  return dest;
+}
+
+
+/* Returns a duplicate of the next line of text in src, up to the
+ * newline.  Moves src to the beginning of the line after that.
+ * Returns NULL if there is no more text. */
+char *next_line(char **src) {
+   char *l, *s = *src;
+   int len = 0;
+
+   if (!*s) return NULL;
+
+   for (len = 0; *s && *s != '\r' && *s != '\n'; s++, len++);
+
+   l = (char *)malloc(len + 1);
+   memcpy(l, *src, len);
+   l[len] = '\0';
+
+   while (*s && (*s == '\r' || *s == '\n')) s++;
+   *src = s;
+
+   return l;
+}
+
+
+void cap_by_color(char *s) {
+   char *b = s;
+
+   while (*b && (*b == CREL || *b == CABS))
+      b += 2;
+
+   if (*b) *b = UPPER(*b);
+}
+
+
+char *capitalize(char *s) {
+   static char b0[MAX_STRING_LENGTH];
+   static char b1[MAX_STRING_LENGTH];
+   static char b2[MAX_STRING_LENGTH];
+   static char b3[MAX_STRING_LENGTH];
+   static int bptr = 0;
+   char *b = b0;
+
+   if (bptr == 0) {
+      bptr = 1;
+      b = b1;
+   } else if (bptr == 1) {
+      bptr = 2;
+      b = b2;
+   } else if (bptr == 2) {
+      bptr = 3;
+      b = b3;
+   } else {
+      bptr = 0;
+      b = b0;
+   }
+   *b = '\0';
+   strncat(b, s, MAX_STRING_LENGTH - 1);
+   cap_by_color(b);
+   return b;
+}
+
+bool isplural(char *namelist)
+{
+   register char *point;
+
+   for (point = namelist; *point && *point != ' '; point++);
+
+   if (point == namelist || *(point - 1) != 's')
+      return FALSE;
+
+   return TRUE;
+}
+
+
+bool startsvowel(const char *s) {
+   const char *t;
+
+   for (t = s; *s;) {
+      if (*s == CREL || *s == CABS) {
+         s++;
+         if (*s == '\0')
+            return 0;
+         s++;
+      } else if (*s == 'A' || *s == 'a' || *s == 'E' || *s == 'e' ||
+            *s == 'I' || *s == 'i' || *s == 'O' || *s == 'o' ||
+            *s == 'U' || *s == 'u')
+         return 1;
+      else
+         return 0;
+   }
+   return 0;
+
+}
+
+
+/* Return a string that has the given string, with "a " or "an " prepended,
+ * depending on whether the given string starts with a vowel.
+ *
+ * This is intended for short strings like names, which is why we use a
+ * somewhat small buffer.  The returned value should be used immediately
+ * and not modified, as it's a static buffer here.  If the passed string
+ * is too long for the static buffer, the returned string will be truncated.
+ *
+ * We employ some hackery so that you can use it up to THREE (count 'em)
+ * times within the same *printf() call.  That's all you get.
+ */
+
+char *with_indefinite_article(const char *s)
+{
+   static char iabuf1[MAX_STRING_LENGTH];
+   static char iabuf2[MAX_STRING_LENGTH];
+   static char iabuf3[MAX_STRING_LENGTH];
+   static int lastbuf;
+
+   const char *t;
+   char *u, *ret, fcbuf[2];
+   bool isvowel = FALSE;
+
+   /* Choose the static buffer to be used. */
+   if (lastbuf < 0 || lastbuf > 1)
+      lastbuf = 0;
+   else
+      lastbuf++;
+
+   /* Find the first alphabetical character in the string, skipping
+    * ansi codes.  Even though it will skip over spaces here, you should
+    * not pass a string with any leading spaces, because the result will
+    * have too many. */
+   t = s;
+   while (*t && !isalpha(*t)) {
+      if (*t == CREL || *t == CABS) {
+         t++;
+         if (!*t)
+            break;
+      }
+      t++;
+   }
+
+   /* Create a string of length one to pass to strstr(). */
+   if (*t) {
+      fcbuf[0] = *t;
+      fcbuf[1] = '\0';
+      if (strstr("AEIOUaeiou", fcbuf))
+         isvowel = TRUE;
+   }
+
+   /* Construct the returned string.  Start with the article + a space. */
+   switch (lastbuf) {
+      case 0:
+         u = iabuf1;
+         break;
+      case 1:
+         u = iabuf2;
+         break;
+      default:
+         u = iabuf3;
+   }
+   ret = u;
+   *u++ = 'a';
+   if (isvowel)
+      *u++ = 'n';
+   *u++ = ' ';
+
+   /* Append the provided string to the returned string. */
+   t = s;
+   while (*t && u - ret < MAX_STRING_LENGTH - 1)
+      *u++ = *t++;
+   *u = '\0';
+
+   return ret;
+}
+
+
+/* without_article()
+ *
+ * Returns a string which matches the given string, except that any
+ * leading article has been removed.
+ */
+
+const char *without_article(const char *s)
+{
+   /* - end this list with "\n"
+    * - each entry must have a trailing space
+    * - if an entry is the same as the start of another entry,
+    *   then the longer one must come first (e.g., "a pair " must
+    *   come before "a ").
+    */
+   const char *articles[] = {
+      "a pair ",
+      "a ",
+      "an ",
+      "some ",
+      "the ",
+      "\n"
+   };
+
+   int i;
+
+   for (i = 0; articles[i][0] != '\n'; i++) {
+      if (!strncmp(articles[i], s, strlen(articles[i]))) {
+         return s + strlen(articles[i]);
+      }
+   }
+   return s;
+}
+
+
+#define IS_LETTER(c) (isalpha(c))
+#define IS_VOWEL(c) (tolower(c) == 'a' || tolower(c) == 'e' || \
+      tolower(c) == 'i' || tolower(c) == 'o' || \
+      tolower(c) == 'u')
+#define IS_CONSONANT(c) (IS_LETTER(c) && !IS_VOWEL(c))
+
+/* Create a plural of a single word.
+ * You could pass an entire phrase if you wanted.
+ * This function will only look at the last word in the string.
+ */
+const char *word_pluralize(const char *s)
+{
+   static char plbuf[MAX_STRING_LENGTH];
+
+   char *u = plbuf;
+   int len, newlen;
+
+   /* Apply comon rules */
+
+   len = strlen(s);
+   /* We will need to add up to 2 characters on the end */
+   newlen = MIN(MAX_STRING_LENGTH - 3, len);
+   strncpy(u, without_article(s), newlen);
+   u[newlen] = '\0';
+   len = strlen(u);
+
+   /* Single character: add 's (and avoid errors with u[len - 2] below) */
+   if (len < 2) {
+      u[len] = '\'';
+      u[len + 1] = 's';
+      u[len + 2] = '\0';
+      return u;
+   }
+
+   /* Ending in ez or iz: add zes */
+   if ((u[len - 2] == 'e' || u[len - 2] == 'i') && u[len - 1] == 'z') {
+      u[len] = 'z';
+      u[len + 1] = 'e';
+      u[len + 2] = 's';
+      u[len + 3] = '\0';
+      return u;
+   }
+
+   /* Ending in: x, z (except ez or iz, handled above), sh, ss, ch, <C>o, <C>y: add es */
+   if (u[len - 1] == 'x' ||
+         u[len - 1] == 'z' ||
+         (u[len - 2] == 's' && u[len - 1] == 'h') ||
+         (u[len - 2] == 's' && u[len - 1] == 's') ||
+         (u[len - 2] == 'c' && u[len - 1] == 'h') ||
+         (IS_CONSONANT(u[len - 2]) && u[len - 1] == 'o') ||
+         (IS_CONSONANT(u[len - 2]) && u[len - 1] == 'y')
+         ) {
+      u[len] = 'e';
+      u[len + 1] = 's';
+      u[len + 2] = '\0';
+      if (u[len - 1] == 'y') u[len - 1] = 'i'; /* -y = -ies */
+      return u;
+   }
+
+   /* Other: add s */
+   u[len] = 's';
+   u[len + 1] = '\0';
+   return u;
+}
+
+const char *pluralize(const char *s)
+{
+   static char plbuf1[MAX_STRING_LENGTH];
+   static char plbuf2[MAX_STRING_LENGTH];
+   static char plbuf3[MAX_STRING_LENGTH];
+   static int lastbuf;
+
+   char *u;
+   const char *word;
+   int i, spaces, spacepos[2], newlen;
+
+   /* Choose the static buffer to be used. */
+   if (lastbuf < 0 || lastbuf > 1)
+      lastbuf = 0;
+   else
+      lastbuf++;
+
+   switch (lastbuf) {
+      case 0:
+         u = plbuf1;
+         break;
+      case 1:
+         u = plbuf2;
+         break;
+      default:
+         u = plbuf3;
+   }
+
+   /* Begin analyzing the given string */
+
+   /* First deal with "some" */
+   if (!strncmp("some ", s, strlen("some "))) {
+      sprintf(u, "quantities of %s", s + strlen("some "));
+      return u;
+   }
+
+   /* Then look for "<article> <name> OF <...>" */
+   spaces = 0;
+   for (i = 0; i < MAX_STRING_LENGTH && spaces < 2 && s[i]; i++) {
+      if (s[i] == ' ') {
+         spacepos[spaces] = i;
+         spaces++;
+      }
+   }
+   if (spaces == 2 &&
+         s[i - 1] == ' ' &&
+         s[i] == 'o' && s[i + 1] == 'f' &&
+         s[i + 2] == ' ') {
+      /* We have <article> <name> OF */
+      /* Such as "a handful of sand" */
+      strncpy(u, s + spacepos[0] + 1, spacepos[1] - spacepos[0] - 1); /* "handful" */
+      u[spacepos[1] - spacepos[0] - 1] = '\0';
+      word = word_pluralize(u); /* "handfuls" */
+      sprintf(u, "%s %s", word, s + spacepos[1] + 1); /* "handfuls of sand" */
+      return u;
+      /* "a ring of fire" -> "rings of fire" */
+   }
+
+   /* Finally just apply common rules */
+   word = word_pluralize(s);
+   newlen = MIN(MAX_STRING_LENGTH - 1, strlen(word));
+   strncpy(u, word, newlen);
+   u[newlen] = '\0';
+   return u;
+}
+
+
+int levenshtein_distance(const char *s1, const char *s2)
+{
+  int s1_len = strlen(s1), s2_len = strlen(s2);
+  int **d, i, j;
+
+  CREATE(d, int *, s1_len + 1);
+
+  for (i = 0; i <= s1_len; ++i) {
+    CREATE(d[i], int, s2_len + 1);
+    d[i][0] = i;
+  }
+
+  for (j = 0; j <= s2_len; ++j)
+    d[0][j] = j;
+
+  for (i = 1; i <= s1_len; ++i)
+    for (j = 1; j <= s2_len; ++j)
+      d[i][j] = MIN(d[i - 1][j] + 1, MIN(d[i][j - 1] + 1,
+      d[i - 1][j - 1] + ((s1[i - 1] == s2[j - 1]) ? 0 : 1)));
+
+  i = d[s1_len][s2_len];
+
+  for (j = 0; j <= s1_len; ++j)
+    free(d[j]);
+  free(d);
+
+  return i;
+}
+
+
+/*
+ * This trims spaces in place, shifting the string to the left if necessary.
+ */
+void trim_spaces(char *buffer)
+{
+  char *pos;
+
+  if (!buffer)
+    return;
+
+  /* Trim leading spaces */
+  if (isspace(*buffer)) {
+    char *wpos = buffer;
+    pos = buffer;
+    while (isspace(*pos)) ++pos;
+    while (*pos) *(wpos++) = *(pos++);
+    *wpos = '\0';
+  }
+
+  /* Trim trailing spaces */
+  pos = buffer + strlen(buffer) - 1;
+  while (pos > buffer && isspace(*pos))
+    *(pos--) = '\0';
+}
+
+
+char *strip_chars(char *str, const char *chars)
+{
+  return filter_chars(str, str, chars);
+}
+
+char *filter_chars(char *buf, register const char *src, const char *chars)
+{
+  register char *dest = buf;
+
+  while ((*dest = *src)) {
+    if (!strchr(chars, *dest))
+      ++dest;
+    ++src;
+  }
+
+  return buf;
+}
+
+a421 44
+/*
+ * Takes a pointer to a const string, then skips over any and all 
+ * characters contained in the skip string.  Returns a pointer to
+ * the first character not contained in the skip string.
+ */
+const char *skip_over(const char *string, const char *skip)
+{
+  while (*string && strchr(skip, *string))
+    ++string;
+  return string;
+}
+
+/*
+ * Takes a pointer to a const string, then skips over every
+ * character in the string equal to the skip character.  Returns
+ * a pointer to the first character not equal to the skip character.
+ */
+const char *skip_chars(const char *string, char skip)
+{
+  while (*string && *string == skip)
+    ++string;
+  return string;
+}
+
+/*
+ * Gets the first word from the input string and copies it to
+ * the specified buffer.  Skips any initial whitespace.  Returns
+ * a pointer to the first character after the first word.
+ * Similar to any_one_arg, but takes a const input string and
+ * returns a similarly const pointer.
+ */
+const char *fetch_word(const char *string, char *buf, size_t buf_space)
+{
+  skip_over(string, WHITESPACE);
+
+  while (*string && !strchr(WHITESPACE, *string) && --buf_space > 0)
+    *(buf++) = *(string++);
+
+  *buf = '\0';
+
+  return string;
+}
+
+
+d424 3
+@
+
+
+1.7
+log
+@Added skip_over and skip_chars functions.  Also adding
+fetch_word which does the same thing as any_one_arg, but
+with const buffers.
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.6 2009/03/20 23:26:26 myc Exp myc $
+d1015 5
+d1027 5
+d1039 8
+a1046 1
+const char *fetch_word(const char *string, char *buf, size_t space)
+d1050 1
+a1050 1
+  while (*string && !strchr(WHITESPACE, *string) && --space > 0)
+d1061 5
+@
+
+
+1.6
+log
+@Add additional static buffer to capitalize()
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.5 2009/03/17 09:01:41 jps Exp myc $
+d1015 26
+d1044 3
+@
+
+
+1.5
+log
+@Add EOL macro and function capitalize()
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.4 2009/03/17 07:59:42 jps Exp jps $
+d384 1
+d394 3
+d401 2
+a402 1
+   strncpy(b, s, MAX_STRING_LENGTH - 1);
+d1018 3
+@
+
+
+1.4
+log
+@Moved str_str to strings.c
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.3 2009/03/17 07:55:37 jps Exp jps $
+d380 22
+d1013 3
+@
+
+
+1.3
+log
+@Moved ellipsis string formatting to strings.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.2 2009/03/09 20:39:40 myc Exp jps $
+d958 29
+d991 3
+@
+
+
+1.2
+log
+@Fix bug in strdupf.
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v 1.1 2009/03/09 03:33:03 myc Exp myc $
+d902 57
+d962 3
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ * $Id: strings.c,v $
+d76 1
+a76 1
+  return strdup(fmt);
+d905 3
+@

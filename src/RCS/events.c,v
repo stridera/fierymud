@@ -1,0 +1,2763 @@
+head	1.50;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.50
+date	2011.08.06.15.42.45;	author rsd;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2009.03.19.23.16.23;	author myc;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2009.02.11.17.03.39;	author myc;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2008.09.26.09.39.21;	author jps;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2008.09.26.09.23.33;	author jps;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2008.09.21.21.20.53;	author jps;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2008.09.21.21.15.45;	author jps;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2008.09.21.20.40.40;	author jps;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2008.09.14.03.52.36;	author jps;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2008.09.07.01.29.29;	author jps;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2008.08.29.04.16.26;	author myc;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2008.06.21.09.01.13;	author myc;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2008.06.20.20.21.57;	author jps;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2008.05.18.20.16.11;	author jps;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2008.05.18.05.18.06;	author jps;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2008.05.17.22.03.01;	author jps;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2008.05.17.04.32.25;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2008.05.14.05.10.19;	author jps;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2008.05.11.05.49.12;	author jps;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2008.04.14.05.11.40;	author jps;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2008.04.07.03.02.54;	author jps;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2008.04.05.21.42.32;	author jps;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2008.04.05.20.43.12;	author jps;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2008.04.04.06.12.52;	author myc;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2008.04.02.03.24.44;	author myc;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2008.03.10.20.46.55;	author myc;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2008.03.07.21.21.57;	author myc;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2008.02.09.21.07.50;	author myc;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2008.02.09.18.29.11;	author myc;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.01.30.19.20.57;	author myc;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.01.28.02.38.37;	author jps;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.01.27.21.09.12;	author myc;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.01.26.12.29.02;	author jps;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.01.16.04.12.00;	author myc;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.01.09.04.14.46;	author jps;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.01.09.01.52.14;	author jps;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.01.04.04.31.13;	author jps;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2008.01.01.07.32.56;	author jps;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2007.12.25.05.41.49;	author jps;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2000.11.21.04.49.28;	author rsd;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.02.08.23.01.47;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.31.02.16.56;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.30;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ************************************************************************
+*  File: events.c                                                         *
+*                                                                         *
+*  Usage: Contains routines to handle events                              *
+*                                                                         *
+*  Written by Eric Green (ejg3@@cornell.edu)                               *
+*                                                                         *
+*  Changes:                                                               *
+*      3/6/98 ejg:  Changed event_process to check return value on the    *
+*                   event function.  If > 0, reenqueue to expire in       *
+*                   retval time.                                          *
+*                   Added check in event_cancel to make sure event_obj    *
+*                   is non-NULL.                                          *
+*                   Moved struct event definition from events.h.          *
+************************************************************************ */
+
+#include "conf.h"
+#include "sysdep.h"
+
+
+#include "structs.h"
+#include "utils.h"
+#include "queue.h"
+#include "events.h"
+
+
+extern struct char_data *character_list;
+
+struct event {
+  EVENTFUNC(*func);
+  void *event_obj;
+  struct q_element *q_el;
+};
+
+
+struct queue *event_q;          /* the event queue */
+
+
+/* external variables */
+extern unsigned long pulse;
+
+
+/* initializes the event queue */
+void event_init(void)
+{
+  event_q = queue_init();
+}
+
+
+/* creates an event and returns it */
+struct event *event_create(EVENTFUNC(*func), void *event_obj, long when)
+{
+  struct event *new_event;
+
+  if (when < 1) /* make sure its in the future */
+    when = 1;
+
+  CREATE(new_event, struct event, 1);
+  new_event->func = func;
+  new_event->event_obj = event_obj;
+  new_event->q_el = queue_enq(event_q, new_event, when + pulse);
+
+  return new_event;
+}
+
+
+/* removes the event from the system */
+void event_cancel(struct event *event)
+{
+  if (!event) {
+    log("SYSERR:  Attempted to cancle a NULL event");
+    return;
+  }
+
+  queue_deq(event_q, event->q_el);
+
+  if (event->event_obj)
+    free(event->event_obj);
+  free(event);
+}
+
+
+/* Process any events whose time has come. */
+void event_process(void)
+{
+  struct event *the_event;
+  long new_time;
+
+  while ((long) pulse >= queue_key(event_q)) {
+    if (!(the_event = (struct event *) queue_head(event_q))) {
+      log("SYSERR: Attempt to get a NULL event");
+      return;
+    }
+
+    /* call event func, reenqueue event if retval > 0 */
+    if ((new_time = (the_event->func)(the_event->event_obj)) > 0)
+      the_event->q_el = queue_enq(event_q, the_event, new_time + pulse);
+    else
+      free(the_event);
+  }
+}
+
+
+/* returns the time remaining before the event */
+long event_time(struct event *event)
+{
+  long when;
+
+  when = queue_elmt_key(event->q_el);
+
+  return (when - pulse);
+}
+
+
+/* frees all events in the queue */
+void event_free_all(void)
+{
+  struct event *the_event;
+
+  while ((the_event = (struct event *) queue_head(event_q))) {
+    if (the_event->event_obj)
+      free(the_event->event_obj);
+    free(the_event);
+  }
+
+  queue_free(event_q);
+}
+
+/* should be removed eventually so that event lists are attached to
+ *  char_data struct and removed form queue when the character is removed
+ * check to make sure the target of any timed event is still valid */
+bool event_target_valid(void *target)
+{
+  /* currently used for char_data strcts...will have to rewrite in C++ to allow
+   * structure size checking later for objects etc... */
+  struct char_data *current = 0;
+  struct char_data *ch = (struct char_data *) target;
+
+  for(current = character_list; current; current = current->next)
+  {
+    /* loop through current valid players and see if the ADDRESS of the valid player
+     * is the same as the event target...if it is, then we have a valid target.
+    */
+    if(ch == current)
+      return TRUE;
+    else
+      continue;
+  }
+
+  /* no valid target found...return; */
+  return FALSE;
+}
+@
+
+
+1.50
+log
+@fixed - warning: format not a string literal and no format arguments
+@
+text
+@/***************************************************************************
+ * $Id: events.c,v 1.49 2009/03/19 23:16:23 myc Exp $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: events.c                                      Part of FieryMUD  *
+ *  Usage: Contains routines to handle events                              *
+ *     By: Eric Green (ejg3@@cornell.edu)                                   *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "utils.h"
+#include "queue.h"
+#include "events.h"
+#include "casting.h"
+#include "handler.h"
+#include "comm.h"
+#include "skills.h"
+#include "db.h"
+#include "constants.h"
+#include "math.h"
+#include "dg_scripts.h"
+#include "screen.h"
+#include "regen.h"
+#include "fight.h"
+#include "movement.h"
+#include "interpreter.h"
+
+/* external variables */
+extern unsigned long pulse;
+
+struct queue *event_q;          /* the event queue */
+int processing_events = FALSE;
+
+const char *eventnames[MAX_EVENT + 1] =
+{
+  "!INVALID EVENT!",  /* 0 - reserved */
+  "autodouse",        /* 1 */
+  "camp",
+  "hurt",
+  "mob_quit",
+  "name_timeout",     /* 5 */
+  "recall",
+  "room_undo",
+  "spell",
+  "track",
+  "trigger_wait",     /* 10 */
+  "sink_and_lose",
+  "battle_paralysis",
+  "casting",
+  "regen_hp",
+  "regen_mana",       /* 15 */
+  "regen_move",
+  "memming",
+  "scribing",
+  "quick_aggro",
+  "die",              /* 20 */
+  "rage",
+  "extract",
+  "gravity",
+  "cooldown",
+  "fullpurge",        /* 25 */
+  "overweight",
+  "falltoground",
+  "command",
+  "start_editor",
+  "get_money",        /* 30 */
+  "\n"
+};
+
+/*************************************************************************/
+/*                        EVENT UTILITY FUNCTIONS                        */
+/*************************************************************************/
+
+bool char_has_event(struct char_data *ch, int eventtype)
+{
+   struct event *e;
+
+   for (e = ch->events; e; e = e->next)
+      if (e->num == eventtype)
+         return TRUE;
+   return FALSE;
+}
+
+bool char_has_delayed_command(struct char_data *ch, const char *command)
+{
+   struct event *e;
+
+   for (e = ch->events; e; e = e->next)
+      if (e->num == EVENT_COMMAND && e->event_obj &&
+            !strcmp(command, ((struct command_event_data *)(e->event_obj))->cmd))
+         return TRUE;
+   return FALSE;
+}
+
+/*************************************************************************/
+/*                            EVENT HANDLERS                             */
+/*************************************************************************/
+
+/* BATTLE_PARALYSIS
+ *
+ * Someone has experienced a paralyzing event in battle.
+ *
+ * This is handled as an event, because if you set any paralysis flag in
+ * the middle of a combat round, other offensive occurrences during that
+ * round might remove the flag right away.
+ */
+
+EVENTFUNC(battle_paralysis_handler)
+{
+   struct effect eff;
+   struct char_data *vict = ((struct generic_event_data *)event_obj)->vict;
+
+   if (FIGHTING(vict))
+      stop_fighting(vict);
+   stop_attackers(vict);
+
+   memset(&eff, 0, sizeof(eff));
+   eff.type = SPELL_MINOR_PARALYSIS;
+   eff.modifier = 0;
+   eff.location = 0;
+   eff.duration = 2;
+   SET_FLAG(eff.flags, EFF_MINOR_PARALYSIS);
+   effect_to_char(vict, &eff);
+
+   return EVENT_FINISHED;
+}
+
+/* CASTING
+ *
+ * Someone's casting a spell.  They might finish now, or this event might
+ * be re-queued to let them cast some more.
+ */
+
+EVENTFUNC(casting_handler)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+   struct obj_data *obj;
+   int i;
+   char castbuf[256];
+   int tar_invalid = FALSE, found = FALSE;
+
+   void abort_casting(struct char_data *ch);
+   void complete_spell(struct char_data *ch);
+
+   if (!CASTING(ch))
+      return EVENT_FINISHED;
+
+   /* Prevent player casting loops */
+   if (!IS_SPELL(ch->casting.spell)) {
+      STOP_CASTING(ch);
+      sprintf(castbuf, "SYSERR: removed casting loop on %s", GET_NAME(ch));
+      log("%s", castbuf);
+      return EVENT_FINISHED;
+   }
+
+   /* Check to make sure target is still valid! */
+   if (ch->casting.obj) { /* target is object */
+      switch (ch->casting.target_status) {
+         case TARGET_IN_ROOM:
+            if (ch->casting.obj->in_room != ch->in_room)
+               tar_invalid = TRUE;
+            break;
+         case TARGET_IN_WORLD:
+            break;
+         case TARGET_IN_INV:
+            for (obj = ch->carrying; obj; obj = obj->next_content)
+               if (ch->casting.obj == obj)
+                  found = TRUE;
+            if (!found)
+               tar_invalid=TRUE;
+            break;
+         case TARGET_EQUIP:
+            for (i = 0; i < NUM_WEARS; ++i)
+               if (ch->casting.obj == ch->equipment[i])
+                  found = TRUE;
+            if (!found)
+               tar_invalid=TRUE;
+            break;
+         default:
+            sprintf(castbuf, "SYSERR: Error in casting_handler() at obj valid check for spell %d.", ch->casting.spell);
+            log("%s", castbuf);
+      }
+   } else if (ch->casting.tch) { /* target is a char */
+      switch (ch->casting.target_status) {
+         case TARGET_IN_ROOM:
+            if (ch->casting.tch->in_room != ch->in_room)
+               tar_invalid = TRUE;
+            break;
+         case TARGET_IN_WORLD:
+            break;
+         case TARGET_FIGHTING:
+            if (!FIGHTING(ch) || ch->casting.tch != FIGHTING(ch))
+               tar_invalid = TRUE;
+            break;
+         case TARGET_SELF:
+            break;
+         default:
+            sprintf(castbuf, "SYSERR: Error in casting_handler() at char valid check for spell %d.", ch->casting.spell);
+            log("%s", castbuf);
+      }
+   }
+
+   if (tar_invalid) {
+     abort_casting(ch);
+     return EVENT_FINISHED;
+   }
+
+   /* Finished yet? */
+   if (ch->casting.casting_time <= 0) {
+      STOP_CASTING(ch);
+      complete_spell(ch);
+      return EVENT_FINISHED;
+   } else {
+      sprintf(castbuf, "Casting: %s ", skill_name(ch->casting.spell));
+
+      for (i = 1; i <= ch->casting.casting_time; i += 2)
+         strcat(castbuf, "*");
+      strcat(castbuf, "\r\n");
+      send_to_char(castbuf, ch);
+   }
+
+   ch->casting.casting_time -= 2;
+
+   /* The time between casting updates can vary by +/- 2 ticks. */
+   return PULSE_VIOLENCE / 2 - 2 + number(0, 4);
+}
+
+/* Yep, you're gonna die.
+ *
+ * In order to be able to interact with the data structure of a doomed
+ * character as it dies, we delay the actual death with an event.
+ *
+ * This is the ONLY place in the entire server that should call perform_die().
+ */
+
+EVENTFUNC(die_event)
+{
+   struct char_data *ch = ((struct generic_event_data *)event_obj)->ch;
+   struct char_data *killer = ((struct generic_event_data *)event_obj)->vict;
+
+   if (event_target_valid(killer))
+      perform_die(ch, killer);
+   else
+      perform_die(ch, 0);
+
+   return EVENT_FINISHED;
+}
+
+/* Hurt
+ *
+ * You're going to receive damage.  To the hit points.  You might die.
+ */
+
+EVENTFUNC(hurt_event)
+{
+   struct char_data *victim = ((struct hurt_event_data *)event_obj)->victim;
+   struct char_data *attacker = ((struct hurt_event_data *)event_obj)->attacker;
+   int dam = ((struct hurt_event_data *)event_obj)->damage;
+
+   hurt_char(victim, attacker, dam, TRUE);
+   return EVENT_FINISHED;
+}
+
+
+/* Extract
+ *
+ * Extracts a mob from the game.
+ */
+
+EVENTFUNC(extract_event)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+
+   extract_char(ch);
+
+   return EVENT_FINISHED;
+}
+
+
+void sethurtevent(struct char_data *ch, struct char_data *vict, int dam)
+{
+   struct hurt_event_data *he;
+
+   CREATE(he, struct hurt_event_data, 1);
+   he->victim = vict;
+   he->attacker = ch;
+   he->damage = dam;
+   event_create(EVENT_HURT, hurt_event, he, TRUE, &(vict->events), 0);
+}
+
+/* Fullpurge
+ *
+ * Extracts a mob from the game and its objects, too.
+ */
+
+void fullpurge_char(struct char_data *ch)
+{
+   event_create(EVENT_FULLPURGE, fullpurge_event,
+      ch, FALSE, &(ch->events), 0);
+}
+
+EVENTFUNC(fullpurge_event)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+   void purge_objs(struct char_data *ch);
+
+   purge_objs(ch);
+   extract_char(ch);
+
+   return EVENT_FINISHED;
+}
+
+void overweight_check(struct char_data *ch) {
+   if (GET_POS(ch) == POS_FLYING && too_heavy_to_fly(ch) && !EVENT_FLAGGED(ch, EVENT_OVERWEIGHT))
+      event_create(EVENT_OVERWEIGHT, overweight_event,
+         ch, FALSE, &(ch->events), 0);
+}
+
+EVENTFUNC(overweight_event)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+
+   /* Prerequisites:
+    * - you are flying
+    * - you are too heavy to fly
+    */
+   if (affected_by_spell(ch, SPELL_FLY))
+      cprintf(ch, "The spell supporting you falters, unable to bear your weight!\r\n");
+   else
+      cprintf(ch, "You cannot fly with so much weight!\r\n");
+   if (SECT(IN_ROOM(ch)) == SECT_AIR) {
+      alter_pos(ch, POS_STANDING, GET_STANCE(ch));
+   } else {
+      if (IS_SPLASHY(IN_ROOM(ch))) {
+         cprintf(ch, "You fall into the water with a splash!\r\n");
+         act("$n falls into the water with a splash.", FALSE, ch, 0, 0, TO_ROOM);
+      } else {
+         cprintf(ch, "You fall down!\r\n");
+         act("$n falls to the ground!", FALSE, ch, 0, 0, TO_ROOM);
+      }
+      alter_pos(ch, POS_SITTING, GET_STANCE(ch));
+   }
+
+   return EVENT_FINISHED;
+}
+
+EVENTFUNC(falltoground_event)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+   /* Prerequisites:
+    *  - Your position is POS_FLYING
+    *  - You do not have EFF_FLY
+    *  - You are not in an air room
+    *
+    * You just lost fly, maybe from the spell wearing off or from removing
+    * a piece of equipment that conferred fly. You were flying in an ordinary
+    * room. You will fall to the ground. */
+
+   if (IS_SPLASHY(IN_ROOM(ch))) {
+      cprintf(ch, "You fall into the water with a splash!\r\n");
+      act("$n falls into the water with a splash.", FALSE, ch, 0, 0, TO_ROOM);
+   } else {
+      cprintf(ch, "You fall to the ground.\r\n");
+      act("$n falls to the ground.", FALSE, ch, 0, 0, TO_ROOM);
+   }
+   alter_pos(ch, POS_STANDING, GET_STANCE(ch));
+   REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_FALLTOGROUND);
+
+   return EVENT_FINISHED;
+}
+
+
+void delayed_command(struct char_data *ch, char *command, int delay, bool repeatable)
+{
+   struct command_event_data *ce;
+
+   if (!repeatable && char_has_delayed_command(ch, command))
+      return;
+
+   CREATE(ce, struct command_event_data, 1);
+   ce->ch = ch;
+   ce->cmd = strdup(command);
+   event_create(EVENT_COMMAND, command_event, ce, TRUE, &(ch->events), delay);
+}
+
+void free_command_event_data(void *e)
+{
+   free(((struct command_event_data *)e)->cmd);
+   free(e);
+}
+
+EVENTFUNC(command_event)
+{
+   struct command_event_data *ce = (struct command_event_data *) event_obj;
+
+   command_interpreter(ce->ch, ce->cmd);
+
+   return EVENT_FINISHED;
+}
+
+/*************************************************************************/
+/*                         EVENT INFRASTRUCTURE                          */
+/*************************************************************************/
+
+/* initializes the event queue */
+void event_init(void)
+{
+  event_q = queue_init();
+}
+
+
+/* creates an event and returns it */
+struct event *event_create(int eventnum, EVENTFUNC(*func), void *event_obj,
+      bool free_obj, struct event **list, long when)
+{
+  struct event *new_event;
+
+  CREATE(new_event, struct event, 1);
+  new_event->num = eventnum;
+  new_event->func = func;
+  new_event->event_obj = event_obj;
+  new_event->free_obj = free_obj;
+  new_event->q_el = queue_enq(event_q, new_event, when + pulse);
+
+  /* Add this event to the provided event list (if any) */
+  if (list) {
+     new_event->eventlist = list;
+     if (*list)
+        new_event->next = *list;
+     *list = new_event;
+  }
+
+  return new_event;
+}
+
+/* Frees an event obj */
+void free_event_obj(struct event *event) {
+   if (event->event_obj) {
+      if (event->num == EVENT_COMMAND)
+         free_command_event_data(event->event_obj);
+       else
+         free(event->event_obj);
+       event->event_obj = NULL;
+  }
+}
+
+/* removes the event from the system */
+void event_cancel(struct event *event)
+{
+  struct event *temp;
+
+  if (!event) {
+    log("SYSERR:  Attempted to cancel a NULL event");
+    return;
+  }
+
+  if (event->num == EVENT_GRAVITY)
+     printf("DELETING GRAVITY EVENT\n");
+  queue_deq(event_q, event->q_el);
+
+  /* Remove it from its event list (if any) */
+  if (event->eventlist) {
+    REMOVE_FROM_LIST(event, *(event->eventlist), next);
+  }
+
+  if (event->free_obj && event->event_obj)
+     free_event_obj(event);
+  free(event);
+}
+
+/* removes an event based on type */
+void cancel_event(struct event *eventlist, int eventtype)
+{
+   while (eventlist && eventlist->num != eventtype)
+     eventlist = eventlist->next;
+   if (eventlist) event_cancel(eventlist);
+}
+
+
+/* Process any events whose time has come. */
+void event_process(void)
+{
+  struct event *the_event, *temp;
+  struct event **list;
+  long new_time;
+
+  while ((long) pulse >= queue_key(event_q)) {
+    if (!(the_event = (struct event *) queue_head(event_q))) {
+      log("SYSERR: Attempt to get a NULL event");
+      return;
+    }
+
+    /* Remove this event from any eventlist it may be in, now.
+     * Then the event will not be in any list during its execution, which
+     * occurs next. Therefore, the object/character whose list this event
+     * is in may be destroyed during the event without adverse consequences. */
+    if (the_event->eventlist) {
+      list = the_event->eventlist;
+      REMOVE_FROM_LIST(the_event, *(the_event->eventlist), next);
+    } else {
+      list = NULL;
+    }
+
+    /* call event func, reenqueue event if retval > 0 */
+    if ((new_time = (the_event->func)(the_event->event_obj)) > 0) {
+      the_event->q_el = queue_enq(event_q, the_event, new_time + pulse);
+      /* Re-add it to the list. */
+      if (list) {
+         the_event->eventlist = list;
+         if (*list)
+            the_event->next = *list;
+         *list = the_event;
+      }
+    } else {
+      if ((the_event->free_obj && new_time != EVENT_PREVENT_FREE_OBJ) ||
+          new_time == EVENT_FORCE_FREE_OBJ)
+        free_event_obj(the_event);
+      free(the_event);
+    }
+  }
+}
+
+
+/* returns the time remaining before the event */
+long event_time(struct event *event)
+{
+  long when;
+
+  when = queue_elmt_key(event->q_el);
+
+  return (when - pulse);
+}
+
+
+/* frees all events in the queue */
+void event_free_all(void)
+{
+  struct event *the_event;
+
+  while ((the_event = (struct event *) queue_head(event_q))) {
+    if (the_event->free_obj && the_event->event_obj)
+      free_event_obj(the_event);
+    free(the_event);
+  }
+
+  queue_free(event_q);
+}
+
+/* Cancel all events in a list. Probably because the character or object
+ * that owns the list is being extracted. */
+void cancel_event_list(struct event **list)
+{
+   struct event *e, *next_e;
+
+   e = *list;
+   while (e) {
+      next_e = e->next;
+      e->next = NULL;
+      e->eventlist = NULL; /* Prevents cancel_event() from messing with the list */
+      event_cancel(e);
+      e = next_e;
+   }
+   *list = NULL;
+}
+
+/* should be removed eventually so that event lists are attached to
+ *  char_data struct and removed form queue when the character is removed
+ * check to make sure the target of any timed event is still valid */
+bool event_target_valid(struct char_data *ch)
+{
+  struct char_data *current = NULL;
+
+  for (current = character_list; current; current = current->next) {
+      /* loop through current valid players and see if the ADDRESS of the valid player
+       * is the same as the event target...if it is, then we have a valid target.
+       */
+      if (ch == current)
+        return TRUE;
+    }
+
+  /* no valid target found...return; */
+  return FALSE;
+}
+
+const char *eventname(struct event *e)
+{
+   if (e->num < 1 || e->num > MAX_EVENT)
+      return eventnames[0];
+   return eventnames[e->num];
+}
+
+struct generic_event_data *mkgenericevent(struct char_data *ch, struct char_data *vict,
+      struct obj_data *obj)
+{
+   struct generic_event_data *d;
+
+   CREATE(d, struct generic_event_data, 1);
+   d->ch = ch;
+   d->vict = vict;
+   d->obj = obj;
+   return d;
+}
+
+/***************************************************************************
+ * $Log: events.c,v $
+ * Revision 1.49  2009/03/19 23:16:23  myc
+ * Added an event to extract money.
+ *
+ * Revision 1.48  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.47  2009/02/11 17:03:39  myc
+ * Adding start_editor event.
+ *
+ * Revision 1.46  2008/09/26 09:39:21  jps
+ * Removing core drops for quick aggro events.
+ *
+ * Revision 1.45  2008/09/26 09:23:33  jps
+ * Add debugging for the first 3 quick aggro events.
+ *
+ * Revision 1.44  2008/09/21 21:20:53  jps
+ * Remove debugging syslog message.
+ *
+ * Revision 1.43  2008/09/21 21:15:45  jps
+ * Add functions to determine whether a character has a particular event or command.
+ * delayed_command() takes a parameter that indicates whether it's ok for this
+ * command to be in a character's event list multiple times.
+ *
+ * Revision 1.42  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.41  2008/09/14 03:52:36  jps
+ * Added command event. Made a function for freeing event objs.
+ *
+ * Revision 1.40  2008/09/07 01:29:29  jps
+ * Add events for falling while overweight, or for falling to the ground
+ * in the same room when you lose fly.
+ *
+ * Revision 1.39  2008/08/29 04:16:26  myc
+ * Moved all gravity functions directly to act.movement.c so that
+ * we don't need a reference to act.h in this file.  The events
+ * implementation really doesn't belong mixed up with the events
+ * system subscribers.
+ *
+ * Revision 1.38  2008/06/21 09:01:13  myc
+ * Improve casting error message.
+ *
+ * Revision 1.37  2008/06/20 20:21:57  jps
+ * Added the fullpurge event.
+ *
+ * Revision 1.36  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.35  2008/05/18 05:18:06  jps
+ * Renaming room_data struct's member "number" to "vnum", cos it's
+ * a virtual number.
+ *
+ * Revision 1.34  2008/05/17 22:03:01  jps
+ * Moving room-related code into rooms.h and rooms.c.
+ *
+ * Revision 1.33  2008/05/17 04:32:25  jps
+ * Moved exits into exits.h/exits.c and changed the name to "exit".
+ *
+ * Revision 1.32  2008/05/14 05:10:19  jps
+ * Using hurt_char for play-time harm, while alter_hit is for changing hp only.
+ *
+ * Revision 1.31  2008/05/11 05:49:12  jps
+ * alter_hit() now takes care of all morted/death messages, and dying.
+ *
+ * Revision 1.30  2008/04/14 05:11:40  jps
+ * Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+ * to fly - not that the characer is actually flying.
+ *
+ * Revision 1.29  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.28  2008/04/05 21:42:32  jps
+ * Text cleanup
+ *
+ * Revision 1.27  2008/04/05 20:43:12  jps
+ * Adding hurt event.
+ * Now if you add an event with 0 delay, it will actually happen immediately.
+ * Sometimes you need an event to happen right away.
+ *
+ * Revision 1.26  2008/04/04 06:12:52  myc
+ * Removed justice code.
+ *
+ * Revision 1.25  2008/04/02 03:24:44  myc
+ * Removed unnecessary function declaration.
+ *
+ * Revision 1.24  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.23  2008/03/10 20:46:55  myc
+ * Renamed POS1 to 'stance'.
+ *
+ * Revision 1.22  2008/03/07 21:21:57  myc
+ * Replaced action delays and skill delays with a single list of
+ * 'cooldowns', which are decremented by a recurring event and
+ * also save to the player file.
+ *
+ * Revision 1.21  2008/02/09 21:07:50  myc
+ * Getting rid of the spell_area event and merging it into the
+ * spell (delayed_cast) event.  The casting and extract events
+ * now just get passed the char, instead of a whole event obj.
+ * The event code will now only auto-free an event obj if it
+ * was told to at event creation time.
+ *
+ * Revision 1.20  2008/02/09 18:29:11  myc
+ * The event code now handles freeing of event objects.  If for
+ * some reason you must free the object in the event function (or
+ * you just don't want the event object freed), you must return
+ * EVENT_NO_FREE_OBJ from the event instead of EVENT_FINISHED.
+ *
+ * Revision 1.19  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.18  2008/01/30 19:20:57  myc
+ * Gravity is now an event.
+ *
+ * Revision 1.17  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.16  2008/01/28 02:38:37  jps
+ * Add extract_event.
+ *
+ * Revision 1.15  2008/01/27 21:09:12  myc
+ * Added rage event.
+ *
+ * Revision 1.14  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.13  2008/01/26 12:29:02  jps
+ * Made death into an event.
+ *
+ * Revision 1.12  2008/01/16 04:12:00  myc
+ * Adding quick-aggro event.
+ *
+ * Revision 1.11  2008/01/09 04:14:46  jps
+ * Add events for memming and scribing spells. Add function cancel_event().
+ *
+ * Revision 1.10  2008/01/09 01:52:14  jps
+ * Get rid of points events and create three new regen events.
+ *
+ * Revision 1.9  2008/01/04 04:31:13  jps
+ * Made spellcasting into an event.
+ *
+ * Revision 1.8  2008/01/01 07:32:56  jps
+ * Made cold-spell freeze-ups into an event so that it can set
+ * paralysis which won't be removed immediately after it is set.
+ *
+ * Revision 1.7  2007/12/25 05:41:49  jps
+ * Updated event code so the each event type is positively identified.
+ * Events may be tied to objects or characters so that when that object
+ * or character is extracted, its events can be canceled.
+ *
+ * Revision 1.6  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.5  2000/11/21 04:49:28  rsd
+ * Altered the comment header and added back rlog messages
+ * that were left out prior to the addition of the $log$
+ * string.
+ *
+ * Revision 1.4  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.3  1999/02/08 23:01:47  jimmy
+ * Fixed mortally wounded bug.  Mortally wounded
+ * victims now die when they read -11.  Also,
+ * no more "attempt to damage corpse"
+ * fingon
+ *
+ * Revision 1.2  1999/01/31 02:16:56  mud
+ * Altereed comment header
+ * indented file
+ *
+ * Revision 1.1  1999/01/29 01:23:30  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.49
+log
+@Added an event to extract money.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.48 2009/03/08 23:34:14 jps Exp myc $
+d159 1
+a159 1
+      log(castbuf);
+d188 1
+a188 1
+            log(castbuf);
+d206 1
+a206 1
+            log(castbuf);
+d613 3
+@
+
+
+1.48
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.47 2009/02/11 17:03:39 myc Exp jps $
+d73 1
+d613 3
+@
+
+
+1.47
+log
+@Adding start_editor event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.46 2008/09/26 09:39:21 jps Exp myc $
+d21 1
+a21 1
+#include "spells.h"
+d612 3
+@
+
+
+1.46
+log
+@Removing core drops for quick aggro events.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.45 2008/09/26 09:23:33 jps Exp jps $
+d41 1
+a41 1
+const char *eventnames[] =
+d72 1
+d612 3
+@
+
+
+1.45
+log
+@Add debugging for the first 3 quick aggro events.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.44 2008/09/21 21:20:53 jps Exp jps $
+a422 7
+  static int debugctr = 0;
+  if (eventnum == EVENT_QUICK_AGGRO && debugctr < 3) {
+    debugctr++;
+    drop_core(NULL, "quick_aggro_event");
+    mprintf(L_ERR, LVL_GOD, "event_create: core dropped due to quick_aggro_event");
+  }
+
+d611 3
+@
+
+
+1.44
+log
+@Remove debugging syslog message.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.43 2008/09/21 21:15:45 jps Exp jps $
+d423 7
+d618 3
+@
+
+
+1.43
+log
+@Add functions to determine whether a character has a particular event or command.
+delayed_command() takes a parameter that indicates whether it's ok for this
+command to be in a character's event list multiple times.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.42 2008/09/21 20:40:40 jps Exp jps $
+a400 2
+   sprintf(buf, "SYSYAY: Doing command event of \"%s\"", ce->cmd);
+   log(buf);
+d611 5
+@
+
+
+1.42
+log
+@Keep a list of attackers with each character, so that at the proper times -
+such as char_from_room - they can be stopped from battling.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.41 2008/09/14 03:52:36 jps Exp jps $
+d76 25
+d378 1
+a378 1
+void delayed_command(struct char_data *ch, char *command, int delay)
+d382 3
+d613 4
+@
+
+
+1.41
+log
+@Added command event. Made a function for freeing event objs.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.40 2008/09/07 01:29:29 jps Exp jps $
+a90 1
+   struct char_data *ch = ((struct generic_event_data *)event_obj)->ch;
+d93 3
+a95 3
+   if (event_target_valid(ch) && FIGHTING(ch) == vict)
+      stop_fighting(ch);
+   stop_fighting(vict);
+d585 3
+@
+
+
+1.40
+log
+@Add events for falling while overweight, or for falling to the ground
+in the same room when you lose fly.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.39 2008/08/29 04:16:26 myc Exp jps $
+d33 1
+d71 1
+d354 27
+d416 11
+d447 1
+a447 1
+    free(event->event_obj);
+d497 1
+a497 1
+        free(the_event->event_obj);
+d522 1
+a522 1
+      free(the_event->event_obj);
+d586 4
+@
+
+
+1.39
+log
+@Moved all gravity functions directly to act.movement.c so that
+we don't need a reference to act.h in this file.  The events
+implementation really doesn't belong mixed up with the events
+system subscribers.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.38 2008/06/21 09:01:13 myc Exp myc $
+d32 1
+d68 2
+d292 58
+d397 2
+d546 6
+@
+
+
+1.38
+log
+@Improve casting error message.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.37 2008/06/20 20:21:57 jps Exp myc $
+a255 273
+/*
+ * Gravity
+ *
+ * Makes mobiles and objects fall.
+ */
+
+/* falling_yell - when you first start falling, your yell of surprise is heard
+ * in the surrounding rooms. */
+void falling_yell(struct char_data *ch)
+{
+   int dir, was_in, backdir, i;
+   char *dirstr;
+   struct room_data *oroom;
+
+   if (EFF_FLAGGED(ch, EFF_SILENCE))
+     return;
+
+   was_in = ch->in_room;
+
+   for (dir = 0; dir < NUM_OF_DIRS; dir++) {
+      if (CAN_GO(ch, dir) && ((oroom = CH_DEST(ch, dir)))) {
+         /* other_room will get a scream.
+          * If it has an exit back to this room, use that direction as where
+          * the scream "came from". Otherwise, use the opposite of the direction
+          * going to other_room. */
+         backdir = -1;
+
+         /* does the destination room have an exit pointing back? */
+         if (oroom->exits[rev_dir[dir]])
+            /* does that exit point back to this room? */
+            if (EXIT_NDEST(oroom->exits[rev_dir[dir]]) == was_in)
+               backdir = rev_dir[dir];
+
+         /* No exit pointing directly back?  Search for any exit pointing back. */
+         if (backdir == -1) {
+            for (i = 0; i < NUM_OF_DIRS; i++)
+               if (oroom->exits[i] && EXIT_NDEST(oroom->exits[i]) == was_in) {
+                  backdir = i;
+                  break;
+               }
+         }
+
+         /* Couldn't find any exits back. But since *this* room does have an exit going
+          * to that room, we *will* send the sound. */
+         if (backdir == -1)
+            backdir = rev_dir[dir];
+
+         if (backdir == 5)
+            dirstr = "below";
+         else if (backdir == 4)
+            continue; /* No yell - you'll receive "<person> falls screaming from above" */
+         else {
+            sprintf(buf2, "the %s", dirs[backdir]);
+            dirstr = buf2;
+         }
+
+         sprintf(buf, "You hear a %s %s from %s, which quickly fades.",
+               number(0, 10) < 5 ? "surprised" : "sudden",
+               number(0, 10) < 6 ? "shriek" : "yelp", dirstr);
+
+         ch->in_room = EXIT_NDEST(world[was_in].exits[dir]);
+         act(buf, FALSE, ch, 0, 0, TO_ROOM);
+         ch->in_room = was_in;
+      }
+   }
+}
+
+
+void gravity_assisted_landing(struct char_data *ch, int distance_fallen)
+{
+  int damage = 0;
+
+  /* Levitation protects from damage */
+  if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
+    if (IS_WATER(IN_ROOM(ch))) {
+      send_to_char("\r\nYou come to rest above the surface of the water.\r\n", ch);
+      act("$n comes to rest above the surface of the water.", FALSE, ch, 0, 0, TO_ROOM);
+    }
+    else {
+      send_to_char("\r\nYou come to rest just above the ground.\r\n", ch);
+      act("$n's descent ends just above the ground.", FALSE, ch, 0, 0, TO_ROOM);
+    }
+    return;
+  }
+
+  GET_POS(ch) = POS_SITTING;
+  GET_STANCE(ch) = STANCE_ALERT;
+
+  /* Are we landing in water? It hurts MUCH less... */
+  /* If we have safe fall skill, then we take no damage
+     for five rooms, partially for 5-15 and full at 15 David Endre 3/8/99 */
+  if (IS_WATER(IN_ROOM(ch))) {
+    send_to_char("\r\nYou land with a tremendous &4SPLASH&2!&0\r\n", ch);
+    act("$n lands with a tremendous &4SPLASH&2!&0", FALSE, ch, 0, 0, TO_ROOM);
+  }
+  else {
+    if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen <= 5) {
+      GET_POS(ch) = POS_STANDING;
+      GET_STANCE(ch) = STANCE_ALERT;
+      send_to_char("\r\nYou tuck and roll, performing a beautiful landing!\r\n", ch);
+      act("$n tucks and rolls, performing a beautiful landing!", FALSE, ch, 0, 0, TO_ROOM);
+    }
+    else if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen < 15) {
+      send_to_char("\r\nYou gracefully land without taking too much damage.\r\n", ch);
+      act("$n gracefully lands without taking too much damage.", FALSE, ch, 0, 0, TO_ROOM);
+    }
+    else {
+      send_to_char("\r\nYou land with a resounding &1S&2P&1L&2A&1T&2!&0\r\n", ch);
+      act("$n lands with a resounding &1S&2P&1L&2A&1T&2!&0", FALSE, ch, 0, 0, TO_ROOM);
+    }
+  }
+
+  damage = ((distance_fallen * (GET_SIZE(ch) + 1)) / 50.0) * GET_MAX_HIT(ch);
+
+  if (IS_WATER(IN_ROOM(ch)))
+    damage /= 4;
+
+  if (GET_SKILL(ch, SKILL_SAFEFALL)) {
+    if (distance_fallen <= 5)
+      damage = 0;
+    else if (distance_fallen < 15)
+      damage *= distance_fallen / 15.0;
+  }
+
+  hurt_char(ch, NULL, damage, TRUE);
+}
+
+#define CANCEL_GRAVITY \
+        { if (ch) REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_GRAVITY); \
+          else    REMOVE_FLAG(GET_EVENT_FLAGS(obj), EVENT_GRAVITY); \
+          return  EVENT_FINISHED; }
+EVENTFUNC(gravity_event)
+{
+  extern void dismount_char(struct char_data *ch);
+
+  struct gravity_event_obj *event = (struct gravity_event_obj *) event_obj;
+  struct char_data *ch = event->ch;
+  struct obj_data *obj = event->obj;
+  int in_room = ch ? IN_ROOM(ch) : IN_ROOM(obj);
+  int to_room;
+
+  if (in_room == NOWHERE)
+    CANCEL_GRAVITY;
+
+  if (world[in_room].sector_type != SECT_FLYING ||
+      (ch ? !CAN_GO(ch, DOWN) : !CAN_GO(obj, DOWN)))
+    CANCEL_GRAVITY;
+
+  to_room = world[in_room].exits[DOWN]->to_room;
+
+  if (ch) {
+    if (EFF_FLAGGED(ch, EFF_FLY))
+      CANCEL_GRAVITY;
+    if (RIDING(ch) && EFF_FLAGGED(RIDING(ch), EFF_FLY))
+      CANCEL_GRAVITY;
+    if (RIDDEN_BY(ch) && EFF_FLAGGED(RIDDEN_BY(ch), EFF_FLY))
+      CANCEL_GRAVITY;
+    if (GET_LEVEL(ch) >= LVL_IMMORT)
+      CANCEL_GRAVITY;
+
+    if (RIDING(ch))
+      dismount_char(ch);
+    if (RIDDEN_BY(ch))
+      dismount_char(RIDDEN_BY(ch));
+
+    if (event->distance_fallen == 0) {
+      if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
+        act("&1&bYou find yourself in midair and begin descending.&0\r\n\r\n",
+            FALSE, ch, 0, 0, TO_CHAR);
+        act("&1&b$n finds $mself in midair and begins descending.&0",
+            FALSE, ch, 0, 0, TO_ROOM);
+      }
+      else {
+        act("&1&bYou find yourself on thin air and fall&0 &2DOWN!&0\r\n\r\n",
+            FALSE, ch, 0, 0, TO_CHAR);
+        act("&1&b$n finds $mself on thin air and falls&0 &2DOWN!&0",
+            FALSE, ch, 0, 0, TO_ROOM);
+        falling_yell(ch);
+      }
+    }
+
+    char_from_room(ch);
+    char_to_room(ch, to_room);
+
+    if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
+      send_to_char("\r\n&2You float slowly downward.&0\r\n\r\n", ch);
+      act("&2$n floats slowly down from above.&0", FALSE, ch, 0, 0, TO_ROOM);
+    }
+    else if (GET_SKILL(ch, SKILL_SAFEFALL)) {
+      send_to_char("\r\n&2You fall gracefully DOWN!&0\r\n\r\n", ch);
+      act("&2$n gracefully falls from above.&0", FALSE, ch, 0, 0, TO_ROOM);
+    }
+    else {
+      send_to_char("\r\n&2DOWN!&0\r\n\r\n", ch);
+      act("&2$n falls screaming from above.&0", FALSE, ch, 0, 0, TO_ROOM);
+    }
+
+    if (ch->desc)
+      look_at_room(ch, 0);
+  }
+  else if (obj) {
+    if (event->distance_fallen == 0)
+      act("$p &1&8plummets&0 &2downward!&0", FALSE, 0, obj, 0, TO_ROOM);
+
+    obj_from_room(obj);
+    obj_to_room(obj, to_room);
+
+    act("$p &1&8falls from above.&0", FALSE, 0, obj, 0, TO_ROOM);
+  }
+
+  /* to_room is now the room the char/obj is currently in */
+  if (to_room == event->start_room) {
+    sprintf(buf, "Falling room loop detected: "
+            "%s started falling in room %d; is now in %d",
+            ch ? "char" : "obj", world[event->start_room].vnum,
+            world[in_room].vnum);
+    log(buf);
+    if (ch)
+      send_to_char("\r\nParadoxically, you end up where you began.\r\n", ch);
+    CANCEL_GRAVITY;
+  }
+
+  event->distance_fallen++;
+
+  /* If you can still fall, then queue up the event again. */
+  if ((ch ? SECT(IN_ROOM(ch)) : SECT(IN_ROOM(obj))) == SECT_FLYING)
+    if (ch ? CAN_GO(ch, DOWN) : CAN_GO(obj, DOWN)) {
+      /* return 1 makes it happen immediately; we want to wait a pulse or so */
+      if (ch && EFF_FLAGGED(ch, EFF_LEVITATE))
+        return 4;
+      else
+        return 2;
+    }
+
+  /* No exit down means we've hit the bottom. */
+  if (obj) {
+    if (IS_SPLASHY(to_room))
+      act("$p &1&8lands with a loud&0 &1SPLASH!&0", FALSE, 0, obj, 0, TO_ROOM);
+    else
+      act("$p &1&8lands with a dull&0 &1THUD!&0", FALSE, 0, obj, 0, TO_ROOM);
+  }
+  else if (ch) {
+    if (GET_LEVEL(ch) < LVL_IMMORT)
+      gravity_assisted_landing(ch, event->distance_fallen);
+  }
+
+  CANCEL_GRAVITY;
+}
+
+void start_char_falling(struct char_data *ch) {
+  struct gravity_event_obj *event_obj;
+  if (!EVENT_FLAGGED(ch, EVENT_GRAVITY)) {
+    CREATE(event_obj, struct gravity_event_obj, 1);
+    event_obj->ch = ch;
+    event_obj->start_room = IN_ROOM(ch);
+    event_create(EVENT_GRAVITY, gravity_event, event_obj, TRUE,
+                 &(ch->events), 0);
+    SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_GRAVITY);
+  }
+}
+
+void start_obj_falling(struct obj_data *obj) {
+  struct gravity_event_obj *event_obj;
+  if (!EVENT_FLAGGED(obj, EVENT_GRAVITY)) {
+    CREATE(event_obj, struct gravity_event_obj, 1);
+    event_obj->obj = obj;
+    event_obj->start_room = IN_ROOM(obj);
+    event_create(EVENT_GRAVITY, gravity_event, event_obj, TRUE,
+                 &(obj->events), 0);
+    SET_FLAG(GET_EVENT_FLAGS(obj), EVENT_GRAVITY);
+  }
+}
+
+d483 3
+@
+
+
+1.37
+log
+@Added the fullpurge event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.36 2008/05/18 20:16:11 jps Exp jps $
+d115 1
+a115 1
+   char castbuf[64];
+d156 2
+a157 1
+            log("SYSERR: Error in casting_handler() at obj valid check.");
+d174 2
+a175 1
+            log("SYSERR: Error in casting_handler() at char valid check.");
+d756 3
+@
+
+
+1.36
+log
+@Created fight.h and set dependents.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.35 2008/05/18 05:18:06 jps Exp jps $
+d66 1
+d538 23
+d754 3
+@
+
+
+1.35
+log
+@Renaming room_data struct's member "number" to "vnum", cos it's
+a virtual number.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.34 2008/05/17 22:03:01 jps Exp jps $
+d31 1
+a83 2
+   extern void stop_fighting (struct char_data *ch);
+
+a212 1
+   void perform_die(struct char_data *ch, struct char_data *killer);
+d730 4
+@
+
+
+1.34
+log
+@Moving room-related code into rooms.h and rooms.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.33 2008/05/17 04:32:25 jps Exp jps $
+d469 2
+a470 2
+            ch ? "char" : "obj", world[event->start_room].number,
+            world[in_room].number);
+d732 3
+@
+
+
+1.33
+log
+@Moved exits into exits.h/exits.c and changed the name to "exit".
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.32 2008/05/14 05:10:19 jps Exp jps $
+d275 12
+a286 1
+      if (CAN_GO(ch, dir)) {
+d288 8
+a295 29
+         /* Make sure there is an actual destination room */
+         if (EXIT_DEST(world[was_in].exits[dir]) != NOWHERE) {
+            oroom = &world[EXIT_DEST(world[was_in].exits[dir])];
+
+            /* other_room will get a scream.
+             * If it has an exit back to this room, use that direction as where
+             * the scream "came from". Otherwise, use the opposite of the direction
+             * going to other_room. */
+            backdir = -1;
+
+            /* does the destination room have an exit pointing back? */
+            if (oroom->exits[rev_dir[dir]])
+               /* does that exit point back to this room? */
+               if (EXIT_DEST(oroom->exits[rev_dir[dir]]) == was_in)
+                  backdir = rev_dir[dir];
+
+            /* No exit pointing directly back?  Search for any exit pointing back. */
+            if (backdir == -1) {
+               for (i = 0; i < NUM_OF_DIRS; i++)
+                  if (oroom->exits[i] && EXIT_DEST(oroom->exits[i]) == was_in) {
+                     backdir = i;
+                     break;
+                  }
+            }
+
+            /* Couldn't find any exits back. But since *this* room does have an exit going
+             * to that room, we *will* send the sound. */
+            if (backdir == -1)
+               backdir = rev_dir[dir];
+d297 12
+a308 16
+            if (backdir == 5)
+               dirstr = "below";
+            else if (backdir == 4)
+               continue; /* No yell - you'll receive "<person> falls screaming from above" */
+            else {
+               sprintf(buf2, "the %s", dirs[backdir]);
+               dirstr = buf2;
+            }
+
+            sprintf(buf, "You hear a %s %s from %s, which quickly fades.",
+                  number(0, 10) < 5 ? "surprised" : "sudden",
+                  number(0, 10) < 6 ? "shriek" : "yelp", dirstr);
+
+            ch->in_room = EXIT_DEST(world[was_in].exits[dir]);
+            act(buf, FALSE, ch, 0, 0, TO_ROOM);
+            ch->in_room = was_in;
+d310 8
+d732 3
+@
+
+
+1.32
+log
+@Using hurt_char for play-time harm, while alter_hit is for changing hp only.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.31 2008/05/11 05:49:12 jps Exp jps $
+d263 3
+a265 2
+void falling_yell(struct char_data *ch) {
+   int door, was_in, other_room, backdir, i;
+d267 1
+d274 3
+a276 2
+   for (door = 0; door < NUM_OF_DIRS; door++) {
+      if (CAN_GO (ch, door)) {
+d278 2
+a279 1
+         if ((other_room = world[was_in].dir_option[door]->to_room) != NOWHERE) {
+d288 1
+a288 1
+            if (world[other_room].dir_option[rev_dir[door]])
+d290 2
+a291 2
+               if (world[other_room].dir_option[rev_dir[door]]->to_room == was_in)
+                  backdir = rev_dir[door];
+d296 1
+a296 1
+                  if (world[other_room].dir_option[i] && world[other_room].dir_option[i]->to_room == was_in) {
+d305 1
+a305 1
+               backdir = rev_dir[door];
+d320 1
+a320 1
+            ch->in_room = other_room;
+d409 1
+a409 1
+  to_room = world[in_room].dir_option[DOWN]->to_room;
+d738 3
+@
+
+
+1.31
+log
+@alter_hit() now takes care of all morted/death messages, and dying.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.30 2008/04/14 05:11:40 jps Exp jps $
+d235 1
+a235 1
+   alter_hit(victim, attacker, dam, TRUE);
+d381 1
+a381 1
+  alter_hit(ch, NULL, damage, TRUE);
+d734 3
+@
+
+
+1.30
+log
+@Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+to fly - not that the characer is actually flying.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.29 2008/04/07 03:02:54 jps Exp jps $
+d30 1
+d235 1
+a235 39
+   alter_hit(victim, dam, TRUE);
+   update_pos(victim);
+
+   switch (GET_STANCE(victim)) {
+      case STANCE_MORT:
+        act("$n is mortally wounded, and will die soon, if not aided.", TRUE, victim, 0, 0, TO_ROOM);
+        send_to_char("You are mortally wounded, and will die soon, if not aided.\r\n", victim);
+        break;
+      case STANCE_INCAP:
+        act("$n is incapacitated and will slowly die, if not aided.", TRUE, victim, 0, 0, TO_ROOM);
+        send_to_char("You are incapacitated an will slowly die, if not aided.\r\n", victim);
+        break;
+      case STANCE_STUNNED:
+        act("$n is stunned, but will probably regain consciousness again.", TRUE, victim, 0, 0, TO_ROOM);
+        send_to_char("You're stunned, but will probably regain consciousness again.\r\n", victim);
+        break;
+      case STANCE_DEAD:
+        death_mtrigger (victim, (char_data *)NULL );  /* allow mob to run death trigger */
+        act("$n is dead!  R.I.P.", FALSE, victim, 0, 0, TO_ROOM);
+        send_to_char("You are dead!  Sorry...\r\n", victim);
+        die(victim, attacker);
+        break;
+
+      default:   /* >= POSITION SLEEPING */
+        if (dam > (GET_MAX_HIT(victim) >> 2))
+            act("That really did HURT!", FALSE, victim, 0, 0, TO_CHAR);
+        if (GET_HIT(victim) < (GET_MAX_HIT(victim) >> 2)) {
+            sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n",
+               CLRLV(victim, FRED, C_SPR), CLRLV(victim, ANRM, C_SPR));
+            send_to_char(buf2, victim);
+        }
+        if (attacker &&
+              !FIGHTING(victim) &&
+              event_target_valid(attacker) &&
+              IN_ROOM(attacker) == IN_ROOM(victim))
+           set_fighting(victim, attacker);
+
+   }
+
+d381 1
+a381 22
+  alter_hit(ch, damage, TRUE);
+  switch (GET_STANCE(ch)) {
+    case STANCE_MORT:
+      act("$n is mortally wounded, and will die soon, if not aided.", TRUE, ch, 0, 0, TO_ROOM);
+      send_to_char("You are mortally wounded, and will die soon, if not aided.\r\n", ch);
+      break;
+    case STANCE_INCAP:
+      act("$n is incapacitated and will slowly die, if not aided.", TRUE, ch, 0, 0, TO_ROOM);
+      send_to_char("You are incapacitated an will slowly die, if not aided.\r\n", ch);
+      break;
+    case STANCE_STUNNED:
+      act("$n is stunned, but will probably regain consciousness again.", TRUE, ch, 0, 0, TO_ROOM);
+      send_to_char("You're stunned, but will probably regain consciousness again.\r\n", ch);
+      break;
+    case STANCE_DEAD:
+      act("$n is dead!  R.I.P.", FALSE, ch, 0, 0, TO_ROOM);
+      send_to_char("You are dead!  Sorry...\r\n", ch);
+      sprintf(buf2, "%s killed by falling at %s", GET_NAME(ch), world[ch->in_room].name);
+      mudlog(buf2, BRF, 0, TRUE);
+      die(ch, NULL);
+      break;
+  }
+d734 4
+@
+
+
+1.29
+log
+@Changed the POS/STANCE system so that POS reflects the position
+of your body, while STANCE describes your condition or activity.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.28 2008/04/05 21:42:32 jps Exp jps $
+d466 1
+a466 1
+    if (EFF_FLAGGED(ch, EFF_FLYING))
+d468 1
+a468 1
+    if (RIDING(ch) && EFF_FLAGGED(RIDING(ch), EFF_FLYING))
+d470 1
+a470 1
+    if (RIDDEN_BY(ch) && EFF_FLAGGED(RIDDEN_BY(ch), EFF_FLYING))
+d792 4
+@
+
+
+1.28
+log
+@Text cleanup
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.27 2008/04/05 20:43:12 jps Exp jps $
+d237 2
+a238 2
+   switch (GET_POS(victim)) {
+      case POS_MORTALLYW:
+d242 1
+a242 1
+      case POS_INCAP:
+d246 1
+a246 1
+      case POS_STUNNED:
+d250 1
+a250 1
+      case POS_DEAD:
+d380 1
+a380 1
+  GET_STANCE(ch) = STANCE_SITTING;
+d392 1
+a392 1
+      GET_STANCE(ch) = STANCE_STANDING;
+d419 2
+a420 2
+  switch (GET_POS(ch)) {
+    case POS_MORTALLYW:
+d424 1
+a424 1
+    case POS_INCAP:
+d428 1
+a428 1
+    case POS_STUNNED:
+d432 1
+a432 1
+    case POS_DEAD:
+d792 3
+@
+
+
+1.27
+log
+@Adding hurt event.
+Now if you add an event with 0 delay, it will actually happen immediately.
+Sometimes you need an event to happen right away.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.26 2008/04/04 06:12:52 myc Exp jps $
+a12 10
+ 
+/***************************************************************************
+ *  Changes:                                                               *
+ *      3/6/98 ejg:  Changed event_process to check return value on the    *
+ *                   event function.  If > 0, reenqueue to expire in       *
+ *                   retval time.                                          *
+ *                   Added check in event_cancel to make sure event_obj    *
+ *                   is non-NULL.                                          *
+ *                   Moved struct event definition from events.h.          *
+ ***************************************************************************/
+d644 1
+a644 1
+  
+d646 1
+a646 1
+  
+d672 1
+a672 1
+  
+d689 1
+a689 1
+    
+d714 1
+a714 1
+  
+d716 1
+a716 1
+  
+d725 1
+a725 1
+  
+d731 1
+a731 1
+  
+d752 1
+a752 1
+/* should be removed eventually so that event lists are attached to 
+d758 1
+a758 1
+  
+d763 2
+a764 2
+      if (ch == current) 
+	return TRUE;
+d766 1
+a766 1
+  
+d792 5
+@
+
+
+1.26
+log
+@Removed justice code.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.25 2008/04/02 03:24:44 myc Exp myc $
+d38 2
+d52 1
+a52 1
+  "UNUSED",
+d233 54
+d598 11
+d626 1
+a626 4
+  
+  if (when < 1) /* make sure its in the future */
+    when = 1;
+  
+d633 1
+a633 1
+  
+d802 3
+@
+
+
+1.25
+log
+@Removed unnecessary function declaration.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.24 2008/03/28 17:54:53 myc Exp myc $
+d50 1
+a50 1
+  "jail_release",
+d738 3
+@
+
+
+1.24
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.23 2008/03/10 20:46:55 myc Exp myc $
+a317 1
+  extern void die(struct char_data *ch, struct char_data *killer);
+d738 4
+@
+
+
+1.23
+log
+@Renamed POS1 to 'stance'.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.22 2008/03/07 21:21:57 myc Exp myc $
+d92 1
+a92 1
+   struct affected_type af;
+d100 7
+a106 8
+   af.type = SPELL_MINOR_PARALYSIS;
+   af.modifier = 0;
+   af.location = 0;
+   af.duration = 2;
+   af.bitvector = 0;
+   af.bitvector2 = AFF2_MINOR_PARALYSIS;
+   af.bitvector3 = 0;
+   affect_to_char(vict, &af);
+d258 3
+d322 1
+a322 1
+  if (AFF2_FLAGGED(ch, AFF2_LEVITATE)) {
+d421 1
+a421 1
+    if (AFF_FLAGGED(ch, AFF_FLYING))
+d423 1
+a423 1
+    if (RIDING(ch) && AFF_FLAGGED(RIDING(ch), AFF_FLYING))
+d425 1
+a425 1
+    if (RIDDEN_BY(ch) && AFF_FLAGGED(RIDDEN_BY(ch), AFF_FLYING))
+d436 1
+a436 1
+      if (AFF2_FLAGGED(ch, AFF2_LEVITATE)) {
+d447 1
+a447 2
+        if (!AFF2_FLAGGED(ch, AFF2_SILENCE))
+          falling_yell(ch);
+d454 1
+a454 1
+    if (AFF2_FLAGGED(ch, AFF2_LEVITATE)) {
+d498 1
+a498 1
+      if (ch && AFF2_FLAGGED(ch, AFF2_LEVITATE))
+d739 3
+@
+
+
+1.22
+log
+@Replaced action delays and skill delays with a single list of
+'cooldowns', which are decremented by a recurring event and
+also save to the player file.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.21 2008/02/09 21:07:50 myc Exp myc $
+d333 1
+a333 1
+  GET_POS1(ch) = POS1_SITTING;
+d345 1
+a345 1
+      GET_POS1(ch) = POS1_STANDING;
+d738 5
+@
+
+
+1.21
+log
+@Getting rid of the spell_area event and merging it into the
+spell (delayed_cast) event.  The casting and extract events
+now just get passed the char, instead of a whole event obj.
+The event code will now only auto-free an event obj if it
+was told to at event creation time.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.20 2008/02/09 18:29:11 myc Exp myc $
+d71 1
+d738 7
+@
+
+
+1.20
+log
+@The event code now handles freeing of event objects.  If for
+some reason you must free the object in the event function (or
+you just don't want the event object freed), you must return
+EVENT_NO_FREE_OBJ from the event instead of EVENT_FINISHED.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.19 2008/02/09 04:27:47 myc Exp myc $
+a52 1
+  "!UNUSED EVENT!",
+d55 1
+a55 2
+  "spell_area",
+  "spell",            /* 10 */
+d57 1
+a57 1
+  "trigger_wait",
+d60 1
+a60 1
+  "casting",          /* 15 */
+d62 1
+a62 1
+  "regen_mana",
+d65 1
+a65 1
+  "scribing",         /* 20 */
+d67 1
+a67 1
+  "die",
+d119 1
+a119 1
+   struct char_data *ch = ((struct generic_event_data *)event_obj)->ch;
+d238 1
+a238 1
+   struct char_data *ch = ((struct generic_event_data *)event_obj)->ch;
+d523 2
+a524 1
+    event_create(EVENT_GRAVITY, gravity_event, event_obj, &(ch->events), 0);
+d535 2
+a536 1
+    event_create(EVENT_GRAVITY, gravity_event, event_obj, &(obj->events), 0);
+d555 1
+a555 1
+      struct event **list, long when)
+d566 1
+d597 1
+a597 1
+  if (event->event_obj)
+d646 2
+a647 1
+      if (new_time != EVENT_NO_FREE_OBJ && the_event->event_obj)
+d672 1
+a672 1
+    if (the_event->event_obj)
+d737 6
+@
+
+
+1.19
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.18 2008/01/30 19:20:57 myc Exp myc $
+d110 1
+a110 1
+   return 0;
+d131 1
+a131 1
+      return 0;
+d138 1
+a138 1
+      return 0;
+d188 1
+a188 1
+     return 0;
+d195 1
+a195 1
+      return 0;
+d230 1
+a230 1
+   return 0;
+d244 1
+a244 1
+   return 0;
+d399 1
+a399 1
+          return 0; }
+d602 1
+a602 1
+void cancel_event(struct char_data *ch, int eventtype)
+d604 3
+a606 4
+   struct event *e;
+
+   for (e = ch->events; e && e->num != eventtype; e = e->next);
+   if (e) event_cancel(e);
+d645 2
+a697 1
+/* bool event_target_valid(void *target) */
+a699 2
+  /* currently used for char_data strcts...will have to rewrite in C++ to allow 
+   * structure size checking later for objects etc... */
+a700 1
+/*  struct char_data *ch = (struct char_data *) target; */
+d702 1
+a702 2
+  for(current = character_list; current; current = current->next)
+    {
+d706 1
+a706 1
+      if(ch == current) 
+a707 2
+      else
+	continue;
+d735 3
+@
+
+
+1.18
+log
+@Gravity is now an event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.17 2008/01/29 21:02:31 myc Exp myc $
+d37 1
+d741 3
+@
+
+
+1.17
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.16 2008/01/28 02:38:37 jps Exp myc $
+d36 1
+a36 1
+
+d71 1
+d246 295
+d740 4
+@
+
+
+1.16
+log
+@Add extract_event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.15 2008/01/27 21:09:12 myc Exp jps $
+d35 1
+a35 5
+
+
+extern struct char_data *character_list;
+
+struct queue *event_q;          /* the event queue */
+d41 1
+d44 1
+a44 1
+char *eventnames[] =
+d444 3
+@
+
+
+1.15
+log
+@Added rage event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.14 2008/01/26 14:26:31 jps Exp myc $
+d73 1
+d234 14
+d447 3
+@
+
+
+1.14
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.13 2008/01/26 12:29:02 jps Exp jps $
+d72 1
+d432 3
+@
+
+
+1.13
+log
+@Made death into an event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.12 2008/01/16 04:12:00 myc Exp jps $
+d34 1
+d431 3
+@
+
+
+1.12
+log
+@Adding quick-aggro event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.11 2008/01/09 04:14:46 jps Exp myc $
+d70 1
+d190 1
+a190 1
+   if (ch->casting.casting_time <= 0) { 
+d192 1
+a192 1
+      complete_spell(ch);      
+d209 22
+d430 3
+@
+
+
+1.11
+log
+@Add events for memming and scribing spells. Add function cancel_event().
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.10 2008/01/09 01:52:14 jps Exp jps $
+d69 1
+a69 1
+
+d407 3
+@
+
+
+1.10
+log
+@Get rid of points events and create three new regen events.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.9 2008/01/04 04:31:13 jps Exp jps $
+d66 3
+a68 1
+  "regen_move"
+d267 9
+d407 3
+@
+
+
+1.9
+log
+@Made spellcasting into an event.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.8 2008/01/01 07:32:56 jps Exp jps $
+d54 1
+a54 1
+  "points",
+d64 3
+d396 3
+@
+
+
+1.8
+log
+@Made cold-spell freeze-ups into an event so that it can set
+paralysis which won't be removed immediately after it is set.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.7 2007/12/25 05:41:49 jps Exp jps $
+d33 1
+d63 1
+d105 98
+d393 4
+@
+
+
+1.7
+log
+@Updated event code so the each event type is positively identified.
+Events may be tied to objects or characters so that when that object
+or character is extracted, its events can be canceled.
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.6 2002/09/13 02:32:10 jjl Exp jps $
+d31 2
+d61 1
+d66 41
+d293 5
+@
+
+
+1.6
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: events.c,v 1.5 2000/11/21 04:49:28 rsd Exp $
+a34 7
+struct event {
+  EVENTFUNC(*func);
+  void *event_obj;
+  struct q_element *q_el;
+};
+
+
+d41 21
+d71 2
+a72 1
+struct event *event_create(EVENTFUNC(*func), void *event_obj, long when)
+d80 1
+d85 8
+a95 1
+
+d99 2
+d102 1
+a102 1
+    log("SYSERR:  Attempted to cancle a NULL event");
+d108 5
+d122 2
+a123 1
+  struct event *the_event;
+d131 11
+d144 1
+a144 1
+    if ((new_time = (the_event->func)(the_event->event_obj)) > 0)
+d146 8
+a153 1
+    else
+d155 1
+d185 17
+d228 19
+d249 3
+@
+
+
+1.5
+log
+@Altered the comment header and added back rlog messages
+that were left out prior to the addition of the $log$
+string.
+@
+text
+@d1 3
+a3 1
+// $Id: events.c,v 1.4 1999/09/05 07:00:39 jimmy Exp $
+d161 24
+a184 17
+// $Log: events.c,v $
+// Revision 1.4  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.3  1999/02/08 23:01:47  jimmy
+// Fixed mortally wounded bug.  Mortally wounded
+// victims now die when they read -11.  Also,
+// no more "attempt to damage corpse"
+// fingon
+//
+// Revision 1.2  1999/01/31 02:16:56  mud
+// Altereed comment header
+// indented file
+//
+// Revision 1.1  1999/01/29 01:23:30  mud
+// Initial revision
+//
+@
+
+
+1.4
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d3 1
+a3 2
+ *  File: events.c                                                         *
+ *                                                                         *
+d5 1
+d7 1
+a7 1
+ *  Written by Eric Green (ejg3@@cornell.edu)                               *
+d9 4
+a24 1
+
+d159 17
+a175 1
+// $Log$
+@
+
+
+1.3
+log
+@Fixed mortally wounded bug.  Mortally wounded
+victims now die when they read -11.  Also,
+no more "attempt to damage corpse"
+fingon
+@
+text
+@d1 1
+d156 1
+@
+
+
+1.2
+log
+@Altereed comment header
+indented file
+@
+text
+@d132 2
+a133 1
+bool event_target_valid(void *target)
+d137 2
+a138 2
+  struct char_data *current = 0;
+  struct char_data *ch = (struct char_data *) target;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 15
+a15 15
+/* ************************************************************************
+*  File: events.c                                                         *
+*                                                                         *
+*  Usage: Contains routines to handle events                              *
+*                                                                         *
+*  Written by Eric Green (ejg3@@cornell.edu)                               *
+*                                                                         *
+*  Changes:                                                               *
+*      3/6/98 ejg:  Changed event_process to check return value on the    *
+*                   event function.  If > 0, reenqueue to expire in       *
+*                   retval time.                                          *
+*                   Added check in event_cancel to make sure event_obj    *
+*                   is non-NULL.                                          *
+*                   Moved struct event definition from events.h.          *
+************************************************************************ */
+d54 1
+a54 1
+
+d57 1
+a57 1
+
+d62 1
+a62 1
+
+d74 1
+a74 1
+
+d76 1
+a76 1
+
+d88 1
+a88 1
+
+d94 1
+a94 1
+
+d108 1
+a108 1
+
+d110 1
+a110 1
+
+d119 1
+a119 1
+
+d125 1
+a125 1
+
+d140 9
+a148 9
+  {
+    /* loop through current valid players and see if the ADDRESS of the valid player
+     * is the same as the event target...if it is, then we have a valid target.
+    */
+    if(ch == current) 
+      return TRUE;
+    else
+      continue;
+  }
+d153 1
+@

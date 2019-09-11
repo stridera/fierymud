@@ -1,0 +1,6460 @@
+head	1.119;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.119
+date	2009.07.17.00.48.17;	author myc;	state Exp;
+branches;
+next	1.118;
+
+1.118
+date	2009.06.09.21.50.21;	author myc;	state Exp;
+branches;
+next	1.117;
+
+1.117
+date	2009.06.09.19.33.50;	author myc;	state Exp;
+branches;
+next	1.116;
+
+1.116
+date	2009.06.09.05.42.14;	author myc;	state Exp;
+branches;
+next	1.115;
+
+1.115
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.114;
+
+1.114
+date	2009.02.11.17.03.39;	author myc;	state Exp;
+branches;
+next	1.113;
+
+1.113
+date	2008.09.29.03.24.44;	author jps;	state Exp;
+branches;
+next	1.112;
+
+1.112
+date	2008.09.21.21.50.56;	author jps;	state Exp;
+branches;
+next	1.111;
+
+1.111
+date	2008.09.21.20.40.40;	author jps;	state Exp;
+branches;
+next	1.110;
+
+1.110
+date	2008.09.20.22.38.56;	author jps;	state Exp;
+branches;
+next	1.109;
+
+1.109
+date	2008.09.20.06.05.06;	author jps;	state Exp;
+branches;
+next	1.108;
+
+1.108
+date	2008.09.08.05.17.42;	author jps;	state Exp;
+branches;
+next	1.107;
+
+1.107
+date	2008.09.07.20.07.59;	author jps;	state Exp;
+branches;
+next	1.106;
+
+1.106
+date	2008.09.06.19.11.27;	author jps;	state Exp;
+branches;
+next	1.105;
+
+1.105
+date	2008.09.02.07.26.20;	author jps;	state Exp;
+branches;
+next	1.104;
+
+1.104
+date	2008.09.02.07.17.04;	author jps;	state Exp;
+branches;
+next	1.103;
+
+1.103
+date	2008.09.02.07.03.03;	author jps;	state Exp;
+branches;
+next	1.102;
+
+1.102
+date	2008.09.02.06.51.48;	author jps;	state Exp;
+branches;
+next	1.101;
+
+1.101
+date	2008.09.01.22.15.59;	author jps;	state Exp;
+branches;
+next	1.100;
+
+1.100
+date	2008.08.30.01.31.51;	author myc;	state Exp;
+branches;
+next	1.99;
+
+1.99
+date	2008.07.27.05.27.56;	author jps;	state Exp;
+branches;
+next	1.98;
+
+1.98
+date	2008.07.21.19.17.07;	author jps;	state Exp;
+branches;
+next	1.97;
+
+1.97
+date	2008.06.07.19.06.46;	author myc;	state Exp;
+branches;
+next	1.96;
+
+1.96
+date	2008.06.05.02.07.43;	author myc;	state Exp;
+branches;
+next	1.95;
+
+1.95
+date	2008.05.18.20.16.11;	author jps;	state Exp;
+branches;
+next	1.94;
+
+1.94
+date	2008.05.11.05.56.24;	author jps;	state Exp;
+branches;
+next	1.93;
+
+1.93
+date	2008.04.07.03.02.54;	author jps;	state Exp;
+branches;
+next	1.92;
+
+1.92
+date	2008.03.30.17.30.38;	author jps;	state Exp;
+branches;
+next	1.91;
+
+1.91
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.90;
+
+1.90
+date	2008.03.20.03.26.05;	author myc;	state Exp;
+branches;
+next	1.89;
+
+1.89
+date	2008.03.20.03.14.56;	author myc;	state Exp;
+branches;
+next	1.88;
+
+1.88
+date	2008.03.10.20.46.55;	author myc;	state Exp;
+branches;
+next	1.87;
+
+1.87
+date	2008.03.05.03.03.54;	author myc;	state Exp;
+branches;
+next	1.86;
+
+1.86
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.85;
+
+1.85
+date	2008.02.02.19.38.20;	author myc;	state Exp;
+branches;
+next	1.84;
+
+1.84
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.83;
+
+1.83
+date	2008.01.27.21.09.12;	author myc;	state Exp;
+branches;
+next	1.82;
+
+1.82
+date	2008.01.27.12.11.21;	author jps;	state Exp;
+branches;
+next	1.81;
+
+1.81
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.80;
+
+1.80
+date	2008.01.05.05.39.41;	author jps;	state Exp;
+branches;
+next	1.79;
+
+1.79
+date	2008.01.04.01.53.26;	author jps;	state Exp;
+branches;
+next	1.78;
+
+1.78
+date	2008.01.03.12.44.03;	author jps;	state Exp;
+branches;
+next	1.77;
+
+1.77
+date	2007.12.25.20.37.32;	author jps;	state Exp;
+branches;
+next	1.76;
+
+1.76
+date	2007.12.25.17.03.32;	author jps;	state Exp;
+branches;
+next	1.75;
+
+1.75
+date	2007.12.25.06.22.19;	author jps;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	2007.12.23.19.27.26;	author jps;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	2007.12.23.18.09.57;	author jps;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	2007.12.20.03.04.23;	author jps;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	2007.12.19.20.53.25;	author myc;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	2007.12.17.18.26.27;	author jps;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	2007.11.02.02.32.46;	author jps;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	2007.10.27.18.56.26;	author myc;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	2007.10.17.17.22.57;	author myc;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	2007.10.04.16.20.24;	author myc;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	2007.10.02.02.52.27;	author myc;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	2007.09.21.18.08.04;	author jps;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	2007.09.03.21.18.38;	author jps;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	2007.08.26.01.55.41;	author myc;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	2007.08.04.01.15.32;	author jps;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	2007.07.31.23.44.36;	author jps;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	2007.07.25.01.36.18;	author jps;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	2007.05.28.06.25.26;	author jps;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	2007.04.11.07.50.03;	author jps;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	2007.03.27.04.27.05;	author myc;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	2006.12.28.23.46.29;	author myc;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	2006.12.05.20.50.57;	author myc;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	2006.12.05.18.37.46;	author myc;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2006.11.21.03.45.52;	author jps;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2006.11.16.16.59.30;	author jps;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2006.11.13.04.15.10;	author jps;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2006.11.11.10.11.04;	author jps;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2006.11.08.21.28.21;	author jps;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2006.11.08.07.58.23;	author jps;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2006.05.30.00.49.22;	author rls;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2004.11.19.20.43.16;	author rsd;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2004.11.19.03.29.22;	author rsd;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2004.11.01.05.30.33;	author jjl;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2003.07.14.05.46.14;	author rsd;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2002.05.13.23.35.23;	author dce;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2001.10.12.17.53.35;	author rjd;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2001.10.11.18.33.54;	author rjd;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2001.10.10.23.30.22;	author rjd;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2001.04.08.13.51.25;	author dce;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2001.03.31.00.19.42;	author dce;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2001.03.25.13.29.25;	author dce;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2001.02.24.04.04.15;	author dce;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2000.11.22.20.28.32;	author rsd;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2000.10.15.04.59.02;	author cmc;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2000.10.15.04.37.59;	author cmc;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2000.10.13.17.52.56;	author cmc;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2000.09.13.22.21.27;	author rsd;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2000.05.01.01.31.22;	author rsd;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2000.05.01.00.55.32;	author rsd;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2000.05.01.00.49.10;	author rsd;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2000.05.01.00.41.12;	author rsd;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2000.05.01.00.23.03;	author rsd;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2000.05.01.00.15.37;	author rsd;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2000.05.01.00.10.45;	author rsd;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2000.04.30.23.48.19;	author rsd;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2000.04.22.22.37.47;	author rsd;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2000.03.20.04.34.40;	author rsd;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	99.12.10.22.13.45;	author jimmy;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	99.11.28.23.32.08;	author cso;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	99.10.30.15.37.24;	author rsd;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	99.09.08.07.06.03;	author jimmy;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	99.08.14.02.43.10;	author dce;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	99.08.12.17.54.46;	author dce;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	99.06.10.16.56.28;	author mud;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	99.05.04.17.19.33;	author dce;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	99.05.01.18.45.19;	author dce;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	99.04.08.03.37.33;	author dce;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	99.03.31.20.17.22;	author jen;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	99.03.17.22.45.34;	author jimmy;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.03.14.14.28.11;	author jimmy;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.02.04.00.02.59;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.31.16.11.37;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ************************************************************************
+*   File: limits.c                                      Part of CircleMUD *
+*  Usage: limits & gain funcs for HMV, exp, hunger/thirst, idle time      *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "utils.h"
+#include "spells.h"
+#include "comm.h"
+#include "db.h"
+#include "handler.h"
+
+/*#define READ_TITLE(ch) (GET_SEX(ch) == SEX_MALE ?   \
+	titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_m :  \
+	titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_f)
+*/
+
+extern struct char_data *character_list;
+extern struct obj_data *object_list;
+/*extern struct title_type titles[NUM_CLASSES][LVL_IMPL + 1];*/
+extern struct room_data *world;
+/*extern int max_exp_gain;*/
+extern int max_exp_loss;
+int max_exp_gain(struct char_data *ch);
+int exp_death_loss(struct char_data * ch, int level);
+long exp_to_level(int, int);
+
+
+
+/* When age < 15 return the value p0 */
+/* When age in 15..29 calculate the line between p1 & p2 */
+/* When age in 30..44 calculate the line between p2 & p3 */
+/* When age in 45..59 calculate the line between p3 & p4 */
+/* When age in 60..79 calculate the line between p4 & p5 */
+/* When age >= 80 return the value p6 */
+int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6)
+{
+
+  if (age < 15)
+    return (p0);		/* < 15   */
+  else if (age <= 29)
+    return (int) (p1 + (((age - 15) * (p2 - p1)) / 15));	/* 15..29 */
+  else if (age <= 44)
+    return (int) (p2 + (((age - 30) * (p3 - p2)) / 15));	/* 30..44 */
+  else if (age <= 59)
+    return (int) (p3 + (((age - 45) * (p4 - p3)) / 15));	/* 45..59 */
+  else if (age <= 79)
+    return (int) (p4 + (((age - 60) * (p5 - p4)) / 20));	/* 60..79 */
+  else
+    return (p6);		/* >= 80 */
+}
+
+
+/*
+ * The hit_limit, mana_limit, and move_limit functions are gone.  They
+ * added an unnecessary level of complexity to the internal structure,
+ * weren't particularly useful, and led to some annoying bugs.  From the
+ * players' point of view, the only difference the removal of these
+ * functions will make is that a character's age will now only affect
+ * the HMV gain per tick, and _not_ the HMV maximums.
+ */
+
+/* manapoint gain pr. game hour */
+int mana_gain(struct char_data * ch)
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    /* Neat and fast */
+    gain = GET_LEVEL(ch);
+  } else {
+    gain = graf(age(ch).year, 4, 8, 12, 16, 12, 10, 8);
+    gain = gain + ch->char_specials.managain;
+
+    /* Class calculations */
+
+    /* Skill/Spell calculations */
+
+    /* Position calculations    */
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+      gain <<= 1;
+      break;
+    case POS_RESTING:
+      gain += (gain >> 1);	/* Divide by 2 */
+      break;
+    case POS_SITTING:
+      gain += (gain >> 2);	/* Divide by 4 */
+      break;
+    }
+
+    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+      gain <<= 1;
+  }
+
+  if (IS_AFFECTED(ch, AFF_POISON))
+    gain >>= 2;
+
+  /*if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;*/
+
+  return (gain);
+}
+
+
+int hit_gain(struct char_data * ch)
+/* Hitpoint gain pr. game hour */
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    gain = GET_LEVEL(ch);
+    /* Neat and fast */
+  } else {
+
+    gain = graf(age(ch).year, 8, 12, 20, 32, 16, 10, 4);
+    gain = gain + ch->char_specials.hitgain + 2;
+	if (GET_RACE(ch) == RACE_TROLL)
+		gain += gain * 2;
+
+    /* Class/Level calculations */
+
+    /* Skill/Spell calculations */
+
+    /* Position calculations    */
+
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+      gain += (gain >> 1);	/* Divide by 2 */
+      break;
+    case POS_RESTING:
+      gain += (gain >> 2);	/* Divide by 4 */
+      break;
+    case POS_SITTING:
+      gain += (gain >> 3);	/* Divide by 8 */
+      break;
+    }
+
+    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+      gain >>= 1;
+  }
+
+  if (IS_AFFECTED(ch, AFF_POISON))
+    gain >>= 2;
+
+  /*if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;*/
+
+  return (gain);
+}
+
+
+
+int move_gain(struct char_data * ch)
+/* move gain pr. game hour */
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    return (GET_LEVEL(ch));
+    /* Neat and fast */
+  } else {
+    gain = graf(age(ch).year, 7, 8, 8, 10, 9, 8, 6);
+
+    /* Class/Level calculations */
+
+    /* Skill/Spell calculations */
+
+
+    /* Position calculations    */
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+      gain += (gain >> 1);	/* Divide by 2 */
+      break;
+    case POS_RESTING:
+      gain += (gain >> 2);	/* Divide by 4 */
+      break;
+    case POS_SITTING:
+      gain += (gain >> 3);	/* Divide by 8 */
+      break;
+    }
+  }
+
+  if (IS_AFFECTED(ch, AFF_POISON))
+    gain >>= 2;
+
+  /*if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;*/
+
+  return (gain);
+}
+
+
+
+void set_title(struct char_data * ch, char *title)
+{
+  if (title == NULL)
+    title = '\0';
+
+  if (strlen(title) > MAX_TITLE_LENGTH)
+    title[MAX_TITLE_LENGTH] = '\0';
+
+  if (GET_TITLE(ch) != NULL)
+    free(GET_TITLE(ch));
+
+  GET_TITLE(ch) = str_dup(title);
+}
+
+
+void check_autowiz(struct char_data * ch)
+{
+  char buf[100];
+  extern int use_autowiz;
+  extern int min_wizlist_lev;
+  pid_t getpid(void);
+
+  if (use_autowiz && GET_LEVEL(ch) >= LVL_IMMORT) {
+    sprintf(buf, "nice ../bin/autowiz %d %s %d %s %d &", min_wizlist_lev,
+	    WIZLIST_FILE, LVL_IMMORT, IMMLIST_FILE, (int) getpid());
+    mudlog("Initiating autowiz.", CMP, LVL_IMMORT, FALSE);
+    system(buf);
+  }
+}
+
+void gain_exp(struct char_data * ch, int gain)
+{
+  int is_altered = FALSE;
+  int num_levels = 0;
+  char buf[128];
+
+  if (!IS_NPC(ch) && ((GET_LEVEL(ch) < 1 || GET_LEVEL(ch) >= LVL_IMMORT)))
+    return;
+
+  if (IS_NPC(ch)) {
+    GET_EXP(ch) += gain;
+    return;
+  }
+  if (gain > 0) {
+    gain = MIN(max_exp_gain(ch), gain);	/* put a cap on the max gain per
+kill */
+      GET_EXP(ch) += gain;
+    while (GET_LEVEL(ch) < LVL_IMMORT && GET_EXP(ch) >= exp_to_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+		GET_LEVEL(ch) += 1;
+      num_levels++;
+      advance_level(ch, TRUE);
+      is_altered = TRUE;
+    }
+
+    if (is_altered) {
+      if (num_levels == 1)
+        send_to_char("&0&1You raise a level!&0\r\n", ch);
+      else {
+	sprintf(buf, "You raise %d levels!\r\n", num_levels);
+	send_to_char(buf, ch);
+      }
+      check_autowiz(ch);
+    }
+  } else if (gain < 0) {
+      /*this shows exp gains innumbers for testing*/
+	  /*
+	  sprintf(buf, "max exp gain is %d\r\nbut total", gain);
+	send_to_char(buf, ch);
+		*/
+	  gain = MAX(-exp_death_loss(ch, GET_LEVEL(ch)), gain);	/* Cap max
+exp
+lost per death */
+    if (GET_EXP(ch) + gain < 1)
+      GET_EXP(ch) = 1;
+    else
+      GET_EXP(ch) += gain;
+while ((!IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT) &&
+GET_EXP(ch) <= exp_to_level((GET_LEVEL(ch) - 1), GET_CLASS(ch))) {
+		GET_LEVEL(ch) -= 1;
+      num_levels++;
+      advance_level(ch, FALSE);
+      is_altered = TRUE;
+	  if (is_altered) {
+      if (num_levels == 1)
+        send_to_char("&0&7&bYou loose a level!&0\r\n", ch);
+      else {
+	sprintf(buf, "&0&1&bYou lost %d levels!&0&1\r\n", num_levels);
+	send_to_char(buf, ch);
+      }
+	  }
+	   }
+
+	if (GET_EXP(ch) < 0)
+      GET_EXP(ch) = 0;
+  }
+}
+
+
+void gain_exp_regardless(struct char_data * ch, int gain)
+{
+  int is_altered = FALSE;
+  int num_levels = 0;
+
+  GET_EXP(ch) += gain;
+  if (GET_EXP(ch) < 0)
+    GET_EXP(ch) = 0;
+
+  if (!IS_NPC(ch)) {
+    while (GET_LEVEL(ch) < LVL_IMPL && GET_EXP(ch) >= exp_to_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+      GET_LEVEL(ch) += 1;
+      num_levels++;
+      advance_level(ch, TRUE);
+      is_altered = TRUE;
+    }
+
+    if (is_altered) {
+      if (num_levels == 1)
+        send_to_char("&0&7&bYou raise a level!&0\r\n", ch);
+      else {
+	sprintf(buf, "&0&7&bYou raise %d levels!&0\r\n", num_levels);
+	send_to_char(buf, ch);
+      }
+     /* set_title(ch, NULL);*/
+      check_autowiz(ch);
+    }
+  }
+}
+
+
+
+void gain_condition(struct char_data * ch, int condition, int value)
+{
+  bool intoxicated;
+
+  if (GET_COND(ch, condition) == -1)	/* No change */
+    return;
+
+  intoxicated = (GET_COND(ch, DRUNK) > 0);
+
+  GET_COND(ch, condition) += value;
+
+  /* update regen rates if we were just on empty */
+  if ((condition != DRUNK) && (value > 0) &&
+      (GET_COND(ch, condition) == value))
+    check_regen_rates(ch);
+
+
+  GET_COND(ch, condition) = MAX(0, GET_COND(ch, condition));
+  GET_COND(ch, condition) = MIN(24, GET_COND(ch, condition));
+
+  if (GET_COND(ch, condition) || PLR_FLAGGED(ch, PLR_WRITING))
+    return;
+
+  switch (condition) {
+  case FULL:
+    send_to_char("You are hungry.\r\n", ch);
+    return;
+  case THIRST:
+    send_to_char("You are thirsty.\r\n", ch);
+    return;
+  case DRUNK:
+    if (intoxicated)
+      send_to_char("You are now sober.\r\n", ch);
+    return;
+  default:
+    break;
+  }
+
+}
+
+void gain_innate(struct char_data * ch, int innate, int value)
+{
+
+  if (GET_INNT(ch, innate) == -1)	/* No change */
+    return;
+
+  if (GET_INNT(ch, innate) < 1)
+	  return;
+
+
+  GET_INNT(ch, innate) += value;
+
+  GET_INNT(ch, innate) = MAX(0, GET_INNT(ch, innate));
+  GET_INNT(ch, innate) = MIN(14, GET_INNT(ch, innate));
+}
+
+void check_idling(struct char_data * ch)
+{
+  extern int free_rent;
+  void Crash_rentsave(struct char_data *ch, int cost);
+
+  /* David Endre 1/20/99 Allow Gods to accumulate idle timer
+                         but not void */
+
+  if (++(ch->char_specials.timer) > 8)
+   if (GET_LEVEL(ch) < LVL_GOD) {
+    if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE) {
+      GET_WAS_IN(ch) = ch->in_room;
+      if (FIGHTING(ch)) {
+	stop_fighting(FIGHTING(ch));
+	stop_fighting(ch);
+      }
+      act("$n disappears into the void.", TRUE, ch, 0, 0, TO_ROOM);
+      send_to_char("You have been idle, and are pulled into a void.\r\n", ch);
+      save_char(ch, NOWHERE);
+      Crash_crashsave(ch);
+      char_from_room(ch);
+      char_to_room(ch, 0);
+    } else if (ch->char_specials.timer > 448) {
+      if (ch->in_room != NOWHERE)
+	char_from_room(ch);
+      char_to_room(ch, 0);
+      if (ch->desc)
+	close_socket(ch->desc);
+      ch->desc = NULL;
+      if (free_rent)
+	Crash_rentsave(ch, 0);
+      else
+	Crash_idlesave(ch);
+      sprintf(buf, "%s force-rented and extracted (idle).", GET_NAME(ch));
+      mudlog(buf, CMP, LVL_GOD, TRUE);
+      extract_char(ch);
+    }
+  } else {
+     if (ch->char_specials.timer > 500)
+        ch->char_specials.timer = 999;
+  }
+}
+
+#define BLOOD_DROP_OBJ     34   /* the vnum of the blood object */
+bool last_hunger = FALSE;/*used to half the times it calls thirst*/
+/* Update PCs, NPCs, and objects */
+void point_update(void)
+{
+  void update_char_objects(struct char_data * ch);	/* handler.c */
+  void extract_obj(struct obj_data * obj);	/* handler.c */
+  void do_campout(struct char_data * ch);
+  struct char_data *i, *next_char;
+  struct obj_data *j, *next_thing, *jj, *next_thing2;
+  struct obj_data *bloodd;
+  struct extra_descr_data *new_descr;
+  extern struct portal_decay_type portal_decay_messages[];
+  extern struct index_data *obj_index;
+  int obj_vnum, index;
+
+  /* characters */
+  for (i = character_list; i; i = next_char) {
+    next_char = i->next;
+    if(IS_AFFECTED2(i, AFF2_DISEASE)) {
+      act("&3$n&3 pauses a moment as $e purges his stomach contents.&0",TRUE,i,0,0,TO_ROOM);
+      act("&3You feel VERY ill and purge the contents of your stomach.&0",FALSE,i,0,0,TO_CHAR);
+      gain_condition(i, FULL, -6);
+      gain_condition(i, DRUNK, -1);
+      gain_condition(i, THIRST, -6);
+    }
+    else {
+       if (last_hunger)
+          last_hunger = FALSE;
+       else
+       {
+      gain_condition(i, FULL, -1);
+      gain_condition(i, DRUNK, -1);
+      gain_condition(i, THIRST, -1);
+      last_hunger = TRUE;
+      }
+    }
+	gain_innate(i, INV, -1);
+	gain_innate(i, STR, -1);
+	gain_innate(i, DRK, -1);
+	gain_innate(i, LVT, -1);
+
+    if (GET_POS(i) >= POS_STUNNED) {
+
+      if (IS_AFFECTED(i, AFF_POISON))
+	damage(i, i, 2, SPELL_POISON);
+      if (GET_POS(i) <= POS_STUNNED)
+	update_pos(i);
+    } else if (GET_POS(i) == POS_INCAP){
+      damage(i, i, 1, TYPE_SUFFERING);
+      }
+    else if (GET_POS(i) == POS_MORTALLYW){
+      damage(i, i, 2, TYPE_SUFFERING);
+      }
+    if(IS_AFFECTED2(i, AFF2_ON_FIRE))
+      damage(i,i,20, SPELL_ON_FIRE);
+
+    if (!IS_NPC(i)) {
+      update_char_objects(i);
+      check_idling(i);
+    }
+	/*Lets go camping !!!!....Banyal camp has been changed to an event
+	if (PRF_FLAGGED(i, PRF_CAMPING) ) {
+    do_campout(i);
+	}*/
+  }
+
+   /* objects */
+  for (j = object_list; j; j = next_thing) {
+    next_thing = j->next;	/* Next in object list */
+
+    /* If this is a corpse */
+    if ((GET_OBJ_TYPE(j) == ITEM_CONTAINER) && GET_OBJ_VAL(j, 3)) {
+      /* timer count down */
+      if (GET_OBJ_TIMER(j) > 0)
+	GET_OBJ_TIMER(j)--;
+
+      if (!GET_OBJ_TIMER(j)) {
+
+	if (j->carried_by)
+	  act("$p decays in your hands.", FALSE, j->carried_by, j, 0, TO_CHAR);
+	else if ((j->in_room != NOWHERE) && (world[j->in_room].people)) {
+	  act("A quivering horde of maggots consumes $p.",
+	      TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+	  act("A quivering horde of maggots consumes $p.",
+	      TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+	}
+
+	for (jj = j->contains; jj; jj = next_thing2) {
+	  next_thing2 = jj->next_content;	/* Next in inventory */
+	  obj_from_obj(jj);
+
+	  if (j->in_obj)
+	    obj_to_obj(jj, j->in_obj);
+	  else if (j->carried_by)
+	    obj_to_room(jj, j->carried_by->in_room);
+	  else if (j->in_room != NOWHERE)
+	    obj_to_room(jj, j->in_room);
+	  else
+	    assert(FALSE);
+  }	extract_obj(j);	}
+  }
+
+ if (GET_OBJ_TYPE(j) == ITEM_PORTAL) {
+      if (GET_OBJ_TIMER(j) > 0)
+          GET_OBJ_TIMER(j)--;
+      if (!GET_OBJ_TIMER(j)) {
+	obj_vnum = GET_OBJ_VNUM(j);
+	for(index=0;portal_decay_messages[index].portal_vnum>0 &&
+		portal_decay_messages[index].portal_vnum != obj_vnum;index++);
+        act(portal_decay_messages[index].message,
+             TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+        act(portal_decay_messages[index].message,
+             TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+        extract_obj(j);
+      }
+    }
+
+ if (GET_OBJ_TYPE(j) == ITEM_WALL) {
+      if (GET_OBJ_TIMER(j) > 0)
+          GET_OBJ_TIMER(j)--;
+      if (!GET_OBJ_TIMER(j)) {
+        act("$p &0crumbles to dust and blows away.",
+             TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+        act("$p &0crumbles to dust and blows away.",
+             TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+        extract_obj(j);
+      }
+    }
+
+ /* extract the druid spring. We can expand this to other temp fountains later --Nech */
+ if (GET_OBJ_TYPE(j) == ITEM_FOUNTAIN && GET_OBJ_VNUM(j) == 75) {
+      if (GET_OBJ_TIMER(j) > 0)
+          GET_OBJ_TIMER(j)--;
+      if (!GET_OBJ_TIMER(j)) {
+        act("$p &0crumbles to dust and blows away.",
+             TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+        act("$p &0crumbles to dust and blows away.",
+             TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+        extract_obj(j);
+      }
+    }
+
+ if (GET_OBJ_TYPE(j) == ITEM_OTHER) {
+	if (!str_cmp(j->short_description, "blood")){
+		if (GET_OBJ_TIMER(j) > 0)
+	GET_OBJ_TIMER(j)--;
+		if (GET_OBJ_TIMER(j)==1){
+bloodd = read_object(BLOOD_DROP_OBJ, VIRTUAL);
+GET_OBJ_VAL(bloodd, 0) = j->in_room;
+GET_OBJ_TIMER(bloodd) = 1;
+CREATE(new_descr, struct extra_descr_data, 1);
+new_descr->keyword = str_dup("blood drops");
+sprintf(buf, "&0&1Several drops of blood cover the ground here.&0");
+new_descr->description = str_dup(buf);
+new_descr->next = bloodd->ex_description;
+bloodd->ex_description = new_descr;
+obj_to_room(bloodd, j->in_room);
+extract_obj(j);}
+		if (!GET_OBJ_TIMER(j)) {
+extract_obj(j);}}}     }
+    }
+@
+
+
+1.119
+log
+@Implemented auto gain privilege.
+@
+text
+@/***************************************************************************
+ * $Id: limits.c,v 1.118 2009/06/09 21:50:21 myc Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: limits.c                                       Part of FieryMUD *
+ *  Usage: limits & gain funcs for HMV, exp, hunger/thirst, idle time      *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998 - 2003 by the Fiery Consortium             *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "utils.h"
+#include "casting.h"
+#include "comm.h"
+#include "db.h"
+#include "handler.h"
+#include "limits.h"
+#include "interpreter.h"
+#include "dg_scripts.h"
+#include "clan.h"
+#include "races.h"
+#include "class.h"
+#include "skills.h"
+#include "math.h"
+#include "players.h"
+#include "pfiles.h"
+#include "regen.h"
+#include "fight.h"
+#include "screen.h"
+
+extern long max_exp_gain(struct char_data *ch);
+extern long exp_death_loss(struct char_data * ch, int level);
+
+ACMD(do_shapechange);
+
+
+/* When age < 15 return the value p0 */
+/* When age in 15..29 calculate the line between p1 & p2 */
+/* When age in 30..44 calculate the line between p2 & p3 */
+/* When age in 45..59 calculate the line between p3 & p4 */
+/* When age in 60..79 calculate the line between p4 & p5 */
+/* When age >= 80 return the value p6 */
+int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6)
+{
+
+  if (age < 15)
+    return (p0);                /* < 15   */
+  else if (age <= 29)
+    return (int) (p1 + (((age - 15) * (p2 - p1)) / 15));        /* 15..29 */
+  else if (age <= 44)
+    return (int) (p2 + (((age - 30) * (p3 - p2)) / 15));        /* 30..44 */
+  else if (age <= 59)
+    return (int) (p3 + (((age - 45) * (p4 - p3)) / 15));        /* 45..59 */
+  else if (age <= 79)
+    return (int) (p4 + (((age - 60) * (p5 - p4)) / 20));        /* 60..79 */
+  else
+    return (p6);                /* >= 80 */
+}
+
+/* manapoint gain pr. game hour */
+int mana_gain(struct char_data * ch)
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    /* Neat and fast */
+    gain = GET_LEVEL(ch);
+  } else {
+    gain = graf(age(ch).year, 4, 8, 12, 16, 12, 10, 8);
+    gain = gain + MIN(ch->char_specials.managain, 100);
+
+    /* Class calculations */
+
+    /* Skill/Spell calculations */
+
+    /* Position calculations    */
+    switch (GET_STANCE(ch)) {
+    case STANCE_SLEEPING:
+      gain <<= 1;
+      break;
+    case STANCE_RESTING:
+      gain += (gain >> 1);        /* Divide by 2 */
+      break;
+    default:
+      if (GET_POS(ch) == POS_SITTING)
+        gain += (gain >> 2);        /* Divide by 4 */
+      break;
+    }
+
+    gain = (gain * MANA_REGEN_FACTOR(ch)) / 100;
+
+    /* Do not allow this code to operate on NPCs!  Crash! */
+    /* if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
+      gain >>= 2; */
+  }
+
+  if (EFF_FLAGGED(ch, EFF_POISON))
+    gain >>= 2;
+
+  return (gain);
+}
+
+
+int hit_gain(struct char_data * ch)
+     /* Hitpoint gain pr. game hour */
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    gain = GET_LEVEL(ch);
+    /* Neat and fast */
+  } else {
+
+    gain = graf(age(ch).year, 8, 12, 20, 32, 16, 10, 4);
+
+    /* This brings your max_hp into the formula... */
+    gain = ((GET_MAX_HIT(ch) * .05) + gain) / 2;
+
+    /* Max hitgain stat on a char is 100 */
+    gain = gain + MIN(ch->char_specials.hitgain, 100) + 2;
+
+    if (GET_RACE(ch) == RACE_TROLL)
+      gain += gain * 2;
+
+    /* Class/Level calculations */
+
+    /* Skill/Spell calculations */
+
+    /* Position calculations    */
+    switch (GET_STANCE(ch)) {
+    case STANCE_SLEEPING:
+      gain += (gain << 2);        /* Total = 5x */
+      break;
+    case STANCE_RESTING:
+      gain += (gain << 1);        /* Total = 3x */
+      break;
+    case STANCE_FIGHTING:
+      gain = (gain >> 1);        /* Total = 0.5x */
+      break;
+    default:
+      if (GET_POS(ch) == POS_SITTING)
+         gain += (gain >> 1);        /* Total = 1.5x */
+    }
+
+    gain = (gain * HIT_REGEN_FACTOR(ch)) / 100;
+
+    /* Do not allow this code to operate on NPCs!  Crash! */
+    /* if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
+      gain >>= 2; */
+  }
+
+  if (EFF_FLAGGED(ch, EFF_POISON))
+    gain >>= 2;
+
+  return (gain);
+}
+
+
+
+int move_gain(struct char_data * ch)
+     /* move gain pr. game hour */
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    return ((GET_MAX_MOVE(ch) * .1) + GET_LEVEL(ch));
+    /* Neat and fast */
+  } else {
+    gain = graf(age(ch).year, 2, 3, 3, 5, 4, 3, 1);
+
+    gain = ((GET_MAX_MOVE(ch) * .1) + gain) / 2;
+
+    /* Class/Level calculations */
+
+    /* Skill/Spell calculations */
+
+
+    /* Position calculations    */
+    switch (GET_STANCE(ch)) {
+    case STANCE_SLEEPING:
+      gain += (gain << 2);        /* Total = 5x */
+      break;
+    case STANCE_RESTING:
+      gain += (gain << 1);        /* Total = 3x */
+      break;
+    case STANCE_FIGHTING:
+      gain = (gain >> 1);        /* Total = 0.5 x */
+      break;
+    default:
+      if (GET_POS(ch) == POS_SITTING)
+        gain += (gain >> 1);        /* Total = 1.5x */
+      break;
+    }
+    /* Do not allow this code to operate on NPCs!  Crash! */
+    /* if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
+      gain >>= 2; */
+
+  }
+
+  if (EFF_FLAGGED(ch, EFF_POISON))
+    gain >>= 2;
+
+  gain = (gain * MV_REGEN_FACTOR(ch)) / 100;
+
+  gain += (gain >> 1);
+
+  return (gain);
+}
+
+
+
+void set_title(struct char_data * ch, char *title)
+{
+  if (!title) {
+    GET_TITLE(ch) = NULL;
+    return;
+  }
+
+  if (strlen(title) >= MAX_TITLE_LENGTH)
+    title[MAX_TITLE_LENGTH - 1] = '\0';
+
+  if (GET_TITLE(ch))
+    free(GET_TITLE(ch));
+
+  GET_TITLE(ch) = strdup(title);
+}
+
+void gain_exp(struct char_data *ch, long gain, unsigned int mode)
+{
+  int num_levels = 0;
+  long xp_needed, old_xp;
+
+  extern int level_gain;
+
+  /* Make sure to give xp to the actual player, if shapechanged */
+  ch = REAL_CHAR(ch);
+
+  if (!IS_SET(mode, GAIN_IGNORE_LOCATION)) {
+    /* Don't gain or lose xp in an arena room */
+    if (ROOM_FLAGGED(IN_ROOM(ch), ROOM_ARENA))
+      return;
+  }
+
+  if (!IS_SET(mode, GAIN_IGNORE_MORTAL_BOUNDARY)) {
+    /* Immortals don't gain exp */
+    if (GET_LEVEL(ch) >= LVL_IMMORT)
+      return;
+  }
+
+  if (!IS_SET(mode, GAIN_IGNORE_CHUNK_LIMITS)) {
+    gain = MIN(max_exp_gain(ch), gain);
+    gain = MAX(-exp_death_loss(ch, GET_LEVEL(ch)), gain);
+  }
+
+  /* NPCs don't worry about gaining levels, so we can get out */
+  if (IS_NPC(ch)) {
+    GET_EXP(ch) += gain;
+    if (GET_EXP(ch) < 1)
+      GET_EXP(ch) = 1;
+    return;
+  }
+
+  old_xp = GET_EXP(ch);
+
+  if (gain > 0) {
+    if (!IS_SET(mode, GAIN_IGNORE_NAME_BOUNDARY)) {
+      /* There's a level 10 limit for players with disapproved names */
+      if (PLR_FLAGGED(ch, PLR_NAPPROVE) && GET_LEVEL(ch) >= 10) {
+        cprintf(ch, AHCYN "You can gain no more levels or experience "
+                    "until your name is approved!\r\n" ANRM);
+        return;
+      }
+    }
+
+    GET_EXP(ch) += gain;
+
+    if (!IS_SET(mode, GAIN_IGNORE_MORTAL_BOUNDARY)) {
+      /* XP needed for ** */
+      xp_needed = exp_next_level(99, GET_CLASS(ch));
+
+      /* Cap exp at the ** amount (which is level 100 - 1 xp) */
+      if (GET_EXP(ch) >= xp_needed)
+        GET_EXP(ch) = xp_needed - 1;
+    }
+
+    /* XP needed for next level */
+    xp_needed = exp_next_level(GET_LEVEL(ch), GET_CLASS(ch));
+
+    if (!IS_SET(mode, GAIN_IGNORE_LEVEL_BOUNDARY)) {
+      /* If you're ready to level, but need to go to the guildmaster to
+       * gain it, you get set to next-level-xp minus 1
+       */
+      if (level_gain && GET_LEVEL(ch) < LVL_MAX_MORT &&
+          GET_EXP(ch) >= xp_needed && !PRV_FLAGGED(ch, PRV_AUTO_GAIN))
+        GET_EXP(ch) = xp_needed - 1;
+    }
+
+    /* Receive notification if you just became ready for next level
+     * and level gaining is on, or if you just achieved ** for the first
+     * time. 
+     */
+    if (GET_EXP(ch) != old_xp && GET_EXP(ch) == xp_needed - 1) {
+      if (level_gain && GET_LEVEL(ch) < LVL_MAX_MORT)
+        cprintf(ch, AHCYN "You are ready for the next level!\r\n" ANRM);
+      else if (GET_LEVEL(ch) == LVL_MAX_MORT) {
+        if (PLR_FLAGGED(ch, PLR_GOTSTARS)) {
+          cprintf(ch, AFMAG "You got your %s " AFMAG "back again!\r\n" ANRM,
+                  CLASS_STARS(ch));
+          clan_notification(GET_CLAN(ch), ch, "%s regained %s %s!",
+                            GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
+        }
+        else {
+          SET_FLAG(PLR_FLAGS(ch), PLR_GOTSTARS);
+          cprintf(ch, AFMAG "You have achieved %s " AFMAG "status in %s"
+                      AFMAG "!!\r\n" ANRM, CLASS_STARS(ch), CLASS_FULL(ch));
+          all_except_printf(ch, AFMAG "%s " AFMAG "has achieved %s "
+                                AFMAG "status in %s" AFMAG "!!\r\n" ANRM,
+                            GET_NAME(ch), CLASS_STARS(ch), CLASS_FULL(ch));
+        }
+      }
+    }
+
+    /* Check to see if the player is gaining any levels */
+    while (GET_LEVEL(ch) < (IS_SET(mode, 
+               GAIN_IGNORE_MORTAL_BOUNDARY) ? LVL_IMPL : LVL_IMMORT) &&
+           GET_EXP(ch) >= exp_next_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+      GET_LEVEL(ch) += 1;
+      ++num_levels;
+      advance_level(ch, LEVEL_GAIN);
+    }
+
+    if (num_levels && !IS_SET(mode, GAIN_IGNORE_NAME_BOUNDARY)) {
+      if (PLR_FLAGGED(ch, PLR_NAPPROVE)) {
+        cprintf(ch, AHCYN "Your name must be approved by a god before "
+                    "level 10!\r\nPlease contact a god as soon as "
+                    "possible!\r\n" ANRM);
+      }
+    }
+
+    if (num_levels == 1) {
+      cprintf(ch, AHWHT "You gain a level!\r\n" ANRM);
+      clan_notification(GET_CLAN(ch), ch,
+                        "%s advanced to level %d!",
+                        GET_NAME(ch), GET_LEVEL(ch));
+      mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)),
+              "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
+    }
+    else if (num_levels > 1) {
+      cprintf(ch, AHWHT "You gain %d levels to %d!\r\n" ANRM, 
+              num_levels, GET_LEVEL(ch));
+      clan_notification(GET_CLAN(ch), ch,
+                        "%s advances %d levels to level %d!",
+                        GET_NAME(ch), num_levels, GET_LEVEL(ch));
+      mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)),
+              "%s advanced to level %d (from %d)",
+              GET_NAME(ch), GET_LEVEL(ch), GET_LEVEL(ch) - num_levels);
+    }
+  }
+  else if (gain < 0) {
+    GET_EXP(ch) += gain;
+    if (GET_EXP(ch)  < 1)
+      GET_EXP(ch) = 1;
+    while ((GET_LEVEL(ch) < LVL_IMMORT ||
+            IS_SET(mode, GAIN_IGNORE_MORTAL_BOUNDARY)) &&
+           GET_EXP(ch) <= exp_next_level(GET_LEVEL(ch) - 1, GET_CLASS(ch))) {
+      GET_LEVEL(ch) -= 1;
+      ++num_levels;
+      advance_level(ch, LEVEL_LOSE);
+    }
+    if (num_levels == 1) {
+      cprintf(ch, AHWHT "You lose a level!\r\n" ANRM);
+      clan_notification(GET_CLAN(ch), ch, "%s lost level %d!",
+                        GET_NAME(ch), GET_LEVEL(ch) + 1);
+      mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)),
+              "%s lost level %d", GET_NAME(ch), GET_LEVEL(ch) + 1);
+    }
+    else if (num_levels > 1) {
+      cprintf(ch, AHWHT "You lose %d levels from %d to %d!\r\n" ANRM, 
+              num_levels, GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
+      clan_notification(GET_CLAN(ch), ch,
+                        "%s lost %d levels from %d to %d!",
+                        GET_NAME(ch), num_levels, 
+                        GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
+      mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)),
+              "%s lost %d levels from %d to %d",
+              GET_NAME(ch), num_levels, GET_LEVEL(ch) + num_levels,
+              GET_LEVEL(ch));
+    }
+  }
+}
+
+
+
+void gain_condition(struct char_data * ch, int condition, int value)
+{
+  bool intoxicated;
+
+  /* mobs don't get hungry */
+  if (IS_NPC(ch))
+    return;
+
+  /* already completely hungry/thirsty? */
+  if (GET_COND(ch, condition) == -1)
+    return;
+
+  intoxicated = (GET_COND(ch, DRUNK) > 0);
+
+  GET_COND(ch, condition) += value;
+
+  /* update regen rates if we were just on empty */
+  if ((condition != DRUNK) && (value > 0) &&
+      (GET_COND(ch, condition) == value))
+    check_regen_rates(ch);
+
+
+  GET_COND(ch, condition) = MAX(0, GET_COND(ch, condition));
+  GET_COND(ch, condition) = MIN(24, GET_COND(ch, condition));
+
+  if (PLR_FLAGGED(ch, PLR_WRITING))
+    return;
+
+  if (ch->desc && EDITING(ch->desc))
+    return;
+
+   if (GET_COND(ch, condition) == 5) {
+      switch (condition) {
+         case FULL:
+            send_to_char("You're a little hungry.\r\n", ch);
+            return;
+         case THIRST:
+            send_to_char("You're a little thirsty.\r\n", ch);
+            return;
+      }
+   } else if (!GET_COND(ch, condition)) {
+      switch (condition) {
+         case FULL:
+            send_to_char("You are hungry.\r\n", ch);
+            return;
+         case THIRST:
+            send_to_char("You are thirsty.\r\n", ch);
+            return;
+         case DRUNK:
+            if (intoxicated)
+               send_to_char("You are now sober.\r\n", ch);
+            return;
+         default:
+            break;
+      }
+   }
+}
+
+void check_idling(struct char_data * ch)
+{
+   void perform_immort_invis(struct char_data *ch, int level); /* act.wizard.c */
+
+   ++(ch->char_specials.timer);
+
+   /*
+    * Also increment the timer on the mob the player is shapechanged into.
+    * This is to keep track of how long they are in a shapechanged state.
+    */
+   if (ch->forward)
+     ++(ch->forward->char_specials.timer);
+
+   /*  Scheme for immortal+ idling:  */
+   /*  1. After 10 minutes of idle time, auto-invis to level 100. */
+   /*  Assumptions: 75-second ticks */
+   if (GET_LEVEL(ch) >= LVL_IMMORT) {
+      /*  this char is an immort+ */
+
+      if (ch->char_specials.timer >= 8) {
+         /* this immort has been idle for 10+ mins */
+         if (GET_INVIS_LEV(ch) < LVL_IMMORT) {
+            /* this char is not already invis beyond LVL_IMMORT */
+            sprintf(buf,
+                  "You have been idle for ten minutes.  Auto-invis to level %d engaged.\r\n",
+                  LVL_IMMORT);
+            send_to_char(buf, ch);
+            perform_immort_invis(ch, LVL_IMMORT);
+         }
+      }
+      return;
+   }
+
+   if (ch->char_specials.timer >= 4) {
+      if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE &&
+          (!ch->forward || ch->in_room != 0)) {
+         GET_WAS_IN(ch) = ch->in_room;
+         act("$n disappears into the void.", TRUE, ch, 0, 0, TO_ROOM);
+         send_to_char("You have been idle, and are pulled into a void.\r\n", ch);
+         save_player(ch);
+         char_from_room(ch);
+         char_to_room(ch, 0);
+      } else if (ch->char_specials.timer >= 7) {
+         if (ch->forward && ch->forward->desc) {
+            do_shapechange(ch->forward, "me", 0, 1);
+         } else {
+            if (ch->in_room != NOWHERE && ch->in_room != 0) {
+               char_from_room(ch);
+               char_to_room(ch, 0);
+            }
+            if (ch->desc)
+               close_socket(ch->desc);
+            ch->desc = NULL;
+            sprintf(buf, "%s force-rented and extracted (idle).", GET_NAME(ch));
+            mudlog(buf, BRF, LVL_GOD, TRUE);
+            remove_player_from_game(ch, QUIT_TIMEOUT);
+         }
+      }
+   }
+}
+
+void weardown_light(struct obj_data *obj) {
+  struct char_data *ch;
+  char *lightmsg = NULL;
+
+  /* Don't wear down permanant lights. */
+  if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == LIGHT_PERMANENT)
+    return;
+
+  /* Make a note of who, if anyone, is carrying this light */
+  ch = obj->carried_by ? obj->carried_by : obj->worn_by;
+
+  /* give warning of impending light failure */
+  switch (--GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING)) { /* weardown light */
+    case 5:
+      lightmsg = "begins to flicker and fade.";
+      break;
+    case 3:
+      lightmsg = "grows slightly dimmer.";
+      break;
+    case 1:
+      lightmsg = "is almost out.";
+      break;
+    case 0:
+      lightmsg = "sputters out and dies.";
+      break;
+    default:
+      lightmsg = NULL;
+  }
+
+  if (lightmsg) {
+    if (ch) {
+      /* Messages sent when the light's being carried by someone */
+      sprintf(buf, "&3Your $o&3 %s&0", lightmsg);
+      act(buf, FALSE, ch, obj, 0, TO_CHAR);
+      sprintf(buf, "&3$n&3's $o&3 %s&0", lightmsg);
+      act(buf, FALSE, ch, obj, 0, TO_ROOM);
+    }
+    else if (obj->in_room != NOWHERE && world[obj->in_room].people) {
+      /* Messages sent when the light is on the ground */
+      sprintf(buf, "&3$p&3 %s&0", lightmsg);
+      act(buf, FALSE, world[obj->in_room].people, obj, 0, TO_ROOM);
+      act(buf, FALSE, world[obj->in_room].people, obj, 0, TO_CHAR);
+    }
+  }
+
+  if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == 0) {
+    /* The fuel is now expended. */
+    if (obj->in_room != NOWHERE)
+      world[obj->in_room].light--;
+    else if (ch)
+      world[ch->in_room].light--;
+    /* Set the object to "not lit" */
+    GET_OBJ_VAL(obj, VAL_LIGHT_LIT) = FALSE;
+  }
+}
+
+void extract_corpse(struct obj_data *obj) {
+  struct obj_data *i, *next;
+
+  if (obj->carried_by)
+    act("$p decays in your hands.", FALSE, obj->carried_by, obj, 0, TO_CHAR);
+  else if ((obj->in_room != NOWHERE) && (world[obj->in_room].people)) {
+    act("A quivering horde of maggots consumes $p.",
+        TRUE, world[obj->in_room].people, obj, 0, TO_ROOM);
+    act("A quivering horde of maggots consumes $p.",
+        TRUE, world[obj->in_room].people, obj, 0, TO_CHAR);
+  }
+
+  for (i = obj->contains; i; i = next) {
+    next = i->next_content;  /* Next in inventory */
+    obj_from_obj(i);
+    if (obj->in_obj)
+      obj_to_obj(i, obj->in_obj);
+    else if (obj->carried_by)
+      obj_to_room(i, obj->carried_by->in_room);
+    else if (obj->in_room != NOWHERE) {
+      obj_to_room(i, obj->in_room);
+      start_decomposing(i);
+    } else
+      assert(FALSE);
+  }
+
+  extract_obj(obj);
+}
+
+
+#define BLOOD_DROP_OBJ     34   /* the vnum of the blood object */
+#define BLOOD_POOL_OBJ     35   /* the vnum of the blood object */
+void decay_object(struct obj_data *obj) {
+  char *msg;
+
+  /* Nothing special if it's inside another object */
+  if (obj->in_room == NOWHERE) {
+    extract_obj(obj);
+    return;
+  }
+
+  /* The default crumble message. */
+  msg = "$p&0 crumbles to dust and blows away.";
+
+  switch (GET_OBJ_TYPE(obj)) {
+    case ITEM_CONTAINER:
+      /* Corpses get special treatment. */
+      if (IS_CORPSE(obj))
+        extract_corpse(obj);
+      return;
+    case ITEM_PORTAL:
+      /* Pick a message based on object vnum. */
+      switch (GET_OBJ_VNUM(obj)) {
+        case OBJ_VNUM_MOONWELL:
+          msg = "$p fades from existence.";
+          break;
+        case OBJ_VNUM_HEAVENSGATE:
+          msg = "The glowing tunnel of light closes into nothingness.";
+          break;
+        case OBJ_VNUM_HELLGATE:
+          msg = "The gaping hole in the ground closes, leaving a blackened piece of earth.";
+          break;
+      }
+      break;
+    case ITEM_WALL:
+      /* Choose a message based on the material of the wall.
+       * We determine the material from the spell that caused it, for now.
+       * At some time in the future, objects may have their materials
+       * identified more explicitly. */
+      switch (GET_OBJ_VAL(obj, VAL_WALL_SPELL)) {
+        case SPELL_WALL_OF_ICE:
+          msg = "$p &7&8shatters&0 into small, &4quickly-melting&0 shards.";
+          break;
+      }
+      break;
+    case ITEM_OTHER:
+      /* Blood pools "crumble" into smaller blood droplets. */
+      if (GET_OBJ_VNUM(obj) == BLOOD_POOL_OBJ) {
+        struct obj_data *temp = read_object(BLOOD_DROP_OBJ, VIRTUAL);
+        GET_OBJ_DECOMP(temp) = 2;
+        GET_OBJ_VAL(temp, VAL_BLOOD_ROOM) = obj->in_room;
+        obj_to_room(temp, obj->in_room);
+        /* Silent extraction. */
+        msg = NULL;
+      }
+      break;
+    case ITEM_FOUNTAIN:
+      /* Druid's fountain. */
+      if (GET_OBJ_VNUM(obj) == 75)
+        msg = "$p dries up.";
+      break;
+  }
+
+  if (world[obj->in_room].people) {
+    act(msg, TRUE, world[obj->in_room].people, obj, 0, TO_ROOM);
+    act(msg, TRUE, world[obj->in_room].people, obj, 0, TO_CHAR);
+  }
+  extract_obj(obj);
+}
+
+
+/* Update PCs, NPCs, and objects */
+void point_update(void)
+{
+   struct char_data *i, *next_char;
+   struct obj_data *j;
+
+   extern struct obj_data *go_iterator;
+
+   /* characters */
+   for (i = character_list; i; i = next_char) {
+      next_char = i->next;
+
+      if (GET_STANCE(i) >= STANCE_STUNNED) {
+         if (EFF_FLAGGED(i, EFF_POISON))
+            damage(i, i, GET_LEVEL(i) / 2, SPELL_POISON);
+         if (GET_STANCE(i) == STANCE_DEAD)
+            continue;
+         /* Do damage with a maximum of 5% of HP for PCs and 2% for NPCs,
+          * depending on level. */
+         if (EFF_FLAGGED(i, EFF_ON_FIRE))
+            damage(i, i, ((GET_MAX_HIT(i) / (IS_NPC(i) ? 50 : 20)) *
+                      GET_LEVEL(i)) / 100 + 1, SPELL_ON_FIRE);
+         if (DECEASED(i))
+            continue;
+      }
+
+      if (EFF_FLAGGED(i, EFF_DISEASE)) {
+         act("&3$n&3 pauses a moment as $e purges $s stomach contents.&0",
+                  TRUE, i, 0, 0, TO_ROOM);
+         act("&3You feel VERY ill and purge the contents of your stomach.&0",
+                  FALSE, i, 0, 0, TO_CHAR);
+         gain_condition(i, FULL, -6);
+         gain_condition(i, DRUNK, -1);
+         gain_condition(i, THIRST, - 6 * HOURLY_THIRST_CHANGE);
+      }
+
+      if (IS_NPC(i))
+         continue;
+
+      if (IS_HUNGRY(i)) {
+         if (IS_THIRSTY(i));
+            /* send_to_char("Your hunger and thirst are draining your energy rapidly.\r\n", i); */
+         else {
+            /* send_to_char("You are feeling weak from hunger.\r\n", i); */
+            gain_condition(i, THIRST, - HOURLY_THIRST_CHANGE);
+         }
+      }
+      else if (IS_THIRSTY(i)) {
+         /* send_to_char("You feel dizzy from extreme thirst.\r\n", i); */
+         gain_condition(i, FULL, -1);
+      }
+      else {
+         gain_condition(i, FULL, -1);
+         gain_condition(i, THIRST, - HOURLY_THIRST_CHANGE);
+      }
+      gain_condition(i, DRUNK, -1);
+
+      check_idling(i);
+   }
+
+   /* objects:
+    *   -- lights run out
+    *   -- objects decay
+    */
+   for (j = object_list; j; j = go_iterator) {
+      /* See handler.c, extract_obj() about go_iterator */
+      go_iterator = j->next;
+
+      /* Try to catch invalid objects that could crash the mud. */
+      if (j->in_room < 0 || j->in_room > top_of_world) {
+          if (!(j->worn_by || j->carried_by || j->in_obj)) {
+             mudlog("POINT_UPDATE OBJ ERROR: Object in NOWHERE, extracting",
+                      NRM, LVL_GOD, TRUE);
+             sprintf(buf, "Object %d, \"%s\"", GET_OBJ_VNUM(j), j->name);
+             mudlog(buf, NRM, LVL_GOD, TRUE);
+             extract_obj(j);
+             continue;
+          }
+      }
+
+      if (GET_OBJ_TYPE(j) == ITEM_LIGHT && GET_OBJ_VAL(j, VAL_LIGHT_LIT)) /* Is lit */
+         weardown_light(j);
+
+      /* Decompose things */
+      if (OBJ_FLAGGED(j, ITEM_DECOMP)) {
+         if (GET_OBJ_DECOMP(j) > 0)
+            --GET_OBJ_DECOMP(j);
+         if (!GET_OBJ_DECOMP(j)) {
+            /* The item's decomp timer has run out. Check its trigger, then
+             * decay it. */
+
+            /* If timer_otrigger returns 0, the normal timeout action should not
+             * occur.  In this case, if the trigger doesn't opurge the object,
+             * then we will attempt to run the trigger again in the next tick. */
+            if (!timer_otrigger(j))
+               continue;
+            decay_object(j);
+         }
+      }
+   }
+}
+
+
+/* Set something decomposing.  A player probably dropped it.
+ *
+ * The time to decompose is in ticks. A tick is approximately 75 real seconds. */
+void start_decomposing(struct obj_data *obj)
+{
+   struct obj_data *o;
+   int ticks;
+
+   if (GET_OBJ_LEVEL(obj) < 100 && !OBJ_FLAGGED(obj, ITEM_PERMANENT)) {
+      /* Decide how long it will take the object to decompose. */
+      ticks = GET_OBJ_LEVEL(obj) + 11;
+
+      /* Add approximately 4 real hours if it's a key. */
+      if (GET_OBJ_TYPE(obj) == ITEM_KEY)
+         ticks += 192;
+
+      /* It's OK to raise the amount of time to decomp, but not to lower it.
+       * Some objects were given higher values (such as player corpses).
+       * Then a god or someone might have picked up the object and dropped it.
+       * If we blindly reset the number here, that action might have sped up the
+       * decomposition undesirably. */
+      if (GET_OBJ_DECOMP(obj) < ticks)
+         GET_OBJ_DECOMP(obj) = ticks;
+      SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_DECOMP);
+   }
+
+   /* The contents of corpses don't decompose. */
+   if (!IS_CORPSE(obj))
+      for (o = obj->contains; o; o = o->next_content)
+         start_decomposing(o);
+}
+
+void stop_decomposing(struct obj_data *obj)
+{
+   struct obj_data *o;
+
+   REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_DECOMP);
+   for (o = obj->contains; o; o = o->next_content)
+      stop_decomposing(o);
+}
+
+
+/***************************************************************************
+ * $Log: limits.c,v $
+ * Revision 1.118  2009/06/09 21:50:21  myc
+ * Clan notification when someone attains their stars after the
+ * initial time.  clan_notification now adds the color codes for you!
+ *
+ * Revision 1.117  2009/06/09 19:33:50  myc
+ * Rewrote gain_exp and retired gain_exp_regardless.
+ *
+ * Revision 1.116  2009/06/09 05:42:14  myc
+ * Removing some code that is no longer required in gain_exp_regardless
+ * due to the new clan implementation.
+ *
+ * Revision 1.115  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.114  2009/02/11 17:03:39  myc
+ * Adding check for EDITING(d) where PLR_WRITING is checked in
+ * gain_condition.
+ *
+ * Revision 1.113  2008/09/29 03:24:44  jps
+ * Make container weight automatic. Move some liquid container functions to objects.c.
+ *
+ * Revision 1.112  2008/09/21 21:50:56  jps
+ * Stop trying to keep track of who's attacking who when there's a shapechange,
+ * since do_shapechange handles that internally now.
+ *
+ * Revision 1.111  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.110  2008/09/20 22:38:56  jps
+ * Keys will take an extra four hours (real time) to decompose.
+ *
+ * Revision 1.109  2008/09/20 06:05:06  jps
+ * Add macros POSSESSED and POSSESSOR.
+ *
+ * Revision 1.108  2008/09/08 05:17:42  jps
+ * Fix warning
+ *
+ * Revision 1.107  2008/09/07 20:07:59  jps
+ * Changed gain_exp to use exp_next_level correctly. It will send a mudwide
+ * message when you first achieve **, and a personal message whenever you
+ * get them back after losing them.
+ *
+ * Revision 1.106  2008/09/06 19:11:27  jps
+ * Change the way corpses decompose.
+ *
+ * Revision 1.105  2008/09/02 07:26:20  jps
+ * Better looping when decomposing an object's contents.
+ *
+ * Revision 1.104  2008/09/02 07:17:04  jps
+ * Going to DECOMP
+ *
+ * Revision 1.103  2008/09/02 07:03:03  jps
+ * Still honor TRANSIENT flag for now
+ *
+ * Revision 1.102  2008/09/02 06:51:48  jps
+ * Changed the way things decompose: they use the DECOMP flag.
+ *
+ * Revision 1.101  2008/09/01 22:15:59  jps
+ * Saving and reporting players' game-leaving reasons and locations.
+ *
+ * Revision 1.100  2008/08/30 01:31:51  myc
+ * Changed the way stats are calculated in effect_total; ability
+ * stats are saved in a raw form now, and only capped when accessed.
+ * Damroll and hitroll are recalculated everytime effect_total
+ * is called, using cached base values.
+ *
+ * Revision 1.99  2008/07/27 05:27:56  jps
+ * Using save_player and remove_player_from_game functions.
+ *
+ * Revision 1.98  2008/07/21 19:17:07  jps
+ * Remove auto-AFK for immortals.
+ *
+ * Revision 1.97  2008/06/07 19:06:46  myc
+ * Moved all object-related constants and structures to objects.h
+ *
+ * Revision 1.96  2008/06/05 02:07:43  myc
+ * Rewrote rent saving to use ascii object files.
+ *
+ * Revision 1.95  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.94  2008/05/11 05:56:24  jps
+ * Don't do suffering damage from point_update - bleeding out is
+ * already accomplished in regen.c.
+ *
+ * Revision 1.93  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.92  2008/03/30 17:30:38  jps
+ * Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
+ * from pfiles.c now include pfiles.h and depend on it in the makefile.
+ *
+ * Revision 1.91  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.90  2008/03/20 03:26:05  myc
+ * Fixed set_title again.
+ *
+ * Revision 1.89  2008/03/20 03:14:56  myc
+ * Fix crash bug in set_title (trying to strlen possibly null pointer).
+ *
+ * Revision 1.88  2008/03/10 20:46:55  myc
+ * Moving innate timers to the cooldown system.
+ *
+ * Revision 1.87  2008/03/05 03:03:54  myc
+ * Title is saved differently in pfiles now, so must check for NULL
+ * instead of empty string.
+ *
+ * Revision 1.86  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.85  2008/02/02 19:38:20  myc
+ * Fixed possible buffer overwrite in set_title.
+ *
+ * Revision 1.84  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.83  2008/01/27 21:09:12  myc
+ * Replace hit() with attack().
+ *
+ * Revision 1.82  2008/01/27 12:11:21  jps
+ * Use regen factors in class.c.
+ *
+ * Revision 1.81  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.80  2008/01/05 05:39:41  jps
+ * Changed name of save_char() to save_player().
+ *
+ * Revision 1.79  2008/01/04 01:53:26  jps
+ * Added races.h file and created global array "races" for much
+ * race-related information.
+ *
+ * Revision 1.78  2008/01/03 12:44:03  jps
+ * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+ * to CLASS_SORCERER.
+ *
+ * Revision 1.77  2007/12/25 20:37:32  jps
+ * Apply the xp gain cap to NPCs as well.
+ *
+ * Revision 1.76  2007/12/25 17:03:32  jps
+ * Minor cleanup.
+ *
+ * Revision 1.75  2007/12/25 06:22:19  jps
+ * Hey, room 0 is ok!
+ *
+ * Revision 1.74  2007/12/23 19:27:26  jps
+ * Use global object iterator to prevent decay events from operating on
+ * already-extracted objects.
+ *
+ * Revision 1.73  2007/12/23 18:09:57  jps
+ * Fixed bug in invalid decaying object detection.
+ *
+ * Revision 1.72  2007/12/20 03:04:23  jps
+ * Fix bad bad-object extractor.
+ *
+ * Revision 1.71  2007/12/19 20:53:25  myc
+ * Fixed possible crash bug in set_title.  Fixed gain_exp_regardless
+ * to automatically remove a player from a clan if they are advanced
+ * to clan god status.  save_player() no longer requires you to supply
+ * a load/save room (which wasn't being used anyway).
+ *
+ * Revision 1.70  2007/12/17 18:26:27  jps
+ * Try to catch some buggy objects.
+ *
+ * Revision 1.69  2007/11/02 02:32:46  jps
+ * Typo fix when decaying a hellgate.
+ *
+ * Revision 1.68  2007/10/27 18:56:26  myc
+ * When a mob dies of fire, poison, of suffering, if they were fighting
+ * someone, their opponent gets the exp for the kill.
+ *
+ * Revision 1.67  2007/10/17 17:22:57  myc
+ * If you die by fire while fighting, your opponent gets the kill.
+ *
+ * Revision 1.66  2007/10/04 16:20:24  myc
+ * Transient item flag now makes things decay when they are on the ground.
+ * Cleaned up point_update a bunch.  Took out update_char_objects, and
+ * moved all the object decay stuff to functions.
+ *
+ * Revision 1.65  2007/10/02 02:52:27  myc
+ * Fixed idle timeout for shapechanged druids.  (It checks the shapechanged
+ * mob instead of the idle druid...sort of.)
+ *
+ * Revision 1.64  2007/09/21 18:08:04  jps
+ * Stop the continuing nag messages about hunger and thirst.  Regeneration
+ * won't be affected by hunger an thirst.
+ *
+ * Revision 1.63  2007/09/03 21:18:38  jps
+ * Standardize magic wall expiration.
+ *
+ * Revision 1.62  2007/08/26 01:55:41  myc
+ * Fire now does real damage.  All fire spells have a chance to catch the
+ * victim on fire.  Mobs attempt to douse themselves.
+ *
+ * Revision 1.61  2007/08/04 01:15:32  jps
+ * Prevent xp gain/loss in arena rooms.
+ *
+ * Revision 1.60  2007/07/31 23:44:36  jps
+ * New macros IS_HUNGRY, IS_THIRSTY, IS_DRUNK.
+ *
+ * Revision 1.59  2007/07/25 01:36:18  jps
+ * Clean up check_idling().
+ *
+ * Revision 1.58  2007/05/28 06:25:26  jps
+ * Added coloring to light burnout messages.
+ *
+ * Revision 1.57  2007/04/11 07:50:03  jps
+ * Improve light rundown feedback.
+ *
+ * Revision 1.56  2007/03/27 04:27:05  myc
+ * Changed spellings for innate timer macros.
+ *
+ * Revision 1.55  2006/12/28 23:46:29  myc
+ * Fixed typo in light failing message.
+ *
+ * Revision 1.54  2006/12/05 20:50:57  myc
+ * Bug causing too many messages for failing lights on heartbeats.
+ *
+ * Revision 1.53  2006/12/05 18:37:46  myc
+ * More warning before light failure.
+ *
+ * Revision 1.52  2006/11/21 03:45:52  jps
+ * Running down of lights is handled here.  Lights on the ground
+ * run down too.
+ *
+ * Revision 1.51  2006/11/16 16:59:30  jps
+ * Add warning messages "You're a little hungry/thirsty" when
+ * you reach 5 in those values.
+ *
+ * Revision 1.50  2006/11/13 04:15:10  jps
+ * Fix occasional crash caused by checking mobs for hunger/thirst
+ *
+ * Revision 1.49  2006/11/11 10:11:04  jps
+ * The first message received when you feel hungry or thirsty is the
+ * same, but subsequent ones are a little more alerting to the fact
+ * that being hungry and/or thirsty isn't a good state to be in.
+ *
+ * Revision 1.48  2006/11/08 21:28:21  jps
+ * Once again, being hungry or thirsty cuts regeneration to 25% of normal.
+ *
+ * Revision 1.47  2006/11/08 07:58:23  jps
+ * Typo fix "raise a level" -> "gain a level"
+ *
+ * Revision 1.46  2006/05/30 00:49:22  rls
+ * Modified poison damage to base off level of poisoned player... I know, crazy!
+ *
+ * Revision 1.45  2004/11/19 20:43:16  rsd
+ * back-rev'd to version 1.43
+ *
+ * Revision 1.43  2004/11/01 05:30:33  jjl
+ * LVL_IMMORT now idles out, LVL_GOD+ do not.
+ *
+ * Revision 1.42  2003/07/14 05:46:14  rsd
+ * altered the header to update copyright date and
+ * to test is new load will allow RCS to function
+ *
+ * Revision 1.41  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.40  2002/05/13 23:35:23  dce
+ * Fixed a bug where idling out when shapechanged cause you leave
+ * the mob behind.
+ *
+ * Revision 1.39  2001/10/12 17:53:35  rjd
+ * New immortal+ idle scheme implemented: 5 min idle activates AFK, 10 min idle activates invis 100.
+ *
+ * Revision 1.38  2001/10/11 18:33:54  rjd
+ * Took care of nit-pick warning. :P
+ *
+ * Revision 1.37  2001/10/10 23:30:22  rjd
+ * Immortals+ who are idle for five or more tics have an auto-toggle-on for the AFK toggle.
+ *
+ * Revision 1.36  2001/04/08 13:51:25  dce
+ * TEMPORARY fix to shapechanged players voiding out.
+ *
+ * Revision 1.35  2001/03/31 00:19:42  dce
+ * Think I fixed a crash bug with move gain.
+ *
+ * Revision 1.33  2001/02/24 04:04:15  dce
+ * Shapechanged players gain experience
+ *
+ * Revision 1.32  2000/11/22 20:28:32  rsd
+ * added back rlog messages from prior to the addition
+ * of the $log$ string.
+ *
+ * Revision 1.31  2000/10/15 04:59:02  cmc
+ * somehow forgot the "you are ready" message.
+ * I wonder what color it'll end up being?
+ * picked it randomly from an important looking message.
+ *
+ * Revision 1.30  2000/10/15 04:37:59  cmc
+ * fixed level gain code so that ** could be achieved
+ *
+ * Revision 1.29  2000/10/13 17:52:56  cmc
+ * optional "level gain" code implemented
+ *
+ * Revision 1.28  2000/09/13 22:21:27  rsd
+ * made the idle timer work on 99 and below instead of
+ * 100 and below.
+ *
+ * Revision 1.27  2000/05/01 01:31:22  rsd
+ * removed all the gain_exp() changes
+ * because it didn't even work.
+ *
+ * Revision 1.19  2000/04/22 22:37:47  rsd
+ * Fixed the comment header, also fixed typo in You loose a level!
+ *
+ * Revision 1.18  2000/03/20 04:34:40  rsd
+ * Commented out all references to autowiz.
+ *
+ * Revision 1.17  1999/12/10 22:13:45  jimmy
+ * Exp tweaks.  Made Exp loss for dying a hardcoded 25% of what was needed for the next
+ * level.  Fixed problems with grouping and exp.  Removed some redundant and unnecessary
+ * exp code.
+ *
+ * Revision 1.16  1999/11/28 23:32:08  cso
+ * point_update: modified to use IS_CORPSE macro
+ *
+ * Revision 1.15  1999/10/30 15:37:24  rsd
+ * Jimmy coded alignemt restrictions for Paladins and exp.
+ * Added a victim check in gain_exp() to check victims alignment.
+ * Also coded in the ranges for alignment and the exp modifiers
+ * for the different victim alignments.
+ *
+ * Revision 1.14  1999/09/08 07:06:03  jimmy
+ * More insure++ runtime fixes.  Some small, but hardcore fixes mostly to do
+ * with blood and killing
+ * --gurlaek
+ *
+ * Revision 1.13  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.12  1999/08/14 02:43:10  dce
+ * ** is one level up from 99
+ *
+ * Revision 1.11  1999/08/12 17:54:46  dce
+ * Fixed experience so that there are no overflows of integers that are placed into longs.
+ * Main problem was max_exp_gain and max_exp_loss. Both were overflowing due to poor
+ * Hubis coding.
+ *
+ * Revision 1.10  1999/06/10 16:56:28  mud
+ * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+ * This fixes all of the warnings associated with the new compiler and
+ * libraries.  Many many curly braces had to be added to "if" statements to
+ * clarify their behavior to the compiler.  The name approval code was also
+ * debugged, and tested to be stable.  The xnames list was converted from an
+ * array to a linked list to allow for on the fly adding of names to the
+ * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
+ *
+ * Revision 1.9  1999/05/04 17:19:33  dce
+ * Name accept system...version one...original code by Fingh, fixed up to work
+ * by Zantir.
+ *
+ * Revision 1.8  1999/05/01 18:45:19  dce
+ * Players camp/rent after 8 min of idle time
+ *
+ * Revision 1.7  1999/04/08 03:37:33  dce
+ * Fixed a nasty crash bug
+ *
+ * Revision 1.6  1999/03/31 20:17:22  jen
+ * Changed move & hp regen code to increase event rates
+ *
+ * Revision 1.5  1999/03/17 22:45:34  jimmy
+ * added check for NPC's to gain_condition so that
+ * it would immediatly return for a mob.
+ * fingon
+ *
+ * Revision 1.4  1999/03/14 14:28:11  jimmy
+ * Movement now has bite!  removed extra "flying" from
+ * movement_loss in constants.c to fix the mv bug.  reduced the
+ * movement gain by 5 for all ages in limits.c.  Removed the +5
+ * and +6 static movement gain so that it now actually updates
+ * based on the function in regen.c.  Gosh i'm a bastard.
+ * Fingon
+ *
+ * Revision 1.3  1999/02/04 00:02:59  jimmy
+ * max/min exp loss/gain set to 2 notches.
+ *
+ * Revision 1.2  1999/01/31 16:11:37  mud
+ * Indented file
+ * moved the last 3 }'s to lines by themsleves and indented
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.118
+log
+@Clan notification when someone attains their stars after the
+initial time.  clan_notification now adds the color codes for you!
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.117 2009/06/09 19:33:50 myc Exp myc $
+d302 1
+a302 1
+          GET_EXP(ch) >= xp_needed)
+d825 4
+@
+
+
+1.117
+log
+@Rewrote gain_exp and retired gain_exp_regardless.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.116 2009/06/09 05:42:14 myc Exp myc $
+d314 1
+a314 1
+        if (PLR_FLAGGED(ch, PLR_GOTSTARS))
+d317 3
+d351 1
+a351 1
+                        AFMAG "%s advanced to level %d!\r\n" ANRM,
+d360 1
+a360 1
+                        AFMAG "%s advances %d levels to level %d!\r\n" ANRM,
+d380 1
+a380 2
+      clan_notification(GET_CLAN(ch), ch,
+                        AFMAG "%s lost level %d!\r\n" ANRM,
+d389 1
+a389 1
+                        AFMAG "%s lost %d levels from %d to %d!\r\n" ANRM,
+d825 3
+@
+
+
+1.116
+log
+@Removing some code that is no longer required in gain_exp_regardless
+due to the new clan implementation.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.115 2009/03/08 23:34:14 jps Exp myc $
+d37 1
+d236 2
+a237 2
+void gain_exp(struct char_data *ch, struct char_data *vict, long gain) {
+  int is_altered = FALSE;
+d239 1
+a239 2
+  long xp_to_next_level, old_xp;
+  char buf[128];
+a242 4
+  /* Don't gain or lose xp in an arena room */
+  if (ROOM_FLAGGED(IN_ROOM(ch), ROOM_ARENA))
+     return;
+
+d246 5
+a250 3
+  /* Immortals don't gain xp */
+  if (GET_LEVEL(ch) >= LVL_IMMORT)
+     return;
+d252 5
+a256 1
+  gain = MIN(max_exp_gain(ch), gain);  /* put a cap on the max gain per kill */
+d258 6
+a263 1
+  /* NPCs don't worry about level gaining, so we can get out */
+d266 2
+a272 15
+  /* Adjust exp for paladins (only when it comes from battling someone) */
+  if (gain > 0 && GET_CLASS(ch) == CLASS_PALADIN && vict) {
+    if (GET_ALIGNMENT(vict) <= -350)                                  /* EVIL */
+      gain = 1.25 * (double)gain;
+    else if (GET_ALIGNMENT(vict) > -350 && GET_ALIGNMENT(ch) < -150)  /* Neutral EVIL */
+      gain = 0.5 * (double)gain;
+    else if (GET_ALIGNMENT(vict) >= -150 && GET_ALIGNMENT(ch) <= 150) /* Neutral */
+      gain = 0 * (double)gain;
+    else if (GET_ALIGNMENT(vict) > 150 && GET_ALIGNMENT(ch) < 350)    /* Neutral GOOD */
+      gain = -0.5 * (double)gain;
+    else if (GET_ALIGNMENT(vict) >= 350)                              /* GOOD */
+      gain = -1 * (double)gain;
+  }
+
+  /* GAIN exp - you may get levels or achieve ** */
+d274 6
+a279 5
+    /* There's a level 10 limit for players with disapproved names. */
+    if (PLR_FLAGGED(ch, PLR_NAPPROVE)) {
+      if (GET_LEVEL(ch) >= 10) {
+         send_to_char("&6&bYou can gain no more levels or experience until your name is approved!&\r\n", ch);
+         return;
+d283 41
+a323 27
+    /* Add on exp, up to the ** amount (which is level 100's xp minus 1) */
+    if (GET_EXP(ch) < (exp_next_level(99, GET_CLASS(ch)) - 1))
+       GET_EXP(ch) += gain;
+    if (GET_EXP(ch) >= exp_next_level(99, GET_CLASS(ch)))
+      GET_EXP(ch) = (exp_next_level(99, GET_CLASS(ch))-1);
+
+    xp_to_next_level = exp_next_level(GET_LEVEL(ch), GET_CLASS(ch));
+
+    /* Are you ready to level, but you need to go to the guildmaster to gain it?
+     * You're set at (next-level-xp minus 1) */
+    if (GET_LEVEL(ch) < LVL_MAX_MORT && level_gain && GET_EXP(ch) >= xp_to_next_level)
+      GET_EXP(ch) = xp_to_next_level - 1;
+
+    /* Get informed if you just became ready for your next level,
+     * or you just got **. */
+    if (GET_EXP(ch) != old_xp && GET_EXP(ch) == xp_to_next_level - 1) {
+      if (level_gain && GET_LEVEL(ch) < LVL_MAX_MORT) {
+        cprintf(ch, "&6&bYou are ready for the next level!&0\r\n");
+      } else if (GET_LEVEL(ch) == LVL_MAX_MORT) {
+        if (PLR_FLAGGED(ch, PLR_GOTSTARS)) {
+           cprintf(ch, "&5You got your %s &0&5 back again.&0\r\n", CLASS_STARS(ch));
+        } else {
+           SET_FLAG(PLR_FLAGS(ch), PLR_GOTSTARS);
+           cprintf(ch, "&5You have achieved %s &0&5status in %s &0&5!!&0\r\n",
+                 CLASS_STARS(ch), CLASS_FULL(ch));
+           all_except_printf(ch, "&5%s &0&5has achieved %s &0&5status in %s &0&5!&0\r\n",
+                 GET_NAME(ch), CLASS_STARS(ch), CLASS_FULL(ch));
+d328 4
+a331 4
+    /* If you don't have to go to the guildmaster to gain levels (level_gain = FALSE),
+     * then you could have enough XP to gain level(s) at this point. Gain them. */
+    while (GET_LEVEL(ch) < LVL_IMMORT - 1 &&
+          GET_EXP(ch) >= exp_next_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+d333 2
+a334 3
+      num_levels++;
+      advance_level(ch, TRUE);
+      is_altered = TRUE;
+d337 1
+a337 3
+    /* Get informed if you gained any levels. */
+    if (is_altered) {
+      /* And get warned if you're gonna be limited due to your name... */
+d339 3
+a341 8
+        cprintf(ch, "&6&bYour name must be approved by a god before level 10!\r\n");
+        cprintf(ch, "Please contact a god as soon as possible!&0\r\n");
+      }
+      if (num_levels == 1)
+        cprintf(ch, "&1You gain a level!&0\r\n");
+      else {
+        sprintf(buf, "You gain %d levels!\r\n", num_levels);
+        send_to_char(buf, ch);
+d344 23
+a366 4
+  } else if (gain < 0) {
+    /* Oh no!  You lost exp! */
+    gain = MAX(-exp_death_loss(ch, GET_LEVEL(ch)), gain); /* Cap max exp lost per death */
+    if (GET_EXP(ch) + gain < 1)
+d368 3
+a370 4
+    else
+      GET_EXP(ch) += gain;
+    while ((!IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT) &&
+           GET_EXP(ch) <= exp_next_level((GET_LEVEL(ch) - 1), GET_CLASS(ch))) {
+d372 2
+a373 11
+      num_levels++;
+      advance_level(ch, FALSE);
+      is_altered = TRUE;
+      if (is_altered) {
+        if (num_levels == 1)
+          send_to_char("&0&7&bYou lose a level!&0\r\n", ch);
+        else {
+          sprintf(buf, "&0&1&bYou lost %d levels!&0\r\n", num_levels);
+          send_to_char(buf, ch);
+        }
+      }
+d375 7
+a381 26
+
+    if (GET_EXP(ch) < 0)
+      GET_EXP(ch) = 0;
+  }
+}
+
+
+void gain_exp_regardless(struct char_data * ch, long gain)
+{
+  int is_altered = FALSE;
+  int num_levels = 0;
+
+  /* Make sure to give xp to the actual player, if shapechanged */
+  ch = REAL_CHAR(ch);
+
+  GET_EXP(ch) += gain;
+  if (GET_EXP(ch) < 0)
+    GET_EXP(ch) = 0;
+
+  if (!IS_NPC(ch)) {
+    while (GET_LEVEL(ch) < LVL_IMPL &&
+          GET_EXP(ch) >= exp_next_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+      GET_LEVEL(ch) += 1;
+      num_levels++;
+      advance_level(ch, TRUE);
+      is_altered = TRUE;
+d383 11
+a393 6
+
+    if (is_altered) {
+      if (num_levels == 1)
+        send_to_char("&0&7&bYou gain a level!&0\r\n", ch);
+      else
+        cprintf(ch, "&0&7&bYou gain %d levels!&0\r\n", num_levels);
+d823 4
+@
+
+
+1.115
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.114 2009/02/11 17:03:39 myc Exp jps $
+d396 2
+a397 6
+      else {
+        sprintf(buf, "&0&7&bYou gain %d levels!&0\r\n", num_levels);
+        send_to_char(buf, ch);
+      }
+      if (IS_CLAN_GOD(ch) && GET_CLAN(ch))
+        remove_player_from_clan(GET_NAME(ch), GET_CLAN(ch));
+d827 3
+@
+
+
+1.114
+log
+@Adding check for EDITING(d) where PLR_WRITING is checked in
+gain_condition.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.113 2008/09/29 03:24:44 jps Exp myc $
+d21 1
+a21 1
+#include "spells.h"
+d831 4
+@
+
+
+1.113
+log
+@Make container weight automatic. Move some liquid container functions to objects.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.112 2008/09/21 21:50:56 jps Exp jps $
+d434 4
+a437 1
+        return;
+d831 3
+@
+
+
+1.112
+log
+@Stop trying to keep track of who's attacking who when there's a shapechange,
+since do_shapechange handles that internally now.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.111 2008/09/21 20:40:40 jps Exp jps $
+d714 1
+a714 1
+         gain_condition(i, THIRST, -6);
+d725 1
+a725 1
+            gain_condition(i, THIRST, -1);
+d734 1
+a734 1
+         gain_condition(i, THIRST, -1);
+d828 4
+@
+
+
+1.111
+log
+@Keep a list of attackers with each character, so that at the proper times -
+such as char_from_room - they can be stopped from battling.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.110 2008/09/20 22:38:56 jps Exp jps $
+a464 2
+   struct char_data *attacker;
+
+a506 2
+            if ((attacker = FIGHTING(ch->forward)))
+               stop_fighting(ch->forward);
+a507 2
+            if (attacker)
+               attack(attacker, ch);
+d828 4
+@
+
+
+1.110
+log
+@Keys will take an extra four hours (real time) to decompose.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.109 2008/09/20 06:05:06 jps Exp jps $
+a501 4
+         if (FIGHTING(ch)) {
+            stop_fighting(FIGHTING(ch));
+            stop_fighting(ch);
+         }
+d834 3
+@
+
+
+1.109
+log
+@Add macros POSSESSED and POSSESSOR.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.108 2008/09/08 05:17:42 jps Exp jps $
+d694 2
+a695 2
+  struct char_data *i, *next_char;
+  struct obj_data *j;
+d697 1
+a697 1
+  extern struct obj_data *go_iterator;
+d699 17
+a715 17
+  /* characters */
+  for (i = character_list; i; i = next_char) {
+    next_char = i->next;
+
+    if (GET_STANCE(i) >= STANCE_STUNNED) {
+      if (EFF_FLAGGED(i, EFF_POISON))
+        damage(i, i, GET_LEVEL(i) / 2, SPELL_POISON);
+      if (GET_STANCE(i) == STANCE_DEAD)
+        continue;
+      /* Do damage with a maximum of 5% of HP for PCs and 2% for NPCs,
+       * depending on level. */
+      if (EFF_FLAGGED(i, EFF_ON_FIRE))
+        damage(i, i, ((GET_MAX_HIT(i) / (IS_NPC(i) ? 50 : 20)) *
+               GET_LEVEL(i)) / 100 + 1, SPELL_ON_FIRE);
+      if (DECEASED(i))
+        continue;
+    }
+d717 9
+a725 9
+    if (EFF_FLAGGED(i, EFF_DISEASE)) {
+      act("&3$n&3 pauses a moment as $e purges $s stomach contents.&0",
+            TRUE, i, 0, 0, TO_ROOM);
+      act("&3You feel VERY ill and purge the contents of your stomach.&0",
+            FALSE, i, 0, 0, TO_CHAR);
+      gain_condition(i, FULL, -6);
+      gain_condition(i, DRUNK, -1);
+      gain_condition(i, THIRST, -6);
+    }
+d727 2
+a728 2
+    if (IS_NPC(i))
+      continue;
+d730 12
+a741 3
+    if (IS_HUNGRY(i)) {
+      if (IS_THIRSTY(i));
+        /* send_to_char("Your hunger and thirst are draining your energy rapidly.\r\n", i); */
+d743 2
+a744 2
+        /* send_to_char("You are feeling weak from hunger.\r\n", i); */
+        gain_condition(i, THIRST, -1);
+d746 1
+a746 10
+    }
+    else if (IS_THIRSTY(i)) {
+      /* send_to_char("You feel dizzy from extreme thirst.\r\n", i); */
+      gain_condition(i, FULL, -1);
+    }
+    else {
+      gain_condition(i, FULL, -1);
+      gain_condition(i, THIRST, -1);
+    }
+    gain_condition(i, DRUNK, -1);
+d748 2
+a749 2
+    check_idling(i);
+  }
+d751 19
+a769 19
+  /* objects:
+   *  -- lights run out
+   *  -- objects decay
+   */
+  for (j = object_list; j; j = go_iterator) {
+    /* See handler.c, extract_obj() about go_iterator */
+    go_iterator = j->next;
+
+    /* Try to catch invalid objects that could crash the mud. */
+    if (j->in_room < 0 || j->in_room > top_of_world) {
+       if (!(j->worn_by || j->carried_by || j->in_obj)) {
+         mudlog("POINT_UPDATE OBJ ERROR: Object in NOWHERE, extracting",
+               NRM, LVL_GOD, TRUE);
+         sprintf(buf, "Object %d, \"%s\"", GET_OBJ_VNUM(j), j->name);
+         mudlog(buf, NRM, LVL_GOD, TRUE);
+         extract_obj(j);
+         continue;
+       }
+    }
+d771 2
+a772 2
+    if (GET_OBJ_TYPE(j) == ITEM_LIGHT && GET_OBJ_VAL(j, VAL_LIGHT_LIT)) /* Is lit */
+      weardown_light(j);
+d774 18
+a791 16
+    /* Decompose things */
+    if (!OBJ_FLAGGED(j, ITEM_DECOMP))
+       continue;
+
+    if (GET_OBJ_DECOMP(j) > 0)
+      --GET_OBJ_DECOMP(j);
+    if (GET_OBJ_DECOMP(j))
+      continue;
+
+    /*
+     * If timer_otrigger returns 0, the normal timeout action should not
+     * occur.  In this case, if the trigger doesn't opurge the object,
+     * then we will attempt to run the trigger again in the next tick.
+     */
+    if (!timer_otrigger(j))
+      continue;
+a792 3
+    decay_object(j);
+  }
+}
+d794 3
+d800 1
+d803 7
+d815 2
+a816 2
+      if (GET_OBJ_DECOMP(obj) < GET_OBJ_LEVEL(obj) + 11)
+         GET_OBJ_DECOMP(obj) = GET_OBJ_LEVEL(obj) + 11;
+d838 3
+@
+
+
+1.108
+log
+@Fix warning
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.107 2008/09/07 20:07:59 jps Exp jps $
+d248 1
+a248 2
+  if (ch->desc && ch->desc->original)
+    ch = ch->desc->original;
+d378 1
+a378 2
+  if (ch->desc && ch->desc->original)
+    ch = ch->desc->original;
+d828 3
+@
+
+
+1.107
+log
+@Changed gain_exp to use exp_next_level correctly. It will send a mudwide
+message when you first achieve **, and a personal message whenever you
+get them back after losing them.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.106 2008/09/06 19:11:27 jps Exp jps $
+d305 1
+a305 1
+      if (level_gain && GET_LEVEL(ch) < LVL_MAX_MORT)
+d307 1
+a307 1
+      else if (GET_LEVEL(ch) == LVL_MAX_MORT)
+d317 1
+d830 5
+@
+
+
+1.106
+log
+@Change the way corpses decompose.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.105 2008/09/02 07:26:20 jps Exp jps $
+a39 1
+long exp_to_level(int, int);
+d52 1
+a52 1
+  
+d54 1
+a54 1
+    return (p0);		/* < 15   */
+d56 1
+a56 1
+    return (int) (p1 + (((age - 15) * (p2 - p1)) / 15));	/* 15..29 */
+d58 1
+a58 1
+    return (int) (p2 + (((age - 30) * (p3 - p2)) / 15));	/* 30..44 */
+d60 1
+a60 1
+    return (int) (p3 + (((age - 45) * (p4 - p3)) / 15));	/* 45..59 */
+d62 1
+a62 1
+    return (int) (p4 + (((age - 60) * (p5 - p4)) / 20));	/* 60..79 */
+d64 1
+a64 1
+    return (p6);		/* >= 80 */
+d71 1
+a71 1
+  
+d78 1
+a78 1
+    
+d80 1
+a80 1
+    
+d82 1
+a82 1
+    
+d89 1
+a89 1
+      gain += (gain >> 1);	/* Divide by 2 */
+d93 1
+a93 1
+        gain += (gain >> 2);	/* Divide by 4 */
+d103 1
+a103 1
+  
+d106 1
+a106 1
+  
+d115 1
+a115 1
+  
+d120 1
+a120 1
+    
+d131 1
+a131 1
+    
+d133 1
+a133 1
+    
+d135 1
+a135 1
+    
+d139 1
+a139 1
+      gain += (gain << 2);	/* Total = 5x */
+d142 1
+a142 1
+      gain += (gain << 1);	/* Total = 3x */
+d145 1
+a145 1
+      gain = (gain >> 1);	/* Total = 0.5x */
+d149 1
+a149 1
+         gain += (gain >> 1);	/* Total = 1.5x */
+d158 1
+a158 1
+  
+d161 1
+a161 1
+  
+d171 1
+a171 1
+  
+d179 1
+a179 1
+    
+d181 1
+a181 1
+    
+d183 2
+a184 2
+    
+    
+d188 1
+a188 1
+      gain += (gain << 2);	/* Total = 5x */
+d191 1
+a191 1
+      gain += (gain << 1);	/* Total = 3x */
+d194 1
+a194 1
+      gain = (gain >> 1);	/* Total = 0.5 x */
+d198 1
+a198 1
+        gain += (gain >> 1);	/* Total = 1.5x */
+d206 1
+a206 1
+  
+d213 1
+a213 1
+  
+d228 1
+a228 1
+  
+d231 1
+a231 1
+  
+d251 3
+a253 4
+  /* Immortal players don't get xp */
+  /* (but immortal NPCs do? and level 0 players don't?) */
+  if (!IS_NPC(ch) && ((GET_LEVEL(ch) < 1 || GET_LEVEL(ch) >= LVL_IMMORT)))
+    return;
+d265 15
+d281 1
+d289 11
+a299 21
+    if (GET_LEVEL(ch) < 100 && GET_EXP(ch) <= (exp_to_level(100, GET_CLASS(ch)) - 1)) {
+      /* Paladin exp modifiers */
+      if (GET_CLASS(ch) == CLASS_PALADIN && vict) {
+        if (GET_ALIGNMENT(vict) <= -350)                                  /* EVIL */
+          gain = 1.25 * (double)gain;
+        else if (GET_ALIGNMENT(vict) > -350 && GET_ALIGNMENT(ch) < -150)  /* Neutral EVIL */
+          gain = 0.5 * (double)gain;
+        else if (GET_ALIGNMENT(vict) >= -150 && GET_ALIGNMENT(ch) <= 150) /* Neutral */
+          gain = 0 * (double)gain;
+        else if (GET_ALIGNMENT(vict) > 150 && GET_ALIGNMENT(ch) < 350)    /* Neutral GOOD */
+          gain = -0.5 * (double)gain;
+        else if (GET_ALIGNMENT(vict) >= 350)                              /* GOOD */
+          gain = -1 * (double)gain;
+      }
+      GET_EXP(ch) += gain;
+    }
+    if (GET_LEVEL(ch) < 100 && GET_EXP(ch) >= exp_to_level(100, GET_CLASS(ch)))
+      GET_EXP(ch) = (exp_to_level(100, GET_CLASS(ch))-1);
+
+    xp_to_next_level = exp_to_level(GET_LEVEL(ch), GET_CLASS(ch));
+    if ((GET_LEVEL(ch) < LVL_MAX_MORT) && (level_gain) && (GET_EXP(ch) >= xp_to_next_level))
+d302 16
+a317 3
+    if (level_gain && (GET_EXP(ch) != old_xp) && (GET_LEVEL(ch) < LVL_MAX_MORT)
+        && (GET_EXP(ch) == (xp_to_next_level-1)))
+      send_to_char("&6&bYou are ready for the next level!&0\r\n", ch);
+d319 4
+a322 7
+    while (GET_LEVEL(ch) < (LVL_IMMORT-1) &&
+          GET_EXP(ch) >= exp_to_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+      if (PLR_FLAGGED(ch, PLR_NAPPROVE)) {
+         if (GET_LEVEL(ch) < 100) {
+            send_to_char("&6&bYour name must be approved by a god before level 10!\r\nPlease contact a god As Soon As Possible!&0\r\n", ch);
+         }
+      }
+d328 2
+a329 1
+    
+d331 5
+d337 1
+a337 1
+        send_to_char("&0&1You gain a level!&0\r\n", ch);
+d344 2
+a345 1
+    gain = MAX(-exp_death_loss(ch, GET_LEVEL(ch)), gain);        /* Cap max exp lost per death */
+d351 1
+a351 1
+           GET_EXP(ch) <= exp_to_level((GET_LEVEL(ch) - 1), GET_CLASS(ch))) {
+d365 1
+a365 1
+    
+d376 1
+a376 1
+  
+d384 1
+a384 1
+  
+d386 3
+a388 2
+    while (GET_LEVEL(ch) < LVL_IMPL && GET_EXP(ch) >= exp_to_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+      GET_LEVEL(ch) += 1;	 
+d393 1
+a393 1
+    
+d412 1
+a412 1
+  
+d416 1
+a416 1
+  
+d420 1
+a420 1
+  
+d422 1
+a422 1
+  
+d424 1
+a424 1
+  
+d429 2
+a430 2
+  
+  
+d433 1
+a433 1
+  
+d709 1
+a709 1
+      /* Do damage with a maximum of 5% of HP for PCs and 2% for NPCs, 
+d829 3
+d1133 1
+a1133 1
+ * This fixes all of the warnings associated with the new compiler and 
+@
+
+
+1.105
+log
+@Better looping when decomposing an object's contents.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.104 2008/09/02 07:17:04 jps Exp jps $
+d777 9
+a785 3
+   if (GET_OBJ_LEVEL(obj) < 100 && !OBJ_FLAGGED(obj, ITEM_PERMANENT) &&
+         !(IS_PLR_CORPSE(obj) && obj->contains)) {
+      GET_OBJ_DECOMP(obj) = GET_OBJ_LEVEL(obj) + 11;
+d787 4
+a792 1
+   }
+d797 2
+d800 2
+a801 2
+   while (obj->contains)
+      stop_decomposing(obj->contains);
+d807 3
+@
+
+
+1.104
+log
+@Going to DECOMP
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.103 2008/09/02 07:03:03 jps Exp jps $
+d776 1
+d781 2
+a782 2
+      while (obj->contains)
+         start_decomposing(obj->contains);
+d796 3
+@
+
+
+1.103
+log
+@Still honor TRANSIENT flag for now
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.102 2008/09/02 06:51:48 jps Exp jps $
+d648 1
+a648 1
+        GET_OBJ_TIMER(temp) = 2;
+a752 9
+    /* For the time being, we still use TRANSIENT, but it's translated into
+     * DECOMP */
+    if (OBJ_FLAGGED(j, ITEM_TRANSIENT)) {
+       REMOVE_FLAG(GET_OBJ_FLAGS(j), ITEM_TRANSIENT);
+       SET_FLAG(GET_OBJ_FLAGS(j), ITEM_DECOMP);
+       GET_OBJ_DECOMP(j) = GET_OBJ_TIMER(j);
+       GET_OBJ_TIMER(j) = 0;
+    }
+
+d795 3
+@
+
+
+1.102
+log
+@Changed the way things decompose: they use the DECOMP flag.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.101 2008/09/01 22:15:59 jps Exp jps $
+d753 9
+d804 3
+@
+
+
+1.101
+log
+@Saving and reporting players' game-leaving reasons and locations.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.100 2008/08/30 01:31:51 myc Exp jps $
+d25 1
+d588 1
+a588 1
+    else if (obj->in_room != NOWHERE)
+d590 2
+a591 1
+    else
+d604 6
+d647 4
+a650 6
+        if (obj->in_room != NOWHERE) {
+          struct obj_data *temp = read_object(BLOOD_DROP_OBJ, VIRTUAL);
+          GET_OBJ_TIMER(temp) = 2;
+          GET_OBJ_VAL(temp, VAL_BLOOD_ROOM) = obj->in_room;
+          obj_to_room(temp, obj->in_room);
+        }
+a661 1
+  /* No need to show the message if there's no one to see it. */
+d732 1
+a732 1
+   *  -- transient objects decay
+d753 7
+a759 7
+    /* Only transient items lying on the ground will crumble. */
+    if (!OBJ_FLAGGED(j, ITEM_TRANSIENT) || j->in_room == NOWHERE)
+      continue;
+
+    if (GET_OBJ_TIMER(j) > 0)
+      --GET_OBJ_TIMER(j);
+    if (GET_OBJ_TIMER(j))
+d774 10
+d785 6
+d795 3
+@
+
+
+1.100
+log
+@Changed the way stats are calculated in effect_total; ability
+stats are saved in a raw form now, and only capped when accessed.
+Damroll and hitroll are recalculated everytime effect_total
+is called, using cached base values.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.99 2008/07/27 05:27:56 jps Exp myc $
+d486 1
+a486 1
+         save_player(ch, SAVE_AUTO);
+d506 1
+a506 1
+            remove_player_from_game(ch, SAVE_TIMEOUT);
+d774 6
+@
+
+
+1.99
+log
+@Using save_player and remove_player_from_game functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.98 2008/07/21 19:17:07 jps Exp jps $
+d77 1
+a77 1
+    gain = gain + ch->char_specials.managain;
+d126 2
+a127 1
+    gain = gain + ch->char_specials.hitgain + 2;
+d774 3
+@
+
+
+1.98
+log
+@Remove auto-AFK for immortals.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.97 2008/06/07 19:06:46 myc Exp jps $
+a441 1
+   extern int free_rent;
+d485 1
+a485 3
+         save_player(ch);
+         save_objects(ch, SAVE_CRASH);
+         save_quests(ch);
+a502 5
+            if (free_rent)
+               save_objects(ch, SAVE_RENT);
+            else
+               save_objects(ch, SAVE_TIMEOUT);
+            save_quests(ch);
+d505 1
+a505 1
+            extract_char(ch); /* calls save_player */
+d773 3
+@
+
+
+1.97
+log
+@Moved all object-related constants and structures to objects.h
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.96 2008/06/05 02:07:43 myc Exp myc $
+a441 1
+   int result = 0;
+d445 2
+d457 1
+a457 2
+   /*  1. After 5 minutes of idle time, auto-toggle AFK flag. */
+   /*  2. After 10 minutes of idle time, auto-invis to level 100. */
+d462 9
+a470 19
+      if (ch->char_specials.timer >= 4) {
+         /* this immort has been idle for 5+ mins */
+         if (!(PRF_FLAGGED(ch, PRF_AFK))) {
+            /* this char is not already flagged AFK */
+            act("$n has been drawn into the realm of AFK due to idle time.",
+                  TRUE, ch, 0, 0, TO_ROOM);
+            send_to_char("You have been idle for five minutes. AFK auto-toggle engaged.\r\n", ch);
+            result = PRF_TOG_CHK(ch, PRF_AFK);
+         }
+
+         if (ch->char_specials.timer >= 8) {
+            /* this immort has been idle for 10+ mins */
+            if (GET_INVIS_LEV(ch) < LVL_IMMORT) {
+               /* this char is not already invis beyond LVL_IMMORT */
+               act("$n vanishes from mortal view, having reached a threshold of idle time.",
+                     TRUE, ch, 0, 0, TO_ROOM);
+               send_to_char("You have been idle for ten minutes. Auto-invis to Level 100 engaged.\r\n", ch);
+               GET_INVIS_LEV(ch) = LVL_IMMORT;
+            }
+d781 3
+@
+
+
+1.96
+log
+@Rewrote rent saving to use ascii object files.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.95 2008/05/18 20:16:11 jps Exp myc $
+d534 1
+a534 1
+  if (GET_OBJ_VAL(obj, 2) < 0)
+d541 1
+a541 1
+  switch (--GET_OBJ_VAL(obj, 2)) { /* weardown light */
+d574 1
+a574 1
+  if (GET_OBJ_VAL(obj, 2) == 0) {
+d581 1
+a581 1
+    GET_OBJ_VAL(obj, 0) = 0;
+d631 1
+a631 1
+        case MOONWELL_OBJ:
+d634 1
+a634 1
+        case HEAVENSGATE_OBJ:
+d637 1
+a637 1
+        case HELLGATE_OBJ:
+d647 1
+a647 1
+      switch (GET_OBJ_VAL(obj, 3)) {
+d659 1
+a659 1
+          GET_OBJ_VAL(temp, 0) = obj->in_room;
+d762 1
+a762 1
+    if (GET_OBJ_TYPE(j) == ITEM_LIGHT && GET_OBJ_VAL(j, 0) == 1) /* Is lit */
+d791 3
+@
+
+
+1.95
+log
+@Created fight.h and set dependents.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.94 2008/05/11 05:56:24 jps Exp jps $
+a443 1
+   void Crash_rentsave(struct char_data *ch, int cost);
+d497 2
+a498 1
+         Crash_crashsave(ch);
+d517 1
+a517 1
+               Crash_rentsave(ch, 0);
+d519 2
+a520 1
+               Crash_idlesave(ch);
+d523 1
+a523 1
+            extract_char(ch);
+d766 1
+a766 1
+    if (!IS_OBJ_STAT(j, ITEM_TRANSIENT) || j->in_room == NOWHERE)
+d791 3
+@
+
+
+1.94
+log
+@Don't do suffering damage from point_update - bleeding out is
+already accomplished in regen.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.93 2008/04/07 03:02:54 jps Exp jps $
+d35 1
+d790 4
+@
+
+
+1.93
+log
+@Changed the POS/STANCE system so that POS reflects the position
+of your body, while STANCE describes your condition or activity.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.92 2008/03/30 17:30:38 jps Exp jps $
+d34 1
+d687 1
+a687 1
+  
+d702 1
+a702 1
+      if (GET_STANCE(i) == STANCE_DEAD)
+a703 2
+      else if (GET_STANCE(i) <= STANCE_STUNNED)
+        update_pos(i);
+a704 7
+    else if (GET_STANCE(i) == STANCE_INCAP)
+      damage(i, i, 1, TYPE_SUFFERING);
+    else if (GET_STANCE(i) == STANCE_MORT)
+      damage(i, i, 2, TYPE_SUFFERING);
+
+    if (DECEASED(i))
+      continue;
+d707 4
+a710 2
+      act("&3$n&3 pauses a moment as $e purges his stomach contents.&0", TRUE, i, 0, 0, TO_ROOM);
+      act("&3You feel VERY ill and purge the contents of your stomach.&0", FALSE, i, 0, 0, TO_CHAR);
+d739 1
+a739 1
+  
+d789 4
+@
+
+
+1.92
+log
+@Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
+from pfiles.c now include pfiles.h and depend on it in the makefile.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.91 2008/03/28 17:54:53 myc Exp jps $
+d82 2
+a83 2
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+d86 1
+a86 1
+    case POS_RESTING:
+d89 3
+a91 2
+    case POS_SITTING:
+      gain += (gain >> 2);	/* Divide by 4 */
+d134 2
+a135 2
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+d138 1
+a138 1
+    case POS_RESTING:
+d141 1
+a141 4
+    case POS_SITTING:
+      gain += (gain >> 1);	/* Total = 1.5x */
+      break;
+    case POS_FIGHTING:
+d144 3
+d183 2
+a184 2
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+d187 1
+a187 1
+    case POS_RESTING:
+d190 2
+a191 2
+    case POS_SITTING:
+      gain += (gain >> 1);	/* Total = 1.5x */
+d193 3
+a195 2
+    case POS_FIGHTING:
+      gain = (gain >> 1);	/* Total = 0.5 x */
+d691 1
+a691 1
+    if (GET_POS(i) >= POS_STUNNED) {
+d694 1
+a694 1
+      if (GET_POS(i) == POS_DEAD)
+d701 1
+a701 1
+      if (GET_POS(i) == POS_DEAD)
+d703 1
+a703 1
+      else if (GET_POS(i) <= POS_STUNNED)
+d706 1
+a706 1
+    else if (GET_POS(i) == POS_INCAP)
+d708 1
+a708 1
+    else if (GET_POS(i) == POS_MORTALLYW)
+d711 1
+a711 1
+    if (GET_POS(i) == POS_DEAD)
+d795 4
+@
+
+
+1.91
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.90 2008/03/20 03:26:05 myc Exp myc $
+d33 1
+d793 4
+@
+
+
+1.90
+log
+@Fixed set_title again.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.89 2008/03/20 03:14:56 myc Exp myc $
+d100 1
+a100 1
+  if (IS_AFFECTED(ch, AFF_POISON))
+d154 1
+a154 1
+  if (IS_AFFECTED(ch, AFF_POISON))
+d201 1
+a201 1
+  if (IS_AFFECTED(ch, AFF_POISON))
+d689 1
+a689 1
+      if (AFF_FLAGGED(i, AFF_POISON))
+d695 1
+a695 1
+      if (AFF2_FLAGGED(i, AFF2_ON_FIRE))
+d711 1
+a711 1
+    if (AFF2_FLAGGED(i, AFF2_DISEASE)) {
+d792 3
+@
+
+
+1.89
+log
+@Fix crash bug in set_title (trying to strlen possibly null pointer).
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.88 2008/03/10 20:46:55 myc Exp myc $
+d215 1
+a215 1
+  if (!title)
+d217 4
+a220 1
+  else if (strlen(title) >= MAX_TITLE_LENGTH)
+d223 1
+a223 1
+  if (GET_TITLE(ch) != NULL)
+d792 3
+@
+
+
+1.88
+log
+@Moving innate timers to the cooldown system.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.87 2008/03/05 03:03:54 myc Exp myc $
+d217 1
+a217 2
+
+  if (strlen(title) >= MAX_TITLE_LENGTH)
+d789 3
+@
+
+
+1.87
+log
+@Title is saved differently in pfiles now, so must check for NULL
+instead of empty string.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.86 2008/02/09 04:27:47 myc Exp myc $
+a432 9
+void gain_innate(struct char_data * ch, int innate, int value)
+{
+  if (GET_INNATE_TIMER(ch, innate) < 1)  /* No change */
+    return;
+
+  GET_INNATE_TIMER(ch, innate) =
+      MAX(0, MIN(14, GET_INNATE_TIMER(ch, innate) + value));
+}
+
+a737 5
+    gain_innate(i, INNATE_INVISIBLE, -1);
+    gain_innate(i, INNATE_STRENGTH, -1);
+    gain_innate(i, INNATE_DARKNESS, -1);
+    gain_innate(i, INNATE_LEVITATE, -1);
+    
+d790 4
+@
+
+
+1.86
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.85 2008/02/02 19:38:20 myc Exp myc $
+d32 1
+d215 3
+a217 3
+  if (title == NULL)
+    title = "";
+  
+d804 3
+@
+
+
+1.85
+log
+@Fixed possible buffer overwrite in set_title.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.84 2008/01/29 21:02:31 myc Exp myc $
+d31 1
+d803 3
+@
+
+
+1.84
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.83 2008/01/27 21:09:12 myc Exp myc $
+d216 2
+a217 2
+  if (strlen(title) > MAX_TITLE_LENGTH)
+    title[MAX_TITLE_LENGTH] = '\0';
+d222 1
+a222 1
+  GET_TITLE(ch) = str_dup(title);
+d802 4
+@
+
+
+1.83
+log
+@Replace hit() with attack().
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.82 2008/01/27 12:11:21 jps Exp myc $
+a31 3
+extern struct char_data *character_list;
+extern struct obj_data *object_list;
+extern struct room_data *world;
+a34 1
+extern int top_of_world;
+d802 3
+@
+
+
+1.82
+log
+@Use regen factors in class.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.81 2008/01/26 14:26:31 jps Exp jps $
+d511 1
+a511 1
+               hit(attacker, ch, TYPE_UNDEFINED);
+d806 3
+@
+
+
+1.81
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.80 2008/01/05 05:39:41 jps Exp jps $
+d94 2
+a95 3
+    
+    if ((GET_CLASS(ch) == CLASS_SORCERER) || (GET_CLASS(ch) == CLASS_CLERIC))
+      gain <<= 1;
+d149 2
+a150 3
+    /* Mages & Clerics get half the regen rate of other classes... icky */
+    if ((GET_CLASS(ch) == CLASS_SORCERER) || (GET_CLASS(ch) == CLASS_CLERIC))
+      gain >>= 1;
+d205 2
+a206 3
+  
+  if (GET_CLASS(ch) == CLASS_MONK)
+    gain <<= 1;
+d806 3
+@
+
+
+1.80
+log
+@Changed name of save_char() to save_player().
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.79 2008/01/04 01:53:26 jps Exp jps $
+d30 1
+d809 3
+@
+
+
+1.79
+log
+@Added races.h file and created global array "races" for much
+race-related information.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.78 2008/01/03 12:44:03 jps Exp jps $
+d29 1
+d503 1
+a503 1
+         save_char(ch);
+d808 4
+d838 1
+a838 1
+ * to clan god status.  save_char() no longer requires you to supply
+@
+
+
+1.78
+log
+@Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+to CLASS_SORCERER.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.77 2007/12/25 20:37:32 jps Exp jps $
+d28 1
+d807 4
+@
+
+
+1.77
+log
+@Apply the xp gain cap to NPCs as well.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.76 2007/12/25 17:03:32 jps Exp jps $
+d92 1
+a92 1
+    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+d148 1
+a148 1
+    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+d806 3
+@
+
+
+1.76
+log
+@Minor cleanup.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.75 2007/12/25 06:22:19 jps Exp jps $
+d250 2
+a267 2
+    gain = MIN(max_exp_gain(ch), gain);  /* put a cap on the max gain per kill */
+
+d806 3
+@
+
+
+1.75
+log
+@Hey, room 0 is ok!
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.74 2007/12/23 19:27:26 jps Exp jps $
+a228 19
+/**********************************************************
+ ******** REMOVING AUTOWIZ ********************************
+void check_autowiz(struct char_data * ch)
+{
+  char buf[100];
+  extern int use_autowiz;
+  extern int min_wizlist_lev;
+  pid_t getpid(void);
+  
+  if (use_autowiz && GET_LEVEL(ch) >= LVL_IMMORT) {
+    sprintf(buf, "nice ../bin/autowiz %d %s %d %s %d &", min_wizlist_lev,
+	    WIZLIST_FILE, LVL_IMMORT, IMMLIST_FILE, (int) getpid());
+    mudlog("Initiating autowiz.", CMP, LVL_IMMORT, FALSE);
+    system(buf);
+  }
+}
+*****************************************************************
+*****************************************************************/
+
+d241 1
+a241 4
+  /* This -IF- statement was added in an attempt to allow
+     shapechanged players to gain experience. If there are
+     any new problems with players gaining experience please
+     talk to me. Zantir 02/20/00 */
+d245 2
+d250 1
+a250 1
+  /* this gives exp to grouped NPCs etc */
+d266 1
+a266 1
+    gain = MIN(max_exp_gain(ch), gain);	/* put a cap on the max gain per kill */
+d268 13
+a280 13
+    if (GET_LEVEL(ch) < 100 && GET_EXP(ch) <= (exp_to_level(100, GET_CLASS(ch))-1)) {
+      /* Paladin exp modifiers --Gurlaek 10/15/1999 */
+      if(GET_CLASS(ch) == CLASS_PALADIN && vict) {
+	if(GET_ALIGNMENT(vict) <= -350)                                  /* EVIL */
+	  gain = 1.25 * (double)gain;
+	else if(GET_ALIGNMENT(vict) > -350 && GET_ALIGNMENT(ch) < -150)  /* Neutral EVIL */
+	  gain = 0.5 * (double)gain;
+	else if(GET_ALIGNMENT(vict) >= -150 && GET_ALIGNMENT(ch) <= 150) /* Neutral */
+	  gain = 0 * (double)gain;
+	else if(GET_ALIGNMENT(vict) > 150 && GET_ALIGNMENT(ch) < 350)    /* Neutral GOOD */
+	  gain = -0.5 * (double)gain;
+	else if(GET_ALIGNMENT(vict) >= 350)                              /* GOOD */
+	  gain = -1 * (double)gain;
+a286 1
+    /* level gain code re-inflicted on players by Metamorpho - Friday 10/13/2000 */
+d295 2
+a296 1
+    while (GET_LEVEL(ch) < (LVL_IMMORT-1) && GET_EXP(ch) >= exp_to_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+d301 1
+a301 1
+      }  
+d312 2
+a313 2
+	sprintf(buf, "You gain %d levels!\r\n", num_levels);
+	send_to_char(buf, ch);
+a314 1
+/*        check_autowiz(ch) */;
+d317 1
+a317 7
+    /*this shows exp gains innumbers for testing*/
+    /*  sprintf(buf, "max exp gain is %ld\r\nbut total", gain);
+      send_to_char(buf, ch); */
+   
+    gain = MAX(-exp_death_loss(ch, GET_LEVEL(ch)), gain);	/* Cap max
+								   exp 
+								   lost per death */
+d323 1
+a323 1
+	   GET_EXP(ch) <= exp_to_level((GET_LEVEL(ch) - 1), GET_CLASS(ch))) {
+d329 6
+a334 6
+	if (num_levels == 1)
+	  send_to_char("&0&7&bYou lose a level!&0\r\n", ch);
+	else {
+	  sprintf(buf, "&0&1&bYou lost %d levels!&0&1\r\n", num_levels);
+	  send_to_char(buf, ch);
+	}
+d349 1
+a349 4
+  /* This -IF- statement was added in an attempt to allow
+     shapechanged players to gain experience. If there are
+     any new problems with players gaining experience please
+     talk to me. Zantir 02/20/00 */
+d369 2
+a370 2
+	sprintf(buf, "&0&7&bYou gain %d levels!&0\r\n", num_levels);
+	send_to_char(buf, ch);
+a373 2
+      /* set_title(ch, NULL); */
+      /* check_autowiz(ch); */
+d437 1
+a437 7
+  /* DE 4/7/99 Mobs don't have innates */
+  /* Now checked by point_update()
+  if (IS_NPC(ch))
+    return;
+  */
+  
+  if (GET_INNATE_TIMER(ch, innate) < 1)	/* No change */
+d463 1
+a463 1
+   /*  Assumptions: 75 second tics */
+d601 1
+a601 1
+    next = i->next_content;	/* Next in inventory */
+a602 1
+	  
+d792 1
+a792 1
+     * then we will attempt to run the trigger again in the next tic.
+d806 3
+@
+
+
+1.74
+log
+@Use global object iterator to prevent decay events from operating on
+already-extracted objects.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.73 2007/12/23 18:09:57 jps Exp jps $
+d805 1
+a805 1
+    if (j->in_room <= 0 || j->in_room > top_of_world) {
+d845 4
+@
+
+
+1.73
+log
+@Fixed bug in invalid decaying object detection.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.72 2007/12/20 03:04:23 jps Exp jps $
+d728 3
+a730 2
+  struct obj_data *j, *next_thing;
+  
+d738 1
+a738 1
+	damage(i, i, GET_LEVEL(i) / 2, SPELL_POISON);
+d749 1
+a749 1
+	update_pos(i);
+d759 1
+a759 1
+    if (AFF2_FLAGGED(i, AFF2_DISEASE)) {	
+d796 7
+a802 3
+  /* objects */
+  for (j = object_list; j; j = next_thing) {
+    next_thing = j->next; /* Next in object list */
+d845 3
+@
+
+
+1.72
+log
+@Fix bad bad-object extractor.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.71 2007/12/19 20:53:25 myc Exp jps $
+d801 1
+a801 1
+       if (j->in_room == NOWHERE && !(j->worn_by || j->carried_by || j->in_obj)) {
+d840 3
+@
+
+
+1.71
+log
+@Fixed possible crash bug in set_title.  Fixed gain_exp_regardless
+to automatically remove a player from a clan if they are advanced
+to clan god status.  save_char() no longer requires you to supply
+a load/save room (which wasn't being used anyway).
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.70 2007/12/17 18:26:27 jps Exp myc $
+d801 7
+a807 8
+       if (j->in_room == NOWHERE) {
+          mudlog("POINT_UPDATE OBJ ERROR: Object in NOWHERE, extracting",
+                NRM, LVL_GOD, TRUE);
+          sprintf(buf, "Object %d, \"%s\"", GET_OBJ_VNUM(j), j->name);
+          mudlog(buf, NRM, LVL_GOD, TRUE);
+       } else {
+          mudlog("POINT_UPDATE OBJ ERROR: Object in invalid room, extracting",
+                NRM, LVL_GOD, TRUE);
+a808 3
+       j->in_room = NOWHERE;
+       extract_obj(j);
+       continue;
+d840 6
+@
+
+
+1.70
+log
+@Try to catch some buggy objects.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.69 2007/11/02 02:32:46 jps Exp jps $
+d27 1
+d218 1
+a218 1
+    title = '\0';
+d402 4
+a405 2
+      /* set_title(ch, NULL);*/
+/*        check_autowiz(ch); */
+d539 1
+a539 1
+         save_char(ch, NOWHERE);
+d844 3
+@
+
+
+1.69
+log
+@Typo fix when decaying a hellgate.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.68 2007/10/27 18:56:26 myc Exp jps $
+d34 1
+d677 1
+a677 1
+          msg = "The gaping hole in the earth closes, leaving a blackened piece of earth.";
+d794 17
+a810 1
+    next_thing = j->next;	/* Next in object list */
+d841 3
+@
+
+
+1.68
+log
+@When a mob dies of fire, poison, of suffering, if they were fighting
+someone, their opponent gets the exp for the kill.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.67 2007/10/17 17:22:57 myc Exp myc $
+d676 1
+a676 1
+          msg = "The gaping hole in the earth closes, up leaving a blackened piece of earth.";
+d824 4
+@
+
+
+1.67
+log
+@If you die by fire while fighting, your opponent gets the kill.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.66 2007/10/04 16:20:24 myc Exp myc $
+d739 2
+a740 3
+        damage(FIGHTING(i) ? FIGHTING(i) : i, i,
+               ((GET_MAX_HIT(i) / (IS_NPC(i) ? 50 : 20)) * GET_LEVEL(i)) / 100 + 1,
+               SPELL_ON_FIRE);
+d824 3
+@
+
+
+1.66
+log
+@Transient item flag now makes things decay when they are on the ground.
+Cleaned up point_update a bunch.  Took out update_char_objects, and
+moved all the object decay stuff to functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.65 2007/10/02 02:52:27 myc Exp myc $
+d736 2
+a737 1
+      /* Do damage with a maximum of 5% of HP, depending on level. */
+d739 3
+a741 1
+        damage(i, i, ((GET_MAX_HIT(i) / 20) * GET_LEVEL(i)) / 100, SPELL_ON_FIRE);
+d825 5
+@
+
+
+1.65
+log
+@Fixed idle timeout for shapechanged druids.  (It checks the shapechanged
+mob instead of the idle druid...sort of.)
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.64 2007/09/21 18:08:04 jps Exp myc $
+d26 1
+a26 5
+
+/*#define READ_TITLE(ch) (GET_SEX(ch) == SEX_MALE ?   \
+  titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_m :  \
+  titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_f)
+*/
+a29 1
+/*extern struct title_type titles[NUM_CLASSES][LVL_IMPL + 1];*/
+d566 86
+d653 67
+a719 1
+bool last_hunger = FALSE;/*used to half the times it calls thirst*/
+a722 5
+  void update_char_objects(struct char_data * ch);	/* handler.c */
+  void extract_obj(struct obj_data * obj);	/* handler.c */
+  void do_campout(struct char_data * ch);
+  void magic_wall_destruction(struct obj_data *wall, room_num room); /* magic.c */
+
+d724 2
+a725 8
+  struct obj_data *j, *next_thing, *jj, *next_thing2;
+  struct obj_data *bloodd;
+  struct extra_descr_data *new_descr;
+  extern struct portal_decay_type portal_decay_messages[];
+  extern struct index_data *obj_index;
+  int obj_vnum, index;
+  char *lightmsg;
+
+a785 1
+    update_char_objects(i);
+a791 59
+    
+    /* If this is a corpse */
+    if (IS_CORPSE(j)) {
+      /* timer count down */
+      if (GET_OBJ_TIMER(j) > 0)
+	GET_OBJ_TIMER(j)--;
+      
+      if (!GET_OBJ_TIMER(j)) {
+	
+	if (j->carried_by)
+	  act("$p decays in your hands.", FALSE, j->carried_by, j, 0, TO_CHAR);
+	else if ((j->in_room != NOWHERE) && (world[j->in_room].people)) {
+	  act("A quivering horde of maggots consumes $p.",
+	      TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+	  act("A quivering horde of maggots consumes $p.",
+	      TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+	}
+	
+	for (jj = j->contains; jj; jj = next_thing2) {
+	  next_thing2 = jj->next_content;	/* Next in inventory */
+	  obj_from_obj(jj);
+	  
+	  if (j->in_obj)
+	    obj_to_obj(jj, j->in_obj);
+	  else if (j->carried_by)
+	    obj_to_room(jj, j->carried_by->in_room);
+	  else if (j->in_room != NOWHERE)
+	    obj_to_room(jj, j->in_room);
+	  else
+	    assert(FALSE);
+	}	extract_obj(j);	}
+    }
+
+      /* Running down lights */
+
+      if (GET_OBJ_TYPE(j) == ITEM_LIGHT &&
+            GET_OBJ_VAL(j, 0) == 1 &&      /* Is lit */
+            GET_OBJ_VAL(j, 2) > 0) {       /* Isn't permanent */
+
+         /* Make a note of who, if anyone, is carrying this light */
+         i = j->carried_by ? j->carried_by : j->worn_by;
+
+         /* give warning of impending light failure */
+         switch(--GET_OBJ_VAL(j, 2)) {
+            case 5:
+               lightmsg = "begins to flicker and fade.";
+               break;
+            case 3:
+               lightmsg = "grows slightly dimmer.";
+               break;
+            case 1:
+               lightmsg = "is almost out.";
+               break;
+            case 0:
+               lightmsg = "sputters out and dies.";
+               break;
+            default:
+               lightmsg = NULL;
+         }
+d793 11
+a803 14
+         if (lightmsg) {
+            if (i) {
+               /* Messages sent when the light's being carried by someone */
+               sprintf(buf, "&3Your $o&3 %s&0", lightmsg);
+               act(buf, FALSE, i, j, 0, TO_CHAR);
+               sprintf(buf, "&3$n&3's $o&3 %s&0", lightmsg);
+               act(buf, FALSE, i, j, 0, TO_ROOM);
+            } else if ((j->in_room != NOWHERE) && (world[j->in_room].people)) {
+               /* Messages sent when the light is on the ground */
+               sprintf(buf, "&3$p&3 %s&0", lightmsg);
+               act(buf, FALSE, world[j->in_room].people, j, 0, TO_ROOM);
+               act(buf, FALSE, world[j->in_room].people, j, 0, TO_CHAR);
+            }
+         }
+d805 7
+a811 10
+         if (GET_OBJ_VAL(j, 2) == 0) {
+            /* The fuel is now expended. */
+            if (j->in_room != NOWHERE)
+               world[j->in_room].light--;
+            else if (i)
+               world[i->in_room].light--;
+            /* Set the object to "not lit" */
+            GET_OBJ_VAL(j, 0) = 0;
+         }
+      }
+d813 1
+a813 59
+    if (GET_OBJ_TYPE(j) == ITEM_PORTAL) {
+      if (GET_OBJ_TIMER(j) > 0)
+	GET_OBJ_TIMER(j)--;
+      if (!GET_OBJ_TIMER(j)) {
+	obj_vnum = GET_OBJ_VNUM(j);
+	for(index=0;portal_decay_messages[index].portal_vnum>0 && 
+	      portal_decay_messages[index].portal_vnum != obj_vnum;index++); 
+        act(portal_decay_messages[index].message,
+	    TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+        act(portal_decay_messages[index].message,
+	    TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+        extract_obj(j);
+      }
+    }
+    
+    if (GET_OBJ_TYPE(j) == ITEM_WALL) {
+      if (GET_OBJ_TIMER(j) > 0)
+	GET_OBJ_TIMER(j)--;
+      if (!GET_OBJ_TIMER(j)) {
+         magic_wall_destruction(j, j->in_room);
+      }
+    }
+    
+    /* extract the druid spring. We can expand this to other temp fountains later --Nech */
+    if (GET_OBJ_TYPE(j) == ITEM_FOUNTAIN && GET_OBJ_VNUM(j) == 75) {
+      if (GET_OBJ_TIMER(j) > 0)
+	GET_OBJ_TIMER(j)--;
+      if (!GET_OBJ_TIMER(j)) {
+        act("$p &0crumbles to dust and blows away.",
+	    TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+        act("$p &0crumbles to dust and blows away.",
+	    TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+        extract_obj(j);
+      }
+    }
+    
+    if (GET_OBJ_TYPE(j) == ITEM_OTHER) {
+      if (!str_cmp(j->short_description, "blood")){
+	if (GET_OBJ_TIMER(j) > 0)
+	  GET_OBJ_TIMER(j)--;
+	if (GET_OBJ_TIMER(j)==1){
+	  bloodd = read_object(BLOOD_DROP_OBJ, VIRTUAL);
+	  GET_OBJ_VAL(bloodd, 0) = j->in_room;
+	  GET_OBJ_TIMER(bloodd) = 1;
+	  CREATE(new_descr, struct extra_descr_data, 1);
+	  new_descr->keyword = str_dup("blood drops");
+	  sprintf(buf, "&0&1Several drops of blood cover the ground here.&0");
+	  new_descr->description = str_dup(buf);
+	  new_descr->next = bloodd->ex_description;
+	  bloodd->ex_description = new_descr;
+	  obj_to_room(bloodd, j->in_room);
+	  extract_obj(j);
+	  /* made next line an else instead of just an if 
+	     to stop reading from free'd pointer j -gurlaek 9/7/1999 */
+	} else if (!GET_OBJ_TIMER(j)) {
+	  extract_obj(j);
+	}
+      }
+    }     
+d822 4
+@
+
+
+1.64
+log
+@Stop the continuing nag messages about hunger and thirst.  Regeneration
+won't be affected by hunger an thirst.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.63 2007/09/03 21:18:38 jps Exp jps $
+d471 1
+d474 1
+d476 1
+a476 1
+  if (GET_INNATE_TIMER(ch, innate) == -1)	/* No change */
+d479 2
+a480 8
+  if (GET_INNATE_TIMER(ch, innate) < 1)
+    return;
+  
+  
+  GET_INNATE_TIMER(ch, innate) += value;
+  
+  GET_INNATE_TIMER(ch, innate) = MAX(0, GET_INNATE_TIMER(ch, innate));
+  GET_INNATE_TIMER(ch, innate) = MIN(14, GET_INNATE_TIMER(ch, innate));
+d492 7
+d529 1
+a529 1
+  
+d531 2
+a532 5
+      /* Deal with shapechanged peoples */
+      if (ch->desc && ch->desc->original)
+         ch->char_specials.timer--;
+
+      if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE) {
+d545 6
+a550 9
+         if (ch->desc && ch->desc->original) {
+            attacker = NULL;
+            if (IS_FIGHTING(ch)) {
+            attacker = ch->char_specials.fighting;
+            stop_fighting(ch);
+         }
+         do_shapechange(ch, "me", 0, 1);
+         if (attacker)
+            hit(attacker, ch, TYPE_UNDEFINED);
+d552 1
+a552 1
+            if (ch->in_room != NOWHERE)
+d554 2
+a555 1
+            char_to_room(ch, 0);
+d594 22
+d623 7
+a629 13
+    else if (!IS_NPC(i)) {
+      if (IS_HUNGRY(i)) {
+        if (IS_THIRSTY(i));
+          /* send_to_char("Your hunger and thirst are draining your energy rapidly.\r\n", i); */
+        else {
+          /* send_to_char("You are feeling weak from hunger.\r\n", i); */
+          gain_condition(i, THIRST, -1);
+        }
+      }
+      else if (IS_THIRSTY(i)) {
+        /* send_to_char("You feel dizzy from extreme thirst.\r\n", i); */
+        gain_condition(i, FULL, -1);
+      }
+d631 1
+a631 1
+        gain_condition(i, FULL, -1);
+a633 1
+      gain_condition(i, DRUNK, -1);
+d635 9
+d650 2
+a651 19
+    if (GET_POS(i) >= POS_STUNNED) {
+      if (AFF_FLAGGED(i, AFF_POISON))
+	damage(i, i, GET_LEVEL(i) / 2, SPELL_POISON);
+      /* Do damage with a maximum of 5% of HP, depending on level. */
+      if (AFF2_FLAGGED(i, AFF2_ON_FIRE))
+        damage(i, i, ((GET_MAX_HIT(i) / 20) * GET_LEVEL(i)) / 100, SPELL_ON_FIRE);
+      if (GET_POS(i) <= POS_STUNNED)
+	update_pos(i);
+    } else if (GET_POS(i) == POS_INCAP) {
+      damage(i, i, 1, TYPE_SUFFERING);
+    }
+    else if (GET_POS(i) == POS_MORTALLYW){
+      damage(i, i, 2, TYPE_SUFFERING);
+    }
+    
+    if (!IS_NPC(i)) {
+      update_char_objects(i);
+      check_idling(i);
+    }
+d810 4
+@
+
+
+1.63
+log
+@Standardize magic wall expiration.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.62 2007/08/26 01:55:41 myc Exp jps $
+a65 10
+
+/*
+ * The hit_limit, mana_limit, and move_limit functions are gone.  They
+ * added an unnecessary level of complexity to the internal structure,
+ * weren't particularly useful, and led to some annoying bugs.  From the
+ * players' point of view, the only difference the removal of these
+ * functions will make is that a character's age will now only affect
+ * the HMV gain per tick, and _not_ the HMV maximums.
+ */
+
+d99 2
+a100 2
+    if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
+      gain >>= 2;
+d154 2
+a155 2
+    if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
+      gain >>= 2;
+d200 2
+a201 2
+    if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
+      gain >>= 2;
+d417 1
+a417 3
+  /* mobs don't get hungry! added by fingon to stop
+     silly crashes                                  */
+
+d421 2
+a422 1
+  if (GET_COND(ch, condition) == -1)	/* No change */
+d605 2
+a606 2
+        if (IS_THIRSTY(i))
+          send_to_char("Your hunger and thirst are draining your energy rapidly.\r\n", i);
+d608 1
+a608 1
+          send_to_char("You are feeling weak from hunger.\r\n", i);
+d613 1
+a613 1
+        send_to_char("You feel dizzy from extreme thirst.\r\n", i);
+d805 3
+@
+
+
+1.62
+log
+@Fire now does real damage.  All fire spells have a chance to catch the
+victim on fire.  Mobs attempt to douse themselves.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.61 2007/08/04 01:15:32 jps Exp myc $
+d592 2
+d768 1
+a768 5
+        act("$p &0crumbles to dust and blows away.",
+	    TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+        act("$p &0crumbles to dust and blows away.",
+	    TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+        extract_obj(j);
+d816 4
+@
+
+
+1.61
+log
+@Prevent xp gain/loss in arena rooms.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.60 2007/07/31 23:44:36 jps Exp jps $
+a598 1
+  int dmg_poison = 0;
+d605 3
+a607 3
+    if(IS_AFFECTED2(i, AFF2_DISEASE)) {	
+      act("&3$n&3 pauses a moment as $e purges his stomach contents.&0",TRUE,i,0,0,TO_ROOM);
+      act("&3You feel VERY ill and purge the contents of your stomach.&0",FALSE,i,0,0,TO_CHAR);
+d612 7
+a618 11
+    else {
+      if (last_hunger)
+	last_hunger = FALSE;
+      else
+	{
+     if (IS_HUNGRY(i)) {
+        if (IS_THIRSTY(i)) {
+           send_to_char("Your hunger and thirst are draining your energy rapidly.\r\n", i);
+        } else {
+           send_to_char("You are feeling weak from hunger.\r\n", i);
+           gain_condition(i, THIRST, -1);
+d620 2
+a621 1
+     } else if (IS_THIRSTY(i)) {
+d624 2
+a625 1
+     } else {
+d628 3
+a630 1
+     }
+a631 4
+	  gain_condition(i, DRUNK, -1);
+	  last_hunger = TRUE;
+	}
+    }
+d638 5
+a642 6
+      
+      if (IS_AFFECTED(i, AFF_POISON))
+      {
+	dmg_poison = GET_LEVEL(i)/2;
+	damage(i, i, dmg_poison, SPELL_POISON);
+      }
+d645 1
+a645 1
+    } else if (GET_POS(i) == POS_INCAP){
+a650 2
+    if(IS_AFFECTED2(i, AFF2_ON_FIRE))
+      damage(i,i,20, SPELL_ON_FIRE);
+d818 3
+@
+
+
+1.60
+log
+@New macros IS_HUNGRY, IS_THIRSTY, IS_DRUNK.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.59 2007/07/25 01:36:18 jps Exp jps $
+d269 4
+d826 3
+@
+
+
+1.59
+log
+@Clean up check_idling().
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.58 2007/05/28 06:25:26 jps Exp jps $
+d109 1
+a109 1
+    if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+d164 1
+a164 1
+    if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+d210 1
+a210 1
+    if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+d614 2
+a615 2
+     if (GET_COND(i, FULL) == 0) {
+        if (GET_COND(i, THIRST) == 0) {
+d621 1
+a621 1
+     } else if (GET_COND(i, THIRST) == 0) {
+d822 3
+@
+
+
+1.58
+log
+@Added coloring to light burnout messages.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.57 2007/04/11 07:50:03 jps Exp jps $
+d496 8
+a503 6
+  int result = 0;
+  extern int free_rent;
+  void Crash_rentsave(struct char_data *ch, int cost);
+  struct char_data *attacker;
+  
+   /*  Demolitum (12 Oct 2001) - New scheme for immortal+ idling:  */
+d507 12
+a518 10
+  if(GET_LEVEL(ch) >= LVL_IMMORT)  /*  if this char is an immort+ */
+  {
+    if (++(ch->char_specials.timer) >= 4)  /*  if this immort has been idle for 5+ mins */
+    {
+      if(!(PRF_FLAGGED(ch, PRF_AFK)))  /*  if this char is not already flagged AFK */
+      {
+	act("$n has been drawn into the realm of AFK due to idle time.", TRUE, ch, 0, 0, TO_ROOM);
+	send_to_char("You have been idle for five minutes. AFK auto-toggle engaged.\r\n", ch);
+	result = PRF_TOG_CHK(ch, PRF_AFK);
+      }
+d520 10
+a529 9
+       /*  the timer has already been incremented above, so just check that var for the 10+ min */
+      if(ch->char_specials.timer >= 8)  /*  if this immort has been idle for 10+ mins */
+      {
+	if(GET_INVIS_LEV(ch) < LVL_IMMORT)  /*  if this char is not already invis beyond LVL_IMMORT */
+	{
+	  act("$n vanishes from mortal view, having reached a threshold of idle time.", TRUE, ch, 0, 0, TO_ROOM);
+	  send_to_char("You have been idle for ten minutes. Auto-invis to Level 100 engaged.\r\n", ch);
+	  GET_INVIS_LEV(ch) = LVL_IMMORT;
+	}
+d531 2
+a532 6
+    }
+    return;
+  }
+  
+  /* David Endre 1/20/99 Allow Gods to accumulate idle timer
+     but not void */
+d534 4
+a537 6
+  if (++(ch->char_specials.timer) >= 4) {
+    /* This is just a temporary fix. It should be removed
+       when I redo shapechange for the second time. 
+       4/6/01 - Zantir */
+    if (ch->desc && ch->desc->original)
+      ch->char_specials.timer--;
+a538 1
+    if (GET_LEVEL(ch) < LVL_GOD) {
+d540 11
+a550 11
+	GET_WAS_IN(ch) = ch->in_room;
+	if (FIGHTING(ch)) {
+	  stop_fighting(FIGHTING(ch));
+	  stop_fighting(ch);
+	}
+	act("$n disappears into the void.", TRUE, ch, 0, 0, TO_ROOM);
+	send_to_char("You have been idle, and are pulled into a void.\r\n", ch);
+	save_char(ch, NOWHERE);
+	Crash_crashsave(ch);
+	char_from_room(ch);
+	char_to_room(ch, 0);
+d552 3
+a554 3
+        if (ch->desc && ch->desc->original) {
+          attacker = NULL;
+          if (IS_FIGHTING(ch)) {
+d557 3
+a559 3
+          }
+          do_shapechange(ch, "me", 0, 1);
+          if (attacker)
+d561 15
+a575 15
+        } else {
+  	  if (ch->in_room != NOWHERE)
+	    char_from_room(ch);
+	  char_to_room(ch, 0);
+	  if (ch->desc)
+	    close_socket(ch->desc);
+	  ch->desc = NULL;
+	  if (free_rent)
+	    Crash_rentsave(ch, 0);
+	  else
+	    Crash_idlesave(ch);
+	  sprintf(buf, "%s force-rented and extracted (idle).", GET_NAME(ch));
+	  mudlog(buf, BRF, LVL_GOD, TRUE);
+	  extract_char(ch);
+        }
+d577 1
+a577 5
+    } else {
+      if (ch->char_specials.timer > 500)
+        ch->char_specials.timer = 999;     
+    }
+  }
+d822 3
+@
+
+
+1.57
+log
+@Improve light rundown feedback.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.56 2007/03/27 04:27:05 myc Exp jps $
+a665 4
+    /*Lets go camping !!!!....Banyal camp has been changed to an event
+      if (PRF_FLAGGED(i, PRF_CAMPING) ) {
+      do_campout(i);
+      }*/
+d733 2
+a734 1
+               sprintf(buf, "Your $o %s", lightmsg);
+d736 1
+a736 1
+               sprintf(buf, "$n's $o %s", lightmsg);
+d739 2
+a740 1
+               sprintf(buf, "$p %s", lightmsg);
+a745 1
+         /* The fuel is now expended. */
+d747 1
+d828 3
+@
+
+
+1.56
+log
+@Changed spellings for innate timer macros.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.55 2006/12/28 23:46:29 myc Exp myc $
+d602 1
+d708 1
+a708 1
+      /*   ITEM_LIGHT  */
+d717 1
+a718 1
+            /* give more warning of impending doom/light failure */
+d720 2
+a721 1
+            case 4:
+d723 1
+a723 10
+               if (i) {
+                  act("Your $o grows slightly dimmer.", FALSE, i, j, 0, TO_CHAR);
+                  act("$n's $o grows slightly dimmer.", FALSE, i, j, 0, TO_ROOM);
+               }
+               else if ((j->in_room != NOWHERE) && (world[j->in_room].people)) {
+                  act("$p begins to flicker and fade.", FALSE,
+                      world[j->in_room].people, j, 0, TO_ROOM);
+                  act("$p begins to flicker and fade.", FALSE,
+                      world[j->in_room].people, j, 0, TO_CHAR);
+               }
+a724 1
+            case 2:
+d726 1
+a726 9
+               if (i) {
+                  act("Your $o begins to flicker and fade.", FALSE, i, j, 0, TO_CHAR);
+                  act("$n's $o begins to flicker and fade.", FALSE, i, j, 0, TO_ROOM);
+               } else if ((j->in_room != NOWHERE) && (world[j->in_room].people)) {
+                  act("$p begins to flicker and fade.",
+                        FALSE, world[j->in_room].people, j, 0, TO_ROOM);
+                  act("$p begins to flicker and fade.",
+                        FALSE, world[j->in_room].people, j, 0, TO_CHAR);
+               }
+d729 27
+a755 16
+               if (i) {
+                  act("Your $o sputters out and dies.", FALSE, i, j, 0, TO_CHAR);
+                  act("$n's $o sputters out and dies.", FALSE, i, j, 0, TO_ROOM);
+               } else if (j->in_room != NOWHERE) {
+                  if (world[j->in_room].people) {
+                     act("$p sputters out and dies.",
+                           FALSE, world[j->in_room].people, j, 0, TO_ROOM);
+                     act("$p sputters out and dies.",
+                           FALSE, world[j->in_room].people, j, 0, TO_CHAR);
+                  }
+               }
+               if (j->in_room != NOWHERE)
+                  world[j->in_room].light--;
+               else if (i)
+                  world[i->in_room].light--;
+               GET_OBJ_VAL(j, 0) = 0;
+d830 3
+@
+
+
+1.55
+log
+@Fixed typo in light failing message.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.54 2006/12/05 20:50:57 myc Exp myc $
+d481 1
+a481 1
+  if (GET_INNT(ch, innate) == -1)	/* No change */
+d484 1
+a484 1
+  if (GET_INNT(ch, innate) < 1)
+d488 1
+a488 1
+  GET_INNT(ch, innate) += value;
+d490 2
+a491 2
+  GET_INNT(ch, innate) = MAX(0, GET_INNT(ch, innate));
+  GET_INNT(ch, innate) = MIN(14, GET_INNT(ch, innate));
+d638 4
+a641 4
+    gain_innate(i, INV, -1);
+    gain_innate(i, STR, -1);
+    gain_innate(i, DRK, -1);
+    gain_innate(i, LVT, -1);
+d835 3
+@
+
+
+1.54
+log
+@Bug causing too many messages for failing lights on heartbeats.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.53 2006/12/05 18:37:46 myc Exp myc $
+d723 1
+a723 1
+                  act("$n'$s $o grows slightly dimmer.", FALSE, i, j, 0, TO_ROOM);
+d835 3
+@
+
+
+1.53
+log
+@More warning before light failure.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.52 2006/11/21 03:45:52 jps Exp $
+d731 1
+d835 3
+@
+
+
+1.52
+log
+@Running down of lights is handled here.  Lights on the ground
+run down too.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.51 2006/11/16 16:59:30 jps Exp jps $
+d717 15
+d834 4
+@
+
+
+1.51
+log
+@Add warning messages "You're a little hungry/thirsty" when
+you reach 5 in those values.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.50 2006/11/13 04:15:10 jps Exp jps $
+d706 42
+a747 1
+    
+d819 4
+@
+
+
+1.50
+log
+@Fix occasional crash caused by checking mobs for hunger/thirst
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.49 2006/11/11 10:11:04 jps Exp jps $
+d445 28
+a472 18
+  if (GET_COND(ch, condition) || PLR_FLAGGED(ch, PLR_WRITING))
+    return;
+  
+  switch (condition) {
+  case FULL:
+    send_to_char("You are hungry.\r\n", ch);
+    return;
+  case THIRST:
+    send_to_char("You are thirsty.\r\n", ch);
+    return;
+  case DRUNK:
+    if (intoxicated)
+      send_to_char("You are now sober.\r\n", ch);
+    return;
+  default:
+    break;
+  }
+  
+d778 3
+@
+
+
+1.49
+log
+@The first message received when you feel hungry or thirsty is the
+same, but subsequent ones are a little more alerting to the fact
+that being hungry and/or thirsty isn't a good state to be in.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.48 2006/11/08 21:28:21 jps Exp $
+d107 4
+a115 3
+  if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;
+  
+d163 3
+a170 3
+  if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;
+  
+d209 4
+a220 3
+  if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;
+
+d768 5
+@
+
+
+1.48
+log
+@Once again, being hungry or thirsty cuts regeneration to 25% of normal.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.47 2006/11/08 07:58:23 jps Exp jps $
+d607 15
+a621 1
+	  gain_condition(i, FULL, -1);
+a622 1
+	  gain_condition(i, THIRST, -1);
+d766 3
+@
+
+
+1.47
+log
+@Typo fix "raise a level" -> "gain a level"
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.46 2006/05/30 00:49:22 rls Exp jps $
+d112 2
+a113 2
+  /*if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;*/
+d167 2
+a168 2
+  /*if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;*/
+d216 2
+a217 2
+  /*if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+    gain >>= 2;*/
+d753 3
+@
+
+
+1.46
+log
+@Modified poison damage to base off level of poisoned player... I know, crazy!
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.45 2004/11/19 20:43:16 rsd Exp $
+d337 1
+a337 1
+        send_to_char("&0&1You raise a level!&0\r\n", ch);
+d339 1
+a339 1
+	sprintf(buf, "You raise %d levels!\r\n", num_levels);
+d404 1
+a404 1
+        send_to_char("&0&7&bYou raise a level!&0\r\n", ch);
+d406 1
+a406 1
+	sprintf(buf, "&0&7&bYou raise %d levels!&0\r\n", num_levels);
+d753 3
+@
+
+
+1.45
+log
+@back-rev'd to version 1.43
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.43 2004/11/01 05:30:33 jjl Exp $
+d589 2
+d621 4
+a624 1
+	damage(i, i, 2, SPELL_POISON);
+d753 3
+@
+
+
+1.44
+log
+@doubled mv regen rate.
+@
+text
+@d186 1
+a186 3
+    /* This was divided by 2 but I removed it divisor to double
+        mv regen - RSD 11/18/2004 */
+    gain = ((GET_MAX_MOVE(ch) * .1) + gain);
+@
+
+
+1.43
+log
+@LVL_IMMORT now idles out, LVL_GOD+ do not.
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.42 2003/07/14 05:46:14 rsd Exp $
+d186 3
+a188 1
+    gain = ((GET_MAX_MOVE(ch) * .1) + gain) / 2;
+d750 3
+@
+
+
+1.42
+log
+@altered the header to update copyright date and
+to test is new load will allow RCS to function
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.41 2002/09/13 02:32:10 jjl Exp rsd $
+d528 1
+a528 1
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+d748 4
+@
+
+
+1.41
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: limits.c,v 1.40 2002/05/13 23:35:23 dce Exp $
+d10 1
+a10 1
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+d748 3
+@
+
+
+1.40
+log
+@Fixed a bug where idling out when shapechanged cause you leave
+the mob behind.
+@
+text
+@d1 3
+a3 1
+// $Id: limits.c,v 1.39 2001/10/12 17:53:35 rjd Exp $
+d489 5
+a493 5
+  // Demolitum (12 Oct 2001) - New scheme for immortal+ idling: 
+  // 1. After 5 minutes of idle time, auto-toggle AFK flag.
+  // 2. After 10 minutes of idle time, auto-invis to level 100.
+  // Assumptions: 75 second tics
+  if(GET_LEVEL(ch) >= LVL_IMMORT) // if this char is an immort+
+d495 1
+a495 1
+    if (++(ch->char_specials.timer) >= 4) // if this immort has been idle for 5+ mins
+d497 1
+a497 1
+      if(!(PRF_FLAGGED(ch, PRF_AFK))) // if this char is not already flagged AFK
+d504 2
+a505 2
+      // the timer has already been incremented above, so just check that var for the 10+ min
+      if(ch->char_specials.timer >= 8) // if this immort has been idle for 10+ mins
+d507 1
+a507 1
+	if(GET_INVIS_LEV(ch) < LVL_IMMORT) // if this char is not already invis beyond LVL_IMMORT
+d746 129
+a874 123
+// $Log: limits.c,v $
+// Revision 1.39  2001/10/12 17:53:35  rjd
+// New immortal+ idle scheme implemented: 5 min idle activates AFK, 10 min idle activates invis 100.
+//
+// Revision 1.38  2001/10/11 18:33:54  rjd
+// Took care of nit-pick warning. :P
+//
+// Revision 1.37  2001/10/10 23:30:22  rjd
+// Immortals+ who are idle for five or more tics have an auto-toggle-on for the AFK toggle.
+//
+// Revision 1.36  2001/04/08 13:51:25  dce
+// TEMPORARY fix to shapechanged players voiding out.
+//
+// Revision 1.35  2001/03/31 00:19:42  dce
+// Think I fixed a crash bug with move gain.
+//
+// Revision 1.33  2001/02/24 04:04:15  dce
+// Shapechanged players gain experience
+//
+// Revision 1.32  2000/11/22 20:28:32  rsd
+// added back rlog messages from prior to the addition
+// of the $log$ string.
+//
+// Revision 1.31  2000/10/15 04:59:02  cmc
+// somehow forgot the "you are ready" message.
+// I wonder what color it'll end up being?
+// picked it randomly from an important looking message.
+//
+// Revision 1.30  2000/10/15 04:37:59  cmc
+// fixed level gain code so that ** could be achieved
+//
+// Revision 1.29  2000/10/13 17:52:56  cmc
+// optional "level gain" code implemented
+//
+// Revision 1.28  2000/09/13 22:21:27  rsd
+// made the idle timer work on 99 and below instead of
+// 100 and below.
+//
+// Revision 1.27  2000/05/01 01:31:22  rsd
+// removed all the gain_exp() changes
+// because it didn't even work.
+//
+// Revision 1.19  2000/04/22 22:37:47  rsd
+// Fixed the comment header, also fixed typo in You loose a level!
+//
+// Revision 1.18  2000/03/20 04:34:40  rsd
+// Commented out all references to autowiz.
+//
+// Revision 1.17  1999/12/10 22:13:45  jimmy
+// Exp tweaks.  Made Exp loss for dying a hardcoded 25% of what was needed for the next
+// level.  Fixed problems with grouping and exp.  Removed some redundant and unnecessary
+// exp code.
+//
+// Revision 1.16  1999/11/28 23:32:08  cso
+// point_update: modified to use IS_CORPSE macro
+//
+// Revision 1.15  1999/10/30 15:37:24  rsd
+// Jimmy coded alignemt restrictions for Paladins and exp.
+// Added a victim check in gain_exp() to check victims alignment.
+// Also coded in the ranges for alignment and the exp modifiers
+// for the different victim alignments.
+//
+// Revision 1.14  1999/09/08 07:06:03  jimmy
+// More insure++ runtime fixes.  Some small, but hardcore fixes mostly to do
+// with blood and killing
+// --gurlaek
+//
+// Revision 1.13  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.12  1999/08/14 02:43:10  dce
+// ** is one level up from 99
+//
+// Revision 1.11  1999/08/12 17:54:46  dce
+// Fixed experience so that there are no overflows of integers that are placed into longs.
+// Main problem was max_exp_gain and max_exp_loss. Both were overflowing due to poor
+// Hubis coding.
+//
+// Revision 1.10  1999/06/10 16:56:28  mud
+// This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+// This fixes all of the warnings associated with the new compiler and 
+// libraries.  Many many curly braces had to be added to "if" statements to
+// clarify their behavior to the compiler.  The name approval code was also
+// debugged, and tested to be stable.  The xnames list was converted from an
+// array to a linked list to allow for on the fly adding of names to the
+// xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
+//
+// Revision 1.9  1999/05/04 17:19:33  dce
+// Name accept system...version one...original code by Fingh, fixed up to work
+// by Zantir.
+//
+// Revision 1.8  1999/05/01 18:45:19  dce
+// Players camp/rent after 8 min of idle time
+//
+// Revision 1.7  1999/04/08 03:37:33  dce
+// Fixed a nasty crash bug
+//
+// Revision 1.6  1999/03/31 20:17:22  jen
+// Changed move & hp regen code to increase event rates
+//
+// Revision 1.5  1999/03/17 22:45:34  jimmy
+// added check for NPC's to gain_condition so that
+// it would immediatly return for a mob.
+// fingon
+//
+// Revision 1.4  1999/03/14 14:28:11  jimmy
+// Movement now has bite!  removed extra "flying" from
+// movement_loss in constants.c to fix the mv bug.  reduced the
+// movement gain by 5 for all ages in limits.c.  Removed the +5
+// and +6 static movement gain so that it now actually updates
+// based on the function in regen.c.  Gosh i'm a bastard.
+// Fingon
+//
+// Revision 1.3  1999/02/04 00:02:59  jimmy
+// max/min exp loss/gain set to 2 notches.
+//
+// Revision 1.2  1999/01/31 16:11:37  mud
+// Indented file
+// moved the last 3 }'s to lines by themsleves and indented
+//
+// Revision 1.1  1999/01/29 01:23:31  mud
+// Initial revision
+//
+@
+
+
+1.39
+log
+@New immortal+ idle scheme implemented: 5 min idle activates AFK, 10 min idle activates invis 100.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.38 2001/10/11 18:33:54 rjd Exp $
+d23 1
+d38 1
+d485 1
+d540 24
+a563 13
+	if (ch->in_room != NOWHERE)
+	  char_from_room(ch);
+	char_to_room(ch, 0);
+	if (ch->desc)
+	  close_socket(ch->desc);
+	ch->desc = NULL;
+	if (free_rent)
+	  Crash_rentsave(ch, 0);
+	else
+	  Crash_idlesave(ch);
+	sprintf(buf, "%s force-rented and extracted (idle).", GET_NAME(ch));
+	mudlog(buf, BRF, LVL_GOD, TRUE);
+	extract_char(ch);
+d745 3
+@
+
+
+1.38
+log
+@Took care of nit-pick warning. :P
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.37 2001/10/10 23:30:22 rjd Exp $
+d484 5
+a488 6
+  /* David Endre 1/20/99 Allow Gods to accumulate idle timer
+     but not void */
+  
+  /* Put the AFK toggle onto immortals+ who have been idle for
+     more than five minutes. */
+  if(GET_LEVEL(ch) >= LVL_IMMORT) /* if this char is an immort+ */
+d490 1
+a490 1
+    if (++(ch->char_specials.timer) >= 5) /* if this immort has been idle for 5+ mins */
+d492 1
+a492 1
+      if(!(PRF_FLAGGED(ch, PRF_AFK))) /* if this char is not already flagged AFK */
+d494 2
+a495 2
+	act("$n has been drawn into the realm of the AFK.\r\n", TRUE, ch, 0, 0, TO_ROOM);
+	send_to_char("You have been idle as an Avatar or Deity. Auto-toggle of AFK engaged.\r\n", ch);
+d498 11
+d512 4
+a515 1
+
+d731 3
+@
+
+
+1.37
+log
+@Immortals+ who are idle for five or more tics have an auto-toggle-on for the AFK toggle.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.36 2001/04/08 13:51:25 dce Exp $
+d480 1
+d497 1
+a497 1
+	PRF_TOG_CHK(ch, PRF_AFK);
+d718 3
+@
+
+
+1.36
+log
+@TEMPORARY fix to shapechanged players voiding out.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.35 2001/03/31 00:19:42 dce Exp $
+d486 16
+d717 3
+@
+
+
+1.35
+log
+@Think I fixed a crash bug with move gain.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.33 2001/02/24 04:04:15 dce Exp $
+d487 6
+d701 3
+@
+
+
+1.34
+log
+@MObs should regen moves at a faster rate.
+@
+text
+@d121 1
+a122 2
+    gain = GET_LEVEL(ch);
+    gain = ((GET_MAX_HIT(ch) * .05) + gain);
+d139 2
+a140 7
+    /* Mages & Clerics get half the regen rate of other classes... icky */
+    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+      gain >>= 1;
+  }
+
+  /* Position calculations    */
+  switch (GET_POS(ch)) {
+d153 5
+d177 2
+a178 1
+    gain = GET_LEVEL(ch);
+d186 5
+a190 5
+    /* Skill/Spell calculations */    
+  }
+
+  /* Position calculations    */
+  switch (GET_POS(ch)) {
+d203 1
+@
+
+
+1.33
+log
+@Shapechanged players gain experience
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.32 2000/11/22 20:28:32 rsd Exp $
+d121 1
+d123 1
+a123 1
+    /* Neat and fast */
+d140 7
+a146 2
+    /* Position calculations    */
+    switch (GET_POS(ch)) {
+a158 5
+    }
+
+    /* Mages & Clerics get half the regen rate of other classes... icky */
+    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+      gain >>= 1;
+d178 1
+a178 2
+    return (GET_LEVEL(ch));
+    /* Neat and fast */
+d186 5
+a190 5
+    /* Skill/Spell calculations */
+    
+    
+    /* Position calculations    */
+    switch (GET_POS(ch)) {
+a202 1
+    }
+d694 3
+@
+
+
+1.32
+log
+@added back rlog messages from prior to the addition
+of the $log$ string.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.31 2000/10/15 04:59:02 cmc Exp $
+d262 8
+a269 1
+  
+d379 7
+d695 4
+@
+
+
+1.31
+log
+@somehow forgot the "you are ready" message.
+I wonder what color it'll end up being?
+picked it randomly from an important looking message.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.30 2000/10/15 04:37:59 cmc Exp cmc $
+d681 5
+d727 53
+@
+
+
+1.30
+log
+@fixed level gain code so that ** could be achieved
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.29 2000/10/13 17:52:56 cmc Exp cmc $
+d258 1
+a258 1
+  long xp_to_next_level;
+d271 3
+d306 5
+a310 1
+	GET_EXP(ch) = xp_to_next_level - 1;
+d681 3
+@
+
+
+1.29
+log
+@optional "level gain" code implemented
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.28 2000/09/13 22:21:27 rsd Exp $
+d302 1
+a302 1
+    if ((level_gain) && (GET_EXP(ch) >= xp_to_next_level))
+d674 3
+@
+
+
+1.28
+log
+@made the idle timer work on 99 and below instead of
+100 and below.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.27 2000/05/01 01:31:22 rsd Exp $
+d258 1
+d260 2
+d300 5
+d674 4
+@
+
+
+1.27
+log
+@removed all the gain_exp() changes
+because it didn't even work.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.19 2000/04/22 22:37:47 rsd Exp $
+d458 1
+a458 1
+    if (GET_LEVEL(ch) < LVL_GOD) {
+d666 4
+@
+
+
+1.26
+log
+@ok moved back to null checks to facilitate no exp
+for players killing themselves for group members.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.22 2000/05/01 00:15:37 rsd Exp $
+a28 2
+extern int pk_allowed;
+
+a259 7
+  /* Is this necessary? RSD 4/20/2000 */
+  if ( ch == NULL ) {
+    return;
+  } else if ( vict == NULL ) {
+    return;
+  }
+
+a262 7
+  /* No PK no exp for PC's RSD 4/30/2000 */
+  if (!pk_allowed && !IS_NPC(vict) && !IS_NPC(ch)) {
+    sprintf(buf,"CHEAT:%s tried to get exp from %s's death!", GET_NAME(ch), GET_NAME(vict));
+    log(buf);
+    return;
+  }
+
+a665 13
+// Revision 1.22  2000/05/01 00:15:37  rsd
+// ok added a victim check in gain_exp() as well
+// sheez.
+//
+// Revision 1.21  2000/05/01 00:10:45  rsd
+// added a ch==null check to the beginning of gain_exp() not
+// sure why it's necessary all of the sudden by my last checkin
+// caused TEST to crash it's ass off
+//
+// Revision 1.20  2000/04/30 23:48:19  rsd
+// added a change to stop players from getting exp from the
+// death of other players they are grouped with in gain_exp
+//
+@
+
+
+1.25
+log
+@gain_exp() victim check
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.24 2000/05/01 00:41:12 rsd Exp $
+d262 4
+a265 1
+  if ( !IS_NPC(vict) ) {
+d272 7
+a681 6
+// Revision 1.24  2000/05/01 00:41:12  rsd
+// one more time gain_exp()
+//
+// Revision 1.23  2000/05/01 00:23:03  rsd
+// sigh more gain_exp stuff
+//
+@
+
+
+1.24
+log
+@one more time gain_exp()
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.23 2000/05/01 00:23:03 rsd Exp rsd $
+d262 1
+a262 1
+  if ( !IS_NPC == vict ) {
+d672 3
+@
+
+
+1.23
+log
+@sigh more gain_exp stuff
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.22 2000/05/01 00:15:37 rsd Exp rsd $
+d262 1
+a262 8
+  /* Is this necessary? RSD 4/20/2000 */
+  if ( ch == NULL ) {
+    sprintf(buf,"SYSERR: Attempt to award exp to NO-ONE in gain_exp() from %s",GET_NAME(vict));
+    log(buf);
+    return;
+  } else if ( vict == NULL ) {
+    sprintf(buf,"SYSERR: Attempt to base exp off of NO-ONE in gain_exp() for %s",GET_NAME(ch));
+    log(buf);
+a268 7
+  /* No PK no exp for PC's RSD 4/30/2000 */
+  if (!pk_allowed && !IS_NPC(vict) && !IS_NPC(ch)) {
+    sprintf(buf,"CHEAT:%s tried to get exp from %s's death!", GET_NAME(ch), GET_NAME(vict));
+    log(buf);
+    return;
+  }
+
+d672 3
+@
+
+
+1.22
+log
+@ok added a victim check in gain_exp() as well
+sheez.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.21 2000/05/01 00:10:45 rsd Exp rsd $
+d264 1
+a264 1
+    sprintf(buf,"SYSERR: Attempt to award exp to NO-ONE in gain_exp()");
+d268 1
+a268 1
+    sprintf(buf,"SYSERR: Attempt to base exp off of NO-ONE in gain_exp()");
+d686 4
+@
+
+
+1.21
+log
+@added a ch==null check to the beginning of gain_exp() not
+sure why it's necessary all of the sudden by my last checkin
+caused TEST to crash it's ass off
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.20 2000/04/30 23:48:19 rsd Exp $
+d267 4
+d686 5
+@
+
+
+1.20
+log
+@added a change to stop players from getting exp from the
+death of other players they are grouped with in gain_exp
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.19 2000/04/22 22:37:47 rsd Exp $
+d262 7
+d272 1
+a272 1
+  /* No PK no exp for PC's */
+d682 4
+@
+
+
+1.19
+log
+@Fixed the comment header, also fixed typo in You loose a level!
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.18 2000/03/20 04:34:40 rsd Exp $
+d29 2
+d265 7
+d675 3
+@
+
+
+1.18
+log
+@Commented out all references to autowiz.
+@
+text
+@d1 3
+a3 3
+// $Id: limits.c,v 1.17 1999/12/10 22:13:45 jimmy Exp $
+/* ************************************************************************
+ *   File: limits.c                                      Part of CircleMUD *
+d8 3
+a10 1
+ *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+d12 1
+a12 1
+ ************************************************************************ */
+d338 1
+a338 1
+	  send_to_char("&0&7&bYou loose a level!&0\r\n", ch);
+d666 3
+@
+
+
+1.17
+log
+@Exp tweaks.  Made Exp loss for dying a hardcoded 25% of what was needed for the next
+level.  Fixed problems with grouping and exp.  Removed some redundant and unnecessary
+exp code.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.16 1999/11/28 23:32:08 cso Exp $
+d234 2
+a235 1
+
+d250 2
+d314 1
+a314 1
+      check_autowiz(ch);
+d375 1
+a375 1
+      check_autowiz(ch);
+d664 5
+@
+
+
+1.16
+log
+@point_update: modified to use IS_CORPSE macro
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.15 1999/10/30 15:37:24 rsd Exp $
+a30 1
+extern long max_exp_loss(struct char_data *ch);
+d32 1
+a32 1
+int exp_death_loss(struct char_data * ch, int level);
+d323 1
+a323 1
+    else 
+d661 3
+@
+
+
+1.15
+log
+@Jimmy coded alignemt restrictions for Paladins and exp.
+Added a victim check in gain_exp() to check victims alignment.
+Also coded in the ranges for alignment and the exp modifiers
+for the different victim alignments.
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.14 1999/09/08 07:06:03 jimmy Exp $
+d561 1
+a561 1
+    if ((GET_OBJ_TYPE(j) == ITEM_CONTAINER) && GET_OBJ_VAL(j, 3)) {
+d662 6
+@
+
+
+1.14
+log
+@More insure++ runtime fixes.  Some small, but hardcore fixes mostly to do
+with blood and killing
+--gurlaek
+@
+text
+@d1 1
+a1 1
+// $Id: limits.c,v 1.13 1999/09/05 07:00:39 jimmy Exp $
+d251 1
+a251 2
+void gain_exp(struct char_data * ch, long gain)
+{
+d258 2
+a259 1
+  
+d272 16
+a287 3
+    gain = MIN(max_exp_gain(ch), gain);	/* put a cap on the max gain per 
+					   kill */
+    if (GET_LEVEL(ch) < 100 && GET_EXP(ch) <= (exp_to_level(100, GET_CLASS(ch))-1))
+d289 1
+a289 1
+
+d662 5
+@
+
+
+1.13
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d634 6
+a639 3
+	  extract_obj(j);}
+	if (!GET_OBJ_TIMER(j)) {
+	  extract_obj(j);}
+d648 4
+a651 1
+// $Log$
+@
+
+
+1.12
+log
+@** is one level up from 99
+@
+text
+@d1 1
+d645 1
+@
+
+
+1.11
+log
+@Fixed experience so that there are no overflows of integers that are placed into longs.
+Main problem was max_exp_gain and max_exp_loss. Both were overflowing due to poor
+Hubis coding.
+@
+text
+@d277 1
+a277 1
+      GET_EXP(ch) = 299999998;
+@
+
+
+1.10
+log
+@This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.  This fixes all of the warnings associated
+with the new compiler and libraries.  Many many curly braces had to be added to "if" statements to clarify
+their behavior to the compiler.  The name approval code was also debugged, and tested to be stable.  The xnames
+list was converted from an array to a linked list to allow for on the fly adding of names to the xnames list.
+This code compiles fine under both gcc RH5.2 and egcs RH6.0.
+--Gurlaek 6/10/1999
+@
+text
+@d30 2
+a31 2
+extern int max_exp_loss(struct char_data *ch);
+extern int max_exp_gain(struct char_data *ch);
+d250 1
+a250 1
+void gain_exp(struct char_data * ch, int gain)
+d273 7
+a279 2
+    GET_EXP(ch) += gain;
+    while (GET_LEVEL(ch) < LVL_IMMORT && GET_EXP(ch) >= exp_to_level(GET_LEVEL(ch), GET_CLASS(ch))) {
+d302 3
+a304 4
+    /*
+      sprintf(buf, "max exp gain is %d\r\nbut total", gain);
+      send_to_char(buf, ch);
+    */
+d334 1
+a334 1
+void gain_exp_regardless(struct char_data * ch, int gain)
+@
+
+
+1.9
+log
+@Name accept system...version one...original code by Fingh, fixed up to work
+by Zantir.
+@
+text
+@d435 1
+a435 1
+  if (++(ch->char_specials.timer) >= 4)
+d468 1
+@
+
+
+1.8
+log
+@Players camp/rent aafter 8 min of idle time
+@
+text
+@d264 7
+d275 5
+@
+
+
+1.7
+log
+@Fixed a nasty crash bug
+@
+text
+@d423 1
+a423 1
+  if (++(ch->char_specials.timer) > 8)
+d437 1
+a437 1
+      } else if (ch->char_specials.timer > 448) {
+d449 1
+a449 1
+	mudlog(buf, CMP, LVL_GOD, TRUE);
+@
+
+
+1.6
+log
+@Changed move & hp regen code to increase event rates
+@
+text
+@d398 3
+@
+
+
+1.5
+log
+@added check for NPC's to gain_condition so that
+it would immediatly return for a mob.
+fingon
+@
+text
+@d124 4
+d129 1
+a137 1
+    
+d140 1
+a140 1
+      gain += (gain >> 1);	/* Divide by 2 */
+d143 1
+a143 1
+      gain += (gain >> 2);	/* Divide by 4 */
+d146 4
+a149 1
+      gain += (gain >> 3);	/* Divide by 8 */
+d152 2
+a153 1
+    
+d179 2
+d190 1
+a190 1
+      gain += (gain >> 1);	/* Divide by 2 */
+d193 1
+a193 1
+      gain += (gain >> 2);	/* Divide by 4 */
+d196 4
+a199 1
+      gain += (gain >> 3);	/* Divide by 8 */
+d207 3
+d212 2
+@
+
+
+1.4
+log
+@Movement now has bite!  removed extra "flying" from
+movement_loss in constants.c to fix the mv bug.  reduced the
+movement gain by 5 for all ages in limits.c.  Removed the +5
+and +6 static movement gain so that it now actually updates
+based on the function in regen.c.  Gosh i'm a bastard.
+Fingon
+@
+text
+@d336 6
+@
+
+
+1.3
+log
+@max/min exp loss/gain set to 2 notches.
+@
+text
+@d170 1
+a170 1
+    gain = graf(age(ch).year, 7, 8, 8, 10, 9, 8, 6);
+@
+
+
+1.2
+log
+@Indented file
+moved the last 3 }'s to lines by themsleves and indented
+@
+text
+@d30 2
+a31 3
+/*extern int max_exp_gain;*/
+extern int max_exp_loss;
+int max_exp_gain(struct char_data *ch);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 8
+a9 8
+*   File: limits.c                                      Part of CircleMUD *
+*  Usage: limits & gain funcs for HMV, exp, hunger/thirst, idle time      *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+d22 2
+a23 2
+	titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_m :  \
+	titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_f)
+d46 1
+a46 1
+
+d75 1
+a75 1
+
+d82 1
+a82 1
+
+d84 1
+a84 1
+
+d86 1
+a86 1
+
+d99 1
+a99 1
+
+d103 1
+a103 1
+
+d106 1
+a106 1
+
+d109 1
+a109 1
+
+d115 1
+a115 1
+/* Hitpoint gain pr. game hour */
+d118 1
+a118 1
+
+d123 1
+a123 1
+
+d126 3
+a128 3
+	if (GET_RACE(ch) == RACE_TROLL)
+		gain += gain * 2;
+
+d130 1
+a130 1
+
+d132 1
+a132 1
+
+d134 1
+a134 1
+
+d146 1
+a146 1
+
+d150 1
+a150 1
+
+d153 1
+a153 1
+
+d156 1
+a156 1
+
+d163 1
+a163 1
+/* move gain pr. game hour */
+d166 1
+a166 1
+
+d172 1
+a172 1
+
+d174 1
+a174 1
+
+d176 2
+a177 2
+
+
+d191 1
+a191 1
+
+d194 1
+a194 1
+
+d197 1
+a197 1
+
+d207 1
+a207 1
+
+d210 1
+a210 1
+
+d213 1
+a213 1
+
+d224 1
+a224 1
+
+d238 1
+a238 1
+
+d241 1
+a241 1
+
+d248 2
+a249 2
+kill */
+      GET_EXP(ch) += gain;
+d251 1
+a251 1
+		GET_LEVEL(ch) += 1;
+d256 1
+a256 1
+
+d267 8
+a274 8
+      /*this shows exp gains innumbers for testing*/
+	  /*
+	  sprintf(buf, "max exp gain is %d\r\nbut total", gain);
+	send_to_char(buf, ch);
+		*/
+	  gain = MAX(-exp_death_loss(ch, GET_LEVEL(ch)), gain);	/* Cap max
+exp 
+lost per death */
+d279 3
+a281 3
+while ((!IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT) &&
+GET_EXP(ch) <= exp_to_level((GET_LEVEL(ch) - 1), GET_CLASS(ch))) {
+		GET_LEVEL(ch) -= 1;
+d285 7
+a291 6
+	  if (is_altered) {
+      if (num_levels == 1)
+        send_to_char("&0&7&bYou loose a level!&0\r\n", ch);
+      else {
+	sprintf(buf, "&0&1&bYou lost %d levels!&0&1\r\n", num_levels);
+	send_to_char(buf, ch);
+d293 3
+a295 4
+	  }
+	   }
+	
+	if (GET_EXP(ch) < 0)
+d305 1
+a305 1
+ 
+d309 1
+a309 1
+
+d317 1
+a317 1
+
+d325 1
+a325 1
+     /* set_title(ch, NULL);*/
+d336 1
+a336 1
+
+d339 1
+a339 1
+
+d341 1
+a341 1
+
+d343 1
+a343 1
+
+d348 2
+a349 2
+
+
+d352 1
+a352 1
+
+d355 1
+a355 1
+
+d370 1
+a370 1
+
+d380 3
+a382 3
+	  return;
+
+
+d384 1
+a384 1
+
+d393 1
+a393 1
+
+d395 2
+a396 2
+                         but not void */
+
+d398 27
+a424 6
+   if (GET_LEVEL(ch) < LVL_GOD) {
+    if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE) {
+      GET_WAS_IN(ch) = ch->in_room;
+      if (FIGHTING(ch)) {
+	stop_fighting(FIGHTING(ch));
+	stop_fighting(ch);
+d426 3
+a428 20
+      act("$n disappears into the void.", TRUE, ch, 0, 0, TO_ROOM);
+      send_to_char("You have been idle, and are pulled into a void.\r\n", ch);
+      save_char(ch, NOWHERE);
+      Crash_crashsave(ch);
+      char_from_room(ch);
+      char_to_room(ch, 0);
+    } else if (ch->char_specials.timer > 448) {
+      if (ch->in_room != NOWHERE)
+	char_from_room(ch);
+      char_to_room(ch, 0);
+      if (ch->desc)
+	close_socket(ch->desc);
+      ch->desc = NULL;
+      if (free_rent)
+	Crash_rentsave(ch, 0);
+      else
+	Crash_idlesave(ch);
+      sprintf(buf, "%s force-rented and extracted (idle).", GET_NAME(ch));
+      mudlog(buf, CMP, LVL_GOD, TRUE);
+      extract_char(ch);
+a429 4
+  } else {
+     if (ch->char_specials.timer > 500)
+        ch->char_specials.timer = 999;     
+  }
+d447 1
+a447 1
+
+d459 9
+a467 9
+       if (last_hunger)
+          last_hunger = FALSE;
+       else
+       {
+      gain_condition(i, FULL, -1);
+      gain_condition(i, DRUNK, -1);
+      gain_condition(i, THIRST, -1);
+      last_hunger = TRUE;
+      }
+d469 5
+a473 5
+	gain_innate(i, INV, -1);
+	gain_innate(i, STR, -1);
+	gain_innate(i, DRK, -1);
+	gain_innate(i, LVT, -1);
+
+d482 1
+a482 1
+      }
+d485 1
+a485 1
+      }
+d488 1
+a488 1
+
+d493 4
+a496 4
+	/*Lets go camping !!!!....Banyal camp has been changed to an event
+	if (PRF_FLAGGED(i, PRF_CAMPING) ) {
+    do_campout(i);
+	}*/
+d498 2
+a499 2
+
+   /* objects */
+d502 1
+a502 1
+
+d508 1
+a508 1
+
+d510 1
+a510 1
+
+d519 1
+a519 1
+
+d523 1
+a523 1
+
+d532 4
+a535 4
+  }	extract_obj(j);	}
+  }
+ 
+ if (GET_OBJ_TYPE(j) == ITEM_PORTAL) {
+d537 1
+a537 1
+          GET_OBJ_TIMER(j)--;
+d541 1
+a541 1
+		portal_decay_messages[index].portal_vnum != obj_vnum;index++); 
+d543 1
+a543 1
+             TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+d545 1
+a545 1
+             TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+d549 2
+a550 2
+
+ if (GET_OBJ_TYPE(j) == ITEM_WALL) {
+d552 1
+a552 1
+          GET_OBJ_TIMER(j)--;
+d555 1
+a555 1
+             TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+d557 1
+a557 1
+             TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+d561 3
+a563 3
+
+ /* extract the druid spring. We can expand this to other temp fountains later --Nech */
+ if (GET_OBJ_TYPE(j) == ITEM_FOUNTAIN && GET_OBJ_VNUM(j) == 75) {
+d565 1
+a565 1
+          GET_OBJ_TIMER(j)--;
+d568 1
+a568 1
+             TRUE, world[j->in_room].people, j, 0, TO_ROOM);
+d570 1
+a570 1
+             TRUE, world[j->in_room].people, j, 0, TO_CHAR);
+d574 26
+a600 19
+ if (GET_OBJ_TYPE(j) == ITEM_OTHER) {
+	if (!str_cmp(j->short_description, "blood")){
+		if (GET_OBJ_TIMER(j) > 0)
+	GET_OBJ_TIMER(j)--;
+		if (GET_OBJ_TIMER(j)==1){
+bloodd = read_object(BLOOD_DROP_OBJ, VIRTUAL);
+GET_OBJ_VAL(bloodd, 0) = j->in_room;
+GET_OBJ_TIMER(bloodd) = 1;
+CREATE(new_descr, struct extra_descr_data, 1);
+new_descr->keyword = str_dup("blood drops");
+sprintf(buf, "&0&1Several drops of blood cover the ground here.&0");
+new_descr->description = str_dup(buf);
+new_descr->next = bloodd->ex_description;
+bloodd->ex_description = new_descr;
+obj_to_room(bloodd, j->in_room);
+extract_obj(j);}
+		if (!GET_OBJ_TIMER(j)) {
+extract_obj(j);}}}     }
+    }
+@

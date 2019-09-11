@@ -1,0 +1,199 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	2008.08.21.07.10.14;	author jps;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2008.06.09.23.00.13;	author myc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2008.05.18.05.18.06;	author jps;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2008.05.17.22.03.01;	author jps;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.05.17.04.32.09;	author jps;	state Exp;
+branches;
+next	;
+
+
+desc
+@Header file for... exits!
+@
+
+
+1.5
+log
+@Changed the way redit sees exit destinations. It's more informative and less crashy.
+@
+text
+@/***************************************************************************
+ * $Id: exits.h,v 1.4 2008/06/09 23:00:13 myc Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *  File: exits.h                                         Part of FieryMUD *
+ *  Usage: header file for room exits and doors                            *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#ifndef __FIERY_EXITS_H
+#define __FIERY_EXITS_H
+
+extern struct room_data *world;
+
+/* The EX_xxxx constants are used in exit_info. */
+#define EX_ISDOOR                (1 << 0)  /* Exit is a door             */
+#define EX_CLOSED                (1 << 1)  /* The door is closed         */
+#define EX_LOCKED                (1 << 2)  /* The door is locked         */
+#define EX_PICKPROOF             (1 << 3)  /* Lock can't be picked       */
+#define EX_HIDDEN                (1 << 4)  /* exit is hidden             */
+#define EX_DESCRIPT              (1 << 5)  /* Just an extra description  */
+
+struct exit {
+   char *general_description; /* When look DIR.                     */
+   char *keyword;             /* for open/close                     */
+   int exit_info;             /* Exit info                          */
+   obj_num key;               /* Key's vnum (-1 for no key)         */
+   room_num to_room;          /* Where it leads (real number)       */
+};
+
+#define EXIT_IS_DOOR(e)   ((e)->exit_info & EX_ISDOOR)
+#define EXIT_IS_CLOSED(e) ((e)->exit_info & EX_CLOSED)
+#define EXIT_IS_OPEN(e)   (!EXIT_IS_DOOR(e) || !((e)->exit_info & EX_CLOSED))
+#define EXIT_IS_LOCKED(e) ((e)->exit_info & EX_LOCKED)
+#define EXIT_DOES_LOCK(e) ((e)->key != -1)
+#define EXIT_IS_PICKPROOF(e) ((e)->exit_info & EX_PICKPROOF)
+#define EXIT_IS_HIDDEN(e) ((e)->exit_info & EX_HIDDEN)
+#define EXIT_IS_DESCRIPTION(e) ((e)->exit_info & EX_DESCRIPT)
+
+#define EXIT_NDEST(e) ((e)->to_room)
+#define EXIT_DEST(e) (EXIT_NDEST(e) == NOWHERE ? NULL : &world[EXIT_NDEST(e)])
+
+#define CAN_GO(ch, dir) (CH_EXIT(ch, dir) && \
+      EXIT_DEST(CH_EXIT(ch, dir)) && \
+      !EXIT_IS_CLOSED(CH_EXIT(ch, dir)))
+
+extern char *exit_dest_desc(struct exit *e);
+extern struct exit *create_exit(int dest_room);
+extern bool exit_has_keyword(struct exit *exit, char *name);
+extern struct exit *opposite_exit(struct exit *exit, room_num roomvnum, int dir);
+extern char *exit_name(struct exit *exit);
+
+#endif
+
+/***************************************************************************
+ * $Log: exits.h,v $
+ * Revision 1.4  2008/06/09 23:00:13  myc
+ * Added 'extern' to all the function declarations.
+ *
+ * Revision 1.3  2008/05/18 05:18:06  jps
+ * Renaming room_data struct's member "number" to "vnum", cos it's
+ * a virtual number.
+ *
+ * Revision 1.2  2008/05/17 22:03:01  jps
+ * Moving room-related code into rooms.h and rooms.c.
+ *
+ * Revision 1.1  2008/05/17 04:32:09  jps
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.4
+log
+@Added 'extern' to all the function declarations.
+@
+text
+@d2 1
+a2 1
+ * $Id: exits.h,v 1.3 2008/05/18 05:18:06 jps Exp myc $
+d53 1
+d63 3
+@
+
+
+1.3
+log
+@Renaming room_data struct's member "number" to "vnum", cos it's
+a virtual number.
+@
+text
+@d2 1
+a2 1
+ * $Id: exits.h,v 1.2 2008/05/17 22:03:01 jps Exp jps $
+d53 4
+a56 4
+struct exit *create_exit(int dest_room);
+bool exit_has_keyword(struct exit *exit, char *name);
+struct exit *opposite_exit(struct exit *exit, room_num roomvnum, int dir);
+char *exit_name(struct exit *exit);
+d62 4
+@
+
+
+1.2
+log
+@Moving room-related code into rooms.h and rooms.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: exits.h,v 1.1 2008/05/17 04:32:09 jps Exp jps $
+d34 1
+a34 1
+   room_num to_room;          /* Where it leads                     */
+d62 3
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ * $Id$
+d37 1
+a37 1
+#define EXIT_IS_DOOR(e) ((e)->exit_info & EX_DOOR)
+d39 1
+d42 1
+a42 1
+#define EXIT_PICKPROOF(e) ((e)->exit_info & EX_PICKPROOF)
+d44 1
+d46 2
+a47 1
+#define EXIT_DEST(e) ((e)->to_room)
+d49 3
+a51 4
+#define EXIT(ch, dir)  (world[(ch)->in_room].exits[dir])
+#define CAN_GO(ch, dir) (EXIT(ch, dir) && \
+      EXIT_DEST(EXIT(ch, dir)) != NOWHERE && \
+      !EXIT_IS_CLOSED(EXIT(ch, dir)))
+d54 3
+d61 4
+a64 1
+ * $Log$
+@

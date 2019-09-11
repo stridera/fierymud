@@ -1,0 +1,2448 @@
+head	1.41;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.41
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2008.09.13.18.52.36;	author jps;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2008.09.02.06.52.30;	author jps;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2008.05.30.16.59.38;	author myc;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2008.05.25.20.59.52;	author myc;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2008.05.25.18.10.11;	author myc;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2008.05.18.20.16.11;	author jps;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2008.05.14.05.11.01;	author jps;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2008.05.11.05.55.26;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2008.04.07.03.02.54;	author jps;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2008.03.26.22.13.38;	author jps;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2008.03.26.21.59.52;	author jps;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2008.03.11.19.50.55;	author myc;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2008.03.02.01.38.18;	author myc;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2008.02.09.21.07.50;	author myc;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2008.02.09.18.29.11;	author myc;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2008.01.30.19.20.57;	author myc;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2008.01.27.21.14.59;	author myc;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2008.01.22.16.16.47;	author jps;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2008.01.10.05.39.43;	author myc;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.01.09.01.53.03;	author jps;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.01.04.01.53.26;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2007.12.25.05.41.49;	author jps;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2006.12.04.14.08.51;	author dce;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2006.11.20.06.44.26;	author jps;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2006.11.17.03.47.30;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2006.11.07.14.06.40;	author jps;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2001.01.15.21.51.24;	author mtp;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2001.01.12.00.51.07;	author mtp;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2000.11.24.21.17.12;	author rsd;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	99.04.30.17.03.16;	author mud;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	99.04.29.04.31.12;	author jimmy;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	99.03.31.20.18.01;	author jen;	state Exp;
+branches
+	1.5.1.1
+	1.5.2.1;
+next	1.4;
+
+1.4
+date	99.03.14.14.28.11;	author jimmy;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.02.08.23.01.47;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.01.23.59.12;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+1.5.1.1
+date	99.04.30.16.57.56;	author mud;	state Exp;
+branches;
+next	;
+
+1.5.2.1
+date	99.04.30.17.01.33;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ************************************************************************
+*  File: regen.c                                                          *
+*                                                                         *
+*  Usage: Contains routines to handle event based point regeneration      *
+*                                                                         *
+*  Written by Eric Green (ejg3@@cornell.edu)                               *
+************************************************************************ */
+
+#include "conf.h"
+#include "sysdep.h"
+
+
+#include "structs.h"
+#include "utils.h"
+#include "spells.h"
+#include "handler.h"
+#include "events.h"
+
+void update_pos(struct char_data * victim);
+
+/* Player point types for events */
+#define REGEN_HIT      0
+#define REGEN_MANA     1
+#define REGEN_MOVE     2
+
+#define PULSES_PER_MUD_HOUR     (SECS_PER_MUD_HOUR*PASSES_PER_SEC)
+
+
+/* event object structure for point regen */
+struct regen_event_obj {
+  struct char_data *ch;		/* character regening */
+  int type;			/* HIT, MOVE, or MANA */
+};
+
+
+EVENTFUNC(points_event)
+{
+  struct regen_event_obj *regen = (struct regen_event_obj *) event_obj;
+  void slow_death(struct char_data *victim);
+  struct char_data *ch;
+  int type, gain;
+  char logbuf[100];
+  bool is_dieing = FALSE;
+  extern int top_of_world;
+
+  ch = regen->ch;
+  type = regen->type;
+
+ /* This is a temp fix for the event null char prob. -Nechtrous */
+  if(ch->in_room < NOWHERE || ch->in_room > top_of_world) {
+    free(event_obj);
+    return 0;
+  }
+
+ /* if (GET_POS(ch) >= POS_STUNNED) {*/
+    /* no help for the dying */
+
+    /*
+     * Increment type of points by one.
+     * If not at max, reenqueue the event.
+     */
+
+    switch (type) {
+    case REGEN_HIT:
+      if (GET_POS(ch) <= POS_STUNNED){
+      GET_HIT(ch) = MIN(GET_HIT(ch) - 1, GET_MAX_HIT(ch));
+      is_dieing = TRUE;
+      update_pos(ch);
+      }else
+      GET_HIT(ch) = MIN(GET_HIT(ch) + 1, GET_MAX_HIT(ch));
+
+         if (GET_POS(ch) != POS_DEAD)
+     //  if(IS_AFFECTED2(ch, AFF2_ON_FIRE))
+     //   damage(ch,ch, 20, SPELL_ON_FIRE);
+ // out till fixed
+      if (GET_HIT(ch) < GET_MAX_HIT(ch)) {
+
+if (GET_POS(ch) == POS_DEAD){
+GET_POINTS_EVENT(ch, type) = NULL;
+  free(event_obj);
+  /*proky check to see if this a dud character*/
+  /*if no name then hey hes dud*/
+  if (GET_NAME(ch))
+  slow_death(ch);
+  return 0;
+        }else
+
+       /* reenqueue the event */
+   if (is_dieing == FALSE)
+   {
+	   gain = hit_gain(ch);
+	   return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+   }
+   else
+      return (PULSES_PER_MUD_HOUR / 4);
+      }
+      break;
+
+    case REGEN_MANA:
+      GET_MANA(ch) = MIN(GET_MANA(ch) + 1, GET_MAX_MANA(ch));
+
+      if (GET_MANA(ch) < GET_MAX_MANA(ch)) {
+	/* reenqueue the event */
+	gain = mana_gain(ch);
+	return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+      }
+      break;
+
+    case REGEN_MOVE:
+      if(GET_POS(ch) >= POS_SLEEPING && GET_POS(ch) < POS_FIGHTING)
+        GET_MOVE(ch) = MIN(GET_MOVE(ch) + 6, GET_MAX_MOVE(ch));
+      else
+        GET_MOVE(ch) = MIN(GET_MOVE(ch) + 5, GET_MAX_MOVE(ch));
+
+      if (GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
+	/* reenqueue the event */
+	gain = move_gain(ch);
+	return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+      }
+      break;
+
+    default:
+      sprintf(logbuf, "SYSERR:  Unknown points event type %d", type);
+      log(logbuf);
+      free(event_obj);
+      return 0;
+    }
+/*  }*/
+
+  /* kill this event */
+  GET_POINTS_EVENT(ch, type) = NULL;
+  free(event_obj);
+  return 0;
+}
+
+
+/*
+ * subtracts amount of hitpoints from ch's current and starts points event
+ */
+
+/* Type
+1. healing
+2. Damage
+3. Item mods
+4. spell mods
+Banyal  Note this is not done and is intended to be used to allow
+vamp hitpoints to remain thru damage and heals, as of now
+no matter how much extra points you gain thru vamp it gets all knocked
+off with a heal or even a single hitpoint of damage
+*/
+void alter_hit(struct char_data *ch, int amount, int type)
+{
+  struct regen_event_obj *regen;
+  long time;
+  int gain, oldhit = 0;
+
+
+  oldhit = GET_HIT(ch);
+
+  GET_HIT(ch) = MIN(GET_HIT(ch) - amount, GET_MAX_HIT(ch));
+
+if(oldhit > GET_MAX_HIT(ch))
+if(type != 1)
+GET_HIT(ch) = oldhit - amount;
+if(oldhit > GET_MAX_HIT(ch))
+if(type == 1)
+GET_HIT(ch) = oldhit;
+
+  if (GET_HIT(ch) <= HIT_INCAP)
+    return;
+
+  if (GET_HIT(ch) < GET_MAX_HIT(ch) && !GET_POINTS_EVENT(ch, REGEN_HIT)) {
+    CREATE(regen, struct regen_event_obj, 1);
+    regen->ch = ch;
+    regen->type = REGEN_HIT;
+    gain = hit_gain(ch);
+    time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+    GET_POINTS_EVENT(ch, REGEN_HIT) = event_create(points_event, regen, time);
+
+    if (amount >= 0) {
+
+      /*
+       * if the character gained hp, update position and
+       * restart mana and move regeneration if needed.
+       */
+      update_pos(ch);
+      alter_mana(ch, 0);
+      alter_move(ch, 0);
+    }
+  }
+}
+
+
+/*
+ * subtracts amount of mana from ch's current and starts points event
+ */
+void alter_mana(struct char_data *ch, int amount)
+{
+  struct regen_event_obj *regen;
+  long time;
+  int gain;
+
+  GET_MANA(ch) = MIN(GET_MANA(ch) - amount, GET_MAX_MANA(ch));
+
+  if (!GET_POINTS_EVENT(ch, REGEN_MANA) && (GET_MANA(ch) < GET_MAX_MANA(ch))) {
+
+    /* make sure the character isn't dying */
+    if (GET_POS(ch) >= POS_STUNNED) {
+      CREATE(regen, struct regen_event_obj, 1);
+      regen->ch = ch;
+      regen->type = REGEN_MANA;
+      gain = mana_gain(ch);
+      time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+      GET_POINTS_EVENT(ch, REGEN_MANA) =
+	event_create(points_event, regen, time);
+    }
+  }
+}
+
+
+/*
+ * subtracts amount of moves from ch's current and starts points event
+ */
+void alter_move(struct char_data *ch, int amount)
+{
+  struct regen_event_obj *regen;
+  long time;
+  int gain;
+
+  GET_MOVE(ch) = MIN(GET_MOVE(ch) - amount, GET_MAX_MOVE(ch));
+
+  if (!GET_POINTS_EVENT(ch, REGEN_MOVE) && (GET_MOVE(ch) < GET_MAX_MOVE(ch))) {
+
+    /* make sure the character isn't dying */
+    if (GET_POS(ch) >= POS_STUNNED) {
+      CREATE(regen, struct regen_event_obj, 1);
+      regen->ch = ch;
+      regen->type = REGEN_MOVE;
+      gain = move_gain(ch);
+      time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+      GET_POINTS_EVENT(ch, REGEN_MOVE) =
+	event_create(points_event, regen, time);
+    }
+  }
+}
+
+
+/* updates regen rates.  Use when big regen rate changes are made */
+void check_regen_rates(struct char_data *ch)
+{
+  struct regen_event_obj *regen;
+  int type, gain = 0;
+  long time;
+
+  if (GET_HIT(ch) <= HIT_INCAP)
+    return;
+
+  for (type = REGEN_HIT; type <= REGEN_MOVE; type++) {
+
+    switch (type) {
+    case REGEN_HIT:
+      if (GET_HIT(ch) >= GET_MAX_HIT(ch))
+	continue;
+	  if (GET_RACE(ch) == RACE_TROLL)
+		  gain = hit_gain(ch) * 2.5;
+	  else
+      gain = hit_gain(ch);
+      break;
+
+    case REGEN_MANA:
+      if (GET_MANA(ch) >= GET_MAX_MANA(ch))
+	continue;
+      gain = mana_gain(ch);
+      break;
+
+    case REGEN_MOVE:
+      if (GET_MOVE(ch) >= GET_MAX_MOVE(ch))
+	continue;
+      gain = move_gain(ch);
+      break;
+    }
+
+    time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+
+    if (!GET_POINTS_EVENT(ch, type) ||
+	(time < event_time(GET_POINTS_EVENT(ch, type)))) {
+
+      /* take off old event, create updated event */
+      if (GET_POINTS_EVENT(ch, type))
+	event_cancel(GET_POINTS_EVENT(ch, type));
+      CREATE(regen, struct regen_event_obj, 1);
+      regen->ch = ch;
+      regen->type = type;
+      GET_POINTS_EVENT(ch, type) = event_create(points_event, regen, time);
+    }
+  }
+}
+@
+
+
+1.41
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@/***************************************************************************
+ * $Id: regen.c,v 1.40 2008/09/13 18:52:36 jps Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: regen.c                                       Part of FieryMUD  *
+ *  Usage: Contains routines to handle event based point regeneration      *
+ *     By: Eric Green (ejg3@@cornell.edu)                                   *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "utils.h"
+#include "casting.h"
+#include "handler.h"
+#include "regen.h"
+#include "events.h"
+#include "races.h"
+#include "comm.h"
+#include "skills.h"
+#include "math.h"
+#include "interpreter.h"
+#include "fight.h"
+#include "limits.h"
+#include "ai.h"
+
+void improve_skill(struct char_data *ch, int skill);
+void stop_berserking(struct char_data *ch);
+void start_berserking(struct char_data *ch);
+
+#define PULSES_PER_MUD_HOUR     (SECS_PER_MUD_HOUR*PASSES_PER_SEC)
+
+EVENTFUNC(hp_regen_event)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+   int gain, delay = 0;
+   bool is_dying = FALSE;
+
+   void slow_death(struct char_data *victim);
+
+   if (GET_HIT(ch) < GET_MAX_HIT(ch)) {
+      if (GET_STANCE(ch) <= STANCE_STUNNED) {
+         if (DAMAGE_WILL_KILL(ch, 1)) {
+           /* In slow_death(), the character may die. */
+           slow_death(ch);
+         } else
+           hurt_char(ch, NULL, 1, TRUE);
+         is_dying = TRUE;
+      } else
+         hurt_char(ch, NULL, -1, TRUE);
+
+      if (GET_HIT(ch) < GET_MAX_HIT(ch) && !DECEASED(ch)) {
+         if (is_dying)
+            delay = (PULSES_PER_MUD_HOUR / 4);
+         else {
+            gain = hit_gain(ch);
+            delay = gain < 1 ||
+               gain > PULSES_PER_MUD_HOUR ?
+                  1 : PULSES_PER_MUD_HOUR / gain;
+         }
+      }
+   }
+
+   if (!delay)
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_HP);
+   return delay;
+}
+
+EVENTFUNC(mana_regen_event)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+   int gain, delay = 0;
+
+   if (GET_MANA(ch) < GET_MAX_MANA(ch)) {
+      gain = mana_gain(ch);
+      /* Mana not actually used so we don't increase it */
+      delay = (gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain);
+      delay = 0; /* Mana not actually used so cancel the event */
+   }
+
+   if (!delay)
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MANA);
+   return delay;
+}
+
+EVENTFUNC(move_regen_event)
+{
+   struct char_data *ch = (struct char_data *) event_obj;
+   int gain, delay = 0;
+
+   if (GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
+      gain = move_gain(ch);
+      if (GET_STANCE(ch) >= STANCE_SLEEPING && GET_POS(ch) < POS_STANDING)
+         GET_MOVE(ch) = MIN(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
+      else
+         GET_MOVE(ch) = MIN(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
+
+      delay = gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain;
+   }
+
+   if (!delay)
+      REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MOVE);
+   return delay;
+}
+
+EVENTFUNC(rage_event)
+{
+  struct char_data *ch = (struct char_data *) event_obj;
+
+  /* Berserking: diminish rage quickly. */
+  if (EFF_FLAGGED(ch, EFF_BERSERK)) {
+    if (EFF_FLAGGED(ch, EFF_WRATH))
+      GET_RAGE(ch) -= number(10, 15);
+    else
+      GET_RAGE(ch) -= number(20, 30);
+    if (GET_RAGE(ch) % 7 == 0 && FIGHTING(ch))
+      improve_skill(ch, SKILL_BERSERK);
+    if (!FIGHTING(ch))
+      event_create(EVENT_QUICK_AGGRO, quick_aggro_event,
+                   mkgenericevent(ch, find_aggr_target(ch), 0), TRUE,
+                   &(ch->events), 0);
+  }
+
+  /* Meditating: increase rage quickly. */
+  else if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+    GET_RAGE(ch) += number(10, GET_SKILL(ch, SKILL_MEDITATE));
+    if (GET_RAGE(ch) % 5 == 0)
+      improve_skill(ch, SKILL_MEDITATE);
+  }
+
+  /* Otherwise diminish rage slowly. */
+  else
+    GET_RAGE(ch) -= number(2, 4);
+
+  /* When you reach crazed rage, you are forced to start berserking. */
+  if (GET_RAGE(ch) > RAGE_CRAZED && !EFF_FLAGGED(ch, EFF_BERSERK)) {
+    if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+      REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+      GET_POS(ch) = POS_STANDING;
+    }
+    start_berserking(ch);
+    send_to_char("&1&8Your rage consumes you, taking control of your body...&0\r\n", ch);
+    if (IN_ROOM(ch) != NOWHERE)
+      act("$n shudders as $s rage causes $m to go berserk!", TRUE, ch, 0, 0, TO_ROOM);
+  }
+
+  if (GET_RAGE(ch) > 0)
+    return 4 * PASSES_PER_SEC;
+  else {
+    send_to_char("Your rage recedes and you feel calmer.\r\n", ch);
+    stop_berserking(ch);
+    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_RAGE);
+    return EVENT_FINISHED;
+  }
+}
+
+
+void set_regen_event(struct char_data *ch, int eventtype)
+{
+   long time;
+   int gain;
+
+   if (EVENT_FLAGGED(ch, eventtype))
+     return;
+
+   if (eventtype == EVENT_REGEN_HP && 
+       !EVENT_FLAGGED(ch, EVENT_REGEN_HP) &&
+       GET_HIT(ch) < GET_MAX_HIT(ch)) {
+     gain = hit_gain(ch);
+     time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+     event_create(EVENT_REGEN_HP, hp_regen_event, ch, FALSE,
+                  &(ch->events), time);
+     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_HP);
+   }
+   if (eventtype == EVENT_REGEN_MANA &&
+       !EVENT_FLAGGED(ch, EVENT_REGEN_MANA) &&
+       GET_MANA(ch) < GET_MAX_MANA(ch) && FALSE) {
+     gain = mana_gain(ch);
+     time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+     event_create(EVENT_REGEN_HP, mana_regen_event, ch, FALSE,
+                  &(ch->events), time);
+     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MANA);
+   }
+   if (eventtype == EVENT_REGEN_MOVE &&
+       !EVENT_FLAGGED(ch, EVENT_REGEN_MOVE) &&
+       GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
+     gain = move_gain(ch);
+     time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+     event_create(EVENT_REGEN_MOVE, move_regen_event, ch, FALSE,
+                  &(ch->events), time);
+     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MOVE);
+   }
+   if (eventtype == EVENT_RAGE &&
+       !EVENT_FLAGGED(ch, EVENT_RAGE) &&
+       (GET_RAGE(ch) > 0 ||
+        (GET_SKILL(ch, SKILL_BERSERK) && PLR_FLAGGED(ch, PLR_MEDITATE)))) {
+     event_create(EVENT_RAGE, rage_event, ch, FALSE,
+                  &(ch->events), 0);
+     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_RAGE);
+   }
+}
+
+/* subtracts amount of hitpoints from ch's current */
+
+void alter_hit(struct char_data *ch, int amount, bool cap_amount)
+{
+  int old_hit = 0;
+
+  if (ch->in_room <= NOWHERE)
+    return;
+
+  if (cap_amount) {
+    old_hit = GET_HIT(ch);
+
+    GET_HIT(ch) -= amount;
+
+    if (GET_HIT(ch) > GET_MAX_HIT(ch)) {
+      if (old_hit < GET_MAX_HIT(ch))
+        GET_HIT(ch) = GET_MAX_HIT(ch);
+      else if (amount < 0)
+        GET_HIT(ch) += amount;
+    }
+  }
+  else
+    GET_HIT(ch) -= amount;
+}
+
+/* Modifies HP, causes dying/falling unconscious/recovery.
+ * Starts regeneration event if necessary. */
+void hurt_char(struct char_data *ch, struct char_data *attacker,
+      int amount, bool cap_amount)
+{
+   if (IN_ROOM(ch) == NOWHERE) abort();
+   alter_hit(ch, amount, cap_amount);
+
+   hp_pos_check(ch, attacker, amount);
+
+   if (GET_HIT(ch) > HIT_INCAP && GET_HIT(ch) < GET_MAX_HIT(ch) &&
+         !EVENT_FLAGGED(ch, EVENT_REGEN_HP))
+     set_regen_event(ch, EVENT_REGEN_HP);
+}
+
+/* subtracts amount of mana from ch's current and starts points event */
+void alter_mana(struct char_data *ch, int amount)
+{
+  if (ch->in_room <= NOWHERE) return;
+
+  GET_MANA(ch) = MIN(GET_MANA(ch) - amount, GET_MAX_MANA(ch));
+
+  if (GET_MANA(ch) < GET_MAX_MANA(ch) && !EVENT_FLAGGED(ch, EVENT_REGEN_MANA))
+    set_regen_event(ch, EVENT_REGEN_MANA);
+}
+
+
+/* subtracts amount of moves from ch's current and starts points event */
+void alter_move(struct char_data *ch, int amount)
+{
+  if (ch->in_room <= NOWHERE) return;
+
+  GET_MOVE(ch) = MIN(GET_MOVE(ch) - amount, GET_MAX_MOVE(ch));
+
+  if (GET_MOVE(ch) < GET_MAX_MOVE(ch) && !EVENT_FLAGGED(ch, EVENT_REGEN_MOVE))
+    set_regen_event(ch, EVENT_REGEN_MOVE);
+}
+
+
+/* Ensure that all regeneration is taking place */
+void check_regen_rates(struct char_data *ch)
+{
+   if (ch->in_room <= NOWHERE) return;
+   set_regen_event(ch, EVENT_REGEN_HP);
+   set_regen_event(ch, EVENT_REGEN_MANA);
+   set_regen_event(ch, EVENT_REGEN_MOVE);
+   set_regen_event(ch, EVENT_RAGE);
+}
+
+/***************************************************************************
+ * $Log: regen.c,v $
+ * Revision 1.40  2008/09/13 18:52:36  jps
+ * Using ai.h
+ *
+ * Revision 1.39  2008/09/02 06:52:30  jps
+ * Using limits.h.
+ *
+ * Revision 1.38  2008/05/30 16:59:38  myc
+ * Stop non-berserkers from gathering rage while meditating.
+ *
+ * Revision 1.37  2008/05/25 20:59:52  myc
+ * Fix so meditate works when rage is 0.
+ *
+ * Revision 1.36  2008/05/25 18:10:11  myc
+ * Fix berzerk auto-attack so it uses quick-aggro to get rid of double
+ * hits.
+ *
+ * Revision 1.35  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.34  2008/05/14 05:11:01  jps
+ * Using hurt_char for play-time harm, while alter_hit is for changing hp only.
+ *
+ * Revision 1.33  2008/05/11 05:55:26  jps
+ * Changed slow_death call. hp_pos_check is used after alter_hit.
+ *
+ * Revision 1.32  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.31  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.30  2008/03/26 22:13:38  jps
+ * alter_hit and update_pos need work
+ *
+ * Revision 1.29  2008/03/26 21:59:52  jps
+ * Updating the position of characters who got killed in alter_hit().
+ *
+ * Revision 1.28  2008/03/11 19:50:55  myc
+ * Make enranged meditate depend on meditate skill instead of berserk.
+ *
+ * Revision 1.27  2008/03/02 01:38:18  myc
+ * Fixing a bug where if your hitpoints were somewhat larger than your
+ * max hitpoints, you wouldn't take damage at all.
+ *
+ * Revision 1.26  2008/02/09 21:07:50  myc
+ * Must provide a boolean to event_create saying whether to
+ * free the event obj when done or not.  And instead of creating
+ * an event object for every regen event, we'll just pass the char.
+ *
+ * Revision 1.25  2008/02/09 18:29:11  myc
+ * The event code now handles freeing of event objects.
+ *
+ * Revision 1.24  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.23  2008/01/30 19:20:57  myc
+ * Removing the ch->regenerating field and replacing it with an event
+ * flags member.
+ *
+ * Revision 1.22  2008/01/27 21:14:59  myc
+ * Hijacking regen event handler for rage events for berserkers.
+ * Rage events occur every 4 seconds and cause the berserker
+ * to gain or lose rage depending on berserking or meditation.
+ *
+ * Revision 1.21  2008/01/22 16:16:47  jps
+ * Correctly remove the regen_move bit when you lose your movement
+ * regeneration event.
+ *
+ * Revision 1.20  2008/01/10 05:39:43  myc
+ * alter_hit now takes a boolean specifying whether to cap any increase in
+ * hitpoints by the victim's max hp.
+ *
+ * Revision 1.19  2008/01/09 01:53:03  jps
+ * Replace old points event with three new regen events.
+ *
+ * Revision 1.18  2008/01/04 01:53:26  jps
+ * Added races.h file and created global array "races" for much
+ * race-related information.
+ *
+ * Revision 1.17  2007/12/25 05:41:49  jps
+ * Updated event code so the each event type is positively identified.
+ * Events may be tied to objects or characters so that when that object
+ * or character is extracted, its events can be canceled.
+ *
+ * Revision 1.16  2006/12/04 14:08:51  dce
+ * Removed a 'MOO' debug message left by someone.
+ *
+ * Revision 1.15  2006/11/20 06:44:26  jps
+ * Fix creatures dying of bloodloss as you're fighting them.
+ *
+ * Revision 1.14  2006/11/17 03:47:30  jps
+ * Eliminate points_event events being enqueued for outgoing players.
+ *
+ * Revision 1.13  2006/11/07 14:06:40  jps
+ * Insane hit_gain values, such as those generated by Trolls, no
+ * longer incorrectly return 0 from points_event crashing the mud.
+ *
+ * Revision 1.12  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.11  2001/01/15 21:51:24  mtp
+ * make sure event type is null to avoid it being called again when the object is null
+ *
+ * Revision 1.10  2001/01/12 00:51:07  mtp
+ * changed comparison on line 52 to <= to trap mobs which are already freed
+ *
+ * Revision 1.9  2000/11/24 21:17:12  rsd
+ * Altered comment header and added back rlog messgaes from
+ * prior to the addition of the $log$ string.
+ *
+ * Revision 1.8  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.7  1999/04/30 17:03:16  mud
+ * reverted to version 1.5 to fix bad crashbugs.
+ * Gurlaek
+ *
+ * Revision 1.6  1999/04/29 04:31:12  jimmy
+ * Nulled some pointers for sanity.  Maybe this will help.
+ * Gurlaek
+ *
+ * Revision 1.5  1999/03/31 20:18:01  jen
+ * branches:  1.5.1;  1.5.2;
+ * Changed regen for movement ... increases rate, decreases amt to 1 per event
+ *
+ * Revision 1.4  1999/03/14 14:28:11  jimmy
+ * Movement now has bite!  removed extra "flying" from
+ * movement_loss in constants.c to fix the mv bug.  reduced the
+ * movement gain by 5 for all ages in limits.c.  Removed the +5
+ * and +6 static movement gain so that it now actually updates
+ * based on the function in regen.c.  Gosh i'm a bastard.
+ * Fingon
+ *
+ * Revision 1.3  1999/02/08 23:01:47  jimmy
+ * Fixed mortally wounded bug.  Mortally wounded
+ * victims now die when they read -11.  Also,
+ * no more "attempt to damage corpse"
+ * fingon
+ *
+ * Revision 1.2  1999/02/01 23:59:12  mud
+ * indented file
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ * Revision 1.5.2.1  1999/04/30 17:01:33  mud
+ * *** empty log message ***
+ *
+ * Revision 1.5.1.1  1999/04/30 16:57:56  mud
+ * reverted to old rev due to major crashing.
+ * gurlaek
+ *
+ ***************************************************************************/
+@
+
+
+1.40
+log
+@Using ai.h
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.39 2008/09/02 06:52:30 jps Exp jps $
+d19 1
+a19 1
+#include "spells.h"
+d284 3
+@
+
+
+1.39
+log
+@Using limits.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.38 2008/05/30 16:59:38 myc Exp jps $
+d30 1
+d125 1
+a125 1
+                   mkgenericevent(ch, find_aggr_target(ch), 0), TRUE, 
+d284 3
+@
+
+
+1.38
+log
+@Stop non-berserkers from gathering rage while meditating.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.37 2008/05/25 20:59:52 myc Exp myc $
+d29 1
+d283 3
+@
+
+
+1.37
+log
+@Fix so meditate works when rage is 0.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.36 2008/05/25 18:10:11 myc Exp myc $
+d198 2
+a199 1
+       (GET_RAGE(ch) > 0 || PLR_FLAGGED(ch, PLR_MEDITATE))) {
+d282 3
+@
+
+
+1.36
+log
+@Fix berzerk auto-attack so it uses quick-aggro to get rid of double
+hits.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.35 2008/05/18 20:16:11 jps Exp myc $
+d198 1
+a198 1
+       GET_RAGE(ch) > 0) {
+d281 4
+@
+
+
+1.35
+log
+@Created fight.h and set dependents.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.34 2008/05/14 05:11:01 jps Exp jps $
+d121 4
+a124 4
+    if (!FIGHTING(ch)) {
+      struct char_data *tch = find_aggr_target(ch);
+      attack(ch, tch);
+    }
+d281 3
+@
+
+
+1.34
+log
+@Using hurt_char for play-time harm, while alter_hit is for changing hp only.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.33 2008/05/11 05:55:26 jps Exp jps $
+d28 1
+a30 1
+struct char_data *find_aggr_target(struct char_data *ch);
+d281 3
+@
+
+
+1.33
+log
+@Changed slow_death call. hp_pos_check is used after alter_hit.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.32 2008/04/07 03:02:54 jps Exp jps $
+d50 1
+a50 1
+           alter_hit(ch, NULL, 1, TRUE);
+d53 1
+a53 1
+         alter_hit(ch, NULL, -1, TRUE);
+d205 1
+a205 1
+/* subtracts amount of hitpoints from ch's current and starts points event */
+d207 1
+a207 2
+void alter_hit(struct char_data *ch, struct char_data *attacker,
+      int amount, bool cap_amount)
+d228 1
+d230 7
+a236 1
+  hp_pos_check(ch, attacker, amount);
+d238 1
+a238 3
+  if (GET_HIT(ch) <= HIT_INCAP)
+    /* You don't regenerate normally while incapacitated. */
+    return;
+d240 3
+a242 2
+  if (GET_HIT(ch) < GET_MAX_HIT(ch) && !EVENT_FLAGGED(ch, EVENT_REGEN_HP))
+    set_regen_event(ch, EVENT_REGEN_HP);
+a244 1
+
+d281 3
+@
+
+
+1.32
+log
+@Changed the POS/STANCE system so that POS reflects the position
+of your body, while STANCE describes your condition or activity.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.31 2008/03/28 17:54:53 myc Exp jps $
+d21 1
+d27 1
+a28 1
+void update_pos(struct char_data * victim);
+d46 5
+a50 1
+         GET_HIT(ch) = MIN(GET_HIT(ch) - 1, GET_MAX_HIT(ch));
+a51 1
+         update_pos(ch);
+d53 1
+a53 1
+         GET_HIT(ch) = MIN(GET_HIT(ch) + 1, GET_MAX_HIT(ch));
+d55 4
+a58 4
+      if (GET_HIT(ch) < GET_MAX_HIT(ch)) {
+         if (DECEASED(ch)) {
+            slow_death(ch);
+         } else if (is_dying == FALSE) {
+d60 4
+a63 3
+            delay = (gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain);
+         } else
+            delay = (PULSES_PER_MUD_HOUR / 4);
+d207 2
+a208 1
+void alter_hit(struct char_data *ch, int amount, bool cap_amount)
+a210 2
+  void perform_update_pos(struct char_data *victim);
+
+d230 4
+a233 2
+  if (GET_HIT(ch) <= HIT_INCAP) {
+    perform_update_pos(ch);
+a234 1
+  }
+a237 6
+
+  if (amount >= 0) {
+    /* if the character gained hp, update position and
+     * restart mana and move regeneration if needed. */
+    update_pos(ch);
+  }
+d277 4
+@
+
+
+1.31
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.30 2008/03/26 22:13:38 jps Exp myc $
+d44 1
+a44 1
+      if (GET_POS(ch) <= POS_STUNNED) {
+d52 1
+a52 1
+         if (GET_POS(ch) == POS_DEAD) {
+d91 1
+a91 1
+      if (GET_POS(ch) >= POS_SLEEPING && GET_POS(ch) < POS_FIGHTING)
+d278 4
+@
+
+
+1.30
+log
+@alter_hit and update_pos need work
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.29 2008/03/26 21:59:52 jps Exp jps $
+d109 2
+a110 2
+  if (AFF_FLAGGED(ch, AFF_BERSERK)) {
+    if (AFF3_FLAGGED(ch, AFF3_WRATH))
+d134 1
+a134 1
+  if (GET_RAGE(ch) > RAGE_CRAZED && !AFF_FLAGGED(ch, AFF_BERSERK)) {
+d136 1
+a136 1
+      REMOVE_BIT(PLR_FLAGS(ch), PLR_MEDITATE);
+d278 3
+@
+
+
+1.29
+log
+@Updating the position of characters who got killed in alter_hit().
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.28 2008/03/11 19:50:55 myc Exp jps $
+d205 2
+d227 1
+a227 1
+    update_pos(ch);
+d278 3
+@
+
+
+1.28
+log
+@Make enranged meditate depend on meditate skill instead of berserk.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.27 2008/03/02 01:38:18 myc Exp myc $
+d224 2
+a225 1
+  if (GET_HIT(ch) <= HIT_INCAP)
+d227 1
+d276 3
+@
+
+
+1.27
+log
+@Fixing a bug where if your hitpoints were somewhat larger than your
+max hitpoints, you wouldn't take damage at all.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.26 2008/02/09 21:07:50 myc Exp myc $
+d124 1
+a124 1
+    GET_RAGE(ch) += number(10, GET_SKILL(ch, SKILL_BERSERK));
+d274 4
+@
+
+
+1.26
+log
+@Must provide a boolean to event_create saying whether to
+free the event obj when done or not.  And instead of creating
+an event object for every regen event, we'll just pass the char.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.25 2008/02/09 18:29:11 myc Exp myc $
+d217 1
+a217 1
+      else
+d274 5
+@
+
+
+1.25
+log
+@The event code now handles freeing of event objects.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.24 2008/02/09 04:27:47 myc Exp myc $
+d37 1
+a37 3
+   struct generic_event_data *eventdata = (struct generic_event_data *) event_obj;
+   void slow_death(struct char_data *victim);
+   struct char_data *ch;
+d41 1
+a41 1
+   ch = eventdata->ch;
+d69 1
+a69 2
+   struct generic_event_data *eventdata = (struct generic_event_data *) event_obj;
+   struct char_data *ch;
+a71 1
+   ch = eventdata->ch;
+d86 1
+a86 2
+   struct generic_event_data *eventdata = (struct generic_event_data *) event_obj;
+   struct char_data *ch;
+a88 1
+   ch = eventdata->ch;
+d106 1
+a106 2
+  struct generic_event_data *eventdata = (struct generic_event_data *) event_obj;
+  struct char_data *ch = eventdata->ch;
+d169 1
+a169 1
+     event_create(EVENT_REGEN_HP, hp_regen_event, mkgenericevent(ch, 0, 0),
+d178 1
+a178 1
+     event_create(EVENT_REGEN_HP, mana_regen_event, mkgenericevent(ch, 0, 0),
+d187 1
+a187 1
+     event_create(EVENT_REGEN_MOVE, move_regen_event, mkgenericevent(ch, 0, 0),
+d194 1
+a194 1
+     event_create(EVENT_RAGE, rage_event, mkgenericevent(ch, 0, 0),
+d274 3
+@
+
+
+1.24
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.23 2008/01/30 19:20:57 myc Exp myc $
+d158 1
+a158 1
+    return 0;
+d281 3
+@
+
+
+1.23
+log
+@Removing the ch->regenerating field and replacing it with an event
+flags member.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.22 2008/01/27 21:14:59 myc Exp myc $
+d25 1
+d281 4
+@
+
+
+1.22
+log
+@Hijacking regen event handler for rage events for berserkers.
+Rage events occur every 4 seconds and cause the berserker
+to gain or lose rage depending on berserking or meditation.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.21 2008/01/22 16:16:47 jps Exp myc $
+a31 6
+/* Constants to identify the values needing regeneration */
+#define REGEN_HIT      (1 << 0)
+#define REGEN_MANA     (1 << 1)
+#define REGEN_MOVE     (1 << 2)
+#define REGEN_RAGE     (1 << 3)
+#define REGEN_ALL (REGEN_HIT | REGEN_MANA | REGEN_MOVE | REGEN_RAGE)
+d64 1
+a64 1
+      REMOVE_BIT(ch->regenerating, REGEN_HIT);
+d83 1
+a83 1
+      REMOVE_BIT(ch->regenerating, REGEN_MANA);
+d105 1
+a105 1
+      REMOVE_BIT(ch->regenerating, REGEN_MOVE);
+d156 1
+a156 1
+    REMOVE_BIT(ch->regenerating, REGEN_RAGE);
+d162 1
+a162 1
+void set_regen_event(struct char_data *ch, int regentype)
+d167 2
+a168 1
+   if ((ch->regenerating & regentype) == regentype) return;
+d170 8
+a177 7
+   if (IS_SET(REGEN_HIT, regentype) && !IS_SET(REGEN_HIT, ch->regenerating) && 
+         GET_HIT(ch) < GET_MAX_HIT(ch)) {
+      gain = hit_gain(ch);
+      time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+      event_create(EVENT_REGEN_HP, hp_regen_event, mkgenericevent(ch, 0, 0),
+             &(ch->events), time);
+      SET_BIT(ch->regenerating, REGEN_HIT);
+d179 8
+a186 7
+   if (IS_SET(REGEN_MANA, regentype) && !IS_SET(REGEN_MANA, ch->regenerating) &&
+         GET_MANA(ch) < GET_MAX_MANA(ch) && FALSE) {
+      gain = mana_gain(ch);
+      time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+      event_create(EVENT_REGEN_HP, mana_regen_event, mkgenericevent(ch, 0, 0),
+             &(ch->events), time);
+      SET_BIT(ch->regenerating, REGEN_MANA);
+d188 8
+a195 7
+   if (IS_SET(REGEN_MOVE, regentype) && !IS_SET(REGEN_MOVE, ch->regenerating) &&
+         GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
+      gain = move_gain(ch);
+      time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+      event_create(EVENT_REGEN_MOVE, move_regen_event, mkgenericevent(ch, 0, 0),
+             &(ch->events), time);
+      SET_BIT(ch->regenerating, REGEN_MOVE);
+d197 2
+a198 1
+   if (IS_SET(REGEN_RAGE, regentype) && !IS_SET(REGEN_RAGE, ch->regenerating) &&
+d202 1
+a202 1
+     SET_BIT(ch->regenerating, REGEN_RAGE);
+d233 2
+a234 2
+  if (GET_HIT(ch) < GET_MAX_HIT(ch) && !IS_SET(REGEN_HIT, ch->regenerating))
+    set_regen_event(ch, REGEN_HIT);
+d251 2
+a252 2
+  if (GET_MANA(ch) < GET_MAX_MANA(ch) && !IS_SET(REGEN_MANA, ch->regenerating))
+    set_regen_event(ch, REGEN_MANA);
+d263 2
+a264 2
+  if (GET_MOVE(ch) < GET_MAX_MOVE(ch) && !IS_SET(REGEN_MOVE, ch->regenerating))
+    set_regen_event(ch, REGEN_MOVE);
+d272 4
+a275 1
+   set_regen_event(ch, REGEN_ALL);
+d280 5
+@
+
+
+1.21
+log
+@Correctly remove the regen_move bit when you lose your movement
+regeneration event.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.20 2008/01/10 05:39:43 myc Exp jps $
+d23 2
+d27 4
+d36 2
+a37 1
+#define REGEN_ALL (REGEN_HIT | REGEN_MANA | REGEN_MOVE)
+d115 53
+d199 6
+d278 4
+@
+
+
+1.20
+log
+@alter_hit now takes a boolean specifying whether to cap any increase in
+hitpoints by the victim's max hp.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.19 2008/01/09 01:53:03 jps Exp myc $
+d53 1
+a53 1
+            slow_death(ch);  
+d99 1
+a99 1
+  
+d104 1
+a104 1
+      REMOVE_BIT(ch->regenerating, REGEN_MANA);
+d149 1
+a149 1
+  
+d164 1
+a164 1
+  
+d167 1
+a167 1
+  
+d185 1
+a185 1
+  
+d197 1
+a197 1
+  
+d212 4
+@
+
+
+1.19
+log
+@Replace old points event with three new regen events.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.18 2008/01/04 01:53:26 jps Exp jps $
+d143 1
+a143 7
+/*  Type
+ *  1. healing
+ *  2. Damage
+ *  3. Item mods
+ *  4. spell mods
+ */
+void alter_hit(struct char_data *ch, int amount, int type)
+d145 1
+a145 1
+  int oldhit = 0;
+d147 2
+a148 1
+  if (ch->in_room <= NOWHERE) return;
+d150 14
+a163 10
+  oldhit = GET_HIT(ch);
+  
+  GET_HIT(ch) = MIN(GET_HIT(ch) - amount, GET_MAX_HIT(ch));
+  
+  if(oldhit > GET_MAX_HIT(ch))
+    if(type != 1)
+      GET_HIT(ch) = oldhit - amount;
+  if(oldhit > GET_MAX_HIT(ch))
+    if(type == 1)
+      GET_HIT(ch) = oldhit;
+d212 3
+@
+
+
+1.18
+log
+@Added races.h file and created global array "races" for much
+race-related information.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.17 2007/12/25 05:41:49 jps Exp jps $
+d26 6
+a31 4
+/* Player point types for events */
+#define REGEN_HIT      0
+#define REGEN_MANA     1
+#define REGEN_MOVE     2
+d33 33
+a65 1
+#define PULSES_PER_MUD_HOUR     (SECS_PER_MUD_HOUR*PASSES_PER_SEC)
+d67 5
+d73 7
+a79 5
+/* event object structure for point regen */
+struct regen_event_obj {
+  struct char_data *ch;		/* character regening */
+  int type;			/* HIT, MOVE, or MANA */
+};
+d81 4
+a84 1
+#define POINTS_EVENT_DEBUG 1
+d86 1
+a86 1
+EVENTFUNC(points_event)
+d88 11
+a98 7
+  struct regen_event_obj *regen = (struct regen_event_obj *) event_obj;
+  void slow_death(struct char_data *victim);
+  struct char_data *ch;
+  int type, gain;
+  char logbuf[100];
+  bool is_dieing = FALSE;
+  extern int top_of_world;
+d100 1
+a100 17
+  ch = regen->ch;
+  type = regen->type;
+  
+   if (!ch->player.name) {
+#ifdef POINTS_EVENT_DEBUG
+      mudlog("&1&bpoints_event error&0: !ch->player.name", NRM, LVL_GOD, FALSE);
+#endif
+      free(event_obj);
+      return 0;
+   } else if (ch->in_room <= NOWHERE || ch->in_room > top_of_world) {
+#ifdef POINTS_EVENT_DEBUG
+      sprintf(logbuf, "&1&bpoints_event error&0: !ch->in_room invalid (name: %s)", ch->player.name);
+      mudlog(logbuf, NRM, LVL_GOD, FALSE);
+#endif
+      GET_POINTS_EVENT(ch, type) = NULL;
+      free(event_obj);
+      return 0;
+d103 11
+a113 16
+  /* if (GET_POS(ch) >= POS_STUNNED) {*/
+  /* no help for the dying */
+  
+  /*
+   * Increment type of points by one.
+   * If not at max, reenqueue the event.
+   */
+  
+   switch (type) {
+      case REGEN_HIT:
+         if (GET_POS(ch) <= POS_STUNNED) {
+            GET_HIT(ch) = MIN(GET_HIT(ch) - 1, GET_MAX_HIT(ch));
+            is_dieing = TRUE;
+            update_pos(ch);
+         } else
+            GET_HIT(ch) = MIN(GET_HIT(ch) + 1, GET_MAX_HIT(ch));
+d115 10
+a124 29
+         if (GET_POS(ch) != POS_DEAD) {
+            /*   if(IS_AFFECTED2(ch, AFF2_ON_FIRE)) */
+            /*    damage(ch,ch, 20, SPELL_ON_FIRE); */
+            /*  out till fixed */
+         }
+         if (GET_HIT(ch) < GET_MAX_HIT(ch)) {
+            if (GET_POS(ch) == POS_DEAD) {
+               GET_POINTS_EVENT(ch, type) = NULL;
+               free(event_obj);
+               /*proky check to see if this a dud character*/
+               /*if no name then hey hes dud*/
+               if (GET_NAME(ch))
+                  slow_death(ch);  
+               return 0;
+            } else if (is_dieing == FALSE) {
+               /* reenqueue the event */
+               gain = hit_gain(ch);
+               /* Must NEVER return 0 here! */
+               return (gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain);
+            } else
+               return (PULSES_PER_MUD_HOUR / 4);
+         }
+         break;
+    
+  case REGEN_MANA:
+    GET_MANA(ch) = MIN(GET_MANA(ch) + 1, GET_MAX_MANA(ch));
+    
+    if (GET_MANA(ch) < GET_MAX_MANA(ch)) {
+      /* reenqueue the event */
+d126 13
+a138 31
+       /* Must NEVER return 0 here! */
+       return (gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain);
+    }
+    break;
+    
+  case REGEN_MOVE:
+    gain = move_gain(ch);
+    if(GET_POS(ch) >= POS_SLEEPING && GET_POS(ch) < POS_FIGHTING)
+        GET_MOVE(ch) = MIN(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
+  else
+        GET_MOVE(ch) = MIN(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
+  
+    if (GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
+      /* reenqueue the event */
+       /* Must NEVER return 0 here! */
+       return (gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain);
+    }
+    break;
+    
+  default:
+    sprintf(logbuf, "SYSERR:  Unknown points event type %d", type);
+    log(logbuf);
+    free(event_obj);
+    return 0;
+  }
+  /*  }*/
+  
+  /* kill this event */
+  GET_POINTS_EVENT(ch, type) = NULL;
+  free(event_obj);
+  return 0;
+d141 1
+a141 4
+
+/*
+ * subtracts amount of hitpoints from ch's current and starts points event
+ */
+a147 4
+ *  Banyal  Note this is not done and is intended to be used to allow
+ *  vamp hitpoints to remain thru damage and heals, as of now
+ *  no matter how much extra points you gain thru vamp it gets all knocked
+ *  off with a heal or even a single hitpoint of damage
+d151 1
+a151 3
+  struct regen_event_obj *regen;
+  long time;
+  int gain, oldhit = 0;
+d169 7
+a175 19
+  if (GET_HIT(ch) < GET_MAX_HIT(ch) && !GET_POINTS_EVENT(ch, REGEN_HIT)) {
+    CREATE(regen, struct regen_event_obj, 1);	
+    regen->ch = ch;
+    regen->type = REGEN_HIT;
+    gain = hit_gain(ch);
+    time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+    GET_POINTS_EVENT(ch, REGEN_HIT) = event_create(EVENT_POINTS, points_event,
+          regen, &(ch->events), time);
+    
+    if (amount >= 0) {
+      
+      /*
+       * if the character gained hp, update position and
+       * restart mana and move regeneration if needed.
+       */
+      update_pos(ch);
+      alter_mana(ch, 0);
+      alter_move(ch, 0);
+    }
+d180 1
+a180 3
+/*
+ * subtracts amount of mana from ch's current and starts points event
+ */
+a182 4
+  struct regen_event_obj *regen;
+  long time;
+  int gain;
+  
+d187 2
+a188 13
+  if (!GET_POINTS_EVENT(ch, REGEN_MANA) && (GET_MANA(ch) < GET_MAX_MANA(ch))) {
+    
+    /* make sure the character isn't dying */
+    if (GET_POS(ch) >= POS_STUNNED) {
+      CREATE(regen, struct regen_event_obj, 1);
+      regen->ch = ch;
+      regen->type = REGEN_MANA;
+      gain = mana_gain(ch);
+      time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+      GET_POINTS_EVENT(ch, REGEN_MANA) =
+          event_create(EVENT_POINTS, points_event, regen, &(ch->events), time);
+    }
+  }
+d192 1
+a192 3
+/*
+ * subtracts amount of moves from ch's current and starts points event
+ */
+a194 4
+  struct regen_event_obj *regen;
+  long time;
+  int gain;
+  
+d199 2
+a200 13
+  if (!GET_POINTS_EVENT(ch, REGEN_MOVE) && (GET_MOVE(ch) < GET_MAX_MOVE(ch))) {
+    
+    /* make sure the character isn't dying */
+    if (GET_POS(ch) >= POS_STUNNED) {
+      CREATE(regen, struct regen_event_obj, 1);
+      regen->ch = ch;
+      regen->type = REGEN_MOVE;
+      gain = move_gain(ch);
+      time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+      GET_POINTS_EVENT(ch, REGEN_MOVE) =
+          event_create(EVENT_POINTS, points_event, regen, &(ch->events), time);
+    }
+  }
+d204 1
+a204 1
+/* updates regen rates.  Use when big regen rate changes are made */
+d207 2
+a208 49
+  struct regen_event_obj *regen;
+  int type, gain = 0;
+  long time;
+  
+  if (ch->in_room <= NOWHERE) return;
+
+  if (GET_HIT(ch) <= HIT_INCAP)
+    return;
+  
+  for (type = REGEN_HIT; type <= REGEN_MOVE; type++) {
+    
+    switch (type) {
+    case REGEN_HIT:
+      if (GET_HIT(ch) >= GET_MAX_HIT(ch))
+	continue;
+      if (GET_RACE(ch) == RACE_TROLL)
+	gain = hit_gain(ch) * 2.5;
+      else
+	gain = hit_gain(ch);
+      break;
+      
+    case REGEN_MANA:
+      if (GET_MANA(ch) >= GET_MAX_MANA(ch))
+	continue;
+      gain = mana_gain(ch);
+      break;
+      
+    case REGEN_MOVE:
+      if (GET_MOVE(ch) >= GET_MAX_MOVE(ch))
+	continue;
+      gain = move_gain(ch);
+      break;
+    }
+    
+    time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
+    
+    if (!GET_POINTS_EVENT(ch, type) ||
+	(time < event_time(GET_POINTS_EVENT(ch, type)))) {
+      
+      /* take off old event, create updated event */
+      if (GET_POINTS_EVENT(ch, type))
+	event_cancel(GET_POINTS_EVENT(ch, type));
+      CREATE(regen, struct regen_event_obj, 1);
+      regen->ch = ch;
+      regen->type = type;
+      GET_POINTS_EVENT(ch, type) = event_create(EVENT_POINTS, points_event,
+            regen, &(ch->events), time);
+    }
+  }
+d213 4
+@
+
+
+1.17
+log
+@Updated event code so the each event type is positively identified.
+Events may be tied to objects or characters so that when that object
+or character is extracted, its events can be canceled.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.16 2006/12/04 14:08:51 dce Exp jps $
+d22 1
+d325 5
+@
+
+
+1.16
+log
+@Removed a 'MOO' debug message left by someone.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.15 2006/11/20 06:44:26 jps Exp $
+d193 2
+a194 1
+    GET_POINTS_EVENT(ch, REGEN_HIT) = event_create(points_event, regen, time);
+d233 1
+a233 1
+	event_create(points_event, regen, time);
+d262 1
+a262 1
+	event_create(points_event, regen, time);
+d316 2
+a317 1
+      GET_POINTS_EVENT(ch, type) = event_create(points_event, regen, time);
+d324 3
+@
+
+
+1.15
+log
+@Fix creatures dying of bloodloss as you're fighting them.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.14 2006/11/17 03:47:30 jps Exp jps $
+a82 1
+            mudlog("&1&bMOO&0", NRM, LVL_GOD, FALSE);
+d322 3
+@
+
+
+1.14
+log
+@Eliminate points_event events being enqueued for outgoing players.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.13 2006/11/07 14:06:40 jps Exp jps $
+d78 33
+a110 37
+  switch (type) {
+  case REGEN_HIT:
+    if (GET_POS(ch) <= POS_STUNNED){
+      GET_HIT(ch) = MIN(GET_HIT(ch) - 1, GET_MAX_HIT(ch));
+      is_dieing = TRUE;
+      update_pos(ch);
+    }else
+      GET_HIT(ch) = MIN(GET_HIT(ch) + 1, GET_MAX_HIT(ch));
+    
+    if (GET_POS(ch) != POS_DEAD) {
+       /*   if(IS_AFFECTED2(ch, AFF2_ON_FIRE)) */
+       /*    damage(ch,ch, 20, SPELL_ON_FIRE); */
+       /*  out till fixed */
+    }
+    if (GET_HIT(ch) < GET_MAX_HIT(ch)) {
+      
+      if (GET_POS(ch) == POS_DEAD){
+	GET_POINTS_EVENT(ch, type) = NULL;
+	free(event_obj);
+	/*proky check to see if this a dud character*/
+	/*if no name then hey hes dud*/
+	if (GET_NAME(ch))
+	  slow_death(ch);  
+	return 0;
+      }else
+	
+	/* reenqueue the event */
+	if (is_dieing == FALSE) 
+	  {
+	    gain = hit_gain(ch);
+       /* Must NEVER return 0 here! */
+       return (gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain);
+	  }
+	else
+	  return (PULSES_PER_MUD_HOUR / 4);
+    }
+    break;
+d323 3
+@
+
+
+1.13
+log
+@Insane hit_gain values, such as those generated by Trolls, no
+longer incorrectly return 0 from points_event crashing the mud.
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.12 2002/09/13 02:32:10 jjl Exp jps $
+d39 1
+d54 16
+a69 11
+  /* This is a temp fix for the event null char prob. -Nechtrous */
+  /* 11/jan/2001 changed comparison below to <= from <
+   * cos i think some dead, freed mobs are slipping through to slowdeath
+   * mtp
+   */
+  if(ch->in_room <= NOWHERE || ch->in_room > top_of_world) {
+    GET_POINTS_EVENT(ch, type) = NULL;
+    free(event_obj);
+    return 0;
+  }
+  
+d175 2
+a176 1
+  
+d223 2
+d252 2
+d279 2
+d327 4
+@
+
+
+1.12
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: regen.c,v 1.11 2001/01/15 21:51:24 mtp Exp $
+d102 2
+a103 1
+	    return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+d116 2
+a117 1
+      return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+d130 2
+a131 1
+      return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+d314 3
+@
+
+
+1.11
+log
+@make sure event type is null to avoid it being called again when the object is null
+@
+text
+@d1 3
+a3 1
+// $Id: regen.c,v 1.10 2001/01/12 00:51:07 mtp Exp mtp $
+d82 3
+a84 3
+      //  if(IS_AFFECTED2(ch, AFF2_ON_FIRE))
+      //   damage(ch,ch, 20, SPELL_ON_FIRE);
+      // out till fixed
+d309 55
+a363 50
+// $Log: regen.c,v $
+// Revision 1.10  2001/01/12 00:51:07  mtp
+// changed comparison on line 52 to <= to trap mobs which are already freed
+//
+// Revision 1.9  2000/11/24 21:17:12  rsd
+// Altered comment header and added back rlog messgaes from
+// prior to the addition of the $log$ string.
+//
+// Revision 1.8  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.7  1999/04/30 17:03:16  mud
+// reverted to version 1.5 to fix bad crashbugs.
+// Gurlaek
+//
+// Revision 1.6  1999/04/29 04:31:12  jimmy
+// Nulled some pointers for sanity.  Maybe this will help.
+// Gurlaek
+//
+// Revision 1.5  1999/03/31 20:18:01  jen
+// branches:  1.5.1;  1.5.2;
+// Changed regen for movement ... increases rate, decreases amt to 1 per event
+//
+// Revision 1.4  1999/03/14 14:28:11  jimmy
+// Movement now has bite!  removed extra "flying" from
+// movement_loss in constants.c to fix the mv bug.  reduced the
+// movement gain by 5 for all ages in limits.c.  Removed the +5
+// and +6 static movement gain so that it now actually updates
+// based on the function in regen.c.  Gosh i'm a bastard.
+// Fingon
+//
+// Revision 1.3  1999/02/08 23:01:47  jimmy
+// Fixed mortally wounded bug.  Mortally wounded
+// victims now die when they read -11.  Also,
+// no more "attempt to damage corpse"
+// fingon
+//
+// Revision 1.2  1999/02/01 23:59:12  mud
+// indented file
+//
+// Revision 1.1  1999/01/29 01:23:31  mud
+// Initial revision
+//
+// Revision 1.5.2.1  1999/04/30 17:01:33  mud
+// *** empty log message ***
+//
+// Revision 1.5.1.1  1999/04/30 16:57:56  mud
+// reverted to old rev due to major crashing.
+// gurlaek
+//
+@
+
+
+1.10
+log
+@changed comparison on line 52 to <= to trap mobs which are already freed
+@
+text
+@d1 1
+a1 1
+// $Id: regen.c,v 1.9 2000/11/24 21:17:12 rsd Exp mtp $
+d57 1
+d308 3
+@
+
+
+1.9
+log
+@Altered comment header and added back rlog messgaes from
+prior to the addition of the $log$ string.
+@
+text
+@d1 1
+a1 1
+// $Id: regen.c,v 1.8 1999/09/05 07:00:39 jimmy Exp $
+d52 5
+a56 1
+  if(ch->in_room < NOWHERE || ch->in_room > top_of_world) {
+d307 4
+@
+
+
+1.8
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d3 3
+a5 1
+ *  File: regen.c                                    NOW Part of FieryMUD  *
+d7 1
+a7 1
+ *  Usage: Contains routines to handle event based point regeneration      *
+d9 1
+a9 1
+ *  Written by Eric Green (ejg3@@cornell.edu)                               *
+a14 1
+
+d302 43
+a344 5
+
+
+
+
+// $Log$
+@
+
+
+1.7
+log
+@reverted to version 1.5 to fix bad crashbugs.
+Gurlaek
+@
+text
+@d1 1
+d305 1
+@
+
+
+1.6
+log
+@Nulled some pointers for sanity.  Maybe this will help.
+Gurlaek
+@
+text
+@d50 1
+a50 3
+  /* changed by gurlaek. also nulled all the freed event_objects */
+  /*  if(ch->in_room < NOWHERE || ch->in_room > top_of_world) {*/
+  if(ch->in_room <= NOWHERE || ch->in_room > top_of_world) {
+a51 1
+    event_obj = NULL;
+d82 1
+a82 2
+        event_obj = NULL;
+   	/*proky check to see if this a dud character*/
+a126 1
+    event_obj = NULL;
+a133 1
+  event_obj = NULL;
+@
+
+
+1.5
+log
+@Changed regen for movement ... increases rate, decreases amt to 1 per event
+@
+text
+@d50 3
+a52 1
+  if(ch->in_room < NOWHERE || ch->in_room > top_of_world) {
+d54 1
+d85 2
+a86 1
+	/*proky check to see if this a dud character*/
+d131 1
+d139 1
+@
+
+
+1.5.2.1
+log
+@*** empty log message ***
+@
+text
+@a8 1
+
+@
+
+
+1.5.1.1
+log
+@reverted to old rev due to major crashing.
+gurlaek
+@
+text
+@@
+
+
+1.4
+log
+@Movement now has bite!  removed extra "flying" from
+movement_loss in constants.c to fix the mv bug.  reduced the
+movement gain by 5 for all ages in limits.c.  Removed the +5
+and +6 static movement gain so that it now actually updates
+based on the function in regen.c.  Gosh i'm a bastard.
+Fingon
+@
+text
+@d113 4
+a116 4
+      GET_MOVE(ch) = MIN(GET_MOVE(ch) + gain, GET_MAX_MOVE(ch));
+    else
+      GET_MOVE(ch) = MIN(GET_MOVE(ch) + gain, GET_MAX_MOVE(ch));
+    
+@
+
+
+1.3
+log
+@Fixed mortally wounded bug.  Mortally wounded
+victims now die when they read -11.  Also,
+no more "attempt to damage corpse"
+fingon
+@
+text
+@d111 1
+d113 1
+a113 1
+      GET_MOVE(ch) = MIN(GET_MOVE(ch) + 6, GET_MAX_MOVE(ch));
+d115 1
+a115 1
+      GET_MOVE(ch) = MIN(GET_MOVE(ch) + 5, GET_MAX_MOVE(ch));
+a118 1
+      gain = move_gain(ch);
+@
+
+
+1.2
+log
+@indented file
+@
+text
+@d72 1
+a72 1
+    if (GET_POS(ch) != POS_DEAD)
+d76 12
+a87 1
+      if (GET_HIT(ch) < GET_MAX_HIT(ch)) {
+d89 9
+a97 19
+	if (GET_POS(ch) == POS_DEAD){
+	  GET_POINTS_EVENT(ch, type) = NULL;
+	  free(event_obj);
+	  /*proky check to see if this a dud character*/
+	  /*if no name then hey hes dud*/
+	  if (GET_NAME(ch))
+	    slow_death(ch);  
+	  return 0;
+        }else
+	  
+	  /* reenqueue the event */
+	  if (is_dieing == FALSE) 
+	    {
+	      gain = hit_gain(ch);
+	      return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+	    }
+	  else
+	    return (PULSES_PER_MUD_HOUR / 4);
+      }
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 7
+/* ************************************************************************
+*  File: regen.c                                                          *
+*                                                                         *
+*  Usage: Contains routines to handle event based point regeneration      *
+*                                                                         *
+*  Written by Eric Green (ejg3@@cornell.edu)                               *
+************************************************************************ */
+d45 1
+a45 1
+
+d48 2
+a49 2
+
+ /* This is a temp fix for the event null char prob. -Nechtrous */
+d54 12
+a65 12
+
+ /* if (GET_POS(ch) >= POS_STUNNED) {*/
+    /* no help for the dying */
+
+    /*
+     * Increment type of points by one.
+     * If not at max, reenqueue the event.
+     */
+
+    switch (type) {
+    case REGEN_HIT:
+      if (GET_POS(ch) <= POS_STUNNED){
+d69 1
+a69 1
+      }else
+d71 5
+a75 5
+
+         if (GET_POS(ch) != POS_DEAD)
+     //  if(IS_AFFECTED2(ch, AFF2_ON_FIRE))
+     //   damage(ch,ch, 20, SPELL_ON_FIRE);
+ // out till fixed
+d78 8
+a85 8
+if (GET_POS(ch) == POS_DEAD){
+GET_POINTS_EVENT(ch, type) = NULL;
+  free(event_obj);
+  /*proky check to see if this a dud character*/
+  /*if no name then hey hes dud*/
+  if (GET_NAME(ch))
+  slow_death(ch);  
+  return 0;
+d87 9
+a95 9
+
+       /* reenqueue the event */
+   if (is_dieing == FALSE) 
+   {
+	   gain = hit_gain(ch);
+	   return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+   }
+   else
+      return (PULSES_PER_MUD_HOUR / 4);
+d97 17
+a113 4
+      break;
+
+    case REGEN_MANA:
+      GET_MANA(ch) = MIN(GET_MANA(ch) + 1, GET_MAX_MANA(ch));
+d115 4
+a118 25
+      if (GET_MANA(ch) < GET_MAX_MANA(ch)) {
+	/* reenqueue the event */
+	gain = mana_gain(ch);
+	return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+      }
+      break;
+
+    case REGEN_MOVE:
+      if(GET_POS(ch) >= POS_SLEEPING && GET_POS(ch) < POS_FIGHTING)
+        GET_MOVE(ch) = MIN(GET_MOVE(ch) + 6, GET_MAX_MOVE(ch));
+      else
+        GET_MOVE(ch) = MIN(GET_MOVE(ch) + 5, GET_MAX_MOVE(ch));
+
+      if (GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
+	/* reenqueue the event */
+	gain = move_gain(ch);
+	return (PULSES_PER_MUD_HOUR / (gain ? gain : 1));
+      }
+      break;
+
+    default:
+      sprintf(logbuf, "SYSERR:  Unknown points event type %d", type);
+      log(logbuf);
+      free(event_obj);
+      return 0;
+d120 10
+a129 2
+/*  }*/
+
+d141 10
+a150 10
+/* Type
+1. healing
+2. Damage
+3. Item mods
+4. spell mods
+Banyal  Note this is not done and is intended to be used to allow
+vamp hitpoints to remain thru damage and heals, as of now
+no matter how much extra points you gain thru vamp it gets all knocked
+off with a heal or even a single hitpoint of damage
+*/
+d156 2
+a157 2
+
+
+d159 1
+a159 1
+
+d161 8
+a168 8
+
+if(oldhit > GET_MAX_HIT(ch))
+if(type != 1)
+GET_HIT(ch) = oldhit - amount;
+if(oldhit > GET_MAX_HIT(ch))
+if(type == 1)
+GET_HIT(ch) = oldhit;
+
+d171 1
+a171 1
+
+d179 1
+a179 1
+
+d181 1
+a181 1
+	
+d202 1
+a202 1
+
+d204 1
+a204 1
+ 
+d206 1
+a206 1
+
+d229 1
+a229 1
+
+d231 1
+a231 1
+ 
+d233 1
+a233 1
+
+d254 1
+a254 1
+
+d257 1
+a257 1
+
+d264 4
+a267 4
+	  if (GET_RACE(ch) == RACE_TROLL)
+		  gain = hit_gain(ch) * 2.5;
+	  else
+      gain = hit_gain(ch);
+d269 1
+a269 1
+
+d275 1
+a275 1
+
+d282 1
+a282 1
+
+d284 1
+a284 1
+
+d287 1
+a287 1
+
+d298 5
+@

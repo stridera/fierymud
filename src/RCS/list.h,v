@@ -1,0 +1,104 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2009.06.09.05.43.03;	author myc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Multipurpose memory list.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#pragma once
+
+#include <stddef.h>
+
+typedef size_t index_t;
+
+typedef struct memory_list {
+  unsigned char *elements;
+  size_t element_size;
+  size_t count;
+  size_t capacity;
+} *list;
+
+/*
+ * Make a new memory list whose elements have the given element_size in 
+ * bytes.  The list maintains an internal array that may have a larger
+ * capacity than the actual number of elements contained.
+ */
+list l_init(size_t element_size);
+
+/*
+ * Make a new memory list whose elements have the given element_size 
+ * in bytes.  The list is initialized with the given array.
+ */
+list l_extend(size_t element_size, void *array, size_t length);
+
+
+/* 
+ * Allocate space for one element on the end of the given list and 
+ * return a pointer to this space.  Automatically increases the internal
+ * capacity if required.
+ */
+void *l_alloc(list l);
+
+/*
+ * Ensure that the list's internal capacity is at least the given
+ * capacity.
+ */
+void l_ensure(list l, size_t capacity);
+
+/*
+ * Trim the list's internal capacity to the minimum size required to
+ * contain all allocated/contained elements.
+ */
+void l_trim(list l);
+
+
+/*
+ * Clone the given list and return an exact copy of it.  The copy will
+ * not share its internal array with the original.
+ */
+list l_clone(list l);
+
+/*
+ * Trim and return the internal array from the list.  This "consumes"
+ * the list--it is freed.  You must free the return array yourself.
+ */
+void *l_export(list l);
+
+/*
+ * Free the list AND its internal array.  If you need to maintain a
+ * handle on the array, use l_export().
+ */
+void l_free(list l);
+
+
+/*
+ * Remove the element from the list at the given index.
+ */
+void l_remove(list l, index_t index);
+
+/*
+ * Insert an element into the list at the given index.
+ */
+void l_insert(list l, index_t index, void *element);
+
+/*
+ * Append an element on the end of the list.
+ */
+void *l_append(list l, void *element);
+@

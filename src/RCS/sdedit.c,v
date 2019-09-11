@@ -1,0 +1,1411 @@
+head	1.13;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.13
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.04.03.02.02.05;	author myc;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.01.29.16.51.12;	author myc;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2007.02.14.03.54.53;	author myc;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2004.11.11.22.10.01;	author rsd;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2002.09.13.02.52.15;	author jjl;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2000.03.22.06.49.23;	author rsd;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.02.01.59.20;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*  sdedit.c                         *
+*    				                                          *
+*  		                                          *
+*    				                                          *
+**  For Hubis, By Proky.
+*This is pretty simple it just edits a array that is the size of the spell
+list. (spell_dam_info).  This array is then used in the magic.c system
+that affects damages etc etc.
+HERE IS A COPY OF THE STRUCTURE (in structs.h)
+struct spell_dam {
+    sh_int spell;
+    bool intnern_dam;
+    sh_int npc_no_dice;
+    sh_int npc_no_face;
+    sh_int pc_no_dice;
+    sh_int pc_no_face;
+    sh_int npc_reduce_factor;
+    bool use_bonus;
+    sh_int max_bonus;
+    sh_int npc_static;
+    sh_int pc_static;
+    sh_int lvl_mult;
+};
+NOTES:
+- Rewrites the file evry time save occures.
+- viewdam is the word to view the list online.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/*This is used to edit the online damages etc from spells.*/
+/*this array will be used in magic.c to decide the damages of many spells
+*/
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "comm.h"
+#include "utils.h"
+#include "db.h"
+#include "olc.h"
+#include "screen.h"
+#include "spells.h"
+
+/*external memory for it declared in db.c*/
+extern struct spell_dam spell_dam_info[MAX_SPELLS + 1];
+extern struct char_data *character_list;
+extern char *spells[];
+
+/* function protos */
+void sdedit_disp_menu(struct descriptor_data *d);
+void sddit_parse(struct descriptor_data *d, char *arg);
+void sdedit_setup_existing(struct descriptor_data *d, int real_num);
+void sdedit_save_to_disk(struct descriptor_data *d);
+void sdedit_save_internally(struct descriptor_data *d);
+
+
+/*------------------------------------------------------------------------*/
+
+
+
+
+void sdedit_setup_existing(struct descriptor_data *d, int real_num)
+{
+    struct spell_dam *spell;
+    if (GET_LEVEL(d->character) < LVL_HEAD_B)
+	return;
+    CREATE(spell, struct spell_dam, 1);
+    *spell = spell_dam_info[real_num];
+        OLC_SD(d) = spell;
+    OLC_VAL(d) = 0;
+    if (spell->note)
+        OLC_SD(d)->note = str_dup(spell->note);/*duplicate the dynamic part*/
+    sdedit_disp_menu(d);
+}
+
+void sdedit_disp_menu(struct descriptor_data *d)
+{
+  struct spell_dam *spell;
+  char *nrm = CCNRM(d->character, C_NRM);
+  char *yel = CCYEL(d->character, C_NRM);
+  char *grn = CCGRN(d->character, C_NRM);
+  char *red = CCRED(d->character, C_NRM);
+  spell = OLC_SD(d);
+
+  sprintf(buf,
+	  "Editing Spell: %s%-21s%s %s%d%s\r\n\n"
+	  "         %sDAMAGES TO NPC:%s\r\n\n"
+      "%s1%s) Number of dice to be used:        %s%d%s\r\n"
+      "%s2%s) Number on the face of the dice:   %s%d%s\r\n"
+	  "%sR%s) NPC Reduce Factor(100 no affect): %s%d%s\r\n"
+      "%sA%s) NPC Static number                 %s%d%s\r\n"
+      "         %sDAMAGES TO PC:%s\r\n\n"
+      "%s3%s) Number of dice to be used:        %s%d%s\r\n"
+      "%s4%s) Number on the face of the dice:   %s%d%s\r\n"
+	  "%sB%s) PC Static number:                 %s%d%s\r\n"
+      "         %sGENERAL TO BOTH:%s\r\n\n"
+      "%s5%s) Max Bonus possible:               %s%d%s\r\n"
+	  "%sT%s) Toggle Wether to use Max Bonus:   %s%s%s\r\n"
+      "%sI%s) Toggle Internal Damage On/Off:    %s%s%s\r\n"
+     "%sE%s) LVL Multiplie		%s%d%s\r\n"
+     "%sN%s) Edit Spell Note.\r\n"
+      "%sQ%s) Quit\r\n"
+	  "\r\n"
+      "%sUSED BY PC to NPC%s: - %sNPC + MIN(Max_bonus, level/2) + NPC_STATIC%s\r\n"
+      "%sUSED BY NPC to PC%s: - %sNPC + MIN(Max_bonus, level/2) + NPC_STATIC%s\r\n"
+      "%sUSED BY PC to PC %s: - %sPC  + MIN(Max_bonus, level/4) + PC_STATIC%s\r\n\n"
+      "%sSpell Note:%s\r\n"
+      "%s%s%s\r\n"
+      "\r\n"
+      "Enter choice : ", grn, (spells[spell->spell]), nrm, grn, spell->spell, nrm,
+      red, nrm, yel, nrm, grn,
+      spell->npc_no_dice,grn,
+      /*2*/yel, nrm, grn, spell->npc_no_face, nrm,
+      /*R*/yel, nrm, grn, spell->npc_reduce_factor , nrm,
+      /*A*/yel, nrm, grn, spell->npc_static , nrm,
+      red, nrm,
+      /*3*/yel, nrm, grn, spell->pc_no_dice , nrm,
+      /*4*/yel, nrm, grn, spell->pc_no_face , nrm,
+      /*B*/yel, nrm, grn, spell->pc_static, nrm,
+      red, nrm,
+      /*5*/yel, nrm, grn, spell->max_bonus , nrm,
+      /*Bonus*/yel, nrm, grn, (spell->use_bonus ? "TRUE" : "FALSE"), nrm,
+      /*Intern_dam*/yel, nrm, grn, (spell->intern_dam ? "TRUE" : "FALSE"), nrm,
+      /*E*/yel,nrm,grn,spell->lvl_mult, nrm,
+	yel, nrm,
+      yel, nrm,
+      yel, nrm, grn, nrm, yel, nrm, grn, nrm, yel, nrm, grn, nrm
+      , red, nrm, grn, (spell->note ? spell->note : ""), nrm
+      );
+    send_to_char(buf, d->character);
+
+  OLC_MODE(d) = SDEDIT_MAIN_MENU;
+}
+
+
+void sdedit_save_internally(struct descriptor_data *d)
+{
+  struct spell_dam *spell = NULL;
+  spell = OLC_SD(d);
+  /*free old note first!!*/
+  if (spell_dam_info[OLC_SD(d)->spell].note)
+      free(spell_dam_info[OLC_SD(d)->spell].note);
+  spell_dam_info[OLC_SD(d)->spell] = *spell;
+  /*copy over new sring*/
+  if (spell->note)
+      spell_dam_info[OLC_SD(d)->spell].note = str_dup(spell->note);
+}
+
+
+/*------------------------------------------------------------------------*/
+
+void sdedit_save_to_disk(struct descriptor_data *d)
+{
+sh_int i;
+FILE *ifptr;
+
+    if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == NULL)
+    {
+        sprintf(buf2, "Error writting spell dam file\r\n");
+        mudlog(buf2, NRM, LVL_IMPL, TRUE);
+    }
+    else
+    {
+        fprintf(ifptr, "Spell dam file:\n");
+        fprintf(ifptr, "spell, npc_no_dice, npc_no_face, no_face, no_dice, bonus, max_bonus\n");
+        fprintf(ifptr, "spell_dam\n");
+        for (i = 1; i <= MAX_SPELLS;i++)
+        {
+     fprintf(ifptr, "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd\n",
+            i, SD_INTERN_DAM(i), SD_NPC_STATIC(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i),
+            SD_PC_STATIC(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_USE_BONUS(i),
+            SD_BONUS(i), SD_LVL_MULT(i));
+      fprintf(ifptr, "%s~\n", (SD_NOTE(i) ? SD_NOTE(i) : ""));
+        }
+        fclose (ifptr);
+    }
+
+
+}
+
+
+
+void sdedit_parse(struct descriptor_data *d, char *arg)
+{
+  int i = 0;
+
+  switch (OLC_MODE(d)) {
+  case SDEDIT_MAIN_MENU:
+    switch (*arg) {
+    case 'q':
+    case 'Q':
+        if (OLC_VAL(d))
+        {
+            send_to_char("Do you wish to save this.?>", d->character);
+            OLC_MODE(d) = SDEDIT_CONFIRM_SAVESTRING;
+        }
+        else
+            cleanup_olc(d, CLEANUP_ALL);
+        return;
+    case '1':
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_NO_DICE_ENTRY;
+        break;
+    case '2':
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_NO_FACE_ENTRY;
+        break;
+     case '3':
+        i++;
+        OLC_MODE(d) = SDEDIT_PC_NO_DICE_ENTRY;
+        break;
+    case '4':
+        i++;
+        OLC_MODE(d) = SDEDIT_PC_NO_FACE_ENTRY;
+        break;
+    case '5':
+        i++;
+        OLC_MODE(d) = SDEDIT_MAX_BONUS;
+        break;
+    case 'a':
+    case 'A':
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_STATIC;
+        break;
+    case 'b':
+    case 'B':
+        i++;
+        OLC_MODE(d) = SDEDIT_PC_STATIC;
+        break;
+    case 'e':
+    case 'E':
+i++;
+OLC_MODE(d) = SDEDIT_LVL_MULT_MENU;
+break;
+case 'n':
+    case 'N':
+        i--;
+        OLC_MODE(d) = SDEDIT_NOTE;
+      break;
+    case 'i':
+    case 'I':
+        if (OLC_SD(d)->intern_dam)
+            OLC_SD(d)->intern_dam = FALSE;
+        else
+            OLC_SD(d)->intern_dam = TRUE;
+        OLC_MODE(d) = SDEDIT_MAIN_MENU;
+        OLC_VAL(d) = 1;
+        sdedit_disp_menu(d);
+        return;
+    case 'r':
+    case 'R':
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_REDUCE_FACTOR;
+        break;
+    case 't':
+    case 'T':
+        /*switch bonus on and off SDEDIT_USE_BONUS*/
+        if (OLC_SD(d)->use_bonus)
+            OLC_SD(d)->use_bonus = FALSE;
+        else
+            OLC_SD(d)->use_bonus = TRUE;
+        OLC_MODE(d) = SDEDIT_MAIN_MENU;
+        OLC_VAL(d) = 1;
+        sdedit_disp_menu(d);
+        return;
+    default:
+      send_to_char("Not a option sorry\r\n", d->character);
+      sdedit_disp_menu(d);
+      return;
+    }
+    if (i > 0)
+    {
+        send_to_char("Enter new value\r\n>", d->character);
+        return;
+    }else if (i < 0)
+    {
+        send_to_char("Enter Note Max 60 letters\r\n]", d->character);
+        return;
+    }
+    return;
+
+    case SDEDIT_NPC_NO_DICE_ENTRY:
+        OLC_SD(d)->npc_no_dice = atoi(arg);
+    break;
+
+    case SDEDIT_NPC_NO_FACE_ENTRY:
+        OLC_SD(d)->npc_no_face = atoi(arg);
+    break;
+
+    case SDEDIT_PC_NO_DICE_ENTRY:
+        OLC_SD(d)->pc_no_dice = atoi(arg);
+    break;
+
+    case SDEDIT_LVL_MULT_MENU:
+       OLC_SD(d)->lvl_mult = atoi(arg);
+    break;
+
+    case SDEDIT_NOTE:
+        if (OLC_SD(d)->note)
+            free(OLC_SD(d)->note);
+        if (*arg)
+            OLC_SD(d)->note = str_dup(arg);
+        else
+            OLC_SD(d)->note = NULL;
+    break;
+
+    case SDEDIT_PC_STATIC:
+        OLC_SD(d)->pc_static = atoi(arg);
+break;
+
+    case SDEDIT_NPC_STATIC:
+        OLC_SD(d)->npc_static = atoi(arg);
+    break;
+
+    case SDEDIT_PC_NO_FACE_ENTRY:
+        OLC_SD(d)->pc_no_face = atoi(arg);
+    break;
+
+    case SDEDIT_NPC_REDUCE_FACTOR:
+        OLC_SD(d)->npc_reduce_factor = atoi(arg);
+    break;
+
+    case SDEDIT_MAX_BONUS:
+            OLC_SD(d)->max_bonus = atoi(arg);
+    break;
+
+return;
+    case SDEDIT_CONFIRM_SAVESTRING:
+     switch (*arg) {
+    case 'y':
+    case 'Y':
+      sdedit_save_internally(d);
+      sdedit_save_to_disk(d);
+      sprintf(buf, "OLC: %s edits spell damage.", GET_NAME(d->character));
+      mudlog(buf, CMP, LVL_IMPL, TRUE);
+      /* do not free the strings.. just the structure */
+      cleanup_olc(d, CLEANUP_ALL);
+      /*cleanup_olc(d, CLEANUP_STRUCTS);*/
+      send_to_char("Your spell dam changes have been saved to memory.\r\n", d->character);
+      break;
+    case 'n':
+    case 'N':
+       /*free everything up, including strings etc */
+      send_to_char("Changes to spell damage not saved\r\n", d->character);
+      cleanup_olc(d, CLEANUP_ALL);
+      break;
+    default:
+      send_to_char("Invalid choice!\r\nDo you wish to save this help internally? ", d->character);
+      break;
+    }
+    return;
+  }
+  OLC_VAL(d) = 1;
+  sdedit_disp_menu(d);
+
+}
+@
+
+
+1.13
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@/***************************************************************************
+ * $Id: sdedit.c,v 1.12 2008/04/03 02:02:05 myc Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *  File: sdedit.c                                        Part of FieryMUD *
+ *  Usage: Edits an array that is the size of the spell list               *
+ *         (spell_dam_info). This array is then used in the magic.c system *
+ *         that affects damages etc etc.                                   * 
+ *                                                                         *
+ *  By: Proky of HubisMUD                                                  *
+ *  Control M's removed by: Scott Davis                                    *
+ ***************************************************************************/
+
+/***************************************************************************
+ *  For Hubis, By Proky.
+ * This is pretty simple it just edits a array that is the size of the spell
+ * list. (spell_dam_info).  This array is then used in the magic.c system
+ * that affects damages etc etc.
+ * HERE IS A COPY OF THE STRUCTURE (in structs.h)
+ * struct spell_dam {
+ *    sh_int spell;
+ *    bool intnern_dam;
+ *    sh_int npc_no_dice;
+ *    sh_int npc_no_face;
+ *    sh_int pc_no_dice;
+ *    sh_int pc_no_face;
+ *    sh_int npc_reduce_factor;
+ *    bool use_bonus;
+ *    sh_int max_bonus;
+ *    sh_int npc_static;
+ *    sh_int pc_static;
+ *    sh_int lvl_mult;
+ *   };
+ * NOTES:
+ * - Rewrites the file evry time save occures.
+ * - viewdam is the word to view the list online.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *This is used to edit the online damages etc from spells.
+ *this array will be used in magic.c to decide the damages of many spells
+ */
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "comm.h"
+#include "utils.h"
+#include "db.h"
+#include "olc.h"
+#include "screen.h"
+#include "casting.h"
+#include "skills.h"
+
+/* function protos */
+void sdedit_disp_menu(struct descriptor_data *d);
+void sdedit_parse(struct descriptor_data *d, char *arg);
+void sdedit_setup_existing(struct descriptor_data *d, int real_num);
+void sdedit_save_to_disk(struct descriptor_data *d);
+void sdedit_save_internally(struct descriptor_data *d);
+
+
+/*------------------------------------------------------------------------*/
+
+
+void sdedit_setup_existing(struct descriptor_data *d, int real_num)
+{
+  struct spell_dam *spell;
+
+  if (GET_LEVEL(d->character) < LVL_HEAD_B)
+    return;
+  CREATE(spell, struct spell_dam, 1);
+  *spell = spell_dam_info[real_num];
+  OLC_SD(d) = spell;
+  OLC_VAL(d) = 0; 
+  if (spell->note)
+    OLC_SD(d)->note = strdup(spell->note);/*duplicate the dynamic part*/
+  sdedit_disp_menu(d);
+}
+
+void sdedit_disp_menu(struct descriptor_data *d)
+{
+  char cbuf2[600];
+  struct spell_dam *spell;
+  char *nrm = CLR(d->character, ANRM);
+  char *yel = CLR(d->character, FYEL);
+  char *grn = CLR(d->character, FGRN);
+  char *red = CLR(d->character, FRED);
+  spell = OLC_SD(d);
+  
+  sprintf(buf,
+	  "Editing Spell: %s%-21s%s %s%d%s\r\n\n"
+	  "         %sDAMAGES TO NPC:%s\r\n\n"
+	  "%s1%s) Number of dice to be used:        %s%d%s\r\n"
+	  "%s2%s) Number on the face of the dice:   %s%d%s\r\n"
+	  "%sR%s) %% dmg to NPCs 100 full effect :   %s%d%s\r\n"
+	  "%sA%s) NPC Static number                 %s%d%s\r\n"
+	  "         %sDAMAGES TO PC:%s\r\n\n"
+	  "%s3%s) Number of dice to be used:        %s%d%s\r\n"
+	  "%s4%s) Number on the face of the dice:   %s%d%s\r\n"
+	  "%sB%s) PC Static number:                 %s%d%s\r\n"
+	  "         %sGENERAL TO BOTH:%s\r\n\n",
+	  grn, (skills[spell->spell].name), nrm, grn, spell->spell, nrm,
+	  red, nrm, yel, nrm, grn, 
+	  spell->npc_no_dice,grn,
+     /*2*/yel, nrm, grn, spell->npc_no_face, nrm, 
+     /*R*/yel, nrm, grn, spell->npc_reduce_factor , nrm,
+     /*A*/yel, nrm, grn, spell->npc_static , nrm,
+	  red, nrm,
+     /*3*/yel, nrm, grn, spell->pc_no_dice , nrm,
+     /*4*/yel, nrm, grn, spell->pc_no_face , nrm,
+     /*B*/yel, nrm, grn, spell->pc_static, nrm,
+	  red, nrm
+	  );
+
+  sprintf(cbuf2,
+	  "%s5%s) Max Bonus possible:               %s%d%s\r\n"
+	  "%sT%s) Toggle Wether to use Max Bonus:   %s%s%s\r\n"
+	  "%sI%s) Toggle Internal Damage On/Off:    %s%s%s\r\n"
+	  "%sE%s) LVL Multiplie		%s%d%s\r\n" 
+	  "%sN%s) Edit Spell Note.\r\n"                  
+	  "%sQ%s) Quit\r\n"
+	  "\r\n"
+	  "%sUSED BY PC to NPC%s: - %sNPC + MIN(Max_bonus, level/2) + NPC_STATIC%s\r\n"
+	  "%sUSED BY NPC to PC%s: - %sNPC + MIN(Max_bonus, level/2) + NPC_STATIC%s\r\n"
+	  "%sUSED BY PC to PC %s: - %sPC  + MIN(Max_bonus, level/4) + PC_STATIC%s\r\n\n"
+	  "%sSpell Note:%s\r\n"
+	  "%s%s%s\r\n"
+	  "\r\n"
+	  "Enter choice : ", 
+     /*5*/yel, nrm, grn, spell->max_bonus , nrm,
+ /*Bonus*/yel, nrm, grn, (spell->use_bonus ? "TRUE" : "FALSE"), nrm,
+/*Intern*/yel, nrm, grn, (spell->intern_dam ? "TRUE" : "FALSE"), nrm,
+     /*E*/yel,nrm,grn,spell->lvl_mult, nrm,
+	  yel, nrm,
+	  yel, nrm, 
+	  yel, nrm, grn, nrm, yel, nrm, grn, nrm, yel, nrm, grn, nrm
+	  , red, nrm, grn, (spell->note ? spell->note : ""), nrm
+	  );
+  send_to_char(buf, d->character);
+  send_to_char(cbuf2, d->character);
+  
+  OLC_MODE(d) = SDEDIT_MAIN_MENU;
+}
+
+void sdedit_save_internally(struct descriptor_data *d) {
+
+  struct spell_dam *spell = NULL;
+  spell = OLC_SD(d);
+
+  /*free old note first!!*/
+  
+  if (spell_dam_info[OLC_SD(d)->spell].note)
+    free(spell_dam_info[OLC_SD(d)->spell].note);
+  spell_dam_info[OLC_SD(d)->spell] = *spell;
+
+  /*copy over new sring*/
+
+  if (spell->note)
+    spell_dam_info[OLC_SD(d)->spell].note = strdup(spell->note);
+}
+
+
+/*------------------------------------------------------------------------*/
+
+void sdedit_save_to_disk(struct descriptor_data *d) 
+{
+  sh_int i;
+  FILE *ifptr;
+  
+  if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == NULL) {
+    
+    sprintf(buf2, "Error writting spell dam file\r\n");
+    mudlog(buf2, NRM, LVL_IMPL, TRUE);
+  } else {
+    
+    fprintf(ifptr, "Spell dam file:\n");
+    fprintf(ifptr, "spell, intern, npc_static, npc_no_dice, npc_no_face, pc_static, pc_no_face, "
+        "pc_no_dice, npc_reduce, use_bonus, bonus, lvl_mult\n");
+    fprintf(ifptr, "spell_dam\n");
+   
+    for (i = 1; i <= MAX_SPELLS;i++) {
+      fprintf(ifptr, "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd\n", 
+	      i, SD_INTERN_DAM(i), SD_NPC_STATIC(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i),
+	      SD_PC_STATIC(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_USE_BONUS(i),
+	      SD_BONUS(i), SD_LVL_MULT(i));
+      fprintf(ifptr, "%s~\n", (SD_NOTE(i) ? SD_NOTE(i) : ""));
+    }
+    fclose (ifptr);
+  } 
+}
+
+
+void sdedit_parse(struct descriptor_data *d, char *arg)
+{
+  int i = 0;
+  
+  switch (OLC_MODE(d)) {
+  case SDEDIT_MAIN_MENU:
+    switch (*arg) {
+    case 'q':
+    case 'Q':
+      if (OLC_VAL(d)) {
+	send_to_char("Do you wish to save this.?>", d->character); 
+	OLC_MODE(d) = SDEDIT_CONFIRM_SAVESTRING;
+      } else 
+	cleanup_olc(d, CLEANUP_ALL);
+      return;
+    case '1':
+      i++;
+      OLC_MODE(d) = SDEDIT_NPC_NO_DICE_ENTRY;
+      break;
+    case '2':
+      i++;
+      OLC_MODE(d) = SDEDIT_NPC_NO_FACE_ENTRY;
+      break;
+    case '3':
+      i++;
+      OLC_MODE(d) = SDEDIT_PC_NO_DICE_ENTRY;
+      break;
+    case '4':
+      i++;
+      OLC_MODE(d) = SDEDIT_PC_NO_FACE_ENTRY;
+      break;
+    case '5':
+      i++;
+      OLC_MODE(d) = SDEDIT_MAX_BONUS;
+      break;
+    case 'a':
+    case 'A':
+      i++;
+      OLC_MODE(d) = SDEDIT_NPC_STATIC;
+      break;
+    case 'b':
+    case 'B':
+      i++;
+      OLC_MODE(d) = SDEDIT_PC_STATIC;
+      break;
+    case 'e':
+    case 'E':
+      i++;
+      OLC_MODE(d) = SDEDIT_LVL_MULT_MENU;
+      break;    
+    case 'n':
+    case 'N':
+      i--;
+      OLC_MODE(d) = SDEDIT_NOTE;
+      break;
+    case 'i':
+    case 'I':
+      if (OLC_SD(d)->intern_dam)
+	OLC_SD(d)->intern_dam = FALSE;
+      else
+	OLC_SD(d)->intern_dam = TRUE;
+      OLC_MODE(d) = SDEDIT_MAIN_MENU;
+      OLC_VAL(d) = 1;
+      sdedit_disp_menu(d);
+      return;
+    case 'r':
+    case 'R':
+      i++;
+      OLC_MODE(d) = SDEDIT_NPC_REDUCE_FACTOR;
+      break;
+    case 't':
+    case 'T':
+      /*switch bonus on and off SDEDIT_USE_BONUS*/
+      if (OLC_SD(d)->use_bonus)
+	OLC_SD(d)->use_bonus = FALSE;
+      else
+	OLC_SD(d)->use_bonus = TRUE;
+      OLC_MODE(d) = SDEDIT_MAIN_MENU;
+      OLC_VAL(d) = 1;
+      sdedit_disp_menu(d);
+      return;
+    default:
+      send_to_char("Not a option sorry\r\n", d->character);
+      sdedit_disp_menu(d);
+      return;
+    }
+    if (i > 0) {
+      send_to_char("Enter new value\r\n>", d->character);
+      return;
+    }else if (i < 0) {
+      send_to_char("Enter Note Max 60 letters\r\n]", d->character);
+      return;
+    }
+    return;
+    
+  case SDEDIT_NPC_NO_DICE_ENTRY:
+    OLC_SD(d)->npc_no_dice = atoi(arg);
+    break;
+    
+  case SDEDIT_NPC_NO_FACE_ENTRY:
+    OLC_SD(d)->npc_no_face = atoi(arg);
+    break;
+    
+  case SDEDIT_PC_NO_DICE_ENTRY:
+    OLC_SD(d)->pc_no_dice = atoi(arg);  
+    break;
+    
+  case SDEDIT_LVL_MULT_MENU:
+    OLC_SD(d)->lvl_mult = atoi(arg);
+    break;
+    
+  case SDEDIT_NOTE:
+    if (OLC_SD(d)->note)
+      free(OLC_SD(d)->note);
+    if (*arg)
+      OLC_SD(d)->note = strdup(arg);  
+    else
+      OLC_SD(d)->note = NULL;
+    break;
+    
+  case SDEDIT_PC_STATIC:
+    OLC_SD(d)->pc_static = atoi(arg);
+    break;
+    
+  case SDEDIT_NPC_STATIC:
+    OLC_SD(d)->npc_static = atoi(arg);
+    break;
+    
+  case SDEDIT_PC_NO_FACE_ENTRY:
+    OLC_SD(d)->pc_no_face = atoi(arg);
+    break;
+    
+  case SDEDIT_NPC_REDUCE_FACTOR:
+    OLC_SD(d)->npc_reduce_factor = atoi(arg);
+    break;
+    
+  case SDEDIT_MAX_BONUS:
+    OLC_SD(d)->max_bonus = atoi(arg);
+    break;
+    
+    return;
+  case SDEDIT_CONFIRM_SAVESTRING:
+    switch (*arg) {
+    case 'y':
+    case 'Y':
+      sdedit_save_internally(d);
+      sdedit_save_to_disk(d); 
+      sprintf(buf, "OLC: %s edits spell damage.", GET_NAME(d->character));
+      mudlog(buf, CMP, LVL_IMPL, TRUE);
+      /* do not free the strings.. just the structure */
+      cleanup_olc(d, CLEANUP_ALL);
+      /*cleanup_olc(d, CLEANUP_STRUCTS);*/
+      send_to_char("Your spell dam changes have been saved to memory.\r\n", d->character);
+      break;
+    case 'n':
+    case 'N':
+      /*free everything up, including strings etc */
+      send_to_char("Changes to spell damage not saved\r\n", d->character);
+      cleanup_olc(d, CLEANUP_ALL);
+      break;
+    default:
+      send_to_char("Invalid choice!\r\nDo you wish to save this help internally? ", d->character);
+      break;
+    }
+    return;
+  }
+  OLC_VAL(d) = 1;
+  sdedit_disp_menu(d);
+  
+}
+
+
+/***************************************************************************
+ * $Log: sdedit.c,v $
+ * Revision 1.12  2008/04/03 02:02:05  myc
+ * Upgraded ansi color handling code.
+ *
+ * Revision 1.11  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.10  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.9  2008/01/29 16:51:12  myc
+ * Moving skill names to the skilldef struct.
+ *
+ * Revision 1.8  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.7  2007/02/14 03:54:53  myc
+ * Fixed so it outputs the right column names to file.
+ *
+ * Revision 1.6  2004/11/11 22:10:01  rsd
+ * Altered the sdedit menu buffer to be split into 2 buffers
+ * to send to the admin so that the compiler will stop crying
+ * about buffer lengths longer than 509.
+ *
+ * Revision 1.5  2002/09/13 02:52:15  jjl
+ * Updated comments to avoid pedantic warnings
+ *
+ * Revision 1.4  2000/03/22 06:49:23  rsd
+ * Changed some output text for the menu. Also moved a buncha {
+ * er {'s
+ *
+ * Revision 1.3  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ ***************************************************************************/
+@
+
+
+1.12
+log
+@Upgraded ansi color handling code.
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.11 2008/03/28 17:54:53 myc Exp myc $
+d51 1
+a51 1
+#include "spells.h"
+d367 3
+@
+
+
+1.11
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.10 2008/01/29 21:02:31 myc Exp myc $
+d84 4
+a87 4
+  char *nrm = CCNRM(d->character, C_NRM);
+  char *yel = CCYEL(d->character, C_NRM);
+  char *grn = CCGRN(d->character, C_NRM);
+  char *red = CCRED(d->character, C_NRM);
+d367 4
+@
+
+
+1.10
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.9 2008/01/29 16:51:12 myc Exp myc $
+d76 1
+a76 1
+    OLC_SD(d)->note = str_dup(spell->note);/*duplicate the dynamic part*/
+d159 1
+a159 1
+    spell_dam_info[OLC_SD(d)->spell].note = str_dup(spell->note);
+d308 1
+a308 1
+      OLC_SD(d)->note = str_dup(arg);  
+d367 4
+@
+
+
+1.9
+log
+@Moving skill names to the skilldef struct.
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.8 2008/01/26 14:26:31 jps Exp myc $
+a53 4
+/*external memory for it declared in db.c*/
+extern struct spell_dam spell_dam_info[MAX_SPELLS + 1];
+extern struct char_data *character_list;
+
+d367 3
+@
+
+
+1.8
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.7 2007/02/14 03:54:53 myc Exp jps $
+d106 1
+a106 1
+	  grn, (skillnames[spell->spell]), nrm, grn, spell->spell, nrm,
+d371 3
+@
+
+
+1.7
+log
+@Fixed so it outputs the right column names to file.
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.6 2004/11/11 22:10:01 rsd Exp myc $
+d52 1
+a56 1
+extern char *spells[];
+d106 1
+a106 1
+	  grn, (spells[spell->spell]), nrm, grn, spell->spell, nrm,
+d371 3
+@
+
+
+1.6
+log
+@Altered the sdedit menu buffer to be split into 2 buffers
+to send to the admin so that the compiler will stop crying
+about buffer lengths longer than 509.
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.5 2002/09/13 02:52:15 jjl Exp $
+d60 1
+a60 1
+void sddit_parse(struct descriptor_data *d, char *arg);
+d181 2
+a182 1
+    fprintf(ifptr, "spell, npc_no_dice, npc_no_face, no_face, no_dice, bonus, max_bonus\n");
+d189 1
+a189 1
+	      SD_BONUS(i), SD_LVL_MULT(i));            
+d371 5
+@
+
+
+1.5
+log
+@Updated comments to avoid pedantic warnings
+@
+text
+@d2 1
+a2 1
+ * $Id: sdedit.c,v 1.4 2000/03/22 06:49:23 rsd Exp $
+d86 1
+d105 15
+a119 1
+	  "         %sGENERAL TO BOTH:%s\r\n\n"
+d133 1
+a133 11
+	  "Enter choice : ", grn, (spells[spell->spell]), nrm, grn, spell->spell, nrm,
+	  red, nrm, yel, nrm, grn, 
+	  spell->npc_no_dice,grn,
+     /*2*/yel, nrm, grn, spell->npc_no_face, nrm, 
+     /*R*/yel, nrm, grn, spell->npc_reduce_factor , nrm,
+     /*A*/yel, nrm, grn, spell->npc_static , nrm,
+	  red, nrm,
+     /*3*/yel, nrm, grn, spell->pc_no_dice , nrm,
+     /*4*/yel, nrm, grn, spell->pc_no_face , nrm,
+     /*B*/yel, nrm, grn, spell->pc_static, nrm,
+	  red, nrm,
+d136 1
+a136 1
+	  /*Intern_dam*/yel, nrm, grn, (spell->intern_dam ? "TRUE" : "FALSE"), nrm,
+d144 1
+d370 3
+@
+
+
+1.4
+log
+@Changed some output text for the menu. Also moved a buncha {
+er {'s
+@
+text
+@d1 3
+a3 1
+// $Id: sdedit.c,v 1.3 1999/09/05 07:00:39 jimmy Exp $
+d362 10
+a371 4
+// $Log: sdedit.c,v $
+// Revision 1.3  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+@
+
+
+1.3
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+a66 2
+
+
+d70 1
+d96 1
+a96 1
+	  "%sR%s) NPC Reduce Factor(100 no affect): %s%d%s\r\n"
+d141 1
+a142 2
+void sdedit_save_internally(struct descriptor_data *d)
+{
+d145 1
+d147 1
+d151 1
+d153 1
+d166 16
+a181 19
+  if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == NULL)
+    {
+      sprintf(buf2, "Error writting spell dam file\r\n");
+      mudlog(buf2, NRM, LVL_IMPL, TRUE);
+    }
+  else
+    {
+      fprintf(ifptr, "Spell dam file:\n");
+      fprintf(ifptr, "spell, npc_no_dice, npc_no_face, no_face, no_dice, bonus, max_bonus\n");
+      fprintf(ifptr, "spell_dam\n");
+      for (i = 1; i <= MAX_SPELLS;i++)
+        {
+	  fprintf(ifptr, "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd\n", 
+		  i, SD_INTERN_DAM(i), SD_NPC_STATIC(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i),
+		  SD_PC_STATIC(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_USE_BONUS(i),
+		  SD_BONUS(i), SD_LVL_MULT(i));            
+	  fprintf(ifptr, "%s~\n", (SD_NOTE(i) ? SD_NOTE(i) : ""));
+        }
+      fclose (ifptr);
+d183 2
+a184 2
+  
+  
+a187 1
+
+d197 4
+a200 6
+      if (OLC_VAL(d)) 
+        {
+	  send_to_char("Do you wish to save this.?>", d->character); 
+	  OLC_MODE(d) = SDEDIT_CONFIRM_SAVESTRING;
+        } 
+      else 
+d274 7
+a280 9
+    if (i > 0)
+      {
+        send_to_char("Enter new value\r\n>", d->character);
+        return;
+      }else if (i < 0)
+	{
+	  send_to_char("Enter Note Max 60 letters\r\n]", d->character);
+	  return;
+	}
+d360 4
+a363 1
+// $Log$
+@
+
+
+1.2
+log
+@dos2unix
+indented file, cleaned up large comments at beginning
+Added standard comment hdeeader
+@
+text
+@d1 1
+d366 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 37
+a37 31
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*  sdedit.c                         *
+*    				                                          *
+*  		                                          *
+*    				                                          *
+**  For Hubis, By Proky.
+*This is pretty simple it just edits a array that is the size of the spell
+list. (spell_dam_info).  This array is then used in the magic.c system
+that affects damages etc etc.
+HERE IS A COPY OF THE STRUCTURE (in structs.h)
+struct spell_dam {
+    sh_int spell;
+    bool intnern_dam;
+    sh_int npc_no_dice;
+    sh_int npc_no_face;
+    sh_int pc_no_dice;
+    sh_int pc_no_face;
+    sh_int npc_reduce_factor;
+    bool use_bonus;
+    sh_int max_bonus;
+    sh_int npc_static;
+    sh_int pc_static;
+    sh_int lvl_mult;
+};
+NOTES:
+- Rewrites the file evry time save occures.
+- viewdam is the word to view the list online.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/*This is used to edit the online damages etc from spells.*/
+/*this array will be used in magic.c to decide the damages of many spells
+*/
+d70 10
+a79 10
+    struct spell_dam *spell;
+    if (GET_LEVEL(d->character) < LVL_HEAD_B)
+	return;
+    CREATE(spell, struct spell_dam, 1);
+    *spell = spell_dam_info[real_num];
+        OLC_SD(d) = spell;
+    OLC_VAL(d) = 0; 
+    if (spell->note)
+        OLC_SD(d)->note = str_dup(spell->note);/*duplicate the dynamic part*/
+    sdedit_disp_menu(d);
+d90 1
+a90 1
+
+d94 2
+a95 2
+      "%s1%s) Number of dice to be used:        %s%d%s\r\n"
+      "%s2%s) Number on the face of the dice:   %s%d%s\r\n"
+d97 4
+a100 4
+      "%sA%s) NPC Static number                 %s%d%s\r\n"
+      "         %sDAMAGES TO PC:%s\r\n\n"
+      "%s3%s) Number of dice to be used:        %s%d%s\r\n"
+      "%s4%s) Number on the face of the dice:   %s%d%s\r\n"
+d102 2
+a103 2
+      "         %sGENERAL TO BOTH:%s\r\n\n"
+      "%s5%s) Max Bonus possible:               %s%d%s\r\n"
+d105 10
+a114 4
+      "%sI%s) Toggle Internal Damage On/Off:    %s%s%s\r\n"
+     "%sE%s) LVL Multiplie		%s%d%s\r\n" 
+     "%sN%s) Edit Spell Note.\r\n"                  
+      "%sQ%s) Quit\r\n"
+d116 22
+a137 28
+      "%sUSED BY PC to NPC%s: - %sNPC + MIN(Max_bonus, level/2) + NPC_STATIC%s\r\n"
+      "%sUSED BY NPC to PC%s: - %sNPC + MIN(Max_bonus, level/2) + NPC_STATIC%s\r\n"
+      "%sUSED BY PC to PC %s: - %sPC  + MIN(Max_bonus, level/4) + PC_STATIC%s\r\n\n"
+      "%sSpell Note:%s\r\n"
+      "%s%s%s\r\n"
+      "\r\n"
+      "Enter choice : ", grn, (spells[spell->spell]), nrm, grn, spell->spell, nrm,
+      red, nrm, yel, nrm, grn, 
+      spell->npc_no_dice,grn,
+      /*2*/yel, nrm, grn, spell->npc_no_face, nrm, 
+      /*R*/yel, nrm, grn, spell->npc_reduce_factor , nrm,
+      /*A*/yel, nrm, grn, spell->npc_static , nrm,
+      red, nrm,
+      /*3*/yel, nrm, grn, spell->pc_no_dice , nrm,
+      /*4*/yel, nrm, grn, spell->pc_no_face , nrm,
+      /*B*/yel, nrm, grn, spell->pc_static, nrm,
+      red, nrm,
+      /*5*/yel, nrm, grn, spell->max_bonus , nrm,
+      /*Bonus*/yel, nrm, grn, (spell->use_bonus ? "TRUE" : "FALSE"), nrm,
+      /*Intern_dam*/yel, nrm, grn, (spell->intern_dam ? "TRUE" : "FALSE"), nrm,
+      /*E*/yel,nrm,grn,spell->lvl_mult, nrm,
+	yel, nrm,
+      yel, nrm, 
+      yel, nrm, grn, nrm, yel, nrm, grn, nrm, yel, nrm, grn, nrm
+      , red, nrm, grn, (spell->note ? spell->note : ""), nrm
+      );
+    send_to_char(buf, d->character);
+
+d148 1
+a148 1
+      free(spell_dam_info[OLC_SD(d)->spell].note);
+d152 1
+a152 1
+      spell_dam_info[OLC_SD(d)->spell].note = str_dup(spell->note);
+d160 4
+a163 4
+sh_int i;
+FILE *ifptr;
+
+    if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == NULL)
+d165 2
+a166 2
+        sprintf(buf2, "Error writting spell dam file\r\n");
+        mudlog(buf2, NRM, LVL_IMPL, TRUE);
+d168 1
+a168 1
+    else
+d170 4
+a173 4
+        fprintf(ifptr, "Spell dam file:\n");
+        fprintf(ifptr, "spell, npc_no_dice, npc_no_face, no_face, no_dice, bonus, max_bonus\n");
+        fprintf(ifptr, "spell_dam\n");
+        for (i = 1; i <= MAX_SPELLS;i++)
+d175 5
+a179 5
+     fprintf(ifptr, "%hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd %hd\n", 
+            i, SD_INTERN_DAM(i), SD_NPC_STATIC(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i),
+            SD_PC_STATIC(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_USE_BONUS(i),
+            SD_BONUS(i), SD_LVL_MULT(i));            
+      fprintf(ifptr, "%s~\n", (SD_NOTE(i) ? SD_NOTE(i) : ""));
+d181 1
+a181 1
+        fclose (ifptr);
+d183 2
+a184 2
+
+
+d192 1
+a192 1
+
+d198 1
+a198 1
+        if (OLC_VAL(d)) 
+d200 2
+a201 2
+            send_to_char("Do you wish to save this.?>", d->character); 
+            OLC_MODE(d) = SDEDIT_CONFIRM_SAVESTRING;
+d203 3
+a205 3
+        else 
+            cleanup_olc(d, CLEANUP_ALL);
+        return;
+d207 3
+a209 3
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_NO_DICE_ENTRY;
+        break;
+d211 7
+a217 7
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_NO_FACE_ENTRY;
+        break;
+     case '3':
+        i++;
+        OLC_MODE(d) = SDEDIT_PC_NO_DICE_ENTRY;
+        break;
+d219 3
+a221 3
+        i++;
+        OLC_MODE(d) = SDEDIT_PC_NO_FACE_ENTRY;
+        break;
+d223 3
+a225 3
+        i++;
+        OLC_MODE(d) = SDEDIT_MAX_BONUS;
+        break;
+d228 3
+a230 3
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_STATIC;
+        break;
+d233 3
+a235 3
+        i++;
+        OLC_MODE(d) = SDEDIT_PC_STATIC;
+        break;
+d238 4
+a241 4
+i++;
+OLC_MODE(d) = SDEDIT_LVL_MULT_MENU;
+break;    
+case 'n':
+d243 2
+a244 2
+        i--;
+        OLC_MODE(d) = SDEDIT_NOTE;
+d248 8
+a255 8
+        if (OLC_SD(d)->intern_dam)
+            OLC_SD(d)->intern_dam = FALSE;
+        else
+            OLC_SD(d)->intern_dam = TRUE;
+        OLC_MODE(d) = SDEDIT_MAIN_MENU;
+        OLC_VAL(d) = 1;
+        sdedit_disp_menu(d);
+        return;
+d258 3
+a260 3
+        i++;
+        OLC_MODE(d) = SDEDIT_NPC_REDUCE_FACTOR;
+        break;
+d263 9
+a271 9
+        /*switch bonus on and off SDEDIT_USE_BONUS*/
+        if (OLC_SD(d)->use_bonus)
+            OLC_SD(d)->use_bonus = FALSE;
+        else
+            OLC_SD(d)->use_bonus = TRUE;
+        OLC_MODE(d) = SDEDIT_MAIN_MENU;
+        OLC_VAL(d) = 1;
+        sdedit_disp_menu(d);
+        return;
+d278 1
+a278 1
+    {
+d281 5
+a285 5
+    }else if (i < 0)
+    {
+        send_to_char("Enter Note Max 60 letters\r\n]", d->character);
+        return;
+    }
+d287 7
+a293 3
+
+    case SDEDIT_NPC_NO_DICE_ENTRY:
+        OLC_SD(d)->npc_no_dice = atoi(arg);
+d296 2
+a297 2
+    case SDEDIT_NPC_NO_FACE_ENTRY:
+        OLC_SD(d)->npc_no_face = atoi(arg);
+d299 3
+a301 3
+
+    case SDEDIT_PC_NO_DICE_ENTRY:
+        OLC_SD(d)->pc_no_dice = atoi(arg);  
+d304 7
+a310 2
+    case SDEDIT_LVL_MULT_MENU:
+       OLC_SD(d)->lvl_mult = atoi(arg);
+d312 3
+a314 8
+
+    case SDEDIT_NOTE:
+        if (OLC_SD(d)->note)
+            free(OLC_SD(d)->note);
+        if (*arg)
+            OLC_SD(d)->note = str_dup(arg);  
+        else
+            OLC_SD(d)->note = NULL;
+d316 3
+a318 7
+
+    case SDEDIT_PC_STATIC:
+        OLC_SD(d)->pc_static = atoi(arg);
+break;
+
+    case SDEDIT_NPC_STATIC:
+        OLC_SD(d)->npc_static = atoi(arg);
+d320 3
+a322 3
+
+    case SDEDIT_PC_NO_FACE_ENTRY:
+        OLC_SD(d)->pc_no_face = atoi(arg);
+d325 2
+a326 2
+    case SDEDIT_NPC_REDUCE_FACTOR:
+        OLC_SD(d)->npc_reduce_factor = atoi(arg);
+d328 3
+a330 3
+
+    case SDEDIT_MAX_BONUS:
+            OLC_SD(d)->max_bonus = atoi(arg);
+d332 4
+a335 4
+
+return;
+    case SDEDIT_CONFIRM_SAVESTRING:
+     switch (*arg) {
+d349 1
+a349 1
+       /*free everything up, including strings etc */
+d361 1
+a361 1
+
+@

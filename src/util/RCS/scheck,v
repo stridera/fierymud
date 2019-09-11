@@ -1,0 +1,27 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	99.01.29.22.19.11;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@cscheck
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@scheck (the syntax checker) no longer exists as an independent utility.
+If you want to check the syntax of the world files, just use the -c
+switch on the main server.
+@

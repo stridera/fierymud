@@ -1,0 +1,2058 @@
+head	1.20;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.20
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.09.01.23.47.49;	author jps;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.04.07.03.02.54;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.03.10.18.01.17;	author myc;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.02.09.21.07.50;	author myc;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.01.13.03.19.53;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.01.12.19.08.14;	author myc;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.01.03.12.44.03;	author jps;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2007.04.19.00.53.54;	author jps;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2006.11.08.07.55.17;	author jps;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2002.09.30.01.11.34;	author jjl;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2000.11.25.02.33.15;	author rsd;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.04.18.18.16;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.32;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/*File: Warrior.c*
+*This file was created by Proky to control Warrior type mobs *
+*It is closly related to ai.h, and ai_util.c                *
+*/
+
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "spells.h"
+#include "ai.h"
+
+/*external memory structores*/
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+extern struct room_data *world;
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+extern int mage_subclasses[MAGE_SUBCLASSES];
+/*do commands*/
+ACMD(do_get);
+ACMD(do_flee);
+ACMD(do_bash);
+ACMD(do_kick);
+ACMD(do_cast);
+ACMD(do_stand);
+ACMD(do_circle);
+ACMD(do_backstab);
+ACMD(do_sweep);
+ACMD(do_roar);
+ACMD(do_breath);
+
+/*external functions*/
+
+void sel_warrior_mob_spells(struct char_data * ch, struct char_data * victim)
+{
+    int cmd_kick, cmd;
+    int cmd_bash;
+    int a;
+	int i;
+    struct char_data *tch;
+    if (!(victim))
+    {
+        mudlog("No victim in warrior update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+	if (IS_AFFECTED(ch, AFF_BLIND))
+		return;
+	if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+  (!affected_by_spell (ch, SPELL_SMOKE)))
+return;
+// This is temp fix for merc soon they have thier own file
+if(GET_CLASS(ch) == MCLASS_MERCENARY) {
+if (GET_MSKILL(ch, SKILL_BACKSTAB))
+        if (!(FIGHTING(ch)))
+        {/*not fighting wack him why not bs*/
+            cmd = find_command("backstab");
+            do_backstab(ch, GET_NAME(victim), cmd, 0);
+            return;
+        }
+}
+    a = number(1, 5);
+    /*if casting in room wack him first*/
+    if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+		if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+		for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        {
+		if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch) &&
+((!IS_AFFECTED (ch, AFF_BLIND)) || (!affected_by_spell (ch, SPELL_BLINDNESS))))
+                if (PLR_FLAGGED(tch, PLR_CASTING))
+                {
+                    cmd_bash = find_command("bash");
+                    do_bash(ch, tch->player.name, cmd_bash, 0);
+                    return;
+                }
+		}
+    }
+				/*else randomly do these*/
+
+	for (i=0;i<= MAGE_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == mage_subclasses[i])
+		{
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+	}
+	for (i=0;i<= CLERIC_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == cleric_subclasses[i])
+		{
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+	}
+
+
+    if (a <= 4)
+    {
+		if (GET_MSKILL(ch, SKILL_KICK))
+     if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1))
+		{
+            cmd_kick = find_command("kick");
+	        do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+	        return;
+        }
+	}
+    else
+    {
+        if (GET_MSKILL(ch, SKILL_BASH) &&
+((!IS_AFFECTED (ch, AFF_BLIND)) || (!affected_by_spell (ch, SPELL_BLINDNESS))))
+            if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == -2))
+	            {
+		            cmd_bash = find_command("bash");
+	                do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+	                return;
+                }
+
+
+	}
+}
+
+
+/*888888888888888888888888888
+8   Dragon warriors -Banyal 8
+8                           8
+888888888888888888888888888*/
+
+
+
+void
+dragon_sel_warrior_mob_spells(struct char_data * ch, struct char_data * victim)
+{
+    int cmd_kick;
+    int cmd_bash, cmd_breath, cmd_sweep, cmd_roar;
+    int a;
+	int i, j;
+    struct char_data *tch;
+    if (!(victim))
+    {
+        mudlog("No victim in dragon-warrior update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+	if (IS_AFFECTED(ch, AFF_BLIND))
+		return;
+	if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+  (!affected_by_spell (ch, SPELL_SMOKE)))
+return;
+    a = number(1, 5);
+    /*if casting in room wack him first*/
+    if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+		if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+		for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        {
+			if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch))
+                if (PLR_FLAGGED(tch, PLR_CASTING))
+                {
+                    cmd_bash = find_command("bash");
+                    do_bash(ch, tch->player.name, cmd_bash, 0);
+                    return;
+                }
+		}
+    }
+
+// If not kick bash roar breath sweep
+
+	for (i=0;i<= MAGE_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == mage_subclasses[i])
+		{
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+	}
+	for (i=0;i<= CLERIC_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == cleric_subclasses[i])
+		{
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+	}
+
+
+    if (a <= 4)
+    {
+        /*Lets think here we are dragons you know*/
+// Well if the two small to bash or kick lets always use the dragon's other
+// skills   -Banyal
+j = number (1, 4);
+if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+     ((GET_SIZE(victim) - GET_SIZE(ch)) == -3))
+  if (j == 1)
+    j += 1;
+     if (j == 1) {
+		if (GET_MSKILL(ch, SKILL_KICK))
+     if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1))
+		{
+            cmd_kick = find_command("kick");
+	        do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+	        return;
+        }
+        } else if (j == 2) { // breath
+	if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+       } else if (j == 3) { // sweep
+       if (GET_MSKILL(ch, SKILL_SWEEP)) {
+        cmd_sweep = find_command("sweep");
+        do_sweep(ch, "", cmd_sweep, 0);
+        return;
+        } return;
+	} else if (j == 4) { // roar
+       if (GET_MSKILL(ch, SKILL_ROAR)) {
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;
+	}
+      }
+    else
+    {
+  j = number(1, 5);
+            if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == -3))
+                if(j == 1)
+                  j++;
+      if(j == 1) {
+      if (GET_MSKILL(ch, SKILL_BASH)) {
+
+		            cmd_bash = find_command("bash");
+	                do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+	                return;
+                }
+}
+
+else if (j == 2) { // breath
+        if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+       } else if (j == 3) { // sweep
+       if (GET_MSKILL(ch, SKILL_SWEEP)) {
+        cmd_sweep = find_command("sweep");
+        do_sweep(ch, "", cmd_sweep, 0);
+        return;
+        } return;
+        } else if (j == 4) { // roar
+       if (GET_MSKILL(ch, SKILL_ROAR)) {
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;
+	}
+}
+}
+
+
+/*888888888888888888888888888
+8   Demon warriors -Banyal 8
+8                           8
+888888888888888888888888888*/
+
+
+
+void
+demon_sel_warrior_mob_spells(struct char_data * ch, struct char_data * victim)
+{
+    int cmd_kick;
+    int cmd_bash, cmd_breath, cmd_roar;
+    int a;
+	int i, j;
+    struct char_data *tch;
+    if (!(victim))
+    {
+        mudlog("No victim in dragon-warrior update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+	if (IS_AFFECTED(ch, AFF_BLIND))
+		return;
+	if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+    (!affected_by_spell (ch, SPELL_SMOKE)))
+return;
+    a = number(1, 5);
+    /*if casting in room wack him first*/
+    if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+		if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+		for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        {
+			if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch))
+                if (PLR_FLAGGED(tch, PLR_CASTING))
+                {
+                    cmd_bash = find_command("bash");
+                    do_bash(ch, tch->player.name, cmd_bash, 0);
+                    return;
+                }
+		}
+    }
+
+// If not kick bash roar breath
+
+	for (i=0;i<= MAGE_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == mage_subclasses[i])
+		{
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+	}
+	for (i=0;i<= CLERIC_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == cleric_subclasses[i])
+		{
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+	}
+
+
+    if (a <= 4)
+    {
+        /*Lets think here we are dragons you know*/
+// Well if the two small to bash or kick lets always use the dragon's other
+// skills   -Banyal
+j = number (1, 3);
+if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) ||
+     ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) ||
+     ((GET_SIZE(victim) - GET_SIZE(ch)) == -2))
+  if (j == 1)
+    j += 1;
+     if (j == 1) {
+		if (GET_MSKILL(ch, SKILL_KICK))
+     if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1))
+		{
+            cmd_kick = find_command("kick");
+	        do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+	        return;
+        }
+        } else if (j == 2) { // breath
+	if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+	} else if (j == 3) { // roar
+       if (GET_MSKILL(ch, SKILL_ROAR)) {
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;
+	}
+      }
+    else
+    {
+  j = number(1, 3);
+            if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == -3))
+                if(j == 1)
+                  j++;
+      if(j == 1) {
+      if (GET_MSKILL(ch, SKILL_BASH)) {
+
+                            cmd_bash = find_command("bash");
+                        do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+                        return;
+                }
+                }
+else if (j == 2) { // breath
+        if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+        } else if (j == 3) { // roar
+       if (GET_MSKILL(ch, SKILL_ROAR)) {
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;
+        }
+
+
+	}
+}
+@
+
+
+1.20
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@/***************************************************************************
+ * $Id: warrior.c,v 1.19 2008/09/01 23:47:49 jps Exp jps $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: warrior.c                                      Part of FieryMUD *
+ *  Usage: controls Warrior type mobs, it is closly related to ai.h,       *
+ *         and ai_util.c                                                   *
+ *     By: Proky of HubisMUD                                               *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on HubisMUD Copyright (C) 1997, 1998.                *
+ *  HubisMUD is based on DikuMUD, Copyright (C) 1990, 1991.                *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "casting.h"
+#include "ai.h"
+#include "skills.h"
+#include "math.h"
+#include "events.h"
+#include "movement.h"
+
+/* Commands */
+ACMD(do_backstab);
+ACMD(do_bash);
+ACMD(do_hitall);
+ACMD(do_kick);
+ACMD(do_rescue);
+
+/* External functions */
+bool has_piercing_weapon(struct char_data *ch);
+
+/*
+ * warrior_ai_action
+ *
+ * Basic warrior mob AI.  Returns TRUE if an action is taken, FALSE
+ * otherwise.
+ */
+bool warrior_ai_action(struct char_data * ch, struct char_data * victim)
+{
+  int roll, i;
+  struct char_data *tch;
+
+  if (!victim) {
+    mudlog("No victim in warrior AI action.", NRM, LVL_GOD, FALSE);
+    return FALSE;
+  }
+
+  /*
+   * BASH
+   *
+   * If someone is
+   *   + in the room,
+   *   + grouped with the tank,
+   *   + casting
+   *   + a player
+   *   + visible to the mob
+   *   + within bashing size
+   * then attempt to bash them first.
+   */
+  if (!EFF_FLAGGED(ch, EFF_BLIND) && GET_SKILL(ch, SKILL_BASH) &&
+      FIGHTING(ch) && GET_EQ(ch, WEAR_SHIELD) &&
+      (number(25, 60) - GET_SKILL(ch, SKILL_BASH)) <= 0)
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
+      i = GET_SIZE(ch) - GET_SIZE(tch);
+      if (is_grouped(FIGHTING(ch), tch) && !IS_NPC(tch) &&
+             CAN_SEE(ch, tch) && CASTING(tch) && i <= 2 && i >= -1) {
+        do_bash(ch, GET_NAME(tch), 0, 0);
+        return TRUE;
+      }
+    }
+
+  /*
+   * BREATHE / SWEEP / ROAR
+   *
+   * If the mob is a dragon/demon try to use dragon/demon skills.
+   * There is a 15% chance of something occuring in this function,
+   * if the mobile has the skills.
+   */
+  if (dragonlike_attack(ch))
+    return TRUE;
+
+  /*
+   * KICK / BASH / HITALL / BODYSLAM / BACKSTAB (for mercs) / RESCUE
+   *
+   * Random chance to bash and kick proportional to level.
+   * Increased chance to bash mages and clerics.
+   */
+  roll = number(0, 101);
+  if (roll < GET_LEVEL(ch)) {
+
+    roll *= 100 / GET_LEVEL(ch);
+    i = GET_SIZE(ch) - GET_SIZE(victim);
+    if (CAN_SEE(ch, victim) && roll < GET_LEVEL(ch) &&
+        GET_SKILL(ch, SKILL_BODYSLAM) &&
+        !FIGHTING(ch) && GET_POS(victim) >= POS_STANDING) {
+      do_bash(ch, GET_NAME(victim), 0, SCMD_BODYSLAM);
+      return TRUE;
+    }
+    if (roll > 75 && GET_SKILL(ch, SKILL_HITALL) && FIGHTING(ch)) {
+      do_hitall(ch, "", 0, SCMD_HITALL);
+      return TRUE;
+    }
+    /*
+     * BACKSTAB
+     *
+     * Mercenaries share a lot of skills with warriors, but they have
+     * backstab too.  Attempt to start combat using backstab.
+     */
+    if (CAN_SEE(ch, victim) && roll > 95 && GET_SKILL(ch, SKILL_BACKSTAB) &&
+        has_piercing_weapon(ch) && !is_tanking(ch)) {
+      do_backstab(ch, GET_NAME(victim), 0, 0);
+      return TRUE;
+    }
+    /*
+     * To attempt a bash we need a) skill in bash, b) a shield, c)
+     * opponent standing, d) realistic size, and e) opponent not !bash.
+     * If the opponent is a caster, increased chance to attempt a bash.
+     * Higher level mobs get a better chance of attempting a bash.
+     * (A level 99 mob has about a 50% chance of attempting to bash a
+     * warrior opponent.)
+     */
+    if (CAN_SEE(ch, victim) && roll > (80 - GET_SKILL(ch, SKILL_BASH) / 2 -
+        (classes[(int) GET_CLASS(victim)].magical ? 20 : 0)) &&
+        GET_SKILL(ch, SKILL_BASH) && GET_EQ(ch, WEAR_SHIELD) &&
+        GET_POS(victim) >= POS_STANDING && i <= 2 && i > -1 &&
+        !MOB_FLAGGED(victim, MOB_NOBASH)) {
+      do_bash(ch, GET_NAME(victim), 0, SCMD_BASH);
+      return TRUE;
+    }
+/* This would probably not work very well, because the GET_NAME refers to
+   a mob, and we don't know if it's 1.guard or 2.guard etc.  Skills need
+   to be re-thought-out for use with mobs.  Maybe this is v3 territory.
+    else if (GET_SKILL(ch, SKILL_RESCUE) &&
+            FIGHTING(ch) && FIGHTING(victim) &&
+            roll > 65 &&
+            (tch = FIGHTING(victim)) != ch &&
+            GET_LEVEL(tch) < GET_LEVEL(ch) + 5 &&
+            GET_HIT(tch) < GET_MAX_HIT(tch) / 4 &&
+            GET_HIT(ch) > GET_MAX_HIT(ch) / 2 &&
+            GET_HIT(ch) > GET_HIT(tch)) {
+      do_rescue(ch, GET_NAME(tch), 0, 0);
+      return TRUE;
+    }
+*/
+    if (GET_SKILL(ch, SKILL_KICK)) {
+      do_kick(ch, GET_NAME(victim), 0, 0);
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/***************************************************************************
+ * $Log: warrior.c,v $
+ * Revision 1.19  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.18  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.17  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.16  2008/03/10 18:01:17  myc
+ * Bash, hitall, and bodyslam now use subcommands.
+ *
+ * Revision 1.15  2008/02/09 21:07:50  myc
+ * Need access to event flags to check casting status.
+ *
+ * Revision 1.14  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.13  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.12  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.11  2008/01/13 03:19:53  myc
+ * Fixed formatting a bit and fixed the check for mercenary's backstab.
+ *
+ * Revision 1.10  2008/01/12 19:08:14  myc
+ * Rerowte a lot of mob AI functionality.
+ *
+ * Revision 1.9  2008/01/03 12:44:03  jps
+ * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+ * to CLASS_SORCERER.
+ *
+ * Revision 1.8  2007/04/19 00:53:54  jps
+ * Create macros for stopping spellcasting.
+ *
+ * Revision 1.7  2006/11/08 07:55:17  jps
+ * Change verbal instances of "breath" to "breathe"
+ *
+ * Revision 1.6  2002/09/30 01:11:34  jjl
+ * Put in checks so guard actually does something.
+ *
+ * Revision 1.5  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.4  2000/11/25 02:33:15  rsd
+ * Altered comment header and added back rlog messages
+ * from prior to the addition of the $log$ string.
+ *
+ * Revision 1.3  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.2  1999/02/04 18:18:16  mud
+ * indented file
+ * added standard comment header
+ * dos2unix
+ *
+ * Revision 1.1  1999/01/29 01:23:32  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.19
+log
+@Using movement.h/c for movement functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.18 2008/04/07 03:02:54 jps Exp jps $
+d25 1
+a25 1
+#include "spells.h"
+d166 3
+@
+
+
+1.18
+log
+@Changed the POS/STANCE system so that POS reflects the position
+of your body, while STANCE describes your condition or activity.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.17 2008/03/28 17:54:53 myc Exp jps $
+d30 1
+a39 1
+bool is_grouped(struct char_data *ch, struct char_data *tch);
+d166 4
+@
+
+
+1.17
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.16 2008/03/10 18:01:17 myc Exp myc $
+d45 1
+a45 1
+ * Basic warrior mob AI.  Returns TRUE if an action is taken, FALSE 
+d70 1
+a70 1
+  if (!EFF_FLAGGED(ch, EFF_BLIND) && GET_SKILL(ch, SKILL_BASH) && 
+d103 1
+a103 1
+    if (CAN_SEE(ch, victim) && roll < GET_LEVEL(ch) && 
+d105 1
+a105 1
+        !FIGHTING(ch) && GET_POS(victim) >= POS_FIGHTING) {
+d125 1
+a125 1
+     * To attempt a bash we need a) skill in bash, b) a shield, c) 
+d129 1
+a129 1
+     * (A level 99 mob has about a 50% chance of attempting to bash a 
+d132 4
+a135 4
+    if (CAN_SEE(ch, victim) && roll > (80 - GET_SKILL(ch, SKILL_BASH) / 2 - 
+        (classes[(int) GET_CLASS(victim)].magical ? 20 : 0)) && 
+        GET_SKILL(ch, SKILL_BASH) && GET_EQ(ch, WEAR_SHIELD) && 
+        GET_POS(victim) >= POS_FIGHTING && i <= 2 && i > -1 &&
+d140 2
+a141 2
+/* This would probably not work very well, because the GET_NAME refers to 
+   a mob, and we don't know if it's 1.guard or 2.guard etc.  Skills need 
+d166 4
+@
+
+
+1.16
+log
+@Bash, hitall, and bodyslam now use subcommands.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.15 2008/02/09 21:07:50 myc Exp myc $
+d70 1
+a70 1
+  if (!AFF_FLAGGED(ch, AFF_BLIND) && GET_SKILL(ch, SKILL_BASH) && 
+d166 3
+@
+
+
+1.15
+log
+@Need access to event flags to check casting status.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.14 2008/02/09 04:27:47 myc Exp myc $
+a33 1
+ACMD(do_bodyslam);
+d106 1
+a106 1
+      do_bodyslam(ch, GET_NAME(victim), 0, 0);
+d110 1
+a110 1
+      do_hitall(ch, "", 0, 0);
+d137 1
+a137 1
+      do_bash(ch, GET_NAME(victim), 0, 0);
+d166 3
+@
+
+
+1.14
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.13 2008/01/29 21:02:31 myc Exp myc $
+d29 1
+d167 3
+@
+
+
+1.13
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.12 2008/01/26 14:26:31 jps Exp myc $
+d28 1
+d166 4
+@
+
+
+1.12
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.11 2008/01/13 03:19:53 myc Exp jps $
+a28 3
+/*external memory structores*/
+extern struct room_data *world;
+
+d165 3
+@
+
+
+1.11
+log
+@Fixed formatting a bit and fixed the check for mercenary's backstab.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.10 2008/01/12 19:08:14 myc Exp myc $
+d27 1
+d168 3
+@
+
+
+1.10
+log
+@Rerowte a lot of mob AI functionality.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.9 2008/01/03 12:44:03 jps Exp myc $
+d32 1
+d35 1
+a36 2
+ACMD(do_backstab);
+ACMD(do_hitall);
+a39 1
+struct char_data* check_guard(struct char_data *ch, struct char_data *victim, int gag_output);
+d41 1
+d71 3
+a73 3
+  if (!AFF_FLAGGED(ch, AFF_BLIND) && GET_MSKILL(ch, SKILL_BASH) && 
+          FIGHTING(ch) && GET_EQ(ch, WEAR_SHIELD) &&
+          (number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+d78 1
+a78 1
+        do_bash(ch, GET_NAME(check_guard(ch, tch, FALSE)), 0, 0);
+d105 2
+a106 2
+            GET_MSKILL(ch, SKILL_BODYSLAM) &&
+            !FIGHTING(ch) && GET_POS(victim) >= POS_FIGHTING) {
+d110 1
+a110 1
+    else if (roll > 75 && GET_MSKILL(ch, SKILL_HITALL) && FIGHTING(ch)) {
+d120 2
+a121 3
+    else if (CAN_SEE(ch, victim) && roll > 95 && GET_MSKILL(ch, SKILL_BACKSTAB)) {
+      if (!FIGHTING(ch))
+        victim = check_guard(ch, victim, FALSE);
+d133 5
+a137 6
+    else if (CAN_SEE(ch, victim) &&
+            roll > (80 - GET_MSKILL(ch, SKILL_BASH) / 2 - 
+            (classes[(int) GET_CLASS(victim)].magical ? 20 : 0)) && 
+            GET_MSKILL(ch, SKILL_BASH) && GET_EQ(ch, WEAR_SHIELD) && 
+            GET_POS(victim) >= POS_FIGHTING && i <= 2 && i > -1 &&
+            !MOB_FLAGGED(victim, MOB_NOBASH)) {
+d144 1
+a144 1
+    else if (GET_MSKILL(ch, SKILL_RESCUE) &&
+d156 1
+a156 2
+    else if (GET_MSKILL(ch, SKILL_KICK)) {
+      victim = check_guard(ch, victim, FALSE);
+d167 3
+@
+
+
+1.9
+log
+@Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+to CLASS_SORCERER.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.8 2007/04/19 00:53:54 jps Exp jps $
+a28 3
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
+extern struct index_data *mob_index;
+d30 2
+a31 7
+extern struct str_app_type str_app[];
+extern struct char_data *combat_list;
+extern struct char_data *next_combat_list;
+
+/*do commands*/
+ACMD(do_get);
+ACMD(do_flee);
+d33 1
+a34 3
+ACMD(do_cast);
+ACMD(do_stand);
+ACMD(do_circle);
+d36 2
+a37 3
+ACMD(do_sweep);
+ACMD(do_roar);
+ACMD(do_breathe);
+d39 1
+a39 1
+/*external functions*/
+d41 1
+d43 7
+a49 3
+
+
+void sel_warrior_mob_spells(struct char_data * ch, struct char_data * victim)
+d51 1
+a51 3
+  int cmd_kick, cmd;
+  int cmd_bash;
+  int a;
+a52 79
+  if (!(victim))
+    {
+      mudlog("No victim in warrior update.", NRM, LVL_GOD, FALSE);
+      return;
+    }
+  if (IS_AFFECTED(ch, AFF_BLIND))
+    return;
+  if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+      (!affected_by_spell (ch, SPELL_SMOKE)))
+    return;
+   /*  This is temp fix for merc soon they have thier own file */
+  if(GET_CLASS(ch) == MCLASS_MERCENARY) {
+    if (GET_MSKILL(ch, SKILL_BACKSTAB))
+      if (!(FIGHTING(ch)))
+        {/*not fighting wack him why not bs*/
+	  cmd = find_command("backstab");
+	  do_backstab(ch, GET_NAME( check_guard(ch,victim,FALSE)), cmd, 0);
+	  return;
+        }     
+  }
+  a = number(1, 5);
+  /*if casting in room wack him first*/
+  if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+      if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+	for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+	  {
+	    if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch) &&
+		((!IS_AFFECTED (ch, AFF_BLIND)) || (!affected_by_spell (ch, SPELL_BLINDNESS))))
+          if (CASTING(tch)) {
+		  cmd_bash = find_command("bash");
+		  do_bash(ch, GET_NAME(check_guard(ch, tch, FALSE)),
+			  cmd_bash, 0);
+		  return;
+                }
+	  }
+    }
+      /*else randomly do these*/
+  
+  if (classes[(int)GET_CLASS(victim)].magical) {
+    a++;
+    if (GET_LEVEL(ch) >= 50)
+      a++;
+  }
+
+  if (a <= 4) 
+    {
+      if (GET_MSKILL(ch, SKILL_KICK))
+	if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1)) 
+	  {
+            cmd_kick = find_command("kick");
+	    do_kick(ch, GET_NAME(check_guard(ch,victim,FALSE)),
+		    cmd_kick, 0);/*don'tbash*/
+	    return;
+	  }      
+    }
+  else
+    {
+      if (GET_MSKILL(ch, SKILL_BASH) &&
+	  ((!IS_AFFECTED (ch, AFF_BLIND)) || (!affected_by_spell (ch, SPELL_BLINDNESS))))
+	if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) ||
+	     ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) ||
+	     ((GET_SIZE(victim) - GET_SIZE(ch)) == -2)) 
+	  {
+	    cmd_bash = find_command("bash");
+	    do_bash(ch, GET_NAME(check_guard(ch,victim,FALSE)), 
+		    cmd_bash, 0);/*bash*/
+	    return;
+	  } 
+      
+      
+    }
+}
+
+
+/*888888888888888888888888888
+  8   Dragon warriors -Banyal 8	
+  8                           8
+  888888888888888888888888888*/
+d54 3
+a56 42
+
+
+void 
+dragon_sel_warrior_mob_spells(struct char_data * ch, struct char_data * victim)
+{
+  int cmd_kick;
+  int cmd_bash, cmd_breathe, cmd_sweep, cmd_roar;
+  int a;
+  int j;
+  struct char_data *tch;
+  if (!(victim))
+    {
+      mudlog("No victim in dragon-warrior update.", NRM, LVL_GOD, FALSE);
+      return;
+    }
+  if (IS_AFFECTED(ch, AFF_BLIND))
+    return;
+  if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+      (!affected_by_spell (ch, SPELL_SMOKE)))
+    return;
+  a = number(1, 5);
+  /*if casting in room wack him first*/
+  if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+      if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+	for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+	  {
+	    if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch))
+          if (CASTING(tch)) {
+		  cmd_bash = find_command("bash");
+		  do_bash(ch, GET_NAME(check_guard(ch,tch,FALSE)), 
+			  cmd_bash, 0);
+		  return;
+                }
+	  }
+    }
+  
+   /*  If not kick bash roar breathe sweep */
+  if (classes[(int)GET_CLASS(victim)].magical) {
+    a++;
+    if (GET_LEVEL(ch) >= 50)
+      a++;
+d59 21
+a79 74
+  if (a <= 4) 
+    {
+      /*Lets think here we are dragons you know*/
+       /*  Well if the two small to bash or kick lets always use the dragon's other */
+       /*  skills   -Banyal */
+      j = number (1, 4);
+      if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+	   ((GET_SIZE(victim) - GET_SIZE(ch)) == -3))
+	if (j == 1)
+	  j += 1;
+      if (j == 1) {
+	if (GET_MSKILL(ch, SKILL_KICK))
+	  if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1)) 
+	    {
+	      cmd_kick = find_command("kick");
+
+	      do_kick(ch, GET_NAME((check_guard(ch,victim,FALSE))), 
+		      cmd_kick, 0);/*don'tbash*/
+	      return;
+	    }      
+      } else if (j == 2) {  /*  breathe */
+	if (GET_MSKILL(ch, SKILL_BREATHE)) {
+          cmd_breathe = find_command("breathe");
+	  do_breathe(ch, "", cmd_breathe, 0);
+	  return;
+	} return;
+      } else if (j == 3) {  /*  sweep */
+	if (GET_MSKILL(ch, SKILL_SWEEP)) {
+	  cmd_sweep = find_command("sweep");
+	  do_sweep(ch, "", cmd_sweep, 0);
+	  return;
+        } return;
+      } else if (j == 4) {  /*  roar */
+	if (GET_MSKILL(ch, SKILL_ROAR)) {
+	  cmd_roar = find_command("roar");
+	  do_roar(ch, "", cmd_roar, 0);
+	  return;
+	}return;
+      }
+    }
+  else
+    {
+      j = number(1, 5);
+      if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+	   ((GET_SIZE(victim) - GET_SIZE(ch)) == -3)) 
+	if(j == 1)
+	  j++;
+      if(j == 1) { 	
+	if (GET_MSKILL(ch, SKILL_BASH)) {
+	  
+	  cmd_bash = find_command("bash");
+	  do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+	  return;
+	}
+      }
+      
+      else if (j == 2) {  /*  breathe */
+        if (GET_MSKILL(ch, SKILL_BREATHE)) {
+          cmd_breathe = find_command("breathe");
+	  do_breathe(ch, "", cmd_breathe, 0);
+	  return;
+	} return;
+      } else if (j == 3) {  /*  sweep */
+	if (GET_MSKILL(ch, SKILL_SWEEP)) {
+	  cmd_sweep = find_command("sweep");  
+	  do_sweep(ch, "", cmd_sweep, 0);
+	  return;
+        } return;
+      } else if (j == 4) {  /*  roar     */
+	if (GET_MSKILL(ch, SKILL_ROAR)) {   
+	  cmd_roar = find_command("roar");
+	  do_roar(ch, "", cmd_roar, 0);
+	  return;
+	}return;			
+a81 8
+}
+
+
+/*888888888888888888888888888
+  8   Demon warriors -Banyal 8	
+  8                           8
+  888888888888888888888888888*/
+
+d83 79
+a161 34
+
+void 
+demon_sel_warrior_mob_spells(struct char_data * ch, struct char_data * victim)
+{
+  int cmd_kick;
+  int cmd_bash, cmd_breathe, cmd_roar;
+  int a;
+  int j;
+  struct char_data *tch;
+  if (!(victim))
+    {
+      mudlog("No victim in dragon-warrior update.", NRM, LVL_GOD, FALSE);
+      return;
+    }
+  if (IS_AFFECTED(ch, AFF_BLIND))
+    return;
+  if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+      (!affected_by_spell (ch, SPELL_SMOKE)))
+    return;
+  a = number(1, 5);
+  /*if casting in room wack him first*/
+  if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+      if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+	for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+	  {
+	    if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch))
+          if (CASTING(tch)) {
+		  cmd_bash = find_command("bash");
+		  do_bash(ch, GET_NAME(check_guard(ch,tch,FALSE)), 
+			  cmd_bash, 0);
+		  return;
+                }
+	  }
+a162 6
+  
+   /*  If not kick bash roar breathe */
+  if (classes[(int)GET_CLASS(victim)].magical) {
+    a++;
+    if (GET_LEVEL(ch) >= 50)
+      a++;
+d165 1
+a165 64
+  if (a <= 4) 
+    {
+      /*Lets think here we are dragons you know*/
+       /*  Well if the two small to bash or kick lets always use the dragon's other */
+       /*  skills   -Banyal */
+      j = number (1, 3);
+      if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) ||
+	   ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) ||
+	   ((GET_SIZE(victim) - GET_SIZE(ch)) == -2))
+	if (j == 1)
+	  j += 1;
+      if (j == 1) {
+	if (GET_MSKILL(ch, SKILL_KICK))
+	  if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1)) 
+	    {
+	      cmd_kick = find_command("kick");
+	      do_kick(ch, GET_NAME(check_guard(ch,victim,FALSE)), 
+		      cmd_kick, 0);/*don'tbash*/
+	      return;
+	    }      
+      } else if (j == 2) {  /*  breathe */
+	if (GET_MSKILL(ch, SKILL_BREATHE)) {
+          cmd_breathe = find_command("breathe");
+	  do_breathe(ch, "", cmd_breathe, 0);
+	  return;
+	} return;
+      } else if (j == 3) {  /*  roar */
+	if (GET_MSKILL(ch, SKILL_ROAR)) {
+	  cmd_roar = find_command("roar");
+	  do_roar(ch, "", cmd_roar, 0);
+	  return;
+	}return;
+      }
+    }
+  else
+    { 
+      j = number(1, 3);
+      if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+	   ((GET_SIZE(victim) - GET_SIZE(ch)) == -3))
+	if(j == 1)
+	  j++;
+      if(j == 1) { 
+	if (GET_MSKILL(ch, SKILL_BASH)) {
+	  
+	  cmd_bash = find_command("bash");
+	  do_bash(ch, GET_NAME(check_guard(ch,victim,FALSE)), 
+		  cmd_bash, 0);/*bash*/
+	  return;
+	}   
+      } 
+      else if (j == 2) {  /*  breathe */
+        if (GET_MSKILL(ch, SKILL_BREATHE)) {
+          cmd_breathe = find_command("breathe");
+	  do_breathe(ch, "", cmd_breathe, 0);
+	  return;
+	} return;
+      } else if (j == 3) {  /*  roar */
+	if (GET_MSKILL(ch, SKILL_ROAR)) {
+	  cmd_roar = find_command("roar");
+	  do_roar(ch, "", cmd_roar, 0);
+	  return;
+	}return;
+      }       
+    }
+d170 4
+@
+
+
+1.8
+log
+@Create macros for stopping spellcasting.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.7 2006/11/08 07:55:17 jps Exp jps $
+d36 1
+a36 2
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+extern int mage_subclasses[MAGE_SUBCLASSES];
+a59 1
+  int i;
+d100 6
+a105 20
+  for (i=0;i<= MAGE_SUBCLASSES;i++)
+    {
+      if (GET_CLASS(victim) == mage_subclasses[i])
+	{	
+	  a++;
+	  if (GET_LEVEL(ch) >= 50)
+	    a++;
+	}
+    }
+  for (i=0;i<= CLERIC_SUBCLASSES;i++)
+    {
+      if (GET_CLASS(victim) == cleric_subclasses[i])
+	{	
+	  a++;
+	  if (GET_LEVEL(ch) >= 50)
+	    a++;
+	}
+    }
+  
+  
+d149 1
+a149 1
+  int i, j;
+d179 6
+a184 21
+  
+  for (i=0;i<= MAGE_SUBCLASSES;i++)
+    {
+      if (GET_CLASS(victim) == mage_subclasses[i])
+	{	
+	  a++;
+	  if (GET_LEVEL(ch) >= 50)
+	    a++;
+	}
+    }
+  for (i=0;i<= CLERIC_SUBCLASSES;i++)
+    {
+      if (GET_CLASS(victim) == cleric_subclasses[i])
+	{	
+	  a++;
+	  if (GET_LEVEL(ch) >= 50)
+	    a++;
+	}
+    }
+  
+  
+d277 1
+a277 1
+  int i, j;
+d307 6
+a312 21
+  
+  for (i=0;i<= MAGE_SUBCLASSES;i++)
+    {
+      if (GET_CLASS(victim) == mage_subclasses[i])
+	{	
+	  a++;
+	  if (GET_LEVEL(ch) >= 50)
+	    a++;
+	}
+    }
+  for (i=0;i<= CLERIC_SUBCLASSES;i++)
+    {
+      if (GET_CLASS(victim) == cleric_subclasses[i])
+	{	
+	  a++;
+	  if (GET_LEVEL(ch) >= 50)
+	    a++;
+	}
+    }
+  
+  
+d381 3
+@
+
+
+1.7
+log
+@Change verbal instances of "breath" to "breathe"
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.6 2002/09/30 01:11:34 jjl Exp $
+d92 1
+a92 2
+	      if (PLR_FLAGGED(tch, PLR_CASTING)) 
+                {
+a93 1
+
+d185 1
+a185 2
+	      if (PLR_FLAGGED(tch, PLR_CASTING)) 
+                {
+d328 1
+a328 2
+	      if (PLR_FLAGGED(tch, PLR_CASTING)) 
+                {
+d427 3
+@
+
+
+1.6
+log
+@Put in checks so guard actually does something.
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.5 2002/09/13 02:32:10 jjl Exp $
+d49 1
+a49 1
+ACMD(do_breath);
+d165 1
+a165 1
+  int cmd_bash, cmd_breath, cmd_sweep, cmd_roar;
+d197 1
+a197 1
+   /*  If not kick bash roar breath sweep */
+d239 4
+a242 4
+      } else if (j == 2) {  /*  breath */
+	if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+	  do_breath(ch, "", cmd_breath, 0);
+d275 4
+a278 4
+      else if (j == 2) {  /*  breath */
+        if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+	  do_breath(ch, "", cmd_breath, 0);
+d309 1
+a309 1
+  int cmd_bash, cmd_breath, cmd_roar;
+d341 1
+a341 1
+   /*  If not kick bash roar breath */
+d383 4
+a386 4
+      } else if (j == 2) {  /*  breath */
+	if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+	  do_breath(ch, "", cmd_breath, 0);
+d413 4
+a416 4
+      else if (j == 2) {  /*  breath */
+        if (GET_MSKILL(ch, SKILL_BREATH)) {
+          cmd_breath = find_command("breath");
+	  do_breath(ch, "", cmd_breath, 0);
+d431 3
+@
+
+
+1.5
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: warrior.c,v 1.4 2000/11/25 02:33:15 rsd Exp $
+d52 3
+d79 1
+a79 1
+	  do_backstab(ch, GET_NAME(victim), cmd, 0);
+d95 3
+a97 1
+		  do_bash(ch, tch->player.name, cmd_bash, 0);
+d130 2
+a131 1
+	    do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+d144 2
+a145 1
+	    do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+d190 2
+a191 1
+		  do_bash(ch, tch->player.name, cmd_bash, 0);
+d234 3
+a236 1
+	      do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+d334 2
+a335 1
+		  do_bash(ch, tch->player.name, cmd_bash, 0);
+d379 2
+a380 1
+	      do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+d408 2
+a409 1
+	  do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+d431 3
+@
+
+
+1.4
+log
+@Altered comment header and added back rlog messages
+from prior to the addition of the $log$ string.
+@
+text
+@d1 3
+a3 1
+// $Id: warrior.c,v 1.3 1999/09/05 07:00:39 jimmy Exp $
+d70 1
+a70 1
+  // This is temp fix for merc soon they have thier own file
+d189 1
+a189 1
+  // If not kick bash roar breath sweep
+d214 2
+a215 2
+      // Well if the two small to bash or kick lets always use the dragon's other
+      // skills   -Banyal
+d229 1
+a229 1
+      } else if (j == 2) { // breath
+d235 1
+a235 1
+      } else if (j == 3) { // sweep
+d241 1
+a241 1
+      } else if (j == 4) { // roar
+d265 1
+a265 1
+      else if (j == 2) { // breath
+d271 1
+a271 1
+      } else if (j == 3) { // sweep
+d277 1
+a277 1
+      } else if (j == 4) { // roar    
+d330 1
+a330 1
+  // If not kick bash roar breath
+d355 2
+a356 2
+      // Well if the two small to bash or kick lets always use the dragon's other
+      // skills   -Banyal
+d371 1
+a371 1
+      } else if (j == 2) { // breath
+d377 1
+a377 1
+      } else if (j == 3) { // roar
+d400 1
+a400 1
+      else if (j == 2) { // breath
+d406 1
+a406 1
+      } else if (j == 3) { // roar
+d416 18
+a433 12
+// $Log: warrior.c,v $
+// Revision 1.3  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.2  1999/02/04 18:18:16  mud
+// indented file
+// added standard comment header
+// dos2unix
+//
+// Revision 1.1  1999/01/29 01:23:32  mud
+// Initial revision
+//
+@
+
+
+1.3
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d3 1
+a3 1
+ *  File: warrior.c                                       Part of FieryMUD *
+d6 1
+d8 5
+a12 2
+ *  By: Proky of HubisMUD                                                  *
+ *  Control M's removed by: Scott Davis                                    *
+d410 1
+a410 3
+      } 
+      
+      
+d414 12
+a425 1
+// $Log$
+@
+
+
+1.2
+log
+@indented file
+added standard comment header
+dos2unix
+@
+text
+@d1 1
+d412 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 8
+a8 5
+/*File: Warrior.c*
+*This file was created by Proky to control Warrior type mobs *
+*It is closly related to ai.h, and ai_util.c                *
+*/
+
+d48 19
+a66 19
+    int cmd_kick, cmd;
+    int cmd_bash;
+    int a;
+	int i;
+    struct char_data *tch;
+    if (!(victim))
+    {
+        mudlog("No victim in warrior update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+	if (IS_AFFECTED(ch, AFF_BLIND))
+		return;
+	if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+  (!affected_by_spell (ch, SPELL_SMOKE)))
+return;
+// This is temp fix for merc soon they have thier own file
+if(GET_CLASS(ch) == MCLASS_MERCENARY) {
+if (GET_MSKILL(ch, SKILL_BACKSTAB))
+        if (!(FIGHTING(ch)))
+d68 3
+a70 3
+            cmd = find_command("backstab");
+            do_backstab(ch, GET_NAME(victim), cmd, 0);
+            return;
+d72 11
+a82 11
+}
+    a = number(1, 5);
+    /*if casting in room wack him first*/
+    if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+		if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+		for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        {
+		if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch) &&
+((!IS_AFFECTED (ch, AFF_BLIND)) || (!affected_by_spell (ch, SPELL_BLINDNESS))))
+                if (PLR_FLAGGED(tch, PLR_CASTING)) 
+d84 3
+a86 3
+                    cmd_bash = find_command("bash");
+                    do_bash(ch, tch->player.name, cmd_bash, 0);
+                    return;
+d88 1
+a88 1
+		}
+d90 9
+a98 10
+				/*else randomly do these*/
+
+	for (i=0;i<= MAGE_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == mage_subclasses[i])
+		{	
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+d100 8
+a107 8
+	for (i=0;i<= CLERIC_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == cleric_subclasses[i])
+		{	
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+d109 8
+a116 7
+
+
+    if (a <= 4) 
+    {
+		if (GET_MSKILL(ch, SKILL_KICK))
+     if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1)) 
+		{
+d118 5
+a122 5
+	        do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+	        return;
+        }      
+	}
+    else
+d124 13
+a136 13
+        if (GET_MSKILL(ch, SKILL_BASH) &&
+((!IS_AFFECTED (ch, AFF_BLIND)) || (!affected_by_spell (ch, SPELL_BLINDNESS))))
+            if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == -2)) 
+	            {
+		            cmd_bash = find_command("bash");
+	                do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+	                return;
+                } 
+	        
+			
+	}
+d141 3
+a143 3
+8   Dragon warriors -Banyal 8	
+8                           8
+888888888888888888888888888*/
+d150 24
+a173 24
+    int cmd_kick;
+    int cmd_bash, cmd_breath, cmd_sweep, cmd_roar;
+    int a;
+	int i, j;
+    struct char_data *tch;
+    if (!(victim))
+    {
+        mudlog("No victim in dragon-warrior update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+	if (IS_AFFECTED(ch, AFF_BLIND))
+		return;
+	if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+  (!affected_by_spell (ch, SPELL_SMOKE)))
+return;
+    a = number(1, 5);
+    /*if casting in room wack him first*/
+    if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+		if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+		for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        {
+			if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch))
+                if (PLR_FLAGGED(tch, PLR_CASTING)) 
+d175 3
+a177 3
+                    cmd_bash = find_command("bash");
+                    do_bash(ch, tch->player.name, cmd_bash, 0);
+                    return;
+d179 1
+a179 1
+		}
+d181 10
+a190 11
+
+// If not kick bash roar breath sweep
+
+	for (i=0;i<= MAGE_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == mage_subclasses[i])
+		{	
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+d192 8
+a199 8
+	for (i=0;i<= CLERIC_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == cleric_subclasses[i])
+		{	
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+d201 22
+a222 21
+
+
+    if (a <= 4) 
+    {
+        /*Lets think here we are dragons you know*/
+// Well if the two small to bash or kick lets always use the dragon's other
+// skills   -Banyal
+j = number (1, 4);
+if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+     ((GET_SIZE(victim) - GET_SIZE(ch)) == -3))
+  if (j == 1)
+    j += 1;
+     if (j == 1) {
+		if (GET_MSKILL(ch, SKILL_KICK))
+     if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1)) 
+		{
+            cmd_kick = find_command("kick");
+	        do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+	        return;
+        }      
+        } else if (j == 2) { // breath
+d225 8
+a232 8
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+       } else if (j == 3) { // sweep
+       if (GET_MSKILL(ch, SKILL_SWEEP)) {
+        cmd_sweep = find_command("sweep");
+        do_sweep(ch, "", cmd_sweep, 0);
+        return;
+d234 6
+a239 7
+	} else if (j == 4) { // roar
+       if (GET_MSKILL(ch, SKILL_ROAR)) {
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;
+	}
+d241 2
+a242 1
+    else
+d244 5
+a248 5
+  j = number(1, 5);
+            if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == -3)) 
+                if(j == 1)
+                  j++;
+d250 9
+a258 9
+      if (GET_MSKILL(ch, SKILL_BASH)) {
+	            
+		            cmd_bash = find_command("bash");
+	                do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+	                return;
+                }
+}
+ 
+else if (j == 2) { // breath
+d261 8
+a268 8
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+       } else if (j == 3) { // sweep
+       if (GET_MSKILL(ch, SKILL_SWEEP)) {
+        cmd_sweep = find_command("sweep");  
+        do_sweep(ch, "", cmd_sweep, 0);
+        return;
+d270 8
+a277 8
+        } else if (j == 4) { // roar    
+       if (GET_MSKILL(ch, SKILL_ROAR)) {   
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;			
+	}
+}
+d282 3
+a284 3
+8   Demon warriors -Banyal 8	
+8                           8
+888888888888888888888888888*/
+d291 24
+a314 24
+    int cmd_kick;
+    int cmd_bash, cmd_breath, cmd_roar;
+    int a;
+	int i, j;
+    struct char_data *tch;
+    if (!(victim))
+    {
+        mudlog("No victim in dragon-warrior update.", NRM, LVL_GOD, FALSE);
+        return;
+    }
+	if (IS_AFFECTED(ch, AFF_BLIND))
+		return;
+	if (affected_by_spell(ch, SPELL_BLINDNESS) ||
+    (!affected_by_spell (ch, SPELL_SMOKE)))
+return;
+    a = number(1, 5);
+    /*if casting in room wack him first*/
+    if (GET_MSKILL(ch, SKILL_BASH) && FIGHTING(ch))
+    {
+		if ((number(25, 60) - GET_MSKILL(ch, SKILL_BASH)) <= 0)
+		for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        {
+			if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch))
+                if (PLR_FLAGGED(tch, PLR_CASTING)) 
+d316 3
+a318 3
+                    cmd_bash = find_command("bash");
+                    do_bash(ch, tch->player.name, cmd_bash, 0);
+                    return;
+d320 1
+a320 1
+		}
+d322 10
+a331 11
+
+// If not kick bash roar breath
+
+	for (i=0;i<= MAGE_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == mage_subclasses[i])
+		{	
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+d333 8
+a340 8
+	for (i=0;i<= CLERIC_SUBCLASSES;i++)
+	{
+		if (GET_CLASS(victim) == cleric_subclasses[i])
+		{	
+			a++;
+			if (GET_LEVEL(ch) >= 50)
+				a++;
+		}
+d342 23
+a364 22
+
+
+    if (a <= 4) 
+    {
+        /*Lets think here we are dragons you know*/
+// Well if the two small to bash or kick lets always use the dragon's other
+// skills   -Banyal
+j = number (1, 3);
+if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) ||
+     ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) ||
+     ((GET_SIZE(victim) - GET_SIZE(ch)) == -2))
+  if (j == 1)
+    j += 1;
+     if (j == 1) {
+		if (GET_MSKILL(ch, SKILL_KICK))
+     if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 0) || ((GET_SIZE(victim) - GET_SIZE(ch)) == 1) || ((GET_SIZE(victim) - GET_SIZE(ch)) == -1)) 
+		{
+            cmd_kick = find_command("kick");
+	        do_kick(ch, GET_NAME(victim), cmd_kick, 0);/*don'tbash*/
+	        return;
+        }      
+        } else if (j == 2) { // breath
+d367 9
+a375 10
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+	} else if (j == 3) { // roar
+       if (GET_MSKILL(ch, SKILL_ROAR)) {
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;
+	}
+d377 2
+a378 1
+    else
+d380 5
+a384 5
+  j = number(1, 3);
+            if ( ((GET_SIZE(victim) - GET_SIZE(ch)) == 2) ||
+                 ((GET_SIZE(victim) - GET_SIZE(ch)) == -3))
+                if(j == 1)
+                  j++;
+d386 8
+a393 8
+      if (GET_MSKILL(ch, SKILL_BASH)) {
+       
+                            cmd_bash = find_command("bash");
+                        do_bash(ch, GET_NAME(victim), cmd_bash, 0);/*bash*/
+                        return;
+                }   
+                } 
+else if (j == 2) { // breath
+d396 13
+a408 13
+            do_breath(ch, "", cmd_breath, 0);
+            return;
+       } return;
+        } else if (j == 3) { // roar
+       if (GET_MSKILL(ch, SKILL_ROAR)) {
+        cmd_roar = find_command("roar");
+        do_roar(ch, "", cmd_roar, 0);
+        return;
+         }return;
+        } 
+	        
+			
+	}
+d410 1
+@

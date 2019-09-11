@@ -1,0 +1,200 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	2009.05.01.05.29.40;	author myc;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2009.03.09.04.50.38;	author myc;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2008.06.19.18.53.12;	author myc;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2008.03.05.03.03.54;	author myc;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.02.09.03.06.17;	author myc;	state Exp;
+branches;
+next	;
+
+
+desc
+@Header file for various mathematical functions, including a mapping
+to the log function.
+@
+
+
+1.5
+log
+@Fix typo in conditional compliation comment.
+@
+text
+@/***************************************************************************
+ * $Id: math.h,v 1.4 2009/03/09 04:50:38 myc Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: math.h                                         Part of FieryMUD *
+ *  Usage: various mathematical functions                                  *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#ifndef _FIERY_MATH_
+#define _FIERY_MATH_
+
+/*
+ * normal_random
+ *
+ * Generates a random value based on the normal distribution centered at Avg
+ * with standard deviation std.  NOTE: Technically, a normal distribution
+ * extends to infinity in both directions.  However, to make this plausible in
+ * game terms we cap the distribution at 3 standard-deviations in either
+ * direction.  IE - if a magic missile is supposed to do an average of 12
+ * damage, with standard-deviation of 2, it will never do less than
+ * 12 - 2 * 3 = 6, and never do more than 12 + 2*3 = 18.
+ *
+ * avg - The average value we should give out.
+ * std - The standard deviation of the distribution.
+ *
+ * Returns - a random value.
+ */
+
+double normal_random(double avg, double std);
+
+
+#define DONE	(-1)
+#define LINEAR	0
+#define LOG	1
+#define SQUARED	2
+
+struct evaluation_param {
+  double x;
+  double y;
+  int type;
+};
+
+double evaluate(struct evaluation_param *eval, double x);
+double linear_evaluation(double startx, double starty, double endx, double endy, double x);
+double logarithmic_evaluation(double x1, double y1, double x2, double y2, double x);
+double squared_evaluation(double x1, double y1, double x2, double y2, double x);
+double natural_logarithm(double value);
+double logarithm(double base, double value);
+double power(double base, double exponent);
+
+int random_number(int from, int to);
+#define number(from, to)	random_number(from, to)
+int roll_dice(int number, int size);
+#define dice(number, size)	roll_dice(number, size)
+
+/* undefine MAX and MIN so that our functions are used instead */
+#ifdef MAX
+#undef MAX
+#endif
+
+#ifdef MIN
+#undef MIN
+#endif
+
+int MAX(int a, int b);
+int MIN(int a, int b);
+#define LIMIT(a, b, c)	MIN(MAX((a), (b)), (c))
+
+#endif
+
+/***************************************************************************
+ * $Log: math.h,v $
+ * Revision 1.4  2009/03/09 04:50:38  myc
+ * Rename random_normal_value to something shorter: normal_random.
+ *
+ * Revision 1.3  2008/06/19 18:53:12  myc
+ * Added parantheses to LIMIT macro.
+ *
+ * Revision 1.2  2008/03/05 03:03:54  myc
+ * Added LIMIT macro as a shorthand for MIN(MAX(a, b), c).
+ *
+ * Revision 1.1  2008/02/09 03:06:17  myc
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.4
+log
+@Rename random_normal_value to something shorter: normal_random.
+@
+text
+@d2 1
+a2 1
+ * $Id: math.h,v 1.3 2008/06/19 18:53:12 myc Exp myc $
+d17 1
+a17 1
+#define _FIERY_MATH
+d80 3
+@
+
+
+1.3
+log
+@Added parantheses to LIMIT macro.
+@
+text
+@d2 1
+a2 1
+ * $Id: math.h,v 1.2 2008/03/05 03:03:54 myc Exp myc $
+d20 1
+a20 1
+ * random_normal_value
+d36 1
+a36 1
+double random_normal_value(double avg, double std);
+d80 3
+@
+
+
+1.2
+log
+@Added LIMIT macro as a shorthand for MIN(MAX(a, b), c).
+@
+text
+@d2 1
+a2 1
+ * $Id: math.h,v 1.1 2008/02/09 03:06:17 myc Exp myc $
+d74 1
+a74 1
+#define LIMIT(a, b, c)	MIN(MAX(a, b), c)
+d80 3
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ * $Id: math.h,v $
+d74 1
+d79 4
+a82 1
+ * $Log: math.c,v $
+@

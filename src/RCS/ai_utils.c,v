@@ -1,0 +1,3083 @@
+head	1.37;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.37
+date	2009.06.11.13.36.05;	author myc;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2009.03.09.16.57.47;	author myc;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2009.01.17.00.28.02;	author myc;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2008.09.26.09.35.09;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2008.09.26.09.26.34;	author jps;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2008.09.14.18.09.49;	author jps;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2008.09.13.18.53.30;	author jps;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2008.09.02.07.16.00;	author mud;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2008.09.01.23.47.49;	author jps;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2008.09.01.00.01.56;	author jps;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2008.08.31.20.55.19;	author jps;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2008.06.07.19.06.46;	author myc;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2008.06.05.02.07.43;	author myc;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2008.04.14.05.11.40;	author jps;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2008.04.10.01.38.38;	author myc;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2008.04.02.03.24.44;	author myc;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.03.27.17.26.59;	author jps;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.03.26.23.12.03;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.03.07.21.21.57;	author myc;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.02.05.03.45.33;	author myc;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.01.13.23.06.04;	author myc;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.01.12.23.13.20;	author myc;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.01.12.19.08.14;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.01.03.12.44.03;	author jps;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2000.11.20.18.14.31;	author rsd;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2000.04.05.23.09.48;	author rsd;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2000.04.05.22.56.34;	author rsd;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.06.10.16.56.28;	author mud;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.01.30.17.29.18;	author mud;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.30.17.22.06;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.30;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/*ai_utils.c
+General Utility functions for mob ai
+
+Proky
+*/
+
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "spells.h"
+#include "ai.h"
+
+extern struct room_data *world;
+extern int rogue_subclasses[ROGUE_SUBCLASSES];
+extern struct index_data *mob_index;
+extern struct char_data *mob_proto;
+extern char *affected_bits[];
+
+
+/*constants*/
+const int so_spells_to_check[NUMBER_OF_SO_CHECKS][3] =
+{   {SPELL_STONE_SKIN, AFF_STONE_SKIN, 1},
+{SPELL_HASTE, AFF_HASTE, 1}, 
+{SPELL_FIRESHIELD, AFF2_FIRESHIELD, 2}, 
+{SPELL_COLDSHIELD, AFF2_COLDSHIELD, 2},
+{SPELL_MAJOR_GLOBE, AFF2_MAJOR_GLOBE, 2},
+{SPELL_MINOR_GLOBE, AFF2_MINOR_GLOBE, 2},
+{SPELL_DETECT_INVIS, AFF_DETECT_INVIS, 1},
+{SPELL_INVISIBLE, AFF_INVISIBLE, 1},
+{SPELL_FLY, AFF_FLYING, 1}
+};
+
+const int sorcerer_offense[SORCERER_OFFENSE_NO] =
+{   SPELL_BIGBYS_CLENCHED_FIST,
+    SPELL_FIREBALL,SPELL_LIGHTNING_BOLT,SPELL_SHOCKING_GRASP,
+    SPELL_CHILL_TOUCH, SPELL_MAGIC_MISSILE
+};
+
+const int sorcerer_area[SORCERER_AREA_NO] =
+{   SPELL_ICE_SHARDS, SPELL_METEORSWARM,
+    SPELL_CHAIN_LIGHTNING, SPELL_ICE_STORM
+};
+
+const int cl_spells_to_check[NUMBER_OF_CL_CHECKS][3] =
+{   {SPELL_ARMOR, -1, 1}, {SPELL_BLESS, -1, 1},
+	{SPELL_SOULSHIELD, AFF2_SOULSHIELD, 2} ,
+	{SPELL_SENSE_LIFE, AFF_SENSE_LIFE, 1}
+};
+
+const int cl_bad_spells_to_check[NUMBER_CL_BAD_CHECKS][4] =
+{
+    {SPELL_BLINDNESS, SPELL_CURE_BLIND, AFF_BLIND, 1},
+    {SPELL_POISON, SPELL_REMOVE_POISON, AFF_POISON, 1},
+    {SPELL_CURSE, SPELL_REMOVE_CURSE, AFF_CURSE, 1}
+};
+
+const int cleric_offense[CLERIC_OFFENSE_NO] =
+{   SPELL_FULL_HARM, SPELL_FLAMESTRIKE, SPELL_HARM, SPELL_DISPEL_EVIL,
+    SPELL_DISPEL_GOOD, SPELL_CAUSE_CRITIC,
+    SPELL_CAUSE_SERIOUS, SPELL_CAUSE_LIGHT
+};
+
+const int cleric_area[CLERIC_AREA_NO] =
+{   SPELL_HOLY_WORD, SPELL_UNHOLY_WORD,
+    SPELL_EARTHQUAKE
+};
+
+
+const int cleric_heal[CLERIC_HEAL_NO] =
+{   SPELL_FULL_HEAL,
+    SPELL_HEAL, SPELL_CURE_CRITIC,
+    SPELL_CURE_SERIOUS, SPELL_CURE_LIGHT
+};
+
+
+
+bool aloud_skill(int i, int spellnum)
+{
+    int counter = 0;
+    int mob_circle = 0;
+    int spell_circle;
+    spell_circle = (1 + ((int) ((spell_info[spellnum].min_level[(int)(mob_proto[i].player.class)])/5)));
+    while (counter < mob_proto[i].player.level)
+    {/*calculates what circle mob can have*/
+	    mob_circle ++;
+	    counter = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+    return (mob_circle >= spell_circle);
+}
+
+bool check_weopeon_value(struct char_data *ch, struct obj_data *obj)
+{
+
+    int i;
+    struct obj_data *wielding = GET_EQ(ch, WEAR_WIELD);
+    struct obj_data *wielding2 = GET_EQ(ch, WEAR_WIELD2);
+    struct obj_data *hwielding = GET_EQ(ch, WEAR_2HWIELD);
+     for (i=0;i< ROGUE_SUBCLASSES ; i++)
+         if (rogue_subclasses[i] == GET_CLASS(ch))
+         {
+             if (GET_OBJ_VAL(obj, 3) == TYPE_PIERCE - TYPE_HIT)
+             {
+                if ((CAN_WEAR(obj, ITEM_WEAR_2HWIELD)) || (CAN_WEAR(obj, ITEM_WEAR_WIELD)))
+                {
+                    if (wielding)
+                        if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+                            return TRUE;
+                    if (hwielding)
+                        if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+                            return TRUE;
+                }
+             }
+             if (GET_OBJ_VAL(obj, 3) != TYPE_PIERCE - TYPE_HIT)
+             {
+                 if (wielding)
+                     if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+                            return FALSE;
+                 if (hwielding)
+                     if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+                            return FALSE;
+             }
+         }
+
+    if ((!(wielding)) && (!(wielding2)) && (!(hwielding)))
+        return TRUE;
+    if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD))
+    {/*is it worth more then obj in either 1 ,2 or thded*/
+        if (wielding)
+        {
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+        }
+        if (wielding2)
+        {
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+        }
+        if (hwielding)
+        {
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_2HWIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+        }
+    }
+
+    if (CAN_WEAR(obj, ITEM_WEAR_WIELD))
+    {
+        if (wielding)
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+
+        if (hwielding)
+        {
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_2HWIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+        }
+    }
+    return FALSE;
+
+}
+
+void mob_remove_weopon(struct char_data *ch, struct obj_data *obj, int where)
+{
+
+    struct obj_data *spare;
+  struct obj_data *wielding = GET_EQ(ch, WEAR_WIELD);
+  struct obj_data *hwielding = GET_EQ(ch, WEAR_2HWIELD);
+    /*if something in 2handed spot well have to remove it!!*/
+
+    if (!CAN_WEAR(obj, ITEM_WEAR_WIELD) && !CAN_WEAR(obj, ITEM_WEAR_2HWIELD))
+        return;
+	if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD) && (hwielding))
+    {
+        perform_remove(ch, WEAR_2HWIELD);
+        return;
+    }
+    if ((CAN_WEAR(obj, ITEM_WEAR_WIELD)) && (wielding))
+    {
+        perform_remove(ch, WEAR_WIELD);
+        return;
+    }
+    if (hwielding)
+    {
+        perform_remove(ch, WEAR_2HWIELD);
+        return;
+    }
+
+    if((CAN_WEAR(obj, ITEM_WEAR_2HWIELD)))/*remove weopons*/
+        if(wielding)
+            perform_remove(ch, WEAR_WIELD);
+    if (GET_EQ(ch, WEAR_WIELD2))
+    {
+	    if (!(GET_EQ(ch, WEAR_WIELD)))
+        {
+	 	    spare = GET_EQ(ch, WEAR_WIELD2);
+		    obj_to_char(unequip_char(ch, WEAR_WIELD2), ch);
+	        obj_from_char(spare);
+	        equip_char(ch, spare, WEAR_WIELD);
+	    }
+        if (GET_EQ(ch, WEAR_WIELD))
+            perform_remove(ch, WEAR_WIELD);
+	}
+return;
+}
+
+bool affected_by_aff(struct char_data *ch, int spell_number, int aff, int which)
+{
+
+    if (affected_by_spell(ch, spell_number))
+        return TRUE;
+	if (aff == -1)
+		return FALSE;
+	if (which == 1)
+	{
+		if (IS_AFFECTED(ch, aff))
+			return TRUE;
+    }
+	else if (which == 2)
+	{
+		if (IS_AFFECTED2(ch, aff))
+			return TRUE;
+	}
+	else
+	{
+		if (IS_AFFECTED3(ch, aff))
+			return TRUE;
+	}
+	return FALSE;
+}
+
+
+struct char_data *lowest_hp_in_group(struct char_data *ch, struct char_data *victim)
+{
+
+    struct char_data *tch;
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        if (FIGHTING(tch) == ch && !(IS_NPC(tch)))
+            if (victim == NULL || GET_HIT(tch) < GET_HIT(victim))
+                if (number (0, 60) > GET_LEVEL(ch))
+                    continue;
+                else
+                    victim = tch;
+    return victim;
+}
+
+bool can_dim(struct char_data *ch, struct char_data *victim)
+{
+    int spells_circle, mob_circle = 0, i;
+    struct room_data *crm, *trm;
+    int czone, tzone;
+
+    if (!(GET_MSKILL(ch, SPELL_DIMENSION_DOOR)))
+        return FALSE;
+    i = 0;
+    while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+	    mob_circle ++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+    spells_circle = SPELL_CIRCLE(SPELL_DIMENSION_DOOR);
+    crm = &world[ch->in_room];
+    trm = &world[victim->in_room];
+    czone=crm->zone;
+    tzone=trm->zone;
+    if (czone == tzone)
+        if (try_cast(ch, victim, spells_circle, SPELL_DIMENSION_DOOR))
+	        return TRUE;
+    return FALSE;
+}
+
+
+void mob_heal_up(struct char_data *ch)
+{
+    int i;
+    int mob_circle = 0;
+    int counter = 0;
+    int spells_circle;
+    switch(GET_CLASS(ch))
+    {
+    case MCLASS_CLERIC:
+        break;
+    default:
+        return;
+    }
+    while (counter < GET_LEVEL(ch))
+    {
+	    mob_circle ++;
+	    counter = mob_circle*5 + 1;
+    }
+    counter = 0;
+    for (i=0;i< CLERIC_HEAL_NO;i++)
+    {
+        spells_circle = SPELL_CIRCLE(cleric_heal[i]);
+        if ((mob_circle >= spells_circle))
+        {
+            counter++;
+	        if(try_cast(ch, ch, spells_circle, cleric_heal[i]))
+	            return;
+        }
+        if (counter > 3)
+            break;
+    }
+}
+
+
+
+
+bool is_tanking(struct char_data *ch)
+{
+    struct char_data *tch;
+    if (!(FIGHTING(ch)))
+        return FALSE;
+
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        if (FIGHTING(tch) == ch)
+            return TRUE;
+    return FALSE;
+}
+
+
+bool can_summon(struct char_data *ch, struct char_data *victim)
+{
+    int spells_circle, mob_circle = 0, i;
+    struct room_data *crm, *trm;
+    int czone, tzone;
+
+    if (!(GET_MSKILL(ch, SPELL_SUMMON)))
+        return FALSE;
+    i = 0;
+    if (ROOM_FLAGGED(victim->in_room, ROOM_NOSUMMON))
+	  return FALSE;
+    if (GET_LEVEL(victim) > MIN(LVL_IMMORT, GET_LEVEL(ch) + 3))
+        return FALSE;
+
+    while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+	    mob_circle ++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+    spells_circle = SPELL_CIRCLE(SPELL_SUMMON);
+    crm = &world[ch->in_room];
+    trm = &world[victim->in_room];
+    czone=crm->zone;
+    tzone=trm->zone;
+    if (czone == tzone)
+        if (try_cast(ch, victim, spells_circle, SPELL_SUMMON))
+	        return TRUE;
+    return FALSE;
+}
+
+
+
+bool if_evil_in_group(struct char_data *victim)
+{
+    struct char_data *k;
+    struct group_type *f;
+    if (!(IS_AFFECTED(victim, AFF_GROUP)))
+        return (GET_ALIGNMENT(victim) <= -500);
+    if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+        k = (victim->groupmaster ? victim->groupmaster : victim);
+        for (f = k->groupees; f; f = f->next)
+            if (GET_ALIGNMENT(f->groupee) <= -500)
+                return TRUE;
+    }
+    return FALSE;
+}
+
+bool if_good_in_group(struct char_data *victim)
+{
+    struct char_data *k;
+    struct group_type *f;
+    if (!(IS_AFFECTED(victim, AFF_GROUP)))
+        return (GET_ALIGNMENT(victim) >= 500);
+    if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+        k = (victim->groupmaster ? victim->groupmaster : victim);
+        for (f = k->groupees; f; f = f->next)
+            if (GET_ALIGNMENT(f->groupee) >= 500)
+                return TRUE;
+    }
+    return FALSE;
+
+}
+
+int number_of_people_in_group(struct char_data *ch, struct char_data *victim)
+{
+    struct char_data *k;
+    struct group_type *f;
+    int counter = 0;
+    if (!(IS_AFFECTED(victim, AFF_GROUP)))
+        return counter;
+
+    if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+        k = (victim->groupmaster ? victim->groupmaster : victim);
+        for (f = k->groupees; f; f = f->next)
+            if (f->groupee->in_room == ch->in_room)
+                counter++;
+    }
+    return counter;
+
+
+}
+@
+
+
+1.37
+log
+@When throatcut is successful, apply an injured throat effect
+which hinders the victim's casting ability.
+@
+text
+@/***************************************************************************
+ * $Id: ai_utils.c,v 1.36 2009/03/09 16:57:47 myc Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *  File: ai_utils.c                                      Part of FieryMUD *
+ *  Usage: General Utility functions for mob ai                            *
+ *                                                                         *
+ *  By: Ben Horner (Proky of HubisMUD)                                     *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "utils.h"
+#include "db.h"
+#include "comm.h"
+#include "interpreter.h"
+#include "handler.h"
+#include "casting.h"
+#include "ai.h"
+#include "class.h"
+#include "math.h"
+#include "races.h"
+#include "events.h"
+#include "fight.h"
+#include "movement.h"
+
+bool mob_cast(struct char_data *ch, struct char_data *tch, struct obj_data *tobj, int spellnum);
+
+
+int value_spell(int spellnum, bool is_aggro_good)
+{
+  if (!is_aggro_good && SINFO.violent)
+    return -SINFO.lowest_level;
+  return SINFO.lowest_level;
+}
+
+int value_spell_effect(int flag) {
+  switch (flag) {
+  case EFF_MAJOR_PARALYSIS:
+    return -50;
+  case EFF_BLIND:
+    return -40;
+  case EFF_SILENCE:
+  case EFF_INSANITY:
+  case EFF_HURT_THROAT:
+    return -30;
+  case EFF_POISON:
+  case EFF_SLEEP:
+  case EFF_MINOR_PARALYSIS:
+  case EFF_ON_FIRE:
+  case EFF_DISEASE:
+  case EFF_ANIMATED:
+    return -20;
+  case EFF_CHARM:
+  case EFF_TAMED:
+  case EFF_FEAR:
+    return -10;
+
+  case EFF_VITALITY:
+    return -5;
+
+  case EFF_CURSE:
+    return 3;
+
+  case EFF_ENLARGE:
+  case EFF_REDUCE:
+  case EFF_BLESS:
+  case EFF_HEX:
+    return 10;
+  case EFF_TONGUES:
+  case EFF_LEVITATE:
+  case EFF_CAMOUFLAGED:
+  case EFF_RAY_OF_ENFEEB:
+    return 15;
+  case EFF_FARSEE:
+  case EFF_DETECT_ALIGN:
+  case EFF_DETECT_POISON:
+  case EFF_DETECT_MAGIC:
+  case EFF_WATERBREATH:
+  case EFF_MINOR_GLOBE:
+  case EFF_SHADOWING:
+    return 20;
+  case EFF_WATERWALK:
+  case EFF_INVISIBLE:
+  case EFF_NOTRACK:
+  case EFF_LIGHT:
+    return 25;
+  case EFF_SNEAK:
+  case EFF_SENSE_LIFE:
+  case EFF_INFRAVISION:
+    return 35;
+  case EFF_DETECT_INVIS:
+    return 40;
+  case EFF_PROTECT_EVIL:
+  case EFF_PROTECT_GOOD:
+  case EFF_FLY:
+  case EFF_SOULSHIELD:
+  case EFF_PROT_FIRE:
+  case EFF_PROT_COLD:
+  case EFF_PROT_AIR:
+  case EFF_PROT_EARTH:
+  case EFF_FIRESHIELD:
+  case EFF_COLDSHIELD:
+  case EFF_ULTRAVISION:
+  case EFF_AWARE:
+  case EFF_VAMP_TOUCH:
+    return 50;
+  case EFF_HASTE:
+    return 60;
+  case EFF_MAJOR_GLOBE:
+  case EFF_HARNESS:
+  case EFF_NEGATE_HEAT:
+  case EFF_NEGATE_COLD:
+  case EFF_NEGATE_AIR:
+  case EFF_NEGATE_EARTH:
+    return 70;
+  case EFF_BLUR:
+    return 80;
+  case EFF_SANCTUARY:
+    return 90;
+  case EFF_STONE_SKIN:
+    return 100;
+
+  default:
+    return 0;
+  }
+}
+  
+int value_spell_effects(flagvector flags[]) {
+  int i, value = 0;
+  for (i = 0; i < NUM_EFF_FLAGS; ++i)
+    if (IS_FLAGGED(flags, i))
+      value += value_spell_effect(i);
+  return value;
+}
+
+
+int value_obj_flags(struct char_data *ch, struct obj_data *obj) {
+  int value = 0, i;
+  for (i = 0; i < 32; ++i)
+    if (OBJ_FLAGGED(obj, i))
+      switch (1 << i) {
+      case ITEM_GLOW:
+      case ITEM_HUM:
+      case ITEM_NODONATE:
+      case ITEM_NOSELL:
+      case ITEM_WAS_DISARMED:
+        break;
+      case ITEM_NODROP:
+        if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
+          value += 15;
+        value -= 5;
+        break;
+      case ITEM_MAGIC:
+        value += 1;
+        break;
+      case ITEM_NORENT:
+        value -= 5;
+        break;
+      case ITEM_NOINVIS:
+      case ITEM_INVISIBLE:
+        value += 5;
+        break;
+      case ITEM_NOBURN:
+        if (CAN_WEAR(obj, ITEM_WEAR_TAKE) && GET_OBJ_WEAR(obj) != ITEM_WEAR_TAKE)
+          value += 10;
+        break;
+      case ITEM_NOLOCATE:
+        value += 3;
+        break;
+      case ITEM_FLOAT:
+        if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
+          value += 10;
+        value += 3;
+        break;
+      case ITEM_ANTI_GOOD:
+        if (IS_GOOD(ch))
+          value -= 20;
+        break;
+      case ITEM_ANTI_NEUTRAL:
+        if (IS_NEUTRAL(ch))
+          value -= 20;
+        break;
+      case ITEM_ANTI_EVIL:
+        if (IS_EVIL(ch))
+          value -= 20;
+        break;
+      case ITEM_ANTI_SORCERER:
+      case ITEM_ANTI_CLERIC:
+      case ITEM_ANTI_ROGUE:
+      case ITEM_ANTI_WARRIOR:
+      case ITEM_ANTI_PALADIN:
+      case ITEM_ANTI_ANTI_PALADIN:
+      case ITEM_ANTI_RANGER:
+      case ITEM_ANTI_DRUID:
+      case ITEM_ANTI_SHAMAN:
+      case ITEM_ANTI_ASSASSIN:
+      case ITEM_ANTI_MERCENARY:
+      case ITEM_ANTI_NECROMANCER:
+      case ITEM_ANTI_CONJURER:        
+        value -= 2;
+        break;
+      }
+  if (NOWEAR_CLASS(ch, obj))
+    value -= 100;
+  return value;
+}
+
+int value_effect(int location, int modifier) {
+  
+  switch (location) {
+  case APPLY_STR:
+  case APPLY_DEX:
+  case APPLY_INT:
+  case APPLY_WIS:
+  case APPLY_CON:
+  case APPLY_CHA:
+    return 3 * modifier;
+    break;
+  case APPLY_MANA:
+  case APPLY_HIT:
+  case APPLY_MOVE:
+    return modifier;
+  case APPLY_AC:
+    return 2 * modifier;
+  case APPLY_HITROLL:
+  case APPLY_DAMROLL:
+    return 5 * modifier;
+  case APPLY_SAVING_PARA:
+  case APPLY_SAVING_ROD:
+  case APPLY_SAVING_PETRI:
+  case APPLY_SAVING_BREATH:
+  case APPLY_SAVING_SPELL:
+    return -modifier;
+  case APPLY_SIZE:
+    return 10 * modifier;
+  case APPLY_HIT_REGEN:
+  case APPLY_MANA_REGEN:
+    return 2 * modifier;
+  case APPLY_PERCEPTION:
+  case APPLY_HIDDENNESS:
+    return modifier / 2;
+  case APPLY_NONE:
+  case APPLY_CLASS:
+  case APPLY_LEVEL:
+  case APPLY_AGE:
+  case APPLY_CHAR_WEIGHT:
+  case APPLY_CHAR_HEIGHT:
+  case APPLY_GOLD:
+  case APPLY_EXP:
+  default:
+    return 0;
+  }
+}
+
+int appraise_item(struct char_data *ch, struct obj_data *obj)
+{
+  int value = 0, i;
+
+  switch (GET_OBJ_TYPE(obj)) {
+    case ITEM_LIGHT:
+      if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == LIGHT_PERMANENT)
+        value = 50;
+      else {
+        value = GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) / 100; /* remaining light power */
+        value += GET_OBJ_VAL(obj, VAL_LIGHT_CAPACITY) / 200; /* original light power */
+      }
+      break;
+    case ITEM_WEAPON:
+      value = WEAPON_AVERAGE(obj);
+      break;
+    case ITEM_SCROLL:
+    case ITEM_POTION:
+      value = GET_OBJ_VAL(obj, VAL_SCROLL_LEVEL);
+      value += value_spell(GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1), GET_OBJ_TYPE(obj) == ITEM_POTION);
+      value += value_spell(GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_2), GET_OBJ_TYPE(obj) == ITEM_POTION);
+      value += value_spell(GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_3), GET_OBJ_TYPE(obj) == ITEM_POTION);
+      break;
+    case ITEM_WAND:
+    case ITEM_STAFF:
+      value = value_spell(GET_OBJ_VAL(obj, VAL_WAND_SPELL), TRUE) * GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT);
+      if (GET_OBJ_TYPE(obj) == ITEM_STAFF)
+        value *= 3;
+      value += GET_OBJ_VAL(obj, VAL_WAND_LEVEL);
+      /* charges total (value 1) doesn't matter right now */
+      break;
+    case ITEM_ARMOR:
+      value = GET_OBJ_VAL(obj, VAL_ARMOR_AC);
+      break;
+    case ITEM_CONTAINER:
+      value = GET_OBJ_VAL(obj, VAL_CONTAINER_CAPACITY);
+      break;
+    case ITEM_DRINKCON:
+    case ITEM_FOUNTAIN:
+      value = GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY);
+      value += GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING);
+      if (IS_POISONED(obj))
+        value *= -1;
+      break;
+    case ITEM_FOOD:
+      value = GET_OBJ_VAL(obj, VAL_FOOD_FILLINGNESS);
+      if (IS_POISONED(obj))
+        value *= -1;
+      break;
+  }
+
+  if (CAN_WEAR(obj, ITEM_WEAR_TAKE) && GET_OBJ_WEAR(obj) != ITEM_WEAR_TAKE)
+    for (i = 0; i < MAX_OBJ_APPLIES; ++i)
+      value += value_effect(obj->applies[i].location, obj->applies[i].modifier);
+
+  value += GET_OBJ_COST(obj) / 100;
+
+  value += value_spell_effects(GET_OBJ_EFF_FLAGS(obj));
+  value += value_obj_flags(ch, obj);
+
+  value += 100 - GET_OBJ_LEVEL(obj);
+
+  return value;
+}
+
+bool has_effect(struct char_data *ch, const struct spell_pair *effect)
+{
+  if (!effect || effect->spell <= 0)
+    return FALSE;
+  else if (effect->flag)
+    return EFF_FLAGGED(ch, effect->flag) ? 1 : 0;
+  else
+    return affected_by_spell(ch, effect->spell);
+}
+
+
+/*
+ * victim should never be null coming into this.  I can't be held 
+ * responsible for any side-effects if victim is null :P  Or if
+ * no one is fighting the mob.
+ */
+struct char_data *weakest_attacker(struct char_data *ch, struct char_data *victim)
+{
+  struct char_data *tch;
+
+  for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
+    if (FIGHTING(tch) != ch)
+      continue; /* Only switch to enemies */
+    if (!IS_NPC(tch))
+      continue; /* Don't switch to other mobs */
+    if (victim) {
+      if (GET_HIT(tch) >= GET_HIT(victim))
+        continue; /* Only switch targets if their hp is lower */
+      if (number(0, 60) > GET_LEVEL(ch))
+        continue; /* Higher level mobs are better at switching targets */
+    }
+    victim = tch;
+  }
+  return victim;
+}
+
+bool mob_heal_up(struct char_data *ch)
+{
+  int i, counter = 0;
+  extern const int mob_cleric_heals[];
+
+  for (i = 0; mob_cleric_heals[i]; i++) {
+    if (mob_cast(ch, ch, NULL, mob_cleric_heals[i]))
+      return TRUE;
+    else
+      counter++;
+    /* Attempt up to 3 spells. */
+    if (counter > 3)
+      break;
+  }
+  return FALSE;
+}
+
+
+
+
+bool is_tanking(struct char_data *ch)
+{
+  struct char_data *tch;
+
+  if (!FIGHTING(ch))
+    return FALSE;
+  
+  for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+    if (FIGHTING(tch) == ch)
+      return TRUE;
+  return FALSE;
+}
+
+
+bool evil_in_group(struct char_data *victim)
+{
+  struct char_data *k;
+  struct group_type *f;
+
+  if (!IS_GROUPED(victim))
+    return (GET_ALIGNMENT(victim) <= -500);
+  k = (victim->group_master ? victim->group_master : victim); 
+  if (GET_ALIGNMENT(k) <= -500)
+    return TRUE;
+  for (f = k->groupees; f; f = f->next)
+    if (GET_ALIGNMENT(f->groupee) <= -500)
+      return TRUE;
+  return FALSE;
+}
+
+bool good_in_group(struct char_data *victim)
+{
+  struct char_data *k;
+  struct group_type *f;
+  if (!IS_GROUPED(victim))
+    return (GET_ALIGNMENT(victim) >= 500);
+  k = (victim->group_master ? victim->group_master : victim); 
+  if (GET_ALIGNMENT(k) >= 500)
+    return TRUE;
+  for (f = k->groupees; f; f = f->next)
+    if (GET_ALIGNMENT(f->groupee) >= 500)
+      return TRUE;
+  return FALSE;
+  
+}
+
+/*
+ * group_size
+ *
+ * Returns the number of people in character's group who are also in
+ * the same room.
+ */
+int group_size(struct char_data *ch) {
+  struct char_data *k;
+  struct group_type *f;
+  int counter = 0;
+
+  if (!IS_GROUPED(ch))
+    return 0;
+  
+  /* Character IS grouped.  Find group master and count groupees. */
+  k = (ch->group_master ? ch->group_master : ch); 
+  for (f = k->groupees; f; f = f->next)
+    if (f->groupee->in_room == ch->in_room)
+      counter++;
+  return counter + 1;
+}
+
+/* Will this mob (ch) assist vict in battle? */
+bool will_assist(struct char_data *ch, struct char_data *vict)
+{
+   /* STAGE 0: Very basic sanity checks. */
+
+   /* I'm already in battle. */
+   if (FIGHTING(ch))
+      return FALSE;
+
+   /* Vict isn't in battle, or I'm fighting vict. */
+   if (ch == vict || !FIGHTING(vict) || ch == FIGHTING(vict))
+      return FALSE;
+
+   /* The person vict is fighting isn't here. */
+   if (FIGHTING(vict)->in_room != ch->in_room)
+      return FALSE;
+
+   /* STAGE 1: Vict is fighting someone in here... */
+
+   /* Vict is a player (or appears to be). */
+   if (!IS_NPC(vict) || MOB_FLAGGED(vict, MOB_PLAYER_PHANTASM)) {
+      /* A protector might assist a player, UNLESS:
+       *   -- the player is fighting a protector mob
+       *   -- the player is fighting a peacekeeper mob
+       *   -- they player is fighting a player */
+      if (MOB_FLAGGED(ch, MOB_PROTECTOR) &&
+            !MOB_FLAGGED(FIGHTING(vict), MOB_PROTECTOR) &&    /* not fighting a protector */
+            !MOB_FLAGGED(FIGHTING(vict), MOB_PEACEKEEPER) &&  /* not fighting a peacekeeper */
+            !(!IS_NPC(FIGHTING(vict)) || MOB_FLAGGED(FIGHTING(vict), MOB_PLAYER_PHANTASM))  /* not fighting a player */
+            )
+         return TRUE;
+      /* Otherwise, mobs don't assist players. */
+      return FALSE;
+   }
+
+   /* Vict is a mobile. */
+
+   /* What would a peacekeeper/protector do? */
+   if (MOB_FLAGGED(ch, MOB_PEACEKEEPER) || MOB_FLAGGED(ch, MOB_PROTECTOR)) {
+      /* It wouldn't assist against another peacekeeper, or a protector. */
+      if (MOB_FLAGGED(FIGHTING(vict), MOB_PEACEKEEPER) || MOB_FLAGGED(FIGHTING(vict), MOB_PROTECTOR))
+         return FALSE;
+      /* It would assist a peacekeeper or protector. */
+      if (MOB_FLAGGED(vict, MOB_PEACEKEEPER) || MOB_FLAGGED(vict, MOB_PROTECTOR))
+         return TRUE;
+      /* A peacekeeper would assist against a badly-aligned char */
+      if (MOB_FLAGGED(ch, MOB_PEACEKEEPER) &&
+            abs(GET_ALIGNMENT(ch) - GET_ALIGNMENT(FIGHTING(vict))) > 1350)
+         return TRUE;
+   }
+
+   /* When do mobiles assist mobiles?  When they've got HELPER flag. */
+   if (MOB_FLAGGED(ch, MOB_HELPER))
+      return TRUE;
+
+   return FALSE;
+}
+
+bool is_aggr_to(struct char_data *ch, struct char_data *tch) {
+   if (!ch || !tch || ch == tch || !AWAKE(ch))
+      return FALSE;
+
+   if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) ||
+         EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS) ||
+         EFF_FLAGGED(ch, EFF_MESMERIZED))
+      return FALSE;
+
+   if (!CAN_SEE(ch, tch) || PRF_FLAGGED(tch, PRF_NOHASSLE) ||
+         EFF_FLAGGED(tch, EFF_FAMILIARITY))
+      return FALSE;
+
+   if (is_grouped(ch, tch))
+      return FALSE;
+
+   if (!attack_ok(ch, tch, FALSE))
+      return FALSE;
+
+   if (IS_NPC(ch)) {
+      /* Wimpy mobs don't attack alert folks.
+       * Note: It would be nice to separate the fleeing bit from the attacking-only-
+       * unconscious-folks bit. */
+      if (MOB_FLAGGED(ch, MOB_WIMPY) && AWAKE(tch)
+            && !MOB_FLAGGED(ch, MOB_PROTECTOR) && !MOB_FLAGGED(ch, MOB_PEACEKEEPER))
+         return FALSE;
+
+      /* Peacekeepers are out to rid the world of evil (or good!) NPCs */
+      if (IS_NPC(tch) && MOB_FLAGGED(ch, MOB_PEACEKEEPER) &&
+            abs(GET_ALIGNMENT(ch) - GET_ALIGNMENT(tch)) > 1350)
+         return TRUE;
+
+      /* Protectors don't like mobs that are aggro to PCs. */
+      if (MOB_FLAGGED(ch, MOB_PROTECTOR) &&
+            AGGR_TO_PLAYERS(tch))
+         return TRUE;
+
+      /* Otherwise, NPCs do not attack NPCs. */
+      if (IS_NPC(tch) && !MOB_FLAGGED(tch, MOB_PLAYER_PHANTASM))
+         return FALSE;
+
+      /* Now if the mob is marked any kind of aggro that matches the
+          target, attack! */
+      if (MOB_FLAGGED(ch, MOB_AGGRESSIVE))
+         return TRUE;
+      if (MOB_FLAGGED(ch, MOB_AGGR_GOOD_RACE) &&
+            GET_RACE_ALIGN(tch) == RACE_ALIGN_GOOD)
+         return TRUE;
+      if (MOB_FLAGGED(ch, MOB_AGGR_EVIL_RACE) &&
+            GET_RACE_ALIGN(tch) == RACE_ALIGN_EVIL)
+         return TRUE;
+      if (MOB_FLAGGED(ch, MOB_AGGR_EVIL) && IS_EVIL(tch))
+         return TRUE;
+      if (MOB_FLAGGED(ch, MOB_AGGR_NEUTRAL) && IS_NEUTRAL(tch))
+         return TRUE;
+      if (MOB_FLAGGED(ch, MOB_AGGR_GOOD) && IS_GOOD(tch))
+         return TRUE;
+
+      /* Is the target remembered as an enemy? */
+      if (MOB_FLAGGED(ch, MOB_MEMORY) && in_memory(ch, tch))
+         return TRUE;
+
+   }
+   /* Otherwise is a player */
+   else {
+      /* Berserkers are aggressive. */
+      if (IS_NPC(tch) && EFF_FLAGGED(ch, EFF_BERSERK))
+         return TRUE;
+
+      if (GET_WIMP_LEV(ch) >= GET_HIT(ch))
+         return FALSE;
+      if (GET_AGGR_LEV(ch) <= 0 || GET_AGGR_LEV(ch) > GET_HIT(ch))
+         return FALSE;
+
+      /* If not vicious, be merciful to sleeping/paralyzed mobs */
+      if (!PRF_FLAGGED(ch, PRF_VICIOUS) && (!AWAKE(tch) ||
+            EFF_FLAGGED(tch, EFF_MINOR_PARALYSIS) ||
+            EFF_FLAGGED(tch, EFF_MAJOR_PARALYSIS)))
+         return FALSE;
+
+      /*
+       * The target must be an NPC or else you'll end up with an infinite
+       * recursion situation.   Can you say segfault?
+       */
+      if (IS_NPC(tch) && is_aggr_to(tch, ch))
+         return TRUE;
+   }
+
+   return FALSE;
+}
+
+
+int appraise_opponent(struct char_data *ch, struct char_data *vict) {
+   int val;
+
+   if (!IS_NPC(ch))
+      return -1;
+
+   val = GET_HIT(vict);
+
+   if (IS_CLERIC(vict) || IS_MAGIC_USER(vict))
+      val *= 2 / 3;
+   else if (IS_WARRIOR(vict))
+      val *= 2;
+   if (!FIGHTING(vict))
+      val /= (IS_ROGUE(ch) ? 4 : 2);
+   if (EFF_FLAGGED(vict, EFF_AWARE) && IS_ROGUE(ch))
+      val *= 1.5;
+   if (GET_LEVEL(vict) < 60)
+      val /= number(40 + GET_LEVEL(vict), 160 - GET_LEVEL(vict));
+   return val;
+}
+
+void glorion_distraction(struct char_data *ch, struct char_data *glorion)
+{
+   if (ch == glorion) return;
+   /* Will the glorion be attacked? */
+   if (number(1, 100) < 3 && !PRF_FLAGGED(glorion, PRF_NOHASSLE)) {
+      /* It's attacked! */
+      act("$n forgets $s appreciation of $N's glorious appearance, and attacks!",
+            TRUE, ch, 0, glorion, TO_NOTVICT);
+      act("The look of awe in $N's eyes falters, and $e attacks!",
+            TRUE, glorion, 0, ch, TO_CHAR);
+      act("You see right through $N's magical disguise!",
+            FALSE, ch, 0, glorion, TO_CHAR);
+      event_create(EVENT_QUICK_AGGRO, quick_aggro_event,
+            mkgenericevent(ch, glorion, 0), TRUE, &(ch->events), 0);
+   } else {
+      /* Glory wins: no attack. */
+      if (number(1, 8) == 1) {
+         act("$n looks upon $N with awe in $s eyes.",
+               TRUE, ch, 0, glorion, TO_NOTVICT);
+         act("$n gazes at you in wonder.", TRUE, ch, 0, glorion, TO_VICT);
+         act("You are distracted by $N's unearthly beauty.",
+               TRUE, ch, 0, glorion, TO_CHAR);
+      }
+   }
+}
+
+#define MAX_TARGETS 10
+struct char_data *find_aggr_target(struct char_data *ch) {
+   struct char_data *tch;
+   struct aggr_target {
+      struct char_data *target;
+      int difficulty;
+   } targets[MAX_TARGETS + 1];
+   int i, j, k, num_targets, chosen_targets;
+
+   struct char_data *glorion = NULL;
+   int glorion_count;
+
+   if (!ch || CH_NROOM(ch) == NOWHERE)
+      return NULL;
+
+   if (ROOM_FLAGGED(CH_NROOM(ch), ROOM_PEACEFUL)) return NULL;
+
+   if (!IS_NPC(ch) && !EFF_FLAGGED(ch, EFF_BERSERK)) {
+      if (GET_WIMP_LEV(ch) >= GET_HIT(ch))
+         return NULL;
+      if (GET_AGGR_LEV(ch) <= 0 || GET_AGGR_LEV(ch) > GET_HIT(ch))
+         return NULL;
+   }
+
+   if (PLR_FLAGGED(ch, PLR_BOUND) || !AWAKE(ch) ||
+         EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) ||
+         EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS))
+      return NULL;
+
+   /* Your intelligence determines how many targets you will evaluate. */
+   num_targets = MAX(1, GET_INT(ch) * MAX_TARGETS / 100);
+
+   /* Choose #num_targets characters at random */
+   glorion_count = 0;
+   for (i = 0, tch = world[IN_ROOM(ch)].people; tch; tch = tch->next_in_room) {
+      /* If there are any folks in the room with GLORY, they will
+       * interfere with aggression.  One will be chosen at random,
+       * because there's a chance the mob will attack it.  But no
+       * one else will be. */
+      if (ch != tch && CAN_SEE(ch, tch)) {
+         if (EFF_FLAGGED(tch, EFF_GLORY) && PLAYERALLY(tch)) {
+            glorion_count++;
+            if (number(1, glorion_count) == 1)
+               glorion = tch;
+         } else if (is_aggr_to(ch, tch)) {
+            if (i >= num_targets)
+               j = number(0, i);
+            else
+               j = i;
+            if (j < num_targets) {
+               targets[j].target = tch;
+               targets[j].difficulty = appraise_opponent(ch, tch);
+            }
+            i++;
+         }
+      }
+   }
+
+   if (glorion_count) {
+      glorion_distraction(ch, glorion);
+      return NULL;
+   }
+
+   if (i == 0)
+      /* Didn't find anyone I was aggro to. */
+      return NULL;
+
+   /* This is the number of folks I decided I was aggro to, and stored in
+    * targets[]. */
+   if (i >= num_targets)
+      chosen_targets = num_targets;
+   else
+      chosen_targets = i;
+
+   /* Now choose one of them to attack. */
+
+   /* Players and illusions just choose at random. */
+   if (!IS_NPC(ch) || MOB_FLAGGED(ch, MOB_PLAYER_PHANTASM))
+      return targets[number(0, chosen_targets - 1)].target;
+
+   /* Normal mobiles choose the weakest enemy. */
+
+   /* The extra struct-aggr_target is used to initialize the search for
+    * the easiest opponent. */
+   k = chosen_targets;
+   targets[k].difficulty = 100000000; /* Arbitrarily large number */
+   for (j = 0; j < chosen_targets; ++j)
+      if (targets[j].difficulty < targets[k].difficulty)
+         k = j;
+
+   /* No potential targets in the room? */
+   if (k >= chosen_targets)
+      return NULL;
+
+   return targets[k].target;
+}
+
+/***************************************************************************
+ * $Log: ai_utils.c,v $
+ * Revision 1.36  2009/03/09 16:57:47  myc
+ * Added detect poison effect.
+ *
+ * Revision 1.35  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.34  2009/01/17 00:28:02  myc
+ * Fix possible use of uninitialized variable.
+ *
+ * Revision 1.33  2008/09/26 09:35:09  jps
+ * NPCs don't concern themselves with glorious NPCs.
+ *
+ * Revision 1.32  2008/09/26 09:26:34  jps
+ * Don't aggr against ones self. Don't be amazed at one's own glory.
+ *
+ * Revision 1.31  2008/09/14 18:09:49  jps
+ * Make peackeepers not attack players for being evil.
+ *
+ * Revision 1.30  2008/09/13 18:53:30  jps
+ * Make so-called "wimpy" mobs initiate fights if they're protector/peacekeeper.
+ *
+ * Revision 1.29  2008/09/02 07:16:00  mud
+ * Changing object TIMER uses into DECOMP where appropriate
+ *
+ * Revision 1.28  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.27  2008/09/01 00:01:56  jps
+ * Made "protector" mobs attack aggro mobs on sight.
+ *
+ * Revision 1.26  2008/08/31 20:55:19  jps
+ * Moved find_aggr_target, glorion_distraction, appraise_opponent, and is_aggr_to
+ * to ai_utils.c from fight.c. Added will_assist. Incorporated the PROTECTOR
+ * and PEACEKEEPER flags.
+ *
+ * Revision 1.25  2008/06/07 19:06:46  myc
+ * Moved all object-related constants and structures to objects.h
+ *
+ * Revision 1.24  2008/06/05 02:07:43  myc
+ * Changing object flags to use flagvectors.  Rewrote rent-saving code
+ * to use ascii-format files.
+ *
+ * Revision 1.23  2008/04/14 05:11:40  jps
+ * Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+ * to fly - not that the characer is actually flying.
+ *
+ * Revision 1.22  2008/04/10 01:38:38  myc
+ * Fixed has_effect() so mobs will stop continuously casting fly.
+ *
+ * Revision 1.21  2008/04/02 03:24:44  myc
+ * Rewrote group code and removed all major group code.
+ *
+ * Revision 1.20  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.19  2008/03/27 17:26:59  jps
+ * ITEM_BLESS is gone, and we have AFF3_BLESS and AFF3_HEX instead.
+ *
+ * Revision 1.18  2008/03/26 23:12:03  jps
+ *  The waterform and vaporform flags are retired.
+ *
+ * Revision 1.17  2008/03/07 21:21:57  myc
+ * Replaced action delays and skill delays with a single list of
+ * 'cooldowns', which are decremented by a recurring event and
+ * also save to the player file.
+ *
+ * Revision 1.16  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.15  2008/02/05 03:45:33  myc
+ * Fixing scavenging.  appraise_item was returning 0 instead of a
+ * real value.
+ *
+ * Revision 1.14  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.13  2008/01/13 23:06:04  myc
+ * Added the appraise_item function, which calculates an arbitrary value
+ * given a character and an item.
+ *
+ * Revision 1.12  2008/01/12 23:13:20  myc
+ * Replaced try_cast with direct calls to mob_cast, which now supports target
+ * objects.
+ *
+ * Revision 1.11  2008/01/12 19:08:14  myc
+ * Rewrote a lot of mob AI functionality.
+ *
+ * Revision 1.10  2008/01/03 12:44:03  jps
+ * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+ * to CLASS_SORCERER.
+ *
+ * Revision 1.9  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.8  2000/11/20 18:14:31  rsd
+ * added back rlog messages from priot to the addition of
+ * the $log$ string.
+ *
+ * Revision 1.7  2000/04/05 23:09:48  rsd
+ * removed fireshield and left coldshield for mobile ai
+ *
+ * Revision 1.6  2000/04/05 22:56:34  rsd
+ * Changed the order of fireshield and coldshield in
+ * so_spells_to_check to make coldshield preferable.
+ * Removed bless entry from const int cl_spells_to_check
+ * so evil clerics wouldn't spam the mud into oblivion
+ * trying to lang it on themselves.  This is a hack until
+ * an alignment check can be put in...
+ *
+ * Revision 1.5  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.4  1999/06/10 16:56:28  mud
+ * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+ * This fixes all of the warnings associated with the new compiler and 
+ * libraries.  Many many curly braces had to be added to "if" statements to 
+ * clarify their behavior to the compiler.  The name approval code was also 
+ * debugged, and tested to be stable.  The xnames list was converted from an
+ * array to a linked list to allow for on the fly adding of names to the 
+ * xnames list. This code compiles fine under both gcc RH5.2 and egcs RH6.0.
+ * --Gurlaek 6/10/1999 
+ *
+ * Revision 1.3  1999/01/30 17:29:18  mud
+ * Changed comment header information to give proper credit.
+ *
+ * Revision 1.2  1999/01/30 17:22:06  mud
+ * Added a standard Comment Header
+ * removed a couple of lovely looking ^M's
+ * Indented the entire file
+ *
+ * Revision 1.1  1999/01/29 01:23:30  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.36
+log
+@Added detect poison effect.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.35 2009/03/08 23:34:14 jps Exp myc $
+d50 1
+d746 3
+@
+
+
+1.35
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.34 2009/01/17 00:28:02 myc Exp jps $
+d81 1
+d745 3
+@
+
+
+1.34
+log
+@Fix possible use of uninitialized variable.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.33 2008/09/26 09:35:09 jps Exp myc $
+d23 1
+a23 1
+#include "spells.h"
+d744 3
+@
+
+
+1.33
+log
+@NPCs don't concern themselves with glorious NPCs.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.32 2008/09/26 09:26:34 jps Exp jps $
+d261 1
+a261 1
+  int value, i;
+d654 1
+a654 1
+   struct char_data *glorion;
+d744 3
+@
+
+
+1.32
+log
+@Don't aggr against ones self. Don't be amazed at one's own glory.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.31 2008/09/14 18:09:49 jps Exp jps $
+d685 1
+a685 1
+         if (EFF_FLAGGED(tch, EFF_GLORY)) {
+d744 3
+@
+
+
+1.31
+log
+@Make peackeepers not attack players for being evil.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.30 2008/09/13 18:53:30 jps Exp jps $
+d621 1
+d684 1
+a684 1
+      if (CAN_SEE(ch, tch)) {
+d744 3
+@
+
+
+1.30
+log
+@Make so-called "wimpy" mobs initiate fights if they're protector/peacekeeper.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.29 2008/09/02 07:16:00 mud Exp jps $
+d533 2
+a534 2
+      /* Peacekeepers are out to rid the world of evil (or good!) */
+      if (MOB_FLAGGED(ch, MOB_PEACEKEEPER) &&
+d743 3
+@
+
+
+1.29
+log
+@Changing object TIMER uses into DECOMP where appropriate
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.28 2008/09/01 23:47:49 jps Exp mud $
+d526 5
+a530 2
+      /* Wimpy mobs don't attack alert folks */
+      if (MOB_FLAGGED(ch, MOB_WIMPY) && AWAKE(tch))
+d678 1
+a678 1
+   for (i = 0, tch = world[IN_ROOM(ch)].people; tch; tch = tch->next_in_room)
+d700 1
+d743 3
+@
+
+
+1.28
+log
+@Using movement.h/c for movement functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.27 2008/09/01 00:01:56 jps Exp jps $
+a157 1
+      case ITEM_TRANSIENT:
+d739 3
+@
+
+
+1.27
+log
+@Made "protector" mobs attack aggro mobs on sight.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.26 2008/08/31 20:55:19 jps Exp jps $
+d30 1
+d740 3
+@
+
+
+1.26
+log
+@Moved find_aggr_target, glorion_distraction, appraise_opponent, and is_aggr_to
+to ai_utils.c from fight.c. Added will_assist. Incorporated the PROTECTOR
+and PEACEKEEPER flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.25 2008/06/07 19:06:46 myc Exp jps $
+d535 5
+d739 5
+@
+
+
+1.25
+log
+@Moved all object-related constants and structures to objects.h
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.24 2008/06/05 02:07:43 myc Exp myc $
+d27 3
+d448 284
+d734 3
+@
+
+
+1.24
+log
+@Changing object flags to use flagvectors.  Rewrote rent-saving code
+to use ascii-format files.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.23 2008/04/14 05:11:40 jps Exp myc $
+d262 1
+a262 1
+      if (GET_OBJ_VAL(obj, 1) < 0)
+d265 2
+a266 2
+        value = GET_OBJ_VAL(obj, 2) / 100; /* remaining light power */
+        value += GET_OBJ_VAL(obj, 1) / 200; /* original light power */
+d274 4
+a277 4
+      value = GET_OBJ_VAL(obj, 0); /* spell level */
+      value += value_spell(GET_OBJ_VAL(obj, 1), GET_OBJ_TYPE(obj) == ITEM_POTION); /* spell 1 */
+      value += value_spell(GET_OBJ_VAL(obj, 2), GET_OBJ_TYPE(obj) == ITEM_POTION); /* spell 2 */
+      value += value_spell(GET_OBJ_VAL(obj, 3), GET_OBJ_TYPE(obj) == ITEM_POTION); /* spell 3 */
+d281 1
+a281 1
+      value = value_spell(GET_OBJ_VAL(obj, 3), TRUE) * GET_OBJ_VAL(obj, 2); /* spell * charges remaining */
+d284 1
+a284 1
+      value += GET_OBJ_VAL(obj, 0); /* spell level */
+d288 1
+a288 1
+      value = GET_OBJ_VAL(obj, 0); /* armor apply */
+d291 1
+a291 1
+      value = GET_OBJ_VAL(obj, 0); /* capacity */
+d295 2
+a296 2
+      value = GET_OBJ_VAL(obj, 0); /* capacity */
+      value += GET_OBJ_VAL(obj, 1); /* contains */
+d301 1
+a301 1
+      value = GET_OBJ_VAL(obj, 0); /* fillingness */
+d447 4
+@
+
+
+1.23
+log
+@Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+to fly - not that the characer is actually flying.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.22 2008/04/10 01:38:38 myc Exp jps $
+d140 1
+a140 1
+    if (IS_SET(GET_OBJ_EXTRA(obj), (1 << i)))
+d308 2
+a309 2
+    for (i = 0; i < MAX_OBJ_EFFECT; ++i)
+      value += value_effect(obj->effects[i].location, obj->effects[i].modifier);
+d447 4
+@
+
+
+1.22
+log
+@Fixed has_effect() so mobs will stop continuously casting fly.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.21 2008/04/02 03:24:44 myc Exp myc $
+d95 1
+a95 1
+  case EFF_FLYING:
+d447 3
+@
+
+
+1.21
+log
+@Rewrote group code and removed all major group code.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.20 2008/03/28 17:54:53 myc Exp myc $
+d325 2
+a326 2
+  if (effect->flag)
+    return EFF_FLAGGED(ch, effect->flag);
+d447 3
+@
+
+
+1.20
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.19 2008/03/27 17:26:59 jps Exp myc $
+a122 2
+  case EFF_GROUP:
+  case EFF_MAJOR_GROUP:
+d396 1
+a396 1
+  if (!EFF_FLAGGED(victim, EFF_GROUP))
+d398 1
+a398 1
+  k = (victim->groupmaster ? victim->groupmaster : victim); 
+d411 1
+a411 1
+  if (!EFF_FLAGGED(victim, EFF_GROUP))
+d413 1
+a413 1
+  k = (victim->groupmaster ? victim->groupmaster : victim); 
+d434 1
+a434 1
+  if (!EFF_FLAGGED(ch, EFF_GROUP))
+d438 1
+a438 1
+  k = (ch->groupmaster ? ch->groupmaster : ch); 
+d447 4
+@
+
+
+1.19
+log
+@ITEM_BLESS is gone, and we have AFF3_BLESS and AFF3_HEX instead.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.18 2008/03/26 23:12:03 jps Exp jps $
+d40 1
+a40 1
+  case AFF_MAJOR_PARA:
+d42 1
+a42 1
+  case AFF_BLIND:
+d44 9
+a52 2
+  case AFF_POISON:
+  case AFF_SLEEP:
+d54 3
+a56 2
+  case AFF_CHARM:
+  case AFF_TAMED:
+d59 1
+a59 1
+  case AFF_VIT:
+d62 1
+a62 1
+  case AFF_CURSE:
+a63 2
+  case AFF_COMP_LANG:
+    return 5;
+d65 16
+a80 3
+  case AFF_FARSEE:
+  case AFF_DETECT_ALIGN:
+  case AFF_DETECT_MAGIC:
+d82 4
+a85 3
+  case AFF_WATERWALK:
+  case AFF_INVISIBLE:
+  case AFF_NOTRACK:
+d87 3
+a89 3
+  case AFF_SNEAK:
+  case AFF_SENSE_LIFE:
+  case AFF_INFRAVISION:
+d91 1
+a91 1
+  case AFF_DETECT_INVIS:
+d93 13
+a105 3
+  case AFF_PROTECT_EVIL:
+  case AFF_PROTECT_GOOD:
+  case AFF_FLYING:
+d107 1
+a107 1
+  case AFF_HASTE:
+d109 8
+a116 1
+  case AFF_BLUR:
+d118 1
+a118 1
+  case AFF_SANCTUARY:
+d120 1
+a120 1
+  case AFF_STONE_SKIN:
+d123 2
+a124 1
+  case AFF_GROUP:
+d129 2
+a130 72
+
+int value_spell_effect2(int flag) {
+  switch (flag) {
+  case AFF2_KNOCKED_OUT:
+    return -50;
+  case AFF2_SILENCE:
+  case AFF2_INSANITY:
+    return -30;
+  case AFF2_MINOR_PARALYSIS:
+  case AFF2_ON_FIRE:
+  case AFF2_DISEASE:
+    return -20;
+  case AFF2_FEAR:
+    return -10;
+
+  case AFF2_TONGUES:
+  case AFF2_LEVITATE:
+    return 15;
+  case AFF2_WATERBREATH:
+  case AFF2_MINOR_GLOBE:
+    return 20;
+  case AFF2_LIGHT:
+    return 25;
+  case AFF2_SOULSHIELD:
+  case AFF2_PROT_FIRE:
+  case AFF2_PROT_COLD:
+  case AFF2_PROT_AIR:
+  case AFF2_PROT_EARTH:
+  case AFF2_FIRESHIELD:
+  case AFF2_COLDSHIELD:
+  case AFF2_ULTRAVISION:
+    return 50;
+  case AFF2_MAJOR_GLOBE:
+  case AFF2_HARNESS:
+  case AFF2_NEGATE_HEAT:
+  case AFF2_NEGATE_COLD:
+  case AFF2_NEGATE_AIR:
+  case AFF2_NEGATE_EARTH:
+    return 70;
+
+  case AFF2_MGROUP:
+  default:
+    return 0;
+  }
+}
+
+int value_spell_effect3(int flag) {
+  switch (flag) {
+  case AFF3_ANIMATED:
+    return -20;
+
+  case AFF3_ENLARGE:
+  case AFF3_REDUCE:
+    return 10;
+  case AFF3_CAMOUFLAGED:
+  case AFF3_RAY_OF_ENFEEB:
+    return 15;
+  case AFF3_SHADOWING:
+    return 20;
+  case AFF3_AWARE:
+  case AFF3_VAMP_TOUCH:
+    return 50;
+  case AFF3_BLESS:
+  case AFF3_HEX:
+    return 10;
+
+  default:
+    return 0;
+  }
+}
+
+int value_spell_effects(int aff, int aff2, int aff3) {
+d132 3
+a134 8
+  for (i = 0; i < 32; ++i) {
+    if (IS_SET(aff, (1 << i)))
+      value += value_spell_effect(1 << i);
+    if (IS_SET(aff2, (1 << i)))
+      value += value_spell_effect2(1 << i);
+    if (IS_SET(aff3, (1 << i)))
+      value += value_spell_effect3(1 << i);
+  }
+d138 1
+d310 2
+a311 2
+    for (i = 0; i < MAX_OBJ_AFFECT; ++i)
+      value += value_effect(obj->affected[i].location, obj->affected[i].modifier);
+d315 1
+a315 1
+  value += value_spell_effects(GET_OBJ_SPELL(obj), GET_OBJ_SPELL2(obj), GET_OBJ_SPELL3(obj));
+d323 1
+a323 1
+bool has_affection(struct char_data *ch, const struct spell_pair *affection)
+d325 1
+a325 1
+  if (!affection || affection->spell <= 0)
+d327 4
+a330 19
+  switch(affection->affect_type) {
+    case 1:
+      if (AFF_FLAGGED(ch, affection->affect))
+        return TRUE;
+      break;
+    case 2:
+      if (AFF2_FLAGGED(ch, affection->affect))
+        return TRUE;
+      break;
+    case 3:
+      if (AFF3_FLAGGED(ch, affection->affect))
+        return TRUE;
+      break;
+    case 0:
+      if (affected_by_spell(ch, affection->spell))
+        return TRUE;
+      break;
+  }
+  return FALSE;
+d398 1
+a398 1
+  if (!AFF_FLAGGED(victim, AFF_GROUP))
+d413 1
+a413 1
+  if (!AFF_FLAGGED(victim, AFF_GROUP))
+d436 1
+a436 1
+  if (!AFF_FLAGGED(ch, AFF_GROUP))
+d449 3
+@
+
+
+1.18
+log
+@ The waterform and vaporform flags are retired.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.17 2008/03/07 21:21:57 myc Exp jps $
+d153 3
+a182 1
+      case ITEM_BLESS:
+d500 3
+@
+
+
+1.17
+log
+@Replaced action delays and skill delays with a single list of
+'cooldowns', which are decremented by a recurring event and
+also save to the player file.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.16 2008/02/09 04:27:47 myc Exp myc $
+a124 1
+  case AFF2_WATERFORM:
+a151 1
+  case AFF3_VAPORFORM:
+d498 5
+@
+
+
+1.16
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.15 2008/02/05 03:45:33 myc Exp myc $
+a44 3
+  case AFF_FUMBLING_PRIM:
+  case AFF_FUMBLING_SECOND:
+    return -30;
+a96 3
+  case AFF2_DROPPED_PRIM:
+  case AFF2_DROPPED_SECOND:
+    return -40;
+d500 3
+@
+
+
+1.15
+log
+@Fixing scavenging.  appraise_item was returning 0 instead of a
+real value.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.14 2008/01/29 21:02:31 myc Exp myc $
+d26 1
+a26 1
+
+d506 4
+@
+
+
+1.14
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.13 2008/01/13 23:06:04 myc Exp myc $
+d362 1
+a362 1
+  return 0;
+d506 4
+@
+
+
+1.13
+log
+@Added the appraise_item function, which calculates an arbitrary value
+given a character and an item.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.12 2008/01/12 23:13:20 myc Exp myc $
+a28 4
+extern struct room_data *world;
+extern struct index_data *mob_index;
+extern struct char_data *mob_proto;
+extern char *affected_bits[];
+d506 4
+@
+
+
+1.12
+log
+@Replaced try_cast with direct calls to mob_cast, which now supports target
+objects.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.11 2008/01/12 19:08:14 myc Exp myc $
+d35 1
+a35 1
+bool check_weapon_value(struct char_data *ch, struct obj_data *obj)
+d37 214
+a250 13
+  struct obj_data *wielding = GET_EQ(ch, WEAR_WIELD);
+  struct obj_data *wielding2 = GET_EQ(ch, WEAR_WIELD2);
+  struct obj_data *hwielding = GET_EQ(ch, WEAR_2HWIELD);
+
+  if (getbaseclass(GET_CLASS(ch)) == CLASS_ROGUE) {
+    if (GET_OBJ_VAL(obj, 3) == TYPE_PIERCE - TYPE_HIT) {
+      if ((CAN_WEAR(obj, ITEM_WEAR_2HWIELD)) || (CAN_WEAR(obj, ITEM_WEAR_WIELD))) {
+        if (wielding)
+          if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+            return TRUE;
+        if (hwielding)
+          if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+            return TRUE;
+d252 49
+a300 9
+    }
+    if (GET_OBJ_VAL(obj, 3) != TYPE_PIERCE - TYPE_HIT) {
+      if (wielding)
+        if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+      return FALSE;
+      if (hwielding)
+        if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+      return FALSE;
+    }
+a301 36
+  
+  if ((!(wielding)) && (!(wielding2)) && (!(hwielding)))
+    return TRUE;
+  if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD))
+    {/*is it worth more then obj in either 1 ,2 or thded*/
+      if (wielding)
+        {
+	  if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+	    return TRUE;
+        }
+      if (wielding2)
+        {
+	  if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+	    return TRUE;
+        }
+      if (hwielding)
+        {
+	  if (GET_OBJ_COST(GET_EQ(ch, WEAR_2HWIELD)) < GET_OBJ_COST(obj))
+	    return TRUE;
+        }
+    }
+  
+  if (CAN_WEAR(obj, ITEM_WEAR_WIELD))
+    {
+      if (wielding)
+	if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+	  return TRUE;
+      
+      if (hwielding)
+        {
+	  if (GET_OBJ_COST(GET_EQ(ch, WEAR_2HWIELD)) < GET_OBJ_COST(obj))
+	    return TRUE;
+        }
+    }
+  return FALSE;
+  
+d304 1
+a304 1
+void mob_remove_weapon(struct char_data *ch, struct obj_data *obj, int where)
+d306 54
+d361 7
+a367 40
+  struct obj_data *spare;
+  struct obj_data *wielding = GET_EQ(ch, WEAR_WIELD);
+  struct obj_data *hwielding = GET_EQ(ch, WEAR_2HWIELD);
+  /*if something in 2handed spot well have to remove it!!*/
+  
+  if (!CAN_WEAR(obj, ITEM_WEAR_WIELD) && !CAN_WEAR(obj, ITEM_WEAR_2HWIELD))
+    return;
+  if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD) && (hwielding))
+    {
+      perform_remove(ch, WEAR_2HWIELD);
+      return;
+    }
+  if ((CAN_WEAR(obj, ITEM_WEAR_WIELD)) && (wielding)) 
+    {
+      perform_remove(ch, WEAR_WIELD);
+      return;
+    }
+  if (hwielding)
+    {
+      perform_remove(ch, WEAR_2HWIELD);
+      return;
+    }
+  
+  if((CAN_WEAR(obj, ITEM_WEAR_2HWIELD)))/*remove weopons*/
+    if(wielding)
+      perform_remove(ch, WEAR_WIELD);
+  if (GET_EQ(ch, WEAR_WIELD2))  	
+    {
+      if (!(GET_EQ(ch, WEAR_WIELD))) 
+        {
+	  spare = GET_EQ(ch, WEAR_WIELD2);
+	  obj_to_char(unequip_char(ch, WEAR_WIELD2), ch);
+	  obj_from_char(spare);
+	  equip_char(ch, spare, WEAR_WIELD);
+	}
+      if (GET_EQ(ch, WEAR_WIELD))
+	perform_remove(ch, WEAR_WIELD);
+    }
+  return;
+}	
+d510 4
+@
+
+
+1.11
+log
+@Rewrote a lot of mob AI functionality.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.10 2008/01/03 12:44:03 jps Exp myc $
+d27 2
+d200 1
+a200 1
+    if(try_cast(ch, ch, mob_cleric_heals[i]))
+d284 3
+@
+
+
+1.10
+log
+@Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+to CLASS_SORCERER.
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.9 2002/09/13 02:32:10 jjl Exp jps $
+d33 1
+a33 69
+/*constants*/
+const int so_spells_to_check[NUMBER_OF_SO_CHECKS][3] = 
+{   {SPELL_STONE_SKIN, AFF_STONE_SKIN, 1},
+    {SPELL_HASTE, AFF_HASTE, 1}, 
+    {SPELL_COLDSHIELD, AFF2_COLDSHIELD, 2},
+    /* {SPELL_FIRESHIELD, AFF2_FIRESHIELD, 2}, */
+    {SPELL_MAJOR_GLOBE, AFF2_MAJOR_GLOBE, 2}, 
+    {SPELL_MINOR_GLOBE, AFF2_MINOR_GLOBE, 2},  
+    {SPELL_DETECT_INVIS, AFF_DETECT_INVIS, 1},
+    {SPELL_INVISIBLE, AFF_INVISIBLE, 1},
+    {SPELL_FLY, AFF_FLYING, 1}
+};
+
+const int sorcerer_offense[SORCERER_OFFENSE_NO] = 
+{   SPELL_BIGBYS_CLENCHED_FIST,
+    SPELL_FIREBALL,SPELL_LIGHTNING_BOLT,SPELL_SHOCKING_GRASP,
+    SPELL_CHILL_TOUCH, SPELL_MAGIC_MISSILE
+};
+
+const int sorcerer_area[SORCERER_AREA_NO] = 
+{   SPELL_ICE_SHARDS, SPELL_METEORSWARM, 
+    SPELL_CHAIN_LIGHTNING, SPELL_ICE_STORM
+};
+
+const int cl_spells_to_check[NUMBER_OF_CL_CHECKS][3] = 
+{   {SPELL_ARMOR, -1, 1}, 
+    {SPELL_SOULSHIELD, AFF2_SOULSHIELD, 2} , 
+    {SPELL_SENSE_LIFE, AFF_SENSE_LIFE, 1}
+};
+
+const int cl_bad_spells_to_check[NUMBER_CL_BAD_CHECKS][4] = 
+{ 
+  {SPELL_BLINDNESS, SPELL_CURE_BLIND, AFF_BLIND, 1},
+  {SPELL_POISON, SPELL_REMOVE_POISON, AFF_POISON, 1},
+  {SPELL_CURSE, SPELL_REMOVE_CURSE, AFF_CURSE, 1}
+};
+
+const int cleric_offense[CLERIC_OFFENSE_NO] = 
+{   SPELL_FULL_HARM, SPELL_FLAMESTRIKE, SPELL_HARM, SPELL_DISPEL_EVIL, 
+    SPELL_DISPEL_GOOD, SPELL_CAUSE_CRITIC,
+    SPELL_CAUSE_SERIOUS, SPELL_CAUSE_LIGHT    
+};
+
+const int cleric_area[CLERIC_AREA_NO] = 
+{   SPELL_HOLY_WORD, SPELL_UNHOLY_WORD, 
+    SPELL_EARTHQUAKE
+};
+
+const int cleric_heal[CLERIC_HEAL_NO] = 
+{   SPELL_FULL_HEAL, 
+    SPELL_HEAL, SPELL_CURE_CRITIC,
+    SPELL_CURE_SERIOUS, SPELL_CURE_LIGHT
+};
+
+bool aloud_skill(int i, int spellnum)
+{
+  int counter = 0;
+  int mob_circle = 0;
+  int spell_circle;
+  spell_circle = (1 + ((int) ((spell_info[spellnum].min_level[(int)(mob_proto[i].player.class)])/5))); 
+  while (counter < mob_proto[i].player.level)
+    {/*calculates what circle mob can have*/
+      mob_circle ++;
+      counter = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+  return (mob_circle >= spell_circle);
+}
+
+bool check_weopeon_value(struct char_data *ch, struct obj_data *obj)
+d97 1
+a97 1
+void mob_remove_weopon(struct char_data *ch, struct obj_data *obj, int where)
+d141 1
+a141 1
+bool affected_by_aff(struct char_data *ch, int spell_number, int aff, int which)
+d143 1
+a143 4
+  
+  if (affected_by_spell(ch, spell_number))
+    return TRUE;
+  if (aff == -1)
+d145 18
+a162 15
+  if (which == 1)
+    {
+      if (IS_AFFECTED(ch, aff))
+	return TRUE;
+    }
+  else if (which == 2)
+    {
+      if (IS_AFFECTED2(ch, aff))
+	return TRUE;
+    }
+  else
+    {
+      if (IS_AFFECTED3(ch, aff))
+	return TRUE;
+    }
+d167 6
+a172 1
+struct char_data *lowest_hp_in_group(struct char_data *ch, struct char_data *victim)
+a173 1
+  
+d175 14
+a188 8
+  for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+    if (FIGHTING(tch) == ch && !(IS_NPC(tch)))
+      if (victim == NULL || GET_HIT(tch) < GET_HIT(victim)) {
+	if (number (0, 60) > GET_LEVEL(ch))
+	  continue;
+	else 
+	  victim = tch;
+      }
+d192 1
+a192 1
+bool can_dim(struct char_data *ch, struct char_data *victim)
+d194 5
+a198 19
+  int spells_circle, mob_circle = 0, i;
+  struct room_data *crm, *trm;
+  int czone, tzone;
+  
+  if (!(GET_MSKILL(ch, SPELL_DIMENSION_DOOR)))
+    return FALSE;
+  i = 0;
+  while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+      mob_circle ++;
+      i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+  spells_circle = SPELL_CIRCLE(SPELL_DIMENSION_DOOR);
+  crm = &world[ch->in_room];
+  trm = &world[victim->in_room];
+  czone=crm->zone;
+  tzone=trm->zone;
+  if (czone == tzone)
+    if (try_cast(ch, victim, spells_circle, SPELL_DIMENSION_DOOR))
+d200 6
+a208 33
+void mob_heal_up(struct char_data *ch)
+{
+  int i;
+  int mob_circle = 0;
+  int counter = 0; 
+  int spells_circle;
+  switch(GET_CLASS(ch))
+    {
+    case MCLASS_CLERIC:
+      break;
+    default:
+      return;
+    }
+  while (counter < GET_LEVEL(ch))
+    {
+      mob_circle ++;
+      counter = mob_circle*5 + 1;
+    }
+  counter = 0;
+  for (i=0;i< CLERIC_HEAL_NO;i++)
+    {
+      spells_circle = SPELL_CIRCLE(cleric_heal[i]);
+      if ((mob_circle >= spells_circle))
+        {
+	  counter++;
+	  if(try_cast(ch, ch, spells_circle, cleric_heal[i]))
+	    return;    
+        }
+      if (counter > 3)
+	break;
+    }    
+}
+
+d215 2
+a216 1
+  if (!(FIGHTING(ch)))
+d226 1
+a226 33
+bool can_summon(struct char_data *ch, struct char_data *victim)
+{
+  int spells_circle, mob_circle = 0, i;
+  struct room_data *crm, *trm;
+  int czone, tzone;
+  
+  if (!(GET_MSKILL(ch, SPELL_SUMMON)))
+    return FALSE;
+  i = 0;
+  if (ROOM_FLAGGED(victim->in_room, ROOM_NOSUMMON))
+    return FALSE;
+  if (GET_LEVEL(victim) > MIN(LVL_IMMORT, GET_LEVEL(ch) + 3))
+    return FALSE;
+  
+  while (i < GET_LEVEL(ch))
+    {/*calculates what circle mob can have*/
+      mob_circle ++;
+      i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+    }
+  spells_circle = SPELL_CIRCLE(SPELL_SUMMON);
+  crm = &world[ch->in_room];
+  trm = &world[victim->in_room];
+  czone=crm->zone;
+  tzone=trm->zone;
+  if (czone == tzone)
+    if (try_cast(ch, victim, spells_circle, SPELL_SUMMON))
+      return TRUE;
+  return FALSE;
+}
+
+
+
+bool if_evil_in_group(struct char_data *victim)
+d230 2
+a231 1
+  if (!(IS_AFFECTED(victim, AFF_GROUP)))
+d233 7
+a239 8
+  if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+      k = (victim->groupmaster ? victim->groupmaster : victim); 
+      for (f = k->groupees; f; f = f->next)
+	if (GET_ALIGNMENT(f->groupee) <= -500)
+	  return TRUE;
+    }
+    return FALSE;
+d242 1
+a242 1
+bool if_good_in_group(struct char_data *victim)
+d246 1
+a246 1
+  if (!(IS_AFFECTED(victim, AFF_GROUP)))
+d248 6
+a253 7
+  if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+      k = (victim->groupmaster ? victim->groupmaster : victim); 
+      for (f = k->groupees; f; f = f->next)
+	if (GET_ALIGNMENT(f->groupee) >= 500)
+	  return TRUE;
+    }
+d258 7
+a264 2
+int number_of_people_in_group(struct char_data *ch, struct char_data *victim)
+{
+d268 3
+a270 2
+  if (!(IS_AFFECTED(victim, AFF_GROUP)))
+    return counter;
+d272 6
+a277 8
+  if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+      k = (victim->groupmaster ? victim->groupmaster : victim); 
+      for (f = k->groupees; f; f = f->next)
+	if (f->groupee->in_room == ch->in_room)
+	  counter++;
+    }
+  return counter; 
+d279 1
+d282 4
+@
+
+
+1.9
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: ai_utils.c,v 1.8 2000/11/20 18:14:31 rsd Exp $
+d25 1
+a27 1
+extern int rogue_subclasses[ROGUE_SUBCLASSES];
+a102 2
+  
+  int i;
+d106 10
+a115 24
+  for (i=0;i< ROGUE_SUBCLASSES ; i++)
+    if (rogue_subclasses[i] == GET_CLASS(ch))
+      {
+	if (GET_OBJ_VAL(obj, 3) == TYPE_PIERCE - TYPE_HIT)
+	  {
+	    if ((CAN_WEAR(obj, ITEM_WEAR_2HWIELD)) || (CAN_WEAR(obj, ITEM_WEAR_WIELD)))
+	      {
+		if (wielding)
+		  if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+		    return TRUE;
+		if (hwielding)
+		  if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+		    return TRUE;
+	      }
+	  }
+	if (GET_OBJ_VAL(obj, 3) != TYPE_PIERCE - TYPE_HIT)
+	  {
+	    if (wielding)
+	      if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+		return FALSE;
+	    if (hwielding)
+	      if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+		return FALSE;
+	  }
+d117 10
+d408 3
+@
+
+
+1.8
+log
+@added back rlog messages from priot to the addition of
+the $log$ string.
+@
+text
+@d1 3
+a3 1
+// $Id: ai_utils.c,v 1.7 2000/04/05 23:09:48 rsd Exp $
+d412 42
+a453 36
+// $Log: ai_utils.c,v $
+// Revision 1.7  2000/04/05 23:09:48  rsd
+// removed fireshield and left coldshield for mobile ai
+//
+// Revision 1.6  2000/04/05 22:56:34  rsd
+// Changed the order of fireshield and coldshield in
+// so_spells_to_check to make coldshield preferable.
+// Removed bless entry from const int cl_spells_to_check
+// so evil clerics wouldn't spam the mud into oblivion
+// trying to lang it on themselves.  This is a hack until
+// an alignment check can be put in...
+//
+// Revision 1.5  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.4  1999/06/10 16:56:28  mud
+// This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+// This fixes all of the warnings associated with the new compiler and 
+// libraries.  Many many curly braces had to be added to "if" statements to 
+// clarify their behavior to the compiler.  The name approval code was also 
+// debugged, and tested to be stable.  The xnames list was converted from an
+// array to a linked list to allow for on the fly adding of names to the 
+// xnames list. This code compiles fine under both gcc RH5.2 and egcs RH6.0.
+// --Gurlaek 6/10/1999 
+//
+// Revision 1.3  1999/01/30 17:29:18  mud
+// Changed comment header information to give proper credit.
+//
+// Revision 1.2  1999/01/30 17:22:06  mud
+// Added a standard Comment Header
+// removed a couple of lovely looking ^M's
+// Indented the entire file
+//
+// Revision 1.1  1999/01/29 01:23:30  mud
+// Initial revision
+//
+@
+
+
+1.7
+log
+@removed fireshield and left coldshield for mobile ai
+@
+text
+@d1 1
+a1 1
+// $Id: ai_utils.c,v 1.6 2000/04/05 22:56:34 rsd Exp rsd $
+d411 3
+d424 21
+@
+
+
+1.6
+log
+@Changed the order of fireshield and coldshield in
+so_spells_to_check to make coldshield preferable.
+Removed bless entry from const int cl_spells_to_check
+so evil clerics wouldn't spam the mud into oblivion
+trying to lang it on themselves.  This is a hack until
+an alignment check can be put in...
+@
+text
+@d1 1
+a1 1
+// $Id: ai_utils.c,v 1.5 1999/09/05 07:00:39 jimmy Exp $
+d36 1
+a36 1
+    {SPELL_FIRESHIELD, AFF2_FIRESHIELD, 2}, 
+d411 8
+@
+
+
+1.5
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d7 4
+a10 1
+ *  Control M's removed by: Scott Davis                                    *
+d35 1
+a36 1
+    {SPELL_COLDSHIELD, AFF2_COLDSHIELD, 2},
+d56 1
+a56 1
+{   {SPELL_ARMOR, -1, 1}, {SPELL_BLESS, -1, 1}, 
+d410 4
+a413 1
+// $Log$
+@
+
+
+1.4
+log
+@This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.  This fixes all of the warnings associated
+with the new compiler and libraries.  Many many curly braces had to be added to "if" statements to clarify
+their behavior to the compiler.  The name approval code was also debugged, and tested to be stable.  The xnames
+list was converted from an array to a linked list to allow for on the fly adding of names to the xnames list.
+This code compiles fine under both gcc RH5.2 and egcs RH6.0.
+--Gurlaek 6/10/1999
+@
+text
+@d1 1
+d407 1
+@
+
+
+1.3
+log
+@Changed comment header information to give proper credit.
+@
+text
+@d241 1
+a241 1
+      if (victim == NULL || GET_HIT(tch) < GET_HIT(victim))
+d246 1
+@
+
+
+1.2
+log
+@Added a standard Comment Header
+removed a couple of lovely looking ^M's
+Indented the entire file
+@
+text
+@d2 1
+a2 1
+ *  File: ai_utils.c                                              FieryMUD *
+d5 1
+a5 1
+ *  By: Ben Horner (Proky)                                                 *
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 6
+/*ai_utils.c
+General Utility functions for mob ai
+
+Proky
+*/
+
+d30 8
+a37 8
+{SPELL_HASTE, AFF_HASTE, 1}, 
+{SPELL_FIRESHIELD, AFF2_FIRESHIELD, 2}, 
+{SPELL_COLDSHIELD, AFF2_COLDSHIELD, 2},
+{SPELL_MAJOR_GLOBE, AFF2_MAJOR_GLOBE, 2}, 
+{SPELL_MINOR_GLOBE, AFF2_MINOR_GLOBE, 2},  
+{SPELL_DETECT_INVIS, AFF_DETECT_INVIS, 1},
+{SPELL_INVISIBLE, AFF_INVISIBLE, 1},
+{SPELL_FLY, AFF_FLYING, 1}
+d53 2
+a54 2
+	{SPELL_SOULSHIELD, AFF2_SOULSHIELD, 2} , 
+	{SPELL_SENSE_LIFE, AFF_SENSE_LIFE, 1}
+d59 3
+a61 3
+    {SPELL_BLINDNESS, SPELL_CURE_BLIND, AFF_BLIND, 1},
+    {SPELL_POISON, SPELL_REMOVE_POISON, AFF_POISON, 1},
+    {SPELL_CURSE, SPELL_REMOVE_CURSE, AFF_CURSE, 1}
+a74 1
+
+a80 2
+
+
+d83 5
+a87 5
+    int counter = 0;
+    int mob_circle = 0;
+    int spell_circle;
+    spell_circle = (1 + ((int) ((spell_info[spellnum].min_level[(int)(mob_proto[i].player.class)])/5))); 
+    while (counter < mob_proto[i].player.level)
+d89 2
+a90 2
+	    mob_circle ++;
+	    counter = mob_circle*5 + 1;/*uses counter as a temp variable*/
+d92 1
+a92 1
+    return (mob_circle >= spell_circle);
+d97 34
+a130 34
+
+    int i;
+    struct obj_data *wielding = GET_EQ(ch, WEAR_WIELD);
+    struct obj_data *wielding2 = GET_EQ(ch, WEAR_WIELD2);
+    struct obj_data *hwielding = GET_EQ(ch, WEAR_2HWIELD);
+     for (i=0;i< ROGUE_SUBCLASSES ; i++)
+         if (rogue_subclasses[i] == GET_CLASS(ch))
+         {
+             if (GET_OBJ_VAL(obj, 3) == TYPE_PIERCE - TYPE_HIT)
+             {
+                if ((CAN_WEAR(obj, ITEM_WEAR_2HWIELD)) || (CAN_WEAR(obj, ITEM_WEAR_WIELD)))
+                {
+                    if (wielding)
+                        if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+                            return TRUE;
+                    if (hwielding)
+                        if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) != TYPE_PIERCE - TYPE_HIT)
+                            return TRUE;
+                }
+             }
+             if (GET_OBJ_VAL(obj, 3) != TYPE_PIERCE - TYPE_HIT)
+             {
+                 if (wielding)
+                     if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+                            return FALSE;
+                 if (hwielding)
+                     if (GET_OBJ_VAL(GET_EQ(ch, WEAR_2HWIELD), 3) == TYPE_PIERCE - TYPE_HIT)
+                            return FALSE;
+             }
+         }
+    
+    if ((!(wielding)) && (!(wielding2)) && (!(hwielding)))
+        return TRUE;
+    if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD))
+d132 1
+a132 1
+        if (wielding)
+d134 2
+a135 2
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+d137 1
+a137 1
+        if (wielding2)
+d139 2
+a140 2
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+d142 1
+a142 1
+        if (hwielding)
+d144 2
+a145 2
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_2HWIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+d148 2
+a149 2
+
+    if (CAN_WEAR(obj, ITEM_WEAR_WIELD))
+d151 5
+a155 5
+        if (wielding)
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_WIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+        
+        if (hwielding)
+d157 2
+a158 2
+            if (GET_OBJ_COST(GET_EQ(ch, WEAR_2HWIELD)) < GET_OBJ_COST(obj))
+                return TRUE;
+d161 2
+a162 2
+    return FALSE;
+
+d168 1
+a168 1
+    struct obj_data *spare;
+d171 5
+a175 5
+    /*if something in 2handed spot well have to remove it!!*/
+
+    if (!CAN_WEAR(obj, ITEM_WEAR_WIELD) && !CAN_WEAR(obj, ITEM_WEAR_2HWIELD))
+        return;
+	if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD) && (hwielding))
+d177 2
+a178 2
+        perform_remove(ch, WEAR_2HWIELD);
+        return;
+d180 1
+a180 1
+    if ((CAN_WEAR(obj, ITEM_WEAR_WIELD)) && (wielding)) 
+d182 2
+a183 2
+        perform_remove(ch, WEAR_WIELD);
+        return;
+d185 1
+a185 1
+    if (hwielding)
+d187 2
+a188 2
+        perform_remove(ch, WEAR_2HWIELD);
+        return;
+d190 5
+a194 5
+    
+    if((CAN_WEAR(obj, ITEM_WEAR_2HWIELD)))/*remove weopons*/
+        if(wielding)
+            perform_remove(ch, WEAR_WIELD);
+    if (GET_EQ(ch, WEAR_WIELD2))  	
+d196 1
+a196 1
+	    if (!(GET_EQ(ch, WEAR_WIELD))) 
+d198 4
+a201 7
+	 	    spare = GET_EQ(ch, WEAR_WIELD2);
+		    obj_to_char(unequip_char(ch, WEAR_WIELD2), ch);
+	        obj_from_char(spare);
+	        equip_char(ch, spare, WEAR_WIELD);
+	    }
+        if (GET_EQ(ch, WEAR_WIELD))
+            perform_remove(ch, WEAR_WIELD);
+d203 4
+a206 1
+return;
+d211 21
+a231 21
+	
+    if (affected_by_spell(ch, spell_number))
+        return TRUE;
+	if (aff == -1)
+		return FALSE;
+	if (which == 1)
+	{
+		if (IS_AFFECTED(ch, aff))
+			return TRUE;
+    }
+	else if (which == 2)
+	{
+		if (IS_AFFECTED2(ch, aff))
+			return TRUE;
+	}
+	else
+	{
+		if (IS_AFFECTED3(ch, aff))
+			return TRUE;
+	}
+	return FALSE;
+d237 10
+a246 10
+
+    struct char_data *tch;
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        if (FIGHTING(tch) == ch && !(IS_NPC(tch)))
+            if (victim == NULL || GET_HIT(tch) < GET_HIT(victim))
+                if (number (0, 60) > GET_LEVEL(ch))
+                    continue;
+                else 
+                    victim = tch;
+    return victim;
+d251 8
+a258 8
+    int spells_circle, mob_circle = 0, i;
+    struct room_data *crm, *trm;
+    int czone, tzone;
+
+    if (!(GET_MSKILL(ch, SPELL_DIMENSION_DOOR)))
+        return FALSE;
+    i = 0;
+    while (i < GET_LEVEL(ch))
+d260 2
+a261 2
+	    mob_circle ++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+d263 9
+a271 9
+    spells_circle = SPELL_CIRCLE(SPELL_DIMENSION_DOOR);
+    crm = &world[ch->in_room];
+    trm = &world[victim->in_room];
+    czone=crm->zone;
+    tzone=trm->zone;
+    if (czone == tzone)
+        if (try_cast(ch, victim, spells_circle, SPELL_DIMENSION_DOOR))
+	        return TRUE;
+    return FALSE;
+a273 1
+
+d276 5
+a280 5
+    int i;
+    int mob_circle = 0;
+    int counter = 0; 
+    int spells_circle;
+    switch(GET_CLASS(ch))
+d283 1
+a283 1
+        break;
+d285 1
+a285 1
+        return;
+d287 1
+a287 1
+    while (counter < GET_LEVEL(ch))
+d289 2
+a290 2
+	    mob_circle ++;
+	    counter = mob_circle*5 + 1;
+d292 2
+a293 2
+    counter = 0;
+    for (i=0;i< CLERIC_HEAL_NO;i++)
+d295 2
+a296 2
+        spells_circle = SPELL_CIRCLE(cleric_heal[i]);
+        if ((mob_circle >= spells_circle))
+d298 3
+a300 3
+            counter++;
+	        if(try_cast(ch, ch, spells_circle, cleric_heal[i]))
+	            return;    
+d302 2
+a303 2
+        if (counter > 3)
+            break;
+d312 2
+a313 7
+    struct char_data *tch;
+    if (!(FIGHTING(ch)))
+        return FALSE;
+
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
+        if (FIGHTING(tch) == ch)
+            return TRUE;
+d315 5
+d325 13
+a337 13
+    int spells_circle, mob_circle = 0, i;
+    struct room_data *crm, *trm;
+    int czone, tzone;
+
+    if (!(GET_MSKILL(ch, SPELL_SUMMON)))
+        return FALSE;
+    i = 0;
+    if (ROOM_FLAGGED(victim->in_room, ROOM_NOSUMMON))
+	  return FALSE;
+    if (GET_LEVEL(victim) > MIN(LVL_IMMORT, GET_LEVEL(ch) + 3))
+        return FALSE;
+
+    while (i < GET_LEVEL(ch))
+d339 2
+a340 2
+	    mob_circle ++;
+	    i = mob_circle*5 + 1;/*uses counter as a temp variable*/
+d342 9
+a350 9
+    spells_circle = SPELL_CIRCLE(SPELL_SUMMON);
+    crm = &world[ch->in_room];
+    trm = &world[victim->in_room];
+    czone=crm->zone;
+    tzone=trm->zone;
+    if (czone == tzone)
+        if (try_cast(ch, victim, spells_circle, SPELL_SUMMON))
+	        return TRUE;
+    return FALSE;
+d357 10
+a366 10
+    struct char_data *k;
+    struct group_type *f;
+    if (!(IS_AFFECTED(victim, AFF_GROUP)))
+        return (GET_ALIGNMENT(victim) <= -500);
+    if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+        k = (victim->groupmaster ? victim->groupmaster : victim); 
+        for (f = k->groupees; f; f = f->next)
+            if (GET_ALIGNMENT(f->groupee) <= -500)
+                return TRUE;
+d373 10
+a382 10
+    struct char_data *k;
+    struct group_type *f;
+    if (!(IS_AFFECTED(victim, AFF_GROUP)))
+        return (GET_ALIGNMENT(victim) >= 500);
+    if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+        k = (victim->groupmaster ? victim->groupmaster : victim); 
+        for (f = k->groupees; f; f = f->next)
+            if (GET_ALIGNMENT(f->groupee) >= 500)
+                return TRUE;
+d384 2
+a385 2
+    return FALSE;
+
+d390 12
+a401 12
+    struct char_data *k;
+    struct group_type *f;
+    int counter = 0;
+    if (!(IS_AFFECTED(victim, AFF_GROUP)))
+        return counter;
+    
+    if (IS_AFFECTED(victim, AFF_GROUP))
+    {
+        k = (victim->groupmaster ? victim->groupmaster : victim); 
+        for (f = k->groupees; f; f = f->next)
+            if (f->groupee->in_room == ch->in_room)
+                counter++;
+d403 1
+a403 3
+    return counter;
+
+
+@

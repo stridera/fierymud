@@ -1,0 +1,8031 @@
+head	1.148;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.148
+date	2010.06.05.18.35.47;	author mud;	state Exp;
+branches;
+next	1.147;
+
+1.147
+date	2009.07.17.00.48.17;	author myc;	state Exp;
+branches;
+next	1.146;
+
+1.146
+date	2009.06.09.05.35.54;	author myc;	state Exp;
+branches;
+next	1.145;
+
+1.145
+date	2009.03.21.19.11.37;	author myc;	state Exp;
+branches;
+next	1.144;
+
+1.144
+date	2009.03.20.23.02.59;	author myc;	state Exp;
+branches;
+next	1.143;
+
+1.143
+date	2009.03.15.07.09.24;	author jps;	state Exp;
+branches;
+next	1.142;
+
+1.142
+date	2009.03.09.05.44.20;	author jps;	state Exp;
+branches;
+next	1.141;
+
+1.141
+date	2009.03.09.05.09.22;	author jps;	state Exp;
+branches;
+next	1.140;
+
+1.140
+date	2009.03.09.04.33.20;	author jps;	state Exp;
+branches;
+next	1.139;
+
+1.139
+date	2009.03.09.03.45.17;	author jps;	state Exp;
+branches;
+next	1.138;
+
+1.138
+date	2009.03.07.22.27.50;	author jps;	state Exp;
+branches;
+next	1.137;
+
+1.137
+date	2009.01.19.09.27.47;	author myc;	state Exp;
+branches;
+next	1.136;
+
+1.136
+date	2008.10.02.05.43.58;	author jps;	state Exp;
+branches;
+next	1.135;
+
+1.135
+date	2008.09.29.03.23.31;	author jps;	state Exp;
+branches;
+next	1.134;
+
+1.134
+date	2008.09.07.20.07.15;	author jps;	state Exp;
+branches;
+next	1.133;
+
+1.133
+date	2008.09.07.06.47.48;	author jps;	state Exp;
+branches;
+next	1.132;
+
+1.132
+date	2008.09.07.01.30.25;	author jps;	state Exp;
+branches;
+next	1.131;
+
+1.131
+date	2008.09.03.17.34.08;	author myc;	state Exp;
+branches;
+next	1.130;
+
+1.130
+date	2008.09.02.07.16.00;	author mud;	state Exp;
+branches;
+next	1.129;
+
+1.129
+date	2008.09.02.06.47.51;	author jps;	state Exp;
+branches;
+next	1.128;
+
+1.128
+date	2008.09.01.18.29.38;	author jps;	state Exp;
+branches;
+next	1.127;
+
+1.127
+date	2008.08.31.20.55.40;	author jps;	state Exp;
+branches;
+next	1.126;
+
+1.126
+date	2008.08.30.20.21.39;	author jps;	state Exp;
+branches;
+next	1.125;
+
+1.125
+date	2008.08.30.18.20.53;	author myc;	state Exp;
+branches;
+next	1.124;
+
+1.124
+date	2008.08.29.04.16.26;	author myc;	state Exp;
+branches;
+next	1.123;
+
+1.123
+date	2008.08.14.23.02.11;	author myc;	state Exp;
+branches;
+next	1.122;
+
+1.122
+date	2008.07.27.05.24.35;	author jps;	state Exp;
+branches;
+next	1.121;
+
+1.121
+date	2008.07.22.07.25.26;	author myc;	state Exp;
+branches;
+next	1.120;
+
+1.120
+date	2008.06.21.16.19.30;	author jps;	state Exp;
+branches;
+next	1.119;
+
+1.119
+date	2008.06.19.18.53.12;	author myc;	state Exp;
+branches;
+next	1.118;
+
+1.118
+date	2008.06.05.02.07.43;	author myc;	state Exp;
+branches;
+next	1.117;
+
+1.117
+date	2008.05.19.06.52.18;	author jps;	state Exp;
+branches;
+next	1.116;
+
+1.116
+date	2008.05.19.05.46.20;	author jps;	state Exp;
+branches;
+next	1.115;
+
+1.115
+date	2008.05.18.17.58.35;	author jps;	state Exp;
+branches;
+next	1.114;
+
+1.114
+date	2008.05.18.02.01.06;	author jps;	state Exp;
+branches;
+next	1.113;
+
+1.113
+date	2008.04.14.05.11.40;	author jps;	state Exp;
+branches;
+next	1.112;
+
+1.112
+date	2008.04.14.02.18.14;	author jps;	state Exp;
+branches;
+next	1.111;
+
+1.111
+date	2008.04.13.18.29.40;	author jps;	state Exp;
+branches;
+next	1.110;
+
+1.110
+date	2008.04.13.11.08.58;	author jps;	state Exp;
+branches;
+next	1.109;
+
+1.109
+date	2008.04.07.03.02.54;	author jps;	state Exp;
+branches;
+next	1.108;
+
+1.108
+date	2008.04.05.18.07.09;	author myc;	state Exp;
+branches;
+next	1.107;
+
+1.107
+date	2008.04.04.06.12.52;	author myc;	state Exp;
+branches;
+next	1.106;
+
+1.106
+date	2008.04.02.05.36.19;	author myc;	state Exp;
+branches;
+next	1.105;
+
+1.105
+date	2008.04.02.04.55.59;	author myc;	state Exp;
+branches;
+next	1.104;
+
+1.104
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.103;
+
+1.103
+date	2008.03.27.17.27.41;	author jps;	state Exp;
+branches;
+next	1.102;
+
+1.102
+date	2008.03.26.23.11.02;	author jps;	state Exp;
+branches;
+next	1.101;
+
+1.101
+date	2008.03.26.18.11.23;	author jps;	state Exp;
+branches;
+next	1.100;
+
+1.100
+date	2008.03.23.00.22.44;	author jps;	state Exp;
+branches;
+next	1.99;
+
+1.99
+date	2008.03.22.03.22.38;	author myc;	state Exp;
+branches;
+next	1.98;
+
+1.98
+date	2008.03.21.15.01.17;	author myc;	state Exp;
+branches;
+next	1.97;
+
+1.97
+date	2008.03.10.20.46.55;	author myc;	state Exp;
+branches;
+next	1.96;
+
+1.96
+date	2008.03.10.19.55.37;	author jps;	state Exp;
+branches;
+next	1.95;
+
+1.95
+date	2008.03.10.18.01.17;	author myc;	state Exp;
+branches;
+next	1.94;
+
+1.94
+date	2008.03.09.18.12.26;	author jps;	state Exp;
+branches;
+next	1.93;
+
+1.93
+date	2008.03.08.23.54.22;	author jps;	state Exp;
+branches;
+next	1.92;
+
+1.92
+date	2008.03.08.22.29.06;	author myc;	state Exp;
+branches;
+next	1.91;
+
+1.91
+date	2008.03.07.21.21.57;	author myc;	state Exp;
+branches;
+next	1.90;
+
+1.90
+date	2008.03.05.03.03.54;	author myc;	state Exp;
+branches;
+next	1.89;
+
+1.89
+date	2008.02.24.17.31.13;	author myc;	state Exp;
+branches;
+next	1.88;
+
+1.88
+date	2008.02.09.06.19.44;	author jps;	state Exp;
+branches;
+next	1.87;
+
+1.87
+date	2008.02.07.01.46.14;	author myc;	state Exp;
+branches;
+next	1.86;
+
+1.86
+date	2008.02.06.21.53.53;	author myc;	state Exp;
+branches;
+next	1.85;
+
+1.85
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.84;
+
+1.84
+date	2008.01.27.21.09.12;	author myc;	state Exp;
+branches;
+next	1.83;
+
+1.83
+date	2008.01.27.13.43.50;	author jps;	state Exp;
+branches;
+next	1.82;
+
+1.82
+date	2008.01.27.11.14.42;	author jps;	state Exp;
+branches;
+next	1.81;
+
+1.81
+date	2008.01.27.09.45.41;	author jps;	state Exp;
+branches;
+next	1.80;
+
+1.80
+date	2008.01.20.23.18.52;	author myc;	state Exp;
+branches;
+next	1.79;
+
+1.79
+date	2008.01.20.22.58.39;	author myc;	state Exp;
+branches;
+next	1.78;
+
+1.78
+date	2008.01.17.01.29.10;	author myc;	state Exp;
+branches;
+next	1.77;
+
+1.77
+date	2008.01.13.03.19.53;	author myc;	state Exp;
+branches;
+next	1.76;
+
+1.76
+date	2008.01.11.17.42.20;	author myc;	state Exp;
+branches;
+next	1.75;
+
+1.75
+date	2008.01.09.04.13.44;	author jps;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	2008.01.07.10.37.42;	author jps;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	2008.01.06.23.50.47;	author jps;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	2008.01.06.05.33.54;	author jps;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	2007.12.20.23.12.29;	author myc;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	2007.12.19.20.46.43;	author myc;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	2007.11.21.00.58.41;	author jps;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	2007.11.12.19.00.35;	author jps;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	2007.10.13.20.13.09;	author myc;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	2007.10.11.20.14.48;	author myc;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	2007.10.04.16.20.24;	author myc;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	2007.10.02.02.52.27;	author myc;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	2007.09.28.20.49.35;	author myc;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	2007.09.21.08.44.45;	author jps;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	2007.09.20.21.20.43;	author myc;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	2007.09.15.15.36.48;	author myc;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	2007.09.15.05.37.15;	author myc;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	2007.09.15.05.03.46;	author myc;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	2007.09.11.16.34.24;	author myc;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	2007.09.08.22.05.03;	author jps;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	2007.09.07.19.41.01;	author jps;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	2007.09.04.06.49.19;	author myc;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	2007.09.02.23.03.03;	author jps;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2007.09.01.22.52.14;	author jps;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2007.08.30.10.14.52;	author jps;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2007.08.23.00.32.13;	author jps;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2007.08.14.22.43.07;	author myc;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2007.08.04.21.34.40;	author jps;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2007.08.04.14.40.35;	author myc;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2007.08.04.01.09.57;	author jps;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2007.08.03.22.00.11;	author myc;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2007.08.03.03.51.44;	author myc;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2007.07.31.23.02.42;	author jps;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2007.06.28.00.10.10;	author jps;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2007.06.16.00.15.49;	author myc;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2007.05.27.17.36.28;	author jps;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2007.05.11.20.13.28;	author myc;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2007.03.27.04.27.05;	author myc;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2007.02.14.03.54.53;	author myc;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2006.11.18.21.00.28;	author jps;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2006.11.18.19.23.37;	author jps;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2006.11.18.05.09.27;	author jps;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2006.11.18.04.26.32;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2006.11.17.23.09.57;	author jps;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2006.11.17.22.52.59;	author jps;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2006.11.08.08.55.18;	author jps;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2006.11.08.08.50.28;	author jps;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2006.11.07.16.53.50;	author jps;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2006.07.28.06.01.27;	author cjd;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2006.07.20.07.37.01;	author cjd;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2005.06.27.14.40.31;	author cjd;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2002.10.14.02.16.08;	author jjl;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2002.07.16.23.22.21;	author rls;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2001.04.08.17.13.10;	author dce;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2000.11.28.01.32.46;	author mtp;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2000.11.22.01.09.13;	author mtp;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2000.11.21.00.38.34;	author rsd;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	99.12.10.05.12.42;	author cso;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	99.11.28.22.58.55;	author cso;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	99.11.26.05.30.21;	author cso;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	99.07.06.19.57.05;	author jimmy;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	99.06.30.18.11.09;	author jimmy;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	99.05.04.17.19.33;	author dce;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	99.04.07.01.20.18;	author dce;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	99.03.14.14.28.11;	author jimmy;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	99.03.08.04.47.16;	author dce;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	99.03.06.23.51.54;	author dce;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	99.03.05.20.02.36;	author dce;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	99.03.02.20.14.36;	author mud;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.03.02.05.22.13;	author mud;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.02.16.09.12.34;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.13.19.37.12;	author dce;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.30;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/* ***********************************************************************
+*   File: constants.c                                   Part of CircleMUD *
+*  Usage: Numeric and string contants used by the MUD                     *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+
+const char circlemud_version[] = {
+"CircleMUD, version 3.00 beta patchlevel 11\r\n"};
+
+/*const char *rolls_abils_result[] = {"&0&1&bFantastic&0  ", "&0&2&bPretty Good&0",
+"&0&3&bNot bad&0    ", "&0&3Fair&0       ", "&0&9&bBad&0        "};*/
+
+/* This stuff is for the portal decay code used in limits.c */
+const struct portal_decay_type portal_decay_messages[] = {
+  { MOONWELL_OBJ, "A glowing moonwell fades from existance." },
+  { HEAVENSGATE_OBJ, "The glowing tunnel of light closes into nothingness."},
+  { HELLGATE_OBJ, "The gaping hole in the earth closes up, leaving a blackened piece of earth." },
+  { -1, "The portal crumbles to dust." /* This is default message */}
+};
+
+
+/* strings corresponding to ordinals/bitvectors in structs.h ***********/
+
+
+/* (Note: strings for class definitions in class.c instead of here) */
+
+
+/* cardinal directions */
+const char *dirs[] =
+{
+  "north",
+  "east",
+  "south",
+  "west",
+  "up",
+  "down",
+  "fup",
+  "fdown",
+  "\n"
+};
+
+const char *capdirs[] = {
+  "N",
+  "E",
+  "S",
+  "W",
+  "U",
+  "D",
+  "\n"
+};
+
+const char *mclass_types[] = {
+  "Sorcerer",
+  "Cleric",
+  "Thief",
+  "Warrior",
+  "Paladin",
+  "Anti_paladin",
+  "Ranger",
+  "Druid",
+  "Shaman",
+  "Assassin",
+  "Mercenary",
+  "Necromancer",
+  "Conjurer",
+  "Nothin"
+};
+
+const char *mspecies_types[] = {
+  "Human",
+  "Elf",
+  "Gnome",
+  "Dwarf",
+  "Troll",
+  "Drow-elf",
+  "Duergar",
+  "Ogre",
+  "Orc",
+  "Half-Elf",
+  "Barbarian",
+  "Halfling",
+  "Undead",
+  "Humanoid",
+  "Animal",
+  "Dragon",
+  "Giant",
+  "other",
+  "Goblin",
+  "Demon",
+  "\n"
+};
+
+/* MINOR CREATION ITEMS */
+const char *minor_creation_items[] = {
+  "backpack",  	/* 0  */
+  "sack",
+  "robe",
+  "ebony",
+  "lantern",
+  "torch",	/* 5  */
+  "waterskin",
+  "barrel",
+  "rations",
+  "raft",
+  "club",	/* 10 */
+  "mace",
+  "dagger",
+  "sword",
+  "longsword",
+  "staff",	/* 15 */
+  "shield",
+  "tunic",
+  "jerkin",
+  "leggings",
+  "pants",	/* 20 */
+  "gauntlets",
+  "sleeves",
+  "gloves",
+  "helmet",
+  "skullcap",	/* 25 */
+  "boots",
+  "sandals",
+  "cloak",
+  "book",
+  "quill",	/* 30 */
+  "belt",
+  "ring",
+  "rope",
+  "bottle",
+  "keg",	/* 35 */
+  "mask",
+  "earring",
+  "scarf",
+  "bracer",
+  "\n"
+};
+
+
+const char *question1 = "\r\nPlease choose your first choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+
+const char *question2 = "\r\nPlease choose your second choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+
+
+const char *question3 = "\r\nPlease choose your third choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+const char *question4 = "\r\nPlease choose your fourth choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+const char *question5 = "\r\nPlease choose your fifth choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+const char *question6 = "\r\nPlease choose your sixth choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+
+
+
+
+const char *breath_messages[] = {
+/* FIRE */
+  "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0",
+  "&1$n&1 snorts and a gout of &bf&3i&7r&1e&0&1 shoots out of $s nostrils!&0",
+/* GAS */
+  "&2You heave and a &bnoxious gas&0&2 rolls rapidly out of your nostrils!&0",
+  "&2$n&2 rumbles and a &bnoxious gas&0&2 rolls out of $s nostrils!&0",
+/* FROST */
+  "&7&bYou shiver as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from your mouth!&0",
+  "&7&b$n&7&b shivers as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from $s mouth!&0",
+/* ACID */
+  "&9&bYou stomach heaves as a wash of &2&ba&0&2ci&bd&9 leaps from your mouth!&0",
+  "&9&b$n&9&b looks pained as a wash of &2&ba&0&2ci&2&bd&9 leaps from $s mouth!&0",
+/* LIGHTNING */
+  "&4You open your mouth and bolts of &blightning&0&4 shoot out!&0",
+  "&4$n&4 opens $s mouth and bolts of &blightning&0&4 shoot out!&0",
+};
+
+/* ROOM_x */
+const char *room_bits[] = {
+  "DARK",
+  "DEATH",
+  "!MOB",
+  "INDOORS",
+  "PEACEFUL",
+  "SOUNDPROOF",
+  "!TRACK",
+  "!MAGIC",
+  "TUNNEL",
+  "PRIVATE",
+  "GODROOM",
+  "HOUSE",
+  "HCRSH",
+  "ATRIUM",
+  "OLC",
+  "*",				/* BFS MARK */
+  "NOWELL",
+  "NORECALL",
+  "UNDERDARK",
+  "!SUMMON",
+  "NOSHIFT",
+  "GUILDHALL",
+  "!SCAN",
+  "ALT_EXIT",
+  "MAP",
+  "\n"
+};
+
+const char *spell_apply_types[] = {
+	"BLIND",
+	"DET-INVIS",
+	"DET-ALIGN",
+	"DET-MAGIC",
+	"BLUR",
+	"HASTE",
+	"INVIS",
+	"PROT-EVIL",
+	"PROT-GOOD",
+	"SANCTUARY",
+	"SLEEP",
+	"STONESKIN",
+	"SENSE-LIFE",
+	"INFRA",
+	"FLY",
+	"FARSEE",
+	"COMP_LANG",
+	"PARALIZE",
+	"POISON",
+	"SNEAK",
+	"HIDE",
+	"WATWALK",
+	"NOTRACK",
+	"\n"
+};
+
+
+const char *room_affections[] = {
+	"FOG",
+	"DARKNESS",
+	"CONT_LIGHT",
+        "FOREST",
+	"CIRCLE_FIRE",
+	"\n"
+};
+
+const char *circle_abbrev[NUM_SPELL_CIRCLES +1] = {
+	"!UNUSED!",
+	" 1st",
+	" 2nd",
+	" 3rd",
+	" 4th",
+	" 5th",
+	" 6th",
+	" 7th",
+	" 8th",
+	" 9th",
+	"10th",
+        "11th",
+        "12th",
+	"13th",
+	"14th"
+};
+
+
+
+/* EX_x */
+const char *exit_bits[] = {
+  "DOOR",
+  "CLOSED",
+  "LOCKED",
+  "PICKPROOF",
+  "HIDDEN",
+  "\n"
+};
+
+
+/* SECT_ */
+const char *sector_types[] = {
+  "Inside",
+  "City",
+  "Field",
+  "Forest",
+  "Hills",
+  "Mountains",
+  "Water (Swim)",
+  "Water (No Swim)",
+  "Underwater",
+  "In Flight",
+  "Road",
+  "Grasslands",
+  "Ocean",
+  "Ruins",
+  "Swamp",
+  "Beach",
+  "Underdark",
+  "Astraplane",
+  "Airplane",
+  "Fireplane",
+  "Earthplane",
+  "Eathrealplane",
+  "Avernus",
+  "\n"
+};
+
+
+/* SEX_x */
+const char *genders[] =
+{
+  "Neutral",
+  "Male",
+  "Female"
+};
+
+
+/* POS_x */
+const char *position_types[] = {
+  "Dead",
+  "Mortally wounded",
+  "Incapacitated",
+  "Stunned",
+  "Sleeping",
+  "Resting",
+  "Sitting",
+  "Fighting",
+  "Standing",
+  "Flying",
+  "\n"
+};
+
+
+/* PLR_x */
+const char *player_bits[] = {
+  "KILLER",
+  "THIEF",
+  "FROZEN",
+  "DONTSET",
+  "WRITING",
+  "MAILING",
+  "CSH",
+  "SITEOK",
+  "NOSHOUT",
+  "NOTITLE",
+  "DELETED",
+  "LOADRM",
+  "!WIZL",
+  "!DEL",
+  "INVST",
+  "CRYO",
+  "MEDITATING",
+  "CASTING",
+  "BOUND",
+  "SCRIBE",
+  "TEACHING",
+  "\n"
+};
+
+
+/* MOB_x */
+const char *action_bits[] = {
+  "SPEC",
+  "SENTINEL",
+  "SCAVENGER",
+  "ISNPC",
+  "AWARE",
+  "AGGR",
+  "STAY-ZONE",
+  "WIMPY",
+  "AGGR_EVIL",
+  "AGGR_GOOD",
+  "AGGR_NEUTRAL",
+  "MEMORY",
+  "HELPER",
+  "!CHARM",
+  "!SUMMN",
+  "!SLEEP",
+  "!BASH",
+  "!BLIND",
+  "MOUNTABLE",
+  "DONTUSE",
+  "FAST_TRACK",
+  "SLOW_TRACK",
+  "CASTINGDONTUSE",
+  "PET",
+  "NOGEAR",
+  "AGGR_EVIL_ALIGN",
+  "AGGR_GOOD_ALIGN",
+  "!SILENCE",
+  "NOVICIOUS",
+  "TEACHER",
+  "\n"
+};
+
+
+/* PRF_x */
+const char *preference_bits[] = {
+  "BRIEF",
+  "COMPACT",
+  "DEAF",
+  "!TELL",
+  "D_HP",
+  "D_MANA",
+  "D_MOVE",
+  "AUTOEX",
+  "!HASS",
+  "QUEST",
+  "SUMN",
+  "!REP",
+  "LIGHT",
+  "C1",
+  "C2",
+  "!WIZ",
+  "L1",
+  "L2",
+  "!AUC",
+  "!GOS",
+  "!GTZ",
+  "RMFLG",
+  "NOPETI",
+  "NONAME",
+  "CLANTALK",
+  "ANON",
+  "VNUMS",
+  "NICEAREA",
+  "VICIOUS",
+  "\n"
+};
+
+
+/* AFF_x */
+const char *affected_bits[] =
+{
+  "BLIND",
+  "INVIS",
+  "DET-ALIGN",
+  "DET-INVIS",
+  "DET-MAGIC",
+  "SENSE-LIFE",
+  "WATWALK",
+  "SANCT",
+  "GROUP",
+  "CURSE",
+  "INFRA",
+  "POISON",
+  "PROT-EVIL",
+  "PROT-GOOD",
+  "SLEEP",
+  "!TRACK",
+  "TAMED",
+  "UNUSED",
+  "SNEAK",
+  "HIDE",
+  "FLYING",
+  "CHARM",
+  "STONE-SKIN",
+  "FARSEE",
+  "HASTE",
+  "BLUR",
+  "VITALITY",
+  "COMP_LANG",
+  "PARALIZE",
+  "MAJOR_GROUP",
+  "FUMBLE_PRIM",
+  "FUMBLE_SECOND",
+  "DROPPED_PRIM",
+  "\n"
+};
+
+const char *affected_bits2[] =
+{
+  "LIGHT",
+  "MGROUP",
+  "MINOR_PARALYSIS",
+  "KNOCKED_OUT",
+  "LEVITATE",
+  "WATERBREATH",
+  "SOULSHIELD",
+  "SILENCE",
+  "PROT-FIRE",
+  "PROT-COLD",
+  "PROT-AIR",
+  "PROT-EARTH",
+  "FIRESHIELD",
+  "COLDSHIELD",
+  "MINOR-GLOBE",
+  "MAJOR-GLOBE",
+  "HARNESS",
+  "ON_FIRE",
+  "FEAR",
+  "TONGUES",
+  "DISEASE",
+  "INSANITY",
+  "ULTRAVISION",
+  "!HEAT",
+  "!COLD",
+  "WATERFORM",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "\n"
+};
+
+const char *affected_bits3[] =
+{
+  "AWARE",
+  "REDUCE",
+  "ENLARGE",
+  "VAMP_TOUCH",
+  "RAY_O_ENFEEB",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "\n"
+};
+
+/* CON_x */
+const char *connected_types[] = {
+  "Playing",
+  "Disconnecting",
+  "Get name",
+  "Confirm name",
+  "Get password",
+  "Get new PW",
+  "Confirm new PW",
+  "Select sex",
+  "Select class",
+  "Reading MOTD",
+  "Main Menu",
+  "Get descript.",
+  "Changing PW 1",
+  "Changing PW 2",
+  "Changing PW 3",
+  "Self-Delete 1",
+  "Self-Delete 2",
+  "Select race",
+  "Con ANSI",
+  "Object edit",
+  "Room edit",
+  "Zone edit",
+  "Mobile edit",
+  "Shop edit",
+  "Rolling stats",
+  "Hometown choice",
+  "Bonus1",
+  "Bonus2",
+  "Bonus3",
+  "Canchar",
+  "Text Editor",
+  "Help edit",
+  "Trigger Edit",
+  "Class Help",
+  "SPELL DAM EDIT",
+  "DIEITY MENU",
+  "\n"
+};
+
+
+/* WEAR_x - for eq list */
+const char *where[] = {
+  "<used as light>      ",
+  "<worn on finger>     ",
+  "<worn on finger>     ",
+  "<worn around neck>   ",
+  "<worn around neck>   ",
+  "<worn on body>       ",
+  "<worn on head>       ",
+  "<worn on legs>       ",
+  "<worn on feet>       ",
+  "<worn on hands>      ",
+  "<worn on arms>       ",
+  "<worn as shield>     ",
+  "<worn about body>    ",
+  "<worn about waist>   ",
+  "<worn around wrist>  ",
+  "<worn around wrist>  ",
+  "<wielded>            ",
+  "<wielded secondary>  ",
+  "<held>               ",
+  "<held>               ",
+  "<wielded two-handed> ",
+  "<worn on eyes>       ",
+  "<worn on face>       ",
+  "<worn in left ear>   ",
+  "<worn in right ear>  ",
+  "<worn as badge>      ",
+  "<attached to belt>   "
+};
+
+
+/* WEAR_x - for stat */
+const char *equipment_types[] = {
+  "Used as light",
+  "Worn on right finger",
+  "Worn on left finger",
+  "First worn around Neck",
+  "Second worn around Neck",
+  "Worn on body",
+  "Worn on head",
+  "Worn on legs",
+  "Worn on feet",
+  "Worn on hands",
+  "Worn on arms",
+  "Worn as shield",
+  "Worn about body",
+  "Worn around waist",
+  "Worn around right wrist",
+  "Worn around left wrist",
+  "Wielded",
+  "Wielded secondary",
+  "Held",
+  "Held",
+  "Wielded two-handed",
+  "Worn on eyes",
+  "Worn on face",
+  "Worn in left ear",
+  "Worn in right ear",
+  "Worn as badge",
+  "Attached to belt",
+  "\n"
+};
+
+const int wear_order_index[NUM_WEARS] = {
+  WEAR_BADGE,
+  WEAR_HEAD,
+  WEAR_EYES,
+  WEAR_FACE,
+  WEAR_REAR,
+  WEAR_LEAR,
+  WEAR_NECK_1,
+  WEAR_NECK_2,
+  WEAR_ABOUT,
+  WEAR_BODY,
+  WEAR_WAIST,
+  WEAR_OBELT,
+  WEAR_ARMS,
+  WEAR_WRIST_R,
+  WEAR_WRIST_L,
+  WEAR_HANDS,
+  WEAR_FINGER_R,
+  WEAR_FINGER_L,
+  WEAR_WIELD,
+  WEAR_WIELD2,
+  WEAR_2HWIELD,
+  WEAR_HOLD,
+  WEAR_HOLD2,
+  WEAR_LIGHT,
+  WEAR_SHIELD,
+  WEAR_LEGS,
+  WEAR_FEET
+};
+
+/* ITEM_x (ordinal object types) */
+const char *item_types[] = {
+  "UNDEFINED",
+  "LIGHT",
+  "SCROLL",
+  "WAND",
+  "STAFF",
+  "WEAPON",
+  "FIRE WEAPON",
+  "MISSILE",
+  "TREASURE",
+  "ARMOR",
+  "POTION",
+  "WORN",
+  "OTHER",
+  "TRASH",
+  "TRAP",
+  "CONTAINER",
+  "NOTE",
+  "LIQ CONTAINER",
+  "KEY",
+  "FOOD",
+  "MONEY",
+  "PEN",
+  "BOAT",
+  "FOUNTAIN",
+  "PORTAL",
+  "ROPE",
+  "SPELLBOOK",
+  "WALL",
+  "\n"
+};
+
+
+/* ITEM_WEAR_ (wear bitvector) */
+const char *wear_bits[] = {
+  "TAKE",
+  "FINGER",
+  "NECK",
+  "BODY",
+  "HEAD",
+  "LEGS",
+  "FEET",
+  "HANDS",
+  "ARMS",
+  "SHIELD",
+  "ABOUT",
+  "WAIST",
+  "WRIST",
+  "WIELD",
+  "HOLD",
+  "2HWIELD",
+  "EYES",
+  "FACE",
+  "EAR",
+  "BADGE",
+  "OBELT",
+  "\n"
+};
+
+
+/* ITEM_x (extra bits) */
+const char *extra_bits[] = {
+  "GLOW",
+  "HUM",
+  "!RENT",
+  "!DONATE",
+  "!INVIS",
+  "INVISIBLE",
+  "MAGIC",
+  "!DROP",
+  "BLESS",
+  "!GOOD",
+  "!EVIL",
+  "!NEUTRAL",
+  "!MAGE",
+  "!CLERIC",
+  "!THIEF",
+  "!WARRIOR",
+  "!SELL",
+  "!PALADIN",
+  "!ANTI_PALADIN",
+  "!RANGER",
+  "!DRUID",
+  "!SHAMAN",
+  "!ASSASSIN",
+  "!MERCENARY",
+  "!NECROMANCER",
+  "!CONJURER",
+  "!BURN",
+  "HIDDEN",
+  "TRANSIENT",
+  "FLOAT",
+  "!DISARM!",
+  "CONTINUAL",
+  "\n"
+};
+
+
+/* APPLY_x */
+const char *apply_types[] = {
+  "NONE",
+  "STR",
+  "DEX",
+  "INT",
+  "WIS",
+  "CON",
+  "CHA",
+  "CLASS",
+  "LEVEL",
+  "AGE",
+  "CHAR_WEIGHT",
+  "CHAR_HEIGHT",
+  "MAXMANA",
+  "HITPOINTS",
+  "MAXMOVE",
+  "GOLD",
+  "EXP",
+  "ARMOR",
+  "HITROLL",
+  "DAMROLL",
+  "SAVING_PARA",
+  "SAVING_ROD",
+  "SAVING_PETRI",
+  "SAVING_BREATH",
+  "SAVING_SPELL",
+  "SIZE",
+  "HIT_REGEN",
+  "MANA_REGEN",
+  "\n"
+};
+
+
+/* CONT_x */
+const char *container_bits[] = {
+  "CLOSEABLE",
+  "PICKPROOF",
+  "CLOSED",
+  "LOCKED",
+  "\n",
+};
+
+
+/* LIQ_x */
+const char *drinks[] =
+{
+  "water",
+  "beer",
+  "wine",
+  "ale",
+  "dark ale",
+  "whisky",
+  "lemonade",
+  "firebreather",
+  "local speciality",
+  "slime mold juice",
+  "milk",
+  "tea",
+  "coffee",
+  "blood",
+  "salt water",
+  "clear water",
+  "\n"
+};
+
+
+/* other constants for liquids ******************************************/
+
+
+/* one-word alias for each drink */
+const char *drinknames[] =
+{
+  "water",
+  "beer",
+  "wine",
+  "ale",
+  "ale",
+  "whisky",
+  "lemonade",
+  "firebreather",
+  "local",
+  "juice",
+  "milk",
+  "tea",
+  "coffee",
+  "blood",
+  "salt",
+  "water",
+  "\n"
+};
+
+
+/* effect of drinks on hunger, thirst, and drunkenness -- see values.doc */
+const int drink_aff[][3] = {
+  {0, 1, 10},
+  {3, 2, 5},
+  {5, 2, 5},
+  {2, 2, 5},
+  {1, 2, 5},
+  {6, 1, 4},
+  {0, 1, 8},
+  {10, 0, 0},
+  {3, 3, 3},
+  {0, 4, -8},
+  {0, 3, 6},
+  {0, 1, 6},
+  {0, 1, 6},
+  {0, 2, -1},
+  {0, 1, -2},
+  {0, 0, 13}
+};
+
+
+/* color of the various drinks */
+const char *color_liquid[] =
+{
+  "clear",
+  "brown",
+  "clear",
+  "brown",
+  "dark",
+  "golden",
+  "red",
+  "green",
+  "clear",
+  "light green",
+  "white",
+  "brown",
+  "black",
+  "red",
+  "clear",
+  "crystal clear"
+};
+
+
+/* level of fullness for drink containers */
+const char *fullness[] =
+{
+  "less than half ",
+  "about half ",
+  "more than half ",
+  ""
+};
+
+const char *carry_desc[] =
+{
+  "What load?",
+  "Insignificant",
+  "Paltry",
+  "Very Light",
+  "Light",
+  "Moderate",
+  "Heavy",
+  "Very Heavy",
+  "Backbreaking",
+  "Immobilizing",
+  "Intolerable"
+};
+
+/* str, int, wis, dex, con applies **************************************/
+
+
+/* [ch] strength apply (all) */
+const struct str_app_type str_app[] = {
+  {-5, -4, 0, 0},	/* str = 0 */
+  {-5, -4, 3, 1},	/* str = 1 */
+  {-3, -2, 3, 2},
+  {-3, -1, 10, 3},
+  {-2, -1, 25, 4},
+  {-2, -1, 55, 5},	/* str = 5 */
+  {-1, 0, 80, 6},
+  {-1, 0, 90, 7},
+  {0, 0, 100, 8},
+  {0, 0, 100, 9},
+  {0, 0, 115, 10},	/* str = 10 */
+  {0, 0, 115, 11},
+  {0, 0, 140, 12},
+  {0, 0, 140, 13},
+  {0, 0, 170, 14},
+  {0, 0, 170, 15},	/* str = 15 */
+  {0, 1, 195, 16},
+  {1, 1, 220, 18},
+  {1, 2, 255, 20},	/* dex = 18 */
+  {3, 7, 640, 40},
+  {3, 8, 700, 40},	/* str = 20 */
+  {4, 9, 810, 40},
+  {4, 10, 970, 40},
+  {5, 11, 1130, 40},
+  {6, 12, 1440, 40},
+  {7, 14, 1750, 40},	/* str = 25 */
+  {1, 3, 280, 22},	/* str = 18/0 - 18-50 */
+  {2, 3, 305, 24},	/* str = 18/51 - 18-75 */
+  {2, 4, 330, 26},	/* str = 18/76 - 18-90 */
+  {2, 5, 380, 28},	/* str = 18/91 - 18-99 */
+  {3, 6, 480, 30}	/* str = 18/100 */
+};
+
+
+
+/* [dex] skill apply (thieves only) */
+const struct dex_skill_type dex_app_skill[] = {
+  {-99, -99, -90, -99, -60},	/* dex = 0 */
+  {-90, -90, -60, -90, -50},	/* dex = 1 */
+  {-80, -80, -40, -80, -45},
+  {-70, -70, -30, -70, -40},
+  {-60, -60, -30, -60, -35},
+  {-50, -50, -20, -50, -30},	/* dex = 5 */
+  {-40, -40, -20, -40, -25},
+  {-30, -30, -15, -30, -20},
+  {-20, -20, -15, -20, -15},
+  {-15, -10, -10, -20, -10},
+  {-10, -5, -10, -15, -5},	/* dex = 10 */
+  {-5, 0, -5, -10, 0},
+  {0, 0, 0, -5, 0},
+  {0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0},		/* dex = 15 */
+  {0, 5, 0, 0, 0},
+  {5, 10, 0, 5, 5},
+  {10, 15, 5, 10, 10},		/* dex = 18 */
+  {15, 20, 10, 15, 15},
+  {15, 20, 10, 15, 15},		/* dex = 20 */
+  {20, 25, 10, 15, 20},
+  {20, 25, 15, 20, 20},
+  {25, 25, 15, 20, 20},
+  {25, 30, 15, 25, 25},
+  {25, 30, 15, 25, 25}		/* dex = 25 */
+};
+
+
+
+/* [dex] apply (all) */
+struct dex_app_type dex_app[] = {
+  {-7, -7, 6},		/* dex = 0 */
+  {-6, -6, 5},		/* dex = 1 */
+  {-4, -4, 5},
+  {-3, -3, 4},
+  {-2, -2, 3},
+  {-1, -1, 2},		/* dex = 5 */
+  {0, 0, 1},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},		/* dex = 10 */
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, -1},		/* dex = 15 */
+  {1, 1, -2},
+  {2, 2, -3},
+  {2, 2, -4},		/* dex = 18 */
+  {3, 3, -4},
+  {3, 3, -4},		/* dex = 20 */
+  {4, 4, -5},
+  {4, 4, -5},
+  {4, 4, -5},
+  {5, 5, -6},
+  {5, 5, -6}		/* dex = 25 */
+};
+
+
+
+/* [con] apply (all) */
+struct con_app_type con_app[] = {
+  {-4, 20},		/* con = 0 */
+  {-3, 25},		/* con = 1 */
+  {-2, 30},
+  {-2, 35},
+  {-1, 40},
+  {-1, 45},		/* con = 5 */
+  {-1, 50},
+  {0, 55},
+  {0, 60},
+  {0, 65},
+  {0, 70},		/* con = 10 */
+  {0, 75},
+  {0, 80},
+  {0, 85},
+  {0, 88},
+  {1, 90},		/* con = 15 */
+  {2, 95},
+  {2, 97},
+  {3, 99},		/* con = 18 */
+  {3, 99},
+  {4, 99},		/* con = 20 */
+  {5, 99},
+  {5, 99},
+  {5, 99},
+  {6, 99},
+  {6, 99}		/* con = 25 */
+};
+
+
+
+/* [int] apply (all) */
+struct int_app_type int_app[] = {
+  {3},		/* int = 0 */
+  {5},		/* int = 1 */
+  {7},
+  {8},
+  {9},
+  {10},		/* int = 5 */
+  {11},
+  {12},
+  {13},
+  {15},
+  {17},		/* int = 10 */
+  {19},
+  {22},
+  {25},
+  {30},
+  {35},		/* int = 15 */
+  {40},
+  {45},
+  {50},		/* int = 18 */
+  {53},
+  {55},		/* int = 20 */
+  {56},
+  {57},
+  {58},
+  {59},
+  {60}		/* int = 25 */
+};
+
+
+/* [wis] apply (all) */
+struct wis_app_type wis_app[] = {
+  {0},	/* wis = 0 */
+  {0},  /* wis = 1 */
+  {0},
+  {0},
+  {0},
+  {0},  /* wis = 5 */
+  {0},
+  {0},
+  {0},
+  {0},
+  {0},  /* wis = 10 */
+  {0},
+  {2},
+  {2},
+  {3},
+  {3},  /* wis = 15 */
+  {3},
+  {4},
+  {5},	/* wis = 18 */
+  {6},
+  {6},  /* wis = 20 */
+  {6},
+  {6},
+  {7},
+  {7},
+  {7}  /* wis = 25 */
+};
+
+
+
+const char *spell_wear_off_msg[] = {
+  "RESERVED DB.C",		/* 0 */
+  "You feel less protected.",	/* 1 */
+  "!Teleport!",
+  "You feel less righteous.",
+  "You feel a cloak of blindness disolve.",
+  "!Burning Hands!",		/* 5 */
+  "!Call Lightning",
+  "You feel more self-confident.",
+  "You feel your strength return.",
+  "!Clone!",
+  "!Color Spray!",		/* 10 */
+  "!Control Weather!",
+  "!Create Food!",
+  "!Create Water!",
+  "!Cure Blind!",
+  "!Cure Critic!",		/* 15 */
+  "!Cure Light!",
+  "You feel more optimistic.",
+  "You feel less aware.",
+  "Your eyes stop tingling.",
+  "The detect magic wears off.",/* 20 */
+  "The detect poison wears off.",
+  "!Dispel Evil!",
+  "!Earthquake!",
+  "!Enchant Weapon!",
+  "!Energy Drain!",		/* 25 */
+  "!Fireball!",
+  "!Harm!",
+  "!Heal!",
+  "You fade back into view.",
+  "!Lightning Bolt!",		/* 30 */
+  "!Locate object!",
+  "!Magic Missile!",
+  "You feel less sick.",
+  "You feel less protected.",
+  "!Remove Curse!",		/* 35 */
+  "The white aura around your body fades.",
+  "!Shocking Grasp!",
+  "You feel less tired.",
+  "You feel weaker.",
+  "!Summon!",			/* 40 */
+  "!Ventriloquate!",
+  "!Word of Recall!",
+  "!Remove Poison!",
+  "You feel less aware of your suroundings.",
+  "!Animate Dead!",		/* 45 */
+  "!Dispel Good!",
+  "!Group Armor!",
+  "!Group Heal!",
+  "!Group Recall!",
+  "Your night vision seems to fade.",	/* 50 */
+  "Your feet seem less boyant.",
+  "&3&dYour skin softens and returns to normal.&0",
+  "!FULL HEAL!",
+  "!FULL HARM!",
+  "The fog seems to clear out.",
+  "The wall of stone crumbles into dust.",
+  "You settle back to the ground.", /*57*/
+  "!summon dracolich!",
+  "!summon elemental!",
+  "!summon demon!",   /*60*/
+  "!Summon greater demon!",
+  "!dimension door!",
+  "!CREEPING DOOM!",
+  "!DOOM!",
+  "!METEORSWARM!", /*65*/
+  "!BIG B!",
+  "Your pupils dilate as your vision returns to normal",
+  "Your pulse returns to normal.",
+  "The world solidifies as vision unblurs, and you return to normal speed.",
+  "Your magical vitality drains away.",
+  "!MOONWELL!",
+  "You feel weaker",
+  "The magical darkness lifts",
+  "&8The magical light fades away&0",
+  "&8You magical knowledge of language fades away.&0",
+  "!coneofcold!",
+  "!ice storms!",
+  "!ice shards!",
+  "You can move again.",
+  "!VAMP BREATH!",
+  "!RESURRECT!",
+  "!INCENDIARY NEBULA!",
+  "You can move again.",
+  "!CAUSE LIGHT!",
+  "!CAUSE SERIOUS!",
+  "!CAUSE CRITIC!",
+  "!PRESERVE!",
+  "!CURE SERIOUS!",
+  "!VIG LIGHT!",
+  "!VIG SERIOUS!",
+  "!VIG CRITIC!",
+  "The aura guarding your body fades away.",
+  "!DESTROY UNDEAD!",
+  "You can speak again.",
+  "!FLAMESTRIKE!",
+  "!UNHOLYWORD!",
+  "!HOLYWORD",
+  "!PLANESHIFT!",
+  "!DISPELMAGIC!",
+  "!MINORCREATE!",
+  "You fade back into view.",
+  "Your strength returns to you.",
+  "You float back to the ground.",
+  "!WIZEYE!",
+  "The flames around your body dissipate.",
+  "The ice formation around your body melts.",
+  "The globe around your body fades out.",
+  "The globe of force surrounding you dissipates.",
+  "!DISINTEGRATE!",
+  "&4The harnessed power in your body fades.&0",
+  "!CHAINLIGHTNING!",
+  "Your fade back into view.",
+  "!RELOCATE!",
+  "Your courage returns to you.",
+  "The circle of light above you fades out.",
+  "!DIVINEBOLT!",
+  "Your holy prayer fades.",
+  "You feel less safe from the elements.",
+  "!DIVINERAY!",
+  "!LESSEREXCOR!",
+  "!LESSERINVOC!",
+  "Your vocabulary diminishes drastically.",
+  "!ENLIGHTEMENT!",
+  "!EXORCISM!",
+  "!GREATERINVOC!",
+  "Your wings gently fold back, and fade away.",
+  "!BANISH!",
+  "!WORDOFCOMMAND!",
+  "!DIVINEESSENCE!",
+  "!HEAVENSGATE!",
+  "You feel the dark presence leave you.",
+  "Your skin reverts back to normal.",
+  "!DARKFEAST!",
+  "!HELLBOLT!",
+  "You are cured of your disease!",
+  "Your mind returns to reality.",
+  "The demon within you fades away.",
+  "!HELLFIRE!",
+  "!STYGIANERUPTION!",
+  "You mutate back to your original form.",
+  "Your giant bat-like wings fold up and vanish.",
+  "!SANEMIND!",
+  "!HELLGATE!",
+  "You skin softens back to it's original texture.",
+  "Your night vision fades out.",
+  "!WRITHINGWEEDS!",
+  "!CREATESPRING!",
+  "!NOURISHMENT!",
+  "Your shroud of nature dissolves.",
+  "Nature let you go from her embrace.",
+  "You break free of the vines.",
+  "!INVIGORATE!",
+  "The woods around you shift back to their proper form.",
+  "&2The woods in the surrounding area break apart and crumble.&0",
+  "Your vision has returned.",
+  "!ARMOROFGAIA!",
+  "!FIREDARTS!",
+  "Your magic torch peters out.",
+  "As the smoke clears, you can see again.",
+  "You become more visible as the heat around your body dies out.",
+  "!FLAMEBLADE!",
+  "You begin to cool a bit, the heat leaving your body.",
+  "!FIRESTORM!",
+  "!MELT!",
+  "The flames surrounding the area die out.",
+  "!IMMOLATE!",
+  "!SUPERNOVA!",
+  "!GREATERFIREWALK!",
+  "Your immunity to heat has passed.",
+  "!FIREWALK!",
+  "!ICEDARTS!",
+  "Your iced encasing melts away, leaving you vulnerable again.",
+  "!ICEDAGGER!",
+  "!FREEZINGWIND!",
+  "!FREEZE!",
+  "The wall of ice melts away...",
+  "!ICEBALL!",
+  "!FLOOD!",
+  "!GREATERWATERWALK!",
+  "You feel vulnerable to the cold again.",
+  "Your form solidifies into flesh once again.",
+  "!DOUSE!",
+  "!RAIN!",
+  "&8You return to your normal size.&0",
+  "&8You return to your normal size.&0",
+  "!UNUSED!"
+};
+
+
+
+const char *npc_class_types[] = {
+  "Normal",
+  "Undead",
+  "\n"
+};
+
+
+
+const int rev_dir[] =
+{
+  2,
+  3,
+  0,
+  1,
+  5,
+  4
+};
+
+
+const int movement_loss[] =
+{
+  1,	/* Inside     */
+  1,	/* City       */
+  2,	/* Field      */
+  3,	/* Forest     */
+  4,	/* Hills      */
+  6,	/* Mountains  */
+  4,	/* Swimming   */
+  1,	/* Unswimable */
+  1,	/* Flying     */
+  5,     /* Underwater */
+  0,     /*flying*/
+  2,
+  1,
+  1,
+  2,
+  4,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1
+
+};
+
+
+const char *weekdays[] = {
+  "the Day of the Moon",
+  "the Day of the Bull",
+  "the Day of the Deception",
+  "the Day of Thunder",
+  "the Day of Freedom",
+  "the day of the Great Gods",
+"the Day of the Sun"};
+
+const char *rolls_abils_result[] = {"Fantastic  ", "Pretty Good", "Not bad    ", "Fair       ", "Bad        "};
+/*const char *rolls_abils_result[] = {"&0&1&bFantastic&0  ", "&0&2&bPretty Good&0", "&0&3&bNot bad&0    ", "&0&3Fair&0       ", "&0&9&bBad&0        "};*/
+
+const char *month_name[] = {
+  "Month of Winter",		/* 0 */
+  "Month of the Winter Wolf",
+  "Month of the Frost Giant",
+  "Month of the Old Forces",
+  "Month of the Spring",
+  "Month of Nature",
+  "Month of Futility",
+  "Month of the Dragon",
+  "Month of the Sun",
+  "Month of the Heat",
+  "Month of Scorching",
+  "Month of the Battle",
+  "Month of the Shadows",
+  "Month of the Long Shadows",
+  "Month of the Ancient Darkness",
+  "Month of the Great Evil"
+};
+
+const int warrior_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	24,
+	25,
+	29,
+        30,
+        29,
+	-1};
+
+const int priest_eq[] = {
+    18,
+    19,
+	20,
+	21,
+	22,
+	23,
+	27,
+	26,
+	28,
+	-1};
+
+const int shaman_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	27,
+	26,
+	28,
+	-1};
+
+const int thief_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	27,
+	26,
+	30,
+	29,
+	-1};
+
+const int mercenary_eq[] = {
+    18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	24,
+	25,
+	30,
+	29,
+	-1};
+
+const int mage_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	27,
+	26,
+	30,
+	-1};
+
+const int paladin_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	24,
+	25,
+	29,
+	-1};
+
+
+
+const int sharp[] = {
+  0,
+  0,
+  0,
+  1,				/* Slashing */
+  0,
+  0,
+  0,
+  0,				/* Bludgeon */
+  0,
+  0,
+  0,
+0};				/* Pierce   */
+
+/*
+ * Definitions necessary for MobProg support in OasisOLC
+ */
+const char *mobprog_types[] = {
+  "INFILE",
+  "ACT",
+  "SPEECH",
+  "RAND",
+  "FIGHT",
+  "DEATH",
+  "HITPRCNT",
+  "ENTRY",
+  "GREET",
+  "ALL_GREET",
+  "GIVE",
+  "BRIBE",
+  "\n"
+};
+
+const char *languages[] =
+{
+  "barbarian",
+  "gnomish",
+  "duergar",
+  "drow",
+  "orcish",
+  "ogre",
+  "common",
+  "elven",
+  "dwarven",
+  "trollish",
+  "halfling",
+  "\n"
+};
+@
+
+
+1.148
+log
+@Make pyre auto-target caster if sacrificial preference is
+toggled on.
+@
+text
+@/***************************************************************************
+ * $Id: constants.c,v 1.147 2009/07/17 00:48:17 myc Exp mud $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: constants.c                                    Part of FieryMUD *
+ *  Usage: Numeric and string contants used by the MUD                     *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "db.h"
+#include "utils.h"
+
+/* global variables */
+const char circlemud_version[] = {
+  "CircleMUD, version 3.00 beta patchlevel 11\r\n"};
+
+
+/* MINOR CREATION ITEMS */
+const char *minor_creation_items[] = {
+  "backpack",  	/* 0  */
+  "sack",
+  "robe",
+  "ebony",
+  "lantern",
+  "torch",	/* 5  */
+  "waterskin",
+  "barrel",
+  "rations",
+  "raft",
+  "club",	/* 10 */
+  "mace",
+  "dagger",
+  "sword",
+  "longsword",
+  "staff",	/* 15 */
+  "shield",
+  "tunic",
+  "jerkin",
+  "leggings",
+  "pants",	/* 20 */
+  "gauntlets",
+  "sleeves",
+  "gloves",
+  "helmet",
+  "skullcap",	/* 25 */
+  "boots",
+  "sandals",
+  "cloak",
+  "book",
+  "quill",	/* 30 */
+  "belt",
+  "ring",
+  "rope",
+  "bottle",
+  "keg",	/* 35 */
+  "mask",
+  "earring",
+  "scarf",
+  "bracer",
+  "\n"
+};
+
+
+/* EX_x */
+const char *exit_bits[] = {
+  "DOOR",
+  "CLOSED",
+  "LOCKED",
+  "PICKPROOF",
+  "HIDDEN",
+  "DESCRIPT",
+  "\n"
+};
+
+
+/* SEX_x */
+const char *genders[NUM_SEXES + 1] =
+{
+  "Neuter",
+  "Male",
+  "Female",
+  "\n"
+};
+
+/* STANCE_x */
+const char *stance_types[NUM_STANCES + 1] = {
+  "dead",
+  "mortally wounded",
+  "incapacitated",
+  "stunned",
+  "sleeping",
+  "resting",
+  "alert",
+  "fighting",
+  "\n"
+};
+
+/* POS_x */
+const char *position_types[NUM_POSITIONS + 1] = {
+  "prone",
+  "sitting",
+  "kneeling",
+  "standing",
+  "flying",
+  "\n"
+};
+
+
+/* PLR_x */
+const char *player_bits[NUM_PLR_FLAGS + 1] = {
+  "KILLER",
+  "THIEF",
+  "FROZEN",
+  "DONTSET",
+  "WRITING",
+  "MAILING",
+  "AUTOSAVE",
+  "SITEOK",
+  "NOSHOUT",
+  "NOTITLE",
+  "DELETED",
+  "LOADRM",
+  "!WIZL",
+  "!DEL",
+  "INVST",
+  "CRYO",
+  "MEDITATING",
+  "CASTING",
+  "BOUND",
+  "SCRIBE",
+  "TEACHING",
+  "NAMENEEDSAPPROVE",
+  "RENAME",
+  "REMOVING",
+  "SAVING",
+  "GOTSTARS",
+  "\n"
+};
+
+
+/* MOB_x */
+const char *action_bits[NUM_MOB_FLAGS + 1] = {
+  "SPEC",
+  "SENTINEL",
+  "SCAVENGER",
+  "ISNPC",
+  "AWARE",
+  "AGGR",
+  "STAY_ZONE",
+  "WIMPY",
+  "AGGR_EVIL",
+  "AGGR_GOOD",
+  "AGGR_NEUTRAL",
+  "MEMORY",
+  "HELPER",
+  "!CHARM",
+  "!SUMMN",
+  "!SLEEP",
+  "!BASH",
+  "!BLIND",
+  "MOUNTABLE",
+  "NO_EQ_RESTRICT",
+  "FAST_TRACK",
+  "SLOW_TRACK",
+  "CASTINGDONTUSE",
+  "SUMMONED_MOUNT",
+  "AQUATIC",
+  "AGGR_EVIL_RACE",
+  "AGGR_GOOD_RACE",
+  "!SILENCE",
+  "NOVICIOUS",
+  "TEACHER",
+  "ANIMATED",
+  "PEACEFUL",
+  "!POISON",
+  "ILLUSORY",
+  "PLAYER_PHANTASM",
+  "!CLASS_AI",
+  "!SCRIPT",
+  "PEACEKEEPER",
+  "PROTECTOR",
+  "\n"
+};
+
+
+/* PRF_x */
+const char *preference_bits[NUM_PRF_FLAGS + 1] = {
+  "BRIEF",
+  "COMPACT",
+  "DEAF",
+  "!TELL",
+  "OLCCOMM",
+  "LINENUMS",
+  "AUTOLOOT",
+  "AUTOEXIT",
+  "!HASSLE",
+  "QUEST",
+  "SUMMON",
+  "!REPEAT",
+  "LIGHT",
+  "COLOR1",
+  "COLOR2",
+  "!WIZNET",
+  "LOG1",
+  "LOG2",
+  "!AUCTION",
+  "!GOSSIP",
+  "!HINTS",
+  "ROOMFLAG",
+  "!PETITION",
+  "AUTOSPLIT",
+  "!CLANCOMM",
+  "ANON",
+  "VNUMS",
+  "NICEAREA",
+  "VICIOUS",
+  "PASSIVE",
+  "ROOMVIS",
+  "!FOLLOW",
+  "AUTOTREAS",
+  "STK_OBJ",
+  "STK_MOB",
+  "SACRIFICIAL",
+  "\n"
+};
+
+/* PRV_x */
+const char *privilege_bits[NUM_PRV_FLAGS + 1] = {
+  "CLAN_ADMIN",
+  "TITLE",
+  "ANON_TOGGLE",
+  "AUTO_GAIN",
+  "\n"
+};
+
+/* CON_x */
+const char *connected_types[NUM_CON_MODES + 1] = {
+  "Playing",
+  "Disconnecting",
+  "Get name",
+  "Confirm name",
+  "Get password",
+  "Get new PW",
+  "Confirm new PW",
+  "Select sex",
+  "Select class",
+  "Reading MOTD",
+  "Main Menu",
+  "Get descript.",
+  "Changing PW 1",
+  "Changing PW 2",
+  "Changing PW 3",
+  "Self-Delete 1",
+  "Self-Delete 2",
+  "Select race",
+  "Con ANSI",
+  "Object edit",
+  "Room edit",
+  "Zone edit",
+  "Mobile edit",
+  "Shop edit",
+  "Rolling stats",
+  "Hometown choice",
+  "Picking bonuses",
+  "Picking bonuses",
+  "Picking bonuses",
+  "Confirm stats",
+  "Help edit",
+  "Trigger Edit",
+  "Class Help",
+  "Spell dam edit",
+  "Name check",
+  "Name approval",
+  "Choose new name",
+  "Select race",
+  "Bad name boot",
+  "Cmd group edit",
+  "Item edit",
+  "\n"
+};
+
+
+/* WEAR_x - for eq list */
+const char *where[NUM_WEARS] = {
+  "<used as light>      ",
+  "<worn on finger>     ",
+  "<worn on finger>     ",
+  "<worn around neck>   ",
+  "<worn around neck>   ",
+  "<worn on body>       ",
+  "<worn on head>       ",
+  "<worn on legs>       ",
+  "<worn on feet>       ",
+  "<worn on hands>      ",
+  "<worn on arms>       ",
+  "<worn as shield>     ",
+  "<worn about body>    ",
+  "<worn about waist>   ",
+  "<worn around wrist>  ",
+  "<worn around wrist>  ",
+  "<wielded>            ",
+  "<wielded secondary>  ",
+  "<held>               ",
+  "<held>               ",
+  "<wielded two-handed> ",
+  "<worn on eyes>       ",
+  "<worn on face>       ",
+  "<worn in left ear>   ",
+  "<worn in right ear>  ",
+  "<worn as badge>      ",
+  "<attached to belt>   "
+};
+
+
+/* WEAR_x - for stat */
+const char *equipment_types[NUM_WEARS + 1] = {
+  "Used as light",
+  "Worn on right finger",
+  "Worn on left finger",
+  "First worn around Neck",
+  "Second worn around Neck",
+  "Worn on body",
+  "Worn on head",
+  "Worn on legs",
+  "Worn on feet",
+  "Worn on hands",
+  "Worn on arms",
+  "Worn as shield",
+  "Worn about body",
+  "Worn around waist",
+  "Worn around right wrist",
+  "Worn around left wrist",
+  "Wielded",
+  "Wielded secondary",
+  "Held",
+  "Held",
+  "Wielded two-handed",
+  "Worn on eyes",
+  "Worn on face",
+  "Worn in left ear",
+  "Worn in right ear",
+  "Worn as badge",
+  "Attached to belt",
+  "\n"
+};
+
+/* WEAR_x - for scripts */
+const char *wear_positions[NUM_WEARS + 1] = {
+  "light",
+  "rfinger",
+  "lfinger",
+  "neck1",
+  "neck2",
+  "body",
+  "head",
+  "legs",
+  "feet",
+  "hands",
+  "arms",
+  "shield",
+  "aboutbody",
+  "waist",
+  "rwrist",
+  "lwrist",
+  "wield",
+  "wield2",
+  "held",
+  "held2",
+  "2hwield",
+  "eyes",
+  "face",
+  "lear",
+  "rear",
+  "badge",
+  "belt",
+  "\n"
+};
+
+const int wear_order_index[NUM_WEARS] = {
+  WEAR_BADGE,
+  WEAR_HEAD,
+  WEAR_EYES,
+  WEAR_FACE,
+  WEAR_REAR,
+  WEAR_LEAR,
+  WEAR_NECK_1,
+  WEAR_NECK_2,
+  WEAR_ABOUT,
+  WEAR_BODY,
+  WEAR_WAIST,
+  WEAR_OBELT,
+  WEAR_ARMS,
+  WEAR_WRIST_R,
+  WEAR_WRIST_L,
+  WEAR_HANDS,
+  WEAR_FINGER_R,
+  WEAR_FINGER_L,
+  WEAR_WIELD,
+  WEAR_WIELD2,
+  WEAR_2HWIELD,
+  WEAR_HOLD,
+  WEAR_HOLD2,
+  WEAR_LIGHT,
+  WEAR_SHIELD,
+  WEAR_LEGS,
+  WEAR_FEET
+};
+
+const int wear_flags[NUM_WEARS] = {
+  /* WEAR_LIGHT    */ -1,
+  /* WEAR_FINGER_R */ ITEM_WEAR_FINGER,
+  /* WEAR_FINGER_L */ ITEM_WEAR_FINGER,
+  /* WEAR_NECK_1   */ ITEM_WEAR_NECK,
+  /* WEAR_NECK_2   */ ITEM_WEAR_NECK,
+  /* WEAR_BODY     */ ITEM_WEAR_BODY,
+  /* WEAR_HEAD     */ ITEM_WEAR_HEAD,
+  /* WEAR_LEGS     */ ITEM_WEAR_LEGS,
+  /* WEAR_FEET     */ ITEM_WEAR_FEET,
+  /* WEAR_HANDS    */ ITEM_WEAR_HANDS,
+  /* WEAR_ARMS     */ ITEM_WEAR_ARMS,
+  /* WEAR_SHIELD   */ ITEM_WEAR_SHIELD,
+  /* WEAR_ABOUT    */ ITEM_WEAR_ABOUT,
+  /* WEAR_WAIST    */ ITEM_WEAR_WAIST,
+  /* WEAR_WRIST_R  */ ITEM_WEAR_WRIST,
+  /* WEAR_WRIST_L  */ ITEM_WEAR_WRIST,
+  /* WEAR_WIELD    */ ITEM_WEAR_WIELD,
+  /* WEAR_WIELD2   */ ITEM_WEAR_WIELD,
+  /* WEAR_HOLD     */ ITEM_WEAR_HOLD,
+  /* WEAR_HOLD2    */ ITEM_WEAR_HOLD,
+  /* WEAR_2HWIELD  */ ITEM_WEAR_2HWIELD,
+  /* WEAR_EYES     */ ITEM_WEAR_EYES,
+  /* WEAR_FACE     */ ITEM_WEAR_FACE,
+  /* WEAR_LEAR     */ ITEM_WEAR_EAR,
+  /* WEAR_REAR     */ ITEM_WEAR_EAR,
+  /* WEAR_BADGE    */ ITEM_WEAR_BADGE,
+  /* WEAR_OBELT    */ ITEM_WEAR_OBELT,
+};
+
+
+/* ITEM_WEAR_ (wear bitvector) */
+const char *wear_bits[NUM_ITEM_WEAR_FLAGS + 1] = {
+  "TAKE",
+  "FINGER",
+  "NECK",
+  "BODY",
+  "HEAD",
+  "LEGS",
+  "FEET",
+  "HANDS",
+  "ARMS",
+  "SHIELD",
+  "ABOUT",
+  "WAIST",
+  "WRIST",
+  "WIELD",
+  "HOLD",
+  "2HWIELD",
+  "EYES",
+  "FACE",
+  "EAR",
+  "BADGE",
+  "OBELT",
+  "\n"
+};
+
+
+/* ITEM_x (extra bits) */
+const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
+  "GLOW",
+  "HUM",
+  "!RENT",
+  "!DONATE",
+  "!INVIS",
+  "INVISIBLE",
+  "MAGIC",
+  "!DROP",
+  "PERMANENT",
+  "!GOOD",
+  "!EVIL",
+  "!NEUTRAL",
+  "!SORCERER",
+  "!CLERIC",
+  "!ROGUE",
+  "!WARRIOR",
+  "!SELL",
+  "!PALADIN",
+  "!ANTI_PALADIN",
+  "!RANGER",
+  "!DRUID",
+  "!SHAMAN",
+  "!ASSASSIN",
+  "!MERCENARY",
+  "!NECROMANCER",
+  "!CONJURER",
+  "!BURN",
+  "!LOCATE",
+  "DECOMPOSING",
+  "FLOAT",
+  "!FALL",
+  "DISARMED",
+  "\n"
+};
+
+
+/* APPLY_x */
+const char *apply_types[NUM_APPLY_TYPES + 1] = {
+  "NONE",
+  "STR",
+  "DEX",
+  "INT",
+  "WIS",
+  "CON",
+  "CHA",
+  "CLASS",
+  "LEVEL",
+  "AGE",
+  "CHAR_WEIGHT",
+  "CHAR_HEIGHT",
+  "MAXMANA",
+  "HITPOINTS",
+  "MAXMOVE",
+  "GOLD",
+  "EXP",
+  "ARMOR",
+  "HITROLL",
+  "DAMROLL",
+  "SAVING_PARA",
+  "SAVING_ROD",
+  "SAVING_PETRI",
+  "SAVING_BREATH",
+  "SAVING_SPELL",
+  "SIZE",
+  "HIT_REGEN",
+  "MANA_REGEN",
+  "PERCEPTION",
+  "HIDDENNESS",
+  "COMPOSITION",
+  "\n"
+};
+
+
+/* APPLY_x */
+const char *apply_abbrevs[NUM_APPLY_TYPES + 1] = {
+  "none",
+  "str",
+  "dex",
+  "int",
+  "wis",
+  "con",
+  "cha",
+  "cls",
+  "lvl",
+  "age",
+  "lbs",
+  "in.",
+  "mp",
+  "hp",
+  "mv",
+  "gld",
+  "exp",
+  "ac",
+  "hr",
+  "dr",
+  "spa",
+  "sr",
+  "spe",
+  "sb",
+  "ss",
+  "size",
+  "regen",
+  "mregen",
+  "perc",
+  "hide",
+  "\n"
+};
+
+
+/* CONT_x */
+const char *container_bits[] = {
+  "CLOSEABLE",
+  "PICKPROOF",
+  "CLOSED",
+  "LOCKED",
+  "\n",
+};
+
+
+const char *carry_desc[] =
+{
+  "Weightless",
+  "Featherweight",
+  "Paltry",
+  "Very Light",
+  "Light",
+  "Moderate",
+  "Burdensome",
+  "Very Heavy",
+  "Instant hernia",
+  "Immobilizing",
+  "Intolerable"
+};
+
+
+const char *weekdays[DAYS_PER_WEEK] = {
+  "the Day of the Run",
+  "the Day of the Fight",
+  "the Day of Remembrance",
+  "the Day of Storm",
+  "the Day of Fire",
+  "the Day of Conquest",
+  "the Day of Rest"
+};
+
+const char *rolls_abils_result[] = {
+  "Fantastic  ",
+  "Pretty Good",
+  "Not bad    ",
+  "Fair       ",
+  "Bad        "
+};
+
+const char *month_name[MONTHS_PER_YEAR] = {
+  "Month of Winter",		/* 0 */
+  "Month of the Dark Destiny",
+  "Month of the Arcane Power",
+  "Month of the Moonless Night",
+  "Month of the Spring",
+  "Month of the Diabolical Awakening",
+  "Month of Resistance",
+  "Month of the Shal Du Stauk",
+  "Month of the Firestorm",
+  "Month of the Long Journey",
+  "Month of Discovery",
+  "Month of the Stranger",
+  "Month of Heroes and Valor",
+  "Month of the Great Deceit",
+  "Month of the Rift War",
+  "Month of the Wicked Deception"
+};
+
+const int sharp[] = {
+  0,
+  0,
+  0,
+  1,				/* Slashing */
+  0,
+  0,
+  0,
+  0,				/* Bludgeon */
+  0,
+  0,
+  0,
+0};				/* Pierce   */
+
+/* The following functions replace the hard coded bonus */
+/* tables for attributes.  This was done for the conversion */
+/* to the 100 base system.  These functions closely approximate */
+/* the older 18 base hard coded arrays. -gurlaek 6/24/1999 */
+
+void load_str_app(void) {
+  int x;
+
+  for(x = 0; x <= 100; x++) {
+    /* (x, bonus) where [bonus=Mx + B] is the notation used below */
+    /* M and B were determined from the old numbers */
+    
+    /* tohit bonus */
+    if(x <= 28 && x >= 0) /* linear from (0,-5) to (28,-1) */
+      str_app[x].tohit = (sh_int)((((float)1/7) * (float)x) - 5);
+    if(x <= 64 && x >= 29) /* no bonus */
+      str_app[x].tohit = 0;
+    if(x <= 100 && x >= 65) /* linear from (65,1) to (100,7) */
+      str_app[x].tohit = (sh_int)((((float)6/35) * (float)x) - ((float)75/7));
+    
+    /* todam bonus */
+    if(x <= 20 && x >= 0) /* linear from (0,-4) to (20,-1) */
+      str_app[x].todam = (sh_int)((((float)3/20) * (float)x) - 4);
+    if(x <= 60 && x >= 21) /* no bonus */
+      str_app[x].todam = 0;
+    if(x <= 100 && x >= 61) /* linear from (61,1) to (100,14) */
+      str_app[x].todam = (sh_int)((((float)13/39) * (float)x) - ((float)754/39));
+
+#define CARRY_72_STR    300.0
+#define CARRY_100_STR   786.0
+    /* carry_w */
+    if (x <= 72 && x >= 0)
+      str_app[x].carry_w = (sh_int)((CARRY_72_STR * x) / 72);
+    if (x <= 100 && x >= 73)
+      str_app[x].carry_w = (sh_int)
+        (CARRY_72_STR + ((CARRY_100_STR - CARRY_72_STR) * ((x - 72) / 28.0)));
+
+    /* wield_w */
+    if(x <= 72 && x >= 0) /* linear from (0,0) to (72, 20) */
+      str_app[x].wield_w = (sh_int)((((float)5/18) * (float)x));
+    if(x <= 100 && x >= 73) /* linear from (73,40) (100,70) */
+      str_app[x].wield_w = (sh_int)((((float)30/27) * (float)x) - ((float)370/9));
+  }
+}
+
+void load_thief_dex(void) {
+  int x;
+
+  for(x = 0; x <= 100; x++) {
+    /* (x, bonus) where [bonus=Mx + B] is the notation used below */
+    /* M and B were determined from the old numbers */
+    
+    /* pick pockets */
+    if(x <= 44 && x >= 0) /* linear from (0,-99) to (44,-5) */
+      dex_app_skill[x].p_pocket = (sh_int)((((float)47/22) * (float)x) - 99);
+    if(x <= 64 && x >=45) /* zero */
+      dex_app_skill[x].p_pocket = 0;
+    if(x <= 100 && x >= 65) /* linear from (65,5) to (100,25) */
+      dex_app_skill[x].p_pocket = (sh_int)((((float)4/7) * (float)x) - ((float)225/7));
+
+    /* pick locks */
+    if(x <= 40 && x >= 0) /* linear from (0,-99) to (40,-5) */
+      dex_app_skill[x].p_locks = (sh_int)((((float)47/20) * (float)x) - 99);
+    if(x <= 60 && x >=41) /* zero */
+      dex_app_skill[x].p_locks = 0;
+    if(x <= 100 && x >= 61) /* linear from (61,5) to (100,30) */
+      dex_app_skill[x].p_locks = (sh_int)((((float)25/39) * (float)x) - ((float)1330/39));
+    
+    /* traps */
+    if(x <= 44 && x >= 0) /* linear from (0,-90) to (44,-5) */
+      dex_app_skill[x].traps = (sh_int)((((float)85/44) * (float)x) - 90);
+    if(x <= 68 && x >=45) /* zero */
+      dex_app_skill[x].traps = 0;
+    if(x <= 100 && x >= 69) /* linear from (69,5) to (100,15) */
+      dex_app_skill[x].traps = (sh_int)((((float)10/31) * (float)x) - ((float)535/31));
+
+    /* sneak */
+    if(x <= 48 && x >= 0) /* linear from (0,-99) to (48,-5) */
+      dex_app_skill[x].sneak = (sh_int)((((float)47/24) * (float)x) - 99);
+    if(x <= 64 && x >=49) /* zero */
+      dex_app_skill[x].sneak = 0;
+    if(x <= 100 && x >= 65) /* linear from (65,5) to (100,25) */
+      dex_app_skill[x].sneak = (sh_int)((((float)4/7) * (float)x) - ((float)225/7));
+
+    /* hide */
+    if(x <= 40 && x >= 0) /* linear from (0,-99) to (40,-5) */
+      dex_app_skill[x].hide = (sh_int)((((float)11/8) * (float)x) - 60);
+    if(x <= 64 && x >=41) /* zero */
+      dex_app_skill[x].hide = 0;
+    if(x <= 100 && x >= 65) /* linear from (65,5) to (100,25) */
+      dex_app_skill[x].hide = (sh_int)((((float)4/7) * (float)x) - ((float)225/7));
+  }
+}
+
+void load_dex_app(void) {
+  int x;
+
+  for(x = 0; x <= 100; x++) {
+    /* (x, bonus) where [bonus=Mx + B] is the notation used below */
+    /* M and B were determined from the old numbers */
+    
+    /* reaction adjustment */
+    if(x <= 20 && x >= 0) /* linear from (0,-7) to (20,-2) */
+      dex_app[x].reaction = (sh_int)((((float)6/20) * (float)x) - 7);
+    if(x <= 60 && x >= 21) /* zero */
+      dex_app[x].reaction = 0;
+    if(x <= 100 && x >= 61) /* linear from (61,1) to (100,5) */
+      dex_app[x].reaction = (sh_int)((((float)4/39) * (float)x) - ((float)205/39));
+
+    /* missile attacks to hit bonus */
+    if(x <= 20 && x >= 0) /* linear from (0,-7) to (20,-2) */
+      dex_app[x].miss_att = (sh_int)((((float)6/20) * (float)x) - 7);
+    if(x <= 60 && x >= 21) /* zero */
+      dex_app[x].miss_att = 0;
+    if(x <= 100 && x >= 61) /* linear from (61,1) to (100,5) */
+      dex_app[x].miss_att = (sh_int)((((float)4/39) * (float)x) - ((float)205/39));
+
+    /* AC bonus */
+     if(x <= 24 && x >= 0) /* linear from (0,6) to (24,1) */
+      dex_app[x].defensive = (sh_int)((((float)-5/24) * (float)x) + 6);
+    if(x <= 56 && x >= 25) /* zero */
+      dex_app[x].defensive = 0;
+    if(x <= 100 && x >= 57) /* linear from (57,-1) to (100,-6) */
+      dex_app[x].defensive = (sh_int)((((float)-5/43) * (float)x) + ((float)242/43));
+   
+  }
+}
+
+void load_con_app(void) {
+  int x;
+
+  for(x = 0; x <= 100; x++) {
+    /* (x, bonus) where [bonus=Mx + B] is the notation used below */
+    /* M and B were determined from the old numbers */
+    
+    /* hit point bonus */
+    if(x <= 24 && x >= 0) /* linear from (0,-4) to (24,-1) */
+      con_app[x].hitp = (sh_int)((((float)1/8) * (float)x) - 4);
+    if(x <= 56 && x >= 25) /* zero */
+      con_app[x].hitp = 0;
+    if(x <= 100 && x >= 57) /* linear from (57,1) to (100,5) */
+      con_app[x].hitp = (sh_int)((((float)4/43) * (float)x) - ((float)185/43));
+    
+    /* system shock survival percentage */
+    if(x <= 68 && x >= 0) /* linear from (0,20) to (68,97) */
+      con_app[x].shock = (sh_int)((((float)77/68) * (float)x) + 20);
+    if(x <= 100 && x >= 69)
+      con_app[x].shock = 99;
+  }
+}
+
+void load_int_app(void) {
+  int x;
+
+  for(x = 0; x <= 100; x++) {
+    /* percent to learn spell or skill */
+    if(x <= 100 && x >= 0) /* linear from (0,3) to (100,60) */
+      int_app[x].learn = (byte)((((float)57/100) * (float)x) + 3);
+  }
+}
+
+void load_wis_app(void) {
+  int x;
+
+  for(x = 0; x <= 100; x++) {
+    /* bonus practices per level */
+    if(x <= 44 && x >= 0) /*  zero */
+      wis_app[x].bonus = 0;
+    if(x <= 100 && x >= 45) /* linear from (45,2) to (100,7) */
+      wis_app[x].bonus = (byte)((((float)1/11) * (float)x) - ((float)23/11));
+  }
+}
+
+const char *default_prompts[][2] = {
+  { "Basic",
+    "&0%hhp %vmv>&0 " },
+  { "Colorized Basic",
+    "&1&b%h&0&1hp &2&b%v&0&2mv&0> " },
+  { "Basic Percentages",
+    "&1&b%ph&0&1hp &2&b%pv&0&2mv&0> " },
+  { "Full-Featured",
+    "&6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)"
+    "hitp &2%v&0(&2&b%V&0)&7move&0> " },
+  { "Standard",
+    "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_"
+    "&0<%t&0>:<&0%o&0> " },
+  { "Complete w/ Spells",
+    "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+    "<&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> " },
+  { "Complete w/ Exp",
+    "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+    "<&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> " },
+  { "Complete w/ Hide Pts",
+    "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+    "<&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> " },
+  { "Complete w/ Rage",
+    "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+    "<&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> " },
+  { "Complete w/ 1st Aid",
+    "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+    "<&0&2%aA&2&b> <&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> " },
+  { NULL, NULL }
+};
+
+/*
+ * Only access this array directly if you are listing them all out.
+ * Otherwise use sprint_log_severity and parse_log_severity to
+ * convert a value to a string and vice-versa.
+ */
+const char *log_severities[8] = {
+  "fine",        /* 10 */
+  "informative", /* 20 */
+  "debug",       /* 30 */
+  "status",      /* 40 */
+  "warning",     /* 50 */
+  "error",       /* 60 */
+  "critical",    /* 70 */
+  "\n"
+};
+
+/***************************************************************************
+ * $Log: constants.c,v $
+ * Revision 1.147  2009/07/17 00:48:17  myc
+ * Added anon toggle and auto gain privileges.
+ *
+ * Revision 1.146  2009/06/09 05:35:54  myc
+ * Renamed the !CTELL toggle to !CLANCOMM to cover clan communication
+ * beyond ctell, like notifications.
+ *
+ * Revision 1.145  2009/03/21 19:11:37  myc
+ * Add cooldown bar to prompt.
+ *
+ * Revision 1.144  2009/03/20 23:02:59  myc
+ * Remove text editor connection state.
+ *
+ * Revision 1.143  2009/03/15 07:09:24  jps
+ * Add !FALL flag for objects
+ *
+ * Revision 1.142  2009/03/09 05:44:20  jps
+ * Moved coin info to money.c
+ *
+ * Revision 1.141  2009/03/09 05:09:22  jps
+ * Moved effect flags and strings into effects.h and effects.c.
+ *
+ * Revision 1.140  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.139  2009/03/09 03:45:17  jps
+ * Extract some spell-mem related stuff from structs.h and put it in spell_mem.h
+ *
+ * Revision 1.138  2009/03/07 22:27:50  jps
+ * Add effect flag remote_aggr, which keeps your aggressive action from
+ * removing things like invis. Useful for those spells that keep on hurting.
+ *
+ * Revision 1.137  2009/01/19 09:27:47  myc
+ * Replaced MOB_PET flag with MOB_SUMMONED_MOUNT flag, which
+ * tracks a mount summoned using the skill, so proper cooldowns
+ * can be set.
+ *
+ * Revision 1.136  2008/10/02 05:43:58  jps
+ * Removing - from all string representations of flags. That messes with
+ * scripting, since the - is interpreted as an operator, not part of a string.
+ *
+ * Revision 1.135  2008/09/29 03:23:31  jps
+ * Change weight capacity to 300 at 72, 786 at 100.
+ *
+ * Revision 1.134  2008/09/07 20:07:15  jps
+ * Added flag PLR_GOTSTARS which means you have achieved ** at least once.
+ *
+ * Revision 1.133  2008/09/07 06:47:48  jps
+ * Raised character carry capacity by 1/6, now that the worn equipment
+ * continues to weigh something.
+ *
+ * Revision 1.132  2008/09/07 01:30:25  jps
+ * Add a flag for player saving, so that effect changes in the midst of it
+ * can be ignored.
+ *
+ * Revision 1.131  2008/09/03 17:34:08  myc
+ * Moved liquid information into a def struct array.
+ *
+ * Revision 1.130  2008/09/02 07:16:00  mud
+ * Changing object TIMER uses into DECOMP where appropriate
+ *
+ * Revision 1.129  2008/09/02 06:47:51  jps
+ * New object flags: permanent and decomposing.
+ *
+ * Revision 1.128  2008/09/01 18:29:38  jps
+ * consolidating cooldown code in skills.c/h
+ *
+ * Revision 1.127  2008/08/31 20:55:40  jps
+ * Added PROTECTOR and PEACEKEEPER mob flags.
+ *
+ * Revision 1.126  2008/08/30 20:21:39  jps
+ * Added flag MOB_NO_EQ_RESTRICT, which allows a mobile to wear equipment
+ * without regard to align, class, or level restrictions.
+ *
+ * Revision 1.125  2008/08/30 18:20:53  myc
+ * Removed UNIQUE item flag.
+ *
+ * Revision 1.124  2008/08/29 04:16:26  myc
+ * Added toggles for stacking objects and stacking mobiles.
+ * Removed global fullness description array.
+ *
+ * Revision 1.123  2008/08/14 23:02:11  myc
+ * Added an array of graduated log severity names.
+ *
+ * Revision 1.122  2008/07/27 05:24:35  jps
+ * Renamed player crash flag to autosave. Added "removing" flag for when you're
+ * being removed from the game.
+ *
+ * Revision 1.121  2008/07/22 07:25:26  myc
+ * Added iedit connection mode and unique flag for objects.
+ *
+ * Revision 1.120  2008/06/21 16:19:30  jps
+ * Change string of sexless char from 'Neutral' to 'Neuter'.
+ *
+ * Revision 1.119  2008/06/19 18:53:12  myc
+ * Replaced the item_types and item_type_desc arrays with a
+ * struct array in objects.c
+ *
+ * Revision 1.118  2008/06/05 02:07:43  myc
+ * Added a list of mappings from wear positions to item wear flags.
+ *
+ * Revision 1.117  2008/05/19 06:52:18  jps
+ * Got rid of directions fup and fdown, whatever they were.
+ *
+ * Revision 1.116  2008/05/19 05:46:20  jps
+ * Add effect for being mesmerized.
+ *
+ * Revision 1.115  2008/05/18 17:58:35  jps
+ * Adding effect of familiarity.
+ *
+ * Revision 1.114  2008/05/18 02:01:06  jps
+ * Moved some room-related constants into rooms.c and rooms.h.
+ *
+ * Revision 1.113  2008/04/14 05:11:40  jps
+ * Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+ * to fly - not that the characer is actually flying.
+ *
+ * Revision 1.112  2008/04/14 02:18:14  jps
+ * Adding string for GLORY effect.
+ *
+ * Revision 1.111  2008/04/13 18:29:40  jps
+ * Add string for effect of confusion.
+ *
+ * Revision 1.110  2008/04/13 11:08:58  jps
+ * Mark waterform flag UNUSED.
+ *
+ * Revision 1.109  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.108  2008/04/05 18:07:09  myc
+ * Re-implementing stealth for hide points.
+ *
+ * Revision 1.107  2008/04/04 06:12:52  myc
+ * Removed dieties/worship code.
+ *
+ * Revision 1.106  2008/04/02 05:36:19  myc
+ * Added the autoloot and autosplit toggles and removed the noname one.
+ *
+ * Revision 1.105  2008/04/02 04:55:59  myc
+ * Added coin names array.
+ *
+ * Revision 1.104  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.103  2008/03/27 17:27:41  jps
+ * ITEM_BLESS is unused now, and AFF3_BLESS and AFF3_HEX are here.
+ *
+ * Revision 1.102  2008/03/26 23:11:02  jps
+ * Retire the WATERFORM and VAPORFORM effects.
+ *
+ * Revision 1.101  2008/03/26 18:11:23  jps
+ * Added a BLESS effect so that characters may be blessed.
+ *
+ * Revision 1.100  2008/03/23 00:22:44  jps
+ * Add string for COMPOSITIO apply.
+ *
+ * Revision 1.99  2008/03/22 03:22:38  myc
+ * All invocations of the string editor now go through string_write()
+ * instead of messing with the descriptor variables itself.  Also added
+ * a toggle, LineNums, to decide whether to do /l or /n when entering
+ * the string editor.
+ *
+ * Revision 1.98  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.97  2008/03/10 20:46:55  myc
+ * Renamed POS1 to 'stance'.
+ *
+ * Revision 1.96  2008/03/10 19:55:37  jps
+ * Made a struct for sizes with name, height, and weight.  Save base height
+ * weight and size so they stay the same over size changes.
+ *
+ * Revision 1.95  2008/03/10 18:01:17  myc
+ * Added a lookup list for posture types, and added a couple more
+ * default prompts.
+ *
+ * Revision 1.94  2008/03/09 18:12:26  jps
+ * Added strings for the two misdirection flags.
+ *
+ * Revision 1.93  2008/03/08 23:54:22  jps
+ * Added MOB2_NOSCRIPT flag, which prevents specprocs and triggers.
+ *
+ * Revision 1.92  2008/03/08 22:29:06  myc
+ * Cooldowns are now listed on stat.
+ *
+ * Revision 1.91  2008/03/07 21:21:57  myc
+ * Replaced action delays and skill delays with a single list of
+ * 'cooldowns', which are decremented by a recurring event and
+ * also save to the player file.
+ *
+ * Revision 1.90  2008/03/05 03:03:54  myc
+ * Moved default prompts here from the do_display command.
+ *
+ * Revision 1.89  2008/02/24 17:31:13  myc
+ * New OLCComm and NoClanTell PRF flags.
+ *
+ * Revision 1.88  2008/02/09 06:19:44  jps
+ * Add "nohints" toggle for whether you receive command suggestions
+ * after entering a typo.
+ *
+ * Revision 1.87  2008/02/07 01:46:14  myc
+ * Made the sizes all lowercase, and added two more big sizes (which
+ * are unavailable in the game), just to help buffer undefined values.
+ *
+ * Revision 1.86  2008/02/06 21:53:53  myc
+ * Adding an apply_abbrevs array.
+ *
+ * Revision 1.85  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.84  2008/01/27 21:09:12  myc
+ * Adding berserk, spirit of the wolf, spirit of the bear, and
+ * interminable wrath affection flags.
+ *
+ * Revision 1.83  2008/01/27 13:43:50  jps
+ * Moved race and species-related data to races.h/races.c and merged species into races.
+ *
+ * Revision 1.82  2008/01/27 11:14:42  jps
+ * Move newbie eq to class.c.
+ *
+ * Revision 1.81  2008/01/27 09:45:41  jps
+ * Got rid of the MCLASS_ defines and we now have a single set of classes
+ * for both players and mobiles.
+ *
+ * Revision 1.80  2008/01/20 23:18:52  myc
+ * Fixed mob AI to only leave out class actions.
+ *
+ * Revision 1.79  2008/01/20 22:58:39  myc
+ * Added fup and fdown to the direction arrays so we don't get any bad
+ * memory reads.  Made the preference bits more descriptive.  Added
+ * some new drinks.  Replaced the integer constants in rev_dir with
+ * direction defines.
+ *
+ * Revision 1.78  2008/01/17 01:29:10  myc
+ * Added a list of single word references for wear positions.
+ *
+ * Revision 1.77  2008/01/13 03:19:53  myc
+ * Added !AI flag.
+ *
+ * Revision 1.76  2008/01/11 17:42:20  myc
+ * Adding constants to connected_types to match the number of CON_* defines
+ * in structs.h.
+ *
+ * Revision 1.75  2008/01/09 04:13:44  jps
+ * New player flag, MEMMING.
+ *
+ * Revision 1.74  2008/01/07 10:37:42  jps
+ * Identify mob illusionists when they occur. Add player phantasm flag.
+ *
+ * Revision 1.73  2008/01/06 23:50:47  jps
+ * Added spells project and simulacrum, and MOB2_ILLUSORY flag.
+ *
+ * Revision 1.72  2008/01/06 05:33:54  jps
+ * Rename !mage and !thief to !sorcerer and !rogue.
+ *
+ * Revision 1.71  2007/12/20 23:12:29  myc
+ * Shortened a couple of the carry descs.
+ *
+ * Revision 1.70  2007/12/19 20:46:43  myc
+ * Renamed the Cloaked toggle to RoomVis.
+ *
+ * Revision 1.69  2007/11/21 00:58:41  jps
+ * Increase carrying capacity again - it really got knocked down too far
+ * last time. By me.
+ *
+ * Revision 1.68  2007/11/12 19:00:35  jps
+ * *** empty log message ***
+ *
+ * Revision 1.67  2007/10/13 20:13:09  myc
+ * ITEM_NOLOCATE now prevents items from being found using the
+ * locate object spell.
+ *
+ * Revision 1.66  2007/10/11 20:14:48  myc
+ * Took out the song/spell_wear_off_msg arrays.  Spell wearoff messages
+ * are now defined in the spello call in spell_parser.c.
+ *
+ * Revision 1.65  2007/10/04 16:20:24  myc
+ * Transient item flag now makes things decay when they are on the
+ * ground.  Moved portal decay messages to limits.c.
+ *
+ * Revision 1.64  2007/10/02 02:52:27  myc
+ * Removed HIDE and HIDDEN flags.
+ *
+ * Revision 1.63  2007/09/28 20:49:35  myc
+ * Added a "\n" to the mclass_types, genders, and sizes lists so we can use
+ * them with search_block().  Removed spaces from FIRE WEAPON and LIQ
+ * CONTAINER so we can use them with vsearch.
+ *
+ * Revision 1.62  2007/09/21 08:44:45  jps
+ * Added object type "touchstone" and command "touch" so you can set
+ * your home room by touching specific objects.
+ *
+ * Revision 1.61  2007/09/20 21:20:43  myc
+ * Replaced NOBROADCAST with CLOAKED, which lets you appear visible to
+ * people in a room, but not everyone else.  Added perception and hide
+ * points.
+ *
+ * Revision 1.60  2007/09/15 15:36:48  myc
+ * Natures embrace now sets camouflage bit, which lets you be hidden as long
+ * as you are outside.
+ *
+ * Revision 1.59  2007/09/15 05:37:15  myc
+ * Adding new liquids.
+ *
+ * Revision 1.58  2007/09/15 05:03:46  myc
+ * Removing the spell_apply_types array since it duplicated affect_bits.
+ * Added action_bits2 for use with MOB2 flags.  Made lemonade yellow
+ * instead of red.
+ *
+ * Revision 1.57  2007/09/11 16:34:24  myc
+ * Moved the breath messages out of constants and closer to the breathe
+ * command in act.offensive.c.  Added MOB_AQUATIC flag, replacing
+ *
+ * MOB_NOGEAR.
+ *
+ * Revision 1.56  2007/09/08 22:05:03  jps
+ * Fix typo in chant wear-off mesasge
+ *
+ * Revision 1.55  2007/09/07 19:41:01  jps
+ * Added descriptive names for the object types, for use when someone
+ * is trying to identify an object but only has the vaguest clue.
+ *
+ * Revision 1.54  2007/09/04 06:49:19  myc
+ * Moved climate and hemisphere names to data arrays in weather.c.
+ *
+ * Revision 1.53  2007/09/02 23:03:03  jps
+ * Change the fly spell wear-off message so that it doesn't sound
+ * silly to someone who is sleeping, resting or otherwise already
+ * on the ground.
+ *
+ * Revision 1.52  2007/09/01 22:52:14  jps
+ * Colorized circle of fire die-out message.
+ *
+ * Revision 1.51  2007/08/30 10:14:52  jps
+ * Changed max weight calculation so that it doesn't have a huge
+ * leap from str 72-73, and made the max cap (str 100) 698.
+ *
+ * Revision 1.50  2007/08/23 00:32:13  jps
+ * Add !AIR and !EARTH flags, for elemental immunities.
+ *
+ * Revision 1.49  2007/08/14 22:43:07  myc
+ * Added AFF3_SHADOWING flag for use by shadow skill.
+ *
+ * Revision 1.48  2007/08/04 21:34:40  jps
+ * Add a list of prepositional phrases for directions.
+ *
+ * Revision 1.47  2007/08/04 14:40:35  myc
+ * Preference bit array was incomplete.  Added MOB_PEACEFUL flag to prevent
+ * players from attacking certain mobs.
+ *
+ * Revision 1.46  2007/08/04 01:09:57  jps
+ * Add moonbeam to spell_wear_off_msg.
+ *
+ * Revision 1.45  2007/08/03 22:00:11  myc
+ * Added PK observatories that work adjacent to arena rooms.
+ *
+ * Revision 1.44  2007/08/03 03:51:44  myc
+ * check_pk is now attack_ok, and covers many more cases than before,
+ * including peaced rooms, shapeshifted pk, and arena rooms.  Almost all
+ * offensive attacks now use attack_ok to determine whether an attack is
+ * allowed.
+ *
+ * Revision 1.43  2007/07/31 23:02:42  jps
+ * Add lists of hemisphere and climate name strings.
+ *
+ * Revision 1.42  2007/06/28 00:10:10  jps
+ * Rename BFS_MARK flag to '*BFS_MARK*' so it isn't so damn
+ * mysterious when it shows up.
+ *
+ * Revision 1.41  2007/06/16 00:15:49  myc
+ * Three spells for necromancers: soul tap, rebuke undead,
+ * and degeneration.  One spell for rangers: natures guidance.
+ *
+ * Revision 1.40  2007/05/27 17:36:28  jps
+ * Fix typo when innate str wears off.
+ *
+ * Revision 1.39  2007/05/11 20:13:28  myc
+ * Vaporform is a new circle 13 spell for cryomancers.  It significantly
+ * increases the caster's chance of dodging a hit.  It is a quest spell.
+ *
+ * Revision 1.38  2007/03/27 04:27:05  myc
+ * New size, colossal.
+ *
+ * Revision 1.37  2007/02/14 03:54:53  myc
+ * Replaced firewalk and greater firewalk with combust and cremate.
+ *
+ * Revision 1.36  2006/11/18 21:00:28  jps
+ * Reworked disarm skill and disarmed-weapon retrieval.
+ *
+ * Revision 1.35  2006/11/18 19:23:37  jps
+ * Fix typo rememberance -> remembrance
+ *
+ * Revision 1.34  2006/11/18 05:09:27  jps
+ * Make sure old continual_light items don't print "UNUSED" when identified.
+ *
+ * Revision 1.33  2006/11/18 04:26:32  jps
+ * Renamed continual light spell to illumination, and it only works on
+ * LIGHT items (still rooms too).
+ *
+ * Revision 1.32  2006/11/17 23:09:57  jps
+ * Fix reversed strings that identified obj extra flags for
+ * continual light and disarmed.
+ *
+ * Revision 1.31  2006/11/17 22:52:59  jps
+ * Change AGGR_GOOD/EVIL_ALIGN to AGGR_GOOD/EVIL_RACE
+ *
+ * Revision 1.30  2006/11/08 08:55:18  jps
+ * Fix missing period and formatting in barkskin wear-off message.
+ *
+ * Revision 1.29  2006/11/08 08:50:28  jps
+ * Fix typo 'existance' -> 'existence'.
+ *
+ * Revision 1.28  2006/11/07 16:53:50  jps
+ * Movement cost in WATER_NOSWIM changed to 2.
+ *
+ * Revision 1.27  2006/07/28 06:01:27  cjd
+ * added rum to the liquids list and adjusted water so
+ * that it no longer adds to the hunger of a person.
+ *
+ * Revision 1.26  2006/07/20 07:37:01  cjd
+ * Typo fixes.
+ *
+ * Revision 1.25  2005/06/27 14:40:31  cjd
+ * added mielikki map to newbie eq
+ *
+ * Revision 1.24  2002/10/14 02:16:08  jjl
+ * An update to turn vitality into a set of 6 spells, lesser endurance,
+ * endurance, greater endurance, vitality, greater vitality, and dragon's
+ * health.  Greater endurance is what vitality was.  The rest are scaled
+ * appropriately.    The higher end may need scaled down, or may not.
+ *
+ * Revision 1.23  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.22  2002/07/16 23:22:21  rls
+ * added in new necro spell bone armor
+ *
+ * Revision 1.21  2001/04/08 17:13:10  dce
+ * Added an alwayslit flag that makes a room lit no matter
+ * of the sector or room type...
+ *
+ * Revision 1.20  2000/11/28 01:32:46  mtp
+ * remove mobprog code
+ *
+ * Revision 1.19  2000/11/22 01:09:13  mtp
+ * added motere mob classes (all the ones that are available for players)
+ *
+ * Revision 1.18  2000/11/21 00:38:34  rsd
+ * Altered the comment header and added back rlog messages
+ * from prior to the $log$ string being added.
+ *
+ * Revision 1.17  1999/12/10 05:12:42  cso
+ * added const char *sizes[], starting line 373
+ *
+ * Revision 1.16  1999/11/28 22:58:55  cso
+ * added ANIMATED to action_bits
+ * added ANIMATE to affected_bits3
+ *
+ * Revision 1.15  1999/11/26 05:30:21  cso
+ * Changed some vnumbers in the struct of newbie gear in do_newbie.
+ * that's it, honest.
+ *
+ * Revision 1.14  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.13  1999/07/06 19:57:05  jimmy
+ * This is a Mass check-in of the new skill/spell/language assignment system.
+ * This New system combines the assignment of skill/spell/language for
+ * both mobs and PCs.  LOts of code was touched and many errors were fixed.
+ * MCLASS_VOID was moved from 13 to -1 to match CLASS_UNDEFINED for PC's.
+ * MObs now get random skill/spell/language levels baseed on their race/class/level
+ * that exactly align with PC's.  PC's no longer have to rent to use skills gained
+ * by leveling or when first creating a char.  Languages no longer reset to defaults
+ * when a PC levels.  Discovered that languages have been defined right in the middle
+ * of the spell area.  This needs to be fixed.  A conversion util neeDs to be run on
+ * the mob files to compensate for the 13 to -1 class change.
+ * --gurlaek 7/6/1999
+ *
+ * Revision 1.12  1999/06/30 18:11:09  jimmy
+ * act.offensive.c    config.c      handler.c    spells.c
+ * This is a major conversion from the 18 point attribute system to the
+ * 100 point attribute system.  A few of the major changes are:
+ * All attributes are now on a scale from 0-100
+ * Everyone views attribs the same but, the attribs for one race
+ *   may be differeent for that of another even if they are the
+ *   same number.
+ * Mobs attribs now get rolled and scaled using the same algorithim as PC's
+ * Mobs now have individual random attributes based on race/class.
+ * The STR_ADD attrib has been completely removed.
+ * All bonus tables for attribs in constants.c have been replaced by
+ *   algorithims that closely duplicate the tables except on a 100 scale.
+ * Some minor changes:
+ * Race selection at char creation can now be toggled by using
+ *   <world races off>
+ * Lots of cleanup done to affected areas of code.
+ * Setting attributes for mobs in the .mob file no longer functions
+ *   but is still in the code for later use.
+ * We now have a spare attribut structure in the pfile because the new
+ *   system only used three instead of four.
+ * --gurlaek 6/30/1999
+ *
+ * Revision 1.11  1999/05/04 17:19:33  dce
+ * Name accept system...version one...original code by Fingh, fixed up to work
+ * by Zantir.
+ *
+ * Revision 1.10  1999/04/07 01:20:18  dce
+ * Allows extra descriptions on no exits.
+ *
+ * Revision 1.9  1999/03/14 14:28:11  jimmy
+ * Movement now has bite!  removed extra "flying" from
+ * movement_loss in constants.c to fix the mv bug.  reduced the
+ * movement gain by 5 for all ages in limits.c.  Removed the +5
+ * and +6 static movement gain so that it now actually updates
+ * based on the function in regen.c.  Gosh i'm a bastard.
+ * Fingon
+ *
+ * Revision 1.8  1999/03/08 04:47:16  dce
+ * Chant semantics added.
+ *
+ * Revision 1.7  1999/03/06 23:51:54  dce
+ * Add's chant songs, and can only chant once every four hours
+ *
+ * Revision 1.6  1999/03/05 20:02:36  dce
+ * Chant added to, and songs craeted
+ *
+ * Revision 1.5  1999/03/02 20:14:36  mud
+ * Changed some of the weight semantics listings.
+ *
+ * Revision 1.4  1999/03/02 05:22:13  mud
+ * changed the months and days
+ * also added object 1154 to the mage eq load
+ *
+ * Revision 1.3  1999/02/16 09:12:34  jimmy
+ * Added spellbooks (1029) to mages newbie eq
+ * fingon
+ *
+ * Revision 1.2  1999/02/13 19:37:12  dce
+ * Rewrote Continual Light and Darkness to be manual spells to meet our needs.
+ *
+ * Revision 1.1  1999/01/29 01:23:30  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.147
+log
+@Added anon toggle and auto gain privileges.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.146 2009/06/09 05:35:54 myc Exp myc $
+d233 1
+d887 3
+@
+
+
+1.146
+log
+@Renamed the !CTELL toggle to !CLANCOMM to cover clan communication
+beyond ctell, like notifications.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.145 2009/03/21 19:11:37 myc Exp myc $
+d239 3
+d886 4
+@
+
+
+1.145
+log
+@Add cooldown bar to prompt.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.144 2009/03/20 23:02:59 myc Exp myc $
+d222 1
+a222 1
+  "!CTELL",
+d236 6
+a282 1
+  "Clan desc edit",
+d883 3
+@
+
+
+1.144
+log
+@Remove text editor connection state.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.143 2009/03/15 07:09:24 jps Exp myc $
+d854 3
+d878 3
+@
+
+
+1.143
+log
+@Add !FALL flag for objects
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.142 2009/03/09 05:44:20 jps Exp jps $
+a267 1
+  "Text Editor",
+d875 3
+@
+
+
+1.142
+log
+@Moved coin info to money.c
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.141 2009/03/09 05:09:22 jps Exp jps $
+d501 1
+a501 1
+  "!UNUSED!",
+d876 3
+@
+
+
+1.141
+log
+@Moved effect flags and strings into effects.h and effects.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.140 2009/03/09 04:33:20 jps Exp jps $
+a857 9
+
+const char *coin_names[NUM_COIN_TYPES + 1] = {
+  "platinum",
+  "gold",
+  "silver",
+  "copper",
+  "\n",
+};
+
+d876 3
+@
+
+
+1.140
+log
+@Moved direction information from structs.h, constants.h, and constants.c
+into directions.h and directions.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.139 2009/03/09 03:45:17 jps Exp jps $
+a235 87
+
+/* AFF_x */
+const char *effect_flags[NUM_EFF_FLAGS + 1] =
+{
+  "BLIND", /* 0 */
+  "INVIS",
+  "DET_ALIGN",
+  "DET_INVIS",
+  "DET_MAGIC",
+  "SENSE_LIFE", /* 5 */
+  "WATWALK",
+  "SANCT",
+  "CONFUSION",
+  "CURSE",
+  "INFRA", /* 10 */
+  "POISON",
+  "PROT_EVIL",
+  "PROT_GOOD",
+  "SLEEP",
+  "!TRACK", /* 15 */
+  "TAMED",
+  "BERSERK",
+  "SNEAK",
+  "STEALTH",
+  "FLY",   /* 20 */
+  "CHARM",
+  "STONE_SKIN",
+  "FARSEE",
+  "HASTE",
+  "BLUR", /* 25 */
+  "VITALITY",
+  "GLORY",
+  "MAJOR_PARALYSIS",
+  "FAMILIARITY",
+  "MESMERIZED", /* 30 */
+  "UNUSED",
+  "LIGHT",
+  "MAJOR_GROUP",
+  "MINOR_PARALYSIS",
+  "UNUSED", /* 35 */
+  "LEVITATE",
+  "WATERBREATH",
+  "SOULSHIELD",
+  "SILENCE",
+  "PROT_FIRE", /* 40 */
+  "PROT_COLD",
+  "PROT_AIR",
+  "PROT_EARTH",
+  "FIRESHIELD",
+  "COLDSHIELD", /* 45 */
+  "MINOR_GLOBE",
+  "MAJOR_GLOBE",
+  "HARNESS",
+  "ON_FIRE",
+  "FEAR", /* 50 */
+  "TONGUES",
+  "DISEASE",
+  "INSANITY",
+  "ULTRAVISION",
+  "!HEAT", /* 55 */
+  "!COLD",
+  "!AIR",
+  "!EARTH",
+  "REMOTE_AGGR",
+  "UNUSED", /* 60 */
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "AWARE",
+  "REDUCE", /* 65 */
+  "ENLARGE",
+  "VAMP",
+  "ENFEEB",
+  "ANIMATE",
+  "UNUSED", /* 70 */
+  "SHADOW",
+  "CAMOUFLAGE",
+  "SPIRIT_WOLF",
+  "SPIRIT_BEAR",
+  "WRATH", /* 75 */
+  "MISDIRECTION",
+  "MISDIRECTING",
+  "BLESS",
+  "HEX",
+  "\n"
+};
+
+d885 4
+@
+
+
+1.139
+log
+@Extract some spell-mem related stuff from structs.h and put it in spell_mem.h
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.138 2009/03/07 22:27:50 jps Exp jps $
+a26 36
+/* strings corresponding to ordinals/bitvectors in structs.h ***********/
+
+/* (Note: strings for class definitions in class.c instead of here) */
+
+/* cardinal directions */
+const char *dirs[NUM_OF_DIRS + 1] =
+{
+  "north",
+  "east",
+  "south",
+  "west",
+  "up",
+  "down",
+  "\n"
+};
+
+const char *capdirs[NUM_OF_DIRS + 1] = {
+  "N",
+  "E",
+  "S",
+  "W",
+  "U",
+  "D",
+  "\n"
+};
+
+const char *dirpreposition[NUM_OF_DIRS + 1] = {
+   "to the north",
+   "to the east",
+   "to the south",
+   "to the west",
+   "in the ceiling",
+   "in the floor",
+   "\n"
+};
+
+a692 11
+const int rev_dir[NUM_OF_DIRS] =
+{
+  SOUTH,
+  WEST,
+  NORTH,
+  EAST,
+  DOWN,
+  UP
+};
+
+
+d972 3
+@
+
+
+1.138
+log
+@Add effect flag remote_aggr, which keeps your aggressive action from
+removing things like invis. Useful for those spells that keep on hurting.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.137 2009/01/19 09:27:47 myc Exp jps $
+a109 20
+const char *circle_abbrev[NUM_SPELL_CIRCLES +1] = {
+	"!UNUSED!",
+	" 1st",
+	" 2nd",
+	" 3rd",
+	" 4th",
+	" 5th",
+	" 6th",
+	" 7th",
+	" 8th",
+	" 9th",
+	"10th",
+        "11th",
+        "12th",
+	"13th",
+	"14th"
+};
+
+
+
+d1019 4
+@
+
+
+1.137
+log
+@Replaced MOB_PET flag with MOB_SUMMONED_MOUNT flag, which
+tracks a mount summoned using the skill, so proper cooldowns
+can be set.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.136 2008/10/02 05:43:58 jps Exp myc $
+d355 1
+a355 1
+  "UNUSED",
+d1039 5
+@
+
+
+1.136
+log
+@Removing - from all string representations of flags. That messes with
+scripting, since the - is interpreted as an operator, not part of a string.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.135 2008/09/29 03:23:31 jps Exp jps $
+d232 1
+a232 1
+  "PET",
+d1039 4
+@
+
+
+1.135
+log
+@Change weight capacity to 300 at 72, 786 at 100.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.134 2008/09/07 20:07:15 jps Exp jps $
+d215 1
+a215 1
+  "STAY-ZONE",
+d298 4
+a301 4
+  "DET-ALIGN",
+  "DET-INVIS",
+  "DET-MAGIC",
+  "SENSE-LIFE", /* 5 */
+d308 2
+a309 2
+  "PROT-EVIL",
+  "PROT-GOOD",
+d318 1
+a318 1
+  "STONE-SKIN",
+d336 4
+a339 4
+  "PROT-FIRE", /* 40 */
+  "PROT-COLD",
+  "PROT-AIR",
+  "PROT-EARTH",
+d342 2
+a343 2
+  "MINOR-GLOBE",
+  "MAJOR-GLOBE",
+d1039 3
+@
+
+
+1.134
+log
+@Added flag PLR_GOTSTARS which means you have achieved ** at least once.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.133 2008/09/07 06:47:48 jps Exp jps $
+d838 3
+a840 1
+    
+d842 6
+a847 5
+    if(x <= 72 && x >= 0) /* linear from (0,0) to (72,513) */
+      str_app[x].carry_w = (sh_int)(x * 64.2 / 9.0);
+    if(x <= 100 && x >= 73) /* linear from (73,542) (100,1345) */
+      str_app[x].carry_w = (sh_int)(513 + (856 * (x - 72)) / 28.0);
+    
+d1039 3
+@
+
+
+1.133
+log
+@Raised character carry capacity by 1/6, now that the worn equipment
+continues to weigh something.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.132 2008/09/07 01:30:25 jps Exp jps $
+d202 1
+d1036 4
+@
+
+
+1.132
+log
+@Add a flag for player saving, so that effect changes in the midst of it
+can be ignored.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.131 2008/09/03 17:34:08 myc Exp jps $
+d839 4
+a842 4
+    if(x <= 72 && x >= 0) /* linear from (0,0) to (72,440) */
+      str_app[x].carry_w = (sh_int)(x * 55 / 9.0);
+    if(x <= 100 && x >= 73) /* linear from (73,466) (100,1174) */
+      str_app[x].carry_w = (sh_int)(440 + (734 * (x - 72)) / 28.0);
+d1035 4
+@
+
+
+1.131
+log
+@Moved liquid information into a def struct array.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.130 2008/09/02 07:16:00 mud Exp myc $
+d201 1
+d1035 3
+@
+
+
+1.130
+log
+@Changing object TIMER uses into DECOMP where appropriate
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.129 2008/09/02 06:47:51 jps Exp mud $
+d21 1
+a730 177
+/* LIQ_x */
+const char *drinks[NUM_LIQ_TYPES + 1] =
+{
+  "water",
+  "beer",
+  "wine",
+  "ale",
+  "dark ale",
+  "whisky",
+  "lemonade",
+  "firebreather",
+  "local speciality",
+  "slime mold juice",
+  "milk",
+  "black tea",
+  "coffee",
+  "blood",
+  "salt water",
+  "rum",
+  "nectar",
+  "sake",
+  "cider",
+  "tomato soup",
+  "potato soup",
+  "chai",
+  "apple juice",
+  "orange juice",
+  "pineapple juice",
+  "grape juice",
+  "pomegranate juice",
+  "melonade",
+  "cocoa",
+  "espresso",
+  "cappuccino",
+  "mango lassi",
+  "rosewater",
+  "green tea",
+  "chamomile tea",
+  "gin",
+  "brandy",
+  "\n"
+};
+
+
+/* other constants for liquids ******************************************/
+
+
+/* one-word alias for each drink */
+const char *drinknames[NUM_LIQ_TYPES + 1] =
+{
+  "water",
+  "beer",
+  "wine",
+  "ale",
+  "ale",
+  "whisky",
+  "lemonade",
+  "firebreather",
+  "local",
+  "juice",
+  "milk",
+  "tea",
+  "coffee",
+  "blood",
+  "salt",
+  "rum",
+  "nectar",
+  "sake",
+  "cider",
+  "soup",
+  "soup",
+  "chai",
+  "juice",
+  "juice",
+  "juice",
+  "juice",
+  "juice",
+  "melonade",
+  "cocoa",
+  "espresso",
+  "cappuccino",
+  "lassi",
+  "rosewater",
+  "tea",
+  "tea",
+  "gin",
+  "brandy",
+  "\n"
+};
+
+
+/* effect of drinks on hunger, thirst, and drunkenness -- see values.doc */
+const int drink_aff[NUM_LIQ_TYPES + 1][3] = {
+  {0, 0, 10},	/* water */
+  {3, 2, 5},	/* beer */
+  {5, 2, 5},	/* wine */
+  {2, 2, 5},	/* ale */
+  {1, 2, 5},	/* dark ale */
+  {6, 1, 4},	/* whisky */
+  {0, 1, 8},	/* lemonade */
+  {10, 0, 0},	/* firebreather */
+  {3, 3, 3},	/* local specialty */
+  {0, 4, -8},	/* slime mold juice */
+  {0, 3, 6},	/* milk */
+  {0, 1, 6},	/* black tea */
+  {0, 1, 6},	/* coffee */
+  {0, 2, -1},	/* blood */
+  {0, 1, -2},	/* salt water */
+  {5, 2, 3},	/* rum */
+  {-1, 12, 12},	/* nectar */
+  {6, 1, 4},	/* sake */
+  {1, 1, 5},	/* cider */
+  {0, 7, 3},	/* tomato soup */
+  {0, 8, 4},	/* potato soup */
+  {0, 2, 5},   /* chai */
+  {0, 2, 6},   /* apple juice */
+  {0, 3, 5},   /* orange juice */
+  {0, 2, 6},   /* pineapple juice */
+  {0, 2, 6},   /* grape juice */
+  {0, 3, 6},   /* pomegranate juice */
+  {0, 1, 8},   /* melonade */
+  {0, 3, 5},   /* cocoa */
+  {0, 1, 4},   /* espresso */
+  {0, 2, 4},   /* cappuccino */
+  {0, 4, 4},   /* mango lassi */
+  {0, 0, 8},   /* rosewater */
+  {0, 1, 6},   /* green tea */
+  {0, 1, 7},   /* chamomile tea */
+  {5, 0, 3},   /* gin */
+  {5, 0, 3},   /* brandy */
+};
+
+
+/* color of the various drinks */
+const char *color_liquid[NUM_LIQ_TYPES + 1] =
+{
+  "clear",
+  "brown",
+  "clear",
+  "brown",
+  "dark",
+  "golden",
+  "yellow",
+  "green",
+  "clear",
+  "light green",
+  "white",
+  "brown",
+  "black",
+  "red",
+  "clear",
+  "light brown",
+  "yellow",
+  "clearish",
+  "dark brown",
+  "thick red",
+  "thick, light brown",
+  "light brown",
+  "dark yellow",
+  "fruity orange",
+  "thin yellow",
+  "deep purple",
+  "dark red",
+  "pink",
+  "thick brown",
+  "dark brown",
+  "light brown",
+  "thick yellow",
+  "light pink",
+  "pale green",
+  "clearish",
+  "clear",
+  "amber",
+  "\n"
+};
+
+
+d758 1
+a758 1
+const char *weekdays[] = {
+d776 1
+a776 1
+const char *month_name[] = {
+d1034 3
+@
+
+
+1.129
+log
+@New object flags: permanent and decomposing.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.128 2008/09/01 18:29:38 jps Exp jps $
+d639 1
+a639 1
+  "TRANSIENT",
+d641 1
+a641 1
+  "DECOMPOSING",
+d1210 3
+@
+
+
+1.128
+log
+@consolidating cooldown code in skills.c/h
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.127 2008/08/31 20:55:40 jps Exp jps $
+d619 1
+a619 1
+  "!UNUSED!",
+d638 1
+a638 1
+  "!LOCATE", /* Used to be HIDDEN */
+d641 1
+a641 1
+  "*UNUSED*",  /* Used to be CONTINUAL LIGHT */
+d1210 3
+@
+
+
+1.127
+log
+@Added PROTECTOR and PEACEKEEPER mob flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.126 2008/08/30 20:21:39 jps Exp jps $
+a1183 23
+const char *cooldowns[MAX_COOLDOWNS + 1] = {
+  "backstab",
+  "bash",
+  "instant kill",
+  "disarm",
+  "fumbling primary weapon",
+  "dropped primary weapon",
+  "fumbling secondary weapon",
+  "dropped secondary weapon",
+  "summon mount",
+  "lay hands",
+  "first aid",
+  "eye gouge",
+  "throatcut",
+  "shapechange",
+  "chant",
+  "innate invis",
+  "inn strength",
+  "inn darkness",
+  "inn levitate",
+  "\n"
+};
+
+d1210 3
+@
+
+
+1.126
+log
+@Added flag MOB_NO_EQ_RESTRICT, which allows a mobile to wear equipment
+without regard to align, class, or level restrictions.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.125 2008/08/30 18:20:53 myc Exp jps $
+d243 2
+d1233 4
+@
+
+
+1.125
+log
+@Removed UNIQUE item flag.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.124 2008/08/29 04:16:26 myc Exp myc $
+d225 1
+a225 1
+  "DONTUSE",
+d1231 3
+@
+
+
+1.124
+log
+@Added toggles for stacking objects and stacking mobiles.
+Removed global fullness description array.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.123 2008/08/14 23:02:11 myc Exp myc $
+d617 1
+a617 1
+  "UNIQUE",
+d1231 4
+@
+
+
+1.123
+log
+@Added an array of graduated log severity names.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.122 2008/07/27 05:24:35 jps Exp myc $
+d281 3
+a904 9
+/* level of fullness for drink containers */
+const char *fullness[] =
+{
+  "less than half ",
+  "about half ",
+  "more than half ",
+  ""
+};
+
+d1231 3
+@
+
+
+1.122
+log
+@Renamed player crash flag to autosave. Added "removing" flag for when you're
+being removed from the game.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.121 2008/07/22 07:25:26 myc Exp jps $
+d1219 16
+d1237 4
+@
+
+
+1.121
+log
+@Added iedit connection mode and unique flag for objects.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.120 2008/06/21 16:19:30 jps Exp myc $
+d182 1
+a182 1
+  "CSH",
+d199 1
+d1221 3
+@
+
+
+1.120
+log
+@Change string of sexless char from 'Neutral' to 'Neuter'.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.119 2008/06/19 18:53:12 myc Exp jps $
+d413 2
+d613 1
+a613 1
+  "*UNUSED*",
+d1220 3
+@
+
+
+1.119
+log
+@Replaced the item_types and item_type_desc arrays with a
+struct array in objects.c
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.118 2008/06/05 02:07:43 myc Exp myc $
+d144 1
+a144 1
+  "Neutral",
+d1218 4
+@
+
+
+1.118
+log
+@Added a list of mappings from wear positions to item wear flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.117 2008/05/19 06:52:18 jps Exp myc $
+a572 68
+/* ITEM_x (ordinal object types) */
+const char *item_types[NUM_ITEM_TYPES + 1] = {
+  "UNDEFINED",
+  "LIGHT",
+  "SCROLL",
+  "WAND",
+  "STAFF",
+  "WEAPON",
+  "FIREWEAPON",
+  "MISSILE",
+  "TREASURE",
+  "ARMOR",
+  "POTION",
+  "WORN",
+  "OTHER",
+  "TRASH",
+  "TRAP",
+  "CONTAINER",
+  "NOTE",
+  "LIQCONTAINER",
+  "KEY",
+  "FOOD",
+  "MONEY",
+  "PEN",
+  "BOAT",
+  "FOUNTAIN",
+  "PORTAL",
+  "ROPE",
+  "SPELLBOOK",
+  "WALL",
+  "TOUCHSTONE",
+  "\n"
+};
+
+/* ITEM_x (ordinal object types) */
+const char *item_type_desc[NUM_ITEM_TYPES + 1] = {
+  "something strange",
+  "a light",
+  "a scroll",
+  "a wand",
+  "a staff",
+  "a weapon",
+  "a ranged weapon",
+  "a missile",
+  "treasure",
+  "armor",
+  "a potion",
+  "clothing",
+  "an object",
+  "trash",
+  "a trap",
+  "a container",
+  "a note",
+  "a liquid container",
+  "a key",
+  "food",
+  "money",
+  "a writing instrument",
+  "a boat",
+  "a fountain",
+  "a portal",
+  "rope",
+  "a book",
+  "a wall",
+  "a touchstone"
+  "\n"
+};
+
+d1218 3
+@
+
+
+1.117
+log
+@Got rid of directions fup and fdown, whatever they were.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.116 2008/05/19 05:46:20 jps Exp jps $
+d543 30
+d1286 3
+@
+
+
+1.116
+log
+@Add effect for being mesmerized.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.115 2008/05/18 17:58:35 jps Exp jps $
+a38 2
+  "fup",
+  "fdown",
+a48 2
+  "F",
+  "G",
+a58 2
+   "way above",
+   "way below",
+d969 1
+a969 3
+  UP,
+  FDOWN,
+  FUP
+d1256 3
+@
+
+
+1.115
+log
+@Adding effect of familiarity.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.114 2008/05/18 02:01:06 jps Exp jps $
+d323 1
+a323 1
+  "UNUSED", /* 30 */
+d1264 3
+@
+
+
+1.114
+log
+@Moved some room-related constants into rooms.c and rooms.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.113 2008/04/14 05:11:40 jps Exp jps $
+d321 2
+a322 2
+  "PARALYZE",
+  "UNUSED",
+d1264 3
+@
+
+
+1.113
+log
+@Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+to fly - not that the characer is actually flying.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.112 2008/04/14 02:18:14 jps Exp jps $
+a114 42
+/* ROOM_x */
+const char *room_bits[NUM_ROOM_FLAGS + 1] = {
+  "DARK",
+  "DEATH",
+  "!MOB",
+  "INDOORS",
+  "PEACEFUL",
+  "SOUNDPROOF",
+  "!TRACK",
+  "!MAGIC",
+  "TUNNEL",
+  "PRIVATE",
+  "GODROOM",
+  "HOUSE",
+  "HCRSH",
+  "ATRIUM",
+  "OLC",
+  "*BFS_MARK*",				/* BFS MARK */
+  "NOWELL",
+  "NORECALL",
+  "UNDERDARK",
+  "!SUMMON",
+  "NOSHIFT",
+  "GUILDHALL",
+  "!SCAN",
+  "ALT_EXIT",
+  "MAP",
+  "ALWAYSLIT",
+  "ARENA",
+  "OBSERVATORY",
+  "\n"
+};
+
+const char *room_effects[NUM_ROOM_EFF_FLAGS + 1] = {
+	"FOG",
+	"DARKNESS",
+	"CONT_LIGHT",
+        "FOREST",
+	"CIRCLE_FIRE",
+	"\n"
+};
+
+a146 29
+/* SECT_ */
+const char *sector_types[NUM_ROOM_SECTORS + 1] = {
+  "Inside",
+  "City",
+  "Field",
+  "Forest",
+  "Hills",
+  "Mountains",
+  "Water (Swim)",
+  "Water (No Swim)",
+  "Underwater",
+  "In Flight",
+  "Road",
+  "Grasslands",
+  "Ocean",
+  "Ruins",
+  "Swamp",
+  "Beach",
+  "Underdark",
+  "Astraplane",
+  "Airplane",
+  "Fireplane",
+  "Earthplane",
+  "Eathrealplane",
+  "Avernus",
+  "\n"
+};
+
+
+a980 28
+const int movement_loss[NUM_ROOM_SECTORS] =
+{
+  1,	/* Inside        */
+  1,	/* City          */
+  2,	/* Field         */
+  3,	/* Forest        */
+  4,	/* Hills         */
+  6,	/* Mountains     */
+  4,	/* Swimming      */
+  2,	/* Unswimable    */
+  5,    /* Underwater    */
+  0,    /* flying        */
+  2,    /* road          */
+  1,    /* grasslands    */
+  1,    /* ocean         */
+  2,    /* ruins         */
+  4,    /* swamp         */
+  2,    /* beach         */
+  2,    /* underdark     */
+  1,    /* astralplane   */
+  1,    /* airplane      */
+  1,    /* fireplane     */
+  1,    /* earthplane    */
+  1,    /* eathrealplane */
+  1     /* avernus       */
+};
+
+
+d1264 4
+@
+
+
+1.112
+log
+@Adding string for GLORY effect.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.111 2008/04/13 18:29:40 jps Exp jps $
+d384 1
+a384 1
+  "FLYING", /* 20 */
+d1363 3
+@
+
+
+1.111
+log
+@Add string for effect of confusion.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.110 2008/04/13 11:08:58 jps Exp jps $
+d391 1
+a391 1
+  "COMP-LANG",
+d1363 3
+@
+
+
+1.110
+log
+@Mark waterform flag UNUSED.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.109 2008/04/07 03:02:54 jps Exp jps $
+d372 1
+a372 1
+  "GROUP",
+d1363 3
+@
+
+
+1.109
+log
+@Changed the POS/STANCE system so that POS reflects the position
+of your body, while STANCE describes your condition or activity.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.108 2008/04/05 18:07:09 myc Exp jps $
+d423 1
+a423 1
+  "WATERFORM",
+d1363 4
+@
+
+
+1.108
+log
+@Re-implementing stealth for hide points.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.107 2008/04/04 06:12:52 myc Exp myc $
+d227 10
+a236 12
+/* POS_x */
+const char *position_types[NUM_POSITIONS + 1] = {
+  "Dead",
+  "Mortally wounded",
+  "Incapacitated",
+  "Stunned",
+  "Sleeping",
+  "Resting",
+  "Sitting",
+  "Fighting",
+  "Standing",
+  "Flying",
+d240 7
+a246 7
+/* STANCE_x */
+const char *stance_types[NUM_STANCES + 1] = {
+  "Prone",
+  "Resting",
+  "Sitting",
+  "Kneeling",
+  "Standing",
+d1363 3
+@
+
+
+1.107
+log
+@Removed dieties/worship code.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.106 2008/04/02 05:36:19 myc Exp myc $
+d385 1
+a385 1
+  "UNUSED", /* Used to be HIDE */
+d1365 3
+@
+
+
+1.106
+log
+@Added the autoloot and autosplit toggles and removed the noname one.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.105 2008/04/02 04:55:59 myc Exp myc $
+a485 1
+  "Select diety",
+d1365 3
+@
+
+
+1.105
+log
+@Added coin names array.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.104 2008/03/28 17:54:53 myc Exp myc $
+d333 1
+a333 1
+  "UNUSED2",
+d350 1
+a350 1
+  "!NAME",
+d1366 3
+@
+
+
+1.104
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.103 2008/03/27 17:27:41 jps Exp myc $
+d1356 8
+d1366 4
+@
+
+
+1.103
+log
+@ITEM_BLESS is unused now, and AFF3_BLESS and AFF3_HEX are here.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.102 2008/03/26 23:11:02 jps Exp jps $
+d31 1
+a31 1
+const char *dirs[] =
+d44 1
+a44 1
+const char *capdirs[] = {
+d56 1
+a56 1
+const char *dirpreposition[] = {
+d116 1
+a116 1
+const char *room_bits[] = {
+d148 1
+a148 1
+const char *room_affections[] = {
+d190 1
+a190 1
+const char *sector_types[] = {
+d219 1
+a219 1
+const char *genders[] =
+d228 1
+a228 1
+const char *position_types[] = {
+d243 1
+a243 1
+const char *stance_types[] = {
+d254 1
+a254 1
+const char *player_bits[] = {
+a277 1
+  "MEMMING",
+d283 1
+a283 1
+const char *action_bits[] = {
+a315 6
+  "\n"
+};
+
+
+/* MOB_x */
+const char *action_bits2[] = {
+d326 1
+a326 1
+const char *preference_bits[] = {
+d364 1
+a364 1
+const char *affected_bits[] =
+d366 1
+a366 1
+  "BLIND",
+d371 1
+a371 1
+  "SENSE-LIFE",
+d376 1
+a376 1
+  "INFRA",
+d381 1
+a381 1
+  "!TRACK",
+d386 1
+a386 1
+  "FLYING",
+d391 1
+a391 1
+  "BLUR",
+d394 1
+a394 1
+  "PARALIZE",
+d396 1
+a397 5
+  "\n"
+};
+
+const char *affected_bits2[] =
+{
+d399 1
+a399 1
+  "MGROUP",
+d401 1
+a401 1
+  "KNOCKED_OUT",
+d406 1
+a406 1
+  "PROT-FIRE",
+d411 1
+a411 1
+  "COLDSHIELD",
+d416 1
+a416 1
+  "FEAR",
+d421 1
+a421 1
+  "!HEAT",
+d425 2
+a429 6
+  "UNUSED",
+  "\n"
+};
+
+const char *affected_bits3[] =
+{
+d431 1
+a431 1
+  "REDUCE",
+d436 1
+a436 1
+  "UNUSED",
+d441 1
+a441 1
+  "WRATH",
+a445 14
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+d450 1
+a450 1
+const char *connected_types[] = {
+d498 1
+a498 1
+const char *where[] = {
+d530 1
+a530 1
+const char *equipment_types[] = {
+d562 1
+a562 1
+const char *wear_positions[] = {
+d624 1
+a624 1
+const char *item_types[] = {
+d658 1
+a658 1
+const char *item_type_desc[] = {
+d693 1
+a693 1
+const char *wear_bits[] = {
+d720 1
+a720 1
+const char *extra_bits[] = {
+d758 1
+a758 1
+const char *apply_types[] = {
+d795 1
+a795 1
+const char *apply_abbrevs[] = {
+d841 1
+a841 1
+const char *drinks[] =
+d888 1
+a888 1
+const char *drinknames[] =
+d932 1
+a932 1
+const int drink_aff[][3] = {
+d974 1
+a974 1
+const char *color_liquid[] =
+d1042 1
+a1042 10
+
+const char *npc_class_types[] = {
+  "Normal",
+  "Undead",
+  "\n"
+};
+
+
+
+const int rev_dir[] =
+d1055 1
+a1055 1
+const int movement_loss[] =
+d1358 3
+@
+
+
+1.102
+log
+@Retire the WATERFORM and VAPORFORM effects.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.101 2008/03/26 18:11:23 jps Exp jps $
+d460 1
+a460 1
+  "UNUSED",
+d758 1
+a758 1
+  "BLESS",
+d780 2
+a781 2
+  "UNUSED",  /* Used to be CONTINUAL LIGHT */
+  "DISARMED", 
+d1396 3
+@
+
+
+1.101
+log
+@Added a BLESS effect so that characters may be blessed.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.100 2008/03/23 00:22:44 jps Exp jps $
+d436 1
+a436 1
+  "WATERFORM",
+d451 1
+a451 1
+  "VAPORFORM",
+d1396 3
+@
+
+
+1.100
+log
+@Add string for COMPOSITIO apply.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.99 2008/03/22 03:22:38 myc Exp jps $
+d459 1
+a459 1
+  "UNUSED",
+d1396 3
+@
+
+
+1.99
+log
+@All invocations of the string editor now go through string_write()
+instead of messing with the descriptor variables itself.  Also added
+a toggle, LineNums, to decide whether to do /l or /n when entering
+the string editor.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.98 2008/03/21 15:01:17 myc Exp myc $
+d818 1
+d1396 6
+@
+
+
+1.98
+log
+@Removed languages.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.97 2008/03/10 20:46:55 myc Exp myc $
+d339 1
+a339 1
+  "UNUSED1",
+d1395 3
+@
+
+
+1.97
+log
+@Renamed POS1 to 'stance'.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.96 2008/03/10 19:55:37 jps Exp myc $
+a1170 15
+const char *languages[] =
+{
+  "barbarian",
+  "gnomish",
+  "duergar",
+  "drow",
+  "orcish",
+  "ogre",
+  "common",
+  "elven",
+  "dwarven",
+  "trollish",
+  "halfling",
+  "\n"
+};
+d1395 3
+@
+
+
+1.96
+log
+@Made a struct for sizes with name, height, and weight.  Save base height
+weight and size so they stay the same over size changes.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.95 2008/03/10 18:01:17 myc Exp jps $
+d242 2
+a243 2
+/* POS1_x */
+const char *posture_types[] = {
+d1401 4
+d1410 4
+@
+
+
+1.95
+log
+@Added a lookup list for posture types, and added a couple more
+default prompts.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.94 2008/03/09 18:12:26 jps Exp myc $
+a226 17
+/* sizes! */
+const char *sizes[] =
+{
+  "undefined", /* this is actually -1 */
+  "tiny",
+  "small",
+  "medium",
+  "large",
+  "huge",
+  "giant",
+  "gargantuan",
+  "colossal",
+  "titanic",
+  "mountainous",
+  "\n"
+};
+
+d1406 4
+@
+
+
+1.94
+log
+@Added strings for the two misdirection flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.93 2008/03/08 23:54:22 jps Exp jps $
+d259 10
+d1388 1
+a1388 1
+    "<&0&2%aA %ih&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> " },
+d1391 7
+a1397 1
+    "<&0&2%aA %ih&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> " },
+d1423 3
+@
+
+
+1.93
+log
+@Added MOB2_NOSCRIPT flag, which prevents specprocs and triggers.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.92 2008/03/08 22:29:06 myc Exp jps $
+d464 2
+a465 2
+  "UNUSED",
+  "UNUSED",
+d1407 3
+@
+
+
+1.92
+log
+@Cooldowns are now listed on stat.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.91 2008/03/07 21:21:57 myc Exp myc $
+d334 1
+d1407 3
+@
+
+
+1.91
+log
+@Replaced action delays and skill delays with a single list of
+'cooldowns', which are decremented by a recurring event and
+also save to the player file.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.90 2008/03/05 03:03:54 myc Exp myc $
+d1385 19
+d1406 5
+@
+
+
+1.90
+log
+@Moved default prompts here from the do_display command.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.89 2008/02/24 17:31:13 myc Exp myc $
+d408 2
+a409 2
+  "FUMBLE-PRIM",
+  "FUMBLE-SECOND",
+d443 2
+a444 2
+  "DROP-PRIM",
+  "DROP-SECOND",
+d1387 3
+@
+
+
+1.89
+log
+@New OLCComm and NoClanTell PRF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.88 2008/02/09 06:19:44 jps Exp myc $
+d1362 23
+d1387 3
+@
+
+
+1.88
+log
+@Add "nohints" toggle for whether you receive command suggestions
+after entering a typo.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.87 2008/02/07 01:46:14 myc Exp jps $
+d344 3
+a346 3
+  "DISPHP",
+  "DISPMANA",
+  "DISPMOVE",
+d364 1
+a364 1
+  "CLANTALK",
+d1364 4
+@
+
+
+1.87
+log
+@Made the sizes all lowercase, and added two more big sizes (which
+are unavailable in the game), just to help buffer undefined values.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.86 2008/02/06 21:53:53 myc Exp myc $
+d360 1
+a360 1
+  "!GRATZ",
+d1364 4
+@
+
+
+1.86
+log
+@Adding an apply_abbrevs array.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.85 2008/01/29 21:02:31 myc Exp myc $
+d227 1
+a227 1
+/* mob sizes! */
+d230 11
+a240 9
+  "undefined",	/* this is actually -1 */
+  "Tiny",
+  "Small",
+  "Medium",
+  "Large",
+  "Huge",
+  "Giant",
+  "Gargantuan",
+  "Colossal",
+d1364 3
+@
+
+
+1.85
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.84 2008/01/27 21:09:12 myc Exp myc $
+d826 36
+d1362 4
+@
+
+
+1.84
+log
+@Adding berserk, spirit of the wolf, spirit of the bear, and
+interminable wrath affection flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.83 2008/01/27 13:43:50 jps Exp myc $
+d20 1
+a20 11
+
+/*functions in this file*/
+void load_str_app(void);   /* this boots strength bonuses */
+void load_thief_dex(void); /* this boots thief dex table */
+/*external variables*/
+extern struct str_app_type str_app[];
+extern struct dex_skill_type dex_app_skill[];
+extern struct dex_app_type dex_app[];
+extern struct con_app_type con_app[];
+extern struct int_app_type int_app[];
+extern struct wis_app_type wis_app[];
+a114 54
+const char *question1 = "\r\nPlease choose your first choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+
+const char *question2 = "\r\nPlease choose your second choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+
+
+const char *question3 = "\r\nPlease choose your third choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+const char *question4 = "\r\nPlease choose your fourth choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+const char *question5 = "\r\nPlease choose your fifth choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+const char *question6 = "\r\nPlease choose your sixth choice(1 - 6)\r\n"
+						"1)Str\r\n"
+						"2)Con\r\n"
+						"3)Dex\r\n"
+						"4)Int\r\n"
+						"5)Wis\r\n"
+						"6)Cha\r\n"
+						">";
+
+
+
+d1326 4
+@
+
+
+1.83
+log
+@Moved race and species-related data to races.h/races.c and merged species into races.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.82 2008/01/27 11:14:42 jps Exp jps $
+d458 1
+a458 1
+  "UNUSED",
+d522 3
+a524 3
+  "UNUSED",
+  "UNUSED",
+  "UNUSED",
+d1390 3
+@
+
+
+1.82
+log
+@Move newbie eq to class.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.81 2008/01/27 09:45:41 jps Exp jps $
+a78 24
+const char *mspecies_types[] = {
+  "Human",
+  "Elf",
+  "Gnome",
+  "Dwarf",
+  "Troll",
+  "Drow-elf",
+  "Duergar",
+  "Ogre",
+  "Orc",
+  "Half-Elf",
+  "Barbarian",
+  "Halfling",
+  "Undead",
+  "Humanoid",
+  "Animal",
+  "Dragon",
+  "Giant",
+  "other",
+  "Goblin",
+  "Demon",
+  "\n"
+};
+
+d1390 3
+@
+
+
+1.81
+log
+@Got rid of the MCLASS_ defines and we now have a single set of classes
+for both players and mobiles.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.80 2008/01/20 23:18:52 myc Exp jps $
+a1212 95
+const int warrior_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	24,
+	25,
+	29,
+      3090,
+	-1};
+
+const int priest_eq[] = {
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  27,
+  26,
+  28,
+3090,
+  -1};
+
+const int shaman_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	27,
+	26,
+	28,
+      3090,
+	-1};
+
+const int thief_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	27,
+	26,
+	30,
+      3090,
+	-1};
+
+const int mercenary_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	24,
+	25,
+	30,
+	29,
+      3090,
+	-1};
+
+const int mage_eq[] = {
+      1029,
+      1154,
+        38,
+	18,
+	19,
+	20,
+	23,
+	27,
+	26,
+	30,
+      3090,
+	-1};
+
+const int paladin_eq[] = {
+	18,
+	19,
+	20,
+	21,
+	22,
+	23,
+	24,
+	25,
+	29,
+      3090,
+	-1};
+
+
+
+d1414 4
+@
+
+
+1.80
+log
+@Fixed mob AI to only leave out class actions.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.79 2008/01/20 22:58:39 myc Exp myc $
+a77 35
+/* NOTE: if you reference this array, it should be as follows:    */
+/* mclass_types[GET_CLASS(ch) + 1] .  This is because MCLASS_VOID */
+/* is now -1 instead of 13. --Gurlaek 7/6/1999                    */
+
+/* note: if the removed classes are reinstated, change medit.c which 
+ * does not allow use of classes 17, 22, 23 at the moment -- Pzam 21/11/2000
+ */
+const char *mclass_types[] = {
+  "Nothin",          /* -1 */
+  "Sorcerer",        /*  0 */
+  "Cleric",          /*  2 */
+  "Thief",           /* etc*/
+  "Warrior",
+  "Paladin",
+  "Anti_paladin",
+  "Ranger",
+  "Druid",
+  "Shaman",
+  "Assassin",
+  "Mercenary",
+  "Necromancer",
+  "Conjurer",
+  "Monk",
+  "Berserker",
+  "Priest",
+  "Diabolist",
+  "Mystic",
+  "Rogue",
+  "Bard",
+  "Pyromancer",
+  "Cryomancer",
+  "Illusionist",
+  "Hunter",
+  "\n"
+};
+d1509 3
+@
+
+
+1.79
+log
+@Added fup and fdown to the direction arrays so we don't get any bad
+memory reads.  Made the preference bits more descriptive.  Added
+some new drinks.  Replaced the integer constants in rev_dir with
+direction defines.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.78 2008/01/17 01:29:10 myc Exp myc $
+d454 1
+a454 1
+  "!AI",
+d1544 6
+@
+
+
+1.78
+log
+@Added a list of single word references for wear positions.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.77 2008/01/13 03:19:53 myc Exp myc $
+d61 2
+d73 2
+d465 5
+a469 5
+  "D_HP",
+  "D_MANA",
+  "D_MOVE",
+  "AUTOEX",
+  "!HASS",
+d471 2
+a472 2
+  "SUMN",
+  "!REP",
+d474 10
+a483 10
+  "C1",
+  "C2",
+  "!WIZ",
+  "L1",
+  "L2",
+  "!AUC",
+  "!GOS",
+  "!GTZ",
+  "RMFLG",
+  "!PETI",
+d492 1
+a492 1
+  "!FLW"
+d973 1
+a973 1
+  "tea",
+d986 13
+d1033 13
+d1063 1
+a1063 1
+  {0, 1, 6},	/* tea */
+d1073 16
+a1088 3
+  {0, 2, 6},	/* chai */
+  {0, 2, 7},	/* apple juice */
+  {0, 3, 7},	/* orange juice */
+d1119 13
+d1172 8
+a1179 6
+  2,
+  3,
+  0,
+  1,
+  5,
+  4
+d1544 3
+@
+
+
+1.77
+log
+@Added !AI flag.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.76 2008/01/11 17:42:20 myc Exp myc $
+d713 32
+d1160 2
+a1161 1
+  "the Day of Rest"};
+d1486 3
+@
+
+
+1.76
+log
+@Adding constants to connected_types to match the number of CON_* defines
+in structs.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.75 2008/01/09 04:13:44 jps Exp myc $
+d450 1
+d479 2
+a480 2
+  "NOPETI",
+  "NONAME",
+d488 1
+a488 1
+  "NOFOLLOW"
+d1453 4
+@
+
+
+1.75
+log
+@New player flag, MEMMING.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.74 2008/01/07 10:37:42 jps Exp jps $
+d628 4
+a631 4
+  "Bonus1",
+  "Bonus2",
+  "Bonus3",
+  "Canchar",
+d636 2
+a637 2
+  "SPELL DAM EDIT",
+  "DIEITY MENU",
+d639 1
+a639 1
+  "Name Approval",
+d641 3
+d1452 3
+@
+
+
+1.74
+log
+@Identify mob illusionists when they occur. Add player phantasm flag.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.73 2008/01/06 23:50:47 jps Exp jps $
+d402 1
+d1449 3
+@
+
+
+1.73
+log
+@Added spells project and simulacrum, and MOB2_ILLUSORY flag.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.72 2008/01/06 05:33:54 jps Exp jps $
+d100 1
+a100 1
+  "DO NOT USE",		/* Mystic removed...*/
+d105 2
+a106 2
+  "DO NOT USE",		/* Illusionist removed...*/
+  "DO NOT USE",		/* Hunter removed...*/
+d448 1
+d1448 3
+@
+
+
+1.72
+log
+@Rename !mage and !thief to !sorcerer and !rogue.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.71 2007/12/20 23:12:29 myc Exp jps $
+d447 1
+d1447 3
+@
+
+
+1.71
+log
+@Shortened a couple of the carry descs.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.70 2007/12/19 20:46:43 myc Exp myc $
+d846 1
+a846 1
+  "!MAGE",
+d848 1
+a848 1
+  "!THIEF",
+d1446 3
+@
+
+
+1.70
+log
+@Renamed the Cloaked toggle to RoomVis.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.69 2007/11/21 00:58:41 jps Exp myc $
+a35 3
+/*const char *rolls_abils_result[] = {"&0&1&bFantastic&0  ", "&0&2&bPretty Good&0", 
+  "&0&3&bNot bad&0    ", "&0&3Fair&0       ", "&0&9&bBad&0        "};*/
+
+d1052 2
+a1053 2
+  "Oh, this feather is too much weight!",
+  "Ok, where is that wandering minstrel chap?",
+d1058 1
+a1058 1
+  "Look at the muscles!",
+d1123 7
+a1129 2
+const char *rolls_abils_result[] = {"Fantastic  ", "Pretty Good", "Not bad    ", "Fair       ", "Bad        "};
+/*const char *rolls_abils_result[] = {"&0&1&bFantastic&0  ", "&0&2&bPretty Good&0", "&0&3&bNot bad&0    ", "&0&3Fair&0       ", "&0&9&bBad&0        "};*/
+d1446 3
+@
+
+
+1.69
+log
+@Increase carrying capacity again - it really got knocked down too far
+last time. By me.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.68 2007/11/12 19:00:35 jps Exp jps $
+d486 1
+a486 1
+  "CLOAKED",
+d1444 4
+@
+
+
+1.68
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.67 2007/10/13 20:13:09 myc Exp jps $
+d1301 4
+a1304 4
+    if(x <= 72 && x >= 0) /* linear from (0,0) to (72,255) */
+      str_app[x].carry_w = (sh_int)((((float)255/72) * (float)x));
+    if(x <= 100 && x >= 73) /* linear from (73,270) (100,698) */
+      str_app[x].carry_w = (sh_int)((((float)1140/72) * (float)x) - ((float)63750/72));
+d1444 3
+@
+
+
+1.67
+log
+@ITEM_NOLOCATE now prevents items from being found using the
+locate object spell.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.66 2007/10/11 20:14:48 myc Exp myc $
+d1435 1
+a1435 1
+    if(x <= 44 && x >= 0) /* zero */
+d1444 4
+@
+
+
+1.66
+log
+@Took out the song/spell_wear_off_msg arrays.  Spell wearoff messages
+are now defined in the spello call in spell_parser.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.65 2007/10/04 16:20:24 myc Exp myc $
+d864 1
+a864 1
+  "UNUSED", /* Used to be HIDDEN */
+d1444 4
+@
+
+
+1.65
+log
+@Transient item flag now makes things decay when they are on the
+ground.  Moved portal decay messages to limits.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.64 2007/10/02 02:52:27 myc Exp myc $
+a1067 228
+const char *song_wear_off_msg[] = {
+  "UNUSED",
+  "Your healthy feeling subsides.",
+  "Your rage fades away.",
+  "Your determination level returns to normal.",
+  "UNUSED"
+};
+
+const char *spell_wear_off_msg[] = {
+  "RESERVED DB.C",		/* 0 */
+  "You feel less protected.",	/* 1 */
+  "!Teleport!",
+  "You feel less righteous.",
+  "You feel a cloak of blindness disolve.",
+  "!Burning Hands!",		/* 5 */
+  "!Call Lightning",
+  "You feel more self-confident.",
+  "You feel your strength return.",
+  "!Clone!",
+  "!Color Spray!",		/* 10 */
+  "!Control Weather!",
+  "!Create Food!",
+  "!Create Water!",
+  "!Cure Blind!",
+  "!Cure Critic!",		/* 15 */
+  "!Cure Light!",
+  "You feel more optimistic.",
+  "You feel less aware.",
+  "Your eyes stop tingling.",
+  "The detect magic wears off.",/* 20 */
+  "The detect poison wears off.",
+  "!Dispel Evil!",
+  "!Earthquake!",
+  "!Enchant Weapon!",
+  "!Energy Drain!",		/* 25 */
+  "!Fireball!",
+  "!Harm!",
+  "!Heal!",
+  "You fade back into view.",
+  "!Lightning Bolt!",		/* 30 */
+  "!Locate object!",
+  "!Magic Missile!",
+  "You feel less sick.",
+  "You feel less protected.",
+  "!Remove Curse!",		/* 35 */
+  "The white aura around your body fades.",
+  "!Shocking Grasp!",
+  "You feel less tired.",
+  "You feel weaker.",
+  "!Summon!",			/* 40 */
+  "!Ventriloquate!",
+  "!Word of Recall!",
+  "!Remove Poison!",
+  "You feel less aware of your suroundings.",
+  "!Animate Dead!",		/* 45 */
+  "!Dispel Good!",
+  "!Group Armor!",
+  "!Group Heal!",
+  "!Group Recall!",
+  "Your night vision seems to fade.",	/* 50 */
+  "Your feet seem less buoyant.",
+  "&3&dYour skin softens and returns to normal.&0",
+  "!FULL HEAL!",
+  "!FULL HARM!",
+  "The fog seems to clear out.",
+  "The wall of stone crumbles into dust.",
+  "You feel the weight of your body return.", /*57*/
+  "!summon dracolich!",
+  "!summon elemental!",
+  "!summon demon!",   /*60*/
+  "!Summon greater demon!",
+  "!dimension door!",
+  "!CREEPING DOOM!",
+  "!DOOM!",
+  "!METEORSWARM!", /*65*/
+  "!BIG B!",
+  "Your pupils dilate as your vision returns to normal.",
+  "Your pulse returns to normal.",
+  "The world solidifies as vision unblurs, and you return to normal speed.",
+  "Your endurance returns to normal.", /* 70 */
+  "!MOONWELL!",
+  "You feel weaker.",
+  "The magical darkness lifts.",
+  "&8The magical light fades away.&0",
+  "&8Your magical knowledge of language fades away.&0",
+  "!coneofcold!",
+  "!ice storms!",
+  "!ice shards!",
+  "You can move again.",
+  "!VAMP BREATH!",/* 80 */
+  "!RESURRECT!",
+  "!INCENDIARY NEBULA!",
+  "You can move again.",
+  "!CAUSE LIGHT!",
+  "!CAUSE SERIOUS!",
+  "!CAUSE CRITIC!",
+  "!PRESERVE!",
+  "!CURE SERIOUS!",
+  "!VIG LIGHT!",
+  "!VIG SERIOUS!",/* 90 */
+  "!VIG CRITIC!",
+  "The aura guarding your body fades away.",
+  "!DESTROY UNDEAD!",
+  "You can speak again.",
+  "!FLAMESTRIKE!",  
+  "!UNHOLYWORD!",
+  "!HOLYWORD",
+  "!PLANESHIFT!",
+  "!DISPELMAGIC!",
+  "!MINORCREATE!",/* 100 */
+  "You fade back into view.",
+  "Your strength returns to you.",
+  "You float back to the ground.",
+  "!WIZEYE!",
+  "The flames around your body dissipate.",
+  "The ice formation around your body melts.",
+  "The globe around your body fades out.",
+  "The globe of force surrounding you dissipates.",
+  "!DISINTEGRATE!",
+  "&4The harnessed power in your body fades.&0",
+  "!CHAINLIGHTNING!",
+  "Your fade back into view.",
+  "!RELOCATE!",
+  "Your courage returns to you.",
+  "The circle of light above you fades out.",
+  "!DIVINEBOLT!",
+  "Your holy prayer fades.",
+  "You feel less safe from the elements.",
+  "!DIVINERAY!",
+  "!LESSEREXCOR!",/* 120*/
+  "!LESSERINVOC!",
+  "Your vocabulary diminishes drastically.",
+  "!ENLIGHTEMENT!",
+  "!EXORCISM!",
+  "!GREATERINVOC!",
+  "Your wings gently fold back, and fade away.",
+  "!BANISH!",
+  "!WORDOFCOMMAND!",
+  "!DIVINEESSENCE!",
+  "!HEAVENSGATE!",
+  "You feel the dark presence leave you.",
+  "Your skin reverts back to normal.",
+  "!DARKFEAST!",
+  "!HELLBOLT!",
+  "You are cured of your disease!",
+  "Your mind returns to reality.",
+  "The demon within you fades away.",
+  "!HELLFIRE!",
+  "!STYGIANERUPTION!",
+  "You mutate back to your original form.",/* 140 */
+  "Your giant bat-like wings fold up and vanish.",
+  "!SANEMIND!",
+  "!HELLGATE!",
+  "Your skin softens back to its original texture.",
+  "Your night vision fades out.",
+  "!WRITHINGWEEDS!",
+  "!CREATESPRING!",
+  "!NOURISHMENT!",
+  "Your shroud of nature dissolves.",
+  "Nature releases you from her embrace.",
+  "You break free of the vines.",
+  "!INVIGORATE!",
+  "The woods around you shift back to their proper form.",
+  "&2The woods in the surrounding area break apart and crumble.&0",
+  "Your vision has returned.",
+  "!ARMOROFGAIA!",
+  "!FIREDARTS!",
+  "Your magic torch peters out.",
+  "As the smoke clears, you can see again.",
+  "You become more visible as the heat around your body dies out.",/* 160 */
+  "!FLAMEBLADE!",
+  "You begin to cool a bit, the heat leaving your body.",
+  "!FIRESTORM!",
+  "!MELT!",
+  "&1&bThe &1&bfl&3am&1es&0 &1surrounding &1the area &9&bdie out&0.",
+  "!IMMOLATE!",
+  "!SUPERNOVA!",
+  "!CREMATE!",
+  "Your immunity to heat has passed.",
+  "!COMBUST!",
+  "!ICEDARTS!",
+  "Your iced encasing melts away, leaving you vulnerable again.",
+  "!ICEDAGGER!",
+  "!FREEZINGWIND!",
+  "!FREEZE!",
+  "The wall of ice melts away...",
+  "!ICEBALL!",
+  "!FLOOD!",
+  "Your form condenses into flesh once again.",
+  "You feel vulnerable to the cold again.",/* 180 */
+  "Your form solidifies into flesh once again.",
+  "!DOUSE!",
+  "!RAIN!",
+  "&8You return to your normal size.&0",
+  "&8You return to your normal size.&0",
+  "!UNUSED!",
+  "&3Your skin returns to normal.&0",
+  "!HRM!",
+  "!Lalala!",
+  "!BLAH!", /*190*/
+  "!BLAH!", /*191*/
+  "!BLAH!", /*192*/
+  "!BLAH!", /*193*/
+  "!BLAH!", /*194*/
+  "!BLAH!", /*195*/
+  "!BLAH!", /*196*/
+  "!BLAH!", /*197*/
+  "!BLAH!", /*198*/
+  "!BLAH!", /*199*/
+  "!BLAH!", /*200*/
+  "!BLAH!", /*201*/
+  "!BLAH!", /*202*/
+  "!BLAH!", /*203*/
+  "!BLAH!", /*204*/
+  "!BLAH!", /*205*/
+  "Your endurance returns to normal.", /*206*/
+  "Your endurance returns to normal.", /*207*/
+  "Your magical vitality drains away.",/*208*/
+  "Your magical vitality drains away.",/*209*/
+  "Your health returns to normal.",/*210*/
+  "!REBUKE_UNDEAD!",
+  "!DEGENERATION!",
+  "Your hold on another's soul ceases and your own body weakens slightly.",
+  "You suddenly feel a little unguided.",
+  "!MOONBEAM!"  /* 215 */
+
+};
+
+d1444 4
+@
+
+
+1.64
+log
+@Removed HIDE and HIDDEN flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.63 2007/09/28 20:49:35 myc Exp myc $
+a38 8
+/* This stuff is for the portal decay code used in limits.c */
+const struct portal_decay_type portal_decay_messages[] = {
+  { MOONWELL_OBJ, "A glowing moonwell fades from existence." },
+  { HEAVENSGATE_OBJ, "The glowing tunnel of light closes into nothingness."},
+  { HELLGATE_OBJ, "The gaping hole in the earth closes up, leaving a blackened piece of earth." },
+  { -1, "The portal crumbles to dust." /* This is default message */}
+};  
+
+d1672 3
+@
+
+
+1.63
+log
+@Added a "\n" to the mclass_types, genders, and sizes lists so we can use
+them with search_block().  Removed spaces from FIRE WEAPON and LIQ
+CONTAINER so we can use them with vsearch.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.62 2007/09/21 08:44:45 jps Exp myc $
+d522 1
+a522 1
+  "HIDE",
+d872 1
+a872 1
+  "HIDDEN",
+d1680 5
+@
+
+
+1.62
+log
+@Added object type "touchstone" and command "touch" so you can set
+your home room by touching specific objects.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.61 2007/09/20 21:20:43 myc Exp jps $
+d117 2
+a118 1
+  "DO NOT USE"		/* Hunter removed...*/
+d353 2
+a354 1
+  "Female"
+d368 2
+a369 1
+  "Colossal"
+d755 1
+a755 1
+  "FIRE WEAPON",
+d766 1
+a766 1
+  "LIQ CONTAINER",
+d1680 4
+@
+
+
+1.61
+log
+@Replaced NOBROADCAST with CLOAKED, which lets you appear visible to
+people in a room, but not everyone else.  Added perception and hide
+points.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.60 2007/09/15 15:36:48 myc Exp myc $
+d774 1
+d792 1
+a792 1
+  "something odd",
+d808 1
+d1677 5
+@
+
+
+1.60
+log
+@Natures embrace now sets camouflage bit, which lets you be hidden as long
+as you are outside.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.59 2007/09/15 05:37:15 myc Exp myc $
+d491 1
+a491 1
+  "NOBROADCAST",
+d906 2
+d1675 4
+@
+
+
+1.59
+log
+@Adding new liquids.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.58 2007/09/15 05:03:46 myc Exp myc $
+d527 1
+a527 1
+  "COMP_LANG",
+d529 2
+a530 2
+  "FUMBLE_PRIM",
+  "FUMBLE_SECOND",
+d564 2
+a565 2
+  "DROPPED_PRIM",
+  "DROPPED_SECOND",
+d575 2
+a576 2
+  "VAMP_TOUCH",
+  "RAY_O_ENFEEB",
+d579 2
+a580 2
+  "SHADOWING",
+  "UNUSED",
+d1673 3
+@
+
+
+1.58
+log
+@Removing the spell_apply_types array since it duplicated affect_bits.
+Added action_bits2 for use with MOB2 flags.  Made lemonade yellow
+instead of red.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.57 2007/09/11 16:34:24 myc Exp myc $
+d939 8
+d973 8
+d987 24
+a1010 16
+  {0, 0, 10},
+  {3, 2, 5},
+  {5, 2, 5},
+  {2, 2, 5},
+  {1, 2, 5},
+  {6, 1, 4},
+  {0, 1, 8},
+  {10, 0, 0},
+  {3, 3, 3},
+  {0, 4, -8},
+  {0, 3, 6},
+  {0, 1, 6},
+  {0, 1, 6},
+  {0, 2, -1},
+  {0, 1, -2},
+  {5, 2, 3}
+d1032 10
+a1041 1
+  "light brown"
+d1673 5
+@
+
+
+1.57
+log
+@Moved the breath messages out of constants and closer to the breathe
+command in act.offensive.c.  Added MOB_AQUATIC flag, replacing
+
+MOB_NOGEAR.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.56 2007/09/08 22:05:03 jps Exp myc $
+a276 28
+const char *spell_apply_types[] = {
+	"BLIND",
+	"DET-INVIS",
+	"DET-ALIGN",
+	"DET-MAGIC",
+	"BLUR",
+	"HASTE",
+	"INVIS",
+	"PROT-EVIL",
+	"PROT-GOOD",
+	"SANCTUARY",
+	"SLEEP",
+	"STONESKIN",
+	"SENSE-LIFE",
+	"INFRA",
+	"FLY",
+	"FARSEE",
+	"COMP_LANG",
+	"PARALIZE",
+	"POISON",
+	"SNEAK",
+	"HIDE",
+	"WATWALK",
+	"NOTRACK",
+	"\n"
+};
+
+
+d452 7
+d870 1
+a870 1
+  "\n",  /* Used to be CONTINUAL LIGHT */
+d999 1
+a999 1
+  "red",
+d1640 6
+@
+
+
+1.56
+log
+@Fix typo in chant wear-off mesasge
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.55 2007/09/07 19:41:01 jps Exp jps $
+a243 19
+
+const char *breath_messages[] = {
+/* FIRE */
+  "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0",
+  "&1$n&1 snorts and a gout of &bf&3i&7r&1e&0&1 shoots out of $s nostrils!&0",
+/* GAS */
+  "&2You heave and a &bnoxious gas&0&2 rolls rapidly out of your nostrils!&0",
+  "&2$n&2 rumbles and a &bnoxious gas&0&2 rolls out of $s nostrils!&0",
+/* FROST */
+  "&7&bYou shiver as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from your mouth!&0",
+  "&7&b$n&7&b shivers as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from $s mouth!&0",
+/* ACID */
+  "&9&bYou stomach heaves as a wash of &2&ba&0&2ci&bd&9 leaps from your mouth!&0",
+  "&9&b$n&9&b looks pained as a wash of &2&ba&0&2ci&2&bd&9 leaps from $s mouth!&0",
+/* LIGHTNING */
+  "&4You open your mouth and bolts of &blightning&0&4 shoot out!&0",
+  "&4$n&4 opens $s mouth and bolts of &blightning&0&4 shoot out!&0",
+};
+
+d468 1
+a468 1
+  "NOGEAR",
+d1661 3
+@
+
+
+1.55
+log
+@Added descriptive names for the object types, for use when someone
+is trying to identify an object but only has the vaguest clue.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.54 2007/09/04 06:49:19 myc Exp jps $
+d1078 1
+a1078 1
+  "Your health feeling subsides.",
+d1680 4
+@
+
+
+1.54
+log
+@Moved climate and hemisphere names to data arrays in weather.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.53 2007/09/02 23:03:03 jps Exp myc $
+d817 33
+d1680 3
+@
+
+
+1.53
+log
+@Change the fly spell wear-off message so that it doesn't sound
+silly to someone who is sleeping, resting or otherwise already
+on the ground.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.52 2007/09/01 22:52:14 jps Exp jps $
+a1644 28
+/* Keep this number synchronized with the number of names in the
+ * following list. */
+int num_hemispheres = 4;
+
+const char *hemisphere_name[] = {
+   "Northwestern Hemisphere",
+   "Northeastern Hemisphere",
+   "Southwestern Hemisphere",
+   "Southeastern Hemisphere",
+   "\n"
+};
+
+/* Keep this number synchronized with the number of names in the
+ * following list. */
+int num_climates = 8;
+
+const char *climate_name[] = {
+   "None",
+   "Arid",
+   "Ocean",
+   "Temperate",
+   "Subtropical",
+   "Tropical",
+   "Near Arctic",
+   "Arctic",
+   "\n"
+};
+
+d1647 5
+@
+
+
+1.52
+log
+@Colorized circle of fire die-out message.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.51 2007/08/30 10:14:52 jps Exp jps $
+d1109 1
+a1109 1
+  "You settle back to the ground.", /*57*/
+d1675 3
+@
+
+
+1.51
+log
+@Changed max weight calculation so that it doesn't have a huge
+leap from str 72-73, and made the max cap (str 100) 698.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.50 2007/08/23 00:32:13 jps Exp jps $
+d1217 1
+a1217 1
+  "The flames surrounding the area die out.",
+d1675 4
+@
+
+
+1.50
+log
+@Add !AIR and !EARTH flags, for elemental immunities.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.49 2007/08/14 22:43:07 myc Exp jps $
+d1506 2
+a1507 2
+    if(x <= 100 && x >= 73) /* linear from (73,640) (100,1750) */
+      str_app[x].carry_w = (sh_int)((((float)1110/27) * (float)x) - ((float)63750/27));
+d1675 3
+@
+
+
+1.49
+log
+@Added AFF3_SHADOWING flag for use by shadow skill.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.48 2007/08/04 21:34:40 jps Exp myc $
+d601 2
+a606 2
+  "UNUSED",
+  "UNUSED",
+d1675 3
+@
+
+
+1.48
+log
+@Add a list of prepositional phrases for directions.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.47 2007/08/04 14:40:35 myc Exp jps $
+d619 1
+a619 1
+  "UNUSED",
+d1675 3
+@
+
+
+1.47
+log
+@Preference bit array was incomplete.  Added MOB_PEACEFUL flag to prevent
+players from attacking certain mobs.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.46 2007/08/04 01:09:57 jps Exp myc $
+d75 10
+d1675 4
+@
+
+
+1.46
+log
+@Add moonbeam to spell_wear_off_msg.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.45 2007/08/03 22:00:11 myc Exp jps $
+d484 1
+d520 3
+a522 1
+  "BROADCAST",
+d1665 3
+@
+
+
+1.45
+log
+@Added PK observatories that work adjacent to arena rooms.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.44 2007/08/03 03:51:44 myc Exp myc $
+d1254 1
+d1662 3
+@
+
+
+1.44
+log
+@check_pk is now attack_ok, and covers many more cases than before,
+including peaced rooms, shapeshifted pk, and arena rooms.  Almost all
+offensive attacks now use attack_ok to determine whether an attack is
+allowed.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.43 2007/07/31 23:02:42 jps Exp myc $
+d281 2
+a282 1
+  "PK",
+d1661 6
+@
+
+
+1.43
+log
+@Add lists of hemisphere and climate name strings.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.42 2007/06/28 00:10:10 jps Exp jps $
+d281 1
+d1660 3
+@
+
+
+1.42
+log
+@Rename BFS_MARK flag to '*BFS_MARK*' so it isn't so damn
+mysterious when it shows up.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.41 2007/06/16 00:15:49 myc Exp jps $
+d1629 28
+d1659 4
+@
+
+
+1.41
+log
+@Three spells for necromancers: soul tap, rebuke undead,
+and degeneration.  One spell for rangers: natures guidance.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.40 2007/05/27 17:36:28 jps Exp myc $
+d270 1
+a270 1
+  "*",				/* BFS MARK */
+d1631 4
+@
+
+
+1.40
+log
+@Fix typo when innate str wears off.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.39 2007/05/11 20:13:28 myc Exp jps $
+d481 1
+a481 1
+  "ANIMATED"
+d1248 4
+a1251 3
+
+
+
+d1631 3
+@
+
+
+1.39
+log
+@Vaporform is a new circle 13 spell for cryomancers.  It significantly
+increases the caster's chance of dodging a hit.  It is a quest spell.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.38 2007/03/27 04:27:05 myc Exp myc $
+d1109 1
+a1109 1
+  "You feel weaker",
+d1187 1
+a1187 1
+  "Nature let you go from her embrace.",
+d1630 4
+@
+
+
+1.38
+log
+@New size, colossal.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.37 2007/02/14 03:54:53 myc Exp myc $
+d603 1
+a603 1
+  "UNUSED",
+d1216 1
+a1216 1
+  "!GREATERWATERWALK!",
+d1630 3
+@
+
+
+1.37
+log
+@Replaced firewalk and greater firewalk with combust and cremate.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.36 2006/11/18 21:00:28 jps Exp myc $
+d393 1
+a393 1
+  "undefined",
+d400 2
+a401 1
+  "Gargantuan"
+d1630 3
+@
+
+
+1.36
+log
+@Reworked disarm skill and disarmed-weapon retrieval.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.35 2006/11/18 19:23:37 jps Exp jps $
+d1204 1
+a1204 1
+  "!GREATERFIREWALK!",
+d1206 1
+a1206 1
+  "!FIREWALK!",
+d1629 3
+@
+
+
+1.35
+log
+@Fix typo rememberance -> remembrance
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.34 2006/11/18 05:09:27 jps Exp jps $
+a552 1
+  "MAJOR_GROUP",
+a554 1
+  "DROPPED_PRIM",
+d586 2
+a587 1
+  "UNUSED",
+d1629 3
+@
+
+
+1.34
+log
+@Make sure old continual_light items don't print "UNUSED" when identified.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.33 2006/11/18 04:26:32 jps Exp jps $
+d1306 1
+a1306 1
+  "the Day of Rememberance",
+d1630 3
+@
+
+
+1.33
+log
+@Renamed continual light spell to illumination, and it only works on
+LIGHT items (still rooms too).
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.32 2006/11/17 23:09:57 jps Exp jps $
+d862 1
+a862 1
+  "UNUSED",
+d1630 4
+@
+
+
+1.32
+log
+@Fix reversed strings that identified obj extra flags for
+continual light and disarmed.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.31 2006/11/17 22:52:59 jps Exp jps $
+d862 1
+a862 1
+  "CONTINUAL_LIGHT",
+d1630 4
+@
+
+
+1.31
+log
+@Change AGGR_GOOD/EVIL_ALIGN to AGGR_GOOD/EVIL_RACE
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.30 2006/11/08 08:55:18 jps Exp jps $
+d862 2
+a863 2
+  "!DISARM!", 
+  "CONTINUAL",
+d1630 3
+@
+
+
+1.30
+log
+@Fix missing period and formatting in barkskin wear-off message.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.29 2006/11/08 08:50:28 jps Exp jps $
+d475 2
+a476 2
+  "AGGR_EVIL_ALIGN",
+  "AGGR_GOOD_ALIGN",
+d1630 3
+@
+
+
+1.29
+log
+@Fix typo 'existance' -> 'existence'.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.28 2006/11/07 16:53:50 jps Exp jps $
+d1224 1
+a1224 1
+  "&3&bYour skin returns to normal&0",
+d1247 1
+a1247 1
+  "Your health returns to normal..",/*210*/
+d1630 3
+@
+
+
+1.28
+log
+@Movement cost in WATER_NOSWIM changed to 2.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.27 2006/07/28 06:01:27 cjd Exp jps $
+d41 1
+a41 1
+  { MOONWELL_OBJ, "A glowing moonwell fades from existance." },
+d1630 3
+@
+
+
+1.27
+log
+@added rum to the liquids list and adjusted water so
+that it no longer adds to the hunger of a person.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.26 2006/07/20 07:37:01 cjd Exp $
+d1284 1
+a1284 1
+  1,	/* Unswimable    */
+d1630 4
+@
+
+
+1.26
+log
+@Typo fixes.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.25 2005/06/27 14:40:31 cjd Exp $
+d930 1
+a930 1
+  "clear water",
+d956 1
+a956 1
+  "water",
+d963 1
+a963 1
+  {0, 1, 10},
+d978 1
+a978 1
+  {0, 0, 13}
+d1000 1
+a1000 1
+  "crystal clear"
+d1630 3
+@
+
+
+1.25
+log
+@added mielikki map to newbie eq
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.24 2002/10/14 02:16:08 jjl Exp $
+d1016 1
+a1016 1
+  "Ok, where is that wandring minstrel chap?",
+d1088 1
+a1088 1
+  "Your feet seem less boyant.",
+d1104 1
+a1104 1
+  "Your pupils dilate as your vision returns to normal",
+d1112 1
+a1112 1
+  "&8You magical knowledge of language fades away.&0",
+d1181 1
+a1181 1
+  "You skin softens back to it's original texture.",
+d1630 3
+@
+
+
+1.24
+log
+@An update to turn vitality into a set of 6 spells, lesser endurance,
+endurance, greater endurance, vitality, greater vitality, and dragon's
+health.  Greater endurance is what vitality was.  The rest are scaled
+appropriately.    The higher end may need scaled down, or may not.
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.23 2002/09/13 02:32:10 jjl Exp $
+d1344 1
+d1357 1
+d1370 1
+d1383 1
+d1397 1
+d1411 1
+d1424 1
+d1630 6
+@
+
+
+1.23
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: constants.c,v 1.22 2002/07/16 23:22:21 rls Exp $
+d1107 1
+a1107 1
+  "Your magical vitality drains away.", /* 70 */
+d1223 29
+a1251 2
+  "!UNUSED!"
+  "&3&bYour skin returns to normal&0"
+d1623 3
+@
+
+
+1.22
+log
+@added in new necro spell bone armor
+@
+text
+@d1 3
+a3 1
+// $Id: constants.c,v 1.21 2001/04/08 17:13:10 dce Exp $
+d1594 111
+a1704 106
+// $Log: constants.c,v $
+// Revision 1.21  2001/04/08 17:13:10  dce
+// Added an alwayslit flag that makes a room lit no matter
+// of the sector or room type...
+//
+// Revision 1.20  2000/11/28 01:32:46  mtp
+// remove mobprog code
+//
+// Revision 1.19  2000/11/22 01:09:13  mtp
+// added motere mob classes (all the ones that are available for players)
+//
+// Revision 1.18  2000/11/21 00:38:34  rsd
+// Altered the comment header and added back rlog messages
+// from prior to the $log$ string being added.
+//
+// Revision 1.17  1999/12/10 05:12:42  cso
+// added const char *sizes[], starting line 373
+//
+// Revision 1.16  1999/11/28 22:58:55  cso
+// added ANIMATED to action_bits
+// added ANIMATE to affected_bits3
+//
+// Revision 1.15  1999/11/26 05:30:21  cso
+// Changed some vnumbers in the struct of newbie gear in do_newbie.
+// that's it, honest.
+//
+// Revision 1.14  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.13  1999/07/06 19:57:05  jimmy
+// This is a Mass check-in of the new skill/spell/language assignment system.
+// This New system combines the assignment of skill/spell/language for
+// both mobs and PCs.  LOts of code was touched and many errors were fixed.
+// MCLASS_VOID was moved from 13 to -1 to match CLASS_UNDEFINED for PC's.
+// MObs now get random skill/spell/language levels baseed on their race/class/level
+// that exactly align with PC's.  PC's no longer have to rent to use skills gained
+// by leveling or when first creating a char.  Languages no longer reset to defaults
+// when a PC levels.  Discovered that languages have been defined right in the middle
+// of the spell area.  This needs to be fixed.  A conversion util neeDs to be run on
+// the mob files to compensate for the 13 to -1 class change.
+// --gurlaek 7/6/1999
+//
+// Revision 1.12  1999/06/30 18:11:09  jimmy
+// act.offensive.c    config.c      handler.c    spells.c
+// This is a major conversion from the 18 point attribute system to the
+// 100 point attribute system.  A few of the major changes are:
+// All attributes are now on a scale from 0-100
+// Everyone views attribs the same but, the attribs for one race
+//   may be differeent for that of another even if they are the
+//   same number.
+// Mobs attribs now get rolled and scaled using the same algorithim as PC's
+// Mobs now have individual random attributes based on race/class.
+// The STR_ADD attrib has been completely removed.
+// All bonus tables for attribs in constants.c have been replaced by
+//   algorithims that closely duplicate the tables except on a 100 scale.
+// Some minor changes:
+// Race selection at char creation can now be toggled by using
+//   <world races off>
+// Lots of cleanup done to affected areas of code.
+// Setting attributes for mobs in the .mob file no longer functions
+//   but is still in the code for later use.
+// We now have a spare attribut structure in the pfile because the new
+//   system only used three instead of four.
+// --gurlaek 6/30/1999
+//
+// Revision 1.11  1999/05/04 17:19:33  dce
+// Name accept system...version one...original code by Fingh, fixed up to work
+// by Zantir.
+//
+// Revision 1.10  1999/04/07 01:20:18  dce
+// Allows extra descriptions on no exits.
+//
+// Revision 1.9  1999/03/14 14:28:11  jimmy
+// Movement now has bite!  removed extra "flying" from
+// movement_loss in constants.c to fix the mv bug.  reduced the
+// movement gain by 5 for all ages in limits.c.  Removed the +5
+// and +6 static movement gain so that it now actually updates
+// based on the function in regen.c.  Gosh i'm a bastard.
+// Fingon
+//
+// Revision 1.8  1999/03/08 04:47:16  dce
+// Chant semantics added.
+//
+// Revision 1.7  1999/03/06 23:51:54  dce
+// Add's chant songs, and can only chant once every four hours
+//
+// Revision 1.6  1999/03/05 20:02:36  dce
+// Chant added to, and songs craeted
+//
+// Revision 1.5  1999/03/02 20:14:36  mud
+// Changed some of the weight semantics listings.
+//
+// Revision 1.4  1999/03/02 05:22:13  mud
+// changed the months and days
+// also added object 1154 to the mage eq load
+//
+// Revision 1.3  1999/02/16 09:12:34  jimmy
+// Added spellbooks (1029) to mages newbie eq
+// fingon
+//
+// Revision 1.2  1999/02/13 19:37:12  dce
+// Rewrote Continual Light and Darkness to be manual spells to meet our needs.
+//
+// Revision 1.1  1999/01/29 01:23:30  mud
+// Initial revision
+//
+@
+
+
+1.21
+log
+@Added an alwayslit flag that makes a room lit no matter
+of the sector or room type...
+@
+text
+@d1 1
+a1 1
+// $Id: constants.c,v 1.20 2000/11/28 01:32:46 mtp Exp $
+d1105 1
+a1105 1
+  "Your magical vitality drains away.",
+d1115 1
+a1115 1
+  "!VAMP BREATH!",
+d1125 1
+a1125 1
+  "!VIG SERIOUS!",
+d1135 1
+a1135 1
+  "!MINORCREATE!",
+d1155 1
+a1155 1
+  "!LESSEREXCOR!",
+d1175 1
+a1175 1
+  "You mutate back to your original form.",
+d1195 1
+a1195 1
+  "You become more visible as the heat around your body dies out.",
+d1215 1
+a1215 1
+  "You feel vulnerable to the cold again.",
+d1222 1
+d1593 4
+@
+
+
+1.20
+log
+@remove mobprog code
+@
+text
+@d1 1
+a1 1
+// $Id: constants.c,v 1.19 2000/11/22 01:09:13 mtp Exp mtp $
+d278 1
+d1592 3
+@
+
+
+1.19
+log
+@added motere mob classes (all the ones that are available for players)
+@
+text
+@d1 1
+a1 1
+// $Id: constants.c,v 1.18 2000/11/21 00:38:34 rsd Exp $
+a1404 19
+/*
+ * Definitions necessary for MobProg support in OasisOLC
+ */
+const char *mobprog_types[] = {
+  "INFILE",
+  "ACT",
+  "SPEECH",
+  "RAND",
+  "FIGHT",
+  "DEATH",
+  "HITPRCNT",
+  "ENTRY",
+  "GREET",
+  "ALL_GREET",
+  "GIVE",
+  "BRIBE",
+  "\n"
+};
+
+d1591 3
+@
+
+
+1.18
+log
+@Altered the comment header and added back rlog messages
+from prior to the $log$ string being added.
+@
+text
+@d1 1
+a1 1
+// $Id: constants.c,v 1.17 1999/12/10 05:12:42 cso Exp $
+d76 4
+d94 12
+a105 1
+  "Conjurer"
+d1610 4
+@
+
+
+1.17
+log
+@added const char *sizes[], starting line 373
+@
+text
+@d1 12
+a12 10
+// $Id: constants.c,v 1.16 1999/11/28 22:58:55 cso Exp $
+/* ***********************************************************************
+*   File: constants.c                                   Part of CircleMUD *
+*  Usage: Numeric and string contants used by the MUD                     *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+a44 1
+
+a46 1
+
+a48 1
+
+a1593 1
+
+d1595 3
+d1608 77
+@
+
+
+1.16
+log
+@added ANIMATED to action_bits
+added ANIMATE to affected_bits3
+@
+text
+@d1 1
+a1 1
+// $Id: constants.c,v 1.15 1999/11/26 05:30:21 cso Exp cso $
+d373 12
+d1597 4
+@
+
+
+1.15
+log
+@Changed some vnumbers in the struct of newbie gear in do_newbie.
+that's it, honest.
+@
+text
+@d1 1
+a1 1
+// $Id: constants.c,v 1.14 1999/09/05 07:00:39 jimmy Exp $
+d451 1
+d573 1
+a573 1
+  "UNUSED",
+d1585 4
+@
+
+
+1.14
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+a1285 2
+        30,
+        29,
+a1321 1
+	29,
+d1325 1
+a1325 1
+    18,
+d1340 1
+a1343 2
+	21,
+	22,
+d1583 4
+a1586 1
+// $Log$
+@
+
+
+1.13
+log
+@This is a Mass check-in of the new skill/spell/language assignment system.
+This New system combines the assignment of skill/spell/language for
+both mobs and PCs.  LOts of code was touched and many errors were fixed.
+MCLASS_VOID was moved from 13 to -1 to match CLASS_UNDEFINED for PC's.
+MObs now get random skill/spell/language levels baseed on their race/class/level
+that exactly align with PC's.  PC's no longer have to rent to use skills gained
+by leveling or when first creating a char.  Languages no longer reset to defaults
+when a PC levels.  Discovered that languages have been defined right in the middle
+of the spell area.  This needs to be fixed.  A conversion util neeDs to be run on
+the mob files to compensate for the 13 to -1 class change.
+--gurlaek 7/6/1999
+@
+text
+@d1 1
+d1587 1
+@
+
+
+1.12
+log
+@act.item.c         class.c       db.c         medit.c        utils.hact.offensive.c    config.c      handler.c    spells.cThis is a major conversion from the 18 point attribute system to the
+100 point attribute system.  A few of the major changes are:
+All attributes are now on a scale from 0-100
+Everyone views attribs the same but, the attribs for one race
+  may be differeent for that of another even if they are the
+  same number.
+Mobs attribs now get rolled and scaled using the same algorithim as PC's
+Mobs now have individual random attributes based on race/class.
+The STR_ADD attrib has been completely removed.
+All bonus tables for attribs in constants.c have been replaced by
+  algorithims that closely duplicate the tables except on a 100 scale.
+Some minor changes:
+Race selection at char creation can now be toggled by using
+  <world races off>
+Lots of cleanup done to affected areas of code.
+Setting attributes for mobs in the .mob file no longer functions
+  but is still in the code for later use.
+We now have a spare attribut structure in the pfile because the new
+  system only used three instead of four.
+--gurlaek 6/30/1999
+@
+text
+@d73 3
+d77 4
+a80 3
+  "Sorcerer",
+  "Cleric",
+  "Thief",
+d90 1
+a90 2
+  "Conjurer",
+  "Nothin"
+@
+
+
+1.11
+log
+@Name accept system...version one...original code by Fingh, fixed up to work
+by Zantir.
+@
+text
+@d16 12
+a993 197
+/* str, int, wis, dex, con applies **************************************/
+
+
+/* [ch] strength apply (all) */
+const struct str_app_type str_app[] = {
+  {-5, -4, 0, 0},	/* str = 0 */
+  {-5, -4, 3, 1},	/* str = 1 */
+  {-3, -2, 3, 2},
+  {-3, -1, 10, 3},
+  {-2, -1, 25, 4},
+  {-2, -1, 55, 5},	/* str = 5 */
+  {-1, 0, 80, 6},
+  {-1, 0, 90, 7},
+  {0, 0, 100, 8},
+  {0, 0, 100, 9},
+  {0, 0, 115, 10},	/* str = 10 */
+  {0, 0, 115, 11},
+  {0, 0, 140, 12},
+  {0, 0, 140, 13},
+  {0, 0, 170, 14},
+  {0, 0, 170, 15},	/* str = 15 */
+  {0, 1, 195, 16},
+  {1, 1, 220, 18},
+  {1, 2, 255, 20},	/* dex = 18 */
+  {3, 7, 640, 40},
+  {3, 8, 700, 40},	/* str = 20 */
+  {4, 9, 810, 40},
+  {4, 10, 970, 40},
+  {5, 11, 1130, 40},
+  {6, 12, 1440, 40},
+  {7, 14, 1750, 40},	/* str = 25 */
+  {1, 3, 280, 22},	/* str = 18/0 - 18-50 */
+  {2, 3, 305, 24},	/* str = 18/51 - 18-75 */
+  {2, 4, 330, 26},	/* str = 18/76 - 18-90 */
+  {2, 5, 380, 28},	/* str = 18/91 - 18-99 */
+  {3, 6, 480, 30}	/* str = 18/100 */
+};
+
+
+
+/* [dex] skill apply (thieves only) */
+const struct dex_skill_type dex_app_skill[] = {
+  {-99, -99, -90, -99, -60},	/* dex = 0 */
+  {-90, -90, -60, -90, -50},	/* dex = 1 */
+  {-80, -80, -40, -80, -45},
+  {-70, -70, -30, -70, -40},
+  {-60, -60, -30, -60, -35},
+  {-50, -50, -20, -50, -30},	/* dex = 5 */
+  {-40, -40, -20, -40, -25},
+  {-30, -30, -15, -30, -20},
+  {-20, -20, -15, -20, -15},
+  {-15, -10, -10, -20, -10},
+  {-10, -5, -10, -15, -5},	/* dex = 10 */
+  {-5, 0, -5, -10, 0},
+  {0, 0, 0, -5, 0},
+  {0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0},
+  {0, 0, 0, 0, 0},		/* dex = 15 */
+  {0, 5, 0, 0, 0},
+  {5, 10, 0, 5, 5},
+  {10, 15, 5, 10, 10},		/* dex = 18 */
+  {15, 20, 10, 15, 15},
+  {15, 20, 10, 15, 15},		/* dex = 20 */
+  {20, 25, 10, 15, 20},
+  {20, 25, 15, 20, 20},
+  {25, 25, 15, 20, 20},
+  {25, 30, 15, 25, 25},
+  {25, 30, 15, 25, 25}		/* dex = 25 */
+};
+
+
+
+/* [dex] apply (all) */
+struct dex_app_type dex_app[] = {
+  {-7, -7, 6},		/* dex = 0 */
+  {-6, -6, 5},		/* dex = 1 */
+  {-4, -4, 5},
+  {-3, -3, 4},
+  {-2, -2, 3},
+  {-1, -1, 2},		/* dex = 5 */
+  {0, 0, 1},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},		/* dex = 10 */
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, 0},
+  {0, 0, -1},		/* dex = 15 */
+  {1, 1, -2},
+  {2, 2, -3},
+  {2, 2, -4},		/* dex = 18 */
+  {3, 3, -4},
+  {3, 3, -4},		/* dex = 20 */
+  {4, 4, -5},
+  {4, 4, -5},
+  {4, 4, -5},
+  {5, 5, -6},
+  {5, 5, -6}		/* dex = 25 */
+};
+
+
+
+/* [con] apply (all) */
+struct con_app_type con_app[] = {
+  {-4, 20},		/* con = 0 */
+  {-3, 25},		/* con = 1 */
+  {-2, 30},
+  {-2, 35},
+  {-1, 40},
+  {-1, 45},		/* con = 5 */
+  {-1, 50},
+  {0, 55},
+  {0, 60},
+  {0, 65},
+  {0, 70},		/* con = 10 */
+  {0, 75},
+  {0, 80},
+  {0, 85},
+  {0, 88},
+  {1, 90},		/* con = 15 */
+  {2, 95},
+  {2, 97},
+  {3, 99},		/* con = 18 */
+  {3, 99},
+  {4, 99},		/* con = 20 */
+  {5, 99},
+  {5, 99},
+  {5, 99},
+  {6, 99},
+  {6, 99}		/* con = 25 */
+};
+
+
+
+/* [int] apply (all) */
+struct int_app_type int_app[] = {
+  {3},		/* int = 0 */
+  {5},		/* int = 1 */
+  {7},
+  {8},
+  {9},
+  {10},		/* int = 5 */
+  {11},
+  {12},
+  {13},
+  {15},
+  {17},		/* int = 10 */
+  {19},
+  {22},
+  {25},
+  {30},
+  {35},		/* int = 15 */
+  {40},
+  {45},
+  {50},		/* int = 18 */
+  {53},
+  {55},		/* int = 20 */
+  {56},
+  {57},
+  {58},
+  {59},
+  {60}		/* int = 25 */
+};
+
+
+/* [wis] apply (all) */
+struct wis_app_type wis_app[] = {
+  {0},	/* wis = 0 */
+  {0},  /* wis = 1 */
+  {0},
+  {0},
+  {0},
+  {0},  /* wis = 5 */
+  {0},
+  {0},
+  {0},
+  {0},
+  {0},  /* wis = 10 */
+  {0},
+  {2},
+  {2},
+  {3},
+  {3},  /* wis = 15 */
+  {3},
+  {4},
+  {5},	/* wis = 18 */
+  {6},
+  {6},  /* wis = 20 */
+  {6},
+  {6},
+  {7},
+  {7},
+  {7}  /* wis = 25 */
+};
+
+d1412 169
+a1580 9
+
+
+
+
+
+
+
+
+
+@
+
+
+1.10
+log
+@Allows extra descriptions on no exits.
+@
+text
+@d397 2
+d470 1
+d622 3
+@
+
+
+1.9
+log
+@Movement now has bite!  removed extra "flying" from
+movement_loss in constants.c to fix the mv bug.  reduced the
+movement gain by 5 for all ages in limits.c.  Removed the +5
+and +6 static movement gain so that it now actually updates
+based on the function in regen.c.  Gosh i'm a bastard.
+Fingon
+@
+text
+@d315 1
+@
+
+
+1.8
+log
+@Chant semantics added.
+@
+text
+@d1393 23
+a1415 25
+  1,	/* Inside     */
+  1,	/* City       */
+  2,	/* Field      */
+  3,	/* Forest     */
+  4,	/* Hills      */
+  6,	/* Mountains  */
+  4,	/* Swimming   */
+  1,	/* Unswimable */
+  1,	/* Flying     */
+  5,     /* Underwater */
+  0,     /*flying*/
+  2,
+  1,
+  1,
+  2,
+  4,
+  2,
+  2,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1
+
+@
+
+
+1.7
+log
+@Add's chant songs, and can only chant once every four hours
+@
+text
+@d1172 7
+a1178 1
+
+@
+
+
+1.6
+log
+@Chant added to, and songs craeted
+@
+text
+@d552 1
+a552 1
+  "HIT_REGEN",
+@
+
+
+1.5
+log
+@Changed some of the weight semantics listings.
+@
+text
+@d552 1
+a552 1
+  "UNUSED",
+@
+
+
+1.4
+log
+@changed the months and days
+also added object 1154 to the mage eq load
+@
+text
+@d962 2
+a963 2
+  "What load?",
+  "Insignificant",
+d968 1
+a968 1
+  "Heavy",
+d970 1
+a970 1
+  "Backbreaking",
+@
+
+
+1.3
+log
+@Added spellbooks (1029) to mages newbie eq
+fingon
+@
+text
+@d17 1
+a17 1
+"CircleMUD, version 3.00 beta patchlevel 11\r\n"};
+d20 1
+a20 1
+"&0&3&bNot bad&0    ", "&0&3Fair&0       ", "&0&9&bBad&0        "};*/
+d1416 7
+a1422 7
+  "the Day of the Moon",
+  "the Day of the Bull",
+  "the Day of the Deception",
+  "the Day of Thunder",
+  "the Day of Freedom",
+  "the day of the Great Gods",
+"the Day of the Sun"};
+d1429 3
+a1431 3
+  "Month of the Winter Wolf",
+  "Month of the Frost Giant",
+  "Month of the Old Forces",
+d1433 11
+a1443 11
+  "Month of Nature",
+  "Month of Futility",
+  "Month of the Dragon",
+  "Month of the Sun",
+  "Month of the Heat",
+  "Month of Scorching",
+  "Month of the Battle",
+  "Month of the Shadows",
+  "Month of the Long Shadows",
+  "Month of the Ancient Darkness",
+  "Month of the Great Evil"
+d1461 10
+a1470 10
+    18,
+    19,
+	20,
+	21,
+	22,
+	23,
+	27,
+	26,
+	28,
+	-1};
+d1512 1
+d1586 11
+@
+
+
+1.2
+log
+@Rewrote Continual Light and Darkness to be manual spells to meet our needs.
+@
+text
+@d1511 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1248 2
+a1249 2
+  "The magical darkness lifts",
+  "&8The magical light fades away&0",
+@

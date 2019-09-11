@@ -1,0 +1,151 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2009.06.09.05.40.33;	author myc;	state Exp;
+branches;
+next	;
+
+
+desc
+@IAlloc incrementally allocates memory space using a series
+of linked arrays which grow exponentially.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "ialloc.h"
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*
+ *      Current       Summed
+ *   Head width   List width
+ *            8            0
+ *           64            8
+ *          512           72
+ *         4096          584
+ *        32768         4680
+ *       262144        37448
+ *      2097152       299592
+ *     16777216      2396744
+ *    134217728     19173960
+ */
+
+static struct ialloc_block {
+  char *block;
+  size_t entry_size;
+  size_t entry_capacity;
+  size_t entry_count;
+  struct ialloc_block *next_block;
+  struct ialloc_block *global_next;
+} *iallocs = NULL;
+
+#define GROWTH_FACTOR   8
+#define BUF_SIZE(token) ((token)->entry_size * (token)->entry_capacity)
+
+static void ialloc_extend(ialloc_token head)
+{
+  struct ialloc_block temp;
+  ialloc_token token;
+
+  /* Make sure we have a valid, full head */
+  assert(head->entry_count == head->entry_capacity);
+  assert(!head->next_block);
+
+  /* Copy the existing head to a newly-allocated token */
+  temp = *head;
+  token = malloc(sizeof(struct ialloc_block));
+  *token = temp;
+  token->global_next = NULL;
+
+  /* Use the old head to store new entries */
+  head->entry_capacity *= GROWTH_FACTOR;
+  head->entry_count = 0;
+  head->block = malloc(BUF_SIZE(token));
+  memset(token->block, 0, BUF_SIZE(token));
+
+  head->next_block = token;
+}
+
+ialloc_token ibegin(size_t entry_size)
+{
+  ialloc_token token;
+
+  assert(entry_size > 0);
+
+  token = malloc(sizeof(struct ialloc_block));
+  token->entry_size = entry_size;
+  token->entry_capacity = GROWTH_FACTOR;
+  token->entry_count = 0;
+  token->block = malloc(BUF_SIZE(token));
+  memset(token->block, 0, BUF_SIZE(token));
+
+  token->global_next = iallocs;
+  iallocs = token;
+
+  return token;
+}
+
+void *ialloc(ialloc_token token) {
+  if (token->entry_count == token->entry_capacity)
+    ialloc_extend(token);
+  token->entry_count++;
+  return token->block + ((token->entry_count - 1) * token->entry_size);
+}
+
+size_t icount(ialloc_token token) {
+  size_t count;
+  for (count = 0; token; token = token->next_block)
+    count += token->entry_count;
+  return count;
+}
+
+ialloc_array icoalesce(ialloc_token token) {
+  ialloc_array value;
+  char *array;
+  ialloc_token temp;
+  size_t count;
+
+  /* Remove the token chain from the global alloc list */
+  if (token == iallocs)
+    iallocs = token->global_next;
+  else
+    for (temp = iallocs; iallocs; temp = temp->global_next)
+      if (temp->global_next == token) {
+        temp->global_next = token->global_next;
+        break;
+      }
+
+  /* Copy all blocks into a single array */
+  value.size = count = icount(token);
+  if (count == 0) {
+    value.array = NULL;
+    free(token->block);
+    free(token);
+  }
+  else {
+    value.array = array = malloc(count * token->entry_size);
+    while (token) {
+      count -= token->entry_count;
+      memcpy(array + (count * token->entry_size),
+             token->block, token->entry_count * token->entry_size);
+      temp = token->next_block;
+      free(token->block);
+      free(token);
+      token = temp;
+    }
+  }
+
+  return value;
+}
+@

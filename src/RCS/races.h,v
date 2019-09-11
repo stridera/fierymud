@@ -1,0 +1,605 @@
+head	1.21;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.21
+date	2009.03.16.09.44.38;	author jps;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2008.06.21.17.28.56;	author jps;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.04.26.23.35.43;	author myc;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.03.26.16.44.36;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.03.22.21.43.55;	author jps;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.03.22.21.23.50;	author jps;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.03.21.15.01.17;	author myc;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.03.11.02.13.25;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.03.10.19.55.37;	author jps;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.02.07.01.46.14;	author myc;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2008.01.27.13.43.50;	author jps;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2008.01.23.14.42.29;	author jps;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2008.01.23.14.13.13;	author jps;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2008.01.09.09.17.49;	author jps;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2008.01.07.10.38.33;	author jps;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2008.01.07.00.50.19;	author jps;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2008.01.06.18.16.31;	author jps;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2008.01.05.05.40.52;	author jps;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2008.01.04.02.31.02;	author jps;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2008.01.04.01.54.05;	author jps;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2008.01.03.23.35.03;	author jps;	state Exp;
+branches;
+next	;
+
+
+desc
+@Structs and defs for player races.
+@
+
+
+1.21
+log
+@Added brownie race
+@
+text
+@/***************************************************************************
+ *  File: races.h                                         Part of FieryMUD *
+ *  Usage: header file for race structures and constants                   *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#ifndef __FIERY_RACES_H
+#define __FIERY_RACES_H
+
+/* The race of an individual is stored as a byte in struct char_player_data. */
+
+/* The races */
+#define RACE_UNDEFINED   -1
+#define RACE_HUMAN        0
+#define RACE_ELF          1
+#define RACE_GNOME        2
+#define RACE_DWARF        3
+#define RACE_TROLL        4
+#define RACE_DROW         5
+#define RACE_DUERGAR      6
+#define RACE_OGRE         7
+#define RACE_ORC          8
+#define RACE_HALF_ELF     9
+#define RACE_BARBARIAN    10
+#define RACE_HALFLING     11
+#define RACE_PLANT        12
+#define RACE_HUMANOID     13
+#define RACE_ANIMAL       14
+#define RACE_DRAGON       15
+#define RACE_GIANT        16
+#define RACE_OTHER        17
+#define RACE_GOBLIN       18
+#define RACE_DEMON        19
+#define RACE_BROWNIE      20
+
+/* Make sure to update this number if you add a race. */
+#define NUM_RACES         21
+
+#define DEFAULT_RACE RACE_OTHER
+
+/* Race-aligns */
+#define RACE_ALIGN_UNKNOWN  -1
+#define RACE_ALIGN_GOOD      0
+#define RACE_ALIGN_EVIL      1
+
+#define NUM_RACE_SKILLS      10
+
+/* This defines the basic attributes of a race. */
+
+struct racedef {
+   char *name;                /* The basic name, uncapitalized and uncolored. */
+   char *names;               /* Additional names for searching purposes. */
+   char *displayname;         /* The name with colors and strategic capitalization. */
+   char *fullname;            /* The long name with colors and capitalization */
+   char *plainname;           /* The name with capitalization but no colors. */
+   bool playable;             /* Available to mortals? */
+   bool humanoid;             /* Is it humanoid? */
+   int racealign;             /* Is it considered a good or evil race? */
+   int def_size;              /* The default size for a member of this race. */
+   int def_align;             /* Default alignment */
+   int bonus_damroll;
+   int bonus_hitroll;
+   int def_lifeforce;         /* Default life force */
+   int def_composition;       /* Default composition */
+   int mweight_lo;            /* Minimum weight (male) */
+   int mweight_hi;            /* Maximum weight (male) */
+   int mheight_lo;            /* Minimum height (male) */
+   int mheight_hi;            /* Maximum height (male) */
+   int fweight_lo;            /* Minimum weight (female) */
+   int fweight_hi;            /* Maximum weight (female) */
+   int fheight_lo;            /* Minimum height (female) */
+   int fheight_hi;            /* Maximum height (female) */
+
+   int attrib_scales[6];
+
+   /* The following values primarily adjust stats on mob prototypes.  See db.c. */
+   int exp_factor;
+   int hit_factor;
+   int hd_factor;
+   int dice_factor;
+   int copper_factor;
+   int ac_factor;
+
+   /* These may be NULL so that the default values of "enters" and "leaves"
+    * will be used. */
+   char *enter_verb;
+   char *leave_verb;
+
+   /*
+    * The following data members should come last in the struct so
+    * that they can be omitted when races are being defined.  Their
+    * values are filled in init_races at runtime.
+    */
+
+   /* List of permanent effect flags */
+   flagvector effect_flags[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+   struct {
+     int skill;               /* Skill number */
+     int proficiency;         /* Default proficiency (can be ROLL_SKILL_PROF) */
+   } skills[NUM_RACE_SKILLS]; /* List of racial skills */
+};
+
+extern struct racedef races[];
+extern const char *race_align_abbrevs[];
+
+#define GET_RACE(ch)    ((ch)->player.race)
+#define GET_RACE_ALIGN(ch)  ((ch)->player.race_align)
+
+#define VALID_RACENUM(num) (num < NUM_RACES)
+#define VALID_RACE(ch) (VALID_RACENUM(GET_RACE(ch)))
+#define RACE_ABBR(ch) \
+   (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].displayname : "--")
+#define RACE_FULL(ch) \
+   (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].fullname : "--")
+#define RACE_PLAINNAME(ch) \
+   (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].plainname : "unknown")
+
+#define RACE_ALIGN_ABBR(ch) (GET_RACE_ALIGN(ch) <= RACE_ALIGN_EVIL ? \
+      race_align_abbrevs[(int )GET_RACE_ALIGN(ch)] : 0)
+#define IS_HUMANOID(ch) \
+   (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].humanoid : FALSE)
+
+#define ALIGN_OF_RACE(race) \
+   (VALID_RACENUM(race) ? races[race].racealign : RACE_ALIGN_GOOD)
+#define SIZE_OF_RACE(race) \
+   (VALID_RACENUM(race) ? races[race].def_size : SIZE_MEDIUM)
+
+#define RACE_EXPFACTOR(race) \
+   (VALID_RACENUM(race) ? races[race].exp_factor : 100)
+#define RACE_HITFACTOR(race) \
+   (VALID_RACENUM(race) ? races[race].hit_factor : 100)
+#define RACE_HDFACTOR(race) \
+   (VALID_RACENUM(race) ? races[race].hd_factor : 100)
+#define RACE_DICEFACTOR(race) \
+   (VALID_RACENUM(race) ? races[race].dice_factor : 100)
+#define RACE_COPPERFACTOR(race) \
+   (VALID_RACENUM(race) ? races[race].copper_factor : 100)
+#define RACE_ACFACTOR(race) \
+   (VALID_RACENUM(race) ? races[race].ac_factor : 100)
+
+void init_races(void);
+int parse_race(struct char_data *ch, struct char_data *vict, char *arg);
+int race_by_menu(char arg);
+void send_race_menu(struct descriptor_data *d);
+int interpret_race_selection(char arg);
+void init_proto_race(struct char_data *ch);
+void init_char_race(struct char_data *ch);
+void update_char_race(struct char_data *ch);
+int racial_skill_proficiency(int skill, int race, int level);
+void convert_race(struct char_data *ch, int newrace);
+void apply_racial_bonus_hit_and_dam(struct char_data *ch);
+int natural_move(struct char_data *ch);
+void scale_attribs(struct char_data *ch);
+
+#endif
+
+/***************************************************************************
+ * $Log: races.h,v $
+ * Revision 1.20  2008/06/21 17:28:56  jps
+ * Added movement strings to race definitions. Changed some race macros
+ * because the value is now an unsigned int.
+ *
+ * Revision 1.19  2008/04/26 23:35:43  myc
+ * Info about permanent effects and race skills are stored in the
+ * class/race structs now, but need to be initialized at runtime
+ * by the init_races and init_classes functions.
+ *
+ * Revision 1.18  2008/03/26 16:44:36  jps
+ * Replaced all checks for undead race with checks for undead lifeforce.
+ * Replaced the undead race with the plant race.
+ *
+ * Revision 1.17  2008/03/22 21:43:55  jps
+ * Add init_proto_race(), which is for setting default values on a
+ * mob prototype according to race.  Probably during OLC.
+ *
+ * Revision 1.16  2008/03/22 21:23:50  jps
+ * Add default life force and composition to race definitions.
+ *
+ * Revision 1.15  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.14  2008/03/11 02:13:25  jps
+ * Moving size macros to chars.h.
+ *
+ ***************************************************************************/
+@
+
+
+1.20
+log
+@Added movement strings to race definitions. Changed some race macros
+because the value is now an unsigned int.
+@
+text
+@d25 1
+a25 1
+#define RACE_DROW_ELF     5
+d40 1
+d43 1
+a43 1
+#define NUM_RACES         20
+d165 4
+@
+
+
+1.19
+log
+@Info about permanent effects and race skills are stored in the
+class/race structs now, but need to be initialized at runtime
+by the init_races and init_classes functions.
+@
+text
+@d89 5
+d114 1
+a114 1
+#define VALID_RACENUM(num) (num >= 0 && num < NUM_RACES)
+d123 2
+a124 3
+#define RACE_ALIGN_ABBR(ch) (GET_RACE_ALIGN(ch) >= RACE_ALIGN_GOOD && \
+      GET_RACE_ALIGN(ch) <= RACE_ALIGN_EVIL ? race_align_abbrevs[(int )GET_RACE_ALIGN(ch)] : \
+      0)
+d164 5
+@
+
+
+1.18
+log
+@Replaced all checks for undead race with checks for undead lifeforce.
+Replaced the undead race with the plant race.
+@
+text
+@d51 1
+d56 5
+a60 5
+   char name[80];             /* The basic name, uncapitalized and uncolored. */
+   char names[240];           /* Additional names for searching purposes. */
+   char displayname[80];      /* The name with colors and strategic capitalization. */
+   char fullname[80];         /* The long name with colors and capitalization */
+   char plainname[80];        /* The name with capitalization but no colors. */
+d88 13
+d142 1
+d160 4
+@
+
+
+1.17
+log
+@Add init_proto_race(), which is for setting default values on a
+mob prototype according to race.  Probably during OLC.
+@
+text
+@d32 1
+a32 1
+#define RACE_UNDEAD       12
+d145 4
+@
+
+
+1.16
+log
+@Add default life force and composition to race definitions.
+@
+text
+@d132 1
+d145 3
+@
+
+
+1.15
+log
+@Removed languages.
+@
+text
+@d67 2
+d144 3
+@
+
+
+1.14
+log
+@Moving size macros to chars.h.
+@
+text
+@a64 1
+   int def_lang;              /* Default language */
+d141 4
+a144 1
+ * $Log$
+@
+
+
+1.13
+log
+@Made a struct for sizes with name, height, and weight.  Save base height
+weight and size so they stay the same over size changes.
+@
+text
+@a138 26
+#define SIZE_UNDEFINED  -1
+#define SIZE_TINY        0
+#define SIZE_SMALL       1
+#define SIZE_MEDIUM      2
+#define SIZE_LARGE       3
+#define SIZE_HUGE        4
+#define SIZE_GIANT       5
+#define SIZE_GARGANTUAN  6
+#define SIZE_COLOSSAL    7
+#define SIZE_TITANIC     8
+#define SIZE_MOUNTAINOUS 9
+#define NUM_SIZES 10
+struct sizedef {
+   char *name;
+   int weight_min;
+   int weight_max;
+   int height_min;
+   int height_max;
+};
+extern struct sizedef sizes[];
+#define SIZENAME(i) (sizes[i].name)
+#define SIZE_DESC(ch) SIZENAME(GET_SIZE(ch))
+
+int parse_size(struct char_data *ch, char *arg);
+void change_size(struct char_data *ch, int newsize);
+
+d141 3
+@
+
+
+1.12
+log
+@Removing the size abbrevs array and renaming SIZE_ABBR to SIZE_DESC,
+which points to the sizes array.
+@
+text
+@d139 26
+@
+
+
+1.11
+log
+@Moved race and species-related data to races.h/races.c and merged species into races.
+@
+text
+@a89 1
+extern const char *size_abbrevs[];
+@
+
+
+1.10
+log
+@Bring the number of races up to that of species.
+@
+text
+@a15 7
+/* Player "race" is distinct from mobile (NPC) "species".
+ * However, for every race there is an identical species.  In other words,
+ * anything a player can be, a mobile can be as well.  The corresponding
+ * races/species are a synchronizes list.  However, the list of species
+ * (for mobiles) is longer, and has additional definitions that are not
+ * available as races. */
+
+d44 2
+d59 1
+d76 10
+d92 12
+a103 4
+#define RACE_ABBR(ch) (GET_RACE(ch) >= 0 && GET_RACE(ch) < NUM_RACES ? \
+      races[(int)GET_RACE(ch)].displayname : "--")
+#define RACE_FULL(ch) (GET_RACE(ch) >= 0 && GET_RACE(ch) < NUM_RACES ? \
+      races[(int)GET_RACE(ch)].fullname : "--")
+d107 20
+a126 2
+#define IS_HUMANOID(ch) (GET_RACE(ch) >= 0 && GET_RACE(ch) < NUM_RACES \
+      && races[(int)GET_RACE(ch)].humanoid)
+d138 1
+@
+
+
+1.9
+log
+@Changed name of "active" to "playable". Added a boolean race field, "humanoid".
+@
+text
+@d39 8
+d49 1
+a49 1
+#define NUM_RACES         12
+@
+
+
+1.8
+log
+@Add function natural_move().
+@
+text
+@d56 2
+a57 1
+   bool active;               /* Available to mortals? */
+d85 2
+@
+
+
+1.7
+log
+@Return proper race strings regardless of whether it's an NPC or a player.
+@
+text
+@d94 1
+@
+
+
+1.6
+log
+@Error checking in get_race_align.
+@
+text
+@d75 1
+d77 4
+a80 2
+#define RACE_ABBR(ch)  (IS_NPC(ch) ? "--" : races[(int)GET_RACE(ch)].displayname)
+#define RACE_FULL(ch)  (IS_NPC(ch) ? "--" : races[(int)GET_RACE(ch)].fullname)
+@
+
+
+1.5
+log
+@Added bonus hit/dam, and height/weight/size/lang/align values
+into struce racedef.
+@
+text
+@d78 3
+a80 1
+#define RACE_ALIGN_ABBR(ch) race_align_abbrevs[(int )GET_RACE_ALIGN(ch)]
+@
+
+
+1.4
+log
+@Added several functions, most of which handle stuff that was
+being done in class.c.
+@
+text
+@d58 13
+d88 1
+@
+
+
+1.3
+log
+@Added functions for displaying and interpreting responses to the race
+selection menu.
+@
+text
+@d71 4
+@
+
+
+1.2
+log
+@Added full name to race struct.  Added some macros for grabbing race-
+related strings for characters.  Added functions parse_race and
+race_by_menu.
+@
+text
+@d69 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d55 1
+d61 8
+@

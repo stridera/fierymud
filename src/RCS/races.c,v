@@ -1,0 +1,4712 @@
+head	1.50;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.50
+date	2011.08.06.15.22.51;	author rsd;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2009.07.04.16.23.36;	author myc;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2009.03.16.09.44.38;	author jps;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2009.03.09.16.57.47;	author myc;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2009.03.08.21.43.27;	author jps;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2008.09.27.03.21.28;	author jps;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2008.08.30.01.31.51;	author myc;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2008.06.21.17.27.56;	author jps;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2008.05.11.05.42.03;	author jps;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2008.04.26.23.35.43;	author myc;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2008.04.19.18.25.02;	author jps;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2008.04.05.05.05.42;	author myc;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2008.03.26.16.44.36;	author jps;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2008.03.23.00.24.11;	author jps;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2008.03.22.21.44.23;	author jps;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2008.03.22.21.26.50;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2008.03.21.16.09.01;	author myc;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2008.03.21.15.01.17;	author myc;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2008.03.18.06.00.31;	author jps;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2008.03.11.02.13.39;	author jps;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2008.03.10.19.55.37;	author jps;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2008.01.27.13.43.50;	author jps;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2008.01.27.01.13.39;	author jps;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2008.01.26.14.26.31;	author jps;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2008.01.23.14.42.53;	author jps;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2008.01.23.14.15.15;	author jps;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2008.01.09.13.04.24;	author jps;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2008.01.09.09.19.50;	author jps;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2008.01.09.08.32.52;	author jps;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2008.01.06.18.17.14;	author jps;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2008.01.05.05.43.53;	author jps;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2008.01.04.02.33.16;	author jps;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2008.01.04.01.49.41;	author jps;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2008.01.03.12.44.03;	author jps;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2008.01.02.07.11.32;	author jps;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2007.03.27.04.27.05;	author myc;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2006.11.26.08.31.17;	author jps;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2000.11.24.21.17.12;	author rsd;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2000.11.14.20.23.14;	author rsd;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2000.09.13.01.53.49;	author rsd;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2000.05.14.05.22.37;	author rsd;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.12.12.06.47.01;	author rsd;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.02.01.03.51.29;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.31;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/***********************************************************
+* This Hubis' race file                                    *
+* authors are:                                             *
+* Banyal, proky, and                                       *
+*  Brian Williams <bmw@@efn.org>                            *
+*                                                          *
+* Modified for FieryMUD by Scott Davis (gawd he's coding?!)*
+***********************************************************/
+
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include "structs.h"
+#include "interpreter.h"
+#include "utils.h"
+extern int warrior_subclasses[WARRIOR_SUBCLASSES];
+extern int mage_subclasses[MAGE_SUBCLASSES];
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+extern int rogue_subclasses[ROGUE_SUBCLASSES];
+const char *race_abbrevs[] = {
+	"&6Human&0",
+	"&8Grey Elf&0",
+	"&1&d&bGnome&0",
+	"&3Dwarf&0",
+	"&2&dTroll&0",
+	"&5Drow Elf&0",
+	"&1Duergar&0",
+	"&4Ogre&0",
+	"&9&bOrc&0",
+	"&6&bHalf-&0&6&dElf&0",
+	"&4Barbarian&0",
+	"&3&dHalfling&0",
+	"\n"
+};
+
+const char *race_target[] = {
+	"human",
+	"grey elf",
+	"gnome",
+	"dwarf",
+	"troll",
+	"drow elf",
+	"duergar",
+	"ogre",
+	"orc",
+	"half-elf",
+	"barbarian",
+	"halfling",
+	"\n"
+};
+
+const char *pc_race_types[] = {
+	"&6Human&0",
+    "&8Grey Elf&0",
+	"&1&d&bGnome&0",
+	"&3Dwarf&0",
+	"&2&dTroll&0",
+	"&5Drow Elf&0",
+	"&1Duergar&0",
+	"&4Ogre&0",
+	"&9&bOrc&0",
+	"&6&bHalf-&0&6&dElf&0",
+	"&4Barbarian&0",
+	"&3&dHalfling&0",
+	"\n"
+};
+
+const char *race_align_abbrevs[] = {
+	"&0&3&bGOOD&0",
+	"&0&1&bEVIL&0"
+};
+
+/*************************************************************
+* Ok here's where I started altering the file to retrofit it *
+* to FieryMUD.  I altered the names of the towns in the next *
+* section to reflect the current existing FieryMUD towns. I  *
+* left the extras because I couldn't tell if they were used  *
+* anywhere else or not.   RSD                                *
+*************************************************************/
+
+const char *char_hometown[] = {
+	"&0&9&bKul Vulrath&0\n\r",  /* Replaced Grear */
+	"&0&2Mielikki&0\n\r",	    /* Replaced Syron */
+	"&3Ickle&0\r\n",            /* Replaced Mugnork */
+	"&6Anduin&0\r\n",           /* Replaced Callanadora */
+	"&0&9&bBhanrho&0\r\n",
+	"&0&1&bGholdila&0\r\n",
+	"&0&9&bArganon&0\r\n"
+};
+
+const char *size_abbrevs[] = {
+	"tiny",
+	"small",
+	"medium",
+	"large",
+	"huge",
+	"giant",
+	"gargantuan"
+};
+
+/*The menu for choosing a race in interpreter.c: */
+const char *race_menu =
+"\r\n"
+"Select a race, this is an important choice so think on it.\r\n"
+"  &7a)&0 &6Human&0                    &7h)&0 &2&dSwamp Troll&0\r\n"
+"  &7b)&0 &8Grey Elf&0                 &7i)&0 &4Ogre&0\r\n"
+"  &7c)&0 &1&d&bGnome&0                    &7j)&0 &9&bOrc&0\r\n"
+"  &7d)&0 &3Mountain Dwarf&0           &7k)&0 &1Duergar&0\r\n"
+"  &7e)&0 &4Barbarian&0                &7l)&0 &5Drow Elf&0\r\n"
+"  &7f)&0 &6&bHalf-&0&6&dElf&0\r\n"
+"  &7g)&0 &3&dHalfling&0";
+
+
+
+int parse_race(char arg)
+{
+	arg = LOWER(arg);
+
+	switch (arg) {
+	case 'a':
+		return RACE_HUMAN;
+		break;
+	case 'b':
+		return RACE_ELF;
+		break;
+	case 'c':
+		return RACE_GNOME;
+		break;
+	case 'd':
+		return RACE_DWARF;
+		break;
+	case 'h':
+		return RACE_TROLL;
+		break;
+	case 'l':
+		return RACE_DROW_ELF;
+		break;
+	case 'k':
+		return RACE_DUERGAR;
+		break;
+	case 'i':
+		return RACE_OGRE;
+		break;
+	case 'j':
+		return RACE_ORC;
+		break;
+	case 'f':
+		return RACE_HALF_ELF;
+		break;
+	case 'e':
+		return RACE_BARBARIAN;
+		break;
+	case 'g':
+		return RACE_HALFLING;
+		break;
+    default:
+		return RACE_UNDEFINED;
+		break;
+	}
+}
+
+
+int set_race_align(struct char_data * ch)
+{
+
+	switch(GET_RACE(ch)) {
+	case RACE_GNOME:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_HALFLING:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_HUMAN:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_HALF_ELF:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_ELF:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_DWARF:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_BARBARIAN:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_TROLL:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_DUERGAR:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_OGRE:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_ORC:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_DROW_ELF:
+		return RACE_ALIGN_EVIL;
+		break;
+        default:
+		return RACE_ALIGN_GOOD;
+		break;
+	}
+}
+
+
+/*****************************************************
+* I replaced the Hubis towns with the Fiery towns in *
+* use at this time.  As fiery adds more towns I'll   *
+* copy over and redefine the extras.  RSD            *
+*****************************************************/
+
+/*Home Display numbers linked to home name*/
+#define EMPTY_HOME -1
+#define UNDEFINED_HOME_NO -1
+#define KULVULRATH_HOME 0       /* Replaced GREAR_HOME */
+#define MIELIKKI_HOME 1		/* Replaced SYRON_HOME */
+#define ICKLE_HOME 2            /* Replaced MUGNORK_HOME */
+#define ANDUIN_HOME 3           /* Replaced CALLANDORA_HOME */
+#define BHANRHO_HOME 4
+#define GHOLDILA_HOME 5
+#define ARGANON_HOME 6
+#define CHILCOTIN_HOME 7
+#define NUMB_OF_HOMES 8
+
+/* These are the room defults need one for each place */
+#define DFKUL 61006		/* Replaced DFGEA 5711 Grear */
+#define DFMIE 3001		/* Replaced DFSYR 14955 Syron */
+#define DFICK 10001		/* Replaced DFMUG 30511 Mugnork */
+#define DFAND 6119		/* Replaced DFCAL 22003 Callandora */
+
+/*
+   I went ahead and defined existing fiery rooms for these others in
+   the event they cropped up for some reason  RSD
+*/
+
+#define DFBHA 61006
+#define DFGHA 3001
+#define DFARG 61006
+#define DFCHI 3001
+#define TYPE_WARRIOR 0
+#define TYPE_CLERIC 1
+#define TYPE_MAGE 2
+#define TYPE_ROGUE 3
+#define TYPE_SHAMAN 4
+
+/* Make sue this is filled in if a race is introduced */
+/* Simply Plug where you want them to go in here */
+const int home_town_number[NUM_CLASSES][NUMB_OF_HOMES] =
+      /*KulVul|Mieli|Ickle|Andui|Bhanr|Ghald|Argan|chilc| */
+/*WT*/{{DFKUL ,3022 ,10013,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*CT*/ {DFKUL ,3003 ,10003,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*MT*/ {DFKUL ,3046 ,10030,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*RT*/ {DFKUL ,3038 ,DFICK,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*ST*/ {DFKUL ,DFMIE,10003,DFAND,DFBHA,DFGHA,DFARG,DFICK}};
+
+
+void room_selector(int race, int class, int result_rooms[], short int add)
+{
+/*This function is pretty simple, it is used TWO times,
+(1) When add = TRUE, then the array result_rooms is filled up with the VIEWING TOWN number
+(2) When add = FALSE, then the array is filled with the actual room number
+*/
+
+/*******************************************************************
+* I'm not entirely sure how this next section works, I know it has *
+* something to do with hometown selection and I've replaced each of*
+* Hubis' town references with the properly defined Fiery town for  *
+* where I want each of the races to go  RSD                        *
+*******************************************************************/
+
+
+/*
+Both the if and else of each should have the SAME number of entries.
+The first is the number of the viewing name
+The second is the actual room number
+*/
+	/*Proky*/
+/*ok how this works*/
+/*
+ok the if (add) is WHAT will be displayed on the pc's screen, like syron, or ghear.
+the else is what ROOM will be set (ie warrior start room, or sorcerer etc)
+If person can start in TWO or more rooms then simply add another room to the if.
+eg if a person was a HUMAN and allowed to start in SYRON, and CALLANDORA, then:
+case RACE_HUMAN:
+     if (add)
+	 {
+          result_rooms[a] = MIELIKKI_HOME;a++;	      THIS IS AN EXAMPLE
+		  result_rooms[a] = ANDUIN_HOME;a++;       SECTION
+	 }
+	 else
+	 {
+	     result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		 result_rooms[a] = home_town_number[subtype][ANDUIN_HOME];a++;
+	 }
+
+So you can see that this person would have a choice of two hometowns.
+NOTE MAX OF 5 CHOICES!!
+
+  Proky
+  */
+    int subtype;
+    	int a = 0;
+    switch (class)
+    {
+    case CLASS_ROGUE:
+        subtype = TYPE_ROGUE;
+        break;
+    case CLASS_MAGIC_USER:
+        subtype = TYPE_MAGE;
+        break;
+    case CLASS_WARRIOR:
+        subtype = TYPE_WARRIOR;
+        break;
+    case CLASS_SHAMAN:
+        subtype = TYPE_SHAMAN;
+        break;
+    case CLASS_CLERIC:
+        subtype = TYPE_CLERIC;
+        break;
+    default:
+        subtype = TYPE_WARRIOR;
+        break;
+    }
+
+
+
+	switch(race)
+	{
+	case RACE_GNOME:
+		if (add) /*add means that its for viewing*/
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+  	case RACE_HUMAN:
+		if (add)
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+	case RACE_HALF_ELF:
+		if (add)
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+
+	case RACE_HALFLING:
+		if (add)
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+
+	case RACE_TROLL:
+		if (add)
+		{
+			result_rooms[a] = 0;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_OGRE:
+		if (add)
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_ORC:
+		if (add)
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_DROW_ELF:
+		if (add)
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_DUERGAR:
+		if (add)
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_BARBARIAN:
+		if (add)
+		{
+			result_rooms[a] = ICKLE_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][ICKLE_HOME];a++;
+		}
+		break;
+
+	case RACE_ELF:
+		if (add)
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+
+	case RACE_DWARF:
+		if (add)
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+
+	default:
+		if (add)
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else
+		{
+			result_rooms[a] = UNDEFINED_HOME_NO;a++;
+		}
+		break;
+	}
+	result_rooms[a] = -1;
+
+}
+int set_new_home_town(int race, int class, char arg)
+{
+	int result_rooms[10] = {UNDEFINED_HOME_NO};
+	switch (arg) {
+	case '1':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[0] != '\0')
+			return result_rooms[0];
+		else
+			return UNDEFINED_HOME_NO;
+
+		break;
+
+
+	case '2':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[1] != '\0')
+			return result_rooms[1];
+			else
+				return UNDEFINED_HOME_NO;
+
+		break;
+
+	 case '3':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[2] != '\0')
+			return result_rooms[2];
+			else
+				return UNDEFINED_HOME_NO;
+		break;
+	   case '4':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[3] != '\0')
+			return result_rooms[3];
+			else
+				return UNDEFINED_HOME_NO;
+		break;
+		case '5':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[4] != '\0')
+			return result_rooms[4];
+			else
+				return UNDEFINED_HOME_NO;
+		break;
+
+	 default:
+		return UNDEFINED_HOME_NO;
+		break;
+}
+}
+@
+
+
+1.50
+log
+@Fixed log(buf) to log(%s buf)
+@
+text
+@/***************************************************************************
+ * $Id: races.c,v 1.49 2009/07/04 16:23:36 myc Exp $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: races.c                                        Part of FieryMUD *
+ *  Usage: Aligns race situations                                          *
+ * Author: Brian Williams <bmw@@efn.org>                                    *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on HubisMUD Copyright (C) 1997, 98, 99               *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+#include <math.h>
+
+#include "structs.h"
+#include "interpreter.h"
+#include "utils.h"
+#include "races.h"
+#include "class.h"
+#include "handler.h"
+#include "comm.h"
+#include "db.h"
+#include "casting.h"
+#include "skills.h"
+#include "math.h"
+#include "regen.h"
+#include "composition.h"
+#include "lifeforce.h"
+#include "charsize.h"
+
+/* Prototypes */
+void set_init_height_weight(struct char_data *ch);
+
+
+/* races[]
+ *
+ * The individual members of these struct definitions have been arranged
+ * in a regular fashion, so that they can easily be located.  Please maintain
+ * this arrangement:
+ *
+ *   name, names, displayname, fullname, plainname,
+ *   playable, humanoid, racealign, def_size, def_align, \
+ *     bonus_damroll, bonus_hitroll,
+ *   def_lifeforce, def_composition,
+ *   mweight_lo, mweight_hi, mheight_lo, mheight_hi, \
+ *     fweight_lo, fweight_hi, fheight_lo, fheight_hi
+ *   attrib_scales[], (str, dex, int, wis, con, cha)
+ *   exp_factor, hit_factor, hd_factor, dice_factor, copper_factor, ac_factor,
+ *   move_verb, leave_verb
+ */
+
+struct racedef races[NUM_RACES] = {
+   /* HUMAN */
+   { "human", "human", "&6Human&0", "&6Human&0", "Human",
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      120, 180, 60, 76, 95, 150, 60, 70,
+      { 72, 72, 72, 72, 72, 72 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* GREY ELF */
+   { "elf", "grey gray elf", "&8Grey Elf&0", "&8Grey Elf&0", "Elf",
+      FALSE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, 2, 3,
+      LIFE_LIFE, COMP_FLESH,
+      90, 160, 60, 70, 90, 160, 59, 68,
+      { 64, 80, 88, 86, 64, 78 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* GNOME */
+   { "gnome", "gnome", "&1&d&bGnome&0", "&1&d&bGnome&0", "Gnome",
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_SMALL, 1000, 2, 4,
+      LIFE_LIFE, COMP_FLESH,
+      40, 90, 26, 38, 40, 90, 26, 38,
+      { 64, 76, 88, 84, 68, 76 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* DWARF */
+   { "dwarf", "dwarf mountain", "&3Dwarf&0", "&3Mountain Dwarf&0", "Dwarf",
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, 4, 5,
+      LIFE_LIFE, COMP_FLESH,
+      170, 200, 38, 50, 150, 190, 38, 50,
+      { 84, 76, 64, 86, 84, 68 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* TROLL */
+   { "troll", "swamp troll", "&2&dTroll&0", "&2&dSwamp Troll&0", "Troll",
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_LARGE, -1000, 5, 4,
+      LIFE_LIFE, COMP_FLESH,
+      130, 290, 72, 90, 130, 290, 72, 90,
+      { 92, 72, 56, 56, 92, 64 },
+      100, 120, 110, 110, 75, 100,
+      "prowls in", "prowls"
+   },
+
+   /* DROW */
+   { "drow", "drow", "&5Drow&0", "&5Drow&0", "Drow",
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, 2, 3,
+      LIFE_LIFE, COMP_FLESH,
+      90, 160, 60, 70, 90, 160, 60, 70,
+      { 64, 80, 88, 80, 64, 72 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* DUERGAR */
+   { "duergar", "duergar", "&1Duergar&0", "&1Duergar&0", "Duergar",
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, 4, 5,
+      LIFE_LIFE, COMP_FLESH,
+      170, 200, 38, 50, 150, 190, 38, 50,
+      { 84, 76, 68, 72, 84, 64 },
+      100, 100, 100, 100, 75, 100,
+      "skulks in", "skulks"
+   },
+
+   /* OGRE */
+   { "ogre", "ogre", "&4Ogre&0", "&4Ogre&0", "Ogre",
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_LARGE, -1000, 5, 4,
+      LIFE_LIFE, COMP_FLESH,
+      390, 530, 93, 119, 390, 530, 93, 119,
+      { 96, 64, 52, 60,100, 60 },
+      100, 130, 100, 120, 75, 90,
+      "lumbers in", "lumbers"
+   },
+
+   /* ORC */
+   { "orc", "orc", "&9&bOrc&0", "&9&bOrc&0", "Orc",
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      90, 150, 58, 68, 90, 150, 58, 68,
+      { 72, 72, 72, 72, 72, 72 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* HALF-ELF */
+   { "half-elf", "half-elf half elf", "&6&bHalf-&0&6&dElf&0", "&6&bHalf-&0&6&dElf&0", "Half-Elf",
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      100, 170, 60, 76, 94, 155, 60, 70,
+      { 68, 76, 76, 76, 68, 78 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* BARBARIAN */
+   { "barbarian", "barbarian", "&4Barbarian&0", "&4Barbarian&0", "Barbarian",
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_LARGE, 0, 5, 4,
+      LIFE_LIFE, COMP_FLESH,
+      170, 260, 69, 88, 130, 210, 69, 80,
+      { 88, 68, 60, 60, 88, 64 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* HALFLING */
+   { "halfling", "halfling", "&3&dHalfling&0", "&3&dHalfling&0", "Halfling",
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_SMALL, 1000, 3, 6,
+      LIFE_LIFE, COMP_FLESH,
+      90, 160, 35, 42, 90, 160, 35, 42,
+      { 68, 96, 80, 80, 64, 76 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   },
+
+   /* PLANT */
+   { "plant", "plant", "&2Plant&0", "&2Plant&0", "Plant",
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, 3, 3,
+      LIFE_LIFE, COMP_PLANT,
+      80, 180, 40, 96, 80, 180, 40, 96,
+      { 72, 52, 32, 72, 100, 72 },
+      100, 100, 100, 100, 0, 120,
+      NULL, NULL
+   },
+
+   /* HUMANOID */
+   { "humanoid", "humanoid", "&7Humanoid&0", "&7Humanoid&0", "Humanoid",
+      FALSE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      120, 180, 60, 76, 95, 150, 60, 70,
+      { 72, 72, 72, 72, 72, 72 },
+      100, 100, 100, 100, 100, 60,
+      NULL, NULL
+   },
+
+   /* ANIMAL */
+   { "animal", "animal", "&2Animal&0", "&2Animal&0", "Animal",
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      120, 180, 60, 76, 95, 150, 60, 70,
+      { 72, 72, 72, 72, 72, 72 },
+      100, 100, 100, 100, 0,65,
+      NULL, NULL
+   },
+
+   /* DRAGON */
+   { "dragon", "dragon", "&1&bDragon&0", "&1&bDragon&0", "Dragon",
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_GARGANTUAN, 0, 10, 4,
+      LIFE_LIFE, COMP_FLESH,
+      16000, 64000, 768, 1536, 16000, 64000, 768, 1536,
+      {100, 72,100, 72, 72,100 },
+      130, 130, 140, 140, 500, 140,
+      "stomps in", "stomps"
+   },
+
+   /* GIANT */
+   { "giant", "giant", "&2&bGiant&0", "&2&bGiant&0", "Giant",
+      FALSE, TRUE, RACE_ALIGN_GOOD, SIZE_HUGE, 0, 7, 3,
+      LIFE_LIFE, COMP_FLESH,
+      1000, 4000, 196, 384, 1000, 4000, 196, 384,
+      {100, 72, 44, 64, 80, 72 },
+      110, 120, 120, 100, 125, 120,
+      "lumbers in", "lumbers"
+   },
+
+   /* OTHER */
+   { "other", "other", "&4&bOther&0", "&4&bOther&0", "Other",
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      120, 180, 60, 76, 95, 150, 60, 70,
+      { 72, 72, 72, 72, 72, 72 },
+      80, 110, 120, 80, 75, 105,
+      NULL, NULL
+   },
+
+   /* GOBLIN */
+   { "goblin", "goblin", "&4&bGoblin&0", "&4&bGoblin&0", "Goblin",
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_SMALL, -500, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      60, 90, 30, 38, 55, 80, 30, 35,
+      { 76, 72, 64, 72, 84, 64 },
+      60, 60, 60, 60, 75, 90,
+      NULL, NULL
+   },
+
+   /* DEMON */
+   { "demon", "demon", "&1&bDemon&0", "&1&bDemon&0", "Demon",
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_LARGE, -1000, 6, 4,
+      LIFE_DEMONIC, COMP_FLESH,
+      130, 290, 72, 90, 130, 290, 72, 90,
+      { 80,100, 68, 68, 58, 58 },
+      120, 120, 120, 120, 150, 120,
+      "stalks in", "stalks"
+   },
+
+   /* BROWNIE */
+   { "brownie", "brownie", "&3Brownie&0", "&3Brownie&0", "Brownie",
+      FALSE, TRUE, RACE_ALIGN_GOOD, SIZE_SMALL, 500, 1, 3,
+      LIFE_LIFE, COMP_FLESH,
+      20, 30, 20, 30, 20, 30, 20, 30,
+      { 60, 80, 60, 78, 70, 72 },
+      100, 100, 100, 100, 75, 100,
+      NULL, NULL
+   }
+};
+
+const char *race_align_abbrevs[] = {
+  "&0&3&bGOOD&0",
+  "&0&1&bEVIL&0"
+};
+
+
+static flagvector race_effects_mask[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+void init_races(void)
+{
+  #define PERM_EFF(r, f) SET_FLAG(races[(r)].effect_flags, (f))
+  #define ADD_SKILL(s, p) do { \
+    races[race].skills[pos].skill = (s); \
+    races[race].skills[pos].proficiency = (p); \
+    ++pos; \
+  } while (0)
+
+  int race, pos;
+
+  /*
+   * Add permanent effects to races here.
+   */
+  PERM_EFF(RACE_DROW,     EFF_INFRAVISION);
+  PERM_EFF(RACE_DROW,     EFF_ULTRAVISION);
+  PERM_EFF(RACE_ELF,      EFF_INFRAVISION);
+  PERM_EFF(RACE_DWARF,    EFF_DETECT_POISON);
+  PERM_EFF(RACE_DWARF,    EFF_INFRAVISION);
+  PERM_EFF(RACE_DUERGAR,  EFF_INFRAVISION);
+  PERM_EFF(RACE_DUERGAR,  EFF_ULTRAVISION);
+  PERM_EFF(RACE_HALFLING, EFF_INFRAVISION);
+  PERM_EFF(RACE_HALFLING, EFF_SENSE_LIFE);
+  PERM_EFF(RACE_TROLL,    EFF_INFRAVISION);
+  PERM_EFF(RACE_TROLL,    EFF_ULTRAVISION);
+  PERM_EFF(RACE_OGRE,     EFF_INFRAVISION);
+  PERM_EFF(RACE_OGRE,     EFF_ULTRAVISION);
+  PERM_EFF(RACE_HALF_ELF, EFF_INFRAVISION);
+  PERM_EFF(RACE_GNOME,    EFF_INFRAVISION);
+  PERM_EFF(RACE_BROWNIE,  EFF_INFRAVISION);
+
+  /*
+   * Add race skills to the switch below.
+   */
+  for (race = 0; race < NUM_RACES; ++race) {
+    memset(races[race].skills, 0, sizeof(races[race].skills));
+    pos = 0;
+    switch (race) {
+    case RACE_TROLL:
+      ADD_SKILL(SKILL_DOORBASH, 1000);
+      ADD_SKILL(SKILL_BODYSLAM, 1000);
+      break;
+    case RACE_OGRE:
+      ADD_SKILL(SKILL_DOORBASH, 1000);
+      ADD_SKILL(SKILL_BODYSLAM, 1000);
+      break;
+    case RACE_BARBARIAN:
+      ADD_SKILL(SKILL_DOORBASH, 1000);
+      ADD_SKILL(SKILL_BODYSLAM, 1000);
+      break;
+    case RACE_DRAGON:
+      ADD_SKILL(SKILL_BREATHE, ROLL_SKILL_PROF);
+      ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
+      ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
+      ADD_SKILL(SPELL_ACID_BREATH, 1000);
+      ADD_SKILL(SPELL_FROST_BREATH, 1000);
+      ADD_SKILL(SPELL_GAS_BREATH, 1000);
+      ADD_SKILL(SPELL_FIRE_BREATH, 1000);
+      ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
+      break;
+    case RACE_DEMON:
+      ADD_SKILL(SKILL_BREATHE, ROLL_SKILL_PROF);
+      ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
+      ADD_SKILL(SPELL_ACID_BREATH, 1000);
+      ADD_SKILL(SPELL_FROST_BREATH, 1000);
+      ADD_SKILL(SPELL_GAS_BREATH, 1000);
+      ADD_SKILL(SPELL_FIRE_BREATH, 1000);
+      ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
+      break;
+    case RACE_BROWNIE:
+      ADD_SKILL(SKILL_SNEAK, ROLL_SKILL_PROF);
+      ADD_SKILL(SKILL_HIDE, ROLL_SKILL_PROF);
+      break;
+    }
+    if (pos > NUM_RACE_SKILLS) {
+      sprintf(buf, "init_races: Too many skills assigned to race %s.  "
+                   "Increase NUM_RACE_SKILLS in races.h to at least %d",
+              races[race].name, pos);
+      log("%s",buf);
+      exit(1);
+    }
+  }
+
+  CLEAR_FLAGS(race_effects_mask, NUM_EFF_FLAGS);
+  for (race = 0; race < NUM_RACES; ++race)
+    SET_FLAGS(race_effects_mask, races[race].effect_flags, NUM_EFF_FLAGS);
+
+  #undef ADD_SKILL
+  #undef PERM_EFF
+}
+
+
+
+/* parse_race
+ *
+ * Identifies a race from a string.  Will do partial matches.
+ *
+ * Code is present to prohibit a player from being set to the wrong
+ * race, but it's disabled.  If it were enabled, it would only take
+ * effect if "vict" were not null.
+ *
+ * ch is someone who's trying to change vict's race (e.g., a wizard
+ * manually setting someone to a race due to a quest).
+ *
+ * If RACE_UNDEFINED is returned, this function will already have provided
+ * feedback to ch (if specified) as to the reason for the failure.  Otherwise,
+ * it does not provide feedback.
+ */
+int parse_race(struct char_data *ch, struct char_data *vict, char *arg) {
+   int i, race = RACE_UNDEFINED, altname = RACE_UNDEFINED, best = RACE_UNDEFINED;
+
+   if (!*arg){
+      if (ch)
+         send_to_char("What race?\r\n", ch);
+      return RACE_UNDEFINED;
+   }
+
+   for (i = 0; i < NUM_RACES; i++) {
+      if (!strncasecmp(arg, races[i].name, strlen(arg))) {
+         if (!strcasecmp(arg, races[i].name)) {
+            race = i;
+            break;
+         }
+         if (best == RACE_UNDEFINED)
+            best = i;
+      } else if (isname(arg, races[i].names)) {
+         if (altname == RACE_UNDEFINED)
+            altname = i;
+      } else if (is_abbrev(arg, races[i].name)) {
+         if (best == RACE_UNDEFINED)
+            best = i;
+      }
+   }
+
+   if (race == RACE_UNDEFINED) race = altname;
+   if (race == RACE_UNDEFINED) race = best;
+   if (race == RACE_UNDEFINED) {
+      if (ch)
+         send_to_char("There is no such race.\r\n", ch);
+   }
+
+   /* There are no validity checks. */
+   return race;
+
+   /* The following code could be used to prevent deities from assigning
+    * a race racee to a player if:
+    *
+    *  - The race is not "playable"
+    *  - The player's race does not allow the race
+    *
+    * It's currently not used. */
+
+   /* Bypass validity checks for immortal victims (or no specified victim). */
+   if (!vict || GET_LEVEL(vict) > LVL_MAX_MORT)
+      return race;
+
+   /* The race has been identified, and there is a mortal victim.
+    * Make sure this race is available to the victim. */
+
+   if (!races[race].playable) {
+      if (ch) {
+         sprintf(buf, "The %s race is not available to mortals.\r\n",
+               races[race].name);
+         send_to_char(buf, ch);
+      }
+      return RACE_UNDEFINED;
+   }
+
+   if (!class_ok_race[race][(int)GET_CLASS(vict)]) {
+      if (ch) {
+         sprintf(buf, "As %s, $n can't be %s.",
+               with_indefinite_article(classes[(int)GET_CLASS(vict)].displayname),
+               with_indefinite_article(races[race].displayname));
+         act(buf, FALSE, vict, 0, ch, TO_VICT);
+       }
+       return RACE_UNDEFINED;
+   }
+
+   return race;
+}
+
+/* Send a menu to someone who's creating a character, listing the available
+ * races.  We assume that this function would not have been called if
+ * "races_allowed" were false. */
+void send_race_menu(struct descriptor_data *d) {
+   extern int evil_races_allowed;
+   char idx;
+   int i;
+
+   write_to_output("\r\nThe following races are available:\r\n", d);
+   for (i = 0, idx = 'a'; i < NUM_RACES; i++) {
+      if (races[i].playable &&
+            (evil_races_allowed || races[i].racealign == RACE_ALIGN_GOOD)) {
+         sprintf(buf, "  &7%c)&0 %s\r\n", idx, races[i].fullname);
+         write_to_output(buf, d);
+         idx++;
+      }
+   }
+}
+
+/* Someone who's creating a character typed a letter to indicate which
+ * race they wanted.  Determine which race they indicated, using the same
+ * rules as send_race_menu() -- skip over inactive/unavailable races. */
+int interpret_race_selection(char arg) {
+   extern int evil_races_allowed;
+   char idx;
+   int i;
+
+   for (i = 0, idx = 'a'; i < NUM_RACES; i++) {
+      if (races[i].playable &&
+            (evil_races_allowed || races[i].racealign == RACE_ALIGN_GOOD)) {
+         if (arg == idx)
+            return i;
+         idx++;
+      }
+   }
+   return RACE_UNDEFINED;
+}
+
+/* Oddly enough, the base value for movement points is not stored
+ * anywhere.  Thus, it would be impossible to increase the value
+ * as a player advances in level.  Anyway, the same value gets set,
+ * based on CON, whenever a player logs in.
+ *
+ * There are times when you want to see this unaffected value, so
+ * here's the function to find it.  This is also used at character
+ * creation time and when logging. */
+int natural_move(struct char_data *ch)
+{
+   if (IS_NPC(ch) && GET_MOB_RNUM(ch) >= 0) {
+
+     /* Mountable mobs will have their mv points set according to level.
+      * The second parameter to pow (now 0.8) controls how the points
+      * increase as the level increases. If it were 1, the points would
+      * increase in a straight line as the level increases. If it were
+      * greater than 1, the points would increase slowly at first, and
+      * then sharply curve up to their maximum as the level got close
+      * to the maximum level. When it's below 1, the points increase
+      * quickly at first, and then slowly reach their maximum. */
+
+      if (MOB_FLAGGED(ch, MOB_MOUNTABLE)) {
+         if (GET_LEVEL(ch) > MAX_MOUNT_LEVEL)
+            return MOUNT_MAXMOVE + 2 * (GET_LEVEL(ch) - MAX_MOUNT_LEVEL) +
+                  number(0, 9);
+         else
+            return (int)(MOUNT_MINMOVE + (MOUNT_MAXMOVE - MOUNT_MINMOVE) *
+                  pow((GET_LEVEL(ch) - 1) / (double)(MAX_MOUNT_LEVEL - 1), 0.8)) +
+                  number(0, 9);
+      } else
+         return mob_proto[GET_MOB_RNUM(ch)].points.max_move;
+   } else {
+      return MAX(100, GET_CON(ch) * 2);
+   }
+}
+
+/* init_proto_race()
+ *
+ * Sets beginning values on a mob prototype, according to race.
+ */
+
+void init_proto_race(struct char_data *ch)
+{
+   set_base_size(ch, races[(int)GET_RACE(ch)].def_size);
+   GET_LIFEFORCE(ch) = races[(int)GET_RACE(ch)].def_lifeforce;
+   BASE_COMPOSITION(ch) = races[(int)GET_RACE(ch)].def_composition;
+   GET_COMPOSITION(ch) = BASE_COMPOSITION(ch);
+}
+
+/* init_char_race()
+ *
+ * Sets beginning values that are appropriate for a brand-new character,
+ * according to race. */
+
+void init_char_race(struct char_data *ch)
+{
+   if (!IS_NPC(ch) && VALID_RACE(ch)) {
+      GET_BASE_DAMROLL(ch) = races[(int) GET_RACE(ch)].bonus_damroll;
+      GET_BASE_HITROLL(ch) = races[(int) GET_RACE(ch)].bonus_hitroll;
+   }
+
+   /* NPCs will have their own align defined at build time,
+    * and it might have been adjusted by the builder, too. */
+   if (!IS_NPC(ch) && VALID_RACE(ch))
+      GET_ALIGNMENT(ch) = races[(int)GET_RACE(ch)].def_align;
+   set_init_height_weight(ch);
+
+   GET_MAX_MOVE(ch) = natural_move(ch);
+}
+
+void update_char_race(struct char_data *ch)
+{
+   if (!VALID_RACE(ch)) {
+     log("update_char_race: %s doesn't have a valid race (%d).",
+         GET_NAME(ch), GET_RACE(ch));
+     return;
+   }
+
+   GET_RACE_ALIGN(ch) = races[(int)GET_RACE(ch)].racealign;
+
+   /* Any bits that might get set below should be cleared here first. */
+   REMOVE_FLAGS(EFF_FLAGS(ch), race_effects_mask, NUM_EFF_FLAGS);
+
+   /* Reset effect flags for this race */
+   SET_FLAGS(EFF_FLAGS(ch), races[(int) GET_RACE(ch)].effect_flags, NUM_EFF_FLAGS);
+}
+
+/*
+ * Returns a positive value for skills that this race has.
+ *
+ * Doesn't disqualify any skills! Only enables them.
+ */
+
+int racial_skill_proficiency(int skill, int race, int level)
+{
+   int i;
+
+   for (i = 0; races[race].skills[i].skill > 0 && i < NUM_RACE_SKILLS; ++i)
+      if (races[race].skills[i].skill == skill) {
+         return races[race].skills[i].proficiency;
+      }
+
+  return 0;
+}
+
+/* convert_race does no checking.  It expects a valid race and ch.
+ * This function changes a player's race and converts the skills/spells
+ * accordingly, keeping the old values if they are better.
+ * It also transfers quest spells. */
+void convert_race(struct char_data *ch, int newrace)
+{
+  int skill;
+  sh_int old_skills[TOP_SKILL+1];
+  sh_int new_skills[TOP_SKILL+1];
+
+  /* read in the player's old skills */
+  for (skill = 0; skill <= TOP_SKILL; skill++) {
+    old_skills[skill] = GET_ISKILL(ch, skill);
+  }
+
+  /* set race/align */
+  GET_RACE(ch) = newrace;
+
+  /* Big changes occur here: */
+  update_char(ch);
+
+  /* read the new skills */
+  for (skill = 0; skill <= TOP_SKILL; skill++) {
+    new_skills[skill] = GET_ISKILL(ch, skill);
+  }
+
+  /* compare old and new */
+  for (skill = 0; skill <= TOP_SKILL; skill++) {
+    if(new_skills[skill]) {
+      /* keep the value of the old skill if you still have the skill */
+      if(old_skills[skill] > new_skills[skill]) {
+        SET_SKILL(ch, skill, old_skills[skill]);
+      }
+    }
+
+    /* keep any quest spells you might have earned */
+    if((old_skills[skill]) && (skills[skill].quest)) {
+      SET_SKILL(ch, skill, old_skills[skill]);
+    }
+  }
+  check_regen_rates(ch);
+}
+
+void scale_attribs(struct char_data *ch) {
+   if (VALID_RACE(ch)) {
+      GET_AFFECTED_STR(ch) = (GET_VIEWED_STR(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_STR - 1]) / 100;
+      GET_AFFECTED_DEX(ch) = (GET_VIEWED_DEX(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_DEX - 1]) / 100;
+      GET_AFFECTED_INT(ch) = (GET_VIEWED_INT(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_INT - 1]) / 100;
+      GET_AFFECTED_WIS(ch) = (GET_VIEWED_WIS(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_WIS - 1]) / 100;
+      GET_AFFECTED_CON(ch) = (GET_VIEWED_CON(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CON - 1]) / 100;
+      GET_AFFECTED_CHA(ch) = (GET_VIEWED_CHA(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CHA - 1]) / 100;
+   } else {
+      GET_AFFECTED_STR(ch) = GET_VIEWED_STR(ch) * 72 / 100;
+      GET_AFFECTED_DEX(ch) = GET_VIEWED_DEX(ch) * 72 / 100;
+      GET_AFFECTED_INT(ch) = GET_VIEWED_INT(ch) * 72 / 100;
+      GET_AFFECTED_WIS(ch) = GET_VIEWED_WIS(ch) * 72 / 100;
+      GET_AFFECTED_CON(ch) = GET_VIEWED_CON(ch) * 72 / 100;
+      GET_AFFECTED_CHA(ch) = GET_VIEWED_CHA(ch) * 72 / 100;
+   }
+}
+
+/***************************************************************************
+ * $Log: races.c,v $
+ * Revision 1.49  2009/07/04 16:23:36  myc
+ * Removed an unneeded local buffer.
+ *
+ * Revision 1.48  2009/03/16 09:44:38  jps
+ * Added brownie race
+ *
+ * Revision 1.47  2009/03/09 16:57:47  myc
+ * Added detect poison effect as dwarven innate.
+ *
+ * Revision 1.46  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.45  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.44  2008/09/27 03:21:28  jps
+ * Changed size of ogres to large.
+ *
+ * Revision 1.43  2008/08/30 01:31:51  myc
+ * Changed the way stats are calculated in effect_total; ability
+ * stats are saved in a raw form now, and only capped when accessed.
+ * Damroll and hitroll are recalculated everytime effect_total
+ * is called, using cached base values.
+ *
+ * Revision 1.42  2008/06/21 17:27:56  jps
+ * Added movement strings to race definitions. Made more use of the
+ * VALID_RACE macro.
+ *
+ * Revision 1.41  2008/05/11 05:42:03  jps
+ * Using regen.h.
+ *
+ * Revision 1.40  2008/04/26 23:35:43  myc
+ * Info about permanent effects and race skills are stored in the
+ * class/race structs now, but need to be initialized at runtime
+ * by the init_races and init_classes functions.
+ *
+ * Revision 1.39  2008/04/19 18:25:02  jps
+ * Fixed dragon default size to gargantuan.
+ *
+ * Revision 1.38  2008/04/05 05:05:42  myc
+ * Removed SEND_TO_Q macro, so call write_to_output directly.
+ *
+ * Revision 1.37  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.36  2008/03/26 16:44:36  jps
+ * Replaced all checks for undead race with checks for undead lifeforce.
+ * Replaced the undead race with the plant race.
+ *
+ * Revision 1.35  2008/03/23 00:24:11  jps
+ * Use base composition when initializing prototypes.
+ *
+ * Revision 1.34  2008/03/22 21:44:23  jps
+ * Changing the base size, life force, and composition are now
+ * done automatically only for mob prototypes.
+ *
+ * Revision 1.33  2008/03/22 21:26:50  jps
+ * Adding default life force and composition to each race definition.
+ * Setting a character's base size, life force, and composition
+ * according to the default values when created.
+ *
+ * Revision 1.32  2008/03/21 16:09:01  myc
+ * Quick-fix for racial_skill_proficiency log spam.
+ *
+ * Revision 1.31  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.30  2008/03/18 06:00:31  jps
+ * Remove unused array size_abbrevs.
+ *
+ * Revision 1.29  2008/03/11 02:13:39  jps
+ * Moving size-related functions to chars.c.
+ *
+ * Revision 1.28  2008/03/10 19:55:37  jps
+ * Made a struct for sizes with name, height, and weight.  Save base height
+ * weight and size so they stay the same over size changes.
+ *
+ * Revision 1.27  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.26  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.25  2008/01/27 13:43:50  jps
+ * Moved race and species-related data to races.h/races.c and merged species into races.
+ *
+ * Revision 1.24  2008/01/27 01:13:39  jps
+ * Stop overriding the mob-prototype alignment when loading mobs.
+ *
+ * Revision 1.23  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.22  2008/01/23 14:42:53  jps
+ * Added a bunch of race definitions.
+ *
+ * Revision 1.21  2008/01/23 14:15:15  jps
+ * Added the "humanoid" field to racedefs.
+ *
+ * Revision 1.20  2008/01/09 13:04:24  jps
+ * Oops, forgot to remove some debugging code.
+ *
+ * Revision 1.19  2008/01/09 09:19:50  jps
+ * Add function natural_move to tell us a mob's natural move points.
+ * Set base move points here, rather than db.c.
+ *
+ * Revision 1.18  2008/01/09 08:32:52  jps
+ * Add code to set a character's height and weight when created.
+ * If there is a race definition, it uses the information there.
+ * Otherwise it produces random values according to the "size".
+ *
+ * Revision 1.17  2008/01/06 18:17:14  jps
+ * Added bonus hit/dam, and height/weight/size/lang/align values
+ * into struct racedef.
+ *
+ * Revision 1.16  2008/01/05 05:43:53  jps
+ * Lots of stuff moved from class.c. Which deals with races.
+ *
+ * Revision 1.15  2008/01/04 02:33:16  jps
+ * The race selection menu is now dynamic.
+ *
+ * Revision 1.14  2008/01/04 01:49:41  jps
+ * Added races.h file.  Combined several race-related items into the
+ * global array "races".  Removed obsolete hometown stuff.
+ *
+ * Revision 1.13  2008/01/03 12:44:03  jps
+ * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+ * to CLASS_SORCERER.
+ *
+ * Revision 1.12  2008/01/02 07:11:32  jps
+ * Using class.h.
+ *
+ * Revision 1.11  2007/03/27 04:27:05  myc
+ * Added new size, colossal.
+ *
+ * Revision 1.10  2006/11/26 08:31:17  jps
+ * Typo fixes for character creation process.
+ *
+ * Revision 1.9  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.8  2000/11/24 21:17:12  rsd
+ * Altered comment header and added back rlog messgaes from
+ * prior to the addition of the $log$ string.
+ *
+ * Revision 1.7  2000/11/14 20:23:14  rsd
+ * removed some old comments from the file and corrected a typo
+ *
+ * Revision 1.6  2000/09/13 01:53:49  rsd
+ * Ok, I fixed it to where all good races create to Mielikki
+ * since we don't have th playerbase to spread newbies out so far.
+ * grumble.
+ *
+ * Revision 1.5  2000/05/14 05:22:37  rsd
+ * completely fixed the comment header. Added Kerristone as
+ * a hometowne, also added it as a choice for humans to select
+ * for the time being. Also retabbed where players can
+ * select hometowns.
+ *
+ * Revision 1.4  1999/12/12 06:47:01  rsd
+ * altered const char *race_menu to remove grey and drow elfs.
+ * added a const char *good_race_menu for good race only character
+ * creation.  Added a int parse_good_race() with case statements
+ * for good races only.  Altered int parse_race() to be in ABC
+ * choice order, removed grey and drow elf from it's choices.
+ *
+ * Revision 1.3  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.2  1999/02/01 03:51:29  mud
+ * indented entire file except matrix
+ * dos2unix
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.49
+log
+@Removed an unneeded local buffer.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.48 2009/03/16 09:44:38 jps Exp myc $
+d354 1
+a354 1
+      log(buf);
+d663 3
+@
+
+
+1.48
+log
+@Added brownie race
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.47 2009/03/09 16:57:47 myc Exp jps $
+d568 2
+a569 4
+     char buf[500];
+     sprintf(buf, "update_char_race: %s doesn't have a valid race (%d).",
+             GET_NAME(ch), GET_RACE(ch));
+     log(buf);
+d663 3
+@
+
+
+1.47
+log
+@Added detect poison effect as dwarven innate.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.46 2009/03/08 23:34:14 jps Exp myc $
+a38 2
+#define ROLL_SKILL_PROF      (-1)
+
+d256 10
+a266 1
+
+d290 2
+a291 2
+  PERM_EFF(RACE_DROW_ELF, EFF_INFRAVISION);  
+  PERM_EFF(RACE_DROW_ELF, EFF_ULTRAVISION);  
+d305 1
+d345 4
+d352 1
+a352 1
+                   "Increase NUM_RACE_SKILLS in races.h to at least %d", 
+d596 1
+a596 4
+         if (races[race].skills[i].proficiency == ROLL_SKILL_PROF)
+            return roll_mob_skill(level);
+         else
+            return races[race].skills[i].proficiency;
+d665 3
+@
+
+
+1.46
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.45 2009/03/08 21:43:27 jps Exp jps $
+d286 1
+d656 3
+@
+
+
+1.45
+log
+@Split lifeforce, composition, charsize, and damage types from chars.c
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.44 2008/09/27 03:21:28 jps Exp jps $
+d28 1
+a28 1
+#include "spells.h"
+d655 3
+@
+
+
+1.44
+log
+@Changed size of ogres to large.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.43 2008/08/30 01:31:51 myc Exp jps $
+d32 3
+d655 3
+@
+
+
+1.43
+log
+@Changed the way stats are calculated in effect_total; ability
+stats are saved in a raw form now, and only capped when accessed.
+Damroll and hitroll are recalculated everytime effect_total
+is called, using cached base values.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.42 2008/06/21 17:27:56 jps Exp myc $
+d129 1
+a129 1
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_HUGE, -1000, 5, 4,
+d652 6
+@
+
+
+1.42
+log
+@Added movement strings to race definitions. Made more use of the
+VALID_RACE macro.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.41 2008/05/11 05:42:03 jps Exp jps $
+a440 12
+/* This sets the racial hitroll and damroll bonuses. */
+void apply_racial_bonus_hit_and_dam(struct char_data *ch)
+{
+   if (VALID_RACE(ch)) {
+      GET_DAMROLL(ch) = races[(int)GET_RACE(ch)].bonus_damroll;
+      GET_HITROLL(ch) = races[(int)GET_RACE(ch)].bonus_hitroll;
+   } else {
+      GET_DAMROLL(ch) = 0;
+      GET_HITROLL(ch) = 0;
+   }
+}
+
+d535 3
+a537 2
+   if (!IS_NPC(ch)){
+      apply_racial_bonus_hit_and_dam(ch);
+d652 4
+@
+
+
+1.41
+log
+@Using regen.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.40 2008/04/26 23:35:43 myc Exp jps $
+d52 2
+a53 1
+ *   exp_factor, hit_factor, hd_factor, dice_factor, copper_factor, ac_factor
+d63 2
+a64 1
+      100, 100, 100, 100, 75, 100
+d73 2
+a74 1
+      100, 100, 100, 100, 75, 100
+d83 2
+a84 1
+      100, 100, 100, 100, 75, 100
+d93 2
+a94 1
+      100, 100, 100, 100, 75, 100
+d103 2
+a104 1
+      100, 120, 110, 110, 75, 100
+d113 2
+a114 1
+      100, 100, 100, 100, 75, 100
+d123 2
+a124 1
+      100, 100, 100, 100, 75, 100
+d133 2
+a134 1
+      100, 130, 100, 120, 75, 90
+d143 2
+a144 1
+      100, 100, 100, 100, 75, 100
+d153 2
+a154 1
+      100, 100, 100, 100, 75, 100
+d163 2
+a164 1
+      100, 100, 100, 100, 75, 100
+d173 2
+a174 1
+      100, 100, 100, 100, 75, 100
+d183 2
+a184 1
+      100, 100, 100, 100, 0, 120
+d193 2
+a194 1
+      100, 100, 100, 100, 100, 60
+d203 2
+a204 1
+      100, 100, 100, 100, 0,65
+d213 2
+a214 1
+      130, 130, 140, 140, 500, 140
+d223 2
+a224 1
+      110, 120, 120, 100, 125, 120
+d233 2
+a234 1
+      80, 110, 120, 80, 75, 105
+d243 2
+a244 1
+      60, 60, 60, 60, 75, 90
+d253 2
+a254 1
+      120, 120, 120, 120, 150, 120
+d444 1
+a444 1
+   if (GET_RACE(ch) >= 0 && GET_RACE(ch) < NUM_RACES) {
+d553 1
+a553 1
+   if (!IS_NPC(ch) && GET_RACE(ch) >= 0 && GET_RACE(ch) < NUM_RACES)
+d663 3
+@
+
+
+1.40
+log
+@Info about permanent effects and race skills are stored in the
+class/race structs now, but need to be initialized at runtime
+by the init_races and init_classes functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.39 2008/04/19 18:25:02 jps Exp myc $
+d31 1
+d642 5
+@
+
+
+1.39
+log
+@Fixed dragon default size to gargantuan.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.38 2008/04/05 05:05:42 myc Exp jps $
+d35 2
+d242 89
+d540 8
+d551 4
+a554 62
+   REMOVE_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+   REMOVE_FLAG(EFF_FLAGS(ch), EFF_SENSE_LIFE);
+   REMOVE_FLAG(EFF_FLAGS(ch), EFF_ULTRAVISION);
+
+   switch (GET_RACE(ch)) {
+      case RACE_DROW_ELF:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         SET_FLAG(EFF_FLAGS(ch), EFF_ULTRAVISION);
+         break;
+      case RACE_ELF:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         break;
+      case RACE_DWARF:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         break;
+      case RACE_DUERGAR:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         SET_FLAG(EFF_FLAGS(ch), EFF_ULTRAVISION);
+         break;
+      case RACE_HALFLING:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         SET_FLAG(EFF_FLAGS(ch), EFF_SENSE_LIFE);
+         break;
+      case RACE_TROLL:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         SET_FLAG(EFF_FLAGS(ch), EFF_ULTRAVISION);
+         break;
+      case RACE_OGRE:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         SET_FLAG(EFF_FLAGS(ch), EFF_ULTRAVISION);
+         break;
+      case RACE_HALF_ELF:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         break;
+      case RACE_GNOME:
+         SET_FLAG(EFF_FLAGS(ch), EFF_INFRAVISION);
+         break;
+      case RACE_BARBARIAN:
+         break;
+      case RACE_HUMAN:
+         break;
+      case RACE_ORC:
+         break;
+      case RACE_PLANT:
+         break;
+      case RACE_HUMANOID:
+         break;
+      case RACE_ANIMAL:
+         break;
+      case RACE_GIANT:
+         break;
+      case RACE_OTHER:
+         break;
+      case RACE_GOBLIN:
+         break;
+      case RACE_DRAGON:
+         break;
+      case RACE_DEMON:
+         break;
+      default:
+         break;
+   }
+d565 10
+a574 53
+   switch (race) {
+      case RACE_TROLL:
+         switch (skill) {
+            case SKILL_DOORBASH:
+               return 1000;
+            case SKILL_BODYSLAM:
+               return 1000;
+         }
+         break;
+      case RACE_OGRE:
+         switch (skill) {
+            case SKILL_DOORBASH:
+               return 1000;
+            case SKILL_BODYSLAM:
+               return 1000;
+         }
+         break;
+      case RACE_BARBARIAN:
+         switch (skill) {
+            case SKILL_DOORBASH:
+               return 1000;
+            case SKILL_BODYSLAM:
+               return 1000;
+         }
+         break;
+      case RACE_DRAGON:
+         switch (skill) {
+            case SKILL_BREATHE:
+            case SKILL_SWEEP:
+            case SKILL_ROAR:
+               return roll_mob_skill(level);
+            case SPELL_ACID_BREATH:
+            case SPELL_FROST_BREATH:
+            case SPELL_GAS_BREATH:
+            case SPELL_FIRE_BREATH:
+            case SPELL_LIGHTNING_BREATH:
+               return 1000;
+         }
+         break;
+      case RACE_DEMON:
+         switch (skill) {
+            case SKILL_BREATHE:
+            case SKILL_ROAR:
+               return roll_mob_skill(level);
+            case SPELL_ACID_BREATH:
+            case SPELL_FROST_BREATH:
+            case SPELL_GAS_BREATH:
+            case SPELL_FIRE_BREATH:
+            case SPELL_LIGHTNING_BREATH:
+               return 1000;
+         }
+         break;
+  }
+d641 3
+@
+
+
+1.38
+log
+@Removed SEND_TO_Q macro, so call write_to_output directly.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.37 2008/03/28 17:54:53 myc Exp myc $
+d185 1
+a185 1
+      100, 100, 100, 100, 0,65 
+d190 1
+a190 1
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_GIANT, 0, 10, 4,
+d643 3
+@
+
+
+1.37
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.36 2008/03/26 16:44:36 jps Exp myc $
+d348 1
+a348 1
+   SEND_TO_Q("\r\nThe following races are available:\r\n", d);
+d353 1
+a353 1
+         SEND_TO_Q(buf, d);
+d643 4
+@
+
+
+1.36
+log
+@Replaced all checks for undead race with checks for undead lifeforce.
+Replaced the undead race with the plant race.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.35 2008/03/23 00:24:11 jps Exp jps $
+d452 3
+a454 3
+   REMOVE_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+   REMOVE_BIT(AFF_FLAGS(ch), AFF_SENSE_LIFE);
+   REMOVE_BIT(AFF2_FLAGS(ch), AFF2_ULTRAVISION);
+d458 2
+a459 2
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+         SET_BIT(AFF2_FLAGS(ch), AFF2_ULTRAVISION);
+d462 1
+a462 1
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+d465 1
+a465 1
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+d468 2
+a469 2
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+         SET_BIT(AFF2_FLAGS(ch), AFF2_ULTRAVISION);
+d472 2
+a473 2
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+         SET_BIT(AFF_FLAGS(ch), AFF_SENSE_LIFE);
+d476 2
+a477 2
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+         SET_BIT(AFF2_FLAGS(ch), AFF2_ULTRAVISION);
+d480 2
+a481 2
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+         SET_BIT(AFF2_FLAGS(ch), AFF2_ULTRAVISION);
+d484 1
+a484 1
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+d487 1
+a487 1
+         SET_BIT(AFF_FLAGS(ch), AFF_INFRAVISION);
+d643 4
+@
+
+
+1.35
+log
+@Use base composition when initializing prototypes.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.34 2008/03/22 21:44:23 jps Exp jps $
+d45 1
+d48 1
+a48 1
+ *   attrib_scales[],
+d161 7
+a167 7
+   /* UNDEAD */
+   { "undead", "undead", "&9&bUndead&0", "&9&bUndead&0", "Undead",
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, 0, 3, 3,
+      LIFE_LIFE, COMP_FLESH,
+      120, 180, 60, 76, 95, 150, 60, 70,
+      { 80, 80, 72, 72, 64, 64 },
+      110, 100, 100, 110, 40, 110
+d495 1
+a495 1
+      case RACE_UNDEAD:
+d643 3
+@
+
+
+1.34
+log
+@Changing the base size, life force, and composition are now
+done automatically only for mob prototypes.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.33 2008/03/22 21:26:50 jps Exp jps $
+d422 2
+a423 1
+   GET_COMPOSITION(ch) = races[(int)GET_RACE(ch)].def_composition;
+d642 4
+@
+
+
+1.33
+log
+@Adding default life force and composition to each race definition.
+Setting a character's base size, life force, and composition
+according to the default values when created.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.32 2008/03/21 16:09:01 myc Exp jps $
+d413 12
+a439 1
+   set_base_size(ch, races[(int)GET_RACE(ch)].def_size);
+a441 3
+   GET_LIFEFORCE(ch) = races[(int)GET_RACE(ch)].def_lifeforce;
+   GET_COMPOSITION(ch) = races[(int)GET_RACE(ch)].def_composition;
+
+d641 5
+@
+
+
+1.32
+log
+@Quick-fix for racial_skill_proficiency log spam.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.31 2008/03/21 15:01:17 myc Exp myc $
+d55 1
+d64 1
+d73 1
+d82 1
+d91 1
+d100 1
+d109 1
+d118 1
+d127 1
+d136 1
+d145 1
+d154 1
+d163 1
+d172 1
+d181 1
+d190 1
+d199 1
+d208 1
+d217 1
+d226 1
+d428 1
+d430 4
+d633 3
+@
+
+
+1.31
+log
+@Removed languages.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.30 2008/03/18 06:00:31 jps Exp myc $
+a495 2
+            default:
+               return 0;
+d497 1
+a503 2
+            default:
+               return 0;
+d505 1
+a511 2
+            default:
+               return 0;
+d513 1
+a525 2
+            default:
+               return 0;
+d527 1
+a538 2
+            default:
+               return 0;
+d540 1
+a540 4
+      default:
+         sprintf(buf, "SYSERR:races.c:racial_skill_proficiency(): Unknown Race %d",
+               race);
+         log(buf);
+d608 3
+@
+
+
+1.30
+log
+@Remove unused array size_abbrevs.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.29 2008/03/11 02:13:39 jps Exp jps $
+d43 1
+a43 1
+ *   playable, humanoid, racealign, def_size, def_align, def_lang, \
+d54 1
+a54 1
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, LANG_COMMON, 3, 3,
+d62 1
+a62 1
+      FALSE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, LANG_ELVEN, 2, 3,
+d70 1
+a70 1
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_SMALL, 1000, LANG_GNOMISH, 2, 4,
+d78 1
+a78 1
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, LANG_DWARVEN, 4, 5,
+d86 1
+a86 1
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_LARGE, -1000, LANG_TROLLISH, 5, 4,
+d94 1
+a94 1
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, LANG_DROW, 2, 3,
+d102 1
+a102 1
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, LANG_DUERGAR, 4, 5,
+d110 1
+a110 1
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_HUGE, -1000, LANG_OGRE, 5, 4,
+d118 1
+a118 1
+      TRUE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, LANG_ORCISH, 3, 3,
+d126 1
+a126 1
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, LANG_ELVEN, 3, 3,
+d134 1
+a134 1
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_LARGE, 0, LANG_BARBARIAN, 5, 4,
+d142 1
+a142 1
+      TRUE, TRUE, RACE_ALIGN_GOOD, SIZE_SMALL, 1000, LANG_HALFLING, 3, 6,
+d150 1
+a150 1
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, 0, LANG_COMMON, 3, 3,
+d158 1
+a158 1
+      FALSE, TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, LANG_COMMON, 3, 3,
+d166 1
+a166 1
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, LANG_COMMON, 3, 3,
+d174 1
+a174 1
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_GIANT, 0, LANG_COMMON, 10, 4,
+d182 1
+a182 1
+      FALSE, TRUE, RACE_ALIGN_GOOD, SIZE_HUGE, 0, LANG_COMMON, 7, 3,
+d190 1
+a190 1
+      FALSE, FALSE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, LANG_COMMON, 3, 3,
+d198 1
+a198 1
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_SMALL, -500, LANG_COMMON, 3, 3,
+d206 1
+a206 1
+      FALSE, TRUE, RACE_ALIGN_EVIL, SIZE_LARGE, -1000, LANG_COMMON, 6, 4,
+d406 1
+a406 1
+   if (!IS_NPC(ch) && GET_RACE(ch) >= 0 && GET_RACE(ch) < NUM_RACES) {
+a407 2
+      SPEAKING(ch) = races[(int)GET_RACE(ch)].def_lang;
+   }
+a489 63
+      case RACE_DROW_ELF:
+         switch (skill) {
+            case LANG_DUERGAR:
+               return 300;
+            case LANG_DROW:
+               return 1000;
+            case LANG_OGRE:
+               return 300;
+            default:
+               return 0;
+         }
+      case RACE_ELF:
+         switch (skill) {
+            case LANG_ELVEN:
+               return 1000;
+            case LANG_COMMON:
+               return 200;
+            case LANG_HALFLING:
+               return 200;
+            case LANG_GNOMISH:
+               return 200;
+            default:
+               return 0;
+         }
+      case RACE_DWARF:
+         switch (skill) {
+            case LANG_DWARVEN:
+               return 1000;
+            case LANG_COMMON:
+               return 100;
+            case LANG_HALFLING:
+               return 200;
+            case LANG_GNOMISH:
+               return 200;
+            default:
+               return 0;
+         }
+      case RACE_DUERGAR:
+         switch (skill) {
+            case LANG_DUERGAR:
+               return 1000;
+            case LANG_DROW:
+               return 100;
+            case LANG_OGRE:
+               return 200;
+            default:
+               return 0;
+         }
+      case RACE_HALFLING:
+         switch (skill) {
+            case LANG_HALFLING:
+               return 1000;
+            case LANG_ELVEN:
+               return 200;
+            case LANG_DWARVEN:
+               return 400;
+            case LANG_COMMON:
+               return 400;
+            case LANG_GNOMISH:
+               return 200;
+            default:
+               return 0;
+         }
+a491 4
+            case LANG_TROLLISH:
+               return 1000;
+            case LANG_DROW:
+               return 50;
+a500 4
+            case LANG_OGRE:
+               return 1000;
+            case LANG_TROLLISH:
+               return 50;
+a507 26
+      case RACE_HALF_ELF:
+         switch (skill) {
+            case LANG_COMMON:
+               return 1000;
+            case LANG_HALFLING:
+               return 200;
+            case LANG_ELVEN:
+               return 1000;
+            case LANG_DWARVEN:
+               return 200;
+            default:
+               return 0;
+         }
+      case RACE_GNOME:
+         switch (skill) {
+            case LANG_GNOMISH:
+               return 1000;
+            case LANG_COMMON:
+               return 200;
+            case LANG_HALFLING:
+               return 200;
+            case LANG_ELVEN:
+               return 200;
+            default:
+               return 0;
+         }
+a509 4
+            case LANG_BARBARIAN:
+               return 1000;
+            case LANG_COMMON:
+               return 200;
+a516 42
+      case RACE_HUMAN:
+         switch (skill) {
+            case LANG_COMMON:
+               return 1000;
+            case LANG_GNOMISH:
+               return 200;
+            case LANG_HALFLING:
+               return 200;
+            case LANG_ELVEN:
+               return 200;
+            case LANG_DWARVEN:
+               return 200;
+            default:
+               return 0;
+         }
+      case RACE_ORC:
+         switch (skill) {
+            case LANG_ORCISH:
+               return 1000;
+            case LANG_DUERGAR:
+               return 200;
+            case LANG_DROW:
+               return 200;
+            case LANG_OGRE:
+               return 100;
+            case LANG_TROLLISH:
+               return 200;
+            default:
+               return 0;
+         }
+      case RACE_UNDEAD:
+         break;
+      case RACE_HUMANOID:
+         break;
+      case RACE_ANIMAL:
+         break;
+      case RACE_GIANT:
+         break;
+      case RACE_OTHER:
+         break;
+      case RACE_GOBLIN:
+         break;
+d617 3
+@
+
+
+1.29
+log
+@Moving size-related functions to chars.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.28 2008/03/10 19:55:37 jps Exp jps $
+a306 11
+const char *size_abbrevs[] = {
+  "tiny",
+  "small",
+  "medium",
+  "large",
+  "huge",
+  "giant",
+  "gargantuan",
+  "colossal"
+};
+
+d762 3
+@
+
+
+1.28
+log
+@Made a struct for sizes with name, height, and weight.  Save base height
+weight and size so they stay the same over size changes.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.27 2008/02/09 04:27:47 myc Exp jps $
+a752 133
+/* name, weight_min, weight_max, height_min, height_max */
+struct sizedef sizes[NUM_SIZES] = {
+   /* TINY */        { "tiny", 1, 3, 1, 18 },
+   /* SMALL */       { "small", 5, 40, 19, 42 },
+   /* MEDIUM */      { "medium", 40, 300, 42, 92 },
+   /* LARGE */       { "large", 300, 1000, 90, 186 },
+   /* HUGE */        { "huge", 1000, 4000, 196, 384 },
+   /* GIANT */       { "giant", 4000, 16000, 384, 768 },
+   /* GARGANTUAN */  { "gargantuan", 16000, 64000, 768, 1536 },
+   /* COLOSSAL */    { "colossal", 64000, 256000, 1536, 3072 },
+   /* TITANIC */     { "titanic", 256000, 1024000, 3072, 6144 },
+   /* MOUNTAINOUS */ { "mountainous", 1024000, 4096000, 6144, 12288 }
+};
+
+int parse_size(struct char_data *ch, char *arg)
+{
+   int i, size = RACE_UNDEFINED, best = RACE_UNDEFINED;
+
+   if (!*arg){
+      if (ch)
+         send_to_char("What size?\r\n", ch);
+      return SIZE_UNDEFINED;
+   }
+
+   for (i = 0; i < NUM_SIZES; i++) {
+      if (!strncasecmp(arg, sizes[i].name, strlen(arg))) {
+         if (!strcasecmp(arg, sizes[i].name)) {
+            size = i;
+            break;
+         }
+         if (best == SIZE_UNDEFINED)
+            best = i;
+      } else if (is_abbrev(arg, sizes[i].name)) {
+         if (best == SIZE_UNDEFINED)
+            best = i;
+      }
+   }
+
+   if (size == SIZE_UNDEFINED) size = best;
+   if (size == SIZE_UNDEFINED) {
+      if (ch)
+         send_to_char("There is no such size.\r\n", ch);
+   }
+
+   return size;
+}
+
+
+/* Set a character's height and weight. */
+void set_init_height_weight(struct char_data *ch)
+{
+   int race = GET_RACE(ch);
+
+   if (race >= 0 && race < NUM_RACES) {
+      if (ch->player.sex == SEX_MALE) {
+         ch->player.weight = number(races[race].mweight_lo, races[race].mweight_hi);
+         ch->player.height = number(races[race].mheight_lo, races[race].mheight_hi);
+      } else {
+         ch->player.weight = number(races[race].fweight_lo, races[race].fweight_hi);
+         ch->player.height = number(races[race].fheight_lo, races[race].fheight_hi);
+      }
+   } else if (GET_SIZE(ch) >= 0 && GET_SIZE(ch) < NUM_SIZES) {
+      ch->player.weight =
+         number(sizes[GET_SIZE(ch)].weight_min, sizes[GET_SIZE(ch)].weight_max);
+      ch->player.height =
+         number(sizes[GET_SIZE(ch)].height_min, sizes[GET_SIZE(ch)].height_max);
+   } else {
+      ch->player.weight =
+         number(sizes[SIZE_MEDIUM].weight_min, sizes[SIZE_MEDIUM].weight_max);
+      ch->player.height =
+         number(sizes[SIZE_MEDIUM].height_min, sizes[SIZE_MEDIUM].height_max);
+   }
+
+   ch->player.base_weight = ch->player.weight;
+   ch->player.base_height = ch->player.height;
+   ch->player.base_size= ch->player.size;
+}
+
+/* change_size()
+ *
+ * Adjusts your new height and weight so that they are proportional according
+ * to your natural height and weight.
+ *
+ * For example, suppose you're medium size, and your height is 52 inches.
+ * The minimum height of medium is 42 inches, and the maximum is 92.
+ * So you are 10 inches over the minimum, and, you have 1/5 of your
+ * potential within that range.
+ *
+ * This function would cause you to use 1/5 of the available range in
+ * your new size. So, if changing to LARGE, (90 to 186 in) you would
+ * have an available range of 96 in (which is 186 - 90). Your height
+ * will end up as 90 + 96 * (1/5), which is 109 inches.
+ *
+ * Also, due to base values being saved, you would always have the same
+ * values when you change back to your normal size. */
+void change_size(struct char_data *ch, int newsize)
+{
+   int bsize;
+
+   if (newsize == GET_SIZE(ch)) return;
+   if (newsize < 0 || newsize >= NUM_SIZES) {
+      sprintf(buf, "SYSERR: change_size(): invalid size %d", newsize);
+      log(buf);
+      return;
+   }
+
+   if (ch->player.base_height == 0 || ch->player.base_weight == 0) {
+      ch->player.base_size = GET_SIZE(ch);
+      ch->player.base_weight = GET_WEIGHT(ch);
+      ch->player.base_height = GET_HEIGHT(ch);
+   }
+
+   bsize = ch->player.base_size;
+
+   GET_SIZE(ch) = newsize;
+
+   if (newsize == ch->player.base_size) {
+      GET_WEIGHT(ch) = ch->player.base_weight;
+      GET_HEIGHT(ch) = ch->player.base_height;
+      return;
+   }
+
+   GET_WEIGHT(ch) = sizes[newsize].weight_min +
+      (sizes[newsize].weight_max - sizes[newsize].weight_min) *
+         (ch->player.base_weight - sizes[bsize].weight_min) /
+            (sizes[bsize].weight_max - sizes[bsize].weight_min);
+
+   GET_HEIGHT(ch) = sizes[newsize].height_min +
+      (sizes[newsize].height_max - sizes[newsize].height_min) *
+         (ch->player.base_height - sizes[bsize].height_min) /
+            (sizes[bsize].height_max - sizes[bsize].height_min);
+}
+
+d773 4
+@
+
+
+1.27
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.26 2008/01/29 21:02:31 myc Exp myc $
+d735 1
+a735 1
+  
+d737 1
+a737 1
+  for (skill = 0; skill <= TOP_SKILL; skill++) {  
+d753 48
+d814 5
+d820 43
+a862 34
+      switch(ch->player.size) {
+         case SIZE_TINY:
+            ch->player.weight = number(1,3);
+            ch->player.height = number(1,18);
+            break;
+         case SIZE_SMALL:
+            ch->player.weight = number(5, 40);
+            ch->player.height = number(19, 42);
+            break;
+         case SIZE_LARGE:
+            ch->player.weight = number(300, 1000);
+            ch->player.height = number(90, 186);
+            break;
+         case SIZE_HUGE:
+            ch->player.weight = number(1000, 4000);
+            ch->player.height = number(196, 384);
+            break;
+         case SIZE_GIANT:
+            ch->player.weight = number(4000, 16000);
+            ch->player.height = number(384, 768);
+            break;
+         case SIZE_GARGANTUAN:
+            ch->player.weight = number(16000, 64000);
+            ch->player.height = number(768, 1536);
+            break;
+         case SIZE_COLOSSAL:
+            ch->player.weight = number(64000, 256000);
+            ch->player.height = number(1536, 3072);
+            break;
+         case SIZE_MEDIUM:
+         default:
+            ch->player.weight = number(40, 300);
+            ch->player.height = number(42, 90);
+      }
+d865 8
+a872 7
+   /* In the player file, height and weight are represented as ubyte.  So you
+    * can't give them numbers over 255.  Even if they're overweight ogres.  SIGH. */
+   if (!IS_NPC(ch)) {
+      if (ch->player.weight > 255)
+         ch->player.weight = 235 + number(1, 20);
+      if (ch->player.height > 255)
+         ch->player.height = 235 + number(1, 20);
+d874 10
+d906 3
+@
+
+
+1.26
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.25 2008/01/27 13:43:50 jps Exp myc $
+d30 1
+d833 4
+@
+
+
+1.25
+log
+@Moved race and species-related data to races.h/races.c and merged species into races.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.24 2008/01/27 01:13:39 jps Exp jps $
+a30 2
+extern struct char_data *mob_proto; /* db.c */
+
+d832 3
+@
+
+
+1.24
+log
+@Stop overriding the mob-prototype alignment when loading mobs.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.23 2008/01/26 14:26:31 jps Exp jps $
+d43 1
+a43 1
+ *   name, names, displayname, fullname
+d48 2
+d54 1
+a54 1
+   { "human", "human", "&6Human&0", "&6Human&0",
+d56 4
+a59 1
+      120, 180, 60, 76, 95, 150, 60, 70 },
+d62 1
+a62 1
+   { "elf", "grey gray elf", "&8Grey Elf&0", "&8Grey Elf&0",
+d64 4
+a67 1
+      90, 160, 60, 70, 90, 160, 59, 68 },
+d70 1
+a70 1
+   { "gnome", "gnome", "&1&d&bGnome&0", "&1&d&bGnome&0",
+d72 4
+a75 1
+      40, 90, 26, 38, 40, 90, 26, 38 },
+d78 1
+a78 1
+   { "dwarf", "dwarf mountain", "&3Dwarf&0", "&3Mountain Dwarf&0",
+d80 4
+a83 1
+      170, 200, 38, 50, 150, 190, 38, 50 },
+d86 1
+a86 1
+   { "troll", "swamp troll", "&2&dTroll&0", "&2&dSwamp Troll&0",
+d88 4
+a91 1
+      130, 290, 72, 90, 130, 290, 72, 90 },
+d94 1
+a94 1
+   { "drow", "drow", "&5Drow&0", "&5Drow&0",
+d96 4
+a99 1
+      90, 160, 60, 70, 90, 160, 60, 70 },
+d102 1
+a102 1
+   { "duergar", "duergar", "&1Duergar&0", "&1Duergar&0",
+d104 4
+a107 1
+      170, 200, 38, 50, 150, 190, 38, 50 },
+d110 1
+a110 1
+   { "ogre", "ogre", "&4Ogre&0", "&4Ogre&0",
+d112 4
+a115 1
+      390, 530, 93, 119, 390, 530, 93, 119 },
+d118 1
+a118 1
+   { "orc", "orc", "&9&bOrc&0", "&9&bOrc&0",
+d120 4
+a123 1
+      90, 150, 58, 68, 90, 150, 58, 68 },
+d126 1
+a126 1
+   { "half-elf", "half-elf half elf", "&6&bHalf-&0&6&dElf&0", "&6&bHalf-&0&6&dElf&0",
+d128 4
+a131 1
+      100, 170, 60, 76, 94, 155, 60, 70 },
+d134 1
+a134 1
+   { "barbarian", "barbarian", "&4Barbarian&0", "&4Barbarian&0",
+d136 4
+a139 1
+      170, 260, 69, 88, 130, 210, 69, 80 },
+d142 1
+a142 1
+   { "halfling", "halfling", "&3&dHalfling&0", "&3&dHalfling&0",
+d144 4
+a147 1
+      90, 160, 35, 42, 90, 160, 35, 42 },
+d150 1
+a150 1
+   { "undead", "undead", "&9&bUndead&0", "&9&bUndead&0",
+d152 4
+a155 1
+      120, 180, 60, 76, 95, 150, 60, 70 },
+d158 1
+a158 1
+   { "humanoid", "humanoid", "&7Humanoid&0", "&7Humanoid&0",
+d160 4
+a163 1
+      120, 180, 60, 76, 95, 150, 60, 70 },
+d166 1
+a166 1
+   { "animal", "animal", "&2Animal&0", "&2Animal&0",
+d168 4
+a171 1
+      120, 180, 60, 76, 95, 150, 60, 70 },
+d174 1
+a174 1
+   { "dragon", "dragon", "&1&bDragon&0", "&1&bDragon&0",
+d176 4
+a179 1
+      16000, 64000, 768, 1536, 16000, 64000, 768, 1536 },
+d182 1
+a182 1
+   { "giant", "giant", "&2&bGiant&0", "&2&bGiant&0",
+d184 4
+a187 1
+      1000, 4000, 196, 384, 1000, 4000, 196, 384 },
+d190 1
+a190 1
+   { "other", "other", "&4&bOther&0", "&4&bOther&0",
+d192 4
+a195 1
+      120, 180, 60, 76, 95, 150, 60, 70 },
+d198 1
+a198 1
+   { "goblin", "goblin", "&4&bGoblin&0", "&4&bGoblin&0",
+d200 4
+a203 1
+      60, 90, 30, 38, 55, 80, 30, 35 },
+d206 1
+a206 1
+   { "demon", "demon", "&1&bDemon&0", "&1&bDemon&0",
+d208 4
+a211 1
+      130, 290, 72, 90, 130, 290, 72, 90 }
+d814 18
+d834 3
+@
+
+
+1.23
+log
+@Moved a lot of skill-related code into skills.h and skills.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.22 2008/01/23 14:42:53 jps Exp jps $
+d354 3
+a356 1
+   if (GET_RACE(ch) >= 0 && GET_RACE(ch) < NUM_RACES) {
+d754 3
+@
+
+
+1.22
+log
+@Added a bunch of race definitions.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.21 2008/01/23 14:15:15 jps Exp jps $
+d29 1
+d683 1
+a683 1
+    if((old_skills[skill]) && (spell_info[skill].quest)) {
+d752 3
+@
+
+
+1.21
+log
+@Added the "humanoid" field to racedefs.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.20 2008/01/09 13:04:24 jps Exp jps $
+d108 42
+a149 1
+      90, 160, 35, 42, 90, 160, 35, 42 }
+a151 1
+
+d409 1
+a409 1
+      case SPECIES_UNDEAD:
+d411 1
+a411 1
+      case SPECIES_HUMANOID:
+d413 1
+a413 1
+      case SPECIES_ANIMAL:
+d415 1
+a415 1
+      case SPECIES_GIANT:
+d417 1
+a417 1
+      case SPECIES_OTHER:
+d419 1
+a419 1
+      case SPECIES_GOBLIN:
+d421 1
+a421 1
+      case SPECIES_DRAGON:
+d423 1
+a423 1
+      case SPECIES_DEMON:
+d597 1
+a597 1
+      case SPECIES_UNDEAD:
+d599 1
+a599 1
+      case SPECIES_HUMANOID:
+d601 1
+a601 1
+      case SPECIES_ANIMAL:
+d603 1
+a603 1
+      case SPECIES_GIANT:
+d605 1
+a605 1
+      case SPECIES_OTHER:
+d607 1
+a607 1
+      case SPECIES_GOBLIN:
+d609 1
+a609 1
+      case SPECIES_DRAGON:
+d624 1
+a624 1
+      case SPECIES_DEMON:
+d751 3
+@
+
+
+1.20
+log
+@Oops, forgot to remove some debugging code.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.19 2008/01/09 09:19:50 jps Exp jps $
+d43 3
+a45 2
+ *   active, racealign, def_size, def_align, def_lang, bonus_damroll, bonus_hitroll,
+ *     mweight_lo, mweight_hi, mheight_lo, mheight_hi, \
+d52 1
+a52 1
+      TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 0, LANG_COMMON, 3, 3,
+d57 1
+a57 1
+      FALSE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, LANG_ELVEN, 2, 3,
+d62 1
+a62 1
+      TRUE, RACE_ALIGN_GOOD, SIZE_SMALL, 1000, LANG_GNOMISH, 2, 4,
+d67 1
+a67 1
+      TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, LANG_DWARVEN, 4, 5,
+d72 1
+a72 1
+      TRUE, RACE_ALIGN_EVIL, SIZE_LARGE, -1000, LANG_TROLLISH, 5, 4,
+d77 1
+a77 1
+      FALSE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, LANG_DROW, 2, 3,
+d82 1
+a82 1
+      TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, LANG_DUERGAR, 4, 5,
+d87 1
+a87 1
+      TRUE, RACE_ALIGN_EVIL, SIZE_HUGE, -1000, LANG_OGRE, 5, 4,
+d92 1
+a92 1
+      TRUE, RACE_ALIGN_EVIL, SIZE_MEDIUM, -1000, LANG_ORCISH, 3, 3,
+d97 1
+a97 1
+      TRUE, RACE_ALIGN_GOOD, SIZE_MEDIUM, 1000, LANG_ELVEN, 3, 3,
+d102 1
+a102 1
+      TRUE, RACE_ALIGN_GOOD, SIZE_LARGE, 0, LANG_BARBARIAN, 5, 4,
+d107 1
+a107 1
+      TRUE, RACE_ALIGN_GOOD, SIZE_SMALL, 1000, LANG_HALFLING, 3, 6,
+d171 1
+a171 1
+    *  - The race is not "active"
+d183 1
+a183 1
+   if (!races[race].active) {
+d238 1
+a238 1
+      if (races[i].active &&
+d256 1
+a256 1
+      if (races[i].active && 
+d387 1
+a387 1
+   } 
+d390 6
+d711 3
+@
+
+
+1.19
+log
+@Add function natural_move to tell us a mob's natural move points.
+Set base move points here, rather than db.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.18 2008/01/09 08:32:52 jps Exp jps $
+a689 2
+      printf("Setting HW on %s: %d, %d (race=%d, size=%d)\n",
+            GET_NAME(ch), ch->player.height, ch->player.weight, race, ch->player.size);
+d704 4
+@
+
+
+1.18
+log
+@Add code to set a character's height and weight when created.
+If there is a race definition, it uses the information there.
+Otherwise it produces random values according to the "size".
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.17 2008/01/06 18:17:14 jps Exp jps $
+d18 2
+d30 2
+d265 36
+d317 1
+d706 5
+@
+
+
+1.17
+log
+@Added bonus hit/dam, and height/weight/size/lang/align values
+into struct racedef.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.16 2008/01/05 05:43:53 jps Exp jps $
+d28 4
+d276 1
+d601 62
+d665 4
+@
+
+
+1.16
+log
+@Lots of stuff moved from class.c. Which deals with races.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.15 2008/01/04 02:33:16 jps Exp jps $
+d35 3
+a37 1
+ *   active, racealign
+d43 2
+a44 1
+      TRUE, RACE_ALIGN_GOOD },
+d48 2
+a49 1
+      FALSE, RACE_ALIGN_GOOD },
+d53 2
+a54 1
+      TRUE, RACE_ALIGN_GOOD },
+d58 2
+a59 1
+      TRUE, RACE_ALIGN_GOOD },
+d63 2
+a64 1
+      TRUE, RACE_ALIGN_EVIL },
+d67 3
+a69 2
+   { "drow", "drow elf", "&5Drow&0", "&5Drow Elf&0",
+      FALSE, RACE_ALIGN_EVIL },
+d73 2
+a74 1
+      TRUE, RACE_ALIGN_EVIL },
+d78 2
+a79 1
+      TRUE, RACE_ALIGN_EVIL },
+d83 2
+a84 1
+      TRUE, RACE_ALIGN_EVIL },
+d88 2
+a89 1
+      TRUE, RACE_ALIGN_GOOD },
+d93 2
+a94 1
+      TRUE, RACE_ALIGN_GOOD },
+d98 2
+a99 1
+      TRUE, RACE_ALIGN_GOOD }
+d207 2
+a208 4
+/* This sets or adds the racial hitroll and damroll bonuses. If
+   type = 0 then it sets the values, if type = 1 then it adds the
+   values to the existing values. */
+void apply_racial_bonus_hit_and_dam(struct char_data *ch, int type)
+d210 7
+a216 66
+  int dam = 0, hit = 0;
+
+  switch (GET_RACE(ch)) {
+    
+    case RACE_DROW_ELF:
+      dam = 2;
+      hit = 3;
+      break;
+    case RACE_ELF:
+      dam = 2;
+      hit = 3;
+      break;
+    case RACE_DWARF:
+      dam = 4;
+      hit = 5;
+      break;
+    case RACE_DUERGAR:
+      dam = 4;
+      hit = 5;
+      break;
+    case RACE_HALFLING:
+      dam = 3;
+      hit = 6;
+      break;
+    case RACE_TROLL:
+      dam = 5;
+      hit = 4;
+      break;
+    case RACE_OGRE:
+      dam = 5;
+      hit = 4;
+      break;
+    case RACE_HALF_ELF:
+      dam = 3;
+      hit = 3;
+      break;
+    case RACE_GNOME:
+      dam = 2;
+      hit = 4;
+      break;
+    case RACE_BARBARIAN:
+      dam = 5;
+      hit = 4;
+      break;
+    case RACE_HUMAN:
+      dam = 3;
+      hit = 3;
+      break;
+    case RACE_ORC:
+      dam = 3;
+      hit = 3;
+      break;
+    default:
+      dam = 0;
+      hit = 0;
+      break;
+  }
+
+  if (type == 0) {
+    GET_DAMROLL(ch) = dam;
+    GET_HITROLL(ch) = hit;
+  } else if (type == 1) {
+    GET_DAMROLL(ch) += dam;
+    GET_HITROLL(ch) += hit;
+  }
+
+d265 1
+a265 1
+      apply_racial_bonus_hit_and_dam(ch, 0);
+d268 4
+a271 66
+   switch (GET_RACE(ch)) {
+      case RACE_DROW_ELF:
+         GET_ALIGNMENT(ch) = -1000;
+         SPEAKING(ch) = LANG_DROW;
+         break;
+      case RACE_ELF:
+         GET_ALIGNMENT(ch) = 1000;
+         SPEAKING(ch) = LANG_ELVEN;
+         break;
+      case RACE_DWARF:
+         GET_ALIGNMENT(ch) = 1000;
+         SPEAKING(ch) = LANG_DWARVEN;
+         break;
+      case RACE_DUERGAR:
+         GET_ALIGNMENT(ch) = -1000;
+         SPEAKING(ch) = LANG_DUERGAR;
+         break;
+      case RACE_HALFLING:
+         GET_ALIGNMENT(ch) = 1000;
+         SPEAKING(ch) = LANG_HALFLING;
+         break;
+      case RACE_TROLL:
+         GET_ALIGNMENT(ch) = -1000;
+         SPEAKING(ch) = LANG_TROLLISH;
+         break;
+      case RACE_OGRE:
+         GET_ALIGNMENT(ch) = -1000;
+         SPEAKING(ch) = LANG_OGRE;
+         break;
+      case RACE_HALF_ELF:
+         GET_ALIGNMENT(ch) = 1000;
+         SPEAKING(ch) = LANG_ELVEN;
+         break;
+      case RACE_GNOME:
+         GET_ALIGNMENT(ch) = 1000;
+         SPEAKING(ch) = LANG_GNOMISH;
+         break;
+      case RACE_BARBARIAN:
+         SPEAKING(ch) = LANG_BARBARIAN;
+         break;
+      case RACE_HUMAN:
+         SPEAKING(ch) = LANG_COMMON;
+         break;
+      case RACE_ORC:
+         GET_ALIGNMENT(ch) = -1000;
+         SPEAKING(ch) = LANG_ORCISH;
+         break;
+      case SPECIES_UNDEAD:
+         break;
+      case SPECIES_HUMANOID:
+         break;
+      case SPECIES_ANIMAL:
+         break;
+      case SPECIES_GIANT:
+         break;
+      case SPECIES_OTHER:
+         break;
+      case SPECIES_GOBLIN:
+         break;
+      case SPECIES_DRAGON:
+         break;
+      case SPECIES_DEMON:
+         break;
+      default:
+         break;
+   } 
+d598 3
+@
+
+
+1.15
+log
+@The race selection menu is now dynamic.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.14 2008/01/04 01:49:41 jps Exp jps $
+d26 1
+d60 1
+a60 1
+   { "drow", "drow elf", "&5Drow Elf&0", "&5Drow Elf&0",
+d193 73
+d304 400
+d707 3
+@
+
+
+1.14
+log
+@Added races.h file.  Combined several race-related items into the
+global array "races".  Removed obsolete hometown stuff.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.13 2008/01/03 12:44:03 jps Exp jps $
+d27 10
+d192 17
+a208 49
+/*The menu for choosing a race in interpreter.c: */
+const char *race_menu =
+"\r\n"
+"Select a race:\r\n"
+"  &7a)&0 &6Human&0                    &7g)&0 &2&dSwamp Troll&0\r\n"
+"  &7b)&0 &1&d&bGnome&0                    &7h)&0 &4Ogre&0\r\n"
+"  &7c)&0 &3Mountain Dwarf&0           &7i)&0 &9&bOrc&0\r\n"
+"  &7d)&0 &4Barbarian&0                &7j)&0 &1Duergar&0\r\n"
+"  &7e)&0 &6&bHalf-&0&6&dElf&0\r\n"
+"  &7f)&0 &3&dHalfling&0\r\n";
+
+/*The menu for choosing a race in interpreter.c: */
+const char *good_race_menu =
+"\r\n"
+"Select a race:\r\n"
+"  &7a)&0 &6Human&0\r\n"
+"  &7b)&0 &1&d&bGnome&0\r\n"
+"  &7c)&0 &3Mountain Dwarf&0\r\n"
+"  &7d)&0 &4Barbarian&0\r\n"
+"  &7e)&0 &6&bHalf-&0&6&dElf&0\r\n"
+"  &7f)&0 &3&dHalfling&0\r\n";
+
+int parse_good_race(char arg)
+{
+  arg = LOWER(arg);
+  
+  switch (arg) {
+  case 'a':
+    return RACE_HUMAN;
+    break;
+  case 'b':
+    return RACE_GNOME;
+    break;
+  case 'c':
+    return RACE_DWARF;
+    break;
+  case 'd':
+    return RACE_BARBARIAN;
+    break;
+  case 'e':
+    return RACE_HALF_ELF;
+    break;
+  case 'f':
+    return RACE_HALFLING;
+    break;
+  default:
+    return RACE_UNDEFINED;
+    break;
+  }
+d211 17
+a227 39
+int race_by_menu(char arg)
+{
+  arg = LOWER(arg);
+  
+  switch (arg) {
+  case 'a':
+    return RACE_HUMAN;
+    break;
+  case 'b':
+    return RACE_GNOME;
+    break;
+  case 'c':
+    return RACE_DWARF;
+    break;
+  case 'd':
+    return RACE_BARBARIAN;
+    break;
+  case 'e':
+    return RACE_HALF_ELF;
+    break;
+  case 'f':
+    return RACE_HALFLING;
+    break;
+  case 'g':
+    return RACE_TROLL;
+    break;
+  case 'h':
+    return RACE_OGRE;
+    break;
+  case 'i':
+    return RACE_ORC;
+    break;
+  case 'j':
+    return RACE_DUERGAR;
+    break;
+  default:
+    return RACE_UNDEFINED;
+    break;
+  }
+d233 4
+@
+
+
+1.13
+log
+@Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+to CLASS_SORCERER.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.12 2008/01/02 07:11:32 jps Exp jps $
+d21 1
+d23 52
+a74 31
+
+const char *race_abbrevs[] = {
+  "&6Human&0",
+  "&8Grey Elf&0",
+  "&1&d&bGnome&0",
+  "&3Dwarf&0",
+  "&2&dTroll&0",
+  "&5Drow Elf&0",
+  "&1Duergar&0",
+  "&4Ogre&0",
+  "&9&bOrc&0",
+  "&6&bHalf-&0&6&dElf&0",
+  "&4Barbarian&0",
+  "&3&dHalfling&0",
+  "\n"
+};
+
+const char *race_target[] = {
+  "human",
+  "grey elf",
+  "gnome",
+  "dwarf",
+  "troll",
+  "drow elf",
+  "duergar",
+  "ogre",
+  "orc",
+  "half-elf",
+  "barbarian",
+  "halfling",
+  "\n"
+a76 15
+const char *pc_race_types[] = {
+  "&6Human&0",
+  "&8Grey Elf&0",
+  "&1&d&bGnome&0",
+  "&3Dwarf&0",
+  "&2&dTroll&0",
+  "&5Drow Elf&0",
+  "&1Duergar&0",
+  "&4Ogre&0",
+  "&9&bOrc&0",
+  "&6&bHalf-&0&6&dElf&0",
+  "&4Barbarian&0",
+  "&3&dHalfling&0",
+  "\n"
+};
+d83 87
+a169 18
+/*************************************************************
+ * Ok here's where I started altering the file to retrofit it *
+ * to FieryMUD.  I altered the names of the towns in the next *
+ * section to reflect the current existing FieryMUD towns. I  *
+ * left the extras because I couldn't tell if they were used  *
+ * anywhere else or not.   RSD                                *
+ *************************************************************/
+
+const char *char_hometown[] = {
+  "&0&9&bKul Vulrath&0\n\r",  /* Replaced Grear */
+  "&0&2Mielikki&0\n\r",	    /* Replaced Syron */
+  "&3Ickle&0\r\n",            /* Replaced Mugnork */
+  "&6Anduin&0\r\n",           /* Replaced Callanadora */
+  "&3&bKerristone&0\r\n",
+  "&0&9&bBhanrho&0\r\n",
+  "&0&1&bGholdila&0\r\n",
+  "&0&9&bArganon&0\r\n"
+};
+d233 1
+a233 1
+int parse_race(char arg)
+a274 304
+int set_race_align(struct char_data * ch)
+{
+  
+  switch(GET_RACE(ch)) {
+  case RACE_GNOME:
+    return RACE_ALIGN_GOOD;
+    break;
+  case RACE_HALFLING:
+    return RACE_ALIGN_GOOD;
+    break;
+  case RACE_HUMAN:
+    return RACE_ALIGN_GOOD;
+    break;
+  case RACE_HALF_ELF:
+    return RACE_ALIGN_GOOD;
+    break;
+  case RACE_ELF:
+    return RACE_ALIGN_GOOD;
+    break;
+  case RACE_DWARF:
+    return RACE_ALIGN_GOOD;
+    break;
+  case RACE_BARBARIAN:
+    return RACE_ALIGN_GOOD;
+    break;
+  case RACE_TROLL:
+    return RACE_ALIGN_EVIL;
+    break;
+  case RACE_DUERGAR:
+    return RACE_ALIGN_EVIL;
+    break;
+  case RACE_OGRE:
+    return RACE_ALIGN_EVIL;
+    break;
+  case RACE_ORC:
+    return RACE_ALIGN_EVIL;
+    break;
+  case RACE_DROW_ELF:
+    return RACE_ALIGN_EVIL;
+    break;
+  default:
+    return RACE_ALIGN_GOOD;
+    break;	
+  }
+}
+
+/*Home Display numbers linked to home name*/
+#define EMPTY_HOME -1
+#define UNDEFINED_HOME_NO -1
+#define KULVULRATH_HOME 0
+#define MIELIKKI_HOME 1
+#define ICKLE_HOME 2
+#define ANDUIN_HOME 3
+#define KERRISTONE_HOME 4
+#define BHANRHO_HOME 5
+#define ARGANON_HOME 6
+#define CHILCOTIN_HOME 7
+#define NUMB_OF_HOMES 8
+
+/* These are the room defults need one for each place */
+#define DFKUL 61006
+#define DFMIE 3001
+#define DFICK 10001
+#define DFAND 6119
+#define DFKER 14955
+
+/* 
+   I went ahead and defined existing fiery rooms for these others in
+   the event they cropped up for some reason  RSD
+*/
+
+#define DFBHA 61006
+#define DFGHA 3001
+#define DFARG 61006
+#define DFCHI 3001
+#define TYPE_WARRIOR 0
+#define TYPE_CLERIC 1
+#define TYPE_MAGE 2
+#define TYPE_ROGUE 3
+#define TYPE_SHAMAN 4
+
+/* Make sure this is filled in if a race is introduced */
+/* Simply Plug where you want them to go in here */
+const int home_town_number[NUM_CLASSES][NUMB_OF_HOMES] =
+      /*KulVul|Mieli|Ickle|Andui|Kerri|Bhanr|Argan|chilc| */
+/*WT*/{{DFKUL ,3022 ,10013,DFAND,DFKER,DFBHA,DFARG,DFICK},
+/*CT*/ {DFKUL ,3003 ,10003,DFAND,DFKER,DFBHA,DFARG,DFICK},
+/*MT*/ {DFKUL ,3046 ,10030,DFAND,DFKER,DFBHA,DFARG,DFICK},
+/*RT*/ {DFKUL ,3038 ,DFICK,DFAND,DFKER,DFBHA,DFARG,DFICK},
+/*ST*/ {DFKUL ,DFMIE,10003,DFAND,DFKER,DFBHA,DFARG,DFICK}};
+
+
+void room_selector(int race, int class, int result_rooms[], short int add)
+{
+  /*This function is pretty simple, it is used TWO times, 
+    (1) When add = TRUE, then the array result_rooms is filled up with the VIEWING TOWN number
+    (2) When add = FALSE, then the array is filled with the actual room number
+  */
+
+  /*
+    Both the if and else of each should have the SAME number of entries.
+    The first is the number of the viewing name
+    The second is the actual room number
+  */
+  /*Proky*/
+  /*ok how this works*/
+  /*
+    ok the if (add) is WHAT will be displayed on the pc's screen, like syron, or ghear.
+    the else is what ROOM will be set (ie warrior start room, or sorcerer etc)
+    If person can start in TWO or more rooms then simply add another room to the if.
+    eg if a person was a HUMAN and allowed to start in SYRON, and CALLANDORA, then:
+    case RACE_HUMAN:
+    if (add)
+    {
+    result_rooms[a] = MIELIKKI_HOME;a++;	      THIS IS AN EXAMPLE
+    result_rooms[a] = ANDUIN_HOME;a++;       SECTION
+    }
+    else
+    {
+    result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+    result_rooms[a] = home_town_number[subtype][ANDUIN_HOME];a++;
+    }
+    
+    So you can see that this person would have a choice of two hometowns.
+    NOTE MAX OF 5 CHOICES!!
+    
+    Proky
+  */
+  int subtype;
+  int a = 0;
+  switch (class)
+    {
+    case CLASS_ROGUE:
+      subtype = TYPE_ROGUE;
+      break;
+    case CLASS_SORCERER:
+      subtype = TYPE_MAGE;
+      break;
+    case CLASS_WARRIOR:
+      subtype = TYPE_WARRIOR;
+      break;
+    case CLASS_SHAMAN:
+      subtype = TYPE_SHAMAN;
+      break;
+    case CLASS_CLERIC:
+      subtype = TYPE_CLERIC;
+      break;
+    default:
+      subtype = TYPE_WARRIOR;
+      break;
+    }
+
+  switch(race) {
+    case RACE_GNOME:
+      if (add) { /*add means that its for viewing*/
+	result_rooms[a] = MIELIKKI_HOME;a++;
+      } else {
+	result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+      }
+      break;
+  case RACE_HUMAN:
+    if (add) {
+      result_rooms[a] = MIELIKKI_HOME;a++;
+/*        result_rooms[a] = KERRISTONE_HOME;a++; */
+    } else {
+      result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+/*        result_rooms[a] = home_town_number[subtype][KERRISTONE_HOME];a++; */
+    }
+    break;
+  case RACE_HALF_ELF:
+    if (add) {
+      result_rooms[a] = MIELIKKI_HOME;a++;
+    } else { 
+      result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+    }
+    break;    
+  case RACE_HALFLING:
+    if (add) {
+      result_rooms[a] = MIELIKKI_HOME;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+    }
+    break;
+  case RACE_TROLL:
+    if (add) {
+      result_rooms[a] = 0;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+    }
+    break;
+  case RACE_OGRE:
+    if (add) {
+      result_rooms[a] = KULVULRATH_HOME;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+    }
+    break;
+  case RACE_ORC:
+    if (add) {
+      result_rooms[a] = KULVULRATH_HOME;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+    }
+    break;
+  case RACE_DROW_ELF:
+    if (add) {
+      result_rooms[a] = KULVULRATH_HOME;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+    }
+    break;
+  case RACE_DUERGAR:
+    if (add) {
+      result_rooms[a] = KULVULRATH_HOME;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+    }
+    break;
+  case RACE_BARBARIAN:
+    if (add) {
+      result_rooms[a] = MIELIKKI_HOME;a++;
+/*        result_rooms[a] = ICKLE_HOME;a++; */
+    } else {
+      result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+/*        result_rooms[a] = home_town_number[subtype][ICKLE_HOME];a++; */
+    }
+    break; 
+  case RACE_ELF:
+    if (add) {
+      result_rooms[a] = MIELIKKI_HOME;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+    }
+    break;  
+  case RACE_DWARF:
+    if (add) {
+      result_rooms[a] = MIELIKKI_HOME;a++;
+    } else {
+      result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+    }
+    break;    
+  default:
+    if (add) {
+      result_rooms[a] = MIELIKKI_HOME;a++;
+    } else {
+      result_rooms[a] = UNDEFINED_HOME_NO;a++;
+    }
+    break;
+  }
+  result_rooms[a] = -1;
+  
+}
+
+int set_new_home_town(int race, int class, char arg)
+{	
+  int result_rooms[10] = {UNDEFINED_HOME_NO};
+  switch (arg) {
+  case '1':
+    room_selector(race, class, result_rooms, FALSE);
+    if (result_rooms[0] != '\0') 
+      return result_rooms[0]; 
+    else 
+      return UNDEFINED_HOME_NO;
+    
+    break;
+    
+    
+  case '2':
+    room_selector(race, class, result_rooms, FALSE);
+    if (result_rooms[1] != '\0') 
+      return result_rooms[1]; 
+    else 
+      return UNDEFINED_HOME_NO;
+    
+    break;
+    
+  case '3':
+    room_selector(race, class, result_rooms, FALSE);
+    if (result_rooms[2] != '\0') 
+      return result_rooms[2]; 
+    else 
+      return UNDEFINED_HOME_NO;
+    break;
+  case '4':
+    room_selector(race, class, result_rooms, FALSE);
+    if (result_rooms[3] != '\0') 
+      return result_rooms[3]; 
+    else 
+      return UNDEFINED_HOME_NO;
+    break;
+  case '5':
+    room_selector(race, class, result_rooms, FALSE);
+    if (result_rooms[4] != '\0') 
+      return result_rooms[4]; 
+    else 
+      return UNDEFINED_HOME_NO;
+    break;
+    
+  default:
+    return UNDEFINED_HOME_NO;
+    break;
+  }
+}
+
+d277 4
+@
+
+
+1.12
+log
+@Using class.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.11 2007/03/27 04:27:05 myc Exp jps $
+a22 4
+extern int warrior_subclasses[WARRIOR_SUBCLASSES];
+extern int mage_subclasses[MAGE_SUBCLASSES];
+extern int cleric_subclasses[CLERIC_SUBCLASSES];
+extern int rogue_subclasses[ROGUE_SUBCLASSES];
+d334 1
+a334 1
+    case CLASS_MAGIC_USER:
+d505 3
+@
+
+
+1.11
+log
+@Added new size, colossal.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.10 2006/11/26 08:31:17 jps Exp myc $
+d21 2
+d509 3
+@
+
+
+1.10
+log
+@Typo fixes for character creation process.
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.9 2002/09/13 02:32:10 jjl Exp jps $
+d104 2
+a105 1
+  "gargantuan"
+d507 3
+@
+
+
+1.9
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: races.c,v 1.8 2000/11/24 21:17:12 rsd Exp $
+d110 1
+a110 1
+"Select a race, this is an important choice so think on it.\r\n"
+d121 1
+a121 1
+"Select a race, this is an important choice so think on it.\r\n"
+d506 3
+@
+
+
+1.8
+log
+@Altered comment header and added back rlog messgaes from
+prior to the addition of the $log$ string.
+@
+text
+@d1 3
+a3 1
+// $Id: races.c,v 1.7 2000/11/14 20:23:14 rsd Exp $
+d504 38
+a541 32
+// $Log: races.c,v $
+// Revision 1.7  2000/11/14 20:23:14  rsd
+// removed some old comments from the file and corrected a typo
+//
+// Revision 1.6  2000/09/13 01:53:49  rsd
+// Ok, I fixed it to where all good races create to Mielikki
+// since we don't have th playerbase to spread newbies out so far.
+// grumble.
+//
+// Revision 1.5  2000/05/14 05:22:37  rsd
+// completely fixed the comment header. Added Kerristone as
+// a hometowne, also added it as a choice for humans to select
+// for the time being. Also retabbed where players can
+// select hometowns.
+//
+// Revision 1.4  1999/12/12 06:47:01  rsd
+// altered const char *race_menu to remove grey and drow elfs.
+// added a const char *good_race_menu for good race only character
+// creation.  Added a int parse_good_race() with case statements
+// for good races only.  Altered int parse_race() to be in ABC
+// choice order, removed grey and drow elf from it's choices.
+//
+// Revision 1.3  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.2  1999/02/01 03:51:29  mud
+// indented entire file except matrix
+// dos2unix
+//
+// Revision 1.1  1999/01/29 01:23:31  mud
+// Initial revision
+//
+@
+
+
+1.7
+log
+@removed some old comments from the file and corrected a typo
+@
+text
+@d1 1
+a1 1
+// $Id: races.c,v 1.6 2000/09/13 01:53:49 rsd Exp $
+d499 1
+a500 3
+}
+
+
+d503 3
+d526 7
+@
+
+
+1.6
+log
+@Ok, I fixed it to where all good races create to Mielikki
+since we don't have th playerbase to spread newbies out so far.
+grumble.
+@
+text
+@d1 1
+a1 1
+// $Id: races.c,v 1.5 2000/05/14 05:22:37 rsd Exp $
+a243 7
+
+/*****************************************************
+ * I replaced the Hubis towns with the Fiery towns in *
+ * use at this time.  As fiery adds more towns I'll   *
+ * copy over and redefine the extras.  RSD            *
+ *****************************************************/
+
+d247 4
+a250 4
+#define KULVULRATH_HOME 0       /* Replaced GREAR_HOME */
+#define MIELIKKI_HOME 1		/* Replaced SYRON_HOME */
+#define ICKLE_HOME 2            /* Replaced MUGNORK_HOME */
+#define ANDUIN_HOME 3           /* Replaced CALLANDORA_HOME */
+d258 4
+a261 4
+#define DFKUL 61006		/* Replaced DFGEA 5711 Grear */
+#define DFMIE 3001		/* Replaced DFSYR 14955 Syron */
+#define DFICK 10001		/* Replaced DFMUG 30511 Mugnork */
+#define DFAND 6119		/* Replaced DFCAL 22003 Callandora */
+d279 1
+a279 1
+/* Make sue this is filled in if a race is introduced */
+a295 8
+  
+  /*******************************************************************
+   * I'm not entirely sure how this next section works, I know it has *
+   * something to do with hometown selection and I've replaced each of*
+   * Hubis' town references with the properly defined Fiery town for  *
+   * where I want each of the races to go  RSD                        *
+   *******************************************************************/
+
+d505 5
+@
+
+
+1.5
+log
+@completely fixed the comment header. Added Kerristone as
+a hometowne, also added it as a choice for humans to select
+for the time being. Also retabbed where players can
+select hometowns.
+@
+text
+@d1 1
+a1 1
+// $Id: races.c,v 1.4 1999/12/12 06:47:01 rsd Exp $
+d376 1
+a376 1
+      result_rooms[a] = KERRISTONE_HOME;a++;
+d379 1
+a379 1
+      result_rooms[a] = home_town_number[subtype][KERRISTONE_HOME];a++;
+d433 2
+a434 1
+      result_rooms[a] = ICKLE_HOME;a++;
+d436 2
+a437 1
+      result_rooms[a] = home_town_number[subtype][ICKLE_HOME];a++;
+d520 6
+@
+
+
+1.4
+log
+@altered const char *race_menu to remove grey and drow elfs.
+added a const char *good_race_menu for good race only character
+creation.  Added a int parse_good_race() with case statements
+for good races only.  Altered int parse_race() to be in ABC
+choice order, removed grey and drow elf from it's choices.
+@
+text
+@d1 11
+a11 10
+// $Id: races.c,v 1.3 1999/09/05 07:00:39 jimmy Exp $
+/*********************************************************** 
+ * This Hubis' race file                                    *
+ * authors are:                                             *
+ * Banyal, proky, and                                       *
+ *  Brian Williams <bmw@@efn.org>                            *
+ *                                                          *
+ * Modified for FieryMUD by Scott Davis (gawd he's coding?!)*
+ ***********************************************************/
+
+d89 1
+d258 2
+a259 2
+#define BHANRHO_HOME 4
+#define GHOLDILA_HOME 5
+d269 1
+d289 6
+a294 6
+      /*KulVul|Mieli|Ickle|Andui|Bhanr|Ghald|Argan|chilc| */
+/*WT*/{{DFKUL ,3022 ,10013,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*CT*/ {DFKUL ,3003 ,10003,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*MT*/ {DFKUL ,3046 ,10030,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*RT*/ {DFKUL ,3038 ,DFICK,DFAND,DFBHA,DFGHA,DFARG,DFICK},
+/*ST*/ {DFKUL ,DFMIE,10003,DFAND,DFBHA,DFGHA,DFARG,DFICK}};
+a363 1
+  
+d365 1
+a365 3
+  
+  switch(race) 
+    {
+d367 5
+a371 133
+      if (add) /*add means that its for viewing*/
+	{
+	  result_rooms[a] = MIELIKKI_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+	}
+      break;
+    case RACE_HUMAN:
+      if (add) 
+	{
+	  result_rooms[a] = MIELIKKI_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+	}
+      break;
+    case RACE_HALF_ELF:
+      if (add) 
+	{
+	  result_rooms[a] = MIELIKKI_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+	}
+      break;
+      
+    case RACE_HALFLING:
+      if (add) 
+	{
+	  result_rooms[a] = MIELIKKI_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+	}
+      break;
+      
+    case RACE_TROLL:
+      if (add) 
+	{
+	  result_rooms[a] = 0;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+	}
+      break;
+    case RACE_OGRE:
+      if (add) 
+	{
+	  result_rooms[a] = KULVULRATH_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+	}
+      break;
+    case RACE_ORC:
+      if (add) 
+	{
+	  result_rooms[a] = KULVULRATH_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+	}
+      break;
+    case RACE_DROW_ELF:
+      if (add) 
+	{
+	  result_rooms[a] = KULVULRATH_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+	}
+      break;
+    case RACE_DUERGAR:
+      if (add) 
+	{
+	  result_rooms[a] = KULVULRATH_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+	}
+      break;
+    case RACE_BARBARIAN:
+      if (add) 
+	{
+	  result_rooms[a] = ICKLE_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][ICKLE_HOME];a++;
+	}
+      break;
+      
+    case RACE_ELF:
+      if (add) 
+	{
+	  result_rooms[a] = MIELIKKI_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+	}
+      break;
+      
+    case RACE_DWARF:
+      if (add) 
+	{
+	  result_rooms[a] = MIELIKKI_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+	}
+      break;
+      
+    default:
+      if (add) 
+	{
+	  result_rooms[a] = MIELIKKI_HOME;a++;
+	}
+      else 
+	{
+	  result_rooms[a] = UNDEFINED_HOME_NO;a++;
+	}
+d373 84
+d458 2
+d463 1
+d518 7
+@
+
+
+1.3
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d107 6
+a112 7
+"  &7a)&0 &6Human&0                    &7h)&0 &2&dSwamp Troll&0\r\n"
+"  &7b)&0 &8Grey Elf&0                 &7i)&0 &4Ogre&0\r\n"
+"  &7c)&0 &1&d&bGnome&0                    &7j)&0 &9&bOrc&0\r\n"
+"  &7d)&0 &3Mountain Dwarf&0           &7k)&0 &1Duergar&0\r\n"
+"  &7e)&0 &4Barbarian&0                &7l)&0 &5Drow Elf&0\r\n"
+"  &7f)&0 &6&bHalf-&0&6&dElf&0\r\n"
+"  &7g)&0 &3&dHalfling&0";
+d114 10
+d125 28
+d163 1
+a163 1
+    return RACE_ELF;
+d166 1
+a166 1
+    return RACE_GNOME;
+d169 1
+a169 1
+    return RACE_DWARF;
+d171 2
+a172 2
+  case 'h':
+    return RACE_TROLL;
+d174 2
+a175 2
+  case 'l':
+    return RACE_DROW_ELF;
+d177 2
+a178 2
+  case 'k':
+    return RACE_DUERGAR;
+d180 1
+a180 1
+  case 'i':
+d183 1
+a183 1
+  case 'j':
+d186 2
+a187 8
+  case 'f':
+    return RACE_HALF_ELF;
+    break;
+  case 'e':
+    return RACE_BARBARIAN;
+    break;
+  case 'g':
+    return RACE_HALFLING;
+d558 4
+a561 1
+// $Log$
+@
+
+
+1.2
+log
+@indented entoreire file except matrix
+dos2unix
+@
+text
+@d1 1
+d527 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 7
+a8 7
+* This Hubis' race file                                    *
+* authors are:                                             *
+* Banyal, proky, and                                       *
+*  Brian Williams <bmw@@efn.org>                            *
+*                                                          *
+* Modified for FieryMUD by Scott Davis (gawd he's coding?!)*
+***********************************************************/
+d22 13
+a34 13
+	"&6Human&0",
+	"&8Grey Elf&0",
+	"&1&d&bGnome&0",
+	"&3Dwarf&0",
+	"&2&dTroll&0",
+	"&5Drow Elf&0",
+	"&1Duergar&0",
+	"&4Ogre&0",
+	"&9&bOrc&0",
+	"&6&bHalf-&0&6&dElf&0",
+	"&4Barbarian&0",
+	"&3&dHalfling&0",
+	"\n"
+d38 13
+a50 13
+	"human",
+	"grey elf",
+	"gnome",
+	"dwarf",
+	"troll",
+	"drow elf",
+	"duergar",
+	"ogre",
+	"orc",
+	"half-elf",
+	"barbarian",
+	"halfling",
+	"\n"
+d54 13
+a66 13
+	"&6Human&0",
+    "&8Grey Elf&0",
+	"&1&d&bGnome&0",
+	"&3Dwarf&0",
+	"&2&dTroll&0",
+	"&5Drow Elf&0",
+	"&1Duergar&0",
+	"&4Ogre&0",
+	"&9&bOrc&0",
+	"&6&bHalf-&0&6&dElf&0",
+	"&4Barbarian&0",
+	"&3&dHalfling&0",
+	"\n"
+d70 2
+a71 2
+	"&0&3&bGOOD&0",
+	"&0&1&bEVIL&0"
+d75 6
+a80 6
+* Ok here's where I started altering the file to retrofit it *
+* to FieryMUD.  I altered the names of the towns in the next *
+* section to reflect the current existing FieryMUD towns. I  *
+* left the extras because I couldn't tell if they were used  *
+* anywhere else or not.   RSD                                *
+*************************************************************/
+d83 7
+a89 7
+	"&0&9&bKul Vulrath&0\n\r",  /* Replaced Grear */
+	"&0&2Mielikki&0\n\r",	    /* Replaced Syron */
+	"&3Ickle&0\r\n",            /* Replaced Mugnork */
+	"&6Anduin&0\r\n",           /* Replaced Callanadora */
+	"&0&9&bBhanrho&0\r\n",
+	"&0&1&bGholdila&0\r\n",
+	"&0&9&bArganon&0\r\n"
+d93 7
+a99 7
+	"tiny",
+	"small",
+	"medium",
+	"large",
+	"huge",
+	"giant",
+	"gargantuan"
+d118 43
+a160 43
+	arg = LOWER(arg);
+
+	switch (arg) {
+	case 'a':
+		return RACE_HUMAN;
+		break;
+	case 'b':
+		return RACE_ELF;
+		break;
+	case 'c':
+		return RACE_GNOME;
+		break;
+	case 'd':
+		return RACE_DWARF;
+		break;
+	case 'h':
+		return RACE_TROLL;
+		break;
+	case 'l':
+		return RACE_DROW_ELF;
+		break;
+	case 'k':
+		return RACE_DUERGAR;
+		break;
+	case 'i':
+		return RACE_OGRE;
+		break;
+	case 'j':
+		return RACE_ORC;
+		break;
+	case 'f':
+		return RACE_HALF_ELF;
+		break;
+	case 'e':
+		return RACE_BARBARIAN;
+		break;
+	case 'g':
+		return RACE_HALFLING;
+		break;
+    default:
+		return RACE_UNDEFINED;
+		break;
+	}
+d166 42
+a207 42
+	
+	switch(GET_RACE(ch)) {
+	case RACE_GNOME:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_HALFLING:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_HUMAN:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_HALF_ELF:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_ELF:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_DWARF:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_BARBARIAN:
+		return RACE_ALIGN_GOOD;
+		break;
+	case RACE_TROLL:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_DUERGAR:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_OGRE:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_ORC:
+		return RACE_ALIGN_EVIL;
+		break;
+	case RACE_DROW_ELF:
+		return RACE_ALIGN_EVIL;
+		break;
+        default:
+		return RACE_ALIGN_GOOD;
+		break;	
+	}
+d212 4
+a215 4
+* I replaced the Hubis towns with the Fiery towns in *
+* use at this time.  As fiery adds more towns I'll   *
+* copy over and redefine the extras.  RSD            *
+*****************************************************/
+d264 11
+a274 4
+/*This function is pretty simple, it is used TWO times, 
+(1) When add = TRUE, then the array result_rooms is filled up with the VIEWING TOWN number
+(2) When add = FALSE, then the array is filled with the actual room number
+*/
+a275 6
+/*******************************************************************
+* I'm not entirely sure how this next section works, I know it has *
+* something to do with hometown selection and I've replaced each of*
+* Hubis' town references with the properly defined Fiery town for  *
+* where I want each of the races to go  RSD                        *
+*******************************************************************/
+d277 28
+a304 29
+
+/*
+Both the if and else of each should have the SAME number of entries.
+The first is the number of the viewing name
+The second is the actual room number
+*/
+	/*Proky*/
+/*ok how this works*/
+/*
+ok the if (add) is WHAT will be displayed on the pc's screen, like syron, or ghear.
+the else is what ROOM will be set (ie warrior start room, or sorcerer etc)
+If person can start in TWO or more rooms then simply add another room to the if.
+eg if a person was a HUMAN and allowed to start in SYRON, and CALLANDORA, then:
+case RACE_HUMAN:
+     if (add)
+	 {
+          result_rooms[a] = MIELIKKI_HOME;a++;	      THIS IS AN EXAMPLE
+		  result_rooms[a] = ANDUIN_HOME;a++;       SECTION
+	 }
+	 else
+	 {
+	     result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		 result_rooms[a] = home_town_number[subtype][ANDUIN_HOME];a++;
+	 }
+
+So you can see that this person would have a choice of two hometowns.
+NOTE MAX OF 5 CHOICES!!
+
+  Proky
+d306 3
+a308 3
+    int subtype;
+    	int a = 0;
+    switch (class)
+d311 2
+a312 2
+        subtype = TYPE_ROGUE;
+        break;
+d314 2
+a315 2
+        subtype = TYPE_MAGE;
+        break;
+d317 2
+a318 2
+        subtype = TYPE_WARRIOR;
+        break;
+d320 2
+a321 2
+        subtype = TYPE_SHAMAN;
+        break;
+d323 2
+a324 2
+        subtype = TYPE_CLERIC;
+        break;
+d326 2
+a327 2
+        subtype = TYPE_WARRIOR;
+        break;
+d329 1
+d331 134
+a464 3
+
+
+	switch(race) 
+d466 1
+a466 135
+	case RACE_GNOME:
+		if (add) /*add means that its for viewing*/
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+  	case RACE_HUMAN:
+		if (add) 
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+	case RACE_HALF_ELF:
+		if (add) 
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+
+	case RACE_HALFLING:
+		if (add) 
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+	
+	case RACE_TROLL:
+		if (add) 
+		{
+			result_rooms[a] = 0;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_OGRE:
+		if (add) 
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_ORC:
+		if (add) 
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_DROW_ELF:
+		if (add) 
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_DUERGAR:
+		if (add) 
+		{
+			result_rooms[a] = KULVULRATH_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][KULVULRATH_HOME];a++;
+		}
+		break;
+	case RACE_BARBARIAN:
+		if (add) 
+		{
+			result_rooms[a] = ICKLE_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][ICKLE_HOME];a++;
+		}
+		break;
+
+	case RACE_ELF:
+		if (add) 
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+
+	case RACE_DWARF:
+		if (add) 
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = home_town_number[subtype][MIELIKKI_HOME];a++;
+		}
+		break;
+	
+	default:
+		if (add) 
+		{
+			result_rooms[a] = MIELIKKI_HOME;a++;
+		}
+		else 
+		{
+			result_rooms[a] = UNDEFINED_HOME_NO;a++;
+		}
+		break;
+d468 4
+a471 2
+	result_rooms[a] = -1;
+ 	  
+d475 46
+a520 46
+	int result_rooms[10] = {UNDEFINED_HOME_NO};
+	switch (arg) {
+	case '1':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[0] != '\0') 
+			return result_rooms[0]; 
+		else 
+			return UNDEFINED_HOME_NO;
+			
+		break;
+
+
+	case '2':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[1] != '\0') 
+			return result_rooms[1]; 
+			else 
+				return UNDEFINED_HOME_NO;
+
+		break;
+
+	 case '3':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[2] != '\0') 
+			return result_rooms[2]; 
+			else 
+				return UNDEFINED_HOME_NO;
+		break;
+	   case '4':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[3] != '\0') 
+			return result_rooms[3]; 
+			else 
+				return UNDEFINED_HOME_NO;
+		break;
+		case '5':
+		room_selector(race, class, result_rooms, FALSE);
+		if (result_rooms[4] != '\0') 
+			return result_rooms[4]; 
+			else 
+				return UNDEFINED_HOME_NO;
+		break;
+
+	 default:
+		return UNDEFINED_HOME_NO;
+		break;
+@

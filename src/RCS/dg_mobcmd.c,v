@@ -1,0 +1,5450 @@
+head	1.70;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.70
+date	2009.06.09.19.33.50;	author myc;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	2009.03.19.23.16.23;	author myc;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	2009.03.09.04.33.20;	author jps;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	2009.03.08.23.34.14;	author jps;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	2009.03.08.21.43.27;	author jps;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	2009.03.03.19.43.44;	author myc;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	2008.09.21.20.40.40;	author jps;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	2008.09.02.06.52.30;	author jps;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	2008.09.01.23.47.49;	author jps;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	2008.09.01.22.15.59;	author jps;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	2008.09.01.00.49.33;	author mud;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	2008.07.27.05.27.38;	author jps;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	2008.06.05.02.07.43;	author myc;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	2008.05.18.20.16.11;	author jps;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	2008.05.18.05.18.06;	author jps;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	2008.05.17.04.32.25;	author jps;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	2008.04.05.20.40.21;	author jps;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	2008.04.05.19.44.08;	author jps;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	2008.04.05.18.18.21;	author jps;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	2008.04.03.02.02.05;	author myc;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	2008.04.02.03.24.44;	author myc;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	2008.03.30.17.30.38;	author jps;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	2008.03.28.17.54.53;	author myc;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	2008.02.09.04.27.47;	author myc;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	2008.02.02.19.56.51;	author myc;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	2008.01.29.21.02.31;	author myc;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	2008.01.27.21.09.12;	author myc;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	2008.01.26.12.58.14;	author jps;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	2008.01.21.00.51.19;	author jps;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	2008.01.17.19.23.07;	author myc;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	2008.01.13.23.06.04;	author myc;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	2008.01.10.05.39.43;	author myc;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	2008.01.04.03.03.48;	author jps;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	2007.12.31.02.00.57;	author jps;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	2007.12.19.20.49.22;	author myc;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	2007.09.28.20.49.35;	author myc;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	2007.09.01.21.22.29;	author jps;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	2007.09.01.20.34.10;	author jps;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	2007.08.30.19.42.46;	author jps;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	2007.05.11.22.23.15;	author myc;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	2007.05.11.19.34.15;	author myc;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	2007.04.17.23.59.16;	author myc;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	2007.01.25.17.03.30;	author myc;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	2006.11.18.21.10.03;	author jps;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	2006.11.12.02.31.01;	author jps;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	2006.09.09.01.30.39;	author dce;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	2003.07.29.03.36.07;	author rsd;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	2003.07.24.22.22.30;	author jjl;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2002.10.06.19.34.25;	author jjl;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2002.09.19.01.07.22;	author jjl;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2002.09.13.02.32.10;	author jjl;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2001.07.25.06.59.02;	author mtp;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2001.07.09.23.05.54;	author mtp;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2001.07.08.17.47.40;	author mtp;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2001.06.19.23.46.52;	author mtp;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2001.02.12.23.30.02;	author mtp;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2001.02.12.01.33.05;	author mtp;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2001.02.12.01.30.49;	author mtp;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2001.02.03.00.56.51;	author mtp;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2000.11.23.00.57.04;	author mtp;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2000.11.21.01.53.39;	author rsd;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2000.11.07.01.39.59;	author mtp;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2000.11.03.05.37.17;	author jimmy;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2000.10.27.00.34.45;	author mtp;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2000.10.07.00.46.00;	author mtp;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2000.02.10.23.09.40;	author mtp;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	99.10.30.15.26.40;	author rsd;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	99.09.05.07.00.39;	author jimmy;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	99.01.31.00.45.50;	author mud;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	99.01.29.01.23.30;	author mud;	state Exp;
+branches;
+next	;
+
+
+desc
+@/***************************************************************************
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
+ *                                                                         *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
+ *                                                                         *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc       *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.                                               *
+ *                                                                         *
+ *  Much time and thought has gone into this software and you are          *
+ *  benefitting.  We hope that you share your changes too.  What goes      *
+ *  around, comes around.                                                  *
+ ***************************************************************************/
+
+/***************************************************************************
+ *  The MOBprograms have been contributed by N'Atas-ha.  Any support for   *
+ *  these routines should not be expected from Merc Industries.  However,  *
+ *  under no circumstances should the blame for bugs, etc be placed on     *
+ *  Merc Industries.  They are not guaranteed to work on all systems due   *
+ *  to their frequent use of strxxx functions.  They are also not the most *
+ *  efficient way to perform their tasks, but hopefully should be in the   *
+ *  easiest possible way to install and begin using. Documentation for     *
+ *  such installation can be found in INSTALL.  Enjoy........    N'Atas-Ha *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+
+
+#include "structs.h"
+#include "dg_scripts.h"
+#include "db.h"
+#include "utils.h"
+#include "handler.h"
+#include "interpreter.h"
+#include "comm.h"
+#include "spells.h"
+
+
+extern struct descriptor_data *descriptor_list;
+extern int find_target_room(char_data * ch, char *rawroomstr);
+extern struct index_data *mob_index;
+extern struct room_data *world;
+
+void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
+
+/*
+ * Local functions.
+ */
+
+/* attaches mob's name and vnum to msg and sends it to script_log */
+void mob_log(char_data *mob, char *msg)
+{
+    char buf[MAX_INPUT_LENGTH + 100];
+
+    void script_log(char *msg);
+
+    sprintf(buf, "Mob (%s, VNum %d): %s",
+	    GET_SHORT(mob), GET_MOB_VNUM(mob), msg);
+    script_log(buf);
+}
+/*
+** macro to determine if a mob is permitted to use these commands
+*/
+#define MOB_OR_IMPL(ch) \
+  (IS_NPC(ch) && (!(ch)->desc || GET_LEVEL((ch)->desc->original)>=LVL_IMPL))
+
+
+
+/* mob commands */
+
+/* prints the argument to all the rooms aroud the mobile */
+ACMD(do_masound)
+{
+    int was_in_room;
+    int  door;
+
+    if (!MOB_OR_IMPL(ch))
+    {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if (!*argument)
+    {
+	mob_log(ch, "masound called with no argument");
+	return;
+    }
+
+    skip_spaces(&argument);
+
+    was_in_room = IN_ROOM(ch);
+    for (door = 0; door < NUM_OF_DIRS; door++)
+    {
+	struct room_direction_data *exit;
+
+	if (((exit = world[was_in_room].dir_option[door]) != NULL) &&
+	    exit->to_room != NOWHERE && exit->to_room != was_in_room)
+	{
+	    IN_ROOM(ch) = exit->to_room;
+	    sub_write(argument, ch, TRUE, TO_ROOM);
+	}
+    }
+
+    IN_ROOM(ch) = was_in_room;
+}
+
+
+/* lets the mobile kill any player or mobile without murder*/
+ACMD(do_mkill)
+{
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    one_argument(argument, arg);
+
+    if (!*arg) {
+	mob_log(ch, "mkill called with no argument");
+	return;
+    }
+
+    if (*arg == UID_CHAR) {
+      if (!(victim = get_char(arg))) {
+        sprintf(buf, "mkill: victim (%s) not found",arg);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_room_vis(ch, arg))) {
+        sprintf(buf, "mkill: victim (%s) not found",arg);
+	mob_log(ch, buf);
+	return;
+    }
+
+    if (victim == ch) {
+	mob_log(ch, "mkill: victim is self");
+	return;
+    }
+
+    if (IS_AFFECTED(ch, AFF_CHARM) && ch->master == victim ) {
+	mob_log(ch, "mkill: charmed mob attacking master");
+	return;
+    }
+
+    if (FIGHTING(ch)) {
+	mob_log(ch, "mkill: already fighting");
+	return;
+    }
+
+    hit(ch, victim, TYPE_UNDEFINED);
+    return;
+}
+
+
+/*
+ * lets the mobile destroy an object in its inventory
+ * it can also destroy a worn object and it can destroy
+ * items using all.xxxxx or just plain all of them
+ */
+ACMD(do_mjunk)
+{
+    char arg[MAX_INPUT_LENGTH];
+    int pos;
+    obj_data *obj;
+    obj_data *obj_next;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    one_argument(argument, arg);
+
+    if (!*arg) {
+	mob_log(ch, "mjunk called with no argument");
+	return;
+    }
+
+    if (find_all_dots(arg) != FIND_INDIV) {
+	if ((obj=get_object_in_equip_vis(ch,arg,ch->equipment,&pos))!= NULL) {
+	    unequip_char(ch, pos);
+	    extract_obj(obj);
+	    return;
+	}
+	if ((obj = get_obj_in_list_vis(ch, arg, ch->carrying)) != NULL )
+	    extract_obj(obj);
+	return;
+    } else {
+	for (obj = ch->carrying; obj != NULL; obj = obj_next) {
+	    obj_next = obj->next_content;
+	    if (arg[3] == '\0' || isname(arg+4, obj->name)) {
+		extract_obj(obj);
+	    }
+	}
+	while ((obj=get_object_in_equip_vis(ch,arg,ch->equipment,&pos)))
+	{
+	    unequip_char(ch, pos);
+	    extract_obj(obj);
+	}
+    }
+    return;
+}
+
+
+/* prints the message to everyone in the room other than the mob and victim */
+ACMD(do_mechoaround)
+{
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+    char *p;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char( "Huh?!?\r\n", ch );
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    p = one_argument(argument, arg);
+    skip_spaces(&p);
+
+    if (!*arg) {
+	mob_log(ch, "mechoaround called with no argument");
+	return;
+    }
+
+    if (*arg == UID_CHAR) {
+      if (!(victim = get_char(arg))) {
+        sprintf(buf, "mechoaround: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_room_vis(ch, arg))) {
+        sprintf(buf, "mechoaround: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+    }
+
+    sub_write(p, victim, TRUE, TO_ROOM);
+}
+
+
+/* sends the message to only the victim */
+ACMD(do_msend)
+{
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+    char *p;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char( "Huh?!?\r\n", ch );
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    p = one_argument(argument, arg);
+    skip_spaces(&p);
+
+    if (!*arg) {
+	mob_log(ch, "msend called with no argument");
+	return;
+    }
+
+    if (*arg == UID_CHAR) {
+      if (!(victim = get_char(arg))) {
+        sprintf(buf, "msend: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_room_vis(ch, arg))) {
+        sprintf(buf, "msend: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+    }
+
+    sub_write(p, victim, TRUE, TO_CHAR);
+}
+
+
+/* prints the message to the room at large */
+ACMD(do_mecho)
+{
+    char *p;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char( "Huh?!?\r\n", ch );
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if (!*argument) {
+	mob_log(ch, "mecho called with no arguments");
+	return;
+    }
+    p = argument;
+    skip_spaces(&p);
+
+    sub_write(p, ch, TRUE, TO_ROOM);
+}
+
+
+/*
+ * lets the mobile load an item or mobile.  All items
+ * are loaded into inventory, unless it is NO-TAKE.
+ */
+ACMD(do_mload)
+{
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int number = 0;
+    char_data *mob;
+    obj_data *object;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if( ch->desc && GET_LEVEL(ch->desc->original) < LVL_IMPL)
+	return;
+
+    two_arguments(argument, arg1, arg2);
+
+    if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
+	mob_log(ch, "mload: bad syntax");
+	return;
+    }
+
+    if (is_abbrev(arg1, "mob")) {
+	if ((mob = read_mobile(number, VIRTUAL)) == NULL) {
+	    mob_log(ch, "mload: bad mob vnum");
+	    return;
+	}
+	char_to_room(mob, IN_ROOM(ch));
+    }
+
+    else if (is_abbrev(arg1, "obj")) {
+	if ((object = read_object(number, VIRTUAL)) == NULL) {
+	    mob_log(ch, "mload: bad object vnum");
+	    return;
+	}
+	if (CAN_WEAR(object, ITEM_WEAR_TAKE)) {
+	    obj_to_char(object, ch);
+	} else {
+	    obj_to_room(object, IN_ROOM(ch));
+	}
+    }
+
+    else
+	mob_log(ch, "mload: bad type");
+}
+
+
+/*
+ * lets the mobile purge all objects and other npcs in the room,
+ * or purge a specified object or mob in the room.  It can purge
+ *  itself, but this will be the last command it does.
+ */
+ACMD(do_mpurge)
+{
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+    obj_data  *obj;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;
+
+    one_argument(argument, arg);
+
+    if (!*arg) {
+	/* 'purge' */
+	char_data *vnext;
+	obj_data  *obj_next;
+
+	for (victim = world[IN_ROOM(ch)].people; victim; victim = vnext) {
+	    vnext = victim->next_in_room;
+	    if (IS_NPC(victim) && victim != ch)
+		extract_char(victim);
+	}
+
+	for (obj = world[IN_ROOM(ch)].contents; obj; obj = obj_next) {
+	    obj_next = obj->next_content;
+	    extract_obj(obj);
+	}
+
+	return;
+    }
+
+    if (*arg == UID_CHAR)
+      victim = get_char(arg);
+    else victim = get_char_room_vis(ch, arg);
+
+    if (victim == NULL) {
+	if ((obj = get_obj_vis(ch, arg))) {
+	    extract_obj(obj);
+	} else
+	    mob_log(ch, "mpurge: bad argument");
+
+	return;
+    }
+
+    if (!IS_NPC(victim)) {
+	mob_log(ch, "mpurge: purging a PC");
+	return;
+    }
+
+    extract_char(victim);
+}
+
+
+/* lets the mobile goto any location it wishes that is not private */
+ACMD(do_mgoto)
+{
+    char arg[MAX_INPUT_LENGTH];
+    int location;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    one_argument(argument, arg);
+
+    if (!*arg) {
+	mob_log(ch, "mgoto called with no argument");
+	return;
+    }
+
+    if ((location = find_target_room(ch, arg)) == NOWHERE) {
+	mob_log(ch, "mgoto: invalid location");
+	return;
+    }
+
+    if (FIGHTING(ch))
+	stop_fighting(ch);
+
+    char_from_room(ch);
+    char_to_room(ch, location);
+}
+
+
+/* lets the mobile do a command at another location. Very useful */
+ACMD(do_mat)
+{
+    char arg[MAX_INPUT_LENGTH];
+    int location;
+    int original;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    argument = one_argument( argument, arg );
+
+    if (!*arg || !*argument) {
+	mob_log(ch, "mat: bad argument");
+	return;
+    }
+
+    if ((location = find_target_room(ch, arg)) == NOWHERE) {
+	mob_log(ch, "mat: invalid location");
+	return;
+    }
+
+    original = IN_ROOM(ch);
+    char_from_room(ch);
+    char_to_room(ch, location);
+    command_interpreter(ch, argument);
+
+    /*
+     * See if 'ch' still exists before continuing!
+     * Handles 'at XXXX quit' case.
+     */
+    if (IN_ROOM(ch) == location) {
+	char_from_room(ch);
+	char_to_room(ch, original);
+    }
+}
+
+
+/*
+ * lets the mobile transfer people.  the all argument transfers
+ * everyone in the current room to the specified location
+ */
+ACMD(do_mteleport)
+{
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int target;
+    char_data *vict, *next_ch;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    argument = two_arguments(argument, arg1, arg2);
+
+    if (!*arg1 || !*arg2) {
+	mob_log(ch, "mteleport: bad syntax");
+	return;
+    }
+
+    target = find_target_room(ch, arg2);
+
+    if (target == NOWHERE)
+	mob_log(ch, "mteleport target is an invalid room");
+
+    else if (!str_cmp(arg1, "all")) {
+	if (target == IN_ROOM(ch)) {
+	    mob_log(ch, "mteleport all target is itself");
+	    return;
+	}
+
+	for (vict = world[IN_ROOM(ch)].people; vict; vict = next_ch) {
+	    next_ch = vict->next_in_room;
+
+	    if (GET_LEVEL(vict)<LVL_IMMORT) {
+		char_from_room(vict);
+		char_to_room(vict, target);
+	    }
+	}
+    }
+
+    else {
+      if (*arg1 == UID_CHAR) {
+        if (!(vict = get_char(arg1))) {
+          sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+          mob_log(ch, buf);
+          return;
+        }
+      } else if (!(vict = get_char_vis(ch, arg1))) {
+        sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+	mob_log(ch, buf);
+	return;
+      }
+
+      if (GET_LEVEL(vict)<LVL_IMMORT) {
+	char_from_room(vict);
+	char_to_room(vict, target);
+      }
+    }
+}
+
+
+/*
+ * lets the mobile force someone to do something.  must be mortal level
+ * and the all argument only affects those in the room with the mobile
+ */
+ACMD(do_mforce)
+{
+    char arg[MAX_INPUT_LENGTH];
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;
+
+    argument = one_argument(argument, arg);
+
+    if (!*arg || !*argument) {
+	mob_log(ch, "mforce: bad syntax");
+	return;
+    }
+
+    if (!str_cmp(arg, "all")) {
+	struct descriptor_data *i;
+	char_data *vch;
+
+	for (i = descriptor_list; i ; i = i->next) {
+	    if ((i->character != ch) && !i->connected &&
+		(IN_ROOM(i->character) == IN_ROOM(ch))) {
+		vch = i->character;
+		if (GET_LEVEL(vch) < GET_LEVEL(ch) && CAN_SEE(ch, vch) &&
+		    GET_LEVEL(vch)<LVL_IMMORT) {
+		    command_interpreter(vch, argument);
+		}
+	    }
+	}
+    } else {
+	char_data *victim;
+
+        if (*arg == UID_CHAR) {
+          if (!(victim = get_char(arg))) {
+            sprintf(buf, "mforce: victim (%s) does not exist",arg);
+	    mob_log(ch, buf);
+	    return;
+          }
+	} else if ((victim = get_char_room_vis(ch, arg)) == NULL) {
+	    mob_log(ch, "mforce: no such victim");
+	    return;
+	}
+
+	if (victim == ch) {
+	    mob_log(ch, "mforce: forcing self");
+	    return;
+	}
+
+	if (GET_LEVEL(victim)<LVL_IMMORT)
+	    command_interpreter(victim, argument);
+    }
+}
+
+
+/* increases the target's exp */
+ACMD(do_mexp)
+{
+    char_data *victim;
+    char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;
+
+    two_arguments(argument, name, amount);
+
+    if (!*name || !*amount) {
+	mob_log(ch, "mexp: too few arguments");
+	return;
+    }
+
+    if (*name == UID_CHAR) {
+      if (!(victim = get_char(name))) {
+        sprintf(buf, "mexp: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_vis(ch, name))) {
+        sprintf(buf, "mexp: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+    }
+
+    gain_exp(victim, atoi(amount));
+}
+
+
+/* increases the target's gold */
+ACMD(do_mgold)
+{
+    char_data *victim;
+    char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;
+
+    two_arguments(argument, name, amount);
+
+    if (!*name || !*amount) {
+	mob_log(ch, "mgold: too few arguments");
+	return;
+    }
+
+    if (*name == UID_CHAR) {
+      if (!(victim = get_char(name))) {
+        sprintf(buf, "mgold: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_vis(ch, name))) {
+        sprintf(buf, "mgold: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+    }
+
+    if ((GET_GOLD(victim) += atoi(amount)) < 0) {
+	mob_log(ch, "mgold subtracting more gold than character has");
+	GET_GOLD(victim) = 0;
+    }
+}
+@
+
+
+1.70
+log
+@Rewrote gain_exp and retired gain_exp_regardless.
+@
+text
+@/***************************************************************************
+ * $Id: dg_mobcmd.c,v 1.69 2009/03/19 23:16:23 myc Exp myc $
+ ***************************************************************************/
+/***************************************************************************
+ *   File: dg_mobcmd.c                                    Part of FieryMUD *
+ *  Usage: See below                                                       *
+ *     By: Apparetntly N'Atas-ha                                           *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *                                                                         *
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
+ *                                                                         *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
+ *                                                                         *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc       *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.                                               *
+ *                                                                         *
+ *  Much time and thought has gone into this software and you are          *
+ *  benefitting.  We hope that you share your changes too.  What goes      *
+ *  around, comes around.                                                  *
+ *                                                                         *
+ *  The MOBprograms have been contributed by N'Atas-ha.  Any support for   *
+ *  these routines should not be expected from Merc Industries.  However,  *
+ *  under no circumstances should the blame for bugs, etc be placed on     *
+ *  Merc Industries.  They are not guaranteed to work on all systems due   *
+ *  to their frequent use of strxxx functions.  They are also not the most *
+ *  efficient way to perform their tasks, but hopefully should be in the   *
+ *  easiest possible way to install and begin using. Documentation for     *
+ *  such installation can be found in INSTALL.  Enjoy........    N'Atas-Ha *
+ ***************************************************************************/
+
+#include "conf.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "dg_scripts.h"
+#include "db.h"
+#include "utils.h"
+#include "handler.h"
+#include "interpreter.h"
+#include "comm.h"
+#include "skills.h"
+#include "casting.h"
+#include "quest.h"
+#include "screen.h"
+#include "math.h"
+#include "pfiles.h"
+#include "chars.h"
+#include "events.h"
+#include "exits.h"
+#include "fight.h"
+#include "players.h"
+#include "movement.h"
+#include "limits.h"
+#include "damage.h"
+#include "directions.h"
+
+extern int get_room_location(char *room);
+extern int obj_room(struct obj_data *obj);
+
+
+void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
+int script_driver(void *go_address, trig_data *trig, int type, int mode);
+
+
+/*
+ * Local functions.
+ */
+
+/* attaches mob's name and vnum to msg and sends it to script_log */
+void mob_log(char_data *mob, char *msg)
+{
+  char buf[MAX_INPUT_LENGTH + 100];
+
+  void script_log(struct trig_data *t, char *msg);
+
+  sprintf(buf, "(TRG)(mob %d): %s", GET_MOB_VNUM(mob), msg);
+  script_log((struct trig_data *)NULL,buf);
+}
+
+
+int find_mob_target_room(struct char_data *ch, char *rawroomstr)
+{
+  int location;
+  struct char_data *target_char;
+  struct obj_data *target_obj;
+  char roomstr[MAX_INPUT_LENGTH];
+
+  one_argument(rawroomstr, roomstr);
+
+  if (!*roomstr)
+    return NOWHERE;
+
+  /*
+   * Don't try to get a room if there's a '.', because that usually
+   * indicates that the script wants to locate something like '3.guard'.
+   */
+  if ((location = get_room_location(roomstr)) != NOWHERE);
+  else if ((target_char = find_char_for_mtrig(ch, roomstr)) &&
+           (location = IN_ROOM(target_char)) != NOWHERE);
+  else if ((target_obj = find_obj_for_mtrig(ch, roomstr)) &&
+           (location = obj_room(target_obj)) != NOWHERE);
+  else return NOWHERE;
+
+  if (ROOM_FLAGGED(location, ROOM_GODROOM) || ROOM_FLAGGED(location, ROOM_HOUSE))
+    return NOWHERE;
+
+  return location;
+}
+
+
+/*
+** macro to determine if a mob is permitted to use these commands
+*/
+#define MOB_OR_IMPL(ch) \
+  (IS_NPC(ch) && (!(ch)->desc || GET_LEVEL((ch)->desc->original)>=LVL_IMPL))
+
+
+/* mob commands */
+
+
+ACMD(do_mdamage) {
+   char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH], damtype[MAX_INPUT_LENGTH];
+   int dam = 0, dtype = DAM_UNDEFINED, *damdone = NULL;
+   trig_data *t;
+   char_data *victim;
+
+   if (!MOB_OR_IMPL(ch)){
+     send_to_char("Huh!?\r\n",ch);
+     return;
+   }
+
+   for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
+      if (t->running) {
+         damdone = &(t->damdone);
+         break;
+      }
+   }
+
+   argument = one_argument(argument, name);
+   if (damdone)
+      *damdone = 0;
+   else {
+      sprintf(buf,
+            "[ WARN: do_mdamage() for %s - can't identify running trigger ]",
+            GET_NAME(ch));
+      mudlog(buf, BRF, LVL_GOD, FALSE);
+   }
+
+   if (!*name) {
+      mob_log(ch, "mdamage called with no arguments");
+      return;
+   }
+
+   argument = one_argument(argument, amount);
+
+   if (!*amount) {
+      mob_log(ch, "mdamage called without second argument (amount)");
+      return;
+   }
+
+   if (!isdigit(*amount)) {
+      sprintf(buf,
+            "mdamage called with invalid second argument (\"%s\") - not a number", amount);
+      mob_log(ch, buf);
+      return;
+   }
+
+   /* hitpoint is a short signed int */
+   dam = MAX(-32767, MIN(atoi(amount), 32767));
+
+   if (!(victim = find_char_for_mtrig(ch, name))) {
+      sprintf(buf, "mdamage: victim (%s) not found", name);
+      mob_log(ch, buf);
+      return;
+   }
+
+   if (GET_LEVEL(victim) >= LVL_IMMORT) return;
+
+   /* Check for and use optional damage-type parameter */
+   argument = one_argument(argument, damtype);
+   if (*damtype) {
+      dtype = parse_damtype(0, damtype);
+      if (dtype == DAM_UNDEFINED) {
+         sprintf(buf,
+               "mdamage called with invalid third argument (\"%s\") - not a damage type",
+               damtype);
+         mob_log(ch, buf);
+         return;
+      }
+      dam = dam * susceptibility(victim, dtype) / 100;
+      if (!dam) return;
+   }
+
+   if (damdone) *damdone = dam;
+   sethurtevent(ch, victim, dam);
+}
+
+
+/* allow a mob to set ANY skill or spell based on targets class
+ * and level
+ * syntax mskillset <plyrname> <name_skill_or_spell>
+ */
+ACMD(do_mskillset)
+{
+  struct char_data * victim;
+  char arg[MAX_INPUT_LENGTH];
+  int skspnum;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n",ch);
+    return;
+  }
+  argument = one_argument(argument, arg);
+
+  if (!*arg) {
+    mob_log(ch, "mskillset called with no arguments");
+    return;
+  }
+
+  if (!(victim = find_char_for_mtrig(ch, arg))) {
+    sprintf(buf, "mskillset: victim (%s) not found", arg);
+    mob_log(ch, buf);
+    return;
+  }
+  /*
+   * we have a victim, do we have a valid skill?
+   */
+  skip_spaces(&argument);
+  if ((skspnum = find_talent_num(argument, TALENT)) < 0) {
+    /* no such spell/skill*/
+    sprintf(buf,"mskillset called with unknown skill/spell '%s'",argument);
+    mob_log(ch,buf);
+    return;
+  }
+
+  /*
+   * because we're nice really, we will give the player the max proficiency for
+   * their level at this skill..don't thank me just throw money..
+   */
+  SET_SKILL(victim, skspnum, return_max_skill(victim,skspnum));
+}
+
+/* prints the argument to all the rooms aroud the mobile */
+ACMD(do_masound)
+{
+  int was_in_room;
+  int  door;
+
+  if (!MOB_OR_IMPL(ch))
+    {
+      send_to_char("Huh?!?\r\n", ch);
+      return;
+    }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  if (!*argument)
+    {
+      mob_log(ch, "masound called with no argument");
+      return;
+    }
+
+  skip_spaces(&argument);
+
+  was_in_room = IN_ROOM(ch);
+  for (door = 0; door < NUM_OF_DIRS; door++)
+    {
+      struct exit *exit;
+
+      if (((exit = world[was_in_room].exits[door]) != NULL) &&
+	  exit->to_room != NOWHERE && exit->to_room != was_in_room)
+	{
+	  IN_ROOM(ch) = exit->to_room;
+	  sub_write(argument, ch, TRUE, TO_ROOM);
+	}
+    }
+
+  IN_ROOM(ch) = was_in_room;
+}
+
+
+/* lets the mobile kill any player or mobile without murder*/
+ACMD(do_mkill)
+{
+  char arg[MAX_INPUT_LENGTH];
+  char_data *victim;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  one_argument(argument, arg);
+
+  if (!*arg) {
+    mob_log(ch, "mkill called with no argument");
+    return;
+  }
+
+  if (!(victim = find_char_for_mtrig(ch, arg))) {
+    sprintf(buf, "mkill: victim (%s) not found",arg);
+    mob_log(ch, buf);
+    return;
+  }
+
+  if (victim == ch) {
+    mob_log(ch, "mkill: victim is self");
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM) && ch->master == victim ) {
+    mob_log(ch, "mkill: charmed mob attacking master");
+    return;
+  }
+
+  if (FIGHTING(ch)) {
+    mob_log(ch, "mkill: already fighting");
+    return;
+  }
+
+  attack(ch, victim);
+  return;
+}
+
+
+/*
+ * lets the mobile destroy an object in its inventory
+ * it can also destroy a worn object and it can destroy
+ * items using all.xxxxx or just plain all of them
+ */
+ACMD(do_mjunk)
+{
+  char argbuf[MAX_INPUT_LENGTH], *arg = argbuf;
+  int pos, dotmode;
+  obj_data *obj;
+  obj_data *obj_next;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  one_argument(argument, arg);
+
+  if (!*arg) {
+    mob_log(ch, "mjunk called with no argument");
+    return;
+  }
+
+  dotmode = find_all_dots(&arg);
+
+  if (dotmode == FIND_INDIV) {
+    if ((obj = find_obj_in_eq(ch, &pos, find_vis_by_name(ch, arg))) != NULL) {
+      unequip_char(ch, pos);
+      extract_obj(obj);
+    }
+    else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg))) != NULL) {
+      extract_obj(obj);
+    }
+  } else {
+    for (obj = ch->carrying; obj != NULL; obj = obj_next) {
+      obj_next = obj->next_content;
+      /* If it is 'all.blah' then find_all_dots converts to 'blah' */
+      if (dotmode == FIND_ALL || isname(arg, obj->name))
+	extract_obj(obj);
+    }
+    if (dotmode == FIND_ALL) {
+      for (pos = 0; pos < NUM_WEARS; ++pos)
+        if (GET_EQ(ch, pos)) {
+          unequip_char(ch, pos);
+          extract_obj(obj);
+        }
+    }
+    else {
+      while ((obj = find_obj_in_eq(ch, &pos, find_vis_by_name(ch, arg)))) {
+	unequip_char(ch, pos);
+	extract_obj(obj);
+      }
+    }
+  }
+}
+
+
+/* prints the message to everyone in the room other than the mob and victim */
+ACMD(do_mechoaround)
+{
+  char arg[MAX_INPUT_LENGTH];
+  char_data *victim;
+  char *p;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char( "Huh?!?\r\n", ch );
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  p = one_argument(argument, arg);
+  skip_spaces(&p);
+
+  if (!*arg) {
+    mob_log(ch, "mechoaround called with no argument");
+    return;
+  }
+
+  if (!(victim = find_char_for_mtrig(ch, arg))) {
+    sprintf(buf, "mechoaround: victim (%s) does not exist",arg);
+    mob_log(ch, buf);
+    return;
+  }
+
+  sub_write(p, victim, TRUE, TO_ROOM);
+}
+
+
+/* sends the message to only the victim */
+ACMD(do_msend)
+{
+  char arg[MAX_INPUT_LENGTH];
+  char_data *victim;
+  char *p;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char( "Huh?!?\r\n", ch );
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  p = one_argument(argument, arg);
+  skip_spaces(&p);
+
+  if (!*arg) {
+    mob_log(ch, "msend called with no argument");
+    return;
+  }
+
+  if (!(victim = find_char_for_mtrig(ch, arg))) {
+    sprintf(buf, "msend: victim (%s) does not exist",arg);
+    mob_log(ch, buf);
+    return;
+  }
+
+  sub_write(p, victim, TRUE, TO_CHAR);
+}
+
+
+/* prints the message to the room at large */
+ACMD(do_mecho)
+{
+  char *p;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char( "Huh?!?\r\n", ch );
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  if (!*argument) {
+    mob_log(ch, "mecho called with no arguments");
+    return;
+  }
+  p = argument;
+  skip_spaces(&p);
+
+  sub_write(p, ch, TRUE, TO_ROOM);
+}
+
+/*
+** run a room trigger..particularly useful when the mob has just
+** croaked (so cant use a speech trig)
+*/
+ACMD(do_m_run_room_trig)
+{
+  int thisrm,trignm,found=0;
+  trig_data *t;
+  struct script_data *sc;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (!*argument)
+  {
+    mob_log(ch, "m_run_room_trig called with no argument");
+    return;
+  }
+
+  /* trigger must be in current room */
+  thisrm = ch->in_room;
+  trignm = atoi(argument);
+  if (SCRIPT(&(world[thisrm])))
+  {
+    sc = SCRIPT(&(world[thisrm]));
+    for (t = TRIGGERS(sc); t; t = t->next)
+    {
+      if (GET_TRIG_VNUM(t) == trignm)
+      {
+        found = 1;
+	break;
+      }
+    }
+
+    if (found == 1)
+    {
+      room_data *room = &world[thisrm];
+      /* found the right trigger, now run it */
+      script_driver(&room, t, WLD_TRIGGER, TRIG_NEW);
+    }
+    else
+    {
+      char buf[MAX_INPUT_LENGTH];
+      sprintf(buf,"m_run_room_trig finds no such trigger %d in room %d\n",
+		      trignm,world[thisrm].vnum);
+      mob_log(ch,buf);
+    }
+  }
+}
+
+
+/*
+ * lets the mobile load an item or mobile.  All items
+ * are loaded into inventory, unless it is NO-TAKE.
+ */
+ACMD(do_mload)
+{
+  char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+  int number = 0;
+  char_data *mob;
+  obj_data *object;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  if( ch->desc && GET_LEVEL(ch->desc->original) < LVL_IMPL)
+    return;
+
+  argument = two_arguments(argument, arg1, arg2);
+
+  if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
+    mob_log(ch, "mload: bad syntax");
+    return;
+  }
+
+  if (is_abbrev(arg1, "mob")) {
+    if ((mob = read_mobile(number, VIRTUAL)) == NULL) {
+      mob_log(ch, "mload: bad mob vnum");
+      return;
+    }
+    char_to_room(mob, IN_ROOM(ch));
+    load_mtrigger(mob);
+  }
+
+  else if (is_abbrev(arg1, "obj")) {
+    if ((object = read_object(number, VIRTUAL)) == NULL) {
+      mob_log(ch, "mload: bad object vnum");
+      return;
+    }
+    /* Reuse arg1 for third argument: force mload to room */
+    any_one_arg(argument, arg1);
+    if (!CAN_WEAR(object, ITEM_WEAR_TAKE) || !str_cmp(arg1, "room"))
+      obj_to_room(object, IN_ROOM(ch));
+    else
+      obj_to_char(object, ch);
+  }
+
+  else
+    mob_log(ch, "mload: bad type");
+}
+
+
+/*
+ * lets the mobile purge all objects and other npcs in the room,
+ * or purge a specified object or mob in the room.  It can purge
+ *  itself, but this will be the last command it does.
+ */
+ACMD(do_mpurge)
+{
+  char arg[MAX_INPUT_LENGTH];
+  char_data *victim;
+  obj_data  *obj;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+    return;
+
+  one_argument(argument, arg);
+
+  if (!*arg) {
+    /* 'purge' */
+    char_data *vnext;
+    obj_data  *obj_next;
+
+    for (victim = world[IN_ROOM(ch)].people; victim; victim = vnext) {
+      vnext = victim->next_in_room;
+      if (IS_NPC(victim) && victim != ch)
+         fullpurge_char(victim);
+    }
+
+    for (obj = world[IN_ROOM(ch)].contents; obj; obj = obj_next) {
+      obj_next = obj->next_content;
+      extract_obj(obj);
+    }
+
+    return;
+  }
+
+  victim = find_char_for_mtrig(ch, arg);
+
+  if (victim == NULL) {
+    if ((obj = find_obj_for_mtrig(ch, arg))) {
+      extract_obj(obj);
+    } else
+      mob_log(ch, "mpurge: bad argument");
+
+    return;
+  }
+
+  if (!IS_NPC(victim)) {
+    mob_log(ch, "mpurge: purging a PC");
+    return;
+  }
+
+  fullpurge_char(victim);
+}
+
+
+/* lets the mobile goto any location it wishes that is not private */
+ACMD(do_mgoto)
+{
+  char arg[MAX_INPUT_LENGTH];
+  int location;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  one_argument(argument, arg);
+
+  if (!*arg) {
+    mob_log(ch, "mgoto called with no argument");
+    return;
+  }
+
+  if ((location = find_mob_target_room(ch, arg)) == NOWHERE) {
+    mob_log(ch, "mgoto: invalid location");
+    return;
+  }
+
+  char_from_room(ch);
+  char_to_room(ch, location);
+}
+
+
+/* lets the mobile do a command at another location. Very useful */
+ACMD(do_mat)
+{
+  char arg[MAX_INPUT_LENGTH];
+  int location;
+  int original;
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  argument = one_argument( argument, arg );
+
+  if (!*arg || !*argument) {
+    mob_log(ch, "mat: bad argument");
+    return;
+  }
+
+  if ((location = find_mob_target_room(ch, arg)) == NOWHERE) {
+    mob_log(ch, "mat: invalid location");
+    return;
+  }
+
+  original = IN_ROOM(ch);
+  char_from_room(ch);
+  char_to_room(ch, location);
+  command_interpreter(ch, argument);
+
+  /*
+   * See if 'ch' still exists before continuing!
+   * Handles 'at XXXX quit' case.
+   */
+  if (IN_ROOM(ch) == location) {
+    char_from_room(ch);
+    char_to_room(ch, original);
+  }
+}
+
+
+/*
+ * lets the mobile transfer people.  the all argument transfers
+ * everyone in the current room to the specified location
+ */
+ACMD(do_mteleport)
+{
+   char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+   int target;
+   char_data *vict, *next_ch;
+
+   if (!MOB_OR_IMPL(ch)) {
+      send_to_char("Huh?!?\r\n", ch);
+      return;
+   }
+
+   if (EFF_FLAGGED(ch, EFF_CHARM))
+      return;
+
+   argument = two_arguments(argument, arg1, arg2);
+
+   if (!*arg1 || !*arg2) {
+      mob_log(ch, "mteleport: bad syntax");
+      return;
+   }
+
+   target = find_mob_target_room(ch, arg2);
+
+   if (target == NOWHERE)
+      mob_log(ch, "mteleport target is an invalid room");
+
+   else if (!str_cmp(arg1, "all")) {
+      if (target == IN_ROOM(ch)) {
+         mob_log(ch, "mteleport all target is itself");
+         return;
+      }
+
+      for (vict = world[IN_ROOM(ch)].people; vict; vict = next_ch) {
+         next_ch = vict->next_in_room;
+
+         if (GET_LEVEL(vict)<LVL_IMMORT) {
+            dismount_char(vict);
+            char_from_room(vict);
+            char_to_room(vict, target);
+         }
+      }
+   } else {
+      if (!(vict = find_char_for_mtrig(ch, arg1))) {
+         sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+         mob_log(ch, buf);
+         return;
+      }
+
+      if (GET_LEVEL(vict)<LVL_IMMORT) {
+         dismount_char(vict);
+         char_from_room(vict);
+         char_to_room(vict, target);
+      }
+   }
+}
+
+
+/*
+ * lets the mobile force someone to do something.  must be mortal level
+ * and the all argument only affects those in the room with the mobile
+ */
+ACMD(do_mforce)
+{
+  char arg[MAX_INPUT_LENGTH];
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+    return;
+
+  argument = one_argument(argument, arg);
+
+  if (!*arg || !*argument) {
+    mob_log(ch, "mforce: bad syntax");
+    return;
+  }
+
+  if (!str_cmp(arg, "all")) {
+    struct descriptor_data *i;
+    char_data *vch;
+
+    for (i = descriptor_list; i ; i = i->next) {
+      if ((i->character != ch) && !i->connected &&
+	  (IN_ROOM(i->character) == IN_ROOM(ch))) {
+	vch = i->character;
+	if (GET_LEVEL(vch) < GET_LEVEL(ch) && CAN_SEE(ch, vch) &&
+	    GET_LEVEL(vch)<LVL_IMMORT) {
+	  command_interpreter(vch, argument);
+	}
+      }
+    }
+  } else {
+    char_data *victim;
+
+    if (!(victim = find_char_for_mtrig(ch, arg))) {
+      mob_log(ch, "mforce: no such victim");
+      return;
+    }
+
+    if (victim == ch) {
+      mob_log(ch, "mforce: forcing self");
+      return;
+    }
+
+    if (GET_LEVEL(victim)<LVL_IMMORT)
+      command_interpreter(victim, argument);
+  }
+}
+
+
+/* increases the target's exp */
+ACMD(do_mexp)
+{
+  char_data *victim;
+  char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+    return;
+
+  two_arguments(argument, name, amount);
+
+  if (!*name || !*amount) {
+    mob_log(ch, "mexp: too few arguments");
+    return;
+  }
+
+  if (!(victim = find_char_for_mtrig(ch, name))) {
+    sprintf(buf, "mexp: victim (%s) does not exist",name);
+    mob_log(ch, buf);
+    return;
+  }
+
+  gain_exp(victim, atoi(amount), GAIN_IGNORE_LEVEL_BOUNDARY |
+                                 GAIN_IGNORE_LOCATION);
+}
+
+
+/* increases the target's gold */
+ACMD(do_mgold)
+{
+  char_data *victim;
+  char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM))
+    return;
+
+  if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+    return;
+
+  two_arguments(argument, name, amount);
+
+  if (!*name || !*amount) {
+    mob_log(ch, "mgold: too few arguments");
+    return;
+  }
+
+  if (!(victim = find_char_for_mtrig(ch, name))) {
+    sprintf(buf, "mgold: victim (%s) does not exist",name);
+    mob_log(ch, buf);
+    return;
+  }
+
+  if ((GET_GOLD(victim) += atoi(amount)) < 0) {
+    mob_log(ch, "mgold subtracting more gold than character has");
+    GET_GOLD(victim) = 0;
+  }
+}
+
+ACMD(do_mob_log) {
+
+  char errbuf[MAX_STRING_LENGTH];
+
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (EFF_FLAGGED(ch, EFF_CHARM)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+    return;
+
+  snprintf(errbuf, MAX_STRING_LENGTH, "ERROR mob %d (%s): %s",
+	   GET_MOB_VNUM(ch), GET_NAME(ch), argument);
+
+  mob_log(ch, argument);
+
+}
+
+/*
+ * do_quest
+ *
+ * descr:	the controlling routine, this is what will get called by the gods
+ * 		and the mobs using the following structure:
+ * 		quest <cmd> <qname> <player>
+ * 		e.g. quest start new_quest zzur
+ */
+
+ACMD(do_quest)
+{
+  struct trig_data *t = NULL;
+
+  /*
+   * Normal rules for execution by mobs/players, but deities can
+   * use this command too.
+   */
+  if (!MOB_OR_IMPL(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+
+  if (MOB_FLAGGED(ch, MOB_ANIMATED) || EFF_FLAGGED(ch, EFF_CHARM)) {
+     send_to_char("Huh?!?\r\n", ch);
+     return;
+  }
+
+  /* If this is running in a trigger, try to find the trigger its running
+     in so that we can pass it to perform_quest */
+  if (SCRIPT(ch))
+    for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next)
+      if (t->running)
+        break;
+
+  perform_quest(t, argument, ch, NULL, NULL);
+
+}
+
+/* Save a player. */
+ACMD(do_msave)
+{
+   char arg[MAX_INPUT_LENGTH];
+
+   if (!MOB_OR_IMPL(ch)) {
+      send_to_char("Huh?!?\r\n", ch);
+      return;
+   }
+
+   if (EFF_FLAGGED(ch, EFF_CHARM))
+      return;
+
+   if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+      return;
+
+   argument = one_argument(argument, arg);
+
+   if (!*arg) {
+      mob_log(ch, "msave: bad syntax");
+      return;
+   }
+
+   if (!str_cmp(arg, "all")) {
+      struct descriptor_data *i;
+      char_data *vch;
+
+      for (i = descriptor_list; i ; i = i->next) {
+         if ((i->character != ch) && !i->connected &&
+               (IN_ROOM(i->character) == IN_ROOM(ch))) {
+            vch = i->character;
+            if (GET_LEVEL(vch) < GET_LEVEL(ch) && CAN_SEE(ch, vch) &&
+                  GET_LEVEL(vch) < LVL_IMMORT) {
+               save_player(vch);
+            }
+         }
+      }
+   } else {
+      char_data *victim;
+
+      if (!(victim = find_char_for_mtrig(ch, arg))) {
+         mob_log(ch, "msave: no such victim");
+         return;
+      }
+
+      if (victim == ch) {
+         mob_log(ch, "msave: forcing self");
+         return;
+      }
+
+      if (IS_NPC(victim)) {
+         sprintf(buf, "msave: cannot save NPC %s", arg);
+         mob_log(ch, buf);
+         return;
+      }
+
+      if (GET_LEVEL(victim) < LVL_IMMORT) {
+         save_player(victim);
+      }
+   }
+}
+
+/***************************************************************************
+ * $Log: dg_mobcmd.c,v $
+ * Revision 1.69  2009/03/19 23:16:23  myc
+ * find_all_dots takes a char** and shifts the pointer up if
+ * it returns FIND_ALLDOT
+ *
+ * Revision 1.68  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.67  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.66  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.65  2009/03/03 19:43:44  myc
+ * New target finding mechanism in find.c.
+ *
+ * Revision 1.64  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.63  2008/09/02 06:52:30  jps
+ * Using limits.h.
+ *
+ * Revision 1.62  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.61  2008/09/01 22:15:59  jps
+ * Saving and reporting players' game-leaving reasons and locations.
+ *
+ * Revision 1.60  2008/09/01 00:49:33  mud
+ * Removing prototype imported from skills.h.
+ *
+ * Revision 1.59  2008/07/27 05:27:38  jps
+ * Using the new save_player function.
+ *
+ * Revision 1.58  2008/06/05 02:07:43  myc
+ * Rewrote rent saving to use ascii object files.
+ *
+ * Revision 1.57  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.56  2008/05/18 05:18:06  jps
+ * Renaming room_data struct's member "number" to "vnum", cos it's
+ * a virtual number.
+ *
+ * Revision 1.55  2008/05/17 04:32:25  jps
+ * Moved exits into exits.h/exits.c and changed the name to "exit".
+ *
+ * Revision 1.54  2008/04/05 20:40:21  jps
+ * mdamage will set an event to cause damage. This will allow triggers
+ * that use it to control what messages are sent.  It will also consolidate
+ * the messages about damage which used to be copied to all *damage
+ * commands.
+ *
+ * Revision 1.53  2008/04/05 19:44:08  jps
+ * Set damdone to the damage done by mdamage. Don't send any messages
+ * when someone receives 0 damage.
+ *
+ * Revision 1.52  2008/04/05 18:18:21  jps
+ * Allow an optional third parameter to mdamage which specifies a
+ * damage type, allowing the victim to resist.
+ *
+ * Revision 1.51  2008/04/03 02:02:05  myc
+ * Upgraded ansi color handling code.
+ *
+ * Revision 1.50  2008/04/02 03:24:44  myc
+ * Removed unnecessary function declaration.
+ *
+ * Revision 1.49  2008/03/30 17:30:38  jps
+ * Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
+ * from pfiles.c now include pfiles.h and depend on it in the makefile.
+ *
+ * Revision 1.48  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.47  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.46  2008/02/02 19:56:51  myc
+ * script_driver now requires an address
+ *
+ * Revision 1.45  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.44  2008/01/27 21:09:12  myc
+ * Replaced hit() with attack().
+ *
+ * Revision 1.43  2008/01/26 12:58:14  jps
+ * Using skills.h.
+ *
+ * Revision 1.42  2008/01/21 00:51:19  jps
+ * Allow mob trigger teleportation commands to use private rooms.
+ *
+ * Revision 1.41  2008/01/17 19:23:07  myc
+ * Moved find_target_room_mscript here from act.wizard.c and renamed
+ * it find_mob_target_room.  It now accepts a room UID, and is used
+ * by
+ * mat, mteleport, and mgoto.
+ *
+ * Revision 1.40  2008/01/13 23:06:04  myc
+ * Cleaned up the mjunk command a little and fixed a bug with
+ * "mjunk all.###" for three-letter names.
+ *
+ * Revision 1.39  2008/01/10 05:39:43  myc
+ * alter_hit now takes a boolean specifying whether to cap any increase in
+ * hitpoints by the victim's max hp.
+ *
+ * Revision 1.38  2008/01/04 03:03:48  jps
+ * Added msave command, so mobs can save players during triggers.
+ *
+ * Revision 1.37  2007/12/31 02:00:57  jps
+ * Made the general term for spells, skills, chants, and songs 'talent'.
+ * Fixed mskillset to handle all talents.
+ *
+ * Revision 1.36  2007/12/19 20:49:22  myc
+ * Fixing bug with mskillset not skipping spaces.
+ *
+ * Revision 1.35  2007/09/28 20:49:35  myc
+ * The mload command now accepts an optional third argument.  If it is
+ * "room" the object is loaded to the room instead of the mob's inventory.
+ *
+ * Revision 1.34  2007/09/01 21:22:29  jps
+ * Made _mscript detection routines.
+ *
+ * Revision 1.33  2007/09/01 20:34:10  jps
+ * Add function get_char_in_room, which bypasses CAN_SEE, for
+ * scripting m* commands.
+ *
+ * Revision 1.32  2007/08/30 19:42:46  jps
+ * Cause *purge dg script commands to destroy all of a mobile's inventory
+ * and equipment when purging mobs.
+ *
+ * Revision 1.31  2007/05/11 22:23:15  myc
+ * Fixed a bug in the log the quest command was using to figure out
+ * who was allowed to use it.
+ *
+ * Revision 1.30  2007/05/11 19:34:15  myc
+ * Modified the quest command functions so they are thin wrappers for
+ * perform_quest() in quest.c.  Error handling and messages should be
+ * much better now.  Advance and rewind now accept another argument
+ * specifying how many stages to advance or rewind.
+ *
+ * Revision 1.29  2007/04/17 23:59:16  myc
+ * New trigger type: Load.  It goes off any time a mobile is loaded, whether
+ * it be god command, zone command, or trigger command.
+ *
+ * Revision 1.28  2007/01/25 17:03:30  myc
+ * You can no longer switch into a mob and use mdamage/mskillset.  Mobs cannot
+ * be ordered to do these either.
+ *
+ * Revision 1.27  2006/11/18 21:10:03  jps
+ * Add mdamage for dg scripting.
+ *
+ * Revision 1.26  2006/11/12 02:31:01  jps
+ * You become unmounted when magically moved to another room.
+ *
+ * Revision 1.25  2006/09/09 01:30:39  dce
+ * Added checks to the quest command to prevent charmies and
+ * shapechangers from using the command freely.
+ *
+ * Revision 1.24  2003/07/29 03:36:07  rsd
+ * added (TRG) to the logging command for ease of parsing.
+ *
+ * Revision 1.23  2003/07/24 22:22:30  jjl
+ * Added the "log" command for mob, room, and object triggers.  Spits
+ * whatever you want into the log.
+ *
+ * Revision 1.22  2002/10/06 19:34:25  jjl
+ * Added some error checking to the variable command so you can't forget a value/variable name.
+ *
+ * Revision 1.21  2002/09/19 01:07:22  jjl
+ * Updated to give mobs the quest variable command
+ *
+ * Revision 1.20  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.19  2001/07/25 06:59:02  mtp
+ * modified logging to hopefully be a bit more helpful by specifying the
+ * trigger id wherever possible. This does not apply to logging of mob trigs yet
+ * as mobs use the same commands as players :-(
+ *
+ * Revision 1.18  2001/07/09 23:05:54  mtp
+ * removed long syntax line for quest - replace with help topic!
+ *
+ * Revision 1.17  2001/07/08 17:47:40  mtp
+ * added quest erase to remove a quest from a player (non documented)
+ *
+ * Revision 1.16  2001/06/19 23:46:52  mtp
+ * improved quest error messages
+ *
+ * Revision 1.15  2001/02/12 23:30:02  mtp
+ * added inroom check for quest commands on death trigs
+ *
+ * Revision 1.14  2001/02/12 01:33:05  mtp
+ * rmeoved some fprintf commands!
+ *
+ * Revision 1.13  2001/02/12 01:30:49  mtp
+ * if we are in a death trigger, run the quest command on all group
+ * members. NO INROOM or AWAKE check!
+ *
+ * Revision 1.12  2001/02/03 00:56:51  mtp
+ * do a race check before starting subclass quest
+ * also returing different codes so that calling procs can do something sensible
+ * on failure
+ *
+ * Revision 1.11  2000/11/23 00:57:04  mtp
+ * added mskillset to allow a mob to set skill/spell proficiency
+ *
+ * Revision 1.10  2000/11/21 01:53:39  rsd
+ * Altered comment header to preserve proper copyright and
+ * credit for work. Also added back rlog messages from prior
+ * to the addition of the $log$ string.
+ *
+ * Revision 1.9  2000/11/07 01:39:59  mtp
+ * extended quest command to have rewind and restart and also for subclasses
+ * in start
+ *
+ * Revision 1.8  2000/11/03 05:37:17  jimmy
+ * Removed the quest.h file from structs.h arg!! and placed it
+ * only in the appropriate files
+ * Updated the dependancies in the Makefile and created
+ * make supahclean.
+ *
+ * Revision 1.7  2000/10/27 00:34:45  mtp
+ * new do_quest command (can be run by mobs or command for gods)
+ *
+ * Revision 1.5  2000/02/10 23:09:40  mtp
+ * fixed mjunk which inhad interpreted the return code from find_all_dots wrongly
+ *
+ * Revision 1.4  1999/10/30 15:26:40  rsd
+ * Jimmy coded alignment restrictions for paladins and exp
+ * altered gain_exp to reference the victim.
+ *
+ * Revision 1.3  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.2  1999/01/31 00:45:50  mud
+ * Added Fieryified comment header
+ * indented entire file
+ *
+ * Revision 1.1  1999/01/29 01:23:30  mud
+ * Initial revision
+ *
+ ***************************************************************************/
+@
+
+
+1.69
+log
+@find_all_dots takes a char** and shifts the pointer up if
+it returns FIND_ALLDOT
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.68 2009/03/09 04:33:20 jps Exp myc $
+d882 2
+a883 1
+  gain_exp(victim, NULL, atoi(amount));
+d1049 4
+@
+
+
+1.68
+log
+@Moved direction information from structs.h, constants.h, and constants.c
+into directions.h and directions.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.67 2009/03/08 23:34:14 jps Exp jps $
+d343 1
+a343 1
+  char arg[MAX_INPUT_LENGTH];
+d363 1
+a363 1
+  dotmode = find_all_dots(arg);
+d1048 4
+@
+
+
+1.67
+log
+@Renamed spells.[ch] to casting.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.66 2009/03/08 21:43:27 jps Exp jps $
+d61 1
+d1048 3
+@
+
+
+1.66
+log
+@Split lifeforce, composition, charsize, and damage types from chars.c
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.65 2009/03/03 19:43:44 myc Exp jps $
+d48 1
+a48 1
+#include "spells.h"
+d1047 3
+@
+
+
+1.65
+log
+@New target finding mechanism in find.c.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.64 2008/09/21 20:40:40 jps Exp myc $
+d60 1
+d1047 3
+@
+
+
+1.64
+log
+@Keep a list of attackers with each character, so that at the proper times -
+such as char_from_room - they can be stopped from battling.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.63 2008/09/02 06:52:30 jps Exp jps $
+a62 3
+struct char_data *get_char_room_mscript(struct char_data * ch, char *name);
+struct obj_data *get_obj_vis_mscript(struct char_data * ch, char *name);
+struct char_data *get_char_vis_mscript(struct char_data * ch, char *name);
+d102 1
+a102 1
+  else if ((target_char = get_char_vis_mscript(ch, roomstr)) &&
+d104 1
+a104 1
+  else if ((target_obj = get_obj_vis_mscript(ch, roomstr)) &&
+d175 1
+a175 7
+   if (*name == UID_CHAR) {
+      if (!(victim = get_char(name))) {
+         sprintf(buf, "mdamage: victim (%s) not found", name);
+         mob_log(ch, buf);
+         return;
+      }
+   } else if (!(victim = get_char_room_mscript(ch, name))) {
+d224 1
+a224 7
+  if (*arg == UID_CHAR) {
+    if (!(victim = get_char(arg))) {
+      sprintf(buf, "mskillset: victim (%s) not found", arg);
+      mob_log(ch, buf);
+      return;
+    }
+  } else if (!(victim = get_char_room_mscript(ch, arg))) {
+d308 1
+a308 7
+  if (*arg == UID_CHAR) {
+    if (!(victim = get_char(arg))) {
+      sprintf(buf, "mkill: victim (%s) not found",arg);
+      mob_log(ch, buf);
+      return;
+    }
+  } else if (!(victim = get_char_room_mscript(ch, arg))) {
+d364 1
+a364 1
+    if ((obj = get_object_in_equip_vis(ch, arg, ch->equipment, &pos)) != NULL) {
+d368 1
+a368 1
+    else if ((obj = get_obj_in_list_vis(ch, arg, ch->carrying)) != NULL) {
+d386 1
+a386 1
+      while ((obj = get_object_in_equip_vis(ch, arg, ch->equipment, &pos))) {
+d418 1
+a418 7
+  if (*arg == UID_CHAR) {
+    if (!(victim = get_char(arg))) {
+      sprintf(buf, "mechoaround: victim (%s) does not exist",arg);
+      mob_log(ch, buf);
+      return;
+    }
+  } else if (!(victim = get_char_room_mscript(ch, arg))) {
+d451 1
+a451 7
+  if (*arg == UID_CHAR) {
+    if (!(victim = get_char(arg))) {
+      sprintf(buf, "msend: victim (%s) does not exist",arg);
+      mob_log(ch, buf);
+      return;
+    }
+  } else if (!(victim = get_char_room_mscript(ch, arg))) {
+d636 1
+a636 3
+  if (*arg == UID_CHAR)
+    victim = get_char(arg);
+  else victim = get_char_room_mscript(ch, arg);
+d639 1
+a639 1
+    if ((obj = get_obj_vis_mscript(ch, arg))) {
+d776 1
+a776 7
+      if (*arg1 == UID_CHAR) {
+         if (!(vict = get_char(arg1))) {
+            sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+            mob_log(ch, buf);
+            return;
+         }
+      } else if (!(vict = get_char_vis_mscript(ch, arg1))) {
+d834 1
+a834 7
+    if (*arg == UID_CHAR) {
+      if (!(victim = get_char(arg))) {
+	sprintf(buf, "mforce: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if ((victim = get_char_room_mscript(ch, arg)) == NULL) {
+d874 1
+a874 7
+  if (*name == UID_CHAR) {
+    if (!(victim = get_char(name))) {
+      sprintf(buf, "mexp: victim (%s) does not exist",name);
+      mob_log(ch, buf);
+      return;
+    }
+  } else if (!(victim = get_char_vis_mscript(ch, name))) {
+d908 1
+a908 7
+  if (*name == UID_CHAR) {
+    if (!(victim = get_char(name))) {
+      sprintf(buf, "mgold: victim (%s) does not exist",name);
+      mob_log(ch, buf);
+      return;
+    }
+  } else if (!(victim = get_char_vis_mscript(ch, name))) {
+d1022 1
+a1022 7
+      if (*arg == UID_CHAR) {
+         if (!(victim = get_char(arg))) {
+            sprintf(buf, "msave: victim (%s) does not exist", arg);
+            mob_log(ch, buf);
+            return;
+         }
+      } else if ((victim = get_char_room_mscript(ch, arg)) == NULL) {
+d1046 4
+@
+
+
+1.63
+log
+@Using limits.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.62 2008/09/01 23:47:49 jps Exp jps $
+a716 3
+  if (FIGHTING(ch))
+    stop_fighting(ch);
+
+d1111 3
+@
+
+
+1.62
+log
+@Using movement.h/c for movement functions.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.61 2008/09/01 22:15:59 jps Exp jps $
+d59 1
+d1114 3
+@
+
+
+1.61
+log
+@Saving and reporting players' game-leaving reasons and locations.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.60 2008/09/01 00:49:33 mud Exp jps $
+d58 1
+a68 1
+void dismount_char(struct char_data * ch);
+d1113 3
+@
+
+
+1.60
+log
+@Removing prototype imported from skills.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.59 2008/07/27 05:27:38 jps Exp mud $
+d1076 1
+a1076 1
+               save_player(vch, SAVE_MTRIGGER);
+d1106 1
+a1106 1
+         save_player(victim, SAVE_MTRIGGER);
+d1113 3
+@
+
+
+1.59
+log
+@Using the new save_player function.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.58 2008/06/05 02:07:43 myc Exp jps $
+a219 1
+  extern int return_max_skill(struct char_data *ch, int skill) ;
+d1113 3
+@
+
+
+1.58
+log
+@Rewrote rent saving to use ascii object files.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.57 2008/05/18 20:16:11 jps Exp myc $
+d1077 1
+a1077 3
+               save_objects(vch, SAVE_CRASH);
+               save_quests(vch);
+               save_player(vch);
+d1107 1
+a1107 3
+         save_objects(victim, SAVE_CRASH);
+         save_player(victim);
+         save_quests(victim);
+d1114 3
+@
+
+
+1.57
+log
+@Created fight.h and set dependents.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.56 2008/05/18 05:18:06 jps Exp jps $
+d57 1
+d1076 4
+a1079 2
+                  GET_LEVEL(vch)<LVL_IMMORT) {
+               Crash_crashsave(vch);
+d1108 5
+a1112 2
+      if (GET_LEVEL(victim) < LVL_IMMORT)
+         Crash_crashsave(victim);
+d1118 3
+@
+
+
+1.56
+log
+@Renaming room_data struct's member "number" to "vnum", cos it's
+a virtual number.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.55 2008/05/17 04:32:25 jps Exp jps $
+d56 1
+d1112 4
+@
+
+
+1.55
+log
+@Moved exits into exits.h/exits.c and changed the name to "exit".
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.54 2008/04/05 20:40:21 jps Exp jps $
+d561 1
+a561 1
+		      trignm,world[thisrm].number);
+d1111 3
+@
+
+
+1.54
+log
+@mdamage will set an event to cause damage. This will allow triggers
+that use it to control what messages are sent.  It will also consolidate
+the messages about damage which used to be copied to all *damage
+commands.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.53 2008/04/05 19:44:08 jps Exp jps $
+d55 1
+d286 1
+a286 1
+      struct room_direction_data *exit;
+d288 1
+a288 1
+      if (((exit = world[was_in_room].dir_option[door]) != NULL) &&
+d1111 6
+@
+
+
+1.53
+log
+@Set damdone to the damage done by mdamage. Don't send any messages
+when someone receives 0 damage.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.52 2008/04/05 18:18:21 jps Exp jps $
+d54 1
+a202 1
+   alter_hit(victim, dam, TRUE);
+d204 1
+a204 38
+   update_pos(victim);
+   switch (GET_POS(victim)) {
+      case POS_MORTALLYW:
+        act("$n is mortally wounded, and will die soon, if not aided.", TRUE, victim, 0, 0, TO_ROOM);
+        send_to_char("You are mortally wounded, and will die soon, if not aided.\r\n", victim);
+        break;
+      case POS_INCAP:
+        act("$n is incapacitated and will slowly die, if not aided.", TRUE, victim, 0, 0, TO_ROOM);
+        send_to_char("You are incapacitated an will slowly die, if not aided.\r\n", victim);
+        break;
+      case POS_STUNNED:
+        act("$n is stunned, but will probably regain consciousness again.", TRUE, victim, 0, 0, TO_ROOM);
+        send_to_char("You're stunned, but will probably regain consciousness again.\r\n", victim);
+        break;
+      case POS_DEAD:
+        death_mtrigger (victim, (char_data *)NULL );  /* allow mob killed by mdamage to run death trigger */
+        act("$n is dead!  R.I.P.", FALSE, victim, 0, 0, TO_ROOM);
+        send_to_char("You are dead!  Sorry...\r\n", victim);
+        break;
+
+      default:   /* >= POSITION SLEEPING */
+        if (dam > (GET_MAX_HIT(victim) >> 2))
+            act("That really did HURT!", FALSE, victim, 0, 0, TO_CHAR);
+        if (GET_HIT(victim) < (GET_MAX_HIT(victim) >> 2)) {
+            sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n",
+               CLRLV(victim, FRED, C_SPR), CLRLV(victim, ANRM, C_SPR));
+            send_to_char(buf2, victim);
+        }
+   }
+
+   if (GET_POS(victim) == POS_DEAD) {
+      if (!IS_NPC(victim)) {
+         sprintf(buf2, "%s killed by a monster-trap at %s", GET_NAME(victim),
+            world[victim->in_room].name);
+         mudlog(buf2, BRF, 0, TRUE);
+      }
+      die(victim, NULL);
+   }
+d1110 4
+@
+
+
+1.52
+log
+@Allow an optional third parameter to mdamage which specifies a
+damage type, allowing the victim to resist.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.51 2008/04/03 02:02:05 myc Exp jps $
+d125 2
+a126 1
+   int dam = 0, dtype = DAM_UNDEFINED;
+d134 7
+d142 8
+d185 1
+a185 6
+   if (GET_LEVEL(victim) >= LVL_IMMORT) {
+     act("You ignore $N's ill-advised attack.", FALSE, victim, 0, ch, TO_CHAR);
+     act("$n ignores $N's ill-advised attack.", TRUE, victim, 0, ch, TO_NOTVICT);
+     act("$N ignores your ill-advised attack.", FALSE, ch, 0, victim, TO_CHAR);
+     return;
+   }
+d199 1
+a199 4
+      if (!dam) {
+         damage_evasion_message(ch, victim, 0, dtype);
+         return;
+      }
+d203 1
+d1147 4
+@
+
+
+1.51
+log
+@Upgraded ansi color handling code.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.50 2008/04/02 03:24:44 myc Exp myc $
+d53 1
+d124 2
+a125 2
+   char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
+   int dam = 0;
+d176 18
+d1138 3
+@
+
+
+1.50
+log
+@Removed unnecessary function declaration.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.49 2008/03/30 17:30:38 jps Exp myc $
+d201 1
+a201 1
+               CCRED(victim, C_SPR), CCNRM(victim, C_SPR));
+d1119 3
+@
+
+
+1.49
+log
+@Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
+from pfiles.c now include pfiles.h and depend on it in the makefile.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.48 2008/03/28 17:54:53 myc Exp jps $
+a60 1
+void die(struct char_data * ch, struct char_data * killer);
+d1119 4
+@
+
+
+1.48
+log
+@Now using flagvectors for effect, mob, player, preference, room, and
+room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.47 2008/02/09 04:27:47 myc Exp myc $
+d52 1
+a1053 1
+   void Crash_crashsave(struct char_data * ch);
+d1120 4
+@
+
+
+1.47
+log
+@Now relying on math header file.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.46 2008/02/02 19:56:51 myc Exp myc $
+d105 1
+a105 1
+  if (ROOM_FLAGGED(location, ROOM_GODROOM | ROOM_HOUSE))
+d280 1
+a280 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d319 1
+a319 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d346 1
+a346 1
+  if (IS_AFFECTED(ch, AFF_CHARM) && ch->master == victim ) {
+d378 1
+a378 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d434 1
+a434 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d473 1
+a473 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d510 1
+a510 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d592 1
+a592 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d648 1
+a648 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d708 1
+a708 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d743 1
+a743 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d789 1
+a789 1
+   if (AFF_FLAGGED(ch, AFF_CHARM))
+d854 1
+a854 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d917 1
+a917 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d957 1
+a957 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d997 1
+a997 1
+  if (AFF_FLAGGED(ch, AFF_CHARM)) {
+d1034 1
+a1034 1
+  if (MOB_FLAGGED(ch, MOB_ANIMATED) || IS_AFFECTED(ch, AFF_CHARM)) {
+d1061 1
+a1061 1
+   if (AFF_FLAGGED(ch, AFF_CHARM))
+d1120 3
+@
+
+
+1.46
+log
+@script_driver now requires an address
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.45 2008/01/29 21:02:31 myc Exp myc $
+d51 1
+d1120 3
+@
+
+
+1.45
+log
+@Removing a lot of extern declarations from code files and moving
+them to header files, mostly db.h and constants.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.44 2008/01/27 21:09:12 myc Exp myc $
+d61 1
+a61 1
+int script_driver(void *go, trig_data *trig, int type, int mode);
+d560 1
+d562 1
+a562 1
+      script_driver(&(world[thisrm]), t, WLD_TRIGGER, TRIG_NEW);
+d1119 4
+@
+
+
+1.44
+log
+@Replaced hit() with attack().
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.43 2008/01/26 12:58:14 jps Exp myc $
+a51 2
+extern struct index_data **trig_index;
+extern struct descriptor_data *descriptor_list;
+a52 2
+extern struct index_data *mob_index;
+extern struct room_data *world;
+d1118 3
+@
+
+
+1.43
+log
+@Using skills.h.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.42 2008/01/21 00:51:19 jps Exp jps $
+d359 1
+a359 1
+  hit(ch, victim, TYPE_UNDEFINED);
+d1122 3
+@
+
+
+1.42
+log
+@Allow mob trigger teleportation commands to use private rooms.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.41 2008/01/17 19:23:07 myc Exp jps $
+d47 1
+d1122 3
+@
+
+
+1.41
+log
+@Moved find_target_room_mscript here from act.wizard.c and renamed
+it find_mob_target_room.  It now accepts a room UID, and is used
+by
+mat, mteleport, and mgoto.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.40 2008/01/13 23:06:04 myc Exp myc $
+d76 1
+a76 1
+  
+d78 1
+a78 1
+  
+a109 4
+  if (ROOM_FLAGGED(location, ROOM_PRIVATE) &&
+      world[location].people && world[location].people->next_in_room)
+    return NOWHERE;
+
+d128 1
+a128 1
+  
+d135 1
+a135 1
+  
+d157 1
+a157 1
+  
+d197 1
+a197 1
+        
+d235 1
+a235 1
+  
+d240 1
+a240 1
+  
+d275 1
+a275 1
+  
+d281 1
+a281 1
+  
+d284 1
+a284 1
+  
+d290 1
+a290 1
+  
+d292 1
+a292 1
+  
+d297 1
+a297 1
+      
+d305 1
+a305 1
+  
+d315 1
+a315 1
+  
+d320 1
+a320 1
+  
+d323 1
+a323 1
+  
+d325 1
+a325 1
+  
+d330 1
+a330 1
+  
+d342 1
+a342 1
+  
+d347 1
+a347 1
+  
+d352 1
+a352 1
+  
+d357 1
+a357 1
+  
+d365 1
+a365 1
+ * it can also destroy a worn object and it can destroy 
+d374 1
+a374 1
+  
+d379 1
+a379 1
+  
+d382 1
+a382 1
+  
+d384 1
+a384 1
+  
+d389 1
+a389 1
+  
+d430 1
+a430 1
+  
+d435 1
+a435 1
+  
+d438 1
+a438 1
+  
+d441 1
+a441 1
+  
+d446 1
+a446 1
+  
+d458 1
+a458 1
+  
+d469 1
+a469 1
+  
+d474 1
+a474 1
+  
+d477 1
+a477 1
+  
+d480 1
+a480 1
+  
+d485 1
+a485 1
+  
+d497 1
+a497 1
+  
+d506 1
+a506 1
+  
+d511 1
+a511 1
+  
+d514 1
+a514 1
+  
+d521 1
+a521 1
+  
+d579 1
+a579 1
+ * are loaded into inventory, unless it is NO-TAKE. 
+d587 1
+a587 1
+  
+d592 1
+a592 1
+  
+d595 1
+a595 1
+  
+d598 1
+a598 1
+  
+d600 1
+a600 1
+  
+d605 1
+a605 1
+  
+d614 1
+a614 1
+  
+d627 1
+a627 1
+  
+d643 1
+a643 1
+  
+d648 1
+a648 1
+  
+d651 1
+a651 1
+  
+d654 1
+a654 1
+  
+d656 1
+a656 1
+  
+d661 1
+a661 1
+    
+d667 1
+a667 1
+    
+d672 1
+a672 1
+    
+d675 1
+a675 1
+  
+d679 1
+a679 1
+  
+d683 1
+a683 1
+    } else 
+d685 1
+a685 1
+    
+d688 1
+a688 1
+  
+d693 1
+a693 1
+  
+d703 1
+a703 1
+  
+d708 1
+a708 1
+  
+d711 1
+a711 1
+  
+d713 1
+a713 1
+  
+d718 1
+a718 1
+  
+d723 1
+a723 1
+  
+d726 1
+a726 1
+  
+d738 1
+a738 1
+  
+d743 1
+a743 1
+  
+d746 1
+a746 1
+  
+d748 1
+a748 1
+  
+d753 1
+a753 1
+  
+d758 1
+a758 1
+  
+d763 1
+a763 1
+  
+d784 1
+a784 1
+  
+d789 1
+a789 1
+  
+d792 1
+a792 1
+  
+d794 1
+a794 1
+  
+d799 1
+a799 1
+  
+d801 1
+a801 1
+  
+d804 1
+a804 1
+  
+d810 1
+a810 1
+    
+d813 1
+a813 1
+      
+d849 1
+a849 1
+  
+d854 1
+a854 1
+  
+d857 1
+a857 1
+  
+d860 1
+a860 1
+  
+d862 1
+a862 1
+  
+d867 1
+a867 1
+  
+d871 1
+a871 1
+    
+d884 1
+a884 1
+    
+d895 1
+a895 1
+    
+d900 1
+a900 1
+    
+d912 1
+a912 1
+  
+d917 1
+a917 1
+  
+d920 1
+a920 1
+  
+d922 2
+a923 2
+    return;  
+  
+d925 1
+a925 1
+  
+d930 1
+a930 1
+  
+d942 2
+a943 2
+  
+  gain_exp(victim, NULL, atoi(amount));      
+d952 1
+a952 1
+  
+d957 1
+a957 1
+  
+d960 1
+a960 1
+  
+d962 2
+a963 2
+    return;  
+  
+d965 1
+a965 1
+  
+d970 1
+a970 1
+  
+d982 1
+a982 1
+  
+d991 1
+a991 1
+  char errbuf[MAX_STRING_LENGTH]; 
+d1006 2
+a1007 2
+  snprintf(errbuf, MAX_STRING_LENGTH, "ERROR mob %d (%s): %s", 
+	   GET_MOB_VNUM(ch), GET_NAME(ch), argument); 
+d1009 1
+a1009 1
+  mob_log(ch, argument); 
+d1040 1
+a1040 1
+  /* If this is running in a trigger, try to find the trigger its running 
+d1064 1
+a1064 1
+  
+d1121 6
+@
+
+
+1.40
+log
+@Cleaned up the mjunk command a little and fixed a bug with
+"mjunk all.###" for three-letter names.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.39 2008/01/10 05:39:43 myc Exp myc $
+d53 1
+a53 1
+extern int find_target_room_mscript(char_data * ch, char *rawroomstr);
+d56 1
+d82 36
+d723 1
+a723 1
+  if ((location = find_target_room_mscript(ch, arg)) == NOWHERE) {
+d758 1
+a758 1
+  if ((location = find_target_room_mscript(ch, arg)) == NOWHERE) {
+d804 1
+a804 1
+   target = find_target_room_mscript(ch, arg2);
+d1125 4
+@
+
+
+1.39
+log
+@alter_hit now takes a boolean specifying whether to cap any increase in
+hitpoints by the victim's max hp.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.38 2008/01/04 03:03:48 jps Exp myc $
+d338 1
+a338 1
+  int pos;
+d357 4
+a360 2
+  if (find_all_dots(arg) == FIND_INDIV) {
+    if ((obj=get_object_in_equip_vis(ch,arg,ch->equipment,&pos))!= NULL) {
+a362 1
+      return;
+d364 1
+a364 1
+    if ((obj = get_obj_in_list_vis(ch, arg, ch->carrying)) != NULL )
+d366 1
+a366 1
+    return;
+d370 2
+a371 3
+      /* if it is 'all.blah' then find_all_dots converts to 'blah' */
+      /* if it is 'all' then arg[3] = '\0' */
+      if (arg[3] == '\0' || isname(arg, obj->name)) {
+a372 1
+      }
+d374 9
+a382 2
+    while ((obj=get_object_in_equip_vis(ch,arg,ch->equipment,&pos)))
+      {
+d385 2
+a386 1
+      }   
+a387 1
+  return;
+d1088 4
+@
+
+
+1.38
+log
+@Added msave command, so mobs can save players during triggers.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.37 2007/12/31 02:00:57 jps Exp jps $
+d144 1
+a144 1
+   alter_hit(victim, dam, 2);
+d1082 3
+@
+
+
+1.37
+log
+@Made the general term for spells, skills, chants, and songs 'talent'.
+Fixed mskillset to handle all talents.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.36 2007/12/19 20:49:22 myc Exp jps $
+d1012 68
+d1082 4
+@
+
+
+1.36
+log
+@Fixing bug with mskillset not skipping spaces.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.35 2007/09/28 20:49:35 myc Exp myc $
+d223 1
+a223 1
+  if ((skspnum = find_skill_num(argument)) < 0) {
+d1014 3
+@
+
+
+1.35
+log
+@The mload command now accepts an optional third argument.  If it is
+"room" the object is loaded to the room instead of the mob's inventory.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.34 2007/09/01 21:22:29 jps Exp myc $
+d197 1
+a197 2
+  if (!MOB_OR_IMPL(ch))
+  {
+d210 1
+a210 1
+      sprintf(buf, "mskillset: victim (%s) not found",arg);
+d215 1
+a215 1
+    sprintf(buf, "mskillset: victim (%s) not found",arg);
+d222 6
+a227 6
+  if ((skspnum = find_skill_num(argument)) == -1)
+  {
+	  /* no such spell/skill*/
+	  sprintf(buf,"mskillset called with unknown skill/spell '%s'",argument);
+	  mob_log(ch,buf);
+	  return;
+a229 1
+  fprintf(stderr,"ok, got a victim (%s) and a spell/skill number (%d), lets boogy\n",GET_NAME(victim),skspnum);
+d234 1
+a234 1
+  SET_SKILL(victim,skspnum,(return_max_skill (victim,skspnum)));
+d1014 4
+@
+
+
+1.34
+log
+@Made _mscript detection routines.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.33 2007/09/01 20:34:10 jps Exp jps $
+d562 1
+a562 1
+  two_arguments(argument, arg1, arg2);
+d583 5
+a587 1
+    if (CAN_WEAR(object, ITEM_WEAR_TAKE)) {
+a588 3
+    } else {
+      obj_to_room(object, IN_ROOM(ch));
+    } 
+d1016 3
+@
+
+
+1.33
+log
+@Add function get_char_in_room, which bypasses CAN_SEE, for
+scripting m* commands.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.32 2007/08/30 19:42:46 jps Exp jps $
+d53 1
+a53 1
+extern int find_target_room(char_data * ch, char *rawroomstr);
+d56 3
+a58 1
+struct char_data *get_char_in_room(struct char_data * ch, char *name);
+d131 1
+a131 1
+   } else if (!(victim = get_char_in_room(ch, name))) {
+d215 1
+a215 1
+  } else if (!(victim = get_char_in_room(ch, arg))) {
+d306 1
+a306 1
+  } else if (!(victim = get_char_in_room(ch, arg))) {
+d416 1
+a416 1
+  } else if (!(victim = get_char_in_room(ch, arg))) {
+d455 1
+a455 1
+  } else if (!(victim = get_char_in_room(ch, arg))) {
+d640 1
+a640 1
+  else victim = get_char_in_room(ch, arg);
+d643 1
+a643 1
+    if ((obj = get_obj_vis(ch, arg))) {
+d681 1
+a681 1
+  if ((location = find_target_room(ch, arg)) == NOWHERE) {
+d716 1
+a716 1
+  if ((location = find_target_room(ch, arg)) == NOWHERE) {
+d762 1
+a762 1
+   target = find_target_room(ch, arg2);
+d789 1
+a789 1
+      } else if (!(vict = get_char_vis(ch, arg1))) {
+d853 1
+a853 1
+    } else if ((victim = get_char_in_room(ch, arg)) == NULL) {
+d899 1
+a899 1
+  } else if (!(victim = get_char_vis(ch, name))) {
+d939 1
+a939 1
+  } else if (!(victim = get_char_vis(ch, name))) {
+d1015 4
+@
+
+
+1.32
+log
+@Cause *purge dg script commands to destroy all of a mobile's inventory
+and equipment when purging mobs.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.31 2007/05/11 22:23:15 myc Exp jps $
+d56 2
+d129 1
+a129 1
+   } else if (!(victim = get_char_room_vis(ch, name))) {
+d213 1
+a213 1
+  } else if (!(victim = get_char_room_vis(ch, arg))) {
+d304 1
+a304 1
+  } else if (!(victim = get_char_room_vis(ch, arg))) {
+d414 1
+a414 1
+  } else if (!(victim = get_char_room_vis(ch, arg))) {
+d453 1
+a453 1
+  } else if (!(victim = get_char_room_vis(ch, arg))) {
+d638 1
+a638 1
+  else victim = get_char_room_vis(ch, arg);
+d741 3
+a743 3
+  char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+  int target;
+  char_data *vict, *next_ch;
+d745 4
+a748 4
+  if (!MOB_OR_IMPL(ch)) {
+    send_to_char("Huh?!?\r\n", ch);
+    return;
+  }
+d750 2
+a751 2
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+    return;
+d753 1
+a753 1
+  argument = two_arguments(argument, arg1, arg2);
+d755 4
+a758 4
+  if (!*arg1 || !*arg2) {
+    mob_log(ch, "mteleport: bad syntax");
+    return;
+  }
+d760 1
+a760 1
+  target = find_target_room(ch, arg2);
+d762 2
+a763 2
+  if (target == NOWHERE)
+    mob_log(ch, "mteleport target is an invalid room");
+d765 5
+a769 5
+  else if (!str_cmp(arg1, "all")) {
+    if (target == IN_ROOM(ch)) {
+      mob_log(ch, "mteleport all target is itself");
+      return;
+    }
+d771 2
+a772 2
+    for (vict = world[IN_ROOM(ch)].people; vict; vict = next_ch) {
+      next_ch = vict->next_in_room;
+d774 19
+d795 2
+a796 2
+	char_from_room(vict);
+	char_to_room(vict, target);
+d798 1
+a798 22
+    }
+  }
+  
+  else {
+    if (*arg1 == UID_CHAR) {
+      if (!(vict = get_char(arg1))) {
+	sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(vict = get_char_vis(ch, arg1))) {
+      sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+      mob_log(ch, buf);
+      return;
+    }
+    
+    if (GET_LEVEL(vict)<LVL_IMMORT) {
+       dismount_char(vict);
+      char_from_room(vict);
+      char_to_room(vict, target);
+    }
+  }
+d851 1
+a851 1
+    } else if ((victim = get_char_room_vis(ch, arg)) == NULL) {
+d1013 4
+@
+
+
+1.31
+log
+@Fixed a bug in the log the quest command was using to figure out
+who was allowed to use it.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.30 2007/05/11 19:34:15 myc Exp $
+d623 1
+a623 1
+	extract_char(victim);
+d652 1
+a652 1
+  extract_char(victim);
+d1013 4
+@
+
+
+1.30
+log
+@Modified the quest command functions so they are thin wrappers for
+perform_quest() in quest.c.  Error handling and messages should be
+much better now.  Advance and rewind now accept another argument
+specifying how many stages to advance or rewind.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.29 2007/04/17 23:59:16 myc Exp myc $
+d958 2
+a959 1
+  if (AFF_FLAGGED(ch, AFF_CHARM))
+d961 1
+d986 5
+a990 1
+  if ((!IS_MOB(ch)) && (ch->player.level < LVL_GOD)) {
+a994 5
+  if (ch->desc && ch->desc->original && GET_LEVEL(ch->desc->original) < 100) {
+      send_to_char("Huh?!?\r\n", ch);
+      return;
+  }
+
+d1013 6
+@
+
+
+1.29
+log
+@New trigger type: Load.  It goes off any time a mobile is loaded, whether
+it be god command, zone command, or trigger command.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.28 2007/01/25 17:03:30 myc Exp myc $
+d982 1
+d984 1
+a984 15
+  char arg[MAX_INPUT_LENGTH];
+  char msgbuf [150];
+  char qcmd[12];	/*longest command is complete (8chars)*/
+  char * qname;
+  char subclass[25];
+  char variable[21]; 
+  char value[21]; 
+
+  struct char_data * vict,*gl;	/*gl is the group leader (if there is one)*/
+  struct group_type * q_g;
+  int retc,deathtrig=0;
+  trig_data * t;
+  extern struct char_data *character_list;
+
+  if ((!IS_MOB(ch)) && (ch->player.level <= LVL_IMMORT)) {
+d999 3
+a1001 5
+  /*
+   * if we are in a death trigger, set this for later
+   */
+  if(SCRIPT_CHECK(ch, MTRIG_DEATH))
+  {
+d1003 2
+a1004 28
+    {
+      if (t->running && IS_SET(GET_TRIG_TYPE(t), MTRIG_DEATH))
+	      deathtrig = 1;
+    }
+  }
+
+  argument = one_argument(argument, qcmd);
+  if (strlen(qcmd) == 0)
+  {
+	  send_to_char("Syntax: quest <command> <questname> <playername> [<subclass_abbr>]\r\n",ch);
+	  return;
+  }
+
+  argument = one_argument(argument,arg);
+  if (strlen(arg) == 0)
+  {
+	  send_to_char("Syntax: quest <command> <questname> <playername> [<subclass_abbr>]\r\n",ch);
+	  return;
+  }
+  CREATE(qname,char,strlen(arg) +1);
+  sprintf(qname,"%s",arg);
+  argument = one_argument(argument,arg);
+  if (strlen(arg) == 0 && !deathtrig)
+  {
+	  send_to_char("Syntax: quest <command> <questname> <playername> [<subclass_abbr>]\r\n",ch);
+	  free(qname);
+	  return;
+  }
+d1006 1
+a1006 31
+  /*
+   * cycle through a list of the players that we are going to affect, this
+   * may be a list of one person if a person was specified or may be
+   * a group of players
+   */
+  CREATE(q_g, struct group_type, 1);
+  for (gl = character_list; gl; gl = gl->next)
+  {
+      if (!IS_NPC(gl) && gl->in_room == ch->in_room &&
+	        (deathtrig || !str_cmp(gl->player.name, arg)) )
+      {
+	      vict = gl;
+	      if (deathtrig)
+	      {
+		      /* its a death trigger so affect the whole group
+		       * regardless of who the leader is
+		       * NOTE: we are not performing an inroom or awakeness
+		       * check here for simplicity, perhaps this will be added?
+		       */
+	      	if (vict->groupmaster)
+		      vict = vict->groupmaster;
+
+		q_g->groupee=vict;
+		q_g->next= vict->groupees;
+	      }
+	      else
+	      {
+		      /* its not a death trig so just this char*/
+		q_g->groupee=vict;
+		q_g->next=(struct group_type *)NULL;
+	      }
+a1007 218
+	      break;
+      }
+  }
+  /* if we couldn't find a single player for our list, bail here*/
+  if (!(q_g->groupee))
+  {
+	  send_to_char("Unable to find that player\r\n",ch);
+  }
+  else
+  for (; q_g; q_g=q_g->next)
+  {
+	  vict = q_g->groupee;
+	  if (vict->in_room != ch->in_room)
+		  continue;
+
+	  /* based on command, run the appropriate procedure */
+	  if (!strn_cmp(qcmd,"complete",strlen(qcmd)))
+	  {
+		  retc = quest_complete(qname,vict);
+	  	  if (!retc)
+		  {
+			sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to complete already completed quest %s\r\n",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+			mudlog(buf,NRM,LVL_GOD,TRUE);
+		  }
+	  }
+	  else if (!strn_cmp(qcmd,"fail",strlen(qcmd)))
+	  {
+		  retc = quest_fail(qname,vict);
+	  	  if (!retc)
+		  {
+			sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to fail already completed quest %s\r\n",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+			mudlog(buf,NRM,LVL_GOD,TRUE);
+		  }
+	  }
+	  else if (!strn_cmp(qcmd,"start",strlen(qcmd)))
+	  {
+		  argument = one_argument(argument,subclass);
+
+		  retc = quest_start(qname,vict,subclass);
+		  /*
+		   * gonna let the mob say that failed to start quest (with reason)
+		   * and then I have to abort the trigger (eek)
+		   */
+		  if (retc < 1)
+		  {
+			  switch (retc)
+			  {
+				  /* note: only send to char if quest starter was a mob*/
+			  case 0:
+				  if (IS_MOB(ch))
+					  sprintf(msgbuf,"You already started this quest!\n\r");
+				  else
+				  {
+					  sprintf(buf,"%s already started this quest\n\r",GET_NAME(vict));
+					  send_to_char(buf,ch);
+				  }
+				  break;
+			  case -1:
+				  if (IS_MOB(ch))
+					  sprintf(msgbuf,"You are not the right class to try this quest!\n\r");
+				  else
+				  {
+					  sprintf(buf,"%s is not the right class for this quest\n\r",GET_NAME(vict));
+					  send_to_char(buf,ch);
+				  }
+				  break;
+			  case -2:
+				  if (IS_MOB(ch))
+					  sprintf(msgbuf,"You are not the right race to try this quest!\n\r");
+				  else
+				  {
+					  sprintf(buf,"%s is not the right race for this quest\n\r",GET_NAME(vict));
+					  send_to_char(buf,ch);
+				  }
+				  break;
+			  case -3:
+				  if (IS_MOB(ch))
+					  sprintf(msgbuf,"You are already doing a subclass quest!\n\r");
+				  else
+				  {
+					  sprintf(buf,"%s is already doing a subclass quest\n\r",GET_NAME(vict));
+					  send_to_char(buf,ch);
+				  }
+				  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to start second subclass quest for %s",GET_NAME(ch),GET_MOB_VNUM(ch),GET_NAME(vict));
+				  mudlog(buf ,NRM, LVL_GOD, TRUE);
+				  break;
+			  case -4:
+				  sprintf(buf,"QUEST ERROR:Attempt by %s(%d) to start subclass with bad start or dest class in quest %s",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+				  mudlog(buf, NRM, LVL_GOD, TRUE);
+				  break;
+			  case -5:
+				  if (IS_MOB(ch))
+					  sprintf(msgbuf,"You are too low level to do a subclass quest!\n\r");
+				  else
+				  {
+					  sprintf(buf,"%s is too low level for a subclass quest\n\r",GET_NAME(vict));
+					  send_to_char(buf,ch);
+				  }
+				  break;
+			  case -6:
+				  if (IS_MOB(ch))
+					  sprintf(msgbuf,"You are too high level to do this subclass quest!\n\r");
+				  else
+				  {
+					  sprintf(buf,"%s is too high level for a subclass quest\n\r",GET_NAME(vict));
+					  send_to_char(buf,ch);
+				  }
+				  break;
+			  case -7:
+				  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to start subclass quest without specifying subclass",GET_NAME(ch),GET_MOB_VNUM(ch));
+				  mudlog(buf,NRM,LVL_GOD, TRUE);
+				  break;
+			  }
+	
+			  if (IS_MOB(ch))
+				  send_to_char(msgbuf,vict);
+		  }
+	  }
+	  else if (!strn_cmp(qcmd,"advance",strlen(qcmd)))
+	  {
+		  retc = quest_advance(qname,vict);
+		  if (retc < 0)
+		  {
+			  switch (retc)
+			  {
+				  /* note: only send to char if quest starter was a mob*/
+			  case -1:
+				  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to advance from final stage in quest %s\r\n",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+				  mudlog(buf,NRM,LVL_GOD,TRUE);
+				  break;
+			  case -2:
+				  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to advance failed quest %s\n",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+				  mudlog(buf ,NRM, LVL_GOD, TRUE);
+				  break;
+			  }
+		  }
+	  }
+	  else if (!strn_cmp(qcmd,"rewind",strlen(qcmd)))
+	  {
+		  retc = quest_rewind(qname,vict);
+		  if (retc < 0)
+		  {
+			  switch (retc)
+			  {
+				  /* note: only send to char if quest starter was a mob*/
+			  case -1:
+				  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to rewind from first stage in quest %s\r\n",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+				  mudlog(buf,NRM,LVL_GOD,TRUE);
+				  break;
+			  case -2:
+				  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to rewind failed quest %s (use restart)\r\n",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+				  mudlog(buf ,NRM, LVL_GOD, TRUE);
+				  break;
+			  case -3:
+				  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to rewind completed quest %s (use restart)\r\n",GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+				  mudlog(buf ,NRM, LVL_GOD, TRUE);
+				  break;
+			  }
+		  }
+	  }
+	  else if (!strn_cmp(qcmd,"restart",strlen(qcmd)))
+		  retc = quest_restart(qname,vict);
+	  else if (!strn_cmp(qcmd,"erase",strlen(qcmd)))
+		  retc = quest_erase(qname,vict);
+	  else if (!strn_cmp(qcmd,"variable", strlen(qcmd)))
+	    {
+	      argument = one_argument(argument, variable); 
+	      argument = one_argument(argument, value); 
+
+	      /* Make sure we have an argument AND a value */
+	      if (strlen(value) == 0)
+		{
+		  retc = -1;
+		  sprintf(buf,"QUEST ERROR:Attempt by %s (%d) to set a quest "
+                          "variable, for %s but too few arguments (perhaps a " 
+			  "variable name with no value or vice versa)\r\n",
+			  GET_NAME(ch),GET_MOB_VNUM(ch),qname);
+		  mudlog(buf ,NRM, LVL_GOD, TRUE);
+
+		}
+	      else
+		{
+	      retc = set_quest_variable(qname, vict, variable, value);
+		};
+	    }
+	  else if (!strn_cmp(qcmd,"stage",strlen(qcmd)))
+	  {
+		  retc = quest_stage(qname,vict);
+		  if (IS_MOB(ch))
+		  	sprintf(msgbuf,"%d",retc);
+		  else
+		  {
+			  if (retc == QUEST_SUCCESS)
+				  sprintf(msgbuf,"Quest %s has been completed\r\n",qname);
+			  else if (retc == 0)
+				  sprintf(msgbuf,"Quest %s has been failed\r\n",qname);
+			  else
+			  	sprintf(msgbuf,"Quest %s at stage %d\r\n",qname,retc);
+		  }
+		  send_to_char(msgbuf,ch);
+	  }
+	  else
+	  {
+	  	send_to_char("Syntax: quest <command> <questname> <playername> [<subclass_abbr>]\r\n",ch);
+		free(qname);
+	  	return;
+	  }
+
+	  if (!IS_MOB(ch) && strn_cmp(qcmd,"stage",strlen(qcmd)))
+	  {
+		  sprintf(msgbuf,"Your attempt to %s the %s quest for %s was %s\n\r",qcmd,qname,vict->player.name,(retc>0?"successful":"unsuccessful"));
+		  send_to_char(msgbuf,ch);
+	  }
+
+  }
+
+  free(q_g);
+  free(qname);
+d1012 4
+@
+
+
+1.28
+log
+@You can no longer switch into a mob and use mdamage/mskillset.  Mobs cannot
+be ordered to do these either.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.27 2006/11/18 21:10:03 jps Exp myc $
+d571 1
+d1301 4
+@
+
+
+1.27
+log
+@Add mdamage for dg scripting.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.26 2006/11/12 02:31:01 jps Exp jps $
+d92 1
+a92 1
+   if (!IS_NPC(ch)){
+d193 1
+a193 1
+  if (!IS_NPC(ch))
+d1300 3
+@
+
+
+1.26
+log
+@You become unmounted when magically moved to another room.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.25 2006/09/09 01:30:39 dce Exp jps $
+d49 1
+d57 1
+d86 96
+d1300 3
+@
+
+
+1.25
+log
+@Added checks to the quest command to prevent charmies and
+shapechangers from using the command freely.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.24 2003/07/29 03:36:07 rsd Exp $
+d58 2
+d674 1
+d695 1
+d1202 4
+@
+
+
+1.24
+log
+@added (TRG) to the logging command for ease of parsing.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.23 2003/07/24 22:22:30 jjl Exp $
+d898 11
+d1198 3
+@
+
+
+1.23
+log
+@Added the "log" command for mob, room, and object triggers.  Spits
+whatever you want into the log.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.22 2002/10/06 19:34:25 jjl Exp $
+d70 1
+a70 1
+  sprintf(buf, "(mob %d): %s", GET_MOB_VNUM(mob), msg);
+d1187 4
+@
+
+
+1.22
+log
+@Added some error checking to the variable command so you can't forget a value/variable name.
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.21 2002/09/19 01:07:22 jjl Exp $
+d846 22
+d1187 3
+d1234 2
+a1235 1
+ * extended quest command to have rewind and restart and also for subclasses in start
+d1244 1
+a1244 1
+ * new do_quest ommand (can be run mby mobs or command for gods)
+@
+
+
+1.21
+log
+@Updated to give mobs the quest variable command
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.20 2002/09/13 02:32:10 jjl Exp $
+d1111 14
+d1126 1
+a1126 1
+	      
+d1165 3
+@
+
+
+1.20
+log
+@Updated header comments
+@
+text
+@d2 1
+a2 1
+ * $Id: dg_mobcmd.c,v 1.19 2001/07/25 06:59:02 mtp Exp $
+a79 1
+
+d863 3
+d980 1
+d1107 7
+d1151 3
+@
+
+
+1.19
+log
+@modified logging to hopefully be a bit more helpful by specifying the
+trigger id wherever possible. This does not apply to logging of mob trigs yet
+as mobs use the same commands as players :-(
+@
+text
+@d1 3
+a3 1
+// $Id: dg_mobcmd.c,v 1.15 2001/02/12 23:30:02 mtp Exp $
+d1139 69
+a1207 62
+// $Log: dg_mobcmd.c,v $
+// Revision 1.18  2001/07/09 23:05:54  mtp
+// removed long syntax line for quest - replace with help topic!
+//
+// Revision 1.17  2001/07/08 17:47:40  mtp
+// added quest erase to remove a quest from a player (non documented)
+//
+// Revision 1.16  2001/06/19 23:46:52  mtp
+// improved quest error messages
+//
+// Revision 1.15  2001/02/12 23:30:02  mtp
+// added inroom check for quest commands on death trigs
+//
+// Revision 1.14  2001/02/12 01:33:05  mtp
+// rmeoved some fprintf commands!
+//
+// Revision 1.13  2001/02/12 01:30:49  mtp
+// if we are in a death trigger, run the quest command on all group
+// members. NO INROOM or AWAKE check!
+//
+// Revision 1.12  2001/02/03 00:56:51  mtp
+// do a race check before starting subclass quest
+// also returing different codes so that calling procs can do something sensible
+// on failure
+//
+// Revision 1.11  2000/11/23 00:57:04  mtp
+// added mskillset to allow a mob to set skill/spell proficiency
+//
+// Revision 1.10  2000/11/21 01:53:39  rsd
+// Altered comment header to preserve proper copyright and
+// credit for work. Also added back rlog messages from prior
+// to the addition of the $log$ string.
+//
+// Revision 1.9  2000/11/07 01:39:59  mtp
+// extended quest command to have rewind and restart and also for subclasses in start
+//
+// Revision 1.8  2000/11/03 05:37:17  jimmy
+// Removed the quest.h file from structs.h arg!! and placed it
+// only in the appropriate files
+// Updated the dependancies in the Makefile and created
+// make supahclean.
+//
+// Revision 1.7  2000/10/27 00:34:45  mtp
+// new do_quest ommand (can be run mby mobs or command for gods)
+//
+// Revision 1.5  2000/02/10 23:09:40  mtp
+// fixed mjunk which inhad interpreted the return code from find_all_dots wrongly
+//
+// Revision 1.4  1999/10/30 15:26:40  rsd
+// Jimmy coded alignment restrictions for paladins and exp
+// altered gain_exp to reference the victim.
+//
+// Revision 1.3  1999/09/05 07:00:39  jimmy
+// Added RCS Log and Id strings to each source file
+//
+// Revision 1.2  1999/01/31 00:45:50  mud
+// Added Fieryified comment header
+// indented entire file
+//
+// Revision 1.1  1999/01/29 01:23:30  mud
+// Initial revision
+//
+@
+
+
+1.18
+log
+@removed long syntax line for quest - replace with help topic!
+@
+text
+@d66 1
+a66 1
+  void script_log(char *msg);
+d68 2
+a69 3
+  sprintf(buf, "Mob (%s, VNum %d): %s",
+	  GET_SHORT(mob), GET_MOB_VNUM(mob), msg);
+  script_log(buf);
+d427 3
+a429 2
+      sprintf(buf,"m_run_room_trig (mob %d) no such trigger %d in room %d\n",GET_MOB_VNUM(ch),trignm,world[thisrm].number);
+      script_log(buf);
+d1138 3
+@
+
+
+1.17
+log
+@added quest erase to remove a quest from a player (non documented)
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.16 2001/06/19 23:46:52 mtp Exp mtp $
+d887 1
+a887 1
+	  send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage|restart|rewind} <name> <player> [<subclass_abbr>]\r\n",ch);
+d894 1
+a894 1
+	  send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage|restart|rewind} <name> <player> [<subclass_abbr>]\r\n",ch);
+d902 1
+a902 1
+	  send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage|restart|rewind} <name> <player> [<subclass_abbr>]\r\n",ch);
+d1120 1
+a1120 1
+	  	send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage|restart|rewind} <name> <player> [<subclass_abbr>]\r\n",ch);
+d1138 3
+@
+
+
+1.16
+log
+@improved quest error messages
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.15 2001/02/12 23:30:02 mtp Exp $
+d1100 2
+d1138 3
+@
+
+
+1.15
+log
+@added inroom check for quest commands on death trigs
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.11 2000/11/23 00:57:04 mtp Exp $
+d956 1
+d958 6
+d965 1
+d967 6
+d977 5
+a981 1
+		  if (retc == -4)
+d983 71
+a1053 2
+			  sprintf(msgbuf,"%s(%d):Bad start or dest class in quest start for %s",GET_NAME(ch),GET_MOB_VNUM(ch),GET_NAME(vict));
+			  mudlog(msgbuf, NRM, LVL_GOD, TRUE);
+d1057 1
+d1059 16
+d1076 1
+d1078 20
+a1128 31
+	  /*
+	   * gonna let the mob say that failed to start quest (with reason)
+	   * and then I have to abort the trigger (eek)
+	   */
+	  if (retc < 1 && IS_MOB(ch) && !strn_cmp(qcmd,"start",strlen(qcmd)))
+	  {
+		  switch (retc)
+		  {
+		  case 0:
+			  sprintf(msgbuf,"You already started this quest!\n\r");
+			  break;
+		  case -1:
+			  sprintf(msgbuf,"You are not the right class to try this quest!\n\r");
+			  break;
+		  case -2:
+			  sprintf(msgbuf,"You are not the right race to try this quest!\n\r");
+			  break;
+		  case -3:
+			  sprintf(msgbuf,"You are already doing a subclass quest!\n\r");
+			  break;
+		  /* -4 is for non-existant classes which should be mudlogged anyway */
+		  case -5:
+			  sprintf(msgbuf,"You are too low level to do a subclass quest!\n\r");
+			  break;
+		  case -6:
+			  sprintf(msgbuf,"You are too high level to do this subclass quest!\n\r");
+			  break;
+		  }
+
+		  send_to_char(msgbuf,vict);
+	  }
+d1136 3
+@
+
+
+1.14
+log
+@rmeoved some fprintf commands!
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.13 2001/02/12 01:30:49 mtp Exp mtp $
+d127 1
+a128 1
+  fprintf(stderr,"ok, got a victim (%s) and a spell/skill number (%d), lets boogy\n",GET_NAME(victim),skspnum);
+d912 1
+a918 1
+	      CREATE(q_g, struct group_type, 1);
+d951 3
+d1010 3
+a1012 1
+		  if (retc == 0)
+d1014 2
+a1015 1
+		  if (retc == -1)
+d1017 2
+a1018 1
+		  if (retc == -2)
+d1020 2
+a1021 1
+		  if (retc == -3)
+d1023 1
+d1025 7
+d1042 3
+@
+
+
+1.13
+log
+@if we are in a death trigger, run the quest command on all group
+members. NO INROOM or AWAKE check!
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.11 2000/11/23 00:57:04 mtp Exp $
+d127 1
+a128 1
+  /*
+a911 1
+  fprintf(stderr,"gonna build a list of players to affect\n");
+a920 1
+		      fprintf(stderr,"its a death trigger\n");
+a927 1
+		fprintf(stderr,"groupleader = %s\n",GET_NAME(vict));
+a934 1
+		      fprintf(stderr,"Not a death trig, so only use %s\n",GET_NAME(vict));
+a950 1
+	  fprintf(stderr,"performing quest stuff on %s\n",GET_NAME(vict));
+d1026 4
+@
+
+
+1.12
+log
+@do a race check before starting subclass quest
+also returing different codes so that calling procs can do something sensible
+on failure
+@
+text
+@d862 5
+a866 2
+  struct char_data * vict;
+  int retc;
+d872 12
+d900 1
+a900 1
+  if (strlen(arg) == 0)
+d907 41
+a947 1
+  if ((vict = get_player_vis(ch, arg,0)))
+d949 7
+a1024 2
+  else
+	  send_to_char("Unable to find that player\r\n",ch);
+d1026 1
+d1031 5
+@
+
+
+1.11
+log
+@added mskillset to allow a mob to set skill/spell proficiency
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.10 2000/11/21 01:53:39 rsd Exp $
+d903 5
+d940 1
+a940 1
+		  sprintf(msgbuf,"Your attempt to %s the %s quest for %s was %s\n\r",qcmd,qname,vict->player.name,(retc?"successful":"unsuccessful"));
+d943 19
+d970 3
+@
+
+
+1.10
+log
+@Altered comment header to preserve proper copyright and
+credit for work. Also added back rlog messages from prior
+to the addition of the $log$ string.
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.9 2000/11/07 01:39:59 mtp Exp $
+d82 53
+d946 5
+@
+
+
+1.9
+log
+@extended quest command to have rewind and restart and also for subclasses in start
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.8 2000/11/03 05:37:17 jimmy Exp mtp $
+d3 1
+a3 1
+ *  File: dg_mobcmd.c                                 NOW Part of FieryMUD *
+d5 5
+a10 4
+ *  By: Apparetntly N'Atas-ha                                              *
+ ***************************************************************************/
+
+/***************************************************************************
+d25 1
+a25 3
+ ***************************************************************************/
+
+/***************************************************************************
+d893 3
+d914 7
+@
+
+
+1.8
+log
+@Removed the quest.h file from structs.h arg!! and placed it
+only in the appropriate files
+Updated the dependancies in the Makefile and created
+make supahclean.
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.7 2000/10/27 00:34:45 mtp Exp $
+a57 5
+int quest_start(char *qname,struct char_data *ch);
+int quest_advance(char *qname,struct char_data *ch);
+int quest_complete(char *qname,struct char_data *ch);
+int quest_fail(char *qname,struct char_data *ch);
+int quest_stage(char *qname,struct char_data *ch);
+d809 1
+d820 1
+a820 1
+	  send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage} <name> <player>\r\n",ch);
+d827 1
+a827 1
+	  send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage} <name> <player>\r\n",ch);
+d835 1
+a835 1
+	  send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage} <name> <player>\r\n",ch);
+d848 4
+a851 1
+		  retc = quest_start(qname,vict);
+d854 4
+d876 1
+a876 1
+	  	send_to_char("Syntax for quest is: quest {start|advance|fail|complete|stage} <name> <player>\r\n",ch);
+d894 6
+@
+
+
+1.7
+log
+@new do_quest ommand (can be run mby mobs or command for gods)
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.5 2000/02/10 23:09:40 mtp Exp $
+d47 1
+a47 1
+
+d891 3
+@
+
+
+1.6
+log
+@added m_run_room_trig which allocws mobs to run room triggers. This is
+particularly useful in death triggers where they cannot use 'say'
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.5 2000/02/10 23:09:40 mtp Exp mtp $
+d49 1
+a53 1
+extern struct index_data **trig_index;
+d55 1
+a56 1
+void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
+d58 5
+d387 1
+d796 92
+@
+
+
+1.5
+log
+@fixed mjunk which inhad interpreted the return code from find_all_dots wrongly
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.4 1999/10/30 15:26:40 rsd Exp mtp $
+d53 1
+d55 1
+d332 49
+d793 3
+@
+
+
+1.4
+log
+@Jimmy coded alignment restrictions for paladins and exp
+altered gain_exp to reference the victim.
+@
+text
+@d1 1
+a1 1
+// $Id: dg_mobcmd.c,v 1.3 1999/09/05 07:00:39 jimmy Exp $
+d201 1
+a201 1
+  if (find_all_dots(arg) != FIND_INDIV) {
+d213 3
+a215 1
+      if (arg[3] == '\0' || isname(arg+4, obj->name)) {
+d742 4
+@
+
+
+1.3
+log
+@Added RCS Log and Id strings to each source file
+@
+text
+@d1 1
+a1 1
+// $Id$
+d693 1
+a693 1
+  gain_exp(victim, atoi(amount));      
+d739 4
+a742 1
+// $Log$
+@
+
+
+1.2
+log
+@Added Fieryified comment header
+indented entire file
+@
+text
+@d1 1
+d739 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 7
+a37 2
+
+
+d62 7
+a68 7
+    char buf[MAX_INPUT_LENGTH + 100];
+
+    void script_log(char *msg);
+
+    sprintf(buf, "Mob (%s, VNum %d): %s",
+	    GET_SHORT(mob), GET_MOB_VNUM(mob), msg);
+    script_log(buf);
+d83 2
+a84 2
+    int was_in_room;
+    int  door;
+d86 1
+a86 1
+    if (!MOB_OR_IMPL(ch))
+d88 2
+a89 2
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+a90 3
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d92 4
+a95 1
+    if (!*argument)
+d97 2
+a98 2
+	mob_log(ch, "masound called with no argument");
+	return;
+a99 2
+
+    skip_spaces(&argument);
+d101 4
+a104 2
+    was_in_room = IN_ROOM(ch);
+    for (door = 0; door < NUM_OF_DIRS; door++)
+d106 4
+a109 4
+	struct room_direction_data *exit;
+    
+	if (((exit = world[was_in_room].dir_option[door]) != NULL) &&
+	    exit->to_room != NOWHERE && exit->to_room != was_in_room)
+d111 2
+a112 2
+	    IN_ROOM(ch) = exit->to_room;
+	    sub_write(argument, ch, TRUE, TO_ROOM);
+d116 1
+a116 1
+    IN_ROOM(ch) = was_in_room;
+d123 34
+a156 2
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+d158 4
+a161 7
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d163 2
+a164 35
+    one_argument(argument, arg);
+    
+    if (!*arg) {
+	mob_log(ch, "mkill called with no argument");
+	return;
+    }
+
+    if (*arg == UID_CHAR) {
+      if (!(victim = get_char(arg))) {
+        sprintf(buf, "mkill: victim (%s) not found",arg);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_room_vis(ch, arg))) {
+        sprintf(buf, "mkill: victim (%s) not found",arg);
+	mob_log(ch, buf);
+	return;
+    }
+
+    if (victim == ch) {
+	mob_log(ch, "mkill: victim is self");
+	return;
+    }
+
+    if (IS_AFFECTED(ch, AFF_CHARM) && ch->master == victim ) {
+	mob_log(ch, "mkill: charmed mob attacking master");
+	return;
+    }
+
+    if (FIGHTING(ch)) {
+	mob_log(ch, "mkill: already fighting");
+	return;
+    }
+    
+    hit(ch, victim, TYPE_UNDEFINED);
+d166 4
+d180 9
+a188 4
+    char arg[MAX_INPUT_LENGTH];
+    int pos;
+    obj_data *obj;
+    obj_data *obj_next;
+d190 2
+a191 4
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+d193 1
+a193 4
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    one_argument(argument, arg);
+d195 4
+a198 4
+    if (!*arg) {
+	mob_log(ch, "mjunk called with no argument");
+	return;
+    }
+d200 5
+a204 21
+    if (find_all_dots(arg) != FIND_INDIV) {
+	if ((obj=get_object_in_equip_vis(ch,arg,ch->equipment,&pos))!= NULL) {
+	    unequip_char(ch, pos);
+	    extract_obj(obj);
+	    return;
+	}
+	if ((obj = get_obj_in_list_vis(ch, arg, ch->carrying)) != NULL )
+	    extract_obj(obj);
+	return;
+    } else {
+	for (obj = ch->carrying; obj != NULL; obj = obj_next) {
+	    obj_next = obj->next_content;
+	    if (arg[3] == '\0' || isname(arg+4, obj->name)) {
+		extract_obj(obj);
+	    }
+	}
+	while ((obj=get_object_in_equip_vis(ch,arg,ch->equipment,&pos)))
+	{
+	    unequip_char(ch, pos);
+	    extract_obj(obj);
+	}   
+d206 2
+d209 14
+d229 14
+a242 8
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+    char *p;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char( "Huh?!?\r\n", ch );
+	return;
+    }
+d244 4
+a247 2
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d249 11
+a259 7
+    p = one_argument(argument, arg);
+    skip_spaces(&p);
+    
+    if (!*arg) {
+	mob_log(ch, "mechoaround called with no argument");
+	return;
+    }
+d261 1
+a261 13
+    if (*arg == UID_CHAR) {
+      if (!(victim = get_char(arg))) {
+        sprintf(buf, "mechoaround: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_room_vis(ch, arg))) {
+        sprintf(buf, "mechoaround: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+    }
+
+    sub_write(p, victim, TRUE, TO_ROOM);
+d268 14
+a281 11
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+    char *p;
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char( "Huh?!?\r\n", ch );
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d283 4
+a286 2
+    p = one_argument(argument, arg);
+    skip_spaces(&p);
+d288 11
+a298 16
+    if (!*arg) {
+	mob_log(ch, "msend called with no argument");
+	return;
+    }
+
+    if (*arg == UID_CHAR) {
+      if (!(victim = get_char(arg))) {
+        sprintf(buf, "msend: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_room_vis(ch, arg))) {
+        sprintf(buf, "msend: victim (%s) does not exist",arg);
+	mob_log(ch, buf);
+	return;
+    }
+d300 1
+a300 1
+    sub_write(p, victim, TRUE, TO_CHAR);
+d307 1
+a307 1
+    char *p;
+d309 4
+a312 4
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char( "Huh?!?\r\n", ch );
+	return;
+    }
+d314 2
+a315 2
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d317 6
+a322 6
+    if (!*argument) {
+	mob_log(ch, "mecho called with no arguments");
+	return;
+    }
+    p = argument;
+    skip_spaces(&p);
+d324 1
+a324 1
+    sub_write(p, ch, TRUE, TO_ROOM);
+d334 15
+a348 4
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int number = 0;
+    char_data *mob;
+    obj_data *object;
+d350 1
+a350 10
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if( ch->desc && GET_LEVEL(ch->desc->original) < LVL_IMPL)
+	return;
+d352 4
+a355 1
+    two_arguments(argument, arg1, arg2);
+d357 12
+a368 11
+    if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
+	mob_log(ch, "mload: bad syntax");
+	return;
+    }
+
+    if (is_abbrev(arg1, "mob")) {
+	if ((mob = read_mobile(number, VIRTUAL)) == NULL) {
+	    mob_log(ch, "mload: bad mob vnum");
+	    return;
+	}
+	char_to_room(mob, IN_ROOM(ch));
+d370 6
+d377 2
+a378 14
+    else if (is_abbrev(arg1, "obj")) {
+	if ((object = read_object(number, VIRTUAL)) == NULL) {
+	    mob_log(ch, "mload: bad object vnum");
+	    return;
+	}
+	if (CAN_WEAR(object, ITEM_WEAR_TAKE)) {
+	    obj_to_char(object, ch);
+	} else {
+	    obj_to_room(object, IN_ROOM(ch));
+	} 
+    }
+
+    else
+	mob_log(ch, "mload: bad type");
+d389 3
+a391 3
+    char arg[MAX_INPUT_LENGTH];
+    char_data *victim;
+    obj_data  *obj;
+d393 4
+a396 4
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+d398 2
+a399 5
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;
+d401 2
+a402 1
+    one_argument(argument, arg);
+d404 1
+a404 18
+    if (!*arg) {
+	/* 'purge' */
+	char_data *vnext;
+	obj_data  *obj_next;
+    
+	for (victim = world[IN_ROOM(ch)].people; victim; victim = vnext) {
+	    vnext = victim->next_in_room;
+	    if (IS_NPC(victim) && victim != ch)
+		extract_char(victim);
+	}
+    
+	for (obj = world[IN_ROOM(ch)].contents; obj; obj = obj_next) {
+	    obj_next = obj->next_content;
+	    extract_obj(obj);
+	}
+    
+	return;
+    }
+d406 14
+a419 11
+    if (*arg == UID_CHAR)
+      victim = get_char(arg);
+    else victim = get_char_room_vis(ch, arg);
+
+    if (victim == NULL) {
+	if ((obj = get_obj_vis(ch, arg))) {
+	    extract_obj(obj);
+	} else 
+	    mob_log(ch, "mpurge: bad argument");
+	
+	return;
+d422 12
+a433 4
+    if (!IS_NPC(victim)) {
+	mob_log(ch, "mpurge: purging a PC");
+	return;
+    }
+d435 9
+a443 1
+    extract_char(victim);
+d450 2
+a451 2
+    char arg[MAX_INPUT_LENGTH];
+    int location;
+d453 14
+a466 7
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d468 4
+a471 6
+    one_argument(argument, arg);
+
+    if (!*arg) {
+	mob_log(ch, "mgoto called with no argument");
+	return;
+    }
+d473 2
+a474 4
+    if ((location = find_target_room(ch, arg)) == NOWHERE) {
+	mob_log(ch, "mgoto: invalid location");
+	return;
+    }
+d476 2
+a477 5
+    if (FIGHTING(ch))
+	stop_fighting(ch);
+    
+    char_from_room(ch);
+    char_to_room(ch, location);
+d484 3
+a486 3
+    char arg[MAX_INPUT_LENGTH];
+    int location;
+    int original;
+d488 4
+a491 4
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+d493 2
+a494 2
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d496 1
+a496 1
+    argument = one_argument( argument, arg );
+d498 4
+a501 4
+    if (!*arg || !*argument) {
+	mob_log(ch, "mat: bad argument");
+	return;
+    }
+d503 4
+a506 4
+    if ((location = find_target_room(ch, arg)) == NOWHERE) {
+	mob_log(ch, "mat: invalid location");
+	return;
+    }
+d508 10
+a517 1
+    original = IN_ROOM(ch);
+d519 2
+a520 11
+    char_to_room(ch, location);
+    command_interpreter(ch, argument);
+    
+    /*
+     * See if 'ch' still exists before continuing!
+     * Handles 'at XXXX quit' case.
+     */
+    if (IN_ROOM(ch) == location) {
+	char_from_room(ch);
+	char_to_room(ch, original);
+    }
+d530 8
+a537 3
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int target;
+    char_data *vict, *next_ch;
+d539 19
+a557 3
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+a558 5
+  
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+
+    argument = two_arguments(argument, arg1, arg2);
+d560 7
+a566 3
+    if (!*arg1 || !*arg2) {
+	mob_log(ch, "mteleport: bad syntax");
+	return;
+d568 6
+a573 31
+
+    target = find_target_room(ch, arg2);
+
+    if (target == NOWHERE)
+	mob_log(ch, "mteleport target is an invalid room");
+
+    else if (!str_cmp(arg1, "all")) {
+	if (target == IN_ROOM(ch)) {
+	    mob_log(ch, "mteleport all target is itself");
+	    return;
+	}
+
+	for (vict = world[IN_ROOM(ch)].people; vict; vict = next_ch) {
+	    next_ch = vict->next_in_room;
+
+	    if (GET_LEVEL(vict)<LVL_IMMORT) {
+		char_from_room(vict);
+		char_to_room(vict, target);
+	    }
+	}
+    }
+
+    else {
+      if (*arg1 == UID_CHAR) {
+        if (!(vict = get_char(arg1))) {
+          sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+          mob_log(ch, buf);
+          return;
+        }
+      } else if (!(vict = get_char_vis(ch, arg1))) {
+        sprintf(buf, "mteleport: victim (%s) does not exist",arg1);
+d577 9
+a585 5
+
+      if (GET_LEVEL(vict)<LVL_IMMORT) {
+	char_from_room(vict);
+	char_to_room(vict, target);
+      }
+d587 1
+d597 6
+a602 6
+    char arg[MAX_INPUT_LENGTH];
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+d604 2
+a605 2
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d607 2
+a608 2
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;
+d610 1
+a610 1
+    argument = one_argument(argument, arg);
+d612 4
+a615 4
+    if (!*arg || !*argument) {
+	mob_log(ch, "mforce: bad syntax");
+	return;
+    }
+d617 11
+a627 26
+    if (!str_cmp(arg, "all")) {
+	struct descriptor_data *i;
+	char_data *vch;
+    
+	for (i = descriptor_list; i ; i = i->next) {
+	    if ((i->character != ch) && !i->connected &&
+		(IN_ROOM(i->character) == IN_ROOM(ch))) {
+		vch = i->character;
+		if (GET_LEVEL(vch) < GET_LEVEL(ch) && CAN_SEE(ch, vch) &&
+		    GET_LEVEL(vch)<LVL_IMMORT) {
+		    command_interpreter(vch, argument);
+		}
+	    }
+	}
+    } else {
+	char_data *victim;
+	
+        if (*arg == UID_CHAR) {
+          if (!(victim = get_char(arg))) {
+            sprintf(buf, "mforce: victim (%s) does not exist",arg);
+	    mob_log(ch, buf);
+	    return;
+          }
+	} else if ((victim = get_char_room_vis(ch, arg)) == NULL) {
+	    mob_log(ch, "mforce: no such victim");
+	    return;
+d629 4
+d634 10
+a643 4
+	if (victim == ch) {
+	    mob_log(ch, "mforce: forcing self");
+	    return;
+	}
+d645 3
+a647 2
+	if (GET_LEVEL(victim)<LVL_IMMORT)
+	    command_interpreter(victim, argument);
+d649 4
+d659 15
+a673 7
+    char_data *victim;
+    char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+d675 4
+a678 2
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d680 11
+a690 21
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;  
+
+    two_arguments(argument, name, amount);
+
+    if (!*name || !*amount) {
+	mob_log(ch, "mexp: too few arguments");
+	return;
+    }
+
+    if (*name == UID_CHAR) {
+      if (!(victim = get_char(name))) {
+        sprintf(buf, "mexp: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_vis(ch, name))) {
+        sprintf(buf, "mexp: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+    }
+d692 1
+a692 1
+    gain_exp(victim, atoi(amount));      
+d699 15
+a713 7
+    char_data *victim;
+    char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
+
+    if (!MOB_OR_IMPL(ch)) {
+	send_to_char("Huh?!?\r\n", ch);
+	return;
+    }
+d715 4
+a718 2
+    if (AFF_FLAGGED(ch, AFF_CHARM))
+	return;
+d720 11
+a730 21
+    if (ch->desc && (GET_LEVEL(ch->desc->original) < LVL_IMPL))
+	return;  
+
+    two_arguments(argument, name, amount);
+
+    if (!*name || !*amount) {
+	mob_log(ch, "mgold: too few arguments");
+	return;
+    }
+
+    if (*name == UID_CHAR) {
+      if (!(victim = get_char(name))) {
+        sprintf(buf, "mgold: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+      }
+    } else if (!(victim = get_char_vis(ch, name))) {
+        sprintf(buf, "mgold: victim (%s) does not exist",name);
+	mob_log(ch, buf);
+	return;
+    }
+d732 4
+a735 4
+    if ((GET_GOLD(victim) += atoi(amount)) < 0) {
+	mob_log(ch, "mgold subtracting more gold than character has");
+	GET_GOLD(victim) = 0;
+    }
+d737 1
+@
