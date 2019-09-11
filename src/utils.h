@@ -27,7 +27,7 @@
 extern struct zone_data *zone_table;
 extern struct index_data *obj_index;
 
-/* This should be in weather.h, but IS_DARK uses hemisphere data, so we 
+/* This should be in weather.h, but IS_DARK uses hemisphere data, so we
  * need it here. */
 extern struct hemisphere_data hemispheres[NUM_HEMISPHERES];
 
@@ -138,11 +138,11 @@ void drop_core(struct char_data *ch, const char *desc);
 /* IS_UPPER and IS_LOWER added by dkoepke */
 #define IS_UPPER(c)    ((c) >= 'A' && (c) <= 'Z')
 #define IS_LOWER(c)    ((c) >= 'a' && (c) <= 'z')
- 
+
 #define LOWER(c)       (IS_UPPER(c) ? ((c)+('a'-'A')) : (c))
 #define UPPER(c)       (IS_LOWER(c) ? ((c)+('A'-'a')) : (c))
-  
-#define IS_NEWLINE(ch) ((ch) == '\n' || (ch) == '\r') 
+
+#define IS_NEWLINE(ch) ((ch) == '\n' || (ch) == '\r')
 #define CAP(st)        (cap_by_color(st))
 
 #define AN(string)     (strchr("aeiouAEIOU", *string) ? "an" : "a")
@@ -159,7 +159,7 @@ void drop_core(struct char_data *ch, const char *desc);
       { perror("realloc failure"); abort(); } } while(0)
 
 /*
- * A macro to remove an item from a list: if it's the list head, change the head, 
+ * A macro to remove an item from a list: if it's the list head, change the head,
  * else traverse the list looking for the item before the one to be removed.
  * To use, just make sure that there is a variable 'temp' declared as the same
  * type as the list to be manipulated.
@@ -187,7 +187,7 @@ for ((IN_ROOM) = world[(PLAYER)->in_room].people; (IN_ROOM) != NULL; (IN_ROOM) =
 #define TOGGLE_BIT(var,bit)      ((var) = (var) ^ (bit))
 
 /* extended bitvector utils */
-#define FIELD(x)                 ((int) (x) / FLAGBLOCK_SIZE)
+#define FIELD(x)                 ((unsigned long int) (x) / FLAGBLOCK_SIZE)
 #define FLAG(x)                  (1 << ((x) % FLAGBLOCK_SIZE))
 #define IS_FLAGGED(field, flag)  (((field)[FIELD(flag)] & FLAG(flag)) ? 1 : 0)
 #define SET_FLAG(field, flag)    ((field)[FIELD(flag)] |= FLAG(flag))
@@ -292,7 +292,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_HEIGHT(ch)      ((ch)->player.height)
 #define GET_WEIGHT(ch)      ((ch)->player.weight)
 #define GET_SEX(ch)         ((ch)->player.sex)
-#define GET_EXP(ch)         ((ch)->points.exp) 
+#define GET_EXP(ch)         ((ch)->points.exp)
 #define GET_MOVE(ch)       ((ch)->points.move)
 #define GET_MAX_MOVE(ch)    ((ch)->points.max_move)
 #define GET_MANA(ch)       ((ch)->points.mana)
@@ -394,8 +394,8 @@ extern flagvector *ALL_FLAGS;
 #define FIGHTING(ch) (1 ? (ch)->target : 0)
 
 #define HUNTING(ch)         ((ch)->char_specials.hunting)
-#define RIDING(ch)          ((ch)->char_specials.riding)      
-#define RIDDEN_BY(ch)       ((ch)->char_specials.ridden_by)   
+#define RIDING(ch)          ((ch)->char_specials.riding)
+#define RIDDEN_BY(ch)       ((ch)->char_specials.ridden_by)
 #define IS_CORNERED(ch)     ((ch)->cornered_by && \
                              CAN_SEE((ch)->cornered_by, ch) && \
                              FIGHTING((ch)->cornered_by) == (ch) && \
@@ -1273,7 +1273,7 @@ extern flagvector *ALL_FLAGS;
  *
  * Revision 1.13  1999/06/10 16:56:28  mud
  * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and 
+ * This fixes all of the warnings associated with the new compiler and
  * libraries.  Many many curly braces had to be added to "if" statements to
  * clarify their behavior to the compiler.  The name approval code was also
  * debugged, and tested to be stable.  The xnames list was converted from an

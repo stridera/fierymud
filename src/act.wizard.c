@@ -61,7 +61,7 @@
 void garble_text(char *string, int percent);
 void check_new_surroundings(struct char_data *ch, bool old_room_was_dark, bool tx_obvious);
 
-extern int restrict;
+extern int should_restrict;
 extern int restrict_reason;
 extern int max_group_difference;
 
@@ -1361,17 +1361,17 @@ ACMD(do_wizlock)
       send_to_char("Invalid wizlock value.\r\n", ch);
       return;
     }
-    restrict = value;
+    should_restrict = value;
     when = "now";
 
-    if (restrict)
+    if (should_restrict)
        restrict_reason = RESTRICT_MANUAL;
     else
        restrict_reason = RESTRICT_NONE;
   } else
     when = "currently";
 
-  switch (restrict) {
+  switch (should_restrict) {
   case 0:
     sprintf(buf, "The game is %s completely open.\r\n", when);
     break;
@@ -1380,7 +1380,7 @@ ACMD(do_wizlock)
     break;
   default:
     sprintf(buf, "Only level %d and above may enter the game %s.\r\n",
-            restrict, when);
+            should_restrict, when);
     break;
   }
   send_to_char(buf, ch);
@@ -3364,7 +3364,7 @@ ACMD(do_pfilemaint) {
                           "Xname or MOB/OBJ name",
                           "Inactivity"};
 
-  if (restrict != GET_LEVEL(ch)) {
+  if (should_restrict != GET_LEVEL(ch)) {
     send_to_char("First <wizlock> and make sure everyone logs out before executing this command.\r\n", ch);
     return;
   }
@@ -3612,7 +3612,7 @@ void scan_pfile_objs(struct char_data *ch, int vnum)
       objectshere = 0;
 
       /* Read the objects */
-      /* This could stand a major efficiency upgrade by skipping 
+      /* This could stand a major efficiency upgrade by skipping
        * build_object and doing the parsing ourselves, at the cost
        * of this function 'knowing' things about the pfile structure
        */

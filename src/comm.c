@@ -80,7 +80,7 @@
 
 
 /* externs */
-extern int restrict;
+extern int should_restrict;
 extern int restrict_reason;
 extern int mini_mud;
 extern int DFLT_PORT;
@@ -230,7 +230,7 @@ int main(int argc, char **argv)
       log("Quick boot mode.");
       break;
     case 'r':
-      restrict = 1;
+      should_restrict = 1;
       restrict_reason = RESTRICT_ARGUMENT;
       log("Restricting game -- no new players allowed.");
       break;
@@ -727,9 +727,9 @@ void cancel_auto_reboot(int postponed)
    else
       all_printf("&6&b*** Automatic Reboot Cancelled ***&0\r\n");
 
-   if (restrict) {
+   if (should_restrict) {
       if (restrict_reason == RESTRICT_NONE || restrict_reason == RESTRICT_AUTOBOOT) {
-         restrict = 0;
+         should_restrict = 0;
          restrict_reason = RESTRICT_NONE;
          all_printf("*** Mortal logins reenabled ***\r\n");
          log("Login restriction removed.");
@@ -770,9 +770,9 @@ void check_auto_rebooting()
           *
           * Also, if a god reenables mortal logins ("wizlock 0"), this won't
           * override that. This is intentional. */
-         if ((minutes_till == 2 || (minutes_till < 2 && !reboot_warning)) && restrict < LVL_IMMORT) {
+         if ((minutes_till == 2 || (minutes_till < 2 && !reboot_warning)) && should_restrict < LVL_IMMORT) {
             log("Mortal logins prevented due to imminent automatic reboot.");
-            restrict = LVL_IMMORT;
+            should_restrict = LVL_IMMORT;
             restrict_reason = RESTRICT_AUTOBOOT;
             all_printf("*** No more mortal logins ***\r\n");
          }
@@ -2180,9 +2180,9 @@ void close_socket(struct descriptor_data *d)
       /*else
       mprintf(L_STAT, LVL_IMMORT, "Losing player: <null>.");
       d->character->desc = NULL;
-      free_char(d->character); 
-     */ 
-    } 
+      free_char(d->character);
+     */
+    }
   }
   else
     mprintf(L_INFO, LVL_IMMORT, "Losing descriptor without char.");
@@ -2286,7 +2286,7 @@ RETSIGTYPE unrestrict_game()
   mprintf(L_WARN, LVL_IMMORT,
          "Received SIGUSR2 - completely unrestricting game (emergent)");
   ban_list = NULL;
-  restrict = 0;
+  should_restrict = 0;
   restrict_reason = RESTRICT_NONE;
 }
 
@@ -2471,7 +2471,7 @@ void callback_printf(CBP_FUNC(callback), void *data, const char *messg, ...)
         string_to_output(i, comm_buf);
       }
 
- 
+
 }
 
 void all_except_printf(struct char_data *ch, const char *messg, ...)

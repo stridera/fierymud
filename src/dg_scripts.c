@@ -59,7 +59,7 @@ int eval_lhs_op_rhs(char *expr, char *result, void *go, struct script_data *sc,
 extern int find_zone(int num);
 int vnumargs(struct char_data *ch, char *argument, int *first, int *second);
 int group_size(struct char_data *ch);
-int find_talent_num(char *name, int restrict);
+int find_talent_num(char *name, int should_restrict);
 
 /* function protos from this file */
 int script_driver(void *go_address, trig_data *trig, int type, int mode);
@@ -491,15 +491,15 @@ ACMD(do_attach)
   if (is_abbrev(arg, "mtr")) {
     if ((victim = find_char_around_char(ch, find_vis_by_name(ch, targ_name)))) {
       if (IS_NPC(victim))  {
-        
+
         /* have a valid mob, now get trigger */
         rn = real_trigger(tn);
         if ((rn >= 0) && (trig = read_trigger(rn))) {
-        
+
           if (!SCRIPT(victim))
             CREATE(SCRIPT(victim), struct script_data, 1);
           add_trigger(SCRIPT(victim), trig, loc);
-        
+
           sprintf(buf, "Trigger %d (%s) attached to %s.\r\n",
                   tn, GET_TRIG_NAME(trig), GET_SHORT(victim));
           send_to_char(buf, ch);
@@ -517,11 +517,11 @@ ACMD(do_attach)
       /* have a valid obj, now get trigger */
       rn = trig_index[tn] ? tn : -1;
       if ((rn >= 0) && (trig = read_trigger(rn))) {
-        
+
         if (!SCRIPT(object))
           CREATE(SCRIPT(object), struct script_data, 1);
         add_trigger(SCRIPT(object), trig, loc);
-        
+
         sprintf(buf, "Trigger %d (%s) attached to %s.\r\n",
                 tn, GET_TRIG_NAME(trig),
                 (object->short_description ?
@@ -536,15 +536,15 @@ ACMD(do_attach)
   else if (is_abbrev(arg, "wtr")) {
     if (isdigit(*targ_name) && !strchr(targ_name, '.')) {
       if ((room = find_target_room(ch, targ_name)) != NOWHERE) {
-        
+
         /* have a valid room, now get trigger */
         rn = trig_index[tn] ? tn : -1;
         if ((rn >= 0) && (trig = read_trigger(rn))) {
-        
+
           if (!(world[room].script))
             CREATE(world[room].script, struct script_data, 1);
           add_trigger(world[room].script, trig, loc);
-        
+
           sprintf(buf, "Trigger %d (%s) attached to room %d.\r\n",
                   tn, GET_TRIG_NAME(trig), world[room].vnum);
           send_to_char(buf, ch);
@@ -2147,11 +2147,11 @@ int eval_lhs_op_rhs(char *expr, char *result, void *go, struct script_data *sc,
       if (!strn_cmp(ops[i], tokens[j], strlen(ops[i]))) {
         *tokens[j] = '\0';
         p = tokens[j] + strlen(ops[i]);
-        
+
         eval_expr(line, lhr, go, sc, trig, type);
         eval_expr(p, rhr, go, sc, trig, type);
         eval_op(ops[i], lhr, rhr, result, go, sc, trig);
-        
+
         return 1;
       }
 

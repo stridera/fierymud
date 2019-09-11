@@ -52,7 +52,7 @@ extern char *WELC_MESSG;
 extern char *START_MESSG;
 extern char *subclass_descrip;
 extern char *subclass_descrip2;
-extern int restrict;
+extern int should_restrict;
 extern int restrict_reason;
 extern int approve_names;
 extern int napprove_pause;
@@ -2386,7 +2386,7 @@ void nanny(struct descriptor_data *d, char *arg)
             STATE(d) = CON_CLOSE;
             return;
          }
-         if (restrict) {
+         if (should_restrict) {
             if (restrict_reason == RESTRICT_AUTOBOOT) {
                write_to_output("Sorry, no new players because the mud is rebooting shortly.\r\n", d);
                write_to_output("Please try again in five minutes.\r\n", d);
@@ -2539,7 +2539,7 @@ void nanny(struct descriptor_data *d, char *arg)
         mudlog(buf, NRM, LVL_GOD, TRUE);
         return;
       }
-      if (GET_LEVEL(d->character) < restrict) {
+      if (GET_LEVEL(d->character) < should_restrict) {
          if (restrict_reason == RESTRICT_AUTOBOOT) {
             write_to_output("The game is restricted due to an imminent reboot.\r\n", d);
             write_to_output("Please try again in 2-3 minutes.\r\n", d);
@@ -3206,7 +3206,7 @@ void sort_commands(void)
   num_of_cmds = 0;
 
   /*
-   * first, count commands.  num_of_cmds includes the 'reserved' 
+   * first, count commands.  num_of_cmds includes the 'reserved'
    * command, which is not copied to the cmd_sort_info array
    */
   while (*cmd_info[num_of_cmds].command != '\n')

@@ -310,7 +310,7 @@
 
 #define LVL_GOSSIP        1
 
-   /* Reasons why restrict > 0 */
+   /* Reasons why should_restrict > 0 */
 #define RESTRICT_NONE      0  /* No restriction, or don't know */
 #define RESTRICT_ARGUMENT  1  /* Mud started with -r option */
 #define RESTRICT_MANUAL    2  /* Set by a god with the wizlock command */

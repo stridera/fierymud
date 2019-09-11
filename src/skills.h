@@ -457,7 +457,7 @@ extern int circle_to_level(int circle);
 void init_skills(void);
 void sort_skills(void);
 
-int find_talent_num(char *name, int restrict);
+int find_talent_num(char *name, int should_restrict);
 int find_skill_num(char *name);
 int find_spell_num(char *name);
 int find_chant_num(char *name);

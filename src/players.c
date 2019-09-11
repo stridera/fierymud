@@ -49,7 +49,7 @@ static void load_coins(char *line, int coins[]);
 static void load_clan(char *line, struct char_data *ch);
 
 /*
- * These are the cooldowns that are saved in player files.  End this 
+ * These are the cooldowns that are saved in player files.  End this
  * list with a -1.
  */
 static int saved_cooldowns[] = {
@@ -132,7 +132,7 @@ int get_pfilename(const char *name, char *filename, int mode)
 
 }
 
-/* New version to build player index for ASCII Player Files. Generate index 
+/* New version to build player index for ASCII Player Files. Generate index
  * table for the player file. */
 void build_player_index(void)
 {
@@ -173,8 +173,8 @@ void build_player_index(void)
   top_of_p_file = top_of_p_table = i - 1;
 }
 
-/* Create a new entry in the in-memory index table for the player file. If the 
- * name already exists, by overwriting a deleted character, then we re-use the 
+/* Create a new entry in the in-memory index table for the player file. If the
+ * name already exists, by overwriting a deleted character, then we re-use the
  * old position. */
 int create_player_index_entry(char *name)
 {
@@ -404,10 +404,10 @@ int load_player(const char *name, struct char_data *ch)
     case 'H':
            if (!strcmp(tag, "hitpoints"))	scan_slash(line, &GET_HIT(ch), &GET_BASE_HIT(ch));
       else if (!strcmp(tag, "height"))		GET_HEIGHT(ch) = num;
-      else if (!strcmp(tag, "host")) { 
-        if (GET_HOST(ch)) 
-          free(GET_HOST(ch)); 
-        GET_HOST(ch) = strdup(line); 
+      else if (!strcmp(tag, "host")) {
+        if (GET_HOST(ch))
+          free(GET_HOST(ch));
+        GET_HOST(ch) = strdup(line);
       }
       else if (!strcmp(tag, "hunger"))		GET_COND(ch, FULL) = LIMIT(-1, num, 24);
       else if (!strcmp(tag, "home"))		GET_HOMEROOM(ch) = num;
@@ -744,11 +744,11 @@ void save_player_char(struct char_data * ch)
   fprintf(fl, "playerflags: ");
   write_ascii_flags(fl, PLR_FLAGS(ch), NUM_PLR_FLAGS);
   fprintf(fl, "\n");
- 
+
   fprintf(fl, "effectflags: ");
   write_ascii_flags(fl, EFF_FLAGS(ch), NUM_EFF_FLAGS);
   fprintf(fl, "\n");
- 
+
   fprintf(fl, "prefflags: ");
   write_ascii_flags(fl, PRF_FLAGS(ch), NUM_PRF_FLAGS);
   fprintf(fl, "\n");
@@ -858,7 +858,7 @@ void save_player_char(struct char_data * ch)
                 GET_COOLDOWN_MAX(ch, saved_cooldowns[i]));
     fprintf(fl, "-1 0\n");
   }
-  
+
   /* Save skills */
   if (GET_LEVEL(ch) < LVL_IMMORT) {
     fprintf(fl, "skills:\n");
@@ -960,8 +960,8 @@ void save_player_char(struct char_data * ch)
     save_player_index();
 }
 
-/* delete_player() removes all files associated with a player who is 
- * self-deleted, deleted by an immortal, or deleted by the auto-wipe 
+/* delete_player() removes all files associated with a player who is
+ * self-deleted, deleted by an immortal, or deleted by the auto-wipe
  * system (if enabled). */
 void delete_player(int pfilepos)
 {

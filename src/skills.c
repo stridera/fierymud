@@ -106,7 +106,7 @@ const char *skill_name(int num)
   return skills[num].name;
 }
 
-int find_talent_num(char *name, int restrict)
+int find_talent_num(char *name, int should_restrict)
 {
   int index = 0, abbrevmatch = -1, ok;
   char *temp, *temp2;
@@ -117,10 +117,10 @@ int find_talent_num(char *name, int restrict)
   /* Loop through the skills to find a match. */
   while (++index <= TOP_SKILL_DEFINE) {
 
-     if ((restrict == SPELL && !IS_SPELL(index)) ||
-         (restrict == SKILL && !IS_SKILL(index)) ||
-         (restrict == SONG && !IS_SONG(index)) ||
-         (restrict == CHANT && !IS_CHANT(index)))
+     if ((should_restrict == SPELL && !IS_SPELL(index)) ||
+         (should_restrict == SKILL && !IS_SKILL(index)) ||
+         (should_restrict == SONG && !IS_SONG(index)) ||
+         (should_restrict == CHANT && !IS_CHANT(index)))
         continue;
 
     /* Exact match.  This is the skill we're looking for. */

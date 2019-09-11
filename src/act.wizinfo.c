@@ -63,7 +63,7 @@ void garble_text(char *string, int percent);
 void dismount_char(struct char_data * ch);
 void check_new_surroundings(struct char_data *ch, bool old_room_was_dark, bool tx_obvious);
 
-extern int restrict;
+extern int should_restrict;
 extern int restrict_reason;
 extern int max_group_difference;
 
@@ -851,7 +851,7 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
     sprintflag(buf2, PRF_FLAGS(k), NUM_PRF_FLAGS, preference_bits);
     str_catf(buf, "PRF: %s%s%s\r\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
     sprintflag(buf2, PRV_FLAGS(k), NUM_PRV_FLAGS, privilege_bits);
-    str_catf(buf, "PRV: %s%s%s\r\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));    
+    str_catf(buf, "PRV: %s%s%s\r\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
   }
 
   /* Weight and objects. */

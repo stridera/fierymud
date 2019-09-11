@@ -1823,6 +1823,9 @@ int mag_affect(int skill, struct char_data * ch, struct char_data * victim,
 
   case SPELL_LEVITATE:
 
+
+    sprintf(buf, "DEBUG: flags size: %ld  Lev size: %ld", sizeof(eff[0].flags, EFF_LEVITATE));
+    mudlog(buf, BRF, LVL_GOD, FALSE);
     SET_FLAG(eff[0].flags, EFF_LEVITATE);
     eff[0].duration = 5 + (skill / 10);
     to_char = "&6$N&0&6 floats up into the air.&0";

@@ -103,8 +103,8 @@ int mini_mud = 0;                /* mini-mud mode?                 */
 #endif
 time_t *boot_time = NULL;                /* times of mud boots (size = 1 + num_hotboots) */
 int num_hotboots = 0;                    /* are we doing a hotboot? */
-int restrict = 0;                /* level of game restriction         */
-int restrict_reason = RESTRICT_NONE;   /* reason for restrict > 0 */
+int should_restrict = 0;                /* level of game restriction         */
+int restrict_reason = RESTRICT_NONE;   /* reason for should_restrict > 0 */
 int r_mortal_start_room;        /* rnum of mortal start room         */
 int r_immort_start_room;        /* rnum of immort start room         */
 int r_frozen_start_room;        /* rnum of frozen start room         */
@@ -231,7 +231,7 @@ sh_int get_set_hit(int level, int race, int class, int state)
   /*main - is the main bonus chucnk of hps
    */
   /*struct descriptor_data *d;
-   */        
+   */
   sh_int xmain = 0;
   sh_int face = 1;
   int cfactor = 100;
@@ -474,7 +474,7 @@ int get_ac(int level, int race, int class)
 /*This requres a file in lib/misc/spell_dams, It will tell you if you dont
   It then boots, note that if anything goes wrong to file
   you can re-write it by saving under sdedit, the viewer is in act.informative.c
-  The olc code is in sdedit.c 
+  The olc code is in sdedit.c
 */
 void boot_spell_dams()
 {
@@ -517,7 +517,7 @@ void boot_spell_dams()
                  &SD_BONUS(i), &SD_LVL_MULT(i));
           if (SD_NPC_REDUCE_FACTOR(i) == 0)
             SD_NPC_REDUCE_FACTOR(i) = 100;
-        
+
           SD_NOTE(i) = fread_string(ifptr, err);
         }
       fclose (ifptr);
@@ -610,7 +610,7 @@ void boot_db(void)
   log("Assigning skills and spells to classes.");
   assign_class_skills();
 
-  /* Command sorting needs to happen before many other loading 
+  /* Command sorting needs to happen before many other loading
    * activities, because sorting the commands initializes the
    * num_of_cmds variable.
    */
@@ -2389,19 +2389,19 @@ void zone_update(void)
       if (zone_table[i].age >= zone_table[i].lifespan &&
           zone_table[i].age < ZO_DEAD && zone_table[i].reset_mode) {
         /* enqueue zone */
-        
+
         CREATE(update_u, struct reset_q_element, 1);
-        
+
         update_u->zone_to_reset = i;
         update_u->next = 0;
-        
+
         if (!reset_q.head)
           reset_q.head = reset_q.tail = update_u;
         else {
           reset_q.tail->next = update_u;
           reset_q.tail = update_u;
         }
-        
+
         zone_table[i].age = ZO_DEAD;
       }
     }
@@ -2423,10 +2423,10 @@ void zone_update(void)
       else {
         for (temp = reset_q.head; temp->next != update_u;
              temp = temp->next);
-        
+
         if (!update_u->next)
           reset_q.tail = temp;
-        
+
         temp->next = update_u->next;
       }
 
