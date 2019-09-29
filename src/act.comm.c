@@ -31,6 +31,7 @@
 #include "act.h"
 #include "editor.h"
 #include "board.h"
+#include "retain_comms.h"
 
 /* extern variables */
 extern int gossip_channel_active;
@@ -237,8 +238,12 @@ static void perform_tell(struct char_data *ch, struct char_data *vict, char *arg
 
   GET_LAST_TELL(vict) = GET_IDNUM(REAL_CHAR(ch));
   afk_message(ch, vict);
-  if (IS_MOB(vict))
+  if (IS_MOB(vict)) {
     speech_to_mtrigger(ch, vict, arg);
+  } else {
+    format_act(buf1, buf, ch, 0, vict, vict);
+    add_retained_comms(vict, TYPE_RETAINED_TELLS, buf1);
+  }
 }
 
 
@@ -713,9 +718,11 @@ ACMD(do_gen_comm)
     if (shapechanged && CAN_SEE(i->character, ch) &&
         CAN_SEE(i->character, POSSESSOR(ch)))
       dprintf(i, "%s", buf1);
-    else
-      act(buf, FALSE, ch, 0, i->character, TO_VICT | TO_SLEEP | TO_OLC);
-
+    else {
+        act(buf, FALSE, ch, 0, i->character, TO_VICT | TO_SLEEP | TO_OLC);
+        format_act(buf1, buf, ch, 0, i->character, i->character);
+        add_retained_comms(i->character, TYPE_RETAINED_GOSSIPS, buf1);
+    }
     if (COLOR_LEV(i->character) >= C_NRM)
       dprintf(i, "%s", ANRM);
   }

@@ -187,8 +187,8 @@ for ((IN_ROOM) = world[(PLAYER)->in_room].people; (IN_ROOM) != NULL; (IN_ROOM) =
 #define TOGGLE_BIT(var,bit)      ((var) = (var) ^ (bit))
 
 /* extended bitvector utils */
-#define FIELD(x)                 ((unsigned long int) (x) / FLAGBLOCK_SIZE)
-#define FLAG(x)                  (1 << ((x) % FLAGBLOCK_SIZE))
+#define FIELD(x)                 ((long) (x) / FLAGBLOCK_SIZE)
+#define FLAG(x)                  ((flagvector) 1 << ((x) % FLAGBLOCK_SIZE))
 #define IS_FLAGGED(field, flag)  (((field)[FIELD(flag)] & FLAG(flag)) ? 1 : 0)
 #define SET_FLAG(field, flag)    ((field)[FIELD(flag)] |= FLAG(flag))
 #define REMOVE_FLAG(field, flag) ((field)[FIELD(flag)] &= ~FLAG(flag))

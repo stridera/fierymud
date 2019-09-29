@@ -20,6 +20,7 @@
 #define CBP_FUNC(name)     int (name)(void *object, void *data)
 
 /* comm.c */
+struct char_data;
 extern void all_printf(const char *messg, ...) __attribute__ ((format (printf, 1, 2)));
 extern void all_except_printf(struct char_data *ch, const char *messg, ...)
       __attribute__ ((format (printf, 2, 3)));
@@ -37,7 +38,7 @@ extern void send_to_room(const char *messg, int room);
 extern void send_to_zone(const char *messg, int zone_vnum, int skip_room, int min_stance);
 extern void write_to_output(const char *txt, struct descriptor_data *d);
 
-extern void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj,
+extern void format_act(char *rtn, const char *orig, struct char_data *ch, struct obj_data *obj,
                  const void *vict_obj, const struct char_data *to);
 
 extern void act(const char *str, int hide_invisible, struct char_data *ch,

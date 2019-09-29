@@ -211,7 +211,7 @@ void perform_quest(struct trig_data *t, char *argument, struct char_data *ch, st
   /* Try and figure out which quest we want. */
   if (!(quest_name = check_quest_name(buf1))) {
     if (t) {
-      sprintf(buf, "QUEST ERROR: quest command tried to access invalid quest %s in trigger %d", buf1, GET_TRIG_VNUM(t));
+      snprintf(buf, MAX_STRING_LENGTH, "QUEST ERROR: quest command tried to access invalid quest %s in trigger %d", buf1, GET_TRIG_VNUM(t));
       mudlog(buf, NRM, LVL_GOD, TRUE);
     }
     else if (ch)

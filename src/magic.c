@@ -267,10 +267,9 @@ void effect_update(void)
 {
   struct room_effect_node *reff, *next_reff, *temp;
   static struct effect *eff, *next;
-  static struct char_data *i, *nexti;
+  static struct char_data *i;
 
-  for (i = character_list; i; i = nexti) {
-    nexti = i->next;
+  for (i = character_list; i; i = i->next) {
     for (eff = i->effects; eff; eff = next) {
       next = eff->next;
       if (eff->duration >= 1)
@@ -1823,9 +1822,6 @@ int mag_affect(int skill, struct char_data * ch, struct char_data * victim,
 
   case SPELL_LEVITATE:
 
-
-    sprintf(buf, "DEBUG: flags size: %ld  Lev size: %ld", sizeof(eff[0].flags, EFF_LEVITATE));
-    mudlog(buf, BRF, LVL_GOD, FALSE);
     SET_FLAG(eff[0].flags, EFF_LEVITATE);
     eff[0].duration = 5 + (skill / 10);
     to_char = "&6$N&0&6 floats up into the air.&0";

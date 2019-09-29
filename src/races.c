@@ -62,7 +62,8 @@ struct racedef races[NUM_RACES] = {
       120, 180, 60, 76, 95, 150, 60, 70,
       { 72, 72, 72, 72, 72, 72 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* GREY ELF */
@@ -72,7 +73,8 @@ struct racedef races[NUM_RACES] = {
       90, 160, 60, 70, 90, 160, 59, 68,
       { 64, 80, 88, 86, 64, 78 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* GNOME */
@@ -82,7 +84,8 @@ struct racedef races[NUM_RACES] = {
       40, 90, 26, 38, 40, 90, 26, 38,
       { 64, 76, 88, 84, 68, 76 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* DWARF */
@@ -92,7 +95,8 @@ struct racedef races[NUM_RACES] = {
       170, 200, 38, 50, 150, 190, 38, 50,
       { 84, 76, 64, 86, 84, 68 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* TROLL */
@@ -102,7 +106,8 @@ struct racedef races[NUM_RACES] = {
       130, 290, 72, 90, 130, 290, 72, 90,
       { 92, 72, 56, 56, 92, 64 },
       100, 120, 110, 110, 75, 100,
-      "prowls in", "prowls"
+      "prowls in", "prowls",
+      0
    },
 
    /* DROW */
@@ -112,7 +117,8 @@ struct racedef races[NUM_RACES] = {
       90, 160, 60, 70, 90, 160, 60, 70,
       { 64, 80, 88, 80, 64, 72 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* DUERGAR */
@@ -122,7 +128,8 @@ struct racedef races[NUM_RACES] = {
       170, 200, 38, 50, 150, 190, 38, 50,
       { 84, 76, 68, 72, 84, 64 },
       100, 100, 100, 100, 75, 100,
-      "skulks in", "skulks"
+      "skulks in", "skulks",
+      0
    },
 
    /* OGRE */
@@ -132,7 +139,8 @@ struct racedef races[NUM_RACES] = {
       390, 530, 93, 119, 390, 530, 93, 119,
       { 96, 64, 52, 60,100, 60 },
       100, 130, 100, 120, 75, 90,
-      "lumbers in", "lumbers"
+      "lumbers in", "lumbers",
+      0
    },
 
    /* ORC */
@@ -142,7 +150,8 @@ struct racedef races[NUM_RACES] = {
       90, 150, 58, 68, 90, 150, 58, 68,
       { 72, 72, 72, 72, 72, 72 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* HALF-ELF */
@@ -152,7 +161,8 @@ struct racedef races[NUM_RACES] = {
       100, 170, 60, 76, 94, 155, 60, 70,
       { 68, 76, 76, 76, 68, 78 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* BARBARIAN */
@@ -162,7 +172,8 @@ struct racedef races[NUM_RACES] = {
       170, 260, 69, 88, 130, 210, 69, 80,
       { 88, 68, 60, 60, 88, 64 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* HALFLING */
@@ -172,7 +183,8 @@ struct racedef races[NUM_RACES] = {
       90, 160, 35, 42, 90, 160, 35, 42,
       { 68, 96, 80, 80, 64, 76 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* PLANT */
@@ -182,7 +194,8 @@ struct racedef races[NUM_RACES] = {
       80, 180, 40, 96, 80, 180, 40, 96,
       { 72, 52, 32, 72, 100, 72 },
       100, 100, 100, 100, 0, 120,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* HUMANOID */
@@ -192,7 +205,8 @@ struct racedef races[NUM_RACES] = {
       120, 180, 60, 76, 95, 150, 60, 70,
       { 72, 72, 72, 72, 72, 72 },
       100, 100, 100, 100, 100, 60,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* ANIMAL */
@@ -202,7 +216,8 @@ struct racedef races[NUM_RACES] = {
       120, 180, 60, 76, 95, 150, 60, 70,
       { 72, 72, 72, 72, 72, 72 },
       100, 100, 100, 100, 0,65,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* DRAGON */
@@ -212,7 +227,8 @@ struct racedef races[NUM_RACES] = {
       16000, 64000, 768, 1536, 16000, 64000, 768, 1536,
       {100, 72,100, 72, 72,100 },
       130, 130, 140, 140, 500, 140,
-      "stomps in", "stomps"
+      "stomps in", "stomps",
+      0
    },
 
    /* GIANT */
@@ -222,7 +238,8 @@ struct racedef races[NUM_RACES] = {
       1000, 4000, 196, 384, 1000, 4000, 196, 384,
       {100, 72, 44, 64, 80, 72 },
       110, 120, 120, 100, 125, 120,
-      "lumbers in", "lumbers"
+      "lumbers in", "lumbers",
+      0
    },
 
    /* OTHER */
@@ -232,7 +249,8 @@ struct racedef races[NUM_RACES] = {
       120, 180, 60, 76, 95, 150, 60, 70,
       { 72, 72, 72, 72, 72, 72 },
       80, 110, 120, 80, 75, 105,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* GOBLIN */
@@ -242,7 +260,8 @@ struct racedef races[NUM_RACES] = {
       60, 90, 30, 38, 55, 80, 30, 35,
       { 76, 72, 64, 72, 84, 64 },
       60, 60, 60, 60, 75, 90,
-      NULL, NULL
+      NULL, NULL,
+      0
    },
 
    /* DEMON */
@@ -252,7 +271,8 @@ struct racedef races[NUM_RACES] = {
       130, 290, 72, 90, 130, 290, 72, 90,
       { 80,100, 68, 68, 58, 58 },
       120, 120, 120, 120, 150, 120,
-      "stalks in", "stalks"
+      "stalks in", "stalks",
+      0
    },
 
    /* BROWNIE */
@@ -262,7 +282,8 @@ struct racedef races[NUM_RACES] = {
       20, 30, 20, 30, 20, 30, 20, 30,
       { 60, 80, 60, 78, 70, 72 },
       100, 100, 100, 100, 75, 100,
-      NULL, NULL
+      NULL, NULL,
+      0
    }
 };
 

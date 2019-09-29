@@ -224,7 +224,8 @@ void end_chant(struct char_data *ch, struct char_data *tch, struct obj_data *tob
       sprintf(saybuf, "Someone utters the words, '%s'.", spellbuf);
 
     /* Sending the message to the bystander or target. */
-    perform_act(saybuf, ch, tobj, tch, gch);
+    format_act(buf, saybuf, ch, tobj, tch, gch);
+    cprintf(gch, "%s", buf);
   }
 }
 

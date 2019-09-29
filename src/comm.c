@@ -2742,13 +2742,13 @@ char *ACTNULL = "<NULL>";
   if ((pointer) == NULL) i = ACTNULL; else i = (expression);
 
 /* higher-level communication: the act() function */
-void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj,
+void format_act(char *rtn, const char *orig, struct char_data *ch, struct obj_data *obj,
       const void *vict_obj, const struct char_data *to) {
    const char *i = NULL;
-   char lbuf[MAX_STRING_LENGTH], *buf, *j, ibuf[20];
+   char *bufptr, *j, ibuf[20];
    bool uppercasenext = FALSE;
 
-   buf = lbuf;
+   bufptr = rtn;
 
    if (!to->desc)
       return;
@@ -2824,8 +2824,8 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj,
                break;
             /* uppercase previous word */
             case 'u':
-               for (j=buf; j > lbuf && !isspace((int) *(j-1)); j--);
-               if (j != buf)
+               for (j=bufptr; j > rtn && !isspace((int) *(j-1)); j--);
+               if (j != bufptr)
                *j = UPPER(*j);
                i = "";
                break;
@@ -2843,32 +2843,33 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj,
                i = "";
                break;
          }
-         while ((*buf = *(i++))) {
-            if (uppercasenext && !isspace((int) *buf)) {
-               *buf = UPPER(*buf);
+         while ((*bufptr = *(i++))) {
+            if (uppercasenext && !isspace((int) *bufptr)) {
+               *bufptr = UPPER(*bufptr);
                uppercasenext = FALSE;
             }
-            buf++;
+            bufptr++;
          }
          orig++;
-      } else if (!(*(buf++) = *(orig++))) {
+      } else if (!(*(bufptr++) = *(orig++))) {
          break;
-      } else if (uppercasenext && !isspace((int) *(buf-1))) {
-         *(buf-1) = UPPER(*(buf-1));
+      } else if (uppercasenext && !isspace((int) *(bufptr-1))) {
+         *(bufptr-1) = UPPER(*(bufptr-1));
          uppercasenext = FALSE;
       }
    }
 
-   *(--buf) = '\r';
-   *(++buf) = '\n';
-   *(++buf) = '\0';
+   *(--bufptr) = '\r';
+   *(++bufptr) = '\n';
+   *(++bufptr) = '\0';
 
-   cprintf(to, "%s", CAP(lbuf));
+   CAP(rtn);
 }
 
 /* The "act" action interpreter */
 void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_data *obj, const void *vict_obj, int type)
 {
+   char lbuf[MAX_STRING_LENGTH];
    struct char_data *to = NULL;
    int sleep, olc, in_room, i, to_victroom;
 
@@ -2899,15 +2900,19 @@ void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_d
 
    if (type == TO_CHAR) {
       if (ch && SENDOK(ch))
-         perform_act(str, ch, obj, vict_obj, ch);
-      return;
+         format_act(lbuf, str, ch, obj, vict_obj, ch);
+         cprintf(ch, "%s", lbuf);
+
+       return;
    }
 
    if (type == TO_VICT) {
       if ((to = (struct char_data *) vict_obj) && SENDOK(to) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch))) {
-         perform_act(str, ch, obj, vict_obj, to);
+         format_act(lbuf, str, ch, obj, vict_obj, to);
+         cprintf(to, "%s", lbuf);
       }
+
       return;
    }
    /* ASSUMPTION: at this point we know type must be TO_NOTVICT or TO_ROOM */
@@ -2952,14 +2957,17 @@ void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_d
 
    for (to = world[in_room].people; to; to = to->next_in_room)
       if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) &&
-            (to != ch) && (type == TO_ROOM || (to != vict_obj)))
-         perform_act(str, ch, obj, vict_obj, to);
+            (to != ch) && (type == TO_ROOM || (to != vict_obj))) {
+         format_act(lbuf, str, ch, obj, vict_obj, to);
+         cprintf(to, "%s", lbuf);
+      }
 
-   /*
-    * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
-    * into OBSERVATORY rooms, allowing players standing in observatories
-    * to watch arena battles safely.
-    */
+
+    /*
+     * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
+     * into OBSERVATORY rooms, allowing players standing in observatories
+     * to watch arena battles safely.
+     */
    if (ROOM_FLAGGED(in_room, ROOM_ARENA))
       for (i = 0; i < NUM_OF_DIRS; ++i)
          if (world[in_room].exits[i] &&
@@ -2970,7 +2978,8 @@ void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_d
                if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) &&
                    (to != ch) && (type == TO_ROOM || (to != vict_obj))) {
                   cprintf(to, "&4&8<&0%s&0&4&8>&0 ", world[in_room].name);
-                  perform_act(str, ch, obj, vict_obj, to);
+                  format_act(lbuf, str, ch, obj, vict_obj, to);
+                  cprintf(to, "%s", lbuf);
                }
 }
 

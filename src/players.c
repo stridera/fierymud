@@ -36,6 +36,7 @@
 #include "money.h"
 #include "screen.h"
 #include "cooldowns.h"
+#include "retain_comms.h"
 
 /* local functions */
 static void load_effects(FILE *fl, struct char_data *ch);
@@ -335,6 +336,7 @@ int load_player(const char *name, struct char_data *ch)
   ch->player.time.logon = time(0);
 
   init_trophy(ch);
+  init_retained_comms(ch);
 
   while (get_line(fl, line)) {
     tag_argument(line, tag);
@@ -396,7 +398,8 @@ int load_player(const char *name, struct char_data *ch)
       break;
 
     case 'G':
-           if (!strcmp(tag, "grants"))		read_player_grants(fl, &GET_GRANTS(ch));
+           if (!strcmp(tag, "gossips"))		load_retained_comms(fl, ch, TYPE_RETAINED_GOSSIPS);
+      else if (!strcmp(tag, "grants"))		read_player_grants(fl, &GET_GRANTS(ch));
       else if (!strcmp(tag, "grantgroups"))	read_player_grant_groups(fl, &GET_GRANT_GROUPS(ch));
       else goto bad_tag;
       break;
@@ -503,7 +506,8 @@ int load_player(const char *name, struct char_data *ch)
       break;
 
     case 'T':
-           if (!strcmp(tag, "thirst"))		GET_COND(ch, THIRST) = LIMIT(-1, num, 24);
+           if (!strcmp(tag, "tells"))		load_retained_comms(fl, ch, TYPE_RETAINED_TELLS);
+      else if (!strcmp(tag, "thirst"))		GET_COND(ch, THIRST) = LIMIT(-1, num, 24);
       else if (!strcmp(tag, "title"))		add_perm_title(ch, line);
       else if (!strcmp(tag, "timeplayed"))	ch->player.time.played = num;
       else if (!strcmp(tag, "trophy"))		load_trophy(fl, ch);
@@ -871,6 +875,10 @@ void save_player_char(struct char_data * ch)
 
    /* Save trophy */
   save_trophy(fl, ch);
+
+  /* Save Retained Communications */
+  save_retained_comms(fl, ch, TYPE_RETAINED_TELLS);
+  save_retained_comms(fl, ch, TYPE_RETAINED_GOSSIPS);
 
   /* Save effects */
   if (tmp_eff[0].type > 0) {

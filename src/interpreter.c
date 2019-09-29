@@ -614,6 +614,8 @@ const struct command_info cmd_info[] = {
   { "laugh"    , POS_PRONE   , STANCE_RESTING , do_action   , 0, 0, 0 },
   { "layhands" , POS_STANDING, STANCE_ALERT   , do_layhand  , 0, 0, 0 },
   { "last"     , POS_PRONE   , STANCE_DEAD    , do_last     , LVL_GRGOD, 0, CMD_ANY },
+  { "lasttells", POS_PRONE   , STANCE_DEAD    , do_last_tells, 0, 0, CMD_ANY },
+  { "lastgos"  , POS_PRONE   , STANCE_DEAD    , do_last_gossips, 0, 0, CMD_ANY },
   { "lean"     , POS_PRONE   , STANCE_RESTING , do_action   , 0, 0, 0 },
   { "leave"    , POS_STANDING, STANCE_ALERT   , do_leave    , 0, 0, CMD_NOFIGHT },
   { "level"    , POS_PRONE   , STANCE_DEAD    , do_level    , 0, 0, CMD_ANY },
@@ -1714,6 +1716,7 @@ int is_abbrev(const char *arg1, const char *arg2)
   else
     return 0;
 }
+
 void display_classes(struct descriptor_data *d, int select) {
   /*  int x; */ /* Commented out for commenting of - Subclassing explaination/preface RSD */
   int char_race;

@@ -34,6 +34,8 @@ ACMD(do_help);
 ACMD(do_identify);
 ACMD(do_innate);
 ACMD(do_inventory);
+ACMD(do_last_gossips);
+ACMD(do_last_tells);
 ACMD(do_listspells);
 ACMD(do_look);
 ACMD(do_scan);

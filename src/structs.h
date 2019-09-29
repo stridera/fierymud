@@ -424,7 +424,7 @@ typedef int                    zone_vnum;
  * throughout the code for "bitvector_t" and change them yourself if you'd
  * like this extra flexibility. */
 typedef unsigned long int      flagvector;
-#define FLAGBLOCK_SIZE         (8 * sizeof(flagvector)) /* 8 bits = 1 byte */
+#define FLAGBLOCK_SIZE         ((flagvector) 8 * sizeof(flagvector)) /* 8 bits = 1 byte */
 #define FLAGVECTOR_SIZE(flags)	(((flags) - 1) / FLAGBLOCK_SIZE + 1)
 
 #include "objects.h"
@@ -516,6 +516,7 @@ struct char_player_data {
   int base_composition;
   int composition;    /* What its body is made of - see COMP_* in chars.h */
   room_num homeroom;  /* PC s Homeroom                        */
+
 
   struct time_data time;  /* PC's AGE in days                 */
 
@@ -627,6 +628,8 @@ struct player_special_data {
   byte roll[6];                  /* for rolling stats in player creation   */
   struct char_data *ignored;
 
+ /* List of the last X comms as defined in retained_comms.h */
+  struct retained_comms *comms;
   bool talks[MAX_TONGUE];        /* PC s Tongues 0 for NPC                 */
   int wimp_level;                /* Below this # of hit points, flee!      */
   int aggressive;                /* Above this # of hit points, autoattack */

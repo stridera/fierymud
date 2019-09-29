@@ -49,6 +49,8 @@
 #include "vsearch.h"
 #include "spheres.h"
 #include "textfiles.h"
+#include "retain_comms.h"
+
 
 /* extern variables */
 extern int pk_allowed;
@@ -4079,7 +4081,7 @@ static int scan_chars(struct char_data *ch, int room, int dis, int dir, int seen
 */
       sprintf(buf, "%s %s", distance[dis], dis ? dirs[dir] : "here");
       cprintf(ch, "   %22s : %s" ANRM " (%s" ANRM ")\r\n",
-              buf, GET_NAME(i), 
+              buf, GET_NAME(i),
               GET_POS(i) == POS_FLYING ? FCYN "fly" :
                   (GET_POS(i) > POS_SITTING ? "std" : FGRN "sit"));
    }
@@ -4378,6 +4380,42 @@ ACMD(do_songs)
       page_string(ch, buf);
    else
       send_to_char("You don't know any songs!\r\n", ch);
+}
+
+ACMD(do_last_tells)
+{
+   struct char_data *tch;
+
+   one_argument(argument, arg);
+
+   if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+      if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
+         cprintf(ch, "There's nobody here by that name.\r\n");
+         return;
+      }
+   } else {
+      tch = ch;
+   }
+
+   show_retained_comms(ch, tch, TYPE_RETAINED_TELLS);
+}
+
+ACMD(do_last_gossips)
+{
+   struct char_data *tch;
+
+   one_argument(argument, arg);
+
+   if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+      if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
+         cprintf(ch, "There's nobody here by that name.\r\n");
+         return;
+      }
+   } else {
+      tch = ch;
+   }
+
+   show_retained_comms(ch, tch, TYPE_RETAINED_GOSSIPS);
 }
 
 /***************************************************************************

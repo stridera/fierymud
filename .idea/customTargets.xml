@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CLionExternalBuildManager">
+    <target id="f5988bbf-3d8c-4cdf-a4c2-3b7383907c27" name="Fierymud" projectName="fierymud">
+      <configuration id="f1077665-f064-4713-ae6d-67c2ca2c1c51" name="Fierymud">
+        <build type="TOOL">
+          <tool actionId="Tool_External Tools_gcc" />
+        </build>
+        <clean type="TOOL">
+          <tool actionId="Tool_External Tools_Clean" />
+        </clean>
+      </configuration>
+    </target>
+  </component>
+</project>
