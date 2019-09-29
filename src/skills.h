@@ -266,6 +266,7 @@
 #define SPELL_FRACTURE_SHRAPNEL     225
 #define SPELL_BONE_DRAW             226
 #define SPELL_PYRE_RECOIL           227
+#define SPELL_WORLD_TELEPORT        228
 /* Insert new spells here, up to MAX_SPELLS */
 
 /* PLAYER SKILLS - Numbered from MAX_SPELLS+1 to MAX_SKILLS */

@@ -466,6 +466,8 @@ int call_magic(struct char_data * caster, struct char_data * cvict,
     case SPELL_WANDERING_WOODS:      MANUAL_SPELL(spell_wandering_woods);break;
     case SPELL_WORD_OF_COMMAND:      MANUAL_SPELL(spell_word_of_command);break;
     case SPELL_WORD_OF_RECALL:       MANUAL_SPELL(spell_recall); break;
+    case SPELL_WORLD_TELEPORT:       MANUAL_SPELL(spell_world_teleport); break;
+
 
     case CHANT_PEACE:                MANUAL_SPELL(chant_peace); break;
     case CHANT_IVORY_SYMPHONY:       MANUAL_SPELL(chant_ivory_symphony); break;

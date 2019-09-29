@@ -80,6 +80,7 @@ ASPELL(spell_soul_tap_recur);
 ASPELL(spell_summon);
 ASPELL(spell_summon_corpse);
 ASPELL(spell_supernova);
+ASPELL(spell_world_teleport);
 ASPELL(spell_teleport);
 ASPELL(spell_ventriloquate);
 ASPELL(spell_vitality);

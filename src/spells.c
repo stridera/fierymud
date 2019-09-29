@@ -1528,6 +1528,24 @@ ASPELL(spell_recall)
    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
+ASPELL(spell_world_teleport)
+{
+    room_num to_room;
+
+    if (victim == NULL || IS_NPC(victim))
+        return;
+
+    do {
+        to_room = number(0, top_of_world);
+    } while (ROOM_FLAGGED(to_room, ROOM_PRIVATE | ROOM_DEATH | ROOM_GODROOM));
+
+    act("$n slowly fades out of existence and is gone.",
+        FALSE, victim, 0, 0, TO_ROOM);
+    char_from_room(victim);
+    char_to_room(victim, to_room);
+    act("$n slowly fades into existence.", FALSE, victim, 0, 0, TO_ROOM);
+    look_at_room(victim, 0);
+}
 
 ASPELL(spell_teleport)
 {
