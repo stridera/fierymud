@@ -119,11 +119,11 @@ unsigned int days_until_reapply(const struct clan_membership *member);
 PRIV_FUNC(clan_admin_check);
 
 clan_iter clans_start(void);
-  // __attribute__ ((always_inline)) __attribute__ ((pure));
+   __attribute__ ((always_inline)) __attribute__ ((pure));
 clan_iter clans_end(void);
-  // __attribute__ ((always_inline)) __attribute__ ((pure));
+   __attribute__ ((always_inline)) __attribute__ ((pure));
 unsigned int clan_count(void);
-  // __attribute__ ((always_inline)) __attribute__ ((pure));
+   __attribute__ ((always_inline)) __attribute__ ((pure));
 
 struct clan_membership {
   char *name;
