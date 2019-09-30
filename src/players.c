@@ -1232,6 +1232,8 @@ void init_player(struct char_data *ch)
   if (!ch->player_specials)
     CREATE(ch->player_specials, struct player_special_data, 1);
 
+  init_retained_comms(ch);
+
   /* If this is our first player, make 'em god */
   if (top_of_p_table == 0) {
     GET_EXP(ch) = 7000000;
@@ -1309,6 +1311,7 @@ void start_player(struct char_data *ch)
   init_char(ch);
   advance_level(ch, LEVEL_GAIN);
   init_trophy(ch);
+  init_retained_comms(ch);
 
   GET_HIT(ch) = GET_MAX_HIT(ch) = GET_BASE_HIT(ch);
   GET_MANA(ch) = GET_MAX_MANA(ch);
