@@ -1537,7 +1537,7 @@ ASPELL(spell_world_teleport)
 
     do {
         to_room = number(0, top_of_world);
-    } while (ROOM_FLAGGED(to_room, ROOM_PRIVATE | ROOM_DEATH | ROOM_GODROOM));
+    } while (ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH) || ROOM_FLAGGED(to_room, ROOM_GODROOM));
 
     act("$n slowly fades out of existence and is gone.",
         FALSE, victim, 0, 0, TO_ROOM);
