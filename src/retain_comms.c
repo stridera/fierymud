@@ -121,11 +121,15 @@ void show_retained_comms(struct char_data *ch, struct char_data *vict, int type)
     char *comm_name;
     char timebuf[32];
 
+    if (IS_MOB(ch)) {
+        send_to_char("Nobody talks to mobs.  Such a sad life.", ch);
+    }
+
     if (type == TYPE_RETAINED_TELLS) {
-        node = GET_RETAINED_TELLS(ch);
+        node = GET_RETAINED_TELLS(ch == vict ? ch : vict);
         comm_name = "tell";
     } else if (type == TYPE_RETAINED_GOSSIPS) {
-        node = GET_RETAINED_GOSSIPS(ch);
+        node = GET_RETAINED_GOSSIPS(ch == vict ? ch : vict);
         comm_name = "gossip";
     } else {
         log("Attempt to print an unknown type.");
