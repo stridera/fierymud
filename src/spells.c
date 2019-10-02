@@ -1545,6 +1545,7 @@ ASPELL(spell_world_teleport)
     char_to_room(victim, to_room);
     act("$n slowly fades into existence.", FALSE, victim, 0, 0, TO_ROOM);
     look_at_room(victim, 0);
+    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
 ASPELL(spell_teleport)
