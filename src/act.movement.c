@@ -377,6 +377,12 @@ bool do_simple_move(struct char_data *ch, int dir, int need_specials_check)
       return FALSE;
    }
 
+   /* Mobs with STAY_ZONE shouldn't wander outside their zone for any reason */
+   if (MOB_FLAGGED(actor, MOB_STAY_ZONE) && CH_DEST_ZONE(actor, dir) != CH_ROOM(actor)->zone) {
+     send_to_char("You feel a strong urge to stay within your zone!\r\n", actor);
+     return FALSE;
+   }
+
    /* What to do if a mount attempts to wander */
 
    if (mount && ch != actor) {

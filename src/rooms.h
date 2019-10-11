@@ -188,6 +188,7 @@ extern const struct sectordef sectors[NUM_SECTORS];
 #define CH_NDEST(ch, dir) (CH_EXIT(ch, dir) ? CH_EXIT(ch, dir)->to_room : NOWHERE)
 #define CH_VDEST(ch, dir) (CH_NDEST(ch, dir) == NOWHERE ? NOWHERE : world[CH_NDEST(ch, dir)].vnum)
 #define CH_DEST(ch, dir) (CH_NDEST(ch, dir) == NOWHERE ? NULL : &world[CH_NDEST(ch, dir)])
+#define CH_DEST_ZONE(ch, dir) (CH_NDEST(ch, dir) == NOWHERE ? NULL : world[CH_NDEST(ch, dir)].zone)
 #define CH_SECT(ch) (CH_NROOM(ch) == NOWHERE ? SECT_STRUCTURE : world[CH_NROOM(ch)].sector_type)
 #define INDOORS(rnum) ((rnum) == NOWHERE ? FALSE : \
       ROOM_FLAGGED(rnum, ROOM_INDOORS) || \
