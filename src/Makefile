@@ -8,11 +8,11 @@
 CC = gcc
 
 # Any special flags you want to pass to the compiler
-MYFLAGS = -Wall -pedantic 
+MYFLAGS = -Wall -pedantic -fpack-struct=4 -m32
 #flags for profiling (see hacker.doc for more information)
 PROFILE = 
 # any flags for the linker
-LFLAGS = 
+LFLAGS = -m32
 # Test Flags
 TFLAGS = -DTEST
 # Production Flags
@@ -58,7 +58,8 @@ OBJFILES = comm.o act.comm.o act.informative.o act.movement.o act.item.o \
         movement.o editor.o board.o find.o composition.o lifeforce.o \
         charsize.o damage.o strings.o spells.o directions.o \
         effects.o money.o spheres.o act.get.o textfiles.o \
-	rules.o rulesys.o text.o privileges.o cooldowns.o prefs.o
+	rules.o rulesys.o text.o privileges.o cooldowns.o prefs.o \
+	retain_comms.o
 
 default: test
 
