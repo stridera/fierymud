@@ -383,6 +383,13 @@ bool do_simple_move(struct char_data *ch, int dir, int need_specials_check)
      return FALSE;
    }
 
+    /* Likewise, mobs shouldn't enter NOMOB or DEATH rooms */
+    if (IS_MOB(actor) && (ROOM_FLAGGED(CH_NDEST(actor, dir), ROOM_NOMOB)
+                          || ROOM_FLAGGED(CH_NDEST(actor, dir), ROOM_DEATH))) {
+        send_to_char("You really don't want to go that way!\r\n", actor);
+        return FALSE;
+    }
+
    /* What to do if a mount attempts to wander */
 
    if (mount && ch != actor) {
