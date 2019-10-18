@@ -504,15 +504,17 @@ bool do_simple_move(struct char_data *ch, int dir, int need_specials_check)
       }
    }
 
-   if (ROOM_FLAGGED(CH_NDEST(actor, dir), ROOM_TUNNEL)) {
-      if (mount) {
+   if (GET_LEVEL(ch) < LVL_IMMORT) {
+     if (ROOM_FLAGGED(CH_NDEST(actor, dir), ROOM_TUNNEL)) {
+       if (mount) {
          send_to_char("There isn't enough room there, while mounted.\r\n", actor);
          return FALSE;
-      }
-      if (num_pc_in_room(CH_DEST(actor, dir)) > 1) {
+       }
+       if (num_pc_in_room(CH_DEST(actor, dir)) > 1) {
          send_to_char("There isn't enough room there for more than one person!\r\n", actor);
          return FALSE;
-      }
+       }
+     }
    }
 
    /* see if an entry trigger disallows the move */
