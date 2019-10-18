@@ -35,24 +35,27 @@ void init_retained_comms(struct char_data *ch)
 
 void add_retained_comms(struct char_data *ch, int type, char *msg)
 {
+    struct char_data *tch;
     struct comm_node *node, *new_node;
     int i = 0;
 
-    for (node = GET_RETAINED_COMM_TYPE(ch, type), i = 0; node && node->next; ++i, node = node->next);  // Find last node
+    tch = REAL_CHAR(ch); /* Just in case you are shapeshifted */
+
+    for (node = GET_RETAINED_COMM_TYPE(tch, type), i = 0; node && node->next; ++i, node = node->next);  // Find last node
 
     CREATE(new_node, struct comm_node, 1);
     new_node->time = time(0);
     new_node->msg = strdup(filter_chars(buf, msg, "\r\n"));
     new_node->next = NULL;
     if (node == NULL) {
-        SET_RETAINED_COMM_TYPE(ch, type, new_node);
+        SET_RETAINED_COMM_TYPE(tch, type, new_node);
     } else {
         node->next = new_node;
     }
 
     if (i >= MAX_RETAINED_COMMS - 1) {
-        node = GET_RETAINED_COMM_TYPE(ch, type);
-        SET_RETAINED_COMM_TYPE(ch, type, node->next);
+        node = GET_RETAINED_COMM_TYPE(tch, type);
+        SET_RETAINED_COMM_TYPE(tch, type, node->next);
         free(node);
     }
 }
@@ -121,15 +124,15 @@ void show_retained_comms(struct char_data *ch, struct char_data *vict, int type)
     char *comm_name;
     char timebuf[32];
 
-    if (IS_MOB(ch)) {
-        send_to_char("Nobody talks to mobs.  Such a sad life.", ch);
+    if (IS_MOB(REAL_CHAR(ch))) {
+        send_to_char("Nobody talks to mobs.  Such a sad life.\r\n", ch);
     }
 
     if (type == TYPE_RETAINED_TELLS) {
-        node = GET_RETAINED_TELLS(ch == vict ? ch : vict);
+        node = GET_RETAINED_TELLS(REAL_CHAR(ch) == REAL_CHAR(vict) ? REAL_CHAR(ch) : REAL_CHAR(vict));
         comm_name = "tell";
     } else if (type == TYPE_RETAINED_GOSSIPS) {
-        node = GET_RETAINED_GOSSIPS(ch == vict ? ch : vict);
+        node = GET_RETAINED_GOSSIPS(REAL_CHAR(ch) == REAL_CHAR(vict) ? REAL_CHAR(ch) : REAL_CHAR(vict));
         comm_name = "gossip";
     } else {
         log("Attempt to print an unknown type.");
