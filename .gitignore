@@ -2,3 +2,4 @@ lib/*
 bin/*
 log/*
 cmake-build-debug/*
+build/*

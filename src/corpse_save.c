@@ -45,6 +45,7 @@ points of interest are:
    would be a good project in the future.
 */
 
+#include <dirent.h>
 #include "conf.h"
 #include "sysdep.h"
 #include "structs.h"
@@ -80,11 +81,6 @@ int corpse_count(void)
   return corpse_control.count;
 }
 
-static void check_corpse_id(struct corpse_data *entry)
-{
-
-}
-
 static void remove_entry(struct corpse_data *entry)
 {
   entry->prev->next = entry->next;
@@ -103,7 +99,6 @@ void free_corpse_list()
 
 void update_corpse(struct obj_data *corpse)
 {
-  save_corpse_list();
 }
 
 static int corpse_id(struct obj_data *corpse)
@@ -112,48 +107,47 @@ static int corpse_id(struct obj_data *corpse)
   return (id >= 0 ? id : -1);
 }
 
-/* Return a filename given a corpse id */
-static bool get_corpse_filename(int id, char *filename)
-{
-  if (id < 0) {
-    log("SYSERR(corpse_save.c): Corpse has id number < 0 no corpse loaded.");
-    return FALSE;
-  } else {
-    sprintf(filename, "corpse/%d.corpse", id);
-    return TRUE;
-  }
-}
-
 
 /* Load all objects for a corpse */
-static struct obj_data *load_corpse(int id)
+static int load_corpse(struct corpse_data *corpse, struct dirent *ep)
 {
   FILE *fl;
   char fname[MAX_STRING_LENGTH];
   struct obj_data *obj, *containers[MAX_CONTAINER_DEPTH + 1];
-  int location, depth, i;
+  int location, depth, i, id;
   extern int r_mortal_start_room;
-  
-  if (!get_corpse_filename(id, fname)) {
-    log("SYSERR: invalid id passed from load_corpse.");
+
+
+  if (ep->d_type != DT_REG || !endswith(ep->d_name, CORPSE_SUFFIX)) {
+    log("INFO: Skipping non-corpse file in corpse directory %s.", ep->d_name);
     return NULL;
   }
+
+  strcpy(fname, CORPSE_DIR);
+  strcat(fname, ep->d_name);
   if (!(fl = fopen(fname, "r"))) {
-    log("SYSERR: Corpse in control file not located on disk.");
+    log("SYSERR: Can't open corpse file %s.", ep->d_name);
     return NULL;
   }
+  i = strlen(ep->d_name) - 7; // get the id minus the .corpse
+  strncpy(buf1, ep->d_name, i);
+  buf1[i] = '\0';
+  if (!is_integer(buf1)) {
+      log("SYSERR: Unable to grab ID from corpse file: %s.", ep->d_name);
+  }
+  id = atoi(buf1);
 
   get_line(fl, buf1);
   if (is_integer(buf1)) {
     depth = atoi(buf1);
     if ((depth = real_room(depth)) < 0) {
-      sprintf(buf, "SYSERR: Unable to locate room %s for corpse %d", buf1, id);
+      sprintf(buf, "SYSERR: Unable to locate room %s for corpse file %s", buf1, ep->d_name);
       log(buf);
       depth = r_mortal_start_room;
     }
   }
   else {
-    sprintf(buf, "SYSERR: First line of corpse file not room vnum for corpse %d", id);
+    sprintf(buf, "SYSERR: First line of corpse file not room vnum for corpse %s", ep->d_name);
     log(buf);
     if (strchr(buf1, ':'))
       rewind(fl);
@@ -162,18 +156,17 @@ static struct obj_data *load_corpse(int id)
 
   if (build_object(fl, &obj, &location)) {
     if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !str_str(obj->name, "corpse")) {
-      sprintf(buf, "SYSERR: First object '%s' loaded from corpse %d not corpse", obj->short_description, id);
+      sprintf(buf, "SYSERR: First object '%s' loaded from corpse %s not corpse", obj->short_description, ep->d_name);
       log(buf);
       extract_obj(obj);
       return NULL;
     }
     containers[0] = obj;
-    GET_OBJ_VAL(obj, VAL_CORPSE_ID) = id;
     GET_OBJ_VAL(obj, VAL_CONTAINER_CORPSE) = CORPSE_PC;
     obj_to_room(obj, depth);
   }
   else {
-    sprintf(buf, "SYSERR: Unable to read in corpse data for corpse %d in load_corpse", id);
+    sprintf(buf, "SYSERR: Unable to read in corpse data for corpse %s in load_corpse", ep->d_name);
     log(buf);
     return NULL;
   }
@@ -188,7 +181,7 @@ static struct obj_data *load_corpse(int id)
     if (depth > 0)
       obj_to_obj(obj, containers[depth - 1]);
   }
-  
+
   fclose(fl);
 
   /* Ensure that the items inside aren't marked for decomposition. */
@@ -196,8 +189,8 @@ static struct obj_data *load_corpse(int id)
   /* And mark the corpse itself as decomposing. */
   SET_FLAG(GET_OBJ_FLAGS(containers[0]), ITEM_DECOMP);
 
-  
-  return containers[0];
+  corpse = containers[0];
+  return id;
 }
 
 
@@ -242,6 +235,18 @@ void save_corpse(struct obj_data *corpse)
   fclose(fp);
 }
 
+/* Return a filename given a corpse id */
+static bool get_corpse_filename(int id, char *filename)
+{
+  if (id < 0) {
+    log("SYSERR(corpse_save.c): Corpse has id number < 0 no corpse loaded.");
+    return FALSE;
+  } else {
+    sprintf(filename, "corpse/%d.corpse", id);
+    return TRUE;
+  }
+}
+
 
 /* Delete a corpse save file */
 static void delete_corpse_file(int id)
@@ -277,27 +282,6 @@ static struct corpse_data *find_entry(int id)
   return NULL;
 }
 
-
-
-/* Save the corpse control information */
-static void save_corpse_list(void)
-{
-  FILE *fl;
-  struct corpse_data *entry;
-  
-  if (!(fl = fopen(CCONTROL_FILE, "w"))) {
-    perror("SYSERR: Unable to open corpse control file");
-    return;
-  }
-
-  for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next) {
-    check_corpse_id(entry);
-    fprintf(fl, "%d\n", entry->id);
-  }
-
-  fclose(fl);
-}
-
 /* 8/5/99 David Endre - Fix it so more than one corpse is saved over
    a reboot. The problem was the old code called obj_to_room which
    saves the ccontrol file and since only one corpse is in the world
@@ -308,7 +292,8 @@ static void save_corpse_list(void)
 /* does sanity checks on vnums & removes invalid records */
 void boot_corpses(void)
 {
-  FILE *fl;
+  DIR *dl;
+  struct dirent *ep;
   int id;
   struct corpse_data *entry;
   struct obj_data *corpse;
@@ -316,17 +301,18 @@ void boot_corpses(void)
   memset(&corpse_control, 0x0, sizeof(corpse_control));
   SENTINEL->next = SENTINEL->prev = SENTINEL;
 
-  if (!(fl = fopen(CCONTROL_FILE, "rb"))) {
-    log("Corpse control file does not exist.");
+  if (!(dl = opendir(CORPSE_DIR))) {
+    log("Unable to load Corpse Directory.");
     return;
   }
 
-  while (get_line(fl, buf)) {
-    id = atoi(buf);
+  while ((ep) = readdir(dl)) {
+    if (!strcmp (ep->d_name, "."))
+      continue;
+    if (!strcmp (ep->d_name, ".."))
+      continue;
 
-    if (!(corpse = load_corpse(id))) {
-      sprintf(buf, "SYSERR: Unable to load corpse %d in corpse control list", id);
-      log(buf);
+    if ((id = load_corpse(corpse, ep)) < 0) {
       continue;
     }
 
@@ -341,11 +327,8 @@ void boot_corpses(void)
 
     ++corpse_control.count;
   }
-  fclose(fl);
 
   corpse_control.allow_save = TRUE;
-
-  save_corpse_list();
 }
 
 /* When a player dies, this function is called from make_corpse in fight.c */
@@ -375,8 +358,6 @@ void register_corpse(struct obj_data *corpse)
   ++corpse_control.count;
   
   save_corpse(corpse);
-
-  save_corpse_list();
 }
 
 
@@ -388,9 +369,9 @@ void destroy_corpse(struct obj_data *corpse)
 
   if (entry) {
     remove_entry(entry);
-    save_corpse_list();
     delete_corpse_file(id);
   }
+  log("Destroying corpse: %d", id);
 }
 
 void show_corpses(struct char_data *ch, char *argument)

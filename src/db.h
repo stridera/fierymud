@@ -60,10 +60,10 @@
 #define MAIL_FILE	"etc/plrmail"	/* for the mudmail system	*/
 #define BAN_FILE	"etc/badsites"	/* for the siteban system	*/
 #define HCONTROL_FILE	"etc/hcontrol"  /* for the house system		*/
-#define CCONTROL_FILE   "etc/ccontrol"  /* for the corpse save system   */
 #define CLAN_INDEX_FILE	"etc/clans/index"	/* list of clans	*/
 #define MAKE_COUNT	"../log/make_count" /* for build counter        */
 #define GROUP_FILE	"etc/cmdgroups"	/* for cmd group grant system	*/
+#define CORPSE_DIR   "corpse/"  /* for the corpse save system   */
 
 #define INFODUMP_PREFIX "infodump"
 

@@ -18,8 +18,8 @@ extern void boot_corpses(void);
 extern void save_corpse(struct obj_data *corpse);
 extern void update_corpse(struct obj_data *corpse);
 extern void destroy_corpse(struct obj_data *corpse); 
-extern int corpse_count(void);
 extern void show_corpses(struct char_data *ch, char *argument);
+static bool get_corpse_filename(int id, char *filename);
 
 /***************************************************************************
  * $Log: corpse_save.h,v $

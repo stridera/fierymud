@@ -251,7 +251,6 @@ void format_text(char **ptr_string, int mode, struct descriptor_data *d, int max
   strcpy(*ptr_string, formatted);
 }
 
-
 /* strips \r's from line */
 char *stripcr(char *dest, const char *src) {
   int i, length;
@@ -340,6 +339,18 @@ bool startsvowel(const char *s) {
    }
    return 0;
 
+}
+
+/* Returns true if a string ends with a suffix */
+bool endswith(const char *str, const char *suffix)
+{
+    if (!str || !suffix)
+        return 0;
+    size_t lenstr = strlen(str);
+    size_t lensuffix = strlen(suffix);
+    if (lensuffix >  lenstr)
+        return 0;
+    return strncmp(str + lenstr - lensuffix, suffix, lensuffix) == 0;
 }
 
 

@@ -27,6 +27,7 @@ char *cap_by_color(char *s);
 char *capitalize(char *s);
 bool isplural(char *namelist);
 bool startsvowel(const char *s);
+bool endswith(const char *str, const char *suffix);
 
 char *with_indefinite_article(const char *s);
 const char *without_article(const char *s);

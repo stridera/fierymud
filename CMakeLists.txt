@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 project(fierymud C)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
