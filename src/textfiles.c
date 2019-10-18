@@ -28,6 +28,7 @@
 
 extern void index_boot(int mode);
 extern int file_to_string_alloc(const char *name, char **buf);
+extern time_t file_last_update(const char *name);
 
 static struct text_file {
   const char *name;
@@ -35,7 +36,10 @@ static struct text_file {
   const int level;
   const int max_size;
   char *text; /* auto-initialize to NULL */
-} text_files[NUM_TEXT_FILES] = {
+  time_t last_update;
+}
+
+text_files[NUM_TEXT_FILES] = {
   /* Keep this list alphabetized */
   { "anews",      "text/anews",       LVL_GAMEMASTER, MAX_STRING_LENGTH },
   { "background", "text/background",  LVL_ADMIN,      MAX_DESC_LENGTH   },
@@ -55,13 +59,20 @@ void boot_text()
 {
   int i;
 
-  for (i = 0; i < NUM_TEXT_FILES; ++i)
-    file_to_string_alloc(text_files[i].path, &text_files[i].text);
+  for (i = 0; i < NUM_TEXT_FILES; ++i) {
+      file_to_string_alloc(text_files[i].path, &text_files[i].text);
+      text_files[i].last_update = file_last_update(text_files[i].path);
+  }
 }
 
 
 const char *get_text(int text) {
   return (text < 0 || text >= NUM_TEXT_FILES) ? "" : text_files[text].text;
+}
+
+
+const time_t get_text_update_time(int text) {
+    return (text < 0 || text >= NUM_TEXT_FILES) ? 0 : text_files[text].last_update;
 }
 
 
@@ -79,7 +90,7 @@ ACMD(do_reload)
   const int COLS = 7;
 
   flagvector files[FLAGVECTOR_SIZE(NUM_TEXT_FILES)];
-  int i;
+  unsigned long i;
   bool found, reload_help = FALSE;
 
   for (i = 0; i < FLAGVECTOR_SIZE(NUM_TEXT_FILES); ++i)
@@ -119,6 +130,7 @@ ACMD(do_reload)
   for (i = 0; i < NUM_TEXT_FILES; ++i)
     if (IS_FLAGGED(files, i)) {
       file_to_string_alloc(text_files[i].path, &text_files[i].text);
+      text_files[i].last_update = file_last_update(text_files[i].path);
       cprintf(ch, "Reloaded %s text from file.\r\n", text_files[i].name);
     }
 

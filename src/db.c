@@ -16,6 +16,7 @@
 #define __DB_C__
 
 #include <math.h>
+#include <sys/stat.h>
 
 #include "conf.h"
 #include "sysdep.h"
@@ -2937,7 +2938,7 @@ void free_obj(struct obj_data * obj)
 
 
 
-/* read contets of a text file, alloc space, point buf to it */
+/* read contents of a text file, alloc space, point buf to it */
 int file_to_string_alloc(const char *name, char **buf)
 {
   char temp[MAX_STRING_LENGTH];
@@ -2985,6 +2986,12 @@ int file_to_string(const char *name, char *buf)
   return (0);
 }
 
+/* Get the unix timestamp of the last file write. */
+time_t file_last_update(const char *name) {
+    struct stat attr;
+    stat(name, &attr);
+    return attr.st_mtim.tv_sec;
+}
 
 
 /* clear some of the the working variables of a char */

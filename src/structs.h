@@ -495,7 +495,7 @@ struct time_info_data {
 struct time_data {
    time_t birth;    /* This represents the characters age                */
    time_t logon;    /* Time of the last logon (used to calculate played) */
-   int        played;     /* This is the total accumulated time played in secs */
+   int    played;     /* This is the total accumulated time played in secs */
 };
 
 /* general player-related info, usually PC's and NPC's */

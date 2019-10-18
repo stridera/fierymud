@@ -2168,6 +2168,7 @@ void nanny(struct descriptor_data *d, char *arg)
   extern char *TEST_GREETING3;
 #endif
   extern char *WHOAREYOU;
+  extern char *NEWSUPDATED;
 #ifdef PRODUCTION
   extern char *NAMES_EXPLANATION;
 #else
@@ -2571,12 +2572,16 @@ void nanny(struct descriptor_data *d, char *arg)
       else
         write_to_output(get_text(TEXT_MOTD), d);
 
+      if (d->character->player.time.logon < get_text_update_time(TEXT_NEWS)) {
+          write_to_output(NEWSUPDATED, d);
+      }
+
       if (GET_CLAN(d->character) && GET_CLAN(d->character)->motd)
         dprintf(d, "\r\n%s%s news:\r\n%s",
                 GET_CLAN(d->character)->name, ANRM,
                 GET_CLAN(d->character)->motd);
 
-      sprintf(buf, "%s [%s] has connected.", GET_NAME(d->character), d->host);
+      sprintf(buf, "%s [%s] has connected.  Last login: %ld.", GET_NAME(d->character), d->host, d->character->player.time.logon);
       mudlog(buf, BRF, MAX(LVL_IMMORT,
                MIN(GET_LEVEL(d->character),
                MAX(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character)))),
