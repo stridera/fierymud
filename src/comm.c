@@ -1320,7 +1320,7 @@ char *prompt_str(struct char_data *ch) {
               }
               cur += sprintf(cur, "%s%s",
                              skills[eff->type].name,
-                             eff->next ? " " : "");
+                             eff->next ? ", " : "");
               if (color && EFF_FLAGGED(ch, EFF_DETECT_MAGIC))
                 cur += sprintf(cur, "%s", CLR(ch, ANRM));
             }
@@ -1396,6 +1396,10 @@ char *prompt_str(struct char_data *ch) {
             cur += pre_length - 3;
           }
           break;
+        case 'z':
+        case 'Z':
+          /* Show the zone */
+          cur += sprintf(cur, "%s", zone_table[world[IN_ROOM(ch)].zone].name);
         case '_':
           cur += sprintf(cur, "\r\n");
           break;
