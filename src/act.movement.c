@@ -717,7 +717,8 @@ bool perform_move(struct char_data *ch, int dir, int need_specials_check, bool m
                   act("&3Oops!  $n&0&3 seems to have wandered off again.&0",
                         FALSE, k->follower, 0, ch, TO_VICT);
             } else {
-               act("You follow $N.\r\n", FALSE, k->follower, 0, ch, TO_CHAR);
+                sprintf(buf, "You follow $N %s.\r\n", dirs[dir]);
+                act(buf, FALSE, k->follower, 0, ch, TO_CHAR);
                perform_move(k->follower, dir, 1, FALSE);
             }
          }

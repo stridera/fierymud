@@ -24,7 +24,7 @@
 /* local functions */
 static void remove_cmd_from_list(struct reset_com **list, int pos);
 
-/* Some common code to count the number of comands in the list. */
+/* Some common code to count the number of commands in the list. */
 int count_commands(struct reset_com *list)
 {
   int count = 0;

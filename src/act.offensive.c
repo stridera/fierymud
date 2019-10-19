@@ -1024,7 +1024,8 @@ ACMD(do_gretreat)
                GET_STANCE(k->follower) >= STANCE_ALERT &&
                k->can_see_master) {
             abort_casting(k->follower);
-            act("You follow $N.", FALSE, k->follower, 0, ch, TO_CHAR);
+            sprintf(buf, "You follow $N %s.", dirs[dir]);
+            act(buf, FALSE, k->follower, 0, ch, TO_CHAR);
             perform_move(k->follower, dir, 1, FALSE);
          }
       }
