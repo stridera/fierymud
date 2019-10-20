@@ -699,10 +699,11 @@ bool cause_single_track(struct track_info track, struct char_data *ch,
    if (CASTING(ch))
       return TRUE;
 
-   /* Mobs shouldn't track outside the zone */
+   /* Mobs with MOB_STAY_ZONE shouldn't track outside the zone */
    if (IS_NPC(ch)) {
      if (MOB_FLAGGED(ch, MOB_STAY_ZONE) && CH_ROOM(ch)->zone != CH_ROOM(victim)->zone) {
-       return FALSE;
+         send_to_char("You lose your victim's tracks.\r\n", ch);
+         return FALSE;
      }
    }
 
