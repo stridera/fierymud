@@ -1119,7 +1119,7 @@ ACMD(do_search)
          for (j = world[ch->in_room].people;
                 j && (!found_something || GET_LEVEL(ch) >= LVL_IMMORT);
                 j = j->next_in_room)
-            if (IS_HIDDEN(j) && j != ch) {
+            if (IS_HIDDEN(j) && j != ch && !IS_IN_GROUP(ch, j)) {
                /* Check whether the searcher could see this character if it weren't hidden. */
                orig_hide = GET_HIDDENNESS(j);
                GET_HIDDENNESS(j) = 0;

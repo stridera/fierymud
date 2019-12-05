@@ -401,6 +401,8 @@ extern flagvector *ALL_FLAGS;
                              FIGHTING((ch)->cornered_by) == (ch) && \
                              (ch)->in_room == (ch)->cornered_by->in_room)
 #define IS_GROUPED(ch)      ((ch)->group_master || (ch)->groupees)
+#define GET_GROUP_LEADER(ch) (ch->group_master ? ch->group_master : ch)
+#define IS_IN_GROUP(ch, tch) (IS_GROUPED(ch) && IS_GROUPED(tch) && GET_GROUP_LEADER(ch) == GET_GROUP_LEADER(tch))
 
 #define VIEWED_ABIL(ch, abil)(LIMIT(MIN_ABILITY_VALUE, GET_ACTUAL_##abil(ch), MAX_ABILITY_VALUE))
 
