@@ -1400,6 +1400,10 @@ char *prompt_str(struct char_data *ch) {
         case 'Z':
           /* Show the zone */
           cur += sprintf(cur, "%s", zone_table[world[IN_ROOM(ch)].zone].name);
+          break;
+        case '#':
+          cur += sprintf(cur, "%d", GET_LEVEL(ch));
+          break;
         case '_':
           cur += sprintf(cur, "\r\n");
           break;
