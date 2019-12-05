@@ -564,7 +564,7 @@ extern flagvector *ALL_FLAGS;
    (PRF_FLAGGED((obj), PRF_ROOMVIS) && IN_ROOM(sub) == IN_ROOM(obj))))
 
 /* Can subject see character "obj"? */
-#define CAN_SEE(sub, obj) ((SELF(sub, obj)) || \
+#define CAN_SEE(sub, obj) ((SELF(sub, obj)) || IS_IN_GROUP(sub, obj) || \
  ((GET_LEVEL(REAL_CHAR(sub)) >= GET_INVIS_LEV(obj)) && IMM_CAN_SEE(sub, obj)) || \
   IMM_VIS_OK(sub, obj))
 
