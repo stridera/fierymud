@@ -45,7 +45,7 @@ void add_retained_comms(struct char_data *ch, int type, char *msg)
 
     CREATE(new_node, struct comm_node, 1);
     new_node->time = time(0);
-    new_node->msg = strdup(filter_chars(buf, msg, "\r\n"));
+    new_node->msg = strdup(filter_chars(buf2, msg, "\r\n"));
     new_node->next = NULL;
     if (node == NULL) {
         SET_RETAINED_COMM_TYPE(tch, type, new_node);
