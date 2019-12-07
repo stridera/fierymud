@@ -1291,6 +1291,10 @@ char *prompt_str(struct char_data *ch) {
           /* Current character's name. */
           cur += sprintf(cur, "%s", GET_NAME(ch));
           break;
+        case 'k':
+            /* Current Character's Class */
+            cur += sprintf(cur, "%s", GET_CLASS(ch));
+            break;
         case 'N':
           /* If switched, show original char's name. */
           cur += sprintf(cur, "%s", GET_NAME(REAL_CHAR(ch)));
