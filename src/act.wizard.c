@@ -1179,7 +1179,7 @@ ACMD(do_pain)
    else {
       perform_pain(vict);
       send_to_char(OK, ch);
-      act("A wave of pain and pesilence sent by $N harms you!", FALSE, vict, 0, ch, TO_CHAR | TO_SLEEP);
+      act("A wave of pain and pestilence sent by $N harms you!", FALSE, vict, 0, ch, TO_CHAR | TO_SLEEP);
    }
 }
 
@@ -3216,7 +3216,7 @@ ACMD(do_rrestore)
    if (argument && *argument)
       cprintf(ch, "%s@0\r\n", argument);
    else
-      send_to_char(OK, ch);
+      send_to_char("You spread healing energy across the realm, restoring all in it's path.", ch);
 }
 
 
@@ -3229,8 +3229,7 @@ ACMD(do_rpain)
 
    for (i = character_list; i; i = i->next) {
       if (i != ch && (!IS_NPC(i) || i->desc)) {
-         if (GET_LEVEL(i) < LVL_IMMORT)
-            perform_pain(i);
+         perform_pain(i);
          if (argument && *argument)
             cprintf(i, "%s@0\r\n", argument);
          else
@@ -3241,7 +3240,7 @@ ACMD(do_rpain)
    if (argument && *argument)
       cprintf(ch, "%s@0\r\n", argument);
    else
-      send_to_char(OK, ch);
+      send_to_char("Pain and pestilence spreads across the lands.  Your wrath has been known.", gch);
 }
 
 
