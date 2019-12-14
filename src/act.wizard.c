@@ -3240,7 +3240,7 @@ ACMD(do_rpain)
    if (argument && *argument)
       cprintf(ch, "%s@0\r\n", argument);
    else
-      send_to_char("Pain and pestilence spreads across the lands.  Your wrath has been known.", gch);
+      send_to_char("Pain and pestilence spreads across the lands.  Your wrath has been known.", ch);
 }
 
 
