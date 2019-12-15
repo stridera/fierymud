@@ -166,6 +166,10 @@ extern void free_aliases(struct alias_data *alias_list);
 #define SCMD_AUTOLOOT   29
 #define SCMD_AUTOTREAS  30
 #define SCMD_AUTOINVIS  31
+#define SCMD_EXPANDOBJS 32
+#define SCMD_EXPANDMOBS 33
+#define SCMD_SACRIFICIAL 34
+#define SCMD_TELNETGA   35
 
 /* do_wizutil */
 #define SCMD_REROLL	0

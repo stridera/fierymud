@@ -53,7 +53,8 @@
 #define PRF_EXPAND_OBJS 33
 #define PRF_EXPAND_MOBS 34
 #define PRF_SACRIFICIAL 35  /* Sacrificial spells autotarget self */
-#define NUM_PRF_FLAGS   36
+#define PRF_GA          36
+#define NUM_PRF_FLAGS   37
 
 #endif
 

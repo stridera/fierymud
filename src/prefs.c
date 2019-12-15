@@ -84,6 +84,7 @@ ACMD(do_toggle)
     { "ExpandObjs", 0,          PRF_EXPAND_OBJS },
     { "ExpandMobs", 0,          PRF_EXPAND_MOBS },
     { "Sacrificial",LVL_IMMORT, PRF_SACRIFICIAL },
+    {"TelnetGA",    0,          PRF_GA },
     { "\n",         0,          0 },
     /* If you add another toggle, add a corresponding SCMD_ define in
      * interpreter.h, even if you don't intend to use it. */
@@ -161,6 +162,8 @@ ACMD(do_toggle)
                 "Mobiles will no longer stack in lists.\r\n"},
         /*34*/ {"When you cast sacrificial spells, they may now auto-target you.\r\n",
                 "When you cast sacrificial spells, they will no longer auto-target you.\r\n"},
+        /*34*/ { "No longer sending telnet GA prompts.\r\n",
+                 "Now sending telnet GA prompts.\r\n" },
   };
 
   argument = one_argument(argument, arg);

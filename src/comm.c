@@ -117,6 +117,7 @@ extern int nameserver_is_slow;        /* see config.c */
 struct timeval null_time;        /* zero-valued time structure */
 unsigned long pulse = 0;        /* number of pulses since game started */
 int gossip_channel_active = 1;        /* Flag for turning on or off gossip for the whole MUD */
+char ga_string[] = { (char) IAC, (char) GA, (char) 0 };
 
 ush_int port;
 socket_t mother_desc;
@@ -1503,6 +1504,8 @@ void make_prompt(struct descriptor_data *d)
     char *prompt = prompt_str(d->character);
     process_colors(prompt, MAX_STRING_LENGTH, prompt,
                    COLOR_LEV(d->character) >= C_NRM ? CLR_PARSE : CLR_STRIP);
+    if (d->character && PRF_FLAGGED(d->character, PRF_GA))
+        strcat(prompt, ga_string);
     write_to_descriptor(d->descriptor, prompt);
   }
 }
