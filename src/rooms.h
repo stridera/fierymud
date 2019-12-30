@@ -216,6 +216,7 @@ void pick_door(struct char_data *ch, room_num roomnum, int dir);
 void send_auto_exits(struct char_data *ch, int roomnum);
 void send_full_exits(struct char_data *ch, int roomnum);
 bool room_contains_char(int roomnum, struct char_data *ch);
+bool can_see_exit(struct char_data *ch, int roomnum, struct exit *exit);
 
 #endif
 

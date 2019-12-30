@@ -447,6 +447,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_PAGE_LENGTH(ch) ((ch)->player_specials->page_length)
 #define GET_PASSWD(ch)      ((ch)->player.passwd)
 #define GET_PROMPT(ch)      ((ch)->player.prompt)
+#define GET_GMCP_PROMPT(ch) ((ch)->player.gmcp_prompt)
 #define GET_HOMEROOM(ch)        ((ch)->player.homeroom)
 #define GET_LASTLEVEL(ch)   ((ch)->player_specials->lastlevel)
 #define GET_COND(ch, i)       ((ch)->player_specials->conditions[(i)])

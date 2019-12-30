@@ -337,6 +337,7 @@ void open_door(struct char_data *ch, room_num roomnum, int dir, bool quiet)
 
    REMOVE_BIT(exit->exit_info, EX_LOCKED | EX_CLOSED | EX_HIDDEN);
 
+
    /* Open the opposite door */
 
    if ((oexit = opposite_exit(exit, roomnum, dir)) && EXIT_IS_DOOR(oexit)) {
@@ -348,6 +349,7 @@ void open_door(struct char_data *ch, room_num roomnum, int dir, bool quiet)
          sprintf(buf, "The %s is opened from the other side.\r\n",
                exit_name(oexit));
          send_to_room(buf, exit->to_room);
+         send_gmcp_room(ch);
       }
    }
 
@@ -357,6 +359,7 @@ void open_door(struct char_data *ch, room_num roomnum, int dir, bool quiet)
       send_to_char(OK, ch);
       sprintf(buf, "$n opens the %s.", exit_name(exit));
       act(buf, FALSE, ch, 0, 0, TO_ROOM);
+      send_gmcp_room(ch);
    }
 }
 
@@ -411,6 +414,7 @@ void close_door(struct char_data *ch, room_num roomnum, int dir, bool quiet)
       send_to_char(OK, ch);
       sprintf(buf, "$n closes the %s.", exit_name(exit));
       act(buf, FALSE, ch, 0, 0, TO_ROOM);
+      send_gmcp_room(ch);
    }
 }
 
@@ -500,6 +504,7 @@ void unlock_door(struct char_data *ch, room_num roomnum, int dir, bool quiet)
       else
          sprintf(buf, "$n unlocks the %s.", exit_name(exit));
       act(buf, FALSE, ch, key, 0, TO_ROOM);
+      send_gmcp_room(ch);
    }
 }
 
@@ -591,6 +596,7 @@ void lock_door(struct char_data *ch, room_num roomnum, int dir, bool quiet)
       else
          sprintf(buf, "$n locks the %s.", exit_name(exit));
       act(buf, FALSE, ch, key, 0, TO_ROOM);
+      send_gmcp_room(ch);
    }
 }
 
@@ -668,6 +674,7 @@ void pick_door(struct char_data *ch, room_num roomnum, int dir)
    send_to_char("The lock yields to your skills.\r\n", ch);
    sprintf(buf, "$n skillfully picks the lock on the %s.", exit_name(exit));
    act(buf, FALSE, ch, 0, 0, TO_ROOM);
+   send_gmcp_room(ch);
 
    /* Skill improvement. */
 
@@ -786,6 +793,8 @@ bool room_contains_char(int roomnum, struct char_data *ch)
    }
    return FALSE;
 }
+
+
 
 /***************************************************************************
  * $Log: rooms.c,v $

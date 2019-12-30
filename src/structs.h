@@ -816,6 +816,7 @@ struct descriptor_data {
    byte idle_tics;                     /* tics idle at password prompt          */
    int        connected;               /* mode of 'connectedness'               */
    int        wait;                    /* wait for how many loops               */
+   bool       gmcp_enabled;            /* Shall we send additional GMCP data    */
    int        desc_num;                /* unique num assigned to desc           */
    time_t login_time;                  /* when the person connected             */
    int mail_vnum;

@@ -102,6 +102,7 @@ const char *armor_message(int ac);
 const char *perception_message(int perception);
 const char *hiddenness_message(int hiddenness);
 const char *ability_message(int value);
+const long xp_percentage(struct char_data *ch);
 const char *exp_message(struct char_data *ch);
 const char *exp_bar(struct char_data *ch, int length, int gradations, int sub_gradations, bool color);
 const char *cooldown_bar(struct char_data *ch, int cooldown, int length, int gradations, bool color);

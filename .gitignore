@@ -5,3 +5,4 @@ src/RCS
 src/RCS/*
 cmake-build-debug/*
 .vscode/
+.idea/

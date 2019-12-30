@@ -78,6 +78,11 @@
 #define YES        1
 #define NO        0
 
+#define GMCP 201
+
+char ga_string[] = { (char) IAC, (char) GA, (char) 0 };
+char gmcp_start_data[] = { (char) IAC, (char) SB, (char) GMCP, (char) 0 };
+char gmcp_end_data[] = { (char) IAC, (char) SE, (char) 0};
 
 /* externs */
 extern int should_restrict;
@@ -87,6 +92,9 @@ extern int DFLT_PORT;
 extern char *DFLT_DIR;
 extern int MAX_PLAYERS;
 extern int MAX_DESCRIPTORS_AVAILABLE;
+extern const char mudlet_client_version[];
+extern const char mudlet_client_url[];
+extern const char mudlet_map_url[];
 
 extern const char *save_info_msg[];        /* In olc.c */
 ACMD(do_shapechange);
@@ -117,7 +125,6 @@ extern int nameserver_is_slow;        /* see config.c */
 struct timeval null_time;        /* zero-valued time structure */
 unsigned long pulse = 0;        /* number of pulses since game started */
 int gossip_channel_active = 1;        /* Flag for turning on or off gossip for the whole MUD */
-char ga_string[] = { (char) IAC, (char) GA, (char) 0 };
 
 ush_int port;
 socket_t mother_desc;
@@ -140,7 +147,8 @@ void nonblock(socket_t s);
 int perform_subst(struct descriptor_data *t, char *orig, char *subst);
 int perform_alias(struct descriptor_data *d, char *orig);
 void record_usage(void);
-void make_prompt(struct descriptor_data *point);
+void send_gmcp_char_info(struct descriptor_data *d);
+void make_prompt(struct descriptor_data *d);
 void check_idle_passwords(void);
 void heartbeat(int pulse);
 char *new_txt;
@@ -1162,6 +1170,46 @@ void record_usage(void)
 #endif
 }
 
+void offer_gmcp(struct descriptor_data *d)
+{
+    char offer_gmcp[] = {
+        (char) IAC,
+        (char) WILL,
+        (char) GMCP
+    };
+
+    dprintf(d, "%s", offer_gmcp);
+}
+
+void offer_gmcp_services(struct descriptor_data *d)
+{
+    static char response[MAX_STRING_LENGTH];
+    sprintf(response,
+            "%sClient.GUI {" \
+            "\"version\":\"%s\"," \
+            "\"url\":\"%s\"" \
+            "}%s" \
+            "%sClient.Map {" \
+            "\"url\":\"%s\"" \
+            "}%s",
+            gmcp_start_data,
+            mudlet_client_version,
+            mudlet_client_url,
+            gmcp_end_data,
+            gmcp_start_data,
+            mudlet_map_url,
+            gmcp_end_data
+    );
+
+    write_to_descriptor(d->descriptor, response);
+}
+
+void handle_gmcp_request(struct descriptor_data *d, char *txt)
+{
+    // This is for GMCP requests from the clients.
+    // Do nothing now, but we might want to actually handle this in the future.
+}
+
 /*
  * Turn off echoing (specific to telnet client)
  */
@@ -1175,6 +1223,165 @@ void echo_off(struct descriptor_data *d)
   };
 
   dprintf(d, off_string);
+}
+
+void send_gmcp_prompt(struct descriptor_data *d)
+{
+    struct char_data *ch = d->character, *vict = FIGHTING(ch), *tank;
+    struct effect *eff;
+
+    static char gmcp_prompt[MAX_STRING_LENGTH];
+    char *cur = gmcp_prompt;
+
+    if (!d->gmcp_enabled) {
+        return;
+    }
+
+    // Need to construct a json string.  Would be nice to get a module to do it for us, but the code base is too old to
+    // rely on something like that.
+    cur += sprintf(cur,
+            "%sChar {" \
+            "\"name\":\"%s\","
+            "\"class\":\"%s\","
+            "\"exp_percent\":%ld," \
+            "\"alignment\":%d," \
+            "\"hiddenness\":%ld," \
+            "\"level\":%d," \
+            "\"Vitals\": {" \
+                "\"hp\":%d, \"max_hp\": %d," \
+                "\"mv\":%d, \"max_mv\": %d " \
+            "}}%s",
+            gmcp_start_data,
+            GET_NAME(ch),
+            CLASS_NAME(ch),
+            xp_percentage(ch),
+            GET_ALIGNMENT(ch),
+            GET_HIDDENNESS(ch),
+            GET_LEVEL(ch),
+            GET_HIT(ch), GET_MAX_HIT(ch),
+            GET_MOVE(ch), GET_MAX_MOVE(ch),
+            gmcp_end_data
+    );
+
+    cur += sprintf(cur,
+        "%sChar.Worth {" \
+            "\"Carried\": { " \
+                "\"platinum\":%d,"
+                "\"gold\":%d," \
+                "\"silver\":%d," \
+                "\"copper\":%d" \
+            "}," \
+            "\"Bank\": { " \
+                "\"platinum\":%d,"
+                "\"gold\":%d," \
+                "\"silver\":%d," \
+                "\"copper\":%d" \
+            "}" \
+        "}%s",
+        gmcp_start_data,
+        GET_PLATINUM(ch), GET_GOLD(ch), GET_SILVER(ch), GET_COPPER(ch),
+        GET_BANK_PLATINUM(ch), GET_BANK_GOLD(ch), GET_BANK_SILVER(ch), GET_BANK_COPPER(ch),
+        gmcp_end_data
+    );
+
+    cur += sprintf(cur,
+       "%sChar.Effects [",
+       gmcp_start_data
+    );
+    for (eff = ch->effects; eff; eff = eff->next) {
+      if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
+        cur += sprintf(cur, "\"%s\"%s", skills[eff->type].name, eff->next ? ", " : "");
+      }
+    }
+    cur += sprintf(cur, "]%s", gmcp_end_data);
+
+    if (vict && (tank = FIGHTING(vict))) {
+      cur += sprintf(cur,
+        "%sChar.Combat {" \
+          "\"tank\": {" \
+            "\"name\": \"%s\"," \
+            "\"hp\": \"%d\"," \
+            "\"max_hp\": \"%d\"" \
+          "}," \
+          "\"opponent\": {" \
+            "\"name\": \"%s\"," \
+            "\"hp_percent\": %d" \
+          "}" \
+        "}%s",
+        gmcp_start_data,
+        PERS(tank, ch), GET_HIT(tank), GET_MAX_HIT(tank),
+        PERS(vict, ch), 100 * GET_HIT(vict) / GET_MAX_HIT(vict),
+        gmcp_end_data
+      );
+    } else {
+        cur += sprintf(cur, "%sChar.Combat {}%s", gmcp_start_data, gmcp_end_data);
+    }
+
+    cur += sprintf(cur, "%s", ga_string);
+
+    write_to_descriptor(d->descriptor, gmcp_prompt);
+}
+
+void send_gmcp_room(struct char_data *ch)
+{
+    static char response[MAX_STRING_LENGTH];
+    char *cur = response;
+
+    if (!ch->desc->gmcp_enabled) {
+        return;
+    }
+
+    int roomnum = IN_ROOM(ch);
+    struct room_data *room = &world[roomnum];
+    struct exit *exit;
+
+    if (IS_DARK(roomnum) && !CAN_SEE_IN_DARK(ch)) {
+        sprintf(response, "%sRoom.Info {}%s", gmcp_start_data, gmcp_end_data);
+    } else {
+        cur += sprintf(cur,
+            "%sRoom {" \
+            "\"zone\":\"%s\"," \
+            "\"id\":%d," \
+            "\"name\":\"%s\"," \
+            "\"type\":\"%s\"," \
+            "\"Exits\": {",
+            gmcp_start_data,
+            zone_table[room->zone].name,
+            room->vnum,
+            room->name,
+            sectors[room->sector_type].name
+        );
+
+        bool first = true;
+        int dir;
+
+        for (dir = 0; dir < NUM_OF_DIRS; dir++) {
+            if ((exit = world[roomnum].exits[dir]) && EXIT_DEST(exit) && can_see_exit(ch, roomnum, exit)) {
+                cur += sprintf(cur, "%s\"%s\": {", first ? "" : ",", capdirs[dir]);
+
+                cur += sprintf(cur, "\"to_room\": %d,", EXIT_DEST(exit)->vnum);
+
+                if (EXIT_IS_HIDDEN(exit)) {
+                    cur += sprintf(cur, "\"is_hidden\": true,");
+                }
+
+                if(EXIT_IS_DOOR(exit)) {
+                    cur += sprintf(cur, "\"is_door\": true,");
+                    cur += sprintf(cur, "\"door_name\": \"%s\",", exit->keyword);
+                    cur += sprintf(cur, "\"door\": \"%s\"",
+                            EXIT_IS_CLOSED(exit) ? EXIT_IS_LOCKED(exit) ? "locked" : "closed" : "open");
+                } else {
+                    cur += sprintf(cur, "\"is_door\": false");
+                }
+
+                cur += sprintf(cur, "}");
+                first = false;
+            }
+        }
+
+        cur += sprintf(cur, "}}%s", gmcp_end_data);
+    }
+    write_to_descriptor(ch->desc->descriptor, response);
 }
 
 /*
@@ -1294,7 +1501,7 @@ char *prompt_str(struct char_data *ch) {
           break;
         case 'k':
             /* Current Character's Class */
-            cur += sprintf(cur, "%s", GET_CLASS(ch));
+            cur += sprintf(cur, "%s", CLASS_FULL(ch));
             break;
         case 'N':
           /* If switched, show original char's name. */
@@ -1504,9 +1711,9 @@ void make_prompt(struct descriptor_data *d)
     char *prompt = prompt_str(d->character);
     process_colors(prompt, MAX_STRING_LENGTH, prompt,
                    COLOR_LEV(d->character) >= C_NRM ? CLR_PARSE : CLR_STRIP);
-    if (d->character && PRF_FLAGGED(d->character, PRF_GA))
-        strcat(prompt, ga_string);
+
     write_to_descriptor(d->descriptor, prompt);
+    send_gmcp_prompt(d);
   }
 }
 
@@ -1693,8 +1900,7 @@ void string_to_output(struct descriptor_data *t, const char *txt)
   if (bufpool != NULL) {
     t->large_outbuf = bufpool;
     bufpool = bufpool->next;
-  }
-  else {                      /* else create a new one */
+  } else {                      /* else create a new one */
     CREATE(t->large_outbuf, struct txt_block, 1);
     CREATE(t->large_outbuf->text, char, LARGE_BUFSIZE);
     buf_largecount++;
@@ -1742,6 +1948,7 @@ void init_descriptor(struct descriptor_data *newd, int desc)
   *newd->output = '\0';
   newd->bufptr = 0;
   newd->wait = 1;
+  newd->gmcp_enabled = false;
   STATE(newd) = CON_QANSI;
 
   if (++last_desc == 1000)
@@ -1824,6 +2031,8 @@ int new_descriptor(int s) {
   /* prepend to list */
   newd->next = descriptor_list;
   descriptor_list = newd;
+
+  offer_gmcp(newd);
 
   dprintf(newd, "Do you want ANSI terminal support? (Y/n) ");
 
@@ -1913,21 +2122,22 @@ int write_to_descriptor(socket_t desc, char *txt)
   return 0;
 }
 
-
 /*
  * ASSUMPTION: There will be no newlines in the raw input buffer when this
  * function is called.  We must maintain that before returning.
  */
 int process_input(struct descriptor_data *t)
 {
-  int buf_length, bytes_read, space_left, failed_subst;
-  char *ptr, *read_point, *write_point, *nl_pos = NULL;
-  char tmp[MAX_INPUT_LENGTH + 8];
+  int bytes_read, space_left, command_space_left, failed_subst, telopt = 0;
+  char *ptr, *read_point, *write_point = NULL;
+  char inbuf[MAX_RAW_INPUT_LENGTH - 1], tmp[MAX_INPUT_LENGTH + 8], telcmd = 0;
+  bool gmcp = false;
 
-  /* first, find the point where we left off reading data */
-  buf_length = strlen(t->inbuf);
-  read_point = t->inbuf + buf_length;
-  space_left = MAX_RAW_INPUT_LENGTH - buf_length - 1;
+  read_point = inbuf;
+  space_left = MAX_RAW_INPUT_LENGTH - 1;
+  command_space_left = MAX_INPUT_LENGTH - 1;
+
+  write_point = tmp;
 
   do {
     if (space_left <= 0) {
@@ -1948,9 +2158,9 @@ int process_input(struct descriptor_data *t)
         log("process_input: about to lose connection");
         return -1; /* some error condition was encountered on
                     * read */
-      } else
-        return 0;  /* the read would have blocked: just means no
-                * data there but everything's okay */
+      } else {
+        return 0;  /* the read would have blocked: just means no data there but everything's okay */
+      }
     } else if (bytes_read == 0) {
       log("EOF on socket read (connection broken by peer)");
       return -1;
@@ -1959,110 +2169,97 @@ int process_input(struct descriptor_data *t)
 
     *(read_point + bytes_read) = '\0';        /* terminate the string */
 
-    /* search for a newline in the data we just read */
-    for (ptr = read_point; *ptr && !nl_pos; ptr++)
-      if (IS_NEWLINE(*ptr))
-        nl_pos = ptr;
+    /* search for a newline or control codes in the data we just read */
+    for (ptr = read_point; *ptr; ++ptr) {
+        if (*ptr == (char) IAC) { // Telnet Control Option Starting
+            telopt = 1;
+        } else if (telopt == 1 && gmcp && *ptr == (char) SE) { // End of GMCP message
+            telopt = 0;
+            gmcp = false;;
+            *write_point = '\0';
+            handle_gmcp_request(t, tmp);
+            write_point = tmp;
+            command_space_left = MAX_INPUT_LENGTH - 1;
+        } else if (telopt == 1) {
+            telopt = 2;
+            telcmd = *ptr;
+        } else if (telopt == 2 && *ptr == (char) GMCP) { // Ready to handle GMCP data
+            telopt = 0;
+            if (telcmd == (char) DO) {
+                t->gmcp_enabled = true;
+                offer_gmcp_services(t);
+            } else if (telcmd == (char) DONT) {
+                t->gmcp_enabled = false;
+            } else if (telcmd == (char) SB) {
+                gmcp = true;
+            } else {
+                // ERROR
+                log("Invalid GMCP code %d", (int) telcmd);
+            }
+        } else if (telopt == 2) {
+            // log("Invalid 2nd level IAC code %d", (int) *ptr);
+        } else if (telopt > 0) { // If we are here, there is an error
+            log("Invalid telnet IAC code %d", (int) *ptr);
+        } else {
+            if (IS_NEWLINE(*ptr) || command_space_left <= 0) { // End of command, process it*write_point = '\0';
+                *write_point = '\0';
+                if (t->snoop_by)
+                    dprintf(t->snoop_by, "&6>>&b %s &0\r\n", tmp);
+
+                failed_subst = 0;
+
+                if (*tmp == '!')
+                    strcpy(tmp, t->last_input);
+                else if (*tmp == '^') {
+                    if (!(failed_subst = perform_subst(t, t->last_input, tmp)))
+                        strcpy(t->last_input, tmp);
+                } else
+                    strcpy(t->last_input, tmp);
+                /*
+                 * If the user is casting, and the command is ok
+                 * when casting, then it gets processed immediately
+                 * by the command interpreter within casting_command().
+                 * Otherwise, the command is queued up and handled by
+                 * the game loop normally.  Oh, and this is a hack.
+                 */
+                if (!failed_subst && !casting_command(t, tmp))
+                    write_to_q(tmp, &t->input, 0, t);
+
+                if (command_space_left <= 0) {
+                    char buffer[MAX_INPUT_LENGTH + 64];
+                    snprintf(buffer, sizeof(buffer), "Line too long.  Truncated to:\r\n%s\r\n", tmp);
+                    if (write_to_descriptor(t->descriptor, buffer) < 0)
+                        return -1;
+                    while (*ptr && !IS_NEWLINE(*ptr)) // Find next newline
+                        ++ptr;
+                }
+                while (*(ptr+1) && IS_NEWLINE(*(ptr+1))) // Find start of next command.
+                    ++ptr;
+
+                write_point = tmp;
+                command_space_left = MAX_INPUT_LENGTH - 1;
+            } else if (*ptr == '\b') {        /* handle backspacing */
+                if (write_point > tmp) {
+                    if (*(--write_point) == '$') {
+                        write_point--;
+                        command_space_left += 2;
+                    } else
+                        command_space_left++;
+                }
+            } else if (isascii(*ptr) && isprint(*ptr)) {
+                if ((*(write_point++) = *ptr) == '$') {   /* copy one character */
+                    *(write_point++) = '$';        /* if it's a $, double it */
+                    command_space_left -= 2;
+                } else
+                    command_space_left--;
+            }
+        }
+    }
 
     read_point += bytes_read;
     space_left -= bytes_read;
 
-  /*
-   * on some systems such as AIX, POSIX-standard nonblocking I/O is broken,
-   * causing the MUD to hang when it encounters input not terminated by a
-   * newline.  This was causing hangs at the Password: prompt, for example.
-   * I attempt to compensate by always returning after the _first_ read, instead
-   * of looping forever until a read returns -1.  This simulates non-blocking
-   * I/O because the result is we never call read unless we know from select()
-   * that data is ready (process_input is only called if select indicates that
-   * this descriptor is in the read set).  JE 2/23/95.
-   */
-#if !defined(POSIX_NONBLOCK_BROKEN)
-  } while (nl_pos == NULL);
-#else
-  } while (0);
-
-  if (nl_pos == NULL)
-    return 0;
-#endif /* POSIX_NONBLOCK_BROKEN */
-
-  /*
-   * okay, at this point we have at least one newline in the string; now we
-   * can copy the formatted data to a new array for further processing.
-   */
-
-  read_point = t->inbuf;
-
-  while (nl_pos != NULL) {
-    write_point = tmp;
-    space_left = MAX_INPUT_LENGTH - 1;
-
-    for (ptr = read_point; (space_left > 0) && (ptr < nl_pos); ptr++) {
-      if (*ptr == '\b') {        /* handle backspacing */
-        if (write_point > tmp) {
-          if (*(--write_point) == '$') {
-            write_point--;
-            space_left += 2;
-          } else
-            space_left++;
-        }
-      } else if (isascii(*ptr) && isprint(*ptr)) {
-        if ((*(write_point++) = *ptr) == '$') {                /* copy one character */
-          *(write_point++) = '$';        /* if it's a $, double it */
-          space_left -= 2;
-        } else
-          space_left--;
-      }
-    }
-
-    *write_point = '\0';
-
-    if ((space_left <= 0) && (ptr < nl_pos)) {
-      char buffer[MAX_INPUT_LENGTH + 64];
-      snprintf(buffer, sizeof(buffer), "Linen too long.  Truncated to:\r\n%s\r\n", tmp);
-      if (write_to_descriptor(t->descriptor, buffer) < 0)
-        return -1;
-    }
-    if (t->snoop_by)
-      dprintf(t->snoop_by, "&6>>&b %s &0\r\n", tmp);
-    failed_subst = 0;
-
-    if (*tmp == '!')
-      strcpy(tmp, t->last_input);
-    else if (*tmp == '^') {
-      if (!(failed_subst = perform_subst(t, t->last_input, tmp)))
-        strcpy(t->last_input, tmp);
-    } else
-      strcpy(t->last_input, tmp);
-
-    /*
-     * If the user is casting, and the command is ok
-     * when casting, then it gets processed immediately
-     * by the command interpreter within casting_command().
-     * Otherwise, the command is queued up and handled by
-     * the game loop normally.  Oh, and this is a hack.
-     */
-    if (!failed_subst && !casting_command(t, tmp))
-      write_to_q(tmp, &t->input, 0, t);
-
-    /* find the end of this line */
-    while (IS_NEWLINE(*nl_pos))
-      nl_pos++;
-
-    /* see if there's another newline in the input buffer */
-    read_point = ptr = nl_pos;
-    for (nl_pos = NULL; *ptr && !nl_pos; ptr++)
-      if (IS_NEWLINE(*ptr))
-        nl_pos = ptr;
-  }
-
-  /* now move the rest of the buffer up to the beginning for the next pass */
-  write_point = t->inbuf;
-  while (*read_point)
-    *(write_point++) = *(read_point++);
-  *write_point = '\0';
-
-  return 1;
+  } while (true);
 }
 
 /*
@@ -2311,42 +2508,7 @@ RETSIGTYPE hupsig()
   circle_shutdown = TRUE;  /* added by Gurlaek 2/14/2000 */
 }
 
-
-/*
- * This is an implementation of signal() using sigaction() for portability.
- * (sigaction() is POSIX; signal() is not.)  Taken from Stevens' _Advanced
- * Programming in the UNIX Environment_.  We are specifying that all system
- * calls _not_ be automatically restarted for uniformity, because BSD systems
- * do not restart select(), even if SA_RESTART is used.
- *
- * Note that NeXT 2.x is not POSIX and does not have sigaction; therefore,
- * I just define it to be the old signal.  If your system doesn't have
- * sigaction either, you can use the same fix.
- *
- * SunOS Release 4.0.2 (sun386) needs this too, according to Tim Aldric.
- */
-
-#ifndef POSIX
 #define my_signal(signo, func) signal(signo, func)
-#else
-sigfunc *my_signal(int signo, sigfunc * func)
-{
-  struct sigaction act, oact;
-
-  act.sa_handler = func;
-  sigemptyset(&act.sa_mask);
-  act.sa_flags = 0;
-#ifdef SA_INTERRUPT
-  act.sa_flags |= SA_INTERRUPT;        /* SunOS */
-#endif
-
-  if (sigaction(signo, &act, &oact) < 0)
-    return SIG_ERR;
-
-  return oact.sa_handler;
-}
-#endif                                /* NeXT */
-
 
 void signal_setup(void)
 {
@@ -2437,9 +2599,8 @@ void char_printf(const struct char_data *ch, const char *messg, ...)
   /* TODO: check this debug data and determine if the split
    * for static strings is necessary
    */
-  if ((vcount + scount) % 100 == 0)
-    fprintf(stderr, "DEBUG :: cprintf :: vsnprintf calls - %u, no calls - %u\n",
-            vcount, scount);
+//  if ((vcount + scount) % 100 == 0)
+//    fprintf(stderr, "DEBUG :: cprintf :: vsnprintf calls - %u, no calls - %u\n", vcount, scount);
 }
 
 void zone_printf(int zone_vnum, int skip_room, int min_stance, const char *messg, ...)

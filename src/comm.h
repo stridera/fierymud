@@ -30,6 +30,7 @@ extern void zone_printf(int zone_vnum, int skip_room, int min_stance, const char
 extern void callback_printf(CBP_FUNC(callback), void *data, const char *messg, ...) __attribute__ ((format (printf, 3, 4))) ;
 extern void close_socket(struct descriptor_data *d);
 extern int speech_ok(struct char_data *ch, int quiet);
+void send_gmcp_room(struct char_data *ch);
 
 /* deprecated functions */
 extern void send_to_all(const char *messg);

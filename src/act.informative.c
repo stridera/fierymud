@@ -1024,7 +1024,8 @@ static int search_for_doors(struct char_data *ch, char *arg)
                   dirpreposition[door]);
             act(buf, FALSE, ch, 0, CH_EXIT(ch, door)->keyword, TO_ROOM);
             REMOVE_BIT(CH_EXIT(ch, door)->exit_info, EX_HIDDEN);
-            return TRUE;
+             send_gmcp_room(ch);
+             return TRUE;
          }
       }
 
@@ -1214,6 +1215,8 @@ void look_at_room(struct char_data *ch, int ignore_brief)
       cprintf(ch, "Your view is obscured by thick fog.\r\n");
    else
       print_room_to_char(ch->in_room, ch, ignore_brief);
+
+   send_gmcp_room(ch);
 }
 
 /* Checking out your new surroundings when magically transported.
@@ -3099,6 +3102,27 @@ const char *ability_message(int value) {
       return rolls_abils_result[4];
 }
 
+const long xp_percentage(struct char_data *ch) {
+   long current, total, next_level;
+
+   if (GET_LEVEL(ch) < LVL_IMMORT) {
+      if(IS_STARSTAR(ch)) {
+          return 100;
+      }
+      next_level = exp_next_level(GET_LEVEL(ch), GET_CLASS(ch));
+      total = next_level - exp_next_level(GET_LEVEL(ch) - 1, GET_CLASS(ch));
+
+      if (total < 1) {
+         return 0;
+      }
+
+      current = total - next_level + GET_EXP(ch);
+      return((100 * current) / total);
+   } else {
+      return 0;
+   }
+}
+
 const char *exp_message(struct char_data *ch) {
    long percent, current, total, etl;
    char *messages[] = {
@@ -3142,6 +3166,7 @@ const char *exp_message(struct char_data *ch) {
    else
       return "&1You are somewhere along the way to your next level.&0";
 }
+
 
 const char *exp_bar(struct char_data *ch, int length, int gradations, int sub_gradations, bool color) {
    static char bar[120];
@@ -3964,7 +3989,7 @@ ACMD(do_skills) {
    const char *mastery;
    int i, x;
    struct char_data* tch;
-   char points[MAX_INPUT];
+   char points[MAX_INPUT_LENGTH];
    bool godpeek;
 
    one_argument(argument, arg);

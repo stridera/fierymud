@@ -3216,7 +3216,7 @@ ACMD(do_rrestore)
    if (argument && *argument)
       cprintf(ch, "%s@0\r\n", argument);
    else
-      send_to_char("You spread healing energy across the realm, restoring all in it's path.", ch);
+      send_to_char("You spread healing energy across the realm, restoring all in its path.", ch);
 }
 
 

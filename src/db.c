@@ -229,7 +229,7 @@ long get_set_exp(int level, int race, int class, int zone)
 sh_int get_set_hit(int level, int race, int class, int state)
      /*class/species*/
 {
-  /*main - is the main bonus chucnk of hps
+  /*main - is the main bonus chunk of hps
    */
   /*struct descriptor_data *d;
    */
