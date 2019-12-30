@@ -1145,7 +1145,7 @@ ACMD(do_restore)
    else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
       send_to_char(NOPERSON, ch);
    else {
-      send_to_char(OK, ch);
+      send_to_char("They gasp as their body is fully healed.\r\n", ch);
       act("You have been fully healed by $N!", FALSE, vict, 0, ch, TO_CHAR | TO_SLEEP);
       perform_restore(vict);
       if ((GET_LEVEL(ch) >= LVL_GRGOD) && (GET_LEVEL(vict) >= LVL_IMMORT)) {
@@ -1177,8 +1177,10 @@ ACMD(do_pain)
    else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
       send_to_char(NOPERSON, ch);
    else {
+      int change = GET_HIT(vict) * 0.1;
       perform_pain(vict);
-      send_to_char(OK, ch);
+      sprintf(buf, "Their body writhes in pain.  Your displeasure has been known. (%d)\r\n", change);
+      send_to_char(buf, ch);
       act("A wave of pain and pestilence sent by $N harms you!", FALSE, vict, 0, ch, TO_CHAR | TO_SLEEP);
    }
 }
