@@ -1175,10 +1175,11 @@ void offer_gmcp(struct descriptor_data *d)
     char offer_gmcp[] = {
         (char) IAC,
         (char) WILL,
-        (char) GMCP
+        (char) GMCP,
+        (char) 0
     };
 
-    dprintf(d, "%s", offer_gmcp);
+    write_to_descriptor(d->descriptor, offer_gmcp);
 }
 
 void offer_gmcp_services(struct descriptor_data *d)
