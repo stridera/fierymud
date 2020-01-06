@@ -1328,7 +1328,7 @@ void send_gmcp_room(struct char_data *ch)
     static char response[MAX_STRING_LENGTH];
     char *cur = response;
 
-    if (!ch->desc->gmcp_enabled) {
+    if (IS_MOB(ch) || !ch->desc->gmcp_enabled) {
         return;
     }
 
