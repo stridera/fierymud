@@ -1702,7 +1702,7 @@ void make_prompt(struct descriptor_data *d)
 
   if (PAGING(d)) {
     char prompt[MAX_INPUT_LENGTH];
-    sprintf(prompt, "\r[ Return to continue, (q)uit, (r)efresh, (b)ack, or page number (%d/%d) ]",
+    sprintf(prompt, "\r[ Return to continue, (q)uit, (r)efresh, (b)ack, or page number (%d/%d) ]\r\n",
             PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
     write_to_descriptor(d->descriptor, prompt);
   }
