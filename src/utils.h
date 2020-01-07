@@ -376,6 +376,7 @@ extern flagvector *ALL_FLAGS;
 #define CAN_CARRY_W(ch)     (str_app[GET_STR(ch)].carry_w)
 #define CAN_CARRY_N(ch)     (5 + (GET_DEX(ch) >> 1) + (GET_LEVEL(ch) >> 1))
 #define CURRENT_LOAD(ch)    (IS_CARRYING_W(ch) >= CAN_CARRY_W(ch) ? 100 : \
+      IS_CARRYING_W(ch) < 0 ? 0 : \
       (int)((IS_CARRYING_W(ch) * 10) / CAN_CARRY_W(ch)))
 #define CAN_CARRY_OBJ(ch,obj)  \
    (((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) <= CAN_CARRY_W(ch)) &&   \
