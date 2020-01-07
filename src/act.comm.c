@@ -236,7 +236,10 @@ static void perform_tell(struct char_data *ch, struct char_data *vict, char *arg
   sprintf(buf, "@W$n@W tells you, '%s@W'@0", arg);
   act(buf, FALSE, REAL_CHAR(ch), 0, vict, TO_VICT | TO_SLEEP | TO_OLC);
 
-  GET_LAST_TELL(vict) = GET_IDNUM(REAL_CHAR(ch));
+  // No need to reply to mobs.  Doesn't matter since we use the IDNUM which is always 0 for mobs.
+  if (!IS_MOB(ch))
+    GET_LAST_TELL(vict) = GET_IDNUM(REAL_CHAR(ch));
+
   afk_message(ch, vict);
   if (IS_MOB(vict)) {
     speech_to_mtrigger(ch, vict, arg);
