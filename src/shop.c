@@ -106,10 +106,13 @@ int is_open(struct char_data * keeper, int shop_nr, int msg)
 
 int is_ok(struct char_data * keeper, struct char_data * ch, int shop_nr)
 {
-  if (is_open(keeper, shop_nr, TRUE))
-    return (is_ok_char(keeper, ch, shop_nr));
-  else
-    return (FALSE);
+  if (is_open(keeper, shop_nr, TRUE)) {
+      // This is kinda hacky, but it prevents shopkeepers from getting laryngitis
+      keeper->char_specials.last_speech_time = 0;
+      return (is_ok_char(keeper, ch, shop_nr));
+  } else {
+      return (FALSE);
+  }
 }
 
 
