@@ -13,192 +13,194 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "conf.h"
-#include "sysdep.h"
-
-#include "structs.h"
-#include "utils.h"
-#include "comm.h"
 #include "casting.h"
-#include "handler.h"
+
+#include "act.h"
+#include "class.h"
+#include "comm.h"
+#include "composition.h"
+#include "conf.h"
+#include "constants.h"
+#include "damage.h"
 #include "db.h"
 #include "events.h"
-#include "interpreter.h"
-#include "spell_parser.h"
-#include "class.h"
-#include "races.h"
-#include "skills.h"
-#include "constants.h"
-#include "math.h"
-#include "magic.h"
 #include "exits.h"
-#include "rooms.h"
 #include "fight.h"
-#include "pfiles.h"
-#include "utils.h"
-#include "act.h"
-#include "movement.h"
-#include "limits.h"
-#include "objects.h"
-#include "composition.h"
+#include "handler.h"
+#include "interpreter.h"
 #include "lifeforce.h"
-#include "damage.h"
+#include "limits.h"
+#include "magic.h"
+#include "math.h"
+#include "movement.h"
+#include "objects.h"
+#include "pfiles.h"
+#include "races.h"
+#include "rooms.h"
+#include "skills.h"
+#include "spell_parser.h"
 #include "spells.h"
+#include "structs.h"
+#include "sysdep.h"
+#include "utils.h"
 
 /**********************************************************/
 /* Event functions for spells that use time-based effects */
 /**********************************************************/
 
-EVENTFUNC(room_undo_event)
-{
-   struct room_undo_event_obj *room_undo = (struct room_undo_event_obj *) event_obj;
-   int room, exit, connect_room;
+EVENTFUNC(room_undo_event) {
+    struct room_undo_event_obj *room_undo = (struct room_undo_event_obj *)event_obj;
+    int room, exit, connect_room;
 
-   room = room_undo->room;
-   exit = room_undo->exit;
-   connect_room = room_undo->connect_room;
+    room = room_undo->room;
+    exit = room_undo->exit;
+    connect_room = room_undo->connect_room;
 
-   world[room].exits[exit]->to_room = connect_room;
-   send_to_room("&2The forest seems to come alive... Trees and shrubs move about, finally resting in different locations.&0\r\n", room);
-   REMOVE_FLAG(ROOM_FLAGS(room), ROOM_ALT_EXIT);
-   return EVENT_FINISHED;
+    world[room].exits[exit]->to_room = connect_room;
+    send_to_room("&2The forest seems to come alive... Trees and shrubs move "
+                 "about, finally resting in different locations.&0\r\n",
+                 room);
+    REMOVE_FLAG(ROOM_FLAGS(room), ROOM_ALT_EXIT);
+    return EVENT_FINISHED;
 }
 
-EVENTFUNC(delayed_cast_event)
-{
-   struct delayed_cast_event_obj *cast = (struct delayed_cast_event_obj *) event_obj;
-   struct char_data *ch = cast->ch;
-   struct char_data *victim = cast->victim;
-   int spellnum = cast->spell;
-   int room = cast->room;
-   int routines = cast->routines;
-   int rounds = --cast->rounds;
-   int wait = rounds > 0 ? cast->wait : EVENT_FINISHED;
-   int skill = cast->skill;
-   int savetype = cast->savetype;
-   bool sustained = cast->sustained;
+EVENTFUNC(delayed_cast_event) {
+    struct delayed_cast_event_obj *cast = (struct delayed_cast_event_obj *)event_obj;
+    struct char_data *ch = cast->ch;
+    struct char_data *victim = cast->victim;
+    int spellnum = cast->spell;
+    int room = cast->room;
+    int routines = cast->routines;
+    int rounds = --cast->rounds;
+    int wait = rounds > 0 ? cast->wait : EVENT_FINISHED;
+    int skill = cast->skill;
+    int savetype = cast->savetype;
+    bool sustained = cast->sustained;
 
-   /* Event checking */
+    /* Event checking */
 
-   if (!ch || event_target_valid(ch) == 0)
-      return EVENT_FINISHED;
+    if (!ch || event_target_valid(ch) == 0)
+        return EVENT_FINISHED;
 
-   if (!IS_NPC(ch) && (!ch->desc || STATE(ch->desc) != CON_PLAYING))
-      return EVENT_FINISHED;
+    if (!IS_NPC(ch) && (!ch->desc || STATE(ch->desc) != CON_PLAYING))
+        return EVENT_FINISHED;
 
-   if (sustained) {
-      if (ch->in_room != room)
-         return EVENT_FINISHED;
-      if (victim && ch->in_room != victim->in_room)
-         return EVENT_FINISHED;
-      if (!valid_cast_stance(ch, spellnum))
-          return EVENT_FINISHED;
-      if (IS_SET(routines, MAG_GROUP) && !IS_GROUPED(ch))
-         return wait;
-   }
+    if (sustained) {
+        if (ch->in_room != room)
+            return EVENT_FINISHED;
+        if (victim && ch->in_room != victim->in_room)
+            return EVENT_FINISHED;
+        if (!valid_cast_stance(ch, spellnum))
+            return EVENT_FINISHED;
+        if (IS_SET(routines, MAG_GROUP) && !IS_GROUPED(ch))
+            return wait;
+    }
 
-   if (victim && event_target_valid(victim) == 0)
-      return EVENT_FINISHED;
+    if (victim && event_target_valid(victim) == 0)
+        return EVENT_FINISHED;
 
-   /* Cast checking */
+    /* Cast checking */
 
-   if (ROOM_FLAGGED(room, ROOM_PEACEFUL) && SINFO.violent) {
-      if (IS_SPELL(spellnum)) {
-         if (ch && IN_ROOM(ch) == room) {
-            send_to_char("A flash of white light fills the room, dispelling your "
-                               "violent magic!\r\n", ch);
-         }
-         if (victim)
-            act("White light from no particular source suddenly fills the room, "
-                  "then vanishes.", FALSE, victim, 0, 0, TO_ROOM);
-      }
-      else { /* song/chant */
-         if (ch && IN_ROOM(ch) == room) {
-            send_to_char("Your words dissolve into peaceful nothingness...\r\n", ch);
-            act("$n's words fade away into peaceful nothingness...\r\n",
-                  FALSE, ch, 0, 0, TO_ROOM);
-         }
-      }
-      return EVENT_FINISHED;
-   }
+    if (ROOM_FLAGGED(room, ROOM_PEACEFUL) && SINFO.violent) {
+        if (IS_SPELL(spellnum)) {
+            if (ch && IN_ROOM(ch) == room) {
+                send_to_char("A flash of white light fills the room, dispelling your "
+                             "violent magic!\r\n",
+                             ch);
+            }
+            if (victim)
+                act("White light from no particular source suddenly fills the room, "
+                    "then vanishes.",
+                    FALSE, victim, 0, 0, TO_ROOM);
+        } else { /* song/chant */
+            if (ch && IN_ROOM(ch) == room) {
+                send_to_char("Your words dissolve into peaceful nothingness...\r\n", ch);
+                act("$n's words fade away into peaceful nothingness...\r\n", FALSE, ch, 0, 0, TO_ROOM);
+            }
+        }
+        return EVENT_FINISHED;
+    }
 
-   /* Check routines */
+    /* Check routines */
 
-   if (IS_SPELL(spellnum) && victim && evades_spell(ch, victim, spellnum, skill))
-      return wait;
+    if (IS_SPELL(spellnum) && victim && evades_spell(ch, victim, spellnum, skill))
+        return wait;
 
-   /* Set REMOTE_AGGR flag so that aggr_lose_spells() won't take
-    * off invis, etc. */
-   SET_FLAG(EFF_FLAGS(ch), EFF_REMOTE_AGGR);
+    /* Set REMOTE_AGGR flag so that aggr_lose_spells() won't take
+     * off invis, etc. */
+    SET_FLAG(EFF_FLAGS(ch), EFF_REMOTE_AGGR);
 
-   if (IS_SET(routines, MAG_DAMAGE))
-      mag_damage(skill, ch, victim, spellnum, savetype);
+    if (IS_SET(routines, MAG_DAMAGE))
+        mag_damage(skill, ch, victim, spellnum, savetype);
 
-   if (victim && DECEASED(victim)) {
-      wait = EVENT_FINISHED;
-   } else {
+    if (victim && DECEASED(victim)) {
+        wait = EVENT_FINISHED;
+    } else {
 
-      if (IS_SET(routines, MAG_AFFECT))
-         mag_affect(skill, ch, victim, spellnum, savetype, CAST_SPELL);
+        if (IS_SET(routines, MAG_AFFECT))
+            mag_affect(skill, ch, victim, spellnum, savetype, CAST_SPELL);
 
-      if (IS_SET(routines, MAG_UNAFFECT))
-         mag_unaffect(skill, ch, victim, spellnum, savetype);
+        if (IS_SET(routines, MAG_UNAFFECT))
+            mag_unaffect(skill, ch, victim, spellnum, savetype);
 
-      if (IS_SET(routines, MAG_POINT))
-         mag_point(skill, ch, victim, spellnum, savetype);
+        if (IS_SET(routines, MAG_POINT))
+            mag_point(skill, ch, victim, spellnum, savetype);
 
-      if (IS_SET(routines, MAG_AREA))
-         mag_area(skill, ch, spellnum, savetype);
+        if (IS_SET(routines, MAG_AREA))
+            mag_area(skill, ch, spellnum, savetype);
 
-      if (IS_SET(SINFO.routines, MAG_GROUP))
-         mag_group(skill, ch, spellnum, savetype);
+        if (IS_SET(SINFO.routines, MAG_GROUP))
+            mag_group(skill, ch, spellnum, savetype);
 
-      if (IS_SET(SINFO.routines, MAG_MASS))
-         mag_mass(skill, ch, spellnum, savetype);
+        if (IS_SET(SINFO.routines, MAG_MASS))
+            mag_mass(skill, ch, spellnum, savetype);
 
-      if (IS_SET(SINFO.routines, MAG_BULK_OBJS))
-         mag_bulk_objs(skill, ch, spellnum, savetype);
+        if (IS_SET(SINFO.routines, MAG_BULK_OBJS))
+            mag_bulk_objs(skill, ch, spellnum, savetype);
 
-      if (IS_SET(SINFO.routines, MAG_ROOM))
-         mag_room(skill, ch, spellnum);
+        if (IS_SET(SINFO.routines, MAG_ROOM))
+            mag_room(skill, ch, spellnum);
 
-      if (IS_SET(SINFO.routines, MAG_MANUAL)) {
-         if (spellnum == SPELL_PYRE && wait == EVENT_FINISHED)
-           SET_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
-         switch (spellnum) {
-         case SPELL_PYRE:      spell_pyre_recur(spellnum, skill, ch, victim, NULL, savetype); break;
-         case SPELL_SOUL_TAP:  spell_soul_tap_recur(spellnum, skill, ch, victim, NULL, savetype); break;
-         }
-         if (victim && DECEASED(victim))
-            wait = EVENT_FINISHED;
-      }
+        if (IS_SET(SINFO.routines, MAG_MANUAL)) {
+            if (spellnum == SPELL_PYRE && wait == EVENT_FINISHED)
+                SET_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
+            switch (spellnum) {
+            case SPELL_PYRE:
+                spell_pyre_recur(spellnum, skill, ch, victim, NULL, savetype);
+                break;
+            case SPELL_SOUL_TAP:
+                spell_soul_tap_recur(spellnum, skill, ch, victim, NULL, savetype);
+                break;
+            }
+            if (victim && DECEASED(victim))
+                wait = EVENT_FINISHED;
+        }
 
-      /* Violent spells cause fights. */
-      if (SINFO.violent && ch && victim && attack_ok(victim, ch, FALSE))
+        /* Violent spells cause fights. */
+        if (SINFO.violent && ch && victim && attack_ok(victim, ch, FALSE))
             set_fighting(victim, ch, FALSE);
-   }
-   REMOVE_FLAG(EFF_FLAGS(ch), EFF_REMOTE_AGGR);
+    }
+    REMOVE_FLAG(EFF_FLAGS(ch), EFF_REMOTE_AGGR);
 
-   return wait;
+    return wait;
 }
 
-struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
-            struct char_data *victim, int spellnum, int routines, int rounds,
-            int wait, int skill, int savetype, bool sustained)
-{
-   struct delayed_cast_event_obj *event_obj;
-   CREATE(event_obj, struct delayed_cast_event_obj, 1);
-   event_obj->ch = ch;
-   event_obj->victim = victim;
-   event_obj->spell = spellnum;
-   event_obj->room = ch->in_room;
-   event_obj->routines = routines;
-   event_obj->skill = skill;
-   event_obj->savetype = savetype;
-   event_obj->wait = wait;
-   event_obj->rounds = rounds;
-   event_obj->sustained = sustained;
-   return event_obj;
+struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch, struct char_data *victim, int spellnum,
+                                                      int routines, int rounds, int wait, int skill, int savetype,
+                                                      bool sustained) {
+    struct delayed_cast_event_obj *event_obj;
+    CREATE(event_obj, struct delayed_cast_event_obj, 1);
+    event_obj->ch = ch;
+    event_obj->victim = victim;
+    event_obj->spell = spellnum;
+    event_obj->room = ch->in_room;
+    event_obj->routines = routines;
+    event_obj->skill = skill;
+    event_obj->savetype = savetype;
+    event_obj->wait = wait;
+    event_obj->rounds = rounds;
+    event_obj->sustained = sustained;
+    return event_obj;
 }
 
 /***************************************************************************
@@ -249,7 +251,8 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * Don't allow "flee" to be in a character's event list multiple times.
  *
  * Revision 1.17  2008/09/21 21:04:20  jps
- * Passing cast type to mag_affect so that potions of bless/dark presence can be quaffed by neutral people.
+ * Passing cast type to mag_affect so that potions of bless/dark presence can be
+ *quaffed by neutral people.
  *
  * Revision 1.16  2008/09/21 20:40:40  jps
  * Keep a list of attackers with each character, so that at the proper times -
@@ -259,8 +262,8 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * Zero the effect structure when applying charm spell.
  *
  * Revision 1.14  2008/09/20 07:27:45  jps
- * set_fighting takes a 3rd parameter, reciprocate, which will set the attackee fighting
- * the attacker if true.
+ * set_fighting takes a 3rd parameter, reciprocate, which will set the attackee
+ *fighting the attacker if true.
  *
  * Revision 1.13  2008/09/14 03:53:13  jps
  * Implement terror-fleeing as a delayed command.
@@ -338,8 +341,8 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * a virtual number.
  *
  * Revision 1.174  2008/05/18 03:37:37  jps
- * Made dispelling invisibility from objects a bit easier, and dependent on skill.
- * Sent the message about dispelling the invisibility after it's been
+ * Made dispelling invisibility from objects a bit easier, and dependent on
+ *skill. Sent the message about dispelling the invisibility after it's been
  * done, so people without detect invis will know what the object is.
  *
  * Revision 1.173  2008/05/18 02:04:12  jps
@@ -448,7 +451,8 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * Replace hit() with attack().
  *
  * Revision 1.142  2008/01/27 13:43:50  jps
- * Moved race and species-related data to races.h/races.c and merged species into races.
+ * Moved race and species-related data to races.h/races.c and merged species
+ *into races.
  *
  * Revision 1.141  2008/01/27 09:45:41  jps
  * Got rid of the MCLASS_ defines and we now have a single set of classes
@@ -707,7 +711,8 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * Identify really does show hours left for lights now.
  *
  * Revision 1.76  2006/12/05 18:37:46  myc
- * Identify spell shows time left on lights.  Illumination lights already lit lights, and always recharges at least to original duration.
+ * Identify spell shows time left on lights.  Illumination lights already lit
+ *lights, and always recharges at least to original duration.
  *
  * Revision 1.75  2006/11/27 02:07:05  jps
  * Add missing newline to synthetic extra descs for gate-spell objects.
@@ -801,7 +806,8 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * fixed universal remove curse bug *blush* needed to use next_containter :)
  *
  * Revision 1.47  2002/12/20 05:23:57  rls
- * added curly braces so stupid compiler wouldn't get confused about ambiguous else
+ * added curly braces so stupid compiler wouldn't get confused about ambiguous
+ *else
  *
  * Revision 1.46  2002/12/19 07:42:35  rls
  * Added function spell_remove_curse which parses through a victims inventory
@@ -825,7 +831,8 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * also.
  *
  * Revision 1.40  2002/03/26 04:24:13  rls
- * Added anti pk code to melt spell, no longer able to melt PC eq without PK enabled
+ * Added anti pk code to melt spell, no longer able to melt PC eq without PK
+ *enabled
  *
  * Revision 1.39  2002/03/15 02:45:14  dce
  * Fixed the spell disenigrate so that it is not castable on players.
@@ -926,9 +933,9 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * mostly by JBK and polished off by RSD
  *
  * Revision 1.16  1999/12/10 22:13:45  jimmy
- * Exp tweaks.  Made Exp loss for dying a hardcoded 25% of what was needed for the next
- * level.  Fixed problems with grouping and exp.  Removed some redundant and unnecessary
- * exp code.
+ * Exp tweaks.  Made Exp loss for dying a hardcoded 25% of what was needed for
+ *the next level.  Fixed problems with grouping and exp.  Removed some redundant
+ *and unnecessary exp code.
  *
  * Revision 1.15  1999/11/29 00:06:49  cso
  * made it so that animated mobs CAN cast charm
@@ -937,9 +944,9 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * Added RCS Log and Id strings to each source file
  *
  * Revision 1.13  1999/08/12 17:54:46  dce
- * Fixed experience so that there are no overflows of integers that are placed into longs.
- * Main problem was max_exp_gain and max_exp_loss. Both were overflowing due to poor
- * Hubis coding.
+ * Fixed experience so that there are no overflows of integers that are placed
+ *into longs. Main problem was max_exp_gain and max_exp_loss. Both were
+ *overflowing due to poor Hubis coding.
  *
  * Revision 1.12  1999/08/07 17:15:08  mud
  * fixed the centimeter reference in the identify spell for players
@@ -951,12 +958,13 @@ struct delayed_cast_event_obj *construct_delayed_cast(struct char_data *ch,
  * This New system combines the assignment of skill/spell/language for
  * both mobs and PCs.  LOts of code was touched and many errors were fixed.
  * MCLASS_VOID was moved from 13 to -1 to match CLASS_UNDEFINED for PC's.
- * MObs now get random skill/spell/language levels baseed on their race/class/level
- * that exactly align with PC's.  PC's no longer have to rent to use skills gained
- * by leveling or when first creating a char.  Languages no longer reset to defaults
- * when a PC levels.  Discovered that languages have been defined right in the middle
- * of the spell area.  This needs to be fixed.  A conversion util neeDs to be run on
- * the mob files to compensate for the 13 to -1 class change.
+ * MObs now get random skill/spell/language levels baseed on their
+ *race/class/level that exactly align with PC's.  PC's no longer have to rent to
+ *use skills gained by leveling or when first creating a char.  Languages no
+ *longer reset to defaults when a PC levels.  Discovered that languages have
+ *been defined right in the middle of the spell area.  This needs to be fixed.
+ *A conversion util neeDs to be run on the mob files to compensate for the 13 to
+ *-1 class change.
  * --gurlaek 7/6/1999
  *
  * Revision 1.10  1999/06/30 18:25:04  jimmy

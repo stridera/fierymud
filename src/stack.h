@@ -13,11 +13,14 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
+#ifndef __FIERY_STACK_H
+#define __FIERY_STACK_H
+
 /*
- * This file defines two macro-based, type-parameterized implementations 
- * of stacks.  They use unnamed structs, and thus can only be used in 
- * the scope in which they are declared (and enclosed scopes).  It is 
- * relatively unsafe to pass the stacks between functions.  The 
+ * This file defines two macro-based, type-parameterized implementations
+ * of stacks.  They use unnamed structs, and thus can only be used in
+ * the scope in which they are declared (and enclosed scopes).  It is
+ * relatively unsafe to pass the stacks between functions.  The
  * parameterizing type can be any complete type, such as ints, named
  * structs, and pointers.
  *
@@ -41,13 +44,13 @@
  * Parameterized typedef for an array stack.  Pass the parameter type
  * to array_stack.
  */
-#define array_stack(type) \
-  struct { \
-    type *stack; \
-    int pos; \
-    int size; \
-    type null; \
-  }
+#define array_stack(type)                                                                                              \
+    struct {                                                                                                           \
+        type *stack;                                                                                                   \
+        int pos;                                                                                                       \
+        int size;                                                                                                      \
+        type null;                                                                                                     \
+    }
 
 /*
  * Initializes and allocates the given pre-declared array stack.  You
@@ -55,25 +58,27 @@
  * automatically grow as items are pushed onto it) and the default
  * null value to return by as_peek when the stack is empty.
  */
-#define as_init(var, initsize, nullvalue) do { \
-  (var).stack = (typeof(*(var).stack) *) calloc((initsize), sizeof(typeof(*(var).stack))); \
-  (var).null = (nullvalue); \
-  (var).size = (initsize); \
-  (var).pos = 0; \
-} while(0)
+#define as_init(var, initsize, nullvalue)                                                                              \
+    do {                                                                                                               \
+        (var).stack = (typeof(*(var).stack) *)calloc((initsize), sizeof(typeof(*(var).stack)));                        \
+        (var).null = (nullvalue);                                                                                      \
+        (var).size = (initsize);                                                                                       \
+        (var).pos = 0;                                                                                                 \
+    } while (0)
 
 /*
  * Pushes a value onto the given array stack.  If the stack is full,
  * it is automatically reallocated with double the capacity.
  */
-#define as_push(var, val) do { \
-  if ((var).pos >= (var).size) { \
-    (var).size *= 2; \
-    (var).stack = (typeof(*(var).stack) *) realloc((var).stack, sizeof(typeof(*(var).stack)) * (var).size); \
-  } \
-  (var).stack[(var).pos] = (val); \
-  ++(var).pos; \
-} while(0)
+#define as_push(var, val)                                                                                              \
+    do {                                                                                                               \
+        if ((var).pos >= (var).size) {                                                                                 \
+            (var).size *= 2;                                                                                           \
+            (var).stack = (typeof(*(var).stack) *)realloc((var).stack, sizeof(typeof(*(var).stack)) * (var).size);     \
+        }                                                                                                              \
+        (var).stack[(var).pos] = (val);                                                                                \
+        ++(var).pos;                                                                                                   \
+    } while (0)
 
 /*
  * Pops a value off the stack.  Precondition: the stack is not empty.
@@ -107,59 +112,60 @@
  * Releases dynamically-allocated resources consumed by this stack and
  * re-initializes it to an empty state with an initial size of 10.
  */
-#define as_destroy(var) do { \
-  free((var).stack); \
-  (var).stack = (typeof(*(var).stack) *) calloc(10, sizeof(typeof(*(var).stack))); \
-  (var).pos = 0; \
-  (var).size = 10; \
-} while(0)
-
+#define as_destroy(var)                                                                                                \
+    do {                                                                                                               \
+        free((var).stack);                                                                                             \
+        (var).stack = (typeof(*(var).stack) *)calloc(10, sizeof(typeof(*(var).stack)));                                \
+        (var).pos = 0;                                                                                                 \
+        (var).size = 10;                                                                                               \
+    } while (0)
 
 /*
- * Parameterized typedef for a linked-node stack.  Pass the parameter 
+ * Parameterized typedef for a linked-node stack.  Pass the parameter
  * type to linked_stack.
  */
-#define linked_stack(type) \
-  struct { \
-    struct node { \
-      type value; \
-      struct node *next; \
-    } *stack, *temp; \
-    type null; \
-    type last_pop; \
-  }
+#define linked_stack(type)                                                                                             \
+    struct {                                                                                                           \
+        struct node {                                                                                                  \
+            type value;                                                                                                \
+            struct node *next;                                                                                         \
+        } * stack, *temp;                                                                                              \
+        type null;                                                                                                     \
+        type last_pop;                                                                                                 \
+    }
 
 /*
- * Initializes and allocates the given pre-declared linked-node stack.  
+ * Initializes and allocates the given pre-declared linked-node stack.
  * You must specify the default null value to return by ls_peek when
  * the stack is empty.
  */
-#define ls_init(var, default) do { \
-  (var).stack = NULL; \
-  (var).null = (default); \
-} while(0)
+#define ls_init(var, default)                                                                                          \
+    do {                                                                                                               \
+        (var).stack = NULL;                                                                                            \
+        (var).null = (default);                                                                                        \
+    } while (0)
 
 /*
  * Pushes a value onto the given linked-node stack.
  */
-#define ls_push(var, val) do { \
-  (var).temp = (var).stack; \
-  (var).stack = (typeof(*(var).stack) *) calloc(1, sizeof(typeof(*(var).stack))); \
-  (var).stack->value = (val); \
-  (var).stack->next = (var).temp; \
-} while(0)
+#define ls_push(var, val)                                                                                              \
+    do {                                                                                                               \
+        (var).temp = (var).stack;                                                                                      \
+        (var).stack = (typeof(*(var).stack) *)calloc(1, sizeof(typeof(*(var).stack)));                                 \
+        (var).stack->value = (val);                                                                                    \
+        (var).stack->next = (var).temp;                                                                                \
+    } while (0)
 
 /*
  * Pops a value off the stack and returns it.  Precondition: the stack
- * is not empty.  Calling ls_pop on an empty stack will result in 
+ * is not empty.  Calling ls_pop on an empty stack will result in
  * undefined behavior.
  */
-#define ls_pop(var) (( \
-  (((var).last_pop = (var).stack->value), TRUE) && \
-  (((var).temp = (var).stack), TRUE) && \
-  (((var).stack = (var).stack->next), TRUE) && \
-  (free((var).temp), TRUE) \
-) ? (var).last_pop : (var).last_pop)
+#define ls_pop(var)                                                                                                    \
+    (((((var).last_pop = (var).stack->value), TRUE) && (((var).temp = (var).stack), TRUE) &&                           \
+      (((var).stack = (var).stack->next), TRUE) && (free((var).temp), TRUE))                                           \
+         ? (var).last_pop                                                                                              \
+         : (var).last_pop)
 
 /*
  * Peeks at the value on the top of the stack.  If the stack is empty,
@@ -182,15 +188,17 @@
  * Releases dynamically-allocated resources consumed by this stack and
  * re-initializes it to an empty state.
  */
-#define ls_destroy(var) do { \
-  while ((var).stack) { \
-    (var).temp = (var).stack; \
-    (var).stack = (var).stack->next; \
-    free((var).temp); \
-  } \
-  (var).stack = NULL; \
-} while (0)
+#define ls_destroy(var)                                                                                                \
+    do {                                                                                                               \
+        while ((var).stack) {                                                                                          \
+            (var).temp = (var).stack;                                                                                  \
+            (var).stack = (var).stack->next;                                                                           \
+            free((var).temp);                                                                                          \
+        }                                                                                                              \
+        (var).stack = NULL;                                                                                            \
+    } while (0)
 
+#endif /* __FIERY_STACK_H */
 /***************************************************************************
  * $Log: stack.h,v $
  * Revision 1.2  2008/03/22 19:50:24  myc

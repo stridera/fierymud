@@ -16,54 +16,47 @@
 #ifndef __FIERY_EDITOR_H
 #define __FIERY_EDITOR_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 enum ed_command_type {
-  ED_BEGIN,
-  ED_CLEAR,         /* /c */
-  ED_FORMAT,        /* /f */
-  ED_INSERT_LINE,   /* /i */
-  ED_EDIT_LINE,     /* /e */
-  ED_REPLACE,       /* /r */
-  ED_DELETE_LINE,   /* /d */
-  ED_HELP,          /* /h */
-  ED_LIST,          /* /l */
-  ED_LIST_NUMERIC,  /* /n */
-  ED_EXIT_SAVE,     /* /s */
-  ED_EXIT_ABORT,    /* /a */
-  ED_SPELLCHECK,    /* /k */
-  ED_OTHER,
-  NUM_ED_COMMAND_TYPES
+    ED_BEGIN,
+    ED_CLEAR,        /* /c */
+    ED_FORMAT,       /* /f */
+    ED_INSERT_LINE,  /* /i */
+    ED_EDIT_LINE,    /* /e */
+    ED_REPLACE,      /* /r */
+    ED_DELETE_LINE,  /* /d */
+    ED_HELP,         /* /h */
+    ED_LIST,         /* /l */
+    ED_LIST_NUMERIC, /* /n */
+    ED_EXIT_SAVE,    /* /s */
+    ED_EXIT_ABORT,   /* /a */
+    ED_SPELLCHECK,   /* /k */
+    ED_OTHER,
+    NUM_ED_COMMAND_TYPES
 };
 
-enum ed_status_type {
-  ED_IGNORED,
-  ED_PROCESSED,
-  ED_FAILED,
-  NUM_ED_STATUS_TYPES
-};
+enum ed_status_type { ED_IGNORED, ED_PROCESSED, ED_FAILED, NUM_ED_STATUS_TYPES };
 
-enum ed_cleanup_action {
-  ED_NO_ACTION,
-  ED_FREE_DATA,
-  NUM_ED_CLEANUP_ACTIONS
-};
+enum ed_cleanup_action { ED_NO_ACTION, ED_FREE_DATA, NUM_ED_CLEANUP_ACTIONS };
 
-#define ED_CMD_CHAR             '/'
-#define ED_DEFAULT_MAX_LINES    100
-#define ED_DEFAULT_PAGE_WIDTH   78
+#define ED_CMD_CHAR '/'
+#define ED_DEFAULT_MAX_LINES 100
+#define ED_DEFAULT_PAGE_WIDTH 78
 
-#define EDITOR_FUNC(name) \
-    enum ed_status_type (name)(struct editor_context *edit)
+#define EDITOR_FUNC(name) enum ed_status_type(name)(struct editor_context * edit)
 
 struct editor_context {
-  struct descriptor_data *descriptor;
+    struct descriptor_data *descriptor;
 
-  char *string;
-  size_t max_length;
-  size_t max_lines;
-  void *data;
+    char *string;
+    size_t max_length;
+    size_t max_lines;
+    void *data;
 
-  enum ed_command_type command;
-  const char *argument;
+    enum ed_command_type command;
+    const char *argument;
 };
 
 /* Function prototypes */
@@ -86,7 +79,7 @@ void editor_init(struct descriptor_data *d, char **string, size_t max_length);
 void editor_set_callback_data(struct descriptor_data *d, void *data, enum ed_cleanup_action action);
 void editor_set_callback(struct descriptor_data *d, enum ed_command_type type, EDITOR_FUNC(*callback));
 void editor_set_max_lines(struct descriptor_data *d, size_t max_lines);
-void editor_set_begin_string(struct descriptor_data *d, char *string, ...) __attribute__ ((format (printf, 2, 3)));
+void editor_set_begin_string(struct descriptor_data *d, char *string, ...) __attribute__((format(printf, 2, 3)));
 void editor_cleanup(struct descriptor_data *d);
 
 #endif
@@ -105,4 +98,3 @@ void editor_cleanup(struct descriptor_data *d);
  * Initial revision
  *
  ***************************************************************************/
-

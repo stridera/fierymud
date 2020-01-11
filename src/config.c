@@ -16,17 +16,16 @@
 #define __CONFIG_C__
 
 #include "conf.h"
+#include "structs.h"
 #include "sysdep.h"
 
-#include "structs.h"
-
-#define TRUE	1
-#define YES	1
-#define FALSE	0
-#define NO	0
+#define TRUE 1
+#define YES 1
+#define FALSE 0
+#define NO 0
 
 /* If you have problems change this to NO */
-/* #define FUCKED YES */ 
+/* #define FUCKED YES */
 
 /*
  * Below are several constants which you can change to alter certain aspects
@@ -48,7 +47,6 @@
 
 /****************************************************************************/
 /****************************************************************************/
-
 
 /* GAME PLAY OPTIONS */
 
@@ -93,8 +91,8 @@ int holler_move_cost = 20;
 
 /* number of tics (usually 75 seconds) before PC/NPC corpses decompose */
 int max_npc_corpse_time = 5;
-int max_pc_corpse_time = 3500; /* 3500 ticks is approximately 3 real days  */
-int short_pc_corpse_time = 100;  /* 100 ticks = about 2 real hours */
+int max_pc_corpse_time = 3500;  /* 3500 ticks is approximately 3 real days  */
+int short_pc_corpse_time = 100; /* 100 ticks = about 2 real hours */
 
 /* approve new character names being allowing them to enter the game? */
 int approve_names = NO;
@@ -135,10 +133,8 @@ int reboot_warning = 0; /* Whether any reboot warning has been given */
 /* The number of minutes-till, when the last reboot warning was given */
 int last_reboot_warning = 0;
 
-
 /****************************************************************************/
 /****************************************************************************/
-
 
 /* ROOM NUMBERS */
 
@@ -157,13 +153,11 @@ int frozen_start_room = 1202;
  * donation rooms.
  */
 int donation_room_1 = NOWHERE;
-int donation_room_2 = NOWHERE;	/* unused - room for expansion */
-int donation_room_3 = NOWHERE;	/* unused - room for expansion */
-
+int donation_room_2 = NOWHERE; /* unused - room for expansion */
+int donation_room_3 = NOWHERE; /* unused - room for expansion */
 
 /****************************************************************************/
 /****************************************************************************/
-
 
 /* GAME OPERATION OPTIONS */
 
@@ -188,7 +182,7 @@ int max_filesize = 50000;
 int max_bad_pws = 3;
 
 /*
- * Some nameservers are very slow and cause the game to lag terribly every 
+ * Some nameservers are very slow and cause the game to lag terribly every
  * time someone logs in.  The lag is caused by the gethostbyaddr() function
  * which is responsible for resolving numeric IP addresses to alphabetic names.
  * Sometimes, nameservers can be so slow that the incredible lag caused by
@@ -205,145 +199,148 @@ int max_bad_pws = 3;
 
 int nameserver_is_slow = YES;
 
-char *MENU =
-"\r\n"
-"   ~~~ Welcome to &1&bFieryMUD&0 ~~~\r\n"
-"\r\n"
-"    0) Exit from &1&bFiery&0.\r\n"
-"    1) Enter the game.\r\n"
-"    2) Read the background story.\r\n"
-"    3) Change password.\r\n"
-"\r\n"
-"       Make your choice: ";
+char *MENU = "\r\n"
+             "   ~~~ Welcome to &1&bFieryMUD&0 ~~~\r\n"
+             "\r\n"
+             "    0) Exit from &1&bFiery&0.\r\n"
+             "    1) Enter the game.\r\n"
+             "    2) Read the background story.\r\n"
+             "    3) Change password.\r\n"
+             "\r\n"
+             "       Make your choice: ";
 
+char *GREETINGS = "\r\n\r\n"
+                  "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
+                  "      .       &3&b ________&0                                             "
+                  ". \r\n"
+                  "      .       &3&b/   ___\\_}              ___    _____ ______&0          "
+                  " . \r\n"
+                  "      .       &3&b|  |   __  ________     |_ \\  /  | | |  |   \\&0       "
+                  "  . \r\n"
+                  "      .       &3&b|  |__/  \\/  __ \\ |\\__ / /  \\/   | | |  |    \\&0   "
+                  "     . \r\n";
 
-char *GREETINGS =
-"\r\n\r\n"
-"      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
-"      .       &3&b ________&0                                             . \r\n"
-"      .       &3&b/   ___\\_}              ___    _____ ______&0           . \r\n"
-"      .       &3&b|  |   __  ________     |_ \\  /  | | |  |   \\&0         . \r\n"
-"      .       &3&b|  |__/  \\/  __ \\ |\\__ / /  \\/   | | |  |    \\&0        . \r\n";
+char *GREETINGS2 = "      .       &3&b|  ____\\ |  {_/ /  __ / /        | | |  | |\\  \\&0    "
+                   "   . \r\n"
+                   "      .       &1&b|  |  |  | {___/  /\\ Y /|  /\\/\\  | | |  | | |  |&0   "
+                   "   . \r\n"
+                   "      .       &1&b|  |  |  | \\___|  |/  / |  |  |  | \\_/  | L_|  |&0    "
+                   "  . \r\n"
+                   "      .       &1&b|__|  \\__/_____/__|__/  |__|  |__|_____/______/&0      "
+                   " . \r\n"
+                   "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
+                   "      .      &7&bMud based on: Copper DikuMud I (B.1) by Swiftest&0       "
+                   ". \r\n";
 
-char *GREETINGS2 = 
-"      .       &3&b|  ____\\ |  {_/ /  __ / /        | | |  | |\\  \\&0       . \r\n"
-"      .       &1&b|  |  |  | {___/  /\\ Y /|  /\\/\\  | | |  | | |  |&0      . \r\n"  
-"      .       &1&b|  |  |  | \\___|  |/  / |  |  |  | \\_/  | L_|  |&0      . \r\n"  
-"      .       &1&b|__|  \\__/_____/__|__/  |__|  |__|_____/______/&0       . \r\n"
-"      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
-"      .      &7&bMud based on: Copper DikuMud I (B.1) by Swiftest&0       . \r\n";
+char *GREETINGS3 = "      .    &7&bDikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,&0   "
+                   ". \r\n"
+                   "      .      &7&bTom Madsen, Michael Seifert, and Sebastian Hammer.&0     "
+                   ". \r\n"
+                   "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
+                   "      .          &1&bFor Help or Information: &3&bwww.fierymud.org&0      "
+                   "    . \r\n"
+                   "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+                   "\r\n";
 
-char *GREETINGS3 = 
-"      .    &7&bDikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,&0   . \r\n"
-"      .      &7&bTom Madsen, Michael Seifert, and Sebastian Hammer.&0     . \r\n"
-"      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
-"      .          &1&bFor Help or Information: &3&bwww.fierymud.org&0          . \r\n"
-"      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n";
+char *GREETINGS4 = "                                                     Build No.";
 
-char *GREETINGS4 = 
-"                                                     Build No.";
+char *TEST_GREETING = "\r\n\r\n"
+                      "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
+                      "      .      &3&b________         _________________  _______________&0    "
+                      ". \r\n"
+                      "      .     &3&b/   ___\\_}        \\____      ____/ \\/    \\     "
+                      "____/&0    . \r\n"
+                      "      .     &3&b|  |   __  ________    \\_   /|  ___/   __/    /&0        "
+                      " . \r\n"
+                      "      .     &3&b|  |__/  \\/  __ \\ |\\__ / / | |  |__   /   |  |&0       "
+                      "   . \r\n";
+char *TEST_GREETING2 = "      .     &3&b|  ____\\ |  {_/ /  __ / /  | |   __|   \\  |  |&0        "
+                       "  . \r\n"
+                       "      .     &1&b|  |  |  | {___/  /\\ Y /|  | |  |__ \\   \\ |  |&0       "
+                       "   . \r\n"
+                       "      .     &1&b|  |  |  | \\___|  |/  / |  | |     \\_\\   \\|  |&0      "
+                       "    . \r\n"
+                       "      .     &1&b|__|  \\__/_____/__|__/  |__| \\_____/_____/|__|&0        "
+                       "  . \r\n"
+                       "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
+                       "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . "
+                       "\r\n";
+char *TEST_GREETING3 = "      .    DikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,   . \r\n"
+                       "      .      Tom Madsen, Michael Seifert, and Sebastian Hammer.     . \r\n"
+                       "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
+                       "                                                     Build No.";
 
+char *WHOAREYOU = "\r\n\r\n"
+                  "                        Based on HubisMUD 1.0\r\n"
+                  "                       Based on CircleMUD 3.0,\r\n"
+                  "                       Created by Jeremy Elson\r\n"
+                  "\r\n"
+                  "By what name do you wish to be known? ";
 
+char *WELC_MESSG = "\r\n"
+                   "Welcome to FieryMUD!\r\n"
+                   "\r\n\r\n";
 
+char *START_MESSG = "Welcome.  This is your new character! Type help display "
+                    "and help newbie.\r\n";
 
+char *NAMES_EXPLANATION = "\r\n"
+                          "Our name policy is fairly relaxed, but does have the following "
+                          "restrictions:\r\n"
+                          "\r\n"
+                          "1) No dictionary words, or names resembling dictionary words, or\r\n"
+                          "   compound words. Examples: BraveBlade, Jesterx, Rex.\r\n"
+                          "2) No well-known names whether modern or historical, or from\r\n"
+                          "   within Fiery's world.\r\n"
+                          "3) Nothing that is deemed offensive or inappropriate by our staff.\r\n"
+                          "\r\n";
 
+char *BANNEDINTHEUSA = "\r\n"
+                       "                       IF YOU SEE THIS IT IS BAD!\r\n"
+                       "\r\n"
+                       "        FFFFFFFFFF  IIIIIII   EEEEEEEEEE   RRRRRR      YYY    YYY  \r\n"
+                       "       FFFFFFFFFF    IIIII   EEEEEEEEEE   RRRRRRRRR    YYY    YYY  \r\n"
+                       "       FFF            III    EEE          RRR   RRRR   YYY    YYY  \r\n"
+                       "       FFFFFF         III    EEEEEE       RRR    RRR    YYYYYYYY   \r\n"
+                       "       FFF            III    EEE          RRRRRRRRR         YYY    \r\n"
+                       "       FFF           IIIII   EEEEEEEEEE   RRR    RRR       YYY     \r\n";
 
-char *TEST_GREETING =
-"\r\n\r\n"
-"      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
-"      .      &3&b________         _________________  _______________&0    . \r\n"    
-"      .     &3&b/   ___\\_}        \\____      ____/ \\/    \\     ____/&0    . \r\n"
-"      .     &3&b|  |   __  ________    \\_   /|  ___/   __/    /&0         . \r\n"
-"      .     &3&b|  |__/  \\/  __ \\ |\\__ / / | |  |__   /   |  |&0          . \r\n";
-char *TEST_GREETING2 =
+char *BANNEDINTHEUSA2 = "       FFF          IIIIIII   EEEEEEEEEE  RRRR    RRRR   YYYY      \r\n"
+                        "\r\n"
+                        " You have been banned from playing on FieryMUD. We are sorry if that is "
+                        "an\r\n"
+                        " inconvenience however it has been done with good reason.  Do not "
+                        "attempt\r\n"
+                        " to continually reconnect to FieryMUD as all connection will be met "
+                        "with\r\n"
+                        " this message. All connections are logged. If we have trouble from a "
+                        "site\r\n"
+                        " we can and will contact the administrators of the site or your "
+                        "Internet\r\n";
 
-"      .     &3&b|  ____\\ |  {_/ /  __ / /  | |   __|   \\  |  |&0          . \r\n" 
-"      .     &1&b|  |  |  | {___/  /\\ Y /|  | |  |__ \\   \\ |  |&0          . \r\n"
-"      .     &1&b|  |  |  | \\___|  |/  / |  | |     \\_\\   \\|  |&0          . \r\n"
-"      .     &1&b|__|  \\__/_____/__|__/  |__| \\_____/_____/|__|&0          . \r\n"
-"      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
-"      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . \r\n";
-char *TEST_GREETING3 =
-"      .    DikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,   . \r\n"
-"      .      Tom Madsen, Michael Seifert, and Sebastian Hammer.     . \r\n"
-"      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \r\n"
-"                                                     Build No.";
+char *BANNEDINTHEUSA3 = " service provider.\r\n"
+                        "                         YOU HAVE BEEN WARNED!\r\n"
+                        "\r\n"
+                        " We will review the ban list once every six months to determine if any "
+                        "site\r\n"
+                        " merits removal from the list.  If you feel you have been unjustly "
+                        "denied\r\n"
+                        " access to FieryMUD send mail to gods@fierymud.org.\r\n";
 
-
-char *WHOAREYOU =
-
-"\r\n\r\n"
-"                        Based on HubisMUD 1.0\r\n"
-"                       Based on CircleMUD 3.0,\r\n"
-"                       Created by Jeremy Elson\r\n"
-"\r\n"
-"By what name do you wish to be known? ";
-
-
-char *WELC_MESSG =
-"\r\n"
-"Welcome to FieryMUD!\r\n" 
-"\r\n\r\n";
-
-char *START_MESSG =
-"Welcome.  This is your new character! Type help display and help newbie.\r\n";
-
-char *NAMES_EXPLANATION =
-
-"\r\n"
-"Our name policy is fairly relaxed, but does have the following restrictions:\r\n"
-"\r\n"
-"1) No dictionary words, or names resembling dictionary words, or\r\n"
-"   compound words. Examples: BraveBlade, Jesterx, Rex.\r\n"
-"2) No well-known names whether modern or historical, or from\r\n"
-"   within Fiery's world.\r\n"
-"3) Nothing that is deemed offensive or inappropriate by our staff.\r\n"
-"\r\n";
-
-char *BANNEDINTHEUSA =
-"\r\n"
-"                       IF YOU SEE THIS IT IS BAD!\r\n"
-"\r\n"
-"        FFFFFFFFFF  IIIIIII   EEEEEEEEEE   RRRRRR      YYY    YYY  \r\n"
-"       FFFFFFFFFF    IIIII   EEEEEEEEEE   RRRRRRRRR    YYY    YYY  \r\n"
-"       FFF            III    EEE          RRR   RRRR   YYY    YYY  \r\n"
-"       FFFFFF         III    EEEEEE       RRR    RRR    YYYYYYYY   \r\n"
-"       FFF            III    EEE          RRRRRRRRR         YYY    \r\n"
-"       FFF           IIIII   EEEEEEEEEE   RRR    RRR       YYY     \r\n";
-
-char *BANNEDINTHEUSA2 =
-"       FFF          IIIIIII   EEEEEEEEEE  RRRR    RRRR   YYYY      \r\n"
-"\r\n"
-" You have been banned from playing on FieryMUD. We are sorry if that is an\r\n"
-" inconvenience however it has been done with good reason.  Do not attempt\r\n"
-" to continually reconnect to FieryMUD as all connection will be met with\r\n"
-" this message. All connections are logged. If we have trouble from a site\r\n"
-" we can and will contact the administrators of the site or your Internet\r\n";
-
-char *BANNEDINTHEUSA3 =
-" service provider.\r\n"
-"                         YOU HAVE BEEN WARNED!\r\n"
-"\r\n"
-" We will review the ban list once every six months to determine if any site\r\n"
-" merits removal from the list.  If you feel you have been unjustly denied\r\n"
-" access to FieryMUD send mail to gods@fierymud.org.\r\n";
-
-char *NEWSUPDATED =
-"&2 __    __                                            &0\n"
-"&2|  \\  |  \\    &2&bTHE                              &0\n"
-"&2| $$\\ | $$  ______   __   __   __   _______         &0\n"
-"&2| $$$\\| $$ /      \\ |  \\ |  \\ |  \\ /       \\   &0\n"
-"&2| $$$$\\ $$|  $$$$$$\\| $$ | $$ | $$|  $$$$$$$       &0\n"
-"&2| $$\\$$ $$| $$    $$| $$ | $$ | $$ \\$$    \\       &0\n"
-"&2| $$ \\$$$$| $$$$$$$$| $$_/ $$_/ $$ _\\$$$$$$\\      &0\n"
-"&2| $$  \\$$$ \\$$     \\ \\$$   $$   $$|       $$     &0\n"
-"&2 \\$$   \\$$  \\$$$$$$$  \\$$$$$\\$$$$  \\$$$$$$$    &0\n"
-"&2&b      HAVE BEEN UPDATED!                           &0\n"
-"&2&b      Type 'news' in game to read it!              &0\n\n";
+char *NEWSUPDATED1 = "&2 __    __                                            &0\n"
+                     "&2|  \\  |  \\    &2&bTHE                              &0\n"
+                     "&2| $$\\ | $$  ______   __   __   __   _______         &0\n"
+                     "&2| $$$\\| $$ /      \\ |  \\ |  \\ |  \\ /       \\   &0\n"
+                     "&2| $$$$\\ $$|  $$$$$$\\| $$ | $$ | $$|  $$$$$$$       &0\n";
+char *NEWSUPDATED2 = "&2| $$\\$$ $$| $$    $$| $$ | $$ | $$ \\$$    \\       &0\n"
+                     "&2| $$ \\$$$$| $$$$$$$$| $$_/ $$_/ $$ _\\$$$$$$\\      &0\n"
+                     "&2| $$  \\$$$ \\$$     \\ \\$$   $$   $$|       $$     &0\n"
+                     "&2 \\$$   \\$$  \\$$$$$$$  \\$$$$$\\$$$$  \\$$$$$$$    &0\n"
+                     "&2&b      HAVE BEEN UPDATED!                           &0\n"
+                     "&2&b      Type 'news' in game to read it!              &0\n\n";
 
 /****************************************************************************/
 /****************************************************************************/
-
 
 /* AUTOWIZ OPTIONS */
 
@@ -409,7 +406,8 @@ char *NEWSUPDATED =
  * Add game-toggle for name approval pause and set name approval to default on.
  *
  * Revision 1.37  2006/11/26 08:31:17  jps
- * Changed name acceptability blurb, and moved it up in the character creation process.
+ * Changed name acceptability blurb, and moved it up in the character creation
+ *process.
  *
  * Revision 1.36  2006/11/22 22:20:48  jps
  * The splash text no longer says BETA TEST

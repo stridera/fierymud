@@ -16,8 +16,10 @@
 #ifndef __FIERY_SPECPROCS_H
 #define __FIERY_SPECPROCS_H
 
-#define SPECIAL(name) \
-      int (name)(struct char_data *ch, void *me, int cmd, char *argument)
+#include "sysdep.h"
+#include "structs.h"
+
+#define SPECIAL(name) int(name)(struct char_data * ch, void *me, int cmd, char *argument)
 
 #endif
 

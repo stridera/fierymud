@@ -16,32 +16,35 @@
 #ifndef __FIERY_COMMANDS_H
 #define __FIERY_COMMANDS_H
 
+#include "sysdep.h"
+#include "structs.h"
+#include "interpreter.h"
+
 struct command_group {
-  char *alias;
-  char *name;
-  char *description;
-  int minimum_level;
+    char *alias;
+    char *name;
+    char *description;
+    int minimum_level;
 };
 
 struct olc_command_group {
-  char *alias;
-  char *name;
-  char *description;
-  int minimum_level;
-  int *commands;
+    char *alias;
+    char *name;
+    char *description;
+    int minimum_level;
+    int *commands;
 };
 
 struct command_group_info {
-  int *groups;
+    int *groups;
 };
 
-#define top_of_cmd_groups       (cmd_groups + num_cmd_groups)
+#define top_of_cmd_groups (cmd_groups + num_cmd_groups)
 extern struct command_group *cmd_groups;
 extern int num_cmd_groups;
 extern struct command_group_info *grp_info;
 
-#define CMD_USEABLE_FOR_LEVEL(ch, cmd) \
-  (cmd_info[(cmd)].minimum_level <= GET_LEVEL(ch))
+#define CMD_USEABLE_FOR_LEVEL(ch, cmd) (cmd_info[(cmd)].minimum_level <= GET_LEVEL(ch))
 
 extern ACMD(do_gedit);
 extern int find_command_group(char *name);

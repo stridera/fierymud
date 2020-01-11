@@ -16,19 +16,22 @@
 #ifndef __FIERY_COOLDOWNS_H
 #define __FIERY_COOLDOWNS_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 /*
  * The CD_<NAME> and MAX_COOLDOWNS constants are defined in structs.h
  * because the player structure has an array of cooldowns.
  */
 
-#define PULSE_COOLDOWN          (1 RL_SEC)
+#define PULSE_COOLDOWN (1 RL_SEC)
 
 extern const char *cooldowns[NUM_COOLDOWNS + 1];
 
-#define CD_CURRENT              0
-#define CD_MAX                  1
+#define CD_CURRENT 0
+#define CD_MAX 1
 
-#define GET_COOLDOWN(ch, i)     ((ch)->char_specials.cooldowns[(i)][CD_CURRENT])  
+#define GET_COOLDOWN(ch, i) ((ch)->char_specials.cooldowns[(i)][CD_CURRENT])
 #define GET_COOLDOWN_MAX(ch, i) ((ch)->char_specials.cooldowns[(i)][CD_MAX])
 void SET_COOLDOWN(struct char_data *ch, int type, int amount);
 void clear_cooldowns(struct char_data *ch);

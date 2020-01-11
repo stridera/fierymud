@@ -16,6 +16,9 @@
 #ifndef __FIERY_MOVEMENT_H
 #define __FIERY_MOVEMENT_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 /* MISCELLANEOUS */
 bool can_travel_on_water(struct char_data *ch);
 /*(this looks like the start of a flying section...)*/
@@ -27,9 +30,9 @@ void gravity_assisted_landing(struct char_data *ch, int distance_fallen);
 void falling_check(struct char_data *ch);
 
 /* FOLLOWING */
-void stop_follower(struct char_data * ch, int violent);
-void die_follower(struct char_data * ch);
-void add_follower(struct char_data * ch, struct char_data * leader);
+void stop_follower(struct char_data *ch, int violent);
+void die_follower(struct char_data *ch);
+void add_follower(struct char_data *ch, struct char_data *leader);
 
 /* GROUPING */
 void add_groupee(struct char_data *master, struct char_data *groupee);
@@ -63,7 +66,8 @@ bool perform_move(struct char_data *ch, int dir, int following, bool misdirectio
  * Added function battling_my_group().
  *
  * Revision 1.3  2008/09/13 17:21:59  jps
- * Added mount_pos_check, in which a rider may fall off if the mount changes position.
+ * Added mount_pos_check, in which a rider may fall off if the mount changes
+ *position.
  *
  * Revision 1.2  2008/09/07 01:28:34  jps
  * Add prototypes

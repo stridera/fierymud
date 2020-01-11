@@ -5,7 +5,7 @@
 #define MAX_MAPLINES 512
 #define MAX_CODELINES 512
 
-// function prototypes
+/* function prototypes */
 int GetLine( char *, FILE *, int );
 int WriteRoom( FILE *, int, int, int, int, FILE * );
 char *LookupCode( char , int, int * );
@@ -13,7 +13,7 @@ char *GetField( char *, int , int * );
 
 
 
-// globals
+/* globals */
 int countrooms = 1;
 int grid, world, zone;
 char *map[MAX_MAPLINES];	// to hold the map lines 
@@ -25,7 +25,7 @@ int main( int argc, char *argv[] )
 {
 	FILE *mapfile, *codefile;
 
-	// open input files
+    /*	open input files  */
 	if ( argc == 3 ) {
 		mapfile = fopen( argv[1], "r" ); // open file for input
 		codefile = fopen( argv[2], "r" ); // open file for input

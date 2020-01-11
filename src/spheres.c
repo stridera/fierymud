@@ -10,12 +10,12 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "conf.h"
-#include "sysdep.h"
-
-#include "structs.h"
-#include "skills.h"
 #include "spheres.h"
+
+#include "conf.h"
+#include "skills.h"
+#include "structs.h"
+#include "sysdep.h"
 
 /* Values for the spheredef struct:
  *
@@ -23,45 +23,48 @@
  */
 
 struct spheredef spheres[NUM_SPHERES] = {
-   { "generic",      "&5",   SKILL_SPHERE_GENERIC },
-   { "fire",         "&1",   SKILL_SPHERE_FIRE    },
-   { "water",        "&4",   SKILL_SPHERE_WATER   },
-   { "earth",        "&3",   SKILL_SPHERE_EARTH   },
-   { "air",          "&6",   SKILL_SPHERE_AIR     },
-   { "healing",      "&2",   SKILL_SPHERE_HEALING },
-   { "protection",   "&4",   SKILL_SPHERE_PROT    },
-   { "enchantment",  "&5",   SKILL_SPHERE_ENCHANT },
-   { "summoning",    "&3",   SKILL_SPHERE_SUMMON  },
-   { "death",        "&9&b", SKILL_SPHERE_DEATH   },
-   { "divination",   "&6",   SKILL_SPHERE_DIVIN   }
-};
+    {"generic", "&5", SKILL_SPHERE_GENERIC},  {"fire", "&1", SKILL_SPHERE_FIRE},
+    {"water", "&4", SKILL_SPHERE_WATER},      {"earth", "&3", SKILL_SPHERE_EARTH},
+    {"air", "&6", SKILL_SPHERE_AIR},          {"healing", "&2", SKILL_SPHERE_HEALING},
+    {"protection", "&4", SKILL_SPHERE_PROT},  {"enchantment", "&5", SKILL_SPHERE_ENCHANT},
+    {"summoning", "&3", SKILL_SPHERE_SUMMON}, {"death", "&9&b", SKILL_SPHERE_DEATH},
+    {"divination", "&6", SKILL_SPHERE_DIVIN}};
 
 int _skill_to_sphere(int skill, int recursed) {
-   switch (skill) {
-      case SKILL_SPHERE_GENERIC: return SPHERE_GENERIC;
-      case SKILL_SPHERE_FIRE:    return SPHERE_FIRE;
-      case SKILL_SPHERE_WATER:   return SPHERE_WATER;
-      case SKILL_SPHERE_EARTH:   return SPHERE_EARTH;
-      case SKILL_SPHERE_AIR:     return SPHERE_AIR;
-      case SKILL_SPHERE_HEALING: return SPHERE_HEALING;
-      case SKILL_SPHERE_PROT:    return SPHERE_PROT;
-      case SKILL_SPHERE_ENCHANT: return SPHERE_ENCHANT;
-      case SKILL_SPHERE_SUMMON:  return SPHERE_SUMMON;
-      case SKILL_SPHERE_DEATH:   return SPHERE_DEATH;
-      case SKILL_SPHERE_DIVIN:   return SPHERE_DIVIN;
-      default:
-         if (recursed) {
+    switch (skill) {
+    case SKILL_SPHERE_GENERIC:
+        return SPHERE_GENERIC;
+    case SKILL_SPHERE_FIRE:
+        return SPHERE_FIRE;
+    case SKILL_SPHERE_WATER:
+        return SPHERE_WATER;
+    case SKILL_SPHERE_EARTH:
+        return SPHERE_EARTH;
+    case SKILL_SPHERE_AIR:
+        return SPHERE_AIR;
+    case SKILL_SPHERE_HEALING:
+        return SPHERE_HEALING;
+    case SKILL_SPHERE_PROT:
+        return SPHERE_PROT;
+    case SKILL_SPHERE_ENCHANT:
+        return SPHERE_ENCHANT;
+    case SKILL_SPHERE_SUMMON:
+        return SPHERE_SUMMON;
+    case SKILL_SPHERE_DEATH:
+        return SPHERE_DEATH;
+    case SKILL_SPHERE_DIVIN:
+        return SPHERE_DIVIN;
+    default:
+        if (recursed) {
             /* ERROR */
             return SPHERE_GENERIC;
-         } else {
+        } else {
             return _skill_to_sphere(skills[skill].sphere, 1);
-         }
-   }
+        }
+    }
 }
 
-int skill_to_sphere(int skill) {
-   return _skill_to_sphere(skill, 0);
-}
+int skill_to_sphere(int skill) { return _skill_to_sphere(skill, 0); }
 
 /***************************************************************************
  * $Log: spheres.c,v $

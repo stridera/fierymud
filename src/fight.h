@@ -17,6 +17,9 @@
 #define __FIERY_FIGHT_H
 
 #include "events.h"
+#include "sysdep.h"
+#include "structs.h"
+#include "skills.h"
 
 extern struct attack_hit_type attack_hit_text[];
 
@@ -38,14 +41,11 @@ int calc_thac0(int level, int thac0_01, int thac0_00);
 EVENTFUNC(quick_aggro_event);
 void load_messages(void);
 void free_messages(void);
-void set_fighting(struct char_data *ch, struct char_data *vict, bool reciprocate);
 void death_cry(struct char_data *ch);
 void perform_die(struct char_data *ch, struct char_data *killer);
 void die(struct char_data *ch, struct char_data *killer);
-bool skill_message(int dam, struct char_data *ch, struct char_data *vict,
-      int attacktype, bool death);
-int damage(struct char_data *ch, struct char_data *victim, int dam,
-      int attacktype);
+bool skill_message(int dam, struct char_data *ch, struct char_data *vict, int attacktype, bool death);
+int damage(struct char_data *ch, struct char_data *victim, int dam, int attacktype);
 void hit(struct char_data *ch, struct char_data *victim, int type);
 void perform_violence(void);
 void pickup_dropped_weapon(struct char_data *ch);
@@ -54,13 +54,7 @@ bool area_attack_target(struct char_data *ch, struct char_data *tch);
 bool attack_ok(struct char_data *ch, struct char_data *victim, bool verbose);
 bool mass_attack_ok(struct char_data *ch, struct char_data *victim, bool verbose);
 void stop_fighting(struct char_data *ch);
-void hit(struct char_data *ch, struct char_data *victim, int type);
-#define attack(ch, victim)      hit(ch, victim, TYPE_UNDEFINED)
-int damage(struct char_data *ch, struct char_data *victim, int dam, int attacktype);
-bool skill_message(int dam, struct char_data *ch, struct char_data *vict,
-      int attacktype, bool death);
-void die(struct char_data *ch, struct char_data *killer);
-
+#define attack(ch, victim) hit(ch, victim, TYPE_UNDEFINED)
 
 #endif
 

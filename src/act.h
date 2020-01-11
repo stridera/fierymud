@@ -16,6 +16,10 @@
 #ifndef __FIERY_ACT_H
 #define __FIERY_ACT_H
 
+#include "sysdep.h"
+#include "structs.h"
+#include "interpreter.h"
+
 /***************************************************************************
  * act.informative.c                                                       *
  ***************************************************************************/
@@ -52,21 +56,18 @@ ACMD(do_weather);
 ACMD(do_where);
 ACMD(do_who);
 
-
 /* Constants */
-#define SHOW_SHORT_DESC  0
-#define SHOW_LONG_DESC   1
-#define SHOW_BASIC_DESC  2
-#define SHOW_FULL_DESC   3
+#define SHOW_SHORT_DESC 0
+#define SHOW_LONG_DESC 1
+#define SHOW_BASIC_DESC 2
+#define SHOW_FULL_DESC 3
 #define SHOW_NO_FAIL_MSG (1 << 4)
-#define SHOW_STACK       (1 << 5)
-#define SHOW_FLAGS       (1 << 6)
-#define SHOW_SKIP_SELF   (1 << 7)
-#define SHOW_MASK        (SHOW_NO_FAIL_MSG | SHOW_STACK | \
-                          SHOW_FLAGS | SHOW_SKIP_SELF)
+#define SHOW_STACK (1 << 5)
+#define SHOW_FLAGS (1 << 6)
+#define SHOW_SKIP_SELF (1 << 7)
+#define SHOW_MASK (SHOW_NO_FAIL_MSG | SHOW_STACK | SHOW_FLAGS | SHOW_SKIP_SELF)
 
 #define YOU_ARE_BLIND "You can't see a damned thing; you're blind!\r\n"
-
 
 /* Public functions */
 extern void garble_text(char *string, int percent);
@@ -91,8 +92,8 @@ void identify_obj(struct obj_data *obj, struct char_data *ch, int location);
 const char *status_string(int cur, int max, int mode);
 
 /* status_string mode codes */
-#define STATUS_COLOR  0
-#define STATUS_ALIAS  1
+#define STATUS_COLOR 0
+#define STATUS_ALIAS 1
 #define STATUS_PHRASE 2
 
 const char *save_message(int save);
@@ -102,36 +103,27 @@ const char *armor_message(int ac);
 const char *perception_message(int perception);
 const char *hiddenness_message(int hiddenness);
 const char *ability_message(int value);
-const long xp_percentage(struct char_data *ch);
+long xp_percentage(struct char_data *ch);
 const char *exp_message(struct char_data *ch);
 const char *exp_bar(struct char_data *ch, int length, int gradations, int sub_gradations, bool color);
 const char *cooldown_bar(struct char_data *ch, int cooldown, int length, int gradations, bool color);
 const char *proficiency_message(int proficiency);
 
-
 /* item functions */
-extern struct get_context* begin_get_transaction(struct char_data *ch);
+extern struct get_context *begin_get_transaction(struct char_data *ch);
 extern void end_get_transaction(struct get_context *context, const void *vict_obj);
-extern void perform_get_from_room(struct get_context *context,
-                                  struct obj_data *obj);
-extern void perform_get_from_container(struct get_context *context,
-                                       struct obj_data *obj,
-                                       struct obj_data *cont);
+extern void perform_get_from_room(struct get_context *context, struct obj_data *obj);
+extern void perform_get_from_container(struct get_context *context, struct obj_data *obj, struct obj_data *cont);
 extern void get_random_object(struct get_context *context);
 
-extern void get_from_container(struct char_data *ch, struct obj_data *cont,
-                               char *name, int *amount);
+extern void get_from_container(struct char_data *ch, struct obj_data *cont, char *name, int *amount);
 extern void get_from_room(struct char_data *ch, char *name, int amount);
 extern bool can_take_obj(struct char_data *ch, struct obj_data *obj);
 extern void get_check_money(struct char_data *ch, struct obj_data *obj);
 
 extern bool has_corpse_consent(struct char_data *ch, struct obj_data *cont);
-extern bool check_get_disarmed_obj(struct char_data *ch,
-                                   struct char_data *last_to_hold,
-                                   struct obj_data *obj);
+extern bool check_get_disarmed_obj(struct char_data *ch, struct char_data *last_to_hold, struct obj_data *obj);
 extern int conceal_roll(struct char_data *ch, struct obj_data *obj);
-
-
 
 #endif
 

@@ -16,6 +16,9 @@
 #ifndef __FIERY_VSEARCH_H
 #define __FIERY_VSEARCH_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 int print_char_listheader(char *lbuf);
 int print_char_listitem(struct char_data *mob, char *lbuf, int nfound);
 

@@ -16,9 +16,12 @@
 #ifndef __FIERY_SPELLS_H
 #define __FIERY_SPELLS_H
 
-#define ASPELL(spellname) \
-int spellname(int spellnum, int skill, struct char_data *ch, \
-                  struct char_data *victim, struct obj_data *obj, int savetype)
+#include "sysdep.h"
+#include "structs.h"
+
+#define ASPELL(spellname)                                                                                              \
+    int spellname(int spellnum, int skill, struct char_data *ch, struct char_data *victim, struct obj_data *obj,       \
+                  int savetype)
 
 ASPELL(spell_armor_of_gaia);
 ASPELL(spell_banish);
@@ -91,7 +94,6 @@ ASPELL(spell_word_of_command);
 ASPELL(chant_peace);
 ASPELL(chant_ivory_symphony);
 ASPELL(chant_apocalyptic_anthem);
-
 
 #endif
 

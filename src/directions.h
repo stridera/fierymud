@@ -16,14 +16,17 @@
 #ifndef __FIERY_DIRECTIONS_H
 #define __FIERY_DIRECTIONS_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 /* The cardinal directions: used as index to room_data.dir_option[] */
-#define NORTH          0
-#define EAST           1
-#define SOUTH          2
-#define WEST           3
-#define UP             4
-#define DOWN           5
-#define NUM_OF_DIRS    6        /* number of directions in a room (nsewud) */
+#define NORTH 0
+#define EAST 1
+#define SOUTH 2
+#define WEST 3
+#define UP 4
+#define DOWN 5
+#define NUM_OF_DIRS 6 /* number of directions in a room (nsewud) */
 
 extern const char *dirs[NUM_OF_DIRS + 1];
 extern const char *capdirs[NUM_OF_DIRS + 1];

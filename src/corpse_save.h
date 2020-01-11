@@ -10,16 +10,24 @@
  *                                                                         *
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
- 
-#define MAX_CORPSES	500
+
+#ifndef __FIERY_CORPSE_SAVE_H
+#define __FIERY_CORPSE_SAVE_H
+
+#include "sysdep.h"
+#include "structs.h"
+
+#define MAX_CORPSES 500
 
 extern void register_corpse(struct obj_data *corpse);
 extern void boot_corpses(void);
 extern void save_corpse(struct obj_data *corpse);
 extern void update_corpse(struct obj_data *corpse);
-extern void destroy_corpse(struct obj_data *corpse); 
+extern void destroy_corpse(struct obj_data *corpse);
 extern int corpse_count(void);
 extern void show_corpses(struct char_data *ch, char *argument);
+
+#endif /* __FIERY_CORPSE_SAVE_H */
 
 /***************************************************************************
  * $Log: corpse_save.h,v $
@@ -51,7 +59,7 @@ extern void show_corpses(struct char_data *ch, char *argument);
  * Fixed
  *
  * Revision 1.2  1999/01/30 21:43:29  mud
- * Added standard comment header 
+ * Added standard comment header
  * AIndented file
  *
  * Revision 1.1  1999/01/29 01:23:30  mud

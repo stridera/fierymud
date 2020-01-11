@@ -13,32 +13,35 @@
 #ifndef __FIERY_CHARS_H
 #define __FIERY_CHARS_H
 
+#include "structs.h"
+#include "sysdep.h"
+
 #define NUM_CLASSES 25
 
 /* Indexing of stats */
-#define STAT_STR  0
-#define STAT_DEX  1
-#define STAT_CON  2
-#define STAT_WIS  3
-#define STAT_INT  4
-#define STAT_CHA  5
-#define NUM_STATS 6  /* Update this if adding a stat */
+#define STAT_STR 0
+#define STAT_DEX 1
+#define STAT_CON 2
+#define STAT_WIS 3
+#define STAT_INT 4
+#define STAT_CHA 5
+#define NUM_STATS 6 /* Update this if adding a stat */
 
 /* Saving throws */
-#define SAVING_PARA   0
-#define SAVING_ROD    1
-#define SAVING_PETRI  2
+#define SAVING_PARA 0
+#define SAVING_ROD 1
+#define SAVING_PETRI 2
 #define SAVING_BREATH 3
-#define SAVING_SPELL  4
-#define NUM_SAVES     5
+#define SAVING_SPELL 4
+#define NUM_SAVES 5
 
 /* Extreme values for stats */
-#define MIN_AC        (-100)
-#define MAX_AC        100
-#define MIN_DAMROLL   (-40)
-#define MIN_HITROLL   (-40)
-#define MAX_DAMROLL   40
-#define MAX_HITROLL   40
+#define MIN_AC (-100)
+#define MAX_AC 100
+#define MIN_DAMROLL (-40)
+#define MIN_HITROLL (-40)
+#define MAX_DAMROLL 40
+#define MAX_HITROLL 40
 #define MIN_ALIGNMENT (-1000)
 #define MAX_ALIGNMENT (1000)
 
@@ -53,10 +56,9 @@ extern int roll_skill(struct char_data *ch, int skill);
 extern struct obj_data *equipped_weapon(struct char_data *ch);
 /* Whether you evade a simple yes-or-no attack, like sleep or word of command */
 extern bool boolean_attack_evasion(struct char_data *ch, int power, int dtype);
-extern int dam_suscept_adjust(struct char_data *ch, struct char_data *victim,
-      struct obj_data *weapon, int dam, int dtype);
-extern bool damage_evasion(struct char_data *ch, struct char_data *attacker,
-      struct obj_data *weapon, int dtype);
+extern int dam_suscept_adjust(struct char_data *ch, struct char_data *victim, struct obj_data *weapon, int dam,
+                              int dtype);
+extern bool damage_evasion(struct char_data *ch, struct char_data *attacker, struct obj_data *weapon, int dtype);
 #define EVASIONCLR "&6"
 
 #define DAMVERB1(ch) (damtypes[COMPOSITION_DAM(ch)].verb1st)

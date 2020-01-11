@@ -16,7 +16,10 @@
 #ifndef __FIERY_TEXT_H
 #define __FIERY_TEXT_H
 
-#define FORMAT_INDENT                   (1 << 0)
+#include "sysdep.h"
+#include "structs.h"
+
+#define FORMAT_INDENT (1 << 0)
 
 void smash_tilde(char *str);
 int replace_str(char **string, const char *pattern, const char *replacement, int rep_all, int max_size);
@@ -36,14 +39,13 @@ int levenshtein_distance(const char *s1, const char *s2);
 
 void trim_spaces(char *buffer);
 
-#define S_WHITESPACE           " \t\n\v\f\r"
-#define S_DIGITS               "1234567890"
+#define S_WHITESPACE " \t\n\v\f\r"
+#define S_DIGITS "1234567890"
 const char *skip_over(const char *string, const char *skip);
 const char *skip_chars(const char *string, char skip);
 const char *fetch_word(const char *string, char *buf, size_t space);
 char *strip_chars(char *str, const char *chars);
 char *filter_chars(char *buf, register const char *src, const char *chars);
-
 
 typedef struct screen_buf_t *screen_buf;
 screen_buf new_screen_buf(void);
@@ -61,8 +63,7 @@ void sb_set_width(screen_buf, size_t columns);
 void sb_set_first_indentation(screen_buf, size_t indentation);
 void sb_set_other_indentation(screen_buf, size_t indentation);
 void sb_use_capitalization(screen_buf, bool);
-void sb_append(screen_buf, const char *msg, ...)
-               __attribute__ ((format (printf, 2, 3)));
+void sb_append(screen_buf, const char *msg, ...) __attribute__((format(printf, 2, 3)));
 void free_screen_buf(screen_buf);
 
 #endif
@@ -76,4 +77,3 @@ void free_screen_buf(screen_buf);
  * on the go.
  *
  ***************************************************************************/
-

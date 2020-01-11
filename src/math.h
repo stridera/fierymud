@@ -35,16 +35,15 @@
 
 double normal_random(double avg, double std);
 
-
-#define DONE	(-1)
-#define LINEAR	0
-#define LOG	1
-#define SQUARED	2
+#define DONE (-1)
+#define LINEAR 0
+#define LOG 1
+#define SQUARED 2
 
 struct evaluation_param {
-  double x;
-  double y;
-  int type;
+    double x;
+    double y;
+    int type;
 };
 
 double evaluate(struct evaluation_param *eval, double x);
@@ -56,9 +55,9 @@ double logarithm(double base, double value);
 double power(double base, double exponent);
 
 int random_number(int from, int to);
-#define number(from, to)	random_number(from, to)
+#define number(from, to) random_number(from, to)
 int roll_dice(int number, int size);
-#define dice(number, size)	roll_dice(number, size)
+#define dice(number, size) roll_dice(number, size)
 
 /* undefine MAX and MIN so that our functions are used instead */
 #ifdef MAX
@@ -71,7 +70,7 @@ int roll_dice(int number, int size);
 
 int MAX(int a, int b);
 int MIN(int a, int b);
-#define LIMIT(a, b, c)	MIN(MAX((a), (b)), (c))
+#define LIMIT(a, b, c) MIN(MAX((a), (b)), (c))
 
 #endif
 

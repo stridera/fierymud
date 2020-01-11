@@ -14,6 +14,8 @@
 /***************************************************************************
  *  Changes: 3/6/98 ejg:  Moved defines and structs to queue.c.            *
  ***************************************************************************/
+#ifndef __FIERY_QUEUE_H
+#define __FIERY_QUEUE_H
 
 /* function protos need by other modules */
 struct queue *queue_init(void);
@@ -23,6 +25,8 @@ void *queue_head(struct queue *q);
 long queue_key(struct queue *q);
 long queue_elmt_key(struct q_element *qe);
 void queue_free(struct queue *q);
+
+#endif /* __FIERY_QUEUE_H */
 
 /***************************************************************************
  * $Log: queue.h,v $

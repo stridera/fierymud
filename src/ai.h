@@ -12,20 +12,25 @@
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
 
+#ifndef __FIERY_AI_H
+#define __FIERY_AI_H
+
 #include "skills.h"
+#include "structs.h"
+#include "sysdep.h"
 
 struct spell_pair {
-  int spell;
-  int remover;
-  int flag;
+    int spell;
+    int remover;
+    int flag;
 };
 
-#define MOB_ASSISTER(ch) (!MOB_FLAGGED((ch), MOB_PEACEFUL) && \
-      (MOB_FLAGGED((ch), MOB_HELPER) || MOB_FLAGGED((ch), MOB_PROTECTOR) || \
-      MOB_FLAGGED((ch), MOB_PEACEKEEPER)))
+#define MOB_ASSISTER(ch)                                                                                               \
+    (!MOB_FLAGGED((ch), MOB_PEACEFUL) &&                                                                               \
+     (MOB_FLAGGED((ch), MOB_HELPER) || MOB_FLAGGED((ch), MOB_PROTECTOR) || MOB_FLAGGED((ch), MOB_PEACEKEEPER)))
 
 /* Function prototypes in ai_utils.c */
-bool try_cast(struct char_data * ch, struct char_data * victim, int spellnum);
+bool try_cast(struct char_data *ch, struct char_data *victim, int spellnum);
 bool evil_in_group(struct char_data *victim);
 bool good_in_group(struct char_data *victim);
 int group_size(struct char_data *ch);
@@ -44,10 +49,10 @@ int appraise_opponent(struct char_data *ch, struct char_data *vict);
 bool is_aggr_to(struct char_data *ch, struct char_data *tch);
 
 /* Class AI functions */
-bool sorcerer_ai_action(struct char_data * ch, struct char_data * victim);
-bool cleric_ai_action(struct char_data * ch, struct char_data * victim);
+bool sorcerer_ai_action(struct char_data *ch, struct char_data *victim);
+bool cleric_ai_action(struct char_data *ch, struct char_data *victim);
 bool rogue_ai_action(struct char_data *ch, struct char_data *victim);
-bool warrior_ai_action(struct char_data * ch, struct char_data * victim);
+bool warrior_ai_action(struct char_data *ch, struct char_data *victim);
 bool mob_steal(struct char_data *ch);
 bool mob_animate(struct char_data *ch);
 
@@ -57,13 +62,14 @@ bool check_cleric_status(struct char_data *ch);
 bool dragonlike_attack(struct char_data *ch);
 bool in_memory(struct char_data *ch, struct char_data *vict);
 
+#endif /* __FIERY_AI_H */
 
 /***************************************************************************
  * $Log: ai.h,v $
  * Revision 1.16  2008/08/31 20:54:28  jps
- * Moved find_aggr_target, glorion_distraction, appraise_opponent, and is_aggr_to
- * to ai_utils.c from fight.c. Added will_assist. Incorporated the PROTECTOR
- * and PEACEKEEPER flags.
+ * Moved find_aggr_target, glorion_distraction, appraise_opponent, and
+ *is_aggr_to to ai_utils.c from fight.c. Added will_assist. Incorporated the
+ *PROTECTOR and PEACEKEEPER flags.
  *
  * Revision 1.15  2008/03/29 17:34:31  myc
  * No need for AGGR_TO_ALIGN.

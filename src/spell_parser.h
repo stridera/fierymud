@@ -16,6 +16,9 @@
 #ifndef __FIERY_SPELL_PARSER_H
 #define __FIERY_SPELL_PARSER_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 bool valid_cast_stance(struct char_data *ch, int spellnum);
 
 #endif

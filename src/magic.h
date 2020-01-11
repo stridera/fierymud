@@ -16,6 +16,9 @@
 #ifndef __FIERY_MAGIC_H
 #define __FIERY_MAGIC_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 int mag_savingthrow(struct char_data *ch, int type);
 bool evades_spell(struct char_data *caster, struct char_data *vict, int spellnum, int power);
 int defensive_spell_damage(struct char_data *attacker, struct char_data *victim, int dam);
@@ -30,7 +33,8 @@ bool check_fluid_spell_ok(struct char_data *ch, struct char_data *victim, int sp
 /***************************************************************************
  * $Log: magic.h,v $
  * Revision 1.6  2008/09/14 02:22:53  jps
- * Expand the suitability-for-fluid-chars check to be used for all mag_effect spells.
+ * Expand the suitability-for-fluid-chars check to be used for all mag_effect
+ *spells.
  *
  * Revision 1.5  2008/09/13 18:05:29  jps
  * Added functions to remove spells from characters when necessary.

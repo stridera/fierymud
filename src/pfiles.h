@@ -16,6 +16,9 @@
 #ifndef __FIERY_PFILES_H
 #define __FIERY_PFILES_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 #define PLAYER_FILENAME_LENGTH 40
 
 /*
@@ -24,13 +27,13 @@
  */
 #define WEAR_INVENTORY 127
 
-#define MAX_CONTAINER_DEPTH  50
+#define MAX_CONTAINER_DEPTH 50
 
 /* Receptionist modes */
-#define SAVE_UNKNOWN  0
-#define SAVE_AUTO     1
-#define SAVE_CRYO     2
-#define SAVE_RENT     3
+#define SAVE_UNKNOWN 0
+#define SAVE_AUTO 1
+#define SAVE_CRYO 2
+#define SAVE_RENT 3
 
 extern void save_quests(struct char_data *ch);
 extern void load_quests(struct char_data *ch);

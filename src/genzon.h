@@ -16,6 +16,9 @@
 #ifndef __FIERY_GENZON_H
 #define __FIERY_GENZON_H
 
+#include "structs.h"
+#include "db.h"
+
 int count_commands(struct reset_com *list);
 void delete_zone_command(struct zone_data *zone, int pos);
 

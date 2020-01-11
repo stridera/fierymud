@@ -16,10 +16,12 @@
 #ifndef __FIERY_REGEN_H
 #define __FIERY_REGEN_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 /* void hp_check_position(struct char_data *ch); */
 void alter_hit(struct char_data *ch, int amount, bool cap_amount);
-void hurt_char(struct char_data *ch, struct char_data *attacker,
-      int amount, bool cap_amount);
+void hurt_char(struct char_data *ch, struct char_data *attacker, int amount, bool cap_amount);
 void alter_mana(struct char_data *ch, int amount);
 void alter_move(struct char_data *ch, int amount);
 void check_regen_rates(struct char_data *ch);

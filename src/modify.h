@@ -16,6 +16,9 @@
 #ifndef __FIERY_MODIFY_H
 #define __FIERY_MODIFY_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 extern void string_write_limit(struct descriptor_data *d, char **writeto, size_t len, int maxlines);
 extern void string_write(struct descriptor_data *d, char **writeto, size_t len);
 extern void mail_write(struct descriptor_data *d, char **writeto, size_t len, long recipient);
@@ -27,8 +30,8 @@ extern void page_string(struct char_data *ch, const char *str);
 extern void page_string_desc(struct descriptor_data *d, const char *str);
 
 /* paging_printf will collect data, but you must then call start_paging */
-extern void paging_printf(const struct char_data *ch, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
-extern void desc_paging_printf(struct descriptor_data *d, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
+extern void paging_printf(const struct char_data *ch, const char *messg, ...) __attribute__((format(printf, 2, 3)));
+extern void desc_paging_printf(struct descriptor_data *d, const char *messg, ...) __attribute__((format(printf, 2, 3)));
 
 extern void start_paging(struct char_data *ch);
 extern void start_paging_desc(struct descriptor_data *desc);
@@ -37,9 +40,9 @@ extern void get_paging_input(struct descriptor_data *d, char *input);
 
 #define pprintf paging_printf
 #define pdprintf desc_paging_printf
-#define PAGING(d)           (d->paging_numlines)
-#define PAGING_PAGE(d)      (d->paging_curpage)
-#define PAGING_NUMPAGES(d)  (d->paging_numpages)
+#define PAGING(d) (d->paging_numlines)
+#define PAGING_PAGE(d) (d->paging_curpage)
+#define PAGING_NUMPAGES(d) (d->paging_numpages)
 
 #endif
 
@@ -55,7 +58,8 @@ extern void get_paging_input(struct descriptor_data *d, char *input);
  * instead of a character.
  *
  * Revision 1.4  2008/08/16 08:22:41  jps
- * Added the 'desc' command and took player description-editing out of the pre-game menu.
+ * Added the 'desc' command and took player description-editing out of the
+ *pre-game menu.
  *
  * Revision 1.3  2008/08/15 03:59:08  jps
  * Added pprintf for paging, and changed page_string to take a character.

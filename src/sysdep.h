@@ -2,14 +2,19 @@
  * $Id: sysdep.h,v 1.7 2008/05/19 20:19:50 jps Exp $
  ***************************************************************************/
 /* ************************************************************************
-*   File: sysdep.h                                      Part of CircleMUD *
-*  Usage: machine-specific defs based on values in conf.h (from configure)*
-*                                                                         *
-*  All rights reserved.  See license.doc for complete information.        *
-*                                                                         *
-*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
-*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
-************************************************************************ */
+ *   File: sysdep.h                                      Part of CircleMUD *
+ *  Usage: machine-specific defs based on values in conf.h (from configure)*
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ************************************************************************ */
+
+#ifndef __FIERY_SYSDEP_H
+#define __FIERY_SYSDEP_H
+
+#include "conf.h"
 
 /*
  * CircleMUD uses the crypt(3) function to encrypt player passwords in the
@@ -37,16 +42,16 @@
 
 /* Standard C headers  *************************************************/
 
-#include <stdio.h>
 #include <ctype.h>
 #include <stdarg.h>
 #include <stdbool.h>
+#include <stdio.h>
 
-#if     (defined (STDC_HEADERS) || defined (__GNU_LIBRARY__))
+#if (defined(STDC_HEADERS) || defined(__GNU_LIBRARY__))
 #include <stdlib.h>
 #include <string.h>
 
-#else   /* No standard headers.  */
+#else /* No standard headers.  */
 
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -54,33 +59,33 @@
 #include <strings.h>
 #endif
 
-#ifdef  HAVE_MEMORY_H
+#ifdef HAVE_MEMORY_H
 #include <memory.h>
 #endif
 
 extern char *malloc(), *calloc(), *realloc();
-extern void free ();
+extern void free();
 
-extern void abort (), exit ();
+extern void abort(), exit();
 
-#endif  /* Standard headers.  */
+#endif /* Standard headers.  */
 
 /* POSIX compliance  *************************************************/
 
 #ifdef HAVE_SYS_TYPES_H
-# include <sys/types.h>
+#include <sys/types.h>
 #endif
 
 #ifdef CIRCLE_WINDOWS
-# include <sys\types.h>
+#include <sys\types.h>
 #endif
 
 #ifdef HAVE_UNISTD_H
-# include <unistd.h>
+#include <unistd.h>
 #endif
 
 #ifdef HAVE_SYS_WAIT_H
-# include <sys/wait.h>
+#include <sys/wait.h>
 #endif
 
 /* Now, we #define POSIX if we have a POSIX system. */
@@ -88,19 +93,18 @@ extern void abort (), exit ();
 #ifdef HAVE_UNISTD_H
 /* Ultrix's unistd.h always defines _POSIX_VERSION, but you only get
    POSIX.1 behavior with `cc -YPOSIX', which predefines POSIX itself!  */
-#if defined (_POSIX_VERSION) && !defined (ultrix)
+#if defined(_POSIX_VERSION) && !defined(ultrix)
 #define POSIX
 #endif
 
 /* Some systems define _POSIX_VERSION but are not really POSIX.1.  */
-#if (defined (butterfly) || defined (__arm) || \
-     (defined (__mips) && defined (_SYSTYPE_SVR3)) || \
-     (defined (sequent) && defined (i386)))
+#if (defined(butterfly) || defined(__arm) || (defined(__mips) && defined(_SYSTYPE_SVR3)) ||                            \
+     (defined(sequent) && defined(i386)))
 #undef POSIX
 #endif
 #endif /* HAVE_UNISTD_H */
 
-#if !defined (POSIX) && defined (_AIX) && defined (_POSIX_SOURCE)
+#if !defined(POSIX) && defined(_AIX) && defined(_POSIX_SOURCE)
 #define POSIX
 #endif
 
@@ -108,9 +112,7 @@ extern void abort (), exit ();
 #define POSIX_NONBLOCK_BROKEN
 #endif
 
-
 /* Header files *******************************************************/
-
 
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
@@ -137,14 +139,14 @@ extern void abort (), exit ();
 #endif
 
 #ifdef TIME_WITH_SYS_TIME
-# include <sys/time.h>
-# include <time.h>
+#include <sys/time.h>
+#include <time.h>
 #else
-# if HAVE_SYS_TIME_H
-#  include <sys/time.h>
-# else
-#  include <time.h>
-# endif
+#if HAVE_SYS_TIME_H
+#include <sys/time.h>
+#else
+#include <time.h>
+#endif
 #endif
 
 #ifdef HAVE_SYS_SELECT_H
@@ -158,16 +160,15 @@ extern void abort (), exit ();
 #endif
 
 /* Define the type of a socket and other miscellany */
-#ifdef CIRCLE_WINDOWS	/* Definitions for Win32 */
+#ifdef CIRCLE_WINDOWS /* Definitions for Win32 */
 #define FD_SETSIZE 1024
 #include <winsock.h>
 typedef SOCKET socket_t;
 #define CLOSE_SOCKET(sock) closesocket(sock)
-#else					/* Definitions for UNIX */
+#else /* Definitions for UNIX */
 typedef int socket_t;
 #define CLOSE_SOCKET(sock) close(sock)
 #endif
-
 
 /* Function prototypes ************************************************/
 
@@ -213,28 +214,28 @@ unsigned long random(void);
 #endif*/
 
 #ifndef srandom
-   void srandom();
+void srandom();
 #endif
 #endif /* HAVE_RANDOM */
 
 #ifndef atoi
-   int atoi();
+int atoi();
 #endif
 
 #ifndef atol
-   long atol();
+long atol();
 #endif
 
 #ifndef bzero
-   void bzero();
+void bzero();
 #endif
 
 #ifndef crypt
-   char *crypt();
+char *crypt();
 #endif
 
 #ifndef fclose
-   int fclose();
+int fclose();
 #endif
 /* removed by gurlaek
 #ifndef fcntl
@@ -242,7 +243,7 @@ unsigned long random(void);
 #endif
 */
 #ifndef fflush
-   int fflush();
+int fflush();
 #endif
 /* removed by Gurlaek
 #ifndef fprintf
@@ -250,7 +251,7 @@ unsigned long random(void);
 #endif
 */
 #ifndef fread
-   size_t fread();
+size_t fread();
 #endif
 /* removed by Gurlaek
 #ifndef fscanf
@@ -258,31 +259,31 @@ unsigned long random(void);
 #endif
 */
 #ifndef fseek
-   int fseek();
+int fseek();
 #endif
 
 #ifndef fwrite
-   size_t fwrite();
+size_t fwrite();
 #endif
 
 #ifndef getpid
-   pid_t getpid();
+pid_t getpid();
 #endif
 
 #ifndef gettimeofday
-   int gettimeofday();
+int gettimeofday();
 #endif
 
 #ifndef perror
-   void perror();
+void perror();
 #endif
 
 #ifndef qsort
-   void qsort();
+void qsort();
 #endif
 
 #ifndef rewind
-   void rewind();
+void rewind();
 #endif
 /* removed by Gurlaek
 #ifndef sscanf
@@ -290,22 +291,25 @@ unsigned long random(void);
 #endif
 */
 #ifndef system
-   int system();
+int system();
 #endif
 
 #ifndef time
-   time_t time();
+time_t time();
 #endif
 
 #ifndef unlink
-   int unlink();
+int unlink();
 #endif
 
 #ifndef strnlen
-   size_t strnlen(const char *str, size_t maxlen);
+size_t strnlen(const char *str, size_t maxlen);
 #endif
 
 #endif /* __GNUC__ */
+
+#endif /* __FIERY_SYSDEP_H */
+
 /***************************************************************************
  * $Log: sysdep.h,v $
  * Revision 1.7  2008/05/19 20:19:50  jps

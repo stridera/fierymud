@@ -37,7 +37,7 @@ extern const char *rolls_abils_result[];
 extern const char *month_name[];
 extern const int sharp[];
 extern const char *default_prompts[][2];
-#define DEFAULT_PROMPT	4
+#define DEFAULT_PROMPT 4
 extern const char *log_severities[];
 
 /***************************************************************************

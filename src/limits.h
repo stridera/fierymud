@@ -16,18 +16,21 @@
 #ifndef __FIERY_LIMITS_H
 #define __FIERY_LIMITS_H
 
+#include "sysdep.h"
+#include "structs.h"
+
 /* Thirst is relative to ounces of water. */
 #define MAX_THIRST 48
 #define HOURLY_THIRST_CHANGE 2
 
 /* gain_exp modes */
-#define GAIN_REGULAR                          (0)
-#define GAIN_IGNORE_LEVEL_BOUNDARY       (1 << 0)
-#define GAIN_IGNORE_MORTAL_BOUNDARY      (1 << 1)
-#define GAIN_IGNORE_LOCATION             (1 << 2)
-#define GAIN_IGNORE_NAME_BOUNDARY        (1 << 3)
-#define GAIN_IGNORE_CHUNK_LIMITS         (1 << 4)
-#define GAIN_IGNORE_ALL                 ((1 << 5) - 1)
+#define GAIN_REGULAR (0)
+#define GAIN_IGNORE_LEVEL_BOUNDARY (1 << 0)
+#define GAIN_IGNORE_MORTAL_BOUNDARY (1 << 1)
+#define GAIN_IGNORE_LOCATION (1 << 2)
+#define GAIN_IGNORE_NAME_BOUNDARY (1 << 3)
+#define GAIN_IGNORE_CHUNK_LIMITS (1 << 4)
+#define GAIN_IGNORE_ALL ((1 << 5) - 1)
 
 int mana_gain(struct char_data *ch);
 int hit_gain(struct char_data *ch);
@@ -48,7 +51,8 @@ void stop_decomposing(struct obj_data *obj);
  * Rewrote gain_exp and retired gain_exp_regardless.
  *
  * Revision 1.2  2008/09/29 03:24:44  jps
- * Make container weight automatic. Move some liquid container functions to objects.c.
+ * Make container weight automatic. Move some liquid container functions to
+ *objects.c.
  *
  * Revision 1.1  2008/09/02 06:50:50  jps
  * Initial revision

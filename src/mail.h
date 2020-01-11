@@ -17,6 +17,12 @@
  ***     written by Jeremy Elson (jelson@cs.jhu.edu)   ***
  ********************************************************/
 
+#ifndef __FIERY_MAIL_H
+#define __FIERY_MAIL_H
+
+#include "sysdep.h"
+#include "structs.h"
+
 /* INSTALLATION INSTRUCTIONS in MAIL.C */
 
 /* You can modify the following constants to fit your own MUD.  */
@@ -49,14 +55,14 @@
 ***************************************************************************
 **   DON'T TOUCH DEFINES BELOW  */
 
-int	scan_file(void);
-int	has_mail(long recipient);
-void	store_mail(long to, long from, int vnum, char *message_pointer);
-char	*read_delete(long recipient, int *obj_vnum);
-void	free_mail_index(void);
+int scan_file(void);
+int has_mail(long recipient);
+void store_mail(long to, long from, int vnum, char *message_pointer);
+char *read_delete(long recipient, int *obj_vnum);
+void free_mail_index(void);
 
-#define HEADER_BLOCK  -1
-#define LAST_BLOCK    -2
+#define HEADER_BLOCK -1
+#define LAST_BLOCK -2
 #define DELETED_BLOCK -3
 
 /*
@@ -66,16 +72,15 @@ void	free_mail_index(void);
  */
 
 struct header_data_type {
-   long	next_block;		/* if header block, link to next block	*/
-   long from;			/* idnum of the mail's sender		*/
-   long to;			/* idnum of mail's recipient		*/
-   sh_int vnum;
-   time_t mail_time;		/* when was the letter mailed?		*/
+    long next_block; /* if header block, link to next block	*/
+    long from;       /* idnum of the mail's sender		*/
+    long to;         /* idnum of mail's recipient		*/
+    sh_int vnum;
+    time_t mail_time; /* when was the letter mailed?		*/
 };
 
 /* size of the data part of a header block */
-#define HEADER_BLOCK_DATASIZE \
-	(BLOCK_SIZE - sizeof(long) - sizeof(struct header_data_type) - sizeof(char))
+#define HEADER_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - sizeof(struct header_data_type) - sizeof(char))
 
 /* size of the data part of a data block */
 #define DATA_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - sizeof(char))
@@ -84,35 +89,36 @@ struct header_data_type {
    terminating null character.  */
 
 struct header_block_type_d {
-   long	block_type;		/* is this a header or data block?	*/
-   struct header_data_type header_data;	/* other header data		*/
-   char	txt[HEADER_BLOCK_DATASIZE+1]; /* actual text plus 1 for null	*/
+    long block_type;                     /* is this a header or data block?	*/
+    struct header_data_type header_data; /* other header data		*/
+    char txt[HEADER_BLOCK_DATASIZE + 1]; /* actual text plus 1 for null	*/
 };
 
 struct data_block_type_d {
-   long	block_type;		/* -1 if header block, -2 if last data block
-      				   in mail, otherwise a link to the next */
-   char	txt[DATA_BLOCK_DATASIZE+1]; /* actual text plus 1 for null	*/
+    long block_type;                   /* -1 if header block, -2 if last data block
+                                          in mail, otherwise a link to the next */
+    char txt[DATA_BLOCK_DATASIZE + 1]; /* actual text plus 1 for null	*/
 };
 
 typedef struct header_block_type_d header_block_type;
 typedef struct data_block_type_d data_block_type;
 
 struct position_list_type_d {
-   long	position;
-   struct position_list_type_d *next;
+    long position;
+    struct position_list_type_d *next;
 };
 
 typedef struct position_list_type_d position_list_type;
 
 struct mail_index_type_d {
-   long recipient;			/* who is this mail for?	*/
-   position_list_type *list_start;	/* list of mail positions	*/
-   struct mail_index_type_d *next;	/* link to next one		*/
+    long recipient;                 /* who is this mail for?	*/
+    position_list_type *list_start; /* list of mail positions	*/
+    struct mail_index_type_d *next; /* link to next one		*/
 };
 
 typedef struct mail_index_type_d mail_index_type;
 
+#endif /* __FIERY_MAIL_H */
 /***************************************************************************
  * $Log: mail.h,v $
  * Revision 1.8  2008/02/16 20:31:32  myc

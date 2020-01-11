@@ -16,31 +16,32 @@
 #ifndef __FIERY_PRIVILEGES_H
 #define __FIERY_PRIVILEGES_H
 
+#include "sysdep.h"
+#include "structs.h"
 #include "interpreter.h"
 
-#define PRIV_FUNC(name) \
-    void (name)(struct char_data *ch, int flag)
+#define PRIV_FUNC(name) void(name)(struct char_data * ch, int flag)
 
 struct grant_type {
-  int grant;
-  char *grantor;
-  int level;
-  struct grant_type *next;
+    int grant;
+    char *grantor;
+    int level;
+    struct grant_type *next;
 };
 
 struct privflagdef {
-  char *desc;
-  int level;
-  PRIV_FUNC(*update_func);
+    char *desc;
+    int level;
+    PRIV_FUNC(*update_func);
 };
 
-#define SCMD_GRANT	0
-#define SCMD_REVOKE	1
-#define SCMD_UNGRANT    2
+#define SCMD_GRANT 0
+#define SCMD_REVOKE 1
+#define SCMD_UNGRANT 2
 
 #define CMD_NOT_GRANTED 0
-#define CMD_GRANTED     1
-#define CMD_REVOKED     2
+#define CMD_GRANTED 1
+#define CMD_REVOKED 2
 
 extern ACMD(do_grant);
 extern int command_grant_usability(struct char_data *ch, int cmd);
