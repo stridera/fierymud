@@ -196,6 +196,7 @@
 #define CONT_CLOSED (1 << 2)    /* Container is closed           */
 #define CONT_LOCKED (1 << 3)    /* Container is locked           */
 #define VAL_CONTAINER_KEY 2
+#define VAL_CONTAINER_WEIGHT_REDUCTION 4 /* Used to allow bags of holding, which reduce the weight of items carried. */
 #define VAL_CORPSE_ID 2
 #define VAL_CONTAINER_CORPSE 3
 #define NOT_CORPSE 0

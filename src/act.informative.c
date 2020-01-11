@@ -1539,7 +1539,8 @@ void identify_obj(struct obj_data *obj, struct char_data *ch, int location) {
         break;
     case ITEM_CONTAINER:
         if (!IS_CORPSE(obj))
-            cprintf(ch, "Weight capacity: %d\r\n", GET_OBJ_VAL(obj, VAL_CONTAINER_CAPACITY));
+            cprintf(ch, "Weight capacity: %d, Weight Reduction: %d%%\r\n",
+                    GET_OBJ_VAL(obj, VAL_CONTAINER_CAPACITY), GET_OBJ_VAL(obj, VAL_CONTAINER_WEIGHT_REDUCTION));
         break;
     case ITEM_DRINKCON:
         cprintf(ch, "Liquid capacity: %d, Liquid remaining: %d, Liquid: %s\r\n",

@@ -1002,17 +1002,26 @@ void obj_to_obj(struct obj_data *obj, struct obj_data *obj_to) {
     obj_to->contains = obj;
     obj->in_obj = obj_to;
 
-    for (tmp_obj = obj->in_obj; tmp_obj->in_obj; tmp_obj = tmp_obj->in_obj)
+    for (tmp_obj = obj->in_obj; tmp_obj->in_obj; tmp_obj = tmp_obj->in_obj) {
         GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj);
+    }
 
     /* top level object.  Subtract weight from inventory if necessary. */
     GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj);
+
+    int weight_reduction = GET_OBJ_VAL(obj_to, VAL_CONTAINER_WEIGHT_REDUCTION);
+    float discount = 0.0f;
+    if (weight_reduction > 0) {
+        discount = GET_OBJ_WEIGHT(obj) * (weight_reduction / 100.0);
+    }
+
     if (tmp_obj->carried_by) {
-        IS_CARRYING_W(tmp_obj->carried_by) += GET_OBJ_WEIGHT(obj);
+        log("Obj Weight: %f, Reduction: %d, Discount: %f", GET_OBJ_WEIGHT(obj), weight_reduction, discount);
+        IS_CARRYING_W(tmp_obj->carried_by) += GET_OBJ_WEIGHT(obj) - discount;
         if (PLAYERALLY(tmp_obj->carried_by))
             stop_decomposing(obj);
     } else if (tmp_obj->worn_by) {
-        IS_CARRYING_W(tmp_obj->worn_by) += GET_OBJ_WEIGHT(obj);
+        IS_CARRYING_W(tmp_obj->worn_by) += GET_OBJ_WEIGHT(obj) - discount;
         if (PLAYERALLY(tmp_obj->worn_by))
             stop_decomposing(obj);
     }
@@ -1034,12 +1043,18 @@ void obj_from_obj(struct obj_data *obj) {
     for (temp = obj->in_obj; temp->in_obj; temp = temp->in_obj)
         GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj);
 
+    int weight_reduction = GET_OBJ_VAL(obj_from, VAL_CONTAINER_WEIGHT_REDUCTION);
+    float discount = 0.0f;
+    if (weight_reduction > 0) {
+        discount = GET_OBJ_WEIGHT(obj) * (weight_reduction / 100.0);
+    }
+
     /* Subtract weight from char that carries the object */
     GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj);
     if (temp->carried_by)
-        IS_CARRYING_W(temp->carried_by) -= GET_OBJ_WEIGHT(obj);
+        IS_CARRYING_W(temp->carried_by) -= GET_OBJ_WEIGHT(obj) - discount;
     else if (temp->worn_by)
-        IS_CARRYING_W(temp->worn_by) -= GET_OBJ_WEIGHT(obj);
+        IS_CARRYING_W(temp->worn_by) -= GET_OBJ_WEIGHT(obj) - discount;
 
     obj->in_obj = NULL;
     obj->next_content = NULL;

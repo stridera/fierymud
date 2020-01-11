@@ -432,9 +432,9 @@ void do_stat_object(struct char_data *ch, struct obj_data *j) {
     case ITEM_CONTAINER:
         if (!IS_CORPSE(j)) {
             sprintbit(GET_OBJ_VAL(j, VAL_CONTAINER_BITS), container_bits, buf2);
-            str_catf(buf, "Weight capacity: %d, Lock Type: %s, Key Num: %d, Corpse: %s\r\n",
+            str_catf(buf, "Weight capacity: %d, Lock Type: %s, Key Num: %d, Weight Reduction: %d%%, Corpse: %s\r\n",
                      GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), buf2, GET_OBJ_VAL(j, VAL_CONTAINER_KEY),
-                     YESNO(IS_CORPSE(j)));
+                     GET_OBJ_VAL(j, VAL_CONTAINER_WEIGHT_REDUCTION), YESNO(IS_CORPSE(j)));
         } else {
             str_catf(buf,
                      "Weight capacity: %d, Id: %d, Corpse: %s, Player "
