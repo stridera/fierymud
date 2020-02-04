@@ -1004,21 +1004,20 @@ void obj_to_obj(struct obj_data *obj, struct obj_data *obj_to) {
     obj_to->contains = obj;
     obj->in_obj = obj_to;
 
-    for (tmp_obj = obj->in_obj; tmp_obj->in_obj; tmp_obj = tmp_obj->in_obj) {
-        GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj);
-    }
-
-    /* top level object.  Subtract weight from inventory if necessary. */
-    GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj);
-
     weight_reduction = GET_OBJ_VAL(obj_to, VAL_CONTAINER_WEIGHT_REDUCTION);
     reduction = 0.0f;
     if (weight_reduction > 0) {
         reduction = GET_OBJ_WEIGHT(obj) * (weight_reduction / 100.0);
     }
 
+    for (tmp_obj = obj->in_obj; tmp_obj->in_obj; tmp_obj = tmp_obj->in_obj) {
+        GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj) - reduction;
+    }
+
+    /* top level object.  Subtract weight from inventory if necessary. */
+    GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj) - reduction;
+
     if (tmp_obj->carried_by) {
-        log("Obj Weight: %f, Reduction: %d, Discount: %f", GET_OBJ_WEIGHT(obj), weight_reduction, reduction);
         IS_CARRYING_W(tmp_obj->carried_by) += GET_OBJ_WEIGHT(obj) - reduction;
         if (PLAYERALLY(tmp_obj->carried_by))
             stop_decomposing(obj);
@@ -1040,12 +1039,9 @@ void obj_from_obj(struct obj_data *obj) {
         log("error (handler.c): trying to illegally extract obj from obj");
         return;
     }
+
     obj_from = obj->in_obj;
     REMOVE_FROM_LIST(obj, obj_from->contains, next_content);
-
-    /* Subtract weight from containers container */
-    for (temp = obj->in_obj; temp->in_obj; temp = temp->in_obj)
-        GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj);
 
     weight_reduction = GET_OBJ_VAL(obj_from, VAL_CONTAINER_WEIGHT_REDUCTION);
     reduction = 0.0f;
@@ -1053,8 +1049,12 @@ void obj_from_obj(struct obj_data *obj) {
         reduction = GET_OBJ_WEIGHT(obj) * (weight_reduction / 100.0);
     }
 
+    /* Subtract weight from containers container */
+    for (temp = obj->in_obj; temp->in_obj; temp = temp->in_obj)
+        GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj) - reduction;
+
     /* Subtract weight from char that carries the object */
-    GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj);
+    GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj) - reduction;
     if (temp->carried_by)
         IS_CARRYING_W(temp->carried_by) -= GET_OBJ_WEIGHT(obj) - reduction;
     else if (temp->worn_by)
