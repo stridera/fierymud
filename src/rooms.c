@@ -480,12 +480,18 @@ void unlock_door(struct char_data *ch, room_num roomnum, int dir, bool quiet) {
     /* Feedback to this room */
 
     if (ch && !quiet) {
-        send_to_char("*Click*\r\n", ch);
-        if (key)
+        if (key) {
+            sprintf(buf, "*Click*  You unlock the %s with $p.", exit_name(exit));
+            act(buf, FALSE, ch, key, 0, TO_CHAR);
             sprintf(buf, "$n unlocks the %s with $p.", exit_name(exit));
-        else
+            act(buf, FALSE, ch, key, 0, TO_ROOM);
+        } else {
+            sprintf(buf, "*Click*  You unlock the %s.", exit_name(exit));
+            act(buf, FALSE, ch, 0, 0, TO_CHAR);
             sprintf(buf, "$n unlocks the %s.", exit_name(exit));
-        act(buf, FALSE, ch, key, 0, TO_ROOM);
+            act(buf, FALSE, ch, 0, 0, TO_ROOM);
+        }
+
         send_gmcp_room(ch);
     }
 }
@@ -570,12 +576,18 @@ void lock_door(struct char_data *ch, room_num roomnum, int dir, bool quiet) {
     /* Feedback to this room. */
 
     if (ch && !quiet) {
-        send_to_char("*Click*\r\n", ch);
-        if (key)
+        if (key) {
+            sprintf(buf, "*Click*  You lock the %s with $p.", exit_name(exit));
+            act(buf, FALSE, ch, key, 0, TO_CHAR);
             sprintf(buf, "$n locks the %s with $p.", exit_name(exit));
-        else
+            act(buf, FALSE, ch, key, 0, TO_ROOM);
+        } else {
+            sprintf(buf, "*Click*  You lock the %s.", exit_name(exit));
+            act(buf, FALSE, ch, 0, 0, TO_CHAR);
             sprintf(buf, "$n locks the %s.", exit_name(exit));
-        act(buf, FALSE, ch, key, 0, TO_ROOM);
+            act(buf, FALSE, ch, 0, 0, TO_ROOM);
+        }
+
         send_gmcp_room(ch);
     }
 }
