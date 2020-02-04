@@ -358,6 +358,11 @@ ACMD(do_track) {
         return;
     }
 
+    if (GET_LEVEL(ch) < LVL_IMMORT && GET_LEVEL(vict) >= LVL_IMMORT) {
+        send_to_char("You feel their touches in everything around you.  How do you expect to track a god?\r\n", ch);
+        return;
+    }
+
     if (vict->in_room == ch->in_room) {
         act("$E's right here!", FALSE, ch, 0, vict, TO_CHAR);
         return;
@@ -452,6 +457,11 @@ ACMD(do_hunt) {
 
     if (vict == ch) {
         send_to_char("Awesome!   You've found yourself!\r\n", ch);
+        return;
+    }
+
+    if (GET_LEVEL(ch) < LVL_IMMORT && GET_LEVEL(vict) >= LVL_IMMORT) {
+        send_to_char("You're pretty sure you're not the predator of this relationship.\r\n", ch);
         return;
     }
 
