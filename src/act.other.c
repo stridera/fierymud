@@ -271,7 +271,8 @@ ACMD(do_subclass) {
         check_regen_rates(ch);
 
         cprintf(ch, "You have successfully subclassed as %s!\r\n", with_indefinite_article(CLASS_FULL(ch)));
-        clan_notification(GET_CLAN(ch), ch, "%s has subclassed to %s!", GET_NAME(ch), CLASS_FULL(ch));
+        sprintf(buf, "%s has subclassed to %s!", GET_NAME(ch), CLASS_FULL(ch));
+        send_to_all(buf);
         mprintf(L_STAT, LVL_GOD, "%s has subclassed to %s", GET_NAME(ch), CLASS_FULL(ch));
         return;
     }
