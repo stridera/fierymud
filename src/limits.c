@@ -439,14 +439,11 @@ void check_idling(struct char_data *ch) {
 
         if (ch->char_specials.timer >= 8) {
             /* this immort has been idle for 10+ mins */
-            if (GET_INVIS_LEV(ch) < LVL_IMMORT) {
-                /* this char is not already invis beyond LVL_IMMORT */
-                sprintf(buf,
-                        "You have been idle for ten minutes.  Auto-invis to level %d "
-                        "engaged.\r\n",
-                        LVL_IMMORT);
+            if (GET_AUTOINVIS(ch) > 0 && GET_INVIS_LEV(ch) < GET_AUTOINVIS(ch) ) {
+                /* this char is not already invis beyond the immorts invis level */
+                sprintf(buf, "You have been idle for ten minutes.  Auto-invis to level %d engaged.\r\n", GET_AUTOINVIS(ch));
                 send_to_char(buf, ch);
-                perform_immort_invis(ch, LVL_IMMORT);
+                perform_immort_invis(ch, GET_AUTOINVIS(ch));
             }
         }
         return;
