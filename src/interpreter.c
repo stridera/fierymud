@@ -2012,7 +2012,7 @@ int enter_player_game(struct descriptor_data *d) {
             break;
         }
 
-    clan_notification(GET_CLAN(d->character), d->character, "%s has entered the game.", GET_NAME(d->character));
+    all_except_printf(d->character, "The ground shakes slightly with the arrival of %s.", GET_NAME(d->character));
 
     return load_result;
 }

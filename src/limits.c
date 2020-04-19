@@ -301,7 +301,7 @@ void gain_exp(struct char_data *ch, long gain, unsigned int mode) {
             else if (GET_LEVEL(ch) == LVL_MAX_MORT) {
                 if (PLR_FLAGGED(ch, PLR_GOTSTARS)) {
                     cprintf(ch, AFMAG "You got your %s " AFMAG "back again!\r\n" ANRM, CLASS_STARS(ch));
-                    clan_notification(GET_CLAN(ch), ch, "%s regained %s %s!", GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
+                    all_except_printf(ch, "%s regained %s %s!", GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
                 } else {
                     SET_FLAG(PLR_FLAGS(ch), PLR_GOTSTARS);
                     cprintf(ch, AFMAG "You have achieved %s " AFMAG "status in %s" AFMAG "!!\r\n" ANRM, CLASS_STARS(ch),
@@ -330,11 +330,11 @@ void gain_exp(struct char_data *ch, long gain, unsigned int mode) {
 
         if (num_levels == 1) {
             cprintf(ch, AHWHT "You gain a level!\r\n" ANRM);
-            clan_notification(GET_CLAN(ch), ch, "%s advanced to level %d!", GET_NAME(ch), GET_LEVEL(ch));
+            all_except_printf(ch, "%s advanced to level %d!", GET_NAME(ch), GET_LEVEL(ch));
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
         } else if (num_levels > 1) {
             cprintf(ch, AHWHT "You gain %d levels to %d!\r\n" ANRM, num_levels, GET_LEVEL(ch));
-            clan_notification(GET_CLAN(ch), ch, "%s advances %d levels to level %d!", GET_NAME(ch), num_levels,
+            all_except_printf(ch, "%s advances %d levels to level %d!", GET_NAME(ch), num_levels,
                               GET_LEVEL(ch));
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d (from %d)", GET_NAME(ch),
                     GET_LEVEL(ch), GET_LEVEL(ch) - num_levels);
@@ -351,12 +351,12 @@ void gain_exp(struct char_data *ch, long gain, unsigned int mode) {
         }
         if (num_levels == 1) {
             cprintf(ch, AHWHT "You lose a level!\r\n" ANRM);
-            clan_notification(GET_CLAN(ch), ch, "%s lost level %d!", GET_NAME(ch), GET_LEVEL(ch) + 1);
+            all_except_printf(ch, "%s lost level %d!", GET_NAME(ch), GET_LEVEL(ch) + 1);
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s lost level %d", GET_NAME(ch), GET_LEVEL(ch) + 1);
         } else if (num_levels > 1) {
             cprintf(ch, AHWHT "You lose %d levels from %d to %d!\r\n" ANRM, num_levels, GET_LEVEL(ch) + num_levels,
                     GET_LEVEL(ch));
-            clan_notification(GET_CLAN(ch), ch, "%s lost %d levels from %d to %d!", GET_NAME(ch), num_levels,
+            all_except_printf(ch, "%s lost %d levels from %d to %d!", GET_NAME(ch), num_levels,
                               GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s lost %d levels from %d to %d", GET_NAME(ch),
                     num_levels, GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
