@@ -1381,7 +1381,7 @@ ACMD(do_doorbash)
             return;
         }
         if (!GET_SKILL(ch, SKILL_DOORBASH)) {
-            send_to_char("You don't have that skill.", ch);
+            send_to_char("You don't have that skill.\r\n", ch);
             return;
         }
         probability = chance + GET_LEVEL(ch);
@@ -2137,8 +2137,7 @@ ACMD(do_alert) {
 
     switch (GET_POS(ch)) {
     case POS_PRONE:
-        send_to_char("You stop relaxing and try to become more aware of your "
-                     "surroundings.\r\n",
+        send_to_char("You stop relaxing and try to become more aware of your surroundings.\r\n",
                      ch);
         break;
     case POS_SITTING:

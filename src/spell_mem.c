@@ -1361,8 +1361,7 @@ ACMD(do_scribe) {
     sourcebook = find_spellbook_with_spell(ch, spellnum);
     teacher = find_teacher_for_spell(ch, spellnum);
     if (!sourcebook && !teacher) {
-        send_to_char("There is nobody here to teach that spell, and nothing to "
-                     "copy it from.\r\n",
+        send_to_char("There is nobody here to teach that spell, and nothing to copy it from.\r\n",
                      ch);
         return;
     }

@@ -1204,6 +1204,12 @@ void send_gmcp_prompt(struct descriptor_data *d) {
     static char gmcp_prompt[MAX_STRING_LENGTH];
     char *cur = gmcp_prompt;
 
+    sprintf(cur, "%s", ga_string);
+
+    write_to_descriptor(d->descriptor, gmcp_prompt);
+
+    return;
+
     if (!d->gmcp_enabled) {
         return;
     }
@@ -1823,12 +1829,7 @@ void string_to_output(struct descriptor_data *t, const char *txt) {
     if (!t || !txt || !*txt)
         return;
 
-    if (!IS_NEWLINE(txt[strlen(txt) - 1]))
-        sprintf(tmp, "%s\r\n", txt);
-    else
-        strcpy(tmp, txt);
-
-    size = process_colors(new_txt, sizeof(new_txt), tmp,
+    size = process_colors(new_txt, sizeof(new_txt), txt,
                           t->character && COLOR_LEV(t->character) >= C_NRM ? CLR_PARSE : CLR_STRIP);
 
 

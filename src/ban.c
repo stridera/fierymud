@@ -140,9 +140,7 @@ ACMD(do_ban) {
     }
     for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
         if (!str_cmp(ban_node->site, site)) {
-            send_to_char("That site has already been banned -- unban it to change "
-                         "the ban type.\r\n",
-                         ch);
+            send_to_char("That site has already been banned -- unban it to change the ban type.\r\n", ch);
             return;
         }
     }

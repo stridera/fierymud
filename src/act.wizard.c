@@ -1263,8 +1263,7 @@ ACMD(do_dc) {
         }
 
     if (!d) {
-        send_to_char("Usage: DC <connection number | character name> (type USERS "
-                     "for a list)\r\n",
+        send_to_char("Usage: DC <connection number | character name> (type USERS for a list)\r\n",
                      ch);
         return;
     }
@@ -1316,8 +1315,7 @@ ACMD(do_wizlock) {
     }
     send_to_char(buf, ch);
     if (!*arg && restrict_reason == RESTRICT_AUTOBOOT)
-        send_to_char("The restriction was set automatically by the automatic "
-                     "rebooting system.\r\n",
+        send_to_char("The restriction was set automatically by the automatic rebooting system.\r\n",
                      ch);
 }
 
@@ -1872,8 +1870,7 @@ ACMD(do_wizutil) {
             break;
         case SCMD_THAW:
             if (!PLR_FLAGGED(vict, PLR_FROZEN)) {
-                send_to_char("Sorry, your victim is not morbidly encased in ice at the "
-                             "moment.\r\n",
+                send_to_char("Sorry, your victim is not morbidly encased in ice at the moment.\r\n",
                              ch);
                 return;
             }
@@ -1886,8 +1883,7 @@ ACMD(do_wizutil) {
             sprintf(buf, "(GC) %s un-frozen by %s.", GET_NAME(vict), GET_NAME(ch));
             mudlog(buf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
             REMOVE_FLAG(PLR_FLAGS(vict), PLR_FROZEN);
-            send_to_char("A fireball suddenly explodes in front of you, melting the "
-                         "ice!\r\nYou feel thawed.\r\n",
+            send_to_char("A fireball suddenly explodes in front of you, melting the ice!\r\nYou feel thawed.\r\n",
                          vict);
             send_to_char("Thawed.\r\n", ch);
             act("A sudden fireball conjured from nowhere thaws $n!", FALSE, vict, 0, 0, TO_ROOM);
@@ -2728,7 +2724,7 @@ ACMD(do_game) {
                 send_to_char(linebuf, ch);
             }
         if (!n_visible)
-            send_to_char("You do not have access to any game config toggles", ch);
+            send_to_char("You do not have access to any game config toggles.\r\n", ch);
         return;
     }
 
@@ -3049,9 +3045,7 @@ ACMD(do_rrestore) {
     if (argument && *argument)
         cprintf(ch, "%s@0\r\n", argument);
     else
-        send_to_char("You spread healing energy across the realm, restoring all in "
-                     "its path.",
-                     ch);
+        send_to_char("You spread healing energy across the realm, restoring all in its path.\r\n", ch);
 }
 
 ACMD(do_rpain) {
@@ -3074,9 +3068,7 @@ ACMD(do_rpain) {
     if (argument && *argument)
         cprintf(ch, "%s@0\r\n", argument);
     else
-        send_to_char("Pain and pestilence spreads across the lands.  Your wrath "
-                     "has been known.",
-                     ch);
+        send_to_char("Pain and pestilence spreads across the lands.  Your wrath has been known.\r\n", ch);
 }
 
 ACMD(do_rclone) {
@@ -3142,7 +3134,7 @@ ACMD(do_terminate) {
         }
 
         if (GET_LEVEL(victim) == LVL_IMPL) {
-            send_to_char("&1You dare NOT do that!&0", ch);
+            send_to_char("&1You dare NOT do that!&0\r\n", ch);
             return;
         }
         if (IS_NPC(victim)) {
@@ -3197,9 +3189,7 @@ ACMD(do_pfilemaint) {
                             "Inactivity"};
 
     if (should_restrict != GET_LEVEL(ch)) {
-        send_to_char("First <wizlock> and make sure everyone logs out before "
-                     "executing this command.\r\n",
-                     ch);
+        send_to_char("First <wizlock> and make sure everyone logs out before executing this command.\r\n", ch);
         return;
     }
 
@@ -3212,7 +3202,7 @@ ACMD(do_pfilemaint) {
 
     sprintf(buf, "PFILEMAINT: (GC) Started by %s", GET_NAME(ch));
     log(buf);
-    send_to_char("Processing player files", ch);
+    send_to_char("Processing player files\r\n", ch);
 
     /* copy the player index to a backup file */
     sprintf(file_name, "%s/%s", PLR_PREFIX, INDEX_FILE);
@@ -3323,9 +3313,7 @@ ACMD(do_hotboot) {
      */
     if (str_cmp(argument, "force") != 0) {
         if (str_cmp(argument, "yes") != 0) {
-            send_to_char("Are you sure you want to do a hotboot?  If so, type "
-                         "'hotboot yes'.\r\n",
-                         ch);
+            send_to_char("Are you sure you want to do a hotboot?  If so, type 'hotboot yes'.\r\n", ch);
             return;
         }
 

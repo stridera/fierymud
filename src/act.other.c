@@ -572,13 +572,11 @@ ACMD(do_shapechange) {
     /* Check alignment. */
     if (GET_LEVEL(ch) < LVL_GOD) {
         if (GET_ALIGNMENT(ch) >= 350) {
-            send_to_char("Your good loyalties betray your nature, inhibiting a "
-                         "transformation.\r\n",
+            send_to_char("Your good loyalties betray your nature, inhibiting a transformation.\r\n",
                          ch);
             return;
         } else if (GET_ALIGNMENT(ch) <= -350) {
-            send_to_char("Your evil loyalties betray your nature, inhibiting a "
-                         "transformation.\r\n",
+            send_to_char("Your evil loyalties betray your nature, inhibiting a transformation.\r\n",
                          ch);
             return;
         }
@@ -666,8 +664,7 @@ ACMD(do_shapechange) {
 
     /* Attempt to create the mobile. */
     if (!(mob = read_mobile(creatures[index].vnum, VIRTUAL))) {
-        send_to_char("You start to change, then feel ill, and slump back to your "
-                     "normal form.\r\n",
+        send_to_char("You start to change, then feel ill, and slump back to your normal form.\r\n",
                      ch);
         sprintf(buf,
                 "SYSERR: %s tried to shapechange into nonexistent "
@@ -1514,12 +1511,10 @@ ACMD(do_douse) {
             act("$n&0 frantically rolls around on the ground, attempting to douse "
                 "the flames consuming $s body.",
                 TRUE, ch, 0, 0, TO_ROOM);
-            send_to_char("You roll around on the ground, trying to douse the flames "
-                         "engulfing your body!\r\n",
+            send_to_char("You roll around on the ground, trying to douse the flames engulfing your body!\r\n",
                          ch);
         } else {
-            act("$n&0 rolls on the ground frantically, finally smothering the fire "
-                "that was consuming $m.",
+            act("$n&0 rolls on the ground frantically, finally smothering the fire that was consuming $m.",
                 TRUE, ch, 0, 0, TO_ROOM);
             send_to_char("You roll around on the ground, finally smothering your flames.\r\n", ch);
             success = TRUE;
@@ -1745,8 +1740,7 @@ ACMD(do_group) {
 
     /* You can't enroll someone if you're in a group and not the leader. */
     if (ch->group_master) {
-        send_to_char("&2&8You cannot enroll group members without being head of a "
-                     "group.&0\r\n",
+        send_to_char("&2&8You cannot enroll group members without being head of a group.&0\r\n",
                      ch);
         return;
     }
@@ -2061,8 +2055,7 @@ ACMD(do_wimpy) {
             GET_WIMP_LEV(ch) = 0;
         }
     } else
-        send_to_char("Specify at how many hit points you want to wimp out at.  (0 "
-                     "to disable)\r\n",
+        send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n",
                      ch);
 
     return;
@@ -2342,8 +2335,7 @@ ACMD(do_summon_mount) {
                 return;
             }
         if (GET_LEVEL(ch) < 15) {
-            send_to_char("You are not yet deemed worthy of a mount (try gaining some "
-                         "more experience)\r\n",
+            send_to_char("You are not yet deemed worthy of a mount (try gaining some more experience)\r\n",
                          ch);
             return;
         }

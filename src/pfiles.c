@@ -295,8 +295,7 @@ void show_rent(struct char_data *ch, char *argument) {
     }
 
     if (!is_integer(buf)) {
-        send_to_char("This file is in the obsolete binary format.  Please use "
-                     "'objupdate' to fix it.\r\n",
+        send_to_char("This file is in the obsolete binary format.  Please use 'objupdate' to fix it.\r\n",
                      ch);
         return;
     }

@@ -1217,8 +1217,7 @@ void do_show_compositions(struct char_data *ch, char *argument) {
             damtypes[DAM_FIRE].color, damtypes[DAM_WATER].color, damtypes[DAM_COLD].color, damtypes[DAM_ACID].color,
             damtypes[DAM_POISON].color);
     send_to_char(buf, ch);
-    send_to_char("---  -----------  -----  ------  -----  -----   ---  ----  "
-                 "-----  ----  ------\r\n",
+    send_to_char("---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\r\n",
                  ch);
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
         sprintf(buf,

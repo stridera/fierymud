@@ -174,8 +174,7 @@ void show_sizes(struct char_data *ch) {
     char wrange[MAX_STRING_LENGTH];
 
     send_to_char("The character sizes are:\r\n\r\n", ch);
-    send_to_char("Idx  Name          Height range                              "
-                 "Weight range\r\n",
+    send_to_char("Idx  Name          Height range                              Weight range\r\n",
                  ch);
     send_to_char("---  ------------  ----------------------------------------  "
                  "-------------------------\r\n",

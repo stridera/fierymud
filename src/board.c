@@ -700,8 +700,7 @@ ACMD(do_boardadmin) {
         if (!*argument)
             send_to_char("What do you want the new board's alias to be?\r\n", ch);
         else if (!valid_alias(argument))
-            send_to_char("Only letters, digits, and underscores are allowed in board "
-                         "aliases.\r\n",
+            send_to_char("Only letters, digits, and underscores are allowed in board aliases.\r\n",
                          ch);
         else {
             board = new_board(argument);

@@ -195,8 +195,7 @@ ACMD(do_stow) {
     else if (obj_dotmode != FIND_INDIV)
         send_to_char("You can only stow one item at a time.\r\n", ch);
     else if (cont_dotmode != FIND_INDIV)
-        send_to_char("You'll need to break it into pieces to put it into more than "
-                     "one container!\r\n",
+        send_to_char("You'll need to break it into pieces to put it into more than one container!\r\n",
                      ch);
     else {
         if (*arg2)
@@ -1787,8 +1786,7 @@ ACMD(do_compare) {
             if ((IS_WEAPON_SLASHING(obj1) && !IS_WEAPON_SLASHING(obj2)) ||
                 (IS_WEAPON_PIERCING(obj1) && !IS_WEAPON_PIERCING(obj2)) ||
                 (IS_WEAPON_CRUSHING(obj1) && !IS_WEAPON_CRUSHING(obj2)))
-                send_to_char("These weapons are too different to realistically compare "
-                             "them!\r\n",
+                send_to_char("These weapons are too different to realistically compare them!\r\n",
                              ch);
             else if (WEAPON_AVERAGE(obj1) == WEAPON_AVERAGE(obj2))
                 send_to_char("They each look about as dangerous as the other.\r\n", ch);

@@ -868,8 +868,7 @@ ACMD(do_vsearch) {
     argument = any_one_arg(argument, arg);
     if (!*arg) {
         if (subcmd == SCMD_VSEARCH)
-            send_to_char("Usage: vsearch <type> <field> <query> [[from] <start_vnum> "
-                         "[to] [<end_vnum>]]\r\n",
+            send_to_char("Usage: vsearch <type> <field> <query> [[from] <start_vnum> [to] [<end_vnum>]]\r\n",
                          ch);
         else if (subcmd == SCMD_VLIST)
             send_to_char("Usage: vlist <type> [[from] <start_vnum> [to] [<end_vnum>] | *]\r\n", ch);

@@ -432,7 +432,7 @@ ACMD(do_hunt) {
     argument = one_argument(argument, arg);
     if (!str_cmp(" follow", argument) || !str_cmp(" f", argument)) {
         if (GET_CLASS(ch) != CLASS_HUNTER && (GET_LEVEL(ch) < LVL_IMMORT)) {
-            send_to_char("You do not have enough skills to follow someone after hunting", ch);
+            send_to_char("You do not have enough skills to follow someone after hunting.\r\n", ch);
             return;
         }
         follow = TRUE;

@@ -203,11 +203,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
 
         if (ROOM_FLAGGED(caster->in_room, ROOM_PEACEFUL) && SINFO.violent) {
             if (IS_SPELL(spellnum)) {
-                send_to_char("A flash of white light fills the room, dispelling your "
-                             "violent magic!\r\n",
+                send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n",
                              caster);
-                act("White light from no particular source suddenly fills the room, "
-                    "then vanishes.",
+                act("White light from no particular source suddenly fills the room, then vanishes.",
                     FALSE, caster, 0, 0, TO_ROOM);
             } else { /* song/chant */
                 send_to_char("Your words dissolve into peaceful nothingness...\r\n", caster);

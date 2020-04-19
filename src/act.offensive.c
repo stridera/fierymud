@@ -224,16 +224,13 @@ ACMD(do_roar) {
 
     if (subcmd == SCMD_HOWL) {
         act("$n opens his mouth and a &1&8demonic &0&1howl&0 echoes out!", FALSE, ch, 0, 0, TO_ROOM);
-        send_to_char("You let out a demonic battle howl, striking fear into your "
-                     "enemies!\r\n",
+        send_to_char("You let out a demonic battle howl, striking fear into your enemies!\r\n",
                      ch);
     } else {
         act("&9&b$n&9&b makes your soul quake with a vicious "
             "&1ROOOOOAAAAAARRRRRR!&0",
             FALSE, ch, 0, 0, TO_ROOM);
-        send_to_char("&9&bYou take a deep breath and release a vicious "
-                     "&1ROOOOOAAAAARRRRRR!&0\r\n",
-                     ch);
+        send_to_char("&9&bYou take a deep breath and release a vicious &1ROOOOOAAAAARRRRRR!&0\r\n", ch);
     }
 
     for (tch = world[ch->in_room].people; tch; tch = next_tch) {
@@ -412,7 +409,7 @@ ACMD(do_hit) {
     one_argument(argument, arg);
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS))
-        send_to_char("&8It is just too dark!&0", ch);
+        send_to_char("&8It is just too dark!&0\r\n", ch);
     else if (EFF_FLAGGED(ch, EFF_BLIND))
         send_to_char("You can't see a thing!\r\n", ch);
     else if (!*arg)
@@ -441,7 +438,7 @@ ACMD(do_kill) {
     struct char_data *vict;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-        send_to_char("&8It is just too damn dark!&0", ch);
+        send_to_char("&8It is just too damn dark!&0\r\n", ch);
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
@@ -463,7 +460,7 @@ ACMD(do_kill) {
         else if (ch == vict)
             send_to_char("Your mother would be so sad.. :(\r\n", ch);
         else if (GET_LEVEL(vict) == LVL_IMPL)
-            send_to_char("&1You dare NOT do that!&0", ch);
+            send_to_char("&1You dare NOT do that!&0\r\n", ch);
         else {
             act("You chop $M to pieces!   Ah!   The blood!", FALSE, ch, 0, vict, TO_CHAR);
             act("$N chops you to pieces!", FALSE, vict, 0, ch, TO_CHAR);
@@ -1014,7 +1011,7 @@ ACMD(do_bash) {
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-            send_to_char("&8It's just too dark!&0", ch);
+            send_to_char("&8It's just too dark!&0\r\n", ch);
             return;
         }
 
@@ -1311,9 +1308,7 @@ ACMD(do_eye_gouge) {
     }
 
     if (EFF_FLAGGED(ch, EFF_BLIND)) {
-        send_to_char("It's going to be hard to gouge someone's eyes out if you "
-                     "can't even see.\r\n",
-                     ch);
+        send_to_char("It's going to be hard to gouge someone's eyes out if you can't even see.\r\n", ch);
         return;
     }
 
@@ -1397,7 +1392,7 @@ ACMD(do_springleap) {
     int percent, prob, dmg;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !CAN_SEE_IN_DARK(ch)) {
-        send_to_char("&8It is too dark!&0", ch);
+        send_to_char("&8It is too dark!&0\r\n", ch);
         return;
     }
 
@@ -1595,9 +1590,7 @@ ACMD(do_throatcut) {
     }
 
     if (FIGHTING(vict)) {
-        send_to_char("&0You can't cut the throat of a fighting person -- they're "
-                     "too alert!&0\r\n",
-                     ch);
+        send_to_char("&0You can't cut the throat of a fighting person -- they're too alert!&0\r\n", ch);
         return;
     }
 
@@ -2309,12 +2302,10 @@ ACMD(do_electrify) {
         mag_area(GET_SKILL(ch, SKILL_ELECTRIFY), ch, SKILL_ELECTRIFY, SAVING_BREATH);
     else {
         if (IS_WATER(ch->in_room))
-            send_to_char("The water around you sizzles, but you are unable to gather "
-                         "any power...\r\n",
+            send_to_char("The water around you sizzles, but you are unable to gatherany power...\r\n",
                          ch);
         else
-            send_to_char("The air around you crackles, but you are unable to gather "
-                         "any power...\r\n",
+            send_to_char("The air around you crackles, but you are unable to gather any power...\r\n",
                          ch);
         act("A quick spike of electricity runs across $n's skin.", TRUE, ch, 0, 0, TO_ROOM);
     }
@@ -2361,9 +2352,7 @@ ACMD(do_berserk) {
         return;
     }
 
-    send_to_char("You feel your blood begin to boil, and your self-control "
-                 "starts to slip...\r\n",
-                 ch);
+    send_to_char("You feel your blood begin to boil, and your self-control starts to slip...\r\n", ch);
     act("$n's eyes flash and anger clouds $s face.", TRUE, ch, 0, 0, TO_ROOM);
 
     start_berserking(ch);

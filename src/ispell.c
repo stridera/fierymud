@@ -166,7 +166,7 @@ ACMD(do_ispell) {
 
     if (*argument == '+') {
         if (GET_LEVEL(ch) < LVL_IMMORT) {
-            send_to_char("You may not add entries to the dictionary.", ch);
+            send_to_char("You may not add entries to the dictionary.\r\n", ch);
             return;
         }
         for (pc = argument + 1; *pc; ++pc)

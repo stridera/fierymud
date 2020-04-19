@@ -120,7 +120,7 @@ void sdedit_disp_menu(struct descriptor_data *d) {
             "%sSpell Note:%s\r\n"
             "%s%s%s\r\n"
             "\r\n"
-            "Enter choice : ",
+            "Enter choice:\r\n",
             /*5 */ yel, nrm, grn, spell->max_bonus, nrm,
             /*Bonus */ yel, nrm, grn, (spell->use_bonus ? "TRUE" : "FALSE"), nrm,
             /*Intern*/ yel, nrm, grn, (spell->intern_dam ? "TRUE" : "FALSE"), nrm,
@@ -186,7 +186,7 @@ void sdedit_parse(struct descriptor_data *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) {
-                send_to_char("Do you wish to save this.?>", d->character);
+                send_to_char("Do you wish to save this?\r\n", d->character);
                 OLC_MODE(d) = SDEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
@@ -337,7 +337,7 @@ void sdedit_parse(struct descriptor_data *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            send_to_char("Invalid choice!\r\nDo you wish to save this help internally? ", d->character);
+            send_to_char("Invalid choice!\r\nDo you wish to save this help internally?\r\n", d->character);
             break;
         }
         return;

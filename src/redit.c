@@ -518,7 +518,7 @@ void redit_disp_exit_flag_menu(struct descriptor_data *d) {
             "%s1%s) Closeable door\r\n"
             "%s2%s) Pickproof\r\n"
             "%s3%s) Description\r\n"
-            "Enter choice : ",
+            "Enter choice:\r\n",
             grn, nrm, grn, nrm, grn, nrm, grn, nrm);
     send_to_char(buf, d->character);
 }
@@ -616,7 +616,7 @@ void redit_disp_menu(struct descriptor_data *d) {
             "%s%sF%s) Extra descriptions menu\r\n"
             "%sS%s) Script      : %s%s\r\n"
             "%sQ%s) Quit\r\n"
-            "Enter choice : ",
+            "Enter choice:\r\n",
             buf, grn, nrm, grn, nrm, cyn, room->proto_script ? "Set." : "Not Set.", grn, nrm);
     send_to_char(buf, d->character);
 
@@ -650,7 +650,7 @@ void redit_parse(struct descriptor_data *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            send_to_char("Invalid choice!\r\nDo you wish to save this room internally? : ", d->character);
+            send_to_char("Invalid choice!\r\nDo you wish to save this room internally?\r\n", d->character);
             break;
         }
         return;
@@ -660,13 +660,13 @@ void redit_parse(struct descriptor_data *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Something has been modified. */
-                send_to_char("Do you wish to save this room internally? : ", d->character);
+                send_to_char("Do you wish to save this room internally?\r\n", d->character);
                 OLC_MODE(d) = REDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
             return;
         case '1':
-            send_to_char("Enter room name:-\r\n] ", d->character);
+            send_to_char("Enter room name:]\r\n", d->character);
             OLC_MODE(d) = REDIT_NAME;
             break;
         case '2':
@@ -782,7 +782,7 @@ void redit_parse(struct descriptor_data *d, char *arg) {
             break;
         case '1':
             OLC_MODE(d) = REDIT_EXIT_NUMBER;
-            send_to_char("Exit to room number : ", d->character);
+            send_to_char("Exit to room number:\r\n", d->character);
             return;
         case '2':
             OLC_MODE(d) = REDIT_EXIT_DESCRIPTION;
@@ -791,11 +791,11 @@ void redit_parse(struct descriptor_data *d, char *arg) {
             return;
         case '3':
             OLC_MODE(d) = REDIT_EXIT_KEYWORD;
-            send_to_char("Enter keywords : ", d->character);
+            send_to_char("Enter keywords:\r\n", d->character);
             return;
         case '4':
             OLC_MODE(d) = REDIT_EXIT_KEY;
-            send_to_char("Enter key number : ", d->character);
+            send_to_char("Enter key number:\r\n", d->character);
             return;
         case '5':
             redit_disp_exit_flag_menu(d);
@@ -812,7 +812,7 @@ void redit_parse(struct descriptor_data *d, char *arg) {
             OLC_EXIT(d) = NULL;
             break;
         default:
-            send_to_char("Try again : ", d->character);
+            send_to_char("Try again:\r\n", d->character);
             return;
         }
         break;
@@ -820,7 +820,7 @@ void redit_parse(struct descriptor_data *d, char *arg) {
     case REDIT_EXIT_NUMBER:
         if ((number = atoi(arg)) != -1)
             if ((number = real_room(number)) < 0) {
-                send_to_char("That room does not exist.  Try again : ", d->character);
+                send_to_char("That room does not exist.  Try again:\r\n", d->character);
                 return;
             }
         OLC_EXIT(d)->to_room = number;
@@ -906,7 +906,7 @@ void redit_parse(struct descriptor_data *d, char *arg) {
         } break;
         case 1:
             OLC_MODE(d) = REDIT_EXTRADESC_KEY;
-            send_to_char("Enter keywords, separated by spaces : ", d->character);
+            send_to_char("Enter keywords, separated by spaces:\r\n", d->character);
             return;
         case 2:
             OLC_MODE(d) = REDIT_EXTRADESC_DESCRIPTION;
@@ -916,8 +916,7 @@ void redit_parse(struct descriptor_data *d, char *arg) {
 
         case 3:
             if (!OLC_DESC(d)->keyword || !OLC_DESC(d)->description) {
-                send_to_char("You can't edit the next extra desc without completing "
-                             "this one.\r\n",
+                send_to_char("You can't edit the next extra desc without completing this one.\r\n",
                              d->character);
                 redit_disp_extradesc_menu(d);
             } else {

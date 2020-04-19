@@ -96,8 +96,7 @@ ASPELL(spell_isolation) {
     /* You can't cast this spell in peaceful rooms. */
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of light appears, dispelling your "
-                     "spell!\r\n",
+        send_to_char("A flash of light appears, dispelling your spell!\r\n",
                      ch);
         act("Bright light suddenly fills the room, "
             "then vanishes.",
@@ -704,11 +703,9 @@ ASPELL(spell_magical_wall) {
     /* You can't cast this spell in peaceful rooms. */
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of white light fills the room, dispelling your "
-                     "violent magic!\r\n",
+        send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n",
                      ch);
-        act("White light from no particular source suddenly fills the room, "
-            "then vanishes.",
+        act("White light from no particular source suddenly fills the room, then vanishes.",
             FALSE, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
@@ -1399,8 +1396,7 @@ int room_recall_check(struct char_data *ch, struct char_data *victim, struct obj
             act("You speak the words on $p, but nothing happens!", FALSE, ch, obj, 0, TO_CHAR);
         } else {
             act("$n's spell dissipates uselessly.", TRUE, ch, 0, 0, TO_ROOM);
-            send_to_char("You feel a force drawing you away for a moment, but then "
-                         "the spell falters.\r\n",
+            send_to_char("You feel a force drawing you away for a moment, but then the spell falters.\r\n",
                          victim);
             if (victim != ch)
                 act("$N begins to disappear, but then the spell falters.", TRUE, ch, 0, victim, TO_CHAR);
@@ -2408,11 +2404,9 @@ ASPELL(spell_degeneration) {
     }
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of white light fills the room, dispelling your "
-                     "violent magic!\r\n",
+        send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n",
                      ch);
-        act("White light from no particular source suddenly fills the room, "
-            "then vanishes.",
+        act("White light from no particular source suddenly fills the room, then vanishes.",
             FALSE, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
@@ -3003,11 +2997,9 @@ ASPELL(spell_fracture) {
         return 0;
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of white light fills the room, dispelling your "
-                     "violent magic!\r\n",
+        send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n",
                      ch);
-        act("White from no particular source suddenly fills the room, then "
-            "vanishes.",
+        act("White from no particular source suddenly fills the room, then vanishes.",
             FALSE, victim, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }

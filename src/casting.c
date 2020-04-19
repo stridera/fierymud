@@ -104,8 +104,7 @@ EVENTFUNC(delayed_cast_event) {
     if (ROOM_FLAGGED(room, ROOM_PEACEFUL) && SINFO.violent) {
         if (IS_SPELL(spellnum)) {
             if (ch && IN_ROOM(ch) == room) {
-                send_to_char("A flash of white light fills the room, dispelling your "
-                             "violent magic!\r\n",
+                send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n",
                              ch);
             }
             if (victim)

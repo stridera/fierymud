@@ -622,7 +622,7 @@ void medit_disp_stances(struct descriptor_data *d) {
         sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, stance_types[i]);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter stance number : ", d->character);
+    send_to_char("Enter stance number:\r\n", d->character);
 }
 
 /*. Display positions (sitting, standing etc) .*/
@@ -639,7 +639,7 @@ void medit_disp_positions(struct descriptor_data *d) {
         sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, position_types[i]);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter position number : ", d->character);
+    send_to_char("Enter position number:\r\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -660,7 +660,7 @@ void medit_disp_sex(struct descriptor_data *d) {
         sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, genders[i]);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter gender number : ", d->character);
+    send_to_char("Enter gender number:\r\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -680,7 +680,7 @@ void medit_size(struct descriptor_data *d) {
         sprintf(buf, "%s%2d%s) %c%s\r\n", grn, i, nrm, (sizes[i].name)[0], sizes[i].name + 1);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter size number : ", d->character);
+    send_to_char("Enter size number:\r\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -697,7 +697,7 @@ void medit_disp_attack_types(struct descriptor_data *d) {
         sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, attack_hit_text[i].singular);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter attack type : ", d->character);
+    send_to_char("Enter attack type:\r\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -741,7 +741,7 @@ void medit_class_types(struct descriptor_data *d) {
         sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, classes[i].plainname);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter Class : ", d->character);
+    send_to_char("Enter Class:\r\n", d->character);
 }
 
 void medit_race_types(struct descriptor_data *d) {
@@ -755,7 +755,7 @@ void medit_race_types(struct descriptor_data *d) {
         sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, races[i].plainname);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter Races : ", d->character);
+    send_to_char("Enter Races:\r\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -781,7 +781,7 @@ void medit_disp_aff_flags(struct descriptor_data *d) {
     }
 
     sprintflag(buf1, EFF_FLAGS(OLC_MOB(d)), NUM_EFF_FLAGS, effect_flags);
-    sprintf(buf, "\r\nCurrent flags   : %s%s%s\r\nEnter aff flags (0 to quit) : ", cyn, buf1, nrm);
+    sprintf(buf, "\r\nCurrent flags   : %s%s%s\r\nEnter aff flags (0 to quit):\r\n", cyn, buf1, nrm);
     send_to_char(buf, d->character);
 }
 
@@ -801,7 +801,7 @@ void medit_disp_lifeforces(struct descriptor_data *d) {
                 lifeforces[i].name + 1, nrm);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter life force number : ", d->character);
+    send_to_char("Enter life force number:\r\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -812,7 +812,7 @@ void medit_disp_compositions(struct descriptor_data *d) {
     send_to_char("[H[J", d->character);
 #endif
     list_olc_compositions(d->character);
-    send_to_char("Enter composition number : ", d->character);
+    send_to_char("Enter composition number:\r\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -880,7 +880,7 @@ void medit_disp_menu(struct descriptor_data *d) {
             "&2&bW&0) Aff Flags     : &6%s&0\r\n"
             "&2&bS&0) Script        : &6%s&0\r\n"
             "&2&bQ&0) Quit\r\n"
-            "Enter choice : ",
+            "Enter choice:\r\n",
             GET_PERCEPTION(mob), GET_HIDDENNESS(mob), LIFEFORCE_COLOR(mob), UPPER(*LIFEFORCE_NAME(mob)),
             LIFEFORCE_NAME(mob) + 1, COMPOSITION_COLOR(mob), UPPER(*COMPOSITION_NAME(mob)), COMPOSITION_NAME(mob) + 1,
             stance_types[(int)GET_STANCE(mob)], position_types[(int)GET_POS(mob)],
@@ -899,7 +899,7 @@ void medit_parse(struct descriptor_data *d, char *arg) {
     int i;
     if (OLC_MODE(d) > MEDIT_NUMERICAL_RESPONSE) {
         if (!*arg || (!isdigit(arg[0]) && ((*arg == '-') && (!isdigit(arg[1]))))) {
-            send_to_char("Field must be numerical, try again : ", d->character);
+            send_to_char("Field must be numerical, try again:\r\n", d->character);
             return;
         }
     }
@@ -926,7 +926,7 @@ void medit_parse(struct descriptor_data *d, char *arg) {
             return;
         default:
             send_to_char("Invalid choice!\r\n", d->character);
-            send_to_char("Do you wish to save the mobile? : ", d->character);
+            send_to_char("Do you wish to save the mobile?\r\n", d->character);
             return;
         }
         break;
@@ -938,7 +938,7 @@ void medit_parse(struct descriptor_data *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Anything been changed? */
-                send_to_char("Do you wish to save the changes to the mobile? (y/n) : ", d->character);
+                send_to_char("Do you wish to save the changes to the mobile? (y/n)\r\n", d->character);
                 OLC_MODE(d) = MEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
@@ -1323,7 +1323,7 @@ void medit_parse(struct descriptor_data *d, char *arg) {
         break;
     case MEDIT_CLASS:
         if (atoi(arg) < 0 || atoi(arg) >= NUM_CLASSES) {
-            send_to_char("That choice is out of range.  Please try again: ", d->character);
+            send_to_char("That choice is out of range.  Please try again:\r\n", d->character);
             return;
         }
         GET_CLASS(OLC_MOB(d)) = atoi(arg);
@@ -1331,7 +1331,7 @@ void medit_parse(struct descriptor_data *d, char *arg) {
 
     case MEDIT_RACE:
         if (atoi(arg) < 0 || atoi(arg) >= NUM_RACES) {
-            send_to_char("That choice is out of range.  Please try again: ", d->character);
+            send_to_char("That choice is out of range.  Please try again:\r\n", d->character);
             return;
         }
         GET_RACE(OLC_MOB(d)) = atoi(arg);
@@ -1359,7 +1359,7 @@ void medit_parse(struct descriptor_data *d, char *arg) {
             return;
         default:
             send_to_char("Invalid choice!\r\n", d->character);
-            send_to_char("Do you wish to purge the mobile? : ", d->character);
+            send_to_char("Do you wish to purge the mobile?\r\n", d->character);
             return;
         }
         break;

@@ -207,28 +207,28 @@ void gedit_parse(struct descriptor_data *d, char *arg) {
     case GEDIT_MAIN_MENU:
         switch (LOWER(*arg)) {
         case '1':
-            write_to_output("Enter new group alias: ", d);
+            write_to_output("Enter new group alias:\r\n", d);
             OLC_MODE(d) = GEDIT_ALIAS;
             break;
         case '2':
-            write_to_output("Enter new group name: ", d);
+            write_to_output("Enter new group name:\r\n", d);
             OLC_MODE(d) = GEDIT_NAME;
             break;
         case '3':
-            write_to_output("Enter new group description (/s saves /h for help): \r\n\r\n", d);
+            write_to_output("Enter new group description (/s saves /h for help):\r\n\r\n", d);
             OLC_MODE(d) = GEDIT_DESCRIPTION;
             string_write(d, &OLC_GROUP(d)->description, MAX_STRING_LENGTH);
             break;
         case '4':
-            write_to_output("Enter minimum level for admin access to group: ", d);
+            write_to_output("Enter minimum level for admin access to group:\r\n", d);
             OLC_MODE(d) = GEDIT_LEVEL;
             break;
         case 'a':
-            write_to_output("Command to add to group: ", d);
+            write_to_output("Command to add to group:\r\n", d);
             OLC_MODE(d) = GEDIT_ADD_COMMAND;
             break;
         case 'r':
-            write_to_output("Command to remove from group: ", d);
+            write_to_output("Command to remove from group:\r\n", d);
             OLC_MODE(d) = GEDIT_REMOVE_COMMAND;
             break;
         case 'c':
@@ -248,7 +248,7 @@ void gedit_parse(struct descriptor_data *d, char *arg) {
                     return;
                 }
             if (OLC_VAL(d)) {
-                write_to_output("Do you wish to save the changes to the command group? (y/n) : ", d);
+                write_to_output("Do you wish to save the changes to the command group? (y/n)\r\n", d);
                 OLC_MODE(d) = GEDIT_CONFIRM_SAVE;
             } else {
                 write_to_output("No changes made.\r\n", d);
@@ -360,7 +360,7 @@ void gedit_parse(struct descriptor_data *d, char *arg) {
             break;
         default:
             write_to_output("Invalid choice!\r\n"
-                            "Do you wish to save the command group? : ",
+                            "Do you wish to save the command group?\r\n",
                             d);
             break;
         }

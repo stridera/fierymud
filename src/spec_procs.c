@@ -564,15 +564,13 @@ SPECIAL(bank) {
             }
 
             if (type1 == type2) {
-                send_to_char("That would be pointless, try using two different types "
-                             "of currency.\r\n",
+                send_to_char("That would be pointless, try using two different types of currency.\r\n",
                              ch);
                 return 1;
             }
 
             if (amount <= 0) {
-                send_to_char("The bank doesn't make money because it's dumb! Try a "
-                             "positive value.\r\n",
+                send_to_char("The bank doesn't make money because it's dumb! Try a positive value.\r\n",
                              ch);
                 return 1;
             }
@@ -634,7 +632,7 @@ SPECIAL(bank) {
                 break;
             default:
                 log("SYSERR: bank error: invalid type2 in spec proc");
-                send_to_char("Bank error.", ch);
+                send_to_char("Bank error.\r\n", ch);
                 return 1;
             }
 

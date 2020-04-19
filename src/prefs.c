@@ -266,8 +266,7 @@ ACMD(do_toggle) {
                 GET_WIMP_LEV(tch) = 0;
             }
         } else
-            send_to_char("Specify at how many hit points you want to wimp out at.  "
-                         "(0 to disable)\r\n",
+            send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n",
                          ch);
         return;
     case SCMD_PAGELENGTH:
@@ -296,8 +295,7 @@ ACMD(do_toggle) {
                 GET_PAGE_LENGTH(tch) = 22;
             }
         } else
-            send_to_char("Specify at how many lines you want your page length to be. "
-                         " (0 for default length)\r\n",
+            send_to_char("Specify at how many lines you want your page length to be.  (0 for default length)\r\n",
                          ch);
         return;
     case SCMD_AUTOINVIS:
@@ -323,11 +321,9 @@ ACMD(do_toggle) {
             else if (!strncasecmp(arg, "on", 3))
                 i = GET_LEVEL(tch);
             else {
-                send_to_char("Invalid input: autoinvis is a number between 0 and your "
-                             "level.\r\n",
+                send_to_char("Invalid input: autoinvis is a number between 0 and your level.\r\n",
                              ch);
-                send_to_char("You may also enter -1 or 'off' to disable it, or 'on' "
-                             "which will\r\n",
+                send_to_char("You may also enter -1 or 'off' to disable it, or 'on' which will\r\n",
                              ch);
                 send_to_char("set it to the maximum value: your level.\r\n", ch);
                 return;
@@ -344,8 +340,7 @@ ACMD(do_toggle) {
                     send_to_char(buf, ch);
                 }
             } else if (i < -1 || i > GET_LEVEL(tch)) {
-                send_to_char("Invalid input: autoinvis is a number between -1 and your "
-                             "level.\r\n",
+                send_to_char("Invalid input: autoinvis is a number between -1 and your level.\r\n",
                              ch);
             } else {
                 GET_AUTOINVIS(tch) = i;

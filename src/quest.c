@@ -204,8 +204,7 @@ void perform_quest(struct trig_data *t, char *argument, struct char_data *ch, st
                     GET_TRIG_VNUM(t));
             mudlog(buf, NRM, LVL_GOD, TRUE);
         } else if (ch)
-            send_to_char("Usage: quest <command> <quest> <player> [<subclass>] [<var "
-                         "name> <var value>]\r\n",
+            send_to_char("Usage: quest <command> <quest> <player> [<subclass>] [<var name> <var value>]\r\n",
                          ch);
         return;
     }

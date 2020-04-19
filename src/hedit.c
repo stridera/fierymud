@@ -153,7 +153,7 @@ void hedit_disp_menu(struct descriptor_data *d) {
             "%s1%s) Entry       :\r\n%s%s"
             "%s2%s) Min Level   : %s%d\r\n"
             "%sQ%s) Quit\r\n"
-            "Enter choice : ",
+            "Enter choice:\r\n",
             yel, help->keyword, grn, nrm, yel, help->entry, grn, nrm, yel, help->min_level, grn, nrm);
     send_to_char(buf, d->character);
 
@@ -198,7 +198,7 @@ void hedit_parse(struct descriptor_data *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            send_to_char("Invalid choice!\r\nDo you wish to save this help internally? ", d->character);
+            send_to_char("Invalid choice!\r\nDo you wish to save this help internally?\r\n", d->character);
             break;
         }
         return; /* end of HEDIT_CONFIRM_SAVESTRING */
@@ -224,17 +224,17 @@ void hedit_parse(struct descriptor_data *d, char *arg) {
                     cleanup_olc(d, CLEANUP_ALL);
                     break;
                 }
-                sprintf(buf, "Do you wish to add help on '%s'? ", OLC_STORAGE(d));
+                sprintf(buf, "Do you wish to add help on '%s'?\r\n", OLC_STORAGE(d));
                 send_to_char(buf, d->character);
                 OLC_MODE(d) = HEDIT_CONFIRM_ADD;
             } else {
-                sprintf(buf, "Do you wish to edit help on '%s'? ", help_table[OLC_ZNUM(d)].keyword);
+                sprintf(buf, "Do you wish to edit help on '%s'?\r\n", help_table[OLC_ZNUM(d)].keyword);
                 send_to_char(buf, d->character);
                 OLC_MODE(d) = HEDIT_CONFIRM_EDIT;
             }
             break;
         default:
-            sprintf(buf, "Invalid choice!\r\nDo you wish to edit help on '%s'? ", help_table[OLC_ZNUM(d)].keyword);
+            sprintf(buf, "Invalid choice!\r\nDo you wish to edit help on '%s'?\r\n", help_table[OLC_ZNUM(d)].keyword);
             send_to_char(buf, d->character);
             break;
         }
@@ -253,7 +253,7 @@ void hedit_parse(struct descriptor_data *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            sprintf(buf, "Invalid choice!\r\nDo you wish to add help on '%s'? ", OLC_STORAGE(d));
+            sprintf(buf, "Invalid choice!\r\nDo you wish to add help on '%s'?\r\n", OLC_STORAGE(d));
             send_to_char(buf, d->character);
             break;
         }
@@ -264,7 +264,7 @@ void hedit_parse(struct descriptor_data *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Something was modified */
-                send_to_char("Do you wish to save this help internally? ", d->character);
+                send_to_char("Do you wish to save this help internally?\r\n", d->character);
                 OLC_MODE(d) = HEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
@@ -276,7 +276,7 @@ void hedit_parse(struct descriptor_data *d, char *arg) {
             OLC_VAL(d) = 1;
             break;
         case '2':
-            send_to_char("Enter the minimum level a player has to be to read this help: ", d->character);
+            send_to_char("Enter the minimum level a player has to be to read this help:\r\n", d->character);
             OLC_MODE(d) = HEDIT_MIN_LEVEL;
             return;
         default:

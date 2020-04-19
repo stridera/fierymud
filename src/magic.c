@@ -1118,8 +1118,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         i = (GET_DEX(victim) + GET_WIS(victim) - 100) / 10;
         if (i > number(1, 100)) {
             act("$n's eyes start to cross, but $e shakes it off.", TRUE, victim, 0, 0, TO_ROOM);
-            send_to_char("Your eyes start to &5spin off&0 in different directions, "
-                         "but you manage\r\n",
+            send_to_char("Your eyes start to &5spin off&0 in different directions, but you manage\r\n",
                          ch);
             send_to_char("to bring them back under control.\r\n", ch);
             return CAST_RESULT_CHARGE;

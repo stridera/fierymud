@@ -143,7 +143,7 @@ void trigedit_disp_menu(struct descriptor_data *d) {
             "%s5)%s Arguments    : %s%s\r\n"
             "%s6)%s Commands:\r\n%s%s\r\n"
             "%sQ)%s Quit\r\n"
-            "Enter Choice :",
+            "Enter Choice:\r\n",
             grn, OLC_NUM(d), nrm,               /* vnum on the title line */
             grn, nrm, yel, GET_TRIG_NAME(trig), /* name                   */
             grn, nrm, yel, attach_type,         /* attach type            */
@@ -198,18 +198,18 @@ void trigedit_parse(struct descriptor_data *d, char *arg) {
                 if (!GET_TRIG_TYPE(OLC_TRIG(d))) {
                     send_to_char("Invalid Trigger Type! Answer a to abort quit!\r\n", d->character);
                 }
-                send_to_char("Do you wish to save the changes to the trigger? (y/n): ", d->character);
+                send_to_char("Do you wish to save the changes to the trigger? (y/n)\r\n", d->character);
                 OLC_MODE(d) = TRIGEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
             return;
         case '1':
             OLC_MODE(d) = TRIGEDIT_NAME;
-            send_to_char("Name: ", d->character);
+            send_to_char("Name:\r\n", d->character);
             break;
         case '2':
             OLC_MODE(d) = TRIGEDIT_INTENDED;
-            send_to_char("0: Mobiles, 1: Objects, 2: Rooms: ", d->character);
+            send_to_char("0: Mobiles, 1: Objects, 2: Rooms:\r\n", d->character);
             break;
         case '3':
             OLC_MODE(d) = TRIGEDIT_TYPES;
@@ -217,11 +217,11 @@ void trigedit_parse(struct descriptor_data *d, char *arg) {
             break;
         case '4':
             OLC_MODE(d) = TRIGEDIT_NARG;
-            send_to_char("Numeric argument: ", d->character);
+            send_to_char("Numeric argument:\r\n", d->character);
             break;
         case '5':
             OLC_MODE(d) = TRIGEDIT_ARGUMENT;
-            send_to_char("Argument: ", d->character);
+            send_to_char("Argument:\r\n", d->character);
             break;
         case '6':
             OLC_MODE(d) = TRIGEDIT_COMMANDS;
@@ -250,7 +250,7 @@ void trigedit_parse(struct descriptor_data *d, char *arg) {
             break;
         default:
             send_to_char("Invalid choice!\r\n", d->character);
-            send_to_char("Do you wish to save the trigger? : ", d->character);
+            send_to_char("Do you wish to save the trigger?\r\n", d->character);
             return;
         }
         break;
@@ -631,7 +631,7 @@ void dg_script_menu(struct descriptor_data *d) {
             " %sN%s)  New trigger for this script\r\n"
             " %sD%s)  Delete a trigger in this script\r\n"
             " %sX%s)  Exit Script Editor\r\n\r\n"
-            "     Enter choice :",
+            "     Enter choice:\r\n",
             grn, nrm, grn, nrm, grn, nrm);
     send_to_char(buf, d->character);
 }
@@ -667,12 +667,12 @@ int dg_script_edit_parse(struct descriptor_data *d, char *arg) {
             if (OLC_SCRIPT(d) == (struct trig_proto_list *)NULL)
                 send_to_char("Cannot delete a trigger as there are none!\r\n", d->character);
             else {
-                send_to_char("     Which entry should be deleted?  0 to abort :", d->character);
+                send_to_char("     Which entry should be deleted?  0 to abort:\r\n", d->character);
                 OLC_SCRIPT_EDIT_MODE(d) = SCRIPT_DEL_TRIGGER;
             }
             break;
         default:
-            send_to_char("\r\nUnrecognized command.  Try again: ", d->character);
+            send_to_char("\r\nUnrecognized command.  Try again:\r\n", d->character);
             break;
         }
         return 1;
@@ -686,7 +686,7 @@ int dg_script_edit_parse(struct descriptor_data *d, char *arg) {
 
         if (real_trigger(vnum) < 0) {
             send_to_char("Invalid Trigger VNUM!\r\n"
-                         "Please enter vnum: ",
+                         "Please enter vnum:\r\n",
                          d->character);
             return 1;
         }
@@ -725,7 +725,7 @@ int dg_script_edit_parse(struct descriptor_data *d, char *arg) {
         }
 
         if (pos) { /* damn fool specified a non-existent position */
-            send_to_char("No such trigger!\r\nTry Again:", d->character);
+            send_to_char("No such trigger!\r\nTry Again:\r\n", d->character);
             return 1;
         }
         /* we are going to free currtrig...so we need to join up around it */

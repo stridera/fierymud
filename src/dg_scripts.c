@@ -431,8 +431,7 @@ ACMD(do_attach) {
     two_arguments(argument, targ_name, loc_name);
 
     if (!*arg || !*targ_name || !*trig_name) {
-        send_to_char("Usage: attach { mtr | otr | wtr } { trigger } { name } [ "
-                     "location ]\r\n",
+        send_to_char("Usage: attach { mtr | otr | wtr } { trigger } { name } [ location ]\r\n",
                      ch);
         return;
     }
@@ -604,9 +603,7 @@ ACMD(do_detach) {
     one_argument(argument, arg3);
 
     if (!*arg1 || !*arg2) {
-        send_to_char("Usage: detach [ mob | object ] { target } { trigger |"
-                     " 'all' }\r\n",
-                     ch);
+        send_to_char("Usage: detach [ mob | object ] { target } { trigger | 'all' }\r\n", ch);
         return;
     }
 
