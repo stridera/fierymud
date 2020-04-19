@@ -1368,7 +1368,7 @@ void start_player(struct char_data *ch) {
 }
 
 void remove_player_from_game(struct char_data *ch, int quit_mode) {
-    all_except_printf(ch, "The world seems to pause momentarily as %s leaves this realm.", GET_NAME(ch));
+    all_except_printf(ch, "The world seems to pause momentarily as %s leaves this realm.\r\n", GET_NAME(ch));
 
     GET_QUIT_REASON(ch) = quit_mode;
     save_player(ch);
