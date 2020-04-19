@@ -1823,7 +1823,6 @@ void desc_printf(struct descriptor_data *t, const char *txt, ...) {
 /* Add a new string to a player's output queue */
 void string_to_output(struct descriptor_data *t, const char *txt) {
     int size;
-    static char tmp[2 * MAX_STRING_LENGTH];
     static char new_txt[2 * MAX_STRING_LENGTH];
 
     if (!t || !txt || !*txt)
