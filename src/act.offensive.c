@@ -1952,7 +1952,7 @@ ACMD(do_disarm) {
     SET_COOLDOWN(ch, CD_DISARM, number(1, 3) * PULSE_VIOLENCE);
 
     if (rnd_num <= 5) {
-        act("$n fails $s disarming manuveur so badly, $e drops $s own weapon.", FALSE, ch, 0, tch, TO_NOTVICT);
+        act("$n fails $s disarming maneuver so badly, $e drops $s own weapon.", FALSE, ch, 0, tch, TO_NOTVICT);
         act("$n tries to disarm but drops $s weapon!", FALSE, ch, 0, tch, TO_VICT);
         act("You try to disarm $N but drop your $o instead!", FALSE, ch, ch_obj, tch, TO_CHAR);
 

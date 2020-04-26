@@ -2891,6 +2891,11 @@ long xp_percentage(struct char_data *ch) {
         }
 
         current = total - next_level + GET_EXP(ch);
+
+        if (total - current == 1) {
+            return 100;
+        }
+
         return ((100 * current) / total);
     } else {
         return 0;

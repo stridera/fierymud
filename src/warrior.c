@@ -81,7 +81,7 @@ bool warrior_ai_action(struct char_data *ch, struct char_data *victim) {
      * BREATHE / SWEEP / ROAR
      *
      * If the mob is a dragon/demon try to use dragon/demon skills.
-     * There is a 15% chance of something occuring in this function,
+     * There is a 15% chance of something occurring in this function,
      * if the mobile has the skills.
      */
     if (dragonlike_attack(ch))

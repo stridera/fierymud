@@ -1208,8 +1208,6 @@ void send_gmcp_prompt(struct descriptor_data *d) {
 
     write_to_descriptor(d->descriptor, gmcp_prompt);
 
-    return;
-
     if (!d->gmcp_enabled) {
         return;
     }
