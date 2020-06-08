@@ -1614,7 +1614,7 @@ char *two_arguments(char *argument, char *first_arg, char *second_arg) {
  *
  * that was dumb.  it shouldn't be symmetrical.  JE 5/1/95
  *
- * returnss 1 if arg1 is an abbreviation of arg2
+ * returns 1 if arg1 is an abbreviation of arg2
  */
 int is_abbrev(const char *arg1, const char *arg2) {
     if (!*arg1)
@@ -1632,7 +1632,7 @@ int is_abbrev(const char *arg1, const char *arg2) {
 
 void display_classes(struct descriptor_data *d, int select) {
     /*  int x; */ /* Commented out for commenting of - Subclassing
-                     explaination/preface RSD */
+                     explanation/preface RSD */
     int char_race;
     int mageok, warriorok, rogueok, clericok;
 

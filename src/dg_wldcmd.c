@@ -394,12 +394,13 @@ WCMD(do_wpurge) {
 
 /* loads a mobile or object into the room */
 WCMD(do_wload) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], arg3[MAX_INPUT_LENGTH], arg4[MAX_INPUT_LENGTH];
+    char *line;
     int number = 0, rnum;
-    char_data *mob;
-    obj_data *object;
+    char_data *mob, *ch;
+    obj_data *object, *object2;
 
-    two_arguments(argument, arg1, arg2);
+    line = two_arguments(argument, arg1, arg2);
 
     if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
         wld_log(room, t, "wload: bad syntax");
@@ -429,11 +430,35 @@ WCMD(do_wload) {
             wld_log(room, t, "wload: room is NOWHERE");
             return;
         }
-        obj_to_room(object, rnum);
-    }
 
-    else
+
+        if (*line == '\0') {
+            obj_to_room(object, rnum);
+        } else {
+            two_arguments(line, arg3, arg4);
+            if (is_abbrev(arg3, "mob")) {
+                    if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
+                        obj_to_char(object, mob);
+                    }
+            } else if (is_abbrev(arg3, "obj")) {
+                if ((object2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
+                    obj_to_obj(object, object2);
+                } else {
+                    wld_log(object, t, "wload: no target found");
+                }
+            } else if (is_abbrev(arg3, "plr")) {
+                if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
+                    obj_to_char(object, ch);
+                } else {
+                    wld_log(object, t, "wload: no target found");
+                }
+            } else {
+                wld_log(room, t, "wload: bad subtype");
+            }
+        }
+    } else {
         wld_log(room, t, "wload: bad type");
+    }
 }
 
 WCMD(do_wheal) {

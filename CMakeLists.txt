@@ -114,5 +114,8 @@ add_executable(fierymud
         src/zedit.c
         src/zmalloc.c)
 
-target_link_libraries(fierymud crypt m)
+target_link_libraries(fierymud m)
+#target_link_libraries(fierymud crypt)
+add_definitions(-DNOCRYPT)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")

@@ -302,12 +302,13 @@ OCMD(do_oteleport) {
 }
 
 OCMD(do_dgoload) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], arg3[MAX_INPUT_LENGTH], arg4[MAX_INPUT_LENGTH];
+    char *line;
     int number = 0, room;
-    char_data *mob;
-    obj_data *object;
+    char_data *mob, *ch;
+    obj_data *object, *object2;
 
-    two_arguments(argument, arg1, arg2);
+    line = two_arguments(argument, arg1, arg2);
 
     if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
         obj_log(obj, t, "oload: bad syntax");
@@ -326,19 +327,39 @@ OCMD(do_dgoload) {
         }
         char_to_room(mob, room);
         load_mtrigger(mob);
-    }
-
-    else if (is_abbrev(arg1, "obj")) {
+    } else if (is_abbrev(arg1, "obj")) {
         if ((object = read_object(number, VIRTUAL)) == NULL) {
             obj_log(obj, t, "oload: bad object vnum");
             return;
         }
 
-        obj_to_room(object, room);
-    }
-
-    else
+        if (*line == '\0') {
+            obj_to_room(object, room);
+        } else {
+            two_arguments(line, arg3, arg4);
+            if (is_abbrev(arg3, "mob")) {
+                if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
+                    obj_to_char(object, mob);
+                }
+            } else if (is_abbrev(arg3, "obj")) {
+                if ((object2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
+                    obj_to_obj(object, object2);
+                } else {
+                    obj_log(object, t, "wload: no target found");
+                }
+            } else if (is_abbrev(arg3, "plr")) {
+                if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
+                    obj_to_char(object, ch);
+                } else {
+                    obj_log(object, t, "wload: no target found");
+                }
+            } else {
+                obj_log(room, t, "wload: bad subtype");
+            }
+        }
+    } else {
         obj_log(obj, t, "oload: bad type");
+    }
 }
 
 OCMD(do_oheal) {
