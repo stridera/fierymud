@@ -444,13 +444,13 @@ WCMD(do_wload) {
                 if ((object2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_obj(object, object2);
                 } else {
-                    wld_log(object, t, "wload: no target found");
+                    wld_log(room, t, "wload: no target found");
                 }
             } else if (is_abbrev(arg3, "plr")) {
                 if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_char(object, ch);
                 } else {
-                    wld_log(object, t, "wload: no target found");
+                    wld_log(room, t, "wload: no target found");
                 }
             } else {
                 wld_log(room, t, "wload: bad subtype");
