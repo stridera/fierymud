@@ -545,7 +545,7 @@
 #define ITEM_FLOAT             (1 << 29)
 #define ITEM_CONT_LIGHT        (1 << 30)  /* NOT USED - available */
 #define ITEM_WAS_DISARMED      (1 << 31)
-
+#define ITEM_ANTI_MONK         (1 << 32)
 
 
 /* Modifier constants used with obj affects ('A' fields) */

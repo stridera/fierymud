@@ -112,11 +112,12 @@
 #define ITEM_ANTI_CONJURER 25     /* Not usable by conjurers       */
 #define ITEM_NOBURN 26            /* Not destroyed by purge/fire   */
 #define ITEM_NOLOCATE 27          /* Cannot be found by locate obj */
-#define ITEM_DECOMP 28            /* Item is currently decomposint */
+#define ITEM_DECOMP 28            /* Item is currently decomposing */
 #define ITEM_FLOAT 29             /* Floats in water rooms         */
 #define ITEM_NOFALL 30            /* Doesn't fall - unaffected by gravity */
 #define ITEM_WAS_DISARMED 31      /* Disarmed from mob             */
-#define NUM_ITEM_FLAGS 32
+#define ITEM_ANTI_MONK 32         /* Not usable by monks           */
+#define NUM_ITEM_FLAGS 33
 
 /* Modifier constants used with obj effects ('A' fields) */
 #define APPLY_NONE 0           /* No effect                       */
