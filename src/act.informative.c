@@ -394,7 +394,7 @@ static void print_char_flags_to_char(struct char_data *targ, struct char_data *c
     }
 
     if (!IS_NPC(targ) && !targ->desc && PRF_FLAGGED(ch, PRF_HOLYLIGHT))
-        str_catf(buf, " (@r%s%s@0)", targ->forward ? "switched: @0" : "linkless",
+        str_catf(buf, " (@r%s%s@0)", targ->forward ? "switched: @0" : "clueless",
                  targ->forward ? GET_SHORT(targ->forward) : "");
 
     if (PLR_FLAGGED(targ, PLR_WRITING))

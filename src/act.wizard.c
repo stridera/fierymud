@@ -185,7 +185,7 @@ ACMD(do_iptables) {
                 }
                 if (!desc) {
                     /* linkless */
-                    act("$E's linkless at the moment.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
+                    act("$E's clueless at the moment.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
                     return;
                 }
                 if (!desc->host || !(*(desc->host))) {
@@ -372,7 +372,7 @@ ACMD(do_ptell) {
     else if (GET_LEVEL(vict) >= LVL_IMMORT)
         send_to_char("Just use wiznet!\r\n", ch);
     else if (!IS_NPC(vict) && !vict->desc && (!vict->forward || !vict->forward->desc)) /* linkless */
-        act("$E's linkless at the moment.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
+        act("$E's clueless at the moment.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
     else if (PLR_FLAGGED(vict, PLR_WRITING))
         act("$E's writing a message right now; try again later.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
     else if (vict->desc && EDITING(vict->desc))

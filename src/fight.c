@@ -1154,8 +1154,7 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
         char *to_room;
         char *to_char;
         char *to_victim;
-    } bare_attack[] = {{"$n threw $s punch just a little wide, missing $N completely.&0", /* 0: 0
-                                                                                           */
+    } bare_attack[] = {{"$n threw $s punch just a little wide, missing $N completely.&0", /* 0: 0 */
                         "You thought you saw $N somewhere where $E wasn't.&0",
                         "$n takes aim at you, but loses communication with $s fists!&0"},
 
@@ -1163,37 +1162,31 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
                         "You slap $N, and while $E is distracted, make a grab for $S nose.&0",
                         "$n slaps your cheek, then tries to twist your nose off!&0"},
 
-                       {"$n delivers a swift kick to $N's shin, causing a yelp of pain.&0", /* 2: 3..4
-                                                                                             */
-                        "You send a swift kick to $N's shin.&0", "You yelp in pain as $n kicks you in the shin!&0"},
+                       {"$n delivers a swift kick to $N's shin, causing a yelp of pain.&0", /* 2: 3..4 */
+                        "You send a swift kick to $N's shin.&0",
+                        "You yelp in pain as $n kicks you in the shin!&0"},
 
-                       {"$N howls in pain as $n nearly rips $S ear off!&0", /* 3: 5..6   */
+                       {"$N howls in pain as $n nearly rips $S ear off!&0", /* 3: 5..6 */
                         "You grab $N's ears and almost pull them off!&0",
-                        "You cannot help but scream in pain as $n gets a good grasp on your "
-                        "ears.&0"},
+                        "You cannot help but scream in pain as $n gets a good grasp on your ears.&0"},
 
-                       {"$N nearly doubles over choking as $n collapses $S trachea!&0", /* 4: 7..10
-                                                                                         */
+                       {"$N nearly doubles over choking as $n collapses $S trachea!&0", /* 4: 7..10 */
                         "You sink your stiffened fingers into $N's throat.&0",
                         "$n strikes you in the throat, making you cough involuntarily.&0"},
 
                        {"$n dances up to $N and throws $s elbow into $S gut!&0", /* 5: 11..14 */
-                        "You spin around so your back is against $N and throw your elbow into "
-                        "$S gut!&0",
+                        "You spin around so your back is against $N and throw your elbow into $S gut!&0",
                         "$n dances up to you, and throws $s elbow into your stomach!   OUCH!&0"},
 
-                       {"Cupping $s hands, $n slaps $N's ears, bursting $S eardrums.&0", /* 6: 15..19
-                                                                                          */
+                       {"Cupping $s hands, $n slaps $N's ears, bursting $S eardrums.&0", /* 6: 15..19 */
                         "You cup your hands and slap $N's ears, hoping to cause deafness.&0",
-                        "You feel as if $n inserted long daggers into your ears, piercing your "
-                        "brain!&0"},
+                        "You feel as if $n inserted long daggers into your ears, piercing your brain!&0"},
 
                        {"$n punches $N repeatedly in the kidneys!&0", /* 7: 19..23 */
                         "You wallop $N in the kidneys!&0",
-                        "$n repeatedly punches you in the kidneys, and you feel like "
-                        "hurling!&0"},
+                        "$n repeatedly punches you in the kidneys, and you feel like hurling!&0"},
 
-                       {"$n punches $N in the throat, causing $M to choke!&0", /* 8: > 23    */
+                       {"$n punches $N in the throat, causing $M to choke!&0", /* 8: > 23 */
                         "You punch $N in the throat causing $M to nearly choke to death!&0",
                         "$n nails you in the throat, and you barely avoid choking to death!&0"}};
 
@@ -1203,8 +1196,7 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
         char *to_victim;
     } dam_weapons[] = {
 
-        /* use #w for singular (i.e. "slash") and #W for plural (i.e. "slashes")
-         */
+        /* use #w for singular (i.e. "slash") and #W for plural (i.e. "slashes") */
 
         {"$n tries to #w $N, but misses.&0", /* 0: 0       */
          "You try to #w $N, but miss.&0", "$n tries to #w you, but misses.&0"},
