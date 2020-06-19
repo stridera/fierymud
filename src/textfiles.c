@@ -29,6 +29,7 @@
 extern void index_boot(int mode);
 extern int file_to_string_alloc(const char *name, char **buf);
 extern time_t file_last_update(const char *name);
+void reload_xnames();
 
 static struct text_file {
     const char *name;
@@ -98,7 +99,11 @@ ACMD(do_reload) {
                 }
             if (!str_cmp(arg, "xhelp"))
                 reload_help = TRUE;
-            else if (!found) {
+            else if (!str_cmp(arg, "xnames")) {
+                reload_xnames();
+                send_to_char("xnames file reloaded.\r\n", ch);
+                return;
+            } else if (!found) {
                 cprintf(ch, "Unrecognized text file name '%s'.\r\n", arg);
             }
         }
@@ -108,6 +113,7 @@ ACMD(do_reload) {
         for (i = 0; i < NUM_TEXT_FILES; ++i)
             cprintf(ch, "%-11.11s%s", text_files[i].name, !((i + COLS) % 7) ? "\r\n" : "");
         cprintf(ch, "xhelp      %s", !(i % COLS) ? "\r\n" : "");
+        cprintf(ch, "xnames      %s", !(i % COLS) ? "\r\n" : "");
         if (i % COLS)
             cprintf(ch, "\r\n");
         return;
