@@ -47,17 +47,20 @@ int script_driver(void *go_address, trig_data *trig, int type, int mode);
 /* mob trigger types */
 const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
                             "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
-                            "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "\n"};
+                            "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "UNUSED",
+                            "UNUSED",    "\n"};
 
 /* obj trigger types */
-const char *otrig_types[] = {"Global", "Random", "Command", "UNUSED", "UNUSED",  "Timer",  "Get",
-                             "Drop",   "Give",   "Wear",    "UNUSED", "Remove",  "UNUSED", "UNUSED",
-                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
+const char *otrig_types[] = {"Global",  "Random", "Command", "UNUSED", "UNUSED",  "Timer",  "Get",
+                             "Drop",    "Give",   "Wear",    "UNUSED", "Remove",  "UNUSED", "UNUSED",
+                             "Load",    "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "Attack",
+                             "Defence", "\n"};
 
 /* wld trigger types */
 const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
                              "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
-                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
+                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "UNUSED",
+                             "UNUSED", "\n"};
 
 /*
  *  General functions used by several triggers
@@ -398,6 +401,42 @@ void fight_mtrigger(char_data *ch) {
                 add_var(&GET_TRIG_VARS(t), "actor", "nobody");
             script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
             break;
+        }
+    }
+}
+
+void attack_otrigger(char_data *actor, char_data *victim, int dam) {
+    char buf[MAX_INPUT_LENGTH], dam_str[MAX_INPUT_LENGTH];
+    trig_data *t;
+    obj_data *obj;
+    int i;
+
+    sprintf(dam_str, "%d", dam);
+
+    for (i = 0; i < NUM_WEARS; ++i)  {
+        obj = actor->equipment[i];
+        if (obj && SCRIPT_CHECK(obj, OTRIG_ATTACK)) {
+            for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
+                if (TRIGGER_CHECK(t, OTRIG_ATTACK)) {
+                    add_var(&GET_TRIG_VARS(t), "damage", dam_str);
+                    ADD_UID_VAR(buf, t, actor, "attacker");
+                    ADD_UID_VAR(buf, t, victim, "defender");
+                    script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW);
+                    break;
+                }
+            }
+        }
+        obj = victim->equipment[i];
+        if (obj && SCRIPT_CHECK(obj, OTRIG_DEFEND)) {
+            for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
+                if (TRIGGER_CHECK(t, OTRIG_DEFEND)) {
+                    add_var(&GET_TRIG_VARS(t), "damage", dam_str);
+                    ADD_UID_VAR(buf, t, actor, "attacker");
+                    ADD_UID_VAR(buf, t, victim, "defender");
+                    script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW);
+                    break;
+                }
+            }
         }
     }
 }

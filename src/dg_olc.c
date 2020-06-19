@@ -183,7 +183,7 @@ void trigedit_disp_types(struct descriptor_data *d) {
         send_to_char(buf, d->character);
     }
     sprintbit(GET_TRIG_TYPE(OLC_TRIG(d)), types, buf1);
-    sprintf(buf, "\r\nCurrent types : %s%s%s\r\nEnter type (0 to quit) : ", cyn, buf1, nrm);
+    sprintf(buf, "\r\nCurrent types : %s%s%s\r\nEnter type (0 to quit):\r\n", cyn, buf1, nrm);
     send_to_char(buf, d->character);
 }
 
@@ -659,7 +659,7 @@ int dg_script_edit_parse(struct descriptor_data *d, char *arg) {
             return 0;
         case 'n':
         case 'N':
-            send_to_char("\r\nPlease enter trigger vnum: ", d->character);
+            send_to_char("\r\nPlease enter trigger vnum:\r\n", d->character);
             OLC_SCRIPT_EDIT_MODE(d) = SCRIPT_NEW_TRIGGER;
             break;
         case 'd':

@@ -1848,7 +1848,7 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
 
     /* Common (fleshy) folks will do crushing damage when not wielding a
      * weapon.   That's how fists work.   But other folks, like for example
-     * fire elementals, would do other kinds of damage... like fire. */
+     * fire elemental's, would do other kinds of damage... like fire. */
 
     if (!weapon && COMPOSITION_DAM(ch) != DAM_PIERCE && COMPOSITION_DAM(ch) != DAM_SLASH &&
         COMPOSITION_DAM(ch) != DAM_CRUSH) {
@@ -1987,9 +1987,10 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
         }
     }
 
-    /* check if the victim has a hitprcnt trigger */
-    if (victim)
-        hitprcnt_mtrigger(victim);
+    /* Process Triggers */
+    attack_otrigger(ch, victim, dam);
+    hitprcnt_mtrigger(victim);
+
 }
 
 /* Get the skill associated with a weapon. */

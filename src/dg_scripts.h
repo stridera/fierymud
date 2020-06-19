@@ -22,6 +22,7 @@
 
 #include "sysdep.h"
 #include "structs.h"
+#include "fight.h"
 
 #define MOB_TRIGGER 0
 #define OBJ_TRIGGER 1
@@ -65,6 +66,8 @@
 #define OTRIG_LEAVE (1 << 16)   /* some leaves room seen      */
 #define OTRIG_CONSUME (1 << 18) /* char tries to eat/drink obj */
 #define OTRIG_TIME (1 << 19)    /* trigger based on game hour */
+#define OTRIG_ATTACK (1 << 20)  /* Trigger for weapons on attack */
+#define OTRIG_DEFEND (1 << 21)  /* Trigger for weapons on defense */
 
 /* wld trigger types */
 #define WTRIG_GLOBAL (1 << 0)    /* check even if zone empty   */
@@ -173,6 +176,7 @@ int command_otrigger(struct char_data *actor, char *cmd, char *argument);
 int command_wtrigger(struct char_data *actor, char *cmd, char *argument);
 int death_mtrigger(struct char_data *ch, struct char_data *actor);
 void fight_mtrigger(struct char_data *ch);
+void attack_otrigger(struct char_data *actor, struct char_data *victim, int dam);
 void hitprcnt_mtrigger(struct char_data *ch);
 void load_mtrigger(struct char_data *ch);
 void load_otrigger(struct obj_data *obj);
