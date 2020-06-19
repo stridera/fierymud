@@ -298,6 +298,7 @@ ACMD(do_zsearch);
 ACMD(do_vstat);
 ACMD(do_vitem);
 ACMD(do_vwear);
+ACMD(do_xnames);
 ACMD(do_wake);
 ACMD(do_wear);
 ACMD(do_where);
@@ -899,6 +900,7 @@ const struct command_info cmd_info[] = {
     {"restat", POS_PRONE, STANCE_DEAD, do_estat, LVL_ATTENDANT, SCMD_RESTAT, CMD_ANY},
     {"vitem", POS_PRONE, STANCE_DEAD, do_vitem, LVL_ATTENDANT, 0, CMD_ANY},
     {"vwear", POS_PRONE, STANCE_DEAD, do_vwear, LVL_ATTENDANT, 0, CMD_ANY},
+    {"xnames", POS_PRONE, STANCE_DEAD, do_xnames, LVL_GRGOD, 0, CMD_ANY},
 
     {"wake", POS_PRONE, STANCE_SLEEPING, do_wake, 0, 0, 0},
     {"walk", POS_STANDING, STANCE_ALERT, do_move, 0, 0, CMD_HIDE | CMD_NOFIGHT},

@@ -347,6 +347,16 @@ void send_to_xnames(char *name) {
     }
 }
 
+/* remove name from the xnames file */
+void remove_from_xnames(char *name) {
+    FILE *xnames;
+
+    if (!(xnames = fopen(XNAME_FILE, "a"))) {
+        mudlog("SYSERR: Cannot open xnames file.\r\n", BRF, LVL_IMMORT, TRUE);
+        return;
+    }
+}
+
 void free_invalid_list() {
     struct xname *name, *next;
     struct ban_list_element *ban;
@@ -362,6 +372,41 @@ void free_invalid_list() {
         free(ban);
     }
 }
+
+ACMD(do_xnames) {
+    struct xname *cur, *next;
+    char flag[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
+
+    two_arguments(argument, flag, name);
+
+    if (*flag && !str_cmp(flag, "reload")) {
+        for (cur = xname_list; cur; cur = next) {
+            next = cur->next;
+            free(cur);
+        }
+        xname_list = NULL;
+        Read_Xname_List();
+        send_to_char("Done.\r\n", ch);
+        return;
+    }
+
+    if(!*flag || !*name) {
+        send_to_char("Usage: xnames {add NAME | reload}\r\n", ch);
+        return;
+    }
+
+    if (is_abbrev(flag, "add")) {
+        if (!Valid_Name(name)) {
+            send_to_char("Name is already banned.\r\n", ch);
+            return;
+        }
+        send_to_xnames(name);
+        send_to_char("Done.\r\n", ch);
+    } else {
+        send_to_char("Usage: xnames {add NAME | reload}\r\n", ch);
+    }
+}
+
 
 /***************************************************************************
  * $Log: ban.c,v $
