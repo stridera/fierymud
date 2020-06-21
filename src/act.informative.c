@@ -48,6 +48,7 @@
 #include "utils.h"
 #include "vsearch.h"
 #include "weather.h"
+#include "dg_scripts.h"
 
 /* extern variables */
 extern int pk_allowed;
@@ -1459,6 +1460,7 @@ ACMD(do_examine) {
 
 void identify_obj(struct obj_data *obj, struct char_data *ch, int location) {
     int i;
+    trig_data *t;
 
     if (location)
         cprintf(ch,
@@ -1554,6 +1556,13 @@ void identify_obj(struct obj_data *obj, struct char_data *ch, int location) {
     for (i = 0; i < MAX_OBJ_APPLIES; i++)
         if (obj->applies[i].location != APPLY_NONE)
             cprintf(ch, "   Apply: %s\r\n", format_apply(obj->applies[i].location, obj->applies[i].modifier));
+
+    if (SCRIPT(obj)) {
+        for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
+            cprintf(ch, "   Special: %s\r\n", t->name);
+        }
+    }
+
 }
 
 ACMD(do_identify) {
