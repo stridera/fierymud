@@ -2820,14 +2820,14 @@ char *ACTNULL = "<NULL>";
 /* higher-level communication: the act() function */
 void format_act(char *rtn, const char *orig, struct char_data *ch, struct obj_data *obj, const void *vict_obj,
                 const struct char_data *to) {
+    const char_data  *victim;
+    const obj_data *target_object;
+    char target_string[MAX_STRING_LENGTH] = "\0", target_string2[MAX_STRING_LENGTH] = "\0";
     const char *i = NULL;
     char *bufptr, *j, ibuf[20];
     bool uppercasenext = FALSE;
 
     bufptr = rtn;
-
-    if (!to->desc)
-        return;
 
     for (;;) {
         if (*orig == '$') {
@@ -2836,58 +2836,70 @@ void format_act(char *rtn, const char *orig, struct char_data *ch, struct obj_da
                 i = PERS(ch, to);
                 break;
             case 'N':
-                CHECK_NULL(vict_obj, PERS((const struct char_data *)vict_obj, to));
+                victim = (const struct char_data *)vict_obj;
+                CHECK_NULL(vict_obj, PERS(victim, to));
                 break;
             case 'm':
                 i = HMHR(ch);
                 break;
             case 'M':
-                CHECK_NULL(vict_obj, HMHR((const struct char_data *)vict_obj));
+                victim = (const struct char_data *)vict_obj;
+                CHECK_NULL(vict_obj, HMHR(victim));
                 break;
             case 's':
                 i = HSHR(ch);
                 break;
             case 'S':
-                CHECK_NULL(vict_obj, HSHR((const struct char_data *)vict_obj));
+                victim = (const struct char_data *)vict_obj;
+                CHECK_NULL(vict_obj, HSHR(victim));
                 break;
             case 'D':
-                CHECK_NULL(vict_obj, without_article(GET_NAME((const struct char_data *)vict_obj)));
+                victim = (const struct char_data *)vict_obj;
+                CHECK_NULL(vict_obj, without_article(GET_NAME(victim)));
                 break;
             case 'e':
                 i = HSSH(ch);
                 break;
             case 'E':
-                CHECK_NULL(vict_obj, HSSH((const struct char_data *)vict_obj));
+                victim = (const struct char_data *)vict_obj;
+                CHECK_NULL(vict_obj, HSSH(victim));
                 break;
             case 'o':
                 CHECK_NULL(obj, OBJN(obj, to));
                 break;
             case 'O':
-                CHECK_NULL(vict_obj, OBJN((const struct obj_data *)vict_obj, to));
+                target_object = (const struct obj_data *)vict_obj;
+                CHECK_NULL(vict_obj, OBJN(target_object, to));
                 break;
             case 'p':
                 CHECK_NULL(obj, OBJS(obj, to));
                 break;
             case 'P':
-                CHECK_NULL(vict_obj, OBJS((const struct obj_data *)vict_obj, to));
+                target_object = (const struct obj_data *)vict_obj;
+                CHECK_NULL(vict_obj, OBJS(target_object, to));
                 break;
             case 'a':
                 CHECK_NULL(obj, SANA(obj));
                 break;
             case 'A':
-                CHECK_NULL(vict_obj, SANA((const struct obj_data *)vict_obj));
+                target_object = (const struct obj_data *)vict_obj;
+                CHECK_NULL(vict_obj, SANA(target_object));
                 break;
             case 't':
                 CHECK_NULL(obj, (const char *)obj);
+                strcpy(target_string, i);
                 break;
             case 'T':
                 CHECK_NULL(vict_obj, (const char *)vict_obj);
+                strcpy(target_string2, i);
                 break;
             case 'f':
                 CHECK_NULL(vict_obj, fname((char *)obj));
+                strcpy(target_string, i);
                 break;
             case 'F':
                 CHECK_NULL(vict_obj, fname((char *)vict_obj));
+                strcpy(target_string2, i);
                 break;
             case 'i':
                 i = ibuf;
@@ -2940,6 +2952,8 @@ void format_act(char *rtn, const char *orig, struct char_data *ch, struct obj_da
     *(++bufptr) = '\n';
     *(++bufptr) = '\0';
 
+    act_mtrigger(to, rtn, ch, victim, obj, target_object, target_string, target_string2);
+
     CAP(rtn);
 }
 
@@ -2977,21 +2991,25 @@ void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_d
         REMOVE_BIT(type, TO_VICTROOM);
 
     if (type == TO_CHAR) {
-        if (ch && SENDOK(ch))
+        if (ch && ((MOB_PERFORMS_SCRIPTS(ch) && SCRIPT_CHECK(ch, MTRIG_ACT)) || SENDOK(ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, ch);
+        }
         cprintf(ch, "%s", lbuf);
 
         return;
     }
 
     if (type == TO_VICT) {
-        if ((to = (struct char_data *)vict_obj) && SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch))) {
+        if ((to = (struct char_data *)vict_obj) &&
+            ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to))
+            && !(hide_invisible && ch && !CAN_SEE(to, ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
             cprintf(to, "%s", lbuf);
         }
 
         return;
     }
+
     /* ASSUMPTION: at this point we know type must be TO_NOTVICT or TO_ROOM */
 
     if (ch) {
@@ -3033,8 +3051,9 @@ void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_d
     }
 
     for (to = world[in_room].people; to; to = to->next_in_room)
-        if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
-            (type == TO_ROOM || (to != vict_obj))) {
+        if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to))
+        && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
+        (type == TO_ROOM || (to != vict_obj))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
             cprintf(to, "%s", lbuf);
         }

@@ -29,7 +29,6 @@ int dg_script_edit_parse(struct descriptor_data *d, char *arg);
 /* define the largest set of commands for as trigger */
 #define MAX_CMD_LENGTH 16384 /* 16k should be plenty and then some */
 
-#define NUM_TRIG_TYPE_FLAGS 22
 
 /*
  * Submodes of TRIGEDIT connectedness.

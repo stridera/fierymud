@@ -1504,7 +1504,10 @@ int damage(struct char_data *ch, struct char_data *victim, int dam, int attackty
 
     if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) {
         /* Will the victim die? */
-        death = DAMAGE_WILL_KILL(victim, dam);
+        if DAMAGE_WILL_KILL(victim, dam) {
+            death_otrigger(victim);
+            death = DAMAGE_WILL_KILL(victim, dam);
+        }
 
         /* Vampiric touch */
         if (IS_WEAPON(attacktype) || SKILL_IS_TARGET(attacktype, TAR_CONTACT)) {

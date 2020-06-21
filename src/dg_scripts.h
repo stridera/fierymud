@@ -30,6 +30,8 @@
 
 #define DG_NO_TRIG (1 << 6) /* don't check act trigger   */
 
+#define NUM_TRIG_TYPE_FLAGS 20
+
 /* mob trigger types */
 #define MTRIG_GLOBAL (1 << 0)    /* check even if zone empty   */
 #define MTRIG_RANDOM (1 << 1)    /* checked randomly           */
@@ -55,19 +57,20 @@
 #define OTRIG_GLOBAL (1 << 0)   /* unused                     */
 #define OTRIG_RANDOM (1 << 1)   /* checked randomly           */
 #define OTRIG_COMMAND (1 << 2)  /* character types a command  */
+#define OTRIG_ATTACK (1 << 3)  /* Trigger for weapons on attack */
+#define OTRIG_DEFEND (1 << 4)  /* Trigger for weapons on defense */
 #define OTRIG_TIMER (1 << 5)    /* item's timer expires       */
 #define OTRIG_GET (1 << 6)      /* item is picked up          */
 #define OTRIG_DROP (1 << 7)     /* character tries to drop obj */
 #define OTRIG_GIVE (1 << 8)     /* character tries to give obj */
 #define OTRIG_WEAR (1 << 9)     /* character tries to wear obj */
+#define OTRIG_DEATH (1 << 10)   /* character dies             */
 #define OTRIG_REMOVE (1 << 11)  /* character tries to remove obj */
 #define OTRIG_LOAD (1 << 14)    /* the object is loaded       */
-#define OTRIG_CAST (1 << 15)    /* object targetted by spell  */
+#define OTRIG_CAST (1 << 15)    /* object targeted by spell  */
 #define OTRIG_LEAVE (1 << 16)   /* some leaves room seen      */
 #define OTRIG_CONSUME (1 << 18) /* char tries to eat/drink obj */
 #define OTRIG_TIME (1 << 19)    /* trigger based on game hour */
-#define OTRIG_ATTACK (1 << 20)  /* Trigger for weapons on attack */
-#define OTRIG_DEFEND (1 << 21)  /* Trigger for weapons on defense */
 
 /* wld trigger types */
 #define WTRIG_GLOBAL (1 << 0)    /* check even if zone empty   */
@@ -85,7 +88,7 @@
 
 /* obj command trigger types */
 #define OCMD_EQUIP (1 << 0) /* obj must be in char's equip */
-#define OCMD_INVEN (1 << 1) /* obj must be in char's inven */
+#define OCMD_INVEN (1 << 1) /* obj must be in char's inv   */
 #define OCMD_ROOM (1 << 2)  /* obj must be in char's room  */
 
 #define TRIG_NEW 0     /* trigger starts from top     */
@@ -153,8 +156,8 @@ int find_real_zone_by_room(room_num vznum);
 int real_zone(int zvnum);
 
 /* function prototypes from triggers.c */
-void act_mtrigger(struct char_data *ch, char *str, struct char_data *actor, struct char_data *victim,
-                  struct obj_data *object, struct obj_data *target, char *arg);
+void act_mtrigger(struct char_data *ch, const char *str, struct char_data *actor, struct char_data *victim,
+                  struct obj_data *object, struct obj_data *target, char *arg, char *arg2);
 void speech_mtrigger(struct char_data *actor, char *str);
 void speech_to_mtrigger(struct char_data *actor, struct char_data *ch, char *str);
 void speech_wtrigger(struct char_data *actor, char *str);
@@ -175,6 +178,7 @@ int command_mtrigger(struct char_data *actor, char *cmd, char *argument);
 int command_otrigger(struct char_data *actor, char *cmd, char *argument);
 int command_wtrigger(struct char_data *actor, char *cmd, char *argument);
 int death_mtrigger(struct char_data *ch, struct char_data *actor);
+int death_otrigger(struct char_data *ch);
 void fight_mtrigger(struct char_data *ch);
 void attack_otrigger(struct char_data *actor, struct char_data *victim, int dam);
 void hitprcnt_mtrigger(struct char_data *ch);

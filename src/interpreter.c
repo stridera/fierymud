@@ -900,7 +900,6 @@ const struct command_info cmd_info[] = {
     {"restat", POS_PRONE, STANCE_DEAD, do_estat, LVL_ATTENDANT, SCMD_RESTAT, CMD_ANY},
     {"vitem", POS_PRONE, STANCE_DEAD, do_vitem, LVL_ATTENDANT, 0, CMD_ANY},
     {"vwear", POS_PRONE, STANCE_DEAD, do_vwear, LVL_ATTENDANT, 0, CMD_ANY},
-    {"xnames", POS_PRONE, STANCE_DEAD, do_xnames, LVL_GRGOD, 0, CMD_ANY},
 
     {"wake", POS_PRONE, STANCE_SLEEPING, do_wake, 0, 0, 0},
     {"walk", POS_STANDING, STANCE_ALERT, do_move, 0, 0, CMD_HIDE | CMD_NOFIGHT},
@@ -929,6 +928,8 @@ const struct command_info cmd_info[] = {
     {"wizlock", POS_PRONE, STANCE_DEAD, do_wizlock, LVL_HEAD_B, 0, 0},
     {"worship", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"write", POS_STANDING, STANCE_ALERT, do_write, 3, 0, CMD_NOFIGHT},
+
+    {"xnames", POS_PRONE, STANCE_DEAD, do_xnames, LVL_GRGOD, 0, CMD_ANY},
 
     {"yawn", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"yodel", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},

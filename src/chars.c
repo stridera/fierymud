@@ -514,6 +514,10 @@ void hp_pos_check(struct char_data *ch, struct char_data *attacker, int dam) {
     if (DECEASED(ch))
         return;
 
+    /* Give items an ability to heal before death is checked. */
+    if (GET_HIT(ch) <= HIT_DEAD)
+        death_otrigger(ch);
+
     if (GET_HIT(ch) <= HIT_DEAD) {
         newpos = POS_PRONE;
         newstance = STANCE_DEAD;
