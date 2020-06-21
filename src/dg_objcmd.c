@@ -30,6 +30,7 @@
 #include "structs.h"
 #include "sysdep.h"
 #include "utils.h"
+#include "casting.h"
 
 void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
 int get_room_location(char *room);
@@ -432,6 +433,35 @@ OCMD(do_odamage) {
     sethurtevent(0, ch, dam);
 }
 
+OCMD(do_ocast) {
+    char name[MAX_INPUT_LENGTH], spell_name[MAX_INPUT_LENGTH];
+    char_data *target;
+    int spellnum;
+
+    argument = delimited_arg(argument, spell_name, '\'');
+    one_argument(argument, name);
+
+    if (!*name || !*spell_name) {
+        obj_log(obj, t, "ocast: bad syntax");
+        return;
+    }
+
+    target = find_char_around_obj(obj, find_dg_by_name(name));
+    if (!target) {
+        obj_log(obj, t, "ocast: target not found");
+        return;
+    }
+
+    spellnum = find_spell_num(spell_name);
+    if (!IS_SPELL(spellnum)) {
+        sprintf(buf, "ocast: attempt to cast unknown spell: %s", spell_name);
+        obj_log(obj, t, buf);
+        return;
+    }
+
+    call_magic(obj->worn_by, target, NULL, spellnum, 1000, SAVING_ROD);
+}
+
 /*
  * Object version of do_quest
  * note, we don't return anything regardless of success of fail (whats an object
@@ -457,6 +487,7 @@ const struct obj_command_info obj_cmd_info[] = {
     {"odamage", do_odamage, 0},
     {"oheal", do_oheal, 0},
     {"quest", do_obj_quest, 0},
+    {"ocast", do_ocast, 0},
     {"log", do_obj_log, 0},
     {"\n", 0, 0} /* this must be last */
 };

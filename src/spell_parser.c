@@ -137,7 +137,7 @@ void end_chant(struct char_data *ch, struct char_data *tch, struct obj_data *tob
         if (CAN_SEE(gch, ch)) {
             /* Is there a PC/NPC Target?  Is it in the room? */
             if (tch && tch->in_room == ch->in_room) {
-                /* Is the caster targetting himself? */
+                /* Is the caster targeting himself? */
                 if (ch == tch)
                     sprintf(saybuf, "$n closes $s eyes and utters the words, '%s'.", spellbuf);
                 /* Is the target the receiver of the message? */

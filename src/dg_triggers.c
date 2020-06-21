@@ -691,7 +691,7 @@ void attack_otrigger(char_data *actor, char_data *victim, int dam) {
     int i;
 
     if (!char_susceptible_to_triggers(actor))
-        return 1;
+        return;
 
     sprintf(dam_str, "%d", dam);
 
