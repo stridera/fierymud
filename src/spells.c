@@ -1262,7 +1262,7 @@ ASPELL(spell_dispel_magic) {
         return 0;
 
     if (victim) {
-        if (!attack_ok(ch, victim, FALSE) && CONSENT(victim) != ch) {
+        if (GET_LEVEL(ch) < LVL_IMMORT && !attack_ok(ch, victim, FALSE) && CONSENT(victim) != ch) {
             send_to_char("Not without consent you don't!\r\n", ch);
             return CAST_RESULT_CHARGE;
         }

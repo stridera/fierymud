@@ -1909,17 +1909,18 @@ ACMD(do_wizutil) {
             }
             break;
         case SCMD_BLESS:
-            if IS_GOOD(vict) {
-                mag_affect(1000, ch, vict, SPELL_BLESS, 0, 0);
-            } else {
+            if IS_EVIL(vict) {
                 mag_affect(1000, ch, vict, SPELL_DARK_PRESENCE, 0, 0);
+            } else {
+                mag_affect(1000, ch, vict, SPELL_BLESS, 0, 0);
             }
             mag_affect(1000, ch, vict, SPELL_FLY, 0, 0);
             mag_affect(1000, ch, vict, SPELL_STONE_SKIN, 0, 0);
             mag_affect(1000, ch, vict, SPELL_STRENGTH, 0, 0);
             mag_affect(1000, ch, vict, SPELL_BLUR, 0, 0);
+            mag_affect(1000, ch, vict, SPELL_BARKSKIN, 0, 0);
             perform_restore(vict);
-            act("$O has been blessed by %n!", FALSE, ch, 0, vict, TO_ROOM);
+            act("$N has been blessed by %n!", FALSE, ch, 0, vict, TO_ROOM);
             break;
         default:
             log("SYSERR: Unknown subcmd passed to do_wizutil (act.wizard.c)");
