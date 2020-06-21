@@ -409,6 +409,7 @@ const struct command_info cmd_info[] = {
     {"bird", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"blink", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"bleed", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"bless", POS_PRONE, STANCE_DEAD, do_wizutil, LVL_ATTENDANT, SCMD_BLESS, CMD_ANY},
     {"blush", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"boardadmin", POS_PRONE, STANCE_DEAD, do_boardadmin, LVL_ADMIN, 0, 0},
     {"boggle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},

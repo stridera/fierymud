@@ -177,6 +177,7 @@ extern void free_aliases(struct alias_data *alias_list);
 #define SCMD_FREEZE 4
 #define SCMD_THAW 5
 #define SCMD_UNAFFECT 6
+#define SCMD_BLESS 7
 
 /* do_spec_com */
 #define SCMD_WHISPER 0
