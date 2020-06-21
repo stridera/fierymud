@@ -1505,6 +1505,7 @@ int damage(struct char_data *ch, struct char_data *victim, int dam, int attackty
     if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) {
         /* Will the victim die? */
         if DAMAGE_WILL_KILL(victim, dam) {
+            /* Give a chance for item triggers to save the victim */
             death_otrigger(victim);
             death = DAMAGE_WILL_KILL(victim, dam);
         }

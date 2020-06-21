@@ -699,10 +699,10 @@ void attack_otrigger(char_data *actor, char_data *victim, int dam) {
         obj = actor->equipment[i];
         if (obj && SCRIPT_CHECK(obj, OTRIG_ATTACK)) {
             for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
-                if (TRIGGER_CHECK(t, OTRIG_ATTACK)) {
+                if (TRIGGER_CHECK(t, OTRIG_ATTACK) && (number(1, 100) <= GET_TRIG_NARG(t))) {
                     add_var(&GET_TRIG_VARS(t), "damage", dam_str);
-                    ADD_UID_VAR(buf, t, actor, "attacker");
-                    ADD_UID_VAR(buf, t, victim, "defender");
+                    ADD_UID_VAR(buf, t, actor, "actor");
+                    ADD_UID_VAR(buf, t, victim, "victim");
                     script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW);
                     break;
                 }
@@ -711,10 +711,10 @@ void attack_otrigger(char_data *actor, char_data *victim, int dam) {
         obj = victim->equipment[i];
         if (obj && SCRIPT_CHECK(obj, OTRIG_DEFEND)) {
             for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
-                if (TRIGGER_CHECK(t, OTRIG_DEFEND)) {
+                if (TRIGGER_CHECK(t, OTRIG_DEFEND) && (number(1, 100) <= GET_TRIG_NARG(t))) {
                     add_var(&GET_TRIG_VARS(t), "damage", dam_str);
-                    ADD_UID_VAR(buf, t, actor, "attacker");
-                    ADD_UID_VAR(buf, t, victim, "defender");
+                    ADD_UID_VAR(buf, t, actor, "actor");
+                    ADD_UID_VAR(buf, t, victim, "victim");
                     script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW);
                     break;
                 }
