@@ -1920,7 +1920,7 @@ ACMD(do_wizutil) {
             mag_affect(1000, ch, vict, SPELL_BLUR, 0, 0);
             mag_affect(1000, ch, vict, SPELL_BARKSKIN, 0, 0);
             perform_restore(vict);
-            act("$N has been blessed by %n!", FALSE, ch, 0, vict, TO_ROOM);
+            act("$N has been blessed by $n!", FALSE, ch, 0, vict, TO_ROOM);
             break;
         default:
             log("SYSERR: Unknown subcmd passed to do_wizutil (act.wizard.c)");
