@@ -28,68 +28,68 @@
 #define OBJ_TRIGGER 1
 #define WLD_TRIGGER 2
 
-#define DG_NO_TRIG (1 << 6) /* don't check act trigger   */
+#define DG_NO_TRIG (1u << 6u) /* don't check act trigger   */
 
 #define NUM_TRIG_TYPE_FLAGS 20
 
 /* mob trigger types */
-#define MTRIG_GLOBAL (1 << 0)    /* check even if zone empty   */
-#define MTRIG_RANDOM (1 << 1)    /* checked randomly           */
-#define MTRIG_COMMAND (1 << 2)   /* character types a command  */
-#define MTRIG_SPEECH (1 << 3)    /* a char says a word/phrase  */
-#define MTRIG_ACT (1 << 4)       /* word or phrase sent to act */
-#define MTRIG_DEATH (1 << 5)     /* character dies             */
-#define MTRIG_GREET (1 << 6)     /* something enters room seen */
-#define MTRIG_GREET_ALL (1 << 7) /* anything enters room       */
-#define MTRIG_ENTRY (1 << 8)     /* the mob enters a room      */
-#define MTRIG_RECEIVE (1 << 9)   /* character is given obj     */
-#define MTRIG_FIGHT (1 << 10)    /* each pulse while fighting  */
-#define MTRIG_HITPRCNT (1 << 11) /* fighting and below some hp */
-#define MTRIG_BRIBE (1 << 12)    /* coins are given to mob     */
-#define MTRIG_SPEECHTO (1 << 13) /* ask/whisper/tell           */
-#define MTRIG_LOAD (1 << 14)     /* the mob is loaded          */
-#define MTRIG_CAST (1 << 15)     /* mob is target of cast      */
-#define MTRIG_LEAVE (1 << 16)    /* someone leaves room seen   */
-#define MTRIG_DOOR (1 << 17)     /* door manipulated in room   */
-#define MTRIG_TIME (1 << 19)     /* trigger based on game hour */
+#define MTRIG_GLOBAL (1u << 0u)    /* check even if zone empty   */
+#define MTRIG_RANDOM (1u << 1u)    /* checked randomly           */
+#define MTRIG_COMMAND (1u << 2u)   /* character types a command  */
+#define MTRIG_SPEECH (1u << 3u)    /* a char says a word/phrase  */
+#define MTRIG_ACT (1u << 4u)       /* word or phrase sent to act */
+#define MTRIG_DEATH (1u << 5u)     /* character dies             */
+#define MTRIG_GREET (1u << 6u)     /* something enters room seen */
+#define MTRIG_GREET_ALL (1u << 7u) /* anything enters room       */
+#define MTRIG_ENTRY (1u << 8u)     /* the mob enters a room      */
+#define MTRIG_RECEIVE (1u << 9u)   /* character is given obj     */
+#define MTRIG_FIGHT (1u << 10u)    /* each pulse while fighting  */
+#define MTRIG_HITPRCNT (1u << 11u) /* fighting and below some hp */
+#define MTRIG_BRIBE (1u << 12u)    /* coins are given to mob     */
+#define MTRIG_SPEECHTO (1u << 13u) /* ask/whisper/tell           */
+#define MTRIG_LOAD (1u << 14u)     /* the mob is loaded          */
+#define MTRIG_CAST (1u << 15u)     /* mob is target of cast      */
+#define MTRIG_LEAVE (1u << 16u)    /* someone leaves room seen   */
+#define MTRIG_DOOR (1u << 17u)     /* door manipulated in room   */
+#define MTRIG_TIME (1u << 19u)     /* trigger based on game hour */
 
 /* obj trigger types */
-#define OTRIG_GLOBAL (1 << 0)   /* unused                     */
-#define OTRIG_RANDOM (1 << 1)   /* checked randomly           */
-#define OTRIG_COMMAND (1 << 2)  /* character types a command  */
-#define OTRIG_ATTACK (1 << 3)  /* Trigger for weapons on attack */
-#define OTRIG_DEFEND (1 << 4)  /* Trigger for weapons on defense */
-#define OTRIG_TIMER (1 << 5)    /* item's timer expires       */
-#define OTRIG_GET (1 << 6)      /* item is picked up          */
-#define OTRIG_DROP (1 << 7)     /* character tries to drop obj */
-#define OTRIG_GIVE (1 << 8)     /* character tries to give obj */
-#define OTRIG_WEAR (1 << 9)     /* character tries to wear obj */
-#define OTRIG_DEATH (1 << 10)   /* character dies             */
-#define OTRIG_REMOVE (1 << 11)  /* character tries to remove obj */
-#define OTRIG_LOAD (1 << 14)    /* the object is loaded       */
-#define OTRIG_CAST (1 << 15)    /* object targeted by spell  */
-#define OTRIG_LEAVE (1 << 16)   /* some leaves room seen      */
-#define OTRIG_CONSUME (1 << 18) /* char tries to eat/drink obj */
-#define OTRIG_TIME (1 << 19)    /* trigger based on game hour */
+#define OTRIG_GLOBAL (1u << 0u)   /* unused                     */
+#define OTRIG_RANDOM (1u << 1u)   /* checked randomly           */
+#define OTRIG_COMMAND (1u << 2u)  /* character types a command  */
+#define OTRIG_ATTACK (1u << 3u)  /* Trigger for weapons on attack */
+#define OTRIG_DEFEND (1u << 4u)  /* Trigger for weapons on defense */
+#define OTRIG_TIMER (1u << 5u)    /* item's timer expires       */
+#define OTRIG_GET (1u << 6u)      /* item is picked up          */
+#define OTRIG_DROP (1u << 7u)     /* character tries to drop obj */
+#define OTRIG_GIVE (1u << 8u)     /* character tries to give obj */
+#define OTRIG_WEAR (1u << 9u)     /* character tries to wear obj */
+#define OTRIG_DEATH (1u << 10u)   /* character dies             */
+#define OTRIG_REMOVE (1u << 11u)  /* character tries to remove obj */
+#define OTRIG_LOAD (1u << 14u)    /* the object is loaded       */
+#define OTRIG_CAST (1u << 15u)    /* object targeted by spell  */
+#define OTRIG_LEAVE (1u << 16u)   /* some leaves room seen      */
+#define OTRIG_CONSUME (1u << 18u) /* char tries to eat/drink obj */
+#define OTRIG_TIME (1u << 19u)    /* trigger based on game hour */
 
 /* wld trigger types */
-#define WTRIG_GLOBAL (1 << 0)    /* check even if zone empty   */
-#define WTRIG_RANDOM (1 << 1)    /* checked randomly           */
-#define WTRIG_COMMAND (1 << 2)   /* character types a command  */
-#define WTRIG_SPEECH (1 << 3)    /* a char says word/phrase    */
-#define WTRIG_RESET (1 << 5)     /* zone has been reset        */
-#define WTRIG_PREENTRY (1 << 6)  /* someone is about to enter */
-#define WTRIG_DROP (1 << 7)      /* something dropped in room  */
-#define WTRIG_POSTENTRY (1 << 8) /* someone has just entered */
-#define WTRIG_CAST (1 << 15)     /* spell cast in room */
-#define WTRIG_LEAVE (1 << 16)    /* character leaves the room */
-#define WTRIG_DOOR (1 << 17)     /* door manipulated in room  */
-#define WTRIG_TIME (1 << 19)     /* trigger based on game hour */
+#define WTRIG_GLOBAL (1u << 0u)    /* check even if zone empty   */
+#define WTRIG_RANDOM (1u << 1u)    /* checked randomly           */
+#define WTRIG_COMMAND (1u << 2u)   /* character types a command  */
+#define WTRIG_SPEECH (1u << 3u)    /* a char says word/phrase    */
+#define WTRIG_RESET (1u << 5u)     /* zone has been reset        */
+#define WTRIG_PREENTRY (1u << 6u)  /* someone is about to enter */
+#define WTRIG_DROP (1u << 7u)      /* something dropped in room  */
+#define WTRIG_POSTENTRY (1u << 8u) /* someone has just entered */
+#define WTRIG_CAST (1u << 15u)     /* spell cast in room */
+#define WTRIG_LEAVE (1u << 16u)    /* character leaves the room */
+#define WTRIG_DOOR (1u << 17u)     /* door manipulated in room  */
+#define WTRIG_TIME (1u << 19u)     /* trigger based on game hour */
 
 /* obj command trigger types */
-#define OCMD_EQUIP (1 << 0) /* obj must be in char's equip */
-#define OCMD_INVEN (1 << 1) /* obj must be in char's inv   */
-#define OCMD_ROOM (1 << 2)  /* obj must be in char's room  */
+#define OCMD_EQUIP (1u << 0u) /* obj must be in char's equip */
+#define OCMD_INVEN (1u << 1u) /* obj must be in char's inv   */
+#define OCMD_ROOM (1u << 2u)  /* obj must be in char's room  */
 
 #define TRIG_NEW 0     /* trigger starts from top     */
 #define TRIG_RESTART 1 /* trigger restarting          */
@@ -156,8 +156,8 @@ int find_real_zone_by_room(room_num vznum);
 int real_zone(int zvnum);
 
 /* function prototypes from triggers.c */
-void act_mtrigger(struct char_data *ch, const char *str, struct char_data *actor, struct char_data *victim,
-                  struct obj_data *object, struct obj_data *target, char *arg, char *arg2);
+void act_mtrigger(struct char_data *ch, const char *str, const struct char_data *actor, const struct char_data *victim,
+                  const struct obj_data *object, const struct obj_data *target, char *arg, char *arg2);
 void speech_mtrigger(struct char_data *actor, char *str);
 void speech_to_mtrigger(struct char_data *actor, struct char_data *ch, char *str);
 void speech_wtrigger(struct char_data *actor, char *str);

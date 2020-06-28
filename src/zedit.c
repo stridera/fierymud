@@ -854,8 +854,7 @@ void zedit_disp_comtype(struct descriptor_data *d) {
             ".[H.[J"
 #endif
             "%sM%s) Load Mobile to room             %sO%s) Load Object to room\r\n"
-            "%sE%s) Equip mobile with object        %sG%s) Give an object to a "
-            "mobile\r\n"
+            "%sE%s) Equip mobile with object        %sG%s) Give an object to a mobile\r\n"
             "%sP%s) Put object in another object    %sD%s) Open/Close/Lock a Door\r\n"
             "%sR%s) Remove an object from the room\r\n"
             "%sF%s) Force a mobile to do...\r\n"
@@ -922,7 +921,7 @@ void zedit_disp_arg2(struct descriptor_data *d) {
     case 'E':
     case 'P':
     case 'G':
-        send_to_char("Input the maximum number that can exist on the mud (max 50): ", d->character);
+        send_to_char("Input the maximum number that can exist on the mud (max 50):\r\n", d->character);
         break;
     case 'D':
         while (*dirs[i] != '\n') {

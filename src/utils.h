@@ -187,7 +187,7 @@ void drop_core(struct char_data *ch, const char *desc);
 
 /* basic bitvector utils *************************************************/
 
-#define IS_SET(flag, bit) ((flag) & (bit))
+#define IS_SET(flag, bit) (((unsigned int) flag) & ((unsigned int) bit))
 #define SET_BIT(var, bit) ((var) |= (bit))
 #define REMOVE_BIT(var, bit) ((var) &= ~(bit))
 #define TOGGLE_BIT(var, bit) ((var) = (var) ^ (bit))

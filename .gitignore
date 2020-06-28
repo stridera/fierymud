@@ -6,3 +6,6 @@ src/RCS/*
 cmake-build-debug/*
 .vscode/
 .idea/
+CMakeFiles
+Makefile
+CMakeCache.txt

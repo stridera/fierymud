@@ -535,7 +535,7 @@ int init_socket(int port) {
         }
     }
 #else
-    if ((s = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
+    if ((s = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("Error creating socket");
         exit(1);
     }
@@ -1248,13 +1248,13 @@ void send_gmcp_prompt(struct descriptor_data *d) {
                    gmcp_start_data, GET_PLATINUM(ch), GET_GOLD(ch), GET_SILVER(ch), GET_COPPER(ch),
                    GET_BANK_PLATINUM(ch), GET_BANK_GOLD(ch), GET_BANK_SILVER(ch), GET_BANK_COPPER(ch), gmcp_end_data);
 
-    cur += sprintf(cur, "%sChar.Effects [", gmcp_start_data);
+    cur += sprintf(cur, "%sChar.Effects {", gmcp_start_data);
     for (eff = ch->effects; eff; eff = eff->next) {
         if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
-            cur += sprintf(cur, "\"%s\"%s", skills[eff->type].name, eff->next ? ", " : "");
+            cur += sprintf(cur, "\"%s\": %d%s", skills[eff->type].name, eff->duration,eff->next ? ", " : "");
         }
     }
-    cur += sprintf(cur, "]%s", gmcp_end_data);
+    cur += sprintf(cur, "}%s", gmcp_end_data);
 
     if (vict && (tank = FIGHTING(vict))) {
         cur += sprintf(cur,

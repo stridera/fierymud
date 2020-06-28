@@ -63,14 +63,14 @@ const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED
  *  General functions used by several triggers
  */
 
-bool char_susceptible_to_triggers(struct char_data *ch) {
+bool char_susceptible_to_triggers(const struct char_data *ch) {
     if (!ch || GET_INVIS_LEV(ch))
         return FALSE;
     else
         return TRUE;
 }
 
-int is_substring(char *sub, char *string) {
+int is_substring(const char *sub, const char *string) {
     const char *s;
 
     if ((s = str_str(string, sub))) {
@@ -92,7 +92,7 @@ int is_substring(char *sub, char *string) {
  * phrases are in double quotes (").
  * if wrdlist is NULL, then return 1, if str is NULL, return 0.
  */
-int word_check(char *str, char *wordlist) {
+int word_check(const char *str, const char *wordlist) {
     char words[MAX_INPUT_LENGTH], phrase[MAX_INPUT_LENGTH], *s;
 
     if (*wordlist == '*')
@@ -343,8 +343,8 @@ void speech_to_mtrigger(char_data *actor, char_data *ch, char *str) {
         }
 }
 
-void act_mtrigger(char_data *ch, const char *str, char_data *actor, char_data *victim, obj_data *object,
-        obj_data *target, char *arg, char *arg2) {
+void act_mtrigger(char_data *ch, const char *str, const char_data *actor, const char_data *victim,
+        const obj_data *object, const obj_data *target, char *arg, char *arg2) {
     trig_data *t;
     char buf[MAX_INPUT_LENGTH];
 
