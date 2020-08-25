@@ -110,7 +110,7 @@ const char *NOPERSON = "There is no one by that name here.\r\n";
 const char *NOEFFECT = "Nothing seems to happen.\r\n";
 
 /* Automatic rebooting */
-int reboot_hours_base = 90;      /* Average time to reboot (real hours) */
+int reboot_hours_base = 140;      /* Average time to reboot (real hours) */
 int reboot_hours_deviation = 30; /* added to or subtracted from reboot_hours_base */
 /* between 2.5 and 5 days */
 
