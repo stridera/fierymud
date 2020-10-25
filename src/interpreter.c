@@ -730,7 +730,7 @@ const struct command_info cmd_info[] = {
     /*{ "readlist" , POS_PRONE   , STANCE_DEAD    , do_readlist , LVL_GOD, 0, 0
        },*/
     {"restore", POS_PRONE, STANCE_DEAD, do_restore, LVL_RESTORE, 0, CMD_OLC},
-    {"rrestore", POS_PRONE, STANCE_DEAD, do_rrestore, LVL_RESTORE, 0, CMD_OLC},
+    {"rrestore", POS_PRONE, STANCE_DEAD, do_rrestore, LVL_IMMORT, 0, CMD_OLC},
     {"pain", POS_PRONE, STANCE_DEAD, do_pain, LVL_RESTORE, 0, CMD_OLC},
     {"rpain", POS_PRONE, STANCE_DEAD, do_rpain, LVL_RESTORE, 0, CMD_OLC},
     {"retreat", POS_STANDING, STANCE_ALERT, do_retreat, 0, 0, 0},
@@ -831,7 +831,7 @@ const struct command_info cmd_info[] = {
     {"sweat", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"sweep", POS_STANDING, STANCE_ALERT, do_sweep, -1, 0, 0},
     {"switch", POS_PRONE, STANCE_DEAD, do_switch, LVL_GOD, 0, CMD_ANY ^ CMD_OLC},
-    {"syslog", POS_PRONE, STANCE_DEAD, do_syslog, LVL_ATTENDANT, 0, CMD_ANY},
+    {"syslog", POS_PRONE, STANCE_DEAD, do_syslog, LVL_IMMORT, 0, CMD_ANY},
     {"stone", POS_STANDING, STANCE_ALERT, do_not_here, -1, 0, CMD_NOFIGHT},
     {"subclass", POS_PRONE, STANCE_RESTING, do_subclass, 0, 0, CMD_HIDE},
 
