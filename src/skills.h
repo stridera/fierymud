@@ -13,9 +13,9 @@
 #ifndef __FIERY_SKILLS_H
 #define __FIERY_SKILLS_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "class.h"
+#include "structs.h"
+#include "sysdep.h"
 
 /* The general term for the abilities known as spells, skills, chants,
  * and songs is TALENT. */

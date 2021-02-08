@@ -105,9 +105,10 @@ ACMD(do_inctime) {
     skip_spaces(&argument);
 
     if (str_cmp(argument, "yes") != 0) {
-        send_to_char("Are you sure you want to move time forward?\r\n"
-                     "If so, type 'inctime yes'.\r\n",
-                     ch);
+        send_to_char(
+            "Are you sure you want to move time forward?\r\n"
+            "If so, type 'inctime yes'.\r\n",
+            ch);
         return;
     }
 
@@ -637,26 +638,28 @@ ACMD(do_shutdown) {
     } else if (!str_cmp(arg, "now")) {
         sprintf(buf, "(GC) Shutdown NOW by %s.", GET_NAME(ch));
         log(buf);
-        send_to_all("Rebooting.. come back in a minute or two.\r\n"
-                    "           &1&b** ****** ****&0\r\n"
-                    "         &1&b**&0 &3&b***     *****&0  &1&b**&0\r\n"
-                    "       &1&b**&0 &3&b**      &1&b*&0     &3&b***&0  &1&b*&0\r\n"
-                    "       &1&b*&0    &3&b** **   *   *  *&0 &1&b**&0\r\n"
-                    "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\r\n"
-                    "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\r\n"
-                    "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\r\n"
-                    "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 "
-                    "&1&b*&0\r\n");
-        send_to_all("        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\r\n"
-                    "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\r\n"
-                    "                &1&b*&0   &3&b*&0 &1&b*&0\r\n"
-                    "               &1&b*&0  &3&b* *&0  &1&b*&0\r\n"
-                    "              &1&b*&0  &3&b*  **&0  &1&b*&0\r\n"
-                    "              &1&b*&0 &3&b**   *&0 &1&b*&0\r\n"
-                    "                &1&b*&0 &3&b*&0 &1&b*&0\r\n"
-                    "                &1&b*&0 &3&b*&0  &1&b**&0\r\n"
-                    "               &1&b**&0     &1&b****&0\r\n"
-                    "              &1&b***&0  &3&b* *&0    &1&b****&0\r\n");
+        send_to_all(
+            "Rebooting.. come back in a minute or two.\r\n"
+            "           &1&b** ****** ****&0\r\n"
+            "         &1&b**&0 &3&b***     *****&0  &1&b**&0\r\n"
+            "       &1&b**&0 &3&b**      &1&b*&0     &3&b***&0  &1&b*&0\r\n"
+            "       &1&b*&0    &3&b** **   *   *  *&0 &1&b**&0\r\n"
+            "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\r\n"
+            "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\r\n"
+            "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\r\n"
+            "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 "
+            "&1&b*&0\r\n");
+        send_to_all(
+            "        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\r\n"
+            "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\r\n"
+            "                &1&b*&0   &3&b*&0 &1&b*&0\r\n"
+            "               &1&b*&0  &3&b* *&0  &1&b*&0\r\n"
+            "              &1&b*&0  &3&b*  **&0  &1&b*&0\r\n"
+            "              &1&b*&0 &3&b**   *&0 &1&b*&0\r\n"
+            "                &1&b*&0 &3&b*&0 &1&b*&0\r\n"
+            "                &1&b*&0 &3&b*&0  &1&b**&0\r\n"
+            "               &1&b**&0     &1&b****&0\r\n"
+            "              &1&b***&0  &3&b* *&0    &1&b****&0\r\n");
         circle_shutdown = 1;
         circle_reboot = 2;
 
@@ -1014,9 +1017,10 @@ ACMD(do_advance) {
     }
     oldlevel = GET_LEVEL(victim);
     if (newlevel < GET_LEVEL(victim)) {
-        send_to_char("&0&9&bYou are momentarily enveloped by darkness!&0\r\n"
-                     "&0&9&bYou feel somewhat diminished.&0\r\n",
-                     victim);
+        send_to_char(
+            "&0&9&bYou are momentarily enveloped by darkness!&0\r\n"
+            "&0&9&bYou feel somewhat diminished.&0\r\n",
+            victim);
     } else {
         act("$n makes some strange gestures.\r\n"
             "A strange feeling comes upon you,\r\n"
@@ -1263,8 +1267,7 @@ ACMD(do_dc) {
         }
 
     if (!d) {
-        send_to_char("Usage: DC <connection number | character name> (type USERS for a list)\r\n",
-                     ch);
+        send_to_char("Usage: DC <connection number | character name> (type USERS for a list)\r\n", ch);
         return;
     }
 
@@ -1315,8 +1318,7 @@ ACMD(do_wizlock) {
     }
     send_to_char(buf, ch);
     if (!*arg && restrict_reason == RESTRICT_AUTOBOOT)
-        send_to_char("The restriction was set automatically by the automatic rebooting system.\r\n",
-                     ch);
+        send_to_char("The restriction was set automatically by the automatic rebooting system.\r\n", ch);
 }
 
 ACMD(do_date) {
@@ -1408,9 +1410,10 @@ ACMD(do_wiznet) {
     delete_doubledollar(argument);
 
     if (!*argument) {
-        send_to_char("Usage: wiznet <text> | #<level> <text>\r\n "
-                     "       wiznet @<level> | wiz @\r\n",
-                     ch);
+        send_to_char(
+            "Usage: wiznet <text> | #<level> <text>\r\n "
+            "       wiznet @<level> | wiz @\r\n",
+            ch);
         return;
     }
 
@@ -1524,23 +1527,24 @@ void broadcast_name(char *name) {
             write_to_output(temp, d);
 }
 
-char *reasons[] = {"Compound words. Examples: LadyJade, BraveBlade, ImmortalSoul\r\n These "
-                   "types of names give a player an unearned arrogance above\r\n other "
-                   "players and in some instances above the gods.",
-                   "Offensive words or names, mispelled or backwards. Eg: Sgurd Kcuf Emod",
-                   "Names from known mythos, movies etc... Examples: Feyd, Conan, Zeus\r\n "
-                   "Come on, you can be more creative than reliance on an existing known\r\n "
-                   "character.",
-                   "Names that do not fit the character you are playing. Examples:\r\n A "
-                   "human named Gruzel\r\n A troll named Bob\r\n A boy named Sue\r\n An orc "
-                   "named Ripenthiel",
-                   "No offensive words or names from other languages or cultures.",
-                   "No Nouns verbs or adverbs. Eg. Jester, Red, Dog, Bloody, Hotly, "
-                   "Freedom\r\n Pervert, PC, Trouble, McIntosh, Desperado.  Sorry guys LAME.",
-                   "No names that resemble common nouns verbs or adverbs. Eg. Jesterx,\r\n "
-                   "Redx, Chamelion, Desperato etc...",
-                   "No modern names. Examples: Rina John Mike Steve",
-                   "Other...Please talk to a god for further information."};
+char *reasons[] = {
+    "Compound words. Examples: LadyJade, BraveBlade, ImmortalSoul\r\n These "
+    "types of names give a player an unearned arrogance above\r\n other "
+    "players and in some instances above the gods.",
+    "Offensive words or names, mispelled or backwards. Eg: Sgurd Kcuf Emod",
+    "Names from known mythos, movies etc... Examples: Feyd, Conan, Zeus\r\n "
+    "Come on, you can be more creative than reliance on an existing known\r\n "
+    "character.",
+    "Names that do not fit the character you are playing. Examples:\r\n A "
+    "human named Gruzel\r\n A troll named Bob\r\n A boy named Sue\r\n An orc "
+    "named Ripenthiel",
+    "No offensive words or names from other languages or cultures.",
+    "No Nouns verbs or adverbs. Eg. Jester, Red, Dog, Bloody, Hotly, "
+    "Freedom\r\n Pervert, PC, Trouble, McIntosh, Desperado.  Sorry guys LAME.",
+    "No names that resemble common nouns verbs or adverbs. Eg. Jesterx,\r\n "
+    "Redx, Chamelion, Desperato etc...",
+    "No modern names. Examples: Rina John Mike Steve",
+    "Other...Please talk to a god for further information."};
 
 ACMD(do_name) {
     char buffer[MAX_STRING_LENGTH];
@@ -1648,9 +1652,10 @@ ACMD(do_name) {
                     write_to_output("Name: ", d);
                     STATE(d) = CON_NEW_NAME;
                 } else {
-                    write_to_output("&6&bYou are welcome to play; however, you will be "
-                                    "prompted&0\r\n&6&bfor a new name on your next login.&0\r\n",
-                                    d);
+                    write_to_output(
+                        "&6&bYou are welcome to play; however, you will be "
+                        "prompted&0\r\n&6&bfor a new name on your next login.&0\r\n",
+                        d);
                     save_player_char(d->character);
                 }
                 return;
@@ -1780,8 +1785,9 @@ void do_wiztitle(char *outbuf, struct char_data *vict, char *argument) {
     else if (strlen(argument) >= MAX_INPUT_LENGTH)
         sprintf(buf, "Sorry, godly titles can't be longer than %d characters.\r\n", MAX_INPUT_LENGTH - 1);
     else if (noansi_len > WIZ_TITLE_WIDTH)
-        sprintf(buf, "Sorry, text portion of godly titles can't be longer than 12 "
-                     "characters.\r\n");
+        sprintf(buf,
+                "Sorry, text portion of godly titles can't be longer than 12 "
+                "characters.\r\n");
     else if (noansi_len == 0) {
         GET_WIZ_TITLE(vict) = NULL;
         sprintf(buf, "Okay, %s's godly title reset to default.\r\n", GET_NAME(vict));
@@ -1860,9 +1866,10 @@ ACMD(do_wizutil) {
             }
             SET_FLAG(PLR_FLAGS(vict), PLR_FROZEN);
             GET_FREEZE_LEV(vict) = GET_LEVEL(ch);
-            send_to_char("A bitter wind suddenly rises and drains every erg of heat "
-                         "from your body!\r\nYou feel frozen!\r\n",
-                         vict);
+            send_to_char(
+                "A bitter wind suddenly rises and drains every erg of heat "
+                "from your body!\r\nYou feel frozen!\r\n",
+                vict);
             send_to_char("Frozen.\r\n", ch);
             act("A sudden cold wind conjured from nowhere freezes $n!", FALSE, vict, 0, 0, TO_ROOM);
             sprintf(buf, "(GC) %s frozen by %s.", GET_NAME(vict), GET_NAME(ch));
@@ -1870,8 +1877,7 @@ ACMD(do_wizutil) {
             break;
         case SCMD_THAW:
             if (!PLR_FLAGGED(vict, PLR_FROZEN)) {
-                send_to_char("Sorry, your victim is not morbidly encased in ice at the moment.\r\n",
-                             ch);
+                send_to_char("Sorry, your victim is not morbidly encased in ice at the moment.\r\n", ch);
                 return;
             }
             if (GET_FREEZE_LEV(vict) > GET_LEVEL(ch)) {
@@ -1892,9 +1898,10 @@ ACMD(do_wizutil) {
             if (vict->effects) {
                 while (vict->effects)
                     effect_remove(vict, vict->effects);
-                send_to_char("There is a brief flash of light!\r\n"
-                             "You feel slightly different.\r\n",
-                             vict);
+                send_to_char(
+                    "There is a brief flash of light!\r\n"
+                    "You feel slightly different.\r\n",
+                    vict);
                 send_to_char("All spells removed.\r\n", ch);
                 check_regen_rates(vict);
                 /* if it had been an animated and now isnt then it needs to die */
@@ -1909,16 +1916,16 @@ ACMD(do_wizutil) {
             }
             break;
         case SCMD_BLESS:
-            if IS_EVIL(vict) {
-                mag_affect(1000, ch, vict, SPELL_DARK_PRESENCE, 0, 0);
+            if IS_EVIL (vict) {
+                mag_affect(100, ch, vict, SPELL_DARK_PRESENCE, 0, 0);
             } else {
-                mag_affect(1000, ch, vict, SPELL_BLESS, 0, 0);
+                mag_affect(100, ch, vict, SPELL_BLESS, 0, 0);
             }
-            mag_affect(1000, ch, vict, SPELL_FLY, 0, 0);
-            mag_affect(1000, ch, vict, SPELL_STONE_SKIN, 0, 0);
-            mag_affect(1000, ch, vict, SPELL_STRENGTH, 0, 0);
-            mag_affect(1000, ch, vict, SPELL_BLUR, 0, 0);
-            mag_affect(1000, ch, vict, SPELL_BARKSKIN, 0, 0);
+            mag_affect(100, ch, vict, SPELL_FLY, 0, 0);
+            mag_affect(100, ch, vict, SPELL_STONE_SKIN, 0, 0);
+            mag_affect(100, ch, vict, SPELL_STRENGTH, 0, 0);
+            mag_affect(100, ch, vict, SPELL_BLUR, 0, 0);
+            mag_affect(100, ch, vict, SPELL_BARKSKIN, 0, 0);
             perform_restore(vict);
             act("$N has been blessed by $n!", FALSE, ch, 0, vict, TO_ROOM);
             break;
@@ -3544,9 +3551,10 @@ ACMD(do_objupdate) {
 
     if (!strncmp(arg1, "all", 4)) {
         if (!*arg2) {
-            send_to_char("If you really want to update all obsolete object files, "
-                         "type &2objupdate all yes&0\r\n",
-                         ch);
+            send_to_char(
+                "If you really want to update all obsolete object files, "
+                "type &2objupdate all yes&0\r\n",
+                ch);
             return;
         }
         if (strncmp("yes", arg2, 4)) {
