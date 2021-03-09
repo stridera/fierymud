@@ -669,26 +669,28 @@ void reboot_mud_prep() {
     /*do global save */
     auto_save_all();
     House_save_all();
-    all_printf("Rebooting.. come back in a minute or two.\r\n"
-               "           &1&b** ****** ****&0\r\n"
-               "         &1&b**&0 &3&b***     *****&0  &1&b**&0\r\n"
-               "       &1&b**&0 &3&b**      &1&b*&0     &3&b***&0  &1&b*&0\r\n"
-               "       &1&b*&0    &3&b** **   *   *  *&0 &1&b**&0\r\n"
-               "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\r\n"
-               "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\r\n"
-               "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\r\n"
-               "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 "
-               "&1&b*&0\r\n");
-    all_printf("        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\r\n"
-               "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\r\n"
-               "                &1&b*&0   &3&b*&0 &1&b*&0\r\n"
-               "               &1&b*&0  &3&b* *&0  &1&b*&0\r\n"
-               "              &1&b*&0  &3&b*  **&0  &1&b*&0\r\n"
-               "              &1&b*&0 &3&b**   *&0 &1&b*&0\r\n"
-               "                &1&b*&0 &3&b*&0 &1&b*&0\r\n"
-               "                &1&b*&0 &3&b*&0  &1&b**&0\r\n"
-               "               &1&b**&0     &1&b****&0\r\n"
-               "              &1&b***&0  &3&b* *&0    &1&b****&0\r\n");
+    all_printf(
+        "Rebooting.. come back in a minute or two.\r\n"
+        "           &1&b** ****** ****&0\r\n"
+        "         &1&b**&0 &3&b***     *****&0  &1&b**&0\r\n"
+        "       &1&b**&0 &3&b**      &1&b*&0     &3&b***&0  &1&b*&0\r\n"
+        "       &1&b*&0    &3&b** **   *   *  *&0 &1&b**&0\r\n"
+        "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\r\n"
+        "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\r\n"
+        "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\r\n"
+        "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 "
+        "&1&b*&0\r\n");
+    all_printf(
+        "        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\r\n"
+        "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\r\n"
+        "                &1&b*&0   &3&b*&0 &1&b*&0\r\n"
+        "               &1&b*&0  &3&b* *&0  &1&b*&0\r\n"
+        "              &1&b*&0  &3&b*  **&0  &1&b*&0\r\n"
+        "              &1&b*&0 &3&b**   *&0 &1&b*&0\r\n"
+        "                &1&b*&0 &3&b*&0 &1&b*&0\r\n"
+        "                &1&b*&0 &3&b*&0  &1&b**&0\r\n"
+        "               &1&b**&0     &1&b****&0\r\n"
+        "              &1&b***&0  &3&b* *&0    &1&b****&0\r\n");
     touch("../.fastboot");
 }
 
@@ -715,9 +717,10 @@ void personal_reboot_warning(struct char_data *ch) {
 }
 
 void rebootwarning(int minutes) {
-    all_printf("&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in &6&b%d "
-               "minute%s&0  &1&b*&3&bATTENTION&1&b*&0\r\n",
-               minutes, minutes == 1 ? "" : "s");
+    all_printf(
+        "&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in &6&b%d "
+        "minute%s&0  &1&b*&3&bATTENTION&1&b*&0\r\n",
+        minutes, minutes == 1 ? "" : "s");
 }
 
 void cancel_auto_reboot(int postponed) {
@@ -1251,7 +1254,7 @@ void send_gmcp_prompt(struct descriptor_data *d) {
     cur += sprintf(cur, "%sChar.Effects {", gmcp_start_data);
     for (eff = ch->effects; eff; eff = eff->next) {
         if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
-            cur += sprintf(cur, "\"%s\": %d%s", skills[eff->type].name, eff->duration,eff->next ? ", " : "");
+            cur += sprintf(cur, "\"%s\": %d%s", skills[eff->type].name, eff->duration, eff->next ? ", " : "");
         }
     }
     cur += sprintf(cur, "}%s", gmcp_end_data);
@@ -1829,7 +1832,6 @@ void string_to_output(struct descriptor_data *t, const char *txt) {
     size = process_colors(new_txt, sizeof(new_txt), txt,
                           t->character && COLOR_LEV(t->character) >= C_NRM ? CLR_PARSE : CLR_STRIP);
 
-
     /* if we're in the overflow state already, ignore this new output */
     if (t->bufptr < 0)
         return;
@@ -1901,6 +1903,7 @@ void init_descriptor(struct descriptor_data *newd, int desc) {
     newd->output = newd->small_outbuf;
     newd->bufspace = SMALL_BUFSIZE - 1;
     newd->login_time = time(0);
+    *newd->inbuf = '\0';
     *newd->output = '\0';
     newd->bufptr = 0;
     newd->wait = 1;
@@ -2076,16 +2079,15 @@ int write_to_descriptor(socket_t desc, char *txt) {
  * function is called.  We must maintain that before returning.
  */
 int process_input(struct descriptor_data *t) {
-    int bytes_read, space_left, command_space_left, failed_subst, telopt = 0;
-    char *ptr, *read_point, *write_point = NULL;
-    char inbuf[MAX_RAW_INPUT_LENGTH - 1], tmp[MAX_INPUT_LENGTH + 8], telcmd = 0;
+    int buf_length, bytes_read, space_left, command_space_left, failed_subst, telopt = 0;
+    char *ptr, *read_point, *write_point = NULL, *write_cmd_point = NULL;
+    char tmp[MAX_INPUT_LENGTH + 8], gmcp_cmd[MAX_INPUT_LENGTH + 8], telcmd = 0;
     bool gmcp = false;
 
-    read_point = inbuf;
-    space_left = MAX_RAW_INPUT_LENGTH - 1;
+    buf_length = strlen(t->inbuf);
+    read_point = t->inbuf + buf_length;
+    space_left = MAX_RAW_INPUT_LENGTH - buf_length - 1;
     command_space_left = MAX_INPUT_LENGTH - 1;
-
-    write_point = tmp;
 
     do {
         if (space_left <= 0) {
@@ -2104,32 +2106,40 @@ int process_input(struct descriptor_data *t) {
             if (errno != EAGAIN) {
 #endif /* CIRCLE_WINDOWS */
                 log("process_input: about to lose connection");
-                return -1; /* some error condition was encountered on
-                            * read */
+                return -1; /* some error condition was encountered on read */
             } else {
-                return 0; /* the read would have blocked: just means no data there but
-                             everything's okay */
+                break; /* the read would have blocked: just means no data there but everything's okay */
             }
         } else if (bytes_read == 0) {
             log("EOF on socket read (connection broken by peer)");
             return -1;
         }
-        /* at this point, we know we got some data from the read */
 
         *(read_point + bytes_read) = '\0'; /* terminate the string */
+        read_point += bytes_read;
+        space_left -= bytes_read;
+    } while (true);
 
-        /* search for a newline or control codes in the data we just read */
-        for (ptr = read_point; *ptr; ++ptr) {
-            if (*ptr == (char)IAC) { /* Telnet Control Option Starting */
-                telopt = 1;
-            } else if (telopt == 1 && gmcp && *ptr == (char)SE) { /* End of GMCP message */
-                telopt = 0;
-                gmcp = false;
-                ;
-                *write_point = '\0';
-                handle_gmcp_request(t, tmp);
-                write_point = tmp;
-                command_space_left = MAX_INPUT_LENGTH - 1;
+    // All data read, lets process it.
+    write_point = tmp;
+    *write_point = '\0';
+    space_left = MAX_INPUT_LENGTH - 1;
+
+    /* search for a newline or control codes in the data we just read */
+    for (ptr = t->inbuf; *ptr; ++ptr) {
+        if (*ptr == (char)IAC) { /* Telnet Control Option Starting */
+            telopt = 1;
+        } else if (telopt == 1) {
+            if (gmcp) {
+                if (*ptr == (char)SE) { /* End of GMCP message */
+                    telopt = 0;
+                    gmcp = false;
+                    *write_cmd_point = '\0';
+                    handle_gmcp_request(t, gmcp_cmd);
+                } else {
+                    *(write_cmd_point++) = *ptr;
+                    command_space_left--;
+                }
             } else if (telopt == 1) {
                 telopt = 2;
                 telcmd = *ptr;
@@ -2141,75 +2151,82 @@ int process_input(struct descriptor_data *t) {
                 } else if (telcmd == (char)DONT) {
                     t->gmcp_enabled = false;
                 } else if (telcmd == (char)SB) {
+                    /* Start listening to new GMCP command. */
+                    write_cmd_point = gmcp_cmd;
+                    *write_cmd_point = '\0';
+                    command_space_left = MAX_INPUT_LENGTH - 1;
                     gmcp = true;
                 } else {
+                    write_cmd_point = gmcp_cmd;
+                    *write_cmd_point = '\0';
                     /* ERROR */
-                    log("Invalid GMCP code %d", (int)telcmd);
+                    log("Invalid GMCP code %d", (char)telcmd);
                 }
             } else if (telopt == 2) {
-                /* log("Invalid 2nd level IAC code %d", (int) *ptr); */
+                log("Invalid 2nd level IAC code %d", (int)*ptr);
             } else if (telopt > 0) { /* If we are here, there is an error */
                 log("Invalid telnet IAC code %d", (int)*ptr);
-            } else {
-                if (IS_NEWLINE(*ptr) || command_space_left <= 0) { /* End of command, process it */
-                    *write_point = '\0';
-                    if (t->snoop_by)
-                        dprintf(t->snoop_by, "&6>>&b %s &0\r\n", tmp);
+            }
+        } else {
+            if (IS_NEWLINE(*ptr) || space_left <= 0) { /* End of command, process it */
+                *write_point = '\0';
+                if (t->snoop_by)
+                    dprintf(t->snoop_by, "&6>>&b %s &0\r\n", tmp);
 
-                    failed_subst = 0;
+                failed_subst = 0;
 
-                    if (*tmp == '!')
-                        strcpy(tmp, t->last_input);
-                    else if (*tmp == '^') {
-                        if (!(failed_subst = perform_subst(t, t->last_input, tmp)))
-                            strcpy(t->last_input, tmp);
-                    } else
+                if (*tmp == '!')
+                    strcpy(tmp, t->last_input);
+                else if (*tmp == '^') {
+                    if (!(failed_subst = perform_subst(t, t->last_input, tmp)))
                         strcpy(t->last_input, tmp);
-                    /*
-                     * If the user is casting, and the command is ok
-                     * when casting, then it gets processed immediately
-                     * by the command interpreter within casting_command().
-                     * Otherwise, the command is queued up and handled by
-                     * the game loop normally.  Oh, and this is a hack.
-                     */
-                    if (!failed_subst && !casting_command(t, tmp))
-                        write_to_q(tmp, &t->input, 0, t);
+                } else
+                    strcpy(t->last_input, tmp);
+                /*
+                 * If the user is casting, and the command is ok
+                 * when casting, then it gets processed immediately
+                 * by the command interpreter within casting_command().
+                 * Otherwise, the command is queued up and handled by
+                 * the game loop normally.  Oh, and this is a hack.
+                 */
+                if (!failed_subst && !casting_command(t, tmp))
+                    write_to_q(tmp, &t->input, 0, t);
 
-                    if (command_space_left <= 0) {
-                        char buffer[MAX_INPUT_LENGTH + 64];
-                        snprintf(buffer, sizeof(buffer), "Line too long.  Truncated to:\r\n%s\r\n", tmp);
-                        if (write_to_descriptor(t->descriptor, buffer) < 0)
-                            return -1;
-                        while (*ptr && !IS_NEWLINE(*ptr)) /* Find next newline */
-                            ++ptr;
-                    }
-                    while (*(ptr + 1) && IS_NEWLINE(*(ptr + 1))) /* Find start of next command. */
+                if (space_left <= 0) {
+                    char buffer[MAX_INPUT_LENGTH + 64];
+                    snprintf(buffer, sizeof(buffer), "Line too long.  Truncated to:\r\n%s\r\n", tmp);
+                    if (write_to_descriptor(t->descriptor, buffer) < 0)
+                        return -1;
+                    while (*ptr && !IS_NEWLINE(*ptr)) /* Find next newline */
                         ++ptr;
-
-                    write_point = tmp;
-                    command_space_left = MAX_INPUT_LENGTH - 1;
-                } else if (*ptr == '\b') { /* handle backspacing */
-                    if (write_point > tmp) {
-                        if (*(--write_point) == '$') {
-                            write_point--;
-                            command_space_left += 2;
-                        } else
-                            command_space_left++;
-                    }
-                } else if (isascii(*ptr) && isprint(*ptr)) {
-                    if ((*(write_point++) = *ptr) == '$') { /* copy one character */
-                        *(write_point++) = '$';             /* if it's a $, double it */
-                        command_space_left -= 2;
-                    } else
-                        command_space_left--;
                 }
+                while (*(ptr + 1) && IS_NEWLINE(*(ptr + 1))) /* Find start of next command. */
+                    ++ptr;
+
+                write_point = tmp;
+                *write_point = '\0';
+                space_left = MAX_INPUT_LENGTH - 1;
+            } else if (*ptr == '\b') { /* handle backspacing */
+                if (write_point > tmp) {
+                    if (*(--write_point) == '$') {
+                        write_point--;
+                        space_left += 2;
+                    } else
+                        space_left++;
+                }
+            } else if (isascii(*ptr) && isprint(*ptr)) {
+                if ((*(write_point++) = *ptr) == '$') { /* copy one character */
+                    *(write_point++) = '$';             /* if it's a $, double it */
+                    space_left -= 2;
+                } else
+                    space_left--;
+
+                *write_point = '\0';
             }
         }
-
-        read_point += bytes_read;
-        space_left -= bytes_read;
-
-    } while (true);
+    }
+    strcpy(t->inbuf, tmp);
+    return 0;
 }
 
 /*
@@ -2820,7 +2837,7 @@ char *ACTNULL = "<NULL>";
 /* higher-level communication: the act() function */
 void format_act(char *rtn, const char *orig, struct char_data *ch, struct obj_data *obj, const void *vict_obj,
                 const struct char_data *to) {
-    const char_data  *victim;
+    const char_data *victim;
     const obj_data *target_object;
     char target_string[MAX_STRING_LENGTH] = "\0", target_string2[MAX_STRING_LENGTH] = "\0";
     const char *i = NULL;
@@ -3001,8 +3018,8 @@ void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_d
 
     if (type == TO_VICT) {
         if ((to = (struct char_data *)vict_obj) &&
-            ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to))
-            && !(hide_invisible && ch && !CAN_SEE(to, ch))) {
+            ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
+            !(hide_invisible && ch && !CAN_SEE(to, ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
             cprintf(to, "%s", lbuf);
         }
@@ -3051,9 +3068,8 @@ void act(const char *str, int hide_invisible, struct char_data *ch, struct obj_d
     }
 
     for (to = world[in_room].people; to; to = to->next_in_room)
-        if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to))
-        && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
-        (type == TO_ROOM || (to != vict_obj))) {
+        if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
+            !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != vict_obj))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
             cprintf(to, "%s", lbuf);
         }
@@ -3607,7 +3623,7 @@ void send_to_zone(const char *messg, int zone_vnum, int skip_room, int min_stanc
  * turned off occ by detault
  *
  * Revision 1.44  2000/11/28 01:36:34  mtp
- * remveove last vestiges of mobprgos (damn these things get around)
+ * remveove last vestiges of mobprgos (damn these things get around)
  *
  * Revision 1.43  2000/11/28 01:19:01  mtp
  * remove process_events() (replaced dg_event code with events.c code)
