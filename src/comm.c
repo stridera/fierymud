@@ -1207,11 +1207,8 @@ void send_gmcp_prompt(struct descriptor_data *d) {
     static char gmcp_prompt[MAX_STRING_LENGTH];
     char *cur = gmcp_prompt;
 
-    sprintf(cur, "%s", ga_string);
-
-    write_to_descriptor(d->descriptor, gmcp_prompt);
-
     if (!d->gmcp_enabled) {
+        write_to_descriptor(d->descriptor, ga_string);
         return;
     }
 
@@ -1279,7 +1276,6 @@ void send_gmcp_prompt(struct descriptor_data *d) {
     }
 
     cur += sprintf(cur, "%s", ga_string);
-
     write_to_descriptor(d->descriptor, gmcp_prompt);
 }
 
@@ -1291,7 +1287,7 @@ void send_gmcp_room(struct char_data *ch) {
     struct room_data *room = &world[roomnum];
     struct exit *exit;
 
-    if (IS_MOB(ch) || !ch->desc->gmcp_enabled) {
+    if (IS_MOB(ch) || !ch->desc || !ch->desc->gmcp_enabled) {
         return;
     }
 
@@ -2120,7 +2116,7 @@ int process_input(struct descriptor_data *t) {
         space_left -= bytes_read;
     } while (true);
 
-    // All data read, lets process it.
+    /* All data read, lets process it. */
     write_point = tmp;
     *write_point = '\0';
     space_left = MAX_INPUT_LENGTH - 1;
@@ -2195,7 +2191,6 @@ int process_input(struct descriptor_data *t) {
                  * the game loop normally.  Oh, and this is a hack.
                  */
                 if (!failed_subst && !casting_command(t, tmp)) {
-                    // log("Processing input: %s\n", tmp);
                     write_to_q(tmp, &t->input, 0, t);
                 }
 
