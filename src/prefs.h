@@ -53,6 +53,7 @@
 #define PRF_EXPAND_OBJS 33
 #define PRF_EXPAND_MOBS 34
 #define PRF_SACRIFICIAL 35 /* Sacrificial spells autotarget self */
+#define PRF_PETASSIST 36   /* Should your pet assist you as you fight */
 #define NUM_PRF_FLAGS 37
 
 #endif

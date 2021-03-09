@@ -79,6 +79,7 @@ ACMD(do_toggle) {
         {"ExpandObjs", 0, PRF_EXPAND_OBJS},
         {"ExpandMobs", 0, PRF_EXPAND_MOBS},
         {"Sacrificial", LVL_IMMORT, PRF_SACRIFICIAL},
+        {"PetAssist", 0, PRF_PETASSIST},
         {"\n", 0, 0},
         /* If you add another toggle, add a corresponding SCMD_ define in
          * interpreter.h, even if you don't intend to use it. */
@@ -159,7 +160,7 @@ ACMD(do_toggle) {
          "When you cast sacrificial spells, they will no longer auto-target "
          "you.\r\n"},
         /*34 */
-        {"No longer sending telnet GA prompts.\r\n", "Now sending telnet GA prompts.\r\n"},
+        {"Your pet will no longer assist you as you fight.\r\n", "Your pet will now assist you as you fight.\r\n"},
     };
 
     argument = one_argument(argument, arg);
@@ -192,8 +193,9 @@ ACMD(do_toggle) {
             return;
         }
 
-        strcpy(buf, "             FieryMUD TOGGLES!  (See HELP TOGGLE)\r\n"
-                    "===============================================================\r\n");
+        strcpy(buf,
+               "             FieryMUD TOGGLES!  (See HELP TOGGLE)\r\n"
+               "===============================================================\r\n");
         for (column = i = 0; *fields[i].cmd != '\n'; ++i) {
             if (i != SCMD_ANON || !PRV_FLAGGED(tch, PRV_ANON_TOGGLE))
                 if (fields[i].level > GET_LEVEL(tch))
@@ -266,8 +268,7 @@ ACMD(do_toggle) {
                 GET_WIMP_LEV(tch) = 0;
             }
         } else
-            send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n",
-                         ch);
+            send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n", ch);
         return;
     case SCMD_PAGELENGTH:
         one_argument(argument, arg);
@@ -295,8 +296,7 @@ ACMD(do_toggle) {
                 GET_PAGE_LENGTH(tch) = 22;
             }
         } else
-            send_to_char("Specify at how many lines you want your page length to be.  (0 for default length)\r\n",
-                         ch);
+            send_to_char("Specify at how many lines you want your page length to be.  (0 for default length)\r\n", ch);
         return;
     case SCMD_AUTOINVIS:
         any_one_arg(argument, arg);
@@ -321,10 +321,8 @@ ACMD(do_toggle) {
             else if (!strncasecmp(arg, "on", 3))
                 i = GET_LEVEL(tch);
             else {
-                send_to_char("Invalid input: autoinvis is a number between 0 and your level.\r\n",
-                             ch);
-                send_to_char("You may also enter -1 or 'off' to disable it, or 'on' which will\r\n",
-                             ch);
+                send_to_char("Invalid input: autoinvis is a number between 0 and your level.\r\n", ch);
+                send_to_char("You may also enter -1 or 'off' to disable it, or 'on' which will\r\n", ch);
                 send_to_char("set it to the maximum value: your level.\r\n", ch);
                 return;
             }
@@ -340,8 +338,7 @@ ACMD(do_toggle) {
                     send_to_char(buf, ch);
                 }
             } else if (i < -1 || i > GET_LEVEL(tch)) {
-                send_to_char("Invalid input: autoinvis is a number between -1 and your level.\r\n",
-                             ch);
+                send_to_char("Invalid input: autoinvis is a number between -1 and your level.\r\n", ch);
             } else {
                 GET_AUTOINVIS(tch) = i;
                 if (i == -1)

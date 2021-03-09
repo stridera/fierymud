@@ -264,7 +264,7 @@ void mobile_spec_activity(void) {
         }
 
         /* Pets, courtesy of Banyal */
-        if (PLAYERALLY(ch)) {
+        if (PLAYERALLY(ch) && PRF_FLAGGED(ch->master, PRF_PETASSIST)) {
             found = FALSE;
             for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room)
                 if (ch != vict && (ch->master == vict) && FIGHTING(vict) && ch != FIGHTING(vict)) {
