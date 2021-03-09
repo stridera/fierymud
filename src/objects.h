@@ -16,9 +16,9 @@
 #ifndef __FIERY_OBJECTS_H
 #define __FIERY_OBJECTS_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "effects.h"
+#include "structs.h"
+#include "sysdep.h"
 
 /*[ CONSTANTS ]***************************************************************/
 
@@ -81,7 +81,8 @@
 #define ITEM_WEAR_EAR (1 << 18)     /* Can be worn in ear        */
 #define ITEM_WEAR_BADGE (1 << 19)   /* Can be worn as badge      */
 #define ITEM_WEAR_OBELT (1 << 20)   /* Can be worn on belt       */
-#define NUM_ITEM_WEAR_FLAGS 21
+#define ITEM_WEAR_HOVER (1 << 21)   /* Will hover around you     */
+#define NUM_ITEM_WEAR_FLAGS 22
 
 /* Extra object flags: used by obj_data.obj_flags.extra_flags */
 #define ITEM_GLOW 0               /* Item is glowing               */
@@ -197,7 +198,8 @@
 #define CONT_CLOSED (1 << 2)    /* Container is closed           */
 #define CONT_LOCKED (1 << 3)    /* Container is locked           */
 #define VAL_CONTAINER_KEY 2
-#define VAL_CONTAINER_WEIGHT_REDUCTION 4 /* Used to allow bags of holding, which reduce the weight of items carried. */
+#define VAL_CONTAINER_WEIGHT_REDUCTION 4 /* Used to allow bags of holding, which reduce the weight of items carried.   \
+                                          */
 #define VAL_CORPSE_ID 2
 #define VAL_CONTAINER_CORPSE 3
 #define NOT_CORPSE 0

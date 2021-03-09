@@ -105,7 +105,7 @@ const char *where[NUM_WEARS] = {
     "<worn about body>    ", "<worn about waist>   ", "<worn around wrist>  ", "<worn around wrist>  ",
     "<wielded>            ", "<wielded secondary>  ", "<held>               ", "<held>               ",
     "<wielded two-handed> ", "<worn on eyes>       ", "<worn on face>       ", "<worn in left ear>   ",
-    "<worn in right ear>  ", "<worn as badge>      ", "<attached to belt>   "};
+    "<worn in right ear>  ", "<worn as badge>      ", "<attached to belt>   ", "<hovering>           "};
 
 /* WEAR_x - for stat */
 const char *equipment_types[NUM_WEARS + 1] = {"Used as light",
@@ -135,19 +135,20 @@ const char *equipment_types[NUM_WEARS + 1] = {"Used as light",
                                               "Worn in right ear",
                                               "Worn as badge",
                                               "Attached to belt",
+                                              "Hovering"
                                               "\n"};
 
 /* WEAR_x - for scripts */
-const char *wear_positions[NUM_WEARS + 1] = {"light",  "rfinger", "lfinger", "neck1",  "neck2",  "body",      "head",
-                                             "legs",   "feet",    "hands",   "arms",   "shield", "aboutbody", "waist",
-                                             "rwrist", "lwrist",  "wield",   "wield2", "held",   "held2",     "2hwield",
-                                             "eyes",   "face",    "lear",    "rear",   "badge",  "belt",      "\n"};
+const char *wear_positions[NUM_WEARS + 1] = {
+    "light",   "rfinger", "lfinger",   "neck1", "neck2",  "body",   "head",  "legs",   "feet", "hands",
+    "arms",    "shield",  "aboutbody", "waist", "rwrist", "lwrist", "wield", "wield2", "held", "held2",
+    "2hwield", "eyes",    "face",      "lear",  "rear",   "badge",  "belt",  "hover",  "\n"};
 
 const int wear_order_index[NUM_WEARS] = {
     WEAR_BADGE,   WEAR_HEAD,  WEAR_EYES,     WEAR_FACE,     WEAR_REAR,  WEAR_LEAR,   WEAR_NECK_1,
     WEAR_NECK_2,  WEAR_ABOUT, WEAR_BODY,     WEAR_WAIST,    WEAR_OBELT, WEAR_ARMS,   WEAR_WRIST_R,
     WEAR_WRIST_L, WEAR_HANDS, WEAR_FINGER_R, WEAR_FINGER_L, WEAR_WIELD, WEAR_WIELD2, WEAR_2HWIELD,
-    WEAR_HOLD,    WEAR_HOLD2, WEAR_LIGHT,    WEAR_SHIELD,   WEAR_LEGS,  WEAR_FEET};
+    WEAR_HOLD,    WEAR_HOLD2, WEAR_LIGHT,    WEAR_SHIELD,   WEAR_LEGS,  WEAR_FEET,   WEAR_HOVER};
 
 const int wear_flags[NUM_WEARS] = {
     /* WEAR_LIGHT    */ -1,
@@ -177,21 +178,21 @@ const int wear_flags[NUM_WEARS] = {
     /* WEAR_REAR     */ ITEM_WEAR_EAR,
     /* WEAR_BADGE    */ ITEM_WEAR_BADGE,
     /* WEAR_OBELT    */ ITEM_WEAR_OBELT,
+    /* WEAR_HOVER    */ ITEM_WEAR_HOVER,
 };
 
 /* ITEM_WEAR_ (wear bitvector) */
 const char *wear_bits[NUM_ITEM_WEAR_FLAGS + 1] = {
-    "TAKE",  "FINGER", "NECK",  "BODY", "HEAD",    "LEGS", "FEET", "HANDS", "ARMS",  "SHIELD", "ABOUT",
-    "WAIST", "WRIST",  "WIELD", "HOLD", "2HWIELD", "EYES", "FACE", "EAR",   "BADGE", "OBELT",  "\n"};
+    "TAKE",  "FINGER", "NECK", "BODY",    "HEAD", "LEGS", "FEET", "HANDS", "ARMS",  "SHIELD", "ABOUT", "WAIST",
+    "WRIST", "WIELD",  "HOLD", "2HWIELD", "EYES", "FACE", "EAR",  "BADGE", "OBELT", "HOVER",  "\n"};
 
 /* ITEM_x (extra bits) */
-const char *extra_bits[NUM_ITEM_FLAGS + 1] = {"GLOW",      "HUM",      "!RENT",     "!DONATE",       "!INVIS",
-                                              "INVISIBLE", "MAGIC",    "!DROP",     "PERMANENT",     "!GOOD",
-                                              "!EVIL",     "!NEUTRAL", "!SORCERER", "!CLERIC",       "!ROGUE",
-                                              "!WARRIOR",  "!SELL",    "!PALADIN",  "!ANTI_PALADIN", "!RANGER",
-                                              "!DRUID",    "!SHAMAN",  "!ASSASSIN", "!MERCENARY",    "!NECROMANCER",
-                                              "!CONJURER", "!BURN",    "!LOCATE",   "DECOMPOSING",   "FLOAT",
-                                              "!FALL",     "DISARMED", "!MONK",     "\n"};
+const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
+    "GLOW",        "HUM",       "!RENT",      "!DONATE",      "!INVIS",        "INVISIBLE", "MAGIC",
+    "!DROP",       "PERMANENT", "!GOOD",      "!EVIL",        "!NEUTRAL",      "!SORCERER", "!CLERIC",
+    "!ROGUE",      "!WARRIOR",  "!SELL",      "!PALADIN",     "!ANTI_PALADIN", "!RANGER",   "!DRUID",
+    "!SHAMAN",     "!ASSASSIN", "!MERCENARY", "!NECROMANCER", "!CONJURER",     "!BURN",     "!LOCATE",
+    "DECOMPOSING", "FLOAT",     "!FALL",      "DISARMED",     "!MONK",         "\n"};
 
 /* APPLY_x */
 const char *apply_types[NUM_APPLY_TYPES + 1] = {
@@ -418,18 +419,24 @@ const char *default_prompts[][2] = {{"Basic", "&0%hhp %vmv>&0 "},
                                     {"Full-Featured",
                                      "&6Opponent&0: &4&b%o &7&b/ &0&6Tank&0: &4&b%t%_&0&1%h&0(&1&b%H&0)"
                                      "hitp &2%v&0(&2&b%V&0)&7move&0> "},
-                                    {"Standard", "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_"
-                                                 "&0<%t&0>:<&0%o&0> "},
-                                    {"Complete w/ Spells", "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
-                                                           "<&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> "},
-                                    {"Complete w/ Exp", "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
-                                                        "<&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> "},
-                                    {"Complete w/ Hide Pts", "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
-                                                             "<&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> "},
-                                    {"Complete w/ Rage", "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
-                                                         "<&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> "},
-                                    {"Complete w/ 1st Aid", "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
-                                                            "<&0&2%aA&2&b> <&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> "},
+                                    {"Standard",
+                                     "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b>%_"
+                                     "&0<%t&0>:<&0%o&0> "},
+                                    {"Complete w/ Spells",
+                                     "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+                                     "<&0&2%aA&2&b> <&0%l&2&b>%_&0<%t&0>:<&0%o&0> "},
+                                    {"Complete w/ Exp",
+                                     "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+                                     "<&0&2%aA&2&b> <&0%e&2&b>%_&0<%t&0>:<&0%o&0> "},
+                                    {"Complete w/ Hide Pts",
+                                     "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+                                     "<&0&2%aA&2&b> <&0&2%ih&2&b>%_&0<%t&0>:<&0%o&0> "},
+                                    {"Complete w/ Rage",
+                                     "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+                                     "<&0&2%aA&2&b> <&0&2%rr&2&b>%_&0<%t&0>:<&0%o&0> "},
+                                    {"Complete w/ 1st Aid",
+                                     "&2&b<&0&2%hh&0(&2&b%HH&0) &2%vv&0(&2&b%VV&0)&2&b> "
+                                     "<&0&2%aA&2&b> <&0&2%df&2&b>%_&0<%t&0>:<&0%o&0> "},
                                     {NULL, NULL}};
 
 /*

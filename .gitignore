@@ -9,3 +9,4 @@ cmake-build-debug/*
 CMakeFiles
 Makefile
 CMakeCache.txt
+build/

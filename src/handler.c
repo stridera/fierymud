@@ -712,7 +712,7 @@ bool may_wear_eq(struct char_data *ch, /* Who is trying to wear something */
         ITEM_WEAR_HEAD,  ITEM_WEAR_LEGS,   ITEM_WEAR_FEET,    ITEM_WEAR_HANDS, ITEM_WEAR_ARMS,  ITEM_WEAR_SHIELD,
         ITEM_WEAR_ABOUT, ITEM_WEAR_WAIST,  ITEM_WEAR_WRIST,   ITEM_WEAR_WRIST, ITEM_WEAR_WIELD, ITEM_WEAR_WIELD,
         ITEM_WEAR_HOLD,  ITEM_WEAR_HOLD,   ITEM_WEAR_2HWIELD, ITEM_WEAR_EYES,  ITEM_WEAR_FACE,  ITEM_WEAR_EAR,
-        ITEM_WEAR_EAR,   ITEM_WEAR_BADGE,  ITEM_WEAR_OBELT};
+        ITEM_WEAR_EAR,   ITEM_WEAR_BADGE,  ITEM_WEAR_OBELT,   ITEM_WEAR_HOVER};
 
     char *already_wearing[] = {"You're already using a light.\r\n",
                                "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\r\n",
@@ -740,7 +740,8 @@ bool may_wear_eq(struct char_data *ch, /* Who is trying to wear something */
                                "YOU SHOULD NEVER SEE THIS REPORT IT!.\r\n",
                                "You're already wearing something in both of your ears.\r\n",
                                "You're already wearing a badge.\r\n",
-                               "You can't attach any more to your belt.\r\n"};
+                               "You can't attach any more to your belt.\r\n",
+                               "You already have something hovering around you.\r\n"};
 
     /* first, make sure that the wear position is valid. */
     /* Only allow light items in the light pos, and then only

@@ -16,11 +16,11 @@
 #ifndef __FIERY_STRUCTS_H
 #define __FIERY_STRUCTS_H
 
-#include "sysdep.h"
 #include "money.h"     /* For NUM_COIN_TYPES */
 #include "prefs.h"     /* For NUM_PRF_FLAGS */
 #include "specprocs.h" /* For SPECIAL() */
 #include "spell_mem.h"
+#include "sysdep.h"
 
 /* char and mob-related defines *****************************************/
 
@@ -221,7 +221,8 @@
 #define WEAR_REAR 24
 #define WEAR_BADGE 25
 #define WEAR_OBELT 26
-#define NUM_WEARS 27 /* This must be the # of eq positions!! */
+#define WEAR_HOVER 27
+#define NUM_WEARS 28 /* This must be the # of eq positions!! */
 
 /* other miscellaneous defines *******************************************/
 

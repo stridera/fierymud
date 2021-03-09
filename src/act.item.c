@@ -195,8 +195,7 @@ ACMD(do_stow) {
     else if (obj_dotmode != FIND_INDIV)
         send_to_char("You can only stow one item at a time.\r\n", ch);
     else if (cont_dotmode != FIND_INDIV)
-        send_to_char("You'll need to break it into pieces to put it into more than one container!\r\n",
-                     ch);
+        send_to_char("You'll need to break it into pieces to put it into more than one container!\r\n", ch);
     else {
         if (*arg2)
             generic_find(arg2, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tch, &cont);
@@ -1072,10 +1071,7 @@ void wear_message(struct char_data *ch, struct obj_data *obj, int where) {
 
         {"$n wears $p around $s neck.", "You wear $p around your neck."},
 
-        {
-            "$n wears $p on $s body.",
-            "You wear $p on your body.",
-        },
+        {"$n wears $p on $s body.", "You wear $p on your body."},
 
         {"$n wears $p on $s head.", "You wear $p on your head."},
 
@@ -1117,7 +1113,11 @@ void wear_message(struct char_data *ch, struct obj_data *obj, int where) {
 
         {"$n wears $p as a badge.", "You wear $p as a badge."},
 
-        {"$n attaches $p to $s belt.", "You attach $p to your belt."}};
+        {"$n attaches $p to $s belt.", "You attach $p to your belt."},
+
+        {"$p begins to hover over %n's shoulder.", "$p starts to hover over your shoulder."}
+
+    };
 
     act(wear_messages[where][0], TRUE, ch, obj, 0, TO_ROOM);
     act(wear_messages[where][1], FALSE, ch, obj, 0, TO_CHAR);
@@ -1191,6 +1191,8 @@ int find_eq_pos(struct char_data *ch, struct obj_data *obj, char *arg) {
             where = WEAR_BADGE;
         if (CAN_WEAR(obj, ITEM_WEAR_OBELT))
             where = WEAR_OBELT;
+        if (CAN_WEAR(obj, ITEM_WEAR_HOVER))
+            where = WEAR_HOVER;
         /* Add Wield and 2 Handed Wield to this search block - DE 8/13/99 */
         if (CAN_WEAR(obj, ITEM_WEAR_WIELD))
             where = WEAR_WIELD;
@@ -1346,12 +1348,10 @@ ACMD(do_wield) {
      */
     if (weapon_hands_used) {
         /* One weapon is already wielded. Got dual wield? */
-        if
-            GET_SKILL(ch, SKILL_DUAL_WIELD) {
-                obj = confused_inventory_switch(ch, obj);
-                perform_wear(ch, obj, WEAR_WIELD2, FALSE);
-            }
-        else
+        if GET_SKILL (ch, SKILL_DUAL_WIELD) {
+            obj = confused_inventory_switch(ch, obj);
+            perform_wear(ch, obj, WEAR_WIELD2, FALSE);
+        } else
             send_to_char("You don't have the co-ordination to dual wield.\r\n", ch);
     } else {
         obj = confused_inventory_switch(ch, obj);
@@ -1786,8 +1786,7 @@ ACMD(do_compare) {
             if ((IS_WEAPON_SLASHING(obj1) && !IS_WEAPON_SLASHING(obj2)) ||
                 (IS_WEAPON_PIERCING(obj1) && !IS_WEAPON_PIERCING(obj2)) ||
                 (IS_WEAPON_CRUSHING(obj1) && !IS_WEAPON_CRUSHING(obj2)))
-                send_to_char("These weapons are too different to realistically compare them!\r\n",
-                             ch);
+                send_to_char("These weapons are too different to realistically compare them!\r\n", ch);
             else if (WEAPON_AVERAGE(obj1) == WEAPON_AVERAGE(obj2))
                 send_to_char("They each look about as dangerous as the other.\r\n", ch);
             else {
