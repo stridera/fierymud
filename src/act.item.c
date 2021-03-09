@@ -1115,7 +1115,7 @@ void wear_message(struct char_data *ch, struct obj_data *obj, int where) {
 
         {"$n attaches $p to $s belt.", "You attach $p to your belt."},
 
-        {"$p begins to hover over %n's shoulder.", "$p starts to hover over your shoulder."}
+        {"$p begins to hover over $n's shoulder.", "$p starts to hover over your shoulder."}
 
     };
 
