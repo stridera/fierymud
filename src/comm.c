@@ -2081,8 +2081,8 @@ int write_to_descriptor(socket_t desc, char *txt) {
 int process_input(struct descriptor_data *t) {
     int buf_length, bytes_read, space_left, command_space_left, failed_subst, telopt = 0;
     char *ptr, *read_point, *write_point = NULL, *write_cmd_point = NULL;
-    char tmp[MAX_INPUT_LENGTH + 8], gmcp_cmd[MAX_INPUT_LENGTH + 8], telcmd = 0;
-    bool gmcp = false;
+    char tmp[MAX_INPUT_LENGTH + 8], telnet_opts[MAX_INPUT_LENGTH + 8], telcmd = 0;
+    bool data_mode = false;
 
     buf_length = strlen(t->inbuf);
     read_point = t->inbuf + buf_length;
@@ -2124,50 +2124,55 @@ int process_input(struct descriptor_data *t) {
     write_point = tmp;
     *write_point = '\0';
     space_left = MAX_INPUT_LENGTH - 1;
-
     /* search for a newline or control codes in the data we just read */
     for (ptr = t->inbuf; *ptr; ++ptr) {
         if (*ptr == (char)IAC) { /* Telnet Control Option Starting */
             telopt = 1;
-        } else if (telopt == 1) {
-            if (gmcp) {
-                if (*ptr == (char)SE) { /* End of GMCP message */
-                    telopt = 0;
-                    gmcp = false;
-                    *write_cmd_point = '\0';
-                    handle_gmcp_request(t, gmcp_cmd);
-                } else {
-                    *(write_cmd_point++) = *ptr;
-                    command_space_left--;
-                }
-            } else if (telopt == 1) {
-                telopt = 2;
-                telcmd = *ptr;
-            } else if (telopt == 2 && *ptr == (char)GMCP) { /* Ready to handle GMCP data */
+        } else if (telopt == 1 && *ptr == (char)SE) {
+            /* End of negotiations */
+            if (!data_mode) {
+                log("Error, attempting to end a telnet negotiation we never started!");
+            } else {
                 telopt = 0;
-                if (telcmd == (char)DO) {
-                    t->gmcp_enabled = true;
-                    offer_gmcp_services(t);
-                } else if (telcmd == (char)DONT) {
-                    t->gmcp_enabled = false;
-                } else if (telcmd == (char)SB) {
-                    /* Start listening to new GMCP command. */
-                    write_cmd_point = gmcp_cmd;
-                    *write_cmd_point = '\0';
-                    command_space_left = MAX_INPUT_LENGTH - 1;
-                    gmcp = true;
-                } else {
-                    write_cmd_point = gmcp_cmd;
-                    *write_cmd_point = '\0';
-                    /* ERROR */
-                    log("Invalid GMCP code %d", (char)telcmd);
-                }
-            } else if (telopt == 2) {
-                log("Invalid 2nd level IAC code %d", (int)*ptr);
-            } else if (telopt > 0) { /* If we are here, there is an error */
-                log("Invalid telnet IAC code %d", (int)*ptr);
+                data_mode = false;
+                *write_cmd_point = '\0';
+                handle_gmcp_request(t, telnet_opts);
             }
+        } else if (telopt == 1) {
+            telopt = 2;
+            telcmd = *ptr;
+        } else if (telopt == 2 && *ptr == (char)GMCP) { /* Ready to handle GMCP data */
+            if (telcmd == (char)DO) {
+                telopt = 0;
+                t->gmcp_enabled = true;
+                offer_gmcp_services(t);
+            } else if (telcmd == (char)DONT) {
+                telopt = 0;
+                t->gmcp_enabled = false;
+            } else if (telcmd == (char)SB) {
+                /* Start listening to new GMCP command. */
+                write_cmd_point = telnet_opts;
+                *write_cmd_point = '\0';
+                command_space_left = MAX_INPUT_LENGTH - 1;
+                telopt = 0;
+                data_mode = true;
+            } else {
+                telopt = 0;
+                /* ERROR */
+                log("Invalid GMCP code %hhu", (unsigned char)telcmd);
+            }
+        } else if (telopt == 2) {
+            /* Ignore echo requests for new. */
+            if (*ptr != (char)TELOPT_ECHO)
+                log("Invalid 2nd level IAC code %hhu", (unsigned char)*ptr);
+        } else if (telopt > 0) { /* If we are here, there is an error */
+            log("Invalid telnet IAC code %d", (int)*ptr);
+        } else if (data_mode) {
+            /* In telnet data negotiation mode.  Log data to the command buffer. */
+            *(write_cmd_point++) = *ptr;
+            command_space_left--;
         } else {
+            /* If we are here, it's normal text input. */
             if (IS_NEWLINE(*ptr) || space_left <= 0) { /* End of command, process it */
                 *write_point = '\0';
                 if (t->snoop_by)
@@ -2189,8 +2194,10 @@ int process_input(struct descriptor_data *t) {
                  * Otherwise, the command is queued up and handled by
                  * the game loop normally.  Oh, and this is a hack.
                  */
-                if (!failed_subst && !casting_command(t, tmp))
+                if (!failed_subst && !casting_command(t, tmp)) {
+                    // log("Processing input: %s\n", tmp);
                     write_to_q(tmp, &t->input, 0, t);
+                }
 
                 if (space_left <= 0) {
                     char buffer[MAX_INPUT_LENGTH + 64];
