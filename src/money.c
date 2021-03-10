@@ -93,16 +93,17 @@ void statemoney(char *buf, const int coins[]) {
 
 #undef APPENDCOIN
 
-#define COINBRIEF(coin, amount) sprintf(buf, "%s%s%d%s" ANRM, buf, COIN_COLOR(coin), amount, COIN_INITIAL(coin))
+#define COINBRIEF(coin, amount) sprintf(coinbuf, "%s%s%d%s" ANRM, coinbuf, COIN_COLOR(coin), amount, COIN_INITIAL(coin))
 
 /* Prints a string about some money, in the requested number of spaces,
  * using at most two types of coin. */
 void briefmoney(char *buf, int spaces, int amt) {
     bool topset = FALSE;
     bool lowset = FALSE;
-    int toptype = 0, topval = 0, topchars = 0, lowtype = 0, lowval = 0, lowchars = 0;
+    int toptype = 0, topval = 0, topchars = 0, lowtype = 0, lowval = 0, lowchars = 0, padding = 0;
     int i, maxval = 9;
     int coins[4];
+    char coinbuf[100];
 
     /* Limit the number of digits so that there's 1 spot left over for a
      * coin-type designator (p, g, s, or c) */
@@ -139,11 +140,16 @@ void briefmoney(char *buf, int spaces, int amt) {
     *buf = '\0';
 
     if (topset) {
+        *coinbuf = '\0';
+        padding = spaces - 1 - topchars;
         COINBRIEF(toptype, topval > maxval ? maxval : topval);
-        if (lowset)
+        if (lowset) {
+            padding -= lowchars + 1;
             COINBRIEF(lowtype, lowval);
+        }
+        sprintf(buf, "%*s%s", padding, "", coinbuf);
     } else {
-        sprintf(buf, "0");
+        sprintf(buf, "%*s0", spaces - 1, "");
     }
 }
 

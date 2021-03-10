@@ -868,8 +868,7 @@ ACMD(do_vsearch) {
     argument = any_one_arg(argument, arg);
     if (!*arg) {
         if (subcmd == SCMD_VSEARCH)
-            send_to_char("Usage: vsearch <type> <field> <query> [[from] <start_vnum> [to] [<end_vnum>]]\r\n",
-                         ch);
+            send_to_char("Usage: vsearch <type> <field> <query> [[from] <start_vnum> [to] [<end_vnum>]]\r\n", ch);
         else if (subcmd == SCMD_VLIST)
             send_to_char("Usage: vlist <type> [[from] <start_vnum> [to] [<end_vnum>] | *]\r\n", ch);
         else if (subcmd == SCMD_VNUM)
@@ -1100,10 +1099,12 @@ ACMD(do_msearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch, "Index  VNum   Mobile Short-Desc                       "
-                            "Class/Level/Race/Life Force/Composition\r\n");
-                pprintf(ch, "----- ------- --------------------------------------- "
-                            "---------------------------------------\r\n");
+                pprintf(ch,
+                        "Index  VNum   Mobile Short-Desc                       "
+                        "Class/Level/Race/Life Force/Composition\r\n");
+                pprintf(ch,
+                        "----- ------- --------------------------------------- "
+                        "---------------------------------------\r\n");
             }
             page_char_to_char(mob, ch, ++found);
         }
@@ -1304,8 +1305,8 @@ ACMD(do_osearch) {
         header_type = "Object Stats";
     else
         header_type = "Type   Object Values";
-    sprintf(header1, "Index  VNum   Object Short-Desc              Lvl Wt    Value %s\r\n", header_type);
-    sprintf(header2, "----- ------- ------------------------------ --- ----- ----- %s\r\n",
+    sprintf(header1, "Index  VNum   Object Short-Desc              Lvl Wt    Value  %s\r\n", header_type);
+    sprintf(header2, "----- ------- ------------------------------ --- ----- ------ %s\r\n",
             *header_type ? "-------------------------" : "");
 
     /* Loop through object prototypes. */
@@ -1453,23 +1454,16 @@ ACMD(do_osearch) {
             briefmoney(buf, 6, GET_OBJ_COST(obj));
             sprintf(vbuf, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s%3d&0 %s%5g&0 %*s " ANRM, ++found, grn,
                     obj_index[nr].virtual, nrm, ELLIPSIS_STR(obj->short_description, OBJ_TITLE_LENGTH),
-                    GET_OBJ_LEVEL(obj) > 104
-                        ? "&5&b"
-                        : GET_OBJ_LEVEL(obj) > 103
-                              ? "&6&b"
-                              : GET_OBJ_LEVEL(obj) > 102
-                                    ? "&2&b"
-                                    : GET_OBJ_LEVEL(obj) > 101
-                                          ? "&4&b"
-                                          : GET_OBJ_LEVEL(obj) > 100
-                                                ? "&1&b"
-                                                : GET_OBJ_LEVEL(obj) > 99
-                                                      ? "&3&b"
-                                                      : GET_OBJ_LEVEL(obj) > 89
-                                                            ? "&5"
-                                                            : GET_OBJ_LEVEL(obj) > 74
-                                                                  ? "&6"
-                                                                  : GET_OBJ_LEVEL(obj) > 49 ? "&2" : "",
+                    GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
+                    : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
+                    : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
+                    : GET_OBJ_LEVEL(obj) > 101 ? "&4&b"
+                    : GET_OBJ_LEVEL(obj) > 100 ? "&1&b"
+                    : GET_OBJ_LEVEL(obj) > 99  ? "&3&b"
+                    : GET_OBJ_LEVEL(obj) > 89  ? "&5"
+                    : GET_OBJ_LEVEL(obj) > 74  ? "&6"
+                    : GET_OBJ_LEVEL(obj) > 49  ? "&2"
+                                               : "",
                     GET_OBJ_LEVEL(obj), GET_OBJ_WEIGHT(obj) > 9999 ? "&5" : "",
                     GET_OBJ_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_WEIGHT(obj), 5 + count_color_chars(buf), buf);
             switch (subcmd) {
@@ -1585,9 +1579,10 @@ ACMD(do_vitem) {
         return;
     }
 
-    strcpy(buf, "Usage: vitem <type> [<field> <query>] [[from] <start_vnum> [to] "
-                "[<end_vnum>]]\r\n"
-                "Possible types are:");
+    strcpy(buf,
+           "Usage: vitem <type> [<field> <query>] [[from] <start_vnum> [to] "
+           "[<end_vnum>]]\r\n"
+           "Possible types are:");
     for (i = 0; i < NUM_ITEM_TYPES; ++i)
         sprintf(buf, "%s%s%-15s", buf, !(i % 5) ? "\r\n" : "", lowercase(item_types[i].name));
     send_to_char(strcat(buf, "\r\n"), ch);
@@ -1603,9 +1598,10 @@ ACMD(do_vwear) {
         return;
     }
 
-    strcpy(buf, "Usage: vwear <position> [<field> <query>] [[from] <start_vnum> "
-                "[to] [<end_vnum>]]\r\n"
-                "Possible positions are:");
+    strcpy(buf,
+           "Usage: vwear <position> [<field> <query>] [[from] <start_vnum> "
+           "[to] [<end_vnum>]]\r\n"
+           "Possible positions are:");
     for (i = 0; *wear_bits[i] != '\n'; ++i)
         sprintf(buf, "%s%s%-15s", buf, !(i % 5) ? "\r\n" : "", lowercase(wear_bits[i]));
     send_to_char(strcat(buf, "\r\n"), ch);
@@ -1672,16 +1668,19 @@ ACMD(do_rsearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch, "Index VNum    Title                              Sector   "
-                            "    Indoors Lit Exits\r\n");
-                pprintf(ch, "----- ------- ---------------------------------- "
-                            "------------ ------- --- -------\r\n");
+                pprintf(ch,
+                        "Index VNum    Title                              Sector   "
+                        "    Indoors Lit Exits\r\n");
+                pprintf(ch,
+                        "----- ------- ---------------------------------- "
+                        "------------ ------- --- -------\r\n");
             }
 #define MARK_EXIT(r, d)                                                                                                \
-    (!(r).exits[d] ? "&0&9"                                                                                            \
-                   : EXIT_IS_DESCRIPTION((r).exits[d])                                                                 \
-                         ? "&0&6"                                                                                      \
-                         : !EXIT_DEST((r).exits[d]) ? "&1&b" : EXIT_IS_DOOR((r).exits[d]) ? "&0&3" : "&0&2")
+    (!(r).exits[d]                       ? "&0&9"                                                                      \
+     : EXIT_IS_DESCRIPTION((r).exits[d]) ? "&0&6"                                                                      \
+     : !EXIT_DEST((r).exits[d])          ? "&1&b"                                                                      \
+     : EXIT_IS_DOOR((r).exits[d])        ? "&0&3"                                                                      \
+                                         : "&0&2")
 #define ROOM_TITLE_LENGTH 34
 
             pprintf(ch, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s%-10.10s&0 %d %s%s %s%s%s%s%s%s%s%s%s%s%s%s&0\r\n", ++found,
@@ -1761,10 +1760,12 @@ ACMD(do_esearch) {
             }
             if (match) {
                 if (!found) {
-                    pprintf(ch, "Index Dir      RoomNum Room Title           Exit "
-                                "Name/Key/Bits\r\n");
-                    pprintf(ch, "----- -----    ---------------------------- "
-                                "-----------------------\r\n");
+                    pprintf(ch,
+                            "Index Dir      RoomNum Room Title           Exit "
+                            "Name/Key/Bits\r\n");
+                    pprintf(ch,
+                            "----- -----    ---------------------------- "
+                            "-----------------------\r\n");
                 }
                 if (!exit->keyword)
                     *buf = '\0';
@@ -1882,8 +1883,9 @@ ACMD(do_ssearch) {
         if (match) {
             if (!found) {
                 pprintf(ch, "Index  VNum   RoomNum Room Title (Shop Keeper)\r\n");
-                pprintf(ch, "----- ------- ------- "
-                            "---------------------------------------\r\n");
+                pprintf(ch,
+                        "----- ------- ------- "
+                        "---------------------------------------\r\n");
             }
             temp = real_room(SHOP_ROOM(nr, 0));
             pprintf(ch, "%3d. [%5d] (%5d) %s (%s)\r\n", ++found, SHOP_NUM(nr), SHOP_ROOM(nr, 0),
@@ -2012,10 +2014,12 @@ ACMD(do_tsearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch, "Index  VNum   Trigger Name                             "
-                            "Trigger Type \r\n");
-                pprintf(ch, "----- ------- ---------------------------------------- "
-                            "------------------\r\n");
+                pprintf(ch,
+                        "Index  VNum   Trigger Name                             "
+                        "Trigger Type \r\n");
+                pprintf(ch,
+                        "----- ------- ---------------------------------------- "
+                        "------------------\r\n");
             }
             pprintf(ch, "%s", t_listdisplay(nr, ++found));
         }
@@ -2145,10 +2149,12 @@ ACMD(do_zsearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch, "Num Name                           Age Reset  Freq Factor "
-                            "Top VNum\r\n");
-                pprintf(ch, "--- ------------------------------ --- ----------- ------ "
-                            "--------\r\n");
+                pprintf(ch,
+                        "Num Name                           Age Reset  Freq Factor "
+                        "Top VNum\r\n");
+                pprintf(ch,
+                        "--- ------------------------------ --- ----------- ------ "
+                        "--------\r\n");
             }
             ++found;
             sprinttype(zone->reset_mode, zone_reset_modes, buf);
@@ -2323,8 +2329,9 @@ ACMD(do_csearch) {
             if (match) {
                 if (!found) {
                     pprintf(ch, "Index RoomNum Zone Command\r\n");
-                    pprintf(ch, "----- ------- "
-                                "----------------------------------------------------------\r\n");
+                    pprintf(ch,
+                            "----- ------- "
+                            "----------------------------------------------------------\r\n");
                 }
 
                 vbuflen = sprintf(vbuf, "%4d. [%s%5d%s] ", ++found, grn, world[cmd_room].vnum, nrm);
@@ -2517,10 +2524,11 @@ ACMD(do_ksearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch, "Skill/Spell/Chant          Vio  Qst  H/O  Routines     "
-                            "Targets      Damage\r\n"
-                            "-------------------------  ---  ---  ---  -----------  "
-                            "-----------  --------\r\n");
+                pprintf(ch,
+                        "Skill/Spell/Chant          Vio  Qst  H/O  Routines     "
+                        "Targets      Damage\r\n"
+                        "-------------------------  ---  ---  ---  -----------  "
+                        "-----------  --------\r\n");
             }
             ++found;
             temp = talent_type(nr);
