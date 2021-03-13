@@ -130,10 +130,9 @@
 #define MOB_NO_CLASS_AI 35     /* Mob does not execute class AI      */
 #define MOB_NOSCRIPT 36        /* Mob does not execute triggers or specprocs */
 #define MOB_PEACEKEEPER 37     /* Attacks mobs with over 1350 align diff. Assists other PEACEKEEPERs */
-#define MOB_PROTECTOR                                                                                                  \
-    38                   /* Assists players under attack, but not against PEACEKEEPER/PROTECTOR                        \
-                            mobs */
-#define NUM_MOB_FLAGS 39 /* Update this when you add a flag! */
+#define MOB_PROTECTOR 38       /* Assists players under attack, but not against PEACEKEEPER/PROTECTOR mobs */
+#define MOB_PET 39             /* Mob was purchased or tamed and is now a pet to a player. */
+#define NUM_MOB_FLAGS 40       /* Update this when you add a flag! */
 
 /* Some mount stuff */
 #define MAX_MOUNT_LEVEL 27 /* The maximum level of mountable mobs */
@@ -346,9 +345,9 @@
 
 #define MAX_STRING_LENGTH 20000
 #define MAX_STRING_LENGTH_BIG 24000
-#define MAX_DESC_LENGTH 8096     /* object action desc length */
-#define MAX_INPUT_LENGTH 256     /* Max length per *line* of input */
-#define MAX_RAW_INPUT_LENGTH 512 /* Max size of *raw* input */
+#define MAX_DESC_LENGTH 8096        /* object action desc length */
+#define MAX_INPUT_LENGTH 1000       /* Max length per *line* of input */
+#define MAX_RAW_INPUT_LENGTH 150000 /* Max size of *raw* input */
 #define MAX_MESSAGES 150
 #define MAX_NAME_LENGTH 20
 #define MAX_PWD_LENGTH 10

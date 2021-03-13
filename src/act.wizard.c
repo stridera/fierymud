@@ -467,6 +467,7 @@ ACMD(do_at) {
 
 ACMD(do_goto) {
     int location;
+    struct follow_type *k;
 
     skip_spaces(&argument);
     if (strcmp(argument, "home") == 0) {
@@ -494,6 +495,14 @@ ACMD(do_goto) {
 
     act(buf, TRUE, ch, 0, 0, TO_ROOM);
     look_at_room(ch, FALSE);
+
+    for (k = ch->followers; k; k = k->next) {
+        if (IS_PET(k->follower) && k->follower->master == ch) {
+            char_from_room(k->follower);
+            char_to_room(k->follower, location);
+            look_at_room(k->follower, TRUE);
+        }
+    }
 }
 
 ACMD(do_linkload) {

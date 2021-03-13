@@ -185,7 +185,9 @@ void observe_char_arriving(struct char_data *observer, struct char_data *mover, 
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
             sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s, riding a %s mount.&0\r\n", SIZE_DESC(mover),
                     (direction < UP ? "the " : ""),
-                    (direction == UP ? "below" : direction == DOWN ? "above" : dirs[rev_dir[direction]]),
+                    (direction == UP     ? "below"
+                     : direction == DOWN ? "above"
+                                         : dirs[rev_dir[direction]]),
                     SIZE_DESC(mount));
             send_to_char(buf1, observer);
         } else if (!try_to_sense_arrival(observer, mount)) {
@@ -197,7 +199,9 @@ void observe_char_arriving(struct char_data *observer, struct char_data *mover, 
         if (CAN_SEE_BY_INFRA(observer, mover)) {
             sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s.&0\r\n", SIZE_DESC(mover),
                     (direction < UP ? "the " : ""),
-                    (direction == UP ? "below" : direction == DOWN ? "above" : dirs[rev_dir[direction]]));
+                    (direction == UP     ? "below"
+                     : direction == DOWN ? "above"
+                                         : dirs[rev_dir[direction]]));
             send_to_char(buf1, observer);
         } else {
             try_to_sense_arrival(observer, mover);
@@ -565,16 +569,22 @@ bool do_simple_move(struct char_data *ch, int dir, int need_specials_check) {
         look_at_room(mount, TRUE);
 
         sprintf(tmp, "$n arrives from %s%s, riding ", (dir < UP ? "the " : ""),
-                (dir == UP ? "below" : dir == DOWN ? "above" : dirs[rev_dir[dir]]));
+                (dir == UP     ? "below"
+                 : dir == DOWN ? "above"
+                               : dirs[rev_dir[dir]]));
     } else {
         sprintf(buf, "$n %s from %s%s.", movewords(actor, dir, actor->in_room, FALSE), (dir < UP ? "the " : ""),
-                (dir == UP ? "below" : dir == DOWN ? "above" : dirs[rev_dir[dir]]));
+                (dir == UP     ? "below"
+                 : dir == DOWN ? "above"
+                               : dirs[rev_dir[dir]]));
     }
 
     LOOP_THRU_PEOPLE(observer, actor) { observe_char_arriving(observer, actor, mount, tmp, buf, dir); }
 
     /* If the room is affected by a circle of fire, damage the person */
     /* if it dies, don't do anything else */
+    /* Note, now that we've officially moved, we should return TRUE after this point since otherwise their followers */
+    /* wouldn't follow correctly. */
     if (ROOM_EFF_FLAGGED(actor->in_room, ROOM_EFF_CIRCLE_FIRE) && !EFF_FLAGGED(actor, EFF_NEGATE_HEAT)) {
         mag_damage(GET_LEVEL(actor) + number(1, 5), actor, actor, SPELL_CIRCLE_OF_FIRE, SAVING_SPELL);
         if (DECEASED(actor))
@@ -586,7 +596,7 @@ bool do_simple_move(struct char_data *ch, int dir, int need_specials_check) {
 
     if (!greet_mtrigger(actor, dir)) {
         if (DECEASED(actor))
-            return FALSE;
+            return TRUE;
         char_from_room(actor);
         char_to_room(actor, was_in);
         look_at_room(actor, TRUE);
@@ -653,7 +663,29 @@ bool perform_move(struct char_data *ch, int dir, int need_specials_check, bool m
                 } else {
                     sprintf(buf, "You follow $N %s.\r\n", dirs[dir]);
                     act(buf, FALSE, k->follower, 0, ch, TO_CHAR);
-                    perform_move(k->follower, dir, 1, FALSE);
+                    if (perform_move(k->follower, dir, 1, FALSE) && IS_MOB(k->follower) && PLAYERALLY(k->follower)) {
+                        if (GET_MOVE(k->follower) == 0) {
+                            act("$N staggers, gasping for breath.  They don't look like they could walk another step.",
+                                FALSE, ch, 0, k->follower, TO_CHAR);
+                            act("You gasp for breath.  You don't think you could move another step.", FALSE, ch, 0,
+                                k->follower, TO_VICT);
+                            act("$N gasps for breath.  They don't look like they could walk another step.", FALSE, ch,
+                                0, k->follower, TO_NOTVICT);
+                        } else if (100 * GET_MOVE(k->follower) / MAX(1, GET_MAX_MOVE(k->follower)) < 10) {
+                            act("$N is panting loudly.", FALSE, ch, 0, k->follower, TO_CHAR);
+                            act("You pant loudly, attempting to catch your breath.", FALSE, ch, 0, k->follower,
+                                TO_VICT);
+                            act("$N pants loudly, attempting to catch their breath.", FALSE, ch, 0, k->follower,
+                                TO_NOTVICT);
+                        } else if (100 * GET_MOVE(k->follower) / MAX(1, GET_MAX_MOVE(k->follower)) < 20) {
+                            act("$N is starting to pant softly.", FALSE, ch, 0, k->follower, TO_CHAR);
+                            act("You pant softly as exhaustion looms.", FALSE, ch, 0, k->follower, TO_VICT);
+                            act("$N starts panting softly.", FALSE, ch, 0, k->follower, TO_NOTVICT);
+                        } else if (100 * GET_MOVE(k->follower) / MAX(1, GET_MAX_MOVE(k->follower)) < 30) {
+                            act("$N is looking tired.", FALSE, ch, 0, k->follower, TO_CHAR);
+                            act("You are starting to feel tired.", FALSE, ch, 0, k->follower, TO_VICT);
+                        }
+                    }
                 }
             }
         }
@@ -1204,6 +1236,7 @@ const char *portal_exit_messages[] = {
 
 ACMD(do_enter) {
     struct obj_data *obj = NULL;
+    struct follow_type *k;
     int i, rnum;
 
     if (FIGHTING(ch)) {
@@ -1331,6 +1364,14 @@ ACMD(do_enter) {
         char_from_room(RIDING(ch));
         char_to_room(RIDING(ch), rnum);
         look_at_room(RIDING(ch), TRUE);
+    }
+
+    for (k = ch->followers; k; k = k->next) {
+        if (IS_PET(k->follower) && k->follower->master == ch) {
+            char_from_room(k->follower);
+            char_to_room(k->follower, rnum);
+            look_at_room(k->follower, TRUE);
+        }
     }
 }
 
@@ -2137,8 +2178,7 @@ ACMD(do_alert) {
 
     switch (GET_POS(ch)) {
     case POS_PRONE:
-        send_to_char("You stop relaxing and try to become more aware of your surroundings.\r\n",
-                     ch);
+        send_to_char("You stop relaxing and try to become more aware of your surroundings.\r\n", ch);
         break;
     case POS_SITTING:
         send_to_char("You sit up straight and start to pay attention.\r\n", ch);
@@ -2767,7 +2807,9 @@ ACMD(do_tame) {
     eff.modifier = 0;
     eff.location = APPLY_NONE;
     SET_FLAG(eff.flags, EFF_TAMED);
+
     effect_to_char(vict, &eff);
+    SET_FLAG(MOB_FLAGS(vict), MOB_PET);
 
     act("You tame $N.", FALSE, ch, 0, vict, TO_CHAR);
     act("$n tames you.", FALSE, ch, 0, vict, TO_VICT);

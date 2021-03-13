@@ -1118,8 +1118,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         i = (GET_DEX(victim) + GET_WIS(victim) - 100) / 10;
         if (i > number(1, 100)) {
             act("$n's eyes start to cross, but $e shakes it off.", TRUE, victim, 0, 0, TO_ROOM);
-            send_to_char("Your eyes start to &5spin off&0 in different directions, but you manage\r\n",
-                         ch);
+            send_to_char("Your eyes start to &5spin off&0 in different directions, but you manage\r\n", ch);
             send_to_char("to bring them back under control.\r\n", ch);
             return CAST_RESULT_CHARGE;
         }
@@ -1158,12 +1157,14 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             to_char = "You summon allegiance from your dark gods to protect $N.";
             to_vict = "&9&bA dark presence fills your mind.&0";
             if (ch == victim)
-                to_room = "$n seizes up in pain!\r\n"
-                          "$n crosses $s arms on $s chest, and is surrounded by a dark "
-                          "presence.";
+                to_room =
+                    "$n seizes up in pain!\r\n"
+                    "$n crosses $s arms on $s chest, and is surrounded by a dark "
+                    "presence.";
             else
-                to_room = "$n seizes up in pain!\r\n"
-                          "$n grabs $N, who is surrounded by a dark presence.";
+                to_room =
+                    "$n seizes up in pain!\r\n"
+                    "$n grabs $N, who is surrounded by a dark presence.";
         } else {
             eff[1].location = APPLY_DAMROLL;
             eff[1].modifier = 1 + (skill > 95);
@@ -1171,12 +1172,14 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             to_char = "You summon allegiance from your dark gods to protect and enrage $N.";
             to_vict = "&9&bA dark presence fills your mind and body!&0";
             if (ch == victim)
-                to_room = "$n seizes up in pain!\r"
-                          "\n$n crosses $s arms on $s chest, and is enraged by a dark "
-                          "presence.";
+                to_room =
+                    "$n seizes up in pain!\r"
+                    "\n$n crosses $s arms on $s chest, and is enraged by a dark "
+                    "presence.";
             else
-                to_room = "$n seizes up in pain!\r"
-                          "\n$n grabs $N, who is enraged by a dark presence.";
+                to_room =
+                    "$n seizes up in pain!\r"
+                    "\n$n grabs $N, who is enraged by a dark presence.";
         }
         SET_FLAG(eff[2].flags, EFF_HEX);
         eff[2].duration = eff[0].duration;
@@ -1283,9 +1286,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[1].modifier = eff[0].modifier;
         eff[1].duration = eff[0].duration;
         to_char = "Your diseased air infects $N!";
-        to_vict = "&3You choke and gasp on $n's foul air as a sick feeling "
-                  "overtakes you.\r\n"
-                  "You feel seriously ill!&0";
+        to_vict =
+            "&3You choke and gasp on $n's foul air as a sick feeling "
+            "overtakes you.\r\n"
+            "You feel seriously ill!&0";
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
         break;
 
@@ -1322,10 +1326,12 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         SET_FLAG(eff[0].flags, EFF_FLY);
         eff[0].duration = 10 + (skill / 5); /* max 30 */
 
-        to_vict = "&7&bBeautiful bright white wings unfurl behind you as you lift "
-                  "into the air.&0";
-        to_room = "&7&bBeautiful bright white wings unfurl from $n's&7&b back, "
-                  "lifting $m into the air.&0";
+        to_vict =
+            "&7&bBeautiful bright white wings unfurl behind you as you lift "
+            "into the air.&0";
+        to_room =
+            "&7&bBeautiful bright white wings unfurl from $n's&7&b back, "
+            "lifting $m into the air.&0";
         if (AWAKE(victim)) {
             GET_STANCE(victim) = STANCE_ALERT;
             GET_POS(victim) = POS_FLYING;
@@ -1359,12 +1365,15 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             SET_FLAG(eff[0].flags, EFF_MINOR_PARALYSIS);
             eff[0].duration = 2 + (skill / 24);
         }
-        to_char = "&2&bYour crop of thick branches and vines burst"
-                  " from the ground, partially entangling $N!&0";
-        to_room = "&2&bA slew of thick branches and vines burst"
-                  " from the ground, partially entangling $N!&0";
-        to_vict = "&2&bA slew of thick branches and vines burst"
-                  " from the ground, partially entangling you!&0";
+        to_char =
+            "&2&bYour crop of thick branches and vines burst"
+            " from the ground, partially entangling $N!&0";
+        to_room =
+            "&2&bA slew of thick branches and vines burst"
+            " from the ground, partially entangling $N!&0";
+        to_vict =
+            "&2&bA slew of thick branches and vines burst"
+            " from the ground, partially entangling you!&0";
         refresh = FALSE;
         break;
 
@@ -1372,8 +1381,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         SET_FLAG(eff[0].flags, EFF_FAMILIARITY);
         eff[0].duration = skill / 5 + 4;
         to_vict = "&7&bAn aura of comfort and solidarity surrounds you.&0";
-        to_room = "You know in your heart that $N is a steady friend, to be "
-                  "depended upon.";
+        to_room =
+            "You know in your heart that $N is a steady friend, to be "
+            "depended upon.";
         break;
 
     case SPELL_GAIAS_CLOAK:
@@ -1387,10 +1397,12 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].duration = 5 + (skill / 14);  /* max 12 */
 
         refresh = FALSE;
-        to_room = "&2A cyclone of leaves and sticks twirls around $n&2, guarding "
-                  "$s body.&0";
-        to_vict = "&2A cyclone of leaves and sticks twirls around you, guarding "
-                  "your body.&0";
+        to_room =
+            "&2A cyclone of leaves and sticks twirls around $n&2, guarding "
+            "$s body.&0";
+        to_vict =
+            "&2A cyclone of leaves and sticks twirls around you, guarding "
+            "your body.&0";
         break;
 
     case SPELL_GLORY:
@@ -1454,13 +1466,16 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         if (evades_spell(ch, victim, spellnum, skill))
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 
-        to_room = "$n &0&5w&4e&5av&4es a &5mesme&4rizing pa&5ttern before &0$N's "
-                  "eyes.\r\n"
-                  "$U$N appears entranced, as if working out a puzzle of some kind.";
-        to_vict = "$n shows you a truly fascinating puzzle.  You simply must work "
-                  "it out.";
-        to_char = "You weave a mesmerizing pattern before $N, and $E seems\r\n"
-                  "to be utterly absorbed by it.";
+        to_room =
+            "$n &0&5w&4e&5av&4es a &5mesme&4rizing pa&5ttern before &0$N's "
+            "eyes.\r\n"
+            "$U$N appears entranced, as if working out a puzzle of some kind.";
+        to_vict =
+            "$n shows you a truly fascinating puzzle.  You simply must work "
+            "it out.";
+        to_char =
+            "You weave a mesmerizing pattern before $N, and $E seems\r\n"
+            "to be utterly absorbed by it.";
 
         SET_FLAG(eff[0].flags, EFF_MESMERIZED);
         eff[0].duration = 2 + skill / 16; /* 2-8 hours */
@@ -1479,10 +1494,12 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].location = APPLY_AC;
         eff[0].modifier = 5 + (skill / 16); /* max 11 */
         eff[0].duration = 5 + (skill / 25); /* max 9 */
-        to_room = "&1$n's&1 form begins to waver as a wave of heat blurs the air "
-                  "around $m.&0";
-        to_vict = "&1Your form begins to waver as a wave of heat blurs the air "
-                  "around you.&0";
+        to_room =
+            "&1$n's&1 form begins to waver as a wave of heat blurs the air "
+            "around $m.&0";
+        to_vict =
+            "&1Your form begins to waver as a wave of heat blurs the air "
+            "around you.&0";
         break;
 
     case SPELL_NEGATE_COLD:
@@ -1568,8 +1585,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].duration = 2 + (skill / 25); /* max 6 */
         refresh = FALSE;
         to_vict = "&6&bYour body sublimates into a &7cloud &6of &7vapor&6.&0";
-        to_room = "&6&b$N's body dematerializes into a translucent &7cloud &6of "
-                  "&7vapor&6!&0";
+        to_room =
+            "&6&b$N's body dematerializes into a translucent &7cloud &6of "
+            "&7vapor&6!&0";
         break;
 
     case SPELL_WATERFORM:
@@ -1584,8 +1602,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].duration = 2 + (skill / 20); /* max 7 */
         refresh = FALSE;
         to_vict = "&4&bYour body liquifies.&0";
-        to_room = "&4&b$N&4&b's body wavers a bit, slowly changing into a "
-                  "&0&4liquid&b state!&0";
+        to_room =
+            "&4&b$N&4&b's body wavers a bit, slowly changing into a "
+            "&0&4liquid&b state!&0";
         break;
 
     case SPELL_WINGS_OF_HELL:
@@ -1833,8 +1852,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         SET_FLAG(eff[0].flags, EFF_SILENCE);
         eff[0].duration = 2 + (skill / 15); /* max 8 */
         to_char = "You silence $N!";
-        to_vict = "&9&bYour throat begins to close, sealing off all chance of "
-                  "communication.&0";
+        to_vict =
+            "&9&bYour throat begins to close, sealing off all chance of "
+            "communication.&0";
         to_room = "&0$N&7 squeaks as all sound is squelched from $S throat.&0";
         break;
 
@@ -1876,8 +1896,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[2].duration = eff[0].duration;
 
         refresh = TRUE;
-        to_vict = "&1&bYour skin starts to itch as you reduce to half your normal "
-                  "size.&0";
+        to_vict =
+            "&1&bYour skin starts to itch as you reduce to half your normal "
+            "size.&0";
         to_room = "&1&b$N's skin ripples as $E shrinks to half $S normal size!&0";
         break;
 
@@ -1900,8 +1921,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[2].duration = eff[0].duration;
 
         refresh = TRUE;
-        to_vict = "&9&bYour skin starts to itch as you enlarge to twice your "
-                  "normal size!&0";
+        to_vict =
+            "&9&bYour skin starts to itch as you enlarge to twice your "
+            "normal size!&0";
         to_room = "&9&b$N's skin ripples as $E enlarges to twice $S normal size!&0";
         break;
 
@@ -2306,9 +2328,8 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
 
         if (GET_LIFEFORCE(victim) != LIFE_UNDEAD) {
             act("$n seems confused as to your state of mortality.", FALSE, ch, 0, victim, TO_VICT);
-            act("$n tries to rebuke $N's buried undead nature.  Must be buried too "
-                "deep.",
-                TRUE, ch, 0, victim, TO_ROOM);
+            act("$n tries to rebuke $N's buried undead nature.  Must be buried too deep.", TRUE, ch, 0, victim,
+                TO_ROOM);
             send_to_char("Your rebuke elicits nothing but a raised eyebrow.\r\n", ch);
             return CAST_RESULT_CHARGE;
         }
@@ -2347,8 +2368,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_MISDIRECTION:
         SET_FLAG(eff[0].flags, EFF_MISDIRECTION);
         eff[0].duration = 2 + skill / 4;
-        to_vict = "You feel like a stack of little illusions all pointing in "
-                  "different directions.";
+        to_vict =
+            "You feel like a stack of little illusions all pointing in "
+            "different directions.";
         break;
 
     case CHANT_REGENERATION:
@@ -2831,16 +2853,20 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
         to_room = "&6&b$n&6&b releases a &0&4chilling&6&b stream of air.&0";
         break;
     case SPELL_ICE_SHARDS:
-        to_char = "&6&bYou conjure thousands of razor sharp ice shards to massacre "
-                  "your foe!&0";
-        to_room = "$n &6&bconjures thousands of razor sharp ice shards to massacre "
-                  "$s foe!&0";
+        to_char =
+            "&6&bYou conjure thousands of razor sharp ice shards to massacre "
+            "your foe!&0";
+        to_room =
+            "$n &6&bconjures thousands of razor sharp ice shards to massacre "
+            "$s foe!&0";
         break;
     case SPELL_HELLFIRE_BRIMSTONE:
-        to_char = "&1A large hole opens in the &3earth&1 nearby spouting a gout of "
-                  "&bhellfire&0&1 and &9&bbrimstone!&0";
-        to_room = "&1A large hole opens in the &3earth&1 nearby spouting a gout of "
-                  "&bhellfire&0&1 and &9&bbrimstone!&0";
+        to_char =
+            "&1A large hole opens in the &3earth&1 nearby spouting a gout of "
+            "&bhellfire&0&1 and &9&bbrimstone!&0";
+        to_room =
+            "&1A large hole opens in the &3earth&1 nearby spouting a gout of "
+            "&bhellfire&0&1 and &9&bbrimstone!&0";
         break;
     case SPELL_HOLY_WORD:
         to_char = "&7&bYou invoke a word of holy power!&0";
@@ -2859,20 +2885,24 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
         to_room = "$n&1 conjures a controlled shower of flaming meteors!&0";
         break;
     case SPELL_SEVERANCE:
-        to_char = "&7You lay a fell glow upon the surroundings, revealing the "
-                  "&bsilver cords&0&7 of all present.&0";
-        to_room = "&7$n&0&7 spreads a &6fell glow&7 upon the surroundsings, "
-                  "revealing the &bsilver cords&0 of all present.&0";
+        to_char =
+            "&7You lay a fell glow upon the surroundings, revealing the "
+            "&bsilver cords&0&7 of all present.&0";
+        to_room =
+            "&7$n&0&7 spreads a &6fell glow&7 upon the surroundsings, "
+            "revealing the &bsilver cords&0 of all present.&0";
         break;
     case SPELL_SOUL_REAVER:
         to_char = "&5You shape an awesome vision of calamity for all...&0";
         to_room = "&5$n&0&5 warps all reality into something deadly sinister...&0";
         break;
     case SPELL_SUPERNOVA:
-        to_char = "&1You release a &bconflagration&0&1 of f&3&bi&1r&0&1e, laying "
-                  "waste to all that surrounds you.&0";
-        to_room = "&1&b$n&1&b EXPLODES,&0&1 releasing a &bconflagration&0&1 of "
-                  "f&3&bi&1r&0&1e that lays waste to the entire area!&0";
+        to_char =
+            "&1You release a &bconflagration&0&1 of f&3&bi&1r&0&1e, laying "
+            "waste to all that surrounds you.&0";
+        to_room =
+            "&1&b$n&1&b EXPLODES,&0&1 releasing a &bconflagration&0&1 of "
+            "f&3&bi&1r&0&1e that lays waste to the entire area!&0";
         break;
     case SPELL_UNHOLY_WORD:
         to_char = "&9&bYou invoke a word of unholy power!&0";
@@ -4108,10 +4138,12 @@ int mag_room(int skill, struct char_data *ch, int spellnum) {
         }
         eff = ROOM_EFF_FOREST;
         ticks = skill / 10;
-        to_char = "&2&bThick vines and shrubs sprout out of the ground and cover "
-                  "the whole area in thick foliage.&0";
-        to_room = "&2&bThick vines and shrubs sprout out of the ground and cover "
-                  "the whole area in thick foliage.&0";
+        to_char =
+            "&2&bThick vines and shrubs sprout out of the ground and cover "
+            "the whole area in thick foliage.&0";
+        to_room =
+            "&2&bThick vines and shrubs sprout out of the ground and cover "
+            "the whole area in thick foliage.&0";
         break;
     case SPELL_CIRCLE_OF_FIRE:
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_CIRCLE_FIRE)) {

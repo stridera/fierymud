@@ -340,6 +340,7 @@ void money_convert(struct char_data *ch, int amount) {
 SPECIAL(pet_shop) {
     int ideal_mountlevel(struct char_data * ch);
     int mountlevel(struct char_data * ch);
+    int found = 0;
 
     char buf[MAX_STRING_LENGTH], pet_name[256];
     int pet_room, bp, temp, temp2, temp3, temp4, mountdiff;
@@ -358,13 +359,14 @@ SPECIAL(pet_shop) {
             temp2 = ((int)((int)(bp / 100) - (temp * 10)));
             temp3 = ((int)((((int)(bp / 10)) - (temp * 100)) - temp2 * 10));
             temp4 = ((int)((((bp) - (temp * 1000)) - (temp2 * 100)) - (temp3 * 10)));
-            sprintf(buf, "%-36s  &0&b&6%3d&0p,&b&3%d&0g,&0%ds,&0&3%d&0c    %s\r\n", GET_NAME(pet), temp, temp2, temp3,
-                    temp4,
-                    !MOB_FLAGGED(pet, MOB_MOUNTABLE)
-                        ? "n/a"
-                        : mountdiff > MOUNT_LEVEL_FUDGE
-                              ? "impossible"
-                              : mountdiff < 1 ? "good" : mountdiff < 2 ? "fair" : mountdiff < 4 ? "bad" : "awful");
+            sprintf(buf, "%s%d %-36s  &0&b&6%3d&0p,&b&3%d&0g,&0%ds,&0&3%d&0c    %s\r\n", found++ % 2 == 0 ? "&K" : "",
+                    found, GET_NAME(pet), temp, temp2, temp3, temp4,
+                    !MOB_FLAGGED(pet, MOB_MOUNTABLE) ? "n/a"
+                    : mountdiff > MOUNT_LEVEL_FUDGE  ? "impossible"
+                    : mountdiff < 1                  ? "good"
+                    : mountdiff < 2                  ? "fair"
+                    : mountdiff < 4                  ? "bad"
+                                                     : "awful");
             send_to_char(buf, ch);
         }
         return (TRUE);
@@ -398,6 +400,7 @@ SPECIAL(pet_shop) {
         pet = read_mobile(GET_MOB_RNUM(pet), REAL);
         GET_EXP(pet) = 0;
         SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
+        SET_FLAG(MOB_FLAGS(pet), MOB_PET);
 
         if (*pet_name) {
             sprintf(buf, "%s %s", GET_NAMELIST(pet), pet_name);
@@ -564,14 +567,12 @@ SPECIAL(bank) {
             }
 
             if (type1 == type2) {
-                send_to_char("That would be pointless, try using two different types of currency.\r\n",
-                             ch);
+                send_to_char("That would be pointless, try using two different types of currency.\r\n", ch);
                 return 1;
             }
 
             if (amount <= 0) {
-                send_to_char("The bank doesn't make money because it's dumb! Try a positive value.\r\n",
-                             ch);
+                send_to_char("The bank doesn't make money because it's dumb! Try a positive value.\r\n", ch);
                 return 1;
             }
 
@@ -687,9 +688,10 @@ SPECIAL(bank) {
 
             return 1;
         } else {
-            send_to_char("Format: exchange <quantity> <from type> <to type>\r\n      "
-                         "  exchange 10 copper silver\r\n",
-                         ch);
+            send_to_char(
+                "Format: exchange <quantity> <from type> <to type>\r\n      "
+                "  exchange 10 copper silver\r\n",
+                ch);
             return 1;
         }
     } else {
@@ -722,13 +724,14 @@ SPECIAL(holyw_weapon) {
     if (number(1, 100) > 5)
         return 0;
 
-    weapon_spell("&3&bYour The Holy Avenger of &0&6&bSalinth&0&3&b glows with a soft "
-                 "light as holy wrath pours from its blade!&0",
-                 "&3&b$n's The Holy Avenger of &0&6&bSalinth&0&3&b glows with a soft "
-                 "light as holy wrath pours from its blade and strikes you!&0",
-                 "&3&b$n's The Holy Avenger of &0&6&bSalinth&0&3&b glows with a soft "
-                 "light as holy wrath pours from its blade to strike $N!&0",
-                 ch, vict, (struct obj_data *)me, SPELL_HOLY_WORD);
+    weapon_spell(
+        "&3&bYour The Holy Avenger of &0&6&bSalinth&0&3&b glows with a soft "
+        "light as holy wrath pours from its blade!&0",
+        "&3&b$n's The Holy Avenger of &0&6&bSalinth&0&3&b glows with a soft "
+        "light as holy wrath pours from its blade and strikes you!&0",
+        "&3&b$n's The Holy Avenger of &0&6&bSalinth&0&3&b glows with a soft "
+        "light as holy wrath pours from its blade to strike $N!&0",
+        ch, vict, (struct obj_data *)me, SPELL_HOLY_WORD);
     return 1;
 }
 
@@ -968,9 +971,10 @@ int red_recall_room(struct char_data *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(6001) == NOWHERE) {
-            send_to_char("ERROR: Could not find your guild, nor the gates "
-                         "of Anduin. Please tell a god!\r\n",
-                         ch);
+            send_to_char(
+                "ERROR: Could not find your guild, nor the gates "
+                "of Anduin. Please tell a god!\r\n",
+                ch);
             sprintf(buf,
                     "ERROR: Couldn't find the real room for vnums "
                     "%i or %i",
@@ -980,9 +984,10 @@ int red_recall_room(struct char_data *ch) {
             return NOWHERE;
         };
 
-        send_to_char("ERROR: Could not find your guild! Please tell a "
-                     "god!\r\n",
-                     ch);
+        send_to_char(
+            "ERROR: Could not find your guild! Please tell a "
+            "god!\r\n",
+            ch);
         return real_room(6001);
     };
 
@@ -1046,9 +1051,10 @@ int green_recall_room(struct char_data *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(3002) == NOWHERE) {
-            send_to_char("ERROR: Could not find your guild, nor the Mielikki "
-                         "altar. Please tell a god!\r\n",
-                         ch);
+            send_to_char(
+                "ERROR: Could not find your guild, nor the Mielikki "
+                "altar. Please tell a god!\r\n",
+                ch);
             sprintf(buf,
                     "ERROR: Couldn't find the real room for vnums "
                     "%i or %i",
@@ -1058,9 +1064,10 @@ int green_recall_room(struct char_data *ch) {
             return NOWHERE;
         };
 
-        send_to_char("ERROR: Could not find your guild! Please tell a "
-                     "god!\r\n",
-                     ch);
+        send_to_char(
+            "ERROR: Could not find your guild! Please tell a "
+            "god!\r\n",
+            ch);
         return real_room(3002);
     };
 
@@ -1098,9 +1105,10 @@ int blue_recall_room(struct char_data *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(10001) == NOWHERE) {
-            send_to_char("ERROR: Could not find your guild, nor the the "
-                         "Arctic Temple. Please tell a god!\r\n",
-                         ch);
+            send_to_char(
+                "ERROR: Could not find your guild, nor the the "
+                "Arctic Temple. Please tell a god!\r\n",
+                ch);
             sprintf(buf,
                     "ERROR: Couldn't find the real room for vnums "
                     "%i or %i",
@@ -1110,9 +1118,10 @@ int blue_recall_room(struct char_data *ch) {
             return NOWHERE;
         };
 
-        send_to_char("ERROR: Could not find your guild! Please tell a "
-                     "god!\r\n",
-                     ch);
+        send_to_char(
+            "ERROR: Could not find your guild! Please tell a "
+            "god!\r\n",
+            ch);
         return real_room(6001);
     };
 
@@ -1150,9 +1159,10 @@ int gray_recall_room(struct char_data *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(30030) == NOWHERE) {
-            send_to_char("ERROR: Could not find your guild, nor the the "
-                         "Ogakh itself. Please tell a god!\r\n",
-                         ch);
+            send_to_char(
+                "ERROR: Could not find your guild, nor the the "
+                "Ogakh itself. Please tell a god!\r\n",
+                ch);
             sprintf(buf,
                     "ERROR: Couldn't find the real room for vnums "
                     "%i or %i",
@@ -1162,9 +1172,10 @@ int gray_recall_room(struct char_data *ch) {
             return NOWHERE;
         };
 
-        send_to_char("ERROR: Could not find your guild! Please tell a "
-                     "god!\r\n",
-                     ch);
+        send_to_char(
+            "ERROR: Could not find your guild! Please tell a "
+            "god!\r\n",
+            ch);
         return real_room(30030);
     };
 

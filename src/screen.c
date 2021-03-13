@@ -30,11 +30,10 @@ void init_colors(void) {
     const struct {
         char code;
         char *ansi;
-    } rel_color_list[] = {
-        {CREL, AREL}, {'0', ANRM}, {'1', FRED}, {'2', FGRN}, {'3', FYEL}, {'4', FBLU}, {'5', FMAG}, {'6', FCYN},
-        {'7', FWHT},  {'8', ABLD}, {'9', FBLK}, {'u', AUND}, {'b', ABLD}, {'d', ADAR}, {'R', BRED}, {'G', BGRN},
-        {'Y', BYEL},  {'B', BBLU}, {'M', BMAG}, {'C', BCYN}, {'W', BWHT}, {'L', BBLK},
-    };
+    } rel_color_list[] = {{CREL, AREL}, {'0', ANRM}, {'1', FRED}, {'2', FGRN}, {'3', FYEL}, {'4', FBLU},
+                          {'5', FMAG},  {'6', FCYN}, {'7', FWHT}, {'8', ABLD}, {'9', FBLK}, {'u', AUND},
+                          {'b', ABLD},  {'d', ADAR}, {'R', BRED}, {'G', BGRN}, {'Y', BYEL}, {'B', BBLU},
+                          {'M', BMAG},  {'C', BCYN}, {'W', BWHT}, {'L', BBLK}, {'K', BLBK}};
     const struct {
         char code;
         char *ansi;

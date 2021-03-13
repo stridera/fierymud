@@ -16,11 +16,11 @@
 #ifndef __FIERY_UTILS_H
 #define __FIERY_UTILS_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "money.h"
 #include "rooms.h"
 #include "strings.h"
+#include "structs.h"
+#include "sysdep.h"
 #include "text.h"
 
 #include <math.h>
@@ -187,7 +187,7 @@ void drop_core(struct char_data *ch, const char *desc);
 
 /* basic bitvector utils *************************************************/
 
-#define IS_SET(flag, bit) (((unsigned int) flag) & ((unsigned int) bit))
+#define IS_SET(flag, bit) (((unsigned int)flag) & ((unsigned int)bit))
 #define SET_BIT(var, bit) ((var) |= (bit))
 #define REMOVE_BIT(var, bit) ((var) &= ~(bit))
 #define TOGGLE_BIT(var, bit) ((var) = (var) ^ (bit))
@@ -231,6 +231,7 @@ extern flagvector *ALL_FLAGS;
 #define IS_PC(ch) (!IS_NPC(REAL_CHAR(ch)))
 /* PLAYERALLY - true for a player, or a player's pet */
 #define PLAYERALLY(ch) (IS_PC(ch) || (EFF_FLAGGED(ch, EFF_CHARM) && (ch)->master && IS_PC((ch)->master)))
+#define IS_PET(ch) (PLAYERALLY(ch) && MOB_FLAGGED(ch, MOB_PET)) /* True if player bought/tamed mob only */
 
 /* MORTALALLY - same as PLAYERALLY except that the involved player
  * must be mortal for it to return true */
@@ -364,9 +365,9 @@ extern flagvector *ALL_FLAGS;
 #define CAN_CARRY_W(ch) (str_app[GET_STR(ch)].carry_w)
 #define CAN_CARRY_N(ch) (5 + (GET_DEX(ch) >> 1) + (GET_LEVEL(ch) >> 1))
 #define CURRENT_LOAD(ch)                                                                                               \
-    (IS_CARRYING_W(ch) >= CAN_CARRY_W(ch)                                                                              \
-         ? 100                                                                                                         \
-         : IS_CARRYING_W(ch) < 0 ? 0 : (int)((IS_CARRYING_W(ch) * 10) / CAN_CARRY_W(ch)))
+    (IS_CARRYING_W(ch) >= CAN_CARRY_W(ch) ? 100                                                                        \
+     : IS_CARRYING_W(ch) < 0              ? 0                                                                          \
+                                          : (int)((IS_CARRYING_W(ch) * 10) / CAN_CARRY_W(ch)))
 #define CAN_CARRY_OBJ(ch, obj)                                                                                         \
     (((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) <= CAN_CARRY_W(ch)) && ((IS_CARRYING_N(ch) + 1) <= CAN_CARRY_N(ch)))
 #define CAN_GET_OBJ(ch, obj)                                                                                           \

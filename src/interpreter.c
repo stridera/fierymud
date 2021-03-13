@@ -111,6 +111,7 @@ ACMD(do_disarm);
 ACMD(do_disengage);
 ACMD(do_breathe);
 ACMD(do_buck);
+ACMD(do_call);
 ACMD(do_cast);
 ACMD(do_camp);
 ACMD(do_clan);
@@ -425,6 +426,7 @@ const struct command_info cmd_info[] = {
     {"bug", POS_PRONE, STANCE_DEAD, do_gen_write, 0, SCMD_BUG, CMD_ANY},
     {"bye", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
 
+    {"call", POS_PRONE, STANCE_RESTING, do_call, 0, 0, 0},
     {"cast", POS_SITTING, STANCE_RESTING, do_cast, 1, SCMD_CAST, 0},
     {"cackle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"camp", POS_STANDING, STANCE_ALERT, do_camp, 1, 0, CMD_NOFIGHT},
@@ -2180,9 +2182,10 @@ void nanny(struct descriptor_data *d, char *arg) {
 
         if ((_parse_name(arg, tmp_name)) || strlen(tmp_name) < 2 || strlen(tmp_name) > MAX_NAME_LENGTH ||
             fill_word(strcpy(buf, tmp_name)) || reserved_word(buf)) {
-            write_to_output("Invalid name, please try another.\r\n"
-                            "Name: ",
-                            d);
+            write_to_output(
+                "Invalid name, please try another.\r\n"
+                "Name: ",
+                d);
             return;
         }
 
@@ -2335,9 +2338,10 @@ void nanny(struct descriptor_data *d, char *arg) {
         }
         if ((_parse_name(arg, tmp_name)) || strlen(tmp_name) < 2 || strlen(tmp_name) > MAX_NAME_LENGTH ||
             fill_word(strcpy(buf, tmp_name)) || reserved_word(buf)) {
-            write_to_output("c> Invalid name, please try another.\r\n"
-                            "Name: ",
-                            d);
+            write_to_output(
+                "c> Invalid name, please try another.\r\n"
+                "Name: ",
+                d);
             return;
         }
         if ((player_i = load_player(tmp_name, d->character)) > -1) {
@@ -2370,10 +2374,11 @@ void nanny(struct descriptor_data *d, char *arg) {
                 SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
             event_create(EVENT_NAME_TIMEOUT, name_timeout, d, FALSE, NULL, NAME_TIMEOUT);
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
-            write_to_output("Now you must wait for your name to be approved by an immortal.\r\n"
-                            "If no one is available, you will be granted entry in a VERY short "
-                            "time.\r\n",
-                            d);
+            write_to_output(
+                "Now you must wait for your name to be approved by an immortal.\r\n"
+                "If no one is available, you will be granted entry in a VERY short "
+                "time.\r\n",
+                d);
             broadcast_name(GET_NAME(d->character));
             STATE(d) = CON_NAME_WAIT_APPROVAL;
         }
@@ -2419,9 +2424,10 @@ void nanny(struct descriptor_data *d, char *arg) {
             GET_BAD_PWS(d->character) = 0;
 
             if (isbanned(d->host) == BAN_SELECT && !PLR_FLAGGED(d->character, PLR_SITEOK)) {
-                write_to_output("Sorry, this char has not been cleared for login from "
-                                "your site!\r\n",
-                                d);
+                write_to_output(
+                    "Sorry, this char has not been cleared for login from "
+                    "your site!\r\n",
+                    d);
                 STATE(d) = CON_CLOSE;
                 sprintf(buf, "Connection attempt for %s denied from %s", GET_NAME(d->character), d->host);
                 mudlog(buf, NRM, LVL_GOD, TRUE);
@@ -2432,9 +2438,10 @@ void nanny(struct descriptor_data *d, char *arg) {
                     write_to_output("The game is restricted due to an imminent reboot.\r\n", d);
                     write_to_output("Please try again in 2-3 minutes.\r\n", d);
                 } else {
-                    write_to_output("The game is temporarily restricted.  Please Try "
-                                    "again later.\r\n",
-                                    d);
+                    write_to_output(
+                        "The game is temporarily restricted.  Please Try "
+                        "again later.\r\n",
+                        d);
                 }
                 STATE(d) = CON_CLOSE;
                 sprintf(buf, "Request for login denied for %s [%s] (wizlock)", GET_NAME(d->character), d->host);
@@ -2446,9 +2453,10 @@ void nanny(struct descriptor_data *d, char *arg) {
                 return;
 
             if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
-                write_to_output("Your name has been deemed unacceptable.  Please "
-                                "choose a new one.\r\n",
-                                d);
+                write_to_output(
+                    "Your name has been deemed unacceptable.  Please "
+                    "choose a new one.\r\n",
+                    d);
                 write_to_output("Name: ", d);
                 STATE(d) = CON_NEW_NAME;
                 return;
@@ -2542,9 +2550,10 @@ void nanny(struct descriptor_data *d, char *arg) {
             d->character->player.sex = SEX_FEMALE;
             break;
         default:
-            write_to_output("\r\nThat is not a sex!\r\n"
-                            "What IS your sex? (M/F) ",
-                            d);
+            write_to_output(
+                "\r\nThat is not a sex!\r\n"
+                "What IS your sex? (M/F) ",
+                d);
             return;
             break;
         }
@@ -2570,9 +2579,10 @@ void nanny(struct descriptor_data *d, char *arg) {
         sprintf(buf, " Argument: %d, Result: %d", *arg, load_result);
         log(buf);
         if (load_result == RACE_UNDEFINED) {
-            write_to_output("\r\n&3Please choose by entering the letter next to the "
-                            "race of your choice.&0\r\n",
-                            d);
+            write_to_output(
+                "\r\n&3Please choose by entering the letter next to the "
+                "race of your choice.&0\r\n",
+                d);
             send_race_menu(d);
             write_to_output("\r\nRace: ", d);
             return;
@@ -2718,16 +2728,18 @@ void nanny(struct descriptor_data *d, char *arg) {
                     rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
                     rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
             write_to_output(buf, d);
-            write_to_output("\r\n\nYou may keep these stats if you wish (&0&6Enter "
-                            "y&0),\r\nor if you wish"
-                            " you may try for better stats (&0&6Enter n&0)(y/n):",
-                            d);
+            write_to_output(
+                "\r\n\nYou may keep these stats if you wish (&0&6Enter "
+                "y&0),\r\nor if you wish"
+                " you may try for better stats (&0&6Enter n&0)(y/n):",
+                d);
             return;
         }
 
-        write_to_output("\r\r\n\n&0&7&bYou have three bonus's to use choose the "
-                        "stat carefully:&0\r\n",
-                        d);
+        write_to_output(
+            "\r\r\n\n&0&7&bYou have three bonus's to use choose the "
+            "stat carefully:&0\r\n",
+            d);
         write_to_output(stats_display, d);
         write_to_output("\r\n&0&7&bPlease enter your first bonus selection:&0\r\n", d);
         STATE(d) = CON_QBONUS1;
@@ -2765,10 +2777,11 @@ void nanny(struct descriptor_data *d, char *arg) {
         d->character->actual_abils = d->character->natural_abils;
         scale_attribs(d->character);
 
-        write_to_output("&0&4\r\n\r\nRolling for this character is complete!!\r\n"
-                        "&0&4&bDo you wish to keep this character (Y/n)?\r\n"
-                        "(Answering 'n' will take you back to gender selection.)&0  ",
-                        d);
+        write_to_output(
+            "&0&4\r\n\r\nRolling for this character is complete!!\r\n"
+            "&0&4&bDo you wish to keep this character (Y/n)?\r\n"
+            "(Answering 'n' will take you back to gender selection.)&0  ",
+            d);
         STATE(d) = CON_QCANCHAR;
         break;
     case CON_QCANCHAR:
@@ -2784,9 +2797,10 @@ void nanny(struct descriptor_data *d, char *arg) {
             break;
         case YESNO_OTHER:
             write_to_output("\r\nPlease answer yes or no.\r\n", d);
-            write_to_output("&0&4&bDo you wish to keep this character (Y/n)?\r\n"
-                            "(Answering 'n' will take you back to gender selection.)&0  ",
-                            d);
+            write_to_output(
+                "&0&4&bDo you wish to keep this character (Y/n)?\r\n"
+                "(Answering 'n' will take you back to gender selection.)&0  ",
+                d);
             break;
         default:
             if (approve_names && (top_of_p_table + 1) && napprove_pause) {
@@ -2795,11 +2809,12 @@ void nanny(struct descriptor_data *d, char *arg) {
                 }
                 event_create(EVENT_NAME_TIMEOUT, name_timeout, d, FALSE, NULL, NAME_TIMEOUT);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
-                write_to_output("\r\nNow you must wait for your name to be approved by "
-                                "an immortal.\r\n"
-                                "If no one is available, you will be auto approved in "
-                                "a short time.\r\n",
-                                d);
+                write_to_output(
+                    "\r\nNow you must wait for your name to be approved by "
+                    "an immortal.\r\n"
+                    "If no one is available, you will be auto approved in "
+                    "a short time.\r\n",
+                    d);
                 broadcast_name(GET_NAME(d->character));
                 STATE(d) = CON_NAME_WAIT_APPROVAL;
                 break;
@@ -2847,9 +2862,10 @@ void nanny(struct descriptor_data *d, char *arg) {
             if (has_mail(GET_IDNUM(d->character)))
                 send_to_char("You have mail waiting.\r\n", d->character);
             if (load_result == 2) { /* rented items lost */
-                send_to_char("\r\n\007You could not afford your rent!\r\n"
-                             "Your possesions have been donated to the Salvation Army!\r\n",
-                             d->character);
+                send_to_char(
+                    "\r\n\007You could not afford your rent!\r\n"
+                    "Your possesions have been donated to the Salvation Army!\r\n",
+                    d->character);
             }
             personal_reboot_warning(d->character);
             d->prompt_mode = 1;
@@ -2902,10 +2918,11 @@ void nanny(struct descriptor_data *d, char *arg) {
             write_to_output(MENU, d);
             STATE(d) = CON_MENU;
         } else {
-            write_to_output("\r\nYOU ARE ABOUT TO DELETE THIS CHARACTER PERMANENTLY.\r\n"
-                            "ARE YOU ABSOLUTELY SURE?\r\n\r\n"
-                            "Please type \"yes\" to confirm: ",
-                            d);
+            write_to_output(
+                "\r\nYOU ARE ABOUT TO DELETE THIS CHARACTER PERMANENTLY.\r\n"
+                "ARE YOU ABSOLUTELY SURE?\r\n\r\n"
+                "Please type \"yes\" to confirm: ",
+                d);
             STATE(d) = CON_DELCNF2;
         }
         break;

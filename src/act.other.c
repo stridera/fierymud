@@ -271,7 +271,7 @@ ACMD(do_subclass) {
         check_regen_rates(ch);
 
         cprintf(ch, "You have successfully subclassed as %s!\r\n", with_indefinite_article(CLASS_FULL(ch)));
-        all_except_printf(ch,  "%s has subclassed to %s!\r\n", GET_NAME(ch), CLASS_FULL(ch));
+        all_except_printf(ch, "%s has subclassed to %s!\r\n", GET_NAME(ch), CLASS_FULL(ch));
         mprintf(L_STAT, LVL_GOD, "%s has subclassed to %s", GET_NAME(ch), CLASS_FULL(ch));
         return;
     }
@@ -307,17 +307,19 @@ ACMD(do_quit) {
 
     if (subcmd != SCMD_QUIT) {
         send_to_char("For safety purposes, you must type out 'quit yes'.\r\n", ch);
-        send_to_char("Note: You will lose &1&beverything&0 if you quit!  Camping "
-                     "or renting will save everything.\r\n",
-                     ch);
+        send_to_char(
+            "Note: You will lose &1&beverything&0 if you quit!  Camping "
+            "or renting will save everything.\r\n",
+            ch);
         return;
     }
 
     if (!*arg || str_cmp(arg, "yes")) {
         send_to_char("You must type 'quit yes' to leave this world.\r\n", ch);
-        send_to_char("Note: You will lose &1&beverything&0 if you quit!  Camping "
-                     "or renting will save everything.\r\n",
-                     ch);
+        send_to_char(
+            "Note: You will lose &1&beverything&0 if you quit!  Camping "
+            "or renting will save everything.\r\n",
+            ch);
         return;
     }
 
@@ -571,12 +573,10 @@ ACMD(do_shapechange) {
     /* Check alignment. */
     if (GET_LEVEL(ch) < LVL_GOD) {
         if (GET_ALIGNMENT(ch) >= 350) {
-            send_to_char("Your good loyalties betray your nature, inhibiting a transformation.\r\n",
-                         ch);
+            send_to_char("Your good loyalties betray your nature, inhibiting a transformation.\r\n", ch);
             return;
         } else if (GET_ALIGNMENT(ch) <= -350) {
-            send_to_char("Your evil loyalties betray your nature, inhibiting a transformation.\r\n",
-                         ch);
+            send_to_char("Your evil loyalties betray your nature, inhibiting a transformation.\r\n", ch);
             return;
         }
     }
@@ -663,8 +663,7 @@ ACMD(do_shapechange) {
 
     /* Attempt to create the mobile. */
     if (!(mob = read_mobile(creatures[index].vnum, VIRTUAL))) {
-        send_to_char("You start to change, then feel ill, and slump back to your normal form.\r\n",
-                     ch);
+        send_to_char("You start to change, then feel ill, and slump back to your normal form.\r\n", ch);
         sprintf(buf,
                 "SYSERR: %s tried to shapechange into nonexistent "
                 "mob prototype V#%d",
@@ -1376,8 +1375,9 @@ ACMD(do_title) {
                 send_to_char("Use 'title 0' to clear your current title.\r\n", ch);
         } else {
             titles = 0;
-            cprintf(ch, "You have earned the following titles:\r\n"
-                        "  0) <no title>\r\n");
+            cprintf(ch,
+                    "You have earned the following titles:\r\n"
+                    "  0) <no title>\r\n");
             if (GET_PERM_TITLES(ch))
                 while (GET_PERM_TITLES(ch)[titles]) {
                     cprintf(ch, "  %d) %s\r\n", titles + 1, GET_PERM_TITLES(ch)[titles]);
@@ -1388,9 +1388,10 @@ ACMD(do_title) {
             cprintf(ch, "Use 'title <number>' to switch your title.\r\n");
         }
     } else if (!is_positive_integer(argument))
-        send_to_char("Usage: title\r\n"
-                     "       title <number>\r\n",
-                     ch);
+        send_to_char(
+            "Usage: title\r\n"
+            "       title <number>\r\n",
+            ch);
     else {
         int i;
         which = atoi(argument);
@@ -1510,11 +1511,10 @@ ACMD(do_douse) {
             act("$n&0 frantically rolls around on the ground, attempting to douse "
                 "the flames consuming $s body.",
                 TRUE, ch, 0, 0, TO_ROOM);
-            send_to_char("You roll around on the ground, trying to douse the flames engulfing your body!\r\n",
-                         ch);
+            send_to_char("You roll around on the ground, trying to douse the flames engulfing your body!\r\n", ch);
         } else {
-            act("$n&0 rolls on the ground frantically, finally smothering the fire that was consuming $m.",
-                TRUE, ch, 0, 0, TO_ROOM);
+            act("$n&0 rolls on the ground frantically, finally smothering the fire that was consuming $m.", TRUE, ch, 0,
+                0, TO_ROOM);
             send_to_char("You roll around on the ground, finally smothering your flames.\r\n", ch);
             success = TRUE;
         }
@@ -1643,13 +1643,13 @@ void make_group_report_line(struct char_data *ch, char *buffer) {
 
     perc = (100 * GET_HIT(ch) / GET_MAX_HIT(ch));
 
-    strcpy(harm_color, perc >= 100 ? CLR(ch, ANRM)
-                                   : perc >= 88 ? CLR(ch, AFYEL)
-                                                : perc >= 70 ? CLR(ch, AHYEL)
-                                                             : perc >= 45 ? CLR(ch, AFMAG)
-                                                                          : perc >= 20 ? CLR(ch, AFRED)
-                                                                                       : perc >= 0 ? CLR(ch, AFRED)
-                                                                                                   : CLR(ch, AFRED));
+    strcpy(harm_color, perc >= 100  ? CLR(ch, ANRM)
+                       : perc >= 88 ? CLR(ch, AFYEL)
+                       : perc >= 70 ? CLR(ch, AHYEL)
+                       : perc >= 45 ? CLR(ch, AFMAG)
+                       : perc >= 20 ? CLR(ch, AFRED)
+                       : perc >= 0  ? CLR(ch, AFRED)
+                                    : CLR(ch, AFRED));
 
     sprintf(buffer, "%s%-15s &0[", harm_color, GET_NAME(ch));
     if (GET_HIT(ch) < 10)
@@ -1739,8 +1739,7 @@ ACMD(do_group) {
 
     /* You can't enroll someone if you're in a group and not the leader. */
     if (ch->group_master) {
-        send_to_char("&2&8You cannot enroll group members without being head of a group.&0\r\n",
-                     ch);
+        send_to_char("&2&8You cannot enroll group members without being head of a group.&0\r\n", ch);
         return;
     }
 
@@ -2054,8 +2053,7 @@ ACMD(do_wimpy) {
             GET_WIMP_LEV(ch) = 0;
         }
     } else
-        send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n",
-                     ch);
+        send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n", ch);
 
     return;
 }
@@ -2238,9 +2236,10 @@ ACMD(do_peace) {
         act("&7$n &4&bglows&0&7 with a &bbright white aura&0&7 as $e waves $s "
             "mighty hand!&0",
             FALSE, ch, 0, 0, TO_ROOM);
-        send_to_room("&7&bA peaceful feeling washes into the room, dousing all "
-                     "violence!&0\r\n",
-                     ch->in_room);
+        send_to_room(
+            "&7&bA peaceful feeling washes into the room, dousing all "
+            "violence!&0\r\n",
+            ch->in_room);
         for (vict = world[ch->in_room].people; vict; vict = next_v) {
             next_v = vict->next_in_room;
             if (FIGHTING(vict))
@@ -2251,9 +2250,10 @@ ACMD(do_peace) {
         act("&7$n &4&bglows&0&7 with a &1&bbright red aura&0&7 as $e waves $s "
             "mighty hand!&0",
             FALSE, ch, 0, 0, TO_ROOM);
-        send_to_room("&1&bThe peaceful feeling in the room subsides... You don't "
-                     "feel quite as safe anymore.&0\r\n",
-                     ch->in_room);
+        send_to_room(
+            "&1&bThe peaceful feeling in the room subsides... You don't "
+            "feel quite as safe anymore.&0\r\n",
+            ch->in_room);
         REMOVE_FLAG(ROOM_FLAGS(ch->in_room), ROOM_PEACEFUL);
     }
 }
@@ -2334,8 +2334,7 @@ ACMD(do_summon_mount) {
                 return;
             }
         if (GET_LEVEL(ch) < 15) {
-            send_to_char("You are not yet deemed worthy of a mount (try gaining some more experience)\r\n",
-                         ch);
+            send_to_char("You are not yet deemed worthy of a mount (try gaining some more experience)\r\n", ch);
             return;
         }
         if (!IS_GOOD(ch) && !IS_NPC(ch) && (GET_CLASS(ch) == CLASS_PALADIN)) {
@@ -2410,8 +2409,41 @@ void summon_mount(struct char_data *ch, int mob_vnum, int base_hp, int base_mv) 
 }
 
 /***************************************************************************
- * end SUMMON_MOUNT
+ * Call your pet
  ***************************************************************************/
+ACMD(do_call) {
+    bool found = FALSE;
+    struct follow_type *k;
+
+    for (k = ch->followers; k; k = k->next) {
+        if (IS_PET(k->follower)) {
+            found = TRUE;
+        }
+    }
+
+    if (found) {
+        send_to_char("You whistle sharply.\r\n", ch);
+
+        for (k = ch->followers; k; k = k->next) {
+            if (IS_PET(k->follower) && k->follower->master == ch) {
+                if (IN_ROOM(ch) == IN_ROOM(k->follower)) {
+                    act("$N looks at you curiously.", FALSE, ch, 0, k->follower, TO_CHAR);
+                    act("You look at $n as they whistle for you.", FALSE, ch, 0, k->follower, TO_VICT);
+                    act("$n whistles at $N, who looks at $m curiously.", FALSE, ch, 0, k->follower, TO_NOTVICT);
+                } else {
+                    char_from_room(k->follower);
+                    char_to_room(k->follower, ch->in_room);
+                    act("$N rushes into the room and looks at you expectantly.", FALSE, ch, 0, k->follower, TO_CHAR);
+                    act("You hear $n whistle in the distance and rush to rejoin them.", FALSE, ch, 0, k->follower,
+                        TO_VICT);
+                    act("$n whistles sharply and $N rushes in to join $m.", FALSE, ch, 0, k->follower, TO_NOTVICT);
+                }
+            }
+        }
+    } else {
+        send_to_char("You don't have a pet to call out to.\r\n", ch);
+    }
+}
 
 /***************************************************************************
  * LAY_HANDS

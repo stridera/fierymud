@@ -25,6 +25,7 @@
 #include "cooldowns.h"
 #include "damage.h"
 #include "db.h"
+#include "dg_scripts.h"
 #include "directions.h"
 #include "events.h"
 #include "exits.h"
@@ -48,7 +49,6 @@
 #include "utils.h"
 #include "vsearch.h"
 #include "weather.h"
-#include "dg_scripts.h"
 
 /* extern variables */
 extern int pk_allowed;
@@ -311,13 +311,15 @@ static void print_char_position_to_char(struct char_data *targ, struct char_data
     }
 
     cprintf(ch, " is %s here%s%s.",
-            GET_POS(targ) == POS_PRONE ? "lying"
-                                       : GET_POS(targ) == POS_FLYING ? "floating" : position_types[(int)GET_POS(targ)],
-            GET_STANCE(targ) == STANCE_ALERT ? "" : GET_STANCE(targ) == STANCE_SLEEPING ? " " : ", ",
-            GET_STANCE(targ) == STANCE_ALERT ? ""
-                                             : GET_STANCE(targ) == STANCE_RESTING && GET_POS(targ) > POS_KNEELING
-                                                   ? "at ease"
-                                                   : stance_types[(int)GET_STANCE(targ)]);
+            GET_POS(targ) == POS_PRONE    ? "lying"
+            : GET_POS(targ) == POS_FLYING ? "floating"
+                                          : position_types[(int)GET_POS(targ)],
+            GET_STANCE(targ) == STANCE_ALERT      ? ""
+            : GET_STANCE(targ) == STANCE_SLEEPING ? " "
+                                                  : ", ",
+            GET_STANCE(targ) == STANCE_ALERT                                     ? ""
+            : GET_STANCE(targ) == STANCE_RESTING && GET_POS(targ) > POS_KNEELING ? "at ease"
+                                                                                 : stance_types[(int)GET_STANCE(targ)]);
 }
 
 /* Component function for print_char_to_char */
@@ -366,9 +368,9 @@ static void print_char_long_desc_to_char(struct char_data *targ, struct char_dat
 
     else if (FIGHTING(targ))
         cprintf(ch, " is here, fighting %s!",
-                FIGHTING(targ) == ch ? "YOU!"
-                                     : targ->in_room == FIGHTING(targ)->in_room ? PERS(FIGHTING(targ), ch)
-                                                                                : "someone who has already left");
+                FIGHTING(targ) == ch                       ? "YOU!"
+                : targ->in_room == FIGHTING(targ)->in_room ? PERS(FIGHTING(targ), ch)
+                                                           : "someone who has already left");
 
     else /* NULL fighting pointer */
         cprintf(ch, " is here struggling with thin air.");
@@ -905,8 +907,9 @@ ACMD(do_viewdam) {
         return;
     }
 
-    cprintf(ch, "USAGE: viewdam - Those active\r\n            viewdam all - view "
-                "ALL\r\n            viewdam x - view spell x\r\n");
+    cprintf(ch,
+            "USAGE: viewdam - Those active\r\n            viewdam all - view "
+            "ALL\r\n            viewdam x - view spell x\r\n");
     return;
 }
 
@@ -1184,8 +1187,9 @@ void look_in_direction(struct char_data *ch, int dir) {
             if (EFF_FLAGGED(ch, EFF_FARSEE) || GET_CLASS(ch) == CLASS_RANGER)
                 do_farsee(ch, dir);
             else if (exit->to_room != NOWHERE && ROOM_EFF_FLAGGED(exit->to_room, ROOM_EFF_CIRCLE_FIRE))
-                cprintf(ch, "&1&8The edge of a circle of fire burns wildly in this "
-                            "direction.&0\r\n");
+                cprintf(ch,
+                        "&1&8The edge of a circle of fire burns wildly in this "
+                        "direction.&0\r\n");
             look_at_magic_wall(ch, dir, TRUE);
         }
     } else if (!look_at_magic_wall(ch, dir, FALSE))
@@ -1475,8 +1479,9 @@ void identify_obj(struct obj_data *obj, struct char_data *ch, int location) {
     /* Describe wielding positions only if it is a weapon */
     if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
         cprintf(ch, "Item is wielded: %s\r\n",
-                CAN_WEAR(obj, ITEM_WEAR_WIELD) ? "one-handed"
-                                               : CAN_WEAR(obj, ITEM_WEAR_2HWIELD) ? "two-handed" : "NONE");
+                CAN_WEAR(obj, ITEM_WEAR_WIELD)     ? "one-handed"
+                : CAN_WEAR(obj, ITEM_WEAR_2HWIELD) ? "two-handed"
+                                                   : "NONE");
 
     /* Describe any non-wield wearing positions (and not take) */
     if ((i = obj->obj_flags.wear_flags & (~ITEM_WEAR_WIELD & ~ITEM_WEAR_2HWIELD & ~ITEM_WEAR_TAKE))) {
@@ -1541,8 +1546,8 @@ void identify_obj(struct obj_data *obj, struct char_data *ch, int location) {
         break;
     case ITEM_CONTAINER:
         if (!IS_CORPSE(obj))
-            cprintf(ch, "Weight capacity: %d, Weight Reduction: %d%%\r\n",
-                    GET_OBJ_VAL(obj, VAL_CONTAINER_CAPACITY), GET_OBJ_VAL(obj, VAL_CONTAINER_WEIGHT_REDUCTION));
+            cprintf(ch, "Weight capacity: %d, Weight Reduction: %d%%\r\n", GET_OBJ_VAL(obj, VAL_CONTAINER_CAPACITY),
+                    GET_OBJ_VAL(obj, VAL_CONTAINER_WEIGHT_REDUCTION));
         break;
     case ITEM_DRINKCON:
         cprintf(ch, "Liquid capacity: %d, Liquid remaining: %d, Liquid: %s\r\n",
@@ -1562,7 +1567,6 @@ void identify_obj(struct obj_data *obj, struct char_data *ch, int location) {
             cprintf(ch, "   Special: %s\r\n", t->name);
         }
     }
-
 }
 
 ACMD(do_identify) {
@@ -1758,30 +1762,30 @@ static void cat_mortal_wholine(char *mbuf, const char *title, const struct char_
                                const bool show_area_in, const bool show_full_class, const bool show_color_nameflags) {
     if (show_as_anon)
         sprintf(mbuf, "%s&0[%s] %s%s&0 %s&0", mbuf, "&9&b-Anon-&0",
-                !show_color_nameflags
-                    ? ""
-                    : PLR_FLAGGED(ch, PLR_FROZEN)
-                          ? "&6&b"
-                          : PLR_FLAGGED(ch, PLR_NEWNAME) ? "&1&b" : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b" : "",
+                !show_color_nameflags           ? ""
+                : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
+                : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
+                : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
+                                                : "",
                 GET_NAME(ch), title);
     else if (IS_STARSTAR(ch))
         sprintf(mbuf, "%s&0[%s%c%s] %s%s&0 %s%s&0&9&b(&0%s&0&9&b)&0", mbuf,
                 show_full_class ? CLASS_WIDE(ch) : CLASS_ABBR(ch), PRF_FLAGGED(ch, PRF_ANON) ? '*' : ' ',
                 classes[(int)GET_CLASS(ch)].stars,
-                !show_color_nameflags
-                    ? ""
-                    : PLR_FLAGGED(ch, PLR_FROZEN)
-                          ? "&6&b"
-                          : PLR_FLAGGED(ch, PLR_NEWNAME) ? "&1&b" : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b" : "",
+                !show_color_nameflags           ? ""
+                : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
+                : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
+                : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
+                                                : "",
                 GET_NAME(ch), title, strlen(title) ? " " : "", RACE_ABBR(ch));
     else
         sprintf(mbuf, "%s&0[%s%c%2d] %s%s&0 %s%s&0&9&b(&0%s&0&9&b)&0", mbuf,
                 show_full_class ? CLASS_WIDE(ch) : CLASS_ABBR(ch), PRF_FLAGGED(ch, PRF_ANON) ? '*' : ' ', GET_LEVEL(ch),
-                !show_color_nameflags
-                    ? ""
-                    : PLR_FLAGGED(ch, PLR_FROZEN)
-                          ? "&6&b"
-                          : PLR_FLAGGED(ch, PLR_NEWNAME) ? "&1&b" : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b" : "",
+                !show_color_nameflags           ? ""
+                : PLR_FLAGGED(ch, PLR_FROZEN)   ? "&6&b"
+                : PLR_FLAGGED(ch, PLR_NEWNAME)  ? "&1&b"
+                : PLR_FLAGGED(ch, PLR_NAPPROVE) ? "&3&b"
+                                                : "",
                 GET_NAME(ch), title, strlen(title) ? " " : "", RACE_ABBR(ch));
 
     if (show_area_in)
@@ -2272,10 +2276,12 @@ ACMD(do_users) {
         }
     } /* end while (parser) */
 
-    strcpy(line, "Soc  Username    User's Host   Idl  Login        "
-                 "RoomNo/RoomName      Position\r\n");
-    strcat(line, "--- ---------- --------------- --- -------- "
-                 "------------------------- ---------\r\n");
+    strcpy(line,
+           "Soc  Username    User's Host   Idl  Login        "
+           "RoomNo/RoomName      Position\r\n");
+    strcat(line,
+           "--- ---------- --------------- --- -------- "
+           "------------------------- ---------\r\n");
     strcpy(userbuf, line);
 
     one_argument(argument, arg);
@@ -2600,21 +2606,21 @@ ACMD(do_consider) {
         mountmsg = 1;
         mountdiff = mountlevel(victim) - ideal_mountlevel(ch);
         sprintf(buf, "$E looks %s",
-                mountdiff > MOUNT_LEVEL_FUDGE
-                    ? "impossible to ride"
-                    : mountdiff < 1
-                          ? "easy to ride"
-                          : mountdiff < 2 ? "tough to ride" : mountdiff < 4 ? "hard to ride" : "difficult to ride");
+                mountdiff > MOUNT_LEVEL_FUDGE ? "impossible to ride"
+                : mountdiff < 1               ? "easy to ride"
+                : mountdiff < 2               ? "tough to ride"
+                : mountdiff < 4               ? "hard to ride"
+                                              : "difficult to ride");
     }
     if (mountmsg && GET_SKILL(ch, SKILL_TAME) > 0 &&
         !(EFF_FLAGGED(victim, EFF_TAMED) || EFF_FLAGGED(victim, EFF_TAMED))) {
         tamediff = mountlevel(victim) - ideal_tamelevel(ch);
         sprintf(buf, "%s, and %s", buf,
-                tamediff > MOUNT_LEVEL_FUDGE
-                    ? "impossible to tame"
-                    : tamediff < 2
-                          ? "easy to tame"
-                          : tamediff < 3 ? "tough to tame" : tamediff < 4 ? "hard to tame" : "difficult to tame");
+                tamediff > MOUNT_LEVEL_FUDGE ? "impossible to tame"
+                : tamediff < 2               ? "easy to tame"
+                : tamediff < 3               ? "tough to tame"
+                : tamediff < 4               ? "hard to tame"
+                                             : "difficult to tame");
     }
     if (mountmsg) {
         sprintf(buf, "%s.", buf);
@@ -3269,9 +3275,10 @@ static void show_active_spells(struct char_data *ch, struct char_data *tch) {
     struct effect *eff;
 
     if (tch->effects) {
-        strcpy(buf, "\r\n"
-                    "Active Spell/Status Effects\r\n"
-                    "===========================\r\n");
+        strcpy(buf,
+               "\r\n"
+               "Active Spell/Status Effects\r\n"
+               "===========================\r\n");
         for (eff = tch->effects; eff; eff = eff->next)
             if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
                 strcat(buf, "   ");
@@ -3314,8 +3321,9 @@ ACMD(do_score) {
              GET_NAME(tch));
 
     if (EFF_FLAGGED(tch, EFF_ON_FIRE))
-        str_cat(buf, "                     &3*&1*&3&b* "
-                     "&0&7&bYou are on &1&bFIRE&7! &3*&0&1*&3*\r\n\r\n");
+        str_cat(buf,
+                "                     &3*&1*&3&b* "
+                "&0&7&bYou are on &1&bFIRE&7! &3*&0&1*&3*\r\n\r\n");
 
     if (IS_STARSTAR(tch))
         sprintf(buf1, " &9&b{&0%s&9&b}&0", CLASS_STARS(tch));

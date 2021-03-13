@@ -15,8 +15,8 @@
 #ifndef __FIERY_SCREEN_H
 #define __FIERY_SCREEN_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define CLR_PARSE 0
 #define CLR_ESCAPE 1
@@ -75,14 +75,15 @@ extern char *escape_ansi(const char *string);
 #define HWHT "\x1B[1;37m" /* Foreground Bright White              */
 
 /* Normal (relative) background colors */
-#define BBLK "\x1B[40m" /* Background Black                     */
-#define BRED "\x1B[41m" /* Background Red                       */
-#define BGRN "\x1B[42m" /* Background Green                     */
-#define BYEL "\x1B[43m" /* Background Yellow                    */
-#define BBLU "\x1B[44m" /* Background Blue                      */
-#define BMAG "\x1B[45m" /* Background Magenta                   */
-#define BCYN "\x1B[46m" /* Background Cyan                      */
-#define BWHT "\x1B[47m" /* Background White                     */
+#define BBLK "\x1B[40m"  /* Background Black                     */
+#define BRED "\x1B[41m"  /* Background Red                       */
+#define BGRN "\x1B[42m"  /* Background Green                     */
+#define BYEL "\x1B[43m"  /* Background Yellow                    */
+#define BBLU "\x1B[44m"  /* Background Blue                      */
+#define BMAG "\x1B[45m"  /* Background Magenta                   */
+#define BCYN "\x1B[46m"  /* Background Cyan                      */
+#define BWHT "\x1B[47m"  /* Background White                     */
+#define BLBK "\x1b[100m" /* Background Light Black               */
 
 /* Normal (absolute) text colors */
 #define AFBLK "\x1B[0;30m" /* Foreground Black                     */
