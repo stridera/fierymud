@@ -13,8 +13,8 @@
 #ifndef __FIERY_PLAYERS_H
 #define __FIERY_PLAYERS_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /* Reasons a player was removed from the game or saved.
  * Reason                    Objects-kept   Keys-kept    Loadroom */
@@ -63,7 +63,8 @@ extern void send_save_description(struct char_data *ch, struct char_data *dest, 
 #define QUEST_FILE 2
 #define NOTES_FILE 3
 #define TEMP_FILE 4
-#define NUM_PLR_FILES 5
+#define PET_FILE 5
+#define NUM_PLR_FILES 6
 
 /* player index flags */
 #define PINDEX_FROZEN (1 << 0)

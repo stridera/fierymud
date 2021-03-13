@@ -117,6 +117,10 @@ int get_pfilename(const char *name, char *filename, int mode) {
         prefix = PLR_PREFIX;
         suffix = PTEMP_SUFFIX;
         break;
+    case PET_FILE:
+        prefix = PLR_PREFIX;
+        suffix = PET_SUFFIX;
+        break;
     default:
         return 0;
     }

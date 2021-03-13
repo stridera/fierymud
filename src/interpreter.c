@@ -1992,7 +1992,8 @@ int enter_player_game(struct descriptor_data *d) {
             char_to_room(d->character, load_room);
         }
     load_quests(d->character);
-
+    load_pets(d->character);
+    
     d->character->player.time.logon = time(0);
     GET_ID(d->character) = GET_IDNUM(d->character);
     d->character->next = character_list;

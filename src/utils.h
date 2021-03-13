@@ -276,6 +276,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_WIZ_TITLE(ch) ((ch)->player_specials->wiz_title)
 #define GET_PERM_TITLES(ch) ((ch)->player_specials->perm_titles)
 #define GET_LDESC(ch) ((ch)->player.long_descr)
+#define GET_DESCRIPTION(ch) ((ch)->player.description)
 
 /* General accessors */
 #define IN_ROOM(ch) ((ch)->in_room)

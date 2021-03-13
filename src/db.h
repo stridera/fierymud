@@ -16,8 +16,8 @@
 #ifndef __FIERY_DB_H
 #define __FIERY_DB_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /* arbitrary constants used by index_boot() (must be unique) */
 #define DB_BOOT_WLD 0
@@ -49,6 +49,7 @@
 #define CLAN_SUFFIX ".clan"     /* clan file suffix		*/
 #define PTEMP_SUFFIX ".temp"    /* temporary file suffix	*/
 #define CORPSE_SUFFIX ".corpse" /* player corpse file suffix	*/
+#define PET_SUFFIX ".pet"       /* Players pet file suffix */
 
 #define HELP_FILE "text/help/help.hlp" /* unified help file       */
 

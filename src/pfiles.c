@@ -27,6 +27,7 @@
 #include "legacy_structs.h"
 #include "math.h"
 #include "modify.h"
+#include "movement.h"
 #include "players.h"
 #include "quest.h"
 #include "skills.h"
@@ -295,8 +296,7 @@ void show_rent(struct char_data *ch, char *argument) {
     }
 
     if (!is_integer(buf)) {
-        send_to_char("This file is in the obsolete binary format.  Please use 'objupdate' to fix it.\r\n",
-                     ch);
+        send_to_char("This file is in the obsolete binary format.  Please use 'objupdate' to fix it.\r\n", ch);
         return;
     }
 
@@ -448,6 +448,47 @@ void save_quests(struct char_data *ch) {
         log(buf);
     } else if (rename(fname, frename)) {
         sprintf(buf, "SYSERR: Error renaming quest file for %s after write", GET_NAME(ch));
+        log(buf);
+    }
+}
+
+void save_pets(struct char_data *ch) {
+    FILE *fp;
+    char fname[PLAYER_FILENAME_LENGTH], frename[PLAYER_FILENAME_LENGTH];
+    struct follow_type *k;
+
+    if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
+        sprintf(buf, "SYSERR: save_pets() couldn't get temp file name for %s.", GET_NAME(ch));
+        log(buf);
+        return;
+    }
+
+    if (!get_pfilename(GET_NAME(ch), frename, PET_FILE)) {
+        sprintf(buf, "SYSERR: save_pets() couldn't get pet file name for %s.", GET_NAME(ch));
+        log(buf);
+        return;
+    }
+
+    if (!(fp = fopen(fname, "w"))) {
+        sprintf(buf, "SYSERR: save_pets() couldn't open file %s for write", fname);
+        mudlog(buf, NRM, LVL_GOD, TRUE);
+        return;
+    }
+
+    for (k = ch->followers; k; k = k->next) {
+        if (IS_PET(k->follower) && k->follower->master == ch) {
+            fprintf(fp, "%d\n", GET_MOB_VNUM(k->follower));
+            fprintf(fp, "namelist: %s\n", GET_NAMELIST(k->follower));
+            fprintf(fp, "desc: %s\n", GET_DESCRIPTION(k->follower));
+            fprintf(fp, "$\n");
+        }
+    }
+
+    if (fclose(fp)) {
+        sprintf(buf, "SYSERR: Error closing pet file for %s after write", GET_NAME(ch));
+        log(buf);
+    } else if (rename(fname, frename)) {
+        sprintf(buf, "SYSERR: Error renaming pet file for %s after write", GET_NAME(ch));
         log(buf);
     }
 }
@@ -811,10 +852,11 @@ bool load_objects(struct char_data *ch) {
             return TRUE;
         } else {
             log("   Failed!");
-            send_to_char("\r\n@W********************* NOTICE *********************\r\n"
-                         "There was a problem (error 02) loading your objects from disk.\r\n"
-                         "Contact a God for assistance.@0\r\n",
-                         ch);
+            send_to_char(
+                "\r\n@W********************* NOTICE *********************\r\n"
+                "There was a problem (error 02) loading your objects from disk.\r\n"
+                "Contact a God for assistance.@0\r\n",
+                ch);
             sprintf(buf, "%s entering game with no equipment. (error 02)", GET_NAME(ch));
             mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
             return FALSE;
@@ -871,10 +913,11 @@ void load_quests(struct char_data *ch) {
             if (errno != ENOENT) { /* if it fails, NOT because of no file */
                 sprintf(buf1, "SYSERR: READING QUEST FILE %s (5)", fname);
                 perror(buf1);
-                send_to_char("\r\n********************* NOTICE *********************\r\n"
-                             "There was a problem loading your quests from disk.\r\n"
-                             "Contact a God for assistance.\r\n",
-                             ch);
+                send_to_char(
+                    "\r\n********************* NOTICE *********************\r\n"
+                    "There was a problem loading your quests from disk.\r\n"
+                    "Contact a God for assistance.\r\n",
+                    ch);
             }
             sprintf(buf, "%s starting up with no quests.", GET_NAME(ch));
             mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
@@ -991,6 +1034,56 @@ void load_quests(struct char_data *ch) {
             fclose(fl);
         }
     } /* Done getting quest info */
+}
+
+void load_pets(struct char_data *ch) {
+    FILE *fl;
+    char fname[MAX_STRING_LENGTH], line[MAX_INPUT_LENGTH], tag[128];
+    struct char_data *pet;
+
+    if (!get_pfilename(GET_NAME(ch), fname, PET_FILE))
+        return;
+    if (!(fl = fopen(fname, "r"))) {
+        if (errno != ENOENT) { /* if it fails, NOT because of no file */
+            sprintf(buf1, "SYSERR: READING PET FILE %s (5)", fname);
+            perror(buf1);
+        }
+    } else {
+        while (!feof(fl)) {
+            get_line(fl, line);
+            if (is_integer(line)) {
+                pet = read_mobile(atoi(line), VIRTUAL);
+                if (!pet) {
+                    sprintf(buf1, "Attempt to load nonexisting pet vnum %s for player %s.", line, GET_NAME(ch));
+                    perror(buf1);
+                    break;
+                }
+
+                GET_EXP(pet) = 0;
+                SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
+                SET_FLAG(MOB_FLAGS(pet), MOB_PET);
+
+                // Over kill, but we might want to add more abilities soon.
+                while (get_line(fl, line)) {
+                    tag_argument(line, tag);
+                    if (*tag == '$')
+                        break;
+
+                    if (!strcmp(tag, "desc"))
+                        GET_DESCRIPTION(pet) = strdup(line);
+                    else if (!strcmp(tag, "namelist"))
+                        GET_NAMELIST(pet) = strdup(line);
+                    else {
+                        sprintf(buf, "SYSERR: Unknown tag %s in %s's pet file: %s", tag, GET_NAME(ch), line);
+                        perror(buf);
+                    }
+                }
+                char_to_room(pet, ch->in_room);
+                add_follower(pet, ch);
+            }
+        }
+        fclose(fl);
+    }
 }
 
 static struct obj_data *restore_binary_object(struct obj_file_elem *store, int *locate) {
@@ -1493,6 +1586,8 @@ void save_player(struct char_data *ch) {
     else
         save_player_objects(ch);
     save_quests(ch);
+
+    save_pets(ch);
 
     /* Set the load room */
     switch (quit_mode) {
