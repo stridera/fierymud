@@ -426,9 +426,9 @@ const struct command_info cmd_info[] = {
     {"bug", POS_PRONE, STANCE_DEAD, do_gen_write, 0, SCMD_BUG, CMD_ANY},
     {"bye", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
 
-    {"call", POS_PRONE, STANCE_RESTING, do_call, 0, 0, 0},
     {"cast", POS_SITTING, STANCE_RESTING, do_cast, 1, SCMD_CAST, 0},
     {"cackle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"call", POS_PRONE, STANCE_RESTING, do_call, 0, 0, 0},
     {"camp", POS_STANDING, STANCE_ALERT, do_camp, 1, 0, CMD_NOFIGHT},
     {"chant", POS_STANDING, STANCE_ALERT, do_cast, 0, SCMD_CHANT, 0},
     {"chuckle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
@@ -1993,7 +1993,7 @@ int enter_player_game(struct descriptor_data *d) {
         }
     load_quests(d->character);
     load_pets(d->character);
-    
+
     d->character->player.time.logon = time(0);
     GET_ID(d->character) = GET_IDNUM(d->character);
     d->character->next = character_list;

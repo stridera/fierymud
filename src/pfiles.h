@@ -16,8 +16,8 @@
 #ifndef __FIERY_PFILES_H
 #define __FIERY_PFILES_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define PLAYER_FILENAME_LENGTH 40
 
@@ -50,6 +50,8 @@ extern FILE *open_player_obj_file(char *player_name, struct char_data *ch, bool 
 extern void convert_player_obj_files(struct char_data *ch);
 extern void convert_single_player_obj_file(struct char_data *ch, char *name);
 extern void save_player(struct char_data *ch);
+
+void load_pets(struct char_data *ch);
 
 #endif
 
