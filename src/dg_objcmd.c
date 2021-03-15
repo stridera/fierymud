@@ -13,6 +13,7 @@
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
 
+#include "casting.h"
 #include "chars.h"
 #include "comm.h"
 #include "conf.h"
@@ -30,7 +31,6 @@
 #include "structs.h"
 #include "sysdep.h"
 #include "utils.h"
-#include "casting.h"
 
 void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
 int get_room_location(char *room);
@@ -436,10 +436,11 @@ OCMD(do_odamage) {
 OCMD(do_ocast) {
     char name[MAX_INPUT_LENGTH], spell_name[MAX_INPUT_LENGTH];
     char_data *target;
-    int spellnum;
+    int spellnum, level;
 
     argument = delimited_arg(argument, spell_name, '\'');
     one_argument(argument, name);
+    one_argument(argument, level);
 
     if (!*name || !*spell_name) {
         obj_log(obj, t, "ocast: bad syntax");
@@ -452,6 +453,16 @@ OCMD(do_ocast) {
         return;
     }
 
+    if (!level)
+        level = 30;
+    else if (level > 100) {
+        obj_log(obj, t, "ocast: attempt to cast a spell with a skill level above 100.");
+        return;
+    } else if (level < 0) {
+        obj_log(obj, t, "ocast: attempt to cast a spell with a skill level below 0.");
+        return;
+    }
+
     spellnum = find_spell_num(spell_name);
     if (!IS_SPELL(spellnum)) {
         sprintf(buf, "ocast: attempt to cast unknown spell: %s", spell_name);
@@ -459,7 +470,7 @@ OCMD(do_ocast) {
         return;
     }
 
-    call_magic(obj->worn_by, target, NULL, spellnum, 1000, SAVING_ROD);
+    call_magic(obj->worn_by, target, NULL, spellnum, 30, SAVING_ROD);
 }
 
 /*
