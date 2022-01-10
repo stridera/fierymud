@@ -219,7 +219,7 @@ const char *weekdays[DAYS_PER_WEEK] = {"the Day of the Run", "the Day of the Fig
                                        "the Day of Storm",   "the Day of Fire",      "the Day of Conquest",
                                        "the Day of Rest"};
 
-const char *rolls_abils_result[] = {"Fantastic  ", "Pretty Good", "Not bad    ", "Fair       ", "Bad        "};
+const char *rolls_abils_result[] = {"Fantastic  ", "Very Good  ", "Good       ", "Fair       ", "Bad        "};
 
 const char *month_name[MONTHS_PER_YEAR] = {"Month of Winter", /* 0 */
                                            "Month of the Dark Destiny",
