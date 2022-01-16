@@ -38,20 +38,22 @@
 #include "sysdep.h"
 #include "utils.h"
 
-const char *subclass_descrip = "\r\n"
-                               "                    &1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&3&bMUD Class "
-                               "System&0\r\n"
-                               "&1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&7&bMUD &0has many various and complex "
-                               "classes for you to play.  All players\r\n"
-                               "originate from four basic classes. Each of the basic classes\r\n"
-                               "posses unknown growth potential throughout gameplay. As you explore \r\n"
-                               "and the realm and advance your experience you may learn of ways to\r\n"
-                               "specialize your skills and spells into a new subclass.  If you manage\r\n";
+const char *subclass_descrip =
+    "\r\n"
+    "                    &1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&3&bMUD Class "
+    "System&0\r\n"
+    "&1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&7&bMUD &0has many various and complex "
+    "classes for you to play.  All players\r\n"
+    "originate from four basic classes. Each of the basic classes\r\n"
+    "posses unknown growth potential throughout gameplay. As you explore \r\n"
+    "and the realm and advance your experience you may learn of ways to\r\n"
+    "specialize your skills and spells into a new subclass.  If you manage\r\n";
 
-const char *subclass_descrip2 = "to learn of these ways your new class will posses new and different\r\n"
-                                "skills and spells thus altering your power within the realm.  Some\r\n"
-                                "classes will also be required to choose a deity in the future as "
-                                "well.&0\r\n";
+const char *subclass_descrip2 =
+    "to learn of these ways your new class will posses new and different\r\n"
+    "skills and spells thus altering your power within the realm.  Some\r\n"
+    "classes will also be required to choose a deity in the future as "
+    "well.&0\r\n";
 
 /* The newbie equipment
  *
@@ -247,7 +249,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      50,
      100,
-     1,
+     1.15,
      100,
      120,
      120,
@@ -279,7 +281,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      50,
      100,
-     1,
+     1.15,
      100,
      120,
      120,
@@ -535,7 +537,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      0,
      200,
-     1.5,
+     1.3,
      100,
      120,
      120,
@@ -759,7 +761,7 @@ struct classdef classes[NUM_CLASSES] = {
      80,
      100,
      100,
-     1,
+     1.2,
      120,
      80,
      80,
@@ -791,7 +793,7 @@ struct classdef classes[NUM_CLASSES] = {
      80,
      100,
      100,
-     1,
+     1.2,
      120,
      80,
      80,
