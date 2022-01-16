@@ -471,6 +471,9 @@ void oedit_save_to_disk(int zone_num) {
 
             if (obj->obj_flags.hiddenness)
                 fprintf(fp, "H\n%ld\n", obj->obj_flags.hiddenness);
+
+            if (GET_OBJ_FLAGS(obj)[1])
+                fprintf(fp, "X\n%ld\n", GET_OBJ_FLAGS(obj)[1]);
         }
     }
 
@@ -1378,12 +1381,9 @@ void oedit_parse(struct descriptor_data *d, char *arg) {
         case 'p':
         case 'P':
             if (GET_OBJ_RNUM(OLC_OBJ(d)) == NOTHING) {
-                send_to_char("You cannot purge a non-existent (unsaved) objext! Choose again:\r\n",
-                             d->character);
+                send_to_char("You cannot purge a non-existent (unsaved) objext! Choose again:\r\n", d->character);
             } else if (GET_LEVEL(d->character) < LVL_HEAD_B) {
-                sprintf(buf,
-                        "You are too low level to purge! Get a level %d or greater to do this.\r\n",
-                        LVL_HEAD_B);
+                sprintf(buf, "You are too low level to purge! Get a level %d or greater to do this.\r\n", LVL_HEAD_B);
                 send_to_char(buf, d->character);
             } else {
                 OLC_MODE(d) = OEDIT_PURGE_OBJECT;

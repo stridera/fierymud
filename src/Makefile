@@ -8,7 +8,7 @@
 CC = gcc
 
 # Any special flags you want to pass to the compiler
-MYFLAGS = -Wall -pedantic -fpack-struct=4 -m32
+MYFLAGS = -Wall -pedantic -m32
 #flags for profiling (see hacker.doc for more information)
 PROFILE = 
 # any flags for the linker
@@ -21,6 +21,8 @@ PFLAGS = -DPRODUCTION
 DFLAGS = -DDEV
 # Memtest Flags
 MFLAGS = -DMEMORY_DEBUG
+# Libraries
+LDLIBS = -lm -lcrypt
 
 ##############################################################################
 # Do Not Modify Anything Below This Line (unless you know what you're doing) #
@@ -48,16 +50,16 @@ OBJFILES = comm.o act.comm.o act.informative.o act.movement.o act.item.o \
 	house.o interpreter.o limits.o magic.o mail.o mobact.o modify.o \
 	pfiles.o olc.o races.o shop.o spec_assign.o spec_procs.o \
 	spell_parser.o casting.o utils.o weather.o queue.o regen.o hedit.o redit.o \
-        oedit.o zedit.o medit.o sedit.o sdedit.o players.o \
+	oedit.o zedit.o medit.o sedit.o sdedit.o players.o \
 	spell_mem.o dg_comm.o dg_db_scripts.o dg_debug.o dg_handler.o \
 	dg_mobcmd.o dg_objcmd.o dg_scripts.o dg_triggers.o dg_wldcmd.o \
 	dg_olc.o ispell.o corpse_save.o clansys.o clan.o ai_utils.o \
-        sorcerer.o cleric.o warrior.o rogue.o quest.o vsearch.o \
+	sorcerer.o cleric.o warrior.o rogue.o quest.o vsearch.o \
 	diskio.o chars.o skills.o math.o zmalloc.o trophy.o screen.o \
-        act.wizinfo.o objects.o genzon.o exits.o rooms.o commands.o \
-        movement.o editor.o board.o find.o composition.o lifeforce.o \
-        charsize.o damage.o strings.o spells.o directions.o \
-        effects.o money.o spheres.o act.get.o textfiles.o \
+	act.wizinfo.o objects.o genzon.o exits.o rooms.o commands.o \
+	movement.o editor.o board.o find.o composition.o lifeforce.o \
+	charsize.o damage.o strings.o spells.o directions.o \
+	effects.o money.o spheres.o act.get.o textfiles.o \
 	rules.o rulesys.o text.o privileges.o cooldowns.o prefs.o \
 	retain_comms.o
 
@@ -143,7 +145,7 @@ $(BINDIR)/plrtoascii: util/plrtoascii.c structs.h interpreter.h \
         exits.h rooms.h
 	$(CC) $(CFLAGS) -o $(BINDIR)/plrtoascii util/plrtoascii.c $(LFLAGS)
 $(BINDIR)/fiery: $(OBJFILES)
-	$(CC) -lm -o $(BINDIR)/fiery $(PROFILE) $(OBJFILES) -lcrypt $(LFLAGS)
+	$(CC) -o $(BINDIR)/fiery $(PROFILE) $(OBJFILES) $(LDLIBS) $(LFLAGS)
 
 $(OBJFILES):
 	@echo $(CC) $(COMP_FLAGS) -c -o $@ $<

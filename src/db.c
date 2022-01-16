@@ -1382,7 +1382,7 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
 
     mob_proto[i].points.move = t[5];
     mob_proto[i].points.max_mana = 10;
-    mob_proto[i].points.max_move = 50;
+    mob_proto[i].points.max_move = 200;
 
     mob_proto[i].mob_specials.ex_damnodice = t[6];
     mob_proto[i].mob_specials.ex_damsizedice = t[7];
@@ -1908,6 +1908,12 @@ char *parse_object(FILE *obj_f, int nr) {
             break;
         case 'T': /* DG triggers */
             dg_obj_trigger(line, &obj_proto[i]);
+            break;
+
+        case 'X':
+            get_line(obj_f, line);
+            sscanf(line, "%d ", t);
+            obj_proto[i].obj_flags.extra_flags[1] = t[0];
             break;
 
         case '$':
