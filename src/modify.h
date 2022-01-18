@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: modify.h,v 1.6 2009/03/20 23:02:59 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: modify.h                                        Part of FieryMUD *
  *  Usage: header file for string paging and editing                       *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_MODIFY_H
 #define __FIERY_MODIFY_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 extern void string_write_limit(struct descriptor_data *d, char **writeto, size_t len, int maxlines);
 extern void string_write(struct descriptor_data *d, char **writeto, size_t len);
@@ -45,29 +42,3 @@ extern void get_paging_input(struct descriptor_data *d, char *input);
 #define PAGING_NUMPAGES(d) (d->paging_numpages)
 
 #endif
-
-/***************************************************************************
- * $Log: modify.h,v $
- * Revision 1.6  2009/03/20 23:02:59  myc
- * Remove text editor connection state.  Make paging input
- * strings declared const.
- *
- * Revision 1.5  2009/02/11 17:03:39  myc
- * Make some functions static and add desc_paging_printf(),
- * which is just like paging_printf, but it takes a descriptor
- * instead of a character.
- *
- * Revision 1.4  2008/08/16 08:22:41  jps
- * Added the 'desc' command and took player description-editing out of the
- *pre-game menu.
- *
- * Revision 1.3  2008/08/15 03:59:08  jps
- * Added pprintf for paging, and changed page_string to take a character.
- *
- * Revision 1.2  2008/08/14 09:44:36  jps
- * Eliminate the unused keep_internal parameter from page_string.
- *
- * Revision 1.1  2008/08/14 09:39:02  jps
- * Initial revision
- *
- ***************************************************************************/

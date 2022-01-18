@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: board.c,v 1.8 2009/07/16 19:15:54 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: board.c                                        Part of FieryMUD *
  *  Usage: Advanced board management                                       *
  *                                                                         *
@@ -700,8 +697,7 @@ ACMD(do_boardadmin) {
         if (!*argument)
             send_to_char("What do you want the new board's alias to be?\r\n", ch);
         else if (!valid_alias(argument))
-            send_to_char("Only letters, digits, and underscores are allowed in board aliases.\r\n",
-                         ch);
+            send_to_char("Only letters, digits, and underscores are allowed in board aliases.\r\n", ch);
         else {
             board = new_board(argument);
             send_to_char("New board created.\r\n", ch);
@@ -762,10 +758,14 @@ ACMD(do_boardadmin) {
             cprintf(ch, "No such board: %s\r\n", argument);
         else {
             cprintf(ch,
-                    "Board          : " FYEL "%s" ANRM " (" FGRN "%d" ANRM ")\r\n"
-                    "Title          : " FCYN "%s" ANRM "\r\n"
-                    "Messages       : " FCYN "%d" ANRM "\r\n"
-                    "Locked         : " FCYN "%s" ANRM "\r\n"
+                    "Board          : " FYEL "%s" ANRM " (" FGRN "%d" ANRM
+                    ")\r\n"
+                    "Title          : " FCYN "%s" ANRM
+                    "\r\n"
+                    "Messages       : " FCYN "%d" ANRM
+                    "\r\n"
+                    "Locked         : " FCYN "%s" ANRM
+                    "\r\n"
                     "Privileges     :\r\n",
                     board->alias, board->number, board->title, board->message_count, YESNO(board->locked));
             for (i = 0; i < NUM_BPRIV; ++i) {
@@ -887,22 +887,23 @@ ACMD(do_boardadmin) {
     }
 
     else
-        send_to_char("Usage:\r\n\r\n"
-                     "<<Moderation commands>>\r\n"
-                     "   boardadmin list\r\n"
-                     "   boardadmin read <board> [<msg#>]\r\n"
-                     "   boardadmin edit <board> <msg#>\r\n"
-                     "   boardadmin remove <board> <msg#>\r\n"
-                     "   boardadmin write <board> [<title>]\r\n"
-                     "   boardadmin lock <board>\r\n"
-                     "<<Administration commands>>\r\n"
-                     "   boardadmin info <board>\r\n"
-                     "   boardadmin title <board> <title>\r\n"
-                     "   boardadmin privilege <board> <privilege> <mode> [<values>]\r\n"
-                     "   boardadmin delete <board>\r\n"
-                     "   boardadmin create <alias>\r\n"
-                     "   boardadmin reload <board>\r\n",
-                     ch);
+        send_to_char(
+            "Usage:\r\n\r\n"
+            "<<Moderation commands>>\r\n"
+            "   boardadmin list\r\n"
+            "   boardadmin read <board> [<msg#>]\r\n"
+            "   boardadmin edit <board> <msg#>\r\n"
+            "   boardadmin remove <board> <msg#>\r\n"
+            "   boardadmin write <board> [<title>]\r\n"
+            "   boardadmin lock <board>\r\n"
+            "<<Administration commands>>\r\n"
+            "   boardadmin info <board>\r\n"
+            "   boardadmin title <board> <title>\r\n"
+            "   boardadmin privilege <board> <privilege> <mode> [<values>]\r\n"
+            "   boardadmin delete <board>\r\n"
+            "   boardadmin create <alias>\r\n"
+            "   boardadmin reload <board>\r\n",
+            ch);
 }
 
 void read_message(struct char_data *ch, struct board_data *board, int msgnum) {
@@ -1145,35 +1146,38 @@ static EDITOR_FUNC(board_help) {
     struct descriptor_data *d = edit->descriptor;
     struct board_editing_data *edit_data = (struct board_editing_data *)edit->data;
 
-    string_to_output(d, "Editor command formats: /<letter>\r\n\r\n"
-                        "/a           -  abort message post\r\n"
-                        "/c           -  clear message\r\n"
-                        "/d#          -  delete line #\r\n"
-                        "/e# <text>   -  change the line at # with <text>\r\n"
-                        "/f           -  format entire text\r\n"
-                        "/fi          -  indented formatting of text\r\n"
-                        "/h           -  list text editor commands\r\n"
-                        "/k <word>    -  spellcheck word\r\n"
-                        "/i# <text>   -  insert <text> at line #\r\n");
-    string_to_output(d, "/l           -  list entire message\r\n"
-                        "/n           -  list entire message with line numbers\r\n"
-                        "/r <a> <b>   -  replace 1st occurrence of text <a> in "
-                        "buffer with text <b>\r\n"
-                        "/ra <a> <b>  -  replace all occurrences of text <a> within "
-                        "buffer with text <b>\r\n"
-                        "                usage: /r[a] pattern replacement\r\n"
-                        "                       /r[a] 'pattern' 'replacement'\r\n"
-                        "                       (enclose in single quotes for "
-                        "multi-word phrases)\r\n"
-                        "/s           -  save text\r\n"
-                        "/u <subject> -  change message subject\r\n");
+    string_to_output(d,
+                     "Editor command formats: /<letter>\r\n\r\n"
+                     "/a           -  abort message post\r\n"
+                     "/c           -  clear message\r\n"
+                     "/d#          -  delete line #\r\n"
+                     "/e# <text>   -  change the line at # with <text>\r\n"
+                     "/f           -  format entire text\r\n"
+                     "/fi          -  indented formatting of text\r\n"
+                     "/h           -  list text editor commands\r\n"
+                     "/k <word>    -  spellcheck word\r\n"
+                     "/i# <text>   -  insert <text> at line #\r\n");
+    string_to_output(d,
+                     "/l           -  list entire message\r\n"
+                     "/n           -  list entire message with line numbers\r\n"
+                     "/r <a> <b>   -  replace 1st occurrence of text <a> in "
+                     "buffer with text <b>\r\n"
+                     "/ra <a> <b>  -  replace all occurrences of text <a> within "
+                     "buffer with text <b>\r\n"
+                     "                usage: /r[a] pattern replacement\r\n"
+                     "                       /r[a] 'pattern' 'replacement'\r\n"
+                     "                       (enclose in single quotes for "
+                     "multi-word phrases)\r\n"
+                     "/s           -  save text\r\n"
+                     "/u <subject> -  change message subject\r\n");
     if (has_board_privilege(d->character, edit_data->board, BPRIV_WRITE_STICKY))
         string_to_output(d, "/y           -  toggle message as sticky\r\n");
-    string_to_output(d, "\r\n"
-                        "Note: /d, /f, /fi, /l, and /n also accept ranges of lines. "
-                        " For instance:\r\n"
-                        "   /d 2 5   -  delete lines 2 through 5\r\n"
-                        "   /fi3 6   -  format lines 3 through 6 with indent\r\n");
+    string_to_output(d,
+                     "\r\n"
+                     "Note: /d, /f, /fi, /l, and /n also accept ranges of lines. "
+                     " For instance:\r\n"
+                     "   /d 2 5   -  delete lines 2 through 5\r\n"
+                     "   /fi3 6   -  format lines 3 through 6 with indent\r\n");
 
     return ED_PROCESSED;
 }
@@ -1197,32 +1201,3 @@ ACMD(do_edit) {
     else
         edit_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(argument));
 }
-
-/***************************************************************************
- * $Log: board.c,v $
- * Revision 1.8  2009/07/16 19:15:54  myc
- * Moved command stuff from grant.c to commands.c
- *
- * Revision 1.7  2009/06/09 05:33:46  myc
- * Modified the editor to handle freeing of callback data.
- *
- * Revision 1.6  2009/05/01 05:29:40  myc
- * Updated boards to use the new rule system for the privileges.
- *
- * Revision 1.5  2009/03/23 09:40:34  myc
- * Added 'boardadmin reload' command to reload a board from file.
- *
- * Revision 1.4  2009/03/20 23:02:59  myc
- * Align clan requirements properly
- *
- * Revision 1.3  2009/03/20 20:19:51  myc
- * Fix some errors and log messages.
- *
- * Revision 1.2  2009/03/09 02:22:32  myc
- * Fixed bug in saving and loading board privileges to file.  Some
- * minor cosmetic adjustments.  Added edit command.
- *
- * Revision 1.1  2009/02/21 03:30:16  myc
- * Initial revision
- *
- ***************************************************************************/

@@ -13,8 +13,8 @@
 #ifndef __FIERY_LIFEFORCE_H
 #define __FIERY_LIFEFORCE_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define LIFE_UNDEFINED -1
 #define LIFE_LIFE 0 /* normal folks */
@@ -26,8 +26,7 @@
 #define NUM_LIFEFORCES 6 /* keep updated */
 
 struct lifedef {
-    /* The first element of this struct, 'name', is used by parse_obj_name()
-     * and must not be changed. */
+    /* The first element of this struct, 'name', is used by parse_obj_name() and must not be changed. */
     char *name;
     char *color;
     int sus_heal;
@@ -45,10 +44,3 @@ extern void convert_lifeforce(struct char_data *ch, int newlifeforce);
 #define LIFEFORCE_COLOR(ch) (VALID_LIFEFORCE(ch) ? lifeforces[GET_LIFEFORCE(ch)].color : "")
 
 #endif
-
-/***************************************************************************
- * $Log: lifeforce.h,v $
- * Revision 1.1  2009/03/08 21:42:09  jps
- * Initial revision
- *
- ***************************************************************************/

@@ -1,6 +1,3 @@
-/***************************************************************************
- * $Id: sysdep.h,v 1.7 2008/05/19 20:19:50 jps Exp $
- ***************************************************************************/
 /* ************************************************************************
  *   File: sysdep.h                                      Part of CircleMUD *
  *  Usage: machine-specific defs based on values in conf.h (from configure)*
@@ -309,22 +306,3 @@ size_t strnlen(const char *str, size_t maxlen);
 #endif /* __GNUC__ */
 
 #endif /* __FIERY_SYSDEP_H */
-
-/***************************************************************************
- * $Log: sysdep.h,v $
- * Revision 1.7  2008/05/19 20:19:50  jps
- * Using stdbool.h.
- *
- * Revision 1.6  2008/03/22 19:50:24  myc
- * Added strnlen implementation.
- *
- * Revision 1.5  2008/02/06 21:53:53  myc
- * Adding the stdarg system header so we can use varargs woot.
- *
- * Revision 1.4  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- ***************************************************************************/

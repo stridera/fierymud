@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: clan.h,v 1.13 2009/07/16 22:27:56 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: clan.h                                          Part of FieryMUD *
  *  Usage: header file for clans                                           *
  *                                                                         *
@@ -13,9 +10,9 @@
 #ifndef __FIERY_CLAN_H
 #define __FIERY_CLAN_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "privileges.h"
+#include "structs.h"
+#include "sysdep.h"
 
 /* Defaults */
 #define ALLOW_CLAN_LINKLOAD TRUE
@@ -170,56 +167,3 @@ struct clan_snoop {
 };
 
 #endif
-
-/***************************************************************************
- * $Log: clan.h,v $
- * Revision 1.13  2009/07/16 22:27:56  myc
- * When someone is made a clan admin, remove them from any clans.
- *
- * Revision 1.12  2009/06/11 01:09:58  myc
- * Allow ctell for alts.
- *
- * Revision 1.11  2009/06/09 05:34:56  myc
- * Completely rewrote all clan-related code.  The structures and
- * functions have changed.
- *
- * Revision 1.10  2008/03/06 05:11:51  myc
- * Combined the 'saved' and 'unsaved' portions of the char_specials and
- * player_specials structures by moving all fields of each saved structure
- * to its parent structure.  Also combined the skills array from the
- * player and mob structures since they are identical.
- *
- * Revision 1.9  2008/02/16 20:26:04  myc
- * Adding functions to free clans at program termination.  Replaced
- * a few RECREATE calls with CREATE calls since zmalloc was complaining
- * about them.
- *
- * Revision 1.8  2007/12/19 20:42:01  myc
- * Completely rewrote clan code.  Clans now use ASCII files.  Several new
- * features are also available, including alts, abbreviations (vs names),
- * descriptions, and smarter handling of just about everything.
- *
- * Revision 1.7  2006/05/07 19:42:43  cjd
- * adjusted level so that L103's have clan command access.
- *
- * Revision 1.6  2004/11/11 18:47:11  cmc
- * fixed warning message "clan.h:45: warning: array type has incomplete element
- *type reordered statements. warning no longer generated.
- *
- * Revision 1.5  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.4  2000/11/20 18:46:57  rsd
- * Really added the proper comment header.  Added back rlog
- * messages from prior to the addition of the $log$ string.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/01/30 18:55:49  mud
- * Added standard comment header
- *
- * Revision 1.1
- * Initial revision
- *
- ***************************************************************************/

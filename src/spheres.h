@@ -38,10 +38,3 @@ extern struct spheredef spheres[];
 int skill_to_sphere(int skill);
 
 #endif
-
-/***************************************************************************
- * $Log: spheres.h,v $
- * Revision 1.1  2009/03/17 09:02:25  jps
- * Initial revision
- *
- ***************************************************************************/

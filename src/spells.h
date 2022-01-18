@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: spells.h,v 1.4 2009/08/02 20:20:27 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: spells.h                                       Part of FieryMUD *
  *  Usage: header file for spells                                          *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_SPELLS_H
 #define __FIERY_SPELLS_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define ASPELL(spellname)                                                                                              \
     int spellname(int spellnum, int skill, struct char_data *ch, struct char_data *victim, struct obj_data *obj,       \
@@ -96,21 +93,3 @@ ASPELL(chant_ivory_symphony);
 ASPELL(chant_apocalyptic_anthem);
 
 #endif
-
-/***************************************************************************
- * $Log: spells.h,v $
- * Revision 1.4  2009/08/02 20:20:27  myc
- * Adding pyre and fracture spells.
- *
- * Revision 1.3  2009/07/18 01:17:23  myc
- * Adding empty spell implementations for pyre and fracture.
- *
- * Revision 1.2  2009/03/20 06:15:17  myc
- * Adding a TAR_GROUND cast requirement.  Added detonation,
- * phosphoric embers, positive field, and acid burst spells.
- * Removed combust and heatwave.  Made soul tap a manual spell.
- *
- * Revision 1.1  2009/03/09 03:26:08  jps
- * Initial revision
- *
- ***************************************************************************/

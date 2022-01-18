@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: hedit.c,v 1.15 2008/08/14 09:45:22 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: hedit.c                                        Part of FieryMUD *
  *  Usage: Edits help files, for use with OasisOLC.                        *
  *     By: Steve Wolfe                                                     *
@@ -343,65 +340,3 @@ void free_help(struct help_index_element *help) {
         free(help->entry);
     memset(help, 0, sizeof(struct help_index_element));
 }
-
-/***************************************************************************
- * $Log: hedit.c,v $
- * Revision 1.15  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.14  2008/04/05 05:05:42  myc
- * Removed SEND_TO_Q macro, so call write_to_output directly.
- *
- * Revision 1.13  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.12  2008/03/22 03:22:38  myc
- * All invocations of the string editor now go through string_write()
- * instead of messing with the descriptor variables itself.  Also added
- * a toggle, LineNums, to decide whether to do /l or /n when entering
- * the string editor.
- *
- * Revision 1.11  2008/02/11 21:04:01  myc
- * Fix the formatting in the main menu.
- *
- * Revision 1.10  2008/02/10 20:30:03  myc
- * Clean-up hedit a tiny bit.
- *
- * Revision 1.9  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.8  2007/11/18 16:51:55  myc
- * Fixing LVL_BUILDER references.
- *
- * Revision 1.7  2007/09/07 04:12:25  jps
- * Fix keyword formatting and disable screen-clearing when you start to edit.
- *
- * Revision 1.6  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.5  2000/11/21 18:56:43  rsd
- * Altered comment header and added back rlog messages from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.4  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.3  1999/06/10 16:56:28  mud
- * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and
- * libraries.  Many many curly braces had to be added to "if" statements to
- * clarify their behavior to the compiler.  The name approval code was also
- * debugged, and tested to be stable.  The xnames list was converted from an
- * array to a linked list to allow for on the fly adding of names to the
- * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
- *
- * Revision 1.2  1999/01/31 06:19:33  mud
- * Added comment header
- * Indented file
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: class.h,v 1.21 2009/06/09 19:33:50 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: class.h                                         Part of FieryMUD *
  *  Usage: header file for class structures and constants                  *
  *                                                                         *
@@ -15,9 +12,9 @@
 
 #ifndef __FIERY_CLASS_H
 #define __FIERY_CLASS_H
-#include "sysdep.h"
-#include "structs.h"
 #include "chars.h"
+#include "structs.h"
+#include "sysdep.h"
 
 #define CLASS_UNDEFINED -1
 #define CLASS_SORCERER 0
@@ -46,7 +43,6 @@
 #define CLASS_HUNTER 23
 #define CLASS_LAYMAN 24
 /* NUM_CLASSES defined in chars.h */
-
 
 #define CLASS_DEFAULT CLASS_LAYMAN
 
@@ -164,14 +160,3 @@ extern int return_max_skill(struct char_data *ch, int skill);
 extern void give_newbie_eq(struct char_data *vict);
 
 #endif
-
-/***************************************************************************
- * $Log: class.h,v $
- * Revision 1.21  2009/06/09 19:33:50  myc
- * Passing advance_level an enum for which action it should take
- * rather than using a boolean in order to reduce confusion.
- *
- * Revision 1.20  2009/03/09 20:36:00  myc
- * Added RCS ids.
- *
- ***************************************************************************/

@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: shop.h,v 1.8 2009/03/09 04:33:20 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: shop.h                                         Part of FieryMUD *
  *  Usage: shop file definitions, structures, constants                    *
  *     By: Jeff Fink                                                       *
@@ -17,9 +14,9 @@
 #ifndef __FIERY_SHOP_H
 #define __FIERY_SHOP_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "specprocs.h" /* for SPECIAL() */
+#include "structs.h"
+#include "sysdep.h"
 
 struct shop_buy_data {
     int type;
@@ -174,34 +171,3 @@ extern int top_shop;
 extern struct shop_data *shop_index;
 
 #endif
-
-/***************************************************************************
- * $Log: shop.h,v $
- * Revision 1.8  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.7  2008/04/20 17:47:41  jps
- * Exporting shop index.
- *
- * Revision 1.6  2008/04/04 03:42:32  jps
- * Add prototype for give_shopkeeper_reject().
- *
- * Revision 1.5  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.4  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.3  2000/11/24 23:52:51  rsd
- * Altered comment header and added the back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.2  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.1  1999/01/29 01:23:32  mud
- * Initial revision
- *
- ***************************************************************************/

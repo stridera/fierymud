@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: diskio.h,v 1.1 2007/12/19 20:50:22 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: diskio.h                                       Part of FieryMUD *
  *  Usage: Fast file buffering                                             *
  *                                                                         *
@@ -55,16 +52,3 @@ int fbcat(char *fromfilename, FBFILE *tofile);
 char *fbgetstring(FBFILE *fl);
 
 #endif
-
-/***************************************************************************
- * $Log: diskio.h,v $
- * Revision 1.1  2007/12/19 20:50:22  myc
- * Initial revision
- *
- * Revision 1.2  2002/09/08 18:23:06  dce
- * Modifed $Id and $Log to use c comments rather then c++ style.
- *
- * Revision 1.1  2002/03/30 03:18:24  dce
- * Initial revision
- *
- ***************************************************************************/

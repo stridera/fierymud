@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: clansys.c,v 1.6 2011/03/16 13:39:58 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: clansys.c                                      Part of FieryMUD *
  *  Usage: Infrastructure for the clan system                              *
  *                                                                         *
@@ -755,28 +752,3 @@ PRIV_FUNC(clan_admin_check) {
     if (PRV_FLAGGED(ch, PRV_CLAN_ADMIN) && GET_CLAN_MEMBERSHIP(ch))
         revoke_clan_membership(GET_CLAN_MEMBERSHIP(ch));
 }
-
-/***************************************************************************
- * $Log: clansys.c,v $
- * Revision 1.6  2011/03/16 13:39:58  myc
- * Fix all warnings for "the address of X will always evaluate to 'true'",
- * where X is a variable.
- *
- * Revision 1.5  2009/07/16 22:27:56  myc
- * When someone is made a clan admin, remove them from any clans.
- *
- * Revision 1.4  2009/06/11 01:57:23  myc
- * Fix add_clan_member.  It wasn't adding new members correctly.
- *
- * Revision 1.3  2009/06/09 21:50:21  myc
- * clan_notification now adds the color codes for you and surrounds
- * the message in square brackets
- *
- * Revision 1.2  2009/06/09 19:33:50  myc
- * Fix minor bug in clan_notification and allow it to be called
- * with a NULL clan.
- *
- * Revision 1.1  2009/06/09 05:35:20  myc
- * Initial revision
- *
- ***************************************************************************/

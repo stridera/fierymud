@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: weather.h,v 1.9 2008/08/26 04:39:21 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: weather.h                                      Part of FieryMUD *
  *  Usage: Weather structures, defines and prototypes.  Most of            *
  *         the weather system design is documented herein as well.         *
@@ -15,9 +12,9 @@
 #ifndef __FIERY_WEATHER_H
 #define __FIERY_WEATHER_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "db.h"
+#include "structs.h"
+#include "sysdep.h"
 
 /* climate structs are initialized in an array, where the index
  * corresponds to the climate type as defined below in CLIMATE_xxx
@@ -144,38 +141,3 @@ extern const char *precip[];
 extern struct hemisphere_data hemispheres[];
 
 #endif /* __FIERY_WEATHER_H */
-
-/***************************************************************************
- * $Log: weather.h,v $
- * Revision 1.9  2008/08/26 04:39:21  jps
- * Changed IN_ZONE to IN_ZONE_RNUM or IN_ZONE_VNUM and fixed zone_printf.
- *
- * Revision 1.8  2008/02/04 01:46:12  myc
- * Export precip and hemispheres.
- *
- * Revision 1.7  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.6  2007/09/04 06:49:19  myc
- * Cleaned up weather code a lot (a rewrite, really).
- *
- * Revision 1.5  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.4  2000/11/19 02:51:33  rsd
- * Altered comment header, changed the define names, and added
- * back log messages prior to the $log$ strings
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/02/04 19:51:32  mud
- * indeted file
- * altered comment header
- * dos2unix
- *
- * Revision 1.1  1999/01/29 01:23:32  mud
- * Initial Revision
- *
- ***************************************************************************/

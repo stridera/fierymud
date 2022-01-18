@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: rogue.c,v 1.15 2009/03/08 23:34:14 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: rogue.c                                        Part of FieryMUD *
  *  Usage: Control of rogue type mobs, It is closly related to ai.h,       *
  *         and ai_util.c.                                                  *
@@ -104,59 +101,3 @@ bool mob_steal(struct char_data *ch) {
 
     return FALSE;
 }
-
-/***************************************************************************
- * $Log: rogue.c,v $
- * Revision 1.15  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.14  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.13  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.12  2008/01/26 14:26:31  jps
- * Moved a lot of skill-related code into skills.h and skills.c.
- *
- * Revision 1.11  2008/01/13 03:19:53  myc
- * Fixed checks for rogue skills.  Also changed mob_steal to
- * try and steal the first thing in a player's inventory.
- *
- * Revision 1.10  2008/01/12 23:13:20  myc
- * Moved mob steal code here.
- *
- * Revision 1.9  2008/01/12 19:08:14  myc
- * Rerowte a lot of mob AI functionality.
- *
- * Revision 1.8  2008/01/03 12:44:03  jps
- * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
- * to CLASS_SORCERER.
- *
- * Revision 1.7  2002/09/30 01:39:58  jjl
- * Urgh. Forgot the function prototype for check_guard.
- *
- * Revision 1.6  2002/09/30 01:11:09  jjl
- * Put in checks for guard, so it actually does something.
- *
- * Revision 1.5  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.4  2000/11/24 21:17:12  rsd
- * Altered comment header and added back rlog messgaes from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/02/02 00:08:11  mud
- * Indented file
- * added standard and corrected comment header, I don't think
- * this file controls cleric AI like it claimed.
- * dos2unix
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

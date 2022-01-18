@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: effects.h,v 1.4 2009/07/18 01:17:23 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: effects.h                                      Part of FieryMUD *
  *  Usage: header file for effects                                         *
  *                                                                         *
@@ -94,9 +91,9 @@
 #define EFF_SPIRIT_WOLF 73
 #define EFF_SPIRIT_BEAR 74
 #define EFF_WRATH 75
-#define EFF_MISDIRECTION 76 /* Capable of performing misdirection */
-#define EFF_MISDIRECTING 77 /* Currently actually moving but misdirecting */
-#define EFF_BLESS 78       /* When blessed, your barehand attacks hurt ether chars */
+#define EFF_MISDIRECTION 76  /* Capable of performing misdirection */
+#define EFF_MISDIRECTING 77  /* Currently actually moving but misdirecting */
+#define EFF_BLESS 78         /* When blessed, your barehand attacks hurt ether chars */
 #define EFF_HEX 79           /* The evil side of blessing, to hurt ether chars */
 #define EFF_DETECT_POISON 80 /* Char is sensitive to poison */
 #define NUM_EFF_FLAGS 81     /* Keep me updated */
@@ -104,20 +101,3 @@
 extern const char *effect_flags[NUM_EFF_FLAGS + 1];
 
 #endif
-
-/***************************************************************************
- * $Log: effects.h,v $
- * Revision 1.4  2009/07/18 01:17:23  myc
- * Adding immobilized flag for bone draw.
- *
- * Revision 1.3  2009/06/11 13:36:05  myc
- * When throatcut is successful, apply an injured throat effect
- * which hinders the victim's casting ability.
- *
- * Revision 1.2  2009/03/09 16:57:47  myc
- * Added detect poison effect.
- *
- * Revision 1.1  2009/03/09 05:09:40  jps
- * Initial revision
- *
- ***************************************************************************/

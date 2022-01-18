@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: house.c,v 1.14 2009/03/09 04:33:20 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: house.c                                        Part of FieryMUD *
  *  Usage: Handling of player houses                                       *
  *                                                                         *
@@ -222,10 +219,11 @@ void House_boot(void) {
 
 /* "House Control" functions */
 
-char *HCONTROL_FORMAT = "Usage: hcontrol build <house vnum> <exit direction> <player name>\r\n"
-                        "          hcontrol destroy <house vnum>\r\n"
-                        "          hcontrol pay <house vnum>\r\n"
-                        "          hcontrol show\r\n";
+char *HCONTROL_FORMAT =
+    "Usage: hcontrol build <house vnum> <exit direction> <player name>\r\n"
+    "          hcontrol destroy <house vnum>\r\n"
+    "          hcontrol pay <house vnum>\r\n"
+    "          hcontrol show\r\n";
 
 #define NAME(x) ((temp = get_name_by_id(x)) == NULL ? "<UNDEF>" : temp)
 
@@ -238,8 +236,9 @@ void hcontrol_list_houses(struct char_data *ch) {
         send_to_char("No houses have been defined.\r\n", ch);
         return;
     }
-    strcpy(buf, "Address   Atrium   Build Date   Guests   Owner            Last "
-                "Paymt\r\n");
+    strcpy(buf,
+           "Address   Atrium   Build Date   Guests   Owner            Last "
+           "Paymt\r\n");
     strcat(buf, "-------   ------   ----------   ------   ------------ ----------\r\n");
 
     for (i = 0; i < num_of_houses; i++) {
@@ -518,57 +517,3 @@ int House_can_enter(struct char_data *ch, int house) {
 
     return 0;
 }
-
-/***************************************************************************
- * $Log: house.c,v $
- * Revision 1.14  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.13  2008/06/05 02:07:43  myc
- * Rewrote house saving and loading to use ascii object files.
- *
- * Revision 1.12  2008/05/18 05:18:06  jps
- * Renaming room_data struct's member "number" to "vnum", cos it's
- * a virtual number.
- *
- * Revision 1.11  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.10  2008/03/05 03:03:54  myc
- * Now depending on players.h.
- *
- * Revision 1.9  2008/02/16 20:31:32  myc
- * Making house code check for too many guests to avoid bad
- * memory writes.
- *
- * Revision 1.8  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.7  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.6  2007/10/17 17:18:04  myc
- * Renamed the search_block and search_block2 functions.
- * searchblock is now case sensitive, and search_block is not.
- *
- * Revision 1.5  2006/05/01 05:53:27  rsd
- * Made a cosmetic change to the comment header to test if the sticky
- * bit for the group is working in RCS on halflife across the NFS
- * mount back to rift.
- *
- * Revision 1.4  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.3  2000/11/21 19:04:04  rsd
- * Altered comment header and added initial rlog message
- *
- * Revision 1.2  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

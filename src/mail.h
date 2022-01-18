@@ -1,10 +1,8 @@
 /***************************************************************************
- * $Id: mail.h,v 1.8 2008/02/16 20:31:32 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: mail.h                                        Part of FieryMUD  *
  *  Usage: header file for mail system                                     *
  *                                                                         *
+ *  written by Jeremy Elson (jelson@cs.jhu.edu)                            *
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
@@ -13,19 +11,11 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-/******* MUD MAIL SYSTEM HEADER FILE *********************
- ***     written by Jeremy Elson (jelson@cs.jhu.edu)   ***
- ********************************************************/
-
 #ifndef __FIERY_MAIL_H
 #define __FIERY_MAIL_H
 
-#include "sysdep.h"
 #include "structs.h"
-
-/* INSTALLATION INSTRUCTIONS in MAIL.C */
-
-/* You can modify the following constants to fit your own MUD.  */
+#include "sysdep.h"
 
 /* minimum level a player must be to send mail	*/
 #define MIN_MAIL_LEVEL 2
@@ -50,10 +40,6 @@
  * The mail system will always allocate disk space in chunks of size
  * BLOCK_SIZE.
  */
-
-/* USER CHANGABLE DEFINES ABOVE **
-***************************************************************************
-**   DON'T TOUCH DEFINES BELOW  */
 
 int scan_file(void);
 int has_mail(long recipient);
@@ -119,31 +105,3 @@ struct mail_index_type_d {
 typedef struct mail_index_type_d mail_index_type;
 
 #endif /* __FIERY_MAIL_H */
-/***************************************************************************
- * $Log: mail.h,v $
- * Revision 1.8  2008/02/16 20:31:32  myc
- * Adding function to free mail index at program termination.
- *
- * Revision 1.7  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.6  2000/11/23 02:26:40  rsd
- * Altered the comment header and added the rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.5  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.4  1999/04/09 04:14:32  dce
- * Allow any type of coins.
- *
- * Revision 1.3  1999/04/08 16:56:24  dce
- * Mail is back!
- *
- * Revision 1.2  1999/01/31 16:47:34  mud
- * Changed price for stamp to 5, I hope that will mean 5 copper
- *
- * Revision 1.1  1999/01/29 01:23:31 mud
- * Initial revision
- *
- ***************************************************************************/

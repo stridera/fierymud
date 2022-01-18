@@ -65,10 +65,3 @@ int _skill_to_sphere(int skill, int recursed) {
 }
 
 int skill_to_sphere(int skill) { return _skill_to_sphere(skill, 0); }
-
-/***************************************************************************
- * $Log: spheres.c,v $
- * Revision 1.1  2009/03/17 09:02:33  jps
- * Initial revision
- *
- ***************************************************************************/

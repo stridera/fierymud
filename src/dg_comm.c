@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: dg_comm.c,v 1.17 2009/03/03 19:43:44 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: dg_comm.c                                      Part of FieryMUD *
  *  Usage: Who knows?                                                      *
  *     By: Unknown                                                         *
@@ -194,68 +191,3 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets) {
             if (to != ch && SENDOK(to))
                 sub_write_to_char(to, tokens, ctokens, otokens, type);
 }
-
-/***************************************************************************
- * $Log: dg_comm.c,v $
- * Revision 1.17  2009/03/03 19:43:44  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.16  2008/08/18 01:35:38  jps
- * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
- *
- * Revision 1.15  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.14  2008/03/05 03:03:54  myc
- * Fix capitalization for DG triggers.
- *
- * Revision 1.13  2008/02/24 17:31:13  myc
- * Added a TO_OLC flag to act() to allow messages to be sent to people
- * while in OLC if they have OLCComm toggled on.
- *
- * Revision 1.12  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.11  2008/01/17 01:29:10  myc
- * Cleaned up sub_write_to_char and sub_write.  Everything seems to
- * still work...
- *
- * Revision 1.10  2007/07/25 00:38:03  jps
- * Give send_to_zone a room to skip, and make it use virtual zone number.
- *
- * Revision 1.9  2007/07/24 23:34:00  jps
- * Add a parameter min_position to send_to_zone()
- *
- * Revision 1.8  2006/11/20 07:02:20  jps
- * Allow color code &0 at the beginning of a line to suppress
- * capitalization of dg script messages.
- *
- * Revision 1.7  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.6  2000/11/21 01:19:10  rsd
- * Altered the comment header slightly, and added back rlog
- * messages from prior to the addition of the $log$ string.
- *
- * Revision 1.5  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.4  1999/08/29 07:06:04  jimmy
- * Many many small but ver significant bug fixes found using insure.  The
- * code now compiles cleanly and boots cleanly with insure.  The most
- *significant changes were moving all the BREATH's to within normal spell range,
- *and fixing the way socials were allocated.  Too many small fixes to list them
- * all. --gurlaek (now for the runtime debugging :( )
- *
- * Revision 1.3  1999/04/24 06:46:52  jimmy
- * changed to work with new pedantic flag --gurlaek
- *
- * Revision 1.2  1999/01/31 00:00:41  mud
- * Added the generic comment header
- * Indented entire file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

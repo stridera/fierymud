@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: find.h,v 1.3 2009/03/19 23:16:23 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: find.h                                         Part of FieryMUD *
  *  Usage: header file: prototypes of obj/char finding functions           *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_FIND_H
 #define __FIERY_FIND_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /* Find obj/char system */
 #define MATCH_OBJ_FUNC(func) bool(func)(struct find_context * context, struct obj_data * obj)
@@ -130,18 +127,3 @@ struct char_data *get_random_char_around(struct char_data *ch, int mode);
 #define RAND_DG_WLD (RAND_HASSLE | RAND_WIZ_VIS)
 
 #endif
-
-/***************************************************************************
- * $Log: find.h,v $
- * Revision 1.3  2009/03/19 23:16:23  myc
- * Added find_vis() premade context and several new iterators.
- *
- * Revision 1.2  2009/03/09 02:22:32  myc
- * Added find_vis_by_vnum and find_vis_by_type find context factories.
- * Also added universal_find, which is just like generic_find, but
- * accepts a custom find context.
- *
- * Revision 1.1  2009/03/03 19:43:44  myc
- * Initial revision
- *
- ***************************************************************************/

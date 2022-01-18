@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: comm.h,v 1.29 2009/03/07 22:30:11 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: comm.h                                         Part of FieryMUD *
  *  Usage: header file: prototypes of public communication functions       *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_COMM_H
 #define __FIERY_COMM_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define NUM_RESERVED_DESCS 8
 
@@ -161,117 +158,3 @@ extern ssize_t write();
 #endif /* __COMM_C__ */
 
 #endif /* __FIERY_COMM_H */
-
-/***************************************************************************
- * $Log: comm.h,v $
- * Revision 1.29  2009/03/07 22:30:11  jps
- * Add act flag TO_VICTROOM which makes the message go to the victim's room.
- *
- * Revision 1.28  2008/09/07 20:08:54  jps
- * Added all_except_printf.
- *
- * Revision 1.27  2008/08/25 02:31:30  jps
- * The logic of the act() targets bits didn't fit well with the way
- * the targets were being used, so I undid the change.
- *
- * Revision 1.26  2008/08/23 14:03:30  jps
- * Changed the way act() messages are targeted. Now there are three basic
- * target flags, which may be or'd together in any combination, plus three
- * modifier flags for sleep, old, and trigger. The old TO_NOTVICT and
- * TO_ROOM targets are defined in terms of the new flags.
- *
- * Revision 1.25  2008/08/16 23:04:03  jps
- * Added speech_ok() to comm.h.
- *
- * Revision 1.24  2008/08/14 23:02:11  myc
- * Added vararg capability to all the standard output functions (like
- * send_to_char and write_to_output).  The old functions are still
- * available.  The new ones follow a *printf naming convention.
- * However, removed the send_to_outdoor functionality, and replaced
- * it with callback_printf.
- *
- * Revision 1.23  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.22  2008/06/09 23:00:13  myc
- * Added 'extern' to all the function declarations.
- *
- * Revision 1.21  2008/04/07 03:02:54  jps
- * Changed the POS/STANCE system so that POS reflects the position
- * of your body, while STANCE describes your condition or activity.
- *
- * Revision 1.20  2008/04/05 05:05:42  myc
- * Removed SEND_TO_Q macro, so call write_to_output directly.
- *
- * Revision 1.19  2008/03/22 03:22:38  myc
- * All invocations of the string editor now go through string_write()
- * instead of messing with the descriptor variables itself.  Also added
- * a toggle, LineNums, to decide whether to do /l or /n when entering
- * the string editor.
- *
- * Revision 1.18  2008/03/21 15:01:17  myc
- * Removed languages.
- *
- * Revision 1.17  2008/02/24 17:31:13  myc
- * Added a TO_OLC flag to act() to allow messages to be sent to people
- * while in OLC if they have OLCComm toggled on.
- *
- * Revision 1.16  2008/02/09 07:05:37  myc
- * Copyover is now renamed to hotboot.
- *
- * Revision 1.15  2008/02/09 03:04:23  myc
- * Adding the 'copyover' command, which allows you to do a hot-boot
- * without disconnecting anybody.
- *
- * Revision 1.14  2008/02/06 21:53:53  myc
- * Make the format arg to act() const.
- *
- * Revision 1.13  2008/02/02 19:38:20  myc
- * Adding the string_write function for putting a descriptor
- * into the string editor.
- *
- * Revision 1.12  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.11  2008/01/29 16:51:12  myc
- * Making the vict_obj of act() const.
- *
- * Revision 1.10  2007/12/19 20:46:13  myc
- * Added const modifiers to the char arguments to write_to_output,
- * send_to_char, send_to_zone, send_to_room, and parse_color, which
- * allows you to output a const string without casting it.  save_char()
- * no longer requires a save room (which wasn't being used anyway).
- *
- * Revision 1.9  2007/08/27 21:18:00  myc
- * You can now queue up commands while casting as well as abort midcast.
- * Casting commands such as look and abort are caught and interpreted
- * before the input is normally queued up by the game loop.
- *
- * Revision 1.8  2007/07/25 00:38:03  jps
- * Give send_to_zone a room to skip, and make it use virtual zone number.
- *
- * Revision 1.7  2007/07/24 23:34:00  jps
- * Add a parameter min_position to send_to_zone()
- *
- * Revision 1.6  2006/11/10 21:04:05  jps
- * Updated perform_act() with new format codes.
- *
- * Revision 1.5  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.4  2000/11/20 20:05:24  rsd
- * Fixed comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/04/23 23:27:10  jimmy
- * Fixed warnings/errors associated with the addition of the pendantic compiler
- *flag yeeeeehaaawwww.  --gurlaek
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

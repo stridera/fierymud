@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: specprocs.h,v 1.1 2009/03/09 04:33:20 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: specprocs.h                                     Part of FieryMUD *
  *  Usage: header file special procedures                                  *
  *                                                                         *
@@ -16,16 +13,9 @@
 #ifndef __FIERY_SPECPROCS_H
 #define __FIERY_SPECPROCS_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define SPECIAL(name) int(name)(struct char_data * ch, void *me, int cmd, char *argument)
 
 #endif
-
-/***************************************************************************
- * $Log: specprocs.h,v $
- * Revision 1.1  2009/03/09 04:33:20  jps
- * Initial revision
- *
- ***************************************************************************/

@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: effects.c,v 1.3 2009/07/18 01:17:23 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: effects.c                                      Part of FieryMUD *
  *  Usage: Constants for effects                                           *
  *                                                                         *
@@ -99,17 +96,3 @@ const char *effect_flags[NUM_EFF_FLAGS + 1] = {"BLIND", /* 0 */
                                                "BLESS",
                                                "HEX",
                                                "\n"};
-
-/***************************************************************************
- * $Log: effects.c,v $
- * Revision 1.3  2009/07/18 01:17:23  myc
- * Adding immobilized flag for bone draw.
- *
- * Revision 1.2  2009/06/11 13:36:05  myc
- * When throatcut is successful, apply an injured throat effect
- * which hinders the victim's casting ability.
- *
- * Revision 1.1  2009/03/09 05:09:40  jps
- * Initial revision
- *
- ***************************************************************************/

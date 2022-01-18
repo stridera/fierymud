@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: text.h,v 1.2 2009/06/09 05:50:07 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: text.h                                         Part of FieryMUD *
  *  Usage: header file: text management functions                          *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_TEXT_H
 #define __FIERY_TEXT_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define FORMAT_INDENT (1 << 0)
 
@@ -67,13 +64,3 @@ void sb_append(screen_buf, const char *msg, ...) __attribute__((format(printf, 2
 void free_screen_buf(screen_buf);
 
 #endif
-
-/***************************************************************************
- * $Log: text.h,v $
- * Revision 1.2  2009/06/09 05:50:07  myc
- * Moving all old textfile code from here to textfiles.[ch].
- * Moving lots of text management functions from strings.c to
- * here.  Also adding screen-buffer API for formatting text
- * on the go.
- *
- ***************************************************************************/

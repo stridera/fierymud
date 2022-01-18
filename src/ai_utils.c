@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: ai_utils.c,v 1.37 2009/06/11 13:36:05 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: ai_utils.c                                      Part of FieryMUD *
  *  Usage: General Utility functions for mob ai                            *
  *                                                                         *
@@ -25,10 +22,10 @@
 #include "math.h"
 #include "movement.h"
 #include "races.h"
+#include "skills.h"
 #include "structs.h"
 #include "sysdep.h"
 #include "utils.h"
-#include "skills.h"
 
 bool mob_cast(struct char_data *ch, struct char_data *tch, struct obj_data *tobj, int spellnum);
 
@@ -709,146 +706,3 @@ struct char_data *find_aggr_target(struct char_data *ch) {
 
     return targets[k].target;
 }
-
-/***************************************************************************
- * $Log: ai_utils.c,v $
- * Revision 1.37  2009/06/11 13:36:05  myc
- * When throatcut is successful, apply an injured throat effect
- * which hinders the victim's casting ability.
- *
- * Revision 1.36  2009/03/09 16:57:47  myc
- * Added detect poison effect.
- *
- * Revision 1.35  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.34  2009/01/17 00:28:02  myc
- * Fix possible use of uninitialized variable.
- *
- * Revision 1.33  2008/09/26 09:35:09  jps
- * NPCs don't concern themselves with glorious NPCs.
- *
- * Revision 1.32  2008/09/26 09:26:34  jps
- * Don't aggr against ones self. Don't be amazed at one's own glory.
- *
- * Revision 1.31  2008/09/14 18:09:49  jps
- * Make peackeepers not attack players for being evil.
- *
- * Revision 1.30  2008/09/13 18:53:30  jps
- * Make so-called "wimpy" mobs initiate fights if they're protector/peacekeeper.
- *
- * Revision 1.29  2008/09/02 07:16:00  mud
- * Changing object TIMER uses into DECOMP where appropriate
- *
- * Revision 1.28  2008/09/01 23:47:49  jps
- * Using movement.h/c for movement functions.
- *
- * Revision 1.27  2008/09/01 00:01:56  jps
- * Made "protector" mobs attack aggro mobs on sight.
- *
- * Revision 1.26  2008/08/31 20:55:19  jps
- * Moved find_aggr_target, glorion_distraction, appraise_opponent, and
- *is_aggr_to to ai_utils.c from fight.c. Added will_assist. Incorporated the
- *PROTECTOR and PEACEKEEPER flags.
- *
- * Revision 1.25  2008/06/07 19:06:46  myc
- * Moved all object-related constants and structures to objects.h
- *
- * Revision 1.24  2008/06/05 02:07:43  myc
- * Changing object flags to use flagvectors.  Rewrote rent-saving code
- * to use ascii-format files.
- *
- * Revision 1.23  2008/04/14 05:11:40  jps
- * Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
- * to fly - not that the characer is actually flying.
- *
- * Revision 1.22  2008/04/10 01:38:38  myc
- * Fixed has_effect() so mobs will stop continuously casting fly.
- *
- * Revision 1.21  2008/04/02 03:24:44  myc
- * Rewrote group code and removed all major group code.
- *
- * Revision 1.20  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.19  2008/03/27 17:26:59  jps
- * ITEM_BLESS is gone, and we have AFF3_BLESS and AFF3_HEX instead.
- *
- * Revision 1.18  2008/03/26 23:12:03  jps
- *  The waterform and vaporform flags are retired.
- *
- * Revision 1.17  2008/03/07 21:21:57  myc
- * Replaced action delays and skill delays with a single list of
- * 'cooldowns', which are decremented by a recurring event and
- * also save to the player file.
- *
- * Revision 1.16  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.15  2008/02/05 03:45:33  myc
- * Fixing scavenging.  appraise_item was returning 0 instead of a
- * real value.
- *
- * Revision 1.14  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.13  2008/01/13 23:06:04  myc
- * Added the appraise_item function, which calculates an arbitrary value
- * given a character and an item.
- *
- * Revision 1.12  2008/01/12 23:13:20  myc
- * Replaced try_cast with direct calls to mob_cast, which now supports target
- * objects.
- *
- * Revision 1.11  2008/01/12 19:08:14  myc
- * Rewrote a lot of mob AI functionality.
- *
- * Revision 1.10  2008/01/03 12:44:03  jps
- * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
- * to CLASS_SORCERER.
- *
- * Revision 1.9  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.8  2000/11/20 18:14:31  rsd
- * added back rlog messages from priot to the addition of
- * the $log$ string.
- *
- * Revision 1.7  2000/04/05 23:09:48  rsd
- * removed fireshield and left coldshield for mobile ai
- *
- * Revision 1.6  2000/04/05 22:56:34  rsd
- * Changed the order of fireshield and coldshield in
- * so_spells_to_check to make coldshield preferable.
- * Removed bless entry from const int cl_spells_to_check
- * so evil clerics wouldn't spam the mud into oblivion
- * trying to lang it on themselves.  This is a hack until
- * an alignment check can be put in...
- *
- * Revision 1.5  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.4  1999/06/10 16:56:28  mud
- * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and
- * libraries.  Many many curly braces had to be added to "if" statements to
- * clarify their behavior to the compiler.  The name approval code was also
- * debugged, and tested to be stable.  The xnames list was converted from an
- * array to a linked list to allow for on the fly adding of names to the
- * xnames list. This code compiles fine under both gcc RH5.2 and egcs RH6.0.
- * --Gurlaek 6/10/1999
- *
- * Revision 1.3  1999/01/30 17:29:18  mud
- * Changed comment header information to give proper credit.
- *
- * Revision 1.2  1999/01/30 17:22:06  mud
- * Added a standard Comment Header
- * removed a couple of lovely looking ^M's
- * Indented the entire file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

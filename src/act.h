@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: act.h,v 1.7 2009/07/17 01:19:01 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: act.h                                          Part of FieryMUD *
  *  Usage: header file for player-level commands and helper functions      *
  *                                                                         *
@@ -16,9 +13,9 @@
 #ifndef __FIERY_ACT_H
 #define __FIERY_ACT_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "interpreter.h"
+#include "structs.h"
+#include "sysdep.h"
 
 /***************************************************************************
  * act.informative.c                                                       *
@@ -126,29 +123,3 @@ extern bool check_get_disarmed_obj(struct char_data *ch, struct char_data *last_
 extern int conceal_roll(struct char_data *ch, struct obj_data *obj);
 
 #endif
-
-/***************************************************************************
- * $Log: act.h,v $
- * Revision 1.7  2009/07/17 01:19:01  myc
- * Autosplit no longer gives an error message if no one else
- * is present.
- *
- * Revision 1.6  2009/06/20 23:55:13  myc
- * Clean up makedrunk and rename it drunken_speech.
- *
- * Revision 1.5  2009/03/21 19:11:37  myc
- * Add cooldown bar to prompt.
- *
- * Revision 1.4  2009/03/19 23:16:23  myc
- * Moved some function prototypes into act.h for act.get.c.
- *
- * Revision 1.3  2009/03/09 02:22:32  myc
- * Added a hack to print_obj_to_char to pass additional args in.
- *
- * Revision 1.2  2009/02/09 20:09:56  myc
- * Added status_string function to colorize and describe health status.
- *
- * Revision 1.1  2008/08/29 04:16:26  myc
- * Initial revision
- *
- ***************************************************************************/

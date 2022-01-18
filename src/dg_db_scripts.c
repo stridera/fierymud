@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: dg_db_scripts.c,v 1.21 2008/08/30 18:20:53 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: dg_db_scripts.c                                Part of FieryMUD *
  *  Usage: Contains routines to handle db functions for scripts and trigs  *
  *                                                                         *
@@ -376,79 +373,3 @@ void free_proto_script(struct trig_proto_list **list) {
 
     *list = NULL;
 }
-
-/***************************************************************************
- * $Log: dg_db_scripts.c,v $
- * Revision 1.21  2008/08/30 18:20:53  myc
- * Changed GET_OBJ_RNUM call to check for NOTHING first.
- *
- * Revision 1.20  2008/08/18 01:35:38  jps
- * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
- *
- * Revision 1.19  2008/05/18 05:39:59  jps
- * Changed room_data member number to "vnum".
- *
- * Revision 1.18  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.17  2008/03/17 16:22:42  myc
- * Updating free_proto_script.
- *
- * Revision 1.16  2008/02/16 20:26:04  myc
- * Cleaning up function to free triggers.  Adding function to free
- * prototype scripts at program termination.
- *
- * Revision 1.15  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.14  2008/01/09 02:30:43  jps
- * Use macro to get mob real number.
- *
- * Revision 1.13  2007/07/24 23:02:52  jps
- * Minor typo fix.
- *
- * Revision 1.12  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.11  2001/01/05 01:03:42  mtp
- * more info if trigger not found (although mob info seems limited...shows bad
- *vnum for some reason?)
- *
- * Revision 1.10  2000/11/28 01:20:32  mtp
- * replaced dg_event.c code with events.c code
- *
- * Revision 1.9  2000/11/21 01:28:28  rsd
- * Altered the comment header in an attempt to propery follow
- * the circle license and give proper credit to the origonal
- * authorse whoever they are.  Also added back rlog messages
- * prior to the addition of the $log$ string.
- *
- * Revision 1.8  2000/04/09 22:43:32  mtp
- * trigger code is reused by multiple objects, it was a mistake to free it!
- *
- * Revision 1.7  2000/03/08 22:03:28  mtp
- * remove dangling pointers on trigger creation (hopefully)
- *
- * Revision 1.6  2000/03/07 07:56:08  mtp
- * explicit set of cmdlist to null (belt and braces approach to freeing
- * cmdlist!)
- *
- * Revision 1.5  2000/02/16 08:20:03  mtp
- * but code in to free trigger command list
- *
- * Revision 1.4  2000/02/13 07:34:13  mtp
- * set running flag (new to solve opurge/mpure probs) to flase at start
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/01/31 00:08:35  mud
- * Edited comment header to give credit
- * Indented entire file.
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

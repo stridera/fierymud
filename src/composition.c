@@ -79,19 +79,3 @@ void list_olc_compositions(struct char_data *ch) {
         send_to_char(buf, ch);
     }
 }
-
-/***************************************************************************
- * $Log: composition.c,v $
- * Revision 1.4  2009/03/11 21:12:58  jps
- * Added a phase (none, plasma, gas, liquid, solid) to compositions.
- *
- * Revision 1.3  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.2  2009/03/08 21:50:49  jps
- * Include damage.h dependency
- *
- * Revision 1.1  2009/03/08 21:42:31  jps
- * Initial revision
- *
- ***************************************************************************/

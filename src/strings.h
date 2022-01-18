@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: strings.h,v 1.7 2009/06/09 05:48:39 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: strings.h                                      Part of FieryMUD *
  *  Usage: header file: string management functions                        *
  *                                                                         *
@@ -49,30 +46,3 @@ char *str_end(char *buf);
 size_t str_space(char *buf);
 
 #endif
-
-/***************************************************************************
- * $Log: strings.h,v $
- * Revision 1.7  2009/06/09 05:48:39  myc
- * Moving a large number of functions from here to text.c.
- *
- * Revision 1.6  2009/05/01 05:29:40  myc
- * Added skip_over and skip_chars functions.  Also adding
- * fetch_word which does the same thing as any_one_arg, but
- * with const buffers.
- *
- * Revision 1.5  2009/03/17 09:01:41  jps
- * Add EOL macro and function capitalize()
- *
- * Revision 1.4  2009/03/17 07:59:42  jps
- * Moved str_str to strings.c
- *
- * Revision 1.3  2009/03/17 07:55:37  jps
- * Moved ellipsis string formatting to strings.c.
- *
- * Revision 1.2  2009/03/09 04:41:56  jps
- * Put FORMAT_INDENT definition in strings.h
- *
- * Revision 1.1  2009/03/09 03:33:03  myc
- * Initial revision
- *
- ***************************************************************************/

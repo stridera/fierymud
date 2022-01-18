@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: rooms.h,v 1.13 2010/06/05 04:43:57 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: rooms.h                                         Part of FieryMUD *
  *  Usage: header file for rooms                                           *
  *                                                                         *
@@ -16,10 +13,10 @@
 #ifndef __FIERY_ROOMS_H
 #define __FIERY_ROOMS_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "directions.h"
 #include "specprocs.h"
+#include "structs.h"
+#include "sysdep.h"
 
 /* WARNING: In the world files, NEVER set the bits marked "R" ("Reserved") */
 #define ROOM_DARK 0         /* Dark                           */
@@ -199,51 +196,3 @@ bool room_contains_char(int roomnum, struct char_data *ch);
 bool can_see_exit(struct char_data *ch, int roomnum, struct exit *exit);
 
 #endif
-
-/***************************************************************************
- * $Log: rooms.h,v $
- * Revision 1.13  2010/06/05 04:43:57  mud
- * Replacing ocean sector type with cave.
- *
- * Revision 1.12  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.11  2009/03/07 11:13:54  jps
- * Incorporated flags of darkness, illumination, and circle-of-fire into
- * light/dark macros.
- *
- * Revision 1.10  2008/09/21 20:40:40  jps
- * Keep a list of attackers with each character, so that at the proper times -
- * such as char_from_room - they can be stopped from battling.
- *
- * Revision 1.9  2008/09/14 03:02:02  jps
- * Added room_contains_char - a safer way to check whether a character is in a
- * room.
- *
- * Revision 1.8  2008/09/09 08:23:37  jps
- * Placed sector info into a struct and moved its macros into rooms.h.
- *
- * Revision 1.7  2008/09/04 06:47:36  jps
- * Changed sector constants to match their strings
- *
- * Revision 1.6  2008/09/01 08:34:47  jps
- * Added macro for getting the vnum of a room you're about to enter.
- *
- * Revision 1.5  2008/09/01 05:51:33  jps
- * Added a list of colors for sector types.
- *
- * Revision 1.4  2008/08/17 06:51:10  jps
- * Added macro room_rnum_to_vnum.
- *
- * Revision 1.3  2008/05/18 05:16:59  jps
- * Passing real room num rather than a room.. easier this way.
- *
- * Revision 1.2  2008/05/18 02:01:28  jps
- * Added some room-related constants. Also prototypes for
- * functions to inform about exits.
- *
- * Revision 1.1  2008/05/17 22:02:43  jps
- * Initial revision
- *
- ***************************************************************************/

@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: limits.h,v 1.3 2009/06/09 19:33:50 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: limits.h                                        Part of FieryMUD *
  *  Usage: header file for regen and decompositions                        *
  *                                                                         *
@@ -44,17 +41,3 @@ void start_decomposing(struct obj_data *obj);
 void stop_decomposing(struct obj_data *obj);
 
 #endif
-
-/***************************************************************************
- * $Log: limits.h,v $
- * Revision 1.3  2009/06/09 19:33:50  myc
- * Rewrote gain_exp and retired gain_exp_regardless.
- *
- * Revision 1.2  2008/09/29 03:24:44  jps
- * Make container weight automatic. Move some liquid container functions to
- *objects.c.
- *
- * Revision 1.1  2008/09/02 06:50:50  jps
- * Initial revision
- *
- ***************************************************************************/

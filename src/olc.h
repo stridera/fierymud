@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: olc.h,v 1.46 2009/03/09 20:36:00 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: olc.h                                          Part of FieryMUD *
  *  Usage: OASIS OLC -                                                     *
  *     By: Harvey Gilpin of TwyliteMud                                     *
@@ -15,8 +12,8 @@
 #ifndef __FIERY_OLC_H
 #define __FIERY_OLC_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /*
  * If you don't want a short explanation of each field in your zone files,
@@ -333,156 +330,3 @@ extern struct olc_save_info *olc_save_list;
 #define MAX_OBJ_DESC 512
 
 #endif /* __FIERY_OLC_H */
-
-/***************************************************************************
- * $Log: olc.h,v $
- * Revision 1.46  2009/03/09 20:36:00  myc
- * Renamed all *PLAT macros to *PLATINUM.
- *
- * Revision 1.45  2008/08/17 06:49:29  jps
- * Added function prototype for delete_mobile.
- *
- * Revision 1.44  2008/07/22 07:25:26  myc
- * Added basic iedit (unique item editor) functionality.
- *
- * Revision 1.43  2008/07/15 18:53:39  myc
- * Renamed the command group struct.
- *
- * Revision 1.42  2008/07/15 17:55:06  myc
- * Added grant group data to the olc structure.
- * Added gedit connection mode defines.
- *
- * Revision 1.41  2008/06/19 18:53:12  myc
- * Moving the real_zone declaration into a header file.
- *
- * Revision 1.40  2008/05/17 04:32:25  jps
- * Moved exits into exits.h/exits.c and changed the name to "exit".
- *
- * Revision 1.39  2008/04/07 17:24:37  jps
- * Allow mediting of stance.
- *
- * Revision 1.38  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.37  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.36  2008/03/23 00:23:07  jps
- * Update number of applies.
- *
- * Revision 1.35  2008/03/22 21:24:07  jps
- * Add life force and composition medit states.
- *
- * Revision 1.34  2008/03/11 19:50:55  myc
- * Changed the way allowed olc zones are saved on an immortal from
- * a fixed number of slots to a variable-length linked list.
- * ..
- *
- * Revision 1.33  2008/03/09 00:05:40  jps
- * Moved some NUM_foo_FLAGS defs from olc.h to structs.h.
- *
- * Revision 1.32  2008/03/06 05:11:51  myc
- * Combined the 'saved' and 'unsaved' portions of the char_specials and
- * player_specials structures by moving all fields of each saved structure
- * to its parent structure.  Also combined the skills array from the
- * player and mob structures since they are identical.
- *
- * Revision 1.31  2008/02/16 20:31:32  myc
- * Adding function to free save list at program termination.
- *
- * Revision 1.30  2008/02/06 21:53:53  myc
- * Adding blk, red, and bld things for olc color.
- *
- * Revision 1.29  2008/01/27 21:14:59  myc
- * Increased number of AFF3 flags to include berserker chants.
- *
- * Revision 1.28  2008/01/27 13:43:50  jps
- * Moved race and species-related data to races.h/races.c and merged species
- *into races.
- *
- * Revision 1.27  2008/01/13 03:19:53  myc
- * Added !AI flag.
- *
- * Revision 1.26  2008/01/07 10:38:09  jps
- * Update mob2 flag count
- *
- * Revision 1.25  2007/09/21 08:44:45  jps
- * Added object type "touchstone" and command "touch" so you can set
- * your home room by touching specific objects.
- *
- * Revision 1.24  2007/09/20 21:20:43  myc
- * Hide points and perception are in, along with apply constants for each.
- *
- * Revision 1.23  2007/09/15 05:17:36  myc
- * Removing the in-game distinction between AFF 1, 2, and 3 flags.
- * Added MOB2 flags.
- *
- * Revision 1.22  2007/08/14 22:50:20  myc
- * Adding AFF3_SHADOWING flag for use by shadow skill.
- *
- * Revision 1.21  2007/08/14 15:51:52  myc
- * Updating number of aff2 and aff3 flags in medit menus.
- *
- * Revision 1.20  2007/08/04 14:40:35  myc
- * Added MOB_PEACEFUL flag to prevent players from attacking certain mobs.
- *
- * Revision 1.19  2007/08/03 22:00:11  myc
- * Added PK observatories that work adjacent to arena rooms.
- *
- * Revision 1.18  2007/08/03 03:51:44  myc
- * check_pk is now attack_ok, and covers many more cases than before,
- * including peaced rooms, shapeshifted pk, and arena rooms.  Almost all
- * offensive attacks now use attack_ok to determine whether an attack is
- * allowed.
- *
- * Revision 1.17  2007/07/19 17:51:36  jps
- * Move NUM_LIQ_TYPES from olc.h to structs.h, so the LIQ defines will
- * all be in one place.
- *
- * Revision 1.16  2007/07/18 01:21:34  jps
- * You can edit AFF2/AFF3 flags with oedit.
- *
- * Revision 1.15  2006/07/17 05:15:18  cjd
- * Increased buffer on exits to support Doom's length of descrips
- *
- * Revision 1.14  2006/07/15 04:45:53  cjd
- * adjusted max_mob_desc values to allow for larger mob
- * descriptions required by doom.
- *
- * Revision 1.13  2006/04/11 09:08:24  rls
- * Mods for medit.
- *
- * Revision 1.12  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.11  2001/06/26 00:46:22  mtp
- * added purge which deletes from world and file
- *
- * Revision 1.10  2001/04/08 17:13:10  dce
- * Added an alwayslit flag that makes a room lit no matter
- * of the sector or room type...
- *
- * Revision 1.9  2001/03/24 05:12:01  dce
- * Objects will now accept a level through olc and upon
- * booting the objects. The level code for the players will
- * follow.
- *
- * Revision 1.8  2000/11/28 01:36:34  mtp
- * remveove last vestiges of mobprgos (damn these things get around)
- *
- * Revision 1.7  2000/11/28 01:21:09  mtp
- * removed mobprog stuff
- * renumbered MEDIT_EX_PLAT and MEDIT_SIZE to fill gaps
- *
- * Revision 1.6  2000/11/14 03:11:57  rsd
- * Updated the comment header to reflect that it's Fiery code
- * now.
- *
- * Revision 1.5  1999/12/10 05:13:40  cso
- * added a #define for medit_size.
- *
- * Revision 1.4  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- ***************************************************************************/

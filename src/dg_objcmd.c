@@ -1,12 +1,6 @@
 /***************************************************************************
- * $Id: dg_objcmd.c,v 1.36 2011/03/16 13:39:58 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: objcmd.c                                       Part of FieryMUD  *
  *  Usage: contains the command_interpreter for objects, object commands.  *
- *  $Author: myc $                                                         *
- *  $Date: 2011/03/16 13:39:58 $                                           *
- *  $Revision: 1.36 $                                                       *
  *                                                                         *
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *
@@ -221,7 +215,7 @@ OCMD(do_oexp) {
 
 /* purge all objects an npcs in room, or specified object or mob */
 OCMD(do_opurge) {
-    char arg[MAX_INPUT_LENGTH];
+    char arg[MAX_INPUT_LENGTH], arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     char_data *ch, *next_ch;
     obj_data *o, *next_obj;
     int rm;
@@ -244,22 +238,28 @@ OCMD(do_opurge) {
         return;
     }
 
-    if (!(ch = find_char_around_obj(obj, find_dg_by_name(arg)))) {
-        if ((o = find_obj_for_keyword(obj, arg)))
-            extract_obj(obj);
-        else if ((o = find_obj_around_obj(obj, find_by_name(arg))))
-            extract_obj(o);
-        else
-            obj_log(obj, t, "opurge: bad argument");
-        return;
-    }
+    two_arguments(arg, arg1, arg2);
 
-    if (!IS_NPC(ch)) {
-        obj_log(obj, t, "opurge: attempting to purge PC");
-        return;
-    }
+    if (arg2) {
 
-    fullpurge_char(ch);
+    } else {
+        if (!(ch = find_char_around_obj(obj, find_dg_by_name(arg)))) {
+            if ((o = find_obj_for_keyword(obj, arg)))
+                extract_obj(obj);
+            else if ((o = find_obj_around_obj(obj, find_by_name(arg))))
+                extract_obj(o);
+            else
+                obj_log(obj, t, "opurge: bad argument");
+            return;
+        }
+
+        if (!IS_NPC(ch)) {
+            obj_log(obj, t, "opurge: attempting to purge PC");
+            return;
+        }
+
+        fullpurge_char(ch);
+    }
 }
 
 OCMD(do_oteleport) {
@@ -529,135 +529,3 @@ void obj_command_interpreter(obj_data *obj, struct trig_data *t, char *argument)
     } else
         ((*obj_cmd_info[cmd].command_pointer)(obj, t, line, cmd, obj_cmd_info[cmd].subcmd));
 }
-
-/***************************************************************************
- * $Log: dg_objcmd.c,v $
- * Revision 1.36  2011/03/16 13:39:58  myc
- * Fix all warnings for "the address of X will always evaluate to 'true'",
- * where X is a variable.
- *
- * Revision 1.35  2009/06/09 19:33:50  myc
- * Rewrote gain_exp and retired gain_exp_regardless.
- *
- * Revision 1.34  2009/03/08 21:43:27  jps
- * Split lifeforce, composition, charsize, and damage types from chars.c
- *
- * Revision 1.33  2009/03/03 19:43:44  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.32  2008/09/02 06:52:30  jps
- * Using limits.h.
- *
- * Revision 1.31  2008/09/01 23:47:49  jps
- * Using movement.h/c for movement functions.
- *
- * Revision 1.30  2008/05/14 05:09:30  jps
- * Using hurt_char for play-time harm, while alter_hit is for changing hp only.
- *
- * Revision 1.29  2008/05/11 05:48:33  jps
- * Calling alter_hit() which also takes care of position changes.
- *
- * Revision 1.28  2008/04/05 20:41:53  jps
- * odamage sets an event to do damage rather than doing it itself.
- *
- * Revision 1.27  2008/04/05 19:44:22  jps
- * Set damdone to the damage done by odamage. Don't send any messages
- * when someone receives 0 damage.
- *
- * Revision 1.26  2008/04/05 18:46:13  jps
- * Allow a third parameter, damage type, to odamage, which will
- * allow the victim to resist.
- *
- * Revision 1.25  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.24  2008/04/02 03:24:44  myc
- * Removed unnecessary function declaration.
- *
- * Revision 1.23  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.22  2008/01/18 20:30:11  myc
- * Fixing some send_to_char strings that don't end with a newline.
- *
- * Revision 1.21  2008/01/17 19:23:07  myc
- * The find_obj_target_room function now accepts a room UID, and
- * is used by oteleport.
- *
- * Revision 1.20  2008/01/10 05:39:43  myc
- * alter_hit now takes a boolean specifying whether to cap any increase in
- * hitpoints by the victim's max hp.
- *
- * Revision 1.19  2007/08/30 19:42:46  jps
- * Cause *purge dg script commands to destroy all of a mobile's inventory
- * and equipment when purging mobs.
- *
- * Revision 1.18  2007/05/11 19:34:15  myc
- * Modified the quest command functions so they are thin wrappers for
- * perform_quest() in quest.c.  Error handling and messages should be
- * much better now.  Advance and rewind now accept another argument
- * specifying how many stages to advance or rewind.
- *
- * Revision 1.17  2007/04/17 23:59:16  myc
- * New trigger type: Load.  It goes off any time a mobile is loaded, whether
- * it be god command, zone command, or trigger command.
- *
- * Revision 1.16  2006/11/14 20:41:49  jps
- * Make trap damage regenerate normally.
- *
- * Revision 1.15  2006/11/12 02:31:01  jps
- * You become unmounted when magically moved to another room.
- *
- * Revision 1.14  2003/07/29 03:36:42  rsd
- * added (TRG) to the logging output of the log command
- * for ease of parsing.
- *
- * Revision 1.13  2003/07/24 22:22:30  jjl
- * Added the "log" command for mob, room, and object triggers.  Spits
- * whatever you want into the log.
- *
- * Revision 1.12  2002/09/19 01:07:53  jjl
- * Update to add in quest variables!
- *
- * Revision 1.11  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.10  2001/07/25 06:59:02  mtp
- * modified logging to hopefully be a bit more helpful by specifying the
- * trigger id wherever possible. This does not apply to logging of mob trigs yet
- * as mobs use the same commands as players :-(
- *
- * Revision 1.9  2001/06/19 23:46:52  mtp
- * improved quest error messages
- *
- * Revision 1.8  2000/11/22 23:15:13  mtp
- * added ability to use quest command in here
- *
- * Revision 1.7  2000/11/21 03:44:47  rsd
- * Altered the comment header slightly and added the back
- * rlog messages from prior to the addition of then $log$
- * string.
- *
- * Revision 1.6  2000/03/27 22:16:48  mtp
- * added oheal which wasnt there before for some reason
- *
- * Revision 1.5  2000/02/01 21:04:42  mtp
- * fixed oforce command so that it takes a line instead of
- * just a second word
- *
- * Revision 1.4  1999/10/30 15:30:42  rsd
- * Jimmy coded alignment restrictions for paladins and exp
- * altered gain_exp() to reference the victim.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/01/31 00:53:55  mud
- * Added to the comment header
- * Indented file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

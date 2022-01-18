@@ -13,8 +13,8 @@
 #ifndef __FIERY_RACES_H
 #define __FIERY_RACES_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /* The race of an individual is stored as a byte in struct char_player_data. */
 
@@ -150,36 +150,3 @@ int natural_move(struct char_data *ch);
 void scale_attribs(struct char_data *ch);
 
 #endif
-
-/***************************************************************************
- * $Log: races.h,v $
- * Revision 1.21  2009/03/16 09:44:38  jps
- * Added brownie race
- *
- * Revision 1.20  2008/06/21 17:28:56  jps
- * Added movement strings to race definitions. Changed some race macros
- * because the value is now an unsigned int.
- *
- * Revision 1.19  2008/04/26 23:35:43  myc
- * Info about permanent effects and race skills are stored in the
- * class/race structs now, but need to be initialized at runtime
- * by the init_races and init_classes functions.
- *
- * Revision 1.18  2008/03/26 16:44:36  jps
- * Replaced all checks for undead race with checks for undead lifeforce.
- * Replaced the undead race with the plant race.
- *
- * Revision 1.17  2008/03/22 21:43:55  jps
- * Add init_proto_race(), which is for setting default values on a
- * mob prototype according to race.  Probably during OLC.
- *
- * Revision 1.16  2008/03/22 21:23:50  jps
- * Add default life force and composition to race definitions.
- *
- * Revision 1.15  2008/03/21 15:01:17  myc
- * Removed languages.
- *
- * Revision 1.14  2008/03/11 02:13:25  jps
- * Moving size macros to chars.h.
- *
- ***************************************************************************/

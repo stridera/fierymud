@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: movement.c,v 1.8 2010/06/05 14:56:27 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: movement.c                                      Part of FieryMUD *
  *  Usage: functions for characters moving about                           *
  *                                                                         *
@@ -779,8 +776,9 @@ void mount_pos_check(struct char_data *mount) {
         /* What we really need is a generic "got wet" function, which would take
          * care of flames and ruin people's spellbooks (KIDDING!) */
         if (EFF_FLAGGED(ch, EFF_ON_FIRE)) {
-            cprintf(ch, "You fall into the water, and your flames are put out with a "
-                        "hiss of steam.\r\n");
+            cprintf(ch,
+                    "You fall into the water, and your flames are put out with a "
+                    "hiss of steam.\r\n");
             act("$n falls into the water.  $U$s flames go out with a hissing sound.", FALSE, ch, 0, 0, TO_ROOM);
         } else {
             cprintf(ch, "You fall into the water.\r\n");
@@ -804,34 +802,3 @@ void mount_pos_check(struct char_data *mount) {
     }
     falling_check(ch);
 }
-
-/***************************************************************************
- * $Log: movement.c,v $
- * Revision 1.8  2010/06/05 14:56:27  mud
- * Moving cooldowns to their own file.
- *
- * Revision 1.7  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.6  2009/01/19 09:25:23  myc
- * Changed summon mount cooldown to count 12 hours from time
- * mount is lost.
- *
- * Revision 1.5  2008/09/14 01:47:41  jps
- * Added function battling_my_group().
- *
- * Revision 1.4  2008/09/13 17:21:59  jps
- * Added mount_pos_check, in which a rider may fall off if the mount changes
- *position.
- *
- * Revision 1.3  2008/09/07 01:31:11  jps
- * Add functions from act.movement.c. Handle having too much weight to fly.
- *
- * Revision 1.2  2008/09/02 02:41:13  jps
- * Fix formatting of disband message.
- *
- * Revision 1.1  2008/09/01 23:47:35  jps
- * Initial revision
- *
- ***************************************************************************/

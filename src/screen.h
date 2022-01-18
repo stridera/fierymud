@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: screen.h,v 1.7 2008/05/23 18:47:00 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: screen.h                                       Part of FieryMUD *
  *  Usage: header file with ANSI color codes for online color              *
  *                                                                         *
@@ -158,30 +155,3 @@ extern char *escape_ansi(const char *string);
 #define QHWHT CLR(ch, AHWHT)
 
 #endif /* __FIERY_SCREEN_H */
-
-/***************************************************************************
- * $Log: screen.h,v $
- * Revision 1.7  2008/05/23 18:47:00  myc
- * Added ansi_strlen function that counts the length of a string sans
- * color codes.
- *
- * Revision 1.6  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.5  2008/01/15 06:51:47  myc
- * Reformatted the conditional color macros.
- *
- * Revision 1.4  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.3  2000/11/24 21:17:12  rsd
- * Altered comment header and added back rlog messgaes from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.2  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

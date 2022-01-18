@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: weather.c,v 1.20 2008/09/09 08:23:37 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: weather.c                                      Part of FieryMUD *
  *  Usage: Weather functions, and structure initialization                 *
  *     By: Tim Holcomb (Fingh on Hubis)                                    *
@@ -366,20 +363,24 @@ char *precipitation_message(struct zone_data *zone, int original) {
         if (zone->precipitation <= PRECIP_GRAY_CLOUDS) {
             switch (original) {
             case PRECIP_PARTLY_CLOUDY:
-                strcpy(buf, "&4&8The sky is filled with small &7bil&0&7low&8ing white "
-                            "&7c&0&7l&6ou&7d&8s.&0\r\n");
+                strcpy(buf,
+                       "&4&8The sky is filled with small &7bil&0&7low&8ing white "
+                       "&7c&0&7l&6ou&7d&8s.&0\r\n");
                 break;
             case PRECIP_MOSTLY_CLOUDY:
-                strcpy(buf, "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the "
-                            "sky.&0\r\n");
+                strcpy(buf,
+                       "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the "
+                       "sky.&0\r\n");
                 break;
             case PRECIP_GRAY_CLOUDS:
                 if (HEMISPHERE(zone).sunlight == SUN_DARK)
-                    strcpy(buf, "&9&bDark, ominous clouds&0 &4cover the sky, shrouding "
-                                "the &7&8moon&8.&0\r\n");
+                    strcpy(buf,
+                           "&9&bDark, ominous clouds&0 &4cover the sky, shrouding "
+                           "the &7&8moon&8.&0\r\n");
                 else
-                    strcpy(buf, "&9&bOminously dark clouds&0 &4fill the sky, blocking "
-                                "out all &3sunlight.&0\r\n");
+                    strcpy(buf,
+                           "&9&bOminously dark clouds&0 &4fill the sky, blocking "
+                           "out all &3sunlight.&0\r\n");
                 break;
             default:
                 /* Should not occur. */
@@ -388,8 +389,9 @@ char *precipitation_message(struct zone_data *zone, int original) {
         } else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
             sprintf(buf, "&9&8It begins to %s.&0\r\n", GET_PRECIP_TYPE(zone));
     } else if (zone->precipitation)
-        strcpy(buf, "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 "
-                    "&4appear in the &bsky.&0\r\n");
+        strcpy(buf,
+               "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 "
+               "&4appear in the &bsky.&0\r\n");
     else
         switch (HEMISPHERE(zone).sunlight) {
         case SUN_LIGHT:
@@ -463,76 +465,3 @@ void update_weather(long pulse) {
         }
     }
 }
-
-/***************************************************************************
- * $Log: weather.c,v $
- * Revision 1.20  2008/09/09 08:23:37  jps
- * Placed sector info into a struct and moved its macros into rooms.h.
- *
- * Revision 1.19  2008/09/03 17:34:08  myc
- * Moved liquid information into a def struct array.
- *
- * Revision 1.18  2008/08/26 04:39:21  jps
- * Changed IN_ZONE to IN_ZONE_RNUM or IN_ZONE_VNUM and fixed zone_printf.
- *
- * Revision 1.17  2008/08/14 23:10:35  myc
- * Added a callback function for use with cbprintf that mimics the
- * old send_to_outdoor functionality.
- *
- * Revision 1.16  2008/04/05 05:05:42  myc
- * Removed SEND_TO_Q macro, so call write_to_output directly.
- *
- * Revision 1.15  2008/03/05 03:03:54  myc
- * Use LIMIT instead of BOUNDED.
- *
- * Revision 1.14  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.13  2008/02/04 01:46:12  myc
- * Making the wind_speeds and precip arrays useable by search_block.
- *
- * Revision 1.12  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.11  2007/11/30 00:37:50  myc
- * Replaced NULLs in update_precipitation() with non-crash-causing
- * error messages.
- *
- * Revision 1.10  2007/11/30 00:35:26  myc
- * Fixed crash bug stemming from init_weather leaving CLIMATE_NONE zones
- * with invalid values, causing update_precipitation to return NULL.
- *
- * Revision 1.9  2007/09/05 21:49:28  myc
- * Was sending zone vnums instead of rnums to comm functions.  Also, used
- * wrong variable signature for world array (which caused crashes): use
- * "extern struct room_data *world" not "extern struct room_data world[]".
- *
- * Revision 1.8  2007/09/04 06:49:19  myc
- * Cleaned up weather code a lot (a rewrite, really).
- *
- * Revision 1.7  2007/07/24 01:23:54  myc
- * It will no longer say the sun shines brightly at night.
- *
- * Revision 1.6  2005/03/22 00:43:40  rls
- * adjusted the random for weather changing so that the
- * wind doesn't get as high as often.
- *
- * Revision 1.5  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.4  2000/11/19 02:44:02  rsd
- * altered comment header and included back comments prior
- * to $log$ being added.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/02/04 18:24:26  mud
- * indented file
- * dos2unix
- *
- * Revision 1.1  1999/01/29 01:23:32  mud
- * Initial Revision
- *
- ***************************************************************************/

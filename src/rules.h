@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: rules.h,v 1.1 2009/05/01 05:29:40 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: rules.h                                        Part of FieryMUD *
  *  Usage: header file for character rules                                 *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_RULES_H__
 #define __FIERY_RULES_H__
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /*
  * Rules/restraints
@@ -264,10 +261,3 @@ extern void init_rules();
 extern struct rule *make_level_rule(int min, int max);
 
 #endif
-
-/***************************************************************************
- * $Log: rules.h,v $
- * Revision 1.1  2009/05/01 05:29:40  myc
- * Initial revision
- *
- ***************************************************************************/

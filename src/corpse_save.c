@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: corpse_save.c,v 1.23 2009/03/17 07:59:42 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: corpse_save.c                                 Part of FieryMUD  *
  *  Usage: Handling of player corpses                                      *
  * Author: Nechtrous, et al..                                              *
@@ -365,10 +362,11 @@ void show_corpses(struct char_data *ch, char *argument) {
     struct corpse_data *entry;
 
     if (corpse_control.count) {
-        send_to_char("Id  Corpse              Level  Decomp  Location\r\n"
-                     "-------------------------------------------------------------"
-                     "------\r\n",
-                     ch);
+        send_to_char(
+            "Id  Corpse              Level  Decomp  Location\r\n"
+            "-------------------------------------------------------------"
+            "------\r\n",
+            ch);
         for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next) {
             if (!strn_cmp(entry->corpse->short_description, "the corpse of ", 14))
                 strcpy(buf1, entry->corpse->short_description + 14);
@@ -391,90 +389,3 @@ void show_corpses(struct char_data *ch, char *argument) {
     } else
         send_to_char("There are no player corpses in the game.\r\n", ch);
 }
-
-/***************************************************************************
- * $Log: corpse_save.c,v $
- * Revision 1.23  2009/03/17 07:59:42  jps
- * Moved str_str to strings.c
- *
- * Revision 1.22  2009/03/04 05:14:16  myc
- * Fixed alignment in show corpse.
- *
- * Revision 1.21  2009/02/16 14:21:04  myc
- * Make sure corpses get the right decomp flags when loaded from file.
- *
- * Revision 1.20  2009/02/05 16:26:57  myc
- * Fix string cut-off on 'show corpse' screen.
- *
- * Revision 1.19  2008/09/02 07:16:00  mud
- * Changing object TIMER uses into DECOMP where appropriate
- *
- * Revision 1.18  2008/08/24 02:37:01  myc
- * Fix function signature for reference to external function str_str.
- *
- * Revision 1.17  2008/06/07 19:06:46  myc
- * Moved all object-related constants and structures to objects.h
- *
- * Revision 1.16  2008/06/05 02:07:43  myc
- * Rewrote corpse saving and loading to use the ascii object files.
- *
- * Revision 1.15  2008/03/30 17:30:38  jps
- * Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
- * from pfiles.c now include pfiles.h and depend on it in the makefile.
- *
- * Revision 1.14  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.13  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.12  2008/01/14 20:38:42  myc
- * Fix to save corpse level to corpse control file so that resurrect
- * will work properly on corpses booted from file.
- *
- * Revision 1.11  2007/10/04 16:20:24  myc
- * Transient item flag now makes things decay when they are on the ground.
- * Added this flag to corpses.
- *
- * Revision 1.10  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.9  2000/11/21 00:42:30  rsd
- * Added back rlog messages from prior to the addition of
- * the $log$ string.
- *
- * Revision 1.8  2000/09/26 15:03:40  jimmy
- * Fixed a couple of instances of bad index iteration: the ++ was
- * actually inside the [] of another variable, eeeeek!!!
- * Fixed a bug where the wrong index number was referenced that
- * was causing equipment not to load on corpses after a boot.
- *
- * Revision 1.7  2000/09/22 23:24:49  rsd
- * altered the comment header to reflect that it's fiery code
- * now. Also added a syserr message to be logged and mopped
- * up some spacing in the comments.  Wow I feel so useful
- *
- * Revision 1.6  1999/11/28 23:03:02  cso
- * reordered a little of corpse_load to make it look nicer. no functional
- * differences there.
- * changed the values on corpses, so modified corpse_boot to set up the pc
- * corpses correctly.
- *
- * Revision 1.5  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.4  1999/08/05 14:52:02  dce
- * Corpses now save correctly ove a reboot/crash!
- *
- * Revision 1.3  1999/04/22 01:44:49  dce
- * Debuging for corpse saving
- *
- * Revision 1.2  1999/01/30 21:40:33  mud
- * Indented file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

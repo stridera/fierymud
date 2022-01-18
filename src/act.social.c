@@ -1,6 +1,3 @@
-/***************************************************************************
- * $Id: act.social.c,v 1.12 2009/03/09 03:25:36 jps Exp $
- ***************************************************************************/
 /**************************************************************************
  *   File: act.social.c                                   Part of FieryMUD *
  *  Usage: Functions to handle socials                                     *
@@ -285,50 +282,3 @@ void free_social_messages() {
         free(mess);
     }
 }
-
-/***************************************************************************
- * $Log: act.social.c,v $
- * Revision 1.12  2009/03/09 03:25:36  jps
- * Remove inclusion of casting.h
- *
- * Revision 1.11  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.10  2009/03/03 19:41:50  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.9  2008/02/16 20:26:04  myc
- * Adding functions to free socials at program termination.
- *
- * Revision 1.8  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.7  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.6  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.5  2000/11/20 04:25:18  rsd
- * added back rlog messages from prior to the addition of
- * the $log$ string.
- *
- * Revision 1.4  2000/04/02 02:37:19  rsd
- * changed the comment header while I was browsing the file for
- * information.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/08/29 07:06:04  jimmy
- * Many many small but ver significant bug fixes found using insure.  The
- * code now compiles cleanly and boots cleanly with insure.  The most
- *significant changes were moving all the BREATH's to within normal spell range,
- *and fixing the way socials were allocated.  Too many small fixes to list them
- * all. --gurlaek (now for the runtime debugging :( )
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

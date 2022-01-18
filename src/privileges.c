@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: privileges.c,v 1.3 2009/07/17 00:48:17 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: privileges.c                                   Part of FieryMUD *
  *  Usage: utilities to facilitate the privileges system                   *
  *                                                                         *
@@ -230,13 +227,14 @@ static void do_list_grants(struct char_data *ch, struct char_data *vict) {
 }
 
 static void send_grant_usage(struct char_data *ch) {
-    send_to_char("Usage: grant <name> [ command <command> | group <group> ] [ level ]\r\n"
-                 "       grant <name> flag <flag>\r\n"
-                 "       revoke <name> [ command <command> | group <group> ] [ level ]\r\n"
-                 "       revoke <name> flag <flag>\r\n"
-                 "       ungrant <name> [ command <command> | group <group> ]\r\n"
-                 "       grant <name> [ clear | list ]\r\n",
-                 ch);
+    send_to_char(
+        "Usage: grant <name> [ command <command> | group <group> ] [ level ]\r\n"
+        "       grant <name> flag <flag>\r\n"
+        "       revoke <name> [ command <command> | group <group> ] [ level ]\r\n"
+        "       revoke <name> flag <flag>\r\n"
+        "       ungrant <name> [ command <command> | group <group> ]\r\n"
+        "       grant <name> [ clear | list ]\r\n",
+        ch);
 }
 
 #define GRANT_COMMAND 0
@@ -524,55 +522,3 @@ void read_player_grants(FILE *fl, struct grant_type **list) { read_player_grant_
 void read_player_grant_groups(FILE *fl, struct grant_type **list) {
     read_player_grant_list(fl, list, find_command_group);
 }
-
-/***************************************************************************
- * $Log: privileges.c,v $
- * Revision 1.3  2009/07/17 00:48:17  myc
- * Added anon toggle and auto gain privileges.
- *
- * Revision 1.2  2009/07/16 22:27:56  myc
- * Add privilege flags to grant/revoke command.
- *
- * Revision 1.1  2009/07/16 19:14:56  myc
- * Initial revision
- *
- * Revision 1.11  2009/03/03 19:43:44  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.10  2009/02/21 03:30:16  myc
- * Passing an invalid command number to can_use_command is now
- * legal; it simply returns FALSE.
- *
- * Revision 1.9  2009/01/17 00:28:02  myc
- * Fix possible use of uninitialized variable.
- *
- * Revision 1.8  2008/09/21 04:54:23  myc
- * Added grant caches to the player structure to make can_use_command
- * take less execution time.
- *
- * Revision 1.7  2008/09/07 07:01:38  myc
- * Fix crash bug in gedit saving.  Fix search bug in find_command_group.
- *
- * Revision 1.6  2008/08/30 04:34:05  myc
- * can_use_command was returning FALSE when a command was granted
- * instead of TRUE.
- *
- * Revision 1.5  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.4  2008/07/22 06:12:34  myc
- * Make sure the grp_info array is always initialized by boot_command_groups.
- *
- * Revision 1.3  2008/07/21 19:14:53  jps
- * Avoid crash when cmdgroups file is not present.
- *
- * Revision 1.2  2008/07/15 18:53:39  myc
- * Renamed some structs and functions.  Fixed bug in find_command_group.
- * Added 'show command' and added functionality to 'show group' to
- * display single command group info.
- *
- * Revision 1.1  2008/07/15 17:49:24  myc
- * Initial revision
- *
- *
- ***************************************************************************/

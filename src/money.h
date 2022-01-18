@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: money.h,v 1.7 2009/06/09 05:46:30 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: money.h                                        Part of FieryMUD *
  *  Usage: header file for money, I guess                                  *
  *                                                                         *
@@ -23,8 +20,8 @@
 #define COPPER 3
 #define NUM_COIN_TYPES 4
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 struct coindef {
     char *name;
@@ -66,29 +63,3 @@ void money_desc(int amount, char **shortdesc, char **keywords);
 struct obj_data *create_money(const int coins[]);
 
 #endif
-
-/***************************************************************************
- * $Log: money.h,v $
- * Revision 1.7  2009/06/09 05:46:30  myc
- * Declaring several functions' parameters const.
- *
- * Revision 1.6  2009/03/20 13:56:22  jps
- * Moved coin info into an array of struct coindef.
- *
- * Revision 1.5  2009/03/19 23:16:23  myc
- * parse_money now takes a char** and moves the pointer up to
- * just past any money phrase it parses.
- *
- * Revision 1.4  2009/03/13 04:40:10  jps
- * Fix up some money macros.
- *
- * Revision 1.3  2009/03/09 20:36:00  myc
- * Moved money functions from handler to here.
- *
- * Revision 1.2  2009/03/09 05:51:25  jps
- * Moved some money-related functions from utils to money
- *
- * Revision 1.1  2009/03/09 05:41:12  jps
- * Initial revision
- *
- ***************************************************************************/

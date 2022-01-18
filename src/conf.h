@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: conf.h,v 1.4 2002/09/13 02:32:10 jjl Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: conf.h                                          Part of FieryMUD *
  *  Usage: Uh, like defines and stuff based on system dependencies         *
  *  By: Generated automatically by configure.                              *
@@ -91,20 +88,3 @@
 
 /* Define if you have the socket library (-lsocket).  */
 /* #undef HAVE_LIBSOCKET */
-
-/***************************************************************************
- * $Log: conf.h,v $
- * Revision 1.4  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.3  2000/11/20 20:19:03  rsd
- * Added our comment header and added initial missing
- * rlog message.
- *
- * Revision 1.2  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

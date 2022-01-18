@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: strings.c,v 1.10 2011/03/18 16:34:08 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: strings.c                                      Part of FieryMUD *
  *  Usage: functions for string management                                 *
  *                                                                         *
@@ -385,40 +382,3 @@ const char *str_str(const char *cs, const char *ct) {
 
     return NULL;
 }
-
-/***************************************************************************
- * $Log: strings.c,v $
- * Revision 1.10  2011/03/18 16:34:08  mud
- * Replace cast to int with unsigned int to avoid negative index for hash
- * table lookup.
- *
- * Revision 1.9  2009/06/09 05:48:39  myc
- * Moving a large number of functions from here to text.c.
- *
- * Revision 1.8  2009/05/15 00:08:44  myc
- * Adding some comments.
- *
- * Revision 1.7  2009/05/01 05:29:40  myc
- * Added skip_over and skip_chars functions.  Also adding
- * fetch_word which does the same thing as any_one_arg, but
- * with const buffers.
- *
- * Revision 1.6  2009/03/20 23:26:26  myc
- * Add additional static buffer to capitalize()
- *
- * Revision 1.5  2009/03/17 09:01:41  jps
- * Add EOL macro and function capitalize()
- *
- * Revision 1.4  2009/03/17 07:59:42  jps
- * Moved str_str to strings.c
- *
- * Revision 1.3  2009/03/17 07:55:37  jps
- * Moved ellipsis string formatting to strings.c.
- *
- * Revision 1.2  2009/03/09 20:39:40  myc
- * Fix bug in strdupf.
- *
- * Revision 1.1  2009/03/09 03:33:03  myc
- * Initial revision
- *
- ***************************************************************************/

@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: textfiles.c,v 1.1 2009/06/09 05:51:08 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: textfiles.c                                    Part of FieryMUD *
  *  Usage: Text files management                                           *
  *                                                                         *
@@ -208,19 +205,3 @@ void free_text_files() {
             text_files[i].text = NULL;
         }
 }
-
-/***************************************************************************
- * $Log: textfiles.c,v $
- * Revision 1.1  2009/06/09 05:51:08  myc
- * Initial revision
- *
- * Revision 1.3  2009/03/20 23:16:49  myc
- * Show available text files when reload is typed without arguments.
- *
- * Revision 1.2  2009/03/20 23:09:38  myc
- * Fix messages shown to room.
- *
- * Revision 1.1  2009/03/20 23:02:59  myc
- * Initial revision
- *
- ***************************************************************************/

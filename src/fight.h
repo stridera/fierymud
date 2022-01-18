@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: fight.h,v 1.7 2008/09/21 21:49:59 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: fight.h                                         Part of FieryMUD *
  *  Usage: header file for aggressive stuff                                *
  *                                                                         *
@@ -17,9 +14,9 @@
 #define __FIERY_FIGHT_H
 
 #include "events.h"
-#include "sysdep.h"
-#include "structs.h"
 #include "skills.h"
+#include "structs.h"
+#include "sysdep.h"
 
 extern struct attack_hit_type attack_hit_text[];
 
@@ -57,30 +54,3 @@ void stop_fighting(struct char_data *ch);
 #define attack(ch, victim) hit(ch, victim, TYPE_UNDEFINED)
 
 #endif
-
-/***************************************************************************
- * $Log: fight.h,v $
- * Revision 1.7  2008/09/21 21:49:59  jps
- * Added transfer_battle(), which allows one character to seamlessly
- * take the place of another in a battle.
- *
- * Revision 1.6  2008/09/21 20:40:40  jps
- * Keep a list of attackers with each character, so that at the proper times -
- * such as char_from_room - they can be stopped from battling.
- *
- * Revision 1.5  2008/09/20 07:26:33  jps
- * Moved protos from handler.h to fight.h.
- *
- * Revision 1.4  2008/09/14 02:08:01  jps
- * Use standardized area attack targetting
- *
- * Revision 1.3  2008/09/13 18:52:00  jps
- * Removing prototype found in ai.h.
- *
- * Revision 1.2  2008/08/24 19:29:11  jps
- * Apply damage susceptibility reductions to the various physical attack skills.
- *
- * Revision 1.1  2008/05/18 20:16:11  jps
- * Initial revision
- *
- ***************************************************************************/

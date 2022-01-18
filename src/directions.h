@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: directions.h,v 1.2 2009/03/09 04:33:20 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: directions.h                                    Part of FieryMUD *
  *  Usage: header file for directions                                      *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_DIRECTIONS_H
 #define __FIERY_DIRECTIONS_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /* The cardinal directions: used as index to room_data.dir_option[] */
 #define NORTH 0
@@ -34,14 +31,3 @@ extern const char *dirpreposition[NUM_OF_DIRS + 1];
 extern const int rev_dir[NUM_OF_DIRS];
 
 #endif
-
-/***************************************************************************
- * $Log: directions.h,v $
- * Revision 1.2  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.1  2009/03/09 04:24:47  jps
- * Initial revision
- *
- ***************************************************************************/

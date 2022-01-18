@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: exits.h,v 1.5 2008/08/21 07:10:14 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: exits.h                                         Part of FieryMUD *
  *  Usage: header file for room exits and doors                            *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_EXITS_H
 #define __FIERY_EXITS_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 extern struct room_data *world;
 
@@ -58,24 +55,3 @@ extern struct exit *opposite_exit(struct exit *exit, room_num roomvnum, int dir)
 extern char *exit_name(struct exit *exit);
 
 #endif
-
-/***************************************************************************
- * $Log: exits.h,v $
- * Revision 1.5  2008/08/21 07:10:14  jps
- * Changed the way redit sees exit destinations. It's more informative and less
- *crashy.
- *
- * Revision 1.4  2008/06/09 23:00:13  myc
- * Added 'extern' to all the function declarations.
- *
- * Revision 1.3  2008/05/18 05:18:06  jps
- * Renaming room_data struct's member "number" to "vnum", cos it's
- * a virtual number.
- *
- * Revision 1.2  2008/05/17 22:03:01  jps
- * Moving room-related code into rooms.h and rooms.c.
- *
- * Revision 1.1  2008/05/17 04:32:09  jps
- * Initial revision
- *
- ***************************************************************************/

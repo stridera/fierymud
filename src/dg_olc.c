@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: dg_olc.c,v 1.26 2009/01/17 00:28:02 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: dg_olc.c                                        Part of FieryMUD *
  * Usage: This source file is used in extending Oasis style OLC for        *
  *        dg-scripts onto a CircleMUD that already has dg-scripts (as      *
@@ -685,9 +682,10 @@ int dg_script_edit_parse(struct descriptor_data *d, char *arg) {
             break; /* this aborts a new trigger entry */
 
         if (real_trigger(vnum) < 0) {
-            send_to_char("Invalid Trigger VNUM!\r\n"
-                         "Please enter vnum:\r\n",
-                         d->character);
+            send_to_char(
+                "Invalid Trigger VNUM!\r\n"
+                "Please enter vnum:\r\n",
+                d->character);
             return 1;
         }
 
@@ -972,102 +970,3 @@ bool format_script(struct descriptor_data *d, int indent_quantum) {
 #undef ABORT
 #undef COMPLAIN
 }
-
-/***************************************************************************
- * $Log: dg_olc.c,v $
- * Revision 1.26  2009/01/17 00:28:02  myc
- * Fix possible use of uninitialized variable.
- *
- * Revision 1.25  2008/08/18 01:35:38  jps
- * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
- *
- * Revision 1.24  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.23  2008/04/05 18:58:54  jps
- * FINALLY fixed that "Numberic Arg" silliness.
- *
- * Revision 1.22  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.21  2008/03/22 20:12:42  myc
- * Fixed indentation with else/elseif, and handling of 'end'.
- *
- * Revision 1.20  2008/03/22 20:05:59  myc
- * Fixed bug in script formatter: need to pop off if/else if before putting
- * another one on stack.
- *
- * Revision 1.19  2008/03/22 19:50:24  myc
- * Rewrote the script formatter to use a stack.  It is now leet haxorz.
- *
- * Revision 1.18  2008/03/22 03:22:38  myc
- * All invocations of the string editor now go through string_write()
- * instead of messing with the descriptor variables itself.  Also added
- * a toggle, LineNums, to decide whether to do /l or /n when entering
- * the string editor.
- *
- * Revision 1.17  2008/03/21 15:58:34  myc
- * Added a utility format scripts.
- *
- * Revision 1.16  2008/03/17 16:22:42  myc
- * Removing the 'script_copy' function, which was unnecessary and caused
- * confusion with dg_olc_script_copy.
- *
- * Revision 1.15  2008/02/16 20:26:04  myc
- * Moving free_varlist to header file.
- *
- * Revision 1.14  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.13  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.12  2008/01/17 01:29:10  myc
- * Took out the restriction that comments out mskillset.
- *
- * Revision 1.11  2007/07/24 23:02:52  jps
- * Minor typo fix.
- *
- * Revision 1.10  2007/04/18 00:34:11  myc
- * The script editor in medit, oedit, and redit will now give better
- * feedback when you enter a command it doesn't recognize.
- *
- * Revision 1.9  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.8  2000/11/28 01:18:21  mtp
- * replaceed dg_event.c code with events.c code
- *
- * Revision 1.7  2000/11/23 00:57:04  mtp
- * added mskillset which allows a mob to set a players skill (or spell)
- *proficiency this required a change to not allow lev 102 and below to save a
- *trigger with mskillset in it so any lines with the text mskillset are
- *commented
- *
- * Revision 1.6  2000/11/21 03:51:01  rsd
- * Altered the comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.5  2000/10/14 11:12:40  mtp
- * fixed the addition/removal of triggers from a script on
- * mob/obj/room, there was some dodgy freeing going on which has
- * been removed. HOPE there should be no memory leaks...:-)
- *
- * Revision 1.4  2000/03/07 07:42:05  mtp
- * In save of trigger, the memory structure to represent a sequence of command
- *lists is created, and this was not initialising the 'next' pointers to NULL. I
- *have done this now, to avoid problems when we follow the linked list freeing
- *the commands.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/01/31 01:08:28  mud
- * Altered comment header and indented entire file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

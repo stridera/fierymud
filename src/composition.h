@@ -13,8 +13,8 @@
 #ifndef __FIERY_COMPOSITION_H
 #define __FIERY_COMPOSITION_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define COMP_UNDEFINED -1
 #define COMP_FLESH 0
@@ -79,20 +79,10 @@ extern void list_olc_compositions(struct char_data *ch);
     (MOB_FLAGGED((ch), MOB_ILLUSORY) ? "&5" : VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].color : "")
 #define COMPOSITION_DAM(ch) (VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].default_dtype : DAM_CRUSH)
 #define COMPOSITION_ADJECTIVE(ch)                                                                                      \
-    (MOB_FLAGGED((ch), MOB_ILLUSORY)                                                                                   \
-         ? "illusory"                                                                                                  \
-         : VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].adjective : "existential")
+    (MOB_FLAGGED((ch), MOB_ILLUSORY) ? "illusory"                                                                      \
+     : VALID_COMPOSITION(ch)         ? compositions[GET_COMPOSITION(ch)].adjective                                     \
+                                     : "existential")
 #define RIGID(ch) (VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].phase == PHASE_SOLID : TRUE)
 #define PHASE(ch) (VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].phase : PHASE_SOLID)
 
 #endif
-
-/***************************************************************************
- * $Log: composition.h,v $
- * Revision 1.2  2009/03/11 21:12:58  jps
- * Added a phase (none, plasma, gas, liquid, solid) to compositions.
- *
- * Revision 1.1  2009/03/08 21:42:31  jps
- * Initial revision
- *
- ***************************************************************************/

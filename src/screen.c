@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: screen.c,v 1.5 2008/06/05 02:07:43 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: screen.c                                       Part of FieryMUD *
  *  Usage: ANSI color code functions for online color                      *
  *                                                                         *
@@ -33,7 +30,7 @@ void init_colors(void) {
     } rel_color_list[] = {{CREL, AREL}, {'0', ANRM}, {'1', FRED}, {'2', FGRN}, {'3', FYEL}, {'4', FBLU},
                           {'5', FMAG},  {'6', FCYN}, {'7', FWHT}, {'8', ABLD}, {'9', FBLK}, {'u', AUND},
                           {'b', ABLD},  {'d', ADAR}, {'R', BRED}, {'G', BGRN}, {'Y', BYEL}, {'B', BBLU},
-                          {'M', BMAG},  {'C', BCYN}, {'W', BWHT}, {'L', BBLK}, {'K', BLBK}};
+                          {'M', BMAG},  {'C', BCYN}, {'W', BWHT}, {'L', BBLK}, {'K', BLBK}, {'_', "\r\n"}};
     const struct {
         char code;
         char *ansi;
@@ -174,22 +171,3 @@ char *escape_ansi(const char *string) {
 
     return buffer;
 }
-
-/***************************************************************************
- * $Log: screen.c,v $
- * Revision 1.5  2008/06/05 02:07:43  myc
- * Replaced &S with &L and @D with @L.
- *
- * Revision 1.4  2008/05/23 18:47:00  myc
- * Added ansi_strlen function that counts the length of a string sans
- * color codes.
- *
- * Revision 1.3  2008/04/05 23:14:19  jps
- * Stop excess characters when quoting &- formats.
- *
- * Revision 1.2  2008/04/03 16:10:14  jps
- * Add RCS log.
- *
- * Revision 1.1  2008/04/03 02:02:05  myc
- * Initial revision
- ***************************************************************************/

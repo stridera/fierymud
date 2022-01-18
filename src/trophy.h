@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: trophy.h,v 1.3 2008/05/11 05:52:46 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: trophy.h                                        Part of FieryMUD *
  *  Usage: header file for player trophy lists                             *
  *                                                                         *
@@ -46,16 +43,3 @@ void show_trophy(struct char_data *ch, struct char_data *vict);
 float exp_trophy_modifier(struct char_data *ch, struct char_data *vict);
 float get_trophy_kills(struct char_data *ch, struct char_data *vict);
 #endif
-
-/***************************************************************************
- * $Log: trophy.h,v $
- * Revision 1.3  2008/05/11 05:52:46  jps
- * Added a function prototype.
- *
- * Revision 1.2  2008/04/02 03:24:44  myc
- * Moved trophy modifier function here.
- *
- * Revision 1.1  2008/03/16 00:22:38  jps
- * Initial revision
- *
- ***************************************************************************/

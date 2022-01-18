@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: act.wizinfo.c,v 1.61 2010/06/05 14:56:27 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: act.wizinfo.c                                  Part of FieryMUD *
  *  Usage: Informative player-level god commands                           *
  *                                                                         *
@@ -1097,10 +1094,11 @@ ACMD(do_zstat) {
             z->hemisphere >= 0 && z->hemisphere < NUM_HEMISPHERES ? hemispheres[z->hemisphere].name : "<INVALID>",
             z->climate >= 0 && z->climate < NUM_CLIMATES ? climates[z->climate].name : "<INVALID>", z->temperature,
             z->precipitation, z->wind_speed == WIND_NONE ? "none" : wind_speeds[z->wind_speed], z->wind_speed,
-            z->wind_dir == NORTH
-                ? "North"
-                : z->wind_dir == SOUTH ? "South"
-                                       : z->wind_dir == EAST ? "East" : z->wind_dir == WEST ? "West" : "<INVALID>");
+            z->wind_dir == NORTH   ? "North"
+            : z->wind_dir == SOUTH ? "South"
+            : z->wind_dir == EAST  ? "East"
+            : z->wind_dir == WEST  ? "West"
+                                   : "<INVALID>");
     send_to_char(buf, ch);
 }
 
@@ -1197,8 +1195,9 @@ void do_show_sectors(struct char_data *ch, char *argument) {
     const struct sectordef *s;
 
     pprintf(ch, "Sector type     Mv  Camp  Wet  Notes\r\n");
-    pprintf(ch, "--------------  --  ----  ---  "
-                "----------------------------------------------\r\n");
+    pprintf(ch,
+            "--------------  --  ----  ---  "
+            "----------------------------------------------\r\n");
     for (i = 0; i < NUM_SECTORS; i++) {
         s = &sectors[i];
         pprintf(ch, " %s%-13s&0  %2d  %s  %s  %s\r\n", s->color, s->name, s->mv, s->campable ? "&2Camp&0" : "    ",
@@ -1217,8 +1216,7 @@ void do_show_compositions(struct char_data *ch, char *argument) {
             damtypes[DAM_FIRE].color, damtypes[DAM_WATER].color, damtypes[DAM_COLD].color, damtypes[DAM_ACID].color,
             damtypes[DAM_POISON].color);
     send_to_char(buf, ch);
-    send_to_char("---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\r\n",
-                 ch);
+    send_to_char("---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\r\n", ch);
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
         sprintf(buf,
                 "%2d.  %s%c%-10s  % 5d  % 6d  % 5d  % 5d  % 4d  % 4d  % 5d  % 4d  "
@@ -1441,8 +1439,9 @@ void do_show_classes(struct char_data *ch, char *argument) {
     char *mem_mode;
 
     str_start(buf, sizeof(buf));
-    str_cat(buf, "Class          Magic  Homeroom  Base Class  Max Subclass Level\r\n"
-                 "-------------  -----  --------  ----------  ------------------\r\n");
+    str_cat(buf,
+            "Class          Magic  Homeroom  Base Class  Max Subclass Level\r\n"
+            "-------------  -----  --------  ----------  ------------------\r\n");
     for (i = 0; i < NUM_CLASSES; i++) {
         chars = count_color_chars(classes[i].displayname);
         if (classes[i].mem_mode == MEMORIZE)
@@ -1470,8 +1469,9 @@ void do_show_races(struct char_data *ch, char *argument) {
     str_start(buf, sizeof(buf));
 
     if (!*argument) {
-        str_cat(buf, "Race              Humanoid  Align    Size      HR/DR\r\n"
-                     "----------------  --------  -------  --------  ------\r\n");
+        str_cat(buf,
+                "Race              Humanoid  Align    Size      HR/DR\r\n"
+                "----------------  --------  -------  --------  ------\r\n");
         for (i = 0; i < NUM_RACES; i++) {
             chars = count_color_chars(races[i].fullname);
             str_catf(buf, " %-*.*s   %-8s  %5d    %-8.8s  %d/%d\r\n", 15 + chars, 15 + chars, races[i].fullname,
@@ -1542,8 +1542,9 @@ void do_show_exp(struct char_data *ch, char *argument) {
     for (clazz = 0; clazz < NUM_CLASSES; ++clazz) {
         if (is_abbrev(arg, classes[clazz].name)) {
             str_start(buf, sizeof(buf));
-            str_cat(buf, "   Level           Experience Needed           Total\r\n"
-                         " ---------         -----------------         ---------\r\n");
+            str_cat(buf,
+                    "   Level           Experience Needed           Total\r\n"
+                    " ---------         -----------------         ---------\r\n");
             for (level = 1; level < LVL_IMPL; ++level)
                 str_catf(buf, " %3d - %3d                 %9ld         %9ld\r\n", level, level + 1,
                          exp_next_level(level, clazz) - exp_next_level(level - 1, clazz), exp_next_level(level, clazz));
@@ -1558,9 +1559,10 @@ void do_show_snoop(struct char_data *ch, char *argument) {
     int i = 0;
     struct descriptor_data *d;
 
-    send_to_char("People currently snooping:\r\n"
-                 "--------------------------\r\n",
-                 ch);
+    send_to_char(
+        "People currently snooping:\r\n"
+        "--------------------------\r\n",
+        ch);
     for (d = descriptor_list; d; d = d->next) {
         if (d->snooping == NULL || d->character == NULL)
             continue;
@@ -1920,8 +1922,9 @@ void do_show_date_names(struct char_data *ch, char *argument) {
 void do_show_liquids(struct char_data *ch, char *argument) {
     int i;
 
-    pprintf(ch, "&uLiquid           &0  &uColor             &0  &u+Drunk&0  "
-                "&u+Full&0  &u-Thirst&0\r\n");
+    pprintf(ch,
+            "&uLiquid           &0  &uColor             &0  &u+Drunk&0  "
+            "&u+Full&0  &u-Thirst&0\r\n");
 
     for (i = 0; i < NUM_LIQ_TYPES; ++i)
         pprintf(ch, "%-17.17s  %-18.18s  %6d  %5d  %7d\r\n", liquid_types[i].name, liquid_types[i].color_desc,
@@ -2150,202 +2153,3 @@ ACMD(do_infodump) {
 
     (fields[i].command)(ch, argument);
 }
-
-/***************************************************************************
- * $Log: act.wizinfo.c,v $
- * Revision 1.61  2010/06/05 14:56:27  mud
- * Moving cooldowns to their own file.
- *
- * Revision 1.60  2009/07/16 19:15:54  myc
- * Moved command stuff from grant.c to commands.c
- *
- * Revision 1.59  2009/06/09 05:32:53  myc
- * GET_CLAN(ch) now returns a pointer to a clan, so the stat
- * command has been adjusted accordingly.
- *
- * Revision 1.58  2009/03/21 19:11:37  myc
- * Show the duration each cooldown started at on stat.
- *
- * Revision 1.57  2009/03/20 20:19:51  myc
- * Fix some newlines in infodump command.
- *
- * Revision 1.56  2009/03/16 19:17:52  jps
- * Change macro GET_HOME to GET_HOMEROOM
- *
- * Revision 1.55  2009/03/09 21:43:50  myc
- * Show all coins when using stat command on money.
- *
- * Revision 1.54  2009/03/09 20:36:00  myc
- * Renamed all *PLAT macros to *PLATINUM.
- *
- * Revision 1.53  2009/03/09 05:59:57  myc
- * The mud now keeps track of all previous boot times, including
- * hotboot times.
- *
- * Revision 1.52  2009/03/09 03:45:17  jps
- * Extract some spell-mem related stuff from structs.h and put it in spell_mem.h
- *
- * Revision 1.51  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.50  2009/03/08 21:43:27  jps
- * Split lifeforce, composition, charsize, and damage types from chars.c
- *
- * Revision 1.49  2009/03/03 19:41:50  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.48  2009/02/08 17:19:58  myc
- * Send 'show datenames' and 'show liquids' through pager.
- *
- * Revision 1.47  2009/02/08 16:46:04  myc
- * Don't show liquid aliases on 'show liquids' table.
- *
- * Revision 1.46  2008/12/29 18:16:33  myc
- * Add newline to 'cornering/cornered by' line on stat.
- *
- * Revision 1.45  2008/09/22 02:09:17  jps
- * Changed weight into a floating-point value. Precision is preserved to
- * the 1/100 place.
- *
- * Revision 1.44  2008/09/20 06:05:06  jps
- * Add macros POSSESSED and POSSESSOR.
- *
- * Revision 1.43  2008/09/11 04:59:52  jps
- * Fix typo in show spell
- *
- * Revision 1.42  2008/09/11 02:50:02  jps
- * Changed skills so you have a minimum position, and fighting_ok fields.
- *
- * Revision 1.41  2008/09/09 08:23:05  jps
- * Added "show sectors".
- *
- * Revision 1.40  2008/09/07 20:05:27  jps
- * Renamed exp_to_level to exp_next_level to make it clearer what it means.
- *
- * Revision 1.39  2008/09/03 17:34:08  myc
- * Moved liquid information into a def struct array.
- *
- * Revision 1.38  2008/09/03 04:03:17  rbr
- * Added description to stat when target is a NPC.
- *
- * Revision 1.37  2008/09/02 06:52:16  jps
- * Using limits.h. stat obj shows the decomposition time.
- *
- * Revision 1.36  2008/09/01 22:15:59  jps
- * Saving and reporting players' game-leaving reasons and locations.
- *
- * Revision 1.35  2008/09/01 18:29:38  jps
- * consolidating cooldown code in skills.c/h
- *
- * Revision 1.34  2008/09/01 06:40:37  jps
- * Add mv cost to room stat.
- *
- * Revision 1.33  2008/09/01 06:29:40  jps
- * Using room sector color.
- *
- * Revision 1.32  2008/09/01 00:15:58  jps
- * Restoring separate "show spell" code
- *
- * Revision 1.31  2008/08/31 04:17:45  myc
- * Make 'show exp' show immortal levels too.
- *
- * Revision 1.30  2008/08/29 19:18:05  myc
- * Fixed abilities so that no information is lost; the caps occur
- * only when the viewed stats are accessed.
- *
- * Revision 1.29  2008/08/26 04:39:21  jps
- * Changed IN_ZONE to IN_ZONE_RNUM or IN_ZONE_VNUM and fixed zone_printf.
- *
- * Revision 1.28  2008/08/26 03:58:13  jps
- * Replaced real_zone calls with find_real_zone_by_room, since that's what it
- *did. Except the one for wzoneecho, since it needed to find a real zone by zone
- *number.
- *
- * Revision 1.27  2008/08/25 00:20:33  myc
- * Changed the way mobs' spell memory is stored, so changed the way
- * it's displayed too.
- *
- * Revision 1.26  2008/08/24 02:34:02  myc
- * Fix small formatting error in show skill.
- *
- * Revision 1.25  2008/08/23 21:59:57  myc
- * Merge show skill and show spell.
- *
- * Revision 1.24  2008/08/20 05:03:13  jps
- * Removed the damage type 'magic'.
- *
- * Revision 1.23  2008/08/15 03:59:08  jps
- * Added pprintf for paging, and changed page_string to take a character.
- *
- * Revision 1.22  2008/08/14 23:02:11  myc
- * Cleaned up the do_world command a little bit.
- *
- * Revision 1.21  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.20  2008/08/10 19:33:36  jps
- * Moving function level_to_circle to skills.c.
- *
- * Revision 1.19  2008/08/10 02:58:40  jps
- * Added infodump command for outputting game data to text files.
- *
- * Revision 1.18  2008/08/01 05:20:20  jps
- * Rolled "show spell" into "show skill".
- *
- * Revision 1.17  2008/07/15 18:53:39  myc
- * Added 'show command'.
- *
- * Revision 1.16  2008/07/15 17:49:24  myc
- * Added 'show groups' to list command groups.
- *
- * Revision 1.15  2008/06/19 18:53:12  myc
- * Replaced the item_types string list with a struct array.
- * Expanded item values to 7.
- *
- * Revision 1.14  2008/06/07 19:06:46  myc
- * Moved all object-related constants and structures to objects.h
- *
- * Revision 1.13  2008/06/05 02:07:43  myc
- * Changing object flags to use flagvectors.  Rewrote rent-saving code
- * to use ascii-format files.
- *
- * Revision 1.12  2008/05/19 06:52:39  jps
- * Got rid of directions fup and fdown.
- *
- * Revision 1.11  2008/05/18 20:16:11  jps
- * Created fight.h and set dependents.
- *
- * Revision 1.10  2008/05/18 05:18:06  jps
- * Renaming room_data struct's member "number" to "vnum", cos it's
- * a virtual number.
- *
- * Revision 1.9  2008/05/17 04:32:25  jps
- * Moved exits into exits.h/exits.c and changed the name to "exit".
- *
- * Revision 1.8  2008/05/14 05:09:13  jps
- * Remove unused function prototype.
- *
- * Revision 1.7  2008/05/12 02:49:46  jps
- * Add spell to the list of things you can show.
- *
- * Revision 1.6  2008/04/26 23:36:39  myc
- * Added a feature to 'show races' to allow you to look at all the
- * information about a single race.
- *
- * Revision 1.5  2008/04/23 19:58:15  myc
- * Change some wording in show skill.
- *
- * Revision 1.4  2008/04/20 04:11:18  jps
- * Statting mobs will tell you who they remember
- *
- * Revision 1.3  2008/04/19 21:22:20  myc
- * Eliminated possible array index out-of-bounds.
- *
- * Revision 1.2  2008/04/19 21:10:31  myc
- * Added a 'show skill' subcommand, which required a list of
- * target flag and routine type strings.
- *
- * Revision 1.1  2008/04/19 17:58:51  myc
- * Initial revision
- *
- ***************************************************************************/

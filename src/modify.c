@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: modify.c,v 1.56 2009/07/16 19:15:54 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: modify.c                                       Part of FieryMUD *
  *  Usage: Run-time modification of game variables                         *
  *                                                                         *
@@ -107,29 +104,32 @@ void parse_action(int command, char *string, struct descriptor_data *d) {
 
     switch (command) {
     case PARSE_HELP:
-        write_to_output("Editor command formats: /<letter>\r\n\r\n"
-                        "/a         -  aborts editor\r\n"
-                        "/c         -  clears buffer\r\n"
-                        "/d#        -  deletes a line #\r\n"
-                        "/e# <text> -  changes the line at # with <text>\r\n",
-                        d);
+        write_to_output(
+            "Editor command formats: /<letter>\r\n\r\n"
+            "/a         -  aborts editor\r\n"
+            "/c         -  clears buffer\r\n"
+            "/d#        -  deletes a line #\r\n"
+            "/e# <text> -  changes the line at # with <text>\r\n",
+            d);
         if (STATE(d) == CON_TRIGEDIT)
             write_to_output("/f#        -  formats text with given indentation amount\r\n", d);
         else
-            write_to_output("/f         -  formats text\r\n"
-                            "/fi        -  indented formatting of text\r\n",
-                            d);
-        write_to_output("/h         -  list text editor commands\r\n"
-                        "/i# <text> -  inserts <text> before line #\r\n"
-                        "/l         -  lists buffer\r\n"
-                        "/n         -  lists buffer with line numbers\r\n"
-                        "/r 'a' 'b' -  replace 1st occurrence of text <a> in "
-                        "buffer with text <b>\r\n"
-                        "/ra 'a' 'b'-  replace all occurrences of text <a> within "
-                        "buffer with text <b>\r\n"
-                        "              usage: /r[a] 'pattern' 'replacement'\r\n"
-                        "/s         -  saves text\r\n",
-                        d);
+            write_to_output(
+                "/f         -  formats text\r\n"
+                "/fi        -  indented formatting of text\r\n",
+                d);
+        write_to_output(
+            "/h         -  list text editor commands\r\n"
+            "/i# <text> -  inserts <text> before line #\r\n"
+            "/l         -  lists buffer\r\n"
+            "/n         -  lists buffer with line numbers\r\n"
+            "/r 'a' 'b' -  replace 1st occurrence of text <a> in "
+            "buffer with text <b>\r\n"
+            "/ra 'a' 'b'-  replace all occurrences of text <a> within "
+            "buffer with text <b>\r\n"
+            "              usage: /r[a] 'pattern' 'replacement'\r\n"
+            "/s         -  saves text\r\n",
+            d);
         break;
     case PARSE_FORMAT:
         if (STATE(d) == CON_TRIGEDIT) {
@@ -186,9 +186,10 @@ void parse_action(int command, char *string, struct descriptor_data *d) {
                 sprintf(buf, "String '%s' not found.\r\n", s);
                 write_to_output(buf, d);
             } else
-                write_to_output("ERROR: Replacement string causes buffer overflow, "
-                                "aborted replace.\r\n",
-                                d);
+                write_to_output(
+                    "ERROR: Replacement string causes buffer overflow, "
+                    "aborted replace.\r\n",
+                    d);
         } else
             write_to_output("Not enough space left in buffer.\r\n", d);
         break;
@@ -492,9 +493,10 @@ void parse_action(int command, char *string, struct descriptor_data *d) {
              * Check for buffer overflow.
              */
             if (strlen(buf) > d->max_str) {
-                write_to_output("Change causes new length to exceed buffer maximum "
-                                "size, aborted.\r\n",
-                                d);
+                write_to_output(
+                    "Change causes new length to exceed buffer maximum "
+                    "size, aborted.\r\n",
+                    d);
                 return;
             }
             /*
@@ -1160,203 +1162,3 @@ void page_string_desc(struct descriptor_data *d, const char *str) {
     if (PAGING(d))
         start_paging_desc(d);
 }
-
-/***************************************************************************
- * $Log: modify.c,v $
- * Revision 1.56  2009/07/16 19:15:54  myc
- * Moved command stuff from grant.c to commands.c
- *
- * Revision 1.55  2009/06/09 05:45:27  myc
- * Removing the separate connection state for clan description
- * editing.  It's no longer necessary with the new editor.
- *
- * Revision 1.54  2009/03/20 23:02:59  myc
- * Remove text editor connection state.  Make paging input
- * strings declared const.
- *
- * Revision 1.53  2009/03/20 20:19:51  myc
- * Removing dependency upon old board system.
- *
- * Revision 1.52  2009/03/09 04:41:56  jps
- * Put FORMAT_INDENT definition in strings.h
- *
- * Revision 1.51  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.50  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.49  2009/03/03 19:43:44  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.48  2009/02/11 17:03:39  myc
- * Make some functions static and add desc_paging_printf(),
- * which is just like paging_printf, but it takes a descriptor
- * instead of a character.
- *
- * Revision 1.47  2008/08/18 01:35:22  jps
- * Use sprintf silly wabbit or you lose your text!!!!
- *
- * Revision 1.46  2008/08/16 08:25:40  jps
- * Added a desc command so players can edit their descriptions in game.
- *
- * Revision 1.45  2008/08/15 03:59:08  jps
- * Added pprintf for paging, and changed page_string to take a character.
- *
- * Revision 1.44  2008/08/14 15:40:29  jps
- * Added pager buffer size limits.
- *
- * Revision 1.43  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.42  2008/07/15 17:55:06  myc
- * Gedit needs one string editor, so had to modify string_add.
- *
- * Revision 1.41  2008/07/13 06:34:59  myc
- * Bug in 'skillset *': was overwriting player's player_specials pointer.
- *
- * Revision 1.40  2008/04/05 05:05:42  myc
- * Removed SEND_TO_Q macro, so call write_to_output directly.
- *
- * Revision 1.39  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.38  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.37  2008/03/27 00:52:30  jps
- * Increased line length so pagination will work when showing lists of mobs.
- *
- * Revision 1.36  2008/03/22 03:22:38  myc
- * All invocations of the string editor now go through string_write()
- * instead of messing with the descriptor variables itself.  Also added
- * a toggle, LineNums, to decide whether to do /l or /n when entering
- * the string editor.
- *
- * Revision 1.35  2008/03/21 16:02:05  myc
- * Added info about script formatter to editor help.
- *
- * Revision 1.34  2008/03/21 15:58:34  myc
- * Added a utility format scripts.
- *
- * Revision 1.33  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.32  2008/02/02 19:38:20  myc
- * Adding string_write to set up a descriptor for string editing.
- *
- * Revision 1.31  2008/02/02 05:35:14  myc
- * Making the skillset command have sorted output.
- *
- * Revision 1.30  2008/01/29 16:51:12  myc
- * Moving skill names to the skilldef struct.
- *
- * Revision 1.29  2008/01/26 14:26:31  jps
- * Moved a lot of skill-related code into skills.h and skills.c.
- *
- * Revision 1.28  2008/01/26 12:58:14  jps
- * Using skills.h.
- *
- * Revision 1.27  2007/12/31 02:00:57  jps
- * Made the general term for spells, skills, chants, and songs 'talent'.
- * Fixed mskillset to handle all talents.
- *
- * Revision 1.26  2007/12/19 20:54:56  myc
- * Added support editing clan descriptions to the line editor.
- *
- * Revision 1.25  2007/10/25 20:40:05  myc
- * Fixed bug where if you tried to mail an object but aborted the message,
- * you didn't get the object back.
- *
- * Revision 1.24  2007/10/13 05:05:13  myc
- * do_skillset was using find_skill_num, which restricts the search
- * to skills.  Is now using id_skill_spell.
- *
- * Revision 1.23  2007/10/11 20:14:48  myc
- * Changed skill defines to support chants and songs as skills, but
- * slightly distinguished from spells and skills.  TOP_SKILL is the
- * old MAX_SKILLS.
- *
- * Revision 1.22  2007/10/02 02:52:27  myc
- * Page length is now checked on the original player instead of the mob
- * for switched/shapechanged players.
- *
- * Revision 1.21  2007/09/28 20:49:35  myc
- * skillset uses the global buffer now.  It also uses delimited_arg(),
- * instead of parsing the argument string itself.
- *
- * Revision 1.20  2007/09/15 05:03:46  myc
- * Removed a potentially dangerous (small) buffer from the parse_action
- * function.  It was also unneeded.
- *
- * Revision 1.19  2007/08/08 02:26:36  jps
- * Typo fix
- *
- * Revision 1.18  2007/08/03 22:00:11  myc
- * Fixed some \r\n typoes in send_to_chars.
- *
- * Revision 1.17  2007/07/19 22:19:34  jps
- * Prevent an extra newline from being inserted into the buffer after /c.
- * Compactify the /n display so that each line takes up only one line.
- *
- * Revision 1.16  2007/07/02 05:47:31  jps
- * Inserted empty buffer checks for several editor commands that
- * desperately needed it - you could open a new buffer, type /r 'this' 'that',
- * and instantly crash the mud. Also inserted newline for the first
- * line just as it is for subsequent lines.
- *
- * Revision 1.15  2007/07/02 04:49:05  jps
- * Comment out some debugging code!
- *
- * Revision 1.14  2007/07/02 04:23:52  jps
- * Adjust call to recently-fixed replace_str.
- *
- * Revision 1.13  2007/02/04 18:12:31  myc
- * Page length now saves as a part of player specials.
- *
- * Revision 1.12  2006/11/23 00:36:24  jps
- * Fix newline-appending and length-checking while editing near
- * or past the limits of the given buffer in string_add.
- *
- * Revision 1.11  2004/11/11 23:29:19  rsd
- * Altered the output for the help for posting on a board
- * because the buffer was greater than the 509 bytes
- * allowed for the compiler not to cry.
- *
- * Revision 1.10  2003/06/25 02:21:03  jjl
- * Revised lay hands to not suck.
- *
- * Revision 1.9  2003/06/23 01:47:09  jjl
- * Added a NOFOLLOW flag, and the "note" command, and show notes <player>
- *
- * Revision 1.8  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.7  2000/11/28 01:26:52  mtp
- * removed some mobprog stuff
- *
- * Revision 1.6  2000/11/24 19:03:31  rsd
- * Altered comment header and added back rlog messages from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.5  2000/03/26 21:16:23  cso
- * made skillset <vict> show only nonzero skills
- *
- * Revision 1.4  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.3  1999/08/08 04:20:34  mud
- * Changed one of the page_string functions so that if a bogus
- * character is entered while paging, it falls out of the page
- * and mops up the memory. Commented out the old send to char
- * text below it.
- *
- * Revision 1.2  1999/01/31 17:54:05  mud
- * Indented file
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

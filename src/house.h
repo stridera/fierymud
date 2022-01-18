@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: house.h,v 1.5 2008/05/17 04:32:25 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: house.h                                        Part of FieryMUD *
  *  Usage: Header file for handling of player houses                       *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_HOUSE_H
 #define __FIERY_HOUSE_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define MAX_HOUSES 100
 #define MAX_GUESTS 10
@@ -53,22 +50,3 @@ int House_can_enter(struct char_data *ch, int house);
 void House_crashsave(int vnum);
 
 #endif /* __FIERY_HOUSE_H */
-
-/***************************************************************************
- * $Log: house.h,v $
- * Revision 1.5  2008/05/17 04:32:25  jps
- * Moved exits into exits.h/exits.c and changed the name to "exit".
- *
- * Revision 1.4  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.3  2000/11/21 19:11:10  rsd
- * Added a comment header and the initial rlog message.
- *
- * Revision 1.2  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

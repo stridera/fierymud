@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: objects.h,v 1.17 2009/03/15 07:09:24 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: objects.h                                       Part of FieryMUD *
  *  Usage: header file for objects                                         *
  *                                                                         *
@@ -198,8 +195,9 @@
 #define CONT_CLOSED (1 << 2)    /* Container is closed           */
 #define CONT_LOCKED (1 << 3)    /* Container is locked           */
 #define VAL_CONTAINER_KEY 2
-#define VAL_CONTAINER_WEIGHT_REDUCTION 4 /* Used to allow bags of holding, which reduce the weight of items carried.   \
-                                          */
+#define VAL_CONTAINER_WEIGHT_REDUCTION                                                                                 \
+    4 /* Used to allow bags of holding, which reduce the weight of items carried.                                      \
+       */
 #define VAL_CORPSE_ID 2
 #define VAL_CONTAINER_CORPSE 3
 #define NOT_CORPSE 0
@@ -316,7 +314,7 @@ struct liquid_def {
 struct obj_flag_data {
     int value[NUM_VALUES]; /* Values of the item (see list)  */
     byte type_flag;        /* Type of item                     */
-    int wear_flags;        /* Where you can wear it            */
+    long int wear_flags;   /* Where you can wear it            */
     /* If it hums, glows, etc.          */
     flagvector extra_flags[FLAGVECTOR_SIZE(NUM_ITEM_FLAGS)];
     float weight; /* Weight what else                 */
@@ -494,66 +492,3 @@ extern void liquid_from_container(struct obj_data *container, int amount);
 extern void liquid_to_container(struct obj_data *container, int amount, int liquid_type, bool poisoned);
 
 #endif
-
-/***************************************************************************
- * $Log: objects.h,v $
- * Revision 1.17  2009/03/15 07:09:24  jps
- * Add !FALL flag for objects
- *
- * Revision 1.16  2009/03/09 05:09:22  jps
- * Moved effect flags and strings into effects.h and effects.c.
- *
- * Revision 1.15  2009/02/21 03:30:16  myc
- * Added new board type.  Removed L_FILE flag--mprintf now logs
- * to file by default; assert L_NOFILE to prevent that.
- *
- * Revision 1.14  2009/02/08 16:46:04  myc
- * Switched order of alias and name in liquid structure.
- *
- * Revision 1.13  2008/11/09 03:09:41  myc
- * Added some new liquids.
- *
- * Revision 1.12  2008/09/29 03:24:44  jps
- * Make container weight automatic. Move some liquid container functions to
- *objects.c.
- *
- * Revision 1.11  2008/09/22 02:09:17  jps
- * Changed weight into a floating-point value. Precision is preserved to
- * the 1/100 place.
- *
- * Revision 1.10  2008/09/06 18:33:23  jps
- * Move some macros around.
- *
- * Revision 1.9  2008/09/03 17:34:08  myc
- * Moved liquid information into a def struct array.
- *
- * Revision 1.8  2008/09/02 07:16:00  mud
- * Changing object TIMER uses into DECOMP where appropriate
- *
- * Revision 1.7  2008/09/02 06:48:11  jps
- * New object flags: permanent and decomposing.
- *
- * Revision 1.6  2008/08/30 18:20:53  myc
- * Removed UNIQUE item flag.  Split free_object_strings_proto up
- * into free_obj_strings, free_obj_strings_absolutely, and
- * free_prototyped_obj_strings.
- *
- * Revision 1.5  2008/07/22 07:25:26  myc
- * Added copy_object and free_object_strings_proto functions.
- * Added unique flag for items.
- *
- * Revision 1.4  2008/06/19 18:53:12  myc
- * Expanded item values to 7.  Added default min and max values.
- * Replaced the item_types and item_type_desc arrays with a typedef
- * struct array.
- *
- * Revision 1.3  2008/06/08 00:57:03  jps
- * Add a default value of 100 for the number of pages in a spellbook.
- *
- * Revision 1.2  2008/06/07 19:35:58  jps
- * Limit spellbooks to 2000 pages (kind of arbitrarily).
- *
- * Revision 1.1  2008/06/07 19:06:46  myc
- * Initial revision
- *
- ***************************************************************************/

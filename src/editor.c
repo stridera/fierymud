@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: editor.c,v 1.4 2009/06/09 05:39:07 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: editor.c                                       Part of FieryMUD *
  *  Usage: Routines for the string editor                                  *
  *                                                                         *
@@ -498,32 +495,35 @@ EDITOR_FUNC(editor_default_format) {
 }
 
 EDITOR_FUNC(editor_default_help) {
-    dprintf(edit->descriptor, "Editor command formats: /<letter>\r\n\r\n"
-                              "/a          -  abort editor\r\n"
-                              "/c          -  clear buffer\r\n"
-                              "/d#         -  delete line #\r\n"
-                              "/e# <text>  -  change the line at # with <text>\r\n"
-                              "/f          -  format entire text\r\n"
-                              "/fi         -  indented formatting of text\r\n"
-                              "/h          -  list text editor commands\r\n"
-                              "/k <word>   -  spellcheck word\r\n"
-                              "/i# <text>  -  insert <text> at line #\r\n");
-    dprintf(edit->descriptor, "/l          -  list entire buffer\r\n"
-                              "/n          -  list entire buffer with line numbers\r\n"
-                              "/r <a> <b>  -  replace 1st occurrence of text <a> in buffer with "
-                              "text <b>\r\n"
-                              "/ra <a> <b> -  replace all occurrences of text <a> within buffer "
-                              "with text <b>\r\n"
-                              "               usage: /r[a] pattern replacement\r\n"
-                              "                      /r[a] 'pattern' 'replacement'\r\n"
-                              "                      (enclose in single quotes for multi-word "
-                              "phrases)\r\n"
-                              "/s          -  save text\r\n");
-    dprintf(edit->descriptor, "\r\n"
-                              "Note: /d, /f, /fi, /l, and /n also accept ranges of lines.  For "
-                              "instance:\r\n"
-                              "   /d 2 5   -  delete lines 2 through 5\r\n"
-                              "   /fi3 6   -  format lines 3 through 6 with indent\r\n");
+    dprintf(edit->descriptor,
+            "Editor command formats: /<letter>\r\n\r\n"
+            "/a          -  abort editor\r\n"
+            "/c          -  clear buffer\r\n"
+            "/d#         -  delete line #\r\n"
+            "/e# <text>  -  change the line at # with <text>\r\n"
+            "/f          -  format entire text\r\n"
+            "/fi         -  indented formatting of text\r\n"
+            "/h          -  list text editor commands\r\n"
+            "/k <word>   -  spellcheck word\r\n"
+            "/i# <text>  -  insert <text> at line #\r\n");
+    dprintf(edit->descriptor,
+            "/l          -  list entire buffer\r\n"
+            "/n          -  list entire buffer with line numbers\r\n"
+            "/r <a> <b>  -  replace 1st occurrence of text <a> in buffer with "
+            "text <b>\r\n"
+            "/ra <a> <b> -  replace all occurrences of text <a> within buffer "
+            "with text <b>\r\n"
+            "               usage: /r[a] pattern replacement\r\n"
+            "                      /r[a] 'pattern' 'replacement'\r\n"
+            "                      (enclose in single quotes for multi-word "
+            "phrases)\r\n"
+            "/s          -  save text\r\n");
+    dprintf(edit->descriptor,
+            "\r\n"
+            "Note: /d, /f, /fi, /l, and /n also accept ranges of lines.  For "
+            "instance:\r\n"
+            "   /d 2 5   -  delete lines 2 through 5\r\n"
+            "   /fi3 6   -  format lines 3 through 6 with indent\r\n");
 
     return ED_PROCESSED;
 }
@@ -699,8 +699,9 @@ EDITOR_FUNC(editor_default_replace) {
 
     skip_spaces(&argument);
     if (*argument) {
-        dprintf(edit->descriptor, "Invalid search format.  Enclose search/replacement strings in "
-                                  "single quotes.\r\n");
+        dprintf(edit->descriptor,
+                "Invalid search format.  Enclose search/replacement strings in "
+                "single quotes.\r\n");
         return ED_PROCESSED;
     }
 
@@ -1126,24 +1127,3 @@ static size_t limit_lines(char *string, size_t max_lines) {
 
     return lines;
 }
-
-/***************************************************************************
- * $Log: editor.c,v $
- * Revision 1.4  2009/06/09 05:39:07  myc
- * Adding editor_edited_by() to find out if any descriptors are
- * editing a particular string pointer location.  Making the editor
- * handle freeing callback data.
- *
- * Revision 1.3  2009/02/21 03:30:16  myc
- * Modified editor_init to allow starting up with a NULL
- * string/destination.  Fixed editor_action so if a callback
- * returns ED_IGNORED, it automatically calls the default
- * callback.  Tweaked editor_save to allow no destination.
- *
- * Revision 1.2  2009/02/12 04:44:30  myc
- * Added rudimentary spellchecker to text editor; uses ispell.
- *
- * Revision 1.1  2009/02/11 17:03:39  myc
- * Initial revision
- *
- ***************************************************************************/

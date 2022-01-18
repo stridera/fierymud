@@ -35,10 +35,3 @@ void convert_lifeforce(struct char_data *ch, int newlifeforce) {
     /* Nothing complicated yet! */
     GET_LIFEFORCE(ch) = newlifeforce;
 }
-
-/***************************************************************************
- * $Log: lifeforce.c,v $
- * Revision 1.1  2009/03/08 21:42:09  jps
- * Initial revision
- *
- ***************************************************************************/

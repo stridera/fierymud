@@ -68,36 +68,33 @@ bool damage_evasion(struct char_data *ch, struct char_data *attacker, struct obj
 
 int skill_to_dtype(int skill) {
     switch (skill) {
-    case TYPE_HIT:
-        return DAM_CRUSH;
+    case TYPE_SHOCK:
+        return DAM_SHOCK;
+    case TYPE_FIRE:
+        return DAM_FIRE;
+    case TYPE_COLD:
+        return DAM_COLD;
+    case TYPE_ACID:
+        return DAM_ACID;
+    case TYPE_POISON:
+        return DAM_POISON;
+    case TYPE_BITE:
+    case TYPE_PIERCE:
+    case TYPE_STAB:
     case TYPE_STING:
         return DAM_PIERCE;
+    case TYPE_CLAW:
+    case TYPE_SLASH:
+    case TYPE_THRASH:
     case TYPE_WHIP:
         return DAM_SLASH;
-    case TYPE_SLASH:
-        return DAM_SLASH;
-    case TYPE_BITE:
-        return DAM_PIERCE;
-    case TYPE_BLUDGEON:
-        return DAM_CRUSH;
-    case TYPE_CRUSH:
-        return DAM_CRUSH;
-    case TYPE_POUND:
-        return DAM_CRUSH;
-    case TYPE_CLAW:
-        return DAM_SLASH;
-    case TYPE_MAUL:
-        return DAM_CRUSH;
-    case TYPE_THRASH:
-        return DAM_SLASH;
-    case TYPE_PIERCE:
-        return DAM_PIERCE;
     case TYPE_BLAST:
-        return DAM_CRUSH;
+    case TYPE_BLUDGEON:
+    case TYPE_CRUSH:
+    case TYPE_HIT:
+    case TYPE_MAUL:
+    case TYPE_POUND:
     case TYPE_PUNCH:
-        return DAM_CRUSH;
-    case TYPE_STAB:
-        return DAM_PIERCE;
     default:
         return DAM_CRUSH;
     }
@@ -222,10 +219,3 @@ int physical_damtype(struct char_data *ch) {
     else
         return COMPOSITION_DAM(ch);
 }
-
-/***************************************************************************
- * $Log: damage.c,v $
- * Revision 1.1  2009/03/08 21:43:13  jps
- * Initial revision
- *
- ***************************************************************************/

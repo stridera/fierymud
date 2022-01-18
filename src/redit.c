@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: redit.c,v 1.34 2009/03/20 20:19:51 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: redit.c                                        Part of FieryMUD *
  *  Usage:                                                                 *
  *     By: Harvey Gilpin of TwyliteMud                                     *
@@ -916,8 +913,7 @@ void redit_parse(struct descriptor_data *d, char *arg) {
 
         case 3:
             if (!OLC_DESC(d)->keyword || !OLC_DESC(d)->description) {
-                send_to_char("You can't edit the next extra desc without completing this one.\r\n",
-                             d->character);
+                send_to_char("You can't edit the next extra desc without completing this one.\r\n", d->character);
                 redit_disp_extradesc_menu(d);
             } else {
                 struct extra_descr_data *new_extra;
@@ -945,132 +941,3 @@ void redit_parse(struct descriptor_data *d, char *arg) {
     OLC_VAL(d) = 1;
     redit_disp_menu(d);
 }
-
-/***************************************************************************
- * $Log: redit.c,v $
- * Revision 1.34  2009/03/20 20:19:51  myc
- * Removing dependency upon old board system.
- *
- * Revision 1.33  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.32  2008/09/09 08:23:37  jps
- * Placed sector info into a struct and moved its macros into rooms.h.
- *
- * Revision 1.31  2008/08/21 07:10:46  jps
- * Changed the way redit sees exit destinations. It's more informative and less
- *crashy.
- *
- * Revision 1.30  2008/08/19 02:38:15  jps
- * Fix the next bug in room saving...
- *
- * Revision 1.29  2008/08/19 02:34:16  jps
- * Stop crashing when saving description exits.
- *
- * Revision 1.28  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.27  2008/08/10 06:53:55  jps
- * Stop crashing when editing exits in brand new rooms?
- *
- * Revision 1.26  2008/06/11 23:04:34  jps
- * Changed room editing menu a bit
- *
- * Revision 1.25  2008/05/19 06:53:17  jps
- * Got rid of fup and fdown directions.
- *
- * Revision 1.24  2008/05/18 05:18:06  jps
- * Renaming room_data struct's member "number" to "vnum", cos it's
- * a virtual number.
- *
- * Revision 1.23  2008/05/17 04:32:25  jps
- * Moved exits into exits.h/exits.c and changed the name to "exit".
- *
- * Revision 1.22  2008/04/05 05:05:42  myc
- * Removed SEND_TO_Q macro, so call write_to_output directly.
- *
- * Revision 1.21  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.20  2008/03/22 03:22:38  myc
- * All invocations of the string editor now go through string_write()
- * instead of messing with the descriptor variables itself.  Also added
- * a toggle, LineNums, to decide whether to do /l or /n when entering
- * the string editor.
- *
- * Revision 1.19  2008/03/17 16:22:42  myc
- * Fixed handling of proto scripts in OLC, which was causing a crash.
- * Also fixed some memory leaks associated with scripts and OLC.
- * How this got by for so long, I don't know.
- *
- * Revision 1.18  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.17  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.16  2007/11/18 16:51:55  myc
- * Fixing LVL_BUILDER references.
- *
- * Revision 1.15  2007/09/15 05:03:46  myc
- * Implemented a new loop method for some of the menus so that items in
- * the menus get listed column-major instead of by rows.  This applies to
- * the sector and flag menus.
- *
- * Revision 1.14  2007/08/04 01:24:37  myc
- * When saving a new room in redit, all room triggers in the world are now
- * dropped and reloaded (all trigger execution thus stops).  Although
- * inconvenient, this is a necessary evil in order to prevent event-related
- * crashes.
- *
- * Revision 1.13  2007/08/03 22:00:11  myc
- * Fixed some \r\n typoes in send_to_chars.
- *
- * Revision 1.12  2007/07/15 21:16:12  myc
- * No more crash when you edit a script on a new object or room.
- *
- * Revision 1.11  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.10  2001/03/13 00:45:27  dce
- * Keys default to -1 as requested by builders.
- *
- * Revision 1.9  2000/11/24 21:17:12  rsd
- * Altered comment header and added back rlog messgaes from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.8  2000/11/18 20:59:23  jimmy
- * Added sane debug to redit_save_internally
- *
- * Revision 1.7  2000/11/18 06:57:20  rsd
- * changed the comment header and tried to add some
- * sensible debug to redit_save_internal.
- *
- * Revision 1.6  2000/10/14 11:12:40  mtp
- * fixed the olc triggers editting in medit/oedit/redit
- *
- * Revision 1.5  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.4  1999/06/10 16:56:28  mud
- * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and
- * libraries.  Many many curly braces had to be added to "if" statements to
- * clarify their behavior to the compiler.  The name approval code was also
- * debugged, and tested to be stable.  The xnames list was converted from an
- * array to a linked list to allow for on the fly adding of names to the
- * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
- *
- * Revision 1.3  1999/04/07 01:20:18  dce
- * Allows extra descriptions on no exits.
- *
- * Revision 1.2  1999/02/01 04:26:53  mud
- * Indented file
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

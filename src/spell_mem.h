@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: spell_mem.h,v 1.2 2009/03/09 03:45:17 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: spell_mem.h                                    Part of FieryMUD *
  *  Usage: header file for spell memorization and scribing                 *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_SPELL_MEM_H
 #define __FIERY_SPELL_MEM_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define CIRCLE_1 1
 #define CIRCLE_2 9
@@ -63,13 +60,3 @@ struct scribing {
 };
 
 #endif
-
-/***************************************************************************
- * $Log: spell_mem.h,v $
- * Revision 1.2  2009/03/09 03:45:17  jps
- * Extract some spell-mem related stuff from structs.h and put it in spell_mem.h
- *
- * Revision 1.1  2009/03/09 03:39:51  jps
- * Initial revision
- *
- ***************************************************************************/

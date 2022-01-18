@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: sdedit.c,v 1.13 2009/03/08 23:34:14 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: sdedit.c                                        Part of FieryMUD *
  *  Usage: Edits an array that is the size of the spell list               *
  *         (spell_dam_info). This array is then used in the magic.c system *
@@ -162,9 +159,10 @@ void sdedit_save_to_disk(struct descriptor_data *d) {
     } else {
 
         fprintf(ifptr, "Spell dam file:\n");
-        fprintf(ifptr, "spell, intern, npc_static, npc_no_dice, npc_no_face, "
-                       "pc_static, pc_no_face, "
-                       "pc_no_dice, npc_reduce, use_bonus, bonus, lvl_mult\n");
+        fprintf(ifptr,
+                "spell, intern, npc_static, npc_no_dice, npc_no_face, "
+                "pc_static, pc_no_face, "
+                "pc_no_dice, npc_reduce, use_bonus, bonus, lvl_mult\n");
         fprintf(ifptr, "spell_dam\n");
 
         for (i = 1; i <= MAX_SPELLS; i++) {
@@ -345,45 +343,3 @@ void sdedit_parse(struct descriptor_data *d, char *arg) {
     OLC_VAL(d) = 1;
     sdedit_disp_menu(d);
 }
-
-/***************************************************************************
- * $Log: sdedit.c,v $
- * Revision 1.13  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.12  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.11  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.10  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.9  2008/01/29 16:51:12  myc
- * Moving skill names to the skilldef struct.
- *
- * Revision 1.8  2008/01/26 14:26:31  jps
- * Moved a lot of skill-related code into skills.h and skills.c.
- *
- * Revision 1.7  2007/02/14 03:54:53  myc
- * Fixed so it outputs the right column names to file.
- *
- * Revision 1.6  2004/11/11 22:10:01  rsd
- * Altered the sdedit menu buffer to be split into 2 buffers
- * to send to the admin so that the compiler will stop crying
- * about buffer lengths longer than 509.
- *
- * Revision 1.5  2002/09/13 02:52:15  jjl
- * Updated comments to avoid pedantic warnings
- *
- * Revision 1.4  2000/03/22 06:49:23  rsd
- * Changed some output text for the menu. Also moved a buncha {
- * er {'s
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- ***************************************************************************/

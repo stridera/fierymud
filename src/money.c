@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: money.c,v 1.9 2010/04/25 22:51:45 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: money.c                                        Part of FieryMUD *
  *  Usage: It's all about the cash                                         *
  *                                                                         *
@@ -317,37 +314,3 @@ struct obj_data *create_money(const int coins[]) {
 
     return obj;
 }
-
-/***************************************************************************
- * $Log: money.c,v $
- * Revision 1.9  2010/04/25 22:51:45  mud
- * Fix crash bug in parse_money.c due to faulty boolean
- * logic in testing whether there are more args.
- *
- * Revision 1.8  2009/06/09 05:45:49  myc
- * Statemoney now says "0 coins" if there weren't any coins.
- * Declaring several parameters const.
- *
- * Revision 1.7  2009/03/21 08:09:03  myc
- * Fix bug in parse_money.
- *
- * Revision 1.6  2009/03/20 13:56:22  jps
- * Moved coin info into an array of struct coindef.
- *
- * Revision 1.5  2009/03/19 23:16:23  myc
- * parse_money now takes a char** and moves the pointer up to
- * just past any money phrase it parses.
- *
- * Revision 1.4  2009/03/09 21:43:50  myc
- * Change statemoney from strcat to strcpy semantics.
- *
- * Revision 1.3  2009/03/09 20:36:00  myc
- * Moved money functions from handler to here.
- *
- * Revision 1.2  2009/03/09 05:51:25  jps
- * Moved some money-related functions from utils to money
- *
- * Revision 1.1  2009/03/09 05:41:12  jps
- * Initial revision
- *
- ***************************************************************************/

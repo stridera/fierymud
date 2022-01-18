@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: directions.c,v 1.1 2009/03/09 04:24:47 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: directions.c                                   Part of FieryMUD *
  *  Usage: Constants for directions                                        *
  *                                                                         *
@@ -26,10 +23,3 @@ const char *dirpreposition[NUM_OF_DIRS + 1] = {
     "to the north", "to the east", "to the south", "to the west", "in the ceiling", "in the floor", "\n"};
 
 const int rev_dir[NUM_OF_DIRS] = {SOUTH, WEST, NORTH, EAST, DOWN, UP};
-
-/***************************************************************************
- * $Log: directions.c,v $
- * Revision 1.1  2009/03/09 04:24:47  jps
- * Initial revision
- *
- ***************************************************************************/

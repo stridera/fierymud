@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: find.c,v 1.6 2010/05/11 05:52:56 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: find.c                                         Part of FieryMUD *
  *  Usage: internal funcs: finding chars/objs                              *
  *                                                                         *
@@ -875,29 +872,3 @@ struct char_data *get_random_char_around(struct char_data *ch, int mode) {
 
     return vict;
 }
-
-/***************************************************************************
- * $Log: find.c,v $
- * Revision 1.6  2010/05/11 05:52:56  mud
- * Fix a crash bug caused by attempting to check the name of a
- * character that is in the process of logging in.
- *
- * Revision 1.5  2009/03/19 23:16:23  myc
- * Added find_vis() premade context and several new iterators.
- *
- * Revision 1.4  2009/03/09 02:22:32  myc
- * Added find_vis_by_vnum and find_vis_by_type find context factories.
- * Also added universal_find, which is just like generic_find, but
- * accepts a custom find context.
- *
- * Revision 1.3  2009/03/06 00:46:31  myc
- * Make MATCH_CHAR_FUNC(match_dg_vis_char_by_id) visible outside the
- * file since find_char_around_room needs to know its address.
- *
- * Revision 1.2  2009/03/06 00:24:39  myc
- * Fix bug in find_char_around_obj.
- *
- * Revision 1.1  2009/03/03 19:43:44  myc
- * Initial revision
- *
- ***************************************************************************/

@@ -858,16 +858,16 @@ typedef struct char_coins_data char_coins;
 
 /* object flags; used in obj_data */
 struct obj_flag_data {
-    int value[4];     /* Values of the item (see list)    */
-    byte type_flag;   /* Type of item                            */
-    int wear_flags;   /* Where you can wear it            */
-    int extra_flags;  /* If it hums, glows, etc.            */
-    int weight;       /* Weigt what else                  */
-    int cost;         /* Value when sold (gp.)            */
-    int cost_per_day; /* Cost to keep pr. real day        */
-    int level_obj;    /* Level of the object -> Zantir 3/23/01 */
-    int timer;        /* Timer for object                 */
-    int spell_flags;  /* Object Spell affections - buru 25/5/98 */
+    int value[4];                 /* Values of the item (see list)    */
+    byte type_flag;               /* Type of item                            */
+    unsigned long int wear_flags; /* Where you can wear it            */
+    int extra_flags;              /* If it hums, glows, etc.            */
+    int weight;                   /* Weigt what else                  */
+    int cost;                     /* Value when sold (gp.)            */
+    int cost_per_day;             /* Cost to keep pr. real day        */
+    int level_obj;                /* Level of the object -> Zantir 3/23/01 */
+    int timer;                    /* Timer for object                 */
+    int spell_flags;              /* Object Spell affections - buru 25/5/98 */
     int spell_flags2;
     int spell_flags3;
     long hiddenness; /* How difficult it is to see obj   */

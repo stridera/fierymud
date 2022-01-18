@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: rooms.c,v 1.17 2010/06/20 19:53:47 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: rooms.c                                       Part of FieryMUD  *
  *  Usage: Functions for managing rooms                                    *
  *                                                                         *
@@ -769,65 +766,3 @@ bool room_contains_char(int roomnum, struct char_data *ch) {
     }
     return FALSE;
 }
-
-/***************************************************************************
- * $Log: rooms.c,v $
- * Revision 1.17  2010/06/20 19:53:47  mud
- * Log to file errors we might want to see.
- *
- * Revision 1.16  2010/06/05 04:43:57  mud
- * Replacing ocean sector type with cave.
- *
- * Revision 1.15  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.14  2009/03/07 11:14:32  jps
- * Don't show auto exits from dark rooms to other dark rooms.
- *
- * Revision 1.13  2008/09/14 03:02:02  jps
- * Added room_contains_char - a safer way to check whether a character is in a
- * room.
- *
- * Revision 1.12  2008/09/09 08:23:37  jps
- * Placed sector info into a struct and moved its macros into rooms.h.
- *
- * Revision 1.11  2008/09/04 06:47:36  jps
- * Changed sector constants to match their strings
- *
- * Revision 1.10  2008/09/01 06:29:50  jps
- * Renamed "In Flight" sector type to "Air". Changed coloring of
- * city and structure sector types.
- *
- * Revision 1.9  2008/09/01 06:04:57  jps
- * Fixed spelling of etherealplane
- *
- * Revision 1.8  2008/09/01 05:50:45  jps
- * Changed sectors "Inside", "Water (Swim)", and "Water (No Swim)" to
- * "Structure", "Shallows", and "Water", respectively.  Added a list of
- * colors for sector types.
- *
- * Revision 1.7  2008/07/10 20:18:34  myc
- * Formatting fix.
- *
- * Revision 1.6  2008/06/08 19:48:00  jps
- * Treat rooms with improper exits to nowhere as if there is
- * no way to go that direction.
- *
- * Revision 1.5  2008/05/18 05:17:48  jps
- * Only showing extended exit info to imms with the roomflags toggle on.
- *
- * Revision 1.4  2008/05/18 04:41:24  jps
- * Fix formatting error in exits. Change the way long exits
- * handle a closed door.
- *
- * Revision 1.3  2008/05/18 04:25:31  jps
- * Don't use vnum where rnum is needed!
- *
- * Revision 1.2  2008/05/18 02:03:19  jps
- * Adding some room-related constants, plus functions to describe exits.
- *
- * Revision 1.1  2008/05/17 22:02:43  jps
- * Initial revision
- *
- ***************************************************************************/

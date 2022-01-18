@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: editor.h,v 1.3 2009/06/09 05:39:49 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: editor.h                                       Part of FieryMUD *
  *  Usage: Defines for the string editor                                   *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __FIERY_EDITOR_H
 #define __FIERY_EDITOR_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 enum ed_command_type {
     ED_BEGIN,
@@ -83,18 +80,3 @@ void editor_set_begin_string(struct descriptor_data *d, char *string, ...) __att
 void editor_cleanup(struct descriptor_data *d);
 
 #endif
-
-/***************************************************************************
- * $Log: editor.h,v $
- * Revision 1.3  2009/06/09 05:39:49  myc
- * Adding editor_edited_by() to find out if any descriptors are
- * editing a particular string pointer location.  Making the editor
- * handle freeing callback data.
- *
- * Revision 1.2  2009/02/12 04:44:30  myc
- * Added rudimentary spellchecker to text editor; uses ispell.
- *
- * Revision 1.1  2009/02/11 17:03:39  myc
- * Initial revision
- *
- ***************************************************************************/

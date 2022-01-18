@@ -1,12 +1,6 @@
 /***************************************************************************
- * $Id: dg_wldcmd.c,v 1.59 2009/06/09 19:33:50 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: dg_wldcmd.c                                    Part of FieryMUD *
  *  Usage: contains the command_interpreter for rooms,room commands.       *
- *  $Author: myc $                                                         *
- *  $Date: 2009/06/09 19:33:50 $                                           *
- *  $Revision: 1.59 $                                                      *
  *                                                                         *
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *
@@ -431,15 +425,14 @@ WCMD(do_wload) {
             return;
         }
 
-
         if (*line == '\0') {
             obj_to_room(object, rnum);
         } else {
             two_arguments(line, arg3, arg4);
             if (is_abbrev(arg3, "mob")) {
-                    if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
-                        obj_to_char(object, mob);
-                    }
+                if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
+                    obj_to_char(object, mob);
+                }
             } else if (is_abbrev(arg3, "obj")) {
                 if ((object2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_obj(object, object2);
@@ -693,208 +686,3 @@ void wld_command_interpreter(room_data *room, struct trig_data *t, char *argumen
     } else
         ((*wld_cmd_info[cmd].command_pointer)(room, t, line, cmd, wld_cmd_info[cmd].subcmd));
 }
-
-/***************************************************************************
- * $Log: dg_wldcmd.c,v $
- * Revision 1.59  2009/06/09 19:33:50  myc
- * Rewrote gain_exp and retired gain_exp_regardless.
- *
- * Revision 1.58  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.57  2009/03/08 21:43:27  jps
- * Split lifeforce, composition, charsize, and damage types from chars.c
- *
- * Revision 1.56  2009/03/03 19:43:44  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.55  2008/09/02 06:52:30  jps
- * Using limits.h.
- *
- * Revision 1.54  2008/09/01 23:47:49  jps
- * Using movement.h/c for movement functions.
- *
- * Revision 1.53  2008/09/01 22:15:59  jps
- * Saving and reporting players' game-leaving reasons and locations.
- *
- * Revision 1.52  2008/08/26 04:39:21  jps
- * Changed IN_ZONE to IN_ZONE_RNUM or IN_ZONE_VNUM and fixed zone_printf.
- *
- * Revision 1.51  2008/08/26 03:42:01  jps
- * More detailed error reporting for wzoneecho.
- *
- * Revision 1.50  2008/08/17 20:23:56  jps
- * Use macro parse_direction
- *
- * Revision 1.49  2008/07/27 05:50:34  jps
- * Include players.h header file.
- *
- * Revision 1.48  2008/07/27 05:30:45  jps
- * Using remove_player_from_game function for rent trigger.
- *
- * Revision 1.47  2008/07/27 01:33:22  jps
- * Added room vnum to trigger-rented message.
- *
- * Revision 1.46  2008/07/07 05:42:18  myc
- * Added 'wrent' command.
- *
- * Revision 1.45  2008/06/19 18:53:12  myc
- * Now using real_zone() from olc.c.
- *
- * Revision 1.44  2008/05/18 05:18:06  jps
- * Renaming room_data struct's member "number" to "vnum", cos it's
- * a virtual number.
- *
- * Revision 1.43  2008/05/17 04:32:25  jps
- * Moved exits into exits.h/exits.c and changed the name to "exit".
- *
- * Revision 1.42  2008/05/14 05:10:06  jps
- * Using hurt_char for play-time harm, while alter_hit is for changing hp only.
- *
- * Revision 1.41  2008/05/11 05:48:55  jps
- * Calling alter_hit() which also takes care of position changes.
- *
- * Revision 1.40  2008/04/07 03:02:54  jps
- * Changed the POS/STANCE system so that POS reflects the position
- * of your body, while STANCE describes your condition or activity.
- *
- * Revision 1.39  2008/04/05 20:42:21  jps
- * wdamage sets an event to do damage rather than doing it itself.
- *
- * Revision 1.38  2008/04/05 19:43:46  jps
- * Set damdone to the damage done by wdamage. Don't send any messages
- * when someone receives 0 damage.
- *
- * Revision 1.37  2008/04/05 18:35:57  jps
- * Allow an optional third parameter to wdamage which specifies a
- * damage type, allowing the victim to resist.
- *
- * Revision 1.36  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.35  2008/04/02 03:24:44  myc
- * Removed unnecessary function declaration.
- *
- * Revision 1.34  2008/02/02 19:56:51  myc
- * script_driver now requires an address
- *
- * Revision 1.33  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.32  2008/01/17 19:23:07  myc
- * Modified wdoor, wat, and wteleport to accept room UIDs.
- *
- * Revision 1.31  2008/01/10 05:39:43  myc
- * alter_hit now takes a boolean specifying whether to cap any increase in
- * hitpoints by the victim's max hp.
- *
- * Revision 1.30  2007/12/19 20:49:42  myc
- * send_to_zone is now in a header file.
- *
- * Revision 1.29  2007/10/17 17:18:04  myc
- * Renamed the search_block and search_block2 functions.
- * searchblock is now case sensitive, and search_block is not.
- *
- * Revision 1.28  2007/08/30 19:42:46  jps
- * Cause *purge dg script commands to destroy all of a mobile's inventory
- * and equipment when purging mobs.
- *
- * Revision 1.27  2007/08/30 11:09:12  jps
- * Allow "\n" embedded in wdoor desc commands to insert newlines.
- *
- * Revision 1.26  2007/08/03 22:00:11  myc
- * Fixed some \r\n typoes in send_to_chars.
- *
- * Revision 1.25  2007/07/25 00:38:03  jps
- * Give send_to_zone a room to skip, and make it use virtual zone number.
- *
- * Revision 1.24  2007/07/24 23:34:00  jps
- * Add a parameter min_position to send_to_zone()
- *
- * Revision 1.23  2007/07/24 23:02:52  jps
- * Minor typo fix.
- *
- * Revision 1.22  2007/05/11 19:34:15  myc
- * Modified the quest command functions so they are thin wrappers for
- * perform_quest() in quest.c.  Error handling and messages should be
- * much better now.  Advance and rewind now accept another argument
- * specifying how many stages to advance or rewind.
- *
- * Revision 1.21  2007/04/17 23:59:16  myc
- * New trigger type: Load.  It goes off any time a mobile is loaded, whether
- * it be god command, zone command, or trigger command.
- *
- * Revision 1.20  2006/11/30 05:02:40  jps
- * Add w_run_room_trig
- *
- * Revision 1.19  2006/11/14 20:41:49  jps
- * Make trap damage regenerate normally.
- *
- * Revision 1.18  2006/11/12 02:31:01  jps
- * You become unmounted when magically moved to another room.
- *
- * Revision 1.17  2003/07/29 03:36:42  rsd
- * added (TRG) to the logging output of the log command
- * for ease of parsing.
- *
- * Revision 1.16  2003/07/24 22:22:30  jjl
- * Added the "log" command for mob, room, and object triggers.  Spits
- * whatever you want into the log.
- *
- * Revision 1.15  2002/09/19 01:07:53  jjl
- * Update to add in quest variables!
- *
- * Revision 1.14  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.13  2001/07/25 06:59:02  mtp
- * modified logging to hopefully be a bit more helpful by specifying the
- * trigger id wherever possible. This does not apply to logging of mob trigs yet
- * as mobs use the same commands as players :-(
- *
- * Revision 1.12  2001/06/19 23:46:52  mtp
- * improved quest error messages
- *
- * Revision 1.11  2000/11/22 23:15:13  mtp
- * added ability to use quest command in here
- *
- * Revision 1.10  2000/11/21 04:42:14  rsd
- * Altered the comment header and added the early rlog
- * messages that were left out prior to the addition of
- * the $log$ string.
- *
- * Revision 1.9  2000/11/03 17:28:33  jimmy
- * Added better checks for real_room to stop players/objs from
- * being placed in room NOWHERE.  This should help pinpoint any
- * weirdness.
- *
- * Revision 1.8  2000/10/07 00:45:24  mtp
- * amount of hp affected in wheal and wdamage is limited to a signed short int
- *(max hp is restrivcted)
- *
- * Revision 1.7  2000/03/27 22:16:48  mtp
- * added wheal which wasnt there before for some reason
- *
- * Revision 1.6  1999/11/20 00:28:32  rsd
- * Fixed a coders change that was checked in over the paladin
- * exp fix, thus deleting it.  The coder failed to diff in his
- * change so it fried the file.
- * It's fixed now
- *
- * Revision 1.4  1999/10/30 15:33:07  rsd
- * Jimmy coded alignement restrictions for paladins and exp
- * altered gain_exp() to reference victim alignment for check.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/01/31 02:10:44  mud
- * Alterred comment header
- * Indented file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

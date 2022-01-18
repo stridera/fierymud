@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: legacy_structs.h,v 1.2 2008/06/07 19:06:46 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: legacy_structs.h                               Part of FieryMUD *
  *  Usage: header file for legacy central structures and contstants        *
  *                                                                         *
@@ -16,8 +13,8 @@
 #ifndef __LEGACY_STRUCTS_H
 #define __LEGACY_STRUCTS_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define LEGACY_USE_TROPHY 20
 #define LEGACY_MAX_TROPHY 60
@@ -260,13 +257,3 @@ struct char_file_u {
 };
 
 #endif
-
-/***************************************************************************
- * $Log: legacy_structs.h,v $
- * Revision 1.2  2008/06/07 19:06:46  myc
- * Moved all object-related constants and structures to objects.h
- *
- * Revision 1.1  2008/06/05 02:07:43  myc
- * Initial revision
- *
- ***************************************************************************/

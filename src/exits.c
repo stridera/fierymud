@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: exits.c,v 1.5 2009/03/09 04:33:20 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: exits.c                                       Part of FieryMUD  *
  *  Usage: Functions for managing room exits                               *
  *                                                                         *
@@ -88,24 +85,3 @@ char *exit_dest_desc(struct exit *e) {
         sprintf(buf, "%d", world[e->to_room].vnum);
     return buf;
 }
-
-/***************************************************************************
- * $Log: exits.c,v $
- * Revision 1.5  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.4  2008/08/21 08:01:20  jps
- * Tweak the showing of exit descs in redit.
- *
- * Revision 1.3  2008/08/21 07:10:14  jps
- * Changed the way redit sees exit destinations. It's more informative and less
- *crashy.
- *
- * Revision 1.2  2008/05/17 22:03:01  jps
- * Moving room-related code into rooms.h and rooms.c.
- *
- * Revision 1.1  2008/05/17 04:32:16  jps
- * Initial revision
- *
- ***************************************************************************/

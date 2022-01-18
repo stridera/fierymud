@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: rules.c,v 1.3 2009/06/11 00:59:32 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: rules.c                                        Part of FieryMUD *
  *  Usage: character rules                                                 *
  *                                                                         *
@@ -33,13 +30,13 @@ DECLARE_RULE_VTABLE(level);
 DECLARE_RULE_VTABLE(namelist);
 
 DECLARE_RULE_VTABLE(and);
-DECLARE_RULE_VTABLE(not);
+DECLARE_RULE_VTABLE(not );
 DECLARE_RULE_VTABLE(or);
 
 void init_rules() {
     struct rule_vtable *vtable_list[] = {&RULE_VTABLE(and), &RULE_VTABLE(clan),
                                          /* &RULE_VTABLE(command), */
-                                         &RULE_VTABLE(level), &RULE_VTABLE(namelist), &RULE_VTABLE(not),
+                                         &RULE_VTABLE(level), &RULE_VTABLE(namelist), &RULE_VTABLE(not ),
                                          &RULE_VTABLE(or), NULL};
     size_t pos;
 
@@ -374,17 +371,4 @@ END_RULE_FUNC BEGIN_RULE_FUNC_PARSE(not, unary_rule) {
         return NULL;
 }
 
-END_RULE_FUNC PUBLISH_RULE_VTABLE_MANUAL(not, not, unary, unary, not, not, not);
-
-/***************************************************************************
- * $Log: rules.c,v $
- * Revision 1.3  2009/06/11 00:59:32  myc
- * Fix sprintfs for clan rules.
- *
- * Revision 1.2  2009/06/09 05:47:23  myc
- * Modifying clan_rule to work with the new clan interface.
- *
- * Revision 1.1  2009/05/01 05:29:40  myc
- * Initial revision
- *
- ***************************************************************************/
+END_RULE_FUNC PUBLISH_RULE_VTABLE_MANUAL(not, not, unary, unary, not, not, not );

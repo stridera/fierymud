@@ -1,10 +1,8 @@
 /***************************************************************************
- * $Id: mail.c,v 1.28 2009/03/09 04:33:20 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: mail.c                                        Part of FieryMUD  *
  *  Usage: Internal funcs and player spec-procs of mud-mail system         *
  *                                                                         *
+ *  Written by Jeremy Elson (jelson@cs.jhu.edu)                            *
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
@@ -12,12 +10,6 @@
  *  of the Johns Hopkins University                                        *
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
-
-/******* MUD MAIL SYSTEM MAIN FILE ***************************************
-
-         Written by Jeremy Elson (jelson@cs.jhu.edu)
-
-*************************************************************************/
 
 #include "mail.h"
 
@@ -33,18 +25,19 @@
 #include "sysdep.h"
 #include "utils.h"
 
-char *RICK_SALA = "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
-                  "=~=~=~=~=~=~=\r\n"
-                  "=~=~=  Rick Sala known to many as his admin character "
-                  "Pergus        =~=~=\r\n"
-                  "=~=~=  passed away on June 21, 2006.                        "
-                  "        =~=~=\r\n"
-                  "=~=~=  Rick was a valuable friend and asset to us all and "
-                  "is sorely =~=~=\r\n"
-                  "=~=~=  missed for his wit, humor, and the friend he was to "
-                  "us all.  =~=~=\r\n"
-                  "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
-                  "=~=~=~=~=~=~=\r\n";
+char *RICK_SALA =
+    "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
+    "=~=~=~=~=~=~=\r\n"
+    "=~=~=  Rick Sala known to many as his admin character "
+    "Pergus        =~=~=\r\n"
+    "=~=~=  passed away on June 21, 2006.                        "
+    "        =~=~=\r\n"
+    "=~=~=  Rick was a valuable friend and asset to us all and "
+    "is sorely =~=~=\r\n"
+    "=~=~=  missed for his wit, humor, and the friend he was to "
+    "us all.  =~=~=\r\n"
+    "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
+    "=~=~=~=~=~=~=\r\n";
 
 void postmaster_send_mail(struct char_data *ch, struct char_data *mailman, int cmd, char *arg);
 void postmaster_check_mail(struct char_data *ch, struct char_data *mailman, int cmd, char *arg);
@@ -525,9 +518,10 @@ void postmaster_send_mail(struct char_data *ch, struct char_data *mailman, int c
                 "$n tells you, 'Write your message, (/s saves /h for help)'",
                 price);
     else
-        sprintf(buf, "$n tells you, 'I refuse to take money from a deity.  This "
-                     "stamp is on me.'\r\n"
-                     "$n tells you, 'Write your message, (/s saves /h for help)'");
+        sprintf(buf,
+                "$n tells you, 'I refuse to take money from a deity.  This "
+                "stamp is on me.'\r\n"
+                "$n tells you, 'Write your message, (/s saves /h for help)'");
 
     act(buf, FALSE, mailman, 0, ch, TO_VICT);
     money_convert(ch, price);
@@ -614,103 +608,3 @@ void free_mail_index(void) {
         free_list = next_pos;
     }
 }
-
-/***************************************************************************
- * $Log: mail.c,v $
- * Revision 1.28  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.27  2009/03/03 19:43:44  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.26  2008/08/30 20:42:50  myc
- * Ending all communication with a color reset.
- *
- * Revision 1.25  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.24  2008/06/05 02:07:43  myc
- * Changed object flags to use flagvectors and removed object's
- * cost_per_day field.
- *
- * Revision 1.23  2008/04/20 18:39:39  jps
- * Fix postmaster grammer
- *
- * Revision 1.22  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.21  2008/03/22 03:22:38  myc
- * All invocations of the string editor now go through string_write()
- * instead of messing with the descriptor variables itself.  Also added
- * a toggle, LineNums, to decide whether to do /l or /n when entering
- * the string editor.
- *
- * Revision 1.20  2008/03/05 03:03:54  myc
- * Now depending on players.h for get_player_id or something.
- *
- * Revision 1.19  2008/02/16 20:31:32  myc
- * Adding function to free mail index at program termination.
- *
- * Revision 1.18  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.17  2008/01/27 01:42:03  jps
- * Fix grammar when informing player of cursed objects.
- *
- * Revision 1.16  2007/07/24 23:02:52  jps
- * Minor typo fix.
- *
- * Revision 1.15  2007/04/04 13:31:02  jps
- * Add year to log timestamps and other dates.
- *
- * Revision 1.14  2006/11/24 07:47:55  jps
- * Don't allow mailing of !RENT items
- *
- * Revision 1.13  2006/06/24 18:44:07  rsd
- * Corrected the Date of Rick's death..
- *
- * Revision 1.12  2006/06/24 17:41:22  rsd
- * added code to not send mail to players who have passed
- * away.
- *
- * Revision 1.11  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.10  2001/05/03 01:45:14  dce
- * Mail should no longer eat objects unless a player
- * aborts a mail message. Also players can no longer
- * mail a cursed item.
- *
- * Revision 1.9  2000/11/23 02:21:19  rsd
- * Altered comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.8  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.7  1999/04/30 19:12:56  dce
- * Free mail for gods
- *
- * Revision 1.6  1999/04/09 20:52:29  dce
- * Adjusted rates.
- *
- * Revision 1.5  1999/04/09 04:14:32  dce
- * Allow any type of coins.
- *
- * Revision 1.4  1999/04/09 03:19:41  dce
- * Fixed a dumb mistake.
- *
- * Revision 1.3  1999/04/08 16:56:24  dce
- * Mail is back!
- *
- * Revision 1.2  1999/01/31 16:42:27  mud
- * Indented file
- * Replaced references to hubis with Fiery
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: act.get.c,v 1.5 2010/06/05 18:34:25 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: act.get.c                                      Part of FieryMUD *
  *  Usage: the get command                                                 *
  *                                                                         *
@@ -14,6 +11,7 @@
  ***************************************************************************/
 
 #include "act.h"
+
 #include "comm.h"
 #include "composition.h"
 #include "conf.h"
@@ -278,8 +276,9 @@ static void perform_get_check_money(struct get_context *context, struct obj_data
     context->coins[VAL_MONEY_SILVER] += GET_OBJ_VAL(obj, VAL_MONEY_SILVER);
     context->coins[VAL_MONEY_COPPER] += GET_OBJ_VAL(obj, VAL_MONEY_COPPER);
     if (CASH_VALUE(context->coins) == 0)
-        strcpy(buf, "There were 0 coins.\r\n"
-                    "Must have been an illusion!");
+        strcpy(buf,
+               "There were 0 coins.\r\n"
+               "Must have been an illusion!");
     else {
         strcpy(buf, prior_value ? "There was a total of " : "There were ");
         statemoney(buf + strlen(buf), context->coins);
@@ -635,24 +634,3 @@ ACMD(do_palm) {
         }
     }
 }
-
-/***************************************************************************
- * $Log: act.get.c,v $
- * Revision 1.5  2010/06/05 18:34:25  mud
- * Let druids get items from their own corpse while shapeshifted.
- *
- * Revision 1.4  2009/07/17 01:49:06  myc
- * Fix output for 'get xxxx all' when there are no containers around.
- *
- * Revision 1.3  2009/07/17 01:19:01  myc
- * Autosplit no longer gives an error message if no one else
- * is present.
- *
- * Revision 1.2  2009/03/21 08:09:03  myc
- * get_check_money was storing coins redundantly.  Now it uses the same
- * array as autosplit.
- *
- * Revision 1.1  2009/03/19 23:16:23  myc
- * Initial revision
- *
- ***************************************************************************/

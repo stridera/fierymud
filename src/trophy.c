@@ -229,29 +229,3 @@ float exp_trophy_modifier(struct char_data *ch, struct char_data *vict) {
     else
         return 0.3;
 }
-
-/***************************************************************************
- * $Log: trophy.c,v $
- * Revision 1.7  2008/05/12 00:42:09  jps
- * Return a float for trophy amounts.
- *
- * Revision 1.6  2008/05/11 05:57:16  jps
- * Split up the kill-querying code and add get_tropy_kills, which is
- * mostly for debugging.
- *
- * Revision 1.5  2008/04/05 17:35:42  myc
- * Get rid of the syserrs about unknown tag 0 in load_player.
- *
- * Revision 1.4  2008/04/03 16:09:54  jps
- * Stop duplicating the code in free_trophy().
- *
- * Revision 1.3  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.2  2008/04/02 03:24:44  myc
- * Moved trophy modifier function here.
- *
- * Revision 1.1  2008/03/16 00:22:59  jps
- * Initial revision
- *
- **************************************************************************/

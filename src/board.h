@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: board.h,v 1.3 2009/05/01 05:29:40 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: board.h                                        Part of FieryMUD *
  *  Usage: header file for advanced bulletin boards                        *
  *                                                                         *
@@ -15,8 +12,8 @@
 #ifndef __FIERY_BOARD_H
 #define __FIERY_BOARD_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define MAX_MSG_LEN 10000
 #define BOARD_PREFIX "etc/boards"
@@ -119,16 +116,3 @@ extern void write_message(struct char_data *ch, struct board_data *board, const 
 extern bool has_board_privilege(struct char_data *ch, const struct board_data *board, int privnum);
 
 #endif /* __FIERY_BOARD_H */
-/***************************************************************************
- * $Log: board.h,v $
- * Revision 1.3  2009/05/01 05:29:40  myc
- * Updated boards to use the new rule system for the privileges.
- *
- * Revision 1.2  2009/03/09 02:22:32  myc
- * Fixed bug in saving and loading board privileges to file.  Some
- * minor cosmetic adjustments.  Added edit command.
- *
- * Revision 1.1  2009/02/21 03:30:16  myc
- * Initial revision
- *
- ***************************************************************************/

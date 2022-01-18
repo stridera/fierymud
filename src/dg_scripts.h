@@ -1,13 +1,7 @@
 /***************************************************************************
- * $Id: dg_scripts.h,v 1.34 2009/03/07 09:34:47 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: scripts.h                                     Part of FieryMUD  *
  *  Usage: header file for script structures and contstants, and           *
  *         function prototypes for scripts.c                               *
- *  $Author: jps $                                                         *
- *  $Date: 2009/03/07 09:34:47 $                                           *
- *  $Revision: 1.34 $                                                       *
  *                                                                         *
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *
@@ -20,9 +14,9 @@
 #ifndef __FIERY_DG_SCRIPTS_H
 #define __FIERY_DG_SCRIPTS_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "fight.h"
+#include "structs.h"
+#include "sysdep.h"
 
 #define MOB_TRIGGER 0
 #define OBJ_TRIGGER 1
@@ -57,8 +51,8 @@
 #define OTRIG_GLOBAL (1u << 0u)   /* unused                     */
 #define OTRIG_RANDOM (1u << 1u)   /* checked randomly           */
 #define OTRIG_COMMAND (1u << 2u)  /* character types a command  */
-#define OTRIG_ATTACK (1u << 3u)  /* Trigger for weapons on attack */
-#define OTRIG_DEFEND (1u << 4u)  /* Trigger for weapons on defense */
+#define OTRIG_ATTACK (1u << 3u)   /* Trigger for weapons on attack */
+#define OTRIG_DEFEND (1u << 4u)   /* Trigger for weapons on defense */
 #define OTRIG_TIMER (1u << 5u)    /* item's timer expires       */
 #define OTRIG_GET (1u << 6u)      /* item is picked up          */
 #define OTRIG_DROP (1u << 7u)     /* character tries to drop obj */
@@ -282,130 +276,3 @@ extern const char *wtrig_types[];
 extern int script_driver(void *go_address, trig_data *trig, int type, int mode);
 
 #endif
-
-/***************************************************************************
- * $Log: dg_scripts.h,v $
- * Revision 1.34  2009/03/07 09:34:47  jps
- * Changed name of room Entry trigger to Preentry. Added a Postentry room
- *trigger type.
- *
- * Revision 1.33  2008/09/02 03:00:59  jps
- * Changed mob speech and ask triggers to respond to all speech.
- *
- * Revision 1.32  2008/08/26 03:58:13  jps
- * Replaced real_zone calls with find_real_zone_by_room, since that's what it
- *did. Except the one for wzoneecho, since it needed to find a real zone by zone
- *number.
- *
- * Revision 1.31  2008/08/15 04:56:34  jps
- * Adding prototype for script_driver().
- *
- * Revision 1.30  2008/06/05 02:07:43  myc
- * Adding read_trigger as a public function.
- *
- * Revision 1.29  2008/04/05 20:41:20  jps
- * Adding standard header ifdef.
- *
- * Revision 1.28  2008/04/05 19:42:51  jps
- * Add variable to trigger struct to store damage done by a *damage
- * command.
- *
- * Revision 1.27  2008/03/22 19:51:56  myc
- * Rewrote the script formatter to use a stack.  It is now leet haxorz.
- *
- * Revision 1.26  2008/03/21 15:58:34  myc
- * Added a utility format scripts.
- *
- * Revision 1.25  2008/03/17 16:22:42  myc
- * Signature for free_proto_script changed.
- *
- * Revision 1.24  2008/02/24 17:31:13  myc
- * Added a TO_OLC flag to act() to allow messages to be sent to people
- * while in OLC if they have OLCComm toggled on.
- *
- * Revision 1.23  2008/02/16 20:26:04  myc
- * Adding free_trigger, free_var_list, and free_proto_script.
- *
- * Revision 1.22  2008/02/06 03:45:08  myc
- * Stat room and stat obj now use the pager.
- *
- * Revision 1.21  2008/02/04 00:22:05  myc
- * Making stat char use the pager.
- *
- * Revision 1.20  2008/02/02 04:27:55  myc
- * Adding several new trigger types: cast, leave, door, time, load,
- * and consume.
- *
- * Revision 1.19  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.18  2008/01/15 06:49:52  myc
- * When a mob had a trigger marked both ask and speech and the mob
- * was asked a question, that same trigger would be executed twice,
- * once as an ask trigger, and once as a speech trigger.  Fixed this
- * by going through the trigger list only once looking for ask or
- * speech triggers.  However, this isn't optimal--it should give
- * priority to ask triggers.
- *
- * Revision 1.17  2007/10/04 16:20:24  myc
- * Added object timer trigger.
- *
- * Revision 1.16  2007/08/31 05:36:19  jps
- * Add variable "destination" to mob Entry trigger.
- *
- * Revision 1.15  2007/08/30 19:42:46  jps
- * Cause *purge dg script commands to destroy all of a mobile's inventory
- * and equipment when purging mobs.
- *
- * Revision 1.14  2007/08/24 17:01:36  myc
- * Adding ostat and mstat commands as shorthand for vstat, rstat for stat
- * room, and mnum and onum for vnum.  Also adding rnum and znum with new
- * functionality.
- *
- * Revision 1.13  2007/04/17 23:59:16  myc
- * New trigger type: Load.  It goes off any time a mobile is loaded, whether
- * it be god command, zone command, or trigger command.
- *
- * Revision 1.12  2006/12/08 05:06:58  myc
- * Bribe triggers now give proper amounts and variables.
- *
- * Revision 1.11  2006/11/30 05:06:24  jps
- * Add remove trigger for objects
- *
- * Revision 1.10  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.9  2001/07/25 06:59:02  mtp
- * modified logging to hopefully be a bit more helpful by specifying the
- * trigger id wherever possible. This does not apply to logging of mob trigs yet
- * as mobs use the same commands as players :-(
- *
- * Revision 1.8  2000/11/28 01:16:25  mtp
- * replaced dg_event code with events.c code
- *
- * Revision 1.7  2000/11/21 04:22:16  rsd
- * Altered the comment header to look like what we have mostly
- * and touched up the white space to make things look neater.
- * Also added the missing initial revision rlog message.
- *
- * Revision 1.6  2000/11/11 12:03:42  mtp
- * made function ask_mtrigger() void cos it doesnt return anything
- *
- * Revision 1.5  2000/11/11 01:38:18  mtp
- * added ASK trigger for mobs
- *
- * Revision 1.4  2000/02/13 07:34:13  mtp
- * fixed opurge/mpurge problems by not freeing the running
- * trigger until it completes (added running flag to dg_scripts.h)
- *
- * Revision 1.3  1999/11/28 23:11:31  cso
- * removed define for GET_SHORT: moved it to utils.h
- *
- * Revision 1.2  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

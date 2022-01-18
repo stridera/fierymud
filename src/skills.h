@@ -17,8 +17,7 @@
 #include "structs.h"
 #include "sysdep.h"
 
-/* The general term for the abilities known as spells, skills, chants,
- * and songs is TALENT. */
+/* The general term for the abilities known as spells, skills, chants, and songs is TALENT. */
 #define TALENT 0
 #define SPELL 1
 #define SKILL 2
@@ -342,8 +341,7 @@
 #define SKILL_2H_SLASHING 468
 #define SKILL_MISSILE 469
 /* what's this doing here ? */
-/* We need a skill define for fire so we can have a damage message in the
-   messages file. */
+/* We need a skill define for fire so we can have a damage message in the messages file. */
 #define SPELL_ON_FIRE 470
 #define SKILL_LAY_HANDS 471
 #define SKILL_EYE_GOUGE 472
@@ -407,6 +405,11 @@
 #define TYPE_BLAST 763
 #define TYPE_PUNCH 764
 #define TYPE_STAB 765
+#define TYPE_FIRE 766
+#define TYPE_COLD 767
+#define TYPE_ACID 768
+#define TYPE_SHOCK 769
+#define TYPE_POISON 770
 
 /* new attack types can be added here - up to TYPE_SUFFERING */
 #define TYPE_SUFFERING 850
@@ -480,128 +483,3 @@ extern int skill_sort_info[TOP_SKILL + 1];
 
 #endif
 
-/***************************************************************************
- * $Log: skills.h,v $
- * Revision 1.37  2010/06/05 18:35:47  mud
- * Make pyre auto-target caster if sacrificial preference is
- * toggled on.
- *
- * Revision 1.36  2010/06/05 14:57:06  mud
- * Moving cooldowns to their own file.
- *
- * Revision 1.35  2009/08/02 20:20:27  myc
- * Adding pyre and fracture spells.
- *
- * Revision 1.34  2009/07/18 01:17:23  myc
- * Adding decay, iron maiden, spinechiller, and bone draw spells
- * for necromancer.
- *
- * Revision 1.33  2009/03/21 19:11:37  myc
- * Save the duration each cooldown started at.
- *
- * Revision 1.32  2009/03/20 16:06:04  jps
- * Removed spells of lesser/greater invocation.
- *
- * Revision 1.31  2009/03/20 15:12:04  jps
- * Added a generic 'recall' spell to be assigned to town recall
- * scrolls, so that the object-spell verifier doesn't complain.
- *
- * Revision 1.30  2009/03/20 06:15:17  myc
- * Adding a TAR_GROUND cast requirement.  Added detonation,
- * phosphoric embers, positive field, and acid burst spells.
- * Removed combust and heatwave.  Made soul tap a manual spell.
- *
- * Revision 1.29  2009/03/16 09:44:13  jps
- * Allow skills to improve normally if assigned by race
- *
- * Revision 1.28  2008/09/11 02:50:02  jps
- * Changed skills so you have a minimum position, and fighting_ok fields.
- *
- * Revision 1.27  2008/09/01 18:29:38  jps
- * consolidating cooldown code in skills.c/h
- *
- * Revision 1.26  2008/08/25 00:20:33  myc
- * Changed the way mobs memorize spells.
- *
- * Revision 1.25  2008/08/10 19:33:58  jps
- * Moved level_to_circle to skills.c. Added get_spell_assignment_circle so
- * damage spells can be properly calibrated.
- *
- * Revision 1.24  2008/08/10 01:58:49  jps
- * Added spells severance and soul reaver for illusionists.
- *
- * Revision 1.23  2008/05/19 05:48:55  jps
- * Add def for mesmerize spell.
- *
- * Revision 1.22  2008/05/18 22:53:22  jps
- * Adding hysteria spell.
- *
- * Revision 1.21  2008/05/18 17:58:07  jps
- * Adding spell of familiarity.
- *
- * Revision 1.20  2008/05/18 02:02:05  jps
- * Adding isolation spell.
- *
- * Revision 1.19  2008/05/12 00:43:30  jps
- * Define nightmare and discorporate spells.
- *
- * Revision 1.18  2008/04/19 21:10:31  myc
- * Added a 'show skill' subcommand, which required a list of
- * target flag and routine type strings.
- *
- * Revision 1.17  2008/04/14 08:35:49  jps
- * Add def for illusory wall spell.
- *
- * Revision 1.16  2008/04/14 02:17:34  jps
- * Adding def for glory spell.
- *
- * Revision 1.15  2008/04/13 18:29:51  jps
- * Add spell of confusion.
- *
- * Revision 1.14  2008/04/07 03:02:54  jps
- * Changed the POS/STANCE system so that POS reflects the position
- * of your body, while STANCE describes your condition or activity.
- *
- * Revision 1.13  2008/04/04 20:47:43  jps
- * Make a macro for checking skill targets, since some places will
- * query it with invalid skills.
- *
- * Revision 1.12  2008/03/30 15:37:36  jps
- * Fix spelling of riposte.
- *
- * Revision 1.11  2008/03/21 15:01:17  myc
- * Removed languages.
- *
- * Revision 1.10  2008/03/09 18:09:57  jps
- * Defined spell MISDIRECTION.
- *
- * Revision 1.9  2008/03/05 03:03:54  myc
- * Removing GET_MEMMED macro.
- *
- * Revision 1.8  2008/02/23 01:03:54  myc
- * Moving spell circle and spell mem macros here from utils.h
- *
- * Revision 1.7  2008/02/02 05:35:14  myc
- * Exporting the skill_sort_info array.
- *
- * Revision 1.6  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.5  2008/01/29 16:51:12  myc
- * Adding skill names to the skilldef struct.
- *
- * Revision 1.4  2008/01/27 21:18:20  myc
- * Adding berserker skill and chant defines.
- *
- * Revision 1.3  2008/01/26 14:26:31  jps
- * Moved a lot of skill-related code into skills.h and skills.c.
- *
- * Revision 1.2  2008/01/26 12:31:47  jps
- * Add improve_skills_offensively() so you won't improve skills when used
- * against illusions.
- *
- * Revision 1.1  2008/01/26 10:44:41  jps
- * Initial revision
- *
- ***************************************************************************/

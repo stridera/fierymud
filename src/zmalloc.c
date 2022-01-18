@@ -5,12 +5,6 @@
  *  Version 2. Copyright 1996, 1998, 1999, 2000 Eric Murray ericm@lne.com  *
  **************************************************************************/
 
-/*  Usage: To run tbaMUD in debug mode change the flags line in your Makefile
- *  as below, make clean, and reboot.
- *
- *  Makefile: # Any special flags you want to pass to the compiler
- *  Makefile: MYFLAGS = -Wall -DMEMORY_DEBUG */
-
 /* protect our calloc() and free() calls from recursive redefinition: */
 #define ZMALLOC_H
 

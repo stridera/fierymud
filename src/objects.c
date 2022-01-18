@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: objects.c,v 1.17 2009/03/20 20:19:51 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: objects.c                                       Part of FieryMUD *
  *  Usage: object handling routines                                        *
  *                                                                         *
@@ -1024,71 +1021,3 @@ void liquid_to_container(struct obj_data *container, int amount, int liquid_type
     weight_change_object(container, weight);
     setup_drinkcon(container, GET_OBJ_VAL(container, VAL_DRINKCON_LIQUID));
 }
-
-/***************************************************************************
- * $Log: objects.c,v $
- * Revision 1.17  2009/03/20 20:19:51  myc
- * Removing dependency upon old board system.
- *
- * Revision 1.16  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.15  2009/02/21 03:30:16  myc
- * Added new board type.  Removed L_FILE flag--mprintf now logs
- * to file by default; assert L_NOFILE to prevent that.
- *
- * Revision 1.14  2009/02/08 16:46:04  myc
- * Switched order of alias and name in liquid structure.
- *
- * Revision 1.13  2008/11/09 03:09:41  myc
- * Added some new liquids.
- *
- * Revision 1.12  2008/11/03 21:44:12  myc
- * Removed extra space in espresso description.
- *
- * Revision 1.11  2008/09/29 03:48:07  jps
- * Just ignore fountains when asked to reduce the liquid inside.
- *
- * Revision 1.10  2008/09/29 03:24:44  jps
- * Make container weight automatic. Move some liquid container functions to
- *objects.c.
- *
- * Revision 1.9  2008/09/03 17:34:08  myc
- * Moved liquid information into a def struct array.
- *
- * Revision 1.8  2008/08/30 18:20:53  myc
- * Changed some rnum checks to compare against NOTHING constant.
- * Split free_object_strings_proto up into free_obj_strings,
- * free_obj_strings_absolutely, and free_prototyped_obj_strings.
- *
- * Revision 1.7  2008/08/29 05:14:02  myc
- * Tried to make free_object_strings_proto a little safer
- * by setting all vars to NULL after freeing them.
- *
- * Revision 1.6  2008/08/29 03:02:40  myc
- * Added dg_scripts.h to objects.o's dependency.
- *
- * Revision 1.5  2008/08/26 03:58:13  jps
- * Replaced real_zone calls with find_real_zone_by_room, since that's what it
- *did. Except the one for wzoneecho, since it needed to find a real zone by zone
- *number.
- *
- * Revision 1.4  2008/08/17 06:49:59  jps
- * Removed log message from delete_object since it'll be logged by the caller.
- *
- * Revision 1.3  2008/07/22 07:25:26  myc
- * Added copy_object and free_object_strings_proto functions.
- *
- * Revision 1.2  2008/06/19 18:53:12  myc
- * Replaced the item_types and item_type_desc arrays with a typedef
- * struct array that also describes the min and max values for a
- * particular item type.  Also several functions to work with this.
- *
- * Revision 1.1  2008/06/07 19:06:46  myc
- * Initial revision
- *
- * Revision 1.1  2008/04/20 17:47:12  jps
- * Initial revision
- *
- ***************************************************************************/

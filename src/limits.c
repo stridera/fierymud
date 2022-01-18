@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: limits.c,v 1.119 2009/07/17 00:48:17 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: limits.c                                       Part of FieryMUD *
  *  Usage: limits & gain funcs for HMV, exp, hunger/thirst, idle time      *
  *                                                                         *
@@ -262,8 +259,7 @@ void gain_exp(struct char_data *ch, long gain, unsigned int mode) {
         if (!IS_SET(mode, GAIN_IGNORE_NAME_BOUNDARY)) {
             /* There's a level 10 limit for players with disapproved names */
             if (PLR_FLAGGED(ch, PLR_NAPPROVE) && GET_LEVEL(ch) >= 10) {
-                cprintf(ch, AHCYN "You can gain no more levels or experience "
-                                  "until your name is approved!\r\n" ANRM);
+                cprintf(ch, AHCYN "You can gain no more levels or experience until your name is approved!\r\n" ANRM);
                 return;
             }
         }
@@ -322,9 +318,10 @@ void gain_exp(struct char_data *ch, long gain, unsigned int mode) {
 
         if (num_levels && !IS_SET(mode, GAIN_IGNORE_NAME_BOUNDARY)) {
             if (PLR_FLAGGED(ch, PLR_NAPPROVE)) {
-                cprintf(ch, AHCYN "Your name must be approved by a god before "
-                                  "level 10!\r\nPlease contact a god as soon as "
-                                  "possible!\r\n" ANRM);
+                cprintf(ch, AHCYN
+                        "Your name must be approved by a god before "
+                        "level 10!\r\nPlease contact a god as soon as "
+                        "possible!\r\n" ANRM);
             }
         }
 
@@ -334,8 +331,7 @@ void gain_exp(struct char_data *ch, long gain, unsigned int mode) {
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
         } else if (num_levels > 1) {
             cprintf(ch, AHWHT "You gain %d levels to %d!\r\n" ANRM, num_levels, GET_LEVEL(ch));
-            all_except_printf(ch, "%s advances %d levels to level %d!\r\n", GET_NAME(ch), num_levels,
-                              GET_LEVEL(ch));
+            all_except_printf(ch, "%s advances %d levels to level %d!\r\n", GET_NAME(ch), num_levels, GET_LEVEL(ch));
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d (from %d)", GET_NAME(ch),
                     GET_LEVEL(ch), GET_LEVEL(ch) - num_levels);
         }
@@ -439,9 +435,10 @@ void check_idling(struct char_data *ch) {
 
         if (ch->char_specials.timer >= 8) {
             /* this immort has been idle for 10+ mins */
-            if (GET_AUTOINVIS(ch) > 0 && GET_INVIS_LEV(ch) < GET_AUTOINVIS(ch) ) {
+            if (GET_AUTOINVIS(ch) > 0 && GET_INVIS_LEV(ch) < GET_AUTOINVIS(ch)) {
                 /* this char is not already invis beyond the immorts invis level */
-                sprintf(buf, "You have been idle for ten minutes.  Auto-invis to level %d engaged.\r\n", GET_AUTOINVIS(ch));
+                sprintf(buf, "You have been idle for ten minutes.  Auto-invis to level %d engaged.\r\n",
+                        GET_AUTOINVIS(ch));
                 send_to_char(buf, ch);
                 perform_immort_invis(ch, GET_AUTOINVIS(ch));
             }
@@ -588,8 +585,9 @@ void decay_object(struct obj_data *obj) {
             msg = "The glowing tunnel of light closes into nothingness.";
             break;
         case OBJ_VNUM_HELLGATE:
-            msg = "The gaping hole in the ground closes, leaving a blackened piece "
-                  "of earth.";
+            msg =
+                "The gaping hole in the ground closes, leaving a blackened piece "
+                "of earth.";
             break;
         }
         break;
@@ -765,403 +763,3 @@ void stop_decomposing(struct obj_data *obj) {
     for (o = obj->contains; o; o = o->next_content)
         stop_decomposing(o);
 }
-
-/***************************************************************************
- * $Log: limits.c,v $
- * Revision 1.119  2009/07/17 00:48:17  myc
- * Implemented auto gain privilege.
- *
- * Revision 1.118  2009/06/09 21:50:21  myc
- * Clan notification when someone attains their stars after the
- * initial time.  clan_notification now adds the color codes for you!
- *
- * Revision 1.117  2009/06/09 19:33:50  myc
- * Rewrote gain_exp and retired gain_exp_regardless.
- *
- * Revision 1.116  2009/06/09 05:42:14  myc
- * Removing some code that is no longer required in gain_exp_regardless
- * due to the new clan implementation.
- *
- * Revision 1.115  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.114  2009/02/11 17:03:39  myc
- * Adding check for EDITING(d) where PLR_WRITING is checked in
- * gain_condition.
- *
- * Revision 1.113  2008/09/29 03:24:44  jps
- * Make container weight automatic. Move some liquid container functions to
- *objects.c.
- *
- * Revision 1.112  2008/09/21 21:50:56  jps
- * Stop trying to keep track of who's attacking who when there's a shapechange,
- * since do_shapechange handles that internally now.
- *
- * Revision 1.111  2008/09/21 20:40:40  jps
- * Keep a list of attackers with each character, so that at the proper times -
- * such as char_from_room - they can be stopped from battling.
- *
- * Revision 1.110  2008/09/20 22:38:56  jps
- * Keys will take an extra four hours (real time) to decompose.
- *
- * Revision 1.109  2008/09/20 06:05:06  jps
- * Add macros POSSESSED and POSSESSOR.
- *
- * Revision 1.108  2008/09/08 05:17:42  jps
- * Fix warning
- *
- * Revision 1.107  2008/09/07 20:07:59  jps
- * Changed gain_exp to use exp_next_level correctly. It will send a mudwide
- * message when you first achieve **, and a personal message whenever you
- * get them back after losing them.
- *
- * Revision 1.106  2008/09/06 19:11:27  jps
- * Change the way corpses decompose.
- *
- * Revision 1.105  2008/09/02 07:26:20  jps
- * Better looping when decomposing an object's contents.
- *
- * Revision 1.104  2008/09/02 07:17:04  jps
- * Going to DECOMP
- *
- * Revision 1.103  2008/09/02 07:03:03  jps
- * Still honor TRANSIENT flag for now
- *
- * Revision 1.102  2008/09/02 06:51:48  jps
- * Changed the way things decompose: they use the DECOMP flag.
- *
- * Revision 1.101  2008/09/01 22:15:59  jps
- * Saving and reporting players' game-leaving reasons and locations.
- *
- * Revision 1.100  2008/08/30 01:31:51  myc
- * Changed the way stats are calculated in effect_total; ability
- * stats are saved in a raw form now, and only capped when accessed.
- * Damroll and hitroll are recalculated everytime effect_total
- * is called, using cached base values.
- *
- * Revision 1.99  2008/07/27 05:27:56  jps
- * Using save_player and remove_player_from_game functions.
- *
- * Revision 1.98  2008/07/21 19:17:07  jps
- * Remove auto-AFK for immortals.
- *
- * Revision 1.97  2008/06/07 19:06:46  myc
- * Moved all object-related constants and structures to objects.h
- *
- * Revision 1.96  2008/06/05 02:07:43  myc
- * Rewrote rent saving to use ascii object files.
- *
- * Revision 1.95  2008/05/18 20:16:11  jps
- * Created fight.h and set dependents.
- *
- * Revision 1.94  2008/05/11 05:56:24  jps
- * Don't do suffering damage from point_update - bleeding out is
- * already accomplished in regen.c.
- *
- * Revision 1.93  2008/04/07 03:02:54  jps
- * Changed the POS/STANCE system so that POS reflects the position
- * of your body, while STANCE describes your condition or activity.
- *
- * Revision 1.92  2008/03/30 17:30:38  jps
- * Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
- * from pfiles.c now include pfiles.h and depend on it in the makefile.
- *
- * Revision 1.91  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.90  2008/03/20 03:26:05  myc
- * Fixed set_title again.
- *
- * Revision 1.89  2008/03/20 03:14:56  myc
- * Fix crash bug in set_title (trying to strlen possibly null pointer).
- *
- * Revision 1.88  2008/03/10 20:46:55  myc
- * Moving innate timers to the cooldown system.
- *
- * Revision 1.87  2008/03/05 03:03:54  myc
- * Title is saved differently in pfiles now, so must check for NULL
- * instead of empty string.
- *
- * Revision 1.86  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.85  2008/02/02 19:38:20  myc
- * Fixed possible buffer overwrite in set_title.
- *
- * Revision 1.84  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.83  2008/01/27 21:09:12  myc
- * Replace hit() with attack().
- *
- * Revision 1.82  2008/01/27 12:11:21  jps
- * Use regen factors in class.c.
- *
- * Revision 1.81  2008/01/26 14:26:31  jps
- * Moved a lot of skill-related code into skills.h and skills.c.
- *
- * Revision 1.80  2008/01/05 05:39:41  jps
- * Changed name of save_char() to save_player().
- *
- * Revision 1.79  2008/01/04 01:53:26  jps
- * Added races.h file and created global array "races" for much
- * race-related information.
- *
- * Revision 1.78  2008/01/03 12:44:03  jps
- * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
- * to CLASS_SORCERER.
- *
- * Revision 1.77  2007/12/25 20:37:32  jps
- * Apply the xp gain cap to NPCs as well.
- *
- * Revision 1.76  2007/12/25 17:03:32  jps
- * Minor cleanup.
- *
- * Revision 1.75  2007/12/25 06:22:19  jps
- * Hey, room 0 is ok!
- *
- * Revision 1.74  2007/12/23 19:27:26  jps
- * Use global object iterator to prevent decay events from operating on
- * already-extracted objects.
- *
- * Revision 1.73  2007/12/23 18:09:57  jps
- * Fixed bug in invalid decaying object detection.
- *
- * Revision 1.72  2007/12/20 03:04:23  jps
- * Fix bad bad-object extractor.
- *
- * Revision 1.71  2007/12/19 20:53:25  myc
- * Fixed possible crash bug in set_title.  Fixed gain_exp_regardless
- * to automatically remove a player from a clan if they are advanced
- * to clan god status.  save_player() no longer requires you to supply
- * a load/save room (which wasn't being used anyway).
- *
- * Revision 1.70  2007/12/17 18:26:27  jps
- * Try to catch some buggy objects.
- *
- * Revision 1.69  2007/11/02 02:32:46  jps
- * Typo fix when decaying a hellgate.
- *
- * Revision 1.68  2007/10/27 18:56:26  myc
- * When a mob dies of fire, poison, of suffering, if they were fighting
- * someone, their opponent gets the exp for the kill.
- *
- * Revision 1.67  2007/10/17 17:22:57  myc
- * If you die by fire while fighting, your opponent gets the kill.
- *
- * Revision 1.66  2007/10/04 16:20:24  myc
- * Transient item flag now makes things decay when they are on the ground.
- * Cleaned up point_update a bunch.  Took out update_char_objects, and
- * moved all the object decay stuff to functions.
- *
- * Revision 1.65  2007/10/02 02:52:27  myc
- * Fixed idle timeout for shapechanged druids.  (It checks the shapechanged
- * mob instead of the idle druid...sort of.)
- *
- * Revision 1.64  2007/09/21 18:08:04  jps
- * Stop the continuing nag messages about hunger and thirst.  Regeneration
- * won't be affected by hunger an thirst.
- *
- * Revision 1.63  2007/09/03 21:18:38  jps
- * Standardize magic wall expiration.
- *
- * Revision 1.62  2007/08/26 01:55:41  myc
- * Fire now does real damage.  All fire spells have a chance to catch the
- * victim on fire.  Mobs attempt to douse themselves.
- *
- * Revision 1.61  2007/08/04 01:15:32  jps
- * Prevent xp gain/loss in arena rooms.
- *
- * Revision 1.60  2007/07/31 23:44:36  jps
- * New macros IS_HUNGRY, IS_THIRSTY, IS_DRUNK.
- *
- * Revision 1.59  2007/07/25 01:36:18  jps
- * Clean up check_idling().
- *
- * Revision 1.58  2007/05/28 06:25:26  jps
- * Added coloring to light burnout messages.
- *
- * Revision 1.57  2007/04/11 07:50:03  jps
- * Improve light rundown feedback.
- *
- * Revision 1.56  2007/03/27 04:27:05  myc
- * Changed spellings for innate timer macros.
- *
- * Revision 1.55  2006/12/28 23:46:29  myc
- * Fixed typo in light failing message.
- *
- * Revision 1.54  2006/12/05 20:50:57  myc
- * Bug causing too many messages for failing lights on heartbeats.
- *
- * Revision 1.53  2006/12/05 18:37:46  myc
- * More warning before light failure.
- *
- * Revision 1.52  2006/11/21 03:45:52  jps
- * Running down of lights is handled here.  Lights on the ground
- * run down too.
- *
- * Revision 1.51  2006/11/16 16:59:30  jps
- * Add warning messages "You're a little hungry/thirsty" when
- * you reach 5 in those values.
- *
- * Revision 1.50  2006/11/13 04:15:10  jps
- * Fix occasional crash caused by checking mobs for hunger/thirst
- *
- * Revision 1.49  2006/11/11 10:11:04  jps
- * The first message received when you feel hungry or thirsty is the
- * same, but subsequent ones are a little more alerting to the fact
- * that being hungry and/or thirsty isn't a good state to be in.
- *
- * Revision 1.48  2006/11/08 21:28:21  jps
- * Once again, being hungry or thirsty cuts regeneration to 25% of normal.
- *
- * Revision 1.47  2006/11/08 07:58:23  jps
- * Typo fix "raise a level" -> "gain a level"
- *
- * Revision 1.46  2006/05/30 00:49:22  rls
- * Modified poison damage to base off level of poisoned player... I know, crazy!
- *
- * Revision 1.45  2004/11/19 20:43:16  rsd
- * back-rev'd to version 1.43
- *
- * Revision 1.43  2004/11/01 05:30:33  jjl
- * LVL_IMMORT now idles out, LVL_GOD+ do not.
- *
- * Revision 1.42  2003/07/14 05:46:14  rsd
- * altered the header to update copyright date and
- * to test is new load will allow RCS to function
- *
- * Revision 1.41  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.40  2002/05/13 23:35:23  dce
- * Fixed a bug where idling out when shapechanged cause you leave
- * the mob behind.
- *
- * Revision 1.39  2001/10/12 17:53:35  rjd
- * New immortal+ idle scheme implemented: 5 min idle activates AFK, 10 min idle
- *activates invis 100.
- *
- * Revision 1.38  2001/10/11 18:33:54  rjd
- * Took care of nit-pick warning. :P
- *
- * Revision 1.37  2001/10/10 23:30:22  rjd
- * Immortals+ who are idle for five or more tics have an auto-toggle-on for the
- *AFK toggle.
- *
- * Revision 1.36  2001/04/08 13:51:25  dce
- * TEMPORARY fix to shapechanged players voiding out.
- *
- * Revision 1.35  2001/03/31 00:19:42  dce
- * Think I fixed a crash bug with move gain.
- *
- * Revision 1.33  2001/02/24 04:04:15  dce
- * Shapechanged players gain experience
- *
- * Revision 1.32  2000/11/22 20:28:32  rsd
- * added back rlog messages from prior to the addition
- * of the $log$ string.
- *
- * Revision 1.31  2000/10/15 04:59:02  cmc
- * somehow forgot the "you are ready" message.
- * I wonder what color it'll end up being?
- * picked it randomly from an important looking message.
- *
- * Revision 1.30  2000/10/15 04:37:59  cmc
- * fixed level gain code so that ** could be achieved
- *
- * Revision 1.29  2000/10/13 17:52:56  cmc
- * optional "level gain" code implemented
- *
- * Revision 1.28  2000/09/13 22:21:27  rsd
- * made the idle timer work on 99 and below instead of
- * 100 and below.
- *
- * Revision 1.27  2000/05/01 01:31:22  rsd
- * removed all the gain_exp() changes
- * because it didn't even work.
- *
- * Revision 1.19  2000/04/22 22:37:47  rsd
- * Fixed the comment header, also fixed typo in You loose a level!
- *
- * Revision 1.18  2000/03/20 04:34:40  rsd
- * Commented out all references to autowiz.
- *
- * Revision 1.17  1999/12/10 22:13:45  jimmy
- * Exp tweaks.  Made Exp loss for dying a hardcoded 25% of what was needed for
- *the next level.  Fixed problems with grouping and exp.  Removed some redundant
- *and unnecessary exp code.
- *
- * Revision 1.16  1999/11/28 23:32:08  cso
- * point_update: modified to use IS_CORPSE macro
- *
- * Revision 1.15  1999/10/30 15:37:24  rsd
- * Jimmy coded alignemt restrictions for Paladins and exp.
- * Added a victim check in gain_exp() to check victims alignment.
- * Also coded in the ranges for alignment and the exp modifiers
- * for the different victim alignments.
- *
- * Revision 1.14  1999/09/08 07:06:03  jimmy
- * More insure++ runtime fixes.  Some small, but hardcore fixes mostly to do
- * with blood and killing
- * --gurlaek
- *
- * Revision 1.13  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.12  1999/08/14 02:43:10  dce
- * ** is one level up from 99
- *
- * Revision 1.11  1999/08/12 17:54:46  dce
- * Fixed experience so that there are no overflows of integers that are placed
- *into longs. Main problem was max_exp_gain and max_exp_loss. Both were
- *overflowing due to poor Hubis coding.
- *
- * Revision 1.10  1999/06/10 16:56:28  mud
- * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and
- * libraries.  Many many curly braces had to be added to "if" statements to
- * clarify their behavior to the compiler.  The name approval code was also
- * debugged, and tested to be stable.  The xnames list was converted from an
- * array to a linked list to allow for on the fly adding of names to the
- * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
- *
- * Revision 1.9  1999/05/04 17:19:33  dce
- * Name accept system...version one...original code by Fingh, fixed up to work
- * by Zantir.
- *
- * Revision 1.8  1999/05/01 18:45:19  dce
- * Players camp/rent after 8 min of idle time
- *
- * Revision 1.7  1999/04/08 03:37:33  dce
- * Fixed a nasty crash bug
- *
- * Revision 1.6  1999/03/31 20:17:22  jen
- * Changed move & hp regen code to increase event rates
- *
- * Revision 1.5  1999/03/17 22:45:34  jimmy
- * added check for NPC's to gain_condition so that
- * it would immediatly return for a mob.
- * fingon
- *
- * Revision 1.4  1999/03/14 14:28:11  jimmy
- * Movement now has bite!  removed extra "flying" from
- * movement_loss in constants.c to fix the mv bug.  reduced the
- * movement gain by 5 for all ages in limits.c.  Removed the +5
- * and +6 static movement gain so that it now actually updates
- * based on the function in regen.c.  Gosh i'm a bastard.
- * Fingon
- *
- * Revision 1.3  1999/02/04 00:02:59  jimmy
- * max/min exp loss/gain set to 2 notches.
- *
- * Revision 1.2  1999/01/31 16:11:37  mud
- * Indented file
- * moved the last 3 }'s to lines by themsleves and indented
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

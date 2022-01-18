@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: queue.c,v 1.6 2008/02/16 20:31:32 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: queue.c                                       Part of FieryMUD  *
  *  Usage: generic queue functions for building and using a priority queue *
  *     By: Eric Green (ejg3@cornell.edu)                                   *
@@ -9,10 +6,6 @@
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- ***************************************************************************/
-
-/***************************************************************************
- *  Changes: 3/6/98 ejg:  Moved defines and structs from queue.h.          *
  ***************************************************************************/
 
 #include "queue.h"
@@ -171,28 +164,3 @@ void queue_free(struct queue *q) {
 
     free(q);
 }
-
-/***************************************************************************
- * $Log: queue.c,v $
- * Revision 1.6  2008/02/16 20:31:32  myc
- * Adding a little hack to queue_free to get rid of an event
- * memory leak at program termination.
- *
- * Revision 1.5  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.4  2000/11/24 21:17:12  rsd
- * Altered comment header and added back rlog messgaes from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/02/01 03:44:59  mud
- * dos2unix
- * Indented slightly
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

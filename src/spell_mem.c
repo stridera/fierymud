@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: spell_mem.c,v 1.75 2011/03/16 13:39:58 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: spell_mem.c                                    Part of FieryMUD *
  *  Usage: This file contains all of the code for spell_memorization.      *
  *                                                                         *
@@ -216,15 +213,17 @@ EVENTFUNC(memming_event) {
     int i;
 
     if (FIGHTING(ch)) {
-        cprintf(ch, "Your studies are rudely interrupted!\r\n"
-                    "You abort your studies.\r\n");
+        cprintf(ch,
+                "Your studies are rudely interrupted!\r\n"
+                "You abort your studies.\r\n");
         rem_memming(ch);
         return EVENT_FINISHED;
     }
 
     if (IS_DRUNK(ch)) {
-        cprintf(ch, "You cannot study while intoxicated.\r\n"
-                    "You abort your studies.\r\n");
+        cprintf(ch,
+                "You cannot study while intoxicated.\r\n"
+                "You abort your studies.\r\n");
         rem_memming(ch);
         return EVENT_FINISHED;
     }
@@ -943,7 +942,10 @@ void show_available_slots(struct char_data *ch, struct char_data *tch) {
         avail = spells_of_circle[(int)GET_LEVEL(ch)][circle] - GET_SPELL_MEM(ch).num_circle[circle];
         if (avail > 0) {
             str_catf(buf, " (%d)%d%s", avail, circle,
-                     circle == 1 ? "st" : circle == 2 ? "nd" : circle == 3 ? "rd" : "th");
+                     circle == 1   ? "st"
+                     : circle == 2 ? "nd"
+                     : circle == 3 ? "rd"
+                                   : "th");
             found += avail;
         }
     }
@@ -1361,8 +1363,7 @@ ACMD(do_scribe) {
     sourcebook = find_spellbook_with_spell(ch, spellnum);
     teacher = find_teacher_for_spell(ch, spellnum);
     if (!sourcebook && !teacher) {
-        send_to_char("There is nobody here to teach that spell, and nothing to copy it from.\r\n",
-                     ch);
+        send_to_char("There is nobody here to teach that spell, and nothing to copy it from.\r\n", ch);
         return;
     }
 
@@ -1621,294 +1622,3 @@ int get_spell_pages(struct char_data *ch, int spell) {
     else
         return (int)pages + 1;
 }
-
-/***************************************************************************
- * $Log: spell_mem.c,v $
- * Revision 1.75  2011/03/16 13:39:58  myc
- * Fix all warnings for "the address of X will always evaluate to 'true'",
- * where X is a variable.
- *
- * Revision 1.74  2009/06/14 18:11:10  myc
- * Gave the memorize/pray commands a makeover so everything gets
- * shown on one page.
- *
- * Revision 1.73  2009/03/09 03:45:17  jps
- * Extract some spell-mem related stuff from structs.h and put it in spell_mem.h
- *
- * Revision 1.72  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.71  2009/01/17 00:28:02  myc
- * Fix use of uninitialized variable.
- *
- * Revision 1.70  2008/08/25 00:20:33  myc
- * Changed the way mobs memorize spells.
- *
- * Revision 1.69  2008/07/27 05:13:43  jps
- * Changed name of save_player to save_player_char, since it only saves the
- * character, not other stuff like objects and quests.
- *
- * Revision 1.68  2008/06/07 19:06:46  myc
- * Moved object-related constants and routines to objects.h.
- *
- * Revision 1.67  2008/05/12 03:12:43  jps
- * Don't let people add spells to their to-scribe list multiple times.
- *
- * Revision 1.66  2008/05/11 05:42:14  jps
- * Using regen.h.
- *
- * Revision 1.65  2008/05/09 22:05:33  jps
- * Allow quotes or not when specifying a spell to memorize, pray,
- * forget, and scribe.
- *
- * Revision 1.64  2008/04/13 22:26:41  jps
- * Don't allow scribing while confused.
- *
- * Revision 1.63  2008/04/07 03:02:54  jps
- * Changed the POS/STANCE system so that POS reflects the position
- * of your body, while STANCE describes your condition or activity.
- *
- * Revision 1.62  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.61  2008/03/16 07:01:50  jps
- * Compensate for missing or corrupted time value in the saved spell mem list.
- *
- * Revision 1.60  2008/03/10 18:35:17  myc
- * Bug in init_mem_list was causing the last spell in a spell circle to
- * be forgotten.
- *
- * Revision 1.59  2008/03/05 03:03:54  myc
- * Changed the spell memory structures for the new ascii player files.
- *
- * Revision 1.58  2008/02/23 01:03:54  myc
- * Fixing some memory leaks in spell memorization.
- *
- * Revision 1.57  2008/02/16 20:31:32  myc
- * Adding functions to free memory and scribing lists on a player.
- *
- * Revision 1.56  2008/02/09 21:07:50  myc
- * Must provide a boolean to event_create saying whether to
- * free the event obj when done or not.  Now using event flags
- * for memming and scribing instead of plr flags.  Also directly
- * passing in the character instead of wrapping it in an event obj.
- *
- * Revision 1.55  2008/02/09 18:29:11  myc
- * The event code now takes care of freeing event objects.
- *
- * Revision 1.54  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.53  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.52  2008/01/29 16:51:12  myc
- * Adding skill names to the skilldef struct.
- *
- * Revision 1.51  2008/01/27 21:14:59  myc
- * Change meditate messages for berserkers.
- *
- * Revision 1.50  2008/01/26 14:26:31  jps
- * Moved a lot of skill-related code into skills.h and skills.c.
- *
- * Revision 1.49  2008/01/26 12:31:19  jps
- * Use skills.h to import improve_skill().
- *
- * Revision 1.48  2008/01/09 04:15:27  jps
- * Make memming and scribing into events.
- *
- * Revision 1.47  2008/01/05 05:38:16  jps
- * Changed name of save_char() to save_player().
- *
- * Revision 1.46  2008/01/03 12:44:03  jps
- * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
- * to CLASS_SORCERER.
- *
- * Revision 1.45  2008/01/01 04:33:08  jps
- * Don't allow scribing of spells you don't know (including quest spells).
- *
- * Revision 1.44  2007/12/28 23:34:59  jps
- * If you lose the source of a spell you're scribing (teacher or book),
- * you will stop scribing that spell. You must be able to see the source.
- * You cannot scribe in darkness. The update_spell_scribe() loop will
- * correctly process every scribing person, even if some of them abort
- * scribing due to difficulties. Cut back on the "you finished a page"
- * spam. Changed a lot of the feedback for scribing events.
- *
- * Revision 1.43  2007/12/19 20:56:05  myc
- * save_player() no longer requires you to supply a save room (which
- * wasn't being used anyway).
- *
- * Revision 1.42  2007/10/20 19:01:18  myc
- * Meditate shouldn't be usable by NPC's because it sets the !BASH bit on them.
- *
- * Revision 1.41  2007/10/13 20:15:09  myc
- * Added functions to find spell/skill/chant nums to spells.h
- *
- * Revision 1.40  2007/09/21 18:07:32  jps
- * Stop hunger and thirst from interfering with scribing and memming.
- *
- * Revision 1.39  2007/09/02 22:31:57  jps
- * Minor typo fix.
- *
- * Revision 1.38  2007/08/07 01:30:45  jps
- * Use find_spell_num() so that skills aren't considered when the
- * input expected is a spell name.
- *
- * Revision 1.37  2007/07/31 23:44:36  jps
- * New macros IS_HUNGRY, IS_THIRSTY, IS_DRUNK.
- *
- * Revision 1.36  2007/07/31 16:54:05  jps
- * Cut memorization times in half.
- * Fix bug where you could finish memorization but not be told about it.
- *
- * Revision 1.35  2007/05/11 20:12:33  myc
- * find_spellbook_with_spell was trying to operate on a null pointer.
- *
- * Revision 1.34  2007/04/15 08:30:49  jps
- * Make scribing much, much faster. Also fix various idiosyncrasies related
- * to scribing and make it more user-friendly.
- *
- * Revision 1.33  2007/04/15 06:49:19  jps
- * Checking whether there's room in a book to scribe another spell now
- * uses the actual number it would take to scribe, based on scribe skill.
- *
- * Revision 1.32  2007/04/15 05:15:07  jps
- * "Scribe" alone just gets you an error msg because you can see the
- * spells by looking at the book now.
- *
- * Revision 1.31  2007/04/15 05:11:23  jps
- * Big code cleanup. Can see spells in a book just by looking at it.
- * Pyros can only learn their pyro spells from pyros, and the same goes
- * for cryos (we have those guildmasters now).
- *
- * Revision 1.30  2006/11/18 06:57:24  jps
- * Minor typos
- *
- * Revision 1.29  2006/11/08 09:16:04  jps
- * Fixed some loose-lose typos.
- *
- * Revision 1.28  2006/11/07 09:32:46  jps
- * Prevent memorizing/praying/scribing skills.
- *
- * Revision 1.27  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.26  2000/11/25 02:33:15  rsd
- * Altered comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.25  2000/04/22 22:40:15  rsd
- * fixed spelling of deity in player output, retabbed and braced
- * sections of code. Warrior types can no longer meditate.
- *
- * Revision 1.24  1999/11/28 23:56:19  cso
- * noted a memory leak. isn't fixed yet, but i marked it for later fixing
- *
- * Revision 1.23  1999/10/04 21:27:28  rsd
- * Removed the include for mudmath.h because it's obsolete now.
- *
- * Revision 1.22  1999/09/10 01:40:10  mtp
- * can mem from help spellbook too now
- *
- * Revision 1.21  1999/09/10 00:45:28  mtp
- * IS_MONK doesnt exists..used GET_CLASS=CL=CLASS_MONK
- *
- * Revision 1.20  1999/09/10 00:31:41  mtp
- * stop warriror/thief from meditiaating
- * it didnt do anything for them anyway bt *shrug*
- *
- * Revision 1.19  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.18  1999/07/20 19:45:51  jimmy
- * This is the spanky New Spell recognition code.
- * This code allows mobs/players that have the KNOW_SPELL skill
- * to make a skill check to guess the spell.  A good roll will show both
- * the spell and the target.  A bad roll will show the spell garbled and
- * then an INT check for the target.  If a really bad roll is made, the spell
- * will be replaced by an incorrect one.  the heart of this system is
- * start_chant(), end_chant, and bad_guess().
- * --gurlaek 7/20/1999
- *
- * Revision 1.17  1999/04/24 06:46:52  jimmy
- * changed to work with new pedantic flag --gurlaek
- *
- * Revision 1.16  1999/04/16 05:49:17  jimmy
- * initialized ch->num_memmed in assign_mem_list() to fix the
- * problem with not being able to tell when you were finished
- * memming after you leveled without renting and coming back or
- * forgetting all first.  Gurlaek.
- *
- * Revision 1.15  1999/04/07 18:14:32  jen
- * Added some messages about meditating... perhaps fixed the improve for
- *meditating
- *
- * Revision 1.14  1999/04/07 16:57:41  jen
- * Added a msg to chars for deep trances
- *
- * Revision 1.13  1999/04/07 15:38:11  jen
- * Changed spell mem & prayer times to Scott's new system... JEN II
- *
- * Revision 1.12  1999/03/31 21:32:15  dce
- * Fixed a huge crash bug. Ch->spell_list wasn't check to see if it
- * was initialized upon adding a spell.
- *
- * Revision 1.11  1999/03/24 23:43:16  jimmy
- * Working on quest spells.  Still in progress.  HOwever, skills[] array now has
- *a flag quest.  If it's true then it's considerd a quest spell.  Also, allowed
- *pyro/cryo's to learn from any sorcerer type teacher fingon
- *
- * Revision 1.10  1999/03/03 20:11:02  jimmy
- * Many enhancements to scribe and spellbooks.  Lots of checks added.  Scribe is
- *now a skill. Spellbooks now have to be held to scribe as well as a quill in
- *the other hand.
- *
- * -fingon
- *
- * Revision 1.9  1999/03/01 05:31:34  jimmy
- * Rewrote spellbooks.  Moved the spells from fingh's PSE to a standard linked
- * list.  Added Spellbook pages.  Rewrote Scribe to be a time based event based
- * on the spell mem code.  Very basic at this point.  All spells are 5 pages
- *long, and take 20 seconds to scribe each page.  This will be more dynamic when
- *the SCRIBE skill is introduced.  --Fingon.
- *
- * Revision 1.8  1999/02/16 08:53:46  jimmy
- * Debugged and re-enabled spell books.  Added function to list all spells
- * scribed in a book.  Added checks so teachers only teach spells appropriate
- * to thier level.  Also, added checks so that players can't see spells above
- * thier level in spellbooks.
- * Fingon
- *
- * Revision 1.7  1999/02/12 15:33:17  jimmy
- * Brand new spell table, thanks to Zzur
- * Glad I didnt' have to do it...
- * fingon
- *
- * Revision 1.6  1999/02/11 22:17:40  jimmy
- * Moved spell circles to every 8 levels.  Filled in the
- * spells array to extend from level 70 to 105.
- * fingon
- *
- * Revision 1.5  1999/02/11 19:21:33  jimmy
- * Fixed spell mem bug.  High level casters would mem all of their
- * low level spells instantly when they got to them in the mem
- * list.  All mem times are now cumulative.
- * fingon
- *
- * Revision 1.4  1999/02/03 20:54:47  jimmy
- * If this doesn't fix spellcaster/leveling problems im gonna scream
- *
- * Revision 1.3  1999/02/03 18:11:43  jimmy
- * Fixed yet more bugs with spellcasters and leveling
- * Fhope this does it.
- *
- * Revision 1.2  1999/02/02 19:15:20  mud
- * Indented entire file.
- *
- * Revision 1.1  1999/01/29 01:23:32  mud
- * Initial revision
- *
- ***************************************************************************/

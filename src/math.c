@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: math.c,v 1.3 2009/03/19 23:16:23 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: math.c                                         Part of FieryMUD *
  *  Usage: various mathematical functions                                  *
  *                                                                         *
@@ -250,17 +247,3 @@ double natural_logarithm(double value) { return log(value); }
 double logarithm(double base, double value) { return log(value) / log(base); }
 
 double power(double base, double exponent) { return pow(base, exponent); }
-
-/***************************************************************************
- * $Log: math.c,v $
- * Revision 1.3  2009/03/19 23:16:23  myc
- * Added a new random number generator based on "game rand".
- * It's fast and easy and has better randomness than rand().
- *
- * Revision 1.2  2009/03/09 04:50:38  myc
- * Make box-muller function cache the second generated value.
- *
- * Revision 1.1  2008/02/09 03:06:17  myc
- * Initial revision
- *
- ***************************************************************************/

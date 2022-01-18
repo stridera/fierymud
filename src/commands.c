@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: commands.c,v 1.1 2009/07/16 19:14:56 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: commands.c                                     Part of FieryMUD *
  *  Usage: helpers and utilities for player commands and command groups    *
  *                                                                         *
@@ -241,10 +238,11 @@ void gedit_parse(struct descriptor_data *d, char *arg) {
         case 'q':
             for (i = 0; i < num_cmd_groups; ++i)
                 if (i != OLC_NUM(d) && !strcmp(cmd_groups[i].alias, OLC_GROUP(d)->alias)) {
-                    write_to_output("This command group has the same alias as another "
-                                    "existing group.\r\n"
-                                    "It cannot be saved until the alias is changed.\r\n",
-                                    d);
+                    write_to_output(
+                        "This command group has the same alias as another "
+                        "existing group.\r\n"
+                        "It cannot be saved until the alias is changed.\r\n",
+                        d);
                     return;
                 }
             if (OLC_VAL(d)) {
@@ -259,16 +257,18 @@ void gedit_parse(struct descriptor_data *d, char *arg) {
     case GEDIT_ALIAS:
         skip_spaces(&arg);
         if (!*arg) {
-            write_to_output("Group alias must consist of at least one letter or number.\r\n"
-                            "Try again: ",
-                            d);
+            write_to_output(
+                "Group alias must consist of at least one letter or number.\r\n"
+                "Try again: ",
+                d);
             return;
         }
         for (i = 0; arg[i]; ++i)
             if (!isalpha(arg[i]) && !isdigit(arg[i])) {
-                write_to_output("Group alias may only consist of letters and numbers.\r\n"
-                                "Try again: ",
-                                d);
+                write_to_output(
+                    "Group alias may only consist of letters and numbers.\r\n"
+                    "Try again: ",
+                    d);
                 return;
             }
         if (OLC_GROUP(d)->alias)
@@ -359,9 +359,10 @@ void gedit_parse(struct descriptor_data *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            write_to_output("Invalid choice!\r\n"
-                            "Do you wish to save the command group?\r\n",
-                            d);
+            write_to_output(
+                "Invalid choice!\r\n"
+                "Do you wish to save the command group?\r\n",
+                d);
             break;
         }
         return;
@@ -608,9 +609,10 @@ void do_show_command_groups(struct char_data *ch, char *argument) {
         str_cat(buf, found ? "@0\r\n" : "NONE@0\r\n");
         send_to_char(buf, ch);
     } else if (cmd_groups) {
-        send_to_char("Alias         MinLvl  Name\r\n"
-                     "------------  ------  ---------------------------------\r\n",
-                     ch);
+        send_to_char(
+            "Alias         MinLvl  Name\r\n"
+            "------------  ------  ---------------------------------\r\n",
+            ch);
         for (group = cmd_groups; group < top_of_cmd_groups; ++group)
             cprintf(ch, "%-16.16s %3d  %s\r\n", group->alias, group->minimum_level, group->name);
     } else
@@ -659,10 +661,3 @@ void do_show_command(struct char_data *ch, char *argument) {
 
     send_to_char(buf, ch);
 }
-
-/***************************************************************************
- * $Log: commands.c,v $
- * Revision 1.1  2009/07/16 19:14:56  myc
- * Initial revision
- *
- ***************************************************************************/

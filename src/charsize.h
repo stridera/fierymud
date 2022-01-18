@@ -13,8 +13,8 @@
 #ifndef __FIERY_CHARSIZE_H
 #define __FIERY_CHARSIZE_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define SIZE_UNDEFINED -1
 #define SIZE_TINY 0
@@ -53,10 +53,3 @@ extern void adjust_size(struct char_data *ch, int delta);
 extern void show_sizes(struct char_data *ch);
 
 #endif /*__FIERY_CHARSIZE_H */
-
-/***************************************************************************
- * $Log: charsize.h,v $
- * Revision 1.1  2009/03/08 21:42:55  jps
- * Initial revision
- *
- ***************************************************************************/

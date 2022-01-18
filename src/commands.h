@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: commands.h,v 1.1 2009/07/16 19:14:56 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: commands.h                                     Part of FieryMUD *
  *  Usage: Header for utilities for player commands and command groups     *
  *                                                                         *
@@ -16,9 +13,9 @@
 #ifndef __FIERY_COMMANDS_H
 #define __FIERY_COMMANDS_H
 
-#include "sysdep.h"
-#include "structs.h"
 #include "interpreter.h"
+#include "structs.h"
+#include "sysdep.h"
 
 struct command_group {
     char *alias;
@@ -57,10 +54,3 @@ extern void do_show_command_groups(struct char_data *ch, char *argument);
 extern void do_show_command(struct char_data *ch, char *argument);
 
 #endif
-
-/***************************************************************************
- * $Log: commands.h,v $
- * Revision 1.1  2009/07/16 19:14:56  myc
- * Initial revision
- *
- ***************************************************************************/

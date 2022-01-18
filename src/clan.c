@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: clan.c,v 1.44 2009/07/16 04:17:47 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: clan.c                                         Part of FieryMUD *
  *  Usage: Front-end for the clan system                                   *
  *                                                                         *
@@ -49,7 +46,8 @@ CLANCMD(clan_list) {
     pprintf(ch, AUND " Num   Clan           Members/Power  App Fee/Lvl\r\n" ANRM);
     for (iter = clans_start(); iter != clans_end(); ++iter) {
         pprintf(ch,
-                "[%3d]  " ELLIPSIS_FMT " "
+                "[%3d]  " ELLIPSIS_FMT
+                " "
                 "%3u/%-5u   " AHCYN "%5up" ANRM "/%-3u\n",
                 (*iter)->number, ELLIPSIS_STR((*iter)->abbreviation, 18), (*iter)->member_count, (*iter)->power,
                 (*iter)->app_fee, (*iter)->app_level);
@@ -654,20 +652,28 @@ static void show_clan_info(struct char_data *ch, const struct clan *clan) {
     bool show_all =
         ((member && member->clan == clan && OUTRANKS(member->rank, RANK_APPLICANT)) || IS_CLAN_SUPERADMIN(ch));
 
-    strcpy(buf, "----------------------------------------------------------------"
-                "------\r\n");
+    strcpy(buf,
+           "----------------------------------------------------------------"
+           "------\r\n");
     sprintf(buf1, "[ Clan %u: %s ]", clan->number, clan->name);
     memcpy(buf + 29 - strlen(clan->name) / 2, buf1, strlen(buf1));
     pprintf(ch, "%s", buf);
 
     pprintf(ch,
-            "Nickname: " AFYEL "%s" ANRM "  "
-            "Ranks: " AFYEL "%u" ANRM "  "
-            "Members: " AFYEL "%u" ANRM "  "
-            "Power: " AFYEL "%u" ANRM "\r\n"
-            "Applicants: " AFYEL "%u" ANRM "  "
-            "App Fee: " AFCYN "%up" ANRM "  "
-            "App Level: " AFYEL "%u" ANRM "  "
+            "Nickname: " AFYEL "%s" ANRM
+            "  "
+            "Ranks: " AFYEL "%u" ANRM
+            "  "
+            "Members: " AFYEL "%u" ANRM
+            "  "
+            "Power: " AFYEL "%u" ANRM
+            "\r\n"
+            "Applicants: " AFYEL "%u" ANRM
+            "  "
+            "App Fee: " AFCYN "%up" ANRM
+            "  "
+            "App Level: " AFYEL "%u" ANRM
+            "  "
             "Dues: " AFCYN "%up" ANRM "\r\n",
             clan->abbreviation, clan->rank_count, clan->member_count, clan->power, clan->applicant_count, clan->app_fee,
             clan->app_level, clan->dues);
@@ -1282,173 +1288,3 @@ ACMD(do_ctell) {
     else
         cprintf(ch, "You don't have access to clan chat.\r\n");
 }
-
-/***************************************************************************
- * $Log: clan.c,v $
- * Revision 1.44  2009/07/16 04:17:47  myc
- * Fixed two possible null pointer errors that were causing crashes.
- *
- * Revision 1.43  2009/06/20 23:55:13  myc
- * Clean up makedrunk and rename it drunken_speech.
- *
- * Revision 1.42  2009/06/11 02:13:41  myc
- * Fix array index bug in clan demote/promote.
- *
- * Revision 1.41  2009/06/11 01:57:23  myc
- * Fix clan tell again.
- *
- * Revision 1.40  2009/06/11 01:09:58  myc
- * Allow ctell for alts.
- *
- * Revision 1.39  2009/06/09 21:50:21  myc
- * clan_notification now adds the color codes for you and surrounds
- * the message in square brackets.  Split 'clan info' back into
- * separate 'clan info' and 'clan status' commands.  Put in column
- * headers in clan who.
- *
- * Revision 1.38  2009/06/09 05:34:09  myc
- * Completely rewrote all clan-related code.  This file now only
- * contains 'front-end' code--i.e., all the clan subcommands.
- * Clan implementation code is in clansys.c.
- *
- * Revision 1.37  2009/03/09 20:36:00  myc
- * Renamed all *PLAT macros to *PLATINUM.
- *
- * Revision 1.36  2009/03/09 05:41:31  jps
- * Moved money stuff into money.h, money.c
- *
- * Revision 1.35  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.34  2009/02/11 17:03:39  myc
- * Update clan_tell to check EDITING when it checks WRITING.
- *
- * Revision 1.33  2008/09/02 06:52:30  jps
- * Using limits.h.
- *
- * Revision 1.32  2008/08/17 06:53:06  jps
- * Removing function prototype for speech_ok since it's now in comm.h.
- *
- * Revision 1.31  2008/08/15 03:59:08  jps
- * Added pprintf for paging, and changed page_string to take a character.
- *
- * Revision 1.30  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.29  2008/07/27 05:12:48  jps
- * Changed name of save_player to save_player_char, since it only saves the
- * character, not other stuff like objects and quests.
- *
- * Revision 1.28  2008/06/05 02:07:43  myc
- * Added better unknown tag error reporting.
- *
- * Revision 1.27  2008/05/18 03:51:32  jps
- * Typo fix
- *
- * Revision 1.26  2008/04/03 02:02:05  myc
- * Upgraded ansi color handling code.
- *
- * Revision 1.25  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.24  2008/03/22 03:22:38  myc
- * All invocations of the string editor now go through strinwrite()
- * instead of messing with the descriptor variables itself.  Also added
- * a toggle, LineNums, to decide whether to do /l or /n when entering
- * the string editor.
- *
- * Revision 1.23  2008/03/19 04:32:14  myc
- * Fixed message in do_clan_reject missing newline.
- *
- * Revision 1.22  2008/03/05 05:21:56  myc
- * Removed a save_char_file_u declaration.
- *
- * Revision 1.21  2008/03/05 05:08:28  jps
- * Changed ascii player tags and allow them to be of variable length up to
- * 126 characters.
- *
- * Revision 1.20  2008/03/05 03:03:54  myc
- * Pfiles are now ascii, so you access them differently now.  Also
- * some stuff can be retrieved directly from the index instead of
- * requiring a load_char.
- *
- * Revision 1.19  2008/02/24 17:31:13  myc
- * Clan tell will only be received in OLC if you have OLCComm toggled
- * on.  Also clan members can block clan tell with the NoClanTell toggle.
- *
- * Revision 1.18  2008/02/23 01:03:54  myc
- * Plugging a memory leak where members weren't being freed when freeing
- * all clans.
- *
- * Revision 1.17  2008/02/16 20:26:04  myc
- * Adding functions to free clans at program termination.  Replaced
- * a few RECREATE calls with CREATE calls since zmalloc was complaining
- * about them.
- *
- * Revision 1.16  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.15  2008/02/02 19:38:20  myc
- * Replacing NOONE with NOPERSON.  Changing clan desc edit to use
- * the strinwrite function.
- *
- * Revision 1.14  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.13  2008/01/08 22:36:14  myc
- * Fixing bug where plat wasn't saving if the clan had no copper.
- *
- * Revision 1.12  2008/01/05 06:06:35  myc
- * Removing an extra return in the clan command that was cutting the
- * command list short.
- *
- * Revision 1.11  2008/01/05 05:36:34  jps
- * Changed name of function save_char() to save_player(). Because it
- * only operates on players.
- *
- * Revision 1.10  2007/12/25 05:33:55  myc
- * Fixing a crash bug in clan expel.
- *
- * Revision 1.9  2007/12/20 23:10:20  myc
- * Clan deposit/withdraw no longer modifies clan god's coins on hand.
- *
- * Revision 1.8  2007/12/19 20:40:36  myc
- * Completely rewrote clan code.  Clans now use ASCII files.  Several new
- * features are also available, including alts, abbreviations (vs names),
- * descriptions, and smarter handling of just about everything.
- *
- * Revision 1.7  2004/11/11 20:27:48  rsd
- * I altered the output of the string for the clan commands
- * to be less than the compiler limited length of 509 by
- * breaking it up into 2 send_to_char's instead of the one
- * large one.  This removed a compile warning.
- *
- * Revision 1.6  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.5  2000/11/20 18:43:29  rsd
- * Fixed the comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.4  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.3  1999/06/10 16:56:28  mud
- * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and
- * libraries.  Many many curly braces had to be added to "if" statements to
- * clarify their behavior to the compiler.  The name approval code was also
- * debugged, and tested to be stable.  The xnames list was converted from an
- * array to a linked list to allow for on the fly adding of names to the
- * xnames list. This code compiles fine under both gcc RH5.2 and egcs RH6.0.
- * --Gurlaek 6/10/1999
- *
- * Revision 1.2  1999/01/30 18:04:01  mud
- * indented entire file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/

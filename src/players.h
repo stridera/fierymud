@@ -87,32 +87,3 @@ extern void send_save_description(struct char_data *ch, struct char_data *dest, 
 #define WIZ_TITLE_WIDTH 12
 
 #endif
-
-/***************************************************************************
- * $Log: players.h,v $
- * Revision 1.9  2008/09/20 17:01:58  jps
- * Fix whitespace and standardize header defs.
- *
- * Revision 1.8  2008/09/08 05:24:50  jps
- * Put autosave as the "quit reason" when autosaving. This is a temporary fix
- * that should stop people from losing keys when autosave code thinks their
- * quit reason is something else, like renting.
- *
- * Revision 1.7  2008/09/01 22:15:59  jps
- * Saving and reporting players' game-leaving reasons and locations.
- *
- * Revision 1.6  2008/07/27 05:24:10  jps
- * Renamed save_player to save_player char, and added remove_player_from_game.
- *
- * Revision 1.5  2008/06/05 02:07:43  myc
- * Added better unknown tag error reporting in load_player.
- * Replaced calls to strip_cr with filter_chars.  Rewrote the
- * rent file saving and loading to use an ascii file format.
- *
- * Revision 1.4  2008/03/16 00:22:22  jps
- * Removed function prototypes for trophies, which are in trophy.h.
- *
- * Revision 1.3  2008/03/08 19:01:12  jps
- * Add RCS Log marker.
- *
- **************************************************************************/

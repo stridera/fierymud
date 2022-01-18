@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: pfiles.h,v 1.10 2008/09/01 22:15:59 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: pfiles.h                                        Part of FieryMUD *
  *  Usage: header file: Player save files                                  *
  *                                                                         *
@@ -54,45 +51,3 @@ extern void save_player(struct char_data *ch);
 void load_pets(struct char_data *ch);
 
 #endif
-
-/***************************************************************************
- * $Log: pfiles.h,v $
- * Revision 1.10  2008/09/01 22:15:59  jps
- * Saving and reporting players' game-leaving reasons and locations.
- *
- * Revision 1.9  2008/07/27 05:26:32  jps
- * Added several save mode constants.
- *
- * Revision 1.8  2008/07/26 21:33:27  jps
- * Added a function for opening the player object save file.
- * Added functions for converting old binary object files to ASCII format.
- *
- * Revision 1.7  2008/07/13 19:04:52  jps
- * Added a hotboot rent code, which allows people to save their keys
- * over a hotboot.
- *
- * Revision 1.6  2008/06/05 02:07:43  myc
- * Completely rewrote the rent file saving and loading to use
- * an ascii text format.  Some of the old legacy binary code
- * remains so that we don't have to actively convert old
- * object files to the new format.  When old rent files are
- * encountered, they are lazily loaded into the game, and
- * replaced by the new format when the player is saved.
- *
- * Revision 1.5  2008/05/26 18:24:48  jps
- * Removed code that deletes player object files.
- *
- * Revision 1.4  2008/04/13 03:40:47  jps
- * Adding definition for the length of a player filename, such as the
- * main save file, the quest file, or the objects file.
- *
- * Revision 1.3  2008/03/30 17:32:25  jps
- * Added prototype for update_obj_file(), which is called from db.c.
- *
- * Revision 1.2  2008/03/30 17:29:55  jps
- * Adding prototypes for loadpfile_quest and loadpfile_objs.
- *
- * Revision 1.1  2008/03/30 17:11:17  jps
- * Initial revision
- *
- ***************************************************************************/

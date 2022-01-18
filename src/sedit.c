@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: sedit.c,v 1.17 2009/03/09 04:33:20 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: sedit.c                                        Part of FieryMUD *
  *  Usage:                                                                 *
  *     By: Harvey Gilpin of TwyliteMud by Rv. (shameless plug)             *
@@ -1154,72 +1151,3 @@ void sedit_parse(struct descriptor_data *d, char *arg) {
     OLC_VAL(d) = 1;
     sedit_disp_menu(d);
 }
-
-/***************************************************************************
- * $Log: sedit.c,v $
- * Revision 1.17  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.16  2008/06/19 18:53:12  myc
- * Replaced the item_types array with a typedef struct array in objects.c.
- *
- * Revision 1.15  2008/04/20 17:48:40  jps
- * Removing unneeded externs.
- *
- * Revision 1.14  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.13  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.12  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.11  2007/11/18 16:51:55  myc
- * Fixing LVL_BUILDER references.
- *
- * Revision 1.10  2007/09/15 05:03:46  myc
- * Removed a dangerous (small) menu from sedit_disp_menu.
- *
- * Revision 1.9  2007/07/19 17:30:28  jps
- * Gave the functions that deal with integer lists more explicit names.
- * Synchronized the products/amount lists.
- *
- * Revision 1.8  2006/11/07 09:54:56  jps
- * Remove commas that broke default buy/sell messages for a new shop.
- *
- * Revision 1.7  2004/11/11 21:08:00  rsd
- * I altered sedit to split the output text into two buffers
- * to send to the builder so they length of the single buffers
- * do not exceed 509 bytes and make the compiler cry.
- * /s
- *
- * Revision 1.6  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.5  2000/11/24 21:17:12  rsd
- * Altered comment header and added back rlog messgaes from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.4  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.3  1999/06/10 16:56:28  mud
- * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and
- * libraries.  Many many curly braces had to be added to "if" statements to
- * clarify their behavior to the compiler.  The name approval code was also
- * debugged, and tested to be stable.  The xnames list was converted from an
- * array to a linked list to allow for on the fly adding of names to the
- * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
- *
- * Revision 1.2  1999/02/02 00:18:56  mud
- * indented file
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

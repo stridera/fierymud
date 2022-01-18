@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: diskio.c,v 1.1 2007/12/19 20:50:22 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: diskio.c                                       Part of FieryMUD *
  *  Usage: Fast file buffering                                             *
  *                                                                         *
@@ -346,19 +343,3 @@ int fbcat(char *fromfilename, FBFILE *tofile) {
     free(in_buf);
     return 1;
 }
-
-/***************************************************************************
- * $Log: diskio.c,v $
- * Revision 1.1  2007/12/19 20:50:22  myc
- * Initial revision
- *
- * Revision 1.3  2003/07/30 02:07:15  jjl
- * Initial Implementation of races.
- *
- * Revision 1.2  2002/09/08 18:23:06  dce
- * Modifed $Id and $Log to use c comments rather then c++ style.
- *
- * Revision 1.1  2002/03/30 03:18:24  dce
- * Initial revision
- *
- ***************************************************************************/

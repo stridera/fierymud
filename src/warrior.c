@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: warrior.c,v 1.20 2009/03/08 23:34:14 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: warrior.c                                      Part of FieryMUD *
  *  Usage: controls Warrior type mobs, it is closly related to ai.h,       *
  *         and ai_util.c                                                   *
@@ -156,74 +153,3 @@ bool warrior_ai_action(struct char_data *ch, struct char_data *victim) {
 
     return FALSE;
 }
-
-/***************************************************************************
- * $Log: warrior.c,v $
- * Revision 1.20  2009/03/08 23:34:14  jps
- * Renamed spells.[ch] to casting.
- *
- * Revision 1.19  2008/09/01 23:47:49  jps
- * Using movement.h/c for movement functions.
- *
- * Revision 1.18  2008/04/07 03:02:54  jps
- * Changed the POS/STANCE system so that POS reflects the position
- * of your body, while STANCE describes your condition or activity.
- *
- * Revision 1.17  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.16  2008/03/10 18:01:17  myc
- * Bash, hitall, and bodyslam now use subcommands.
- *
- * Revision 1.15  2008/02/09 21:07:50  myc
- * Need access to event flags to check casting status.
- *
- * Revision 1.14  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.13  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.12  2008/01/26 14:26:31  jps
- * Moved a lot of skill-related code into skills.h and skills.c.
- *
- * Revision 1.11  2008/01/13 03:19:53  myc
- * Fixed formatting a bit and fixed the check for mercenary's backstab.
- *
- * Revision 1.10  2008/01/12 19:08:14  myc
- * Rerowte a lot of mob AI functionality.
- *
- * Revision 1.9  2008/01/03 12:44:03  jps
- * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
- * to CLASS_SORCERER.
- *
- * Revision 1.8  2007/04/19 00:53:54  jps
- * Create macros for stopping spellcasting.
- *
- * Revision 1.7  2006/11/08 07:55:17  jps
- * Change verbal instances of "breath" to "breathe"
- *
- * Revision 1.6  2002/09/30 01:11:34  jjl
- * Put in checks so guard actually does something.
- *
- * Revision 1.5  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.4  2000/11/25 02:33:15  rsd
- * Altered comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/02/04 18:18:16  mud
- * indented file
- * added standard comment header
- * dos2unix
- *
- * Revision 1.1  1999/01/29 01:23:32  mud
- * Initial revision
- *
- ***************************************************************************/

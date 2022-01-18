@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: shop.c,v 1.61 2010/06/20 19:53:47 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: shop.c                                         Part of FieryMUD *
  *  Usage: shopkeepers: loading config files, spec procs.                  *
  *     By: Jeff Fink                                                       *
@@ -853,8 +850,9 @@ void shopping_sell(char *arg, struct char_data *ch, struct char_data *keeper, in
     if (cashamt == 0) {
         sprintf(buf, "The shopkeeper now has %s.\r\n", tempstr);
         send_to_char(buf, ch);
-        sprintf(buf, "You walk away empty handed.\r\nYou feel guilty for pawning "
-                     "worthless garbage.\r\n");
+        sprintf(buf,
+                "You walk away empty handed.\r\nYou feel guilty for pawning "
+                "worthless garbage.\r\n");
     } else {
         sprintf(buf,
                 "%s accepts %s and pays you &0&b&6%d&0p,&b&3%d&0g,&0%ds,&0&3%d&0c "
@@ -960,10 +958,12 @@ void shopping_list(char *arg, struct char_data *ch, struct char_data *keeper, in
             if ((!(*name) || isname(name, obj->name)) && CAN_SEE_OBJ(ch, obj) && (obj->obj_flags.cost > 0)) {
                 if (!any) {
                     any = TRUE;
-                    pprintf(ch, " ##  Lvl  Item                                          "
-                                "         Cost\r\n");
-                    pprintf(ch, "---  ---  ------------------------------------------------  "
-                                "-------------\r\n");
+                    pprintf(ch,
+                            " ##  Lvl  Item                                          "
+                            "         Cost\r\n");
+                    pprintf(ch,
+                            "---  ---  ------------------------------------------------  "
+                            "-------------\r\n");
                 }
                 if (!last_obj) {
                     last_obj = obj;
@@ -1455,8 +1455,9 @@ void list_shops(struct char_data *ch, int start, int end) {
             if (!any || !(num % 19)) {
                 any = TRUE;
                 strcat(buf, " ##   Virtual   Keeper    Buy     Sell     Customers   Where\r\n");
-                strcat(buf, "----------------------------------------------------------"
-                            "--------------\r\n");
+                strcat(buf,
+                       "----------------------------------------------------------"
+                       "--------------\r\n");
             }
             num++;
             room = real_room(SHOP_ROOM(shop_nr, 0));
@@ -1563,217 +1564,3 @@ void destroy_shops(void) {
     shop_index = NULL;
     top_shop = -1;
 }
-
-/***************************************************************************
- * $Log: shop.c,v $
- * Revision 1.61  2010/06/20 19:53:47  mud
- * Log to file errors we might want to see.
- *
- * Revision 1.59  2009/03/09 20:36:00  myc
- * Renamed all *PLAT macros to *PLATINUM.
- *
- * Revision 1.58  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.57  2009/03/08 21:43:27  jps
- * Split lifeforce, composition, charsize, and damage types from chars.c
- *
- * Revision 1.56  2009/03/03 19:43:44  myc
- * New target finding mechanism in find.c.
- *
- * Revision 1.55  2008/09/21 17:58:35  jps
- * Don't print the shop list header when none of a requested object is for sale.
- *
- * Revision 1.54  2008/09/20 07:51:45  jps
- * Don't charge immortals money in shops.
- *
- * Revision 1.53  2008/09/09 19:02:23  jps
- * Stop items that have been sold to shops from decomposing.
- *
- * Revision 1.52  2008/09/03 17:34:08  myc
- * Moved liquid information into a def struct array.
- *
- * Revision 1.51  2008/08/31 17:09:26  myc
- * Remove debug from shop system.
- *
- * Revision 1.50  2008/08/19 02:11:14  jps
- * Don't apply fluid/rigidity restrictions to immortals.
- *
- * Revision 1.49  2008/08/18 01:35:38  jps
- * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
- *
- * Revision 1.48  2008/08/15 03:59:08  jps
- * Added pprintf for paging, and changed page_string to take a character.
- *
- * Revision 1.47  2008/08/14 09:45:22  jps
- * Replaced the pager.
- *
- * Revision 1.46  2008/06/19 18:53:12  myc
- * Replaced the item_types array with a typedef struct array in objects.c.
- *
- * Revision 1.45  2008/06/07 19:06:46  myc
- * Moved object-related constants and routines to objects.h.
- *
- * Revision 1.44  2008/06/05 02:07:43  myc
- * Changed object flags to use flagvectors.
- *
- * Revision 1.43  2008/05/18 05:39:59  jps
- * Changed room_data member number to "vnum".
- *
- * Revision 1.42  2008/04/05 22:03:34  jps
- * Ensure that players are never said to have a shop number.
- *
- * Revision 1.41  2008/04/04 03:43:31  jps
- * Add give_shopkeeper_reject(), which allows shopkeepers to refuse
- * to be given objects that they wouldn't sell.
- *
- * Revision 1.40  2008/04/03 02:05:34  myc
- * Depending on screen.h now.
- *
- * Revision 1.39  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.38  2008/03/26 23:32:09  jps
- * Prevent buying things when in a fluid state.
- *
- * Revision 1.37  2008/02/16 20:31:32  myc
- * Adding function to free shops at program termination.
- *
- * Revision 1.36  2008/02/15 03:29:29  jps
- * Was going to fix something, and tidied up some code, but it
- * seemed to have been fixed already and I didn't actually
- * change anything.
- *
- * Revision 1.35  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.34  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.33  2008/01/27 12:12:55  jps
- * Changed IS_THIEF macro to IS_ROGUE.
- *
- * Revision 1.32  2008/01/27 01:42:03  jps
- * Fix grammar when informing player of cursed objects.
- *
- * Revision 1.31  2008/01/23 02:33:26  jps
- * Make shopping bills come out of lower-denomination coins first.
- *
- * Revision 1.30  2008/01/09 02:30:14  jps
- * Use macro to get mob real number.
- *
- * Revision 1.29  2008/01/02 07:11:21  jps
- * Using class.h.
- *
- * Revision 1.28  2007/09/20 09:34:34  jps
- * Improve feedback when selling things.
- *
- * Revision 1.27  2007/09/12 19:23:04  myc
- * Shop keepers give correct response when 'buy' is typed without arguments.
- * Shop keepers won't throw up on you anymore.
- *
- * Revision 1.26  2007/09/03 23:59:43  jps
- * Added macro ADDED_WEIGHT_OK for testing whether a char can have an
- * object added to its inventory.  Avoids an integer overflow problem
- * that could occur if an object's weight was near maxint.
- *
- * Revision 1.25  2007/08/24 22:59:55  jps
- * Correctly state that none are for sale when "list <name>" doesn't
- * match any of the items for sale.
- *
- * Revision 1.24  2007/08/24 22:49:05  jps
- * Added function vnum_shop() for use with the "snum" command.
- *
- * Revision 1.23  2007/08/24 22:10:58  jps
- * Add commands "slist" and "sstat".
- *
- * Revision 1.22  2007/05/24 03:35:11  jps
- * Display an item's full name when selling, rather than just whatever
- * the seller typed.
- *
- * Revision 1.21  2006/11/08 07:21:31  jps
- * Minimum sell price for any item is now 1 copper.
- *
- * Revision 1.20  2006/07/20 07:43:07  cjd
- * Typo fixes.
- *
- * Revision 1.19  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.18  2001/05/03 03:20:05  dce
- * Shopkeepers will no longer buy cursed items.
- *
- * Revision 1.17  2001/03/24 19:26:06  dce
- * Object level shows up in the list command at shops.
- *
- * Revision 1.16  2001/03/14 02:33:55  dce
- * Shopkeepers will only buy 25 of the same object.
- *
- * Revision 1.15  2001/03/13 01:57:29  dce
- * Shopkeepers no longer say, 'I have ...'
- *
- * Revision 1.14  2001/02/18 20:34:05  dce
- * Invis gods can now do a list.
- * Also removed a bogus message.
- *
- * Revision 1.13  2001/02/08 01:31:05  dce
- * Striped the color from short item descriptions in the list
- * command. It was causing mis-aligned columns.
- *
- * Revision 1.12  2001/01/23 00:15:57  dce
- * Lengthed the display for list so that items align more correctly.
- * Changed the value from 40 to 47. You oculd maybe do 50, but it's
- * pushing the width of normal people's screens.
- *
- * Revision 1.11  2001/01/22 04:14:13  dce
- * Added a charisma check and an items count check to shopkeepers
- * Shopkeers will now adjust the price based on these factors.
- *
- * Revision 1.10  2001/01/16 03:13:27  dce
- * Fixed some typos
- *
- * Revision 1.9  2001/01/16 03:10:47  dce
- * Added message for 0 value items.
- *
- * Revision 1.8  2001/01/12 02:35:04  dce
- * Completely re-did the existing shop code and the way it handled
- * money. Previously it used just GET_GOLD and didn't take into
- * account silver, platinum or copper.
- *
- * Revision 1.7  2000/11/24 21:30:22  rsd
- * Altered comment header and added back rlog messages from
- * prior to the addition of the $log$ string.
- *
- * Revision 1.6  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.5  1999/08/29 07:06:04  jimmy
- * Many many small but ver significant bug fixes found using insure.  The
- * code now compiles cleanly and boots cleanly with insure.  The most
- *significant changes were moving all the BREATH's to within normal spell range,
- *and fixing the way socials were allocated.  Too many small fixes to list them
- * all. --gurlaek (now for the runtime debugging :( )
- *
- * Revision 1.4  1999/08/28 00:31:16  mtp
- * typo in apply_getcash fixed now sell should work
- *
- * Revision 1.3  1999/06/10 16:56:28  mud
- * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
- * This fixes all of the warnings associated with the new compiler and
- * libraries.  Many many curly braces had to be added to "if" statements to
- * clarify their behavior to the compiler.  The name approval code was also
- * debugged, and tested to be stable.  The xnames list was converted from an
- * array to a linked list to allow for on the fly adding of names to the
- * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
- *
- * Revision 1.2  1999/02/02 02:18:34  mud
- * indented file
- * dos2unix
- *
- * Revision 1.1  1999/01/29 01:23:31  mud
- * Initial revision
- *
- ***************************************************************************/

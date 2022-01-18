@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: zedit.c,v 1.14 2008/05/18 05:39:59 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: zedit.c                                        Part of FieryMUD *
  *  Usage:                                                                 *
  *     By: Harvey Gilpin of TwyliteMud by Rv. (shameless plug)             *
@@ -474,14 +471,15 @@ void zedit_save_to_disk(int zone_num) {
             zone_table[zone_num].zone_factor, zone_table[zone_num].hemisphere, zone_table[zone_num].climate);
 
 #if defined(ZEDIT_HELP_IN_FILE)
-    fprintf(zfile, "* Field #1    Field #3   Field #4  Field #5\n"
-                   "* M (Mobile)  Mob-Vnum   Wld-Max   Room-Vnum\n"
-                   "* O (Object)  Obj-Vnum   Wld-Max   Room-Vnum\n"
-                   "* G (Give)    Obj-Vnum   Wld-Max   Unused\n"
-                   "* E (Equip)   Obj-Vnum   Wld-Max   EQ-Position\n"
-                   "* P (Put)     Obj-Vnum   Wld-Max   Target-Obj-Vnum\n"
-                   "* D (Door)    Room-Vnum  Door-Dir  Door-State\n"
-                   "* R (Remove)  Room-Vnum  Obj-Vnum  Unused\n");
+    fprintf(zfile,
+            "* Field #1    Field #3   Field #4  Field #5\n"
+            "* M (Mobile)  Mob-Vnum   Wld-Max   Room-Vnum\n"
+            "* O (Object)  Obj-Vnum   Wld-Max   Room-Vnum\n"
+            "* G (Give)    Obj-Vnum   Wld-Max   Unused\n"
+            "* E (Equip)   Obj-Vnum   Wld-Max   EQ-Position\n"
+            "* P (Put)     Obj-Vnum   Wld-Max   Target-Obj-Vnum\n"
+            "* D (Door)    Room-Vnum  Door-Dir  Door-State\n"
+            "* R (Remove)  Room-Vnum  Obj-Vnum  Unused\n");
 #endif
 
     for (subcmd = 0; ZCMD.command != 'S'; subcmd++) {
@@ -977,14 +975,15 @@ void zedit_disp_arg3(struct descriptor_data *d) {
         send_to_char("Vnum of the container:\r\n", d->character);
         break;
     case 'D':
-        send_to_char("0)  Door open\r\n"
-                     "1)  Door closed\r\n"
-                     "2)  Door locked\r\n"
-                     "3)  Exit hidden\r\n"
-                     "4)  Door hidden closed and locked\r\n"
-                     "5)  Door hidden and closed\r\n"
-                     "Enter state of the door:\r\n",
-                     d->character);
+        send_to_char(
+            "0)  Door open\r\n"
+            "1)  Door closed\r\n"
+            "2)  Door locked\r\n"
+            "3)  Exit hidden\r\n"
+            "4)  Door hidden closed and locked\r\n"
+            "5)  Door hidden and closed\r\n"
+            "Enter state of the door:\r\n",
+            d->character);
         break;
     case 'M':
     case 'O':
@@ -1133,12 +1132,13 @@ void zedit_parse(struct descriptor_data *d, char *arg) {
             /*
              * Edit zone reset mode.
              */
-            send_to_char("\r\n"
-                         "0) Never reset\r\n"
-                         "1) Reset only when no players in zone\r\n"
-                         "2) Normal reset\r\n"
-                         "Enter new zone reset type:\r\n",
-                         d->character);
+            send_to_char(
+                "\r\n"
+                "0) Never reset\r\n"
+                "1) Reset only when no players in zone\r\n"
+                "2) Normal reset\r\n"
+                "Enter new zone reset type:\r\n",
+                d->character);
             OLC_MODE(d) = ZEDIT_ZONE_RESET;
             break;
         case 'h':
@@ -1214,8 +1214,7 @@ void zedit_parse(struct descriptor_data *d, char *arg) {
             if (OLC_CMD(d).command == 'F') {
                 send_to_char("Sorry, FORCE is disabled for now, please try something else:\r\n", d->character);
             } else if (OLC_VAL(d)) { /* If there was a previous command. */
-                send_to_char("Is this command dependent on the success of the previous one? (y/n)\r\n",
-                             d->character);
+                send_to_char("Is this command dependent on the success of the previous one? (y/n)\r\n", d->character);
                 OLC_MODE(d) = ZEDIT_IF_FLAG;
             } else { /* 'if-flag' not appropriate. */
                 OLC_CMD(d).if_flag = 0;
@@ -1548,55 +1547,3 @@ void zedit_parse(struct descriptor_data *d, char *arg) {
 }
 
 /*. End of parse_zedit() .*/
-
-/***************************************************************************
- * $Log: zedit.c,v $
- * Revision 1.14  2008/05/18 05:39:59  jps
- * Changed room_data member number to "vnum".
- *
- * Revision 1.13  2008/04/20 17:50:55  jps
- * Moved count_commands to genzon.
- *
- * Revision 1.12  2008/03/28 17:54:53  myc
- * Now using flagvectors for effect, mob, player, preference, room, and
- * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
- *
- * Revision 1.11  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.10  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.9  2007/11/18 16:51:55  myc
- * Fixing LVL_BUILDER references.
- *
- * Revision 1.8  2007/09/04 06:49:19  myc
- * Updated hemisphere and climate menus to use struct arrays in weather.c
- * instead of string arrays in constants.c
- *
- * Revision 1.7  2007/07/31 23:23:57  jps
- * Change zedit to use the climate and hemisphere names now
- * defined in constants.c.
- *
- * Revision 1.6  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.5  2000/11/25 02:33:15  rsd
- * Altered comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.4  2000/11/22 00:36:49  mtp
- * max of 50 objects, Force disabled (max of 50 mobs too!)
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/02/04 20:21:03  mud
- * indeted file
- * dos2unix
- *
- * Revision 1.1  1999/01/29 01:23:32  mud
- * Initial Revision
- *
- ***************************************************************************/

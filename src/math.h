@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: math.h,v 1.5 2009/05/01 05:29:40 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: math.h                                         Part of FieryMUD *
  *  Usage: various mathematical functions                                  *
  *                                                                         *
@@ -73,22 +70,3 @@ int MIN(int a, int b);
 #define LIMIT(a, b, c) MIN(MAX((a), (b)), (c))
 
 #endif
-
-/***************************************************************************
- * $Log: math.h,v $
- * Revision 1.5  2009/05/01 05:29:40  myc
- * Fix typo in conditional compliation comment.
- *
- * Revision 1.4  2009/03/09 04:50:38  myc
- * Rename random_normal_value to something shorter: normal_random.
- *
- * Revision 1.3  2008/06/19 18:53:12  myc
- * Added parantheses to LIMIT macro.
- *
- * Revision 1.2  2008/03/05 03:03:54  myc
- * Added LIMIT macro as a shorthand for MIN(MAX(a, b), c).
- *
- * Revision 1.1  2008/02/09 03:06:17  myc
- * Initial revision
- *
- ***************************************************************************/

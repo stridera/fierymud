@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: text.c,v 1.5 2009/07/04 16:13:00 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: text.c                                         Part of FieryMUD *
  *  Usage: functions for text management                                   *
  *                                                                         *
@@ -987,16 +984,3 @@ void free_screen_buf(screen_buf sb) {
     free(sb->lines);
     free(sb);
 }
-
-/***************************************************************************
- * $Log: text.c,v $
- * Revision 1.5  2009/07/04 16:13:00  myc
- * Fix problem with re-entrancy in word_pluralize and pluralize.
- *
- * Revision 1.4  2009/06/09 05:50:07  myc
- * Moving all old textfile code from here to textfiles.[ch].
- * Moving lots of text management functions from strings.c to
- * here.  Also adding screen-buffer API for formatting text
- * on the go.
- *
- ***************************************************************************/

@@ -1,12 +1,8 @@
 /***************************************************************************
- * $Id: dg_debug.c,v 1.5 2008/08/18 01:35:38 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: dg_debug.c                                     Part of FieryMUD *
  *  Usage: contains all the trigger debug functions for scripts.           *
  *  		for example set and unset variables and force triggers     *
  *  		to run.                                                    *
- *  $Author: jps $ * $Date: 2008/08/18 01:35:38 $ * $Revision: 1.5 $ *
  *                                                                         *
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *

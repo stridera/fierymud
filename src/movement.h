@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: movement.h,v 1.4 2008/09/14 01:47:41 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: movement.h                                      Part of FieryMUD *
  *  Usage: header file for movement functions                              *
  *                                                                         *
@@ -59,20 +56,3 @@ bool do_simple_move(struct char_data *ch, int dir, int following);
 bool perform_move(struct char_data *ch, int dir, int following, bool misdirection);
 
 #endif
-
-/***************************************************************************
- * $Log: movement.h,v $
- * Revision 1.4  2008/09/14 01:47:41  jps
- * Added function battling_my_group().
- *
- * Revision 1.3  2008/09/13 17:21:59  jps
- * Added mount_pos_check, in which a rider may fall off if the mount changes
- *position.
- *
- * Revision 1.2  2008/09/07 01:28:34  jps
- * Add prototypes
- *
- * Revision 1.1  2008/09/01 23:47:35  jps
- * Initial revision
- *
- ***************************************************************************/

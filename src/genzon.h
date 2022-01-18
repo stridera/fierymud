@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: genzon.h,v 1.1 2008/04/20 17:49:28 jps Exp $
- ***************************************************************************/
-/***************************************************************************
  *  File: genzon.h                                        Part of FieryMUD *
  *  Usage: header file for zone routines                                   *
  *                                                                         *
@@ -16,17 +13,10 @@
 #ifndef __FIERY_GENZON_H
 #define __FIERY_GENZON_H
 
-#include "structs.h"
 #include "db.h"
+#include "structs.h"
 
 int count_commands(struct reset_com *list);
 void delete_zone_command(struct zone_data *zone, int pos);
 
 #endif
-
-/***************************************************************************
- * $Log: genzon.h,v $
- * Revision 1.1  2008/04/20 17:49:28  jps
- * Initial revision
- *
- ***************************************************************************/

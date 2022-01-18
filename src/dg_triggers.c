@@ -1,12 +1,6 @@
 /***************************************************************************
- * $Id: dg_triggers.c,v 1.34 2010/07/27 22:14:35 mud Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: dg_triggers.c                                  Part of FieryMUD *
  *  Usage: contains all the trigger functions for scripts.                 *
- *  $Author: mud $                                                         *
- *  $Date: 2010/07/27 22:14:35 $                                           *
- *  $Revision: 1.34 $                                                       *
  *                                                                         *
  *  All rights reserved.  See license.doc for complete information.        *
  *                                                                         *
@@ -50,9 +44,9 @@ const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",  
                             "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "\n"};
 
 /* obj trigger types */
-const char *otrig_types[] = {"Global",  "Random", "Command", "Attack", "Defense", "Timer",  "Get",
-                             "Drop",    "Give",   "Wear",    "DEATH",  "Remove",  "UNUSED", "UNUSED",
-                             "Load",    "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
+const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
+                             "Drop",   "Give",   "Wear",    "DEATH",  "Remove",  "UNUSED", "UNUSED",
+                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
 
 /* wld trigger types */
 const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
@@ -344,7 +338,7 @@ void speech_to_mtrigger(char_data *actor, char_data *ch, char *str) {
 }
 
 void act_mtrigger(char_data *ch, const char *str, const char_data *actor, const char_data *victim,
-        const obj_data *object, const obj_data *target, char *arg, char *arg2) {
+                  const obj_data *object, const obj_data *target, char *arg, char *arg2) {
     trig_data *t;
     char buf[MAX_INPUT_LENGTH];
 
@@ -683,7 +677,6 @@ int command_otrigger(char_data *actor, char *cmd, char *argument) {
     return 0;
 }
 
-
 void attack_otrigger(char_data *actor, char_data *victim, int dam) {
     char buf[MAX_INPUT_LENGTH], dam_str[MAX_INPUT_LENGTH];
     trig_data *t;
@@ -695,7 +688,7 @@ void attack_otrigger(char_data *actor, char_data *victim, int dam) {
 
     sprintf(dam_str, "%d", dam);
 
-    for (i = 0; i < NUM_WEARS; ++i)  {
+    for (i = 0; i < NUM_WEARS; ++i) {
         obj = actor->equipment[i];
         if (obj && SCRIPT_CHECK(obj, OTRIG_ATTACK)) {
             for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
@@ -722,7 +715,6 @@ void attack_otrigger(char_data *actor, char_data *victim, int dam) {
         }
     }
 }
-
 
 int wear_otrigger(obj_data *obj, char_data *actor, int where) {
     trig_data *t;
@@ -1177,126 +1169,3 @@ void time_wtrigger(struct room_data *room) {
         }
     }
 }
-
-/***************************************************************************
- * $Log: dg_triggers.c,v $
- * Revision 1.34  2010/07/27 22:14:35  mud
- * Fix death triggers on mobs when not killed by player.
- *
- * Revision 1.33  2009/03/20 13:56:22  jps
- * Moved coin info into an array of struct coindef.
- *
- * Revision 1.32  2009/03/17 07:59:42  jps
- * Moved str_str to strings.c
- *
- * Revision 1.31  2009/03/09 20:36:00  myc
- * Renamed all *PLAT macros to *PLATINUM.
- *
- * Revision 1.30  2009/03/09 05:41:31  jps
- * Moved money stuff into money.h, money.c
- *
- * Revision 1.29  2009/03/09 04:33:20  jps
- * Moved direction information from structs.h, constants.h, and constants.c
- * into directions.h and directions.c.
- *
- * Revision 1.28  2009/03/07 09:34:47  jps
- * Changed name of room Entry trigger to Preentry. Added a Postentry room
- *trigger type.
- *
- * Revision 1.27  2008/09/02 03:00:59  jps
- * Changed mob speech and ask triggers to respond to all speech.
- *
- * Revision 1.26  2008/08/24 02:37:01  myc
- * Fix function signature for reference to external function str_str.
- *
- * Revision 1.25  2008/08/15 04:56:53  jps
- * Exempt characters from triggers if they wouldn't be detectable.
- *
- * Revision 1.24  2008/04/07 03:02:54  jps
- * Changed the POS/STANCE system so that POS reflects the position
- * of your body, while STANCE describes your condition or activity.
- *
- * Revision 1.23  2008/03/21 19:31:59  jps
- * Prevent giving objects to mobs with running receive triggers.
- *
- * Revision 1.22  2008/03/09 02:08:16  jps
- * Fix logic in command_mtrigger.
- *
- * Revision 1.21  2008/03/08 23:55:53  jps
- * Use MOB_PERFORMS_SCRIPTS macro instead of checking for CHARM
- * affection.
- *
- * Revision 1.20  2008/02/09 04:27:47  myc
- * Now relying on math header file.
- *
- * Revision 1.19  2008/02/02 04:27:55  myc
- * Changing the way script_driver works: you now pass it a pointer
- * to the pointer of what you want to run the script.  That is,
- * script_driver(&ch, ...) instead of script_driver(ch, ...).
- * Adding several new trigger types: cast, leave, door, time, load,
- * and consume.
- *
- * Revision 1.18  2008/01/29 21:02:31  myc
- * Removing a lot of extern declarations from code files and moving
- * them to header files, mostly db.h and constants.h.
- *
- * Revision 1.17  2008/01/15 06:49:52  myc
- * When a mob had a trigger marked both ask and speech and the mob
- * was asked a question, that same trigger would be executed twice,
- * once as an ask trigger, and once as a speech trigger.  Fixed this
- * by going through the trigger list only once looking for ask or
- * speech triggers.  However, this isn't optimal--it should give
- * priority to ask triggers.
- *
- * Revision 1.16  2008/01/15 03:18:19  myc
- * Changed bribe_mtrigger to accept an array instead of a pointer.
- *
- * Revision 1.15  2007/11/18 16:51:55  myc
- * Fixing LVL_BUILDER references.
- *
- * Revision 1.14  2007/10/04 16:20:24  myc
- * Added object timer trigger.
- *
- * Revision 1.13  2007/08/31 05:36:19  jps
- * Add variable "destination" to mob Entry trigger.
- *
- * Revision 1.12  2007/04/17 23:59:16  myc
- * New trigger type: Load.  It goes off any time a mobile is loaded, whether
- * it be god command, zone command, or trigger command.
- *
- * Revision 1.11  2006/12/08 05:06:58  myc
- * Bribe triggers now give proper amounts and variables.
- *
- * Revision 1.10  2006/11/30 05:06:24  jps
- * Add remove trigger for objects
- *
- * Revision 1.9  2002/09/13 02:32:10  jjl
- * Updated header comments
- *
- * Revision 1.8  2000/11/22 01:47:05  mtp
- * allow command triggers to run the command on completeion
- *
- * Revision 1.7  2000/11/21 04:37:33  rsd
- * Altered the comment header and added back rlog messages
- * from prior to the addition of the $log$ string.
- *
- * Revision 1.6  2000/11/11 12:03:42  mtp
- * made function ask_mtrigger() void cos it doesnt return anything
- *
- * Revision 1.5  2000/11/11 01:39:05  mtp
- * added ASK trigger for mobs
- *
- * Revision 1.4  2000/02/01 21:02:39  mtp
- * added a %position% variable to object 'wear' trigger
- *
- * Revision 1.3  1999/09/05 07:00:39  jimmy
- * Added RCS Log and Id strings to each source file
- *
- * Revision 1.2  1999/01/31 02:05:15  mud
- * Added fiery stuff to the comment header
- * Indented file
- *
- * Revision 1.1  1999/01/29 01:23:30  mud
- * Initial revision
- *
- ***************************************************************************/
