@@ -1037,6 +1037,7 @@ void save_player_char(struct char_data *ch) {
 
     if (player_table[id].flags != i || save_index)
         save_player_index();
+
     sprintf(buf, "Saved player %s.", GET_NAME(ch));
     log(buf);
 }
