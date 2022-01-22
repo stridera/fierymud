@@ -200,10 +200,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
 
         if (ROOM_FLAGGED(caster->in_room, ROOM_PEACEFUL) && SINFO.violent) {
             if (IS_SPELL(spellnum)) {
-                send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n",
-                             caster);
-                act("White light from no particular source suddenly fills the room, then vanishes.",
-                    FALSE, caster, 0, 0, TO_ROOM);
+                send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n", caster);
+                act("White light from no particular source suddenly fills the room, then vanishes.", FALSE, caster, 0,
+                    0, TO_ROOM);
             } else { /* song/chant */
                 send_to_char("Your words dissolve into peaceful nothingness...\r\n", caster);
                 act("$n's words fade away into peaceful nothingness...\r\n", FALSE, caster, 0, 0, TO_ROOM);
@@ -612,8 +611,7 @@ char *get_scroll_mob_msg(int spell1, int spell2, int spell3) {
 
     switch (skills[chosenspell].sphere) {
     case SKILL_SPHERE_FIRE:
-        return "$n faces $N and recites $p, which is consumed in a burst of "
-               "flames.";
+        return "$n faces $N and recites $p, which is consumed in a burst of flames.";
     case SKILL_SPHERE_WATER:
         return "$n faces $N and recites $p, which dissolves into paste.";
     case SKILL_SPHERE_EARTH:
@@ -1197,16 +1195,19 @@ ACMD(do_cast) {
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         if (subcmd == SCMD_CHANT) {
             act("$n starts chanting, but stops abruptly, coughing up blood!", FALSE, ch, 0, 0, TO_ROOM);
-            cprintf(ch, "You begin chanting, but your throat causes you to "
-                        "cough up blood!\r\n");
+            cprintf(ch,
+                    "You begin chanting, but your throat causes you to "
+                    "cough up blood!\r\n");
         } else if (subcmd == SCMD_SING) {
             act("$n starts singing, but stops abruptly, coughing up blood!", FALSE, ch, 0, 0, TO_ROOM);
-            cprintf(ch, "You begin singing, but your throat causes you to "
-                        "cough up blood!\r\n");
+            cprintf(ch,
+                    "You begin singing, but your throat causes you to "
+                    "cough up blood!\r\n");
         } else {
             act("$n starts casting, but stops abruptly, coughing up blood!", FALSE, ch, 0, 0, TO_ROOM);
-            cprintf(ch, "You begin casting, but your throat causes you to "
-                        "cough up blood!\r\n");
+            cprintf(ch,
+                    "You begin casting, but your throat causes you to "
+                    "cough up blood!\r\n");
         }
         WAIT_STATE(ch, PULSE_VIOLENCE);
         return;
