@@ -160,5 +160,3 @@ int natural_move(struct char_data *ch);
 void scale_attribs(struct char_data *ch);
 
 #endif
-
-
