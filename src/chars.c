@@ -39,9 +39,10 @@
 
 ACMD(do_flee); /* act.offensive.c */
 
-const char *stats_display = "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
-                            "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
-                            "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n";
+const char *stats_display =
+    "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
+    "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
+    "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n";
 
 #define Y TRUE
 #define N FALSE
