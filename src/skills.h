@@ -17,8 +17,7 @@
 #include "structs.h"
 #include "sysdep.h"
 
-/* The general term for the abilities known as spells, skills, chants,
- * and songs is TALENT. */
+/* The general term for the abilities known as spells, skills, chants, and songs is TALENT. */
 #define TALENT 0
 #define SPELL 1
 #define SKILL 2
@@ -354,8 +353,7 @@
 #define SKILL_2H_SLASHING 468
 #define SKILL_MISSILE 469
 /* what's this doing here ? */
-/* We need a skill define for fire so we can have a damage message in the
-   messages file. */
+/* We need a skill define for fire so we can have a damage message in the messages file. */
 #define SPELL_ON_FIRE 470
 #define SKILL_LAY_HANDS 471
 #define SKILL_EYE_GOUGE 472
@@ -423,6 +421,11 @@
 #define TYPE_BLAST 763
 #define TYPE_PUNCH 764
 #define TYPE_STAB 765
+#define TYPE_FIRE 766
+#define TYPE_COLD 767
+#define TYPE_ACID 768
+#define TYPE_SHOCK 769
+#define TYPE_POISON 770
 
 /* new attack types can be added here - up to TYPE_SUFFERING */
 #define TYPE_SUFFERING 850
