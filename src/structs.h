@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: structs.h,v 1.205 2010/06/09 22:32:01 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
  *   File: structs.h                                      Part of FieryMUD *
  *  Usage: header file for central structures and contstants               *
  *                                                                         *
@@ -385,7 +388,14 @@
 #define CD_INNATE_STRENGTH 16
 #define CD_INNATE_DARKNESS 17
 #define CD_INNATE_LEVITATE 18
-#define NUM_COOLDOWNS 19
+#define CD_INNATE_GRACE 19
+#define CD_INNATE_FORTITUDE 20
+#define CD_INNATE_INSIGHT 21
+#define CD_INNATE_GENIUS 22
+#define CD_INNATE_SPLENDOR 23
+#define CD_INNATE_HARNESS 24
+#define CD_BREATHE 25
+#define NUM_COOLDOWNS 26
 
 /**********************************************************************
  * Structures                                                          *
@@ -930,3 +940,804 @@ struct camp_event {
 #endif
 
 #endif
+
+/***************************************************************************
+ * $Log: structs.h,v $
+ * Revision 1.205  2010/06/09 22:32:01  mud
+ * Moving toggle command and prf flags into prefs.[ch]
+ *
+ * Revision 1.204  2010/06/05 18:35:47  mud
+ * Make pyre auto-target caster if sacrificial preference is
+ * toggled on.
+ *
+ * Revision 1.203  2009/08/02 20:20:38  myc
+ * Had to up the MAX_MESSAGE limit for new spells.
+ *
+ * Revision 1.202  2009/07/17 00:48:17  myc
+ * Added anon toggle and auto gain privileges.
+ *
+ * Revision 1.201  2009/06/09 05:49:19  myc
+ * Renaming NOCTELL to NOCLANCOMM so it covers other clan communication.
+ * Adding privilege flags.  Removing clan desc editing connection
+ * state.  Modifying character clan references to match new
+ * interface.
+ *
+ * Revision 1.200  2009/03/21 19:11:37  myc
+ * Save the duration each cooldown started at.
+ *
+ * Revision 1.199  2009/03/20 23:02:59  myc
+ * Remove text editor connection state.
+ *
+ * Revision 1.198  2009/03/20 20:19:51  myc
+ * Add MAX_DESC_LENGTH since MAX_MSG_LENGTH from boards.h is
+ * no longer available.
+ *
+ * Revision 1.197  2009/03/09 20:36:00  myc
+ * Renamed all *PLAT macros to *PLATINUM.
+ *
+ * Revision 1.196  2009/03/09 05:41:31  jps
+ * Moved money stuff into money.h, money.c
+ *
+ * Revision 1.195  2009/03/09 05:09:22  jps
+ * Moved effect flags and strings into effects.h and effects.c.
+ *
+ * Revision 1.194  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.193  2009/03/09 03:45:17  jps
+ * Extract some spell-mem related stuff from structs.h and put it in spell_mem.h
+ *
+ * Revision 1.192  2009/03/08 03:54:21  jps
+ * Update the comments of some structs and format code
+ *
+ * Revision 1.191  2009/03/08 02:17:46  jps
+ * Delete jail event struct.
+ *
+ * Revision 1.190  2009/03/07 22:27:10  jps
+ * Add effect flag remote_aggr, which keeps your aggressive action from
+ * removing things like invis. Useful for those spells that keep on hurting.
+ *
+ * Revision 1.189  2009/02/11 17:03:39  myc
+ * Reduce IMMORT_DESC_LENGTH from 40k to 10k characters.
+ *
+ * Revision 1.188  2009/01/19 09:25:23  myc
+ * Replacing MOB_PET flag with MOB_SUMMONED_MOUNT flag, which
+ * tracks a mount summoned using the skill, so proper cooldowns
+ * can be set.
+ *
+ * Revision 1.187  2008/09/24 05:49:22  jps
+ * Made autoboot control level 103
+ *
+ * Revision 1.186  2008/09/22 02:09:17  jps
+ * Changed weight into a floating-point value. Precision is preserved to
+ * the 1/100 place.
+ *
+ * Revision 1.185  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.184  2008/09/21 04:54:23  myc
+ * Added grant caches to the player structure to make can_use_command
+ * take less execution time.
+ *
+ * Revision 1.183  2008/09/07 20:06:47  jps
+ * Added flag PLR_GOTSTARS which means you have achieved ** at least once.
+ *
+ * Revision 1.182  2008/09/07 01:30:07  jps
+ * Add a flag for player saving, so that effect changes in the midst of it
+ * can be ignored.
+ *
+ * Revision 1.181  2008/09/01 22:15:59  jps
+ * Saving and reporting players' game-leaving reasons and locations.
+ *
+ * Revision 1.180  2008/09/01 18:29:38  jps
+ * consolidating cooldown code in skills.c/h
+ *
+ * Revision 1.179  2008/08/31 21:44:03  jps
+ * Renamed StackObjs and StackMobs prefs to ExpandObjs and ExpandMobs.
+ *
+ * Revision 1.178  2008/08/31 20:55:40  jps
+ * Added PROTECTOR and PEACEKEEPER mob flags.
+ *
+ * Revision 1.177  2008/08/30 20:21:39  jps
+ * Added flag MOB_NO_EQ_RESTRICT, which allows a mobile to wear equipment
+ * without regard to align, class, or level restrictions.
+ *
+ * Revision 1.176  2008/08/30 01:31:51  myc
+ * Changed the way stats are calculated in effect_total; ability
+ * stats are saved in a raw form now, and only capped when accessed.
+ * Damroll and hitroll are recalculated everytime effect_total
+ * is called, using cached base values.
+ *
+ * Revision 1.175  2008/08/29 19:25:08  myc
+ * Removed some unused members from the character structure, and made
+ * some sbytes into ints.
+ *
+ * Revision 1.174  2008/08/29 19:18:05  myc
+ * Fixed abilities so that no information is lost; the caps occur
+ * only when the viewed stats are accessed.
+ *
+ * Revision 1.173  2008/08/29 04:16:26  myc
+ * Added toggles for stacking objects and mobiles in lists.
+ *
+ * Revision 1.172  2008/08/25 00:20:33  myc
+ * Changed the way mobs memorize spells.
+ *
+ * Revision 1.171  2008/08/16 08:22:41  jps
+ * Added the 'desc' command and took player description-editing out of the
+ *pre-game menu.
+ *
+ * Revision 1.170  2008/08/15 03:59:08  jps
+ * Added pprintf for paging, and changed page_string to take a character.
+ *
+ * Revision 1.169  2008/08/14 23:10:35  myc
+ * Added immortal log severity view preference to player structure.
+ *
+ * Revision 1.168  2008/08/14 15:40:29  jps
+ * Added pager buffer size limits.
+ *
+ * Revision 1.167  2008/08/14 09:45:22  jps
+ * Replaced the pager.
+ *
+ * Revision 1.166  2008/08/13 05:52:51  jps
+ * Moved laryngitis variables so that NPCs can be affected too.
+ *
+ * Revision 1.165  2008/07/27 05:23:45  jps
+ * Added a flag to put on players when extracting so they don't get saved twice.
+ *
+ * Revision 1.164  2008/07/22 07:25:26  myc
+ * Added basic iedit (unique item editor) functionality.
+ *
+ * Revision 1.163  2008/07/15 17:55:06  myc
+ * Added grants and grant groups to player structure, as well
+ * as a connection mode for gedit.
+ *
+ * Revision 1.162  2008/06/21 17:27:18  jps
+ * Changed several player struct elements to unsigned ints, since the
+ * compiler doesn't like us using chars very much.
+ *
+ * Revision 1.161  2008/06/09 23:00:13  myc
+ * Removed some redundant and outdated defines.
+ *
+ * Revision 1.160  2008/06/07 19:06:46  myc
+ * Moved object-related constants and routines to objects.h.
+ *
+ * Revision 1.159  2008/06/05 02:07:43  myc
+ * Changed object flags to use flagvectors.  Rewrote rent saving
+ * and loading code to use ascii files, so got rid of a few
+ * structs (which are still available in legacy_structs.h).
+ *
+ * Revision 1.158  2008/05/19 20:19:50  jps
+ * Using stdbool.h.
+ *
+ * Revision 1.157  2008/05/19 06:53:31  jps
+ * Got rid of fup and fdown directions.
+ *
+ * Revision 1.156  2008/05/19 05:46:04  jps
+ * Add effect for being mesmerized.
+ *
+ * Revision 1.155  2008/05/18 17:58:21  jps
+ * Adding effect of familiarity.
+ *
+ * Revision 1.154  2008/05/18 02:00:47  jps
+ * Moved a lot of constants into rooms.h.
+ *
+ * Revision 1.153  2008/05/17 22:03:01  jps
+ * Moving room-related code into rooms.h and rooms.c.
+ *
+ * Revision 1.152  2008/05/17 04:32:25  jps
+ * Moved exits into exits.h/exits.c and changed the name to "exit".
+ *
+ * Revision 1.151  2008/05/11 05:42:24  jps
+ * Changed position and stance to ints.
+ *
+ * Revision 1.150  2008/04/20 03:54:17  jps
+ * Add bfs distance variable to rooms.
+ *
+ * Revision 1.149  2008/04/14 05:11:40  jps
+ * Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+ * to fly - not that the characer is actually flying.
+ *
+ * Revision 1.148  2008/04/14 02:17:59  jps
+ * Adding def for Glory effect.
+ *
+ * Revision 1.147  2008/04/13 18:29:28  jps
+ * Add effect for confusion.
+ *
+ * Revision 1.146  2008/04/13 00:57:07  jps
+ * Add an auto-treasure loot pref.
+ *
+ * Revision 1.145  2008/04/07 04:31:10  jps
+ * Update comments on position and stance.
+ *
+ * Revision 1.144  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.143  2008/04/05 18:07:09  myc
+ * Re-implementing stealth for hide points.
+ *
+ * Revision 1.142  2008/04/05 16:49:45  myc
+ * Fix FLAGVECTOR_SIZE macro so it doesn't always return 1 more than it needs
+ *to.
+ *
+ * Revision 1.141  2008/04/04 06:12:52  myc
+ * Removed justice and dieites/worship code.
+ *
+ * Revision 1.140  2008/04/03 17:34:09  jps
+ * Retired the player flag INVSTART.  Added a byte value autoinvis_level to
+ * struct player_special_data.
+ *
+ * Revision 1.139  2008/04/02 05:36:19  myc
+ * Added the autoloot and autosplit toggles.
+ *
+ * Revision 1.138  2008/04/02 04:55:59  myc
+ * Got rid of the coins struct.
+ *
+ * Revision 1.137  2008/04/02 03:24:44  myc
+ * Rewrote group code and removed major group code.
+ *
+ * Revision 1.136  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.135  2008/03/27 17:28:13  jps
+ * ITEM_BLESS is unused now, and AFF3_BLESS and AFF3_HEX are here.
+ *
+ * Revision 1.134  2008/03/26 23:10:44  jps
+ * Retire the WATERFORM and VAPORFORM effects.
+ *
+ * Revision 1.133  2008/03/26 18:11:02  jps
+ * Added a BLESS effect so that characters may be blessed.
+ *
+ * Revision 1.132  2008/03/23 00:23:22  jps
+ * Add an apply type for composition. Add a base_composition value
+ * to characters so you can use the apply.
+ *
+ * Revision 1.131  2008/03/22 19:09:46  jps
+ * Added lifeforce and composition to characters.
+ *
+ * Revision 1.130  2008/03/22 03:22:38  myc
+ * All invocations of the string editor now go through string_write()
+ * instead of messing with the descriptor variables itself.  Also added
+ * a toggle, LineNums, to decide whether to do /l or /n when entering
+ * the string editor.
+ *
+ * Revision 1.129  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.128  2008/03/16 00:19:33  jps
+ * Moving trophy structs to trophy.h. struct char_data now has a
+ * single pointer to a trophy node.
+ *
+ * Revision 1.127  2008/03/11 19:50:55  myc
+ * Changed the way allowed olc zones are saved on an immortal from
+ * a fixed number of slots to a variable-length linked list.  Also
+ * got rid of practice points.
+ *
+ * Revision 1.126  2008/03/11 02:55:30  jps
+ * Use affected_size, mod_size, and natural_size to keep track of size.
+ *
+ * Revision 1.125  2008/03/10 20:46:55  myc
+ * Renamed POS1 to 'stance'.  Moving innate timers to cooldown system.
+ * Reformatted structures some more.  Renamed hometown to homeroom.
+ *
+ * Revision 1.124  2008/03/10 19:55:37  jps
+ * Made a struct for sizes with name, height, and weight.  Save base height
+ * weight and size so they stay the same over size changes.
+ *
+ * Revision 1.123  2008/03/10 18:01:17  myc
+ * Re-ordered postures to be from most-prone to most-upright, somewhat
+ * like positions.
+ *
+ * Revision 1.122  2008/03/09 18:11:31  jps
+ * Added two aff3 flags - one for misdirection, which means that the
+ * char is capable of misdirected movement. The other is for current
+ * misdirecting, meaning that the move in progress is masked by illusion.
+ *
+ * Revision 1.121  2008/03/09 06:38:37  jps
+ * Replaced name with namelist in struct char_data.player. GET_NAME macro
+ * now points to short_descr. The uses of these strings is the same for
+ * NPCs and players.
+ *
+ * Revision 1.120  2008/03/09 00:05:40  jps
+ * Moved some NUM_foo_FLAGS defs from olc.h to structs.h.
+ *
+ * Revision 1.119  2008/03/08 23:54:04  jps
+ * Added MOB2_NOSCRIPT flag, which prevents specprocs and triggers.
+ *
+ * Revision 1.118  2008/03/08 22:29:06  myc
+ * Moving shapechange and chant to the cooldown system.
+ *
+ * Revision 1.117  2008/03/07 21:21:57  myc
+ * Replaced action delays and skill delays with a single list of
+ * 'cooldowns', which are decremented by a recurring event and
+ * also save to the player file.
+ *
+ * Revision 1.116  2008/03/06 05:11:51  myc
+ * Combined the 'saved' and 'unsaved' portions of the char_specials and
+ * player_specials structures by moving all fields of each saved structure
+ * to its parent structure.  Also combined the skills array from the
+ * player and mob structures since they are identical.
+ *
+ * Revision 1.115  2008/03/06 04:35:12  myc
+ * Cleaned up formatting throughout the file.  Moved the IS_VICIOUS macro
+ * from here to utils.h.  Added PULSE_AUTOSAVE to regulate how often
+ * autosaves occur.
+ *
+ * Revision 1.114  2008/03/05 05:21:56  myc
+ * Took out char_file_u struct and a bunch of random messages about it.
+ * Made bank coins into ints instead of longs.  Took out frags too.
+ *
+ * Revision 1.113  2008/03/05 03:03:54  myc
+ * Added NUM_SEXES and several trophy constants.  Removed a few constants
+ * no longer necessary for pfiles.  Added a typedef for bitvectors.
+ * Updated trophy, alias, spell memory, and strings for player files.
+ *
+ * Revision 1.112  2008/02/24 17:31:13  myc
+ * Added OLCComm and NoClanTell toggles (prf bits).
+ *
+ * Revision 1.111  2008/02/16 20:31:32  myc
+ * Include zmalloc.h in all files when memory debugging.
+ *
+ * Revision 1.110  2008/02/09 21:07:50  myc
+ * Casting uses event flags instead of plr/mob flags now.
+ *
+ * Revision 1.109  2008/02/09 18:29:11  myc
+ * Camping and tracking now use event flags instead of having
+ * their own event fields on the char_data struct.
+ *
+ * Revision 1.108  2008/02/09 06:19:44  jps
+ * Add "nohints" toggle for whether you receive command suggestions
+ * after entering a typo.
+ *
+ * Revision 1.107  2008/02/09 03:06:17  myc
+ * Adding a nice friendly 'do not mess with this' message to the perma
+ * title define.
+ *
+ * Revision 1.106  2008/02/02 19:38:20  myc
+ * Claimed some spare char space in player_special_data_saved
+ * for player permanent titles.
+ *
+ * Revision 1.105  2008/01/30 19:20:57  myc
+ * Removing the ch->regenerating field and replacing it with an event
+ * flags member.
+ *
+ * Revision 1.104  2008/01/27 21:14:59  myc
+ * Adding affection flags for berserk and berserk-related chants.
+ * Adding rage to the player structure.
+ *
+ * Revision 1.103  2008/01/27 13:43:50  jps
+ * Moved race and species-related data to races.h/races.c and merged species
+ *into races.
+ *
+ * Revision 1.102  2008/01/27 09:45:41  jps
+ * Got rid of the MCLASS_ defines and we now have a single set of classes
+ * for both players and mobiles.
+ *
+ * Revision 1.101  2008/01/25 21:12:26  myc
+ * Added 'rage' for berserking.
+ *
+ * Revision 1.100  2008/01/20 23:18:52  myc
+ * Fixed mob AI to only leave out class actions.
+ *
+ * Revision 1.99  2008/01/20 22:58:39  myc
+ * Added some new drinks.
+ *
+ * Revision 1.98  2008/01/12 19:08:14  myc
+ * Rerowte a lot of mob AI functionality.
+ *
+ * Revision 1.97  2008/01/10 05:39:43  myc
+ * Had to add a LVL_PURGE to let the purge command be 101 on test and 103
+ * on production.
+ *
+ * damage() now returns the amount of damage it caused.  Negative values
+ * indicate healing, and a return value of VICTIM_DEAD indicates that the
+ * victim is dead.
+ *
+ * Added a heal_msg to the message_type struct.
+ *
+ * Revision 1.96  2008/01/09 08:31:32  jps
+ * Change height and weight variables for characters to ints.
+ * Note that the player file stores only bytes.  The code in
+ * races.c has limited player values for these measurements
+ * accordingly.
+ *
+ * Revision 1.95  2008/01/09 04:15:42  jps
+ * Remove next_memming and next_scribing from struct char_data.
+ *
+ * Revision 1.94  2008/01/09 02:29:01  jps
+ * Remove unused fields from struct char_data. Move mobile nr to mob_specials.
+ *
+ * Revision 1.93  2008/01/09 01:50:06  jps
+ * Classify the elements of struct char_data. Remove the specifically stored
+ * points events. Add int regenerating so we know which regeneration events
+ * are on a character.
+ *
+ * Revision 1.92  2008/01/07 10:35:43  jps
+ * Add a flag for a player phantasm.  It allows mobs to be aggressive to
+ * it without removing the NPC flag.
+ *
+ * Revision 1.91  2008/01/06 23:50:47  jps
+ * Added spells project and simulacrum, and MOB2_ILLUSORY flag.
+ *
+ * Revision 1.90  2008/01/06 17:34:29  jps
+ * Get rid of obsolete struct class_thac0.
+ *
+ * Revision 1.89  2008/01/06 05:33:27  jps
+ * use "sorcerer" and "rogue" instead of "magic user" and "thief"
+ *
+ * Revision 1.88  2008/01/05 21:55:50  jps
+ * Added circular-dependency prevention defs.
+ *
+ * Revision 1.87  2008/01/05 20:32:31  jps
+ * I hate tabs
+ *
+ * Revision 1.86  2008/01/04 01:53:26  jps
+ * Added races.h file and created global array "races" for much
+ * race-related information.
+ *
+ * Revision 1.85  2008/01/02 02:11:03  jps
+ * Moved class definition info to class.h.
+ *
+ * Revision 1.84  2007/12/29 00:05:10  jps
+ * Changed name of BASE_SCRIBE_TIME to reflect the fact that it's
+ * the time to scribe a page in a spellbook.
+ *
+ * Revision 1.83  2007/12/25 05:41:49  jps
+ * Updated event code so the each event type is positively identified.
+ * Events may be tied to objects or characters so that when that object
+ * or character is extracted, its events can be canceled.
+ *
+ * Revision 1.82  2007/12/19 20:56:42  myc
+ * Renaming the CLOAKED toggle to ROOMVIS.  Added a new connection
+ * status for the clan description editor.  Added a NUM_COIN_TYPES
+ * define.  Changed clan_rank from unsigned to signed in the
+ * player structure.  Added a clan_id field to descriptor_data for
+ * use by the clan description editor.
+ *
+ * Revision 1.81  2007/11/25 00:04:59  jps
+ * Spell targets will keep close track of whoever's casting a spell
+ * at them.  This allows spells to be safely aborted if the target
+ * is removed from the game before the spell is completed.
+ *
+ * Revision 1.80  2007/11/18 16:51:55  myc
+ * Renamed LVL_QUESTMASTER as LVL_GAMEMASTER.
+ *
+ * Revision 1.79  2007/10/23 20:19:25  myc
+ * Created 'administration levels' to clean up the master command list.
+ *
+ * Revision 1.78  2007/10/13 20:13:09  myc
+ * ITEM_NOLOCATE now prevents items from being found using the
+ * locate object spell.
+ *
+ * Revision 1.77  2007/10/11 20:14:48  myc
+ * Changed skill defines to support chants and songs as skills, but
+ * slightly distinguished from spells and skills.  TOP_SKILL is the
+ * old MAX_SKILLS.  Chants and songs now each have a block of 50
+ * defines above the new MAX_SKILLS (550).  This is important
+ * because MAX_SKILLS (now TOP_SKILL) is used in the pfile.
+ *
+ * Revision 1.76  2007/10/04 16:20:24  myc
+ * Got rid of struct portal_decay_type.
+ *
+ * Revision 1.75  2007/10/02 02:52:27  myc
+ * Removed AFF_HIDE, and put AFF_SNEAK back in.  Added character forwarding
+ * for switching/shapechanging.
+ *
+ * Revision 1.74  2007/09/21 08:44:45  jps
+ * Added object type "touchstone" and command "touch" so you can set
+ * your home room by touching specific objects.
+ *
+ * Revision 1.73  2007/09/20 21:20:43  myc
+ * Hide points and perception are in.  AFF_HIDE, AFF_SNEAK, and ITEM_HIDDEN
+ * are now unused.  Hiddenness replaces bitvector in obj_file_elem.
+ *
+ * Revision 1.72  2007/09/15 15:36:48  myc
+ * Added camouflage aff3 bit for use by natures embrace.  Removed defunct
+ * ITEM_ bitvector flags.  They were duplicating AFF flags.
+ *
+ * Revision 1.71  2007/09/15 05:37:15  myc
+ * Adding new liquids.
+ *
+ * Revision 1.70  2007/09/15 05:03:46  myc
+ * AFF_DROPPED_PRIM and AFF_DROPPED_SECOND were incorrectly marked as AFF1
+ * flags, but should be AFF2 flags.  Added MOB2 flags, which are saved as
+ * an espec in the mob files.  Implemented MOB2_NOPOISON flag.
+ *
+ * Revision 1.69  2007/09/11 16:34:24  myc
+ * Replaced MOB_NOGEAR with MOB_AQUATIC, which allows you to limit aquatic
+ * mobs to water rooms.
+ *
+ * Revision 1.68  2007/09/04 06:49:19  myc
+ * Getting rid of defunct weather_data constants.  Changing hemisphere data
+ * structs.
+ *
+ * Revision 1.67  2007/08/23 00:31:48  jps
+ * Add !AIR and !EARTH flags, for elemental immunities.
+ *
+ * Revision 1.66  2007/08/22 17:58:05  jps
+ * Add definitions for what levels are required for various rebooting
+ * actions.  Also to identify the reason for the game being restricted
+ * (wizlocked).
+ *
+ * Revision 1.65  2007/08/14 22:43:07  myc
+ * Adding conceal, corner, shadow, and stealth skills.
+ *
+ * Revision 1.64  2007/08/14 10:41:31  jps
+ * Add variables to struct player_special_data to prevent spamming.
+ *
+ * Revision 1.63  2007/08/04 14:40:35  myc
+ * Added MOB_PEACEFUL flag to prevent players from attacking certain mobs.
+ *
+ * Revision 1.62  2007/08/03 22:00:11  myc
+ * Added PK observatories that work adjacent to arena rooms.
+ *
+ * Revision 1.61  2007/08/03 03:51:44  myc
+ * check_pk is now attack_ok, and covers many more cases than before,
+ * including peaced rooms, shapeshifted pk, and arena rooms.  Almost all
+ * offensive attacks now use attack_ok to determine whether an attack is
+ * allowed.
+ *
+ * Revision 1.60  2007/07/19 17:51:36  jps
+ * Move NUM_LIQ_TYPES from olc.h to structs.h, so the LIQ defines will
+ * all be in one place.
+ *
+ * Revision 1.59  2007/07/18 21:05:00  jps
+ * Added an IS_VICIOUS macro that works for mobs and players.
+ *
+ * Revision 1.58  2007/07/14 02:16:22  jps
+ * Added some new constants related to mounts.
+ *
+ * Revision 1.57  2007/05/28 22:36:26  jps
+ * Reduce the <base-class>_subclass arrays to the subclasses that are live.
+ *
+ * Revision 1.56  2007/05/11 20:13:28  myc
+ * Vaporform is a new circle 13 spell for cryomancers.  It significantly
+ * increases the caster's chance of dodging a hit.  It is a quest spell.
+ *
+ * Revision 1.55  2007/04/19 07:03:14  myc
+ * Renamed RAY_OF_ENFEB as RAY_OF_ENFEEB.
+ *
+ * Revision 1.54  2007/04/15 08:30:49  jps
+ * Make scribing much, much faster. Also fix various idiosyncrasies related
+ * to scribing and make it more user-friendly.
+ *
+ * Revision 1.53  2007/03/27 04:27:05  myc
+ * Added new size, colossal.  Renamed innate constants to be more descriptive.
+ *
+ * Revision 1.52  2007/02/08 01:30:00  myc
+ * Level 1s can gossip again.
+ *
+ * Revision 1.51  2007/02/04 18:12:31  myc
+ * Page length now saves as a part of player specials.
+ *
+ * Revision 1.50  2006/12/08 05:06:58  myc
+ * Coin indicies for coin arrays moved here from act.item.c.
+ *
+ * Revision 1.49  2006/11/18 21:01:09  jps
+ * Reworked disarm skill and disarmed-weapon retrieval.
+ *
+ * Revision 1.48  2006/11/18 04:26:32  jps
+ * Renamed continual light spell to illumination, and it only works on
+ * LIGHT items (still rooms too).
+ *
+ * Revision 1.47  2006/11/17 22:52:59  jps
+ * Change AGGR_GOOD/EVIL_ALIGN to AGGR_GOOD/EVIL_RACE
+ *
+ * Revision 1.46  2006/11/08 09:16:04  jps
+ * Fixed some loose-lose typos.
+ *
+ * Revision 1.45  2006/04/11 09:08:46  rls
+ * mods for medit.
+ *
+ * Revision 1.44  2004/11/01 06:02:01  jjl
+ * Updating the buffer size for triggers
+ *
+ * Revision 1.43  2003/06/25 05:06:59  jjl
+ * More updates.  I seem to be off of my game.
+ *
+ * Revision 1.41  2003/06/23 01:47:09  jjl
+ * Added a NOFOLLOW flag, and the "note" command, and show notes <player>
+ *
+ * Revision 1.40  2003/04/16 02:00:22  jjl
+ * Added skill timers for Zzur.  They don't save to file, so they were a
+ * quickie.
+ *
+ * Revision 1.39  2002/10/19 18:29:52  jjl
+ * New and improved red green and blue scrolls of recall. Yummy!
+ *
+ * Revision 1.38  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.37  2002/08/29 17:37:50  rsd
+ * Added a define for a new con state CON_ISPELL_BOOT to work
+ * with new player name checking routines.
+ *
+ * Revision 1.36  2002/05/23 00:33:51  rls
+ * Struct for new thac0 function.
+ *
+ * Revision 1.35  2001/04/08 17:13:10  dce
+ * Added an alwayslit flag that makes a room lit no matter
+ * of the sector or room type...
+ *
+ * Revision 1.34  2001/04/01 22:04:28  mtp
+ * remove MAX_BASE_CLASS as CLASS_ROGUE is beyond its bounds
+ *
+ * Revision 1.33  2001/03/24 05:12:01  dce
+ * Objects will now accept a level through olc and upon
+ * booting the objects. The level code for the players will
+ * follow.
+ *
+ * Revision 1.32  2001/02/03 00:59:30  mtp
+ * added MAX_BASE_CLASS just for less hardcoding in the subclass area
+ *
+ * Revision 1.31  2000/11/28 01:14:40  mtp
+ * removed mobprog references
+ *
+ * Revision 1.30  2000/11/25 02:33:15  rsd
+ * Altered comment header and added back rlog messages
+ * from prior to the addition of the $log$ string.
+ *
+ * Revision 1.29  2000/11/22 01:09:13  mtp
+ * added motere mob classes (all the ones that are available for players)
+ *
+ * Revision 1.28  2000/11/07 01:32:57  mtp
+ * changes d WARRIOR_SUBCLASSES to 5 and ROGUE_SUBCLASSES to 5
+ *
+ * Revision 1.27  2000/11/03 05:43:18  jimmy
+ * removed the quest.h and put it where it should be
+ *
+ * Revision 1.26  2000/10/27 00:34:45  mtp
+ * included quest.h and added member to char_data structure for quests
+ *
+ * Revision 1.25  2000/04/21 00:58:02  rsd
+ * added a bool can_see_master to struct follow_type to work with
+ * follow code into the dark etc...
+ *
+ * Revision 1.24  2000/01/31 00:01:41  rsd
+ * added defines for good_race login, also fixed some tabs
+ * for the defines.
+ *
+ * Revision 1.23  1999/12/10 05:11:40  cso
+ * I moved one line down one line to make sense of it, line 205.
+ *
+ * Revision 1.22  1999/11/29 00:08:51  cso
+ * added defines for MOB_ANIMATED and AFF3_ANIMATED
+ *
+ * Revision 1.21  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.20  1999/07/20 19:45:51  jimmy
+ * This is the spanky New Spell recognition code.
+ * This code allows mobs/players that have the KNOW_SPELL skill
+ * to make a skill check to guess the spell.  A good roll will show both
+ * the spell and the target.  A bad roll will show the spell garbled and
+ * then an INT check for the target.  If a really bad roll is made, the spell
+ * will be replaced by an incorrect one.  the heart of this system is
+ * start_chant(), end_chant, and bad_guess().
+ * --gurlaek 7/20/1999
+ *
+ * Revision 1.19  1999/07/15 03:27:34  jimmy
+ * Mob casters can not hit while casting.
+ * Updated spell cast times to be more realistic
+ * changed combat to 4 seconds per round.
+ * Removed do_order semantics that told the order to onlookers.
+ *
+ * Revision 1.18  1999/07/06 19:57:05  jimmy
+ * This is a Mass check-in of the new skill/spell/language assignment system.
+ * This New system combines the assignment of skill/spell/language for
+ * both mobs and PCs.  LOts of code was touched and many errors were fixed.
+ * MCLASS_VOID was moved from 13 to -1 to match CLASS_UNDEFINED for PC's.
+ * MObs now get random skill/spell/language levels baseed on their
+ *race/class/level that exactly align with PC's.  PC's no longer have to rent to
+ *use skills gained by leveling or when first creating a char.  Languages no
+ *longer reset to defaults when a PC levels.  Discovered that languages have
+ *been defined right in the middle of the spell area.  This needs to be fixed.
+ *A conversion util neeDs to be run on the mob files to compensate for the 13 to
+ *-1 class change.
+ * --gurlaek 7/6/1999
+ *
+ * Revision 1.17  1999/06/30 18:11:09  jimmy
+ * act.offensive.c    config.c      handler.c    spells.c
+ * This is a major conversion from the 18 point attribute system to the
+ * 100 point attribute system.  A few of the major changes are:
+ * All attributes are now on a scale from 0-100
+ * Everyone views attribs the same but, the attribs for one race
+ *   may be differeent for that of another even if they are the
+ *   same number.
+ * Mobs attribs now get rolled and scaled using the same algorithim as PC's
+ * Mobs now have individual random attributes based on race/class.
+ * The STR_ADD attrib has been completely removed.
+ * All bonus tables for attribs in constants.c have been replaced by
+ *   algorithims that closely duplicate the tables except on a 100 scale.
+ * Some minor changes:
+ * Race selection at char creation can now be toggled by using
+ *   <world races off>
+ * Lots of cleanup done to affected areas of code.
+ * Setting attributes for mobs in the .mob file no longer functions
+ *   but is still in the code for later use.
+ * We now have a spare attribut structure in the pfile because the new
+ *   system only used three instead of four.
+ * --gurlaek 6/30/1999
+ *
+ * Revision 1.16  1999/05/04 17:19:33  dce
+ * Name accept system...version one...original code by Fingh, fixed up to work
+ * by Zantir.
+ *
+ * Revision 1.15  1999/04/16 03:55:09  dce
+ * Removed some things temporarly until they can be fixed.
+ *
+ * Revision 1.14  1999/04/07 01:20:18  dce
+ * Allows extra descriptions on no exits.
+ *
+ * Revision 1.13  1999/03/26 19:44:35  jen
+ * Added a mortal gossip channel with 103+ godly control
+ *
+ * Revision 1.12  1999/03/14 00:53:03  mud
+ * In class.c added a new line before the fiery mud class explanation
+ * in config.c added the variable for name explanations and added the
+ * text for the variable
+ * in interpreter.c added the con_state stuff, whatever that was and
+ * added the CON_NAME_CHECK affirmation section to the creation menu
+ * loop or nanny.
+ * In structs.h added the CON_NAME_CHECK define..
+ * I also drove Jimmy absolutely insane with the deail in information
+ * I put into our change control system.
+ *
+ * Revision 1.11  1999/03/06 23:51:54  dce
+ * Add's chant songs, and can only chant once every four hours
+ *
+ * Revision 1.10  1999/03/05 20:02:36  dce
+ * Chant added to, and songs craeted
+ *
+ * Revision 1.9  1999/03/03 20:11:02  jimmy
+ * Many enhancements to scribe and spellbooks.  Lots of checks added.  Scribe is
+ *now a skill. Spellbooks now have to be held to scribe as well as a quill in
+ *the other hand.
+ *
+ * -fingon
+ *
+ * Revision 1.8  1999/03/01 05:31:34  jimmy
+ * Rewrote spellbooks.  Moved the spells from fingh's PSE to a standard linked
+ * list.  Added Spellbook pages.  Rewrote Scribe to be a time based event based
+ * on the spell mem code.  Very basic at this point.  All spells are 5 pages
+ *long, and take 20 seconds to scribe each page.  This will be more dynamic when
+ *the SCRIBE skill is introduced.  --Fingon.
+ *
+ * Revision 1.7  1999/02/12 15:33:17  jimmy
+ * Brand new spell table, thanks to Zzur
+ * Glad I didnt' have to do it...
+ * fingon
+ *
+ * Revision 1.6  1999/02/11 22:17:40  jimmy
+ * Moved spell circles to every 8 levels.  Filled in the
+ * spells array to extend from level 70 to 105.
+ * fingon
+ *
+ * Revision 1.5  1999/02/10 22:21:42  jimmy
+ * Added do_wiztitle that allows gods to edit their
+ * godly title ie Overlord.  Also added this title
+ * to the playerfile
+ * fingon
+ *
+ * Revision 1.4  1999/02/10 05:57:14  jimmy
+ * Added long description to player file.  Added AFK toggle.
+ * removed NOAUCTION toggle.
+ * fingon
+ *
+ * Revision 1.3  1999/02/06 00:40:36  jimmy
+ * Major change to incorporate aliases into the pfile
+ * moved alias structure from interpreter.h to structs.h
+ * heavily modified alias code in interpreter.c
+ * Jimmy Kincaid AKA fingon
+ *
+ * Revision 1.2  1999/02/05 07:47:42  jimmy
+ * Added Poofs to the playerfile as well as 4 extra strings for
+ * future use.  fingon
+ *
+ * Revision 1.1  1999/01/29 01:23:32  mud
+ * Initial revision
+ *
+ ***************************************************************************/

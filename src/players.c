@@ -64,6 +64,13 @@ static int saved_cooldowns[] = {CD_SUMMON_MOUNT,
                                 CD_INNATE_STRENGTH,
                                 CD_INNATE_DARKNESS,
                                 CD_INNATE_LEVITATE,
+                                CD_INNATE_GRACE,
+                                CD_INNATE_FORTITUDE,
+                                CD_INNATE_INSIGHT,
+                                CD_INNATE_GENIUS,
+                                CD_INNATE_SPLENDOR,
+                                CD_INNATE_HARNESS,
+                                CD_BREATHE,
                                 -1};
 
 static char *quit_reenter_message[NUM_QUITTYPES] = {"%s reenters the game in %s.",
@@ -1030,9 +1037,6 @@ void save_player_char(struct char_data *ch) {
 
     if (player_table[id].flags != i || save_index)
         save_player_index();
-
-    sprintf(buf, "Saved player %s.", GET_NAME(ch));
-    log(buf);
 }
 
 /* delete_player() removes all files associated with a player who is
@@ -1416,3 +1420,199 @@ void send_save_description(struct char_data *ch, struct char_data *dest, bool en
         mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
     }
 }
+
+/***************************************************************************
+ *
+ * $Log: players.c,v $
+ * Revision 1.61  2010/06/05 14:56:27  mud
+ * Moving cooldowns to their own file.
+ *
+ * Revision 1.60  2009/07/16 19:16:12  myc
+ * Moved privilege stuff from grant.c to privileges.c
+ *
+ * Revision 1.59  2009/06/09 21:50:21  myc
+ * Clan notification when a player logs out.
+ *
+ * Revision 1.58  2009/06/09 19:33:50  myc
+ * Rewrote gain_exp and retired gain_exp_regardless.
+ *
+ * Revision 1.57  2009/06/09 05:46:41  myc
+ * Modifying load/save player functions to work with the new
+ * clan interface.  Also loading and saving privilege flags.
+ *
+ * Revision 1.56  2009/03/21 19:11:37  myc
+ * Save the duration each cooldown started at.
+ *
+ * Revision 1.55  2009/03/16 19:17:52  jps
+ * Change macro GET_HOME to GET_HOMEROOM
+ *
+ * Revision 1.54  2009/03/09 20:36:00  myc
+ * Renamed all *PLAT macros to *PLATINUM.
+ *
+ * Revision 1.53  2009/03/09 05:41:31  jps
+ * Moved money stuff into money.h, money.c
+ *
+ * Revision 1.52  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.51  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.50  2008/09/21 04:54:23  myc
+ * Added grant caches to the player structure to make can_use_command
+ * take less execution time.
+ *
+ * Revision 1.49  2008/09/08 05:24:50  jps
+ * Put autosave as the "quit reason" when autosaving. This is a temporary fix
+ * that should stop people from losing keys when autosave code thinks their
+ * quit reason is something else, like renting.
+ *
+ * Revision 1.48  2008/09/07 20:36:47  jps
+ * Add periods to game re-entry messages.
+ *
+ * Revision 1.47  2008/09/07 01:30:37  jps
+ * Add a flag for player saving, so that effect changes in the midst of it
+ * can be ignored.
+ *
+ * Revision 1.46  2008/09/01 22:15:59  jps
+ * Saving and reporting players' game-leaving reasons and locations.
+ *
+ * Revision 1.45  2008/09/01 18:29:38  jps
+ * consolidating cooldown code in skills.c/h
+ *
+ * Revision 1.44  2008/08/31 18:38:33  myc
+ * Set max hp to base hp when loading.
+ *
+ * Revision 1.43  2008/08/30 04:34:05  myc
+ * Missing break in switch for case 'g' in load_player.
+ *
+ * Revision 1.42  2008/08/30 01:31:51  myc
+ * Changed the way stats are calculated in effect_total; ability
+ * stats are saved in a raw form now, and only capped when accessed.
+ * Damroll and hitroll are recalculated everytime effect_total
+ * is called, using cached base values.
+ *
+ * Revision 1.41  2008/08/14 23:10:35  myc
+ * Made immortal log view save to player files.
+ *
+ * Revision 1.40  2008/07/27 05:28:45  jps
+ * Using new save_player function. Added remove_player_from_game.
+ * Setting new players' home rooms to the mortal start toom.
+ *
+ * Revision 1.39  2008/07/15 17:55:06  myc
+ * Make grants and grant groups save in player files.
+ *
+ * Revision 1.38  2008/06/21 08:53:09  myc
+ * Read lastlogintime in and put it in the player structure so it
+ * can be accessed by commands like last and show player.  To avoid
+ * the lots-of-playing-time bug, last logon time must be set whenever
+ * loading a player that is actually entering the game.  (See
+ * enter_player_game() and link loading.)
+ *
+ * Revision 1.37  2008/06/16 03:59:03  myc
+ * Fix play time accumulating on players.
+ *
+ * Revision 1.36  2008/06/05 02:07:43  myc
+ * Added better unknown tag error reporting in load_player.
+ * Replaced calls to strip_cr with filter_chars.  Rewrote the
+ * rent file saving and loading to use an ascii file format.
+ *
+ * Revision 1.35  2008/04/13 03:41:16  jps
+ * Using the def for the length of a player filename.
+ *
+ * Revision 1.34  2008/04/05 16:50:04  myc
+ * Fix the reading and writing of flagvectors to be more flexible; you
+ * shouldn't need to modify the code here to accomodate additional future
+ * eff, prf, or plr flags.
+ *
+ * Revision 1.33  2008/04/03 17:37:43  jps
+ * Saving autoinvis value in main player files.
+ *
+ * Revision 1.32  2008/04/02 04:55:59  myc
+ * Got rid of the coins struct.
+ *
+ * Revision 1.31  2008/04/02 03:24:44  myc
+ * Rewrote group code and removed major group code.
+ *
+ * Revision 1.30  2008/03/30 17:30:38  jps
+ * Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
+ * from pfiles.c now include pfiles.h and depend on it in the makefile.
+ *
+ * Revision 1.29  2008/03/29 21:14:37  myc
+ * Cooldowns wear off even when you are logged off.  Also fixed a bug where
+ * the alias reading code wasn't eating up its final line.
+ *
+ * Revision 1.28  2008/03/28 18:49:15  jps
+ * Stop saving hitroll/damroll in player files, only causing trouble.
+ *
+ * Revision 1.27  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.26  2008/03/23 00:27:23  jps
+ * Save the base composition, not the affected one.
+ *
+ * Revision 1.25  2008/03/22 21:54:42  jps
+ * Cause new players to have their racial defaults set
+ * during creation.
+ *
+ * Revision 1.24  2008/03/22 20:01:06  jps
+ * Save/load composition and lifeforce to player save files.
+ *
+ * Revision 1.23  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.22  2008/03/17 17:59:10  myc
+ * Fix crash bug with new players by initializing trophy in start_player.
+ *
+ * Revision 1.21  2008/03/17 15:31:27  myc
+ * Fixing hitroll/damroll saving/loading.
+ *
+ * Revision 1.20  2008/03/16 07:01:50  jps
+ * Compensate for missing or corrupted time value in the saved spell mem list.
+ *
+ * Revision 1.19  2008/03/16 00:20:22  jps
+ * Moving trophy code to trophy.c.
+ *
+ * Revision 1.18  2008/03/11 19:50:55  myc
+ * Changed the way allowed olc zones are saved on an immortal from
+ * a fixed number of slots to a variable-length linked list.
+ *
+ * Revision 1.17  2008/03/11 04:32:43  jps
+ * Don't log an error for a nonexistent player file.
+ *
+ * Revision 1.16  2008/03/11 02:56:02  jps
+ * Use natural_size and base_size when reading/writing player files.
+ *
+ * Revision 1.15  2008/03/10 20:46:55  myc
+ * Renamed POS1 to 'stance'.  Moving innate timers to cooldown system.
+ *
+ * Revision 1.14  2008/03/10 19:55:37  jps
+ * Made a struct for sizes with name, height, and weight.  Save base height
+ * weight and size so they stay the same over size changes.
+ *
+ * Revision 1.13  2008/03/10 18:01:17  myc
+ * Remove some unwanted flags when reloading a player.  And remoe
+ * berserk affect when saving.
+ *
+ * Revision 1.12  2008/03/09 08:46:33  jps
+ * Save the internal skill value.
+ *
+ * Revision 1.11  2008/03/09 06:38:37  jps
+ * Replaced name with namelist in struct char_data.player. GET_NAME macro
+ * now points to short_descr. The uses of these strings is the same for
+ * NPCs and players.
+ *
+ * Revision 1.10  2008/03/08 23:20:06  myc
+ * The load_player function now fills in player_specials if it
+ * hasn't already been allocated.
+ *
+ * Revision 1.9  2008/03/08 22:29:06  myc
+ * Moving shapechange and chant to the cooldown system.
+ *
+ * Revision 1.8  2008/03/08 18:59:17  jps
+ * Fix log :)
+ *
+ * Revision 1.7  2008/03/08 18:57:44  jps
+ * Add RCS log marker.
+ **************************************************************************/

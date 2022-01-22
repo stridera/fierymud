@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: skills.c,v 1.68 2010/06/05 14:56:27 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
  *  File: skills.c                                       Part of FieryMUD  *
  *  Usage: Skill-management functions and data                             *
  *                                                                         *
@@ -687,6 +690,9 @@ void init_skills(void) {
            MAG_DAMAGE | MAG_AFFECT, C1, CAST_SPEED6, DAM_FIRE, SKILL_SPHERE_FIRE, 5, FALSE,
            "Your vision has returned.");
 
+    spello(SPELL_SPIRIT_RAY, "spirit ray", 0, 0, 0, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
+           MAG_DAMAGE | MAG_AFFECT, C1, CAST_SPEED6, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, FALSE, NULL);
+
     spello(SPELL_SUPERNOVA, "supernova", 100, 50, 3, POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, C1, 16, DAM_FIRE,
            SKILL_SPHERE_FIRE, 31, TRUE, NULL);
 
@@ -718,7 +724,7 @@ void init_skills(void) {
 
     spello(SPELL_WRITHING_WEEDS, "writhing weeds", 0, 0, 0, POS_STANDING, TRUE,
            TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_OUTDOORS, TRUE, MAG_DAMAGE, C1, CAST_SPEED3, DAM_CRUSH,
-           SKILL_SPHERE_EARTH, 5, FALSE, NULL);
+           SKILL_SPHERE_GENERIC, 5, FALSE, NULL);
 
     /* SORTED */
 
@@ -785,6 +791,9 @@ void init_skills(void) {
 
     spello(SPELL_CHAIN_LIGHTNING, "chain lightning", 0, 0, 0, POS_STANDING, TRUE, TAR_IGNORE | TAR_DIRECT, TRUE,
            MAG_AREA, C1, CAST_SPEED5, DAM_SHOCK, SKILL_SPHERE_AIR, 27, FALSE, NULL);
+
+    spello(SPELL_CIRCLE_OF_DEATH, "circle of death", 0, 0, 0, POS_STANDING, TRUE, TAR_IGNORE | TAR_DIRECT, TRUE,
+           MAG_AREA, C1, CAST_SPEED5, DAM_MENTAL, SKILL_SPHERE_DEATH, 27, FALSE, NULL);
 
     spello(SPELL_MASS_INVIS, "mass invisibility", 0, 0, 0, POS_STANDING, FALSE, TAR_IGNORE, FALSE,
            MAG_BULK_OBJS | MAG_MASS, C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 23, FALSE, NULL);
@@ -909,6 +918,22 @@ void init_skills(void) {
     spello(SPELL_INN_STRENGTH, "innate strength", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, 0, 0, 7, FALSE, "You feel weaker.");
 
+    /* innate grace */
+    spello(SPELL_INN_GRACE, "innate grace", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel clumsier.");
+
+    /* innate insight */
+    spello(SPELL_INN_INSIGHT, "innate insight", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less wise.");
+
+    /* innate genius */
+    spello(SPELL_INN_GENIUS, "innate genius", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less intelligent.");
+
+    /* innate splendor */
+    spello(SPELL_INN_SPLENDOR, "innate splendor", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less splendid.");
+
     spello(SPELL_MAJOR_PARALYSIS, "major paralysis", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, TRUE, MAG_MANUAL,
            C6, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 35, FALSE, "You can move again.");
 
@@ -997,6 +1022,12 @@ void init_skills(void) {
     spello(SPELL_FIREBALL, "fireball", 40, 30, 2, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
            MAG_DAMAGE, C1, CAST_SPEEDE, DAM_FIRE, SKILL_SPHERE_FIRE, 21, FALSE, NULL);
 
+    spello(SPELL_VICIOUS_MOCKERY, "vicious mockery", 40, 30, 2, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
+           MAG_DAMAGE, C1, CAST_SPEEDE, DAM_MENTAL, SKILL_SPHERE_GENERIC, 21, FALSE, NULL);
+
+    spello(SPELL_ANCESTRAL_VENGEANCE, "ancestral vengeance", 40, 30, 2, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
+           MAG_DAMAGE, C1, CAST_SPEEDE, DAM_ALIGN, SKILL_SPHERE_GENERIC, 21, FALSE, NULL);
+
     spello(SPELL_FULL_HARM, "full harm", 75, 45, 3, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_CONTACT,
            TRUE, MAG_DAMAGE, C1, CAST_SPEED6, DAM_HEAL, SKILL_SPHERE_HEALING, 5, FALSE, NULL);
 
@@ -1046,6 +1077,9 @@ void init_skills(void) {
     spello(SPELL_PROT_FROM_EVIL, "protection from evil", 40, 10, 3, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE,
            MAG_AFFECT, C1, CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected.");
 
+    spello(SPELL_PROT_FROM_GOOD, "protection from good", 40, 10, 3, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE,
+           MAG_AFFECT, C1, CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected.");
+
     spello(SPELL_REMOVE_CURSE, "remove curse", 45, 25, 5, POS_STANDING, FALSE,
            TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL, C1, CAST_SPEED4, DAM_UNDEFINED,
            SKILL_SPHERE_ENCHANT, 5, FALSE, NULL);
@@ -1059,6 +1093,10 @@ void init_skills(void) {
 
     spello(SPELL_SLEEP, "sleep", 40, 25, 5, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1, CAST_SPEED4,
            DAM_MENTAL, SKILL_SPHERE_ENCHANT, 19, FALSE, "You feel less tired.");
+
+    spello(SPELL_SPIRIT_ARROWS, "spirit arrows", 0, 0, 0, POS_STANDING, TRUE,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE, MAG_MANUAL, C1, CAST_SPEEDD, DAM_ALIGN,
+           SKILL_SPHERE_GENERIC, 5, FALSE, NULL);
 
     spello(SPELL_STRENGTH, "strength", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel weaker.");
@@ -1202,6 +1240,10 @@ void init_skills(void) {
     spello(SPELL_MOONBEAM, "moonbeam", 0, 0, 0, POS_STANDING, TRUE, TAR_IGNORE | TAR_OUTDOORS | TAR_NIGHT_ONLY, TRUE,
            MAG_MANUAL, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_WATER, 10, FALSE, NULL);
 
+    spello(SPELL_BALEFUL_POLYMORPH, "baleful polymorph", 90, 35, 3, POS_STANDING, TRUE,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE, MAG_DAMAGE, C1, CAST_SPEEDE, DAM_UNDEFINED,
+           SKILL_SPHERE_SUMMON, 25, FALSE, NULL);
+
     /* Declaration of skills - sets skills up so that immortals can use
      * them by default. Determines whether a skill is considered
      * "humanoid only". */
@@ -1245,7 +1287,14 @@ void init_skills(void) {
     skillo(SKILL_SHAPECHANGE, "shapechange", FALSE, 0);
     skillo(SKILL_SWITCH, "switch", FALSE, TAR_CONTACT);
     skillo(SKILL_GUARD, "guard", FALSE, 0);
+    /*
     skillo(SKILL_BREATHE, "breathe", FALSE, 0);
+    */
+    skillo(SKILL_BREATHE_FIRE, "breathe fire", FALSE, 0);
+    skillo(SKILL_BREATHE_ACID, "breathe acid", FALSE, 0);
+    skillo(SKILL_BREATHE_FROST, "breathe frost", FALSE, 0);
+    skillo(SKILL_BREATHE_GAS, "breathe gas", FALSE, 0);
+    skillo(SKILL_BREATHE_LIGHTNING, "breathe lightning", FALSE, 0);                
     skillo(SKILL_SWEEP, "sweep", FALSE, TAR_CONTACT);
     skillo(SKILL_ROAR, "roar", FALSE, 0);
     skillo(SKILL_DOUSE, "douse", FALSE, 0);
@@ -1415,3 +1464,232 @@ bool get_spell_assignment_circle(struct char_data *ch, int spell, int *circle_as
     }
     return FALSE;
 }
+
+/***************************************************************************
+ * $Log: skills.c,v $
+ * Revision 1.68  2010/06/05 14:56:27  mud
+ * Moving cooldowns to their own file.
+ *
+ * Revision 1.67  2009/08/02 20:20:27  myc
+ * Adding pyre and fracture spells.
+ *
+ * Revision 1.66  2009/07/18 01:17:23  myc
+ * Adding decay, iron maiden, spinechiller, and bone draw spells
+ * for necromancer.
+ *
+ * Revision 1.65  2009/06/20 23:14:13  myc
+ * Fix typo in wearoff message for speak in tongues.
+ *
+ * Revision 1.64  2009/03/21 19:11:37  myc
+ * Save the duration each cooldown started at.
+ *
+ * Revision 1.63  2009/03/21 06:33:36  jps
+ * Make phosphoric embers mag_manual
+ *
+ * Revision 1.62  2009/03/21 06:20:43  jps
+ * Fix single-target sorcerer damage for spells that imms cast which
+ * are not assigned to their class.
+ *
+ * Revision 1.61  2009/03/20 16:06:04  jps
+ * Removed spells of lesser/greater invocation.
+ *
+ * Revision 1.60  2009/03/20 15:12:04  jps
+ * Added a generic 'recall' spell to be assigned to town recall
+ * scrolls, so that the object-spell verifier doesn't complain.
+ *
+ * Revision 1.59  2009/03/20 06:15:17  myc
+ * Adding a TAR_GROUND cast requirement.  Added detonation,
+ * phosphoric embers, positive field, and acid burst spells.
+ * Removed combust and heatwave.  Made soul tap a manual spell.
+ *
+ * Revision 1.58  2009/03/17 08:59:25  jps
+ * Remove leftover debugging statement
+ *
+ * Revision 1.57  2009/03/16 09:44:13  jps
+ * Allow skills to improve normally if assigned by race
+ *
+ * Revision 1.56  2009/03/09 16:57:47  myc
+ * Made detect poison more like detect align.
+ *
+ * Revision 1.55  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.54  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.53  2009/03/04 05:14:16  myc
+ * Change summon corpse/shift corpse to use a custom match function
+ * on the new find obj system in order to only target corpses.
+ *
+ * Revision 1.52  2009/01/16 23:36:34  myc
+ * Add "skill" name/wear off message for 'aware'.
+ *
+ * Revision 1.51  2008/09/20 08:02:27  jps
+ * Removed comprehend language spell.
+ *
+ * Revision 1.50  2008/09/12 20:16:36  jps
+ * Made waterform into a quest spell.
+ *
+ * Revision 1.49  2008/09/11 02:50:02  jps
+ * Changed skills so you have a minimum position, and fighting_ok fields.
+ *
+ * Revision 1.48  2008/09/01 18:29:38  jps
+ * consolidating cooldown code in skills.c/h
+ *
+ * Revision 1.47  2008/09/01 07:31:31  jps
+ * Change skill sorter to operate within the range that accessors do
+ *
+ * Revision 1.46  2008/08/25 00:20:33  myc
+ * Changed the way mobs memorize spells.
+ *
+ * Revision 1.45  2008/08/24 03:15:57  myc
+ * Set all skills and spells to default to DAM_UNDEFINED instead
+ * of DAM_SLASHING (0).
+ *
+ * Revision 1.44  2008/08/20 05:03:13  jps
+ * Removed the damage type 'magic'.
+ *
+ * Revision 1.43  2008/08/10 19:33:58  jps
+ * Moved level_to_circle to skills.c. Added get_spell_assignment_circle so
+ * damage spells can be properly calibrated.
+ *
+ * Revision 1.42  2008/08/10 17:20:26  jps
+ * Mark soul reaver as violent.
+ *
+ * Revision 1.41  2008/08/10 16:23:11  jps
+ * Make severance and soul reaver spells not quest.
+ *
+ * Revision 1.40  2008/08/10 01:58:49  jps
+ * Added spells severance and soul reaver for illusionists.
+ *
+ * Revision 1.39  2008/06/21 17:28:38  jps
+ * Made more use of the VALID_CLASS macro.
+ *
+ * Revision 1.38  2008/05/19 05:47:00  jps
+ * Add mesmerize spell.
+ *
+ * Revision 1.37  2008/05/18 22:53:22  jps
+ * Adding hysteria spell.
+ *
+ * Revision 1.36  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.35  2008/05/18 17:59:40  jps
+ * Adding spello definition for familiarity.
+ *
+ * Revision 1.34  2008/05/18 03:39:05  jps
+ * Gave the "detect invisibility" and "detect alignment" spells their
+ * full, unabbreviated names. I'm sure this will cause output
+ * misalignments...
+ *
+ * Revision 1.33  2008/05/18 02:33:28  jps
+ * Change improve_skill_offensively so that it doesn't insist on
+ * an opponent. Thus, switch can improve.
+ *
+ * Revision 1.32  2008/05/18 02:04:21  jps
+ * Added isolation spell.
+ *
+ * Revision 1.31  2008/05/12 00:44:21  jps
+ * Add spello calls for nightmare and discorporate.
+ *
+ * Revision 1.30  2008/04/23 19:58:53  myc
+ * Made sort_skills use the quicksort.
+ *
+ * Revision 1.29  2008/04/19 21:10:31  myc
+ * Added a 'show skill' subcommand, which required a list of
+ * target flag and routine type strings.
+ *
+ * Revision 1.28  2008/04/14 08:36:09  jps
+ * Add spello() call for spell of illusory wall.
+ *
+ * Revision 1.27  2008/04/14 02:17:16  jps
+ * Adding spello() call for "glory" spell.
+ *
+ * Revision 1.26  2008/04/13 18:29:59  jps
+ * Add spello() call for confusion.
+ *
+ * Revision 1.25  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.24  2008/04/05 16:31:36  jps
+ * Forgot to add damage type to dispel magic spell.
+ *
+ * Revision 1.23  2008/04/02 17:41:56  myc
+ * Fixed vampiric touch.
+ *
+ * Revision 1.22  2008/03/30 15:37:36  jps
+ * Fix spelling of riposte.
+ *
+ * Revision 1.21  2008/03/29 16:28:58  jps
+ * Make several spells do "mental" damage.
+ *
+ * Revision 1.20  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.19  2008/03/27 17:27:26  jps
+ * Allow dark presence to operate on objects.
+ *
+ * Revision 1.18  2008/03/25 21:59:32  jps
+ * Doing away with earth/air damage, going to crush, shock, water, cold.
+ *
+ * Revision 1.17  2008/03/24 08:43:09  jps
+ * Change acid breath's damage type to acid.
+ *
+ * Revision 1.16  2008/03/23 18:42:21  jps
+ * Using the new damage types defined in chars.h for spell damage.
+ *
+ * Revision 1.15  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.14  2008/03/10 18:01:17  myc
+ * Added bodyslam skillo define.
+ *
+ * Revision 1.13  2008/03/09 18:10:19  jps
+ * Added definition of misdirection spell.
+ *
+ * Revision 1.12  2008/03/09 08:59:55  jps
+ * Make fear into a manual spell.
+ *
+ * Revision 1.11  2008/03/08 22:29:06  myc
+ * Moving shapechange and chant to the cooldown system.
+ *
+ * Revision 1.10  2008/03/07 21:21:57  myc
+ * Replaced action delays and skill delays with a single list of
+ * 'cooldowns', which are decremented by a recurring event and
+ * also save to the player file.
+ *
+ * Revision 1.9  2008/02/23 01:03:54  myc
+ * Removing the min_circle and lowest_circle fields on the skillinfo
+ * struct.  They are redundant; use the level fields combined with
+ * LEVEL_TO_CIRCLE macro.  Renaming spell_level to skill_assign and
+ * moving it here.
+ *
+ * Revision 1.8  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.7  2008/02/06 21:53:53  myc
+ * The first aid skill define was missing.
+ *
+ * Revision 1.6  2008/01/29 16:51:12  myc
+ * Moving skill names to the skilldef struct.
+ * Adding the concept of contact and direct skills/spells.
+ *
+ * Revision 1.5  2008/01/27 21:18:20  myc
+ * Adding berserker skill and chant defines.
+ *
+ * Revision 1.4  2008/01/26 23:19:28  jps
+ * Remove the equipment-destroying manual spell for acid breath.
+ *
+ * Revision 1.3  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.2  2008/01/26 12:32:23  jps
+ * Move improve_skills here. Add improve_skills_offensively() so your skills
+ * won't improve when used against illusions.
+ *
+ * Revision 1.1  2008/01/26 10:44:41  jps
+ * Initial revision
+ *
+ ***************************************************************************/

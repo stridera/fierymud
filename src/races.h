@@ -13,8 +13,8 @@
 #ifndef __FIERY_RACES_H
 #define __FIERY_RACES_H
 
-#include "structs.h"
 #include "sysdep.h"
+#include "structs.h"
 
 /* The race of an individual is stored as a byte in struct char_player_data. */
 
@@ -35,15 +35,25 @@
 #define RACE_PLANT 12
 #define RACE_HUMANOID 13
 #define RACE_ANIMAL 14
-#define RACE_DRAGON 15
+#define RACE_DRAGON_GENERAL 15
 #define RACE_GIANT 16
 #define RACE_OTHER 17
 #define RACE_GOBLIN 18
 #define RACE_DEMON 19
 #define RACE_BROWNIE 20
+#define RACE_DRAGON_FIRE 21
+#define RACE_DRAGON_FROST 22
+#define RACE_DRAGON_ACID 23
+#define RACE_DRAGON_LIGHTNING 24
+#define RACE_DRAGON_GAS 25
+#define RACE_DRAGONBORN_FIRE 26
+#define RACE_DRAGONBORN_FROST 27
+#define RACE_DRAGONBORN_ACID 28
+#define RACE_DRAGONBORN_LIGHTNING 29
+#define RACE_DRAGONBORN_GAS 30
 
 /* Make sure to update this number if you add a race. */
-#define NUM_RACES 21
+#define NUM_RACES 31
 
 #define DEFAULT_RACE RACE_OTHER
 
@@ -52,7 +62,7 @@
 #define RACE_ALIGN_GOOD 0
 #define RACE_ALIGN_EVIL 1
 
-#define NUM_RACE_SKILLS 10
+#define NUM_RACE_SKILLS 15
 
 /* This defines the basic attributes of a race. */
 
@@ -150,3 +160,36 @@ int natural_move(struct char_data *ch);
 void scale_attribs(struct char_data *ch);
 
 #endif
+
+/***************************************************************************
+ * $Log: races.h,v $
+ * Revision 1.21  2009/03/16 09:44:38  jps
+ * Added brownie race
+ *
+ * Revision 1.20  2008/06/21 17:28:56  jps
+ * Added movement strings to race definitions. Changed some race macros
+ * because the value is now an unsigned int.
+ *
+ * Revision 1.19  2008/04/26 23:35:43  myc
+ * Info about permanent effects and race skills are stored in the
+ * class/race structs now, but need to be initialized at runtime
+ * by the init_races and init_classes functions.
+ *
+ * Revision 1.18  2008/03/26 16:44:36  jps
+ * Replaced all checks for undead race with checks for undead lifeforce.
+ * Replaced the undead race with the plant race.
+ *
+ * Revision 1.17  2008/03/22 21:43:55  jps
+ * Add init_proto_race(), which is for setting default values on a
+ * mob prototype according to race.  Probably during OLC.
+ *
+ * Revision 1.16  2008/03/22 21:23:50  jps
+ * Add default life force and composition to race definitions.
+ *
+ * Revision 1.15  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.14  2008/03/11 02:13:25  jps
+ * Moving size macros to chars.h.
+ *
+ ***************************************************************************/

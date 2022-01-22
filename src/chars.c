@@ -39,21 +39,19 @@
 
 ACMD(do_flee); /* act.offensive.c */
 
-const char *stats_display =
-    "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
-    "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
-    "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n";
+const char *stats_display = "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
+                            "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
+                            "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n";
 
 #define Y TRUE
 #define N FALSE
 
 int class_ok_race[NUM_RACES][NUM_CLASSES] = {
-    /* RACE    So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr
-       Il Hu */
-    /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* El */ {Y, Y, Y, N, N, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
+    /* RACE   So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
+    /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
+    /* El */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
     /* Gn */ {Y, Y, N, N, N, N, N, N, Y, N, N, N, Y, N, N, Y, Y, N, N, N, Y, Y, Y, N},
-    /* Dw */ {N, Y, Y, Y, N, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
+    /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
     /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
     /* Dr */ {Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y},
     /* Du */ {N, Y, Y, Y, N, N, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y},
@@ -62,6 +60,25 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* HE */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N},
     /* Ba */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, N},
     /* Ha */ {Y, Y, Y, Y, N, N, N, N, N, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
+    /*plnt*/ {},
+    /*hmnd*/ {},
+    /*anml*/ {},
+    /*drgn*/ {},
+    /*gint*/ {},
+    /*othr*/ {},
+    /*gbln*/ {},
+    /*demn*/ {},
+    /*brwn*/ {},
+    /*fire*/ {},
+    /*frst*/ {},
+    /*acid*/ {},
+    /*ligh*/ {},
+    /*gas */ {},
+    /*DbFi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbFr*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbAc*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbLi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbGa*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
 };
 
 int get_base_saves(struct char_data *ch, int type) {
@@ -89,6 +106,11 @@ int get_base_saves(struct char_data *ch, int type) {
     switch (GET_RACE(ch)) {
     case RACE_DUERGAR:
     case RACE_DWARF:
+    case RACE_DRAGONBORN_FIRE:
+    case RACE_DRAGONBORN_FROST:
+    case RACE_DRAGONBORN_ACID:
+    case RACE_DRAGONBORN_LIGHTNING:
+    case RACE_DRAGONBORN_GAS:
         saves[SAVING_PARA] -= (int)(0.125 * GET_VIEWED_CON(ch));
         saves[SAVING_ROD] -= (int)(0.1 * GET_VIEWED_CON(ch));
         saves[SAVING_SPELL] -= (int)(0.1 * GET_VIEWED_CON(ch));
@@ -320,6 +342,10 @@ int susceptibility(struct char_data *ch, int dtype) {
             sus = sus * 75 / 100;
         return sus;
     case DAM_ACID:
+        if (EFF_FLAGGED(ch, EFF_NEGATE_EARTH))
+            return 0;
+        if (EFF_FLAGGED(ch, EFF_PROT_EARTH))
+            return compositions[GET_COMPOSITION(ch)].sus_acid * 75 / 100;
         return compositions[GET_COMPOSITION(ch)].sus_acid;
     case DAM_POISON:
         if (MOB_FLAGGED(ch, MOB_NOPOISON))
@@ -557,3 +583,218 @@ void hp_pos_check(struct char_data *ch, struct char_data *attacker, int dam) {
         }
     }
 }
+
+/***************************************************************************
+ * $Log: chars.c,v $
+ * Revision 1.63  2010/06/20 19:53:47  mud
+ * Log to file errors we might want to see.
+ *
+ * Revision 1.62  2009/03/22 03:53:53  jps
+ * Use correct function to check whether a person's in the right stance
+ * and position to continue casting a spell.
+ *
+ * Revision 1.61  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.60  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.59  2009/03/05 19:00:43  myc
+ * Make dwarves unable to be diabolists and condense the
+ * class_ok_race array.
+ *
+ * Revision 1.58  2009/02/04 21:51:41  myc
+ * Increase fire vs air, decrease fire vs ice.
+ *
+ * Revision 1.57  2009/01/19 02:41:41  myc
+ * Boots fire damage vs ice.
+ *
+ * Revision 1.56  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.55  2008/09/14 18:25:35  mud
+ * Only check for falling off a mount when the rider is not immort.
+ *
+ * Revision 1.54  2008/09/14 00:34:34  jps
+ * Remove some composition restrictions from imms.
+ *
+ * Revision 1.53  2008/09/13 18:06:19  jps
+ * Removing certain spells from characters when in fluid form.
+ *
+ * Revision 1.52  2008/09/13 17:21:39  jps
+ * Check for falling off a mount when it changes position.
+ *
+ * Revision 1.51  2008/09/07 01:27:58  jps
+ * Check for falling when you change your position in an air room.
+ *
+ * Revision 1.50  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.49  2008/08/29 04:16:26  myc
+ * Added reference to act.h header file.
+ *
+ * Revision 1.48  2008/08/24 19:29:11  jps
+ * Apply damage susceptibility reductions to the various physical attack skills.
+ *
+ * Revision 1.47  2008/08/20 05:03:13  jps
+ * Removed the damage type 'magic'.
+ *
+ * Revision 1.46  2008/08/19 02:11:14  jps
+ * Don't apply fluid/rigidity restrictions to immortals.
+ *
+ * Revision 1.45  2008/07/21 18:46:13  jps
+ * Protect against null deref when no attacker is passed to damage_evasion().
+ *
+ * Revision 1.44  2008/06/21 17:28:18  jps
+ * Made more use of the VALID_CLASS macro.
+ *
+ * Revision 1.43  2008/06/20 20:42:53  jps
+ * Don't run death_mtrigger here - it's called within die().
+ *
+ * Revision 1.42  2008/06/07 19:06:46  myc
+ * Moved all object-related constants and structures to objects.h
+ *
+ * Revision 1.41  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.40  2008/05/12 01:11:17  jps
+ * Split out the hp-pos-changing bit so that fleeing can be
+ * made to work again.
+ *
+ * Revision 1.39  2008/05/12 00:44:38  jps
+ * Change susceptibility to discorporate. Magical life force: 120
+ * Elemental: 100
+ *
+ * Revision 1.38  2008/05/11 05:51:35  jps
+ * alter_pos() is now the internal way to change a character's position.
+ * hp_pos_check() should be called after modifying hp. It will change the
+ * position if necessary, for example if the char became unconscious.
+ *
+ * Revision 1.37  2008/05/10 16:19:50  jps
+ * Made EVASIONCLR globally available.
+ *
+ * Revision 1.36  2008/04/26 23:36:25  myc
+ * Added align_color function.
+ *
+ * Revision 1.35  2008/04/19 18:17:31  jps
+ * Give prototyped mobs a height/weight according to the builder's
+ * chosen size.
+ *
+ * Revision 1.34  2008/04/13 18:49:57  jps
+ * Fix sign in boolean_attack_evasion.
+ *
+ * Revision 1.33  2008/04/13 01:41:26  jps
+ * Adding composition_check() function.
+ *
+ * Revision 1.32  2008/04/13 01:29:53  jps
+ * If you change form while mounted, you may well fall down.
+ * Or if your mount changes form.
+ *
+ * Revision 1.31  2008/04/10 02:00:42  jps
+ * Changed acid's verb to corrode.
+ *
+ * Revision 1.30  2008/04/10 01:55:34  jps
+ * Making metal very susceptible to acid.
+ *
+ * Revision 1.29  2008/04/06 19:48:52  jps
+ * Add an adjective to compositions.
+ *
+ * Revision 1.28  2008/04/06 04:58:05  jps
+ * Use coldshield and fireshield when calculating susceptibility
+ * to fire and cold damage.
+ *
+ * Revision 1.27  2008/04/05 18:17:45  jps
+ * More changing of evasion messages.
+ *
+ * Revision 1.26  2008/04/05 18:06:35  jps
+ * Add an action word to damtypes, and use it in damage_evasion_message.
+ *
+ * Revision 1.25  2008/04/05 17:53:13  jps
+ * Add colors to damage types.
+ *
+ * Revision 1.24  2008/04/05 03:46:10  jps
+ * Add a "mass noun" string to composition definitions.
+ *
+ * Revision 1.23  2008/04/04 21:32:31  jps
+ * Change boolean_evasion to incorporate victim level.
+ *
+ * Revision 1.22  2008/03/29 16:26:39  jps
+ * Add an evasion check exclusively for non-damaging attack spells.
+ *
+ * Revision 1.21  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.20  2008/03/27 17:29:24  jps
+ * Ethereal creatures are now attackable when you have the spell
+ * effect of bless or hex.
+ *
+ * Revision 1.19  2008/03/27 00:21:19  jps
+ * Add verbs to damage types. Be more verbose with the evasion messages.
+ *
+ * Revision 1.18  2008/03/26 22:58:11  jps
+ * Use the new rigid field for compositions, and make more balancing
+ * changes to the composition vulnerabilities.
+ *
+ * Revision 1.17  2008/03/26 19:09:08  jps
+ * Fix bug in damage_evasion.
+ *
+ * Revision 1.16  2008/03/26 18:15:28  jps
+ * damage_evasion() will check whether an ethereal creature is
+ * receiving a blessed physical attack, and return false.
+ *
+ * Revision 1.15  2008/03/25 22:02:32  jps
+ * Forgot to rename iron to metal!
+ *
+ * Revision 1.14  2008/03/25 22:01:00  jps
+ * Some resistance based on composition rebalancing.
+ *
+ * Revision 1.13  2008/03/25 04:49:44  jps
+ * Add some functions for seeing what kind of damage people will do
+ *
+ * Revision 1.12  2008/03/24 08:45:02  jps
+ * Adding flag checks to susceptibility().
+ * Implemented damage_evasion(), skill_to_dtype(), and
+ * damage_evasion_message().  That last one needs more work.
+ *
+ * Revision 1.11  2008/03/23 19:46:29  jps
+ * Added compositions stone and bone.
+ *
+ * Revision 1.10  2008/03/23 18:42:02  jps
+ * New damage defines (old ones in spells.h are now obsolete). Added damage
+ * susceptibilities to struct lifedef and struct compdef.
+ *
+ * Revision 1.9  2008/03/23 00:26:20  jps
+ * Add function set_base_composition, which is appropriate for OLC
+ * and "set <foo> composition".
+ * Add list_olc_compositions() which does just that.
+ *
+ * Revision 1.8  2008/03/22 20:26:21  jps
+ * Add functions to convert life force and composition.
+ *
+ * Revision 1.7  2008/03/22 19:57:14  jps
+ * Added lifeforce and composition definitions.
+ *
+ * Revision 1.6  2008/03/22 19:09:21  jps
+ * Use parse_obj_name() instead of the specific parse_size() function.
+ *
+ * Revision 1.5  2008/03/18 06:02:32  jps
+ * Make minimum height and weight 1.
+ *
+ * Revision 1.4  2008/03/11 02:56:55  jps
+ * Added a lot of size-releated information and functions.
+ *
+ * Revision 1.3  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.2  2008/01/25 21:05:45  myc
+ * Removed the barehand_mult and backstab_mult functions.  This
+ * functionality is contained within the hit function now.  Besides,
+ * barehand_mult was poorly named, as it isn't multiplied, but rather
+ * added.
+ *
+ * Revision 1.1  2008/01/05 21:53:56  jps
+ * Initial revision
+ *
+ ***************************************************************************/

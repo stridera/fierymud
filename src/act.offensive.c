@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: act.offensive.c,v 1.225 2010/06/05 14:56:27 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
  *   File: act.offensive.c                               Part of FieryMUD  *
  *  Usage: player-level commands of an offensive nature                    *
  *                                                                         *
@@ -137,18 +140,27 @@ ACMD(do_breathe) {
     struct char_data *tch, *next_tch;
     int type;
     bool realvictims = FALSE;
+    int breath_energy;
 
     if (!ch || ch->in_room == NOWHERE)
         return;
 
     /* Don't allow reanimated undead to do this - justification:
      * you need actual life to generate poison gas! */
+    /*
     if (GET_SKILL(ch, SKILL_BREATHE) < 1 || EFF_FLAGGED(ch, EFF_CHARM)) {
         send_to_char("You huff and puff but to no avail.\r\n", ch);
         act("$n huffs and puffs but to no avail.", FALSE, ch, 0, 0, TO_ROOM);
         return;
     }
-
+    */
+    if  (EFF_FLAGGED(ch, EFF_CHARM) || (GET_SKILL(ch, SKILL_BREATHE_GAS) < 1 && 
+        GET_SKILL(ch, SKILL_BREATHE_FIRE) < 1 && GET_SKILL(ch, SKILL_BREATHE_FROST) < 1 
+        && GET_SKILL(ch, SKILL_BREATHE_ACID) < 1 && GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) < 1)) {
+        send_to_char("You huff and puff but to no avail.\r\n", ch);
+        act("$n huffs and puffs but to no avail.", FALSE, ch, 0, 0, TO_ROOM);
+        return;
+    }
     one_argument(argument, arg);
 
     for (type = 0; breath_info[type].name; ++type)
@@ -158,6 +170,37 @@ ACMD(do_breathe) {
     if (!breath_info[type].name) {
         send_to_char("Usage: breathe <fire / gas / frost / acid / lightning>\r\n", ch);
         return;
+    }
+    
+    if ((GET_SKILL(ch, SKILL_BREATHE_FIRE) > 0) && (breath_info[type].name == "fire")) {
+        breath_energy = SKILL_BREATHE_FIRE;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_FROST) > 0) && (breath_info[type].name == "frost")) {
+        breath_energy = SKILL_BREATHE_FROST;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_ACID) > 0) && (breath_info[type].name == "acid")) {
+        breath_energy = SKILL_BREATHE_ACID;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_GAS) > 0) && (breath_info[type].name == "gas")) {
+        breath_energy = SKILL_BREATHE_GAS;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) > 0) && (breath_info[type].name == "lightning")) {
+        breath_energy = SKILL_BREATHE_LIGHTNING;
+    }
+    else {
+        send_to_char("You cannot breathe that kind of energy!\r\n", ch);
+        return; 
+    }
+
+    if (!IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
+        if (!GET_COOLDOWN(ch, CD_BREATHE)) {
+            if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC)) {
+                SET_COOLDOWN(ch, CD_BREATHE, 4 MUD_HR);
+            }
+        } else {
+            cprintf(ch, "You will have rebuilt your energy in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_BREATHE) / 10));
+            return;
+        }
     }
 
     send_to_char(breath_info[type].to_char, ch);
@@ -181,9 +224,15 @@ ACMD(do_breathe) {
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
             realvictims = TRUE;
     }
-
+    /*
     if (realvictims)
         improve_skill(ch, SKILL_BREATHE);
+
+    */
+    if (realvictims) {
+        improve_skill(ch, breath_energy);
+    }
+    
     if (GET_LEVEL(ch) < LVL_IMMORT)
         WAIT_STATE(ch, PULSE_VIOLENCE);
 }
@@ -253,7 +302,14 @@ ACMD(do_roar) {
             continue;
         if (MOB_FLAGGED(tch, MOB_AWARE) || MOB_FLAGGED(tch, MOB_NOSUMMON))
             continue;
-
+        if (EFF_FLAGGED(tch, EFF_PROTECT_EVIL) && GET_ALIGNMENT(ch) <= -500) {
+            send_to_char("Your holy protection strengthens your resolve against $n's roar!\r\n", tch);
+            continue;
+        }
+        if (EFF_FLAGGED(tch, EFF_PROTECT_GOOD) && GET_ALIGNMENT(ch) <= 500) {
+            send_to_char("Your unholy protection strengthens your resolve against $n's roar!\r\n", tch);
+            continue;
+        }
         mag_affect(GET_LEVEL(ch), ch, tch, SPELL_FEAR, SAVING_PARA, CAST_BREATH);
 
         if (SLEEPING(tch)) {
@@ -1598,7 +1654,12 @@ ACMD(do_throatcut) {
         vict = random_attack_target(ch, vict, TRUE);
 
     /* Can't throatcut dragons, nor mobs that are twice your size */
+    /*
     if (GET_RACE(vict) == RACE_DRAGON) {
+    */
+    if (GET_RACE(vict) == RACE_DRAGON_GENERAL || GET_RACE(vict) == RACE_DRAGON_FIRE 
+    || GET_RACE(vict) == RACE_DRAGON_ACID || GET_RACE(vict) == RACE_DRAGON_FROST 
+    || GET_RACE(vict) == RACE_DRAGON_LIGHTNING || GET_RACE(vict) == RACE_DRAGON_GAS) {
         send_to_char("Cut the throat... of a dragon... RIGHT!!!!!\r\n", ch);
         return;
     } else if ((GET_SIZE(vict) > GET_SIZE(ch) + 2) || (GET_SIZE(vict) < GET_SIZE(ch) - 2)) {
@@ -2422,3 +2483,835 @@ ACMD(do_stomp) {
         improve_skill(ch, SKILL_GROUND_SHAKER);
     WAIT_STATE(ch, PULSE_VIOLENCE * 3);
 }
+
+/***************************************************************************
+ * $Log: act.offensive.c,v $
+ * Revision 1.225  2010/06/05 14:56:27  mud
+ * Moving cooldowns to their own file.
+ *
+ * Revision 1.224  2010/06/05 05:26:58  mud
+ * Fix damage colors on springleap.
+ *
+ * Revision 1.223  2009/08/02 20:19:00  myc
+ * Eye gouge now applies a -hr modifier.
+ *
+ * Revision 1.222  2009/07/18 01:17:23  myc
+ * Immobilized characters can't kick or springleap.
+ *
+ * Revision 1.221  2009/06/11 13:36:05  myc
+ * When throatcut is successful, apply an injured throat effect
+ * which hinders the victim's casting ability.
+ *
+ * Revision 1.220  2009/03/20 06:08:18  myc
+ * Make stomp and ground shaker only work in rooms where earthquake
+ * works.
+ *
+ * Revision 1.219  2009/03/15 23:18:08  jps
+ * Make it so you need a one-handed slashing weapon to throatcut.
+ *
+ * Revision 1.218  2009/03/15 23:00:15  jps
+ * Add damage amounts to springleap messages.
+ *
+ * Revision 1.217  2009/03/15 22:39:42  jps
+ * Paralyzed folks can't dodge backstabs and throatcuts
+ *
+ * Revision 1.216  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.215  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.214  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.213  2009/03/07 22:28:08  jps
+ * Add effect flag remote_aggr, which keeps your aggressive action from
+ * removing things like invis. Useful for those spells that keep on hurting.
+ *
+ * Revision 1.212  2009/03/03 19:41:50  myc
+ * New target finding mechanism in find.c.
+ *
+ * Revision 1.211  2009/02/18 19:48:08  myc
+ * Swap order of damage and alter_pos; should fix bash bug...
+ *
+ * Revision 1.210  2009/01/25 02:53:33  myc
+ * Fix typo in springleap.
+ *
+ * Revision 1.209  2009/01/19 09:25:23  myc
+ * Removed MOB_PET flag.
+ *
+ * Revision 1.208  2009/01/17 00:28:02  myc
+ * Fix use of uninitialized variables in do_bash and do_throatcut.
+ *
+ * Revision 1.207  2008/09/27 03:54:47  jps
+ * Fix variable initialization in group retreat.
+ *
+ * Revision 1.206  2008/09/27 03:52:23  jps
+ * Debug code in group retreat.
+ *
+ * Revision 1.205  2008/09/27 03:48:20  jps
+ * Cause followers to participate in group retreat.
+ *
+ * Revision 1.204  2008/09/24 17:00:15  myc
+ * Fix typo in peace message for kick.
+ *
+ * Revision 1.203  2008/09/21 21:04:20  jps
+ * Passing cast type to mag_affect so that potions of bless/dark presence can be
+ *quaffed by neutral people.
+ *
+ * Revision 1.202  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.201  2008/09/20 07:27:45  jps
+ * set_fighting takes a 3rd parameter, reciprocate, which will set the attackee
+ *fighting the attacker if true.
+ *
+ * Revision 1.200  2008/09/14 04:34:30  jps
+ * Set folks fighting even if the initial attack was completely ineffective.
+ *
+ * Revision 1.199  2008/09/14 03:49:32  jps
+ * Don't allow fleeing when paralyzed
+ *
+ * Revision 1.198  2008/09/14 02:08:01  jps
+ * Use standardized area attack targetting
+ *
+ * Revision 1.197  2008/09/14 01:47:58  jps
+ * hitall will tend to include folks who are in battle with your group.
+ * It will not include nohassle folks (unless they're already involved).
+ *
+ * Revision 1.196  2008/09/13 16:34:44  jps
+ * Moved do_order to act.comm.c.
+ *
+ * Revision 1.195  2008/09/09 08:23:37  jps
+ * Placed sector info into a struct and moved its macros into rooms.h.
+ *
+ * Revision 1.194  2008/09/04 06:47:36  jps
+ * Changed sector constants to match their strings
+ *
+ * Revision 1.193  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.192  2008/08/24 19:29:11  jps
+ * Apply damage susceptibility reductions to the various physical attack skills.
+ *
+ * Revision 1.191  2008/08/18 01:35:38  jps
+ * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
+ *
+ * Revision 1.190  2008/08/10 03:10:26  jps
+ * Don't allow illusionists to backstab someone who is already in battle.
+ *
+ * Revision 1.189  2008/08/09 18:16:21  jps
+ * Got rid of weapon-slinging.
+ *
+ * Revision 1.188  2008/07/27 06:39:18  jps
+ * Make sure random_attack_target doesn't return NULL.
+ *
+ * Revision 1.187  2008/07/13 17:23:08  jps
+ * When you go to bash a creature who's already on the ground, you
+ * get notified of that. Instead of falling down yourself. Also, when
+ * you try to bash a no-bash creature, you will get a notification
+ * of that. You won't fall down, but you will be lagged.
+ *
+ * Revision 1.186  2008/06/21 17:29:43  jps
+ * Typo fixes.
+ *
+ * Revision 1.185  2008/06/21 06:30:43  jps
+ * Typo and formatting fixes.
+ *
+ * Revision 1.184  2008/06/05 02:07:43  myc
+ * Fixed two bugs in do_roar.  Changing objet flags to use flagvectors.
+ *
+ * Revision 1.183  2008/05/25 21:00:22  myc
+ * Fix tantrum/hitall to improve skill.
+ *
+ * Revision 1.182  2008/05/25 18:09:47  myc
+ * Roar message missing newline.
+ *
+ * Revision 1.181  2008/05/18 20:46:02  jps
+ * Cause GLORY to be removed when you're offensive, just like invis.
+ *
+ * Revision 1.180  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.179  2008/05/18 02:33:56  jps
+ * Provide feedback when you attempt to switch without the skill.
+ *
+ * Revision 1.178  2008/05/17 22:03:01  jps
+ * Moving room-related code into rooms.h and rooms.c.
+ *
+ * Revision 1.177  2008/05/14 05:31:37  jps
+ * Change "assist self" message.
+ *
+ * Revision 1.176  2008/05/14 05:11:42  jps
+ * Using hurt_char for play-time harm, while alter_hit is for changing hp only.
+ *
+ * Revision 1.175  2008/05/11 05:56:04  jps
+ * Changed slow_death. Calling alter_pos for position changes.
+ *
+ * Revision 1.174  2008/05/10 16:20:08  jps
+ * Used EVASIONCLR for many evasion messages.
+ * Fixed evading kicks.
+ *
+ * Revision 1.173  2008/04/14 02:32:31  jps
+ * Consolidate the loss of hiddenness when being violent into a single
+ * function.  It also removes glory.
+ *
+ * Revision 1.172  2008/04/13 20:53:50  jps
+ * When you're confused, your offensive acts will tend to be
+ * directed to random targets.
+ *
+ * Revision 1.171  2008/04/12 21:13:18  jps
+ * Using new header file magic.h.
+ *
+ * Revision 1.170  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.169  2008/04/05 05:04:24  myc
+ * Turned off slow_death log message.
+ *
+ * Revision 1.168  2008/04/04 21:42:28  jps
+ * Make imms immune to gouging.
+ *
+ * Revision 1.167  2008/04/03 02:02:05  myc
+ * Upgraded ansi color handling code.
+ *
+ * Revision 1.166  2008/04/02 19:42:15  myc
+ * Disarm move cost varies with skill now.
+ *
+ * Revision 1.165  2008/04/02 03:24:44  myc
+ * Cleaned up death code.  Increased bash lag.
+ *
+ * Revision 1.164  2008/03/30 16:04:21  jps
+ * Cancel other events when you're about to die.  This may prevent
+ * those 'double deaths' from recurring.
+ *
+ * Revision 1.163  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.162  2008/03/27 22:34:44  jps
+ * Return backstab cooldown to 6 seconds.
+ *
+ * Revision 1.161  2008/03/26 18:14:55  jps
+ * Passing attacker and weapon into damage_evasion() so that
+ * ethereal creatures may be vulnerable to blessed physical
+ * attacks.
+ *
+ * Revision 1.160  2008/03/25 21:58:59  jps
+ * Replaced dam_earth with dam_crush.
+ *
+ * Revision 1.159  2008/03/25 05:31:28  jps
+ * Including chars.h.
+ *
+ * Revision 1.158  2008/03/25 04:50:08  jps
+ * Do immunity checks for the appropriate type of damage in these
+ * various skills.
+ *
+ * Revision 1.157  2008/03/24 08:07:01  jps
+ * Use CD_ constants when setting cooldowns for backstab and gouge.
+ *
+ * Revision 1.156  2008/03/19 18:43:58  myc
+ * Added newlines to the bash messages for too big/small.  Fixed hitall
+ * and tantrum to not hit when attack_ok returns false.
+ *
+ * Revision 1.155  2008/03/18 06:16:29  jps
+ * Removing unused function prototypes.
+ *
+ * Revision 1.154  2008/03/17 15:31:27  myc
+ * Lowered cooldown for throatcut to about what it was before.
+ *
+ * Revision 1.153  2008/03/11 19:50:55  myc
+ * Make maul and ground shaker require spirit of the bear, battle howl
+ * require spirit of the wolf, and tantrum have a random chance to hit
+ * with a weapon.
+ *
+ * Revision 1.152  2008/03/10 20:46:55  myc
+ * Renamed POS1 to 'stance'.
+ *
+ * Revision 1.151  2008/03/10 18:01:17  myc
+ * Added new berserker skills: battle howl, maul, tantrum, and ground shaker.
+ * Battle howl is a subcommand of roar, maul is a subcommand of bash, and
+ * tantrum is a subcommand of hitall.  Also made bodyslam a subcommand of
+ * bash.
+ *
+ * Revision 1.150  2008/03/09 18:11:05  jps
+ * perform_move may be misdirected now.
+ *
+ * Revision 1.149  2008/03/08 23:31:30  jps
+ * Stop using ANIMATED flag as a synonym for CHARM
+ *
+ * Revision 1.148  2008/03/07 21:21:57  myc
+ * Replaced action delays and skill delays with a single list of
+ * 'cooldowns', which are decremented by a recurring event and
+ * also save to the player file.
+ *
+ * Revision 1.147  2008/02/11 21:04:01  myc
+ * Make the breath command skip other mobs if cast by a mob (like area
+ * spells).
+ *
+ * Revision 1.146  2008/02/09 21:07:50  myc
+ * Removing plr/mob casting flags and using an event flag instead.
+ *
+ * Revision 1.145  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.144  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.143  2008/01/29 18:01:02  myc
+ * Gods won't flee when roared at if they have nohassle on.
+ *
+ * Revision 1.142  2008/01/29 01:43:45  jps
+ * Adjust failure-to-flee message.
+ *
+ * Revision 1.141  2008/01/27 21:09:12  myc
+ * Initial implementation of berserk.  Prevent fleeing while berserking.
+ *
+ * Revision 1.140  2008/01/27 13:43:50  jps
+ * Moved race and species-related data to races.h/races.c and merged species
+ *into races.
+ *
+ * Revision 1.139  2008/01/27 00:46:29  jps
+ * Allow breath attacks, unless reanimated.
+ *
+ * Revision 1.138  2008/01/27 00:43:14  jps
+ * Stop redirecting "breathe" command to do_action.  There is no
+ * such social.
+ *
+ * Revision 1.137  2008/01/26 12:28:05  jps
+ * Using improve_skill_offensively() so that your skills won't improve
+ * if used against illusions.
+ *
+ * Revision 1.136  2008/01/25 21:05:45  myc
+ * Added attack() as a macro alias for hit() with fewer arguments.
+ * hit2() no longer exists, so updated do_backstab() to compensate.
+ * Renamed monk_weight_pen() to monk_weight_penalty().
+ *
+ * Revision 1.135  2008/01/23 16:42:06  jps
+ * Changed the duration of gouge-blindness to 2-4 hours.
+ *
+ * Revision 1.134  2008/01/23 05:31:50  jps
+ * Allow xp gain for instant kill.
+ *
+ * Revision 1.133  2008/01/23 04:45:43  jps
+ * Use alter_hit to kill people with quickdeath.  Add some messages
+ * about instant kill.  Use the delay from instant kill to prevent
+ * another instant kill.
+ *
+ * Revision 1.132  2008/01/22 15:11:38  jps
+ * Stopped quickdeath() from sending messages after the kill, thus
+ * crashing the mud.
+ *
+ * Revision 1.131  2008/01/10 05:39:43  myc
+ * alter_hit now takes a boolean specifying whether to cap any increase in
+ * hitpoints by the victim's max hp.
+ *
+ * Revision 1.130  2008/01/09 07:26:49  jps
+ * Better can't-backstab feedback when you're fighting.
+ *
+ * Revision 1.129  2008/01/04 01:53:26  jps
+ * Added races.h file and created global array "races" for much
+ * race-related information.
+ *
+ * Revision 1.128  2007/11/18 16:51:55  myc
+ * Fixing instakill to improve skill even if it fails.
+ *
+ * Revision 1.127  2007/10/25 20:38:33  myc
+ * Make SENTINEL mobs more difficult to scare with roar.
+ *
+ * Revision 1.126  2007/10/20 19:01:41  myc
+ * Fixed a typo.
+ *
+ * Revision 1.125  2007/10/17 17:18:04  myc
+ * Renamed the search_block and search_block2 functions.
+ * searchblock is now case sensitive, and search_block is not.
+ *
+ * Revision 1.124  2007/10/13 20:12:49  myc
+ * Roar now wakes up sleeping people.
+ *
+ * Revision 1.123  2007/10/09 02:42:34  myc
+ * Roar command shouldn't work on you if you're sleeping or incapacitated.
+ *
+ * Revision 1.122  2007/10/02 02:52:27  myc
+ * Disengage now works as abort when casting.
+ *
+ * Revision 1.121  2007/09/30 19:54:11  myc
+ * Make roar skill not usable in peaced rooms.
+ *
+ * Revision 1.120  2007/09/15 05:03:46  myc
+ * AFF_DROPPED_PRIM and AFF_DROPPED_SECOND were incorrectly marked as
+ * Aff 1 flags.  They should have been Aff 2 flags.
+ *
+ * Revision 1.119  2007/09/12 19:28:56  myc
+ * Allow springleap for POS_RESTING.
+ *
+ * Revision 1.118  2007/09/11 16:34:24  myc
+ * Moved switch skill logic into switch_ok function.
+ * Cleaned up code for breathe command.
+ * Cleaned up code for roar and sweep.
+ * Added peck, claw, and electrify skills for use by druid shapechanges.
+ *
+ * Revision 1.116  2007/09/02 22:54:55  jps
+ * Minor typo fixes.
+ *
+ * Revision 1.115  2007/08/23 01:34:36  jps
+ * Changed target-not-here message for eye gouge. Also made
+ * it not miss for incapacitated victims.
+ *
+ * Revision 1.114  2007/08/22 22:46:37  jps
+ * Flee attempts accidentally reduced from 6 to 1, making it
+ * really hard to flee: fixed.
+ *
+ * Revision 1.113  2007/08/17 03:49:24  myc
+ * Messages for retreat/group retreat were being sent to wrong room (after
+ * the character had already moved).  Also fixed typo in springleap.
+ *
+ * Revision 1.112  2007/08/16 10:38:50  jps
+ * Check whether someone can bodyslam by defining which races CAN bodyslam,
+ * rather than which CAN'T. The previous method would have granted it to
+ * any new races by default.
+ *
+ * Revision 1.111  2007/08/15 20:47:23  myc
+ * Corner skill takes level into account now.
+ *
+ * Revision 1.110  2007/08/14 22:43:07  myc
+ * Adding 'corner' skill, which lets you prevent your opponent from
+ * fleeing.
+ *
+ * Revision 1.109  2007/08/05 22:19:17  myc
+ * Fixed up springleap skill for monks.
+ *
+ * Revision 1.108  2007/08/05 20:21:51  myc
+ * Added retreat and group retreat skills.
+ * Fixed bug in disarm.
+ *
+ * Revision 1.107  2007/08/04 22:26:11  jps
+ * Make sure there's a room message when someone tries to flee but fails.
+ *
+ * Revision 1.106  2007/08/04 21:44:20  jps
+ * Make gouge damage dependent on proficiency in the skill.
+ *
+ * Revision 1.105  2007/08/04 14:40:35  myc
+ * Bug in flee sending too many messages.
+ *
+ * Revision 1.104  2007/08/03 22:00:11  myc
+ * Fixed several \r\n typos in send_to_chars.
+ *
+ * Revision 1.103  2007/08/03 03:51:44  myc
+ * check_pk is now attack_ok, and covers many more cases than before,
+ * including peaced rooms, shapeshifted pk, and arena rooms.  Almost all
+ * offensive attacks now use attack_ok to determine whether an attack is
+ * allowed.
+ *
+ * Revision 1.102  2007/07/31 08:40:00  jps
+ * Fix near-miss backstab with weapon in off hand. Also fix probability
+ * of backstabbing so it depends on skill vs. victim level, rather
+ * than merely skill.
+ *
+ * Revision 1.101  2007/07/31 00:43:00  jps
+ * Fix typos in throat cut.
+ *
+ * Revision 1.100  2007/07/24 01:24:55  myc
+ * Eye gouge no longer improves on blinded or noblind mobs.
+ *
+ * Revision 1.99  2007/07/18 23:54:07  jps
+ * Messages will reflect the actual weapon used when someone backstabs
+ * with a piercing weapon in their off hand.
+ *
+ * Revision 1.98  2007/07/18 21:02:51  jps
+ * You can now disarm while wielding a two-handed weapon. You can also
+ * disarm someone who is wielding a two-handed weapon. The feedback
+ * for fumbling a cursed weapon while attempting to disarm someone
+ * is fixed.
+ *
+ * Revision 1.97  2007/07/18 17:07:56  jps
+ * Fix feedback for fumbling your cursed weapon when trying to disarm someone.
+ *
+ * Revision 1.96  2007/06/02 22:23:26  jps
+ * Fix unequipping of weapon when slinging during throatcut.
+ *
+ * Revision 1.95  2007/05/28 06:17:58  jps
+ * Weapon goes to inventory when slung/retained due to curse.
+ *
+ * Revision 1.94  2007/05/28 06:14:31  jps
+ * Fix weapon tossing during throatcut. Allow backstabbing or throat cut with
+ * piercing weapons that are wielded secondary or two-handed.
+ *
+ * Revision 1.93  2007/05/21 01:45:15  myc
+ * Fixed throatcut for piercing weapons.
+ *
+ * Revision 1.92  2007/05/21 00:14:08  myc
+ * Fixing backstab to work with piercing weapons only.
+ *
+ * Revision 1.91  2007/05/17 22:21:23  myc
+ * Replaced several static-string to_char act()s with send_to_char()s.
+ * Fixed newline issues with several more send_to_char()s.
+ *
+ * Revision 1.90  2007/05/11 22:01:22  myc
+ * New rogue skill, eye gouge, allows rogues to gouge out eyes.  A very
+ * complicated skill.  :P  Fixed cure blind's logic, and made it support
+ * eye gouge too.
+ *
+ * Revision 1.89  2007/04/19 04:50:18  myc
+ * Created macros for checking weapon types.
+ *
+ * Revision 1.88  2007/04/19 00:53:54  jps
+ * Create macros for stopping spellcasting.
+ *
+ * Revision 1.87  2007/04/18 00:24:25  myc
+ * Roar doesn't work when you're silenced now.
+ *
+ * Revision 1.86  2007/03/31 14:45:00  myc
+ * Another try and making backstab not crash the mud.  Moved the check
+ * to see if the mob is dead above the aware affection.
+ *
+ * Revision 1.85  2007/03/27 04:27:05  myc
+ * Fixed a typo in do_kill.  Prevented backstab from attempting a second
+ * backstab if the first killed the victim.  Fixed typo in bash.  Fixed
+ * shapechange test in kick.  Made hitall all not hit followers.
+ *
+ * Revision 1.84  2007/01/27 19:55:25  dce
+ * Missed a typo in backstab.
+ *
+ * Revision 1.83  2007/01/27 15:47:50  dce
+ * Updated failed message for backstab.
+ *
+ * Revision 1.82  2007/01/20 03:56:36  dce
+ * Moved aff3 for backstab.
+ *
+ * Revision 1.81  2007/01/06 04:16:44  dce
+ * Modified backstab to take into account the aware flag
+ * and aff3_aware flags...making it more difficult to
+ * backstab if they exist.
+ *
+ * Revision 1.80  2006/12/19 19:57:57  myc
+ * Mobs dying from suffering in slow_death() now are set back to mortally
+ * wounded, so they can be attacked by players, so the players get the exp.
+ *
+ * Revision 1.79  2006/11/24 05:07:40  jps
+ * Fix bash so mobs can bash players
+ *
+ * Revision 1.78  2006/11/20 06:44:26  jps
+ * Fix creatures dying of bloodloss as you're fighting them.
+ *
+ * Revision 1.77  2006/11/18 21:00:28  jps
+ * Reworked disarm skill and disarmed-weapon retrieval.
+ *
+ * Revision 1.76  2006/11/14 19:14:38  jps
+ * Fix bug so players really can't bash players.
+ *
+ * Revision 1.75  2006/11/08 09:16:04  jps
+ * Fixed some loose-lose typos.
+ *
+ * Revision 1.74  2006/11/08 07:55:17  jps
+ * Change verbal instances of "breath" to "breathe"
+ *
+ * Revision 1.73  2006/11/07 14:14:52  jps
+ * It is now impossible to throatcut AWARE mobs. Also if you throatcut
+ * an ordinary mob, it properly gets its temporary AWAREness.
+ *
+ * Revision 1.72  2006/07/20 07:43:48  cjd
+ * Typo fixes.
+ *
+ * Revision 1.71  2006/04/26 18:46:24  rls
+ * *** empty log message ***
+ *
+ * Revision 1.70  2006/04/26 04:28:30  rls
+ * Throatcut error
+ *
+ * Revision 1.69  2006/04/20 17:55:30  rls
+ * Adjusted awareness for TC and Backstab.
+ *
+ * Revision 1.68  2006/04/11 15:29:57  rls
+ * Forgot right level value for immortal in shapechange check for breath.
+ *
+ * Revision 1.67  2006/04/11 15:25:25  rls
+ * tagged breath with shapechanged and mortal check
+ *
+ * Revision 1.66  2005/08/20 16:18:11  cjd
+ * instantkill was still to frequent, reworked it again to make
+ * it happen less often.
+ *
+ * Revision 1.65  2005/08/05 04:43:22  jwk
+ * Fixed the Breath problem... apparently whomever coded it didn't realize
+ * arrays always start with 0 not 1... fixed it so the messages line up
+ *
+ * Revision 1.64  2005/08/02 22:19:52  cjd
+ * adjsuted instantkill so that it doesn't happen as often. also added
+ * a check for DEX into it and made the delay reduce based on the PC's
+ * level.
+ *
+ * Revision 1.63  2005/02/18 03:12:53  rls
+ * Fixed crash bug w/ breath and no args or invalid arg.
+ * Now displays appropriate syntax on failure.
+ * Modifications to backstab/throat/instakill.
+ *
+ * Revision 1.62  2003/06/28 01:00:17  jjl
+ * Added a bit of delay to backstab.
+ *
+ * Revision 1.61  2003/06/23 03:21:44  jjl
+ * Updated backstab to ignore AWARE if the mob is fighting,
+ * Allowing you to backstab effectively in combat.
+ *
+ * Revision 1.60  2003/06/23 02:08:10  jjl
+ * Removed level check for circle like backstabbing
+ *
+ * Revision 1.59  2003/06/21 03:43:03  jjl
+ * *** empty log message ***
+ *
+ * Revision 1.58  2003/06/21 01:16:28  jjl
+ * Changed delay - felt way too long.
+ *
+ * Revision 1.57  2003/06/21 01:01:08  jjl
+ * Modified rogues.  Removed circle - backstab is now circlicious.  Updated
+ * damage on backstab to give a little more pop.  Throatcut is now a once a day.
+ *
+ * Revision 1.56  2003/06/18 14:55:36  rls
+ * Added is_npc check to throat so PC victims aren't losing levels upon being
+ *throated with pk on.
+ *
+ * Revision 1.55  2003/04/16 02:00:22  jjl
+ * Added skill timers for Zzur.  They don't save to file, so they were a
+ * quickie.
+ *
+ * Revision 1.54  2003/01/04 08:19:06  jjl
+ * Fixed up bash and kick; they should behave a little more like Pergy intended
+ *now.
+ *
+ * Revision 1.53  2002/12/28 21:56:30  jjl
+ * Added delay for punk-mobs standing up and fleeing
+ *
+ * Revision 1.52  2002/12/04 08:02:40  rls
+ * Fixed kick so switched imms and pk toggled charmies could kick
+ *
+ * Revision 1.51  2002/12/02 03:19:21  rls
+ * commented out testing message in throatcut
+ *
+ * Revision 1.50  2002/11/30 22:50:32  rls
+ * Throatcut update
+ *
+ * Revision 1.49  2002/11/24 04:44:55  rls
+ * Forgot to comment out testing message... whoopsies
+ *
+ * Revision 1.48  2002/11/24 04:39:50  rls
+ * Rewrite of Throatcut to perferm more often, but with less effectiveness and
+ *exp hinderance.
+ *
+ * Revision 1.47  2002/09/21 02:38:38  jjl
+ * Quickie fix to make necros not be able to order dragon skeletons to breathe.
+ *
+ * Revision 1.46  2002/09/15 04:32:47  jjl
+ * hitall with no arguments should now actually hit everything fighting you on a
+ *success
+ *
+ * Revision 1.45  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.44  2002/07/16 19:30:58  rls
+ * *** empty log message ***
+ *
+ * Revision 1.43  2002/03/30 13:09:05  dce
+ * Added a pluse violence to the rescuer so you couldn't
+ * do 50 rescues at once. You should only be able to do
+ * one a round.
+ *
+ * Revision 1.42  2002/02/20 02:32:53  rls
+ * Fixed "You switch opponents" line for success and "You are doing the best
+ * can" msg when killing same opponent.
+ *
+ * Revision 1.41  2002/02/19 02:06:30  dce
+ * Added a carriage return to 'You panic and flee' message.
+ *
+ * Revision 1.40  2002/02/18 02:25:07  dce
+ * Moved the POS calls in bash and bodyslam to occur after
+ * the damage calls. Also made size failed bashes and bodyslams
+ * cause battle to begin.
+ *
+ * Revision 1.39  2002/02/07 00:48:47  dce
+ * Modified the bash code so Paladins and Anti-Paladins do not
+ * get the 20% bonus when trying to bash if they do not have
+ * a shield.
+ *
+ * Revision 1.38  2001/12/13 00:37:50  dce
+ * In an attempt to fix the blob bug I modified bash and bodyslam
+ * I added GET_POS1() = POS1_SITTING and I added an update_pos
+ * for the victim.
+ *
+ * Revision 1.37  2001/12/12 02:45:03  dce
+ * Fixed Throatcut so it doesn't cause so much damage
+ * for a failed attempt.
+ *
+ * Revision 1.36  2001/12/10 22:36:49  dce
+ * Fixed throatcut from adding hitting points to a player
+ * when failing a throatcut
+ *
+ * Revision 1.35  2001/12/07 03:34:48  dce
+ * Toned down throatcut. Wasn't check to see if mobs were aware.
+ * Success was too easy, because everything was based on Hubis's
+ * 36 levels or whatever.
+ *
+ * Revision 1.34  2001/10/10 21:04:02  rjd
+ * Kick command is checked against the switch skill if a person attempts to kick
+ *while already fighting.
+ *
+ * Revision 1.33  2001/05/13 16:15:58  dce
+ * Fixed a bug where somethings wouldn't save when a player
+ * died and exitied menu option 0 rather than menu option 1.
+ * Fixed a bug in slow death...it was a null pointer type
+ * of deal.
+ *
+ * Revision 1.32  2001/05/12 13:56:20  dce
+ * Adjusted backstab so that players now at least have a chance
+ * of getting a backstab. The old chance was based on Hubis's
+ * level scheme and therefore making it impossible to backstab
+ * once you passed level 50.
+ *
+ * Revision 1.31  2001/03/10 18:45:33  dce
+ * Changed do_return function to pass a subcommand of 1.
+ * This way I can make it so players can't use the return command.
+ *
+ * Revision 1.30  2001/03/07 01:45:18  dce
+ * Added checks so that players can not kill shapechanged players and
+ * vise versa. Hopefully I didn't miss any...
+ *
+ * Revision 1.29  2001/03/04 17:50:23  dce
+ * Added a bunch of checks to prevey skills for being used in
+ * peaceful rooms.
+ *
+ * Revision 1.28  2000/12/06 00:08:55  mtp
+ * fixed throatcut?
+ *
+ * Revision 1.27  2000/11/20 03:55:57  rsd
+ * added back rlog messages from prior to the addition of
+ * the $log$ string.
+ *
+ * Revision 1.26  2000/04/22 22:26:58  rsd
+ * put return newline in combat switch messages, was reported
+ * in bug file.
+ *
+ * Revision 1.25  2000/04/17 00:50:54  rsd
+ * altered comment header.  Added hack to send info to players
+ * who backstab because a successful backstab isn't calling
+ * the lines out of the message file for some reason.
+ * Retabbed and braced do_backstab as well
+ *
+ * Revision 1.24  2000/03/26 21:13:19  cso
+ * made teh messages for do_circle a bit clearer
+ *
+ * Revision 1.23  2000/02/25 03:15:30  cso
+ * fixed numerous typos relating to peaceful rooms and backstab.
+ *
+ * Revision 1.22  1999/12/06 20:18:25  cso
+ * Fixed some typos.. "panicked" instead of "paniced", "You're doing"
+ * instead of "Your doing".
+ *
+ * Revision 1.21  1999/11/28 22:41:16  cso
+ * fixed misspelled schizophrenia
+ * do_order: animated mobs can now order
+ * cahnged wait state on order
+ *
+ * Revision 1.20  1999/10/30 15:18:41  rsd
+ * Jimmy coded up new paladin alignment restriction code for
+ * exp, I altered gain_exp to add reference to the victim for
+ * alignment checks.
+ *
+ * Revision 1.19  1999/09/16 01:43:06  dce
+ * *** empty log message ***
+ *
+ * Revision 1.18  1999/09/16 01:15:11  dce
+ * Weight restrictions for monks...-hitroll, -damroll + ac
+ *
+ * Revision 1.17  1999/09/08 07:06:03  jimmy
+ * More insure++ runtime fixes.  Some small, but hardcore fixes mostly to do
+ * with blood and killing
+ * --gurlaek
+ *
+ * Revision 1.16  1999/09/08 00:10:52  mtp
+ * alter_move _removes_ moves, fixed do_disarm to remove 10 moves
+ *
+ * Revision 1.15  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.14  1999/09/03 23:02:40  mtp
+ * added IS_FIGHTING check to throatcut
+ *
+ * Revision 1.13  1999/08/29 07:06:04  jimmy
+ * Many many small but ver significant bug fixes found using insure.  The
+ * code now compiles cleanly and boots cleanly with insure.  The most
+ * significant changes were moving all the BREATH's to within normal spell
+ * range, and fixing the way socials were allocated.  Too many small fixes
+ * to list them all. --gurlaek (now for the runtime debugging :( )
+ *
+ * Revision 1.12  1999/07/22 17:43:59  jimmy
+ * Reduced all skill stun times by 1/2.  this is to compensate a little for
+ * increasing the combat rounds by 2*.
+ * --gurlaek
+ *
+ * Revision 1.11  1999/07/15 03:41:31  jimmy
+ * Doh!
+ *
+ * Revision 1.10  1999/07/15 03:27:34  jimmy
+ * Mob casters can not hit while casting.
+ * Updated spell cast times to be more realistic
+ * changed combat to 4 seconds per round.
+ * Removed do_order semantics that told the order to onlookers.
+ *
+ * Revision 1.9  1999/07/14 19:24:03  jimmy
+ * The combat system was enhanced/improved in the following ways:  Mobs
+ * can no longer flee while bashed or sitting.  Fleeing causes casters to
+ * stop casting.  You can now flee while flying.  pk checks were added to
+ * bash, bodyslam, throatcut, etc etc.  Lots of reformatting and little
+ * fixes. spellcasting for mobs is now very similar to PC spellcasting.
+ * MObs will now unhide/unconceal/univis/ etc when casting offensive spells.
+ * Mobs no longer improve skills.  Bash now requires mobs to have a shield
+ * just like PC's.  It's aT 25% with no shield and 50% with a 2handed weapon.
+ * --gurlaek
+ *
+ * Revision 1.8  1999/06/30 18:25:04  jimmy
+ * >> This is a major conversion from the 18 point attribute system to the
+ * >> 100 point attribute system.  A few of the major changes are:
+ * >> All attributes are now on a scale from 0-100
+ * >> Everyone views attribs the same but, the attribs for one race
+ * >>   may be differeent for that of another even if they are the
+ * >>   same number.
+ * >> Mobs attribs now get rolled and scaled using the same algorithim as PC's
+ * >> Mobs now have individual random attributes based on race/class.
+ * >> The STR_ADD attrib has been completely removed.
+ * >> All bonus tables for attribs in constants.c have been replaced by
+ * >>   algorithims that closely duplicate the tables except on a 100 scale.
+ * >> Some minor changes:
+ * >> Race selection at char creation can now be toggled by using
+ * >>   <world races off>
+ * >> Lots of cleanup done to affected areas of code.
+ * >> Setting attributes for mobs in the .mob file no longer functions
+ * >>   but is still in the code for later use.
+ * >> We now have a spare attribut structure in the pfile because the new
+ * >>   system only used three instead of four.
+ * >> --gurlaek 6/30/1999
+ *
+ * Revision 1.7  1999/04/03 18:59:22  dce
+ * Debug to see if feeble attempt works.
+ *
+ * Revision 1.6  1999/04/03 18:54:17  dce
+ * Feeble attempt to stop slow death crashes.
+ *
+ * Revision 1.5  1999/03/21 21:49:37  dce
+ * Disallows pkilling.
+ *
+ * Revision 1.4  1999/03/10 00:03:37  dce
+ * Monk semantics for dodge/parry/ripost/attack
+ *
+ * Revision 1.3  1999/03/08 23:24:48  dce
+ * Added Springleap for monks
+ *
+ * Revision 1.2  1999/02/20 18:41:36  dce
+ * Adds improve_skill calls so that players can imprve their skills.
+ *
+ * Revision 1.1  1999/01/29 01:23:30  mud
+ * Initial revision
+ *
+ ***************************************************************************/

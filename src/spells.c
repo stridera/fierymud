@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: spells.c,v 1.19 2011/03/16 13:39:58 myc Exp $
+ ***************************************************************************/
+/***************************************************************************
  *   File: spells.c                                       Part of FieryMUD *
  *  Usage: Implementation of "manual spells".                              *
  *                                                                         *
@@ -429,6 +432,47 @@ ASPELL(spell_fire_darts) {
         else {
             act("$n pelts $N's dead body with magical bolts.", TRUE, ch, 0, victim, TO_ROOM);
             act("You're pelting $M with missiles but $E's dead already!", FALSE, ch, 0, victim, TO_CHAR);
+        }
+    }
+    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+}
+
+ASPELL(spell_spirit_arrows) {
+    int i;
+    int missiles = 0;
+    int min_missiles = 1;
+
+    if (!ch || !victim)
+        return 0;
+
+    /*
+     * This graduates the number of missiles cast based on prof of the sphere *
+     */
+
+    if (skill >= 5 && number(1, 100) > 80)
+        missiles++;
+    if (skill >= 14 && number(1, 100) > 75)
+        missiles++;
+    if (skill >= 24 && number(1, 100) > 60)
+        missiles++;
+    if (skill >= 34 && number(1, 100) > 55)
+        missiles++;
+    if (skill >= 44 && number(1, 100) > 50)
+        missiles++;
+    if (skill >= 74 && number(1, 100) > 25)
+        missiles++;
+
+    missiles += min_missiles;
+
+    /* this casts the spell once for each missile */
+
+    for (i = 1; i <= missiles; i++) {
+
+        if (ALIVE(victim))
+            mag_damage(skill, ch, victim, SPELL_SPIRIT_ARROWS, SAVING_SPELL);
+        else {
+            act("$n pelts $N's dead body with magical arrows.", TRUE, ch, 0, victim, TO_ROOM);
+            act("You're pelting $M with arrows but $E's dead already!", FALSE, ch, 0, victim, TO_CHAR);
         }
     }
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -1661,8 +1705,8 @@ ASPELL(spell_locate_object) {
         else
             /* Already got j items.  Probability of storing this one is j/t */
             if (number(1, t) <= j)
-                /* Overwrite a random one of the objects already in the list */
-                items[number(0, j - 1)] = o;
+            /* Overwrite a random one of the objects already in the list */
+            items[number(0, j - 1)] = o;
     }
 
     if (!found) {
@@ -1930,6 +1974,7 @@ ASPELL(spell_enchant_weapon) {
                 return CAST_RESULT_CHARGE;
 
         SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_MAGIC);
+        SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
 
         obj->applies[0].location = APPLY_HITROLL;
         obj->applies[0].modifier = 1 + (skill >= 18);
@@ -3010,7 +3055,10 @@ ASPELL(spell_fracture) {
             return CAST_RESULT_CHARGE;
 
         if (!RIGID(victim) ||
-            !(IS_HUMANOID(victim) || GET_RACE(victim) == RACE_ANIMAL || GET_RACE(victim) == RACE_DRAGON)) {
+            !(IS_HUMANOID(victim) || GET_RACE(victim) == RACE_ANIMAL || GET_RACE(victim) == RACE_DRAGON_GAS
+            || GET_RACE(victim) == RACE_DRAGON_GENERAL || GET_RACE(victim) == RACE_DRAGON_FIRE 
+            || GET_RACE(victim) == RACE_DRAGON_ACID || GET_RACE(victim) == RACE_DRAGON_FROST 
+            || GET_RACE(victim) == RACE_DRAGON_LIGHTNING)) {
             act("You can't shatter $N!", FALSE, ch, 0, victim, TO_CHAR);
             return CAST_RESULT_CHARGE;
         }
@@ -3018,9 +3066,12 @@ ASPELL(spell_fracture) {
         /* Find a solidish zombie/pet */
         for (fol = ch->followers; fol; fol = fol->next)
             if (RIGID(fol->follower) &&
-                (IS_HUMANOID(fol->follower) || GET_RACE(fol->follower) == RACE_ANIMAL ||
-                 GET_RACE(fol->follower) == RACE_DRAGON) &&
-                EFF_FLAGGED(fol->follower, EFF_CHARM) && IN_ROOM(fol->follower) == IN_ROOM(ch)) {
+                (IS_HUMANOID(fol->follower) || GET_RACE(fol->follower) == RACE_ANIMAL 
+                || GET_RACE(fol->follower) == RACE_DRAGON_GAS 
+                || GET_RACE(fol->follower) == RACE_DRAGON_GENERAL || GET_RACE(fol->follower) == RACE_DRAGON_FIRE 
+                || GET_RACE(fol->follower) == RACE_DRAGON_ACID || GET_RACE(fol->follower) == RACE_DRAGON_FROST 
+                || GET_RACE(fol->follower) == RACE_DRAGON_LIGHTNING)
+                && EFF_FLAGGED(fol->follower, EFF_CHARM) && IN_ROOM(fol->follower) == IN_ROOM(ch)) {
                 victim = fol->follower;
                 break;
             }
@@ -3038,3 +3089,69 @@ ASPELL(spell_fracture) {
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
+
+/***************************************************************************
+ * $Log: spells.c,v $
+ * Revision 1.19  2011/03/16 13:39:58  myc
+ * Fix all warnings for "the address of X will always evaluate to 'true'",
+ * where X is a variable.
+ *
+ * Revision 1.18  2010/06/05 19:05:51  mud
+ * Fix message when casting pyre on self.
+ *
+ * Revision 1.17  2010/06/05 18:35:47  mud
+ * Make pyre auto-target caster if sacrificial preference is
+ * toggled on.
+ *
+ * Revision 1.16  2010/06/05 04:43:00  mud
+ * Let pyre work on plant zombies.
+ *
+ * Revision 1.15  2009/08/02 20:20:27  myc
+ * Adding pyre and fracture spells.
+ *
+ * Revision 1.14  2009/07/18 01:17:23  myc
+ * Adding empty spell implementations for pyre and fracture.
+ *
+ * Revision 1.13  2009/06/09 19:33:50  myc
+ * Rewrote gain_exp and retired gain_exp_regardless.
+ *
+ * Revision 1.12  2009/06/02 02:43:06  myc
+ * Mortals may no longer locate objects that are held by wizinvis
+ * characters.
+ *
+ * Revision 1.11  2009/03/21 05:19:56  jps
+ * Tweak create water spell.
+ *
+ * Revision 1.10  2009/03/21 05:17:35  jps
+ * Fix create water spell.
+ *
+ * Revision 1.9  2009/03/20 20:19:51  myc
+ * Make energy drain do a more consistent amount of damage.
+ *
+ * Revision 1.8  2009/03/20 16:06:04  jps
+ * Removed spells of lesser/greater invocation.
+ *
+ * Revision 1.7  2009/03/20 16:02:43  jps
+ * Better summon fail message when victim's level is too high.
+ *
+ * Revision 1.6  2009/03/20 06:15:17  myc
+ * Adding a TAR_GROUND cast requirement.  Added detonation,
+ * phosphoric embers, positive field, and acid burst spells.
+ * Removed combust and heatwave.  Made soul tap a manual spell.
+ *
+ * Revision 1.5  2009/03/19 23:16:23  myc
+ * Renamed corpse_consent -> has_corpse_consent.
+ *
+ * Revision 1.4  2009/03/16 19:17:52  jps
+ * Change macro GET_HOME to GET_HOMEROOM
+ *
+ * Revision 1.3  2009/03/09 20:36:00  myc
+ * Renamed all *PLAT macros to *PLATINUM.
+ *
+ * Revision 1.2  2009/03/09 16:57:47  myc
+ * Made detect poison more like detect align.
+ *
+ * Revision 1.1  2009/03/09 03:26:08  jps
+ * Initial revision
+ *
+ ***************************************************************************/

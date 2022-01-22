@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: ispell.c,v 1.12 2010/06/09 18:28:55 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
  *  File: ispell.c                                        Part of FieryMUD *
  *  Usage: Interface to iSpell                                             *
  *                                                                         *
@@ -100,7 +103,7 @@ const char *get_ispell_line(const char *word) {
     static char buf[ISPELL_BUF_SIZE];
     char throwaway[ISPELL_BUF_SIZE];
 
-    if (ispell_pid == -1)
+    // if (ispell_pid == -1)
         return NULL;
 
     if (word) {
@@ -224,3 +227,59 @@ bool ispell_name_check(char *argument) {
         return 0;
     }
 }
+
+/***************************************************************************
+ * $Log: ispell.c,v $
+ * Revision 1.12  2010/06/09 18:28:55  mud
+ * Catch attempts to spellcheck numbers and punctuation that
+ * would cause the mud to hang waiting for a response from the
+ * spellchecker.
+ *
+ * Revision 1.11  2009/02/12 04:44:30  myc
+ * Added rudimentary spellchecker to text editor; uses ispell.
+ *
+ * Revision 1.10  2009/02/12 03:24:45  myc
+ * Rewrote ispell to use file descriptors.  Now it works.
+ *
+ * Revision 1.9  2008/08/14 23:10:35  myc
+ * Removed a suspicious %s from a log() call.
+ *
+ * Revision 1.8  2002/09/14 01:20:28  jjl
+ * Fixed the bug gthat  ARGH stupid backspacke key.  Fixed the
+ * bug that blocked out names like Tanle.  Well, nbbug is a bad way
+ * to put it.  It was to strict.  Now it shouldn't be.
+ *
+ * Revision 1.7  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.6  2002/08/29 17:36:16  rsd
+ * added and prototyped a new function ispell_name_check to
+ * be used to check potential player names versus the muds
+ * dictionary.  This may require some tweaking as the checks
+ * can be harsh or light.
+ *
+ * Revision 1.5  2000/11/22 19:41:14  rsd
+ * Lawd, I retabbed the entire file, it was a disaster.
+ * I also added back rlog messages from prior to the
+ * addition of the $log$.
+ *
+ * Revision 1.4  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.3  1999/06/10 16:56:28  mud
+ * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+ * This fixes all of the warnings associated with the new compiler and
+ * libraries.  Many many curly braces had to be added to "if" statements to
+ * clarify their behavior to the compiler.  The name approval code was also
+ * debugged, and tested to be stable.  The xnames list was converted from an
+ * array to a linked list to allow for on the fly adding of names to the
+ * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
+ *
+ * Revision 1.2  1999/01/31 15:55:02  mud
+ * Added standard comment header
+ * indented file to the right some
+ *
+ * Revision 1.1  mud
+ * Initial revision
+ *
+ ***************************************************************************/

@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: act.comm.c,v 1.71 2009/07/16 04:17:47 myc Exp $
+ ***************************************************************************/
+/***************************************************************************
  *   File: act.comm.c                                     Part of FieryMUD *
  *  Usage: Player-level communication commands                             *
  *                                                                         *
@@ -11,7 +14,6 @@
  ***************************************************************************/
 
 #include "act.h"
-
 #include "board.h"
 #include "clan.h"
 #include "comm.h"
@@ -577,9 +579,8 @@ ACMD(do_gen_comm) {
     /* This prevents gossiping when the channel is disabled... but allows gods */
     /*  to continue to do so... Selina, 3-26-99 */
     if (!gossip_channel_active && (GET_LEVEL(ch) < LVL_GOD) && (subcmd == SCMD_GOSSIP)) {
-        cprintf(ch,
-                "You try to gossip, but the heavens have disabled the channel "
-                "for the time being.\r\n");
+        cprintf(ch, "You try to gossip, but the heavens have disabled the channel "
+                    "for the time being.\r\n");
         return;
     }
 
@@ -732,3 +733,269 @@ ACMD(do_report) {
     else
         do_say(ch, rbuf, 0, 0);
 }
+
+/***************************************************************************
+ * $Log: act.comm.c,v $
+ * Revision 1.71  2009/07/16 04:17:47  myc
+ * Negative drunkenness ("off") was causing numbers to always be
+ * scrambled.
+ *
+ * Revision 1.70  2009/06/20 23:55:13  myc
+ * Clean up makedrunk and rename it drunken_speech.
+ *
+ * Revision 1.69  2009/03/03 19:41:50  myc
+ * New target finding mechanism in find.c.
+ *
+ * Revision 1.68  2009/02/21 03:30:16  myc
+ * Modified write command to support new board system.
+ *
+ * Revision 1.67  2009/02/11 17:03:39  myc
+ * Switching do_desc over to the new text editor.  Updating do_tell,
+ * do_spec_comm, and do_gen_comm to handle new editor flag wherever
+ * old WRITING flag was considered.
+ *
+ * Revision 1.66  2009/02/09 20:09:56  myc
+ * Adding more color to report command.
+ *
+ * Revision 1.65  2008/09/27 04:18:00  jps
+ * Fix greport color
+ *
+ * Revision 1.64  2008/09/20 06:05:06  jps
+ * Add macros POSSESSED and POSSESSOR.
+ *
+ * Revision 1.63  2008/09/14 19:47:01  jps
+ * Fix bug in order.
+ *
+ * Revision 1.62  2008/09/13 16:35:24  jps
+ * Moved do_order from fight.c. Unconscious followers can't be ordered.
+ * You'll receive a message if you try to order one.
+ *
+ * Revision 1.61  2008/09/02 03:00:59  jps
+ * Changed mob speech and ask triggers to respond to all speech.
+ *
+ * Revision 1.60  2008/08/31 21:04:46  myc
+ * Terminate color on gossip.
+ *
+ * Revision 1.59  2008/08/30 20:42:50  myc
+ * Ending all communication with a color reset.
+ *
+ * Revision 1.58  2008/08/16 23:04:03  jps
+ * Added speech_ok() to comm.h.
+ *
+ * Revision 1.57  2008/08/16 08:22:41  jps
+ * Added the 'desc' command and took player description-editing out of the
+ *pre-game menu.
+ *
+ * Revision 1.56  2008/08/14 23:02:11  myc
+ * Replaced all send_to_char calls with cprintf.
+ *
+ * Revision 1.55  2008/08/14 09:45:22  jps
+ * Replaced the pager.
+ *
+ * Revision 1.54  2008/05/11 05:41:31  jps
+ * Using regen.h.
+ *
+ * Revision 1.53  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.52  2008/04/03 02:02:05  myc
+ * Upgraded ansi color handling code.
+ *
+ * Revision 1.51  2008/04/02 03:24:44  myc
+ * Rewrote group code, and removed all major group code.
+ *
+ * Revision 1.50  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.49  2008/03/22 03:22:38  myc
+ * All invocations of the string editor now go through string_write()
+ * instead of messing with the descriptor variables itself.  Also added
+ * a toggle, LineNums, to decide whether to do /l or /n when entering
+ * the string editor.
+ *
+ * Revision 1.48  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.47  2008/02/24 17:31:13  myc
+ * Added a TO_OLC flag for act() so messages can be sent to people in
+ * OLC if they have OLCComm toggled on.  You can now receive most types
+ * of communication while in OLC if you have that toggled on.
+ *
+ * Revision 1.46  2008/02/10 20:30:03  myc
+ * Add delete_doubledollar call to do_say so we don't get double
+ * dollar signs in output.
+ *
+ * Revision 1.45  2008/02/09 06:19:44  jps
+ * Add "nohints" toggle for whether you receive command suggestions
+ * after entering a typo.
+ *
+ * Revision 1.44  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.43  2008/02/02 19:38:20  myc
+ * Added string_write function to start the string editor more easily.
+ *
+ * Revision 1.42  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.41  2008/01/15 06:49:52  myc
+ * When a mob had a trigger marked both ask and speech and the mob
+ * was asked a question, that same trigger would be executed twice,
+ * once as an ask trigger, and once as a speech trigger.  Fixed this
+ * by going through the trigger list only once looking for ask or
+ * speech triggers.  However, this isn't optimal--it should give
+ * priority to ask triggers.
+ *
+ * Revision 1.40  2007/12/25 06:47:25  myc
+ * Whoops, say wasn't showing the message to the room.
+ *
+ * Revision 1.39  2007/12/19 20:35:22  myc
+ * Moved ctell from act.comm.c to clan.c.  Removed languages from say.
+ *
+ * Revision 1.38  2007/11/18 06:01:41  myc
+ * Fixed clan tell bug that was reading past null bit.
+ *
+ * Revision 1.37  2007/10/02 02:52:27  myc
+ * Druids can now send and receive tells while shapechanged.  This also
+ * applies to switched immortals.  (The other party will see the player's
+ * name instead of the shapechange's.)  Druids can also gossip while
+ * shapechanged; it will show the druid's name as well as the shapechange.
+ * Rewrote the report command to make use of gsay, msay, tell, and say,
+ * instead of trying to reinvent the wheel.
+ *
+ * Revision 1.36  2007/08/14 10:43:36  jps
+ * Add calls to speech_ok to many communication functions, so if you start
+ * spamming a lot, you will get laryngitis.
+ *
+ * Revision 1.35  2007/08/03 22:00:11  myc
+ * Say uses to_room when languages is off now, so the command works with
+ * observatories.  Fixed several \r\n typos in send_to_chars.
+ *
+ * Revision 1.34  2007/07/13 19:21:22  jps
+ * Fix crash bug where the leader of an ordinary group could bring
+ * the mud down by using "msay" when not a member of a major group.
+ *
+ * Revision 1.33  2007/07/11 02:08:32  myc
+ * Fixing a really bad memory corruption bug in makedrunk().
+ *
+ * Revision 1.32  2007/06/22 18:54:10  myc
+ * Gods can send/hear tells/gossip/shouts in soundproof rooms.
+ *
+ * Revision 1.31  2006/11/20 22:24:17  jps
+ * End the difficulties in interaction between evil and good player races.
+ *
+ * Revision 1.30  2006/11/13 15:54:22  jps
+ * Fix widespread misuse of the hide_invisible parameter to act().
+ *
+ * Revision 1.29  2002/09/15 04:30:38  jjl
+ * Gods can now reply to a player with no-tell.
+ *
+ * Revision 1.28  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.27  2002/01/11 03:13:29  dce
+ * Cleaned up the file with lclint
+ *
+ * Revision 1.26  2001/03/30 23:34:50  dce
+ * Out of character references have been removed per Zzur's
+ * request.
+ *
+ * Revision 1.25  2001/03/24 15:43:31  dce
+ * Players speech will be slurred when drunk.
+ *
+ * Revision 1.24  2001/01/23 01:50:11  rsd
+ * made it so the afk messages don't make it through reply to
+ * notell people.
+ *
+ * Revision 1.23  2001/01/13 21:07:08  dce
+ * Changed do_tell to allow npcs to communicate to notell pcs.
+ *
+ * Revision 1.22  2000/11/28 00:41:25  mtp
+ * removed mobprog references
+ *
+ * Revision 1.21  2000/11/19 03:05:28  rsd
+ * Added back log messages from prior to the $log$ string
+ * being added .
+ *
+ * Revision 1.20  2000/11/14 00:04:43  rsd
+ * Added a check to do reply to check if a person is NOTELL.
+ *
+ * Revision 1.19  2000/11/11 01:39:51  mtp
+ * added ask trigger for ask/whisper and aslso ask/whisper triggers speech
+ *trigger
+ *
+ * Revision 1.18  2000/10/14 01:16:58  rsd
+ * put a check in do_gen_command to prevent animals from
+ * gossiping etc..
+ * /s
+ * DOH
+ *
+ * Revision 1.17  2000/09/22 23:30:46  rsd
+ * Altered the comment header to reflect that this is fiery
+ * code now. Also deleted a silly comment near the top.
+ *
+ * Revision 1.16  1999/11/20 22:22:21  rsd
+ * changed the output to the player when ooc is disabled.
+ *
+ * Revision 1.15  1999/09/09 03:47:26  mud
+ * TESTTESTTEST
+ *
+ * Revision 1.14  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.13  1999/09/03 23:04:14  mtp
+ * added IS_FIGTI check for write
+ *
+ * Revision 1.12  1999/08/18 22:41:04  mtp
+ * added afk message for do_reply
+ *
+ * Revision 1.11  1999/08/13 21:38:00  mtp
+ * make sure AFK message only happens on successful tell
+ *
+ * Revision 1.10  1999/08/09 22:34:31  mtp
+ * Added response for tell/whisper/ask if victim is flagged AFK
+ *
+ * Revision 1.9  1999/06/10 16:56:28  mud
+ * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+ * This fixes all of the warnings associated with the new compiler and
+ * libraries.  Many many curly braces had to be added to "if" statements to
+ * clarify their behavior to the compiler.  The name approval code was also
+ * debugged, and tested to be stable.  The xnames list was converted from an
+ * array to a linked list to allow for on the fly adding of names to the
+ * xnames list. This code compiles fine under both gcc RH5.2 and egcs RH6.0.
+ * --Gurlaek 6/10/1999
+ *
+ * Revision 1.8  1999/04/16 15:17:13  jen
+ * Changed do_tell so gods can tell notell players, but
+ * still can't tell notell's higher than their level.
+ * Selina
+ *
+ * Revision 1.7  1999/04/08 19:14:26  jen
+ * OK, the gossip toggle was also getting shouts... fixed that
+ *
+ * Revision 1.6  1999/03/30 21:51:01  jen
+ * Changed the message sent to characters when they gossip
+ * to reflect that being a non-MUD-related channel; also made
+ * the send-to-all message when a chr gossips less obnoxious.
+ *
+ * Revision 1.5  1999/03/30 19:09:56  jen
+ * Changed the gossip messages a little... JEN II
+ *
+ * Revision 1.4  1999/03/26 19:44:35  jen
+ * Added a mortal gossip channel with 103+ godly control
+ *
+ * Revision 1.3  1999/02/10 05:57:14  jimmy
+ * Added long description to player file.  Added AFK toggle.
+ * removed NOAUCTION toggle.
+ * fingon
+ *
+ * Revision 1.2  1999/02/03 23:28:47  jimmy
+ * changed symantics for gossip to "shouts from the heavens"
+ *
+ * Revision 1.1  1999/01/29 01:23:29  mud
+ * Initial revision
+ *
+ ***************************************************************************/

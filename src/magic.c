@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: magic.c,v 1.296 2010/06/05 18:58:47 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
  *   File: magic.c                                        Part of FieryMUD *
  *  Usage: low-level functions for magic; spell template code              *
  *                                                                         *
@@ -539,7 +542,11 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_CONE_OF_COLD:
     case SPELL_POSITIVE_FIELD:
     case SPELL_FIREBALL:
+    case SPELL_VICIOUS_MOCKERY:
+    case SPELL_ANCESTRAL_VENGEANCE:
     case SPELL_BIGBYS_CLENCHED_FIST:
+    case SPELL_SPIRIT_RAY:
+    case SPELL_BALEFUL_POLYMORPH:    
     case SPELL_IRON_MAIDEN:
     case SPELL_FREEZE:
     case SPELL_ACID_BURST:
@@ -611,6 +618,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_MAGIC_MISSILE:
+    case SPELL_SPIRIT_ARROWS:
     case SPELL_ICE_DARTS:
         dam = dice(4, 21);
         reduction = TRUE;
@@ -860,6 +868,10 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         dam *= (GET_ALIGNMENT(ch) * -0.0022) - 0.7;
         break;
     case SPELL_CHAIN_LIGHTNING:
+        /* max dam 226 from 12d5+26 online */
+        dam += (pow(skill, 2) * 7) / 500;
+        break;
+    case SPELL_CIRCLE_OF_DEATH:
         /* max dam 226 from 12d5+26 online */
         dam += (pow(skill, 2) * 7) / 500;
         break;
@@ -2193,6 +2205,22 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "You surround $N with glyphs of holy warding.";
         break;
 
+    case SPELL_PROT_FROM_GOOD:
+
+        /* Alignment Check! */
+        if (IS_GOOD(victim)) {
+            act("You can't protect an ally if they are GOOD!", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n tries to protect you from evil!\r\nSilly isn't $e.", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to protect $N from good.  DUH!", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_PROTECT_GOOD);
+        eff[0].duration = 9 + (skill / 9); /* max 20 */
+        to_vict = "You feel invulnerable!";
+        to_char = "You surround $N with glyphs of unholy warding.";
+        break;
+
     case SPELL_SANCTUARY:
 
         /* reimplemented by RLS back in 2k2.  While no class actually has this
@@ -2261,6 +2289,56 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         accum_effect = FALSE;
         to_vict = "You feel stronger!";
         /* Innate strength usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_GRACE:
+        eff[0].location = APPLY_DEX;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel nimbler!";
+        /* Innate grace usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+    
+    case SPELL_INN_INSIGHT:
+        eff[0].location = APPLY_WIS;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel wiser!";
+        /* Innate insight usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_GENIUS:
+        eff[0].location = APPLY_INT;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel smarter!";
+        /* Innate genius usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_FORTITUDE:
+        eff[0].location = APPLY_CON;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel healthier!";
+        /* Innate fortitude usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_SPLENDOR:
+        eff[0].location = APPLY_CHA;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel more resplendent!";
+        /* Innate splendor usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 
@@ -2815,6 +2893,10 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SPELL_CHAIN_LIGHTNING:
         to_char = "&4&bYou send powerful bolts of lightning from your body...&0";
         to_room = "&4&b$n&4&b sends powerful bolts of lightning into $s foes...&0";
+        break;
+    case SPELL_CIRCLE_OF_DEATH:
+        to_char = "&9&bWaves of death energy wash outward from you in a violent circle.&0";
+        to_room = "&9&b$n&9&b sends waves of death energy outward in a violent circle.&0";
         break;
     case SPELL_CREMATE:
         to_char = "&1&8You raise up a huge conflaguration in the area.&0";
@@ -4602,3 +4684,1153 @@ int defensive_spell_damage(struct char_data *attacker, struct char_data *victim,
 
     return shdam;
 }
+
+/***************************************************************************
+ * $Log: magic.c,v $
+ * Revision 1.296  2010/06/05 18:58:47  mud
+ * Rebalance pyre self damage.
+ *
+ * Revision 1.295  2010/06/05 18:35:47  mud
+ * Make pyre auto-target caster if sacrificial preference is
+ * toggled on.
+ *
+ * Revision 1.294  2010/06/05 05:29:00  mud
+ * Typo in full heal message.
+ *
+ * Revision 1.293  2010/06/05 04:43:57  mud
+ * Replacing ocean sector type with cave.
+ *
+ * Revision 1.292  2009/08/02 20:19:58  myc
+ * Adding pyre and fracture spells.
+ *
+ * Revision 1.291  2009/07/18 01:17:23  myc
+ * Adding decay, iron maiden, spinechiller, and bone draw spells
+ * for necromancer.
+ *
+ * Revision 1.290  2009/07/17 06:05:35  myc
+ * Make waterwalk last a long time.
+ *
+ * Revision 1.289  2009/07/04 16:23:13  myc
+ * Soulshield, holy word, and unholy word now use regular alignment
+ * checks instead of arbitrary 500 and -500 values.
+ *
+ * Revision 1.288  2009/06/10 18:50:40  myc
+ * Reduce the amount of damage breath attacks do.
+ *
+ * Revision 1.287  2009/06/09 05:43:38  myc
+ * Changing a printf to a real log call.
+ *
+ * Revision 1.286  2009/05/19 19:36:52  myc
+ * Fix typo in chain lightning.
+ *
+ * Revision 1.285  2009/03/21 06:32:37  jps
+ * Make phosphoric embers manual spell
+ *
+ * Revision 1.284  2009/03/20 06:08:18  myc
+ * Adding detonation, phosphoric embers, positive field, and acid
+ * burst and single-target offensive pyromancer spells.  Increased
+ * melt's power vs metal, stone, and ice.  Made soul tap a damage-
+ * over-time version of energy drain.
+ *
+ * Revision 1.283  2009/03/16 19:17:52  jps
+ * Change macro GET_HOME to GET_HOMEROOM
+ *
+ * Revision 1.282  2009/03/15 22:31:24  jps
+ * Make cold/fire/soulshield damage adjust for susceptibility
+ *
+ * Revision 1.281  2009/03/09 20:36:00  myc
+ * Renamed all *PLAT macros to *PLATINUM.
+ *
+ * Revision 1.280  2009/03/09 16:57:47  myc
+ * Added detect poison effect.
+ *
+ * Revision 1.279  2009/03/09 04:50:38  myc
+ * Fix typo (missing newline) in divine essence.
+ *
+ * Revision 1.278  2009/03/09 04:33:20  jps
+ * Moved direction information from structs.h, constants.h, and constants.c
+ * into directions.h and directions.c.
+ *
+ * Revision 1.277  2009/03/09 03:26:34  jps
+ * Moved individual spell definitions to spell.c and spell.h.
+ *
+ * Revision 1.276  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.275  2009/03/08 21:43:27  jps
+ * Split lifeforce, composition, charsize, and damage types from chars.c
+ *
+ * Revision 1.274  2009/03/07 22:31:20  jps
+ * Make the victim's set-on-fire message go to the victim's room with
+ * the TO_VICTROOM act flag, since the perpetrator might be in another room.
+ *
+ * Revision 1.273  2009/03/07 20:46:28  jps
+ * Add bold to messages colored with &9 - they can be invisible otherwise
+ *
+ * Revision 1.272  2009/03/07 11:24:26  jps
+ * Fix wall of fog spell.
+ *
+ * Revision 1.271  2009/03/03 19:43:44  myc
+ * Always apply group spells to the caster last so spells like
+ * group recall still work.
+ *
+ * Revision 1.270  2009/02/04 20:03:56  myc
+ * Disallow guard skill if it would result in PK.
+ *
+ * Revision 1.269  2009/01/19 09:25:23  myc
+ * Removed MOB_PET flag.
+ *
+ * Revision 1.268  2009/01/19 08:42:29  myc
+ * Add damage numbers to coldshield/fireshield/soulshield.
+ *
+ * Revision 1.267  2009/01/18 06:52:37  myc
+ * Fix typo (capitalize a sentence in act()).
+ *
+ * Revision 1.266  2008/11/09 03:47:57  myc
+ * Cut duration on poison and ray of enfeeblement.
+ *
+ * Revision 1.265  2008/09/29 00:03:13  jps
+ * Moved weight_change_object to objects.c/h.
+ *
+ * Revision 1.264  2008/09/21 21:04:20  jps
+ * Passing cast type to mag_affect so that potions of bless/dark presence can be
+ *quaffed by neutral people.
+ *
+ * Revision 1.263  2008/09/21 20:46:36  jps
+ * Removing unused variable
+ *
+ * Revision 1.262  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.261  2008/09/20 17:39:12  jps
+ * Fix typos in bone armor messages.
+ *
+ * Revision 1.260  2008/09/20 17:23:20  jps
+ * Fix rigidity check with certain spells.
+ *
+ * Revision 1.259  2008/09/20 07:27:45  jps
+ * set_fighting takes a 3rd parameter, reciprocate, which will set the attackee
+ *fighting the attacker if true.
+ *
+ * Revision 1.258  2008/09/20 06:05:06  jps
+ * Add macros POSSESSED and POSSESSOR.
+ *
+ * Revision 1.257  2008/09/16 17:06:32  rsd
+ * Made the damage bonus based on class for firestorm the
+ * class of pyromancer instead of cryomancer..
+ *
+ * Revision 1.256  2008/09/14 04:41:41  jps
+ * Don't allow mortal spells to affect imms.
+ *
+ * Revision 1.255  2008/09/14 04:34:30  jps
+ * Set folks fighting even if the initial attack was completely ineffective.
+ *
+ * Revision 1.254  2008/09/14 04:09:24  jps
+ * Take certain act flags off summoned mobs, such as peaceful and protector.
+ *
+ * Revision 1.253  2008/09/14 02:22:53  jps
+ * Expand the suitability-for-fluid-chars check to be used for all mag_effect
+ *spells.
+ *
+ * Revision 1.252  2008/09/14 02:08:01  jps
+ * Use standardized area attack targetting
+ *
+ * Revision 1.251  2008/09/13 18:52:20  jps
+ * Removing unused variables
+ *
+ * Revision 1.250  2008/09/13 18:05:29  jps
+ * Added functions to remove spells from characters when necessary.
+ *
+ * Revision 1.249  2008/09/13 16:03:53  jps
+ * Fix check_armor_spells
+ *
+ * Revision 1.248  2008/09/12 20:16:49  jps
+ * Make it impossible to cast certain armor spells onto characters who are in a
+ *fluid state.
+ *
+ * Revision 1.247  2008/09/09 08:23:37  jps
+ * Placed sector info into a struct and moved its macros into rooms.h.
+ *
+ * Revision 1.246  2008/09/07 01:28:17  jps
+ * Don't automatically start flying if your load is too heavy.
+ *
+ * Revision 1.245  2008/09/05 21:52:56  myc
+ * Fix typo in elemental warding.
+ *
+ * Revision 1.244  2008/09/04 06:47:36  jps
+ * Changed sector constants to match their strings
+ *
+ * Revision 1.243  2008/09/02 07:19:56  jps
+ * Using limits.h.
+ *
+ * Revision 1.242  2008/09/02 07:16:39  jps
+ * Changing object TIMER to DECOMP where appropriate.
+ *
+ * Revision 1.241  2008/09/01 23:47:49  jps
+ * Using movement.h/c for movement functions.
+ *
+ * Revision 1.240  2008/08/31 06:51:00  myc
+ * Reverse sign on modifiers for APPLY_AC so they follow the same scheme as
+ * AC applies on equipment.
+ *
+ * Revision 1.239  2008/08/29 19:18:05  myc
+ * Fixed abilities so that no information is lost; the caps occur
+ * only when the viewed stats are accessed.
+ *
+ * Revision 1.238  2008/08/29 16:55:00  myc
+ * Fixed messages for many self-only spells so they make sense even if
+ * cast on someone else.
+ *
+ * Revision 1.237  2008/08/28 21:50:05  jps
+ * Prevent "create spring" from working in watery or air rooms.
+ *
+ * Revision 1.236  2008/08/26 04:39:21  jps
+ * Changed IN_ZONE to IN_ZONE_RNUM or IN_ZONE_VNUM and fixed zone_printf.
+ *
+ * Revision 1.235  2008/08/26 02:29:11  jps
+ * Change phantasm mob list
+ *
+ * Revision 1.234  2008/08/24 03:15:57  myc
+ * Make evades_spell absolutely fail when the skill's damage type
+ * is 'undefined', not 'slashing'.
+ *
+ * Revision 1.233  2008/08/18 01:35:38  jps
+ * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
+ *
+ * Revision 1.232  2008/08/17 20:24:45  jps
+ * Add wall_charge_check, for doorbash toward a wall.
+ *
+ * Revision 1.231  2008/08/17 06:39:47  jps
+ * Fix grammar of cloak of gaia.
+ *
+ * Revision 1.230  2008/08/10 19:34:37  jps
+ * Calibrated sorcerer_single_target spells to the level at which the spell
+ * was assigned to the caster.
+ *
+ * Revision 1.229  2008/08/10 01:58:49  jps
+ * Added spells severance and soul reaver for illusionists.
+ *
+ * Revision 1.228  2008/08/09 20:35:57  jps
+ * Changed sense life so that it has a chance of detecting the presence and
+ *movement of creatures with a "healable" life force. Increased spell duration
+ *to 17-50 hrs.
+ *
+ * Revision 1.227  2008/08/03 19:31:44  myc
+ * Fixing heatwave/cone of cold.
+ *
+ * Revision 1.226  2008/06/21 07:04:21  jps
+ * Don't allow setting-on-fire of folks with a low susceptibility to fire
+ *damage.
+ *
+ * Revision 1.225  2008/06/13 18:43:29  jps
+ * Handle spell evasion differently for dispel magic, since it has other
+ * purposes then simply doing harm.
+ *
+ * Revision 1.224  2008/06/11 22:24:43  jps
+ * Cancel spellcasting when you become "frozen up" due to cold attacks.
+ *
+ * Revision 1.223  2008/06/07 19:06:46  myc
+ * Moved all object-related constants and structures to objects.h
+ *
+ * Revision 1.222  2008/06/05 02:07:43  myc
+ * Changed object flags to use flagvectors.
+ *
+ * Revision 1.221  2008/05/19 06:16:40  jps
+ * Only mesmerize players for 2 hours.
+ * Stop people who are fighting someone who gets mesmerized.
+ *
+ * Revision 1.220  2008/05/19 05:49:08  jps
+ * Add mesmerize to mag_affect.
+ *
+ * Revision 1.219  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.218  2008/05/18 17:58:49  jps
+ * Adding familiarity to mag_affect.
+ *
+ * Revision 1.217  2008/05/18 04:40:59  jps
+ * Make is to people without detect invis can identify the
+ * object that's being made invisible.
+ *
+ * Revision 1.216  2008/05/17 22:03:01  jps
+ * Moving room-related code into rooms.h and rooms.c.
+ *
+ * Revision 1.215  2008/05/17 04:32:25  jps
+ * Moved exits into exits.h/exits.c and changed the name to "exit".
+ *
+ * Revision 1.214  2008/05/14 05:11:10  jps
+ * Using hurt_char for play-time harm, while alter_hit is for changing hp only.
+ *
+ * Revision 1.213  2008/05/12 04:47:36  jps
+ * Require evilness to cast dark presence, and goodness to cast bless.
+ *
+ * Revision 1.212  2008/05/12 04:41:59  jps
+ * Make discorporate destroy illusory mobs.
+ *
+ * Revision 1.211  2008/05/12 00:43:48  jps
+ * Add nightmare and discorporate spells to mag_damage.
+ *
+ * Revision 1.210  2008/05/11 07:11:53  jps
+ * Calling active_effect_remove so as to standardize what happens when
+ * an effect goes away.
+ *
+ * Revision 1.209  2008/05/11 06:13:31  jps
+ * Adding defensive_spell_damage(), which calculates damage to attackers
+ * due to spells like fireshield, and sends messages.
+ *
+ * Revision 1.208  2008/05/11 05:50:15  jps
+ * alter_hit() now takes the killer.
+ *
+ * Revision 1.207  2008/04/20 04:42:24  jps
+ * Don't send dodging messages when you resist the long-term
+ * effects of gas breath.
+ *
+ * Revision 1.206  2008/04/19 21:22:06  myc
+ * Missing break in mag_damage.
+ *
+ * Revision 1.205  2008/04/14 08:36:53  jps
+ * Updated call to ASPELL, since it now includes the spell number.
+ *
+ * Revision 1.204  2008/04/14 05:11:40  jps
+ * Renamed EFF_FLYING to EFF_FLY, since it only indicates an ability
+ * to fly - not that the characer is actually flying.
+ *
+ * Revision 1.203  2008/04/14 02:17:45  jps
+ * Adding glory to mag_affect().
+ *
+ * Revision 1.202  2008/04/13 19:38:17  jps
+ * Reduced the length of confusion.
+ *
+ * Revision 1.201  2008/04/13 18:44:42  jps
+ * Fix confusion-application message.
+ *
+ * Revision 1.200  2008/04/13 18:30:14  jps
+ * Add confusion spell to mag_affect().
+ *
+ * Revision 1.199  2008/04/12 21:29:39  jps
+ * Adding special case to evades_spell for dispel magic.
+ *
+ * Revision 1.198  2008/04/12 21:13:18  jps
+ * Using new header file magic.h.
+ *
+ * Revision 1.197  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.196  2008/04/06 04:58:31  jps
+ * Change catching-on-fire and freezing-up to use susceptibility.
+ *
+ * Revision 1.195  2008/04/05 17:10:57  jps
+ * Fix message formatting for enlarge/reduce spells.
+ *
+ * Revision 1.194  2008/04/05 16:32:24  jps
+ * Better feedback for spells that fail to inflict any damage, except that
+ * dispel magic won't cause such a message.
+ *
+ * Revision 1.193  2008/04/05 04:50:39  jps
+ * Except MAG_MANUAL spells from boolean spell evasion.
+ *
+ * Revision 1.192  2008/04/04 21:32:42  jps
+ * Un-break area attack spells.
+ *
+ * Revision 1.191  2008/04/02 03:24:44  myc
+ * Rewrote group code and removed major group code.
+ *
+ * Revision 1.190  2008/03/29 16:28:10  jps
+ * Update evades_spell() to use power, and to check differently if the spell
+ * is one that doesn't do damage.
+ *
+ * Revision 1.189  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.188  2008/03/27 17:40:52  jps
+ * Don't allow blessing evil characters.  Lengthen the duration
+ * of bless and dark presence to 10-24 hours.
+ *
+ * Revision 1.187  2008/03/27 17:30:17  jps
+ * Dark presence now sets AFF3_HEX. It also places it on objects.
+ * A hexed weapon will become !GOOD and a blessed weapon will
+ * become !EVIL.
+ *
+ * Revision 1.186  2008/03/26 23:12:19  jps
+ * Changed the waterform and vaporform spells to change your composition
+ * rather than setting flags.
+ *
+ * Revision 1.185  2008/03/26 22:01:10  jps
+ * Adding mag_damage for dispel magic, like a 3rd circle spell.
+ *
+ * Revision 1.184  2008/03/26 19:16:17  jps
+ * Fix susceptibility check - the VICTIM not the attacker!
+ * Also move damage reduction past harness check so that all of
+ * the damage is subject to reduction.
+ *
+ * Revision 1.183  2008/03/26 19:09:27  jps
+ * Change the bless spell so that it's very picky about what can
+ * be blessed. Essentially, it has to be devoid of enchantments
+ * and be rather plain. It can't be !GOOD or too high level
+ * compared to the casting power.
+ *
+ * Revision 1.182  2008/03/26 18:15:59  jps
+ * Adding a BLESS effect to a creature who gets bless cast on it.
+ *
+ * Revision 1.181  2008/03/26 16:44:36  jps
+ * Replaced all checks for undead race with checks for undead lifeforce.
+ * Replaced the undead race with the plant race.
+ *
+ * Revision 1.180  2008/03/24 08:42:04  jps
+ * Removing protected_from_spell() and immune_from_spell().
+ * Changing the way undead servants are generated, since the race
+ * of undead is soon to be no more.
+ * Taking into account composition-susceptibility to magical
+ * damage.
+ *
+ * Revision 1.179  2008/03/23 18:42:39  jps
+ * Using the new damage types defined in chars.h.
+ *
+ * Revision 1.178  2008/03/22 16:42:45  jps
+ * Fix to_room messages for dark presence.
+ *
+ * Revision 1.177  2008/03/22 16:27:57  jps
+ * Correctly copy sizes in duplicate_char.
+ * Phantasms will copy the *current* size of a model (if any), disregarding
+ * the fact that the model might have had its size modified by magic.
+ * Phantasms will be neutral, because they have no souls and cannot be
+ * good or evil.
+ *
+ * Revision 1.176  2008/03/11 02:53:09  jps
+ * Update duplicate_char for size-tracking variables.
+ *
+ * Revision 1.175  2008/03/10 20:46:55  myc
+ * Renamed POS1 to 'stance'.
+ *
+ * Revision 1.174  2008/03/09 18:14:25  jps
+ * Add spell effects for misdirection spell.
+ *
+ * Revision 1.173  2008/03/09 08:59:25  jps
+ * Remove fear from mag_affects.
+ *
+ * Revision 1.172  2008/03/09 06:38:37  jps
+ * Replaced name with namelist in struct char_data.player. GET_NAME macro
+ * now points to short_descr. The uses of these strings is the same for
+ * NPCs and players.
+ *
+ * Revision 1.171  2008/03/09 04:02:08  jps
+ * Fix up mob summoning and phantasms a lot. Player phantasms don't work
+ * quite right yet.
+ *
+ * Revision 1.170  2008/02/23 01:03:54  myc
+ * Removed the lowest_circle in the skillinfo struct.  Use lowest_level
+ * instead.
+ *
+ * Revision 1.169  2008/02/09 21:07:50  myc
+ * Must provide a boolean to event_create saying whether to
+ * free the event obj when done or not.  And instead of creating
+ * an event obj for extract events, we'll just pass the victim in.
+ *
+ * Revision 1.168  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.167  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.166  2008/01/29 16:51:12  myc
+ * Moving skill names to the skilldef struct.
+ *
+ * Revision 1.165  2008/01/28 02:39:01  jps
+ * Use extract event for exorcisms.
+ *
+ * Revision 1.164  2008/01/27 21:14:59  myc
+ * Replace hit() with attack().  Adding berserker chants.
+ *
+ * Revision 1.163  2008/01/27 13:43:50  jps
+ * Moved race and species-related data to races.h/races.c and merged species
+ *into races.
+ *
+ * Revision 1.162  2008/01/27 12:12:55  jps
+ * Changed IS_THIEF macro to IS_ROGUE.
+ *
+ * Revision 1.161  2008/01/27 09:45:41  jps
+ * Got rid of the MCLASS_ defines and we now have a single set of classes
+ * for both players and mobiles.
+ *
+ * Revision 1.160  2008/01/27 02:37:03  jps
+ * Lower breath damage a bit.
+ *
+ * Revision 1.159  2008/01/27 00:18:12  jps
+ * Make breath damage appropriate to the level of the mob. No more level
+ * 3 demons doing 300 damage!!!
+ *
+ * Revision 1.158  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.157  2008/01/26 12:33:18  jps
+ * Use skills.h to import improve_skill().
+ *
+ * Revision 1.156  2008/01/25 11:54:29  jps
+ * Add a newline to the long description of raised undead creatures.
+ *
+ * Revision 1.155  2008/01/25 11:47:22  jps
+ * Fix grammar in negate heat spell message.
+ *
+ * Revision 1.154  2008/01/24 15:45:09  myc
+ * Fixed a typo in magic.c
+ *
+ * Revision 1.153  2008/01/15 03:26:00  myc
+ * Fixing a typo in sleep spell.
+ *
+ * Revision 1.152  2008/01/14 18:52:52  myc
+ * Auto-set the violent flag on a spell if the spell has the
+ * MAG_DAMAGE routine.  Fix soul tap to not assign the effect
+ * if the attack cannot occur.  Fix evades_spell to only go
+ * off for violent spells.
+ *
+ * Revision 1.151  2008/01/13 23:06:04  myc
+ * Changed the skills struct to store lowest_level and lowest_circle
+ * data for each spell, thus making it unnecessary to calculate the
+ * minimum spell circle for a spell everytime it goes through the
+ * evades_spell function.
+ *
+ * Revision 1.150  2008/01/13 03:19:53  myc
+ * Fixed a bug in check_guard.  Split check_armor_spells into
+ * check_armor_spells and affected_by_armor_spells.
+ *
+ * Revision 1.149  2008/01/12 23:13:20  myc
+ * Renamed clearMemory clear_memory.
+ *
+ * Revision 1.148  2008/01/11 17:34:32  myc
+ * Fixing a typo in sanctuary spell message.
+ *
+ * Revision 1.147  2008/01/10 05:39:43  myc
+ * alter_hit now takes a boolean specifying whether to cap any increase in
+ * hitpoints by the victim's max hp.
+ *
+ * Revision 1.146  2008/01/07 11:56:45  jps
+ * Make sure illusory mobs have no cash. Don't use puff for player
+ * template, as she has a spec proc. Make sure player illusions
+ * are not sentinel. Set their long desc (not that it's likely
+ * to be seen).
+ *
+ * Revision 1.145  2008/01/07 10:37:19  jps
+ * Change spell name "project" to "phantasm". Allow simulacrom to
+ * make copies of players.
+ *
+ * Revision 1.144  2008/01/06 23:50:47  jps
+ * Added spells project and simulacrum, and MOB2_ILLUSORY flag.
+ *
+ * Revision 1.143  2008/01/06 20:38:00  jps
+ * Remove unused saving throw tables.
+ *
+ * Revision 1.142  2008/01/05 05:44:19  jps
+ * Using update_char() for created mobs.
+ *
+ * Revision 1.141  2008/01/04 01:53:26  jps
+ * Added races.h file and created global array "races" for much
+ * race-related information.
+ *
+ * Revision 1.140  2008/01/01 07:32:56  jps
+ * Made cold-spell freeze-ups into an event so that it can set
+ * paralysis which won't be removed immediately after it is set.
+ *
+ * Revision 1.139  2008/01/01 05:08:34  jps
+ * Stop area spells from harming things it shouldn't.
+ *
+ * Revision 1.138  2007/12/26 08:08:09  jps
+ * Fix formatting of caster's feedback for "conceal".
+ *
+ * Revision 1.137  2007/11/28 10:19:39  jps
+ * Reduce damage from low-level NPC sorcerers.
+ *
+ * Revision 1.136  2007/11/20 20:08:15  myc
+ * Fixing more spells that weren't using online damage.
+ *
+ * Revision 1.135  2007/11/18 16:51:55  myc
+ * Making mag_masses not hit your own pet.  Fixing some damage spells that
+ * were doing less damage because they weren't using online damage.
+ *
+ * Revision 1.134  2007/10/27 21:49:34  myc
+ * Fixed a bug in mass invis
+ *
+ * Revision 1.133  2007/10/27 18:56:18  myc
+ * Typo in disease spell.
+ *
+ * Revision 1.132  2007/10/27 03:19:24  myc
+ * Fixed a bug with war cry spewing garbage messages.
+ *
+ * Revision 1.131  2007/10/13 05:18:11  myc
+ * Whoa immolate hits 5 times, and was doing insane damage with the new
+ * sorcerer spell damage calculations.
+ * Now it's not.
+ *
+ * Revision 1.130  2007/10/13 05:07:24  myc
+ * Added new monk chants.
+ *
+ * Revision 1.129  2007/10/11 20:14:48  myc
+ * Monk chants are now implemented as magic spells, and use spell wearoffs
+ * instead of song wearoffs.  Removed the spell wearoff messages array;
+ * spell wearoff messages are now defined for each spell in the spello
+ * call in spell_parser.c
+ *
+ * Revision 1.128  2007/10/04 16:20:24  myc
+ * Replaced magic_wall_destruction with destroy_opposite_wall, which calls
+ * decay_object in limits.c to actually decay the object.
+ *
+ * Revision 1.127  2007/10/02 02:52:27  myc
+ * A player casting mag_damage spells at another player will no longer
+ * improve in skill.  Sense life applies the bit instead of a perception
+ * bonus again.  (The perception is dynamically computed in db.c in
+ * update_stats.)
+ *
+ * Revision 1.126  2007/09/20 21:20:43  myc
+ * Hide points and perception are in.  Concealment now gives you hide
+ * points, sense life gives you perception, natures embrance gives
+ * you hide points and camo, and made mag_points support hide points.
+ *
+ * Revision 1.125  2007/09/20 09:48:06  jps
+ * Don't allow energy draining of undead.
+ *
+ * Revision 1.124  2007/09/20 09:16:32  jps
+ * Improve grammer in lights-on-fire message
+ *
+ * Revision 1.123  2007/09/15 15:36:48  myc
+ * Nature's embrace now sets camouflage bit, which lets you be hidden as
+ * long as you are outside.  Cleaned up affect-handling code a lot.  It
+ * didn't properly handle bitvectors 1, 2, and 3.  Now it does.
+ * Invigorate is now a group spell.
+ *
+ * Revision 1.122  2007/09/15 05:03:46  myc
+ * Implementing MOB2_NOPOISON flag.
+ *
+ * Revision 1.121  2007/09/11 16:34:24  myc
+ * Added electrify skill for use by druid's electric eel.
+ *
+ * Revision 1.120  2007/09/09 01:20:14  jps
+ * The result of casting a spell is no longer just TRUE or FALSE,
+ * but two possible bits combined: charge and/or improve. If
+ * CAST_RESULT_CHARGE is returned, the spell was used and the caster
+ * will be charged (have the spell erased from memory).  If
+ * CAST_RESULT_IMPROVE is returned, the caster may improve in that
+ * sphere of magic.
+ * At the same time, casters will now correctly be charged for
+ * spells that are cast on objects.
+ *
+ * Revision 1.119  2007/09/07 01:37:09  jps
+ * Standardized the damage done by single-target sorcery spells.
+ *
+ * Revision 1.118  2007/09/04 06:49:19  myc
+ * Changed spells that cannot be cast indoors to use the new TAR_OUTDOORS
+ * bit, meaning the character's spell memory won't be charged when they
+ * cast such a spell indoors.  (The check comes at command-interpretation
+ * time.)
+ *
+ * Revision 1.117  2007/09/03 23:49:40  jps
+ * Add mass_attack_ok() so that you could kill your own pet specifically,
+ * but your area spells will not harm it.
+ *
+ * Revision 1.116  2007/09/03 21:21:17  jps
+ * Magic wall updates: seen when looking in a direction; will block movement
+ * sensibly, taking into account mounts; wall of ice can be used to douse
+ * your flames; expiration message varies depending on what kind of
+ * magic wall it is.
+ *
+ * Revision 1.115  2007/09/02 22:54:55  jps
+ * Minor typo fixes.
+ *
+ * Revision 1.114  2007/08/30 08:51:25  jps
+ * Generalize spell evasion (globe, elemental immunity, immortal) to area
+ *spells.
+ *
+ * Revision 1.113  2007/08/29 01:22:18  jps
+ * Check for null target in check_guard.
+ *
+ * Revision 1.112  2007/08/28 20:17:29  myc
+ * Gods won't catch on fire anymore.  The caster of an affection spell will
+ * now see the to_room message if there is no to_char message and the caster
+ * is not the victim.
+ *
+ * Revision 1.111  2007/08/26 21:49:10  jps
+ * Don't say that someone stops chanting if they've been knocked out
+ * or killed.
+ *
+ * Revision 1.110  2007/08/26 21:10:27  jps
+ * Provide a caster feedback message for the poison spell.
+ *
+ * Revision 1.109  2007/08/26 19:51:43  jps
+ * Fix ray of enfeeblement resisted-spell message.
+ *
+ * Revision 1.108  2007/08/26 01:55:41  myc
+ * Fire now does real damage.  All fire spells have a chance to catch the
+ * victim on fire.  Mobs attempt to douse themselves.
+ *
+ * Revision 1.107  2007/08/23 00:32:24  jps
+ * All four elemental immunities are in effect. An elemental
+ * resistance (such as PROT-FIRE) will mean 12.5% extra damage
+ * from the opposing element (fire-water, air-earth). An elemental
+ * immunity will cause 25% extra damage from the opposing element.
+ *
+ * Revision 1.106  2007/08/15 20:47:06  myc
+ * Fly will now only automatically set you to POS_FLYING if you are awake.
+ *
+ * Revision 1.105  2007/08/03 22:00:11  myc
+ * Fixed some \r\n typoes in send_to_chars.
+ *
+ * Revision 1.104  2007/08/03 03:51:44  myc
+ * check_pk is now attack_ok, and covers many more cases than before,
+ * including peaced rooms, shapeshifted pk, and arena rooms.  Almost all
+ * offensive attacks now use attack_ok to determine whether an attack is
+ * allowed.
+ *
+ * Revision 1.103  2007/08/02 04:19:32  jps
+ * Added "moonbeam" spell for Druids.
+ * Stop people from fighting when they become paralyzed.
+ *
+ * Revision 1.102  2007/08/02 01:04:10  myc
+ * check_pk() now works for all PK cases.  Moved from magic.c to fight.c
+ *
+ * Revision 1.101  2007/08/02 00:23:53  myc
+ * Standardized magic check-PK function.  Cut out a LOT of unnecessary magic
+ * code and cleaned up the whole system in general.  Magic casts are now
+ * guaranteed to use sphere skills rather than level.  Almost all magic
+ * functions like mag_damage or even manual spells return a boolean now:
+ * TRUE if the cast deserves a skill improvement, FALSE if it doesn't.
+ * This return value is ignored for object magic (wands, etc.).
+ *
+ * Revision 1.100  2007/07/25 00:38:03  jps
+ * Earthquake will send a message about shaking to the entire zone.
+ *
+ * Revision 1.99  2007/07/19 15:05:34  jps
+ * Minor typo fixes
+ *
+ * Revision 1.98  2007/07/15 17:16:12  jps
+ * Add IS_POISONED macro.
+ *
+ * Revision 1.97  2007/07/04 02:21:58  myc
+ * Removing coldshield affect from ice armor spell.  Increased duration on
+ * magic torch and circle of light.  Renamed douse spell to extinguish.
+ *
+ * Revision 1.96  2007/06/24 22:45:31  myc
+ * Making chill touch improve skill always instead of sometimes.
+ *
+ * Revision 1.95  2007/06/16 00:15:49  myc
+ * Three spells for necromancers: soul tap, rebuke undead,
+ * and degeneration.  One spell for rangers: natures guidance.
+ *
+ * Revision 1.94  2007/05/24 06:06:16  jps
+ * Stop sending 'Nothing seems to happen.' when full heal is cast.
+ *
+ * Revision 1.93  2007/05/12 21:59:07  myc
+ * Fixed the bug where random constants were sent_to_char when skill
+ * affections wore off.
+ *
+ * Revision 1.92  2007/05/12 20:02:03  myc
+ * Demonic aspect and mutation shouldn't stack.
+ *
+ * Revision 1.91  2007/05/11 21:03:12  myc
+ * New rogue skill, eye gouge, allows rogues to gouge out eyes.  A very
+ * complicated skill.  :P  Fixed cure blind's logic, and made it support
+ * eye gouge too.
+ *
+ * Revision 1.90  2007/05/11 20:13:28  myc
+ * Vaporform is a new circle 13 spell for cryomancers.  It significantly
+ * increases the caster's chance of dodging a hit.  It is a quest spell.
+ *
+ * Revision 1.89  2007/04/26 03:57:09  myc
+ * Got rid of sunray's double skill improvement haxness.
+ *
+ * Revision 1.88  2007/04/25 07:18:05  jps
+ * Fix feedback for casting bless/dark presence on one who is already
+ * oppositely blessed.  Make bless impossible if you have any of several
+ * evil spells on you.  Make batwings/wings of heaven exclusive.
+ *
+ * Revision 1.87  2007/04/19 07:03:14  myc
+ * Renamed RAY_OF_ENFEB as RAY_OF_ENFEEB.  Implemented demonic mutation
+ * as a more powerful version of demonic aspect.  Made it so players
+ * can cast offensive affection spells on themselves.
+ *
+ * Revision 1.86  2007/04/19 00:53:54  jps
+ * Create macros for stopping spellcasting, and terminate spellcasting
+ * when you become paralyzed.
+ *
+ * Revision 1.85  2007/04/17 23:58:43  jps
+ * Stop sending extra message to caster when writhing weeds fails due to being
+ *cast outside.
+ *
+ * Revision 1.84  2007/04/17 23:38:03  myc
+ * Introducing the new improved color spray!  It's now an area spell that
+ * causes various effects based on caster skill.
+ *
+ * Revision 1.83  2007/04/11 14:26:06  jps
+ * Spell of nourishment will only work in certain terrains.
+ *
+ * Revision 1.82  2007/03/27 04:27:05  myc
+ * Harness from 2% to 1% extra damage per level.  Forgot a check in ice armor
+ * for coldshield last time.  Group heal has the same effects as heal (curing
+ * blindness).  Permastoned mobs twitch faster.  Cure blind cures sunray.
+ *
+ * Revision 1.81  2007/02/20 17:16:27  myc
+ * Consolidated armor spell checks into check_armor_spells() function, which
+ * is called at the beginning of all armor spells.  Changed success rates for
+ * entangle, minor paralysis, and sleep.  Cleaned up entangle spell a bit.
+ * Sleep spell checks for shapeshifted players.
+ *
+ * Revision 1.80  2007/02/14 03:54:53  myc
+ * Save applies now make a difference.  Reduced damage exorcism causes to
+ *caster. Fixed bug with improving skill preventing other unrelated things from
+ *occuring. Ice armor now has coldshield affect.  Entangle, minor paralysis, and
+ *sleep no longer make the mob attack for successes.  Added combust and cremate
+ *spells.
+ *
+ * Revision 1.79  2007/02/08 01:30:00  myc
+ * Circle of fire does damage based on level now.
+ *
+ * Revision 1.78  2006/12/19 04:36:53  dce
+ * Modified Supernova to mimic Ice Shards.
+ *
+ * Revision 1.77  2006/11/20 22:24:17  jps
+ * End the difficulties in interaction between evil and good player races.
+ *
+ * Revision 1.76  2006/11/20 19:52:04  jps
+ * Levitate halves earthquake damage.  Fixed feedback messages when
+ * casting levitate and ray of enfeeblement.
+ *
+ * Revision 1.75  2006/11/18 07:03:30  jps
+ * Minor typo fixes
+ *
+ * Revision 1.74  2006/11/18 04:26:32  jps
+ * Renamed continual light spell to illumination, and it only works on
+ * LIGHT items (still rooms too).
+ *
+ * Revision 1.73  2006/11/17 22:52:59  jps
+ * Change AGGR_GOOD/EVIL_ALIGN to AGGR_GOOD/EVIL_RACE
+ *
+ * Revision 1.72  2006/11/14 18:54:02  jps
+ * Fly spell now produces feedback to caster when cast on someone else.
+ *
+ * Revision 1.71  2006/11/13 19:24:00  jps
+ * "animate dead" is in sphere of death, and improves.
+ *
+ * Revision 1.70  2006/11/13 18:33:58  jps
+ * Fix major/minor globe interaction, and add feedback for the caster.
+ *
+ * Revision 1.69  2006/11/13 17:51:31  jps
+ * Guard will improve normally.  Also there are messages for failed
+ * guard attempts.
+ *
+ * Revision 1.68  2006/11/11 10:11:04  jps
+ * Create food now chooses from 50 food objects (10 for each food
+ * creating class), based on caster proficiency and luck.
+ *
+ * Revision 1.67  2006/11/08 09:59:46  jps
+ * Added caster feedback message for "protection from evil".
+ *
+ * Revision 1.66  2006/11/08 09:16:04  jps
+ * Fixed some loose-lose typos.
+ *
+ * Revision 1.65  2006/11/08 08:49:29  jps
+ * Fix missing punctuation in missed poison spell message.
+ *
+ * Revision 1.64  2006/11/08 08:01:14  jps
+ * Typo fix "You sprouts roots" -> "You sprout roots"
+ *
+ * Revision 1.63  2006/11/07 14:09:46  jps
+ * If you are silenced in the middle of casting your own spell, that
+ * spell fails.
+ *
+ * Revision 1.62  2006/11/06 17:38:19  jps
+ * affect spells cast on self will no longer send two messages to the caster
+ *
+ * Revision 1.61  2006/07/20 07:34:53  cjd
+ * Typo fixes.
+ *
+ * Revision 1.60  2006/05/30 00:51:18  rls
+ * modified poison affects to be a bit more potent
+ *
+ * Revision 1.59  2004/11/28 06:38:07  rsd
+ * Changed the healing multiplies back to half what they were
+ * and doubled the number of dice in each healing spell.
+ *
+ * Revision 1.58  2004/11/19 03:09:58  rsd
+ * Doubled healing output for the heal spells again.
+ *
+ * Revision 1.57  2004/11/13 10:45:48  rls
+ * Fixed crashie bug with remove curse scroll... or so it seems.
+ *
+ * Revision 1.56  2004/10/15 18:33:30  rsd
+ * Ok, something odd happened with this, I added a buncha
+ * checks to the creation of undead to remove the aggressive
+ * flags to prevent necros from killing off players.
+ * Bad necro's the odd thing is that I fixed a typo while
+ * having the file checed out in another directory and did
+ * a make.  It's almost as though it checked in my changes and
+ * updated the file on me automatically.  weirdness... .
+ *
+ * Revision 1.55  2003/08/21 02:36:16  jjl
+ * Zzur said to double the healing power.  So I did.
+ *
+ * Revision 1.54  2003/06/20 15:04:56  rls
+ * Capped energy drain at 6x caster's hp... 1 hp gain thereafter.
+ *
+ * Revision 1.53  2003/06/18 14:57:37  rls
+ * Added a boolean to create_undead to check for PC corpses being raised
+ * Allowed for PC corpse raising only when PK is enabled
+ * Toned down the HP in create_undead to that of 2x the caster.
+ *
+ * Revision 1.52  2002/10/23 02:55:47  jjl
+ * D'oh.  Fixed some test code I had in that was breaking necros.
+ *
+ * Revision 1.51  2002/10/14 02:16:08  jjl
+ * An update to turn vitality into a set of 6 spells, lesser endurance,
+ * endurance, greater endurance, vitality, greater vitality, and dragon's
+ * health.  Greater endurance is what vitality was.  The rest are scaled
+ * appropriately.    The higher end may need scaled down, or may not.
+ *
+ * Revision 1.50  2002/09/15 04:27:11  jjl
+ * Fixed sundry typos in messages, added stone skin wear off message, wings of
+ *heaven/hell make you fly now.
+ *
+ * Revision 1.49  2002/09/13 02:32:10  jjl
+ * Updated header comments
+ *
+ * Revision 1.48  2002/07/16 23:22:41  rls
+ * added in new necro spell, bone armor
+ *
+ * Revision 1.47  2002/03/27 00:04:19  dce
+ * *** empty log message ***
+ *
+ * Revision 1.45  2002/02/25 12:30:07  rls
+ * *** empty log message ***
+ *
+ * Revision 1.44  2002/02/25 11:18:40  rls
+ * Adj to_char msg for AFF_BLIND to ...blinded by you!
+ *
+ * Revision 1.43  2002/02/18 22:54:15  dce
+ * When casting fly, the caster would be the one who's position
+ * was set to fly. I changed it to the vicitim. So from
+ * GET_POS(ch) to GET_POS(victim).
+ *
+ * Revision 1.42  2001/12/07 16:11:04  dce
+ * Fix the heal spells so you can not get your hp's above max.
+ *
+ * Revision 1.41  2001/03/07 01:45:18  dce
+ * Added checks so that players can not kill shapechanged players and
+ * vise versa. Hopefully I didn't miss any...
+ *
+ * Revision 1.40  2000/11/22 20:35:18  rsd
+ * Added back rlog messages from prior to the addition of
+ * the $log$ string.
+ *
+ * Revision 1.39  2000/11/15 18:52:33  rsd
+ * Magic users can no longer cast energy drain upon themselves
+ * to gain hitpoints..
+ *
+ * Revision 1.38  2000/11/14 20:11:39  rsd
+ * Added a pk check for the -str affect on chill touch.
+ *
+ * Revision 1.37  2000/10/13 22:26:52  rsd
+ * altered the power of chain lightning
+ *
+ * Revision 1.36  2000/10/05 03:05:08  rsd
+ * Altered almost every spell to redo the way skills were
+ * accessed in the spells by objects and not casters to
+ * use the level of the object to determine power and
+ * not allow an object to cause a players proficiency to increase
+ * by using its spell.
+ *
+ * Revision 1.35  2000/09/29 04:16:24  rsd
+ * Altered every spell in mag_affects to use the new skill
+ * checking code that checks if a player is casting or uses
+ * an item spell.  This should restore potions and scrolls
+ * et al to normal use.
+ *
+ * Revision 1.34  2000/09/28 20:37:15  jimmy
+ * added fix to mag_affects that checks to see weather a spell is
+ * being cast or if it's an affect from an object.  Objects will
+ * get their skill based on the level of the object.  I.E pc/npc's
+ * who don't have SPELL_ARMOR skill can quaff an armor potion
+ * and get affected by an armor spell of the level of the potion.
+ * All other mag_XXX functions can be migrated to join suit.
+ * jbk
+ *
+ * Revision 1.33  2000/04/30 18:14:19  rsd
+ * bless no longer has an alignement check, it does have a dark
+ * presence check though, and dark presence has a bless check.
+ *
+ * Revision 1.32  2000/04/15 23:12:03  rsd
+ * fixed damage algorythm for flood and meteorswarm added
+ * iceshards and supernova...
+ *
+ * Revision 1.31  2000/04/14 00:55:49  rsd
+ * altered a few spells
+ *
+ * Revision 1.30  2000/04/09 22:32:24  rsd
+ * altered a buncha act buffers to try to get the spell messaging
+ * done properly.  Also altered the order of ch and victim in
+ * the catch all buffers for the order changed in the act()'s
+ * for mag_affects().
+ *
+ * Revision 1.29  2000/04/08 08:41:23  rsd
+ * altered prayer to have float math to return expected values.
+ * altered shocking grasp to actually reference the proper
+ * sphere to calculate damage, also made it to the 2nd power
+ * instead of the typoed 7th. Changed about a kabillion act()
+ * statements to make more sense I hope.
+ *
+ * Revision 1.28  2000/04/05 06:35:34  rsd
+ * added 1 kabillion more spells into the spell system.
+ * lalala.
+ *
+ * Revision 1.27  2000/04/02 02:39:39  rsd
+ * changed the to_room act in most spells to be TO_NOTVICT as
+ * I think was the intent in most cases.  Also added and
+ * integrated the spell system up through all 4th circle
+ * spells.
+ *
+ * Revision 1.26  2000/03/31 23:46:37  rsd
+ * integrated more spells into the skill system with improve
+ * skill calls. Also comeplted more spells. in mag_damage().
+ *
+ * Revision 1.25  2000/03/31 00:16:10  rsd
+ * added a few variables to mag_damage() to make the use of the
+ * spell system doable. Also changed how damage was assigned
+ * to be proper for the intent for the first few spells.
+ * Note that spells are becomeing significantly more potent,
+ * maybe to much so, ptesting will get it figured out. This should
+ * get all spells up through 3rd circle into the spell system.
+ *
+ * Revision 1.24  2000/03/30 05:45:54  rsd
+ * added mag_damage spells, all first and second circle spells of all
+ * classes are in the spell system now.
+ * sync
+ *
+ * Revision 1.23  2000/03/29 06:29:50  rsd
+ * Many mag affects spells had returns out for various reasons.
+ * The messages associated with the returns were buffered but
+ * never sent by the act()'s at the end of the function. Each
+ * buffer for player messaging before a return now has an act
+ * assicated with it.  I hope it's done correctly.
+ *
+ * Revision 1.22  2000/03/27 08:06:06  rsd
+ * completed hosing with all the spells in mag_affectc()
+ * except stone skin.
+ *
+ * Revision 1.21  2000/03/26 23:48:37  rsd
+ * completed more of the mag_affects() spells.
+ *
+ * Revision 1.20  2000/03/26 07:21:20  rsd
+ * Added an improve_skill() call to every mag_affects() spell case in
+ * the switch, each spell has a base improve_skill() call just before
+ * the break in their case.  Some have more than one instance of the
+ * call............
+ * Added appropriate to_vict, to_room, and to_char messages for the
+ * first half of spells in mag_affects().
+ * Removed the defines for af[0].element that I had put in mag_affects()
+ * a few days ago.  I realized that there was af[i].element going on
+ * so to just have the defines for af[0] was a bit silly. I removed the
+ * use of the defines I had coded for barkskin, dark presence, armor,
+ * bless, and demonskin......
+ * Added alignment checks and restrictions on Demonskin, Dark Presence,
+ * and bless.........
+ * Worked though about the first half of the spells in mag_affects()
+ * and integrated the spell proficiency system.  This was rather easy
+ * compared to the pther mag() type spells as most of the mag_affects()
+ * spells have very simple affects to manipulate.  There were a few
+ * instances of spells where we want more special things to occur,
+ * and some instances of confusion, but it's all commented. I admit
+ * some of the things I did were goat sacrificing HACKS that may not
+ * work. More work later....
+ *
+ * Revision 1.19  2000/03/25 21:36:13  rsd
+ * Altered to use spell proficiencies:
+ * chill touch
+ * Barkskin
+ * nightvision
+ * dark presence
+ * Also added a missing skill check for demonskin.
+ *
+ * Revision 1.18  2000/03/24 23:49:35  rsd
+ * Altered bless and demonskin to use the spell prof system.
+ *
+ * Revision 1.17  2000/03/24 05:24:39  rsd
+ * changed armor to use sphere of prot as skill proficiency.
+ * Also declared some variables at the beginning of mag_affects()
+ * to facilitate the use of skills in spells.
+ *
+ * Revision 1.16  2000/03/19 20:38:18  rsd
+ * added brackes to the if statements of SD_INTERN_DAM and
+ * tabbed it out.
+ *
+ * Revision 1.15  2000/03/18 06:08:38  rsd
+ * Changed the overall duration of vitality as well as the ranges
+ * at which the durations increase. Put some comments in about what
+ * a default duration of 0 means to the players. Added an extern -
+ * extern void improve_skill(struct char_data *ch, int skill);
+ * This was done so skill improvemts could be called for spell usage
+ * like with the ones added for vitality.
+ *
+ * Revision 1.14  2000/03/05 00:15:34  rsd
+ * Er, had a buncha returns though the functioning parts of
+ * Dispel good and evil, so it was returning out of mag_damage
+ * after it listed the damage hehe silly me.
+ *
+ * Revision 1.13  2000/03/04 08:32:25  rsd
+ * Altered DISPEL_GOOD DISPEL_EVIL and VAMPIRIC_BREATH
+ * to be somewhat functional, more so than they were
+ * before.  Although the dispells don't seem to call
+ * their proper messages.
+ * /s
+ *
+ * Revision 1.12  2000/02/26 02:17:21  rsd
+ * Oooook, fixed healing proficiency cheks to actually include the 96
+ * percentile by adding a = after the > in >96 grumbmle.
+ *
+ * Revision 1.11  1999/12/08 21:21:59  jimmy
+ * added checks for spell proficiencies all healing spells and vitality.
+ *
+ * Revision 1.10  1999/11/29 01:32:51  cso
+ * made chill touch decrease strength a little more
+ *
+ * Revision 1.9  1999/11/28 23:41:42  cso
+ * affect_update: added check to kill animated mobs when the animate wears off
+ * new fn: mod_for_undead_type: modify a mob's stats based on what undead type
+ *  it is. used by create_undead
+ * new fn: mod_for_lvldiff: modify a mob's stats based on the level difference
+ *  between it and the necro that raised it. used by create_undead
+ * new fn: create_undead: create an undead mob. used by mag_summons for
+ *
+ *  animate dead
+ * new fn: ch_can_control_mob: check to see if a necro can control the undead
+ *  he just raised. used by mag_summons for animate dead
+ * removed unused mag_summons_msgs
+ * removed unused mag_summon_fail_msgs
+ * removed unused defines form MOB_ZOMBIE, MOB_MONSUM_I, etc
+ * rewrote mag_summons from scratch
+ *
+ * Revision 1.8  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.7  1999/03/07 05:01:09  dce
+ * Chant finishes and wearoff messages.
+ *
+ * Revision 1.6  1999/02/13 19:37:12  dce
+ * Rewrote Continual Light and Darkness to be manual spells to meet our needs.
+ *
+ * Revision 1.5  1999/02/11 16:44:23  dce
+ * When casting minor creation, light objects come lit.
+ *
+ * Revision 1.4  1999/02/10 05:57:14  jimmy
+ * Added long description to player file.  Added AFK toggle.
+ * removed NOAUCTION toggle.
+ * fingon
+ *
+ * Revision 1.3  1999/02/10 02:38:58  dce
+ * Fixes some of continual light.
+ *
+ * Revision 1.2  1999/01/31 16:35:11  mud
+ * Indented entire file
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ ***************************************************************************/

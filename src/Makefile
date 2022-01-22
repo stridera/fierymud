@@ -67,23 +67,23 @@ default: test
 
 test:
 	@$(BINDIR)/test_make_info; \
-	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(TFLAGS)"; \
-	$(BINDIR)/buildcount $(LOGDIR)/make_count
+	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(TFLAGS)";
+	# $(BINDIR)/buildcount $(LOGDIR)/make_count
 
 production:
 	@$(BINDIR)/production_make_info; \
-	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(PFLAGS)"; \
-	$(BINDIR)/buildcount $(LOGDIR)/make_count
+	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(PFLAGS)";
+	# $(BINDIR)/buildcount $(LOGDIR)/make_count
 
 dev:
 	@$(BINDIR)/dev_make_info; \
-	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(DFLAGS)"; \
-	$(BINDIR)/buildcount $(LOGDIR)/make_count
+	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(DFLAGS)";
+	# $(BINDIR)/buildcount $(LOGDIR)/make_count
 
 memtest:
 	@$(BINDIR)/dev_make_info; \
-	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(MFLAGS)"; \
-	$(BINDIR)/buildcount $(LOGDIR)/make_count
+	$(MAKE) $(BINDIR)/fiery CFLAGS="$(CFLAGS) $(MFLAGS)";
+	# $(BINDIR)/buildcount $(LOGDIR)/make_count
 
 utils:
 	$(MAKE) $(BINDIR)/delobjs

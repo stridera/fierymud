@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: interpreter.c,v 1.328 2010/06/05 14:56:27 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
  *   File: interpreter.c                                  Part of FieryMUD *
  *  Usage: parse user commands, search for specials, call ACMD functions   *
  *                                                                         *
@@ -3135,3 +3138,1091 @@ void sort_commands(void) {
                 cmd_sort_info[b].sort_pos = tmp;
             }
 }
+
+/***************************************************************************
+ * $Log: interpreter.c,v $
+ * Revision 1.328  2010/06/05 14:56:27  mud
+ * Moving cooldowns to their own file.
+ *
+ * Revision 1.327  2009/07/16 19:15:54  myc
+ * Moved command stuff from grant.c to commands.c
+ *
+ * Revision 1.326  2009/07/14 01:22:48  myc
+ * If a clan has a special motd, give some warning on the motd screen.
+ *
+ * Revision 1.325  2009/06/09 21:50:21  myc
+ * Adding a couple of hacks to enter_player_game to make sure
+ * clans and cooldowns are always handled correctly.
+ *
+ * Revision 1.324  2009/06/09 05:41:36  myc
+ * Adding a hook for the clan motd, and adjusting delete player
+ * to work with the new clan interface.
+ *
+ * Revision 1.323  2009/03/20 23:02:59  myc
+ * Move text file handling routines into text.c
+ *
+ * Revision 1.322  2009/03/16 19:17:52  jps
+ * Change macro GET_HOME to GET_HOMEROOM
+ *
+ * Revision 1.321  2009/03/09 02:22:32  myc
+ * Added edit command.  Modified is_number to allow leading spaces.
+ *
+ * Revision 1.320  2009/03/08 23:34:14  jps
+ * Renamed spells.[ch] to casting.
+ *
+ * Revision 1.319  2009/03/07 11:12:05  jps
+ * Separated the read command from the look command.
+ *
+ * Revision 1.318  2009/03/03 19:43:44  myc
+ * New target finding mechanism in find.c.
+ *
+ * Revision 1.317  2009/02/21 03:30:16  myc
+ * Adding hook for boardadmin command.
+ *
+ * Revision 1.316  2009/02/11 17:03:39  myc
+ * Adding delimited_arg_case, which is exactly like delimited_arg,
+ * but it doesn't make everything lower case.  (There's got to be
+ * a better way to do this.)
+ *
+ * Revision 1.315  2009/01/18 06:58:53  myc
+ * Adding "emote's" command so you can emote stuff like
+ * "Laoris's arms are tired."
+ *
+ * Revision 1.314  2008/12/03 03:13:43  myc
+ * Don't allow shapechanging during battle; it leaves the original character
+ * in the fighting stance, which wrecks havoc later.
+ *
+ * Revision 1.313  2008/09/28 19:06:49  jps
+ * Change SCMD_NOTES to SCMD_NOTE.
+ *
+ * Revision 1.312  2008/09/25 04:48:10  jps
+ * Add coredump command for lvl 104+
+ *
+ * Revision 1.311  2008/09/21 21:51:18  jps
+ * Stop trying to keep track of who's attacking who when there's a shapechange,
+ * since do_shapechange handles that internally now.  Also, you can shapechange
+ * during a battle now.
+ *
+ * Revision 1.310  2008/09/21 20:40:40  jps
+ * Keep a list of attackers with each character, so that at the proper times -
+ * such as char_from_room - they can be stopped from battling.
+ *
+ * Revision 1.309  2008/09/21 04:54:23  myc
+ * Added ungrant command.
+ *
+ * Revision 1.308  2008/09/20 06:05:06  jps
+ * Add macros POSSESSED and POSSESSOR.
+ *
+ * Revision 1.307  2008/09/14 02:08:01  jps
+ * Use standardized area attack targetting
+ *
+ * Revision 1.306  2008/09/08 05:24:50  jps
+ * Put autosave as the "quit reason" when autosaving. This is a temporary fix
+ * that should stop people from losing keys when autosave code thinks their
+ * quit reason is something else, like renting.
+ *
+ * Revision 1.305  2008/09/07 20:05:27  jps
+ * Renamed exp_to_level to exp_next_level to make it clearer what it means.
+ *
+ * Revision 1.304  2008/09/07 07:21:56  jps
+ * Raised pscan to level 104.
+ *
+ * Revision 1.303  2008/09/01 22:15:59  jps
+ * Saving and reporting players' game-leaving reasons and locations.
+ *
+ * Revision 1.302  2008/08/31 21:04:46  myc
+ * Abort command gives a useful message when not casting.
+ *
+ * Revision 1.301  2008/08/29 19:18:05  myc
+ * Fixed abilities so that no information is lost; the caps occur
+ * only when the viewed stats are accessed.
+ *
+ * Revision 1.300  2008/08/29 04:16:26  myc
+ * Moved all ACMD prototypes for commands in act.informative.c
+ * to the act.h file.
+ *
+ * Revision 1.299  2008/08/29 03:02:40  myc
+ * Misspelling of STANC_.
+ *
+ * Revision 1.298  2008/08/28 23:48:29  rbr
+ * Added the do_abandon command to the command list.
+ *
+ * Revision 1.297  2008/08/24 18:24:20  myc
+ * Change iptables to level 104.
+ *
+ * Revision 1.296  2008/08/24 02:34:26  myc
+ * Add hook for ksearch command.
+ *
+ * Revision 1.295  2008/08/18 01:35:38  jps
+ * Replaced all \\n\\r with \\r\\n, not that it was really necessary...
+ *
+ * Revision 1.294  2008/08/16 08:25:13  jps
+ * Took desc and delete out of the pre-game menu.
+ * Added a desc command so players can edit their descriptions in game.
+ *
+ * Revision 1.293  2008/08/15 05:50:54  jps
+ * Moved pray command above prompt.
+ *
+ * Revision 1.292  2008/08/15 03:59:08  jps
+ * Added pprintf for paging, and changed page_string to take a character.
+ *
+ * Revision 1.291  2008/08/14 23:10:35  myc
+ * Made one of the arguments to search_block const.  Hardcoded the
+ * ANSI string in there.
+ *
+ * Revision 1.290  2008/08/14 09:45:22  jps
+ * Replaced the pager.
+ *
+ * Revision 1.289  2008/08/10 02:58:40  jps
+ * Added infodump command for outputting game data to text files.
+ *
+ * Revision 1.288  2008/07/27 05:13:23  jps
+ * Changed name of save_player to save_player_char, since it only saves the
+ * character, not other stuff like objects and quests.
+ *
+ * Revision 1.287  2008/07/27 01:33:51  jps
+ * Removed unused ACMD do_rent.
+ *
+ * Revision 1.286  2008/07/26 21:33:55  jps
+ * Removed objfix command and added objupdate command.
+ *
+ * Revision 1.285  2008/07/22 07:25:26  myc
+ * Added iedit (unique item editor).
+ *
+ * Revision 1.284  2008/07/15 19:22:25  myc
+ * Don't let gods change aliases of people of a higher level.
+ *
+ * Revision 1.283  2008/07/15 19:14:33  myc
+ * Modified do_alias to allow gods to see/modify players' aliases.
+ *
+ * Revision 1.282  2008/07/15 18:53:39  myc
+ * Added an array of strings for command flags.
+ *
+ * Revision 1.281  2008/07/15 17:49:24  myc
+ * Whether you can use a command depends not only on level now, but
+ * also on command grants.  Added the grant, gedit, and revoke commands.
+ * Functionalized the levenshtein similar commands code.  Added
+ * parse_command, which is the same as find_command, but it allows
+ * abbreviations.
+ * Added a hook for gedit to the nanny.
+ *
+ * Revision 1.280  2008/07/13 16:48:09  jps
+ * Make the MESMERIZED effect ineffective against immortals.
+ *
+ * Revision 1.279  2008/06/21 08:53:09  myc
+ * Set the player's last logon time in enter_player_game.
+ *
+ * Revision 1.278  2008/06/09 23:00:13  myc
+ * Got rid of the disembark command..
+ *
+ * Revision 1.277  2008/06/05 02:07:43  myc
+ * Rewrote rent saving to use ascii object files.  Moved quest loading
+ * into enter_player_game.
+ *
+ * Revision 1.276  2008/05/19 06:53:04  jps
+ * Got rid of fup and fdown commands.
+ *
+ * Revision 1.275  2008/05/19 06:17:07  jps
+ * You can't do things when mesmerized.
+ *
+ * Revision 1.274  2008/05/18 20:16:11  jps
+ * Created fight.h and set dependents.
+ *
+ * Revision 1.273  2008/05/18 03:24:14  jps
+ * Added inctime/hour wiz command to advance time 1 hour.
+ *
+ * Revision 1.272  2008/05/09 22:04:33  jps
+ * Add delimited_arg_all(), which is like delimited_arg() except that
+ * when there's no delimiter, it will return everything as the arg
+ * (not just the first word).
+ *
+ * Revision 1.271  2008/04/20 04:11:08  jps
+ * Removing unused ACMD
+ *
+ * Revision 1.270  2008/04/07 04:32:11  jps
+ * Use CMD_NOFIGHT bit for commands that shouldn't be available in a fight.
+ *
+ * Revision 1.269  2008/04/07 03:02:54  jps
+ * Changed the POS/STANCE system so that POS reflects the position
+ * of your body, while STANCE describes your condition or activity.
+ *
+ * Revision 1.268  2008/04/05 16:49:38  myc
+ * Adding worship social back in.
+ *
+ * Revision 1.267  2008/04/05 16:38:56  jps
+ * Rename the function that handles the "reload" command from do_reboot
+ * to do_reload.
+ *
+ * Revision 1.266  2008/04/05 06:28:50  myc
+ * Fixed that crash bug: was a buffer overflow because of a tiny local
+ * buffer.
+ *
+ * Revision 1.265  2008/04/05 05:05:42  myc
+ * Removed SEND_TO_Q macro, so call write_to_output directly.
+ *
+ * Revision 1.264  2008/04/04 06:12:52  myc
+ * Removed justice and dieites/worship code.
+ *
+ * Revision 1.263  2008/04/04 05:13:46  myc
+ * Removing maputil code.
+ *
+ * Revision 1.262  2008/04/03 17:36:42  jps
+ * Stopped using the PLR_INVSTART flag.  Instead, using the autoinvis toggle.
+ *
+ * Revision 1.261  2008/04/03 02:02:05  myc
+ * Upgraded ansi color handling code.
+ *
+ * Revision 1.260  2008/04/02 03:24:44  myc
+ * Rewrote group code and removed major group code.
+ *
+ * Revision 1.259  2008/03/30 17:30:38  jps
+ * Renamed objsave.c to pfiles.c and introduced pfiles.h. Files using functions
+ * from pfiles.c now include pfiles.h and depend on it in the makefile.
+ *
+ * Revision 1.258  2008/03/30 16:32:18  jps
+ * Don't need to set player race align when entering game.
+ *
+ * Revision 1.257  2008/03/28 17:54:53  myc
+ * Now using flagvectors for effect, mob, player, preference, room, and
+ * room effect flags.  AFF, AFF2, and AFF3 flags are now just EFF flags.
+ *
+ * Revision 1.256  2008/03/27 22:57:29  jps
+ * Added objfix command.
+ *
+ * Revision 1.255  2008/03/22 03:22:38  myc
+ * All invocations of the string editor now go through string_write()
+ * instead of messing with the descriptor variables itself.  Also added
+ * a toggle, LineNums, to decide whether to do /l or /n when entering
+ * the string editor.
+ *
+ * Revision 1.254  2008/03/21 15:01:17  myc
+ * Removed languages.
+ *
+ * Revision 1.253  2008/03/16 23:30:14  jps
+ * Move 'stay' down to its alphabetical position, so that 'sta' resolves
+ * to 'stand' like people are accustomed to.
+ *
+ * Revision 1.252  2008/03/10 18:01:17  myc
+ * Made bodyslam and maul subcommands of bash.  Made tantrum a subcommand
+ * of hitall.  Made battle howl a subcommand of roar.  Added ground
+ * shaker command as stomp.
+ *
+ * Revision 1.251  2008/03/09 18:15:45  jps
+ * Added a movement subcommand of 'stay', which is most useful when
+ * misdirecting your movements.
+ *
+ * Revision 1.250  2008/03/09 08:57:56  jps
+ * Also allow 'look' during minor paralysis.
+ *
+ * Revision 1.249  2008/03/09 08:52:21  jps
+ * Fix typos and make sure that the return command is available when paralyzed.
+ *
+ * Revision 1.248  2008/03/09 06:38:37  jps
+ * Replaced name with namelist in struct char_data.player. GET_NAME macro
+ * now points to short_descr. The uses of these strings is the same for
+ * NPCs and players.
+ *
+ * Revision 1.247  2008/03/09 04:01:55  jps
+ * Don't apply mob_spec to mobs with MOB2_NOSCRIPT flag.
+ *
+ * Revision 1.246  2008/03/08 20:18:09  jps
+ * Added 'pscan' command so you can see how many of a type of object
+ * are saved in player object files.
+ *
+ * Revision 1.245  2008/03/05 05:21:56  myc
+ * Removed char_file_u function declarations.
+ *
+ * Revision 1.244  2008/03/05 03:03:54  myc
+ * Changed alias structures, and updated all alias functions.  Player
+ * files are now ascii format so they are loaded differently than before.
+ *
+ * Revision 1.243  2008/02/24 17:31:13  myc
+ * You can now execute certain actions by preceding them with a ~
+ * in OLC if the command is marked CMD_OLC (or CMD_ANY).
+ *
+ * Revision 1.242  2008/02/16 20:31:32  myc
+ * Moving command sorting code here from act.informative.c.
+ *
+ * Revision 1.241  2008/02/13 21:27:31  myc
+ * Make it so you don't get the Welcome to Fierymud message twice when
+ * logging in.
+ *
+ * Revision 1.240  2008/02/11 21:04:01  myc
+ * Removing a few unused spec-proc command placeholders: home, pull, and
+ * push.  Making the stone, appear, and disappear placeholders 'invisible'
+ * on the commands and hints list.  Also making hunt and qui invisible.
+ *
+ * Revision 1.239  2008/02/10 20:30:03  myc
+ * Adding notes to the delete_doubledollar function so we actually
+ * know what it does.
+ *
+ * Revision 1.238  2008/02/09 21:07:50  myc
+ * Instead of creating a name_timeout_event object for name approval
+ * timeouts, we'll just pass the descriptor itself to the event,
+ * saving us a tiny bit of memory.
+ *
+ * Revision 1.237  2008/02/09 18:29:11  myc
+ * The event code now handles freeing of event objects.
+ *
+ * Revision 1.236  2008/02/09 07:05:37  myc
+ * Copyover is now renamed to hotboot.
+ *
+ * Revision 1.235  2008/02/09 06:19:44  jps
+ * Add "nohints" toggle for whether you receive command suggestions
+ * after entering a typo.
+ *
+ * Revision 1.234  2008/02/09 04:27:47  myc
+ * Now relying on math header file.
+ *
+ * Revision 1.233  2008/02/09 03:06:17  myc
+ * Adding the 'copyover' command, which allows you to do a hot-boot
+ * without disconnecting anybody.
+ *
+ * Revision 1.232  2008/02/06 21:53:53  myc
+ * Adding exit search as part of the vsearch command suite.
+ *
+ * Revision 1.231  2008/02/05 04:22:42  myc
+ * Removing the listexp, listclass, and listrace commands.  Their
+ * functionality is now part of the show command.
+ *
+ * Revision 1.230  2008/02/05 03:07:26  myc
+ * Shortening all the vsearch command function names.  Adding
+ * csearch and ssearch.  Moving slist and snum to the vsearch
+ * command system.
+ *
+ * Revision 1.229  2008/02/04 01:48:53  myc
+ * Removing the old implementations of znum and zlist.
+ *
+ * Revision 1.228  2008/02/04 01:46:12  myc
+ * Removing the *find aliases for *search.  Too much command spam.
+ *
+ * Revision 1.227  2008/02/03 08:46:52  myc
+ * Don't display socials for the 'did you mean' command list.
+ *
+ * Revision 1.226  2008/02/02 19:38:20  myc
+ * Title command is now available to mortals to switch between
+ * 'permanent titles'.  Added a levenshtein distance thingy to
+ * the interpreter so if you misspell a command it says,
+ * 'Did you mean...' and lists a few suggestions.
+ *
+ * Revision 1.225  2008/02/02 04:27:55  myc
+ * Changing delimited_arg so it doesn't skip fill words.
+ *
+ * Revision 1.224  2008/01/29 21:02:31  myc
+ * Removing a lot of extern declarations from code files and moving
+ * them to header files, mostly db.h and constants.h.
+ *
+ * Revision 1.223  2008/01/27 21:09:12  myc
+ * Add berserk command.  Replaced hit() with attack().
+ *
+ * Revision 1.222  2008/01/27 13:43:50  jps
+ * Moved race and species-related data to races.h/races.c and merged species
+ *into races.
+ *
+ * Revision 1.221  2008/01/27 11:15:52  jps
+ * Renamed do_newbie to give_newbie_eq.
+ *
+ * Revision 1.220  2008/01/26 14:26:31  jps
+ * Moved a lot of skill-related code into skills.h and skills.c.
+ *
+ * Revision 1.219  2008/01/23 05:13:26  jps
+ * Make "point" into a regular command.
+ *
+ * Revision 1.218  2008/01/23 04:38:34  jps
+ * Use the delay from instant kill to prevent another instant kill for
+ * a while. NOT to prevent all commands during the next fight.
+ *
+ * Revision 1.217  2008/01/22 22:29:25  myc
+ * Removed attributes command.
+ *
+ * Revision 1.216  2008/01/22 05:32:22  myc
+ * Fixing a bug in is_integer.
+ *
+ * Revision 1.215  2008/01/17 01:29:10  myc
+ * Replaced is_number with is_integer, is_positive_integer, and
+ * is_negative_integer.  is_number is now a macro aliased to
+ * is_positive_integer.
+ *
+ * Revision 1.214  2008/01/11 02:06:50  myc
+ * Allow consent while incapacitated.
+ *
+ * Revision 1.213  2008/01/10 05:39:43  myc
+ * The purge command is now 101 on test and 103 on production.
+ *
+ * Revision 1.212  2008/01/09 13:04:40  jps
+ * Removed the "offer" command.
+ *
+ * Revision 1.211  2008/01/05 21:55:32  jps
+ * Remove unused extern.
+ *
+ * Revision 1.210  2008/01/05 05:38:51  jps
+ * Changed name of save_char() to save_player().
+ *
+ * Revision 1.209  2008/01/04 03:03:48  jps
+ * Added msave command, so mobs can save players during triggers.
+ *
+ * Revision 1.208  2008/01/04 02:31:33  jps
+ * The race selection menu is dynamic, so there is only a need for one
+ * race-selection state.
+ *
+ * Revision 1.207  2008/01/04 01:53:26  jps
+ * Added races.h file and created global array "races" for much
+ * race-related information.
+ *
+ * Revision 1.206  2008/01/03 12:44:03  jps
+ * Created an array of structs for class information. Renamed CLASS_MAGIC_USER
+ * to CLASS_SORCERER.
+ *
+ * Revision 1.205  2008/01/02 02:10:16  jps
+ * Modified the (unused) bit about displaying help for classes.
+ *
+ * Revision 1.204  2007/12/25 05:41:49  jps
+ * Updated event code so the each event type is positively identified.
+ * Events may be tied to objects or characters so that when that object
+ * or character is extracted, its events can be canceled.
+ *
+ * Revision 1.203  2007/12/24 18:22:36  myc
+ * Removing 'bind' and 'unbind' from the command list since they are unused
+ * and just screw things up anyway.
+ *
+ * Revision 1.202  2007/12/20 23:12:50  myc
+ * Moved exp_mesg to act.informative.c as exp_message.
+ *
+ * Revision 1.201  2007/12/19 20:51:52  myc
+ * Put "Huh?!?" in a macro.  Added a const modifier to is_number.
+ * save_player() no longer requries you to supply a save/load room
+ * (which wasn't being used anyway).  Updated code to remove a
+ * player from a clan when they self-delete.
+ *
+ * Revision 1.200  2007/11/23 07:10:41  jps
+ * Ok, that was bad.. back to LVL_ADMIN + 1 for iptables.
+ *
+ * Revision 1.199  2007/11/22 21:30:18  jps
+ * Use correct def for level 105 in iptables settings.
+ *
+ * Revision 1.198  2007/11/21 02:34:43  jps
+ * Back to god-only title command - we have better plans...
+ *
+ * Revision 1.197  2007/11/21 01:29:37  jps
+ * Made the title command available to all players.
+ *
+ * Revision 1.196  2007/11/18 16:51:55  myc
+ * Renaming LVL_QUESTMASTER as LVL_GAMEMASTER.
+ *
+ * Revision 1.195  2007/10/25 20:39:37  myc
+ * Added compare command.  Made a number of god and informative commands
+ * POS_DEAD.
+ *
+ * Revision 1.194  2007/10/23 20:21:00  myc
+ * Slightly redesigned the master command list, replacing the six boolean
+ * variables on each line with a single bitvector.  Also replaced all of
+ * the compiler ifdef checks with administration levels defined in
+ * structs.h.
+ *
+ * Revision 1.193  2007/10/17 17:18:04  myc
+ * Renamed the search_block and search_block2 functions.
+ * searchblock is now case sensitive, and search_block is not.
+ *
+ * Revision 1.192  2007/10/11 20:14:48  myc
+ * Chant command is now a subcommand of do_cast.  Songs command moved
+ * to act.informative.c.
+ *
+ * Revision 1.191  2007/10/02 02:52:27  myc
+ * Disengage now works as abort when casting.  Report command now has
+ * subcommands for greport and mreport.
+ *
+ * Revision 1.190  2007/09/28 20:49:35  myc
+ * The vnum, mnum, onum, rnum, tnum, mlist, olist, rlist, tlist, slist,
+ * vwear, and vitem commands now use the vsearch command suite, which is
+ * now also available through the vsearch, vfind, osearch, ofind, msearch,
+ * mfind, tsearch, tfind, ssearch, sfind, rsearch, rfind, and vlist
+ * commands.
+ * Added a delimited_arg() function (actually just renamed one_word) that
+ * lets you return multi-word arguments surrounded by a given character,
+ * such as a quote.  This is useful for spell casting, for example.
+ *
+ * Revision 1.189  2007/09/21 08:44:45  jps
+ * Added object type "touchstone" and command "touch" so you can set
+ * your home room by touching specific objects.
+ *
+ * Revision 1.188  2007/09/20 21:20:43  myc
+ * Hide points and perception are in.  The sneak command no longer exists.
+ *
+ * Revision 1.187  2007/09/20 20:00:01  jps
+ * Make gtell, gsay, and tell not interrupt meditation.
+ *
+ * Revision 1.186  2007/09/12 22:23:04  myc
+ * You can now use the 'walk' and 'go' commands to travel in different
+ * directions.
+ *
+ * Revision 1.185  2007/09/12 19:28:56  myc
+ * Allow springleap for POS_RESTING.
+ *
+ * Revision 1.184  2007/09/11 16:34:24  myc
+ * Added claw, electrify, and peck skills.
+ * Changed is_abbrev to accept const strings.
+ *
+ * Revision 1.183  2007/09/07 19:41:27  jps
+ * Added "identify" command.
+ *
+ * Revision 1.182  2007/08/27 21:18:00  myc
+ * You can now queue up commands while casting as well as abort midcast.
+ * Casting commands such as look and abort are caught and interpreted
+ * before the input is normally queued up by the game loop.
+ *
+ * Revision 1.181  2007/08/26 08:49:36  jps
+ * Added commands estat, oestat, and restat, for viewing extra
+ * descriptions on objects and rooms.
+ *
+ * Revision 1.180  2007/08/25 00:10:41  jps
+ * Added qstat command.
+ *
+ * Revision 1.179  2007/08/24 22:49:05  jps
+ * Added "snum" and "tnum" commands.
+ *
+ * Revision 1.178  2007/08/24 22:10:43  jps
+ * Add sstat (shop stat) as a subcommand of stat.
+ *
+ * Revision 1.177  2007/08/24 17:01:36  myc
+ * Adding ostat and mstat commands as shorthand for vstat, rstat for stat
+ * room, and mnum and onum for vnum.  Also adding rnum and znum with new
+ * functionality.
+ *
+ * Revision 1.176  2007/08/24 10:24:16  jps
+ * Added zlist command.
+ *
+ * Revision 1.175  2007/08/22 18:01:09  jps
+ * Warn of an imminent reboot immediately when logging in.
+ * Use some global constants to determine who can use the
+ * autoboot and shutdown commands.
+ *
+ * Revision 1.174  2007/08/16 19:53:38  myc
+ * Adding stow/palm commands as secondary functionality to conceal skill.
+ *
+ * Revision 1.173  2007/08/15 20:47:41  myc
+ * Conceal and shadow skills can be used while hidden now.
+ *
+ * Revision 1.172  2007/08/14 22:43:07  myc
+ * Adding corner, conceal, stealth, and shadow skills.  Also making
+ * stat usable while meditating.
+ *
+ * Revision 1.171  2007/08/14 20:13:22  jps
+ * Added command "autoboot" to manage the mud's automatic rebooting.
+ *
+ * Revision 1.170  2007/08/05 20:21:51  myc
+ * Added retreat and group retreat skills.
+ *
+ * Revision 1.169  2007/08/04 20:07:54  jps
+ * Added socials: flanic, glomp, mumble, twitch, beckon, glower.
+ *
+ * Revision 1.168  2007/08/03 03:51:44  myc
+ * You can now abort spells mid-cast.
+ *
+ * Revision 1.167  2007/07/31 23:03:11  jps
+ * Add command "zstat" to stat a zone.
+ *
+ * Revision 1.166  2007/07/19 15:32:01  jps
+ * Add "extinguish" as a subcommand of light.
+ *
+ * Revision 1.165  2007/07/18 23:10:31  jps
+ * Allow use of 'consent' while sleeping.
+ *
+ * Revision 1.164  2007/06/30 00:38:39  jps
+ * Correctly free and then CREATE the 'name' section of player_table
+ * when renaming a player. The prior method, which simply strcpy'd
+ * the new name into the old space, probably performed buffer overruns.
+ *
+ * Revision 1.163  2007/06/24 02:51:44  jps
+ * Move "skills" command up so that even big deities can use it.
+ *
+ * Revision 1.162  2007/06/04 22:24:41  jps
+ * Add game-toggle for name approval pause and set name approval to default on.
+ *
+ * Revision 1.161  2007/05/28 03:59:05  jps
+ * Stop 'forget' from breaking meditation.
+ *
+ * Revision 1.160  2007/05/24 05:25:14  jps
+ * Don't break meditation or hiding for 'petition'.
+ *
+ * Revision 1.159  2007/05/11 21:33:10  myc
+ * Made a number of commands (unused, mob-only, etc.) level -1 so they
+ * wouldn't show up on the commands list.  Return is level 0 so I don't
+ * get stuck in level 0 bugs when I switch.  Dig is 104 to go along
+ * with other editing command levels on production.  Turned on the
+ * commands command again.
+ *
+ * Revision 1.158  2007/05/11 21:03:12  myc
+ * New rogue skill, eye gouge, allows rogues to gouge out eyes.  A very
+ * complicated skill.  :P  Fixed cure blind's logic, and made it support
+ * eye gouge too.
+ *
+ * Revision 1.157  2007/04/26 15:20:34  myc
+ * Attempting to fix the check-in comment log.
+ *
+ * Revision 1.112  2002/06/09 21:48:36  rls
+ * adjusted users and dc to lvl_head_b (where users was)
+ *
+ * Revision 1.111  2002/06/09 21:27:13  rls
+ * Adjusted users level to grgod (seeing as they have dc)
+ * and adjusted switch-return level to immortal for quest night.
+ *
+ * Revision 1.110  2002/04/26 18:54:01  mpg
+ * modified "group" so group info can be accessed while sleeping
+ *
+ * Revision 1.109  2002/04/25 23:48:06  mpg
+ * modified "glance" and "gossip" so they don't interrupt meditation
+ *
+ * Revision 1.108  2002/04/25 23:22:13  mpg
+ * modified "skskills so it won't interrupt meditating
+ *
+ * Revision 1.107  2002/04/24 22:33:09  mpg
+ * adjusted dmeditate Changed the time command so players
+ *could use it while meditating
+ *
+ * Revision 1.106  2002/04/17 23:42:43  dce
+ * Fixed shapechange when you relogin it removes the mob.
+ *
+ * Revision 1.105  2002/02/19 02:07:20  dce
+ * Changed do flee from POS_FIGHTING to POS_STANDING.
+ *
+ * Revision 1.104  2002/02/16 02:14:02  dce
+ * Changed flee to a minimum positiong of standing, from resting.
+ *
+ * Revision 1.103  2001/11/14 18:18:02  dce
+ * Sedit and Seduce have been switched.
+ * Must be at least standing to search.
+ *
+ * Revision 1.102  2001/11/14 16:24:30  dce
+ * Level 101+ can now set titles.
+ *
+ * Revision 1.101  2001/10/15 23:41:13  rjd
+ * Lowered minimum position of the "get" command to POS_RESTING
+ * to allow for chars to get things from bags/backpacks/containers
+ * while resting. For those who nitpick, a person can roll around
+ * while resting to grab stuff from the ground, as well. :P
+ *
+ * Revision 1.100  2001/07/12 23:14:17  mtp
+ * added varset and varunset from dg_debug.c
+ *
+ * Revision 1.99  2001/05/13 16:15:58  dce
+ * Fixed a bug where somethings wouldn't save when a player
+ * died and exitied menu option 0 rather than menu option 1.
+ *
+ * Revision 1.98  2001/04/24 03:30:32  dce
+ * Removed the "shit" social/command.
+ *
+ * Revision 1.97  2001/04/07 17:02:30  dce
+ * Added the vitem command.
+ *
+ * Revision 1.96  2001/04/02 23:31:21  dce
+ * Put vwear command into the command list
+ *
+ * Revision 1.95  2001/03/29 03:11:04  dce
+ * Removed the ability to create a shaman from the main menu.
+ *
+ * Revision 1.94  2001/03/06 03:10:18  dce
+ * Fixed a bug where players awaiting a name approval could
+ * cut their link and then crash the mud.
+ *
+ * Revision 1.93  2001/02/27 00:53:23  mtp
+ * made it possible to do mjunk in death trigger
+ *
+ * Revision 1.92  2001/01/20 03:33:21  rsd
+ * made some god commands on test higher level
+ *
+ * Revision 1.91  2000/11/28 00:40:00  mtp
+ * removed mobprog commands
+ *
+ * Revision 1.90  2000/11/26 00:27:42  rsd
+ * moved recline a ways down in the list of commands so it
+ * wouldn't be the first 're' parsed on.
+ *
+ * Revision 1.89  2000/11/23 00:57:04  mtp
+ * added mskillset to allow a mob to set skill/spell proficiency
+ *
+ * Revision 1.88  2000/11/22 01:51:17  mtp
+ * allow removeal of quests from global list with dqdel
+ * note: qdel removes from list but not players, their quest structs are
+ * managed on login
+ *
+ * Revision 1.87  2000/11/22 00:01:41  rsd
+ * Added all 1 zillion back rlog messages from prior to
+ * the addition of the $log$ string.
+ *
+ * Revision 1.86  2000/11/15 04:07:13  rsd
+ * made ispell a god command, it was avail to mortals.
+ *
+ * Revision 1.85  2000/11/11 22:44:07  rsd
+ * Fixed tabbing in the master commands array, retabbed part of
+ * the code while trying to figure out where players get their
+ * names auto-approved.  Fixed said code not to let players
+ * whose names have been DECLINED from sitting at the new
+ * name prompt and getting their new declined names into
+ * the game anyway.
+ *
+ * Revision 1.84  2000/10/31 23:33:20  mtp
+ * typo fix
+ *
+ * Revision 1.83  2000/10/31 23:27:01  mtp
+ * added qlist and qadd
+ *
+ * Revision 1.82  2000/10/27 00:34:45  mtp
+ * new command quest
+ *
+ * Revision 1.81  2000/10/15 04:41:00  cmc
+ * changes for exp_mesg() and level ** characters
+ *
+ * Revision 1.80  2000/10/13 17:51:45  cmc
+ * re-implemented modified level command.
+ * modified exp_mesg() for "level gain" code.
+ *
+ * Revision 1.79  2000/10/11 23:50:45  rsd
+ * Chris and jimmy seem to think this will delete any old
+ * pfile stuff that may exist for a new char left over from
+ * any old deleted chars,  Added code to check this in
+ * nanny
+ *
+ * Also Checked to see if a player was level 0 on login, if
+ * they are they are removed from the player index essentially
+ * deleteing them and push the player requesting the name to
+ * a new character login.
+ *
+ * Revision 1.77  2000/10/07 00:43:55  mtp
+ * new mob command for triggers m_run_room_trig to run room triggers (mainly for
+ *use in death trigs)
+ *
+ * Revision 1.76  2000/09/13 22:19:22  rsd
+ * Altered the level at which some commands are avail as well as
+ * removed some if defs
+ *
+ * Revision 1.75  2000/05/22 22:35:53  rsd
+ * Added char star for test mud greeting to reflect the old
+ * FieryMUD test mud banner. They call me the doctor cuz I'm
+ * always operatin'
+ *
+ * Revision 1.74  2000/05/21 23:56:43  rsd
+ * Altered the level of prompt so mortals can get it to work.
+ * So they can then be redirected at do_display.
+ *
+ * Revision 1.73  2000/05/14 05:19:29  rsd
+ * made rebooting possible by 103's in test, also
+ * removed player delete ability due to it's leakyness.
+ *
+ * Revision 1.72  2000/04/26 22:52:36  rsd
+ * altered player menu to add player deletion.
+ *
+ * Revision 1.71  2000/04/22 22:36:25  rsd
+ * fixed spelling of deity in player output, fixed grammar
+ * error associated with exp indicators. move who to the
+ * top of the wh's in the command parser so it's first for
+ * wh.
+ *
+ * Revision 1.70  2000/04/17 00:55:48  rsd
+ * altered the comment header.  Made prompt LVL_IMMORT
+ *
+ * Revision 1.69  2000/03/20 04:33:38  rsd
+ * added ifdefs for test/prod builds to not have to name check
+ * for the test build.
+ *
+ * Revision 1.68  2000/02/24 01:04:18  dce
+ * Changed wiztitle from a command to a set.
+ *
+ * Revision 1.67  2000/02/22 00:51:30  rsd
+ * Changed text on name autoapprove to be a short time
+ * instead of a static 5 minutes.
+ *
+ * Revision 1.66  2000/02/16 07:59:10  mtp
+ * added listrace to act.wizard.c it prints the race choice menu that new
+ * players have (for Az)
+ *
+ * Revision 1.65  2000/02/14 19:48:49  mtp
+ * moved mechoaround to after mecho cos a substring of mechoaround is mecho
+ * and the wrong cmd was getting run *doh*
+ * /s
+ *
+ * Revision 1.64  2000/02/13 08:53:18  rsd
+ * Added the PRODUCTION flag ifdef replaceing the TESTMUD
+ * flag.  Also mucked about with the god commands, giving
+ * builders more commands on the test muds, and less on
+ * production.
+ *
+ * Revision 1.63  2000/01/31 04:46:25  rsd
+ * Added ifdefs for a production build to make gods on
+ * production have different commands than on test.
+ * Also mopped up several sloppy spacing issues.
+ *
+ * Revision 1.61  2000/01/30 23:33:23  rsd
+ * Added necessary compentents to the menues for good race login.
+ *
+ * Revision 1.60  1999/12/10 22:13:45  jimmy
+ * Exp tweaks.  Made Exp loss for dying a hardcoded 25% of what was needed for
+ *the next level.  Fixed problems with grouping and exp.  Removed some redundant
+ *and unnecessary exp code.
+ *
+ * Revision 1.59  1999/12/06 20:28:08  cso
+ * Made "skills" and "tell" doable while sleeping.
+ *
+ * Revision 1.58  1999/11/29 00:23:31  cso
+ * removed unused variables to kill compile warnings
+ *
+ * Revision 1.57  1999/11/28 23:28:50  cso
+ * removed unused arg from roll_natural_abils
+ *
+ * Revision 1.56  1999/11/23 15:48:23  jimmy
+ * Fixed the slashing weapon skill.  I had it erroneously as stabbing. Doh.
+ * Reinstated dual wield.
+ * Allowed mobs/players to pick up items while fighting.
+ * Fixed a bug in the damage message that wrongfully indicated a miss
+ * due to a rounding error in the math.
+ * This was all done in order to facilitate the chance to sling your
+ * weapon in combat.  Dex and proficiency checks are now made on any missed
+ * attact and a failure of both causes the weapon to be slung.
+ *
+ * Revision 1.55  1999/09/05 07:00:39  jimmy
+ * Added RCS Log and Id strings to each source file
+ *
+ * Revision 1.54  1999/08/31 22:02:58  mtp
+ * changed posn of get to STANDING
+ *
+ * Revision 1.53  1999/08/31 21:54:44  mtp
+ * changed examine to a rting (resting) type command
+ *
+ * Revision 1.52  1999/08/29 23:01:41  mud
+ * removed auction since it was being used for a congratulate channel.
+ *
+ * Revision 1.51  1999/08/29 17:56:51  mud
+ * commented out the grats command, it was buggy and I don't want a global
+ * method to communicate game stuff like that anyway.
+ *
+ * Revision 1.50  1999/08/12 17:54:46  dce
+ * Fixed experience so that there are no overflows of integers that are placed
+ *into longs. Main problem was max_exp_gain and max_exp_loss. Both were
+ *overflowing due to poor Hubis coding.
+ *
+ * Revision 1.49  1999/08/12 04:25:39  jimmy
+ * This is a Mass ci of the new pfile system.  The pfile has been split into
+ * one file for each player in a directory A-Z.  The object files are also
+ * located in the A-Z directories.  Fixed a stupid bug in pfilemaint that
+ * screwed up the IDNUM of the person who typed it.  Commented out the frag
+ * system completely.  It is slated for removal.  Fixed the rename command.
+ * Fixed all supporting functions for the new system, I hope!
+ * --Gurlaek 8/11/1999
+ *
+ * Revision 1.48  1999/07/24 20:50:18  dce
+ * Exchange command for banks added.
+ *
+ * Revision 1.47  1999/07/23 23:41:47  jimmy
+ * moved send_toxnames back to where it belongs.
+ * my fault. --gurlaek
+ *
+ * Revision 1.46  1999/07/22 17:43:59  jimmy
+ * Added pfilemaint command
+ * --gurlaek
+ *
+ * Revision 1.45  1999/07/11 04:18:23  mud
+ * commented out case5 in the MENU for game login
+ * players deleting themselves is producing some
+ * problems as they aren't completely deleted.
+ *
+ * Revision 1.44  1999/07/10 03:17:44  mud
+ * Changed the menue message "That's not a menu choice!" to
+ * 'Wrong Option!" to continue to Fiery-ify the code...
+ *
+ * Revision 1.43  1999/07/07 22:51:54  mud
+ * added the world command back to reflect the combination of
+ * uptime and date.
+ *
+ * Revision 1.42  1999/07/07 21:57:44  mud
+ * made the do_world command the do_game command to free up
+ * world for a similar use to the old fiery.
+ *
+ * Revision 1.41  1999/06/30 18:11:09  jimmy
+ * act.offensive.c    config.c      handler.c    spells.c
+ * This is a major conversion from the 18 point attribute system to the
+ * 100 point attribute system.  A few of the major changes are:
+ * All attributes are now on a scale from 0-100
+ * Everyone views attribs the same but, the attribs for one race
+ *   may be differeent for that of another even if they are the
+ *   same number.
+ * Mobs attribs now get rolled and scaled using the same algorithim as PC's
+ * Mobs now have individual random attributes based on race/class.
+ * The STR_ADD attrib has been completely removed.
+ * All bonus tables for attribs in constants.c have been replaced by
+ *   algorithims that closely duplicate the tables except on a 100 scale.
+ * Some minor changes:
+ * Race selection at char creation can now be toggled by using
+ *   <world races off>
+ * Lots of cleanup done to affected areas of code.
+ * Setting attributes for mobs in the .mob file no longer functions
+ *   but is still in the code for later use.
+ * We now have a spare attribut structure in the pfile because the new
+ *   system only used three instead of four.
+ * --gurlaek 6/30/1999
+ *
+ * Revision 1.40  1999/06/18 22:24:33  mud
+ * Cut a piece of name code from case GET_NAME that was
+ * preventing a password check for player names that were
+ * declined in file.
+ * Removed a line of code sending those names to xnames because
+ * it duped code added to ban.c earlier in this process.
+ *
+ * Revision 1.39  1999/06/10 16:56:28  mud
+ * This is a mass check in after a code freeze due to an upgrade to RedHat 6.0.
+ * This fixes all of the warnings associated with the new compiler and
+ * libraries.  Many many curly braces had to be added to "if" statements to
+ * clarify their behavior to the compiler.  The name approval code was also
+ * debugged, and tested to be stable.  The xnames list was converted from an
+ * array to a linked list to allow for on the fly adding of names to the
+ * xnames list.  This code compiles fine under both gcc RH5.2 and egcs RH6.0
+ *
+ * Revision 1.38  1999/05/05 17:37:18  mud
+ * made listspell a level 103+ command
+ *
+ * Revision 1.37  1999/05/04 17:19:33  dce
+ * Name accept system...version one...original code by Fingh, fixed up to work
+ * by Zantir.
+ *
+ * Revision 1.36  1999/05/01 18:01:21  dce
+ * Allow players to drop all eq and quit.
+ *
+ * Revision 1.35  1999/04/23 23:27:10  jimmy
+ * Fixed warnings/errors associated with the addition of the pendantic compiler
+ *flag yeeeeehaaawwww.  --gurlaek
+ *
+ * Revision 1.34  1999/04/22 18:57:27  mud
+ * added bold to each of the exp notch indicators.
+ *
+ * Revision 1.33  1999/04/18 20:14:23  dce
+ * *** empty log message ***
+ *
+ * Revision 1.32  1999/04/16 19:48:20  dce
+ * Must be level 3 to post/write
+ *
+ * Revision 1.31  1999/04/16 03:55:09  dce
+ * Removed some things temporarly until they can be fixed.
+ *
+ * Revision 1.30  1999/04/09 20:33:04  dce
+ * Added listexp command
+ *
+ * Revision 1.29  1999/04/09 03:38:36  dce
+ * Junk command is back!
+ *
+ * Revision 1.28  1999/04/07 18:12:04  jen
+ * Added a msg to the room when a player stops meditating
+ *
+ * Revision 1.27  1999/04/07 15:39:34  jen
+ * Two changes:
+ * 1) Made prayer a command that doesn't interrupt meditation
+ * 2) Made 'listclass' a GRGOD command since GRGODs can set classes;
+ * they need the reference list!
+ *
+ * Selandria / JEN II
+ *
+ * Revision 1.26  1999/03/26 19:54:57  dce
+ * Added new command old -> shows the old do_score
+ *
+ * Revision 1.25  1999/03/26 19:44:35  jen
+ * Added a mortal gossip channel with 103+ godly control
+ *
+ * Revision 1.24  1999/03/22 21:55:12  mud
+ * Added extended cases for name acceptance ye and yes
+ *
+ * Revision 1.23  1999/03/20 18:54:39  tph
+ * removed attribute priority questions, removed hunter, illusionist, mystic
+ *from char generation
+ *
+ * Revision 1.22  1999/03/14 00:53:03  mud
+ * In class.c added a new line before the fiery mud class explanation
+ * in config.c added the variable for name explanations and added the
+ * text for the variable
+ * in interpreter.c added the con_state stuff, whatever that was and
+ * added the CON_NAME_CHECK affirmation section to the creation menu
+ * loop or nanny.
+ * In structs.h added the CON_NAME_CHECK define..
+ * I also drove Jimmy absolutely insane with the deail in information
+ * I put into our change control system.
+ * lala
+ *
+ * Revision 1.21  1999/03/05 20:02:36  dce
+ * Chant added to, and songs craeted
+ *
+ * Revision 1.20  1999/03/04 20:13:51  jimmy
+ * removed silly debug message
+ * fingon
+ *
+ * Revision 1.19  1999/03/01 05:31:34  jimmy
+ * Rewrote spellbooks.  Moved the spells from fingh's PSE to a standard linked
+ * list.  Added Spellbook pages.  Rewrote Scribe to be a time based event based
+ * on the spell mem code.  Very basic at this point.  All spells are 5 pages
+ *long, and take 20 seconds to scribe each page.  This will be more dynamic when
+ *the SCRIBE skill is introduced.  --Fingon.
+ *
+ * Revision 1.18  1999/02/26 22:30:30  dce
+ * Monk additions/fixes
+ *
+ * Revision 1.17  1999/02/23 16:48:06  dce
+ * Creates a new command called file. Allows us to view files
+ * through the mud.
+ *
+ * Revision 1.16  1999/02/13 19:35:06  mud
+ * commented out unused variable in line 1554 associated with
+ *    / * Subclassing explaination/preface * / which was commented
+ * earlier to hide subclasses from players at login.
+ *
+ * Revision 1.15  1999/02/12 21:43:38  mud
+ * Ok, I finished moving the subclass issue from the class selection view
+ * the todo list will have more on the work remaining on this.
+ *
+ * Revision 1.14  1999/02/12 21:41:28  mud
+ * I removed the View of the subclasses from the class Selection screen
+ * In doing so I've created a warning, I have no idea how to fix it,
+ * someone take a peek at it?
+ *
+ * Revision 1.13  1999/02/10 22:21:42  jimmy
+ * Added do_wiztitle that allows gods to edit their
+ * godly title ie Overlord.  Also added this title
+ * to the playerfile
+ * fingon
+ *
+ * Revision 1.12  1999/02/07 07:29:01  mud
+ * removed debug message
+ *
+ * Revision 1.11  1999/02/06 05:32:46  jimmy
+ * Fixed buffer overflow in do_alias
+ * fingon
+ *
+ * Revision 1.10  1999/02/06 04:29:51  dce
+ * David Endre 2/5/99
+ * Added do_light
+ *
+ * Revision 1.9  1999/02/06 00:40:36  jimmy
+ * Major change to incorporate aliases into the pfile
+ * moved alias structure from interpreter.h to structs.h
+ * heavily modified alias code in interpreter.c
+ * Jimmy Kincaid AKA fingon
+ *
+ * Revision 1.8  1999/02/04 16:42:34  jimmy
+ * Combined attributes, score, and exp commands.
+ *
+ * Revision 1.7  1999/02/04 00:02:59  jimmy
+ * max/min exp loss/gain set to 2 notches.
+ *
+ * Revision 1.6  1999/02/01 22:40:16  jimmy
+ * made listspells an LVL_IMMORT command
+ *
+ * Revision 1.5  1999/02/01 08:15:46  jimmy
+ * improved build counter
+ *
+ * Revision 1.4  1999/02/01 04:18:50  jimmy
+ * Added buildcounter to GREETING --Fingon
+ *
+ * Revision 1.3  1999/01/31 06:43:09  mud
+ * Indented file
+ *
+ * Revision 1.2  1999/01/29 04:06:46  jimmy
+ * temp remove races from login menu
+ *
+ * Revision 1.1  1999/01/29 01:23:31  mud
+ * Initial revision
+ *
+ ***************************************************************************/

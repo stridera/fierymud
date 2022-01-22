@@ -1,4 +1,7 @@
 /***************************************************************************
+ * $Id: cooldowns.c,v 1.1 2010/06/05 14:55:33 mud Exp $
+ ***************************************************************************/
+/***************************************************************************
  *  File: cooldowns.c                                    Part of FieryMUD  *
  *  Usage: Skill cooldowns                                                 *
  *                                                                         *
@@ -36,9 +39,16 @@ const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
                                             "shapechange",
                                             "chant",
                                             "innate invis",
-                                            "inn strength",
-                                            "inn darkness",
-                                            "inn levitate",
+                                            "innate strength",
+                                            "innate darkness",
+                                            "innate levitate",
+                                            "innate grace",
+                                            "innate fortitude",
+                                            "innate insight",
+                                            "innate genius",
+                                            "innate splendor",
+                                            "innate harness",
+                                            "breathe"
                                             "\n"};
 
 void cooldown_wearoff(struct char_data *ch, int cooldown) {
@@ -98,3 +108,10 @@ void clear_cooldowns(struct char_data *ch) {
         GET_COOLDOWN(ch, i) = 0;
     cancel_event(GET_EVENTS(ch), EVENT_COOLDOWN);
 }
+
+/***************************************************************************
+ * $Log: cooldowns.c,v $
+ * Revision 1.1  2010/06/05 14:55:33  mud
+ * Initial revision
+ *
+ ***************************************************************************/
