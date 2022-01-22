@@ -870,7 +870,7 @@ bool dragonlike_attack(struct char_data *ch) {
             default:
                 do_breathe(ch, "lightning", 0, 0);
                 break;
-                }
+            }
         }
         return TRUE;
     }
