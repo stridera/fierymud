@@ -1420,5 +1420,3 @@ void send_save_description(struct char_data *ch, struct char_data *dest, bool en
         mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
     }
 }
-
-
