@@ -13,8 +13,8 @@
 #ifndef __FIERY_SPELLS_H
 #define __FIERY_SPELLS_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 #define ASPELL(spellname)                                                                                              \
     int spellname(int spellnum, int skill, struct char_data *ch, struct char_data *victim, struct obj_data *obj,       \
