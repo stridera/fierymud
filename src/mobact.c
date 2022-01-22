@@ -830,46 +830,46 @@ bool dragonlike_attack(struct char_data *ch) {
         || GET_SKILL(ch, SKILL_BREATHE_ACID) || GET_SKILL(ch, SKILL_BREATHE_GAS) 
         || GET_SKILL(ch, SKILL_BREATHE_LIGHTNING))) {
         switch (GET_COMPOSITION(ch)) {
-            case COMP_EARTH:
-            case COMP_STONE:
-                do_breathe(ch, "acid", 0, 0);
-                break;
-            case COMP_AIR:
-            case COMP_ETHER:
-                do_breathe(ch, "lightning", 0, 0);
-                break;
-            case COMP_FIRE:
-            case COMP_LAVA:
+        case COMP_EARTH:
+        case COMP_STONE:
+            do_breathe(ch, "acid", 0, 0);
+            break;
+        case COMP_AIR:
+        case COMP_ETHER:
+            do_breathe(ch, "lightning", 0, 0);
+            break;
+        case COMP_FIRE:
+        case COMP_LAVA:
+            do_breathe(ch, "fire", 0, 0);
+            break;
+        case COMP_WATER:
+        case COMP_ICE:
+        case COMP_MIST:
+            do_breathe(ch, "frost", 0, 0);
+            break;
+        case COMP_METAL:
+        case COMP_BONE:
+        case COMP_PLANT:
+            do_breathe(ch, "gas", 0, 0);
+            break;
+        default:
+            switch (roll) {
+            case 0:
                 do_breathe(ch, "fire", 0, 0);
                 break;
-            case COMP_WATER:
-            case COMP_ICE:
-            case COMP_MIST:
-                do_breathe(ch, "frost", 0, 0);
-                break;
-            case COMP_METAL:
-            case COMP_BONE:
-            case COMP_PLANT:
+            case 1:
                 do_breathe(ch, "gas", 0, 0);
                 break;
+            case 2:
+                do_breathe(ch, "frost", 0, 0);
+                break;
+            case 3:
+                do_breathe(ch, "acid", 0, 0);
+                break;
+            case 4:
             default:
-                switch (roll) {
-                    case 0:
-                        do_breathe(ch, "fire", 0, 0);
-                        break;
-                    case 1:
-                        do_breathe(ch, "gas", 0, 0);
-                        break;
-                    case 2:
-                        do_breathe(ch, "frost", 0, 0);
-                        break;
-                    case 3:
-                        do_breathe(ch, "acid", 0, 0);
-                        break;
-                    case 4:
-                    default:
-                        do_breathe(ch, "lightning", 0, 0);
-                        break;
+                do_breathe(ch, "lightning", 0, 0);
+                break;
                 }
         }
         return TRUE;
