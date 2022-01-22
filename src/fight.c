@@ -78,19 +78,11 @@ void aggro_lose_spells(struct char_data *ch);
 
 /* Weapon attack texts */
 struct attack_hit_type attack_hit_text[] = {{"hit", "hits"}, /* 0 */
-                                            {"sting", "stings"},
-                                            {"whip", "whips"},
-                                            {"slash", "slashes"},
-                                            {"bite", "bites"},
-                                            {"bludgeon", "bludgeons"}, /* 5 */
-                                            {"crush", "crushes"},
-                                            {"pound", "pounds"},
-                                            {"claw", "claws"},
-                                            {"maul", "mauls"},
-                                            {"thrash", "thrashes"}, /* 10 */
-                                            {"pierce", "pierces"},
-                                            {"blast", "blasts"},
-                                            {"punch", "punches"},
+                                            {"sting", "stings"},   {"whip", "whips"},         {"slash", "slashes"},
+                                            {"bite", "bites"},     {"bludgeon", "bludgeons"}, /* 5 */
+                                            {"crush", "crushes"},  {"pound", "pounds"},       {"claw", "claws"},
+                                            {"maul", "mauls"},     {"thrash", "thrashes"}, /* 10 */
+                                            {"pierce", "pierces"}, {"blast", "blasts"},       {"punch", "punches"},
                                             {"stab", "stabs"}};
 
 /****************************/
@@ -1160,8 +1152,7 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
                         "$n slaps your cheek, then tries to twist your nose off!&0"},
 
                        {"$n delivers a swift kick to $N's shin, causing a yelp of pain.&0", /* 2: 3..4 */
-                        "You send a swift kick to $N's shin.&0",
-                        "You yelp in pain as $n kicks you in the shin!&0"},
+                        "You send a swift kick to $N's shin.&0", "You yelp in pain as $n kicks you in the shin!&0"},
 
                        {"$N howls in pain as $n nearly rips $S ear off!&0", /* 3: 5..6 */
                         "You grab $N's ears and almost pull them off!&0",
