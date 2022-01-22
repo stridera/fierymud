@@ -498,3 +498,4 @@ extern struct spell_dam spell_dam_info[MAX_SPELLS + 1];
 extern int skill_sort_info[TOP_SKILL + 1];
 
 #endif
+
