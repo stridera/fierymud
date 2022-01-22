@@ -577,7 +577,8 @@ ACMD(do_gen_comm) {
     /* This prevents gossiping when the channel is disabled... but allows gods */
     /*  to continue to do so... Selina, 3-26-99 */
     if (!gossip_channel_active && (GET_LEVEL(ch) < LVL_GOD) && (subcmd == SCMD_GOSSIP)) {
-        cprintf(ch, "You try to gossip, but the heavens have disabled the channel "
+        cprintf(ch, 
+                    "You try to gossip, but the heavens have disabled the channel "
                     "for the time being.\r\n");
         return;
     }
