@@ -13,8 +13,8 @@
 #ifndef __FIERY_RACES_H
 #define __FIERY_RACES_H
 
-#include "sysdep.h"
 #include "structs.h"
+#include "sysdep.h"
 
 /* The race of an individual is stored as a byte in struct char_player_data. */
 
