@@ -1501,10 +1501,10 @@ int damage(struct char_data *ch, struct char_data *victim, int dam, int attackty
 
     if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) {
         /* Will the victim die? */
-        if DAMAGE_WILL_KILL(victim, dam) {
+        if DAMAGE_WILL_KILL (victim, dam) {
             /* Give a chance for item triggers to save the victim */
             death_otrigger(victim);
-            death = DAMAGE_WILL_KILL (victim, dam);
+            death = DAMAGE_WILL_KILL(victim, dam);
         }
 
         /* Vampiric touch */
@@ -1991,8 +1991,8 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
     /* Process Triggers */
     attack_otrigger(ch, victim, dam);
     hitprcnt_mtrigger(victim);
-
 }
+
 /* Get the skill associated with a weapon. */
 int weapon_proficiency(struct obj_data *weapon, int position) {
     int w_type;
