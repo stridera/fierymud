@@ -1041,6 +1041,7 @@ void save_player_char(struct char_data *ch) {
     sprintf(buf, "Saved player %s.", GET_NAME(ch));
     log(buf);
 }
+
 /* delete_player() removes all files associated with a player who is
  * self-deleted, deleted by an immortal, or deleted by the auto-wipe
  * system (if enabled). */
