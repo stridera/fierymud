@@ -1530,8 +1530,9 @@ bool mob_cast(struct char_data *ch, struct char_data *tch, struct obj_data *tobj
     /* An injured throat makes it difficult to cast. */
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         act("$n starts casting, but stops abruptly, coughing up blood!", FALSE, ch, 0, 0, TO_ROOM);
-        cprintf(ch, "You begin casting, but your throat causes you to "
-                    "cough up blood!\r\n");
+        cprintf(ch,
+                "You begin casting, but your throat causes you to "
+                "cough up blood!\r\n");
         WAIT_STATE(ch, PULSE_VIOLENCE);
         return TRUE; /* makes caller think we cast a spell so they don't try again
                       */
