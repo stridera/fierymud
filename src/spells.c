@@ -1702,8 +1702,8 @@ ASPELL(spell_locate_object) {
         else
             /* Already got j items.  Probability of storing this one is j/t */
             if (number(1, t) <= j)
-            /* Overwrite a random one of the objects already in the list */
-            items[number(0, j - 1)] = o;
+                /* Overwrite a random one of the objects already in the list */
+                items[number(0, j - 1)] = o;
     }
 
     if (!found) {
