@@ -1,7 +1,4 @@
 /***************************************************************************
- * $Id: spells.c,v 1.19 2011/03/16 13:39:58 myc Exp $
- ***************************************************************************/
-/***************************************************************************
  *   File: spells.c                                       Part of FieryMUD *
  *  Usage: Implementation of "manual spells".                              *
  *                                                                         *
@@ -3089,69 +3086,3 @@ ASPELL(spell_fracture) {
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
-
-/***************************************************************************
- * $Log: spells.c,v $
- * Revision 1.19  2011/03/16 13:39:58  myc
- * Fix all warnings for "the address of X will always evaluate to 'true'",
- * where X is a variable.
- *
- * Revision 1.18  2010/06/05 19:05:51  mud
- * Fix message when casting pyre on self.
- *
- * Revision 1.17  2010/06/05 18:35:47  mud
- * Make pyre auto-target caster if sacrificial preference is
- * toggled on.
- *
- * Revision 1.16  2010/06/05 04:43:00  mud
- * Let pyre work on plant zombies.
- *
- * Revision 1.15  2009/08/02 20:20:27  myc
- * Adding pyre and fracture spells.
- *
- * Revision 1.14  2009/07/18 01:17:23  myc
- * Adding empty spell implementations for pyre and fracture.
- *
- * Revision 1.13  2009/06/09 19:33:50  myc
- * Rewrote gain_exp and retired gain_exp_regardless.
- *
- * Revision 1.12  2009/06/02 02:43:06  myc
- * Mortals may no longer locate objects that are held by wizinvis
- * characters.
- *
- * Revision 1.11  2009/03/21 05:19:56  jps
- * Tweak create water spell.
- *
- * Revision 1.10  2009/03/21 05:17:35  jps
- * Fix create water spell.
- *
- * Revision 1.9  2009/03/20 20:19:51  myc
- * Make energy drain do a more consistent amount of damage.
- *
- * Revision 1.8  2009/03/20 16:06:04  jps
- * Removed spells of lesser/greater invocation.
- *
- * Revision 1.7  2009/03/20 16:02:43  jps
- * Better summon fail message when victim's level is too high.
- *
- * Revision 1.6  2009/03/20 06:15:17  myc
- * Adding a TAR_GROUND cast requirement.  Added detonation,
- * phosphoric embers, positive field, and acid burst spells.
- * Removed combust and heatwave.  Made soul tap a manual spell.
- *
- * Revision 1.5  2009/03/19 23:16:23  myc
- * Renamed corpse_consent -> has_corpse_consent.
- *
- * Revision 1.4  2009/03/16 19:17:52  jps
- * Change macro GET_HOME to GET_HOMEROOM
- *
- * Revision 1.3  2009/03/09 20:36:00  myc
- * Renamed all *PLAT macros to *PLATINUM.
- *
- * Revision 1.2  2009/03/09 16:57:47  myc
- * Made detect poison more like detect align.
- *
- * Revision 1.1  2009/03/09 03:26:08  jps
- * Initial revision
- *
- ***************************************************************************/
