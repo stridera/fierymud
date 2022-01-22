@@ -2462,4 +2462,3 @@ int getbaseclass(int class) {
         return classes[class].subclass_of;
     return class;
 }
-
