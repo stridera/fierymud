@@ -64,6 +64,13 @@ static int saved_cooldowns[] = {CD_SUMMON_MOUNT,
                                 CD_INNATE_STRENGTH,
                                 CD_INNATE_DARKNESS,
                                 CD_INNATE_LEVITATE,
+                                CD_INNATE_GRACE,
+                                CD_INNATE_FORTITUDE,
+                                CD_INNATE_INSIGHT,
+                                CD_INNATE_GENIUS,
+                                CD_INNATE_SPLENDOR,
+                                CD_INNATE_HARNESS,
+                                CD_BREATHE,
                                 -1};
 
 static char *quit_reenter_message[NUM_QUITTYPES] = {"%s reenters the game in %s.",
@@ -1030,7 +1037,7 @@ void save_player_char(struct char_data *ch) {
 
     if (player_table[id].flags != i || save_index)
         save_player_index();
-
+        
     sprintf(buf, "Saved player %s.", GET_NAME(ch));
     log(buf);
 }

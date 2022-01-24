@@ -547,12 +547,47 @@ struct racedef races[NUM_RACES] = {
      NULL,
      NULL,
      {0, 0}},
-    /* DRAGON */
+    /*
+    /* DRAGON
     {"dragon",
      "dragon",
      "&1&bDragon&0",
      "&1&bDragon&0",
      "Dragon",
+     FALSE,
+     FALSE,
+     RACE_ALIGN_GOOD,
+     SIZE_GARGANTUAN,
+     0,
+     10,
+     4,
+     LIFE_LIFE,
+     COMP_FLESH,
+     16000,
+     64000,
+     768,
+     1536,
+     16000,
+     64000,
+     768,
+     1536,
+     {100, 72, 100, 72, 72, 100},
+     130,
+     130,
+     140,
+     140,
+     500,
+     140,
+     "stomps in",
+     "stomps",
+     {0, 0}},
+     */
+    /* DRAGON - GENERAL */
+    {"dragon_general",
+     "dragon general",
+     "&5&bDragon&0",
+     "&5&bDragon&0",
+     "General Dragon",
      FALSE,
      FALSE,
      RACE_ALIGN_GOOD,
@@ -744,7 +779,333 @@ struct racedef races[NUM_RACES] = {
      100,
      NULL,
      NULL,
-     {0, 0}}};
+     {0, 0}},
+    /* DRAGON - FIRE */
+    {"dragon_fire",
+     "dragon fire",
+     "&1&bDragon&0",
+     "&1&bDragon&0",
+     "Fire Dragon",
+     FALSE,
+     FALSE,
+     RACE_ALIGN_GOOD,
+     SIZE_GARGANTUAN,
+     0,
+     10,
+     4,
+     LIFE_LIFE,
+     COMP_FLESH,
+     16000,
+     64000,
+     768,
+     1536,
+     16000,
+     64000,
+     768,
+     1536,
+     {100, 72, 100, 72, 72, 100},
+     130,
+     130,
+     140,
+     140,
+     500,
+     140,
+     "stomps in",
+     "stomps",
+     {0, 0}},
+    /* DRAGON - ICE */
+    {"dragon_frost",
+     "dragon frost",
+     "&7&bDragon&0",
+     "&7&bDragon&0",
+     "Frost Dragon",
+     FALSE,
+     FALSE,
+     RACE_ALIGN_GOOD,
+     SIZE_GARGANTUAN,
+     0,
+     10,
+     4,
+     LIFE_LIFE,
+     COMP_FLESH,
+     16000,
+     64000,
+     768,
+     1536,
+     16000,
+     64000,
+     768,
+     1536,
+     {100, 72, 100, 72, 72, 100},
+     130,
+     130,
+     140,
+     140,
+     500,
+     140,
+     "stomps in",
+     "stomps",
+     {0, 0}},
+    /* DRAGON - ACID */
+    {"dragon_acid",
+     "dragon acid",
+     "&9&bDragon&0",
+     "&9&bDragon&0",
+     "Acid Dragon",
+     FALSE,
+     FALSE,
+     RACE_ALIGN_GOOD,
+     SIZE_GARGANTUAN,
+     0,
+     10,
+     4,
+     LIFE_LIFE,
+     COMP_FLESH,
+     16000,
+     64000,
+     768,
+     1536,
+     16000,
+     64000,
+     768,
+     1536,
+     {100, 72, 100, 72, 72, 100},
+     130,
+     130,
+     140,
+     140,
+     500,
+     140,
+     "stomps in",
+     "stomps",
+     {0, 0}},
+    /* DRAGON - LIGHTNING */
+    {"dragon_lightning",
+    "dragon lightning",
+    "&4&bDragon&0",
+    "&4&bDragon&0",
+    "Lightning Dragon",
+     FALSE,
+     FALSE,
+     RACE_ALIGN_GOOD,
+     SIZE_GARGANTUAN,
+     0,
+     10,
+     4,
+     LIFE_LIFE,
+     COMP_FLESH,
+     16000,
+     64000,
+     768,
+     1536,
+     16000,
+     64000,
+     768,
+     1536,
+     {100, 72, 100, 72, 72, 100},
+     130,
+     130,
+     140,
+     140,
+     500,
+     140,
+     "stomps in",
+     "stomps",
+     {0, 0}},
+    /* DRAGON - GAS */
+    {"dragon_gas",
+     "dragon gas",
+     "&2&bDragon&0",
+     "&2&bDragon&0",
+     "Gas Dragon",
+     FALSE,
+     FALSE,
+     RACE_ALIGN_GOOD,
+     SIZE_GARGANTUAN,
+     0,
+     10,
+     4,
+     LIFE_LIFE,
+     COMP_FLESH,
+     16000,
+     64000,
+     768,
+     1536,
+     16000,
+     64000,
+     768,
+     1536,
+     {100, 72, 100, 72, 72, 100},
+     130,
+     130,
+     140,
+     140,
+     500,
+     140,
+     "stomps in",
+     "stomps",
+     {0, 0}},
+    /* DRAGONBORN - FIRE */
+    {"dragonborn_fire",
+     "dragonborn fire",
+     "&1Dr&ba&3g&1on&0&1b&1&bo&3r&1&bn&0",
+     "&1Fire Dragonborn&0",
+     "Fire Dragonborn",
+     TRUE,
+     TRUE,
+     RACE_ALIGN_GOOD,
+     SIZE_MEDIUM,
+     0,
+     3,
+     3,
+     LIFE_LIFE,
+     COMP_FLESH,
+     180,
+     370,
+     70,
+     80,
+     180,
+     370,
+     70,
+     80,
+     {78, 64, 76, 72, 78, 76},
+     100,
+     100,
+     100,
+     100,
+     75,
+     110,
+     NULL,
+     NULL,
+     {0, 0}},
+    /* DRAGONBORN - FROST */
+    {"dragonborn_frost",
+     "dragonborn frost",
+     "&7&bDr&b&4ag&7&bonb&b&4or&7&bn&0",
+     "&7&bFrost Dragonborn&0",
+     "Frost Dragonborn",
+     TRUE,
+     TRUE,
+     RACE_ALIGN_GOOD,
+     SIZE_MEDIUM,
+     0,
+     3,
+     3,
+     LIFE_LIFE,
+     COMP_FLESH,
+     180,
+     370,
+     70,
+     80,
+     180,
+     370,
+     70,
+     80,
+     {78, 64, 76, 72, 78, 76},
+     100,
+     100,
+     100,
+     100,
+     75,
+     110,
+     NULL,
+     NULL,
+     {0, 0}},
+    /* DRAGONBORN - ACID */
+    {"dragonborn_acid",
+     "dragonborn acid",
+     "&9&bDr&2a&0&2g&bo&9nb&2o&0&2r&b&9n&0",
+     "&9&bAcid Dragonborn&0",
+     "Acid Dragonborn",
+     TRUE,
+     TRUE,
+     RACE_ALIGN_GOOD,
+     SIZE_MEDIUM,
+     0,
+     3,
+     3,
+     LIFE_LIFE,
+     COMP_FLESH,
+     180,
+     370,
+     70,
+     80,
+     180,
+     370,
+     70,
+     80,
+     {78, 64, 76, 72, 78, 76},
+     100, 100, 100, 100, 75, 110,
+     NULL,
+     NULL,
+     {0, 0}},
+    /* DRAGONBORN - LIGHTNING */
+    {"dragonborn_lightning",
+     "dragonborn lightning",
+     "&b&4Dr&6a&4go&6n&4b&6or&4n&0",
+     "&b&4Lightning Dragonborn&0",
+     "Lightning Dragonborn",
+     TRUE,
+     TRUE,
+     RACE_ALIGN_GOOD,
+     SIZE_MEDIUM,
+     0,
+     3,
+     3,
+     LIFE_LIFE,
+     COMP_FLESH,
+     180,
+     370,
+     70,
+     80,
+     180,
+     370,
+     70,
+     80,
+     {78, 64, 76, 72, 78, 76},
+     100,
+     100,
+     100,
+     100,
+     75,
+     110,
+     NULL,
+     NULL,
+     {0, 0}},
+    /* DRAGONBORN - GAS */
+    {"dragonborn_gas",
+     "dragonborn gas",
+     "&2&bDra&3g&2onb&3or&2n&0",
+     "&2&bGas Dragonborn&0",
+     "Gas Dragonborn",
+     TRUE,
+     TRUE,
+     RACE_ALIGN_GOOD,
+     SIZE_MEDIUM,
+     0,
+     3,
+     3,
+     LIFE_LIFE,
+     COMP_FLESH,
+     180,
+     370,
+     70,
+     80,
+     180,
+     370,
+     70,
+     80,
+     {78, 64, 76, 72, 78, 76},
+     100,
+     100,
+     100,
+     100,
+     75,
+     110,
+     NULL,
+     NULL,
+     {0, 0}}
+};
 const char *race_align_abbrevs[] = {"&0&3&bGOOD&0", "&0&1&bEVIL&0"};
 
 static flagvector race_effects_mask[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
@@ -779,6 +1140,11 @@ void init_races(void) {
     PERM_EFF(RACE_HALF_ELF, EFF_INFRAVISION);
     PERM_EFF(RACE_GNOME, EFF_INFRAVISION);
     PERM_EFF(RACE_BROWNIE, EFF_INFRAVISION);
+    PERM_EFF(RACE_DRAGONBORN_FIRE, EFF_INFRAVISION);
+    PERM_EFF(RACE_DRAGONBORN_FROST, EFF_INFRAVISION);
+    PERM_EFF(RACE_DRAGONBORN_ACID, EFF_INFRAVISION);
+    PERM_EFF(RACE_DRAGONBORN_LIGHTNING, EFF_INFRAVISION);
+    PERM_EFF(RACE_DRAGONBORN_GAS, EFF_INFRAVISION);    
 
     /*
      * Add race skills to the switch below.
@@ -787,6 +1153,9 @@ void init_races(void) {
         memset(races[race].skills, 0, sizeof(races[race].skills));
         pos = 0;
         switch (race) {
+        case RACE_ELF:
+            ADD_SKILL(SKILL_SLASHING, 50);
+            break;
         case RACE_TROLL:
             ADD_SKILL(SKILL_DOORBASH, 1000);
             ADD_SKILL(SKILL_BODYSLAM, 1000);
@@ -799,8 +1168,12 @@ void init_races(void) {
             ADD_SKILL(SKILL_DOORBASH, 1000);
             ADD_SKILL(SKILL_BODYSLAM, 1000);
             break;
-        case RACE_DRAGON:
-            ADD_SKILL(SKILL_BREATHE, ROLL_SKILL_PROF);
+        case RACE_DRAGON_GENERAL:
+            ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
             ADD_SKILL(SPELL_ACID_BREATH, 1000);
@@ -809,8 +1182,62 @@ void init_races(void) {
             ADD_SKILL(SPELL_FIRE_BREATH, 1000);
             ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
+        case RACE_DRAGON_FIRE:
+            ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_FIRE_BREATH, 1000);
+            break;
+        case RACE_DRAGONBORN_FIRE:
+            ADD_SKILL(SKILL_BREATHE_FIRE, 50);
+            ADD_SKILL(SPELL_FIRE_BREATH, 1000);
+            break;
+        case RACE_DRAGON_FROST:
+            ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_FROST_BREATH, 1000);
+            break;
+        case RACE_DRAGONBORN_FROST:
+            ADD_SKILL(SKILL_BREATHE_FROST, 50);
+            ADD_SKILL(SPELL_FROST_BREATH, 1000);
+            break;
+        case RACE_DRAGON_ACID:
+            ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_ACID_BREATH, 1000);
+            break;
+        case RACE_DRAGONBORN_ACID:
+            ADD_SKILL(SKILL_BREATHE_ACID, 50);
+            ADD_SKILL(SPELL_ACID_BREATH, 1000);
+            break;
+        case RACE_DRAGON_LIGHTNING:
+            ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
+            break;
+        case RACE_DRAGONBORN_LIGHTNING:
+            ADD_SKILL(SKILL_BREATHE_LIGHTNING, 50);
+            ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
+            break;
+        case RACE_DRAGON_GAS:
+            ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_GAS_BREATH, 1000);
+            break; 
+        case RACE_DRAGONBORN_GAS:
+            ADD_SKILL(SKILL_BREATHE_GAS, 50);
+            ADD_SKILL(SPELL_GAS_BREATH, 1000);
+            break; 
         case RACE_DEMON:
-            ADD_SKILL(SKILL_BREATHE, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
+            ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);  
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
             ADD_SKILL(SPELL_ACID_BREATH, 1000);
             ADD_SKILL(SPELL_FROST_BREATH, 1000);
@@ -989,8 +1416,8 @@ int natural_move(struct char_data *ch) {
             if (GET_LEVEL(ch) > MAX_MOUNT_LEVEL)
                 return MOUNT_MAXMOVE + 2 * (GET_LEVEL(ch) - MAX_MOUNT_LEVEL) + number(0, 9);
             else
-                return (int)(MOUNT_MINMOVE + (MOUNT_MAXMOVE - MOUNT_MINMOVE) *
-                                                 pow((GET_LEVEL(ch) - 1) / (double)(MAX_MOUNT_LEVEL - 1), 0.8)) +
+                return (int) (MOUNT_MINMOVE + (MOUNT_MAXMOVE - MOUNT_MINMOVE) *
+                                                pow((GET_LEVEL(ch) - 1) / (double) (MAX_MOUNT_LEVEL - 1), 0.8)) +
                        number(0, 9);
         } else
             return mob_proto[GET_MOB_RNUM(ch)].points.max_move;

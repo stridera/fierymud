@@ -3987,8 +3987,20 @@ ACMD(do_innate) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
         if (GET_SKILL(ch, SKILL_BODYSLAM))
             send_to_char(" bodyslam\r\n", ch);
+        /*
         if (GET_SKILL(ch, SKILL_BREATHE))
-            send_to_char(" breathe\r\n", ch);
+            send_to_char(" breathe\r\n", ch);        
+        */
+        if (GET_SKILL(ch, SKILL_BREATHE_FIRE))
+            send_to_char(" breathe fire\r\n", ch);
+        if (GET_SKILL(ch, SKILL_BREATHE_ACID))
+            send_to_char(" breathe acid\r\n", ch);
+        if (GET_SKILL(ch, SKILL_BREATHE_FROST))
+            send_to_char(" breathe frost\r\n", ch);
+        if (GET_SKILL(ch, SKILL_BREATHE_LIGHTNING))
+            send_to_char(" breathe lightning\r\n", ch);
+        if (GET_SKILL(ch, SKILL_BREATHE_GAS))
+            send_to_char(" breathe gas\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW)
             send_to_char(" darkness\r\n", ch);
         if (GET_CLASS(ch) == CLASS_PRIEST || GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_PALADIN ||
@@ -3997,12 +4009,18 @@ ACMD(do_innate) {
         if (GET_SKILL(ch, SKILL_DOORBASH))
             send_to_char(" doorbash\r\n", ch);
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_HALFLING ||
-            GET_RACE(ch) == RACE_HALF_ELF || GET_RACE(ch) == RACE_GNOME)
+            GET_RACE(ch) == RACE_HALF_ELF || GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_DRAGONBORN_FIRE ||
+            GET_RACE(ch) == RACE_DRAGONBORN_FROST || GET_RACE(ch) == RACE_DRAGONBORN_ACID || 
+            GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS)
             send_to_char(" infravision*\r\n", ch);
+        if (GET_RACE(ch) == RACE_ELF)
+            send_to_char(" grace\r\n", ch);
         if (GET_RACE(ch) == RACE_DUERGAR)
             send_to_char(" invisible\r\n", ch);
+        /* drop for now
         if (GET_RACE(ch) == RACE_DROW)
-            send_to_char(" levitate*\r\n", ch);
+            send_to_char(" levitate*\r\n", ch); 
+        */
         if (GET_CLASS(ch) == CLASS_PALADIN)
             send_to_char(" protection from evil*\r\n", ch);
         if (GET_CLASS(ch) == CLASS_ANTI_PALADIN)
@@ -4025,10 +4043,11 @@ ACMD(do_innate) {
             return;
         }
 
-        if (is_abbrev(arg, "breathe") && GET_SKILL(ch, SKILL_BREATHE)) {
+        if (is_abbrev(arg, "breathe") && (GET_SKILL(ch, SKILL_BREATHE_FIRE) || GET_SKILL(ch, SKILL_BREATHE_FROST) || 
+            GET_SKILL(ch, SKILL_BREATHE_ACID) || GET_SKILL(ch, SKILL_BREATHE_GAS) || GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) )) {
             send_to_char("Usage: breathe <fire|gas|frost|acid|lightning>\r\n", ch);
             return;
-        }
+        } 
 
         if (is_abbrev(arg, "doorbash") && GET_SKILL(ch, SKILL_DOORBASH)) {
             send_to_char("Usage: doorbash <direction>\r\n", ch);
@@ -4104,7 +4123,77 @@ ACMD(do_innate) {
                 return;
             }
         }
+        /*new innates*/
 
+        if (is_abbrev(arg, "grace")) {
+            if (GET_RACE(ch) == RACE_ELF) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_GRACE)) {
+                    call_magic(ch, ch, 0, SPELL_INN_GRACE, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_GRACE, 7 MUD_HR);
+                } else
+                    send_to_char("You're too tired right now.\r\n", ch);
+                return;
+            }
+        }
+        /*
+        if (is_abbrev(arg, "genius")) {
+            if (GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_DUERGAR) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_GENIUS)) {
+                    call_magic(ch, ch, 0, SPELL_INN_GENIUS, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_GENIUS, 7 MUD_HR);
+                } else
+                    send_to_char("You're too tired right now.\r\n", ch);
+                return;
+            }
+        }
+        if (is_abbrev(arg, "insight")) {
+            if (GET_RACE(ch) == RACE_ELF) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_INSIGHT)) {
+                    call_magic(ch, ch, 0, SPELL_INN_INSIGHT, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_INSIGHT, 7 MUD_HR);
+                } else
+                    send_to_char("You're too tired right now.\r\n", ch);
+                return;
+            }
+        }
+        if (is_abbrev(arg, "fortitude")) {
+            if (GET_RACE(ch) == RACE_ELF) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_FORTITUDE)) {
+                    call_magic(ch, ch, 0, SPELL_INN_FORTITUDE, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_FORTITUDE, 7 MUD_HR);
+                } else
+                    send_to_char("You're too tired right now.\r\n", ch);
+                return;
+            }
+        }
+        if (is_abbrev(arg, "splendor")) {
+            if (GET_RACE(ch) == RACE_ELF) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_SPLENDOR)) {
+                    call_magic(ch, ch, 0, SPELL_INN_SPLENDOR, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_SPLENDOR, 7 MUD_HR);
+                } else
+                    send_to_char("You're too tired right now.\r\n", ch);
+                return;
+            }
+        }
+        */
+        if (is_abbrev(arg, "harness")) {
+            if (GET_RACE(ch) == RACE_ELF) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS)) {
+                    call_magic(ch, ch, 0, SPELL_HARNESS, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_HARNESS, 10 MUD_HR);
+                } else
+                    send_to_char("You're too tired right now.\r\n", ch);
+                return;
+            }
+
+        }
         if (is_abbrev(arg, "sweep") && GET_SKILL(ch, SKILL_SWEEP)) {
             send_to_char("Usage: sweep\r\n", ch);
             return;
@@ -4113,6 +4202,7 @@ ACMD(do_innate) {
         send_to_char("You have no such innate.\r\n", ch);
     }
 }
+
 
 ACMD(do_songs) {
     int i;

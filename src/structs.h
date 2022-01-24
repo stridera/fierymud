@@ -385,7 +385,14 @@
 #define CD_INNATE_STRENGTH 16
 #define CD_INNATE_DARKNESS 17
 #define CD_INNATE_LEVITATE 18
-#define NUM_COOLDOWNS 19
+#define CD_INNATE_GRACE 19
+#define CD_INNATE_FORTITUDE 20
+#define CD_INNATE_INSIGHT 21
+#define CD_INNATE_GENIUS 22
+#define CD_INNATE_SPLENDOR 23
+#define CD_INNATE_HARNESS 24
+#define CD_BREATHE 25
+#define NUM_COOLDOWNS 26
 
 /**********************************************************************
  * Structures                                                          *

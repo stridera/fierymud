@@ -490,7 +490,21 @@ void mob_attack(struct char_data *ch, struct char_data *victim) {
         }
 
         switch (GET_RACE(ch)) {
+        /* 
+        New dragon race stuff?
         case RACE_DRAGON:
+        */     
+        case RACE_DRAGON_GENERAL:
+        case RACE_DRAGON_FIRE:
+        case RACE_DRAGON_FROST:
+        case RACE_DRAGON_ACID:
+        case RACE_DRAGON_GAS:   
+        case RACE_DRAGON_LIGHTNING:
+        case RACE_DRAGONBORN_FIRE:
+        case RACE_DRAGONBORN_FROST:
+        case RACE_DRAGONBORN_ACID:
+        case RACE_DRAGONBORN_LIGHTNING:
+        case RACE_DRAGONBORN_GAS:
         case RACE_DEMON:
             if (dragonlike_attack(ch))
                 return;
@@ -809,49 +823,54 @@ bool dragonlike_attack(struct char_data *ch) {
     int roll = number(0, 125 - GET_LEVEL(ch));
 
     /* At level 100, 10% chance to breath, 2% chance for each different type */
-    if (roll < 5 && GET_SKILL(ch, SKILL_BREATHE)) {
+    /*
+    if (roll < 5 && (GET_SKILL(ch, SKILL_BREATHE)) {
+    */
+    if (roll < 5 && (GET_SKILL(ch, SKILL_BREATHE_FIRE) || GET_SKILL(ch, SKILL_BREATHE_FROST) 
+        || GET_SKILL(ch, SKILL_BREATHE_ACID) || GET_SKILL(ch, SKILL_BREATHE_GAS) 
+        || GET_SKILL(ch, SKILL_BREATHE_LIGHTNING))) {
         switch (GET_COMPOSITION(ch)) {
-        case COMP_EARTH:
-        case COMP_STONE:
-            do_breathe(ch, "acid", 0, 0);
-            break;
-        case COMP_AIR:
-        case COMP_ETHER:
-            do_breathe(ch, "lightning", 0, 0);
-            break;
-        case COMP_FIRE:
-        case COMP_LAVA:
-            do_breathe(ch, "fire", 0, 0);
-            break;
-        case COMP_WATER:
-        case COMP_ICE:
-        case COMP_MIST:
-            do_breathe(ch, "frost", 0, 0);
-            break;
-        case COMP_METAL:
-        case COMP_BONE:
-        case COMP_PLANT:
-            do_breathe(ch, "gas", 0, 0);
-            break;
-        default:
-            switch (roll) {
-            case 0:
-                do_breathe(ch, "fire", 0, 0);
-                break;
-            case 1:
-                do_breathe(ch, "gas", 0, 0);
-                break;
-            case 2:
-                do_breathe(ch, "frost", 0, 0);
-                break;
-            case 3:
+            case COMP_EARTH:
+            case COMP_STONE:
                 do_breathe(ch, "acid", 0, 0);
                 break;
-            case 4:
-            default:
+            case COMP_AIR:
+            case COMP_ETHER:
                 do_breathe(ch, "lightning", 0, 0);
                 break;
-            }
+            case COMP_FIRE:
+            case COMP_LAVA:
+                do_breathe(ch, "fire", 0, 0);
+                break;
+            case COMP_WATER:
+            case COMP_ICE:
+            case COMP_MIST:
+                do_breathe(ch, "frost", 0, 0);
+                break;
+            case COMP_METAL:
+            case COMP_BONE:
+            case COMP_PLANT:
+                do_breathe(ch, "gas", 0, 0);
+                break;
+            default:
+                switch (roll) {
+                    case 0:
+                        do_breathe(ch, "fire", 0, 0);
+                        break;
+                    case 1:
+                        do_breathe(ch, "gas", 0, 0);
+                        break;
+                    case 2:
+                        do_breathe(ch, "frost", 0, 0);
+                        break;
+                    case 3:
+                        do_breathe(ch, "acid", 0, 0);
+                        break;
+                    case 4:
+                    default:
+                        do_breathe(ch, "lightning", 0, 0);
+                        break;
+                }
         }
         return TRUE;
     }

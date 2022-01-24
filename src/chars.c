@@ -48,12 +48,11 @@ const char *stats_display =
 #define N FALSE
 
 int class_ok_race[NUM_RACES][NUM_CLASSES] = {
-    /* RACE    So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr
-       Il Hu */
-    /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* El */ {Y, Y, Y, N, N, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
+    /* RACE   So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
+    /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
+    /* El */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
     /* Gn */ {Y, Y, N, N, N, N, N, N, Y, N, N, N, Y, N, N, Y, Y, N, N, N, Y, Y, Y, N},
-    /* Dw */ {N, Y, Y, Y, N, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
+    /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
     /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
     /* Dr */ {Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y},
     /* Du */ {N, Y, Y, Y, N, N, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y},
@@ -62,6 +61,25 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* HE */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N},
     /* Ba */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, N},
     /* Ha */ {Y, Y, Y, Y, N, N, N, N, N, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
+    /*plnt*/ {},
+    /*hmnd*/ {},
+    /*anml*/ {},
+    /*drgn*/ {},
+    /*gint*/ {},
+    /*othr*/ {},
+    /*gbln*/ {},
+    /*demn*/ {},
+    /*brwn*/ {},
+    /*fire*/ {},
+    /*frst*/ {},
+    /*acid*/ {},
+    /*ligh*/ {},
+    /*gas */ {},
+    /*DbFi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbFr*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbAc*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbLi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbGa*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
 };
 
 int get_base_saves(struct char_data *ch, int type) {
@@ -89,6 +107,11 @@ int get_base_saves(struct char_data *ch, int type) {
     switch (GET_RACE(ch)) {
     case RACE_DUERGAR:
     case RACE_DWARF:
+    case RACE_DRAGONBORN_FIRE:
+    case RACE_DRAGONBORN_FROST:
+    case RACE_DRAGONBORN_ACID:
+    case RACE_DRAGONBORN_LIGHTNING:
+    case RACE_DRAGONBORN_GAS:
         saves[SAVING_PARA] -= (int)(0.125 * GET_VIEWED_CON(ch));
         saves[SAVING_ROD] -= (int)(0.1 * GET_VIEWED_CON(ch));
         saves[SAVING_SPELL] -= (int)(0.1 * GET_VIEWED_CON(ch));
@@ -320,6 +343,10 @@ int susceptibility(struct char_data *ch, int dtype) {
             sus = sus * 75 / 100;
         return sus;
     case DAM_ACID:
+        if (EFF_FLAGGED(ch, EFF_NEGATE_EARTH))
+            return 0;
+        if (EFF_FLAGGED(ch, EFF_PROT_EARTH))
+            return compositions[GET_COMPOSITION(ch)].sus_acid * 75 / 100;
         return compositions[GET_COMPOSITION(ch)].sus_acid;
     case DAM_POISON:
         if (MOB_FLAGGED(ch, MOB_NOPOISON))

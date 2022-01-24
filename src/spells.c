@@ -434,6 +434,47 @@ ASPELL(spell_fire_darts) {
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
+ASPELL(spell_spirit_arrows) {
+    int i;
+    int missiles = 0;
+    int min_missiles = 1;
+
+    if (!ch || !victim)
+        return 0;
+
+    /*
+     * This graduates the number of missiles cast based on prof of the sphere *
+     */
+
+    if (skill >= 5 && number(1, 100) > 80)
+        missiles++;
+    if (skill >= 14 && number(1, 100) > 75)
+        missiles++;
+    if (skill >= 24 && number(1, 100) > 60)
+        missiles++;
+    if (skill >= 34 && number(1, 100) > 55)
+        missiles++;
+    if (skill >= 44 && number(1, 100) > 50)
+        missiles++;
+    if (skill >= 74 && number(1, 100) > 25)
+        missiles++;
+
+    missiles += min_missiles;
+
+    /* this casts the spell once for each missile */
+
+    for (i = 1; i <= missiles; i++) {
+
+        if (ALIVE(victim))
+            mag_damage(skill, ch, victim, SPELL_SPIRIT_ARROWS, SAVING_SPELL);
+        else {
+            act("$n pelts $N's dead body with magical arrows.", TRUE, ch, 0, victim, TO_ROOM);
+            act("You're pelting $M with arrows but $E's dead already!", FALSE, ch, 0, victim, TO_CHAR);
+        }
+    }
+    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+}
+
 ASPELL(spell_ice_darts) {
     int i;
     int missiles = 0;
@@ -1930,6 +1971,7 @@ ASPELL(spell_enchant_weapon) {
                 return CAST_RESULT_CHARGE;
 
         SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_MAGIC);
+        SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
 
         obj->applies[0].location = APPLY_HITROLL;
         obj->applies[0].modifier = 1 + (skill >= 18);
@@ -3010,7 +3052,10 @@ ASPELL(spell_fracture) {
             return CAST_RESULT_CHARGE;
 
         if (!RIGID(victim) ||
-            !(IS_HUMANOID(victim) || GET_RACE(victim) == RACE_ANIMAL || GET_RACE(victim) == RACE_DRAGON)) {
+            !(IS_HUMANOID(victim) || GET_RACE(victim) == RACE_ANIMAL || GET_RACE(victim) == RACE_DRAGON_GAS
+            || GET_RACE(victim) == RACE_DRAGON_GENERAL || GET_RACE(victim) == RACE_DRAGON_FIRE 
+            || GET_RACE(victim) == RACE_DRAGON_ACID || GET_RACE(victim) == RACE_DRAGON_FROST 
+            || GET_RACE(victim) == RACE_DRAGON_LIGHTNING)) {
             act("You can't shatter $N!", FALSE, ch, 0, victim, TO_CHAR);
             return CAST_RESULT_CHARGE;
         }
@@ -3018,9 +3063,12 @@ ASPELL(spell_fracture) {
         /* Find a solidish zombie/pet */
         for (fol = ch->followers; fol; fol = fol->next)
             if (RIGID(fol->follower) &&
-                (IS_HUMANOID(fol->follower) || GET_RACE(fol->follower) == RACE_ANIMAL ||
-                 GET_RACE(fol->follower) == RACE_DRAGON) &&
-                EFF_FLAGGED(fol->follower, EFF_CHARM) && IN_ROOM(fol->follower) == IN_ROOM(ch)) {
+                (IS_HUMANOID(fol->follower) || GET_RACE(fol->follower) == RACE_ANIMAL 
+                || GET_RACE(fol->follower) == RACE_DRAGON_GAS 
+                || GET_RACE(fol->follower) == RACE_DRAGON_GENERAL || GET_RACE(fol->follower) == RACE_DRAGON_FIRE 
+                || GET_RACE(fol->follower) == RACE_DRAGON_ACID || GET_RACE(fol->follower) == RACE_DRAGON_FROST 
+                || GET_RACE(fol->follower) == RACE_DRAGON_LIGHTNING)
+                && EFF_FLAGGED(fol->follower, EFF_CHARM) && IN_ROOM(fol->follower) == IN_ROOM(ch)) {
                 victim = fol->follower;
                 break;
             }

@@ -77,6 +77,7 @@ ASPELL(spell_resurrect);
 ASPELL(spell_shift_corpse);
 ASPELL(spell_soul_tap);
 ASPELL(spell_soul_tap_recur);
+ASPELL(spell_spirit_arrows);
 ASPELL(spell_summon);
 ASPELL(spell_summon_corpse);
 ASPELL(spell_supernova);

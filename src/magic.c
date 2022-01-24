@@ -539,7 +539,11 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_CONE_OF_COLD:
     case SPELL_POSITIVE_FIELD:
     case SPELL_FIREBALL:
+    case SPELL_VICIOUS_MOCKERY:
+    case SPELL_ANCESTRAL_VENGEANCE:
     case SPELL_BIGBYS_CLENCHED_FIST:
+    case SPELL_SPIRIT_RAY:
+    case SPELL_BALEFUL_POLYMORPH:    
     case SPELL_IRON_MAIDEN:
     case SPELL_FREEZE:
     case SPELL_ACID_BURST:
@@ -611,6 +615,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_MAGIC_MISSILE:
+    case SPELL_SPIRIT_ARROWS:
     case SPELL_ICE_DARTS:
         dam = dice(4, 21);
         reduction = TRUE;
@@ -860,6 +865,10 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         dam *= (GET_ALIGNMENT(ch) * -0.0022) - 0.7;
         break;
     case SPELL_CHAIN_LIGHTNING:
+        /* max dam 226 from 12d5+26 online */
+        dam += (pow(skill, 2) * 7) / 500;
+        break;
+    case SPELL_CIRCLE_OF_DEATH:
         /* max dam 226 from 12d5+26 online */
         dam += (pow(skill, 2) * 7) / 500;
         break;
@@ -2193,6 +2202,22 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "You surround $N with glyphs of holy warding.";
         break;
 
+    case SPELL_PROT_FROM_GOOD:
+
+        /* Alignment Check! */
+        if (IS_GOOD(victim)) {
+            act("You can't protect an ally if they are GOOD!", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n tries to protect you from evil!\r\nSilly isn't $e.", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to protect $N from good.  DUH!", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_PROTECT_GOOD);
+        eff[0].duration = 9 + (skill / 9); /* max 20 */
+        to_vict = "You feel invulnerable!";
+        to_char = "You surround $N with glyphs of unholy warding.";
+        break;
+
     case SPELL_SANCTUARY:
 
         /* reimplemented by RLS back in 2k2.  While no class actually has this
@@ -2261,6 +2286,56 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         accum_effect = FALSE;
         to_vict = "You feel stronger!";
         /* Innate strength usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_GRACE:
+        eff[0].location = APPLY_DEX;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel nimbler!";
+        /* Innate grace usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+    
+    case SPELL_INN_INSIGHT:
+        eff[0].location = APPLY_WIS;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel wiser!";
+        /* Innate insight usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_GENIUS:
+        eff[0].location = APPLY_INT;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel smarter!";
+        /* Innate genius usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_FORTITUDE:
+        eff[0].location = APPLY_CON;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel healthier!";
+        /* Innate fortitude usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_SPLENDOR:
+        eff[0].location = APPLY_CHA;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel more resplendent!";
+        /* Innate splendor usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 
@@ -2815,6 +2890,10 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SPELL_CHAIN_LIGHTNING:
         to_char = "&4&bYou send powerful bolts of lightning from your body...&0";
         to_room = "&4&b$n&4&b sends powerful bolts of lightning into $s foes...&0";
+        break;
+    case SPELL_CIRCLE_OF_DEATH:
+        to_char = "&9&bWaves of death energy wash outward from you in a violent circle.&0";
+        to_room = "&9&b$n&9&b sends waves of death energy outward in a violent circle.&0";
         break;
     case SPELL_CREMATE:
         to_char = "&1&8You raise up a huge conflaguration in the area.&0";

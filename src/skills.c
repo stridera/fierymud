@@ -687,6 +687,9 @@ void init_skills(void) {
            MAG_DAMAGE | MAG_AFFECT, C1, CAST_SPEED6, DAM_FIRE, SKILL_SPHERE_FIRE, 5, FALSE,
            "Your vision has returned.");
 
+    spello(SPELL_SPIRIT_RAY, "spirit ray", 0, 0, 0, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
+           MAG_DAMAGE | MAG_AFFECT, C1, CAST_SPEED6, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, FALSE, NULL);
+
     spello(SPELL_SUPERNOVA, "supernova", 100, 50, 3, POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, C1, 16, DAM_FIRE,
            SKILL_SPHERE_FIRE, 31, TRUE, NULL);
 
@@ -785,6 +788,9 @@ void init_skills(void) {
 
     spello(SPELL_CHAIN_LIGHTNING, "chain lightning", 0, 0, 0, POS_STANDING, TRUE, TAR_IGNORE | TAR_DIRECT, TRUE,
            MAG_AREA, C1, CAST_SPEED5, DAM_SHOCK, SKILL_SPHERE_AIR, 27, FALSE, NULL);
+
+    spello(SPELL_CIRCLE_OF_DEATH, "circle of death", 0, 0, 0, POS_STANDING, TRUE, TAR_IGNORE | TAR_DIRECT, TRUE,
+           MAG_AREA, C1, CAST_SPEED5, DAM_MENTAL, SKILL_SPHERE_DEATH, 27, FALSE, NULL);
 
     spello(SPELL_MASS_INVIS, "mass invisibility", 0, 0, 0, POS_STANDING, FALSE, TAR_IGNORE, FALSE,
            MAG_BULK_OBJS | MAG_MASS, C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 23, FALSE, NULL);
@@ -909,6 +915,22 @@ void init_skills(void) {
     spello(SPELL_INN_STRENGTH, "innate strength", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, 0, 0, 7, FALSE, "You feel weaker.");
 
+    /* innate grace */
+    spello(SPELL_INN_GRACE, "innate grace", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel clumsier.");
+
+    /* innate insight */
+    spello(SPELL_INN_INSIGHT, "innate insight", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less wise.");
+
+    /* innate genius */
+    spello(SPELL_INN_GENIUS, "innate genius", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less intelligent.");
+
+    /* innate splendor */
+    spello(SPELL_INN_SPLENDOR, "innate splendor", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less splendid.");
+
     spello(SPELL_MAJOR_PARALYSIS, "major paralysis", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, TRUE, MAG_MANUAL,
            C6, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 35, FALSE, "You can move again.");
 
@@ -997,6 +1019,12 @@ void init_skills(void) {
     spello(SPELL_FIREBALL, "fireball", 40, 30, 2, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
            MAG_DAMAGE, C1, CAST_SPEEDE, DAM_FIRE, SKILL_SPHERE_FIRE, 21, FALSE, NULL);
 
+    spello(SPELL_VICIOUS_MOCKERY, "vicious mockery", 40, 30, 2, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
+           MAG_DAMAGE, C1, CAST_SPEEDE, DAM_MENTAL, SKILL_SPHERE_GENERIC, 21, FALSE, NULL);
+
+    spello(SPELL_ANCESTRAL_VENGEANCE, "ancestral vengeance", 40, 30, 2, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
+           MAG_DAMAGE, C1, CAST_SPEEDE, DAM_ALIGN, SKILL_SPHERE_GENERIC, 21, FALSE, NULL);
+
     spello(SPELL_FULL_HARM, "full harm", 75, 45, 3, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_CONTACT,
            TRUE, MAG_DAMAGE, C1, CAST_SPEED6, DAM_HEAL, SKILL_SPHERE_HEALING, 5, FALSE, NULL);
 
@@ -1046,6 +1074,9 @@ void init_skills(void) {
     spello(SPELL_PROT_FROM_EVIL, "protection from evil", 40, 10, 3, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE,
            MAG_AFFECT, C1, CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected.");
 
+    spello(SPELL_PROT_FROM_GOOD, "protection from good", 40, 10, 3, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE,
+           MAG_AFFECT, C1, CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected.");
+
     spello(SPELL_REMOVE_CURSE, "remove curse", 45, 25, 5, POS_STANDING, FALSE,
            TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL, C1, CAST_SPEED4, DAM_UNDEFINED,
            SKILL_SPHERE_ENCHANT, 5, FALSE, NULL);
@@ -1059,6 +1090,10 @@ void init_skills(void) {
 
     spello(SPELL_SLEEP, "sleep", 40, 25, 5, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1, CAST_SPEED4,
            DAM_MENTAL, SKILL_SPHERE_ENCHANT, 19, FALSE, "You feel less tired.");
+
+    spello(SPELL_SPIRIT_ARROWS, "spirit arrows", 0, 0, 0, POS_STANDING, TRUE,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE, MAG_MANUAL, C1, CAST_SPEEDD, DAM_ALIGN,
+           SKILL_SPHERE_GENERIC, 5, FALSE, NULL);
 
     spello(SPELL_STRENGTH, "strength", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel weaker.");
@@ -1202,6 +1237,10 @@ void init_skills(void) {
     spello(SPELL_MOONBEAM, "moonbeam", 0, 0, 0, POS_STANDING, TRUE, TAR_IGNORE | TAR_OUTDOORS | TAR_NIGHT_ONLY, TRUE,
            MAG_MANUAL, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_WATER, 10, FALSE, NULL);
 
+    spello(SPELL_BALEFUL_POLYMORPH, "baleful polymorph", 90, 35, 3, POS_STANDING, TRUE,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE, MAG_DAMAGE, C1, CAST_SPEEDE, DAM_UNDEFINED,
+           SKILL_SPHERE_SUMMON, 25, FALSE, NULL);
+
     /* Declaration of skills - sets skills up so that immortals can use
      * them by default. Determines whether a skill is considered
      * "humanoid only". */
@@ -1245,7 +1284,14 @@ void init_skills(void) {
     skillo(SKILL_SHAPECHANGE, "shapechange", FALSE, 0);
     skillo(SKILL_SWITCH, "switch", FALSE, TAR_CONTACT);
     skillo(SKILL_GUARD, "guard", FALSE, 0);
+    /*
     skillo(SKILL_BREATHE, "breathe", FALSE, 0);
+    */
+    skillo(SKILL_BREATHE_FIRE, "breathe fire", FALSE, 0);
+    skillo(SKILL_BREATHE_ACID, "breathe acid", FALSE, 0);
+    skillo(SKILL_BREATHE_FROST, "breathe frost", FALSE, 0);
+    skillo(SKILL_BREATHE_GAS, "breathe gas", FALSE, 0);
+    skillo(SKILL_BREATHE_LIGHTNING, "breathe lightning", FALSE, 0);                
     skillo(SKILL_SWEEP, "sweep", FALSE, TAR_CONTACT);
     skillo(SKILL_ROAR, "roar", FALSE, 0);
     skillo(SKILL_DOUSE, "douse", FALSE, 0);
