@@ -13,9 +13,9 @@
 #ifndef __FIERY_CASTING_H
 #define __FIERY_CASTING_H
 
-#include "spell_mem.h"
 #include "structs.h"
 #include "sysdep.h"
+#include "spell_mem.h"
 
 #define DEFAULT_STAFF_LVL 12
 #define DEFAULT_WAND_LVL 12
