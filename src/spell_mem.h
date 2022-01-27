@@ -13,7 +13,6 @@
 #ifndef __FIERY_SPELL_MEM_H
 #define __FIERY_SPELL_MEM_H
 
-#include "structs.h"
 #include "sysdep.h"
 
 #define CIRCLE_1 1

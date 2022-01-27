@@ -5,7 +5,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 # gcc *.c -lm -m32 -lcrypt -ggdb3 -Wall -pedantic -fpack-struct=4 -o ../bin/test
 
 set(CMAKE_C_COMPILER gcc)
-set(CMAKE_C_FLAGS "-m32 -ggdb3 -O0 -Wall -Wextra -fpack-struct=4")
+set(CMAKE_C_FLAGS "-m32 -ggdb3 -O0 -Wall -Wextra")
 
 FILE(GLOB sources src/*.c)
 add_executable(fierymud ${sources})
