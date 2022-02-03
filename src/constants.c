@@ -20,8 +20,8 @@
 const char circlemud_version[] = {"CircleMUD, version 3.00 beta patchlevel 11\r\n"};
 
 const char mudlet_client_version[] = {"0.3"};
-const char mudlet_client_url[] = {"http://fierymud.org/mudlet/FierymudOfficial.mpackage"};
-const char mudlet_map_url[] = {"http://fierymud.org/mudlet/default_map.dat"};
+const char mudlet_client_url[] = {"http://www.fierymud.org/mudlet/FierymudOfficial.mpackage"};
+const char mudlet_map_url[] = {"http://www.fierymud.org/mudlet/default_map.dat"};
 
 /* MINOR CREATION ITEMS */
 const char *minor_creation_items[] = {"backpack",                                                 /* 0  */
