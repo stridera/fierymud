@@ -268,6 +268,19 @@
 #define SPELL_BONE_DRAW 226
 #define SPELL_PYRE_RECOIL 227
 #define SPELL_WORLD_TELEPORT 228
+#define SPELL_INN_GRACE 229
+#define SPELL_INN_FORTITUDE 230
+#define SPELL_INN_INSIGHT 231
+#define SPELL_INN_GENIUS 232
+#define SPELL_INN_SPLENDOR 233
+#define SPELL_SPIRIT_ARROWS 234
+#define SPELL_PROT_FROM_GOOD 235
+#define SPELL_ANCESTRAL_VENGEANCE 236
+#define SPELL_CIRCLE_OF_DEATH 237
+#define SPELL_BALEFUL_POLYMORPH 238
+#define SPELL_SPIRIT_RAY 239
+#define SPELL_VICIOUS_MOCKERY 240
+#define SPELL_REMOVE_PARALYSIS 241
 /* Insert new spells here, up to MAX_SPELLS */
 
 /* PLAYER SKILLS - Numbered from MAX_SPELLS+1 to MAX_SKILLS */
@@ -305,7 +318,7 @@
 #define SKILL_DISARM_FUMBLING_WEAP 432
 #define SKILL_DISARM_DROPPED_WEAP 433
 #define SKILL_GUARD 434
-#define SKILL_BREATHE 435
+#define SKILL_BREATHE_LIGHTNING 435
 #define SKILL_SWEEP 436
 #define SKILL_ROAR 437
 #define SKILL_DOUSE 438
@@ -358,10 +371,16 @@
 #define SKILL_GROUND_SHAKER 483
 #define SKILL_BATTLE_HOWL 484
 #define SKILL_MAUL 485
+#define SKILL_BREATHE_FIRE 486
+#define SKILL_BREATHE_FROST 487
+#define SKILL_BREATHE_ACID 488
+#define SKILL_BREATHE_GAS 489
 
 /* IF THIS GETS PAST 499, update char_data for skill timers! */
 
 /* Bardic songs start at 551 and go to 600 */
+#define SONG_INSPIRATION 551
+#define SONG_TERROR 552
 
 /* Monk chants go from 601 to 650 */
 #define CHANT_REGENERATION 601
@@ -482,4 +501,3 @@ extern struct spell_dam spell_dam_info[MAX_SPELLS + 1];
 extern int skill_sort_info[TOP_SKILL + 1];
 
 #endif
-

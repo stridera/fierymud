@@ -539,7 +539,11 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_CONE_OF_COLD:
     case SPELL_POSITIVE_FIELD:
     case SPELL_FIREBALL:
+    case SPELL_VICIOUS_MOCKERY:
+    case SPELL_ANCESTRAL_VENGEANCE:
     case SPELL_BIGBYS_CLENCHED_FIST:
+    case SPELL_SPIRIT_RAY:
+    case SPELL_BALEFUL_POLYMORPH:    
     case SPELL_IRON_MAIDEN:
     case SPELL_FREEZE:
     case SPELL_ACID_BURST:
@@ -611,6 +615,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_MAGIC_MISSILE:
+    case SPELL_SPIRIT_ARROWS:
     case SPELL_ICE_DARTS:
         dam = dice(4, 21);
         reduction = TRUE;
@@ -863,6 +868,10 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* max dam 226 from 12d5+26 online */
         dam += (pow(skill, 2) * 7) / 500;
         break;
+    case SPELL_CIRCLE_OF_DEATH:
+        /* max dam 226 from 12d5+26 online */
+        dam += (pow(skill, 2) * 7) / 500;
+        break;
     case SPELL_EXORCISM:
         if (GET_RACE(victim) != RACE_DEMON) {
             send_to_char("That spell only has effect on demonic creatures.\r\n", ch);
@@ -1063,7 +1072,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
  * Return value: CAST_RESULT_ flags.
  */
 
-#define MAX_SPELL_EFFECTS 4 /* change if more needed */
+#define MAX_SPELL_EFFECTS 9 /* change if more needed */
 
 int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int spellnum, int savetype, int casttype) {
     struct effect eff[MAX_SPELL_EFFECTS];
@@ -2193,6 +2202,22 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "You surround $N with glyphs of holy warding.";
         break;
 
+    case SPELL_PROT_FROM_GOOD:
+
+        /* Alignment Check! */
+        if (IS_GOOD(victim)) {
+            act("You can't protect an ally if they are GOOD!", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n tries to protect you from evil!\r\nSilly isn't $e.", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to protect $N from good.  DUH!", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_PROTECT_GOOD);
+        eff[0].duration = 9 + (skill / 9); /* max 20 */
+        to_vict = "You feel invulnerable!";
+        to_char = "You surround $N with glyphs of unholy warding.";
+        break;
+
     case SPELL_SANCTUARY:
 
         /* reimplemented by RLS back in 2k2.  While no class actually has this
@@ -2261,6 +2286,56 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         accum_effect = FALSE;
         to_vict = "You feel stronger!";
         /* Innate strength usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_GRACE:
+        eff[0].location = APPLY_DEX;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel nimbler!";
+        /* Innate grace usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+    
+    case SPELL_INN_INSIGHT:
+        eff[0].location = APPLY_WIS;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel wiser!";
+        /* Innate insight usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_GENIUS:
+        eff[0].location = APPLY_INT;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel smarter!";
+        /* Innate genius usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_FORTITUDE:
+        eff[0].location = APPLY_CON;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel healthier!";
+        /* Innate fortitude usage shouldn't call for a skill improvement in a spell
+         * sphere */
+        break;
+
+    case SPELL_INN_SPLENDOR:
+        eff[0].location = APPLY_CHA;
+        eff[0].duration = (skill >> 1) + 4;
+        eff[0].modifier = 1 + (skill / 18); /* max 6 */
+        accum_effect = FALSE;
+        to_vict = "You feel more resplendent!";
+        /* Innate splendor usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 
@@ -2553,6 +2628,72 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         remember(victim, ch);
         break;
 
+    /* Start Bard songs here */
+
+    case SONG_INSPIRATION:
+        eff[0].location = APPLY_HITROLL;
+        eff[0].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* max 5 */
+        eff[0].duration = skill / (15 - (GET_CHA(ch) / 20));                /* max 10 */
+        eff[1].location = APPLY_DAMROLL;
+        eff[1].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* max 5 */
+        eff[1].duration = skill / (15 - (GET_CHA(ch) / 20));                /* max 10 */
+        if (GET_LEVEL(ch) >= 20) {
+            eff[2].location = APPLY_SAVING_PARA;
+            eff[3].location = APPLY_SAVING_ROD;
+            eff[4].location = APPLY_SAVING_PETRI;
+            eff[5].location = APPLY_SAVING_BREATH;
+            eff[6].location = APPLY_SAVING_SPELL;
+            eff[7].location = APPLY_AC;
+            eff[2].duration = eff[3].duration = eff[4].duration = eff[5].duration = eff[6].duration =
+                eff[7].duration = skill / (15 - (GET_CHA(ch) / 20));       /* same duration, max 10 */
+            eff[2].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
+            eff[3].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
+            eff[4].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
+            eff[5].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
+            eff[6].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
+            eff[7].modifier = -5 - (10 - (GET_CHA(ch) / 20);               /* max -10 */
+            if (GET_LEVEL(ch) >= 40) {
+                eff[8].location = APPLY_HIT;
+                eff[8].modifier = (skill + (GET_CHA(ch)) * 2;               /* max 400 */
+                eff[8].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+            }
+        }
+        to_vict = "Your spirit swells with inspiration!";
+        to_room = "$n's stirs with inspiration!";
+        break;
+
+    case SONG_TERROR:
+        eff[0].location = APPLY_SAVING_PARA;
+        eff[1].location = APPLY_SAVING_ROD;
+        eff[2].location = APPLY_SAVING_SPELL;
+        eff[3].location = APPLY_AC;
+        eff[0].duration = eff[1].duration = eff[2].duration = eff[3].duration
+             = skill / (15 - (GET_CHA(ch) / 20));                           /* same duration, max 10 */
+        eff[0].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
+        eff[1].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
+        eff[2].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
+        eff[3].modifier = 5 + (10 - (GET_CHA(ch) / 20);                     /* max 10 */
+        if (GET_LEVEL(ch) >= 30) {
+            eff[4].location = APPLY_CON;
+            eff[4].modifier = -(((skill + GET_CHA(ch)) / 2) * GET_VIEWED_STR(victim) / 2) / 100;  /* max 50 */
+            eff[4].duration = skill / (15 - (GET_CHA(ch) / 20));            /* max 10 */
+            eff[5].location = APPLY_STR;
+            eff[5].modifier = -(((skill + GET_CHA(ch)) / 2) * GET_VIEWED_STR(victim) / 2) / 100;  /* max 50 */
+            eff[5].duration = skill / (15 - (GET_CHA(ch) / 20));            /* max 10 */
+            if (GET_LEVEL(ch) >= 50) {
+                eff[0].location = APPLY_HITROLL;
+                eff[0].modifier = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+                eff[0].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+                eff[1].location = APPLY_DAMROLL;
+                eff[1].modifier = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+                eff[1].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+            }
+        }
+        to_vict = "Your spirit swells with inspiration!";
+        to_room = "$n's stirs with inspiration!";
+        break;
+
+
     } /* <--- end of switch of spells */
 
     /*
@@ -2815,6 +2956,10 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SPELL_CHAIN_LIGHTNING:
         to_char = "&4&bYou send powerful bolts of lightning from your body...&0";
         to_room = "&4&b$n&4&b sends powerful bolts of lightning into $s foes...&0";
+        break;
+    case SPELL_CIRCLE_OF_DEATH:
+        to_char = "&9&bWaves of death energy wash outward from you in a violent circle.&0";
+        to_room = "&9&b$n&9&b sends waves of death energy outward in a violent circle.&0";
         break;
     case SPELL_CREMATE:
         to_char = "&1&8You raise up a huge conflaguration in the area.&0";
@@ -3817,6 +3962,16 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
     case SPELL_REMOVE_CURSE:
         spell = SPELL_CURSE;
         to_vict = "You don't feel so unlucky.";
+        break;
+    case SPELL_REMOVE_PARALYSIS:
+        if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS))) {
+            if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS))
+                spell = SPELL_MINOR_PARALYSIS;
+            if (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS))
+                spell = SPELL_MAJOR_PARALYSIS;
+            to_vict = "&3&bYour body begins to move again.&0";
+            to_room = "&3&b$n begins to move again.&0";
+        }
         break;
     default:
         sprintf(buf, "SYSERR: unknown spellnum %d passed to mag_unaffect", spellnum);
