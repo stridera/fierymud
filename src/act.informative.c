@@ -3987,10 +3987,6 @@ ACMD(do_innate) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
         if (GET_SKILL(ch, SKILL_BODYSLAM))
             send_to_char(" bodyslam\r\n", ch);
-        /*
-        if (GET_SKILL(ch, SKILL_BREATHE))
-            send_to_char(" breathe\r\n", ch);        
-        */
         if (GET_SKILL(ch, SKILL_BREATHE_FIRE))
             send_to_char(" breathe fire\r\n", ch);
         if (GET_SKILL(ch, SKILL_BREATHE_ACID))
@@ -4008,13 +4004,13 @@ ACMD(do_innate) {
             send_to_char(" detect alignment*\r\n", ch);
         if (GET_SKILL(ch, SKILL_DOORBASH))
             send_to_char(" doorbash\r\n", ch);
+        if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DROW)
+            send_to_char(" grace\r\n", ch);
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_HALFLING ||
             GET_RACE(ch) == RACE_HALF_ELF || GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_DRAGONBORN_FIRE ||
             GET_RACE(ch) == RACE_DRAGONBORN_FROST || GET_RACE(ch) == RACE_DRAGONBORN_ACID || 
             GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS)
             send_to_char(" infravision*\r\n", ch);
-        if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DROW)
-            send_to_char(" grace\r\n", ch);
         if (GET_RACE(ch) == RACE_DUERGAR)
             send_to_char(" invisible\r\n", ch);
         /* drop for now
@@ -4077,7 +4073,20 @@ ACMD(do_innate) {
             send_to_char("This innate is always present.\r\n", ch);
             return;
         }
+        
+        if (is_abbrev(arg, "harness")) {
+            if (GET_RACE(ch) == RACE_ELF) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS)) {
+                    call_magic(ch, ch, 0, SPELL_HARNESS, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_HARNESS, 10 MUD_HR);
+                } else
+                    send_to_char("You're too tired right now.\r\n", ch);
+                return;
+            }
 
+        }
+        
         if (is_abbrev(arg, "invisible")) {
             if (GET_RACE(ch) == RACE_DUERGAR) {
                 if (EFF_FLAGGED(ch, EFF_INVISIBLE))
@@ -4091,7 +4100,7 @@ ACMD(do_innate) {
                 return;
             }
         }
-
+        /*
         if (is_abbrev(arg, "levitate")) {
             if (GET_RACE(ch) == RACE_DROW) {
                 if (EFF_FLAGGED(ch, EFF_LEVITATE))
@@ -4104,7 +4113,7 @@ ACMD(do_innate) {
                     send_to_char("You're too tired right now.\r\n", ch);
                 return;
             }
-        }
+        } */
 
         if (is_abbrev(arg, "roar") && GET_SKILL(ch, SKILL_ROAR)) {
             send_to_char("Usage: roar\r\n", ch);
@@ -4198,18 +4207,6 @@ ACMD(do_innate) {
 
         }
         */
-        if (is_abbrev(arg, "harness")) {
-            if (GET_RACE(ch) == RACE_ELF) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS)) {
-                    call_magic(ch, ch, 0, SPELL_HARNESS, GET_LEVEL(ch), CAST_SPELL);
-                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                        SET_COOLDOWN(ch, CD_INNATE_HARNESS, 10 MUD_HR);
-                } else
-                    send_to_char("You're too tired right now.\r\n", ch);
-                return;
-            }
-
-        }
         if (is_abbrev(arg, "sweep") && GET_SKILL(ch, SKILL_SWEEP)) {
             send_to_char("Usage: sweep\r\n", ch);
             return;
