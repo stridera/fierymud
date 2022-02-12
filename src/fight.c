@@ -1455,12 +1455,12 @@ int damage(struct char_data *ch, struct char_data *victim, int dam, int attackty
         if (EFF_FLAGGED(victim, EFF_SANCTUARY) || EFF_FLAGGED(victim, EFF_STONE_SKIN))
             dam >>= 1;
 
-        /* Protection from evil/good takes 90% damage */
+        /* Protection from evil/good takes 80% damage */
         if (EFF_FLAGGED(victim, EFF_PROTECT_EVIL) && GET_ALIGNMENT(ch) <= -500 && GET_ALIGNMENT(victim) >= 500)
-            dam *= 0.9;
+            dam *= 0.8;
 
         else if (EFF_FLAGGED(victim, EFF_PROTECT_GOOD) && GET_ALIGNMENT(ch) >= 500 && GET_ALIGNMENT(victim) <= -500)
-            dam *= 0.9;
+            dam *= 0.8;
     }
 
     /* You can't damage an immortal! */

@@ -137,18 +137,27 @@ ACMD(do_breathe) {
     struct char_data *tch, *next_tch;
     int type;
     bool realvictims = FALSE;
+    int breath_energy;
 
     if (!ch || ch->in_room == NOWHERE)
         return;
 
     /* Don't allow reanimated undead to do this - justification:
      * you need actual life to generate poison gas! */
+    /*
     if (GET_SKILL(ch, SKILL_BREATHE) < 1 || EFF_FLAGGED(ch, EFF_CHARM)) {
         send_to_char("You huff and puff but to no avail.\r\n", ch);
         act("$n huffs and puffs but to no avail.", FALSE, ch, 0, 0, TO_ROOM);
         return;
     }
-
+    */
+    if  (EFF_FLAGGED(ch, EFF_CHARM) || (GET_SKILL(ch, SKILL_BREATHE_GAS) < 1 && 
+        GET_SKILL(ch, SKILL_BREATHE_FIRE) < 1 && GET_SKILL(ch, SKILL_BREATHE_FROST) < 1 
+        && GET_SKILL(ch, SKILL_BREATHE_ACID) < 1 && GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) < 1)) {
+        send_to_char("You huff and puff but to no avail.\r\n", ch);
+        act("$n huffs and puffs but to no avail.", FALSE, ch, 0, 0, TO_ROOM);
+        return;
+    }
     one_argument(argument, arg);
 
     for (type = 0; breath_info[type].name; ++type)
@@ -158,6 +167,37 @@ ACMD(do_breathe) {
     if (!breath_info[type].name) {
         send_to_char("Usage: breathe <fire / gas / frost / acid / lightning>\r\n", ch);
         return;
+    }
+    
+    if ((GET_SKILL(ch, SKILL_BREATHE_FIRE) > 0) && (breath_info[type].name == "fire")) {
+        breath_energy = SKILL_BREATHE_FIRE;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_FROST) > 0) && (breath_info[type].name == "frost")) {
+        breath_energy = SKILL_BREATHE_FROST;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_ACID) > 0) && (breath_info[type].name == "acid")) {
+        breath_energy = SKILL_BREATHE_ACID;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_GAS) > 0) && (breath_info[type].name == "gas")) {
+        breath_energy = SKILL_BREATHE_GAS;
+    }
+    else if ((GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) > 0) && (breath_info[type].name == "lightning")) {
+        breath_energy = SKILL_BREATHE_LIGHTNING;
+    }
+    else {
+        send_to_char("You cannot breathe that kind of energy!\r\n", ch);
+        return; 
+    }
+
+    if (!IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
+        if (!GET_COOLDOWN(ch, CD_BREATHE)) {
+            if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC)) {
+                SET_COOLDOWN(ch, CD_BREATHE, 4 MUD_HR);
+            }
+        } else {
+            cprintf(ch, "You will have rebuilt your energy in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_BREATHE) / 10));
+            return;
+        }
     }
 
     send_to_char(breath_info[type].to_char, ch);
@@ -181,9 +221,15 @@ ACMD(do_breathe) {
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
             realvictims = TRUE;
     }
-
+    /*
     if (realvictims)
         improve_skill(ch, SKILL_BREATHE);
+
+    */
+    if (realvictims) {
+        improve_skill(ch, breath_energy);
+    }
+    
     if (GET_LEVEL(ch) < LVL_IMMORT)
         WAIT_STATE(ch, PULSE_VIOLENCE);
 }
@@ -253,7 +299,14 @@ ACMD(do_roar) {
             continue;
         if (MOB_FLAGGED(tch, MOB_AWARE) || MOB_FLAGGED(tch, MOB_NOSUMMON))
             continue;
-
+        if (EFF_FLAGGED(tch, EFF_PROTECT_EVIL) && GET_ALIGNMENT(ch) <= -500) {
+            send_to_char("Your holy protection strengthens your resolve against $n's roar!\r\n", tch);
+            continue;
+        }
+        if (EFF_FLAGGED(tch, EFF_PROTECT_GOOD) && GET_ALIGNMENT(ch) <= 500) {
+            send_to_char("Your unholy protection strengthens your resolve against $n's roar!\r\n", tch);
+            continue;
+        }
         mag_affect(GET_LEVEL(ch), ch, tch, SPELL_FEAR, SAVING_PARA, CAST_BREATH);
 
         if (SLEEPING(tch)) {
@@ -1598,7 +1651,12 @@ ACMD(do_throatcut) {
         vict = random_attack_target(ch, vict, TRUE);
 
     /* Can't throatcut dragons, nor mobs that are twice your size */
+    /*
     if (GET_RACE(vict) == RACE_DRAGON) {
+    */
+    if (GET_RACE(vict) == RACE_DRAGON_GENERAL || GET_RACE(vict) == RACE_DRAGON_FIRE 
+    || GET_RACE(vict) == RACE_DRAGON_ACID || GET_RACE(vict) == RACE_DRAGON_FROST 
+    || GET_RACE(vict) == RACE_DRAGON_LIGHTNING || GET_RACE(vict) == RACE_DRAGON_GAS) {
         send_to_char("Cut the throat... of a dragon... RIGHT!!!!!\r\n", ch);
         return;
     } else if ((GET_SIZE(vict) > GET_SIZE(ch) + 2) || (GET_SIZE(vict) < GET_SIZE(ch) - 2)) {

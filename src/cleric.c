@@ -33,6 +33,7 @@ bool affected_by_armor_spells(struct char_data *victim);
 /* Clerical spell lists */
 const struct spell_pair mob_cleric_buffs[] = {{SPELL_SOULSHIELD, 0, EFF_SOULSHIELD},
                                               {SPELL_PROT_FROM_EVIL, 0, EFF_PROTECT_EVIL},
+                                              {SPELL_PROT_FROM_GOOD, 0, EFF_PROTECT_GOOD},
                                               {SPELL_ARMOR, 0, 0},
                                               {SPELL_DEMONSKIN, 0, 0},
                                               {SPELL_GAIAS_CLOAK, 0, 0},
@@ -252,6 +253,10 @@ bool check_cleric_status(struct char_data *ch) {
             break;
         case SPELL_PROT_FROM_EVIL:
             if (IS_EVIL(ch) || EFF_FLAGGED(ch, EFF_PROTECT_EVIL))
+                continue;
+            break;
+        case SPELL_PROT_FROM_GOOD:
+            if (IS_GOOD(ch) || EFF_FLAGGED(ch, EFF_PROTECT_GOOD))
                 continue;
             break;
         case SPELL_SOULSHIELD:

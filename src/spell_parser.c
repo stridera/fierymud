@@ -330,6 +330,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
             case SPELL_SOUL_TAP:
                 MANUAL_SPELL(spell_soul_tap);
                 break;
+            case SPELL_SPIRIT_ARROWS:
+                MANUAL_SPELL(spell_spirit_arrows);
+                break;
             case SPELL_TELEPORT:
                 MANUAL_SPELL(spell_teleport);
                 break;
@@ -515,6 +518,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
             break;
         case SPELL_SOUL_TAP:
             MANUAL_SPELL(spell_soul_tap);
+            break;
+        case SPELL_SPIRIT_ARROWS:
+            MANUAL_SPELL(spell_spirit_arrows);
             break;
         case SPELL_SUMMON:
             MANUAL_SPELL(spell_summon);

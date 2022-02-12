@@ -35,15 +35,25 @@
 #define RACE_PLANT 12
 #define RACE_HUMANOID 13
 #define RACE_ANIMAL 14
-#define RACE_DRAGON 15
+#define RACE_DRAGON_GENERAL 15
 #define RACE_GIANT 16
 #define RACE_OTHER 17
 #define RACE_GOBLIN 18
 #define RACE_DEMON 19
 #define RACE_BROWNIE 20
+#define RACE_DRAGON_FIRE 21
+#define RACE_DRAGON_FROST 22
+#define RACE_DRAGON_ACID 23
+#define RACE_DRAGON_LIGHTNING 24
+#define RACE_DRAGON_GAS 25
+#define RACE_DRAGONBORN_FIRE 26
+#define RACE_DRAGONBORN_FROST 27
+#define RACE_DRAGONBORN_ACID 28
+#define RACE_DRAGONBORN_LIGHTNING 29
+#define RACE_DRAGONBORN_GAS 30
 
 /* Make sure to update this number if you add a race. */
-#define NUM_RACES 21
+#define NUM_RACES 31
 
 #define DEFAULT_RACE RACE_OTHER
 
@@ -52,7 +62,7 @@
 #define RACE_ALIGN_GOOD 0
 #define RACE_ALIGN_EVIL 1
 
-#define NUM_RACE_SKILLS 10
+#define NUM_RACE_SKILLS 15
 
 /* This defines the basic attributes of a race. */
 
