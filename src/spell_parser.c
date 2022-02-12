@@ -294,14 +294,14 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
             case SPELL_FEAR:
                 MANUAL_SPELL(spell_fear);
                 break;
-            case SPELL_HYSTERIA:
-                MANUAL_SPELL(spell_fear);
-                break;
             case SPELL_FIRE_DARTS:
                 MANUAL_SPELL(spell_fire_darts);
                 break;
             case SPELL_FLOOD:
                 MANUAL_SPELL(spell_flood);
+                break;
+            case SPELL_HYSTERIA:
+                MANUAL_SPELL(spell_fear);
                 break;
             case SPELL_ICE_DAGGER:
                 MANUAL_SPELL(spell_ice_dagger);
@@ -426,9 +426,6 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
         case SPELL_FEAR:
             MANUAL_SPELL(spell_fear);
             break;
-        case SPELL_HYSTERIA:
-            MANUAL_SPELL(spell_fear);
-            break;
         case SPELL_FIRE_DARTS:
             MANUAL_SPELL(spell_fire_darts);
             break;
@@ -446,6 +443,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
             break;
         case SPELL_HELLS_GATE:
             MANUAL_SPELL(spell_hells_gate);
+            break;
+        case SPELL_HYSTERIA:
+            MANUAL_SPELL(spell_fear);
             break;
         case SPELL_ICE_DAGGER:
             MANUAL_SPELL(spell_ice_dagger);
@@ -510,6 +510,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
         case SPELL_REMOVE_CURSE:
             MANUAL_SPELL(spell_remove_curse);
             break;
+        case SPELL_REMOVE_PARALYSIS:
+            MANUAL_SPELL(spell_remove_paralysis);
+            break;
         case SPELL_RESURRECT:
             MANUAL_SPELL(spell_resurrect);
             break;
@@ -556,14 +559,14 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
             MANUAL_SPELL(spell_world_teleport);
             break;
 
-        case CHANT_PEACE:
-            MANUAL_SPELL(chant_peace);
+        case CHANT_APOCALYPTIC_ANTHEM:
+            MANUAL_SPELL(chant_apocalyptic_anthem);
             break;
         case CHANT_IVORY_SYMPHONY:
             MANUAL_SPELL(chant_ivory_symphony);
             break;
-        case CHANT_APOCALYPTIC_ANTHEM:
-            MANUAL_SPELL(chant_apocalyptic_anthem);
+        case CHANT_PEACE:
+            MANUAL_SPELL(chant_peace);
             break;
         }
         /* Check for death caused during manual spells */
