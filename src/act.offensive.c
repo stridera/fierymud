@@ -673,12 +673,6 @@ ACMD(do_backstab) {
         return;
     }
 
-    /* Illusionists can't backstab someone who is in battle. */
-    if (GET_CLASS(ch) == CLASS_ILLUSIONIST && FIGHTING(vict)) {
-        send_to_char("You can't sneak up on someone who's fighting!\r\n", ch);
-        return;
-    }
-
     /* If the mob is flagged aware, is not sleeping, and is not currently
        fighting, then you can not backstab the mob */
     if (MOB_FLAGGED(vict, MOB_AWARE) && AWAKE(vict) && !FIGHTING(vict) && !EFF_FLAGGED(vict, EFF_MINOR_PARALYSIS) &&
@@ -701,8 +695,12 @@ ACMD(do_backstab) {
         attack(vict, ch);
 
         WAIT_STATE(ch, PULSE_VIOLENCE);
-        SET_COOLDOWN(ch, CD_BACKSTAB, 6 * PULSE_COOLDOWN);
-
+        /* 6 seconds == 1.5 combat rounds, 12 seconds == 3 combat rounds. */
+        if (GET_CLASS(ch) == CLASS_ILLUSIONIST {
+            SET_COOLDOWN(ch, CD_BACKSTAB, 12 * PULSE_COOLDOWN);
+        } else {
+            SET_COOLDOWN(ch, CD_BACKSTAB, 6 * PULSE_COOLDOWN);
+        }
         if (!EFF_FLAGGED(vict, EFF_AWARE)) {
             memset(&eff, 0, sizeof(eff));
             eff.type = SKILL_AWARE;
@@ -747,8 +745,12 @@ ACMD(do_backstab) {
     improve_skill_offensively(ch, vict, SKILL_BACKSTAB);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
-    /* 6 seconds == 1.5 combat rounds. */
-    SET_COOLDOWN(ch, CD_BACKSTAB, 6 * PULSE_COOLDOWN);
+    /* 6 seconds == 1.5 combat rounds, 12 seconds == 3 combat rounds. */
+    if (GET_CLASS(ch) == CLASS_ILLUSIONIST {
+        SET_COOLDOWN(ch, CD_BACKSTAB, 12 * PULSE_COOLDOWN);
+    } else {
+        SET_COOLDOWN(ch, CD_BACKSTAB, 6 * PULSE_COOLDOWN);
+    }
 
     if (DECEASED(vict))
         return;
