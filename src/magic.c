@@ -551,79 +551,21 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_ICEBALL:
         dam = sorcerer_single_target(ch, spellnum, skill);
         reduction = TRUE;
-        break;
-    case SPELL_MELT:
-        /* Increased damage against metal, stone, and ice */
-        dam = sorcerer_single_target(ch, spellnum, skill);
-        switch (GET_COMPOSITION(ch)) {
-        case COMP_METAL:
-        case COMP_STONE:
-        case COMP_ICE:
-            dam *= 2;
-            break;
-        }
-        reduction = TRUE;
-        break;
-    case SPELL_DISPEL_MAGIC:
-        /* We don't want to hear about folks being immune to dispel magic,
-         * because the spell might have been cast to remove spells from them.
-         * So get out of here if the victim is immune. */
-        if (sus == 0)
-            return 0;
-        dam = sorcerer_single_target(ch, spellnum, skill);
-        reduction = TRUE;
-        break;
-    case SPELL_DISCORPORATE:
-        if (MOB_FLAGGED(victim, MOB_ILLUSORY))
-            /* Discorporate just annihilates illusory mobs */
-            dam = 100 + GET_HIT(victim);
-        else
-            dam = sorcerer_single_target(ch, spellnum, skill) / 5;
-        break;
-    case SPELL_IMMOLATE:
-        /* Immolate hits 5 times. */
-        dam = sorcerer_single_target(ch, spellnum, skill) / 4;
-        reduction = TRUE;
-        break;
-    case SPELL_PHOSPHORIC_EMBERS:
-        /* hits 4 times. */
-        dam = sorcerer_single_target(ch, spellnum, skill) / 3;
-        reduction = TRUE;
-        break;
-    case SPELL_PYRE:
-        /* hits 4 times, but charmies do half damage */
-        dam = sorcerer_single_target(ch, spellnum, skill) / 3;
-        if (EFF_FLAGGED(ch, EFF_CHARM) && ch->master && IS_PC(ch->master))
-            dam *= 2;
-        reduction = TRUE;
-        break;
-    case SPELL_PYRE_RECOIL:
-        dam = sorcerer_single_target(ch, SPELL_PYRE, skill) / 6;
-        /* use the SPELL_ON_FIRE damage message */
-        damage_spellnum = SPELL_ON_FIRE;
-        reduction = TRUE;
-        break;
-    case SPELL_FRACTURE:
-        dam = sorcerer_single_target(ch, spellnum, skill) / 3;
-        if (EFF_FLAGGED(ch, EFF_CHARM) && ch->master && IS_PC(ch->master))
-            dam *= 2;
-        break;
-    case SPELL_FRACTURE_SHRAPNEL:
-        dam = sorcerer_single_target(ch, SPELL_FRACTURE, skill) / 2;
-        if (EFF_FLAGGED(ch, EFF_CHARM) && ch->master && IS_PC(ch->master))
-            dam *= 2;
-        break;
+        break;                  /* <-- End Sorcerer Single Target Switch */
 
+    /* dart and missle spells */
     case SPELL_MAGIC_MISSILE:
     case SPELL_SPIRIT_ARROWS:
     case SPELL_ICE_DARTS:
         dam = dice(4, 21);
         reduction = TRUE;
         break;
-    case SPELL_FIRE_DARTS:
+    case SPELL_FIRE_DARTS:      /* <-- unique because min circle is 2, not 1 */
         dam = dice(5, 18);
         reduction = TRUE;
-        break;
+        break;                  /* <-- end dart and missle spells */
+
+    /* Cause light etc. series */
     case SPELL_CAUSE_LIGHT:
         /* max dam 50 from max 4d4+2 online */
         dam += (pow(skill, 2) * 2) / 625;
@@ -643,28 +585,58 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_FULL_HARM:
         /* max dam 400 from max 18d10+20 online */
         dam += (pow(skill, 2) * 1) / 50;
+        break;                  /* <-- end Cause series */
+
+    /* breath spells */
+    case SPELL_LIGHTNING_BREATH:
+    case SPELL_FIRE_BREATH:
+    case SPELL_FROST_BREATH:
+    case SPELL_GAS_BREATH:
+    case SPELL_ACID_BREATH:
+        dam = skill + number(1, skill * 2);
         break;
-    case SPELL_HELL_BOLT:
-        /* max dam 110 from max 8d6+9 online, except alignment bonus! */
-        dam += (pow(skill, 2) * 53) / 10000;
-        dam *= GET_ALIGNMENT(victim) * 0.0007 + 0.8;
+    case SPELL_CALL_LIGHTNING:
+        /* There needs to be some code referencing weather to make this spell
+           only work when the weather is bad.  If this happens when we can jack
+           the damage of the spell since it will be significantly more rare when
+           it can be cast. RSD 4/4/00 */
+        /* max dam 300 from 15d5+50 online */
+        dam += (pow(skill, 2) * 7) / 400;
         break;
-    case SPELL_DIVINE_BOLT:
-        /* max dam 110 from max 8d6+9 online, except alignment bonus! */
-        dam += (pow(skill, 2) * 53) / 10000;
-        dam *= GET_ALIGNMENT(victim) * -0.0007 + 0.8;
+    case SPELL_CHAIN_LIGHTNING:
+        /* max dam 226 from 12d5+26 online */
+        dam += (pow(skill, 2) * 7) / 500;
         break;
-    case SPELL_WRITHING_WEEDS:
-        /* max dam 110 from max 8d6+9 online */
-        dam += (pow(skill, 2) * 53) / 10000;
+    case SPELL_CIRCLE_OF_DEATH:
+        /* max dam 226 from 12d5+26 online */
+        dam += (pow(skill, 2) * 7) / 500;
+    case SPELL_CIRCLE_OF_FIRE:
+        dam = (skill / 2) + dice(2, 3);
         break;
-    case SPELL_FLAMESTRIKE:
-        /* max dam 80 for neutral from max 8d9+8 online */
-        if (IS_EVIL(ch)) {
-            send_to_char("You are not holy enough to cast that spell!\r\n", ch);
-            return 0;
+        break;
+    case SPELL_COLOR_SPRAY:
+        /* max dam 190 from 15d5+45 online */
+        dam += (pow(skill, 2) * 1) / 200;
+        break;
+    case SPELL_DEGENERATION:
+        dam += dice(3, 40) + 300;
+        break;
+    case SPELL_DESTROY_UNDEAD:
+        if (GET_LIFEFORCE(victim) != LIFE_UNDEAD) {
+            act("$N has far too much life for you to harm it!", FALSE, ch, 0, victim, TO_CHAR);
+            return CAST_RESULT_CHARGE;
         }
-        dam *= (GET_ALIGNMENT(ch) * 0.0007) + 0.8;
+        /* max dam 400 from 18d5+40 online */
+        dam += (pow(skill, 2) * 27) / 1000;
+        if (GET_CLASS(ch) == CLASS_PRIEST)
+            dam *= 1.25;
+        break;
+    case SPELL_DISCORPORATE:
+        if (MOB_FLAGGED(victim, MOB_ILLUSORY))
+            /* Discorporate just annihilates illusory mobs */
+            dam = 100 + GET_HIT(victim);
+        else
+            dam = sorcerer_single_target(ch, spellnum, skill) / 5;
         break;
     case SPELL_DISPEL_EVIL:
         if (IS_GOOD(victim)) {
@@ -714,6 +686,26 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         } else if (GET_ALIGNMENT(ch) <= -750)
             dam *= 1.1;
         break;
+    case SPELL_DISPEL_MAGIC:
+        /* We don't want to hear about folks being immune to dispel magic,
+         * because the spell might have been cast to remove spells from them.
+         * So get out of here if the victim is immune. */
+        if (sus == 0)
+            return 0;
+        dam = sorcerer_single_target(ch, spellnum, skill);
+        reduction = TRUE;
+        break;
+    case SPELL_DIVINE_BOLT:
+        /* max dam 110 from max 8d6+9 online, except alignment bonus! */
+        dam += (pow(skill, 2) * 53) / 10000;
+        dam *= GET_ALIGNMENT(victim) * -0.0007 + 0.8;
+        break;
+    case SPELL_DIVINE_RAY:
+        /* This spell appears to be the goodie version of stygian eruption */
+        /* max dam 176 from 12d5+36 online */
+        dam += (pow(skill, 2) * 1) / 125;
+        dam *= (GET_ALIGNMENT(ch) * 0.0022) - 0.7;
+        break;
     case SPELL_EARTHQUAKE:
         if (!QUAKABLE(CH_NROOM(victim)))
             return CAST_RESULT_CHARGE;
@@ -741,136 +733,6 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* Levitate - cuts damage in half */
         if (EFF_FLAGGED(victim, EFF_LEVITATE))
             dam /= 2;
-        break;
-    case SPELL_COLOR_SPRAY:
-        /* max dam 190 from 15d5+45 online */
-        dam += (pow(skill, 2) * 1) / 200;
-        break;
-    case SPELL_FREEZING_WIND:
-        /* As Freezing wind is an area effect spell it's initial base damage will be
-           low and slow to increase like the other, however it's top will be low due
-           to the existance of other ice based area effect spells. This spell will
-           need some affect associated with it so it will be unique and worth
-           casting instead of the other more poweful spells. RSD 4/2/00
-           max dam 145 from 15d5+5 online */
-        dam += (pow(skill, 2) * 3) / 500;
-        break;
-    case SPELL_DESTROY_UNDEAD:
-        if (GET_LIFEFORCE(victim) != LIFE_UNDEAD) {
-            act("$N has far too much life for you to harm it!", FALSE, ch, 0, victim, TO_CHAR);
-            return CAST_RESULT_CHARGE;
-        }
-        /* max dam 400 from 18d5+40 online */
-        dam += (pow(skill, 2) * 27) / 1000;
-        if (GET_CLASS(ch) == CLASS_PRIEST)
-            dam *= 1.25;
-        break;
-    case SPELL_ICE_STORM:
-        /* max dam 235 from 20d5+35 online */
-        dam += (pow(skill, 2) * 1) / 100;
-        if (GET_CLASS(ch) == CLASS_CRYOMANCER)
-            dam *= 1.25;
-        break;
-    case SPELL_FIRESTORM:
-        /* Mirror spell of ice storm */
-        /* max dam 235 from 20d5+35 online */
-        dam += (pow(skill, 2) * 1) / 100;
-        if (GET_CLASS(ch) == CLASS_PYROMANCER)
-            dam *= 1.25;
-        break;
-    case SPELL_UNHOLY_WORD:
-        /* max dam 300 from 20d5+35 online */
-        dam += (pow(skill, 2) * 33) / 2000;
-        if (GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
-            dam *= 1.25;
-        break;
-    case SPELL_HOLY_WORD:
-        /* max dam 300 from 20d5+35 online */
-        dam += (pow(skill, 2) * 33) / 2000;
-        if (GET_CLASS(ch) == CLASS_PRIEST || GET_CLASS(ch) == CLASS_PALADIN)
-            dam *= 1.25;
-        break;
-    case SPELL_STYGIAN_ERUPTION:
-        if (GET_ALIGNMENT(ch) >= -400) {
-            send_to_char("You are not unholy enough to cast that spell!\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-        /* max dam 176 from 12d5+36 online */
-        dam += (pow(skill, 2) * 1) / 125;
-        dam *= (GET_ALIGNMENT(ch) * -0.0022) - 0.7;
-        break;
-    case SPELL_DIVINE_RAY:
-        /* This spell appears to be the goodie version of stygian eruption */
-        /* max dam 176 from 12d5+36 online */
-        dam += (pow(skill, 2) * 1) / 125;
-        dam *= (GET_ALIGNMENT(ch) * 0.0022) - 0.7;
-        break;
-    case SPELL_LESSER_EXORCISM:
-        if (GET_RACE(victim) != RACE_DEMON) {
-            send_to_char("That spell only has effect on demonic creatures.\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-        if (GET_ALIGNMENT(ch) >= 990 && skill - GET_LEVEL(victim) > 30 && !mag_savingthrow(victim, SAVING_SPELL) &&
-            number(1, 100) > 50) {
-            act("$N &7&blets out a massive howl as $E is banished by your holy "
-                "might.&0",
-                FALSE, ch, 0, victim, TO_CHAR);
-            act("$N &7&blets out a massive howl as $E is banished by $n's&7&b "
-                "command.&0",
-                FALSE, ch, 0, victim, TO_ROOM);
-            if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) { /* illusions don't really banish */
-                event_create(EVENT_EXTRACT, extract_event, victim, FALSE, &(victim->events), 0);
-                GET_HIT(victim) = -50;
-                GET_POS(victim) = POS_PRONE;
-                GET_STANCE(victim) = STANCE_DEAD;
-            }
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-        if (GET_ALIGNMENT(ch) <= 400) {
-            send_to_char("You are not holy enough to cast that spell!\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-        /* This spell is meant to cause great concern to demonic forces so it'll be
-         * quite stout */
-        /* max dam 700 from 50d5+50 online */
-        dam += (pow(skill, 2) * 1) / 25;
-        dam *= (GET_ALIGNMENT(ch) * 0.001) + 0.2;
-        /* thought it was to good? Muahahaha!
-           Now you lose some HP and MV for selling your soul to hurt the demons! */
-        GET_HIT(ch) -= dam / 15;
-        if (GET_MOVE(ch) > 25)
-            GET_MOVE(ch) = MAX(20, GET_MOVE(ch) - (dam / 50));
-        act("$n looks slightly diminished.", FALSE, ch, 0, 0, TO_ROOM);
-        act("You lose some life in libation of your holy allegiance!", FALSE, ch, 0, 0, TO_CHAR);
-        break;
-    case SPELL_CALL_LIGHTNING:
-        /* There needs to be some code referencing weather to make this spell
-           only work when the weather is bad.  If this happens when we can jack
-           the damage of the spell since it will be significantly more rare when
-           it can be cast. RSD 4/4/00 */
-        /* max dam 300 from 15d5+50 online */
-        dam += (pow(skill, 2) * 7) / 400;
-        break;
-    case SPELL_SUNRAY:
-        dam += (pow(skill, 2) * 7) / 400;
-        break;
-    case SPELL_HELLFIRE_BRIMSTONE:
-        /* looks like area version of stygian eruption */
-        if (GET_ALIGNMENT(ch) >= -400) {
-            send_to_char("You are not unholy enough to cast that spell!\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-        /* max dam 300 from 30d5+25 online */
-        dam += (pow(skill, 2) * 1) / 180;
-        dam *= (GET_ALIGNMENT(ch) * -0.0022) - 0.7;
-        break;
-    case SPELL_CHAIN_LIGHTNING:
-        /* max dam 226 from 12d5+26 online */
-        dam += (pow(skill, 2) * 7) / 500;
-        break;
-    case SPELL_CIRCLE_OF_DEATH:
-        /* max dam 226 from 12d5+26 online */
-        dam += (pow(skill, 2) * 7) / 500;
         break;
     case SPELL_EXORCISM:
         if (GET_RACE(victim) != RACE_DEMON) {
@@ -910,21 +772,154 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         act("You lose some life in libation of your holy allegiance!", FALSE, ch, 0, victim, TO_CHAR);
         act("$n looks slightly diminished.", FALSE, ch, 0, victim, TO_ROOM);
         break;
-    case SPELL_METEORSWARM:
-        /* max dam 1200 from 50d10+50 online */
-        dam += (pow(skill, 2) * 13) / 200;
+    case SPELL_FIRESTORM:
+        /* Mirror spell of ice storm */
+        /* max dam 235 from 20d5+35 online */
+        dam += (pow(skill, 2) * 1) / 100;
+        if (GET_CLASS(ch) == CLASS_PYROMANCER)
+            dam *= 1.25;
+        break;
+    case SPELL_FLAMESTRIKE:
+        /* max dam 80 for neutral from max 8d9+8 online */
+        if (IS_EVIL(ch)) {
+            send_to_char("You are not holy enough to cast that spell!\r\n", ch);
+            return 0;
+        }
+        dam *= (GET_ALIGNMENT(ch) * 0.0007) + 0.8;
         break;
     case SPELL_FLOOD:
         /* max dam 1200 from 50d10+50 online */
         dam += (pow(skill, 2) * 13) / 200;
         break;
-    case SPELL_SUPERNOVA:
-        /* max dam 2500 from 100d10+500 online */
-        dam += (pow(skill, 2) * 1) / 10;
+    case SPELL_FRACTURE:
+        dam = sorcerer_single_target(ch, spellnum, skill) / 3;
+        if (EFF_FLAGGED(ch, EFF_CHARM) && ch->master && IS_PC(ch->master))
+            dam *= 2;
+        break;
+    case SPELL_FRACTURE_SHRAPNEL:
+        dam = sorcerer_single_target(ch, SPELL_FRACTURE, skill) / 2;
+        if (EFF_FLAGGED(ch, EFF_CHARM) && ch->master && IS_PC(ch->master))
+            dam *= 2;
+        break;
+    case SPELL_FREEZING_WIND:
+        /* As Freezing wind is an area effect spell it's initial base damage will be
+           low and slow to increase like the other, however it's top will be low due
+           to the existance of other ice based area effect spells. This spell will
+           need some affect associated with it so it will be unique and worth
+           casting instead of the other more poweful spells. RSD 4/2/00
+           max dam 145 from 15d5+5 online */
+        dam += (pow(skill, 2) * 3) / 500;
+        break;
+    case SPELL_HELL_BOLT:
+        /* max dam 110 from max 8d6+9 online, except alignment bonus! */
+        dam += (pow(skill, 2) * 53) / 10000;
+        dam *= GET_ALIGNMENT(victim) * 0.0007 + 0.8;
+        break;
+    case SPELL_HELLFIRE_BRIMSTONE:
+        /* looks like area version of stygian eruption */
+        if (GET_ALIGNMENT(ch) >= -400) {
+            send_to_char("You are not unholy enough to cast that spell!\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+        /* max dam 300 from 30d5+25 online */
+        dam += (pow(skill, 2) * 1) / 180;
+        dam *= (GET_ALIGNMENT(ch) * -0.0022) - 0.7;
+        break;
+    case SPELL_HOLY_WORD:
+        /* max dam 300 from 20d5+35 online */
+        dam += (pow(skill, 2) * 33) / 2000;
+        if (GET_CLASS(ch) == CLASS_PRIEST || GET_CLASS(ch) == CLASS_PALADIN)
+            dam *= 1.25;
         break;
     case SPELL_ICE_SHARDS:
         /* max dam 2500 from 100d10+500 online */
         dam += (pow(skill, 2) * 1) / 10;
+        break;
+    case SPELL_ICE_STORM:
+        /* max dam 235 from 20d5+35 online */
+        dam += (pow(skill, 2) * 1) / 100;
+        if (GET_CLASS(ch) == CLASS_CRYOMANCER)
+            dam *= 1.25;
+        break;
+    case SPELL_IMMOLATE:
+        /* Immolate hits 5 times. */
+        dam = sorcerer_single_target(ch, spellnum, skill) / 4;
+        reduction = TRUE;
+        break;
+    case SPELL_LESSER_EXORCISM:
+        if (GET_RACE(victim) != RACE_DEMON) {
+            send_to_char("That spell only has effect on demonic creatures.\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+        if (GET_ALIGNMENT(ch) >= 990 && skill - GET_LEVEL(victim) > 30 && !mag_savingthrow(victim, SAVING_SPELL) &&
+            number(1, 100) > 50) {
+            act("$N &7&blets out a massive howl as $E is banished by your holy "
+                "might.&0",
+                FALSE, ch, 0, victim, TO_CHAR);
+            act("$N &7&blets out a massive howl as $E is banished by $n's&7&b "
+                "command.&0",
+                FALSE, ch, 0, victim, TO_ROOM);
+            if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) { /* illusions don't really banish */
+                event_create(EVENT_EXTRACT, extract_event, victim, FALSE, &(victim->events), 0);
+                GET_HIT(victim) = -50;
+                GET_POS(victim) = POS_PRONE;
+                GET_STANCE(victim) = STANCE_DEAD;
+            }
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+        if (GET_ALIGNMENT(ch) <= 400) {
+            send_to_char("You are not holy enough to cast that spell!\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+        /* This spell is meant to cause great concern to demonic forces so it'll be
+         * quite stout */
+        /* max dam 700 from 50d5+50 online */
+        dam += (pow(skill, 2) * 1) / 25;
+        dam *= (GET_ALIGNMENT(ch) * 0.001) + 0.2;
+        /* thought it was to good? Muahahaha!
+           Now you lose some HP and MV for selling your soul to hurt the demons! */
+        GET_HIT(ch) -= dam / 15;
+        if (GET_MOVE(ch) > 25)
+            GET_MOVE(ch) = MAX(20, GET_MOVE(ch) - (dam / 50));
+        act("$n looks slightly diminished.", FALSE, ch, 0, 0, TO_ROOM);
+        act("You lose some life in libation of your holy allegiance!", FALSE, ch, 0, 0, TO_CHAR);
+        break;
+    case SPELL_MELT:
+        /* Increased damage against metal, stone, and ice */
+        dam = sorcerer_single_target(ch, spellnum, skill);
+        switch (GET_COMPOSITION(ch)) {
+        case COMP_METAL:
+        case COMP_STONE:
+        case COMP_ICE:
+            dam *= 2;
+            break;
+        }
+        reduction = TRUE;
+        break;
+    case SPELL_METEORSWARM:
+        /* max dam 1200 from 50d10+50 online */
+        dam += (pow(skill, 2) * 13) / 200;
+        break;
+    case SPELL_MOONBEAM:
+        dam += skill * 2 + number(20, 80);
+        break;
+    case SPELL_PHOSPHORIC_EMBERS:
+        /* hits 4 times. */
+        dam = sorcerer_single_target(ch, spellnum, skill) / 3;
+        reduction = TRUE;
+        break;
+    case SPELL_PYRE:
+        /* hits 4 times, but charmies do half damage */
+        dam = sorcerer_single_target(ch, spellnum, skill) / 3;
+        if (EFF_FLAGGED(ch, EFF_CHARM) && ch->master && IS_PC(ch->master))
+            dam *= 2;
+        reduction = TRUE;
+        break;
+    case SPELL_PYRE_RECOIL:
+        dam = sorcerer_single_target(ch, SPELL_PYRE, skill) / 6;
+        /* use the SPELL_ON_FIRE damage message */
+        damage_spellnum = SPELL_ON_FIRE;
+        reduction = TRUE;
         break;
     case SPELL_SEVERANCE:
         dam += (pow(skill, 2) * 13) / 200;
@@ -932,28 +927,39 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_SOUL_REAVER:
         dam += (pow(skill, 2) * 13) / 199;
         break;
+    case SPELL_STYGIAN_ERUPTION:
+        if (GET_ALIGNMENT(ch) >= -400) {
+            send_to_char("You are not unholy enough to cast that spell!\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+        /* max dam 176 from 12d5+36 online */
+        dam += (pow(skill, 2) * 1) / 125;
+        dam *= (GET_ALIGNMENT(ch) * -0.0022) - 0.7;
+        break;
+    case SPELL_SUNRAY:
+        dam += (pow(skill, 2) * 7) / 400;
+        break;
+    case SPELL_SUPERNOVA:
+        /* max dam 2500 from 100d10+500 online */
+        dam += (pow(skill, 2) * 1) / 10;
+        break;
+    case SPELL_UNHOLY_WORD:
+        /* max dam 300 from 20d5+35 online */
+        dam += (pow(skill, 2) * 33) / 2000;
+        if (GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
+            dam *= 1.25;
+        break;
     case SPELL_VAMPIRIC_BREATH:
         dam += dice(2, skill + 10);
         if (skill >= 95)
             dam += number(0, 70);
         GET_HIT(ch) += dam;
         break;
-    case SPELL_LIGHTNING_BREATH:
-    case SPELL_FIRE_BREATH:
-    case SPELL_FROST_BREATH:
-    case SPELL_GAS_BREATH:
-    case SPELL_ACID_BREATH:
-        dam = skill + number(1, skill * 2);
+    case SPELL_WRITHING_WEEDS:
+        /* max dam 110 from max 8d6+9 online */
+        dam += (pow(skill, 2) * 53) / 10000;
         break;
-    case SPELL_CIRCLE_OF_FIRE:
-        dam = (skill / 2) + dice(2, 3);
-        break;
-    case SPELL_DEGENERATION:
-        dam += dice(3, 40) + 300;
-        break;
-    case SPELL_MOONBEAM:
-        dam += skill * 2 + number(20, 80);
-        break;
+
     case SKILL_ELECTRIFY:
         dam = skill - number(0, 3);
         break;
@@ -1102,9 +1108,44 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
     }
 
     switch (spellnum) {
+    /* Temp HP spells */
+    case SPELL_ENDURANCE:
+    case SPELL_LESSER_ENDURANCE:
+    case SPELL_GREATER_ENDURANCE:
+    case SPELL_VITALITY:
+    case SPELL_GREATER_VITALITY:
+    case SPELL_DRAGONS_HEALTH:
+
+        if (affected_by_spell(victim, SPELL_LESSER_ENDURANCE) || affected_by_spell(victim, SPELL_ENDURANCE) ||
+            affected_by_spell(victim, SPELL_GREATER_ENDURANCE) || affected_by_spell(victim, SPELL_VITALITY) ||
+            affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH)) {
+            send_to_char("Nothing happens!\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+
+        eff[0].location = APPLY_HIT;
+        eff[0].modifier = get_vitality_hp_gain(ch, spellnum);
+        eff[0].duration = get_spell_duration(ch, spellnum);
+
+        to_vict = get_vitality_vict_message(spellnum);
+        to_room = "$N looks healthier than before!";
+        to_char = "$N looks healthier than before!";
+        break;                                      /* <-- end Temp HP spells */
+
+    case SPELL_ARMOR:
+
+        /* check for exclusion of other armor spells */
+        if (check_armor_spells(ch, victim, spellnum))
+            return CAST_RESULT_CHARGE;
+
+        eff[0].location = APPLY_AC;
+        eff[0].modifier = 10 + (skill / 20); /* max 15 */
+        eff[0].duration = 10 + (skill / 50); /* max 12 */
+        to_vict = "You feel someone protecting you.";
+        to_room = "$n calls upon $s gods to protect $N.";
+        break;
 
     case SPELL_BARKSKIN:
-
         /* Check for other types of armor spells */
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
@@ -1116,6 +1157,161 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "&3$N's&3 skin hardens to bark.&0";
         to_vict = "&3Your skin hardens to bark.&0";
         to_room = "&3$N's&3 skin hardens to bark.&0";
+        break;
+
+    case SPELL_BLESS:
+
+        if (GET_LEVEL(ch) < LVL_IMMORT && !IS_GOOD(ch) && casttype == CAST_SPELL) {
+            send_to_char("The gods have forsaken you in your evilness!\r\n", ch);
+            act("There is no effect.  $U$n adopts a dejected look.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (affected_by_spell(victim, SPELL_DARK_PRESENCE) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+            affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION) ||
+            affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
+            act("$N is already blessed by some dark gods.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        /* Alignment Checks! */
+        if (IS_EVIL(victim)) {
+            act("You can't bless evil people!", FALSE, ch, 0, 0, TO_CHAR);
+            act("$n tries to awaken your inner angel.\r\nSilly isn't $e?", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to awaken $N's inner angel.", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        eff[0].location = APPLY_HITROLL;
+        eff[0].modifier = 1 + (skill >= 50);
+        eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
+        eff[1].location = APPLY_SAVING_SPELL;
+        eff[1].modifier = -2 - (skill / 10);
+        eff[1].duration = eff[0].duration;
+        SET_FLAG(eff[2].flags, EFF_BLESS);
+        eff[2].duration = eff[0].duration;
+        to_char = "$N is inspired by your gods.";
+        to_vict = "Your inner angel is inspired by $n.\r\nYou feel righteous.";
+        to_room = "$N is inspired to do good by $n.";
+        break;
+
+    case SPELL_BLINDNESS:
+
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+
+        if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
+            send_to_char("You seem unable to blind this creature.\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (mag_savingthrow(victim, savetype)) {
+            act("$N resists your pitiful attempt to blind $M.", FALSE, ch, 0, victim, TO_CHAR);
+            act("&7&b$n tries to blind you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
+            act("&7&b$n tries to blind $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+
+        eff[0].location = APPLY_HITROLL;
+        eff[0].modifier = -4;
+        eff[0].duration = 2;
+        SET_FLAG(eff[0].flags, EFF_BLIND);
+
+        eff[1].location = APPLY_AC;
+        eff[1].modifier = -40;
+        eff[1].duration = 2;
+        SET_FLAG(eff[1].flags, EFF_BLIND);
+
+        to_char = "&9&b$N&9&b is blinded by you!&0";
+        to_room = "&9&b$N&9&b is blinded by $n!&0";
+        to_vict = "&9&bYou have been blinded!&0";
+        break;
+
+    case SPELL_BLUR:
+
+        SET_FLAG(eff[0].flags, EFF_BLUR);
+        eff[0].duration = 2 + (skill / 21); /* max 6 */
+        to_vict = "&7The world seems to slow as you start moving with unnatural speed!&0";
+        to_room = "&7$N's image blurs in unnatural speed!&0";
+        break;
+
+    case SPELL_BONE_ARMOR:
+
+        if (check_armor_spells(ch, victim, spellnum))
+            return CAST_RESULT_CHARGE;
+
+        eff[0].location = APPLY_AC;
+        eff[0].modifier = 10 + (skill / 6);    /* max 25 */
+        eff[0].duration = 8 + 2 * (skill / 5); /* max 48 */
+        to_char = "&3$N's&3 skin hardens into a bone carapace.&0";
+        to_vict = "&3Your skin hardens into a bone carapace.&0";
+        to_room = "&3$N's&3 skin hardens to a bone carapace.&0";
+        break;
+
+    case SPELL_BONE_DRAW:
+        if (EFF_FLAGGED(victim, EFF_IMMOBILIZED)) {
+            act("$n is already immobilized!", FALSE, ch, 0, victim, TO_CHAR);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (evades_spell(ch, victim, spellnum, skill))
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+
+        to_char = "You conjure four magical bones to lock $N in place!";
+        to_vict = "$n conjures four magical bones which bind your legs!";
+        to_room = "$n conjures four magical bones that lock around $N's legs!";
+
+        SET_FLAG(eff[0].flags, EFF_IMMOBILIZED);
+        eff[0].location = APPLY_NONE;
+        eff[0].modifier = 4;
+        eff[0].duration = 1 + skill / 25; /* 1-5 hours */
+        if (!IS_NPC(victim))
+            eff[0].duration = 1;
+        remember(victim, ch);
+        break;
+
+    case SPELL_CHILL_TOUCH:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+        if (mag_savingthrow(victim, savetype)) {
+            act("$N resists your withering effect!", FALSE, ch, 0, victim, TO_CHAR);
+            act("You resist $n's withering effects!", FALSE, ch, 0, victim, TO_VICT);
+            act("$N resists $n's withering effect!", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+
+        eff[0].location = APPLY_STR;
+        eff[0].duration = 3 + (skill / 20);  /* max 8 */
+        eff[0].modifier = -5 - (skill / 10); /* max -15 */
+
+        to_vict = "You feel your strength wither!";
+        to_char = "$N is withered by your cold!";
+        to_room = "$N withers slightly from $n's cold!";
+        break;
+
+    case SPELL_CIRCLE_OF_LIGHT:
+
+        SET_FLAG(eff[0].flags, EFF_LIGHT);
+        eff[0].duration = 5 + (skill / 2); /* max 55 */
+        refresh = FALSE;
+        to_vict = "&7&bA bright white circle of light begins hovering about your head.&0";
+        to_room = "&7&bA bright white circle of light appears over $N's&7&b head.";
+        break;
+
+    case SPELL_COLDSHIELD:
+
+        if (EFF_FLAGGED(ch, EFF_FIRESHIELD)) {
+            cprintf(ch, "The shield of fire around %s body negates your spell.\r\n",
+                    ch == victim ? "your" : HSHR(victim));
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_COLDSHIELD);
+        eff[0].duration = skill / 20; /* max 5 */
+        refresh = FALSE;
+        to_vict = "&4A jagged formation of i&bc&7e sh&4ard&0&4s forms around you.&0";
+        to_room = "&4A jagged formation of i&bc&7e sh&4ard&0&4s forms around $N&0&4.&0";
         break;
 
     case SPELL_CONFUSION:
@@ -1132,6 +1328,31 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].duration = 2 + skill / 40;
         to_vict = "&5You suddenly find it difficult to focus upon your foes.&0";
         to_room = "$N can't decide which way to cross $S eyes!";
+        break;
+
+    case SPELL_CURSE:
+
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+
+        if (mag_savingthrow(victim, savetype)) {
+            send_to_char(NOEFFECT, ch);
+            act("&7&b$n tries to curse you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
+            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+
+        eff[0].location = APPLY_HITROLL;
+        eff[0].duration = 5 + (skill / 14);  /* max 12 */
+        eff[0].modifier = -1 - (skill / 50); /* max -3 */
+        SET_FLAG(eff[0].flags, EFF_CURSE);
+        eff[1].location = APPLY_DAMROLL;
+        eff[1].duration = eff[0].duration;
+        eff[1].modifier = eff[0].modifier;
+        accum_effect = TRUE;
+        to_char = "You curse $N! Muahahah!";
+        to_room = "$N briefly glows red!";
+        to_vict = "You feel very uncomfortable.";
         break;
 
     case SPELL_DARK_PRESENCE:
@@ -1246,31 +1467,36 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&1$N's&1 skin toughens into a dark red hide.&0";
         break;
 
-    case SPELL_ELEMENTAL_WARDING:
+    case SPELL_DETECT_ALIGN:
 
-        if (is_abbrev(buf2, "fire")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
-            to_vict = "You are warded from &1fire&0.";
-            to_char = "You protect $N from &1fire&0.";
-        } else if (is_abbrev(buf2, "cold")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_COLD);
-            to_vict = "You are warded from the &4cold&0.";
-            to_char = "You protect $N from the &4cold&0.";
-        } else if (is_abbrev(buf2, "air")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_AIR);
-            to_vict = "You are warded from &6&bair&0.";
-            to_char = "You protect $N from &6&bair&0.";
-        } else if (is_abbrev(buf2, "earth")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_EARTH);
-            to_vict = "You are warded from &3earth&0.";
-            to_char = "You protect $N from &3earth&0.";
-        } else {
-            send_to_char("What element do you want to ward against?\r\n", ch);
-            return 0;
-        }
-
-        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        SET_FLAG(eff[0].flags, EFF_DETECT_ALIGN);
+        eff[0].duration = 5 + (skill / 10); /* max 15 */
+        to_char = "$N can determine alignment.";
         to_room = "&7&b$N&7&b glows briefly.&0";
+        to_vict = "Your eyes tingle.";
+        break;
+
+    case SPELL_DETECT_INVIS:
+
+        SET_FLAG(eff[0].flags, EFF_DETECT_INVIS);
+        eff[0].location = APPLY_PERCEPTION;
+        eff[0].modifier = 10;
+        eff[0].duration = 5 + (skill / 10); /* max 15 */
+        to_vict = "Your eyes tingle.";
+        break;
+
+    case SPELL_DETECT_MAGIC:
+
+        SET_FLAG(eff[0].flags, EFF_DETECT_MAGIC);
+        eff[0].duration = 5 + (skill / 10); /* max 15 */
+        to_vict = "Your eyes tingle.";
+        break;
+
+    case SPELL_DETECT_POISON:
+
+        SET_FLAG(eff[0].flags, EFF_DETECT_POISON);
+        eff[0].duration = 5 + (skill / 10); /* max 15 */
+        to_vict = "Your eyes tingle.";
         break;
 
     case SPELL_DISEASE:
@@ -1299,49 +1525,56 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
         break;
 
-    case SPELL_ENDURANCE:
-    case SPELL_LESSER_ENDURANCE:
-    case SPELL_GREATER_ENDURANCE:
-    case SPELL_VITALITY:
-    case SPELL_GREATER_VITALITY:
-    case SPELL_DRAGONS_HEALTH:
+    case SPELL_ELEMENTAL_WARDING:
 
-        if (affected_by_spell(victim, SPELL_LESSER_ENDURANCE) || affected_by_spell(victim, SPELL_ENDURANCE) ||
-            affected_by_spell(victim, SPELL_GREATER_ENDURANCE) || affected_by_spell(victim, SPELL_VITALITY) ||
-            affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH)) {
-            send_to_char("Nothing happens!\r\n", ch);
-            return CAST_RESULT_CHARGE;
+        if (is_abbrev(buf2, "fire")) {
+            SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
+            to_vict = "You are warded from &1fire&0.";
+            to_char = "You protect $N from &1fire&0.";
+        } else if (is_abbrev(buf2, "cold")) {
+            SET_FLAG(eff[0].flags, EFF_PROT_COLD);
+            to_vict = "You are warded from the &4cold&0.";
+            to_char = "You protect $N from the &4cold&0.";
+        } else if (is_abbrev(buf2, "air")) {
+            SET_FLAG(eff[0].flags, EFF_PROT_AIR);
+            to_vict = "You are warded from &6&bair&0.";
+            to_char = "You protect $N from &6&bair&0.";
+        } else if (is_abbrev(buf2, "earth")) {
+            SET_FLAG(eff[0].flags, EFF_PROT_EARTH);
+            to_vict = "You are warded from &3earth&0.";
+            to_char = "You protect $N from &3earth&0.";
+        } else {
+            send_to_char("What element do you want to ward against?\r\n", ch);
+            return 0;
         }
 
-        eff[0].location = APPLY_HIT;
-        eff[0].modifier = get_vitality_hp_gain(ch, spellnum);
-        eff[0].duration = get_spell_duration(ch, spellnum);
-
-        to_vict = get_vitality_vict_message(spellnum);
-        to_room = "$N looks healthier than before!";
-        to_char = "$N looks healthier than before!";
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        to_room = "&7&b$N&7&b glows briefly.&0";
         break;
 
-    case SPELL_WINGS_OF_HEAVEN:
+    case SPELL_ENLARGE:
 
-        if (affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
-            send_to_char("You already have something sticking out of your back.\r\n", victim);
+        if (IS_NPC(victim))
             return CAST_RESULT_CHARGE;
-        }
 
-        SET_FLAG(eff[0].flags, EFF_FLY);
-        eff[0].duration = 10 + (skill / 5); /* max 30 */
+        eff[0].location = APPLY_SIZE;
+        eff[0].modifier = 1;
+        SET_FLAG(eff[0].flags, EFF_ENLARGE);
+        eff[0].duration = 1 + (skill / 40);
 
+        eff[1].location = APPLY_CON;
+        eff[1].modifier = 10;
+        eff[1].duration = eff[0].duration;
+
+        eff[2].location = APPLY_STR;
+        eff[2].modifier = 10;
+        eff[2].duration = eff[0].duration;
+
+        refresh = TRUE;
         to_vict =
-            "&7&bBeautiful bright white wings unfurl behind you as you lift "
-            "into the air.&0";
-        to_room =
-            "&7&bBeautiful bright white wings unfurl from $n's&7&b back, "
-            "lifting $m into the air.&0";
-        if (AWAKE(victim)) {
-            GET_STANCE(victim) = STANCE_ALERT;
-            GET_POS(victim) = POS_FLYING;
-        }
+            "&9&bYour skin starts to itch as you enlarge to twice your "
+            "normal size!&0";
+        to_room = "&9&b$N's skin ripples as $E enlarges to twice $S normal size!&0";
         break;
 
     case SPELL_ENTANGLE:
@@ -1392,6 +1625,47 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             "depended upon.";
         break;
 
+    case SPELL_FARSEE:
+
+        SET_FLAG(eff[0].flags, EFF_FARSEE);
+        eff[0].duration = 5 + (skill / 10); /* max 15 */
+        to_vict = "Your sight improves dramatically.";
+        to_room = "$N's pupils dilate rapidly for a second.";
+        break;
+
+    case SPELL_FIRESHIELD:
+
+        if (EFF_FLAGGED(ch, EFF_COLDSHIELD)) {
+            cprintf(ch, "The shield of ice around %s body negates your spell.\r\n",
+                    ch == victim ? "your" : HSHR(victim));
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_FIRESHIELD);
+        eff[0].duration = skill / 20; /* max 5 */
+        refresh = FALSE;
+        to_vict = "&1A burning shield of f&bi&3r&7e&0&1 explodes from your body!&0";
+        to_room = "&1A burning shield of f&bi&3r&7e&0&1 explodes from $N&0&1's body!&0";
+        break;
+
+    case SPELL_FLY:
+
+        SET_FLAG(eff[0].flags, EFF_FLY);
+        eff[0].duration = 5 + (skill / 10); /* max 15 */
+        if (too_heavy_to_fly(victim)) {
+            to_vict = "You feel somewhat lighter.";
+            to_char = "$N remains earthbound.";
+        } else {
+            to_vict = "&7You fly through the air, as free as a bird!&0";
+            to_room = "&6&b$N lifts into the air.&0";
+            to_char = "&6&b$N lifts into the air.&0";
+            if (AWAKE(victim)) {
+                GET_POS(victim) = POS_FLYING;
+                GET_STANCE(victim) = STANCE_ALERT;
+            }
+        }
+        break;
+
     case SPELL_GAIAS_CLOAK:
 
         /* check for exclusion of other armor spells */
@@ -1421,6 +1695,29 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&7&b$N seems taller in the light, and appears like unto a god.&0";
         break;
 
+    case SPELL_HARNESS:
+
+        if (EFF_FLAGGED(victim, EFF_HARNESS)) {
+            send_to_char("You have already harnessed your energy!\r\n", victim);
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_HARNESS);
+        eff[0].duration = (skill >= 20); /* max 1 */
+        refresh = FALSE;
+        to_vict = "&4&bYour veins begin to pulse with energy!&0";
+        to_room = "&4&b$N&4&b's veins bulge as a surge of energy rushes into $M!&0";
+        break;
+
+    case SPELL_HASTE:
+
+        SET_FLAG(eff[0].flags, EFF_HASTE);
+        eff[0].duration = 2 + (skill / 21); /* max 6 */
+        to_char = "&1$N starts to move with uncanny speed!&0";
+        to_vict = "&1You start to move with uncanny speed!&0";
+        to_room = "&1$N starts to move with uncanny speed!&0";
+        break;
+
     case SPELL_ICE_ARMOR:
 
         /* check for exclusion of other armor spells */
@@ -1432,6 +1729,27 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].duration = 5 + (skill / 20); /* max 10 */
         to_vict = "&4Your body is encased in layer of &7&bsolid ice.&0";
         to_room = "&4$n's&4 body is encased in a layer of &7&bsolid ice.&0";
+        break;
+
+    case SPELL_INFRAVISION:
+
+        if (affected_by_spell(victim, SPELL_NIGHT_VISION)) {
+            if (victim == ch) {
+                send_to_char("You are already enchanted with enhanced vision.\r\n", ch);
+                act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            } else {
+                act("$N seems to be able to sort of see enough already.", FALSE, ch, 0, victim, TO_CHAR);
+                act("You are already enchanted with enhanced vision.", FALSE, ch, 0, victim, TO_VICT);
+                act("$n looks a little overprotective.", TRUE, ch, 0, victim, TO_NOTVICT);
+            }
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_INFRAVISION);
+        eff[0].duration = 5 + (skill / 10); /* max 15 */
+        to_char = "$N's eyes glow red.";
+        to_vict = "Your eyes glow red.";
+        to_room = "$N's eyes glow red.";
         break;
 
     case SPELL_INSANITY:
@@ -1453,6 +1771,35 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "You cause &5$N to snap... A crazed gleam fills $S eyes.&0";
         to_vict = "&5You go out of your &bMIND!&0";
         to_room = "&5$N's&5 psyche snaps... A crazed gleam fills $S eyes.&0";
+        break;
+
+    case SPELL_INVISIBLE:
+    case SPELL_MASS_INVIS:
+        eff[0].type = SPELL_INVISIBLE;
+        eff[0].modifier = 40;
+        eff[0].duration = 9 + (skill / 9); /* max 20 */
+        eff[0].location = APPLY_AC;
+        SET_FLAG(eff[0].flags, EFF_INVISIBLE);
+        to_vict = "You vanish.";
+        to_room = "$N slowly fades out of existence.";
+        break;
+
+    case SPELL_LEVITATE:
+
+        SET_FLAG(eff[0].flags, EFF_LEVITATE);
+        eff[0].duration = 5 + (skill / 10);
+        to_char = "&6$N&0&6 floats up into the air.&0";
+        to_vict = "&6You float up into the air.&0";
+        to_room = "&6$N&0&6 floats up into the air.&0";
+        break;
+
+    case SPELL_MAGIC_TORCH:
+
+        SET_FLAG(eff[0].flags, EFF_LIGHT);
+        eff[0].duration = 5 + (skill / 2); /* max 55 */
+        refresh = FALSE;
+        to_vict = "&1A magical flame bursts into focus, lighting the area.&0";
+        to_room = "&1A magical flame bursts into focus, lighting the area.&0";
         break;
 
     case SPELL_MESMERIZE:
@@ -1490,199 +1837,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         remember(victim, ch);    /* Victim will be angry about this */
         break;
 
-    case SPELL_MIRAGE:
-
-        /* Need a check to make sure no other conflicting armor spells can help as
-         * well */
-        if (check_armor_spells(ch, victim, spellnum))
-            return CAST_RESULT_CHARGE;
-
-        eff[0].location = APPLY_AC;
-        eff[0].modifier = 5 + (skill / 16); /* max 11 */
-        eff[0].duration = 5 + (skill / 25); /* max 9 */
-        to_room =
-            "&1$n's&1 form begins to waver as a wave of heat blurs the air "
-            "around $m.&0";
-        to_vict =
-            "&1Your form begins to waver as a wave of heat blurs the air "
-            "around you.&0";
-        break;
-
-    case SPELL_NEGATE_COLD:
-
-        SET_FLAG(eff[0].flags, EFF_NEGATE_COLD);
-        eff[0].duration = 2 + (skill / 20); /* max 7 */
-        refresh = FALSE;
-        to_vict = "&4&bYour body becomes impervious to the cold!&0";
-        to_room = "&4$n&4's is protected by a &3&bwarm&0&4-looking magical field.&0";
-        break;
-
-    case SPELL_NEGATE_HEAT:
-
-        SET_FLAG(eff[0].flags, EFF_NEGATE_HEAT);
-        eff[0].duration = 2 + (skill / 20); /* max 7 */
-        refresh = FALSE;
-        to_vict = "&6Your body becomes impervious to all forms of heat!&0";
-        to_room = "&6$n&6 is surrounded by a frigid crystalline field.&0";
-        break;
-
-    case SPELL_NIGHT_VISION:
-
-        if (affected_by_spell(victim, SPELL_INFRAVISION)) {
-            if (ch == victim)
-                act("You are already enchanted with enhanced vision.", FALSE, ch, 0, 0, TO_CHAR);
-            else
-                act("$N is already enchanted with enhanced vision.", FALSE, ch, 0, victim, TO_CHAR);
-            act("$n looks a little overprotective.", TRUE, ch, 0, victim, TO_ROOM);
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_ULTRAVISION);
-        eff[0].duration = (skill / 21); /* max 4 */
-        to_room = "$N's eyes glow a dim neon green.";
-        to_vict = "&9&bYour vision sharpens a bit.";
-        break;
-
-    case SPELL_SMOKE:
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-
-        if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            act("&9&b$n&9&b resists your&9&b column of smoke!&0", FALSE, ch, 0, 0, TO_CHAR);
-            act("&9&bYou&9&b resist $n's&9&b column of smoke!&0", FALSE, ch, 0, victim, TO_VICT);
-            act("&9&b$N&9&b resists $n's&9&b column of smoke!&0", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE;
-        } else if (mag_savingthrow(victim, savetype)) {
-            eff[0].location = APPLY_HITROLL;
-            eff[0].modifier = -1;
-            eff[0].duration = 0;
-            eff[1].location = APPLY_AC;
-            eff[1].modifier = -10;
-            eff[1].duration = 0;
-
-            to_char = "You temporarily choke $N with your column of smoke.";
-            to_vict = "&9You have been temporarily choked by $n's&9&b column of smoke!&0";
-            to_room = "&9&b$N&9&b is slightly choked by $n's&9&b column of smoke!&0";
-        } else {
-            eff[0].location = APPLY_HITROLL;
-            eff[0].modifier = -4;
-            eff[0].duration = 2;
-            SET_FLAG(eff[0].flags, EFF_BLIND);
-            eff[1].location = APPLY_AC;
-            eff[1].modifier = -40;
-            eff[1].duration = 2;
-            SET_FLAG(eff[1].flags, EFF_BLIND);
-
-            to_room = "&9&b$N&9&b is blinded by $n's&9&b column of smoke!&0";
-            to_vict = "&9You have been blinded by $n's&9&b column of smoke&0";
-            to_char = "&9&b$N&9&b is blinded by your column of smoke!&0";
-        }
-        break;
-
-    case SPELL_VAPORFORM:
-
-        if (GET_COMPOSITION(victim) != COMP_FLESH) {
-            send_to_char("Your body cannot sustain this change.\r\n", victim);
-            return CAST_RESULT_CHARGE;
-        }
-
-        eff[0].location = APPLY_COMPOSITION;
-        eff[0].modifier = COMP_MIST;
-        eff[0].duration = 2 + (skill / 25); /* max 6 */
-        refresh = FALSE;
-        to_vict = "&6&bYour body sublimates into a &7cloud &6of &7vapor&6.&0";
-        to_room =
-            "&6&b$N's body dematerializes into a translucent &7cloud &6of "
-            "&7vapor&6!&0";
-        break;
-
-    case SPELL_WATERFORM:
-
-        if (GET_COMPOSITION(victim) != COMP_FLESH) {
-            send_to_char("Your body cannot sustain this change.\r\n", victim);
-            return CAST_RESULT_CHARGE;
-        }
-
-        eff[0].location = APPLY_COMPOSITION;
-        eff[0].modifier = COMP_WATER;
-        eff[0].duration = 2 + (skill / 20); /* max 7 */
-        refresh = FALSE;
-        to_vict = "&4&bYour body liquifies.&0";
-        to_room =
-            "&4&b$N&4&b's body wavers a bit, slowly changing into a "
-            "&0&4liquid&b state!&0";
-        break;
-
-    case SPELL_WINGS_OF_HELL:
-
-        if (affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
-            send_to_char("You already have something sticking out of your back.\r\n", victim);
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_FLY);
-        eff[0].duration = 10 + (skill / 5);
-
-        to_vict = "&1&bHuge leathery &9bat-like&1 wings sprout from your back.&0";
-        to_room = "&1&bHuge leathery &9bat-like&1 wings sprout out of $n's&1&b back.&0";
-        if (AWAKE(victim)) {
-            GET_STANCE(victim) = STANCE_ALERT;
-            GET_POS(victim) = POS_FLYING;
-        }
-        break;
-
-        /* --- SORTED --- */
-
-    case SPELL_PRAYER:
-
-        /* I think this may be demonic aspects counter part */
-        eff[0].location = APPLY_HIT;
-        /* starts at (level / 3) and goes to (level / 1) */
-        eff[0].modifier = skill / (1 + ((100 - skill) / 30));
-        eff[0].duration = 5 + (skill / 14); /* max 12 */
-        eff[1].location = APPLY_SAVING_SPELL;
-        eff[1].modifier = -5 - (skill / 14); /* max -12 */
-        eff[1].duration = eff[0].duration;
-
-        /* Modify hp by alignment */
-        eff[0].modifier *= GET_ALIGNMENT(victim) / 1000.0;
-
-        to_vict = "Your prayer is answered...\r\nYou feel full of life!";
-        to_room = "$N perks up, looking full of life.";
-        break;
-
-    case SPELL_MAGIC_TORCH:
-
-        SET_FLAG(eff[0].flags, EFF_LIGHT);
-        eff[0].duration = 5 + (skill / 2); /* max 55 */
-        refresh = FALSE;
-        to_vict = "&1A magical flame bursts into focus, lighting the area.&0";
-        to_room = "&1A magical flame bursts into focus, lighting the area.&0";
-        break;
-
-    case SPELL_CIRCLE_OF_LIGHT:
-
-        SET_FLAG(eff[0].flags, EFF_LIGHT);
-        eff[0].duration = 5 + (skill / 2); /* max 55 */
-        refresh = FALSE;
-        to_vict = "&7&bA bright white circle of light begins hovering about your head.&0";
-        to_room = "&7&bA bright white circle of light appears over $N's&7&b head.";
-        break;
-
-    case SPELL_HARNESS:
-
-        if (EFF_FLAGGED(victim, EFF_HARNESS)) {
-            send_to_char("You have already harnessed your energy!\r\n", victim);
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_HARNESS);
-        eff[0].duration = (skill >= 20); /* max 1 */
-        refresh = FALSE;
-        to_vict = "&4&bYour veins begin to pulse with energy!&0";
-        to_room = "&4&b$N&4&b's veins bulge as a surge of energy rushes into $M!&0";
-        break;
-
     case SPELL_MINOR_GLOBE:
 
         if (EFF_FLAGGED(victim, EFF_MAJOR_GLOBE)) {
@@ -1698,53 +1852,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "&1Your shimmering globe wraps around $N&0&1's body.&0";
         to_vict = "&1A shimmering globe wraps around your body.&0";
         to_room = "&1A shimmering globe wraps around $N&0&1's body.&0";
-        break;
-
-    case SPELL_MAJOR_GLOBE:
-
-        if (EFF_FLAGGED(victim, EFF_MINOR_GLOBE)) {
-            act("$N's minor globe of invulnerability resists your spell!", FALSE, ch, 0, victim, TO_CHAR);
-            act("Your minor globe of invulnerability resists $n's spell.", FALSE, ch, 0, victim, TO_VICT);
-            act("$n tries to add an additional globe of protection to $N.", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_MAJOR_GLOBE);
-        eff[0].duration = 4 + (skill / 20); /* max 9 */
-        refresh = FALSE;
-        to_char = "&1&bYour shimmering globe of force wraps around $N&1&b's body.&0";
-        to_vict = "&1&bA shimmering globe of force wraps around your body.&0";
-        to_room = "&1&bA shimmering globe of force wraps around $N&1&b's body.&0";
-        break;
-
-    case SPELL_COLDSHIELD:
-
-        if (EFF_FLAGGED(ch, EFF_FIRESHIELD)) {
-            cprintf(ch, "The shield of fire around %s body negates your spell.\r\n",
-                    ch == victim ? "your" : HSHR(victim));
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_COLDSHIELD);
-        eff[0].duration = skill / 20; /* max 5 */
-        refresh = FALSE;
-        to_vict = "&4A jagged formation of i&bc&7e sh&4ard&0&4s forms around you.&0";
-        to_room = "&4A jagged formation of i&bc&7e sh&4ard&0&4s forms around $N&0&4.&0";
-        break;
-
-    case SPELL_FIRESHIELD:
-
-        if (EFF_FLAGGED(ch, EFF_COLDSHIELD)) {
-            cprintf(ch, "The shield of ice around %s body negates your spell.\r\n",
-                    ch == victim ? "your" : HSHR(victim));
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_FIRESHIELD);
-        eff[0].duration = skill / 20; /* max 5 */
-        refresh = FALSE;
-        to_vict = "&1A burning shield of f&bi&3r&7e&0&1 explodes from your body!&0";
-        to_room = "&1A burning shield of f&bi&3r&7e&0&1 explodes from $N&0&1's body!&0";
         break;
 
     case SPELL_MINOR_PARALYSIS:
@@ -1773,387 +1880,97 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&7&bAll motion in $N&7&b's body grinds to a halt.&0";
         break;
 
-    case SPELL_RAY_OF_ENFEEB:
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-        if (EFF_FLAGGED(victim, EFF_RAY_OF_ENFEEB)) {
-            act("$N is already feeble enough dammit.", FALSE, ch, 0, victim, TO_CHAR);
-            act("$n seems to be looking at you funny.", FALSE, ch, 0, victim, TO_VICT);
-            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+    case SPELL_MAJOR_GLOBE:
+
+        if (EFF_FLAGGED(victim, EFF_MINOR_GLOBE)) {
+            act("$N's minor globe of invulnerability resists your spell!", FALSE, ch, 0, victim, TO_CHAR);
+            act("Your minor globe of invulnerability resists $n's spell.", FALSE, ch, 0, victim, TO_VICT);
+            act("$n tries to add an additional globe of protection to $N.", TRUE, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         }
-        if (mag_savingthrow(victim, savetype)) {
-            act("$N resists your feeble attempt!", FALSE, ch, 0, victim, TO_CHAR);
-            act("$n tries to drain your strength, but you resist!", FALSE, ch, 0, victim, TO_VICT);
-            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
 
-        eff[0].location = APPLY_STR;
-        eff[0].duration = 8 + (skill / 20);   /* max 13 */
-        eff[0].modifier = -15 - (skill / 10); /* max -25 */
-        SET_FLAG(eff[0].flags, EFF_RAY_OF_ENFEEB);
-        to_vict = "You feel the strength flow out of your body.";
-        to_room = "$N turns pale and starts to sag.";
-        to_char = "$N turns pale and starts to sag.";
+        SET_FLAG(eff[0].flags, EFF_MAJOR_GLOBE);
+        eff[0].duration = 4 + (skill / 20); /* max 9 */
+        refresh = FALSE;
+        to_char = "&1&bYour shimmering globe of force wraps around $N&1&b's body.&0";
+        to_vict = "&1&bA shimmering globe of force wraps around your body.&0";
+        to_room = "&1&bA shimmering globe of force wraps around $N&1&b's body.&0";
         break;
 
-    case SPELL_LEVITATE:
+    case SPELL_MIRAGE:
 
-        SET_FLAG(eff[0].flags, EFF_LEVITATE);
-        eff[0].duration = 5 + (skill / 10);
-        to_char = "&6$N&0&6 floats up into the air.&0";
-        to_vict = "&6You float up into the air.&0";
-        to_room = "&6$N&0&6 floats up into the air.&0";
-        break;
-
-    case SPELL_CHILL_TOUCH:
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-        if (mag_savingthrow(victim, savetype)) {
-            act("$N resists your withering effect!", FALSE, ch, 0, victim, TO_CHAR);
-            act("You resist $n's withering effects!", FALSE, ch, 0, victim, TO_VICT);
-            act("$N resists $n's withering effect!", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-
-        eff[0].location = APPLY_STR;
-        eff[0].duration = 3 + (skill / 20);  /* max 8 */
-        eff[0].modifier = -5 - (skill / 10); /* max -15 */
-
-        to_vict = "You feel your strength wither!";
-        to_char = "$N is withered by your cold!";
-        to_room = "$N withers slightly from $n's cold!";
-        break;
-
-    case SPELL_ARMOR:
-
-        /* check for exclusion of other armor spells */
+        /* Need a check to make sure no other conflicting armor spells can help as
+         * well */
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
         eff[0].location = APPLY_AC;
-        eff[0].modifier = 10 + (skill / 20); /* max 15 */
-        eff[0].duration = 10 + (skill / 50); /* max 12 */
-        to_vict = "You feel someone protecting you.";
-        to_room = "$n calls upon $s gods to protect $N.";
-        break;
-
-    case SPELL_SILENCE:
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-
-        if (MOB_FLAGGED(victim, MOB_NOSILENCE)) {
-            send_to_char("You seem unable to silence this one.\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-
-        if (mag_savingthrow(victim, savetype)) {
-            act("$N resists your pitiful attempt to silence $M.", FALSE, ch, 0, victim, TO_CHAR);
-            act("&7&b$n tries to silence you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
-            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_SILENCE);
-        eff[0].duration = 2 + (skill / 15); /* max 8 */
-        to_char = "You silence $N!";
+        eff[0].modifier = 5 + (skill / 16); /* max 11 */
+        eff[0].duration = 5 + (skill / 25); /* max 9 */
+        to_room =
+            "&1$n's&1 form begins to waver as a wave of heat blurs the air "
+            "around $m.&0";
         to_vict =
-            "&9&bYour throat begins to close, sealing off all chance of "
-            "communication.&0";
-        to_room = "&0$N&7 squeaks as all sound is squelched from $S throat.&0";
+            "&1Your form begins to waver as a wave of heat blurs the air "
+            "around you.&0";
         break;
 
-    case SPELL_SOULSHIELD:
+    case SPELL_MISDIRECTION:
+        SET_FLAG(eff[0].flags, EFF_MISDIRECTION);
+        eff[0].duration = 2 + skill / 4;
+        to_vict =
+            "You feel like a stack of little illusions all pointing in "
+            "different directions.";
+        break;
 
-        SET_FLAG(eff[0].flags, EFF_SOULSHIELD);
-        eff[0].duration = 2 + (skill / 10); /* max 12 */
+    case SPELL_NEGATE_COLD:
+
+        SET_FLAG(eff[0].flags, EFF_NEGATE_COLD);
+        eff[0].duration = 2 + (skill / 20); /* max 7 */
         refresh = FALSE;
-
-        if (IS_GOOD(victim)) {
-            to_vict = "&3&bA bright golden aura surrounds your body!&0";
-            to_room = "&3&bA bright golden aura surrounds $N's body!&0";
-        } else if (IS_EVIL(victim)) {
-            to_vict = "&1&bA &0&1dark red&b aura engulfs you!&0";
-            to_room = "&1&bA &0&1dark red&b aura engulfs $N's body!&0";
-        } else {
-            act("A brief aura surrounds you, then fades.", FALSE, ch, 0, victim, TO_VICT);
-            act("A brief aura surrounds $n, then fades.", TRUE, victim, 0, 0, TO_ROOM);
-            return CAST_RESULT_CHARGE;
-        }
+        to_vict = "&4&bYour body becomes impervious to the cold!&0";
+        to_room = "&4$n&4's is protected by a &3&bwarm&0&4-looking magical field.&0";
         break;
 
-    case SPELL_REDUCE:
+    case SPELL_NEGATE_HEAT:
 
-        if (IS_NPC(victim))
-            return CAST_RESULT_CHARGE;
-
-        eff[0].location = APPLY_SIZE;
-        eff[0].modifier = -1;
-        SET_FLAG(eff[0].flags, EFF_REDUCE);
-        eff[0].duration = 1 + (skill / 40);
-
-        eff[1].location = APPLY_CON;
-        eff[1].modifier = -10;
-        eff[1].duration = eff[0].duration;
-
-        eff[2].location = APPLY_STR;
-        eff[2].modifier = -10;
-        eff[2].duration = eff[0].duration;
-
-        refresh = TRUE;
-        to_vict =
-            "&1&bYour skin starts to itch as you reduce to half your normal "
-            "size.&0";
-        to_room = "&1&b$N's skin ripples as $E shrinks to half $S normal size!&0";
-        break;
-
-    case SPELL_ENLARGE:
-
-        if (IS_NPC(victim))
-            return CAST_RESULT_CHARGE;
-
-        eff[0].location = APPLY_SIZE;
-        eff[0].modifier = 1;
-        SET_FLAG(eff[0].flags, EFF_ENLARGE);
-        eff[0].duration = 1 + (skill / 40);
-
-        eff[1].location = APPLY_CON;
-        eff[1].modifier = 10;
-        eff[1].duration = eff[0].duration;
-
-        eff[2].location = APPLY_STR;
-        eff[2].modifier = 10;
-        eff[2].duration = eff[0].duration;
-
-        refresh = TRUE;
-        to_vict =
-            "&9&bYour skin starts to itch as you enlarge to twice your "
-            "normal size!&0";
-        to_room = "&9&b$N's skin ripples as $E enlarges to twice $S normal size!&0";
-        break;
-
-    case SPELL_STONE_SKIN:
-
-        /* what the hell does the modifier/location for this spell do? */
-        /* It acts as a hit counter; it's decremented by decrease_modifier()
-           everytime the victim is hit, and when it reaches 0, stone skin
-           "wears off" before the duration is up. */
-
-        eff[0].location = APPLY_NONE;
-        eff[0].modifier = 7 + (skill / 16); /* max 13 */
-        eff[0].duration = 2;
-        SET_FLAG(eff[0].flags, EFF_STONE_SKIN);
-
+        SET_FLAG(eff[0].flags, EFF_NEGATE_HEAT);
+        eff[0].duration = 2 + (skill / 20); /* max 7 */
         refresh = FALSE;
-        to_char = "&9&b$N's skin hardens and turns to stone!&0";
-        to_vict = "&9&bYour skin hardens and turns to stone!&0";
-        to_room = "&9&b$N's skin hardens and turns to stone!&0";
+        to_vict = "&6Your body becomes impervious to all forms of heat!&0";
+        to_room = "&6$n&6 is surrounded by a frigid crystalline field.&0";
         break;
 
-    case SPELL_HASTE:
-
-        SET_FLAG(eff[0].flags, EFF_HASTE);
-        eff[0].duration = 2 + (skill / 21); /* max 6 */
-        to_char = "&1$N starts to move with uncanny speed!&0";
-        to_vict = "&1You start to move with uncanny speed!&0";
-        to_room = "&1$N starts to move with uncanny speed!&0";
+    case SPELL_NATURES_EMBRACE:
+        SET_FLAG(eff[0].flags, EFF_CAMOUFLAGED);
+        eff[0].duration = (skill / 3) + 1; /* range (1, 34) */
+        to_vict = "&9&8You phase into the landscape.&0";
+        to_room = "&9&8$n&9&8 phases into the landscape.&0";
         break;
 
-    case SPELL_BLUR:
-
-        SET_FLAG(eff[0].flags, EFF_BLUR);
-        eff[0].duration = 2 + (skill / 21); /* max 6 */
-        to_vict = "&7The world seems to slow as you start moving with unnatural speed!&0";
-        to_room = "&7$N's image blurs in unnatural speed!&0";
-        break;
-
-    case SPELL_BLESS:
-
-        if (GET_LEVEL(ch) < LVL_IMMORT && !IS_GOOD(ch) && casttype == CAST_SPELL) {
-            send_to_char("The gods have forsaken you in your evilness!\r\n", ch);
-            act("There is no effect.  $U$n adopts a dejected look.", TRUE, ch, 0, 0, TO_ROOM);
-            return CAST_RESULT_CHARGE;
-        }
-
-        if (affected_by_spell(victim, SPELL_DARK_PRESENCE) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
-            affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION) ||
-            affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
-            act("$N is already blessed by some dark gods.", FALSE, ch, 0, victim, TO_CHAR);
-            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
-            return CAST_RESULT_CHARGE;
-        }
-
-        /* Alignment Checks! */
-        if (IS_EVIL(victim)) {
-            act("You can't bless evil people!", FALSE, ch, 0, 0, TO_CHAR);
-            act("$n tries to awaken your inner angel.\r\nSilly isn't $e?", FALSE, ch, 0, victim, TO_VICT);
-            act("$n fails to awaken $N's inner angel.", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE;
-        }
-
+    case SPELL_NATURES_GUIDANCE:
         eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = 1 + (skill >= 50);
-        eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
-        eff[1].location = APPLY_SAVING_SPELL;
-        eff[1].modifier = -2 - (skill / 10);
-        eff[1].duration = eff[0].duration;
-        SET_FLAG(eff[2].flags, EFF_BLESS);
-        eff[2].duration = eff[0].duration;
-        to_char = "$N is inspired by your gods.";
-        to_vict = "Your inner angel is inspired by $n.\r\nYou feel righteous.";
-        to_room = "$N is inspired to do good by $n.";
+        eff[0].modifier = eff[0].duration = (skill / 20) + 1; /* range (1, 6) */
+        /* Self only */
+        to_vict = "You feel a higher power guiding your hands.";
+        to_room = "$N calls on guidance from a higher power.";
         break;
 
-    case SPELL_SUNRAY:
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
+    case SPELL_NIGHT_VISION:
 
-        if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            send_to_char("You seem unable to blind this creature.\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-        if (mag_savingthrow(victim, savetype)) {
-            act("$N resists your pitiful attempt to blind $M.", FALSE, ch, 0, victim, TO_CHAR);
-            act("&7&b$n tries to blind you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
-            act("&7&b$n directs the rays of the sun at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-
-        eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = -4;
-        eff[0].duration = 2;
-        SET_FLAG(eff[0].flags, EFF_BLIND);
-
-        eff[1].location = APPLY_AC;
-        eff[1].modifier = -40;
-        eff[1].duration = 2;
-        SET_FLAG(eff[1].flags, EFF_BLIND);
-
-        to_char = "&9&bYou have blinded $N with your sunray!&0";
-        to_room = "&9&b$N&9&b seems to be blinded!&0";
-        to_vict = "&9&bYou have been blinded!&0";
-        break;
-
-    case SPELL_BLINDNESS:
-
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-
-        if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            send_to_char("You seem unable to blind this creature.\r\n", ch);
+        if (affected_by_spell(victim, SPELL_INFRAVISION)) {
+            if (ch == victim)
+                act("You are already enchanted with enhanced vision.", FALSE, ch, 0, 0, TO_CHAR);
+            else
+                act("$N is already enchanted with enhanced vision.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, victim, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
 
-        if (mag_savingthrow(victim, savetype)) {
-            act("$N resists your pitiful attempt to blind $M.", FALSE, ch, 0, victim, TO_CHAR);
-            act("&7&b$n tries to blind you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
-            act("&7&b$n tries to blind $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-
-        eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = -4;
-        eff[0].duration = 2;
-        SET_FLAG(eff[0].flags, EFF_BLIND);
-
-        eff[1].location = APPLY_AC;
-        eff[1].modifier = -40;
-        eff[1].duration = 2;
-        SET_FLAG(eff[1].flags, EFF_BLIND);
-
-        to_char = "&9&b$N&9&b is blinded by you!&0";
-        to_room = "&9&b$N&9&b is blinded by $n!&0";
-        to_vict = "&9&bYou have been blinded!&0";
-        break;
-
-    case SPELL_CURSE:
-
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-
-        if (mag_savingthrow(victim, savetype)) {
-            send_to_char(NOEFFECT, ch);
-            act("&7&b$n tries to curse you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
-            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-
-        eff[0].location = APPLY_HITROLL;
-        eff[0].duration = 5 + (skill / 14);  /* max 12 */
-        eff[0].modifier = -1 - (skill / 50); /* max -3 */
-        SET_FLAG(eff[0].flags, EFF_CURSE);
-        eff[1].location = APPLY_DAMROLL;
-        eff[1].duration = eff[0].duration;
-        eff[1].modifier = eff[0].modifier;
-        accum_effect = TRUE;
-        to_char = "You curse $N! Muahahah!";
-        to_room = "$N briefly glows red!";
-        to_vict = "You feel very uncomfortable.";
-        break;
-
-    case SPELL_DETECT_ALIGN:
-
-        SET_FLAG(eff[0].flags, EFF_DETECT_ALIGN);
-        eff[0].duration = 5 + (skill / 10); /* max 15 */
-        to_char = "$N can determine alignment.";
-        to_room = "&7&b$N&7&b glows briefly.&0";
-        to_vict = "Your eyes tingle.";
-        break;
-
-    case SPELL_DETECT_INVIS:
-
-        SET_FLAG(eff[0].flags, EFF_DETECT_INVIS);
-        eff[0].location = APPLY_PERCEPTION;
-        eff[0].modifier = 10;
-        eff[0].duration = 5 + (skill / 10); /* max 15 */
-        to_vict = "Your eyes tingle.";
-        break;
-
-    case SPELL_DETECT_MAGIC:
-
-        SET_FLAG(eff[0].flags, EFF_DETECT_MAGIC);
-        eff[0].duration = 5 + (skill / 10); /* max 15 */
-        to_vict = "Your eyes tingle.";
-        break;
-
-    case SPELL_DETECT_POISON:
-
-        SET_FLAG(eff[0].flags, EFF_DETECT_POISON);
-        eff[0].duration = 5 + (skill / 10); /* max 15 */
-        to_vict = "Your eyes tingle.";
-        break;
-
-    case SPELL_INFRAVISION:
-
-        if (affected_by_spell(victim, SPELL_NIGHT_VISION)) {
-            if (victim == ch) {
-                send_to_char("You are already enchanted with enhanced vision.\r\n", ch);
-                act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
-            } else {
-                act("$N seems to be able to sort of see enough already.", FALSE, ch, 0, victim, TO_CHAR);
-                act("You are already enchanted with enhanced vision.", FALSE, ch, 0, victim, TO_VICT);
-                act("$n looks a little overprotective.", TRUE, ch, 0, victim, TO_NOTVICT);
-            }
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_INFRAVISION);
-        eff[0].duration = 5 + (skill / 10); /* max 15 */
-        to_char = "$N's eyes glow red.";
-        to_vict = "Your eyes glow red.";
-        to_room = "$N's eyes glow red.";
-        break;
-
-    case SPELL_INVISIBLE:
-    case SPELL_MASS_INVIS:
-        eff[0].type = SPELL_INVISIBLE;
-        eff[0].modifier = 40;
-        eff[0].duration = 9 + (skill / 9); /* max 20 */
-        eff[0].location = APPLY_AC;
-        SET_FLAG(eff[0].flags, EFF_INVISIBLE);
-        to_vict = "You vanish.";
-        to_room = "$N slowly fades out of existence.";
+        SET_FLAG(eff[0].flags, EFF_ULTRAVISION);
+        eff[0].duration = (skill / 21); /* max 4 */
+        to_room = "$N's eyes glow a dim neon green.";
+        to_vict = "&9&bYour vision sharpens a bit.";
         break;
 
     case SPELL_POISON:
@@ -2184,6 +2001,24 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_vict = "You feel very sick.";
         to_room = "$N gets violently ill!";
         to_char = "$N gets violently ill!";
+        break;
+
+    case SPELL_PRAYER:
+
+        /* I think this may be demonic aspects counter part */
+        eff[0].location = APPLY_HIT;
+        /* starts at (level / 3) and goes to (level / 1) */
+        eff[0].modifier = skill / (1 + ((100 - skill) / 30));
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        eff[1].location = APPLY_SAVING_SPELL;
+        eff[1].modifier = -5 - (skill / 14); /* max -12 */
+        eff[1].duration = eff[0].duration;
+
+        /* Modify hp by alignment */
+        eff[0].modifier *= GET_ALIGNMENT(victim) / 1000.0;
+
+        to_vict = "Your prayer is answered...\r\nYou feel full of life!";
+        to_room = "$N perks up, looking full of life.";
         break;
 
     case SPELL_PROT_FROM_EVIL:
@@ -2218,6 +2053,84 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "You surround $N with glyphs of unholy warding.";
         break;
 
+    case SPELL_RAY_OF_ENFEEB:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+        if (EFF_FLAGGED(victim, EFF_RAY_OF_ENFEEB)) {
+            act("$N is already feeble enough dammit.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n seems to be looking at you funny.", FALSE, ch, 0, victim, TO_VICT);
+            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+        if (mag_savingthrow(victim, savetype)) {
+            act("$N resists your feeble attempt!", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n tries to drain your strength, but you resist!", FALSE, ch, 0, victim, TO_VICT);
+            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+
+        eff[0].location = APPLY_STR;
+        eff[0].duration = 8 + (skill / 20);   /* max 13 */
+        eff[0].modifier = -15 - (skill / 10); /* max -25 */
+        SET_FLAG(eff[0].flags, EFF_RAY_OF_ENFEEB);
+        to_vict = "You feel the strength flow out of your body.";
+        to_room = "$N turns pale and starts to sag.";
+        to_char = "$N turns pale and starts to sag.";
+        break;
+
+    case SPELL_REBUKE_UNDEAD:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+
+        if (GET_LIFEFORCE(victim) != LIFE_UNDEAD) {
+            act("$n seems confused as to your state of mortality.", FALSE, ch, 0, victim, TO_VICT);
+            act("$n tries to rebuke $N's buried undead nature.  Must be buried too deep.", TRUE, ch, 0, victim,
+                TO_ROOM);
+            send_to_char("Your rebuke elicits nothing but a raised eyebrow.\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+        if (mag_savingthrow(victim, SAVING_SPELL)) {
+            act("You stare blankly at $n as $e attempts to rebuke you.", FALSE, ch, 0, victim, TO_VICT);
+            act("$N looks at $n blankly as $e calls down a spell of condemnation.", TRUE, ch, 0, victim, TO_NOTVICT);
+            send_to_char("Your rebuke elicits nothing but a blank stare.\r\n", ch);
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+        eff[0].location = APPLY_STR;
+        eff[1].location = APPLY_CON;
+        eff[2].location = APPLY_AC;
+        eff[0].modifier = eff[1].modifier = -skill / 5;                   /* Max -20 */
+        eff[2].modifier = -skill / 5 * 2;                                 /* Max 40 */
+        eff[0].duration = eff[1].duration = eff[2].duration = skill / 10; /* Max 10 */
+        to_char = "&5You shout a powerful rebuke at $N, forcing $M to cower in fear!&0";
+        to_vict = "&5You catch a glimpse of $n's true power and cower in fear!&0";
+        to_room = "&5$N cowers in fear as $n rebukes $M.&0";
+        break;
+
+    case SPELL_REDUCE:
+
+        if (IS_NPC(victim))
+            return CAST_RESULT_CHARGE;
+
+        eff[0].location = APPLY_SIZE;
+        eff[0].modifier = -1;
+        SET_FLAG(eff[0].flags, EFF_REDUCE);
+        eff[0].duration = 1 + (skill / 40);
+
+        eff[1].location = APPLY_CON;
+        eff[1].modifier = -10;
+        eff[1].duration = eff[0].duration;
+
+        eff[2].location = APPLY_STR;
+        eff[2].modifier = -10;
+        eff[2].duration = eff[0].duration;
+
+        refresh = TRUE;
+        to_vict =
+            "&1&bYour skin starts to itch as you reduce to half your normal "
+            "size.&0";
+        to_room = "&1&b$N's skin ripples as $E shrinks to half $S normal size!&0";
+        break;
+
     case SPELL_SANCTUARY:
 
         /* reimplemented by RLS back in 2k2.  While no class actually has this
@@ -2228,6 +2141,39 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         SET_FLAG(eff[0].flags, EFF_SANCTUARY);
         to_vict = "This spell doesn't exist.  Ask no questions.";
         to_room = "Absolutely nothing happens to $N.";
+        break;
+
+    case SPELL_SENSE_LIFE:
+
+        SET_FLAG(eff[0].flags, EFF_SENSE_LIFE);
+        eff[0].duration = 17 + (skill / 3); /* max 50 */
+        to_vict = "Your feel your awareness improve.";
+        to_room = "$N seems more aware of $S surroundings.";
+        break;
+
+    case SPELL_SILENCE:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+
+        if (MOB_FLAGGED(victim, MOB_NOSILENCE)) {
+            send_to_char("You seem unable to silence this one.\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (mag_savingthrow(victim, savetype)) {
+            act("$N resists your pitiful attempt to silence $M.", FALSE, ch, 0, victim, TO_CHAR);
+            act("&7&b$n tries to silence you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
+            act("&7&b$n squints at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_SILENCE);
+        eff[0].duration = 2 + (skill / 15); /* max 8 */
+        to_char = "You silence $N!";
+        to_vict =
+            "&9&bYour throat begins to close, sealing off all chance of "
+            "communication.&0";
+        to_room = "&0$N&7 squeaks as all sound is squelched from $S throat.&0";
         break;
 
     case SPELL_SLEEP:
@@ -2266,6 +2212,79 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         }
         break;
 
+    case SPELL_SMOKE:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+
+        if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
+            act("&9&b$n&9&b resists your&9&b column of smoke!&0", FALSE, ch, 0, 0, TO_CHAR);
+            act("&9&bYou&9&b resist $n's&9&b column of smoke!&0", FALSE, ch, 0, victim, TO_VICT);
+            act("&9&b$N&9&b resists $n's&9&b column of smoke!&0", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        } else if (mag_savingthrow(victim, savetype)) {
+            eff[0].location = APPLY_HITROLL;
+            eff[0].modifier = -1;
+            eff[0].duration = 0;
+            eff[1].location = APPLY_AC;
+            eff[1].modifier = -10;
+            eff[1].duration = 0;
+
+            to_char = "You temporarily choke $N with your column of smoke.";
+            to_vict = "&9You have been temporarily choked by $n's&9&b column of smoke!&0";
+            to_room = "&9&b$N&9&b is slightly choked by $n's&9&b column of smoke!&0";
+        } else {
+            eff[0].location = APPLY_HITROLL;
+            eff[0].modifier = -4;
+            eff[0].duration = 2;
+            SET_FLAG(eff[0].flags, EFF_BLIND);
+            eff[1].location = APPLY_AC;
+            eff[1].modifier = -40;
+            eff[1].duration = 2;
+            SET_FLAG(eff[1].flags, EFF_BLIND);
+
+            to_room = "&9&b$N&9&b is blinded by $n's&9&b column of smoke!&0";
+            to_vict = "&9You have been blinded by $n's&9&b column of smoke&0";
+            to_char = "&9&b$N&9&b is blinded by your column of smoke!&0";
+        }
+        break;
+
+    case SPELL_SOULSHIELD:
+
+        SET_FLAG(eff[0].flags, EFF_SOULSHIELD);
+        eff[0].duration = 2 + (skill / 10); /* max 12 */
+        refresh = FALSE;
+
+        if (IS_GOOD(victim)) {
+            to_vict = "&3&bA bright golden aura surrounds your body!&0";
+            to_room = "&3&bA bright golden aura surrounds $N's body!&0";
+        } else if (IS_EVIL(victim)) {
+            to_vict = "&1&bA &0&1dark red&b aura engulfs you!&0";
+            to_room = "&1&bA &0&1dark red&b aura engulfs $N's body!&0";
+        } else {
+            act("A brief aura surrounds you, then fades.", FALSE, ch, 0, victim, TO_VICT);
+            act("A brief aura surrounds $n, then fades.", TRUE, victim, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+        break;
+
+    case SPELL_STONE_SKIN:
+
+        /* what the hell does the modifier/location for this spell do? */
+        /* It acts as a hit counter; it's decremented by decrease_modifier()
+           everytime the victim is hit, and when it reaches 0, stone skin
+           "wears off" before the duration is up. */
+
+        eff[0].location = APPLY_NONE;
+        eff[0].modifier = 7 + (skill / 16); /* max 13 */
+        eff[0].duration = 2;
+        SET_FLAG(eff[0].flags, EFF_STONE_SKIN);
+
+        refresh = FALSE;
+        to_char = "&9&b$N's skin hardens and turns to stone!&0";
+        to_vict = "&9&bYour skin hardens and turns to stone!&0";
+        to_room = "&9&b$N's skin hardens and turns to stone!&0";
+        break;
+
     case SPELL_STRENGTH:
 
         /* This is rather a hack of the intended nature of how the
@@ -2278,6 +2297,120 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "$N looks stronger!";
         to_vict = "You feel stronger!";
         break;
+
+    case SPELL_SUNRAY:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+
+        if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
+            send_to_char("You seem unable to blind this creature.\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+        if (mag_savingthrow(victim, savetype)) {
+            act("$N resists your pitiful attempt to blind $M.", FALSE, ch, 0, victim, TO_CHAR);
+            act("&7&b$n tries to blind you but fails!&0", FALSE, ch, 0, victim, TO_VICT);
+            act("&7&b$n directs the rays of the sun at $N but nothing happens.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+
+        eff[0].location = APPLY_HITROLL;
+        eff[0].modifier = -4;
+        eff[0].duration = 2;
+        SET_FLAG(eff[0].flags, EFF_BLIND);
+
+        eff[1].location = APPLY_AC;
+        eff[1].modifier = -40;
+        eff[1].duration = 2;
+        SET_FLAG(eff[1].flags, EFF_BLIND);
+
+        to_char = "&9&bYou have blinded $N with your sunray!&0";
+        to_room = "&9&b$N&9&b seems to be blinded!&0";
+        to_vict = "&9&bYou have been blinded!&0";
+        break;
+
+    case SPELL_VAPORFORM:
+
+        if (GET_COMPOSITION(victim) != COMP_FLESH) {
+            send_to_char("Your body cannot sustain this change.\r\n", victim);
+            return CAST_RESULT_CHARGE;
+        }
+
+        eff[0].location = APPLY_COMPOSITION;
+        eff[0].modifier = COMP_MIST;
+        eff[0].duration = 2 + (skill / 25); /* max 6 */
+        refresh = FALSE;
+        to_vict = "&6&bYour body sublimates into a &7cloud &6of &7vapor&6.&0";
+        to_room =
+            "&6&b$N's body dematerializes into a translucent &7cloud &6of "
+            "&7vapor&6!&0";
+        break;
+
+    case SPELL_WATERFORM:
+
+        if (GET_COMPOSITION(victim) != COMP_FLESH) {
+            send_to_char("Your body cannot sustain this change.\r\n", victim);
+            return CAST_RESULT_CHARGE;
+        }
+
+        eff[0].location = APPLY_COMPOSITION;
+        eff[0].modifier = COMP_WATER;
+        eff[0].duration = 2 + (skill / 20); /* max 7 */
+        refresh = FALSE;
+        to_vict = "&4&bYour body liquifies.&0";
+        to_room =
+            "&4&b$N&4&b's body wavers a bit, slowly changing into a "
+            "&0&4liquid&b state!&0";
+        break;
+
+    case SPELL_WATERWALK:
+
+        SET_FLAG(eff[0].flags, EFF_WATERWALK);
+        eff[0].duration = 35 + (skill / 4); /* max 60 */
+        to_room = "$N sprouts webbing between $S toes!";
+        to_vict = "You feel webbing between your toes.";
+        break;
+
+    case SPELL_WINGS_OF_HEAVEN:
+
+        if (affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
+            send_to_char("You already have something sticking out of your back.\r\n", victim);
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_FLY);
+        eff[0].duration = 10 + (skill / 5); /* max 30 */
+
+        to_vict =
+            "&7&bBeautiful bright white wings unfurl behind you as you lift "
+            "into the air.&0";
+        to_room =
+            "&7&bBeautiful bright white wings unfurl from $n's&7&b back, "
+            "lifting $m into the air.&0";
+        if (AWAKE(victim)) {
+            GET_STANCE(victim) = STANCE_ALERT;
+            GET_POS(victim) = POS_FLYING;
+        }
+        break;
+
+    case SPELL_WINGS_OF_HELL:
+
+        if (affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
+            send_to_char("You already have something sticking out of your back.\r\n", victim);
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_FLY);
+        eff[0].duration = 10 + (skill / 5);
+
+        to_vict = "&1&bHuge leathery &9bat-like&1 wings sprout from your back.&0";
+        to_room = "&1&bHuge leathery &9bat-like&1 wings sprout out of $n's&1&b back.&0";
+        if (AWAKE(victim)) {
+            GET_STANCE(victim) = STANCE_ALERT;
+            GET_POS(victim) = POS_FLYING;
+        }
+        break;
+
+        /* --- INNATES START HERE --- */
 
     case SPELL_INN_STRENGTH:
         eff[0].location = APPLY_STR;
@@ -2339,118 +2472,19 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
          * sphere */
         break;
 
-    case SPELL_SENSE_LIFE:
+        /* --- CHANTS START HERE --- */
 
-        SET_FLAG(eff[0].flags, EFF_SENSE_LIFE);
-        eff[0].duration = 17 + (skill / 3); /* max 50 */
-        to_vict = "Your feel your awareness improve.";
-        to_room = "$N seems more aware of $S surroundings.";
-        break;
+    case CHANT_ARIA_OF_DISSONANCE:
 
-    case SPELL_WATERWALK:
-
-        SET_FLAG(eff[0].flags, EFF_WATERWALK);
-        eff[0].duration = 35 + (skill / 4); /* max 60 */
-        to_room = "$N sprouts webbing between $S toes!";
-        to_vict = "You feel webbing between your toes.";
-        break;
-
-    case SPELL_FLY:
-
-        SET_FLAG(eff[0].flags, EFF_FLY);
-        eff[0].duration = 5 + (skill / 10); /* max 15 */
-        if (too_heavy_to_fly(victim)) {
-            to_vict = "You feel somewhat lighter.";
-            to_char = "$N remains earthbound.";
-        } else {
-            to_vict = "&7You fly through the air, as free as a bird!&0";
-            to_room = "&6&b$N lifts into the air.&0";
-            to_char = "&6&b$N lifts into the air.&0";
-            if (AWAKE(victim)) {
-                GET_POS(victim) = POS_FLYING;
-                GET_STANCE(victim) = STANCE_ALERT;
-            }
-        }
-        break;
-
-    case SPELL_FARSEE:
-
-        SET_FLAG(eff[0].flags, EFF_FARSEE);
-        eff[0].duration = 5 + (skill / 10); /* max 15 */
-        to_vict = "Your sight improves dramatically.";
-        to_room = "$N's pupils dilate rapidly for a second.";
-        break;
-
-    case SPELL_BONE_ARMOR:
-
-        if (check_armor_spells(ch, victim, spellnum))
-            return CAST_RESULT_CHARGE;
-
-        eff[0].location = APPLY_AC;
-        eff[0].modifier = 10 + (skill / 6);    /* max 25 */
-        eff[0].duration = 8 + 2 * (skill / 5); /* max 48 */
-        to_char = "&3$N's&3 skin hardens into a bone carapace.&0";
-        to_vict = "&3Your skin hardens into a bone carapace.&0";
-        to_room = "&3$N's&3 skin hardens to a bone carapace.&0";
-        break;
-
-    case SPELL_REBUKE_UNDEAD:
         if (!attack_ok(ch, victim, TRUE))
             return CAST_RESULT_CHARGE;
 
-        if (GET_LIFEFORCE(victim) != LIFE_UNDEAD) {
-            act("$n seems confused as to your state of mortality.", FALSE, ch, 0, victim, TO_VICT);
-            act("$n tries to rebuke $N's buried undead nature.  Must be buried too deep.", TRUE, ch, 0, victim,
-                TO_ROOM);
-            send_to_char("Your rebuke elicits nothing but a raised eyebrow.\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-        if (mag_savingthrow(victim, SAVING_SPELL)) {
-            act("You stare blankly at $n as $e attempts to rebuke you.", FALSE, ch, 0, victim, TO_VICT);
-            act("$N looks at $n blankly as $e calls down a spell of condemnation.", TRUE, ch, 0, victim, TO_NOTVICT);
-            send_to_char("Your rebuke elicits nothing but a blank stare.\r\n", ch);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-        eff[0].location = APPLY_STR;
-        eff[1].location = APPLY_CON;
-        eff[2].location = APPLY_AC;
-        eff[0].modifier = eff[1].modifier = -skill / 5;                   /* Max -20 */
-        eff[2].modifier = -skill / 5 * 2;                                 /* Max 40 */
-        eff[0].duration = eff[1].duration = eff[2].duration = skill / 10; /* Max 10 */
-        to_char = "&5You shout a powerful rebuke at $N, forcing $M to cower in fear!&0";
-        to_vict = "&5You catch a glimpse of $n's true power and cower in fear!&0";
-        to_room = "&5$N cowers in fear as $n rebukes $M.&0";
-        break;
-
-    case SPELL_NATURES_GUIDANCE:
-        eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = eff[0].duration = (skill / 20) + 1; /* range (1, 6) */
-        /* Self only */
-        to_vict = "You feel a higher power guiding your hands.";
-        to_room = "$N calls on guidance from a higher power.";
-        break;
-
-    case SPELL_NATURES_EMBRACE:
-        SET_FLAG(eff[0].flags, EFF_CAMOUFLAGED);
-        eff[0].duration = (skill / 3) + 1; /* range (1, 34) */
-        to_vict = "&9&8You phase into the landscape.&0";
-        to_room = "&9&8$n&9&8 phases into the landscape.&0";
-        break;
-
-    case SPELL_MISDIRECTION:
-        SET_FLAG(eff[0].flags, EFF_MISDIRECTION);
-        eff[0].duration = 2 + skill / 4;
-        to_vict =
-            "You feel like a stack of little illusions all pointing in "
-            "different directions.";
-        break;
-
-    case CHANT_REGENERATION:
-        eff[0].location = APPLY_HIT_REGEN;
-        eff[0].duration = skill / 2 + 3;
-        eff[0].modifier = skill / 2 + 10;
-        to_vict = "You feel your health improve.";
-        to_room = "$n looks a little healthier.";
+        eff[0].location = APPLY_AC;
+        eff[0].duration = 5 + (skill / 30);  /* max 8 */
+        eff[0].modifier = -10 - (skill / 2); /* max -60 */
+        to_char = "Your song of dissonance confuses $N!";
+        to_room = "$N winces as $n's dissonant song fills $S ears.";
+        to_vict = "$n fills your ears with an aria of dissonance, causing confusion!";
         break;
 
     case CHANT_BATTLE_HYMN:
@@ -2467,15 +2501,40 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "$n's chest swells with courage!";
         break;
 
-    case CHANT_WAR_CRY:
-        eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = skill / 25 + 1;
-        eff[0].duration = skill / 25 + 1;
-        eff[1].location = APPLY_DAMROLL;
-        eff[1].modifier = skill / 25 + 1;
-        eff[1].duration = skill / 25 + 1;
-        to_vict = "You feel more determined than ever!";
-        to_room = "$N looks more determined than ever!";
+    case CHANT_INTERMINABLE_WRATH:
+        SET_FLAG(eff[0].flags, EFF_WRATH);
+        eff[0].duration = (skill / 20); /* max 5 */
+        to_vict = "A feeling of unforgiving wrath fills you.";
+        to_room = "$n bristles with anger.";
+        break;
+
+    case CHANT_SEED_OF_DESTRUCTION:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+
+        /*
+         * The modifier here makes the victim lose a percentage of
+         * half their str and con based on the chanter's skill.
+         */
+
+        SET_FLAG(eff[0].flags, EFF_DISEASE);
+        eff[0].location = APPLY_CON;
+        eff[0].modifier = -(skill * GET_VIEWED_CON(victim) / 2) / 100;
+        eff[0].duration = (skill / 20); /* max 5 */
+        eff[1].location = APPLY_STR;
+        eff[1].modifier = -(skill * GET_VIEWED_STR(victim) / 2) / 100;
+        eff[1].duration = (skill / 20); /* max 5 */
+        to_char = "You force $N down the path to destruction...";
+        to_vict = "You feel your time in this world growing short...";
+        to_room = "$n plants the seed of destruction in $N's mind.";
+        break;
+
+    case CHANT_REGENERATION:
+        eff[0].location = APPLY_HIT_REGEN;
+        eff[0].duration = skill / 2 + 3;
+        eff[0].modifier = skill / 2 + 10;
+        to_vict = "You feel your health improve.";
+        to_room = "$n looks a little healthier.";
         break;
 
     case CHANT_SHADOWS_SORROW_SONG:
@@ -2503,19 +2562,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_vict = "$n's song of sorrow fills your mind with darkness and shadows.";
         break;
 
-    case CHANT_ARIA_OF_DISSONANCE:
-
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-
-        eff[0].location = APPLY_AC;
-        eff[0].duration = 5 + (skill / 30);  /* max 8 */
-        eff[0].modifier = -10 - (skill / 2); /* max -60 */
-        to_char = "Your song of dissonance confuses $N!";
-        to_room = "$N winces as $n's dissonant song fills $S ears.";
-        to_vict = "$n fills your ears with an aria of dissonance, causing confusion!";
-        break;
-
     case CHANT_SONATA_OF_MALAISE:
         /*
          * no attack_ok check, since this is a MAG_MASSES spell, and
@@ -2537,48 +2583,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "You fill $N with a sense of malaise!";
         to_vict = "Malaise fills the air, hampering your movements!";
         to_room = "$N contorts $S face briefly in anger and fear.";
-        break;
-
-    case CHANT_SEED_OF_DESTRUCTION:
-        if (!attack_ok(ch, victim, TRUE))
-            return CAST_RESULT_CHARGE;
-
-        /*
-         * The modifier here makes the victim lose a percentage of
-         * half their str and con based on the chanter's skill.
-         */
-
-        SET_FLAG(eff[0].flags, EFF_DISEASE);
-        eff[0].location = APPLY_CON;
-        eff[0].modifier = -(skill * GET_VIEWED_CON(victim) / 2) / 100;
-        eff[0].duration = (skill / 20); /* max 5 */
-        eff[1].location = APPLY_STR;
-        eff[1].modifier = -(skill * GET_VIEWED_STR(victim) / 2) / 100;
-        eff[1].duration = (skill / 20); /* max 5 */
-        to_char = "You force $N down the path to destruction...";
-        to_vict = "You feel your time in this world growing short...";
-        to_room = "$n plants the seed of destruction in $N's mind.";
-        break;
-
-    case CHANT_SPIRIT_WOLF:
-        SET_FLAG(eff[0].flags, EFF_SPIRIT_WOLF);
-        eff[0].duration = (skill / 20); /* max 5 */
-        to_vict = "You feel a wolf-like fury come over you.";
-        to_room = "$n seems to take on a fearsome, wolf-like demeanor.";
-        break;
-
-    case CHANT_SPIRIT_BEAR:
-        SET_FLAG(eff[0].flags, EFF_SPIRIT_BEAR);
-        eff[0].duration = (skill / 20); /* max 5 */
-        to_vict = "The spirit of the bear consumes your body.";
-        to_room = "$n shifts $s weight, seeming heavier and more dangerous.";
-        break;
-
-    case CHANT_INTERMINABLE_WRATH:
-        SET_FLAG(eff[0].flags, EFF_WRATH);
-        eff[0].duration = (skill / 20); /* max 5 */
-        to_vict = "A feeling of unforgiving wrath fills you.";
-        to_room = "$n bristles with anger.";
         break;
 
     case SPELL_SPINECHILLER:
@@ -2606,29 +2610,32 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "$N gasps for breath as $n scrambles $S nerves!";
         break;
 
-    case SPELL_BONE_DRAW:
-        if (EFF_FLAGGED(victim, EFF_IMMOBILIZED)) {
-            act("$n is already immobilized!", FALSE, ch, 0, victim, TO_CHAR);
-            return CAST_RESULT_CHARGE;
-        }
-
-        if (evades_spell(ch, victim, spellnum, skill))
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-
-        to_char = "You conjure four magical bones to lock $N in place!";
-        to_vict = "$n conjures four magical bones which bind your legs!";
-        to_room = "$n conjures four magical bones that lock around $N's legs!";
-
-        SET_FLAG(eff[0].flags, EFF_IMMOBILIZED);
-        eff[0].location = APPLY_NONE;
-        eff[0].modifier = 4;
-        eff[0].duration = 1 + skill / 25; /* 1-5 hours */
-        if (!IS_NPC(victim))
-            eff[0].duration = 1;
-        remember(victim, ch);
+    case CHANT_SPIRIT_BEAR:
+        SET_FLAG(eff[0].flags, EFF_SPIRIT_BEAR);
+        eff[0].duration = (skill / 20); /* max 5 */
+        to_vict = "The spirit of the bear consumes your body.";
+        to_room = "$n shifts $s weight, seeming heavier and more dangerous.";
         break;
 
-    /* Start Bard songs here */
+    case CHANT_SPIRIT_WOLF:
+        SET_FLAG(eff[0].flags, EFF_SPIRIT_WOLF);
+        eff[0].duration = (skill / 20); /* max 5 */
+        to_vict = "You feel a wolf-like fury come over you.";
+        to_room = "$n seems to take on a fearsome, wolf-like demeanor.";
+        break;
+
+    case CHANT_WAR_CRY:
+        eff[0].location = APPLY_HITROLL;
+        eff[0].modifier = skill / 25 + 1;
+        eff[0].duration = skill / 25 + 1;
+        eff[1].location = APPLY_DAMROLL;
+        eff[1].modifier = skill / 25 + 1;
+        eff[1].duration = skill / 25 + 1;
+        to_vict = "You feel more determined than ever!";
+        to_room = "$N looks more determined than ever!";
+        break;
+
+        /* --- SONGS START HERE --- */
 
     case SONG_INSPIRATION:
         eff[0].location = APPLY_HITROLL;
@@ -2651,10 +2658,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             eff[4].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
             eff[5].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
             eff[6].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
-            eff[7].modifier = -5 - (10 - (GET_CHA(ch) / 20);               /* max -10 */
+            eff[7].modifier = -5 - (10 - (GET_CHA(ch) / 20));             /* max -10 */
             if (GET_LEVEL(ch) >= 40) {
                 eff[8].location = APPLY_HIT;
-                eff[8].modifier = (skill + (GET_CHA(ch)) * 2;               /* max 400 */
+                eff[8].modifier = (skill + (GET_CHA(ch)) * 2);               /* max 400 */
                 eff[8].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
             }
         }
@@ -2672,7 +2679,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
         eff[1].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
         eff[2].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
-        eff[3].modifier = 5 + (10 - (GET_CHA(ch) / 20);                     /* max 10 */
+        eff[3].modifier = 5 + (10 - (GET_CHA(ch) / 20));                   /* max 10 */
         if (GET_LEVEL(ch) >= 30) {
             eff[4].location = APPLY_CON;
             eff[4].modifier = -(((skill + GET_CHA(ch)) / 2) * GET_VIEWED_STR(victim) / 2) / 100;  /* max 50 */
@@ -2774,19 +2781,19 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
 
 void perform_mag_group(int skill, struct char_data *ch, struct char_data *tch, int spellnum, int savetype) {
     switch (spellnum) {
-    case SPELL_GROUP_HEAL:
-        mag_point(skill, ch, tch, SPELL_HEAL, savetype);
-        mag_unaffect(skill, ch, tch, SPELL_HEAL, savetype);
+    case SPELL_DIVINE_ESSENCE:
+        mag_affect(skill, ch, tch, SPELL_GREATER_ENDURANCE, savetype, CAST_SPELL);
+        mag_affect(skill, ch, tch, SPELL_BLESS, savetype, CAST_SPELL);
         break;
     case SPELL_GROUP_ARMOR:
         mag_affect(skill, ch, tch, SPELL_ARMOR, savetype, CAST_SPELL);
         break;
+    case SPELL_GROUP_HEAL:
+        mag_point(skill, ch, tch, SPELL_HEAL, savetype);
+        mag_unaffect(skill, ch, tch, SPELL_HEAL, savetype);
+        break;
     case SPELL_GROUP_RECALL:
         spell_recall(spellnum, skill, ch, tch, NULL, savetype);
-        break;
-    case SPELL_DIVINE_ESSENCE:
-        mag_affect(skill, ch, tch, SPELL_GREATER_ENDURANCE, savetype, CAST_SPELL);
-        mag_affect(skill, ch, tch, SPELL_BLESS, savetype, CAST_SPELL);
         break;
     case SPELL_INVIGORATE:
         mag_point(skill, ch, tch, SPELL_INVIGORATE, savetype);
@@ -3693,6 +3700,17 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
         if (real_mobile(pvnum) < 0)
             pvnum = 9001; /* Test mob = earle's doppelganger */
 
+        /* need to add charm flag 
+            eff.type = SPELL_CHARM;
+            eff.duration = (int)(base_duration) + 1;
+            SET_FLAG(eff.flags, EFF_CHARM);
+            eff.modifier = 0;
+            eff.location = APPLY_NONE;
+            effect_to_char(new_mob, &eff);
+            add_follower(new_mob, ch);
+            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
+            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC); */
+
         /* Load it up */
         new_mob = summon_phantasm(ch, pvnum, duration);
         if (new_mob == NULL) {
@@ -3752,6 +3770,18 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
             phantasm_transform(new_mob, vict, duration);
         }
         SET_FLAG(MOB_FLAGS(new_mob), MOB_NOSCRIPT); /* Prevent specprocs and triggers */
+
+        /* need to add charm flag 
+            eff.type = SPELL_CHARM;
+            eff.duration = (int)(base_duration) + 1;
+            SET_FLAG(eff.flags, EFF_CHARM);
+            eff.modifier = 0;
+            eff.location = APPLY_NONE;
+            effect_to_char(new_mob, &eff);
+            add_follower(new_mob, ch);
+            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
+            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC); */
+
         /* Feedback */
         act("From scattered motes of light, $n coalesces.", TRUE, new_mob, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -3790,13 +3820,13 @@ int mag_point(int skill, struct char_data *ch, struct char_data *victim, int spe
         hit = dice(2, 8) + 1;
         send_to_char("You feel better.\r\n", victim);
         break;
-    case SPELL_CURE_CRITIC:
-        hit = dice(6, 8) + 3;
-        send_to_char("You feel a lot better!\r\n", victim);
-        break;
     case SPELL_CURE_SERIOUS:
         hit = dice(4, 8) + 2;
         send_to_char("You feel much better!\r\n", victim);
+        break;
+    case SPELL_CURE_CRITIC:
+        hit = dice(6, 8) + 3;
+        send_to_char("You feel a lot better!\r\n", victim);
         break;
     case SPELL_HEAL:
         hit = dice(50, 2);
@@ -3910,26 +3940,6 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         return 0;
 
     switch (spellnum) {
-    case SPELL_EXTINGUISH:
-        REMOVE_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
-        send_to_char("You are doused with a magical liquid.\r\n", victim);
-        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-    case SPELL_SANE_MIND:
-        spell = SPELL_INSANITY;
-        to_vict = "Your mind comes back to reality.";
-        break;
-    case SPELL_ENLARGE:
-        if (!EFF_FLAGGED(victim, EFF_REDUCE))
-            return CAST_RESULT_CHARGE;
-        spell = SPELL_REDUCE;
-        to_vict = "&8You return to your normal size.&0";
-        break;
-    case SPELL_REDUCE:
-        if (!EFF_FLAGGED(victim, EFF_ENLARGE))
-            return CAST_RESULT_CHARGE;
-        spell = SPELL_ENLARGE;
-        to_vict = "&8You return to your normal size.&0";
-        break;
     case SPELL_CURE_BLIND:
     case SPELL_HEAL:
     case SPELL_FULL_HEAL:
@@ -3954,14 +3964,34 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
             send_to_char("Your disease has been cured.\r\n", victim);
         }
         break;
-    case SPELL_REMOVE_POISON:
-        spell = SPELL_POISON;
-        to_vict = "A warm feeling runs through your body!";
-        to_room = "$n looks better.";
+    case SPELL_ENLARGE:
+        if (!EFF_FLAGGED(victim, EFF_REDUCE))
+            return CAST_RESULT_CHARGE;
+        spell = SPELL_REDUCE;
+        to_vict = "&8You return to your normal size.&0";
+        break;
+    case SPELL_EXTINGUISH:
+        REMOVE_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
+        send_to_char("You are doused with a magical liquid.\r\n", victim);
+        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+    case SPELL_SANE_MIND:
+        spell = SPELL_INSANITY;
+        to_vict = "Your mind comes back to reality.";
+        break;
+    case SPELL_REDUCE:
+        if (!EFF_FLAGGED(victim, EFF_ENLARGE))
+            return CAST_RESULT_CHARGE;
+        spell = SPELL_ENLARGE;
+        to_vict = "&8You return to your normal size.&0";
         break;
     case SPELL_REMOVE_CURSE:
         spell = SPELL_CURSE;
         to_vict = "You don't feel so unlucky.";
+        break;
+    case SPELL_REMOVE_POISON:
+        spell = SPELL_POISON;
+        to_vict = "A warm feeling runs through your body!";
+        to_room = "$n looks better.";
         break;
     case SPELL_REMOVE_PARALYSIS:
         if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS))) {
@@ -4013,57 +4043,6 @@ int mag_alter_obj(int skill, struct char_data *ch, struct obj_data *obj, int spe
         return 0;
 
     switch (spellnum) {
-    case SPELL_DARK_PRESENCE:
-        /* Skip all checks if godly */
-        if (GET_LEVEL(ch) > LVL_IMMORT) {
-            if (OBJ_EFF_FLAGGED(obj, EFF_HEX)) {
-                to_char = "It's already hexed.";
-            } else {
-                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
-                SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
-                to_char = "$p is imbued with a dark aura.";
-            }
-            break;
-        }
-
-        for (i = 0; i < MAX_OBJ_APPLIES; i++) {
-            if (obj->applies[i].location) {
-                /* This signifies that an effect was found - see below */
-                i = -1;
-                break;
-            }
-        }
-
-        result = CAST_RESULT_CHARGE;
-
-        if (GET_OBJ_TYPE(obj) != ITEM_WEAPON) {
-            to_char = "This spell is only effective on weapons.";
-            result = 0;
-
-            /* Too high level? */
-        } else if (GET_OBJ_LEVEL(obj) > skill)
-            to_char = "$p is too powerful for you to hex.";
-
-        /* Too heavy */
-        else if (GET_OBJ_WEIGHT(obj) > 5 * skill)
-            to_char = "$p is too large for you to hex.";
-
-        /* Some sort of impurity (or already hexed) */
-        else if (OBJ_FLAGGED(obj, ITEM_GLOW) || OBJ_FLAGGED(obj, ITEM_HUM) || OBJ_FLAGGED(obj, ITEM_INVISIBLE) ||
-                 OBJ_FLAGGED(obj, ITEM_MAGIC) || OBJ_FLAGGED(obj, ITEM_NODROP) || OBJ_FLAGGED(obj, ITEM_ANTI_EVIL))
-            to_char = "$p doesn't seem receptive to the malediction.";
-
-        /* Already has magical effects */
-        else if (HAS_FLAGS(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS) || i < 0 /* see obj->affected check, above */
-        )
-            to_char = "The hex is repelled from $p.";
-        else {
-            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
-            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
-            to_char = "$p is imbued with a dark aura.";
-            result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-        break;
     case SPELL_BLESS:
         /* Skip all checks if godly */
         if (GET_LEVEL(ch) > LVL_IMMORT) {
@@ -4121,6 +4100,57 @@ int mag_alter_obj(int skill, struct char_data *ch, struct obj_data *obj, int spe
             if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
                 GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE)--;
             to_char = "$p briefly glows red.";
+        }
+        break;
+    case SPELL_DARK_PRESENCE:
+        /* Skip all checks if godly */
+        if (GET_LEVEL(ch) > LVL_IMMORT) {
+            if (OBJ_EFF_FLAGGED(obj, EFF_HEX)) {
+                to_char = "It's already hexed.";
+            } else {
+                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
+                SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
+                to_char = "$p is imbued with a dark aura.";
+            }
+            break;
+        }
+
+        for (i = 0; i < MAX_OBJ_APPLIES; i++) {
+            if (obj->applies[i].location) {
+                /* This signifies that an effect was found - see below */
+                i = -1;
+                break;
+            }
+        }
+
+        result = CAST_RESULT_CHARGE;
+
+        if (GET_OBJ_TYPE(obj) != ITEM_WEAPON) {
+            to_char = "This spell is only effective on weapons.";
+            result = 0;
+
+            /* Too high level? */
+        } else if (GET_OBJ_LEVEL(obj) > skill)
+            to_char = "$p is too powerful for you to hex.";
+
+        /* Too heavy */
+        else if (GET_OBJ_WEIGHT(obj) > 5 * skill)
+            to_char = "$p is too large for you to hex.";
+
+        /* Some sort of impurity (or already hexed) */
+        else if (OBJ_FLAGGED(obj, ITEM_GLOW) || OBJ_FLAGGED(obj, ITEM_HUM) || OBJ_FLAGGED(obj, ITEM_INVISIBLE) ||
+                 OBJ_FLAGGED(obj, ITEM_MAGIC) || OBJ_FLAGGED(obj, ITEM_NODROP) || OBJ_FLAGGED(obj, ITEM_ANTI_EVIL))
+            to_char = "$p doesn't seem receptive to the malediction.";
+
+        /* Already has magical effects */
+        else if (HAS_FLAGS(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS) || i < 0 /* see obj->affected check, above */
+        )
+            to_char = "The hex is repelled from $p.";
+        else {
+            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
+            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
+            to_char = "$p is imbued with a dark aura.";
+            result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
         break;
     case SPELL_INVISIBLE:
@@ -4277,26 +4307,6 @@ int mag_room(int skill, struct char_data *ch, int spellnum) {
         return 0;
 
     switch (spellnum) {
-    case SPELL_WALL_OF_FOG:
-        to_char = "You create a fog out of nowhere.";
-        to_room = "$n creates a fog out of nowhere.";
-        eff = ROOM_EFF_FOG;
-        ticks = 1; /* this spell lasts one tick */
-        break;
-    case SPELL_URBAN_RENEWAL:
-        if (SECT(ch->in_room) == SECT_FOREST || ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOREST)) {
-            send_to_char("There is already enough foliage here to constitute a forest.\r\n", ch);
-            return CAST_RESULT_CHARGE;
-        }
-        eff = ROOM_EFF_FOREST;
-        ticks = skill / 10;
-        to_char =
-            "&2&bThick vines and shrubs sprout out of the ground and cover "
-            "the whole area in thick foliage.&0";
-        to_room =
-            "&2&bThick vines and shrubs sprout out of the ground and cover "
-            "the whole area in thick foliage.&0";
-        break;
     case SPELL_CIRCLE_OF_FIRE:
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_CIRCLE_FIRE)) {
             send_to_char("The room is already on fire.\r\n", ch);
@@ -4312,6 +4322,26 @@ int mag_room(int skill, struct char_data *ch, int spellnum) {
         to_char = "&1A ring of fire encircles the area.&0";
         to_room = "&1A ring of fire encircles the area.&0";
         improve_skill(ch, skills[SPELL_CIRCLE_OF_FIRE].sphere);
+        break;
+    case SPELL_URBAN_RENEWAL:
+        if (SECT(ch->in_room) == SECT_FOREST || ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOREST)) {
+            send_to_char("There is already enough foliage here to constitute a forest.\r\n", ch);
+            return CAST_RESULT_CHARGE;
+        }
+        eff = ROOM_EFF_FOREST;
+        ticks = skill / 10;
+        to_char =
+            "&2&bThick vines and shrubs sprout out of the ground and cover "
+            "the whole area in thick foliage.&0";
+        to_room =
+            "&2&bThick vines and shrubs sprout out of the ground and cover "
+            "the whole area in thick foliage.&0";
+        break;
+    case SPELL_WALL_OF_FOG:
+        to_char = "You create a fog out of nowhere.";
+        to_room = "$n creates a fog out of nowhere.";
+        eff = ROOM_EFF_FOG;
+        ticks = 1; /* this spell lasts one tick */
         break;
 
         /* add more room spells continual here */
