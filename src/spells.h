@@ -73,6 +73,7 @@ ASPELL(spell_rain);
 ASPELL(spell_recall);
 ASPELL(spell_relocate);
 ASPELL(spell_remove_curse);
+ASPELL(spell_remove_paralysis);
 ASPELL(spell_resurrect);
 ASPELL(spell_shift_corpse);
 ASPELL(spell_soul_tap);

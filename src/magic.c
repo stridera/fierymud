@@ -3988,11 +3988,6 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         spell = SPELL_CURSE;
         to_vict = "You don't feel so unlucky.";
         break;
-    case SPELL_REMOVE_POISON:
-        spell = SPELL_POISON;
-        to_vict = "A warm feeling runs through your body!";
-        to_room = "$n looks better.";
-        break;
     case SPELL_REMOVE_PARALYSIS:
         if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS))) {
             if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS))
@@ -4002,6 +3997,11 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
             to_vict = "&3&bYour body begins to move again.&0";
             to_room = "&3&b$n begins to move again.&0";
         }
+        break;
+    case SPELL_REMOVE_POISON:
+        spell = SPELL_POISON;
+        to_vict = "A warm feeling runs through your body!";
+        to_room = "$n looks better.";
         break;
     default:
         sprintf(buf, "SYSERR: unknown spellnum %d passed to mag_unaffect", spellnum);
