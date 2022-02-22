@@ -1,0 +1,3320 @@
+#3000
+beer barrel beer-barrel~
+a barrel~
+A beer barrel has been left here.~
+~
+17 536870912 1 1
+512 512 1 0 0 0 0
+8.00 300 0 0 0 0 0 0
+E
+beer barrel~
+The barrel looks like it could hold large amounts of beer. There is
+something written on the side of the barrel.
+~
+E
+writing side~
+It says:
+Only real warriors drink beer and fight!
+~
+#3001
+beer bottle beer-bottle~
+a bottle~
+A beer bottle has been left here.~
+~
+17 0 1 1
+16 16 1 0 0 0 0
+0.25 20 0 0 0 0 0 0
+E
+beer bottle~
+It looks like a beer bottle.
+~
+#3002
+ale bottle dark ale-bottle~
+a bottle~
+A dark bottle of ale has been left here.~
+~
+17 0 1 1
+16 16 3 0 0 0 0
+0.25 10 0 0 0 0 0 0
+E
+ale bottle dark~
+The ale looks finely brewed and rather strong. The smell of the ale is
+so strong it almost knocks you off your feet.
+~
+#3003
+firebreather bottle black~
+a black bottle~
+A firebreather has been left here.~
+~
+17 0 1 1
+32 32 7 0 0 0 0
+0.50 50 0 0 0 0 0 0
+E
+firebreather bottle~
+This bottle has a warning label.
+~
+E
+warning label~
+The label reads:
+    This drink is only for the brave and strong stomached!
+~
+#3004
+bottle local dark glass~
+a dark glass bottle~
+A dark bottle has been left here.~
+~
+17 0 1 1
+32 32 8 0 0 0 0
+0.50 20 0 0 0 0 0 0
+E
+local bottle~
+Whatever is inside this bottle is made in the local tavern, and smells
+good. 
+~
+#3005
+water barrel water-barrel~
+a barrel~
+A water barrel has been left here.~
+~
+17 0 1 1
+512 512 0 0 0 0 0
+8.00 300 0 0 0 0 0 0
+E
+water barrel~
+This barrel looks like it would be good to hold large amounts of water.
+~
+#3006
+ring wedding wedding-ring~
+a golden wedding ring~
+A golden wedding ring has been dropped here.~
+~
+8 0 3 1
+0 0 0 0 0 0 0
+0.04 1000 0 0 0 0 0 0
+E
+ring wedding~
+The ring is simple, yet elegant in its beauty. It is a symbol of
+the eternal life, and the eternal love, shared by a joyous couple.
+~
+#3007
+sculpture mielikki goddess~
+the living sculpture of Mielikki~
+A larger-than-life-size sculpture of the beautiful goddess is here.~
+~
+28 0 0 0
+0 0 0 0 0 0 0
+2000.00 0 0 0 0 0 0 0
+E
+sculpture mielikki goddess~
+Standing approximately ten feet tall, the altar is a living sculpture of
+the beautiful goddess of nature herself. Her beauty is awe-inspiring. The
+sculpture consists of living vines, bushes, flowering plants, and several
+small trees, all intertwined.
+
+A tiny plaque of white metal rests against her foot.
+~
+E
+plaque~
+Inscribed into the plaque are the words "Touch the goddess to mark your sanctuary."
+~
+#3008
+yummy packet food~
+a yummy packet of food~
+Someone left a yummy packet of food laying on the ground here.~
+Nothing.
+~
+19 0 1 1
+8 0 0 0 0 0 0
+0.01 8 0 0 0 0 0 0
+#3010
+bread loaf food~
+some bread~
+A loaf of bread has been left here.~
+~
+19 0 1 1
+12 0 0 0 0 0 0
+1.00 10 0 0 0 0 0 0
+E
+bread~
+This bread feels freshly made. In fact, it's still warm...it must have
+just came out of the oven.
+~
+#3011
+donut jelly jelly-donut delicious food~
+a delicious jelly donut~
+A delicious jelly donut has been placed here. It looks scrumptious!~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.18 5 0 0 0 0 0 0
+E
+donut jelly~
+It's the biggest jelly donut you've ever seen! It smells so fresh and
+yummy!
+~
+#3012
+donut cream cream-donut delicious food~
+a delicious cream donut~
+A delicious cream donut has been placed here. It looks scrumptious!~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.16 5 0 0 0 0 0 0
+E
+donut cream~
+The donut looks freshly made from the bakery. Mmmm...cream filling...
+~
+#3013
+donut glazed glazed-donut delicious food~
+a delicious glazed donut~
+A delicious glazed donut has been placed here. It looks scrumptious!~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.15 5 0 0 0 0 0 0
+E
+donut glazed~
+The donut smells like it was freshly baked at the bakery. It has a sugar 
+glaze on its warm browned surface.
+~
+#3014
+eclaire eclair chocolate delicious food~
+a delicious chocolate eclaire~
+A delicious chocolate eclaire has been left here. It looks scrumptious!~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.16 5 0 0 0 0 0 0
+E
+eclaire eclair chocolate~
+It looks like a fresh pastry from the bakery. Looking at the chocolate
+frosting causes you to drool a little.
+~
+#3015
+gown lavender~
+a flowing, lavender silk gown~
+A flowing gown of lavender silk lies fluttering here.~
+~
+11 536870912 9 1
+0 0 0 0 0 0 0
+3.00 1200 0 0 0 0 0 0
+E
+flowing lavender silk gown~
+This beautiful gown has a low sweetheart neckline and a flowing
+skirt attached to a v-shaped waistline. The sleeves are almost
+transparent, caught at the wrists in cuffs.
+~
+#3016
+circlet silver~
+a silver circlet~
+A fine circlet of shining silver rests here.~
+~
+8 0 17 1
+0 0 0 0 0 0 0
+2.00 500 0 0 0 0 0 0
+E
+circlet silver~
+This fine circlet is just a plain circle around the brow, but the
+quality of the silver, and its shine, make it look far more opulent
+than it really is.
+~
+A
+6 3
+#3017
+shoes purple purple-shoes pair~
+purple shoes~
+A pair of purple shoes stand here.~
+~
+9 536870912 65 1
+1 0 0 0 0 0 0
+2.00 50 0 0 0 0 0 0
+E
+purple shoes~
+These shoes are made of thick, sturdy heavyweight silk, and they
+are perfect for wearing with a dress.
+~
+#3018
+band golden wedding ring~
+a golden wedding band~
+A fine golden ring lies here.~
+~
+8 0 3 1
+0 0 0 0 0 0 0
+0.02 6000 0 0 0 0 0 0
+E
+golden wedding ring band~
+This is a plain wedding ring, polished to a sheen and quite
+comfortable.
+~
+A
+6 2
+#3019
+ring diamond engagement~
+a diamond engagement ring~
+A fabulous diamond ring lies here.~
+~
+8 0 3 1
+0 0 0 0 0 0 0
+0.02 18000 0 0 0 0 0 0
+E
+diamond engagement ring~
+This golden ring has a large, flawless diamond setting. The diamond
+looks like a spark of blue-white fire, and it catches any light in
+a pleasing fashion.
+~
+#3020
+dagger~
+a dagger~
+A dagger with a long thin blade is here.~
+Nothing.
+~
+5 1056768 8193 1
+0 1 4 11 0 0 0
+0.50 10 0 0 0 0 0 0
+E
+dagger~
+The dagger's blade is razor sharp.
+~
+#3021
+a-small-sword~
+a small sword~
+A small sword lies here.~
+Nothing.
+~
+5 1060864 8193 1
+0 1 6 3 0 0 0
+8.00 60 0 0 0 0 0 0
+E
+small sword~
+The sword is rather small to be called a sword, but it's definitely bigger
+than a dagger. It's rather simple in design.
+~
+#3022
+sword long long-sword longsword~
+a longsword~
+A longsword has been left here.~
+Nothing.
+~
+5 57700352 8193 1
+0 1 8 3 0 0 0
+3.00 240 0 0 0 0 0 0
+E
+sword long~
+The sword is about three and a half feet in length, and the blade is
+very sharp. It's plain and undecorated, allowing its steel to speak for 
+itself.
+~
+#3023
+club wooden wooden-club~
+a wooden club~
+A simple looking wooden club is here.~
+Nothing.
+~
+5 536875008 8193 1
+0 2 3 7 0 0 0
+3.90 12 0 0 0 0 0 0
+E
+club wooden~
+You see a short wooden club. You'd imagine it would hurt if you hit 
+someone or something over the head with it.
+~
+#3024
+warhammer hammer~
+a warhammer~
+A medium sized warhammer is here.~
+Nothing.
+~
+5 4096 8193 1
+0 1 5 7 0 0 0
+6.00 50 0 0 0 0 0 0
+E
+warhammer hammer~
+Looking at the warhammer brings out your native spirits.
+~
+#3025
+flail large~
+a flail~
+A large flail is here.~
+Nothing.
+~
+5 4096 8193 5
+0 2 4 7 0 0 0
+5.00 625 0 0 0 0 0 0
+E
+flail large~
+The flail is a nice, easy to use weapon, for people who weren't trained
+in the art of sword fighting.
+~
+A
+18 -1
+#3026
+totem mielikki small bark~
+a totem of Mielikki~
+A small bark totem lies here.~
+~
+8 268435460 1 1
+0 0 0 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+totem mielikki small bark~
+This is a small, wooden carving in the shape of a totem.  There are many
+figures represented upon the wood.  One is that of a ragged old man, who seems
+to be surrounded by five assistants of a notable status.  The base of the totem
+is charred and looks as though it has been exposed to fire.    
+~
+#3027
+scroll world teleport world-teleport aqua~
+a aqua scroll of world teleport~
+A aqua scroll lies here on the ground.~
+~
+2 536870976 1 20
+20 228 0 0 0 0 0
+0.10 2000 0 0 0 0 0 0
+#3030
+torch large~
+a torch~
+A large torch lies here.~
+~
+1 0 16385 1
+0 150 150 0 0 0 0
+2.00 10 0 0 0 0 0 0
+E
+torch~
+The torch is simple in its design. It's made up of a piece of wood with
+some cloth wrapped around the top of it, and smells like it has been
+dipped in oil.
+~
+#3031
+lantern brass~
+a lantern~
+A brass lantern sits here leaking lamp oil.~
+~
+1 0 16385 1
+0 250 250 0 0 0 0
+3.00 50 0 0 0 0 0 0
+E
+brass lantern~
+The oil lantern is made of brass, and has a handle to make it easier to
+hold. Some words have been carved into the bottom of the lantern.
+~
+E
+words bottom~
+The words read:
+      Type "light lantern" to activate.
+~
+#3032
+bag small~
+a bag~
+A small bag is crumpled on the floor.~
+~
+15 0 16385 1
+50 0 0 0 0 0 0
+1.00 20 0 0 0 0 0 0
+E
+small bag~
+The bag is rather small, but looks as if you could put a few of your
+personal possesions into it. A small label is sewn into the bag.
+~
+E
+label~
+It reads:
+Aaron's Fine Haberdashery
+Equipping Mielikki's Bravest Souls since 201
+    To use this bag, type put <object> bag
+    To remove objects from this bag, type get <object> bag
+~
+#3033
+cane mayor short mayors-cane questobject~
+the mayor's cane~
+A short cane is resting here in the way.~
+~
+3 0 16385 1
+20 1 1 3 0 0 0
+2.00 0 0 0 0 0 0 0
+T 6019
+E
+cane mayor short mayors-cane questobject~
+The mayor's cane is simply a short piece of wood to help him with walking in
+his old age.  It is probably worthless otherwise.    
+~
+#3034
+earring ruby delicate~
+a ruby earring~
+A delicate ruby earring lies on the floor.~
+~
+11 0 262145 1
+0 0 0 0 0 0 0
+0.01 1800 0 0 0 0 0 0
+E
+ruby earring~
+The deep, rich red ruby is mounted on a silver cabuchon setting.
+It seems to glow with inner light.
+~
+A
+6 1
+#3035
+a-black-leather-trench-coat~
+a black leather trench coat~
+A long leather coat is lying here.~
+~
+11 2716 1025 99
+0 0 0 0 0 0 0
+8.00 2500 0 0 0 0 0 0
+E
+a-black-leather-trench-coat~
+This coat is made of fine black leather and covers the wearer from the
+shoulders down to the calf muscles.
+~
+#3040
+badge mielikki-guard-badge small silver gold icon~
+Badge of the Mielikki Guard~
+A small silver and gold icon lies here.~
+~
+9 0 524289 0
+8 0 0 0 0 0 0
+0.01 0 0 0 0 0 0 0
+A
+1 3
+A
+2 2
+A
+24 3
+#3041
+shield bark-mielikki-guard-shield section wood~
+a bark Mielikki Guard Shield~
+A large section of wood lined with metal bands lies here.~
+~
+9 536870912 513 0
+9 0 0 0 0 0 0
+10.00 0 0 0 0 0 0 0
+A
+13 5
+A
+18 1
+#3050
+scroll identify identify-scroll~
+a scroll of identify~
+A scroll has carelessly been left here.~
+~
+2 536870976 16385 1
+12 186 0 0 0 0 0
+0.10 1 0 0 0 0 0 0
+E
+scroll identify~
+The scroll appears to have some strange language written on it:
+IDENT IXIA  LOIDE NT  X IAFLO IDENT IX AF LOIDE  TIA  IAFLO I     IXIAF
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+  E   I  AF LOID  N I X   F     E     I     I   NTIAX IAF   I     I   F
+  E   I  AF LO    N I X   F     E    XIA    I   N   X I     I     I   F
+IDENT IXIA  LOIDE N  AX   F   IDENT IX AF LOIDE N   X I     IDENT IXIAF
+~
+#3051
+potion small-yellow-potion detect-invisible~
+a yellow potion of detect invisible~
+A small yellow potion has carelessly been left here.~
+~
+10 64 16385 1
+12 19 0 0 0 0 0
+0.15 400 0 0 0 0 0 0
+E
+potion yellow~
+The potion has a small label 'Detect Invisible'.
+~
+#3052
+scroll green green-teleport teleport~
+a green scroll of teleport~
+A green scroll has been carelessly left here.~
+~
+2 536870976 16385 1
+12 2 0 0 0 0 0
+0.10 2001 0 0 0 0 0 0
+E
+scroll~
+The scroll has written upon it a formula for 'Word of Recall'. The thick 
+parchment paper is, strangely, coloured a rich green.
+~
+#3053
+scroll blue remove-curse~
+a scroll of remove curse~
+A rolled up blue scroll rests on the ground.~
+~
+2 536870912 1 1
+20 35 0 0 0 0 0
+0.18 1500 0 0 0 0 0 0
+#3055
+staff healing~
+a staff of healing~
+A staff had carelessly been left here.~
+~
+4 64 16385 1
+10 5 5 16 0 0 0
+5.00 8500 0 0 0 0 0 0
+E
+staff~
+The staff is made of metals unknown to you.
+~
+#3056
+scroll red recall red-recall~
+a red scroll of recall~
+A red scroll of recall lies here.~
+~
+2 536936448 16385 1
+0 221 0 0 0 0 0
+0.20 900 1000 0 0 0 0 0
+#3057
+scroll green recall green-recall~
+a green scroll of recall~
+A green scroll is lying here. ~
+~
+2 536936448 16385 1
+0 221 0 0 0 0 0
+0.20 3 1000 0 0 0 0 0
+#3058
+scroll blue recall blue-recall~
+a blue scroll of recall~
+A blue scroll is lying here.~
+~
+2 536936448 16385 1
+0 221 0 0 0 0 0
+0.20 600 1000 0 0 0 0 0
+#3059
+potion clear remove-poison~
+a clear potion of remove poison~
+A small potion of clear liquid lies here.~
+~
+10 64 1 1
+20 43 0 0 0 0 0
+0.15 500 0 0 0 0 0 0
+#3060
+raft~
+a raft~
+A raft has been left here.~
+~
+22 536870912 1 1
+0 0 0 0 0 0 0
+75.00 400 0 0 0 0 0 0
+E
+raft~
+The raft looks very primitive, but appears to be safe enough to use.
+~
+#3061
+canoe~
+a canoe~
+A canoe has been left here.~
+~
+22 536870912 1 1
+0 0 0 0 0 0 0
+32.00 1000 0 0 0 0 0 0
+E
+canoe~
+The canoe is fairly light.
+~
+#3062
+carpet magic~
+a magic carpet~
+A magic carpet is lying here, obviously left lying around by some idiot!~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+15.00 3000 0 0 0 0 0 0
+E
+carpet~
+This carpet is a very finely woven thick rug. It looks...relatively safe...
+~
+#3070
+robes green linen~
+long, green linen robes~
+Some green linen robes lie draped here.~
+~
+9 536870912 9 1
+2 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+#3071
+sash amber silk long~
+a long, amber silk sash~
+An amber sash lies coiled up here.~
+~
+9 536870912 2049 1
+1 0 0 0 0 0 0
+0.32 60 0 0 0 0 0 0
+#3072
+sandals delicate leather~
+delicate leather sandals~
+Some delicate leather sandals rest here.~
+~
+9 0 65 1
+1 0 0 0 0 0 0
+1.40 0 0 0 0 0 0 0
+#3073
+robes dark blue linen~
+dark blue linen robes~
+Some dark blue robes lie discarded here.~
+~
+9 536870912 9 1
+2 0 0 0 0 0 0
+2.90 0 0 0 0 0 0 0
+#3074
+hat pointed tall blue~
+a tall, blue pointed hat~
+A pointed hat rolls around on the ground.~
+~
+11 0 17 1
+0 0 0 0 0 0 0
+0.85 10 0 0 0 0 0 0
+#3075
+dress apple-green linen bright~
+an apple-green linen dress~
+A bright green linen dress lies here.~
+~
+9 536870912 9 1
+1 0 0 0 0 0 0
+3.00 45 0 0 0 0 0 0
+E
+dress apple-green linen bright~
+Constructed of quality linen from a loom, the dress is designed to fit a
+medium-sized woman of average build.  A rich blend of common broom and whin
+bark have been used to dye the dress a bright green, emitting the soft musky
+odor of nature.
+~
+#3076
+shoes light brown leather~
+light brown leather shoes~
+A pair of light brown shoes lies here.~
+~
+9 0 65 1
+1 0 0 0 0 0 0
+2.00 40 0 0 0 0 0 0
+#3077
+ribbon green hair green-ribbon~
+a green hair-ribbon~
+A simple green ribbon lies tangled on the ground.~
+~
+11 0 17 1
+0 0 0 0 0 0 0
+0.10 5 0 0 0 0 0 0
+E
+ribbon green hair green-ribbon~
+The simple green ribbon is haphazardly cut into a small strip of linen.  It
+serves its purpose well, however, and may even be quite attractive fixed up in
+a young lady's hair.
+~
+#3078
+tunic light green linen~
+a light green linen tunic~
+A light green tunic lies folded here.~
+~
+9 536870912 9 1
+1 0 0 0 0 0 0
+2.00 45 0 0 0 0 0 0
+#3079
+leggings pale brown linen~
+pale brown linen leggings~
+A pair of brown linen leggings rest here.~
+~
+9 536870912 33 1
+1 0 0 0 0 0 0
+2.40 45 0 0 0 0 0 0
+#3080
+necklace northern ranger rosewood~
+the necklace of the northern ranger~
+A necklace lies here, its beads carved from rosewood.~
+~
+8 536870912 1 1
+0 0 0 0 0 0 0
+0.50 200 0 0 0 0 0 0
+#3090
+map small-map-mielikki-map old-roll-paper~
+a small map of Mielikki~
+An old roll of paper lies here on the ground.~
+~
+12 536870912 1 1
+0 0 0 0 0 0 0
+0.20 0 0 0 0 0 0 0
+E
+map mielikki map-of-mielikki~
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+               TYPE LOOK SIDE2 TO SEE THE REST OF THE MAP
+
+~
+E
+side2~
+
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: rogue guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+~
+#3091
+brandy bottle brandy-bottle~
+a bottle~
+A brandy bottle has been left here.~
+Nothing.
+~
+17 0 1 1
+24 24 36 0 0 0 0
+0.40 30 0 0 0 0 0 0
+E
+brandy-bottle~
+It looks like a brandy bottle.
+~
+#3092
+cappuccino smug-cappuccino-mug~
+a mug~
+A smug cappuccino mug steams here.~
+~
+17 0 1 1
+12 12 30 0 0 0 0
+0.30 20 0 0 0 0 0 0
+E
+smug-cappuccino-mug~
+It's a white ceramic mug that looks perfect for a serving of cappuccino.
+~
+#3098
+desk musty-old-desk large-dusty-desk~
+a musty old desk~
+A large dusty desk rests in the corner, covered in yellowed papers.~
+~
+29 0 0 0
+1 0 0 0 0 0 0
+234902.00 0 0 0 0 0 0 0
+E
+musty-old-desk large-dusty-desk~
+Use "look desk" to see a listing of the archived messages.
+Use "read <message number>" to read a message.
+~
+#3099
+board bulletin-board~
+a bulletin board~
+A large player's bulletin board is hanging from a tree limb here.~
+~
+29 603979792 0 1
+1 0 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+bulletin-board~
+Use "look board" to see a listing of the messages. Use "read
+<message number>" or "remove <message number>" to read or remove
+a message, respectively.  Use "write board <subject>" to post.
+~
+#3100
+tea cup tea-cup~
+a cup~
+A cup has been set here.~
+~
+17 0 1 1
+6 6 11 0 0 0 0
+0.20 5 0 0 0 0 0 0
+E
+cup~
+It is a small simple cup, with a unique floral design.
+~
+#3101
+coffee cup coffee-cup~
+a cup~
+A cup has been set here.~
+~
+17 0 1 1
+8 8 12 0 0 0 0
+0.20 7 0 0 0 0 0 0
+E
+cup~
+It is a small simple cup, made to keep your coffee warm till the last
+drop.
+~
+#3102
+water cup water-cup~
+a cup~
+A cup has been set here.~
+~
+17 0 1 1
+8 8 0 0 0 0 0
+0.20 2 0 0 0 0 0 0
+E
+cup~
+It is a large simple cup.
+~
+#3103
+robes undyed linen~
+long, undyed linen robes~
+Some linen robes lie here.~
+~
+11 536870912 9 1
+0 0 0 0 0 0 0
+2.50 0 0 0 0 0 0 0
+#3104
+claw scrumptious-bear-claw semicircular-donut food~
+a scrumptious bear claw~
+A semicircular donut is lying here, its aroma filling the room.~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.15 5 0 0 0 0 0 0
+E
+donut scrumptious-bear-claw rectangular-donut~
+The sweet aroma of almond wafts up from a delicious-looking donut.  
+Semicircular with notches on the straight edge, the donut resembles a bear
+claw.  Almond flakes and raisins are sprinkled on the top.    
+~
+#3105
+bangers plate-bangers-mash tasty-sausages-mashed-potatoes food~
+a plate of bangers and mash~
+Some tasty sausages and mashed potatoes sit on a plate here.~
+~
+19 0 1 1
+10 0 0 0 0 0 0
+1.00 25 0 0 0 0 0 0
+E
+plate-bangers-mash tasty-sausages-mashed-potatoes~
+Gravy is poured over tasty-looking sausages and a lump of mashed potatoes.  
+The sausages appear to be beef, seasoned with a variety of herbs and onions.  
+~
+#3106
+crisps circular-slices-fried-potato small-pile piece-paper food~
+some crisps~
+Circular slices of fried potato lie in a small pile on a piece of paper.~
+~
+19 536870912 1 1
+5 0 0 0 0 0 0
+0.90 10 0 0 0 0 0 0
+E
+crisps circular-slices-fried-potato small-pile piece-paper food~
+A small pile of fried potato crisps lies on a piece of whitish paper, dripping
+with oil and covered in savory-smelling seasonings.  It looks quite tasty.    
+~
+#3107
+eggs pickled-eggs off-white-eggs food~
+some pickled eggs~
+Some off-white eggs have been laid here.~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+0.80 20 0 0 0 0 0 0
+E
+pickled-eggs off-white-eggs~
+Shelled, boiled, and pickled, these eggs are slightly discoloured, filled with
+the scent of vinegar and beets.    
+~
+#3108
+sandwich fresh-rye-bread-sandwich turkey-sandwich meat sauce food~
+a turkey sandwich~
+A fresh rye bread sandwich sits here, leaking sauces.~
+~
+19 0 16385 1
+12 0 0 0 0 0 0
+0.70 30 0 0 0 0 0 0
+E
+fresh-rye-bread-sandwich turkey-sandwich meat sauce~
+Made from freshly-baked rye bread, this sandwich has a thin slice of turkey
+smothered in delicious-smelling sauce.  It is topped with a few leaves of
+lettuce and slices of tomato.    
+~
+#3109
+ball leathery-ball inflated-pigs-bladder pig-bladder~
+a leathery ball~
+An inflated pig's bladder rolls around here.~
+~
+12 536870912 16385 1
+0 0 0 0 0 0 0
+2.50 500 0 0 0 0 0 0
+T 3109
+E
+leathery-ball inflated-pigs-bladder pig-bladder~
+Sewn primarily from a large pig's bladder, this ball measures slightly larger
+than a human's head.  It is inflated and tied off, preventing the air within
+from escaping.  The outer surface has been cleaned and leatherized, making this
+a tough ball useful for the roughest sports.    
+~
+#3110
+plushie dragon-plushie cute-little-dragon toy~
+a dragon plushie~
+A cute little dragon grins up at you from the floor.~
+~
+12 0 16385 1
+0 0 0 0 0 0 0
+1.00 750 0 0 0 0 0 0
+E
+dragon-plushie cute-little-dragon toy~
+This little plushie is a bright green, dyed with sweet-smelling green
+screwpine, making it an expensive little toy.  Sewn from soft strips of canvas
+and stuffed with cotton or wool, the cute little dragon is quite huggable with
+a cute little grin on its cute little face.    
+~
+#3111
+book nursery-rhymes-book bright-blue-book~
+a book of nursery rhymes~
+A bright blue book with an ostrich on its cover rests here, closed.~
+~
+12 536870912 16385 1
+0 0 0 0 0 0 0
+2.00 460 0 0 0 0 0 0
+E
+nursery-rhymes-book bright-blue-book cover~
+   A large motherly-looking ostrich greets the reader of this book, sitting
+jovially in the middle of the top of the book.  The cover's title reads: Mother
+Ostrich's Nursery Rhymes - First Edition.  Several pages of friendly children's
+poems follow within, starting on page1.    
+~
+E
+page1~
+Hey! diddle, diddle,
+  The child wrote a scribble,
+The sun hopped over the stream;
+The big dragon laughed petting his gems,
+And the teapot began to steam!
+
+The nursery rhymes continue on page2.
+~
+E
+page2~
+Wug the Fi'ry Drakling, lived in the fields
+And frolicked with the tomatoes 'til he got bashed down with shields!
+Little newbies always killed that rascal Wug
+And brought him hell and suffering and crushed him like a bug!
+
+The nursery rhymes continue on page3.
+~
+E
+page3~
+There once was a rogue from Mielikki
+Who told all his friends he was sneaky
+So he went to a cave
+And was feeling quite brave
+But now Mysa has a new toy rogue squeaky
+
+The nursery rhymes continue on page4.
+~
+E
+page4~
+Glug and Gwill went up the hill
+To burn a human city.
+Glug fell down not far from the town
+And Gwill wrote this little ditty.
+
+The nursery rhymes continue on page5.
+~
+E
+page5~
+Little Mage Bigby sat in the corner,
+Hoping he wouldn't be missed.
+He cast with his hand a spell oh so grand,
+And thus we have Bigby's Clenched Fist.
+
+The nursery rhymes continue on page6.
+~
+E
+page6~
+Cast, cast, cast the spell,
+Quickly and with skill.
+Daintily, cautiously, gracefully, carefully,
+Magic's but a drill.
+
+The nursery rhymes continue on page7.
+~
+E
+page7~
+It'sa pixie time
+They steals the sticks-y twine
+A little mouse
+Caught in a house
+Now he's pickled in brine!
+
+The nursery rhymes continue on page8.
+~
+E
+page8~
+Take their ears
+Pee in their beers
+It's all in fun
+Now sing of their fears
+~
+#3112
+whistle tiny-bird-whistle wooden-bird-whistle toy~
+a bird whistle~
+A tiny bird lies on its side here.~
+~
+12 536870912 16385 1
+0 0 0 0 0 0 0
+0.30 50 0 0 0 0 0 0
+T 3113
+T 3112
+E
+tiny-bird-whistle wooden-bird-whistle~
+Shaped like a tiny bluejay, this whistle is carved from a single block of wood.
+It is hollowed out inside, and a tiny flap in the beak vibrates when the
+whistle is blown, making a twittering whistle.    
+~
+#3113
+trap finger-trap slender-woven-bamboo-cylinder toy~
+a finger trap~
+A slender woven bamboo cylinder rolls around here.~
+~
+12 0 129 1
+0 0 0 0 0 0 0
+0.20 400 0 0 0 0 0 0
+T 3114
+E
+finger-trap slender-woven-bamboo-cylinder toy~
+Woven from tight strips of Odaishyozen bamboo, this slender cylinder has
+openings on either end large enough to place a finger inside.    
+~
+#3114
+flour bag-flour-bag large-canvas-bag xxxx food~
+a bag of flour~
+A large canvas bag marked XXXX slumps here.~
+~
+19 0 1 1
+100 0 0 0 0 0 0
+10.00 30 0 0 0 0 0 0
+E
+bag-flour-bag large-canvas-bag xxxx~
+This large canvas bag is filled with a solid 25 pounds of XXXX flour.  It's not
+very tasty, but with a little water might be palatable.    
+~
+#3115
+potatoes delicious-plate-spiced-potatoes food~
+a plate of spiced potatoes~
+A delicious-looking plate of spiced potatoes steams here.~
+~
+19 0 1 1
+15 0 0 0 0 0 0
+1.10 15 0 0 0 0 0 0
+E
+delicious-plate-spiced-potatoes~
+Well-oiled and heavily-seasoned, this plate of spiced potatoes wafts steam into
+the air, still hot from the frying pan.  It smells simply delicious.    
+~
+#3116
+bracelet sapphire-bracelet bright-blue-bracelet~
+a sapphire bracelet~
+Light glitters across a bright blue bracelet lying here.~
+~
+8 1 4097 25
+0 0 0 0 0 0 0
+0.20 15000 0 0 0 0 0 0
+E
+sapphire-bracelet bright-blue-bracelet~
+Twinkling in the light like a halo of blue fire, the sapphires on this bracelet
+are linked together by a thin chain of beautifully polished silver.  Each
+sapphire is mounted in a small silver rectangle, following the chain around in
+a circle.  The sapphire quality is exquisite, flawlessly reflecting a brilliant
+bright blue color.    
+~
+A
+6 3
+#3117
+plushie zzur-plushie little-plushie toy~
+the Zzur plushie~
+A little plushie sits watches you from its resting place.~
+~
+12 0 540673 1
+0 0 0 0 0 0 0
+0.90 1000000000 0 0 0 0 0 0
+T 3117
+T 3118
+E
+zzur-plushie little-plushie toy~
+The plushie doll looks just like the great Overlord himself!  Althought cute
+and cuddly, the plushie seems to have an air of authority about it.  It even
+seems to question 'Done yet?  ' at its imaginary underlings...  Or perhaps
+that's your imagination?    
+~
+#3118
+figurine Kourrya-figurine tiny-figure-robed-woman toy~
+a Kourrya figurine~
+Shadows wrap the tiny figure of a robed woman standing here.~
+~
+12 0 16385 1
+0 0 0 0 0 0 0
+1.70 50000 0 0 0 0 0 0
+T 3119
+T 3120
+E
+Kourrya-figurine tiny-figure-robed-woman toy~
+No matter how much light is shone on this female doll, it remains wreathed in
+shadow, the tiny delicate features difficult to make out.  Despite its small
+stature, power seems to emanate from its body, and its decoration is very real
+and lifelike.  The figurine is dressed in a extraordinarily detailed jet-black
+kimono concealing a little button in the figure's back.
+~
+#3119
+manikin Cronax-manikin~
+a Cronax manikin~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+1.80 0 0 0 0 0 0 0
+#3120
+claw old slimy~
+an old claw~
+An old claw is tossed in the dirt here.~
+~
+5 1748992 8193 1
+0 1 4 8 0 0 0
+6.00 0 0 0 0 0 0 0
+E
+old claw~
+An old claw beginning to rust has a fresh coat of slime on it.  The stench from
+the claws is enough to kill a person.    
+~
+#3121
+puppet Laoris-puppet little-colorful-hand-puppet toy~
+a Laoris puppet~
+A little colorful hand-puppet slumps on the floor here.~
+~
+12 603979776 16385 1
+0 0 0 0 0 0 0
+1.40 50000 1337 0 0 0 0 0
+T 3121
+T 3122
+E
+Laoris-puppet little-colorful-hand-puppet toy~
+Reminiscent of a miniature halfling, this soft felt puppet fits snugly over one
+hand, and is created from soft multicolored felt.  It has a mischievous grin
+stitched on its face, with black glass eyes peering out from a black cloth
+helm.  Oddly, the halfling has two little spiky canines protruding from its
+mouth.  Perhaps the puppet was meant to scare little children?
+~
+A
+15 1337
+#3122
+doll chinok-doll chinok-rag-doll little-hooded-figure~
+a Chinok rag doll~
+A little hooded figure is slumped here like a rag doll.~
+~
+0 0 16385 0
+0 0 0 0 0 0 0
+1.70 50000 0 0 0 0 0 0
+T 3124
+T 3125
+E
+chinok-doll chinok-rag-doll little-hooded-figure~
+The little doll is sewn together from scraps of cloth.  Facial features are
+stitched carefully on the head, depicting a mischevious smile.  Something about
+the doll just makes you want to pat it on the head!  A hooded cloak made of
+brown felt fits the doll nicely, covering the seams where the arms are
+attached.  Each arm has an odd little sword sewn on--the hilts are metallic,
+but the blades are a strange glowing material.  The swords' glow slowly
+alternates between subtle brightening and dimming, casting varying shadows on
+the doll's face which seem to make its eyes come alive.
+~
+#3123
+model Zantir-model~
+a Zantir model~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+1.90 0 0 0 0 0 0 0
+#3124
+box jack-box~
+a jack in the box~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+3.00 0 0 0 0 0 0 0
+#3125
+dice pair-dice~
+a pair of dice~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+0.02 0 0 0 0 0 0 0
+#3126
+hoop~
+a hoop~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+1.00 0 0 0 0 0 0 0
+#3127
+unfinished object~
+a little wooden duck~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+0.40 0 0 0 0 0 0 0
+#3128
+top~
+a top~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+0.05 0 0 0 0 0 0 0
+#3129
+unfinished object~
+a thin wooden disc~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+#3130
+unfinished object~
+a firecracker~
+An unfinished object is lying here.~
+~
+0 0 1 0
+0 0 0 0 0 0 0
+0.09 0 0 0 0 0 0 0
+#3131
+safe~
+the safe~
+A safe is placed in a dark corner of the room.~
+The safe has a keyhole.
+~
+15 0 0 1
+34 15 3123 0 0 0 0
+100.00 0 0 0 0 0 0 0
+E
+safe~
+The safe is very heavy.
+~
+#3132
+gold coins~
+the gold~
+A lot of gold is here.~
+Looks like a whole lot of coins has been dropped here.
+~
+20 0 1 1
+20 500 10 34 0 0 0
+1.00 52385 0 0 0 0 0 0
+E
+gold~
+Looks like a whole lot of coins to you.
+~
+#3135
+water fountain small white~
+a fountain~
+A small white fountain is standing at the end of the road.~
+~
+23 0 0 1
+9999 9999 0 0 0 0 0
+10004.00 3000 0 0 0 0 0 0
+E
+fountain~
+It is very nice. Made from fine white marble and carved.~
+#3136
+coins gold~
+a small pile of gold coins~
+A small pile of gold coins lies here.~
+~
+20 0 1 1
+0 0 0 55 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+coins gold~
+It's a small pile of coins.
+~
+#3137
+water fountain large-marble-fountain mielikki-fountain~
+a fountain~
+A large marble fountain stands in the middle of the plaza.~
+~
+23 603979792 0 1
+999 999 0 0 0 0 0
+2147483648.00 3000 0 0 0 0 0 0
+E
+fountain~
+In the center of the fountain is a statue of Metamorpho, "Weaver of
+the Worlds." The statue's arms are extended toward the heavens, and
+water shoots out from its hands over the top of the statue's head.
+There is an inscription on the side of the fountain.
+~
+E
+words inscription side~
+Inscribed on the side it says "Metamorpho circa 1992".
+~
+#3138
+potion satin black satin-black~
+a satin-black potion~
+A potion as black as satin lies in a shadow.~
+~
+10 0 1 0
+10 131 89 0 0 0 0
+0.20 50 0 0 0 0 0 0
+E
+potion satin black satin-black~
+The fragile glass of this small bottle blends seamlessly with
+the oily contents within.  A yellow chalk inscription is
+nearly worn off.  Its remainder reads: "dark pr..."
+~
+#3140
+doll miniature-brownie-doll tiny-mischievous-brownie food~
+a miniature brownie doll~
+A tiny, mischievous-looking brownie lies here limply.~
+~
+19 0 16385 1
+24 0 0 0 0 0 0
+0.50 5000 0 0 0 0 0 0
+E
+doll miniature-brownie-doll tiny-mischievous-brownie food~
+Even smaller than the tiny forest brownies, this squishy little doll looks
+roughly like its fairy namesake.  Somehow it retains a mischievous glint in its
+little candy eyes that tells you SOMETHING is up.
+~
+#3141
+doll miniature-meer-cat-doll cute-little-meer-cat-warrior~
+a miniature Meer Cat doll~
+A cute little Meer Cat warrior sits here, ready to cuddle.~
+~
+12 0 16385 10
+0 0 0 0 0 0 0
+0.50 10000 0 0 0 0 0 0
+E
+doll miniature-meer-cat-doll cute-little-meer-cat-warrior~
+Crudely sewn from animal fur, this little Meer Cat is very cute and cuddly
+nonetheless.  It has the softest, fuzziest fur and has a friendly look upon its
+tiny face.
+~
+A
+11 -10
+#3142
+doll miniature-prismatic-attendant-doll~
+a miniature Prismatic Attendant doll~
+A Prismatic Attendant doll sits here waiting for your attention.~
+~
+10 0 16385 10
+25 16 88 15 0 0 0
+0.50 15000 0 0 0 0 0 0
+E
+doll miniature-prismatic-attendant-doll~
+Much like a real Hiver, this little replica has a crystal-clear chitin shell,
+sparkling gracefully in the light.  She has six little round feet and looks
+like a diligent, caring worker.
+~
+A
+11 -10
+#3143
+doll miniature-spark-pixie-doll translucent-pixie~
+a miniature spark pixie doll~
+A nearly translucent pixie with a glowing outline sits on the ground, grinning.~
+~
+1 536870912 16385 10
+0 500 500 0 0 0 0
+0.50 20000 0 0 0 0 0 0
+E
+doll miniature-spark-pixie-doll translucent-pixie~
+Formed from some mysterious translucent material, this pretty little pixie doll
+shimmers golden and blue in color.  Tiny wire-frammed silk wings project from
+the doll's back.  Some blue and gold glitter is attached to the doll, scattered
+to look like sparks racing across her skin.
+~
+#3144
+doll miniature-crimson-rosella-doll pudgy-red-plumed-bird~
+a miniature crimson rosella doll~
+A pudgy red-plumed bird lies on its side, its beak open in silent song.~
+~
+3 0 16385 10
+25 10 10 50 0 0 0
+0.50 25000 0 0 0 0 0 0
+E
+doll miniature-crimson-rosella-doll pudgy-red-plumed-bird~
+This little avian doll is covered in actual rich, deep red feathers from a
+rosella.  Its beauty could easily be mistaken for a blossoming flower, albeit a
+flower with a large wooden hookbill.  Little wooden feet stick out of the
+bottom, but don't seem to serve very well for balance, as the doll has trouble
+standing up.
+~
+#3145
+doll miniature-ambitious-mage-doll little-ambitious-mage~
+a miniature ambitious mage doll~
+A little ambitious mage sits here searching for knowledge.~
+~
+4 16179200 16385 20
+25 10 10 32 0 0 0
+0.50 30000 0 0 0 0 0 0
+E
+doll miniature-ambitious-mage-doll little-ambitious-mage~
+This little bald doll resembles a slightly older man, dressed in a little grey
+cloth shirt, miniature grey canvas pants, and some tiny reed sandals.  He holds
+a small polished black wand in his hand, pointing it aggressively at some
+unknown foe.
+~
+#3146
+doll miniature-stone-golem-doll pure-rock-doll~
+a miniature stone golem doll~
+A doll made of pure rock stands guard here.~
+~
+17 0 16385 20
+24 24 4 0 0 0 0
+1.00 35000 0 0 0 0 0 0
+E
+doll miniature-stone-golem-doll pure-rock-doll~
+This little stone flask is a perfect sculpture of a stony golem, save the
+little stopper protruding from the top of its head.  Its hollow stone eyes
+chillingly reflect no emotions or remorse...  Though that would seem to be
+normal from such an inanimate object as this.
+~
+#3147
+doll miniature-green-gelatinous-blob-doll oozing-green-gelatinous-blob~
+a miniature green gelatinous blob doll~
+An oozing green gelatinous blob lies here, oozing over bits of debris.~
+~
+15 0 16385 25
+237 0 -1 0 0 0 0
+0.50 100000 0 0 0 0 0 0
+E
+doll miniature-green-gelatinous-blob-doll oozing-green-gelatinous-blob~
+The doll is a horrid looking thing: it's little, greenish, and looks like the
+blob.  Under the globs of gelatinous gleaming gunk, glint the green eyes of a
+gooey effigy.  Its original visage is difficult to make out, because of all the
+green gelatin caked on it.  The goo is quite sticky, causing anything touching
+it to become lodged in the mess.
+~
+#3148
+doll miniature-larva-worm-doll larva-doll~
+a miniature Larva Worm doll~
+A larva doll slithers around here.~
+~
+3 0 16385 25
+25 10 10 144 0 0 0
+0.50 100000 0 0 0 0 0 0
+E
+doll miniature-larva-worm-doll larva-doll~
+Short and stout, this little Larva Worm doll is sewn from pieces of tough white
+leather of unknown origin.  It's stuffed unevenly with thick clumpy wool and
+its white skin is discolored, giving it a sickly appearance.  Its red bead eyes
+glare menacingly, evil intentions in its eyes.
+~
+#3149
+doll miniature-frost-stallion-doll tiny-proud-white-horse~
+a miniature frost stallion doll~
+A tiny, proud white horse lies calmly on one side.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-frost-stallion-doll tiny-proud-white-horse~
+This slender-legged, bright white doll has a look of nobility in its
+well-crafted stitches.  Clumps of stuffing ripple under its skin and its
+underlying wire frame allows the doll to stand on its four little legs with
+grace and assuredness.
+~
+A
+14 50
+#3150
+doll miniature-ice-drakling-doll itty-bitty-blue-dragon~
+a miniature Ice Drakling doll~
+An itty-bitty blue dragon is sitting with a chilly look to it.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-ice-drakling-doll itty-bitty-blue-dragon~
+This little doll is made from a light blue hide, and has a cute little red
+tongue hanging out of its open mouth.  It has little floppy wings attached to
+its back.
+~
+A
+5 5
+#3151
+doll miniature-ash-drakling-doll itty-bitty-black-dragon~
+a miniature Ash Drakling doll~
+An itty-bitty black dragon is sitting here with a burning look in its eyes.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-ash-drakling-doll itty-bitty-black-dragon~
+This little doll has a glossy black hide, its shiny scales probably taken from
+a snake or other small reptile.  Little felt flames flare from its nostrils,
+burning the imaginary miniature townspeople around it.
+~
+A
+24 -10
+#3152
+doll miniature-emerald-drakling-doll itty-bitty-green-dragon~
+a miniature Emerald Drakling doll~
+An itty-bitty green dragon is sitting with a mesmerizing look about it.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-emerald-drakling-doll itty-bitty-green-dragon~
+This little doll has vibrant green skin and wings, its little beady eyes
+projecting an unnatural aura about itself.  Drawing miniature little newbies to
+their deaths.
+~
+A
+18 3
+#3153
+doll miniature-fiery-drakling-doll itty-bitty-red-dragon~
+a miniature Fiery Drakling doll~
+An itty-bitty red dragon is sitting here, its mouth wide open.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-fiery-drakling-doll itty-bitty-red-dragon~
+This little doll is voracious-looking, with a full mouth of razor-sharp felt
+teeth.  It has a hungry look on its tiny face, ready to chomp on the next
+little newbie to pass by.
+~
+A
+19 3
+#3154
+doll miniature-roc-hatchling-doll little-baby-roc-doll~
+a miniature roc hatchling doll~
+A little baby roc doll sits here, its mouth open hungrily.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-roc-hatchling-doll little-baby-roc-doll~
+Though the cutest baby roc doll ever, this hatchling looks vicious at the same
+time.  It's armed with a hooked beak and claws carved from wood.  The beak is
+open wide in a hungry silent squawk.
+~
+A
+2 5
+#3155
+doll miniature-plant-elemental-doll food~
+a miniature plant elemental doll~
+A plant elemental doll blends in with the surrounding underbrush.~
+~
+19 0 1 30
+24 0 0 0 0 0 0
+0.50 100000 0 0 0 0 0 0
+E
+doll miniature-plant-elemental-doll food~
+A mass of vines and vegetation, the doll has loose wriggling roots stretching
+out from its body in random directions.  It's crafted from various samples of
+underbrush and bound together with strong vegetable cords, with a shape vaguely
+resembling a human.
+~
+#3156
+doll miniature-wounded-amazon-doll wounded-mercenary-doll~
+a miniature wounded Amazon doll~
+A wounded mercenary doll lies here looking up angrily.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-wounded-amazon-doll wounded-mercenary-doll~
+Modeled after the famous mercenary women of the north, this little Amazon doll
+is dressed in tiny replicas of battle armor and weaponry.  She sports a tough
+mohawk haircut, and carefully sewn stitches recreate stylish wounds and scars
+scattered across her cloth skin.
+~
+A
+1 5
+#3157
+doll miniature-heucuva-doll evil-heucuva-doll~
+a miniature Heucuva doll~
+An evil heucuva doll lies here reaching up to grab a finger.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-heucuva-doll evil-heucuva-doll~
+Apparently crafted using the thin bones of a chicken, they have been rearranged
+into a humanoid form and robed in ragged garments.  In an effort to make the
+Heucuva replica more authentic, it has apparently been perfumed in the odor of
+rotting flesh.
+~
+A
+3 5
+#3158
+doll miniature-general-angrugg-doll large-orc-doll~
+a miniature General Angrugg doll~
+A large orc doll in general's insignia sits here, a rough look on his face.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-general-angrugg-doll large-orc-doll~
+The doll has an permanent irritated look stitched on its face.  His proportions
+would make him seem quite large and muscular for an orc, and his uniform bears
+resemblance to an actual general's outfit.  He has little yellow beady eyes
+that would seem to be more interested in pillaging than the average doll.
+~
+A
+6 5
+#3159
+doll miniature-scholar-doll wise-scholarly-looking-doll~
+a miniature scholar doll~
+A wise, scholarly-looking doll sits here contemplating.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-scholar-doll wise-scholarly-looking-doll~
+The doll resembles a wise, learned man who has many years of education.  He has
+itty-bitty spectacles that would probably break under the smallest amount of
+pressure.
+~
+A
+4 5
+#3160
+doll miniature-mesmeriz-doll troll-sorcerer-doll~
+a miniature Mesmeriz doll~
+A troll sorcerer doll glares around itself.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 150000 0 0 0 0 0 0
+E
+doll miniature-mesmeriz-doll troll-sorcerer-doll~
+Crafted in the image of Mesmeriz himself, this trollish doll has rough green
+skin painted with purple and red symbols.  True to form, one horn curls back as
+a ram, but the other is broken off near his head.  Even as a doll, he seems
+dangerous.
+~
+A
+26 10
+#3161
+doll miniature-mammoth-doll miniature-elephant~
+a miniature mammoth doll~
+A miniature elephant with curved tusks and thick wooly hair sits here waiting for a hug.~
+~
+12 13552640 16385 30
+0 0 0 0 0 0 0
+0.50 200000 0 0 0 0 0 0
+T 18887
+E
+doll miniature-mammoth-doll miniature-elephant~
+Mammoths are gigantic elephants covered in thick wooly hair.  Although not
+gigantic, this doll is fairly true to form, with thick brownish wool covering
+its body.  It has two little pale wooden curved tusks, which are really the
+only danger to this cute, cuddly mammoth.
+~
+A
+25 1
+#3162
+doll miniature-master-shaman-doll little-shaman-doll~
+a miniature Master Shaman doll~
+A little shaman doll wearing a Snow Leopard cloak sits here.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-master-shaman-doll little-shaman-doll~
+This doll is very beautiful and seems very elegant crafted from soft cloth.  
+Resembling a Technitzitlan Shaman, she is dressed in fine flowing robes and a
+cute little Snow Leopard cloak.  An upset look has been stitched upon her face,
+reflecting concern of some great evil powers.
+~
+A
+3 5
+A
+4 5
+A
+1 -5
+A
+5 -5
+#3163
+doll miniature-squid-doll~
+a miniature squid doll~
+A miniature squid floats ominiously in a puddle of water, long tentacles waving.~
+~
+21 536870912 16385 30
+0 0 0 0 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-squid-doll~
+Resembling the accounts of the fabled Giant Squid of the seas, this doll is one
+of the ugliest in existence, with no eyes to speak of and little ropes for
+tentacles.  A strange beak-like maw sits at the center of the tentacles, with
+the tip of a fountain pen protruding slightly.  The squishy sac-like body must
+be the ink well that allows this doll to act as a pen as well.
+~
+A
+3 5
+#3164
+doll miniature-crazed-nereid-doll lovely-little-doll~
+a miniature crazed Nereid doll~
+A lovely little doll sits here, glaring with hate.~
+~
+26 0 16385 30
+100 0 0 0 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+doll crazed-nereid-doll lovely-little-doll~
+A beautiful little Nereid doll sits here, skillfully formed from delicate
+porcelain.  A chilly expression of insanity has been painted on her face, so
+masterfully done that it seems to contort and laugh in glee...
+~
+A
+3 5
+#3165
+doll miniature-forest-spider-doll~
+a miniature forest spider doll~
+A miniature forest spider sits on the ground.~
+~
+12 0 16385 30
+0 0 0 0 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-forest-spider-doll~
+Only close-up is it obvious this spider is just a doll.  It has little fangs
+and a hairy body, with wireframe legs to keep it standing.  It's large for a
+spider, but is modelled after even larger forest spiders who are rarely seen by
+those who continue living.  Its abdomen is three times larger than its upper
+body, though they are all one piece, giving it a sort of pear shape.
+~
+A
+1 2
+A
+5 2
+A
+2 2
+#3166
+doll miniature-holyguard-doll miniature-holyguard-warrior holy-guard~
+a miniature Holyguard doll~
+A miniature Holyguard warrior stands here, at full attention.~
+~
+4 1024 16385 30
+30 10 10 34 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-holyguard-doll miniature-holyguard-warrior holy-guard~
+The doll stands with a little wooden sword at his side and in full tin replica
+armor.  It's fairly polished, but also has scratches and dents from hours of
+play.  He has a stoic, concerned expression, ready at every moment to help his
+owner banish the evils of the world.
+~
+#3167
+doll miniature-flame-elemental-doll itty-bitty-pillar-flame~
+a miniature flame elemental doll~
+An itty-bitty pillar of flame dances across the floor.~
+~
+1 12632064 16385 40
+0 -1 -1 0 0 0 0
+0.50 250000 0 0 0 0 0 0
+T 18887
+E
+doll miniature-flame-elemental-doll itty-bitty-pillar-flame~
+This soft little doll is sewn in the shape of a flame, with varying shades of
+red for dye.  It has two little black beads as eyes, giving it a cute harmless
+appearance.  When squeezed, a little burst of real flame pops out its top.
+~
+#3168
+doll miniature-water-elemental-doll little-crest-water~
+a miniature water elemental doll~
+A little crest of water has raised itself up here.~
+~
+17 0 16385 40
+32 32 0 0 0 0 0
+2.00 25000 0 0 0 0 0 0
+E
+doll miniature-water-elemental-doll little-crest-water~
+Shaped like a mostly amorphous blob, this doll is dyed almost uniformly light
+blue, with white crests across the top.  It completely resembles running water
+from rivers and oceans.  A little spigot on the back lets one pour water into
+and draw water out of the doll.
+~
+A
+13 25
+#3169
+doll miniature-krisenna-doll plump-little-demon~
+a miniature Krisenna doll~
+A plump little demon stares off into the swirling nothingness.~
+~
+3 13680704 16385 50
+50 10 10 2 0 0 0
+0.50 150000 0 0 0 0 0 0
+T 18887
+E
+doll miniature-krisenna-doll plump-little-demon~
+The demon stands at least twice as tall the average doll.  He has little
+stuffed muscles and a thoughtful that looks off into space.  He wears only a
+pair of red trousers and a little pouch, but two black horns curve back from
+his head, like deer antlers.
+~
+#3170
+doll miniature-griffin-chick-doll itty-bitty-griffin-chick-doll~
+a miniature griffin chick doll~
+An itty-bitty griffin chick doll tries to lighten up your day!~
+~
+4 0 16385 50
+50 10 10 57 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+doll miniature-griffin-chick-doll itty-bitty-griffin-chick-doll~
+It's so teeny and cuddly!  It's so cute!  It has a tiny little beak just big
+enough to fit a worm or finger in!
+~
+#3171
+doll miniature-will-o-wisp-doll tiny-glowing-blue-orb~
+a miniature will-o-wisp doll~
+A tiny glowing blue orb darts about rapidly in an erratic manner.~
+~
+1 0 16385 50
+0 -1 -1 0 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-will-o-wisp-doll tiny-glowing-blue-orb~
+This glowing sphere is similar to a lantern or torch, but seems to have a mind
+of its own, darting about at high speed and in a completely random manner.  
+The intensity of the light changes from very bright to quite dim.  Resembling
+an actual will-o-wisp, the doll is carved from glass that shifts in color from
+blue to violet to green and back again.
+~
+#3172
+doll miniature-chaos-doll spidery-flowing-form~
+a miniature Chaos doll~
+A spidery, flowing form shimmers on the floor.~
+~
+3 0 16385 50
+50 10 10 73 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-chaos-doll spidery-flowing-form~
+This is a miniature, vortex-like mass of cloth and stuffing.  Thin strands of
+wool flow out in all directions.  There seems to be no pattern to it, but there
+are faces and scenes randomly swirled in with paint on the cloth.
+~
+#3173
+doll miniature-nondescript-doll~
+a miniature nondescript doll~
+A nondescript doll loiters here.~
+~
+12 0 16385 50
+0 0 0 0 0 0 0
+0.50 250000 0 0 0 0 0 0
+E
+doll miniature-nondescript-doll~
+The doll depicts a fairly average man, with nondescript features.  There's
+nothing about this doll that's memorable.
+~
+#3174
+doll miniature-house-gnome-doll scared-looking-little-doll~
+a miniature House Gnome doll~
+A scared-looking little doll peeks out from behind little hands.~
+~
+3 0 16385 50
+50 10 10 29 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-house-gnome-doll scared-looking-little-doll~
+This little gnomic doll hides behind its hands, its little bead eyes peering
+through its fingers.  It has stubby little legs that closely resemble a real
+gnome's.  Dressed all in black, the gnome would be very difficult to see, say,
+above a darkened theater stage.
+~
+#3175
+doll miniature-chosen-endings-doll muscular-doll~
+a miniature Chosen of Endings doll~
+A muscular doll soaks in a steaming puddle.~
+~
+3 0 16385 50
+50 10 10 28 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+doll miniature-chosen-endings-doll muscular-doll~
+Stitches made to look as scars crisscross the muscular form of this doll.  He
+has a relaxed expression on his face, resting in a mysterious pool of hot water
+that appears wherever he sits.  On his forehead is a strange, purple tattoo.
+~
+#3176
+doll miniature-chosen-journeys-doll monk-doll~
+a miniature Chosen of Journeys doll~
+A monk doll sits here resting.~
+~
+12 536870912 16385 50
+0 0 0 0 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+doll miniature-chosen-journeys-doll monk-doll~
+Dressed in robes of soft blue, this little doll has a teeny black silk
+blindfold covering his eyes.  Its sewn to his head, and doesn't seem
+removeable.  A cheerful smile is depicted on his face, and an unfamiliar symbol
+in bright blue is on his forehead.
+~
+A
+13 10
+A
+14 50
+#3177
+doll miniature-chosen-battles-doll vigorous-doll~
+a miniature Chosen of Battles doll~
+A vigorous-looking doll sits here, enjoying a hot puddle.~
+~
+12 0 16385 50
+0 0 0 0 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+doll miniature-chosen-battles-doll vigorous-doll~
+The doll has pliable arms and legs, not quite limp, but their position is
+easily changed.  Although a relaxed look is stitched onto his face, he seems to
+have an inexplicable alertness.  Some long scars are stitched on his back,
+resembling lash marks.  An unfamiliar symbol on the doll's forehead glows
+bright red.
+~
+A
+13 10
+A
+19 3
+#3178
+doll miniature-chosen-secrets-doll little-monk-doll~
+a miniature Chosen of Secrets doll~
+A little monk doll sits here, reading an even tinier book.~
+~
+12 0 1 50
+0 0 0 0 0 0 0
+0.50 300000 0 8388608 0 0 0 0
+E
+doll miniature-chosen-secrets-doll little-monk-doll~
+Somewhat short, even for a doll, this little cloth replica is made to appear
+totally engrossed in her tiny book.  She looks scholarly, with thin wire
+"glasses" set upon her head.  A half-smirk sits on her lips and a strange
+yellow symbol sits on her forehead.
+~
+#3179
+doll miniature-chosen-serenity-doll slender-monk-doll~
+a miniature Chosen of Serenity doll~
+A slender monk doll with long purple hair lies here.~
+~
+4 0 16385 50
+50 10 10 94 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+doll miniature-chosen-serenity-doll slender-monk-doll~
+If the proportions of this doll can be trusted, its muse was rather tall and
+graceful.  She has long purple hair, hanging partially in front of her dark
+eyes, which have simultaneously inviting yet dangerous aspects.  A mysterious
+glowing blue symbol rests on her forehead.
+~
+A
+13 10
+#3180
+doll miniature-luchiaans-doll miniature-sorcerer~
+a miniature Luchiaans doll~
+A miniature sorcerer stands in a corner, holding two beakers.~
+~
+12 0 16385 50
+0 0 0 0 0 0 0
+0.50 250000 0 0 0 0 0 0
+E
+doll miniature-luchiaans-doll miniature-sorcerer~
+Dressed in a red robe, this miniature doll resembles a power-hungry sorcerer.
+Carved from light wood, he is eternally fixed in his position, holding a
+miniature glass beaker in each hand.  It appears as if he is pouring one beaker
+into the other.  He has a maniacal grin carved onto his face, as if these very
+two beakers held the secret of unlimited power.
+~
+A
+20 -20
+#3181
+doll miniature-vulcera-doll little-bronze-skinned-sculpture~
+a miniature Vulcera doll~
+A little bronze-skinned sculpture stands here, admiring itself in a mirror.~
+~
+12 0 16385 50
+0 0 0 0 0 0 0
+0.50 250000 0 0 0 0 0 0
+E
+doll miniature-vulcera-doll little-bronze-skinned-sculpture~
+Carefully smithed from the finest bronze, this little sculpture depicts a woman
+of the greatest hubris.  She is fixed in a permanent position of rapture,
+admiring herself in a tiny mirror in her hand.  Her hair is painted red, and
+sprawls down across a sculpted cloak painted the same fiery red.
+~
+A
+19 2
+A
+3 -1
+A
+4 -1
+A
+24 -3
+A
+5 -2
+A
+13 20
+#3182
+sarcophagus miniature-sarcophagus miniature-golden-sarcophagus~
+a miniature sarcophagus~
+A miniature golden sarcophagus sits on the floor.~
+~
+15 0 1 60
+1 5 0 0 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+sarcophagus miniature-sarcophagus miniature-golden-sarcophagus~
+The sarcophagus is fantastically crafted and sculpted in the image of the
+pharoah Imanhotep.  The detail on this minuscule replica is unbelievable.
+~
+#3183
+doll miniature-zalkar-doll tiny-demon-lord~
+a miniature Zalkar doll~
+A tiny demon lord sits on its haunches here, mouth hanging open hungrily.~
+~
+2 0 16385 60
+60 54 54 54 0 0 0
+0.50 300000 0 0 0 0 0 0
+E
+doll miniature-zalkar-doll tiny-demon-lord~
+Summoned here either by a powerful wizard or a talented doll-maker, you wonder
+what foul purpose was intended in summoning this Zalkar doll.  It has magma red
+skin, and an evil look in its eyes.  Such a doll couldn't be intended as an
+agent of evil, but it could hardly be meant as a plaything for children.
+~
+A
+3 3
+#3184
+doll miniature-storm-demon-doll tiny-demon~
+a miniature storm demon doll~
+A little storm hovers about a tiny demon sitting arrogantly here.~
+~
+3 0 16385 60
+60 10 10 111 0 0 0
+0.50 400000 0 0 0 0 0 0
+E
+doll miniature-storm-demon-doll tiny-demon~
+Black cloth forms the skin of this demon-like doll, with bolts of blue
+lightning painted across its surface.  Puffs of cotton are attached, resembling
+a storm floating about its body.
+~
+#3185
+doll miniature-black-deer-doll evil-looking-deer-doll~
+a miniature black deer doll~
+An evil-looking deer doll lies on its side here.~
+~
+10 0 16385 60
+60 48 48 48 0 0 0
+0.50 200000 0 0 0 0 0 0
+E
+doll miniature-black-deer-doll evil-looking-deer-doll~
+This doll only marginally resembles the average forest deer, for it has jet
+black cloth for skin, and its eyes are pale red beads tied to its head.  Sharp
+bits of glass and hardened clay act as sharp teeth in its mouth, which seems to
+be stained with a thick dark-red substance...
+~
+#3186
+doll miniature-earth-elemental-doll shapeless-mound-stone~
+a miniature earth elemental doll~
+A shapeless mound of stone sits on the floor, dirtying the area.~
+~
+12 0 16385 70
+0 0 0 0 0 0 0
+0.50 400000 0 0 0 0 0 0
+E
+doll miniature-earth-elemental-doll shapeless-mound-stone~
+At first glance, the little mound seems to be made of just ordinary stone.  
+But a closer look shows it to have a vaguely humanoid shape, with arms and legs
+of earth, bound together by wire.  The doll's limbs bounce comically on their
+wires when it's handled.
+~
+A
+13 50
+A
+3 4
+#3187
+doll miniature-sandman-doll small-form-robed-doll~
+a miniature Sandman doll~
+The small form of a robed doll rests in a little pile of sand here.~
+~
+3 0 16385 70
+70 10 10 66 0 0 0
+0.50 400000 0 0 0 0 0 0
+E
+doll miniature-sandman-doll small-form-robed-doll~
+This cloth doll is modeled after a middle-aged man dressed in dun-colored
+robes.  His crafted expression conveys wisdom and serenity, but nothing about
+this doll particularly demands a second look.
+~
+#3188
+doll miniature-fallen-angel-doll beautiful-white-doll~
+a miniature fallen angel doll~
+A beautiful white doll with a dark taint lies here.~
+~
+4 0 16385 70
+70 10 10 28 0 0 0
+0.50 500000 0 0 0 0 0 0
+E
+doll miniature-fallen-angel-doll beautiful-white-doll~
+This doll is more beautiful than one can imagine.  It depicts a woman, her hair
+a shiny black, as dark as night.  The cloth for her skin is pale and she is
+dressed in a dusty white robe.  She has odd little wooden talons fixed to the
+end of her hands, looking as sharp as any sword.
+~
+#3189
+doll miniature-slender-druid-doll~
+a miniature slender druid doll~
+A slender druid doll stands watch over a few square feet.~
+~
+3 0 16385 70
+70 10 10 71 0 0 0
+0.50 500000 0 0 0 0 0 0
+E
+doll miniature-slender-druid-doll~
+This little half-elven doll has thin dark blonde straw for hair covering his
+little pointed ears.  A stubby beard is drawn onto the doll's face, reflecting
+a half-human lineage.  A thick swath of green felt forms a flowing robe which
+wraps his body from shoulder to knee.
+~
+#3190
+doll miniature-samurai-doll~
+a miniature samurai doll~
+A doll with a white-painted face and silk robes glares icily in front of itself.~
+~
+3 536870912 16385 70
+70 10 10 49 0 0 0
+0.50 400000 0 0 0 0 0 0
+E
+doll miniature-samurai-doll~
+This porcelain doll looks just like a samurai from Odaishyozen, but unlike a
+real samurai, its face is an unpainted white, and the remainder of its "skin"
+is covered in a skin-tone paint.  Black hair is glued to its head, tied back in
+a topknot.  Two miniature swords hang from its belt that encircles the doll's
+bulky cloth robes.
+~
+#3191
+doll miniature-mighty-druid-doll wizened-little-doll~
+a miniature, yet mighty druid doll~
+A wizened little doll sits here its arms outstretched.~
+~
+4 0 16385 70
+70 10 10 151 0 0 0
+0.50 400000 0 0 0 0 0 0
+E
+doll miniature-mighty-druid-doll wizened-little-doll~
+The cloth surface of this doll has many tiny folds, resembling aged wrinkled
+skin.  A mass of tangled hair is attached to the head, and a look of concern
+and panic marks his face.  The doll's arms stick out in front of him, as if
+fanning something.
+~
+#3192
+doll miniature-titan-doll regal-man~
+a miniature Titan doll~
+A regal man of miniscule proportions lies here forlorn.~
+~
+4 0 16385 80
+80 10 10 4 0 0 0
+0.50 500000 0 0 0 0 0 0
+E
+doll miniature-titan-doll regal-man~
+It's odd to see one of these great beings so small, even if it is only a
+child's-toy representation.  The doll has a noble, reserved expression, with a
+knowing look in his eyes.  A little golden ball is adhered to one of his hands,
+and he wears a squishy white belt covered in metal glitter.
+~
+A
+1 3
+#3193
+doll miniature-dargentan-doll itty-bitty-silver-dragon~
+a miniature Dargentan doll~
+An itty-bitty silver dragon is curled up in a ball on the floor.~
+~
+2 0 16385 80
+80 78 78 78 0 0 0
+0.50 500000 0 0 0 0 0 0
+E
+doll miniature-dargentan-doll itty-bitty-silver-dragon~
+This dragon doll is truly adorable.  It is hollow yet very heavy, its surface
+skillfully smithed from tiny burnished overlapping silver scales.  Little
+crystals resembling ice are caked on its claws, as if the doll resided in a
+frigid environment.  Although curled up in a sleepy little ball, one of its
+large, glassy eyes is open, as if watching its surroundings carefully.
+~
+A
+26 10
+#3194
+doll miniature-mysa-doll cloudy-hued-dragon-doll~
+a miniature Mysa doll~
+A cloudy-hued dragon doll rests upon a little pile of coins.~
+~
+3 0 16385 80
+80 10 10 81 0 0 0
+0.50 1000000 0 0 0 0 0 0
+E
+doll miniature-mysa-doll cloudy-hued-dragon-doll~
+This fierce-looking dragon doll is small and toylike, but not terribly cute
+with its mottled grey reptilian hide and dull eyes.  The underbelly is a softer
+white fuzzy cloth, contrasting the doll's pointed metal claws, odd for a
+child's plaything.  A small pile of copper coins is glued together, resting
+under the doll's belly.
+~
+A
+2 3
+#3195
+doll miniature-stormchild-doll little-towheaded-doll~
+a miniature Stormchild doll~
+A little towheaded doll looks up at you.~
+~
+12 0 16385 90
+0 0 0 0 0 0 0
+0.50 2000000 0 1048640 0 0 0 0
+E
+doll miniature-stormchild-doll little-towheaded-doll~
+You've never seen such an adorable little doll.  It's modeled after a young
+girl, with almost-white flaxen hair cut to brush her itty-bitty shoulders.  
+She has huge, exaggerated blue eyes giving her the cutest expression.  In a
+tiny white pullover shirt and blue overalls, this doll is an absolutely
+precious picture.
+~
+#3196
+doll miniature-sagece-raymif-doll black-dragon-doll~
+a miniature Sagece of Raymif doll~
+A black dragon doll glares at you contemptuously.~
+~
+4 0 16385 90
+90 10 10 42 0 0 0
+0.50 3500000 0 0 0 0 0 0
+E
+doll miniature-sagece-raymif-doll black-dragon-doll~
+Crafted from black snakeskin stretched over a light wooden frame and thick wool
+stuffing, this little dragon doll looks very similar to a real live dragon,
+only magnitudes smaller.  An air of death surrounds even this small doll, and a
+look in its red gleaming glass eyes is as vile and black as its scales.
+~
+#3197
+doll miniature-doll-moonless-night doll-god-moonless-night~
+a miniature Doll of the Moonless Night~
+A doll of the God of the Moonless Night laughs silently at you.~
+~
+3 0 16385 90
+90 10 10 36 0 0 0
+0.50 5000000 0 0 0 0 0 0
+E
+doll miniature-doll-moonless-night doll-god-moonless-night~
+No ordinary doll, it has pale, translucent skin and black hair tinted slightly
+blue.  A silvery light seems to glow about the doll, highlighting its
+glittering indigo eyes.  Amusement shows in the capricious grin stitched on its
+face.  A tiny glass shard is clasped in the doll's right hand, pyramidal in
+shape and about as long as the doll's forearm.
+~
+#3198
+set miniature-chosen-boxed-set little-wooden-box~
+a miniature Chosen boxed set~
+A little wooden box sits here covered in mysterious symbols.~
+~
+15 536870912 1 50
+3 5 0 0 0 0 0
+1.00 2000000 0 0 0 0 0 0
+E
+set miniature-chosen-boxed-set little-wooden-box~
+Magnificently carved from a single piece of polished cedar wood, this little
+box is a delightful little container.  Five mysterious glowing symbols are
+imprinted on the cover, each lit a different hue.  Inside are five metal
+brackets each marked with a single word in an unknown language.
+~
+#3199
+doll miniature-imanhotep-replica little-pharaohs-mummy~
+a miniature Imanhotep replica~
+A little pharaoh's mummy is resting here.~
+~
+3 0 16385 60
+60 10 10 35 0 0 0
+0.50 0 0 0 0 0 0 0
+E
+doll miniature-imanhotep-replica little-pharaohs-mummy~
+This little doll is wrapped tightly in linen bandages, carefully criss-crossed
+about its body.  The hands are wrapped in a different, darker linen, and the
+fingers have little gold tips on them.  A little ruby scarab is attached to the
+mummy's chest, a spell of protection written on its face.  Although not
+emaciated like the average mummy, this doll is a very realistic replica.
+~
+#3200
+potion purple p-enlarge~
+a purple potion~
+A purple potion is here.~
+~
+10 0 16385 1
+17 185 0 0 0 0 0
+0.15 4000 0 0 0 0 0 0
+E
+potion purple~
+It looks rather strange and smells funny!
+~
+#3201
+helmet metal metal-helmet~
+a metal helmet~
+A metal helmet in here.~
+~
+9 1593344 16401 1
+6 0 0 0 0 0 0
+4.00 3000 0 0 0 0 0 0
+E
+helmet metal~
+It looks somehow magical!
+~
+A
+24 -2
+A
+23 -2
+#3202
+dirk slender dagger~
+a slender dirk~
+A beautifully crafted dirk is lying here.~
+stab~
+5 1056768 8193 1
+0 1 4 11 0 0 0
+0.50 850 0 0 0 0 0 0
+E
+dirk~
+It's a medium sized, beautifully crafted dirk made from some greyish
+alloy. Its blade is double-edged and very thin...this looks like a good
+weapon for a thief.
+~
+A
+18 1
+A
+19 1
+#3203
+scroll ysafg~
+a scroll which reads "ysafg"~
+A scroll which reads "ysafg". It looks very fragile and quite old.~
+~
+2 536870912 1 1
+1 53 0 0 0 0 0
+0.09 1500 0 0 0 0 0 0
+E
+scroll~
+It looks informative, but sometimes even looks are deceiving.
+~
+#3204
+banded mail~
+a glowing suit of banded mail~
+A glowing suit of banded mail lies on the ground.~
+~
+9 1593409 9 1
+7 0 0 0 0 0 0
+13.00 75000 0 0 0 0 0 0
+E
+banded mail~
+The suit of banded mail appears to be magical.
+~
+A
+2 2
+A
+17 4
+#3205
+halberd steel~
+a steel-headed halberd~
+A mighty halberd lies against the wall.~
+slash~
+5 57700352 32769 1
+0 1 14 3 0 0 0
+5.00 12000 0 0 0 0 0 0
+E
+halberd~
+This mighty weapon is a little heavier than a sword, but it should
+do quite a bit more damage.
+~
+#3206
+amulet~
+the amulet~
+A mushroom shaped amulet lies on the ground.~
+~
+9 64 5 1
+0 0 0 0 0 0 0
+0.40 1500 0 0 0 0 0 0
+E
+amulet~
+The amulet is shaped like a mushroom, and has a silver chain.
+~
+A
+5 2
+#3207
+potion pink~
+a pink potion~
+A pink potion stands here.~
+~
+10 0 1 1
+25 33 17 0 0 0 0
+0.10 600 0 0 0 0 0 0
+E
+potion pink~
+The potion is pink in color and smells like cherries.
+~
+#3208
+wand platinum~
+a platinum wand~
+A platinum wand lies here.~
+~
+3 2 16385 1
+30 10 10 32 0 0 0
+0.30 1900 0 0 0 0 0 0
+E
+wand platinum~
+The wand is made of pure platinum. It feels cold to the touch.
+~
+#3209
+cloak blue shimmering~
+a shimmering blue cloak~
+A shimmering blue cloak lies furled on the ground.~
+Nothing.
+~
+9 96 17409 1
+1 0 0 0 0 0 0
+2.00 1000 0 0 0 0 0 0
+E
+cloak blue shimmering~
+The cloak is made with some odd magical blue cloth. It keeps fading
+in and out of existance.
+~
+A
+3 5
+#3210
+wand lightning blue silver~
+a silvery blue wand~
+A silvery blue wand has been dropped in the dirt~
+~
+3 64 16385 1
+10 3 3 30 0 0 0
+1.00 4000 0 0 0 0 0 0
+E
+wand lightning blue silver~
+The wand is made from a silver alloy, and is painted with blue
+streaks. The wand sends electrical pulses through your hand.
+~
+#3211
+helmet helm small-helmet~
+a small helmet~
+A small helmet lies up against a rock~
+~
+9 1593408 17 1
+1 0 0 0 0 0 0
+5.00 6000 0 0 0 0 0 0
+E
+helm helmet~
+The helmet is rather small and barely protects your head.
+~
+A
+3 3
+#3212
+ring ruby quest~
+a small ruby ring~
+A small ruby ring lies in the dirt.~
+~
+12 64 3 1
+0 0 0 0 0 0 0
+0.01 2000 0 0 0 0 0 0
+E
+ring ruby~
+The ruby is red and sparkles in the sun light. It looks like it'd
+make a good present to give to a good friend.
+~
+A
+13 50
+#3213
+dagger sacrificial spider shaped spider-dagger~
+a spider-shaped dagger~
+A dagger with spider leg shaped blades lies on the ground~
+pierce~
+5 1057344 8193 42
+0 3 4 11 0 0 0
+1.00 3000 0 0 0 0 0 0
+E
+dagger sacrificial spider~
+The dagger has four separate blades that stem out from the handle.
+Each of the blades are extremely sharp and jagged shaped.
+~
+A
+18 1
+#3214
+hat green~
+a small bright green hat~
+A small bright green hat lies in the dirt~
+~
+12 128 17 1
+0 0 0 0 0 0 0
+0.60 2000 0 0 0 0 0 0
+E
+hat green~
+The green hat looks like it feel off a medieval archer.
+~
+A
+9 -15
+A
+17 2
+#3215
+potion black p-darkpresence~
+a black potion~
+A jet black potion sits upright waiting to be taken.~
+~
+10 96 1 1
+40 131 0 0 0 0 0
+0.18 6000 0 0 0 0 0 0
+E
+potion black~
+The black potion smells rotten.
+~
+#3216
+potion orange sense life~
+an orange potion of sense life~
+A small orange potion lies here.~
+~
+10 96 1 1
+20 44 0 0 0 0 0
+0.20 1400 0 0 0 0 0 0
+E
+potion orange~
+In the flask is an orange liquid that smells a lot like lemons.
+~
+#3217
+staff serpentine~
+a green serpentine staff~
+A green serpentine staff has been left here.~
+~
+4 96 16385 1
+15 2 2 23 0 0 0
+4.00 6600 0 0 0 0 0 0
+E
+staff serpentine~
+It looks like a very sturdy hand-crafted staff made out of oak. The
+staff has been carved to resemble a serpent.
+~
+#3218
+ball smooth-quartz-ball~
+a smooth quartz ball~
+A smooth quartz ball lies here gleeming.~
+~
+1 64 16385 50
+0 -1 -1 0 0 0 0
+2.00 3050 0 0 0 0 0 0
+E
+ball quartz~
+The ball's surface is smooth and round. The ball is made out of pure
+quartz, and gives off a soft light.
+~
+#3219
+scroll tattered~
+a tattered scroll~
+A worn and tattered scroll has been left here.~
+~
+2 536870976 1 1
+24 24 0 0 0 0 0
+0.10 11000 0 0 0 0 0 0
+E
+scroll tattered~
+The scroll appeares to have something written on it, but the scroll is
+too worn to read.
+~
+#3220
+scroll bound~
+a bound scroll~
+A bound scroll of detection lies at your feet.~
+~
+2 536870976 1 1
+15 18 19 20 0 0 0
+0.15 1500 0 0 0 0 0 0
+E
+scroll bound~
+The scroll reads:
+	Detection sharpens perception!
+~
+#3221
+flute silver~
+a silver flute~
+A brilliant silver flute glimmers from beneath a rock.~
+~
+4 65 16385 1
+17 1 1 7 0 0 0
+6.00 10500 0 0 0 0 0 0
+E
+flute silver~
+The flute has been with a very fine silver alloy. Staring into the
+flute you can see your reflection.
+~
+#3222
+talisman demon~
+a demon-faced talisman~
+A demon-faced talisman glares at you angrily.~
+~
+9 193 5 1
+5 0 0 0 0 0 0
+0.30 2500 0 0 0 0 0 0
+E
+talisman demon~
+As you stare at the face of the demon, it comes to life. The demon's face
+stares at you in the eyes and grins, then it returns to normal.
+~
+A
+1 -10
+A
+2 -8
+#3223
+venison chunk meat food~
+a chunk of venison~
+A large chunk of venison sits here ready to be eaten.~
+~
+19 0 1 1
+6 0 0 0 0 0 0
+1.00 5 0 0 0 0 0 0
+E
+venison chunk~
+This chunk of deer looks like it was just freshly cut by the butcher
+of Anduin.
+~
+#3224
+fountain cracked~
+a large cracked fountain~
+A large, cracked, yet still majestic, fountain stands here.~
+Some stagnant water lies in the bottom of the fountain.~
+17 0 0 1
+10 10 0 1 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+fountain cracked~
+Some stagnant water lies in the bottom of the fountain.
+~
+#3225
+sword two handed~
+a two-handed sword~
+A nice two-handed sword hangs on a hook in the wall.~
+~
+5 55603200 32769 1
+0 1 13 3 0 0 0
+8.00 2000 0 0 0 0 0 0
+E
+two-handed two sword~
+This finely crafted sword is very heavy and has two handles to help you
+compensate for its weight while you fight with it in battle.
+~
+#3226
+robe black silk~
+a black silk robe~
+A black silk robe lies heaped in one corner.~
+~
+9 536870912 1025 1
+1 0 0 0 0 0 0
+2.00 1300 0 0 0 0 0 0
+E
+robe black silk~
+The black robe is made with the finest silk known to man, just holding it
+make you feel richer.
+~
+#3227
+cloak green~
+a dark green cloak~
+A beautiful dark green cloak has been dropped by someone.~
+~
+9 65 1025 1
+1 0 0 0 0 0 0
+2.40 900 0 0 0 0 0 0
+E
+cloak green~
+The cloak is the color of a dark forest green and is made out of a very
+heavy material. A beautiful design has been embroidered on the cloak.
+~
+A
+13 5
+#3228
+lantern hooded brass~
+a hooded brass lantern~
+A hooded brass lantern has been left here.~
+~
+1 0 16385 1
+0 250 250 0 0 0 0
+5.00 60 0 0 0 0 0 0
+E
+lantern~
+It is a large and robust but somewhat battered oil lantern made from brass,
+and it is equipped with a handle to make it handy and a hood to protect its
+flame.  Some letters have been scratched on its bottom.
+~
+E
+letters~
+They say, "Use 'light lantern' to activate."
+~
+#3229
+potion blue~
+a blue potion~
+A blue potion has been left here.~
+~
+10 64 1 1
+30 126 0 0 0 0 0
+0.20 1000 0 0 0 0 0 0
+E
+potion blue~
+It has a nice sky blue colour and a smell like peppermint.
+~
+#3230
+potion yellow~
+a yellow potion~
+A yellow potion has been left here.~
+~
+10 64 1 1
+15 39 0 0 0 0 0
+0.20 1000 0 0 0 0 0 0
+E
+potion yellow~
+It has a deep yellow colour and and a strong spicy smell.
+~
+#3231
+sceptre iron~
+an iron sceptre~
+An iron sceptre lies on the ground.~
+~
+1 64 16385 1
+0 500 500 0 0 0 0
+3.00 5000 0 0 0 0 0 0
+E
+sceptre iron~
+It is a heavy sceptre made from solid iron.
+~
+#3232
+ring iron iron-ring~
+an iron ring~
+An iron ring has been left here.~
+~
+9 64 3 1
+2 0 0 0 0 0 0
+0.02 500 0 0 0 0 0 0
+E
+ring iron~
+It is a quite heavy human-sized ring made from solid iron.  It lacks
+decorations of any kind.
+~
+#3233
+morning-star star morning~
+the morning star~
+The morning star is here collecting dust while it lies on the ground.~
+~
+5 1077312 8193 1
+0 2 8 7 0 0 0
+6.00 1500 0 0 0 0 0 0
+E
+morning-star star morning~
+It looks like a very fine piece of equipment capable of
+doing some nice damage.
+~
+#3234
+knife thiefs~
+a very sharp knife~
+A very sharp knife lies here.~
+~
+5 1062976 8193 4
+0 5 1 14 0 0 0
+0.30 200 0 0 0 0 0 0
+E
+knife~
+A keen knife, very sharp--you could cut the air in two!
+~
+A
+2 2
+A
+18 3
+#3235
+hat wizard's~
+a wizard's hat~
+A blue wizard's hat lies here.~
+~
+9 96 17 1
+6 0 0 0 0 0 0
+0.40 300 0 0 0 0 0 0
+E
+hat~
+It's a hat made of blue cloth.  It looks very comfortable.
+~
+A
+3 3
+A
+17 -2
+#3236
+visor black knight's~
+a black knight's visor~
+A black visor sits here.~
+~
+9 96 17 1
+6 0 0 0 0 0 0
+1.00 700 0 0 0 0 0 0
+E
+visor~
+The visor is black and looks like it'd be a good piece of equipment to
+protect your head.
+~
+A
+1 1
+A
+5 2
+#3237
+belt broad~
+a broad silver belt~
+A broad silver belt has been left here.~
+~
+9 64 2049 10
+6 0 0 0 0 0 0
+2.00 1200 0 0 0 0 0 0
+T 1299
+E
+belt silver~
+It is a broad belt made from tiny silver rings woven together.
+~
+#3238
+potion blue~
+an neon blue potion~
+A neon blue potion stands on the floor.~
+~
+10 64 1 1
+14 6 0 0 0 0 0
+4.00 100 0 0 0 0 0 0
+E
+potion blue~
+In the flask is a transparent electric blue liquid.
+~
+#3239
+stick small light~
+a small stick~
+A small stick lies here.~
+~
+1 0 16385 1
+0 -1 -1 0 0 0 0
+0.40 200 0 0 0 0 0 0
+E
+small stick~
+The small stick does not look interesting at all.  But just as you are going
+to throw it away you notice some small letters.
+~
+E
+letters letter~
+It reads 'Hold me'.
+~
+#3240
+treasure coins~
+a huge treasure~
+There is a huge treasure here, looking very valuable.~
+~
+20 0 1 1
+0 30 30 240 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+treasure~
+This looks like a whole lot of coins.
+~
+#3241
+sword short~
+a short sword~
+There lies a short sword.~
+slash~
+5 1060864 8193 1
+0 1 6 3 0 0 0
+2.40 100 0 0 0 0 0 0
+E
+short sword~
+This is a very nice little weapon. The blade is about two feet long and the
+weapon itself is rather light.
+~
+A
+18 1
+#3242
+sword bastard~
+a huge bastard sword~
+There is a huge bastard sword here.~
+slash~
+5 1080384 32769 20
+0 2 8 3 0 0 0
+7.60 1700 0 0 0 0 0 0
+E
+bastard sword~
+Quite a heavy weapon, with a pure white hilt.
+~
+A
+19 3
+#3243
+helmet large~
+a large helmet~
+There is a large helmet on the floor.~
+~
+9 1593408 17 20
+7 0 0 0 0 0 0
+5.00 4500 0 0 0 0 0 0
+E
+large helmet~
+This looks like some heavy protection, for the head of course.
+~
+#3244
+sword two handed enormous~
+an enormous two-handed sword~
+On the floor rests an enormous two-handed sword.~
+slash~
+5 1077312 32769 1
+0 1 12 3 0 0 0
+22.00 1800 0 0 0 0 0 0
+E
+two-handed sword~
+You notice that there has been inscribed some runes and a sort of pattern,
+which resembles flames running along the edge.
+~
+E
+runes~
+On the blade you can read 'Flame And Strength United Are My Soul Power'.
+~
+A
+19 2
+#3245
+chest chest1~
+a wooden chest~
+A wooden chest stands in the corner.~
+~
+15 0 0 1
+100 15 7911 0 0 0 0
+400.00 100 0 0 0 0 0 0
+E
+chest~
+It is a robust chest made from short, heavy planks that have been fastened
+together with tenons.  It is equipped with a simple brass lock.
+~
+#3246
+magenta potion~
+magenta potion~
+Bright magenta potion gathers dust.~
+~
+10 512 16385 1
+30 149 0 0 0 0 0
+0.10 300 0 0 0 0 0 0
+E
+magenta potion~
+The potion is magenta in color, and softly vibrates in your hand.
+~
+#3247
+sign glowing-sign~
+a glowing sign~
+A glowing sign hangs from the south wall.~
+~
+12 0 0 1
+0 0 0 0 0 0 0
+9999.00 0 0 0 0 0 0 0
+E
+sign glowing~
+It reads:
+
+   Sorcerers -- EAST
+   Pyromancers -- UP
+   Cryomancers -- DOWN
+~
+#3296
+granite pool~
+a granite pool~
+A shallow granite pool sits in the center of the room.~
+~
+23 0 0 0
+999999999 2147483647 0 0 0 0 0
+2147483648.00 0 0 0 0 0 0 0
+T 3296
+#3297
+bush rose~
+a large rose bush~
+A large rose bush adorns the center of the garden.~
+~
+15 536870928 0 0
+0 0 0 0 0 0 0
+0.00 0 0 0 0 0 0 0
+E
+bush rose~
+   This large bush flourishes here sprouting dozens of buds which
+grow into large black roses. All one must do is look within its
+confines to obtain a rose.
+~
+#3298
+rose single-long-stemmed-black-rose~
+a &9&bblack&0 rose~
+A single long-stemmed &8&9black&0 rose lies here in memory of Pergus.  Farewell friend.~
+Nothing.
+~
+8 604045328 540673 0
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+T 3298
+#3299
+statue daroowise high-druid memorial-statue large great~
+a statue of Daroowise the high druid.~
+A large statue depicting a great druid towers here.~
+Adorned in woodsman brown and forest green the druid's stance waivers not.  
+His posture submissive to the might of the Goddess and the wrath of God's bears
+down in clenched fist upon his would-be prey.  Colors of green shower on the
+polished marble, slowly twisting is color as the eyes move across the flawless
+stone.  A decadent green robe worn around his body flows over him to his hands
+and under his hair.    
+~
+8 0 0 0
+0 0 0 0 0 0 0
+2147483648.00 0 0 0 0 0 0 0
+E
+dedication~
+   Those missed are never forgotten when holding their memory in thy heart.  
+This memorial dedicated to Rick L Sala II.  Born: June 1, 1974.  Died: June 21,
+2006.  Beloved brother, friend, mentor, deity, husband, and father.  Rick our
+dearest of friends, Brother may rest among the Garden of Eden in peace.    
+
+Daroowise Ap Nuatha
+Pergus Tynllyr
+~
+E
+statue daroowise high-druid memorial-statue large great~
+Adorned in woodsman brown and forest green the druid's stance waivers not.  
+His posture submissive to the might of the Goddess and the wrath of God's bears
+down in clenched fist upon his would-be prey.  Colors of green shower on the
+polished marble, slowly twisting is color as the eyes move across the flawless
+stone.  A decadent green robe worn around his body flows over him to his hands
+and under his hair.
+~
+#3300
+blade small~
+a small blade~
+A small worthless blade has been left here.~
+pierce~
+5 0 8193 1
+0 1 4 11 0 0 0
+0.70 0 0 0 0 0 0 0
+E
+blade small~
+The blade is extremly small, and is slightly duller than a regular
+table knife. Even so, it should do more damage then your bare fist.
+~
+#3301
+roll light food~
+a light roll~
+A tasty light roll has been left here.~
+~
+19 0 1 1
+5 0 0 0 0 0 0
+0.13 0 0 0 0 0 0 0
+E
+roll light food~
+The roll feels and smells fresh. Just looking at it makes you hungry.
+~
+#3302
+water cup tin dented tin-cup dented-cup~
+a tin cup~
+A dented tin cup has been left here.~
+~
+17 0 1 1
+8 8 0 0 0 0 0
+0.15 0 0 0 0 0 0 0
+E
+cup tin dented~
+The cup is rather small and beat-up, but looks like it could hold some
+water.
+~
+#3303
+welcome-letter letter welcome~
+a letter of welcome~
+A letter of welcome lies here, waiting to be tapped.~
+~
+12 0 1 1
+0 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+E
+welcome-letter letter welcome~
+
+Welcome to Fiery Mud!
+ 
+Here you will learn powerful new spells and skills that will enable you 
+to venture ever further into this strange new world...
+Power and riches beyond your wildest dreams could become yours -
+if you have what it takes!
+
+This pamphlet will guide you along your first steps on Fiery.
+It is meant to keep you from making the same mistakes newbies have been 
+making time after time. Some of this might not be new to you, other 
+things are specific to Fiery.
+ 
+Here are some helpful tips to get you going, type "look <tip>":
+	COMMANDS -> A list of helpful commands.
+	FIGHTS   -> A brief summary over fighting.
+	LEVELING -> A brief summary about advancing and guilds.
+	RENTING  -> A brief summary about leaving Fiery, and misc things.
+        RULES    -> A quick list of Fiery rules.
+        MAP      -> A map of Mielikki.
+	CLOSING  -> Final advice and if you have questions.
+NOTE: All bold words within these 5 subtopics are commands that can be typed.
+~
+E
+tip tips~
+Type one of the following:
+   Look commands
+   Look fights
+   Look leveling
+   Look renting
+   Look rules
+   Look map
+   Look closing
+~
+E
+commands command~
+Before you get started in your adventures, we ask that you do a little
+reading to help you understand Fiery's environment and how things work.
+Please be patient, reading all of this should take you less then
+5 minutes.
+
+Here are a few of things we strongly advise you to read, type:
+HELP -> A list of all the major commands.
+HELP NEWBIE -> Brief newbie advice on areas to try. 
+HELP RULES -> A listing of Fiery Mud's rules.
+HELP AREAS -> A list of current areas and their respective levels.
+HELP KILLER -> A brief warning about attacking players.
+HELP 100 -> A list of the limitations for immortals and gods.
+NEWS -> A list of all the mud's changes <Not necessary to read immediately>.
+~
+E
+fights fight~
+After you've read the rules, you might feel the urge to KILL something.
+There's a large field just outside the west gate that's pretty safe,
+especially if you first CONSIDER the creatures you want to kill.
+Killing creatures will earn you experience points, and sometimes gold.
+Remember that you can GET ALL from the corpse, and TAP the corpse when 
+you're done, to tidy things up.
+~
+E
+leveling levels level~
+Try typing SCORE. When you have earned enough experience points, you will 
+be ready to level. This is done at your guild, by typing LEVEL GAIN. It 
+might be a good idea to visit your guild right away, for this is also the 
+place where you can PRACTICE new skills or spells. Guilds can be found 
+close to the town center. Monks and Rangers can level at the Warrior's
+Guild. All the other classes must level in their respective guilds.
+~
+E
+renting rent quitting quit~
+Should you get hungry, there's a bakery on North Commerce Avenue.  There are
+also many other ways of creating and/or finding food about the realm.  
+Currently renting at the inn is free, with a limit on 50 items per player to
+reduce any problems that could occur.  To view your current load you may use
+the offer command at the inn.  Camping is also another alternative, and can be
+done in any outdoors room.  It is free, and allows you to stay far away from
+town if you haven't completed your current adventure.  Typing QUIT is possible
+but NOT something you should generally do, for you will lose all of your
+equipment.    
+~
+E
+rules~
+FieryMud has a few simple rules. For a fairly complete listing of rules, 
+type: h rules -- but be aware that this list can change without notice. 
+ALL PLAYERS are expected to know the rules.
+
+  You should definitely read the altar board for more information, as well
+as the news, at some point. All players are expected to know what is
+contained therein! 
+~
+E
+map town mielikki~
+
+                  Mielikki, the forest town, by Kara-Sithri
+
+                                                             ***KEY***
+           gate         altar                          |SB: sleepy blvd.
+            |             |                            |PO: post office
+            SB     *1-temple ?      shop-NCA           |SQ: smelter's sq.
+            |             |  |           |             |WM: west main
+            SB        TC-TC-TC           NCA-shop      |TC: town center
+            |         |  |  |            |             |fn: fountain
+        Inn-SB-PO     TC-fn-TC  shop-*2  NCA-shop      |EM: east main
+            |         |  |  |    |       |             |CS: commerce sq
+  gate-SQ---WM---WM---TC-TC-TC---EM--EM--CS---EM-gate  |NCA: no. commerce
+       |          |   |     |            |             |SCA: so. commerce
+  shop-SR-shop shop shop-*3 da-da-da     SCA           |da: dark alley
+       |          |            |  |      |             |tav: tavern
+  shop-SR-shop   *4          tav dump    SCA-shop      |SR: smelter's row
+       |                                 |             |NCP: new castle plaza
+      NCP--NC--NC--NC--NC--NC--NC--NC---NCS            |NC: new castle rd.
+           |                        |                  |NCS: new castle sq.
+        RP-RP-RP                    WW                 |WW: windy way
+        |  |  |                     |                  |RP: royal plaza
+        RP-fn-RP                    WW-haunted         |*1: cleric/druid gld
+        |  |  |                     |   house          |*2: warrior guild
+        RP-RP-RP                    WW                 |*3: thief guild
+           |                        |                  |*4: mage guild
+          *5                       gate                |*5: paladin guild
+
+~
+E
+closing~
+First off we'd like to thank you for taking the time and reading this
+pamphlet. If you have any questions, my advice to you would be:
+
+First ->  check to see if there is a HELP file available, by typing
+          help <keyword>
+Second -> type WHO and look for a higher level player, and politely
+          ask them if they'd answer your question using the TELL command.
+Third ->  Ask your question politely over the GOSSIP channel, but please
+          don't spam GOSSIP with your question over and over if you do not
+          receive an answer.
+
+By the way, the ECHOBACK command will enable you to see what you're 
+saying. Everything else you would want to know can be found in the HELP 
+files - or ask your fellow players, if you're really stuck.
+ 
+Now, we wish you good luck! 
+Get on the road to Immortality...
+Good hunting!
+						Written by: Nocturno
+					   Last updated by: ObiWan (7/96)
+~
+#3304
+lantern dented~
+a dented lantern~
+A dented old lantern has been left here.~
+~
+1 0 16385 1
+0 200 200 0 0 0 0
+2.00 0 0 0 0 0 0 0
+E
+brass lantern~
+This lantern may be old and dented, but it looks like it still works.
+Some words have been carved into the bottom of the lantern.
+~
+E
+words bottom~
+The words read:
+      Type "light lantern" to activate.
+~
+#3305
+sign bright-green-sign~
+a bright green sign~
+A &2&8bright green&0 sign hangs here from the ceiling.~
+~
+0 0 0 1
+0 0 0 0 0 0 0
+99999.00 0 0 0 0 0 0 0
+E
+sign bright-green-sign~
+The sign is a bright green color, and it reads:
+
+    Clerics - NORTH
+    Druids  - WEST
+    Priests - UP
+~
+#3306
+hat jester jester's~
+a jester's hat~
+A multicolored hat covered in bells rings softly on the ground.~
+~
+9 2 17 0
+1 0 0 0 0 0 0
+0.10 0 0 0 0 0 0 0
+T 3133
+$~

@@ -1,0 +1,62 @@
+number: 3
+alias: quest
+title: Player Quest Board
+privilege: 0 level 0 105
+privilege: 1 level 0 105
+privilege: 2 level 0 105
+privilege: 3 level 0 105
+privilege: 4 level 0 105
+privilege: 5 level 0 105
+privilege: 6 level 0 105
+privilege: 7 level 0 105
+~~
+level: 104
+poster: Laoris
+time: 1235847901
+edit: Laoris 1235847920
+subject: Test Post
+message:
+This is a test of the new board system.
+Test test test
+This is an edit. Weeeeee.
+~
+~~
+level: 104
+poster: Laoris
+time: 1241288140
+subject: !FALL objects
+message:
+* Adding !FALL to objects
+0.obj
+12.obj
+15.obj
+22.obj
+23.obj
+30.obj
+43.obj
+63.obj
+160.obj
+173.obj
+188.obj
+237.obj
+238.obj
+360.obj
+492.obj
+534.obj
+583.obj
+584.obj
+~
+~~
+level: 104
+poster: Laoris
+time: 1244699241
+subject: novicious mobs
+message:
+0.mob
+23.mob
+30.mob
+62.mob
+69.mob
+100.mob
+~
+~~

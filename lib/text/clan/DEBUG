@@ -1,0 +1,27 @@
+Wed Nov 12 14:59:34 :: Debug requested by user
+
+Debug requested by: Banyal
+Debug request type: -GLOBAL VARIABLES-
+
+-CLAN STATUS-
+
+Clan # | Status
+-------|-------
+  0    | 0    
+
+
+Debug request type: -CROSS REFERENCE-
+
+Clan # | Index
+-------|------
+0      | 0
+
+1 valid records, 9998 empty records.
+
+Debug request type: -CLAN EDIT NODES-
+
+Node # | Clan # | Mode   | Owner
+-------|--------|--------|-------------------
+
+0 nodes used, 10 free nodes.
+
