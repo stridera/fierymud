@@ -3700,17 +3700,6 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
         if (real_mobile(pvnum) < 0)
             pvnum = 9001; /* Test mob = earle's doppelganger */
 
-        /* need to add charm flag 
-            eff.type = SPELL_CHARM;
-            eff.duration = (int)(base_duration) + 1;
-            SET_FLAG(eff.flags, EFF_CHARM);
-            eff.modifier = 0;
-            eff.location = APPLY_NONE;
-            effect_to_char(new_mob, &eff);
-            add_follower(new_mob, ch);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC); */
-
         /* Load it up */
         new_mob = summon_phantasm(ch, pvnum, duration);
         if (new_mob == NULL) {
@@ -3718,6 +3707,18 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
             send_to_char("The spell fizzles.\r\n", ch);
             return 0;
         }
+
+        /* need to add charm flag */
+        eff.type = SPELL_CHARM;
+        eff.duration = (int)(base_duration) + 1;
+        SET_FLAG(eff.flags, EFF_CHARM);
+        eff.modifier = 0;
+        eff.location = APPLY_NONE;
+        effect_to_char(new_mob, &eff);
+        add_follower(new_mob, ch);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
+        GET_LIFEFORCE(new_mob) = LIFE_MAGIC;
 
         /* Feedback */
         act("From scattered motes of light, $n coalesces.", TRUE, new_mob, 0, 0, TO_ROOM);
@@ -3771,16 +3772,17 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
         }
         SET_FLAG(MOB_FLAGS(new_mob), MOB_NOSCRIPT); /* Prevent specprocs and triggers */
 
-        /* need to add charm flag 
-            eff.type = SPELL_CHARM;
-            eff.duration = (int)(base_duration) + 1;
-            SET_FLAG(eff.flags, EFF_CHARM);
-            eff.modifier = 0;
-            eff.location = APPLY_NONE;
-            effect_to_char(new_mob, &eff);
-            add_follower(new_mob, ch);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC); */
+        /* need to add charm flag */
+        eff.type = SPELL_CHARM;
+        eff.duration = (int)(base_duration) + 1;
+        SET_FLAG(eff.flags, EFF_CHARM);
+        eff.modifier = 0;
+        eff.location = APPLY_NONE;
+        effect_to_char(new_mob, &eff);
+        add_follower(new_mob, ch);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
+        GET_LIFEFORCE(new_mob) = LIFE_MAGIC;
 
         /* Feedback */
         act("From scattered motes of light, $n coalesces.", TRUE, new_mob, 0, 0, TO_ROOM);
