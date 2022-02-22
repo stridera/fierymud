@@ -280,6 +280,7 @@
 #define SPELL_BALEFUL_POLYMORPH 238
 #define SPELL_SPIRIT_RAY 239
 #define SPELL_VICIOUS_MOCKERY 240
+#define SPELL_REMOVE_PARALYSIS 241
 /* Insert new spells here, up to MAX_SPELLS */
 
 /* PLAYER SKILLS - Numbered from MAX_SPELLS+1 to MAX_SKILLS */
@@ -378,6 +379,8 @@
 /* IF THIS GETS PAST 499, update char_data for skill timers! */
 
 /* Bardic songs start at 551 and go to 600 */
+#define SONG_INSPIRATION 551
+#define SONG_TERROR 552
 
 /* Monk chants go from 601 to 650 */
 #define CHANT_REGENERATION 601

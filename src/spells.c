@@ -2828,6 +2828,7 @@ ASPELL(spell_shift_corpse) {
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
+
 /*
    >   Upon entering the spell_ressurect function, it is given that the
    >   player being ressed is actively in the game. If the player being

@@ -696,7 +696,7 @@ ACMD(do_backstab) {
 
         WAIT_STATE(ch, PULSE_VIOLENCE);
         /* 6 seconds == 1.5 combat rounds, 12 seconds == 3 combat rounds. */
-        if (GET_CLASS(ch) == CLASS_ILLUSIONIST {
+        if (GET_CLASS(ch) == CLASS_ILLUSIONIST) {
             SET_COOLDOWN(ch, CD_BACKSTAB, 12 * PULSE_COOLDOWN);
         } else {
             SET_COOLDOWN(ch, CD_BACKSTAB, 6 * PULSE_COOLDOWN);
@@ -746,7 +746,7 @@ ACMD(do_backstab) {
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
     /* 6 seconds == 1.5 combat rounds, 12 seconds == 3 combat rounds. */
-    if (GET_CLASS(ch) == CLASS_ILLUSIONIST {
+    if (GET_CLASS(ch) == CLASS_ILLUSIONIST) {
         SET_COOLDOWN(ch, CD_BACKSTAB, 12 * PULSE_COOLDOWN);
     } else {
         SET_COOLDOWN(ch, CD_BACKSTAB, 6 * PULSE_COOLDOWN);
