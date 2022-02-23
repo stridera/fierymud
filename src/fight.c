@@ -1832,6 +1832,10 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
                 type = SKILL_BAREHAND;
             else if (IS_NPC(ch) && ch->mob_specials.attack_type != 0)
                 type = ch->mob_specials.attack_type + TYPE_HIT;
+            else if (GET_RACE(ch) == RACE_DRAGONBORN_FIRE || GET_RACE(ch) == RACE_DRAGONBORN_FROST
+            || GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_ACID
+            || GET_RACE(ch) == RACE_DRAGONBORN_GAS)
+                type = TYPE_CLAW;
             else
                 type = TYPE_HIT;
         }
