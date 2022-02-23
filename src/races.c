@@ -1148,13 +1148,15 @@ void init_races(void) {
 
     /*
      * Add race skills to the switch below.
+     * If a constant value is declared, the skill will always reset back to that value.
+     * Use 'proficiency' or 'ROLL_SKILL_PROF' instead.
      */
     for (race = 0; race < NUM_RACES; ++race) {
         memset(races[race].skills, 0, sizeof(races[race].skills));
         pos = 0;
         switch (race) {
         case RACE_ELF:
-            ADD_SKILL(SKILL_SLASHING, 50);
+            ADD_SKILL(SKILL_SLASHING, ROLL_SKILL_PROF);
             break;
         case RACE_TROLL:
             ADD_SKILL(SKILL_DOORBASH, 1000);
@@ -1189,7 +1191,7 @@ void init_races(void) {
             ADD_SKILL(SPELL_FIRE_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_FIRE:
-            ADD_SKILL(SKILL_BREATHE_FIRE, 50);
+            ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
             ADD_SKILL(SPELL_FIRE_BREATH, 1000);
             break;
         case RACE_DRAGON_FROST:
@@ -1199,7 +1201,7 @@ void init_races(void) {
             ADD_SKILL(SPELL_FROST_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_FROST:
-            ADD_SKILL(SKILL_BREATHE_FROST, 50);
+            ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
             ADD_SKILL(SPELL_FROST_BREATH, 1000);
             break;
         case RACE_DRAGON_ACID:
@@ -1209,7 +1211,7 @@ void init_races(void) {
             ADD_SKILL(SPELL_ACID_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_ACID:
-            ADD_SKILL(SKILL_BREATHE_ACID, 50);
+            ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
             ADD_SKILL(SPELL_ACID_BREATH, 1000);
             break;
         case RACE_DRAGON_LIGHTNING:
@@ -1219,7 +1221,7 @@ void init_races(void) {
             ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_LIGHTNING:
-            ADD_SKILL(SKILL_BREATHE_LIGHTNING, 50);
+            ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
             ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
         case RACE_DRAGON_GAS:
@@ -1229,7 +1231,7 @@ void init_races(void) {
             ADD_SKILL(SPELL_GAS_BREATH, 1000);
             break; 
         case RACE_DRAGONBORN_GAS:
-            ADD_SKILL(SKILL_BREATHE_GAS, 50);
+            ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
             ADD_SKILL(SPELL_GAS_BREATH, 1000);
             break; 
         case RACE_DEMON:
