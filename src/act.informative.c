@@ -4004,25 +4004,25 @@ ACMD(do_innate) {
             send_to_char(" detect alignment*\r\n", ch);
         if (GET_SKILL(ch, SKILL_DOORBASH))
             send_to_char(" doorbash\r\n", ch);
+        if (GET_RACE(ch) == RACE_ELF)
+            send_to_char(" grace\r\n", ch);
+        if (GET_CLASS(ch) == CLASS_THIEF)
+            send_to_char(" identify\r\n", ch);
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_HALFLING ||
             GET_RACE(ch) == RACE_HALF_ELF || GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_DRAGONBORN_FIRE ||
             GET_RACE(ch) == RACE_DRAGONBORN_FROST || GET_RACE(ch) == RACE_DRAGONBORN_ACID || 
             GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS)
             send_to_char(" infravision*\r\n", ch);
-        if (GET_RACE(ch) == RACE_ELF)
-            send_to_char(" grace\r\n", ch);
         if (GET_RACE(ch) == RACE_DUERGAR)
             send_to_char(" invisible\r\n", ch);
-        /* drop for now
+        if (GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
+            send_to_char(" layhands\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW)
             send_to_char(" levitate*\r\n", ch); 
-        */
         if (GET_CLASS(ch) == CLASS_PALADIN)
             send_to_char(" protection from evil*\r\n", ch);
         if (GET_CLASS(ch) == CLASS_ANTI_PALADIN)
             send_to_char(" protection from good*\r\n", ch);
-        if (GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
-            send_to_char(" layhands\r\n", ch);
         if (GET_SKILL(ch, SKILL_ROAR))
             send_to_char(" roar\r\n", ch);
         if (GET_RACE(ch) == RACE_HALFLING)
