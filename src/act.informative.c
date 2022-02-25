@@ -3987,10 +3987,6 @@ ACMD(do_innate) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
         if (GET_SKILL(ch, SKILL_BODYSLAM))
             send_to_char(" bodyslam\r\n", ch);
-        /*
-        if (GET_SKILL(ch, SKILL_BREATHE))
-            send_to_char(" breathe\r\n", ch);        
-        */
         if (GET_SKILL(ch, SKILL_BREATHE_FIRE))
             send_to_char(" breathe fire\r\n", ch);
         if (GET_SKILL(ch, SKILL_BREATHE_ACID))
@@ -4025,6 +4021,8 @@ ACMD(do_innate) {
             send_to_char(" protection from evil*\r\n", ch);
         if (GET_CLASS(ch) == CLASS_ANTI_PALADIN)
             send_to_char(" protection from good*\r\n", ch);
+        if (GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
+            send_to_char(" layhands\r\n", ch);
         if (GET_SKILL(ch, SKILL_ROAR))
             send_to_char(" roar\r\n", ch);
         if (GET_RACE(ch) == RACE_HALFLING)
