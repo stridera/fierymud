@@ -3710,7 +3710,7 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
 
         /* need to add charm flag */
         eff.type = SPELL_CHARM;
-        eff.duration = (int)(base_duration) + 1;
+        eff.duration = 1000;
         SET_FLAG(eff.flags, EFF_CHARM);
         eff.modifier = 0;
         eff.location = APPLY_NONE;
@@ -3774,7 +3774,7 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
 
         /* need to add charm flag */
         eff.type = SPELL_CHARM;
-        eff.duration = (int)(base_duration) + 1;
+        eff.duration = 1000;
         SET_FLAG(eff.flags, EFF_CHARM);
         eff.modifier = 0;
         eff.location = APPLY_NONE;
