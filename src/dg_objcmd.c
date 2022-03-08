@@ -469,7 +469,7 @@ OCMD(do_ocast) {
         return;
     }
 
-    call_magic(obj->worn_by, target, NULL, spellnum, 30, SAVING_ROD);
+    call_magic(obj->worn_by, target, NULL, spellnum, level, SAVING_ROD);
 }
 
 /*
