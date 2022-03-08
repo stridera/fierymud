@@ -1,6 +1,6 @@
-lib/*
-bin/*
-log/*
+lib/
+bin/
+log/
 src/RCS
 src/RCS/*
 cmake-build-debug/*

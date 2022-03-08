@@ -393,8 +393,7 @@ OCMD(do_odamage) {
     char_data *ch;
 
     t->damdone = 0;
-    argument = one_argument(argument, name);
-    argument = one_argument(argument, amount);
+    argument = two_arguments(argument, name, amount);
 
     if (!*name || !*amount || !isdigit(*amount)) {
         obj_log(obj, t, "odamage: bad syntax");
@@ -434,13 +433,12 @@ OCMD(do_odamage) {
 }
 
 OCMD(do_ocast) {
-    char name[MAX_INPUT_LENGTH], spell_name[MAX_INPUT_LENGTH];
+    char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], spell_name[MAX_INPUT_LENGTH];
     char_data *target;
-    int spellnum, level;
+    int spellnum, level = 0;
 
     argument = delimited_arg(argument, spell_name, '\'');
-    one_argument(argument, name);
-    one_argument(argument, level);
+    two_arguments(argument, name, spell_level_str);
 
     if (!*name || !*spell_name) {
         obj_log(obj, t, "ocast: bad syntax");
@@ -453,6 +451,7 @@ OCMD(do_ocast) {
         return;
     }
 
+    level = atoi(spell_level_str);
     if (!level)
         level = 30;
     else if (level > 100) {
