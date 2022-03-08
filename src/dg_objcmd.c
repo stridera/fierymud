@@ -454,7 +454,7 @@ OCMD(do_ocast) {
     level = atoi(spell_level_str);
     if (!level)
         level = 30;
-    else if (level > 100) {
+    else if (level > 1000) {
         obj_log(obj, t, "ocast: attempt to cast a spell with a skill level above 100.");
         return;
     } else if (level < 0) {
