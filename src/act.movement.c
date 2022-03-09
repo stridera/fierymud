@@ -11,6 +11,7 @@
  ***************************************************************************/
 
 #include "act.h"
+
 #include "board.h"
 #include "casting.h"
 #include "charsize.h"
@@ -1764,12 +1765,16 @@ ACMD(do_drag) {
         if (tch)
             char_from_room(tch);
         if (!perform_move(ch, dir, FALSE, FALSE)) {
-            if (tch)
+            if (tch) {
                 char_to_room(tch, from_room);
-            sprintf(buf, "&3Looking confused, $n&0&3 tried to drag $N&0&3 %s.&0", dirs[dir]);
-            act(buf, FALSE, ch, 0, tch, TO_NOTVICT);
-            sprintf(buf, "&3Looking confused, $n&0&3 tried to drag you %s.&0", dirs[dir]);
-            act(buf, FALSE, ch, 0, tch, TO_VICT);
+                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag $N&0&3 %s.&0", dirs[dir]);
+                act(buf, FALSE, ch, 0, tch, TO_NOTVICT);
+                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag you %s.&0", dirs[dir]);
+                act(buf, FALSE, ch, 0, tch, TO_VICT);
+            } else if (tobj) {
+                sprintf(buf, "&3Looking confused, $n&0&3 tried to drag $p&0&3 %s.&0", dirs[dir]);
+                act(buf, FALSE, ch, tobj, 0, TO_ROOM);
+            }
             return;
         }
 
