@@ -12,7 +12,7 @@ MYFLAGS = -Wall -pedantic -m32
 #flags for profiling (see hacker.doc for more information)
 PROFILE = 
 # any flags for the linker
-LFLAGS = -m32
+LFLAGS = -lm -lcrypt -m32
 # Test Flags
 TFLAGS = -DTEST
 # Production Flags
