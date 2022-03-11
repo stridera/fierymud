@@ -214,7 +214,7 @@ int main(int argc, char **argv) {
                 exit(1);
             }
             break;
-        case 'H': /* -H<socket number> recover from hotbot, this is the control
+        case 'H': /* -H<socket number> recover from hotboot, this is the control
                      socket */
             num_hotboots = 1;
             mother_desc = atoi(argv[pos] + 2);
@@ -2836,8 +2836,8 @@ char *ACTNULL = "<NULL>";
 /* higher-level communication: the act() function */
 void format_act(char *rtn, const char *orig, struct char_data *ch, struct obj_data *obj, const void *vict_obj,
                 const struct char_data *to) {
-    const char_data *victim;
-    const obj_data *target_object;
+    const char_data *victim = NULL;
+    const obj_data *target_object = NULL;
     char target_string[MAX_STRING_LENGTH] = "\0", target_string2[MAX_STRING_LENGTH] = "\0";
     const char *i = NULL;
     char *bufptr, *j, ibuf[20];
