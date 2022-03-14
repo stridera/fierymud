@@ -300,11 +300,11 @@ ACMD(do_roar) {
         if (MOB_FLAGGED(tch, MOB_AWARE) || MOB_FLAGGED(tch, MOB_NOSUMMON))
             continue;
         if (EFF_FLAGGED(tch, EFF_PROTECT_EVIL) && GET_ALIGNMENT(ch) <= -500) {
-            send_to_char("Your holy protection strengthens your resolve against $n's roar!\r\n", tch);
+            act("Your holy protection strengthens your resolve against $N\'s roar!\r\n", FALSE, tch, 0, ch, TO_CHAR);
             continue;
         }
         if (EFF_FLAGGED(tch, EFF_PROTECT_GOOD) && GET_ALIGNMENT(ch) <= 500) {
-            send_to_char("Your unholy protection strengthens your resolve against $n's roar!\r\n", tch);
+            act("Your unholy protection strengthens your resolve against $N\'s roar!\r\n", FALSE, tch, 0, ch, TO_CHAR);
             continue;
         }
         mag_affect(GET_LEVEL(ch), ch, tch, SPELL_FEAR, SAVING_PARA, CAST_BREATH);
