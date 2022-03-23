@@ -192,7 +192,7 @@ ACMD(do_breathe) {
     if (!IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
         if (!GET_COOLDOWN(ch, CD_BREATHE)) {
             if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC)) {
-                SET_COOLDOWN(ch, CD_BREATHE, 4 MUD_HR);
+                SET_COOLDOWN(ch, CD_BREATHE, 3 MUD_HR);
             }
         } else {
             cprintf(ch, "You will have rebuilt your energy in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_BREATHE) / 10));
