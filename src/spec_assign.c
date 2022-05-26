@@ -256,7 +256,7 @@ void assign_rooms(void) {
     /* Mielikki */
     ASSIGNROOM(3030, pet_shop); /* Kayla's Pet Shop */
     ASSIGNROOM(3035, dump);     /* The City Dump */
-    ASSIGNROOM(3089, bank);     /* The Mielikki Dump */
+    ASSIGNROOM(3089, bank);     /* The Mielikki Bank */
     ASSIGNROOM(3091, pet_shop); /* Jorhan's Stables */
 
     /* Anduin */
@@ -271,6 +271,9 @@ void assign_rooms(void) {
     ASSIGNROOM(30012, pet_shop); /* Arandidor's Dingy Companions */
     ASSIGNROOM(30026, bank);     /* Ogakh Bank */
     ASSIGNROOM(30031, pet_shop); /* Stable */
+
+    /*Ethilien Academy*/
+    ASSIGNROOM(51907, bank);     /* The Banquet Hall */
 
     if (dts_are_dumps)
         for (i = 0; i < top_of_world; i++)
