@@ -341,6 +341,11 @@ void act_mtrigger(char_data *ch, const char *str, const char_data *actor, const 
                   const obj_data *object, const obj_data *target, char *arg, char *arg2) {
     trig_data *t;
     char buf[MAX_INPUT_LENGTH];
+    extern int circle_shutdown;
+
+    /* Don't process triggers during shutdown */
+    if (circle_shutdown)
+        return;
 
     if (!char_susceptible_to_triggers(actor))
         return;
