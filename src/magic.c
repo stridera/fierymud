@@ -2442,13 +2442,13 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
          * sphere */
         break;
 
-    case SPELL_INN_GENIUS:
+    case SPELL_INN_BRILL:
         eff[0].location = APPLY_INT;
         eff[0].duration = (skill >> 1) + 4;
         eff[0].modifier = 1 + (skill / 18); /* max 6 */
         accum_effect = FALSE;
         to_vict = "You feel smarter!";
-        /* Innate genius usage shouldn't call for a skill improvement in a spell
+        /* Innate brill usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 

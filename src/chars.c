@@ -51,7 +51,7 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* RACE   So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
     /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
     /* El */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* Gn */ {Y, Y, N, N, N, N, N, N, Y, N, N, N, Y, N, N, Y, Y, N, N, N, Y, Y, Y, N},
+    /* Gn */ {Y, Y, Y, N, N, N, N, Y, Y, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
     /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
     /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
     /* Dr */ {Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y},
@@ -80,6 +80,7 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /*DbAc*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
     /*DbLi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
     /*DbGa*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*svrf*/ {Y, Y, Y, N, N, N, N, N, Y, Y, N, Y, Y, N, N, N, Y, Y, Y, Y, Y, Y, Y, N},
 };
 
 int get_base_saves(struct char_data *ch, int type) {
@@ -117,6 +118,7 @@ int get_base_saves(struct char_data *ch, int type) {
         saves[SAVING_SPELL] -= (int)(0.1 * GET_VIEWED_CON(ch));
         break;
     case RACE_GNOME:
+    case RACE_SVERFNEBLIN:
         saves[SAVING_ROD] -= (int)(0.1 * GET_VIEWED_CON(ch));
         saves[SAVING_SPELL] -= (int)(0.1 * GET_VIEWED_CON(ch));
         break;

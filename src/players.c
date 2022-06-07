@@ -67,10 +67,11 @@ static int saved_cooldowns[] = {CD_SUMMON_MOUNT,
                                 CD_INNATE_GRACE,
                                 CD_INNATE_FORTITUDE,
                                 CD_INNATE_INSIGHT,
-                                CD_INNATE_GENIUS,
+                                CD_INNATE_BRILL,
                                 CD_INNATE_SPLENDOR,
                                 CD_INNATE_HARNESS,
                                 CD_BREATHE,
+                                CD_INNATE_CREATE,
                                 -1};
 
 static char *quit_reenter_message[NUM_QUITTYPES] = {"%s reenters the game in %s.",

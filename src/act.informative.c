@@ -3997,6 +3997,8 @@ ACMD(do_innate) {
             send_to_char(" breathe lightning\r\n", ch);
         if (GET_SKILL(ch, SKILL_BREATHE_GAS))
             send_to_char(" breathe gas\r\n", ch);
+        if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN)
+            send_to_char(" brill\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW)
             send_to_char(" darkness\r\n", ch);
         if (GET_CLASS(ch) == CLASS_PRIEST || GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_PALADIN ||
@@ -4011,7 +4013,7 @@ ACMD(do_innate) {
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_HALFLING ||
             GET_RACE(ch) == RACE_HALF_ELF || GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_DRAGONBORN_FIRE ||
             GET_RACE(ch) == RACE_DRAGONBORN_FROST || GET_RACE(ch) == RACE_DRAGONBORN_ACID || 
-            GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS)
+            GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS || GET_RACE(ch) == RACE_SVERFNEBLIN)
             send_to_char(" infravision*\r\n", ch);
         if (GET_RACE(ch) == RACE_DUERGAR)
             send_to_char(" invisible\r\n", ch);
@@ -4019,6 +4021,8 @@ ACMD(do_innate) {
             send_to_char(" layhands\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW)
             send_to_char(" levitate*\r\n", ch); 
+        if (GET_RACE(ch) == RACE_GNOME)
+            send_to_char(" create (as spell minor creation)\r\n", ch); 
         if (GET_CLASS(ch) == CLASS_PALADIN)
             send_to_char(" protection from evil*\r\n", ch);
         if (GET_CLASS(ch) == CLASS_ANTI_PALADIN)
@@ -4134,18 +4138,18 @@ ACMD(do_innate) {
                 return;
             }
         }
-        /*
-        if (is_abbrev(arg, "genius")) {
-            if (GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_DUERGAR) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_GENIUS)) {
-                    call_magic(ch, ch, 0, SPELL_INN_GENIUS, GET_LEVEL(ch), CAST_SPELL);
+        if (is_abbrev(arg, "brill")) {
+            if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_BRILL)) {
+                    call_magic(ch, ch, 0, SPELL_INN_BRILL, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                        SET_COOLDOWN(ch, CD_INNATE_GENIUS, 7 MUD_HR);
+                        SET_COOLDOWN(ch, CD_INNATE_BRILL, 7 MUD_HR);
                 } else
                     send_to_char("You're too tired right now.\r\n", ch);
                 return;
             }
         }
+        /*
         if (is_abbrev(arg, "insight")) {
             if (GET_RACE(ch) == RACE_ELF) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_INSIGHT)) {
@@ -4192,10 +4196,17 @@ ACMD(do_innate) {
             }
 
         }
+
         if (is_abbrev(arg, "sweep") && GET_SKILL(ch, SKILL_SWEEP)) {
             send_to_char("Usage: sweep\r\n", ch);
             return;
         }
+
+        if (is_abbrev(arg, "create") && GET_RACE(ch) == RACE_GNOME) {
+            send_to_char("Usage: create <object>\r\n", ch);
+            return;
+        }
+
 
         send_to_char("You have no such innate.\r\n", ch);
     }
