@@ -24,15 +24,15 @@ const char mudlet_client_url[] = {"http://www.fierymud.org/mudlet/FierymudOffici
 const char mudlet_map_url[] = {"http://www.fierymud.org/mudlet/default_map.dat"};
 
 /* MINOR CREATION ITEMS */
-const char *minor_creation_items[] = {"backpack",                                                 /* 0  */
-                                      "sack",      "robe",    "ebony",   "lantern",   "torch",    /* 5  */
-                                      "waterskin", "barrel",  "rations", "raft",      "club",     /* 10 */
-                                      "mace",      "dagger",  "sword",   "longsword", "staff",    /* 15 */
-                                      "shield",    "tunic",   "jerkin",  "leggings",  "pants",    /* 20 */
-                                      "gauntlets", "sleeves", "gloves",  "helmet",    "skullcap", /* 25 */
-                                      "boots",     "sandals", "cloak",   "book",      "quill",    /* 30 */
-                                      "belt",      "ring",    "rope",    "bottle",    "keg",      /* 35 */
-                                      "mask",      "earring", "scarf",   "bracer",    "\n"};
+const char *minor_creation_items[] = {"backpack",                                                        /* 0  */
+                                      "sack",      "robe",       "hood",       "lantern",   "torch",     /* 5  */
+                                      "waterskin", "barrel",     "rations",    "raft",      "club",      /* 10 */
+                                      "mace",      "dagger",     "greatsword", "longsword", "staff",     /* 15 */
+                                      "shield",    "shortsword", "jacket",     "pants",     "leggings",  /* 20 */
+                                      "gauntlets", "sleeves",    "gloves",     "helmet",    "skullcap",  /* 25 */
+                                      "boots",     "sandals",    "cloak",      "book",      "quill",     /* 30 */
+                                      "belt",      "ring",       "bracelet",   "bottle",    "keg",       /* 35 */
+                                      "mask",      "earring",    "scarf",      "bracer",    "\n"};
 
 /* EX_x */
 const char *exit_bits[] = {"DOOR", "CLOSED", "LOCKED", "PICKPROOF", "HIDDEN", "DESCRIPT", "\n"};
