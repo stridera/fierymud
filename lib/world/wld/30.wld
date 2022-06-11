@@ -135,9 +135,11 @@ D3
 ~
 0 -1 3097
 E
-office templar~
-This is a low wooden building.  Its age is indeterminate.  It appears to be
-made of a local soft wood, which is stained from many seasons of weathering.
+tree trees~
+The trees are tall and slender.  Their light gray bark is unmarred, and their
+gently spreading branches provide shade for the entire plaza.  Each tree is
+surrounded by a knee-high wall of stone, in which a small garden of simple
+flowers grows.
 ~
 E
 stone stones marble~
@@ -145,11 +147,9 @@ The marble is of a medium gray variety.  Its shade varies from stone to stone,
 but is always attractive.  It bears little resemblance to any local rocks.
 ~
 E
-tree trees~
-The trees are tall and slender.  Their light gray bark is unmarred, and their
-gently spreading branches provide shade for the entire plaza.  Each tree is
-surrounded by a knee-high wall of stone, in which a small garden of simple
-flowers grows.
+office templar~
+This is a low wooden building.  Its age is indeterminate.  It appears to be
+made of a local soft wood, which is stained from many seasons of weathering.
 ~
 S
 #3007
@@ -694,7 +694,7 @@ The City Dump~
 longer wish to lug around with them or pay to store elsewhere.  If YOU have
 useless junk you want to get rid of, this is the place to drop it!    
 ~
-30 32788 1
+30 32916 1
 D0
 ~
 ~
@@ -1366,11 +1366,6 @@ You see the beginning of the Blue-Fog Trail.
 ~
 0 -1 -1
 E
-post rusty~
-The word rusty might be too kind. You wonder why it hasn't
-crumbled into a pile of dust. Its definately very old.
-~
-E
 sign large important warning text words~
 
                * * * * * WARNING! * * * * *
@@ -1383,6 +1378,11 @@ and that the Seaport of Specula has sealed itself off.
 
 Travel is at your own risk!
 
+~
+E
+post rusty~
+The word rusty might be too kind. You wonder why it hasn't
+crumbled into a pile of dust. Its definately very old.
 ~
 S
 #3072
@@ -2275,38 +2275,11 @@ D3
 ~
 0 0 3202
 E
-plaque~
-The Druid's life, as it be known,
-Is carved for all upon the stone
-To leave a lasting legacy
-For all who open eyes to see.
-
-So enter, breathe its air,
-Discover life's true meaning there,
-Written within the stars, so bright,
-Your path of everlasting light.
-
-Then set your foot upon this path
-And do not contemplate the math.
-The sky, unfurled before you now
-Will sanctify your sacred vow.
-
-The Druid's circle, once complete,
-Will lay its blessings at your feet
-And bring your spirit home, at last,
-To a garden of peace and love so vast.
-
-
-~
-E
-granite stones stone~
-   The stones are all flat and smooth and look eerily alike as if each were an
-exact replica of the other.  Each stone is a circle itself, with a large enough
-diameter to stand within.  There is a small plaque near one of the stones.    
-~
-E
-face faces~
-A particularly familiar face stands out as it gently beams a smile.
+oak tree~
+   The oak tree looks to have several delicately crafted faces all over the
+trunk that appear to change both location and expressions upon every glance.  
+It appears as if this tree holds a spirit of some sort for year of age on the
+tree.  A small etching is inscribed at the base of the tree.    
 ~
 E
 etching base~
@@ -2336,11 +2309,38 @@ Alfred, Lord Tennyson
 
 ~
 E
-oak tree~
-   The oak tree looks to have several delicately crafted faces all over the
-trunk that appear to change both location and expressions upon every glance.  
-It appears as if this tree holds a spirit of some sort for year of age on the
-tree.  A small etching is inscribed at the base of the tree.    
+face faces~
+A particularly familiar face stands out as it gently beams a smile.
+~
+E
+granite stones stone~
+   The stones are all flat and smooth and look eerily alike as if each were an
+exact replica of the other.  Each stone is a circle itself, with a large enough
+diameter to stand within.  There is a small plaque near one of the stones.    
+~
+E
+plaque~
+The Druid's life, as it be known,
+Is carved for all upon the stone
+To leave a lasting legacy
+For all who open eyes to see.
+
+So enter, breathe its air,
+Discover life's true meaning there,
+Written within the stars, so bright,
+Your path of everlasting light.
+
+Then set your foot upon this path
+And do not contemplate the math.
+The sky, unfurled before you now
+Will sanctify your sacred vow.
+
+The Druid's circle, once complete,
+Will lay its blessings at your feet
+And bring your spirit home, at last,
+To a garden of peace and love so vast.
+
+
 ~
 S
 #3202
@@ -2368,22 +2368,11 @@ D1
 ~
 0 0 3201
 E
-oak trellis sapling vines~
-   Young, vigorous oak saplings have set their roots into the black soil and
-have been coaxed by the druids to grow into a canopy above the garden,
-shielding it from harsh weather and giving those who walk under it a beautiful
-green light by which to see.  Reaching for the sun are flowers of a deep purple
-growing from vines: the short-lived but exquisitely beautiful morning glory,
-symbolizing transience.    
-~
-E
-altar flame~
-   The altar is about chest-high to a human and is made of stone quarried in
-the depths of the Wailing Mountains, famous for its durability.  The flame on
-the front is surely a dwarven creation, for no other race can make the stone
-seem to come alive.  Indeed it seems to be moving in concert with the actual
-flame set on top of the altar, which seems to have no source yet provides a
-constant light.  On the back of the altar is an inscription.    
+jewel-like flowers~
+   These flowers are rich with the colors of gemstones, bringing to mind
+sapphires, amethysts, rubies, emeralds, and more.  Each has four soft petals
+and its own gentle yet sweet scent.  The soil they are planted in was imported
+from the volcanic Fiery Island, where the richest loam can be found.    
 ~
 E
 inscription~
@@ -2395,11 +2384,22 @@ your ideals never be forgotten.
 -Kourrya, 2006
 ~
 E
-jewel-like flowers~
-   These flowers are rich with the colors of gemstones, bringing to mind
-sapphires, amethysts, rubies, emeralds, and more.  Each has four soft petals
-and its own gentle yet sweet scent.  The soil they are planted in was imported
-from the volcanic Fiery Island, where the richest loam can be found.    
+altar flame~
+   The altar is about chest-high to a human and is made of stone quarried in
+the depths of the Wailing Mountains, famous for its durability.  The flame on
+the front is surely a dwarven creation, for no other race can make the stone
+seem to come alive.  Indeed it seems to be moving in concert with the actual
+flame set on top of the altar, which seems to have no source yet provides a
+constant light.  On the back of the altar is an inscription.    
+~
+E
+oak trellis sapling vines~
+   Young, vigorous oak saplings have set their roots into the black soil and
+have been coaxed by the druids to grow into a canopy above the garden,
+shielding it from harsh weather and giving those who walk under it a beautiful
+green light by which to see.  Reaching for the sun are flowers of a deep purple
+growing from vines: the short-lived but exquisitely beautiful morning glory,
+symbolizing transience.    
 ~
 S
 #3203
@@ -2418,16 +2418,16 @@ D3
 ~
 0 0 3201
 E
-black rose center~
-A single &9&bblack&0 rose stands erect at the center of attention between the two hearts. This final farewell stands for all to see. Perhaps you should pluck it so you too will have something to remember him by.
+white marble hearts~
+Two large white marble hearts at the center of the garden are surrounded by red roses. Each heart has a name engraved, the first reads Christa while the other reads Abby.
 ~
 E
 garden roses~
 The rose garden expands back in all directions filled with hundreds of roses. The color of the roses varries from white, yellow, orange, peach, blue and pink.
 ~
 E
-white marble hearts~
-Two large white marble hearts at the center of the garden are surrounded by red roses. Each heart has a name engraved, the first reads Christa while the other reads Abby.
+black rose center~
+A single &9&bblack&0 rose stands erect at the center of attention between the two hearts. This final farewell stands for all to see. Perhaps you should pluck it so you too will have something to remember him by.
 ~
 S
 #3204
@@ -2456,6 +2456,13 @@ D2
 ~
 0 0 3202
 E
+willow tree~
+   This massive tree seems to be ancient as its large trunk is several
+meters around, at least. Its branches hang down protecting everything
+beneath it and hiding all the small animals that call this their home.
+An inscription is carved into the side of this tree.
+~
+E
 inscription~
 The inscription written into this large willow reads:
 
@@ -2463,13 +2470,6 @@ Rick Sala: June 1st, 1974 - June 21st, 2006
 A dear friend, although your are gone you shall not be
 forgetten, for you memory and spirit lives on in all
 that we do and all that this represents.
-~
-E
-willow tree~
-   This massive tree seems to be ancient as its large trunk is several
-meters around, at least. Its branches hang down protecting everything
-beneath it and hiding all the small animals that call this their home.
-An inscription is carved into the side of this tree.
 ~
 S
 #3205
@@ -2537,53 +2537,22 @@ D3
 ~
 0 0 3205
 E
-etchings bas-relief scenes~
-   The pool's pearly exterior depicts detailed scenes and symbols in light,
-bas-relief etchings.  One scene records a commanding druid, arms outstretched
-among the nature around him, exuding a sense of natural harmony.  Another image
-shows a man engulfed in fire, molten streams of lava coursing on the ground
-around him.  Six monstrous rats are drawn before him, their sharply-fanged
-snouts facing outwards from his figure.  Continuing around the pool, the third
-image portrays the same man engulfed by fire standing above the curvature of
-the world, his right arm sweeping across its face creating forest and desert
-alike in its path.  The fourth and final etching illustrates another man,
-standing beside a woman and cradling a young girl in his arms.  They stand
-among a background of lightly etched roses.    
+blossoms petals apricot trees tree~
+   The white petals of the apricot blossoms flutter soundlessly on dark-brown,
+nearly-black branches.  Each flower has a unique pattern of dotted white
+petals, pink and purple sepals, and soft yellow anthers.  They look extremely
+fragile, emphasized by the periodic cascades of petals in the air as the breeze
+fluctuates.  The apricot trees have no true leaves, locked in an immutable
+state of blossom.    
 ~
 E
-opal benches~
-   Seven benches encircle the marble cobblestone footpath, placed at regular
-intervals.  Carved from the rarest of black opal, the benches are all
-identical, each polished surface etched with an elaborate capital D.  The sides
-of the benches are etched with elaborate Highlands patterns resembling clovers
-and spear-shaped leaves.    
-~
-E
-flowers growths bush lily cornflower lilies cornflowers trunk trunks bark~
-   Around the base of each apricot tree, a wide circle of bush lilies and
-cornflowers grow intertwined, rising upwards where they meet the trunks.  The
-brilliant bittersweet-hued bush lilies and indigo cornflowers grow beautifully
-from glossy green-leaved stalks.  On each trunk, the stalks creep vine-like up
-the bark, flowers blooming continually along the creepers.  The lilies and
-cornflowers weave magnificient patterns across the dusky bark, almost seeming
-to form cognizant meaning but ultimately indistinguishable from natural
-growths.    
-~
-E
-cobblestone marble path footpath~
-   Interlocking bricks of varied sizes, form a circular footpath surrounding
-the fountain.  The cobblestones are all pitch-black marble, light veins of
-poppy jasper running through at regular intervals.  Light glances off the
-polished surfaces of the stones, forever spellbound in a lustrous state.    
-~
-E
-spheres lanterns sphereical lights~
-   Hovering spellbound above each corner of the pool, the spherical lanterns
-appear as simple globes of glowing light.  They emit no heat, and when looked
-at directly seem to be very soft and muted, yet their illumination brightens
-the room as daylight.  The spheres seem to be locked in their positions above
-the pool, just below the canopy above, and undoubtedly could not be moved by
-any natural means.    
+ivy vines variegated canopy up u~
+   The ivy vines grow out of the apricot tree trunks and into their boughs
+above, branching outward to hang across the open air between the trees.  
+Dozens of vines lie above, forming an elaborate interlocking canopy of leaves.
+Each leaf is vaguely heart-shaped, with a green interior and a white border.  
+Periodically along the vines, small green flower buds pop out from between the
+leaves.    
 ~
 E
 diamond pool pearlescent fountain pyramid pyramidal~
@@ -2597,22 +2566,53 @@ bubbling fresh, clear water from its tip.  Dancing rainbows of light flicker in
 the water cascading down the fountain's pearly surface.    
 ~
 E
-ivy vines variegated canopy up u~
-   The ivy vines grow out of the apricot tree trunks and into their boughs
-above, branching outward to hang across the open air between the trees.  
-Dozens of vines lie above, forming an elaborate interlocking canopy of leaves.
-Each leaf is vaguely heart-shaped, with a green interior and a white border.  
-Periodically along the vines, small green flower buds pop out from between the
-leaves.    
+spheres lanterns sphereical lights~
+   Hovering spellbound above each corner of the pool, the spherical lanterns
+appear as simple globes of glowing light.  They emit no heat, and when looked
+at directly seem to be very soft and muted, yet their illumination brightens
+the room as daylight.  The spheres seem to be locked in their positions above
+the pool, just below the canopy above, and undoubtedly could not be moved by
+any natural means.    
 ~
 E
-blossoms petals apricot trees tree~
-   The white petals of the apricot blossoms flutter soundlessly on dark-brown,
-nearly-black branches.  Each flower has a unique pattern of dotted white
-petals, pink and purple sepals, and soft yellow anthers.  They look extremely
-fragile, emphasized by the periodic cascades of petals in the air as the breeze
-fluctuates.  The apricot trees have no true leaves, locked in an immutable
-state of blossom.    
+cobblestone marble path footpath~
+   Interlocking bricks of varied sizes, form a circular footpath surrounding
+the fountain.  The cobblestones are all pitch-black marble, light veins of
+poppy jasper running through at regular intervals.  Light glances off the
+polished surfaces of the stones, forever spellbound in a lustrous state.    
+~
+E
+flowers growths bush lily cornflower lilies cornflowers trunk trunks bark~
+   Around the base of each apricot tree, a wide circle of bush lilies and
+cornflowers grow intertwined, rising upwards where they meet the trunks.  The
+brilliant bittersweet-hued bush lilies and indigo cornflowers grow beautifully
+from glossy green-leaved stalks.  On each trunk, the stalks creep vine-like up
+the bark, flowers blooming continually along the creepers.  The lilies and
+cornflowers weave magnificient patterns across the dusky bark, almost seeming
+to form cognizant meaning but ultimately indistinguishable from natural
+growths.    
+~
+E
+opal benches~
+   Seven benches encircle the marble cobblestone footpath, placed at regular
+intervals.  Carved from the rarest of black opal, the benches are all
+identical, each polished surface etched with an elaborate capital D.  The sides
+of the benches are etched with elaborate Highlands patterns resembling clovers
+and spear-shaped leaves.    
+~
+E
+etchings bas-relief scenes~
+   The pool's pearly exterior depicts detailed scenes and symbols in light,
+bas-relief etchings.  One scene records a commanding druid, arms outstretched
+among the nature around him, exuding a sense of natural harmony.  Another image
+shows a man engulfed in fire, molten streams of lava coursing on the ground
+around him.  Six monstrous rats are drawn before him, their sharply-fanged
+snouts facing outwards from his figure.  Continuing around the pool, the third
+image portrays the same man engulfed by fire standing above the curvature of
+the world, his right arm sweeping across its face creating forest and desert
+alike in its path.  The fourth and final etching illustrates another man,
+standing beside a woman and cradling a young girl in his arms.  They stand
+among a background of lightly etched roses.    
 ~
 S
 #3207

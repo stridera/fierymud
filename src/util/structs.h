@@ -627,6 +627,12 @@
 #define INNATE_STRENGTH 1
 #define INNATE_DARKNESS 2
 #define INNATE_LEVITATE 3
+#define INNATE_GRACE 4
+#define INNATE_FORTITUDE 5
+#define INNATE_INSIGHT 6
+#define INNATE_BRILL 7
+#define INNATE_SPLENDOR 8
+#define INNATE_HARNESS 9
 
 /* Coin indices for coin arrays */
 #define PLAT 0

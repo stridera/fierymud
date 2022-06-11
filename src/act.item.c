@@ -12,6 +12,7 @@
 
 #include "board.h"
 #include "chars.h"
+#include "cooldowns.h"
 #include "comm.h"
 #include "composition.h"
 #include "conf.h"
@@ -1863,4 +1864,63 @@ ACMD(do_compare) {
             send_to_char("You can't decide which is better.\r\n", ch);
             break;
         }
+}
+
+ACMD(do_create) {
+    int r_num, i = 0, found = 0;
+    struct obj_data *cobj;
+
+    if (GET_RACE(ch) == RACE_GNOME) {
+        if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC)) {
+            if (!GET_COOLDOWN(ch, CD_INNATE_CREATE)) {
+                if (!ch)
+                    return 0;
+
+                one_argument(argument, arg);
+
+                if (!(arg) || !*(arg)) {
+                    send_to_char("What are you trying to create?\r\n", ch);
+                    return 0;
+                }
+    
+                half_chop(arg, buf, buf2);
+                while (*minor_creation_items[i] != '\n') {
+                if (is_abbrev(arg, minor_creation_items[i])) {
+                    found = 1;
+                    break;
+                } else
+                    i++;
+                    }
+                if (found) {
+                    if ((r_num = real_object(1000 + i)) < 0) {
+                        log("SYSERR: Error in function do_minor_creation: target item not found.");
+                        send_to_char("Something is wrong with minor create.  Please tell a god.\r\n", ch);
+                        return 0;
+                    }
+                    cobj = read_object(r_num, REAL);
+                    if (GET_OBJ_TYPE(cobj) == ITEM_LIGHT) {
+                        GET_OBJ_VAL(cobj, VAL_LIGHT_LIT) = TRUE;
+                    }
+                    obj_to_room(cobj, ch->in_room);
+                    act("$n &0&5tinkers with some spare materials...&0", TRUE, ch, 0, 0, TO_ROOM);
+                    act("&7$n has created&0 $p&7!&0", FALSE, ch, cobj, 0, TO_ROOM);
+                    act("&7You tinker with some spare materials.&0", FALSE, ch, cobj, 0, TO_CHAR);
+                    act("&7You have created $p.&0", FALSE, ch, cobj, 0, TO_CHAR);
+
+                    SET_COOLDOWN(ch, CD_INNATE_CREATE, 1 MUD_HR);
+                } else {
+                    send_to_char("You have no idea how to create such an item.\r\n", ch);
+                    return 0;
+                }
+            } else {
+                send_to_char("You need to regain your focus.\r\n", ch);
+                cprintf(ch, "You can create again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_CREATE) / 10));
+                return;
+            }
+        } else
+            send_to_char("Your magical tinkering fizzles and fails.\r\n", ch);
+            return;
+    } else
+        send_to_char("Only Gnomes can create without spells!\r\n", ch);
+        return;
 }

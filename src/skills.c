@@ -879,7 +879,7 @@ void init_skills(void) {
            CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 9, FALSE, "Your night vision seems to fade.");
 
     /* innate intelligence */
-    spello(SPELL_INN_GENIUS, "innate genius", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+    spello(SPELL_INN_BRILL, "innate brill", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, 0, 0, 7, FALSE, "You feel less intelligent.");
 
     /* innate dexterity */

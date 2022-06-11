@@ -141,7 +141,7 @@ struct racedef races[NUM_RACES] = {
      90,
      26,
      38,
-     {64, 76, 88, 84, 68, 76},
+     {64, 76, 88, 84, 68, 80},
      100,
      100,
      100,
@@ -1104,6 +1104,39 @@ struct racedef races[NUM_RACES] = {
      110,
      NULL,
      NULL,
+     {0, 0}},
+    /* SVERFNEBLIN */
+    {"sverfneblin",
+     "sverfneblin",
+     "&9&d&bSverfneblin&0",
+     "&9&d&bSverfneblin&0",
+     "Sverfneblin",
+     TRUE,
+     TRUE,
+     RACE_ALIGN_EVIL,
+     SIZE_SMALL,
+     -1000,
+     2,
+     4,
+     LIFE_LIFE,
+     COMP_FLESH,
+     40,
+     90,
+     26,
+     38,
+     40,
+     90,
+     26,
+     38,
+     {64, 76, 88, 84, 68, 76},
+     100,
+     100,
+     100,
+     100,
+     75,
+     100,
+     NULL,
+     NULL,
      {0, 0}}
 };
 const char *race_align_abbrevs[] = {"&0&3&bGOOD&0", "&0&1&bEVIL&0"};
@@ -1139,6 +1172,8 @@ void init_races(void) {
     PERM_EFF(RACE_OGRE, EFF_ULTRAVISION);
     PERM_EFF(RACE_HALF_ELF, EFF_INFRAVISION);
     PERM_EFF(RACE_GNOME, EFF_INFRAVISION);
+    PERM_EFF(RACE_SVERFNEBLIN, EFF_INFRAVISION);
+    PERM_EFF(RACE_SVERFNEBLIN, EFF_ULTRAVISION);
     PERM_EFF(RACE_BROWNIE, EFF_INFRAVISION);
     PERM_EFF(RACE_DRAGONBORN_FIRE, EFF_INFRAVISION);
     PERM_EFF(RACE_DRAGONBORN_FROST, EFF_INFRAVISION);

@@ -190,6 +190,7 @@ ACMD(do_linkload);
 ACMD(do_load);
 ACMD(do_meditate);
 ACMD(do_memorize);
+ACMD(do_create);
 ACMD(do_mob_log);
 ACMD(do_mount);
 ACMD(do_move);
@@ -449,6 +450,7 @@ const struct command_info cmd_info[] = {
     {"coredump", POS_PRONE, STANCE_DEAD, do_coredump, LVL_HEAD_C, 0, 0},
     {"corner", POS_STANDING, STANCE_ALERT, do_corner, 0, 0, 0},
     {"cough", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"create", POS_SITTING, STANCE_RESTING, do_create, 0, 0, 0},
     {"credits", POS_PRONE, STANCE_DEAD, do_textview, 0, SCMD_CREDITS, CMD_ANY},
     {"cringe", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"cry", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
