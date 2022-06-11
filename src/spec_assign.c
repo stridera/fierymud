@@ -76,37 +76,39 @@ void assign_mobiles(void) {
     ASSIGNMOB(6203, cityguard);
     ASSIGNMOB(6204, cityguard);
 
-    ASSIGNMOB(6114, guild_guard); /* mercenary */
-    ASSIGNMOB(6007, guild_guard); /* diabolist */
-    ASSIGNMOB(6008, guild_guard); /* antipal */
-    ASSIGNMOB(6040, guild_guard); /* assassin */
-    ASSIGNMOB(6041, guild_guard); /* thief */
-    ASSIGNMOB(6175, guild_guard); /* druid guard */
-    ASSIGNMOB(6216, guild_guard); /* priest/cleric guard */
-    ASSIGNMOB(6217, guild_guard); /* paladin */
-    ASSIGNMOB(6219, guild_guard); /* necro */
-    ASSIGNMOB(6201, guild_guard); /* pyro */
-    ASSIGNMOB(6202, guild_guard); /* cryo */
-    ASSIGNMOB(6206, guild_guard); /* sorceror */
-    ASSIGNMOB(6210, guild_guard); /* illusionist */
+    ASSIGNMOB(6114, guild_guard);  /* mercenary */
+    ASSIGNMOB(6007, guild_guard);  /* diabolist */
+    ASSIGNMOB(6008, guild_guard);  /* antipal */
+    ASSIGNMOB(6040, guild_guard);  /* assassin */
+    ASSIGNMOB(6041, guild_guard);  /* thief */
+    ASSIGNMOB(6175, guild_guard);  /* druid guard */
+    ASSIGNMOB(6216, guild_guard);  /* priest/cleric guard */
+    ASSIGNMOB(6217, guild_guard);  /* paladin */
+    ASSIGNMOB(6219, guild_guard);  /* necro */
+    ASSIGNMOB(6201, guild_guard);  /* pyro */
+    ASSIGNMOB(6202, guild_guard);  /* cryo */
+    ASSIGNMOB(6206, guild_guard);  /* sorceror */
+    ASSIGNMOB(6210, guild_guard);  /* illusionist */
+    ASSIGNMOB(55704, guild_guard); /* berserker */
 
-    ASSIGNMOB(6006, guild); /* Princess Signess */
-    ASSIGNMOB(6007, guild); /* Ruin Wormheart */
+    ASSIGNMOB(6006, guild);  /* Princess Signess */
+    ASSIGNMOB(6007, guild);  /* Ruin Wormheart */
 
-    ASSIGNMOB(6231, guild); /* the Archmage - not the drunk (6031): RLS */
-    ASSIGNMOB(6032, guild); /* black priestess */
-    ASSIGNMOB(6080, guild); /* horsemaster (anti-paladin) */
-    ASSIGNMOB(6020, guild); /* Doorindark (assassin) */
+    ASSIGNMOB(6231, guild);  /* the Archmage - not the drunk (6031): RLS */
+    ASSIGNMOB(6032, guild);  /* black priestess */
+    ASSIGNMOB(6080, guild);  /* horsemaster (anti-paladin) */
+    ASSIGNMOB(6020, guild);  /* Doorindark (assassin) */
 
-    ASSIGNMOB(6113, guild); /* mercenary */
-    ASSIGNMOB(6176, guild); /* warrior */
+    ASSIGNMOB(6113, guild);  /* mercenary */
+    ASSIGNMOB(6176, guild);  /* warrior */
+    ASSIGNMOB(55703, guild); /* Jore Granitearm - berserker */
 
-    ASSIGNMOB(6220, guild); /* pyromancer */
-    ASSIGNMOB(6221, guild); /* cryomancer */
-    ASSIGNMOB(6222, guild); /* druidess */
-    ASSIGNMOB(6218, guild); /* Priestess */
-    ASSIGNMOB(6223, guild); /* necromancer */
-    ASSIGNMOB(6211, guild); /* illusionist */
+    ASSIGNMOB(6220, guild);  /* pyromancer */
+    ASSIGNMOB(6221, guild);  /* cryomancer */
+    ASSIGNMOB(6222, guild);  /* druidess */
+    ASSIGNMOB(6218, guild);  /* Priestess */
+    ASSIGNMOB(6223, guild);  /* necromancer */
+    ASSIGNMOB(6211, guild);  /* illusionist */
 
     ASSIGNMOB(6227, receptionist);
     ASSIGNMOB(6171, postmaster);
@@ -124,11 +126,13 @@ void assign_mobiles(void) {
     ASSIGNMOB(10011, guild_guard); /*warrior */
     ASSIGNMOB(10012, guild_guard); /*sorceror */
     ASSIGNMOB(10013, guild_guard); /*mercenary */
+    ASSIGNMOB(10200, guild_guard); /* berserker */
 
     ASSIGNMOB(10000, guild); /* High Priest of Zalish */
     ASSIGNMOB(10001, guild); /* warrior coach */
     ASSIGNMOB(10002, guild); /* archmage */
     ASSIGNMOB(10003, guild); /* elite mercenary */
+    ASSIGNMOB(10201, guild); /* Avaldr Mountainhelm - berserker */
 
     /* End Ickle */
 
@@ -147,6 +151,7 @@ void assign_mobiles(void) {
     ASSIGNMOB(5300, guild_guard);  /* paladin */
     ASSIGNMOB(5302, guild_guard);  /* monk */
     ASSIGNMOB(16911, guild_guard); /* necro HH */
+    ASSIGNMOB(3201, guild_guard);  /* berserker */
 
     ASSIGNMOB(3018, guild);  /* illusionist */
     ASSIGNMOB(3020, guild);  /* archmage */
@@ -161,6 +166,7 @@ void assign_mobiles(void) {
     ASSIGNMOB(5301, guild);  /* Grey Knight (paladin) */
     ASSIGNMOB(5303, guild);  /* monk */
     ASSIGNMOB(16910, guild); /* Asiri'Qaxt (necro) */
+    ASSIGNMOB(3200, guild);  /* Tozug (berserker) */
 
     /* End Mielikki */
 
@@ -178,6 +184,7 @@ void assign_mobiles(void) {
     ASSIGNMOB(30061, guild);
     ASSIGNMOB(30062, guild);
     ASSIGNMOB(30078, guild); /* Esh - Illusionist */
+    ASSIGNMOB(30081, guild); /* Khargol - berserker */
     ASSIGNMOB(30039, guild_guard);
     ASSIGNMOB(30041, guild_guard);
     ASSIGNMOB(30042, guild_guard);
@@ -188,6 +195,7 @@ void assign_mobiles(void) {
     ASSIGNMOB(30049, guild_guard);
     ASSIGNMOB(30057, guild_guard);
     ASSIGNMOB(30079, guild_guard); /* Illusionist */
+    ASSIGNMOB(30082, guild_guard); /* Berserker */
 
     /* End Ogakh */
 
