@@ -57,17 +57,18 @@ const char *subclass_descrip2 =
  * 18     a small leather bag           All
  * 19     some iron rations             All
  * 20     a leather water skin          All
- * 21     a pair of leather leggings    warrior, rogue, cleric
- * 22     a pair of leather sleeves     warrior, rogue, cleric
+ * 1019   crude leather pants           warrior, rogue, cleric
+ * 1022   quilted canvas sleeves        warrior, rogue, cleric
  * 23     a wooden torch                All
- * 24     a steel-studded helmet        warrior
- * 25     steel-toed boots              warrior
- * 26     a pair of leather sandals     rogue, cleric
- * 27     a small leather cap           rogue, cleric
- * 28     a steel mace                  cleric
- * 29     a steel longsword             warrior
- * 30     a steel dagger                rogue, mage
+ * 1024   a studded leather helmet      warrior
+ * 1026   studded leather boots         warrior
+ * 1027   some plain leather sandals    rogue, cleric
+ * 1025   a leather skullcap            rogue, cleric
+ * 1011   a crude mace                  cleric
+ * 1014   a crude longsword             warrior
+ * 1012   a thin dagger                 rogue, mage
  * 38     black linen leggings          mage
+ * 1003   an ebony hood                 mage
  * 1029   a spellbook                   mage
  * 1154   a feather quill               mage
  * 3090   a small map of mielikki       All
@@ -125,7 +126,7 @@ struct classdef classes[NUM_CLASSES] = {
      60,
      100,
      75,
-     {1029, 1154, 38, 27, 26, 30, -1}},
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},
 
     /* CLERIC */
     {"cleric",
@@ -157,7 +158,7 @@ struct classdef classes[NUM_CLASSES] = {
      70,
      100,
      100,
-     {21, 22, 27, 26, 28, -1}},
+     {1019, 1022, 1025, 1027, 1011, -1}},
 
     /* THIEF */
     {"thief",
@@ -189,7 +190,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      100,
      80,
-     {21, 22, 27, 26, 30, -1}},
+     {1019, 1022, 1025, 1027, 1012, -1}},
 
     /* WARRIOR */
     {"warrior",
@@ -221,7 +222,7 @@ struct classdef classes[NUM_CLASSES] = {
      120,
      100,
      120,
-     {21, 22, 24, 25, 29, -1}},
+     {1019, 1022, 1024, 1026, 1014, -1}},
 
     /* PALADIN */
     {"paladin",
@@ -253,7 +254,7 @@ struct classdef classes[NUM_CLASSES] = {
      120,
      100,
      120,
-     {21, 22, 24, 25, 29, -1}},
+     {1019, 1022, 1024, 1026, 1014, -1}},
 
     /* ANTI_PALADIN */
     {"anti-paladin",
@@ -285,7 +286,7 @@ struct classdef classes[NUM_CLASSES] = {
      120,
      100,
      120,
-     {21, 22, 24, 25, 29, -1}},
+     {1019, 1022, 1024, 1026, 1014, -1}},
 
     /* RANGER */
     {"ranger",
@@ -317,7 +318,7 @@ struct classdef classes[NUM_CLASSES] = {
      120,
      100,
      120,
-     {21, 22, 24, 25, 29, -1}},
+     {1019, 1022, 1024, 1026, 1014, -1}},
 
     /* DRUID */
     {"druid",
@@ -349,7 +350,7 @@ struct classdef classes[NUM_CLASSES] = {
      70,
      100,
      100,
-     {21, 22, 27, 26, 28, -1}},
+     {1019, 1022, 1025, 1027, 1011, -1}},
 
     /* SHAMAN */
     {"shaman",
@@ -381,7 +382,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      100,
      100,
-     {21, 22, 27, 26, 28, -1}},
+     {1019, 1022, 1025, 1027, 1011, -1}},
 
     /* ASSASSIN */
     {"assassin",
@@ -413,7 +414,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      100,
      80,
-     {21, 22, 27, 26, 30, -1}},
+     {1019, 1022, 1025, 1027, 1012, -1}},
 
     /* MERCENARY */
     {"mercenary",
@@ -445,7 +446,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      100,
      80,
-     {21, 22, 24, 25, 30, 29, -1}},
+     {1019, 1022, 1024, 1026, 1012, 1014, -1}},
 
     /* NECROMANCER */
     {"necromancer",
@@ -477,7 +478,7 @@ struct classdef classes[NUM_CLASSES] = {
      60,
      100,
      75,
-     {1029, 1154, 38, 27, 26, 30, -1}},
+     {1029, 1154, 38, 1003, 26, 30, -1}},
 
     /* CONJURER */
     {"conjurer",
@@ -509,7 +510,7 @@ struct classdef classes[NUM_CLASSES] = {
      60,
      100,
      75,
-     {1029, 1154, 38, 27, 26, 30, -1}},
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},
 
     /* MONK */
     {"monk",
@@ -541,7 +542,7 @@ struct classdef classes[NUM_CLASSES] = {
      120,
      100,
      120,
-     {21, 22, 26, 27, -1}},
+     {1019, 1022, 1024, 1026, 1014, -1}},
 
     /* BERSERKER */
     {"berserker",
@@ -573,7 +574,7 @@ struct classdef classes[NUM_CLASSES] = {
      120,
      100,
      120,
-     {21, 22, 24, 25, 29, -1}},
+     {1019, 1022, 1024, 1026, 1014, -1}},
 
     /* PRIEST */
     {"priest",
@@ -605,7 +606,7 @@ struct classdef classes[NUM_CLASSES] = {
      70,
      100,
      100,
-     {21, 22, 27, 26, 28, -1}},
+     {1019, 1022, 1025, 1027, 1011, -1}},
 
     /* DIABOLIST */
     {"diabolist",
@@ -637,7 +638,7 @@ struct classdef classes[NUM_CLASSES] = {
      70,
      100,
      100,
-     {21, 22, 27, 26, 28, -1}},
+     {1019, 1022, 1025, 1027, 1011, -1}},
 
     /* MYSTIC */
     {"mystic",
@@ -669,7 +670,7 @@ struct classdef classes[NUM_CLASSES] = {
      70,
      100,
      100,
-     {21, 22, 27, 26, 28, -1}},
+     {1019, 1022, 1025, 1027, 1011, -1}},
 
     /* ROGUE */
     {"rogue",
@@ -701,7 +702,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      100,
      80,
-     {21, 22, 27, 26, 30, -1}},
+     {1019, 1022, 1025, 1027, 1012, -1}},
 
     /* BARD */
     {"bard",
@@ -733,7 +734,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      100,
      80,
-     {21, 22, 27, 26, 30, -1}},
+     {1019, 1022, 1025, 1027, 1012, -1}},
 
     /* PYROMANCER */
     {"pyromancer",
@@ -765,7 +766,7 @@ struct classdef classes[NUM_CLASSES] = {
      60,
      100,
      75,
-     {1029, 1154, 38, 27, 26, 30, -1}},
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},
 
     /* CRYOMANCER */
     {"cryomancer",
@@ -797,7 +798,7 @@ struct classdef classes[NUM_CLASSES] = {
      60,
      100,
      75,
-     {1029, 1154, 38, 27, 26, 30, -1}},
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},
 
     /* ILLUSIONIST */
     {"illusionist",
@@ -829,7 +830,7 @@ struct classdef classes[NUM_CLASSES] = {
      60,
      100,
      75,
-     {1029, 1154, 38, 27, 26, 30, -1}},
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},
 
     /* HUNTER */
     {"hunter",
@@ -861,7 +862,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      100,
      80,
-     {21, 22, 27, 26, 30, -1}},
+     {1019, 1022, 1025, 1027, 1012, -1}},
 
     /* LAYMAN */
     {"layman",
