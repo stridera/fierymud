@@ -1048,7 +1048,7 @@ int guild_info[][3] = {
     {CLASS_PYROMANCER, 3045, SCMD_UP},
     {CLASS_CRYOMANCER, 3045, SCMD_DOWN},
     {CLASS_ILLUSIONIST, 3207, SCMD_SOUTH},
-    {CLASS_NECROMANCER, 16950, SCMD_UP}, /* Haunted House */
+    {CLASS_NECROMANCER, 16950, SCMD_UP},    /* Haunted House */
 
     {CLASS_CLERIC, 3004, SCMD_NORTH},
     {CLASS_DIABOLIST, 3004, SCMD_NORTH},
@@ -1068,9 +1068,10 @@ int guild_info[][3] = {
     {CLASS_MONK, 3021, SCMD_NORTH},
     {CLASS_PALADIN, 3021, SCMD_NORTH},
     {CLASS_BERSERKER, 3021, SCMD_NORTH},
-    {CLASS_RANGER, 3549, SCMD_WEST},  /* Light Forest */
-    {CLASS_MONK, 5307, SCMD_EAST},    /* Grey Castle */
-    {CLASS_PALADIN, 5305, SCMD_EAST}, /* Grey Castle */
+    {CLASS_RANGER, 3549, SCMD_WEST},        /* Light Forest */
+    {CLASS_MONK, 5307, SCMD_EAST},          /* Grey Castle */
+    {CLASS_PALADIN, 5305, SCMD_EAST},       /* Grey Castle */
+    {CLASS_BERSERKER, 3211, SCMD_SOUTH},    /* Great Road */
 
     /* Ogakh */ /* Room    Direction */
     {CLASS_SORCERER, 30072, SCMD_WEST},
@@ -1101,6 +1102,7 @@ int guild_info[][3] = {
     {CLASS_PALADIN, 30029, SCMD_WEST},
     {CLASS_BERSERKER, 30029, SCMD_WEST},
     {CLASS_ANTI_PALADIN, 30107, SCMD_NORTH},
+    {CLASS_BERSERKER, 30121, SCMD_WEST},
 
     /* Anduin */
     {CLASS_ANTI_PALADIN, 6079, SCMD_EAST},
@@ -1110,6 +1112,7 @@ int guild_info[][3] = {
     {CLASS_PALADIN, 6148, SCMD_SOUTH},
     {CLASS_RANGER, 6148, SCMD_SOUTH},
     {CLASS_BERSERKER, 6148, SCMD_SOUTH},
+    {CLASS_BERSERKER, 55795, SCMD_NORTH},   /* Black Rock Trail */
 
     {CLASS_ROGUE, 6067, SCMD_NORTH},
     {CLASS_THIEF, 6067, SCMD_NORTH},
@@ -1139,6 +1142,7 @@ int guild_info[][3] = {
     {CLASS_MONK, 10014, SCMD_WEST},
     {CLASS_RANGER, 10014, SCMD_WEST},
     {CLASS_BERSERKER, 10014, SCMD_WEST},
+    {CLASS_BERSERKER, 10241, SCMD_EAST},    /* Mt. Frostbite */
 
     {CLASS_CLERIC, 10004, SCMD_WEST},
     {CLASS_PRIEST, 10004, SCMD_WEST},
@@ -1563,7 +1567,6 @@ void assign_class_skills(void) {
     song_assign(SONG_TERROR, CLASS_BARD, 10);
     
     /* BERSERKER */
-    skill_assign(SKILL_BERSERK, CLASS_BERSERKER, 10);
     skill_assign(SKILL_BLUDGEONING, CLASS_BERSERKER, 1);
     skill_assign(SKILL_PIERCING, CLASS_BERSERKER, 1);
     skill_assign(SKILL_SLASHING, CLASS_BERSERKER, 1);
@@ -1573,16 +1576,17 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SWITCH, CLASS_BERSERKER, 1);
     skill_assign(SKILL_KICK, CLASS_BERSERKER, 1);
     skill_assign(SKILL_DODGE, CLASS_BERSERKER, 1);
+    skill_assign(SKILL_BERSERK, CLASS_BERSERKER, 10);
     skill_assign(SKILL_PARRY, CLASS_BERSERKER, 15);
     skill_assign(SKILL_DUAL_WIELD, CLASS_BERSERKER, 20);
     skill_assign(SKILL_CHANT, CLASS_BERSERKER, 25);
     skill_assign(SKILL_MAUL, CLASS_BERSERKER, 30);
-    skill_assign(SKILL_TANTRUM, CLASS_BERSERKER, 42);
+    skill_assign(SKILL_TANTRUM, CLASS_BERSERKER, 45);
     skill_assign(SKILL_MEDITATE, CLASS_BERSERKER, 50);
     skill_assign(SKILL_RIPOSTE, CLASS_BERSERKER, 50);
-    skill_assign(SKILL_BATTLE_HOWL, CLASS_BERSERKER, 67);
+    skill_assign(SKILL_BATTLE_HOWL, CLASS_BERSERKER, 65);
     skill_assign(SKILL_GROUND_SHAKER, CLASS_BERSERKER, 75);
-    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BERSERKER, 83);
+    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BERSERKER, 85);
 
     chant_assign(CHANT_SPIRIT_BEAR, CLASS_BERSERKER, 25);
     chant_assign(CHANT_SPIRIT_WOLF, CLASS_BERSERKER, 60);
