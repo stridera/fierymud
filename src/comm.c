@@ -1644,6 +1644,9 @@ char *prompt_str(struct char_data *ch) {
             case 'c':
                 temp = CD_CHANT;
                 break;
+            case 'b':
+                temp = CD_BREATHE;
+                break;
             default:
                 continue; /* don't print anything */
             }
