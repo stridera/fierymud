@@ -563,7 +563,7 @@ struct classdef classes[NUM_CLASSES] = {
      {105, 115, 100, 100, 110},
      12,
      -4,
-     0,
+     ITEM_ANTI_BERSERKER,
      100,
      0,
      100,
