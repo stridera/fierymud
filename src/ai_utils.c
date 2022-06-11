@@ -142,7 +142,6 @@ int value_obj_flags(struct char_data *ch, struct obj_data *obj) {
             switch (1 << i) {
             case ITEM_GLOW:
             case ITEM_HUM:
-            case ITEM_NODONATE:
             case ITEM_NOSELL:
             case ITEM_WAS_DISARMED:
                 break;
@@ -199,6 +198,7 @@ int value_obj_flags(struct char_data *ch, struct obj_data *obj) {
             case ITEM_ANTI_NECROMANCER:
             case ITEM_ANTI_CONJURER:
             case ITEM_ANTI_MONK:
+            case ITEM_ANTI_BERSERKER:
                 value -= 2;
                 break;
             }

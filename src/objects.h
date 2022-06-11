@@ -85,7 +85,7 @@
 #define ITEM_GLOW 0               /* Item is glowing               */
 #define ITEM_HUM 1                /* Item is humming               */
 #define ITEM_NORENT 2             /* Item cannot be rented         */
-#define ITEM_NODONATE 3           /* Item cannot be donated        */
+#define ITEM_ANTI_BERSERKER 3     /* Not usable by berserkers      */
 #define ITEM_NOINVIS 4            /* Item cannot be made invis     */
 #define ITEM_INVISIBLE 5          /* Item is invisible             */
 #define ITEM_MAGIC 6              /* Item is magical               */

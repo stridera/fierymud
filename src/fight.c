@@ -656,7 +656,6 @@ struct obj_data *make_corpse(struct char_data *ch, struct char_data *killer) {
     corpse->short_description = strdup(buf2);
 
     GET_OBJ_TYPE(corpse) = ITEM_CONTAINER;
-    SET_FLAG(GET_OBJ_FLAGS(corpse), ITEM_NODONATE);
     SET_FLAG(GET_OBJ_FLAGS(corpse), ITEM_FLOAT);
     /* You can't store stuff in a corpse */
     GET_OBJ_VAL(corpse, VAL_CONTAINER_CAPACITY) = 0;

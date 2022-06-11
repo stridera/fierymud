@@ -185,7 +185,7 @@ const char *wear_bits[NUM_ITEM_WEAR_FLAGS + 1] = {
 
 /* ITEM_x (extra bits) */
 const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
-    "GLOW",        "HUM",       "!RENT",      "!DONATE",      "!INVIS",        "INVISIBLE", "MAGIC",
+    "GLOW",        "HUM",       "!RENT",      "!BERSERKER",   "!INVIS",        "INVISIBLE", "MAGIC",
     "!DROP",       "PERMANENT", "!GOOD",      "!EVIL",        "!NEUTRAL",      "!SORCERER", "!CLERIC",
     "!ROGUE",      "!WARRIOR",  "!SELL",      "!PALADIN",     "!ANTI_PALADIN", "!RANGER",   "!DRUID",
     "!SHAMAN",     "!ASSASSIN", "!MERCENARY", "!NECROMANCER", "!CONJURER",     "!BURN",     "!LOCATE",
