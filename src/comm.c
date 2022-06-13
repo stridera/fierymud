@@ -1620,32 +1620,62 @@ char *prompt_str(struct char_data *ch) {
             expecting = TOK_UNKNOWN;
             /* Show time left for particular cooldown */
             switch (*raw) {
-            case 'i':
-                temp = CD_INSTANT_KILL;
+            case 'a':
+                temp = CD_INNATE_ASCEN;
+                break;
+            case 'b':
+                temp = CD_BREATHE;
+                break;
+            case 'c':
+                temp = CD_INNATE_BRILL;
                 break;
             case 'd':
+                temp = CD_CHANT;
+                break;
+            case 'e':
+                temp = CD_INNATE_CHAZ;
+                break;
+            case 'f':
+                temp = CD_INNATE_CREATE;
+                break;
+            case 'g':
+                temp = CD_INNATE_DARKNESS;
+                break;
+            case 'h':
                 temp = CD_DISARM;
                 break;
-            case 'm':
-                temp = CD_SUMMON_MOUNT;
+            case 'i':
+                temp = CD_FIRST_AID;
+                break;
+            case 'j':
+                temp = CD_INSTANT_KILL;
+                break;
+            case 'k':
+                temp = CD_INNATE_INVISIBLE;
                 break;
             case 'l':
                 temp = CD_LAY_HANDS;
                 break;
-            case 'f':
-                temp = CD_FIRST_AID;
+            case 'm':
+                temp = CD_INNATE_LEVITATE;
                 break;
-            case 't':
+            case 'n':
+                temp = CD_SHAPECHANGE;
+                break;
+            case 'o':
+                temp = CD_SUMMON_MOUNT;
+                break;
+            case 'p':
+                temp = CD_INNATE_SYLL;
+                break;
+            case 'q':
+                temp = CD_INNATE_TASS;
+                break;
+            case 'r':
                 temp = CD_THROATCUT;
                 break;
             case 's':
-                temp = CD_SHAPECHANGE;
-                break;
-            case 'c':
-                temp = CD_CHANT;
-                break;
-            case 'b':
-                temp = CD_BREATHE;
+                temp = CD_INNATE_TREN;
                 break;
             default:
                 continue; /* don't print anything */
