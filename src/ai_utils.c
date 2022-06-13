@@ -199,6 +199,7 @@ int value_obj_flags(struct char_data *ch, struct obj_data *obj) {
             case ITEM_ANTI_CONJURER:
             case ITEM_ANTI_MONK:
             case ITEM_ANTI_BERSERKER:
+            case ITEM_ANTI_BARD:
                 value -= 2;
                 break;
             }

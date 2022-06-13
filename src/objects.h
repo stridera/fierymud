@@ -115,7 +115,8 @@
 #define ITEM_NOFALL 30            /* Doesn't fall - unaffected by gravity */
 #define ITEM_WAS_DISARMED 31      /* Disarmed from mob             */
 #define ITEM_ANTI_MONK 32         /* Not usable by monks           */
-#define NUM_ITEM_FLAGS 33
+#define ITEM_ANTI_BARD 33
+#define NUM_ITEM_FLAGS 34
 
 /* Modifier constants used with obj effects ('A' fields) */
 #define APPLY_NONE 0           /* No effect                       */

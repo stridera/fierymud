@@ -189,7 +189,7 @@ const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
     "!DROP",       "PERMANENT", "!GOOD",      "!EVIL",        "!NEUTRAL",      "!SORCERER", "!CLERIC",
     "!ROGUE",      "!WARRIOR",  "!SELL",      "!PALADIN",     "!ANTI_PALADIN", "!RANGER",   "!DRUID",
     "!SHAMAN",     "!ASSASSIN", "!MERCENARY", "!NECROMANCER", "!CONJURER",     "!BURN",     "!LOCATE",
-    "DECOMPOSING", "FLOAT",     "!FALL",      "DISARMED",     "!MONK",         "\n"};
+    "DECOMPOSING", "FLOAT",     "!FALL",      "DISARMED",     "!MONK",         "!BARD",     "\n"};
 
 /* APPLY_x */
 const char *apply_types[NUM_APPLY_TYPES + 1] = {
