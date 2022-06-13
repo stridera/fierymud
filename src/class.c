@@ -552,7 +552,7 @@ struct classdef classes[NUM_CLASSES] = {
      "&9&bBer&1ser&9ker&0   ",
      "&9&bBe&1r&0",
      "&9&b**&0",
-     FALSE,
+     TRUE,
      MEM_NONE,
      FALSE,
      TRUE,
