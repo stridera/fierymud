@@ -1089,7 +1089,7 @@ void oedit_disp_obj_values(struct descriptor_data *d) {
                 "       Message : %s%s%s\r\n",
                 cyn, GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), nrm, cyn,
                 GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) >= 0 &&
-                        GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) <= TYPE_STAB - TYPE_HIT
+                        GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) <= TYPE_POISON - TYPE_HIT
                     ? attack_hit_text[GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE)].singular
                     : "INVALID",
                 nrm);

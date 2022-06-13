@@ -964,7 +964,7 @@ ACMD(do_msearch) {
             return;
         /* Special handling for 18: attack type */
         if (mode == 18) {
-            for (found = temp = 0; temp <= TYPE_STAB - TYPE_HIT; ++temp)
+            for (found = temp = 0; temp <= TYPE_POISON - TYPE_HIT; ++temp)
                 if (is_abbrev(string, attack_hit_text[temp].plural)) {
                     found = 1;
                     value = temp;
@@ -1226,7 +1226,7 @@ ACMD(do_osearch) {
 
         /* Special handling for 25: attack type */
         if (mode == 25) {
-            for (found = temp = 0; temp <= TYPE_STAB - TYPE_HIT; ++temp)
+            for (found = temp = 0; temp <= TYPE_POISON - TYPE_HIT; ++temp)
                 if (is_abbrev(string, attack_hit_text[temp].plural)) {
                     found = 1;
                     value = temp;

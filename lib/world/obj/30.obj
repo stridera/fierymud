@@ -282,7 +282,7 @@ A small sword lies here.~
 Nothing.
 ~
 5 1060864 8193 1
-0 1 6 3 0 0 0
+0 1 6 15 0 0 0
 8.00 60 0 0 0 0 0 0
 E
 small sword~
@@ -431,7 +431,6 @@ A short cane is resting here in the way.~
 3 0 16385 1
 20 1 1 3 0 0 0
 2.00 0 0 0 0 0 0 0
-T 6019
 E
 cane mayor short mayors-cane questobject~
 The mayor's cane is simply a short piece of wood to help him with walking in
@@ -1709,7 +1708,6 @@ A miniature elephant with curved tusks and thick wooly hair sits here waiting fo
 12 13552640 16385 30
 0 0 0 0 0 0 0
 0.50 200000 0 0 0 0 0 0
-T 18887
 E
 doll miniature-mammoth-doll miniature-elephant~
 Mammoths are gigantic elephants covered in thick wooly hair.  Although not
@@ -1821,7 +1819,6 @@ An itty-bitty pillar of flame dances across the floor.~
 1 12632064 16385 40
 0 -1 -1 0 0 0 0
 0.50 250000 0 0 0 0 0 0
-T 18887
 E
 doll miniature-flame-elemental-doll itty-bitty-pillar-flame~
 This soft little doll is sewn in the shape of a flame, with varying shades of
@@ -1853,7 +1850,6 @@ A plump little demon stares off into the swirling nothingness.~
 3 13680704 16385 50
 50 10 10 2 0 0 0
 0.50 150000 0 0 0 0 0 0
-T 18887
 E
 doll miniature-krisenna-doll plump-little-demon~
 The demon stands at least twice as tall the average doll.  He has little
@@ -2869,7 +2865,6 @@ A broad silver belt has been left here.~
 9 64 2049 10
 6 0 0 0 0 0 0
 2.00 1200 0 0 0 0 0 0
-T 1299
 E
 belt silver~
 It is a broad belt made from tiny silver rings woven together.

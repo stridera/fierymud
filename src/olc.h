@@ -32,7 +32,7 @@
 
 /*. CONFIG DEFINES - these should be in structs.h, but here is easyer.*/
 
-#define NUM_ATTACK_TYPES 15
+#define NUM_ATTACK_TYPES 20
 
 #define NUM_SHOP_FLAGS 2
 #define NUM_TRADERS 7
