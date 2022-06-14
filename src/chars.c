@@ -351,7 +351,7 @@ int susceptibility(struct char_data *ch, int dtype) {
             return compositions[GET_COMPOSITION(ch)].sus_acid * 75 / 100;
         return compositions[GET_COMPOSITION(ch)].sus_acid;
     case DAM_POISON:
-        if (MOB_FLAGGED(ch, MOB_NOPOISON))
+        if (MOB_FLAGGED(ch, MOB_NOPOISON) || MOB_FLAGGED(ch, MOB_ILLUSORY))
             return 0;
         return compositions[GET_COMPOSITION(ch)].sus_poison;
     case DAM_HEAL:

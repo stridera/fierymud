@@ -274,7 +274,7 @@ ASPELL(spell_charm) {
     /* modded so animateds CAN cast charm *grin* - 321 */
     else if (EFF_FLAGGED(ch, EFF_CHARM) && !MOB_FLAGGED(ch, MOB_ANIMATED))
         send_to_char("You can't have any followers of your own!\r\n", ch);
-    else if (EFF_FLAGGED(victim, EFF_CHARM) || skill < GET_LEVEL(victim) + 10)
+    else if (EFF_FLAGGED(victim, EFF_CHARM) || skill < GET_LEVEL(victim) + 10 || MOB_FLAGGED(victim, MOB_ILLUSORY))
         send_to_char("You fail.\r\n", ch);
     /* player charming another player - no legal reason for this */
     else if (!charm_allowed && !IS_NPC(victim))
