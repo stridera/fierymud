@@ -161,7 +161,9 @@ Type ALIAS <alias-name> to delete an alias that has already been defined.
   > alias gbb
 
 A semicolon (";") can be used to define multiple actions to be taken with
-a single alias. This supports aliases, not scripting entire routines.
+a single alias. This supports aliases, not scripting entire routines. 
+It should be noted, Mudlet requires TWO ; for this to work, as it also uses
+; to separate commands.
 
   > alias eat get bread bag; eat bread
 
@@ -320,7 +322,7 @@ monk.  This is a quest chant.
  
 See also: RESCUE, MONK, SONGS_MONK
 #0
-AREAS ZONES
+AREA AREAS ZONES
  
 This is a list of the major areas in Fiery.  The most important thing about
 an area is its level range.  The ranges listed here are estimates based on
@@ -363,16 +365,20 @@ Azkrael            The Dairy Farm                       <   >   5 to 10
 Angus/Blackmourne  Great Road and Swamp                 <   >   5 to 10
 Uklor              Morgan Hill                          <   >   5 to 10
 Haddixx            Smuggler's Hideout                   <   >   5 to 10
-Daedela            The Theater                          <   >   5 to 10
+Daedela            The Theatre                          <   >   5 to 10
 Azkrael/Cronax     Twisted Forest                       <   >   5 to 10
 Zzur               Black Rock Trail                     <   >   6 to 12
 Zzur               Eldorian Foothills                   <   >   6 to 12
 Zzur               Iron Hills                           <   >   6 to 12
-Zzur               Nikozian Trail                       <   >   6 to 12
+Zzur               Black Woods (Nikozian Trail)         <   >   6 to 12
+Zzur               Kaaz Plains (Nikozian Trail)         <   >   6 to 12
+Zzur               Dark Mountains (Nikozian Trail)      <   >   6 to 12
+Zzur               Cold Fields (Nikozian Trail)         <   >   6 to 12
+Zzur               Black Lake                           <   >   6 to 12
 Irissa             The Hive                             <   >   8 to 14
 Zzur		   Split Skull (Evil race village)	<   >   8 to 20
 Timun              Canyon                               <   >  10 to 15
-Scruffy/Zzur       The Rock Well                        <   >  12 to 18
+Scruffy/Zzur       The Rockwell                         <   >  12 to 18
 Ramah              The Logging Camp                     <   >  10 to 20
 Timun              Temple of Chaos                      <   >  12 to 18
 Zzur               Combat in Eldoria                    <   >  12 to 24
@@ -383,12 +389,12 @@ Unknown/Jelos      Forest of Shadows                    <   >  15 to 25
 Timun/Tanle        Abbey                                <   >  18 to 25
 Laich              Black Ice Desert                     <   >  18 to 25
 Xiath              The Gothra Plains                    <   >  18 to 25
-Metamorpho         Misty Caverns (Rocky Tunnels)        <   >  18 to 25
+Metamorpho         Rocky Tunnels (Misty Caverns)        <   >  18 to 25
 Juanvaldez         Arabel Ocean                         <   >  20 to 30
 Kazen              Frakati Reservation                  <   >  20 to 30
 Uklor/Kourrya      South Caelia Highlands               <   >  20 to 30
 Irissa             SeaWitch                             <   >  20 to 35
-Metamorpho         Misty Caverns (Lava Tunnels)         <   >  24 to 35
+Metamorpho         Lava Tunnels North (Misty Caverns)        <   >  24 to 35
 Cronax             The Bayou                            <   >  25 to 35
 Azkrael            Beach-Head                           <   >  25 to 35
 Rydack             Sacred Haven                         <   >  25 to 40
@@ -399,7 +405,7 @@ Uklor/Kourrya/Lao  South Caelia Forests and Mountains   <   >  30 to 50
 Daedela            The Sacred Megalith                  <   >  30 to 60
 Metamorpho         Blue Fog: Trail                      <   >  35 to 45
 Timun              Fortress of Mystwatch                <   >  40 to 55
-Metamorpho         Misty Caverns (South of the Bubble)  <   >  40 to 50
+Metamorpho         Lava Tunnels South (Misty Caverns)   <   >  40 to 50
 Metamorpho         Northern Swamps                      <   >  40 to 55
 Metamorpho         Blue Fog: River                      <   >  40 to 60
 Xirgha/Nardok      Cathedral of Betrayal                <   >  40 to 75
@@ -1089,6 +1095,10 @@ is especially evident in combat, where users are known to gain two to
 three additional attacks per melee round.  Blur is an advanced
 ranger spell, and as such may only be attained via questing.
  
+Voices whisper in darkened forests. Enmity lingers through death and curses. 
+Bringing swift peace to the forest may catch the attention of those capable 
+of teaching greater skills.
+
 See also: HASTE, SPELL_RANGER, QUEST_SPELLS
 #0
 BOARDS
@@ -1156,6 +1166,15 @@ This spell causes old bones to leap out of the ground and surround the
 necromancer, acting as a protective shell and adding to the caster's armor.
  
 SEE ALSO: SPELL_NECROMANCER, "SUMMON CORPSE", BARKSKIN, "STONE SKIN"
+#0
+BREATH BREATHE
+
+Usage: breath <target>
+
+Will allow a dragonborn race to breath their natural element at 
+unsuspecting victims.
+
+See also: DRAGONBORN
 #0
 BRIEF
  
@@ -1525,8 +1544,13 @@ this spell, completely subjugating the victim.  When this spell is in
 effect on a victim, they become unable to perform many actions of
 their own volition and must follow any orders given by the sorcerer.
 The success of casting this spell is dependent on the victim's level
-and saving throws compared to the caster's level.  This is a quest
-spell.
+and saving throws compared to the caster's level.  
+
+This is now a in-game quest.  details for finding this quest:
+Some dedicate their whole lives to charming and entertaining others. 
+Some are even willing to share their knowledge with others - for a 
+price. Certain new secrets are available in entertaining houses 
+of ill-repute. 
   
 See also: ORDER, SPELLS_SORCERER, QUEST_SPELL, WORD OF COMMAND
 #0
@@ -2587,6 +2611,10 @@ carnivorous arachnoids and insects to overwhelm their enemies, burying
 them under a carpet of living death.  This spell has a delayed effect,
 summoning swarms every few game minutes.  As a quest spell, a deity-
 sanctioned quest must be completed before the spell can be attained.
+
+The little faeries of the forest are tired of being kicked around as cannon 
+fodder. From the weakest creatures come the most powerful weapons of 
+nature's retribution. 
  
 See also: SPELLS_DRUID, QUEST_SPELL
 #0
@@ -2919,7 +2947,12 @@ muscular deterioration even to the point of death, but such
 negative energy seems to have an inverse strengthening effect
 on the undead.  This is a quest spell, requiring completion
 of a deity quest before attainment.
- 
+
+To find this in-game quest: 
+Strange creatures are assisting the forces of the undead. A 
+determined Necromancer may be able to learn some secrets 
+about bolstering their risen forces. 
+
 See also: NECROMANCER, HEAL, HARM
 #0
 DEITY RELIGION
@@ -3346,7 +3379,7 @@ only the most tenuous magics, are shattered utterly by all but
 the weakest invocations of this spell.
 
 See also: DISPEL MAGIC, LIFE FORCE, COMPOSITION
-#100
+#0
 DISEASE
 
 ===============================================
@@ -3609,6 +3642,52 @@ the consent of that player.
  
 See also: SCORE, "SUMMON CORPSE", MOVEMENT
 #0
+DRAGONBORN "RACE DRAGONBORN"
+
+As their name implies, dragonborn are cousins of the mighty true 
+dragons.  Of mixed dragon and humanoid heritage, dragonborn are 
+bipedal and lack wings.  Like their winged brethren, dragonborn 
+can be found the world over, living in nearly any climate or 
+environment as suits their liking.  Dragonborn lack the mystical 
+connection to a hoard true dragons enjoy, but their inherently 
+magical nature often leads them to esoteric pursuits.  They stand 
+taller and heavier than the average human of their gender.
+
+Dragonborn are broken down into five varieties based on their 
+breath weapons, vestiges of their draconic ancestry.  Their body 
+is covered in small scales, colored to reflect their heritage as   
+well: red or gold for Fire Dragonborn, white or silver for Frost 
+Dragonborn, blue or bronze for Lightning Dragonborn, black or 
+brass for Acid Dragonborn, and green or copper for Gas Dragonborn.  
+Unlike true dragons however, dragonborn do not have any particular 
+alignment based on their color; a dragonborn is free to choose 
+their own path regardless of their ancestry.
+
+STATS:
+Strength - slightly above average
+Dexterity - below average
+Intelligence - slightly above average
+Wisdom - average
+Constitution - slightly above average
+Charisma - slightly above average
+
+INNATE BONUSES:
+- Infravision
+- Slightly increased saves vs spells, paralysis, and magic items 
+based on Constitution
+- Slightly increased Armor Class
+- Default unarmed attack is law instead of hit
+
+INNATE COMBAT SKILLS:
+- Breathe <fire/frost/acid/lightning/gas>
+
+PLAYABLE CLASSES:
+Sorcerer, Cleric, Warrior, Paladin, Anti-Paladin, Necromancer, 
+Priest, Diabolist, Pyromancer (except for Frost Dragonborn), 
+Cryomancer (except for Fire Dragonborn), Illusionist
+
+SEE ALSO: BREATHE, STATS, INNATE, SORCERER, CLERIC, WARRIOR
+#0
 "DRAGONS HEALTH" DH
 
 ===============================================
@@ -3625,6 +3704,7 @@ Fade message  : Your health returns to normal.
 Classes       : Cleric         Circle 12 (quest)
               : Priest         Circle 12 (quest)
 ===============================================
+*In-game quest spell*
 
 Similar to the weaker vitality and endurance spells, dragons health allows
 a cleric to invoke significantly more health into a creature with just a
@@ -3633,6 +3713,11 @@ an amount dependant on the cleric's proficiency.  When this spell wears off,
 the victim's hitpoints will drop by the amount they were increased, and
 if one's hitpoints are negative, it is possible to die.  This is a quest
 spell.
+
+Ancient songs echo through the memories of dragons.  Some are capable of 
+conferring incredible magic that can bolster mortal vitality beyond compare.
+A chance to learn one such power has popped up with a dragonborn caretaker
+on distant shores.
 
 See also: VITALITY, QUEST_SPELL
 #0
@@ -4038,6 +4123,29 @@ Usage: equipment
 
 Gives you a list of all the equipment you're wearing, holding, and wielding.
 
+Available positions are 
+   <badge>
+   <on head>
+   <on face>
+   <arround neck>
+   <arround neck>
+   <about body>
+   <on body>
+   <about waist>
+   <attched to belt>
+   <on arms>
+   <on wrists>
+   <on hands>
+   <on finger>
+   <on finger>
+   <held>
+   <held>
+   <light>
+   <on legs>
+   <on feet>
+   <hovering>
+
+
 See also: INVENTORY, REMOVE, WEAR
 #0
 ESTAT OESTAT RESTAT
@@ -4276,7 +4384,7 @@ The familiarity spell makes one appear to be familiar to everyone.
 Creatures are far less likely to be hostile to one so affected.
 
 See also: GLORY
-#100
+#0
 FARSEE
 
 ===============================================
@@ -4329,7 +4437,7 @@ stronger foes may shrug it off, susceptible victims may flee,
 drop their weapons, or even enter a state of catatonia.
 
 See also: TERROR
-#100
+#0
 FILL
 
 Usage: fill <item> <object to fill from>
@@ -4562,6 +4670,10 @@ Duration      : instantaneous
 Sphere        : water
 Classes       : Cryomancer     Circle 11 (quest)
 ===============================================
+
+Spirits from the watery depths of Caelia prowl the waves. They are 
+capable of teaching mastery over water to Cryomancers dedicated 
+enough to tread in their wake. 
 
 This spell allows a Cryomancer to summon a vast amount of water that
 rushes through the area, blasting the caster's foes and washing away
@@ -4807,6 +4919,24 @@ Examples:
   > get all all.bag
   > get all.bread all.bag
 
+You can also: 
+     get only the 3rd sword lying on the ground. 
+     get 4 swords lying on the ground.
+     get all swords 
+     get green sword
+     get all green swords
+and my favorite
+     get all coins from  all corpses in the room
+
+Examples:
+  > get 3.sword 
+  > get 4 sword
+  > get all.sword
+  > get green-sword
+  > get all.green-sword
+  > get all.coins all.corpse
+
+
 See also: DROP, PUT
 #0
 GIVE
@@ -4981,10 +5111,14 @@ Fade message  : You feel less protected.
 Classes       : Cleric         Circle 10 (quest)
               : Priest         Circle 8 (quest)
 ============================================================
+*In-game Quest spell*
 
 The group armor spell allows a cleric to effectively cast armor on an
 entire group at once, improving the AC of every member of the group.  The
-caster must be in a group for the spell to succeed.  This is a quest spell.
+caster must be in a group for the spell to succeed.
+
+A sacred forgemaster is looking for students willing to learn!  Holy 
+defenses are now available for whole platoons in the form of Group Armor.
 
 See also: ARMOR, GROUP HEAL, QUEST_SPELL, GROUP
 #0
@@ -5097,9 +5231,6 @@ free game for bothering with roleplay and quests.
 Clans are pretty much like guilds in terms of game mechanics, but instead
 of being restricted by class, alignment, or race, are generally family
 groupings of one specific race (like, the Bonechewer troll clan).
-
-Zzur's got an absolutely huge text document on these things that he'll
-happily email you if you ask. His email is zzur@fierymud.org  :)
 
 See also: CLASSES, RACES
 #0
@@ -5312,7 +5443,11 @@ Classes       : Diabolist      Circle 8 (quest)
 
 A diabolist in touch with the dark forces below can call them to the
 surface in the form of a horrendous hole in the earth, consuming enemies
-in the area with hellish onslaught.  This is a quest spell.
+in the area with hellish onslaught.  This is a in-game quest spell.
+
+Evil forces seek out relics to pay homage to their dark lords. They are  
+willing to give lavish rewards and teach terrible secrets to those who 
+bring them rare sacrifices. 
 
 See also: SPELL_DIABOLIST, QUEST_SPELL, EARTHQUAKE
 #0
@@ -5509,7 +5644,7 @@ upon the most organized of assaults.
 This is the area spell of 'fear', affecting all foes in the room.
 
 See also: FEAR
-#100
+#0
 "ICE ARMOR"
 
 ============================================================
@@ -5593,6 +5728,11 @@ Duration      : instantaneous
 Sphere        : water
 Classes       : Cryomancer     Circle 12 (quest)
 ============================================================
+
+The most powerful of the Cryomancer spells has been lost for centuries. 
+However, some from long-descended Sorcerous bloodlines still remember 
+a thing or two about the past. Perhaps you can help them piece together 
+the puzzle and discover devastating new powers. 
 
 One of the greatest weapons in a Cryomancer's arsenal, this spell summons
 a virtual blizzard of razor sharp shards of ice that tear mercilessly
@@ -5748,7 +5888,7 @@ Allowed Races:		Human, Gnome, Orc, Half-Elf, Halfling
 		degree of experience and locating the sub-class guildmaster.
 
 See also: SPELL_ILLUSIONIST, SKILL_ILLUSIONIST, SORCERER
-#100
+#0
 "ILLUSORY WALL"
 
 ============================================================
@@ -5772,7 +5912,7 @@ vulnerable to dispel magic, as are all magical walls.  However,
 illusory walls are especially vulnerable to discorporation.
 
 See also: WALL OF ICE, WALL OF STONE, DISCORPORATION
-#100
+#0
 IMMOLATE
 
 ============================================================
@@ -5901,21 +6041,26 @@ INNATE
 Usage: innate
        innate <effect>
  
-This command lists the innate skills and effects available for your race.
-Innate skills can be used at any time, and are marked with a * symbol on the
-list.  Innate effects are like special spells.  Some innate effects are
-always present on you and are also marked with a * symbol.  Innate effects
-on the list without a * are limited in duration and can only be used once in
-a while.  You can invoke these by typing "innate <effect>", where effect is
-the name of the innate effect.
+Innate effects are like special skills and spells.  The "innate" command 
+lists the innate skills and effects available to you based on your race.  
+Effects on this list marked with a * symbol are always in effect.  Effects 
+on the list without a * must be activated to take effect.  Most are 
+activated by typing "innate <effect>", where effect is the name of the 
+innate effect.  Otherse, such as breathe, bodyslam, doorbash, and 
+springleap, are activated with their own commands.  Activated abilities 
+are limited in duration and typically have a cooldown before they can be 
+used again.  Using the same innate twice will not increase its effect.
  
-For instance, Half-Elves have innate infravision always present, so they can
-see in the dark all the time.  Dwarves have innate strength, but it is not
-always present, so to invoke it they would simply type "innate strength".
-Much like magic spells, innate effects that are not always present cannot
-be invoked in rooms where magic is suppressed.
+There are a large variety of innates.  For instance, Half-Elves 
+have innate Infravision always present, so they can see in the 
+dark all the time.  Dwarves have access to an innate reserve of 
+Strength, but it is not always present, so to invoke it they would 
+need to type "innate strength".  Dragonborn have special breath 
+weapons determined by their race, activated with "breathe <energy>". 
+Much like magic spells, most innate effects that are not always present 
+cannot be invoked in rooms where magic is suppressed.
  
-See also: RACES, BODYSLAM, INFRAVISION, DOORBASH, STRENGTH, INVISIBLE
+See also: RACES, BREATHE, BODYSLAM, INFRAVISION, DOORBASH 
 #0
 INSANITY
 
@@ -6058,7 +6203,7 @@ To all appearances, there is no way out.  It is very
 difficult to see through this spell.
 
 See also: ILLUMINATION
-#100
+#0
 "IVORY SYMPHONY"
  
 ===============================================
@@ -6093,10 +6238,6 @@ However, junking coins actually just drops them.
   > junk 100 silver
 
 See also: DROP
-#0
-KAAS PLAINS
-
-The Kaas Plains are located somewhere along the Nikozian Trail.
 #0
 KICK
  
@@ -6875,7 +7016,7 @@ their attacks.  But this spell cannot be cast by one who is
 currently embroiled in battle.
 
 See also: FAMILIARITY, GLORY
-#100
+#0
 METEORSWARM
 
 ============================================================
@@ -7064,7 +7205,7 @@ Examples:
 (The illusionist goes east, but appears to stay.)
 
 See also: VENTRILOQUATE
-#100
+#0
 MONK
 
 Monks are Warriors that, like Mystics, have learned to harness their inner
@@ -7450,7 +7591,10 @@ guards now usually assist ANY mob a player attacks within a town.
 Second, locate newbie areas. Try to stay out of areas that are too high of
 a level for you. If you die, you will end up in your home town,
 but your corpse and all your money and gear will drop where you died and
-you will need to go get it.
+you will need to go get it. 
+Help area will show you all areas in the game. Each area has it's own help
+file entry, that will give you more details on the area, and what quests
+might be available in that area.
 
 Stats of the game:
      99 mortal levels                 10 races, 4 class/13 subclass
@@ -7462,7 +7606,7 @@ Help files you'll find interesting:
      RACES     CLASSES    AREAS    COMMANDS
 
 
-See also: TOGGLE, HELP, INFO, NEWS, POLICY, CREDIT
+See also: TOGGLE, HELP, INFO, NEWS, POLICY, AREA_FARMLANDS
 #0
 NICEAREA
 
@@ -7518,7 +7662,7 @@ by this unpleasant spell.
 It does mental damage, so living beings are most vulnerable.
 
 See also: LIFE FORCE, TERROR
-#100
+#0
 NOFOLLOW
 
 Usage: toggle nofollow
@@ -8038,6 +8182,21 @@ Examples:
 
 See also: ORDER, SHOPS
 #0
+PETASSIST
+
+Usage: toggle petassist
+
+Allows you to have your pet (if you have one) automatically assist you 
+when in combat. 
+
+This command is accessed through the toggle command, and can be toggled
+ON or OFF
+
+Example:
+toggle petassist
+
+See Also: TOGGLE
+#0
 PHANTASM
 
 ============================================================
@@ -8066,7 +8225,7 @@ beginners.  They are:
   ant, mouse, sparrow, rabbit, cat, snow troll, gnome, swamp troll
 
 See also: SIMULACRUM
-#100
+#0
 "PHOSPHORIC EMBERS"
 
 ============================================================
@@ -9730,7 +9889,7 @@ This is the area spell of 'discorporate', doing grave damage to magically
 constructed enemies and harming even elementals.
 
 See also: DISCORPORATE
-#100
+#0
 SHADOW
  
 ================================================
@@ -9885,6 +10044,11 @@ with death and transport a player's corpse from anywhere within the realm
 and bring it to the caster's feet.  In order to be successful, the caster
 must have the consent of the player whose corpse is being summoned.  This
 is a quest spell.
+
+To find this in-game quest, here is a hint:
+Not even the greatest masters of Necromancy can teach Shift Corpse. But they 
+probably have a pretty good idea where to start. 
+
 
 See also: DEATH, SUMMON CORPSE, SPELL_NECROMANCER, QUEST_SPELL
 #0
@@ -10047,7 +10211,7 @@ These phantasms lack the ability to harm anyone or to interact
 with material objects.
 
 See also: PHANTASM
-#100
+#0
 SIZE
  
 The size of a player or mob can affect many things.  Smaller races
@@ -10341,7 +10505,7 @@ dodge
 hide
 
 See also: ILLUSIONIST, SPELL_ILLUSIONIST, SKILLS
-#100
+#0
 SKILL_MERCENARY
 
 This is the current list and placement of non-quest Mercenary skills.
@@ -10952,7 +11116,7 @@ is shown.
 This is the area spell of 'nightmare'.
 
 See also: NIGHTMARE
-#100
+#0
 "SOUL TAP"
 
 ============================================================
@@ -11353,12 +11517,13 @@ ventriloquate                  illumination
 chill touch                    &4&bCircle 7:&0
 locate object                  farsee
 magic torch                    hysteria
-phantasm                       insanity
-                               invisibility
+phantasm                       insanity                   
+detect invisibility
 &4&bCircle 3:&0                      
 dispel magic                   &4&bCircle 8:&0
 fear                           illusory wall*
 mesmerize                      
+invisibility
                                &4&bCircle 9:&0
 &4&bCircle 4:&0                      familiarity
 blindness                      
@@ -11374,7 +11539,7 @@ simulacrum                     soul reaver
 sleep                          
 
 See also: ILLUSIONIST, SKILL_ILLUSIONIST, SPELL_CIRCLE
-#100
+#0
 SPELL_NECROMANCER "NECROMANCER SPELLS"
 
 This is the current list and placement of Necromancer spells.  Quest spells
@@ -11673,12 +11838,20 @@ Usage      : springleap <victim>
 Aggressive : yes
 Classes    : Monk           Level 50
 ================================================
+
+With proper training in martial arts, skilled monks learn to 
+channel their muscle power into their legs, and leap from a 
+sitting or resting position into their opponent, potentially 
+knocking the victim over for a short amount of time, an effect 
+similar to a BASH.  Failure may result in the monk springing over 
+the target or being knocked back.
  
-With proper training in martial arts, skilled monks learn to channel
-their muscle power into their legs, and leap from a sitting position
-into their opponent, potentially knocking the victim over for a
-short amount of time, an effect similar to a bash.  Failure may result
-in the monk springing over the target or being knocked back.
+Unlike bash, springleap can be used without a shield.  Springleap 
+can only initiate combat; it can not be used if you are already in 
+combat like bash or backstab.
+ 
+Springleap can only be used against mobs one size category of 
+yourself.  Dragons cannot be knocked down by springleap.
  
 See also: BASH, BODYSLAM, SKILL_MONK
 #0
@@ -12059,10 +12232,17 @@ Duration      : instantaneous
 Sphere        : fire
 Classes       : Pyromancer     Circle 12 (quest)
 ============================================================
+*In-game Quest Spell*
 
 With this spell, a powerful Pyromancer can release an extraordinary amount
 of fire energy from their body at once, burning all those unfortunate to
-be in the vicinity.  Supernova is a quest spell.
+be in the vicinity.
+
+Tired of feeling like Meteorswarm just won't cut it anymore?  Are you 
+filled with the fiery passion of a thousand suns?  Your Sphere of Fire 
+under utilized at the highest levels of Pyromantic power?  Then now, you 
+can have hope.  Ask your guildmaster if Supernova is right for you.
+
 
 See also: SPELL_PYROMANCER, QUEST_SPELL, METEORSWARM
 #0
@@ -12249,15 +12429,23 @@ Aggressive : yes
 Classes    : Assassin       Level 31
 ================================================
  
-Assassins that have gain sufficient experience in their deadly arts may
-put their stealth techniques to use in an attempt to strike at their target.
-The assassin will attempt to sneak up behind their victim and slit their
-throat with weapon.
+Assassins that have gained sufficient experience in their deadly 
+arts may put their stealth techniques to use in an attempt to 
+strike at their target. The assassin will attempt to sneak up 
+behind their victim and slit their throat with their weapon. The 
+weapon must a one-handed slashing weapon.  Success is also 
+influenced by the type of terrain, which may provide more or less 
+stealth for the assassin to launch their surprise attack.
  
-Damage done is based on a percentage of the victims maximum HP and can do
-upwards of 99% although a penalty to exp gained accompanies this leathal
-strike.
+Damage done is based on a percentage of the victims maximum HP and 
+can do upwards of 99% although a penalty to exp gained accompanies 
+this lethal strike.
  
+Assassins may not use throat cut while already engaged in combat, 
+or against a target who is already engaged in combat. They can 
+only throat cut a mob within one size category of themselves. They 
+cannot throat cut dragons under any circumstance.
+
 See also: ASSASSIN, SKILL_ASSASSIN, INSTANT KILL
 #0
 TIME
@@ -12714,7 +12902,7 @@ bodies.  Vaporform is a high-level quest spell, and as such may only be
 attained via a deity quest.
 
 See also: SPELL_CRYOMANCER, QUEST_SPELLS, WATERFORM
-#0
+#100
 VENTRILOQUATE
 
 ============================================================
@@ -12734,7 +12922,7 @@ victim, who will appear to say whatever the caster has chosen.
 It works better on gullible listeners.
 
 See also: MISDIRECTION
-#100
+#0
 VERT
 
 This is version: $Revision: 1.95 $ of the Fiery help files, last updated by $Author: mud $
@@ -13171,6 +13359,10 @@ Cryomancers can invoke a freezing wave of ice that can sheet over an obvious
 exit.  This will prevent the escape of players and creatures alike and can
 be considered rude.  Those who abuse this privilege will have it removed.
 
+Brave icesmiths have learned the secrets to blocking off passages to defend 
+against terrible beasts. Now you too can learn from these master sculptors 
+if you can find them. 
+
 See also: SPELL_CRYOMANCER, WALL OF STONE, WALL OF FOG
 #0
 "WALL OF STONE"
@@ -13263,11 +13455,14 @@ Fade message  : Your form solidifies into flesh once again.
 Classes       : Cryomancer     Circle 10 (quest)
 ============================================================
  
+The Great Wave has washed ashore a massive lake bringing transformative 
+knowledge from the watery deep with it. 
+
 Masters of cold can invoke the power of water to protect themselves.
 Cryomancers can literally turn their fleshy bodies into a liquid which 
 may reduce physical damage if the caster's proficiency is high enough.
  
-See also: ICE ARMOR, VAPORFORM, PROTECTION FROM EVIL, SPELL_CRYOMANCER
+See also: ICE ARMOR, PROTECTION FROM EVIL, SPELL_CRYOMANCER
 #0
 WATERWALK
 
@@ -13710,5 +13905,2146 @@ There is no need to ask how he is, as the response nearly always entails
 "Tired, surly."  The usual. (AFK) means he doesn't like you, go away.
 
 See also: BENEVOLENT, FIXER, MUAHAHAHAHA, EVIL, HOT DEATH, EVASIVE.
+#0
+AREA_ABBEY ABBEY
+Level: 18 to 25
+
+Location:
+The Abbey lies due west of the Village of Mielikki past the Farmlands 
+off the Old Merchant Trail.
+
+Description:
+Monks dedicated to the teachings of St. George live simple lives in 
+this old Abbey.
+The Abbey also boasts a huge library on its southern end.
+A back entrance from the library connects to the Highlands to the west.
+Good characters may opt to join the 3rd Eldorian Guard and their crusade 
+against the 3rd Black Legion here.
+
+Points of Interest:
+- The Abbey is one of the most popular places for mid-level evil 
+  villains to hunt.
+- It is locked in constant battle with the forces of darkness.  
+  The 3rd Black Legion in Split Skull and the combat fields of 
+  Eldoria regularly send raiding parties for trophies, and the 
+  Cathedral of Betrayal will send initiates here to prove their 
+  devotion to the Dark Gods..
+- The most prominent servants of the Gods of the Light received 
+  their initial training here.
+- The only known infirmary in all of Caelia is located in the Abbey.
+- Once a Monk has ascended to the highest echelons of their paths, they 
+  may find their efforts rewarded by their brethren here.
+
+See also: AREA, VILLAGE OF MIELIKKI, FARMLANDS, OLD MERCHANT TRAIL, 
+          HIGHLANDS, SPLIT SKULL, COMBAT IN ELDORIA, CATHEDRAL OF BETRAYAL
+#0
+AREA_ANDUIN "CITY OF ANDUIN" ANDUIN "AREA_CITY OF ANDUIN" 
+Level:  ALL
+
+Location:
+The City of Anduin lies in the center of North Caelia.
+It is connected to Mielikki by way of the Great Road and the Great
+Northern Road.  Anduin connects to Ickle via the Black Woods Trail 
+and the Nikozian Trail.  
+Numerous areas surround the city, including the Brushlands, Anduin 
+Pastures, the Eldorian Foothills, the Black Woods, the Forest of Shadows,
+and the Miner's Cavern.
+Anduin is also home to the largest Theatre in the world, and a grudge 
+match tournament ring where players can fight it out when words fail to 
+serve. (without losing XP)
+Red scrolls of recall can be used for quick access to the city.
+
+Description:
+Anduin is the largest city on Ethilien.
+It comprises four sectors in three levels: the lowest entrance level, the 
+poor sector and the Dwarven sector on the middle level, and the wealthier
+Upper Level.
+All manner of shops, services, and bars exist across the city.
+Founded after the Rift Wars by followers of the evil deities Angus and 
+Blackmourne, Anduin has a well-earned reputation as an amoral den of iniquity.
+Temples to dark forces lay buried in the dark and secrets hide in 
+the city's many shadows.
+
+Points of Interest:
+- Adventurers looking to expand their stealth, subterfuge, and slight of hand 
+  skills beyond their starting repertoire have several opportunities in 
+  Anduin's shadowy streets.
+- Additionally, 11 of the 17 class Guilds have halls somewhere in Anduin 
+  though many are well hidden. Each offers unique rewards for adventurers 
+  as they traverse the world.
+- Diabolists can find the highest priest of their order in the bowels of 
+  the city.
+- The best dwarven steel in the world is available for sale in Anduin.
+
+See also: AREA, GREAT ROAD, BLACK WOODS, BRUSHLANDS, ANDUIN PASTURES, 
+          ELDORIAN FOOTHILLS, FOREST OF SHADOWS, MINERS CAVERN, THEATRE
+#0
+"AREA_ANDUIN PASTURE" "ANDUIN PASTURES" "ANDUIN PASTURE" PASTURES PASTURE
+Level: 1 to 5
+
+Location:
+The pastures lay west of the Great Road, just north of Village of Mielikki
+ and a ways south of the City of Anduin.
+
+Description:
+This productive farm is overseen by the Fruit Wizard.
+He keeps a variety of farm animals and grows many different crops.
+
+Points of Interest:
+- Several unique foods grow here, thanks to the Green Staff of Growing 
+  the Fruit Wizard keeps in his possession.
+
+See also: AREA, CITY OF ANDUIN, GREAT ROAD, VILLAGE OF MIELIKKI
+#0
+"AREA_ARABEL OCEAN" "BLUE FOG SEA" "ARABEL OCEAN" "BLUE FOG SEA"                        
+Level: 20 to 30
+
+Location:
+Between the south east corner of North Caelia and northern shores of 
+South Caelia is the Arabel Ocean.  Its shores can be accessed via the 
+Twisted Forest and the Rock Well in North Caelia. In South Caelia, the 
+Beachhead provides access to its waters.  Within the vast span of the 
+ocean stand Fiery Island, Griffin Isle, Odaishyozen, and the 
+GreenGreen Sea and SeaWitch.
+
+Description:
+The waters of the Arabel Ocean are vast and wide.
+They are filled with fish of all varieties, as well as a deadly great white 
+shark and a giant squid!
+
+Points of Interest:
+- Anyone wishing to sail the Arabel Ocean will need to bring their own boat.
+
+See also: AREA, SOUTH CAELIA, TWISTED FOREST, THE ROCK WELL, FIERY ISLAND, 
+          GRIFFIN ISLE, ODAISHYOZEN, SEAWITCH
+#0
+"AREA_THE BAYOU" BAYOU "THE BAYOU"
+Level: 25 to 35
+
+Location:
+The murky haunted Bayou rests south of the Smuggler's Hideout and 
+east of the Twisted Forest.
+
+Description:
+Aside from spooky animals, the Bayou is home to a long-wrecked pirate ship.
+The ship's former crew roams the fetid waters in a state of shambling 
+undeath, though a few precious goods survived the salty marsh waters.
+
+Points of Interest:
+- One of the more sentient crew members looks for a lost relic.  He would 
+  be very appreciative to any who can help him find it.
+
+See also: AREA, SMUGGLERS HIDEOUT, TWISTED FOREST
+#0
+"AREA_THE BARROW" BARROW "THE BARROW" AREA_BARROW
+Level: 70 to 90
+
+Location:
+The ancient Barrow is dug out of the northeast corner of the Iron Hills.
+
+Description:
+The Barrow is a nest of nefarious beings from many points in 
+Ethilien's history.
+The only known place with history predating the Rift Wars, the 
+construction of the Barrow dates back over 2000 years.
+It serves as the resting place of several kings of old, many 
+of whose names are only whispers in history.
+It hosts a coven of insidious witches seeking to learn from 
+a master beyond life.
+It is also the lair of two abominable dragons.
+But perhaps the Barrow is perhaps most well-known for its 
+death pits of monstrous rats.
+
+Points of Interest:
+- Powerful holy swords have been laid to rest among the dead here.
+- A legendary potion is brewed by the coven of Barrow witches.
+- The ring of a king is said to transform a person's very form to 
+  something more durable yet chilling.
+
+See also: AREA, ICKLE, IRON HILLS
+#0
+AREA_BEACHHEAD BEACHHEAD
+Level: 25 to 35
+
+Location:
+The Beachhead is where most explorers make landfall on South Caelia's 
+northern shores from the Arabel Ocean for the first time.
+The Dancing Dolphin Inn stands in the eastern part the Beachhead, the 
+Wailing Mountains rising up to the south.
+
+Description:
+The South Caelia Beachhead boasts warm sandy dunes and a prominent 
+lighthouse guides sailors safely to its shores.
+Some dangerous ocean life inhabits the waters just off shore, but the 
+land is a common place for healers and sailors to spend their time.
+
+Points of Interest:
+- Marigolds grow wild in this place, which healers use for poultices.
+- The warm sands are ideal places for dragons to nest.
+
+See also: AREA, SOUTH CAELIA, ARABEL OCEAN
+#0
+"AREA_BLACK ROCK TRAIL" "BLACK ROCK TRAIL"
+Level: 6 to 12
+
+Location:
+The Black Rock Trail runs north and south between the Old Merchant Road 
+west of the Village of Mielikki and the City of Anduin.
+It connects to the Syric Mountain Trail, the Temple of Chaos, the Tower 
+in the Wastes, the Graveyard, the Cathedral of Betrayal, and a mysterious 
+portal to another part of the world.
+
+Description:
+Traversing the Black Rock Trail is a strenuous journey through a rough 
+and desolate landscape.
+Vicious bobcats hunt the trail, looking for small things to gobble up.
+
+Points of Interest:
+- A single bubbling spring provides fresh, if very hot, water near the 
+  intersection with the Old Merchant Road.
+
+See also: AREA, OLD MERCHANT ROAD, VILLAGE OF MIELIKKI, CITY OF ANDUIN, 
+          SYRIC MOUNTAIN TRAIL, TEMPLE OF CHAOS, TOWER IN THE WASTES, 
+          GRAVEYARD, CATHEDRAL OF BETRAYAL
+#0
+"AREA_BLACK ICE DESERT" "BLACK ICE" "BLACK ICE"
+Level: 18 to 25
+
+Location:
+The Black Ice Desert may or may not be located on Ethilien at all!
+It is only accessible through a mysterious portal in the western part 
+of North Caelia. The desolation may or may not be related to the fall 
+and desecration of the Laveryn Labyrinth on the south end of the desert.
+
+Description:
+The Black Ice Desert is a frozen wasteland of violent windstorms and 
+frozen elementals. The blasted, evaporated lake in the western part of 
+the desert holds the remains of a lost city.
+
+Points of Interest:
+- Sorcerers sometimes end up here when their travel spells go awry.
+
+See also: AREA, LAVERYN LABRYINTH, NYMRILL
+#0
+"AREA_BLACK LAKE" "BLACK LAKE"
+Level: 6 to 12
+
+Location:
+Black Lake is a medium-sized body of water in the Kaas Plains.
+Beyond its western shores stand the ruins of the elven city Templace.
+
+Description:
+The lake was turned black as pitch by the corrupting touch of Sagece of Raymif.
+The energies of the demonic realm Garl'lixxil seep up through the lake, 
+hungering to devour the upper realms. Regardless of the water's condition, 
+it is inhabited by waterbirds and alligators, and fishermen come here.
+They seem healthy enough, as does the wildlife in the nearby Kaas Plains.
+
+Points of Interest:
+- Some come to learn unholy secrets which burble up from the pitch black 
+  of the lake's untold depths from time to time.
+
+See also: AREA, KAAS PLAINS, TEMPLACE
+#0
+"AREA_BLACK WOODS" "BLACK WOODS" 
+Level: 6 to 12
+
+Location:
+The Black Woods is a stretch of wilderness connecting the Great Northern 
+Road, the Nikozian Trail, and the Northern Swamp Road.
+It spans between the north-east edge of the Eldorian Foothills, the 
+northern border of the Great Northern Swamp, and the southern reaches 
+of the Kaas Plains. The eastern edge of the Black Woods butts 
+up against Three-Falls Canyon.
+
+Description:
+The southern end of the Nikozian Trail begins in the dense Black Woods, 
+marking the start of the longest road in all of North Caelia. The woods 
+are filled with all manner of small animals, who themselves are prey 
+for more dangerous prowling wolves.
+
+Points of Interest:
+- A logging camp rests in the south-west section of the Black Woods.
+- Beyond the north-west corner of the Black Woods are the haunted remains 
+  of Caelia's only known Minithawkin mine.
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE, NORTHERN SWAMPS, BLACK WOODS, 
+          BLACK LAKE, DARK MOUNTAINS, COLD FIELDS, IRON HILLS, 
+          ELDORIAN FOOTHILLS, LOGGING CAMP, CANYON, KAAS PLAINS, 
+          MINITHAWKIN MINES
+#0
+"AREA_BLUE FOG" BLUE-FOG "BLUE FOG"
+Level: 35+
+
+The extremely dangerous Blue-Fog region comprises nearly everything 
+beyond the south gate of the Village of Mielikki.
+There are four main divisions: Blue-Fog Trail, Blue-Fog River and 
+Lake, and the Mountain of Mist.
+
+See also: AREA, BLUE FOG TRAIL, BLUE FOG RIVER, MOUNTAIN OF MIST
+#0
+"AREA_BLUE FOG: TRAIL" "BLUE FOG TRAIL" "BLUE FOG TRAIL" "BLUE-FOG TRAIL"
+Level: 35 to 45
+
+Location:
+The Blue-Fog Trail extends immediately past the south gate of Village 
+of Mielikki, leading to the Mountain of Mist.
+
+Description:
+Immediately beyond the safety of Mielikki's south gate stretches 
+the eerie Blue-Fog Trail.
+At one time a major trading route between Mielikki and the towns beyond, 
+the trail is now socked in by the eponymous Blue-Fog, opening the way to 
+terrors from beyond the mists.
+A few brave merchants still traverse the trail, but adventurers regularly 
+meet their ends in the clutches of mist and water elementals and 
+monstrous other-worldly beings.
+Fortunately, a watchman at the southern gate prevents anyone under level 
+30 from leaving the city via the Blue-Fog Trail.
+
+Points of Interest:
+- Nothing particular stands out about the Blue-Fog Trail
+
+See also: AREA, VILLAGE OF MIELIKKI, BLUE-FOG RIVER, MOUNTAIN OF MIST
+#0
+"AREA_BLUE FOG: RIVER" "BLUE FOG RIVER" "BLUE-FOG RIVER"
+Level: 40 to 60
+
+Location:
+The Blue-Fog River runs under the Blue-Fog Trail and to a huge lake 
+south of the Village of Mielikki.
+South of the Blue-Fog River is a misty passage to the Mountain of Mist beyond.
+
+Description:
+Much like the Blue-Fog Trail, the river and lake are crawling with mist and 
+water elementals, but also besieged by pirates and alligators!
+It's quite easy to get ganged up on in these treacherous waters.
+
+Points of Interest:
+- Potential voyagers should bring their own boats.
+
+See also: AREA, VILLAGE OF MIELIKKI, BLUE-FOG TRAIL, MOUNTAIN OF MIST
+#0
+"AREA_BLUEBONNET PASS" "BLUEBONNET PASS" BLUEBONNET
+Level: 1 to 15
+
+Location:
+Bluebonnet Pass is situated at the southern end of South Caelia, 
+separating the forest and mountains from the Sacred Haven and the 
+Encampment of Ogakh beyond.
+
+Description:
+Bluebonnet Pass is a series of mountainous peaks and valleys, patrolled 
+by both Paladin and orcish forces alike. These patrols are tougher than 
+they may seem, so explorers just beginning their journeys should exercise 
+extreme caution in this area.
+
+Points of Interest:
+- At the eastern edge of Bluebonnet Pass near the western gate of the 
+  Encampment of Ogakh is a teacher of powerful planar magic.
+- use caution, the path has been known tobecome unstable
+
+See also: AREA, SOUTH CAELIA, SACRED HAVEN, ENCAMPMENT OF OGAKH
+#0
+AREA_BRUSHLANDS "THE BRUSHLANDS" BRUSHLANDS "AREA_THE BRUSHLANDS"                      
+Level: 1 to 5
+
+Location:
+Immediately west from the north gate of the City of Anduin, 
+before the Forest of Shadows.
+
+Description:
+This golden sea stretches out as far as the eye can see.
+Populated with a variety of birds and rodents, the Brushlands provide 
+an excellent training ground for new adventurers who find their way to Anduin.
+
+Points of Interest:
+- Some cute mouse-fur clothing can be found here as well 
+  as a variety of grains.
+
+See also: AREA, CITY OF ANDUIN, FOREST OF SHADOWS.
+#0
+"AREA_CANYON" "THREE FALLS RIVER" CANYON            
+Level: 10 to 15
+
+Location:
+The Canyon of the Three-Falls River is located east of the Black Woods 
+and south of the Iron Hills.
+
+Description:
+The Three-Falls River cuts a canyon out of the hills at the foot 
+of Mt. Gladstone.
+The Eagle, Bear, and Cougar tribe make this canyon their home.
+
+Points of Interest:
+- The canyon shaman is able to send adventurers on vision quests.
+- This shaman is also able to animate plant life on the shores of the 
+  rushing water, protected by tribal warriors for his safety.
+- Home of the legendary, reset only bear claw!
+
+See also: AREA, BLACK WOODS, NIKOZIAN TRAIL, IRON HILLS
+#0
+"AREA_CATHEDRAL OF BETRAYAL" CATHEDRAL "CATHEDRAL OF BETRAYAL"
+Level: 40 to 75
+
+Location:
+This sinister monument to death and darkness stands west off 
+the Black Rock Trail near the City of Anduin.
+
+Description:
+The Cathedral of Betrayal is the central hub of Necromancer, 
+Diabolist, and Anti-Paladin activity in Caelia.
+It consists of two primary areas: 
+the outdoor grounds and the indoor sanctum.
+The outer grounds are safer for lower level adventurers; 
+the inner areas are guarded by blind priestesses who will bring 
+swift and horrific death to any but the most powerful of heroes.
+The Cathedral is locked in a constant war with the 
+Abbey of St. George, far to the south.
+
+Points of Interest:
+- Those with hearts black enough can find appropriate mentors here.
+- The Diabolists of the Cathedral regularly bring spoils from their 
+  raids on the Abbey back here for safe keeping.
+- An ancient undying necromancer who dwells within these walls looks 
+  to teach others how to restore the mortality he has lost.
+
+See also: AREA, BLACK ROCK TRAIL, CITY OF ANDUIN, ABBEY
+#0
+"AREA_CITADEL OF TESTING" "CITADEL OF TESTING" CITADEL AREA_CITADEL
+Level: 4 to 9
+
+Location:
+The tall spire of the Citadel of Testing stands just east and north 
+of Village of Mielikki, between the Light Forest and the Enchanted Hollow.
+
+Description:
+The Citadel of Testing is a proving ground for new Sorcerers to test 
+their ingenuity and arcane prowess.  The Citadel is occupied by powerful 
+magicians and sorcerers, all in service to the Grand Master.
+Shifting passages and changing walls make navigating the Citadel tricky, 
+but the mystic rewards inside can be well worth the effort.
+
+Points of Interest:
+- The Citadel provides its gate guards with powerful magic swords that 
+  any starting Warrior would be lucky to have.
+- Beastly gargoyles loom near the top of the citadel, hoarding a powerful 
+  stolen relic of nature.
+- The Grand Master is particularly skilled in illusions and mirages.
+
+See also: AREA, VILLAGE OF MIELIKKI, LIGHT FOREST, ENCHANTED HOLLOW
+#0
+"AREA_COLD FIELDS" "COLD FIELDS"
+Level: 6 to 12
+
+Location:
+The Cold Fields spread south of the Arctic Village of Ickle to the 
+feet of the Dark Mountains.
+
+Description:
+Travel along the northernmost reaches of the Nikozian Trail can be quite 
+arduous, though necessary if trying to leave the Arctic Village of Ickle 
+for either the City of Anduin or the Village of Mielikki on foot.
+The vast frozen fields are home to a variety of tundra animals, but food 
+and water are scarce. Travelers would do well to secure provisions 
+before crossing this region.
+
+Points of Interest:
+- Watch out for grizzly bears!
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE, CITY OF ANDUIN, VILLAGE OF MIELIKKI, 
+          NORTHERN SWAMPS, BLACK WOODS, BLACK LAKE, DARK MOUNTAINS, 
+          COLD FIELDS
+#0
+"AREA_COMBAT IN ELDORIA" ELDORIA "COMBAT IN ELDORIA"
+Level: 12 to 24
+
+Location:
+This battlefield stretches out along the southern edge 
+of the Eldorian Foothills.
+
+Description:
+The 3rd Eldorian Guard wages an endless war against the undead 
+forces of the 3rd Black Legion.
+Good characters may choose to align themselves with the Eldorian 
+Guard, while evil characters may choose to join the Black Legion, 
+and then attack the opposing forces on the battlefield.
+
+Points of Interest:
+- The faction Quartermasters offer increasingly powerful rewards 
+  as characters prove their capabilities on the battlefield and 
+  return with trophies of their raids.
+
+See also: AREA, ELDORIAN FOOTHILLS
+#0
+"AREA_THE DAIRY FARM" "THE DAIRY FARM" "DAIRY FARM" DAIRY AREA_DAIRY           
+Level: 5 to 10
+
+Location:
+The Dairy Farm branches north off the Farmlands west of 
+the Village of Mielikki.
+
+Description:
+This idyllic farm is home to milk cows, sheep dogs, and buxom milkmaids.
+It's a lovely place to have a picnic, or for future evil-doers 
+to prowl for victims.
+
+Points of Interest:
+- Rogues looking to prove their mastery of sleight of hand skills would 
+  do well to remember this place.
+
+See also: AREA, VILLAGE OF MIELIKKI, FARMLANDS
+#0
+"AREA_DARGENTANS LAIR" DARGENTAN "DARGENTANS LAIR" AREA_DARGENTAN                     
+Level: 45 to 80
+
+Location:
+Dargentan's crystal fortress floats about the Wailing Mountains in 
+South Caelia.
+
+Description:
+The ancient silver dragon Dargentan has made a fantastical castle out of 
+crystal and through magical means borne it aloft in the skies over South Caelia.
+A host of powerful divine entities and air elementals bask in the radiant 
+skyborn energies of the fortress.
+In addition to the occupants, the lair's open floor plan can be a health 
+hazard to heedless adventurers.
+
+Points of Interest:
+- Dargentan has warded his lair with a puzzle so elaborate most will never 
+  solve it.  Good luck!
+
+See also: AREA, SOUTH CAELIA
+#0
+"AREA_DANCING DOLPHIN IN" "DANCING DOLPHIN INN" "DANCING DOLPHIN"
+Level: ALL
+
+Location:
+This small building sits at the Beachhead on the northern shore of 
+South Caelia.
+
+Description:
+The Dancing Dolphin Inn provides a wonderful resting spot for those 
+on trans-oceanic adventures. It is a simple building with no guards 
+or watchmen.
+
+Points of Interest:
+- A wishing well in the courtyard of the inn is an ideal spot for 
+  adventurers to stop for a drink before or after crossing the Arabel 
+  Ocean or the mountain pass leading into and out of South Caelia.
+- Meg sells tasty lunches and other provisions for travel.
+- Travelers can rent a room to rest in at the fully functional reception 
+  area if they need to take a longer break.
+
+See also: AREA, BEACHHEAD, ARABEL OCEAN, SOUTH CAELIA
+#0
+"AREA_DARK MOUNTAINS" "DARK MOUNTAINS"
+Level: 6 to 12
+
+Location:
+North of the Black Forest and south of the Cold Fields along the 
+Nikozian Trail. The route through the Dark Mountains also marks the 
+northern access point for the Iron Hills.
+
+Description:
+Very little of the Dark Mountains are accessible to travelers.
+The Nikozian Trail running between Mielikki, Anduin, Ickle, and the 
+Iron Hills, is the only section of the Dark Mountains most will ever see.
+They are sparsely populated by a few high altitude animals, like 
+falcons, llamas, and aggressive chamoises.
+
+Points of Interest:
+- A solitary duergar with a powerful mythril shield makes his secluded 
+  home in the Dark Mountains.
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE, CITY OF ANDUIN, VILLAGE OF MIELIKKI, 
+          KAAS PLAINS, COLD FIELDS, IRON HILLS
+#0
+"AREA_DEMISE KEEP" "DEMISE KEEP"
+Level: 60 to 80
+
+Location:
+The imposing visage of Demise Keep rises up over the south end of the 
+Syric Mountain Trail off the Black Rock Trail far to the west of the 
+Village of Mielikki.
+
+Description:
+Surrounded by evil trees, the deathly and violent nature of Demise Keep 
+is immediately obvious to all nearby.
+Wretched warriors guard the keep, where enormous metal skeletons, more 
+machine than bone, roam the lower levels.
+Hideous soul-drinking monsters loom in droves around the sinister halls, 
+in service to a terrifying master.
+Tormented by these dark forces, a young imprisoned mage and his apprentices 
+hold on to the last vestiges of their sanity.
+
+Points of Interest:
+- A silly game turned deadly has the potential for great rewards, should a 
+  servant of divinity be amongst your number.
+
+See also: AREA, VILLAGE OF MIELIKKI, SYRIC MOUNTAIN TRAIL, BLACK ROCK TRAIL
+#0
+"AREA_SEVERANS DOOM" SEVERAN DOOM AREA_DOOM AREA_SEVERAN              
+Level: 90 to 99
+
+Location:
+An ancient pyramid deep in the Black Woods leads to a mythic history 
+spanning the plans themselves.
+
+Description:
+Here begins the sad saga of the hero Severan, his love Irinia, and 
+Lokari, God of the Moonless Night. Long ago, Lokari looked down on 
+Ethilien from his Keep in the Outer Planes.  His gaze settled upon the 
+beautiful Irinia, a loving, compassionate woman who inspired the best 
+in people. Awe-struck by her radiant soul, the nefarious Lokari vowed 
+to make Irinia his.
+Only problem was, she was already betrothed to the great hero Severan.
+Undeterred, Lokari violated the cosmic order, kidnapped Irinia and took
+her to his Keep beyond the material plane preparing her for a forced wedding.
+Severan rallied his mightiest allies to his call, swearing to rescue Irinia 
+and punish Lokari. Lokari's sister Azkrael, Goddess of the Hunt, and her 
+divine allies Rhalean, Goddess of Justice, and Timun, God of the Sun, 
+empowered Severan and his crusade, guiding them to Lokari's planar Keep 
+to enact divine retribution on the Moonless God.
+
+The plan failed.
+
+Lokari slaughtered every last one of them, from his own sister to Severan, 
+imprisoning their souls and turning them into his immortal playthings.
+Now, the Oracles of the three gods see the time for true justice has come.
+They await an army of heroes like Severan and his comrades to rise up and 
+dethrone the God of the Moonless Night. These heroes will be tested on the 
+material plane, before battling through the Elemental Planes of Earth, 
+Air, Fire, and Water, and ultimately laying siege to Lokari's Keep itself.
+
+Points of Interest:
+- Lokari presents a threat greater than Ethilien can contain.  5 - 8 heroes 
+  are needed to stand a chance in this off-world crusade against the 
+  God of the Moonless night.
+- Where there is cosmic risk, there is cosmic reward.
+
+See also: AREA, BLACK WOODS, TECHNITZITLAN
+#0
+"AREA_DROW CITY OF DHEDUU" "CITY OF DHEDUU" DHEDUU "DROW CITY OF DHEDUU" "
+Level: 45 to 60
+
+Location:
+The City of Dheduu exists deep in the bowels of Ethilien, but can be accessed 
+through a portal in the Misty Caverns east of the Village of Mielikki.
+
+Description:
+Dheduu is a metropolis of dark elves who relish trafficking slaves 
+from the upper world.
+It had some access to the evil races, prolific there but unseen elsewhere 
+in Caelia. It probably exists somewhere deep beneath the evil continent.
+The main connection with the outside world and other underground areas 
+was a cavern tunnel on the north end of the city; however, a recent cave-in 
+blocked this off and the drow have been hard-pressed to stabilize their 
+lifestyle since then.
+A nearby cave filled with edible fungus and domesticated, cow-like creatures 
+with six legs leaves them with enough food...barely.
+Desperate enough to blast their way through solid rock to find a way out, 
+the drow of House Z'kenian took the end of the drider tunnel and made a 
+portal to as close as they could get to Mielikki, which they knew about 
+from torturing the elven prisoner in their care.
+Though a large city such as Templace would, they felt, be too dangerous 
+(not knowing about its fall), a small forest village seemed like the 
+perfect place to plunder for slaves and loot...
+The city is divided between several prominent Houses, each of whom rules 
+their own specific domain of influence amongst the Underdark's citizens.
+At the head of the city is famed House Kar'Shezden, primary 
+priestesses to the demon spider-goddess Lolth.
+
+Points of Interest:
+- Long have the warriors of Dheduu taken captives from the surface world.  
+  Once such captive has been there for quite some time and may provide a 
+  unique opportunity for would-be liberators.
+- High Priestess Vilekka Kar'Shezden is willing to hear supplications from 
+  those wishing to curry favor with her goddess Lolth.  However, only the 
+  most experienced will be able to satisfy her greatest demands.
+
+See also: AREA, VILLAGE OF MIELIKKI, MISTY CAVERNS
+#0
+"AREA_ENCHANTED VILLAGE OF NORDUS" NORDUS "ENCHANTED VILLAGE OF NORDUS" AREA_NORDUS
+Level: 45 to 60
+
+Location:
+The Enchanted Village of Nordus is lost somewhere in the Northern Swamp.
+
+Description:
+Nordus was a town of mages, prosperous despite its remote location, until
+a mysterious madness began to infect the town.
+A newcomer arrived and persuaded the Nordus town council to turn their
+problems over to him, as he proposed a cure for the madness.
+One, however, remained suspicious of the newcomer as the madness began
+to spread and, together with the pawnbroker, devised a means to escape
+from Nordus before it was too late.
+The pawnbroker's final act of rebellion as the town was falling under
+the invader's control was to seal the path to his new lab by setting a
+coded phrase that periodically changed over the entrance to the tunnels.
+Now the town is completely subsumed by madness and mutation.
+
+Points of Interest:
+- The power of words and codes is not to be underestimated.
+
+See also: AREA, NORTHERN SWAMP
+#0
+"AREA_ENCHANTED HOLLOW" "ENCHANTED HOLLOW"
+Level: 1 to 5
+
+Location:
+East of Village of Mielikki and north beyond the Citadel of Testing is
+this enchanted forest.  North of the Enchanted Hollow is a massive mangrove
+swamp and the orcish Split Skull encampment.
+
+Description:
+Populated by pixies and gnomes playing little games, this magical hollow
+offers some challenging introductory puzzles that can't be solved by violence.
+The hollow also provides excellent hunting grounds for evil characters.
+
+Points of Interest:
+- The fey here keep many secrets.  Watch them closely for hints on what to do!
+- The paths between the mists and fog can be very difficult to navigate
+  without talking to a few of the denizens of this place.
+
+See also: AREA, VILLAGE OF MIELIKKI, CITADEL OF TESTING, SPLIT SKULL
+#0
+AREA_ETHILIEN AREA_CAELIA ETHILIEN CAELIA
+
+Ethilien is the name of the world of Fiery.  Ethilien is divided into two
+continents: Caelia and Westernel.  The majority of the elves fled Caelia to
+Westernel millenia ago after the fall of the great city Templace, a place as
+of yet inaccessible to other mortals.  Caelia, the realm of humans and
+other demihuman races, is the focus of game play.
+Caelia includes the larger North Caelia landmass, the smaller South Caelia
+island, and the Arabel Ocean which divides them.
+
+Players begin play in Village of Mielikki, situated on the south-east
+corner of North Caelia.
+
+See also: MIELIKKI, SOUTH CAELIA, ARABEL OCEAN, TEMPLACE, RACE
+#0
+AREA_FARMLANDS FARMLANDS
+Level: 1 to 5
+
+Location:
+Directly west of Village of Mielikki's west gate.
+Farmlands connect north to the Dairy Farm, Hives, the Kingdom of the Meer
+Cats, and Temple of the Kaaz.
+To the south lay the Rocky Outback and Morgan Hill.
+
+Description:
+These farmlands have been overrun by giant bugs!
+Fiery's original newbie training ground, Mielikki's Farmlands have been the
+starting point for nearly every adventurer in the game's history.
+
+Points of Interest:
+- There is a well in the middle of the Farmlands.
+- Be careful of the majestic praying mantis when first starting out, It's tough!
+- There is a chance you could see dragons running around here, if
+  you didn't call them, you should probably run!
+
+See also: AREA, VILLAGE OF MIELIKKI, TEMPLE OF THE KAAZ, KINGDOM OF THE MEER
+          CATS, HIVES, DAIRY FARM, ROCKY OUTBACK, MORGAN HILL
+#0
+"AREA_FIERY ISLAND" "FIERY ISLAND"                         
+Level: 45 to 60
+
+Location:
+Fiery Island is located in the eastern waters of the Arabel Ocean, north 
+of the GreenGreen Sea and the Sea's Lullaby.
+
+Description:
+Fiery Island is the name of a massive volcanic island ruled by a 
+tyrannical demigoddess.
+The island is home to three native tribes, the human Jungle and 
+Bone Tribes, and the dwarf-cousin Mountain Tribe, all of which 
+she controls through terror and bloodshed.
+The people are in desperate need of heroes to overthrow the tyrant 
+and help restore the natural order of the island.
+
+Points of Interest:
+- Any over level 55 who challenges the demigoddess will find themselves 
+  in the midst of legend brought to life in a tale of matricide, 
+  deadly love, and burning loss.
+- A powerful pyromancer likes to set up on the volcano's side and pelt 
+  seagulls with flaming rocks for target practice.  He's crazy, 
+  but he knows a lot.
+
+See also: AREA, ARABEL OCEAN, GREENGREEN SEA, SEAS LULLABY
+#0
+"AREA_FOREST OF SHADOWS" "FOREST SHADOWS" FOREST                    
+Level: 15 to 25
+
+Location:
+The ominous forest stands just north and west of the City of Anduin, 
+near the Brushlands.
+
+Description:
+Nymphs, spiders, and more make their home in the looming shadows.
+
+Points of Interest:
+- Voices whisper of two entities, locked in eternal combat, warping the 
+  spirits here.  Can you solve the mystery and bring peace to the forest?
+
+See also: AREA, CITY OF ANDUIN, BRUSHLANDS
+#0
+"AREA_Fortress of Mystwatch" MYSTWATCH "FORTRESS OF MYSTWATCH" AREA_MYSTWATCH
+Level: 40 to 55
+
+Location:
+The Fortress of Mystwatch stands just a bit north of the Village of 
+Mielikki off the Old Road by way of the Great Road.
+It stands as one of the only access points between Mielikki and the 
+Northern Swamp. A side exit into the mangrove swamp around Split Skull 
+can provide a quick escape from Mystwatch as well.
+
+Description:
+Mystwatch is an undead-infested fortress run by a powerful sorcerer-general.
+Many of the undead forces are incorporeal and cannot be affected 
+without divine blessings. Demon lords are said to exert control over 
+Mystwatch as well, but they are well hidden.
+
+Points of Interest:
+- The Templar Magistrate from the Village of Mielikki is in charge of 
+  recruiting soldiers to expel the evil from the Fortress.
+- Even the darkest night cannot protect the living from the 
+  life-hungry eyes of the undead.
+- The most powerful Anti-Paladins may find their greatest experiences 
+  rewarded by the dark powers in Mystwatch.
+
+See also: AREA, VILLAGE OF MIELIKKI, GREAT ROAD, NORTHERN SWAMP, SPLIT SKULL
+#0
+"AREA_FRAKATI RESERVATION" FRAKATI "FRAKATI RESERVATION" 
+Level: 20 to 30
+
+Location:
+The secret reserve of the Frakati people lies north of the Farmlands 
+beyond the Hive west of the Village of Mielikki.
+
+Description:
+The peaceful Frakati people make their home on a protected reserve.
+Led by a great chief, the Frakati live a simple life of hunting and 
+gathering, and defending themselves from the outside world. They also 
+hold special reverence for the chiefs of the past, who are laid to 
+rest in holy places.
+
+Points of Interest:
+- Nothing particular stands out about the Frakati Reservation.
+
+See also: AREA, FARMLANDS, HIVE, VILLAGE OF MIELIKKI
+#0
+"AREA_FROST VALLEY" "FROST VALLEY"
+Level: 70 to 95
+
+Location:
+Frost Valley is hidden past Mount Frostbite out east of the
+Arctic Village of Ickle.
+
+Description:
+Frost Valley consists of two main areas: the eastern Frost Lake, 
+and the western plateau.
+Both are open hunting grounds for enormous voracious winter beasts, 
+but the plateau is also home to violent frost giants and barbaric 
+verbeegs who will not hesitate to murder interlopers.
+Two primary structures stand out against the bleak wintry landscape:
+a trapper's lodge in the north-east corner, and a fortified keep in 
+the south-west corner above the plateau.
+At the far north end of the plateau stands a crag split open by an 
+ancient catastrophe known as the "Time Cataclysm."
+Frost elves can be found here in large numbers, one of the only places 
+in all of Caelia this is still true.
+
+Points of Interest:
+- The elves often carry extremely rare canoes that weigh almost nothing 
+  a valuable commodity for any explorer.
+- An unfortunate warmage has been waylaid in the valley in his search 
+  for greater protective magics.  Sorcerer-types may be able to glean 
+  some clues from his work.
+- The remnants of the Time Cataclysm hold a fanciful key to a time long 
+  forgotten, if only it can shake up its home.
+
+See also: AREA, MOUNT FROSTBITE, ARCTIC VILLAGE OF ICKLE
+#0
+GRAVEYARD AREA_GRAVEYARD
+Level: 45 to 70
+
+Location:
+This massive necropolis is located south and west of the City of 
+Anduin off the Black Rock Trail.
+
+Description:
+The Graveyard is a playground for a powerful necromancer.
+Those dedicated to fighting the forces of evil unlife would do well 
+to purge this place.
+It is divided into two main sections: the above ground cemetery and the 
+significantly more dangerous underground crypts.
+Powerful undead, the likes of which are found nowhere else in Caelia, 
+roam free in this baleful  place.
+
+Points of Interest:
+- There is more than one well-hidden keeper of the Graveyard.
+
+See also: AREA, CITY OF ANDUIN, BLACK ROCK TRAIL
+#0
+"AREA_GREAT GOTHRA DESERT" "GOTHRA DESERT"_"GOTHRA DESERT" 
+Level: 14 to 20
+
+Location:
+West from Village of Mielikki past the Old Merchant Trail stretches the 
+vast span of the Gothra Desert. Those who are able to navigate beyond the 
+endless sands of the desert can make their way to the Gothra Plains.
+Anyone seeking real danger and adventure can explore the Great 
+Gothra Pyramid rising from the sands. South of the desert rises a 
+mesa and an overland route to the Highlands.
+
+Description:
+The desert from which the region takes its namesake, the blazing hot sands 
+of the Great Gothra Desert stretch on forever.
+Roaming bandits make their homes among the desert animals and 
+blasting dust devils.
+
+Points of Interest:
+- Bandit chiefs have some powerful weapons.
+- Warriors looking to follow a balanced path of enlightenment should comb 
+  the desert.
+
+See also: AREA, OLD MERCHANT TRAIL, GREAT GOTHRA PLAINS, 
+          GREAT GOTHRA PYRAMID, HIGHLANDS
+#0
+"AREA_GREAT NORTHERN ROAD" "ELDORIAN FOOTHILLS" "GREAT NORTHERN ROAD" ELDORIAN
+Level: 6 to 12
+
+Location:
+The Eldorian Foothills stretch from the main gates of the City of Anduin 
+to the Great Road, divided between the Eastern Foothills and the W
+estern Foothills. At the far south end of the Eastern Eldorian Foothills 
+is a battlefield where the forces of good and evil are locked in eternal 
+combat. At the north end is the Black Woods Trail which leads to the 
+Nikozian Trail, and a scenic overlook leading to a massive pyramid in 
+an ancient forest.
+The Western Eldorian Foothills are home to a dwarven Miner's Cavern and 
+surround the City of Anduin, the Brushlands, and the Forest of Shadows.
+
+Description:
+The major feature of the Foothills is the Great Northern Road, connecting 
+the Great Road from the Village of Mielikki to the City of Anduin.
+Deer, horses, and squirrels frolic and run free across the foothills.
+
+Points of Interest:
+- Nothing particular stands out about the Eldorian Foothills.
+
+See also: AREA, CITY OF ANDUIN, GREAT ROAD, COMBAT IN ELDORIA, NIKOZIAN TRAIL, 
+          MINERS CAVERN, BRUSHLANDS, FOREST OF SHADOWS
+#0
+"AREA_GREAT GOTHRA PYRAMID" PYRAMID "GREAT GOTHRA PYRAMID" AREA_PYRAMID
+Level: 45 to 60
+
+Location:
+This ancient pyramid rises up out of the northern sands of the Great 
+Gothra Desert far to the west of the Village of Mielikki.
+
+Description:
+This maze-like pyramid is the tomb of ancient king Imanhotep and his 
+queen Neris.
+Designed never to be disturbed after death, the pyramid is filled with 
+secret doors, hidden chambers, dead ends, and shifting hallways.
+The treasure chambers are filled with elaborate decoys and the entire 
+pyramid is guarded by undying warriors to boot, making this quite a 
+challenging adventure.
+
+Points of Interest:
+- The golden mask of Imanhotep is a wonder unlike any other.
+- Some of the hidden relics in the pyramid can show you a whole new world.
+
+See also: AREA, VILLAGE OF MIELIKKI, GREAT GOTHRA DESERT
+#0
+"AREA_THE GOTHRA PLAINS" "GOTHRA PLAINS" "THE GOTHRA PLAINS"        
+Level: 18 to 25
+
+Location:
+The Gothra Plains lay far to the west of the Gothra Desert.
+
+Description:
+Elephants, zebras, gazelles, and more graze the grassy plains.
+Of course, where there are grazing animals, predators are sure to follow.
+
+Points of Interest:
+- Trophy hunting in the Gothra Plains can be very rewarding!
+
+See also: AREA, GOTHRA DESERT
+#0
+"AREA_GREAT ROAD" "GREAT ROAD"        
+Level: 5 to 10
+
+Location:
+The Great Road and surrounding swamps stretch out past the Village of 
+Mielikki's northern gates. Paths through the swamp lead to the Great 
+Northern Road through the Eldorian Foothills, the Kingdom of the Meer 
+Cats, Anduin Pastures, the Old Road and Fortress of Mystwatch, 
+the mangrove swamp around Split Skull, and the Northern Swamps.
+
+Description:
+Warthogs and alligators prowl this stretch of swampy road leading 
+from Mielikki to Anduin.
+
+Points of Interest:
+- New adventurers best be careful along the eastern Old Road 
+  lest they end up in the Fortress of Mystwatch!
+
+See also: AREA, VILLAGE OF MIELIKKI, ELDORIAN FOOTHILLS, 
+          KINGDOM OF THE MEER CATS, ANDUIN PASTURES, 
+          FORTRESS OF MYSTWATCH, SPLIT SKULL, NORTHERN SWAMPS
+#0
+"AREA_GRIFFIN ISLE" "GRIFFIN ISLE"
+Level: 55 to 65
+
+Location:
+This island of druids and great beasts rises up in the southwestern 
+Arabel Ocean, north and west of the Beachhead of South Caelia.
+
+Description:
+Griffin Isle is a strange land where the tenuous fate of nature in the 
+face of otherworldly corruption hangs in the balance.
+It is named for the ferocious winged beasts that populate the island, 
+beasts worshipped by an insidious cult.
+Battling the cult's influence is a powerful enclave of druids, but without 
+assistance they will surely lose.
+Caught between these two forces are a colorful cast of local residents, 
+each with their own reason for being on the isle.
+
+Points of Interest:
+- The druids of Griffin Isle desperately need to recover certain ancient 
+implements to strike down the cult of the griffin god.
+
+See also: AREA, ARABEL OCEAN, BEACHHEAD, SOUTH CAELIA
+#0
+"AREA_HAUNTED HOUSE" "HAUNTED HOUSE" HAUNTED AREA_HAUNTED                        
+Level: 3 to 7
+
+Location:
+This decrepit manor house stands at the southern end of Village 
+of Mielikki just inside the south gate.
+
+Description:
+True to its name this house is haunted by ghosts and spirits.
+It is also home to a sizeable gremlin population who fit in perfectly 
+with the creepy crawlies of the house.
+If you've ever wanted to fight the skeletons in someone else's closet,
+this is the place for you!
+Its an ideal hunting ground for good-aligned aspiring heroes.
+
+Points of Interest:
+- Several of the items here are great for outfitting a starting 
+  adventurer, particularly those in need of new boots.
+- As one might expect, several of the monsters here are incorporeal, 
+  meaning they can only be damaged if you are blessed by the gods.  
+  Fortunately, one of the few known consumable sources of blessings 
+  can be found here in decent number!
+- This house is probably so haunted because it is home to a hidden 
+  Necromancer Guildhall. Be sure to use the SEARCH command to 
+  locate the house's secrets!
+
+See also: AREA, VILLAGE OF MIELIKKI, SEARCH
+#0
+AREA_HIGHLANDS HIGHLANDS
+Level: 15 to 20
+
+Location:
+Tree-dotted plateaus stand south and west of the Village of Mielikki, 
+south of the Great Gothra Desert, and west of the Abbey.
+
+Description:
+Among the trees and rocky paths three clans make their homes.
+Forest creatures, from dryads to centaurs, and their Druid brothers guard 
+the Highlands, protecting the wilderness from despoilment.
+At the apex of the food chain perches a baleful wyvern, hungry 
+for unwary adventurers.
+
+Points of Interest:
+- Gemstones showing progress from initiating challenges to more 
+  intermediate ones can be found among the more powerful 
+  creatures here.
+- Champions of nature will train any Warrior or Cleric wise 
+  enough to follow the marks to find them.
+- These same champions may return here in the course of time 
+  once they have walked the paths to their greatest enlightenment 
+  and find themselves rewarded by a high priest of their order.
+
+See also: AREA, VILLAGE OF MIELIKKI, GREAT GOTHRA DESERT, ABBEY
+#0
+"AREA_THE HIVE" HIVE "THE HIVE" AREA_HIVE
+Level: 8 to 14
+
+Location:
+The Hive is accessible through a break in the northern fence along the 
+Farmlands west of the Village of Mielikki. Leading past the hive is a 
+small path to the tribal reservation for the Frakati people.
+
+Description:
+Giant bipedal insectoids toil away from their hive mother, 
+who dreams of world domination!
+
+Points of Interest:
+- Chitinous armor is a great alternative for those who can't afford iron.
+- Rogues can prove their martial prowess by infiltrating the deepest 
+  levels of the Hive.
+- The Hive is much more expansive than it appears.  Be sure to LOOK and SEARCH!
+
+See also: AREA, FARMLANDS, VILLAGE OF MIELIKKI, LOOK, SEARCH
+#0
+"AREA_ICE CULT" "ICE CULT"
+Level: 55 to 70
+
+Location:
+The cult has ensconced itself in the western tunnels of Mount Frostbite 
+near the entrance to Frost Valley west of the Arctic Village of Ickle.
+
+Description:
+Basking in the icy glory of Mount Frostbite is this powerful and deadly cult.
+Surrounding themselves with their ideal divine perfection, ice, the cult hides 
+behind lumbering ice elementals and the monstrous brood of the freezing winds 
+as they worship their icy master: an ancient white dragon!
+
+Points of Interest:
+- The ice hides powerful treasures.
+- The priest's maces are among the most powerful in Caelia.
+
+See also: AREA, MOUNT FROSTBITE, FROST VALLEY, ARCTIC VILLAGE OF ICKLE
+#0
+"AREA_THE ICE WARRIORS COMPOUND" "THE ICE WARRIORS COMPOUND" "ICE WARRIOR"
+Level: 1 to 5
+
+Location:
+This large camp is set up west of Ickle off Sirestis' Folley
+
+Description:
+Amazons and new trainees prepare for military campaigns at this arctic camp.
+It seems recently a necromancer has worked his way up the chain of command 
+and now holds the Commander's ear.
+
+Points of Interest:
+- The Commander has quite a few unique trophies from her many battle 
+  campaigns. New adventurers would do well to procure them for themselves!
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE
+#0
+AREA_ICKLE "ARCTIC VILLAGE OF ICKLE" ICKLE "AREA_ARCTIC VILLAGE OF ICKLE"
+Level: All
+
+Location:
+At the far north end of the Nikozian Trail, past the Cold Fields.
+Ickle maintains its own aviary, and is a crossroads between the Ice Warrior's
+Compound, Phoenix Feather Hot Springs, and Mt. Frostbite, Technitzitlan, 
+Ice Cult, and Frost Valley.  Blue scrolls of recall will send travelers to 
+this arctic outpost.
+
+Description:
+The Arctic Village of Ickle is the only Barbarian village on Ethilien.
+The Barbaric Guard patrols the streets of this icy hamlet, keeping it safe 
+for residents and travelers.
+Visitors will find a full complement of basic stores and services.
+The Cleric, Warrior, and Sorcerer Guilds all have established Guildhalls 
+in Ickle.
+Rogues will find themselves welcomed at the Mercenary's Guild.
+The Yeti Inn provides rest and respite for weary travelers looking to take 
+a break before pressing on into the colder depths.
+
+Points of Interest:
+- The Guild Masters offer unique rewards to experienced adventurers.
+- Powerful arcane spell casters may find useful clues to further 
+  their studies here as well.
+
+See also: AREA, AVIARY, COLD FIELDS, PHOENIX FEATHER HOT SPRINGS, 
+          MT. FROSTBITE, TECHNITZITLAN, ICE CULT, FROST VALLEY
+#0
+"AREA_ICKLE AVIARY" AVIARY  AREA_AVIARY                         
+Level: 3 to 8
+
+Location:
+Ickle's Aviary is built in the north-east corner of the Arctic 
+Village of Ickle, just off of Blade Square.
+
+Description:
+Outside the Aviary is freezing winter, but inside is a humid 
+menagerie of brilliant color.  Beautiful birds from all across 
+the world (and their feathers) can be found here.
+
+Points of Interest:
+- Some particularly beautiful cloaks have been woven out of the 
+  feathers from the birds in Ickle Aviary.
+- Extremely experienced Rangers always have a need to commune 
+  with exotic nature a bit.
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE
+#0
+"AREA_IRON HILLS" "IRON HILLS"
+Level: 6-12
+
+Location:
+Nestled in the hills south and east of Ickle off the Nikozian Trail, 
+by way of the Dark Mountains and the Kaas Plains. The Iron Hills also 
+connect to the Three-Falls Canyon and provide entrance to an ancient Barrow.
+
+Description:
+The dwarves in this area are especially proficient in iron working.
+
+Points of Interest:
+- The bronze and iron accessories the Iron Hills dwarves make are 
+  surprisingly versatile and well made.
+
+See also: AREA, CANYON, BARROW, DARK MOUNTAINS, KAAS PLAINS
+#0
+"AREA_KAAS PLAINS" "KAAS PLAINS"
+Level: 6 to 12
+
+Location:
+The Kaas Plains is a wilderness area along the Nikozian Trail.
+It lies north of the Black Woods and south of the Dark Mountains.
+The western part of the plains is dominated by the Black Lake.
+It also connects to the southern steppes of the Iron Hills.
+
+Description:
+It is far from any town or city, or at least from those that are safe for 
+good folk, since the nearby elven city of Templace lies in evil-infested 
+ruins. An array of wildlife runs free across the plains, including 
+buffalo, gophers, and wolves.
+
+Points of Interest:
+- Nothing particular stands out about the Kaas Plains.
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE, NORTHERN SWAMPS, BLACK WOODS, BLACK LAKE, DARK MOUNTAINS, COLD FIELDS
+#0
+"AREA_KINGDOM OF THE MEER CATS" "MEER CATS" MEERCATS AREA_MEERCATS
+Level: 3 to 8
+
+Location:
+Off a dusty, tick-covered trail to the north of the Farmlands is a 
+kingdom of mounds and hills. Access is also possible from the swamp 
+surrounding the Great Road
+
+Description:
+A colony of evolved meer cats has grown out of the area near the Farmlands.
+A well-armored guard corp protects the royal family, who rule over the 
+common workers of the colony.
+
+Points of Interest:
+- The meer cats are quite adept at crafting clothing from the environment 
+  around them.  New adventurers will find many solid options here.
+
+See also: AREA, FARMLANDS, GREAT ROAD
+#0
+"AREA_KING OF DREAMS" "REALM OF THE KING OF DREAMS" "KING OF DREAMS" KOD
+Level: 80 to 95
+
+Location:
+The far north end of the Syric Mountain Trail leads directly to this area 
+of reality suffused with the power of the Dreaming.
+
+Description:
+Many centuries ago, an inter-planar incursion fused the wilds of the Dreaming 
+with the material plane, resulting in this realm of legends-made-flesh.
+From the dreams of humans across the multiverse these mythological figures 
+and folklore tales birthed their way into Ethilien.
+There are several storylines running through the area, based around the 
+King's Son, the Goblin King, and the Swan Princess, but they're hardly 
+the only stories layered through the area.
+Even Queen Mab makes her appearance.
+
+Points of Interest:
+- Some of the most potent treasures in Ethilien can be found in this realm.
+
+See also: AREA, SYRIC MOUNTAIN TRAIL
+#0
+"AREA_TEMPLACE" TEMPLACE
+Level: 85 to 99
+
+Location:
+The desecrated ruins of Templace stand on the western shores of Black Lake.
+
+Description:
+Some thousand years ago, chaos erupted as the once-proud elven city of 
+Templace was plunged into war. Now only rubble remains of what once was.
+Legend has it that the infernal god Blackmourne with the help of his high 
+priest Ruin Wormheart tore open the fabric of the planes and allowed 
+demons to invade, led by the hellish dragon Sagece of Raymif and her 
+infernal brood.
+Moreover, the spiteful god killed the mortal priest of his brother-god 
+Metamorpho, Giir'Kaaz. Infuriated, Metamorpho stepped in and set matters 
+aright - the infamous god was destroyed and the priest's body reclaimed.
+The Kaazian priest's brother Ne'Kaaz, a sorcerer, and his sister Elia'Kaaz, 
+a warrior, scattered to their own destinations after the war fading 
+from record.
+Templace was destroyed, and the Anti-Paladins created in the battle retreated 
+to other regions, founding the City of Anduin.
+However, the fell dragon Sagece remained and turned the smoldering ruins 
+into her throne.
+
+Points of Interest:
+- Sagece and her servitors guard a number of fantastical treasures, many of 
+  which can only be liberated after she is slain.
+- The three legendary heroes of the Kaaz clan were barely enough to end the 
+  Rift Wars.  It would be foolish to assume Sagece could be toppled 
+  by anything less.
+
+See also: AREA, BLACK LAKE, TEMPLE OF THE KAAZ, CITY OF ANDUIN
+#0
+"AREA_LAVA TUNNELS SOUTH" "LAVA TUNNELS SOUTH"
+Level: 40 to 50
+
+Location:
+The southern Lava Tunnels below the Rocky Tunnels and the Misty Caverns 
+extend south of the dividing bubble.
+A passage into the Misty Chasm also exists deep within the tunnels' 
+craggy twists.
+
+Description:
+Beyond the cavernous chamber formed from a cooled lava bubble, exponentially 
+more dangerous creatures stalk the tunnels.
+At one end of the tunnels sits a temple dedicated to the destructive 
+forces of Fire.
+At another, an enclave of fire giants make their home.
+In all directions, burning death awaits the unprepared.
+
+Points of Interest:
+- The fire cult which occupies the temple has several highly valuable 
+  treasures in its possession.
+- There is a direct vent to the molten depths within the temple.
+- These tunnels are the greatest concentration of fire energy in Caelia, 
+  providing a prime location to study and teach mastery of its energies.
+
+See also: AREA, ROCKY TUNNELS, MISTY CAVERNS
+#0
+"AREA_LAYVERAN LABYRINTH" "LAYVERAN LABYRINTH"                   
+Level: 70 to 85
+
+Location:
+The labyrinthian remains of the Layveran Kingdom rest at the south end 
+of the Black Ice Desert.
+
+Description:
+Long ago the thriving kingdom of Layveran was a shining beacon of hope.
+Over time, the royal family succumbed to the worst aspects of human nature 
+and ultimately descended into savage brutality.
+Now, the only vestige of this once-great land are the desecrated remains 
+of the main palace.
+Profane demons and defiled angels dredge up weapons of pure darkness, 
+leaving human souls to rot in their wake.
+
+Points of Interest:
+- Shadows made tangible and chaos tempered sharp, each held by an indomitable 
+  beast, are an Assassin and Anti-Paladin's best friends.
+#0
+"AREA_LIGHT FOREST" "LIGHT FOREST"
+Level: 1 to 5
+
+Location:
+This extensive forest grows east of Village of Mielikki.
+Traveling through it, adventurers can find themselves at the Citadel of
+Testing to the north, the Misty Caverns through the mystic portal due east, 
+the Smuggler's Den south-east, and the Twisted Forest directly south.
+
+Description:
+The forest comprises two sections, the Light Forest and the Dark Forest.
+Deer, foxes, and other forest creatures make their homes in these forests.
+
+Points of Interest:
+- At the border between the Village of Mielikki and the Light Forest exists 
+  the only known Ranger Guildhall in all of Ethilien.
+
+See also: AREA, VILLAGE OF MIELIKKI, CITADEL OF TESTING, MISTY CAVERNS, 
+          SMUGGLERS DEN, TWISTED FOREST
+#0
+"AREA_LOGGING CAMP" "LOGGING CAMP" "AREA_THE LOGGING CAMP"
+Level: 10 to 20
+
+Location:
+Loggers work at a small camp deep in the Black Woods north of 
+the City of Anduin.
+
+Description:
+Human, barbarian, and dwarf loggers chop down trees in the Black Woods.
+Watch out for the badgers!
+
+Points of Interest:
+- The blacksmith's nephew has gone missing.
+- The loggers make excellent accessories from the teeth of the badgers.
+
+See also: AREA, BLACK WOODS, CITY OF ANDUIN
+#0
+AREA_MIELIKKI "VILLAGE OF MIELIKKI"  MIELIKKI "AREA_VILLAGE OF MIELIKKI"
+Level: ALL
+
+Location:
+The Village of Mielikki is nestled off the south-eastern shore of North Caelia.
+It serves as the starting point for all adventurers in the world of Ethilien.
+Mielikki is connected to a plethora of newbie-friendly zones.
+Within the city itself are a topiary, a sewer system infested with vermin and 
+monsters, and a haunted manor house at the southern edge of town.
+Beyond the west gates are the Farmlands, Temple of the Kaaz, Morgan Hill, 
+Dairy Farm, Rocky Outback, the Hives, and the Kingdom of the Meer Cats.
+Out the east gates are the Light, Dark, and Twisted Forests, Citadel of 
+Testing, Enchanted Hollow, and the Misty Caverns.
+To the north lay the Great Road and Swamp and the very dangerous Old Road 
+leading to the undead infested Fortress of Mystwatch.
+The south gates are heavily guarded and lead to the Blue-Fog Trail and River.
+Returning to Mielikki is quite easy via green scrolls of recall.
+
+Description:
+Village of Mielikki is a small backwater forest village dedicated to the 
+Goddess of Nature.
+It serves as the starting point for all new adventurers in Fiery.
+The town is heavily patrolled and guarded.  Peasant guards may be commoners 
+but don't let that fool you!  They're extremely deadly!
+An expansive array of services are available, from shops of all varieties 
+to skill trainers to item update/repair craftsmen.
+All four base classes have their home Guilds here.  Many subclasses have 
+Guilds here as well.
+The Grey Casle in south-west Mielikki is the location of the only Paladin 
+and Monk Guildhalls in all of Ethilien.
+
+Points of Interest:
+- The upper level of the Grey Castle is home to a memorial garden dedicated 
+  to Pergus aka Daroowise aka Rick L Sala II, former game lead, who passed 
+  away in 2006.
+- The Guild Masters offer unique rewards for new adventurers.  
+  Be sure to ask about them!
+- A legendary magician has a shop where he researches powerful new spells. 
+  Arcane spellcasters would do well to visit his workshop.
+- The Holy Templar Magistrate near the Forest Temple is always looking for 
+  brave souls to assault the Fortress of Mystwatch.
+
+See also: AREA, HAUNTED HOUSE, TOPIARY, MIELIKKI SEWERS, FARMLANDS, 
+          TEMPLE OF THE KAAZ, MORGAN HILL, DAIRY FARM, ROCKY OUTBACK, HIVES, 
+          KINGDOM OF THE MEER CATS, LIGHT FOREST, DARK FOREST, 
+          TWISTED FOREST, CITADEL OF TESTING, ENCHANTED HOLLOW, 
+          MISTY CAVERNS, GREAT ROAD, MYSTWATCH, BLUE-FOG TRAIL, BLUE-FOG RIVER
+#0
+"AREA_MIELIKKIS TOPIARY" "MIELIKKIS TOPIARY" TOPIARY AREA_TOPIARY
+Level: 3 to 8
+
+Location:
+The topiary stands behind a gate in the north-east corner of Town Center 
+in Village of Mielikki.
+
+Description:
+Someone trimmed the hedges into fanciful shapes, then animated them and 
+turned them on prospective visitors!  While the southern section is less 
+dangerous, the northern section is full of lion and dragon hedges, just 
+as deadly as the real deal.
+
+Points of Interest:
+- The roses and orchids growing in the topiary make wonderful gifts for 
+  the young and bold.
+- Someone has brought the topiary to life, but who...?
+
+See also: AREA, VILLAGE OF MIELIKKI
+#0
+"AREA_MINITHAWKIN MINES" "MINITHAWKIN MINES"
+Level: 55 to 70
+
+Location:
+This unusual mine is dug under the Black Woods northeast of the City of Anduin.
+
+Description:
+The Minithawkin Mines, long ago sealed by a cave-in, were the only known 
+source of the highly magical mineral thawkinixa.
+Mined in large quantities by dwarves, thawkinixa could be somehow drained 
+and turned into items of wondrous power.
+Unfortunately, the cave-in cut off the mine entirely and everyone inside 
+was assumed lost for good.
+However, the occasional opening lets daring spelunkers down into the depths 
+to uncover what truly happened.
+
+Points of Interest:
+- Reality has been warped in the mines, leading to non-Euclidean nightmare 
+tunnels protecting whatever is at the heart of this place.
+
+See also: AREA, BLACK WOODS, CITY OF ANDUIN
+#0
+"AREA_MOUNT FROSTBITE" "MOUNT FROSTBITE"                     
+Level: 15 to 30
+
+Location:
+Mount Frostbite stands east of the Arctic Village of Ickle.
+Within the depths of Mount Frostbite are paths to Technitzitlan, 
+Ice Cult, and Frost Valley.
+
+Description:
+Very few things inhabit Mount Frostbite beyond polar bears and ice snakes.
+
+Points of Interest:
+- The powers of ice run strong in Mount Frostbite.  Sorcerers can find 
+  life-long inspiration here.
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE, TECHNITZITLAN, ICE CULT, FROST VALLEY
+#0
+"AREA_MIELIKKI SEWERS" "MIELIKKI SEWERS" SEWERS AREA_SEWERS
+Level: 4 to 9
+
+Location:
+The sewers wait just below the city dump in the Village of Mielikki.
+
+Description:
+Full of trash and sewer monsters, these old tunnels are just waiting 
+for a brave someone to come clear them out!
+
+Points of Interest:
+- A powerful Diabolist potion lies hidden in the slimy depths.
+
+See also: AREA, VILLAGE OF MIELIKKI
+#0
+"AREA_MISTY CAVERNS" "MISTY CAVERNS"
+Level: 3 to 8
+
+Location:
+East of the Village of Mielikki and the Light Forest, 
+through a dark portal. Those who can successfully navigate 
+the tunnels can find the entrance to the Drow City of Dheduu, 
+the Rocky Tunnels, the Lava Tunnels, and the Rock Well.
+
+Description:
+Several sections comprise the Misty Caverns, including the Scraping 
+Tunnels, the Cackling Caverns, the Bone White Tunnels, the Misty Chasm, 
+and the Mist Temple.
+The caverns criss-cross at various depths, making traditional navigation 
+extremely difficult. Denizens of the caverns include massive worms, 
+skeletons, and incorporeal shades.
+
+Points of Interest:
+- Watch out for the Misty Chasm immediately south of the entrance to 
+  the Misty Caverns!!
+- The Mist Temple has some enticing rewards for brave adventurers.
+- Those who can find the bottom of the Bottomless Chasm can find passages 
+  to the fiery depths below and rocky crevasses leading to the ocean beyond.
+
+See also: AREA, VILLAGE OF MIELIKKI, LIGHT FOREST, DROW CITY OF DHEDUU, 
+          THE ROCK WELL, ROCKY TUNNELS, LAVA TUNNELS
+#0
+"AREA_MOUNTAIN OF MIST" MOUNTAIN OF MIST
+Level: 70 to 90
+
+Location:
+The Mountain of Mist stands at the far south end of the Blue-Fog Trail 
+south of the Village of Mielikki.
+
+Description:
+Absent from the Mountain of Mist are the mist and water elementals which 
+loom over the Blue-Fog Trail.
+In their place, indomitable grey mist demons and colossal oozes roam 
+the mountainside.
+
+Points of Interest:
+- A wildly powerful dragon has made the top of the mountain into her lair.  
+  Be ready for certain death if you dare to cross her and her misty guardians.
+
+See also: AREA, VILLAGE OF MIELIKKI, BLUE-FOG TRAIL
+#0
+"AREA_LAVA TUNNELS NORTH" "LAVA TUNNELS NORTH"
+Level: 24 to 35
+
+Location:
+Lava tubes snake through the ground deep below the Rocky Tunnels 
+under the Misty Caverns east of the Village of Mielikki.
+
+Description:
+Below the Stone Temple in the Rocky Tunnels a natural lava tunnel 
+cuts through the ground toward a massive cooled bubble cavern.
+The creatures inhabiting the northern section of the Lava Tunnels 
+are much less dangerous than the beasts south of the bubble.
+
+Points of Interest:
+- Nothing particular stands out about Lava Tunnels North.
+
+See also: AREA, VILLAGE OF MIELIKKI, ROCKY TUNNELS, MISTY CAVERNS
+#0
+"AREA_MINERS CAVERN" "MINERS CAVERN"
+Level: 30 to 45
+
+Location:
+The Miner's Cavern runs under the Eldorian Foothills just north of 
+the City of Anduin.
+
+Description:
+Dwarven miners toil in the tunnels for gemstones and precious metals.
+Yet there is more to these tunnels than meets the eye!
+
+Points of Interest:
+- The overseer needs some help and has some fancy eyewear to pay for it.
+- Starlight from the surfaces reaches down into the darkest depths, 
+  sanctifying parts of the caverns.
+- The stars themselves know secrets of travel and transit and carry a 
+  sacred flame.
+
+See also: AREA, ELDORIAN FOOTHILLS, CITY OF ANDUIN
+#0
+"AREA_MORGAN HILL" _"MORGAN HILL" 
+Level: 5 to 10
+
+Location:
+Morgan Hill rises to the south of the Farmlands west of Village of Mielikki.
+
+Description:
+Gremlin armies use Morgan Hill as a staging ground for battle.
+Atop the hill stands a spooky old house, guarded by a young druid.
+
+Points of Interest:
+- The gremlins of Morgan Hill are armed for aquatic exploration, 
+  should a vessel be necessary.
+- The young druid uses a very special flame to ward the house.
+
+See also: AREA, VILLAGE OF MIELIKKI, FARMLANDS
+#0
+"AREA_NIKOZIAN TRAIL" "NIKOZIAN TRAIL" 
+Level: 6 to 12
+
+Location:
+The Nikozian Trail runs through several open regions between the Northern 
+Swamps, the Great Northern Road outside of the City of Anduin, and the 
+Arctic Village of Ickle.
+It crosses through the Black Woods, the Kaas Plains, runs along the 
+shores of Black Lake, through the Dark Mountains, and then through 
+the Cold Fields before arriving at Ickle.
+
+Description:
+The Nikozian Trail is the longest stretch of road in all of North Caelia.
+A vast array of wildlife inhabits the Nikozian Trail. Most are harmless. 
+Some, like the chamois, wolves, and bears, are more aggressive and a 
+threat to less experienced explorers.
+
+Points of Interest:
+- A solitary duergar with a powerful mythril shield makes his secluded 
+  home in the Dark Mountains.
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE, NORTHERN SWAMPS, GREAT NORTHERN ROAD, 
+          CITY OF ANDUIN, BLACK WOODS, BLACK LAKE, DARK MOUNTAINS, COLD FIELDS
+#0
+"AREA_NORTHERN SWAMPS" "NORTHERN SWAMPS" SWAPMS
+Level: 40 to 55
+
+Location:
+The vast Northern Swamps and Road span the area between the Fortress of 
+Mystwatch and the Black Woods.
+A small break leads between Split Skull and the Northern Swamp via 
+Mystwatch as well.
+The Northern Swamp Road is one of the few access points to the Nikozian 
+Trail connecting the Arctic Village of Ickle to the Village of Mielikki.
+Hidden within the swamp is the lost village Nordus, and a mysterious 
+sunken castle.
+
+Description:
+The Northern Swamps are a dank cesspool of muck and rot inhabited by lizard 
+humanoids and giant ooze servitors of Blackmourne called biles.
+The swamp easily confuses and confounds travelers, causing them to wande
+r in circles forever.  Sticking to the road is the only sure way to 
+navigate this place.
+
+Points of Interest:
+- An absolutely batty hermit lives somewhere in the vast putrescence.
+
+See also: AREA, FORTRESS OF MYSTWATCH, BLACK WOODS, SPLIT SKULL, 
+          ARCTIC VILLAGE OF ICKLE, VILLAGE OF MIELIKKI, NIKOZIAN TRAIL, 
+          ENCHANTED VILLAGE OF NORDUS, SUNKEN CASTLE
+#0
+AREA_NYMRILL NYMRILL
+Level: ALL
+
+Location:
+The lost elven city of Nymrill lays beyond the Black Ice Desert in the 
+most desolate place on Ethilien.
+Access is extremely difficult and dangerous.
+
+Description:
+Nymrill is largely abandoned save for a few shops and lonely guards.
+It is an empty, haunted place of darkness and despair.
+
+Points of Interest:
+- The powerful Black-Ice weapons can be found in Nymrill for a high fee.
+
+See also: AREA, BLACK ICE DESERT
+#0
+AREA_ODAISHYOZEN ODZ ODAISHYOZEN AREA_ODZ
+Level: 30 to 35
+
+Location:
+The Emerald Isle of Odaishyozen can be found in the western reaches of 
+the Arabel Ocean.
+
+Description:
+Odaishyozen, also called "Odz" by residents of Caelia, is a carefully 
+guarded land of samurai and courtesans, of magical paper beasts and ninjas, 
+where the presence of the gods is keenly felt through its absence.
+
+Points of Interest:
+- A massive conspiracy is afoot in Odaishyozen.  Something has happened to 
+  the Goddess of Mercy.  Follow the clues and unravel the mystery.
+- Anyone interested in being a ninja is sure to have their desires 
+  richly rewarded.
+
+See also: AREA, ARABEL OCEAN
+#0
+"AREA_OLD MERCHANT TRAIL" "MERCHANT TRAIL" "AREA_MERCHANT TRAIL"
+Level: 4 to 9
+
+Location:
+The Old Merchant Trail runs between the Farmlands west of the Village of 
+Mielikki and the Great Gothra Desert.  The trail also connects to the Abbey 
+and the Black Rock Trail bound for the City of Anduin.
+
+Description:
+The Old Merchant Trail is a frequent road for pilgrims heading to the 
+Abbey of St. George. Wild dogs and boars can be found along its length 
+as well.
+
+Points of Interest:
+ - Lost along this trail is an old merchant cart which once belonged 
+   to a resident of the desert.
+
+See also: AREA, VILLAGE OF MIELIKKI, FARMLANDS, GREAT GOTHRA DESERT, BLACK ROCK TRAIL, ABBEY, CITY OF ANDUIN
+#0
+AREA_OGAKH "ENCAMPMENT OF OGAKH" OGAKH "AREA_ENCAMPMENT OF OGAKH"
+Level: All
+
+Location:
+Located beyond Bluebonnet Pass, the Encampment of Ogakh waits at the 
+southern-most point of South Caelia.  It is the staging point for regular 
+raids on the paladins of the Sacred Haven.  The otherwise extremely rare 
+gray scroll of recall can be found in abundance here as well.
+
+Description:
+More a permanent settlement than an encampment now, Ogakh is a main base 
+of military operations for the evil races of Ethilien.
+It is home to numerous Orc, Ogres, Trolls, Drow, and many other malicious
+demihumans who have set up permanent shops and businesses to serve the 
+military personnel and any adventurers who find their way to town.
+Although the residents tend toward evil, the Encampment relies on the 
+rule of law and is regularly patrolled, so fighting in the streets is 
+heavily discouraged for visitors and residents alike.
+It is safe for Ethilien's good races to visit and trade in Ogakh.
+
+Points of Interest:
+- The more nefarious class Guilds have halls in Ogakh, and offer rewards 
+  to intermediate adventurers.
+
+See also: AREA, BLUEBONNET PASS, SOUTH CAELIA, SACRED HAVEN
+#0
+"AREA_PHOENIX FEATHER HOT SPRINGS" "PHOENIX FEATHER HOT SPRINGS" "HOT SPRINGS"
+Level: 55 to 60
+
+Location:
+The hot springs are located at the far western end of Sirestis' Folly west 
+of the Arctic Village of Ickle.
+
+Description:
+This comfortable lodge and arctic hot spring provide the perfect weekend 
+getaway for battle-weary warriors.
+Soak in the hot spring baths or enjoy some of the most unique foods in the 
+world in the kitchen and cafe.
+Travelers from all around Caelia, and their valuables, can be found in 
+this resort.
+
+Points of Interest:
+- Some of the cloaks guests have brought to the hot springs are fabulous 
+  protection against cold and swords.
+- Rianne d'Argent is always cooking up a feast.  She needs the help of 
+  very experienced, very prepared retrieval agents to recover the finest 
+  and most elusive of foods.  This grocery list is only for the most 
+  powerful of all adventurers!
+
+See also: AREA, ARCTIC VILLAGE OF ICKLE
+#0
+"AREA_THE RHELL FOREST" "RHELL FOREST" AREA_"RHELL FOREST"
+Level: 45 to 55
+
+Location:
+This forest of ancient semi-sentient Rhell trees grows south of the 
+Twisted Forest and east of the Blue-Fog Trail.
+
+Description:
+The extraordinary Rhell Forest is populated by magical creatures of all 
+varieties, but is particularly the stalking grounds of wolves and feral dogs.
+
+Points of Interest:
+- The trees themselves want the invasive beasts of the forest driven 
+  out and exterminated.
+- A miraculous healing spring sits at the far south end of the forest.
+
+See also: AREA, TWISTED FOREST, BLUE-FOG TRAIL
+#0
+AREA_"ROCKY OUTBACK" "ROCKY OUTBACK" OUTBACK
+Level: 3 to 7
+
+Location:
+The Rocky Outback extends out from the south-west corner of the Farmlands.
+
+Description:
+Home to mutated wildlife and blind dwarves, something has caused nature 
+to go awry in the Rocky Outback.
+
+Points of Interest:
+- The grass here, when you can find it, is edible!
+- Someone from another town of great enchantment has brought some relics from 
+  their home to the Rocky Outback and has truly mucked up the wildlife.
+- The fangs of the deadly pit vipers here make excellent earrings.
+
+See also: AREA, FARMLANDS
+#0
+"AREA_ROCKY TUNNELS" "ROCKY TUNNELS"
+Level: 18 to 25
+
+Location:
+Below the Misty Caverns stretches an extensive network of stony tunnels.
+Typically adventurers accidentally stumble into its fatal depths through
+ a rocky well in the Bone White Tunnels.
+Below the Rocky Tunnels waits the burning Lava Tunnels.
+
+Description:
+The Rocky Tunnels are infested with demons and spiders, hungry for the 
+blood of heroes.  They have claimed the lives of far more than just one 
+or two adventurers over the ages. At the far end of the tunnels is an 
+ancient stone temple, dedicated to the evil forces of the deep earth.
+
+Points of Interest:
+- A living stone statue looms in the dark, looking for something to 
+  complete its necklace.
+- Warriors who can survive the trials of the stone temple may find 
+  a new ascetic life awaits them.
+
+See also: AREA, MISTY CAVERNS, LAVA TUNNELS
+#0 
+"AREA_THE ROCK WELL" "THE ROCKWELL" ROCKWELL "THE ROCK WELL" "ROCKWELL"                     
+Level: 12 to 18
+Location:
+The Rock Well is a small series of crevices between the Misty Chasm 
+and the Arabel Ocean jetty.
+
+Description:
+Strange furry humanoids have made this small series of caves their home.
+
+Points of Interest:
+- Not to be confused with the rocky well connecting the Misty Caverns 
+  and the Rocky Tunnels!
+- The bat tooth necklaces worn by some of the denizens of the Rock Well 
+  are particularly potent.
+
+See also: AREA, MISTY CAVERNS, ARABEL OCEAN, ROCKY TUNNELS
+#0
+"SACRED HAVEN" "SACRED HAVEN"
+Level: 25 to 40
+
+Location:
+The large holy military complex is built off the southeast end of 
+Bluebonnet Pass in South Caelia.
+
+Description:
+This settlement was formed by a group of paladins that were sent out 
+to destroy the presence of evil in their world.
+It's primarily good-aligned, with most mobs being Paladins guarding the
+pass from evil monsters and possible invasion from the Encampment of Ogakh.
+
+Points of Interest:
+- There is a heavily guarded area that is used to store powerful evil 
+  artifacts that have been captured during the Haven's many battles.  
+  Some even try to infiltrate the Haven to get a few of these artifacts 
+  back from time to time.
+- The Haven also houses a sacred smithy, manned by the Forge Cleric Galen, 
+  Son of Thorgrim, of the clan of Grugnir, the mightiest armorsmith in 
+  all the land.
+- Highly experienced Paladins can find additional guidance and mentorship 
+  among the founders of the Haven.
+
+See also: AREA, BLUEBONNET PASS, ENCAMPMENT OF OGAKH, SOUTH CAELIA
+#0
+"AREA_THE SACRED MEGALITH" "SACRED MEGALITH" MEGALITH "THE SACRED MEGALITH"
+Level: 30 to 60
+
+Location:
+These ancient stones are tucked away in the south-west corner of 
+South Caelia beyond Fangorn Forest.
+
+Description:
+Amidst windy and wild woods, an ancient circle of standing stones 
+waits to be unlocked. A coven of witches are working to empower the 
+site, but wild monsters and Unseelie faeries roam the woods threatening 
+the witches and any others who enter the place.
+
+Points of Interest:
+- The Coven High Priestess has made her way to the center of the standing 
+  stones, but needs assistance.  Monumental rewards await for anyone who 
+  can provide the help she needs.
+
+See also: AREA, SOUTH CAELIA
+#0
+"AREA_SEAS LULLABY" "GREENGREEN SEA" "SEAWITCH" "SEAS LULLABY"                            
+Level: 20 to 35
+
+Location:
+The GreenGreen Sea is the name of the eastern waters of the Arabel Ocean,
+south of Fiery Island.
+
+Description:
+From the murky waters of the GreenGreen Sea rises a large island dedicated 
+to the old ways, known as the Sea's Lullaby.  Though on the surface the 
+island is covered with drunken dancers, the waters below hold mystic 
+secrets and powerful magic.
+
+Points of Interest:
+- The mighty Sea Witch itself is elusive but highly rewarding.
+
+See also: AREA, ARABEL OCEAN, FIERY ISLAND
+#0
+"AREA_SOUTH CAELIA" "WAILING MOUNTAINS" "FANGORN FOREST" BORDERHOLD "ANLUN VALE" 
+Level: 20 to 30 (Highlands), 30 to 50 (Forest and Mountains)
+
+Location:
+South Caelia rests beyond the Arabel Ocean at the southern-most part of the 
+Caelian continent. It is divided into two parts: the northern and western 
+Forest and Mountains, and the eastern Highlands. Several other regions and 
+settlements rest within South Caelia, including the Beachhead and the 
+Dancing Dolphin Inn, the Sacred Haven, the Encampment of Ogakh, Bluebonnet 
+Pass, the Sacred Megalith, and Dargentan's Lair.
+
+Description:
+Not nearly as expansive as its northern cousin, South Caelia is home to 
+diverse wildlife and developing civilization nevertheless. Most adventurers 
+make landfall at the Beachhead at the northern point of the subcontinent, 
+then work their way through the Wailing Mountains and into the 
+forested inlands. The Wailing Mountains are home to enormous Rocs, while 
+the western Fangorn Forest shelters numerous spiders and sprites.
+The eastern highlands around Lake Fedis are frequent hunting grounds for 
+bandits and thieves, and the camping ground for a gypsy caravan.
+South holds Anlun Vale, a series of sacred sites occupied by druids 
+and dryads.  In the center stands a small outpost town, the Borderhold, 
+where explorers can refresh their supplies.
+
+Points of Interest:
+- A dark cabal of Diabolists make their home in a cave on the western beach.  
+They offer grand rewards to servants of darkness and certain death for 
+do-gooders who stumble into their lair. Druids would do well to visit 
+their southern brethren and undertake a pilgrimage across the subcontinent.
+
+See also: AREA, CAELIA, ARABEL OCEAN, BEACHHEAD, DANCING DOLPHIN INN, 
+          SACRED HAVEN, ENCAMPMENT OF OGAKH, BLUEBONNET PASS, 
+          THE SACRED MEGALITH, DARGENTANS LAIR
+#0
+"AREA_SMUGGLERS HIDEOUT" "SMUGGLERS HIDEOUT" "SMUGGLERS DEN" SMUGGLERS 
+Level: 5 to 10
+
+Location:
+The smugglers make their hideout in a large cave east of the Light Forest, off the Light Mountain Trail.
+
+Description:
+This den of iniquity is home to a dangerous gang of smugglers.
+What you find inside will shock you!
+
+Points of Interest:
+- Nothing particular stands out about the Smuggler's Hideout.
+
+See also: AREA, LIGHT FOREST
+#0
+"AREA_SPLIT SKULL" SPLIT SKULL "SPLIT SKULL"
+Level: 8 to 20
+
+Location:
+Split Skull is located in the middle of a mangrove swamp north-east of 
+the Village of Mielikki and north of the Enchanted Hollow.
+An emergency exit from the Fortress of Mystwatch empties out in the swamp 
+near Split Skull as well.
+
+Description:
+Split Skull is a multi-level town built in the midst of a large mangrove swamp.
+Home to numerous individuals from the evil demihuman races but without the 
+services to support them, Split Skull is somewhere between a functional 
+town and a military outpost.
+The lower level is more like a frontier town whereas the upper level among 
+the branches of the mangrove trees is a tribal holy sanctum.
+Evil characters may choose to pledge themselves to the 3rd Black Legion 
+and start launching assaults on the 3rd Eldorian Guard.
+
+Points of Interest:
+- Trophies for the 3rd Eldorian Guard can be secured in Split Skull 
+  during raids.
+- Several shops are in the process of setting up.  While the areas 
+  they occupy are peaceful and prevent any violence, their services 
+  are not yet available.
+
+See also: AREA, VILLAGE OF MIELIKKI, ENCHANTED HOLLOW, 
+          FORTRESS OF MYSTWATCH, ABBEY, COMBAT IN ELDORIA
+#0
+"AREA_SYRIC MOUNTAIN TRAIL" "SYRIC MOUNTAINS" "SYRIC MOUNTAIN TRAIL"
+Level: 30 to 40
+
+Location:
+West of Mielikki and east of the Black Rock Trail liess this empty, 
+arduous trek. It connects the Black Rock Trail to Demise Keep and 
+the Realm of the King of Dreams.
+
+Description:
+Very few creatures make their home along this trail.
+
+Points of Interest:
+- The Syric Mountain Trail is unguarded. Those straying too far into 
+  its depths can find themselves in the Realm of the King of Dreams 
+  whereupon they will meet their untimely end.
+
+See also: AREA, VILLAGE OF MIELIKKI, BLACK ROCK TRAIL, DEMISE KEEP, 
+          REALM OF THE KING OF DREAMS
+#0
+AREA_TECHNITZITLAN TECH AREA_TECH TECHNITZITLAN
+Level: 45 to 55
+
+Location:
+The land of the Great Snow Leopard lies hidden east of Mount Frostbite 
+beyond the Arctic Village of Ickle.
+
+Description:
+Technitzitlan, or "Tech" as it is known among adventurers, is a 
+shamanistic warrior civilization dedicated to the reverence of the 
+Great Snow Leopard.
+As secretive as they are haughty, the people of Technitzitlan have 
+proven their strength in brutal wars against numerous gods.
+They harbor powerful treasures made of stones, crystals, and furs, which
+they will confer upon champions who can prove their worthiness in combat.
+
+Points of Interest:
+- Two of the great golden keys securing their ancient secrets were lost 
+  in titanic battles; one against the militarized forces of the undead, 
+  the other in a battle against the God of the Moonless Night himself.
+  Recovering these keys would be an act of bravery for the ages and 
+  provide access to finally slaying the greatest enemies of Technitzitlan.
+
+See also: AREA, MOUNT FROSTBITE, ARCTIC VILLAGE OF ICKLE
+#0
+"AREA_SUNKEN CASTLE" "SUNKEN CASTLE"
+Level: 60 to 80
+
+Location:
+Long ago a castle sunk into the murky depths of the Northern Swamp.
+
+Description:
+On first glance, the single tower that still rises out of the bog 
+might not seem impressive.
+Yet exploration reveals a massive castle, largely intact and in use, 
+beneath the swampy surface.
+An entire society of lizardmen have repurposed the once-human ruled 
+castle into their own magnificent court.
+Along with the numerous lizardfolk, ghosts of the previous residents 
+still roam the pitch-black halls.
+
+Points of Interest:
+- The deadly screams of a particularly powerful ghost echo through the 
+  halls of the castle, bringing death with them.  Beward her!
+
+See also: AREA, NORTHERN SWAMP
+#0
+"AREA_TEMPLE OF CHAOS" "TEMPLE OF CHAOS" CHAOS
+Level: 12 to 18
+
+Location:
+The old temple stands just east of the Black Rock Trail north 
+of the Old Merchant Road.
+
+Description:
+A cult dedicated to the worship of destructive Chaos has erected 
+a temple off the Black Rock Trail.
+The temple houses demonic beasts and profane priests, all working 
+to invoke Chaos itself.
+
+Points of Interest:
+- The blackest of fires burns at the heart of the temple.
+
+See also: AREA, BLACK ROCK TRAIL, OLD MERCHANT ROAD
+#0
+"AREA_TEMPLE OF THE KAAZ" "TEMPLE OF THE KAAZ" KAAZ
+Level: 1 to 5
+
+Location:
+This small ancient temple stands at the north-east corner of the Farmlands, 
+immediately west and north of the west gate of Village of Mielikki.
+
+Description:
+Dedicated to the great heroes of the Kaaz clan that saved Ethilien during 
+the Rift Wars, Giir'Kaaz, Ne'Kaaz, and Elia'Kaaz, this small temple attracts 
+magicians determined to find a source of greater power.
+Malevolent creatures loop through the halls, feeding on that greed and 
+zeal to contain a dark secret.
+
+Points of Interest:
+- The magicians searching the temple provide excellent starting equipment for 
+  Sorcerers of all varieties.
+- The seethers keep a powerful force from the Farmlands sealed away which 
+  only inexperienced adventurers will have the ability to unleash.
+- Adventurers will do well to keep their eyes peeled, LOOK in all directions, 
+  and use the SEARCH command to uncover these secrets.
+
+See also: AREA, VILLAGE OF MIELIKKI, FARMLANDS, LOOK, SEARCH
+#0
+"AREA_THE THEATRE" THEATRE AREA_THEATRE
+Level: 5 to 10
+
+Location:
+The Theatre is located off Festival Street in the Upper Level 
+of the City of Anduin.
+
+Description:
+The Players performing in the Theatre are caught in the middle of a 
+war between the House Gnomes and the Ceiling Monkeys. Several of the 
+actors are now locked in their dressing rooms. The Players need help 
+from a wise adventurer to find their dressing room keys, find their 
+missing star, and get the show going!
+
+Points of Interest:
+- Catherine and the House Gnome King are the best places to start 
+  trying to sort out the chaos.
+- Pippin will be out somewhere near the Great Northern Road or the 
+  Nikozian Trail looking for his corner of the sky.
+
+See also: AREA, CITY OF ANDUIN, GREAT NORTHERN ROAD, NIKOZIAN TRAIL
+#0
+"AREA_THE TOWER IN THE WASTES" "TOWER IN THE WASTES" "THE TOWER IN THE WASTES"
+Level: 50 to 65
+
+Location:
+The solidary tower rises up over a blasted heath west of the City of Anduin 
+along the Black Rock Trail.
+
+Description:
+The lonely tower stands out against the bleak landscape as the only 
+structure for quite a distance.
+Haggard wildlife roam the land, hunted by subterranean monsters and 
+bold adventurers.
+Near the top of the tower, a fearless young dragon makes its den.
+Yet there is clearly more to this place than meets the eye.
+
+Points of Interest:
+- Some of the nearby arcanists may hold clues to the tower's deeper mysteries.
+
+See also: AREA, CITY OF ANDUIN, BLACK ROCK TRAIL
+#0
+"AREA_TWISTED FOREST" "TWISTED FOREST"
+Level: 5 to 10
+
+Location:
+This massive evil forest lies south of the Light Forest.
+Through the branching paths, it is possible to arrive at the sandy 
+jetty of the Arabel Ocean and the entrance to the Rock Well, or wander 
+even farther into the Rhell Forest. It is even said a back entrance to 
+Twisted Forest exists through the Bayou to the east.
+
+Description:
+True to its name, the Twisted Forest is a maze of ominous black trees.
+Evil spirits have twisted the local fauna into aggressive and dangerous 
+beasts.   Watch out!
+
+Points of Interest:
+- Having at least intermediate skill in GUARD and RESCUE will be very helpful 
+  to both an adventuring party and the denizens of the darkness!
+- Pay special attention to the trails here. There is more to them than 
+  meets the eye!
+- At the very heart of the forest a copse of ancient Rhell trees 
+  lay silent in their sorrows.
+
+See also: AREA, LIGHT FOREST, RHELL FOREST, ARABEL OCEAN, THE ROCK WELL, 
+          BAYOU, GUARD, RESCUE
 #0
 $
