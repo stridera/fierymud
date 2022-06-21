@@ -48,7 +48,7 @@ EVENTFUNC(casting_handler);
 
 int bogus_mage_spells[] = {0,
                            /* first 10 are defensive */
-                           SPELL_STRENGTH, SPELL_DETECT_INVIS, SPELL_INFRAVISION, SPELL_MINOR_GLOBE, SPELL_FIRESHIELD,
+                           SPELL_ENHANCE_ABILITY, SPELL_DETECT_INVIS, SPELL_INFRAVISION, SPELL_MINOR_GLOBE, SPELL_FIRESHIELD,
                            SPELL_COLDSHIELD, SPELL_FARSEE, SPELL_FLY, SPELL_HASTE, SPELL_MAJOR_GLOBE,
                            /* next 10 are offensive */
                            SPELL_BURNING_HANDS, SPELL_CHILL_TOUCH, SPELL_MINOR_PARALYSIS, SPELL_LIGHTNING_BOLT,

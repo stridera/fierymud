@@ -1930,7 +1930,6 @@ ACMD(do_wizutil) {
             }
             mag_affect(100, ch, vict, SPELL_FLY, 0, 0);
             mag_affect(100, ch, vict, SPELL_STONE_SKIN, 0, 0);
-            mag_affect(100, ch, vict, SPELL_STRENGTH, 0, 0);
             mag_affect(100, ch, vict, SPELL_BLUR, 0, 0);
             mag_affect(100, ch, vict, SPELL_BARKSKIN, 0, 0);
             perform_restore(vict);
