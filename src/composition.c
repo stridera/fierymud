@@ -38,8 +38,7 @@
 /* Values for the compdef struct:
  *
  *   Name, Mass noun, Adjective, Color, default_dtype, phase
- *   SUSCEPTIBILITY: slash, pierce, crush, shock, fire, water, cold, acid,
- * poison
+ *   SUSCEPTIBILITY: slash, pierce, crush, shock, fire, water, cold, acid, poison
  */
 
 struct compdef compositions[NUM_COMPOSITIONS] = {

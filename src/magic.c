@@ -1552,6 +1552,54 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&7&b$N&7&b glows briefly.&0";
         break;
 
+
+    case SPELL_ENHANCE_ABILITY:
+
+        /* This is rather a hack of the intended nature of how the
+           spell should work, but this is better than the way it was
+           RSD 3/27/00 */
+
+        /* This is a re-work of the spell Strength */
+
+        if (is_abbrev(buf2, "strength")) {
+            eff[0].location = APPLY_STR;
+            to_vict = "You feel stronger!";
+            to_char = "You increase $N's strength!";
+            to_room = "$N looks stronger!";
+        } else if (is_abbrev(buf2, "dexterity")) {
+            eff[0].location = APPLY_DEX;
+            to_vict = "You feel more dexterous!";
+            to_char = "You increase $N's dexterity!";
+            to_room = "$N looks more dexterous!";
+        } else if (is_abbrev(buf2, "constitution")) {
+            eff[0].location = APPLY_CON;
+            to_vict = "You feel healthier!";
+            to_char = "You increase $N's constitution!";
+            to_room = "$N looks healthier!";
+        } else if (is_abbrev(buf2, "intelligence")) {
+            eff[0].location = APPLY_INT;
+            to_vict = "You feel smarter!";
+            to_char = "You increase $N's intelligence!";
+            to_room = "$N looks smarter!";
+        } else if (is_abbrev(buf2, "wisdom")) {
+            eff[0].location = APPLY_WIS;
+            to_vict = "You feel wiser!";
+            to_char = "You increase $N's wisdom!";
+            to_room = "$N looks wiser!";
+        } else if (is_abbrev(buf2, "charisma")) {
+            eff[0].location = APPLY_CHA;
+            to_vict = "You feel more charismatic!";
+            to_char = "You increase $N's charisma!";
+            to_room = "$N looks more charismatic!";
+        } else {
+            send_to_char("What abiliy do you want to enhance?\r\n", ch);
+            return 0;
+        }
+
+        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        break;
+
     case SPELL_ENLARGE:
 
         if (IS_NPC(victim))
@@ -2091,6 +2139,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         }
         if (mag_savingthrow(victim, SAVING_SPELL)) {
             act("You stare blankly at $n as $e attempts to rebuke you.", FALSE, ch, 0, victim, TO_VICT);
+
             act("$N looks at $n blankly as $e calls down a spell of condemnation.", TRUE, ch, 0, victim, TO_NOTVICT);
             send_to_char("Your rebuke elicits nothing but a blank stare.\r\n", ch);
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -2283,19 +2332,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_char = "&9&b$N's skin hardens and turns to stone!&0";
         to_vict = "&9&bYour skin hardens and turns to stone!&0";
         to_room = "&9&b$N's skin hardens and turns to stone!&0";
-        break;
-
-    case SPELL_STRENGTH:
-
-        /* This is rather a hack of the intended nature of how the
-           spell should work, but this is better than the way it was
-           RSD 3/27/00 */
-
-        eff[0].location = APPLY_STR;
-        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
-        eff[0].duration = 5 + (skill / 14); /* max 12 */
-        to_room = "$N looks stronger!";
-        to_vict = "You feel stronger!";
         break;
 
     case SPELL_SUNRAY:
