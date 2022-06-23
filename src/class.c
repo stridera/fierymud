@@ -552,7 +552,7 @@ struct classdef classes[NUM_CLASSES] = {
      "&9&bBer&1ser&9ker&0   ",
      "&9&bBe&1r&0",
      "&9&b**&0",
-     TRUE,
+     FALSE,
      MEM_NONE,
      FALSE,
      TRUE,
@@ -567,7 +567,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      0,
      100,
-     1.15,
+     1,
      100,
      120,
      120,
@@ -712,8 +712,8 @@ struct classdef classes[NUM_CLASSES] = {
      "&4B&9&bar&0&4d&0        ",
      "&4B&9&bar&0",
      "&4**&0",
-     TRUE,
-     MEMORIZE,
+     FALSE,
+     MEM_NONE,
      FALSE,
      TRUE,
      CLASS_ROGUE,
@@ -723,7 +723,7 @@ struct classdef classes[NUM_CLASSES] = {
      {95, 90, 100, 110, 110},
      9,
      2,
-     ITEM_ANTI_BARD,
+     0,
      100,
      0,
      100,
@@ -1490,7 +1490,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_KICK, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_BASH, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ANTI_PALADIN, 1);
-    skill_assign(SKILL_TAME, CLASS_ANTI_PALADIN, 7);
+    skill_assign(SKILL_TAME, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_GUARD, CLASS_ANTI_PALADIN, 10);
     skill_assign(SKILL_SWITCH, CLASS_ANTI_PALADIN, 10);
     skill_assign(SKILL_RESCUE, CLASS_ANTI_PALADIN, 10);
@@ -1537,17 +1537,17 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SNEAK, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_HIDE, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_TRACK, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_PARRY, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_PIERCING, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_SLASHING, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_PICK_LOCK, CLASS_ASSASSIN, 6);
+    skill_assign(SKILL_PICK_LOCK, CLASS_ASSASSIN, 5);
+    skill_assign(SKILL_KICK, CLASS_ASSASSIN, 10);
+    skill_assign(SKILL_TRACK, CLASS_ASSASSIN, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_ASSASSIN, 15);
-    skill_assign(SKILL_THROATCUT, CLASS_ASSASSIN, 31);
-    skill_assign(SKILL_KICK, CLASS_ASSASSIN, 36);
+    skill_assign(SKILL_THROATCUT, CLASS_ASSASSIN, 30);
+    skill_assign(SKILL_PARRY, CLASS_ASSASSIN, 40);
     skill_assign(SKILL_SHADOW, CLASS_ASSASSIN, 40);
-    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_ASSASSIN, 65);
+    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_ASSASSIN, 70);
 
     /* BARD */
     skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
@@ -1561,8 +1561,6 @@ void assign_class_skills(void) {
     skill_assign(SKILL_TRACK, CLASS_BARD, 50);
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BARD, 70);
     skill_assign(SKILL_DUAL_WIELD, CLASS_BARD, 90);
-
-    spell_assign(SPELL_ENHANCE_ABILITY, CLASS_BARD, CIRCLE_2);
 
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
     
@@ -1673,7 +1671,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_BURNING_HANDS, CLASS_CONJURER, CIRCLE_2);
     spell_assign(SPELL_CHILL_TOUCH, CLASS_CONJURER, CIRCLE_2);
     spell_assign(SPELL_DETECT_INVIS, CLASS_CONJURER, CIRCLE_2);
-    spell_assign(SPELL_ENHANCE_ABILITY, CLASS_CONJURER, CIRCLE_2);
+    spell_assign(SPELL_STRENGTH, CLASS_CONJURER, CIRCLE_2);
     
     spell_assign(SPELL_CONCEALMENT, CLASS_CONJURER, CIRCLE_3);
     spell_assign(SPELL_IDENTIFY, CLASS_CONJURER, CIRCLE_3);
@@ -1716,7 +1714,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CHILL_TOUCH, CLASS_CRYOMANCER, CIRCLE_2);
     spell_assign(SPELL_CONCEALMENT, CLASS_CRYOMANCER, CIRCLE_2);
     spell_assign(SPELL_DETECT_INVIS, CLASS_CRYOMANCER, CIRCLE_2);
-    spell_assign(SPELL_ENHANCE_ABILITY, CLASS_CRYOMANCER, CIRCLE_2);
+    spell_assign(SPELL_STRENGTH, CLASS_CRYOMANCER, CIRCLE_2);
     
     spell_assign(SPELL_DISPEL_MAGIC, CLASS_CRYOMANCER, CIRCLE_3);
     spell_assign(SPELL_EXTINGUISH, CLASS_CRYOMANCER, CIRCLE_3);
@@ -1924,7 +1922,7 @@ void assign_class_skills(void) {
 
     /* ILLUSIONIST */
     skill_assign(SKILL_CONCEAL, CLASS_ILLUSIONIST, 10);
-    skill_assign(SKILL_BACKSTAB, CLASS_ILLUSIONIST, 13);
+    skill_assign(SKILL_BACKSTAB, CLASS_ILLUSIONIST, 15);
     skill_assign(SKILL_HIDE, CLASS_ILLUSIONIST, 20);
 
     spell_assign(SPELL_DETECT_MAGIC, CLASS_ILLUSIONIST, CIRCLE_1);
@@ -1963,6 +1961,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_INSANITY, CLASS_ILLUSIONIST, CIRCLE_7);
 
     spell_assign(SPELL_ILLUSORY_WALL, CLASS_ILLUSIONIST, CIRCLE_8);
+    spell_assign(SPELL_MASS_INVIS, CLASS_ILLUSIONIST, CIRCLE_8);
 
     spell_assign(SPELL_FAMILIARITY, CLASS_ILLUSIONIST, CIRCLE_9);
 
@@ -1983,17 +1982,17 @@ void assign_class_skills(void) {
     skill_assign(SKILL_BASH, CLASS_MERCENARY, 1);
     skill_assign(SKILL_DODGE, CLASS_MERCENARY, 1);
     skill_assign(SKILL_GUARD, CLASS_MERCENARY, 10);
-    skill_assign(SKILL_BACKSTAB, CLASS_MERCENARY, 11);
+    skill_assign(SKILL_BACKSTAB, CLASS_MERCENARY, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_MERCENARY, 15);
     skill_assign(SKILL_BIND, CLASS_MERCENARY, 16);
     skill_assign(SKILL_HIDE, CLASS_MERCENARY, 20);
     skill_assign(SKILL_DISARM, CLASS_MERCENARY, 20);
+    skill_assign(SKILL_PARRY, CLASS_MERCENARY, 30);
     skill_assign(SKILL_TRACK, CLASS_MERCENARY, 30);
     skill_assign(SKILL_SWITCH, CLASS_MERCENARY, 40);
-    skill_assign(SKILL_PARRY, CLASS_MERCENARY, 40);
     skill_assign(SKILL_RETREAT, CLASS_MERCENARY, 40);
+    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_MERCENARY, 50);
     skill_assign(SKILL_RIPOSTE, CLASS_MERCENARY, 60);
-    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_MERCENARY, 70);
     skill_assign(SKILL_GROUP_RETREAT, CLASS_MERCENARY, 80);
 
     /* MONKS */
@@ -2080,7 +2079,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_ANIMATE_DEAD, CLASS_NECROMANCER, CIRCLE_3);
     spell_assign(SPELL_CHILL_TOUCH, CLASS_NECROMANCER, CIRCLE_3);
     spell_assign(SPELL_POISON, CLASS_NECROMANCER, CIRCLE_3);
-    spell_assign(SPELL_ENHANCE_ABILITY, CLASS_NECROMANCER, CIRCLE_3);
+    spell_assign(SPELL_STRENGTH, CLASS_NECROMANCER, CIRCLE_3);
     
     spell_assign(SPELL_BONE_ARMOR, CLASS_NECROMANCER, CIRCLE_4);
     spell_assign(SPELL_COLDSHIELD, CLASS_NECROMANCER, CIRCLE_4);
@@ -2255,7 +2254,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_DETONATION, CLASS_PYROMANCER, CIRCLE_2);
     spell_assign(SPELL_FIRE_DARTS, CLASS_PYROMANCER, CIRCLE_2);
     spell_assign(SPELL_MAGIC_TORCH, CLASS_PYROMANCER, CIRCLE_2);
-    spell_assign(SPELL_ENHANCE_ABILITY, CLASS_PYROMANCER, CIRCLE_2);
+    spell_assign(SPELL_STRENGTH, CLASS_PYROMANCER, CIRCLE_2);
 
     spell_assign(SPELL_DISPEL_MAGIC, CLASS_PYROMANCER, CIRCLE_3);
     spell_assign(SPELL_LOCATE_OBJECT, CLASS_PYROMANCER, CIRCLE_3);
@@ -2319,6 +2318,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_RESCUE, CLASS_RANGER, 35);
     skill_assign(SKILL_PARRY, CLASS_RANGER, 30);
     skill_assign(SKILL_RIPOSTE, CLASS_RANGER, 40);
+    skill_assign(SKILL_GUARD, CLASS_RANGER, 50);
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_RANGER, 60);
 
     spell_assign(SPELL_DETECT_ALIGN, CLASS_RANGER, CIRCLE_1);
@@ -2349,11 +2349,11 @@ void assign_class_skills(void) {
     skill_assign(SKILL_2H_PIERCING, CLASS_ROGUE, 1);
     skill_assign(SKILL_HIDE, CLASS_ROGUE, 1);
     skill_assign(SKILL_DODGE, CLASS_ROGUE, 1);
-    skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 6);
-    skill_assign(SKILL_SNEAK, CLASS_ROGUE, 10);
-    skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 10);
+    skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
+    skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
+    skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
+    skill_assign(SKILL_EYE_GOUGE, CLASS_ROGUE, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_ROGUE, 15);
-    skill_assign(SKILL_EYE_GOUGE, CLASS_ROGUE, 15);
     skill_assign(SKILL_CONCEAL, CLASS_ROGUE, 25);
     skill_assign(SKILL_TRACK, CLASS_ROGUE, 30);
     skill_assign(SKILL_PARRY, CLASS_ROGUE, 40);
@@ -2423,7 +2423,7 @@ void assign_class_skills(void) {
 
     spell_assign(SPELL_CHILL_TOUCH, CLASS_SORCERER, CIRCLE_2);
     spell_assign(SPELL_DETECT_INVIS, CLASS_SORCERER, CIRCLE_2);
-    spell_assign(SPELL_ENHANCE_ABILITY, CLASS_SORCERER, CIRCLE_2);
+    spell_assign(SPELL_STRENGTH, CLASS_SORCERER, CIRCLE_2);
 
     spell_assign(SPELL_DISPEL_MAGIC, CLASS_SORCERER, CIRCLE_3);
     spell_assign(SPELL_IDENTIFY, CLASS_SORCERER, CIRCLE_3);
