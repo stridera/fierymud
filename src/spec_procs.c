@@ -929,6 +929,9 @@ int red_recall_room(struct char_data *ch) {
     case CLASS_CRYOMANCER:
         room = 6221;
         break;
+    case CLASS_ILLUSIONIST:
+        room = 6234;
+        break;
 
     case CLASS_ROGUE:
         room = 6068;
@@ -1010,6 +1013,9 @@ int green_recall_room(struct char_data *ch) {
     case CLASS_CRYOMANCER:
         room = 3093;
         break;
+    case CLASS_ILLUSIONIST:
+        room = 3209;
+        break;
 
     case CLASS_ROGUE:
     case CLASS_THIEF:
@@ -1086,6 +1092,7 @@ int blue_recall_room(struct char_data *ch) {
     case CLASS_NECROMANCER:
     case CLASS_PYROMANCER:
     case CLASS_CRYOMANCER:
+    case CLASS_ILLUSIONIST:
         room = 10030;
         break;
 
@@ -1145,6 +1152,9 @@ int gray_recall_room(struct char_data *ch) {
     case CLASS_PYROMANCER:
     case CLASS_CRYOMANCER:
         room = 30073;
+        break;
+    case CLASS_ILLUSIONST:
+        room = 30000;
         break;
 
     case CLASS_ROGUE:
