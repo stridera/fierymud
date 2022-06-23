@@ -536,6 +536,7 @@
 #define ITEM_CONT_LIGHT (1 << 30) /* NOT USED - available */
 #define ITEM_WAS_DISARMED (1 << 31)
 #define ITEM_ANTI_MONK (1 << 32)
+#define ITEM_ANTI_BARD (1 << 33)
 
 /* Modifier constants used with obj affects ('A' fields) */
 #define APPLY_NONE 0           /* No effect                        */
