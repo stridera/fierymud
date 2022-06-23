@@ -432,6 +432,16 @@ struct obj_data {
      (GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_MAUL - TYPE_HIT) ||                                                \
      (GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_POUND - TYPE_HIT) ||                                               \
      (GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_CRUSH - TYPE_HIT))
+#define IS_WEAPON_FIRE(obj)                                                                                            \
+    ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_FIRE - TYPE_HIT))
+#define IS_WEAPON_COLD(obj)                                                                                            \
+    ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_COLD - TYPE_HIT))
+#define IS_WEAPON_ACID(obj)                                                                                            \
+    ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_ACID - TYPE_HIT))
+#define IS_WEAPON_SHOCK(obj)                                                                                           \
+    ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_SHOCK - TYPE_HIT))
+#define IS_WEAPON_POISON(obj)                                                                                          \
+    ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_POISON - TYPE_HIT))
 
 #define OBJ_IS_OPENABLE(obj)                                                                                           \
     (GET_OBJ_TYPE(obj) == ITEM_CONTAINER && IS_SET(GET_OBJ_VAL(obj, VAL_CONTAINER_BITS), CONT_CLOSEABLE))

@@ -108,7 +108,7 @@ const struct obj_type_def item_types[NUM_ITEM_TYPES] = {
         {{0, 40},
          {0, 20},
          {0, 20},
-         {0, TYPE_STAB - TYPE_HIT},
+         {0, TYPE_POISON - TYPE_HIT},
          {VAL_MIN, VAL_MAX},
          {VAL_MIN, VAL_MAX},
          {VAL_MIN, VAL_MAX}},
