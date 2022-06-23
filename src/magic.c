@@ -3528,6 +3528,7 @@ struct char_data *copyplayer(struct char_data *ch, struct char_data *model) {
  * illusory - that would entail its objects falling to the ground and stuff.
  * And it really wouldn't fit any scenarios very well. */
 void phantasm_transform(struct char_data *ch, struct char_data *model, int life_hours) {
+    char short_buf[160], long_buf[160], alias_buf[160];
     struct effect effect;
 
     SET_FLAG(MOB_FLAGS(ch), MOB_ILLUSORY); /* Make it an illusion */
@@ -3549,6 +3550,15 @@ void phantasm_transform(struct char_data *ch, struct char_data *model, int life_
 
     /* Having no soul, phantasms cannot exude auras of good or evil. */
     GET_ALIGNMENT(ch) = 0;
+
+    sprintf(short_buf, "the illusion of %s", GET_NAME(model));
+    sprintf(long_buf, "The illusion of %s waits here.", GET_NAME(model));
+    sprintf(alias_buf, "illusion %s", GET_NAMELIST(model));
+
+    strcat(long_buf, "\r\n");
+    GET_NAME(ch) = strdup(short_buf);
+    model->player.long_descr = strdup(long_buf);
+    GET_NAMELIST(ch) = strdup(alias_buf);
 
     /* The phantasm copies its model's current state, even if that state was
      * modified by magic.  Illusion-creating spells don't worry about the
@@ -3752,7 +3762,19 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
         eff.location = APPLY_NONE;
         effect_to_char(new_mob, &eff);
         add_follower(new_mob, ch);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_NEUTRAL);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL_RACE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD_RACE);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_STAY_ZONE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PROTECTOR);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PEACEKEEPER);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_HELPER);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_MEMORY);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_WIMPY);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_NOSUMMON);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
         GET_LIFEFORCE(new_mob) = LIFE_MAGIC;
 
@@ -3769,6 +3791,10 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
         }
         if (GET_LEVEL(vict) > skill) {
             act("$N is far too powerful!", FALSE, ch, 0, vict, TO_CHAR);
+            return CAST_RESULT_CHARGE;
+        }
+        if (MOB_FLAGS(vict) == MOB_ILLUSORY) {
+            act("You cannot copy another illusion!", FALSE, ch, 0, vict, TO_CHAR);
             return CAST_RESULT_CHARGE;
         }
 
@@ -3816,7 +3842,19 @@ int mag_summon(int skill, struct char_data *ch, struct char_data *vict, struct o
         eff.location = APPLY_NONE;
         effect_to_char(new_mob, &eff);
         add_follower(new_mob, ch);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_NEUTRAL);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL_RACE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD_RACE);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_STAY_ZONE);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PROTECTOR);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PEACEKEEPER);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_HELPER);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_WIMPY);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_MEMORY);
+        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_NOSUMMON);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
         GET_LIFEFORCE(new_mob) = LIFE_MAGIC;
 

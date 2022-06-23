@@ -1153,7 +1153,7 @@ ACMD(do_bash) {
     if (GET_LEVEL(vict) >= LVL_IMMORT)
         percent = prob + 1; /* insta-fail */
 
-    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) && damage_evasion(vict, ch, 0, DAM_CRUSH)) {
+    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) && damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)) {
         act(EVASIONCLR "You charge right through $N&7&b!&0", FALSE, ch, 0, vict, TO_CHAR);
         act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
         act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", FALSE, ch, 0, vict, TO_VICT);
