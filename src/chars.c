@@ -55,7 +55,7 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
     /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
     /* Dr */ {Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y},
-    /* Du */ {N, Y, Y, Y, N, N, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y},
+    /* Du */ {N, Y, Y, Y, N, Y, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y},
     /* Og */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
     /* Or */ {Y, Y, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, Y, N, Y, N, Y, N, Y, Y, Y, Y},
     /* HE */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N},
@@ -108,6 +108,10 @@ int get_base_saves(struct char_data *ch, int type) {
     switch (GET_RACE(ch)) {
     case RACE_DUERGAR:
     case RACE_DWARF:
+        saves[SAVING_PARA] -= (int)(0.2 * GET_VIEWED_CON(ch));
+        saves[SAVING_ROD] -= (int)(0.1 * GET_VIEWED_CON(ch));
+        saves[SAVING_SPELL] -= (int)(0.15 * GET_VIEWED_CON(ch));
+        break;
     case RACE_DRAGONBORN_FIRE:
     case RACE_DRAGONBORN_FROST:
     case RACE_DRAGONBORN_ACID:

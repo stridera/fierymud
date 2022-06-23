@@ -2448,33 +2448,33 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
 
         /* --- INNATES START HERE --- */
 
-    case SPELL_INN_STRENGTH:
+    case SPELL_INN_CHAZ:
         eff[0].location = APPLY_STR;
         eff[0].duration = (skill >> 1) + 4;
         eff[0].modifier = 1 + (skill / 18); /* max 6 */
         accum_effect = FALSE;
         to_vict = "You feel stronger!";
-        /* Innate strength usage shouldn't call for a skill improvement in a spell
+        /* Innate chaz usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 
-    case SPELL_INN_GRACE:
+    case SPELL_INN_SYLL:
         eff[0].location = APPLY_DEX;
         eff[0].duration = (skill >> 1) + 4;
         eff[0].modifier = 1 + (skill / 18); /* max 6 */
         accum_effect = FALSE;
         to_vict = "You feel nimbler!";
-        /* Innate grace usage shouldn't call for a skill improvement in a spell
+        /* Innate syll usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
     
-    case SPELL_INN_INSIGHT:
+    case SPELL_INN_TASS:
         eff[0].location = APPLY_WIS;
         eff[0].duration = (skill >> 1) + 4;
         eff[0].modifier = 1 + (skill / 18); /* max 6 */
         accum_effect = FALSE;
         to_vict = "You feel wiser!";
-        /* Innate insight usage shouldn't call for a skill improvement in a spell
+        /* Innate tass usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 
@@ -2488,23 +2488,23 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
          * sphere */
         break;
 
-    case SPELL_INN_FORTITUDE:
+    case SPELL_INN_TREN:
         eff[0].location = APPLY_CON;
         eff[0].duration = (skill >> 1) + 4;
         eff[0].modifier = 1 + (skill / 18); /* max 6 */
         accum_effect = FALSE;
         to_vict = "You feel healthier!";
-        /* Innate fortitude usage shouldn't call for a skill improvement in a spell
+        /* Innate tren usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 
-    case SPELL_INN_SPLENDOR:
+    case SPELL_INN_ASCEN:
         eff[0].location = APPLY_CHA;
         eff[0].duration = (skill >> 1) + 4;
         eff[0].modifier = 1 + (skill / 18); /* max 6 */
         accum_effect = FALSE;
         to_vict = "You feel more resplendent!";
-        /* Innate splendor usage shouldn't call for a skill improvement in a spell
+        /* Innate ascen usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
 

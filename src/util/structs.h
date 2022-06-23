@@ -624,14 +624,14 @@
 
 /*player innatetimes */
 #define INNATE_INVISIBLE 0
-#define INNATE_STRENGTH 1
+#define INNATE_CHAZ 1
 #define INNATE_DARKNESS 2
 #define INNATE_LEVITATE 3
-#define INNATE_GRACE 4
-#define INNATE_FORTITUDE 5
-#define INNATE_INSIGHT 6
+#define INNATE_SYLL 4
+#define INNATE_TREN 5
+#define INNATE_TASS 6
 #define INNATE_BRILL 7
-#define INNATE_SPLENDOR 8
+#define INNATE_ASCEN 8
 #define INNATE_HARNESS 9
 
 /* Coin indices for coin arrays */

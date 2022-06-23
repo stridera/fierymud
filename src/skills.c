@@ -878,25 +878,29 @@ void init_skills(void) {
     spello(SPELL_INFRAVISION, "infravision", 25, 10, 1, POS_SITTING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 9, FALSE, "Your night vision seems to fade.");
 
+    /* innate charisma */
+    spello(SPELL_INN_ASCEN, "innate ascen", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less splendid.");
+
     /* innate intelligence */
     spello(SPELL_INN_BRILL, "innate brill", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, 0, 0, 7, FALSE, "You feel less intelligent.");
 
+    /* innate strength */
+    spello(SPELL_INN_CHAZ, "innate chaz", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel weaker.");
+
     /* innate dexterity */
-    spello(SPELL_INN_GRACE, "innate grace", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+    spello(SPELL_INN_SYLL, "innate syll", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, 0, 0, 7, FALSE, "You feel clumsier.");
 
     /* innate wisdom */
-    spello(SPELL_INN_INSIGHT, "innate insight", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+    spello(SPELL_INN_TASS, "innate tass", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, 0, 0, 7, FALSE, "You feel less wise.");
 
-    /* innate charisma */
-    spello(SPELL_INN_SPLENDOR, "innate splendor", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
-           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less splendid.");
-
-    /* innate strength */
-    spello(SPELL_INN_STRENGTH, "innate strength", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
-           CAST_SPEED3, 0, 0, 7, FALSE, "You feel weaker.");
+    /* innate constitution */
+    spello(SPELL_INN_TREN, "innate tren", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, 0, 0, 7, FALSE, "You feel less healthy.");
 
     spello(SPELL_INSANITY, "insanity", 0, 0, 0, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT,
            C1, CAST_SPEED5, DAM_MENTAL, SKILL_SPHERE_ENCHANT, 5, FALSE, "Your mind returns to reality.");
