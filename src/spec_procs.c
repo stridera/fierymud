@@ -1153,7 +1153,7 @@ int gray_recall_room(struct char_data *ch) {
     case CLASS_CRYOMANCER:
         room = 30073;
         break;
-    case CLASS_ILLUSIONST:
+    case CLASS_ILLUSIONIST:
         room = 30000;
         break;
 
