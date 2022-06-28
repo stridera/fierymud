@@ -132,7 +132,7 @@ const char *equipment_types[NUM_WEARS + 1] = {"Used as light",
                                               "Worn in right ear",
                                               "Worn as badge",
                                               "Attached to belt",
-                                              "Hovering"
+                                              "Hovering",
                                               "\n"};
 
 /* WEAR_x - for scripts */
