@@ -2007,6 +2007,7 @@ int weapon_proficiency(struct obj_data *weapon, int position) {
     case TYPE_ACID:
     case TYPE_SHOCK:
     case TYPE_POISON:
+    case TYPE_ALIGN:
         return -1;
 
         /* These are slashing weapons. */
