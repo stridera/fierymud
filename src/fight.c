@@ -85,7 +85,7 @@ struct attack_hit_type attack_hit_text[] = {{"hit", "hits"}, /* 0 */
                                             {"pierce", "pierces"}, {"blast", "blasts"},       {"punch", "punches"},
                                             {"stab", "stabs"},     {"burn", "burns"},      /* 15 */
                                             {"freeze", "freezes"}, {"corrode", "corrodes"},   {"shock", "shocks"},
-                                            {"poison", "poisons"}, {"smite", "smites"}};
+                                            {"poison", "poisons"}, {"smite", "smites"}};   /* 20 */
 
 /****************************/
 /*  General target linking  */
