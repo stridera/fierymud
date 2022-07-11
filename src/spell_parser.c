@@ -390,6 +390,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
         case SPELL_CHARM:
             MANUAL_SPELL(spell_charm);
             break;
+        case SPELL_CLOUD_OF_DAGGERS:
+            MANUAL_SPELL(spell_cloud_of_daggers);
+            break;
         case SPELL_COLOR_SPRAY:
             MANUAL_SPELL(spell_color_spray);
             break;

@@ -561,6 +561,10 @@ void init_skills(void) {
     spello(SPELL_CLONE, "clone", 80, 65, 5, POS_STANDING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_SUMMON, C1,
            CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 35, FALSE, NULL);
 
+    spello(SPELL_CLOUD_OF_DAGGERS, "cloud of daggers", 0, 0, 0, POS_STANDING, TRUE,
+           TAR_IGNORE | TAR_DIRECT, TRUE, MAG_MANUAL, C1, CAST_SPEED5, DAM_SLASH, SKILL_SPHERE_GENERIC,
+           27, FALSE, NULL);
+
     spello(SPELL_COLDSHIELD, "coldshield", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE,
            MAG_AFFECT, C1, CAST_SPEED3, DAM_COLD, SKILL_SPHERE_WATER, 17, FALSE,
            "The ice formation around your body melts.");
