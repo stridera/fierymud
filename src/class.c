@@ -1551,6 +1551,7 @@ void assign_class_skills(void) {
 
     /* BARD */
     skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
+    skill_assign(SKILL_PERFORM, CLASS_BARD, 1);
     skill_assign(SKILL_PIERCING, CLASS_BARD, 1);
     skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
     skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);

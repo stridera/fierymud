@@ -393,7 +393,8 @@
 #define CD_INNATE_HARNESS 24
 #define CD_BREATHE 25
 #define CD_INNATE_CREATE 26
-#define NUM_COOLDOWNS 27
+#define CD_MUSIC 27
+#define NUM_COOLDOWNS 28
 
 /**********************************************************************
  * Structures                                                          *
@@ -904,6 +905,10 @@ struct int_app_type {
 struct con_app_type {
     sh_int hitp;
     sh_int shock;
+};
+
+struct cha_app_type {
+    sh_int music; /* how many bardic music cooldowns one can have */
 };
 
 struct weather_data {

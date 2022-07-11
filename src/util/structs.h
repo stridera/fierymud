@@ -1579,6 +1579,10 @@ struct con_app_type {
     sh_int shock;
 };
 
+struct cha_app_type {
+    sh_int music; /* how many bardic music cooldowns one can have */
+};
+
 struct weather_data {
     int pressure; /* How is the pressure ( Mb ) */
     int change;   /* How fast and what way does it change. */

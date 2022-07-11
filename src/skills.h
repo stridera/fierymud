@@ -375,6 +375,7 @@
 #define SKILL_BREATHE_FROST 487
 #define SKILL_BREATHE_ACID 488
 #define SKILL_BREATHE_GAS 489
+#define SKILL_PERFORM 490
 
 /* IF THIS GETS PAST 499, update char_data for skill timers! */
 
