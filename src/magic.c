@@ -1801,6 +1801,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_INSANITY:
+    case SONG_CROWN_OF_MADNESS:
         if (!attack_ok(ch, victim, TRUE))
             return CAST_RESULT_CHARGE;
         if (mag_savingthrow(victim, SAVING_SPELL)) {
@@ -2983,7 +2984,9 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     struct char_data *tch, *next_tch;
     char *to_char = NULL;
     char *to_room = NULL;
+    int casttype;
     bool found = FALSE;
+    bool damage = TRUE;
 
     if (ch == NULL)
         return 0;
@@ -3007,6 +3010,11 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SPELL_CREMATE:
         to_char = "&1&8You raise up a huge conflaguration in the area.&0";
         to_room = "&1&8$n summons a huge conflagration burning through the area.&0";
+        break;
+    case SONG_CROWN_OF_MADNESS:
+        to_char = "&2&bYou rend the sanity of those observing you with a tale of the Old Gods!&0";
+        to_room = "&2&b$n&2&b rends the sanity of those watching with a tale of the Old Gods!&0";
+        damage = FALSE;
         break;
     case SPELL_EARTHQUAKE:
         switch (SECT(IN_ROOM(ch))) {
@@ -3118,8 +3126,10 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
         if (spellnum == SPELL_HOLY_WORD && !IS_EVIL(tch))
             continue;
 
-        found = TRUE;
-        mag_damage(skill, ch, tch, spellnum, savetype);
+        if (damage == TRUE)
+            mag_damage(skill, ch, tch, spellnum, savetype);
+        else
+            mag_affect(skill, ch, tch, spellnum, savetype, casttype);
     }
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
@@ -4051,8 +4061,14 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         send_to_char("You are doused with a magical liquid.\r\n", victim);
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     case SPELL_SANE_MIND:
-        spell = SPELL_INSANITY;
+        if (!EFF_FLAGGED(victim, EFF_INSANITY))
+            return CAST_RESULT_CHARGE;
+        if (affected_by_spell(victim, SPELL_INSANITY))
+            spell = SPELL_INSANITY;
+        if (affected_by_spell(victim, SONG_CROWN_OF_MADNESS))
+            spell = SONG_CROWN_OF_MADNESS;
         to_vict = "Your mind comes back to reality.";
+        to_room = "$n regains $s senses.";
         break;
     case SPELL_REDUCE:
         if (!EFF_FLAGGED(victim, EFF_ENLARGE))
