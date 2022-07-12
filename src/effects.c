@@ -95,4 +95,6 @@ const char *effect_flags[NUM_EFF_FLAGS + 1] = {"BLIND", /* 0 */
                                                "MISDIRECTING",
                                                "BLESS",
                                                "HEX",
+                                               "DETECT POISON", /* 80 */
+                                               "SONG OF REST",
                                                "\n"};

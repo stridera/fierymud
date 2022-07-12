@@ -96,7 +96,8 @@
 #define EFF_BLESS 78         /* When blessed, your barehand attacks hurt ether chars */
 #define EFF_HEX 79           /* The evil side of blessing, to hurt ether chars */
 #define EFF_DETECT_POISON 80 /* Char is sensitive to poison */
-#define NUM_EFF_FLAGS 81     /* Keep me updated */
+#define EFF_SONG_OF_REST 81
+#define NUM_EFF_FLAGS 82     /* Keep me updated */
 
 extern const char *effect_flags[NUM_EFF_FLAGS + 1];
 

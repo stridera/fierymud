@@ -437,7 +437,9 @@ void init_skills(void) {
      * the caster's level increases.
      *
      * minpos  :  Minimum position the caster must be in for the spell to work
-     * (usually fighting or standing). targets :  A "list" of the valid targets
+     * (usually fighting or standing). 
+     * 
+     * targets :  A "list" of the valid targets
      * for the spell, joined with bitwise OR ('|').
      *
      * violent :  TRUE or FALSE, depending on if this is considered a violent
@@ -1394,6 +1396,9 @@ void init_skills(void) {
 
     chanto(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
            "Your nerves settle down as the terror leaves you.");
+
+    songo(SONG_SONG_OF_REST, "song of rest", POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
+           "The restful song fades from your memory.");
 
     /* Set up non-skill effects */
     effecto(SKILL_AWARE, "aware", "");
