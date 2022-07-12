@@ -395,6 +395,12 @@ void load_int_app(void) {
         /* percent to learn spell or skill */
         if (x <= 100 && x >= 0) /* linear from (0,3) to (100,60) */
             int_app[x].learn = (byte)((((float)57 / 100) * (float)x) + 3);
+
+        /* bonus to skills */
+        if (x <= 44 && x >= 0) /*  zero */
+            int_app[x].bonus = 0;
+        if (x <= 100 && x >= 45) /* linear from (45,2) to (100,7) */
+            int_app[x].bonus = (byte)((((float)1 / 11) * (float)x) - ((float)23 / 11));
     }
 }
 

@@ -899,6 +899,7 @@ struct wis_app_type {
 
 struct int_app_type {
     byte learn; /* how many % a player learns a spell/skill */
+    byte bonus; /* bonus to skills */
 };
 
 struct con_app_type {
