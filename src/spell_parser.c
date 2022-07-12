@@ -1060,6 +1060,25 @@ int chant(struct char_data *ch, struct char_data *tch, struct obj_data *obj, int
 
 /* Entry point for Bard music */
 
+/* 
+bool music(struct char_data *ch, int music) {
+    if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, music)) {
+            int hours = GET_COOLDOWN(ch, music) / (1 MUD_HR);
+            if (hours == 1)
+                strcpy(buf1, "hour");
+            else
+                sprintf(buf1, "%d hours", hours);
+            sprintf(buf,
+                    "You're still drained from performing recently!\r\n"
+                    "You'll be able to perform again in another %s.\r\n",
+                    buf1);
+            send_to_char(buf, ch);
+            return TRUE;
+    }
+    return FALSE;
+}
+*/
+
 int perform(struct char_data *ch, struct char_data *tch, struct obj_data *obj, int songnum) {
     int cresult;
 
@@ -1202,18 +1221,120 @@ ACMD(do_cast) {
             send_to_char("You have no idea how to perform anything good.\r\n", ch);
             return;
         }
-        if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, CD_MUSIC)) {
-            int hours = GET_COOLDOWN(ch, CD_MUSIC) / (1 MUD_HR);
-            if (hours == 1)
-                strcpy(buf1, "hour");
-            else
-                sprintf(buf1, "%d hours", hours);
-            sprintf(buf,
-                    "You're still drained from performing recently!\r\n"
-                    "You'll be able to perform again in another %s.\r\n",
-                    buf1);
-            send_to_char(buf, ch);
-            return;
+        if (GET_LEVEL(ch) < LVL_GOD) {
+                switch (cha_app[GET_CHA(ch)].music)
+                {
+                case 7:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_7))
+                        break;
+                case 6:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_6))
+                        break;
+                case 5:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_5)) 
+                        break;
+                case 4:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_4))
+                        break;  
+                case 3:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_3))
+                        break;    
+                case 2:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_2))
+                        break; 
+                case 1:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_1))
+                        break;                                     
+                default:
+                    sprintf(buf,
+                        "You're still drained from performing recently!\r\n");
+                    send_to_char(buf, ch);
+                    if GET_COOLDOWN(ch, CD_MUSIC_1) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_1) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance one will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_2) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_2) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance two will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_3) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_3) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance three will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_4) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_4) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance four will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_5) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_5) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance five will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_6) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_6) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance six will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_7) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_7) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance seven will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    return;
+                }
         }
     }
 
@@ -1223,7 +1344,7 @@ ACMD(do_cast) {
         if (subcmd == SCMD_CHANT)
             send_to_char("What do you want to chant?\r\n", ch);
         else if (subcmd == SCMD_PERFORM)
-            send_to_char("What music do you want to perform?\r\n", ch);
+            send_to_char("What do you want to perform?\r\n", ch);
         else
             send_to_char("Cast what where?\r\n", ch);
         return;
@@ -1238,7 +1359,7 @@ ACMD(do_cast) {
     } else if (subcmd == SCMD_PERFORM) {
         spellnum = find_song_num(arg);
         if (!IS_SONG(spellnum)) {
-            send_to_char("perform what?!?\r\n", ch);
+            send_to_char("Perform what?!?\r\n", ch);
             return;
         }
     } else {
@@ -1359,20 +1480,104 @@ ACMD(do_cast) {
             SET_COOLDOWN(ch, CD_CHANT, 4 MUD_HR);
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
+
     } else if (subcmd == SCMD_PERFORM) {
-        int i = 1;
-        while (i <= cha_app[GET_CHA(ch)].music) {
-	        if (!CD_MUSIC) {
-                int cresult = perform(ch, tch, tobj, spellnum);
-                if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                    improve_skill(ch, SKILL_PERFORM);
-                if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                    SET_COOLDOWN(ch, CD_MUSIC, (10 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                    WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                }
-	        } else
-	            i++;
+        cprintf(ch, "cha_app is %d\r\n", cha_app[GET_CHA(ch)].music);
+        if (cha_app[GET_CHA(ch)].music == 0) {
+            send_to_char("Your Charisma is too low to perform!\r\n", ch);
         }
+        for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
+            switch (i)
+            {
+            case 1:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_1)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_1, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+                }
+                break;
+            case 2:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_2)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_2, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;
+            case 3:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_3)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_3, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;
+            case 4:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_4)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_4, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;  
+            case 5:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_5)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_5, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;    
+            case 6:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_6)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_6, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break; 
+            case 7:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_7)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_7, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;                                     
+            default:
+                break;
+            }
+        }
+        
     } else {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
 

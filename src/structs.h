@@ -393,8 +393,14 @@
 #define CD_INNATE_HARNESS 24
 #define CD_BREATHE 25
 #define CD_INNATE_CREATE 26
-#define CD_MUSIC 27
-#define NUM_COOLDOWNS 28
+#define CD_MUSIC_1 27
+#define CD_MUSIC_2 28
+#define CD_MUSIC_3 29
+#define CD_MUSIC_4 30
+#define CD_MUSIC_5 31
+#define CD_MUSIC_6 32
+#define CD_MUSIC_7 33
+#define NUM_COOLDOWNS 34
 
 /**********************************************************************
  * Structures                                                          *
