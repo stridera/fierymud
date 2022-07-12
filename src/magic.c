@@ -2734,7 +2734,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             }
         }
         to_vict = "Your spirit withers in terror and sorrow!";
-        to_room = "$n's spirit withers in terror and sorrow!";
+        to_room = "$N's spirit withers in terror and sorrow!";
         break;
 
 
