@@ -381,6 +381,7 @@
 /* Bardic songs start at 551 and go to 600 */
 #define SONG_INSPIRATION 551
 #define SONG_TERROR 552
+#define SONG_HEARTHSONG 554
 
 /* Monk chants go from 601 to 650 */
 #define CHANT_REGENERATION 601

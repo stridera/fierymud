@@ -2831,6 +2831,9 @@ void perform_mag_group(int skill, struct char_data *ch, struct char_data *tch, i
     case SPELL_GROUP_RECALL:
         spell_recall(spellnum, skill, ch, tch, NULL, savetype);
         break;
+    case SONG_HEARTHSONG:
+        mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_SING);
+        break;
     case SPELL_INVIGORATE:
         mag_point(skill, ch, tch, SPELL_INVIGORATE, savetype);
         break;
@@ -2869,6 +2872,10 @@ int mag_group(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SPELL_DIVINE_ESSENCE:
         to_room = "&3&b$n&3&b invokes $s deity's divine essence to fill the area!&0";
         to_char = "&3&bYou invoke your deity's divine essence!&0\r\n";
+        break;
+    case SONG_HEARTHSONG:
+        to_room = "&3&b$n&3&b deepens the bonds of community and fellowship amongst you.&0";
+        to_char = "&3&bYou deepen the bonds of community and fellowship with your group.&0\r\n";
         break;
     default:
         to_room = NULL;
