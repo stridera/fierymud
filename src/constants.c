@@ -402,7 +402,7 @@ void load_wis_app(void) {
     int x;
 
     for (x = 0; x <= 100; x++) {
-        /* bonus practices per level */
+        /* bonus to skills */
         if (x <= 44 && x >= 0) /*  zero */
             wis_app[x].bonus = 0;
         if (x <= 100 && x >= 45) /* linear from (45,2) to (100,7) */

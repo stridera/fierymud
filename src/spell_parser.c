@@ -1249,7 +1249,7 @@ ACMD(do_cast) {
         if (IS_SET(cresult, CAST_RESULT_IMPROVE))
             improve_skill(ch, SKILL_CHANT);
         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-            SET_COOLDOWN(ch, CD_CHANT, 4 MUD_HR);
+            SET_COOLDOWN(ch, CD_CHANT, (7 - wis_app[GET_WIS(ch)].bonus) MUD_HR);
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
     } else if (subcmd == SCMD_SING) {
