@@ -1392,7 +1392,10 @@ void init_skills(void) {
     songo(SONG_INSPIRATION, "inspiration", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
            "Your inspiration fades.");
 
-    chanto(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
+    songo(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
+           "Your nerves settle down as the terror leaves you.");
+
+    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, 0, FALSE,
            "Your nerves settle down as the terror leaves you.");
 
     /* Set up non-skill effects */
