@@ -326,7 +326,8 @@ static void print_char_long_desc_to_char(struct char_data *targ, struct char_dat
 
     if (IS_NPC(targ) && !MOB_FLAGGED(targ, MOB_PLAYER_PHANTASM) && GET_LDESC(targ) &&
         GET_POS(targ) == GET_DEFAULT_POS(targ) && GET_STANCE(targ) != STANCE_FIGHTING &&
-        !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS)) {
+        !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS) && 
+        !EFF_FLAGGED(targ, EFF_MESMERIZED)) {
         /* Copy to buffer, and cut off te newline. */
         strcpy(buf, GET_LDESC(targ));
         buf[MAX(strlen(GET_LDESC(targ)) - 2, 0)] = '\0';
@@ -359,7 +360,7 @@ static void print_char_long_desc_to_char(struct char_data *targ, struct char_dat
     }
 
     else if (EFF_FLAGGED(targ, EFF_MESMERIZED))
-        cprintf(ch, " is here, gazing carefully at a point in front of %s nose nose.", HSHR(targ));
+        cprintf(ch, " is here, gazing carefully at a point in front of %s nose.", HSHR(targ));
 
     else if (GET_STANCE(targ) != STANCE_FIGHTING)
         print_char_position_to_char(targ, ch);
@@ -644,10 +645,8 @@ static void print_char_spells_to_char(struct char_data *targ, struct char_data *
                 "surroundings.&0",
                 TRUE, ch, 0, targ, TO_CHAR);
     } else if (EFF_FLAGGED(targ, EFF_MESMERIZED))
-        act("$E gazes carefully at a point in the air directly in front of $S "
-            "nose,\r\n"
-            "as if deliberating upon a puzzle or problem.",
-            TRUE, ch, 0, targ, TO_CHAR);
+        act("$E gazes carefully at a point in the air directly in front of $S nose,\r\n"
+            "as if deliberating upon a puzzle or problem.", TRUE, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HELL))
         act("&1&bHuge leathery &9bat-like&1 wings sprout from $S back.&0", TRUE, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HEAVEN))
