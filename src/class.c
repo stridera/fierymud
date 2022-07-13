@@ -1569,12 +1569,16 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_ASSASSIN, 70);
 
     /* BARD */
-    skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
+    skill_assign(SKILL_BLUDGEONING, CLASS_BARD, 1);
     skill_assign(SKILL_PIERCING, CLASS_BARD, 1);
-    skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
-    skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
-    skill_assign(SKILL_STEAL, CLASS_BARD, 10);
+    skill_assign(SKILL_SLASHING, CLASS_BARD, 1);
+    skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
+    skill_assign(SKILL_MEDITATE, CLASS_BARD, 1);
+    skill_assign(SKILL_SCRIBE, CLASS_BARD, 1);
     skill_assign(SKILL_HIDE, CLASS_BARD, 10);
+    skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
+    skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
+    skill_assign(SKILL_STEAL, CLASS_BARD, 10);
     skill_assign(SKILL_DODGE, CLASS_BARD, 20);
     skill_assign(SKILL_PARRY, CLASS_BARD, 40);
     skill_assign(SKILL_TRACK, CLASS_BARD, 50);
