@@ -4050,6 +4050,13 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         REMOVE_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
         send_to_char("You are doused with a magical liquid.\r\n", victim);
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+    case SONG_JOYFUL_NOISE:
+        spell = SPELL_SILENCE;
+        send_to_char("&3&bYou make such a racket it pierces the silence!&0\r\n", ch);
+        act("&3&b$N makes such a racket it pierces the silence!&0", TRUE, victim, 0, ch, TO_NOTVICT);
+        to_vict = "The noise shatters the silence about you!";
+        to_room = "$n begins to make sound again!";
+        break;
     case SPELL_SANE_MIND:
         spell = SPELL_INSANITY;
         to_vict = "Your mind comes back to reality.";
