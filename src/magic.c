@@ -1681,6 +1681,32 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "$N's pupils dilate rapidly for a second.";
         break;
 
+    case CHANT_HYMN_OF_SAINT_AUGUSTINE:
+
+        if (is_abbrev(buf2, "fire")) {
+            SET_FLAG(eff[0].flags, EFF_FIREHANDS);
+            to_vict = "&1Your fists burn with inner fire.&0";
+            to_room = "&1$N's fists burn with inner fire.&0";
+        } else if (is_abbrev(buf2, "ice")) {
+            SET_FLAG(eff[0].flags, EFF_ICEHANDS);
+            to_vict = "&4&bYou unleash the blizzard in your heart.&0";
+            to_room = "&4&b$N unleashes the blizzard in $S heart.&0";
+        } else if (is_abbrev(buf2, "lightning")) {
+            SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
+            to_vict = "&6&bYour knuckles crackle with lightning.&0";
+            to_room = "&6&b$N's knuckles crackle with lightning.&0";
+        } else if (is_abbrev(buf2, "acid")) {
+            SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
+            to_vict = "&3&bYou charge your hands with corrosive chi.&0";
+            to_room = "&3&b$N charges $S hands with corrosive chi.&0";
+        } else {
+            send_to_char("What element do you want to imbue?\r\n", ch);
+            send_to_char("Fire, ice, lightning, or acid?\r\n", ch);
+            return 0;
+        }
+        eff[0].duration = (skill / 10) + wis_app[GET_WIS(ch)].bonus; /* max 15 */
+        break;
+
     case SPELL_FIRESHIELD:
 
         if (EFF_FLAGGED(ch, EFF_COLDSHIELD)) {

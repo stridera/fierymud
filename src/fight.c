@@ -1179,6 +1179,166 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
                         "You punch $N in the throat causing $M to nearly choke to death!&0",
                         "$n nails you in the throat, and you barely avoid choking to death!&0"}};
 
+    static struct dam_fire_barehand {
+        char *to_room;
+        char *to_char;
+        char *to_victim;
+    } bare_fire_attack[] = {{"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
+                        "You thought you saw $N somewhere where $E wasn't.&0",
+                        "$n takes aim at you, but loses communication with $s burning fists!&0"},
+
+                       {"$n slaps $N before tweaking $S nose with $s burning fists.&0", /* 1: 1..2   */
+                        "You slap $N with your burning fists, and make a grab for $S nose.&0",
+                        "$n slaps your cheek with $s burning fists, then tries to twist your nose off!&0"},
+
+                       {"$n delivers a swift burning kick to $N's shin, causing a yelp of pain.&0", /* 2: 3..4 */
+                        "You send a swift burning kick to $N's shin.&0", 
+                        "You yelp in pain as $n kicks you in the shin!&0"},
+
+                       {"$N howls in pain as $n nearly burns $S ear off!&0", /* 3: 5..6 */
+                        "You geab $N's ears and almost burn them off!&0",
+                        "You cannot help but scream in pain as $n gets a burning grasp on your ears.&0"},
+
+                       {"$N nearly doubles over choking as $n collapses $S trachea with a fiery punch!&0", /* 4: 7..10 */
+                        "You sink your fiery stiffened fingers into $N's throat.&0",
+                        "$n strikes you in the throat with a fiery punch.&0"},
+
+                       {"$n dances up to $N and throws $s fiery elbow into $S gut!&0", /* 5: 11..14 */
+                        "You spin around $N and throw your fiery elbow into $S gut!&0",
+                        "$n dances up to you, and throws $s fiery elbow into your stomach!   OUCH!&0"},
+
+                       {"Cupping $s flaming hands, $n slaps $N's ears, bursting $S eardrums.&0", /* 6: 15..19 */
+                        "You cup your flaming hands and slap $N's ears, hoping to cause deafness.&0",
+                        "You feel as if $n inserted flaming daggers into your ears, burning your brain!&0"},
+
+                       {"$n punches $N repeatedly in the kidneys with flaming fists!&0", /* 7: 19..23 */
+                        "You wallop $N in the kidneys with flaming fists!&0",
+                        "$n repeatedly punches you in the kidneys with flaming fists!&0"},
+
+                       {"$n punches $N in the throat, causing $M to burn!&0", /* 8: > 23 */
+                        "You punch $N in the throat causing $M to nearly burn to death!&0",
+                        "$n nails you in the throat, and you barely avoid burning to death!&0"}};
+
+    static struct dam_ice_barehand {
+        char *to_room;
+        char *to_char;
+        char *to_victim;
+    } bare_ice_attack[] = {{"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
+                        "You thought you saw $N somewhere where $E wasn't.&0",
+                        "$n takes aim at you, but loses communication with $s icy fists!&0"},
+
+                       {"$n slaps $N before tweaking $S nose with $s chilling fists.&0", /* 1: 1..2   */
+                        "You slap $N with your chilling fists, and make a grab for $S nose.&0",
+                        "$n slaps your cheek with $s chilling fists, then tries to twist your nose off!&0"},
+
+                       {"$n delivers a swift chilling kick to $N's shin, causing a yelp of pain.&0", /* 2: 3..4 */
+                        "You send a swift chilling kick to $N's shin.&0", 
+                        "You yelp in pain as $n kicks you in the shin!&0"},
+
+                       {"$N howls in pain as $n nearly freezes $S ear off!&0", /* 3: 5..6 */
+                        "You geab $N's ears and almost freeze them off!&0",
+                        "You cannot help but scream in pain as $n gets a freezeing grasp on your ears.&0"},
+
+                       {"$N nearly doubles over choking as $n collapses $S trachea with an icy punch!&0", /* 4: 7..10 */
+                        "You sink your icy stiffened fingers into $N's throat.&0",
+                        "$n strikes you in the throat with an icy punch.&0"},
+
+                       {"$n dances up to $N and throws $s icy elbow into $S gut!&0", /* 5: 11..14 */
+                        "You spin around $N and throw your icy elbow into $S gut!&0",
+                        "$n dances up to you, and throws $s icy elbow into your stomach!   OUCH!&0"},
+
+                       {"Cupping $s freezing hands, $n slaps $N's ears, bursting $S eardrums.&0", /* 6: 15..19 */
+                        "You cup your freezing hands and slap $N's ears, hoping to cause deafness.&0",
+                        "You feel as if $n inserted icy daggers into your ears, freezing your brain!&0"},
+
+                       {"$n punches $N repeatedly in the kidneys with icy fists!&0", /* 7: 19..23 */
+                        "You wallop $N in the kidneys with icy fists!&0",
+                        "$n repeatedly punches you in the kidneys with icy fists!&0"},
+
+                       {"$n punches $N in the throat, causing $M to freeze!&0", /* 8: > 23 */
+                        "You punch $N in the throat causing $M to nearly freeze to death!&0",
+                        "$n nails you in the throat, and you barely avoid freezing to death!&0"}};
+
+    static struct dam_lightning_barehand {
+        char *to_room;
+        char *to_char;
+        char *to_victim;
+    } bare_lightning_attack[] = {{"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
+                        "You thought you saw $N somewhere where $E wasn't.&0",
+                        "$n takes aim at you, but loses communication with $s electric fists!&0"},
+
+                       {"$n slaps $N before tweaking $S nose with $s electric fists.&0", /* 1: 1..2   */
+                        "You slap $N with your electric fists, and make a grab for $S nose.&0",
+                        "$n slaps your cheek with $s electric fists, then tries to twist your nose off!&0"},
+
+                       {"$n delivers a swift electrifying kick to $N's shin, causing a yelp of pain.&0", /* 2: 3..4 */
+                        "You send a swift electrifying kick to $N's shin.&0", 
+                        "You yelp in pain as $n kicks you in the shin!&0"},
+
+                       {"$N howls in pain as $n nearly shock $S ear off!&0", /* 3: 5..6 */
+                        "You geab $N's ears and almost shock them off!&0",
+                        "You cannot help but scream in pain as $n gets a shocking grasp on your ears.&0"},
+
+                       {"$N nearly doubles over choking as $n collapses $S trachea with an electrifying punch!&0", /* 4: 7..10 */
+                        "You sink your electrified stiffened fingers into $N's throat.&0",
+                        "$n strikes you in the throat with an electrifying punch.&0"},
+
+                       {"$n dances up to $N and throws $s electrified elbow into $S gut!&0", /* 5: 11..14 */
+                        "You spin around $N and throw your electrified elbow into $S gut!&0",
+                        "$n dances up to you, and throws $s electrified elbow into your stomach!   OUCH!&0"},
+
+                       {"Cupping $s shocking hands, $n slaps $N's ears, bursting $S eardrums.&0", /* 6: 15..19 */
+                        "You cup your shocking hands and slap $N's ears, hoping to cause deafness.&0",
+                        "You feel as if $n inserted electrified daggers into your ears, shocking your brain!&0"},
+
+                       {"$n punches $N repeatedly in the kidneys with jolting fists!&0", /* 7: 19..23 */
+                        "You wallop $N in the kidneys with jolting fists!&0",
+                        "$n repeatedly punches you in the kidneys with jolting fists!&0"},
+
+                       {"$n punches $N in the throat, causing $M to be shocked!&0", /* 8: > 23 */
+                        "You punch $N in the throat causing $M to be nearly shocking to death!&0",
+                        "$n nails you in the throat, and you barely avoid being shocked to death!&0"}};
+
+    static struct dam_acid_barehand {
+        char *to_room;
+        char *to_char;
+        char *to_victim;
+    } bare_acid_attack[] = {{"$n threw $s burning punch just a little wide, missing $N completely.&0", /* 0: 0 */
+                        "You thought you saw $N somewhere where $E wasn't.&0",
+                        "$n takes aim at you, but loses communication with $s corrosive fists!&0"},
+
+                       {"$n slaps $N before tweaking $S nose with $s acidic fists.&0", /* 1: 1..2   */
+                        "You slap $N with your acidic fists, and make a grab for $S nose.&0",
+                        "$n slaps your cheek with $s acidic fists, then tries to twist your nose off!&0"},
+
+                       {"$n delivers a swift corrosive kick to $N's shin, causing a yelp of pain.&0", /* 2: 3..4 */
+                        "You send a swift corrosive kick to $N's shin.&0", 
+                        "You yelp in pain as $n kicks you in the shin!&0"},
+
+                       {"$N howls in pain as $n nearly melt $S ear off!&0", /* 3: 5..6 */
+                        "You geab $N's ears and almost melt them off!&0",
+                        "You cannot help but scream in pain as $n gets an acidic grasp on your ears.&0"},
+
+                       {"$N nearly doubles over choking as $n collapses $S trachea with a corrosive punch!&0", /* 4: 7..10 */
+                        "You sink your corrosive stiffened fingers into $N's throat.&0",
+                        "$n strikes you in the throat with a corrosive punch.&0"},
+
+                       {"$n dances up to $N and throws $s acidic elbow into $S gut!&0", /* 5: 11..14 */
+                        "You spin around $N and throw your acidic elbow into $S gut!&0",
+                        "$n dances up to you, and throws $s acidic elbow into your stomach!   OUCH!&0"},
+
+                       {"Cupping $s corrosive hands, $n slaps $N's ears, melting $S eardrums.&0", /* 6: 15..19 */
+                        "You cup your corrosive hands and slap $N's ears, hoping to cause deafness.&0",
+                        "You feel as if $n inserted acid daggers into your ears, melting your brain!&0"},
+
+                       {"$n punches $N repeatedly in the kidneys with dissolving fists!&0", /* 7: 19..23 */
+                        "You wallop $N in the kidneys with dissolving fists!&0",
+                        "$n repeatedly punches you in the kidneys with dissolving fists!&0"},
+
+                       {"$n punches $N in the throat, causing $M to melt!&0", /* 8: > 23 */
+                        "You punch $N in the throat causing $M to nearly melt to death!&0",
+                        "$n nails you in the throat, and you barely avoid melting to death!&0"}};
+
     static struct dam_weapon_type {
         char *to_room;
         char *to_char;
@@ -1260,6 +1420,14 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
     /* damage message to onlookers */
     if (w_type == SKILL_BAREHAND)
         msg = bare_attack[msgnum].to_room;
+    else if (EFF_FLAGGED(ch, EFF_FIREHANDS))
+        msg = bare_fire_attack[msgnum].to_room;
+    else if (EFF_FLAGGED(ch, EFF_ICEHANDS))
+        msg = bare_ice_attack[msgnum].to_room;
+    else if (EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS))
+        msg = bare_lightning_attack[msgnum].to_room;
+    else if (EFF_FLAGGED(ch, EFF_ACIDHANDS))
+        msg = bare_acid_attack[msgnum].to_room;
     else
         msg = replace_string(dam_weapons[msgnum].to_room, attack_hit_text[w_type].singular,
                              attack_hit_text[w_type].plural);
@@ -1269,6 +1437,14 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
     /* damage message to damager */
     if (w_type == SKILL_BAREHAND)
         msg = bare_attack[msgnum].to_char;
+    else if (EFF_FLAGGED(ch, EFF_FIREHANDS))
+        msg = bare_fire_attack[msgnum].to_char;
+    else if (EFF_FLAGGED(ch, EFF_ICEHANDS))
+        msg = bare_ice_attack[msgnum].to_char;
+    else if (EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS))
+        msg = bare_lightning_attack[msgnum].to_char;
+    else if (EFF_FLAGGED(ch, EFF_ACIDHANDS))
+        msg = bare_acid_attack[msgnum].to_char;
     else
         msg = replace_string(dam_weapons[msgnum].to_char, attack_hit_text[w_type].singular,
                              attack_hit_text[w_type].plural);
@@ -1278,6 +1454,14 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim, int w_
     /* damage message to damagee */
     if (w_type == SKILL_BAREHAND)
         msg = bare_attack[msgnum].to_victim;
+    else if (EFF_FLAGGED(ch, EFF_FIREHANDS))
+        msg = bare_fire_attack[msgnum].to_victim;
+    else if (EFF_FLAGGED(ch, EFF_ICEHANDS))
+        msg = bare_ice_attack[msgnum].to_victim;
+    else if (EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS))
+        msg = bare_lightning_attack[msgnum].to_victim;
+    else if (EFF_FLAGGED(ch, EFF_ACIDHANDS))
+        msg = bare_acid_attack[msgnum].to_victim;
     else
         msg = replace_string(dam_weapons[msgnum].to_victim, attack_hit_text[w_type].singular,
                              attack_hit_text[w_type].plural);
@@ -1829,8 +2013,18 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
         if (type == TYPE_UNDEFINED || type == SKILL_RIPOSTE || type == SKILL_DUAL_WIELD || !type) {
             if (weapon)
                 type = GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT;
-            else if (GET_SKILL(ch, SKILL_BAREHAND))
-                type = SKILL_BAREHAND;
+            else if (GET_SKILL(ch, SKILL_BAREHAND)) {
+                if (EFF_FLAGGED(ch, EFF_FIREHANDS))
+                    type = TYPE_FIRE;
+                else if (EFF_FLAGGED(ch, EFF_ICEHANDS))
+                    type = TYPE_COLD;
+                else if (EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS))
+                    type = TYPE_SHOCK;
+                else if (EFF_FLAGGED(ch, EFF_ACIDHANDS))
+                    type = TYPE_ACID;
+                else
+                    type = SKILL_BAREHAND;
+            }        
             else if (IS_NPC(ch) && ch->mob_specials.attack_type != 0)
                 type = ch->mob_specials.attack_type + TYPE_HIT;
             else if (GET_RACE(ch) == RACE_DRAGONBORN_FIRE || GET_RACE(ch) == RACE_DRAGONBORN_FROST
@@ -1907,6 +2101,7 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
      * so short-circuit those function calls here.
      */
     else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || no_defense_check ||
+             EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) || EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
              (!riposte(ch, victim) && !parry(ch, victim) && !dodge(ch, victim) &&
               (!weapon || !weapon_special(weapon, ch)))) {
         /*
@@ -1948,7 +2143,7 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
         if (type == SKILL_BACKSTAB || type == SKILL_2BACK)
             dam *= GET_SKILL(ch, SKILL_BACKSTAB) / 10 + 1;
 
-        else if (type == SKILL_BAREHAND)
+        else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) || EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);
 
         else {

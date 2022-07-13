@@ -396,6 +396,7 @@
 #define CHANT_SPIRIT_WOLF 611
 #define CHANT_SPIRIT_BEAR 612
 #define CHANT_INTERMINABLE_WRATH 613
+#define CHANT_HYMN_OF_SAINT_AUGUSTINE 614
 
 /* New skills may be added here up to MAX_ABILITIES (650) */
 /* Don't add spells/skills/songs/chants that will be saved past 650.  The

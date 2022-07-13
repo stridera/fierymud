@@ -1382,7 +1382,8 @@ void init_skills(void) {
     chanto(CHANT_WAR_CRY, "war cry", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, FALSE,
            "Your determination level returns to normal.");
 
-
+    chanto(CHANT_HYMN_OF_SAINT_AUGUSTINE, "hymn of saint augustine", POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT, 0, FALSE, 
+           "Your inner elements subside.");
 
     /* Set up bard songs. */
     /*  songo(SONG_CHORUS_OF_COURAGE, "chorus of courage", POS_STANDING, FALSE,

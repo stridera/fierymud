@@ -2014,6 +2014,7 @@ void assign_class_skills(void) {
     chant_assign(CHANT_BATTLE_HYMN, CLASS_MONK, 30);
     chant_assign(CHANT_SHADOWS_SORROW_SONG, CLASS_MONK, 30);
     chant_assign(CHANT_IVORY_SYMPHONY, CLASS_MONK, 45);
+    chant_assign(CHANT_HYMN_OF_SAINT_AUGUSTINE, CLASS_MONK, 50);
     chant_assign(CHANT_ARIA_OF_DISSONANCE, CLASS_MONK, 60);
     chant_assign(CHANT_SONATA_OF_MALAISE, CLASS_MONK, 60);
     chant_assign(CHANT_PEACE, CLASS_MONK, 70);
