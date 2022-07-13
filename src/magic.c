@@ -2821,6 +2821,9 @@ void perform_mag_group(int skill, struct char_data *ch, struct char_data *tch, i
         mag_affect(skill, ch, tch, SPELL_GREATER_ENDURANCE, savetype, CAST_SPELL);
         mag_affect(skill, ch, tch, SPELL_BLESS, savetype, CAST_SPELL);
         break;
+    case SONG_FREEDOM_SONG:
+        mag_unaffect(skill, ch, tch, SONG_FREEDOM_SONG, savetype);
+        break;
     case SPELL_GROUP_ARMOR:
         mag_affect(skill, ch, tch, SPELL_ARMOR, savetype, CAST_SPELL);
         break;
@@ -2869,6 +2872,10 @@ int mag_group(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SPELL_DIVINE_ESSENCE:
         to_room = "&3&b$n&3&b invokes $s deity's divine essence to fill the area!&0";
         to_char = "&3&bYou invoke your deity's divine essence!&0\r\n";
+        break;
+    case SONG_FREEDOM_SONG:
+        to_room = "&7&b$n&7&b performs a song to break the chains that bind!&0";
+        to_char = "&7&bYou perform a song to break the chains that bind!&0\r\n";
         break;
     default:
         to_room = NULL;
@@ -4050,6 +4057,48 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         REMOVE_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
         send_to_char("You are doused with a magical liquid.\r\n", victim);
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+    case SONG_FREEDOM_SONG:
+        if (EFF_FLAGGED(victim, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(victim, EFF_MAJOR_PARALYSIS) || affected_by_spell(victim, SPELL_ENTANGLE)
+            || EFF_FLAGGED(victim, EFF_IMMOBILIZED)) {
+            act("&6&b$N's music shatters the magic paralyzing you!&0", FALSE, victim, 0, ch, TO_CHAR);
+            act("&6&bYour music disrupts the magic keeping $n frozen.&0", FALSE, victim, 0, ch, TO_VICT);
+            act("&6&b$N's music frees $n from magic which held $m motionless.&0", TRUE, victim, 0, ch, TO_NOTVICT);
+            effect_from_char(victim, SPELL_MINOR_PARALYSIS);
+            effect_from_char(victim, SPELL_MAJOR_PARALYSIS);
+            effect_from_char(victim, SPELL_ENTANGLE);
+            effect_from_char(victim, SPELL_SPINECHILLER);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MINOR_PARALYSIS);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MAJOR_PARALYSIS);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_IMMOBILIZED);
+        }
+        if (EFF_FLAGGED(victim, EFF_MESMERIZED) || EFF_FLAGGED(victim, EFF_CONFUSION) || EFF_FLAGGED(victim, EFF_MISDIRECTION)) {
+            act("&5&bYou draw $n's attention from whatever $e was pondering.&0", FALSE, victim, 0, ch, TO_VICT);
+            act("&5&b$N jolts you out of your reverie!&0", FALSE, victim, 0, ch, TO_CHAR);
+            act("&5&b$N's music distracts $n from whatever was fascinating $m.&0", TRUE, victim, 0, ch, TO_NOTVICT);
+            effect_from_char(victim, SPELL_MESMERIZE);
+            effect_from_char(victim, SPELL_CONFUSION);
+            effect_from_char(victim, SPELL_MISDIRECTION);
+            // effect_from_char(victim, SONG_ENRAPTURE);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MESMERIZED);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_CONFUSION);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MISDIRECTION);
+        }
+        if (EFF_FLAGGED(victim, EFF_CHARM) ||  affected_by_spell(victim, SPELL_CHARM)){
+            act("&3&bYour music breaks the hold over $n!&0", FALSE, ch, 0, ch->master, TO_VICT);
+            act("&3&b$N's music breaks the hold over you!&0", FALSE, ch, 0, ch->master, TO_CHAR);
+            act("&3&b$N's music breaks the hold over $n!&0", TRUE, ch, 0, ch->master, TO_NOTVICT);
+            effect_from_char(victim, SPELL_CHARM);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_CHARM);
+        }
+        if (EFF_FLAGGED(victim, EFF_RAY_OF_ENFEEB) || affected_by_spell(victim, SPELL_CHILL_TOUCH)) {
+            act("&1Your music rejuvenates $n's body!&0", FALSE, victim, 0, ch, TO_VICT);
+            act("&1$N's music rejuvenates your body!&0", FALSE, victim, 0, ch, TO_CHAR);
+            act("&1$N's music rejuvenates $n's body!&0", TRUE, victim, 0, ch, TO_NOTVICT);
+            effect_from_char(victim, SPELL_RAY_OF_ENFEEB);
+            effect_from_char(victim, SPELL_CHILL_TOUCH);
+            REMOVE_FLAG(EFF_FLAGS(victim), EFF_RAY_OF_ENFEEB);
+        }
+        return CAST_RESULT_IMPROVE;
     case SPELL_SANE_MIND:
         spell = SPELL_INSANITY;
         to_vict = "Your mind comes back to reality.";
@@ -4065,13 +4114,28 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         to_vict = "You don't feel so unlucky.";
         break;
     case SPELL_REMOVE_PARALYSIS:
-        if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS))) {
-            if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS))
+        if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_ENTANGLE))) {
+            if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS)){
+                effect_from_char(victim, SPELL_MINOR_PARALYSIS);
                 spell = SPELL_MINOR_PARALYSIS;
-            if (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS))
+            }    
+            if (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)){
+                effect_from_char(victim, SPELL_MAJOR_PARALYSIS);
                 spell = SPELL_MAJOR_PARALYSIS;
-            to_vict = "&3&bYour body begins to move again.&0";
-            to_room = "&3&b$n begins to move again.&0";
+            }
+            if (affected_by_spell(victim, SPELL_ENTANGLE)){
+                effect_from_char(victim, SPELL_ENTANGLE);
+                spell = SPELL_ENTANGLE;
+            }
+            if (affected_by_spell(victim, SPELL_MESMERIZE)){
+                effect_from_char(victim, SPELL_MESMERIZE);
+                spell = SPELL_MESMERIZE;
+            }
+
+            act("&3&bYour body begins to move again.&0", FALSE, victim, 0, ch, TO_CHAR);
+            act("&3&b$n begins to move again.&0", TRUE, victim, 0, ch, TO_ROOM);
+
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;    
         }
         break;
     case SPELL_REMOVE_POISON:

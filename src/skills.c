@@ -1395,6 +1395,9 @@ void init_skills(void) {
     chanto(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
            "Your nerves settle down as the terror leaves you.");
 
+    songo(SONG_FREEDOM_SONG, "freedom song", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_GROUP, 0, FALSE,
+           "Your nerves settle down as the terror leaves you.");
+
     /* Set up non-skill effects */
     effecto(SKILL_AWARE, "aware", "");
 }
