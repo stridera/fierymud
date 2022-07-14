@@ -1932,7 +1932,7 @@ ASPELL(spell_reveal_hidden) {
 
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room)
         if (EFF_FLAGGED(vict, EFF_INVISIBLE) || IS_HIDDEN(vict)) {
-            if (vict != ch && !IS_IN_GROUP(ch, vict)) {
+            if (IS_NPC(vict) && !IS_IN_GROUP(ch, vict)) {
                 REMOVE_FLAG(EFF_FLAGS(vict), EFF_INVISIBLE);
                 GET_HIDDENNESS(vict) = 0;
                 act("You reavel $N lurking here!", FALSE, ch, 0, vict, TO_CHAR);
