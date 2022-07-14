@@ -81,6 +81,7 @@ void assign_mobiles(void) {
     ASSIGNMOB(6008, guild_guard);  /* antipal */
     ASSIGNMOB(6040, guild_guard);  /* assassin */
     ASSIGNMOB(6041, guild_guard);  /* thief */
+    ASSIGNMOB(6060, guild_guard);  /* bard */
     ASSIGNMOB(6175, guild_guard);  /* druid guard */
     ASSIGNMOB(6216, guild_guard);  /* priest/cleric guard */
     ASSIGNMOB(6217, guild_guard);  /* paladin */
@@ -99,9 +100,11 @@ void assign_mobiles(void) {
     ASSIGNMOB(6080, guild);  /* horsemaster (anti-paladin) */
     ASSIGNMOB(6020, guild);  /* Doorindark (assassin) */
 
+    ASSIGNMOB(6061, guild);  /* bard */
+
     ASSIGNMOB(6113, guild);  /* mercenary */
     ASSIGNMOB(6176, guild);  /* warrior */
-    ASSIGNMOB(55703, guild); /* Jore Granitearm - berserker */
+    ASSIGNMOB(55703, guild); /* Jora Granitearm - berserker */
 
     ASSIGNMOB(6220, guild);  /* pyromancer */
     ASSIGNMOB(6221, guild);  /* cryomancer */
@@ -152,6 +155,7 @@ void assign_mobiles(void) {
     ASSIGNMOB(5302, guild_guard);  /* monk */
     ASSIGNMOB(16911, guild_guard); /* necro HH */
     ASSIGNMOB(3201, guild_guard);  /* berserker */
+    ASSIGNMOB(5304, guild_guard);  /* bard */
 
     ASSIGNMOB(3018, guild);  /* illusionist */
     ASSIGNMOB(3020, guild);  /* archmage */
@@ -167,6 +171,7 @@ void assign_mobiles(void) {
     ASSIGNMOB(5303, guild);  /* monk */
     ASSIGNMOB(16910, guild); /* Asiri'Qaxt (necro) */
     ASSIGNMOB(3200, guild);  /* Tozug (berserker) */
+    ASSIGNMOB(5305, guild);  /* bard */
 
     /* End Mielikki */
 
