@@ -516,6 +516,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
         case SPELL_RESURRECT:
             MANUAL_SPELL(spell_resurrect);
             break;
+        case SPELL_REVEAL_HIDDEN:
+            MANUAL_SPELL(spell_reveal_hidden);
+            break;
         case SPELL_SHIFT_CORPSE:
             MANUAL_SPELL(spell_shift_corpse);
             break;

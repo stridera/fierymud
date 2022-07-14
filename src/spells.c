@@ -1885,6 +1885,70 @@ ASPELL(spell_remove_paralysis) {
     }
 }
 
+int reveal_contents(struct obj_data *container, struct char_data *ch) {
+    int found_something = 0;
+    struct obj_data *k;
+
+    for (k = container; k; k = k->next_content) {
+        if (OBJ_FLAGGED(k, ITEM_INVISIBLE) || GET_OBJ_HIDDENNESS(k) > 0) {
+            REMOVE_FLAG(GET_OBJ_FLAGS(k), ITEM_INVISIBLE);
+            GET_OBJ_HIDDENNESS(k) = 0;
+            act("You reveal $p!", FALSE, ch, k, 0, TO_CHAR);
+            act("$n reveals $p!", TRUE, ch, k, 0, TO_ROOM);
+            found_something += 1;
+        }
+        if (k) {
+            if (GET_OBJ_TYPE(k) == ITEM_CONTAINER) {
+                if (IS_SET(GET_OBJ_VAL(k, VAL_CONTAINER_BITS), CONT_CLOSED)) {
+                    act("You must open $p before you can reveal its contents.", FALSE, ch, k, 0, TO_CHAR);
+                } else {
+                    found_something += reveal_contents(k->contains, ch);
+                }
+            }
+        }
+    }
+    return found_something;
+}
+
+ASPELL(spell_reveal_hidden) {
+    struct char_data *vict;
+    int found_something = 0;
+
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        if (EFF_FLAGGED(ch, EFF_BLIND)) {
+            cprintf(ch, "You're blind and can't see a thing!\r\n");
+            return CAST_RESULT_CHARGE;
+        }
+        if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
+            act("&3&bYou dispel the fog!&0", FALSE, ch, 0, victim, TO_CHAR);
+            act("&3&b$n dispels the fog!&0", FALSE, ch, 0, victim, TO_NOTVICT);
+            REMOVE_FLAG(ROOM_EFFECTS(ch->in_room), ROOM_EFF_FOG);
+        }
+    }
+
+    found_something += reveal_contents(world[ch->in_room].contents, ch);
+
+    found_something += reveal_contents(ch->carrying, ch);
+
+    for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room)
+        if (EFF_FLAGGED(vict, EFF_INVISIBLE) || IS_HIDDEN(vict)) {
+            if (vict != ch && !IS_IN_GROUP(ch, vict)) {
+                REMOVE_FLAG(EFF_FLAGS(vict), EFF_INVISIBLE);
+                GET_HIDDENNESS(vict) = 0;
+                act("You reavel $N lurking here!", FALSE, ch, 0, vict, TO_CHAR);
+                act("$n reveals $N lurking here!", TRUE, ch, 0, vict, TO_NOTVICT);
+                found_something += 1;
+            }
+        }
+
+    if (found_something > 0) {
+        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+    } else {
+        cprintf(ch, "You don't find anything you didn't see before.\r\n");
+        return CAST_RESULT_CHARGE;
+    }
+}
+
 ASPELL(spell_soul_tap) {
     struct delayed_cast_event_obj *event_obj;
 
