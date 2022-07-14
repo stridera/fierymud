@@ -1562,6 +1562,8 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BARD, 70);
     skill_assign(SKILL_DUAL_WIELD, CLASS_BARD, 90);
 
+    spell_assign(SPELL_WEB, CLASS_BARD, CIRCLE_3);
+
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
@@ -2384,6 +2386,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_PROT_FROM_EVIL, CLASS_SHAMAN, CIRCLE_3);
     spell_assign(SPELL_PROT_FROM_GOOD, CLASS_SHAMAN, CIRCLE_3);
     spell_assign(SPELL_REMOVE_POISON, CLASS_SHAMAN, CIRCLE_3);
+    spell_assign(SPELL_WEB, CLASS_SHAMAN, CIRCLE_3);
 
     spell_assign(SPELL_CURE_BLIND, CLASS_SHAMAN, CIRCLE_4);
     spell_assign(SPELL_DISPEL_EVIL, CLASS_SHAMAN, CIRCLE_4);
@@ -2429,6 +2432,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_IDENTIFY, CLASS_SORCERER, CIRCLE_3);
     spell_assign(SPELL_LOCATE_OBJECT, CLASS_SORCERER, CIRCLE_3);
     spell_assign(SPELL_SHOCKING_GRASP, CLASS_SORCERER, CIRCLE_3);
+    spell_assign(SPELL_WEB, CLASS_SORCERER, CIRCLE_3);
 
     spell_assign(SPELL_COLDSHIELD, CLASS_SORCERER, CIRCLE_4);
     spell_assign(SPELL_FIRESHIELD, CLASS_SORCERER, CIRCLE_4);

@@ -2406,6 +2406,32 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_vict = "You feel webbing between your toes.";
         break;
 
+    case SPELL_WEB:
+        if (!attack_ok(ch, victim, TRUE))
+            return CAST_RESULT_CHARGE;
+        if ((skill + mag_savingthrow(victim, SAVING_PARA) - GET_LEVEL(victim)) <= number(0, 40)) {
+            act("&2&bYou miss $N with a glowing &3&bweb&2&b!&0", FALSE, ch, 0, victim, TO_CHAR);
+            act("&2&b$n tries to tangle you in a glowing &3&bweb&2&b but misses!&0", FALSE, ch, 0, victim, TO_VICT);
+            act("&2&b$n throws a glowing &3&bweb&2&b at $N but misses.&0", TRUE, ch, 0, victim, TO_NOTVICT);
+
+            /* start combat for failure */
+            if (!FIGHTING(victim)) {
+                attack(victim, ch);
+                remember(victim, ch);
+            }
+
+            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_IMMOBILIZED);
+        eff[0].duration = 2 + (skill / 50); /* max 4 */
+        refresh = FALSE;
+        to_char = "&2&bYou tangle $N in a glowing &3&bweb&2&b!&0";
+        to_vict = "&2&b$n tangles you in a glowing &3&bweb&2&b!&0";
+        to_room = "&2&b$n tangles $N in a glowing &3&bweb&2&b!&0";
+        break;
+
+
     case SPELL_WINGS_OF_HEAVEN:
 
         if (affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
