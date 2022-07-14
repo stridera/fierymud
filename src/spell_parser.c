@@ -381,6 +381,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
 
     if (IS_SET(SINFO.routines, MAG_MANUAL)) {
         switch (spellnum) {
+        case SPELL_ACID_FOG:
+            MANUAL_SPELL(spell_acid_fog);
+            break;
         case SPELL_ARMOR_OF_GAIA:
             MANUAL_SPELL(spell_armor_of_gaia);
             break;
