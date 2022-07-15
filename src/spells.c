@@ -1910,6 +1910,30 @@ int reveal_contents(struct obj_data *container, struct char_data *ch) {
     return found_something;
 }
 
+/* search_for_doors() - returns TRUE if a door was located. */
+static int search_for_doors(struct char_data *ch) {
+    int door;
+    int found_something = 0;
+
+    for (door = 0; door < NUM_OF_DIRS; ++door)
+        if (CH_EXIT(ch, door) && CH_EXIT(ch, door)->to_room != NOWHERE &&
+            IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
+                sprintf(buf, "&8You have found%s hidden %s %s.&0",
+                        CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
+                        CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
+                act(buf, FALSE, ch, 0, CH_EXIT(ch, door)->keyword, TO_CHAR);
+                sprintf(buf, "$n has found%s hidden %s %s.",
+                        CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
+                        CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
+                act(buf, FALSE, ch, 0, CH_EXIT(ch, door)->keyword, TO_ROOM);
+                REMOVE_BIT(CH_EXIT(ch, door)->exit_info, EX_HIDDEN);
+                send_gmcp_room(ch);
+                found_something += 1;
+        }
+
+    return found_something;
+}
+
 ASPELL(spell_reveal_hidden) {
     struct char_data *vict;
     int found_something = 0;
@@ -1929,6 +1953,8 @@ ASPELL(spell_reveal_hidden) {
     found_something += reveal_contents(world[ch->in_room].contents, ch);
 
     found_something += reveal_contents(ch->carrying, ch);
+
+    found_something += search_for_doors(ch);
 
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room)
         if (EFF_FLAGGED(vict, EFF_INVISIBLE) || IS_HIDDEN(vict)) {
