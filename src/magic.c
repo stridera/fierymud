@@ -1175,6 +1175,12 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             return CAST_RESULT_CHARGE;
         }
 
+        if (affected_by_spell(victim, SPELL_EARTH_BLESSING)) {
+            act("$N is already blessed by nature.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
         /* Alignment Checks! */
         if (IS_EVIL(victim)) {
             act("You can't bless evil people!", FALSE, ch, 0, 0, TO_CHAR);
@@ -1363,8 +1369,14 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             return CAST_RESULT_CHARGE;
         }
 
-        if (affected_by_spell(victim, SPELL_BLESS)) {
+        if (affected_by_spell(victim, SPELL_BLESS) || affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
             act("$N is already blessed by some other gods.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (affected_by_spell(victim, SPELL_EARTH_BLESSING)) {
+            act("$N is already blessed by nature.", FALSE, ch, 0, victim, TO_CHAR);
             act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
@@ -1523,6 +1535,56 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             "overtakes you.\r\n"
             "You feel seriously ill!&0";
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
+        break;
+
+    case SPELL_EARTH_BLESSING:
+
+        if (GET_LEVEL(ch) < LVL_IMMORT && !IS_NEUTRAL(ch) && casttype == CAST_SPELL) {
+            send_to_char("Nature has forsaken you in your zealousness!\r\n", ch);
+            act("There is no effect.  $U$n adopts a dejected look.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (affected_by_spell(victim, SPELL_DARK_PRESENCE) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+            affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION) ||
+            affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
+            act("$N is already blessed by some dark gods.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (affected_by_spell(victim, SPELL_BLESS) || affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
+            act("$N is already blessed by some other gods.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        /* Alignment Checks! */
+        if (IS_EVIL(victim)) {
+            act("You can't bless evil people!", FALSE, ch, 0, 0, TO_CHAR);
+            act("$n tries to attune you to nature.\r\nSilly isn't $e?", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to attune $N to nature.", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (IS_GOOD(victim)) {
+            act("You can't bless good people!", FALSE, ch, 0, 0, TO_CHAR);
+            act("$n tries to attune you to nature.\r\nSilly isn't $e?", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to attune $N to nature.", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        eff[0].location = APPLY_HITROLL;
+        eff[0].modifier = 1 + (skill >= 50);
+        eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
+        eff[1].location = APPLY_SAVING_SPELL;
+        eff[1].modifier = -2 - (skill / 10);
+        eff[1].duration = eff[0].duration;
+        SET_FLAG(eff[2].flags, EFF_BLESS);
+        eff[2].duration = eff[0].duration;
+        to_char = "$N is imbued with the power of nature.";
+        to_vict = "$n imbues you with the power of nature.\r\nYou feel righteous.";
+        to_room = "$N is imbued with the power of nature by $n.";
         break;
 
     case SPELL_ELEMENTAL_WARDING:
