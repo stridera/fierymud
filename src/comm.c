@@ -1680,9 +1680,9 @@ char *prompt_str(struct char_data *ch) {
             case 'u':
                 temp = CD_INNATE_ILLUMINATION;
                 break;
-            /* case 'v':
+            case 'v':
                 temp = CD_INNATE_FAERIE_STEP;
-                break; */
+                break;
             default:
                 continue; /* don't print anything */
             }

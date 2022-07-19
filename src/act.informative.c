@@ -3978,10 +3978,21 @@ ACMD(do_scan) {
 }
 
 ACMD(do_innate) {
-    /* struct char_data *vict; */
+    struct char_data *vict;
+    struct obj_data *obj;
+    char arg2[20000];
+    char arg3[20000];
     *buf = '\0';
 
-    one_argument(argument, arg);
+    two_arguments(argument, arg, arg2);
+
+    vict = find_char_around_char(ch, find_vis_by_name(ch, arg2));
+    obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2));
+
+    if (arg3) {
+        one_argument(one_argument(one_argument(argument, arg), arg2), arg3);
+        vict = find_char_around_char(ch, find_vis_by_name(ch, arg3));
+    }
 
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
@@ -4230,11 +4241,11 @@ ACMD(do_innate) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION)) {
                     if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
                         if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION))  {
-                            send_to_char("The room is pretty damn bright already!\r\n", ch);
-                        } else {
-                            call_magic(ch, ch, 0, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
+                            call_magic(ch, 0, obj, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
                             if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                                 SET_COOLDOWN(ch, CD_INNATE_ILLUMINATION, 7 MUD_HR);
+                        } else {
+                            send_to_char("The room is pretty damn bright already!\r\n", ch);
                         }    
                     } else {
                         send_to_char("The room is too foggy to see anything!\r\n", ch);
@@ -4243,28 +4254,29 @@ ACMD(do_innate) {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can create light again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) / 10));
                 }
-                return;
             }  
+            return;
         }
-        
 
-    /*
         if (is_abbrev(arg, "faerie")) {
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
-                if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg2))))
+                if (arg3) {
+                    vict = find_char_in_world(find_vis_by_name(ch, arg3));    
+                } else {
+                vict = find_char_in_world(find_vis_by_name(ch, arg2));
+                }
                 if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
                     call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP, 7 MUD_HR);
                 } else {
-                    send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can use faerie step again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10));
+                        send_to_char("You're too tired right now.\r\n", ch);
+                        cprintf(ch, "You can use faerie step again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10));
                 }
-                return;
             }
+            return;
 
         }
-    */
 
         send_to_char("You have no such innate.\r\n", ch);
     }
