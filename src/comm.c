@@ -1677,6 +1677,12 @@ char *prompt_str(struct char_data *ch) {
             case 's':
                 temp = CD_INNATE_TREN;
                 break;
+            case 'u':
+                temp = CD_INNATE_ILLUMINATION;
+                break;
+            /* case 'v':
+                temp = CD_INNATE_FAERIE_STEP;
+                break; */
             default:
                 continue; /* don't print anything */
             }

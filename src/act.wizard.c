@@ -2054,6 +2054,8 @@ ACMD(do_set) {
                   {"weight", LVL_GOD, BOTH, NUMBER},
                   {"lifeforce", LVL_GOD, BOTH, MISC},
                   {"composition", LVL_GOD, BOTH, MISC}, /*75 */
+                  {"illumination", LVL_GAMEMASTER, PC, NUMBER},
+                  {"faerie step", LVL_GAMEMASTER, PC, NUMBER},
                   {"\n", 0, BOTH, MISC}};
 
     half_chop(argument, name, buf);
@@ -2604,6 +2606,12 @@ ACMD(do_set) {
         act(buf, FALSE, vict, 0, ch, TO_VICT);
         buf[0] = '\0';
         break;
+    case 76:
+        GET_COOLDOWN(vict, CD_INNATE_ILLUMINATION) = RANGE(0, 100);
+        break;
+    /* case 77:
+        GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = RANGE(0, 100);
+        break; */
     default:
         sprintf(buf, "Can't set that!\r\n");
         break;

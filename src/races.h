@@ -52,9 +52,11 @@
 #define RACE_DRAGONBORN_LIGHTNING 29
 #define RACE_DRAGONBORN_GAS 30
 #define RACE_SVERFNEBLIN 31
+#define RACE_FAERIE_SEELIE 32
+#define RACE_FAERIE_UNSEELIE 33
 
 /* Make sure to update this number if you add a race. */
-#define NUM_RACES 32
+#define NUM_RACES 34
 
 #define DEFAULT_RACE RACE_OTHER
 
