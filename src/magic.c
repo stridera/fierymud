@@ -3557,7 +3557,7 @@ void phantasm_transform(struct char_data *ch, struct char_data *model, int life_
 
     strcat(long_buf, "\r\n");
     GET_NAME(ch) = strdup(short_buf);
-    model->player.long_descr = strdup(long_buf);
+    GET_LDESC(ch) = strdup(long_buf);
     GET_NAMELIST(ch) = strdup(alias_buf);
 
     /* The phantasm copies its model's current state, even if that state was
