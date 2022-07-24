@@ -4032,12 +4032,12 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
             if (affected_by_spell(victim, SPELL_BLINDNESS))
                 spell = SPELL_BLINDNESS; /* Remove blindness below */
             if (affected_by_spell(victim, SKILL_EYE_GOUGE)) {
-                if (spell) /* If already removing a spell, remove eye gouge now */
+                if (spell) /* If already removing a spell, remove it and eye gouge now */
                     effect_from_char(victim, spell);
                 spell = SKILL_EYE_GOUGE;
             }
             if (affected_by_spell(victim, SPELL_SUNRAY)) {
-                if (spell) /* If already removing a spell, remove sunray now */
+                if (spell) /* If already removing a spell, remove it and set sunray now */
                     effect_from_char(victim, spell);
                 spell = SPELL_SUNRAY;
             }
@@ -4063,42 +4063,80 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
             act("&6&b$N's music shatters the magic paralyzing you!&0", FALSE, victim, 0, ch, TO_CHAR);
             act("&6&bYour music disrupts the magic keeping $n frozen.&0", FALSE, victim, 0, ch, TO_VICT);
             act("&6&b$N's music frees $n from magic which held $m motionless.&0", TRUE, victim, 0, ch, TO_NOTVICT);
-            effect_from_char(victim, SPELL_MINOR_PARALYSIS);
-            effect_from_char(victim, SPELL_MAJOR_PARALYSIS);
-            effect_from_char(victim, SPELL_ENTANGLE);
-            effect_from_char(victim, SPELL_SPINECHILLER);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MINOR_PARALYSIS);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MAJOR_PARALYSIS);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_IMMOBILIZED);
+            if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS))
+                spell = SPELL_MINOR_PARALYSIS;
+            if (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)) {
+                if (spell) /* If already removing a spell, remove it and set major paralysis now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_MAJOR_PARALYSIS;
+            }
+            if (affected_by_spell(victim, SPELL_ENTANGLE)) {
+                if (spell) /* If already removing a spell, remove it and set entangle now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_ENTANGLE;
+            }
+            if (affected_by_spell(victim, SPELL_SPINECHILLER)) {
+                if (spell) /* If already removing a spell, remove it and set spinechiller now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_SPINECHILLER;
+            }
+            /* if (affected_by_spell(victim, SPELL_WEB)) {
+                if (spell)  If already removing a spell, remove it and set web now
+                    effect_from_char(victim, spell);
+                spell = SPELL_WEB;
+            } */
         }
-        if (EFF_FLAGGED(victim, EFF_MESMERIZED) || EFF_FLAGGED(victim, EFF_CONFUSION) || EFF_FLAGGED(victim, EFF_MISDIRECTION)) {
+        if (EFF_FLAGGED(victim, EFF_MESMERIZED) || EFF_FLAGGED(victim, EFF_CONFUSION) || EFF_FLAGGED(victim, EFF_MISDIRECTION)) /* || affected_by_spell(victim, SONG_ENRAPTURE) */ {
             act("&5&bYou draw $n's attention from whatever $e was pondering.&0", FALSE, victim, 0, ch, TO_VICT);
             act("&5&b$N jolts you out of your reverie!&0", FALSE, victim, 0, ch, TO_CHAR);
             act("&5&b$N's music distracts $n from whatever was fascinating $m.&0", TRUE, victim, 0, ch, TO_NOTVICT);
-            effect_from_char(victim, SPELL_MESMERIZE);
-            effect_from_char(victim, SPELL_CONFUSION);
-            effect_from_char(victim, SPELL_MISDIRECTION);
-            // effect_from_char(victim, SONG_ENRAPTURE);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MESMERIZED);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_CONFUSION);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_MISDIRECTION);
+            if (affected_by_spell(victim, SPELL_MESMERIZE)) {
+                if (spell) /* If already removing a spell, remove it and set mesmerize now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_SPINECHILLER;
+            }
+            if (affected_by_spell(victim, SPELL_CONFUSION)) {
+                if (spell) /* If already removing a spell, remove it and set confusion now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_CONFUSION;
+            }
+            if (affected_by_spell(victim, SPELL_MISDIRECTION)) {
+                if (spell) /* If already removing a spell, remove it and set misdirection now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_MISDIRECTION;
+            }
+            /* if (affected_by_spell(victim, SONG_ENRAPTURE)) {
+                if (spell) If already removing a spell, remove it and set enrapture now
+                    effect_from_char(victim, spell);
+                spell = SONG_ENRAPTURE;
+            } */
         }
         if (EFF_FLAGGED(victim, EFF_CHARM) ||  affected_by_spell(victim, SPELL_CHARM)){
             act("&3&bYour music breaks the hold over $n!&0", FALSE, ch, 0, ch->master, TO_VICT);
             act("&3&b$N's music breaks the hold over you!&0", FALSE, ch, 0, ch->master, TO_CHAR);
             act("&3&b$N's music breaks the hold over $n!&0", TRUE, ch, 0, ch->master, TO_NOTVICT);
-            effect_from_char(victim, SPELL_CHARM);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_CHARM);
+            if (affected_by_spell(victim, SPELL_CHARM)) {
+                if (spell) /* If already removing a spell, remove it and set charm now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_CHARM;
+            }
         }
         if (EFF_FLAGGED(victim, EFF_RAY_OF_ENFEEB) || affected_by_spell(victim, SPELL_CHILL_TOUCH)) {
             act("&1Your music rejuvenates $n's body!&0", FALSE, victim, 0, ch, TO_VICT);
             act("&1$N's music rejuvenates your body!&0", FALSE, victim, 0, ch, TO_CHAR);
             act("&1$N's music rejuvenates $n's body!&0", TRUE, victim, 0, ch, TO_NOTVICT);
-            effect_from_char(victim, SPELL_RAY_OF_ENFEEB);
-            effect_from_char(victim, SPELL_CHILL_TOUCH);
-            REMOVE_FLAG(EFF_FLAGS(victim), EFF_RAY_OF_ENFEEB);
+            if (affected_by_spell(victim, SPELL_RAY_OF_ENFEEB)) {
+                if (spell) /* If already removing a spell, remove it and set ray of enfeeblement now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_RAY_OF_ENFEEB;
+            }
+            if (affected_by_spell(victim, SPELL_CHILL_TOUCH)) {
+                if (spell) /* If already removing a spell, remove it and set chill touch now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_CHILL_TOUCH;
+            }
         }
-        return CAST_RESULT_IMPROVE;
+        break;
     case SPELL_SANE_MIND:
         spell = SPELL_INSANITY;
         to_vict = "Your mind comes back to reality.";
@@ -4116,26 +4154,25 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
     case SPELL_REMOVE_PARALYSIS:
         if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_ENTANGLE))) {
             if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS)){
-                effect_from_char(victim, SPELL_MINOR_PARALYSIS);
                 spell = SPELL_MINOR_PARALYSIS;
             }    
             if (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)){
-                effect_from_char(victim, SPELL_MAJOR_PARALYSIS);
+                if (spell) /* If already removing a spell, remove it and set major paralysis now */
+                    effect_from_char(victim, spell);
                 spell = SPELL_MAJOR_PARALYSIS;
             }
             if (affected_by_spell(victim, SPELL_ENTANGLE)){
-                effect_from_char(victim, SPELL_ENTANGLE);
+                if (spell) /* If already removing a spell, remove it and set entangle now */
+                    effect_from_char(victim, spell);
                 spell = SPELL_ENTANGLE;
             }
             if (affected_by_spell(victim, SPELL_MESMERIZE)){
-                effect_from_char(victim, SPELL_MESMERIZE);
+                if (spell) /* If already removing a spell, remove it and set mesmerize now */
+                    effect_from_char(victim, spell);
                 spell = SPELL_MESMERIZE;
             }
-
-            act("&3&bYour body begins to move again.&0", FALSE, victim, 0, ch, TO_CHAR);
-            act("&3&b$n begins to move again.&0", TRUE, victim, 0, ch, TO_ROOM);
-
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;    
+            to_vict = "&3&bYour body begins to move again.&0";
+            to_room = "&3&b$n begins to move again.&0";
         }
         break;
     case SPELL_REMOVE_POISON:
