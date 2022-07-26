@@ -78,6 +78,8 @@ int skill_to_dtype(int skill) {
         return DAM_ACID;
     case TYPE_POISON:
         return DAM_POISON;
+    case TYPE_ALIGN:
+        return DAM_ALIGN;
     case TYPE_BITE:
     case TYPE_PIERCE:
     case TYPE_STAB:

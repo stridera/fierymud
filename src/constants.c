@@ -189,7 +189,8 @@ const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
     "!DROP",       "PERMANENT", "!GOOD",      "!EVIL",        "!NEUTRAL",      "!SORCERER", "!CLERIC",
     "!ROGUE",      "!WARRIOR",  "!SELL",      "!PALADIN",     "!ANTI_PALADIN", "!RANGER",   "!DRUID",
     "!SHAMAN",     "!ASSASSIN", "!MERCENARY", "!NECROMANCER", "!CONJURER",     "!BURN",     "!LOCATE",
-    "DECOMPOSING", "FLOAT",     "!FALL",      "DISARMED",     "!MONK",         "!BARD",     "\n"};
+    "DECOMPOSING", "FLOAT",     "!FALL",      "DISARMED",     "!MONK",         "!BARD",     "ELVEN",
+    "DWARVEN",     "\n"};
 
 /* APPLY_x */
 const char *apply_types[NUM_APPLY_TYPES + 1] = {
@@ -395,6 +396,12 @@ void load_int_app(void) {
         /* percent to learn spell or skill */
         if (x <= 100 && x >= 0) /* linear from (0,3) to (100,60) */
             int_app[x].learn = (byte)((((float)57 / 100) * (float)x) + 3);
+
+        /* bonus to skills */
+        if (x <= 44 && x >= 0) /*  zero */
+            int_app[x].bonus = 0;
+        if (x <= 100 && x >= 45) /* linear from (45,2) to (100,7) */
+            int_app[x].bonus = (byte)((((float)1 / 11) * (float)x) - ((float)23 / 11));
     }
 }
 
@@ -402,11 +409,23 @@ void load_wis_app(void) {
     int x;
 
     for (x = 0; x <= 100; x++) {
-        /* bonus practices per level */
+        /* bonus to skills */
         if (x <= 44 && x >= 0) /*  zero */
             wis_app[x].bonus = 0;
         if (x <= 100 && x >= 45) /* linear from (45,2) to (100,7) */
             wis_app[x].bonus = (byte)((((float)1 / 11) * (float)x) - ((float)23 / 11));
+    }
+}
+
+void load_cha_app(void) {
+    int x;
+
+    for (x = 0; x <= 100; x++) { 
+        /* bardic music uses */   
+        if (x <= 64) /* no bonus */
+            cha_app[x].music = 1;
+        if (x <= 100 && x >= 65) /* linear from (65,2) to (100,7) */
+            cha_app[x].music = (sh_int)((((float)6 / 35) * (float)x) - ((float)75 / 7) + 1);
     }
 }
 

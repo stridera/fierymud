@@ -75,10 +75,10 @@
 #define EFF_NEGATE_AIR 57
 #define EFF_NEGATE_EARTH 58
 #define EFF_REMOTE_AGGR 59 /* Your aggro action won't remove invis/bless etc. */
-/* Room for future expansion 60 */
-/* Room for future expansion 61 */
-/* Room for future expansion 62 */
-/* Room for future expansion 63 */
+#define EFF_FIREHANDS 60   /* Make Monks do burn damage with their hands */
+#define EFF_ICEHANDS 61    /* Make Monks do cold damage with their hands */
+#define EFF_LIGHTNINGHANDS 62 /* Make Monks do shock damage with their hands */
+#define EFF_ACIDHANDS 63   /* Make Monks do acid damage with their hands */
 #define EFF_AWARE 64
 #define EFF_REDUCE 65
 #define EFF_ENLARGE 66
@@ -96,7 +96,8 @@
 #define EFF_BLESS 78         /* When blessed, your barehand attacks hurt ether chars */
 #define EFF_HEX 79           /* The evil side of blessing, to hurt ether chars */
 #define EFF_DETECT_POISON 80 /* Char is sensitive to poison */
-#define NUM_EFF_FLAGS 81     /* Keep me updated */
+#define EFF_SONG_OF_REST 81
+#define NUM_EFF_FLAGS 82     /* Keep me updated */
 
 extern const char *effect_flags[NUM_EFF_FLAGS + 1];
 
