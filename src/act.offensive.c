@@ -825,6 +825,11 @@ ACMD(do_flee) {
         return;
     }
 
+    if (EFF_FLAGGED(ch, EFF_IMMOBILIZED) && affected_by_spell(ch, SPELL_WEB)) {
+        cprintf(ch, "You're stuck in the webs!\r\n");
+        return;
+    }
+
     switch (GET_STANCE(ch)) {
     case STANCE_DEAD:
     case STANCE_MORT:

@@ -285,6 +285,7 @@
 #define SPELL_CLOUD_OF_DAGGERS 243
 #define SPELL_BLINDING_BEAUTY 244
 #define SPELL_EARTH_BLESSING 245
+#define SPELL_WEB 246
 
 /* Insert new spells here, up to MAX_SPELLS */
 

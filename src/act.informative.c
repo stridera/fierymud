@@ -422,6 +422,9 @@ static void print_char_flags_to_char(struct char_data *targ, struct char_data *c
 
     if (EFF_FLAGGED(targ, EFF_ON_FIRE))
         str_cat(buf, " (@Rburning@0)");
+    
+    if (EFF_FLAGGED(targ, EFF_IMMOBILIZED))
+        str_cat(buf, " (@Rimmobilized@0)");
 
     if (CASTING(targ))
         str_catf(buf, " (@mCasting%s%s@0)", PRF_FLAGGED(ch, PRF_HOLYLIGHT) ? " " : "",
@@ -645,8 +648,14 @@ static void print_char_spells_to_char(struct char_data *targ, struct char_data *
                 "surroundings.&0",
                 TRUE, ch, 0, targ, TO_CHAR);
     } else if (EFF_FLAGGED(targ, EFF_MESMERIZED))
+        act("$E gazes carefully at a point in the air directly in front of $S "
+            "nose,\r\n"
+            "as if deliberating upon a puzzle or problem.",
+            TRUE, ch, 0, targ, TO_CHAR);
         act("$E gazes carefully at a point in the air directly in front of $S nose,\r\n"
             "as if deliberating upon a puzzle or problem.", TRUE, ch, 0, targ, TO_CHAR);
+    if (affected_by_spell(targ, SPELL_WEB))
+        act("&2&b$S is tangled in glowing &3&bwebs!&0", TRUE, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HELL))
         act("&1&bHuge leathery &9bat-like&1 wings sprout from $S back.&0", TRUE, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HEAVEN))
