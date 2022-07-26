@@ -613,6 +613,10 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_CIRCLE_OF_FIRE:
         dam = (skill / 2) + dice(2, 3);
         break;
+    case SPELL_CLOUD_OF_DAGGERS:
+        /* spell hits 4 times */
+        dam += (pow(skill, 2) * 7) / 1250;
+        reduction = TRUE;
         break;
     case SPELL_COLOR_SPRAY:
         /* max dam 190 from 15d5+45 online */

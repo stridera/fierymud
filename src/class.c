@@ -1567,6 +1567,8 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DUAL_WIELD, CLASS_BARD, 90);
 
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
+
+    spell_assign(SPELL_CLOUD_OF_DAGGERS, CLASS_BARD, CIRCLE_8);
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
     song_assign(SONG_TERROR, CLASS_BARD, 10);
