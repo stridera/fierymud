@@ -281,6 +281,7 @@
 #define SPELL_SPIRIT_RAY 239
 #define SPELL_VICIOUS_MOCKERY 240
 #define SPELL_REMOVE_PARALYSIS 241
+#define SPELL_BLINDING_BEAUTY 242
 /* Insert new spells here, up to MAX_SPELLS */
 
 /* PLAYER SKILLS - Numbered from MAX_SPELLS+1 to MAX_SKILLS */

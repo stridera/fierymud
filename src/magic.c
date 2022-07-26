@@ -1197,7 +1197,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_BLINDNESS:
-
+    case SPELL_BLINDING_BEAUTY:
         if (!attack_ok(ch, victim, TRUE))
             return CAST_RESULT_CHARGE;
 
@@ -2983,7 +2983,9 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     struct char_data *tch, *next_tch;
     char *to_char = NULL;
     char *to_room = NULL;
+    int casttype;
     bool found = FALSE;
+    bool damage = TRUE;
 
     if (ch == NULL)
         return 0;
@@ -2996,6 +2998,11 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
      * in mag_damage for the damaging part of the spell.
      */
     switch (spellnum) {
+    case SPELL_BLINDING_BEAUTY:
+        to_char = "&3&bThe splendor of your beauty sears the eyes of everything around you!&0";
+        to_room = "&3&bThe splendor of $s's beauty sears the eyes of everything around $s!&0";
+        damage = FALSE;
+        break;
     case SPELL_CHAIN_LIGHTNING:
         to_char = "&4&bYou send powerful bolts of lightning from your body...&0";
         to_room = "&4&b$n&4&b sends powerful bolts of lightning into $s foes...&0";
@@ -3119,7 +3126,10 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
             continue;
 
         found = TRUE;
-        mag_damage(skill, ch, tch, spellnum, savetype);
+        if (damage == TRUE)
+            mag_damage(skill, ch, tch, spellnum, savetype);
+        else
+            mag_affect(skill, ch, tch, spellnum, savetype, casttype);
     }
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
@@ -4028,6 +4038,11 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
                 if (spell) /* If already removing a spell, remove eye gouge now */
                     effect_from_char(victim, spell);
                 spell = SKILL_EYE_GOUGE;
+            }
+            if (affected_by_spell(victim, SPELL_BLINDING_BEAUTY)) {
+                if (spell)
+                    effect_from_char(victim, spell);
+                spell = SPELL_BLINDING_BEAUTY;
             }
             if (affected_by_spell(victim, SPELL_SUNRAY)) {
                 if (spell) /* If already removing a spell, remove sunray now */
