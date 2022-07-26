@@ -1491,7 +1491,6 @@ ACMD(do_cast) {
         }
 
     } else if (subcmd == SCMD_PERFORM) {
-        cprintf(ch, "cha_app is %d\r\n", cha_app[GET_CHA(ch)].music);
         if (cha_app[GET_CHA(ch)].music == 0) {
             send_to_char("Your Charisma is too low to perform!\r\n", ch);
         }
