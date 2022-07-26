@@ -2984,7 +2984,7 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     struct char_data *tch, *next_tch;
     char *to_char = NULL;
     char *to_room = NULL;
-    int casttype;
+    int casttype = NULL;
     bool found = FALSE;
     bool damage = TRUE;
     
