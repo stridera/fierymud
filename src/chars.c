@@ -81,6 +81,8 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /*DbLi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
     /*DbGa*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
     /*svrf*/ {Y, Y, Y, N, N, N, N, N, Y, Y, N, Y, Y, N, N, N, Y, Y, Y, Y, Y, Y, Y, N},
+    /*SFae*/ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
+    /*UFae*/ {Y, Y, Y, N, N, N, N, Y, N, N, N, Y, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
     /*nmph*/ {Y, Y, N, Y, N, N, Y, Y, Y, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
 };
 

@@ -3986,10 +3986,11 @@ ACMD(do_scan) {
 }
 
 ACMD(do_innate) {
-    /*struct char_data *vict; */
+    struct char_data *vict;
+    struct obj_data *obj;
     *buf = '\0';
 
-    one_argument(argument, arg);
+    argument = delimited_arg(argument, arg, '\'');
 
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
@@ -4013,19 +4014,28 @@ ACMD(do_innate) {
             send_to_char(" chaz\r\n", ch);
         if (GET_RACE(ch) == RACE_GNOME)
             send_to_char(" create (as spell minor creation)\r\n", ch); 
-        if (GET_RACE(ch) == RACE_DROW)
+        if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             send_to_char(" darkness\r\n", ch);
         if (GET_CLASS(ch) == CLASS_PRIEST || GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_PALADIN ||
             GET_CLASS(ch) == CLASS_ANTI_PALADIN)
             send_to_char(" detect alignment*\r\n", ch);
         if (GET_SKILL(ch, SKILL_DOORBASH))
             send_to_char(" doorbash\r\n", ch);
+        if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
+            send_to_char(" faerie step\r\n", ch);
+        if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
+            send_to_char(" fly*\r\n", ch);
+        if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
+            send_to_char(" harness\r\n", ch);
         if (GET_CLASS(ch) == CLASS_THIEF)
             send_to_char(" identify\r\n", ch);
+        if (GET_RACE(ch) == RACE_FAERIE_SEELIE)
+            send_to_char(" illumination\r\n", ch);
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_HALFLING ||
             GET_RACE(ch) == RACE_HALF_ELF || GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_DRAGONBORN_FIRE ||
             GET_RACE(ch) == RACE_DRAGONBORN_FROST || GET_RACE(ch) == RACE_DRAGONBORN_ACID || 
-            GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS || GET_RACE(ch) == RACE_SVERFNEBLIN)
+            GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS || GET_RACE(ch) == RACE_SVERFNEBLIN || 
+            GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             send_to_char(" infravision*\r\n", ch);
         if (GET_RACE(ch) == RACE_DUERGAR)
             send_to_char(" invisible\r\n", ch);
@@ -4069,7 +4079,7 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "darkness")) {
-            if (GET_RACE(ch) == RACE_DROW) {
+            if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
                 if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
                     if (!GET_COOLDOWN(ch, CD_INNATE_DARKNESS)) {
                         call_magic(ch, ch, 0, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
@@ -4084,7 +4094,8 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "detect") || is_abbrev(arg, "infravision") || is_abbrev(arg, "ultravision")) {
+        if (is_abbrev(arg, "detect") || is_abbrev(arg, "infravision") || is_abbrev(arg, "ultravision") ||
+            is_abbrev(arg, "protection") || is_abbrev(arg, "sense")) {
             send_to_char("This innate is always present.\r\n", ch);
             return;
         }
@@ -4121,11 +4132,6 @@ ACMD(do_innate) {
 
         if (is_abbrev(arg, "roar") && GET_SKILL(ch, SKILL_ROAR)) {
             send_to_char("Usage: roar\r\n", ch);
-            return;
-        }
-
-        if (is_abbrev(arg, "protection") || is_abbrev(arg, "sense")) {
-            send_to_char("That innate is always present.\r\n", ch);
             return;
         }
 
@@ -4207,7 +4213,7 @@ ACMD(do_innate) {
             }
         }
         if (is_abbrev(arg, "harness")) {
-            if (GET_RACE(ch) == RACE_ELF) {
+            if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS)) {
                     call_magic(ch, ch, 0, SPELL_HARNESS, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
@@ -4230,7 +4236,46 @@ ACMD(do_innate) {
             return;
         }
 
-        if (is_abbrev(arg, "blinding")) {
+        obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
+        if (is_abbrev(arg, "illumination")) {
+            if (GET_RACE(ch) == RACE_FAERIE_SEELIE) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION)) {
+                    if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
+                        if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION))  {
+                            call_magic(ch, 0, obj, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
+                            if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                                SET_COOLDOWN(ch, CD_INNATE_ILLUMINATION, 7 MUD_HR);
+                        } else {
+                            send_to_char("The room is pretty damn bright already!\r\n", ch);
+                        }    
+                    } else {
+                        send_to_char("The room is too foggy to see anything!\r\n", ch);
+                    }
+                } else {
+                    send_to_char("You're too tired right now.\r\n", ch);
+                    cprintf(ch, "You can create light again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) / 10));
+                }
+            }  
+            return;
+        }
+
+        vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
+        if (is_abbrev(arg, "faerie step")) {
+            if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
+                    call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP, 7 MUD_HR);
+                } else {
+                        send_to_char("You're too tired right now.\r\n", ch);
+                        cprintf(ch, "You can use faerie step again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10));
+                }
+            }
+            return;
+
+        }
+
+        if (is_abbrev(arg, "blinding beauty")) {
             if (GET_RACE(ch) == RACE_NYMPH) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY)) {
                     call_magic(ch, ch, 0, SPELL_BLINDING_BEAUTY, GET_LEVEL(ch), CAST_SPELL);
