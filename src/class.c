@@ -1576,6 +1576,7 @@ void assign_class_skills(void) {
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
     song_assign(SONG_TERROR, CLASS_BARD, 10);
+    song_assign(SONG_HEARTHSONG, CLASS_BARD, 70);
     
     /* BERSERKER */
     skill_assign(SKILL_BLUDGEONING, CLASS_BERSERKER, 1);
