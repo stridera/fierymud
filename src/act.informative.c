@@ -3984,7 +3984,7 @@ ACMD(do_innate) {
     char arg3[20000];
     *buf = '\0';
 
-    one_argument(one_argument(one_argument(argument, arg), arg2), arg3);
+    one_word(one_word(one_word(argument, arg), arg2), arg3);
 
     vict = find_char_around_char(ch, find_vis_by_name(ch, arg2));
     obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2));
@@ -4257,13 +4257,8 @@ ACMD(do_innate) {
             return;
         }
 
-        if (is_abbrev(arg, "faerie")) {
+        if (is_abbrev(arg, "faerie step")) {
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
-                if (arg3) {
-                    vict = find_char_in_world(find_vis_by_name(ch, arg3));    
-                } else {
-                vict = find_char_in_world(find_vis_by_name(ch, arg2));
-                }
                 if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
                     call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
