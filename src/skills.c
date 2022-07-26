@@ -1444,6 +1444,9 @@ void init_skills(void) {
     songo(SONG_INSPIRATION, "inspiration", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
            "Your inspiration fades.");
 
+    songo(SONG_JOYFUL_NOISE, "joyful noise", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_UNAFFECT, 0, FALSE,
+           NULL);
+           
     songo(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
            "Your nerves settle down as the terror leaves you.");
 
