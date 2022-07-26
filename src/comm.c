@@ -1682,6 +1682,8 @@ char *prompt_str(struct char_data *ch) {
                 break;
             case 'v':
                 temp = CD_INNATE_FAERIE_STEP;
+            case 'w':
+                temp = CD_INNATE_BLINDING_BEAUTY;
                 break;
             default:
                 continue; /* don't print anything */

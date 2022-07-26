@@ -2056,6 +2056,7 @@ ACMD(do_set) {
                   {"composition", LVL_GOD, BOTH, MISC}, /*75 */
                   {"illumination", LVL_GAMEMASTER, PC, NUMBER},
                   {"faerie step", LVL_GAMEMASTER, PC, NUMBER},
+                  {"blinding beauty", LVL_GAMEMASTER, PC, NUMBER},
                   {"\n", 0, BOTH, MISC}};
 
     half_chop(argument, name, buf);
@@ -2611,6 +2612,8 @@ ACMD(do_set) {
         break;
     case 77:
         GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = RANGE(0, 100);
+    case 78:
+        GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = RANGE(0, 100);
         break;
     default:
         sprintf(buf, "Can't set that!\r\n");

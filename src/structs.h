@@ -395,7 +395,8 @@
 #define CD_INNATE_CREATE 26
 #define CD_INNATE_ILLUMINATION 27
 #define CD_INNATE_FAERIE_STEP 28
-#define NUM_COOLDOWNS 29
+#define CD_INNATE_BLINDING_BEAUTY 29
+#define NUM_COOLDOWNS 30
 
 /**********************************************************************
  * Structures                                                          *
