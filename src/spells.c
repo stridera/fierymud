@@ -323,6 +323,22 @@ ASPELL(spell_charm) {
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
+ASPELL(spell_cloud_of_daggers) {
+    struct delayed_cast_event_obj *event_obj;
+
+    if (!ch)
+        return 0;
+
+    act("You animate a handful of daggers into a &9&bswirling cloud of blades!&0", FALSE, ch, 0, victim, TO_CHAR);
+    act("$n animates a handful of daggers into a &9&bswirling cloud of blades!&0", FALSE, ch, 0, victim, TO_ROOM);
+
+    event_obj =
+        construct_delayed_cast(ch, victim, SPELL_CLOUD_OF_DAGGERS, MAG_AREA, 4, 4 RL_SEC, skill, savetype, FALSE);
+    event_create(EVENT_SPELL, delayed_cast_event, event_obj, TRUE, &(ch->events), 4 RL_SEC);
+
+    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+}
+
 ASPELL(spell_color_spray) {
     struct char_data *vict, *next_vict;
     int effect, required;

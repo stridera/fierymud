@@ -46,7 +46,8 @@ const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
                                             "innate ascen",
                                             "innate harness",
                                             "breathe",
-                                            "innate create"
+                                            "innate create",
+                                            "innate blinding beauty"
                                             "\n"};
 
 void cooldown_wearoff(struct char_data *ch, int cooldown) {

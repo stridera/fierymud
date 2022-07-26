@@ -723,11 +723,11 @@ struct classdef classes[NUM_CLASSES] = {
      {95, 90, 100, 110, 110},
      9,
      2,
-     0,
+     ITEM_ANTI_BARD,
      100,
-     0,
      100,
-     1,
+     100,
+     1.2,
      100,
      90,
      100,
@@ -1073,6 +1073,7 @@ int guild_info[][3] = {
     {CLASS_MONK, 5307, SCMD_EAST},          /* Grey Castle */
     {CLASS_PALADIN, 5305, SCMD_EAST},       /* Grey Castle */
     {CLASS_BERSERKER, 3211, SCMD_SOUTH},    /* Great Road */
+    {CLASS_BARD, 5310, SCMD_EAST},          /* Grey Castle */
 
     /* Ogakh */ /* Room    Direction */
     {CLASS_SORCERER, 30072, SCMD_WEST},
@@ -1095,6 +1096,7 @@ int guild_info[][3] = {
     {CLASS_ASSASSIN, 30018, SCMD_EAST},
     {CLASS_THIEF, 30018, SCMD_EAST},
     {CLASS_MERCENARY, 30018, SCMD_EAST},
+    {CLASS_BARD, 30018, SCMD_EAST},
 
     {CLASS_WARRIOR, 30029, SCMD_WEST},
     {CLASS_ANTI_PALADIN, 30029, SCMD_WEST},
@@ -1113,12 +1115,13 @@ int guild_info[][3] = {
     {CLASS_PALADIN, 6148, SCMD_SOUTH},
     {CLASS_RANGER, 6148, SCMD_SOUTH},
     {CLASS_BERSERKER, 6148, SCMD_SOUTH},
-    {CLASS_BERSERKER, 55795, SCMD_NORTH},   /* Black Rock Trail */
+    {CLASS_BERSERKER, 55796, SCMD_NORTH},   /* Black Rock Trail */
 
     {CLASS_ROGUE, 6067, SCMD_NORTH},
     {CLASS_THIEF, 6067, SCMD_NORTH},
     {CLASS_MERCENARY, 6106, SCMD_UP},
     {CLASS_ASSASSIN, 6083, SCMD_NORTH},
+    {CLASS_BARD, 6092, SCMD_NORTH},
 
     {CLASS_CLERIC, 6217, SCMD_EAST},
     {CLASS_PRIEST, 6217, SCMD_EAST},
@@ -1136,6 +1139,7 @@ int guild_info[][3] = {
     {CLASS_MERCENARY, 10047, SCMD_EAST},
     {CLASS_ASSASSIN, 10047, SCMD_EAST},
     {CLASS_THIEF, 10047, SCMD_EAST},
+    {CLASS_BARD, 10047, SCMD_EAST},
 
     {CLASS_WARRIOR, 10014, SCMD_WEST},
     {CLASS_ANTI_PALADIN, 10014, SCMD_WEST},
@@ -1303,6 +1307,7 @@ void advance_level(struct char_data *ch, enum level_action action) {
     case CLASS_PYROMANCER:
     case CLASS_NECROMANCER:
     case CLASS_CONJURER:
+    case CLASS_BARD:
         if (action == LEVEL_GAIN)
             add_hp += number(3, 8);
         else
@@ -1336,7 +1341,6 @@ void advance_level(struct char_data *ch, enum level_action action) {
 
     case CLASS_THIEF:
     case CLASS_ROGUE:
-    case CLASS_BARD:
         if (action == LEVEL_GAIN)
             add_hp += number(7, 13);
         else
@@ -1487,6 +1491,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SLASHING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_2H_SLASHING, CLASS_ANTI_PALADIN, 1);
+    skill_assign(SKILL_2H_PIERCING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_KICK, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_BASH, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ANTI_PALADIN, 1);
@@ -1533,13 +1538,14 @@ void assign_class_skills(void) {
     spell_assign(SPELL_UNHOLY_WORD, CLASS_ANTI_PALADIN, CIRCLE_11);
 
     /* ASSASSIN */
+    skill_assign(SKILL_BLUDGEONING, CLASS_ASSASSIN, 1);
+    skill_assign(SKILL_PIERCING, CLASS_ASSASSIN, 1);
+    skill_assign(SKILL_SLASHING, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_INSTANT_KILL, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_SNEAK, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_HIDE, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_PIERCING, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_SLASHING, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ASSASSIN, 5);
     skill_assign(SKILL_KICK, CLASS_ASSASSIN, 10);
     skill_assign(SKILL_TRACK, CLASS_ASSASSIN, 10);
@@ -1550,8 +1556,10 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_ASSASSIN, 70);
 
     /* BARD */
-    skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
+    skill_assign(SKILL_BLUDGEONING, CLASS_BARD, 1);
     skill_assign(SKILL_PIERCING, CLASS_BARD, 1);
+    skill_assign(SKILL_SLASHING, CLASS_BARD, 1);
+    skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
     skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
     skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
     skill_assign(SKILL_STEAL, CLASS_BARD, 10);
@@ -1565,9 +1573,12 @@ void assign_class_skills(void) {
     spell_assign(SPELL_REVEAL_HIDDEN, CLASS_BARD, CIRCLE_4);
 
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
+
+    spell_assign(SPELL_CLOUD_OF_DAGGERS, CLASS_BARD, CIRCLE_8);
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
     song_assign(SONG_TERROR, CLASS_BARD, 10);
+    song_assign(SONG_HEARTHSONG, CLASS_BARD, 70);
     
     /* BERSERKER */
     skill_assign(SKILL_BLUDGEONING, CLASS_BERSERKER, 1);
@@ -1838,6 +1849,8 @@ void assign_class_skills(void) {
 
     /* DRUID */
     skill_assign(SKILL_BLUDGEONING, CLASS_DRUID, 1);
+    skill_assign(SKILL_PIERCING, CLASS_DRUID, 1);
+    skill_assign(SKILL_SLASHING, CLASS_DRUID, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_DRUID, 1);
     skill_assign(SKILL_SHAPECHANGE, CLASS_DRUID, 1);
     skill_assign(SKILL_TAME, CLASS_DRUID, 1);
@@ -1853,6 +1866,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_LIGHT, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_ALIGN, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_POISON, CLASS_DRUID, CIRCLE_2);
+    spell_assign(SPELL_EARTH_BLESSING, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_NIGHT_VISION, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_VIGORIZE_SERIOUS, CLASS_DRUID, CIRCLE_2);
 
@@ -2018,6 +2032,7 @@ void assign_class_skills(void) {
     chant_assign(CHANT_BATTLE_HYMN, CLASS_MONK, 30);
     chant_assign(CHANT_SHADOWS_SORROW_SONG, CLASS_MONK, 30);
     chant_assign(CHANT_IVORY_SYMPHONY, CLASS_MONK, 45);
+    chant_assign(CHANT_HYMN_OF_SAINT_AUGUSTINE, CLASS_MONK, 50);
     chant_assign(CHANT_ARIA_OF_DISSONANCE, CLASS_MONK, 60);
     chant_assign(CHANT_SONATA_OF_MALAISE, CLASS_MONK, 60);
     chant_assign(CHANT_PEACE, CLASS_MONK, 70);
@@ -2125,6 +2140,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_PIERCING, CLASS_PALADIN, 1);
     skill_assign(SKILL_SLASHING, CLASS_PALADIN, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_PALADIN, 1);
+    skill_assign(SKILL_2H_PIERCING, CLASS_PALADIN, 1);
     skill_assign(SKILL_2H_SLASHING, CLASS_PALADIN, 1);
     skill_assign(SKILL_KICK, CLASS_PALADIN, 1);
     skill_assign(SKILL_BASH, CLASS_PALADIN, 1);
@@ -2348,9 +2364,9 @@ void assign_class_skills(void) {
     spell_assign(SPELL_BLUR, CLASS_RANGER, CIRCLE_11);
 
     /* ROGUE */
+    skill_assign(SKILL_BLUDGEONING, CLASS_ROGUE, 1);
     skill_assign(SKILL_PIERCING, CLASS_ROGUE, 1);
     skill_assign(SKILL_SLASHING, CLASS_ROGUE, 1);
-    skill_assign(SKILL_2H_PIERCING, CLASS_ROGUE, 1);
     skill_assign(SKILL_HIDE, CLASS_ROGUE, 1);
     skill_assign(SKILL_DODGE, CLASS_ROGUE, 1);
     skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
@@ -2478,9 +2494,9 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CHARM, CLASS_SORCERER, CIRCLE_12);
 
     /* THIEF */
+    skill_assign(SKILL_BLUDGEONING, CLASS_THIEF, 1);
     skill_assign(SKILL_PIERCING, CLASS_THIEF, 1);
     skill_assign(SKILL_SLASHING, CLASS_THIEF, 1);
-    skill_assign(SKILL_2H_PIERCING, CLASS_THIEF, 1);
     skill_assign(SKILL_SNEAK, CLASS_THIEF, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_THIEF, 1);
     skill_assign(SKILL_HIDE, CLASS_THIEF, 1);

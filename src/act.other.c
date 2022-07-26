@@ -2448,7 +2448,7 @@ ACMD(do_call) {
 
 ACMD(do_layhand) {
     struct char_data *vict;
-    int dam = GET_DEX(ch) * GET_LEVEL(ch) / 10; /* Base damage/healing */
+    int dam = GET_CHA(ch) * GET_LEVEL(ch) / 10; /* Base damage/healing */
 
     /* Check for appropriate class */
     if (GET_CLASS(ch) != CLASS_PALADIN && GET_CLASS(ch) != CLASS_ANTI_PALADIN) {
