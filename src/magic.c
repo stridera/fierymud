@@ -2942,6 +2942,9 @@ void perform_mag_group(int skill, struct char_data *ch, struct char_data *tch, i
     case SONG_HEARTHSONG:
         mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_PERFORM);
         break;
+    case SONG_HEROIC_JOURNEY:
+        mag_affect(skill, ch, tch, SONG_INSPIRATION, savetype, CAST_SPELL);
+        break;
     case SPELL_INVIGORATE:
         mag_point(skill, ch, tch, SPELL_INVIGORATE, savetype);
         break;
@@ -2984,6 +2987,10 @@ int mag_group(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SONG_HEARTHSONG:
         to_room = "&3&b$n&3&b deepens the bonds of community and fellowship amongst you.&0";
         to_char = "&3&bYou deepen the bonds of community and fellowship with your group.&0\r\n";
+        break;
+    case SONG_HEROIC_JOURNEY:
+        to_room = "&6&b$n&6&b spins a tale of great triumph and adventure for your party!&0";
+        to_char = "&6&bYou spin a tale of great triumph and adventure for your party!&0\r\n";
         break;
     default:
         to_room = NULL;

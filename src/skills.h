@@ -392,6 +392,7 @@
 #define SONG_CROWN_OF_MADNESS 555
 #define SONG_SONG_OF_REST 556
 #define SONG_BALLAD_OF_TEARS 557
+#define SONG_HEROIC_JOURNEY 558
 
 
 /* Monk chants go from 601 to 650 */

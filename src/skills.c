@@ -1432,6 +1432,9 @@ void init_skills(void) {
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, TRUE,
            "Your familiar disguise melts away.");
 
+    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_GROUP, 0, FALSE,
+           "Your inspiration fades.");
+           
     songo(SONG_INSPIRATION, "inspiration", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
            "Your inspiration fades.");
 
