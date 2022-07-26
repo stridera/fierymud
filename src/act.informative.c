@@ -3980,18 +3980,12 @@ ACMD(do_scan) {
 ACMD(do_innate) {
     struct char_data *vict;
     struct obj_data *obj;
-    char arg2[20000];
-    char arg3[20000];
     *buf = '\0';
 
-    one_word(one_word(one_word(argument, arg), arg2), arg3);
+    argument = delimited_arg(argument, arg, '\'');
 
-    vict = find_char_around_char(ch, find_vis_by_name(ch, arg2));
-    obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2));
-
-    if (arg3) {
-        vict = find_char_around_char(ch, find_vis_by_name(ch, arg3));
-    }
+    vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
+    obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
 
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
