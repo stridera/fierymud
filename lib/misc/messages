@@ -1579,6 +1579,27 @@ $N laughs off $n's pathetic attempts to throw shade.
 #
 #
 
+
+* Cloud of Daggers
+M
+ 242
+&1$N is fatally ripped apart by your &9&bcloud of daggers!&0
+&1You are ripped apart by $n's &9&bcloud of daggers!!&0
+&1The &9&bcloud of daggers&0 &1rips apart $N!&0
+Your daggers have no effect on $N.
+The cloud of daggers refuses to cut you!
+The cloud of daggers refuses to cut $N.
+&9&bYour animated daggers cut $N to shreds!&0
+&9&b$n's animated daggers cut you to shreds!&0
+&9&b$n's animated daggers cut $N to shreds!&0
+Your mere daggers are no match for a god.
+$n throws a handful of daggers at you.  That was weird...
+$n tries to throw a handful of daggers at $N.
+#
+#
+#
+
+
 * Acid Fog
 M
  245
@@ -1597,7 +1618,6 @@ The acidic fog has no effect on $N.
 #
 #
 #
-
 
 ***************************************************************************
 *                           Offensive Skills                              *

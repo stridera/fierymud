@@ -24,6 +24,7 @@ ASPELL(spell_acid_fog);
 ASPELL(spell_armor_of_gaia);
 ASPELL(spell_banish);
 ASPELL(spell_charm);
+ASPELL(spell_cloud_of_daggers);
 ASPELL(spell_color_spray);
 ASPELL(spell_control_weather);
 ASPELL(spell_create_water);

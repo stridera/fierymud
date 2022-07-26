@@ -148,7 +148,7 @@ void improve_skill(struct char_data *ch, int skill) {
     if (skill == SKILL_FIRST_AID || skill == SKILL_BANDAGE || skill == SKILL_DOUSE || skill == SKILL_CHANT)
         percent += number(4, 7);
     else if (skill == SKILL_TAME || skill == SKILL_BASH || skill == SKILL_DISARM || skill == SKILL_SCRIBE ||
-             skill == SKILL_SWITCH)
+             skill == SKILL_SWITCH || skill == SKILL_PERFORM)
         percent += 2;
     else
         percent++;
@@ -437,7 +437,9 @@ void init_skills(void) {
      * the caster's level increases.
      *
      * minpos  :  Minimum position the caster must be in for the spell to work
-     * (usually fighting or standing). targets :  A "list" of the valid targets
+     * (usually fighting or standing). 
+     * 
+     * targets :  A "list" of the valid targets
      * for the spell, joined with bitwise OR ('|').
      *
      * violent :  TRUE or FALSE, depending on if this is considered a violent
@@ -505,6 +507,10 @@ void init_skills(void) {
            MAG_AFFECT | MAG_ALTER_OBJ, C1, CAST_SPEED2, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
            "You feel less righteous.");
 
+    spello(SPELL_BLINDING_BEAUTY, "blinding beauty", 35, 25, 1, POS_STANDING, TRUE, TAR_IGNORE,
+           TRUE, MAG_AREA, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
+           "You feel a cloak of blindness dissolve.");
+
     spello(SPELL_BLINDNESS, "blindness", 35, 25, 1, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_NOT_SELF,
            TRUE, MAG_AFFECT, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
            "You feel a cloak of blindness dissolve.");
@@ -563,6 +569,10 @@ void init_skills(void) {
 
     spello(SPELL_CLONE, "clone", 80, 65, 5, POS_STANDING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_SUMMON, C1,
            CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 35, FALSE, NULL);
+
+    spello(SPELL_CLOUD_OF_DAGGERS, "cloud of daggers", 0, 0, 0, POS_STANDING, TRUE,
+           TAR_IGNORE | TAR_DIRECT, TRUE, MAG_MANUAL, C1, CAST_SPEED5, DAM_SLASH, SKILL_SPHERE_GENERIC,
+           27, FALSE, NULL);
 
     spello(SPELL_COLDSHIELD, "coldshield", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE,
            MAG_AFFECT, C1, CAST_SPEED3, DAM_COLD, SKILL_SPHERE_WATER, 17, FALSE,
@@ -698,6 +708,10 @@ void init_skills(void) {
 
     spello(SPELL_DRAGONS_HEALTH, "dragons health", 50, 30, 5, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 21, TRUE, "Your health returns to normal.");
+
+    spello(SPELL_EARTH_BLESSING, "earth blessing", 35, 5, 3, POS_SITTING, FALSE, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE,
+           MAG_AFFECT | MAG_ALTER_OBJ, C1, CAST_SPEED2, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
+           "You feel less righteous.");
 
     spello(SPELL_EARTHQUAKE, "earthquake", 40, 25, 3, POS_STANDING, TRUE, TAR_IGNORE | TAR_OUTDOORS, TRUE, MAG_AREA, C1,
            CAST_SPEED5, DAM_CRUSH, SKILL_SPHERE_EARTH, 5, FALSE, NULL);
@@ -1081,6 +1095,9 @@ void init_skills(void) {
     spello(SPELL_RESURRECT, "resurrect", 75, 50, 3, POS_STANDING, FALSE, TAR_CHAR_WORLD | TAR_NOT_SELF, FALSE,
            MAG_MANUAL, C1, 26, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, TRUE, NULL);
 
+    spello(SPELL_REVEAL_HIDDEN, "reveal hidden", 20, 10, 2, POS_SITTING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE,
+           MAG_MANUAL, C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 19, FALSE, NULL);
+
     spello(SPELL_SANCTUARY, "sanctuary", 110, 85, 5, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 35, FALSE, "The white aura around your body fades.");
 
@@ -1226,6 +1243,9 @@ void init_skills(void) {
     spello(SPELL_WATERWALK, "waterwalk", 35, 5, 3, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 29, FALSE, "Your feet seem less buoyant.");
 
+    spello(SPELL_WEB, "web", 0, 0, 0, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_NOT_SELF, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 21, FALSE, "The webs holding you in place dissolve.");
+
     spello(SPELL_WINGS_OF_HEAVEN, "wings of heaven", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE,
            MAG_AFFECT, C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
            "Your wings gently fold back and fade away.");
@@ -1306,6 +1326,7 @@ void init_skills(void) {
     skillo(SKILL_MOUNT, "mount", FALSE, 0);
     skillo(SKILL_PARRY, "parry", TRUE, 0);
     skillo(SKILL_PECK, "peck", FALSE, TAR_CONTACT);
+    skillo(SKILL_PERFORM, "perform", FALSE, 0);
     skillo(SKILL_PICK_LOCK, "pick lock", TRUE, 0);
     skillo(SKILL_PIERCING, "piercing weapons", TRUE, TAR_CONTACT);
     skillo(SKILL_PUNCH, "punch", TRUE, TAR_CONTACT);
@@ -1347,6 +1368,12 @@ void init_skills(void) {
 
 
     /* Set up monk/berserker chants */
+    /*
+     * Arguments for chanto calls:
+     *
+     * chant, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff                
+     */
+    
     chanto(CHANT_APOCALYPTIC_ANTHEM, "apocalyptic anthem", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_MANUAL, 0, TRUE,
            NULL);
 
@@ -1385,20 +1412,47 @@ void init_skills(void) {
     chanto(CHANT_WAR_CRY, "war cry", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, FALSE,
            "Your determination level returns to normal.");
 
-
+    chanto(CHANT_HYMN_OF_SAINT_AUGUSTINE, "hymn of saint augustine", POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT, 0, FALSE, 
+           "Your inner elements subside.");
+           
 
     /* Set up bard songs. */
-    /*  songo(SONG_CHORUS_OF_COURAGE, "chorus of courage", POS_STANDING, FALSE,
-            TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
-            "Your courage leaves you.");
-    */
+    
+    /* Arguments for songo calls
+     *
+     * song, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff
+     */
+
+    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, 0, FALSE,
+           "Your nerves settle down as the terror leaves you.");
+
+    songo(SONG_SONG_OF_REST, "song of rest", POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
+           "The restful song fades from your memory.");
+           
+    songo(SONG_CROWN_OF_MADNESS, "crown of madness", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, 0, TRUE, 
+           "Your mind returns to reality.");
+    
+    songo(SONG_ENRAPTURE, "enrapture", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_AREA, 0, TRUE, 
+           "You regain your senses as the illusions subside.");
+
+    songo(SONG_FREEDOM_SONG, "freedom song", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_GROUP, 0, FALSE,
+           "Your nerves settle down as the terror leaves you.");
+           
+    songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, TRUE,
+           "Your familiar disguise melts away.");
+
+    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_GROUP, 0, FALSE,
+           "Your inspiration fades.");
+           
     songo(SONG_INSPIRATION, "inspiration", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
            "Your inspiration fades.");
 
-    chanto(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
+    songo(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
            "Your nerves settle down as the terror leaves you.");
 
+
     /* Set up non-skill effects */
+    /* effect, name, wearoff */
     effecto(SKILL_AWARE, "aware", "");
 }
 

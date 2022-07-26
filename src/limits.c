@@ -126,6 +126,8 @@ int hit_gain(struct char_data *ch)
         /* Class/Level calculations */
 
         /* Skill/Spell calculations */
+        if (EFF_FLAGGED(ch, EFF_SONG_OF_REST) && (GET_STANCE(ch) == STANCE_SLEEPING || GET_STANCE(ch) == STANCE_RESTING))
+            gain += (gain << 1);
 
         /* Position calculations    */
         switch (GET_STANCE(ch)) {
@@ -172,6 +174,8 @@ int move_gain(struct char_data *ch)
         /* Class/Level calculations */
 
         /* Skill/Spell calculations */
+        if (EFF_FLAGGED(ch, EFF_SONG_OF_REST) && (GET_STANCE(ch) == STANCE_SLEEPING || GET_STANCE(ch) == STANCE_RESTING))
+            gain += (gain << 1);
 
         /* Position calculations    */
         switch (GET_STANCE(ch)) {

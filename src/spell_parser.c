@@ -393,6 +393,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
         case SPELL_CHARM:
             MANUAL_SPELL(spell_charm);
             break;
+        case SPELL_CLOUD_OF_DAGGERS:
+            MANUAL_SPELL(spell_cloud_of_daggers);
+            break;
         case SPELL_COLOR_SPRAY:
             MANUAL_SPELL(spell_color_spray);
             break;
@@ -518,6 +521,9 @@ int call_magic(struct char_data *caster, struct char_data *cvict, struct obj_dat
             break;
         case SPELL_RESURRECT:
             MANUAL_SPELL(spell_resurrect);
+            break;
+        case SPELL_REVEAL_HIDDEN:
+            MANUAL_SPELL(spell_reveal_hidden);
             break;
         case SPELL_SHIFT_CORPSE:
             MANUAL_SPELL(spell_shift_corpse);
@@ -980,6 +986,8 @@ int cast_spell(struct char_data *ch, struct char_data *tch, struct obj_data *tob
     return cresult;
 }
 
+/* entry point for all Monk chants */
+
 int chant(struct char_data *ch, struct char_data *tch, struct obj_data *obj, int chantnum) {
     int cresult;
 
@@ -1059,6 +1067,106 @@ int chant(struct char_data *ch, struct char_data *tch, struct obj_data *obj, int
     return cresult;
 }
 
+/* Entry point for Bard music */
+
+/* 
+bool music(struct char_data *ch, int music) {
+    if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, music)) {
+            int hours = GET_COOLDOWN(ch, music) / (1 MUD_HR);
+            if (hours == 1)
+                strcpy(buf1, "hour");
+            else
+                sprintf(buf1, "%d hours", hours);
+            sprintf(buf,
+                    "You're still drained from performing recently!\r\n"
+                    "You'll be able to perform again in another %s.\r\n",
+                    buf1);
+            send_to_char(buf, ch);
+            return TRUE;
+    }
+    return FALSE;
+}
+*/
+
+int perform(struct char_data *ch, struct char_data *tch, struct obj_data *obj, int songnum) {
+    int cresult;
+
+    if (songnum < 0 || songnum > TOP_SKILL_DEFINE) {
+        sprintf(buf, "SYSERR: perform trying to call songnum %d", songnum);
+        log(buf);
+        return 0;
+    }
+
+    if (GET_STANCE(ch) == STANCE_FIGHTING && !skills[songnum].fighting_ok && GET_LEVEL(ch) <= LVL_IMMORT) {
+        send_to_char("Impossible!  You can't concentrate enough!\r\n", ch);
+        return 0;
+    }
+
+    if (GET_STANCE(ch) < STANCE_ALERT) {
+        switch (GET_STANCE(ch)) {
+        case STANCE_SLEEPING:
+            send_to_char("You dream about heart-stopping performances.\r\n", ch);
+            break;
+        case STANCE_RESTING:
+            send_to_char("You cannot concentrate while resting.\r\n", ch);
+            break;
+        default:
+            send_to_char("You can't do much of anything like this!\r\n", ch);
+            break;
+        }
+        return 0;
+    }
+
+    if (GET_POS(ch) < skills[songnum].minpos) {
+        switch (skills[songnum].minpos) {
+        case POS_FLYING:
+            cprintf(ch, "You must be flying to perform this.\r\n");
+            break;
+        case POS_STANDING:
+            cprintf(ch, "You can only perform this while standing.\r\n");
+            break;
+        case POS_KNEELING:
+            cprintf(ch, "You must at least be kneeling to perform this.\r\n");
+            break;
+        case POS_SITTING:
+            cprintf(ch, "You'll have to at least sit up to perform this.\r\n");
+            break;
+        default:
+            cprintf(ch, "Sorry, you can't perform this.  Who knows why.\r\n");
+            break;
+        }
+        return 0;
+    }
+
+    if (!check_spell_target(songnum, ch, tch, obj))
+        return 0;
+    if (EFF_FLAGGED(ch, EFF_CHARM) && (ch->master == tch) && skills[songnum].violent) {
+        send_to_char("You are afraid you might hurt your master!\r\n", ch);
+        return 0;
+    }
+    if (IS_SET(skills[songnum].routines, MAG_GROUP) && !IS_GROUPED(ch)) {
+        send_to_char("You can't perform this if you're not in a group!\r\n", ch);
+        return 0;
+    }
+
+    act("$n begins playing beautiful music.", FALSE, ch, 0, 0, TO_ROOM);
+    send_to_char("You begin a virtuosic performance.\r\n", ch);
+
+    if (number(0, 101) > 50 + GET_SKILL(ch, SKILL_PERFORM)) {
+        send_to_char("You choke and grunt a raspy wail of pain.\r\n", ch);
+        act("$n chokes on $s tears and coughs a raspy grunt.", TRUE, ch, 0, 0, TO_ROOM);
+        return CAST_RESULT_CHARGE;
+    }
+
+    cresult = call_magic(ch, tch, obj, songnum, GET_SKILL(ch, SKILL_PERFORM), CAST_PERFORM);
+
+    /* Prevent skill improvement for chants against illusions */
+    if (IS_SET(cresult, CAST_RESULT_IMPROVE) && tch && MOB_FLAGGED(tch, MOB_ILLUSORY))
+        return cresult & ~CAST_RESULT_IMPROVE;
+
+    return cresult;
+}
+
 /*
  * do_cast is the entry point for PC-casted spells.  It parses the arguments,
  * determines the spell number and finds a target, throws the die to see if
@@ -1113,13 +1221,139 @@ ACMD(do_cast) {
         }
     }
 
+    if (subcmd == SCMD_PERFORM) {
+        if (IS_NPC(ch)) {
+            send_to_char("NPC's can't perform!\r\n", ch);
+            return;
+        }
+        if (!GET_SKILL(ch, SKILL_PERFORM)) {
+            send_to_char("You have no idea how to perform anything good.\r\n", ch);
+            return;
+        }
+        if (GET_LEVEL(ch) < LVL_GOD) {
+                switch (cha_app[GET_CHA(ch)].music)
+                {
+                case 7:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_7))
+                        break;
+                case 6:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_6))
+                        break;
+                case 5:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_5)) 
+                        break;
+                case 4:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_4))
+                        break;  
+                case 3:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_3))
+                        break;    
+                case 2:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_2))
+                        break; 
+                case 1:
+	                if (!GET_COOLDOWN(ch, CD_MUSIC_1))
+                        break;                                     
+                default:
+                    sprintf(buf,
+                        "You're still drained from performing recently!\r\n");
+                    send_to_char(buf, ch);
+                    if GET_COOLDOWN(ch, CD_MUSIC_1) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_1) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance one will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_2) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_2) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance two will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_3) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_3) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance three will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_4) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_4) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance four will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_5) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_5) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance five will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_6) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_6) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance six will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    if GET_COOLDOWN(ch, CD_MUSIC_7) {
+                        int hours = GET_COOLDOWN(ch, CD_MUSIC_7) / (1 MUD_HR);
+                        if (hours == 1)
+                            strcpy(buf1, "hour");
+                        else {
+                            sprintf(buf1, "%d hours", hours);
+                    sprintf(buf,
+                        "Performance seven will refresh in %s.\r\n",
+                        buf1);
+                    send_to_char(buf, ch);
+                        }
+                    }
+                    return;
+                }
+        }
+    }
+
     argument = delimited_arg(argument, arg, '\'');
 
     if (!*arg) {
         if (subcmd == SCMD_CHANT)
             send_to_char("What do you want to chant?\r\n", ch);
-        else if (subcmd == SCMD_SING)
-            send_to_char("What song do you want to sing?\r\n", ch);
+        else if (subcmd == SCMD_PERFORM)
+            send_to_char("What do you want to perform?\r\n", ch);
         else
             send_to_char("Cast what where?\r\n", ch);
         return;
@@ -1131,10 +1365,10 @@ ACMD(do_cast) {
             send_to_char("Chant what?!?\r\n", ch);
             return;
         }
-    } else if (subcmd == SCMD_SING) {
+    } else if (subcmd == SCMD_PERFORM) {
         spellnum = find_song_num(arg);
         if (!IS_SONG(spellnum)) {
-            send_to_char("Sing what?!?\r\n", ch);
+            send_to_char("Perform what?!?\r\n", ch);
             return;
         }
     } else {
@@ -1149,8 +1383,8 @@ ACMD(do_cast) {
     if (GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] || !GET_SKILL(ch, spellnum)) {
         if (subcmd == SCMD_CHANT)
             send_to_char("You do not know that chant!\r\n", ch);
-        else if (subcmd == SCMD_SING)
-            send_to_char("You do not know that song!\r\n", ch);
+        else if (subcmd == SCMD_PERFORM)
+            send_to_char("You do not know that music!\r\n", ch);
         else
             send_to_char("You do not know that spell!\r\n", ch);
         return;
@@ -1175,15 +1409,15 @@ ACMD(do_cast) {
         if (*arg) {
             if (subcmd == SCMD_CHANT)
                 send_to_char("Cannot find the target of your chant!\r\n", ch);
-            else if (subcmd == SCMD_SING)
-                send_to_char("Cannot find the target of your song!\r\n", ch);
+            else if (subcmd == SCMD_PERFORM)
+                send_to_char("Cannot find the target of your music!\r\n", ch);
             else
                 send_to_char("Cannot find the target of your spell!\r\n", ch);
         } else {
             if (subcmd == SCMD_CHANT)
                 send_to_char("To whom should the chant be sung?\r\n", ch);
-            else if (subcmd == SCMD_SING)
-                send_to_char("To whom should the song be sung?\r\n", ch);
+            else if (subcmd == SCMD_PERFORM)
+                send_to_char("To whom should the music be played?\r\n", ch);
             else {
                 sprintf(buf, "Upon %s should the spell be cast?\r\n",
                         IS_SET(SINFO.targets, TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_WORLD | TAR_STRING) ? "what"
@@ -1204,10 +1438,10 @@ ACMD(do_cast) {
             cprintf(ch,
                     "You begin chanting, but your throat causes you to "
                     "cough up blood!\r\n");
-        } else if (subcmd == SCMD_SING) {
-            act("$n starts singing, but stops abruptly, coughing up blood!", FALSE, ch, 0, 0, TO_ROOM);
+        } else if (subcmd == SCMD_PERFORM) {
+            act("$n starts playing, but stops abruptly, coughing up blood!", FALSE, ch, 0, 0, TO_ROOM);
             cprintf(ch,
-                    "You begin singing, but your throat causes you to "
+                    "You begin playing, but your throat causes you to "
                     "cough up blood!\r\n");
         } else {
             act("$n starts casting, but stops abruptly, coughing up blood!", FALSE, ch, 0, 0, TO_ROOM);
@@ -1252,11 +1486,107 @@ ACMD(do_cast) {
         if (IS_SET(cresult, CAST_RESULT_IMPROVE))
             improve_skill(ch, SKILL_CHANT);
         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-            SET_COOLDOWN(ch, CD_CHANT, 4 MUD_HR);
+            SET_COOLDOWN(ch, CD_CHANT, (7 - (((wis_app[GET_WIS(ch)].bonus)*3)/4) + (((int_app[GET_INT(ch)].bonus)*1)/4)) MUD_HR);
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
-    } else if (subcmd == SCMD_SING) {
 
+    } else if (subcmd == SCMD_PERFORM) {
+        cprintf(ch, "cha_app is %d\r\n", cha_app[GET_CHA(ch)].music);
+        if (cha_app[GET_CHA(ch)].music == 0) {
+            send_to_char("Your Charisma is too low to perform!\r\n", ch);
+        }
+        for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
+            switch (i)
+            {
+            case 1:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_1)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_1, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+                }
+                break;
+            case 2:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_2)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_2, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;
+            case 3:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_3)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_3, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;
+            case 4:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_4)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_4, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;  
+            case 5:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_5)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_5, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;    
+            case 6:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_6)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_6, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break; 
+            case 7:
+	            if (!GET_COOLDOWN(ch, CD_MUSIC_7)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_7, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                    }
+                    i = 8;
+	            }
+                break;                                     
+            default:
+                break;
+            }
+        }
+        
     } else {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
 

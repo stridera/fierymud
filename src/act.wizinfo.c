@@ -415,7 +415,7 @@ void do_stat_object(struct char_data *ch, struct obj_data *j) {
     case ITEM_WEAPON:
         str_catf(buf, "Todam: %dd%d (avg %.1f), Message type: %d, '%s'\r\n", GET_OBJ_VAL(j, VAL_WEAPON_DICE_NUM),
                  GET_OBJ_VAL(j, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(j), GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE),
-                 GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) >= 0 && GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) <= TYPE_POISON - TYPE_HIT
+                 GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) >= 0 && GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) <= TYPE_ALIGN - TYPE_HIT
                      ? attack_hit_text[GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE)].singular
                      : "<&1INVALID&0>");
         break;
