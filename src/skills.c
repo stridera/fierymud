@@ -1240,6 +1240,9 @@ void init_skills(void) {
     spello(SPELL_WATERWALK, "waterwalk", 35, 5, 3, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 29, FALSE, "Your feet seem less buoyant.");
 
+    spello(SPELL_WEB, "web", 0, 0, 0, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_NOT_SELF, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 21, FALSE, "The webs holding you in place dissolve.");
+
     spello(SPELL_WINGS_OF_HEAVEN, "wings of heaven", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE,
            MAG_AFFECT, C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
            "Your wings gently fold back and fade away.");
@@ -1435,6 +1438,9 @@ void init_skills(void) {
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, TRUE,
            "Your familiar disguise melts away.");
 
+    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_GROUP, 0, FALSE,
+           "Your inspiration fades.");
+           
     songo(SONG_INSPIRATION, "inspiration", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
            "Your inspiration fades.");
 
