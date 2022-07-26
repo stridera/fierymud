@@ -75,10 +75,10 @@
 #define EFF_NEGATE_AIR 57
 #define EFF_NEGATE_EARTH 58
 #define EFF_REMOTE_AGGR 59 /* Your aggro action won't remove invis/bless etc. */
-/* Room for future expansion 60 */
-/* Room for future expansion 61 */
-/* Room for future expansion 62 */
-/* Room for future expansion 63 */
+#define EFF_FIREHANDS 60   /* Make Monks do burn damage with their hands */
+#define EFF_ICEHANDS 61    /* Make Monks do cold damage with their hands */
+#define EFF_LIGHTNINGHANDS 62 /* Make Monks do shock damage with their hands */
+#define EFF_ACIDHANDS 63   /* Make Monks do acid damage with their hands */
 #define EFF_AWARE 64
 #define EFF_REDUCE 65
 #define EFF_ENLARGE 66

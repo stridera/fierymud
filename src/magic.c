@@ -613,6 +613,10 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_CIRCLE_OF_FIRE:
         dam = (skill / 2) + dice(2, 3);
         break;
+    case SPELL_CLOUD_OF_DAGGERS:
+        /* spell hits 4 times */
+        dam += (pow(skill, 2) * 7) / 1250;
+        reduction = TRUE;
         break;
     case SPELL_COLOR_SPRAY:
         /* max dam 190 from 15d5+45 online */
@@ -1741,6 +1745,32 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].duration = 5 + (skill / 10); /* max 15 */
         to_vict = "Your sight improves dramatically.";
         to_room = "$N's pupils dilate rapidly for a second.";
+        break;
+
+    case CHANT_HYMN_OF_SAINT_AUGUSTINE:
+
+        if (is_abbrev(buf2, "fire")) {
+            SET_FLAG(eff[0].flags, EFF_FIREHANDS);
+            to_vict = "&1Your fists burn with inner fire.&0";
+            to_room = "&1$N's fists burn with inner fire.&0";
+        } else if (is_abbrev(buf2, "ice")) {
+            SET_FLAG(eff[0].flags, EFF_ICEHANDS);
+            to_vict = "&4&bYou unleash the blizzard in your heart.&0";
+            to_room = "&4&b$N unleashes the blizzard in $S heart.&0";
+        } else if (is_abbrev(buf2, "lightning")) {
+            SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
+            to_vict = "&6&bYour knuckles crackle with lightning.&0";
+            to_room = "&6&b$N's knuckles crackle with lightning.&0";
+        } else if (is_abbrev(buf2, "acid")) {
+            SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
+            to_vict = "&3&bYou charge your hands with corrosive chi.&0";
+            to_room = "&3&b$N charges $S hands with corrosive chi.&0";
+        } else {
+            send_to_char("What element do you want to imbue?\r\n", ch);
+            send_to_char("Fire, ice, lightning, or acid?\r\n", ch);
+            return 0;
+        }
+        eff[0].duration = (skill / 10) + wis_app[GET_WIS(ch)].bonus; /* max 15 */
         break;
 
     case SPELL_FIRESHIELD:
@@ -2894,6 +2924,9 @@ void perform_mag_group(int skill, struct char_data *ch, struct char_data *tch, i
     case SPELL_GROUP_RECALL:
         spell_recall(spellnum, skill, ch, tch, NULL, savetype);
         break;
+    case SONG_HEARTHSONG:
+        mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_SING);
+        break;
     case SPELL_INVIGORATE:
         mag_point(skill, ch, tch, SPELL_INVIGORATE, savetype);
         break;
@@ -2932,6 +2965,10 @@ int mag_group(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SPELL_DIVINE_ESSENCE:
         to_room = "&3&b$n&3&b invokes $s deity's divine essence to fill the area!&0";
         to_char = "&3&bYou invoke your deity's divine essence!&0\r\n";
+        break;
+    case SONG_HEARTHSONG:
+        to_room = "&3&b$n&3&b deepens the bonds of community and fellowship amongst you.&0";
+        to_char = "&3&bYou deepen the bonds of community and fellowship with your group.&0\r\n";
         break;
     default:
         to_room = NULL;

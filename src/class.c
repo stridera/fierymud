@@ -723,11 +723,11 @@ struct classdef classes[NUM_CLASSES] = {
      {95, 90, 100, 110, 110},
      9,
      2,
-     0,
+     ITEM_ANTI_BARD,
      100,
-     0,
      100,
-     1,
+     100,
+     1.2,
      100,
      90,
      100,
@@ -1073,6 +1073,7 @@ int guild_info[][3] = {
     {CLASS_MONK, 5307, SCMD_EAST},          /* Grey Castle */
     {CLASS_PALADIN, 5305, SCMD_EAST},       /* Grey Castle */
     {CLASS_BERSERKER, 3211, SCMD_SOUTH},    /* Great Road */
+    {CLASS_BARD, 5310, SCMD_EAST},          /* Grey Castle */
 
     /* Ogakh */ /* Room    Direction */
     {CLASS_SORCERER, 30072, SCMD_WEST},
@@ -1095,6 +1096,7 @@ int guild_info[][3] = {
     {CLASS_ASSASSIN, 30018, SCMD_EAST},
     {CLASS_THIEF, 30018, SCMD_EAST},
     {CLASS_MERCENARY, 30018, SCMD_EAST},
+    {CLASS_BARD, 30018, SCMD_EAST},
 
     {CLASS_WARRIOR, 30029, SCMD_WEST},
     {CLASS_ANTI_PALADIN, 30029, SCMD_WEST},
@@ -1119,6 +1121,7 @@ int guild_info[][3] = {
     {CLASS_THIEF, 6067, SCMD_NORTH},
     {CLASS_MERCENARY, 6106, SCMD_UP},
     {CLASS_ASSASSIN, 6083, SCMD_NORTH},
+    {CLASS_BARD, 6092, SCMD_NORTH},
 
     {CLASS_CLERIC, 6217, SCMD_EAST},
     {CLASS_PRIEST, 6217, SCMD_EAST},
@@ -1136,6 +1139,7 @@ int guild_info[][3] = {
     {CLASS_MERCENARY, 10047, SCMD_EAST},
     {CLASS_ASSASSIN, 10047, SCMD_EAST},
     {CLASS_THIEF, 10047, SCMD_EAST},
+    {CLASS_BARD, 10047, SCMD_EAST},
 
     {CLASS_WARRIOR, 10014, SCMD_WEST},
     {CLASS_ANTI_PALADIN, 10014, SCMD_WEST},
@@ -1303,6 +1307,7 @@ void advance_level(struct char_data *ch, enum level_action action) {
     case CLASS_PYROMANCER:
     case CLASS_NECROMANCER:
     case CLASS_CONJURER:
+    case CLASS_BARD:
         if (action == LEVEL_GAIN)
             add_hp += number(3, 8);
         else
@@ -1336,7 +1341,6 @@ void advance_level(struct char_data *ch, enum level_action action) {
 
     case CLASS_THIEF:
     case CLASS_ROGUE:
-    case CLASS_BARD:
         if (action == LEVEL_GAIN)
             add_hp += number(7, 13);
         else
@@ -1567,9 +1571,12 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DUAL_WIELD, CLASS_BARD, 90);
 
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
+
+    spell_assign(SPELL_CLOUD_OF_DAGGERS, CLASS_BARD, CIRCLE_8);
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
     song_assign(SONG_TERROR, CLASS_BARD, 10);
+    song_assign(SONG_HEARTHSONG, CLASS_BARD, 70);
     song_assign(SONG_CROWN_OF_MADNESS, CLASS_BARD, 80);
     
     /* BERSERKER */
@@ -2022,6 +2029,7 @@ void assign_class_skills(void) {
     chant_assign(CHANT_BATTLE_HYMN, CLASS_MONK, 30);
     chant_assign(CHANT_SHADOWS_SORROW_SONG, CLASS_MONK, 30);
     chant_assign(CHANT_IVORY_SYMPHONY, CLASS_MONK, 45);
+    chant_assign(CHANT_HYMN_OF_SAINT_AUGUSTINE, CLASS_MONK, 50);
     chant_assign(CHANT_ARIA_OF_DISSONANCE, CLASS_MONK, 60);
     chant_assign(CHANT_SONATA_OF_MALAISE, CLASS_MONK, 60);
     chant_assign(CHANT_PEACE, CLASS_MONK, 70);

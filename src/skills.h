@@ -281,8 +281,9 @@
 #define SPELL_SPIRIT_RAY 239
 #define SPELL_VICIOUS_MOCKERY 240
 #define SPELL_REMOVE_PARALYSIS 241
-#define SPELL_BLINDING_BEAUTY 242
-#define SPELL_EARTH_BLESSING 243
+#define SPELL_CLOUD_OF_DAGGERS 242
+#define SPELL_BLINDING_BEAUTY 243
+#define SPELL_EARTH_BLESSING 244
 
 /* Insert new spells here, up to MAX_SPELLS */
 
@@ -384,6 +385,7 @@
 /* Bardic songs start at 551 and go to 600 */
 #define SONG_INSPIRATION 551
 #define SONG_TERROR 552
+#define SONG_HEARTHSONG 554
 #define SONG_CROWN_OF_MADNESS 555
 
 /* Monk chants go from 601 to 650 */
@@ -400,6 +402,7 @@
 #define CHANT_SPIRIT_WOLF 611
 #define CHANT_SPIRIT_BEAR 612
 #define CHANT_INTERMINABLE_WRATH 613
+#define CHANT_HYMN_OF_SAINT_AUGUSTINE 614
 
 /* New skills may be added here up to MAX_ABILITIES (650) */
 /* Don't add spells/skills/songs/chants that will be saved past 650.  The
@@ -433,6 +436,7 @@
 #define TYPE_ACID 768
 #define TYPE_SHOCK 769
 #define TYPE_POISON 770
+#define TYPE_ALIGN 771
 
 /* new attack types can be added here - up to TYPE_SUFFERING */
 #define TYPE_SUFFERING 850
