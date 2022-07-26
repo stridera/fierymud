@@ -2925,7 +2925,7 @@ void perform_mag_group(int skill, struct char_data *ch, struct char_data *tch, i
         spell_recall(spellnum, skill, ch, tch, NULL, savetype);
         break;
     case SONG_HEARTHSONG:
-        mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_SING);
+        mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_PERFORM);
         break;
     case SPELL_INVIGORATE:
         mag_point(skill, ch, tch, SPELL_INVIGORATE, savetype);
