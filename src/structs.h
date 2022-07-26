@@ -393,7 +393,8 @@
 #define CD_INNATE_HARNESS 24
 #define CD_BREATHE 25
 #define CD_INNATE_CREATE 26
-#define NUM_COOLDOWNS 27
+#define CD_INNATE_BLINDING_BEAUTY 27
+#define NUM_COOLDOWNS 28
 
 /**********************************************************************
  * Structures                                                          *

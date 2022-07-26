@@ -1113,7 +1113,7 @@ int guild_info[][3] = {
     {CLASS_PALADIN, 6148, SCMD_SOUTH},
     {CLASS_RANGER, 6148, SCMD_SOUTH},
     {CLASS_BERSERKER, 6148, SCMD_SOUTH},
-    {CLASS_BERSERKER, 55795, SCMD_NORTH},   /* Black Rock Trail */
+    {CLASS_BERSERKER, 55796, SCMD_NORTH},   /* Black Rock Trail */
 
     {CLASS_ROGUE, 6067, SCMD_NORTH},
     {CLASS_THIEF, 6067, SCMD_NORTH},
@@ -1487,6 +1487,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SLASHING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_2H_SLASHING, CLASS_ANTI_PALADIN, 1);
+    skill_assign(SKILL_2H_PIERCING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_KICK, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_BASH, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ANTI_PALADIN, 1);
@@ -1533,13 +1534,14 @@ void assign_class_skills(void) {
     spell_assign(SPELL_UNHOLY_WORD, CLASS_ANTI_PALADIN, CIRCLE_11);
 
     /* ASSASSIN */
+    skill_assign(SKILL_BLUDGEONING, CLASS_ASSASSIN, 1);
+    skill_assign(SKILL_PIERCING, CLASS_ASSASSIN, 1);
+    skill_assign(SKILL_SLASHING, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_INSTANT_KILL, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_SNEAK, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_HIDE, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_PIERCING, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_SLASHING, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ASSASSIN, 5);
     skill_assign(SKILL_KICK, CLASS_ASSASSIN, 10);
     skill_assign(SKILL_TRACK, CLASS_ASSASSIN, 10);
@@ -1550,8 +1552,10 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_ASSASSIN, 70);
 
     /* BARD */
-    skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
+    skill_assign(SKILL_BLUDGEONING, CLASS_BARD, 1);
     skill_assign(SKILL_PIERCING, CLASS_BARD, 1);
+    skill_assign(SKILL_SLASHING, CLASS_BARD, 1);
+    skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
     skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
     skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
     skill_assign(SKILL_STEAL, CLASS_BARD, 10);
@@ -1837,6 +1841,8 @@ void assign_class_skills(void) {
 
     /* DRUID */
     skill_assign(SKILL_BLUDGEONING, CLASS_DRUID, 1);
+    skill_assign(SKILL_PIERCING, CLASS_DRUID, 1);
+    skill_assign(SKILL_SLASHING, CLASS_DRUID, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_DRUID, 1);
     skill_assign(SKILL_SHAPECHANGE, CLASS_DRUID, 1);
     skill_assign(SKILL_TAME, CLASS_DRUID, 1);
@@ -1852,6 +1858,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_LIGHT, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_ALIGN, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_POISON, CLASS_DRUID, CIRCLE_2);
+    spell_assign(SPELL_EARTH_BLESSING, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_NIGHT_VISION, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_VIGORIZE_SERIOUS, CLASS_DRUID, CIRCLE_2);
 
@@ -2122,6 +2129,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_PIERCING, CLASS_PALADIN, 1);
     skill_assign(SKILL_SLASHING, CLASS_PALADIN, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_PALADIN, 1);
+    skill_assign(SKILL_2H_PIERCING, CLASS_PALADIN, 1);
     skill_assign(SKILL_2H_SLASHING, CLASS_PALADIN, 1);
     skill_assign(SKILL_KICK, CLASS_PALADIN, 1);
     skill_assign(SKILL_BASH, CLASS_PALADIN, 1);
@@ -2345,9 +2353,9 @@ void assign_class_skills(void) {
     spell_assign(SPELL_BLUR, CLASS_RANGER, CIRCLE_11);
 
     /* ROGUE */
+    skill_assign(SKILL_BLUDGEONING, CLASS_ROGUE, 1);
     skill_assign(SKILL_PIERCING, CLASS_ROGUE, 1);
     skill_assign(SKILL_SLASHING, CLASS_ROGUE, 1);
-    skill_assign(SKILL_2H_PIERCING, CLASS_ROGUE, 1);
     skill_assign(SKILL_HIDE, CLASS_ROGUE, 1);
     skill_assign(SKILL_DODGE, CLASS_ROGUE, 1);
     skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
@@ -2474,9 +2482,9 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CHARM, CLASS_SORCERER, CIRCLE_12);
 
     /* THIEF */
+    skill_assign(SKILL_BLUDGEONING, CLASS_THIEF, 1);
     skill_assign(SKILL_PIERCING, CLASS_THIEF, 1);
     skill_assign(SKILL_SLASHING, CLASS_THIEF, 1);
-    skill_assign(SKILL_2H_PIERCING, CLASS_THIEF, 1);
     skill_assign(SKILL_SNEAK, CLASS_THIEF, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_THIEF, 1);
     skill_assign(SKILL_HIDE, CLASS_THIEF, 1);
