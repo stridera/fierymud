@@ -3984,6 +3984,8 @@ ACMD(do_innate) {
 
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
+        if (GET_RACE(ch) == RACE_NYMPH);
+            send_to_char(" blinding beauty\r\n", ch);
         if (GET_SKILL(ch, SKILL_BODYSLAM))
             send_to_char(" bodyslam\r\n", ch);
         if (GET_SKILL(ch, SKILL_BREATHE_FIRE))
@@ -4126,7 +4128,7 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_CHAZ, 7 MUD_HR);
                 } else
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can strengthen again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_CREATE) / 10));
+                    cprintf(ch, "You can strengthen again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_CHAZ) / 10));
                 return;
             }
         }
@@ -4182,8 +4184,9 @@ ACMD(do_innate) {
                 return;
             }
         }
+        */
         if (is_abbrev(arg, "ascen")) {
-            if (GET_RACE(ch) == RACE_ELF) {
+            if (GET_RACE(ch) == RACE_NYMPH) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_ASCEN)) {
                     call_magic(ch, ch, 0, SPELL_INN_ASCEN, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
@@ -4194,7 +4197,6 @@ ACMD(do_innate) {
                 return;
             }
         }
-        */
         if (is_abbrev(arg, "harness")) {
             if (GET_RACE(ch) == RACE_ELF) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS)) {
@@ -4219,7 +4221,19 @@ ACMD(do_innate) {
             return;
         }
 
-
+        if (is_abbrev(arg, "blinding")) {
+            if (GET_RACE(ch) == RACE_NYMPH) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY)) {
+                    call_magic(ch, ch, 0, SPELL_BLINDING_BEAUTY, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY, 10 MUD_HR);
+                } else {
+                    send_to_char("You're too tired right now.\r\n", ch);
+                    cprintf(ch, "You can blind with your beauty again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY) / 10));
+                }
+            }
+            return;
+        }
         send_to_char("You have no such innate.\r\n", ch);
     }
 }
