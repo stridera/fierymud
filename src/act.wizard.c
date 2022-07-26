@@ -1997,7 +1997,6 @@ ACMD(do_set) {
                   {"sex", LVL_GOD, BOTH, MISC},
                   {"ac", LVL_GOD, BOTH, NUMBER},
                   {"olc", LVL_ADMIN, PC, NUMBER},
-                  {"home", LVL_GOD, PC, NUMBER},
                   {"innates", LVL_GOD, PC, NUMBER}, /*20 */
                   {"experience", LVL_ADMIN, BOTH, NUMBER},
                   {"hitroll", LVL_GOD, BOTH, NUMBER},
