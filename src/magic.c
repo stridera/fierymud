@@ -2769,10 +2769,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
 
     case SONG_INSPIRATION:
         eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* max 5 */
+        eff[0].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* Hitroll max 5 */
         eff[0].duration = skill / (15 - (GET_CHA(ch) / 20));                /* max 10 */
         eff[1].location = APPLY_DAMROLL;
-        eff[1].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* max 5 */
+        eff[1].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* Damroll max 5 */
         eff[1].duration = skill / (15 - (GET_CHA(ch) / 20));                /* max 10 */
         if (GET_LEVEL(ch) >= 20) {
             eff[2].location = APPLY_SAVING_PARA;
@@ -2782,21 +2782,34 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             eff[6].location = APPLY_SAVING_SPELL;
             eff[7].location = APPLY_AC;
             eff[2].duration = eff[3].duration = eff[4].duration = eff[5].duration = eff[6].duration =
-                eff[7].duration = skill / (15 - (GET_CHA(ch) / 20));       /* same duration, max 10 */
-            eff[2].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
-            eff[3].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
-            eff[4].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
-            eff[5].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
-            eff[6].modifier = (skill / 7) + number(0, (GET_CHA(ch) / 20)); /* max 19 */
-            eff[7].modifier = -5 - (10 - (GET_CHA(ch) / 20));             /* max -10 */
+                eff[7].duration = skill / (15 - (GET_CHA(ch) / 20));        /* same duration, max 10 */
+            eff[2].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Paralysis max -19 */
+            eff[3].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Wand max -19 */
+            eff[4].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Petrification max -19 */
+            eff[5].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Breath max -19 */
+            eff[6].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Spell max -19 */
+            eff[7].modifier =  (skill / 20) + (GET_CHA(ch) / 20);           /* AC max 10 */
             if (GET_LEVEL(ch) >= 40) {
                 eff[8].location = APPLY_HIT;
-                eff[8].modifier = (skill + (GET_CHA(ch)) * 2);               /* max 400 */
-                eff[8].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+                eff[8].modifier = (skill + (GET_CHA(ch)) * 2);               /* HP max 400 */
+                eff[8].duration = skill / (15 - (GET_CHA(ch) / 20));         /* max 10 */
             }
         }
         to_vict = "Your spirit swells with inspiration!";
-        to_room = "$n's stirs with inspiration!";
+        to_room = "$N's stirs with inspiration!";
+        break;
+
+    case SONG_SONG_OF_REST:                         /* increases HP and MV recovery while sleeping, see limits.c */
+        SET_FLAG(eff[0].flags, EFF_SONG_OF_REST);
+        eff[0].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+        if (ch != victim) {
+            to_char = "You sing $N a gentle lullaby to help $M rest.\r\n";
+            to_room = "$n sings $N a gentle lullaby to help $M rest.";
+            to_vict = "$n sings you a gentle lullaby to help you rest.";
+        } else {
+            to_vict = "You sing yourself a lullaby.\r\n";
+            to_room = "$n sings a lullaby to $Mself.";
+        }
         break;
 
     case SONG_TERROR:
@@ -2807,24 +2820,24 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[3].location = APPLY_AC;
         eff[0].duration = eff[1].duration = eff[2].duration = eff[3].duration
              = skill / (15 - (GET_CHA(ch) / 20));                           /* same duration, max 10 */
-        eff[0].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
-        eff[1].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
-        eff[2].modifier = -((skill / 7) + number(0, (GET_CHA(ch) / 20)));   /* max 19 */
-        eff[3].modifier = 5 + (10 - (GET_CHA(ch) / 20));                   /* max 10 */
+        eff[0].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20)));    /* Paralysis max 19 */
+        eff[1].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20)));    /* Rod max 19 */
+        eff[2].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20)));    /* Spell max 19 */
+        eff[3].modifier = -(5 + ((skill / 10) - (GET_CHA(ch) / 20)));       /* AC max -10 */
         if (GET_LEVEL(ch) >= 30) {
             eff[4].location = APPLY_CON;
-            eff[4].modifier = -(((skill + GET_CHA(ch)) / 2) * GET_VIEWED_STR(victim) / 2) / 100;  /* max 50 */
+            eff[4].modifier = -(((skill + GET_CHA(ch)) / 4) * (GET_VIEWED_CON(victim) / 2)) / 100;  /* Con max -25 */
             eff[4].duration = skill / (15 - (GET_CHA(ch) / 20));            /* max 10 */
             eff[5].location = APPLY_STR;
-            eff[5].modifier = -(((skill + GET_CHA(ch)) / 2) * GET_VIEWED_STR(victim) / 2) / 100;  /* max 50 */
+            eff[5].modifier = -(((skill + GET_CHA(ch)) / 4) * (GET_VIEWED_STR(victim) / 2)) / 100;  /* Str max -25 */
             eff[5].duration = skill / (15 - (GET_CHA(ch) / 20));            /* max 10 */
             if (GET_LEVEL(ch) >= 50) {
-                eff[0].location = APPLY_HITROLL;
-                eff[0].modifier = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
-                eff[0].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
-                eff[1].location = APPLY_DAMROLL;
-                eff[1].modifier = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
-                eff[1].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+                eff[6].location = APPLY_HITROLL;
+                eff[6].modifier = -(skill / (15 - (GET_CHA(ch) / 20)));     /* Hitroll max -10 */
+                eff[6].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+                eff[7].location = APPLY_DAMROLL;
+                eff[7].modifier = -(skill / (15 - (GET_CHA(ch) / 20)));     /* Damroll max -10 */
+                eff[7].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
             }
         }
         to_vict = "Your spirit withers in terror and sorrow!";

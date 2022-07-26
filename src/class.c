@@ -1664,6 +1664,7 @@ void assign_class_skills(void) {
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
     song_assign(SONG_TERROR, CLASS_BARD, 10);
+    song_assign(SONG_SONG_OF_REST, CLASS_BARD, 20);
     song_assign(SONG_BALLAD_OF_TEARS, CLASS_BARD, 70);
     song_assign(SONG_HEARTHSONG, CLASS_BARD, 70);
     song_assign(SONG_CROWN_OF_MADNESS, CLASS_BARD, 80);
