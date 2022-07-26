@@ -390,6 +390,7 @@
 #define SONG_ENRAPTURE 553
 #define SONG_HEARTHSONG 554
 #define SONG_CROWN_OF_MADNESS 555
+#define SONG_BALLAD_OF_TEARS 557
 
 /* Monk chants go from 601 to 650 */
 #define CHANT_REGENERATION 601

@@ -1406,12 +1406,17 @@ void init_skills(void) {
 
     chanto(CHANT_HYMN_OF_SAINT_AUGUSTINE, "hymn of saint augustine", POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT, 0, FALSE, 
            "Your inner elements subside.");
+           
 
     /* Set up bard songs. */
+    
     /* Arguments for songo calls
      *
      * song, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff
      */
+
+    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, 0, FALSE,
+           "Your nerves settle down as the terror leaves you.");
 
     songo(SONG_CROWN_OF_MADNESS, "crown of madness", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, 0, TRUE, 
            "Your mind returns to reality.");
@@ -1427,6 +1432,7 @@ void init_skills(void) {
 
     songo(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
            "Your nerves settle down as the terror leaves you.");
+
 
     /* Set up non-skill effects */
     /* effect, name, wearoff */
