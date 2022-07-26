@@ -386,6 +386,7 @@
 #define SONG_INSPIRATION 551
 #define SONG_TERROR 552
 #define SONG_HEARTHSONG 554
+#define SONG_CROWN_OF_MADNESS 555
 
 /* Monk chants go from 601 to 650 */
 #define CHANT_REGENERATION 601

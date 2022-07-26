@@ -1408,6 +1408,9 @@ void init_skills(void) {
     chanto(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
            "Your nerves settle down as the terror leaves you.");
 
+    songo(SONG_CROWN_OF_MADNESS, "crown of madness", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, 0, TRUE, 
+           "Your mind returns to reality.");
+           
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, TRUE,
            "Your familiar disguise melts away.");
 
