@@ -75,10 +75,10 @@ const char *effect_flags[NUM_EFF_FLAGS + 1] = {"BLIND", /* 0 */
                                                "!AIR",
                                                "!EARTH",
                                                "REMOTE_AGGR",
-                                               "UNUSED", /* 60 */
-                                               "UNUSED",
-                                               "UNUSED",
-                                               "UNUSED",
+                                               "FIREHANDS", /* 60 */
+                                               "ICEHANDS",
+                                               "LIGHTNINGHANDS",
+                                               "ACIDHANDS",
                                                "AWARE",
                                                "REDUCE", /* 65 */
                                                "ENLARGE",
@@ -95,4 +95,6 @@ const char *effect_flags[NUM_EFF_FLAGS + 1] = {"BLIND", /* 0 */
                                                "MISDIRECTING",
                                                "BLESS",
                                                "HEX",
+                                               "DETECT POISON", /* 80 */
+                                               "SONG OF REST",
                                                "\n"};
