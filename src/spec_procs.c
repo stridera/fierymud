@@ -945,6 +945,9 @@ int red_recall_room(struct char_data *ch) {
     case CLASS_MERCENARY:
         room = 6170;
         break;
+    case CLASS_BARD:
+        room = 6093;
+        break;
 
     case CLASS_CLERIC:
         room = 6218;
@@ -1053,6 +1056,10 @@ int green_recall_room(struct char_data *ch) {
         room = 3212;
         break;
 
+    case CLASS_BARD:
+        room = 5311;
+        break;
+
         /* Other warrior types, and anyone we missed */
     case CLASS_ANTI_PALADIN:
     default:
@@ -1100,6 +1107,7 @@ int blue_recall_room(struct char_data *ch) {
     case CLASS_THIEF:
     case CLASS_ASSASSIN:
     case CLASS_MERCENARY:
+    case CLASS_BARD:
         room = 10048;
         break;
 
@@ -1161,6 +1169,7 @@ int gray_recall_room(struct char_data *ch) {
     case CLASS_THIEF:
     case CLASS_ASSASSIN:
     case CLASS_MERCENARY:
+    case CLASS_BARD:
         room = 30066;
         break;
 
