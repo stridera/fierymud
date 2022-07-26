@@ -543,8 +543,10 @@ bool instantkill(struct char_data *ch, struct char_data *victim) {
     /*chance is now checking DEX and shouldn't happen as often */
     chance = 1000 - (GET_SKILL(ch, SKILL_INSTANT_KILL) - (100 - GET_DEX(ch)) - (GET_LEVEL(victim) * 10)) / 10;
 
-    if (!AWAKE(victim))
-        chance = 0; /* der.. can you say coup de grace? */
+    /* der.. can you say coup de grace? 
+     * needed to add additional condition to prevent it from instant killing dying mobs and robbing parties of exp */
+    if (!AWAKE(victim) && GET_HIT(victim) > 0)
+        chance = 0; 
 
     if (number(1, 1000) >= chance) {
         quickdeath(victim, ch);
@@ -2108,9 +2110,10 @@ ACMD(do_disarm) {
 }
 
 ACMD(do_hitall) {
-    struct char_data *mob, *next_mob;
+    struct char_data *mob, *next_mob, *orig_target;
     byte percent;
     bool hit_all = FALSE, realvictims = FALSE, success = FALSE;
+
 
     if (!ch || ch->in_room == NOWHERE)
         return;
@@ -2138,6 +2141,9 @@ ACMD(do_hitall) {
         return;
     }
 
+    if (FIGHTING(ch))
+        orig_target = FIGHTING(ch);
+
     /* Find out whether to hit "all" or just aggressive monsters */
     one_argument(argument, arg);
     if (!str_cmp(arg, "all") || subcmd == SCMD_TANTRUM)
@@ -2159,6 +2165,7 @@ ACMD(do_hitall) {
         if (GET_SKILL(ch, SKILL_HITALL) >= percent)
             success = TRUE;
     }
+
 
     for (mob = world[ch->in_room].people; mob; mob = next_mob) {
         next_mob = mob->next_in_room;
@@ -2185,6 +2192,9 @@ ACMD(do_hitall) {
                 attack(ch, mob);
         }
     }
+
+    if (orig_target)
+        attack(ch, orig_target);
 
     if (realvictims)
         improve_skill(ch, subcmd == SCMD_TANTRUM ? SKILL_TANTRUM : SKILL_HITALL);
