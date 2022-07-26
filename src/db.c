@@ -119,6 +119,7 @@ struct dex_app_type dex_app[101];
 struct con_app_type con_app[101];
 struct int_app_type int_app[101];
 struct wis_app_type wis_app[101];
+struct cha_app_type cha_app[101];
 
 void setup_dir(FILE *fl, int room, int dir);
 void index_boot(int mode);
@@ -164,6 +165,7 @@ extern void load_dex_app(void);
 extern void load_con_app(void);
 extern void load_int_app(void);
 extern void load_wis_app(void);
+extern void load_cha_app(void);
 extern void clear_memory(struct char_data *ch);
 
 /* external vars */
@@ -512,6 +514,7 @@ void boot_world(void) {
     load_con_app();
     load_int_app();
     load_wis_app();
+    load_cha_app();
 
     log("Loading zone table.");
     index_boot(DB_BOOT_ZON);

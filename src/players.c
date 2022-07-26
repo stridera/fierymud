@@ -74,6 +74,13 @@ static int saved_cooldowns[] = {CD_SUMMON_MOUNT,
                                 CD_INNATE_CREATE,
                                 CD_INNATE_ILLUMINATION,
                                 CD_INNATE_FAERIE_STEP,
+                                CD_MUSIC_1,
+                                CD_MUSIC_2,
+                                CD_MUSIC_3,
+                                CD_MUSIC_4,
+                                CD_MUSIC_5,
+                                CD_MUSIC_6,
+                                CD_MUSIC_7,
                                 CD_INNATE_BLINDING_BEAUTY,
                                 -1};
 

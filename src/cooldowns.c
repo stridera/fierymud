@@ -49,6 +49,13 @@ const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
                                             "innate create",
                                             "innate illumination",
                                             "innate faerie step",
+                                            "music 1",
+                                            "music 2",
+                                            "music 3",
+                                            "music 4",
+                                            "music 5",
+                                            "music 6",
+                                            "music 7",
                                             "innate blinding beauty"
                                             "\n"};
 

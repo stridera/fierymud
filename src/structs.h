@@ -395,8 +395,15 @@
 #define CD_INNATE_CREATE 26
 #define CD_INNATE_ILLUMINATION 27
 #define CD_INNATE_FAERIE_STEP 28
-#define CD_INNATE_BLINDING_BEAUTY 29
-#define NUM_COOLDOWNS 30
+#define CD_MUSIC_1 29
+#define CD_MUSIC_2 30
+#define CD_MUSIC_3 31
+#define CD_MUSIC_4 32
+#define CD_MUSIC_5 33
+#define CD_MUSIC_6 34
+#define CD_MUSIC_7 35
+#define CD_INNATE_BLINDING_BEAUTY 36
+#define NUM_COOLDOWNS 37
 
 /**********************************************************************
  * Structures                                                          *
@@ -902,11 +909,16 @@ struct wis_app_type {
 
 struct int_app_type {
     byte learn; /* how many % a player learns a spell/skill */
+    byte bonus; /* bonus to skills */
 };
 
 struct con_app_type {
     sh_int hitp;
     sh_int shock;
+};
+
+struct cha_app_type {
+    sh_int music; /* how many bardic music cooldowns one can have */
 };
 
 struct weather_data {
