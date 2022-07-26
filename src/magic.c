@@ -2365,7 +2365,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             return CAST_RESULT_CHARGE;
 
         if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            act("&9&b$n&9&b resists your&9&b column of smoke!&0", FALSE, ch, 0, 0, TO_CHAR);
+            act("&9&b$N&9&b resists your&9&b column of smoke!&0", FALSE, ch, 0, 0, TO_CHAR);
             act("&9&bYou&9&b resist $n's&9&b column of smoke!&0", FALSE, ch, 0, victim, TO_VICT);
             act("&9&b$N&9&b resists $n's&9&b column of smoke!&0", TRUE, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
@@ -4227,6 +4227,11 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         if ((spellnum == SPELL_HEAL || spellnum == SPELL_FULL_HEAL) && affected_by_spell(victim, SPELL_DISEASE)) {
             effect_from_char(victim, SPELL_DISEASE);
             send_to_char("Your disease has been cured.\r\n", victim);
+        }
+        if ((spellnum == SPELL_HEAL || spellnum == SPELL_FULL_HEAL) && affected_by_spell(victim, SPELL_POISON)) {
+            effect_from_char(victim, SPELL_POISON);
+            send_to_char("The poison in your system has been cleansed.\r\n", victim);
+            check_regen_rates(victim); /* speed up regen rate immediately */
         }
         break;
     case SPELL_ENLARGE:
