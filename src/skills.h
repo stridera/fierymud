@@ -432,6 +432,7 @@
 #define TYPE_ACID 768
 #define TYPE_SHOCK 769
 #define TYPE_POISON 770
+#define TYPE_ALIGN 771
 
 /* new attack types can be added here - up to TYPE_SUFFERING */
 #define TYPE_SUFFERING 850

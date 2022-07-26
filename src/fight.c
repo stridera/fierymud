@@ -85,7 +85,7 @@ struct attack_hit_type attack_hit_text[] = {{"hit", "hits"}, /* 0 */
                                             {"pierce", "pierces"}, {"blast", "blasts"},       {"punch", "punches"},
                                             {"stab", "stabs"},     {"burn", "burns"},      /* 15 */
                                             {"freeze", "freezes"}, {"corrode", "corrodes"},   {"shock", "shocks"},
-                                            {"poison", "poisons"}};
+                                            {"poison", "poisons"}, {"smite", "smites"}};   /* 20 */
 
 /****************************/
 /*  General target linking  */
@@ -2018,6 +2018,7 @@ int weapon_proficiency(struct obj_data *weapon, int position) {
     case TYPE_ACID:
     case TYPE_SHOCK:
     case TYPE_POISON:
+    case TYPE_ALIGN:
         return -1;
 
         /* These are slashing weapons. */

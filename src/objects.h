@@ -442,6 +442,8 @@ struct obj_data {
     ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_SHOCK - TYPE_HIT))
 #define IS_WEAPON_POISON(obj)                                                                                          \
     ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_POISON - TYPE_HIT))
+#define IS_WEAPON_ALIGN(obj)                                                                                           \
+    ((GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE) == TYPE_ALIGN - TYPE_HIT))
 
 #define OBJ_IS_OPENABLE(obj)                                                                                           \
     (GET_OBJ_TYPE(obj) == ITEM_CONTAINER && IS_SET(GET_OBJ_VAL(obj, VAL_CONTAINER_BITS), CONT_CLOSEABLE))
