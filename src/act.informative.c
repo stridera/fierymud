@@ -326,7 +326,8 @@ static void print_char_long_desc_to_char(struct char_data *targ, struct char_dat
 
     if (IS_NPC(targ) && !MOB_FLAGGED(targ, MOB_PLAYER_PHANTASM) && GET_LDESC(targ) &&
         GET_POS(targ) == GET_DEFAULT_POS(targ) && GET_STANCE(targ) != STANCE_FIGHTING &&
-        !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS)) {
+        !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS) && 
+        !EFF_FLAGGED(targ, EFF_MESMERIZED)) {
         /* Copy to buffer, and cut off te newline. */
         strcpy(buf, GET_LDESC(targ));
         buf[MAX(strlen(GET_LDESC(targ)) - 2, 0)] = '\0';
@@ -359,7 +360,7 @@ static void print_char_long_desc_to_char(struct char_data *targ, struct char_dat
     }
 
     else if (EFF_FLAGGED(targ, EFF_MESMERIZED))
-        cprintf(ch, " is here, gazing carefully at a point in front of %s nose nose.", HSHR(targ));
+        cprintf(ch, " is here, gazing carefully at a point in front of %s nose.", HSHR(targ));
 
     else if (GET_STANCE(targ) != STANCE_FIGHTING)
         print_char_position_to_char(targ, ch);
@@ -644,10 +645,8 @@ static void print_char_spells_to_char(struct char_data *targ, struct char_data *
                 "surroundings.&0",
                 TRUE, ch, 0, targ, TO_CHAR);
     } else if (EFF_FLAGGED(targ, EFF_MESMERIZED))
-        act("$E gazes carefully at a point in the air directly in front of $S "
-            "nose,\r\n"
-            "as if deliberating upon a puzzle or problem.",
-            TRUE, ch, 0, targ, TO_CHAR);
+        act("$E gazes carefully at a point in the air directly in front of $S nose,\r\n"
+            "as if deliberating upon a puzzle or problem.", TRUE, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HELL))
         act("&1&bHuge leathery &9bat-like&1 wings sprout from $S back.&0", TRUE, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HEAVEN))
@@ -4276,6 +4275,44 @@ ACMD(do_songs) {
         page_string(ch, buf);
     else
         send_to_char("You don't know any songs!\r\n", ch);
+}
+
+ACMD(do_music) {
+    int i;
+    bool found = FALSE;
+    struct char_data *tch = ch;
+
+    if (GET_SKILL(ch, SKILL_PERFORM) < 1) {
+        send_to_char("Huh?!?\r\n", ch);
+        return;
+    }
+
+    one_argument(argument, arg);
+    if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+        if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
+            send_to_char(NOPERSON, ch);
+            return;
+        }
+    }
+
+    if (ch == tch)
+        strcpy(buf, "You know the following music:\r\n");
+    else
+        sprintf(buf, "%c%s knows the following music:\r\n", UPPER(*GET_NAME(tch)), GET_NAME(tch) + 1);
+
+    for (i = MAX_SKILLS + 1; i <= MAX_SONGS; ++i) {
+        if (*skills[i].name == '!')
+            continue;
+        if (GET_SKILL(tch, i) <= 0)
+            continue;
+        sprintf(buf, "%s  %s\r\n", buf, skills[i].name);
+        found = TRUE;
+    }
+
+    if (found)
+        page_string(ch, buf);
+    else
+        send_to_char("You don't know any music!\r\n", ch);
 }
 
 ACMD(do_last_tells) {

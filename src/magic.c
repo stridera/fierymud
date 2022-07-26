@@ -1944,6 +1944,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_MESMERIZE:
+    case SONG_ENRAPTURE:
         if (!AWAKE(victim)) {
             act("$n makes colorful illusions before $N's closed eyes.", FALSE, ch, 0, victim, TO_ROOM);
             act("$N is in no condition to notice your illusion.", FALSE, ch, 0, victim, TO_CHAR);
@@ -2812,6 +2813,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SONG_TERROR:
+    case SONG_BALLAD_OF_TEARS:
         eff[0].location = APPLY_SAVING_PARA;
         eff[1].location = APPLY_SAVING_ROD;
         eff[2].location = APPLY_SAVING_SPELL;
@@ -2838,8 +2840,8 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
                 eff[7].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
             }
         }
-        to_vict = "Your spirit swells with inspiration!";
-        to_room = "$n's stirs with inspiration!";
+        to_vict = "Your spirit withers in terror and sorrow!";
+        to_room = "$N's spirit withers in terror and sorrow!";
         break;
 
 
@@ -3099,6 +3101,7 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     int casttype = NULL;
     bool found = FALSE;
     bool damage = TRUE;
+    
 
     if (ch == NULL)
         return 0;
@@ -3111,6 +3114,9 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
      * in mag_damage for the damaging part of the spell.
      */
     switch (spellnum) {
+    case SONG_BALLAD_OF_TEARS:
+        to_char = "&9&bYou weave a tale of suffering and misery!&0";
+        to_room = "&9&b$n&9&b weaves a tale of suffering and misery!&0";
     case SPELL_BLINDING_BEAUTY:
         to_char = "&3&bThe splendor of your beauty sears the eyes of everything around you!&0";
         to_room = "&3&bThe splendor of $s's beauty sears the eyes of everything around $s!&0";
@@ -3153,6 +3159,11 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SKILL_ELECTRIFY:
         to_char = "&4&8You send out electricity in all directions...&0";
         to_room = "&4&8$n&4&8 sends out electricity in all directions...&0";
+        break;
+    case SONG_ENRAPTURE:
+        to_char = "&5&bYou unleash a grand illusory performance!&0";
+        to_room = "&5&b$n unleashes a grand illusory performance!&0";
+        damage = FALSE;
         break;
     case SPELL_FIRESTORM:
         to_char = "You conjure a gout of flame to sweep through the area.";

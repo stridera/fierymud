@@ -417,6 +417,18 @@ void load_wis_app(void) {
     }
 }
 
+void load_cha_app(void) {
+    int x;
+
+    for (x = 0; x <= 100; x++) { 
+        /* bardic music uses */   
+        if (x <= 64) /* no bonus */
+            cha_app[x].music = 1;
+        if (x <= 100 && x >= 65) /* linear from (65,2) to (100,7) */
+            cha_app[x].music = (sh_int)((((float)6 / 35) * (float)x) - ((float)75 / 7) + 1);
+    }
+}
+
 const char *default_prompts[][2] = {{"Basic", "&0%hhp %vmv>&0 "},
                                     {"Colorized Basic", "&1&b%h&0&1hp &2&b%v&0&2mv&0> "},
                                     {"Basic Percentages", "&1&b%ph&0&1hp &2&b%pv&0&2mv&0> "},
