@@ -1579,6 +1579,7 @@ $N laughs off $n's pathetic attempts to throw shade.
 #
 #
 
+
 * Cloud of Daggers
 M
  242
@@ -1594,6 +1595,26 @@ The cloud of daggers refuses to cut $N.
 Your mere daggers are no match for a god.
 $n throws a handful of daggers at you.  That was weird...
 $n tries to throw a handful of daggers at $N.
+#
+#
+#
+
+
+* Acid Fog
+M
+ 245
+&2$N burns to death in your cloud of acid!&0
+&2You burn to death in $n's cloud of acid!!&0
+&2$N burns to death in $n's cloud of acid!&0
+The acid fog has no effect on $N.
+You prove impervious to the acidic fog!
+The acidic fog doesn't seem to phase $N.
+&2&b$N screams and melts in the acidic fog!&0
+&2&bThe acidic fog begins to melt away your skin!&0
+&2&b$N screams and melts in the acidic fog!&0
+The acidic fog can only boil mortal flesh.
+Huh, something smells weird in here...
+The acidic fog has no effect on $N.
 #
 #
 #

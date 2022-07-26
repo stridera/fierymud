@@ -51,6 +51,21 @@ void half_chop(char *string, char *arg1, char *arg2);
 void command_interpreter(struct char_data *ch, char *argument);
 void check_new_surroundings(struct char_data *ch, bool old_room_was_dark, bool tx_obvious);
 
+ASPELL(spell_acid_fog) {
+    struct delayed_cast_event_obj *event_obj;
+
+    if (!ch)
+        return 0;
+
+    act("&2&bYou conjure a thick corrosive fog!&0", FALSE, ch, 0, victim, TO_CHAR);
+    act("&2&b$n conjures a thick corrosive fog!&0", FALSE, ch, 0, victim, TO_ROOM);
+
+    event_obj =
+        construct_delayed_cast(ch, victim, SPELL_ACID_FOG, MAG_AREA, 4, 4 RL_SEC, skill, savetype, FALSE);
+    event_create(EVENT_SPELL, delayed_cast_event, event_obj, TRUE, &(ch->events), 4 RL_SEC);
+
+    return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+}
 
 ASPELL(chant_apocalyptic_anthem) {
     struct char_data *tch, *next_tch;

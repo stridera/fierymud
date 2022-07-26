@@ -1997,6 +1997,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_GAIAS_CLOAK, CLASS_DRUID, CIRCLE_7);
     spell_assign(SPELL_ILLUMINATION, CLASS_DRUID, CIRCLE_7);
 
+    spell_assign(SPELL_ACID_FOG, CLASS_DRUID, CIRCLE_8);
     spell_assign(SPELL_DISPEL_MAGIC, CLASS_DRUID, CIRCLE_8);
     spell_assign(SPELL_ENTANGLE, CLASS_DRUID, CIRCLE_8);
     spell_assign(SPELL_NATURES_EMBRACE, CLASS_DRUID, CIRCLE_8);
@@ -2526,6 +2527,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_LIGHTNING_BOLT, CLASS_SHAMAN, CIRCLE_7);
 
     spell_assign(SPELL_CIRCLE_OF_DEATH, CLASS_SHAMAN, CIRCLE_8);
+    spell_assign(SPELL_ACID_FOG, CLASS_SHAMAN, CIRCLE_8);
 
     spell_assign(SPELL_SPIRIT_RAY, CLASS_SHAMAN, CIRCLE_9);
 

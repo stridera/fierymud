@@ -595,6 +595,11 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_ACID_BREATH:
         dam = skill + number(1, skill * 2);
         break;
+    case SPELL_ACID_FOG:
+        /* spell hits 4 times */
+        dam += (pow(skill, 2) * 7) / 1250;
+        reduction = TRUE;
+        break;
     case SPELL_CALL_LIGHTNING:
         /* There needs to be some code referencing weather to make this spell
            only work when the weather is bad.  If this happens when we can jack

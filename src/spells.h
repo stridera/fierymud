@@ -20,6 +20,7 @@
     int spellname(int spellnum, int skill, struct char_data *ch, struct char_data *victim, struct obj_data *obj,       \
                   int savetype)
 
+ASPELL(spell_acid_fog);
 ASPELL(spell_armor_of_gaia);
 ASPELL(spell_banish);
 ASPELL(spell_charm);
