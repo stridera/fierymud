@@ -2365,7 +2365,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             return CAST_RESULT_CHARGE;
 
         if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            act("&9&b$n&9&b resists your&9&b column of smoke!&0", FALSE, ch, 0, 0, TO_CHAR);
+            act("&9&b$N&9&b resists your&9&b column of smoke!&0", FALSE, ch, 0, 0, TO_CHAR);
             act("&9&bYou&9&b resist $n's&9&b column of smoke!&0", FALSE, ch, 0, victim, TO_VICT);
             act("&9&b$N&9&b resists $n's&9&b column of smoke!&0", TRUE, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
