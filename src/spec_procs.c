@@ -960,7 +960,7 @@ int red_recall_room(struct char_data *ch) {
         break;
 
     case CLASS_BERSERKER:
-        room = 55796;
+        room = 55797;
         break;
 
     case CLASS_ANTI_PALADIN:

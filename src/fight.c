@@ -1864,8 +1864,19 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
     calc_thaco -= (4 * GET_INT(ch)) / 10; /* Int helps! */
     /* VALUES: 0 to 40 */
     calc_thaco -= (4 * GET_WIS(ch)) / 10; /* So does wis */
-    /* calc_thaco ranges from 290 to -240 */
+    /* check for weapon skills */
+    if (weapon) {
+        if (weapon_proficiency(weapon, weapon_position)) {
+    /* VALUES: 0 to 100 */
+        calc_thaco -= (GET_SKILL(ch, weapon_proficiency(weapon, weapon_position)) / 2); 
+        }
+    /* check if monk, if so add barehand */
+    } else if (GET_CLASS(ch) == CLASS_MONK) {
+    /* VALUES: 0 to 100 */
+        calc_thaco -= (GET_SKILL(ch, SKILL_BAREHAND) / 2);
+    }
 
+    /* calc_thaco ranges from 290 to -290 */
     diceroll = number(1, 200);
 
     /* VALUES: 100 to -100 */
