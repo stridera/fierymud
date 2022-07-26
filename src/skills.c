@@ -1432,6 +1432,9 @@ void init_skills(void) {
     songo(SONG_ENRAPTURE, "enrapture", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_AREA, 0, TRUE, 
            "You regain your senses as the illusions subside.");
 
+    songo(SONG_FREEDOM_SONG, "freedom song", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_GROUP, 0, FALSE,
+           "Your nerves settle down as the terror leaves you.");
+           
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, TRUE,
            "Your familiar disguise melts away.");
 
