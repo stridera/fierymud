@@ -1570,6 +1570,8 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BARD, 70);
     skill_assign(SKILL_DUAL_WIELD, CLASS_BARD, 90);
 
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_BARD, CIRCLE_4);
+
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
 
     spell_assign(SPELL_CLOUD_OF_DAGGERS, CLASS_BARD, CIRCLE_8);
@@ -1889,6 +1891,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_NOURISHMENT, CLASS_DRUID, CIRCLE_5);
     spell_assign(SPELL_REMOVE_CURSE, CLASS_DRUID, CIRCLE_5);
     spell_assign(SPELL_REMOVE_PARALYSIS, CLASS_DRUID, CIRCLE_5);
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_DRUID, CIRCLE_5);
 
     spell_assign(SPELL_DARKNESS, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_GREATER_ENDURANCE, CLASS_DRUID, CIRCLE_6);
@@ -1960,6 +1963,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CONFUSION, CLASS_ILLUSIONIST, CIRCLE_4);
     spell_assign(SPELL_MISDIRECTION, CLASS_ILLUSIONIST, CIRCLE_4);
     spell_assign(SPELL_NIGHTMARE, CLASS_ILLUSIONIST, CIRCLE_4);
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_ILLUSIONIST, CIRCLE_4);
 
     spell_assign(SPELL_COLOR_SPRAY, CLASS_ILLUSIONIST, CIRCLE_5);
     spell_assign(SPELL_DISCORPORATE, CLASS_ILLUSIONIST, CIRCLE_5);
@@ -2405,6 +2409,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_BLIND, CLASS_SHAMAN, CIRCLE_4);
     spell_assign(SPELL_DISPEL_EVIL, CLASS_SHAMAN, CIRCLE_4);
     spell_assign(SPELL_DISPEL_GOOD, CLASS_SHAMAN, CIRCLE_4);
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_SHAMAN, CIRCLE_4);
 
     spell_assign(SPELL_HARM, CLASS_SHAMAN, CIRCLE_5);
     spell_assign(SPELL_REMOVE_CURSE, CLASS_SHAMAN, CIRCLE_5);
