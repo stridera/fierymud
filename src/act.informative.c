@@ -3984,13 +3984,12 @@ ACMD(do_innate) {
     char arg3[20000];
     *buf = '\0';
 
-    two_arguments(argument, arg, arg2);
+    one_argument(one_argument(one_argument(argument, arg), arg2), arg3);
 
     vict = find_char_around_char(ch, find_vis_by_name(ch, arg2));
     obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2));
 
     if (arg3) {
-        one_argument(one_argument(one_argument(argument, arg), arg2), arg3);
         vict = find_char_around_char(ch, find_vis_by_name(ch, arg3));
     }
 
