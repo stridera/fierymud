@@ -1857,6 +1857,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_LIGHT, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_ALIGN, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_POISON, CLASS_DRUID, CIRCLE_2);
+    spell_assign(SPELL_EARTH_BLESSING, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_NIGHT_VISION, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_VIGORIZE_SERIOUS, CLASS_DRUID, CIRCLE_2);
 
