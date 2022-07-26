@@ -2053,6 +2053,7 @@ ACMD(do_set) {
                   {"weight", LVL_GOD, BOTH, NUMBER},
                   {"lifeforce", LVL_GOD, BOTH, MISC},
                   {"composition", LVL_GOD, BOTH, MISC}, /*75 */
+                  {"music", LVL_GAMEMASTER, PC, NUMBER},
                   {"blinding beauty", LVL_GAMEMASTER, PC, NUMBER},
                   {"\n", 0, BOTH, MISC}};
 
@@ -2615,7 +2616,16 @@ ACMD(do_set) {
         act(buf, FALSE, vict, 0, ch, TO_VICT);
         buf[0] = '\0';
         break;
-    case 76:
+    case 76: /* reset all bard music cooldowns */
+        GET_COOLDOWN(vict, CD_MUSIC_1) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_2) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_3) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_4) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_5) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_6) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_7) = RANGE(0, 100);
+        break;                       
+    case 77:
         GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = RANGE(0, 100);
         break;
     default:

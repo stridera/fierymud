@@ -39,6 +39,7 @@ ACMD(do_last_gossips);
 ACMD(do_last_tells);
 ACMD(do_listspells);
 ACMD(do_look);
+ACMD(do_music);
 ACMD(do_scan);
 ACMD(do_score);
 ACMD(do_search);

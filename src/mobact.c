@@ -437,6 +437,11 @@ bool mob_assist(struct char_data *ch) {
 void mob_attack(struct char_data *ch, struct char_data *victim) {
     if (CASTING(ch))
         return;
+    
+    /* Mesmerized or paralyzed mobs should not attack.
+     * Mob memory attack seems to be by-passing attack_ok check */
+    if (EFF_FLAGGED(ch, EFF_MESMERIZED) || EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS))
+        return;
 
     /* See if anyone is guarding the victim.
      * But guarding doesn't apply if this NPC was already fighting the victim. */
@@ -649,8 +654,8 @@ void memory_attack_announce(struct char_data *ch, struct char_data *vict) {
     if (EFF_FLAGGED(ch, EFF_SNEAK) || GET_HIDDENNESS(ch) > 0)
         return;
 
-    /* No announcement if the room is peaceful. (Because there's no attack.) */
-    if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL))
+    /* No announcement if the room is peaceful or mesmerized. (Because there's no attack.) */
+    if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL) || EFF_FLAGGED(ch, EFF_MESMERIZED))
         return;
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {

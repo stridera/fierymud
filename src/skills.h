@@ -380,12 +380,14 @@
 #define SKILL_BREATHE_FROST 487
 #define SKILL_BREATHE_ACID 488
 #define SKILL_BREATHE_GAS 489
+#define SKILL_PERFORM 490
 
 /* IF THIS GETS PAST 499, update char_data for skill timers! */
 
 /* Bardic songs start at 551 and go to 600 */
 #define SONG_INSPIRATION 551
 #define SONG_TERROR 552
+#define SONG_ENRAPTURE 553
 #define SONG_HEARTHSONG 554
 #define SONG_CROWN_OF_MADNESS 555
 #define SONG_BALLAD_OF_TEARS 557

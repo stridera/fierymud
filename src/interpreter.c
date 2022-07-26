@@ -194,6 +194,7 @@ ACMD(do_create);
 ACMD(do_mob_log);
 ACMD(do_mount);
 ACMD(do_move);
+ACMD(do_music);
 ACMD(do_name);
 ACMD(do_note);
 ACMD(do_not_here);
@@ -644,6 +645,7 @@ const struct command_info cmd_info[] = {
     {"mount", POS_STANDING, STANCE_ALERT, do_mount, 0, 0, CMD_NOFIGHT},
     {"mourn", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"mumble", POS_PRONE, STANCE_SLEEPING, do_action, 0, 0, 0},
+    {"music", POS_PRONE, STANCE_DEAD, do_music, 0, 0, CMD_ANY},
     {"mute", POS_PRONE, STANCE_DEAD, do_wizutil, LVL_GOD, SCMD_SQUELCH, CMD_ANY},
     {"mutter", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"murder", POS_STANDING, STANCE_ALERT, do_hit, 0, SCMD_MURDER, 0},
@@ -685,6 +687,7 @@ const struct command_info cmd_info[] = {
     {"peace", POS_PRONE, STANCE_DEAD, do_peace, LVL_GRGOD, 0, CMD_ANY},
     {"peck", POS_STANDING, STANCE_ALERT, do_peck, 1, 0, 0},
     {"peer", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"perform", POS_STANDING, STANCE_ALERT, do_cast, 0, SCMD_PERFORM, 0},
     {"pet", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"petition", POS_PRONE, STANCE_DEAD, do_petition, 0, 0, CMD_ANY},
     {"pfilemaint", POS_PRONE, STANCE_DEAD, do_pfilemaint, LVL_OVERLORD, 0, 0},
