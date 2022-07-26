@@ -4230,7 +4230,7 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
                 spell = SPELL_WEB;
             }
         }
-        if (EFF_FLAGGED(victim, EFF_MESMERIZED) || EFF_FLAGGED(victim, EFF_CONFUSION) || EFF_FLAGGED(victim, EFF_MISDIRECTION)) || affected_by_spell(victim, SONG_ENRAPTURE) */ {
+        if (EFF_FLAGGED(victim, EFF_MESMERIZED) || EFF_FLAGGED(victim, EFF_CONFUSION) || EFF_FLAGGED(victim, EFF_MISDIRECTION) || affected_by_spell(victim, SONG_ENRAPTURE)) {
             act("&5&bYou draw $n's attention from whatever $e was pondering.&0", FALSE, victim, 0, ch, TO_VICT);
             act("&5&b$N jolts you out of your reverie!&0", FALSE, victim, 0, ch, TO_CHAR);
             act("&5&b$N's music distracts $n from whatever was fascinating $m.&0", TRUE, victim, 0, ch, TO_NOTVICT);
