@@ -1997,8 +1997,7 @@ ACMD(do_set) {
                   {"sex", LVL_GOD, BOTH, MISC},
                   {"ac", LVL_GOD, BOTH, NUMBER},
                   {"olc", LVL_ADMIN, PC, NUMBER},
-                  {"home", LVL_GOD, PC, NUMBER},
-                  /*20 */ /* THIS ONE CAN BE REPLACED - see homeroom below */
+                  {"innates", LVL_GOD, PC, NUMBER}, /*20 */
                   {"experience", LVL_ADMIN, BOTH, NUMBER},
                   {"hitroll", LVL_GOD, BOTH, NUMBER},
                   {"damroll", LVL_GOD, BOTH, NUMBER},
@@ -2266,7 +2265,18 @@ ACMD(do_set) {
         }
     } break;
     case 20:
-        GET_HOMEROOM(vict) = value;
+        GET_COOLDOWN(vict, CD_INNATE_ASCEN) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_BRILL) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_CHAZ) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_SYLL) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_TASS) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_TREN) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_INVISIBLE) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_LEVITATE) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_CREATE) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_DARKNESS) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_HARNESS) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_BREATHE) = RANGE(0, 100);
         break;
     case 21:
         vict->points.exp = RANGE(0, 299999999);
