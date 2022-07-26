@@ -712,8 +712,8 @@ struct classdef classes[NUM_CLASSES] = {
      "&4B&9&bar&0&4d&0        ",
      "&4B&9&bar&0",
      "&4**&0",
-     FALSE,
-     MEM_NONE,
+     TRUE,
+     MEMORIZE,
      FALSE,
      TRUE,
      CLASS_ROGUE,
@@ -723,11 +723,11 @@ struct classdef classes[NUM_CLASSES] = {
      {95, 90, 100, 110, 110},
      9,
      2,
-     0,
+     ITEM_ANTI_BARD,
      100,
-     0,
      100,
-     1,
+     100,
+     1.2,
      100,
      90,
      100,
@@ -1073,6 +1073,7 @@ int guild_info[][3] = {
     {CLASS_MONK, 5307, SCMD_EAST},          /* Grey Castle */
     {CLASS_PALADIN, 5305, SCMD_EAST},       /* Grey Castle */
     {CLASS_BERSERKER, 3211, SCMD_SOUTH},    /* Great Road */
+    {CLASS_BARD, 5310, SCMD_EAST},          /* Grey Castle */
 
     /* Ogakh */ /* Room    Direction */
     {CLASS_SORCERER, 30072, SCMD_WEST},
@@ -1095,6 +1096,7 @@ int guild_info[][3] = {
     {CLASS_ASSASSIN, 30018, SCMD_EAST},
     {CLASS_THIEF, 30018, SCMD_EAST},
     {CLASS_MERCENARY, 30018, SCMD_EAST},
+    {CLASS_BARD, 30018, SCMD_EAST},
 
     {CLASS_WARRIOR, 30029, SCMD_WEST},
     {CLASS_ANTI_PALADIN, 30029, SCMD_WEST},
@@ -1113,12 +1115,13 @@ int guild_info[][3] = {
     {CLASS_PALADIN, 6148, SCMD_SOUTH},
     {CLASS_RANGER, 6148, SCMD_SOUTH},
     {CLASS_BERSERKER, 6148, SCMD_SOUTH},
-    {CLASS_BERSERKER, 55795, SCMD_NORTH},   /* Black Rock Trail */
+    {CLASS_BERSERKER, 55796, SCMD_NORTH},   /* Black Rock Trail */
 
     {CLASS_ROGUE, 6067, SCMD_NORTH},
     {CLASS_THIEF, 6067, SCMD_NORTH},
     {CLASS_MERCENARY, 6106, SCMD_UP},
     {CLASS_ASSASSIN, 6083, SCMD_NORTH},
+    {CLASS_BARD, 6092, SCMD_NORTH},
 
     {CLASS_CLERIC, 6217, SCMD_EAST},
     {CLASS_PRIEST, 6217, SCMD_EAST},
@@ -1136,6 +1139,7 @@ int guild_info[][3] = {
     {CLASS_MERCENARY, 10047, SCMD_EAST},
     {CLASS_ASSASSIN, 10047, SCMD_EAST},
     {CLASS_THIEF, 10047, SCMD_EAST},
+    {CLASS_BARD, 10047, SCMD_EAST},
 
     {CLASS_WARRIOR, 10014, SCMD_WEST},
     {CLASS_ANTI_PALADIN, 10014, SCMD_WEST},
@@ -1259,6 +1263,25 @@ int level_max_skill(struct char_data *ch, int level, int skill) {
             break;
         }
         break;
+    case CLASS_BARD:
+        switch (skill) {
+        case SKILL_TRACK:
+            max_skill = 500;
+            break;
+        case SKILL_SPHERE_HEALING:
+            max_skill = 750;
+            break;
+        case SKILL_SPHERE_FIRE:
+            max_skill = 500;
+            break;
+        case SKILL_SPHERE_WATER:
+            max_skill = 500;
+            break;
+        case SKILL_SPHERE_AIR:
+            max_skill = 500;
+            break;
+        }
+        break;
     }
     return (MIN((10 * level) + 50, max_skill));
 }
@@ -1303,6 +1326,7 @@ void advance_level(struct char_data *ch, enum level_action action) {
     case CLASS_PYROMANCER:
     case CLASS_NECROMANCER:
     case CLASS_CONJURER:
+    case CLASS_BARD:
         if (action == LEVEL_GAIN)
             add_hp += number(3, 8);
         else
@@ -1336,7 +1360,6 @@ void advance_level(struct char_data *ch, enum level_action action) {
 
     case CLASS_THIEF:
     case CLASS_ROGUE:
-    case CLASS_BARD:
         if (action == LEVEL_GAIN)
             add_hp += number(7, 13);
         else
@@ -1487,6 +1510,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SLASHING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_2H_SLASHING, CLASS_ANTI_PALADIN, 1);
+    skill_assign(SKILL_2H_PIERCING, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_KICK, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_BASH, CLASS_ANTI_PALADIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ANTI_PALADIN, 1);
@@ -1533,13 +1557,14 @@ void assign_class_skills(void) {
     spell_assign(SPELL_UNHOLY_WORD, CLASS_ANTI_PALADIN, CIRCLE_11);
 
     /* ASSASSIN */
+    skill_assign(SKILL_BLUDGEONING, CLASS_ASSASSIN, 1);
+    skill_assign(SKILL_PIERCING, CLASS_ASSASSIN, 1);
+    skill_assign(SKILL_SLASHING, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_INSTANT_KILL, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_SNEAK, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_HIDE, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_DODGE, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_PIERCING, CLASS_ASSASSIN, 1);
-    skill_assign(SKILL_SLASHING, CLASS_ASSASSIN, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ASSASSIN, 5);
     skill_assign(SKILL_KICK, CLASS_ASSASSIN, 10);
     skill_assign(SKILL_TRACK, CLASS_ASSASSIN, 10);
@@ -1550,23 +1575,97 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_ASSASSIN, 70);
 
     /* BARD */
+    skill_assign(SKILL_BLUDGEONING, CLASS_BARD, 1);
+    skill_assign(SKILL_PIERCING, CLASS_BARD, 1);
+    skill_assign(SKILL_SLASHING, CLASS_BARD, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
     skill_assign(SKILL_PERFORM, CLASS_BARD, 1);
-    skill_assign(SKILL_PIERCING, CLASS_BARD, 1);
-    skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
-    skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
-    skill_assign(SKILL_STEAL, CLASS_BARD, 10);
+    skill_assign(SKILL_MEDITATE, CLASS_BARD, 1);
+    skill_assign(SKILL_SCRIBE, CLASS_BARD, 1);
     skill_assign(SKILL_HIDE, CLASS_BARD, 10);
+    skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
+    skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
+    skill_assign(SKILL_STEAL, CLASS_BARD, 10);
     skill_assign(SKILL_DODGE, CLASS_BARD, 20);
     skill_assign(SKILL_PARRY, CLASS_BARD, 40);
     skill_assign(SKILL_TRACK, CLASS_BARD, 50);
-    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BARD, 70);
-    skill_assign(SKILL_DUAL_WIELD, CLASS_BARD, 90);
+    skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BARD, 50);
+    skill_assign(SKILL_DUAL_WIELD, CLASS_BARD, 70);
+
+    spell_assign(SPELL_BURNING_HANDS, CLASS_BARD, CIRCLE_1);
+    spell_assign(SPELL_CAUSE_LIGHT, CLASS_BARD, CIRCLE_1);
+    spell_assign(SPELL_CURE_LIGHT, CLASS_BARD, CIRCLE_1);
+    spell_assign(SPELL_DETECT_MAGIC, CLASS_BARD, CIRCLE_1);
+    spell_assign(SPELL_MAGIC_MISSILE, CLASS_BARD, CIRCLE_1);
+    spell_assign(SPELL_MINOR_CREATION, CLASS_BARD, CIRCLE_1);
+    spell_assign(SPELL_VENTRILOQUATE, CLASS_BARD, CIRCLE_1);
+    spell_assign(SPELL_VIGORIZE_LIGHT, CLASS_BARD, CIRCLE_1);
+
+    spell_assign(SPELL_CAUSE_SERIOUS, CLASS_BARD, CIRCLE_2);
+    spell_assign(SPELL_CHILL_TOUCH, CLASS_BARD, CIRCLE_2);
+    spell_assign(SPELL_CURE_SERIOUS, CLASS_BARD, CIRCLE_2);
+    spell_assign(SPELL_DETECT_INVIS, CLASS_BARD, CIRCLE_2);
+    spell_assign(SPELL_DETECT_ALIGN, CLASS_BARD, CIRCLE_2);
+    spell_assign(SPELL_DETECT_POISON, CLASS_BARD, CIRCLE_2);
+    spell_assign(SPELL_ENHANCE_ABILITY, CLASS_BARD, CIRCLE_2);
+    spell_assign(SPELL_VIGORIZE_SERIOUS, CLASS_BARD, CIRCLE_2);
+
+    spell_assign(SPELL_CAUSE_CRITIC, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_CURE_CRITIC, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_FEAR, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_IDENTIFY, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_LOCATE_OBJECT, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_MESMERIZE, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_REMOVE_POISON, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_SHOCKING_GRASP, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_VIGORIZE_CRITIC, CLASS_BARD, CIRCLE_3);
+
+    spell_assign(SPELL_CONFUSION, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_LEVITATE, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_MINOR_PARALYSIS, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_POISON, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_REMOVE_CURSE, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_REMOVE_PARALYSIS, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_TELEPORT, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_WORLD_TELEPORT, CLASS_BARD, CIRCLE_4);
+
+    spell_assign(SPELL_COLOR_SPRAY, CLASS_BARD, CIRCLE_5);
+    spell_assign(SPELL_CURSE, CLASS_BARD, CIRCLE_5);
+    spell_assign(SPELL_DIMENSION_DOOR, CLASS_BARD, CIRCLE_5);
+    spell_assign(SPELL_INVISIBLE, CLASS_BARD, CIRCLE_5);
+    spell_assign(SPELL_SANE_MIND, CLASS_BARD, CIRCLE_5);
+
+    spell_assign(SPELL_HARM, CLASS_BARD, CIRCLE_6);
+    spell_assign(SPELL_HASTE, CLASS_BARD, CIRCLE_6);
+    spell_assign(SPELL_HEAL, CLASS_BARD, CIRCLE_6);
+    spell_assign(SPELL_INVIGORATE, CLASS_BARD, CIRCLE_6);
+    spell_assign(SPELL_SILENCE, CLASS_BARD, CIRCLE_6);
 
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
+
+    spell_assign(SPELL_DISPEL_MAGIC, CLASS_BARD, CIRCLE_7);
+    spell_assign(SPELL_INSANITY, CLASS_BARD, CIRCLE_7);
+
+    spell_assign(SPELL_CLOUD_OF_DAGGERS, CLASS_BARD, CIRCLE_8);
+    spell_assign(SPELL_ILLUSORY_WALL, CLASS_BARD, CIRCLE_8);
+
+    spell_assign(SPELL_FAMILIARITY, CLASS_BARD, CIRCLE_9);
+    spell_assign(SPELL_ENCHANT_WEAPON, CLASS_BARD, CIRCLE_9);
+
+    spell_assign(SPELL_MAJOR_PARALYSIS, CLASS_BARD, CIRCLE_10);
+    spell_assign(SPELL_MASS_INVIS, CLASS_BARD, CIRCLE_10);
+
+    spell_assign(SPELL_ENLARGE, CLASS_BARD, CIRCLE_11);
+    spell_assign(SPELL_REDUCE, CLASS_BARD, CIRCLE_11);
+    spell_assign(SPELL_GLORY, CLASS_BARD, CIRCLE_11);
+
+    spell_assign(SPELL_CHARM, CLASS_BARD, CIRCLE_12);
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
     song_assign(SONG_TERROR, CLASS_BARD, 10);
+    song_assign(SONG_HEARTHSONG, CLASS_BARD, 70);
+    song_assign(SONG_CROWN_OF_MADNESS, CLASS_BARD, 80);
     
     /* BERSERKER */
     skill_assign(SKILL_BLUDGEONING, CLASS_BERSERKER, 1);
@@ -1837,6 +1936,8 @@ void assign_class_skills(void) {
 
     /* DRUID */
     skill_assign(SKILL_BLUDGEONING, CLASS_DRUID, 1);
+    skill_assign(SKILL_PIERCING, CLASS_DRUID, 1);
+    skill_assign(SKILL_SLASHING, CLASS_DRUID, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_DRUID, 1);
     skill_assign(SKILL_SHAPECHANGE, CLASS_DRUID, 1);
     skill_assign(SKILL_TAME, CLASS_DRUID, 1);
@@ -1852,6 +1953,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_LIGHT, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_ALIGN, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_DETECT_POISON, CLASS_DRUID, CIRCLE_2);
+    spell_assign(SPELL_EARTH_BLESSING, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_NIGHT_VISION, CLASS_DRUID, CIRCLE_2);
     spell_assign(SPELL_VIGORIZE_SERIOUS, CLASS_DRUID, CIRCLE_2);
 
@@ -1875,6 +1977,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_NOURISHMENT, CLASS_DRUID, CIRCLE_5);
     spell_assign(SPELL_REMOVE_CURSE, CLASS_DRUID, CIRCLE_5);
     spell_assign(SPELL_REMOVE_PARALYSIS, CLASS_DRUID, CIRCLE_5);
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_DRUID, CIRCLE_5);
 
     spell_assign(SPELL_DARKNESS, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_GREATER_ENDURANCE, CLASS_DRUID, CIRCLE_6);
@@ -1946,6 +2049,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CONFUSION, CLASS_ILLUSIONIST, CIRCLE_4);
     spell_assign(SPELL_MISDIRECTION, CLASS_ILLUSIONIST, CIRCLE_4);
     spell_assign(SPELL_NIGHTMARE, CLASS_ILLUSIONIST, CIRCLE_4);
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_ILLUSIONIST, CIRCLE_4);
 
     spell_assign(SPELL_COLOR_SPRAY, CLASS_ILLUSIONIST, CIRCLE_5);
     spell_assign(SPELL_DISCORPORATE, CLASS_ILLUSIONIST, CIRCLE_5);
@@ -2015,6 +2119,7 @@ void assign_class_skills(void) {
     chant_assign(CHANT_BATTLE_HYMN, CLASS_MONK, 30);
     chant_assign(CHANT_SHADOWS_SORROW_SONG, CLASS_MONK, 30);
     chant_assign(CHANT_IVORY_SYMPHONY, CLASS_MONK, 45);
+    chant_assign(CHANT_HYMN_OF_SAINT_AUGUSTINE, CLASS_MONK, 50);
     chant_assign(CHANT_ARIA_OF_DISSONANCE, CLASS_MONK, 60);
     chant_assign(CHANT_SONATA_OF_MALAISE, CLASS_MONK, 60);
     chant_assign(CHANT_PEACE, CLASS_MONK, 70);
@@ -2122,6 +2227,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_PIERCING, CLASS_PALADIN, 1);
     skill_assign(SKILL_SLASHING, CLASS_PALADIN, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_PALADIN, 1);
+    skill_assign(SKILL_2H_PIERCING, CLASS_PALADIN, 1);
     skill_assign(SKILL_2H_SLASHING, CLASS_PALADIN, 1);
     skill_assign(SKILL_KICK, CLASS_PALADIN, 1);
     skill_assign(SKILL_BASH, CLASS_PALADIN, 1);
@@ -2345,9 +2451,9 @@ void assign_class_skills(void) {
     spell_assign(SPELL_BLUR, CLASS_RANGER, CIRCLE_11);
 
     /* ROGUE */
+    skill_assign(SKILL_BLUDGEONING, CLASS_ROGUE, 1);
     skill_assign(SKILL_PIERCING, CLASS_ROGUE, 1);
     skill_assign(SKILL_SLASHING, CLASS_ROGUE, 1);
-    skill_assign(SKILL_2H_PIERCING, CLASS_ROGUE, 1);
     skill_assign(SKILL_HIDE, CLASS_ROGUE, 1);
     skill_assign(SKILL_DODGE, CLASS_ROGUE, 1);
     skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
@@ -2389,6 +2495,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_BLIND, CLASS_SHAMAN, CIRCLE_4);
     spell_assign(SPELL_DISPEL_EVIL, CLASS_SHAMAN, CIRCLE_4);
     spell_assign(SPELL_DISPEL_GOOD, CLASS_SHAMAN, CIRCLE_4);
+    spell_assign(SPELL_REVEAL_HIDDEN, CLASS_SHAMAN, CIRCLE_4);
 
     spell_assign(SPELL_HARM, CLASS_SHAMAN, CIRCLE_5);
     spell_assign(SPELL_REMOVE_CURSE, CLASS_SHAMAN, CIRCLE_5);
@@ -2474,9 +2581,9 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CHARM, CLASS_SORCERER, CIRCLE_12);
 
     /* THIEF */
+    skill_assign(SKILL_BLUDGEONING, CLASS_THIEF, 1);
     skill_assign(SKILL_PIERCING, CLASS_THIEF, 1);
     skill_assign(SKILL_SLASHING, CLASS_THIEF, 1);
-    skill_assign(SKILL_2H_PIERCING, CLASS_THIEF, 1);
     skill_assign(SKILL_SNEAK, CLASS_THIEF, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_THIEF, 1);
     skill_assign(SKILL_HIDE, CLASS_THIEF, 1);

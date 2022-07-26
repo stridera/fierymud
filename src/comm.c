@@ -1697,6 +1697,8 @@ char *prompt_str(struct char_data *ch) {
                 break;
             case 'z':
                 temp = CD_MUSIC_7;
+            case '1':
+                temp = CD_INNATE_BLINDING_BEAUTY;
                 break;
             default:
                 continue; /* don't print anything */

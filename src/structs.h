@@ -401,6 +401,8 @@
 #define CD_MUSIC_6 32
 #define CD_MUSIC_7 33
 #define NUM_COOLDOWNS 34
+#define CD_INNATE_BLINDING_BEAUTY 25
+#define NUM_COOLDOWNS 36
 
 /**********************************************************************
  * Structures                                                          *
@@ -906,6 +908,7 @@ struct wis_app_type {
 
 struct int_app_type {
     byte learn; /* how many % a player learns a spell/skill */
+    byte bonus; /* bonus to skills */
 };
 
 struct con_app_type {
