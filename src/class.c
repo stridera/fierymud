@@ -1579,11 +1579,9 @@ void assign_class_skills(void) {
     skill_assign(SKILL_PIERCING, CLASS_BARD, 1);
     skill_assign(SKILL_SLASHING, CLASS_BARD, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_BARD, 1);
+    skill_assign(SKILL_PERFORM, CLASS_BARD, 1);
     skill_assign(SKILL_MEDITATE, CLASS_BARD, 1);
     skill_assign(SKILL_SCRIBE, CLASS_BARD, 1);
-    skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
-    skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
-    skill_assign(SKILL_STEAL, CLASS_BARD, 10);
     skill_assign(SKILL_HIDE, CLASS_BARD, 10);
     skill_assign(SKILL_PICK_LOCK, CLASS_BARD, 10);
     skill_assign(SKILL_SNEAK, CLASS_BARD, 10);
@@ -1663,7 +1661,6 @@ void assign_class_skills(void) {
     spell_assign(SPELL_GLORY, CLASS_BARD, CIRCLE_11);
 
     spell_assign(SPELL_CHARM, CLASS_BARD, CIRCLE_12);
-
     
     song_assign(SONG_INSPIRATION, CLASS_BARD, 1);
     song_assign(SONG_TERROR, CLASS_BARD, 10);

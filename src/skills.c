@@ -148,7 +148,7 @@ void improve_skill(struct char_data *ch, int skill) {
     if (skill == SKILL_FIRST_AID || skill == SKILL_BANDAGE || skill == SKILL_DOUSE || skill == SKILL_CHANT)
         percent += number(4, 7);
     else if (skill == SKILL_TAME || skill == SKILL_BASH || skill == SKILL_DISARM || skill == SKILL_SCRIBE ||
-             skill == SKILL_SWITCH)
+             skill == SKILL_SWITCH || skill == SKILL_PERFORM)
         percent += 2;
     else
         percent++;
@@ -1318,6 +1318,7 @@ void init_skills(void) {
     skillo(SKILL_MOUNT, "mount", FALSE, 0);
     skillo(SKILL_PARRY, "parry", TRUE, 0);
     skillo(SKILL_PECK, "peck", FALSE, TAR_CONTACT);
+    skillo(SKILL_PERFORM, "perform", FALSE, 0);
     skillo(SKILL_PICK_LOCK, "pick lock", TRUE, 0);
     skillo(SKILL_PIERCING, "piercing weapons", TRUE, TAR_CONTACT);
     skillo(SKILL_PUNCH, "punch", TRUE, TAR_CONTACT);

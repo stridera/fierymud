@@ -4278,6 +4278,44 @@ ACMD(do_songs) {
         send_to_char("You don't know any songs!\r\n", ch);
 }
 
+ACMD(do_music) {
+    int i;
+    bool found = FALSE;
+    struct char_data *tch = ch;
+
+    if (GET_SKILL(ch, SKILL_PERFORM) < 1) {
+        send_to_char("Huh?!?\r\n", ch);
+        return;
+    }
+
+    one_argument(argument, arg);
+    if (GET_LEVEL(ch) >= LVL_IMMORT && *arg) {
+        if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
+            send_to_char(NOPERSON, ch);
+            return;
+        }
+    }
+
+    if (ch == tch)
+        strcpy(buf, "You know the following music:\r\n");
+    else
+        sprintf(buf, "%c%s knows the following music:\r\n", UPPER(*GET_NAME(tch)), GET_NAME(tch) + 1);
+
+    for (i = MAX_SKILLS + 1; i <= MAX_SONGS; ++i) {
+        if (*skills[i].name == '!')
+            continue;
+        if (GET_SKILL(tch, i) <= 0)
+            continue;
+        sprintf(buf, "%s  %s\r\n", buf, skills[i].name);
+        found = TRUE;
+    }
+
+    if (found)
+        page_string(ch, buf);
+    else
+        send_to_char("You don't know any music!\r\n", ch);
+}
+
 ACMD(do_last_tells) {
     struct char_data *tch;
 

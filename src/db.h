@@ -245,6 +245,7 @@ extern struct dex_app_type dex_app[101];
 extern struct con_app_type con_app[101];
 extern struct int_app_type int_app[101];
 extern struct wis_app_type wis_app[101];
+extern struct cha_app_type cha_app[101];
 
 #endif
 
