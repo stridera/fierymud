@@ -1572,11 +1572,16 @@ struct wis_app_type {
 
 struct int_app_type {
     byte learn; /* how many % a player learns a spell/skill */
+    byte bonus; /* bonus to skills */
 };
 
 struct con_app_type {
     sh_int hitp;
     sh_int shock;
+};
+
+struct cha_app_type {
+    sh_int music; /* how many bardic music cooldowns one can have */
 };
 
 struct weather_data {

@@ -309,7 +309,7 @@ extern void free_aliases(struct alias_data *alias_list);
 /* do_cast */
 #define SCMD_CAST 0
 #define SCMD_CHANT 1
-#define SCMD_SING 2
+#define SCMD_PERFORM 2
 
 /* do_hitall */
 #define SCMD_HITALL 0
