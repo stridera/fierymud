@@ -543,8 +543,10 @@ bool instantkill(struct char_data *ch, struct char_data *victim) {
     /*chance is now checking DEX and shouldn't happen as often */
     chance = 1000 - (GET_SKILL(ch, SKILL_INSTANT_KILL) - (100 - GET_DEX(ch)) - (GET_LEVEL(victim) * 10)) / 10;
 
-    if (!AWAKE(victim))
-        chance = 0; /* der.. can you say coup de grace? */
+    /* der.. can you say coup de grace? 
+     * needed to add additional condition to prevent it from instant killing dying mobs and robbing parties of exp */
+    if (!AWAKE(victim) && GET_HIT(victim) > 0)
+        chance = 0; 
 
     if (number(1, 1000) >= chance) {
         quickdeath(victim, ch);

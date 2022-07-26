@@ -502,6 +502,10 @@ void init_skills(void) {
            MAG_AFFECT | MAG_ALTER_OBJ, C1, CAST_SPEED2, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
            "You feel less righteous.");
 
+    spello(SPELL_BLINDING_BEAUTY, "blinding beauty", 35, 25, 1, POS_STANDING, TRUE, TAR_IGNORE,
+           TRUE, MAG_AREA, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
+           "You feel a cloak of blindness dissolve.");
+
     spello(SPELL_BLINDNESS, "blindness", 35, 25, 1, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_NOT_SELF,
            TRUE, MAG_AFFECT, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
            "You feel a cloak of blindness dissolve.");
@@ -699,6 +703,10 @@ void init_skills(void) {
 
     spello(SPELL_DRAGONS_HEALTH, "dragons health", 50, 30, 5, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 21, TRUE, "Your health returns to normal.");
+
+    spello(SPELL_EARTH_BLESSING, "earth blessing", 35, 5, 3, POS_SITTING, FALSE, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE,
+           MAG_AFFECT | MAG_ALTER_OBJ, C1, CAST_SPEED2, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE,
+           "You feel less righteous.");
 
     spello(SPELL_EARTHQUAKE, "earthquake", 40, 25, 3, POS_STANDING, TRUE, TAR_IGNORE | TAR_OUTDOORS, TRUE, MAG_AREA, C1,
            CAST_SPEED5, DAM_CRUSH, SKILL_SPHERE_EARTH, 5, FALSE, NULL);

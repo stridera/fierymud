@@ -1179,6 +1179,12 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             return CAST_RESULT_CHARGE;
         }
 
+        if (affected_by_spell(victim, SPELL_EARTH_BLESSING)) {
+            act("$N is already blessed by nature.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
         /* Alignment Checks! */
         if (IS_EVIL(victim)) {
             act("You can't bless evil people!", FALSE, ch, 0, 0, TO_CHAR);
@@ -1201,7 +1207,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_BLINDNESS:
-
+    case SPELL_BLINDING_BEAUTY:
         if (!attack_ok(ch, victim, TRUE))
             return CAST_RESULT_CHARGE;
 
@@ -1367,8 +1373,14 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             return CAST_RESULT_CHARGE;
         }
 
-        if (affected_by_spell(victim, SPELL_BLESS)) {
+        if (affected_by_spell(victim, SPELL_BLESS) || affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
             act("$N is already blessed by some other gods.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (affected_by_spell(victim, SPELL_EARTH_BLESSING)) {
+            act("$N is already blessed by nature.", FALSE, ch, 0, victim, TO_CHAR);
             act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
@@ -1527,6 +1539,56 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             "overtakes you.\r\n"
             "You feel seriously ill!&0";
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
+        break;
+
+    case SPELL_EARTH_BLESSING:
+
+        if (GET_LEVEL(ch) < LVL_IMMORT && !IS_NEUTRAL(ch) && casttype == CAST_SPELL) {
+            send_to_char("Nature has forsaken you in your zealousness!\r\n", ch);
+            act("There is no effect.  $U$n adopts a dejected look.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (affected_by_spell(victim, SPELL_DARK_PRESENCE) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+            affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION) ||
+            affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
+            act("$N is already blessed by some dark gods.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (affected_by_spell(victim, SPELL_BLESS) || affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
+            act("$N is already blessed by some other gods.", FALSE, ch, 0, victim, TO_CHAR);
+            act("$n looks a little overprotective.", TRUE, ch, 0, 0, TO_ROOM);
+            return CAST_RESULT_CHARGE;
+        }
+
+        /* Alignment Checks! */
+        if (IS_EVIL(victim)) {
+            act("You can't bless evil people!", FALSE, ch, 0, 0, TO_CHAR);
+            act("$n tries to attune you to nature.\r\nSilly isn't $e?", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to attune $N to nature.", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (IS_GOOD(victim)) {
+            act("You can't bless good people!", FALSE, ch, 0, 0, TO_CHAR);
+            act("$n tries to attune you to nature.\r\nSilly isn't $e?", FALSE, ch, 0, victim, TO_VICT);
+            act("$n fails to attune $N to nature.", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        eff[0].location = APPLY_HITROLL;
+        eff[0].modifier = 1 + (skill >= 50);
+        eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
+        eff[1].location = APPLY_SAVING_SPELL;
+        eff[1].modifier = -2 - (skill / 10);
+        eff[1].duration = eff[0].duration;
+        SET_FLAG(eff[2].flags, EFF_BLESS);
+        eff[2].duration = eff[0].duration;
+        to_char = "$N is imbued with the power of nature.";
+        to_vict = "$n imbues you with the power of nature.\r\nYou feel righteous.";
+        to_room = "$N is imbued with the power of nature by $n.";
         break;
 
     case SPELL_ELEMENTAL_WARDING:
@@ -2987,7 +3049,9 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     struct char_data *tch, *next_tch;
     char *to_char = NULL;
     char *to_room = NULL;
+    int casttype;
     bool found = FALSE;
+    bool damage = TRUE;
 
     if (ch == NULL)
         return 0;
@@ -3000,6 +3064,11 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
      * in mag_damage for the damaging part of the spell.
      */
     switch (spellnum) {
+    case SPELL_BLINDING_BEAUTY:
+        to_char = "&3&bThe splendor of your beauty sears the eyes of everything around you!&0";
+        to_room = "&3&bThe splendor of $s's beauty sears the eyes of everything around $s!&0";
+        damage = FALSE;
+        break;
     case SPELL_CHAIN_LIGHTNING:
         to_char = "&4&bYou send powerful bolts of lightning from your body...&0";
         to_room = "&4&b$n&4&b sends powerful bolts of lightning into $s foes...&0";
@@ -3123,7 +3192,10 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
             continue;
 
         found = TRUE;
-        mag_damage(skill, ch, tch, spellnum, savetype);
+        if (damage == TRUE)
+            mag_damage(skill, ch, tch, spellnum, savetype);
+        else
+            mag_affect(skill, ch, tch, spellnum, savetype, casttype);
     }
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
@@ -3561,7 +3633,7 @@ void phantasm_transform(struct char_data *ch, struct char_data *model, int life_
 
     strcat(long_buf, "\r\n");
     GET_NAME(ch) = strdup(short_buf);
-    model->player.long_descr = strdup(long_buf);
+    GET_LDESC(ch) = strdup(long_buf);
     GET_NAMELIST(ch) = strdup(alias_buf);
 
     /* The phantasm copies its model's current state, even if that state was
@@ -4032,6 +4104,11 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
                 if (spell) /* If already removing a spell, remove eye gouge now */
                     effect_from_char(victim, spell);
                 spell = SKILL_EYE_GOUGE;
+            }
+            if (affected_by_spell(victim, SPELL_BLINDING_BEAUTY)) {
+                if (spell)
+                    effect_from_char(victim, spell);
+                spell = SPELL_BLINDING_BEAUTY;
             }
             if (affected_by_spell(victim, SPELL_SUNRAY)) {
                 if (spell) /* If already removing a spell, remove sunray now */
