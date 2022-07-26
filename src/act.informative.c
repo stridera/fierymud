@@ -3984,9 +3984,6 @@ ACMD(do_innate) {
 
     argument = delimited_arg(argument, arg, '\'');
 
-    vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
-    obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
-
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
         if (GET_RACE(ch) == RACE_NYMPH);
@@ -4232,6 +4229,7 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "illumination")) {
+            obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION)) {
                     if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
@@ -4254,6 +4252,7 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "faerie step")) {
+            vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
                     call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
@@ -4268,7 +4267,7 @@ ACMD(do_innate) {
 
         }
 
-        if (is_abbrev(arg, "blinding")) {
+        if (is_abbrev(arg, "blinding beauty")) {
             if (GET_RACE(ch) == RACE_NYMPH) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY)) {
                     call_magic(ch, ch, 0, SPELL_BLINDING_BEAUTY, GET_LEVEL(ch), CAST_SPELL);
