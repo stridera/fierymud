@@ -1944,6 +1944,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SPELL_MESMERIZE:
+    case SONG_ENRAPTURE:
         if (!AWAKE(victim)) {
             act("$n makes colorful illusions before $N's closed eyes.", FALSE, ch, 0, victim, TO_ROOM);
             act("$N is in no condition to notice your illusion.", FALSE, ch, 0, victim, TO_CHAR);
@@ -2925,7 +2926,7 @@ void perform_mag_group(int skill, struct char_data *ch, struct char_data *tch, i
         spell_recall(spellnum, skill, ch, tch, NULL, savetype);
         break;
     case SONG_HEARTHSONG:
-        mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_SING);
+        mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_PERFORM);
         break;
     case SPELL_INVIGORATE:
         mag_point(skill, ch, tch, SPELL_INVIGORATE, savetype);
@@ -3140,6 +3141,11 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SKILL_ELECTRIFY:
         to_char = "&4&8You send out electricity in all directions...&0";
         to_room = "&4&8$n&4&8 sends out electricity in all directions...&0";
+        break;
+    case SONG_ENRAPTURE:
+        to_char = "&5&bYou unleash a grand illusory performance!&0";
+        to_room = "&5&b$n unleashes a grand illusory performance!&0";
+        damage = FALSE;
         break;
     case SPELL_FIRESTORM:
         to_char = "You conjure a gout of flame to sweep through the area.";

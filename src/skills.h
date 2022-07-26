@@ -387,6 +387,7 @@
 /* Bardic songs start at 551 and go to 600 */
 #define SONG_INSPIRATION 551
 #define SONG_TERROR 552
+#define SONG_ENRAPTURE 553
 #define SONG_HEARTHSONG 554
 #define SONG_CROWN_OF_MADNESS 555
 

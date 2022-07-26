@@ -1360,6 +1360,12 @@ void init_skills(void) {
 
 
     /* Set up monk/berserker chants */
+    /*
+     * Arguments for chanto calls:
+     *
+     * chant, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff                
+     */
+    
     chanto(CHANT_APOCALYPTIC_ANTHEM, "apocalyptic anthem", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_MANUAL, 0, TRUE,
            NULL);
 
@@ -1402,23 +1408,28 @@ void init_skills(void) {
            "Your inner elements subside.");
 
     /* Set up bard songs. */
-    /*  songo(SONG_CHORUS_OF_COURAGE, "chorus of courage", POS_STANDING, FALSE,
-            TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
-            "Your courage leaves you.");
-    */
-    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
-           "Your inspiration fades.");
-
-    chanto(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
-           "Your nerves settle down as the terror leaves you.");
+    /* Arguments for songo calls
+     *
+     * song, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff
+     */
 
     songo(SONG_CROWN_OF_MADNESS, "crown of madness", POS_STANDING, TRUE, TAR_IGNORE, TRUE, MAG_AREA, 0, TRUE, 
            "Your mind returns to reality.");
-           
+    
+    songo(SONG_ENRAPTURE, "enrapture", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_AREA, 0, TRUE, 
+           "You regain your senses as the illusions subside.");
+
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, TRUE,
            "Your familiar disguise melts away.");
 
+    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, 0, FALSE,
+           "Your inspiration fades.");
+
+    songo(SONG_TERROR, "terror", POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_AFFECT, 0, FALSE,
+           "Your nerves settle down as the terror leaves you.");
+
     /* Set up non-skill effects */
+    /* effect, name, wearoff */
     effecto(SKILL_AWARE, "aware", "");
 }
 
