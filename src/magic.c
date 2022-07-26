@@ -4228,6 +4228,11 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
             effect_from_char(victim, SPELL_DISEASE);
             send_to_char("Your disease has been cured.\r\n", victim);
         }
+        if ((spellnum == SPELL_HEAL || spellnum == SPELL_FULL_HEAL) && affected_by_spell(victim, SPELL_POISON)) {
+            effect_from_char(victim, SPELL_POISON);
+            send_to_char("The poison in your system has been cleansed.\r\n", victim);
+            check_regen_rates(victim); /* speed up regen rate immediately */
+        }
         break;
     case SPELL_ENLARGE:
         if (!EFF_FLAGGED(victim, EFF_REDUCE))
