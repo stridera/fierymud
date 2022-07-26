@@ -116,7 +116,9 @@
 #define ITEM_WAS_DISARMED 31      /* Disarmed from mob             */
 #define ITEM_ANTI_MONK 32         /* Not usable by monks           */
 #define ITEM_ANTI_BARD 33
-#define NUM_ITEM_FLAGS 34
+#define ITEM_ELVEN 34             /* Item usable by Elves          */
+#define ITEM_DWARVEN 35           /* Item usable by Dwarves        */
+#define NUM_ITEM_FLAGS 36
 
 /* Modifier constants used with obj effects ('A' fields) */
 #define APPLY_NONE 0           /* No effect                       */
