@@ -1977,6 +1977,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_BLIND, CLASS_DRUID, CIRCLE_4);
     spell_assign(SPELL_CURE_CRITIC, CLASS_DRUID, CIRCLE_4);
     spell_assign(SPELL_EARTHQUAKE, CLASS_DRUID, CIRCLE_4);
+    spell_assign(SPELL_ELEMENTAL_WARDING, CLASS_DRUID, CIRCLE_4);
     spell_assign(SPELL_SUMMON, CLASS_DRUID, CIRCLE_4);
     spell_assign(SPELL_WORD_OF_RECALL, CLASS_DRUID, CIRCLE_4);
 
