@@ -1062,6 +1062,8 @@ int guild_info[][3] = {
     {CLASS_ASSASSIN, 3037, SCMD_DOWN},
     {CLASS_THIEF, 3037, SCMD_DOWN},
     {CLASS_MERCENARY, 3037, SCMD_DOWN},
+    {CLASS_BARD, 3037, SCMD_DOWN},
+    {CLASS_BARD, 5310, SCMD_EAST},          /* Grey Castle */
 
     {CLASS_WARRIOR, 3021, SCMD_NORTH},
     {CLASS_ANTI_PALADIN, 3021, SCMD_NORTH},
@@ -1073,7 +1075,6 @@ int guild_info[][3] = {
     {CLASS_MONK, 5307, SCMD_EAST},          /* Grey Castle */
     {CLASS_PALADIN, 5305, SCMD_EAST},       /* Grey Castle */
     {CLASS_BERSERKER, 3211, SCMD_SOUTH},    /* Great Road */
-    {CLASS_BARD, 5310, SCMD_EAST},          /* Grey Castle */
 
     /* Ogakh */ /* Room    Direction */
     {CLASS_SORCERER, 30072, SCMD_WEST},

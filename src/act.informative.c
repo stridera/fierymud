@@ -3991,6 +3991,9 @@ ACMD(do_innate) {
     *buf = '\0';
 
     argument = delimited_arg(argument, arg, '\'');
+    skip_spaces(&argument);
+    
+    
 
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
@@ -4079,17 +4082,25 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "darkness")) {
+            obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
-                if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
-                    if (!GET_COOLDOWN(ch, CD_INNATE_DARKNESS)) {
-                        call_magic(ch, ch, 0, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
+                if (!GET_COOLDOWN(ch, CD_INNATE_DARKNESS)) {
+                    if (obj) {
+                        call_magic(ch, 0, obj, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
                         if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                             SET_COOLDOWN(ch, CD_INNATE_DARKNESS, 7 MUD_HR);
-                    } else
-                        send_to_char("You're too tired right now.\r\n", ch);
-                        cprintf(ch, "You can create darkness again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_DARKNESS) / 10));
-                } else
-                    send_to_char("The room is pretty damn dark already!\r\n", ch);
+                    } else {
+                        if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
+                            call_magic(ch, ch, 0, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
+                            if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                                SET_COOLDOWN(ch, CD_INNATE_DARKNESS, 7 MUD_HR);
+                        } else
+                            send_to_char("The room is pretty damn dark already!\r\n", ch);
+                    }
+                } else {
+                    send_to_char("You're too tired right now.\r\n", ch);
+                    cprintf(ch, "You can create darkness again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_DARKNESS) / 10));
+                }
                 return;
             }
         }
@@ -4108,9 +4119,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_INVISIBLE, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_INVISIBLE, 9 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can turn invisible again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_INVISIBLE) / 10));
+                }
                 return;
             }
         }
@@ -4123,9 +4135,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_LEVITATE, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_LEVITATE, 9 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can levitate again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_LEVITATE) / 10));
+                }
                 return;
             }
         }
@@ -4141,9 +4154,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_INN_CHAZ, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_CHAZ, 7 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can strengthen again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_CHAZ) / 10));
+                }
                 return;
             }
         }
@@ -4156,9 +4170,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_INN_SYLL, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_SYLL, 7 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can be more graceful again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_SYLL) / 10));
+                }
                 return;
             }
         }
@@ -4168,9 +4183,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_INN_BRILL, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_BRILL, 7 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can boost your intelligence again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_BRILL) / 10));
+                }
                 return;
             }
         }
@@ -4180,9 +4196,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_INN_TASS, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_TASS, 7 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can seek wisdom again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_TASS) / 10));
+                }
                 return;
             }
         }
@@ -4193,9 +4210,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_INN_TREN, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_TREN, 7 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can fortify yourself again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_TREN) / 10));
+                }
                 return;
             }
         }
@@ -4206,9 +4224,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_INN_ASCEN, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_ASCEN, 7 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can reliven your charming nature again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_ASCEN) / 10));
+                }
                 return;
             }
         }
@@ -4218,9 +4237,10 @@ ACMD(do_innate) {
                     call_magic(ch, ch, 0, SPELL_HARNESS, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_HARNESS, 10 MUD_HR);
-                } else
+                } else {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can boost your magical abilities again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_HARNESS) / 10));
+                }
                 return;
             }
 
@@ -4236,17 +4256,23 @@ ACMD(do_innate) {
             return;
         }
 
-        obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
         if (is_abbrev(arg, "illumination")) {
+            obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION)) {
                     if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
-                        if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION))  {
+                        if (obj) {
                             call_magic(ch, 0, obj, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
                             if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                                 SET_COOLDOWN(ch, CD_INNATE_ILLUMINATION, 7 MUD_HR);
                         } else {
-                            send_to_char("The room is pretty damn bright already!\r\n", ch);
+                            if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION))  {
+                                call_magic(ch, 0, 0, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
+                                if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                                    SET_COOLDOWN(ch, CD_INNATE_ILLUMINATION, 7 MUD_HR);
+                            } else {
+                                send_to_char("The room is pretty damn bright already!\r\n", ch);
+                            }
                         }    
                     } else {
                         send_to_char("The room is too foggy to see anything!\r\n", ch);
@@ -4255,23 +4281,28 @@ ACMD(do_innate) {
                     send_to_char("You're too tired right now.\r\n", ch);
                     cprintf(ch, "You can create light again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) / 10));
                 }
+                return;
             }  
-            return;
         }
 
-        vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
         if (is_abbrev(arg, "faerie step")) {
+            vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
-                    call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
-                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                        SET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP, 7 MUD_HR);
+                    if (!vict) {
+                        send_to_char("Who are you trying to step to?\r\n", ch);
+                        return;
+                    } else {
+                        call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
+                        if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                            SET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP, 7 MUD_HR);
+                    }
                 } else {
                         send_to_char("You're too tired right now.\r\n", ch);
                         cprintf(ch, "You can use faerie step again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10));
                 }
+                return;
             }
-            return;
 
         }
 
