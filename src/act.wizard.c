@@ -2053,10 +2053,7 @@ ACMD(do_set) {
                   {"weight", LVL_GOD, BOTH, NUMBER},
                   {"lifeforce", LVL_GOD, BOTH, MISC},
                   {"composition", LVL_GOD, BOTH, MISC}, /*75 */
-                  {"illumination", LVL_GAMEMASTER, PC, NUMBER},
-                  {"faerie step", LVL_GAMEMASTER, PC, NUMBER},
                   {"music", LVL_GAMEMASTER, PC, NUMBER},
-                  {"blinding beauty", LVL_GAMEMASTER, PC, NUMBER},
                   {"\n", 0, BOTH, MISC}};
 
     half_chop(argument, name, buf);
@@ -2280,6 +2277,9 @@ ACMD(do_set) {
         GET_COOLDOWN(vict, CD_INNATE_DARKNESS) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_INNATE_HARNESS) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_BREATHE) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_ILLUMINATION) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = RANGE(0, 100);
         break;
     case 21:
         vict->points.exp = RANGE(0, 299999999);
@@ -2618,13 +2618,7 @@ ACMD(do_set) {
         act(buf, FALSE, vict, 0, ch, TO_VICT);
         buf[0] = '\0';
         break;
-    case 76:
-        GET_COOLDOWN(vict, CD_INNATE_ILLUMINATION) = RANGE(0, 100);
-        break;
-    case 77:
-        GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = RANGE(0, 100);
-        break;
-    case 79: /* reset all bard music cooldowns */
+    case 76: /* reset all bard music cooldowns */
         GET_COOLDOWN(vict, CD_MUSIC_1) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_MUSIC_2) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_MUSIC_3) = RANGE(0, 100);
@@ -2633,9 +2627,6 @@ ACMD(do_set) {
         GET_COOLDOWN(vict, CD_MUSIC_6) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_MUSIC_7) = RANGE(0, 100);
         break;                       
-    case 80:
-        GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = RANGE(0, 100);
-        break;
     default:
         sprintf(buf, "Can't set that!\r\n");
         break;
