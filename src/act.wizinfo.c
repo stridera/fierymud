@@ -1679,10 +1679,16 @@ bool will_npcs_cast(int spell) {
     extern const int mob_cleric_offensives[];
     extern const int mob_cleric_area_spells[];
     extern const int mob_cleric_heals[];
+    extern const struct spell_pair mob_bard_buffs[];
+    extern const struct spell_pair mob_bard_hindrances[];
+    extern const int mob_bard_offensives[];
+    extern const int mob_bard_area_spells[];
+    extern const int mob_bard_heals[];
 
     const int *npc_spell_lists[] = {mob_sorcerer_offensives, mob_sorcerer_area_spells, mob_cleric_offensives,
-                                    mob_cleric_area_spells,  mob_cleric_heals,         NULL};
-    const struct spell_pair *npc_pair_lists[] = {mob_sorcerer_buffs, mob_cleric_buffs, mob_cleric_hindrances, NULL};
+                                    mob_cleric_area_spells,  mob_cleric_heals,         mob_bard_offensives,
+                                    mob_bard_area_spells,    mob_bard_heals,           NULL};
+    const struct spell_pair *npc_pair_lists[] = {mob_sorcerer_buffs, mob_cleric_buffs, mob_cleric_hindrances, mob_bard_buffs, mob_bard_hindrances, NULL};
     int i, j;
     const int *list;
     const struct spell_pair *pair;
