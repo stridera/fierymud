@@ -2827,7 +2827,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             }
         }
         to_vict = "Your spirit swells with inspiration!";
-        to_room = "$N's stirs with inspiration!";
+        to_room = "$N's spirit stirs with inspiration!";
         break;
 
     case SONG_SONG_OF_REST:                         /* increases HP and MV recovery while sleeping, see limits.c */
@@ -4331,6 +4331,20 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
             }
         }
         break;
+    case SONG_INSPIRATION:
+    case SONG_HEROIC_JOURNEY:
+        if (affected_by_spell(victim, SONG_TERROR) || affected_by_spell(victim, SONG_BALLAD_OF_TEARS)) {
+            if (affected_by_spell(victim, SONG_TERROR))
+                spell = SONG_TERROR;
+            if (affected_by_spell(victim, SONG_BALLAD_OF_TEARS)) {
+                if (spell) /* If already removing a spell, remove it and set ballad of tears now */
+                    effect_from_char(victim, spell);
+                spell = SONG_BALLAD_OF_TEARS;
+            }
+        }
+        to_vict = "$N's music soothes your fears.";
+        to_room = "$N's music soothes $n's fears.";
+        break;
     case SPELL_SANE_MIND:
         if (!EFF_FLAGGED(victim, EFF_INSANITY))
             return CAST_RESULT_CHARGE;
@@ -4379,6 +4393,20 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         spell = SPELL_POISON;
         to_vict = "A warm feeling runs through your body!";
         to_room = "$n looks better.";
+        break;
+    case SONG_TERROR:
+    case SONG_BALLAD_OF_TEARS:
+        if (affected_by_spell(victim, SONG_INSPIRATION) || affected_by_spell(victim, SONG_HEROIC_JOURNEY)) {
+            if (affected_by_spell(victim, SONG_INSPIRATION))
+                spell = SONG_INSPIRATION;
+            if (affected_by_spell(victim, SONG_HEROIC_JOURNEY)) {
+                if (spell) /* If already removing a spell, remove it and set heroic journey now */
+                    effect_from_char(victim, spell);
+                spell = SONG_HEROIC_JOURNEY;
+            }
+        }
+        to_vict = "Your inspiration chills suddenly.";
+        to_room = "$n's inspiration chills suddenly.";
         break;
     default:
         sprintf(buf, "SYSERR: unknown spellnum %d passed to mag_unaffect", spellnum);

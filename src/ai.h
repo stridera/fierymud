@@ -50,12 +50,14 @@ bool sorcerer_ai_action(struct char_data *ch, struct char_data *victim);
 bool cleric_ai_action(struct char_data *ch, struct char_data *victim);
 bool rogue_ai_action(struct char_data *ch, struct char_data *victim);
 bool warrior_ai_action(struct char_data *ch, struct char_data *victim);
+bool bard_ai_action(struct char_data *ch, struct char_data *victim);
 bool mob_steal(struct char_data *ch);
 bool mob_animate(struct char_data *ch);
 
 /* Function prototypes in mobact.c */
 bool check_sorcerer_status(struct char_data *ch);
 bool check_cleric_status(struct char_data *ch);
+bool check_bard_status(struct char_data *ch);
 bool dragonlike_attack(struct char_data *ch);
 bool in_memory(struct char_data *ch, struct char_data *vict);
 
