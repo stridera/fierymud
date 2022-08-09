@@ -1622,6 +1622,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_VIGORIZE_CRITIC, CLASS_BARD, CIRCLE_3);
 
     spell_assign(SPELL_CONFUSION, CLASS_BARD, CIRCLE_4);
+    spell_assign(SPELL_DISPEL_MAGIC, CLASS_BARD, CIRCLE_4);
     spell_assign(SPELL_LEVITATE, CLASS_BARD, CIRCLE_4);
     spell_assign(SPELL_MINOR_PARALYSIS, CLASS_BARD, CIRCLE_4);
     spell_assign(SPELL_POISON, CLASS_BARD, CIRCLE_4);
