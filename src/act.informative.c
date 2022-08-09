@@ -4061,7 +4061,7 @@ ACMD(do_innate) {
         if (GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_DUERGAR)
             send_to_char(" tass\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_DUERGAR || GET_RACE(ch) == RACE_TROLL ||
-            GET_RACE(ch) == RACE_OGRE || GET_RACE(ch) == RACE_DWARF)
+            GET_RACE(ch) == RACE_OGRE || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_SVERFNEBLIN)
             send_to_char(" ultravision*\r\n", ch);
         send_to_char("Effects marked with a * are always present.\r\n", ch);
     } else {
