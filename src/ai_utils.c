@@ -595,7 +595,9 @@ void glorion_distraction(struct char_data *ch, struct char_data *glorion) {
     if (ch == glorion)
         return;
     /* Will the glorion be attacked? */
-    if (number(1, 100) < 3 && !PRF_FLAGGED(glorion, PRF_NOHASSLE)) {
+    if (number(1, 100) < 3 && !PRF_FLAGGED(glorion, PRF_NOHASSLE) &&
+     /* check if the person being affected is a town guard or helper */
+     !MOB_FLAGGED(ch, MOB_PEACEKEEPER) && !MOB_FLAGGED(ch, MOB_HELPER) && !MOB_FLAGGED(ch, MOB_PEACEFUL) && !MOB_FLAGGED(ch, MOB_PROTECTOR)) {
         /* It's attacked! */
         act("$n forgets $s appreciation of $N's glorious appearance, and attacks!", TRUE, ch, 0, glorion, TO_NOTVICT);
         act("The look of awe in $N's eyes falters, and $e attacks!", TRUE, glorion, 0, ch, TO_CHAR);
