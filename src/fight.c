@@ -1675,6 +1675,10 @@ int damage(struct char_data *ch, struct char_data *victim, int dam, int attackty
     /* Cap damage */
     dam = MAX(MIN(dam, MAX_DAMAGE), 0);
 
+    /* illusory mobs still seem to be dealing damage below... */
+    if (MOB_FLAGGED(ch, MOB_ILLUSORY))
+        dam = 0;
+
     if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) {
         /* Will the victim die? */
         if DAMAGE_WILL_KILL (victim, dam) {
