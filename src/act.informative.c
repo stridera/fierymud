@@ -647,13 +647,14 @@ static void print_char_spells_to_char(struct char_data *targ, struct char_data *
             act("&6$E is completely still, and shows no awareness of $S "
                 "surroundings.&0",
                 TRUE, ch, 0, targ, TO_CHAR);
-    } else if (EFF_FLAGGED(targ, EFF_MESMERIZED))
+    } else if (EFF_FLAGGED(targ, EFF_MESMERIZED)) {
         act("$E gazes carefully at a point in the air directly in front of $S "
             "nose,\r\n"
             "as if deliberating upon a puzzle or problem.",
             TRUE, ch, 0, targ, TO_CHAR);
         act("$E gazes carefully at a point in the air directly in front of $S nose,\r\n"
             "as if deliberating upon a puzzle or problem.", TRUE, ch, 0, targ, TO_CHAR);
+    }
     if (affected_by_spell(targ, SPELL_WEB))
         act("&2&b$S is tangled in glowing &3&bwebs!&0", TRUE, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HELL))
