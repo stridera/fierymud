@@ -979,3 +979,126 @@ ACMD(do_msave) {
         }
     }
 }
+
+ACMD(do_mcast) {
+    char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], spell_name[MAX_INPUT_LENGTH];
+    char_data *victim;
+    int spellnum, level = 0;
+
+    argument = delimited_arg(argument, spell_name, '\'');
+    two_arguments(argument, name, spell_level_str);
+
+    if (!*name || !*spell_name) {
+        mob_log(ch, "mcast: bad syntax");
+        return;
+    }
+
+    if (!(victim = find_char_for_mtrig(ch, name))) {
+        if (!victim) {
+            mob_log(ch, "mcast: victim not found");
+            return;
+        }
+    }
+
+    level = atoi(spell_level_str);
+    if (!level)
+        level = 30;
+    else if (level > 100) {
+        mob_log(ch, "mcast: attempt to cast a spell with a skill level above 100.");
+        return;
+    } else if (level < 0) {
+        mob_log(ch, "mcast: attempt to cast a spell with a skill level below 0.");
+        return;
+    }
+
+    spellnum = find_spell_num(spell_name);
+    if (!IS_SPELL(spellnum)) {
+        sprintf(buf, "mcast: attempt to cast unknown spell: %s", spell_name);
+        mob_log(ch, buf);
+        return;
+    }
+
+    call_magic(ch, victim, NULL, spellnum, level, SAVING_SPELL);
+}
+
+ACMD(do_mchant) {
+    char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], chant_name[MAX_INPUT_LENGTH];
+    char_data *victim;
+    int chantnum, level = 0;
+
+    argument = delimited_arg(argument, chant_name, '\'');
+    two_arguments(argument, name, spell_level_str);
+
+    if (!*name || !*chant_name) {
+        mob_log(ch, "mchant: bad syntax");
+        return;
+    }
+
+    if (!(victim = find_char_for_mtrig(ch, name))) {
+        if (!victim) {
+            mob_log(ch, "mchant: victim not found");
+            return;
+        }
+    }
+
+    level = atoi(spell_level_str);
+    if (!level)
+        level = 30;
+    else if (level > 100) {
+        mob_log(ch, "mchant: attempt to chant a spell with a skill level above 100.");
+        return;
+    } else if (level < 0) {
+        mob_log(ch, "mchant: attempt to chant a spell with a skill level below 0.");
+        return;
+    }
+
+    chantnum = find_chant_num(chant_name);
+    if (!IS_CHANT(chantnum)) {
+        sprintf(buf, "mchant: attempt to chant unknown chant: %s", chant_name);
+        mob_log(ch, buf);
+        return;
+    }
+
+    call_magic(ch, victim, NULL, chantnum, level, SAVING_SPELL);
+}
+
+ACMD(do_mperform) {
+    char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], song_name[MAX_INPUT_LENGTH];
+    char_data *victim;
+    int songnum, level = 0;
+
+    argument = delimited_arg(argument, song_name, '\'');
+    two_arguments(argument, name, spell_level_str);
+
+    if (!*name || !*song_name) {
+        mob_log(ch, "mperform: bad syntax");
+        return;
+    }
+
+    if (!(victim = find_char_for_mtrig(ch, name))) {
+        if (!victim) {
+            mob_log(ch, "mperform: victim not found");
+            return;
+        }
+    }
+
+    level = atoi(spell_level_str);
+    if (!level)
+        level = 30;
+    else if (level > 100) {
+        mob_log(ch, "mperform: attempt to perform a spell with a skill level above 100.");
+        return;
+    } else if (level < 0) {
+        mob_log(ch, "mperform: attempt to perform a spell with a skill level below 0.");
+        return;
+    }
+
+    songnum = find_song_num(song_name);
+    if (!IS_SONG(songnum)) {
+        sprintf(buf, "mperform: attempt to perform unknown perform: %s", song_name);
+        mob_log(ch, buf);
+        return;
+    }
+
+    call_magic(ch, victim, NULL, songnum, level, SAVING_SPELL);
+}

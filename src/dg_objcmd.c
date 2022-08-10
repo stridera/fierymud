@@ -454,7 +454,7 @@ OCMD(do_ocast) {
     level = atoi(spell_level_str);
     if (!level)
         level = 30;
-    else if (level > 1000) {
+    else if (level > 100) {
         obj_log(obj, t, "ocast: attempt to cast a spell with a skill level above 100.");
         return;
     } else if (level < 0) {
@@ -473,6 +473,53 @@ OCMD(do_ocast) {
         call_magic(obj->worn_by, target, NULL, spellnum, level, SAVING_ROD);
     else if (obj->carried_by)
         call_magic(obj->carried_by, target, NULL, spellnum, level, SAVING_ROD);
+    else {
+        obj_log(obj, t, "ocast: target must be carried or worn in order to cast spells");
+        return;
+    }
+}
+
+OCMD(do_ochant) {
+    char name[MAX_INPUT_LENGTH], chant_level_str[MAX_INPUT_LENGTH], chant_name[MAX_INPUT_LENGTH];
+    char_data *target;
+    int chantnum, level = 0;
+
+    argument = delimited_arg(argument, chant_name, '\'');
+    two_arguments(argument, name, chant_level_str);
+
+    if (!*name || !*chant_name) {
+        obj_log(obj, t, "ocast: bad syntax");
+        return;
+    }
+
+    target = find_char_around_obj(obj, find_dg_by_name(name));
+    if (!target) {
+        obj_log(obj, t, "ocast: target not found");
+        return;
+    }
+
+    level = atoi(chant_level_str);
+    if (!level)
+        level = 30;
+    else if (level > 1000) {
+        obj_log(obj, t, "ocast: attempt to cast a chant at a level above 100.");
+        return;
+    } else if (level < 0) {
+        obj_log(obj, t, "ocast: attempt to cast a chant at a level below 0.");
+        return;
+    }
+
+    chantnum = find_spell_num(chant_name);
+    if (!IS_CHANT(chantnum)) {
+        sprintf(buf, "ocast: attempt to chant an unknown chant: %s", chant_name);
+        obj_log(obj, t, buf);
+        return;
+    }
+
+    if (obj->worn_by)
+        call_magic(obj->worn_by, target, NULL, chantnum, level, SAVING_ROD);
+    else if (obj->carried_by)
+        call_magic(obj->carried_by, target, NULL, chantnum, level, SAVING_ROD);
     else {
         obj_log(obj, t, "ocast: target must be carried or worn in order to cast spells");
         return;
