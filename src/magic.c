@@ -1623,7 +1623,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&7&b$N&7&b glows briefly.&0";
         break;
 
-
     case SPELL_ENHANCE_ABILITY:
 
         /* This is rather a hack of the intended nature of how the
@@ -1666,6 +1665,132 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             send_to_char("What abiliy do you want to enhance?\r\n", ch);
             return 0;
         }
+
+        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        break;
+
+    case SPELL_ENHANCE_STR:
+
+        /* This is copy-paste from the Enhance Ability spell above */
+
+        /* First check if already affected by an enhancement */
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
+            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+            send_to_char("You are already enhanced!\r\n", victim);
+            return 0;
+        }
+
+        eff[0].location = APPLY_STR;
+        to_vict = "You feel stronger!";
+        to_char = "You increase $N's strength!";
+        to_room = "$N looks stronger!";
+
+        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        break;
+
+    case SPELL_ENHANCE_DEX:
+
+        /* This is copy-paste from the Enhance Ability spell above */
+
+        /* First check if already affected by an enhancement */
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
+            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+            send_to_char("You are already enhanced!\r\n", victim);
+            return 0;
+        }
+
+        eff[0].location = APPLY_DEX;
+        to_vict = "You feel more dexterous!";
+        to_char = "You increase $N's dexterity!";
+        to_room = "$N looks more dexterous!";
+
+        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        break;
+
+    case SPELL_ENHANCE_CON:
+
+        /* This is copy-paste from the Enhance Ability spell above */
+
+        /* First check if already affected by an enhancement */
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
+            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+            send_to_char("You are already enhanced!\r\n", victim);
+            return 0;
+        }
+        
+        eff[0].location = APPLY_CON;
+        to_vict = "You feel healthier!";
+        to_char = "You increase $N's constitution!";
+        to_room = "$N looks healthier!";
+
+        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        break;
+
+    case SPELL_ENHANCE_INT:
+
+        /* This is copy-paste from the Enhance Ability spell above */
+
+        /* First check if already affected by an enhancement */
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
+            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+            send_to_char("You are already enhanced!\r\n", victim);
+            return 0;
+        }
+
+        eff[0].location = APPLY_INT;
+        to_vict = "You feel smarter!";
+        to_char = "You increase $N's intelligence!";
+        to_room = "$N looks smarter!";
+
+        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        break;
+
+    case SPELL_ENHANCE_WIS:
+
+        /* This is copy-paste from the Enhance Ability spell above */
+
+        /* First check if already affected by an enhancement */
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
+            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+            send_to_char("You are already enhanced!\r\n", victim);
+            return 0;
+        }
+
+        eff[0].location = APPLY_WIS;
+        to_vict = "You feel wiser!";
+        to_char = "You increase $N's wisdom!";
+        to_room = "$N looks wiser!";
+
+        eff[0].modifier = 2 + (skill / 8);  /* max 14 */
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        break;
+
+    case SPELL_ENHANCE_CHA:
+
+        /* This is copy-paste from the Enhance Ability spell above */
+
+        /* First check if already affected by an enhancement */
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
+            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+            send_to_char("You are already enhanced!\r\n", victim);
+            return 0;
+        }
+
+        eff[0].location = APPLY_CHA;
+        to_vict = "You feel more charismatic!";
+        to_char = "You increase $N's charisma!";
+        to_room = "$N looks more charismatic!";
 
         eff[0].modifier = 2 + (skill / 8);  /* max 14 */
         eff[0].duration = 5 + (skill / 14); /* max 12 */
@@ -1948,6 +2073,23 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&1A magical flame bursts into focus, lighting the area.&0";
         break;
 
+    case SPELL_MAJOR_GLOBE:
+
+        if (EFF_FLAGGED(victim, EFF_MINOR_GLOBE)) {
+            act("$N's minor globe of invulnerability resists your spell!", FALSE, ch, 0, victim, TO_CHAR);
+            act("Your minor globe of invulnerability resists $n's spell.", FALSE, ch, 0, victim, TO_VICT);
+            act("$n tries to add an additional globe of protection to $N.", TRUE, ch, 0, victim, TO_NOTVICT);
+            return CAST_RESULT_CHARGE;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_MAJOR_GLOBE);
+        eff[0].duration = 4 + (skill / 20); /* max 9 */
+        refresh = FALSE;
+        to_char = "&1&bYour shimmering globe of force wraps around $N&1&b's body.&0";
+        to_vict = "&1&bA shimmering globe of force wraps around your body.&0";
+        to_room = "&1&bA shimmering globe of force wraps around $N&1&b's body.&0";
+        break;
+
     case SPELL_MESMERIZE:
     case SONG_ENRAPTURE:
         if (!AWAKE(victim)) {
@@ -2027,22 +2169,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&7&bAll motion in $N&7&b's body grinds to a halt.&0";
         break;
 
-    case SPELL_MAJOR_GLOBE:
-
-        if (EFF_FLAGGED(victim, EFF_MINOR_GLOBE)) {
-            act("$N's minor globe of invulnerability resists your spell!", FALSE, ch, 0, victim, TO_CHAR);
-            act("Your minor globe of invulnerability resists $n's spell.", FALSE, ch, 0, victim, TO_VICT);
-            act("$n tries to add an additional globe of protection to $N.", TRUE, ch, 0, victim, TO_NOTVICT);
-            return CAST_RESULT_CHARGE;
-        }
-
-        SET_FLAG(eff[0].flags, EFF_MAJOR_GLOBE);
-        eff[0].duration = 4 + (skill / 20); /* max 9 */
-        refresh = FALSE;
-        to_char = "&1&bYour shimmering globe of force wraps around $N&1&b's body.&0";
-        to_vict = "&1&bA shimmering globe of force wraps around your body.&0";
-        to_room = "&1&bA shimmering globe of force wraps around $N&1&b's body.&0";
-        break;
 
     case SPELL_MIRAGE:
 
@@ -2069,6 +2195,70 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             "You feel like a stack of little illusions all pointing in "
             "different directions.";
         break;
+
+    case SPELL_MONK_ACID:
+        /* for potions and scrolls to turn monk punches to acid */
+        /* check if already affected by one of the enhancement types */
+
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
+            send_to_char("You can only channel one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
+        to_vict = "&3&bYou charge your hands with corrosive chi.&0";
+        to_room = "&3&b$N charges $S hands with corrosive chi.&0";
+        eff[0].duration = (skill / 10); /* max 10 */
+        break;
+
+    case SPELL_MONK_COLD:
+        /* for potions and scrolls to turn monk punches to ice */
+        /* check if already affected by one of the enhancement types */
+
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
+            send_to_char("You can only channel one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_ICEHANDS);
+        to_vict = "&4&bYou unleash the blizzard in your heart.&0";
+        to_room = "&4&b$N unleashes the blizzard in $S heart.&0";
+        eff[0].duration = (skill / 10); /* max 10 */
+        break;
+
+    case SPELL_MONK_FIRE:
+        /* for potions and scrolls to turn monk punches to fire */
+        /* check if already affected by one of the enhancement types */
+
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
+            send_to_char("You can only channel one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_FIREHANDS);
+        to_vict = "&1Your fists burn with inner fire.&0";
+        to_room = "&1$N's fists burn with inner fire.&0";
+        eff[0].duration = (skill / 10); /* max 10 */
+        break;
+
+    case SPELL_MONK_SHOCK:
+        /* for potions and scrolls to turn monk punches to lightning */
+        /* check if already affected by one of the enhancement types */
+
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
+            send_to_char("You can only channel one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
+        to_vict = "&6&bYour knuckles crackle with lightning.&0";
+        to_room = "&6&b$N's knuckles crackle with lightning.&0";
+        eff[0].duration = (skill / 10); /* max 10 */
+        break;        
 
     case SPELL_NEGATE_COLD:
 
@@ -2198,6 +2388,70 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[0].duration = 9 + (skill / 9); /* max 20 */
         to_vict = "You feel invulnerable!";
         to_char = "You surround $N with glyphs of unholy warding.";
+        break;
+
+    case SPELL_PROTECT_ACID:
+
+        /* is the target already protected? */
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_PROT_EARTH);
+        to_vict = "You are warded from &3earth&0.";
+        to_char = "You protect $N from &3earth&0.";
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        to_room = "&7&b$N&7&b glows briefly.&0";
+        break;
+
+    case SPELL_PROTECT_COLD:
+
+        /* is the target already protected? */
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_PROT_COLD);
+        to_vict = "You are warded from the &4cold&0.";
+        to_char = "You protect $N from the &4cold&0.";
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        to_room = "&7&b$N&7&b glows briefly.&0";
+        break;
+
+    case SPELL_PROTECT_FIRE:
+
+        /* is the target already protected? */
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
+        to_vict = "You are warded from &1fire&0.";
+        to_char = "You protect $N from &1fire&0.";
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        to_room = "&7&b$N&7&b glows briefly.&0";
+        break;
+
+    case SPELL_PROTECT_SHOCK:
+
+        /* is the target already protected? */
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            return 0;
+        }
+
+        SET_FLAG(eff[0].flags, EFF_PROT_AIR);
+        to_vict = "You are warded from &6&bair&0.";
+        to_char = "You protect $N from &6&bair&0.";
+        eff[0].duration = 5 + (skill / 14); /* max 12 */
+        to_room = "&7&b$N&7&b glows briefly.&0";
         break;
 
     case SPELL_RAY_OF_ENFEEB:

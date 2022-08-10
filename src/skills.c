@@ -1161,7 +1161,7 @@ void init_skills(void) {
 
     spello(SPELL_ENHANCE_ABILITY, "enhance ability", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel less enhanced.");
-           
+
     spello(SPELL_STYGIAN_ERUPTION, "stygian eruption", 0, 0, 0, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
            TRUE, MAG_DAMAGE, C1, CAST_SPEED4, DAM_FIRE, SKILL_SPHERE_FIRE, 5, FALSE, NULL);
 
@@ -1272,6 +1272,51 @@ void init_skills(void) {
 
     /* SORTED */
 
+/* The following spells are intended only for magic items.
+ * Magic items have no way to accept arguments for spells that require making type selections, so they are broken out here.
+ * They should not be assigned to classes without VERY good reason. */
+
+    spello(SPELL_ENHANCE_STR, "enhance strength", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel weaker.");
+
+    spello(SPELL_ENHANCE_DEX, "enhance dexterity", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel slower.");
+
+    spello(SPELL_ENHANCE_CON, "enhance constitution", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel less healthy.");
+
+    spello(SPELL_ENHANCE_INT, "enhance intelligence", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel dumber.");
+
+    spello(SPELL_ENHANCE_WIS, "enhance wisdom", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel less witty.");
+
+    spello(SPELL_ENHANCE_CHA, "enhance charisma", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, FALSE, "You feel uglier.");
+
+    spello(SPELL_PROTECT_FIRE, "protection from fire", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected from fire.");
+
+    spello(SPELL_PROTECT_COLD, "protection from cold", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected from cold.");
+
+    spello(SPELL_PROTECT_ACID, "protection from earth", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected from earth.");
+
+    spello(SPELL_PROTECT_SHOCK, "protection from air", 0, 0, 0, POS_STANDING, FALSE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "You feel less protected from air.");
+
+    spello(SPELL_MONK_FIRE, "fires of saint augustine", 0, 0, 0, POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "Your inner fire subsides.");
+
+    spello(SPELL_MONK_COLD, "blizzards of saint augustine", 0, 0, 0, POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "Your inner cold subsides.");
+
+    spello(SPELL_MONK_ACID, "tremors of saint augustine", 0, 0, 0, POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "Your inner earth subsides.");
+
+    spello(SPELL_MONK_SHOCK, "tempest of saint augustine", 0, 0, 0, POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT,
+           C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, FALSE, "Your inner storm subsides.");
 
     /* Declaration of skills - sets skills up so that immortals can use
      * them by default. Determines whether a skill is considered
@@ -1412,7 +1457,7 @@ void init_skills(void) {
     chanto(CHANT_WAR_CRY, "war cry", POS_STANDING, FALSE, TAR_IGNORE, FALSE, MAG_GROUP, 0, FALSE,
            "Your determination level returns to normal.");
 
-    chanto(CHANT_HYMN_OF_SAINT_AUGUSTINE, "hymn of saint augustine", POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT, 0, FALSE, 
+    chanto(CHANT_HYMN_OF_SAINT_AUGUSTINE, "hymn of saint augustine", POS_SITTING, TRUE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECT, 0, TRUE, 
            "Your inner elements subside.");
            
 
