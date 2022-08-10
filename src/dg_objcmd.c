@@ -469,7 +469,14 @@ OCMD(do_ocast) {
         return;
     }
 
-    call_magic(obj->worn_by, target, NULL, spellnum, level, SAVING_ROD);
+    if (obj->worn_by)
+        call_magic(obj->worn_by, target, NULL, spellnum, level, SAVING_ROD);
+    else if (obj->carried_by)
+        call_magic(obj->carried_by, target, NULL, spellnum, level, SAVING_ROD);
+    else {
+        obj_log(obj, t, "ocast: target must be carried or worn in order to cast spells");
+        return;
+    }
 }
 
 /*
