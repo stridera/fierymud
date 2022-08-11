@@ -1333,7 +1333,7 @@ ACMD(do_wield) {
 
     /* See if they need both hands free: two-handed weapon and they aren't an
      * ogre. */
-    if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD) && GET_CLASS(ch) != RACE_OGRE) {
+    if (CAN_WEAR(obj, ITEM_WEAR_2HWIELD) && GET_RACE(ch) != RACE_OGRE) {
         if (hands_used) {
             send_to_char("You need both hands for this weapon.\r\n", ch);
             return;
