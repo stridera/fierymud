@@ -3080,6 +3080,8 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
                 eff[8].duration = skill / (15 - (GET_CHA(ch) / 20));         /* max 10 */
             }
         }
+        act("You begin an inspiring performance!", FALSE, ch, 0, victim, TO_CHAR);
+        act("$n begins an inspiring performance!", FALSE, ch, 0, victim, TO_NOTVICT);
         to_vict = "Your spirit swells with inspiration!";
         to_room = "$N's stirs with inspiration!";
         break;
@@ -3098,6 +3100,8 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         break;
 
     case SONG_TERROR:
+        act("You perform a haunting melody!", FALSE, ch, 0, victim, TO_CHAR);
+        act("$n performs a haunting melody!", FALSE, ch, 0, victim, TO_NOTVICT);
     case SONG_BALLAD_OF_TEARS:
         eff[0].location = APPLY_SAVING_PARA;
         eff[1].location = APPLY_SAVING_ROD;
@@ -3416,6 +3420,8 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     case SONG_BALLAD_OF_TEARS:
         to_char = "&9&bYou weave a tale of suffering and misery!&0";
         to_room = "&9&b$n&9&b weaves a tale of suffering and misery!&0";
+        damage = FALSE;
+        break;
     case SPELL_BLINDING_BEAUTY:
         to_char = "&3&bThe splendor of your beauty sears the eyes of everything around you!&0";
         to_room = "&3&bThe splendor of $s's beauty sears the eyes of everything around $s!&0";
