@@ -2396,6 +2396,7 @@ void start_berserking(struct char_data *ch) {
     eff.location = APPLY_NONE;
     SET_FLAG(eff.flags, EFF_BERSERK);
     GET_STANCE(ch) = STANCE_ALERT;
+    GET_POS(ch) = POS_STANDING;
     effect_to_char(ch, &eff);
     check_regen_rates(ch);
 }
