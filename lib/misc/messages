@@ -1774,6 +1774,37 @@ $N avoids being slammed by $n who loses $s balance and falls!
 #
 #
 
+* ground shaker
+M
+ 483
+The earth opens beneath $N's feet and swallows $M whole!
+The earth opens beneath your feet and swallows you whole!
+The earth opens beneath $N's feet and swallows $M whole!
+$N desperately tries to keep $S balance as the earth shakes beneath $S feet!
+You desperately try to keep your balance as the earth shakes beneath your feet!
+$N desperately tries to keep $S balance as the earth shakes beneath $S feet!
+$N falls down and hurts $Mself!
+You fall down and hurt yourself!
+$N falls down and hurts $Mself!
+$N gracefully levitates as the earth shifts beneath $S feet under $M.
+You gracefully levitate as the earth shifts underneath you.
+$N gracefully levitates as the earth shifts beneath $S feet under $M.
+
+* maul
+M
+ 485
+&0&1&bYou rip $N limb from limb in a spray of gore!&0
+&0&1&b$n rips you limb from limb, eviscerating you completely...&0
+&0&1&b$n rips $N limb from limb in a spray of gore!&0
+As $N avoids your charge, you topple over and fall to the ground!
+You dodge a charge from $n who loses $s balance and falls!
+$N avoids being mauled by $n who loses $s balance and falls!
+&0&8You throw yourself on $n and tear them down!&0
+&0&8$n throws $mself on you and tears you down!&0
+&0&8$n throws $mself on $N and tears $M down!&0
+&0&8Your effort to slam $N sends YOU sprawling on the ground.&0
+&0&8$n fruitlessly tries to slam you and is sent sprawling.&0
+&0&8$n dares a slam at $N and is sent sprawling without touching $M.&0
 
 ***************************************************************************
 *                           Weapon Attacks                                *
