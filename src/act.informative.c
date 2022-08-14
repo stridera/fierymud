@@ -3180,7 +3180,7 @@ static void show_points(struct char_data *ch, struct char_data *tch, bool verbos
                 GET_DAMROLL(tch) - monk_weight_penalty(tch));
 
     if (GET_RAGE(tch) || GET_SKILL(tch, SKILL_BERSERK))
-        sprintf(buf, "%s\r\nAnger: &3&b%d&0", buf, GET_RAGE(tch));
+        sprintf(buf, "%s\r\nRage: &3&b%d&0", buf, GET_RAGE(tch));
 
     sprintf(buf, "%s  Perception: &3&b%ld&0  Concealment: &3&b%ld&0\r\n", buf, GET_PERCEPTION(tch),
             GET_HIDDENNESS(tch));
