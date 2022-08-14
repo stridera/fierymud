@@ -320,6 +320,9 @@ ACMD(do_attach);
 ACMD(do_detach);
 ACMD(do_tstat);
 ACMD(do_masound);
+ACMD(do_mcast);
+ACMD(do_mchant);
+ACMD(do_mperform);
 ACMD(do_mkill);
 ACMD(do_mjunk);
 ACMD(do_mechoaround);
@@ -969,6 +972,9 @@ const struct command_info cmd_info[] = {
     {"mgoto", POS_PRONE, STANCE_DEAD, do_mgoto, -1, 0, CMD_HIDE},
     {"mjunk", POS_PRONE, STANCE_DEAD, do_mjunk, -1, 0, CMD_ANY},
     {"mkill", POS_STANDING, STANCE_ALERT, do_mkill, -1, 0, CMD_NOFIGHT},
+    {"mcast", POS_STANDING, STANCE_ALERT, do_mcast, -1, 0, CMD_ANY},
+    {"mchant", POS_STANDING, STANCE_ALERT, do_mchant, -1, 0, CMD_ANY},
+    {"mperform", POS_STANDING, STANCE_ALERT, do_mperform, -1, 0, CMD_ANY},
     {"mload", POS_PRONE, STANCE_DEAD, do_mload, -1, 0, CMD_ANY},
     {"mpurge", POS_PRONE, STANCE_DEAD, do_mpurge, -1, 0, CMD_ANY},
     {"msave", POS_PRONE, STANCE_DEAD, do_msave, -1, 0, CMD_ANY},
