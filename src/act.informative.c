@@ -3998,7 +3998,8 @@ ACMD(do_innate) {
 
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
-        if (GET_RACE(ch) == RACE_NYMPH);
+        if (GET_RACE(ch) == RACE_NYMPH)
+            send_to_char(" ascen\r\n", ch);
             send_to_char(" blinding beauty\r\n", ch);
         if (GET_SKILL(ch, SKILL_BODYSLAM))
             send_to_char(" bodyslam\r\n", ch);
