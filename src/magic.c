@@ -3083,7 +3083,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         act("You begin an inspiring performance!", FALSE, ch, 0, victim, TO_CHAR);
         act("$n begins an inspiring performance!", FALSE, ch, 0, victim, TO_NOTVICT);
         to_vict = "Your spirit swells with inspiration!";
-        to_room = "$N's stirs with inspiration!";
+        to_room = "$N's spirit stirs with inspiration!";
         break;
 
     case SONG_SONG_OF_REST:                         /* increases HP and MV recovery while sleeping, see limits.c */
