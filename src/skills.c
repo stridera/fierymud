@@ -976,7 +976,7 @@ void init_skills(void) {
            CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_PROT, 35, TRUE, "The globe of force surrounding you dissipates.");
 
     spello(SPELL_MAJOR_PARALYSIS, "major paralysis", 35, 30, 1, POS_STANDING, FALSE, TAR_CHAR_ROOM, TRUE, MAG_MANUAL,
-           C6, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 35, FALSE, "You can move again.");
+           C6, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 35, TRUE, "You can move again.");
 
     spello(SPELL_MASS_INVIS, "mass invisibility", 0, 0, 0, POS_STANDING, FALSE, TAR_IGNORE, FALSE,
            MAG_BULK_OBJS | MAG_MASS, C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 23, FALSE, NULL);
