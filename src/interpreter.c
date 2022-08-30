@@ -968,6 +968,7 @@ const struct command_info cmd_info[] = {
     {"mecho", POS_PRONE, STANCE_DEAD, do_mecho, -1, 0, CMD_ANY},
     {"mechoaround", POS_PRONE, STANCE_DEAD, do_mechoaround, -1, 0, CMD_ANY},
     {"mexp", POS_PRONE, STANCE_DEAD, do_mexp, -1, 0, CMD_ANY},
+    {"mgold", POS_PRONE, STANCE_DEAD, do_mgold, -1, 0, CMD_ANY},
     {"mforce", POS_PRONE, STANCE_DEAD, do_mforce, -1, 0, CMD_ANY},
     {"mgoto", POS_PRONE, STANCE_DEAD, do_mgoto, -1, 0, CMD_HIDE},
     {"mjunk", POS_PRONE, STANCE_DEAD, do_mjunk, -1, 0, CMD_ANY},
