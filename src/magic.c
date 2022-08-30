@@ -543,7 +543,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_ANCESTRAL_VENGEANCE:
     case SPELL_BIGBYS_CLENCHED_FIST:
     case SPELL_SPIRIT_RAY:
-    case SPELL_BALEFUL_POLYMORPH:    
+    case SPELL_BALEFUL_POLYMORPH:
     case SPELL_IRON_MAIDEN:
     case SPELL_FREEZE:
     case SPELL_ACID_BURST:
@@ -551,7 +551,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_ICEBALL:
         dam = sorcerer_single_target(ch, spellnum, skill);
         reduction = TRUE;
-        break;                  /* <-- End Sorcerer Single Target Switch */
+        break; /* <-- End Sorcerer Single Target Switch */
 
     /* dart and missle spells */
     case SPELL_MAGIC_MISSILE:
@@ -560,10 +560,10 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
         dam = dice(4, 21);
         reduction = TRUE;
         break;
-    case SPELL_FIRE_DARTS:      /* <-- unique because min circle is 2, not 1 */
+    case SPELL_FIRE_DARTS: /* <-- unique because min circle is 2, not 1 */
         dam = dice(5, 18);
         reduction = TRUE;
-        break;                  /* <-- end dart and missle spells */
+        break; /* <-- end dart and missle spells */
 
     /* Cause light etc. series */
     case SPELL_CAUSE_LIGHT:
@@ -585,7 +585,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_FULL_HARM:
         /* max dam 400 from max 18d10+20 online */
         dam += (pow(skill, 2) * 1) / 50;
-        break;                  /* <-- end Cause series */
+        break; /* <-- end Cause series */
 
     /* breath spells */
     case SPELL_LIGHTNING_BREATH:
@@ -1139,7 +1139,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_vict = get_vitality_vict_message(spellnum);
         to_room = "$N looks healthier than before!";
         to_char = "$N looks healthier than before!";
-        break;                                      /* <-- end Temp HP spells */
+        break; /* <-- end Temp HP spells */
 
     case SPELL_ARMOR:
 
@@ -1675,9 +1675,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
-            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
+            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
+            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
             send_to_char("You are already enhanced!\r\n", victim);
             return 0;
         }
@@ -1696,9 +1697,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
-            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
+            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
+            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
             send_to_char("You are already enhanced!\r\n", victim);
             return 0;
         }
@@ -1717,13 +1719,14 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
-            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
+            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
+            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
             send_to_char("You are already enhanced!\r\n", victim);
             return 0;
         }
-        
+
         eff[0].location = APPLY_CON;
         to_vict = "You feel healthier!";
         to_char = "You increase $N's constitution!";
@@ -1738,9 +1741,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
-            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
+            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
+            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
             send_to_char("You are already enhanced!\r\n", victim);
             return 0;
         }
@@ -1759,9 +1763,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
-            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
+            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
+            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
             send_to_char("You are already enhanced!\r\n", victim);
             return 0;
         }
@@ -1780,9 +1785,10 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || 
-            affected_by_spell(victim, SPELL_ENHANCE_STR) || affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) || affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
+            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
+            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
             send_to_char("You are already enhanced!\r\n", victim);
             return 0;
         }
@@ -2169,7 +2175,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&7&bAll motion in $N&7&b's body grinds to a halt.&0";
         break;
 
-
     case SPELL_MIRAGE:
 
         /* Need a check to make sure no other conflicting armor spells can help as
@@ -2200,7 +2205,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* for potions and scrolls to turn monk punches to acid */
         /* check if already affected by one of the enhancement types */
 
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
             send_to_char("You can only channel one element at a time.\r\n", victim);
             return 0;
@@ -2216,7 +2221,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* for potions and scrolls to turn monk punches to ice */
         /* check if already affected by one of the enhancement types */
 
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
             send_to_char("You can only channel one element at a time.\r\n", victim);
             return 0;
@@ -2232,7 +2237,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* for potions and scrolls to turn monk punches to fire */
         /* check if already affected by one of the enhancement types */
 
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
             send_to_char("You can only channel one element at a time.\r\n", victim);
             return 0;
@@ -2248,7 +2253,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* for potions and scrolls to turn monk punches to lightning */
         /* check if already affected by one of the enhancement types */
 
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) || 
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
             send_to_char("You can only channel one element at a time.\r\n", victim);
             return 0;
@@ -2258,7 +2263,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_vict = "&6&bYour knuckles crackle with lightning.&0";
         to_room = "&6&b$N's knuckles crackle with lightning.&0";
         eff[0].duration = (skill / 10); /* max 10 */
-        break;        
+        break;
 
     case SPELL_NEGATE_COLD:
 
@@ -2393,8 +2398,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_PROTECT_ACID:
 
         /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
+            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
             send_to_char("You can only be protected from one element at a time.\r\n", victim);
             return 0;
         }
@@ -2409,8 +2415,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_PROTECT_COLD:
 
         /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
+            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
             send_to_char("You can only be protected from one element at a time.\r\n", victim);
             return 0;
         }
@@ -2425,8 +2432,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_PROTECT_FIRE:
 
         /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
+            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
             send_to_char("You can only be protected from one element at a time.\r\n", victim);
             return 0;
         }
@@ -2441,8 +2449,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
     case SPELL_PROTECT_SHOCK:
 
         /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) || 
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) || affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
+            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
             send_to_char("You can only be protected from one element at a time.\r\n", victim);
             return 0;
         }
@@ -2784,7 +2793,6 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "&2&b$n tangles $N in a glowing &3&bweb&2&b!&0";
         break;
 
-
     case SPELL_WINGS_OF_HEAVEN:
 
         if (affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
@@ -2846,7 +2854,7 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         /* Innate syll usage shouldn't call for a skill improvement in a spell
          * sphere */
         break;
-    
+
     case SPELL_INN_TASS:
         eff[0].location = APPLY_WIS;
         eff[0].duration = (skill >> 1) + 4;
@@ -3054,11 +3062,11 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
 
     case SONG_INSPIRATION:
         eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* Hitroll max 5 */
-        eff[0].duration = skill / (15 - (GET_CHA(ch) / 20));                /* max 10 */
+        eff[0].modifier = skill / (25 - (GET_CHA(ch) / 20)); /* Hitroll max 5 */
+        eff[0].duration = skill / (15 - (GET_CHA(ch) / 20)); /* max 10 */
         eff[1].location = APPLY_DAMROLL;
-        eff[1].modifier = skill / (25 - (GET_CHA(ch) / 20));                /* Damroll max 5 */
-        eff[1].duration = skill / (15 - (GET_CHA(ch) / 20));                /* max 10 */
+        eff[1].modifier = skill / (25 - (GET_CHA(ch) / 20)); /* Damroll max 5 */
+        eff[1].duration = skill / (15 - (GET_CHA(ch) / 20)); /* max 10 */
         if (GET_LEVEL(ch) >= 20) {
             eff[2].location = APPLY_SAVING_PARA;
             eff[3].location = APPLY_SAVING_ROD;
@@ -3066,18 +3074,18 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
             eff[5].location = APPLY_SAVING_BREATH;
             eff[6].location = APPLY_SAVING_SPELL;
             eff[7].location = APPLY_AC;
-            eff[2].duration = eff[3].duration = eff[4].duration = eff[5].duration = eff[6].duration =
-                eff[7].duration = skill / (15 - (GET_CHA(ch) / 20));        /* same duration, max 10 */
+            eff[2].duration = eff[3].duration = eff[4].duration = eff[5].duration = eff[6].duration = eff[7].duration =
+                skill / (15 - (GET_CHA(ch) / 20));                          /* same duration, max 10 */
             eff[2].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Paralysis max -19 */
             eff[3].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Wand max -19 */
             eff[4].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Petrification max -19 */
             eff[5].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Breath max -19 */
             eff[6].modifier = -(skill / 7) + number(0, (GET_CHA(ch) / 20)); /* Spell max -19 */
-            eff[7].modifier =  (skill / 20) + (GET_CHA(ch) / 20);           /* AC max 10 */
+            eff[7].modifier = (skill / 20) + (GET_CHA(ch) / 20);            /* AC max 10 */
             if (GET_LEVEL(ch) >= 40) {
                 eff[8].location = APPLY_HIT;
-                eff[8].modifier = (skill + (GET_CHA(ch)) * 2);               /* HP max 400 */
-                eff[8].duration = skill / (15 - (GET_CHA(ch) / 20));         /* max 10 */
+                eff[8].modifier = (skill + (GET_CHA(ch)) * 2);       /* HP max 400 */
+                eff[8].duration = skill / (15 - (GET_CHA(ch) / 20)); /* max 10 */
             }
         }
         act("You begin an inspiring performance!", FALSE, ch, 0, victim, TO_CHAR);
@@ -3086,9 +3094,9 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         to_room = "$N's spirit stirs with inspiration!";
         break;
 
-    case SONG_SONG_OF_REST:                         /* increases HP and MV recovery while sleeping, see limits.c */
+    case SONG_SONG_OF_REST: /* increases HP and MV recovery while sleeping, see limits.c */
         SET_FLAG(eff[0].flags, EFF_SONG_OF_REST);
-        eff[0].duration = skill / (15 - (GET_CHA(ch) / 20));        /* max 10 */
+        eff[0].duration = skill / (15 - (GET_CHA(ch) / 20)); /* max 10 */
         if (ch != victim) {
             to_char = "You sing $N a gentle lullaby to help $M rest.\r\n";
             to_room = "$n sings $N a gentle lullaby to help $M rest.";
@@ -3107,32 +3115,31 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         eff[1].location = APPLY_SAVING_ROD;
         eff[2].location = APPLY_SAVING_SPELL;
         eff[3].location = APPLY_AC;
-        eff[0].duration = eff[1].duration = eff[2].duration = eff[3].duration
-             = skill / (15 - (GET_CHA(ch) / 10));                           /* same duration, max 20 */
-        eff[0].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20)));    /* Paralysis max 19 */
-        eff[1].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20)));    /* Rod max 19 */
-        eff[2].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20)));    /* Spell max 19 */
-        eff[3].modifier = -(5 + ((skill / 10) - (GET_CHA(ch) / 20)));       /* AC max -10 */
+        eff[0].duration = eff[1].duration = eff[2].duration = eff[3].duration =
+            skill / (15 - (GET_CHA(ch) / 10));                           /* same duration, max 20 */
+        eff[0].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20))); /* Paralysis max 19 */
+        eff[1].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20))); /* Rod max 19 */
+        eff[2].modifier = ((skill / 7) + number(0, (GET_CHA(ch) / 20))); /* Spell max 19 */
+        eff[3].modifier = -(5 + ((skill / 10) - (GET_CHA(ch) / 20)));    /* AC max -10 */
         if (GET_LEVEL(ch) >= 30) {
             eff[4].location = APPLY_CON;
-            eff[4].modifier = -(((skill + GET_CHA(ch)) / 4) * (GET_VIEWED_CON(victim) / 2)) / 100;  /* Con max -25 */
-            eff[4].duration = skill / (15 - (GET_CHA(ch) / 10));            /* max 20 */
+            eff[4].modifier = -(((skill + GET_CHA(ch)) / 4) * (GET_VIEWED_CON(victim) / 2)) / 100; /* Con max -25 */
+            eff[4].duration = skill / (15 - (GET_CHA(ch) / 10));                                   /* max 20 */
             eff[5].location = APPLY_STR;
-            eff[5].modifier = -(((skill + GET_CHA(ch)) / 4) * (GET_VIEWED_STR(victim) / 2)) / 100;  /* Str max -25 */
-            eff[5].duration = skill / (15 - (GET_CHA(ch) / 10));            /* max 20 */
+            eff[5].modifier = -(((skill + GET_CHA(ch)) / 4) * (GET_VIEWED_STR(victim) / 2)) / 100; /* Str max -25 */
+            eff[5].duration = skill / (15 - (GET_CHA(ch) / 10));                                   /* max 20 */
             if (GET_LEVEL(ch) >= 50) {
                 eff[6].location = APPLY_HITROLL;
-                eff[6].modifier = -(skill / (15 - (GET_CHA(ch) / 20)));     /* Hitroll max -10 */
-                eff[6].duration = skill / (15 - (GET_CHA(ch) / 10));        /* max 20 */
+                eff[6].modifier = -(skill / (15 - (GET_CHA(ch) / 20))); /* Hitroll max -10 */
+                eff[6].duration = skill / (15 - (GET_CHA(ch) / 10));    /* max 20 */
                 eff[7].location = APPLY_DAMROLL;
-                eff[7].modifier = -(skill / (15 - (GET_CHA(ch) / 20)));     /* Damroll max -10 */
-                eff[7].duration = skill / (15 - (GET_CHA(ch) / 10));        /* max 20 */
+                eff[7].modifier = -(skill / (15 - (GET_CHA(ch) / 20))); /* Damroll max -10 */
+                eff[7].duration = skill / (15 - (GET_CHA(ch) / 10));    /* max 20 */
             }
         }
         to_vict = "Your spirit withers in terror and sorrow!";
         to_room = "$N's spirit withers in terror and sorrow!";
         break;
-
 
     } /* <--- end of switch of spells */
 
@@ -3404,7 +3411,6 @@ int mag_area(int skill, struct char_data *ch, int spellnum, int savetype) {
     int casttype = NULL;
     bool found = FALSE;
     bool damage = TRUE;
-    
 
     if (ch == NULL)
         return 0;
@@ -3995,21 +4001,16 @@ void phantasm_transform(struct char_data *ch, struct char_data *model, int life_
     /* Having no soul, phantasms cannot exude auras of good or evil. */
     GET_ALIGNMENT(ch) = 0;
 
-    sprintf(short_buf, "the illusion of %s", GET_NAME(model));
-    sprintf(long_buf, "The illusion of %s waits here.", GET_NAME(model));
-    sprintf(alias_buf, "illusion %s", GET_NAMELIST(model));
-
-    strcat(long_buf, "\r\n");
-    GET_NAME(ch) = strdup(short_buf);
-    GET_LDESC(ch) = strdup(long_buf);
-    GET_NAMELIST(ch) = strdup(alias_buf);
-
     /* The phantasm copies its model's current state, even if that state was
      * modified by magic.  Illusion-creating spells don't worry about the
      * underlying cause - they just make a copy. */
     if (model) {
         /* So the copy's height, weight, and size all come from the
          * model's affected values. */
+        sprintf(short_buf, "the illusion of %s", GET_NAME(model));
+        sprintf(long_buf, "The illusion of %s waits here.\r\n", GET_NAME(model));
+        sprintf(alias_buf, "illusion %s", GET_NAMELIST(model));
+
         ch->player.weight = model->player.weight;
         ch->player.height = model->player.height;
         ch->player.affected_size = model->player.affected_size;
@@ -4018,7 +4019,14 @@ void phantasm_transform(struct char_data *ch, struct char_data *model, int life_
         ch->player.base_size = model->player.base_size;
         ch->player.base_weight = model->player.base_weight;
         ch->player.base_height = model->player.base_height;
+    } else {
+        sprintf(short_buf, "the illusion of %s", GET_NAME(ch));
+        sprintf(long_buf, "The illusion of %s waits here.\r\n", GET_NAME(ch));
+        sprintf(alias_buf, "illusion %s", GET_NAMELIST(ch));
     }
+    GET_NAME(ch) = strdup(short_buf);
+    GET_LDESC(ch) = strdup(long_buf);
+    GET_NAMELIST(ch) = strdup(alias_buf);
 }
 
 struct char_data *summon_phantasm(struct char_data *ch, int vnum, int life_hours) {
@@ -4512,8 +4520,8 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         to_room = "$n begins to make sound again!";
         break;
     case SONG_FREEDOM_SONG:
-        if (EFF_FLAGGED(victim, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(victim, EFF_MAJOR_PARALYSIS) || affected_by_spell(victim, SPELL_ENTANGLE)
-            || EFF_FLAGGED(victim, EFF_IMMOBILIZED)) {
+        if (EFF_FLAGGED(victim, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(victim, EFF_MAJOR_PARALYSIS) ||
+            affected_by_spell(victim, SPELL_ENTANGLE) || EFF_FLAGGED(victim, EFF_IMMOBILIZED)) {
             act("&6&b$N's music shatters the magic paralyzing you!&0", FALSE, victim, 0, ch, TO_CHAR);
             act("&6&bYour music disrupts the magic keeping $n frozen.&0", FALSE, victim, 0, ch, TO_VICT);
             act("&6&b$N's music frees $n from magic which held $m motionless.&0", TRUE, victim, 0, ch, TO_NOTVICT);
@@ -4535,12 +4543,13 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
                 spell = SPELL_SPINECHILLER;
             }
             if (affected_by_spell(victim, SPELL_WEB)) {
-                if (spell)  /*If already removing a spell, remove it and set web now */
+                if (spell) /*If already removing a spell, remove it and set web now */
                     effect_from_char(victim, spell);
                 spell = SPELL_WEB;
             }
         }
-        if (EFF_FLAGGED(victim, EFF_MESMERIZED) || EFF_FLAGGED(victim, EFF_CONFUSION) || EFF_FLAGGED(victim, EFF_MISDIRECTION) || affected_by_spell(victim, SONG_ENRAPTURE)) {
+        if (EFF_FLAGGED(victim, EFF_MESMERIZED) || EFF_FLAGGED(victim, EFF_CONFUSION) ||
+            EFF_FLAGGED(victim, EFF_MISDIRECTION) || affected_by_spell(victim, SONG_ENRAPTURE)) {
             act("&5&bYou draw $n's attention from whatever $e was pondering.&0", FALSE, victim, 0, ch, TO_VICT);
             act("&5&b$N jolts you out of your reverie!&0", FALSE, victim, 0, ch, TO_CHAR);
             act("&5&b$N's music distracts $n from whatever was fascinating $m.&0", TRUE, victim, 0, ch, TO_NOTVICT);
@@ -4565,7 +4574,7 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
                 spell = SONG_ENRAPTURE;
             }
         }
-        if (EFF_FLAGGED(victim, EFF_CHARM) ||  affected_by_spell(victim, SPELL_CHARM)){
+        if (EFF_FLAGGED(victim, EFF_CHARM) || affected_by_spell(victim, SPELL_CHARM)) {
             act("&3&bYour music breaks the hold over $n!&0", FALSE, ch, 0, ch->master, TO_VICT);
             act("&3&b$N's music breaks the hold over you!&0", FALSE, ch, 0, ch->master, TO_CHAR);
             act("&3&b$N's music breaks the hold over $n!&0", TRUE, ch, 0, ch->master, TO_NOTVICT);
@@ -4612,21 +4621,22 @@ int mag_unaffect(int skill, struct char_data *ch, struct char_data *victim, int 
         to_vict = "You don't feel so unlucky.";
         break;
     case SPELL_REMOVE_PARALYSIS:
-        if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_ENTANGLE))) {
-            if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS)){
+        if ((affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) || (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)) ||
+            (affected_by_spell(victim, SPELL_ENTANGLE))) {
+            if (affected_by_spell(victim, SPELL_MINOR_PARALYSIS)) {
                 spell = SPELL_MINOR_PARALYSIS;
-            }    
-            if (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)){
+            }
+            if (affected_by_spell(victim, SPELL_MAJOR_PARALYSIS)) {
                 if (spell) /* If already removing a spell, remove it and set major paralysis now */
                     effect_from_char(victim, spell);
                 spell = SPELL_MAJOR_PARALYSIS;
             }
-            if (affected_by_spell(victim, SPELL_ENTANGLE)){
+            if (affected_by_spell(victim, SPELL_ENTANGLE)) {
                 if (spell) /* If already removing a spell, remove it and set entangle now */
                     effect_from_char(victim, spell);
                 spell = SPELL_ENTANGLE;
             }
-            if (affected_by_spell(victim, SPELL_MESMERIZE)){
+            if (affected_by_spell(victim, SPELL_MESMERIZE)) {
                 if (spell) /* If already removing a spell, remove it and set mesmerize now */
                     effect_from_char(victim, spell);
                 spell = SPELL_MESMERIZE;
