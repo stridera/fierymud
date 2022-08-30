@@ -213,9 +213,9 @@ OCMD(do_oexp) {
     }
 }
 
-/* purge all objects an npcs in room, or specified object or mob */
+/* purge all objects and npcs in room, or specified object or mob */
 OCMD(do_opurge) {
-    char arg[MAX_INPUT_LENGTH], arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    char arg[MAX_INPUT_LENGTH];
     char_data *ch, *next_ch;
     obj_data *o, *next_obj;
     int rm;
@@ -238,28 +238,22 @@ OCMD(do_opurge) {
         return;
     }
 
-    two_arguments(arg, arg1, arg2);
-
-    if (arg2) {
-
-    } else {
-        if (!(ch = find_char_around_obj(obj, find_dg_by_name(arg)))) {
-            if ((o = find_obj_for_keyword(obj, arg)))
-                extract_obj(obj);
-            else if ((o = find_obj_around_obj(obj, find_by_name(arg))))
-                extract_obj(o);
-            else
-                obj_log(obj, t, "opurge: bad argument");
-            return;
-        }
-
-        if (!IS_NPC(ch)) {
-            obj_log(obj, t, "opurge: attempting to purge PC");
-            return;
-        }
-
-        fullpurge_char(ch);
+    if (!(ch = find_char_around_obj(obj, find_dg_by_name(arg)))) {
+        if ((o = find_obj_for_keyword(obj, arg)))
+            extract_obj(obj);
+        else if ((o = find_obj_around_obj(obj, find_by_name(arg))))
+            extract_obj(o);
+        else
+            obj_log(obj, t, "opurge: bad argument");
+        return;
     }
+
+    if (!IS_NPC(ch)) {
+        obj_log(obj, t, "opurge: attempting to purge PC");
+        return;
+    }
+
+    fullpurge_char(ch);
 }
 
 OCMD(do_oteleport) {
