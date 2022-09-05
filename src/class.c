@@ -1640,7 +1640,6 @@ void assign_class_skills(void) {
     spell_assign(SPELL_HARM, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_HASTE, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_HEAL, CLASS_BARD, CIRCLE_6);
-    spell_assign(SPELL_INVIGORATE, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_SILENCE, CLASS_BARD, CIRCLE_6);
 
     spell_assign(SPELL_WEB, CLASS_BARD, CIRCLE_3);
@@ -1653,8 +1652,9 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CLOUD_OF_DAGGERS, CLASS_BARD, CIRCLE_8);
     spell_assign(SPELL_ILLUSORY_WALL, CLASS_BARD, CIRCLE_8);
 
-    spell_assign(SPELL_FAMILIARITY, CLASS_BARD, CIRCLE_9);
     spell_assign(SPELL_ENCHANT_WEAPON, CLASS_BARD, CIRCLE_9);
+    spell_assign(SPELL_FAMILIARITY, CLASS_BARD, CIRCLE_9);
+    spell_assign(SPELL_INVIGORATE, CLASS_BARD, CIRCLE_9);
 
     spell_assign(SPELL_MAJOR_PARALYSIS, CLASS_BARD, CIRCLE_10);
     spell_assign(SPELL_MASS_INVIS, CLASS_BARD, CIRCLE_10);
