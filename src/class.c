@@ -567,7 +567,7 @@ struct classdef classes[NUM_CLASSES] = {
      100,
      0,
      100,
-     1,
+     1.1,
      100,
      120,
      120,
