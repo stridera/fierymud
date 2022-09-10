@@ -403,7 +403,8 @@
 #define CD_MUSIC_6 34
 #define CD_MUSIC_7 35
 #define CD_INNATE_BLINDING_BEAUTY 36
-#define NUM_COOLDOWNS 37
+#define CD_INNATE_STATUE 37
+#define NUM_COOLDOWNS 38
 
 /**********************************************************************
  * Structures                                                          *

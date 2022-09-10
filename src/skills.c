@@ -1156,6 +1156,10 @@ void init_skills(void) {
     spello(SPELL_SPIRIT_RAY, "spirit ray", 0, 0, 0, POS_STANDING, TRUE, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, TRUE,
            MAG_DAMAGE | MAG_AFFECT, C1, CAST_SPEED6, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, FALSE, NULL);
 
+    spello(SPELL_STATUE, "statue", 0, 0, 0, POS_SITTING, FALSE, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE,
+           MAG_AFFECT, C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 10, FALSE,
+           "Your statuesque disguise melts away.");
+
     spello(SPELL_STONE_SKIN, "stone skin", 50, 25, 3, POS_STANDING, TRUE, TAR_CHAR_ROOM, FALSE, MAG_AFFECT, C1,
            CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_PROT, 19, FALSE, "&3&dYour skin softens and returns to normal.&0");
 

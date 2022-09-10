@@ -1686,6 +1686,9 @@ char *prompt_str(struct char_data *ch) {
             case 'v':
                 temp = CD_INNATE_FAERIE_STEP;
                 break;
+            case 'w':
+                temp = CD_INNATE_STATUE;
+                break;
             case '1':
                 temp = CD_MUSIC_1;
                 break;
