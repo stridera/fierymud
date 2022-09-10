@@ -2193,13 +2193,16 @@ ACMD(do_hitall) {
                 set_fighting(mob, ch, TRUE);
             } else if (subcmd == SCMD_TANTRUM && number(0, 1))
                 hit(ch, mob, SKILL_BAREHAND);
-            else
-                attack(ch, mob);
+            else {
+                if (mob != orig_target)
+                    attack(ch, mob);
+            }
         }
     }
 
-    if (orig_target)
-        attack(ch, orig_target);
+    if (success) 
+        if (orig_target)
+            attack(ch, orig_target);
 
     if (realvictims)
         improve_skill(ch, subcmd == SCMD_TANTRUM ? SKILL_TANTRUM : SKILL_HITALL);
