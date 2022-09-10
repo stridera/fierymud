@@ -345,13 +345,13 @@ extern flagvector *ALL_FLAGS;
 #define GET_SKILL(ch, a) ((ch)->char_specials.skills[(a)] / 10)
 #define SET_SKILL(ch, a, p) ((ch)->char_specials.skills[(a)] = (p))
 #define GET_ISKILL(ch, a) ((ch)->char_specials.skills[(a)])
-#define OUTDOOR_SNEAK(ch)                                                                                              \
-    ((GET_RACE(ch) == RACE_ELF) &&                                                                                     \
-     ((world[(ch)->in_room].sector_type >= SECT_FIELD) &&                                                              \
-      ((world[(ch)->in_room].sector_type <= SECT_MOUNTAIN) || (world[(ch)->in_room].sector_type == SECT_GRASSLANDS)))  \
-    || ((GET_RACE(ch) == RACE_SVERFNEBLIN) &&                                                                           \
-     ((world[(ch)->in_room].sector_type == SECT_CAVE) ||                                                               \
-      (world[(ch)->in_room].sector_type == SECT_MOUNTAIN) || (world[(ch)->in_room].sector_type == SECT_UNDERDARK))))
+#define OUTDOOR_SNEAK(ch)                                                                                                \
+    (((GET_RACE(ch) == RACE_HALFLING) &&                                                                                 \
+     ((world[(ch)->in_room].sector_type >= SECT_FIELD) &&                                                                \
+      ((world[(ch)->in_room].sector_type <= SECT_MOUNTAIN) || (world[(ch)->in_room].sector_type == SECT_GRASSLANDS))))   \
+    || (((GET_RACE(ch) == RACE_SVERFNEBLIN) &&                                                                           \
+     ((world[(ch)->in_room].sector_type == SECT_CAVE) ||                                                                 \
+      (world[(ch)->in_room].sector_type == SECT_MOUNTAIN) || (world[(ch)->in_room].sector_type == SECT_UNDERDARK)))))
 #define IS_STARSTAR(ch) ((GET_LEVEL(ch) == 99 && GET_EXP(ch) >= (exp_next_level(99, GET_CLASS(ch)) - 1)))
 
 #define IS_CARRYING_W(ch) ((ch)->char_specials.carry_weight)
