@@ -27,7 +27,7 @@
 #include "sysdep.h"
 #include "utils.h"
 
-#define MEM_INTERVAL PULSE_VIOLENCE
+#define MEM_INTERVAL PULSE_VIOLENCE / 4
 #define SCRIBE_INTERVAL PASSES_PER_SEC
 
 const char *circle_abbrev[NUM_SPELL_CIRCLES + 1] = {"!UNUSED!", " 1st", " 2nd", " 3rd", " 4th", " 5th", " 6th", " 7th",
@@ -274,7 +274,7 @@ EVENTFUNC(memming_event) {
         /* using pulse violence, which means we only update every _2_ seconds
            please do NOT change this, unless you change in comm.c to
            pulse_violence/2  */
-        cur->mem_time -= 2;
+        cur->mem_time -= 1;
 
         /* check meditate skill */
         if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
