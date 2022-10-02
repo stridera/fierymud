@@ -4047,7 +4047,7 @@ ACMD(do_innate) {
         if (GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
             send_to_char(" layhands\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW)
-            send_to_char(" levitate*\r\n", ch); 
+            send_to_char(" levitate\r\n", ch); 
         if (GET_CLASS(ch) == CLASS_PALADIN)
             send_to_char(" protection from evil*\r\n", ch);
         if (GET_CLASS(ch) == CLASS_ANTI_PALADIN)
@@ -4084,16 +4084,22 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "darkness")) {
-            obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_DARKNESS)) {
-                    if (obj) {
-                        call_magic(ch, 0, obj, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
-                        if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                            SET_COOLDOWN(ch, CD_INNATE_DARKNESS, 7 MUD_HR);
+                    if (*argument) {
+                        if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, argument)))) {
+                            obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, argument));
+                        }
+                        if (obj) {
+                            call_magic(ch, 0, obj, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
+                            if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                                SET_COOLDOWN(ch, CD_INNATE_DARKNESS, 7 MUD_HR);
+                        } else {
+                            send_to_char("You don't see that here.\r\n", ch);
+                        }
                     } else {
                         if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
-                            call_magic(ch, ch, 0, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
+                            call_magic(ch, 0, 0, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
                             if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                                 SET_COOLDOWN(ch, CD_INNATE_DARKNESS, 7 MUD_HR);
                         } else
@@ -4259,14 +4265,20 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "illumination")) {
-            obj = find_obj_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION)) {
                     if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
-                        if (obj) {
-                            call_magic(ch, 0, obj, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
-                            if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                                SET_COOLDOWN(ch, CD_INNATE_ILLUMINATION, 7 MUD_HR);
+                        if (*argument) {
+                            if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, argument)))) {
+                                obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, argument));
+                            }
+                            if (obj) {
+                                call_magic(ch, 0, obj, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
+                                if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                                    SET_COOLDOWN(ch, CD_INNATE_ILLUMINATION, 7 MUD_HR);
+                            } else {
+                                send_to_char("You don't see that here.\r\n", ch);
+                            }
                         } else {
                             if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION))  {
                                 call_magic(ch, 0, 0, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
