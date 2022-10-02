@@ -4056,6 +4056,8 @@ ACMD(do_innate) {
             send_to_char(" roar\r\n", ch);
         if (GET_RACE(ch) == RACE_HALFLING)
             send_to_char(" sense life*\r\n", ch);
+        if (GET_RACE(ch) ==  RACE_GNOME)
+            send_to_char(" statue\r\n", ch);
         if (GET_SKILL(ch, SKILL_SWEEP))
             send_to_char(" sweep\r\n", ch);
         if (GET_RACE(ch) == RACE_ELF)
@@ -4333,10 +4335,22 @@ ACMD(do_innate) {
             }
             return;
         }
+        if (is_abbrev(arg, "statue")) {
+            if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_STATUE)) {
+                    call_magic(ch, ch, 0, SPELL_STATUE, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_STATUE, 10 MUD_HR);
+                } else {
+                    send_to_char("You're too tired right now.\r\n", ch);
+                    cprintf(ch, "You can disguise yourself again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_STATUE) / 10));
+                }
+                return;
+            }
+        }
         send_to_char("You have no such innate.\r\n", ch);
     }
 }
-
 
 ACMD(do_songs) {
     int i;

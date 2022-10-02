@@ -2280,6 +2280,7 @@ ACMD(do_set) {
         GET_COOLDOWN(vict, CD_INNATE_ILLUMINATION) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_STATUE) = RANGE(0, 100);
         break;
     case 21:
         vict->points.exp = RANGE(0, 299999999);

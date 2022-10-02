@@ -634,6 +634,11 @@
 #define INNATE_BRILL 7
 #define INNATE_ASCEN 8
 #define INNATE_HARNESS 9
+#define INNATE_STATUE 10
+#define INNATE_ILLUMINATION 11
+#define INNATE_BLINDING_BEAUTY 12
+#define INNATE_CREATE 13
+#define INNATE_FAERIE_STEP 14
 
 /* Coin indices for coin arrays */
 #define PLAT 0

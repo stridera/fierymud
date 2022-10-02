@@ -2678,6 +2678,13 @@ int mag_affect(int skill, struct char_data *ch, struct char_data *victim, int sp
         }
         break;
 
+    case SPELL_STATUE:
+        SET_FLAG(eff[0].flags, EFF_FAMILIARITY);
+        eff[0].duration = (skill / 5) + (GET_INT(ch) / 4);
+        to_vict = "&9&bYou disguise yourself as a little statue.&0";
+        to_room = "You realize $N has disappeared and been replaced by a statue!";
+        break;
+
     case SPELL_STONE_SKIN:
 
         /* what the hell does the modifier/location for this spell do? */
