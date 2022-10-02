@@ -476,7 +476,8 @@ ASPELL(spell_color_spray) {
             default:
                 act("&8$n falls to the ground, momentarily stunned.&0", FALSE, vict, 0, 0, TO_ROOM);
             }
-            send_to_char("&8A &3shocking&0 %s &8FLASH&0 &8makes you lose your balance!&0\r\n", vict);
+            sprintf(buf, "&8A &3shocking&0 %s &8FLASH&0 &8makes you lose your balance!&0\r\n", color);
+            send_to_char(buf, vict);
             WAIT_STATE(vict, PULSE_VIOLENCE * 3);
             GET_POS(vict) = POS_SITTING;
             GET_STANCE(vict) = STANCE_ALERT;
