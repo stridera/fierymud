@@ -578,36 +578,42 @@ int pick_random_gem_drop(struct char_data *ch) {
                                  {55594, 55604}, {55605, 55615}, {55616, 55626}, {55627, 55637}, {55638, 55648},
                                  {55671, 55681}, {55682, 55693}, {55693, 55703}, {55704, 55714}, {55715, 55725}};
 
-    if (!IS_NPC(ch) || ch->desc || GET_LEVEL(ch) > 60)
+    if (!IS_NPC(ch) || ch->desc)
         return 0;
 
     if (number(1, 100) > 7)
         return 0;
 
-    slot = GET_LEVEL(ch) / 4;
-    phase = GET_LEVEL(ch) / 20;
+    if (GET_LEVEL(ch) > 60) {
+        slot = number(13, 15);
+        phase = 3;
+    } else {
+        slot = GET_LEVEL(ch) / 4;
+        phase = GET_LEVEL(ch) / 20;
+    }   
 
     roll = number(1, 100);
 
     /* You win the shiny prize!  The shiny prize is rusted decayed armor. */
-    if (roll > 98) {
+    if (roll > 74) {
 
         int item = 4 - number(1, 7) + GET_LEVEL(ch);
 
         if (item < 0)
             item = 0;
-        if (item > 63)
-            item = 63;
+        if (item > 76)
+    /* If item is over 76 (worn robe), then reset the base to the first helm armor and roll random helm, arm, leg, or chest */
+            item = 61 + number(1, 15);
 
         return armor_vnums[item];
     }
 
     roll = number(1, 100);
 
-    if (roll < 30) {
+    if (roll < 20) {
         slot--;
-    } else if (roll < 80) {
-    } else if (roll < 95) {
+    } else if (roll < 70) {
+    } else if (roll < 85) {
         slot++;
     } else {
         /* If we're in the highest section of a phase, there's a chance of leg gems.
