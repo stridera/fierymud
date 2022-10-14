@@ -217,8 +217,8 @@ static bool can_get_obj(struct get_context *context, struct obj_data *obj) {
         queue_message(context, obj, TRUE, "$p: you can't carry that much weight.", NULL);
     else if (!CAN_WEAR(obj, ITEM_WEAR_TAKE))
         queue_message(context, obj, TRUE, "$p: you can't take that!", NULL);
-    else if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch))
-        queue_message(context, obj, TRUE, "You are not experienced enough to use $p.", NULL);
+    else if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch) + 15)
+        queue_message(context, obj, TRUE, "You need more experience to lift the awesome might of $p!", NULL);
     else
         return TRUE;
     return FALSE;
