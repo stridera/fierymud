@@ -137,7 +137,7 @@ const int mob_bard_heals[] = {SPELL_HEAL, SPELL_CURE_CRITIC, SPELL_CURE_SERIOUS,
  *
  */
 bool bard_ai_action(struct char_data *ch, struct char_data *victim) {
-    int my_health, i, counter, action = 0, roll;
+    int my_health, victim_health, i, counter, action = 0, roll;
 
     if (!victim) {
         mudlog("No victim in bard AI action.", NRM, LVL_GOD, FALSE);
@@ -165,13 +165,18 @@ bool bard_ai_action(struct char_data *ch, struct char_data *victim) {
 
     /* Calculate mob health as a percentage. */
     my_health = (100 * GET_HIT(ch)) / GET_MAX_HIT(ch);
+    victim_health = (100 * GET_HIT(victim)) / GET_MAX_HIT(victim);
 
     if (my_health > 90)
         action = 10;
     else if (my_health > 60)
-        action = 4;
+        action = 6;
     else if (my_health < 30)
         action = 2;
+    if (victim_health < 40)
+        action += 3;
+    else if (victim_health < 20)
+        action += 5;
 
     /* If action < 6 then heal. */
     if (action < 6 && mob_heal_up(ch))
