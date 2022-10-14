@@ -809,9 +809,9 @@ bool may_wear_eq(struct char_data *ch, /* Who is trying to wear something */
             (OBJ_FLAGGED(obj, ITEM_ANTI_EVIL) && IS_EVIL(ch)) || 
             (OBJ_FLAGGED(obj, ITEM_ANTI_GOOD) && IS_GOOD(ch)) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch)) || 
-            (NOWEAR_CLASS(ch, obj) && 
+            ((NOWEAR_CLASS(ch, obj) && 
                 (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
-                (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))
+                (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR))))
             )
            ) {
             if (sendmessage)
