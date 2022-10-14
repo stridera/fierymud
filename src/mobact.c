@@ -300,7 +300,8 @@ void mobile_spec_activity(void) {
         /* If cleric-type and hurt, then heal. */
         if (!MOB_FLAGGED(ch, MOB_NO_CLASS_AI))
             if ((GET_CLASS(ch) == CLASS_CLERIC || GET_CLASS(ch) == CLASS_DRUID || GET_CLASS(ch) == CLASS_PRIEST ||
-                 GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_RANGER) &&
+                 GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_RANGER ||
+                 GET_CLASS(ch) == CLASS_BARD) &&
                 100 * GET_HIT(ch) / GET_MAX_HIT(ch) < 95)
                 if (mob_heal_up(ch))
                     continue;
@@ -488,8 +489,11 @@ void mob_attack(struct char_data *ch, struct char_data *victim) {
         case CLASS_ASSASSIN:
         case CLASS_THIEF:
         case CLASS_ROGUE:
-        case CLASS_BARD:
             if (rogue_ai_action(ch, victim))
+                return;
+            break;
+        case CLASS_BARD:
+            if (bard_ai_action(ch, victim))
                 return;
             break;
         }
@@ -767,6 +771,10 @@ bool in_memory(struct char_data *ch, struct char_data *vict) {
 /* This function checks mobs for spell ups */
 bool check_mob_status(struct char_data *ch) {
     switch (GET_CLASS(ch)) {
+    case CLASS_BARD:
+        if (check_bard_status(ch))
+            return TRUE;
+        break;   
     case CLASS_SORCERER:
     case CLASS_PYROMANCER:
     case CLASS_CRYOMANCER:
@@ -825,7 +833,7 @@ void remove_from_all_memories(struct char_data *ch) {
 }
 
 bool dragonlike_attack(struct char_data *ch) {
-    int roll = number(0, 125 - GET_LEVEL(ch));
+    int roll = number(0, 150 - GET_LEVEL(ch));
 
     /* At level 100, 10% chance to breath, 2% chance for each different type */
     /*

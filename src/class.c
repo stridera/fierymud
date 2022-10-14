@@ -1620,6 +1620,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_REMOVE_POISON, CLASS_BARD, CIRCLE_3);
     spell_assign(SPELL_SHOCKING_GRASP, CLASS_BARD, CIRCLE_3);
     spell_assign(SPELL_VIGORIZE_CRITIC, CLASS_BARD, CIRCLE_3);
+    spell_assign(SPELL_WEB, CLASS_BARD, CIRCLE_3);
 
     spell_assign(SPELL_CONFUSION, CLASS_BARD, CIRCLE_4);
     spell_assign(SPELL_LEVITATE, CLASS_BARD, CIRCLE_4);
@@ -1641,9 +1642,6 @@ void assign_class_skills(void) {
     spell_assign(SPELL_HASTE, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_HEAL, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_SILENCE, CLASS_BARD, CIRCLE_6);
-
-    spell_assign(SPELL_WEB, CLASS_BARD, CIRCLE_3);
-
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
 
     spell_assign(SPELL_DISPEL_MAGIC, CLASS_BARD, CIRCLE_7);

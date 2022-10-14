@@ -52,7 +52,8 @@ const struct spell_pair mob_cleric_hindrances[] = {{SPELL_BLINDNESS, SPELL_CURE_
                                                    {SPELL_CURSE, SPELL_REMOVE_CURSE, EFF_CURSE},
                                                    {SPELL_INSANITY, SPELL_SANE_MIND, EFF_INSANITY},
                                                    {SPELL_SILENCE, 0, 0}, /* Try to cast this, but there's no cure */
-                                                   {SPELL_ENTANGLE, 0, 0},
+                                                   {SPELL_ENTANGLE, SPELL_REMOVE_PARALYSIS, 0},
+                                                   {SPELL_WEB, SPELL_REMOVE_PARALYSIS, EFF_IMMOBILIZED},
                                                    {0, 0, 0}};
 
 const int mob_cleric_offensives[] = {
