@@ -490,8 +490,8 @@ int perform_give(struct char_data *ch, struct char_data *vict, struct obj_data *
         act("$E doesn't look like $E could handle the additional weight.", FALSE, ch, 0, vict, TO_CHAR);
         return GIVE_FAIL;
     }
-    if (GET_OBJ_LEVEL(obj) > GET_LEVEL(vict)) {
-        act("$E isn't experienced enough to use $p.", FALSE, ch, obj, vict, TO_CHAR);
+    if ((GET_OBJ_LEVEL(obj) > GET_LEVEL(vict) + 15) || (GET_OBJ_LEVEL(obj) > 99 && GET_LEVEL(vict) < 100)) {
+        act("$E isn't experienced enough to handle the awesome might of $p.", FALSE, ch, obj, vict, TO_CHAR);
         return GIVE_FAIL;
     }
     if (!give_otrigger(obj, ch, vict) || !receive_mtrigger(vict, ch, obj))
