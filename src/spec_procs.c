@@ -396,6 +396,7 @@ SPECIAL(pet_shop) {
 
         pet = read_mobile(GET_MOB_RNUM(pet), REAL);
         GET_EXP(pet) = 0;
+        GET_MAX_MOVE(pet) *= 15;
         SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
         SET_FLAG(MOB_FLAGS(pet), MOB_PET);
 
