@@ -455,22 +455,24 @@ int receive_mtrigger(char_data *ch, char_data *actor, obj_data *obj) {
 int death_mtrigger(char_data *ch, char_data *actor) {
     trig_data *t;
     char buf[MAX_INPUT_LENGTH];
+    int ret_val = 1;
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_DEATH) ||
         (actor && !char_susceptible_to_triggers(actor)) || !char_susceptible_to_triggers(ch))
-        return 1;
+        return ret_val;
 
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
         if (TRIGGER_CHECK(t, MTRIG_DEATH)) {
 
             if (actor)
                 ADD_UID_VAR(buf, t, actor, "actor");
-            return script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
+            ret_val =  script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
         }
     }
 
-    return 1;
+    return ret_val;
 }
+
 
 void load_mtrigger(char_data *ch) {
     trig_data *t;
