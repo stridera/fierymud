@@ -465,7 +465,9 @@ int death_mtrigger(char_data *ch, char_data *actor) {
 
             if (actor)
                 ADD_UID_VAR(buf, t, actor, "actor");
-            return script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
+            int ret_val = script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
+            if (ret_val > 0)
+                return ret_val;
         }
     }
 
