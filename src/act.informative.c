@@ -3346,14 +3346,14 @@ ACMD(do_score) {
             sprintf(buf2, "%s%c%s", compositions[BASE_COMPOSITION(tch)].color,
                     UPPER(*(compositions[BASE_COMPOSITION(tch)].name)), compositions[BASE_COMPOSITION(tch)].name + 1);
         str_catf(buf,
-                 "  Size: &3&8%c%s&0  Sex: &3&8%s&0\r\n"
+                 "  Size: &3&8%c%s&0  Gender: &3&8%s&0\r\n"
                  "Race: %s  Life force: %s%c%s&0  "
                  "Composition: %s%c%s&0%s%s&0%s\r\n",
                  UPPER(*SIZE_DESC(tch)), SIZE_DESC(tch) + 1, buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch),
                  UPPER(*LIFEFORCE_NAME(tch)), LIFEFORCE_NAME(tch) + 1, COMPOSITION_COLOR(tch),
                  UPPER(*COMPOSITION_NAME(tch)), COMPOSITION_NAME(tch) + 1, *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
     } else
-        str_catf(buf, "  Race: %s  Size: &3&8%c%s&0  Sex: &3&8%s&0\r\n", RACE_ABBR(tch), UPPER(*SIZE_DESC(tch)),
+        str_catf(buf, "  Race: %s  Size: &3&8%c%s&0  Gender: &3&8%s&0\r\n", RACE_ABBR(tch), UPPER(*SIZE_DESC(tch)),
                  SIZE_DESC(tch) + 1, buf1);
 
     str_catf(buf,

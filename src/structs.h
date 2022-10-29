@@ -25,7 +25,8 @@
 #define SEX_NEUTRAL 0
 #define SEX_MALE 1
 #define SEX_FEMALE 2
-#define NUM_SEXES 3
+#define SEX_NONBINARY 3
+#define NUM_SEXES 4
 
 /* Positions */
 #define POS_PRONE 0

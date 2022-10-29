@@ -117,6 +117,7 @@
 #define SEX_NEUTRAL 0
 #define SEX_MALE 1
 #define SEX_FEMALE 2
+#define SEX_NONBINARY 3
 
 /* Size */
 #define SIZE_UNDEFINED -1

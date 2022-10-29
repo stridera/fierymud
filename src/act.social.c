@@ -134,16 +134,12 @@ ACMD(do_insult) {
                 case 0:
                     if (GET_SEX(ch) == SEX_MALE) {
                         if (GET_SEX(victim) == SEX_MALE)
-                            act("$n accuses you of fighting like a woman!", FALSE, ch, 0, victim, TO_VICT);
+                            act("$n accuses you of fighting like a brownie!", FALSE, ch, 0, victim, TO_VICT);
                         else
-                            act("$n says that women can't fight.", FALSE, ch, 0, victim, TO_VICT);
+                            act("$n tells you that you'd lose a beauty contest against a troll.", FALSE, ch, 0, victim, TO_VICT);
                     } else { /* Ch == Woman */
                         if (GET_SEX(victim) == SEX_MALE)
                             act("$n accuses you of having the smallest... (brain?)", FALSE, ch, 0, victim, TO_VICT);
-                        else
-                            act("$n tells you that you'd lose a beauty contest against a "
-                                "troll.",
-                                FALSE, ch, 0, victim, TO_VICT);
                     }
                     break;
                 case 1:

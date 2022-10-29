@@ -57,6 +57,8 @@ void show(char *filename)
     case SEX_NEUTRAL:
       sexname = 'N';
       break;
+    case SEX_NONBINARY:
+      sexnam = 'NB';
     default:
       sexname = '-';
       break;

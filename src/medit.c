@@ -834,7 +834,7 @@ void medit_disp_menu(struct descriptor_data *d) {
             "&2&b2&0) Long : &6%s&0\r"
             "&2&b3&0) Description:\r\n&6%s&0"
             "&2&b4&0) Race: &6%-10s&0            &2&b5&0) Size: &6%-10s&0        "
-            " &2&b6&0) Sex: &6%s&0\r\n"
+            " &2&b6&0) Gender: &6%s&0\r\n"
             "&2&b7&0) Level: &6%-3d&0                  &2&b8&0) Class: &6%-10s&0 "
             "       &2&b9&0) Alignment: &6%d&0\r\n",
             GET_SDESC(mob), OLC_NUM(d), GET_NAMELIST(mob), GET_SDESC(mob), GET_MOBLDESC(mob), GET_DDESC(mob),

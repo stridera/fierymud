@@ -1994,7 +1994,7 @@ ACMD(do_set) {
                   {"wisdom", LVL_GOD, BOTH, NUMBER},
                   {"dexterity", LVL_GOD, BOTH, NUMBER}, /*15 */
                   {"constitution", LVL_GOD, BOTH, NUMBER},
-                  {"sex", LVL_GOD, BOTH, MISC},
+                  {"gender", LVL_GOD, BOTH, MISC},
                   {"ac", LVL_GOD, BOTH, NUMBER},
                   {"olc", LVL_ADMIN, PC, NUMBER},
                   {"innates", LVL_GOD, PC, NUMBER}, /*20 */
@@ -2231,8 +2231,10 @@ ACMD(do_set) {
             vict->player.sex = SEX_FEMALE;
         else if (!str_cmp(val_arg, "neutral"))
             vict->player.sex = SEX_NEUTRAL;
+        else if (!str_cmp(val_arg, "nonbinary"))
+            vict->player.sex = SEX_NONBINARY;
         else {
-            send_to_char("Must be 'male', 'female', or 'neutral'.\r\n", ch);
+            send_to_char("Must be 'male', 'female', 'nonbinary', or 'neutral'.\r\n", ch);
             return;
         }
         break;
