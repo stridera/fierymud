@@ -38,7 +38,7 @@ const char *minor_creation_items[] = {"backpack",                               
 const char *exit_bits[] = {"DOOR", "CLOSED", "LOCKED", "PICKPROOF", "HIDDEN", "DESCRIPT", "\n"};
 
 /* SEX_x */
-const char *genders[NUM_SEXES + 1] = {"Neuter", "Male", "Female", "\n"};
+const char *genders[NUM_SEXES + 1] = {"Neuter", "Male", "Female", "Nonbinary", "\n"};
 
 /* STANCE_x */
 const char *stance_types[NUM_STANCES + 1] = {
@@ -87,7 +87,7 @@ const char *privilege_bits[NUM_PRV_FLAGS + 1] = {"CLAN_ADMIN", "TITLE", "ANON_TO
 /* CON_x */
 const char *connected_types[NUM_CON_MODES + 1] = {
     "Playing",         "Disconnecting",   "Get name",        "Confirm name",    "Get password",    "Get new PW",
-    "Confirm new PW",  "Select sex",      "Select class",    "Reading MOTD",    "Main Menu",       "Get descript.",
+    "Confirm new PW",  "Select gender",      "Select class",    "Reading MOTD",    "Main Menu",       "Get descript.",
     "Changing PW 1",   "Changing PW 2",   "Changing PW 3",   "Self-Delete 1",   "Self-Delete 2",   "Select race",
     "Con ANSI",        "Object edit",     "Room edit",       "Zone edit",       "Mobile edit",     "Shop edit",
     "Rolling stats",   "Hometown choice", "Picking bonuses", "Picking bonuses", "Picking bonuses", "Confirm stats",

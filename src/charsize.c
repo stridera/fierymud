@@ -50,9 +50,12 @@ void set_init_height_weight(struct char_data *ch) {
         if (ch->player.sex == SEX_MALE) {
             ch->player.base_weight = number(races[race].mweight_lo, races[race].mweight_hi);
             ch->player.base_height = number(races[race].mheight_lo, races[race].mheight_hi);
-        } else {
+        } else if (ch->player.sex == SEX_FEMALE) {
             ch->player.base_weight = number(races[race].fweight_lo, races[race].fweight_hi);
             ch->player.base_height = number(races[race].fheight_lo, races[race].fheight_hi);
+        } else {
+            ch->player.base_weight = number(races[race].fweight_lo, races[race].mweight_hi);
+            ch->player.base_height = number(races[race].fheight_lo, races[race].mheight_hi);
         }
     } else {
         if (GET_SIZE(ch) >= 0 && GET_SIZE(ch) < NUM_SIZES)

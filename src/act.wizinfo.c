@@ -630,7 +630,7 @@ void do_stat_character(struct char_data *ch, struct char_data *k) {
     */
     sprinttype(GET_SEX(k), genders, buf1);
     str_catf(buf,
-             "Size: %c%s, Sex: %s\r\n"
+             "Size: %c%s, Gender: %s\r\n"
              "Life force: %s%c%s&0, Composition: %s%c%s&0\r\n"
              "Class: %s, Lev: [%s%2d%s], XP: [%s%7ld%s], Align: [%4d]\r\n",
              UPPER(*SIZE_DESC(k)), SIZE_DESC(k) + 1, buf1, LIFEFORCE_COLOR(k), UPPER(*LIFEFORCE_NAME(k)),
