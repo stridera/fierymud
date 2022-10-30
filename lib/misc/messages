@@ -1789,6 +1789,9 @@ $N falls down and hurts $Mself!
 $N gracefully levitates as the earth shifts beneath $S feet under $M.
 You gracefully levitate as the earth shifts underneath you.
 $N gracefully levitates as the earth shifts beneath $S feet under $M.
+#
+#
+#
 
 * maul
 M
@@ -1805,6 +1808,9 @@ $N avoids being mauled by $n who loses $s balance and falls!
 &0&8Your effort to slam $N sends YOU sprawling on the ground.&0
 &0&8$n fruitlessly tries to slam you and is sent sprawling.&0
 &0&8$n dares a slam at $N and is sent sprawling without touching $M.&0
+#
+#
+#
 
 ***************************************************************************
 *                           Weapon Attacks                                *
