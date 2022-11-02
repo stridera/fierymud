@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.15)
+project(fierymud CXX)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+# gcc *.c -lm -m32 -lcrypt -ggdb3 -Wall -pedantic -fpack-struct=4 -o ../bin/test
+
+set(CMAKE_CXX_COMPILER gcc)
+set(CMAKE_CXX_FLAGS "-ggdb3 -O3 -Wall -Wextra")
+
+FILE(GLOB sources src/*.cpp)
+
+# Include the headers
+include_directories(include)
+
+add_executable(fierymud ${sources})
+
+target_link_libraries(fierymud m)
+target_link_libraries(fierymud crypt)
+# add_definitions(-DNOCRYPT)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")

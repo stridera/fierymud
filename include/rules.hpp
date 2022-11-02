@@ -1,0 +1,260 @@
+/***************************************************************************
+ *   File: rules.h                                        Part of FieryMUD *
+ *  Usage: header file for character rules                                 *
+ *                                                                         *
+ *  All rights reserved.  See license.doc for complete information.        *
+ *                                                                         *
+ *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
+ *  FieryMUD is based on CircleMUD Copyright (C) 1993, 94 by the Trustees  *
+ *  of the Johns Hopkins University                                        *
+ *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+ ***************************************************************************/
+
+#pragma once
+
+#include "structs.hpp"
+#include "sysdep.hpp"
+
+/*
+ * Rules/restraints
+ *
+ *
+ * There are 3 expected types of interactions with rules.
+ *   1) Rule matching
+ *   2) Rule type definition
+ *   3) Rule infrastructure
+ * Each role requires increased knowledge of the rule system.  Only the
+ * third role requires modifying rules.c or rules.h.  Other roles should
+ * be fulfilled in subject-related source and header files.
+ *
+ *
+ * == Rule matching ==
+ *
+ *   This is the most common interaction with the rule system.  Users of
+ *   rule matching will only be aware of the base rule_t type, and
+ *   should only interact with the public rule interface, namely, the
+ *   following function signatures:
+ *
+ *       bool rule_matches(rule_t *, char_data *);
+ *       void free_rule(rule_t *);
+ *       void sprint_rule(char *, rule_t *);
+ *       rule_t *parse_rule(const char *);
+ *   This role also also covers saving rules to disk and loading
+ *   them back again via the sprint_rule and parse_rule operations.
+ *   The rule matching role is most commonly concerned with actions such
+ *   as determining whether a player can use a skill or item.
+ *
+ *
+ * == Rule type definition ==
+ *
+ *   This role is concerned with creating new rule types.  Developers
+ *   in this role must be aware of the v-table setup.  To define a new
+ *   rule type, first declare a new rule data type (or use an existing
+ *   one), define v-table functions matching the desired rule data type,
+ *   define the v-table for the new rule type, and the new
+ *   v-table with the rule infrastructure at runtime.
+ *
+ *   For example, to implement a rule that requires a character to be
+ *   of a certain race, follow these steps:
+ *
+ *     1) Define the race rule data type:
+ *
+ *          BEGIN_RULE_DATATYPE;
+ *            ush_int race;
+ *          PUBLISH_RULE_DATATYPE(race_rule);
+ *
+ *     2) Define a constructor:
+ *
+ *          RULE_CONSTRUCTOR(make_race_rule)(ush_int race) {
+ *            // race_rule_vtable must be pre-declared at this point
+ *            race_rule *rr = MAKE_RULE(race, race_rule);
+ *            rr->race = race;
+ *            return (rule_t *) rr;
+ *          }
+ *
+ *     3) Define the six v-table functions:
+ *
+ *          BEGIN_RULE_FUNC_MATCHER(race, race_rule) {
+ *            return GET_RACE(ch) == rule->race;
+ *          } END_RULE_FUNC
+ *          BEGIN_RULE_FUNC_DESTRUCTOR(race, race_rule) {
+ *            free(rule);
+ *          } END_RULE_FUNC
+ *          RULE_FUNC_PRINT(race, race_rule) {
+ *            snprintf(buf, size, "%d", rule->race);
+ *          } END_RULE_FUNC
+ *          RULE_FUNC_ABBR(race, race_rule) {
+ *            snprintf(buf, size, ANRM "%s", races[rule->race].abbr);
+ *          } END_RULE_FUNC
+ *          RUlE_FUNC_VERBOSE(race, race_rule) {
+ *            snprintf(buf, size, "%s", races[rule->race].displayname);
+ *          } END_RULE_FUNC
+ *          RULE_FUNC_PARSE(race, race_rule) {
+ *            ush_int race;
+ *            if (sscanf(buf, "%hd", &race) == 1)
+ *              return make_race_rule(race);
+ *            else
+ *              return NULL;
+ *          } END_RULE_FUNC
+ *
+ *     4) Define the v-table for this type.  Make sure the rule
+ *        name (the string) is unique among other rule types in
+ *        the system:
+ *
+ *          PUBLISH_RULE_VTABLE(race);
+ *
+ *     5) Register the new v-table with the rule system at runtime.
+ *        Make sure that this happens _before_ any code is called
+ *        that might try to parse rules from file.  This can be
+ *        accomplished either by calling REGISTER_RULE_VTABLE from
+ *        your own init code:
+ *
+ *          void init_races() {
+ *            ...
+ *            REGISTER_RULE_VTABLE(race);
+ *            ...
+ *          }
+ *
+ *        or adding it statically to the rule initialization list
+ *        in rules.c:
+ *
+ *          DECLARE_RULE_VTABLE(race);
+ *          ...
+ *          struct rule_vtable *vtable_list[] = {
+ *            ...
+ *            &RULE_VTABLE(race),
+ *            ...
+ *          };
+ *
+ *
+ * Rule infrastructure
+ *   This role is concerned with tying the rule functions together
+ *   and implementing functions such as sprint_rule and parse_rule.
+ *   The private interface is used by this role.  Parts of the rule
+ *   rule system typically need not be modified on a day to day basis.
+ *
+ */
+
+/* PRIVATE INTERFACE */
+
+/* Define interfaces for rule functions */
+#define RULE_SIG_MATCHER(funcname) bool funcname(const rule_t *_rule, char_data *ch)
+#define RULE_SIG_DESTRUCTOR(funcname) void funcname(rule_t *_rule)
+#define RULE_SIG_PRINT(funcname) void funcname(char *buf, size_t size, const rule_t *_rule)
+#define RULE_SIG_ABBR(funcname) void funcname(char *buf, size_t size, const rule_t *_rule)
+#define RULE_SIG_VERBOSE(funcname) void funcname(char *buf, size_t size, const rule_t *_rule)
+#define RULE_SIG_PARSE(funcname) rule_t *funcname(const char *buf)
+
+/* PROTECTED INTERFACE */
+
+/*
+ * V-table functions.
+ *
+ * Except for the constructor, these functions each have entries in the
+ * vtable for a given rule type.
+ */
+#define BEGIN_RULE_FUNC_MATCHER(vtable, datatype)                                                                      \
+    RULE_SIG_MATCHER((_##vtable##_matcher)) {                                                                          \
+        datatype *rule = (datatype *)_rule;
+#define BEGIN_RULE_FUNC_DESTRUCTOR(vtable, datatype)                                                                   \
+    RULE_SIG_DESTRUCTOR((_##vtable##_destructor)) {                                                                    \
+        datatype *rule = (datatype *)_rule;
+#define BEGIN_RULE_FUNC_PRINT(vtable, datatype)                                                                        \
+    RULE_SIG_PRINT((_##vtable##_print)) {                                                                              \
+        const datatype *rule = (const datatype *)_rule;
+#define BEGIN_RULE_FUNC_ABBR(vtable, datatype)                                                                         \
+    RULE_SIG_ABBR((_##vtable##_abbr)) {                                                                                \
+        const datatype *rule = (const datatype *)_rule;
+#define BEGIN_RULE_FUNC_VERBOSE(vtable, datatype)                                                                      \
+    RULE_SIG_PRINT((_##vtable##_verbose)) {                                                                            \
+        const datatype *rule = (const datatype *)_rule;
+#define BEGIN_RULE_FUNC_PARSE(vtable, datatype) RULE_SIG_PARSE((_##vtable##_parse)) {
+
+#define END_RULE_FUNC }
+
+#define RULE_CONSTRUCTOR(funcname) rule_t *funcname /* args go here */
+
+/*
+ * Macros for defining rule data types.
+ */
+#define BEGIN_RULE_DATATYPE                                                                                            \
+    typedef struct {                                                                                                   \
+        struct rule_vtable *_vtable
+#define PUBLISH_RULE_DATATYPE(datatype)                                                                                \
+    }                                                                                                                  \
+    datatype
+
+/*
+ * Define a rule v-table
+ */
+#define RULE_VTABLE(vtable) _##vtable##_vtable
+
+#define RSTRINGIFY1(str) RSTRINGIFY2(str)
+#define RSTRINGIFY2(str) #str
+
+#define PUBLISH_RULE_VTABLE(vtable)                                                                                    \
+    struct rule_vtable RULE_VTABLE(vtable) = {RSTRINGIFY1(vtable), _##vtable##_matcher, _##vtable##_destructor,        \
+                                              _##vtable##_print,   _##vtable##_abbr,    _##vtable##_verbose,           \
+                                              _##vtable##_parse}
+
+/* Manual lets you pick and choose funcs so you can borrow from other
+ * existing vtables
+ */
+#define PUBLISH_RULE_VTABLE_MANUAL(vtable, matcher_vtable, destructor_vtable, print_vtable, abbr_vtable,               \
+                                   verbose_vtable, parse_vtable)                                                       \
+    struct rule_vtable RULE_VTABLE(vtable) = {                                                                         \
+        RSTRINGIFY1(vtable),     _##matcher_vtable##_matcher, _##destructor_vtable##_destructor,                       \
+        _##print_vtable##_print, _##abbr_vtable##_abbr,       _##verbose_vtable##_verbose,                             \
+        _##parse_vtable##_parse}
+
+#define DECLARE_RULE_VTABLE(vtable) extern struct rule_vtable RULE_VTABLE(vtable)
+
+/* The generic ("base") rule data type */
+/*
+ * BEGIN_RULE_DATATYPE;
+ * PUBLISH_RULE_DATATYPE(rule_t);
+ */
+/* Define it manually, since other header files need to be able to
+ * refer to it without using the typedef :(
+ */
+struct rule {
+    struct rule_vtable *_vtable;
+};
+typedef struct rule rule_t;
+
+/* V-table structure */
+struct rule_vtable {
+    char *name;
+    RULE_SIG_MATCHER((*matcher));
+    RULE_SIG_DESTRUCTOR((*destructor));
+    RULE_SIG_PRINT((*print));
+    RULE_SIG_ABBR((*abbr));
+    RULE_SIG_VERBOSE((*verbose));
+    RULE_SIG_PARSE((*parse));
+};
+
+extern void REGISTER_RULE_VTABLE(rule_vtable *vtable);
+
+extern void *rulealloc(size_t elsize, rule_vtable *vtable);
+
+#define MAKE_RULE(vtable, datatype) ((datatype *)rulealloc(sizeof(datatype), &RULE_VTABLE(vtable)))
+
+/* PUBLIC INTERFACE */
+
+#define rule_name(rule) ((rule)->_vtable->name)
+
+#define rule_matches(rule, ch) ((rule)->_vtable->matcher)((rule), (ch))
+
+#define free_rule(rule) ((rule)->_vtable->destructor)(rule)
+
+extern void sprint_rule(char *, size_t, rule *);
+
+#define rule_abbr(buf, rule) ((rule)->_vtable->abbr)((buf), 4, (rule))
+
+#define rule_verbose(buf, size, rule) ((rule)->_vtable->verbose)((buf), (size), (rule))
+
+extern rule_t *parse_rule(const char *);
+
+extern void init_rules();
+
+extern struct rule *make_level_rule(int min, int max);

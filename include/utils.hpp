@@ -57,7 +57,7 @@ int monk_weight_penalty(char_data *ch);
 int find_zone(int num);
 int parse_obj_name(char_data *ch, char *arg, char *objname, int numobjs, void *objects, int objsize);
 void init_flagvectors();
-long exp_next_level(int level, int class);
+long exp_next_level(int level, int class_num);
 void init_exp_table(void);
 
 void sort(void algorithm(int[], int, int(int a, int b)), int array[], int count, int comparator(int, int));
@@ -613,5 +613,3 @@ extern flagvector *ALL_FLAGS;
 /* Format strings for strftime */
 #define TIMEFMT_LOG "%a %d %b %Y %H:%M:%S" /* 24 characters */
 #define TIMEFMT_DATE "%b %d %Y"            /* 11 characters */
-
-#endif
