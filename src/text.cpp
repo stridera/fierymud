@@ -22,7 +22,7 @@
 
 #define MEGABUF_SIZE 100000
 static char megabuf[MEGABUF_SIZE]; /* Arbitrary large size */
-static char *megabuf_tail = NULL;
+static char *megabuf_tail = nullptr;
 #define MEGABUF_LEFT (&megabuf[MEGABUF_SIZE - 1] - megabuf_tail)
 
 /*
@@ -87,7 +87,7 @@ void smash_tilde(char *str) {
 /* and return the # of replacements or -1 if none were made
  * due to lack of space */
 int replace_str(char **string, const char *pattern, const char *replacement, int rep_all, int max_size) {
-    char *replace_buffer = NULL;
+    char *replace_buffer = nullptr;
     char *flow, *jetsam, temp;
     int len, i;
 
@@ -100,7 +100,7 @@ int replace_str(char **string, const char *pattern, const char *replacement, int
     flow = *string;
     *replace_buffer = '\0';
     if (rep_all) {
-        while ((flow = (char *)strstr(flow, pattern)) != NULL) {
+        while ((flow = (char *)strstr(flow, pattern)) != nullptr) {
             if ((int)((strlen(replace_buffer) + strlen(jetsam) - strlen(pattern) + strlen(replacement))) > max_size) {
                 i = -1;
                 break;
@@ -116,7 +116,7 @@ int replace_str(char **string, const char *pattern, const char *replacement, int
         }
         strcat(replace_buffer, jetsam);
     } else {
-        if ((flow = (char *)strstr(*string, pattern)) != NULL) {
+        if ((flow = (char *)strstr(*string, pattern)) != nullptr) {
             i++;
             flow += strlen(pattern);
             len = ((char *)flow - (char *)*string) - strlen(pattern);
@@ -136,9 +136,9 @@ int replace_str(char **string, const char *pattern, const char *replacement, int
 
 /* re-formats message type formatted char * */
 /* (for strings edited with d->str) (mostly olc and mail)     */
-void format_text(char **ptr_string, int mode, descriptor_data *d, int maxlen) {
-    int total_chars, cap_next = TRUE, cap_next_next = FALSE;
-    char *flow, *start = NULL, temp;
+void format_text(char **ptr_string, int mode, DescriptorData *d, int maxlen) {
+    int total_chars, cap_next = true, cap_next_next = false;
+    char *flow, *start = nullptr, temp;
     /* warning: do not edit messages with maxlen > MAX_STRING_LENGTH */
     char *formatted = megabuf_get();
 
@@ -167,14 +167,14 @@ void format_text(char **ptr_string, int mode, descriptor_data *d, int maxlen) {
                 flow++;
 
             if (cap_next_next) {
-                cap_next_next = FALSE;
-                cap_next = TRUE;
+                cap_next_next = false;
+                cap_next = true;
             }
 
             /* this is so that if we stopped on a sentance .. we move off the sentance
              * delim. */
             while ((*flow == '.') || (*flow == '!') || (*flow == '?')) {
-                cap_next_next = TRUE;
+                cap_next_next = true;
                 flow++;
             }
 
@@ -192,7 +192,7 @@ void format_text(char **ptr_string, int mode, descriptor_data *d, int maxlen) {
                     total_chars++;
                 }
             } else {
-                cap_next = FALSE;
+                cap_next = false;
                 *start = UPPER(*start);
             }
 
@@ -232,7 +232,7 @@ char *stripcr(char *dest, const char *src) {
     char *temp;
 
     if (!dest || !src)
-        return NULL;
+        return nullptr;
     temp = &dest[0];
     length = strlen(src);
     for (i = 0; *src && (i < length); i++, src++)
@@ -250,7 +250,7 @@ char *next_line(char **src) {
     int len = 0;
 
     if (!*s)
-        return NULL;
+        return nullptr;
 
     for (len = 0; *s && *s != '\r' && *s != '\n'; s++, len++)
         ;
@@ -278,7 +278,7 @@ char *cap_by_color(char *s) {
     return s;
 }
 
-char *capitalize(char *s) {
+const char *capitalize(const char *s) {
     char *b = megabuf_get();
     strncat(b, s, MAX_STRING_LENGTH - 1);
     cap_by_color(b);
@@ -286,16 +286,16 @@ char *capitalize(char *s) {
     return b;
 }
 
-bool isplural(char *namelist) {
-    char *point;
+bool isplural(const char *namelist) {
+    const char *point;
 
     for (point = namelist; *point && *point != ' '; point++)
         ;
 
     if (point == namelist || *(point - 1) != 's')
-        return FALSE;
+        return false;
 
-    return TRUE;
+    return true;
 }
 
 bool startsvowel(const char *s) {
@@ -326,7 +326,7 @@ bool startsvowel(const char *s) {
 char *with_indefinite_article(const char *s) {
     const char *t;
     char *u, *ret, fcbuf[2];
-    bool isvowel = FALSE;
+    bool isvowel = false;
 
     /* Find the first alphabetical character in the string, skipping
      * ansi codes.  Even though it will skip over spaces here, you should
@@ -347,7 +347,7 @@ char *with_indefinite_article(const char *s) {
         fcbuf[0] = *t;
         fcbuf[1] = '\0';
         if (strstr("AEIOUaeiou", fcbuf))
-            isvowel = TRUE;
+            isvowel = true;
     }
 
     /* Construct the returned string.  Start with the article + a space. */
@@ -603,43 +603,22 @@ const char *fetch_word(const char *string, char *buf, size_t buf_space) {
     return string;
 }
 
-#define SB_EXTERNAL 0
-#define SB_USE_CAPS 1
-#define NUM_SB_FLAGS 2
-
-#define SB_INITIAL_BUF_CAP 1000
-#define SB_INITIAL_LINES_CAP 10
-
-struct screen_buf_t {
-    char *buf;
-    size_t capacity;
-    size_t length;
-    flagvector flags[FLAGVECTOR_SIZE(NUM_SB_FLAGS)];
-
-    char **lines;
-    size_t line_capacity;
-    size_t line_count;
-    size_t line_width;
-    size_t first_indent;
-    size_t other_indent;
-};
-
 /*
  * Create a new screen buffer.
  */
-screen_buf new_screen_buf(void) {
-    screen_buf sb;
-    CREATE(sb, screen_buf_t, 1);
-    sb->buf = NULL;
-    sb->lines = NULL;
+ScreenBuf new_screen_buf(void) {
+    ScreenBuf *sb;
+    CREATE(sb, ScreenBuf, 1);
+    sb->buf = nullptr;
+    sb->lines = nullptr;
     sb->line_width = ED_DEFAULT_PAGE_WIDTH;
-    return sb;
+    return *sb;
 }
 
 /*
  * Increase the line cache buffer by <how_much> lines.
  */
-static void sb_increase_lines(screen_buf sb, size_t how_much) {
+static void sb_increase_lines(ScreenBuf *sb, size_t how_much) {
     if (sb->lines) {
         RECREATE(sb->lines, char *, sb->line_capacity + how_much);
         sb->line_capacity += how_much;
@@ -655,7 +634,7 @@ static void sb_increase_lines(screen_buf sb, size_t how_much) {
 /*
  * Count the lines in the buffer, and cache them.
  */
-static void sb_compute_lines(screen_buf sb) {
+static void sb_compute_lines(ScreenBuf *sb) {
     char *p = sb->buf;
     size_t line = 0;
 
@@ -679,7 +658,7 @@ static void sb_compute_lines(screen_buf sb) {
  * no change will be made, so callers should check the
  * capacity afterwards.
  */
-static void sb_increase_buffer(screen_buf sb, size_t how_much) {
+static void sb_increase_buffer(ScreenBuf *sb, size_t how_much) {
     if (!IS_FLAGGED(sb->flags, SB_EXTERNAL)) {
         if (sb->buf) {
             char *buf = sb->buf;
@@ -700,11 +679,11 @@ static void sb_increase_buffer(screen_buf sb, size_t how_much) {
 /*
  * Figure out line endings for the buffer starting at line <start_line>.
  */
-static void sb_compile_lines(screen_buf sb, size_t start_line) {
+static void sb_compile_lines(ScreenBuf *sb, size_t start_line) {
     char *copy, *read, *write, *start, temp, *next;
     size_t line = start_line;
     size_t line_len = 0;
-    bool cap_next = TRUE, cap_next_next = FALSE, hyphenated = FALSE, was_hyphenated = FALSE;
+    bool cap_next = true, cap_next_next = false, hyphenated = false, was_hyphenated = false;
     unsigned int periods, non_periods;
 
     if (!sb->buf)
@@ -728,8 +707,8 @@ static void sb_compile_lines(screen_buf sb, size_t start_line) {
             start = read++;
 
             if (hyphenated) {
-                hyphenated = FALSE;
-                was_hyphenated = TRUE;
+                hyphenated = false;
+                was_hyphenated = true;
             }
 
             while (*read && !isspace(*read) && *read != '-' && *read != '.' && *read != '?' && *read != '!')
@@ -750,8 +729,8 @@ static void sb_compile_lines(screen_buf sb, size_t start_line) {
             }
 
             if (cap_next_next) {
-                cap_next_next = FALSE;
-                cap_next = TRUE;
+                cap_next_next = false;
+                cap_next = true;
             }
 
             periods = 0;
@@ -762,7 +741,7 @@ static void sb_compile_lines(screen_buf sb, size_t start_line) {
                     ++periods;
                 else
                     ++non_periods;
-                cap_next_next = TRUE;
+                cap_next_next = true;
                 ++read;
             }
             /* Next char is a quote?  Include in this 'word'. */
@@ -770,10 +749,10 @@ static void sb_compile_lines(screen_buf sb, size_t start_line) {
                 ++read;
             /* Only periods?  Probably an ellipsis (...) so don't capitalize */
             else if (periods >= 3 && non_periods == 0)
-                cap_next_next = FALSE;
+                cap_next_next = false;
 
             while (*read == '-') {
-                hyphenated = TRUE;
+                hyphenated = true;
                 ++read;
             }
 
@@ -805,7 +784,7 @@ static void sb_compile_lines(screen_buf sb, size_t start_line) {
             }
 
             if (cap_next) {
-                cap_next = FALSE;
+                cap_next = false;
                 if (IS_FLAGGED(sb->flags, SB_USE_CAPS))
                     *start = UPPER(*start);
             }
@@ -813,7 +792,7 @@ static void sb_compile_lines(screen_buf sb, size_t start_line) {
              * hyphenated.
              */
             else if (was_hyphenated)
-                was_hyphenated = FALSE;
+                was_hyphenated = false;
             else if (line_len > 0) {
                 if (write - sb->buf + 1 >= sb->capacity - 1) {
                     size_t offset = write - sb->buf;
@@ -886,7 +865,7 @@ static void sb_compile_lines(screen_buf sb, size_t start_line) {
 /*
  *
  */
-void sb_use_buf(screen_buf sb, char *buf, size_t buf_capacity) {
+void sb_use_buf(ScreenBuf *sb, char *buf, size_t buf_capacity) {
     *buf = '\0';
     if (sb->buf) {
         strncat(buf, sb->buf, buf_capacity); /* strncpy is stupid */
@@ -899,44 +878,44 @@ void sb_use_buf(screen_buf sb, char *buf, size_t buf_capacity) {
     sb_compute_lines(sb);
 }
 
-const char *sb_get_buffer(screen_buf sb) { return sb->buf; }
+const char *sb_get_buffer(ScreenBuf *sb) { return sb->buf; }
 
-size_t sb_get_capacity(screen_buf sb) { return sb->capacity; }
+size_t sb_get_capacity(ScreenBuf *sb) { return sb->capacity; }
 
-size_t sb_get_length(screen_buf sb) { return sb->length; }
+size_t sb_get_length(ScreenBuf *sb) { return sb->length; }
 
-size_t sb_get_lines(screen_buf sb) { return sb->line_count; }
+size_t sb_get_lines(ScreenBuf *sb) { return sb->line_count; }
 
-size_t sb_get_width(screen_buf sb) { return sb->line_width; }
+size_t sb_get_width(ScreenBuf *sb) { return sb->line_width; }
 
-size_t sb_get_first_indentation(screen_buf sb) { return sb->first_indent; }
+size_t sb_get_first_indentation(ScreenBuf *sb) { return sb->first_indent; }
 
-size_t sb_get_other_indentation(screen_buf sb) { return sb->other_indent; }
+size_t sb_get_other_indentation(ScreenBuf *sb) { return sb->other_indent; }
 
-const char *sb_get_line(screen_buf sb, size_t line) { return sb->lines[line]; }
+const char *sb_get_line(ScreenBuf *sb, size_t line) { return sb->lines[line]; }
 
-void sb_set_width(screen_buf sb, size_t columns) {
+void sb_set_width(ScreenBuf *sb, size_t columns) {
     if (sb->line_width != columns) {
         sb->line_width = columns;
         sb_compile_lines(sb, 0);
     }
 }
 
-void sb_set_first_indentation(screen_buf sb, size_t indentation) {
+void sb_set_first_indentation(ScreenBuf *sb, size_t indentation) {
     if (sb->first_indent != indentation) {
         sb->first_indent = indentation;
         sb_compile_lines(sb, 0);
     }
 }
 
-void sb_set_other_indentation(screen_buf sb, size_t indentation) {
+void sb_set_other_indentation(ScreenBuf *sb, size_t indentation) {
     if (sb->other_indent != indentation) {
         sb->other_indent = indentation;
         sb_compile_lines(sb, 0);
     }
 }
 
-void sb_use_capitalization(screen_buf sb, bool use_caps) {
+void sb_use_capitalization(ScreenBuf *sb, bool use_caps) {
     bool same = (IS_FLAGGED(sb->flags, SB_USE_CAPS) == use_caps);
     if (use_caps)
         SET_FLAG(sb->flags, SB_USE_CAPS);
@@ -946,7 +925,7 @@ void sb_use_capitalization(screen_buf sb, bool use_caps) {
         sb_compile_lines(sb, 0);
 }
 
-void sb_append(screen_buf sb, const char *msg, ...) {
+void sb_append(ScreenBuf *sb, const char *msg, ...) {
     va_list args;
     char *buffer = megabuf_get();
     size_t len;
@@ -978,7 +957,7 @@ void sb_append(screen_buf sb, const char *msg, ...) {
     sb_compile_lines(sb, sb->line_count - 1);
 }
 
-void free_screen_buf(screen_buf sb) {
+void free_screen_buf(ScreenBuf *sb) {
     if (!IS_FLAGGED(sb->flags, SB_EXTERNAL))
         free(sb->buf);
     free(sb->lines);

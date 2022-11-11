@@ -15,8 +15,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-extern struct room_data *world;
-
 /* The EX_xxxx constants are used in exit_info. */
 #define EX_ISDOOR (1 << 0)    /* Exit is a door             */
 #define EX_CLOSED (1 << 1)    /* The door is closed         */
@@ -33,6 +31,8 @@ struct Exit {
     room_num to_room;          /* Where it leads (real number)       */
 };
 
+const char *cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
+
 #define EXIT_IS_DOOR(e) ((e)->exit_info & EX_ISDOOR)
 #define EXIT_IS_CLOSED(e) ((e)->exit_info & EX_CLOSED)
 #define EXIT_IS_OPEN(e) (!EXIT_IS_DOOR(e) || !((e)->exit_info & EX_CLOSED))
@@ -47,8 +47,8 @@ struct Exit {
 
 #define CAN_GO(ch, dir) (CH_EXIT(ch, dir) && EXIT_DEST(CH_EXIT(ch, dir)) && !EXIT_IS_CLOSED(CH_EXIT(ch, dir)))
 
-// extern char *exit_dest_desc(exit *e);
-// extern struct exit *create_exit(int dest_room);
-// extern bool exit_has_keyword(exit *exit, char *name);
-// extern struct exit *opposite_exit(exit *exit, room_num roomvnum, int dir);
-// extern char *exit_name(exit *exit);
+char *exit_dest_desc(Exit *e);
+Exit *create_exit(int dest_room);
+bool exit_has_keyword(Exit *exit, const char *name);
+Exit *opposite_exit(Exit *exit, room_num roomvnum, int dir);
+const char *exit_name(Exit *exit);

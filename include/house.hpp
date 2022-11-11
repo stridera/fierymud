@@ -20,7 +20,7 @@
 
 #define HOUSE_PRIVATE 0
 
-struct house_control_rec {
+struct HouseControlRec {
     int vnum;                /* vnum of this house		*/
     int atrium;              /* vnum of atrium		*/
     int exit_num;            /* direction of house's exit	*/
@@ -42,8 +42,8 @@ struct house_control_rec {
 
 #define TOROOM(room, dir) (world[room].exits[dir] ? world[room].exits[dir]->to_room : NOWHERE)
 
-void House_listrent(char_data *ch, int vnum);
+void House_listrent(CharData *ch, int vnum);
 void House_boot(void);
 void House_save_all(void);
-int House_can_enter(char_data *ch, int house);
+int House_can_enter(CharData *ch, int house);
 void House_crashsave(int vnum);

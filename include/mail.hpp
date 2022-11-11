@@ -56,7 +56,7 @@ void free_mail_index(void);
  * header block when booting mail system.
  */
 
-struct header_data_type {
+struct HeaderData {
     long next_block; /* if header block, link to next block	*/
     long from;       /* idnum of the mail's sender		*/
     long to;         /* idnum of mail's recipient		*/
@@ -65,7 +65,7 @@ struct header_data_type {
 };
 
 /* size of the data part of a header block */
-#define HEADER_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - sizeof(header_data_type) - sizeof(char))
+#define HEADER_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - sizeof(HeaderData) - sizeof(char))
 
 /* size of the data part of a data block */
 #define DATA_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - sizeof(char))
@@ -73,32 +73,25 @@ struct header_data_type {
 /* note that an extra space is allowed in all string fields for the
    terminating null character.  */
 
-struct header_block_type_d {
+struct HeaderBlock {
     long block_type;                     /* is this a header or data block?	*/
-    struct header_data_type header_data; /* other header data		*/
+    HeaderData header_data;              /* other header data		*/
     char txt[HEADER_BLOCK_DATASIZE + 1]; /* actual text plus 1 for null	*/
 };
 
-struct data_block_type_d {
+struct DataBlock {
     long block_type;                   /* -1 if header block, -2 if last data block
                                           in mail, otherwise a link to the next */
     char txt[DATA_BLOCK_DATASIZE + 1]; /* actual text plus 1 for null	*/
 };
 
-typedef struct header_block_type_d header_block_type;
-typedef struct data_block_type_d data_block_type;
-
-struct position_list_type_d {
+struct PositionList {
     long position;
-    struct position_list_type_d *next;
+    PositionList *next;
 };
 
-typedef struct position_list_type_d position_list_type;
-
-struct mail_index_type_d {
-    long recipient;                 /* who is this mail for?	*/
-    position_list_type *list_start; /* list of mail positions	*/
-    struct mail_index_type_d *next; /* link to next one		*/
+struct MailIndex {
+    long recipient;           /* who is this mail for?	*/
+    PositionList *list_start; /* list of mail positions	*/
+    MailIndex *next;          /* link to next one		*/
 };
-
-typedef struct mail_index_type_d mail_index_type;

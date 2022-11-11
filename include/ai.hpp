@@ -15,47 +15,41 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-struct spell_pair {
-    int spell;
-    int remover;
-    int flag;
-};
-
 #define MOB_ASSISTER(ch)                                                                                               \
     (!MOB_FLAGGED((ch), MOB_PEACEFUL) &&                                                                               \
      (MOB_FLAGGED((ch), MOB_HELPER) || MOB_FLAGGED((ch), MOB_PROTECTOR) || MOB_FLAGGED((ch), MOB_PEACEKEEPER)))
 
 /* Function prototypes in ai_utils.c */
-bool try_cast(char_data *ch, char_data *victim, int spellnum);
-bool evil_in_group(char_data *victim);
-bool good_in_group(char_data *victim);
-int group_size(char_data *ch);
-bool is_tanking(char_data *ch);
-bool mob_heal_up(char_data *ch);
-char_data *weakest_attacker(char_data *ch, char_data *victim);
-bool has_effect(char_data *ch, const spell_pair *effect);
-bool check_weapon_value(char_data *ch, obj_data *obj);
-void mob_remove_weapon(char_data *ch, obj_data *obj, int where);
-void perform_remove(char_data *ch, int pos);
-int appraise_item(char_data *ch, obj_data *obj);
-bool will_assist(char_data *ch, char_data *vict);
-char_data *find_aggr_target(char_data *ch);
-void glorion_distraction(char_data *ch, char_data *glorion);
-int appraise_opponent(char_data *ch, char_data *vict);
-bool is_aggr_to(char_data *ch, char_data *tch);
+bool try_cast(CharData *ch, CharData *victim, int spellnum);
+bool evil_in_group(CharData *victim);
+bool good_in_group(CharData *victim);
+int group_size(CharData *ch);
+bool is_tanking(CharData *ch);
+bool mob_heal_up(CharData *ch);
+CharData *weakest_attacker(CharData *ch, CharData *victim);
+bool has_effect(CharData *ch, const SpellPair *effect);
+bool check_weapon_value(CharData *ch, ObjData *obj);
+void mob_remove_weapon(CharData *ch, ObjData *obj, int where);
+void perform_remove(CharData *ch, int pos);
+int appraise_item(CharData *ch, ObjData *obj);
+bool will_assist(CharData *ch, CharData *vict);
+CharData *find_aggr_target(CharData *ch);
+void glorion_distraction(CharData *ch, CharData *glorion);
+int appraise_opponent(CharData *ch, CharData *vict);
+bool is_aggr_to(CharData *ch, CharData *tch);
 
 /* Class AI functions */
-bool sorcerer_ai_action(char_data *ch, char_data *victim);
-bool cleric_ai_action(char_data *ch, char_data *victim);
-bool rogue_ai_action(char_data *ch, char_data *victim);
-bool warrior_ai_action(char_data *ch, char_data *victim);
-bool bard_ai_action(char_data *ch, char_data *victim);
-bool mob_steal(char_data *ch);
-bool mob_animate(char_data *ch);
+bool sorcerer_ai_action(CharData *ch, CharData *victim);
+bool cleric_ai_action(CharData *ch, CharData *victim);
+bool rogue_ai_action(CharData *ch, CharData *victim);
+bool warrior_ai_action(CharData *ch, CharData *victim);
+bool bard_ai_action(CharData *ch, CharData *victim);
+bool mob_steal(CharData *ch);
+bool mob_animate(CharData *ch);
 
 /* Function prototypes in mobact.c */
-bool check_sorcerer_status(char_data *ch);
-bool check_cleric_status(char_data *ch);
-bool check_bard_status(char_data *ch);
-bool dragonlike_attack(char_data *ch);
-bool in_memory(char_data *ch, char_data *vict);
+bool check_sorcerer_status(CharData *ch);
+bool check_cleric_status(CharData *ch);
+bool check_bard_status(CharData *ch);
+bool dragonlike_attack(CharData *ch);
+bool in_memory(CharData *ch, CharData *vict);

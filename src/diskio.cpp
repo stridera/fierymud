@@ -12,7 +12,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "diskio.h"
+#include "diskio.hpp"
 
 #include "conf.hpp"
 #include "sysdep.hpp"
@@ -23,7 +23,7 @@ int fbgetline(FBFILE *fbfl, char *line) {
     char *r = fbfl->ptr, *w = line;
 
     if (!fbfl || !line || !*fbfl->ptr)
-        return FALSE;
+        return false;
 
     for (; *r && *r != '\n' && r <= fbfl->buf + fbfl->size; r++)
         *(w++) = *r;
@@ -35,10 +35,10 @@ int fbgetline(FBFILE *fbfl, char *line) {
     *w = '\0';
 
     if (r > fbfl->buf + fbfl->size)
-        return FALSE;
+        return false;
     else {
         fbfl->ptr = r;
-        return TRUE;
+        return true;
     }
 }
 
@@ -82,10 +82,10 @@ char *fbgetstring(FBFILE *fl) {
     char *str, *r, *w;
 
     if (!fl || !*fl->ptr)
-        return NULL;
+        return nullptr;
 
     if (!(size = find_string_size(fl->ptr)))
-        return NULL;
+        return nullptr;
 
     str = (char *)malloc(size + 1);
     *str = '\0';
@@ -133,29 +133,29 @@ FBFILE *fbopen_for_read(char *fname) {
     FBFILE *fbfl;
 
     if (!(fbfl = (FBFILE *)malloc(sizeof(FBFILE))))
-        return NULL;
+        return nullptr;
 
     if (!(fl = fopen(fname, "r"))) {
         free(fbfl);
-        return NULL;
+        return nullptr;
     }
 
     err = fstat(fileno(fl), &sb);
     if (err < 0 || sb.st_size <= 0) {
         free(fbfl);
         fclose(fl);
-        return NULL;
+        return nullptr;
     }
 
     fbfl->size = sb.st_size;
-    if (!(fbfl->buf = malloc(fbfl->size))) {
+    if (!(fbfl->buf = (char *)malloc(fbfl->size))) {
         free(fbfl);
-        return NULL;
+        return nullptr;
     }
-    if (!(fbfl->name = malloc(strlen(fname) + 1))) {
+    if (!(fbfl->name = (char *)malloc(strlen(fname) + 1))) {
         free(fbfl->buf);
         free(fbfl);
-        return NULL;
+        return nullptr;
     }
     fbfl->ptr = fbfl->buf;
     fbfl->flags = FB_READ;
@@ -170,16 +170,16 @@ FBFILE *fbopen_for_write(char *fname, int mode) {
     FBFILE *fbfl;
 
     if (!(fbfl = (FBFILE *)malloc(sizeof(FBFILE))))
-        return NULL;
+        return nullptr;
 
-    if (!(fbfl->buf = malloc(FB_STARTSIZE))) {
+    if (!(fbfl->buf = (char *)malloc(FB_STARTSIZE))) {
         free(fbfl);
-        return NULL;
+        return nullptr;
     }
-    if (!(fbfl->name = malloc(strlen(fname) + 1))) {
+    if (!(fbfl->name = (char *)malloc(strlen(fname) + 1))) {
         free(fbfl->buf);
         free(fbfl);
-        return NULL;
+        return nullptr;
     }
     strcpy(fbfl->name, fname);
     fbfl->ptr = fbfl->buf;
@@ -191,14 +191,14 @@ FBFILE *fbopen_for_write(char *fname, int mode) {
 
 FBFILE *fbopen(char *fname, int mode) {
     if (!fname || !*fname || !mode)
-        return NULL;
+        return nullptr;
 
     if (IS_SET(mode, FB_READ))
         return fbopen_for_read(fname);
     else if (IS_SET(mode, FB_WRITE) || IS_SET(mode, FB_APPEND))
         return fbopen_for_write(fname, mode);
     else
-        return NULL;
+        return nullptr;
 }
 
 int fbclose_for_read(FBFILE *fbfl) {
@@ -214,7 +214,8 @@ int fbclose_for_read(FBFILE *fbfl) {
 }
 
 int fbclose_for_write(FBFILE *fbfl) {
-    char *arg, *tname;
+    const char *arg;
+    char *tname;
     int len, bytes_written;
     FILE *fl;
 
@@ -226,7 +227,7 @@ int fbclose_for_write(FBFILE *fbfl) {
     else
         arg = "w";
 
-    if (!(tname = malloc(strlen(fbfl->name) + 6)))
+    if (!(tname = (char *)malloc(strlen(fbfl->name) + 6)))
         return 0;
 
     len = strlen(fbfl->buf);
@@ -273,7 +274,7 @@ int fbwrite(FBFILE *fbfl, const char *string) {
 
     if (fbfl->ptr - fbfl->buf > (FB_STARTSIZE * 3) / 4) {
         length = fbfl->ptr - fbfl->buf;
-        if (!(fbfl->buf = realloc(fbfl->buf, fbfl->size + FB_STARTSIZE)))
+        if (!(fbfl->buf = (char *)realloc(fbfl->buf, fbfl->size + FB_STARTSIZE)))
             return 0;
         fbfl->ptr = fbfl->buf + length;
         fbfl->size += FB_STARTSIZE;
@@ -328,10 +329,10 @@ int fbcat(char *fromfilename, FBFILE *tofile) {
         return 0;
 
     length = tofile->ptr - tofile->buf;
-    tofile->buf = realloc(tofile->buf, tofile->size + sb.st_size);
+    tofile->buf = (char *)realloc(tofile->buf, tofile->size + sb.st_size);
     tofile->ptr = tofile->buf + length;
     tofile->size += sb.st_size;
-    in_buf = malloc(sb.st_size + 1);
+    in_buf = (char *)malloc(sb.st_size + 1);
     in_buf[0] = 0;
     errnum = fread(in_buf, sb.st_size, 1, fromfile);
 #ifdef HAVE_VSNPRINTF

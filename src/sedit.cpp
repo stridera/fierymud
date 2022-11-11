@@ -64,29 +64,29 @@
 /*. Function prototypes .*/
 
 int real_shop(int vshop_num);
-void sedit_setup_new(descriptor_data *d);
-void sedit_setup_existing(descriptor_data *d, int rmob_num);
-void sedit_parse(descriptor_data *d, char *arg);
-void sedit_disp_menu(descriptor_data *d);
-void sedit_namelist_menu(descriptor_data *d);
-void sedit_types_menu(descriptor_data *d);
-void sedit_products_menu(descriptor_data *d);
-void sedit_rooms_menu(descriptor_data *d);
-void sedit_compact_rooms_menu(descriptor_data *d);
-void sedit_shop_flags_menu(descriptor_data *d);
-void sedit_no_trade_menu(descriptor_data *d);
-void sedit_save_internally(descriptor_data *d);
+void sedit_setup_new(DescriptorData *d);
+void sedit_setup_existing(DescriptorData *d, int rmob_num);
+void sedit_parse(DescriptorData *d, char *arg);
+void sedit_disp_menu(DescriptorData *d);
+void sedit_namelist_menu(DescriptorData *d);
+void sedit_types_menu(DescriptorData *d);
+void sedit_products_menu(DescriptorData *d);
+void sedit_rooms_menu(DescriptorData *d);
+void sedit_compact_rooms_menu(DescriptorData *d);
+void sedit_shop_flags_menu(DescriptorData *d);
+void sedit_no_trade_menu(DescriptorData *d);
+void sedit_save_internally(DescriptorData *d);
 void sedit_save_to_disk(int zone_num);
-void copy_shop(shop_data *tshop, shop_data *fshop);
+void copy_shop(ShopData *tshop, ShopData *fshop);
 void copy_int_list(int **tlist, int *flist);
-void copy_type_list(shop_buy_data **tlist, shop_buy_data *flist);
+void copy_type_list(ShopBuyData **tlist, ShopBuyData *flist);
 int int_list_length(int *tlist);
-void sedit_add_to_type_list(shop_buy_data **list, shop_buy_data *new);
-void sedit_remove_from_type_list(shop_buy_data **list, int num);
-void free_shop_strings(shop_data *shop);
-void free_type_list(shop_buy_data **list);
-void free_shop(shop_data *shop);
-void sedit_modify_string(char **str, char *new);
+void sedit_add_to_type_list(ShopBuyData **list, ShopBuyData *new_str);
+void sedit_remove_from_type_list(ShopBuyData **list, int num);
+void free_shop_strings(ShopData *shop);
+void free_type_list(ShopBuyData **list);
+void free_shop(ShopData *shop);
+void sedit_modify_string(char **str, char *new_str);
 
 /*. External .*/
 SPECIAL(shop_keeper);
@@ -95,11 +95,11 @@ SPECIAL(shop_keeper);
   utility functions
 \*-------------------------------------------------------------------*/
 
-void sedit_setup_new(descriptor_data *d) {
-    struct shop_data *shop;
+void sedit_setup_new(DescriptorData *d) {
+    ShopData *shop;
 
     /*. Alloc some shop shaped space . */
-    CREATE(shop, shop_data, 1);
+    CREATE(shop, ShopData, 1);
 
     /*. Some default values . */
     S_KEEPER(shop) = -1;
@@ -124,7 +124,7 @@ void sedit_setup_new(descriptor_data *d) {
     CREATE(S_ROOMS(shop), int, 1);
 
     S_ROOM(shop, 0) = -1;
-    CREATE(S_NAMELISTS(shop), shop_buy_data, 1);
+    CREATE(S_NAMELISTS(shop), ShopBuyData, 1);
 
     S_BUYTYPE(shop, 0) = -1;
 
@@ -138,11 +138,11 @@ void sedit_setup_new(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_setup_existing(descriptor_data *d, int rshop_num) {
+void sedit_setup_existing(DescriptorData *d, int rshop_num) {
     /*
      * Create a scratch shop structure.
      */
-    CREATE(OLC_SHOP(d), shop_data, 1);
+    CREATE(OLC_SHOP(d), ShopData, 1);
 
     copy_shop(OLC_SHOP(d), shop_index + rshop_num);
     sedit_disp_menu(d);
@@ -150,7 +150,7 @@ void sedit_setup_existing(descriptor_data *d, int rshop_num) {
 
 /*-------------------------------------------------------------------*/
 
-void copy_shop(shop_data *tshop, shop_data *fshop) {
+void copy_shop(ShopData *tshop, ShopData *fshop) {
     /*
      * Copy basic information over.
      */
@@ -219,13 +219,13 @@ void _copy_int_list(int **tlist, int *flist, int newlength) {
 
 /*-------------------------------------------------------------------*/
 
-void add_to_int_list(int **list, int new) {
-    int *nlist = NULL;
+void add_to_int_list(int **list, int newstring) {
+    int *nlist = nullptr;
     int num_items = int_list_length(*list) + 1;
 
     /*. make a new list and slot in the new entry . */
     _copy_int_list(&nlist, *list, num_items);
-    nlist[num_items - 1] = new;
+    nlist[num_items - 1] = newstring;
 
     /*. Out with the old, in with the new . */
     free(*list);
@@ -235,7 +235,7 @@ void add_to_int_list(int **list, int new) {
 /*-------------------------------------------------------------------*/
 
 void remove_from_int_list(int **list, int num) {
-    int *nlist = NULL, i;
+    int *nlist = nullptr, i;
     int num_items = int_list_length(*list) - 1;
 
     _copy_int_list(&nlist, *list, num_items);
@@ -255,7 +255,7 @@ void copy_int_list(int **tlist, int *flist) { _copy_int_list(tlist, flist, int_l
 /*. Copy a -1 terminated (in the type field) shop_buy_data
   array list .*/
 
-void copy_type_list(shop_buy_data **tlist, shop_buy_data *flist) {
+void copy_type_list(ShopBuyData **tlist, ShopBuyData *flist) {
     int num_items, i;
 
     if (*tlist)
@@ -269,7 +269,7 @@ void copy_type_list(shop_buy_data **tlist, shop_buy_data *flist) {
     num_items = i + 1;
 
     /*. Make space for entries . */
-    CREATE(*tlist, shop_buy_data, num_items);
+    CREATE(*tlist, ShopBuyData, num_items);
 
     /*. Copy entries over . */
     i = 0;
@@ -282,9 +282,9 @@ void copy_type_list(shop_buy_data **tlist, shop_buy_data *flist) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_remove_from_type_list(shop_buy_data **list, int num) {
+void sedit_remove_from_type_list(ShopBuyData **list, int num) {
     int i, num_items;
-    struct shop_buy_data *nlist;
+    ShopBuyData *nlist;
 
     /*
      * Count number of entries.
@@ -296,7 +296,7 @@ void sedit_remove_from_type_list(shop_buy_data **list, int num) {
         return;
     num_items = i;
 
-    CREATE(nlist, shop_buy_data, num_items);
+    CREATE(nlist, ShopBuyData, num_items);
 
     for (i = 0; i < num_items; i++)
         nlist[i] = (i < num) ? (*list)[i] : (*list)[i + 1];
@@ -307,9 +307,9 @@ void sedit_remove_from_type_list(shop_buy_data **list, int num) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_add_to_type_list(shop_buy_data **list, shop_buy_data *new) {
+void sedit_add_to_type_list(ShopBuyData **list, ShopBuyData *new_data) {
     int i, num_items;
-    struct shop_buy_data *nlist;
+    ShopBuyData *nlist;
 
     /*
      * Count number of entries.
@@ -319,11 +319,11 @@ void sedit_add_to_type_list(shop_buy_data **list, shop_buy_data *new) {
     num_items = i;
 
     /*. make a new list and slot in the new entry . */
-    CREATE(nlist, shop_buy_data, num_items + 2);
+    CREATE(nlist, ShopBuyData, num_items + 2);
 
     for (i = 0; i < num_items; i++)
         nlist[i] = (*list)[i];
-    nlist[num_items] = *new;
+    nlist[num_items] = *new_data;
     nlist[num_items + 1].type = -1;
 
     /*. Out with the old, in with the new . */
@@ -333,65 +333,65 @@ void sedit_add_to_type_list(shop_buy_data **list, shop_buy_data *new) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_unique_change(shop_data *shop, int new) {
+void sedit_unique_change(ShopData *shop, int change) {
 
-    if (S_AMOUNT(shop, new)) /*switch whatever it is at */
-        S_AMOUNT(shop, new) = 0;
+    if (S_AMOUNT(shop, change)) /*switch whatever it is at */
+        S_AMOUNT(shop, change) = 0;
     else
-        S_AMOUNT(shop, new) = 1;
+        S_AMOUNT(shop, change) = 1;
 }
 
 /*-------------------------------------------------------------------*/
 /*. Free all the notice character strings in a shop structure .*/
 
-void free_shop_strings(shop_data *shop) {
+void free_shop_strings(ShopData *shop) {
     if (S_NOITEM1(shop)) {
         free(S_NOITEM1(shop));
-        S_NOITEM1(shop) = NULL;
+        S_NOITEM1(shop) = nullptr;
     }
     if (S_NOITEM2(shop)) {
         free(S_NOITEM2(shop));
-        S_NOITEM2(shop) = NULL;
+        S_NOITEM2(shop) = nullptr;
     }
     if (S_NOCASH1(shop)) {
         free(S_NOCASH1(shop));
-        S_NOCASH1(shop) = NULL;
+        S_NOCASH1(shop) = nullptr;
     }
     if (S_NOCASH2(shop)) {
         free(S_NOCASH2(shop));
-        S_NOCASH2(shop) = NULL;
+        S_NOCASH2(shop) = nullptr;
     }
     if (S_NOBUY(shop)) {
         free(S_NOBUY(shop));
-        S_NOBUY(shop) = NULL;
+        S_NOBUY(shop) = nullptr;
     }
     if (S_BUY(shop)) {
         free(S_BUY(shop));
-        S_BUY(shop) = NULL;
+        S_BUY(shop) = nullptr;
     }
     if (S_SELL(shop)) {
         free(S_SELL(shop));
-        S_SELL(shop) = NULL;
+        S_SELL(shop) = nullptr;
     }
 }
 
 /*-------------------------------------------------------------------*/
 /*. Free a type list and all the strings it contains .*/
 
-void free_type_list(shop_buy_data **list) {
+void free_type_list(ShopBuyData **list) {
     int i;
 
     for (i = 0; (*list)[i].type != -1; i++)
         if (BUY_WORD((*list)[i]))
             free(BUY_WORD((*list)[i]));
     free(*list);
-    *list = NULL;
+    *list = nullptr;
 }
 
 /*-------------------------------------------------------------------*/
 /*. Free up the whole shop structure and it's content .*/
 
-void free_shop(shop_data *shop) {
+void free_shop(ShopData *shop) {
     free_shop_strings(shop);
     free_type_list(&(S_NAMELISTS(shop)));
     free(S_ROOMS(shop));
@@ -415,18 +415,18 @@ int real_shop(int vshop_num) {
 /*-------------------------------------------------------------------*/
 /*. Generic string modifyer for shop keeper messages .*/
 
-void sedit_modify_string(char **str, char *new) {
+void sedit_modify_string(char **str, char *new_str) {
     char *pointer;
 
     /*
      * Check the '%s' is present, if not, add it.
      */
-    if (*new != '%') {
+    if (*new_str != '%') {
         strcpy(buf, "%s ");
-        strcat(buf, new);
+        strcat(buf, new_str);
         pointer = buf;
     } else
-        pointer = new;
+        pointer = new_str;
 
     if (*str)
         free(*str);
@@ -435,10 +435,10 @@ void sedit_modify_string(char **str, char *new) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_save_internally(descriptor_data *d) {
+void sedit_save_internally(DescriptorData *d) {
     int rshop, found = 0;
-    struct shop_data *shop;
-    struct shop_data *new_index;
+    ShopData *shop;
+    ShopData *new_index;
 
     rshop = real_shop(OLC_NUM(d));
     shop = OLC_SHOP(d);
@@ -447,7 +447,7 @@ void sedit_save_internally(descriptor_data *d) {
     if (rshop > -1) { /* The shop already exists, just update it. */
         copy_shop((shop_index + rshop), shop);
     } else { /* Doesn't exist - have to insert it. */
-        CREATE(new_index, shop_data, top_shop + 1);
+        CREATE(new_index, ShopData, top_shop + 1);
 
         for (rshop = 0; rshop < top_shop; rshop++) {
             if (!found) {                           /* Is this the place? */
@@ -481,17 +481,17 @@ void sedit_save_to_disk(int zone_num) {
     int i, j, rshop, zone, top;
     FILE *shop_file;
     char fname[64];
-    struct shop_data *shop;
+    ShopData *shop;
 
     zone = zone_table[zone_num].number;
     top = zone_table[zone_num].top;
 
     sprintf(fname, "%s/%d.new", SHP_PREFIX, zone);
     if (!(shop_file = fopen(fname, "w"))) {
-        mudlog("SYSERR: OLC: Cannot open shop file!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: Cannot open shop file!", BRF, LVL_GOD, true);
         return;
     } else if (fprintf(shop_file, "CircleMUD v3.0 Shop File~\n") < 0) {
-        mudlog("SYSERR: OLC: Cannot write to shop file!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: Cannot write to shop file!", BRF, LVL_GOD, true);
         fclose(shop_file);
         return;
     }
@@ -564,8 +564,8 @@ void sedit_save_to_disk(int zone_num) {
  *			    Menu functions                                *
  **************************************************************************/
 
-void sedit_products_menu(descriptor_data *d) {
-    struct shop_data *shop;
+void sedit_products_menu(DescriptorData *d) {
+    ShopData *shop;
     int i;
 
     shop = OLC_SHOP(d);
@@ -595,8 +595,8 @@ void sedit_products_menu(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_compact_rooms_menu(descriptor_data *d) {
-    struct shop_data *shop;
+void sedit_compact_rooms_menu(DescriptorData *d) {
+    ShopData *shop;
     int i, count = 0;
 
     shop = OLC_SHOP(d);
@@ -624,8 +624,8 @@ void sedit_compact_rooms_menu(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_rooms_menu(descriptor_data *d) {
-    struct shop_data *shop;
+void sedit_rooms_menu(DescriptorData *d) {
+    ShopData *shop;
     int i;
 
     shop = OLC_SHOP(d);
@@ -655,8 +655,8 @@ void sedit_rooms_menu(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_namelist_menu(descriptor_data *d) {
-    struct shop_data *shop;
+void sedit_namelist_menu(DescriptorData *d) {
+    ShopData *shop;
     int i;
 
     shop = OLC_SHOP(d);
@@ -684,7 +684,7 @@ void sedit_namelist_menu(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_shop_flags_menu(descriptor_data *d) {
+void sedit_shop_flags_menu(DescriptorData *d) {
     int i, count = 0;
 
     get_char_cols(d->character);
@@ -703,7 +703,7 @@ void sedit_shop_flags_menu(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_no_trade_menu(descriptor_data *d) {
+void sedit_no_trade_menu(DescriptorData *d) {
     int i, count = 0;
 
     get_char_cols(d->character);
@@ -725,7 +725,7 @@ void sedit_no_trade_menu(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void sedit_types_menu(descriptor_data *d) {
+void sedit_types_menu(DescriptorData *d) {
     int i, count = 0;
 
     get_char_cols(d->character);
@@ -745,8 +745,8 @@ void sedit_types_menu(descriptor_data *d) {
 /*-------------------------------------------------------------------*/
 /*. Display main menu .*/
 
-void sedit_disp_menu(descriptor_data *d) {
-    struct shop_data *shop;
+void sedit_disp_menu(DescriptorData *d) {
+    ShopData *shop;
 
     shop = OLC_SHOP(d);
     get_char_cols(d->character);
@@ -799,7 +799,7 @@ void sedit_disp_menu(descriptor_data *d) {
  *                   The GARGANTUAN event handler                         *
  **************************************************************************/
 
-void sedit_parse(descriptor_data *d, char *arg) {
+void sedit_parse(DescriptorData *d, char *arg) {
     int i, k;
 
     if (OLC_MODE(d) > SEDIT_NUMERICAL_RESPONSE) {
@@ -817,7 +817,7 @@ void sedit_parse(descriptor_data *d, char *arg) {
             send_to_char("Saving shop to memory.\r\n", d->character);
             sedit_save_internally(d);
             sprintf(buf, "OLC: %s edits shop %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
         case 'n':
@@ -1022,10 +1022,10 @@ void sedit_parse(descriptor_data *d, char *arg) {
         sedit_modify_string(&S_SELL(OLC_SHOP(d)), arg);
         break;
     case SEDIT_NAMELIST: {
-        struct shop_buy_data new_entry;
+        ShopBuyData new_entry;
 
         BUY_TYPE(new_entry) = OLC_VAL(d);
-        BUY_WORD(new_entry) = (arg && *arg) ? strdup(arg) : NULL;
+        BUY_WORD(new_entry) = (arg && *arg) ? strdup(arg) : nullptr;
         sedit_add_to_type_list(&(S_NAMELISTS(OLC_SHOP(d))), &new_entry);
     }
         sedit_namelist_menu(d);
@@ -1137,7 +1137,7 @@ void sedit_parse(descriptor_data *d, char *arg) {
     default:
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: sedit_parse(): Reached default case!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: sedit_parse(): Reached default case!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         break;
     }

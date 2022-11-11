@@ -16,304 +16,30 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-/*[ CONSTANTS ]***************************************************************/
-
-/* Vnums for portal objects */
-#define OBJ_VNUM_HEAVENSGATE 72
-#define OBJ_VNUM_MOONWELL 33
-#define OBJ_VNUM_HELLGATE 74
-
-/* Item types: used by obj_data.obj_flags.type_flag */
-#define ITEM_LIGHT 1       /* Item is a light source          */
-#define ITEM_SCROLL 2      /* Item is a scroll                */
-#define ITEM_WAND 3        /* Item is a wand                  */
-#define ITEM_STAFF 4       /* Item is a staff                 */
-#define ITEM_WEAPON 5      /* Item is a weapon                */
-#define ITEM_FIREWEAPON 6  /* Unimplemented                   */
-#define ITEM_MISSILE 7     /* Unimplemented                   */
-#define ITEM_TREASURE 8    /* Item is a treasure, not gold    */
-#define ITEM_ARMOR 9       /* Item is armor                   */
-#define ITEM_POTION 10     /* Item is a potion                */
-#define ITEM_WORN 11       /* Unimplemented                   */
-#define ITEM_OTHER 12      /* Misc object                     */
-#define ITEM_TRASH 13      /* Trash - shopkeeps won't buy     */
-#define ITEM_TRAP 14       /* Unimplemented                   */
-#define ITEM_CONTAINER 15  /* Item is a container             */
-#define ITEM_NOTE 16       /* Item is note                    */
-#define ITEM_DRINKCON 17   /* Item is a drink container       */
-#define ITEM_KEY 18        /* Item is a key                   */
-#define ITEM_FOOD 19       /* Item is food                    */
-#define ITEM_MONEY 20      /* Item is money (gold)            */
-#define ITEM_PEN 21        /* Item is a pen                   */
-#define ITEM_BOAT 22       /* Item is a boat                  */
-#define ITEM_FOUNTAIN 23   /* Item is a fountain              */
-#define ITEM_PORTAL 24     /* Item teleports to another room  */
-#define ITEM_ROPE 25       /* Item is used to bind chars      */
-#define ITEM_SPELLBOOK 26  /* Spells can be scribed for mem   */
-#define ITEM_WALL 27       /* Blocks passage in one direction */
-#define ITEM_TOUCHSTONE 28 /* Item sets homeroom when touched */
-#define ITEM_BOARD 29
-#define NUM_ITEM_TYPES 30
-
-/* Take/Wear flags: used by obj_data.obj_flags.wear_flags */
-#define ITEM_WEAR_TAKE (1 << 0)     /* Item can be takes         */
-#define ITEM_WEAR_FINGER (1 << 1)   /* Can be worn on finger     */
-#define ITEM_WEAR_NECK (1 << 2)     /* Can be worn around neck   */
-#define ITEM_WEAR_BODY (1 << 3)     /* Can be worn on body       */
-#define ITEM_WEAR_HEAD (1 << 4)     /* Can be worn on head       */
-#define ITEM_WEAR_LEGS (1 << 5)     /* Can be worn on legs       */
-#define ITEM_WEAR_FEET (1 << 6)     /* Can be worn on feet       */
-#define ITEM_WEAR_HANDS (1 << 7)    /* Can be worn on hands      */
-#define ITEM_WEAR_ARMS (1 << 8)     /* Can be worn on arms       */
-#define ITEM_WEAR_SHIELD (1 << 9)   /* Can be used as a shield   */
-#define ITEM_WEAR_ABOUT (1 << 10)   /* Can be worn about body    */
-#define ITEM_WEAR_WAIST (1 << 11)   /* Can be worn around waist  */
-#define ITEM_WEAR_WRIST (1 << 12)   /* Can be worn on wrist      */
-#define ITEM_WEAR_WIELD (1 << 13)   /* Can be wielded            */
-#define ITEM_WEAR_HOLD (1 << 14)    /* Can be held               */
-#define ITEM_WEAR_2HWIELD (1 << 15) /* Can be wielded two handed */
-#define ITEM_WEAR_EYES (1 << 16)    /* Can be worn on eyes       */
-#define ITEM_WEAR_FACE (1 << 17)    /* Can be worn upon face     */
-#define ITEM_WEAR_EAR (1 << 18)     /* Can be worn in ear        */
-#define ITEM_WEAR_BADGE (1 << 19)   /* Can be worn as badge      */
-#define ITEM_WEAR_OBELT (1 << 20)   /* Can be worn on belt       */
-#define ITEM_WEAR_HOVER (1 << 21)   /* Will hover around you     */
-#define NUM_ITEM_WEAR_FLAGS 22
-
-/* Extra object flags: used by obj_data.obj_flags.extra_flags */
-#define ITEM_GLOW 0               /* Item is glowing               */
-#define ITEM_HUM 1                /* Item is humming               */
-#define ITEM_NORENT 2             /* Item cannot be rented         */
-#define ITEM_ANTI_BERSERKER 3     /* Not usable by berserkers      */
-#define ITEM_NOINVIS 4            /* Item cannot be made invis     */
-#define ITEM_INVISIBLE 5          /* Item is invisible             */
-#define ITEM_MAGIC 6              /* Item is magical               */
-#define ITEM_NODROP 7             /* Item can't be dropped         */
-#define ITEM_PERMANENT 8          /* Item doesn't decompose        */
-#define ITEM_ANTI_GOOD 9          /* Not usable by good people     */
-#define ITEM_ANTI_EVIL 10         /* Not usable by evil people     */
-#define ITEM_ANTI_NEUTRAL 11      /* Not usable by neutral people  */
-#define ITEM_ANTI_SORCERER 12     /* Not usable by sorcerers       */
-#define ITEM_ANTI_CLERIC 13       /* Not usable by clerics         */
-#define ITEM_ANTI_ROGUE 14        /* Not usable by rogues          */
-#define ITEM_ANTI_WARRIOR 15      /* Not usable by warriors        */
-#define ITEM_NOSELL 16            /* Shopkeepers won't touch it    */
-#define ITEM_ANTI_PALADIN 17      /* Not usable by paladins        */
-#define ITEM_ANTI_ANTI_PALADIN 18 /* Not usable by anti-paladins   */
-#define ITEM_ANTI_RANGER 19       /* Not usable by rangers         */
-#define ITEM_ANTI_DRUID 20        /* Not usable by druids          */
-#define ITEM_ANTI_SHAMAN 21       /* Not usable by shamans         */
-#define ITEM_ANTI_ASSASSIN 22     /* Not usable by assassins       */
-#define ITEM_ANTI_MERCENARY 23    /* Not usable by mercenaries     */
-#define ITEM_ANTI_NECROMANCER 24  /* Not usable by necromancers    */
-#define ITEM_ANTI_CONJURER 25     /* Not usable by conjurers       */
-#define ITEM_NOBURN 26            /* Not destroyed by purge/fire   */
-#define ITEM_NOLOCATE 27          /* Cannot be found by locate obj */
-#define ITEM_DECOMP 28            /* Item is currently decomposing */
-#define ITEM_FLOAT 29             /* Floats in water rooms         */
-#define ITEM_NOFALL 30            /* Doesn't fall - unaffected by gravity */
-#define ITEM_WAS_DISARMED 31      /* Disarmed from mob             */
-#define ITEM_ANTI_MONK 32         /* Not usable by monks           */
-#define ITEM_ANTI_BARD 33
-#define ITEM_ELVEN 34   /* Item usable by Elves          */
-#define ITEM_DWARVEN 35 /* Item usable by Dwarves        */
-#define NUM_ITEM_FLAGS 36
-
-/* Modifier constants used with obj effects ('A' fields) */
-#define APPLY_NONE 0           /* No effect                       */
-#define APPLY_STR 1            /* Apply to strength               */
-#define APPLY_DEX 2            /* Apply to dexterity              */
-#define APPLY_INT 3            /* Apply to constitution           */
-#define APPLY_WIS 4            /* Apply to wisdom                 */
-#define APPLY_CON 5            /* Apply to constitution           */
-#define APPLY_CHA 6            /* Apply to charisma               */
-#define APPLY_CLASS 7          /* Reserved                        */
-#define APPLY_LEVEL 8          /* Reserved                        */
-#define APPLY_AGE 9            /* Apply to age                    */
-#define APPLY_CHAR_WEIGHT 10   /* Apply to weight                 */
-#define APPLY_CHAR_HEIGHT 11   /* Apply to height                 */
-#define APPLY_MANA 12          /* Apply to max mana               */
-#define APPLY_HIT 13           /* Apply to max hit points         */
-#define APPLY_MOVE 14          /* Apply to max move points        */
-#define APPLY_GOLD 15          /* Reserved                        */
-#define APPLY_EXP 16           /* Reserved                        */
-#define APPLY_AC 17            /* Apply to Armor Class            */
-#define APPLY_HITROLL 18       /* Apply to hitroll                */
-#define APPLY_DAMROLL 19       /* Apply to damage roll            */
-#define APPLY_SAVING_PARA 20   /* Apply to save throw: paralz     */
-#define APPLY_SAVING_ROD 21    /* Apply to save throw: rods       */
-#define APPLY_SAVING_PETRI 22  /* Apply to save throw: petrif     */
-#define APPLY_SAVING_BREATH 23 /* Apply to save throw: breath     */
-#define APPLY_SAVING_SPELL 24  /* Apply to save throw: spells     */
-#define APPLY_SIZE 25          /* Apply to size                   */
-#define APPLY_HIT_REGEN 26
-#define APPLY_MANA_REGEN 27
-#define APPLY_PERCEPTION 28
-#define APPLY_HIDDENNESS 29
-#define APPLY_COMPOSITION 30
-#define NUM_APPLY_TYPES 31
-
-#define VAL_LIGHT_LIT 0
-#define VAL_LIGHT_CAPACITY 1
-#define VAL_LIGHT_REMAINING 2
-#define LIGHT_PERMANENT (-1) /* For both light values 1 and 2 */
-
-#define VAL_SCROLL_LEVEL 0
-#define VAL_SCROLL_SPELL_1 1
-#define VAL_SCROLL_SPELL_2 2
-#define VAL_SCROLL_SPELL_3 3
-
-#define VAL_WAND_LEVEL 0
-#define VAL_WAND_MAX_CHARGES 1
-#define VAL_WAND_CHARGES_LEFT 2
-#define VAL_WAND_SPELL 3
-
-#define VAL_STAFF_LEVEL 0
-#define VAL_STAFF_MAX_CHARGES 1
-#define VAL_STAFF_CHARGES_LEFT 2
-#define VAL_STAFF_SPELL 3
-
-#define VAL_WEAPON_HITROLL 0
-#define VAL_WEAPON_DICE_NUM 1
-#define VAL_WEAPON_DICE_SIZE 2
-#define VAL_WEAPON_DAM_TYPE 3
-
-#define VAL_ARMOR_AC 0
-
-#define VAL_POTION_LEVEL 0
-#define VAL_POTION_SPELL_1 1
-#define VAL_POTION_SPELL_2 2
-#define VAL_POTION_SPELL_3 3
-
-#define VAL_TRAP_SPELL 0
-#define VAL_TRAP_HITPOINTS 1
-
-#define VAL_BLOOD_ROOM 0
-
-#define VAL_CONTAINER_CAPACITY 0
-#define VAL_CONTAINER_BITS 1
-#define CONT_CLOSEABLE (1 << 0) /* Container can be closed       */
-#define CONT_PICKPROOF (1 << 1) /* Container is pickproof        */
-#define CONT_CLOSED (1 << 2)    /* Container is closed           */
-#define CONT_LOCKED (1 << 3)    /* Container is locked           */
-#define VAL_CONTAINER_KEY 2
-#define VAL_CONTAINER_WEIGHT_REDUCTION                                                                                 \
-    4 /* Used to allow bags of holding, which reduce the weight of items carried.                                      \
-       */
-#define VAL_CORPSE_ID 2
-#define VAL_CONTAINER_CORPSE 3
-#define NOT_CORPSE 0
-#define CORPSE_PC 1
-#define CORPSE_NPC 2
-#define CORPSE_NPC_NORAISE 3
 #define IS_CORPSE(obj) (GET_OBJ_TYPE(obj) == ITEM_CONTAINER && GET_OBJ_VAL((obj), VAL_CONTAINER_CORPSE) != NOT_CORPSE)
 #define IS_PLR_CORPSE(obj)                                                                                             \
     (GET_OBJ_TYPE(obj) == ITEM_CONTAINER && GET_OBJ_VAL((obj), VAL_CONTAINER_CORPSE) == CORPSE_PC)
 
-#define VAL_DRINKCON_CAPACITY 0
-#define VAL_DRINKCON_REMAINING 1
-#define VAL_DRINKCON_LIQUID 2
-#define LIQ_WATER 0
-#define LIQ_BEER 1
-#define LIQ_WINE 2
-#define LIQ_ALE 3
-#define LIQ_DARKALE 4
-#define LIQ_WHISKY 5
-#define LIQ_LEMONADE 6
-#define LIQ_FIREBRT 7
-#define LIQ_LOCALSPC 8
-#define LIQ_SLIME 9
-#define LIQ_MILK 10
-#define LIQ_TEA 11
-#define LIQ_COFFEE 12
-#define LIQ_BLOOD 13
-#define LIQ_SALTWATER 14
-#define LIQ_RUM 15
-#define LIQ_NECTAR 16
-#define LIQ_SAKE 17
-#define LIQ_CIDER 18
-#define LIQ_TOMATOSOUP 19
-#define LIQ_POTATOSOUP 20
-#define LIQ_CHAI 21
-#define LIQ_APPLEJUICE 22
-#define LIQ_ORNGJUICE 23
-#define LIQ_PNAPLJUICE 24
-#define LIQ_GRAPEJUICE 25
-#define LIQ_POMJUICE 26
-#define LIQ_MELONAE 27
-#define LIQ_COCOA 28
-#define LIQ_ESPRESSO 29
-#define LIQ_CAPPUCCINO 30
-#define LIQ_MANGOLASSI 31
-#define LIQ_ROSEWATER 32
-#define LIQ_GREENTEA 33
-#define LIQ_CHAMOMILE 34
-#define LIQ_GIN 35
-#define LIQ_BRANDY 36
-#define LIQ_MEAD 37
-#define LIQ_CHAMPAGNE 38
-#define LIQ_VODKA 39
-#define LIQ_TEQUILA 40
-#define LIQ_ABSINTHE 41
-#define NUM_LIQ_TYPES 42
-#define VAL_DRINKCON_POISONED 3 /* Must = fountain/food poisoned */
-
-#define VAL_FOOD_FILLINGNESS 0
-#define VAL_FOOD_POISONED 3 /* Must = drink/fountain poisoned*/
-
-#define VAL_MONEY_PLATINUM 0
-#define VAL_MONEY_GOLD 1
-#define VAL_MONEY_SILVER 2
-#define VAL_MONEY_COPPER 3
-
-#define VAL_FOUNTAIN_CAPACITY 0
-#define VAL_FOUNTAIN_REMAINING 1
-#define VAL_FOUNTAIN_LIQUID 2   /* Use LIQ_ constants above      */
-#define VAL_FOUNTAIN_POISONED 3 /* Must = drinkcon/food poisoned */
-
-#define VAL_PORTAL_DESTINATION 0
-#define VAL_PORTAL_ENTRY_MSG 1 /* Message to room portal is in  */
-#define VAL_PORTAL_CHAR_MSG 2  /* Message to character entering */
-#define VAL_PORTAL_EXIT_MSG 3  /* Message to portal target room */
-
-#define VAL_SPELLBOOK_PAGES 0
-#define DEF_SPELLBOOK_PAGES 100
-#define MAX_SPELLBOOK_PAGES 2000 /* Kind of arbitrary             */
-
-#define VAL_WALL_DIRECTION 0
-#define VAL_WALL_DISPELABLE 1
-#define VAL_WALL_HITPOINTS 2
-#define VAL_WALL_SPELL 3
-
-#define VAL_BOARD_NUMBER 0
-
-#define VAL_MIN (-100000) /* Arbitrary default min value */
-#define VAL_MAX 100000    /* Arbitrary default max value */
-
-#define NUM_VALUES 7
-
-#define MAX_OBJ_APPLIES 6
-
 /*[ STRUCTURES ]**************************************************************/
 
-struct obj_type_def {
-    char *name;
-    char *desc;
+struct ObjectTypeDef {
+    const char *name;
+    const char *desc;
     struct {
         int min;
         int max;
     } value[NUM_VALUES];
 };
 
-struct liquid_def {
-    char *alias;
-    char *name;
-    char *color_desc;
+struct LiquidDef {
+    const char *alias;
+    const char *name;
+    const char *color_desc;
     int condition_effects[3];
 };
 
-/* object flags; used in obj_data */
-struct obj_flag_data {
+/* object flags; used in ObjData */
+struct ObjectFlagData {
     int value[NUM_VALUES]; /* Values of the item (see list)  */
     byte type_flag;        /* Type of item                     */
     long int wear_flags;   /* Where you can wear it            */
@@ -329,46 +55,460 @@ struct obj_flag_data {
     long hiddenness; /* How difficult it is to see obj   */
 };
 
-struct spell_book_list {
+struct SpellBookList {
     int spell;
     int length;
-    struct spell_book_list *next;
+    SpellBookList *next;
 };
 
-struct obj_apply_type {
+struct ObjectApplyType {
     byte location;   /* Which ability to change (APPLY_XXX) */
     sh_int modifier; /* How much it changes by              */
 };
 
-struct obj_data {
-    obj_num item_number;                            /* Where in data-base                        */
-    room_num in_room;                               /* In what room -1 when conta/carr        */
-    int mob_from;                                   /* where the mob is from*/
-    struct obj_flag_data obj_flags;                 /* Object information               */
-    struct obj_apply_type applies[MAX_OBJ_APPLIES]; /* applies */
-    char *name;                                     /* Title of object :get etc.        */
-    char *description;                              /* When in room                     */
-    char *short_description;                        /* when worn/carry/in cont.         */
-    char *action_description;                       /* What to write when used          */
-    struct extra_descr_data *ex_description;        /* extra descriptions     */
-    struct char_data *carried_by;                   /* Carried by :NULL in room/conta   */
-    struct char_data *worn_by;                      /* Worn by?                              */
-    sh_int worn_on;                                 /* Worn where?                      */
-    struct obj_data *in_obj;                        /* In what object NULL when none    */
-    struct obj_data *contains;                      /* Contains objects                 */
-    long id;                                        /* used by DG triggers              */
-    struct trig_proto_list *proto_script;           /* list of default triggers  */
-    struct script_data *script;                     /* script info for the object       */
-    struct char_data *last_to_hold;                 /* If MOB forcibly loses item      */
-    struct obj_data *next_content;                  /* For 'contains' lists             */
-    struct obj_data *next;                          /* For the object list              */
+struct ObjData {
+    obj_num item_number;                      /* Where in data-base                        */
+    room_num in_room;                         /* In what room -1 when conta/carr        */
+    int mob_from;                             /* where the mob is from*/
+    ObjectFlagData obj_flags;                 /* Object information               */
+    ObjectApplyType applies[MAX_OBJ_APPLIES]; /* applies */
+    char *name;                               /* Title of object :get etc.        */
+    char *description;                        /* When in room                     */
+    char *short_description;                  /* when worn/carry/in cont.         */
+    char *action_description;                 /* What to write when used          */
+    ExtraDescriptionData *ex_description;     /* extra descriptions     */
+    CharData *carried_by;                     /* Carried by :NULL in room/conta   */
+    CharData *worn_by;                        /* Worn by?                              */
+    sh_int worn_on;                           /* Worn where?                      */
+    ObjData *in_obj;                          /* In what object NULL when none    */
+    ObjData *contains;                        /* Contains objects                 */
+    long id;                                  /* used by DG triggers              */
+    TriggerPrototypeList *proto_script;       /* list of default triggers  */
+    ScriptData *script;                       /* script info for the object       */
+    CharData *last_to_hold;                   /* If MOB forcibly loses item      */
+    ObjData *next_content;                    /* For 'contains' lists             */
+    ObjData *next;                            /* For the object list              */
 
-    struct spell_book_list *spell_book; /* list of all spells in book if obj is spellbook */
+    SpellBookList *spell_book; /* list of all spells in book if obj is spellbook */
 
-    struct char_data *casters; /* Characters who are casting spells at this */
-    struct event *events;      /* List of events related to this object */
+    CharData *casters; /* Characters who are casting spells at this */
+    Event *events;     /* List of events related to this object */
     int event_flags[EVENT_FLAG_FIELDS];
     /* Bitfield of events active on this object */
+};
+
+/*
+ * OBJECT TYPES
+ *
+ * name, desc, value min/maxes
+ */
+const struct ObjectTypeDef item_types[NUM_ITEM_TYPES] = {
+
+    {
+        "UNDEFINED",
+        "something strange",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "LIGHT",
+        "a light",
+        {{false, true},
+         {LIGHT_PERMANENT, VAL_MAX},
+         {LIGHT_PERMANENT, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "SCROLL",
+        "a scroll",
+        {{0, LVL_IMMORT},
+         {0, MAX_SPELLS},
+         {0, MAX_SPELLS},
+         {0, MAX_SPELLS},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "WAND",
+        "a wand",
+        {{0, LVL_IMMORT},
+         {0, 20},
+         {0, 20},
+         {0, MAX_SPELLS},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "STAFF",
+        "a staff",
+        {{0, LVL_IMMORT},
+         {0, 20},
+         {0, 20},
+         {0, MAX_SPELLS},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "WEAPON",
+        "a weapon",
+        {{0, 40},
+         {0, 20},
+         {0, 20},
+         {0, TYPE_ALIGN - TYPE_HIT},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "FIREWEAPON",
+        "a ranged weapon",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "MISSILE",
+        "a missile",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "TREASURE",
+        "treasure",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "ARMOR",
+        "armor",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "POTION",
+        "a potion",
+        {{0, LVL_IMMORT},
+         {0, MAX_SPELLS},
+         {0, MAX_SPELLS},
+         {0, MAX_SPELLS},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "WORN",
+        "clothing",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "OTHER",
+        "an object",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "TRASH",
+        "trash",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "TRAP",
+        "a trap",
+        {{0, MAX_SPELLS},
+         {0, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "CONTAINER",
+        "a container",
+        {{0, VAL_MAX},
+         {0, (1 << 4) - 1},
+         {0, VAL_MAX},
+         {NOT_CORPSE, CORPSE_NPC_NORAISE},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "NOTE",
+        "a note",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "LIQCONTAINER",
+        "a liquid container",
+        {{0, VAL_MAX},
+         {0, VAL_MAX},
+         {0, NUM_LIQ_TYPES - 1},
+         {false, true},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "KEY",
+        "a key",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "FOOD",
+        "food",
+        {{0, VAL_MAX},
+         {false, true},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "MONEY",
+        "money",
+        {{0, VAL_MAX},
+         {0, VAL_MAX},
+         {0, VAL_MAX},
+         {0, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "PEN",
+        "a writing instrument",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "BOAT",
+        "a boat",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+
+    },
+
+    {
+        "FOUNTAIN",
+        "a fountain",
+        {{0, VAL_MAX},
+         {0, VAL_MAX},
+         {0, NUM_LIQ_TYPES - 1},
+         {false, true},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "PORTAL",
+        "a portal",
+        {{0, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "ROPE",
+        "rope",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "SPELLBOOK",
+        "a book",
+        {{0, MAX_SPELLBOOK_PAGES},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "WALL",
+        "a wall",
+        {{0, NUM_OF_DIRS},
+         {false, true},
+         {0, VAL_MAX},
+         {0, MAX_SPELLS},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "TOUCHSTONE",
+        "a touchstone",
+        {{VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+
+    {
+        "BOARD",
+        "a board",
+        {{0, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
+};
+
+const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
+    {"water", "water", "clear", {0, 0, 10}},
+    {"beer", "beer", "brown", {3, 2, 5}},
+    {"wine", "wine", "clear", {5, 2, 5}},
+    {"ale", "ale", "brown", {2, 2, 5}},
+    {"dark-ale", "dark ale", "dark", {1, 2, 5}},
+    {"whisky", "whisky", "golden", {6, 1, 4}},
+    {"lemonade", "lemonade", "yellow", {0, 1, 8}},
+    {"firebreather", "firebreather", "green", {10, 0, 0}},
+    {"local-speciality", "local speciality", "clear", {3, 3, 3}},
+    {"slime-mold-juice", "slime mold juice", "light green", {0, 4, -8}},
+    {"milk", "milk", "white", {0, 3, 6}},
+    {"black-tea", "black tea", "brown", {0, 1, 6}},
+    {"coffee", "coffee", "black", {0, 1, 6}},
+    {"blood", "blood", "red", {0, 2, -1}},
+    {"salt-water", "salt water", "clear", {0, 1, -2}},
+    {"rum", "rum", "light brown", {5, 2, 3}},
+    {"nectar", "nectar", "yellow", {-1, 12, 12}},
+    {"sake", "sake", "clearish", {6, 1, 4}},
+    {"cider", "cider", "dark brown", {1, 1, 5}},
+    {"tomato-soup", "tomato soup", "thick red", {0, 7, 3}},
+    {"potato-soup", "potato soup", "thick, light brown", {0, 8, 4}},
+    {"chai", "chai", "light brown", {0, 2, 5}},
+    {"apple-juice", "apple juice", "dark yellow", {0, 2, 6}},
+    {"orange-juice", "orange juice", "fruity orange", {0, 3, 5}},
+    {"pineapple-juice", "pineapple juice", "thin yellow", {0, 2, 6}},
+    {"grape-juice", "grape juice", "deep purple", {0, 2, 6}},
+    {"pomegranate-juice", "pomegranate juice", "dark red", {0, 3, 6}},
+    {"melonade", "melonade", "pink", {0, 1, 8}},
+    {"cocoa", "cocoa", "thick brown", {0, 3, 5}},
+    {"espresso", "espresso", "dark brown", {0, 1, 4}},
+    {"cappuccino", "cappuccino", "light brown", {0, 2, 4}},
+    {"mango-lassi", "mango lassi", "thick yellow", {0, 4, 4}},
+    {"rosewater", "rosewater", "light pink", {0, 0, 0}},
+    {"green-tea", "green tea", "pale green", {0, 1, 6}},
+    {"chamomile-tea", "chamomile tea", "clearish", {0, 1, 7}},
+    {"gin", "gin", "clear", {5, 0, 3}},
+    {"brandy", "brandy", "amber", {5, 0, 3}},
+    {"mead", "mead", "golden", {2, 0, 3}},
+    {"champagne", "champagne", "sparkly", {7, 0, 1}},
+    {"vodka", "vodka", "clear", {6, 0, 3}},
+    {"tequila", "tequila", "gold", {5, 0, 3}},
+    {"absinthe", "absinthe", "greenish", {8, 0, 2}},
 };
 
 /*[ MACROS ]******************************************************************/
@@ -450,7 +590,7 @@ struct obj_data {
 #define IS_POISONED(obj)                                                                                               \
     ((GET_OBJ_TYPE(obj) == ITEM_FOOD || GET_OBJ_TYPE(obj) == ITEM_DRINKCON || GET_OBJ_TYPE(obj) == ITEM_FOUNTAIN)      \
          ? GET_OBJ_VAL((obj), VAL_DRINKCON_POISONED)                                                                   \
-         : FALSE)
+         : false)
 
 #define MONEY_VALUE(obj)                                                                                               \
     (GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM) * 1000 + GET_OBJ_VAL(obj, VAL_MONEY_GOLD) * 100 +                            \
@@ -479,22 +619,23 @@ struct obj_data {
 
 /*[ FUNCTIONS ]***************************************************************/
 
-extern const struct obj_type_def item_types[];
-extern const struct liquid_def liquid_types[];
+// const obj_type_def item_types[];
+// const liquid_def liquid_types[];
 
-extern void init_objtypes(void);
-extern bool delete_object(obj_num rnum);
-extern void limit_obj_values(obj_data *obj);
-extern int parse_obj_type(char_data *ch, char *arg);
-extern void free_obj_strings(obj_data *obj);
-extern void free_obj_strings_absolutely(obj_data *obj);
-extern void free_prototyped_obj_strings(obj_data *obj);
-extern void copy_object(obj_data *to, obj_data *from);
+void init_objtypes(void);
+bool delete_object(obj_num rnum);
+void limit_obj_values(ObjData *obj);
+int parse_obj_type(CharData *ch, char *arg);
+void free_obj_strings(ObjData *obj);
+void free_obj_strings_absolutely(ObjData *obj);
+void free_prototyped_obj_strings(ObjData *obj);
+void copy_object(ObjData *to, ObjData *from);
 
-extern int parse_liquid(char_data *ch, char *arg);
-extern void weight_change_object(obj_data *obj, float weight);
-extern void setup_drinkcon(obj_data *obj, int newliq);
-extern void name_from_drinkcon(obj_data *obj, int type);
-extern void name_to_drinkcon(obj_data *obj, int type);
-extern void liquid_from_container(obj_data *container, int amount);
-extern void liquid_to_container(obj_data *container, int amount, int liquid_type, bool poisoned);
+int parse_liquid(CharData *ch, char *arg);
+void weight_change_object(ObjData *obj, float weight);
+void setup_drinkcon(ObjData *obj, int newliq);
+void name_from_drinkcon(ObjData *obj, int type);
+void name_to_drinkcon(ObjData *obj, int type);
+void liquid_from_container(ObjData *container, int amount);
+void liquid_to_container(ObjData *container, int amount, int liquid_type, bool poisoned);
+ObjData *carried_key(CharData *ch, int keyvnum);

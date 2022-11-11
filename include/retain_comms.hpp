@@ -31,20 +31,20 @@
             GET_RETAINED_GOSSIPS(ch) = val;                                                                            \
     } while (0)
 
-struct comm_node {
+struct CommNode {
     time_t time; /* time of msg */
     char *msg;
-    struct comm_node *next;
+    CommNode *next;
 };
 
-struct retained_comms {
-    struct comm_node *tells;
-    struct comm_node *gossips;
+struct RetainedComms {
+    CommNode *tells;
+    CommNode *gossips;
 };
 
-void init_retained_comms(char_data *ch);
-void add_retained_comms(char_data *ch, int type, char *msg);
-void load_retained_comms(FILE *file, char_data *ch, int type);
-void save_retained_comms(FILE *file, char_data *ch, int type);
-void free_comms_node_list(comm_node *root);
-void show_retained_comms(char_data *ch, char_data *vict, int type);
+void init_retained_comms(CharData *ch);
+void add_retained_comms(CharData *ch, int type, char *msg);
+void load_retained_comms(FILE *file, CharData *ch, int type);
+void save_retained_comms(FILE *file, CharData *ch, int type);
+void free_comms_node_list(CommNode *root);
+void show_retained_comms(CharData *ch, CharData *vict, int type);

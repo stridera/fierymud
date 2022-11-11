@@ -15,11 +15,11 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-int mag_savingthrow(char_data *ch, int type);
-bool evades_spell(char_data *caster, char_data *vict, int spellnum, int power);
-int defensive_spell_damage(char_data *attacker, char_data *victim, int dam);
-bool wall_block_check(char_data *actor, char_data *motivator, int dir);
-bool wall_charge_check(char_data *ch, int dir);
-void remove_char_spell(char_data *ch, int spellnum);
-void remove_unsuitable_spells(char_data *ch);
-bool check_fluid_spell_ok(char_data *ch, char_data *victim, int spellnum, bool quiet);
+int mag_savingthrow(CharData *ch, int type);
+bool evades_spell(CharData *caster, CharData *vict, int spellnum, int power);
+int defensive_spell_damage(CharData *attacker, CharData *victim, int dam);
+bool wall_block_check(CharData *actor, CharData *motivator, int dir);
+bool wall_charge_check(CharData *ch, int dir);
+void remove_char_spell(CharData *ch, int spellnum);
+void remove_unsuitable_spells(CharData *ch);
+bool check_fluid_spell_ok(CharData *ch, CharData *victim, int spellnum, bool quiet);

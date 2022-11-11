@@ -15,4 +15,4 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-bool valid_cast_stance(char_data *ch, int spellnum);
+bool valid_cast_stance(CharData *ch, int spellnum);

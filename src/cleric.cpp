@@ -8,6 +8,7 @@
  *                                                                         *
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
+#include "cleric.hpp"
 
 #include "ai.hpp"
 #include "casting.hpp"
@@ -27,68 +28,31 @@
 #include "utils.hpp"
 
 /* External functions */
-int mob_cast(char_data *ch, char_data *tch, obj_data *tobj, int spellnum);
-bool affected_by_armor_spells(char_data *victim);
-
-/* Clerical spell lists */
-const struct spell_pair mob_cleric_buffs[] = {{SPELL_SOULSHIELD, 0, EFF_SOULSHIELD},
-                                              {SPELL_PROT_FROM_EVIL, 0, EFF_PROTECT_EVIL},
-                                              {SPELL_PROT_FROM_GOOD, 0, EFF_PROTECT_GOOD},
-                                              {SPELL_ARMOR, 0, 0},
-                                              {SPELL_DEMONSKIN, 0, 0},
-                                              {SPELL_GAIAS_CLOAK, 0, 0},
-                                              {SPELL_BARKSKIN, 0, 0},
-                                              {SPELL_DEMONIC_MUTATION, 0, 0},
-                                              {SPELL_DEMONIC_ASPECT, 0, 0},
-                                              {SPELL_SENSE_LIFE, 0, EFF_SENSE_LIFE},
-                                              {SPELL_PRAYER, 0, 0},
-                                              {SPELL_DARK_PRESENCE, 0, 0},
-                                              {0, 0, 0}};
-
-/* These spells should all be castable in combat. */
-const struct spell_pair mob_cleric_hindrances[] = {{SPELL_BLINDNESS, SPELL_CURE_BLIND, EFF_BLIND},
-                                                   {SPELL_POISON, SPELL_REMOVE_POISON, EFF_POISON},
-                                                   {SPELL_DISEASE, SPELL_HEAL, EFF_DISEASE},
-                                                   {SPELL_CURSE, SPELL_REMOVE_CURSE, EFF_CURSE},
-                                                   {SPELL_INSANITY, SPELL_SANE_MIND, EFF_INSANITY},
-                                                   {SPELL_SILENCE, 0, 0}, /* Try to cast this, but there's no cure */
-                                                   {SPELL_ENTANGLE, SPELL_REMOVE_PARALYSIS, 0},
-                                                   {SPELL_WEB, SPELL_REMOVE_PARALYSIS, EFF_IMMOBILIZED},
-                                                   {0, 0, 0}};
-
-const int mob_cleric_offensives[] = {
-    SPELL_FULL_HARM,    SPELL_SUNRAY,         SPELL_FLAMESTRIKE,      SPELL_DIVINE_RAY,
-    SPELL_HARM,         SPELL_DESTROY_UNDEAD, SPELL_STYGIAN_ERUPTION, SPELL_DISPEL_EVIL,
-    SPELL_DISPEL_GOOD,  SPELL_WRITHING_WEEDS, SPELL_HELL_BOLT,        SPELL_DIVINE_BOLT,
-    SPELL_CAUSE_CRITIC, SPELL_CAUSE_SERIOUS,  SPELL_CAUSE_LIGHT,      0};
-
-const int mob_cleric_area_spells[] = {SPELL_HOLY_WORD, SPELL_UNHOLY_WORD, SPELL_EARTHQUAKE, 0};
-
-const int mob_cleric_heals[] = {SPELL_FULL_HEAL,    SPELL_HEAL,       SPELL_CURE_CRITIC,
-                                SPELL_CURE_SERIOUS, SPELL_CURE_LIGHT, 0};
+int mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
+bool affected_by_armor_spells(CharData *victim);
 
 /*
  * cleric_ai_action
  *
  *
  */
-bool cleric_ai_action(char_data *ch, char_data *victim) {
+bool cleric_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter, action = 0;
 
     if (!victim) {
-        mudlog("No victim in cleric AI action.", NRM, LVL_GOD, FALSE);
-        return FALSE;
+        mudlog("No victim in cleric AI action.", NRM, LVL_GOD, false);
+        return false;
     }
 
     /* Well no chance of casting any spells today. */
     if (EFF_FLAGGED(ch, EFF_SILENCE))
-        return FALSE;
+        return false;
 
     /* Most classes using clerical spells have alignment restrictions. */
     if ((GET_CLASS(ch) == CLASS_DIABOLIST && !IS_EVIL(ch)) || (GET_CLASS(ch) == CLASS_PRIEST && !IS_GOOD(ch)) ||
         (GET_CLASS(ch) == CLASS_PALADIN && !IS_GOOD(ch)) || (GET_CLASS(ch) == CLASS_RANGER && !IS_GOOD(ch)) ||
         (GET_CLASS(ch) == CLASS_ANTI_PALADIN && !IS_EVIL(ch)))
-        return FALSE;
+        return false;
 
     /* Calculate mob and victim health as a percentage. */
     my_health = (100 * GET_HIT(ch)) / GET_MAX_HIT(ch);
@@ -107,7 +71,7 @@ bool cleric_ai_action(char_data *ch, char_data *victim) {
 
     /* If action < 6 then heal. */
     if (action < 6 && mob_heal_up(ch))
-        return TRUE;
+        return true;
 
     /* Otherwise kill or harm in some fashion */
 
@@ -133,8 +97,8 @@ bool cleric_ai_action(char_data *ch, char_data *victim) {
                     continue;
                 break;
             }
-            if (mob_cast(ch, victim, NULL, mob_cleric_area_spells[i]))
-                return TRUE;
+            if (mob_cast(ch, victim, nullptr, mob_cleric_area_spells[i]))
+                return true;
             /* Only try the mob's best two spells. */
             if (++counter >= 2)
                 break;
@@ -146,8 +110,8 @@ bool cleric_ai_action(char_data *ch, char_data *victim) {
         if (!GET_SKILL(ch, mob_cleric_hindrances[i].spell))
             continue;
         if (!has_effect(victim, &mob_cleric_hindrances[i])) {
-            if (mob_cast(ch, victim, NULL, mob_cleric_hindrances[i].spell))
-                return TRUE;
+            if (mob_cast(ch, victim, nullptr, mob_cleric_hindrances[i].spell))
+                return true;
             else
                 break;
         }
@@ -189,8 +153,8 @@ bool cleric_ai_action(char_data *ch, char_data *victim) {
                 continue;
             break;
         }
-        if (mob_cast(ch, victim, NULL, mob_cleric_offensives[i]))
-            return TRUE;
+        if (mob_cast(ch, victim, nullptr, mob_cleric_offensives[i]))
+            return true;
         else
             counter++;
         /* Only attempt the mob's two best spells.  The rest are worthless. */
@@ -198,7 +162,7 @@ bool cleric_ai_action(char_data *ch, char_data *victim) {
             break;
     }
 
-    return FALSE;
+    return false;
 }
 
 /*
@@ -208,7 +172,7 @@ bool cleric_ai_action(char_data *ch, char_data *victim) {
  * similar name, this one shouldn't be called when the mob is in combat.
  * Cleric spells are all pretty useless in battle.
  */
-bool check_cleric_status(char_data *ch) {
+bool check_cleric_status(CharData *ch) {
     int i;
 
     /* Check bad affects */
@@ -218,16 +182,16 @@ bool check_cleric_status(char_data *ch) {
 
         /* If the spell can be removed and the mob has it, try to remove it */
         if (mob_cleric_hindrances[i].remover && has_effect(ch, &mob_cleric_hindrances[i]))
-            if (mob_cast(ch, ch, NULL, mob_cleric_hindrances[i].remover))
-                return TRUE;
+            if (mob_cast(ch, ch, nullptr, mob_cleric_hindrances[i].remover))
+                return true;
         /* 10% chance to cancel if in combat. */
         if (FIGHTING(ch) && !number(0, 9))
-            return FALSE;
+            return false;
     }
 
     /* Check other spells */
     for (i = 0; mob_cleric_buffs[i].spell; i++) {
-        if (!GET_SKILL(ch, mob_cleric_buffs[i].spell) || !check_fluid_spell_ok(ch, ch, mob_cleric_buffs[i].spell, TRUE))
+        if (!GET_SKILL(ch, mob_cleric_buffs[i].spell) || !check_fluid_spell_ok(ch, ch, mob_cleric_buffs[i].spell, true))
             continue;
         switch (mob_cleric_buffs[i].spell) {
         case SPELL_GAIAS_CLOAK:
@@ -274,9 +238,9 @@ bool check_cleric_status(char_data *ch) {
             if (has_effect(ch, &mob_cleric_buffs[i]))
                 continue;
         }
-        if (mob_cast(ch, ch, NULL, mob_cleric_buffs[i].spell))
-            return TRUE;
+        if (mob_cast(ch, ch, nullptr, mob_cleric_buffs[i].spell))
+            return true;
     }
 
-    return FALSE;
+    return false;
 }

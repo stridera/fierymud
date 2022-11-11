@@ -26,24 +26,24 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void trig_data_copy(trig_data *this, const trig_data *trg);
+void trig_data_copy(TrigData *current, const TrigData *trg);
 
-extern void half_chop(char *string, char *arg1, char *arg2);
-extern long asciiflag_conv(char *flag);
+void half_chop(char *string, char *arg1, char *arg2);
+long asciiflag_conv(char *flag);
 
 void parse_trigger(FILE *trig_f, int nr) {
     int t[2], k, attach_type;
     char line[256], *cmds, *s, flags[256];
-    struct cmdlist_element *cle;
-    index_data *index;
-    trig_data *trig;
+    CmdlistElement *cle;
+    IndexData *index;
+    TrigData *trig;
 
-    CREATE(trig, trig_data, 1);
-    CREATE(index, index_data, 1);
+    CREATE(trig, TrigData, 1);
+    CREATE(index, IndexData, 1);
 
     index->vnum = nr;
     index->number = 0;
-    index->func = NULL;
+    index->func = nullptr;
     index->proto = trig;
 
     sprintf(buf2, "trig vnum %d", nr);
@@ -61,16 +61,16 @@ void parse_trigger(FILE *trig_f, int nr) {
 
     cmds = s = fread_string(trig_f, buf2);
 
-    CREATE(trig->cmdlist, cmdlist_element, 1);
+    CREATE(trig->cmdlist, CmdlistElement, 1);
     trig->cmdlist->cmd = strdup(strtok(s, "\r\n"));
     cle = trig->cmdlist;
-    cle->next = NULL; /*remove dangling pointers */
+    cle->next = nullptr; /*remove dangling pointers */
 
-    while ((s = strtok(NULL, "\r\n"))) {
-        CREATE(cle->next, cmdlist_element, 1);
+    while ((s = strtok(nullptr, "\r\n"))) {
+        CREATE(cle->next, CmdlistElement, 1);
         cle = cle->next;
         cle->cmd = strdup(s);
-        cle->next = NULL; /*remove dangling pointers */
+        cle->next = nullptr; /*remove dangling pointers */
     }
 
     free(cmds);
@@ -82,16 +82,16 @@ void parse_trigger(FILE *trig_f, int nr) {
  * create a new trigger from a prototype.
  * nr is the real number of the trigger.
  */
-trig_data *read_trigger(int nr) {
-    index_data *index;
-    trig_data *trig;
+TrigData *read_trigger(int nr) {
+    IndexData *index;
+    TrigData *trig;
 
     if (nr >= top_of_trigt)
-        return NULL;
-    if ((index = trig_index[nr]) == NULL)
-        return NULL;
+        return nullptr;
+    if ((index = trig_index[nr]) == nullptr)
+        return nullptr;
 
-    CREATE(trig, trig_data, 1);
+    CREATE(trig, TrigData, 1);
     trig_data_copy(trig, index->proto);
 
     index->number++;
@@ -100,8 +100,8 @@ trig_data *read_trigger(int nr) {
 }
 
 /* release memory allocated for a variable list */
-void free_varlist(trig_var_data *vd) {
-    struct trig_var_data *i, *j;
+void free_varlist(TriggerVariableData *vd) {
+    TriggerVariableData *i, *j;
 
     for (i = vd; i;) {
         j = i;
@@ -115,8 +115,8 @@ void free_varlist(trig_var_data *vd) {
 }
 
 /* release memory allocated for a script */
-void free_script(script_data *sc) {
-    trig_data *t1, *t2;
+void free_script(ScriptData *sc) {
+    TrigData *t1, *t2;
 
     for (t1 = TRIGGERS(sc); t1;) {
         t2 = t1;
@@ -129,48 +129,48 @@ void free_script(script_data *sc) {
     free(sc);
 }
 
-void trig_data_init(trig_data *this) {
-    this->nr = NOTHING;
-    this->data_type = 0;
-    this->name = NULL;
-    this->trigger_type = 0;
-    this->cmdlist = NULL;
-    this->curr_state = NULL;
-    this->narg = 0;
-    this->arglist = NULL;
-    this->depth = 0;
-    this->wait_event = NULL;
-    this->purged = FALSE;
-    this->running = FALSE;
-    this->var_list = NULL;
+void trig_data_init(TrigData *cur) {
+    cur->nr = NOTHING;
+    cur->data_type = 0;
+    cur->name = nullptr;
+    cur->trigger_type = 0;
+    cur->cmdlist = nullptr;
+    cur->curr_state = nullptr;
+    cur->narg = 0;
+    cur->arglist = nullptr;
+    cur->depth = 0;
+    cur->wait_event = nullptr;
+    cur->purged = false;
+    cur->running = false;
+    cur->var_list = nullptr;
 
-    this->next = NULL;
+    cur->next = nullptr;
 }
 
-void trig_data_copy(trig_data *this, const trig_data *trg) {
-    trig_data_init(this);
+void trig_data_copy(TrigData *cur, const TrigData *trg) {
+    trig_data_init(cur);
 
-    this->nr = trg->nr;
-    this->attach_type = trg->attach_type;
-    this->data_type = trg->data_type;
-    this->name = strdup(trg->name);
-    this->trigger_type = trg->trigger_type;
-    this->cmdlist = trg->cmdlist;
-    this->narg = trg->narg;
+    cur->nr = trg->nr;
+    cur->attach_type = trg->attach_type;
+    cur->data_type = trg->data_type;
+    cur->name = strdup(trg->name);
+    cur->trigger_type = trg->trigger_type;
+    cur->cmdlist = trg->cmdlist;
+    cur->narg = trg->narg;
     if (trg->arglist)
-        this->arglist = strdup(trg->arglist);
+        cur->arglist = strdup(trg->arglist);
 }
 
-void free_trigger(trig_data *trig) {
+void free_trigger(TrigData *trig) {
     free(trig->name);
-    trig->name = NULL;
+    trig->name = nullptr;
 
     /* trigger code is reused by multiple objects, so dont free it! */
-    trig->cmdlist = NULL;
+    trig->cmdlist = nullptr;
 
     if (trig->arglist) {
         free(trig->arglist);
-        trig->arglist = NULL;
+        trig->arglist = nullptr;
     }
 
     free_varlist(trig->var_list);
@@ -186,9 +186,9 @@ void dg_read_trigger(FILE *fp, void *proto, int type) {
     char line[256];
     char junk[8];
     int vnum, rnum, count;
-    char_data *mob;
-    room_data *room;
-    struct trig_proto_list *trg_proto, *new_trg;
+    CharData *mob;
+    RoomData *room;
+    TriggerPrototypeList *trg_proto, *new_trg;
 
     get_line(fp, line);
     count = sscanf(line, "%s %d", junk, &vnum);
@@ -202,24 +202,24 @@ void dg_read_trigger(FILE *fp, void *proto, int type) {
     rnum = real_trigger(vnum);
     if (rnum < 0) {
         if (type == MOB_TRIGGER) {
-            mob = (char_data *)proto;
+            mob = (CharData *)proto;
             sprintf(line, "SYSERR: Non-existent Trigger (vnum #%d) required for mob %d (%s)!", vnum, GET_MOB_VNUM(mob),
                     GET_NAME(mob));
         }
         if (type == WLD_TRIGGER)
             sprintf(line, "SYSERR: Non-existent Trigger (vnum #%d) required for room %d!", vnum,
-                    ((room_data *)proto)->vnum);
+                    ((RoomData *)proto)->vnum);
         log(line);
         return;
     }
 
     switch (type) {
     case MOB_TRIGGER:
-        CREATE(new_trg, trig_proto_list, 1);
+        CREATE(new_trg, TriggerPrototypeList, 1);
         new_trg->vnum = vnum;
-        new_trg->next = NULL;
+        new_trg->next = nullptr;
 
-        mob = (char_data *)proto;
+        mob = (CharData *)proto;
         trg_proto = mob->proto_script;
         if (!trg_proto) {
             mob->proto_script = trg_proto = new_trg;
@@ -230,10 +230,10 @@ void dg_read_trigger(FILE *fp, void *proto, int type) {
         }
         break;
     case WLD_TRIGGER:
-        CREATE(new_trg, trig_proto_list, 1);
+        CREATE(new_trg, TriggerPrototypeList, 1);
         new_trg->vnum = vnum;
-        new_trg->next = NULL;
-        room = (room_data *)proto;
+        new_trg->next = nullptr;
+        room = (RoomData *)proto;
         trg_proto = room->proto_script;
         if (!trg_proto) {
             room->proto_script = trg_proto = new_trg;
@@ -245,7 +245,7 @@ void dg_read_trigger(FILE *fp, void *proto, int type) {
 
         if (rnum >= 0) {
             if (!(room->script))
-                CREATE(room->script, script_data, 1);
+                CREATE(room->script, ScriptData, 1);
             add_trigger(SCRIPT(room), read_trigger(rnum), -1);
         } else {
             sprintf(line, "SYSERR: non-existent trigger #%d assigned to room #%d", vnum, room->vnum);
@@ -258,10 +258,10 @@ void dg_read_trigger(FILE *fp, void *proto, int type) {
     }
 }
 
-void dg_obj_trigger(char *line, obj_data *obj) {
+void dg_obj_trigger(char *line, ObjData *obj) {
     char junk[8];
     int vnum, rnum, count;
-    struct trig_proto_list *trg_proto, *new_trg;
+    TriggerPrototypeList *trg_proto, *new_trg;
 
     count = sscanf(line, "%s %d", junk, &vnum);
 
@@ -278,9 +278,9 @@ void dg_obj_trigger(char *line, obj_data *obj) {
         return;
     }
 
-    CREATE(new_trg, trig_proto_list, 1);
+    CREATE(new_trg, TriggerPrototypeList, 1);
     new_trg->vnum = vnum;
-    new_trg->next = NULL;
+    new_trg->next = nullptr;
 
     trg_proto = obj->proto_script;
     if (!trg_proto) {
@@ -293,16 +293,16 @@ void dg_obj_trigger(char *line, obj_data *obj) {
 }
 
 void assign_triggers(void *i, int type) {
-    char_data *mob;
-    obj_data *obj;
-    struct room_data *room;
+    CharData *mob;
+    ObjData *obj;
+    RoomData *room;
     int rnum;
     char buf[256];
-    struct trig_proto_list *trg_proto;
+    TriggerPrototypeList *trg_proto;
 
     switch (type) {
     case MOB_TRIGGER:
-        mob = (char_data *)i;
+        mob = (CharData *)i;
         trg_proto = mob->proto_script;
         while (trg_proto) {
             rnum = real_trigger(trg_proto->vnum);
@@ -312,14 +312,14 @@ void assign_triggers(void *i, int type) {
                 log(buf);
             } else {
                 if (!SCRIPT(mob))
-                    CREATE(SCRIPT(mob), script_data, 1);
+                    CREATE(SCRIPT(mob), ScriptData, 1);
                 add_trigger(SCRIPT(mob), read_trigger(rnum), -1);
             }
             trg_proto = trg_proto->next;
         }
         break;
     case OBJ_TRIGGER:
-        obj = (obj_data *)i;
+        obj = (ObjData *)i;
         trg_proto = obj->proto_script;
         while (trg_proto) {
             rnum = real_trigger(trg_proto->vnum);
@@ -329,14 +329,14 @@ void assign_triggers(void *i, int type) {
                 log(buf);
             } else {
                 if (!SCRIPT(obj))
-                    CREATE(SCRIPT(obj), script_data, 1);
+                    CREATE(SCRIPT(obj), ScriptData, 1);
                 add_trigger(SCRIPT(obj), read_trigger(rnum), -1);
             }
             trg_proto = trg_proto->next;
         }
         break;
     case WLD_TRIGGER:
-        room = (room_data *)i;
+        room = (RoomData *)i;
         trg_proto = room->proto_script;
         while (trg_proto) {
             rnum = real_trigger(trg_proto->vnum);
@@ -345,7 +345,7 @@ void assign_triggers(void *i, int type) {
                 log(buf);
             } else {
                 if (!SCRIPT(room))
-                    CREATE(SCRIPT(room), script_data, 1);
+                    CREATE(SCRIPT(room), ScriptData, 1);
                 add_trigger(SCRIPT(room), read_trigger(rnum), -1);
             }
             trg_proto = trg_proto->next;
@@ -357,8 +357,8 @@ void assign_triggers(void *i, int type) {
     }
 }
 
-void free_proto_script(trig_proto_list **list) {
-    struct trig_proto_list *proto, *fproto;
+void free_proto_script(TriggerPrototypeList **list) {
+    TriggerPrototypeList *proto, *fproto;
 
     if (!list)
         return;
@@ -371,5 +371,5 @@ void free_proto_script(trig_proto_list **list) {
         free(fproto);
     }
 
-    *list = NULL;
+    *list = nullptr;
 }

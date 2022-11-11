@@ -27,28 +27,28 @@
 /*------------------------------------------------------------------------*/
 /*. External data .*/
 
-extern int r_mortal_start_room;
-extern int r_immort_start_room;
-extern int r_frozen_start_room;
-extern int mortal_start_room;
-extern int immort_start_room;
-extern int frozen_start_room;
+int r_mortal_start_room;
+int r_immort_start_room;
+int r_frozen_start_room;
+int mortal_start_room;
+int immort_start_room;
+int frozen_start_room;
 
 /*------------------------------------------------------------------------*/
 /* function protos */
 
-void redit_disp_extradesc_menu(descriptor_data *d);
-void redit_disp_exit_menu(descriptor_data *d);
-void redit_disp_exit_flag_menu(descriptor_data *d);
-void redit_disp_flag_menu(descriptor_data *d);
-void redit_disp_sector_menu(descriptor_data *d);
-void redit_disp_menu(descriptor_data *d);
-void redit_parse(descriptor_data *d, char *arg);
-void redit_setup_new(descriptor_data *d);
-void redit_setup_existing(descriptor_data *d, int real_num);
+void redit_disp_extradesc_menu(DescriptorData *d);
+void redit_disp_exit_menu(DescriptorData *d);
+void redit_disp_exit_flag_menu(DescriptorData *d);
+void redit_disp_flag_menu(DescriptorData *d);
+void redit_disp_sector_menu(DescriptorData *d);
+void redit_disp_menu(DescriptorData *d);
+void redit_parse(DescriptorData *d, char *arg);
+void redit_setup_new(DescriptorData *d);
+void redit_setup_existing(DescriptorData *d, int real_num);
 void redit_save_to_disk(int zone);
-void redit_save_internally(descriptor_data *d);
-void free_room(room_data *room);
+void redit_save_internally(DescriptorData *d);
+void free_room(RoomData *room);
 
 /*------------------------------------------------------------------------*/
 
@@ -58,8 +58,8 @@ void free_room(room_data *room);
   Utils and exported functions.
 \*------------------------------------------------------------------------*/
 
-void redit_setup_new(descriptor_data *d) {
-    CREATE(OLC_ROOM(d), room_data, 1);
+void redit_setup_new(DescriptorData *d) {
+    CREATE(OLC_ROOM(d), RoomData, 1);
 
     OLC_ITEM_TYPE(d) = WLD_TRIGGER;
     OLC_ROOM(d)->name = strdup("An unfinished room");
@@ -70,14 +70,14 @@ void redit_setup_new(descriptor_data *d) {
 
 /*------------------------------------------------------------------------*/
 
-void redit_setup_existing(descriptor_data *d, int real_num) {
-    struct room_data *room;
+void redit_setup_existing(DescriptorData *d, int real_num) {
+    RoomData *room;
     int counter;
 
     /*
      * Build a copy of the room for editing.
      */
-    CREATE(room, room_data, 1);
+    CREATE(room, RoomData, 1);
 
     *room = world[real_num];
     /*
@@ -101,9 +101,9 @@ void redit_setup_existing(descriptor_data *d, int real_num) {
             room->exits[counter]->general_description =
                 (world[real_num].exits[counter]->general_description
                      ? strdup(world[real_num].exits[counter]->general_description)
-                     : NULL);
+                     : nullptr);
             room->exits[counter]->keyword =
-                (world[real_num].exits[counter]->keyword ? strdup(world[real_num].exits[counter]->keyword) : NULL);
+                (world[real_num].exits[counter]->keyword ? strdup(world[real_num].exits[counter]->keyword) : nullptr);
         }
     }
 
@@ -111,19 +111,19 @@ void redit_setup_existing(descriptor_data *d, int real_num) {
      * Extra descriptions, if necessary.
      */
     if (world[real_num].ex_description) {
-        struct extra_descr_data *this, *temp, *temp2;
-        CREATE(temp, extra_descr_data, 1);
+        ExtraDescriptionData *cur, *temp, *temp2;
+        CREATE(temp, ExtraDescriptionData, 1);
 
         room->ex_description = temp;
-        for (this = world[real_num].ex_description; this; this = this->next) {
-            temp->keyword = (this->keyword ? strdup(this->keyword) : NULL);
-            temp->description = (this->description ? strdup(this->description) : NULL);
-            if (this->next) {
-                CREATE(temp2, extra_descr_data, 1);
+        for (cur = world[real_num].ex_description; cur; cur = cur->next) {
+            temp->keyword = (cur->keyword ? strdup(cur->keyword) : nullptr);
+            temp->description = (cur->description ? strdup(cur->description) : nullptr);
+            if (cur->next) {
+                CREATE(temp2, ExtraDescriptionData, 1);
                 temp->next = temp2;
                 temp = temp2;
             } else
-                temp->next = NULL;
+                temp->next = nullptr;
         }
     }
 
@@ -139,12 +139,12 @@ void redit_setup_existing(descriptor_data *d, int real_num) {
 
 #define ZCMD (zone_table[zone].cmd[cmd_no])
 
-void redit_save_internally(descriptor_data *d) {
+void redit_save_internally(DescriptorData *d) {
     int i, j, room_num, found = 0, zone, cmd_no;
-    struct room_data *new_world;
-    struct char_data *temp_ch;
-    struct obj_data *temp_obj;
-    struct descriptor_data *dsc;
+    RoomData *new_world;
+    CharData *temp_ch;
+    ObjData *temp_obj;
+    DescriptorData *dsc;
 
     room_num = real_room(OLC_NUM(d));
     /*
@@ -159,7 +159,7 @@ void redit_save_internally(descriptor_data *d) {
         if (world[room_num].proto_script && world[room_num].proto_script != OLC_SCRIPT(d))
             free_proto_script(&world[room_num].proto_script);
         world[room_num] = *OLC_ROOM(d);
-        SCRIPT(&world[room_num]) = NULL;
+        SCRIPT(&world[room_num]) = nullptr;
         world[room_num].proto_script = OLC_SCRIPT(d);
         assign_triggers(&world[room_num], WLD_TRIGGER);
     } else { /* Room doesn't exist, hafta add it. */
@@ -171,10 +171,10 @@ void redit_save_internally(descriptor_data *d) {
         for (i = 0; i <= top_of_world; ++i)
             if (SCRIPT(&world[i])) {
                 extract_script(SCRIPT(&world[i]));
-                SCRIPT(&world[i]) = NULL;
+                SCRIPT(&world[i]) = nullptr;
             }
 
-        CREATE(new_world, room_data, top_of_world + 2);
+        CREATE(new_world, RoomData, top_of_world + 2);
 
         /*
          * Count through world tables.
@@ -185,10 +185,10 @@ void redit_save_internally(descriptor_data *d) {
                  * Is this the place?
                  */
                 if (world[i].vnum > OLC_NUM(d)) {
-                    found = TRUE;
+                    found = true;
                     new_world[i] = *(OLC_ROOM(d));
                     new_world[i].vnum = OLC_NUM(d);
-                    new_world[i].func = NULL;
+                    new_world[i].func = nullptr;
                     new_world[i].proto_script = OLC_SCRIPT(d);
                     room_num = i;
 
@@ -230,7 +230,7 @@ void redit_save_internally(descriptor_data *d) {
         if (!found) { /* Still not found, insert at top of table. */
             new_world[i] = *(OLC_ROOM(d));
             new_world[i].vnum = OLC_NUM(d);
-            new_world[i].func = NULL;
+            new_world[i].func = nullptr;
             new_world[i].proto_script = OLC_SCRIPT(d);
             room_num = i;
         }
@@ -268,7 +268,7 @@ void redit_save_internally(descriptor_data *d) {
                             "in zone %s.",
                             ZCMD.command, zone_table[zone].name);
                     log(buf);
-                    mudlog(buf, BRF, LVL_GOD, TRUE);
+                    mudlog(buf, BRF, LVL_GOD, true);
                 }
         /* update load rooms, to fix creeping load room problem */
         if (room_num <= r_mortal_start_room)
@@ -302,12 +302,12 @@ void redit_save_internally(descriptor_data *d) {
 void redit_save_to_disk(int zone_num) {
     int counter, counter2, realcounter;
     FILE *fp;
-    struct room_data *room;
-    struct extra_descr_data *ex_desc;
+    RoomData *room;
+    ExtraDescriptionData *ex_desc;
 
     sprintf(buf, "%s/%d.new", WLD_PREFIX, zone_table[zone_num].number);
     if (!(fp = fopen(buf, "w+"))) {
-        mudlog("SYSERR: OLC: Cannot open room file!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: Cannot open room file!", BRF, LVL_GOD, true);
         return;
     }
     for (counter = zone_table[zone_num].number * 100; counter <= zone_table[zone_num].top; counter++) {
@@ -400,9 +400,9 @@ void redit_save_to_disk(int zone_num) {
 
 /*------------------------------------------------------------------------*/
 
-void free_room(room_data *room) {
+void free_room(RoomData *room) {
     int i;
-    struct extra_descr_data *this, *next;
+    ExtraDescriptionData *cur, *next;
 
     if (room->name)
         free(room->name);
@@ -425,13 +425,13 @@ void free_room(room_data *room) {
     /*
      * Free extra descriptions.
      */
-    for (this = room->ex_description; this; this = next) {
-        next = this->next;
-        if (this->keyword)
-            free(this->keyword);
-        if (this->description)
-            free(this->description);
-        free(this);
+    for (cur = room->ex_description; cur; cur = next) {
+        next = cur->next;
+        if (cur->keyword)
+            free(cur->keyword);
+        if (cur->description)
+            free(cur->description);
+        free(cur);
     }
 }
 
@@ -442,8 +442,8 @@ void free_room(room_data *room) {
 /*
  * For extra descriptions.
  */
-void redit_disp_extradesc_menu(descriptor_data *d) {
-    struct extra_descr_data *extra_desc = OLC_DESC(d);
+void redit_disp_extradesc_menu(DescriptorData *d) {
+    ExtraDescriptionData *extra_desc = OLC_DESC(d);
 
     sprintf(buf,
 #if defined(CLEAR_SCREEN)
@@ -464,7 +464,7 @@ void redit_disp_extradesc_menu(descriptor_data *d) {
 /*
  * For exits.
  */
-void redit_disp_exit_menu(descriptor_data *d) {
+void redit_disp_exit_menu(DescriptorData *d) {
     /*
      * if exit doesn't exist, alloc/create it
      */
@@ -508,7 +508,7 @@ void redit_disp_exit_menu(descriptor_data *d) {
 /*
  * For exit flags.
  */
-void redit_disp_exit_flag_menu(descriptor_data *d) {
+void redit_disp_exit_flag_menu(DescriptorData *d) {
     get_char_cols(d->character);
     sprintf(buf,
             "%s0%s) No door\r\n"
@@ -524,7 +524,7 @@ void redit_disp_exit_flag_menu(descriptor_data *d) {
  * For room flags.
  */
 #define FLAG_INDEX ((NUM_ROOM_FLAGS / columns + 1) * j + i)
-void redit_disp_flag_menu(descriptor_data *d) {
+void redit_disp_flag_menu(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -556,7 +556,7 @@ void redit_disp_flag_menu(descriptor_data *d) {
  * For sector type.
  */
 #define TYPE_INDEX ((NUM_SECTORS / columns + 1) * j + i)
-void redit_disp_sector_menu(descriptor_data *d) {
+void redit_disp_sector_menu(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -581,8 +581,8 @@ void redit_disp_sector_menu(descriptor_data *d) {
 /*
  * The main menu.
  */
-void redit_disp_menu(descriptor_data *d) {
-    struct room_data *room;
+void redit_disp_menu(DescriptorData *d) {
+    RoomData *room;
 
     get_char_cols(d->character);
     room = OLC_ROOM(d);
@@ -624,7 +624,7 @@ void redit_disp_menu(descriptor_data *d) {
  *                        The main loop                                   *
  **************************************************************************/
 
-void redit_parse(descriptor_data *d, char *arg) {
+void redit_parse(DescriptorData *d, char *arg) {
     int number;
 
     switch (OLC_MODE(d)) {
@@ -634,7 +634,7 @@ void redit_parse(descriptor_data *d, char *arg) {
         case 'Y':
             redit_save_internally(d);
             sprintf(buf, "OLC: %s edits room %d.", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             /*
              * Do NOT free strings! Just the room structure.
              */
@@ -711,8 +711,8 @@ void redit_parse(descriptor_data *d, char *arg) {
         case 'F':
             /* if extra desc doesn't exist . */
             if (!OLC_ROOM(d)->ex_description) {
-                CREATE(OLC_ROOM(d)->ex_description, extra_descr_data, 1);
-                OLC_ROOM(d)->ex_description->next = NULL;
+                CREATE(OLC_ROOM(d)->ex_description, ExtraDescriptionData, 1);
+                OLC_ROOM(d)->ex_description->next = nullptr;
             }
             OLC_DESC(d) = OLC_ROOM(d)->ex_description;
             redit_disp_extradesc_menu(d);
@@ -744,7 +744,7 @@ void redit_parse(descriptor_data *d, char *arg) {
         /*
          * We will NEVER get here, we hope.
          */
-        mudlog("SYSERR: Reached REDIT_DESC case in parse_redit", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: Reached REDIT_DESC case in parse_redit", BRF, LVL_GOD, true);
         break;
 
     case REDIT_FLAGS:
@@ -806,7 +806,7 @@ void redit_parse(descriptor_data *d, char *arg) {
                 free(OLC_EXIT(d)->general_description);
             if (OLC_EXIT(d))
                 free(OLC_EXIT(d));
-            OLC_EXIT(d) = NULL;
+            OLC_EXIT(d) = nullptr;
             break;
         default:
             send_to_char("Try again:\r\n", d->character);
@@ -826,13 +826,13 @@ void redit_parse(descriptor_data *d, char *arg) {
 
     case REDIT_EXIT_DESCRIPTION:
         /* we should NEVER get here */
-        mudlog("SYSERR: Reached REDIT_EXIT_DESC case in parse_redit", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: Reached REDIT_EXIT_DESC case in parse_redit", BRF, LVL_GOD, true);
         break;
 
     case REDIT_EXIT_KEYWORD:
         if (OLC_EXIT(d)->keyword)
             free(OLC_EXIT(d)->keyword);
-        OLC_EXIT(d)->keyword = ((arg && *arg) ? strdup(arg) : NULL);
+        OLC_EXIT(d)->keyword = ((arg && *arg) ? strdup(arg) : nullptr);
         redit_disp_exit_menu(d);
         return;
 
@@ -871,7 +871,7 @@ void redit_parse(descriptor_data *d, char *arg) {
         return;
 
     case REDIT_EXTRADESC_KEY:
-        OLC_DESC(d)->keyword = ((arg && *arg) ? strdup(arg) : NULL);
+        OLC_DESC(d)->keyword = ((arg && *arg) ? strdup(arg) : nullptr);
         redit_disp_extradesc_menu(d);
         return;
 
@@ -883,7 +883,7 @@ void redit_parse(descriptor_data *d, char *arg) {
              * when backing out to the menu.
              */
             if (!OLC_DESC(d)->keyword || !OLC_DESC(d)->description) {
-                struct extra_descr_data **tmp_desc;
+                ExtraDescriptionData **tmp_desc;
 
                 if (OLC_DESC(d)->keyword)
                     free(OLC_DESC(d)->keyword);
@@ -895,7 +895,7 @@ void redit_parse(descriptor_data *d, char *arg) {
                  */
                 for (tmp_desc = &(OLC_ROOM(d)->ex_description); *tmp_desc; tmp_desc = &((*tmp_desc)->next))
                     if (*tmp_desc == OLC_DESC(d)) {
-                        *tmp_desc = NULL;
+                        *tmp_desc = nullptr;
                         break;
                     }
                 free(OLC_DESC(d));
@@ -916,13 +916,13 @@ void redit_parse(descriptor_data *d, char *arg) {
                 send_to_char("You can't edit the next extra desc without completing this one.\r\n", d->character);
                 redit_disp_extradesc_menu(d);
             } else {
-                struct extra_descr_data *new_extra;
+                ExtraDescriptionData *new_extra;
 
                 if (OLC_DESC(d)->next)
                     OLC_DESC(d) = OLC_DESC(d)->next;
                 else {
                     /* make new extra, attach at end */
-                    CREATE(new_extra, extra_descr_data, 1);
+                    CREATE(new_extra, ExtraDescriptionData, 1);
                     OLC_DESC(d)->next = new_extra;
                     OLC_DESC(d) = new_extra;
                 }
@@ -934,7 +934,7 @@ void redit_parse(descriptor_data *d, char *arg) {
 
     default:
         /* we should never get here */
-        mudlog("SYSERR: Reached default case in parse_redit", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: Reached default case in parse_redit", BRF, LVL_GOD, true);
         break;
     }
     /*. If we get this far, something has be changed . */

@@ -17,37 +17,52 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-// extern struct attack_hit_type attack_hit_text[];
+/* Weapon attack texts */
+
+struct AttackHitType {
+    const char *singular;
+    const char *plural;
+};
+
+struct AttackHitType attack_hit_text[] = {{"hit", "hits"}, /* 0 */
+                                          {"sting", "stings"},   {"whip", "whips"},         {"slash", "slashes"},
+                                          {"bite", "bites"},     {"bludgeon", "bludgeons"}, /* 5 */
+                                          {"crush", "crushes"},  {"pound", "pounds"},       {"claw", "claws"},
+                                          {"maul", "mauls"},     {"thrash", "thrashes"}, /* 10 */
+                                          {"pierce", "pierces"}, {"blast", "blasts"},       {"punch", "punches"},
+                                          {"stab", "stabs"},     {"burn", "burns"}, /* 15 */
+                                          {"freeze", "freezes"}, {"corrode", "corrodes"},   {"shock", "shocks"},
+                                          {"poison", "poisons"}, {"smite", "smites"}}; /* 20 */
 
 /* General target linking */
-void set_battling(char_data *ch, char_data *target);
-void stop_battling(char_data *ch);
-void stop_attackers(char_data *ch);
-void set_fighting(char_data *ch, char_data *vict, bool reciprocate);
-void stop_merciful_attackers(char_data *ch);
+void set_battling(CharData *ch, CharData *target);
+void stop_battling(CharData *ch);
+void stop_attackers(CharData *ch);
+void set_fighting(CharData *ch, CharData *vict, bool reciprocate);
+void stop_merciful_attackers(CharData *ch);
 #define stop_fighting stop_battling
-void transfer_battle(char_data *ch, char_data *tch);
+void transfer_battle(CharData *ch, CharData *tch);
 
-void check_killer(char_data *ch, char_data *vict);
-bool check_disarmed(char_data *ch);
-bool is_aggr_to(char_data *ch, char_data *target);
-bool sling_weapon(char_data *ch, int position);
-int weapon_proficiency(obj_data *weapon, int position);
+void check_killer(CharData *ch, CharData *vict);
+bool check_disarmed(CharData *ch);
+bool is_aggr_to(CharData *ch, CharData *target);
+bool sling_weapon(CharData *ch, int position);
+int weapon_proficiency(ObjData *weapon, int position);
 int calc_thac0(int level, int thac0_01, int thac0_00);
 EVENTFUNC(quick_aggro_event);
 void load_messages(void);
 void free_messages(void);
-void death_cry(char_data *ch);
-void perform_die(char_data *ch, char_data *killer);
-void die(char_data *ch, char_data *killer);
-bool skill_message(int dam, char_data *ch, char_data *vict, int attacktype, bool death);
-int damage(char_data *ch, char_data *victim, int dam, int attacktype);
-void hit(char_data *ch, char_data *victim, int type);
+void death_cry(CharData *ch);
+void perform_die(CharData *ch, CharData *killer);
+void die(CharData *ch, CharData *killer);
+bool skill_message(int dam, CharData *ch, CharData *vict, int attacktype, bool death);
+int damage(CharData *ch, CharData *victim, int dam, int attacktype);
+void hit(CharData *ch, CharData *victim, int type);
 void perform_violence(void);
-void pickup_dropped_weapon(char_data *ch);
-int blessed_blow(char_data *ch, obj_data *weapon);
-bool area_attack_target(char_data *ch, char_data *tch);
-bool attack_ok(char_data *ch, char_data *victim, bool verbose);
-bool mass_attack_ok(char_data *ch, char_data *victim, bool verbose);
-void stop_fighting(char_data *ch);
+void pickup_dropped_weapon(CharData *ch);
+int blessed_blow(CharData *ch, ObjData *weapon);
+bool area_attack_target(CharData *ch, CharData *tch);
+bool attack_ok(CharData *ch, CharData *victim, bool verbose);
+bool mass_attack_ok(CharData *ch, CharData *victim, bool verbose);
+void stop_fighting(CharData *ch);
 #define attack(ch, victim) hit(ch, victim, TYPE_UNDEFINED)

@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include "queue.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -19,34 +20,40 @@
 #define EVENT_PREVENT_FREE_OBJ (-1)
 #define EVENT_FORCE_FREE_OBJ (-2)
 
-struct event {
+struct GenericEventData {
+    CharData *ch;
+    CharData *vict;
+    ObjData *obj;
+};
+
+struct Event {
     int num;
     EVENTFUNC(*func);
     void *event_obj;
     bool free_obj;
-    struct q_element *q_el;
-    struct event **eventlist, *next;
+    QElement *q_el;
+    Event **eventlist, *next;
 };
 
-void sethurtevent(char_data *ch, char_data *vict, int dam);
-void overweight_check(char_data *ch);
+void sethurtevent(CharData *ch, CharData *vict, int dam);
+void overweight_check(CharData *ch);
 
-bool char_has_event(char_data *ch, int eventtype);
-bool char_has_delayed_command(char_data *ch, const char *command);
+bool char_has_event(CharData *ch, int eventtype);
+bool char_has_delayed_command(CharData *ch, const char *command);
 
 /* function protos need by other modules */
 void event_init(void);
-struct event *event_create(int eventnum, EVENTFUNC(*func), void *event_obj, bool free_obj, event **list, long when);
+Event *event_create(int eventnum, EVENTFUNC(*func), void *event_obj, bool free_obj, Event **list, long when);
 
-void cancel_event(event *eventlist, int eventtype);
-void event_cancel(event *event);
+void cancel_event(Event *eventlist, int eventtype);
+void event_cancel(Event *event);
 void event_process(void);
-long event_time(event *event);
+long event_time(Event *event);
 void event_free_all(void);
-const char *eventname(event *e);
-void cancel_event_list(event **list);
-struct generic_event_data *mkgenericevent(char_data *ch, char_data *vict, obj_data *obj);
-void delayed_command(char_data *ch, char *command, int delay, bool repeatable);
+const char *eventname(Event *e);
+void cancel_event_list(Event **list);
+GenericEventData *mkgenericevent(CharData *ch, CharData *vict, ObjData *obj);
+void delayed_command(CharData *ch, char *command, int delay, bool repeatable);
 
 #define EVENT_AUTODOUSE 1
 #define EVENT_CAMP 2
@@ -93,51 +100,45 @@ EVENTFUNC(command_event);
 
 /* These are often used for event_obj. */
 
-struct generic_event_data {
-    struct char_data *ch;
-    struct char_data *vict;
-    struct obj_data *obj;
-};
-
-struct sink_and_lose {
-    struct obj_data *obj;
+struct SinkAndLose {
+    ObjData *obj;
     int room;
 };
 
 /* name approval time out event */
-struct name_timeout_event {
-    struct descriptor_data *d;
+struct NameTimeoutEvent {
+    DescriptorData *d;
 };
 
 /* Used for time-based spells */
-struct spell_area_event_obj {
+struct SpellAreaEventObj {
     int spell;
     int room;
-    struct char_data *ch;
+    CharData *ch;
 };
 
-struct track_info {
+struct TrackInfo {
     sh_int speed;
     sh_int range;
     sh_int sense;
 };
-struct recall_event_obj {
-    struct char_data *ch;
+struct RecallEventObj {
+    CharData *ch;
     int from_room;
     int room;
 };
 
 /* Used to undo wandering woods spell */
-struct room_undo_event_obj {
+struct RoomUndoEventObj {
     int exit;
     int room;
     int connect_room;
 };
 
 /* Used for delayed spell damage effects */
-struct delayed_cast_event_obj {
-    struct char_data *ch;
-    struct char_data *victim;
+struct DelayedCastEventObj {
+    CharData *ch;
+    CharData *victim;
     int spell;
     int room;
     int rounds;
@@ -149,27 +150,27 @@ struct delayed_cast_event_obj {
                        or does the spell continue on its own (false)? */
 };
 
-struct track_delayed_event_obj {
-    struct track_info track;
-    struct char_data *victim;
-    struct char_data *ch;
+struct TrackDelayedEventObj {
+    TrackInfo track;
+    CharData *victim;
+    CharData *ch;
     int track_room;
 };
 
-struct gravity_event_obj {
-    struct char_data *ch;
-    struct obj_data *obj;
+struct GravityEventObj {
+    CharData *ch;
+    ObjData *obj;
     int distance_fallen;
     int start_room;
 };
 
-struct hurt_event_data {
-    struct char_data *victim;
-    struct char_data *attacker;
+struct HurtEventData {
+    CharData *victim;
+    CharData *attacker;
     int damage;
 };
 
-struct command_event_data {
-    struct char_data *ch;
+struct CommandEventData {
+    CharData *ch;
     char *cmd;
 };

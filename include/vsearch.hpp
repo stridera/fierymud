@@ -16,4 +16,4 @@
 #include "sysdep.hpp"
 
 int print_char_listheader(char *lbuf);
-int print_char_listitem(char_data *mob, char *lbuf, int nfound);
+int print_char_listitem(CharData *mob, char *lbuf, int nfound);

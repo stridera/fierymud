@@ -31,14 +31,14 @@
  * == Rule matching ==
  *
  *   This is the most common interaction with the rule system.  Users of
- *   rule matching will only be aware of the base rule_t type, and
+ *   rule matching will only be aware of the base Rule type, and
  *   should only interact with the public rule interface, namely, the
  *   following function signatures:
  *
- *       bool rule_matches(rule_t *, char_data *);
- *       void free_rule(rule_t *);
- *       void sprint_rule(char *, rule_t *);
- *       rule_t *parse_rule(const char *);
+ *       bool rule_matches(Rule *, CharData *);
+ *       void free_rule(Rule *);
+ *       void sprint_rule(char *, Rule *);
+ *       Rule *parse_rule(const char *);
  *   This role also also covers saving rules to disk and loading
  *   them back again via the sprint_rule and parse_rule operations.
  *   The rule matching role is most commonly concerned with actions such
@@ -69,7 +69,7 @@
  *            // race_rule_vtable must be pre-declared at this point
  *            race_rule *rr = MAKE_RULE(race, race_rule);
  *            rr->race = race;
- *            return (rule_t *) rr;
+ *            return (Rule *) rr;
  *          }
  *
  *     3) Define the six v-table functions:
@@ -120,7 +120,7 @@
  *
  *          DECLARE_RULE_VTABLE(race);
  *          ...
- *          struct rule_vtable *vtable_list[] = {
+ *          struct RuleVTable *vtable_list[] = {
  *            ...
  *            &RULE_VTABLE(race),
  *            ...
@@ -136,14 +136,15 @@
  */
 
 /* PRIVATE INTERFACE */
+struct Rule;
 
 /* Define interfaces for rule functions */
-#define RULE_SIG_MATCHER(funcname) bool funcname(const rule_t *_rule, char_data *ch)
-#define RULE_SIG_DESTRUCTOR(funcname) void funcname(rule_t *_rule)
-#define RULE_SIG_PRINT(funcname) void funcname(char *buf, size_t size, const rule_t *_rule)
-#define RULE_SIG_ABBR(funcname) void funcname(char *buf, size_t size, const rule_t *_rule)
-#define RULE_SIG_VERBOSE(funcname) void funcname(char *buf, size_t size, const rule_t *_rule)
-#define RULE_SIG_PARSE(funcname) rule_t *funcname(const char *buf)
+#define RULE_SIG_MATCHER(funcname) bool funcname(const Rule *_rule, CharData *ch)
+#define RULE_SIG_DESTRUCTOR(funcname) void funcname(Rule *_rule)
+#define RULE_SIG_PRINT(funcname) void funcname(char *buf, size_t size, const Rule *_rule)
+#define RULE_SIG_ABBR(funcname) void funcname(char *buf, size_t size, const Rule *_rule)
+#define RULE_SIG_VERBOSE(funcname) void funcname(char *buf, size_t size, const Rule *_rule)
+#define RULE_SIG_PARSE(funcname) Rule *funcname(const char *buf)
 
 /* PROTECTED INTERFACE */
 
@@ -155,10 +156,11 @@
  */
 #define BEGIN_RULE_FUNC_MATCHER(vtable, datatype)                                                                      \
     RULE_SIG_MATCHER((_##vtable##_matcher)) {                                                                          \
-        datatype *rule = (datatype *)_rule;
+        (void)_rule;                                                                                                   \
+        const datatype *rule = (datatype *)_rule;
 #define BEGIN_RULE_FUNC_DESTRUCTOR(vtable, datatype)                                                                   \
     RULE_SIG_DESTRUCTOR((_##vtable##_destructor)) {                                                                    \
-        datatype *rule = (datatype *)_rule;
+        const datatype *rule = (datatype *)_rule;
 #define BEGIN_RULE_FUNC_PRINT(vtable, datatype)                                                                        \
     RULE_SIG_PRINT((_##vtable##_print)) {                                                                              \
         const datatype *rule = (const datatype *)_rule;
@@ -172,14 +174,14 @@
 
 #define END_RULE_FUNC }
 
-#define RULE_CONSTRUCTOR(funcname) rule_t *funcname /* args go here */
+#define RULE_CONSTRUCTOR(funcname) Rule *funcname /* args go here */
 
 /*
  * Macros for defining rule data types.
  */
 #define BEGIN_RULE_DATATYPE                                                                                            \
-    typedef struct {                                                                                                   \
-        struct rule_vtable *_vtable
+    struct {                                                                                                           \
+        RuleVTable *_vtable
 #define PUBLISH_RULE_DATATYPE(datatype)                                                                                \
     }                                                                                                                  \
     datatype
@@ -193,37 +195,24 @@
 #define RSTRINGIFY2(str) #str
 
 #define PUBLISH_RULE_VTABLE(vtable)                                                                                    \
-    struct rule_vtable RULE_VTABLE(vtable) = {RSTRINGIFY1(vtable), _##vtable##_matcher, _##vtable##_destructor,        \
-                                              _##vtable##_print,   _##vtable##_abbr,    _##vtable##_verbose,           \
-                                              _##vtable##_parse}
+    RuleVTable RULE_VTABLE(vtable) = {RSTRINGIFY1(vtable), _##vtable##_matcher, _##vtable##_destructor,                \
+                                      _##vtable##_print,   _##vtable##_abbr,    _##vtable##_verbose,                   \
+                                      _##vtable##_parse}
 
 /* Manual lets you pick and choose funcs so you can borrow from other
  * existing vtables
  */
 #define PUBLISH_RULE_VTABLE_MANUAL(vtable, matcher_vtable, destructor_vtable, print_vtable, abbr_vtable,               \
                                    verbose_vtable, parse_vtable)                                                       \
-    struct rule_vtable RULE_VTABLE(vtable) = {                                                                         \
+    struct RuleVTable RULE_VTABLE(vtable) = {                                                                          \
         RSTRINGIFY1(vtable),     _##matcher_vtable##_matcher, _##destructor_vtable##_destructor,                       \
         _##print_vtable##_print, _##abbr_vtable##_abbr,       _##verbose_vtable##_verbose,                             \
         _##parse_vtable##_parse}
 
-#define DECLARE_RULE_VTABLE(vtable) extern struct rule_vtable RULE_VTABLE(vtable)
-
-/* The generic ("base") rule data type */
-/*
- * BEGIN_RULE_DATATYPE;
- * PUBLISH_RULE_DATATYPE(rule_t);
- */
-/* Define it manually, since other header files need to be able to
- * refer to it without using the typedef :(
- */
-struct rule {
-    struct rule_vtable *_vtable;
-};
-typedef struct rule rule_t;
+#define DECLARE_RULE_VTABLE(vtable) struct RuleVTable RULE_VTABLE(vtable)
 
 /* V-table structure */
-struct rule_vtable {
+struct RuleVTable {
     char *name;
     RULE_SIG_MATCHER((*matcher));
     RULE_SIG_DESTRUCTOR((*destructor));
@@ -233,9 +222,21 @@ struct rule_vtable {
     RULE_SIG_PARSE((*parse));
 };
 
-extern void REGISTER_RULE_VTABLE(rule_vtable *vtable);
+/* The generic ("base") rule data type */
+/*
+ * BEGIN_RULE_DATATYPE;
+ * PUBLISH_RULE_DATATYPE(Rule);
+ */
+/* Define it manually, since other header files need to be able to
+ * refer to it without using the typedef :(
+ */
+struct Rule {
+    RuleVTable *_vtable;
+};
 
-extern void *rulealloc(size_t elsize, rule_vtable *vtable);
+void register_rule_vtable(RuleVTable *vtable);
+
+Rule *rulealloc(size_t elsize, RuleVTable *vtable);
 
 #define MAKE_RULE(vtable, datatype) ((datatype *)rulealloc(sizeof(datatype), &RULE_VTABLE(vtable)))
 
@@ -247,14 +248,14 @@ extern void *rulealloc(size_t elsize, rule_vtable *vtable);
 
 #define free_rule(rule) ((rule)->_vtable->destructor)(rule)
 
-extern void sprint_rule(char *, size_t, rule *);
+void sprint_rule(char *, size_t, Rule *);
 
 #define rule_abbr(buf, rule) ((rule)->_vtable->abbr)((buf), 4, (rule))
 
 #define rule_verbose(buf, size, rule) ((rule)->_vtable->verbose)((buf), (size), (rule))
 
-extern rule_t *parse_rule(const char *);
+Rule *parse_rule(const char *);
 
-extern void init_rules();
+void init_rules();
 
-extern struct rule *make_level_rule(int min, int max);
+Rule *make_level_rule(int min, int max);

@@ -15,24 +15,24 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-extern void string_write_limit(descriptor_data *d, char **writeto, size_t len, int maxlines);
-extern void string_write(descriptor_data *d, char **writeto, size_t len);
-extern void mail_write(descriptor_data *d, char **writeto, size_t len, long recipient);
+void string_write_limit(DescriptorData *d, char **writeto, size_t len, int maxlines);
+void string_write(DescriptorData *d, char **writeto, size_t len);
+void mail_write(DescriptorData *d, char **writeto, size_t len, long recipient);
 
 /* PAGING */
 
 /* page_string and page_string_desc will also start paging */
-extern void page_string(char_data *ch, const char *str);
-extern void page_string_desc(descriptor_data *d, const char *str);
+void page_string(CharData *ch, const char *str);
+void page_string_desc(DescriptorData *d, const char *str);
 
 /* paging_printf will collect data, but you must then call start_paging */
-extern void paging_printf(const struct char_data *ch, const char *messg, ...) __attribute__((format(printf, 2, 3)));
-extern void desc_paging_printf(descriptor_data *d, const char *messg, ...) __attribute__((format(printf, 2, 3)));
+void paging_printf(CharData *ch, const char *messg, ...) __attribute__((format(printf, 2, 3)));
+void desc_paging_printf(DescriptorData *d, const char *messg, ...) __attribute__((format(printf, 2, 3)));
 
-extern void start_paging(char_data *ch);
-extern void start_paging_desc(descriptor_data *desc);
-extern void free_paged_text(descriptor_data *d);
-extern void get_paging_input(descriptor_data *d, char *input);
+void start_paging(CharData *ch);
+void start_paging_desc(DescriptorData *desc);
+void free_paged_text(DescriptorData *d);
+void get_paging_input(DescriptorData *d, char *input);
 
 #define pprintf paging_printf
 #define pdprintf desc_paging_printf

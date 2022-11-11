@@ -34,21 +34,21 @@ ACMD(do_kick);
 ACMD(do_rescue);
 
 /* External functions */
-bool has_piercing_weapon(char_data *ch);
+bool has_piercing_weapon(CharData *ch);
 
 /*
  * warrior_ai_action
  *
- * Basic warrior mob AI.  Returns TRUE if an action is taken, FALSE
+ * Basic warrior mob AI.  Returns true if an action is taken, false
  * otherwise.
  */
-bool warrior_ai_action(char_data *ch, char_data *victim) {
+bool warrior_ai_action(CharData *ch, CharData *victim) {
     int roll, i;
-    struct char_data *tch;
+    CharData *tch;
 
     if (!victim) {
-        mudlog("No victim in warrior AI action.", NRM, LVL_GOD, FALSE);
-        return FALSE;
+        mudlog("No victim in warrior AI action.", NRM, LVL_GOD, false);
+        return false;
     }
 
     /*
@@ -70,7 +70,7 @@ bool warrior_ai_action(char_data *ch, char_data *victim) {
             if (is_grouped(FIGHTING(ch), tch) && !IS_NPC(tch) && CAN_SEE(ch, tch) && CASTING(tch) && i <= 2 &&
                 i >= -1) {
                 do_bash(ch, GET_NAME(tch), 0, 0);
-                return TRUE;
+                return true;
             }
         }
 
@@ -82,7 +82,7 @@ bool warrior_ai_action(char_data *ch, char_data *victim) {
      * if the mobile has the skills.
      */
     if (dragonlike_attack(ch))
-        return TRUE;
+        return true;
 
     /*
      * KICK / BASH / HITALL / BODYSLAM / BACKSTAB (for mercs) / RESCUE
@@ -98,11 +98,11 @@ bool warrior_ai_action(char_data *ch, char_data *victim) {
         if (CAN_SEE(ch, victim) && roll < GET_LEVEL(ch) && GET_SKILL(ch, SKILL_BODYSLAM) && !FIGHTING(ch) &&
             GET_POS(victim) >= POS_STANDING) {
             do_bash(ch, GET_NAME(victim), 0, SCMD_BODYSLAM);
-            return TRUE;
+            return true;
         }
         if (roll > 75 && GET_SKILL(ch, SKILL_HITALL) && FIGHTING(ch)) {
             do_hitall(ch, "", 0, SCMD_HITALL);
-            return TRUE;
+            return true;
         }
         /*
          * BACKSTAB
@@ -113,7 +113,7 @@ bool warrior_ai_action(char_data *ch, char_data *victim) {
         if (CAN_SEE(ch, victim) && roll > 95 && GET_SKILL(ch, SKILL_BACKSTAB) && has_piercing_weapon(ch) &&
             !is_tanking(ch)) {
             do_backstab(ch, GET_NAME(victim), 0, 0);
-            return TRUE;
+            return true;
         }
         /*
          * To attempt a bash we need a) skill in bash, b) a shield, c)
@@ -128,7 +128,7 @@ bool warrior_ai_action(char_data *ch, char_data *victim) {
             GET_SKILL(ch, SKILL_BASH) && GET_EQ(ch, WEAR_SHIELD) && GET_POS(victim) >= POS_STANDING && i <= 2 &&
             i > -1 && !MOB_FLAGGED(victim, MOB_NOBASH)) {
             do_bash(ch, GET_NAME(victim), 0, SCMD_BASH);
-            return TRUE;
+            return true;
         }
         /* This would probably not work very well, because the GET_NAME refers to
            a mob, and we don't know if it's 1.guard or 2.guard etc.  Skills need
@@ -142,14 +142,14 @@ bool warrior_ai_action(char_data *ch, char_data *victim) {
                     GET_HIT(ch) > GET_MAX_HIT(ch) / 2 &&
                     GET_HIT(ch) > GET_HIT(tch)) {
               do_rescue(ch, GET_NAME(tch), 0, 0);
-              return TRUE;
+              return true;
             }
         */
         if (GET_SKILL(ch, SKILL_KICK)) {
             do_kick(ch, GET_NAME(victim), 0, 0);
-            return TRUE;
+            return true;
         }
     }
 
-    return FALSE;
+    return false;
 }

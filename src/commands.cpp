@@ -31,26 +31,21 @@
  */
 /* The dynamically allocated array of command groups. */
 #define top_of_cmd_groups (cmd_groups + num_cmd_groups)
-struct command_group *cmd_groups = NULL;
-int num_cmd_groups = 0;
-
-/* Command groups list; MUST have the same # of entries as cmd_info */
-struct command_group_info *grp_info = NULL;
 
 /*
  * Private interface
  */
 #define VALID_GROUP_NUM(gg) ((gg) >= cmd_groups && (gg) < top_of_cmd_groups)
 #define GROUP_NUM(gg) ((gg)-cmd_groups)
-static void gedit_setup_existing(descriptor_data *d, int group);
-static void gedit_setup_new(descriptor_data *d);
-static void gedit_save_internally(descriptor_data *d);
+static void gedit_setup_existing(DescriptorData *d, int group);
+static void gedit_setup_new(DescriptorData *d);
+static void gedit_save_internally(DescriptorData *d);
 static void gedit_save_to_disk();
 
-int command_group_number(command_group *group) { return VALID_GROUP_NUM(group) ? GROUP_NUM(group) : -1; }
+int command_group_number(CommandGroup *group) { return VALID_GROUP_NUM(group) ? GROUP_NUM(group) : -1; }
 
 int find_command_group(char *name) {
-    struct command_group *group = cmd_groups;
+    CommandGroup *group = cmd_groups;
 
     while (group < top_of_cmd_groups) {
         if (!str_cmp(group->alias, name))
@@ -62,7 +57,7 @@ int find_command_group(char *name) {
 }
 
 static void free_command_groups() {
-    struct command_group *group;
+    CommandGroup *group;
     int cmd;
 
     for (group = cmd_groups; group < top_of_cmd_groups; ++group) {
@@ -75,33 +70,33 @@ static void free_command_groups() {
     }
     if (cmd_groups)
         free(cmd_groups);
-    cmd_groups = NULL;
+    cmd_groups = nullptr;
     num_cmd_groups = 0;
 
     for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
         if (grp_info[cmd].groups) {
             free(grp_info[cmd].groups);
-            grp_info[cmd].groups = NULL;
+            grp_info[cmd].groups = nullptr;
         }
 }
 
-bool can_use_command(char_data *ch, int cmd) {
+bool can_use_command(CharData *ch, int cmd) {
     /* NPCs can't have grants */
     if (cmd < 0 || cmd >= num_of_cmds)
-        return FALSE;
+        return false;
     else if (IS_NPC(ch))
         return CMD_USEABLE_FOR_LEVEL(ch, cmd);
     else if (IS_FLAGGED(GET_GRANT_CACHE(ch), cmd))
-        return TRUE;
+        return true;
     else if (IS_FLAGGED(GET_REVOKE_CACHE(ch), cmd))
-        return FALSE;
+        return false;
     else
         return CMD_USEABLE_FOR_LEVEL(ch, cmd);
 }
 
 ACMD(do_gedit) {
     int group;
-    struct descriptor_data *d;
+    DescriptorData *d;
 
     if (IS_NPC(ch) || !ch->desc)
         return;
@@ -119,7 +114,7 @@ ACMD(do_gedit) {
     else if (!str_cmp(arg, "save")) {
         send_to_char("Saving all command groups.\r\n", ch);
         sprintf(buf, "OLC: %s saves command groups.", GET_NAME(ch));
-        mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+        mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
         gedit_save_to_disk();
         return;
     } else if ((group = find_command_group(arg)) < 0) {
@@ -137,7 +132,7 @@ ACMD(do_gedit) {
     d = ch->desc;
 
     /* Give descriptor an OLC structure */
-    CREATE(d->olc, olc_data, 1);
+    CREATE(d->olc, OLCData, 1);
 
     if (group >= 0)
         gedit_setup_existing(d, group);
@@ -145,21 +140,21 @@ ACMD(do_gedit) {
         gedit_setup_new(d);
     STATE(d) = CON_GEDIT;
 
-    act("$n starts using OLC.", TRUE, d->character, 0, 0, TO_ROOM);
+    act("$n starts using OLC.", true, d->character, 0, 0, TO_ROOM);
     SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
 }
 
-static void gedit_setup_existing(descriptor_data *d, int group) {
+static void gedit_setup_existing(DescriptorData *d, int group) {
     int cmd, grp, count = 0;
 
     OLC_NUM(d) = group;
 
-    CREATE(OLC_GROUP(d), olc_command_group, 1);
+    CREATE(OLC_GROUP(d), OLCCommandGroup, 1);
 
     OLC_GROUP(d)->alias = strdup(cmd_groups[group].alias);
     OLC_GROUP(d)->name = strdup(cmd_groups[group].name);
     OLC_GROUP(d)->description = strdup(cmd_groups[group].description);
-    OLC_GROUP(d)->commands = NULL;
+    OLC_GROUP(d)->commands = nullptr;
 
     for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
         if (grp_info[cmd].groups)
@@ -183,21 +178,21 @@ static void gedit_setup_existing(descriptor_data *d, int group) {
     OLC_VAL(d) = 0;
 }
 
-static void gedit_setup_new(descriptor_data *d) {
+static void gedit_setup_new(DescriptorData *d) {
     OLC_NUM(d) = -1;
 
-    CREATE(OLC_GROUP(d), olc_command_group, 1);
+    CREATE(OLC_GROUP(d), OLCCommandGroup, 1);
 
     OLC_GROUP(d)->alias = strdup("newgroup");
     OLC_GROUP(d)->name = strdup("New Command Group");
     OLC_GROUP(d)->description = strdup("A new command group.\r\n");
-    OLC_GROUP(d)->commands = NULL;
+    OLC_GROUP(d)->commands = nullptr;
 
     gedit_disp_menu(d);
     OLC_VAL(d) = 0;
 }
 
-void gedit_parse(descriptor_data *d, char *arg) {
+void gedit_parse(DescriptorData *d, char *arg) {
     int num, i;
 
     switch (OLC_MODE(d)) {
@@ -231,7 +226,7 @@ void gedit_parse(descriptor_data *d, char *arg) {
         case 'c':
             write_to_output("All commands cleared.\r\n", d);
             free(OLC_GROUP(d)->commands);
-            OLC_GROUP(d)->commands = NULL;
+            OLC_GROUP(d)->commands = nullptr;
             OLC_VAL(d) = 1;
             gedit_disp_menu(d);
             break;
@@ -353,7 +348,7 @@ void gedit_parse(descriptor_data *d, char *arg) {
             write_to_output("Saving command group in memory.\r\n", d);
             gedit_save_internally(d);
             sprintf(buf, "OLC: %s edits command group %s.", GET_NAME(d->character), OLC_GROUP(d)->alias);
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             /* Fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);
@@ -370,8 +365,8 @@ void gedit_parse(descriptor_data *d, char *arg) {
     OLC_VAL(d) = 1;
 }
 
-void gedit_disp_menu(descriptor_data *d) {
-    struct olc_command_group *group = OLC_GROUP(d);
+void gedit_disp_menu(DescriptorData *d) {
+    OLCCommandGroup *group = OLC_GROUP(d);
     int i;
 
     get_char_cols(d->character);
@@ -410,16 +405,16 @@ void gedit_disp_menu(descriptor_data *d) {
     OLC_MODE(d) = GEDIT_MAIN_MENU;
 }
 
-static bool group_in_list(int *list, command_group *group) {
+static bool group_in_list(int *list, CommandGroup *group) {
     int i = 0;
     if (list)
         for (i = 0; list[i] >= 0; ++i)
             if (list[i] == GROUP_NUM(group))
-                return TRUE;
-    return FALSE;
+                return true;
+    return false;
 }
 
-static void add_command_group(int **listptr, command_group *group) {
+static void add_command_group(int **listptr, CommandGroup *group) {
     int i;
 
     if (*listptr) {
@@ -435,36 +430,36 @@ static void add_command_group(int **listptr, command_group *group) {
     (*listptr)[i + 1] = -1;
 }
 
-static void remove_command_group(int **listptr, command_group *group) {
-    int i, found = FALSE;
+static void remove_command_group(int **listptr, CommandGroup *group) {
+    int i, found = false;
 
     if (*listptr) {
         for (i = 0; (*listptr)[i] >= 0; ++i)
             if ((*listptr)[i] == GROUP_NUM(group))
-                found = TRUE;
+                found = true;
             else if (found)
                 (*listptr)[i - 1] = (*listptr)[i];
         if (found) {
             (*listptr)[i - 1] = -1;
             if (i - 1 == 0) {
                 free(*listptr);
-                *listptr = NULL;
+                *listptr = nullptr;
             }
         }
     }
 }
 
-static void gedit_save_internally(descriptor_data *d) {
-    struct command_group *group;
+static void gedit_save_internally(DescriptorData *d) {
+    CommandGroup *group;
     int cmd;
 
     if (OLC_NUM(d) >= 0)
         group = cmd_groups + OLC_NUM(d);
     else {
         if (cmd_groups)
-            RECREATE(cmd_groups, command_group, num_cmd_groups + 1);
+            RECREATE(cmd_groups, CommandGroup, num_cmd_groups + 1);
         else
-            CREATE(cmd_groups, command_group, 1);
+            CREATE(cmd_groups, CommandGroup, 1);
         group = &cmd_groups[num_cmd_groups++];
     }
 
@@ -484,12 +479,12 @@ static void gedit_save_internally(descriptor_data *d) {
 }
 
 static void gedit_save_to_disk() {
-    struct command_group *group;
+    CommandGroup *group;
     FILE *file;
     int cmd;
 
     if (!(file = fopen(GROUP_FILE, "w"))) {
-        mudlog("SYSERR: OLC: gedit_save_to_disk: Can't write to command group file.", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: gedit_save_to_disk: Can't write to command group file.", BRF, LVL_GOD, true);
         return;
     }
 
@@ -517,7 +512,7 @@ void boot_command_groups() {
     FILE *file;
     char line[MAX_INPUT_LENGTH];
     char tag[128];
-    struct command_group *group;
+    CommandGroup *group;
     int buffer, cmd;
 
     if (cmd_groups)
@@ -529,15 +524,15 @@ void boot_command_groups() {
      */
     for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
         ;
-    CREATE(grp_info, command_group_info, cmd + 1);
+    CREATE(grp_info, CommandGroupInfo, cmd + 1);
 
     if (!(file = fopen(GROUP_FILE, "r"))) {
         log("SYSERR: boot_command_groups: Can't read command group file.");
         return;
     }
 
-    CREATE(cmd_groups, command_group, (buffer = 10));
-    group = NULL;
+    CREATE(cmd_groups, CommandGroup, (buffer = 10));
+    group = nullptr;
     num_cmd_groups = 0;
 
     while (get_line(file, line)) {
@@ -545,14 +540,14 @@ void boot_command_groups() {
             break;
         else if (!strcmp(line, "~~")) {
             ++num_cmd_groups;
-            group = NULL;
+            group = nullptr;
             continue;
         }
 
         if (!group) {
             if (num_cmd_groups >= buffer) {
                 buffer += 10;
-                RECREATE(cmd_groups, command_group, buffer);
+                RECREATE(cmd_groups, CommandGroup, buffer);
             }
             group = &cmd_groups[num_cmd_groups];
         }
@@ -581,12 +576,12 @@ void boot_command_groups() {
 
     if (!num_cmd_groups) {
         free(cmd_groups);
-        cmd_groups = NULL;
+        cmd_groups = nullptr;
     }
 }
 
-void do_show_command_groups(char_data *ch, char *argument) {
-    struct command_group *group;
+void do_show_command_groups(CharData *ch, char *argument) {
+    CommandGroup *group;
     int num, cmd, grp, found = 0;
 
     skip_spaces(&argument);
@@ -619,8 +614,8 @@ void do_show_command_groups(char_data *ch, char *argument) {
         send_to_char("No command groups.\r\n", ch);
 }
 
-void do_show_command(char_data *ch, char *argument) {
-    struct command_info *command;
+void do_show_command(CharData *ch, char *argument) {
+    CommandInfo *command;
     int cmd, grp;
 
     skip_spaces(&argument);

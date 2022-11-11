@@ -17,21 +17,11 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* Values:
- *
- *   Name, Color,
- *   SUSCEPTIBILITY: heal, discorporate, dispel magic, mental
- */
-
-struct lifedef lifeforces[NUM_LIFEFORCES] = {{"life", "&2&b", 100, 0, 0, 100},    {"undead", "&9&b", 75, 50, 0, 100},
-                                             {"magic", "&4&b", 0, 120, 50, 0},    {"celestial", "&6", 100, 50, 0, 75},
-                                             {"demonic", "&1&b", 100, 50, 0, 75}, {"elemental", "&3", 50, 100, 0, 50}};
-
-int parse_lifeforce(char_data *ch, char *arg) {
-    return parse_obj_name(ch, arg, "life force", NUM_LIFEFORCES, lifeforces, sizeof(lifedef));
+int parse_lifeforce(CharData *ch, char *arg) {
+    return parse_obj_name(ch, arg, "life force", NUM_LIFEFORCES, lifeforces, sizeof(LifeDef));
 }
 
-void convert_lifeforce(char_data *ch, int newlifeforce) {
+void convert_lifeforce(CharData *ch, int newlifeforce) {
     /* Nothing complicated yet! */
     GET_LIFEFORCE(ch) = newlifeforce;
 }

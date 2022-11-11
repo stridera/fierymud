@@ -24,19 +24,28 @@
 #define LIFE_ELEMENTAL 5
 #define NUM_LIFEFORCES 6 /* keep updated */
 
-struct lifedef {
+struct LifeDef {
     /* The first element of this struct, 'name', is used by parse_obj_name() and must not be changed. */
-    char *name;
-    char *color;
+    const char *name;
+    const char *color;
     int sus_heal;
     int sus_discorporate;
     int sus_dispel;
     int sus_mental;
 };
-extern struct lifedef lifeforces[];
 
-extern int parse_lifeforce(char_data *ch, char *arg);
-extern void convert_lifeforce(char_data *ch, int newlifeforce);
+/* Values:
+ *
+ *   Name, Color,
+ *   SUSCEPTIBILITY: heal, discorporate, dispel magic, mental
+ */
+
+struct LifeDef lifeforces[NUM_LIFEFORCES] = {{"life", "&2&b", 100, 0, 0, 100},    {"undead", "&9&b", 75, 50, 0, 100},
+                                             {"magic", "&4&b", 0, 120, 50, 0},    {"celestial", "&6", 100, 50, 0, 75},
+                                             {"demonic", "&1&b", 100, 50, 0, 75}, {"elemental", "&3", 50, 100, 0, 50}};
+
+int parse_lifeforce(CharData *ch, char *arg);
+void convert_lifeforce(CharData *ch, int newlifeforce);
 #define VALID_LIFEFORCENUM(num) ((num) >= 0 && (num) < NUM_LIFEFORCES)
 #define VALID_LIFEFORCE(ch) (VALID_LIFEFORCENUM(GET_LIFEFORCE(ch)))
 #define LIFEFORCE_NAME(ch) (VALID_LIFEFORCE(ch) ? lifeforces[GET_LIFEFORCE(ch)].name : "<INVALID LIFEFORCE>")

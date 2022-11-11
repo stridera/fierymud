@@ -26,7 +26,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-struct house_control_rec house_control[MAX_HOUSES];
+HouseControlRec house_control[MAX_HOUSES];
 int num_of_houses = 0;
 
 /* First, the basics: finding the filename; loading/saving objects */
@@ -44,7 +44,7 @@ int House_get_filename(int vnum, char *filename) {
 int House_load(int vnum) {
     FILE *fl;
     char fname[MAX_STRING_LENGTH];
-    struct obj_data *obj, *containers[MAX_CONTAINER_DEPTH];
+    ObjData *obj, *containers[MAX_CONTAINER_DEPTH];
     int rnum, location, depth, i;
 
     if ((rnum = real_room(vnum)) == -1)
@@ -61,7 +61,7 @@ int House_load(int vnum) {
             break;
         depth = MAX(0, -location);
         for (i = MAX_CONTAINER_DEPTH - 1; i >= depth; --i)
-            containers[i] = NULL;
+            containers[i] = nullptr;
         containers[depth] = obj;
         if (depth > 0)
             obj_to_obj(obj, containers[depth - 1]);
@@ -115,11 +115,11 @@ void House_delete_file(int vnum) {
 }
 
 /* List all objects in a house file */
-void House_listrent(char_data *ch, int vnum) {
+void House_listrent(CharData *ch, int vnum) {
     FILE *fl;
     char fname[MAX_STRING_LENGTH];
     char buf[MAX_STRING_LENGTH];
-    struct obj_data *obj;
+    ObjData *obj;
     int location;
 
     if (!House_get_filename(vnum, fname))
@@ -163,7 +163,7 @@ void House_save_control(void) {
         return;
     }
     /* write all the house control recs in one fell swoop.   Pretty nifty, eh? */
-    fwrite(house_control, sizeof(house_control_rec), num_of_houses, fl);
+    fwrite(house_control, sizeof(HouseControlRec), num_of_houses, fl);
 
     fclose(fl);
 }
@@ -171,23 +171,23 @@ void House_save_control(void) {
 /* call from boot_db - will load control recs, load objs, set atrium bits */
 /* should do sanity checks on vnums & remove invalid records */
 void House_boot(void) {
-    struct house_control_rec temp_house;
+    HouseControlRec temp_house;
     int real_house, real_atrium;
     FILE *fl;
 
-    memset((char *)house_control, 0, sizeof(house_control_rec) * MAX_HOUSES);
+    memset((char *)house_control, 0, sizeof(HouseControlRec) * MAX_HOUSES);
 
     if (!(fl = fopen(HCONTROL_FILE, "rb"))) {
         log("House control file does not exist.");
         return;
     }
     while (!feof(fl) && num_of_houses < MAX_HOUSES) {
-        fread(&temp_house, sizeof(house_control_rec), 1, fl);
+        fread(&temp_house, sizeof(HouseControlRec), 1, fl);
 
         if (feof(fl))
             break;
 
-        if (get_name_by_id(temp_house.owner) == NULL)
+        if (get_name_by_id(temp_house.owner) == nullptr)
             continue; /* owner no longer exists -- skip */
 
         if ((real_house = real_room(temp_house.vnum)) < 0)
@@ -227,7 +227,7 @@ char *HCONTROL_FORMAT =
 
 #define NAME(x) ((temp = get_name_by_id(x)) == NULL ? "<UNDEF>" : temp)
 
-void hcontrol_list_houses(char_data *ch) {
+void hcontrol_list_houses(CharData *ch) {
     int i, j;
     char *timestr, *temp;
     char built_on[128], last_pay[128], own_name[128];
@@ -273,9 +273,9 @@ void hcontrol_list_houses(char_data *ch) {
     send_to_char(buf, ch);
 }
 
-void hcontrol_build_house(char_data *ch, char *arg) {
+void hcontrol_build_house(CharData *ch, char *arg) {
     char arg1[MAX_INPUT_LENGTH];
-    struct house_control_rec temp_house;
+    HouseControlRec temp_house;
     int virt_house, real_house, real_atrium, virt_atrium, exit_num;
     long owner;
 
@@ -306,7 +306,7 @@ void hcontrol_build_house(char_data *ch, char *arg) {
         send_to_char(HCONTROL_FORMAT, ch);
         return;
     }
-    if ((exit_num = searchblock(arg1, dirs, FALSE)) < 0) {
+    if ((exit_num = searchblock(arg1, dirs, false)) < 0) {
         sprintf(buf, "'%s' is not a valid direction.\r\n", arg1);
         send_to_char(buf, ch);
         return;
@@ -357,7 +357,7 @@ void hcontrol_build_house(char_data *ch, char *arg) {
     House_save_control();
 }
 
-void hcontrol_destroy_house(char_data *ch, char *arg) {
+void hcontrol_destroy_house(CharData *ch, char *arg) {
     int i, j;
     int real_atrium, real_house;
 
@@ -402,7 +402,7 @@ void hcontrol_destroy_house(char_data *ch, char *arg) {
             SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
 }
 
-void hcontrol_pay_house(char_data *ch, char *arg) {
+void hcontrol_pay_house(CharData *ch, char *arg) {
     int i;
 
     if (!*arg)
@@ -411,7 +411,7 @@ void hcontrol_pay_house(char_data *ch, char *arg) {
         send_to_char("Unknown house.\r\n", ch);
     else {
         sprintf(buf, "Payment for house %s collected by %s.", arg, GET_NAME(ch));
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
+        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
 
         house_control[i].last_payment = time(0);
         House_save_control();
@@ -498,7 +498,7 @@ void House_save_all(void) {
 }
 
 /* note: arg passed must be house vnum, so there. */
-int House_can_enter(char_data *ch, int house) {
+int House_can_enter(CharData *ch, int house) {
     int i, j;
 
     if (GET_LEVEL(ch) >= LVL_GRGOD || (i = find_house(house)) < 0)

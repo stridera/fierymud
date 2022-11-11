@@ -23,12 +23,12 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-extern void index_boot(int mode);
-extern int file_to_string_alloc(const char *name, char **buf);
-extern time_t file_last_update(const char *name);
+void index_boot(int mode);
+int file_to_string_alloc(const char *name, char **buf);
+time_t file_last_update(const char *name);
 void reload_xnames();
 
-static struct text_file {
+static struct TextFile {
     const char *name;
     const char *path;
     const int level;
@@ -77,7 +77,7 @@ ACMD(do_reload) {
 
     flagvector files[FLAGVECTOR_SIZE(NUM_TEXT_FILES)];
     unsigned long i;
-    bool found, reload_help = FALSE;
+    bool found, reload_help = false;
 
     for (i = 0; i < FLAGVECTOR_SIZE(NUM_TEXT_FILES); ++i)
         files[i] = 0;
@@ -87,15 +87,15 @@ ACMD(do_reload) {
         SET_FLAGS(files, ALL_FLAGS, NUM_TEXT_FILES);
     else
         for (argument = any_one_arg(argument, arg); *arg; argument = any_one_arg(argument, arg)) {
-            found = FALSE;
+            found = false;
             for (i = 0; i < NUM_TEXT_FILES; ++i)
                 if (!str_cmp(text_files[i].name, arg)) {
                     SET_FLAG(files, i);
-                    found = TRUE;
+                    found = true;
                     break;
                 }
             if (!str_cmp(arg, "xhelp"))
-                reload_help = TRUE;
+                reload_help = true;
             else if (!str_cmp(arg, "xnames")) {
                 reload_xnames();
                 send_to_char("xnames file reloaded.\r\n", ch);
@@ -139,8 +139,8 @@ ACMD(do_reload) {
 }
 
 static EDITOR_FUNC(text_save) {
-    struct descriptor_data *d = edit->descriptor;
-    struct text_file *text = edit->data;
+    DescriptorData *d = edit->descriptor;
+    TextFile *text = (TextFile *)edit->data;
     FILE *fl;
 
     if (edit->command == ED_EXIT_SAVE) {
@@ -152,7 +152,7 @@ static EDITOR_FUNC(text_save) {
             mprintf(L_ERROR, LVL_GAMEMASTER, "SYSERR: Can't write file '%s' for tedit", text->path);
     }
 
-    act("$n stops writing on the large scroll.", TRUE, d->character, 0, 0, TO_ROOM);
+    act("$n stops writing on the large scroll.", true, d->character, 0, 0, TO_ROOM);
 
     return ED_IGNORED;
 }
@@ -188,7 +188,7 @@ ACMD(do_tedit) {
         return;
     }
 
-    act("$n begins writing on a large scroll.", TRUE, ch, 0, 0, TO_ROOM);
+    act("$n begins writing on a large scroll.", true, ch, 0, 0, TO_ROOM);
 
     editor_init(ch->desc, &text_files[i].text, text_files[i].max_size);
     editor_set_begin_string(ch->desc, "Edit file below.");
@@ -202,6 +202,6 @@ void free_text_files() {
     for (i = 0; i < NUM_TEXT_FILES; ++i)
         if (text_files[i].text) {
             free(text_files[i].text);
-            text_files[i].text = NULL;
+            text_files[i].text = nullptr;
         }
 }

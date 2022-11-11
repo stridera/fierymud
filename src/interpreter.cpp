@@ -14,7 +14,8 @@
 
 #include "interpreter.hpp"
 
-#include "act.hpp" #include "casting.hpp"
+#include "act.hpp"
+#include "casting.hpp"
 #include "clan.hpp"
 #include "class.hpp"
 #include "comm.hpp"
@@ -29,6 +30,7 @@
 #include "handler.hpp"
 #include "mail.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
 #include "pfiles.hpp"
@@ -42,49 +44,37 @@
 #include "textfiles.hpp"
 #include "utils.hpp"
 
-extern char *MENU;
-extern char *WELC_MESSG;
-extern char *START_MESSG;
-extern char *subclass_descrip;
-extern char *subclass_descrip2;
-extern int should_restrict;
-extern int restrict_reason;
-extern int approve_names;
-extern int napprove_pause;
-extern int races_allowed;
-extern int good_races_allowed;
-
 /* external functions */
 void broadcast_name(char *name);
-void echo_on(descriptor_data *d);
-void echo_off(descriptor_data *d);
-int special(char_data *ch, int cmd, char *arg);
+void echo_on(DescriptorData *d);
+void echo_off(DescriptorData *d);
+int special(CharData *ch, int cmd, char *arg);
 int isbanned(char *hostname);
 int Valid_Name(char *newname);
-void oedit_parse(descriptor_data *d, char *arg);
-void redit_parse(descriptor_data *d, char *arg);
-void zedit_parse(descriptor_data *d, char *arg);
-void medit_parse(descriptor_data *d, char *arg);
-void sedit_parse(descriptor_data *d, char *arg);
-void hedit_parse(descriptor_data *d, char *arg);
-void sdedit_parse(descriptor_data *d, char *arg);
+void oedit_parse(DescriptorData *d, char *arg);
+void redit_parse(DescriptorData *d, char *arg);
+void zedit_parse(DescriptorData *d, char *arg);
+void medit_parse(DescriptorData *d, char *arg);
+void sedit_parse(DescriptorData *d, char *arg);
+void hedit_parse(DescriptorData *d, char *arg);
+void sdedit_parse(DescriptorData *d, char *arg);
 int roll_table[6];
 void send_to_xnames(char *name);
-void personal_reboot_warning(char_data *ch);
+void personal_reboot_warning(CharData *ch);
 
-void display_question(descriptor_data *d);
-/*void rolls_display( char_data *ch, char *[], char *[]);*/
-void roll_natural_abils(char_data *ch);
-void new_rollor_display(char_data *ch, int[]);
-int bonus_stat(char_data *ch, char arg);
+void display_question(DescriptorData *d);
+/*void rolls_display( CharData *ch, char *[], char *[]);*/
+void roll_natural_abils(CharData *ch);
+void new_rollor_display(CharData *ch, int[]);
+int bonus_stat(CharData *ch, char arg);
 int parse_good_race(char arg); /* Put in until such time that all races are allowed */
-void set_innate(char_data *ch, char *arg);
-void trigedit_parse(descriptor_data *d, char *arg);
-extern char *diety_selection;
-void appear(char_data *ch);
+void set_innate(CharData *ch, char *arg);
+void trigedit_parse(DescriptorData *d, char *arg);
+char *diety_selection;
+void appear(CharData *ch);
 int make_count = 0;
 EVENTFUNC(name_timeout);
-extern bool ispell_name_check(char *);
+bool ispell_name_check(char *);
 
 /* prototypes for all do_x functions. */
 ACMD(do_abort);
@@ -343,7 +333,7 @@ ACMD(do_first_aid);
 ACMD(do_summon_mount);
 
 int num_of_cmds;
-struct sort_struct *cmd_sort_info = NULL;
+SortStruct *cmd_sort_info = nullptr;
 
 /* This is the Master Command List(tm).
 
@@ -358,7 +348,7 @@ struct sort_struct *cmd_sort_info = NULL;
  * priority.
  */
 
-const struct command_info cmd_info[] = {
+const CommandInfo cmd_info[] = {
     {"RESERVED", 0, 0, 0, 0, 0, 0}, /* this must be first -- for specprocs */
     /* Name      , min position, min stance, ACMD,         min level, sub cmd,
        flags */
@@ -996,8 +986,8 @@ const char *fill[] = {"in", "from", "with", "the", "on", "at", "to", "\n"};
 
 const char *reserved[] = {"self", "me", "all", "room", "someone", "something", "\n"};
 
-void list_similar_commands(char_data *ch, char *arg) {
-    int found = FALSE, cmd;
+void list_similar_commands(CharData *ch, char *arg) {
+    int found = false, cmd;
 
     if (!PRF_FLAGGED(ch, PRF_NOHINTS)) {
         /* Display similar commands. */
@@ -1014,7 +1004,7 @@ void list_similar_commands(char_data *ch, char *arg) {
             if (levenshtein_distance(arg, cmd_info[cmd].command) <= 2) {
                 if (!found) {
                     send_to_char("\r\nDid you mean:\r\n", ch);
-                    found = TRUE;
+                    found = true;
                 }
                 sprintf(buf, "  %s\r\n", cmd_info[cmd].command);
                 send_to_char(buf, ch);
@@ -1028,7 +1018,7 @@ void list_similar_commands(char_data *ch, char *arg) {
  * It makes sure you are the proper level and position to execute the command,
  * then calls the appropriate function.
  */
-void command_interpreter(char_data *ch, char *argument) {
+void command_interpreter(CharData *ch, char *argument) {
     int cmd, length;
     extern int no_specials;
     char *line;
@@ -1068,7 +1058,7 @@ void command_interpreter(char_data *ch, char *argument) {
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE) && !IS_SET(cmd_info[cmd].flags, CMD_MEDITATE)) {
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
-        act("$n ceases $s meditative trance.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         send_to_char("&8You stop meditating.\r\n&0", ch);
     }
 
@@ -1092,7 +1082,7 @@ void command_interpreter(char_data *ch, char *argument) {
         send_to_char("You are too preoccupied with pretty illusions to do anything.\r\n", ch);
     else if (CASTING(ch) && !IS_SET(cmd_info[cmd].flags, CMD_CAST))
         send_to_char("&8You are busy spellcasting...&0\r\n", ch);
-    else if (cmd_info[cmd].command_pointer == NULL)
+    else if (cmd_info[cmd].command_pointer == nullptr)
         send_to_char("Sorry, that command hasn't been implemented yet.\r\n", ch);
     else if (IS_NPC(ch) && cmd_info[cmd].minimum_level >= LVL_IMMORT)
         send_to_char("You can't use immortal commands while switched.\r\n", ch);
@@ -1149,15 +1139,15 @@ void command_interpreter(char_data *ch, char *argument) {
 /* into the pfile.  --Fingon                                              */
 
 /* completely rewritten --Fingon */
-struct alias_data *find_alias(alias_data *alias, char *str) {
+AliasData *find_alias(AliasData *alias, char *str) {
     for (; alias; alias = alias->next)
         if (!str_cmp(alias->alias, str))
             return alias;
 
-    return NULL;
+    return nullptr;
 }
 
-void free_alias(alias_data *a) {
+void free_alias(AliasData *a) {
     if (a->alias)
         free(a->alias);
     if (a->replacement)
@@ -1165,9 +1155,9 @@ void free_alias(alias_data *a) {
     free(a);
 }
 
-void free_aliases(alias_data *alias_list) {
-    struct alias_data *alias;
-    while ((alias = alias_list)) {
+void free_aliases(AliasData *alias_list) {
+    AliasData *alias;
+    while (alias = alias_list) {
         alias_list = alias->next;
         free_alias(alias);
     }
@@ -1177,8 +1167,8 @@ void free_aliases(alias_data *alias_list) {
 /* Modified heavily --Fingon                    */
 ACMD(do_alias) {
     char *repl;
-    struct alias_data *alias, *temp;
-    struct char_data *vict;
+    AliasData *alias, *temp;
+    CharData *vict;
 
     repl = any_one_arg(argument, arg);
 
@@ -1230,7 +1220,7 @@ ACMD(do_alias) {
             }
 
             /* find a blank alias slot */
-            CREATE(alias, alias_data, 1);
+            CREATE(alias, AliasData, 1);
             alias->alias = strdup(arg);
             delete_doubledollar(repl);
             alias->replacement = strdup(repl);
@@ -1256,21 +1246,21 @@ ACMD(do_alias) {
  */
 #define NUM_TOKENS 9
 
-void perform_complex_alias(char_data *ch, txt_q *input_q, char *orig, alias_data *alias) {
-    struct txt_q temp_queue;
+void perform_complex_alias(CharData *ch, txt_q *input_q, char *orig, AliasData *alias) {
+    txt_q temp_queue;
     char *tokens[NUM_TOKENS], *temp, *write_point;
     int num_of_tokens = 0, num;
 
     /* First, parse the original string */
     temp = strtok(strcpy(buf2, orig), " ");
-    while (temp != NULL && num_of_tokens < NUM_TOKENS) {
+    while (temp != nullptr && num_of_tokens < NUM_TOKENS) {
         tokens[num_of_tokens++] = temp;
-        temp = strtok(NULL, " ");
+        temp = strtok(nullptr, " ");
     }
 
     /* initialize */
     write_point = buf;
-    temp_queue.head = temp_queue.tail = NULL;
+    temp_queue.head = temp_queue.tail = nullptr;
 
     /* now parse the alias */
     for (temp = alias->replacement; *temp; temp++) {
@@ -1298,7 +1288,7 @@ void perform_complex_alias(char_data *ch, txt_q *input_q, char *orig, alias_data
     write_to_q(buf, &temp_queue, 1, ch->desc);
 
     /* push our temp_queue on to the _front_ of the input queue */
-    if (input_q->head == NULL)
+    if (input_q->head == nullptr)
         *input_q = temp_queue;
     else {
         temp_queue.tail->next = input_q->head;
@@ -1314,9 +1304,9 @@ void perform_complex_alias(char_data *ch, txt_q *input_q, char *orig, alias_data
  *   1: String was _not_ modified in place; rather, the expanded aliases
  *      have been placed at the front of the character's input queue.
  */
-int perform_alias(descriptor_data *d, char *orig) {
+int perform_alias(DescriptorData *d, char *orig) {
     char first_arg[MAX_INPUT_LENGTH], *ptr;
-    struct alias_data *alias;
+    AliasData *alias;
 
     /* Mobs don't have aliases. */
     if (IS_NPC(d->character))
@@ -1411,34 +1401,34 @@ int search_block(const char *arg, const char **list, bool exact) {
 /* \s*\d+ */
 bool is_number(const char *str) {
     if (!str || !*str)
-        return FALSE;
+        return false;
 
     while (*str && isspace(*str))
         ++str;
 
     while (*str)
         if (!isdigit(*(str++)))
-            return FALSE;
+            return false;
 
-    return TRUE;
+    return true;
 }
 
 /* \d+ */
 bool is_positive_integer(const char *str) {
     if (!str || (!*str))
-        return FALSE;
+        return false;
 
     while (*str)
         if (!isdigit(*(str++)))
-            return FALSE;
+            return false;
 
-    return TRUE;
+    return true;
 }
 
 /* [+-]\d+ */
 bool is_integer(const char *str) {
     if (!str)
-        return FALSE;
+        return false;
 
     if (*str == '-')
         ++str;
@@ -1449,7 +1439,7 @@ bool is_integer(const char *str) {
 /* -\d+ For completeness sake */
 bool is_negative_integer(const char *str) {
     if (!str || *(str++) != '-')
-        return FALSE;
+        return false;
 
     return is_positive_integer(str);
 }
@@ -1476,7 +1466,7 @@ char *delete_doubledollar(char *string) {
     char *read, *write;
 
     /* If the string has no dollar signs, return immediately */
-    if ((write = strchr(string, '$')) == NULL)
+    if ((write = strchr(string, '$')) == nullptr)
         return string;
 
     /* Start from the location of the first dollar sign */
@@ -1496,13 +1486,13 @@ char *delete_doubledollar(char *string) {
 int fill_word(char *argument) {
     /* Needs to be case-insensitive since fill_word is used by the nanny for
      * name-checking */
-    return (search_block(argument, fill, TRUE) >= 0);
+    return (search_block(argument, fill, true) >= 0);
 }
 
 int reserved_word(char *argument) {
     /* Needs to be case-insensitive since fill_word is used by the nanny for
      * name-checking */
-    return (search_block(argument, reserved, TRUE) >= 0);
+    return (search_block(argument, reserved, true) >= 0);
 }
 
 /*
@@ -1644,7 +1634,7 @@ int is_abbrev(const char *arg1, const char *arg2) {
         return 0;
 }
 
-void display_classes(descriptor_data *d, int select) {
+void display_classes(DescriptorData *d, int select) {
     /*  int x; */ /* Commented out for commenting of - Subclassing
                      explanation/preface RSD */
     int char_race;
@@ -1774,37 +1764,37 @@ int parse_command(char *command) {
     return -1;
 }
 
-int special(char_data *ch, int cmd, char *arg) {
-    struct obj_data *i;
-    struct char_data *k;
+int special(CharData *ch, int cmd, char *arg) {
+    ObjData *i;
+    CharData *k;
     int j;
 
     /* special in room? */
-    if (GET_ROOM_SPEC(ch->in_room) != NULL)
+    if (GET_ROOM_SPEC(ch->in_room) != nullptr)
         if (GET_ROOM_SPEC(ch->in_room)(ch, world + ch->in_room, cmd, arg))
             return 1;
 
     /* special in equipment list? */
     for (j = 0; j < NUM_WEARS; j++)
-        if (GET_EQ(ch, j) && GET_OBJ_SPEC(GET_EQ(ch, j)) != NULL)
+        if (GET_EQ(ch, j) && GET_OBJ_SPEC(GET_EQ(ch, j)) != nullptr)
             if (GET_OBJ_SPEC(GET_EQ(ch, j))(ch, GET_EQ(ch, j), cmd, arg))
                 return 1;
 
     /* special in inventory? */
     for (i = ch->carrying; i; i = i->next_content)
-        if (GET_OBJ_SPEC(i) != NULL)
+        if (GET_OBJ_SPEC(i) != nullptr)
             if (GET_OBJ_SPEC(i)(ch, i, cmd, arg))
                 return 1;
 
     /* special in mobile present? */
     for (k = world[ch->in_room].people; k; k = k->next_in_room)
-        if (GET_MOB_SPEC(k) != NULL && !MOB_FLAGGED(k, MOB_NOSCRIPT))
+        if (GET_MOB_SPEC(k) != nullptr && !MOB_FLAGGED(k, MOB_NOSCRIPT))
             if (GET_MOB_SPEC(k)(ch, k, cmd, arg))
                 return 1;
 
     /* special in object present? */
     for (i = world[ch->in_room].contents; i; i = i->next_content)
-        if (GET_OBJ_SPEC(i) != NULL)
+        if (GET_OBJ_SPEC(i) != nullptr)
             if (GET_OBJ_SPEC(i)(ch, i, cmd, arg))
                 return 1;
 
@@ -1816,7 +1806,7 @@ int special(char_data *ch, int cmd, char *arg) {
  ************************************************************************* */
 
 /* locate entry in p_table with entry->name == name. -1 mrks failed search */
-int find_name(char *name) {
+int find_name(const char *name) {
     int i;
 
     for (i = 0; i <= top_of_p_table; i++) {
@@ -1831,9 +1821,9 @@ int find_name(char *name) {
 #define USURP 2
 #define UNSWITCH 3
 
-int perform_dupe_check(descriptor_data *d) {
-    struct descriptor_data *k, *next_k;
-    struct char_data *target = NULL, *ch, *next_ch;
+int perform_dupe_check(DescriptorData *d) {
+    DescriptorData *k, *next_k;
+    CharData *target = nullptr, *ch, *next_ch;
     int mode = 0;
 
     int id = GET_IDNUM(d->character);
@@ -1861,18 +1851,18 @@ int perform_dupe_check(descriptor_data *d) {
                 mode = UNSWITCH;
             }
             if (k->character)
-                k->character->desc = NULL;
-            k->character = NULL;
-            k->original = NULL;
+                k->character->desc = nullptr;
+            k->character = nullptr;
+            k->original = nullptr;
         } else if (k->character && (GET_IDNUM(k->character) == id)) {
             if (!target && STATE(k) == CON_PLAYING) {
                 write_to_output("\r\nThis body has been usurped!\r\n", k);
                 target = k->character;
                 mode = USURP;
             }
-            k->character->desc = NULL;
-            k->character = NULL;
-            k->original = NULL;
+            k->character->desc = nullptr;
+            k->character = nullptr;
+            k->original = nullptr;
             write_to_output("\r\nMultiple login detected -- disconnecting.\r\n", k);
             STATE(k) = CON_CLOSE;
         }
@@ -1925,9 +1915,9 @@ int perform_dupe_check(descriptor_data *d) {
     free_char(d->character); /* get rid of the old char */
     d->character = target;
     d->character->desc = d;
-    d->original = NULL;
+    d->original = nullptr;
     d->character->char_specials.timer = 0;
-    d->character->forward = NULL;
+    d->character->forward = nullptr;
     REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
     REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
     STATE(d) = CON_PLAYING;
@@ -1935,29 +1925,29 @@ int perform_dupe_check(descriptor_data *d) {
     switch (mode) {
     case RECON:
         write_to_output("Reconnecting.\r\n", d);
-        act("$n has reconnected.", TRUE, d->character, 0, 0, TO_ROOM);
+        act("$n has reconnected.", true, d->character, 0, 0, TO_ROOM);
         sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), true);
         break;
     case USURP:
         write_to_output("Overriding old connection.\r\n", d);
         act("$n suddenly keels over in pain, surrounded by a white aura...\r\n"
             "$n's body has been taken over by a new spirit!",
-            TRUE, d->character, 0, 0, TO_ROOM);
+            true, d->character, 0, 0, TO_ROOM);
         sprintf(buf, "%s has re-logged in ... disconnecting old socket.", GET_NAME(d->character));
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), true);
         break;
     case UNSWITCH:
         write_to_output("Reconnecting to unswitched char.", d);
         sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), true);
         break;
     }
 
     return 1;
 }
 
-int enter_player_game(descriptor_data *d) {
+int enter_player_game(DescriptorData *d) {
     int load_result;
     int load_room;
     int i;
@@ -2010,7 +2000,7 @@ int enter_player_game(descriptor_data *d) {
     /* send_save_description() will use this actual, error-checked value for the
      * load room */
     GET_LOADROOM(d->character) = load_room == NOWHERE ? NOWHERE : world[load_room].vnum;
-    send_save_description(d->character, NULL, TRUE);
+    send_save_description(d->character, nullptr, true);
     save_player_char(d->character);
     GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
 
@@ -2035,18 +2025,18 @@ int enter_player_game(descriptor_data *d) {
     return load_result;
 }
 
-void clear_player_name(char_data *ch) {
+void clear_player_name(CharData *ch) {
     if (ch->player.short_descr) {
         free(ch->player.short_descr);
-        ch->player.short_descr = NULL;
+        ch->player.short_descr = nullptr;
     }
     if (ch->player.namelist) {
         free(ch->player.namelist);
-        ch->player.namelist = NULL;
+        ch->player.namelist = nullptr;
     }
 }
 
-void set_player_name(char_data *ch, char *name) {
+void set_player_name(CharData *ch, char *name) {
     char *s;
 
     clear_player_name(ch);
@@ -2058,27 +2048,10 @@ void set_player_name(char_data *ch, char *name) {
 }
 
 /* deal with newcomers and other non-playing sockets */
-void nanny(descriptor_data *d, char *arg) {
+void nanny(DescriptorData *d, char *arg) {
     char bcbuf[15] = "0";
     int player_i, load_result;
     char tmp_name[MAX_INPUT_LENGTH];
-#ifdef PRODUCTION
-    extern char *GREETINGS;
-    extern char *GREETINGS2;
-    extern char *GREETINGS3;
-    extern char *GREETINGS4;
-#else
-    extern char *TEST_GREETING;
-    extern char *TEST_GREETING2;
-    extern char *TEST_GREETING3;
-#endif
-    extern char *WHOAREYOU;
-    extern char *NEWSUPDATED1;
-    extern char *NEWSUPDATED2;
-#ifdef PRODUCTION
-    extern char *NAMES_EXPLANATION;
-#else
-#endif
     extern int max_bad_pws;
     extern void modify_player_index_file(char *name, char *newname);
     extern int make_count;
@@ -2088,7 +2061,7 @@ void nanny(descriptor_data *d, char *arg) {
 
     struct {
         int state;
-        void (*func)(descriptor_data *, char *);
+        void (*func)(DescriptorData *, char *);
     } olc_functions[] = {
         {CON_OEDIT, oedit_parse},
         {CON_IEDIT, oedit_parse},
@@ -2100,15 +2073,15 @@ void nanny(descriptor_data *d, char *arg) {
         {CON_HEDIT, hedit_parse},
         {CON_SDEDIT, sdedit_parse},
         {CON_GEDIT, gedit_parse},
-        {-1, NULL},
+        {-1, nullptr},
     };
 
     skip_spaces(&arg);
 
-    if (d->character == NULL) {
-        CREATE(d->character, char_data, 1);
+    if (d->character == nullptr) {
+        CREATE(d->character, CharData, 1);
         clear_char(d->character);
-        CREATE(d->character->player_specials, player_special_data, 1);
+        CREATE(d->character->player_specials, PlayerSpecialData, 1);
         d->character->desc = d;
     }
 
@@ -2205,9 +2178,9 @@ void nanny(descriptor_data *d, char *arg) {
                 if ((player_i = get_ptable_by_name(tmp_name)) >= 0)
                     delete_player(player_i);
                 free_char(d->character);
-                CREATE(d->character, char_data, 1);
+                CREATE(d->character, CharData, 1);
                 clear_char(d->character);
-                CREATE(d->character->player_specials, player_special_data, 1);
+                CREATE(d->character->player_specials, PlayerSpecialData, 1);
                 d->character->desc = d;
                 set_player_name(d->character, tmp_name);
                 GET_PFILEPOS(d->character) = player_i;
@@ -2286,7 +2259,7 @@ void nanny(descriptor_data *d, char *arg) {
         case YESNO_YES:
             if (isbanned(d->host) >= BAN_NEW) {
                 sprintf(buf, "Request for new char %s denied from [%s] (siteban)", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 write_to_output("Sorry, new characters are not allowed from your site!\r\n", d);
                 STATE(d) = CON_CLOSE;
                 return;
@@ -2299,7 +2272,7 @@ void nanny(descriptor_data *d, char *arg) {
                     write_to_output("Sorry, new players can't be created at the moment.\r\n", d);
                 }
                 sprintf(buf, "Request for new char %s denied from %s (wizlock)", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 STATE(d) = CON_CLOSE;
                 return;
             }
@@ -2381,7 +2354,7 @@ void nanny(descriptor_data *d, char *arg) {
             write_to_output("Now you must wait to be re-approved.\r\n", d);
             if (!PLR_FLAGGED(d->character, PLR_NAPPROVE))
                 SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
-            event_create(EVENT_NAME_TIMEOUT, name_timeout, d, FALSE, NULL, NAME_TIMEOUT);
+            event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
             write_to_output(
                 "Now you must wait for your name to be approved by an immortal.\r\n"
@@ -2417,7 +2390,7 @@ void nanny(descriptor_data *d, char *arg) {
         else {
             if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
                 sprintf(buf, "Bad PW: %s [%s]", GET_NAME(d->character), d->host);
-                mudlog(buf, BRF, LVL_GOD, TRUE);
+                mudlog(buf, BRF, LVL_GOD, true);
                 GET_BAD_PWS(d->character)++;
                 save_player_char(d->character);
                 if (++(d->bad_pws) >= max_bad_pws) { /* 3 strikes and you're out. */
@@ -2439,7 +2412,7 @@ void nanny(descriptor_data *d, char *arg) {
                     d);
                 STATE(d) = CON_CLOSE;
                 sprintf(buf, "Connection attempt for %s denied from %s", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 return;
             }
             if (GET_LEVEL(d->character) < should_restrict) {
@@ -2454,7 +2427,7 @@ void nanny(descriptor_data *d, char *arg) {
                 }
                 STATE(d) = CON_CLOSE;
                 sprintf(buf, "Request for login denied for %s [%s] (wizlock)", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 return;
             }
             /* check and make sure no other copies of this player are logged in */
@@ -2489,7 +2462,7 @@ void nanny(descriptor_data *d, char *arg) {
             mudlog(buf, BRF,
                    MAX(LVL_IMMORT,
                        MIN(GET_LEVEL(d->character), MAX(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character)))),
-                   TRUE);
+                   true);
             if (load_result) {
                 sprintf(buf,
                         "\r\n\r\n\007\007\007"
@@ -2816,7 +2789,7 @@ void nanny(descriptor_data *d, char *arg) {
                 if (!PLR_FLAGGED(d->character, PLR_NAPPROVE)) {
                     SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
                 }
-                event_create(EVENT_NAME_TIMEOUT, name_timeout, d, FALSE, NULL, NAME_TIMEOUT);
+                event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
                 write_to_output(
                     "\r\nNow you must wait for your name to be approved by "
@@ -2837,7 +2810,7 @@ void nanny(descriptor_data *d, char *arg) {
                 init_player(d->character);
                 save_player_char(d->character);
                 sprintf(buf, "%s [%s] new player.", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_IMMORT, TRUE);
+                mudlog(buf, NRM, LVL_IMMORT, true);
                 write_to_output("\r\n*** PRESS RETURN: ", d);
                 STATE(d) = CON_RMOTD;
                 break;
@@ -2859,7 +2832,7 @@ void nanny(descriptor_data *d, char *arg) {
 
             load_result = enter_player_game(d);
             send_to_char(WELC_MESSG, d->character);
-            act("$n has entered the game.", TRUE, d->character, 0, 0, TO_ROOM);
+            act("$n has entered the game.", true, d->character, 0, 0, TO_ROOM);
 
             STATE(d) = CON_PLAYING;
             if (!GET_LEVEL(d->character)) {
@@ -2867,7 +2840,7 @@ void nanny(descriptor_data *d, char *arg) {
                 send_to_char(START_MESSG, d->character);
                 give_newbie_eq(d->character);
             }
-            look_at_room(d->character, FALSE);
+            look_at_room(d->character, false);
             if (has_mail(GET_IDNUM(d->character)))
                 send_to_char("You have mail waiting.\r\n", d->character);
             if (load_result == 2) { /* rented items lost */
@@ -2957,7 +2930,7 @@ void nanny(descriptor_data *d, char *arg) {
                     GET_NAME(d->character));
             write_to_output(buf, d);
             sprintf(buf, "%s (lev %d) has self-deleted.", GET_NAME(d->character), GET_LEVEL(d->character));
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
             STATE(d) = CON_CLOSE;
             return;
         } else {
@@ -2979,7 +2952,7 @@ void nanny(descriptor_data *d, char *arg) {
 }
 
 /* now hardcoded 25% loss every time you die */
-long exp_death_loss(char_data *ch, int level) {
+long exp_death_loss(CharData *ch, int level) {
     long total;
 
     total = (long)exp_next_level(level, GET_CLASS(ch)) - exp_next_level((level - 1), GET_CLASS(ch));
@@ -2987,7 +2960,7 @@ long exp_death_loss(char_data *ch, int level) {
     return (.25 * (float)total); /* percent you lose every time you die */
 }
 
-long max_exp_gain(char_data *ch) {
+long max_exp_gain(CharData *ch) {
     long current, total;
     total = exp_next_level(GET_LEVEL(ch), GET_CLASS(ch)) - exp_next_level((GET_LEVEL(ch) - 1), GET_CLASS(ch));
 
@@ -2998,7 +2971,7 @@ long max_exp_gain(char_data *ch) {
     return current;
 }
 
-void new_rollor_display(char_data *ch, int word[6]) {
+void new_rollor_display(CharData *ch, int word[6]) {
     int statts[6];
     int j;
 
@@ -3024,7 +2997,7 @@ void new_rollor_display(char_data *ch, int word[6]) {
 }
 
 /* this addes a number from 2-6 to the stat but doesn't exceed 100 */
-int bonus_stat(char_data *ch, char arg) {
+int bonus_stat(CharData *ch, char arg) {
     int b;
     int a;
     arg = LOWER(arg);
@@ -3032,47 +3005,47 @@ int bonus_stat(char_data *ch, char arg) {
     case 'w':
         b = number(2, 6);
         GET_NATURAL_WIS(ch) = MIN(100, (GET_NATURAL_WIS(ch) + b));
-        a = TRUE;
+        a = true;
         break;
     case 'i':
         b = number(2, 6);
         GET_NATURAL_INT(ch) = MIN(100, (GET_NATURAL_INT(ch) + b));
-        a = TRUE;
+        a = true;
         break;
     case 'm':
         b = number(2, 6);
         GET_NATURAL_CHA(ch) = MIN(100, (GET_NATURAL_CHA(ch) + b));
-        a = TRUE;
+        a = true;
         break;
     case 'c':
         b = number(2, 6);
         GET_NATURAL_CON(ch) = MIN(100, (GET_NATURAL_CON(ch) + b));
-        a = TRUE;
+        a = true;
         break;
     case 'd':
         b = number(2, 6);
         GET_NATURAL_DEX(ch) = MIN(100, (GET_NATURAL_DEX(ch) + b));
-        a = TRUE;
+        a = true;
         break;
     case 's':
         b = number(2, 6);
         GET_NATURAL_STR(ch) = MIN(100, (GET_NATURAL_STR(ch) + b));
-        a = TRUE;
+        a = true;
         break;
     default:
-        a = FALSE;
+        a = false;
         break;
     }
     return a;
 }
 
 EVENTFUNC(name_timeout) {
-    struct descriptor_data *d = (descriptor_data *)event_obj;
+    DescriptorData *d = (DescriptorData *)event_obj;
 
     if (STATE(d) != CON_NAME_WAIT_APPROVAL)
         return EVENT_FINISHED;
 
-    if (d->character->desc == NULL)
+    if (d->character->desc == nullptr)
         return EVENT_FINISHED;
 
     if (GET_PFILEPOS(d->character) < 0)
@@ -3096,11 +3069,11 @@ EVENTFUNC(name_timeout) {
         write_to_output("\r\n\n*** PRESS RETURN: ", d);
         if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
             sprintf(buf, "%s [%s] has connected with a new name.", GET_NAME(d->character), d->host);
-            mudlog(buf, NRM, LVL_IMMORT, TRUE);
+            mudlog(buf, NRM, LVL_IMMORT, true);
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
         } else {
             sprintf(buf, "%s [%s] new player.", GET_NAME(d->character), d->host);
-            mudlog(buf, NRM, LVL_IMMORT, TRUE);
+            mudlog(buf, NRM, LVL_IMMORT, true);
         }
         STATE(d) = CON_RMOTD;
     }
@@ -3124,7 +3097,7 @@ void sort_commands(void) {
         ++num_of_cmds;
 
     /* create data array */
-    CREATE(cmd_sort_info, sort_struct, num_of_cmds);
+    CREATE(cmd_sort_info, SortStruct, num_of_cmds);
 
     /* initialize it */
     for (a = 1; a < num_of_cmds; a++) {
@@ -3133,9 +3106,9 @@ void sort_commands(void) {
     }
 
     /* the infernal special case */
-    cmd_sort_info[find_command("insult")].is_social = TRUE;
-    cmd_sort_info[find_command("roar")].is_social = TRUE;
-    cmd_sort_info[find_command("z001#@#")].is_social = FALSE;
+    cmd_sort_info[find_command("insult")].is_social = true;
+    cmd_sort_info[find_command("roar")].is_social = true;
+    cmd_sort_info[find_command("z001#@#")].is_social = false;
 
     /* Sort.  'a' starts at 1, not 0, to remove 'RESERVED' */
     for (a = 1; a < num_of_cmds - 1; a++)

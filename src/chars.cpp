@@ -10,7 +10,8 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "act.hpp" #include "casting.hpp"
+#include "act.hpp"
+#include "casting.hpp"
 #include "charsize.hpp"
 #include "class.hpp"
 #include "comm.hpp"
@@ -38,54 +39,7 @@
 
 ACMD(do_flee); /* act.offensive.c */
 
-const char *stats_display =
-    "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
-    "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
-    "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n";
-
-#define Y TRUE
-#define N FALSE
-
-int class_ok_race[NUM_RACES][NUM_CLASSES] = {
-    /* RACE   So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
-    /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* El */ {Y, Y, Y, Y, Y, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* Gn */ {Y, Y, Y, N, N, N, N, Y, Y, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
-    /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
-    /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
-    /* Dr */ {Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y},
-    /* Du */ {N, Y, Y, Y, N, Y, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y},
-    /* Og */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
-    /* Or */ {Y, Y, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, Y, N, Y, N, Y, N, Y, Y, Y, Y},
-    /* HE */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N},
-    /* Ba */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, N},
-    /* Ha */ {Y, Y, Y, Y, N, N, N, N, N, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
-    /*plnt*/ {},
-    /*hmnd*/ {},
-    /*anml*/ {},
-    /*drgn*/ {},
-    /*gint*/ {},
-    /*othr*/ {},
-    /*gbln*/ {},
-    /*demn*/ {},
-    /*brwn*/ {},
-    /*fire*/ {},
-    /*frst*/ {},
-    /*acid*/ {},
-    /*ligh*/ {},
-    /*gas */ {},
-    /*DbFi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, N, Y, N},
-    /*DbFr*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, N, Y, Y, N},
-    /*DbAc*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
-    /*DbLi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
-    /*DbGa*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
-    /*svrf*/ {Y, Y, Y, N, N, N, N, N, Y, Y, N, Y, Y, N, N, N, Y, Y, Y, Y, Y, Y, Y, N},
-    /*SFae*/ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
-    /*UFae*/ {Y, Y, Y, N, N, N, N, Y, N, N, N, Y, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
-    /*nmph*/ {Y, Y, N, Y, N, N, Y, Y, Y, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
-};
-
-int get_base_saves(char_data *ch, int type) {
+int get_base_saves(CharData *ch, int type) {
     /* Here are default values for saving throws: */
     int saves[NUM_SAVES] = {105, 115, 105, 110, 110};
     int i;
@@ -152,7 +106,7 @@ int get_base_saves(char_data *ch, int type) {
  * stats.
  */
 
-void roll_natural_abils(char_data *ch) {
+void roll_natural_abils(CharData *ch) {
     int i, j, k, temp;
     ubyte table[6];
     ubyte rolls[6];
@@ -252,29 +206,29 @@ int roll_mob_skill(int level) {
     return value;
 }
 
-int roll_skill(char_data *ch, int skill) {
+int roll_skill(CharData *ch, int skill) {
     int value = number(50 + 5 * GET_LEVEL(ch), 100 + 15 * GET_LEVEL(ch));
     int max = return_max_skill(ch, skill);
     return MIN(value, max);
 }
 
-void rider_flowoff(char_data *rider, char_data *mount) {
-    act("You suddenly find yourself flowing down off $N's back.", FALSE, rider, 0, mount, TO_CHAR);
-    act("$n loses cohesion and flows down off your back.", FALSE, rider, 0, mount, TO_VICT);
-    act("Unable to keep $s seat, $n suddenly flows down from $N's back.", TRUE, rider, 0, mount, TO_NOTVICT);
+void rider_flowoff(CharData *rider, CharData *mount) {
+    act("You suddenly find yourself flowing down off $N's back.", false, rider, 0, mount, TO_CHAR);
+    act("$n loses cohesion and flows down off your back.", false, rider, 0, mount, TO_VICT);
+    act("Unable to keep $s seat, $n suddenly flows down from $N's back.", true, rider, 0, mount, TO_NOTVICT);
     dismount_char(rider);
 }
 
-void rider_fallthrough(char_data *rider, char_data *mount) {
+void rider_fallthrough(CharData *rider, CharData *mount) {
     act("$N is no longer able to support you, and you fall through $M to the "
         "ground.",
-        FALSE, rider, 0, mount, TO_CHAR);
-    act("$n falls through your fluid body and ends up on the ground.", FALSE, rider, 0, mount, TO_VICT);
-    act("$n suddenly finds $mself falling through $N, and ends up on the ground.", FALSE, rider, 0, mount, TO_NOTVICT);
+        false, rider, 0, mount, TO_CHAR);
+    act("$n falls through your fluid body and ends up on the ground.", false, rider, 0, mount, TO_VICT);
+    act("$n suddenly finds $mself falling through $N, and ends up on the ground.", false, rider, 0, mount, TO_NOTVICT);
     dismount_char(rider);
 }
 
-void composition_check(char_data *ch) {
+void composition_check(CharData *ch) {
     if (GET_LEVEL(ch) >= LVL_IMMORT)
         return;
     remove_unsuitable_spells(ch);
@@ -301,7 +255,7 @@ void composition_check(char_data *ch) {
  *
  * Zero is the lowest possible susceptibility, and it means immunity.
  */
-int susceptibility(char_data *ch, int dtype) {
+int susceptibility(CharData *ch, int dtype) {
     int sus;
 
     if (!VALID_COMPOSITION(ch) || !VALID_LIFEFORCE(ch))
@@ -375,11 +329,11 @@ int susceptibility(char_data *ch, int dtype) {
 
 /* Use this to determine whether a victim evades some attack that's
  * all or nothing, like sleep. */
-bool boolean_attack_evasion(char_data *ch, int power, int dtype) {
+bool boolean_attack_evasion(CharData *ch, int power, int dtype) {
     return number(1, 100) < MAX(3, 110 + GET_LEVEL(ch) - susceptibility(ch, dtype) - power);
 }
 
-struct obj_data *equipped_weapon(char_data *ch) {
+ObjData *equipped_weapon(CharData *ch) {
     int weapon_position = -1;
 
     if (GET_EQ(ch, WEAR_WIELD2) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON)
@@ -389,10 +343,10 @@ struct obj_data *equipped_weapon(char_data *ch) {
     else if (GET_EQ(ch, WEAR_2HWIELD) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_2HWIELD)) == ITEM_WEAPON)
         weapon_position = WEAR_2HWIELD;
 
-    return weapon_position >= 0 ? GET_EQ(ch, weapon_position) : NULL;
+    return weapon_position >= 0 ? GET_EQ(ch, weapon_position) : nullptr;
 }
 
-int dam_suscept_adjust(char_data *ch, char_data *victim, obj_data *weapon, int dam, int dtype) {
+int dam_suscept_adjust(CharData *ch, CharData *victim, ObjData *weapon, int dam, int dtype) {
     if (!victim)
         return dam;
     /* Adjust damage for susceptibility */
@@ -434,7 +388,7 @@ const char *align_color(int align) {
  * the caller.
  */
 
-void alter_pos(char_data *ch, int newpos, int newstance) {
+void alter_pos(CharData *ch, int newpos, int newstance) {
     /* Make stance changes first since they will restrict the available positions.
      */
     if (newstance >= 0 && newstance < NUM_STANCES) {
@@ -474,8 +428,8 @@ void alter_pos(char_data *ch, int newpos, int newstance) {
 
     if (CASTING(ch) && !valid_cast_stance(ch, ch->casting.spell)) {
         STOP_CASTING(ch);
-        act("$n ceases casting $s spell.", FALSE, ch, 0, 0, TO_ROOM);
-        act("You stop casting your spell.", FALSE, ch, 0, 0, TO_CHAR);
+        act("$n ceases casting $s spell.", false, ch, 0, 0, TO_ROOM);
+        act("You stop casting your spell.", false, ch, 0, 0, TO_CHAR);
     }
 
     if (FIGHTING(ch) && GET_STANCE(ch) < STANCE_RESTING)
@@ -484,7 +438,7 @@ void alter_pos(char_data *ch, int newpos, int newstance) {
     mount_pos_check(ch);
 }
 
-void hp_stance_alteration(char_data *ch, char_data *attacker, int newpos, int newstance, int dam) {
+void hp_stance_alteration(CharData *ch, CharData *attacker, int newpos, int newstance, int dam) {
     alter_pos(ch, newpos, newstance);
 
     if (GET_STANCE(ch) < STANCE_SLEEPING)
@@ -497,37 +451,37 @@ void hp_stance_alteration(char_data *ch, char_data *attacker, int newpos, int ne
                 "alter_pos() left values at %s/%s (for %s)",
                 position_types[newpos], stance_types[newstance], position_types[GET_POS(ch)],
                 stance_types[GET_STANCE(ch)], GET_NAME(ch));
-        mudlog(buf, BRF, LVL_GOD, TRUE);
+        mudlog(buf, BRF, LVL_GOD, true);
     }
 
     /* Send messages and cause dying. */
     switch (GET_STANCE(ch)) {
     case STANCE_MORT:
-        act("$n is mortally wounded, and will die soon if not aided.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n is mortally wounded, and will die soon if not aided.", true, ch, 0, 0, TO_ROOM);
         send_to_char("You are mortally wounded, and will die soon if not aided.\r\n", ch);
         break;
     case STANCE_INCAP:
-        act("$n is incapacitated and will slowly die, if not aided.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n is incapacitated and will slowly die, if not aided.", true, ch, 0, 0, TO_ROOM);
         send_to_char("You are incapacitated an will slowly die, if not aided.\r\n", ch);
         break;
     case STANCE_STUNNED:
-        act("$n is stunned, but will probably regain consciousness again.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n is stunned, but will probably regain consciousness again.", true, ch, 0, 0, TO_ROOM);
         send_to_char("You're stunned, but will probably regain consciousness again.\r\n", ch);
         break;
     case STANCE_DEAD:
         die(ch, attacker);
-        act("$n is dead!  R.I.P.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n is dead!  R.I.P.", false, ch, 0, 0, TO_ROOM);
         send_to_char("You are dead!  Sorry...\r\n", ch);
         break;
     default:
         if (dam < 0) {
             /* Healing */
             if (GET_STANCE(ch) == STANCE_SLEEPING) {
-                act("$n appears to be stabilized, but $e remains unconscious.", TRUE, ch, 0, 0, TO_ROOM);
+                act("$n appears to be stabilized, but $e remains unconscious.", true, ch, 0, 0, TO_ROOM);
             } else {
-                act("$n regains consciousness.", TRUE, ch, 0, 0, TO_ROOM);
+                act("$n regains consciousness.", true, ch, 0, 0, TO_ROOM);
                 send_to_char("You regain consciousness.\r\n", ch);
-                look_at_room(ch, FALSE);
+                look_at_room(ch, false);
             }
         }
     }
@@ -544,7 +498,7 @@ void hp_stance_alteration(char_data *ch, char_data *attacker, int newpos, int ne
  * update, and whatever else die() chooses to do.
  */
 
-void hp_pos_check(char_data *ch, char_data *attacker, int dam) {
+void hp_pos_check(CharData *ch, CharData *attacker, int dam) {
     int newstance = -1, newpos = -1;
 
     if (DECEASED(ch))
@@ -584,7 +538,7 @@ void hp_pos_check(char_data *ch, char_data *attacker, int dam) {
     /* Send messages about serious damage */
     if (AWAKE(ch) && dam > 0) {
         if (dam > (GET_MAX_HIT(ch) >> 2))
-            act("That really did HURT!", FALSE, ch, 0, 0, TO_CHAR);
+            act("That really did HURT!", false, ch, 0, 0, TO_CHAR);
         if (GET_HIT(ch) < (GET_MAX_HIT(ch) >> 2)) {
             sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n", CLRLV(ch, FRED, C_SPR),
                     CLRLV(ch, ANRM, C_SPR));

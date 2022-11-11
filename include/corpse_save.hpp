@@ -15,10 +15,10 @@
 
 #define MAX_CORPSES 500
 
-extern void register_corpse(obj_data *corpse);
-extern void boot_corpses(void);
-extern void save_corpse(obj_data *corpse);
-extern void update_corpse(obj_data *corpse);
-extern void destroy_corpse(obj_data *corpse);
-extern int corpse_count(void);
-extern void show_corpses(char_data *ch, char *argument);
+void register_corpse(ObjData *corpse);
+void boot_corpses(void);
+void save_corpse(ObjData *corpse);
+void update_corpse(ObjData *corpse);
+void destroy_corpse(ObjData *corpse);
+int corpse_count(void);
+void show_corpses(CharData *ch, char *argument);

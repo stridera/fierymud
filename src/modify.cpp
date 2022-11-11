@@ -26,12 +26,12 @@
 #include "olc.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
-#include "strings.h"
+#include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void parse_action(int command, char *string, descriptor_data *d);
+void parse_action(int command, char *string, DescriptorData *d);
 
 /* action modes for parse_action */
 #define PARSE_FORMAT 0
@@ -53,7 +53,7 @@ int length[] = {15, 60, 256, 240, 60};
  ************************************************************************ */
 
 /* Basic API function to start writing somewhere. */
-void string_write_limit(descriptor_data *d, char **writeto, size_t len, int maxlines) {
+void string_write_limit(DescriptorData *d, char **writeto, size_t len, int maxlines) {
     if (!writeto)
         return;
 
@@ -63,7 +63,7 @@ void string_write_limit(descriptor_data *d, char **writeto, size_t len, int maxl
     /* A pointer to the actual string you are editing. */
     d->str = writeto;
     /* The abort buffer: a copy of what you originally edited */
-    d->backstr = (writeto && *writeto && **writeto) ? strdup(*writeto) : NULL;
+    d->backstr = (writeto && *writeto && **writeto) ? strdup(*writeto) : nullptr;
     /* The maximum length the final string may consume */
     d->max_str = len;
     /* Zero mail_to to make sure the string editor doesn't try to mail
@@ -84,9 +84,9 @@ void string_write_limit(descriptor_data *d, char **writeto, size_t len, int maxl
 }
 
 /* Start writing when you don't care about the number of lines. */
-void string_write(descriptor_data *d, char **writeto, size_t len) { string_write_limit(d, writeto, len, 0); }
+void string_write(DescriptorData *d, char **writeto, size_t len) { string_write_limit(d, writeto, len, 0); }
 
-void mail_write(descriptor_data *d, char **writeto, size_t len, long recipient) {
+void mail_write(DescriptorData *d, char **writeto, size_t len, long recipient) {
     if (!writeto)
         CREATE(writeto, char *, 1);
     string_write(d, writeto, len);
@@ -96,7 +96,7 @@ void mail_write(descriptor_data *d, char **writeto, size_t len, long recipient) 
 /*
  * Handle some editor commands.
  */
-void parse_action(int command, char *string, descriptor_data *d) {
+void parse_action(int command, char *string, DescriptorData *d) {
     int indent = 0, rep_all = 0, flags = 0, total_len, replaced;
     int j = 0;
     int i, line_low, line_high;
@@ -144,7 +144,7 @@ void parse_action(int command, char *string, descriptor_data *d) {
         }
         while (isalpha(string[j]) && j < 2) {
             if (string[j] == 'i' && !indent) {
-                indent = TRUE;
+                indent = true;
                 flags += FORMAT_INDENT;
             }
             ++j;
@@ -165,16 +165,16 @@ void parse_action(int command, char *string, descriptor_data *d) {
             }
             j++;
         }
-        if ((s = strtok(string, "'")) == NULL) {
+        if ((s = strtok(string, "'")) == nullptr) {
             write_to_output("Invalid format.\r\n", d);
             return;
-        } else if ((s = strtok(NULL, "'")) == NULL) {
+        } else if ((s = strtok(nullptr, "'")) == nullptr) {
             write_to_output("Target string must be enclosed in single quotes.\r\n", d);
             return;
-        } else if ((t = strtok(NULL, "'")) == NULL) {
+        } else if ((t = strtok(nullptr, "'")) == nullptr) {
             write_to_output("No replacement string.\r\n", d);
             return;
-        } else if ((t = strtok(NULL, "'")) == NULL) {
+        } else if ((t = strtok(nullptr, "'")) == nullptr) {
             write_to_output("Replacement string must be enclosed in single quotes.\r\n", d);
             return;
         } else if ((total_len = ((strlen(t) - strlen(s)) + strlen(*d->str))) <= d->max_str) {
@@ -211,28 +211,28 @@ void parse_action(int command, char *string, descriptor_data *d) {
 
         i = 1;
         total_len = 1;
-        if ((s = *d->str) == NULL) {
+        if ((s = *d->str) == nullptr) {
             write_to_output("Buffer is empty.\r\n", d);
             return;
         } else if (line_low > 0) {
             while (s && (i < line_low))
-                if ((s = strchr(s, '\n')) != NULL) {
+                if ((s = strchr(s, '\n')) != nullptr) {
                     i++;
                     s++;
                 }
-            if ((i < line_low) || (s == NULL)) {
+            if ((i < line_low) || (s == nullptr)) {
                 write_to_output("Line(s) out of range; not deleting.\r\n", d);
                 return;
             }
 
             t = s;
             while (s && (i < line_high))
-                if ((s = strchr(s, '\n')) != NULL) {
+                if ((s = strchr(s, '\n')) != nullptr) {
                     i++;
                     total_len++;
                     s++;
                 }
-            if ((s) && ((s = strchr(s, '\n')) != NULL)) {
+            if ((s) && ((s = strchr(s, '\n')) != nullptr)) {
                 s++;
                 while (*s != '\0')
                     *(t++) = *(s++);
@@ -283,17 +283,17 @@ void parse_action(int command, char *string, descriptor_data *d) {
         total_len = 0;
         s = *d->str;
         while (s && (i < line_low))
-            if ((s = strchr(s, '\n')) != NULL) {
+            if ((s = strchr(s, '\n')) != nullptr) {
                 i++;
                 s++;
             }
-        if ((i < line_low) || (s == NULL)) {
+        if ((i < line_low) || (s == nullptr)) {
             write_to_output("Line(s) out of range; no buffer listing.\r\n", d);
             return;
         }
         t = s;
         while (s && (i <= line_high))
-            if ((s = strchr(s, '\n')) != NULL) {
+            if ((s = strchr(s, '\n')) != nullptr) {
                 i++;
                 total_len++;
                 s++;
@@ -347,17 +347,17 @@ void parse_action(int command, char *string, descriptor_data *d) {
         total_len = 0;
         s = *d->str;
         while (s && (i < line_low))
-            if ((s = strchr(s, '\n')) != NULL) {
+            if ((s = strchr(s, '\n')) != nullptr) {
                 i++;
                 s++;
             }
-        if ((i < line_low) || (s == NULL)) {
+        if ((i < line_low) || (s == nullptr)) {
             write_to_output("Line(s) out of range; no buffer listing.\r\n", d);
             return;
         }
         t = s;
         while (s && (i <= line_high))
-            if ((s = strchr(s, '\n')) != NULL) {
+            if ((s = strchr(s, '\n')) != nullptr) {
                 i++;
                 total_len++;
                 s++;
@@ -389,17 +389,17 @@ void parse_action(int command, char *string, descriptor_data *d) {
 
         i = 1;
         *buf = '\0';
-        if ((s = *d->str) == NULL) {
+        if ((s = *d->str) == nullptr) {
             write_to_output("Buffer is empty, nowhere to insert.\r\n", d);
             return;
         }
         if (line_low > 0) {
             while (s && (i < line_low))
-                if ((s = strchr(s, '\n')) != NULL) {
+                if ((s = strchr(s, '\n')) != nullptr) {
                     i++;
                     s++;
                 }
-            if ((i < line_low) || (s == NULL)) {
+            if ((i < line_low) || (s == nullptr)) {
                 write_to_output("Line number out of range; insert aborted.\r\n", d);
                 return;
             }
@@ -437,7 +437,7 @@ void parse_action(int command, char *string, descriptor_data *d) {
 
         i = 1;
         *buf = '\0';
-        if ((s = *d->str) == NULL) {
+        if ((s = *d->str) == nullptr) {
             write_to_output("Buffer is empty, nothing to change.\r\n", d);
             return;
         }
@@ -446,14 +446,14 @@ void parse_action(int command, char *string, descriptor_data *d) {
              * Loop through the text counting \\n characters until we get to the line/
              */
             while (s && (i < line_low))
-                if ((s = strchr(s, '\n')) != NULL) {
+                if ((s = strchr(s, '\n')) != nullptr) {
                     i++;
                     s++;
                 }
             /*
              * Make sure that there was a THAT line in the text.
              */
-            if ((i < line_low) || (s == NULL)) {
+            if ((i < line_low) || (s == nullptr)) {
                 write_to_output("Line number out of range; change aborted.\r\n", d);
                 return;
             }
@@ -477,7 +477,7 @@ void parse_action(int command, char *string, descriptor_data *d) {
              * Put the new 'good' line into place.
              */
             strcat(buf, buf2);
-            if ((s = strchr(s, '\n')) != NULL) {
+            if ((s = strchr(s, '\n')) != nullptr) {
                 /*
                  * This means that we are at the END of the line, we want out of
                  * there, but we want s to point to the beginning of the line
@@ -512,13 +512,13 @@ void parse_action(int command, char *string, descriptor_data *d) {
         break;
     default:
         write_to_output("Invalid option.\r\n", d);
-        mudlog("SYSERR: invalid command passed to parse_action", BRF, LVL_HEAD_C, TRUE);
+        mudlog("SYSERR: invalid command passed to parse_action", BRF, LVL_HEAD_C, true);
         return;
     }
 }
 
 /* Add user input to the 'current' string (as defined by d->str) */
-void string_add(descriptor_data *d, char *str) {
+void string_add(DescriptorData *d, char *str) {
     int terminator = 0, action = 0;
     int i = 2, j = 0;
     char actions[MAX_INPUT_LENGTH], *s;
@@ -540,7 +540,7 @@ void string_add(descriptor_data *d, char *str) {
         case 'c':
             if (*(d->str)) {
                 free(*d->str);
-                *(d->str) = NULL;
+                *(d->str) = nullptr;
                 write_to_output("Current buffer cleared.\r\n", d);
             } else
                 write_to_output("Current buffer empty.\r\n", d);
@@ -627,19 +627,19 @@ void string_add(descriptor_data *d, char *str) {
 
     if (terminator) {
         /*. OLC Edits . */
-        extern void oedit_disp_menu(descriptor_data * d);
-        extern void oedit_disp_extradesc_menu(descriptor_data * d);
-        extern void redit_disp_menu(descriptor_data * d);
-        extern void redit_disp_extradesc_menu(descriptor_data * d);
-        extern void redit_disp_exit_menu(descriptor_data * d);
-        extern void medit_disp_menu(descriptor_data * d);
-        extern void hedit_disp_menu(descriptor_data * d);
-        extern void trigedit_disp_menu(descriptor_data * d);
+        extern void oedit_disp_menu(DescriptorData * d);
+        extern void oedit_disp_extradesc_menu(DescriptorData * d);
+        extern void redit_disp_menu(DescriptorData * d);
+        extern void redit_disp_extradesc_menu(DescriptorData * d);
+        extern void redit_disp_exit_menu(DescriptorData * d);
+        extern void medit_disp_menu(DescriptorData * d);
+        extern void hedit_disp_menu(DescriptorData * d);
+        extern void trigedit_disp_menu(DescriptorData * d);
 
         /* Check for too many lines */
         if (terminator == 1 && d->max_buffer_lines > 0 && d->str && *d->str) {
             for (i = 0, s = *d->str; s;)
-                if ((s = strchr(s, '\n')) != NULL) {
+                if ((s = strchr(s, '\n')) != nullptr) {
                     i++;
                     s++;
                 }
@@ -661,10 +661,10 @@ void string_add(descriptor_data *d, char *str) {
             if (d->backstr) {
                 *d->str = d->backstr;
             } else
-                *d->str = NULL;
+                *d->str = nullptr;
 
-            d->backstr = NULL;
-            d->str = NULL;
+            d->backstr = nullptr;
+            d->str = nullptr;
         } else if ((d->str) && (*d->str) && (**d->str == '\0')) {
             free(*d->str);
             if (STATE(d) == CON_EXDESC)
@@ -709,7 +709,7 @@ void string_add(descriptor_data *d, char *str) {
             } else {
                 write_to_output("Mail aborted.\r\n", d);
                 if (d->mail_vnum != NOTHING) {
-                    struct obj_data *obj = read_object(d->mail_vnum, VIRTUAL);
+                    ObjData *obj = read_object(d->mail_vnum, VIRTUAL);
                     if (obj)
                         obj_to_char(obj, d->character);
                 }
@@ -729,15 +729,15 @@ void string_add(descriptor_data *d, char *str) {
             if (terminator == 1) {
                 if (strlen(*d->str) == 0) {
                     free(*d->str);
-                    *d->str = NULL;
+                    *d->str = nullptr;
                 }
             } else {
                 free(*d->str);
                 if (d->backstr)
                     *d->str = d->backstr;
                 else
-                    *d->str = NULL;
-                d->backstr = NULL;
+                    *d->str = nullptr;
+                d->backstr = nullptr;
                 write_to_output("Message aborted.\r\n", d);
             }
         }
@@ -747,8 +747,8 @@ void string_add(descriptor_data *d, char *str) {
         }
         if (d->backstr)
             free(d->backstr);
-        d->backstr = NULL;
-        d->str = NULL;
+        d->backstr = nullptr;
+        d->str = nullptr;
     }
 }
 
@@ -758,7 +758,7 @@ void string_add(descriptor_data *d, char *str) {
 
 /* made skillset <vict> only show nonzero skills -321 3/14/00 */
 ACMD(do_skillset) {
-    struct char_data *vict;
+    CharData *vict;
     char name[100], buf2[100];
     int skill, value, i, j, k;
 
@@ -839,7 +839,7 @@ ACMD(do_skillset) {
         return;
     }
     sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict), skills[skill].name, value);
-    mudlog(buf2, BRF, -1, TRUE);
+    mudlog(buf2, BRF, -1, true);
 
     SET_SKILL(vict, skill, value);
 
@@ -858,7 +858,7 @@ ACMD(do_skillset) {
 char paging_pbuf[MAX_STRING_LENGTH];
 char paging_buf[MAX_STRING_LENGTH];
 
-static int get_page_length(descriptor_data *d) {
+static int get_page_length(DescriptorData *d) {
     int page_length = 22;
 
     if (d) {
@@ -873,7 +873,7 @@ static int get_page_length(descriptor_data *d) {
     return page_length;
 }
 
-static void add_paging_element(descriptor_data *d, paging_line *pl) {
+static void add_paging_element(DescriptorData *d, paging_line *pl) {
     int page_length = get_page_length(d);
 
     if (d->paging_tail) {
@@ -892,12 +892,12 @@ static void add_paging_element(descriptor_data *d, paging_line *pl) {
     d->paging_bufsize += sizeof(paging_line) + strlen(pl->line) + 1;
 }
 
-static bool ok_paging_add(descriptor_data *d, int size) {
+static bool ok_paging_add(DescriptorData *d, int size) {
     int maxbuf = MAX_MORTAL_PAGEBUF;
 
     if (d->paging_skipped) {
         d->paging_skipped++;
-        return FALSE;
+        return false;
     }
 
     if (d->original) {
@@ -914,14 +914,14 @@ static bool ok_paging_add(descriptor_data *d, int size) {
 
     if (d->paging_bufsize + size > maxbuf) {
         d->paging_skipped++;
-        return FALSE;
+        return false;
     } else {
-        return TRUE;
+        return true;
     }
 }
 
-static void add_paging_fragment(descriptor_data *d, const char *line, int len) {
-    struct paging_line *pl;
+static void add_paging_fragment(DescriptorData *d, const char *line, int len) {
+    paging_line *pl;
 
     if (ok_paging_add(d, len + 1)) {
         CREATE(pl, paging_line, 1);
@@ -933,15 +933,15 @@ static void add_paging_fragment(descriptor_data *d, const char *line, int len) {
     }
 }
 
-static void paging_addstr(descriptor_data *d, const char *str) {
-    int col = 1, spec_code = FALSE;
+static void paging_addstr(DescriptorData *d, const char *str) {
+    int col = 1, spec_code = false;
     const char *line_start, *s;
     char *tmp;
 
     if (d->paging_fragment) {
         sprintf(paging_buf, "%s%s", d->paging_fragment, str);
         free(d->paging_fragment);
-        d->paging_fragment = NULL;
+        d->paging_fragment = nullptr;
         line_start = paging_buf;
     } else {
         line_start = str;
@@ -960,11 +960,11 @@ static void paging_addstr(descriptor_data *d, const char *str) {
 
             /* Check for the begining of an ANSI color code block. */
         } else if (*s == '\x1B' && !spec_code)
-            spec_code = TRUE;
+            spec_code = true;
 
         /* Check for the end of an ANSI color code block. */
         else if (*s == 'm' && spec_code)
-            spec_code = FALSE;
+            spec_code = false;
 
         /* Check for inline ansi too! */
         else if ((*s == CREL || *s == CABS) && !spec_code) {
@@ -992,7 +992,7 @@ static void paging_addstr(descriptor_data *d, const char *str) {
     }
 }
 
-void paging_printf(const struct char_data *ch, const char *messg, ...) {
+void paging_printf(CharData *ch, const char *messg, ...) {
     va_list args;
 
     if (ch->desc && messg && *messg) {
@@ -1003,7 +1003,7 @@ void paging_printf(const struct char_data *ch, const char *messg, ...) {
     }
 }
 
-void desc_paging_printf(descriptor_data *d, const char *messg, ...) {
+void desc_paging_printf(DescriptorData *d, const char *messg, ...) {
     va_list args;
 
     if (messg && *messg) {
@@ -1014,8 +1014,8 @@ void desc_paging_printf(descriptor_data *d, const char *messg, ...) {
     }
 }
 
-void free_paged_text(descriptor_data *d) {
-    struct paging_line *pl, *plnext;
+void free_paged_text(DescriptorData *d) {
+    paging_line *pl, *plnext;
 
     for (pl = d->paging_lines; pl; pl = plnext) {
         free(pl->line);
@@ -1024,10 +1024,10 @@ void free_paged_text(descriptor_data *d) {
     }
     if (d->paging_fragment) {
         free(d->paging_fragment);
-        d->paging_fragment = NULL;
+        d->paging_fragment = nullptr;
     }
-    d->paging_lines = NULL;
-    d->paging_tail = NULL;
+    d->paging_lines = nullptr;
+    d->paging_tail = nullptr;
     d->paging_numlines = 0;
     d->paging_numpages = 0;
     d->paging_curpage = 0;
@@ -1035,11 +1035,11 @@ void free_paged_text(descriptor_data *d) {
     d->paging_skipped = 0;
 }
 
-struct paging_line *paging_goto_page(descriptor_data *d, int page) {
+paging_line *paging_goto_page(DescriptorData *d, int page) {
     int destpage = page;
     int page_length = get_page_length(d);
     int i, j;
-    struct paging_line *pl;
+    paging_line *pl;
 
     /* Decide exactly which page to go to */
     if (destpage < 0)
@@ -1066,9 +1066,9 @@ struct paging_line *paging_goto_page(descriptor_data *d, int page) {
     return pl;
 }
 
-void get_paging_input(descriptor_data *d, char *input) {
+void get_paging_input(DescriptorData *d, char *input) {
     int i, page_length;
-    struct paging_line *line;
+    paging_line *line;
 
     one_argument(input, buf);
 
@@ -1107,9 +1107,9 @@ void get_paging_input(descriptor_data *d, char *input) {
         free_paged_text(d);
 }
 
-void start_paging_desc(descriptor_data *d) {
+void start_paging_desc(DescriptorData *d) {
     int i, page_length = get_page_length(d);
-    struct paging_line *line = d->paging_lines;
+    paging_line *line = d->paging_lines;
 
     PAGING_PAGE(d) = 0;
 
@@ -1118,7 +1118,7 @@ void start_paging_desc(descriptor_data *d) {
     if (d->paging_fragment) {
         add_paging_fragment(d, paging_buf, sprintf(paging_buf, "%s\r\n", d->paging_fragment));
         free(d->paging_fragment);
-        d->paging_fragment = NULL;
+        d->paging_fragment = nullptr;
     }
 
     /* Notify player if there was too much text to fit in the pager */
@@ -1141,23 +1141,23 @@ void start_paging_desc(descriptor_data *d) {
 
 /* When you have been accumulating some text to someone and are finished,
  * start the paging process. */
-void start_paging(char_data *ch) {
+void start_paging(CharData *ch) {
     if (ch->desc)
         start_paging_desc(ch->desc);
 }
 
 /* LEGACY !!! */
-void page_line(char_data *ch, char *str) {
+void page_line(CharData *ch, char *str) {
     if (ch->desc)
         paging_addstr(ch->desc, str);
 }
 
-void page_string(char_data *ch, const char *str) {
+void page_string(CharData *ch, const char *str) {
     if (ch->desc)
         page_string_desc(ch->desc, str);
 }
 
-void page_string_desc(descriptor_data *d, const char *str) {
+void page_string_desc(DescriptorData *d, const char *str) {
     paging_addstr(d, str);
     if (PAGING(d))
         start_paging_desc(d);

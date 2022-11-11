@@ -17,21 +17,16 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "modify.hpp"
 #include "players.hpp"
 #include "screen.hpp"
-#include "strings.h"
+#include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-#define CLANCMD(name) void(name)(char_data * ch, clan_membership * member, clan * clan, char *argument)
-
-extern const struct {
-    char *abbr;
-    bool default_on;
-    char *desc;
-} clan_privileges[NUM_CLAN_PRIVS];
+#define CLANCMD(name) void(name)(CharData * ch, ClanMembership * member, Clan * clan, char *argument)
 
 CLANCMD(clan_list) {
     clan_iter iter;
@@ -115,20 +110,20 @@ CLANCMD(clan_bank) {
     save_clan(clan);
 }
 
-static bool is_snooping(const struct char_data *ch, const struct Clan *clan) {
-    struct clan_snoop *snoop;
+static bool is_snooping(CharData *ch, const Clan *clan) {
+    ClanSnoop *snoop;
 
     for (snoop = GET_CLAN_SNOOP(ch); snoop; snoop = snoop->next)
         if (snoop->clan == clan)
-            return TRUE;
+            return true;
 
-    return FALSE;
+    return false;
 }
 
 CLANCMD(clan_tell) {
-    struct descriptor_data *d;
-    struct char_data *tch;
-    struct char_data *me = REAL_CHAR(ch);
+    DescriptorData *d;
+    CharData *tch;
+    CharData *me = REAL_CHAR(ch);
 
     skip_spaces(&argument);
 
@@ -201,7 +196,7 @@ CLANCMD(clan_set) {
 
         ++clan->rank_count;
         /* Warning! RECREATE does not initialize to zero... */
-        RECREATE(clan->ranks, clan_rank, clan->rank_count);
+        RECREATE(clan->ranks, ClanRank, clan->rank_count);
         clan->ranks[clan->rank_count - 1].title = strdup("Member");
         for (i = 0; i < NUM_CLAN_PRIVS; ++i)
             if (clan_privileges[i].default_on)
@@ -325,8 +320,8 @@ CLANCMD(clan_set) {
 }
 
 CLANCMD(clan_alt) {
-    struct char_data *tch;
-    struct clan_membership *alt;
+    CharData *tch;
+    ClanMembership *alt;
 
     argument = any_one_arg(argument, arg);
 
@@ -371,7 +366,7 @@ CLANCMD(clan_alt) {
         if (ch != member->player && member->player)
             cprintf(FORWARD(member->player), AFMAG "%s makes %s one of your clan alts.\r\n" ANRM, GET_NAME(ch),
                     GET_NAME(tch));
-        CREATE(alt, clan_membership, 1);
+        CREATE(alt, ClanMembership, 1);
         alt->name = strdup(GET_NAME(tch));
         alt->rank = ALT_RANK_OFFSET + member->rank;
         alt->since = member->since;
@@ -407,9 +402,9 @@ CLANCMD(clan_apply) {
         clan->treasure[PLATINUM] += clan->app_fee;
     }
 
-    clan_notification(clan, NULL, "%s has applied to your clan.", GET_NAME(ch));
+    clan_notification(clan, nullptr, "%s has applied to your clan.", GET_NAME(ch));
 
-    CREATE(member, clan_membership, 1);
+    CREATE(member, ClanMembership, 1);
     member->name = strdup(GET_NAME(ch));
     member->rank = RANK_APPLICANT;
     member->since = time(0);
@@ -436,8 +431,8 @@ CLANCMD(clan_create) {
         clan = alloc_clan();
         clan->name = strdup(buf);
         clan->abbreviation = strdup(buf);
-        clan->description = NULL;
-        clan->motd = NULL;
+        clan->description = nullptr;
+        clan->motd = nullptr;
 
         clan->dues = 0;
         clan->app_fee = 0;
@@ -447,7 +442,7 @@ CLANCMD(clan_create) {
             clan->treasure[i] = 0;
 
         clan->rank_count = 2;
-        CREATE(clan->ranks, clan_rank, 2);
+        CREATE(clan->ranks, ClanRank, 2);
         clan->ranks[0].title = strdup("Leader");
         clan->ranks[1].title = strdup("Member");
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
@@ -457,13 +452,13 @@ CLANCMD(clan_create) {
         }
 
         clan->people_count = 0;
-        clan->people = NULL;
+        clan->people = nullptr;
         clan->member_count = 0;
-        clan->members = NULL;
+        clan->members = nullptr;
         clan->admin_count = 0;
-        clan->admins = NULL;
+        clan->admins = nullptr;
         clan->applicant_count = 0;
-        clan->applicants = NULL;
+        clan->applicants = nullptr;
 
         cprintf(ch, "New clan created.\r\n");
         mprintf(L_STAT, LVL_GOD, "(CLAN) %s creates new clan: %s", GET_NAME(ch), buf);
@@ -472,9 +467,9 @@ CLANCMD(clan_create) {
     }
 }
 
-CLANCMD(clan_rank) {
+CLANCMD(update_clan_rank) {
     unsigned int rank;
-    const char *action = NULL;
+    const char *action = nullptr;
 
     argument = any_one_arg(argument, arg);
 
@@ -501,7 +496,7 @@ CLANCMD(clan_rank) {
             action = "promote";
         }
     } else {
-        log("SYSERR: clan_rank: invalid subcommand '%s'", arg);
+        log("SYSERR: update_clan_rank: invalid subcommand '%s'", arg);
         return;
     }
 
@@ -645,8 +640,8 @@ CLANCMD(clan_priv) {
     save_clan(clan);
 }
 
-static void show_clan_info(char_data *ch, const struct Clan *clan) {
-    const struct clan_membership *member = GET_CLAN_MEMBERSHIP(ch);
+static void show_clan_info(CharData *ch, const Clan *clan) {
+    const ClanMembership *member = GET_CLAN_MEMBERSHIP(ch);
     size_t i, j;
     bool show_all =
         ((member && member->clan == clan && OUTRANKS(member->rank, RANK_APPLICANT)) || IS_CLAN_SUPERADMIN(ch));
@@ -721,7 +716,7 @@ CLANCMD(clan_info) {
         cprintf(ch, "'%s' does not refer to a valid clan.\r\n", arg);
 }
 
-static void show_clan_member_status(char_data *ch, const struct char_data *tch) {
+static void show_clan_member_status(CharData *ch, CharData *tch) {
     if (IS_CLAN_SUPERADMIN(tch))
         cprintf(ch, "%s %s a clan super-administrator.\r\n", ch == tch ? "You" : GET_NAME(tch),
                 ch == tch ? "are" : "is");
@@ -749,7 +744,7 @@ static void show_clan_member_status(char_data *ch, const struct char_data *tch) 
         pprintf(ch, "  Member since: %s\r\n", buf);
         if (IS_CLAN_MEMBER(tch)) {
             if (HAS_FLAGS(GET_CLAN(tch)->ranks[GET_CLAN_RANK(tch) - 1].privileges, NUM_CLAN_PRIVS)) {
-                screen_buf sb = new_screen_buf();
+                ScreenBuf sb = new_screen_buf();
                 int i, seen = 0;
                 const size_t len = strlen("  Privileges: ");
                 sb_set_first_indentation(sb, len);
@@ -762,8 +757,8 @@ static void show_clan_member_status(char_data *ch, const struct char_data *tch) 
                 free_screen_buf(sb);
             }
             if (GET_CLAN_MEMBERSHIP(tch)->relation.alts) {
-                struct clan_membership *alt;
-                screen_buf sb = new_screen_buf();
+                ClanMembership *alt;
+                ScreenBuf sb = new_screen_buf();
                 int seen = 0;
                 const size_t len = strlen("  Alts: ");
                 sb_set_first_indentation(sb, len);
@@ -782,7 +777,7 @@ static void show_clan_member_status(char_data *ch, const struct char_data *tch) 
 }
 
 CLANCMD(clan_status) {
-    struct char_data *tch;
+    CharData *tch;
 
     argument = any_one_arg(argument, arg);
 
@@ -795,14 +790,14 @@ CLANCMD(clan_status) {
         show_clan_member_status(ch, ch);
 }
 
-struct clan_edit {
-    struct Clan *clan;
+struct ClanEdit {
+    Clan *clan;
     char string[20];
 };
 
 static EDITOR_FUNC(clan_edit_done) {
-    struct descriptor_data *d = edit->descriptor;
-    struct clan_edit *data = edit->data;
+    DescriptorData *d = edit->descriptor;
+    ClanEdit *data = (ClanEdit *)edit->data;
 
     if (edit->command == ED_EXIT_SAVE) {
         editor_default_exit(edit);
@@ -810,14 +805,14 @@ static EDITOR_FUNC(clan_edit_done) {
         save_clan(data->clan);
     }
 
-    act("$n stops writing on the large scroll.", TRUE, d->character, 0, 0, TO_ROOM);
+    act("$n stops writing on the large scroll.", true, d->character, 0, 0, TO_ROOM);
 
     return ED_PROCESSED;
 }
 
 CLANCMD(clan_edit) {
     char **message;
-    struct clan_edit *data;
+    ClanEdit *data;
 
     if (!ch->desc)
         return;
@@ -831,11 +826,11 @@ CLANCMD(clan_edit) {
         message = &clan->description;
         argument = "description";
     } else {
-        log("SYSERR: clan_edit: unknown string specified");
+        log("SYSECR: E unknown string specified");
         return;
     }
 
-    CREATE(data, clan_edit, 1);
+    CREATE(data, ClanEdit, 1);
     data->clan = clan;
     strcpy(data->string, argument);
 
@@ -844,7 +839,7 @@ CLANCMD(clan_edit) {
         return;
     }
 
-    act("$n begins writing on a large scroll.", TRUE, ch, 0, 0, TO_ROOM);
+    act("$n begins writing on a large scroll.", true, ch, 0, 0, TO_ROOM);
 
     editor_init(ch->desc, message, MAX_DESC_LENGTH);
     editor_set_begin_string(ch->desc, "Edit %s's %s below.", clan->name, argument);
@@ -891,7 +886,7 @@ CLANCMD(clan_reject) {
 }
 
 CLANCMD(clan_snoop) {
-    struct clan_snoop *snoop, *temp;
+    ClanSnoop *snoop, *temp;
     clan_iter iter;
 
     fetch_word(argument, arg, sizeof(arg));
@@ -920,7 +915,7 @@ CLANCMD(clan_snoop) {
     else if (!str_cmp(arg, "all")) {
         for (iter = clans_start(); iter != clans_end(); ++iter)
             if (!is_snooping(ch, *iter)) {
-                CREATE(snoop, clan_snoop, 1);
+                CREATE(snoop, ClanSnoop, 1);
                 snoop->clan = *iter;
                 snoop->next = GET_CLAN_SNOOP(ch);
                 GET_CLAN_SNOOP(ch) = snoop;
@@ -945,7 +940,7 @@ CLANCMD(clan_snoop) {
             }
             cprintf(ch, "You are no longer snooping %s.\r\n", clan->name);
         } else {
-            CREATE(snoop, clan_snoop, 1);
+            CREATE(snoop, ClanSnoop, 1);
             snoop->clan = clan;
             snoop->next = GET_CLAN_SNOOP(ch);
             GET_CLAN_SNOOP(ch) = snoop;
@@ -957,7 +952,7 @@ CLANCMD(clan_snoop) {
         cprintf(ch, "'%s' does not refer to a valid clan.\r\n", arg);
 }
 
-static void send_clan_who_line(const struct char_data *ch, const struct clan_membership *member) {
+static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
     long num;
     char level_buf[4];
     char alt_buf[50];
@@ -996,15 +991,15 @@ static void send_clan_who_line(const struct char_data *ch, const struct clan_mem
             ELLIPSIS_STR(title, 25), last_logon);
 }
 
-static void send_clan_who_header(const struct char_data *ch) {
+static void send_clan_who_header(CharData *ch) {
     cprintf(ch, " " AUND "Lvl" ANRM "  " AUND "Name     " ANRM "  " AUND "Rank                    " ANRM "  " AUND
                 "Last Login            " ANRM "\r\n");
 }
 
 CLANCMD(clan_who) {
-    struct descriptor_data *d;
-    struct char_data *tch;
-    bool found = FALSE;
+    DescriptorData *d;
+    CharData *tch;
+    bool found = false;
 
     cprintf(ch, AHYEL "Members in " ANRM "%s" AHYEL ":" ANRM "\r\n", clan->name);
 
@@ -1017,7 +1012,7 @@ CLANCMD(clan_who) {
         if (IS_CLAN_MEMBER(tch) || IS_CLAN_ALT(tch)) {
             if (!found) {
                 send_clan_who_header(ch);
-                found = TRUE;
+                found = true;
             }
             send_clan_who_line(ch, GET_CLAN_MEMBERSHIP(tch));
         }
@@ -1027,7 +1022,7 @@ CLANCMD(clan_who) {
         if (!member->player || !member->player->desc) {
             if (!found) {
                 send_clan_who_header(ch);
-                found = TRUE;
+                found = true;
             }
             send_clan_who_line(ch, member);
         }
@@ -1036,12 +1031,12 @@ CLANCMD(clan_who) {
         cprintf(ch, "  None!\r\n");
 
     if (clan->applicant_count) {
-        found = FALSE;
+        found = false;
         cprintf(ch, AHYEL "Applicants to " ANRM "%s" AHYEL ":" ANRM "\r\n", clan->name);
         for (member = clan->applicants; member && IS_APPLICANT_RANK(member->rank); member = member->next) {
             if (!found) {
                 send_clan_who_header(ch);
-                found = TRUE;
+                found = true;
             }
             send_clan_who_line(ch, member);
         }
@@ -1074,12 +1069,12 @@ static const char *clan_cmdgroup[NUM_GROUPS] = {"General", "Management", "Privil
 
 /* Clan command information structure */
 static const struct clan_subcommand {
-    char *name;
+    const char *name;
     unsigned int group;
     unsigned int type;
     unsigned int data;
     unsigned int args;
-    char *more_args;
+    const char *more_args;
     CLANCMD(*handler);
 } commands[] = {
     /* KEEP THIS LIST ALPHABETIZED */
@@ -1097,7 +1092,7 @@ static const struct clan_subcommand {
     {"create", ADMIN, SUPER, 0, IGNORE, "<abbr>", clan_create},
     {"delrank", MODIFY, PRIV | ADMIN, CPRIV_RANKS, IGNORE | REPEAT, "", clan_set},
     {"delrank", MODIFY, SUPER, CPRIV_RANKS, CLAN | REPEAT, "", clan_set},
-    {"demote", MGMT, PRIV | ADMIN | SUPER, CPRIV_DEMOTE, MEMBER | REPEAT, "", clan_rank},
+    {"demote", MGMT, PRIV | ADMIN | SUPER, CPRIV_DEMOTE, MEMBER | REPEAT, "", update_clan_rank},
     {"deposit", GENERAL, RANK, MIN_ALT_RANK, REPEAT, "<money>", clan_bank},
     {"deposit", GENERAL, SUPER, 0, CLAN | REPEAT, "<money>", clan_bank},
     {"desc", MODIFY, PRIV | ADMIN, CPRIV_DESC, IGNORE | REPEAT, "", clan_edit},
@@ -1115,7 +1110,7 @@ static const struct clan_subcommand {
     {"motd", MODIFY, SUPER, CPRIV_MOTD, CLAN | REPEAT, "", clan_edit},
     {"name", ADMIN, ADMIN, 0, IGNORE | REPEAT, "<name>", clan_set},
     {"name", ADMIN, SUPER, 0, CLAN | REPEAT, "<name>", clan_set},
-    {"promote", MGMT, PRIV | ADMIN | SUPER, CPRIV_PROMOTE, MEMBER | REPEAT, "", clan_rank},
+    {"promote", MGMT, PRIV | ADMIN | SUPER, CPRIV_PROMOTE, MEMBER | REPEAT, "", update_clan_rank},
     {"quit", GENERAL, RANK, RANK_APPLICANT, IGNORE, "", clan_quit},
     {"reject", MGMT, PRIV | ADMIN | SUPER, CPRIV_ENROLL, APPLICANT, "", clan_reject},
     {"revoke", MGMT, PRIV | ADMIN, CPRIV_GRANT, IGNORE | REPEAT, "<rank> <privilege>", clan_priv},
@@ -1134,27 +1129,27 @@ static const struct clan_subcommand {
     {0, 0, 0, 0, 0, 0, 0},
 };
 
-static bool can_use_clan_command(const struct char_data *ch, const struct clan_subcommand *command) {
+static bool can_use_clan_command(CharData *ch, const clan_subcommand *command) {
     if (IS_SET(command->type, NONE))
         if (GET_CLAN_RANK(ch) == RANK_NONE && !IS_CLAN_SUPERADMIN(ch))
-            return TRUE;
+            return true;
     if (IS_SET(command->type, RANK))
         if (!OUTRANKS(command->data, GET_CLAN_RANK(ch)))
-            return TRUE;
+            return true;
     if (IS_SET(command->type, PRIV))
         if (HAS_CLAN_PRIV(ch, command->data))
-            return TRUE;
+            return true;
     if (IS_SET(command->type, ADMIN))
         if (IS_CLAN_ADMIN(ch))
-            return TRUE;
+            return true;
     if (IS_SET(command->type, SUPER))
         if (IS_CLAN_SUPERADMIN(ch))
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
-static const struct clan_subcommand *determine_command(const struct char_data *ch, const char *cmd) {
-    const struct clan_subcommand *command = NULL;
+static const clan_subcommand *determine_command(CharData *ch, const char *cmd) {
+    const clan_subcommand *command = nullptr;
 
     for (command = commands; command->name; ++command) {
         if (*command->name < *cmd)
@@ -1166,14 +1161,14 @@ static const struct clan_subcommand *determine_command(const struct char_data *c
                 return command;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 ACMD(do_clan) {
-    const struct clan_subcommand *command = NULL;
-    struct Clan *clan;
-    struct clan_membership *member;
-    char argbuf[MAX_INPUT_LENGTH];
+    const clan_subcommand *command = nullptr;
+    Clan *clan;
+    ClanMembership *member;
+    char arg[MAX_INPUT_LENGTH];
     unsigned int group;
 
     if (IS_NPC(ch) || !ch->desc) {
@@ -1185,9 +1180,9 @@ ACMD(do_clan) {
     member = GET_CLAN_MEMBERSHIP(ch);
 
     /* Determine which command to invoke */
-    argument = any_one_arg(argument, argbuf);
-    if (strlen(argbuf) >= 3)
-        if ((command = determine_command(ch, argbuf))) {
+    argument = any_one_arg(argument, arg);
+    if (strlen(arg) >= 3)
+        if ((command = determine_command(ch, arg))) {
             if (IS_SET(command->args, CLAN)) {
                 argument = any_one_arg(argument, arg);
                 if (!*arg) {
@@ -1202,7 +1197,7 @@ ACMD(do_clan) {
                 argument = any_one_arg(argument, arg);
                 CAP(arg);
                 if (!*arg) {
-                    cprintf(ch, "Whom do you want to %s?\r\n", argbuf);
+                    cprintf(ch, "Whom do you want to %s?\r\n", arg);
                     return;
                 } else if (!(member = find_clan_membership(arg))) {
                     cprintf(ch, "%s is not a member or applicant of any clan.\r\n", arg);
@@ -1218,8 +1213,8 @@ ACMD(do_clan) {
                     clan = member->clan;
             }
             if (IS_SET(command->args, REPEAT)) {
-                strcat(argbuf, argument);
-                argument = argbuf;
+                strcat(arg, argument);
+                argument = arg;
             } else
                 skip_spaces(&argument);
 
@@ -1255,13 +1250,13 @@ ACMD(do_clan) {
 }
 
 ACMD(do_ctell) {
-    struct char_data *me = REAL_CHAR(ch);
-    struct Clan *clan = GET_CLAN(me);
+    CharData *me = REAL_CHAR(ch);
+    Clan *clan = GET_CLAN(me);
 
     if (IS_CLAN_SUPERADMIN(me)) {
         /* Only snooping one clan: auto send to that one */
         if (GET_CLAN_SNOOP(me) && !GET_CLAN_SNOOP(me)->next)
-            clan_tell(ch, NULL, GET_CLAN_SNOOP(me)->clan, argument);
+            clan_tell(ch, nullptr, GET_CLAN_SNOOP(me)->clan, argument);
         else {
             argument = any_one_arg(argument, arg);
             if (!*arg)
@@ -1275,7 +1270,7 @@ ACMD(do_ctell) {
             else if (!is_snooping(me, clan))
                 cprintf(ch, "You must be snooping %s first.\r\n", clan->name);
             else
-                clan_tell(ch, NULL, clan, argument);
+                clan_tell(ch, nullptr, clan, argument);
         }
     } else if (!clan || IS_CLAN_REJECT(me))
         cprintf(ch, "You're not part of a clan.\r\n");

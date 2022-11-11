@@ -48,22 +48,23 @@ points of interest are:
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "math.hpp"
+#include "objects.hpp"
 #include "pfiles.hpp"
-#include "strings.h"
+#include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
 struct corpse_data {
     int id;
-    struct obj_data *corpse;
-    struct corpse_data *prev, *next;
+    ObjData *corpse;
+    corpse_data *prev, *next;
 };
 
 static struct {
-    struct corpse_data list;
+    corpse_data list;
     int count;
     bool allow_save;
 } corpse_control;
@@ -74,12 +75,12 @@ static void save_corpse_list(void);
 
 int corpse_count(void) { return corpse_control.count; }
 
-static void check_corpse_id(corpse_data *entry) {}
+static void check_corpse_id(corpse_data *entry) { (void)entry; }
 
 static void remove_entry(corpse_data *entry) {
     entry->prev->next = entry->next;
     entry->next->prev = entry->prev;
-    entry->prev = entry->next = NULL;
+    entry->prev = entry->next = nullptr;
     free(entry);
     --corpse_control.count;
 }
@@ -89,9 +90,12 @@ void free_corpse_list() {
         remove_entry(SENTINEL->next);
 }
 
-void update_corpse(obj_data *corpse) { save_corpse_list(); }
+void update_corpse(ObjData *corpse) {
+    (void)corpse;
+    save_corpse_list();
+}
 
-static int corpse_id(obj_data *corpse) {
+static int corpse_id(ObjData *corpse) {
     int id = GET_OBJ_VAL(corpse, VAL_CORPSE_ID);
     return (id >= 0 ? id : -1);
 }
@@ -100,28 +104,28 @@ static int corpse_id(obj_data *corpse) {
 static bool get_corpse_filename(int id, char *filename) {
     if (id < 0) {
         log("SYSERR(corpse_save.c): Corpse has id number < 0 no corpse loaded.");
-        return FALSE;
+        return false;
     } else {
         sprintf(filename, "corpse/%d.corpse", id);
-        return TRUE;
+        return true;
     }
 }
 
 /* Load all objects for a corpse */
-static struct obj_data *load_corpse(int id) {
+static ObjData *load_corpse(int id) {
     FILE *fl;
     char fname[MAX_STRING_LENGTH];
-    struct obj_data *obj, *containers[MAX_CONTAINER_DEPTH + 1];
+    ObjData *obj, *containers[MAX_CONTAINER_DEPTH + 1];
     int location, depth, i;
     extern int r_mortal_start_room;
 
     if (!get_corpse_filename(id, fname)) {
         log("SYSERR: invalid id passed from load_corpse.");
-        return NULL;
+        return nullptr;
     }
     if (!(fl = fopen(fname, "r"))) {
         log("SYSERR: Corpse in control file not located on disk.");
-        return NULL;
+        return nullptr;
     }
 
     get_line(fl, buf1);
@@ -145,7 +149,7 @@ static struct obj_data *load_corpse(int id) {
             sprintf(buf, "SYSERR: First object '%s' loaded from corpse %d not corpse", obj->short_description, id);
             log(buf);
             extract_obj(obj);
-            return NULL;
+            return nullptr;
         }
         containers[0] = obj;
         GET_OBJ_VAL(obj, VAL_CORPSE_ID) = id;
@@ -154,7 +158,7 @@ static struct obj_data *load_corpse(int id) {
     } else {
         sprintf(buf, "SYSERR: Unable to read in corpse data for corpse %d in load_corpse", id);
         log(buf);
-        return NULL;
+        return nullptr;
     }
 
     while (!feof(fl)) {
@@ -162,7 +166,7 @@ static struct obj_data *load_corpse(int id) {
             break;
         depth = MAX(0, -location);
         for (i = MAX_CONTAINER_DEPTH - 1; i >= depth; --i)
-            containers[i] = NULL;
+            containers[i] = nullptr;
         containers[depth] = obj;
         if (depth > 0)
             obj_to_obj(obj, containers[depth - 1]);
@@ -178,11 +182,11 @@ static struct obj_data *load_corpse(int id) {
     return containers[0];
 }
 
-void save_corpse(obj_data *corpse) {
+void save_corpse(ObjData *corpse) {
     char buf[MAX_STRING_LENGTH];
     FILE *fp;
     int id;
-    struct obj_data *temp;
+    ObjData *temp;
 
     if (!IS_CORPSE(corpse)) {
         log("SYSERR: Non-corpse object passed to save_corpse");
@@ -210,7 +214,7 @@ void save_corpse(obj_data *corpse) {
      * the corpse is, so we'll temporarily set next_content to NULL.
      */
     temp = corpse->next_content;
-    corpse->next_content = NULL;
+    corpse->next_content = nullptr;
     write_objects(corpse, fp, WEAR_INVENTORY);
     corpse->next_content = temp;
 
@@ -239,20 +243,20 @@ static void delete_corpse_file(int id) {
 }
 
 /* find a corpse in the corpse control record */
-static struct corpse_data *find_entry(int id) {
-    struct corpse_data *entry;
+static corpse_data *find_entry(int id) {
+    corpse_data *entry;
 
     for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next)
         if (entry->id == id)
             return entry;
 
-    return NULL;
+    return nullptr;
 }
 
 /* Save the corpse control information */
 static void save_corpse_list(void) {
     FILE *fl;
-    struct corpse_data *entry;
+    corpse_data *entry;
 
     if (!(fl = fopen(CCONTROL_FILE, "w"))) {
         perror("SYSERR: Unable to open corpse control file");
@@ -278,8 +282,8 @@ static void save_corpse_list(void) {
 void boot_corpses(void) {
     FILE *fl;
     int id;
-    struct corpse_data *entry;
-    struct obj_data *corpse;
+    corpse_data *entry;
+    ObjData *corpse;
 
     memset(&corpse_control, 0x0, sizeof(corpse_control));
     SENTINEL->next = SENTINEL->prev = SENTINEL;
@@ -311,14 +315,14 @@ void boot_corpses(void) {
     }
     fclose(fl);
 
-    corpse_control.allow_save = TRUE;
+    corpse_control.allow_save = true;
 
     save_corpse_list();
 }
 
 /* When a player dies, this function is called from make_corpse in fight.c */
-void register_corpse(obj_data *corpse) {
-    struct corpse_data *entry;
+void register_corpse(ObjData *corpse) {
+    corpse_data *entry;
 
     if (GET_OBJ_VAL(corpse, VAL_CORPSE_ID)) {
         for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next)
@@ -347,9 +351,9 @@ void register_corpse(obj_data *corpse) {
 }
 
 /* called from extract_obj when corpse rots or is otherwise removed from play */
-void destroy_corpse(obj_data *corpse) {
+void destroy_corpse(ObjData *corpse) {
     int id = corpse_id(corpse);
-    struct corpse_data *entry = find_entry(id);
+    corpse_data *entry = find_entry(id);
 
     if (entry) {
         remove_entry(entry);
@@ -358,8 +362,8 @@ void destroy_corpse(obj_data *corpse) {
     }
 }
 
-void show_corpses(char_data *ch, char *argument) {
-    struct corpse_data *entry;
+void show_corpses(CharData *ch, char *argument) {
+    corpse_data *entry;
 
     if (corpse_control.count) {
         send_to_char(

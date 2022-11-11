@@ -16,38 +16,30 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-struct command_group {
+struct CommandGroup {
     char *alias;
     char *name;
     char *description;
     int minimum_level;
 };
 
-struct olc_command_group {
-    char *alias;
-    char *name;
-    char *description;
-    int minimum_level;
-    int *commands;
-};
-
-struct command_group_info {
+struct CommandGroupInfo {
     int *groups;
 };
 
 #define top_of_cmd_groups (cmd_groups + num_cmd_groups)
-extern struct command_group *cmd_groups;
-extern int num_cmd_groups;
-extern struct command_group_info *grp_info;
+CommandGroup *cmd_groups;
+int num_cmd_groups;
+CommandGroupInfo *grp_info;
 
 #define CMD_USEABLE_FOR_LEVEL(ch, cmd) (cmd_info[(cmd)].minimum_level <= GET_LEVEL(ch))
 
-extern ACMD(do_gedit);
-extern int find_command_group(char *name);
-extern int command_group_number(command_group *group);
-extern bool can_use_command(char_data *ch, int cmd);
-extern void boot_command_groups();
-extern void gedit_parse(descriptor_data *d, char *arg);
-extern void gedit_disp_menu(descriptor_data *d);
-extern void do_show_command_groups(char_data *ch, char *argument);
-extern void do_show_command(char_data *ch, char *argument);
+ACMD(do_gedit);
+int find_command_group(char *name);
+int command_group_number(CommandGroup *group);
+bool can_use_command(CharData *ch, int cmd);
+void boot_command_groups();
+void gedit_parse(DescriptorData *d, char *arg);
+void gedit_disp_menu(DescriptorData *d);
+void do_show_command_groups(CharData *ch, char *argument);
+void do_show_command(CharData *ch, char *argument);

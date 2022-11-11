@@ -13,7 +13,8 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "board.hpp" #include "casting.hpp"
+#include "board.hpp"
+#include "casting.hpp"
 #include "comm.hpp"
 #include "composition.hpp"
 #include "conf.hpp"
@@ -33,10 +34,7 @@
 #include "utils.hpp"
 
 /* external variables */
-int *tmp_ptr;
-extern const char *portal_entry_messages[];
-extern const char *portal_character_messages[];
-extern const char *portal_exit_messages[];
+// int *tmp_ptr;
 
 /*------------------------------------------------------------------------*/
 /*. Macros .*/
@@ -45,35 +43,35 @@ extern const char *portal_exit_messages[];
 
 /*------------------------------------------------------------------------*/
 
-void oedit_disp_container_flags_menu(descriptor_data *d);
-void oedit_disp_extradesc_menu(descriptor_data *d);
-void oedit_disp_weapon_menu(descriptor_data *d);
-void oedit_disp_val1_menu(descriptor_data *d);
-void oedit_disp_val2_menu(descriptor_data *d);
-void oedit_disp_val3_menu(descriptor_data *d);
-void oedit_disp_val4_menu(descriptor_data *d);
-void oedit_disp_type_menu(descriptor_data *d);
-void oedit_disp_extra_menu(descriptor_data *d);
-void oedit_disp_wear_menu(descriptor_data *d);
-void oedit_disp_menu(descriptor_data *d);
+void oedit_disp_container_flags_menu(DescriptorData *d);
+void oedit_disp_extradesc_menu(DescriptorData *d);
+void oedit_disp_weapon_menu(DescriptorData *d);
+void oedit_disp_val1_menu(DescriptorData *d);
+void oedit_disp_val2_menu(DescriptorData *d);
+void oedit_disp_val3_menu(DescriptorData *d);
+void oedit_disp_val4_menu(DescriptorData *d);
+void oedit_disp_type_menu(DescriptorData *d);
+void oedit_disp_extra_menu(DescriptorData *d);
+void oedit_disp_wear_menu(DescriptorData *d);
+void oedit_disp_menu(DescriptorData *d);
 
-void oedit_parse(descriptor_data *d, char *arg);
-void oedit_disp_spells_menu(descriptor_data *d);
-void oedit_liquid_type(descriptor_data *d);
-void oedit_setup_new(descriptor_data *d);
-void oedit_setup_existing(descriptor_data *d, int real_num);
+void oedit_parse(DescriptorData *d, char *arg);
+void oedit_disp_spells_menu(DescriptorData *d);
+void oedit_liquid_type(DescriptorData *d);
+void oedit_setup_new(DescriptorData *d);
+void oedit_setup_existing(DescriptorData *d, int real_num);
 void oedit_save_to_disk(int zone);
-void oedit_reverse_exdescs(int zone, char_data *ch);
-int oedit_reverse_exdesc(int real_num, char_data *ch);
-void oedit_save_internally(descriptor_data *d);
-void iedit_save_changes(descriptor_data *d);
+void oedit_reverse_exdescs(int zone, CharData *ch);
+int oedit_reverse_exdesc(int real_num, CharData *ch);
+void oedit_save_internally(DescriptorData *d);
+void iedit_save_changes(DescriptorData *d);
 
 /*------------------------------------------------------------------------*\
   Utility and exported functions
 \*------------------------------------------------------------------------*/
 
-void oedit_setup_new(descriptor_data *d) {
-    CREATE(OLC_OBJ(d), obj_data, 1);
+void oedit_setup_new(DescriptorData *d) {
+    CREATE(OLC_OBJ(d), ObjData, 1);
     clear_object(OLC_OBJ(d));
     OLC_OBJ(d)->name = strdup("unfinished object");
     OLC_OBJ(d)->description = strdup("An unfinished object is lying here.");
@@ -86,14 +84,14 @@ void oedit_setup_new(descriptor_data *d) {
 
 /*------------------------------------------------------------------------*/
 
-void oedit_setup_existing(descriptor_data *d, int real_num) {
-    struct extra_descr_data *this, *temp, *temp2;
-    struct obj_data *obj;
+void oedit_setup_existing(DescriptorData *d, int real_num) {
+    ExtraDescriptionData *desc, *temp, *temp2;
+    ObjData *obj;
 
     /*
      * Allocate object in memory.
      */
-    CREATE(obj, obj_data, 1);
+    CREATE(obj, ObjData, 1);
 
     clear_object(obj);
     *obj = obj_proto[real_num];
@@ -106,24 +104,24 @@ void oedit_setup_existing(descriptor_data *d, int real_num) {
         strdup(obj_proto[real_num].short_description ? obj_proto[real_num].short_description : "undefined");
     obj->description = strdup(obj_proto[real_num].description ? obj_proto[real_num].description : "undefined");
     obj->action_description =
-        (obj_proto[real_num].action_description ? strdup(obj_proto[real_num].action_description) : NULL);
+        (obj_proto[real_num].action_description ? strdup(obj_proto[real_num].action_description) : nullptr);
 
     /*
      * Extra descriptions if necessary.
      */
     if (obj_proto[real_num].ex_description) {
-        CREATE(temp, extra_descr_data, 1);
+        CREATE(temp, ExtraDescriptionData, 1);
 
         obj->ex_description = temp;
-        for (this = obj_proto[real_num].ex_description; this; this = this->next) {
-            temp->keyword = (this->keyword && *this->keyword) ? strdup(this->keyword) : NULL;
-            temp->description = (this->description && *this->description) ? strdup(this->description) : NULL;
-            if (this->next) {
-                CREATE(temp2, extra_descr_data, 1);
+        for (desc = obj_proto[real_num].ex_description; desc; desc = desc->next) {
+            temp->keyword = (desc->keyword && *desc->keyword) ? strdup(desc->keyword) : nullptr;
+            temp->description = (desc->description && *desc->description) ? strdup(desc->description) : nullptr;
+            if (desc->next) {
+                CREATE(temp2, ExtraDescriptionData, 1);
                 temp->next = temp2;
                 temp = temp2;
             } else
-                temp->next = NULL;
+                temp->next = nullptr;
         }
     }
 
@@ -139,12 +137,12 @@ void oedit_setup_existing(descriptor_data *d, int real_num) {
 
 #define ZCMD zone_table[zone].cmd[cmd_no]
 
-void oedit_save_internally(descriptor_data *d) {
-    int i, shop, robj_num, found = FALSE, zone, cmd_no;
-    struct extra_descr_data *this, *next_one;
-    struct obj_data *obj, *swap, *new_obj_proto;
-    struct index_data *new_obj_index;
-    struct descriptor_data *dsc;
+void oedit_save_internally(DescriptorData *d) {
+    int i, shop, robj_num, found = false, zone, cmd_no;
+    ExtraDescriptionData *desc, *next_one;
+    ObjData *obj, *swap, *new_obj_proto;
+    IndexData *new_obj_index;
+    DescriptorData *dsc;
 
     /*
      * Write object to internal tables.
@@ -154,8 +152,8 @@ void oedit_save_internally(descriptor_data *d) {
          * Are we purging?
          */
         if (OLC_MODE(d) == OEDIT_PURGE_OBJECT) {
-            struct obj_data *placeholder;
-            void extract_obj(obj_data * ch); /* leaves eq behind.. */
+            ObjData *placeholder;
+            void extract_obj(ObjData * ch); /* leaves eq behind.. */
 
             for (obj = object_list; obj; obj = obj->next) {
                 if (GET_OBJ_RNUM(obj) == robj_num) {
@@ -170,17 +168,17 @@ void oedit_save_internally(descriptor_data *d) {
 #endif
                 }
             }
-            CREATE(new_obj_proto, obj_data, top_of_objt);
-            CREATE(new_obj_index, index_data, top_of_objt);
+            CREATE(new_obj_proto, ObjData, top_of_objt);
+            CREATE(new_obj_index, IndexData, top_of_objt);
 #if defined(DEBUG)
             fprintf(stderr, "looking to destroy %d (%d)\n", robj_num, obj_index[robj_num].vnum);
 #endif
             for (i = 0; i <= top_of_objt; i++) {
-                if (!found) { /* Is this the place? */
+                if (!found) { /* Isdescs the place? */
                     /*    if ((robj_num > top_of_objt) || (mob_index[robj_num].vnum >
                      * OLC_NUM(d))) */
                     if (i == robj_num) {
-                        found = TRUE;
+                        found = true;
                         /* don't copy..it will be blatted by the free later */
                     } else { /* Nope, copy over as normal. */
                         new_obj_index[i] = obj_index[i];
@@ -242,11 +240,11 @@ void oedit_save_internally(descriptor_data *d) {
         } else {
             /*
              * We need to run through each and every object currently in the
-             * game to see which ones are pointing to this prototype.
+             * game to see which ones are pointing todescs prototype.
              * if object is pointing to this prototype, then we need to replace it
              * with the new one.
              */
-            CREATE(swap, obj_data, 1);
+            CREATE(swap, ObjData, 1);
             for (obj = object_list; obj; obj = obj->next) {
                 if (obj->item_number == robj_num) {
                     *swap = *obj;
@@ -277,13 +275,13 @@ void oedit_save_internally(descriptor_data *d) {
             if (obj_proto[robj_num].action_description)
                 free(obj_proto[robj_num].action_description);
             if (obj_proto[robj_num].ex_description)
-                for (this = obj_proto[robj_num].ex_description; this; this = next_one) {
-                    next_one = this->next;
-                    if (this->keyword)
-                        free(this->keyword);
-                    if (this->description)
-                        free(this->description);
-                    free(this);
+                for (desc = obj_proto[robj_num].ex_description; desc; desc = next_one) {
+                    next_one = desc->next;
+                    if (desc->keyword)
+                        free(desc->keyword);
+                    if (desc->description)
+                        free(desc->description);
+                    free(desc);
                 }
             /* Must do this before copying OLC_OBJ over */
             if (obj_proto[robj_num].proto_script && obj_proto[robj_num].proto_script != OLC_SCRIPT(d))
@@ -295,8 +293,8 @@ void oedit_save_internally(descriptor_data *d) {
     } else {
         /*. It's a new object, we must build new tables to contain it . */
 
-        CREATE(new_obj_index, index_data, top_of_objt + 2);
-        CREATE(new_obj_proto, obj_data, top_of_objt + 2);
+        CREATE(new_obj_index, IndexData, top_of_objt + 2);
+        CREATE(new_obj_proto, ObjData, top_of_objt + 2);
         /* start counting through both tables */
         for (i = 0; i <= top_of_objt; i++) {
             /* if we haven't found it */
@@ -305,12 +303,12 @@ void oedit_save_internally(descriptor_data *d) {
                  * Check if current vnum is bigger than our vnum.
                  */
                 if (obj_index[i].vnum > OLC_NUM(d)) {
-                    found = TRUE;
+                    found = true;
                     robj_num = i;
                     OLC_OBJ(d)->item_number = robj_num;
                     new_obj_index[robj_num].vnum = OLC_NUM(d);
                     new_obj_index[robj_num].number = 0;
-                    new_obj_index[robj_num].func = NULL;
+                    new_obj_index[robj_num].func = nullptr;
                     new_obj_proto[robj_num] = *(OLC_OBJ(d));
                     new_obj_proto[robj_num].proto_script = OLC_SCRIPT(d);
                     new_obj_proto[robj_num].in_room = NOWHERE;
@@ -335,7 +333,7 @@ void oedit_save_internally(descriptor_data *d) {
             OLC_OBJ(d)->item_number = robj_num;
             new_obj_index[robj_num].vnum = OLC_NUM(d);
             new_obj_index[robj_num].number = 0;
-            new_obj_index[robj_num].func = NULL;
+            new_obj_index[robj_num].func = nullptr;
             new_obj_proto[robj_num] = *(OLC_OBJ(d));
             new_obj_proto[robj_num].proto_script = OLC_SCRIPT(d);
             new_obj_proto[robj_num].in_room = NOWHERE;
@@ -396,12 +394,12 @@ void oedit_save_internally(descriptor_data *d) {
 void oedit_save_to_disk(int zone_num) {
     int counter, counter2, realcounter;
     FILE *fp;
-    struct obj_data *obj;
-    struct extra_descr_data *ex_desc;
+    ObjData *obj;
+    ExtraDescriptionData *ex_desc;
 
     sprintf(buf, "%s/%d.new", OBJ_PREFIX, zone_table[zone_num].number);
     if (!(fp = fopen(buf, "w+"))) {
-        mudlog("SYSERR: OLC: Cannot open objects file!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: Cannot open objects file!", BRF, LVL_GOD, true);
         return;
     }
     /*
@@ -444,7 +442,7 @@ void oedit_save_to_disk(int zone_num) {
                      * Sanity check to prevent nasty protection faults.
                      */
                     if (!*ex_desc->keyword || !*ex_desc->description) {
-                        mudlog("SYSERR: OLC: oedit_save_to_disk: Corrupt ex_desc!", BRF, LVL_GOD, TRUE);
+                        mudlog("SYSERR: OLC: oedit_save_to_disk: Corrupt ex_desc!", BRF, LVL_GOD, true);
                         continue;
                     }
                     strcpy(buf1, ex_desc->description);
@@ -488,14 +486,14 @@ void oedit_save_to_disk(int zone_num) {
 
 /*------------------------------------------------------------------------*/
 
-int oedit_reverse_exdesc(int real_num, char_data *ch) {
-    struct obj_data *obj;
-    struct extra_descr_data *ex_desc, *tmp;
+int oedit_reverse_exdesc(int real_num, CharData *ch) {
+    ObjData *obj;
+    ExtraDescriptionData *ex_desc, *tmp;
 
     obj = obj_proto + real_num;
 
     if ((ex_desc = obj->ex_description) && ex_desc->next) {
-        for (obj->ex_description = NULL; ex_desc;) {
+        for (obj->ex_description = nullptr; ex_desc;) {
             tmp = ex_desc->next;
             ex_desc->next = obj->ex_description;
             obj->ex_description = ex_desc;
@@ -513,7 +511,7 @@ int oedit_reverse_exdesc(int real_num, char_data *ch) {
 
 /*------------------------------------------------------------------------*/
 
-void oedit_reverse_exdescs(int zone, char_data *ch) {
+void oedit_reverse_exdescs(int zone, CharData *ch) {
     int counter, realcounter, numprocessed = 0, nummodified = 0;
 
     for (counter = zone_table[zone].number * 100; counter <= zone_table[zone].top; counter++) {
@@ -542,7 +540,7 @@ void oedit_reverse_exdescs(int zone, char_data *ch) {
 /*
  *  For wall flags.
  */
-void oedit_disp_wall_block_dirs(descriptor_data *d) {
+void oedit_disp_wall_block_dirs(DescriptorData *d) {
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
     send_to_char("^[[H^[[J", d->character);
@@ -562,7 +560,7 @@ void oedit_disp_wall_block_dirs(descriptor_data *d) {
 /*
  * For container flags.
  */
-void oedit_disp_container_flags_menu(descriptor_data *d) {
+void oedit_disp_container_flags_menu(DescriptorData *d) {
     get_char_cols(d->character);
     sprintbit(GET_OBJ_VAL(OLC_OBJ(d), VAL_CONTAINER_BITS), container_bits, buf1);
 #if defined(CLEAR_SCREEN)
@@ -582,8 +580,8 @@ void oedit_disp_container_flags_menu(descriptor_data *d) {
 /*
  * For extra descriptions.
  */
-void oedit_disp_extradesc_menu(descriptor_data *d) {
-    struct extra_descr_data *extra_desc = OLC_DESC(d);
+void oedit_disp_extradesc_menu(DescriptorData *d) {
+    ExtraDescriptionData *extra_desc = OLC_DESC(d);
 
     strcpy(buf1, !extra_desc->next ? "<Not set>\r\n" : "Set.");
 
@@ -608,7 +606,7 @@ void oedit_disp_extradesc_menu(descriptor_data *d) {
 /*
  * Ask for *which* apply to edit.
  */
-void oedit_disp_prompt_apply_menu(descriptor_data *d) {
+void oedit_disp_prompt_apply_menu(DescriptorData *d) {
     int counter;
 
     get_char_cols(d->character);
@@ -625,7 +623,7 @@ void oedit_disp_prompt_apply_menu(descriptor_data *d) {
 }
 
 #define FLAG_INDEX ((NUM_EFF_FLAGS / columns + 1) * j + i)
-void oedit_disp_aff_flags(descriptor_data *d) {
+void oedit_disp_aff_flags(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -655,7 +653,7 @@ void oedit_disp_aff_flags(descriptor_data *d) {
 
 #undef FLAG_INDEX
 
-void oedit_disp_component(descriptor_data *d) {
+void oedit_disp_component(DescriptorData *d) {
     /*  int counter; */
 
     get_char_cols(d->character);
@@ -666,7 +664,7 @@ void oedit_disp_component(descriptor_data *d) {
  * Ask for liquid type.
  */
 #define TYPE_INDEX ((NUM_LIQ_TYPES / columns + 1) * j + i)
-void oedit_liquid_type(descriptor_data *d) {
+void oedit_liquid_type(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -694,7 +692,7 @@ void oedit_liquid_type(descriptor_data *d) {
  * The actual apply to set.
  */
 #define TYPE_INDEX ((NUM_APPLY_TYPES / columns + 1) * j + i)
-void oedit_disp_apply_menu(descriptor_data *d) {
+void oedit_disp_apply_menu(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -721,7 +719,7 @@ void oedit_disp_apply_menu(descriptor_data *d) {
  * Weapon type.
  */
 #define TYPE_INDEX ((NUM_ATTACK_TYPES / columns + 1) * j + i)
-void oedit_disp_weapon_menu(descriptor_data *d) {
+void oedit_disp_weapon_menu(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -747,7 +745,7 @@ void oedit_disp_weapon_menu(descriptor_data *d) {
 /*
  * Spell type.
  */
-void oedit_disp_spells_menu(descriptor_data *d) {
+void oedit_disp_spells_menu(DescriptorData *d) {
     int counter, columns = 0;
 
     get_char_cols(d->character);
@@ -766,7 +764,7 @@ void oedit_disp_spells_menu(descriptor_data *d) {
     send_to_char(buf, d->character);
 }
 
-void oedit_disp_portal_messages_menu(descriptor_data *d, const char *messages[]) {
+void oedit_disp_portal_messages_menu(DescriptorData *d, const char *messages[]) {
     int i = 0;
 
     while (*messages[i] != '\n') {
@@ -776,9 +774,9 @@ void oedit_disp_portal_messages_menu(descriptor_data *d, const char *messages[])
     }
 }
 
-void oedit_disp_boards(descriptor_data *d) {
-    struct board_iter *iter = board_iterator();
-    const struct board_data *board;
+void oedit_disp_boards(DescriptorData *d) {
+    BoardIter *iter = board_iterator();
+    const BoardData *board;
     int i = 1;
 
     while ((board = next_board(iter)))
@@ -792,7 +790,7 @@ void oedit_disp_boards(descriptor_data *d) {
 /*
  * Object value #1
  */
-void oedit_disp_val1_menu(descriptor_data *d) {
+void oedit_disp_val1_menu(DescriptorData *d) {
     OLC_MODE(d) = OEDIT_VALUE_1;
     switch (GET_OBJ_TYPE(OLC_OBJ(d))) {
     case ITEM_LIGHT:
@@ -849,7 +847,7 @@ void oedit_disp_val1_menu(descriptor_data *d) {
 /*
  * Object value #2
  */
-void oedit_disp_val2_menu(descriptor_data *d) {
+void oedit_disp_val2_menu(DescriptorData *d) {
     OLC_MODE(d) = OEDIT_VALUE_2;
     switch (GET_OBJ_TYPE(OLC_OBJ(d))) {
     case ITEM_SCROLL:
@@ -894,7 +892,7 @@ void oedit_disp_val2_menu(descriptor_data *d) {
 /*
  * Object value #3
  */
-void oedit_disp_val3_menu(descriptor_data *d) {
+void oedit_disp_val3_menu(DescriptorData *d) {
     OLC_MODE(d) = OEDIT_VALUE_3;
     switch (GET_OBJ_TYPE(OLC_OBJ(d))) {
     case ITEM_LIGHT:
@@ -937,7 +935,7 @@ void oedit_disp_val3_menu(descriptor_data *d) {
 /*
  * Object value #4
  */
-void oedit_disp_val4_menu(descriptor_data *d) {
+void oedit_disp_val4_menu(DescriptorData *d) {
     OLC_MODE(d) = OEDIT_VALUE_4;
     switch (GET_OBJ_TYPE(OLC_OBJ(d))) {
     case ITEM_SCROLL:
@@ -971,7 +969,7 @@ void oedit_disp_val4_menu(descriptor_data *d) {
  * Object type.
  */
 #define FLAG_INDEX (((NUM_ITEM_TYPES - 1) / columns + 1) * j + i)
-void oedit_disp_type_menu(descriptor_data *d) {
+void oedit_disp_type_menu(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -996,7 +994,7 @@ void oedit_disp_type_menu(descriptor_data *d) {
  * Object extra flags.
  */
 #define FLAG_INDEX ((NUM_ITEM_FLAGS / columns + 1) * j + i)
-void oedit_disp_extra_menu(descriptor_data *d) {
+void oedit_disp_extra_menu(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -1027,7 +1025,7 @@ void oedit_disp_extra_menu(descriptor_data *d) {
  * Object wear flags.
  */
 #define FLAG_INDEX ((NUM_ITEM_WEAR_FLAGS / columns + 1) * j + i)
-void oedit_disp_wear_menu(descriptor_data *d) {
+void oedit_disp_wear_menu(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -1053,8 +1051,8 @@ void oedit_disp_wear_menu(descriptor_data *d) {
 
 #undef FLAG_INDEX
 
-void oedit_disp_obj_values(descriptor_data *d) {
-    struct obj_data *obj = OLC_OBJ(d);
+void oedit_disp_obj_values(DescriptorData *d) {
+    ObjData *obj = OLC_OBJ(d);
     int i;
 
     switch (GET_OBJ_TYPE(obj)) {
@@ -1166,8 +1164,8 @@ void oedit_disp_obj_values(descriptor_data *d) {
 /*
  * Display main menu.
  */
-void oedit_disp_menu(descriptor_data *d) {
-    struct obj_data *obj;
+void oedit_disp_menu(DescriptorData *d) {
+    ObjData *obj;
 
     obj = OLC_OBJ(d);
     get_char_cols(d->character);
@@ -1237,7 +1235,7 @@ void oedit_disp_menu(descriptor_data *d) {
  *  main loop (of sorts).. basically interpreter throws all input to here  *
  ***************************************************************************/
 
-void oedit_parse(descriptor_data *d, char *arg) {
+void oedit_parse(DescriptorData *d, char *arg) {
     int number = atoi(arg);
     float fnum = atof(arg);
 
@@ -1251,14 +1249,14 @@ void oedit_parse(descriptor_data *d, char *arg) {
                 write_to_output("Saving changes to object.\r\n", d);
                 iedit_save_changes(d);
                 sprintf(buf, "OLC: %s edits unique obj %s", GET_NAME(d->character), OLC_IOBJ(d)->short_description);
-                mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+                mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
                 STATE(d) = CON_PLAYING;
             } else {
                 send_to_char("Saving object to memory.\r\n", d->character);
                 oedit_save_internally(d);
                 sprintf(buf, "OLC: %s edits obj %d", GET_NAME(d->character), OLC_NUM(d));
-                mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+                mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             }
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
@@ -1356,8 +1354,8 @@ void oedit_parse(descriptor_data *d, char *arg) {
              * If extra descriptions don't exist.
              */
             if (!OLC_OBJ(d)->ex_description) {
-                CREATE(OLC_OBJ(d)->ex_description, extra_descr_data, 1);
-                OLC_OBJ(d)->ex_description->next = NULL;
+                CREATE(OLC_OBJ(d)->ex_description, ExtraDescriptionData, 1);
+                OLC_OBJ(d)->ex_description->next = nullptr;
             }
             OLC_DESC(d) = OLC_OBJ(d)->ex_description;
             oedit_disp_extradesc_menu(d);
@@ -1625,7 +1623,7 @@ void oedit_parse(descriptor_data *d, char *arg) {
         switch (number) {
         case 0:
             if (!OLC_DESC(d)->keyword || !OLC_DESC(d)->description) {
-                struct extra_descr_data **tmp_desc;
+                ExtraDescriptionData **tmp_desc;
 
                 if (OLC_DESC(d)->keyword)
                     free(OLC_DESC(d)->keyword);
@@ -1637,7 +1635,7 @@ void oedit_parse(descriptor_data *d, char *arg) {
                  */
                 for (tmp_desc = &(OLC_OBJ(d)->ex_description); *tmp_desc; tmp_desc = &((*tmp_desc)->next)) {
                     if (*tmp_desc == OLC_DESC(d)) {
-                        *tmp_desc = NULL;
+                        *tmp_desc = nullptr;
                         break;
                     }
                 }
@@ -1662,11 +1660,11 @@ void oedit_parse(descriptor_data *d, char *arg) {
              * Only go to the next description if this one is finished.
              */
             if (OLC_DESC(d)->keyword && OLC_DESC(d)->description) {
-                struct extra_descr_data *new_extra;
+                ExtraDescriptionData *new_extra;
                 if (OLC_DESC(d)->next)
                     OLC_DESC(d) = OLC_DESC(d)->next;
                 else { /* Make new extra description and attach at end. */
-                    CREATE(new_extra, extra_descr_data, 1);
+                    CREATE(new_extra, ExtraDescriptionData, 1);
 
                     OLC_DESC(d)->next = new_extra;
                     OLC_DESC(d) = OLC_DESC(d)->next;
@@ -1689,7 +1687,7 @@ void oedit_parse(descriptor_data *d, char *arg) {
             /*ok..we use save internally, but we are purging because of the mode */
             oedit_save_internally(d);
             sprintf(buf, "OLC: %s PURGES object %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             /* FALL THROUGH */
         case 'n':
         case 'N':
@@ -1702,7 +1700,7 @@ void oedit_parse(descriptor_data *d, char *arg) {
         }
         break;
     default:
-        mudlog("SYSERR: OLC: Reached default case in oedit_parse()!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: Reached default case in oedit_parse()!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         break;
     }
@@ -1714,8 +1712,8 @@ void oedit_parse(descriptor_data *d, char *arg) {
     oedit_disp_menu(d);
 }
 
-void iedit_setup_existing(descriptor_data *d, obj_data *obj) {
-    struct obj_data *temp;
+void iedit_setup_existing(DescriptorData *d, ObjData *obj) {
+    ObjData *temp;
 
     /* So there's no way for this obj to get extracted (by point_update
      * for example) */
@@ -1724,9 +1722,9 @@ void iedit_setup_existing(descriptor_data *d, obj_data *obj) {
     /* free any assigned scripts */
     if (SCRIPT(obj))
         extract_script(SCRIPT(obj));
-    SCRIPT(obj) = NULL;
+    SCRIPT(obj) = nullptr;
 
-    CREATE(OLC_OBJ(d), obj_data, 1);
+    CREATE(OLC_OBJ(d), ObjData, 1);
 
     copy_object(OLC_OBJ(d), obj);
 
@@ -1735,12 +1733,12 @@ void iedit_setup_existing(descriptor_data *d, obj_data *obj) {
     OLC_NUM(d) = NOTHING;
     OLC_ITEM_TYPE(d) = OBJ_TRIGGER;
     dg_olc_script_copy(d);
-    OLC_OBJ(d)->proto_script = NULL;
+    OLC_OBJ(d)->proto_script = nullptr;
     oedit_disp_menu(d);
 }
 
-void iedit_save_changes(descriptor_data *d) {
-    struct obj_data *obj = OLC_IOBJ(d);
+void iedit_save_changes(DescriptorData *d) {
+    ObjData *obj = OLC_IOBJ(d);
 
     GET_ID(OLC_OBJ(d)) = GET_ID(obj);
     if (GET_OBJ_RNUM(obj) != NOTHING)
@@ -1751,7 +1749,7 @@ void iedit_save_changes(descriptor_data *d) {
 }
 
 ACMD(do_iedit) {
-    struct obj_data *obj;
+    ObjData *obj;
     int i;
 
     argument = one_argument(argument, arg);
@@ -1773,12 +1771,12 @@ ACMD(do_iedit) {
     }
 
     /* Setup OLC */
-    CREATE(ch->desc->olc, olc_data, 1);
+    CREATE(ch->desc->olc, OLCData, 1);
 
     SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
     iedit_setup_existing(ch->desc, obj);
 
-    act("$n starts using OLC.", TRUE, ch, 0, 0, TO_ROOM);
+    act("$n starts using OLC.", true, ch, 0, 0, TO_ROOM);
 
     STATE(ch->desc) = CON_IEDIT;
 }

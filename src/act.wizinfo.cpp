@@ -15,6 +15,7 @@
 #include "charsize.hpp"
 #include "clan.hpp"
 #include "class.hpp"
+#include "cleric.hpp"
 #include "comm.hpp"
 #include "commands.hpp"
 #include "composition.hpp"
@@ -32,15 +33,17 @@
 #include "house.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
 #include "pfiles.hpp"
 #include "players.hpp"
 #include "quest.hpp"
 #include "races.hpp"
+#include "rogue.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "sorcerer.hpp"
 #include "spell_mem.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
@@ -55,50 +58,25 @@
 #include <unistd.h>
 
 void garble_text(char *string, int percent);
-void dismount_char(char_data *ch);
-void check_new_surroundings(char_data *ch, bool old_room_was_dark, bool tx_obvious);
+void dismount_char(CharData *ch);
+void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
 
-extern int should_restrict;
-extern int restrict_reason;
-extern int max_group_difference;
-
-extern int races_allowed;
-extern int evil_races_allowed;
-extern int pk_allowed;
-extern int sleep_allowed;
-extern int charm_allowed;
-extern int summon_allowed;
-extern int roomeffect_allowed;
-extern int approve_names;
-extern int napprove_pause;
-extern int gossip_channel_active;
-extern int nameserver_is_slow;
-extern int level_gain;
-extern int damage_amounts;
 int Valid_Name(char *newname);
 int reserved_word(char *argument);
-
-/* Automatic rebooting */
-extern int reboot_auto;
-extern long global_pulse;
-extern long reboot_pulse;
-extern int reboot_warning;
-extern int last_reboot_warning;
-extern int reboot_warning_minutes;
 
 /* extern functions */
 void send_to_xnames(char *name);
 int find_zone(int num);
-void cure_laryngitis(char_data *ch);
+void cure_laryngitis(CharData *ch);
 void reboot_mud_prep();
 void rebootwarning(int minutes);
 
 /* Internal funct */
-void do_wiztitle(char *outbuf, char_data *vict, char *argu);
+void do_wiztitle(char *outbuf, CharData *vict, char *argu);
 
 #define ZOCMD zone_table[zrnum].cmd[subcmd]
 
-void list_zone_commands_room(char_data *ch, char *buf, room_num rvnum) {
+void list_zone_commands_room(CharData *ch, char *buf, room_num rvnum) {
     int zrnum = find_real_zone_by_room(rvnum);
     int rrnum = real_room(rvnum), cmd_room = NOWHERE;
     int subcmd = 0, count = 0;
@@ -179,8 +157,8 @@ void list_zone_commands_room(char_data *ch, char *buf, room_num rvnum) {
         strcat(buf, "  None.\r\n");
 }
 
-void stat_extra_descs(extra_descr_data *ed, char_data *ch, char *buf, bool showtext) {
-    struct extra_descr_data *desc;
+void stat_extra_descs(ExtraDescriptionData *ed, CharData *ch, char *buf, bool showtext) {
+    ExtraDescriptionData *desc;
     int count;
 
     if (!ed) {
@@ -208,13 +186,13 @@ void stat_extra_descs(extra_descr_data *ed, char_data *ch, char *buf, bool showt
     }
 }
 
-void do_stat_room(char_data *ch, int rrnum) {
-    struct room_data *rm = &world[rrnum];
+void do_stat_room(CharData *ch, int rrnum) {
+    RoomData *rm = &world[rrnum];
     int i, found = 0;
-    struct obj_data *j = 0;
-    struct char_data *k = 0;
-    struct room_effect_node *reff;
-    const struct sectordef *sector;
+    ObjData *j = 0;
+    CharData *k = 0;
+    RoomEffectNode *reff;
+    const sectordef *sector;
 
     if (!ch->desc)
         return;
@@ -229,7 +207,7 @@ void do_stat_room(char_data *ch, int rrnum) {
              CLR(ch, ANRM), rrnum, buf2);
 
     sprintflag(buf2, rm->room_flags, NUM_ROOM_FLAGS, room_bits);
-    str_catf(buf, "SpecProc: %s, Flags: %s\r\n", (rm->func == NULL) ? "None" : "Exists", buf2);
+    str_catf(buf, "SpecProc: %s, Flags: %s\r\n", (rm->func == nullptr) ? "None" : "Exists", buf2);
 
     sprintflag(buf2, rm->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
     str_catf(buf, "Room effects: %s\r\n", buf2);
@@ -239,7 +217,7 @@ void do_stat_room(char_data *ch, int rrnum) {
     str_cat(buf, "Description:\r\n");
     str_cat(buf, rm->description ? rm->description : "  None.\r\n");
 
-    stat_extra_descs(rm->ex_description, ch, str_end(buf), FALSE);
+    stat_extra_descs(rm->ex_description, ch, str_end(buf), false);
 
     sprintf(buf2, "Chars present:%s", CLR(ch, FYEL));
     for (found = 0, k = rm->people; k; k = k->next_in_room) {
@@ -304,9 +282,9 @@ void do_stat_room(char_data *ch, int rrnum) {
     page_string(ch, buf);
 }
 
-void stat_spellbook(obj_data *obj, char *buf) {
+void stat_spellbook(ObjData *obj, char *buf) {
     int spage = 0, fpage = 0;
-    struct spell_book_list *entry;
+    SpellBookList *entry;
     char list_buf[MAX_STRING_LENGTH];
 
     list_buf[0] = 0;
@@ -339,10 +317,10 @@ void stat_spellbook(obj_data *obj, char *buf) {
     strcat(buf, list_buf);
 }
 
-void do_stat_object(char_data *ch, obj_data *j) {
+void do_stat_object(CharData *ch, ObjData *j) {
     int i, vnum, found;
-    struct obj_data *j2;
-    struct event *e;
+    ObjData *j2;
+    Event *e;
 
     extern const char *portal_entry_messages[];
     extern const char *portal_character_messages[];
@@ -518,7 +496,7 @@ void do_stat_object(char_data *ch, obj_data *j) {
     if (GET_OBJ_TYPE(j) == ITEM_SPELLBOOK)
         stat_spellbook(j, str_end(buf));
 
-    stat_extra_descs(j->ex_description, ch, str_end(buf), FALSE);
+    stat_extra_descs(j->ex_description, ch, str_end(buf), false);
 
     /* Report any events attached. */
     if (j->events) {
@@ -540,7 +518,7 @@ void do_stat_object(char_data *ch, obj_data *j) {
 }
 
 ACMD(do_estat) {
-    struct obj_data *obj;
+    ObjData *obj;
     char *otarg;
     int tmp, r_num;
 
@@ -559,7 +537,7 @@ ACMD(do_estat) {
         if (tmp == NOWHERE)
             send_to_char("No such room.\r\n", ch);
         else {
-            stat_extra_descs(world[tmp].ex_description, ch, buf, TRUE);
+            stat_extra_descs(world[tmp].ex_description, ch, buf, true);
             page_string(ch, buf);
         }
     } else {
@@ -578,11 +556,11 @@ ACMD(do_estat) {
             if ((r_num = real_object(tmp)) < 0)
                 send_to_char("There is no object with that number.\r\n", ch);
             else {
-                stat_extra_descs(obj_proto[r_num].ex_description, ch, buf, TRUE);
+                stat_extra_descs(obj_proto[r_num].ex_description, ch, buf, true);
                 page_string(ch, buf);
             }
         } else if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, otarg)))) {
-            stat_extra_descs(obj->ex_description, ch, buf, TRUE);
+            stat_extra_descs(obj->ex_description, ch, buf, true);
             page_string(ch, buf);
         } else {
             send_to_char("No such object around.\r\n", ch);
@@ -590,15 +568,15 @@ ACMD(do_estat) {
     }
 }
 
-void do_stat_character(char_data *ch, char_data *k) {
+void do_stat_character(CharData *ch, CharData *k) {
     int i, found, a, mprinted;
-    struct group_type *g;
-    struct follow_type *fol;
-    struct effect *eff;
-    struct quest_list *quest;
-    struct event *e;
-    struct char_data *m;
-    memory_rec *memory;
+    GroupType *g;
+    FollowType *fol;
+    effect *eff;
+    QuestList *quest;
+    Event *e;
+    CharData *m;
+    MemoryRec *memory;
 
     if (!ch->desc)
         return;
@@ -656,7 +634,7 @@ void do_stat_character(char_data *ch, char_data *k) {
 
         /* Display OLC zones for immorts */
         if (GET_LEVEL(k) >= LVL_IMMORT) {
-            struct olc_zone_list *zone;
+            OLCZoneList *zone;
             *buf1 = '\0';
             for (zone = GET_OLC_ZONES(k); zone; zone = zone->next)
                 sprintf(buf1, "%s%d%s", buf1, zone->zone, zone->next ? ", " : "");
@@ -899,7 +877,7 @@ void do_stat_character(char_data *ch, char_data *k) {
             str_cat(buf, "Cooldowns:\r\n");
         str_catf(buf, "%25s: %d/%d sec\r\n", cooldowns[i], GET_COOLDOWN(k, i) / PASSES_PER_SEC,
                  GET_COOLDOWN_MAX(k, i) / PASSES_PER_SEC);
-        found = TRUE;
+        found = true;
     }
 
     /* Check mobiles for a script */
@@ -934,9 +912,9 @@ void do_stat_character(char_data *ch, char_data *k) {
 }
 
 ACMD(do_stat) {
-    void do_stat_shop(char_data * ch, char *arg);
-    struct char_data *victim = 0;
-    struct obj_data *object = 0;
+    void do_stat_shop(CharData * ch, char *arg);
+    CharData *victim = 0;
+    ObjData *obj = 0;
     int tmp;
 
     half_chop(argument, buf1, buf2);
@@ -981,7 +959,7 @@ ACMD(do_stat) {
         if (!*buf2) {
             send_to_char("Stats on which player?\r\n", ch);
         } else {
-            CREATE(victim, char_data, 1);
+            CREATE(victim, CharData, 1);
             clear_char(victim);
             if (load_player(buf2, victim) > -1) {
                 if (GET_LEVEL(victim) > GET_LEVEL(ch))
@@ -998,32 +976,32 @@ ACMD(do_stat) {
         if (!*buf2)
             send_to_char("Stats on which object?\r\n", ch);
         else {
-            if ((object = find_obj_around_char(ch, find_vis_by_name(ch, buf2))))
-                do_stat_object(ch, object);
+            if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, buf2))))
+                do_stat_object(ch, obj);
             else
                 send_to_char("No such object around.\r\n", ch);
         }
     } else {
-        if ((object = find_obj_in_eq(ch, NULL, find_vis_by_name(ch, buf1))))
-            do_stat_object(ch, object);
-        else if ((object = find_obj_in_list(ch->carrying, find_vis_by_name(ch, buf1))))
-            do_stat_object(ch, object);
+        if ((obj = find_obj_in_eq(ch, nullptr, find_vis_by_name(ch, buf1))))
+            do_stat_object(ch, obj);
+        else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, buf1))))
+            do_stat_object(ch, obj);
         else if ((victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf1))))
             do_stat_character(ch, victim);
-        else if ((object = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, buf1))))
-            do_stat_object(ch, object);
+        else if ((obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, buf1))))
+            do_stat_object(ch, obj);
         else if ((victim = find_char_around_char(ch, find_vis_by_name(ch, buf1))))
             do_stat_character(ch, victim);
-        else if ((object = find_obj_in_world(find_vis_by_name(ch, buf1))))
-            do_stat_object(ch, object);
+        else if ((obj = find_obj_in_world(find_vis_by_name(ch, buf1))))
+            do_stat_object(ch, obj);
         else
             send_to_char("Nothing around by that name.\r\n", ch);
     }
 }
 
 ACMD(do_vstat) {
-    struct char_data *mob;
-    struct obj_data *obj;
+    CharData *mob;
+    ObjData *obj;
     int number, r_num;
 
     two_arguments(argument, buf, buf2);
@@ -1060,7 +1038,7 @@ ACMD(do_vstat) {
 ACMD(do_zstat) {
     int vnum, rnum;
     char str[MAX_INPUT_LENGTH];
-    struct zone_data *z;
+    ZoneData *z;
 
     half_chop(argument, str, argument);
 
@@ -1154,7 +1132,7 @@ ACMD(do_players) {
 }
 
 ACMD(do_last) {
-    struct char_data *victim;
+    CharData *victim;
 
     one_argument(argument, arg);
     if (!*arg) {
@@ -1162,7 +1140,7 @@ ACMD(do_last) {
         return;
     }
 
-    CREATE(victim, char_data, 1);
+    CREATE(victim, CharData, 1);
     clear_char(victim);
 
     if (load_player(arg, victim) < 0) {
@@ -1191,9 +1169,9 @@ static void print_zone_to_buf(char *bufptr, int zone) {
              zone_table[zone].zone_factor, zone_table[zone].top);
 }
 
-void do_show_sectors(char_data *ch, char *argument) {
+void do_show_sectors(CharData *ch, char *argument) {
     int i;
-    const struct sectordef *s;
+    const sectordef *s;
 
     pprintf(ch, "Sector type     Mv  Camp  Wet  Notes\r\n");
     pprintf(ch,
@@ -1207,7 +1185,7 @@ void do_show_sectors(char_data *ch, char *argument) {
     start_paging(ch);
 }
 
-void do_show_compositions(char_data *ch, char *argument) {
+void do_show_compositions(CharData *ch, char *argument) {
     int i;
 
     sprintf(buf,
@@ -1230,7 +1208,7 @@ void do_show_compositions(char_data *ch, char *argument) {
     }
 }
 
-void do_show_lifeforces(char_data *ch, char *argument) {
+void do_show_lifeforces(CharData *ch, char *argument) {
     int i;
 
     sprintf(buf, "Idx  Life force   %sHeal&0  %sDisc.&0  %sDispel&0  %sMental&0\r\n", damtypes[DAM_HEAL].color,
@@ -1245,7 +1223,7 @@ void do_show_lifeforces(char_data *ch, char *argument) {
     }
 }
 
-void do_show_damtypes(char_data *ch, char *argument) {
+void do_show_damtypes(CharData *ch, char *argument) {
     int i;
 
     send_to_char("Idx  Damage type      Verb 1st         Verb 2nd          Action \r\n", ch);
@@ -1257,7 +1235,7 @@ void do_show_damtypes(char_data *ch, char *argument) {
     }
 }
 
-void do_show_zones(char_data *ch, char *argument) {
+void do_show_zones(CharData *ch, char *argument) {
     int zrnum;
     char zonebuf[50000];
 
@@ -1282,8 +1260,8 @@ void do_show_zones(char_data *ch, char *argument) {
     }
 }
 
-void do_show_player(char_data *ch, char *argument) {
-    struct char_data *vict;
+void do_show_player(CharData *ch, char *argument) {
+    CharData *vict;
 
     one_argument(argument, arg);
 
@@ -1292,7 +1270,7 @@ void do_show_player(char_data *ch, char *argument) {
         return;
     }
 
-    CREATE(vict, char_data, 1);
+    CREATE(vict, CharData, 1);
     clear_char(vict);
 
     if (load_player(arg, vict) < 0) {
@@ -1313,17 +1291,17 @@ void do_show_player(char_data *ch, char *argument) {
             GET_BANK_GOLD(vict), GET_BANK_SILVER(vict), GET_BANK_COPPER(vict), GET_EXP(vict), GET_ALIGNMENT(vict), buf1,
             buf2, (int)(vict->player.time.played / 3600), (int)(vict->player.time.played / 60 % 60));
     cprintf(ch, "\r\n");
-    send_save_description(vict, ch, FALSE);
+    send_save_description(vict, ch, false);
     free_char(vict);
 }
 
-void do_show_stats(char_data *ch, char *argument) {
+void do_show_stats(CharData *ch, char *argument) {
     int mobiles = 0;
     int players = 0;
     int connected = 0;
     int objects = 0;
-    struct char_data *vict;
-    struct obj_data *obj;
+    CharData *vict;
+    ObjData *obj;
 
     extern int buf_largecount;
     extern int buf_switches;
@@ -1354,7 +1332,9 @@ void do_show_stats(char_data *ch, char *argument) {
     send_to_char(buf, ch);
 }
 
-void do_show_errors(char_data *ch, char *argument) {
+void do_show_errors(CharData *ch, char *argument) {
+    (void)argument;
+
     int j, rn;
 
     strcpy(buf, "Errant Rooms\r\n------------\r\n");
@@ -1363,9 +1343,9 @@ void do_show_errors(char_data *ch, char *argument) {
         for (j = 0; j < NUM_OF_DIRS; j++) {
             if (world[rn].exits[j]) {
                 if (world[rn].exits[j]->to_room == 0)
-                    sprintf(buf2, "%s%s to void, ", buf2, dirs[j]);
+                    snprintf(buf2, sizeof(buf2), "%s%s to void, ", buf2, dirs[j]);
                 if (world[rn].exits[j]->to_room == NOWHERE && !world[rn].exits[j]->general_description)
-                    sprintf(buf2, "%s%s to NOWHERE, ", buf2, dirs[j]);
+                    snprintf(buf2, sizeof(buf2), "%s%s to NOWHERE, ", buf2, dirs[j]);
             }
         }
         if (buf2[0]) {
@@ -1376,7 +1356,9 @@ void do_show_errors(char_data *ch, char *argument) {
     send_to_char(buf, ch);
 }
 
-void do_show_death(char_data *ch, char *argument) {
+void do_show_death(CharData *ch, char *argument) {
+    (void)argument;
+
     int room, found;
 
     str_start(buf, sizeof(buf));
@@ -1387,7 +1369,9 @@ void do_show_death(char_data *ch, char *argument) {
     send_to_char(buf, ch);
 }
 
-void do_show_godrooms(char_data *ch, char *argument) {
+void do_show_godrooms(CharData *ch, char *argument) {
+    (void)argument;
+
     room_num room;
     int found;
 
@@ -1399,13 +1383,14 @@ void do_show_godrooms(char_data *ch, char *argument) {
     send_to_char(buf, ch);
 }
 
-void do_show_houses(char_data *ch, char *argument) {
-    extern void hcontrol_list_houses(char_data * ch);
+void do_show_houses(CharData *ch, char *argument) {
+    (void)argument;
+    extern void hcontrol_list_houses(CharData * ch);
 
     hcontrol_list_houses(ch);
 }
 
-void do_show_notes(char_data *ch, char *argument) {
+void do_show_notes(CharData *ch, char *argument) {
     FILE *notes;
 
     any_one_arg(argument, arg);
@@ -1435,9 +1420,10 @@ void do_show_notes(char_data *ch, char *argument) {
     page_string(ch, buf);
 }
 
-void do_show_classes(char_data *ch, char *argument) {
+void do_show_classes(CharData *ch, char *argument) {
+    (void)argument;
     int i, chars;
-    char *mem_mode;
+    const char *mem_mode;
 
     str_start(buf, sizeof(buf));
     str_cat(buf,
@@ -1462,7 +1448,7 @@ void do_show_classes(char_data *ch, char *argument) {
     page_string(ch, buf);
 }
 
-void do_show_races(char_data *ch, char *argument) {
+void do_show_races(CharData *ch, char *argument) {
     int i, chars;
 
     skip_spaces(&argument);
@@ -1482,7 +1468,7 @@ void do_show_races(char_data *ch, char *argument) {
     } else if ((i = parse_race(ch, ch, argument)) == RACE_UNDEFINED)
         return;
     else {
-        struct racedef *race = &races[i];
+        RaceDef *race = &races[i];
         str_catf(buf,
                  "Race              : %s@0 (@g%d@0) @c%s@0\r\n"
                  "Playable?         : @c%s@0\r\n"
@@ -1530,7 +1516,7 @@ void do_show_races(char_data *ch, char *argument) {
     page_string(ch, buf);
 }
 
-void do_show_exp(char_data *ch, char *argument) {
+void do_show_exp(CharData *ch, char *argument) {
     int clazz, level;
 
     any_one_arg(argument, arg);
@@ -1556,16 +1542,17 @@ void do_show_exp(char_data *ch, char *argument) {
     send_to_char("Invalid class.\r\n", ch);
 }
 
-void do_show_snoop(char_data *ch, char *argument) {
+void do_show_snoop(CharData *ch, char *argument) {
+    (void)argument;
     int i = 0;
-    struct descriptor_data *d;
+    DescriptorData *d;
 
     send_to_char(
         "People currently snooping:\r\n"
         "--------------------------\r\n",
         ch);
     for (d = descriptor_list; d; d = d->next) {
-        if (d->snooping == NULL || d->character == NULL)
+        if (d->snooping == nullptr || d->character == nullptr)
             continue;
         if (STATE(d) != CON_PLAYING || GET_LEVEL(ch) < GET_LEVEL(d->character))
             continue;
@@ -1580,23 +1567,26 @@ void do_show_snoop(char_data *ch, char *argument) {
         send_to_char("No one is currently snooping.\r\n", ch);
 }
 
-void do_show_sizes(char_data *ch, char *argument) { show_sizes(ch); }
+void do_show_sizes(CharData *ch, char *argument) {
+    (void)argument;
+    show_sizes(ch);
+}
 
 /* David Endre 2/23/99 To view basic files online */
-void do_show_file(char_data *ch, char *argument) {
+void do_show_file(CharData *ch, char *argument) {
     FILE *file;
     int cur_line = 0, num_lines = 0, req_lines = 0, i;
     char filebuf[50000];
     const struct file_struct {
-        char *name;
-        char level;
-        char *path;
+        const char *name;
+        const char level;
+        const char *path;
     } fields[] = {{"bug", LVL_GOD, "../lib/misc/bugs"},      {"typo", LVL_GOD, "../lib/misc/typos"},
                   {"ideas", LVL_GOD, "../lib/misc/ideas"},   {"xnames", LVL_GOD, "../lib/misc/xnames"},
                   {"levels", LVL_GOD, "../log/levels"},      {"rip", LVL_GOD, "../log/rip"},
                   {"players", LVL_GOD, "../log/newplayers"}, {"rentgone", LVL_GOD, "../log/rentgone"},
                   {"godcmds", LVL_GOD, "../log/godcmds"},    {"syslog", LVL_GOD, "../syslog"},
-                  {"crash", LVL_GOD, "../syslog.CRASH"},     {NULL, 0, "\n"}};
+                  {"crash", LVL_GOD, "../syslog.CRASH"},     {nullptr, 0, "\n"}};
 
     argument = any_one_arg(argument, arg);
 
@@ -1630,7 +1620,7 @@ void do_show_file(char_data *ch, char *argument) {
     /* open the requested file */
     if (!(file = fopen(fields[i].path, "r"))) {
         sprintf(buf, "SYSERR: Error opening file %s using 'file' command.", fields[i].path);
-        mudlog(buf, BRF, LVL_IMPL, TRUE);
+        mudlog(buf, BRF, LVL_IMPL, true);
         return;
     }
 
@@ -1652,7 +1642,7 @@ void do_show_file(char_data *ch, char *argument) {
     /* close and re-open */
     if (!(file = fopen(fields[i].path, "r"))) {
         sprintf(buf2, "SYSERR: Error opening file %s using 'file' command.", fields[i].path);
-        mudlog(buf2, BRF, LVL_IMPL, TRUE);
+        mudlog(buf2, BRF, LVL_IMPL, true);
         return;
     }
 
@@ -1672,53 +1662,53 @@ void do_show_file(char_data *ch, char *argument) {
 }
 
 bool will_npcs_cast(int spell) {
-    extern const struct spell_pair mob_sorcerer_buffs[];
-    extern const int mob_sorcerer_offensives[];
-    extern const int mob_sorcerer_area_spells[];
-    extern const struct spell_pair mob_cleric_buffs[];
-    extern const struct spell_pair mob_cleric_hindrances[];
-    extern const int mob_cleric_offensives[];
-    extern const int mob_cleric_area_spells[];
-    extern const int mob_cleric_heals[];
-    extern const struct spell_pair mob_bard_buffs[];
-    extern const struct spell_pair mob_bard_hindrances[];
-    extern const int mob_bard_offensives[];
-    extern const int mob_bard_area_spells[];
-    extern const int mob_bard_heals[];
+    // const SpellPair mob_sorcerer_buffs[];
+    // const int mob_sorcerer_offensives[];
+    // const int mob_sorcerer_area_spells[];
+    // const SpellPair mob_cleric_buffs[];
+    // const SpellPair mob_cleric_hindrances[];
+    // const int mob_cleric_offensives[];
+    // const int mob_cleric_area_spells[];
+    // const int mob_cleric_heals[];
+    // const SpellPair mob_bard_buffs[];
+    // const SpellPair mob_bard_hindrances[];
+    // const int mob_bard_offensives[];
+    // const int mob_bard_area_spells[];
+    // const int mob_bard_heals[];
 
     const int *npc_spell_lists[] = {mob_sorcerer_offensives, mob_sorcerer_area_spells, mob_cleric_offensives,
                                     mob_cleric_area_spells,  mob_cleric_heals,         mob_bard_offensives,
-                                    mob_bard_area_spells,    mob_bard_heals,           NULL};
-    const struct spell_pair *npc_pair_lists[] = {mob_sorcerer_buffs, mob_cleric_buffs,    mob_cleric_hindrances,
-                                                 mob_bard_buffs,     mob_bard_hindrances, NULL};
+                                    mob_bard_area_spells,    mob_bard_heals,           nullptr};
+    const SpellPair *npc_pair_lists[] = {mob_sorcerer_buffs, mob_cleric_buffs,    mob_cleric_hindrances,
+                                         mob_bard_buffs,     mob_bard_hindrances, nullptr};
     int i, j;
     const int *list;
-    const struct spell_pair *pair;
+    const SpellPair *pair;
 
     for (i = 0; npc_spell_lists[i]; ++i)
         for (list = npc_spell_lists[i], j = 0; list[j]; ++j)
             if (list[j] == spell)
-                return TRUE;
+                return true;
 
     for (i = 0; npc_pair_lists[i]; ++i)
         for (pair = npc_pair_lists[i], j = 0; pair[j].spell; ++j)
             if (pair[j].spell == spell || pair[j].remover == spell)
-                return TRUE;
+                return true;
 
-    return FALSE;
+    return false;
 }
 
-static struct skilldef *skill;
+static SkillDef *skill;
 static int skill_class_comparator(int a, int b) {
     if (skill->min_level[a] > skill->min_level[b])
         return 1;
     return (skill->min_level[a] < skill->min_level[b] ? -1 : 0);
 }
 
-void do_show_spell(char_data *ch, int spellnum) {
+void do_show_spell(CharData *ch, int spellnum) {
     int i;
-    struct skilldef *spell;
-    bool anytargets = FALSE, anyroutines = FALSE, anyassignments = FALSE;
+    SkillDef *spell;
+    bool anytargets = false, anyroutines = false, anyassignments = false;
 
     if (!IS_SPELL(spellnum)) {
         send_to_char("There is no such spell.\r\n", ch);
@@ -1742,7 +1732,7 @@ void do_show_spell(char_data *ch, int spellnum) {
         if (spell->targets & (1 << i)) {
             strcat(buf, " ");
             strcat(buf, targets[i]);
-            anytargets = TRUE;
+            anytargets = true;
         }
     if (!anytargets)
         strcat(buf, " -none-");
@@ -1779,7 +1769,7 @@ void do_show_spell(char_data *ch, int spellnum) {
         if (spell->routines & (1 << i)) {
             strcat(buf, " ");
             strcat(buf, routines[i]);
-            anyroutines = TRUE;
+            anyroutines = true;
         }
     if (!anyroutines)
         strcat(buf, " -none-");
@@ -1819,14 +1809,14 @@ void do_show_spell(char_data *ch, int spellnum) {
             sprintf(buf, "%s%-*s  circle %d\r\n", anyassignments ? "              " : "Assignments : ",
                     13 + count_color_chars(classes[i].displayname), classes[i].displayname,
                     level_to_circle(spell->min_level[i]));
-            anyassignments = TRUE;
+            anyassignments = true;
             send_to_char(buf, ch);
         }
     if (!anyassignments)
         send_to_char("Assignments : -none-\r\n", ch);
 }
 
-void do_show_skill(char_data *ch, char *argument) {
+void do_show_skill(CharData *ch, char *argument) {
     int skill_num, type, i, j;
     int skill_classes[NUM_CLASSES];
 
@@ -1914,7 +1904,7 @@ void do_show_skill(char_data *ch, char *argument) {
     send_to_char(buf, ch);
 }
 
-void do_show_date_names(char_data *ch, char *argument) {
+void do_show_date_names(CharData *ch, char *argument) {
     int i;
 
     pprintf(ch, "Day names:\r\n");
@@ -1927,7 +1917,7 @@ void do_show_date_names(char_data *ch, char *argument) {
     start_paging(ch);
 }
 
-void do_show_liquids(char_data *ch, char *argument) {
+void do_show_liquids(CharData *ch, char *argument) {
     int i;
 
     pprintf(ch,
@@ -1945,12 +1935,12 @@ void do_show_liquids(char_data *ch, char *argument) {
 ACMD(do_show) {
     int i;
 
-    extern void show_shops(char_data * ch, char *argument);
+    extern void show_shops(CharData * ch, char *argument);
 
     const struct show_struct {
-        char *name;
+        const char *name;
         char level;
-        void (*command)(char_data *ch, char *argument);
+        void (*command)(CharData *ch, char *argument);
     } fields[] = {/* Keep this list alphabetized */
                   {"compositions", LVL_IMMORT, do_show_compositions},
                   {"classes", LVL_IMMORT, do_show_classes},
@@ -1979,7 +1969,7 @@ ACMD(do_show) {
                   {"spell", LVL_IMMORT, do_show_skill},
                   {"stats", LVL_IMMORT, do_show_stats},
                   {"zones", LVL_IMMORT, do_show_zones},
-                  {NULL, 0, NULL}};
+                  {nullptr, 0, nullptr}};
 
     skip_spaces(&argument);
 
@@ -2020,7 +2010,7 @@ ACMD(do_show) {
     (fields[i].command)(ch, argument);
 }
 
-void reboot_info(char_data *ch) {
+void reboot_info(CharData *ch) {
     int h, m, s;
 
     extern int num_hotboots;
@@ -2052,12 +2042,12 @@ ACMD(do_world) {
     extern int make_count;
     extern ACMD(do_date);
 
-    do_date(ch, NULL, 0, SCMD_DATE);
+    do_date(ch, nullptr, 0, SCMD_DATE);
     stat("../bin/fiery", &statbuf);
     strcpy(buf, ctime(&statbuf.st_mtime));
     buf[strlen(buf) - 1] = '\0'; /* cut off newline */
     cprintf(ch, "Build: %d  Compiled: %s\r\n", make_count, buf);
-    do_date(ch, NULL, 0, SCMD_UPTIME);
+    do_date(ch, nullptr, 0, SCMD_UPTIME);
     cprintf(ch, "There are %5d rooms in %3d zones online.\r\n", top_of_world + 1, top_of_zone_table + 1);
 
     if (GET_LEVEL(ch) >= LVL_REBOOT_VIEW)
@@ -2066,12 +2056,12 @@ ACMD(do_world) {
 
 bool get_infodump_filename(const char *name, char *filename) {
     if (!name || !*name)
-        return FALSE;
+        return false;
     sprintf(filename, "%s/%s.txt", INFODUMP_PREFIX, name);
-    return TRUE;
+    return true;
 }
 
-void infodump_spellassign(char_data *ch, char *argument) {
+void infodump_spellassign(CharData *ch, char *argument) {
     char fname[MAX_INPUT_LENGTH];
     FILE *fl;
     int class_num, skill;
@@ -2100,15 +2090,15 @@ void infodump_spellassign(char_data *ch, char *argument) {
      * Current fields:  SPELLNAME,CIRCLE,ISQUEST?
      */
     for (class_num = 0; class_num < NUM_CLASSES; class_num++) {
-        startedclass = FALSE;
+        startedclass = false;
         for (skill = 1; skill <= MAX_SPELLS; skill++) {
             if (skills[skill].min_level[class_num] < LVL_IMMORT) {
                 if (!startedclass) {
                     fprintf(fl, "beginclass %s\n", classes[class_num].name);
-                    startedclass = TRUE;
+                    startedclass = true;
                 }
                 fprintf(fl, "%s,%d,%s\n", skills[skill].name, level_to_circle(skills[skill].min_level[class_num]),
-                        skills[skill].quest ? "TRUE" : "FALSE");
+                        skills[skill].quest ? "true" : "false");
             }
         }
         if (startedclass)
@@ -2125,11 +2115,11 @@ void infodump_spellassign(char_data *ch, char *argument) {
 ACMD(do_infodump) {
     int i;
     const struct infodump_struct {
-        char *name;
-        void (*command)(char_data *ch, char *argument);
+        const char *name;
+        void (*command)(CharData *ch, char *argument);
     } fields[] = {/* Keep this list alphabetized */
                   {"spellassign", infodump_spellassign},
-                  {NULL, NULL}};
+                  {nullptr, nullptr}};
     skip_spaces(&argument);
 
     if (!*argument) {

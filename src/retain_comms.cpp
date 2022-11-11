@@ -24,18 +24,18 @@
  *
  * Create the comms lists.  We need to start with an empty node
  */
-void init_retained_comms(char_data *ch) {
-    struct retained_comms *comms;
-    CREATE(comms, retained_comms, 1);
-    comms->tells = NULL;
-    comms->gossips = NULL;
+void init_retained_comms(CharData *ch) {
+    RetainedComms *comms;
+    CREATE(comms, RetainedComms, 1);
+    comms->tells = nullptr;
+    comms->gossips = nullptr;
 
     GET_RETAINED_COMMS(ch) = comms;
 }
 
-void add_retained_comms(char_data *ch, int type, char *msg) {
-    struct char_data *tch;
-    struct comm_node *node, *new_node;
+void add_retained_comms(CharData *ch, int type, char *msg) {
+    CharData *tch;
+    CommNode *node, *new_node;
     int i = 0;
 
     tch = REAL_CHAR(ch); /* Just in case you are shapeshifted */
@@ -43,11 +43,11 @@ void add_retained_comms(char_data *ch, int type, char *msg) {
     for (node = GET_RETAINED_COMM_TYPE(tch, type), i = 0; node && node->next; ++i, node = node->next)
         ; /* Find last node */
 
-    CREATE(new_node, comm_node, 1);
+    CREATE(new_node, CommNode, 1);
     new_node->time = time(0);
     new_node->msg = strdup(filter_chars(buf2, msg, "\r\n"));
-    new_node->next = NULL;
-    if (node == NULL) {
+    new_node->next = nullptr;
+    if (node == nullptr) {
         SET_RETAINED_COMM_TYPE(tch, type, new_node);
     } else {
         node->next = new_node;
@@ -60,8 +60,8 @@ void add_retained_comms(char_data *ch, int type, char *msg) {
     }
 }
 
-void load_retained_comms(FILE *file, char_data *ch, int type) {
-    struct comm_node *node, *new_node;
+void load_retained_comms(FILE *file, CharData *ch, int type) {
+    CommNode *node, *new_node;
     time_t timestamp;
     char *msg;
 
@@ -71,10 +71,10 @@ void load_retained_comms(FILE *file, char_data *ch, int type) {
         msg = any_one_arg(buf, buf1);
         sscanf(buf1, "%ld", &timestamp);
         skip_spaces(&msg);
-        CREATE(new_node, comm_node, 1);
+        CREATE(new_node, CommNode, 1);
         new_node->time = timestamp;
         new_node->msg = strdup(msg);
-        if (node == NULL) {
+        if (node == nullptr) {
             SET_RETAINED_COMM_TYPE(ch, type, new_node);
             node = new_node;
         } else {
@@ -85,8 +85,8 @@ void load_retained_comms(FILE *file, char_data *ch, int type) {
     }
 }
 
-void save_retained_comms(FILE *file, char_data *ch, int type) {
-    struct comm_node *node;
+void save_retained_comms(FILE *file, CharData *ch, int type) {
+    CommNode *node;
 
     if (type == TYPE_RETAINED_TELLS) {
         fprintf(file, "tells:\r\n");
@@ -101,23 +101,23 @@ void save_retained_comms(FILE *file, char_data *ch, int type) {
     fprintf(file, "$\r\n");
 }
 
-void free_retained_comms(char_data *ch) {
+void free_retained_comms(CharData *ch) {
     free_comms_node_list(GET_RETAINED_TELLS(ch));
     free_comms_node_list(GET_RETAINED_GOSSIPS(ch));
 }
 
-void free_comms_node_list(comm_node *root) {
-    struct comm_node *node, *next;
+void free_comms_node_list(CommNode *root) {
+    CommNode *node, *next;
 
     for (node = root; node; node = next) {
         next = node->next;
         free(node);
     }
-    root = NULL;
+    root = nullptr;
 }
 
-void show_retained_comms(char_data *ch, char_data *vict, int type) {
-    struct comm_node *node;
+void show_retained_comms(CharData *ch, CharData *vict, int type) {
+    CommNode *node;
     char *comm_name;
     char timebuf[32];
 
@@ -136,7 +136,7 @@ void show_retained_comms(char_data *ch, char_data *vict, int type) {
         return;
     }
 
-    if (node == NULL) {
+    if (node == nullptr) {
         if (ch == vict) {
             sprintf(buf, "%sYour recent %s list is empty.%s\r\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
         } else {

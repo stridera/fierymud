@@ -16,13 +16,13 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-#define PRIV_FUNC(name) void(name)(char_data * ch, int flag)
+#define PRIV_FUNC(name) void(name)(CharData * ch, int flag)
 
-struct grant_type {
+struct GrantType {
     int grant;
     char *grantor;
     int level;
-    struct grant_type *next;
+    GrantType *next;
 };
 
 struct privflagdef {
@@ -39,9 +39,9 @@ struct privflagdef {
 #define CMD_GRANTED 1
 #define CMD_REVOKED 2
 
-extern ACMD(do_grant);
-extern int command_grant_usability(char_data *ch, int cmd);
-extern void cache_grants(char_data *ch);
-extern void write_player_grants(FILE *fl, char_data *ch);
-extern void read_player_grants(FILE *fl, grant_type **list);
-extern void read_player_grant_groups(FILE *fl, grant_type **list);
+ACMD(do_grant);
+int command_grant_usability(CharData *ch, int cmd);
+void cache_grants(CharData *ch);
+void write_player_grants(FILE *fl, CharData *ch);
+void read_player_grants(FILE *fl, GrantType **list);
+void read_player_grant_groups(FILE *fl, GrantType **list);

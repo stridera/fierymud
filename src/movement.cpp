@@ -12,7 +12,8 @@
 
 #include "movement.hpp"
 
-#include "act.hpp" #include "comm.hpp"
+#include "act.hpp"
+#include "comm.hpp"
 #include "conf.hpp"
 #include "constants.hpp"
 #include "cooldowns.hpp"
@@ -35,34 +36,34 @@
 /************************************************************/
 
 /* simple function to determine if char can walk on water */
-bool can_travel_on_water(char_data *ch) {
-    struct obj_data *obj;
+bool can_travel_on_water(CharData *ch) {
+    ObjData *obj;
     int i;
 
     /* FIXME: should be in something like items.h or equipment.h */
     /* This function is currently in act.item.c */
-    int find_eq_pos(char_data * ch, obj_data * obj, char *arg);
+    int find_eq_pos(CharData * ch, ObjData * obj, char *arg);
 
     if (GET_LEVEL(ch) >= LVL_IMMORT)
-        return TRUE;
+        return true;
 
     if (EFF_FLAGGED(ch, EFF_WATERWALK))
-        return TRUE;
+        return true;
 
     if (MOB_FLAGGED(ch, MOB_AQUATIC))
-        return TRUE;
+        return true;
 
     /* A boat in the inventory suffices */
     for (obj = ch->carrying; obj; obj = obj->next_content)
-        if (GET_OBJ_TYPE(obj) == ITEM_BOAT && (find_eq_pos(ch, obj, NULL) < 0))
-            return TRUE;
+        if (GET_OBJ_TYPE(obj) == ITEM_BOAT && (find_eq_pos(ch, obj, nullptr) < 0))
+            return true;
 
     /* Worn boats are OK too */
     for (i = 0; i < NUM_WEARS; i++)
         if (GET_EQ(ch, i) && GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_BOAT)
-            return TRUE;
+            return true;
 
-    return FALSE;
+    return false;
 }
 
 #define CANCEL_GRAVITY                                                                                                 \
@@ -74,9 +75,9 @@ bool can_travel_on_water(char_data *ch) {
         return EVENT_FINISHED;                                                                                         \
     }
 EVENTFUNC(gravity_event) {
-    struct gravity_event_obj *event = (gravity_event_obj *)event_obj;
-    struct char_data *ch = event->ch;
-    struct obj_data *obj = event->obj;
+    GravityEventObj *event = (GravityEventObj *)event_obj;
+    CharData *ch = event->ch;
+    ObjData *obj = event->obj;
     int in_room = ch ? IN_ROOM(ch) : IN_ROOM(obj);
     int to_room;
 
@@ -105,11 +106,11 @@ EVENTFUNC(gravity_event) {
 
         if (event->distance_fallen == 0) {
             if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
-                act("&1&bYou find yourself in midair and begin descending.&0\r\n\r\n", FALSE, ch, 0, 0, TO_CHAR);
-                act("&1&b$n finds $mself in midair and begins descending.&0", FALSE, ch, 0, 0, TO_ROOM);
+                act("&1&bYou find yourself in midair and begin descending.&0\r\n\r\n", false, ch, 0, 0, TO_CHAR);
+                act("&1&b$n finds $mself in midair and begins descending.&0", false, ch, 0, 0, TO_ROOM);
             } else {
-                act("&1&bYou find yourself on thin air and fall&0 &2DOWN!&0\r\n\r\n", FALSE, ch, 0, 0, TO_CHAR);
-                act("&1&b$n finds $mself on thin air and falls&0 &2DOWN!&0", FALSE, ch, 0, 0, TO_ROOM);
+                act("&1&bYou find yourself on thin air and fall&0 &2DOWN!&0\r\n\r\n", false, ch, 0, 0, TO_CHAR);
+                act("&1&b$n finds $mself on thin air and falls&0 &2DOWN!&0", false, ch, 0, 0, TO_ROOM);
                 falling_yell(ch);
             }
         }
@@ -119,25 +120,25 @@ EVENTFUNC(gravity_event) {
 
         if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
             send_to_char("\r\n&2You float slowly downward.&0\r\n\r\n", ch);
-            act("&2$n floats slowly down from above.&0", FALSE, ch, 0, 0, TO_ROOM);
+            act("&2$n floats slowly down from above.&0", false, ch, 0, 0, TO_ROOM);
         } else if (GET_SKILL(ch, SKILL_SAFEFALL)) {
             send_to_char("\r\n&2You fall gracefully DOWN!&0\r\n\r\n", ch);
-            act("&2$n gracefully falls from above.&0", FALSE, ch, 0, 0, TO_ROOM);
+            act("&2$n gracefully falls from above.&0", false, ch, 0, 0, TO_ROOM);
         } else {
             send_to_char("\r\n&2DOWN!&0\r\n\r\n", ch);
-            act("&2$n falls screaming from above.&0", FALSE, ch, 0, 0, TO_ROOM);
+            act("&2$n falls screaming from above.&0", false, ch, 0, 0, TO_ROOM);
         }
 
         if (ch->desc)
-            look_at_room(ch, FALSE);
+            look_at_room(ch, false);
     } else if (obj) {
         if (event->distance_fallen == 0)
-            act("$p &1&8plummets&0 &2downward!&0", FALSE, 0, obj, 0, TO_ROOM);
+            act("$p &1&8plummets&0 &2downward!&0", false, 0, obj, 0, TO_ROOM);
 
         obj_from_room(obj);
         obj_to_room(obj, to_room);
 
-        act("$p &1&8falls from above.&0", FALSE, 0, obj, 0, TO_ROOM);
+        act("$p &1&8falls from above.&0", false, 0, obj, 0, TO_ROOM);
     }
 
     /* to_room is now the room the char/obj is currently in */
@@ -167,9 +168,9 @@ EVENTFUNC(gravity_event) {
     /* No exit down means we've hit the bottom. */
     if (obj) {
         if (IS_SPLASHY(to_room))
-            act("$p &1&8lands with a loud&0 &1SPLASH!&0", FALSE, 0, obj, 0, TO_ROOM);
+            act("$p &1&8lands with a loud&0 &1SPLASH!&0", false, 0, obj, 0, TO_ROOM);
         else
-            act("$p &1&8lands with a dull&0 &1THUD!&0", FALSE, 0, obj, 0, TO_ROOM);
+            act("$p &1&8lands with a dull&0 &1THUD!&0", false, 0, obj, 0, TO_ROOM);
     } else if (ch) {
         if (GET_LEVEL(ch) < LVL_IMMORT)
             gravity_assisted_landing(ch, event->distance_fallen);
@@ -178,37 +179,37 @@ EVENTFUNC(gravity_event) {
     CANCEL_GRAVITY;
 }
 
-bool too_heavy_to_fly(char_data *ch) {
+bool too_heavy_to_fly(CharData *ch) {
     if (GET_LEVEL(ch) >= LVL_IMMORT)
-        return FALSE;
+        return false;
     if (IS_CARRYING_W(ch) < 1 || CAN_CARRY_W(ch) < 1)
-        return FALSE;
+        return false;
     return IS_CARRYING_W(ch) > MAXIMUM_FLIGHT_LOAD(ch);
 }
 
-void start_char_falling(char_data *ch) {
-    struct gravity_event_obj *event_obj;
+void start_char_falling(CharData *ch) {
+    GravityEventObj *event_obj;
     if (!EVENT_FLAGGED(ch, EVENT_GRAVITY)) {
-        CREATE(event_obj, gravity_event_obj, 1);
+        CREATE(event_obj, GravityEventObj, 1);
         event_obj->ch = ch;
         event_obj->start_room = IN_ROOM(ch);
-        event_create(EVENT_GRAVITY, gravity_event, event_obj, TRUE, &(ch->events), 0);
+        event_create(EVENT_GRAVITY, gravity_event, event_obj, true, &(ch->events), 0);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_GRAVITY);
     }
 }
 
-void start_obj_falling(obj_data *obj) {
-    struct gravity_event_obj *event_obj;
+void start_obj_falling(ObjData *obj) {
+    GravityEventObj *event_obj;
     if (!EVENT_FLAGGED(obj, EVENT_GRAVITY)) {
-        CREATE(event_obj, gravity_event_obj, 1);
+        CREATE(event_obj, GravityEventObj, 1);
         event_obj->obj = obj;
         event_obj->start_room = IN_ROOM(obj);
-        event_create(EVENT_GRAVITY, gravity_event, event_obj, TRUE, &(obj->events), 0);
+        event_create(EVENT_GRAVITY, gravity_event, event_obj, true, &(obj->events), 0);
         SET_FLAG(GET_EVENT_FLAGS(obj), EVENT_GRAVITY);
     }
 }
 
-void falling_check(char_data *ch) {
+void falling_check(CharData *ch) {
     if (ch && GET_LEVEL(ch) < 100 && !EVENT_FLAGGED(ch, EVENT_GRAVITY) && IN_ROOM(ch) != NOWHERE &&
         SECT(IN_ROOM(ch)) == SECT_AIR && GET_POS(ch) != POS_FLYING) {
         start_char_falling(ch);
@@ -223,10 +224,10 @@ void falling_check(char_data *ch) {
 
 /* falling_yell - when you first start falling, your yell of surprise is heard
  * in the surrounding rooms. */
-void falling_yell(char_data *ch) {
+void falling_yell(CharData *ch) {
     int dir, was_in, backdir, i;
     char *dirstr;
-    struct room_data *oroom;
+    RoomData *oroom;
 
     if (EFF_FLAGGED(ch, EFF_SILENCE))
         return;
@@ -275,23 +276,23 @@ void falling_yell(char_data *ch) {
                     number(0, 10) < 6 ? "shriek" : "yelp", dirstr);
 
             ch->in_room = EXIT_NDEST(world[was_in].exits[dir]);
-            act(buf, FALSE, ch, 0, 0, TO_ROOM);
+            act(buf, false, ch, 0, 0, TO_ROOM);
             ch->in_room = was_in;
         }
     }
 }
 
-void gravity_assisted_landing(char_data *ch, int distance_fallen) {
+void gravity_assisted_landing(CharData *ch, int distance_fallen) {
     int damage = 0;
 
     /* Levitation protects from damage */
     if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
         if (IS_WATER(IN_ROOM(ch))) {
             send_to_char("\r\nYou come to rest above the surface of the water.\r\n", ch);
-            act("$n comes to rest above the surface of the water.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n comes to rest above the surface of the water.", false, ch, 0, 0, TO_ROOM);
         } else {
             send_to_char("\r\nYou come to rest just above the ground.\r\n", ch);
-            act("$n's descent ends just above the ground.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n's descent ends just above the ground.", false, ch, 0, 0, TO_ROOM);
         }
         return;
     }
@@ -304,19 +305,19 @@ void gravity_assisted_landing(char_data *ch, int distance_fallen) {
        for five rooms, partially for 5-15 and full at 15 David Endre 3/8/99 */
     if (IS_WATER(IN_ROOM(ch))) {
         send_to_char("\r\nYou land with a tremendous &4SPLASH&2!&0\r\n", ch);
-        act("$n lands with a tremendous &4SPLASH&2!&0", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n lands with a tremendous &4SPLASH&2!&0", false, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen <= 5) {
             GET_POS(ch) = POS_STANDING;
             GET_STANCE(ch) = STANCE_ALERT;
             send_to_char("\r\nYou tuck and roll, performing a beautiful landing!\r\n", ch);
-            act("$n tucks and rolls, performing a beautiful landing!", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n tucks and rolls, performing a beautiful landing!", false, ch, 0, 0, TO_ROOM);
         } else if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen < 15) {
             send_to_char("\r\nYou gracefully land without taking too much damage.\r\n", ch);
-            act("$n gracefully lands without taking too much damage.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n gracefully lands without taking too much damage.", false, ch, 0, 0, TO_ROOM);
         } else {
             send_to_char("\r\nYou land with a resounding &1S&2P&1L&2A&1T&2!&0\r\n", ch);
-            act("$n lands with a resounding &1S&2P&1L&2A&1T&2!&0", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n lands with a resounding &1S&2P&1L&2A&1T&2!&0", false, ch, 0, 0, TO_ROOM);
         }
     }
 
@@ -332,7 +333,7 @@ void gravity_assisted_landing(char_data *ch, int distance_fallen) {
             damage *= distance_fallen / 15.0;
     }
 
-    hurt_char(ch, NULL, damage, TRUE);
+    hurt_char(ch, nullptr, damage, true);
 }
 
 /*************************************/
@@ -341,8 +342,8 @@ void gravity_assisted_landing(char_data *ch, int distance_fallen) {
 
 /* Called when stop following persons, or stopping charm */
 /* This will NOT do if a character quits/dies!!          */
-void stop_follower(char_data *ch, int violent) {
-    struct follow_type *j, *k;
+void stop_follower(CharData *ch, int violent) {
+    FollowType *j, *k;
 
     assert(ch->master);
 
@@ -350,19 +351,19 @@ void stop_follower(char_data *ch, int violent) {
         if (DECEASED(ch))
             send_to_char("A wave of sorrow nearly overcomes you.\r\n", ch->master);
         else if (violent) {
-            act("You realize that $N is a jerk!", FALSE, ch, 0, ch->master, TO_CHAR);
-            act("$n realizes that $N is a jerk!", FALSE, ch, 0, ch->master, TO_NOTVICT);
-            act("$n hates your guts!", FALSE, ch, 0, ch->master, TO_VICT);
+            act("You realize that $N is a jerk!", false, ch, 0, ch->master, TO_CHAR);
+            act("$n realizes that $N is a jerk!", false, ch, 0, ch->master, TO_NOTVICT);
+            act("$n hates your guts!", false, ch, 0, ch->master, TO_VICT);
         }
         if (affected_by_spell(ch, SPELL_CHARM))
             effect_from_char(ch, SPELL_CHARM);
 
     } else if (EFF_FLAGGED(ch, EFF_SHADOWING)) {
-        act("You stop shadowing $N.", TRUE, ch, 0, ch->master, TO_CHAR);
+        act("You stop shadowing $N.", true, ch, 0, ch->master, TO_CHAR);
     } else {
-        act("You stop following $N.", FALSE, ch, 0, ch->master, TO_CHAR);
-        act("$n stops following $N.", TRUE, ch, 0, ch->master, TO_NOTVICT);
-        act("$n stops following you.", TRUE, ch, 0, ch->master, TO_VICT);
+        act("You stop following $N.", false, ch, 0, ch->master, TO_CHAR);
+        act("$n stops following $N.", true, ch, 0, ch->master, TO_NOTVICT);
+        act("$n stops following you.", true, ch, 0, ch->master, TO_VICT);
     }
 
     if (ch->master->followers->follower == ch) { /* Head of follower-list? */
@@ -388,19 +389,19 @@ void stop_follower(char_data *ch, int violent) {
          * summoned mount is irrelevant anyway (you get no xp). */
 
         if (IS_NPC(ch))
-            event_create(EVENT_MOB_QUIT, mobquit_event, ch, FALSE, &(ch->events), 3 RL_SEC);
+            event_create(EVENT_MOB_QUIT, mobquit_event, ch, false, &(ch->events), 3 RL_SEC);
 
         if (MOB_FLAGGED(ch, MOB_SUMMONED_MOUNT) && !IS_NPC(ch->master))
             SET_COOLDOWN(ch->master, CD_SUMMON_MOUNT, 12 MUD_HR);
     }
 
     REMOVE_FLAG(EFF_FLAGS(ch), EFF_SHADOWING);
-    ch->master = NULL;
+    ch->master = nullptr;
 }
 
 /* Called when a character that follows/is followed dies */
-void die_follower(char_data *ch) {
-    struct follow_type *j, *k;
+void die_follower(CharData *ch) {
+    FollowType *j, *k;
 
     if (ch->master)
         stop_follower(ch, 0);
@@ -413,23 +414,23 @@ void die_follower(char_data *ch) {
 
 /* Do NOT call this before having checked if a circle of followers */
 /* will arise. CH will follow leader                               */
-void add_follower(char_data *ch, char_data *leader) {
-    struct follow_type *k;
+void add_follower(CharData *ch, CharData *leader) {
+    FollowType *k;
 
     assert(!ch->master);
 
     ch->master = leader;
 
-    CREATE(k, follow_type, 1);
+    CREATE(k, FollowType, 1);
 
     k->follower = ch;
     k->next = leader->followers;
     leader->followers = k;
 
     if (!EFF_FLAGGED(ch, EFF_SHADOWING)) {
-        act("You now follow $N.", FALSE, ch, 0, leader, TO_CHAR);
-        act("$n starts following you.", TRUE, ch, 0, leader, TO_VICT);
-        act("$n starts to follow $N.", TRUE, ch, 0, leader, TO_NOTVICT);
+        act("You now follow $N.", false, ch, 0, leader, TO_CHAR);
+        act("$n starts following you.", true, ch, 0, leader, TO_VICT);
+        act("$n starts to follow $N.", true, ch, 0, leader, TO_NOTVICT);
     }
 }
 
@@ -437,26 +438,26 @@ void add_follower(char_data *ch, char_data *leader) {
 /****          GROUPING          ****/
 /************************************/
 
-void add_groupee(char_data *master, char_data *groupee) {
-    struct group_type *g;
+void add_groupee(CharData *master, CharData *groupee) {
+    GroupType *g;
 
     if (IS_GROUPED(groupee))
         return;
 
-    act("&2&8You accept $N &2&8into your group.&0", FALSE, master, 0, groupee, TO_CHAR);
-    act("&2&8You have been accepted into $n&2&8's group.&0", FALSE, master, 0, groupee, TO_VICT);
+    act("&2&8You accept $N &2&8into your group.&0", false, master, 0, groupee, TO_CHAR);
+    act("&2&8You have been accepted into $n&2&8's group.&0", false, master, 0, groupee, TO_VICT);
     for (g = master->groupees; g; g = g->next)
-        act("&2&8$N &2&8has joined your group.&0", TRUE, g->groupee, 0, groupee, TO_CHAR);
+        act("&2&8$N &2&8has joined your group.&0", true, g->groupee, 0, groupee, TO_CHAR);
 
-    CREATE(g, group_type, 1);
+    CREATE(g, GroupType, 1);
     g->groupee = groupee;
     g->next = master->groupees;
     master->groupees = g;
     groupee->group_master = master;
 }
 
-void disband_group(char_data *master, bool verbose, bool forceful) {
-    struct group_type *g;
+void disband_group(CharData *master, bool verbose, bool forceful) {
+    GroupType *g;
 
     assert(master->groupees);
 
@@ -465,27 +466,27 @@ void disband_group(char_data *master, bool verbose, bool forceful) {
 
     while (master->groupees) {
         g = master->groupees;
-        g->groupee->group_master = NULL;
+        g->groupee->group_master = nullptr;
         master->groupees = g->next;
         if (verbose)
-            act(forceful ? "&2&8The group has been disbanded.&0" : "&2&8$n &2&8has disbanded the group.&0", FALSE,
+            act(forceful ? "&2&8The group has been disbanded.&0" : "&2&8$n &2&8has disbanded the group.&0", false,
                 master, 0, g->groupee, TO_VICT);
         free(g);
     }
 }
 
-void ungroup(char_data *ch, bool verbose, bool forceful) {
+void ungroup(CharData *ch, bool verbose, bool forceful) {
     /* Character is a group leader... */
     if (ch->groupees) {
 
         /* Only one other group member? Disband. */
         if (!ch->groupees->next)
-            disband_group(ch, verbose, FALSE);
+            disband_group(ch, verbose, false);
 
         /* Otherwise promote first group member to new leader. */
         else {
-            struct group_type *g;
-            struct char_data *new_master = ch->groupees->groupee;
+            GroupType *g;
+            CharData *new_master = ch->groupees->groupee;
 
             if (verbose) {
                 send_to_char("&2&8You're no longer leading your group.&0\r\n", ch);
@@ -494,15 +495,15 @@ void ungroup(char_data *ch, bool verbose, bool forceful) {
 
             /* Move groupees to new master. */
             new_master->groupees = ch->groupees->next;
-            new_master->group_master = NULL;
+            new_master->group_master = nullptr;
             for (g = new_master->groupees; g; g = g->next) {
                 g->groupee->group_master = new_master;
                 if (verbose)
-                    act("&2&8$n &2&8is now leading your group!&0", TRUE, new_master, 0, g->groupee, TO_VICT);
+                    act("&2&8$n &2&8is now leading your group!&0", true, new_master, 0, g->groupee, TO_VICT);
             }
 
             free(ch->groupees);
-            ch->groupees = NULL;
+            ch->groupees = nullptr;
         }
     }
 
@@ -512,18 +513,18 @@ void ungroup(char_data *ch, bool verbose, bool forceful) {
         /* Only one other group member? Disband. */
         if (!ch->group_master->groupees->next) {
             if (verbose) {
-                act(forceful ? "&2&8You remove $N from the group.&0" : "&2&8$N has left the group.&0", FALSE,
+                act(forceful ? "&2&8You remove $N from the group.&0" : "&2&8$N has left the group.&0", false,
                     ch->group_master, 0, ch, TO_CHAR);
-                act(forceful ? "&2&8$n has removed you from the group.&0" : "&2&8You have left your group!&0", FALSE,
+                act(forceful ? "&2&8$n has removed you from the group.&0" : "&2&8You have left your group!&0", false,
                     ch->group_master, 0, ch, TO_VICT);
             }
-            disband_group(ch->group_master, verbose, TRUE);
+            disband_group(ch->group_master, verbose, true);
         }
 
         /* Otherwise remove this character from group list */
         else {
-            struct char_data *master = ch->group_master;
-            struct group_type *g, dummy, *found;
+            CharData *master = ch->group_master;
+            GroupType *g, dummy, *found;
 
             dummy.next = master->groupees;
 
@@ -537,26 +538,26 @@ void ungroup(char_data *ch, bool verbose, bool forceful) {
                 if (verbose)
                     act(forceful ? "&2&8$n &2&8has been kicked out of your group!&0"
                                  : "&2&8$n &2&8has left your group!&0",
-                        TRUE, ch, 0, g->next->groupee, TO_VICT);
+                        true, ch, 0, g->next->groupee, TO_VICT);
                 g = g->next;
             }
 
             master->groupees = dummy.next;
-            ch->group_master = NULL;
+            ch->group_master = nullptr;
 
             if (verbose) {
                 act(forceful ? "&2&8You have been kicked out of your group.&0" : "&2&8You have left your group!&0",
-                    FALSE, ch, 0, 0, TO_CHAR);
+                    false, ch, 0, 0, TO_CHAR);
                 act(forceful ? "&2&8You have kicked $n &2&8out of your group.&0" : "&2&8$n &2&8has left your group!&0",
-                    FALSE, ch, 0, master, TO_VICT);
+                    false, ch, 0, master, TO_VICT);
             }
         }
     } else
-        assert(FALSE);
+        assert(false);
 }
 
-bool is_grouped(char_data *ch, char_data *tch) {
-    struct char_data *k, *l;
+bool is_grouped(CharData *ch, CharData *tch) {
+    CharData *k, *l;
 
     /* k is ch's group leader */
     k = ch->group_master ? ch->group_master : ch;
@@ -567,24 +568,24 @@ bool is_grouped(char_data *ch, char_data *tch) {
     return (l == k); /* same group master? */
 }
 
-bool battling_my_group(char_data *ch, char_data *tch) {
-    struct char_data *i;
+bool battling_my_group(CharData *ch, CharData *tch) {
+    CharData *i;
 
     if (FIGHTING(tch)) {
         /* You are fighting with me */
         if (FIGHTING(tch) == ch)
-            return TRUE;
+            return true;
         /* You are fighting someone who is grouped with me */
         if (is_grouped(FIGHTING(tch), ch))
-            return TRUE;
+            return true;
     }
     if (FIGHTING(ch)) {
         /* I am fighting with you */
         if (FIGHTING(ch) == tch)
-            return TRUE;
+            return true;
         /* I am fighting someone in your group */
         if (is_grouped(FIGHTING(ch), tch))
-            return TRUE;
+            return true;
     }
     for (i = world[ch->in_room].people; i; i = i->next_in_room) {
         /* Someone in here is fighting */
@@ -593,42 +594,42 @@ bool battling_my_group(char_data *ch, char_data *tch) {
             if (is_grouped(i, ch)) {
                 /* They are fighting you */
                 if (FIGHTING(i) == tch)
-                    return TRUE;
+                    return true;
                 /* They are fighting someone in your group */
                 if (is_grouped(FIGHTING(i), tch))
-                    return TRUE;
+                    return true;
                 /* This person is grouped with you */
             } else if (is_grouped(i, tch)) {
                 /* They are fighting me */
                 if (FIGHTING(i) == ch)
-                    return TRUE;
+                    return true;
                 /* They are fighting someone in my group */
                 if (is_grouped(FIGHTING(i), ch))
-                    return TRUE;
+                    return true;
             }
         }
     }
-    return FALSE;
+    return false;
 }
 
 /*********************************************/
 /****          RIDING and MOUNTS          ****/
 /*********************************************/
 
-void mount_char(char_data *ch, char_data *mount) {
+void mount_char(CharData *ch, CharData *mount) {
     RIDING(ch) = mount;
     RIDDEN_BY(mount) = ch;
 }
 
-void dismount_char(char_data *ch) {
+void dismount_char(CharData *ch) {
     if (RIDING(ch)) {
-        RIDDEN_BY(RIDING(ch)) = NULL;
-        RIDING(ch) = NULL;
+        RIDDEN_BY(RIDING(ch)) = nullptr;
+        RIDING(ch) = nullptr;
     }
 
     if (RIDDEN_BY(ch)) {
-        RIDING(RIDDEN_BY(ch)) = NULL;
-        RIDDEN_BY(ch) = NULL;
+        RIDING(RIDDEN_BY(ch)) = nullptr;
+        RIDDEN_BY(ch) = nullptr;
     }
 }
 
@@ -638,7 +639,7 @@ void dismount_char(char_data *ch) {
  * with no difficulty.
  */
 
-int ideal_mountlevel(char_data *ch) {
+int ideal_mountlevel(CharData *ch) {
     if (GET_LEVEL(ch) >= LVL_IMMORT)
         return 1000; /* arbitrarily large number */
 
@@ -649,7 +650,7 @@ int ideal_mountlevel(char_data *ch) {
     return GET_SKILL(ch, SKILL_MOUNT) * (MAX_MOUNT_LEVEL - 1) / 100 - 5;
 }
 
-int ideal_ridelevel(char_data *ch) {
+int ideal_ridelevel(CharData *ch) {
     if (GET_LEVEL(ch) >= LVL_IMMORT)
         return 1000; /* arbitrarily large number */
 
@@ -660,7 +661,7 @@ int ideal_ridelevel(char_data *ch) {
     return GET_SKILL(ch, SKILL_RIDING) * (MAX_MOUNT_LEVEL - 1) / 100 - 5;
 }
 
-int ideal_tamelevel(char_data *ch) {
+int ideal_tamelevel(CharData *ch) {
     int tame_skill, tame_bonus;
 
     if (GET_LEVEL(ch) >= LVL_IMMORT)
@@ -685,7 +686,7 @@ int ideal_tamelevel(char_data *ch) {
     return tame_skill * (MAX_MOUNT_LEVEL - 1) / 100 - 5;
 }
 
-int mountlevel(char_data *ch) {
+int mountlevel(CharData *ch) {
     int l = GET_LEVEL(ch);
 
     if (EFF_FLAGGED(ch, EFF_TAMED))
@@ -701,7 +702,7 @@ int mountlevel(char_data *ch) {
  * True or false: will this character be bucked while moving?
  */
 
-int movement_bucked(char_data *ch, char_data *mount) {
+int movement_bucked(CharData *ch, CharData *mount) {
     int diff = mountlevel(mount) - ideal_ridelevel(ch);
 
     if (diff < 1)
@@ -717,7 +718,7 @@ int movement_bucked(char_data *ch, char_data *mount) {
  * True or false: will this character be bucked while trying to mount?
  */
 
-int mount_bucked(char_data *ch, char_data *mount) {
+int mount_bucked(CharData *ch, CharData *mount) {
     int diff = mountlevel(mount) - ideal_mountlevel(ch);
 
     if (diff < 1)
@@ -733,7 +734,7 @@ int mount_bucked(char_data *ch, char_data *mount) {
  * True or false: will this character fall while trying to mount?
  */
 
-int mount_fall(char_data *ch, char_data *mount) {
+int mount_fall(CharData *ch, CharData *mount) {
     int diff = mountlevel(mount) - ideal_mountlevel(ch);
 
     if (diff < 1)
@@ -744,21 +745,21 @@ int mount_fall(char_data *ch, char_data *mount) {
     return number(0, 999) < 10 + pow((double)(2 * diff) / MOUNT_LEVEL_FUDGE, 3) * 250 / 8;
 }
 
-void mount_warning(char_data *ch, char_data *vict) {
+void mount_warning(CharData *ch, CharData *vict) {
     int diff = mountlevel(vict) - ideal_mountlevel(ch);
 
     if (diff > 15) {
-        act("You can't even imagine controlling $N!", FALSE, ch, 0, vict, TO_CHAR);
+        act("You can't even imagine controlling $N!", false, ch, 0, vict, TO_CHAR);
     } else if (diff > MOUNT_LEVEL_FUDGE + 2) {
-        act("You're nowhere near being able to control such a powerful beast.", FALSE, ch, 0, 0, TO_CHAR);
+        act("You're nowhere near being able to control such a powerful beast.", false, ch, 0, 0, TO_CHAR);
     } else if (diff > MOUNT_LEVEL_FUDGE) {
-        act("You don't feel quite up to riding $N.", FALSE, ch, 0, vict, TO_CHAR);
+        act("You don't feel quite up to riding $N.", false, ch, 0, vict, TO_CHAR);
     }
 }
 
 /* A mount has changed position.  Will its rider fall? */
-void mount_pos_check(char_data *mount) {
-    struct char_data *ch = RIDDEN_BY(mount);
+void mount_pos_check(CharData *mount) {
+    CharData *ch = RIDDEN_BY(mount);
 
     if (!ch || GET_POS(mount) >= POS_KNEELING)
         return;
@@ -767,8 +768,8 @@ void mount_pos_check(char_data *mount) {
     if ((EFF_FLAGGED(ch, EFF_FLY) || GET_LEVEL(ch) >= LVL_IMMORT) &&
         !(EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) &&
         GET_STANCE(ch) > STANCE_SLEEPING) {
-        act("You slide off $N and begin flying.", FALSE, ch, 0, mount, TO_CHAR);
-        act("$n sldes off $N and begins flying.", FALSE, ch, 0, mount, TO_ROOM);
+        act("You slide off $N and begin flying.", false, ch, 0, mount, TO_CHAR);
+        act("$n sldes off $N and begins flying.", false, ch, 0, mount, TO_ROOM);
         GET_POS(ch) = POS_FLYING;
         GET_STANCE(ch) = STANCE_ALERT;
     } else if (IS_WET(CH_NROOM(ch))) {
@@ -778,23 +779,23 @@ void mount_pos_check(char_data *mount) {
             cprintf(ch,
                     "You fall into the water, and your flames are put out with a "
                     "hiss of steam.\r\n");
-            act("$n falls into the water.  $U$s flames go out with a hissing sound.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n falls into the water.  $U$s flames go out with a hissing sound.", false, ch, 0, 0, TO_ROOM);
         } else {
             cprintf(ch, "You fall into the water.\r\n");
-            act("$n falls into the water.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n falls into the water.", false, ch, 0, 0, TO_ROOM);
         }
         GET_POS(ch) = POS_PRONE;
         GET_STANCE(ch) = STANCE_ALERT;
         WAIT_STATE(ch, PULSE_VIOLENCE);
     } else if (CH_SECT(ch) == SECT_AIR) {
-        act("You fall off $N!", FALSE, ch, 0, mount, TO_CHAR);
-        act("$n falls off $N!", FALSE, ch, 0, mount, TO_ROOM);
+        act("You fall off $N!", false, ch, 0, mount, TO_CHAR);
+        act("$n falls off $N!", false, ch, 0, mount, TO_ROOM);
         GET_POS(ch) = POS_PRONE;
         GET_STANCE(ch) = STANCE_ALERT;
         WAIT_STATE(ch, PULSE_VIOLENCE);
     } else {
         cprintf(ch, "You find yourself dumped to the ground.\r\n");
-        act("$n is dumped onto the ground.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n is dumped onto the ground.", false, ch, 0, 0, TO_ROOM);
         GET_POS(ch) = POS_PRONE;
         GET_STANCE(ch) = STANCE_ALERT;
         WAIT_STATE(ch, PULSE_VIOLENCE);

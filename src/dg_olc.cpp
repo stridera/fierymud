@@ -20,28 +20,28 @@
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
-#include "stack.h"
+#include "stack.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
 /* prototype externally defined functions */
-void trig_data_copy(trig_data *this, const trig_data *trg);
+void trig_data_copy(TrigData *cur, const TrigData *trg);
 
-void trigedit_disp_menu(descriptor_data *d);
-void trigedit_save(descriptor_data *d);
+void trigedit_disp_menu(DescriptorData *d);
+void trigedit_save(DescriptorData *d);
 
 /* called when a mob or object is being saved to disk, so its script can */
 /* be saved */
 void script_save_to_disk(FILE *fp, void *item, int type) {
-    struct trig_proto_list *t;
+    TriggerPrototypeList *t;
 
     if (type == MOB_TRIGGER)
-        t = ((char_data *)item)->proto_script;
+        t = ((CharData *)item)->proto_script;
     else if (type == OBJ_TRIGGER)
-        t = ((obj_data *)item)->proto_script;
+        t = ((ObjData *)item)->proto_script;
     else if (type == WLD_TRIGGER)
-        t = ((room_data *)item)->proto_script;
+        t = ((RoomData *)item)->proto_script;
     else {
         log("SYSERR: Invalid type passed to script_save_mobobj_to_disk()");
         return;
@@ -53,13 +53,13 @@ void script_save_to_disk(FILE *fp, void *item, int type) {
     }
 }
 
-void trigedit_setup_new(descriptor_data *d) {
-    struct trig_data *trig;
+void trigedit_setup_new(DescriptorData *d) {
+    TrigData *trig;
 
     /*
      * Allocate a scratch trigger structure
      */
-    CREATE(trig, trig_data, 1);
+    CREATE(trig, TrigData, 1);
 
     trig->nr = -1;
 
@@ -80,14 +80,14 @@ void trigedit_setup_new(descriptor_data *d) {
     trigedit_disp_menu(d);
 }
 
-void trigedit_setup_existing(descriptor_data *d, int rtrg_num) {
-    struct trig_data *trig;
-    struct cmdlist_element *c;
+void trigedit_setup_existing(DescriptorData *d, int rtrg_num) {
+    TrigData *trig;
+    CmdlistElement *c;
 
     /*
      * Allocate a scratch trigger structure
      */
-    CREATE(trig, trig_data, 1);
+    CREATE(trig, TrigData, 1);
 
     trig_data_copy(trig, trig_index[rtrg_num]->proto);
 
@@ -110,9 +110,9 @@ void trigedit_setup_existing(descriptor_data *d, int rtrg_num) {
     trigedit_disp_menu(d);
 }
 
-void trigedit_disp_menu(descriptor_data *d) {
-    struct trig_data *trig = OLC_TRIG(d);
-    char *attach_type;
+void trigedit_disp_menu(DescriptorData *d) {
+    TrigData *trig = OLC_TRIG(d);
+    const char *attach_type;
     char trgtypes[256];
 
     get_char_cols(d->character);
@@ -154,7 +154,7 @@ void trigedit_disp_menu(descriptor_data *d) {
     OLC_MODE(d) = TRIGEDIT_MAIN_MENU;
 }
 
-void trigedit_disp_types(descriptor_data *d) {
+void trigedit_disp_types(DescriptorData *d) {
     int i, columns = 0;
     const char **types;
 
@@ -184,7 +184,7 @@ void trigedit_disp_types(descriptor_data *d) {
     send_to_char(buf, d->character);
 }
 
-void trigedit_parse(descriptor_data *d, char *arg) {
+void trigedit_parse(DescriptorData *d, char *arg) {
     int i = 0;
 
     switch (OLC_MODE(d)) {
@@ -238,7 +238,7 @@ void trigedit_parse(descriptor_data *d, char *arg) {
         case 'y':
             trigedit_save(d);
             sprintf(buf, "OLC: %s edits trigger %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), true);
             /* fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);
@@ -271,7 +271,7 @@ void trigedit_parse(descriptor_data *d, char *arg) {
         break;
 
     case TRIGEDIT_ARGUMENT:
-        OLC_TRIG(d)->arglist = (*arg ? strdup(arg) : NULL);
+        OLC_TRIG(d)->arglist = (*arg ? strdup(arg) : nullptr);
         OLC_VAL(d)++;
         break;
 
@@ -309,16 +309,16 @@ void sprintbits(int data, char *dest) {
 }
 
 /* save the zone's triggers to internal memory and to disk */
-void trigedit_save(descriptor_data *d) {
+void trigedit_save(DescriptorData *d) {
     int trig_rnum, i;
     int found = 0;
     char *s;
-    trig_data *proto;
-    trig_data *trig = OLC_TRIG(d);
-    trig_data *live_trig;
-    struct cmdlist_element *cmd, *next_cmd;
-    struct index_data **new_index;
-    struct descriptor_data *dsc;
+    TrigData *proto;
+    TrigData *trig = OLC_TRIG(d);
+    TrigData *live_trig;
+    CmdlistElement *cmd, *next_cmd;
+    IndexData **new_index;
+    DescriptorData *dsc;
     FILE *trig_file;
     int zone, top;
     char buf[MAX_CMD_LENGTH];
@@ -341,17 +341,17 @@ void trigedit_save(descriptor_data *d) {
         /* Recompile the command list from the new script */
         s = OLC_STORAGE(d);
 
-        CREATE(trig->cmdlist, cmdlist_element, 1);
+        CREATE(trig->cmdlist, CmdlistElement, 1);
         if (s) {
             trig->cmdlist->cmd = strdup(strtok(s, "\r\n"));
             cmd = trig->cmdlist;
-            cmd->next = NULL; /*don't want dangling pointers.. */
+            cmd->next = nullptr; /*don't want dangling pointers.. */
 
-            while ((s = strtok(NULL, "\r\n"))) {
-                CREATE(cmd->next, cmdlist_element, 1);
+            while ((s = strtok(nullptr, "\r\n"))) {
+                CREATE(cmd->next, CmdlistElement, 1);
                 cmd = cmd->next;
                 cmd->cmd = strdup(s);
-                cmd->next = NULL; /*don't want dangling pointers.. */
+                cmd->next = nullptr; /*don't want dangling pointers.. */
             }
         } else
             trig->cmdlist->cmd = strdup("* No Script");
@@ -365,11 +365,11 @@ void trigedit_save(descriptor_data *d) {
             if (GET_TRIG_RNUM(live_trig) == trig_rnum) {
                 if (live_trig->arglist) {
                     free(live_trig->arglist);
-                    live_trig->arglist = NULL;
+                    live_trig->arglist = nullptr;
                 }
                 if (live_trig->name) {
                     free(live_trig->name);
-                    live_trig->name = NULL;
+                    live_trig->name = nullptr;
                 }
 
                 if (proto->arglist)
@@ -384,7 +384,7 @@ void trigedit_save(descriptor_data *d) {
                 live_trig->narg = proto->narg;
                 live_trig->data_type = proto->data_type;
                 live_trig->depth = 0;
-                live_trig->wait_event = NULL;
+                live_trig->wait_event = nullptr;
                 if (GET_TRIG_WAIT(live_trig))
                     event_cancel(GET_TRIG_WAIT(live_trig));
                 free_varlist(live_trig->var_list);
@@ -394,22 +394,22 @@ void trigedit_save(descriptor_data *d) {
         }
     } else {
         /* this is a new trigger */
-        CREATE(new_index, index_data *, top_of_trigt + 2);
+        CREATE(new_index, IndexData *, top_of_trigt + 2);
 
         /* Recompile the command list from the new script */
         s = OLC_STORAGE(d);
 
-        CREATE(trig->cmdlist, cmdlist_element, 1);
+        CREATE(trig->cmdlist, CmdlistElement, 1);
         if (s) {
             trig->cmdlist->cmd = strdup(strtok(s, "\r\n"));
             cmd = trig->cmdlist;
-            cmd->next = NULL; /*don't want dangling pointers.. */
+            cmd->next = nullptr; /*don't want dangling pointers.. */
 
-            while ((s = strtok(NULL, "\r\n"))) {
-                CREATE(cmd->next, cmdlist_element, 1);
+            while ((s = strtok(nullptr, "\r\n"))) {
+                CREATE(cmd->next, CmdlistElement, 1);
                 cmd = cmd->next;
                 cmd->cmd = strdup(s);
-                cmd->next = NULL; /*don't want dangling pointers.. */
+                cmd->next = nullptr; /*don't want dangling pointers.. */
             }
         } else
             trig->cmdlist->cmd = strdup("* No Script");
@@ -417,15 +417,15 @@ void trigedit_save(descriptor_data *d) {
         for (i = 0; i < top_of_trigt; i++) {
             if (!found) {
                 if (trig_index[i]->vnum > OLC_NUM(d)) {
-                    found = TRUE;
+                    found = true;
                     trig_rnum = i;
 
-                    CREATE(new_index[trig_rnum], index_data, 1);
+                    CREATE(new_index[trig_rnum], IndexData, 1);
                     GET_TRIG_RNUM(OLC_TRIG(d)) = trig_rnum;
                     new_index[trig_rnum]->vnum = OLC_NUM(d);
                     new_index[trig_rnum]->number = 0;
-                    new_index[trig_rnum]->func = NULL;
-                    CREATE(proto, trig_data, 1);
+                    new_index[trig_rnum]->func = nullptr;
+                    CREATE(proto, TrigData, 1);
                     new_index[trig_rnum]->proto = proto;
                     trig_data_copy(proto, trig);
 
@@ -450,13 +450,13 @@ void trigedit_save(descriptor_data *d) {
 
         if (!found) {
             trig_rnum = i;
-            CREATE(new_index[trig_rnum], index_data, 1);
+            CREATE(new_index[trig_rnum], IndexData, 1);
             GET_TRIG_RNUM(OLC_TRIG(d)) = trig_rnum;
             new_index[trig_rnum]->vnum = OLC_NUM(d);
             new_index[trig_rnum]->number = 0;
-            new_index[trig_rnum]->func = NULL;
+            new_index[trig_rnum]->func = nullptr;
 
-            CREATE(proto, trig_data, 1);
+            CREATE(proto, TrigData, 1);
             new_index[trig_rnum]->proto = proto;
             trig_data_copy(proto, trig);
 
@@ -503,7 +503,7 @@ void trigedit_save(descriptor_data *d) {
 
     if (!(trig_file = fopen(fname, "w"))) {
         sprintf(logbuf, "SYSERR: OLC: Can't open trig file \"%s\"", fname);
-        mudlog(logbuf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+        mudlog(logbuf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
         return;
     }
 
@@ -513,7 +513,7 @@ void trigedit_save(descriptor_data *d) {
 
             if (fprintf(trig_file, "#%d\n", i) < 0) {
                 sprintf(logbuf, "SYSERR: OLC: Can't write trig file!");
-                mudlog(logbuf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+                mudlog(logbuf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
                 fclose(trig_file);
                 return;
             }
@@ -552,8 +552,8 @@ void trigedit_save(descriptor_data *d) {
     rename(fname, buf);
 }
 
-void dg_olc_script_free(descriptor_data *d) {
-    struct trig_proto_list *editscript, *prevscript;
+void dg_olc_script_free(DescriptorData *d) {
+    TriggerPrototypeList *editscript, *prevscript;
 
     editscript = OLC_SCRIPT(d);
     while (editscript) {
@@ -563,8 +563,8 @@ void dg_olc_script_free(descriptor_data *d) {
     }
 }
 
-void dg_olc_script_copy(descriptor_data *d) {
-    struct trig_proto_list *origscript, *editscript;
+void dg_olc_script_copy(DescriptorData *d) {
+    TriggerPrototypeList *origscript, *editscript;
 
     if (OLC_ITEM_TYPE(d) == MOB_TRIGGER)
         origscript = OLC_MOB(d)->proto_script;
@@ -574,22 +574,22 @@ void dg_olc_script_copy(descriptor_data *d) {
         origscript = OLC_ROOM(d)->proto_script;
 
     if (origscript) {
-        CREATE(editscript, trig_proto_list, 1);
+        CREATE(editscript, TriggerPrototypeList, 1);
         OLC_SCRIPT(d) = editscript;
 
         while (origscript) {
             editscript->vnum = origscript->vnum;
             origscript = origscript->next;
             if (origscript)
-                CREATE(editscript->next, trig_proto_list, 1);
+                CREATE(editscript->next, TriggerPrototypeList, 1);
             editscript = editscript->next;
         }
     } else
-        OLC_SCRIPT(d) = NULL;
+        OLC_SCRIPT(d) = nullptr;
 }
 
-void dg_script_menu(descriptor_data *d) {
-    struct trig_proto_list *editscript;
+void dg_script_menu(DescriptorData *d) {
+    TriggerPrototypeList *editscript;
     int i = 0;
 
     /* make sure our input parser gets used */
@@ -633,8 +633,8 @@ void dg_script_menu(descriptor_data *d) {
     send_to_char(buf, d->character);
 }
 
-int dg_script_edit_parse(descriptor_data *d, char *arg) {
-    struct trig_proto_list *trig, *currtrig, *starttrig;
+int dg_script_edit_parse(DescriptorData *d, const char *arg) {
+    TriggerPrototypeList *trig, *currtrig, *starttrig;
     int pos, vnum;
 
     switch (OLC_SCRIPT_EDIT_MODE(d)) {
@@ -661,7 +661,7 @@ int dg_script_edit_parse(descriptor_data *d, char *arg) {
             break;
         case 'd':
         case 'D':
-            if (OLC_SCRIPT(d) == (trig_proto_list *)NULL)
+            if (OLC_SCRIPT(d) == (TriggerPrototypeList *)nullptr)
                 send_to_char("Cannot delete a trigger as there are none!\r\n", d->character);
             else {
                 send_to_char("     Which entry should be deleted?  0 to abort:\r\n", d->character);
@@ -689,12 +689,12 @@ int dg_script_edit_parse(descriptor_data *d, char *arg) {
             return 1;
         }
 
-        CREATE(trig, trig_proto_list, 1);
+        CREATE(trig, TriggerPrototypeList, 1);
         trig->vnum = vnum;
-        trig->next = (trig_proto_list *)NULL;
+        trig->next = (TriggerPrototypeList *)nullptr;
 
         /* add the new info in position */
-        if (OLC_SCRIPT(d) == (trig_proto_list *)NULL)
+        if (OLC_SCRIPT(d) == (TriggerPrototypeList *)nullptr)
             OLC_SCRIPT(d) = trig;
         else {
             currtrig = OLC_SCRIPT(d);
@@ -752,11 +752,11 @@ int dg_script_edit_parse(descriptor_data *d, char *arg) {
 }
 
 /*
- * Formats and indents a script.  Returns TRUE if the format was
- * successful.  Returns FALSE if the format failed--in which case
+ * Formats and indents a script.  Returns true if the format was
+ * successful.  Returns false if the format failed--in which case
  * the original text is not replaced.
  */
-bool format_script(descriptor_data *d, int indent_quantum) {
+bool format_script(DescriptorData *d, int indent_quantum) {
 #define CS_NONE 0
 #define CS_IF 1
 #define CS_SWITCH 2
@@ -773,29 +773,29 @@ bool format_script(descriptor_data *d, int indent_quantum) {
 #define ABORT(msg)                                                                                                     \
     do {                                                                                                               \
         COMPLAIN(msg);                                                                                                 \
-        free(script);                                                                                                  \
-        return FALSE;                                                                                                  \
+        return false;                                                                                                  \
     } while (0)
 
-    char out[MAX_CMD_LENGTH], *line, *script, error[100];
+    char *line, *script;
+    char out[MAX_CMD_LENGTH], error[100];
     int line_num = 0, indent = 0, len = 0, max_len, i, indent_next = 0, needed;
-    struct scope {
+    struct Scope {
         int scope;
         int line_num;
     } scope;
-    array_stack(scope) stack;
+    array_stack(Scope) stack;
     struct scope_types {
         int type;
-        char *name;
+        const char *name;
         int length;
     } cmd_scopes[] = {
         {CS_IF, "if ", 3},       {CS_SWITCH, "switch ", 7}, {CS_CASE, "case", 4}, {CS_DEFAULT, "default", 7},
         {CS_WHILE, "while ", 6}, {CS_ELSEIF, "elseif ", 7}, /* needs to come before else check */
-        {CS_ELSE, "else", 4},    {CS_NONE, NULL, 0},
+        {CS_ELSE, "else", 4},    {CS_NONE, nullptr, 0},
     };
 
     if (!d->str || !*d->str)
-        return FALSE;
+        return false;
 
     script = strdup(*d->str); /* Make a copy, because of strtok() */
     *out = '\0';
@@ -805,7 +805,7 @@ bool format_script(descriptor_data *d, int indent_quantum) {
     as_init(stack, 10, scope);
 
     /* Iterate through the script line by line */
-    for (line = strtok(script, "\r\n"); line; line = strtok(NULL, "\r\n")) {
+    for (line = strtok(script, "\r\n"); line; line = strtok(nullptr, "\r\n")) {
         ++line_num;
         skip_spaces(&line);
 
@@ -883,14 +883,14 @@ bool format_script(descriptor_data *d, int indent_quantum) {
                 scope = as_pop(stack);
                 indent -= indent_quantum;
             } else if (!strn_cmp(line, "break", 5)) {
-                array_stack(scope) temp;
+                array_stack(Scope) temp;
                 as_init(temp, as_size(stack), as_null(stack));
                 /* Search the stack for a while, case, or default */
-                for (i = FALSE; !as_empty(stack);) {
+                for (i = false; !as_empty(stack);) {
                     as_push(temp, as_pop(stack));
                     if (as_peek(temp).scope == CS_WHILE || as_peek(temp).scope == CS_CASE ||
                         as_peek(temp).scope == CS_DEFAULT) {
-                        i = TRUE; /* found */
+                        i = true; /* found */
                         break;
                     }
                 }
@@ -956,7 +956,7 @@ bool format_script(descriptor_data *d, int indent_quantum) {
     free(script);
     as_destroy(stack);
 
-    return TRUE;
+    return true;
 
     /* Clean-up defines */
 #undef CS_NONE

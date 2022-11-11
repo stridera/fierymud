@@ -41,7 +41,7 @@
  * Structures                                                          *
  **********************************************************************/
 
-struct legacy_char_coins_data {
+struct legacy_char_coins {
     int plat;         /*carried*/
     int gold;         /*carried*/
     int silver;       /*carried*/
@@ -51,7 +51,6 @@ struct legacy_char_coins_data {
     long bank_silver; /*silver in bank*/
     long bank_copper; /*copper in bank*/
 };
-typedef struct legacy_char_coins_data legacy_char_coins;
 
 /* ====================== File Element for Objects ======================= */
 /*                BEWARE: Changing it will ruin rent files                   */
@@ -82,7 +81,7 @@ struct rent_info {
     int rentcode;
     int net_cost_per_diem;
     int nitems;
-    struct legacy_char_coins_data coins;
+    legacy_char_coins_data coins;
     int spare6;
     int spare7;
     int spare8;
@@ -113,7 +112,7 @@ struct legacy_char_point_data {
     sh_int move;
     sh_int max_move; /* Max move for PC/NPC                     */
     sh_int armor;    /* Internal -100..100, external -10..10 AC */
-    struct legacy_char_coins_data coins;
+    legacy_char_coins_data coins;
     long exp; /* The experience of the player            */
               /* The experience of the player            */
 
@@ -160,8 +159,8 @@ struct legacy_player_special_data_saved {
     sbyte conditions[3];                 /* Drunk, full, thirsty                        */
     sbyte innatetime[4];                 /*Innate timers banyal*/
     sh_int speaking;
-    struct legacy_trophy_data trophy[LEGACY_MAX_TROPHY];
-    struct legacy_alias aliases[LEGACY_NUM_ALIASES];
+    legacy_trophy_data trophy[LEGACY_MAX_TROPHY];
+    legacy_alias aliases[LEGACY_NUM_ALIASES];
     int top;
     float frag;
     /* PC spell memory save */
@@ -222,7 +221,7 @@ struct legacy_affected_type {
     long bitvector2;
     long bitvector3;
 
-    struct affected_type *next;
+    affected_type *next;
 };
 
 struct char_file_u {
@@ -245,11 +244,11 @@ struct char_file_u {
 
     char pwd[LEGACY_MAX_PWD_LENGTH + 1]; /* character's password */
 
-    struct legacy_char_special_data_saved char_specials_saved;
-    struct legacy_player_special_data_saved player_specials_saved;
-    struct legacy_char_ability_data abilities;
-    struct legacy_char_point_data points;
-    struct legacy_affected_type affected[LEGACY_MAX_AFFECT];
+    legacy_char_special_data_saved char_specials_saved;
+    legacy_player_special_data_saved player_specials_saved;
+    legacy_char_ability_data abilities;
+    legacy_char_point_data points;
+    legacy_affected_type affected[LEGACY_MAX_AFFECT];
 
     time_t last_logon;                 /* Time (in secs) of last logon */
     char host[LEGACY_HOST_LENGTH + 1]; /* host of last logon */

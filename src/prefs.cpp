@@ -28,7 +28,7 @@ ACMD(do_toggle) {
     int i = 0, column, wimp_lev, page_length;
     bool set;
     long result = 0;
-    struct char_data *tch;
+    CharData *tch;
 
     struct set_struct {
         char *cmd;
@@ -117,7 +117,7 @@ ACMD(do_toggle) {
         {"You are no longer anonymous.\r\n", "You are now anonymous.\r\n"},
         /*18 */
         {"You will no longer see vnums.\r\n", "You will now see vnums.\r\n"},
-        /*19 */ {NULL, NULL},
+        /*19 */ {nullptr, nullptr},
         /*20 */
         {"Your area spells will now hit your race align in towns.\r\n",
          "Your area spells won't hit your race align in towns.\r\n"},
@@ -126,7 +126,7 @@ ACMD(do_toggle) {
         /*22 */
         {"You will now auto-engage upon being offensively cast upon.\r\n",
          "You will no longer auto-engage upon being offensively cast upon.\r\n"},
-        /*23 */ {NULL, NULL},
+        /*23 */ {nullptr, nullptr},
         /*24 */
         {"You will now let anyone follow you.\r\n", "You will now avoid attracting new followers.\r\n"},
         /*25 */
@@ -147,7 +147,7 @@ ACMD(do_toggle) {
         /*30 */
         {"You will no longer automatically loot treasure from corpses.\r\n",
          "You will now automatically loot treasure from corpses.\r\n"},
-        /*31 */ {NULL, NULL},
+        /*31 */ {nullptr, nullptr},
         /*32 */
         {"Objects will now stack in lists.\r\n", "Objects will no longer stack in lists.\r\n"},
         /*33 */
@@ -186,7 +186,7 @@ ACMD(do_toggle) {
         }
 
         if (IS_NPC(tch)) {
-            act("$N is an NPC.  They don't have toggles!", FALSE, ch, 0, tch, TO_CHAR);
+            act("$N is an NPC.  They don't have toggles!", false, ch, 0, tch, TO_CHAR);
             return;
         }
 
@@ -200,7 +200,7 @@ ACMD(do_toggle) {
             if (i == SCMD_NOCLANCOMM && !GET_CLAN(tch))
                 continue;
 
-            set = FALSE;
+            set = false;
             switch (i) {
             case SCMD_WIMPY:
                 if ((set = (1 && GET_WIMP_LEV(tch))))
@@ -216,7 +216,7 @@ ACMD(do_toggle) {
                 if (GET_AUTOINVIS(tch) == -1) {
                     strcpy(buf2, "NO");
                 } else {
-                    set = TRUE;
+                    set = true;
                     sprintf(buf2, "%d", GET_AUTOINVIS(tch));
                 }
                 break;

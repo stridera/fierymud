@@ -21,8 +21,8 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-struct ban_list_element *ban_list = NULL;
-struct xname *xname_list = NULL;
+BanListElement *ban_list = nullptr;
+XName *xname_list = nullptr;
 
 const char *ban_types[] = {"no", "new", "select", "all", "ERROR"};
 
@@ -31,7 +31,7 @@ void load_banned(void) {
     int i, date;
     char site_name[BANNED_SITE_LENGTH + 1], ban_type[100];
     char name[MAX_NAME_LENGTH + 1];
-    struct ban_list_element *next_node;
+    BanListElement *next_node;
 
     ban_list = 0;
 
@@ -40,7 +40,7 @@ void load_banned(void) {
         return;
     }
     while (fscanf(fl, " %s %s %d %s ", ban_type, site_name, &date, name) == 4) {
-        CREATE(next_node, ban_list_element, 1);
+        CREATE(next_node, BanListElement, 1);
         strncpy(next_node->site, site_name, BANNED_SITE_LENGTH);
         next_node->site[BANNED_SITE_LENGTH] = '\0';
         strncpy(next_node->name, name, MAX_NAME_LENGTH);
@@ -60,7 +60,7 @@ void load_banned(void) {
 
 int isbanned(char *hostname) {
     int i;
-    struct ban_list_element *banned_node;
+    BanListElement *banned_node;
     char *nextchar;
 
     if (!hostname || !*hostname)
@@ -77,7 +77,7 @@ int isbanned(char *hostname) {
     return i;
 }
 
-void _write_one_node(FILE *fp, ban_list_element *node) {
+void _write_one_node(FILE *fp, BanListElement *node) {
     if (node) {
         _write_one_node(fp, node->next);
         fprintf(fp, "%s %s %ld %s\n", ban_types[node->type], node->site, (long)node->date, node->name);
@@ -99,7 +99,7 @@ void write_ban_list(void) {
 ACMD(do_ban) {
     char flag[MAX_INPUT_LENGTH], site[MAX_INPUT_LENGTH], format[MAX_INPUT_LENGTH], *nextchar;
     int i;
-    struct ban_list_element *ban_node;
+    BanListElement *ban_node;
 
     *buf = '\0';
 
@@ -142,7 +142,7 @@ ACMD(do_ban) {
         }
     }
 
-    CREATE(ban_node, ban_list_element, 1);
+    CREATE(ban_node, BanListElement, 1);
     strncpy(ban_node->site, site, BANNED_SITE_LENGTH);
     for (nextchar = ban_node->site; *nextchar; nextchar++)
         *nextchar = LOWER(*nextchar);
@@ -159,14 +159,14 @@ ACMD(do_ban) {
     ban_list = ban_node;
 
     sprintf(buf, "%s has banned %s for %s players.", GET_NAME(ch), site, ban_types[ban_node->type]);
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
     send_to_char("Site banned.\r\n", ch);
     write_ban_list();
 }
 
 ACMD(do_unban) {
     char site[80];
-    struct ban_list_element *ban_node, *temp;
+    BanListElement *ban_node, *temp;
     int found = 0;
 
     one_argument(argument, site);
@@ -189,7 +189,7 @@ ACMD(do_unban) {
     REMOVE_FROM_LIST(ban_node, ban_list, next);
     send_to_char("Site unbanned.\r\n", ch);
     sprintf(buf, "%s removed the %s-player ban on %s.", GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
 
     free(ban_node);
     write_ban_list();
@@ -202,8 +202,8 @@ ACMD(do_unban) {
 
 int Valid_Name(char *newname) {
     int i;
-    struct descriptor_data *dt;
-    struct xname *tmp_xname;
+    DescriptorData *dt;
+    XName *tmp_xname;
     char tempname[MAX_NAME_LENGTH];
     char invalid_name[MAX_NAME_LENGTH];
 
@@ -269,24 +269,24 @@ void Read_Xname_List(void) {
     FILE *fp;
     /* MAX_NAME_LENGTH + 3 is for the # the NULL and the CR */
     char string[MAX_NAME_LENGTH + 3];
-    struct xname *tmp_xname, *tmp2_xname;
+    XName *tmp_xname, *tmp2_xname;
 
     if (!(fp = fopen(XNAME_FILE, "r"))) {
         perror("Unable to open invalid name file");
         return;
     }
     /* build the xname linked list */
-    while (fgets(string, MAX_NAME_LENGTH + 3, fp) != NULL) {
+    while (fgets(string, MAX_NAME_LENGTH + 3, fp) != nullptr) {
         /* make sure we don't load a blank xname --gurlaek 6/12/1999 */
         if ((strlen(string) - 1)) {
             if (!xname_list) {
-                CREATE(xname_list, xname, 1);
+                CREATE(xname_list, XName, 1);
                 strncpy(xname_list->name, string, strlen(string) - 1);
-                xname_list->next = NULL;
+                xname_list->next = nullptr;
             } else {
-                CREATE(tmp_xname, xname, 1);
+                CREATE(tmp_xname, XName, 1);
                 strncpy(tmp_xname->name, string, strlen(string) - 1);
-                tmp_xname->next = NULL;
+                tmp_xname->next = nullptr;
                 tmp2_xname = xname_list;
                 while (tmp2_xname->next) {
                     tmp2_xname = tmp2_xname->next;
@@ -300,13 +300,13 @@ void Read_Xname_List(void) {
 }
 
 void reload_xnames() {
-    struct xname *cur, *next;
+    XName *cur, *next;
 
     for (cur = xname_list; cur; cur = next) {
         next = cur->next;
         free(cur);
     }
-    xname_list = NULL;
+    xname_list = nullptr;
     Read_Xname_List();
 }
 
@@ -316,13 +316,13 @@ void send_to_xnames(char *name) {
     char input[MAX_NAME_LENGTH + 3];
     char tempname[MAX_NAME_LENGTH + 3];
     int i = 0;
-    struct xname *tmp_xname, *tmp2_xname;
+    XName *tmp_xname, *tmp2_xname;
 
     *input = '\0';
     *tempname = '\0';
 
     if (!(xnames = fopen(XNAME_FILE, "a"))) {
-        mudlog("SYSERR: Cannot open xnames file.\r\n", BRF, LVL_IMMORT, TRUE);
+        mudlog("SYSERR: Cannot open xnames file.\r\n", BRF, LVL_IMMORT, true);
         return;
     }
 
@@ -340,13 +340,13 @@ void send_to_xnames(char *name) {
     /* dynamicly add it to the xname_list -gurlaek 6/9/1999 */
 
     if (!xname_list) {
-        CREATE(xname_list, xname, 1);
+        CREATE(xname_list, XName, 1);
         strncpy(xname_list->name, input, strlen(input));
-        xname_list->next = NULL;
+        xname_list->next = nullptr;
     } else {
-        CREATE(tmp_xname, xname, 1);
+        CREATE(tmp_xname, XName, 1);
         strncpy(tmp_xname->name, input, strlen(input));
-        tmp_xname->next = NULL;
+        tmp_xname->next = nullptr;
         tmp2_xname = xname_list;
         while (tmp2_xname->next) {
             tmp2_xname = tmp2_xname->next;
@@ -356,8 +356,8 @@ void send_to_xnames(char *name) {
 }
 
 void free_invalid_list() {
-    struct xname *name, *next;
-    struct ban_list_element *ban;
+    XName *name, *next;
+    BanListElement *ban;
 
     for (name = xname_list; name; name = next) {
         next = name->next;

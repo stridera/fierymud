@@ -17,41 +17,41 @@
 #include "utils.hpp"
 
 static size_t vtable_count = 0;
-static struct rule_vtable **vtables = NULL;
+static RuleVTable **vtables = nullptr;
 
-void REGISTER_RULE_VTABLE(rule_vtable *vtable) {
+void register_rule_vtable(RuleVTable *vtable) {
     size_t pos, i;
     bool swap;
 
     if ((pos = vtable_count++)) /* post-increment! */
-        RECREATE(vtables, rule_vtable *, vtable_count);
+        RECREATE(vtables, RuleVTable *, vtable_count);
     else
-        CREATE(vtables, rule_vtable *, vtable_count);
+        CREATE(vtables, RuleVTable *, vtable_count);
 
     vtables[pos] = vtable;
 
     /* sort */
     ++pos;
     do {
-        swap = FALSE;
+        swap = false;
         --pos;
         for (i = 0; i < pos; ++i)
             if (strcmp(vtables[i]->name, vtables[i + 1]->name) > 0) {
                 vtable = vtables[i];
                 vtables[i] = vtables[i + 1];
                 vtables[i + 1] = vtable;
-                swap = TRUE;
+                swap = true;
             }
     } while (swap);
 }
 
-struct rule_vtable *find_rule_vtable(const char *type) {
+RuleVTable *find_rule_vtable(const char *type) {
     size_t last = vtable_count - 1;
     size_t first = 0, mid;
     int comp;
 
     if (vtable_count == 0)
-        return NULL;
+        return nullptr;
 
     while (first <= last) {
         mid = (first + last) / 2;
@@ -60,23 +60,23 @@ struct rule_vtable *find_rule_vtable(const char *type) {
             first = mid + 1; /* search top half */
         else if (comp < 0) {
             if (mid == 0)
-                return NULL; /* avoid last == -1 */
-            last = mid - 1;  /* search bottom half */
+                return nullptr; /* avoid last == -1 */
+            last = mid - 1;     /* search bottom half */
         } else
             return vtables[mid];
     }
 
-    return NULL;
+    return nullptr;
 }
 
-void *rulealloc(size_t elsize, rule_vtable *vtable) {
-    rule_t *rule = (rule_t *)calloc(1, elsize);
+Rule *rulealloc(size_t elsize, RuleVTable *vtable) {
+    Rule *rule = (Rule *)calloc(1, elsize);
     rule->_vtable = vtable;
-    return rule;
+    return *rule;
 }
 
-rule_t *parse_rule(const char *str) {
-    struct rule_vtable *vtable;
+Rule *parse_rule(const char *str) {
+    RuleVTable *vtable;
     char type[MAX_INPUT_LENGTH];
     char *ptr = type;
 
@@ -87,12 +87,12 @@ rule_t *parse_rule(const char *str) {
     str = skip_over(str, S_WHITESPACE);
 
     if (!(vtable = find_rule_vtable(type)))
-        return NULL;
+        return nullptr;
 
     return vtable->parse(str);
 }
 
-void sprint_rule(char *buf, size_t size, rule *rule) {
+void sprint_rule(char *buf, size_t size, Rule *rule) {
     if (rule) {
         size_t len = snprintf(buf, size, "%s ", rule->_vtable->name);
         if (len < size)

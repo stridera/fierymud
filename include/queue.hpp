@@ -10,11 +10,24 @@
 
 #pragma once
 
+/* number of queues to use (reduces enqueue cost) */
+#define NUM_EVENT_QUEUES 100
+
+struct QElement {
+    void *data;
+    long key;
+    QElement *prev, *next;
+};
+
+struct Queue {
+    QElement *head[NUM_EVENT_QUEUES], *tail[NUM_EVENT_QUEUES];
+};
+
 /* function protos need by other modules */
-struct queue *queue_init(void);
-struct q_element *queue_enq(queue *q, void *data, long key);
-void queue_deq(queue *q, q_element *qe);
-void *queue_head(queue *q);
-long queue_key(queue *q);
-long queue_elmt_key(q_element *qe);
-void queue_free(queue *q);
+Queue *queue_init(void);
+QElement *queue_enq(Queue *q, void *data, long key);
+void queue_deq(Queue *q, QElement *qe);
+void *queue_head(Queue *q);
+long queue_key(Queue *q);
+long queue_elmt_key(QElement *qe);
+void queue_free(Queue *q);

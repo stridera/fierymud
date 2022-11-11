@@ -17,6 +17,7 @@
 #include "specprocs.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
+#include "weather.hpp"
 
 /* WARNING: In the world files, NEVER set the bits marked "R" ("Reserved") */
 #define ROOM_DARK 0         /* Dark                           */
@@ -59,44 +60,6 @@
 
 #define ROOM_RNUM_TO_VNUM(rnum) (rnum >= 0 && rnum < top_of_world ? world[rnum].vnum : NOWHERE)
 
-extern const char *room_bits[NUM_ROOM_FLAGS + 1];
-extern const char *room_effects[];
-extern const int movement_loss[];
-
-struct room_data {
-    room_num vnum;                           /* Room's vnum              */
-    int zone;                                /* Room zone (for resetting)          */
-    int sector_type;                         /* sector type (move/hide)            */
-    char *name;                              /* Rooms name 'You are ...'           */
-    char *description;                       /* Shown when entered                 */
-    struct extra_descr_data *ex_description; /* for examine/look              */
-    struct Exit *exits[NUM_OF_DIRS];
-
-    /* DEATH,DARK ... etc                 */
-    flagvector room_flags[FLAGVECTOR_SIZE(NUM_ROOM_FLAGS)];
-
-    /* bitvector for spells/skills */
-    flagvector room_effects[FLAGVECTOR_SIZE(NUM_ROOM_EFF_FLAGS)];
-
-    byte light; /* Number of light sources in room     */
-    SPECIAL(*func);
-
-    struct trig_proto_list *proto_script; /* list of default triggers  */
-    struct script_data *script;           /* script info for the object         */
-
-    struct obj_data *contents; /* List of items in room              */
-    struct char_data *people;  /* List of NPC / PC in room          */
-    int bfs_distance;
-};
-
-struct room_effect_node {
-    room_num room;                 /* location in the world[] array of the room */
-    int timer;                     /* how many ticks this effect lasts          */
-    int effect;                    /* which effect does this room have          */
-    int spell;                     /* the spell number                          */
-    struct room_effect_node *next; /* link to the next node            */
-};
-
 #define SECT_STRUCTURE 0  /* A building of some kind   */
 #define SECT_CITY 1       /* In a city                 */
 #define SECT_FIELD 2      /* In a field                */
@@ -134,9 +97,96 @@ struct sectordef {
     char notes[200];
 };
 
-/*extern const char *sector_types[NUM_SECTORS + 1];
-extern const char *sector_colors[NUM_SECTORS + 1]; */
-extern const sectordef sectors[NUM_SECTORS];
+/* roomdef is: NAME, COLOR, MV, FALL_MOD, QDAM_MOD, CAMP, WET, NOCAMP_EXCUSE,
+ * NOTES */
+const struct sectordef sectors[NUM_SECTORS] = {
+    /*  0 */ {"Structure", "&7", 1, 0, 0, false, false, "You always pitch a tent indoors?", ""},
+    /*  1 */
+    {"City", "&8&b", 1, 5, 100, false, false, "Ye can't pitch a tent on the sidewalk fool.", "Always lit."},
+    /*  2 */
+    {"Field", "&3", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /*  3 */
+    {"Forest", "&2", 3, 10, 125, true, false, "(yes, you can camp here)", ""},
+    /*  4 */
+    {"Mountains", "&3", 6, 20, 115, true, false, "(yes, you can camp here)", ""},
+    /*  5 */
+    {"Shallows", "&6", 4, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
+    /*  6 */
+    {"Water", "&4&b", 2, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
+    /*  7 */
+    {"Underwater", "&4", 5, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
+    /*  8 */
+    {"Air", "&6&b", 1, 0, 0, false, false, "You can't camp in mid-air.", ""},
+    /*  9 */
+    {"Road", "&8", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /* 10 */
+    {"Grasslands", "&2&b", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /* 11 */
+    {"Cave", "&3&b", 2, 15, 150, true, false, "(yes, you can camp here)", ""},
+    /* 12 */
+    {"Ruins", "&9&b", 2, 10, 125, true, false, "(yes, you can camp here)", ""},
+    /* 13 */
+    {"Swamp", "&2&b", 4, 10, 125, true, true, "(yes, you can camp here)", ""},
+    /* 14 */
+    {"Beach", "&3&b", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /* 15 */
+    {"Underdark", "&9&b", 2, 10, 125, true, false, "(yes, you can camp here)", ""},
+    /* 16 */
+    {"Astraplane", "&6&b", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 17 */
+    {"Airplane", "&6", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 18 */
+    {"Fireplane", "&1&b", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 19 */
+    {"Earthplane", "&3", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 20 */
+    {"Etherealplane", "&5", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 21 */
+    {"Avernus", "&5&b", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
+};
+
+const char *room_bits[NUM_ROOM_FLAGS + 1] = {
+    "DARK",   "DEATH",     "!MOB",      "INDOORS",     "PEACEFUL", "SOUNDPROOF", "!TRACK", "!MAGIC",
+    "TUNNEL", "PRIVATE",   "GODROOM",   "HOUSE",       "HCRSH",    "ATRIUM",     "OLC",    "*BFS_MARK*",
+    "NOWELL", "NORECALL",  "UNDERDARK", "!SUMMON",     "NOSHIFT",  "GUILDHALL",  "!SCAN",  "ALT_EXIT",
+    "MAP",    "ALWAYSLIT", "ARENA",     "OBSERVATORY", "\n"};
+
+const char *room_effects[NUM_ROOM_EFF_FLAGS + 1] = {"FOG",         "DARKNESS",  "CONT_LIGHT", "FOREST",
+                                                    "CIRCLE_FIRE", "ISOLATION", "\n"};
+
+struct RoomData {
+    room_num vnum;                        /* Room's vnum              */
+    int zone;                             /* Room zone (for resetting)          */
+    int sector_type;                      /* sector type (move/hide)            */
+    char *name;                           /* Rooms name 'You are ...'           */
+    char *description;                    /* Shown when entered                 */
+    ExtraDescriptionData *ex_description; /* for examine/look              */
+    Exit *exits[NUM_OF_DIRS];
+
+    /* DEATH,DARK ... etc                 */
+    flagvector room_flags[FLAGVECTOR_SIZE(NUM_ROOM_FLAGS)];
+
+    /* bitvector for spells/skills */
+    flagvector room_effects[FLAGVECTOR_SIZE(NUM_ROOM_EFF_FLAGS)];
+
+    byte light; /* Number of light sources in room     */
+    SPECIAL(*func);
+
+    TriggerPrototypeList *proto_script; /* list of default triggers  */
+    ScriptData *script;                 /* script info for the object         */
+
+    ObjData *contents; /* List of items in room              */
+    CharData *people;  /* List of NPC / PC in room          */
+    int bfs_distance;
+};
+
+struct RoomEffectNode {
+    room_num room;        /* location in the world[] array of the room */
+    int timer;            /* how many ticks this effect lasts          */
+    int effect;           /* which effect does this room have          */
+    int spell;            /* the spell number                          */
+    RoomEffectNode *next; /* link to the next node            */
+};
 
 #define SECT(rnum) (world[rnum].sector_type)
 #define SUN(rnum) (hemispheres[zone_table[world[rnum].zone].hemisphere].sunlight)
@@ -170,27 +220,27 @@ extern const sectordef sectors[NUM_SECTORS];
 #define CH_SECT(ch) (CH_NROOM(ch) == NOWHERE ? SECT_STRUCTURE : world[CH_NROOM(ch)].sector_type)
 #define INDOORS(rnum)                                                                                                  \
     ((rnum) == NOWHERE                                                                                                 \
-         ? FALSE                                                                                                       \
+         ? false                                                                                                       \
          : ROOM_FLAGGED(rnum, ROOM_INDOORS) || SECT(rnum) == SECT_UNDERDARK || SECT(rnum) == SECT_UNDERWATER)
 #define CH_INDOORS(ch) (INDOORS(CH_NROOM(ch)))
 #define CH_OUTSIDE(ch) (!CH_INDOORS(ch))
-#define QUAKABLE(rnum) ((rnum) == NOWHERE ? FALSE : sectors[SECT(rnum)].qdam_mod)
+#define QUAKABLE(rnum) ((rnum) == NOWHERE ? false : sectors[SECT(rnum)].qdam_mod)
 
-bool check_can_go(char_data *ch, int dir, bool quiet);
+bool check_can_go(CharData *ch, int dir, bool quiet);
 
 /* The following four functions - for opening, closing, unlocking, and locking
  * doors - may be called without an actor. In other words, ch can be NULL. */
 
-void open_door(char_data *ch, room_num roomnum, int dir, bool quiet);
-void close_door(char_data *ch, room_num roomnum, int dir, bool quiet);
-void unlock_door(char_data *ch, room_num roomnum, int dir, bool quiet);
-void lock_door(char_data *ch, room_num roomnum, int dir, bool quiet);
+void open_door(CharData *ch, room_num roomnum, int dir, bool quiet);
+void close_door(CharData *ch, room_num roomnum, int dir, bool quiet);
+void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet);
+void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet);
 
-void pick_door(char_data *ch, room_num roomnum, int dir);
+void pick_door(CharData *ch, room_num roomnum, int dir);
 
 /* Informative stuff */
 
-void send_auto_exits(char_data *ch, int roomnum);
-void send_full_exits(char_data *ch, int roomnum);
-bool room_contains_char(int roomnum, char_data *ch);
-bool can_see_exit(char_data *ch, int roomnum, exit *exit);
+void send_auto_exits(CharData *ch, int roomnum);
+void send_full_exits(CharData *ch, int roomnum);
+bool room_contains_char(int roomnum, CharData *ch);
+bool can_see_exit(CharData *ch, int roomnum, Exit *exit);

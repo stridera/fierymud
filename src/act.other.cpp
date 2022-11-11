@@ -27,9 +27,10 @@
 #include "house.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "magic.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "money.hpp"
 #include "movement.hpp"
 #include "pfiles.hpp"
@@ -47,23 +48,19 @@
 #include <math.h>
 #include <sys/stat.h>
 
-/* extern variables */
-extern int max_group_difference;
-extern int damage_amounts;
-
-int remove_var(trig_var_data **var_list, char *name);
+int remove_var(TriggerVariableData **var_list, char *name);
 EVENTFUNC(camp_event);
-void rem_memming(char_data *ch);
-void summon_mount(char_data *ch, int mob_vnum, int base_hp, int base_mv);
-void appear(char_data *ch);
-void check_new_surroundings(char_data *ch, bool old_room_was_dark, bool tx_obvious);
-void get_check_money(char_data *ch, obj_data *obj);
-int roll_skill(char_data *ch, int skill);
+void rem_memming(CharData *ch);
+void summon_mount(CharData *ch, int mob_vnum, int base_hp, int base_mv);
+void appear(CharData *ch);
+void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
+void get_check_money(CharData *ch, ObjData *obj);
+int roll_skill(CharData *ch, int skill);
 
 /* extern procedures */
 SPECIAL(shop_keeper);
 
-void appear(char_data *ch) {
+void appear(CharData *ch) {
     bool was_hidden;
 
     active_effect_from_char(ch, SPELL_INVISIBLE);
@@ -77,32 +74,32 @@ void appear(char_data *ch) {
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (was_hidden) {
-            act("$n steps out of the shadows.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n steps out of the shadows.", false, ch, 0, 0, TO_ROOM);
             send_to_char("You step out of the shadows.\r\n", ch);
         } else {
-            act("$n snaps into visibility.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n snaps into visibility.", false, ch, 0, 0, TO_ROOM);
             send_to_char("You fade back into view.\r\n", ch);
         }
     } else
-        act("You feel a strange presence as $n appears, seemingly from nowhere.", FALSE, ch, 0, 0, TO_ROOM);
+        act("You feel a strange presence as $n appears, seemingly from nowhere.", false, ch, 0, 0, TO_ROOM);
 }
 
-void stop_guarding(char_data *ch) {
+void stop_guarding(CharData *ch) {
 
     if (ch->guarding) {
-        act("You stop guarding $N.", FALSE, ch, 0, ch->guarding, TO_CHAR);
+        act("You stop guarding $N.", false, ch, 0, ch->guarding, TO_CHAR);
         if (ch->guarding->guarded_by == ch) {
-            act("$n stops guarding you.", TRUE, ch, 0, ch->guarding, TO_VICT);
-            ch->guarding->guarded_by = NULL;
+            act("$n stops guarding you.", true, ch, 0, ch->guarding, TO_VICT);
+            ch->guarding->guarded_by = nullptr;
         }
-        ch->guarding = NULL;
+        ch->guarding = nullptr;
     }
     if (ch->guarded_by)
         stop_guarding(ch->guarded_by);
 }
 
 ACMD(do_guard) {
-    struct char_data *vict;
+    CharData *vict;
 
     one_argument(argument, arg);
 
@@ -113,7 +110,7 @@ ACMD(do_guard) {
 
     if (!*arg) {
         if (ch->guarding)
-            act("You are guarding $N.", FALSE, ch, 0, ch->guarding, TO_CHAR);
+            act("You are guarding $N.", false, ch, 0, ch->guarding, TO_CHAR);
         else
             send_to_char("You are not guarding anyone.\r\n", ch);
         return;
@@ -149,21 +146,21 @@ ACMD(do_guard) {
         } else
             stop_guarding(ch);
     }
-    act("You start guarding $N.", FALSE, ch, 0, vict, TO_CHAR);
-    act("$n starts guarding you.", TRUE, ch, 0, vict, TO_VICT);
-    act("$n lays a protective eye on $N, guarding $M.", TRUE, ch, 0, vict, TO_NOTVICT);
+    act("You start guarding $N.", false, ch, 0, vict, TO_CHAR);
+    act("$n starts guarding you.", true, ch, 0, vict, TO_VICT);
+    act("$n lays a protective eye on $N, guarding $M.", true, ch, 0, vict, TO_NOTVICT);
     ch->guarding = vict;
     vict->guarded_by = ch;
 }
 
 ACMD(do_subclass) {
-    int rem_spell(char_data * ch, int spell);
+    int rem_spell(CharData * ch, int spell);
     int subclass, anyvalid;
-    struct quest_list *quest = NULL;
-    struct mem_list *memorized, *last_mem;
+    QuestList *quest = nullptr;
+    MemorizedList *memorized, *last_mem;
     float old_exp;
     char *s;
-    struct classdef *c;
+    ClassDef *c;
 
     /* Ew */
     if (IS_NPC(ch)) {
@@ -238,7 +235,7 @@ ACMD(do_subclass) {
         sprintf(buf, "%s finished subclass quest \"%s\" with unknown target subclass \"%s\"", GET_NAME(ch),
                 all_quests[real_quest(quest->quest_id)].quest_name,
                 get_quest_variable(ch, all_quests[real_quest(quest->quest_id)].quest_name, "subclass_name"));
-        log(buf);
+        log("%s", buf);
         send_to_char("There is an error in your subclass quest.  Ask a god to reset it.\r\n", ch);
         return;
     }
@@ -282,7 +279,7 @@ ACMD(do_subclass) {
 
 ACMD(do_quit) {
     int i;
-    struct obj_data *money, *obj;
+    ObjData *money, *obj;
     one_argument(argument, arg);
 
     if (IS_NPC(ch) || !ch->desc) {
@@ -291,7 +288,7 @@ ACMD(do_quit) {
     }
 
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
-        act("$n has left the game.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n has left the game.", true, ch, 0, 0, TO_ROOM);
         send_to_char("Goodbye, friend.  Come back soon!\r\n", ch);
         remove_player_from_game(ch, QUIT_QUITIMM);
         return;
@@ -324,16 +321,16 @@ ACMD(do_quit) {
 
     if (GET_STANCE(ch) < STANCE_STUNNED) {
         send_to_char("You die before your time...\r\n", ch);
-        act("$n quits the game, but is unable to fend off death...", TRUE, ch, 0, 0, TO_ROOM);
-        act("$n is dead!  R.I.P.", TRUE, ch, 0, 0, TO_ROOM);
-        die(ch, NULL);
+        act("$n quits the game, but is unable to fend off death...", true, ch, 0, 0, TO_ROOM);
+        act("$n is dead!  R.I.P.", true, ch, 0, 0, TO_ROOM);
+        die(ch, nullptr);
         return;
     }
 
-    act("$n has left the game.", TRUE, ch, 0, 0, TO_ROOM);
+    act("$n has left the game.", true, ch, 0, 0, TO_ROOM);
 
     sprintf(buf, "%s has quit the game.", GET_NAME(ch));
-    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
+    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
     send_to_char("Goodbye, friend.  Come back soon!\r\n", ch);
 
     /* transfer objects to room */
@@ -376,7 +373,7 @@ ACMD(do_quit) {
 #define SHAPE_VNUM_MAX 1038
 
 const struct shapechange_data {
-    char *name;
+    const char *name;
     int vnum;
     int type;
     int midlevel;
@@ -465,8 +462,8 @@ const struct shapechange_data {
 
 ACMD(do_shapechange) {
     int index, type, class_num, desired_index = -1, i;
-    struct char_data *mob, *player;
-    struct obj_data *obj;
+    CharData *mob, *player;
+    ObjData *obj;
 
     if (IS_NPC(ch) ? (!ch->desc || !POSSESSOR(ch)) : !GET_SKILL(REAL_CHAR(ch), SKILL_SHAPECHANGE)) {
         send_to_char("You have no idea how to do that!\r\n", ch);
@@ -495,7 +492,7 @@ ACMD(do_shapechange) {
             player = POSSESSOR(ch);
 
             send_to_char("You quickly morph back to your original self.\r\n", ch);
-            act("$n&0 contorts wildly as it reforms into $N.", TRUE, ch, 0, player, TO_ROOM);
+            act("$n&0 contorts wildly as it reforms into $N.", true, ch, 0, player, TO_ROOM);
 
             /* Set the player's hit/maxhit ratio to the same as the mob's. */
             /* Avoid division by zero by just setting to maximum */
@@ -515,10 +512,10 @@ ACMD(do_shapechange) {
             }
 
             player->desc = ch->desc;
-            player->desc->original = NULL;
+            player->desc->original = nullptr;
             player->desc->character = player;
-            ch->desc = NULL;
-            player->forward = NULL;
+            ch->desc = nullptr;
+            player->forward = nullptr;
 
             char_from_room(player);
             char_to_room(player, ch->in_room);
@@ -549,10 +546,10 @@ ACMD(do_shapechange) {
             strcpy(buf1, "hour");
         else
             sprintf(buf1, "%d hours", i);
-        sprintf(buf,
-                "You are still drained from your last shapechange.\r\n"
-                "It will be another %s before you can change again.\r\n",
-                buf1);
+        snprintf(buf, sizeof(buf),
+                 "You are still drained from your last shapechange.\r\n"
+                 "It will be another %s before you can change again.\r\n",
+                 buf1);
         send_to_char(buf, ch);
         return;
     }
@@ -665,12 +662,12 @@ ACMD(do_shapechange) {
                 "SYSERR: %s tried to shapechange into nonexistent "
                 "mob prototype V#%d",
                 GET_NAME(ch), creatures[index].vnum);
-        mudlog(buf, BRF, LVL_GOD, TRUE);
+        mudlog(buf, BRF, LVL_GOD, true);
         return;
     }
 
-    act("The snap of bones reforming can be heard as $n takes the shape of $N&0!", FALSE, ch, 0, mob, TO_ROOM);
-    act("You transform into $N!", FALSE, ch, 0, mob, TO_CHAR);
+    act("The snap of bones reforming can be heard as $n takes the shape of $N&0!", false, ch, 0, mob, TO_ROOM);
+    act("You transform into $N!", false, ch, 0, mob, TO_CHAR);
 
     /* This must be done before ch is removed from a room, because that would
      * clear ch's battle status. */
@@ -712,7 +709,7 @@ ACMD(do_shapechange) {
     else
         GET_MOVE(mob) = (GET_MOVE(ch) * GET_MAX_MOVE(mob)) / GET_MAX_MOVE(ch);
     GET_ALIGNMENT(mob) = GET_ALIGNMENT(ch);
-    hurt_char(mob, NULL, 0, TRUE);
+    hurt_char(mob, nullptr, 0, true);
 
     /* Add the player's name to the mob's namelist */
     GET_NAMELIST(mob) = strdupf("%s %s", GET_NAMELIST(mob), GET_NAME(ch));
@@ -724,25 +721,25 @@ ACMD(do_shapechange) {
     ch->desc->character = mob;
     ch->desc->original = ch;
     mob->desc = ch->desc;
-    ch->desc = NULL;
+    ch->desc = nullptr;
     ch->forward = mob;
 }
 
-bool creature_allowed_skill(char_data *ch, int skill) {
+bool creature_allowed_skill(CharData *ch, int skill) {
     int i, j;
 
     if (!IS_NPC(ch) || GET_MOB_VNUM(ch) < SHAPE_VNUM_MIN || GET_MOB_VNUM(ch) > SHAPE_VNUM_MAX)
-        return FALSE;
+        return false;
 
     for (i = 0; creatures[i].vnum > 0; i++) {
         if (creatures[i].vnum == GET_MOB_VNUM(ch)) {
             for (j = 0; j < MAX_SHAPECHANGE_SKILLS; ++j)
                 if (creatures[i].skills[j] == skill)
-                    return TRUE;
+                    return true;
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 #undef MAMMAL
@@ -760,7 +757,7 @@ bool creature_allowed_skill(char_data *ch, int skill) {
 #undef MAX_SHAPECHANGE_SKILLS
 
 ACMD(do_save) {
-    struct char_data *target = NULL;
+    CharData *target = nullptr;
 
     /*  Player save functionality for god types. */
     /*  The following section allows for gods to save players using the */
@@ -827,7 +824,7 @@ ACMD(do_not_here) {
 }
 
 ACMD(do_camp) {
-    struct camp_event *ce;
+    CampEvent *ce;
 
     if (FIGHTING(ch) || EVENT_FLAGGED(ch, EVENT_CAMP)) {
         send_to_char("You are too busy to do this!\r\n", ch);
@@ -872,19 +869,19 @@ ACMD(do_camp) {
         send_to_char("It's hard to set your tent up while dying...\r\n", ch);
     else {
         /* create and initialize the camp event */
-        CREATE(ce, camp_event, 1);
+        CREATE(ce, CampEvent, 1);
         ce->ch = ch;
         ce->was_in = ch->in_room;
-        event_create(EVENT_CAMP, camp_event, ce, TRUE, &(ch->events), GET_LEVEL(ch) >= LVL_IMMORT ? 5 : 350);
+        event_create(EVENT_CAMP, camp_event, ce, true, &(ch->events), GET_LEVEL(ch) >= LVL_IMMORT ? 5 : 350);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
-        act("You start setting up camp.", FALSE, ch, NULL, NULL, TO_CHAR);
-        act("$n starts setting up camp.", TRUE, ch, 0, 0, TO_ROOM);
+        act("You start setting up camp.", false, ch, nullptr, nullptr, TO_CHAR);
+        act("$n starts setting up camp.", true, ch, 0, 0, TO_ROOM);
     }
 }
 
 EVENTFUNC(recall_event) {
-    struct recall_event_obj *re = (recall_event_obj *)event_obj;
-    struct char_data *ch;
+    RecallEventObj *re = (RecallEventObj *)event_obj;
+    CharData *ch;
     bool wasdark;
 
     ch = re->ch;
@@ -899,22 +896,22 @@ EVENTFUNC(recall_event) {
         return EVENT_FINISHED;
 
     send_to_char("You feel the scroll's energy start to envelop you.\r\n", ch);
-    act("$N disappears in a bright flash.\r\n", FALSE, ch, 0, ch, TO_NOTVICT);
+    act("$N disappears in a bright flash.\r\n", false, ch, 0, ch, TO_NOTVICT);
     wasdark = IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch);
 
     dismount_char(ch);
     char_from_room(ch);
     char_to_room(ch, re->room);
-    act("$N appears in a bright flash of light.\r\n", FALSE, ch, 0, ch, TO_NOTVICT);
+    act("$N appears in a bright flash of light.\r\n", false, ch, 0, ch, TO_NOTVICT);
 
-    check_new_surroundings(ch, wasdark, TRUE);
+    check_new_surroundings(ch, wasdark, true);
 
     return EVENT_FINISHED;
 }
 
 EVENTFUNC(camp_event) {
-    struct camp_event *ce = (camp_event *)event_obj;
-    struct char_data *ch = NULL;
+    CampEvent *ce = (CampEvent *)event_obj;
+    CharData *ch = nullptr;
     int was_in, now_in;
 
     /* extract all the info from ce */
@@ -934,13 +931,13 @@ EVENTFUNC(camp_event) {
     }
 
     if (FIGHTING(ch)) {
-        act("You decide now is not the best time for camping.", FALSE, ch, NULL, NULL, TO_CHAR);
+        act("You decide now is not the best time for camping.", false, ch, nullptr, nullptr, TO_CHAR);
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
         return EVENT_FINISHED;
     }
 
     if (now_in != was_in) {
-        act("You are no longer near where you began the campsite.", FALSE, ch, NULL, NULL, TO_CHAR);
+        act("You are no longer near where you began the campsite.", false, ch, nullptr, nullptr, TO_CHAR);
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
         return EVENT_FINISHED;
     }
@@ -951,18 +948,18 @@ EVENTFUNC(camp_event) {
     /* So players don't get saved with the meditate flag and cause syserrs
        when they log back on. */
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        act("$N ceases $s meditative trance.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$N ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         send_to_char("&8You stop meditating.\r\n&0", ch);
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 
-    act("You complete your campsite, and leave this world for a while.", FALSE, ch, NULL, NULL, TO_CHAR);
+    act("You complete your campsite, and leave this world for a while.", false, ch, nullptr, nullptr, TO_CHAR);
     if (!GET_INVIS_LEV(ch))
-        act("$n rolls up $s bedroll and tunes out the world.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n rolls up $s bedroll and tunes out the world.", true, ch, 0, 0, TO_ROOM);
 
     sprintf(buf, "%s has camped in %s (%d).", GET_NAME(ch), world[ch->in_room].name, world[ch->in_room].vnum);
 
-    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
+    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
     REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
     remove_player_from_game(ch, QUIT_CAMP);
     return EVENT_FINISHED;
@@ -970,7 +967,7 @@ EVENTFUNC(camp_event) {
 
 ACMD(do_unbind) {
     int prob, percent;
-    struct char_data *vict;
+    CharData *vict;
     char arg[MAX_INPUT_LENGTH];
 
     one_argument(argument, arg);
@@ -984,7 +981,7 @@ ACMD(do_unbind) {
         percent = number(20, 101);
         if (prob > percent) {
             send_to_char("You break free from your binds!\r\n", ch);
-            act("$n breaks free from his binds", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n breaks free from his binds", false, ch, 0, 0, TO_ROOM);
             REMOVE_FLAG(PLR_FLAGS(ch), PLR_BOUND);
             WAIT_STATE(ch, PULSE_VIOLENCE);
             return;
@@ -1001,7 +998,7 @@ ACMD(do_unbind) {
             percent = number(1, 101);
             if (prob > percent) {
                 send_to_char("You break free from your binds!\r\n", ch);
-                act("$n breaks free from his binds", FALSE, ch, 0, 0, TO_ROOM);
+                act("$n breaks free from his binds", false, ch, 0, 0, TO_ROOM);
                 REMOVE_FLAG(PLR_FLAGS(ch), PLR_BOUND);
                 WAIT_STATE(ch, PULSE_VIOLENCE);
                 return;
@@ -1016,8 +1013,8 @@ ACMD(do_unbind) {
 }
 
 ACMD(do_bind) {
-    struct char_data *vict;
-    struct obj_data *held = GET_EQ(ch, WEAR_HOLD);
+    CharData *vict;
+    ObjData *held = GET_EQ(ch, WEAR_HOLD);
     int prob, percent;
 
     /* disable this command it's broken and is being used to
@@ -1061,9 +1058,9 @@ ACMD(do_bind) {
                 send_to_char("You aren't skilled enough to tie a conscious person\r\n", ch);
                 return;
             } else {
-                act("You tie $N up.... What next?", FALSE, ch, 0, vict, TO_CHAR);
-                act("$n ties you up.... Hope he isnt the kinky type", FALSE, ch, 0, vict, TO_VICT);
-                act("$n ties up $N.", FALSE, ch, 0, vict, TO_NOTVICT);
+                act("You tie $N up.... What next?", false, ch, 0, vict, TO_CHAR);
+                act("$n ties you up.... Hope he isnt the kinky type", false, ch, 0, vict, TO_VICT);
+                act("$n ties up $N.", false, ch, 0, vict, TO_NOTVICT);
                 SET_FLAG(PLR_FLAGS(vict), PLR_BOUND);
                 extract_obj(held);
                 WAIT_STATE(ch, PULSE_VIOLENCE * 2);
@@ -1081,18 +1078,18 @@ ACMD(do_bind) {
                 prob = percent + 1;
 
             if (prob > percent) {
-                act("You tie $N up.... What next?", FALSE, ch, 0, vict, TO_CHAR);
-                act("$n ties you up.... Hope he isnt the kinky type", FALSE, ch, 0, vict, TO_VICT);
-                act("$n ties up $N.", FALSE, ch, 0, vict, TO_NOTVICT);
+                act("You tie $N up.... What next?", false, ch, 0, vict, TO_CHAR);
+                act("$n ties you up.... Hope he isnt the kinky type", false, ch, 0, vict, TO_VICT);
+                act("$n ties up $N.", false, ch, 0, vict, TO_NOTVICT);
                 SET_FLAG(PLR_FLAGS(vict), PLR_BOUND);
                 extract_obj(held);
                 improve_skill(ch, SKILL_BIND);
                 WAIT_STATE(ch, PULSE_VIOLENCE * 3);
                 return;
             } else {
-                act("You tries to tie $N up.... What next?", FALSE, ch, 0, vict, TO_CHAR);
-                act("$n tries to tie you up.... Hope he isnt the kinky type", FALSE, ch, 0, vict, TO_VICT);
-                act("$n tries to tie up $N.", FALSE, ch, 0, vict, TO_ROOM);
+                act("You tries to tie $N up.... What next?", false, ch, 0, vict, TO_CHAR);
+                act("$n tries to tie you up.... Hope he isnt the kinky type", false, ch, 0, vict, TO_VICT);
+                act("$n tries to tie up $N.", false, ch, 0, vict, TO_ROOM);
                 improve_skill(ch, SKILL_BIND);
                 WAIT_STATE(ch, PULSE_VIOLENCE * 3);
                 return;
@@ -1102,8 +1099,8 @@ ACMD(do_bind) {
 }
 
 ACMD(do_abort) {
-    void abort_casting(char_data * ch);
-    void flush_queues(descriptor_data * d);
+    void abort_casting(CharData * ch);
+    void flush_queues(DescriptorData * d);
 
     if (CASTING(ch)) {
         send_to_char("&8You abort your spell!&0\r\n", ch);
@@ -1153,8 +1150,8 @@ ACMD(do_hide) {
 }
 
 ACMD(do_steal) {
-    struct char_data *vict;
-    struct obj_data *obj;
+    CharData *vict;
+    ObjData *obj;
     char vict_name[MAX_INPUT_LENGTH], obj_name[MAX_INPUT_LENGTH];
     int percent, eq_pos, caught = 0, coins[NUM_COIN_TYPES];
 
@@ -1189,7 +1186,7 @@ ACMD(do_steal) {
     }
 
     /* Player-stealing is only allowed during PK. */
-    if (!attack_ok(ch, vict, FALSE)) {
+    if (!attack_ok(ch, vict, false)) {
         send_to_char("You can't steal from them!\r\n", ch);
         return;
     }
@@ -1207,7 +1204,7 @@ ACMD(do_steal) {
     if (!AWAKE(vict))
         percent = -1;
 
-    /* ... except that you cannot steal from immortals, shopkeepers or those who are aware. */
+    /* ... except that you cannot steal from immortals, shopkeepers, or those who are aware. */
     if (GET_LEVEL(vict) >= LVL_IMMORT || GET_MOB_SPEC(vict) == shop_keeper || MOB_FLAGGED(vict, MOB_AWARE))
         percent = 101 + 50;
 
@@ -1228,7 +1225,7 @@ ACMD(do_steal) {
             /* Thief is attempting to steal an equipped item. */
 
             if (!obj) {
-                act("$E hasn't got that item.", FALSE, ch, 0, vict, TO_CHAR);
+                act("$E hasn't got that item.", false, ch, 0, vict, TO_CHAR);
                 return;
             } else {
                 /* You cannot steal equipped items unless the victim is knocked out. */
@@ -1236,12 +1233,12 @@ ACMD(do_steal) {
                     send_to_char("Steal the equipment now?  Impossible!\r\n", ch);
                     return;
                 } else if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch)) {
-                    act("$p is too powerful for you to steal.", FALSE, ch, obj, 0, TO_CHAR);
+                    act("$p is too powerful for you to steal.", false, ch, obj, 0, TO_CHAR);
                     return;
                 } else {
                     /* You stole an equipped item from a helpless mob. */
-                    act("You unequip $p and steal it.", FALSE, ch, obj, 0, TO_CHAR);
-                    act("$n steals $p from $N.", FALSE, ch, obj, vict, TO_NOTVICT);
+                    act("You unequip $p and steal it.", false, ch, obj, 0, TO_CHAR);
+                    act("$n steals $p from $N.", false, ch, obj, vict, TO_NOTVICT);
                     obj_to_char(unequip_char(vict, eq_pos), ch);
                 }
             }
@@ -1250,12 +1247,12 @@ ACMD(do_steal) {
             percent += GET_OBJ_WEIGHT(obj); /* Make heavy harder */
             if (AWAKE(vict) && (percent > GET_SKILL(ch, SKILL_STEAL))) {
                 /* You failed. */
-                caught = TRUE;
-                act("Oops...", FALSE, ch, 0, 0, TO_CHAR);
-                act("$n tried to steal something from you!", FALSE, ch, 0, vict, TO_VICT);
-                act("$n tries to steal something from $N.", TRUE, ch, 0, vict, TO_NOTVICT);
+                caught = true;
+                act("Oops...", false, ch, 0, 0, TO_CHAR);
+                act("$n tried to steal something from you!", false, ch, 0, vict, TO_VICT);
+                act("$n tries to steal something from $N.", true, ch, 0, vict, TO_NOTVICT);
             } else if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch)) {
-                act("$p is too powerful for you to steal.", FALSE, ch, obj, 0, TO_CHAR);
+                act("$p is too powerful for you to steal.", false, ch, obj, 0, TO_CHAR);
                 return;
             } else {
                 /* You succeeded. */
@@ -1276,10 +1273,10 @@ ACMD(do_steal) {
         /* Steal some coins */
         if (AWAKE(vict) && (percent > GET_SKILL(ch, SKILL_STEAL))) {
             /* Failed attempt to steal some coins */
-            caught = TRUE;
-            act("Oops..", FALSE, ch, 0, 0, TO_CHAR);
-            act("You discover that $n has $s hands in your wallet.", FALSE, ch, 0, vict, TO_VICT);
-            act("$n tries to steal coins from $N.", TRUE, ch, 0, vict, TO_NOTVICT);
+            caught = true;
+            act("Oops..", false, ch, 0, 0, TO_CHAR);
+            act("You discover that $n has $s hands in your wallet.", false, ch, 0, vict, TO_VICT);
+            act("$n tries to steal coins from $N.", true, ch, 0, vict, TO_NOTVICT);
             improve_skill(ch, SKILL_STEAL);
         } else {
             /* Successful theft of coins */
@@ -1313,7 +1310,7 @@ ACMD(do_steal) {
 }
 
 ACMD(do_level) {
-    extern char *exp_message(char_data * ch);
+    extern char *exp_message(CharData * ch);
     extern ACMD(do_experience);
 
     one_argument(argument, arg);
@@ -1327,7 +1324,7 @@ ACMD(do_level) {
 }
 
 ACMD(do_visible) {
-    void perform_immort_vis(char_data * ch);
+    void perform_immort_vis(CharData * ch);
 
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
         perform_immort_vis(ch);
@@ -1341,6 +1338,7 @@ ACMD(do_visible) {
     }
 }
 
+void set_title(CharData *ch, char *title);
 ACMD(do_title) {
     int titles, which;
 
@@ -1394,7 +1392,7 @@ ACMD(do_title) {
         which = atoi(argument);
         titles = 0;
         if (which == 0)
-            set_title(ch, NULL);
+            set_title(ch, nullptr);
         if (GET_PERM_TITLES(ch))
             for (i = 0; GET_PERM_TITLES(ch)[i]; ++i)
                 if (++titles == which) {
@@ -1418,9 +1416,9 @@ ACMD(do_title) {
 }
 
 ACMD(do_douse) {
-    bool success = FALSE;
-    struct char_data *vict;
-    struct obj_data *obj;
+    bool success = false;
+    CharData *vict;
+    ObjData *obj;
 
     if (!ch)
         return;
@@ -1442,7 +1440,7 @@ ACMD(do_douse) {
     /* A fountain in the room guarantees success. */
     for (obj = world[ch->in_room].contents; obj; obj = obj->next_content)
         if (GET_OBJ_TYPE(obj) == ITEM_FOUNTAIN) {
-            success = TRUE;
+            success = true;
             break;
         }
 
@@ -1453,14 +1451,14 @@ ACMD(do_douse) {
         if (ch == vict) {
             act("*SPLASH* $n leaps into $o, putting out the flames that were "
                 "consuming $m.",
-                FALSE, ch, obj, 0, TO_ROOM);
-            act("*SPLASH* You leap into $o, dousing your flames!", FALSE, ch, obj, 0, TO_CHAR);
+                false, ch, obj, 0, TO_ROOM);
+            act("*SPLASH* You leap into $o, dousing your flames!", false, ch, obj, 0, TO_CHAR);
 
             /* Dousing someone else with a fountain */
         } else {
-            act("You dunk $N into $o, putting $M out! *SPLASH* *GURGLE*", FALSE, ch, obj, vict, TO_CHAR);
-            act("$n dunks you into $o, putting your flames out! *GURGLE*", FALSE, ch, obj, vict, TO_VICT);
-            act("$n dunks $N into $o, dousing $S flames! *SPLASH* *GURGLE*", FALSE, ch, obj, vict, TO_NOTVICT);
+            act("You dunk $N into $o, putting $M out! *SPLASH* *GURGLE*", false, ch, obj, vict, TO_CHAR);
+            act("$n dunks you into $o, putting your flames out! *GURGLE*", false, ch, obj, vict, TO_VICT);
+            act("$n dunks $N into $o, dousing $S flames! *SPLASH* *GURGLE*", false, ch, obj, vict, TO_NOTVICT);
         }
     }
 
@@ -1470,34 +1468,34 @@ ACMD(do_douse) {
 
     else if (IS_WATER(IN_ROOM(vict))) {
         if (ch == vict) {
-            act("$n ducks under the surface of the water, putting out $s flames.", FALSE, ch, 0, 0, TO_ROOM);
-            act("You duck under the surface of the water, dousing your flames.", FALSE, ch, obj, 0, TO_CHAR);
+            act("$n ducks under the surface of the water, putting out $s flames.", false, ch, 0, 0, TO_ROOM);
+            act("You duck under the surface of the water, dousing your flames.", false, ch, obj, 0, TO_CHAR);
         } else {
-            act("You push $N under the water, putting $M out! *SPLASH* *GURGLE*", FALSE, ch, 0, vict, TO_CHAR);
-            act("$n pushes you under the water, putting your flames out! *GURGLE*", FALSE, ch, 0, vict, TO_VICT);
-            act("$n pushes $N under the water, dousing $S flames! *SPLASH* *GURGLE*", FALSE, ch, 0, vict, TO_NOTVICT);
+            act("You push $N under the water, putting $M out! *SPLASH* *GURGLE*", false, ch, 0, vict, TO_CHAR);
+            act("$n pushes you under the water, putting your flames out! *GURGLE*", false, ch, 0, vict, TO_VICT);
+            act("$n pushes $N under the water, dousing $S flames! *SPLASH* *GURGLE*", false, ch, 0, vict, TO_NOTVICT);
         }
-        success = TRUE;
+        success = true;
     }
 
     /* Splashy room?  E.g., swamp, beach */
 
     else if (IS_SPLASHY(IN_ROOM(vict)) || SECT(vict->in_room) == SECT_BEACH) {
         if (ch == vict) {
-            act("$n rolls around in the water, quickly putting out $s flames.", FALSE, ch, 0, 0, TO_ROOM);
-            act("You roll around in the water, quickly dousing your flames.", FALSE, ch, obj, 0, TO_CHAR);
+            act("$n rolls around in the water, quickly putting out $s flames.", false, ch, 0, 0, TO_ROOM);
+            act("You roll around in the water, quickly dousing your flames.", false, ch, obj, 0, TO_CHAR);
         } else {
             act("You push $N down into the shallow water, putting $M out! *SPLASH* "
                 "*GURGLE*",
-                FALSE, ch, 0, vict, TO_CHAR);
+                false, ch, 0, vict, TO_CHAR);
             act("$n pushes you into the shallow water, putting your flames out! "
                 "*GURGLE*",
-                FALSE, ch, 0, vict, TO_VICT);
+                false, ch, 0, vict, TO_VICT);
             act("$n pushes $N into the shallow water, dousing $S flames! *SPLASH* "
                 "*GURGLE*",
-                FALSE, ch, 0, vict, TO_NOTVICT);
+                false, ch, 0, vict, TO_NOTVICT);
         }
-        success = TRUE;
+        success = true;
     }
 
     /* No water available! */
@@ -1507,26 +1505,26 @@ ACMD(do_douse) {
         if (GET_SKILL(ch, SKILL_DOUSE) < number(0, 100)) {
             act("$n&0 frantically rolls around on the ground, attempting to douse "
                 "the flames consuming $s body.",
-                TRUE, ch, 0, 0, TO_ROOM);
+                true, ch, 0, 0, TO_ROOM);
             send_to_char("You roll around on the ground, trying to douse the flames engulfing your body!\r\n", ch);
         } else {
-            act("$n&0 rolls on the ground frantically, finally smothering the fire that was consuming $m.", TRUE, ch, 0,
+            act("$n&0 rolls on the ground frantically, finally smothering the fire that was consuming $m.", true, ch, 0,
                 0, TO_ROOM);
             send_to_char("You roll around on the ground, finally smothering your flames.\r\n", ch);
-            success = TRUE;
+            success = true;
         }
     }
 
     /* No water, trying to douse someone else */
     else if (GET_SKILL(ch, SKILL_DOUSE) - 40 < number(0, 100)) {
-        act("You frantically try to brush the flames from $N&0.", FALSE, ch, 0, vict, TO_CHAR);
-        act("$n&0 aids you, attempting to douse your flames.", FALSE, ch, 0, vict, TO_VICT);
-        act("$n&0 frantically attempts to brush the flames off $N&0.", FALSE, ch, 0, vict, TO_NOTVICT);
+        act("You frantically try to brush the flames from $N&0.", false, ch, 0, vict, TO_CHAR);
+        act("$n&0 aids you, attempting to douse your flames.", false, ch, 0, vict, TO_VICT);
+        act("$n&0 frantically attempts to brush the flames off $N&0.", false, ch, 0, vict, TO_NOTVICT);
     } else {
-        act("You frantically brush the flames from $N&0, finally extinguishing $M!", TRUE, ch, 0, vict, TO_CHAR);
-        act("$n&0 aids you, finally putting your flames out!", FALSE, ch, 0, vict, TO_VICT);
-        act("$n&0 finally douses the flames that were consuming $N&0!", FALSE, ch, 0, vict, TO_NOTVICT);
-        success = TRUE;
+        act("You frantically brush the flames from $N&0, finally extinguishing $M!", true, ch, 0, vict, TO_CHAR);
+        act("$n&0 aids you, finally putting your flames out!", false, ch, 0, vict, TO_VICT);
+        act("$n&0 finally douses the flames that were consuming $N&0!", false, ch, 0, vict, TO_NOTVICT);
+        success = true;
     }
 
     if (success)
@@ -1541,11 +1539,11 @@ ACMD(do_disband) {
         return;
     }
 
-    disband_group(ch, TRUE, FALSE);
+    disband_group(ch, true, false);
 }
 
 ACMD(do_consent) {
-    struct char_data *target;
+    CharData *target;
 
     one_argument(argument, arg);
 
@@ -1553,7 +1551,7 @@ ACMD(do_consent) {
         if (!CONSENT(ch))
             send_to_char("You are not consented to anyone!\r\n", ch);
         else
-            act("You are consented to $N.", TRUE, ch, 0, CONSENT(ch), TO_CHAR | TO_SLEEP);
+            act("You are consented to $N.", true, ch, 0, CONSENT(ch), TO_CHAR | TO_SLEEP);
         return;
     }
 
@@ -1566,16 +1564,16 @@ ACMD(do_consent) {
 
     if (target == ch) {
         if (CONSENT(ch)) {
-            act("&8$n&0&8 has revoked $s consent.&0", FALSE, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
+            act("&8$n&0&8 has revoked $s consent.&0", false, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
             send_to_char("&8You revoke your consent.&0\r\n", ch);
-            CONSENT(ch) = NULL;
+            CONSENT(ch) = nullptr;
         } else
             send_to_char("You haven't given your consent to anyone.\r\n", ch);
         return;
     }
 
     if (CONSENT(ch) == target) {
-        act("$N already has your consent.", FALSE, ch, 0, target, TO_CHAR | TO_SLEEP);
+        act("$N already has your consent.", false, ch, 0, target, TO_CHAR | TO_SLEEP);
         return;
     }
 
@@ -1585,14 +1583,14 @@ ACMD(do_consent) {
     }
 
     if (CONSENT(ch))
-        act("&8$n&0&8 has removed $s consent.&0", FALSE, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
+        act("&8$n&0&8 has removed $s consent.&0", false, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
     CONSENT(ch) = target;
-    act("&7&bYou give your consent to $N.&0", FALSE, ch, 0, target, TO_CHAR | TO_SLEEP);
-    act("&7&b$n has given you $s consent.&0", FALSE, ch, 0, target, TO_VICT | TO_SLEEP);
+    act("&7&bYou give your consent to $N.&0", false, ch, 0, target, TO_CHAR | TO_SLEEP);
+    act("&7&b$n has given you $s consent.&0", false, ch, 0, target, TO_VICT | TO_SLEEP);
 }
 
 ACMD(do_bandage) {
-    struct char_data *victim;
+    CharData *victim;
 
     one_argument(argument, arg);
 
@@ -1611,22 +1609,22 @@ ACMD(do_bandage) {
         return;
     }
     if (GET_HIT(victim) >= 0 && GET_STANCE(victim) >= STANCE_STUNNED) {
-        act("&8$N looks in pretty good shape already!&0", FALSE, ch, 0, victim, TO_CHAR);
+        act("&8$N looks in pretty good shape already!&0", false, ch, 0, victim, TO_CHAR);
         return;
     }
 
     if (GET_SKILL(ch, SKILL_BANDAGE) > number(1, 80)) {
-        act("&0&8You bandage $N.&0", FALSE, ch, 0, victim, TO_CHAR);
-        act("&8$n&0&8 bandages $N&8's wounds.&0", FALSE, ch, 0, victim, TO_NOTVICT);
-        hurt_char(victim, NULL, MAX(-3, GET_SKILL(ch, SKILL_BANDAGE) / -10), TRUE);
+        act("&0&8You bandage $N.&0", false, ch, 0, victim, TO_CHAR);
+        act("&8$n&0&8 bandages $N&8's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
+        hurt_char(victim, nullptr, MAX(-3, GET_SKILL(ch, SKILL_BANDAGE) / -10), true);
     } else {
-        act("You fail to bandage $N properly.", FALSE, ch, 0, victim, TO_CHAR);
-        act("&8$n fails an attempt to bandage $N&8's wounds.&0", FALSE, ch, 0, victim, TO_NOTVICT);
+        act("You fail to bandage $N properly.", false, ch, 0, victim, TO_CHAR);
+        act("&8$n fails an attempt to bandage $N&8's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
         if (DAMAGE_WILL_KILL(victim, 1)) {
-            act("Your bandaging was so appalling that $N died!&0", FALSE, ch, 0, victim, TO_CHAR);
-            act("&8$n kills $N with some dismal bandaging.&0", FALSE, ch, 0, victim, TO_NOTVICT);
+            act("Your bandaging was so appalling that $N died!&0", false, ch, 0, victim, TO_CHAR);
+            act("&8$n kills $N with some dismal bandaging.&0", false, ch, 0, victim, TO_NOTVICT);
         }
-        hurt_char(victim, NULL, 1, TRUE);
+        hurt_char(victim, nullptr, 1, true);
     }
 
     improve_skill(ch, SKILL_BANDAGE);
@@ -1634,7 +1632,7 @@ ACMD(do_bandage) {
         WAIT_STATE(ch, PULSE_VIOLENCE);
 }
 
-void make_group_report_line(char_data *ch, char *buffer) {
+void make_group_report_line(CharData *ch, char *buffer) {
     int perc;
     char harm_color[20];
 
@@ -1670,9 +1668,9 @@ void make_group_report_line(char_data *ch, char *buffer) {
     strcat(buffer, buf2);
 }
 
-void print_group(char_data *ch) {
-    struct char_data *k;
-    struct group_type *f;
+void print_group(CharData *ch) {
+    CharData *k;
+    GroupType *f;
 
     if (!ch->group_master && !ch->groupees)
         send_to_char("&2&8But you are not the member of a group!&0\r\n", ch);
@@ -1699,9 +1697,9 @@ void print_group(char_data *ch) {
 }
 
 ACMD(do_group) {
-    struct char_data *tch;
+    CharData *tch;
     int level_diff;
-    bool group_all = FALSE;
+    bool group_all = false;
 
     one_argument(argument, arg);
 
@@ -1718,8 +1716,8 @@ ACMD(do_group) {
     }
 
     if (!str_cmp("all", arg)) {
-        group_all = TRUE;
-        tch = NULL;
+        group_all = true;
+        tch = nullptr;
     } else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
         send_to_char(NOPERSON, ch);
         return;
@@ -1728,7 +1726,7 @@ ACMD(do_group) {
     /* Attempt to remove yourself from your group. */
     if (ch == tch) {
         if (ch->group_master || ch->groupees)
-            ungroup(ch, TRUE, FALSE);
+            ungroup(ch, true, false);
         else
             send_to_char("&2&8You're not in a group!&0\r\n", ch);
         return;
@@ -1742,9 +1740,9 @@ ACMD(do_group) {
 
     if (group_all) {
         /* group all followers */
-        bool found = FALSE;
-        struct descriptor_data *d;
-        struct char_data *gch;
+        bool found = false;
+        DescriptorData *d;
+        CharData *gch;
 
         for (d = descriptor_list; d; d = d->next) {
             /* Check various reasons we should skip this player... */
@@ -1782,7 +1780,7 @@ ACMD(do_group) {
             }
 
             add_groupee(ch, gch);
-            found = TRUE;
+            found = true;
         }
 
         if (!found)
@@ -1802,14 +1800,14 @@ ACMD(do_group) {
 
     /* Ok, if the target is in your group, remove them. */
     if (tch->group_master == ch) {
-        ungroup(tch, TRUE, TRUE);
+        ungroup(tch, true, true);
         return;
     }
 
     /* Check for consent unless it's a charmed follower */
     if (CONSENT(tch) != ch && GET_LEVEL(ch) < LVL_IMMORT) {
         if (!(IS_NPC(tch) && tch->master == ch && EFF_FLAGGED(tch, EFF_CHARM))) {
-            act("&2&8You do not have $S consent.&0", TRUE, ch, NULL, tch, TO_CHAR);
+            act("&2&8You do not have $S consent.&0", true, ch, nullptr, tch, TO_CHAR);
             return;
         }
     }
@@ -1829,7 +1827,7 @@ ACMD(do_group) {
     add_groupee(ch, tch);
 }
 
-static void split_share(char_data *giver, char_data *receiver, int coins[]) {
+static void split_share(CharData *giver, CharData *receiver, int coins[]) {
     if (coins[PLATINUM] || coins[GOLD] || coins[SILVER] || coins[COPPER]) {
         statemoney(buf, coins);
         cprintf(receiver, "You %s %s.\r\n", giver == receiver ? "keep" : "receive", buf);
@@ -1845,17 +1843,17 @@ static void split_share(char_data *giver, char_data *receiver, int coins[]) {
     GET_COPPER(giver) -= coins[COPPER];
 }
 
-void split_coins(char_data *ch, int coins[], unsigned int mode) {
+void split_coins(CharData *ch, int coins[], unsigned int mode) {
     int i, j, count, share[NUM_COIN_TYPES], remainder_start[NUM_COIN_TYPES];
-    struct group_type *g;
-    struct char_data *master;
+    GroupType *g;
+    CharData *master;
 
-    static struct char_data **members;
+    static CharData **members;
     static int max_members = 0;
 
     if (!max_members) {
         max_members = 16;
-        CREATE(members, char_data *, max_members);
+        CREATE(members, CharData *, max_members);
     }
 
     master = ch->group_master ? ch->group_master : ch;
@@ -1871,7 +1869,7 @@ void split_coins(char_data *ch, int coins[], unsigned int mode) {
         if (CAN_SEE(ch, g->groupee) && ch->in_room == g->groupee->in_room) {
             if (count >= max_members) {
                 max_members *= 2;
-                RECREATE(members, char_data *, max_members);
+                RECREATE(members, CharData *, max_members);
             }
             members[count++] = g->groupee;
         }
@@ -1897,7 +1895,7 @@ void split_coins(char_data *ch, int coins[], unsigned int mode) {
      */
 
     send_to_char("&7&bYou split some coins with your group.&0\r\n", ch);
-    act("&7&8$n splits some coins.&0", TRUE, ch, 0, 0, TO_ROOM);
+    act("&7&8$n splits some coins.&0", true, ch, 0, 0, TO_ROOM);
     for (j = 0; j < count; ++j) {
         /*
          * A slight hack: for each coin type, if the current group
@@ -1955,7 +1953,7 @@ ACMD(do_split) {
 }
 
 ACMD(do_use) {
-    struct obj_data *mag_item;
+    ObjData *mag_item;
 
     half_chop(argument, arg, buf);
     if (!*arg) {
@@ -2116,7 +2114,7 @@ ACMD(do_prompt) {
 
 const char *idea_types[] = {"bug", "typo", "idea", "note"};
 
-void send_to_mantis(char_data *ch, int category, const char *string) {
+void send_to_mantis(CharData *ch, int category, const char *string) {
     const char *cat;
     extern int make_count;
 
@@ -2140,7 +2138,8 @@ void send_to_mantis(char_data *ch, int category, const char *string) {
 
 ACMD(do_gen_write) {
     FILE *fl;
-    char *filename, buf[MAX_STRING_LENGTH];
+    const char *filename;
+    char buf[MAX_STRING_LENGTH];
     struct stat fbuf;
     extern int max_filesize;
     time_t ct;
@@ -2180,7 +2179,7 @@ ACMD(do_gen_write) {
         return;
     }
 
-    if (!speech_ok(ch, TRUE)) {
+    if (!speech_ok(ch, true)) {
         cprintf(ch,
                 "You have been communicating too frequently recently.\r\n"
                 "Please idle momentarily and try to submit your %s again.\r\n",
@@ -2227,12 +2226,12 @@ ACMD(do_gen_write) {
 }
 
 ACMD(do_peace) {
-    struct char_data *vict, *next_v;
+    CharData *vict, *next_v;
     one_argument(argument, arg);
     if (!is_abbrev(arg, "off")) {
         act("&7$n &4&bglows&0&7 with a &bbright white aura&0&7 as $e waves $s "
             "mighty hand!&0",
-            FALSE, ch, 0, 0, TO_ROOM);
+            false, ch, 0, 0, TO_ROOM);
         send_to_room(
             "&7&bA peaceful feeling washes into the room, dousing all "
             "violence!&0\r\n",
@@ -2246,7 +2245,7 @@ ACMD(do_peace) {
     } else {
         act("&7$n &4&bglows&0&7 with a &1&bbright red aura&0&7 as $e waves $s "
             "mighty hand!&0",
-            FALSE, ch, 0, 0, TO_ROOM);
+            false, ch, 0, 0, TO_ROOM);
         send_to_room(
             "&1&bThe peaceful feeling in the room subsides... You don't "
             "feel quite as safe anymore.&0\r\n",
@@ -2256,8 +2255,8 @@ ACMD(do_peace) {
 }
 
 ACMD(do_petition) {
-    struct descriptor_data *d;
-    struct char_data *tch;
+    DescriptorData *d;
+    CharData *tch;
 
     if (!ch->desc)
         return;
@@ -2298,7 +2297,7 @@ ACMD(do_petition) {
 
 ACMD(do_summon_mount) {
     int i;
-    struct follow_type *fol;
+    FollowType *fol;
 
     struct mount_type {
         int min_level;
@@ -2370,9 +2369,9 @@ ACMD(do_summon_mount) {
                      mount_types[i].mv_bonus + 150 - (GET_ALIGNMENT(ch) / 4));
 }
 
-void summon_mount(char_data *ch, int mob_vnum, int base_hp, int base_mv) {
-    extern int ideal_mountlevel(char_data * ch);
-    struct char_data *mount = NULL;
+void summon_mount(CharData *ch, int mob_vnum, int base_hp, int base_mv) {
+    extern int ideal_mountlevel(CharData * ch);
+    CharData *mount = nullptr;
 
     if (!ch || (ch->in_room == NOWHERE))
         /* The summoner died in the meantime.  Its events should have been
@@ -2389,8 +2388,8 @@ void summon_mount(char_data *ch, int mob_vnum, int base_hp, int base_mv) {
 
     char_to_room(mount, ch->in_room); /*  was -2 */
 
-    act("$N answers your summons!", TRUE, ch, 0, mount, TO_CHAR);
-    act("$N walks in, seemingly from nowhere, and nuzzles $n's face.", TRUE, ch, 0, mount, TO_ROOM);
+    act("$N answers your summons!", true, ch, 0, mount, TO_CHAR);
+    act("$N walks in, seemingly from nowhere, and nuzzles $n's face.", true, ch, 0, mount, TO_ROOM);
     SET_FLAG(EFF_FLAGS(mount), EFF_CHARM);
     SET_FLAG(EFF_FLAGS(mount), EFF_TAMED);
     SET_FLAG(MOB_FLAGS(mount), MOB_SUMMONED_MOUNT);
@@ -2409,12 +2408,12 @@ void summon_mount(char_data *ch, int mob_vnum, int base_hp, int base_mv) {
  * Call your pet
  ***************************************************************************/
 ACMD(do_call) {
-    bool found = FALSE;
-    struct follow_type *k;
+    bool found = false;
+    FollowType *k;
 
     for (k = ch->followers; k; k = k->next) {
         if (IS_PET(k->follower)) {
-            found = TRUE;
+            found = true;
         }
     }
 
@@ -2424,16 +2423,16 @@ ACMD(do_call) {
         for (k = ch->followers; k; k = k->next) {
             if (IS_PET(k->follower) && k->follower->master == ch) {
                 if (IN_ROOM(ch) == IN_ROOM(k->follower)) {
-                    act("$N looks at you curiously.", FALSE, ch, 0, k->follower, TO_CHAR);
-                    act("You look at $n as they whistle for you.", FALSE, ch, 0, k->follower, TO_VICT);
-                    act("$n whistles at $N, who looks at $m curiously.", FALSE, ch, 0, k->follower, TO_NOTVICT);
+                    act("$N looks at you curiously.", false, ch, 0, k->follower, TO_CHAR);
+                    act("You look at $n as they whistle for you.", false, ch, 0, k->follower, TO_VICT);
+                    act("$n whistles at $N, who looks at $m curiously.", false, ch, 0, k->follower, TO_NOTVICT);
                 } else {
                     char_from_room(k->follower);
                     char_to_room(k->follower, ch->in_room);
-                    act("$N rushes into the room and looks at you expectantly.", FALSE, ch, 0, k->follower, TO_CHAR);
-                    act("You hear $n whistle in the distance and rush to rejoin them.", FALSE, ch, 0, k->follower,
+                    act("$N rushes into the room and looks at you expectantly.", false, ch, 0, k->follower, TO_CHAR);
+                    act("You hear $n whistle in the distance and rush to rejoin them.", false, ch, 0, k->follower,
                         TO_VICT);
-                    act("$n whistles sharply and $N rushes in to join $m.", FALSE, ch, 0, k->follower, TO_NOTVICT);
+                    act("$n whistles sharply and $N rushes in to join $m.", false, ch, 0, k->follower, TO_NOTVICT);
                 }
             }
         }
@@ -2447,7 +2446,7 @@ ACMD(do_call) {
  ***************************************************************************/
 
 ACMD(do_layhand) {
-    struct char_data *vict;
+    CharData *vict;
     int dam = GET_CHA(ch) * GET_LEVEL(ch) / 10; /* Base damage/healing */
 
     /* Check for appropriate class */
@@ -2537,9 +2536,9 @@ ACMD(do_layhand) {
 /*
 ACMD(do_control_undead)
 {
-  struct char_data *vict = NULL;
+ CharData *vict = NULL;
   char *to_vict = NULL, *to_room = NULL, *to_char = NULL;
-  struct affected_type af;
+  affected_type af;
   float control_duration = 0;
 
   if (GET_SKILL(ch, SKILL_CONTROL_UNDEAD) <= 0) {
@@ -2552,7 +2551,7 @@ ACMD(do_control_undead)
     return;
   }
 
-  act("You attempt to gain control over the undead", FALSE, ch, 0, vict,
+  act("You attempt to gain control over the undead", false, ch, 0, vict,
 TO_CHAR);
 
   for(vict = world[ch->in_room].people; vict; vict = vict->next_in_room) {
@@ -2561,33 +2560,33 @@ TO_CHAR);
         } else {
                 if (GET_LIFEFORCE(vict) == LIFE_UNDEAD) {
                         act("You focus your powers on controlling
-$N.",FALSE,ch,0,vict,TO_CHAR);
+$N.",false,ch,0,vict,TO_CHAR);
 
                                                                                                      if
 (mag_savingthrow(vict, SAVING_SPELL)) {*//*test for not falling prey */
 /*to_char="$N resists your pitiful attempt to control $M.";
    to_vict="&7&b$n tries to control you but fails!&0";
    to_room="&7&b$n tries to control $N but nothing happens.&0";
-   act(to_char, FALSE, ch, 0, vict, TO_CHAR);
-   act(to_vict, FALSE, ch, 0, vict, TO_VICT);
-   act(to_room, TRUE, ch, 0, vict, TO_NOTVICT);
+   act(to_char, false, ch, 0, vict, TO_CHAR);
+   act(to_vict, false, ch, 0, vict, TO_VICT);
+   act(to_room, true, ch, 0, vict, TO_NOTVICT);
    } else {
                                               if (mag_savingthrow(vict,
    SAVING_SPELL)) { *//*test for getting scared */
 /*to_char="$N starts to shake and gets very angry!";
    to_vict="&7&b$n tries to control you so you attack him!&0";
    to_room="&7&b$n tries to control $N, but $N becomes very angry!&0";
-   act(to_char, FALSE, ch, 0, vict, TO_CHAR);
-   act(to_vict, FALSE, ch, 0, vict, TO_VICT);
-   act(to_room, TRUE, ch, 0, vict, TO_NOTVICT);
+   act(to_char, false, ch, 0, vict, TO_CHAR);
+   act(to_vict, false, ch, 0, vict, TO_VICT);
+   act(to_room, true, ch, 0, vict, TO_NOTVICT);
    SET_FLAG(MOB_FLAGS(vict), MOB_AGGRESSIVE);
    attack(vict, ch);
    } else {
    to_char="$N starts to wither and falls under your control!";
    to_vict="&7&b$n gestures towards you and you feel your powers wither
    away!&0"; to_room="&7&b$n gestures at $N and gains complete control over
-   $M!&0"; act(to_char, FALSE, ch, 0, vict, TO_CHAR); act(to_vict, FALSE, ch, 0,
-   vict, TO_VICT); act(to_room, TRUE, ch, 0, vict, TO_NOTVICT);
+   $M!&0"; act(to_char, false, ch, 0, vict, TO_CHAR); act(to_vict, false, ch, 0,
+   vict, TO_VICT); act(to_room, true, ch, 0, vict, TO_NOTVICT);
 *//*set the mob as controlled (charmed) */
 /*control_duration = ((GET_LEVEL(ch) * 20) + (GET_SKILL(ch,
    SKILL_CONTROL_UNDEAD) * 2))/60; control_duration = 1; af.type =
@@ -2679,7 +2678,7 @@ ACMD(do_first_aid) {
  ***************************************************************************/
 
 ACMD(do_ignore) {
-    struct char_data *target, *tch;
+    CharData *target, *tch;
     char arg[MAX_STRING_LENGTH], buf[MAX_STRING_LENGTH];
 
     tch = REAL_CHAR(ch);
@@ -2691,7 +2690,7 @@ ACMD(do_ignore) {
 
     if (!*arg || is_abbrev(arg, "off")) {
         send_to_char("You feel sociable and stop ignoring anyone.\r\n", ch);
-        tch->player_specials->ignored = NULL;
+        tch->player_specials->ignored = nullptr;
         return;
     }
     if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg))) || IS_NPC(target)) {
@@ -2705,8 +2704,8 @@ ACMD(do_ignore) {
 
 ACMD(do_point) {
     int found;
-    struct char_data *tch = NULL;
-    struct obj_data *tobj = NULL;
+    CharData *tch = nullptr;
+    ObjData *tobj = nullptr;
 
     argument = one_argument(argument, arg);
     skip_spaces(&argument);
@@ -2722,8 +2721,8 @@ ACMD(do_point) {
     }
 
     if (tobj) {
-        act("You point at $p.", FALSE, ch, tobj, 0, TO_CHAR);
-        act("$n points at $p.", TRUE, ch, tobj, 0, TO_ROOM);
+        act("You point at $p.", false, ch, tobj, 0, TO_CHAR);
+        act("$n points at $p.", true, ch, tobj, 0, TO_ROOM);
         return;
     }
 
@@ -2734,18 +2733,18 @@ ACMD(do_point) {
 
     if (tch == ch) {
         send_to_char("You point at yourself.\r\n", ch);
-        act("$n points at $mself.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n points at $mself.", true, ch, 0, 0, TO_ROOM);
         return;
     }
 
     if (GET_HIDDENNESS(tch) == 0) {
-        act("You point at $N.", FALSE, ch, 0, tch, TO_CHAR);
-        act("$n points at $N.", TRUE, ch, 0, tch, TO_NOTVICT);
-        act("$n points at you.", FALSE, ch, 0, tch, TO_VICT);
+        act("You point at $N.", false, ch, 0, tch, TO_CHAR);
+        act("$n points at $N.", true, ch, 0, tch, TO_NOTVICT);
+        act("$n points at you.", false, ch, 0, tch, TO_VICT);
     } else {
         GET_HIDDENNESS(tch) = 0;
-        act("You point out $N's hiding place.", FALSE, ch, 0, tch, TO_CHAR);
-        act("$n points out $N who was hiding here!", TRUE, ch, 0, tch, TO_NOTVICT);
-        act("$n points out your hiding place!", TRUE, ch, 0, tch, TO_VICT);
+        act("You point out $N's hiding place.", false, ch, 0, tch, TO_CHAR);
+        act("$n points out $N who was hiding here!", true, ch, 0, tch, TO_NOTVICT);
+        act("$n points out your hiding place!", true, ch, 0, tch, TO_VICT);
     }
 }

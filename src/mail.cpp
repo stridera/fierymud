@@ -19,6 +19,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "modify.hpp"
+#include "objects.hpp"
 #include "players.hpp"
 #include "specprocs.hpp"
 #include "structs.hpp"
@@ -39,29 +40,29 @@ char *RICK_SALA =
     "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
     "=~=~=~=~=~=~=\r\n";
 
-void postmaster_send_mail(char_data *ch, char_data *mailman, int cmd, char *arg);
-void postmaster_check_mail(char_data *ch, char_data *mailman, int cmd, char *arg);
-void postmaster_receive_mail(char_data *ch, char_data *mailman, int cmd, char *arg);
+void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
+void postmaster_check_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
+void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
 
-void money_convert(char_data *ch, int amount);
-extern int no_mail;
+void money_convert(CharData *ch, int amount);
+int no_mail;
 int find_name(char *name);
 
-mail_index_type *mail_index = 0;   /* list of recs in the mail file  */
-position_list_type *free_list = 0; /* list of free positions in file */
-long file_end_pos = 0;             /* length of file */
+MailIndex *mail_index = 0;   /* list of recs in the mail file  */
+PositionList *free_list = 0; /* list of free positions in file */
+long file_end_pos = 0;       /* length of file */
 
 void push_free_list(long pos) {
-    position_list_type *new_pos;
+    PositionList *new_pos;
 
-    CREATE(new_pos, position_list_type, 1);
+    CREATE(new_pos, PositionList, 1);
     new_pos->position = pos;
     new_pos->next = free_list;
     free_list = new_pos;
 }
 
 long pop_free_list(void) {
-    position_list_type *old_pos;
+    PositionList *old_pos;
     long return_value;
 
     if ((old_pos = free_list) != 0) {
@@ -73,8 +74,8 @@ long pop_free_list(void) {
         return file_end_pos;
 }
 
-mail_index_type *find_char_in_index(long searchee) {
-    mail_index_type *tmp;
+MailIndex *find_char_in_index(long searchee) {
+    MailIndex *tmp;
 
     if (searchee < 0) {
         log("SYSERR: Mail system -- non fatal error #1.");
@@ -123,8 +124,8 @@ void read_from_file(void *buf, int size, long filepos) {
 }
 
 void index_mail(long id_to_index, long pos) {
-    mail_index_type *new_index;
-    position_list_type *new_position;
+    MailIndex *new_index;
+    PositionList *new_position;
 
     if (id_to_index < 0) {
         log("SYSERR: Mail system -- non-fatal error #4.");
@@ -132,16 +133,16 @@ void index_mail(long id_to_index, long pos) {
     }
     if (!(new_index = find_char_in_index(id_to_index))) {
         /* name not already in index.. add it */
-        CREATE(new_index, mail_index_type, 1);
+        CREATE(new_index, MailIndex, 1);
         new_index->recipient = id_to_index;
-        new_index->list_start = NULL;
+        new_index->list_start = nullptr;
 
         /* add to front of list */
         new_index->next = mail_index;
         mail_index = new_index;
     }
     /* now, add this position to front of position list */
-    CREATE(new_position, position_list_type, 1);
+    CREATE(new_position, PositionList, 1);
     new_position->position = pos;
     new_position->next = new_index->list_start;
     new_index->list_start = new_position;
@@ -202,13 +203,13 @@ int has_mail(long recipient) {
 /*void store_mail(long to, long from, char *message_pointer)*/
 void store_mail(long to, long from, int vnum, char *message_pointer) {
     header_block_type header;
-    data_block_type data;
+    DataBlock data;
     long last_address, target_address;
     char *msg_txt = message_pointer;
     int bytes_written = 0;
     int total_length = strlen(message_pointer);
 
-    assert(sizeof(header_block_type) == sizeof(data_block_type));
+    assert(sizeof(header_block_type) == sizeof(DataBlock));
     assert(sizeof(header_block_type) == BLOCK_SIZE);
 
     if (from < 0 || to < 0 || !*message_pointer) {
@@ -297,9 +298,9 @@ char *read_delete(long recipient, int *obj_vnum)
    header (i.e. the text handed to the player) */
 {
     header_block_type header;
-    data_block_type data;
-    mail_index_type *mail_pointer, *prev_mail;
-    position_list_type *position_pointer;
+    DataBlock data;
+    MailIndex *mail_pointer, *prev_mail;
+    PositionList *position_pointer;
     long mail_address, following_block;
     char *message, buf[200];
     size_t string_size;
@@ -419,25 +420,25 @@ SPECIAL(postmaster) {
         return 0;
 }
 
-void postmaster_send_mail(char_data *ch, char_data *mailman, int cmd, char *arg) {
+void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
     long recipient;
     char buf[256];
     char buf2[256];
     int price = STAMP_PRICE;
-    struct obj_data *obj;
+    ObjData *obj;
 
-    obj = NULL;
+    obj = nullptr;
 
     if (GET_LEVEL(ch) < MIN_MAIL_LEVEL) {
         sprintf(buf, "$n tells you, 'Sorry, you have to be level %d to send mail!'", MIN_MAIL_LEVEL);
-        act(buf, FALSE, mailman, 0, ch, TO_VICT);
+        act(buf, false, mailman, 0, ch, TO_VICT);
         return;
     }
     /*one_argument(arg, buf); */
     two_arguments(arg, buf, buf2);
 
     if (!*buf) { /* you'll get no argument from me! */
-        act("$n tells you, 'You need to specify an addressee!'", FALSE, mailman, 0, ch, TO_VICT);
+        act("$n tells you, 'You need to specify an addressee!'", false, mailman, 0, ch, TO_VICT);
         return;
     }
     /* =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~
@@ -446,33 +447,33 @@ void postmaster_send_mail(char_data *ch, char_data *mailman, int cmd, char *arg)
        =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~
      */
     if (strcasecmp(buf, "pergus") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", FALSE, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, FALSE, mailman, 0, ch, TO_VICT);
+        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
+        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
         return;
     }
     if (strcasecmp(buf, "daroowise") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", FALSE, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, FALSE, mailman, 0, ch, TO_VICT);
+        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
+        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
         return;
     }
     if (strcasecmp(buf, "ninmei") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", FALSE, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, FALSE, mailman, 0, ch, TO_VICT);
+        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
+        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
         return;
     }
     if (strcasecmp(buf, "brilan") == 0) {
-        act("$n tells you, 'I'm sorry, that character has passed away....'", FALSE, mailman, 0, ch, TO_VICT);
-        act(RICK_SALA, FALSE, mailman, 0, ch, TO_VICT);
+        act("$n tells you, 'I'm sorry, that character has passed away....'", false, mailman, 0, ch, TO_VICT);
+        act(RICK_SALA, false, mailman, 0, ch, TO_VICT);
         return;
     }
 
     if (*buf2 && (obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, buf2)))) {
         if (OBJ_FLAGGED(obj, ITEM_NODROP)) {
-            act("You can't mail $p.  It's CURSED!", FALSE, ch, obj, obj, TO_CHAR);
+            act("You can't mail $p.  It's CURSED!", false, ch, obj, obj, TO_CHAR);
             return;
         }
         if (OBJ_FLAGGED(obj, ITEM_NORENT)) {
-            act("$n tells you, 'I'm not sending that!'", FALSE, mailman, 0, ch, TO_VICT);
+            act("$n tells you, 'I'm not sending that!'", false, mailman, 0, ch, TO_VICT);
             return;
         }
         price += STAMP_PRICE * .1;
@@ -488,7 +489,7 @@ void postmaster_send_mail(char_data *ch, char_data *mailman, int cmd, char *arg)
                     "$n tells you, 'A stamp costs %d copper coins.'\r\n"
                     "$n tells you, '...which I see you can't afford.'",
                     price);
-            act(buf, FALSE, mailman, 0, ch, TO_VICT);
+            act(buf, false, mailman, 0, ch, TO_VICT);
             return;
         } else {
             price = 0;
@@ -499,18 +500,18 @@ void postmaster_send_mail(char_data *ch, char_data *mailman, int cmd, char *arg)
         price = 0;
 
     if ((recipient = get_id_by_name(buf)) < 0) {
-        act("$n tells you, 'No one by that name is registered here!'", FALSE, mailman, 0, ch, TO_VICT);
+        act("$n tells you, 'No one by that name is registered here!'", false, mailman, 0, ch, TO_VICT);
         return;
     }
 
-    if (obj != NULL) {
+    if (obj != nullptr) {
         ch->desc->mail_vnum = GET_OBJ_VNUM(obj);
-        act("$n takes $p and prepares it for packaging.", FALSE, mailman, obj, ch, TO_VICT);
+        act("$n takes $p and prepares it for packaging.", false, mailman, obj, ch, TO_VICT);
         extract_obj(obj);
     } else
         ch->desc->mail_vnum = NOTHING;
 
-    act("$n starts to write some mail.", TRUE, ch, 0, 0, TO_ROOM);
+    act("$n starts to write some mail.", true, ch, 0, 0, TO_ROOM);
 
     if (GET_LEVEL(ch) < 100)
         sprintf(buf,
@@ -523,34 +524,34 @@ void postmaster_send_mail(char_data *ch, char_data *mailman, int cmd, char *arg)
                 "stamp is on me.'\r\n"
                 "$n tells you, 'Write your message, (/s saves /h for help)'");
 
-    act(buf, FALSE, mailman, 0, ch, TO_VICT);
+    act(buf, false, mailman, 0, ch, TO_VICT);
     money_convert(ch, price);
     GET_COPPER(ch) -= price;
     SET_FLAG(PLR_FLAGS(ch), PLR_MAILING);
     SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
 
-    mail_write(ch->desc, NULL, MAX_MAIL_SIZE, recipient);
+    mail_write(ch->desc, nullptr, MAX_MAIL_SIZE, recipient);
 }
 
-void postmaster_check_mail(char_data *ch, char_data *mailman, int cmd, char *arg) {
+void postmaster_check_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
     char buf[256];
 
     if (has_mail(GET_IDNUM(ch)))
         sprintf(buf, "$n tells you, 'You have mail waiting.'");
     else
         sprintf(buf, "$n tells you, 'Sorry, you don't have any mail waiting.'");
-    act(buf, FALSE, mailman, 0, ch, TO_VICT);
+    act(buf, false, mailman, 0, ch, TO_VICT);
 }
 
-void postmaster_receive_mail(char_data *ch, char_data *mailman, int cmd, char *arg) {
+void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
     char buf[256];
-    /*struct obj_data *obj; */
-    struct obj_data *obj, *mail_obj;
+    /* ObjData *obj; */
+    ObjData *obj, *mail_obj;
     int obj_vnum = NOTHING;
 
     if (!has_mail(GET_IDNUM(ch))) {
         sprintf(buf, "$n tells you, 'Sorry, you don't have any mail waiting.'");
-        act(buf, FALSE, mailman, 0, ch, TO_VICT);
+        act(buf, false, mailman, 0, ch, TO_VICT);
         return;
     }
     while (has_mail(GET_IDNUM(ch))) {
@@ -567,7 +568,7 @@ void postmaster_receive_mail(char_data *ch, char_data *mailman, int cmd, char *a
         /* GET_OBJ_RENT(obj) = 10; */
         obj->action_description = read_delete(GET_IDNUM(ch), &obj_vnum);
 
-        if (obj->action_description == NULL)
+        if (obj->action_description == nullptr)
             obj->action_description = strdup("Mail system error - please report.  Error #11.\r\n");
 
         obj_to_char(obj, ch);
@@ -575,21 +576,21 @@ void postmaster_receive_mail(char_data *ch, char_data *mailman, int cmd, char *a
         if (obj_vnum != NOTHING && real_object(obj_vnum) != NOTHING) {
             mail_obj = read_object(real_object(obj_vnum), REAL);
             obj_to_char(mail_obj, ch);
-            act("$n gives you $p, which was attached to your mail.", FALSE, mailman, mail_obj, ch, TO_VICT);
-            act("$N gives $n $p, which was attached to $S mail.", FALSE, ch, mail_obj, mailman, TO_ROOM);
+            act("$n gives you $p, which was attached to your mail.", false, mailman, mail_obj, ch, TO_VICT);
+            act("$N gives $n $p, which was attached to $S mail.", false, ch, mail_obj, mailman, TO_ROOM);
         }
 
-        act("$n gives you a piece of mail.", FALSE, mailman, 0, ch, TO_VICT);
-        act("$N gives $n a piece of mail.", FALSE, ch, 0, mailman, TO_ROOM);
+        act("$n gives you a piece of mail.", false, mailman, 0, ch, TO_VICT);
+        act("$N gives $n a piece of mail.", false, ch, 0, mailman, TO_ROOM);
     }
 }
 
 void free_mail_index(void) {
-    mail_index_type *next_mail;
-    position_list_type *next_pos;
+    MailIndex *next_mail;
+    PositionList *next_pos;
 
-    extern mail_index_type *mail_index;
-    extern position_list_type *free_list;
+    extern MailIndex *mail_index;
+    extern PositionList *free_list;
 
     while (mail_index) {
         next_mail = mail_index->next;

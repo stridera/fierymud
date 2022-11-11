@@ -40,15 +40,15 @@
 #include "utils.hpp"
 
 /* local functions */
-static void load_effects(FILE *fl, char_data *ch);
-static void load_skills(FILE *fl, char_data *ch);
+static void load_effects(FILE *fl, CharData *ch);
+static void load_skills(FILE *fl, CharData *ch);
 static void scan_slash(const char *line, int *cur, int *max);
-static void write_aliases_ascii(FILE *file, char_data *ch);
-static void read_aliases_ascii(FILE *file, char_data *ch);
-static void load_spell_mem(FILE *file, char_data *ch);
-static void load_cooldowns(FILE *fl, char_data *ch);
+static void write_aliases_ascii(FILE *file, CharData *ch);
+static void read_aliases_ascii(FILE *file, CharData *ch);
+static void load_spell_mem(FILE *file, CharData *ch);
+static void load_cooldowns(FILE *fl, CharData *ch);
 static void load_coins(char *line, int coins[]);
-static void load_clan(char *line, char_data *ch);
+static void load_clan(char *line, CharData *ch);
 
 /*
  * These are the cooldowns that are saved in player files.  End this
@@ -169,12 +169,12 @@ void build_player_index(void) {
     rewind(plr_index);
 
     if (rec_count == 0) {
-        player_table = NULL;
+        player_table = nullptr;
         top_of_p_table = -1;
         return;
     }
 
-    CREATE(player_table, player_index_element, rec_count);
+    CREATE(player_table, PlayerIndexElement, rec_count);
     for (i = 0; i < rec_count; i++) {
         get_line(plr_index, line);
         sscanf(line, "%ld %s %d %s %ld", &player_table[i].id, name, &player_table[i].level, bits,
@@ -196,11 +196,11 @@ int create_player_index_entry(char *name) {
 
     if (top_of_p_table == -1) { /* no table */
         pos = top_of_p_table = 0;
-        CREATE(player_table, player_index_element, 1);
+        CREATE(player_table, PlayerIndexElement, 1);
     } else if ((pos = get_ptable_by_name(name)) == -1) { /* new name */
         i = ++top_of_p_table + 1;
 
-        RECREATE(player_table, player_index_element, i);
+        RECREATE(player_table, PlayerIndexElement, i);
         pos = top_of_p_table;
     }
 
@@ -252,7 +252,7 @@ void free_player_index(void) {
             free(player_table[tp].name);
 
     free(player_table);
-    player_table = NULL;
+    player_table = nullptr;
     top_of_p_table = 0;
 }
 
@@ -281,24 +281,24 @@ char *get_name_by_id(long id) {
 
     for (i = 0; i <= top_of_p_table; i++)
         if (player_table[i].id == id)
-            return (player_table[i].name && *player_table[i].name ? player_table[i].name : NULL);
+            return (player_table[i].name && *player_table[i].name ? player_table[i].name : nullptr);
 
-    return (NULL);
+    return (nullptr);
 }
 
 /* Stuff related to the save/load player system. */
-/* New load_char reads ASCII Player Files. Load a char, TRUE if loaded, FALSE
+/* New load_char reads ASCII Player Files. Load a char, true if loaded, false
  * if not. */
-int load_player(const char *name, char_data *ch) {
+int load_player(const char *name, CharData *ch) {
     int id, i, num;
     FILE *fl;
     char fname[40];
     char buf[MAX_INPUT_LENGTH], line[MAX_INPUT_LENGTH + 1], tag[128];
-    bool found_damroll = FALSE;
-    bool found_hitroll = FALSE;
+    bool found_damroll = false;
+    bool found_hitroll = false;
 
     extern int mortal_start_room;
-    extern void do_wiztitle(char *outbuf, char_data *vict, char *argument);
+    extern void do_wiztitle(char *outbuf, CharData *vict, char *argument);
 
     if ((id = get_ptable_by_name(name)) < 0)
         return (-1);
@@ -313,17 +313,17 @@ int load_player(const char *name, char_data *ch) {
 
     if (!(fl = fopen(fname, "r"))) {
         sprintf(buf, "SYSERR: Couldn't open player file %s", fname);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return (-1);
     }
 
     if (!ch->player_specials)
-        CREATE(ch->player_specials, player_special_data, 1);
+        CREATE(ch->player_specials, PlayerSpecialData, 1);
 
     GET_PFILEPOS(ch) = id;
 
     /* Character initializations. Necessary to keep some things straight. */
-    ch->effects = NULL;
+    ch->effects = nullptr;
     for (i = 1; i <= TOP_SKILL; i++)
         SET_SKILL(ch, i, 0);
     GET_LOADROOM(ch) = mortal_start_room;
@@ -412,7 +412,7 @@ int load_player(const char *name, char_data *ch) {
                 GET_COND(ch, DRUNK) = LIMIT(-1, num, 24);
             else if (!strcmp(tag, "damroll")) {
                 GET_BASE_DAMROLL(ch) = num;
-                found_damroll = TRUE;
+                found_damroll = true;
             } else
                 goto bad_tag;
             break;
@@ -461,7 +461,7 @@ int load_player(const char *name, char_data *ch) {
                 GET_HOMEROOM(ch) = num;
             else if (!strcmp(tag, "hitroll")) {
                 GET_BASE_HITROLL(ch) = num;
-                found_hitroll = TRUE;
+                found_hitroll = true;
             } else
                 goto bad_tag;
             break;
@@ -517,10 +517,10 @@ int load_player(const char *name, char_data *ch) {
 
         case 'O':
             if (!strcmp(tag, "olczones")) {
-                struct olc_zone_list *zone;
+                OLCZoneList *zone;
                 char *next = line;
                 while ((next = any_one_arg(next, buf)) && is_number(buf)) {
-                    CREATE(zone, olc_zone_list, 1);
+                    CREATE(zone, OLCZoneList, 1);
                     zone->zone = atoi(buf);
                     zone->next = GET_OLC_ZONES(ch);
                     GET_OLC_ZONES(ch) = zone;
@@ -704,12 +704,12 @@ int load_player(const char *name, char_data *ch) {
 
 /* Write the vital data of a player to the player file. */
 /* This is the ASCII Player Files save routine. */
-void save_player_char(char_data *ch) {
+void save_player_char(CharData *ch) {
     FILE *fl;
     char fname[PLAYER_FILENAME_LENGTH], frename[PLAYER_FILENAME_LENGTH];
-    int i, id, save_index = FALSE, orig_pos;
-    struct effect *eff, tmp_eff[MAX_EFFECT];
-    struct obj_data *char_eq[NUM_WEARS];
+    int i, id, save_index = false, orig_pos;
+    effect *eff, tmp_eff[MAX_EFFECT];
+    ObjData *char_eq[NUM_WEARS];
 
     if (IS_NPC(ch) || GET_PFILEPOS(ch) < 0) {
         sprintf(buf, "SYSERR: Attempt to save %s (NPC or no PFILEPOS)", GET_NAME(ch));
@@ -753,7 +753,7 @@ void save_player_char(char_data *ch) {
 
     if (!(fl = fopen(fname, "w"))) {
         sprintf(buf, "SYSERR: Couldn't open player file %s for write", fname);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
@@ -770,7 +770,7 @@ void save_player_char(char_data *ch) {
         if (GET_EQ(ch, i))
             char_eq[i] = unequip_char(ch, i);
         else
-            char_eq[i] = NULL;
+            char_eq[i] = nullptr;
     }
 
     for (eff = ch->effects, i = 0; i < MAX_EFFECT; i++) {
@@ -907,7 +907,7 @@ void save_player_char(char_data *ch) {
     fprintf(fl, "experience: %ld\n", GET_EXP(ch));
 
     if (GET_OLC_ZONES(ch)) {
-        struct olc_zone_list *zone;
+        OLCZoneList *zone;
         fprintf(fl, "olczones:");
         for (zone = GET_OLC_ZONES(ch); zone; zone = zone->next)
             fprintf(fl, " %d", zone->zone);
@@ -981,7 +981,7 @@ void save_player_char(char_data *ch) {
     }
 
     if (GET_SPELL_MEM(ch).num_spells) {
-        struct mem_list *mem;
+        MemorizedList *mem;
         fprintf(fl, "mem:\n");
         for (mem = GET_SPELL_MEM(ch).list_head; mem; mem = mem->next)
             fprintf(fl, "%d %d %d\n", mem->spell, mem->can_cast, mem->mem_time);
@@ -1025,11 +1025,11 @@ void save_player_char(char_data *ch) {
 
     /* update the player in the player index */
     if (player_table[id].level != GET_LEVEL(ch)) {
-        save_index = TRUE;
+        save_index = true;
         player_table[id].level = GET_LEVEL(ch);
     }
     if (player_table[id].last != ch->player.time.logon) {
-        save_index = TRUE;
+        save_index = true;
         player_table[id].last = ch->player.time.logon;
     }
     i = player_table[id].flags;
@@ -1073,7 +1073,7 @@ void delete_player(int pfilepos) {
     save_player_index();
 }
 
-void rename_player(char_data *victim, char *newname) {
+void rename_player(CharData *victim, char *newname) {
     int pfilepos = get_ptable_by_name(GET_NAME(victim));
     int i;
     char fname1[40], fname2[40];
@@ -1111,11 +1111,11 @@ void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags) {
     }
 }
 
-static void load_effects(FILE *fl, char_data *ch) {
+static void load_effects(FILE *fl, CharData *ch) {
     int num = 0, num2 = 0, num3 = 0, num4 = 0, i;
     long num5 = 0, num6 = 0, num7 = 0;
     char line[MAX_INPUT_LENGTH + 1];
-    struct effect eff;
+    effect eff;
 
     i = 0;
     do {
@@ -1135,7 +1135,7 @@ static void load_effects(FILE *fl, char_data *ch) {
     } while (num != 0);
 }
 
-static void load_skills(FILE *fl, char_data *ch) {
+static void load_skills(FILE *fl, CharData *ch) {
     int skill = 0, proficiency = 0;
     char line[MAX_INPUT_LENGTH + 1];
 
@@ -1160,8 +1160,8 @@ static void scan_slash(const char *line, int *cur, int *max) {
 }
 
 /* Aliases are now saved in pfiles only. */
-static void write_aliases_ascii(FILE *file, char_data *ch) {
-    struct alias_data *alias;
+static void write_aliases_ascii(FILE *file, CharData *ch) {
+    AliasData *alias;
 
     if (GET_ALIASES(ch)) {
         fprintf(file, "aliases:\n");
@@ -1171,8 +1171,8 @@ static void write_aliases_ascii(FILE *file, char_data *ch) {
     }
 }
 
-static void read_aliases_ascii(FILE *file, char_data *ch) {
-    struct alias_data *alias;
+static void read_aliases_ascii(FILE *file, CharData *ch) {
+    AliasData *alias;
     char *replacement;
 
     do {
@@ -1185,7 +1185,7 @@ static void read_aliases_ascii(FILE *file, char_data *ch) {
         replacement = any_one_arg(buf, buf1);
         skip_spaces(&replacement);
 
-        CREATE(alias, alias_data, 1);
+        CREATE(alias, AliasData, 1);
         alias->alias = strdup(buf1);
         alias->replacement = strdup(replacement);
         if (strchr(replacement, ALIAS_SEP_CHAR) || strchr(replacement, ALIAS_VAR_CHAR))
@@ -1197,12 +1197,12 @@ static void read_aliases_ascii(FILE *file, char_data *ch) {
     } while (strcmp(buf, "0")); /* while buf is not "0" */
 }
 
-static void load_spell_mem(FILE *fl, char_data *ch) {
+static void load_spell_mem(FILE *fl, CharData *ch) {
     int spell, time, can_cast, scanned;
     char line[MAX_INPUT_LENGTH + 1];
     int mem_time;
 
-    int spell_mem_time(char_data * ch, int spell); /* spell_mem.c */
+    int spell_mem_time(CharData * ch, int spell); /* spell_mem.c */
 
     do {
         get_line(fl, line);
@@ -1214,7 +1214,7 @@ static void load_spell_mem(FILE *fl, char_data *ch) {
             time = mem_time;
 
         if (spell != 0)
-            add_spell(ch, spell, can_cast, time, FALSE);
+            add_spell(ch, spell, can_cast, time, false);
     } while (spell != 0);
 }
 
@@ -1231,7 +1231,7 @@ static void load_coins(char *line, int coins[]) {
     }
 }
 
-static void load_cooldowns(FILE *fl, char_data *ch) {
+static void load_cooldowns(FILE *fl, CharData *ch) {
     int cooldown = 0, time = 0, max = 0;
     char line[MAX_INPUT_LENGTH + 1];
 
@@ -1263,19 +1263,19 @@ void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
             }
         } else
             flags[i] = asciiflag_conv(line);
-        line = strtok(NULL, " ");
+        line = strtok(nullptr, " ");
         ++i;
     }
 }
 
-static void load_clan(char *line, char_data *ch) {
-    struct Clan *clan = find_clan(line);
+static void load_clan(char *line, CharData *ch) {
+    Clan *clan = find_clan(line);
     ch->player_specials->clan = find_clan_membership_in_clan(GET_NAME(ch), clan);
     if (GET_CLAN_MEMBERSHIP(ch))
         GET_CLAN_MEMBERSHIP(ch)->player = ch;
 }
 
-void add_perm_title(char_data *ch, char *line) {
+void add_perm_title(CharData *ch, char *line) {
     int i;
     if (!GET_PERM_TITLES(ch)) {
         CREATE(GET_PERM_TITLES(ch), char *, 2);
@@ -1286,7 +1286,7 @@ void add_perm_title(char_data *ch, char *line) {
         RECREATE(GET_PERM_TITLES(ch), char *, i + 2);
     }
     GET_PERM_TITLES(ch)[i] = strdup(line);
-    GET_PERM_TITLES(ch)[i + 1] = NULL;
+    GET_PERM_TITLES(ch)[i + 1] = nullptr;
 }
 
 /*
@@ -1295,13 +1295,13 @@ void add_perm_title(char_data *ch, char *line) {
  * This is called when character creation is confirmed.  In other words,
  * it makes a new player character real.
  */
-void init_player(char_data *ch) {
+void init_player(CharData *ch) {
     extern int mortal_start_room;
     int i;
 
     /* Make sure the character has a player structure */
     if (!ch->player_specials)
-        CREATE(ch->player_specials, player_special_data, 1);
+        CREATE(ch->player_specials, PlayerSpecialData, 1);
 
     init_retained_comms(ch);
 
@@ -1313,10 +1313,10 @@ void init_player(char_data *ch) {
         GET_MAX_MANA(ch) = 100;
     }
 
-    GET_TITLE(ch) = NULL;
+    GET_TITLE(ch) = nullptr;
     GET_PROMPT(ch) = strdup(default_prompts[DEFAULT_PROMPT][1]);
-    GET_LDESC(ch) = NULL;
-    ch->player.description = NULL;
+    GET_LDESC(ch) = nullptr;
+    ch->player.description = nullptr;
     ch->player.time.birth = time(0);
     ch->player.time.played = 0;
     ch->player.time.logon = time(0);
@@ -1348,7 +1348,7 @@ void init_player(char_data *ch) {
 
     GET_HOMEROOM(ch) = mortal_start_room;
     GET_LOADROOM(ch) = NOWHERE;
-    GET_ALIASES(ch) = NULL;
+    GET_ALIASES(ch) = nullptr;
 
     /* Set default preferences */
     SET_FLAG(PRF_FLAGS(ch), PRF_VICIOUS);  /* Finish off opponents */
@@ -1369,12 +1369,12 @@ void init_player(char_data *ch) {
  *   -- first created
  *   -- level is set to 1 by vengeful gods
  */
-void start_player(char_data *ch) {
+void start_player(CharData *ch) {
     GET_LEVEL(ch) = 1;
     GET_EXP(ch) = 1;
     if (GET_TITLE(ch))
         free(GET_TITLE(ch));
-    GET_TITLE(ch) = NULL;
+    GET_TITLE(ch) = nullptr;
     GET_BASE_HIT(ch) = 15;
 
     init_char(ch);
@@ -1393,7 +1393,7 @@ void start_player(char_data *ch) {
     ch->player.time.logon = time(0);
 }
 
-void remove_player_from_game(char_data *ch, int quit_mode) {
+void remove_player_from_game(CharData *ch, int quit_mode) {
     if (!(GET_LEVEL(ch) >= LVL_IMMORT && GET_INVIS_LEV(ch))) {
         all_except_printf(ch, "The world seems to pause momentarily as %s leaves this realm.\r\n", GET_NAME(ch));
     }
@@ -1407,7 +1407,7 @@ void remove_player_from_game(char_data *ch, int quit_mode) {
     extract_char(ch);
 }
 
-void send_save_description(char_data *ch, char_data *dest, bool entering) {
+void send_save_description(CharData *ch, CharData *dest, bool entering) {
     int quitreason = GET_QUIT_REASON(ch);
     int room;
 
@@ -1432,6 +1432,6 @@ void send_save_description(char_data *ch, char_data *dest, bool entering) {
     if (dest) {
         cprintf(dest, "%s\r\n", buf);
     } else {
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
+        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
     }
 }

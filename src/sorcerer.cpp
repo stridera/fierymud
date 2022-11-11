@@ -10,6 +10,8 @@
  *  HubisMUD is based on DikuMUD, Copyright (C) 1990, 1991.                *
  ***************************************************************************/
 
+#include "sorcerer.hpp"
+
 #include "ai.hpp"
 #include "casting.hpp"
 #include "comm.hpp"
@@ -29,73 +31,30 @@
 #include "utils.hpp"
 
 /* Local functions */
-bool check_sorcerer_status(char_data *ch);
+bool check_sorcerer_status(CharData *ch);
 
 /* External functions */
-int mob_cast(char_data *ch, char_data *tch, obj_data *tobj, int spellnum);
-bool affected_by_armor_spells(char_data *ch);
+int mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
+bool affected_by_armor_spells(CharData *ch);
 
-/* Sorcerer spell lists */
-const struct spell_pair mob_sorcerer_buffs[] = {{SPELL_STONE_SKIN, 0, EFF_STONE_SKIN},
-                                                {SPELL_HASTE, 0, EFF_HASTE},
-                                                {SPELL_COLDSHIELD, 0, EFF_COLDSHIELD},
-                                                {SPELL_FIRESHIELD, 0, EFF_FIRESHIELD},
-                                                {SPELL_WATERFORM, 0, 0},
-                                                {SPELL_VAPORFORM, 0, 0},
-                                                {SPELL_NEGATE_HEAT, 0, EFF_NEGATE_HEAT},
-                                                {SPELL_NEGATE_COLD, 0, EFF_NEGATE_COLD},
-                                                {SPELL_MAJOR_GLOBE, 0, EFF_MAJOR_GLOBE},
-                                                {SPELL_MINOR_GLOBE, 0, EFF_MINOR_GLOBE},
-                                                {SPELL_DETECT_INVIS, 0, EFF_DETECT_INVIS},
-                                                {SPELL_INVISIBLE, 0, EFF_INVISIBLE},
-                                                {SPELL_FLY, 0, EFF_FLY},
-                                                {SPELL_MIRAGE, 0, 0},
-                                                {SPELL_MISDIRECTION, 0, EFF_MISDIRECTION},
-                                                {SPELL_ICE_ARMOR, 0, 0},
-                                                {SPELL_BONE_ARMOR, 0, 0},
-                                                {0, 0, 0}};
-
-/* In order of spells to attempt */
-const int mob_sorcerer_offensives[] = {
-    SPELL_DISINTEGRATE,   SPELL_BIGBYS_CLENCHED_FIST, SPELL_ICEBALL,    SPELL_MELT,         SPELL_ACID_BURST,
-    SPELL_POSITIVE_FIELD, SPELL_DEGENERATION,         SPELL_SOUL_TAP,   SPELL_CONE_OF_COLD, SPELL_ENERGY_DRAIN,
-    SPELL_CONFUSION,      SPELL_DISINTEGRATE,         SPELL_NIGHTMARE,  SPELL_MESMERIZE,    SPELL_FEAR,
-    SPELL_FIREBALL,       SPELL_PHOSPHORIC_EMBERS,    SPELL_FREEZE,     SPELL_HYSTERIA,     SPELL_LIGHTNING_BOLT,
-    SPELL_SHOCKING_GRASP, SPELL_CHILL_TOUCH,          SPELL_DETONATION, SPELL_FIRE_DARTS,   SPELL_BURNING_HANDS,
-    SPELL_ICE_DARTS,      SPELL_MAGIC_MISSILE,        SPELL_SMOKE,      SPELL_SOUL_TAP,     0};
-
-const int mob_sorcerer_area_spells[] = {SPELL_CHAIN_LIGHTNING,
-                                        SPELL_COLOR_SPRAY,
-                                        SPELL_CREMATE,
-                                        SPELL_FIRESTORM,
-                                        SPELL_FLOOD,
-                                        SPELL_FREEZING_WIND,
-                                        SPELL_ICE_SHARDS,
-                                        SPELL_ICE_STORM,
-                                        SPELL_METEORSWARM,
-                                        SPELL_SEVERANCE,
-                                        SPELL_SOUL_REAVER,
-                                        SPELL_SUPERNOVA,
-                                        0};
-
-bool sorcerer_ai_action(char_data *ch, char_data *victim) {
+bool sorcerer_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter;
 
     if (!victim) {
-        mudlog("No victim in sorcerer AI action.", NRM, LVL_GOD, FALSE);
-        return FALSE;
+        mudlog("No victim in sorcerer AI action.", NRM, LVL_GOD, false);
+        return false;
     }
 
     my_health = (100 * GET_HIT(ch)) / GET_MAX_HIT(ch);
     victim_health = (100 * GET_HIT(victim)) / GET_MAX_HIT(victim);
 
     /* If mob has low health, maybe try to teleport. */
-    if (my_health < 10 && !PLAYERALLY(ch) && !number(0, 3) && mob_cast(ch, ch, NULL, SPELL_TELEPORT))
-        return TRUE;
+    if (my_health < 10 && !PLAYERALLY(ch) && !number(0, 3) && mob_cast(ch, ch, nullptr, SPELL_TELEPORT))
+        return true;
 
     /* Check buff spells */
     if (victim_health > 15 && check_sorcerer_status(ch))
-        return TRUE;
+        return true;
 
     /* If the victim is grouped, try an area spell first. */
     if (group_size(victim) > 1) {
@@ -103,8 +62,8 @@ bool sorcerer_ai_action(char_data *ch, char_data *victim) {
         for (i = 0; mob_sorcerer_area_spells[i]; i++) {
             if (!GET_SKILL(ch, mob_sorcerer_area_spells[i]))
                 continue;
-            if (mob_cast(ch, victim, NULL, mob_sorcerer_area_spells[i]))
-                return TRUE;
+            if (mob_cast(ch, victim, nullptr, mob_sorcerer_area_spells[i]))
+                return true;
             /* Only try the mob's best two spells. */
             if (++counter >= 2)
                 break;
@@ -113,19 +72,19 @@ bool sorcerer_ai_action(char_data *ch, char_data *victim) {
 
     /* Sorcerers get 13% chance to cast harness. */
     if (GET_SKILL(ch, SPELL_HARNESS) && !EFF_FLAGGED(ch, EFF_HARNESS) && FIGHTING(ch) && victim_health > 75 &&
-        !number(0, 6) && mob_cast(ch, ch, NULL, SPELL_HARNESS))
-        return TRUE;
+        !number(0, 6) && mob_cast(ch, ch, nullptr, SPELL_HARNESS))
+        return true;
 
     /* Necromancers get 10% chance to cast poison. */
     if (GET_SKILL(ch, SPELL_POISON) && !EFF_FLAGGED(ch, EFF_POISON) && victim_health > 75 && !number(0, 9) &&
-        mob_cast(ch, victim, NULL, SPELL_POISON))
-        return TRUE;
+        mob_cast(ch, victim, nullptr, SPELL_POISON))
+        return true;
 
     /* Try and cast ray of enfeeblement! */
     if (GET_SKILL(ch, SPELL_RAY_OF_ENFEEB) && !EFF_FLAGGED(victim, EFF_RAY_OF_ENFEEB) &&
         /* Better chance to attempt if victim in good condition. */
-        !number(0, (victim_health > 80) ? 2 : 7) && mob_cast(ch, victim, NULL, SPELL_RAY_OF_ENFEEB))
-        return TRUE;
+        !number(0, (victim_health > 80) ? 2 : 7) && mob_cast(ch, victim, nullptr, SPELL_RAY_OF_ENFEEB))
+        return true;
 
     counter = 0;
     /* Single-target offensive spell */
@@ -146,31 +105,31 @@ bool sorcerer_ai_action(char_data *ch, char_data *victim) {
             break;
         }
 
-        if (mob_cast(ch, victim, NULL, mob_sorcerer_offensives[i]))
-            return TRUE;
+        if (mob_cast(ch, victim, nullptr, mob_sorcerer_offensives[i]))
+            return true;
 
         /* Only attempt to cast this mob's best 3 spells. */
         if (++counter >= 3)
             break;
     }
 
-    return FALSE;
+    return false;
 }
 
 /* This checks mob buffs. */
-bool check_sorcerer_status(char_data *ch) {
+bool check_sorcerer_status(CharData *ch) {
     int i;
 
     for (i = 0; mob_sorcerer_buffs[i].spell; i++) {
         if (!GET_SKILL(ch, mob_sorcerer_buffs[i].spell) ||
-            !check_fluid_spell_ok(ch, ch, mob_sorcerer_buffs[i].spell, TRUE))
+            !check_fluid_spell_ok(ch, ch, mob_sorcerer_buffs[i].spell, true))
             continue;
 
         if (!valid_cast_stance(ch, i))
             continue;
         /* 20% chance to cancel if in combat. */
         if (FIGHTING(ch) && number(0, 9) < 2)
-            return FALSE;
+            return false;
         switch (mob_sorcerer_buffs[i].spell) {
         case SPELL_COLDSHIELD:
         case SPELL_FIRESHIELD:
@@ -204,24 +163,24 @@ bool check_sorcerer_status(char_data *ch) {
             if (has_effect(ch, &mob_sorcerer_buffs[i]))
                 continue;
         }
-        if (mob_cast(ch, ch, NULL, mob_sorcerer_buffs[i].spell))
-            return TRUE;
+        if (mob_cast(ch, ch, nullptr, mob_sorcerer_buffs[i].spell))
+            return true;
     }
 
-    return FALSE;
+    return false;
 }
 
-bool mob_animate(char_data *ch) {
-    struct obj_data *obj;
+bool mob_animate(CharData *ch) {
+    ObjData *obj;
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_NOMAGIC) || EFF_FLAGGED(ch, EFF_SILENCE))
-        return FALSE;
+        return false;
 
     for (obj = world[ch->in_room].contents; obj; obj = obj->next_content)
         /* There's no IS_NPC_CORPSE macro */
         if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER && GET_OBJ_VAL(obj, VAL_CONTAINER_CORPSE) == CORPSE_NPC &&
             GET_OBJ_MOB_FROM(obj) != NOBODY && GET_LEVEL(mob_proto + GET_OBJ_MOB_FROM(obj)) + 10 < GET_LEVEL(ch))
-            return mob_cast(ch, NULL, obj, SPELL_ANIMATE_DEAD);
+            return mob_cast(ch, nullptr, obj, SPELL_ANIMATE_DEAD);
 
-    return FALSE;
+    return false;
 }

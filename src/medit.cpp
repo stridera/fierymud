@@ -52,7 +52,7 @@
 /*-------------------------------------------------------------------*/
 /* external variables */
 
-extern struct player_special_data dummy_mob;
+PlayerSpecialData dummy_mob;
 
 /*-------------------------------------------------------------------*/
 /*. Handy  macros .*/
@@ -68,22 +68,22 @@ extern struct player_special_data dummy_mob;
 /*-------------------------------------------------------------------*/
 /*. Function prototypes .*/
 int get_ac(int level, int race, int class_num);
-void medit_parse(descriptor_data *d, char *arg);
-void medit_disp_menu(descriptor_data *d);
-void medit_setup_new(descriptor_data *d);
-void medit_setup_existing(descriptor_data *d, int rmob_num);
-void medit_save_internally(descriptor_data *d);
+void medit_parse(DescriptorData *d, char *arg);
+void medit_disp_menu(DescriptorData *d);
+void medit_setup_new(DescriptorData *d);
+void medit_setup_existing(DescriptorData *d, int rmob_num);
+void medit_save_internally(DescriptorData *d);
 void medit_save_to_disk(int zone_num);
-void init_mobile(char_data *mob);
-void copy_mobile(char_data *tmob, char_data *fmob);
-void medit_disp_stances(descriptor_data *d);
-void medit_disp_positions(descriptor_data *d);
-void medit_disp_mob_flags(descriptor_data *d);
-void medit_disp_aff_flags(descriptor_data *d);
-void medit_disp_attack_types(descriptor_data *d);
-void medit_class_types(descriptor_data *d);
-void medit_size(descriptor_data *d);
-void medit_race_types(descriptor_data *d);
+void init_mobile(CharData *mob);
+void copy_mobile(CharData *tmob, CharData *fmob);
+void medit_disp_stances(DescriptorData *d);
+void medit_disp_positions(DescriptorData *d);
+void medit_disp_mob_flags(DescriptorData *d);
+void medit_disp_aff_flags(DescriptorData *d);
+void medit_disp_attack_types(DescriptorData *d);
+void medit_class_types(DescriptorData *d);
+void medit_size(DescriptorData *d);
+void medit_race_types(DescriptorData *d);
 long get_set_exp(int, int, int, int);
 sh_int get_set_hit(int, int, int, int);
 sbyte get_set_hd(int, int, int, int);
@@ -98,7 +98,7 @@ int get_set_dice(int, int, int, int);
  * Take care of existing mobiles and their mob_proto!
  * * * * */
 
-void medit_free_mobile(char_data *mob) {
+void medit_free_mobile(CharData *mob) {
     int i;
     /*
      * Non-prototyped mobile.  Also known as new mobiles.
@@ -134,11 +134,11 @@ void medit_free_mobile(char_data *mob) {
     free(mob);
 }
 
-void medit_setup_new(descriptor_data *d) {
-    struct char_data *mob;
+void medit_setup_new(DescriptorData *d) {
+    CharData *mob;
 
     /*. Alloc some mob shaped space . */
-    CREATE(mob, char_data, 1);
+    CREATE(mob, CharData, 1);
 
     init_mobile(mob);
 
@@ -164,13 +164,13 @@ void medit_setup_new(descriptor_data *d) {
 
 /*-------------------------------------------------------------------*/
 
-void medit_setup_existing(descriptor_data *d, int rmob_num) {
-    struct char_data *mob;
+void medit_setup_existing(DescriptorData *d, int rmob_num) {
+    CharData *mob;
 
     /*
      * Allocate a scratch mobile structure.
      */
-    CREATE(mob, char_data, 1);
+    CREATE(mob, CharData, 1);
 
     copy_mobile(mob, mob_proto + rmob_num);
 
@@ -184,7 +184,7 @@ void medit_setup_existing(descriptor_data *d, int rmob_num) {
 /*-------------------------------------------------------------------*/
 /*. Copy one mob struct to another .*/
 
-void copy_mobile(char_data *tmob, char_data *fmob) {
+void copy_mobile(CharData *tmob, CharData *fmob) {
     /*. Free up any used strings . */
     if (GET_NAMELIST(tmob))
         free(GET_NAMELIST(tmob));
@@ -217,7 +217,7 @@ void copy_mobile(char_data *tmob, char_data *fmob) {
 /*. Ideally, this function should be in db.c, but I'll put it here for
   portability.*/
 
-void init_mobile(char_data *mob) {
+void init_mobile(CharData *mob) {
     clear_char(mob);
 
     /*GET_HIT(mob) = 5;
@@ -252,12 +252,12 @@ void init_mobile(char_data *mob) {
 
 #define ZCMD (zone_table[zone].cmd[cmd_no])
 
-void medit_save_internally(descriptor_data *d) {
+void medit_save_internally(DescriptorData *d) {
     int rmob_num, found = 0, new_mob_num = 0, zone, cmd_no, shop;
-    struct char_data *new_proto;
-    struct index_data *new_index;
-    struct char_data *live_mob;
-    struct descriptor_data *dsc;
+    CharData *new_proto;
+    IndexData *new_index;
+    CharData *live_mob;
+    DescriptorData *dsc;
 
     int i;
     /* put the script into proper position */
@@ -272,8 +272,8 @@ void medit_save_internally(descriptor_data *d) {
          * Are we purging?
          */
         if (OLC_MODE(d) == MEDIT_PURGE_MOBILE) {
-            struct char_data *placeholder;
-            void extract_char(char_data * ch); /* leaves eq behind.. */
+            CharData *placeholder;
+            void extract_char(CharData * ch); /* leaves eq behind.. */
 
             for (live_mob = character_list; live_mob; live_mob = live_mob->next) {
                 if (IS_MOB(live_mob) && GET_MOB_RNUM(live_mob) == rmob_num) {
@@ -288,8 +288,8 @@ void medit_save_internally(descriptor_data *d) {
 #endif
                 }
             }
-            CREATE(new_proto, char_data, top_of_mobt);
-            CREATE(new_index, index_data, top_of_mobt);
+            CREATE(new_proto, CharData, top_of_mobt);
+            CREATE(new_index, IndexData, top_of_mobt);
 #if defined(DEBUG)
             fprintf(stderr, "looking to destroy %d (%d)\n", rmob_num, mob_index[rmob_num].vnum);
 #endif
@@ -298,7 +298,7 @@ void medit_save_internally(descriptor_data *d) {
                     /*    if ((rmob_num > top_of_mobt) || (mob_index[rmob_num].vnum >
                      * OLC_NUM(d))) */
                     if (i == rmob_num) {
-                        found = TRUE;
+                        found = true;
                         /* don't copy..it will be blatted by the free later */
                     } else { /* Nope, copy over as normal. */
                         new_index[i] = mob_index[i];
@@ -379,8 +379,8 @@ void medit_save_internally(descriptor_data *d) {
         fprintf(stderr, "top_of_mobt: %d, new top_of_mobt: %d\n", top_of_mobt, top_of_mobt + 1);
 #endif
 
-        CREATE(new_proto, char_data, top_of_mobt + 2);
-        CREATE(new_index, index_data, top_of_mobt + 2);
+        CREATE(new_proto, CharData, top_of_mobt + 2);
+        CREATE(new_index, IndexData, top_of_mobt + 2);
 
         for (rmob_num = 0; rmob_num <= top_of_mobt; rmob_num++) {
             if (!found) { /* Is this the place? */
@@ -390,13 +390,13 @@ void medit_save_internally(descriptor_data *d) {
                     /*
                      * Yep, stick it here.
                      */
-                    found = TRUE;
+                    found = true;
 #if defined(DEBUG)
                     fprintf(stderr, "Inserted: rmob_num: %d\n", rmob_num);
 #endif
                     new_index[rmob_num].vnum = OLC_NUM(d);
                     new_index[rmob_num].number = 0;
-                    new_index[rmob_num].func = NULL;
+                    new_index[rmob_num].func = nullptr;
                     new_mob_num = rmob_num;
                     GET_MOB_RNUM(OLC_MOB(d)) = rmob_num;
                     copy_mobile((new_proto + rmob_num), OLC_MOB(d));
@@ -426,7 +426,7 @@ void medit_save_internally(descriptor_data *d) {
 #endif
             new_index[rmob_num].vnum = OLC_NUM(d);
             new_index[rmob_num].number = 0;
-            new_index[rmob_num].func = NULL;
+            new_index[rmob_num].func = nullptr;
             new_mob_num = rmob_num;
             GET_MOB_RNUM(OLC_MOB(d)) = rmob_num;
             copy_mobile((new_proto + rmob_num), OLC_MOB(d));
@@ -506,14 +506,14 @@ void medit_save_to_disk(int zone_num) {
     int i, rmob_num, zone, top;
     FILE *mob_file;
     char fname[64];
-    struct char_data *mob;
+    CharData *mob;
 
     zone = zone_table[zone_num].number;
     top = zone_table[zone_num].top;
 
     sprintf(fname, "%s/%d.new", MOB_PREFIX, zone);
     if (!(mob_file = fopen(fname, "w"))) {
-        mudlog("SYSERR: OLC: Cannot open mob file!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: Cannot open mob file!", BRF, LVL_GOD, true);
         return;
     }
 
@@ -523,7 +523,7 @@ void medit_save_to_disk(int zone_num) {
     for (i = zone * 100; i <= top; i++) {
         if ((rmob_num = real_mobile(i)) != -1) {
             if (fprintf(mob_file, "#%d\n", i) < 0) {
-                mudlog("SYSERR: OLC: Cannot write mob file!\r\n", BRF, LVL_GOD, TRUE);
+                mudlog("SYSERR: OLC: Cannot write mob file!\r\n", BRF, LVL_GOD, true);
                 fclose(mob_file);
                 return;
             }
@@ -607,7 +607,7 @@ void medit_save_to_disk(int zone_num) {
  *                Menu functions                               *
  *************************************************************************/
 
-void medit_disp_stances(descriptor_data *d) {
+void medit_disp_stances(DescriptorData *d) {
     int i;
 
     get_char_cols(d->character);
@@ -624,7 +624,7 @@ void medit_disp_stances(descriptor_data *d) {
 
 /*. Display positions (sitting, standing etc) .*/
 
-void medit_disp_positions(descriptor_data *d) {
+void medit_disp_positions(DescriptorData *d) {
     int i;
 
     get_char_cols(d->character);
@@ -645,7 +645,7 @@ void medit_disp_positions(descriptor_data *d) {
  * Display the gender of the mobile.
  */
 
-void medit_disp_sex(descriptor_data *d) {
+void medit_disp_sex(DescriptorData *d) {
     int i;
 
     get_char_cols(d->character);
@@ -665,7 +665,7 @@ void medit_disp_sex(descriptor_data *d) {
  * Display the mobile's size! -- Cas
  */
 
-void medit_size(descriptor_data *d) {
+void medit_size(DescriptorData *d) {
     int i;
 
     get_char_cols(d->character);
@@ -683,7 +683,7 @@ void medit_size(descriptor_data *d) {
 /*-------------------------------------------------------------------*/
 /*. Display attack types menu .*/
 
-void medit_disp_attack_types(descriptor_data *d) {
+void medit_disp_attack_types(DescriptorData *d) {
     int i;
 
     get_char_cols(d->character);
@@ -701,7 +701,7 @@ void medit_disp_attack_types(descriptor_data *d) {
 /*. Display mob-flags menu .*/
 
 #define FLAG_INDEX ((NUM_MOB_FLAGS / columns + 1) * j + i)
-void medit_disp_mob_flags(descriptor_data *d) {
+void medit_disp_mob_flags(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -728,7 +728,7 @@ void medit_disp_mob_flags(descriptor_data *d) {
 
 #undef FLAG_INDEX
 
-void medit_class_types(descriptor_data *d) {
+void medit_class_types(DescriptorData *d) {
     int i;
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
@@ -741,7 +741,7 @@ void medit_class_types(descriptor_data *d) {
     send_to_char("Enter Class:\r\n", d->character);
 }
 
-void medit_race_types(descriptor_data *d) {
+void medit_race_types(DescriptorData *d) {
     int i;
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
@@ -759,7 +759,7 @@ void medit_race_types(descriptor_data *d) {
 /*. Display aff-flags menu .*/
 
 #define FLAG_INDEX ((NUM_EFF_FLAGS / columns + 1) * j + i)
-void medit_disp_aff_flags(descriptor_data *d) {
+void medit_disp_aff_flags(DescriptorData *d) {
     const int columns = 3;
     int i, j;
 
@@ -787,7 +787,7 @@ void medit_disp_aff_flags(descriptor_data *d) {
 /*-------------------------------------------------------------------*/
 /*. Display life forces menu .*/
 
-void medit_disp_lifeforces(descriptor_data *d) {
+void medit_disp_lifeforces(DescriptorData *d) {
     int i;
 
 #if defined(CLEAR_SCREEN)
@@ -804,7 +804,7 @@ void medit_disp_lifeforces(descriptor_data *d) {
 /*-------------------------------------------------------------------*/
 /*. Display compositions menu .*/
 
-void medit_disp_compositions(descriptor_data *d) {
+void medit_disp_compositions(DescriptorData *d) {
 #if defined(CLEAR_SCREEN)
     send_to_char("[H[J", d->character);
 #endif
@@ -818,8 +818,8 @@ void medit_disp_compositions(descriptor_data *d) {
 /*
  * Display main menu.
  */
-void medit_disp_menu(descriptor_data *d) {
-    struct char_data *mob;
+void medit_disp_menu(DescriptorData *d) {
+    CharData *mob;
 
     mob = OLC_MOB(d);
     get_char_cols(d->character);
@@ -892,7 +892,7 @@ void medit_disp_menu(descriptor_data *d) {
  *                The GARGANTAUN event handler                      *
  **************************************************************************/
 
-void medit_parse(descriptor_data *d, char *arg) {
+void medit_parse(DescriptorData *d, char *arg) {
     int i;
     if (OLC_MODE(d) > MEDIT_NUMERICAL_RESPONSE) {
         if (!*arg || (!isdigit(arg[0]) && ((*arg == '-') && (!isdigit(arg[1]))))) {
@@ -913,7 +913,7 @@ void medit_parse(descriptor_data *d, char *arg) {
             send_to_char("Saving mobile to memory.\r\n", d->character);
             medit_save_internally(d);
             sprintf(buf, "OLC: %s edits mob %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             /* FALL THROUGH */
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
@@ -1162,7 +1162,7 @@ void medit_parse(descriptor_data *d, char *arg) {
          * We should never get here.
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: medit_parse(): Reached D_DESC case!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: medit_parse(): Reached D_DESC case!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         break;
         /*-------------------------------------------------------------------*/
@@ -1349,7 +1349,7 @@ void medit_parse(descriptor_data *d, char *arg) {
             /*ok..we use save internally, but we are purging because of the mode */
             medit_save_internally(d);
             sprintf(buf, "OLC: %s PURGES mob %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             /* FALL THROUGH */
         case 'n':
         case 'N':
@@ -1366,7 +1366,7 @@ void medit_parse(descriptor_data *d, char *arg) {
     default:
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: medit_parse(): Reached default case!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: medit_parse(): Reached default case!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         break;
     }
@@ -1407,13 +1407,13 @@ void medit_parse(descriptor_data *d, char *arg) {
 
 bool delete_mobile(obj_num rnum) {
     int i, vnum, zrnum, zone, cmd_no;
-    struct char_data *mob, *tmp, *next;
+    CharData *mob, *tmp, *next;
     bool save_this_zone, mload_just_deleted;
 
     if (rnum == NOTHING || rnum > top_of_mobt) {
         sprintf(buf, "ERR: delete_mobile() rnum %d out of range", rnum);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
-        return FALSE;
+        mudlog(buf, NRM, LVL_GOD, true);
+        return false;
     }
 
     mob = &mob_proto[rnum];
@@ -1422,8 +1422,8 @@ bool delete_mobile(obj_num rnum) {
     zrnum = find_real_zone_by_room(GET_MOB_VNUM(mob));
     if (zrnum == -1) {
         sprintf(buf, "ERR: delete_mobile() can't identify zone for mob vnum %d", vnum);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
-        return FALSE;
+        mudlog(buf, NRM, LVL_GOD, true);
+        return false;
     }
 
     for (tmp = character_list; tmp; tmp = next) {
@@ -1448,13 +1448,13 @@ bool delete_mobile(obj_num rnum) {
     }
 
     top_of_mobt--;
-    RECREATE(mob_index, index_data, top_of_mobt + 1);
-    RECREATE(mob_proto, char_data, top_of_mobt + 1);
+    RECREATE(mob_index, IndexData, top_of_mobt + 1);
+    RECREATE(mob_proto, CharData, top_of_mobt + 1);
 
     /* Renumber zone table. */
     for (zone = 0; zone <= top_of_zone_table; zone++) {
-        save_this_zone = FALSE;
-        mload_just_deleted = FALSE;
+        save_this_zone = false;
+        mload_just_deleted = false;
         for (cmd_no = 0; ZCMD.command != 'S'; cmd_no++) {
             switch (ZCMD.command) {
             case 'E':
@@ -1466,22 +1466,22 @@ bool delete_mobile(obj_num rnum) {
                 if (mload_just_deleted) {
                     delete_zone_command(&zone_table[zone], cmd_no);
                     cmd_no--;
-                    save_this_zone = TRUE;
+                    save_this_zone = true;
                 }
                 break;
             case 'M':
                 if (ZCMD.arg1 == rnum) {
                     delete_zone_command(&zone_table[zone], cmd_no);
                     cmd_no--;
-                    mload_just_deleted = TRUE;
-                    save_this_zone = TRUE;
+                    mload_just_deleted = true;
+                    save_this_zone = true;
                 } else {
                     ZCMD.arg1 -= (ZCMD.arg1 > rnum);
-                    mload_just_deleted = FALSE;
+                    mload_just_deleted = false;
                 }
                 break;
             default:
-                mload_just_deleted = FALSE;
+                mload_just_deleted = false;
             }
         }
         if (save_this_zone) {
@@ -1491,5 +1491,5 @@ bool delete_mobile(obj_num rnum) {
 
     olc_add_to_save_list(zone_table[zrnum].number, OLC_SAVE_MOB);
 
-    return TRUE;
+    return true;
 }

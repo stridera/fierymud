@@ -12,7 +12,8 @@
 
 #include "pfiles.hpp"
 
-#include "act.hpp" #include "casting.hpp"
+#include "act.hpp"
+#include "casting.hpp"
 #include "comm.hpp"
 #include "conf.hpp"
 #include "constants.hpp"
@@ -35,15 +36,15 @@
 /* Extern functions */
 ACMD(do_tell);
 
-static void extract_unrentables(char_data *ch);
+static void extract_unrentables(CharData *ch);
 static bool write_rent_code(FILE *fl, int rentcode);
-static bool write_object_record(obj_data *obj, FILE *fl, int location);
+static bool write_object_record(ObjData *obj, FILE *fl, int location);
 int delete_objects_file(char *name);
-static void read_objects(char_data *ch, FILE *fl);
-static void list_objects(obj_data *obj, char_data *ch, int indent, int last_indent, const char *first_indent);
-static bool load_binary_objects(char_data *ch);
+static void read_objects(CharData *ch, FILE *fl);
+static void list_objects(ObjData *obj, CharData *ch, int indent, int last_indent, const char *first_indent);
+static bool load_binary_objects(CharData *ch);
 
-void save_player_objects(char_data *ch) {
+void save_player_objects(CharData *ch) {
     FILE *fl;
     int i;
     char filename[MAX_INPUT_LENGTH], tempfilename[MAX_INPUT_LENGTH];
@@ -53,23 +54,23 @@ void save_player_objects(char_data *ch) {
 
     if (!get_pfilename(GET_NAME(ch), tempfilename, TEMP_FILE)) {
         sprintf(buf, "SYSERR: Couldn't make temporary file name for saving objects for %s.", GET_NAME(ch));
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), filename, OBJ_FILE)) {
         sprintf(buf, "SYSERR: Couldn't make final file name for saving objects for %s.", GET_NAME(ch));
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
     if (!(fl = fopen(tempfilename, "w"))) {
         sprintf(buf, "SYSERR: Couldn't open player file %s for write", tempfilename);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
-    if (ch->carrying == NULL) {
+    if (ch->carrying == nullptr) {
         for (i = 0; i < NUM_WEARS && !GET_EQ(ch, i); ++i)
             ;
         if (i == NUM_WEARS) { /* No equipment or inventory. */
@@ -106,17 +107,17 @@ void save_player_objects(char_data *ch) {
     }
 }
 
-static bool is_object_unrentable(obj_data *obj) {
+static bool is_object_unrentable(ObjData *obj) {
     if (!obj)
-        return FALSE;
+        return false;
 
     if (OBJ_FLAGGED(obj, ITEM_NORENT))
-        return TRUE;
+        return true;
 
-    return FALSE;
+    return false;
 }
 
-static void extract_unrentables_from_list(obj_data *obj) {
+static void extract_unrentables_from_list(ObjData *obj) {
     if (obj) {
         extract_unrentables_from_list(obj->contains);
         extract_unrentables_from_list(obj->next_content);
@@ -125,7 +126,7 @@ static void extract_unrentables_from_list(obj_data *obj) {
     }
 }
 
-static void extract_unrentables(char_data *ch) {
+static void extract_unrentables(CharData *ch) {
     int i;
 
     for (i = 0; i < NUM_WEARS; ++i)
@@ -141,12 +142,12 @@ static void extract_unrentables(char_data *ch) {
 
 static bool write_rent_code(FILE *fl, int rentcode) {
     fprintf(fl, "%d\n", rentcode);
-    return FALSE;
+    return false;
 }
 
-bool write_objects(obj_data *obj, FILE *fl, int location) {
-    struct obj_data *temp;
-    bool success = TRUE;
+bool write_objects(ObjData *obj, FILE *fl, int location) {
+    ObjData *temp;
+    bool success = true;
 
     if (obj) {
         /*
@@ -175,12 +176,12 @@ bool write_objects(obj_data *obj, FILE *fl, int location) {
     return success;
 }
 
-static bool write_object_record(obj_data *obj, FILE *fl, int location) {
+static bool write_object_record(ObjData *obj, FILE *fl, int location) {
     int i;
-    struct extra_descr_data *desc;
-    struct spell_book_list *spell;
-    trig_data *trig;
-    struct trig_var_data *var;
+    ExtraDescriptionData *desc;
+    SpellBookList *spell;
+    TrigData *trig;
+    TriggerVariableData *var;
 
     fprintf(fl, "vnum: %d\n", GET_OBJ_VNUM(obj));
     fprintf(fl, "location: %d\n", location);
@@ -262,13 +263,13 @@ static bool write_object_record(obj_data *obj, FILE *fl, int location) {
 
     fprintf(fl, "~~\n");
 
-    return TRUE;
+    return true;
 }
 
-void show_rent(char_data *ch, char *argument) {
+void show_rent(CharData *ch, char *argument) {
     char name[MAX_INPUT_LENGTH];
     FILE *fl;
-    struct char_data *tch;
+    CharData *tch;
     int i;
     bool found;
 
@@ -279,7 +280,7 @@ void show_rent(char_data *ch, char *argument) {
         return;
     }
 
-    fl = open_player_obj_file(name, ch, FALSE);
+    fl = open_player_obj_file(name, ch, false);
     if (!fl)
         return;
 
@@ -303,14 +304,14 @@ void show_rent(char_data *ch, char *argument) {
 
     fclose(fl);
 
-    for (i = 0, found = FALSE; i < NUM_WEARS; ++i)
+    for (i = 0, found = false; i < NUM_WEARS; ++i)
         if (GET_EQ(tch, i)) {
-            found = TRUE;
+            found = true;
             break;
         }
 
     if (found) {
-        act("\r\n$N is wearing:", FALSE, ch, 0, tch, TO_CHAR);
+        act("\r\n$N is wearing:", false, ch, 0, tch, TO_CHAR);
         for (i = 0; i < NUM_WEARS; ++i)
             if (GET_EQ(tch, wear_order_index[i]))
                 list_objects(GET_EQ(tch, wear_order_index[i]), ch, strlen(where[wear_order_index[i]]), 0,
@@ -318,8 +319,8 @@ void show_rent(char_data *ch, char *argument) {
     }
 
     if (tch->carrying) {
-        act("\r\n$N is carrying:", FALSE, ch, 0, tch, TO_CHAR);
-        list_objects(tch->carrying, ch, 1, 0, NULL);
+        act("\r\n$N is carrying:", false, ch, 0, tch, TO_CHAR);
+        list_objects(tch->carrying, ch, 1, 0, nullptr);
     }
 
     extract_objects(tch);
@@ -329,12 +330,12 @@ void show_rent(char_data *ch, char *argument) {
     extract_char(tch);
 }
 
-static void list_objects(obj_data *list, char_data *ch, int indent, int last_indent, const char *first_indent) {
-    struct obj_data *i, *j, *display;
+static void list_objects(ObjData *list, CharData *ch, int indent, int last_indent, const char *first_indent) {
+    ObjData *i, *j, *display;
     int pos, num;
     static char buf[100];
 
-#define PRETTY_INDENTATION FALSE
+#define PRETTY_INDENTATION false
 #define OBJECTS_MATCH(x, y)                                                                                            \
     ((x)->item_number == (y)->item_number &&                                                                           \
      ((x)->short_description == (y)->short_description || !strcmp((x)->short_description, (y)->short_description)) &&  \
@@ -377,17 +378,17 @@ static void list_objects(obj_data *list, char_data *ch, int indent, int last_ind
                 cprintf(ch, "%s", buf);
             if (num != 1)
                 cprintf(ch, "[%d] ", num);
-            print_obj_to_char(display, ch, SHOW_SHORT_DESC | SHOW_FLAGS, NULL);
+            print_obj_to_char(display, ch, SHOW_SHORT_DESC | SHOW_FLAGS, nullptr);
             if (display->contains) {
-                list_objects(display->contains, ch, indent + 3, indent, NULL);
+                list_objects(display->contains, ch, indent + 3, indent, nullptr);
                 last_indent = indent;
             }
         }
     }
 }
 
-void save_quests(char_data *ch) {
-    struct quest_list *curr;
+void save_quests(CharData *ch) {
+    QuestList *curr;
     FILE *fp;
     char fname[PLAYER_FILENAME_LENGTH], frename[PLAYER_FILENAME_LENGTH];
 
@@ -405,14 +406,14 @@ void save_quests(char_data *ch) {
 
     if (!(fp = fopen(fname, "w"))) {
         sprintf(buf, "SYSERR: save_quests() couldn't open file %s for write", fname);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
     curr = ch->quests;
     while (curr) {
         int var_count;
-        struct quest_var_list *vars;
+        QuestVariableList *vars;
 
         var_count = 0;
         vars = curr->variables;
@@ -426,7 +427,7 @@ void save_quests(char_data *ch) {
         fprintf(fp, "%d %d %d\n", curr->quest_id, curr->stage, var_count);
 
         while (vars) {
-            struct quest_var_list *temp;
+            QuestVariableList *temp;
             temp = vars->next;
 
             fprintf(fp, "%s %s\n", vars->var, vars->val);
@@ -446,10 +447,10 @@ void save_quests(char_data *ch) {
     }
 }
 
-void save_pets(char_data *ch) {
+void save_pets(CharData *ch) {
     FILE *fp;
     char fname[PLAYER_FILENAME_LENGTH], frename[PLAYER_FILENAME_LENGTH];
-    struct follow_type *k;
+    FollowType *k;
 
     if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
         sprintf(buf, "SYSERR: save_pets() couldn't get temp file name for %s.", GET_NAME(ch));
@@ -465,7 +466,7 @@ void save_pets(char_data *ch) {
 
     if (!(fp = fopen(fname, "w"))) {
         sprintf(buf, "SYSERR: save_pets() couldn't open file %s for write", fname);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
@@ -511,20 +512,20 @@ int delete_objects_file(char *name) {
     return (1);
 }
 
-bool delete_player_obj_file(char_data *ch) {
+bool delete_player_obj_file(CharData *ch) {
     char fname[MAX_INPUT_LENGTH], buf[MAX_INPUT_LENGTH];
     FILE *fl;
     int rent_code;
 
     if (!get_pfilename(GET_NAME(ch), fname, OBJ_FILE))
-        return FALSE;
+        return false;
 
     if (!(fl = fopen(fname, "r"))) {
         if (errno != ENOENT) { /* if it fails, NOT because of no file */
             sprintf(buf1, "SYSERR: checking for object file %s (3)", fname);
             perror(buf1);
         }
-        return FALSE;
+        return false;
     }
 
     if (get_line(fl, buf)) {
@@ -535,10 +536,10 @@ bool delete_player_obj_file(char_data *ch) {
 
     fclose(fl);
 
-    return TRUE;
+    return true;
 }
 
-static int auto_equip(char_data *ch, obj_data *obj, int location) {
+static int auto_equip(CharData *ch, ObjData *obj, int location) {
     if (location >= 0 && location != WEAR_INVENTORY) {
         if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch))
             location = WEAR_INVENTORY;
@@ -561,7 +562,7 @@ static int auto_equip(char_data *ch, obj_data *obj, int location) {
 /*
  * Code to auto-equip objects from legacy binary object files.
  */
-static int binary_auto_equip(char_data *ch, obj_data *obj, int location) {
+static int binary_auto_equip(CharData *ch, ObjData *obj, int location) {
     if (location > 0)
         location = (auto_equip(ch, obj, location - 1) != WEAR_INVENTORY);
     if (location <= 0)
@@ -571,26 +572,26 @@ static int binary_auto_equip(char_data *ch, obj_data *obj, int location) {
 
 /*
  * Parses and allocates memory for an object from a file.  Returns
- * TRUE if successful and FALSE otherwise.  When TRUE is returned,
+ * true if successful and false otherwise.  When true is returned,
  * *obj will point to the object and *location will be the object's
  * location when saved (negative numbers denote objects within
  * containers).
  */
-bool build_object(FILE *fl, obj_data **objp, int *location) {
-    struct obj_data *obj, *proto;
+bool build_object(FILE *fl, ObjData **objp, int *location) {
+    ObjData *obj, *proto;
     int num, num2, apply = 0;
     float f;
     char line[MAX_INPUT_LENGTH], tag[128], *value;
-    struct extra_descr_data *desc, *last_desc = NULL;
-    struct spell_book_list *spell, *last_spell;
-    trig_data *trig;
+    ExtraDescriptionData *desc, *last_desc = nullptr;
+    SpellBookList *spell, *last_spell;
+    TrigData *trig;
 
-    extern void add_var(trig_var_data * *var_list, const char *name, const char *value);
+    extern void add_var(TriggerVariableData * *var_list, const char *name, const char *value);
 
     if (!objp || !location) {
         sprintf(buf, "SYSERR: Invalid obj or location pointers passed to build_object");
         log(buf);
-        return FALSE;
+        return false;
     }
 
     *objp = obj = create_obj();
@@ -636,7 +637,7 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
             if (!strcmp(tag, "effects"))
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
             else if (!strcmp(tag, "extradesc")) {
-                CREATE(desc, extra_descr_data, 1);
+                CREATE(desc, ExtraDescriptionData, 1);
                 desc->keyword = strdup(line);
                 desc->description = fread_string(fl, "build_object");
                 if (last_desc)
@@ -680,7 +681,7 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
                 while (get_line(fl, line) && *line != '~') {
-                    CREATE(spell, spell_book_list, 1);
+                    CREATE(spell, SpellBookList, 1);
                     sscanf(line, "%d %d", &spell->spell, &spell->length);
                     if (last_spell)
                         last_spell->next = spell;
@@ -698,7 +699,7 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
                 GET_OBJ_TIMER(obj) = MAX(0, num);
             else if (!strcmp(tag, "triggers")) {
                 if (!SCRIPT(obj))
-                    CREATE(SCRIPT(obj), script_data, 1);
+                    CREATE(SCRIPT(obj), ScriptData, 1);
                 while (get_line(fl, line) && *line != '~') {
                     num = real_trigger(atoi(line));
                     if (num != NOTHING && (trig = read_trigger(num)))
@@ -718,7 +719,7 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
                 limit_obj_values(obj);
             } else if (!strcmp(tag, "variables")) {
                 if (!SCRIPT(obj))
-                    CREATE(SCRIPT(obj), script_data, 1);
+                    CREATE(SCRIPT(obj), ScriptData, 1);
                 while (get_line(fl, line) && *line != '~') {
                     for (value = line; *value; ++value)
                         if (*value == ' ') {
@@ -748,7 +749,7 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
 
     if (feof(fl)) {
         extract_obj(obj);
-        return FALSE;
+        return false;
     }
 
     /*
@@ -763,16 +764,16 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
             free(obj->address);                                                                                        \
             obj->address = proto->address;                                                                             \
         }                                                                                                              \
-    } while (FALSE);
+    } while (false);
 #define CHECK_NULL_STR(address, str)                                                                                   \
     do {                                                                                                               \
         if (!*obj->address) {                                                                                          \
             free(obj->address);                                                                                        \
-            obj->address = NULL;                                                                                       \
+            obj->address = nullptr;                                                                                    \
         }                                                                                                              \
         if (!obj->address)                                                                                             \
             obj->address = strdup(str);                                                                                \
-    } while (FALSE);
+    } while (false);
 
     if (GET_OBJ_RNUM(obj) != NOTHING) {
         obj_index[GET_OBJ_RNUM(obj)].number++;
@@ -796,13 +797,13 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
         CHECK_PROTO_STR(action_description);
         /* See if -all- the extra descriptions are identical. */
         if (obj->ex_description) {
-            num = TRUE;
+            num = true;
             for (desc = obj->ex_description, last_desc = proto->ex_description; desc && last_desc;
                  desc = desc->next, last_desc = last_desc->next)
                 if (strcmp(desc->keyword, last_desc->keyword) || strcmp(desc->description, last_desc->description))
-                    num = FALSE;
+                    num = false;
             if (desc || last_desc)
-                num = FALSE;
+                num = false;
             if (num) {
                 for (desc = obj->ex_description; desc; desc = last_desc) {
                     last_desc = desc->next;
@@ -825,16 +826,16 @@ bool build_object(FILE *fl, obj_data **objp, int *location) {
 #undef CHECK_PROTO_STR
 #undef CHECK_NULL_STR
 
-    return TRUE;
+    return true;
 }
 
-bool load_objects(char_data *ch) {
+bool load_objects(CharData *ch) {
     FILE *fl;
     char line[MAX_INPUT_LENGTH];
 
-    fl = open_player_obj_file(GET_NAME(ch), NULL, FALSE);
+    fl = open_player_obj_file(GET_NAME(ch), nullptr, false);
     if (!fl)
-        return FALSE;
+        return false;
 
     if (!(get_line(fl, line) && is_integer(line))) {
         /* Object file may be in the 'old' format.  Attempt to load thusly. */
@@ -843,7 +844,7 @@ bool load_objects(char_data *ch) {
         fclose(fl);
         if (load_binary_objects(ch)) {
             log("   Success!");
-            return TRUE;
+            return true;
         } else {
             log("   Failed!");
             send_to_char(
@@ -852,23 +853,23 @@ bool load_objects(char_data *ch) {
                 "Contact a God for assistance.@0\r\n",
                 ch);
             sprintf(buf, "%s entering game with no equipment. (error 02)", GET_NAME(ch));
-            mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
-            return FALSE;
+            mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+            return false;
         }
     }
 
     read_objects(ch, fl);
     fclose(fl);
 
-    return TRUE;
+    return true;
 }
 
-static void read_objects(char_data *ch, FILE *fl) {
+static void read_objects(CharData *ch, FILE *fl) {
     int i, depth, location;
-    struct obj_data *obj, *containers[MAX_CONTAINER_DEPTH];
+    ObjData *obj, *containers[MAX_CONTAINER_DEPTH];
 
     for (i = 0; i < MAX_CONTAINER_DEPTH; ++i)
-        containers[i] = NULL;
+        containers[i] = nullptr;
 
     while (!feof(fl)) {
         if (!build_object(fl, &obj, &location))
@@ -876,7 +877,7 @@ static void read_objects(char_data *ch, FILE *fl) {
         location = auto_equip(ch, obj, location);
         depth = MAX(0, -location);
         for (i = MAX_CONTAINER_DEPTH - 1; i >= depth; --i)
-            containers[i] = NULL;
+            containers[i] = nullptr;
         containers[depth] = obj;
         if (location < 0) {
             if (containers[depth - 1])
@@ -889,19 +890,19 @@ static void read_objects(char_data *ch, FILE *fl) {
     }
 }
 
-void load_quests(char_data *ch) {
+void load_quests(CharData *ch) {
     FILE *fl;
     char fname[MAX_STRING_LENGTH];
     int n;
-    struct quest_list *plyrqsts, *curr;
+    QuestList *plyrqsts, *curr;
     int qid, qst, qnum_vars;
     char var_name[21];
     char var_val[21];
-    bool skipquest, duplicates = FALSE, nonexistent = FALSE;
-    struct quest_var_list *last_var;
+    bool skipquest, duplicates = false, nonexistent = false;
+    QuestVariableList *last_var;
 
     if (!get_pfilename(GET_NAME(ch), fname, QUEST_FILE)) {
-        ch->quests = (quest_list *)NULL;
+        ch->quests = (QuestList *)nullptr;
     } else {
         if (!(fl = fopen(fname, "r"))) {
             if (errno != ENOENT) { /* if it fails, NOT because of no file */
@@ -914,8 +915,8 @@ void load_quests(char_data *ch) {
                     ch);
             }
             sprintf(buf, "%s starting up with no quests.", GET_NAME(ch));
-            mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
-            ch->quests = (quest_list *)NULL;
+            mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+            ch->quests = (QuestList *)nullptr;
         } else {
             while (!feof(fl)) {
                 char buf2[256];
@@ -928,35 +929,35 @@ void load_quests(char_data *ch) {
                     qnum_vars = 0;
                 }
 
-                skipquest = FALSE;
+                skipquest = false;
 
                 /* See if there's a quest duplication bug
                  * (see if the char already has this quest) */
                 for (curr = ch->quests; curr; curr = curr->next) {
                     if (curr->quest_id == qid) {
                         if (!duplicates) {
-                            duplicates = TRUE;
+                            duplicates = true;
                             sprintf(buf,
                                     "SYSERR: Player %s had duplicate of quest %d (skipped) "
                                     "(possibly more)",
                                     GET_NAME(ch), qid);
-                            mudlog(buf, NRM, LVL_GOD, TRUE);
+                            mudlog(buf, NRM, LVL_GOD, true);
                         }
-                        skipquest = TRUE;
+                        skipquest = true;
                         break;
                     }
                 }
 
                 /* This quest isn't valid for whatever reason. */
                 if (!skipquest && real_quest(qid) < 0) {
-                    skipquest = TRUE;
+                    skipquest = true;
                     if (!nonexistent) {
-                        nonexistent = TRUE;
+                        nonexistent = true;
                         sprintf(buf,
                                 "SYSERR: Player %s had nonexistent quest %d (skipped) "
                                 "(possibly more)",
                                 GET_NAME(ch), qid);
-                        mudlog(buf, NRM, LVL_GOD, TRUE);
+                        mudlog(buf, NRM, LVL_GOD, true);
                     }
                 }
 
@@ -969,20 +970,20 @@ void load_quests(char_data *ch) {
                     continue;
                 }
 
-                CREATE(curr, quest_list, 1);
+                CREATE(curr, QuestList, 1);
                 curr->quest_id = qid;
                 curr->stage = qst;
-                curr->variables = NULL;
+                curr->variables = nullptr;
 
                 if (qnum_vars) {
                     int n = 0;
-                    last_var = NULL;
+                    last_var = nullptr;
 
                     while (n < qnum_vars) {
                         fscanf(fl, "%s %s\n", var_name, var_val);
 
-                        if (last_var == NULL) {
-                            CREATE(curr->variables, quest_var_list, 1);
+                        if (last_var == nullptr) {
+                            CREATE(curr->variables, QuestVariableList, 1);
                             CREATE(curr->variables->var, char, 21);
                             CREATE(curr->variables->val, char, 21);
 
@@ -992,11 +993,11 @@ void load_quests(char_data *ch) {
                             curr->variables->var[20] = '\0';
                             curr->variables->val[20] = '\0';
 
-                            curr->variables->next = NULL;
+                            curr->variables->next = nullptr;
 
                             last_var = curr->variables;
                         } else {
-                            CREATE(last_var->next, quest_var_list, 1);
+                            CREATE(last_var->next, QuestVariableList, 1);
                             CREATE(last_var->next->var, char, 21);
                             CREATE(last_var->next->val, char, 21);
 
@@ -1006,7 +1007,7 @@ void load_quests(char_data *ch) {
                             last_var->next->var[20] = '\0';
                             last_var->next->val[20] = '\0';
 
-                            last_var->next->next = NULL;
+                            last_var->next->next = nullptr;
 
                             last_var = last_var->next;
                         }
@@ -1015,9 +1016,9 @@ void load_quests(char_data *ch) {
                     }
                 }
 
-                curr->next = (quest_list *)NULL;
+                curr->next = (QuestList *)nullptr;
                 plyrqsts = ch->quests;
-                if (plyrqsts == (quest_list *)NULL)
+                if (plyrqsts == (QuestList *)nullptr)
                     ch->quests = curr;
                 else {
                     while (plyrqsts->next)
@@ -1030,10 +1031,10 @@ void load_quests(char_data *ch) {
     } /* Done getting quest info */
 }
 
-void load_pets(char_data *ch) {
+void load_pets(CharData *ch) {
     FILE *fl;
     char fname[MAX_STRING_LENGTH], line[MAX_INPUT_LENGTH], tag[128];
-    struct char_data *pet;
+    CharData *pet;
 
     if (!get_pfilename(GET_NAME(ch), fname, PET_FILE))
         return;
@@ -1080,14 +1081,14 @@ void load_pets(char_data *ch) {
     }
 }
 
-static struct obj_data *restore_binary_object(obj_file_elem *store, int *locate) {
-    struct obj_data *obj;
+static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
+    ObjData *obj;
     int j = 0, rnum;
     char *list_parse, *spell_parse, *list;
-    struct spell_book_list *entry;
+    SpellBookList *entry;
 
     if ((rnum = real_object(store->item_number)) < 0)
-        return NULL;
+        return nullptr;
 
     obj = read_object(store->item_number, VIRTUAL);
     *locate = (int)store->locate;
@@ -1115,12 +1116,12 @@ static struct obj_data *restore_binary_object(obj_file_elem *store, int *locate)
         GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES) = LEGACY_MAX_SPELLBOOK_PAGES;
         if (store->spells_in_book[0]) {
             list = store->spells_in_book;
-            CREATE(obj->spell_book, spell_book_list, 1);
+            CREATE(obj->spell_book, SpellBookList, 1);
             entry = obj->spell_book;
             while ((list_parse = strsep(&list, ",")) && strlen(store->spells_in_book)) {
                 if (list_parse && strlen(list_parse)) {
                     if (j > 0) {
-                        CREATE(entry->next, spell_book_list, 1);
+                        CREATE(entry->next, SpellBookList, 1);
                         entry = entry->next;
                     }
 
@@ -1163,24 +1164,24 @@ static struct obj_data *restore_binary_object(obj_file_elem *store, int *locate)
     return obj;
 }
 
-static bool load_binary_objects(char_data *ch) {
+static bool load_binary_objects(CharData *ch) {
     FILE *fl;
-    struct obj_file_elem object;
-    struct rent_info rent;
-    struct obj_data *obj;
+    obj_file_elem object;
+    rent_info rent;
+    ObjData *obj;
     int locate, j, eq = 0;
-    struct obj_data *obj1;
-    struct obj_data *cont_row[MAX_CONTAINER_DEPTH];
+    ObjData *obj1;
+    ObjData *cont_row[MAX_CONTAINER_DEPTH];
 
-    fl = open_player_obj_file(GET_NAME(ch), NULL, FALSE);
+    fl = open_player_obj_file(GET_NAME(ch), nullptr, false);
     if (!fl)
-        return FALSE;
+        return false;
 
     if (!feof(fl))
         fread(&rent, sizeof(rent_info), 1, fl);
 
     for (j = 0; j < MAX_CONTAINER_DEPTH; j++)
-        cont_row[j] = NULL; /* empty all cont lists (you never know ...) */
+        cont_row[j] = nullptr; /* empty all cont lists (you never know ...) */
 
     while (!feof(fl)) {
         eq = 0;
@@ -1188,7 +1189,7 @@ static bool load_binary_objects(char_data *ch) {
         if (ferror(fl)) {
             perror("Reading object file: load_binary_objects()");
             fclose(fl);
-            return TRUE;
+            return true;
         }
 
         if (!feof(fl))
@@ -1236,13 +1237,13 @@ static bool load_binary_objects(char_data *ch) {
                                 obj1 = cont_row[j]->next_content;
                                 obj_to_char(cont_row[j], ch);
                             }
-                            cont_row[j] = NULL;
+                            cont_row[j] = nullptr;
                         }
                     if (cont_row[0]) { /* content list existing */
                         if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER) {
                             /* rem item ; fill ; equip again */
                             obj = unequip_char(ch, locate - 1);
-                            obj->contains = NULL; /* should be empty - but who knows */
+                            obj->contains = nullptr; /* should be empty - but who knows */
                             for (; cont_row[0]; cont_row[0] = obj1) {
                                 obj1 = cont_row[0]->next_content;
                                 obj_to_obj(cont_row[0], obj);
@@ -1253,7 +1254,7 @@ static bool load_binary_objects(char_data *ch) {
                                 obj1 = cont_row[0]->next_content;
                                 obj_to_char(cont_row[0], ch);
                             }
-                            cont_row[0] = NULL;
+                            cont_row[0] = nullptr;
                         }
                     }
                 } else { /* locate <= 0 */
@@ -1263,14 +1264,14 @@ static bool load_binary_objects(char_data *ch) {
                                 obj1 = cont_row[j]->next_content;
                                 obj_to_char(cont_row[j], ch);
                             }
-                            cont_row[j] = NULL;
+                            cont_row[j] = nullptr;
                         }
 
                     if (j == -locate && cont_row[j]) { /* content list existing */
                         if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER) {
                             /* take item ; fill ; give to char again */
                             obj_from_char(obj);
-                            obj->contains = NULL;
+                            obj->contains = nullptr;
                             for (; cont_row[j]; cont_row[j] = obj1) {
                                 obj1 = cont_row[j]->next_content;
                                 obj_to_obj(cont_row[j], obj);
@@ -1281,7 +1282,7 @@ static bool load_binary_objects(char_data *ch) {
                                 obj1 = cont_row[j]->next_content;
                                 obj_to_char(cont_row[j], ch);
                             }
-                            cont_row[j] = NULL;
+                            cont_row[j] = nullptr;
                         }
                     }
 
@@ -1303,11 +1304,11 @@ static bool load_binary_objects(char_data *ch) {
 
     fclose(fl);
 
-    return TRUE;
+    return true;
 }
 
 void auto_save_all(void) {
-    struct descriptor_data *d;
+    DescriptorData *d;
     for (d = descriptor_list; d; d = d->next) {
         if (d->connected == CON_PLAYING && !IS_NPC(d->character) && PLR_FLAGGED(d->character, PLR_AUTOSAVE)) {
             GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
@@ -1321,13 +1322,13 @@ void auto_save_all(void) {
  * Routines used for the receptionist                                    *
  *************************************************************************/
 
-static int report_unrentables(char_data *ch, char_data *recep, obj_data *obj) {
+static int report_unrentables(CharData *ch, CharData *recep, ObjData *obj) {
     int unrentables = 0;
 
     if (obj) {
         if (is_object_unrentable(obj)) {
             unrentables = 1;
-            act("$n tells you, 'You cannot store $t.'", FALSE, recep, (void *)OBJS(obj, ch), ch, TO_VICT);
+            act("$n tells you, 'You cannot store $t.'", false, recep, (void *)OBJS(obj, ch), ch, TO_VICT);
         }
         unrentables += report_unrentables(ch, recep, obj->contains);
         unrentables += report_unrentables(ch, recep, obj->next_content);
@@ -1335,7 +1336,7 @@ static int report_unrentables(char_data *ch, char_data *recep, obj_data *obj) {
     return unrentables;
 }
 
-static int list_unrentables(char_data *ch, char_data *receptionist) {
+static int list_unrentables(CharData *ch, CharData *receptionist) {
     int i, unrentables;
 
     unrentables = report_unrentables(ch, receptionist, ch->carrying);
@@ -1345,7 +1346,7 @@ static int list_unrentables(char_data *ch, char_data *receptionist) {
     return unrentables;
 }
 
-void extract_objects(char_data *ch) {
+void extract_objects(CharData *ch) {
     int i;
 
     for (i = 0; i < NUM_WEARS; ++i)
@@ -1356,60 +1357,60 @@ void extract_objects(char_data *ch) {
         extract_obj(ch->carrying);
 }
 
-static int gen_receptionist(char_data *ch, char_data *recep, int cmd, char *arg, int mode) {
+static int gen_receptionist(CharData *ch, CharData *recep, int cmd, char *arg, int mode) {
     int quit_mode = QUIT_RENT;
 
     if (!ch->desc || IS_NPC(ch))
-        return FALSE;
+        return false;
 
     if (!CMD_IS("rent"))
-        return FALSE;
+        return false;
 
     if (!AWAKE(recep)) {
-        act("$E is unable to talk to you...", FALSE, ch, 0, recep, TO_CHAR);
-        return TRUE;
+        act("$E is unable to talk to you...", false, ch, 0, recep, TO_CHAR);
+        return true;
     }
 
     if (!CAN_SEE(recep, ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        act("$n says, 'I don't deal with people I can't see!'", FALSE, recep, 0, 0, TO_ROOM);
-        return TRUE;
+        act("$n says, 'I don't deal with people I can't see!'", false, recep, 0, 0, TO_ROOM);
+        return true;
     }
 
     if (list_unrentables(ch, recep)) {
-        act("$N shakes $M head at $n.", TRUE, ch, 0, recep, TO_ROOM);
-        return TRUE;
+        act("$N shakes $M head at $n.", true, ch, 0, recep, TO_ROOM);
+        return true;
     }
 
     if (mode == SAVE_CRYO) {
         act("$n stores your belongings and helps you into your private chamber.\r\n"
             "A white mist appears in the room, chilling you to the bone...\r\n"
             "You begin to lose consciousness...",
-            FALSE, recep, 0, ch, TO_VICT);
+            false, recep, 0, ch, TO_VICT);
         quit_mode = QUIT_CRYO;
         sprintf(buf, "%s has cryo-rented.", GET_NAME(ch));
     } else {
         act("@W$n@W tells you, 'Rent?  Sure, come this way!'\r\n"
             "$U$n stores your belongings and helps you into your private "
             "chamber.&0",
-            FALSE, recep, 0, ch, TO_VICT);
+            false, recep, 0, ch, TO_VICT);
         quit_mode = QUIT_RENT;
         sprintf(buf, "%s has rented in %s (%d).", GET_NAME(ch), world[ch->in_room].name, world[ch->in_room].vnum);
     }
 
-    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
-    act("$n helps $N into $S private chamber.", FALSE, recep, 0, ch, TO_NOTVICT);
+    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+    act("$n helps $N into $S private chamber.", false, recep, 0, ch, TO_NOTVICT);
 
     remove_player_from_game(ch, quit_mode);
-    return TRUE;
+    return true;
 }
 
 SPECIAL(receptionist) { return gen_receptionist(ch, me, cmd, argument, SAVE_RENT); }
 
 SPECIAL(cryogenicist) { return gen_receptionist(ch, me, cmd, argument, SAVE_CRYO); }
 
-/* If quiet==TRUE, minor feedback will be suppressed.
+/* If quiet==true, minor feedback will be suppressed.
  * But not errors. */
-FILE *open_player_obj_file(char *player_name, char_data *ch, bool quiet) {
+FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
     FILE *fl;
     char filename[MAX_INPUT_LENGTH];
 
@@ -1418,7 +1419,7 @@ FILE *open_player_obj_file(char *player_name, char_data *ch, bool quiet) {
         log(buf);
         if (ch)
             send_to_char("Couldn't construct the filename!\r\n", ch);
-        return NULL;
+        return nullptr;
     }
 
     if (!(fl = fopen(filename, "r"))) {
@@ -1433,7 +1434,7 @@ FILE *open_player_obj_file(char *player_name, char_data *ch, bool quiet) {
             sprintf(buf, "There is no object file for %s.\r\n", player_name);
             send_to_char(buf, ch);
         }
-        return NULL;
+        return nullptr;
     }
     return fl;
 }
@@ -1445,31 +1446,31 @@ FILE *open_player_obj_file(char *player_name, char_data *ch, bool quiet) {
  * restoring players from backups.  This function is used to convert the old
  * file into the ASCII format.
  */
-bool convert_player_obj_file(char *player_name, char_data *ch) {
+bool convert_player_obj_file(char *player_name, CharData *ch) {
     FILE *fl, *fnew;
     char filename[MAX_INPUT_LENGTH];
     char tempfilename[MAX_INPUT_LENGTH];
     char line[MAX_INPUT_LENGTH];
-    struct rent_info rent;
-    struct obj_file_elem object;
-    struct obj_data *obj;
+    rent_info rent;
+    obj_file_elem object;
+    ObjData *obj;
     int locate;
 
-    fl = open_player_obj_file(player_name, ch, TRUE);
+    fl = open_player_obj_file(player_name, ch, true);
     if (!fl)
-        return FALSE;
+        return false;
 
     if (get_line(fl, line) && is_integer(line)) {
         /* File is modern and doesn't need updating */
         fclose(fl);
-        return FALSE;
+        return false;
     }
 
     fclose(fl);
-    fl = open_player_obj_file(player_name, ch, TRUE);
+    fl = open_player_obj_file(player_name, ch, true);
     if (!fl) {
-        mudlog("SYSERR: convert_player_file couldn't reopen object file!", NRM, LVL_GOD, TRUE);
-        return FALSE;
+        mudlog("SYSERR: convert_player_file couldn't reopen object file!", NRM, LVL_GOD, true);
+        return false;
     }
 
     /* Prepare output file */
@@ -1477,15 +1478,15 @@ bool convert_player_obj_file(char *player_name, char_data *ch) {
         sprintf(buf, "SYSERR: Unable to construct filename to save objects for %s", player_name);
         log(buf);
         fclose(fl);
-        return FALSE;
+        return false;
     }
 
     sprintf(tempfilename, "%s.temp", filename);
     if (!(fnew = fopen(tempfilename, "w"))) {
         sprintf(buf, "SYSERR: Couldn't open player file %s for write", tempfilename);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         fclose(fl);
-        return FALSE;
+        return false;
     }
 
     if (feof(fl)) {
@@ -1493,7 +1494,7 @@ bool convert_player_obj_file(char *player_name, char_data *ch) {
         log(buf);
         fclose(fl);
         fclose(fnew);
-        return FALSE;
+        return false;
     }
 
     fread(&rent, sizeof(rent_info), 1, fl);
@@ -1505,7 +1506,7 @@ bool convert_player_obj_file(char *player_name, char_data *ch) {
             perror("Reading player object file: convert_player_obj_file()");
             fclose(fl);
             fclose(fnew);
-            return FALSE;
+            return false;
         }
 
         if ((obj = restore_binary_object(&object, &locate))) {
@@ -1522,7 +1523,7 @@ bool convert_player_obj_file(char *player_name, char_data *ch) {
     if (rename(tempfilename, filename)) {
         sprintf(buf, " * * * Error renaming %s to %s: %s * * *", tempfilename, filename, strerror(errno));
         log(buf);
-        return FALSE;
+        return false;
     } else {
         sprintf(buf, "Player object file converted to ASCII format: %s", player_name);
         log(buf);
@@ -1532,10 +1533,10 @@ bool convert_player_obj_file(char *player_name, char_data *ch) {
         }
     }
 
-    return TRUE;
+    return true;
 }
 
-void convert_player_obj_files(char_data *ch) {
+void convert_player_obj_files(CharData *ch) {
     int i;
     int converted = 0;
 
@@ -1549,7 +1550,7 @@ void convert_player_obj_files(char_data *ch) {
     send_to_char(buf, ch);
 }
 
-void convert_single_player_obj_file(char_data *ch, char *name) {
+void convert_single_player_obj_file(CharData *ch, char *name) {
     if (!convert_player_obj_file(name, ch))
         send_to_char("The object file was not converted.\r\n", ch);
 }
@@ -1558,7 +1559,7 @@ void convert_single_player_obj_file(char_data *ch, char *name) {
  *
  * Saves all data related to a player: character, objects, and quests.
  */
-void save_player(char_data *ch) {
+void save_player(CharData *ch) {
     int quit_mode;
 
     REMOVE_FLAG(PLR_FLAGS(ch), PLR_AUTOSAVE);

@@ -13,7 +13,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "math.hpp"
 #include "players.hpp"
 #include "screen.hpp"
@@ -32,39 +32,14 @@
  * Clan Variables
  ***************************************************************************/
 static unsigned int num_of_clans = 0;
-static struct Clan **clans = NULL;
-
-/***************************************************************************
- * Clan Constants
- ***************************************************************************/
-const struct {
-    char *abbr;
-    bool default_on;
-    char *desc;
-} clan_privileges[NUM_CLAN_PRIVS] = {
-    {"desc", FALSE, "Change Description"},
-    {"motd", FALSE, "Change Message of the Day"},
-    {"grant", FALSE, "Grant Privilege"},
-    {"ranks", FALSE, "Change Ranks"},
-    {"title", FALSE, "Change Titles"},
-    {"enroll", FALSE, "Enroll"},
-    {"expel", FALSE, "Expel"},
-    {"promote", FALSE, "Promote"},
-    {"demote", FALSE, "Demote"},
-    {"appfee", FALSE, "Change Application Fee"},
-    {"applev", FALSE, "Change Application Level"},
-    {"dues", FALSE, "Change Dues"},
-    {"withdraw", FALSE, "Withdraw"},
-    {"alts", TRUE, "Alts"},
-    {"chat", TRUE, "Chat"},
-};
+static Clan **clans = nullptr;
 
 /***************************************************************************
  * Clan Infrastructure
  ***************************************************************************/
 
 static void sort_clan_people(Clan *clan) {
-    struct clan_membership **array, *member;
+    ClanMembership **array, *member;
     size_t i, count;
     bool swap;
 
@@ -72,7 +47,7 @@ static void sort_clan_people(Clan *clan) {
         return;
 
     /* copy the linked list to an array */
-    CREATE(array, clan_membership *, clan->people_count);
+    CREATE(array, ClanMembership *, clan->people_count);
     member = clan->people;
     for (i = 0; i < clan->people_count; ++i) {
         array[i] = member;
@@ -82,14 +57,14 @@ static void sort_clan_people(Clan *clan) {
     /* bubble sort by rank */
     count = clan->people_count;
     do {
-        swap = FALSE;
+        swap = false;
         --count;
         for (i = 0; i < count; ++i)
             if (OUTRANKS(array[i + 1]->rank, array[i]->rank)) {
                 member = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = member;
-                swap = TRUE;
+                swap = true;
             }
     } while (swap);
 
@@ -97,13 +72,13 @@ static void sort_clan_people(Clan *clan) {
     clan->people = array[0];
     for (i = 1; i < clan->people_count; ++i)
         array[i - 1]->next = array[i];
-    array[i - 1]->next = NULL;
+    array[i - 1]->next = nullptr;
 
     free(array);
 }
 
 static void load_clan_member(Clan *clan, const char *line) {
-    struct clan_membership *member, *alt;
+    ClanMembership *member, *alt;
     int num;
     char name[MAX_NAME_LENGTH + 1];
 
@@ -112,11 +87,11 @@ static void load_clan_member(Clan *clan, const char *line) {
     if ((num = get_ptable_by_name(name)) < 0)
         return;
 
-    CREATE(member, clan_membership, 1);
+    CREATE(member, ClanMembership, 1);
     member->name = strdup(name);
     member->clan = clan;
-    member->relation.alts = NULL;
-    member->player = NULL;
+    member->relation.alts = nullptr;
+    member->player = nullptr;
 
     line = fetch_word(line, name, sizeof(name));
     member->rank = MAX(1, atoi(name));
@@ -141,7 +116,7 @@ static void load_clan_member(Clan *clan, const char *line) {
         CAP(name);
         if (get_ptable_by_name(name) < 0)
             continue;
-        CREATE(alt, clan_membership, 1);
+        CREATE(alt, ClanMembership, 1);
         alt->name = strdup(name);
         alt->rank = ALT_RANK_OFFSET + member->rank;
         alt->clan = clan;
@@ -157,14 +132,14 @@ static void load_clan_member(Clan *clan, const char *line) {
 }
 
 static void refresh_list_pointers(Clan *clan) {
-    struct clan_membership *member;
+    ClanMembership *member;
 
 #define CHANGE_IF_NULL(a, b) ((a) = ((a) ? (a) : (b)))
 
-    clan->admins = NULL;
-    clan->members = NULL;
-    clan->applicants = NULL;
-    clan->rejects = NULL;
+    clan->admins = nullptr;
+    clan->members = nullptr;
+    clan->applicants = nullptr;
+    clan->rejects = nullptr;
 
     for (member = clan->people; member; member = member->next)
         if (IS_ADMIN_RANK(member->rank))
@@ -194,7 +169,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
     snprintf(filename, sizeof(filename), "%s/%s%s", CLAN_PREFIX, clan_num, CLAN_SUFFIX);
     if (!(fl = fopen(filename, "r"))) {
         log("Couldn't open clan file '%s'", filename);
-        return FALSE;
+        return false;
     }
 
     /* Initialize fields */
@@ -204,8 +179,8 @@ bool load_clan(const char *clan_num, Clan *clan) {
     clan->applicant_count = 0;
     clan->reject_count = 0;
     clan->rank_count = 0;
-    CREATE(clan->ranks, clan_rank, MAX_CLAN_RANKS);
-    clan->people = NULL;
+    CREATE(clan->ranks, ClanRank, MAX_CLAN_RANKS);
+    clan->people = nullptr;
     clan->power = 0;
 
     /* Tag-based ASCII file parser */
@@ -222,7 +197,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
             else if (TAG_IS("abbr")) {
                 char *space = strchr(line, ' ');
                 if (space)
-                    space = '\0';
+                    *space = '\0';
                 clan->abbreviation = strdup(line);
             } else
                 goto bad_tag;
@@ -323,20 +298,20 @@ bool load_clan(const char *clan_num, Clan *clan) {
         }
     }
 
-    RECREATE(clan->ranks, clan_rank, clan->rank_count);
+    RECREATE(clan->ranks, ClanRank, clan->rank_count);
 
     update_clan(clan);
 
-    return TRUE;
+    return true;
 }
 
 void init_clans(void) {
     FILE *fl;
     char clan_id[17];
     struct load_list {
-        struct Clan *clan;
-        struct load_list *next;
-    } *temp, *load = NULL;
+        Clan *clan;
+        load_list *next;
+    } *temp, *load = nullptr;
     unsigned int pos;
 
     /*
@@ -349,7 +324,7 @@ void init_clans(void) {
         fstat(fileno(fl), &statbuf);
         fclose(fl);
         if (!S_ISDIR(statbuf.st_mode)) {
-            rename(CLAN_PREFIX, CLAN_PREFIX ".old");
+            rename(CLAN_PREFIX, CLAN_PREFIX_OLD);
             /*
              * This is a POSIX-only.  Create the new clan directory.
              */
@@ -412,11 +387,11 @@ static void save_clan_index(void) {
     fclose(fl);
 }
 
-static void perform_save_clan(const struct Clan *clan) {
+static void perform_save_clan(const Clan *clan) {
     FILE *fl;
     char temp_filename[128];
     char filename[128];
-    struct clan_membership *member, *alt;
+    ClanMembership *member, *alt;
     unsigned int i, j;
 
     sprintf(filename, "%s/%d%s", CLAN_PREFIX, clan->number, CLAN_SUFFIX);
@@ -464,7 +439,7 @@ static void perform_save_clan(const struct Clan *clan) {
         log("SYSERR: Error renaming temp clan file %s to %s: %s", temp_filename, filename, strerror(errno));
 }
 
-void save_clan(const struct Clan *clan) {
+void save_clan(const Clan *clan) {
     perform_save_clan(clan);
     save_clan_index();
 }
@@ -476,28 +451,28 @@ void save_clans(void) {
     save_clan_index();
 }
 
-struct Clan *find_clan_by_number(unsigned int number) {
+Clan *find_clan_by_number(unsigned int number) {
     clan_iter iter;
 
     for (iter = clans_start(); iter != clans_end(); ++iter)
         if ((*iter)->number == number)
             return *iter;
 
-    return NULL;
+    return nullptr;
 }
 
-struct Clan *find_clan_by_abbr(const char *abbr) {
+Clan *find_clan_by_abbr(const char *abbr) {
     clan_iter iter;
 
     for (iter = clans_start(); iter != clans_end(); ++iter)
         if (isname(abbr, (*iter)->abbreviation))
             return *iter;
 
-    return NULL;
+    return nullptr;
 }
 
-struct Clan *find_clan(const char *id) {
-    struct Clan *clan;
+Clan *find_clan(const char *id) {
+    Clan *clan;
     if (is_number(id))
         if ((clan = find_clan_by_number(atoi(id))))
             return clan;
@@ -509,11 +484,11 @@ struct Clan *find_clan(const char *id) {
             if (isname(id, (*iter)->name))
                 return *iter;
     }
-    return NULL;
+    return nullptr;
 }
 
-struct clan_membership *find_clan_membership_in_clan(const char *name, const struct Clan *clan) {
-    struct clan_membership *member = clan->people;
+ClanMembership *find_clan_membership_in_clan(const char *name, const Clan *clan) {
+    ClanMembership *member = clan->people;
 
     while (member) {
         if (!str_cmp(name, member->name))
@@ -540,35 +515,35 @@ struct clan_membership *find_clan_membership_in_clan(const char *name, const str
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
-struct clan_membership *find_clan_membership(const char *name) {
+ClanMembership *find_clan_membership(const char *name) {
     clan_iter iter;
-    struct clan_membership *member;
+    ClanMembership *member;
 
     for (iter = clans_start(); iter != clans_end(); ++iter)
         if ((member = find_clan_membership_in_clan(name, *iter)))
             return member;
 
-    return NULL;
+    return nullptr;
 }
 
-void free_clan_membership(clan_membership *member) {
+void free_clan_membership(ClanMembership *member) {
     free(member->name);
     if (!IS_ALT_RANK(member->rank)) {
-        struct clan_membership *alt;
+        ClanMembership *alt;
         for (alt = member->relation.alts; alt; alt = alt->next)
             free_clan_membership(alt);
     }
     if (member->player)
-        member->player->player_specials->clan = NULL;
+        member->player->player_specials->clan = nullptr;
     free(member);
 }
 
 /* Doesn't free the clan itself! */
 void free_clan(Clan *clan) {
-    struct clan_membership *member;
+    ClanMembership *member;
     free(clan->name);
     free(clan->abbreviation);
     free(clan->description);
@@ -589,13 +564,13 @@ void free_clans(void) {
     free(clans);
 }
 
-bool revoke_clan_membership(clan_membership *member) {
-    struct clan_membership *p;
-    struct Clan *clan;
+bool revoke_clan_membership(ClanMembership *member) {
+    ClanMembership *p;
+    Clan *clan;
     int i;
 
     if (!member)
-        return FALSE;
+        return false;
 
     clan = member->clan;
 
@@ -638,17 +613,17 @@ bool revoke_clan_membership(clan_membership *member) {
     if (clan)
         save_clan(clan);
 
-    return TRUE;
+    return true;
 }
 
-void add_clan_membership(Clan *clan, clan_membership *member) {
-    struct clan_membership *m;
+void add_clan_membership(Clan *clan, ClanMembership *member) {
+    ClanMembership *m;
 
     if (!clan->people || OUTRANKS(member->rank, clan->people->rank)) {
         member->next = clan->people;
         clan->people = member;
     } else {
-        member->next = NULL;
+        member->next = nullptr;
         for (m = clan->people; m->next; m = m->next)
             if (OUTRANKS(member->rank, m->next->rank)) {
                 member->next = m->next;
@@ -674,9 +649,9 @@ void add_clan_membership(Clan *clan, clan_membership *member) {
     member->clan = clan;
 }
 
-void clan_notification(const struct Clan *clan, const struct char_data *skip, const char *messg, ...) {
-    struct descriptor_data *d;
-    size_t found = FALSE;
+void clan_notification(const Clan *clan, CharData *skip, const char *messg, ...) {
+    DescriptorData *d;
+    size_t found = false;
     va_list args;
     char comm_buf[MAX_STRING_LENGTH];
 
@@ -692,7 +667,7 @@ void clan_notification(const struct Clan *clan, const struct char_data *skip, co
                     vsnprintf(comm_buf + found, sizeof(comm_buf) - found, messg, args);
                     va_end(args);
                     strcat(comm_buf, AFMAG " ]]\r\n" ANRM);
-                    found = TRUE;
+                    found = true;
                 }
                 string_to_output(d, comm_buf);
             }
@@ -704,15 +679,15 @@ clan_iter clans_end(void) { return clans + num_of_clans; }
 
 unsigned int clan_count(void) { return num_of_clans; }
 
-void clan_set_title(char_data *ch) {
+void clan_set_title(CharData *ch) {
     if (IS_CLAN_MEMBER(ch)) {
         sprintf(buf, "%s %s", GET_CLAN_TITLE(ch), GET_CLAN(ch)->abbreviation);
         set_title(ch, buf);
     } else
-        set_title(ch, NULL);
+        set_title(ch, nullptr);
 }
 
-struct Clan *alloc_clan() {
+Clan *alloc_clan() {
     clan_iter iter;
     unsigned int number = 0;
 
@@ -738,7 +713,7 @@ void dealloc_clan(Clan *clan) {
     save_clan_index();
 }
 
-unsigned int days_until_reapply(const struct clan_membership *member) {
+unsigned int days_until_reapply(const ClanMembership *member) {
     if (IS_REJECT_RANK(member->rank)) {
         double diff = difftime(time(0), member->since);
         if (diff > 0)

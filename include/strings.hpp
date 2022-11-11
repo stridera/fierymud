@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include "structs.hpp"
+
 const void *ellipsis(const char *str, int maxlen, int mode);
 
 #define EOL "\r\n"
@@ -21,7 +23,7 @@ const void *ellipsis(const char *str, int maxlen, int mode);
 #define __ELLIPSIS_W2 (1 << 1)
 #define __ELLIPSIS_E (1 << 2)
 #define ELLIPSIS_STR(str, maxlen)                                                                                      \
-    (int)ellipsis((str), (maxlen), __ELLIPSIS_W1), (int)ellipsis((str), (maxlen), __ELLIPSIS_W2), (str),               \
+    (intptr_t) ellipsis((str), (maxlen), __ELLIPSIS_W1), (intptr_t)ellipsis((str), (maxlen), __ELLIPSIS_W2), (str),    \
         (char *)ellipsis((str), (maxlen), __ELLIPSIS_E)
 
 int str_cmp(const char *arg1, const char *arg2);
@@ -35,12 +37,27 @@ void sprinttype(int type, const char *names[], char *result);
 void sprintflag(char *result, flagvector flags[], int num_flags, const char *names[]);
 int sprintascii(char *out, flagvector bits);
 
-typedef struct str_token *str_token;
-str_token str_start(char *buf, size_t max_size);
+#define MAX_STR_TOKENS 50
+#define STR_HASH_BUCKETS 32
+#define VALID_STR_TOKEN(tok) ((tok) >= 0 && (tok) < MAX_STR_TOKENS)
+static struct StrToken {
+    char *buf;
+    char *pos;
+    size_t size;
+    StrToken *next_in_hash;
+} str_data[MAX_STR_TOKENS];
+static int next_str_token = 0;
+static StrToken *str_hash[STR_HASH_BUCKETS] = {nullptr};
+
+#define STR_HASH(addr) (((unsigned int)(addr)) % STR_HASH_BUCKETS)
+#define SPACE_USED(tok) ((tok)->pos - (tok)->buf + 1)
+#define SPACE_LEFT(tok) ((tok)->size - SPACE_USED(tok))
+
+// typedef struct str_token *str_token;
+StrToken *str_start(char *buf, size_t max_size);
 void str_cat(char *buf, const char *str);
 void strn_cat(char *buf, const char *str, size_t size);
 void str_catf(char *buf, const char *format, ...) __attribute__((format(printf, 2, 3)));
 void strn_catf(char *buf, size_t size, const char *format, ...) __attribute__((format(printf, 3, 4)));
 char *str_end(char *buf);
 size_t str_space(char *buf);
-

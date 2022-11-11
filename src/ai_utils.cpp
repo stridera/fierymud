@@ -27,7 +27,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-bool mob_cast(char_data *ch, char_data *tch, obj_data *tobj, int spellnum);
+bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 
 int value_spell(int spellnum, bool is_aggro_good) {
     if (!is_aggro_good && SINFO.violent)
@@ -135,7 +135,7 @@ int value_spell_effects(flagvector flags[]) {
     return value;
 }
 
-int value_obj_flags(char_data *ch, obj_data *obj) {
+int value_obj_flags(CharData *ch, ObjData *obj) {
     int value = 0, i;
     for (i = 0; i < 32; ++i)
         if (OBJ_FLAGGED(obj, i))
@@ -255,7 +255,7 @@ int value_effect(int location, int modifier) {
     }
 }
 
-int appraise_item(char_data *ch, obj_data *obj) {
+int appraise_item(CharData *ch, ObjData *obj) {
     int value = 0, i;
 
     switch (GET_OBJ_TYPE(obj)) {
@@ -279,7 +279,7 @@ int appraise_item(char_data *ch, obj_data *obj) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
-        value = value_spell(GET_OBJ_VAL(obj, VAL_WAND_SPELL), TRUE) * GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT);
+        value = value_spell(GET_OBJ_VAL(obj, VAL_WAND_SPELL), true) * GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT);
         if (GET_OBJ_TYPE(obj) == ITEM_STAFF)
             value *= 3;
         value += GET_OBJ_VAL(obj, VAL_WAND_LEVEL);
@@ -319,9 +319,9 @@ int appraise_item(char_data *ch, obj_data *obj) {
     return value;
 }
 
-bool has_effect(char_data *ch, const struct spell_pair *effect) {
+bool has_effect(CharData *ch, const SpellPair *effect) {
     if (!effect || effect->spell <= 0)
-        return FALSE;
+        return false;
     else if (effect->flag)
         return EFF_FLAGGED(ch, effect->flag) ? 1 : 0;
     else
@@ -333,8 +333,8 @@ bool has_effect(char_data *ch, const struct spell_pair *effect) {
  * responsible for any side-effects if victim is null :P  Or if
  * no one is fighting the mob.
  */
-struct char_data *weakest_attacker(char_data *ch, char_data *victim) {
-    struct char_data *tch;
+CharData *weakest_attacker(CharData *ch, CharData *victim) {
+    CharData *tch;
 
     for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
         if (FIGHTING(tch) != ch)
@@ -352,61 +352,61 @@ struct char_data *weakest_attacker(char_data *ch, char_data *victim) {
     return victim;
 }
 
-bool mob_heal_up(char_data *ch) {
+bool mob_heal_up(CharData *ch) {
     int i, counter = 0;
     extern const int mob_cleric_heals[];
 
     for (i = 0; mob_cleric_heals[i]; i++) {
-        if (mob_cast(ch, ch, NULL, mob_cleric_heals[i]))
-            return TRUE;
+        if (mob_cast(ch, ch, nullptr, mob_cleric_heals[i]))
+            return true;
         else
             counter++;
         /* Attempt up to 3 spells. */
         if (counter > 3)
             break;
     }
-    return FALSE;
+    return false;
 }
 
-bool is_tanking(char_data *ch) {
-    struct char_data *tch;
+bool is_tanking(CharData *ch) {
+    CharData *tch;
 
     if (!FIGHTING(ch))
-        return FALSE;
+        return false;
 
     for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
         if (FIGHTING(tch) == ch)
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
-bool evil_in_group(char_data *victim) {
-    struct char_data *k;
-    struct group_type *f;
+bool evil_in_group(CharData *victim) {
+    CharData *k;
+    GroupType *f;
 
     if (!IS_GROUPED(victim))
         return (GET_ALIGNMENT(victim) <= -500);
     k = (victim->group_master ? victim->group_master : victim);
     if (GET_ALIGNMENT(k) <= -500)
-        return TRUE;
+        return true;
     for (f = k->groupees; f; f = f->next)
         if (GET_ALIGNMENT(f->groupee) <= -500)
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
-bool good_in_group(char_data *victim) {
-    struct char_data *k;
-    struct group_type *f;
+bool good_in_group(CharData *victim) {
+    CharData *k;
+    GroupType *f;
     if (!IS_GROUPED(victim))
         return (GET_ALIGNMENT(victim) >= 500);
     k = (victim->group_master ? victim->group_master : victim);
     if (GET_ALIGNMENT(k) >= 500)
-        return TRUE;
+        return true;
     for (f = k->groupees; f; f = f->next)
         if (GET_ALIGNMENT(f->groupee) >= 500)
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
 /*
@@ -415,9 +415,9 @@ bool good_in_group(char_data *victim) {
  * Returns the number of people in character's group who are also in
  * the same room.
  */
-int group_size(char_data *ch) {
-    struct char_data *k;
-    struct group_type *f;
+int group_size(CharData *ch) {
+    CharData *k;
+    GroupType *f;
     int counter = 0;
 
     if (!IS_GROUPED(ch))
@@ -432,20 +432,20 @@ int group_size(char_data *ch) {
 }
 
 /* Will this mob (ch) assist vict in battle? */
-bool will_assist(char_data *ch, char_data *vict) {
+bool will_assist(CharData *ch, CharData *vict) {
     /* STAGE 0: Very basic sanity checks. */
 
     /* I'm already in battle. */
     if (FIGHTING(ch))
-        return FALSE;
+        return false;
 
     /* Vict isn't in battle, or I'm fighting vict. */
     if (ch == vict || !FIGHTING(vict) || ch == FIGHTING(vict))
-        return FALSE;
+        return false;
 
     /* The person vict is fighting isn't here. */
     if (FIGHTING(vict)->in_room != ch->in_room)
-        return FALSE;
+        return false;
 
     /* STAGE 1: Vict is fighting someone in here... */
 
@@ -460,9 +460,9 @@ bool will_assist(char_data *ch, char_data *vict) {
             !MOB_FLAGGED(FIGHTING(vict), MOB_PEACEKEEPER) && /* not fighting a peacekeeper */
             !(!IS_NPC(FIGHTING(vict)) || MOB_FLAGGED(FIGHTING(vict), MOB_PLAYER_PHANTASM)) /* not fighting a player */
         )
-            return TRUE;
+            return true;
         /* Otherwise, mobs don't assist players. */
-        return FALSE;
+        return false;
     }
 
     /* Vict is a mobile. */
@@ -471,37 +471,37 @@ bool will_assist(char_data *ch, char_data *vict) {
     if (MOB_FLAGGED(ch, MOB_PEACEKEEPER) || MOB_FLAGGED(ch, MOB_PROTECTOR)) {
         /* It wouldn't assist against another peacekeeper, or a protector. */
         if (MOB_FLAGGED(FIGHTING(vict), MOB_PEACEKEEPER) || MOB_FLAGGED(FIGHTING(vict), MOB_PROTECTOR))
-            return FALSE;
+            return false;
         /* It would assist a peacekeeper or protector. */
         if (MOB_FLAGGED(vict, MOB_PEACEKEEPER) || MOB_FLAGGED(vict, MOB_PROTECTOR))
-            return TRUE;
+            return true;
         /* A peacekeeper would assist against a badly-aligned char */
         if (MOB_FLAGGED(ch, MOB_PEACEKEEPER) && abs(GET_ALIGNMENT(ch) - GET_ALIGNMENT(FIGHTING(vict))) > 1350)
-            return TRUE;
+            return true;
     }
 
     /* When do mobiles assist mobiles?  When they've got HELPER flag. */
     if (MOB_FLAGGED(ch, MOB_HELPER))
-        return TRUE;
+        return true;
 
-    return FALSE;
+    return false;
 }
 
-bool is_aggr_to(char_data *ch, char_data *tch) {
+bool is_aggr_to(CharData *ch, CharData *tch) {
     if (!ch || !tch || ch == tch || !AWAKE(ch))
-        return FALSE;
+        return false;
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MESMERIZED))
-        return FALSE;
+        return false;
 
     if (!CAN_SEE(ch, tch) || PRF_FLAGGED(tch, PRF_NOHASSLE) || EFF_FLAGGED(tch, EFF_FAMILIARITY))
-        return FALSE;
+        return false;
 
     if (is_grouped(ch, tch))
-        return FALSE;
+        return false;
 
-    if (!attack_ok(ch, tch, FALSE))
-        return FALSE;
+    if (!attack_ok(ch, tch, false))
+        return false;
 
     if (IS_NPC(ch)) {
         /* Wimpy mobs don't attack alert folks.
@@ -509,68 +509,68 @@ bool is_aggr_to(char_data *ch, char_data *tch) {
          * attacking-only- unconscious-folks bit. */
         if (MOB_FLAGGED(ch, MOB_WIMPY) && AWAKE(tch) && !MOB_FLAGGED(ch, MOB_PROTECTOR) &&
             !MOB_FLAGGED(ch, MOB_PEACEKEEPER))
-            return FALSE;
+            return false;
 
         /* Peacekeepers are out to rid the world of evil (or good!) NPCs */
         if (IS_NPC(tch) && MOB_FLAGGED(ch, MOB_PEACEKEEPER) && abs(GET_ALIGNMENT(ch) - GET_ALIGNMENT(tch)) > 1350)
-            return TRUE;
+            return true;
 
         /* Protectors don't like mobs that are aggro to PCs. */
         if (MOB_FLAGGED(ch, MOB_PROTECTOR) && AGGR_TO_PLAYERS(tch))
-            return TRUE;
+            return true;
 
         /* Otherwise, NPCs do not attack NPCs. */
         if (IS_NPC(tch) && !MOB_FLAGGED(tch, MOB_PLAYER_PHANTASM))
-            return FALSE;
+            return false;
 
         /* Now if the mob is marked any kind of aggro that matches the
            target, attack! */
         if (MOB_FLAGGED(ch, MOB_AGGRESSIVE))
-            return TRUE;
+            return true;
         if (MOB_FLAGGED(ch, MOB_AGGR_GOOD_RACE) && GET_RACE_ALIGN(tch) == RACE_ALIGN_GOOD)
-            return TRUE;
+            return true;
         if (MOB_FLAGGED(ch, MOB_AGGR_EVIL_RACE) && GET_RACE_ALIGN(tch) == RACE_ALIGN_EVIL)
-            return TRUE;
+            return true;
         if (MOB_FLAGGED(ch, MOB_AGGR_EVIL) && IS_EVIL(tch))
-            return TRUE;
+            return true;
         if (MOB_FLAGGED(ch, MOB_AGGR_NEUTRAL) && IS_NEUTRAL(tch))
-            return TRUE;
+            return true;
         if (MOB_FLAGGED(ch, MOB_AGGR_GOOD) && IS_GOOD(tch))
-            return TRUE;
+            return true;
 
         /* Is the target remembered as an enemy? */
         if (MOB_FLAGGED(ch, MOB_MEMORY) && in_memory(ch, tch))
-            return TRUE;
+            return true;
 
     }
     /* Otherwise is a player */
     else {
         /* Berserkers are aggressive. */
         if (IS_NPC(tch) && EFF_FLAGGED(ch, EFF_BERSERK))
-            return TRUE;
+            return true;
 
         if (GET_WIMP_LEV(ch) >= GET_HIT(ch))
-            return FALSE;
+            return false;
         if (GET_AGGR_LEV(ch) <= 0 || GET_AGGR_LEV(ch) > GET_HIT(ch))
-            return FALSE;
+            return false;
 
         /* If not vicious, be merciful to sleeping/paralyzed mobs */
         if (!PRF_FLAGGED(ch, PRF_VICIOUS) &&
             (!AWAKE(tch) || EFF_FLAGGED(tch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(tch, EFF_MAJOR_PARALYSIS)))
-            return FALSE;
+            return false;
 
         /*
          * The target must be an NPC or else you'll end up with an infinite
          * recursion situation.   Can you say segfault?
          */
         if (IS_NPC(tch) && is_aggr_to(tch, ch))
-            return TRUE;
+            return true;
     }
 
-    return FALSE;
+    return false;
 }
 
-int appraise_opponent(char_data *ch, char_data *vict) {
+int appraise_opponent(CharData *ch, CharData *vict) {
     int val;
 
     if (!IS_NPC(ch))
@@ -591,7 +591,7 @@ int appraise_opponent(char_data *ch, char_data *vict) {
     return val;
 }
 
-void glorion_distraction(char_data *ch, char_data *glorion) {
+void glorion_distraction(CharData *ch, CharData *glorion) {
     if (ch == glorion)
         return;
     /* Will the glorion be attacked? */
@@ -600,48 +600,48 @@ void glorion_distraction(char_data *ch, char_data *glorion) {
         !MOB_FLAGGED(ch, MOB_PEACEKEEPER) && !MOB_FLAGGED(ch, MOB_HELPER) && !MOB_FLAGGED(ch, MOB_PEACEFUL) &&
         !MOB_FLAGGED(ch, MOB_PROTECTOR)) {
         /* It's attacked! */
-        act("$n forgets $s appreciation of $N's glorious appearance, and attacks!", TRUE, ch, 0, glorion, TO_NOTVICT);
-        act("The look of awe in $N's eyes falters, and $e attacks!", TRUE, glorion, 0, ch, TO_CHAR);
-        act("You see right through $N's magical disguise!", FALSE, ch, 0, glorion, TO_CHAR);
-        event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, glorion, 0), TRUE, &(ch->events), 0);
+        act("$n forgets $s appreciation of $N's glorious appearance, and attacks!", true, ch, 0, glorion, TO_NOTVICT);
+        act("The look of awe in $N's eyes falters, and $e attacks!", true, glorion, 0, ch, TO_CHAR);
+        act("You see right through $N's magical disguise!", false, ch, 0, glorion, TO_CHAR);
+        event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, glorion, 0), true, &(ch->events), 0);
     } else {
         /* Glory wins: no attack. */
         if (number(1, 8) == 1) {
-            act("$n looks upon $N with awe in $s eyes.", TRUE, ch, 0, glorion, TO_NOTVICT);
-            act("$n gazes at you in wonder.", TRUE, ch, 0, glorion, TO_VICT);
-            act("You are distracted by $N's unearthly beauty.", TRUE, ch, 0, glorion, TO_CHAR);
+            act("$n looks upon $N with awe in $s eyes.", true, ch, 0, glorion, TO_NOTVICT);
+            act("$n gazes at you in wonder.", true, ch, 0, glorion, TO_VICT);
+            act("You are distracted by $N's unearthly beauty.", true, ch, 0, glorion, TO_CHAR);
         }
     }
 }
 
 #define MAX_TARGETS 10
-struct char_data *find_aggr_target(char_data *ch) {
-    struct char_data *tch;
+CharData *find_aggr_target(CharData *ch) {
+    CharData *tch;
     struct aggr_target {
-        struct char_data *target;
+        CharData *target;
         int difficulty;
     } targets[MAX_TARGETS + 1];
     int i, j, k, num_targets, chosen_targets;
 
-    struct char_data *glorion = NULL;
+    CharData *glorion = nullptr;
     int glorion_count;
 
     if (!ch || CH_NROOM(ch) == NOWHERE)
-        return NULL;
+        return nullptr;
 
     if (ROOM_FLAGGED(CH_NROOM(ch), ROOM_PEACEFUL))
-        return NULL;
+        return nullptr;
 
     if (!IS_NPC(ch) && !EFF_FLAGGED(ch, EFF_BERSERK)) {
         if (GET_WIMP_LEV(ch) >= GET_HIT(ch))
-            return NULL;
+            return nullptr;
         if (GET_AGGR_LEV(ch) <= 0 || GET_AGGR_LEV(ch) > GET_HIT(ch))
-            return NULL;
+            return nullptr;
     }
 
     if (PLR_FLAGGED(ch, PLR_BOUND) || !AWAKE(ch) || EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) ||
         EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS))
-        return NULL;
+        return nullptr;
 
     /* Your intelligence determines how many targets you will evaluate. */
     num_targets = MAX(1, GET_INT(ch) * MAX_TARGETS / 100);
@@ -674,12 +674,12 @@ struct char_data *find_aggr_target(char_data *ch) {
 
     if (glorion_count) {
         glorion_distraction(ch, glorion);
-        return NULL;
+        return nullptr;
     }
 
     if (i == 0)
         /* Didn't find anyone I was aggro to. */
-        return NULL;
+        return nullptr;
 
     /* This is the number of folks I decided I was aggro to, and stored in
      * targets[]. */
@@ -706,7 +706,7 @@ struct char_data *find_aggr_target(char_data *ch) {
 
     /* No potential targets in the room? */
     if (k >= chosen_targets)
-        return NULL;
+        return nullptr;
 
     return targets[k].target;
 }

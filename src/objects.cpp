@@ -10,7 +10,10 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "board.hpp" #include "conf.hpp"
+#include "objects.hpp"
+
+#include "board.hpp"
+#include "conf.hpp"
 #include "constants.hpp"
 #include "db.hpp"
 #include "dg_scripts.hpp"
@@ -18,6 +21,7 @@
 #include "genzon.hpp"
 #include "handler.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "olc.hpp"
 #include "shop.hpp"
 #include "skills.hpp"
@@ -27,385 +31,11 @@
 
 #include <math.h>
 
-/* External variables */
-extern const char *portal_entry_messages[];
-extern const char *portal_character_messages[];
-extern const char *portal_exit_messages[];
-
 #define ZCMD(zone, no) (zone_table[zone].cmd[no])
-
-/*
- * OBJECT TYPES
- *
- * name, desc, value min/maxes
- */
-const struct obj_type_def item_types[NUM_ITEM_TYPES] = {
-
-    {
-        "UNDEFINED",
-        "something strange",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "LIGHT",
-        "a light",
-        {{FALSE, TRUE},
-         {LIGHT_PERMANENT, VAL_MAX},
-         {LIGHT_PERMANENT, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "SCROLL",
-        "a scroll",
-        {{0, LVL_IMMORT},
-         {0, MAX_SPELLS},
-         {0, MAX_SPELLS},
-         {0, MAX_SPELLS},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "WAND",
-        "a wand",
-        {{0, LVL_IMMORT},
-         {0, 20},
-         {0, 20},
-         {0, MAX_SPELLS},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "STAFF",
-        "a staff",
-        {{0, LVL_IMMORT},
-         {0, 20},
-         {0, 20},
-         {0, MAX_SPELLS},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "WEAPON",
-        "a weapon",
-        {{0, 40},
-         {0, 20},
-         {0, 20},
-         {0, TYPE_ALIGN - TYPE_HIT},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "FIREWEAPON",
-        "a ranged weapon",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "MISSILE",
-        "a missile",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "TREASURE",
-        "treasure",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "ARMOR",
-        "armor",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "POTION",
-        "a potion",
-        {{0, LVL_IMMORT},
-         {0, MAX_SPELLS},
-         {0, MAX_SPELLS},
-         {0, MAX_SPELLS},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "WORN",
-        "clothing",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "OTHER",
-        "an object",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "TRASH",
-        "trash",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "TRAP",
-        "a trap",
-        {{0, MAX_SPELLS},
-         {0, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "CONTAINER",
-        "a container",
-        {{0, VAL_MAX},
-         {0, (1 << 4) - 1},
-         {0, VAL_MAX},
-         {NOT_CORPSE, CORPSE_NPC_NORAISE},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "NOTE",
-        "a note",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "LIQCONTAINER",
-        "a liquid container",
-        {{0, VAL_MAX},
-         {0, VAL_MAX},
-         {0, NUM_LIQ_TYPES - 1},
-         {FALSE, TRUE},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "KEY",
-        "a key",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "FOOD",
-        "food",
-        {{0, VAL_MAX},
-         {FALSE, TRUE},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "MONEY",
-        "money",
-        {{0, VAL_MAX},
-         {0, VAL_MAX},
-         {0, VAL_MAX},
-         {0, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "PEN",
-        "a writing instrument",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "BOAT",
-        "a boat",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-
-    },
-
-    {
-        "FOUNTAIN",
-        "a fountain",
-        {{0, VAL_MAX},
-         {0, VAL_MAX},
-         {0, NUM_LIQ_TYPES - 1},
-         {FALSE, TRUE},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "PORTAL",
-        "a portal",
-        {{0, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "ROPE",
-        "rope",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "SPELLBOOK",
-        "a book",
-        {{0, MAX_SPELLBOOK_PAGES},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "WALL",
-        "a wall",
-        {{0, NUM_OF_DIRS},
-         {FALSE, TRUE},
-         {0, VAL_MAX},
-         {0, MAX_SPELLS},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "TOUCHSTONE",
-        "a touchstone",
-        {{VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-
-    {
-        "BOARD",
-        "a board",
-        {{0, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX},
-         {VAL_MIN, VAL_MAX}},
-    },
-};
 
 void init_objtypes(void) {
     int i, j;
-    const struct obj_type_def *type;
+    const ObjectTypeDef *type;
 
     for (i = 0; i < NUM_ITEM_TYPES; ++i) {
         type = &item_types[i];
@@ -431,52 +61,7 @@ void init_objtypes(void) {
     }
 }
 
-const struct liquid_def liquid_types[NUM_LIQ_TYPES] = {
-    {"water", "water", "clear", {0, 0, 10}},
-    {"beer", "beer", "brown", {3, 2, 5}},
-    {"wine", "wine", "clear", {5, 2, 5}},
-    {"ale", "ale", "brown", {2, 2, 5}},
-    {"dark-ale", "dark ale", "dark", {1, 2, 5}},
-    {"whisky", "whisky", "golden", {6, 1, 4}},
-    {"lemonade", "lemonade", "yellow", {0, 1, 8}},
-    {"firebreather", "firebreather", "green", {10, 0, 0}},
-    {"local-speciality", "local speciality", "clear", {3, 3, 3}},
-    {"slime-mold-juice", "slime mold juice", "light green", {0, 4, -8}},
-    {"milk", "milk", "white", {0, 3, 6}},
-    {"black-tea", "black tea", "brown", {0, 1, 6}},
-    {"coffee", "coffee", "black", {0, 1, 6}},
-    {"blood", "blood", "red", {0, 2, -1}},
-    {"salt-water", "salt water", "clear", {0, 1, -2}},
-    {"rum", "rum", "light brown", {5, 2, 3}},
-    {"nectar", "nectar", "yellow", {-1, 12, 12}},
-    {"sake", "sake", "clearish", {6, 1, 4}},
-    {"cider", "cider", "dark brown", {1, 1, 5}},
-    {"tomato-soup", "tomato soup", "thick red", {0, 7, 3}},
-    {"potato-soup", "potato soup", "thick, light brown", {0, 8, 4}},
-    {"chai", "chai", "light brown", {0, 2, 5}},
-    {"apple-juice", "apple juice", "dark yellow", {0, 2, 6}},
-    {"orange-juice", "orange juice", "fruity orange", {0, 3, 5}},
-    {"pineapple-juice", "pineapple juice", "thin yellow", {0, 2, 6}},
-    {"grape-juice", "grape juice", "deep purple", {0, 2, 6}},
-    {"pomegranate-juice", "pomegranate juice", "dark red", {0, 3, 6}},
-    {"melonade", "melonade", "pink", {0, 1, 8}},
-    {"cocoa", "cocoa", "thick brown", {0, 3, 5}},
-    {"espresso", "espresso", "dark brown", {0, 1, 4}},
-    {"cappuccino", "cappuccino", "light brown", {0, 2, 4}},
-    {"mango-lassi", "mango lassi", "thick yellow", {0, 4, 4}},
-    {"rosewater", "rosewater", "light pink", {0, 0, 0}},
-    {"green-tea", "green tea", "pale green", {0, 1, 6}},
-    {"chamomile-tea", "chamomile tea", "clearish", {0, 1, 7}},
-    {"gin", "gin", "clear", {5, 0, 3}},
-    {"brandy", "brandy", "amber", {5, 0, 3}},
-    {"mead", "mead", "golden", {2, 0, 3}},
-    {"champagne", "champagne", "sparkly", {7, 0, 1}},
-    {"vodka", "vodka", "clear", {6, 0, 3}},
-    {"tequila", "tequila", "gold", {5, 0, 3}},
-    {"absinthe", "absinthe", "greenish", {8, 0, 2}},
-};
-
-static int min_value(obj_data *obj, int val) {
+static int min_value(ObjData *obj, int val) {
     int min = item_types[(int)GET_OBJ_TYPE(obj)].value[val].min;
 
     switch (GET_OBJ_TYPE(obj)) {
@@ -494,7 +79,7 @@ static int min_value(obj_data *obj, int val) {
     return min;
 }
 
-static int max_value(obj_data *obj, int val) {
+static int max_value(ObjData *obj, int val) {
     int max = item_types[(int)GET_OBJ_TYPE(obj)].value[val].max;
 
     switch (GET_OBJ_TYPE(obj)) {
@@ -534,14 +119,14 @@ static int max_value(obj_data *obj, int val) {
     return max;
 }
 
-bool is_value_within_bounds(obj_data *obj, int val) {
+bool is_value_within_bounds(ObjData *obj, int val) {
     if (!obj || val < 0 || val >= NUM_VALUES)
-        return FALSE;
+        return false;
 
     return (GET_OBJ_VAL(obj, val) == LIMIT(min_value(obj, val), GET_OBJ_VAL(obj, val), max_value(obj, val)));
 }
 
-void limit_obj_values(obj_data *obj) {
+void limit_obj_values(ObjData *obj) {
     int i;
 
     if (!obj)
@@ -560,25 +145,25 @@ void limit_obj_values(obj_data *obj) {
         GET_OBJ_VAL(obj, i) = LIMIT(min_value(obj, i), GET_OBJ_VAL(obj, i), max_value(obj, i));
 }
 
-int parse_obj_type(char_data *ch, char *arg) {
-    return parse_obj_name(ch, arg, "obj type", NUM_ITEM_TYPES, (void *)item_types, sizeof(obj_type_def));
+int parse_obj_type(CharData *ch, char *arg) {
+    return parse_obj_name(ch, arg, "obj type", NUM_ITEM_TYPES, (void *)item_types, sizeof(ObjectTypeDef));
 }
 
-int parse_liquid(char_data *ch, char *arg) {
-    return parse_obj_name(ch, arg, "liquid", NUM_LIQ_TYPES, (void *)liquid_types, sizeof(liquid_def));
+int parse_liquid(CharData *ch, char *arg) {
+    return parse_obj_name(ch, arg, "liquid", NUM_LIQ_TYPES, (void *)liquid_types, sizeof(LiquidDef));
 }
 
 bool delete_object(obj_num rnum) {
     int i, vnum;
     int zrnum;
-    struct obj_data *obj, *tmp;
+    ObjData *obj, *tmp;
     int shop, j, zone, cmd_no;
     bool save_this_zone;
 
     if (rnum == NOTHING || rnum > top_of_objt) {
         sprintf(buf, "ERR: delete_object() rnum %d out of range", rnum);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
-        return FALSE;
+        mudlog(buf, NRM, LVL_GOD, true);
+        return false;
     }
 
     obj = &obj_proto[rnum];
@@ -587,8 +172,8 @@ bool delete_object(obj_num rnum) {
     zrnum = find_real_zone_by_room(GET_OBJ_VNUM(obj));
     if (zrnum == -1) {
         sprintf(buf, "ERR: delete_object() can't identify zone for obj vnum %d", vnum);
-        mudlog(buf, NRM, LVL_GOD, TRUE);
-        return FALSE;
+        mudlog(buf, NRM, LVL_GOD, true);
+        return false;
     }
 
     for (tmp = object_list; tmp; tmp = tmp->next) {
@@ -597,7 +182,7 @@ bool delete_object(obj_num rnum) {
 
         /* extract_obj() will just axe contents. */
         if (tmp->contains) {
-            struct obj_data *this_content, *next_content;
+            ObjData *this_content, *next_content;
             for (this_content = tmp->contains; this_content; this_content = next_content) {
                 next_content = this_content->next_content;
                 if (IN_ROOM(tmp)) {
@@ -633,8 +218,8 @@ bool delete_object(obj_num rnum) {
     }
 
     top_of_objt--;
-    RECREATE(obj_index, index_data, top_of_objt + 1);
-    RECREATE(obj_proto, obj_data, top_of_objt + 1);
+    RECREATE(obj_index, IndexData, top_of_objt + 1);
+    RECREATE(obj_proto, ObjData, top_of_objt + 1);
 
     /* Renumber shop products. */
     printf("top_shop is %d\n", top_shop);
@@ -644,7 +229,7 @@ bool delete_object(obj_num rnum) {
 
     /* Renumber zone table. */
     for (zone = 0; zone <= top_of_zone_table; zone++) {
-        save_this_zone = FALSE;
+        save_this_zone = false;
         for (cmd_no = 0; ZCMD(zone, cmd_no).command != 'S'; cmd_no++) {
             switch (ZCMD(zone, cmd_no).command) {
             case 'P':
@@ -653,7 +238,7 @@ bool delete_object(obj_num rnum) {
                 } else
                     ZCMD(zone, cmd_no).arg3 -= (ZCMD(zone, cmd_no).arg3 > rnum);
                 break;
-                save_this_zone = TRUE;
+                save_this_zone = true;
             case 'O':
             case 'G':
             case 'E':
@@ -662,14 +247,14 @@ bool delete_object(obj_num rnum) {
                 } else
                     ZCMD(zone, cmd_no).arg1 -= (ZCMD(zone, cmd_no).arg1 > rnum);
                 break;
-                save_this_zone = TRUE;
+                save_this_zone = true;
             case 'R':
                 if (ZCMD(zone, cmd_no).arg2 == rnum) {
                     delete_zone_command(&zone_table[zone], cmd_no);
                 } else
                     ZCMD(zone, cmd_no).arg2 -= (ZCMD(zone, cmd_no).arg2 > rnum);
                 break;
-                save_this_zone = TRUE;
+                save_this_zone = true;
             }
         }
         if (save_this_zone) {
@@ -679,31 +264,31 @@ bool delete_object(obj_num rnum) {
 
     olc_add_to_save_list(zone_table[zrnum].number, OLC_SAVE_OBJ);
 
-    return TRUE;
+    return true;
 }
 
-void copy_object(obj_data *to, obj_data *from) {
+void copy_object(ObjData *to, ObjData *from) {
     free_obj_strings(to);
     *to = *from;
-    to->name = from->name ? strdup(from->name) : NULL;
-    to->description = from->description ? strdup(from->description) : NULL;
-    to->short_description = from->short_description ? strdup(from->short_description) : NULL;
-    to->action_description = from->action_description ? strdup(from->action_description) : NULL;
+    to->name = from->name ? strdup(from->name) : nullptr;
+    to->description = from->description ? strdup(from->description) : nullptr;
+    to->short_description = from->short_description ? strdup(from->short_description) : nullptr;
+    to->action_description = from->action_description ? strdup(from->action_description) : nullptr;
 
     if (from->ex_description)
         copy_extra_descriptions(&to->ex_description, from->ex_description);
     else
-        to->ex_description = NULL;
+        to->ex_description = nullptr;
 }
 
 #define FREE(var)                                                                                                      \
     do {                                                                                                               \
         free(var);                                                                                                     \
-        var = NULL;                                                                                                    \
+        var = nullptr;                                                                                                 \
     } while (0)
 
-void free_obj_strings_absolutely(obj_data *obj) {
-    extern void free_extra_descriptions(extra_descr_data * edesc);
+void free_obj_strings_absolutely(ObjData *obj) {
+    extern void free_extra_descriptions(ExtraDescriptionData * edesc);
 
     if (obj->name)
         FREE(obj->name);
@@ -715,12 +300,12 @@ void free_obj_strings_absolutely(obj_data *obj) {
         FREE(obj->action_description);
     if (obj->ex_description) {
         free_extra_descriptions(obj->ex_description);
-        obj->ex_description = NULL;
+        obj->ex_description = nullptr;
     }
 }
 
-void free_prototyped_obj_strings(obj_data *obj) {
-    struct obj_data *proto = &obj_proto[GET_OBJ_RNUM(obj)];
+void free_prototyped_obj_strings(ObjData *obj) {
+    ObjData *proto = &obj_proto[GET_OBJ_RNUM(obj)];
 
     if (obj->name && obj->name != proto->name)
         FREE(obj->name);
@@ -731,20 +316,20 @@ void free_prototyped_obj_strings(obj_data *obj) {
     if (obj->action_description && obj->action_description != proto->action_description)
         FREE(obj->action_description);
     if (obj->ex_description) {
-        struct extra_descr_data *obj_ed, *proto_ed, *next_ed;
+        ExtraDescriptionData *obj_ed, *proto_ed, *next_ed;
         bool ok_key, ok_desc, ok_item;
         /* O(horrible) */
         for (obj_ed = obj->ex_description; obj_ed; obj_ed = next_ed) {
             next_ed = obj_ed->next;
             /* If this obj_ed is in the proto's ex_desc list, don't free */
-            for (ok_item = ok_key = ok_desc = TRUE, proto_ed = proto->ex_description; proto_ed;
+            for (ok_item = ok_key = ok_desc = true, proto_ed = proto->ex_description; proto_ed;
                  proto_ed = proto_ed->next) {
                 if (proto_ed->keyword == obj_ed->keyword)
-                    ok_key = FALSE;
+                    ok_key = false;
                 if (proto_ed->description == obj_ed->description)
-                    ok_desc = FALSE;
+                    ok_desc = false;
                 if (proto_ed == obj_ed)
-                    ok_item = FALSE;
+                    ok_item = false;
             }
             if (obj_ed->keyword && ok_key)
                 FREE(obj_ed->keyword);
@@ -756,7 +341,7 @@ void free_prototyped_obj_strings(obj_data *obj) {
     }
 }
 
-void free_obj_strings(obj_data *obj) {
+void free_obj_strings(ObjData *obj) {
     if (GET_OBJ_RNUM(obj) == NOTHING)
         free_obj_strings_absolutely(obj);
     else
@@ -765,9 +350,9 @@ void free_obj_strings(obj_data *obj) {
 
 #undef FREE
 
-void weight_change_object(obj_data *obj, float weight) {
-    struct obj_data *tmp_obj;
-    struct char_data *tmp_ch;
+void weight_change_object(ObjData *obj, float weight) {
+    ObjData *tmp_obj;
+    CharData *tmp_ch;
 
     if (obj->in_room != NOWHERE) {
         GET_OBJ_WEIGHT(obj) += weight;
@@ -793,7 +378,7 @@ void weight_change_object(obj_data *obj, float weight) {
  * the same as the name of the liquid.
  */
 
-void name_from_drinkcon(obj_data *obj, int type) {
+void name_from_drinkcon(ObjData *obj, int type) {
     int aliaslen;
     char *new_name;
 
@@ -814,7 +399,7 @@ void name_from_drinkcon(obj_data *obj, int type) {
     }
 }
 
-void name_to_drinkcon(obj_data *obj, int type) {
+void name_to_drinkcon(ObjData *obj, int type) {
     char *new_name;
 
     if (!VALID_LIQ_TYPE(type) || isname(LIQ_ALIAS(type), obj->name))
@@ -868,7 +453,7 @@ void name_to_drinkcon(obj_data *obj, int type) {
  * desc specifies *nl and/or *ne, those will override the default aliases.
  */
 
-void setup_drinkcon(obj_data *obj, int newliq) {
+void setup_drinkcon(ObjData *obj, int newliq) {
     char *line, *adesc, *newtext;
 
     /* A brand new liquid container. */
@@ -913,7 +498,7 @@ void setup_drinkcon(obj_data *obj, int newliq) {
                         "Error setting up drinkcon %d: expected 'l' or 'e' in adesc, "
                         "but got #%d",
                         GET_OBJ_VNUM(obj), line[2]);
-                mudlog(buf, BRF, LVL_IMMORT, TRUE);
+                mudlog(buf, BRF, LVL_IMMORT, true);
             } else {
                 if (line[2] == 'l' && GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING) > 0) {
                     /* Processing input line with liquid present */
@@ -949,7 +534,7 @@ void setup_drinkcon(obj_data *obj, int newliq) {
                             "Error setting up drinkcon %d: expected 'n', 's', or 'l' in "
                             "adesc, but got #%d",
                             GET_OBJ_VNUM(obj), line[1]);
-                    mudlog(buf, BRF, LVL_IMMORT, TRUE);
+                    mudlog(buf, BRF, LVL_IMMORT, true);
                     free(newtext);
                 }
             }
@@ -959,7 +544,7 @@ void setup_drinkcon(obj_data *obj, int newliq) {
     }
 }
 
-void liquid_from_container(obj_data *container, int amount) {
+void liquid_from_container(ObjData *container, int amount) {
     int loss, remaining;
     float weight;
 
@@ -989,13 +574,13 @@ void liquid_from_container(obj_data *container, int amount) {
     weight_change_object(container, -weight);
 
     if (remaining == 0) {
-        GET_OBJ_VAL(container, VAL_DRINKCON_POISONED) = FALSE;
+        GET_OBJ_VAL(container, VAL_DRINKCON_POISONED) = false;
         /* Since the container is empty, its strings could be changed. */
         setup_drinkcon(container, 0);
     }
 }
 
-void liquid_to_container(obj_data *container, int amount, int liquid_type, bool poisoned) {
+void liquid_to_container(ObjData *container, int amount, int liquid_type, bool poisoned) {
     int change, final_amount;
     float weight;
 
@@ -1015,8 +600,29 @@ void liquid_to_container(obj_data *container, int amount, int liquid_type, bool 
     GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING) = final_amount;
     GET_OBJ_VAL(container, VAL_DRINKCON_LIQUID) = liquid_type;
     if (poisoned)
-        GET_OBJ_VAL(container, VAL_DRINKCON_POISONED) = TRUE;
+        GET_OBJ_VAL(container, VAL_DRINKCON_POISONED) = true;
     weight = LIQUID_MASS(change, GET_OBJ_VAL(container, VAL_DRINKCON_LIQUID));
     weight_change_object(container, weight);
     setup_drinkcon(container, GET_OBJ_VAL(container, VAL_DRINKCON_LIQUID));
+}
+
+ObjData *carried_key(CharData *ch, int keyvnum) {
+    ObjData *o;
+
+    if (keyvnum < 0 || !ch)
+        return nullptr;
+
+    for (o = ch->carrying; o; o = o->next_content)
+        if (GET_OBJ_VNUM(o) == keyvnum)
+            return o;
+
+    if (GET_EQ(ch, WEAR_HOLD))
+        if (GET_OBJ_VNUM(GET_EQ(ch, WEAR_HOLD)) == keyvnum)
+            return GET_EQ(ch, WEAR_HOLD);
+
+    if (GET_EQ(ch, WEAR_HOLD2))
+        if (GET_OBJ_VNUM(GET_EQ(ch, WEAR_HOLD2)) == keyvnum)
+            return GET_EQ(ch, WEAR_HOLD2);
+
+    return nullptr;
 }

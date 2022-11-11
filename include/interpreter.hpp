@@ -15,17 +15,17 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-#define ACMD(name) void(name)(char_data * ch, char *argument, int cmd, int subcmd)
+#define ACMD(name) void(name)(CharData * ch, char *argument, int cmd, int subcmd)
 
 #define CMD_NAME (cmd_info[cmd].command)
 #define CMD_IS(cmd_name) (!strcmp(cmd_name, cmd_info[cmd].command))
 #define IS_MOVE(cmdnum) (cmdnum >= 1 && cmdnum <= 6)
 
-void command_interpreter(char_data *ch, char *argument);
-void list_similar_commands(char_data *ch, char *arg);
+void command_interpreter(CharData *ch, char *argument);
+void list_similar_commands(CharData *ch, char *arg);
 int searchblock(char *arg, const char **list, bool exact);
 int search_block(const char *arg, const char **list, bool exact);
-#define parse_direction(arg) (search_block(arg, dirs, FALSE))
+#define parse_direction(arg) (search_block(arg, dirs, false))
 char lower(char c);
 char *one_argument(char *argument, char *first_arg);
 char *one_word(char *argument, char *first_arg);
@@ -36,7 +36,7 @@ char *delimited_arg_case(char *argument, char *quoted_arg, char delimiter);
 char *delimited_arg_all(char *argument, char *quoted_arg, char delimiter);
 int fill_word(char *argument);
 void half_chop(char *string, char *arg1, char *arg2);
-void nanny(descriptor_data *d, char *arg);
+void nanny(DescriptorData *d, char *arg);
 int is_abbrev(const char *arg1, const char *arg2);
 bool is_integer(const char *str);
 bool is_positive_integer(const char *str);
@@ -62,39 +62,39 @@ char *delete_doubledollar(char *string);
 #define CMD_NOFIGHT (1 << 7)
 #define CMD_ANY ((1 << 8) - 1 - CMD_NOFIGHT)
 
-struct command_info {
-    char *command;
+struct CommandInfo {
+    const char *command;
     byte minimum_position;
     byte minimum_stance;
-    void (*command_pointer)(char_data *ch, char *argument, int cmd, int subcmd);
+    void (*command_pointer)(CharData *ch, char *argument, int cmd, int subcmd);
     sh_int minimum_level;
     int subcmd;
     long flags;
 };
 
-struct sort_struct {
+struct SortStruct {
     int sort_pos;
     byte is_social;
 };
 
 /* necessary for CMD_IS macro */
 #ifndef __INTERPRETER_C__
-extern struct command_info cmd_info[];
+extern CommandInfo cmd_info[];
 extern const char *command_flags[];
 extern int num_of_cmds;
-extern struct sort_struct *cmd_sort_info;
+extern SortStruct *cmd_sort_info;
 #endif
 
 /* this is the new xnames structure --Gurlaek 6/9/1999 */
-struct xname {
+struct XName {
     /* the +3 is for the # \n and NULL chars */
     char name[MAX_NAME_LENGTH + 3];
-    struct xname *next;
+    XName *next;
 };
 #define NAME_TIMEOUT 1 * (30 RL_SEC) /* 5 minutes */
 
-extern void free_alias(alias_data *alias);
-extern void free_aliases(alias_data *alias_list);
+void free_alias(AliasData *alias);
+void free_aliases(AliasData *alias_list);
 
 #define ALIAS_SIMPLE 0
 #define ALIAS_COMPLEX 1

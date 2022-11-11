@@ -17,7 +17,7 @@
 #include "events.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "movement.hpp"
 #include "quest.hpp"
 #include "regen.hpp"
@@ -26,15 +26,15 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
+void sub_write(char *arg, CharData *ch, byte find_invis, int targets);
 int get_room_location(char *room);
-struct find_context find_dg_by_name(char *name);
+FindContext find_dg_by_name(char *name);
 
-#define OCMD(name) void(name)(obj_data * obj, trig_data * t, char *argument, int cmd, int subcmd)
+#define OCMD(name) void(name)(ObjData * obj, TrigData * t, char *argument, int cmd, int subcmd)
 
 struct obj_command_info {
     char *command;
-    void (*command_pointer)(obj_data *obj, trig_data *t, char *argument, int cmd, int subcmd);
+    void (*command_pointer)(ObjData *obj, TrigData *t, char *argument, int cmd, int subcmd);
     int subcmd;
 };
 
@@ -43,17 +43,17 @@ struct obj_command_info {
 #define SCMD_OECHOAROUND 1
 
 /* attaches object name and vnum to msg and sends it to script_log */
-void obj_log(obj_data *obj, trig_data *t, char *msg) {
+void obj_log(ObjData *obj, TrigData *t, const char *msg) {
     char buf[MAX_INPUT_LENGTH + 100];
 
-    void script_log(trig_data * t, char *msg);
+    void script_log(TrigData * t, char *msg);
 
     sprintf(buf, "(TRG)(object %d): %s", GET_OBJ_VNUM(obj), msg);
     script_log(t, buf);
 }
 
 /* returns the real room number that the object or object's carrier is in */
-int obj_room(obj_data *obj) {
+int obj_room(ObjData *obj) {
     if (obj->in_room != NOWHERE)
         return obj->in_room;
     else if (obj->carried_by)
@@ -67,10 +67,10 @@ int obj_room(obj_data *obj) {
 }
 
 /* returns the real room number, or NOWHERE if not found or invalid */
-int find_obj_target_room(obj_data *obj, char *rawroomstr) {
+int find_obj_target_room(ObjData *obj, char *rawroomstr) {
     int location;
-    char_data *target_mob;
-    obj_data *target_obj;
+    CharData *target_mob;
+    ObjData *target_obj;
     char roomstr[MAX_INPUT_LENGTH];
 
     one_argument(rawroomstr, roomstr);
@@ -115,7 +115,7 @@ OCMD(do_oecho) {
 
     else if ((room = obj_room(obj)) != NOWHERE) {
         if (world[room].people)
-            sub_write(argument, world[room].people, TRUE, TO_ROOM | TO_CHAR);
+            sub_write(argument, world[room].people, true, TO_ROOM | TO_CHAR);
     }
 
     else
@@ -123,7 +123,7 @@ OCMD(do_oecho) {
 }
 
 OCMD(do_oforce) {
-    char_data *ch, *next_ch;
+    CharData *ch, *next_ch;
     int room;
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
@@ -166,7 +166,7 @@ OCMD(do_oforce) {
 
 OCMD(do_osend) {
     char buf[MAX_INPUT_LENGTH], *msg;
-    char_data *ch;
+    CharData *ch;
 
     msg = any_one_arg(argument, buf);
 
@@ -184,9 +184,9 @@ OCMD(do_osend) {
 
     if ((ch = find_char_around_obj(obj, find_dg_by_name(buf)))) {
         if (subcmd == SCMD_OSEND)
-            sub_write(msg, ch, TRUE, TO_CHAR);
+            sub_write(msg, ch, true, TO_CHAR);
         else if (subcmd == SCMD_OECHOAROUND)
-            sub_write(msg, ch, TRUE, TO_ROOM);
+            sub_write(msg, ch, true, TO_ROOM);
     }
 
     else
@@ -195,7 +195,7 @@ OCMD(do_osend) {
 
 /* increases the target's exp */
 OCMD(do_oexp) {
-    char_data *ch;
+    CharData *ch;
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     two_arguments(argument, name, amount);
@@ -216,8 +216,8 @@ OCMD(do_oexp) {
 /* purge all objects and npcs in room, or specified object or mob */
 OCMD(do_opurge) {
     char arg[MAX_INPUT_LENGTH];
-    char_data *ch, *next_ch;
-    obj_data *o, *next_obj;
+    CharData *ch, *next_ch;
+    ObjData *o, *next_obj;
     int rm;
 
     one_argument(argument, arg);
@@ -257,7 +257,7 @@ OCMD(do_opurge) {
 }
 
 OCMD(do_oteleport) {
-    char_data *ch, *next_ch;
+    CharData *ch, *next_ch;
     int target, rm;
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
@@ -299,68 +299,69 @@ OCMD(do_oteleport) {
 OCMD(do_dgoload) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], arg3[MAX_INPUT_LENGTH], arg4[MAX_INPUT_LENGTH];
     char *line;
-    int number = 0, room;
-    char_data *mob, *ch;
-    obj_data *object, *object2;
+    int number = 0, room_num;
+    CharData *mob, *ch;
+    ObjData *obj1, *obj2;
 
     line = two_arguments(argument, arg1, arg2);
 
     if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
-        obj_log(obj, t, "oload: bad syntax");
+        obj_log(obj1, t, "oload: bad syntax");
         return;
     }
 
-    if ((room = obj_room(obj)) == NOWHERE) {
-        obj_log(obj, t, "oload: object in NOWHERE trying to load");
+    if ((room_num = obj_room(obj1)) == NOWHERE) {
+        obj_log(obj1, t, "oload: object in NOWHERE trying to load");
         return;
     }
 
     if (is_abbrev(arg1, "mob")) {
-        if ((mob = read_mobile(number, VIRTUAL)) == NULL) {
-            obj_log(obj, t, "oload: bad mob vnum");
+        if ((mob = read_mobile(number, VIRTUAL)) == nullptr) {
+            obj_log(obj1, t, "oload: bad mob vnum");
             return;
         }
-        char_to_room(mob, room);
+        char_to_room(mob, room_num);
         load_mtrigger(mob);
-    } else if (is_abbrev(arg1, "obj")) {
-        if ((object = read_object(number, VIRTUAL)) == NULL) {
-            obj_log(obj, t, "oload: bad object vnum");
+    } else if (is_abbrev(arg1, "obj1")) {
+        if ((obj1 = read_object(number, VIRTUAL)) == nullptr) {
+            obj_log(obj1, t, "oload: bad object vnum");
             return;
         }
 
         if (*line == '\0') {
-            obj_to_room(object, room);
+            obj_to_room(obj1, room_num);
         } else {
+            RoomData *room = &world[room_num];
             two_arguments(line, arg3, arg4);
             if (is_abbrev(arg3, "mob")) {
                 if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
-                    obj_to_char(object, mob);
+                    obj_to_char(obj1, mob);
                 }
-            } else if (is_abbrev(arg3, "obj")) {
-                if ((object2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
-                    obj_to_obj(object, object2);
+            } else if (is_abbrev(arg3, "obj1")) {
+                if ((obj2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
+                    obj_to_obj(obj1, obj2);
                 } else {
-                    obj_log(object, t, "wload: no target found");
+                    obj_log(obj1, t, "wload: no target found");
                 }
             } else if (is_abbrev(arg3, "plr")) {
                 if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
-                    obj_to_char(object, ch);
+                    obj_to_char(obj1, ch);
                 } else {
-                    obj_log(object, t, "wload: no target found");
+                    obj_log(obj1, t, "wload: no target found");
                 }
             } else {
-                obj_log(room, t, "wload: bad subtype");
+                obj_log(obj1, t, "wload: bad subtype");
             }
         }
     } else {
-        obj_log(obj, t, "oload: bad type");
+        obj_log(obj1, t, "oload: bad type");
     }
 }
 
 OCMD(do_oheal) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
     int dam = 0;
-    char_data *ch;
+    CharData *ch;
 
     two_arguments(argument, name, amount);
 
@@ -376,7 +377,7 @@ OCMD(do_oheal) {
             send_to_char("Being a god, you don't need healing.\r\n", ch);
             return;
         }
-        hurt_char(ch, NULL, -dam, TRUE);
+        hurt_char(ch, nullptr, -dam, true);
     } else
         obj_log(obj, t, "oheal: target not found");
 }
@@ -384,7 +385,7 @@ OCMD(do_oheal) {
 OCMD(do_odamage) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH], damtype[MAX_INPUT_LENGTH];
     int dam = 0, dtype = DAM_UNDEFINED;
-    char_data *ch;
+    CharData *ch;
 
     t->damdone = 0;
     argument = two_arguments(argument, name, amount);
@@ -428,7 +429,7 @@ OCMD(do_odamage) {
 
 OCMD(do_ocast) {
     char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], spell_name[MAX_INPUT_LENGTH];
-    char_data *target;
+    CharData *target;
     int spellnum, level = 0;
 
     argument = delimited_arg(argument, spell_name, '\'');
@@ -464,9 +465,9 @@ OCMD(do_ocast) {
     }
 
     if (obj->worn_by)
-        call_magic(obj->worn_by, target, NULL, spellnum, level, SAVING_ROD);
+        call_magic(obj->worn_by, target, nullptr, spellnum, level, SAVING_ROD);
     else if (obj->carried_by)
-        call_magic(obj->carried_by, target, NULL, spellnum, level, SAVING_ROD);
+        call_magic(obj->carried_by, target, nullptr, spellnum, level, SAVING_ROD);
     else {
         obj_log(obj, t, "ocast: target must be carried or worn in order to cast spells");
         return;
@@ -475,7 +476,7 @@ OCMD(do_ocast) {
 
 OCMD(do_ochant) {
     char name[MAX_INPUT_LENGTH], chant_level_str[MAX_INPUT_LENGTH], chant_name[MAX_INPUT_LENGTH];
-    char_data *target;
+    CharData *target;
     int chantnum, level = 0;
 
     argument = delimited_arg(argument, chant_name, '\'');
@@ -511,9 +512,9 @@ OCMD(do_ochant) {
     }
 
     if (obj->worn_by)
-        call_magic(obj->worn_by, target, NULL, chantnum, level, SAVING_ROD);
+        call_magic(obj->worn_by, target, nullptr, chantnum, level, SAVING_ROD);
     else if (obj->carried_by)
-        call_magic(obj->carried_by, target, NULL, chantnum, level, SAVING_ROD);
+        call_magic(obj->carried_by, target, nullptr, chantnum, level, SAVING_ROD);
     else {
         obj_log(obj, t, "ocast: target must be carried or worn in order to cast spells");
         return;
@@ -527,7 +528,7 @@ OCMD(do_ochant) {
  * since its a bit pointless.. conversley, we CAN match any player in the mud,
  * even invis/hidden whatever
  */
-OCMD(do_obj_quest) { perform_quest(t, argument, NULL, obj, NULL); }
+OCMD(do_obj_quest) { perform_quest(t, argument, nullptr, obj, nullptr); }
 
 OCMD(do_obj_log) { obj_log(obj, t, argument); }
 
@@ -553,7 +554,7 @@ const struct obj_command_info obj_cmd_info[] = {
 /*
  *  This is the command interpreter used by objects, called by script_driver.
  */
-void obj_command_interpreter(obj_data *obj, trig_data *t, char *argument) {
+void obj_command_interpreter(ObjData *obj, TrigData *t, char *argument) {
     int cmd, length;
     char *line, arg[MAX_INPUT_LENGTH];
 

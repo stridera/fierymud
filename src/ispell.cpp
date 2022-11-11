@@ -66,7 +66,7 @@ void ispell_init(void) {
         for (i = 2; i < 255; i++)
             close(i);
 
-        execlp("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *)NULL);
+        execlp("ispell", "ispell", "-a", "-p" ISPELL_DICTIONARY, (char *)nullptr);
         exit(1);
     }
 
@@ -75,10 +75,10 @@ void ispell_init(void) {
         close(ispell_to_fiery[1]);
 
         ispell_out = fdopen(fiery_to_ispell[1], "w");
-        setbuf(ispell_out, NULL);
+        setbuf(ispell_out, nullptr);
 
         ispell_in = fdopen(ispell_to_fiery[0], "r");
-        setbuf(ispell_in, NULL);
+        setbuf(ispell_in, nullptr);
 
 #if !defined(sun) /* that ispell on sun gives no (c) msg */
         fgets(ignore_buf, 1024, ispell_in);
@@ -91,7 +91,7 @@ void ispell_done(void) {
         fprintf(ispell_out, "#\n");
         fclose(ispell_out);
         fclose(ispell_in);
-        waitpid(ispell_pid, NULL, 0);
+        waitpid(ispell_pid, nullptr, 0);
         ispell_pid = -1;
     }
 }
@@ -101,7 +101,7 @@ const char *get_ispell_line(const char *word) {
     char throwaway[ISPELL_BUF_SIZE];
 
     if (ispell_pid == -1)
-        return NULL;
+        return nullptr;
 
     if (word) {
         fprintf(ispell_out, "^%s\n", word);
@@ -115,7 +115,7 @@ const char *get_ispell_line(const char *word) {
     return buf;
 }
 
-void ispell_check(descriptor_data *d, const char *word) {
+void ispell_check(DescriptorData *d, const char *word) {
     const char *pc;
 
     if (!d)

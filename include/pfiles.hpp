@@ -31,20 +31,20 @@
 #define SAVE_CRYO 2
 #define SAVE_RENT 3
 
-extern void save_quests(char_data *ch);
-extern void load_quests(char_data *ch);
+void save_quests(CharData *ch);
+void load_quests(CharData *ch);
 
-extern void save_player_objects(char_data *ch);
-extern bool load_objects(char_data *ch);
-extern bool build_object(FILE *fl, obj_data **obj, int *location);
-extern void extract_objects(char_data *ch);
-extern bool write_objects(obj_data *obj, FILE *fl, int location);
-extern void auto_save_all(void);
-extern void show_rent(char_data *ch, char *argument);
-extern bool delete_player_obj_file(char_data *ch);
-extern FILE *open_player_obj_file(char *player_name, char_data *ch, bool quiet);
-extern void convert_player_obj_files(char_data *ch);
-extern void convert_single_player_obj_file(char_data *ch, char *name);
-extern void save_player(char_data *ch);
+void save_player_objects(CharData *ch);
+bool load_objects(CharData *ch);
+bool build_object(FILE *fl, ObjData **obj, int *location);
+void extract_objects(CharData *ch);
+bool write_objects(ObjData *obj, FILE *fl, int location);
+void auto_save_all(void);
+void show_rent(CharData *ch, char *argument);
+bool delete_player_obj_file(CharData *ch);
+FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet);
+void convert_player_obj_files(CharData *ch);
+void convert_single_player_obj_file(CharData *ch, char *name);
+void save_player(CharData *ch);
 
-void load_pets(char_data *ch);
+void load_pets(CharData *ch);

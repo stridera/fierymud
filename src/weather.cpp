@@ -20,38 +20,11 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-const char *wind_speeds[] = {
-    "", "&8&6breeze", "&8&6strong wind", "&4gale-force wind", "&4&8hurricane-strength &0&6wind", "\n"};
-
-const char *precip[] = {"&6&brain", "&7&bsnow", "\n"};
-
-const char *daylight_change[] = {
-    "&9&bThe night has begun.&0\r\n",
-    "&6&bThe &3sun &6rises in the east.&0\r\n",
-    "&6&bThe day has begun.&0\r\n",
-    "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\r\n",
-};
-
-const char *seasons[] = {"winter", "spring", "summer", "autumn", "\n"};
-
-const char *season_change[] = {
-    "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\r\n",
-    "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\r\n",
-    "Spring gives way to Summer.\r\n",
-    "Summer passes and Autumn begins.\r\n",
-};
-
 /*
  * Initialize hemisphere data.  Only the names are permanent.  The
  * sunlight and season values are re-initialized from time data when
  * the game boots (and are updated as the game runs).
  */
-struct hemisphere_data hemispheres[NUM_HEMISPHERES] = {
-    {"Northwestern", SUN_DARK, WINTER},
-    {"Northeastern", SUN_LIGHT, SUMMER},
-    {"Southwestern", SUN_DARK, WINTER},
-    {"Southeastern", SUN_LIGHT, SUMMER},
-};
 
 void increment_game_time(void) {
     time_info.hours++;
@@ -73,7 +46,7 @@ void increment_game_time(void) {
 }
 
 void update_daylight() {
-    struct descriptor_data *d;
+    DescriptorData *d;
 
     switch (time_info.hours) {
     case 6:
@@ -112,7 +85,7 @@ void update_daylight() {
 }
 
 void update_season() {
-    struct descriptor_data *d;
+    DescriptorData *d;
 
     switch (time_info.month) {
     case 0:
@@ -154,28 +127,11 @@ void update_season() {
 }
 
 static CBP_FUNC(cb_outdoor) {
-    struct char_data *ch = object;
-    int zone_rnum = (int)data;
+    CharData *ch = (CharData *)obj;
+    int zone_rnum = (intptr_t)data;
 
     return (AWAKE(ch) && CH_OUTSIDE(ch) && IN_ZONE_RNUM(ch) == zone_rnum);
 }
-
-/* setup all the climate zones.  these are BASE values, and will be modified
- * for each actual zone at run-time based on the settings here...
- */
-struct climate_data climates[NUM_CLIMATES] =
-    {/* climate         temperature    precipitation   wind speed
-        allowed_disasters */
-     {"None", TEMP_MILD, PRECIP_NONE, WIND_NONE, DISASTER_NONE},
-     {"Semiarid", TEMP_HOT, PRECIP_NONE, WIND_NONE, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
-     {"Arid", TEMP_MILD, PRECIP_DRIZZLE, WIND_STRONG, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
-     {"Oceanic", TEMP_MILD, PRECIP_DRIZZLE, WIND_BREEZE, DISASTER_TSUNAMI | DISASTER_WATERSPOUT | DISASTER_HURRICANE},
-     {"Temperate", TEMP_WARM, PRECIP_LIGHT, WIND_BREEZE, DISASTER_FLOOD | DISASTER_TORNADO | DISASTER_EARTHQUAKE},
-     {"Subtropical", TEMP_HOT, PRECIP_LIGHT, WIND_BREEZE, DISASTER_FLOOD | DISASTER_HEATWAVE | DISASTER_HURRICANE},
-     {"Tropical", TEMP_COOL, PRECIP_LIGHT, WIND_BREEZE, DISASTER_HURRICANE | DISASTER_HEATWAVE},
-     {"Subarctic", TEMP_COLD, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD},
-     {"Arctic", TEMP_FREEZING, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD},
-     {"Alpine", TEMP_COLD, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD}};
 
 void init_weather() {
     int i;
@@ -237,7 +193,7 @@ char *wind_message(int current, int original) {
 
 void update_wind(int zone_rnum) {
     int original, change;
-    struct zone_data *zone = &zone_table[zone_rnum];
+    struct ZoneData *zone = &zone_table[zone_rnum];
 
     original = zone->wind_speed;
 
@@ -297,7 +253,7 @@ char *temperature_message(int temperature) {
 
 void update_temperature(int zone_rnum) {
     int change;
-    struct zone_data *zone = &zone_table[zone_rnum];
+    struct ZoneData *zone = &zone_table[zone_rnum];
 
     change = number(0, 5);
 
@@ -349,7 +305,7 @@ void update_temperature(int zone_rnum) {
     cbprintf(cb_outdoor, (void *)zone_rnum, "%s", temperature_message(zone->temperature));
 }
 
-char *precipitation_message(zone_data *zone, int original) {
+char *precipitation_message(ZoneData *zone, int original) {
     if (original > PRECIP_GRAY_CLOUDS) {
         if (zone->precipitation > original)
             sprintf(buf, "&9&8It starts %sing &9&8harder.&0\r\n", GET_PRECIP_TYPE(zone));
@@ -413,7 +369,7 @@ char *precipitation_message(zone_data *zone, int original) {
 
 void update_precipitation(int zone_rnum) {
     int original, change;
-    struct zone_data *zone = &zone_table[zone_rnum];
+    struct ZoneData *zone = &zone_table[zone_rnum];
 
     original = zone->precipitation;
 

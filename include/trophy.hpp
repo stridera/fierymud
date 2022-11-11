@@ -22,22 +22,22 @@
 
 #define TROPHY_LENGTH 21
 
-struct trophy_node {
-    int kill_type;            /* mobile or player */
-    int id;                   /* if mobile, the VNUM; player, the id */
-    float amount;             /* 1.0 if you killed it alone... */
-    struct trophy_node *next; /* VOID when at end of list */
-    struct trophy_node *prev;
+struct TrophyNode {
+    int kill_type;    /* mobile or player */
+    int id;           /* if mobile, the VNUM; player, the id */
+    float amount;     /* 1.0 if you killed it alone... */
+    TrophyNode *next; /* VOID when at end of list */
+    TrophyNode *prev;
 };
 
 #define GET_TROPHY(ch) ((ch)->player_specials->trophy)
 
-void init_trophy(char_data *ch);
-void add_trophy(char_data *ch, int kill_type, int id, float amount);
-void kill_to_trophy(char_data *vict, char_data *killer, float amount);
-void load_trophy(FILE *file, char_data *ch);
-void save_trophy(FILE *file, char_data *ch);
-void free_trophy(char_data *ch);
-void show_trophy(char_data *ch, char_data *vict);
-float exp_trophy_modifier(char_data *ch, char_data *vict);
-float get_trophy_kills(char_data *ch, char_data *vict);
+void init_trophy(CharData *ch);
+void add_trophy(CharData *ch, int kill_type, int id, float amount);
+void kill_to_trophy(CharData *vict, CharData *killer, float amount);
+void load_trophy(FILE *file, CharData *ch);
+void save_trophy(FILE *file, CharData *ch);
+void free_trophy(CharData *ch);
+void show_trophy(CharData *ch, CharData *vict);
+float exp_trophy_modifier(CharData *ch, CharData *vict);
+float get_trophy_kills(CharData *ch, CharData *vict);

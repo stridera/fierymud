@@ -8,7 +8,7 @@
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
 
-#include "queue.h"
+#include "queue.hpp"
 
 #include "conf.hpp"
 #include "events.hpp"
@@ -16,41 +16,28 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* number of queues to use (reduces enqueue cost) */
-#define NUM_EVENT_QUEUES 100
-
-struct queue {
-    struct q_element *head[NUM_EVENT_QUEUES], *tail[NUM_EVENT_QUEUES];
-};
-
-struct q_element {
-    void *data;
-    long key;
-    struct q_element *prev, *next;
-};
-
 /* external variables */
-extern unsigned long pulse;
+unsigned long pulse;
 
 /* returns a new, initialized queue */
-struct queue *queue_init(void) {
-    struct queue *q;
+Queue *queue_init(void) {
+    Queue *q;
 
-    CREATE(q, queue, 1);
+    CREATE(q, Queue, 1);
 
     return q;
 }
 
 /* add data into the priority queue q with key */
-struct q_element *queue_enq(queue *q, void *data, long key) {
-    struct q_element *qe, *i;
+QElement *queue_enq(Queue *q, void *data, long key) {
+    QElement *qe, *i;
     int bucket;
 
-    CREATE(qe, q_element, 1);
+    CREATE(qe, QElement, 1);
     qe->data = data;
     qe->key = key;
 
-    bucket = key % NUM_EVENT_QUEUES; /* which queue does this go in */
+    bucket = key % NUM_EVENT_QUEUES; /* which Queue does this go in */
 
     if (!q->head[bucket]) { /* queue is empty */
         q->head[bucket] = qe;
@@ -74,7 +61,7 @@ struct q_element *queue_enq(queue *q, void *data, long key) {
             }
         }
 
-        if (i == NULL) { /* insertion point is front of list */
+        if (i == nullptr) { /* insertion point is front of list */
             qe->next = q->head[bucket];
             q->head[bucket] = qe;
             qe->next->prev = qe;
@@ -85,19 +72,19 @@ struct q_element *queue_enq(queue *q, void *data, long key) {
 }
 
 /* remove queue element qe from the priority queue q */
-void queue_deq(queue *q, q_element *qe) {
+void queue_deq(Queue *q, QElement *qe) {
     int i;
 
     assert(qe);
 
     i = qe->key % NUM_EVENT_QUEUES;
 
-    if (qe->prev == NULL)
+    if (qe->prev == nullptr)
         q->head[i] = qe->next;
     else
         qe->prev->next = qe->next;
 
-    if (qe->next == NULL)
+    if (qe->next == nullptr)
         q->tail[i] = qe->prev;
     else
         qe->next->prev = qe->prev;
@@ -109,14 +96,14 @@ void queue_deq(queue *q, q_element *qe) {
  * removes and returns the data of the
  * first element of the priority queue q
  */
-void *queue_head(queue *q) {
+void *queue_head(Queue *q) {
     void *data;
     int i;
 
     i = pulse % NUM_EVENT_QUEUES;
 
     if (!q->head[i])
-        return NULL;
+        return nullptr;
 
     data = q->head[i]->data;
     queue_deq(q, q->head[i]);
@@ -127,7 +114,7 @@ void *queue_head(queue *q) {
  * returns the key of the head element of the priority queue
  * if q is NULL, then return the largest unsigned number
  */
-long queue_key(queue *q) {
+long queue_key(Queue *q) {
     int i;
 
     i = pulse % NUM_EVENT_QUEUES;
@@ -139,13 +126,13 @@ long queue_key(queue *q) {
 }
 
 /* returns the key of queue element qe */
-long queue_elmt_key(q_element *qe) { return qe->key; }
+long queue_elmt_key(QElement *qe) { return qe->key; }
 
 /* free q and contents */
-void queue_free(queue *q) {
+void queue_free(Queue *q) {
     int i;
-    struct q_element *qe, *next_qe;
-    struct event *event;
+    QElement *qe, *next_qe;
+    Event *event;
 
     for (i = 0; i < NUM_EVENT_QUEUES; i++)
         for (qe = q->head[i]; qe; qe = next_qe) {
@@ -154,7 +141,7 @@ void queue_free(queue *q) {
              * This is okay for now, but if we ever were to use this queue
              * for something besides events, we'd be in trouble.
              */
-            if ((event = (event *)qe->data) != NULL) {
+            if ((event = (Event *)qe->data) != nullptr) {
                 if (event->free_obj && event->event_obj)
                     free(event->event_obj);
                 free(event);

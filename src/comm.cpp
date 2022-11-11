@@ -28,7 +28,9 @@
 #include <sys/socket.h>
 #endif
 
-#include "act.hpp" #include "board.hpp" #include "casting.hpp"
+#include "act.hpp"
+#include "board.hpp"
+#include "casting.hpp"
 #include "clan.hpp"
 #include "comm.hpp"
 #include "commands.hpp"
@@ -78,50 +80,12 @@ char ga_string[] = {(char)IAC, (char)GA, (char)0};
 char gmcp_start_data[] = {(char)IAC, (char)SB, (char)GMCP, (char)0};
 char gmcp_end_data[] = {(char)IAC, (char)SE, (char)0};
 
-/* externs */
-extern int should_restrict;
-extern int restrict_reason;
-extern int mini_mud;
-extern int DFLT_PORT;
-extern char *DFLT_DIR;
-extern int MAX_PLAYERS;
-extern int MAX_DESCRIPTORS_AVAILABLE;
-extern const char mudlet_client_version[];
-extern const char mudlet_client_url[];
-extern const char mudlet_map_url[];
-
-extern const char *save_info_msg[]; /* In olc.c */
 ACMD(do_shapechange);
-
-extern int num_hotboots;
-extern int reboot_auto;
-extern long reboot_pulse;
-extern int reboot_warning_minutes;
-extern int last_reboot_warning;
-extern int reboot_warning;
-
-/* local globals */
-static char comm_buf[MAX_STRING_LENGTH];
-struct descriptor_data *descriptor_list = NULL; /* master desc list */
-struct txt_block *bufpool = 0;                  /* pool of large output buffers */
-int buf_largecount = 0;                         /* # of large buffers which exist */
-int buf_overflows = 0;                          /* # of overflows of output */
-int buf_switches = 0;                           /* # of switches from small to large buf */
-int circle_shutdown = 0;                        /* clean shutdown */
-int circle_reboot = 0;                          /* reboot the game after a shutdown */
-int no_specials = 0;                            /* Suppress ass. of special routines */
-int max_players = 0;                            /* max descriptors available */
-int tics = 0;                                   /* for extern checkpointing */
-int scheck = 0;                                 /* for syntax checking mode */
-int dg_act_check;                               /* toggle for act_trigger */
-unsigned long global_pulse = 0;                 /* number of pulses since game start */
-extern int nameserver_is_slow;                  /* see config.c */
-struct timeval null_time;                       /* zero-valued time structure */
-unsigned long pulse = 0;                        /* number of pulses since game started */
-int gossip_channel_active = 1;                  /* Flag for turning on or off gossip for the whole MUD */
 
 ush_int port;
 socket_t mother_desc;
+
+struct timeval null_time;
 
 /* functions in this file */
 int get_from_q(txt_q *queue, char *dest, int *aliased);
@@ -131,23 +95,23 @@ void game_loop(int mother_desc);
 int init_socket(int port);
 int new_descriptor(int s);
 int get_max_players(void);
-int process_output(descriptor_data *t);
-int process_input(descriptor_data *t);
-void close_socket(descriptor_data *d);
-struct timeval timediff(timeval a, timeval b);
-struct timeval timeadd(timeval a, timeval b);
-void flush_queues(descriptor_data *d);
+int process_output(DescriptorData *t);
+int process_input(DescriptorData *t);
+void close_socket(DescriptorData *d);
+timeval timediff(timeval a, timeval b);
+timeval timeadd(timeval a, timeval b);
+void flush_queues(DescriptorData *d);
 void nonblock(socket_t s);
-int perform_subst(descriptor_data *t, char *orig, char *subst);
-int perform_alias(descriptor_data *d, char *orig);
+int perform_subst(DescriptorData *t, char *orig, char *subst);
+int perform_alias(DescriptorData *d, char *orig);
 void record_usage(void);
-void send_gmcp_char_info(descriptor_data *d);
-void make_prompt(descriptor_data *d);
+void send_gmcp_char_info(DescriptorData *d);
+void make_prompt(DescriptorData *d);
 void check_idle_passwords(void);
 void heartbeat(int pulse);
 char *new_txt;
-void init_descriptor(descriptor_data *newd, int desc);
-int enter_player_game(descriptor_data *d);
+void init_descriptor(DescriptorData *newd, int desc);
+int enter_player_game(DescriptorData *d);
 void free_bufpools(void);
 
 /* extern fcnts */
@@ -158,7 +122,7 @@ void effect_update(void); /* In spells.c */
 void point_update(void);  /* In limits.c */
 void mobile_activity(void);
 void mobile_spec_activity(void);
-void string_add(descriptor_data *d, char *str);
+void string_add(DescriptorData *d, char *str);
 void perform_mob_violence(void);
 int isbanned(char *hostname);
 void redit_save_to_disk(int zone_num);
@@ -191,7 +155,7 @@ void gettimeofday(timeval *t, timezone *dummy) {
 
 int main(int argc, char **argv) {
     int pos = 1;
-    char *dir;
+    const char *dir;
 
 #ifdef MEMORY_DEBUG
     zmalloc_init();
@@ -216,10 +180,6 @@ int main(int argc, char **argv) {
                      socket */
             num_hotboots = 1;
             mother_desc = atoi(argv[pos] + 2);
-            break;
-        case 'm':
-            mini_mud = 1;
-            log("Running in minimized mode.");
             break;
         case 'c':
             scheck = 1;
@@ -307,7 +267,7 @@ int main(int argc, char **argv) {
 }
 
 void hotboot_recover() {
-    struct descriptor_data *d;
+    DescriptorData *d;
     FILE *fp;
     char host[1024];
     int desc, player_i;
@@ -346,7 +306,7 @@ void hotboot_recover() {
 
     /* More than 1000 iterations means something is pretty wrong. */
     for (count = 0; count <= 1000; ++count) {
-        fOld = TRUE;
+        fOld = true;
         fscanf(fp, "%d %s %s\n", &desc, name, host);
         if (desc == -1)
             break;
@@ -358,8 +318,8 @@ void hotboot_recover() {
         }
 
         /* Create a new descriptor */
-        CREATE(d, descriptor_data, 1);
-        memset((char *)d, 0, sizeof(descriptor_data));
+        CREATE(d, DescriptorData, 1);
+        memset((char *)d, 0, sizeof(DescriptorData));
         init_descriptor(d, desc); /* set up various stuff */
 
         strcpy(d->host, host);
@@ -368,9 +328,9 @@ void hotboot_recover() {
 
         d->connected = CON_CLOSE;
 
-        CREATE(d->character, char_data, 1);
+        CREATE(d->character, CharData, 1);
         clear_char(d->character);
-        CREATE(d->character->player_specials, player_special_data, 1);
+        CREATE(d->character->player_specials, PlayerSpecialData, 1);
         d->character->desc = d;
 
         if ((player_i = load_player(name, d->character)) >= 0) {
@@ -378,9 +338,9 @@ void hotboot_recover() {
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
             } else
-                fOld = FALSE;
+                fOld = false;
         } else
-            fOld = FALSE;
+            fOld = false;
 
         if (!fOld) {
             write_to_descriptor(desc, "\r\nSomehow, your character was lost in the hotboot.  Sorry.\r\n");
@@ -390,7 +350,7 @@ void hotboot_recover() {
             write_to_descriptor(desc, buf);
             enter_player_game(d);
             d->connected = CON_PLAYING;
-            look_at_room(d->character, FALSE);
+            look_at_room(d->character, false);
         }
     }
 
@@ -450,7 +410,7 @@ void init_game(int port) {
     CLOSE_SOCKET(mother_desc);
 
     if (circle_reboot != 2 && olc_save_list) { /* Don't save zones. */
-        struct olc_save_info *entry, *next_entry;
+        OLCSaveInfo *entry, *next_entry;
         for (entry = olc_save_list; entry; entry = next_entry) {
             next_entry = entry->next;
             if (entry->type < 0 || entry->type > 4) {
@@ -495,7 +455,7 @@ void init_game(int port) {
  */
 int init_socket(int port) {
     int s, opt;
-    struct sockaddr_in sa;
+    sockaddr_in sa;
 
     /*
      * Should the first argument to socket() be AF_INET or PF_INET?  I don't
@@ -554,7 +514,7 @@ int init_socket(int port) {
 
 #if defined(SO_LINGER)
     {
-        struct linger ld;
+        linger ld;
 
         ld.l_onoff = 0;
         ld.l_linger = 0;
@@ -596,7 +556,7 @@ int get_max_players(void) {
 #define RLIMIT_NOFILE RLIMIT_OFILE
 #endif
     {
-        struct rlimit limit;
+        rlimit limit;
 
         /* find the limit of file descs */
         method = "rlimit";
@@ -693,7 +653,7 @@ void reboot_mud_prep() {
  * immediately if a reboot is coming up.  It could be especially useful
  * to a god, if they log in and see "15 seconds to reboot", because
  * it would give them time to abort the reboot if they so desire. */
-void personal_reboot_warning(char_data *ch) {
+void personal_reboot_warning(CharData *ch) {
     int minutes_till, seconds_till;
 
     if ((reboot_pulse - global_pulse) / (PASSES_PER_SEC * 60) < reboot_warning_minutes) {
@@ -799,9 +759,9 @@ void check_auto_rebooting() {
  */
 void game_loop(int mother_desc) {
     fd_set input_set, output_set, exc_set, null_set;
-    struct timeval last_time, before_sleep, opt_time, process_time, now, timeout;
+    timeval last_time, before_sleep, opt_time, process_time, now, timeout;
     char comm[MAX_INPUT_LENGTH];
-    struct descriptor_data *d, *next_d;
+    DescriptorData *d, *next_d;
     int missed_pulses, maxdesc, aliased;
 
     /* initialize various time values */
@@ -811,24 +771,24 @@ void game_loop(int mother_desc) {
     opt_time.tv_sec = 0;
     FD_ZERO(&null_set);
 
-    gettimeofday(&last_time, (timezone *)0);
+    gettimeofday(&last_time, nullptr);
 
     /* The Main Loop.  The Big Cheese.  The Top Dog.  The Head Honcho.  The.. */
     while (!circle_shutdown) {
 
         /* Sleep if we don't have any connections and are not about to reboot */
-        if (descriptor_list == NULL && !reboot_warning) {
+        if (descriptor_list == nullptr && !reboot_warning) {
             log("No connections.  Going to sleep.");
             FD_ZERO(&input_set);
             FD_SET(mother_desc, &input_set);
-            if (select(mother_desc + 1, &input_set, (fd_set *)0, (fd_set *)0, NULL) < 0) {
+            if (select(mother_desc + 1, &input_set, (fd_set *)0, (fd_set *)0, nullptr) < 0) {
                 if (errno == EINTR)
                     log("Waking up to process signal.");
                 else
                     perror("Select coma");
             } else
                 log("New connection.  Waking up.");
-            gettimeofday(&last_time, (timezone *)0);
+            gettimeofday(&last_time, nullptr);
         }
         /* Set up the input, output, and exception sets for select(). */
         FD_ZERO(&input_set);
@@ -854,7 +814,7 @@ void game_loop(int mother_desc) {
          * calculate how long we took processing the previous iteration.
          */
 
-        gettimeofday(&before_sleep, (timezone *)0); /* current time */
+        gettimeofday(&before_sleep, nullptr); /* current time */
         process_time = timediff(before_sleep, last_time);
 
         /*
@@ -874,7 +834,7 @@ void game_loop(int mother_desc) {
         last_time = timeadd(before_sleep, timediff(opt_time, process_time));
 
         /* Now keep sleeping until that time has come */
-        gettimeofday(&now, (timezone *)0);
+        gettimeofday(&now, nullptr);
         timeout = timediff(last_time, now);
 
         /* go to sleep */
@@ -889,7 +849,7 @@ void game_loop(int mother_desc) {
                 }
             }
 #endif /* CIRCLE_WINDOWS */
-            gettimeofday(&now, (timezone *)0);
+            gettimeofday(&now, nullptr);
             timeout = timediff(last_time, now);
         } while (timeout.tv_usec || timeout.tv_sec);
 
@@ -936,7 +896,7 @@ void game_loop(int mother_desc) {
                             char_from_room(d->character);
                         char_to_room(d->character, GET_WAS_IN(d->character));
                         GET_WAS_IN(d->character) = NOWHERE;
-                        act("$n has returned.", TRUE, d->character, 0, 0, TO_ROOM);
+                        act("$n has returned.", true, d->character, 0, 0, TO_ROOM);
                     }
                 }
                 d->wait = 1;
@@ -1092,8 +1052,8 @@ void heartbeat(int pulse) {
  * code to return the time difference between a and b (a-b).
  * always returns a nonnegative value (floors at 0).
  */
-struct timeval timediff(timeval a, timeval b) {
-    struct timeval rslt;
+timeval timediff(timeval a, timeval b) {
+    timeval rslt;
 
     if (a.tv_sec < b.tv_sec)
         return null_time;
@@ -1117,8 +1077,8 @@ struct timeval timediff(timeval a, timeval b) {
 }
 
 /* add 2 timevals */
-struct timeval timeadd(timeval a, timeval b) {
-    struct timeval rslt;
+timeval timeadd(timeval a, timeval b) {
+    timeval rslt;
 
     rslt.tv_sec = a.tv_sec + b.tv_sec;
     rslt.tv_usec = a.tv_usec + b.tv_usec;
@@ -1133,7 +1093,7 @@ struct timeval timeadd(timeval a, timeval b) {
 
 void record_usage(void) {
     int sockets_connected = 0, sockets_playing = 0;
-    struct descriptor_data *d;
+    DescriptorData *d;
 
     for (d = descriptor_list; d; d = d->next) {
         sockets_connected++;
@@ -1145,7 +1105,7 @@ void record_usage(void) {
 
 #ifdef RUSAGE
     {
-        struct rusage ru;
+        rusage ru;
 
         getrusage(0, &ru);
         log("rusage: user time: %ld sec, system time: %ld sec, max res size: %ld", ru.ru_utime.tv_sec,
@@ -1154,13 +1114,13 @@ void record_usage(void) {
 #endif
 }
 
-void offer_gmcp(descriptor_data *d) {
+void offer_gmcp(DescriptorData *d) {
     char offer_gmcp[] = {(char)IAC, (char)WILL, (char)GMCP, (char)0};
 
     write_to_descriptor(d->descriptor, offer_gmcp);
 }
 
-void offer_gmcp_services(descriptor_data *d) {
+void offer_gmcp_services(DescriptorData *d) {
     static char response[MAX_STRING_LENGTH];
     sprintf(response,
             "%sClient.GUI {"
@@ -1176,7 +1136,7 @@ void offer_gmcp_services(descriptor_data *d) {
     write_to_descriptor(d->descriptor, response);
 }
 
-void handle_gmcp_request(descriptor_data *d, char *txt) {
+void handle_gmcp_request(DescriptorData *d, char *txt) {
     /* This is for GMCP requests from the clients. */
     /* Do nothing now, but we might want to actually handle this in the future. */
 }
@@ -1184,7 +1144,7 @@ void handle_gmcp_request(descriptor_data *d, char *txt) {
 /*
  * Turn off echoing (specific to telnet client)
  */
-void echo_off(descriptor_data *d) {
+void echo_off(DescriptorData *d) {
     char off_string[] = {
         (char)IAC,
         (char)WILL,
@@ -1195,9 +1155,9 @@ void echo_off(descriptor_data *d) {
     dprintf(d, "%s", off_string);
 }
 
-void send_gmcp_prompt(descriptor_data *d) {
-    struct char_data *ch = d->character, *vict = FIGHTING(ch), *tank;
-    struct effect *eff;
+void send_gmcp_prompt(DescriptorData *d) {
+    CharData *ch = d->character, *vict = FIGHTING(ch), *tank;
+    effect *eff;
 
     static char gmcp_prompt[MAX_STRING_LENGTH];
     char *cur = gmcp_prompt;
@@ -1274,13 +1234,13 @@ void send_gmcp_prompt(descriptor_data *d) {
     write_to_descriptor(d->descriptor, gmcp_prompt);
 }
 
-void send_gmcp_room(char_data *ch) {
+void send_gmcp_room(CharData *ch) {
     static char response[MAX_STRING_LENGTH];
     char *cur = response;
 
     int roomnum = IN_ROOM(ch);
-    struct room_data *room = &world[roomnum];
-    struct Exit *exit;
+    RoomData *room = &world[roomnum];
+    Exit *exit;
 
     if (IS_MOB(ch) || !ch->desc || !ch->desc->gmcp_enabled) {
         return;
@@ -1334,7 +1294,7 @@ void send_gmcp_room(char_data *ch) {
 /*
  * Turn on echoing (specific to telnet client)
  */
-void echo_on(descriptor_data *d) {
+void echo_on(DescriptorData *d) {
     char on_string[] = {
         (char)IAC, (char)WONT, (char)TELOPT_ECHO, (char)TELOPT_NAOFFD, (char)TELOPT_NAOCRD, (char)0,
     };
@@ -1342,7 +1302,7 @@ void echo_on(descriptor_data *d) {
     dprintf(d, on_string);
 }
 
-char *prompt_str(char_data *ch) {
+char *prompt_str(CharData *ch) {
     enum token {
         TOK_UNKNOWN, /* Default, not expecting anything in particular */
         TOK_CONTROL, /* Last char was a %, next one is a control code */
@@ -1351,13 +1311,13 @@ char *prompt_str(char_data *ch) {
         TOK_COOLDOWN /* Last two chars were %d, next one is cooldown code */
     };
 
-    struct char_data *vict = FIGHTING(ch), *tank;
+    CharData *vict = FIGHTING(ch), *tank;
     static char prompt[MAX_STRING_LENGTH];
     char *cur, *raw = GET_PROMPT(ch);
     int color, temp, pre_length = 0;
     enum token expecting = TOK_UNKNOWN;
-    bool found_x = FALSE;
-    struct effect *eff;
+    bool found_x = false;
+    effect *eff;
 
     /* No prompt?  Use the default! */
     if (!raw || !*raw)
@@ -1532,7 +1492,7 @@ char *prompt_str(char_data *ch) {
             case 'x':
             case 'X':
                 /* Flags like wizinvis and AFK. */
-                found_x = TRUE;
+                found_x = true;
                 /* If any flags were inserted above, copy them here instead. */
                 if (pre_length >= 3) {
                     /* We don't want to keep the extra space or newline. */
@@ -1722,7 +1682,7 @@ char *prompt_str(char_data *ch) {
     return cur;
 }
 
-void make_prompt(descriptor_data *d) {
+void make_prompt(DescriptorData *d) {
     /* Do not use dprintf or any function that ultimately calls
      * string_to_output within make_prompt!  You must use
      * write_to_descriptor, because string_to_output resets the
@@ -1756,7 +1716,7 @@ void make_prompt(descriptor_data *d) {
  * and the command is ok while casting, then it's handled
  * immediately here.
  */
-bool casting_command(descriptor_data *d, char *txt) {
+bool casting_command(DescriptorData *d, char *txt) {
     int cmd;
 
     /*
@@ -1764,20 +1724,20 @@ bool casting_command(descriptor_data *d, char *txt) {
      * actually playing.  Additionally, they must be casting.
      */
     if (!d || STATE(d) != CON_PLAYING || !d->character || !CASTING(d->character))
-        return FALSE;
+        return false;
 
     /*
      * A hack-within-a-hack to enable usage of paging while casting.
      */
     if (PAGING(d)) {
         get_paging_input(d, txt);
-        return TRUE;
+        return true;
     } else if (EDITING(d)) {
         editor_interpreter(d, txt);
-        return TRUE;
+        return true;
     } else if (d->str) {
         string_add(d, txt);
-        return TRUE;
+        return true;
     }
 
     any_one_arg(txt, arg);
@@ -1788,41 +1748,41 @@ bool casting_command(descriptor_data *d, char *txt) {
                 break;
 
     if (*cmd_info[cmd].command == '\n')
-        return FALSE;
+        return false;
 
     /*
      * Non-casting commands will be queued up normally.
      */
     if (!IS_SET(cmd_info[cmd].flags, CMD_CAST))
-        return FALSE;
+        return false;
 
     /* Handle the casting-ok command immediately. */
     dprintf(d, "\r\n");
     command_interpreter(d->character, txt);
-    return TRUE;
+    return true;
 }
 
-void write_to_q(char *txt, txt_q *queue, int aliased, descriptor_data *d) {
-    struct txt_block *new;
+void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d) {
+    txt_block *new_msg;
 
-    CREATE(new, txt_block, 1);
-    CREATE(new->text, char, strlen(txt) + 1);
-    strcpy(new->text, txt);
-    new->aliased = aliased;
+    CREATE(new_msg, txt_block, 1);
+    CREATE(new_msg->text, char, strlen(txt) + 1);
+    strcpy(new_msg->text, txt);
+    new_msg->aliased = aliased;
 
     /* queue empty? */
     if (!queue->head) {
-        new->next = NULL;
-        queue->head = queue->tail = new;
+        new_msg->next = nullptr;
+        queue->head = queue->tail = new_msg;
     } else {
-        queue->tail->next = new;
-        queue->tail = new;
-        new->next = NULL;
+        queue->tail->next = new_msg;
+        queue->tail = new_msg;
+        new_msg->next = nullptr;
     }
 }
 
 int get_from_q(txt_q *queue, char *dest, int *aliased) {
-    struct txt_block *tmp;
+    txt_block *tmp;
 
     /* queue empty? */
     if (!queue->head)
@@ -1840,7 +1800,7 @@ int get_from_q(txt_q *queue, char *dest, int *aliased) {
 }
 
 /* Empty the queues before closing connection */
-void flush_queues(descriptor_data *d) {
+void flush_queues(DescriptorData *d) {
     int dummy;
 
     if (d->large_outbuf) {
@@ -1853,7 +1813,7 @@ void flush_queues(descriptor_data *d) {
 }
 
 /* aka dprintf */
-void desc_printf(descriptor_data *t, const char *txt, ...) {
+void desc_printf(DescriptorData *t, const char *txt, ...) {
     va_list args;
 
     static unsigned int vcount = 0;
@@ -1879,7 +1839,7 @@ void desc_printf(descriptor_data *t, const char *txt, ...) {
 }
 
 /* Add a new string to a player's output queue */
-void string_to_output(descriptor_data *t, const char *txt) {
+void string_to_output(DescriptorData *t, const char *txt) {
     int size;
     static char new_txt[2 * MAX_STRING_LENGTH];
 
@@ -1915,7 +1875,7 @@ void string_to_output(descriptor_data *t, const char *txt) {
     buf_switches++;
 
     /* if the pool has a buffer in it, grab it */
-    if (bufpool != NULL) {
+    if (bufpool != nullptr) {
         t->large_outbuf = bufpool;
         bufpool = bufpool->next;
     } else { /* else create a new one */
@@ -1937,7 +1897,7 @@ void string_to_output(descriptor_data *t, const char *txt) {
 
 void free_bufpools(void) {
     extern struct txt_block *bufpool;
-    struct txt_block *tmp;
+    txt_block *tmp;
 
     while (bufpool) {
         tmp = bufpool->next;
@@ -1952,7 +1912,7 @@ void free_bufpools(void) {
  *  socket handling                                                  *
  ****************************************************************** */
 
-void init_descriptor(descriptor_data *newd, int desc) {
+void init_descriptor(DescriptorData *newd, int desc) {
     static int last_desc = 0;
 
     newd->descriptor = desc;
@@ -1977,12 +1937,9 @@ int new_descriptor(int s) {
     int sockets_connected = 0;
     unsigned long addr;
     unsigned int i;
-    struct descriptor_data *newd;
-    struct sockaddr_in peer;
-    struct hostent *from;
-    extern char *BANNEDINTHEUSA;
-    extern char *BANNEDINTHEUSA2;
-    extern char *BANNEDINTHEUSA3;
+    DescriptorData *newd;
+    sockaddr_in peer;
+    hostent *from;
 
     /* accept the new connection */
     i = sizeof(peer);
@@ -2003,8 +1960,8 @@ int new_descriptor(int s) {
         return 0;
     }
     /* create a new descriptor */
-    CREATE(newd, descriptor_data, 1);
-    memset((char *)newd, 0, sizeof(descriptor_data));
+    CREATE(newd, DescriptorData, 1);
+    memset((char *)newd, 0, sizeof(DescriptorData));
 
     /* find the sitename */
     if (nameserver_is_slow || !(from = gethostbyaddr((char *)&peer.sin_addr, sizeof(peer.sin_addr), AF_INET))) {
@@ -2052,7 +2009,7 @@ int new_descriptor(int s) {
     return 0;
 }
 
-int process_output(descriptor_data *t) {
+int process_output(DescriptorData *t) {
     static char i[LARGE_BUFSIZE + GARBAGE_SPACE];
     static int result;
 
@@ -2090,7 +2047,7 @@ int process_output(descriptor_data *t) {
     if (t->large_outbuf) {
         t->large_outbuf->next = bufpool;
         bufpool = t->large_outbuf;
-        t->large_outbuf = NULL;
+        t->large_outbuf = nullptr;
         t->output = t->small_outbuf;
     }
     /* reset total bufspace back to that of a small buffer */
@@ -2101,7 +2058,7 @@ int process_output(descriptor_data *t) {
     return result;
 }
 
-int write_to_descriptor(socket_t desc, char *txt) {
+int write_to_descriptor(socket_t desc, const char *txt) {
     int total, bytes_written;
 
     total = strlen(txt);
@@ -2135,9 +2092,9 @@ int write_to_descriptor(socket_t desc, char *txt) {
  * ASSUMPTION: There will be no newlines in the raw input buffer when this
  * function is called.  We must maintain that before returning.
  */
-int process_input(descriptor_data *t) {
+int process_input(DescriptorData *t) {
     int buf_length, bytes_read, space_left, command_space_left, failed_subst, telopt = 0;
-    char *ptr, *read_point, *write_point = NULL, *write_cmd_point = NULL;
+    char *ptr, *read_point, *write_point = nullptr, *write_cmd_point = nullptr;
     char tmp[MAX_INPUT_LENGTH + 8], telnet_opts[MAX_INPUT_LENGTH + 8], telcmd = 0;
     bool data_mode = false;
 
@@ -2297,8 +2254,8 @@ int process_input(descriptor_data *t) {
  * orig is the orig string (i.e. the one being modified.
  * subst contains the substition string, i.e. "^telm^tell"
  */
-int perform_subst(descriptor_data *t, char *orig, char *subst) {
-    char new[MAX_INPUT_LENGTH + 5];
+int perform_subst(DescriptorData *t, char *orig, char *subst) {
+    char new_str[MAX_INPUT_LENGTH + 5];
     char *first, *second, *strpos;
 
     /*
@@ -2321,40 +2278,40 @@ int perform_subst(descriptor_data *t, char *orig, char *subst) {
         dprintf(t, "Invalid substitution.\r\n");
         return 1;
     }
-    /* now, we construct the new string for output. */
+    /* now, we construct the new_str string for output. */
 
     /* first, everything in the original, up to the string to be replaced */
-    strncpy(new, orig, (strpos - orig));
-    new[(strpos - orig)] = '\0';
+    strncpy(new_str, orig, (strpos - orig));
+    new_str[(strpos - orig)] = '\0';
 
     /* now, the replacement string */
-    strncat(new, second, (MAX_INPUT_LENGTH - strlen(new) - 1));
+    strncat(new_str, second, (MAX_INPUT_LENGTH - strlen(new_str) - 1));
 
     /* now, if there's anything left in the original after the string to
      * replaced, copy that too. */
     if (((strpos - orig) + strlen(first)) < strlen(orig))
-        strncat(new, strpos + strlen(first), (MAX_INPUT_LENGTH - strlen(new) - 1));
+        strncat(new_str, strpos + strlen(first), (MAX_INPUT_LENGTH - strlen(new_str) - 1));
 
     /* terminate the string in case of an overflow from strncat */
-    new[MAX_INPUT_LENGTH - 1] = '\0';
-    strcpy(subst, new);
+    new_str[MAX_INPUT_LENGTH - 1] = '\0';
+    strcpy(subst, new_str);
 
     return 0;
 }
 
-void close_socket(descriptor_data *d) {
-    struct descriptor_data *temp;
+void close_socket(DescriptorData *d) {
+    DescriptorData *temp;
 
     CLOSE_SOCKET(d->descriptor);
     flush_queues(d);
 
     /* Forget snooping */
     if (d->snooping)
-        d->snooping->snoop_by = NULL;
+        d->snooping->snoop_by = nullptr;
 
     if (d->snoop_by) {
         dprintf(d->snoop_by, "Your victim is no longer among us.\r\n");
-        d->snoop_by->snooping = NULL;
+        d->snoop_by->snooping = nullptr;
     }
 
     /* Shapechange a player back to normal form */
@@ -2379,9 +2336,9 @@ void close_socket(descriptor_data *d) {
         if (d->backstr) {
             *d->str = d->backstr;
         } else
-            *d->str = NULL;
-        d->backstr = NULL;
-        d->str = NULL;
+            *d->str = nullptr;
+        d->backstr = nullptr;
+        d->str = nullptr;
         if (d->character)
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
         d->connected = CON_PLAYING;
@@ -2404,10 +2361,10 @@ void close_socket(descriptor_data *d) {
         }
         if (IS_PLAYING(d)) {
             save_player_char(d->character);
-            act("$n has lost $s link.", TRUE, d->character, 0, 0, TO_ROOM);
+            act("$n has lost $s link.", true, d->character, 0, 0, TO_ROOM);
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Closing link to: %s.",
                     GET_NAME(d->character));
-            d->character->desc = NULL;
+            d->character->desc = nullptr;
         } else {
             if (GET_NAME(d->character))
                 mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: %s.",
@@ -2423,7 +2380,7 @@ void close_socket(descriptor_data *d) {
 
     /* JE 2/22/95 -- part of my unending quest to make switch stable */
     if (d->original && d->original->desc)
-        d->original->desc = NULL;
+        d->original->desc = nullptr;
 
     REMOVE_FROM_LIST(d, descriptor_list, next);
 
@@ -2435,7 +2392,7 @@ void close_socket(descriptor_data *d) {
 }
 
 void check_idle_passwords(void) {
-    struct descriptor_data *d, *next_d;
+    DescriptorData *d, *next_d;
 
     for (d = descriptor_list; d; d = next_d) {
         next_d = d->next;
@@ -2491,7 +2448,7 @@ void nonblock(socket_t s) {
  *  signal-handling functions (formerly signals.c)                   *
  ****************************************************************** */
 
-RETSIGTYPE checkpointing() {
+RETSIGTYPE checkpointing(int signo) {
     if (!tics) {
         log("SYSERR: CHECKPOINT shutdown: tics not updated");
         abort();
@@ -2499,45 +2456,44 @@ RETSIGTYPE checkpointing() {
         tics = 0;
 }
 
-RETSIGTYPE dump_core() {
+RETSIGTYPE dump_core(int signo) {
     mprintf(L_STAT, LVL_IMMORT, "Received SIGUSR1 - dumping core.");
-    drop_core(NULL, "usrsig");
+    drop_core(nullptr, "usrsig");
 }
 
-RETSIGTYPE unrestrict_game() {
-    extern struct ban_list_element *ban_list;
+RETSIGTYPE unrestrict_game(int signo) {
+    extern struct BanListElement *ban_list;
 
     mprintf(L_WARN, LVL_IMMORT, "Received SIGUSR2 - completely unrestricting game (emergent)");
-    ban_list = NULL;
+    ban_list = nullptr;
     should_restrict = 0;
     restrict_reason = RESTRICT_NONE;
 }
 
-RETSIGTYPE hupsig() {
+RETSIGTYPE hupsig(int signo) {
     log("Received SIGHUP, SIGINT, or SIGTERM.  Shutting down...");
-    circle_shutdown = TRUE; /* added by Gurlaek 2/14/2000 */
+    circle_shutdown = true; /* added by Gurlaek 2/14/2000 */
 }
-
-#define my_signal(signo, func) signal(signo, func)
 
 void signal_setup(void) {
 #ifndef CIRCLE_OS2
-    struct itimerval itime;
+    itimerval itime;
 #endif
-    struct timeval interval;
+    timeval interval;
 
     /* user signal 1: reread wizlists.  Used by autowiz system. */
     /* I'm removing the autowiz stuff. I'm leaving this here because
      * it seems to serve some vital function. It may be able to be
      * reassigned to something else now that autowiz is gone RSD 3/19/00
      */
-    my_signal(SIGUSR1, dump_core);
+    signal(SIGUSR1, dump_core);
 
     /*
      * user signal 2: unrestrict game.  Used for emergencies if you lock
      * yourself out of the MUD somehow.  (Duh...)
      */
-    my_signal(SIGUSR2, unrestrict_game);
+    signal(SIGUSR2, unrestrict_game);
+    signal(SIGUSR2, unrestrict_game);
 
     /*
      * set up the deadlock-protection so that the MUD aborts itself if it gets
@@ -2549,29 +2505,29 @@ void signal_setup(void) {
     interval.tv_usec = 0;
     itime.it_interval = interval;
     itime.it_value = interval;
-    setitimer(ITIMER_VIRTUAL, &itime, NULL);
-    my_signal(SIGVTALRM, checkpointing);
+    setitimer(ITIMER_VIRTUAL, &itime, nullptr);
+    signal(SIGVTALRM, checkpointing);
 #endif
 
     /* just to be on the safe side: */
-    my_signal(SIGHUP, hupsig);
-    my_signal(SIGINT, hupsig);
-    my_signal(SIGTERM, hupsig);
-    my_signal(SIGPIPE, SIG_IGN);
-    my_signal(SIGALRM, SIG_IGN);
+    signal(SIGHUP, hupsig);
+    signal(SIGINT, hupsig);
+    signal(SIGTERM, hupsig);
+    signal(SIGPIPE, SIG_IGN);
+    signal(SIGALRM, SIG_IGN);
 
 #ifdef CIRCLE_OS2
 #if defined(SIGABRT)
-    my_signal(SIGABRT, hupsig);
+    signal(SIGABRT, hupsig);
 #endif
 #if defined(SIGFPE)
-    my_signal(SIGFPE, hupsig);
+    signal(SIGFPE, hupsig);
 #endif
 #if defined(SIGILL)
-    my_signal(SIGILL, hupsig);
+    signal(SIGILL, hupsig);
 #endif
 #if defined(SIGSEGV)
-    my_signal(SIGSEGV, hupsig);
+    signal(SIGSEGV, hupsig);
 #endif
 #endif /* CIRCLE_OS2 */
 }
@@ -2583,7 +2539,7 @@ void signal_setup(void) {
  **************************************************************** */
 
 /* aka cprintf */
-void char_printf(const struct char_data *ch, const char *messg, ...) {
+void char_printf(CharData *ch, const char *messg, ...) {
     va_list args;
 
     static unsigned int vcount = 0;
@@ -2603,9 +2559,9 @@ void char_printf(const struct char_data *ch, const char *messg, ...) {
 }
 
 void zone_printf(int zone_vnum, int skip_room, int min_stance, const char *messg, ...) {
-    struct descriptor_data *i;
+    DescriptorData *i;
     va_list args;
-    bool found = FALSE;
+    bool found = false;
     int zone_num = real_zone(zone_vnum);
 
     if (!messg || !*messg)
@@ -2619,14 +2575,14 @@ void zone_printf(int zone_vnum, int skip_room, int min_stance, const char *messg
                 va_start(args, messg);
                 vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
                 va_end(args);
-                found = TRUE;
+                found = true;
             }
             string_to_output(i, comm_buf);
         }
 }
 
 void callback_printf(CBP_FUNC(callback), void *data, const char *messg, ...) {
-    struct descriptor_data *i;
+    DescriptorData *i;
     bool found;
     va_list args;
 
@@ -2637,17 +2593,17 @@ void callback_printf(CBP_FUNC(callback), void *data, const char *messg, ...) {
                     va_start(args, messg);
                     vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
                     va_end(args);
-                    found = TRUE;
+                    found = true;
                 }
                 string_to_output(i, comm_buf);
             }
 }
 
-void all_except_printf(char_data *ch, const char *messg, ...) {
-    struct descriptor_data *i;
+void all_except_printf(CharData *ch, const char *messg, ...) {
+    DescriptorData *i;
     va_list args;
-    bool found = FALSE;
-    struct char_data *avoid = REAL_CHAR(ch);
+    bool found = false;
+    CharData *avoid = REAL_CHAR(ch);
 
     if (messg && *messg)
         for (i = descriptor_list; i; i = i->next)
@@ -2656,16 +2612,16 @@ void all_except_printf(char_data *ch, const char *messg, ...) {
                     va_start(args, messg);
                     vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
                     va_end(args);
-                    found = TRUE;
+                    found = true;
                 }
                 string_to_output(i, comm_buf);
             }
 }
 
 void all_printf(const char *messg, ...) {
-    struct descriptor_data *i;
+    DescriptorData *i;
     va_list args;
-    bool found = FALSE;
+    bool found = false;
 
     if (messg && *messg)
         for (i = descriptor_list; i; i = i->next)
@@ -2674,16 +2630,16 @@ void all_printf(const char *messg, ...) {
                     va_start(args, messg);
                     vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
                     va_end(args);
-                    found = TRUE;
+                    found = true;
                 }
                 string_to_output(i, comm_buf);
             }
 }
 
 void outdoor_printf(int zone_num, char *messg, ...) {
-    struct descriptor_data *i;
+    DescriptorData *i;
     va_list args;
-    bool found = FALSE;
+    bool found = false;
 
     if (!messg || !*messg)
         return;
@@ -2695,18 +2651,18 @@ void outdoor_printf(int zone_num, char *messg, ...) {
                 va_start(args, messg);
                 vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
                 va_end(args);
-                found = TRUE;
+                found = true;
             }
             string_to_output(i, comm_buf);
         }
 }
 
 void room_printf(int roomnum, const char *messg, ...) {
-    struct char_data *i;
+    CharData *i;
     int dir, rmnmlen;
-    struct room_data *room;
-    struct Exit *exit;
-    bool found = FALSE;
+    RoomData *room;
+    Exit *exit;
+    bool found = false;
     va_list args;
 
     if (!messg || !*messg)
@@ -2727,7 +2683,7 @@ void room_printf(int roomnum, const char *messg, ...) {
                 va_start(args, messg);
                 vsnprintf(comm_buf + rmnmlen, sizeof(comm_buf) - rmnmlen, messg, args);
                 va_end(args);
-                found = TRUE;
+                found = true;
             }
             /* Skip over the room name */
             string_to_output(i->desc, comm_buf + rmnmlen);
@@ -2746,7 +2702,7 @@ void room_printf(int roomnum, const char *messg, ...) {
                             va_start(args, messg);
                             vsnprintf(comm_buf + rmnmlen, sizeof(comm_buf) - rmnmlen, messg, args);
                             va_end(args);
-                            found = TRUE;
+                            found = true;
                         }
                         string_to_output(i->desc, comm_buf);
                     }
@@ -2762,13 +2718,13 @@ void room_printf(int roomnum, const char *messg, ...) {
  * INPUTS
  *
  *     ch - Character attempting communication
- *  quiet - Boolean value. TRUE prevents this function from sending any
+ *  quiet - Boolean value. true prevents this function from sending any
  *          feedback to the character.
  *
  * RETURN VALUES
  *
- *   TRUE - the communication is OK
- *  FALSE - the communication should not occur. Unless quiet=TRUE, a message
+ *   true - the communication is OK
+ *  false - the communication should not occur. Unless quiet=true, a message
  *          has already been sent to the character, so the caller should
  *          probably do nothing.
  */
@@ -2782,12 +2738,12 @@ void room_printf(int roomnum, const char *messg, ...) {
  * communication moves you twice as fast.) */
 #define SPAM_THRESHOLD 15
 
-int speech_ok(char_data *ch, int quiet) {
-    struct char_special_data *sd;
-    struct trig_data *t;
+int speech_ok(CharData *ch, int quiet) {
+    CharSpecialData *sd;
+    TrigData *t;
 
     if (GET_LEVEL(ch) >= LVL_IMMORT)
-        return TRUE;
+        return true;
 
     if (IS_NPC(ch) && POSSESSED(ch)) {
         /* A shapechanged player */
@@ -2804,14 +2760,14 @@ int speech_ok(char_data *ch, int quiet) {
     ) {
         sd->speech_rate = 1;
         sd->last_speech_time = global_pulse;
-        return TRUE;
+        return true;
     }
 
     /* If the char is executing a trigger, it's all good */
     if (SCRIPT(ch))
         for (t = SCRIPT(ch)->trig_list; t; t = t->next)
             if (t->running)
-                return TRUE;
+                return true;
 
     /* The following calculation considers the amount of time since the last
      * communication and uses it to reduce the speech rate. Then it adds 1 for
@@ -2825,7 +2781,7 @@ int speech_ok(char_data *ch, int quiet) {
         sd->speech_rate = SPAM_THRESHOLD * 1.5;
         if (!quiet)
             cprintf(ch, "&5&bYour mouth refuses to move!&0\r\n");
-        return FALSE;
+        return false;
 
     } else if (sd->speech_rate > SPAM_THRESHOLD / 2) {
         /* You're in the sore-throat zone! */
@@ -2844,11 +2800,11 @@ int speech_ok(char_data *ch, int quiet) {
         }
     }
 
-    return TRUE;
+    return true;
 }
 
-void speech_report(char_data *ch, char_data *tch) {
-    struct char_special_data *sd;
+void speech_report(CharData *ch, CharData *tch) {
+    CharSpecialData *sd;
 
     if (GET_LEVEL(tch) >= LVL_IMMORT)
         return;
@@ -2877,8 +2833,8 @@ void speech_report(char_data *ch, char_data *tch) {
                 ch == tch ? "" : "'s");
 }
 
-void cure_laryngitis(char_data *ch) {
-    struct char_special_data *sd;
+void cure_laryngitis(CharData *ch) {
+    CharSpecialData *sd;
 
     if (IS_NPC(ch) && POSSESSED(ch)) {
         /* A shapechanged player */
@@ -2889,105 +2845,116 @@ void cure_laryngitis(char_data *ch) {
     sd->speech_rate = 0;
 }
 
-char *ACTNULL = "<NULL>";
+const char *ACTNULL = "<NULL>";
 
 #define CHECK_NULL(pointer, expression)                                                                                \
-    if ((pointer) == NULL)                                                                                             \
+    if ((pointer) == nullptr)                                                                                          \
         i = ACTNULL;                                                                                                   \
     else                                                                                                               \
         i = (expression);
 
 /* higher-level communication: the act() function */
-void format_act(char *rtn, const char *orig, char_data *ch, obj_data *obj, const void *vict_obj,
-                const struct char_data *to) {
-    const char_data *victim = NULL;
-    const obj_data *target_object = NULL;
+
+void format_act(char *rtn, const char *orig, const CharData *ch, ActArg obj, ActArg vict_obj, const CharData *to) {
+    const CharData *victim = nullptr;
+    const ObjData *target_object = nullptr, *victim_object = nullptr;
+    int ival = 0;
+    const char *cval;
     char target_string[MAX_STRING_LENGTH] = "\0", target_string2[MAX_STRING_LENGTH] = "\0";
-    const char *i = NULL;
+    const char *i = nullptr;
     char *bufptr, *j, ibuf[20];
-    bool uppercasenext = FALSE;
+    bool uppercasenext = false;
 
     bufptr = rtn;
 
     for (;;) {
         if (*orig == '$') {
             switch (*(++orig)) {
-            case 'n':
+            case 'n': // Show name (or 'someone' if you can't see them) of ch
                 i = PERS(ch, to);
                 break;
-            case 'N':
-                victim = (const struct char_data *)vict_obj;
-                CHECK_NULL(vict_obj, PERS(victim, to));
+            case 'N': // Show name (or 'someone' if you can't see them) of vict_obj
+                victim = std::get<CharData *>(vict_obj);
+                CHECK_NULL(victim, PERS(victim, to));
                 break;
             case 'm':
                 i = HMHR(ch);
                 break;
             case 'M':
-                victim = (const struct char_data *)vict_obj;
-                CHECK_NULL(vict_obj, HMHR(victim));
+                victim = std::get<CharData *>(vict_obj);
+                CHECK_NULL(victim, HMHR(victim));
                 break;
             case 's':
                 i = HSHR(ch);
                 break;
             case 'S':
-                victim = (const struct char_data *)vict_obj;
-                CHECK_NULL(vict_obj, HSHR(victim));
+                victim = std::get<CharData *>(vict_obj);
+                CHECK_NULL(victim, HSHR(victim));
                 break;
             case 'D':
-                victim = (const struct char_data *)vict_obj;
-                CHECK_NULL(vict_obj, without_article(GET_NAME(victim)));
+                victim = std::get<CharData *>(vict_obj);
+                CHECK_NULL(victim, without_article(GET_NAME(victim)));
                 break;
             case 'e':
                 i = HSSH(ch);
                 break;
             case 'E':
-                victim = (const struct char_data *)vict_obj;
-                CHECK_NULL(vict_obj, HSSH(victim));
+                victim = std::get<CharData *>(vict_obj);
+                CHECK_NULL(victim, HSSH(victim));
                 break;
             case 'o':
-                CHECK_NULL(obj, OBJN(obj, to));
+                target_object = std::get<ObjData *>(obj);
+                CHECK_NULL(target_object, OBJN(target_object, to));
                 break;
             case 'O':
-                target_object = (const struct obj_data *)vict_obj;
-                CHECK_NULL(vict_obj, OBJN(target_object, to));
+                victim_object = std::get<ObjData *>(vict_obj);
+                CHECK_NULL(victim_object, OBJN(victim_object, to));
                 break;
             case 'p':
-                CHECK_NULL(obj, OBJS(obj, to));
+                target_object = std::get<ObjData *>(obj);
+                CHECK_NULL(target_object, OBJS(target_object, to));
                 break;
             case 'P':
-                target_object = (const struct obj_data *)vict_obj;
-                CHECK_NULL(vict_obj, OBJS(target_object, to));
+                victim_object = std::get<ObjData *>(vict_obj);
+                CHECK_NULL(victim_object, OBJS(victim_object, to));
                 break;
             case 'a':
-                CHECK_NULL(obj, SANA(obj));
+                target_object = std::get<ObjData *>(obj);
+                CHECK_NULL(target_object, SANA(target_object));
                 break;
             case 'A':
-                target_object = (const struct obj_data *)vict_obj;
-                CHECK_NULL(vict_obj, SANA(target_object));
+                victim_object = std::get<ObjData *>(vict_obj);
+                CHECK_NULL(victim_object, SANA(victim_object));
                 break;
             case 't':
-                CHECK_NULL(obj, (const char *)obj);
+                cval = std::get<const char *>(vict_obj);
+                CHECK_NULL(cval, cval);
                 strcpy(target_string, i);
                 break;
             case 'T':
-                CHECK_NULL(vict_obj, (const char *)vict_obj);
+                cval = std::get<const char *>(vict_obj);
+                CHECK_NULL(cval, cval);
                 strcpy(target_string2, i);
                 break;
             case 'f':
-                CHECK_NULL(vict_obj, fname((char *)obj));
+                cval = std::get<const char *>(obj);
+                CHECK_NULL(cval, fname(cval));
                 strcpy(target_string, i);
                 break;
             case 'F':
-                CHECK_NULL(vict_obj, fname((char *)vict_obj));
+                cval = std::get<const char *>(vict_obj);
+                CHECK_NULL(cval, fname(cval));
                 strcpy(target_string2, i);
                 break;
             case 'i':
                 i = ibuf;
-                sprintf(ibuf, "%d", (int)obj);
+                ival = std::get<int>(obj);
+                sprintf(ibuf, "%d", ival);
                 break;
             case 'I':
                 i = ibuf;
-                sprintf(ibuf, "%d", (int)vict_obj);
+                ival = std::get<int>(vict_obj);
+                sprintf(ibuf, "%d", ival);
                 break;
                 /* uppercase previous word */
             case 'u':
@@ -2999,7 +2966,7 @@ void format_act(char *rtn, const char *orig, char_data *ch, obj_data *obj, const
                 break;
                 /* uppercase next word */
             case 'U':
-                uppercasenext = TRUE;
+                uppercasenext = true;
                 i = "";
                 break;
             case '$':
@@ -3015,7 +2982,7 @@ void format_act(char *rtn, const char *orig, char_data *ch, obj_data *obj, const
             while ((*bufptr = *(i++))) {
                 if (uppercasenext && !isspace((int)*bufptr)) {
                     *bufptr = UPPER(*bufptr);
-                    uppercasenext = FALSE;
+                    uppercasenext = false;
                 }
                 bufptr++;
             }
@@ -3024,7 +2991,7 @@ void format_act(char *rtn, const char *orig, char_data *ch, obj_data *obj, const
             break;
         } else if (uppercasenext && !isspace((int)*(bufptr - 1))) {
             *(bufptr - 1) = UPPER(*(bufptr - 1));
-            uppercasenext = FALSE;
+            uppercasenext = false;
         }
     }
 
@@ -3032,15 +2999,16 @@ void format_act(char *rtn, const char *orig, char_data *ch, obj_data *obj, const
     *(++bufptr) = '\n';
     *(++bufptr) = '\0';
 
-    act_mtrigger(to, rtn, ch, victim, obj, target_object, target_string, target_string2);
+    act_mtrigger(to, rtn, ch, victim, victim_object, target_object, target_string, target_string2);
 
     CAP(rtn);
 }
 
 /* The "act" action interpreter */
-void act(const char *str, int hide_invisible, char_data *ch, obj_data *obj, const void *vict_obj, int type) {
+void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, ActArg vict_obj, int type) {
     char lbuf[MAX_STRING_LENGTH];
-    struct char_data *to = NULL;
+    CharData *to = nullptr, *victim = nullptr;
+    ObjData *target_object = nullptr, *victim_object = nullptr;
     int sleep, olc, in_room, i, to_victroom;
 
     if (!str)
@@ -3079,7 +3047,8 @@ void act(const char *str, int hide_invisible, char_data *ch, obj_data *obj, cons
     }
 
     if (type == TO_VICT) {
-        if ((to = (char_data *)vict_obj) && ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
+        to = std::get<CharData *>(vict_obj);
+        if (to && ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
             cprintf(to, "%s", lbuf);
@@ -3097,16 +3066,17 @@ void act(const char *str, int hide_invisible, char_data *ch, obj_data *obj, cons
             log("SYSERR:comm.c:act(): ch->in_room = -1, %s", GET_NAME(ch));
             return;
         }
-    } else if ((obj != NULL)) {
-        if ((obj->in_room != NOWHERE)) {
-            if ((obj->in_room) != 0) {
-                in_room = obj->in_room;
+    } else if (std::holds_alternative<ObjData *>(obj)) {
+        target_object = std::get<ObjData *>(obj);
+        if ((target_object->in_room != NOWHERE)) {
+            if ((target_object->in_room) != 0) {
+                in_room = target_object->in_room;
             } else {
-                log("SYSERR:comm.c:act(): obj->in_room = 0, %s, %d", obj->name, GET_OBJ_VNUM(obj));
+                log("SYSERR:comm.c:act(): obj->in_room = 0, %s, %d", target_object->name, GET_OBJ_VNUM(target_object));
                 return;
             }
         } else { /*if here then NO ch and obj->in_room = NOWHERE */
-            log("SYSERR:comm.c:act(): obj->in_room = -1, %s, %d", obj->name, GET_OBJ_VNUM(obj));
+            log("SYSERR:comm.c:act(): obj->in_room = -1, %s, %d", target_object->name, GET_OBJ_VNUM(target_object));
             return;
         }
     } else {
@@ -3115,9 +3085,10 @@ void act(const char *str, int hide_invisible, char_data *ch, obj_data *obj, cons
         return;
     }
 
+    victim = std::get<CharData *>(vict_obj);
     if (to_victroom) {
-        if (vict_obj) {
-            in_room = ((char_data *)vict_obj)->in_room;
+        if (victim) {
+            in_room = victim->in_room;
             if (in_room == NOWHERE) {
                 log("SYSERR: act(): TO_VICTROOM option used but vict is in NOWHERE");
                 return;
@@ -3130,7 +3101,7 @@ void act(const char *str, int hide_invisible, char_data *ch, obj_data *obj, cons
 
     for (to = world[in_room].people; to; to = to->next_in_room)
         if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
-            !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != vict_obj))) {
+            !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != victim))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
             cprintf(to, "%s", lbuf);
         }
@@ -3147,7 +3118,7 @@ void act(const char *str, int hide_invisible, char_data *ch, obj_data *obj, cons
                 ROOM_FLAGGED(world[in_room].exits[i]->to_room, ROOM_OBSERVATORY))
                 for (to = world[world[in_room].exits[i]->to_room].people; to; to = to->next_in_room)
                     if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
-                        (type == TO_ROOM || (to != vict_obj))) {
+                        (type == TO_ROOM || (to != victim))) {
                         cprintf(to, "&4&8<&0%s&0&4&8>&0 ", world[in_room].name);
                         format_act(lbuf, str, ch, obj, vict_obj, to);
                         cprintf(to, "%s", lbuf);
@@ -3155,12 +3126,12 @@ void act(const char *str, int hide_invisible, char_data *ch, obj_data *obj, cons
 }
 
 /* deprecated functions */
-void send_to_char(const char *messg, char_data *ch) {
+void send_to_char(const char *messg, CharData *ch) {
     if (ch->desc && messg && *messg)
         string_to_output(ch->desc, messg);
 }
 
-void write_to_output(const char *messg, descriptor_data *d) {
+void write_to_output(const char *messg, DescriptorData *d) {
     if (messg && *messg)
         string_to_output(d, messg);
 }

@@ -45,7 +45,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "pfiles.hpp"
@@ -57,30 +57,30 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-extern int get_room_location(char *room);
-extern int obj_room(obj_data *obj);
+int get_room_location(char *room);
+int obj_room(ObjData *obj);
 
-void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
-int script_driver(void *go_address, trig_data *trig, int type, int mode);
+void sub_write(char *arg, CharData *ch, byte find_invis, int targets);
+int script_driver(void *go_address, TrigData *trig, int type, int mode);
 
 /*
  * Local functions.
  */
 
 /* attaches mob's name and vnum to msg and sends it to script_log */
-void mob_log(char_data *mob, char *msg) {
+void mob_log(CharData *mob, char *msg) {
     char buf[MAX_INPUT_LENGTH + 100];
 
-    void script_log(trig_data * t, char *msg);
+    void script_log(TrigData * t, char *msg);
 
     sprintf(buf, "(TRG)(mob %d): %s", GET_MOB_VNUM(mob), msg);
-    script_log((trig_data *)NULL, buf);
+    script_log((TrigData *)nullptr, buf);
 }
 
-int find_mob_target_room(char_data *ch, char *rawroomstr) {
+int find_mob_target_room(CharData *ch, char *rawroomstr) {
     int location;
-    struct char_data *target_char;
-    struct obj_data *target_obj;
+    CharData *target_char;
+    ObjData *target_obj;
     char roomstr[MAX_INPUT_LENGTH];
 
     one_argument(rawroomstr, roomstr);
@@ -116,9 +116,9 @@ int find_mob_target_room(char_data *ch, char *rawroomstr) {
 
 ACMD(do_mdamage) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH], damtype[MAX_INPUT_LENGTH];
-    int dam = 0, dtype = DAM_UNDEFINED, *damdone = NULL;
-    trig_data *t;
-    char_data *victim;
+    int dam = 0, dtype = DAM_UNDEFINED, *damdone = nullptr;
+    TrigData *t;
+    CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char("Huh!?\r\n", ch);
@@ -137,7 +137,7 @@ ACMD(do_mdamage) {
         *damdone = 0;
     else {
         sprintf(buf, "[ WARN: do_mdamage() for %s - can't identify running trigger ]", GET_NAME(ch));
-        mudlog(buf, BRF, LVL_GOD, FALSE);
+        mudlog(buf, BRF, LVL_GOD, false);
     }
 
     if (!*name) {
@@ -197,7 +197,7 @@ ACMD(do_mdamage) {
  * syntax mskillset <plyrname> <name_skill_or_spell>
  */
 ACMD(do_mskillset) {
-    struct char_data *victim;
+    CharData *victim;
     char arg[MAX_INPUT_LENGTH];
     int skspnum;
 
@@ -257,12 +257,12 @@ ACMD(do_masound) {
 
     was_in_room = IN_ROOM(ch);
     for (door = 0; door < NUM_OF_DIRS; door++) {
-        struct Exit *exit;
+        Exit *exit;
 
-        if (((exit = world[was_in_room].exits[door]) != NULL) && exit->to_room != NOWHERE &&
+        if (((exit = world[was_in_room].exits[door]) != nullptr) && exit->to_room != NOWHERE &&
             exit->to_room != was_in_room) {
             IN_ROOM(ch) = exit->to_room;
-            sub_write(argument, ch, TRUE, TO_ROOM);
+            sub_write(argument, ch, true, TO_ROOM);
         }
     }
 
@@ -272,7 +272,7 @@ ACMD(do_masound) {
 /* lets the mobile kill any player or mobile without murder*/
 ACMD(do_mkill) {
     char arg[MAX_INPUT_LENGTH];
-    char_data *victim;
+    CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char("Huh?!?\r\n", ch);
@@ -322,8 +322,8 @@ ACMD(do_mkill) {
 ACMD(do_mjunk) {
     char argbuf[MAX_INPUT_LENGTH], *arg = argbuf;
     int pos, dotmode;
-    obj_data *obj;
-    obj_data *obj_next;
+    ObjData *obj;
+    ObjData *obj_next;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char("Huh?!?\r\n", ch);
@@ -343,14 +343,14 @@ ACMD(do_mjunk) {
     dotmode = find_all_dots(&arg);
 
     if (dotmode == FIND_INDIV) {
-        if ((obj = find_obj_in_eq(ch, &pos, find_vis_by_name(ch, arg))) != NULL) {
+        if ((obj = find_obj_in_eq(ch, &pos, find_vis_by_name(ch, arg))) != nullptr) {
             unequip_char(ch, pos);
             extract_obj(obj);
-        } else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg))) != NULL) {
+        } else if ((obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg))) != nullptr) {
             extract_obj(obj);
         }
     } else {
-        for (obj = ch->carrying; obj != NULL; obj = obj_next) {
+        for (obj = ch->carrying; obj != nullptr; obj = obj_next) {
             obj_next = obj->next_content;
             /* If it is 'all.blah' then find_all_dots converts to 'blah' */
             if (dotmode == FIND_ALL || isname(arg, obj->name))
@@ -374,7 +374,7 @@ ACMD(do_mjunk) {
 /* prints the message to everyone in the room other than the mob and victim */
 ACMD(do_mechoaround) {
     char arg[MAX_INPUT_LENGTH];
-    char_data *victim;
+    CharData *victim;
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
@@ -399,13 +399,13 @@ ACMD(do_mechoaround) {
         return;
     }
 
-    sub_write(p, victim, TRUE, TO_ROOM);
+    sub_write(p, victim, true, TO_ROOM);
 }
 
 /* sends the message to only the victim */
 ACMD(do_msend) {
     char arg[MAX_INPUT_LENGTH];
-    char_data *victim;
+    CharData *victim;
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
@@ -430,7 +430,7 @@ ACMD(do_msend) {
         return;
     }
 
-    sub_write(p, victim, TRUE, TO_CHAR);
+    sub_write(p, victim, true, TO_CHAR);
 }
 
 /* prints the message to the room at large */
@@ -452,7 +452,7 @@ ACMD(do_mecho) {
     p = argument;
     skip_spaces(&p);
 
-    sub_write(p, ch, TRUE, TO_ROOM);
+    sub_write(p, ch, true, TO_ROOM);
 }
 
 /*
@@ -461,8 +461,8 @@ ACMD(do_mecho) {
 */
 ACMD(do_m_run_room_trig) {
     int thisrm, trignm, found = 0;
-    trig_data *t;
-    struct script_data *sc;
+    TrigData *t;
+    ScriptData *sc;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char("Huh?!?\r\n", ch);
@@ -487,7 +487,7 @@ ACMD(do_m_run_room_trig) {
         }
 
         if (found == 1) {
-            room_data *room = &world[thisrm];
+            RoomData *room = &world[thisrm];
             /* found the right trigger, now run it */
             script_driver(&room, t, WLD_TRIGGER, TRIG_NEW);
         } else {
@@ -505,8 +505,8 @@ ACMD(do_m_run_room_trig) {
 ACMD(do_mload) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     int number = 0;
-    char_data *mob;
-    obj_data *object;
+    CharData *mob;
+    ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char("Huh?!?\r\n", ch);
@@ -527,7 +527,7 @@ ACMD(do_mload) {
     }
 
     if (is_abbrev(arg1, "mob")) {
-        if ((mob = read_mobile(number, VIRTUAL)) == NULL) {
+        if ((mob = read_mobile(number, VIRTUAL)) == nullptr) {
             mob_log(ch, "mload: bad mob vnum");
             return;
         }
@@ -536,16 +536,16 @@ ACMD(do_mload) {
     }
 
     else if (is_abbrev(arg1, "obj")) {
-        if ((object = read_object(number, VIRTUAL)) == NULL) {
+        if ((obj = read_object(number, VIRTUAL)) == nullptr) {
             mob_log(ch, "mload: bad object vnum");
             return;
         }
         /* Reuse arg1 for third argument: force mload to room */
         any_one_arg(argument, arg1);
-        if (!CAN_WEAR(object, ITEM_WEAR_TAKE) || !str_cmp(arg1, "room"))
-            obj_to_room(object, IN_ROOM(ch));
+        if (!CAN_WEAR(obj, ITEM_WEAR_TAKE) || !str_cmp(arg1, "room"))
+            obj_to_room(obj, IN_ROOM(ch));
         else
-            obj_to_char(object, ch);
+            obj_to_char(obj, ch);
     }
 
     else
@@ -559,8 +559,8 @@ ACMD(do_mload) {
  */
 ACMD(do_mpurge) {
     char arg[MAX_INPUT_LENGTH];
-    char_data *victim;
-    obj_data *obj;
+    CharData *victim;
+    ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char("Huh?!?\r\n", ch);
@@ -577,8 +577,8 @@ ACMD(do_mpurge) {
 
     if (!*arg) {
         /* 'purge' */
-        char_data *vnext;
-        obj_data *obj_next;
+        CharData *vnext;
+        ObjData *obj_next;
 
         for (victim = world[IN_ROOM(ch)].people; victim; victim = vnext) {
             vnext = victim->next_in_room;
@@ -596,7 +596,7 @@ ACMD(do_mpurge) {
 
     victim = find_char_for_mtrig(ch, arg);
 
-    if (victim == NULL) {
+    if (victim == nullptr) {
         if ((obj = find_obj_for_mtrig(ch, arg))) {
             extract_obj(obj);
         } else
@@ -690,7 +690,7 @@ ACMD(do_mat) {
 ACMD(do_mteleport) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     int target;
-    char_data *vict, *next_ch;
+    CharData *vict, *next_ch;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char("Huh?!?\r\n", ch);
@@ -768,8 +768,8 @@ ACMD(do_mforce) {
     }
 
     if (!str_cmp(arg, "all")) {
-        struct descriptor_data *i;
-        char_data *vch;
+        DescriptorData *i;
+        CharData *vch;
 
         for (i = descriptor_list; i; i = i->next) {
             if ((i->character != ch) && !i->connected && (IN_ROOM(i->character) == IN_ROOM(ch))) {
@@ -780,7 +780,7 @@ ACMD(do_mforce) {
             }
         }
     } else {
-        char_data *victim;
+        CharData *victim;
 
         if (!(victim = find_char_for_mtrig(ch, arg))) {
             mob_log(ch, "mforce: no such victim");
@@ -799,7 +799,7 @@ ACMD(do_mforce) {
 
 /* increases the target's exp */
 ACMD(do_mexp) {
-    char_data *victim;
+    CharData *victim;
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
@@ -831,7 +831,7 @@ ACMD(do_mexp) {
 
 /* increases the target's gold */
 ACMD(do_mgold) {
-    char_data *victim;
+    CharData *victim;
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
@@ -895,7 +895,7 @@ ACMD(do_mob_log) {
  */
 
 ACMD(do_quest) {
-    struct trig_data *t = NULL;
+    TrigData *t = nullptr;
 
     /*
      * Normal rules for execution by mobs/players, but deities can
@@ -918,7 +918,7 @@ ACMD(do_quest) {
             if (t->running)
                 break;
 
-    perform_quest(t, argument, ch, NULL, NULL);
+    perform_quest(t, argument, ch, nullptr, nullptr);
 }
 
 /* Save a player. */
@@ -944,8 +944,8 @@ ACMD(do_msave) {
     }
 
     if (!str_cmp(arg, "all")) {
-        struct descriptor_data *i;
-        char_data *vch;
+        DescriptorData *i;
+        CharData *vch;
 
         for (i = descriptor_list; i; i = i->next) {
             if ((i->character != ch) && !i->connected && (IN_ROOM(i->character) == IN_ROOM(ch))) {
@@ -956,7 +956,7 @@ ACMD(do_msave) {
             }
         }
     } else {
-        char_data *victim;
+        CharData *victim;
 
         if (!(victim = find_char_for_mtrig(ch, arg))) {
             mob_log(ch, "msave: no such victim");
@@ -982,7 +982,7 @@ ACMD(do_msave) {
 
 ACMD(do_mcast) {
     char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], spell_name[MAX_INPUT_LENGTH];
-    char_data *victim;
+    CharData *victim;
     int spellnum, level = 0;
 
     argument = delimited_arg(argument, spell_name, '\'');
@@ -1018,12 +1018,12 @@ ACMD(do_mcast) {
         return;
     }
 
-    call_magic(ch, victim, NULL, spellnum, level, SAVING_SPELL);
+    call_magic(ch, victim, nullptr, spellnum, level, SAVING_SPELL);
 }
 
 ACMD(do_mchant) {
     char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], chant_name[MAX_INPUT_LENGTH];
-    char_data *victim;
+    CharData *victim;
     int chantnum, level = 0;
 
     argument = delimited_arg(argument, chant_name, '\'');
@@ -1059,12 +1059,12 @@ ACMD(do_mchant) {
         return;
     }
 
-    call_magic(ch, victim, NULL, chantnum, level, SAVING_SPELL);
+    call_magic(ch, victim, nullptr, chantnum, level, SAVING_SPELL);
 }
 
 ACMD(do_mperform) {
     char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], song_name[MAX_INPUT_LENGTH];
-    char_data *victim;
+    CharData *victim;
     int songnum, level = 0;
 
     argument = delimited_arg(argument, song_name, '\'');
@@ -1100,5 +1100,5 @@ ACMD(do_mperform) {
         return;
     }
 
-    call_magic(ch, victim, NULL, songnum, level, SAVING_SPELL);
+    call_magic(ch, victim, nullptr, songnum, level, SAVING_SPELL);
 }

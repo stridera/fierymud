@@ -15,6 +15,7 @@
 #include "cooldowns.hpp"
 #include "damage.hpp"
 #include "db.hpp"
+#include "defines.hpp"
 #include "directions.hpp"
 #include "events.hpp"
 #include "fight.hpp"
@@ -22,6 +23,7 @@
 #include "interpreter.hpp"
 #include "magic.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "movement.hpp"
 #include "races.hpp"
 #include "regen.hpp"
@@ -31,22 +33,15 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* extern variables */
-extern int pk_allowed;
-extern int summon_allowed;
-extern int charm_allowed;
-extern int sleep_allowed;
-extern int damage_amounts;
-
 /* extern functions */
 ACMD(do_return);
-struct char_data *check_guard(char_data *ch, char_data *victim, int gag_output);
-bool is_grouped(char_data *ch, char_data *tch);
-void quickdeath(char_data *victim, char_data *ch);
-void abort_casting(char_data *ch);
-void appear(char_data *ch);
+CharData *check_guard(CharData *ch, CharData *victim, int gag_output);
+bool is_grouped(CharData *ch, CharData *tch);
+void quickdeath(CharData *victim, CharData *ch);
+void abort_casting(CharData *ch);
+void appear(CharData *ch);
 
-void aggro_lose_spells(char_data *ch) {
+void aggro_lose_spells(CharData *ch) {
     if (!EFF_FLAGGED(ch, EFF_REMOTE_AGGR)) {
         if (affected_by_spell(ch, SPELL_INVISIBLE) || affected_by_spell(ch, SPELL_NATURES_EMBRACE))
             appear(ch);
@@ -58,25 +53,25 @@ void aggro_lose_spells(char_data *ch) {
     }
 }
 
-bool switch_ok(char_data *ch) {
+bool switch_ok(CharData *ch) {
     if (GET_SKILL(ch, SKILL_SWITCH) <= 0) {
-        act("You are already busy fighting with $N.", FALSE, ch, 0, FIGHTING(ch), TO_CHAR);
-        return FALSE;
+        act("You are already busy fighting with $N.", false, ch, 0, FIGHTING(ch), TO_CHAR);
+        return false;
     }
 
     if (number(1, 101) > GET_SKILL(ch, SKILL_SWITCH)) {
-        act("&8$n tries to switch opponents, but becomes confused!&0", FALSE, ch, 0, 0, TO_ROOM);
+        act("&8$n tries to switch opponents, but becomes confused!&0", false, ch, 0, 0, TO_ROOM);
         send_to_char("&8You try to switch opponents and become confused.&0\r\n", ch);
         stop_fighting(ch);
         improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
-        return FALSE;
+        return false;
     }
 
     stop_fighting(ch);
-    act("&8$n switches opponents!&0", FALSE, ch, 0, 0, TO_ROOM);
+    act("&8$n switches opponents!&0", false, ch, 0, 0, TO_ROOM);
     send_to_char("&8You switch opponents!&0\r\n", ch);
     improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
-    return TRUE;
+    return true;
 }
 
 const struct breath_type {
@@ -104,17 +99,17 @@ const struct breath_type {
      "mouth!&0"},
     {"lightning", SPELL_LIGHTNING_BREATH, "&4You open your mouth and bolts of &blightning&0&4 shoot out!&0\r\n",
      "&4$n&4 opens $s mouth and bolts of &blightning&0&4 shoot out!&0"},
-    {NULL, 0, NULL, NULL},
+    {nullptr, 0, nullptr, nullptr},
 };
 
-struct char_data *random_attack_target(char_data *ch, char_data *target, bool verbose) {
-    struct char_data *chosen = NULL;
-    struct char_data *i;
+CharData *random_attack_target(CharData *ch, CharData *target, bool verbose) {
+    CharData *chosen = nullptr;
+    CharData *i;
     int count = 0;
 
     for (i = world[ch->in_room].people; i; i = i->next_in_room) {
-        if (i != ch && CAN_SEE(ch, i) && attack_ok(ch, i, FALSE)) {
-            if (chosen == NULL || number(0, count) == 0)
+        if (i != ch && CAN_SEE(ch, i) && attack_ok(ch, i, false)) {
+            if (chosen == nullptr || number(0, count) == 0)
                 chosen = i;
             count++;
         }
@@ -124,9 +119,9 @@ struct char_data *random_attack_target(char_data *ch, char_data *target, bool ve
         chosen = target;
 
     if (verbose && chosen != target) {
-        act("&5You got confused and attacked $N&0&5 instead!&0", FALSE, ch, 0, chosen, TO_CHAR);
-        act("&5$n&0&5 got confused and attacked $N&0&5!&0", TRUE, ch, 0, chosen, TO_NOTVICT);
-        act("&5$n&0&5 gets confused and attacks YOU!&0", TRUE, ch, 0, chosen, TO_VICT);
+        act("&5You got confused and attacked $N&0&5 instead!&0", false, ch, 0, chosen, TO_CHAR);
+        act("&5$n&0&5 got confused and attacked $N&0&5!&0", true, ch, 0, chosen, TO_NOTVICT);
+        act("&5$n&0&5 gets confused and attacks YOU!&0", true, ch, 0, chosen, TO_VICT);
     }
 
     return chosen;
@@ -134,9 +129,9 @@ struct char_data *random_attack_target(char_data *ch, char_data *target, bool ve
 
 ACMD(do_breathe) {
     ACMD(do_action);
-    struct char_data *tch, *next_tch;
+    CharData *tch, *next_tch;
     int type;
-    bool realvictims = FALSE;
+    bool realvictims = false;
     int breath_energy;
 
     if (!ch || ch->in_room == NOWHERE)
@@ -147,7 +142,7 @@ ACMD(do_breathe) {
     /*
     if (GET_SKILL(ch, SKILL_BREATHE) < 1 || EFF_FLAGGED(ch, EFF_CHARM)) {
         send_to_char("You huff and puff but to no avail.\r\n", ch);
-        act("$n huffs and puffs but to no avail.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n huffs and puffs but to no avail.", false, ch, 0, 0, TO_ROOM);
         return;
     }
     */
@@ -156,7 +151,7 @@ ACMD(do_breathe) {
          GET_SKILL(ch, SKILL_BREATHE_FROST) < 1 && GET_SKILL(ch, SKILL_BREATHE_ACID) < 1 &&
          GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) < 1)) {
         send_to_char("You huff and puff but to no avail.\r\n", ch);
-        act("$n huffs and puffs but to no avail.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n huffs and puffs but to no avail.", false, ch, 0, 0, TO_ROOM);
         return;
     }
     one_argument(argument, arg);
@@ -197,7 +192,7 @@ ACMD(do_breathe) {
     }
 
     send_to_char(breath_info[type].to_char, ch);
-    act(breath_info[type].to_room, FALSE, ch, 0, 0, TO_ROOM);
+    act(breath_info[type].to_room, false, ch, 0, 0, TO_ROOM);
 
     for (tch = world[ch->in_room].people; tch; tch = next_tch) {
         next_tch = tch->next_in_room;
@@ -206,7 +201,7 @@ ACMD(do_breathe) {
             continue;
         if (is_grouped(ch, tch))
             continue;
-        if (!mass_attack_ok(ch, tch, FALSE))
+        if (!mass_attack_ok(ch, tch, false))
             continue;
         if (PRF_FLAGGED(tch, PRF_NOHASSLE))
             continue;
@@ -215,7 +210,7 @@ ACMD(do_breathe) {
             continue;
         call_magic(ch, tch, 0, breath_info[type].spell, GET_LEVEL(ch), CAST_BREATH);
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
-            realvictims = TRUE;
+            realvictims = true;
     }
     /*
     if (realvictims)
@@ -231,8 +226,8 @@ ACMD(do_breathe) {
 }
 
 ACMD(do_roar) {
-    struct char_data *tch, *next_tch;
-    bool realvictims = FALSE;
+    CharData *tch, *next_tch;
+    bool realvictims = false;
     ACMD(do_flee);
     ACMD(do_action);
 
@@ -243,10 +238,10 @@ ACMD(do_roar) {
         if (!GET_SKILL(ch, SKILL_BATTLE_HOWL) || !EFF_FLAGGED(ch, EFF_SPIRIT_WOLF) || !EFF_FLAGGED(ch, EFF_BERSERK)) {
             if (SUN(IN_ROOM(ch)) == SUN_DARK && CH_OUTSIDE(ch)) {
                 send_to_char("You form an O with your mouth and howl at the moon.\r\n", ch);
-                act("$n starts howling at the moon.   Eerie.", FALSE, ch, 0, 0, TO_ROOM);
+                act("$n starts howling at the moon.   Eerie.", false, ch, 0, 0, TO_ROOM);
             } else {
                 send_to_char("You howl madly, making a fool of yourself.\r\n", ch);
-                act("$n howls madly, looking like a fool.", FALSE, ch, 0, 0, TO_ROOM);
+                act("$n howls madly, looking like a fool.", false, ch, 0, 0, TO_ROOM);
             }
             return;
         }
@@ -256,18 +251,18 @@ ACMD(do_roar) {
     }
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
-        act("$n opens $s mouth wide and lets out a little cough.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n opens $s mouth wide and lets out a little cough.", false, ch, 0, 0, TO_ROOM);
         send_to_char("You take a deep breath and release a vicious cough!\r\n", ch);
         return;
     }
 
     if (subcmd == SCMD_HOWL) {
-        act("$n opens his mouth and a &1&8demonic &0&1howl&0 echoes out!", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n opens his mouth and a &1&8demonic &0&1howl&0 echoes out!", false, ch, 0, 0, TO_ROOM);
         send_to_char("You let out a demonic battle howl, striking fear into your enemies!\r\n", ch);
     } else {
         act("&9&b$n&9&b makes your soul quake with a vicious "
             "&1ROOOOOAAAAAARRRRRR!&0",
-            FALSE, ch, 0, 0, TO_ROOM);
+            false, ch, 0, 0, TO_ROOM);
         send_to_char("&9&bYou take a deep breath and release a vicious &1ROOOOOAAAAARRRRRR!&0\r\n", ch);
     }
 
@@ -283,7 +278,7 @@ ACMD(do_roar) {
             continue;
         if (is_grouped(ch, tch))
             continue;
-        if (!attack_ok(ch, tch, FALSE))
+        if (!attack_ok(ch, tch, false))
             continue;
         if (mag_savingthrow(tch, SAVING_PARA))
             continue;
@@ -295,11 +290,11 @@ ACMD(do_roar) {
         if (MOB_FLAGGED(tch, MOB_AWARE) || MOB_FLAGGED(tch, MOB_NOSUMMON))
             continue;
         if (EFF_FLAGGED(tch, EFF_PROTECT_EVIL) && GET_ALIGNMENT(ch) <= -500) {
-            act("Your holy protection strengthens your resolve against $N\'s roar!\r\n", FALSE, tch, 0, ch, TO_CHAR);
+            act("Your holy protection strengthens your resolve against $N\'s roar!\r\n", false, tch, 0, ch, TO_CHAR);
             continue;
         }
         if (EFF_FLAGGED(tch, EFF_PROTECT_GOOD) && GET_ALIGNMENT(ch) <= 500) {
-            act("Your unholy protection strengthens your resolve against $N\'s roar!\r\n", FALSE, tch, 0, ch, TO_CHAR);
+            act("Your unholy protection strengthens your resolve against $N\'s roar!\r\n", false, tch, 0, ch, TO_CHAR);
             continue;
         }
         mag_affect(GET_LEVEL(ch), ch, tch, SPELL_FEAR, SAVING_PARA, CAST_BREATH);
@@ -309,21 +304,21 @@ ACMD(do_roar) {
                 sprintf(buf, "A loud %s jolts you from your slumber!\r\n",
                         subcmd == SCMD_HOWL ? "OOOOAAAOAOOHHH howl" : "ROAAARRRRRR");
                 send_to_char(buf, tch);
-                act("$n jumps up dazedly, awakened by the noise!", TRUE, tch, 0, 0, TO_ROOM);
+                act("$n jumps up dazedly, awakened by the noise!", true, tch, 0, 0, TO_ROOM);
                 GET_POS(tch) = POS_SITTING;
                 GET_STANCE(tch) = STANCE_ALERT;
                 WAIT_STATE(tch, PULSE_VIOLENCE);
             }
         } else if (GET_DEX(tch) - 15 < number(0, 100) && GET_POS(tch) >= POS_STANDING) {
             send_to_char("In your panicked rush to flee, you trip!\r\n", tch);
-            act("In a panicked rush to flee, $n trips!", FALSE, tch, 0, 0, TO_ROOM);
+            act("In a panicked rush to flee, $n trips!", false, tch, 0, 0, TO_ROOM);
             GET_POS(tch) = POS_SITTING;
             GET_STANCE(tch) = STANCE_ALERT;
             WAIT_STATE(tch, PULSE_VIOLENCE);
         } else
-            do_flee(tch, NULL, 0, 0);
+            do_flee(tch, nullptr, 0, 0);
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
-            realvictims = TRUE;
+            realvictims = true;
     }
 
     if (realvictims) {
@@ -337,8 +332,8 @@ ACMD(do_roar) {
 }
 
 ACMD(do_sweep) {
-    struct char_data *tch, *next_tch;
-    bool realvictims = FALSE;
+    CharData *tch, *next_tch;
+    bool realvictims = false;
     ACMD(do_flee);
 
     if (!ch || ch->in_room == NOWHERE)
@@ -349,7 +344,7 @@ ACMD(do_sweep) {
         return;
     }
 
-    act("&2$n&2 sweeps with $s enormous tail!&0", FALSE, ch, 0, 0, TO_ROOM);
+    act("&2$n&2 sweeps with $s enormous tail!&0", false, ch, 0, 0, TO_ROOM);
     send_to_char("&2You sweep with your enormous tail!&0\r\n", ch);
 
     for (tch = world[ch->in_room].people; tch; tch = next_tch) {
@@ -366,24 +361,24 @@ ACMD(do_sweep) {
             continue;
         if (GET_VIEWED_DEX(tch) - 15 > number(0, 100) || GET_STANCE(tch) < STANCE_FIGHTING)
             continue;
-        if (!attack_ok(ch, tch, FALSE))
+        if (!attack_ok(ch, tch, false))
             continue;
         if (PRF_FLAGGED(tch, PRF_NOHASSLE))
             continue;
         if (damage_evasion(tch, ch, 0, DAM_CRUSH)) {
-            act(EVASIONCLR "$N's" EVASIONCLR " tail passes right through you.&0", FALSE, tch, 0, ch, TO_CHAR);
-            act(EVASIONCLR "$N's" EVASIONCLR " tail passes harmlessly through $n.&0", FALSE, tch, 0, 0, TO_ROOM);
-            set_fighting(tch, ch, TRUE);
+            act(EVASIONCLR "$N's" EVASIONCLR " tail passes right through you.&0", false, tch, 0, ch, TO_CHAR);
+            act(EVASIONCLR "$N's" EVASIONCLR " tail passes harmlessly through $n.&0", false, tch, 0, 0, TO_ROOM);
+            set_fighting(tch, ch, true);
             continue;
         }
 
-        act("&3You are slammed to the ground by $N's&3 tail!&0", FALSE, tch, 0, ch, TO_CHAR);
-        act("&3$n&3 is slammed to the ground by a mighty tail sweep!&0", FALSE, tch, 0, 0, TO_ROOM);
+        act("&3You are slammed to the ground by $N's&3 tail!&0", false, tch, 0, ch, TO_CHAR);
+        act("&3$n&3 is slammed to the ground by a mighty tail sweep!&0", false, tch, 0, 0, TO_ROOM);
         GET_POS(tch) = POS_SITTING;
         GET_STANCE(tch) = STANCE_ALERT;
         WAIT_STATE(tch, PULSE_VIOLENCE);
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
-            realvictims = TRUE;
+            realvictims = true;
     }
 
     if (realvictims)
@@ -393,7 +388,7 @@ ACMD(do_sweep) {
 }
 
 ACMD(do_assist) {
-    struct char_data *helpee, *opponent;
+    CharData *helpee, *opponent;
 
     one_argument(argument, arg);
 
@@ -411,15 +406,15 @@ ACMD(do_assist) {
             ;
 
         if (!opponent)
-            act("But nobody is fighting $M!", FALSE, ch, 0, helpee, TO_CHAR);
+            act("But nobody is fighting $M!", false, ch, 0, helpee, TO_CHAR);
         else if (!CAN_SEE(ch, opponent))
-            act("You can't see who is fighting $M!", FALSE, ch, 0, helpee, TO_CHAR);
-        else if (attack_ok(ch, opponent, TRUE)) {
-            act("You assist $N&0 heroically.", FALSE, ch, 0, helpee, TO_CHAR);
+            act("You can't see who is fighting $M!", false, ch, 0, helpee, TO_CHAR);
+        else if (attack_ok(ch, opponent, true)) {
+            act("You assist $N&0 heroically.", false, ch, 0, helpee, TO_CHAR);
             act("$n&0 assists you!", 0, ch, 0, helpee, TO_VICT);
-            act("$n&0 heroically assists $N.", FALSE, ch, 0, helpee, TO_NOTVICT);
+            act("$n&0 heroically assists $N.", false, ch, 0, helpee, TO_NOTVICT);
             if (CONFUSED(ch))
-                opponent = random_attack_target(ch, opponent, TRUE);
+                opponent = random_attack_target(ch, opponent, true);
             attack(ch, opponent);
         }
     }
@@ -449,7 +444,7 @@ ACMD(do_disengage) {
 }
 
 ACMD(do_hit) {
-    struct char_data *vict;
+    CharData *vict;
 
     one_argument(argument, arg);
 
@@ -463,16 +458,16 @@ ACMD(do_hit) {
         send_to_char("They don't seem to be here.\r\n", ch);
     else if (vict == ch) {
         send_to_char("You hit yourself...OUCH!.\r\n", ch);
-        act("$n hits $mself, and says OUCH!", FALSE, ch, 0, vict, TO_ROOM);
+        act("$n hits $mself, and says OUCH!", false, ch, 0, vict, TO_ROOM);
     } else if (EFF_FLAGGED(ch, EFF_CHARM) && (ch->master == vict))
-        act("$N is just such a good friend, you simply can't hit $M.", FALSE, ch, 0, vict, TO_CHAR);
-    else if (attack_ok(ch, vict, TRUE)) {
+        act("$N is just such a good friend, you simply can't hit $M.", false, ch, 0, vict, TO_CHAR);
+    else if (attack_ok(ch, vict, true)) {
         if (vict == FIGHTING(ch)) {
             send_to_char("&7You're doing the best you can!&0\r\n", ch);
             return;
         } else if (!FIGHTING(ch) || switch_ok(ch)) {
             if (CONFUSED(ch))
-                vict = random_attack_target(ch, vict, TRUE);
+                vict = random_attack_target(ch, vict, true);
             attack(ch, vict);
         }
         WAIT_STATE(ch, PULSE_VIOLENCE);
@@ -480,7 +475,7 @@ ACMD(do_hit) {
 }
 
 ACMD(do_kill) {
-    struct char_data *vict;
+    CharData *vict;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
         send_to_char("&8It is just too damn dark!&0\r\n", ch);
@@ -507,9 +502,9 @@ ACMD(do_kill) {
         else if (GET_LEVEL(vict) == LVL_IMPL)
             send_to_char("&1You dare NOT do that!&0\r\n", ch);
         else {
-            act("You chop $M to pieces!   Ah!   The blood!", FALSE, ch, 0, vict, TO_CHAR);
-            act("$N chops you to pieces!", FALSE, vict, 0, ch, TO_CHAR);
-            act("$n brutally slays $N!", FALSE, ch, 0, vict, TO_NOTVICT);
+            act("You chop $M to pieces!   Ah!   The blood!", false, ch, 0, vict, TO_CHAR);
+            act("$N chops you to pieces!", false, vict, 0, ch, TO_CHAR);
+            act("$n brutally slays $N!", false, ch, 0, vict, TO_NOTVICT);
             die(vict, ch);
         }
     }
@@ -517,23 +512,23 @@ ACMD(do_kill) {
 
 /* I've made this a higher end functionality of backstab instead of some 'tarded
  * skill that rarely works - RLS 02/12/05*/
-bool instantkill(char_data *ch, char_data *victim) {
+bool instantkill(CharData *ch, CharData *victim) {
     int chance = 0;
 
-    if (!victim || !ch || ch == victim || ch == NULL || victim == NULL)
-        return FALSE;
+    if (!victim || !ch || ch == victim || ch == nullptr || victim == nullptr)
+        return false;
 
     /* No more instant kills until the timer runs out */
     if (GET_COOLDOWN(ch, CD_INSTANT_KILL))
-        return FALSE;
+        return false;
 
     if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_INSTANT_KILL) || DECEASED(victim) || (ch->in_room != victim->in_room) ||
         (GET_LEVEL(victim) > LVL_IMMORT))
-        return FALSE;
+        return false;
 
     improve_skill_offensively(ch, victim, SKILL_INSTANT_KILL);
     if (number(1, 101) > GET_SKILL(ch, SKILL_INSTANT_KILL))
-        return FALSE;
+        return false;
 
     /*chance is now checking DEX and shouldn't happen as often */
     chance = 1000 - (GET_SKILL(ch, SKILL_INSTANT_KILL) - (100 - GET_DEX(ch)) - (GET_LEVEL(victim) * 10)) / 10;
@@ -546,14 +541,14 @@ bool instantkill(char_data *ch, char_data *victim) {
     if (number(1, 1000) >= chance) {
         quickdeath(victim, ch);
         SET_COOLDOWN(ch, CD_INSTANT_KILL, (120 - (GET_LEVEL(ch))) * PULSE_COOLDOWN);
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
-void slow_death(char_data *victim) {
+void slow_death(CharData *victim) {
     if (!victim) {
-        mudlog("Attempting to use slow_death on a NULL character!", BRF, LVL_GOD, TRUE);
+        mudlog("Attempting to use slow_death on a NULL character!", BRF, LVL_GOD, true);
         log("Attempting to use slow_death on a NULL character!");
         return;
     }
@@ -561,36 +556,36 @@ void slow_death(char_data *victim) {
     if (victim->attackers) {
         /* Someone is fighting this person, so don't die just yet! */
         GET_HIT(victim) = HIT_MORTALLYW;
-        hp_pos_check(victim, NULL, 0);
+        hp_pos_check(victim, nullptr, 0);
         return;
     }
 
-    act("&8With a soft groan, $n slips off into the cold sleep of death.&0", TRUE, victim, 0, 0, TO_ROOM);
-    act("&8$n is dead!   R.I.P.&0", TRUE, victim, 0, 0, TO_ROOM);
+    act("&8With a soft groan, $n slips off into the cold sleep of death.&0", true, victim, 0, 0, TO_ROOM);
+    act("&8$n is dead!   R.I.P.&0", true, victim, 0, 0, TO_ROOM);
     if (AWAKE(victim)) {
-        act("&8You feel yourself slipping away and falling into the abyss.&0", FALSE, victim, 0, 0, TO_CHAR);
+        act("&8You feel yourself slipping away and falling into the abyss.&0", false, victim, 0, 0, TO_CHAR);
         send_to_char("&0&8Your life fades away ....\r\n", victim);
     }
 
-    die(victim, NULL);
+    die(victim, nullptr);
 }
 
-void quickdeath(char_data *victim, char_data *ch) {
+void quickdeath(CharData *victim, CharData *ch) {
     if (GET_LEVEL(victim) >= LVL_IMMORT || (ch && MOB_FLAGGED(ch, MOB_ILLUSORY)))
         return;
 
     send_to_char("You deliver the killing blow.\r\n", ch);
-    act("$n's strike upon $N is faster than the eye can see.", TRUE, ch, 0, victim, TO_NOTVICT);
+    act("$n's strike upon $N is faster than the eye can see.", true, ch, 0, victim, TO_NOTVICT);
     send_to_char("You feel a sharp sting, and all goes black.\r\n", victim);
 
-    hurt_char(victim, ch, GET_MAX_HIT(victim) + 20, FALSE);
+    hurt_char(victim, ch, GET_MAX_HIT(victim) + 20, false);
 }
 
 ACMD(do_backstab) {
-    struct char_data *vict, *tch;
-    struct effect eff;
+    CharData *vict, *tch;
+    effect eff;
     int percent, prob, percent2, prob2;
-    struct obj_data *weapon;
+    ObjData *weapon;
 
     if (GET_COOLDOWN(ch, CD_BACKSTAB)) {
         send_to_char("Give yourself a chance to get back into position!\r\n", ch);
@@ -618,18 +613,18 @@ ACMD(do_backstab) {
         return;
     }
 
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
 
     /* You can backstab as long as you're not the tank */
     for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
         if (FIGHTING(tch) == ch) {
             if (FIGHTING(ch) == tch)
-                act("$N's facing the wrong way!\r\n", FALSE, ch, 0, tch, TO_CHAR);
+                act("$N's facing the wrong way!\r\n", false, ch, 0, tch, TO_CHAR);
             else if (FIGHTING(ch))
-                act("You're too busy fighting $N to backstab anyone!", FALSE, ch, 0, FIGHTING(ch), TO_CHAR);
+                act("You're too busy fighting $N to backstab anyone!", false, ch, 0, FIGHTING(ch), TO_CHAR);
             else
-                act("$N is coming in for the attack - you cannot backstab $M now.", FALSE, ch, 0, tch, TO_CHAR);
+                act("$N is coming in for the attack - you cannot backstab $M now.", false, ch, 0, tch, TO_CHAR);
             return;
         }
     }
@@ -662,11 +657,11 @@ ACMD(do_backstab) {
     }
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     if (damage_evasion(vict, ch, weapon, DAM_PIERCE)) {
         damage_evasion_message(ch, vict, weapon, DAM_PIERCE);
-        set_fighting(vict, ch, TRUE);
+        set_fighting(vict, ch, true);
         return;
     }
 
@@ -674,9 +669,9 @@ ACMD(do_backstab) {
        fighting, then you can not backstab the mob */
     if (MOB_FLAGGED(vict, MOB_AWARE) && AWAKE(vict) && !FIGHTING(vict) && !EFF_FLAGGED(vict, EFF_MINOR_PARALYSIS) &&
         !EFF_FLAGGED(vict, EFF_MAJOR_PARALYSIS)) {
-        act("You notice $N sneaking up on you!", FALSE, vict, 0, ch, TO_CHAR);
-        act("$e notices you sneaking up on $m!", FALSE, vict, 0, ch, TO_VICT);
-        act("$n notices $N sneaking up on $m!", FALSE, vict, 0, ch, TO_NOTVICT);
+        act("You notice $N sneaking up on you!", false, vict, 0, ch, TO_CHAR);
+        act("$e notices you sneaking up on $m!", false, vict, 0, ch, TO_VICT);
+        act("$n notices $N sneaking up on $m!", false, vict, 0, ch, TO_NOTVICT);
         attack(vict, ch);
         return;
     }
@@ -685,9 +680,9 @@ ACMD(do_backstab) {
     if (MOB_FLAGGED(vict, MOB_AWARE) && CAN_SEE(ch, vict) && !EFF_FLAGGED(vict, EFF_MINOR_PARALYSIS) &&
         !EFF_FLAGGED(vict, EFF_MAJOR_PARALYSIS) && FIGHTING(vict) &&
         number(1, GET_LEVEL(vict)) > GET_SKILL(ch, SKILL_BACKSTAB) / 2) {
-        act("You notice $N trying to sneaking up on you!", FALSE, vict, 0, ch, TO_CHAR);
-        act("You failed - $e notices you sneaking up on $m!", FALSE, vict, 0, ch, TO_VICT);
-        act("$n notices $N trying to sneak up on $m!", FALSE, vict, 0, ch, TO_NOTVICT);
+        act("You notice $N trying to sneaking up on you!", false, vict, 0, ch, TO_CHAR);
+        act("You failed - $e notices you sneaking up on $m!", false, vict, 0, ch, TO_VICT);
+        act("$n notices $N trying to sneak up on $m!", false, vict, 0, ch, TO_NOTVICT);
 
         attack(vict, ch);
 
@@ -729,11 +724,11 @@ ACMD(do_backstab) {
 
     if (AWAKE(vict) && (percent > prob)) {
         /* Backstab failed */
-        act("$N tried to backstab you, but you moved away in time!", FALSE, vict, 0, ch, TO_CHAR);
-        act("You failed to backstab $n, but manage to take a swing at $m!", FALSE, vict, 0, ch, TO_VICT);
+        act("$N tried to backstab you, but you moved away in time!", false, vict, 0, ch, TO_CHAR);
+        act("You failed to backstab $n, but manage to take a swing at $m!", false, vict, 0, ch, TO_VICT);
         act("$N tried to backstab $n, but missed and managed to take a swing "
             "instead!",
-            FALSE, vict, 0, ch, TO_NOTVICT);
+            false, vict, 0, ch, TO_NOTVICT);
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_DUAL_WIELD : TYPE_UNDEFINED);
     } else {
         /* Backstab succeeded */
@@ -841,7 +836,7 @@ ACMD(do_flee) {
         case POS_SITTING:
         case POS_KNEELING:
             abort_casting(ch);
-            act("Looking panicked, $n scrambles madly to $s feet!", TRUE, ch, 0, 0, TO_ROOM);
+            act("Looking panicked, $n scrambles madly to $s feet!", true, ch, 0, 0, TO_ROOM);
             send_to_char("You scramble madly to your feet!\r\n", ch);
             GET_POS(ch) = POS_STANDING;
             GET_STANCE(ch) = STANCE_ALERT;
@@ -850,9 +845,9 @@ ACMD(do_flee) {
             break;
         default:
             if (IS_CORNERED(ch)) {
-                act("$n tries to flee, but is unable to escape from $N!", TRUE, ch, 0, ch->cornered_by, TO_NOTVICT);
-                act("$n tries to flee, but is unable to escape from you!", TRUE, ch, 0, ch->cornered_by, TO_VICT);
-                act("PANIC!   You couldn't escape from $N!", TRUE, ch, 0, ch->cornered_by, TO_CHAR);
+                act("$n tries to flee, but is unable to escape from $N!", true, ch, 0, ch->cornered_by, TO_NOTVICT);
+                act("$n tries to flee, but is unable to escape from you!", true, ch, 0, ch->cornered_by, TO_VICT);
+                act("PANIC!   You couldn't escape from $N!", true, ch, 0, ch->cornered_by, TO_CHAR);
                 return;
             }
             for (i = 0; i < 6; i++) {                 /* Make 6 attempts */
@@ -860,17 +855,17 @@ ACMD(do_flee) {
 
                 if (CAN_GO(ch, attempt) && !ROOM_FLAGGED(CH_NDEST(ch, attempt), ROOM_DEATH)) {
                     abort_casting(ch);
-                    act("$n panics, and attempts to flee!", TRUE, ch, 0, 0, TO_ROOM);
-                    if (do_simple_move(ch, attempt, TRUE)) {
+                    act("$n panics, and attempts to flee!", true, ch, 0, 0, TO_ROOM);
+                    if (do_simple_move(ch, attempt, true)) {
                         sprintf(buf, "&0You panic and flee %s!&0\r\n", dirs[attempt]);
                         send_to_char(buf, ch);
                     } else
-                        act("$n tries to flee, but can't!", TRUE, ch, 0, 0, TO_ROOM);
+                        act("$n tries to flee, but can't!", true, ch, 0, 0, TO_ROOM);
                     return;
                 }
             }
             /* All 6 attempts failed! */
-            act("$n tries to flee, but PANICS instead!", TRUE, ch, 0, 0, TO_ROOM);
+            act("$n tries to flee, but PANICS instead!", true, ch, 0, 0, TO_ROOM);
             send_to_char("PANIC!   You couldn't escape!\r\n", ch);
         }
     }
@@ -878,7 +873,7 @@ ACMD(do_flee) {
 
 ACMD(do_retreat) {
     int dir, to_room;
-    struct char_data *vict;
+    CharData *vict;
 
     if (!ch || !argument)
         return;
@@ -900,7 +895,7 @@ ACMD(do_retreat) {
         return;
     }
 
-    dir = searchblock(arg, dirs, FALSE);
+    dir = searchblock(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
         send_to_char("You can't retreat that way!\r\n", ch);
@@ -919,13 +914,13 @@ ACMD(do_retreat) {
 
     /* Successful retreat? */
     if (GET_SKILL(ch, SKILL_RETREAT) > number(0, 81) && CAN_GO(ch, dir) &&
-        !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && do_simple_move(ch, dir, TRUE)) {
+        !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && do_simple_move(ch, dir, true)) {
 
         /* Send message back to original room. */
         sprintf(buf, "$n carefully retreats from combat, leaving %s.", dirs[dir]);
         to_room = ch->in_room;
         ch->in_room = vict->in_room;
-        act(buf, TRUE, ch, 0, 0, TO_ROOM);
+        act(buf, true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
 
         sprintf(buf, "\r\nYou skillfully retreat %s.\r\n", dirs[dir]);
@@ -935,12 +930,12 @@ ACMD(do_retreat) {
     else if (IS_NPC(FIGHTING(ch)) && FIGHTING(FIGHTING(ch)) != ch && GET_SKILL(FIGHTING(ch), SKILL_SWITCH) &&
              GET_SKILL(FIGHTING(ch), SKILL_SWITCH) > number(1, 101)) {
         stop_fighting(FIGHTING(ch));
-        act("$n fails to retreat, catching $N's attention!", TRUE, ch, 0, FIGHTING(ch), TO_NOTVICT);
-        act("You notice $n trying to escape and attack $m!", FALSE, ch, 0, FIGHTING(ch), TO_VICT);
+        act("$n fails to retreat, catching $N's attention!", true, ch, 0, FIGHTING(ch), TO_NOTVICT);
+        act("You notice $n trying to escape and attack $m!", false, ch, 0, FIGHTING(ch), TO_VICT);
         send_to_char("You fail to retreat, and catch the attention of your opponent!\r\n", ch);
         attack(FIGHTING(ch), ch);
     } else {
-        act("$n stumbles and trips as $e fails to retreat!", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n stumbles and trips as $e fails to retreat!", true, ch, 0, 0, TO_ROOM);
         send_to_char("You stumble and trip as you try to retreat!\r\n", ch);
         if (GET_LEVEL(ch) < LVL_GOD) {
             GET_POS(ch) = POS_SITTING;
@@ -954,9 +949,9 @@ ACMD(do_retreat) {
 
 ACMD(do_gretreat) {
     int dir, opponents, was_in, to_room;
-    struct char_data *tch;
-    struct follow_type *k, *next_k;
-    bool realopponents = FALSE;
+    CharData *tch;
+    FollowType *k, *next_k;
+    bool realopponents = false;
 
     if (!ch || !argument)
         return;
@@ -978,7 +973,7 @@ ACMD(do_gretreat) {
         return;
     }
 
-    dir = searchblock(arg, dirs, FALSE);
+    dir = searchblock(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
         send_to_char("You can't retreat that way!\r\n", ch);
@@ -991,7 +986,7 @@ ACMD(do_gretreat) {
     for (tch = ch->attackers; tch; tch = tch->next_attacker) {
         ++opponents;
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
-            realopponents = TRUE;
+            realopponents = true;
     }
 
     /*
@@ -1007,13 +1002,13 @@ ACMD(do_gretreat) {
 
     /* Successful retreat? */
     else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) > number(0, 81) && !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) &&
-             CAN_GO(ch, dir) && do_simple_move(ch, dir, TRUE)) {
+             CAN_GO(ch, dir) && do_simple_move(ch, dir, true)) {
         /* Echo line back to the original room. */
         sprintf(buf, "$n carefully retreats from combat, leading $s group %s.", dirs[dir]);
 
         to_room = ch->in_room;
         ch->in_room = was_in;
-        act(buf, TRUE, ch, 0, 0, TO_ROOM);
+        act(buf, true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
         sprintf(buf, "\r\nYou skillfully lead your group %s.\r\n", dirs[dir]);
         send_to_char(buf, ch);
@@ -1023,12 +1018,12 @@ ACMD(do_gretreat) {
             if (k->follower->in_room == was_in && GET_STANCE(k->follower) >= STANCE_ALERT && k->can_see_master) {
                 abort_casting(k->follower);
                 sprintf(buf, "You follow $N %s.", dirs[dir]);
-                act(buf, FALSE, k->follower, 0, ch, TO_CHAR);
-                perform_move(k->follower, dir, 1, FALSE);
+                act(buf, false, k->follower, 0, ch, TO_CHAR);
+                perform_move(k->follower, dir, 1, false);
             }
         }
     } else {
-        act("$n stumbles and trips as $e fails to retreat!", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n stumbles and trips as $e fails to retreat!", true, ch, 0, 0, TO_ROOM);
         send_to_char("You stumble and trip as you try to retreat!\r\n", ch);
         if (GET_LEVEL(ch) < LVL_GOD) {
             GET_POS(ch) = POS_SITTING;
@@ -1042,7 +1037,7 @@ ACMD(do_gretreat) {
 }
 
 ACMD(do_bash) {
-    struct char_data *vict;
+    CharData *vict;
     int percent, prob, skill, rounds;
 
     switch (subcmd) {
@@ -1099,7 +1094,7 @@ ACMD(do_bash) {
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (skill == SKILL_MAUL && (!EFF_FLAGGED(ch, EFF_BERSERK) || !EFF_FLAGGED(ch, EFF_SPIRIT_BEAR))) {
-            act("You're not angry enough to tear $M limb from limb.\r\n", FALSE, ch, 0, vict, TO_CHAR);
+            act("You're not angry enough to tear $M limb from limb.\r\n", false, ch, 0, vict, TO_CHAR);
             return;
         }
     }
@@ -1109,22 +1104,22 @@ ACMD(do_bash) {
         return;
     }
     if (vict == ch->guarding) {
-        act("You can't do that while you are guarding $M.", FALSE, ch, 0, vict, TO_CHAR);
+        act("You can't do that while you are guarding $M.", false, ch, 0, vict, TO_CHAR);
         return;
     }
 
     /* check for pk/pets/shapeshifts */
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
-    vict = check_guard(ch, vict, FALSE);
-    if (!attack_ok(ch, vict, TRUE))
+    vict = check_guard(ch, vict, false);
+    if (!attack_ok(ch, vict, true))
         return;
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     if (GET_POS(vict) <= POS_SITTING) {
-        act("$E has already been knocked down.", FALSE, ch, 0, vict, TO_CHAR);
+        act("$E has already been knocked down.", false, ch, 0, vict, TO_CHAR);
         return;
     }
 
@@ -1157,36 +1152,36 @@ ACMD(do_bash) {
 
     if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) && damage_evasion(vict, ch, 0, DAM_CRUSH) ||
         MOB_FLAGGED(vict, MOB_ILLUSORY)) {
-        act(EVASIONCLR "You charge right through $N&7&b!&0", FALSE, ch, 0, vict, TO_CHAR);
-        act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", FALSE, ch, 0, vict, TO_VICT);
+        act(EVASIONCLR "You charge right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
+        act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
+        act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", false, ch, 0, vict, TO_VICT);
         send_to_char("You fall down!\r\n", ch);
-        act("$n falls down!", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n falls down!", false, ch, 0, 0, TO_ROOM);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         GET_POS(ch) = POS_SITTING;
         GET_STANCE(ch) = STANCE_ALERT;
-        set_fighting(vict, ch, FALSE);
+        set_fighting(vict, ch, false);
         return;
     }
 
     /* NO BASH - you fail. */
     if (MOB_FLAGGED(vict, MOB_NOBASH)) {
-        act("You &3&bslam&0 into $N, but $E seems quite unmoved.", FALSE, ch, 0, vict, TO_CHAR);
-        act("$n &3&bslams&0 into $N, who seems as solid as a rock!", FALSE, ch, 0, vict, TO_NOTVICT);
-        act("$n &3&bslams&0 into you, attempting to knock you down.", FALSE, ch, 0, vict, TO_VICT);
+        act("You &3&bslam&0 into $N, but $E seems quite unmoved.", false, ch, 0, vict, TO_CHAR);
+        act("$n &3&bslams&0 into $N, who seems as solid as a rock!", false, ch, 0, vict, TO_NOTVICT);
+        act("$n &3&bslams&0 into you, attempting to knock you down.", false, ch, 0, vict, TO_VICT);
         /* A pause... but you don't fall down. */
         WAIT_STATE(ch, PULSE_VIOLENCE * 2);
-        set_fighting(vict, ch, FALSE);
+        set_fighting(vict, ch, false);
         return;
     }
 
     if (GET_SIZE(vict) - GET_SIZE(ch) > 1) {
         sprintf(buf, "&7&bYou fall over as you try to %s someone so large!&0\r\n", skills[skill].name);
         send_to_char(buf, ch);
-        act("&7&b$n BOUNCES off $N, as $e tries to $t $N's much larger size.&0", FALSE, ch, (void *)skills[skill].name,
-            vict, TO_NOTVICT);
-        act("&7&b$n BOUNCES off you as $e tries to $t your much larger size.&0", FALSE, ch, (void *)skills[skill].name,
-            vict, TO_VICT);
+        act("&7&b$n BOUNCES off $N, as $e tries to $t $N's much larger size.&0", false, ch, skills[skill].name, vict,
+            TO_NOTVICT);
+        act("&7&b$n BOUNCES off you as $e tries to $t your much larger size.&0", false, ch, skills[skill].name, vict,
+            TO_VICT);
         percent = prob + 1; /* insta-fail */
     } else if (GET_SIZE(ch) - GET_SIZE(vict) > 2) {
         sprintf(buf,
@@ -1194,10 +1189,10 @@ ACMD(do_bash) {
                 "size.&0\r\n",
                 skills[skill].name);
         send_to_char(buf, ch);
-        act("&7&b$n trips over $N, as $e tries to $t $N's much smaller size.&0", FALSE, ch, (void *)skills[skill].name,
-            vict, TO_NOTVICT);
-        act("&7&b$n trips over you as $e tries to $t your much smaller size.&0", FALSE, ch, (void *)skills[skill].name,
-            vict, TO_VICT);
+        act("&7&b$n trips over $N, as $e tries to $t $N's much smaller size.&0", false, ch, skills[skill].name, vict,
+            TO_NOTVICT);
+        act("&7&b$n trips over you as $e tries to $t your much smaller size.&0", false, ch, skills[skill].name, vict,
+            TO_VICT);
         percent = prob + 1; /* insta-fail */
     }
 
@@ -1223,7 +1218,7 @@ ACMD(do_bash) {
 }
 
 ACMD(do_rescue) {
-    struct char_data *vict, *attacker, *c;
+    CharData *vict, *attacker, *c;
     int percent, prob, num;
 
     one_argument(argument, arg);
@@ -1245,7 +1240,7 @@ ACMD(do_rescue) {
         return;
     }
     if (!vict->attackers) {
-        act("But nobody is fighting $M!", FALSE, ch, 0, vict, TO_CHAR);
+        act("But nobody is fighting $M!", false, ch, 0, vict, TO_CHAR);
         return;
     }
     if (GET_SKILL(ch, SKILL_RESCUE) == 0) {
@@ -1272,8 +1267,8 @@ ACMD(do_rescue) {
         return;
     }
     send_to_char("Banzai!   To the rescue...\r\n", ch);
-    act("You are rescued by $N, you are confused!", FALSE, vict, 0, ch, TO_CHAR);
-    act("$n heroically rescues $N!", FALSE, ch, 0, vict, TO_NOTVICT);
+    act("You are rescued by $N, you are confused!", false, vict, 0, ch, TO_CHAR);
+    act("$n heroically rescues $N!", false, ch, 0, vict, TO_NOTVICT);
 
     if (FIGHTING(vict) == attacker)
         stop_fighting(vict);
@@ -1281,7 +1276,7 @@ ACMD(do_rescue) {
     if (FIGHTING(ch))
         stop_fighting(ch);
 
-    set_fighting(ch, attacker, TRUE);
+    set_fighting(ch, attacker, true);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
     WAIT_STATE(vict, PULSE_VIOLENCE + 2);
@@ -1290,7 +1285,7 @@ ACMD(do_rescue) {
 }
 
 ACMD(do_kick) {
-    struct char_data *vict;
+    CharData *vict;
     int percent, prob;
 
     if (GET_SKILL(ch, SKILL_KICK) == 0) {
@@ -1313,7 +1308,7 @@ ACMD(do_kick) {
         return;
     }
 
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
 
     if (EFF_FLAGGED(ch, EFF_IMMOBILIZED)) {
@@ -1322,7 +1317,7 @@ ACMD(do_kick) {
     }
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     /* Need to see whether this player is fighting already. Kick should not
        allow for the player to switch without a switch probability being
@@ -1339,12 +1334,12 @@ ACMD(do_kick) {
     } else {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
-            act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", FALSE, ch, 0, vict,
+            act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", FALSE,
+            act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
                 ch, 0, vict, TO_VICT);
-            set_fighting(vict, ch, TRUE);
+            set_fighting(vict, ch, true);
             return;
         }
         damage(ch, vict, dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH), SKILL_KICK);
@@ -1353,9 +1348,9 @@ ACMD(do_kick) {
 }
 
 ACMD(do_eye_gouge) {
-    struct char_data *vict;
+    CharData *vict;
     int percent, prob;
-    struct effect eff;
+    effect eff;
 
     if (GET_SKILL(ch, SKILL_EYE_GOUGE) == 0) {
         send_to_char("You would do such a despicable act!?   Horrible!\r\n", ch);
@@ -1392,7 +1387,7 @@ ACMD(do_eye_gouge) {
     }
 
     /* check pk/pets/shapeshifts */
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
 
     if (GET_COOLDOWN(ch, CD_EYE_GOUGE)) {
@@ -1404,7 +1399,7 @@ ACMD(do_eye_gouge) {
         SET_COOLDOWN(ch, CD_EYE_GOUGE, 3 * PULSE_VIOLENCE);
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     percent = number(1, 101);
     prob = GET_SKILL(ch, SKILL_EYE_GOUGE);
@@ -1412,17 +1407,17 @@ ACMD(do_eye_gouge) {
     if (percent > prob && AWAKE(vict))
         damage(ch, vict, 0, SKILL_EYE_GOUGE); /* Miss message */
     else if (damage_evasion(vict, ch, 0, DAM_PIERCE)) {
-        act(EVASIONCLR "Your thumbs poke harmlessly at $N" EVASIONCLR ".   If $E even has eyes.", FALSE, ch, 0, vict,
+        act(EVASIONCLR "Your thumbs poke harmlessly at $N" EVASIONCLR ".   If $E even has eyes.", false, ch, 0, vict,
             TO_CHAR);
-        act(EVASIONCLR "$n" EVASIONCLR " tries poking at $N's eyes, but nothing seems to happen.", FALSE, ch, 0, vict,
+        act(EVASIONCLR "$n" EVASIONCLR " tries poking at $N's eyes, but nothing seems to happen.", false, ch, 0, vict,
             TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " pokes fruitlessly at you with $s thumbs.", FALSE, ch, 0, vict, TO_VICT);
-        set_fighting(vict, ch, TRUE);
+        act(EVASIONCLR "$n" EVASIONCLR " pokes fruitlessly at you with $s thumbs.", false, ch, 0, vict, TO_VICT);
+        set_fighting(vict, ch, true);
         return;
     } else if (GET_LEVEL(vict) >= LVL_IMMORT && GET_LEVEL(vict) > GET_LEVEL(ch)) {
-        act("Ouch!   You hurt your thumbs trying to poke out $N's eyes!", FALSE, ch, 0, vict, TO_CHAR);
-        act("$n tries poking out $N's eyes - what a laugh!", FALSE, ch, 0, vict, TO_NOTVICT);
-        act("$n pokes harmlessly at your eyes with $s thumbs.", FALSE, ch, 0, vict, TO_VICT);
+        act("Ouch!   You hurt your thumbs trying to poke out $N's eyes!", false, ch, 0, vict, TO_CHAR);
+        act("$n tries poking out $N's eyes - what a laugh!", false, ch, 0, vict, TO_NOTVICT);
+        act("$n pokes harmlessly at your eyes with $s thumbs.", false, ch, 0, vict, TO_VICT);
         return;
     } else {
         if (!MOB_FLAGGED(vict, MOB_NOBLIND) && !EFF_FLAGGED(vict, EFF_BLIND)) {
@@ -1443,7 +1438,7 @@ ACMD(do_eye_gouge) {
 }
 
 ACMD(do_springleap) {
-    struct char_data *vict;
+    CharData *vict;
     int percent, prob, dmg;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !CAN_SEE_IN_DARK(ch)) {
@@ -1483,11 +1478,11 @@ ACMD(do_springleap) {
     }
 
     /* check pk/pets/shapeshifts */
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     percent = number(6, 77) - (GET_AC(vict) + (5 * monk_weight_penalty(vict))) / 20;
 
@@ -1500,9 +1495,9 @@ ACMD(do_springleap) {
         prob -= 20;
 
     if (percent > prob) {
-        act("&0&6You try to take $N down but you spring over $S head!&0", FALSE, ch, 0, vict, TO_CHAR);
-        act("&0&6$N springs from the ground at you but soars over your head!&0", FALSE, vict, 0, ch, TO_CHAR);
-        act("&0&6$N springs from the ground at $n but misses by a mile!&0", FALSE, vict, 0, ch, TO_NOTVICT);
+        act("&0&6You try to take $N down but you spring over $S head!&0", false, ch, 0, vict, TO_CHAR);
+        act("&0&6$N springs from the ground at you but soars over your head!&0", false, vict, 0, ch, TO_CHAR);
+        act("&0&6$N springs from the ground at $n but misses by a mile!&0", false, vict, 0, ch, TO_NOTVICT);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         damage(ch, vict, 0, SKILL_SPRINGLEAP);
         if (AWAKE(ch)) {
@@ -1510,29 +1505,25 @@ ACMD(do_springleap) {
             GET_STANCE(ch) = STANCE_ALERT;
         }
     } else if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
-        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!", FALSE, ch, 0,
+        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!", false, ch, 0,
             vict, TO_CHAR);
-        act(EVASIONCLR "$n" EVASIONCLR " leaps at $N" EVASIONCLR " but flies right on through!", FALSE, ch, 0, vict,
+        act(EVASIONCLR "$n" EVASIONCLR " leaps at $N" EVASIONCLR " but flies right on through!", false, ch, 0, vict,
             TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.", FALSE, ch,
+        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.", false, ch,
             0, vict, TO_VICT);
         /* You fall */
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         GET_POS(ch) = POS_SITTING;
         GET_STANCE(ch) = STANCE_ALERT;
-        set_fighting(vict, ch, FALSE);
+        set_fighting(vict, ch, false);
         return;
     } else if (percent > 0.95 * prob) {
         dmg = dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH);
-        act("&0&6You manage to take $N down but also &bfall down yourself!&0 "
-            "(&3$i&0)",
-            FALSE, ch, (void *)dmg, vict, TO_CHAR);
-        act("&0&6$N springs from the ground and knocks you down - &bbut falls in "
-            "the process!&0 (&1&8$i&0)",
-            FALSE, vict, (void *)dmg, ch, TO_CHAR);
-        act("&0&6$N springs from the ground, knocking $n down and &bfalling in the "
-            "process!&0 (&4$i&0)",
-            FALSE, vict, (void *)dmg, ch, TO_NOTVICT);
+        act("&0&6You manage to take $N down but also &bfall down yourself!&0 (&3$i&0)", false, ch, dmg, vict, TO_CHAR);
+        act("&0&6$N springs from the ground and knocks you down - &bbut falls in the process!&0 (&1&8$i&0)", false,
+            vict, dmg, ch, TO_CHAR);
+        act("&0&6$N springs from the ground, knocking $n down and &bfalling in the process!&0 (&4$i&0)", false, vict,
+            dmg, ch, TO_NOTVICT);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
         damage(ch, vict, dmg, SKILL_SPRINGLEAP);
@@ -1547,11 +1538,9 @@ ACMD(do_springleap) {
         }
     } else {
         dmg = dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH);
-        act("&0&b&8You spring from the ground, knocking $N off balance.&0 "
-            "(&1&8$i&0)",
-            FALSE, ch, (void *)dmg, vict, TO_CHAR);
-        act("&0&b&8$N springs from the ground and knocks you down!&0 (&3$i&0)", FALSE, vict, (void *)dmg, ch, TO_CHAR);
-        act("&0&b&8$N springs from the ground, knocking $n down!&0 (&4$i&0)", FALSE, vict, (void *)dmg, ch, TO_NOTVICT);
+        act("&0&b&8You spring from the ground, knocking $N off balance.&0 (&1&8$i&0)", false, ch, dmg, vict, TO_CHAR);
+        act("&0&b&8$N springs from the ground and knocks you down!&0 (&3$i&0)", false, vict, dmg, ch, TO_CHAR);
+        act("&0&b&8$N springs from the ground, knocking $n down!&0 (&4$i&0)", false, vict, dmg, ch, TO_NOTVICT);
         WAIT_STATE(ch, PULSE_VIOLENCE);
         WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
         damage(ch, vict, dmg, SKILL_SPRINGLEAP);
@@ -1574,16 +1563,16 @@ ACMD(do_springleap) {
 #define THROATCUT_DAMAGE DAM_SLASH
 
 ACMD(do_throatcut) {
-    struct char_data *vict;
-    struct effect eff;
-    struct obj_data *weapon;
+    CharData *vict;
+    effect eff;
+    ObjData *weapon;
     int random, chance, percent, dam, expReduction;
     char buf1[255];
     char buf2[255];
     char buf3[255];
     char stop_buf1[255];
     char stop_buf2[255];
-    bool skipcast = FALSE;
+    bool skipcast = false;
 
     if (GET_COOLDOWN(ch, CD_THROATCUT)) {
         send_to_char("You've drawn too much attention to yourself to throatcut now!\r\n", ch);
@@ -1649,11 +1638,11 @@ ACMD(do_throatcut) {
         return;
     }
 
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     /* Can't throatcut dragons, nor mobs that are twice your size */
     /*
@@ -1675,9 +1664,9 @@ ACMD(do_throatcut) {
 
     if ((MOB_FLAGGED(vict, MOB_AWARE) || EFF_FLAGGED(vict, EFF_AWARE)) && AWAKE(vict) &&
         !EFF_FLAGGED(vict, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(vict, EFF_MAJOR_PARALYSIS)) {
-        act("You notice $N sneaking up on you!", FALSE, vict, 0, ch, TO_CHAR);
-        act("$e notices you sneaking up on $m!", FALSE, vict, 0, ch, TO_VICT);
-        act("$n notices $N sneaking up on $m!", FALSE, vict, 0, ch, TO_NOTVICT);
+        act("You notice $N sneaking up on you!", false, vict, 0, ch, TO_CHAR);
+        act("$e notices you sneaking up on $m!", false, vict, 0, ch, TO_VICT);
+        act("$n notices $N sneaking up on $m!", false, vict, 0, ch, TO_NOTVICT);
         attack(vict, ch);
         return;
     }
@@ -1733,8 +1722,8 @@ ACMD(do_throatcut) {
     }
 
     if ((!IS_NPC(vict)) && (GET_LEVEL(vict) >= LVL_IMMORT)) {
-        act("$N laughs out loud at your miserable attempt!&0", FALSE, ch, 0, vict, TO_CHAR);
-        act("$n just tried to cut your throat. &0&6How cute!&0", FALSE, ch, 0, vict, TO_VICT);
+        act("$N laughs out loud at your miserable attempt!&0", false, ch, 0, vict, TO_CHAR);
+        act("$n just tried to cut your throat. &0&6How cute!&0", false, ch, 0, vict, TO_VICT);
         return;
     }
 
@@ -1756,7 +1745,7 @@ ACMD(do_throatcut) {
     if (percent < chance) {
         if (damage_evasion(vict, ch, weapon, THROATCUT_DAMAGE)) {
             damage_evasion_message(ch, vict, weapon, THROATCUT_DAMAGE);
-            set_fighting(vict, ch, TRUE);
+            set_fighting(vict, ch, true);
             return;
         }
         /* Switch for dam %.   1 & 6: really goods, 2 & 5: decent, 3 & 4: common
@@ -1817,7 +1806,7 @@ ACMD(do_throatcut) {
         }
     } else {
         dam = 0;
-        skipcast = TRUE;
+        skipcast = true;
         expReduction = 0; /* rip same % exp from the mob... since they're doing less work! */
 
         /* If we want silent misses for non-critical misses.. remove the act txt */
@@ -1837,17 +1826,17 @@ ACMD(do_throatcut) {
             sprintf(buf, " (&3%d&0)", dam);
 
         strcat(buf1, buf);
-        act(buf1, FALSE, ch, NULL, vict, TO_CHAR);
+        act(buf1, false, ch, nullptr, vict, TO_CHAR);
 
         strcat(buf2, buf);
-        act(buf2, FALSE, ch, NULL, vict, TO_VICT);
+        act(buf2, false, ch, nullptr, vict, TO_VICT);
 
         strcat(buf3, buf);
-        act(buf3, FALSE, ch, NULL, vict, TO_NOTVICT);
+        act(buf3, false, ch, nullptr, vict, TO_NOTVICT);
     } else {
-        act(buf1, FALSE, ch, NULL, vict, TO_CHAR);
-        act(buf2, FALSE, ch, NULL, vict, TO_VICT);
-        act(buf3, FALSE, ch, NULL, vict, TO_NOTVICT);
+        act(buf1, false, ch, nullptr, vict, TO_CHAR);
+        act(buf2, false, ch, nullptr, vict, TO_VICT);
+        act(buf3, false, ch, nullptr, vict, TO_NOTVICT);
     }
 
     if (dam > 0) {
@@ -1867,16 +1856,16 @@ ACMD(do_throatcut) {
 
     if (!skipcast && CASTING(vict)) {
         STOP_CASTING(vict);
-        act(stop_buf1, FALSE, vict, 0, 0, TO_CHAR);
-        act(stop_buf2, FALSE, vict, 0, 0, TO_ROOM);
+        act(stop_buf1, false, vict, 0, 0, TO_CHAR);
+        act(stop_buf2, false, vict, 0, 0, TO_ROOM);
     }
 }
 
 ACMD(do_disarm) {
     int pos, ch_pos, chance, rnd_num, skl_bonus, move_cost;
-    struct obj_data *obj, *ch_obj;       /* Object to disarm */
-    struct char_data *tch, *vict = NULL; /* Target */
-    bool disarm_prim = TRUE;
+    ObjData *obj, *ch_obj;          /* Object to disarm */
+    CharData *tch, *vict = nullptr; /* Target */
+    bool disarm_prim = true;
 
     if (GET_SKILL(ch, SKILL_DISARM) == 0) {
         send_to_char("You don't know how to disarm.\r\n", ch);
@@ -1924,7 +1913,7 @@ ACMD(do_disarm) {
         ch_pos = WEAR_2HWIELD;
     } else if ((ch_obj = GET_EQ(ch, WEAR_WIELD2))) {
         ch_pos = WEAR_WIELD2;
-        disarm_prim = FALSE;
+        disarm_prim = false;
     } else {
         send_to_char("You must be wielding some kind of weapon.\r\n", ch);
         return;
@@ -1942,7 +1931,7 @@ ACMD(do_disarm) {
         } else if ((obj = GET_EQ(tch, WEAR_2HWIELD))) {
             pos = WEAR_2HWIELD;
         } else {
-            act("$N isn't even wielding a weapon!", FALSE, ch, 0, tch, TO_CHAR);
+            act("$N isn't even wielding a weapon!", false, ch, 0, tch, TO_CHAR);
             return;
         }
     } else if ((obj = GET_EQ(tch, WEAR_WIELD)) && isname(arg, obj->name) && /* Same name */
@@ -1955,7 +1944,7 @@ ACMD(do_disarm) {
                CAN_SEE_OBJ(ch, obj)) {                                        /* Can see it */
         pos = WEAR_2HWIELD;
     } else {
-        act("$N doesn't seem to be wielding any such thing.", FALSE, ch, 0, tch, TO_CHAR);
+        act("$N doesn't seem to be wielding any such thing.", false, ch, 0, tch, TO_CHAR);
         return;
     }
 
@@ -2012,39 +2001,39 @@ ACMD(do_disarm) {
     SET_COOLDOWN(ch, CD_DISARM, number(1, 3) * PULSE_VIOLENCE);
 
     if (rnd_num <= 5) {
-        act("$n fails $s disarming maneuver so badly, $e drops $s own weapon.", FALSE, ch, 0, tch, TO_NOTVICT);
-        act("$n tries to disarm but drops $s weapon!", FALSE, ch, 0, tch, TO_VICT);
-        act("You try to disarm $N but drop your $o instead!", FALSE, ch, ch_obj, tch, TO_CHAR);
+        act("$n fails $s disarming maneuver so badly, $e drops $s own weapon.", false, ch, 0, tch, TO_NOTVICT);
+        act("$n tries to disarm but drops $s weapon!", false, ch, 0, tch, TO_VICT);
+        act("You try to disarm $N but drop your $o instead!", false, ch, ch_obj, tch, TO_CHAR);
 
         pos = ch_pos;
         obj = ch_obj;
         vict = ch;
     } else if (rnd_num <= 25) {
-        act("$n flubs an attempt at disarming $N.", FALSE, ch, 0, tch, TO_NOTVICT);
-        act("$e fumbles $s own weapon.", FALSE, ch, 0, 0, TO_NOTVICT);
-        act("$n fumbles $s weapon while trying to disarm you.", FALSE, ch, 0, tch, TO_VICT);
-        act("Oops!  You fumbled your $o!", FALSE, ch, ch_obj, 0, TO_CHAR);
+        act("$n flubs an attempt at disarming $N.", false, ch, 0, tch, TO_NOTVICT);
+        act("$e fumbles $s own weapon.", false, ch, 0, 0, TO_NOTVICT);
+        act("$n fumbles $s weapon while trying to disarm you.", false, ch, 0, tch, TO_VICT);
+        act("Oops!  You fumbled your $o!", false, ch, ch_obj, 0, TO_CHAR);
 
         pos = ch_pos;
         obj = ch_obj;
         vict = ch;
     } else if (rnd_num >= 26 && rnd_num <= 75) {
-        act("$n tries to disarm $N, but $E keeps a firm grip on $S weapon.", FALSE, ch, 0, tch, TO_NOTVICT);
-        act("$n tries to disarm you, but you maintain your weapon.", FALSE, ch, 0, tch, TO_VICT);
-        act("You try to disarm $N, but $E keeps hold of $S weapon.", FALSE, ch, 0, tch, TO_CHAR);
+        act("$n tries to disarm $N, but $E keeps a firm grip on $S weapon.", false, ch, 0, tch, TO_NOTVICT);
+        act("$n tries to disarm you, but you maintain your weapon.", false, ch, 0, tch, TO_VICT);
+        act("You try to disarm $N, but $E keeps hold of $S weapon.", false, ch, 0, tch, TO_CHAR);
     } else if (rnd_num <= 95) {
-        act("$n causes $N to fumble $S weapon.", FALSE, ch, 0, tch, TO_NOTVICT);
-        act("$n causes you to fumble your weapon.", FALSE, ch, 0, tch, TO_VICT);
-        act("You cause $N to fumble $S weapon.", FALSE, ch, 0, tch, TO_CHAR);
+        act("$n causes $N to fumble $S weapon.", false, ch, 0, tch, TO_NOTVICT);
+        act("$n causes you to fumble your weapon.", false, ch, 0, tch, TO_VICT);
+        act("You cause $N to fumble $S weapon.", false, ch, 0, tch, TO_CHAR);
 
         vict = tch;
     } else {
-        act("$n successfully knocks $N's weapon from $S grip!", FALSE, ch, 0, tch, TO_NOTVICT);
-        act("$n forces $p out of your hands with a fancy disarming maneuver.", FALSE, ch, obj, tch, TO_VICT);
+        act("$n successfully knocks $N's weapon from $S grip!", false, ch, 0, tch, TO_NOTVICT);
+        act("$n forces $p out of your hands with a fancy disarming maneuver.", false, ch, obj, tch, TO_VICT);
         if (CH_OUTSIDE(tch)) {
-            act("You send $N's weapon crashing to the ground.", FALSE, ch, 0, tch, TO_CHAR);
+            act("You send $N's weapon crashing to the ground.", false, ch, 0, tch, TO_CHAR);
         } else {
-            act("You send $N's weapon crashing to the floor.", FALSE, ch, 0, tch, TO_CHAR);
+            act("You send $N's weapon crashing to the floor.", false, ch, 0, tch, TO_CHAR);
         }
 
         vict = tch;
@@ -2056,13 +2045,13 @@ ACMD(do_disarm) {
     if (rnd_num <= 5 || rnd_num >= 96) {
         if ((OBJ_FLAGGED(obj, ITEM_NODROP))) { /* Cursed? */
             obj_to_char(unequip_char(vict, pos), vict);
-            act("&3&b$p&3&b magically returns to your&0 &B&3inventory!&0", TRUE, vict, obj, NULL, TO_CHAR);
-            act("&3&b$p&3&b magically returns to $s&0 &B&3inventory!&0", TRUE, vict, obj, NULL, TO_ROOM);
+            act("&3&b$p&3&b magically returns to your&0 &B&3inventory!&0", true, vict, obj, nullptr, TO_CHAR);
+            act("&3&b$p&3&b magically returns to $s&0 &B&3inventory!&0", true, vict, obj, nullptr, TO_ROOM);
         } else {
             obj_to_room(unequip_char(vict, pos), vict->in_room);
             sprintf(buf, "%s lands on the %s.", obj->short_description, CH_OUTSIDE(vict) ? "ground" : "floor");
-            act(buf, FALSE, vict, 0, 0, TO_ROOM);
-            act(buf, FALSE, vict, 0, 0, TO_CHAR);
+            act(buf, false, vict, 0, 0, TO_ROOM);
+            act(buf, false, vict, 0, 0, TO_CHAR);
         }
         /* Move secondary hand weapon to primary hand. */
         if (pos == WEAR_WIELD && GET_EQ(vict, WEAR_WIELD2))
@@ -2111,9 +2100,9 @@ ACMD(do_disarm) {
 }
 
 ACMD(do_hitall) {
-    struct char_data *mob, *next_mob, *orig_target;
+    CharData *mob, *next_mob, *orig_target;
     byte percent;
-    bool hit_all = FALSE, realvictims = FALSE, success = FALSE;
+    bool hit_all = false, realvictims = false, success = false;
 
     if (!ch || ch->in_room == NOWHERE)
         return;
@@ -2121,7 +2110,7 @@ ACMD(do_hitall) {
     if (subcmd == SCMD_TANTRUM) {
         if (!GET_SKILL(ch, SKILL_TANTRUM)) {
             send_to_char("You throw a hissy-fit, hoping someone will notice you.\r\n", ch);
-            act("$n sobs to $mself loudly, soliciting attention.", TRUE, ch, 0, 0, TO_ROOM);
+            act("$n sobs to $mself loudly, soliciting attention.", true, ch, 0, 0, TO_ROOM);
             return;
         }
         if (!EFF_FLAGGED(ch, EFF_BERSERK)) {
@@ -2155,15 +2144,15 @@ ACMD(do_hitall) {
     WAIT_STATE(ch, PULSE_VIOLENCE);
 
     if (subcmd == SCMD_TANTRUM) {
-        act("$n flings $s limbs around wildly, swiping at everything nearby!", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n flings $s limbs around wildly, swiping at everything nearby!", false, ch, 0, 0, TO_ROOM);
         send_to_char("You throw an incensed tantrum, attacking all nearby!\r\n", ch);
         if (GET_SKILL(ch, SKILL_TANTRUM) >= percent)
-            success = TRUE;
+            success = true;
     } else {
-        act("$n makes a concerted circular attack at everything nearby!", FALSE, ch, 0, 0, TO_NOTVICT);
+        act("$n makes a concerted circular attack at everything nearby!", false, ch, 0, 0, TO_NOTVICT);
         send_to_char("You spin in a circle, attempting to hit everything within range.\r\n", ch);
         if (GET_SKILL(ch, SKILL_HITALL) >= percent)
-            success = TRUE;
+            success = true;
     }
 
     for (mob = world[ch->in_room].people; mob; mob = next_mob) {
@@ -2179,12 +2168,12 @@ ACMD(do_hitall) {
             continue;
 
         if (!MOB_FLAGGED(mob, MOB_ILLUSORY))
-            realvictims = TRUE;
+            realvictims = true;
 
         if (success) {
             if (damage_evasion(mob, ch, 0, physical_damtype(ch))) {
                 damage_evasion_message(ch, mob, equipped_weapon(ch), physical_damtype(ch));
-                set_fighting(mob, ch, TRUE);
+                set_fighting(mob, ch, true);
             } else if (subcmd == SCMD_TANTRUM && number(0, 1))
                 hit(ch, mob, SKILL_BAREHAND);
             else {
@@ -2203,7 +2192,7 @@ ACMD(do_hitall) {
 }
 
 ACMD(do_corner) {
-    struct char_data *vict;
+    CharData *vict;
     int chance;
 
     if (!GET_SKILL(ch, SKILL_CORNER)) {
@@ -2228,8 +2217,8 @@ ACMD(do_corner) {
 
     if (ch->cornering) {
         if (ch->cornering->cornered_by == ch)
-            ch->cornering->cornered_by = NULL;
-        ch->cornering = NULL;
+            ch->cornering->cornered_by = nullptr;
+        ch->cornering = nullptr;
     }
 
     chance = GET_SKILL(ch, SKILL_CORNER);
@@ -2240,20 +2229,20 @@ ACMD(do_corner) {
         chance *= 2;
 
     if (chance > number(1, 101)) {
-        act("You stand in $N's way, cornering $M!", FALSE, ch, 0, vict, TO_CHAR);
-        act("$n stands in your way, cornering you!", FALSE, ch, 0, vict, TO_VICT);
-        act("$n stands in $N's way, cornering $M!", TRUE, ch, 0, vict, TO_NOTVICT);
+        act("You stand in $N's way, cornering $M!", false, ch, 0, vict, TO_CHAR);
+        act("$n stands in your way, cornering you!", false, ch, 0, vict, TO_VICT);
+        act("$n stands in $N's way, cornering $M!", true, ch, 0, vict, TO_NOTVICT);
         ch->cornering = vict;
         vict->cornered_by = ch;
     } else
-        act("You attempt to corner $N, but $E evades you!", FALSE, ch, 0, vict, TO_CHAR);
+        act("You attempt to corner $N, but $E evades you!", false, ch, 0, vict, TO_CHAR);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
     improve_skill_offensively(ch, vict, SKILL_CORNER);
 }
 
 ACMD(do_peck) {
-    struct char_data *vict;
+    CharData *vict;
     int dam;
 
     if (!ch)
@@ -2279,11 +2268,11 @@ ACMD(do_peck) {
     }
 
     /* Is this attack allowed? */
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
 
@@ -2296,7 +2285,7 @@ ACMD(do_peck) {
         dam = 0;
     else if (damage_evasion(vict, ch, 0, DAM_PIERCE)) {
         damage_evasion_message(ch, vict, 0, DAM_PIERCE);
-        set_fighting(vict, ch, TRUE);
+        set_fighting(vict, ch, true);
         return;
     } else
         dam = number(GET_SKILL(ch, SKILL_PECK), GET_LEVEL(ch));
@@ -2306,7 +2295,7 @@ ACMD(do_peck) {
 }
 
 ACMD(do_claw) {
-    struct char_data *vict;
+    CharData *vict;
     int dam;
 
     if (!ch)
@@ -2332,11 +2321,11 @@ ACMD(do_claw) {
     }
 
     /* Can we allow this attack to occur? */
-    if (!attack_ok(ch, vict, TRUE))
+    if (!attack_ok(ch, vict, true))
         return;
 
     if (CONFUSED(ch))
-        vict = random_attack_target(ch, vict, TRUE);
+        vict = random_attack_target(ch, vict, true);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
 
@@ -2349,7 +2338,7 @@ ACMD(do_claw) {
         dam = 0;
     else if (damage_evasion(vict, ch, 0, DAM_SLASH)) {
         damage_evasion_message(ch, vict, 0, DAM_SLASH);
-        set_fighting(vict, ch, TRUE);
+        set_fighting(vict, ch, true);
         return;
     } else
         dam = number(GET_SKILL(ch, SKILL_CLAW), GET_LEVEL(ch));
@@ -2374,15 +2363,15 @@ ACMD(do_electrify) {
             send_to_char("The water around you sizzles, but you are unable to gatherany power...\r\n", ch);
         else
             send_to_char("The air around you crackles, but you are unable to gather any power...\r\n", ch);
-        act("A quick spike of electricity runs across $n's skin.", TRUE, ch, 0, 0, TO_ROOM);
+        act("A quick spike of electricity runs across $n's skin.", true, ch, 0, 0, TO_ROOM);
     }
 
     improve_skill(ch, SKILL_ELECTRIFY);
     WAIT_STATE(ch, PULSE_VIOLENCE);
 }
 
-void start_berserking(char_data *ch) {
-    struct effect eff;
+void start_berserking(CharData *ch) {
+    effect eff;
 
     memset(&eff, 0, sizeof(eff));
     eff.type = SKILL_BERSERK;
@@ -2396,7 +2385,7 @@ void start_berserking(char_data *ch) {
     check_regen_rates(ch);
 }
 
-void stop_berserking(char_data *ch) {
+void stop_berserking(CharData *ch) {
     effect_from_char(ch, SKILL_BERSERK);
     effect_from_char(ch, CHANT_SPIRIT_WOLF);
     effect_from_char(ch, CHANT_SPIRIT_BEAR);
@@ -2407,7 +2396,7 @@ void stop_berserking(char_data *ch) {
 ACMD(do_berserk) {
     if (!GET_SKILL(ch, SKILL_BERSERK)) {
         send_to_char("You flail your arms about, acting like a crazy person.\r\n", ch);
-        act("$n goes berserk, thrashing about the area.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n goes berserk, thrashing about the area.", false, ch, 0, 0, TO_ROOM);
         return;
     }
 
@@ -2422,7 +2411,7 @@ ACMD(do_berserk) {
     }
 
     send_to_char("You feel your blood begin to boil, and your self-control starts to slip...\r\n", ch);
-    act("$n's eyes flash and anger clouds $s face.", TRUE, ch, 0, 0, TO_ROOM);
+    act("$n's eyes flash and anger clouds $s face.", true, ch, 0, 0, TO_ROOM);
 
     start_berserking(ch);
 }
@@ -2433,8 +2422,8 @@ ACMD(do_berserk) {
  * to do_action, the game may crash.
  */
 ACMD(do_stomp) {
-    struct char_data *tch, *next_tch;
-    bool real_victims = FALSE;
+    CharData *tch, *next_tch;
+    bool real_victims = false;
 
     extern ACMD(do_action);
 
@@ -2456,7 +2445,7 @@ ACMD(do_stomp) {
     send_to_char("&8&3You stomp one foot on the ground heavily, shaking the earth!&0\r\n", ch);
     act("&8&3$n crashes a foot into the ground, causing it to crack around "
         "$m...&0",
-        TRUE, ch, 0, 0, TO_ROOM);
+        true, ch, 0, 0, TO_ROOM);
 
     for (tch = world[IN_ROOM(ch)].people; tch; tch = next_tch) {
         next_tch = tch->next_in_room;
@@ -2471,7 +2460,7 @@ ACMD(do_stomp) {
 
         if (!damage_evasion(tch, ch, 0, DAM_CRUSH)) {
             if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
-                real_victims = TRUE;
+                real_victims = true;
 
             if (GET_DEX(tch) < number(0, 100))
                 damage(ch, tch,
@@ -2486,7 +2475,7 @@ ACMD(do_stomp) {
                 }
             }
         } else {
-            set_fighting(tch, ch, TRUE);
+            set_fighting(tch, ch, true);
         }
     }
 

@@ -38,28 +38,26 @@
 
 /* Externals */
 ACMD(do_follow);
-void flush_queues(descriptor_data *d);
+void flush_queues(DescriptorData *d);
 ACMD(do_gen_door);
 
-struct bfs_queue_struct {
+struct BFSQueueStruct {
     int room;
     char dir;
-    struct bfs_queue_struct *next;
+    BFSQueueStruct *next;
 };
 
-typedef struct _tracknode tracknode;
-
-struct _tracknode {
+struct TrackNode {
     room_num room;
     int direction;
-    tracknode *next;
+    TrackNode *next;
 };
 
 #define NOT_FOUND_TRACK -5000
-static struct bfs_queue_struct *queue_head = 0, *queue_tail = 0;
-struct char_data *find_race(char *arg, track_info track, char_data *ch);
-bool call_track(bool hunt, track_info track, char_data *ch, char_data *victim, bool follow);
-bool cause_single_track(track_info track, char_data *ch, char_data *victim, int track_room);
+static BFSQueueStruct *queue_head_ = 0, *queue_tail_ = 0;
+CharData *find_race(char *arg, TrackInfo track, CharData *ch);
+bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool follow);
+bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int track_room);
 
 /* Utility macros */
 #define MARK(room) (world[room].bfs_distance = 0)
@@ -77,32 +75,32 @@ bool cause_single_track(track_info track, char_data *ch, char_data *victim, int 
      (!EXIT_IS_HIDDEN(world[roomvnum].exits[dir])) && (!BFS_MARKED(TOROOM(roomvnum, dir))))
 
 void bfs_enqueue(int room, int dir) {
-    struct bfs_queue_struct *curr;
+    BFSQueueStruct *curr;
 
-    CREATE(curr, bfs_queue_struct, 1);
+    CREATE(curr, BFSQueueStruct, 1);
     curr->room = room;
     curr->dir = dir;
     curr->next = 0;
 
-    if (queue_tail) {
-        queue_tail->next = curr;
-        queue_tail = curr;
+    if (queue_tail_) {
+        queue_tail_->next = curr;
+        queue_tail_ = curr;
     } else
-        queue_head = queue_tail = curr;
+        queue_head_ = queue_tail_ = curr;
 }
 
 void bfs_dequeue(void) {
-    struct bfs_queue_struct *curr;
+    BFSQueueStruct *curr;
 
-    curr = queue_head;
+    curr = queue_head_;
 
-    if (!(queue_head = queue_head->next))
-        queue_tail = 0;
+    if (!(queue_head_ = queue_head_->next))
+        queue_tail_ = 0;
     free(curr);
 }
 
 void bfs_clear_queue(void) {
-    while (queue_head)
+    while (queue_head_)
         bfs_dequeue();
 }
 
@@ -116,7 +114,7 @@ void bfs_clear_queue(void) {
       distance   The distance of the path (if any was found).
 */
 
-int find_first_step(int src, int target, char_data *tracker, int *distance) {
+int find_first_step(int src, int target, CharData *tracker, int *distance) {
     int curr_dir;
     int curr_room;
 
@@ -142,17 +140,17 @@ int find_first_step(int src, int target, char_data *tracker, int *distance) {
         }
 
     /* now, do the classic BFS. */
-    while (queue_head) {
-        if (queue_head->room == target) {
-            curr_dir = queue_head->dir;
-            *distance = world[queue_head->room].bfs_distance;
+    while (queue_head_) {
+        if (queue_head_->room == target) {
+            curr_dir = queue_head_->dir;
+            *distance = world[queue_head_->room].bfs_distance;
             bfs_clear_queue();
             return curr_dir;
         } else {
             for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
-                if (VALID_EDGE(queue_head->room, curr_dir, tracker)) {
-                    bfs_enqueue(TOROOM(queue_head->room, curr_dir), queue_head->dir);
-                    world[TOROOM(queue_head->room, curr_dir)].bfs_distance = world[queue_head->room].bfs_distance + 1;
+                if (VALID_EDGE(queue_head_->room, curr_dir, tracker)) {
+                    bfs_enqueue(TOROOM(queue_head_->room, curr_dir), queue_head_->dir);
+                    world[TOROOM(queue_head_->room, curr_dir)].bfs_distance = world[queue_head_->room].bfs_distance + 1;
                 }
             bfs_dequeue();
         }
@@ -172,11 +170,11 @@ int find_first_step(int src, int target, char_data *tracker, int *distance) {
  * Also indicates the victim found.
  */
 
-int find_track_victim(char_data *ch, char *name, int maxdist, char_data **victim) {
+int find_track_victim(CharData *ch, char *name, int maxdist, CharData **victim) {
     int i, cdist, roomschecked = 0, result = BFS_NO_PATH;
-    bool found = FALSE;
-    tracknode *start, *current, *new, *end;
-    struct char_data *cd;
+    bool found = false;
+    TrackNode *start, *current, *new_node, *end;
+    CharData *cd;
 
     if (!ch || !name || !victim)
         return BFS_ERROR;
@@ -192,16 +190,16 @@ int find_track_victim(char_data *ch, char *name, int maxdist, char_data **victim
         UNMARK(i);
 
     /* Get our nodes started up... */
-    CREATE(start, tracknode, 1);
+    CREATE(start, TrackNode, 1);
     start->room = IN_ROOM(ch);
     start->direction = BFS_ALREADY_THERE;
-    start->next = NULL;
+    start->next = nullptr;
     current = start;
     end = start;
 
     world[start->room].bfs_distance = 0;
     cdist = 0;
-    *victim = NULL;
+    *victim = nullptr;
 
     while (current && !found && cdist < maxdist) {
         /* Handle a room: current. */
@@ -211,7 +209,7 @@ int find_track_victim(char_data *ch, char *name, int maxdist, char_data **victim
         for (cd = world[current->room].people; cd; cd = cd->next_in_room)
             if (isname(name, GET_NAMELIST(cd)) && CAN_SEE(ch, cd)) {
                 /* The victim has been found! */
-                found = TRUE;
+                found = true;
                 result = current->direction;
                 *victim = cd;
             }
@@ -226,14 +224,14 @@ int find_track_victim(char_data *ch, char *name, int maxdist, char_data **victim
             for (i = 0; i < NUM_OF_DIRS; i++)
                 if (VALID_EDGE(current->room, i, ch)) {
                     world[TOROOM(current->room, i)].bfs_distance = cdist + 1;
-                    CREATE(new, tracknode, 1);
-                    new->room = TOROOM(current->room, i);
-                    new->direction = i;
-                    new->next = NULL;
+                    CREATE(new_node, TrackNode, 1);
+                    new_node->room = TOROOM(current->room, i);
+                    new_node->direction = i;
+                    new_node->next = nullptr;
 
                     /* This node goes on the end of our list */
-                    end->next = new;
-                    end = new;
+                    end->next = new_node;
+                    end = new_node;
                 }
 
         current = current->next;
@@ -241,9 +239,9 @@ int find_track_victim(char_data *ch, char *name, int maxdist, char_data **victim
 
     /* Discard the list */
     for (current = start; current;) {
-        new = current->next;
+        new_node = current->next;
         free(current);
-        current = new;
+        current = new_node;
     }
 
     return result;
@@ -254,10 +252,10 @@ int find_track_victim(char_data *ch, char *name, int maxdist, char_data **victim
  ************************************************************************/
 
 EVENTFUNC(track_delayed_event) {
-    struct track_delayed_event_obj *track_event = (track_delayed_event_obj *)event_obj;
-    struct char_data *ch;
-    struct char_data *victim;
-    struct track_info track;
+    TrackDelayedEventObj *track_event = (TrackDelayedEventObj *)event_obj;
+    CharData *ch;
+    CharData *victim;
+    TrackInfo track;
     int track_room;
 
     victim = track_event->victim;
@@ -282,8 +280,8 @@ EVENTFUNC(track_delayed_event) {
 }
 
 ACMD(do_track) {
-    struct char_data *vict;
-    struct track_info track;
+    CharData *vict;
+    TrackInfo track;
     int trackskill;
 
     if (FIGHTING(ch)) {
@@ -361,7 +359,7 @@ ACMD(do_track) {
     }
 
     if (vict->in_room == ch->in_room) {
-        act("$E's right here!", FALSE, ch, 0, vict, TO_CHAR);
+        act("$E's right here!", false, ch, 0, vict, TO_CHAR);
         return;
     }
 
@@ -381,7 +379,7 @@ ACMD(do_track) {
         return;
     }
 
-    if (call_track(FALSE, track, ch, vict, FALSE)) {
+    if (call_track(false, track, ch, vict, false)) {
         /*if npc dont lag mob */
         if (!IS_NPC(ch) && !POSSESSED(ch))
             WAIT_STATE(ch, PULSE_VIOLENCE);
@@ -390,9 +388,9 @@ ACMD(do_track) {
 }
 
 ACMD(do_hunt) {
-    struct char_data *vict;
-    bool follow = FALSE;
-    struct track_info track;
+    CharData *vict;
+    bool follow = false;
+    TrackInfo track;
 
     if (FIGHTING(ch)) {
         send_to_char("You are too busy to look for a trail.\r\n", ch);
@@ -432,7 +430,7 @@ ACMD(do_hunt) {
             send_to_char("You do not have enough skills to follow someone after hunting.\r\n", ch);
             return;
         }
-        follow = TRUE;
+        follow = true;
     }
 
     /*check for second argument :follow */
@@ -463,7 +461,7 @@ ACMD(do_hunt) {
     }
 
     if (vict->in_room == ch->in_room) {
-        act("$E's right here!", FALSE, ch, 0, vict, TO_CHAR);
+        act("$E's right here!", false, ch, 0, vict, TO_CHAR);
         return;
     }
 
@@ -482,7 +480,7 @@ ACMD(do_hunt) {
         return;
     }
 
-    if (call_track(TRUE, track, ch, vict, follow)) {
+    if (call_track(true, track, ch, vict, follow)) {
         /*if npc dont lag mob */
         if (!IS_NPC(ch) && !POSSESSED(ch))
             WAIT_STATE(ch, PULSE_VIOLENCE);
@@ -490,12 +488,12 @@ ACMD(do_hunt) {
     improve_skill(ch, SKILL_HUNT);
 }
 
-void hunt_victim(char_data *ch) {
+void hunt_victim(CharData *ch) {
     ACMD(do_say);
 
     int dir, dist;
     byte found;
-    struct char_data *tmp;
+    CharData *tmp;
 
     if (!ch || !HUNTING(ch))
         return;
@@ -517,7 +515,7 @@ void hunt_victim(char_data *ch) {
         HUNTING(ch) = 0;
         return;
     } else {
-        perform_move(ch, dir, 1, FALSE);
+        perform_move(ch, dir, 1, false);
         if (ch->in_room == HUNTING(ch)->in_room)
             hit(ch, HUNTING(ch), TYPE_UNDEFINED);
         return;
@@ -528,9 +526,9 @@ void hunt_victim(char_data *ch) {
  * and whether a suitable path exists.  If so, it creates a tracking event for
  * the tracker. */
 
-bool call_track(bool hunt, track_info track, char_data *ch, char_data *victim, bool follow) {
+bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool follow) {
     int dir, dist;
-    struct track_delayed_event_obj *track_event;
+    TrackDelayedEventObj *track_event;
 
     /* Difficult to track over water */
     if (SECT(ch->in_room) == SECT_SHALLOWS || SECT(ch->in_room) == SECT_WATER) {
@@ -543,7 +541,7 @@ bool call_track(bool hunt, track_info track, char_data *ch, char_data *victim, b
             send_to_char("All traces seem to have been lost in the waves...\r\n", ch);
             if (!IS_NPC(ch) && !POSSESSED(ch))
                 WAIT_STATE(ch, PULSE_VIOLENCE);
-            return FALSE;
+            return false;
         }
     }
 
@@ -557,11 +555,11 @@ bool call_track(bool hunt, track_info track, char_data *ch, char_data *victim, b
     if (dir == BFS_NO_PATH || dist > track.sense) {
         /* Nope, you got nothing */
         send_to_char("You can not seem to find tracks for that person.\r\n", ch);
-        return FALSE;
+        return false;
     } else if (dist == 0) {
         /* Yeah, the target seems to be right here... */
         send_to_char("Funny, the tracks seem to end right here!\r\n", ch);
-        return FALSE;
+        return false;
     } else if (dist > track.range) {
         /* Out of range, but still sense-able. */
         if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {
@@ -569,19 +567,19 @@ bool call_track(bool hunt, track_info track, char_data *ch, char_data *victim, b
                 sprintf(buf, "You get a very very strong sense of %s.\r\n", HMHR(victim));
                 send_to_char(buf, ch);
             } else if ((dist - track.range) <= 10) {
-                act("You sense $M strongly, but you cannot find any tracks.\r\n", FALSE, ch, 0, victim, TO_CHAR);
+                act("You sense $M strongly, but you cannot find any tracks.\r\n", false, ch, 0, victim, TO_CHAR);
             } else {
                 sprintf(buf, "Hmmm... You only just sense %s.\r\n", HMHR(victim));
                 send_to_char(buf, ch);
             }
         } else {
-            act("Hmmm... You sense $M.  $U$E must be close.\r\n", FALSE, ch, 0, victim, TO_CHAR);
+            act("Hmmm... You sense $M.  $U$E must be close.\r\n", false, ch, 0, victim, TO_CHAR);
         }
-        return FALSE;
+        return false;
     } else {
         /* In range.  Let the tracking commence. */
         send_to_char("You begin to search for tracks...\r\n", ch);
-        CREATE(track_event, track_delayed_event_obj, 1);
+        CREATE(track_event, TrackDelayedEventObj, 1);
         track_event->ch = ch;
         track_event->victim = victim;
         track_event->track = track;
@@ -593,9 +591,9 @@ bool call_track(bool hunt, track_info track, char_data *ch, char_data *victim, b
         else
             track_event->track_room = victim->in_room;
 
-        event_create(EVENT_TRACK, track_delayed_event, track_event, TRUE, &(ch->events), track.speed);
+        event_create(EVENT_TRACK, track_delayed_event, track_event, true, &(ch->events), track.speed);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
-        return TRUE;
+        return true;
     }
 }
 
@@ -603,7 +601,7 @@ bool call_track(bool hunt, track_info track, char_data *ch, char_data *victim, b
  * take one step toward the target, if possible.  The trail might be
  * lost, or a door might be in the way. */
 
-bool cause_single_track(track_info track, char_data *ch, char_data *victim, int track_room) {
+bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int track_room) {
     int direction, cmd, dist;
     char doorname[40];
 
@@ -617,22 +615,22 @@ bool cause_single_track(track_info track, char_data *ch, char_data *victim, int 
 
     switch (direction) {
     case BFS_ERROR:
-        return FALSE;
+        return false;
     case BFS_ALREADY_THERE:
         send_to_char("The tracks come to an end here!\r\n", ch);
         if (track_room == -2) { /*follow victim */
             cmd = find_command("follow");
             do_follow(ch, GET_NAMELIST(victim), cmd, 0);
         }
-        return FALSE;
+        return false;
     case BFS_NO_PATH:
-        return FALSE;
+        return false;
     }
 
     /* Has the victim has moved out of range? */
     if (dist > track.range) {
         send_to_char("The trail has faded away.\r\n", ch);
-        return FALSE;
+        return false;
     }
 
     /* Might lose the trail over water */
@@ -642,42 +640,42 @@ bool cause_single_track(track_info track, char_data *ch, char_data *victim, int 
             prob = 2;
         if (random() % 100 > prob) {
             send_to_char("The trail is lost in the churning water.\r\n", ch);
-            return FALSE;
+            return false;
         }
     }
 
     /* Might lose the trail for stealthy people */
     if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_HIDDENNESS(victim) > number(0, 500)) {
         send_to_char("You can't seem to find any more tracks.\r\n", ch);
-        return FALSE;
+        return false;
     }
 
     /* Can't track while fighting */
     if (FIGHTING(ch)) {
         send_to_char("You give up the chase for the fight!\r\n", ch);
-        return FALSE;
+        return false;
     }
 
     /* Eh, you started resting? */
     if (GET_STANCE(ch) < STANCE_ALERT) {
         send_to_char("You are too relaxed to continue tracking now.\r\n", ch);
-        return FALSE;
+        return false;
     }
 
     if (GET_POS(ch) < POS_STANDING) {
         send_to_char("You stop tracking.\r\n", ch);
-        return FALSE;
+        return false;
     }
 
     /* I guess you can pause for a spell. */
     if (CASTING(ch))
-        return TRUE;
+        return true;
 
     /* Mobs with MOB_STAY_ZONE shouldn't track outside the zone */
     if (IS_NPC(ch)) {
         if (MOB_FLAGGED(ch, MOB_STAY_ZONE) && CH_ROOM(ch)->zone != CH_ROOM(victim)->zone) {
             send_to_char("You lose your victim's tracks.\r\n", ch);
-            return FALSE;
+            return false;
         }
     }
 
@@ -685,7 +683,7 @@ bool cause_single_track(track_info track, char_data *ch, char_data *victim, int 
     if (track_room <= -1) { /*if hunt stop rangers hunting in town */
         if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT)) {
             send_to_char("You lose your victim's tracks.\r\n", ch);
-            return FALSE;
+            return false;
         }
     }
 
@@ -699,18 +697,18 @@ bool cause_single_track(track_info track, char_data *ch, char_data *victim, int 
         do_gen_door(ch, doorname, cmd, 0);
         if (EXIT_IS_CLOSED(CH_EXIT(ch, direction))) {
             cprintf(ch, "You stop tracking.\r\n");
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     }
 
     /* You get to move toward the victim. */
     sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", dirs[direction]);
     send_to_char(buf, ch);
-    if (!perform_move(ch, direction, 1, FALSE))
-        return FALSE;
-    act("&0$n searches for tracks.&0", TRUE, ch, 0, 0, TO_ROOM);
+    if (!perform_move(ch, direction, 1, false))
+        return false;
+    act("&0$n searches for tracks.&0", true, ch, 0, 0, TO_ROOM);
     /*check to see if in room */
     if ((ch->in_room == track_room) || (ch->in_room == victim->in_room)) {
         send_to_char("The tracks come to an end here!\r\n", ch);
@@ -718,8 +716,8 @@ bool cause_single_track(track_info track, char_data *ch, char_data *victim, int 
             cmd = find_command("follow");
             do_follow(ch, GET_NAMELIST(victim), cmd, 0);
         }
-        return FALSE;
+        return false;
     }
 
-    return TRUE;
+    return true;
 }

@@ -20,10 +20,10 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-struct Exit *create_exit(int dest_room) {
-    struct Exit *e;
+Exit *create_exit(int dest_room) {
+    Exit *e;
 
-    CREATE(e, exit, 1);
+    CREATE(e, Exit, 1);
 
     e->key = -1;
     e->to_room = dest_room;
@@ -31,15 +31,15 @@ struct Exit *create_exit(int dest_room) {
     return e;
 }
 
-bool exit_has_keyword(exit *exit, char *name) {
+bool exit_has_keyword(Exit *exit, const char *name) {
     if (exit->keyword && *(exit->keyword))
         return isname(name, exit->keyword);
-    return FALSE;
+    return false;
 }
 
-struct Exit *opposite_exit(exit *exit, room_num roomvnum, int dir) {
-    struct room_data *room;
-    struct exit *oe;
+Exit *opposite_exit(Exit *exit, room_num roomvnum, int dir) {
+    RoomData *room;
+    Exit *oe;
     int idir;
 
     if ((room = EXIT_DEST(exit))) {
@@ -50,14 +50,14 @@ struct Exit *opposite_exit(exit *exit, room_num roomvnum, int dir) {
                 return oe;
     }
 
-    return NULL;
+    return nullptr;
 }
 
-char *exit_name(exit *exit) { return exit->keyword ? fname(exit->keyword) : "door"; }
+const char *exit_name(Exit *exit) { return exit->keyword ? fname(exit->keyword) : "door"; }
 
 #define SHOW_EXDESC_LEN 57
 
-char *exit_dest_desc(exit *e) {
+char *exit_dest_desc(Exit *e) {
     static char buf[MAX_STRING_LENGTH];
     int nlpos, len, showlen;
 

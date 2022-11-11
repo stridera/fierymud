@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include "damage.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -40,11 +41,11 @@
 /* This struct exists so that additional attributes may be added to
  * each compdef in the future.  At the same time, having an array
  * of structs will allow parse_composition() to simply call parse_obj_name(). */
-struct compdef {
-    char *name;
-    char *massnoun;
-    char *adjective;
-    char *color;
+struct CompositionDef {
+    const char *name;
+    const char *massnoun;
+    const char *adjective;
+    const char *color;
     int default_dtype;
     /* Helps determine whether physical attacks will "pass through" or "bounce
      * off". Also whether you leave a corpse behind. */
@@ -61,12 +62,25 @@ struct compdef {
     int sus_poison;
 };
 
-extern struct compdef compositions[];
+struct CompositionDef compositions[NUM_COMPOSITIONS] = {
+    {"flesh", "flesh", "fleshy", "&1", DAM_CRUSH, PHASE_SOLID, 100, 100, 100, 100, 100, 100, 100, 100, 100},
+    {"earth", "earth", "earthy", "&3", DAM_CRUSH, PHASE_SOLID, 90, 120, 50, 75, 75, 120, 40, 80, 0},
+    {"air", "air", "gaseous", "&6", DAM_SHOCK, PHASE_GAS, 20, 20, 20, 0, 120, 75, 0, 0, 0},
+    {"fire", "fire", "fiery", "&1&b", DAM_FIRE, PHASE_PLASMA, 30, 30, 30, 75, 0, 120, 100, 0, 0},
+    {"water", "water", "watery", "&4&b", DAM_WATER, PHASE_LIQUID, 120, 60, 40, 100, 50, 0, 120, 0, 0},
+    {"ice", "ice", "icy", "&4", DAM_CRUSH, PHASE_SOLID, 75, 90, 120, 100, 75, 0, 0, 0, 0},
+    {"mist", "mist", "misty", "&6&b", DAM_CRUSH, PHASE_GAS, 30, 30, 30, 80, 50, 100, 120, 0, 0},
+    {"ether", "nothing", "ethereal", "&5", DAM_SLASH, PHASE_ETHER, 0, 0, 0, 75, 75, 50, 25, 0, 0},
+    {"metal", "metal", "metallic", "&9&b", DAM_CRUSH, PHASE_SOLID, 25, 40, 75, 100, 25, 30, 50, 120, 0},
+    {"stone", "stone", "stony", "&8", DAM_CRUSH, PHASE_SOLID, 50, 75, 90, 0, 50, 75, 50, 100, 0},
+    {"bone", "bone", "bony", "&7&b", DAM_CRUSH, PHASE_SOLID, 80, 50, 120, 25, 120, 100, 25, 100, 0},
+    {"lava", "lava", "fluid", "&1", DAM_FIRE, PHASE_SOLID, 40, 40, 40, 50, 25, 120, 100, 50, 0},
+    {"plant", "plant material", "woody", "&2", DAM_SLASH, PHASE_SOLID, 120, 70, 60, 75, 120, 50, 75, 100, 50}};
 
-extern int parse_composition(char_data *ch, char *arg);
-extern void set_base_composition(char_data *ch, int newcomposition);
-extern void convert_composition(char_data *ch, int newcomposition);
-extern void list_olc_compositions(char_data *ch);
+int parse_composition(CharData *ch, char *arg);
+void set_base_composition(CharData *ch, int newcomposition);
+void convert_composition(CharData *ch, int newcomposition);
+void list_olc_compositions(CharData *ch);
 
 #define BASE_COMPOSITION(ch) ((ch)->player.base_composition)
 #define VALID_COMPOSITIONNUM(num) ((num) >= 0 && (num) < NUM_COMPOSITIONS)
@@ -81,5 +95,5 @@ extern void list_olc_compositions(char_data *ch);
     (MOB_FLAGGED((ch), MOB_ILLUSORY) ? "illusory"                                                                      \
      : VALID_COMPOSITION(ch)         ? compositions[GET_COMPOSITION(ch)].adjective                                     \
                                      : "existential")
-#define RIGID(ch) (VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].phase == PHASE_SOLID : TRUE)
+#define RIGID(ch) (VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].phase == PHASE_SOLID : true)
 #define PHASE(ch) (VALID_COMPOSITION(ch) ? compositions[GET_COMPOSITION(ch)].phase : PHASE_SOLID)

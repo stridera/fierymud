@@ -28,11 +28,11 @@
 #include "utils.hpp"
 
 /* Local functions */
-struct quest_list *quest_find_char(char_data *ch, char *qname);
+QuestList *quest_find_char(CharData *ch, char *qname);
 
 /* Quest defines */
 int max_quests = 0;
-struct quest_info *all_quests = NULL;
+QuestInfo *all_quests = nullptr;
 
 void boot_quests() {
     FILE *fl;
@@ -42,7 +42,7 @@ void boot_quests() {
 
     max_quests = 0;
 
-    if ((fl = fopen(ALL_QUEST_FILE, "r")) == NULL) {
+    if ((fl = fopen(ALL_QUEST_FILE, "r")) == nullptr) {
         fprintf(stderr, "Unable to find any quest data file (non-fatal)\r\n");
         return;
     }
@@ -52,7 +52,7 @@ void boot_quests() {
 
     fclose(fl);
 
-    CREATE(all_quests, quest_info, num_records);
+    CREATE(all_quests, QuestInfo, num_records);
 
     fl = fopen(ALL_QUEST_FILE, "r");
     while (get_line(fl, line)) {
@@ -72,13 +72,13 @@ void boot_quests() {
 }
 
 /* quest_stat - returns true if any stat info was listed */
-bool quest_stat(char_data *ch, char_data *vict, char *qname) {
-    struct quest_list *quest = quest_find_char(vict, qname);
-    struct quest_var_list *vars;
+bool quest_stat(CharData *ch, CharData *vict, char *qname) {
+    QuestList *quest = quest_find_char(vict, qname);
+    QuestVariableList *vars;
     int qid_num;
 
     if (!quest)
-        return FALSE;
+        return false;
 
     if ((qid_num = real_quest(quest->quest_id)) >= 0) {
         sprintf(buf, "Quest %s: ", all_quests[qid_num].quest_name);
@@ -100,28 +100,28 @@ bool quest_stat(char_data *ch, char_data *vict, char *qname) {
         send_to_char(buf, ch);
     }
 
-    return TRUE;
+    return true;
 }
 
-void quest_mstat(char_data *ch, char_data *vict) {
+void quest_mstat(CharData *ch, CharData *vict) {
     int qnum;
-    bool any = FALSE;
+    bool any = false;
 
     for (qnum = 0; qnum < max_quests; qnum++)
         if (quest_stat(ch, vict, all_quests[qnum].quest_name))
-            any = TRUE;
+            any = true;
 
     if (!any)
         send_to_char("No quest data found.\r\n", ch);
 }
 
-struct char_data *quest_id_char(trig_data *t, char_data *ch, char *name) {
-    struct char_data *vict;
+CharData *quest_id_char(TrigData *t, CharData *ch, char *name) {
+    CharData *vict;
 
     if (!(vict = find_char_for_keyword(ch, name)))
         vict = find_char_in_world(find_by_name(name));
     if (vict && IS_NPC(vict))
-        vict = NULL;
+        vict = nullptr;
     if (!vict) {
         if (t)
             mprintf(L_WARN, LVL_GOD,
@@ -130,13 +130,13 @@ struct char_data *quest_id_char(trig_data *t, char_data *ch, char *name) {
                     name, GET_TRIG_VNUM(t));
         else if (ch)
             send_to_char("There's no player by that name here.\r\n", ch);
-        return NULL;
+        return nullptr;
     }
     return vict;
 }
 
 ACMD(do_qstat) {
-    struct char_data *vict;
+    CharData *vict;
     char *quest_name;
 
     argument = any_one_arg(argument, arg);  /* player name */
@@ -147,7 +147,7 @@ ACMD(do_qstat) {
         return;
     }
 
-    if (!(vict = quest_id_char(NULL, ch, arg)))
+    if (!(vict = quest_id_char(nullptr, ch, arg)))
         return;
 
     if (*buf1) {
@@ -167,9 +167,9 @@ ACMD(do_qstat) {
     }
 }
 
-void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, room_data *room) {
+void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, RoomData *room) {
     char error_string[MAX_INPUT_LENGTH * 2], *quest_name, e2[MAX_INPUT_LENGTH * 2];
-    struct char_data *vict;
+    CharData *vict;
     int amount;
 
     skip_spaces(&argument);
@@ -183,7 +183,7 @@ void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, r
     if (*arg && !strcmp(arg, "mstat") && ch) {
         if (*buf1) {
             /* OK: mstat command, buf1 = player name */
-            if ((vict = quest_id_char(NULL, ch, buf1)))
+            if ((vict = quest_id_char(nullptr, ch, buf1)))
                 quest_mstat(ch, vict);
         } else {
             send_to_char("Usage: quest mstat <player>\r\n", ch);
@@ -198,7 +198,7 @@ void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, r
                     "QUEST ERROR: quest command called with less than 3 args by "
                     "trigger %d",
                     GET_TRIG_VNUM(t));
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         } else if (ch)
             send_to_char("Usage: quest <command> <quest> <player> [<subclass>] [<var name> <var value>]\r\n", ch);
         return;
@@ -211,7 +211,7 @@ void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, r
                      "QUEST ERROR: quest command tried to access invalid quest %s in "
                      "trigger %d",
                      buf1, GET_TRIG_VNUM(t));
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         } else if (ch)
             send_to_char("That is not a valid quest name.\r\n", ch);
         return;
@@ -269,7 +269,7 @@ void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, r
      * for mob triggers, we set ch to NULL if there's a trigger.
      */
     if (t)
-        ch = NULL;
+        ch = nullptr;
 
     /* advance
      *
@@ -312,11 +312,11 @@ void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, r
             set_quest_variable(ch, vict, quest_name, error_string, buf1, buf2);
         else if (!*buf1) {
             sprintf(buf, error_string, "set variable with no variable");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         } else if (!*buf2) {
             sprintf(e2, "set variable \"%s\" with no value", buf1);
             sprintf(buf, error_string, e2);
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
     }
 
@@ -395,7 +395,7 @@ void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, r
         if (t) {
             sprintf(buf, "use an invalid command %s", arg);
             sprintf(buf1, error_string, buf);
-            mudlog(buf1, NRM, LVL_GOD, TRUE);
+            mudlog(buf1, NRM, LVL_GOD, true);
         } else if (ch) {
             sprintf(buf, "Sorry, %s is not a valid quest command.\r\n", arg);
             send_to_char(buf, ch);
@@ -433,7 +433,7 @@ char *check_quest_name(char *qname) {
     for (count = 0; count < max_quests; count++)
         if (!strn_cmp(all_quests[count].quest_name, qname, strlen(qname)))
             return all_quests[count].quest_name;
-    return NULL;
+    return nullptr;
 }
 
 /*
@@ -455,22 +455,22 @@ short quest_find_max_stage(char *qname) {
  *
  * descr:	internal routine to find a quest in a quest_list
  */
-struct quest_list *quest_find_char(char_data *ch, char *qname) {
-    struct quest_list *quest;
+QuestList *quest_find_char(CharData *ch, char *qname) {
+    QuestList *quest;
     int quest_num = quest_find_num(qname);
 
     for (quest = ch->quests; quest; quest = quest->next)
         if (quest->quest_id == quest_num)
             return quest;
-    return NULL;
+    return nullptr;
 }
 
 /*
  * get_quest_variable
  */
-char *get_quest_variable(char_data *vict, char *qname, char *variable) {
-    struct quest_list *quest = quest_find_char(vict, qname);
-    struct quest_var_list *vars;
+char *get_quest_variable(CharData *vict, char *qname, char *variable) {
+    QuestList *quest = quest_find_char(vict, qname);
+    QuestVariableList *vars;
 
     if (!quest)
         return "0";
@@ -482,9 +482,9 @@ char *get_quest_variable(char_data *vict, char *qname, char *variable) {
     return "0";
 }
 
-void set_quest_variable(char_data *ch, char_data *vict, char *qname, char *error_string, char *variable, char *value) {
-    struct quest_list *quest = quest_find_char(vict, qname);
-    struct quest_var_list *vars;
+void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_string, char *variable, char *value) {
+    QuestList *quest = quest_find_char(vict, qname);
+    QuestVariableList *vars;
 
     if (!quest) {
         if (ch) {
@@ -492,7 +492,7 @@ void set_quest_variable(char_data *ch, char_data *vict, char *qname, char *error
             send_to_char(buf, ch);
         } else {
             sprintf(buf, error_string, "set variable on nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -503,7 +503,7 @@ void set_quest_variable(char_data *ch, char_data *vict, char *qname, char *error
             return;
         }
 
-    CREATE(vars, quest_var_list, 1);
+    CREATE(vars, QuestVariableList, 1);
     CREATE(vars->var, char, 21);
     strncpy(vars->var, variable, 20);
     vars->var[20] = '\0';
@@ -530,8 +530,8 @@ void set_quest_variable(char_data *ch, char_data *vict, char *qname, char *error
  * 		that the char has failed this quest, so call has_failed_quest
  * 		to be sure
  */
-int quest_stage(char_data *ch, char *qname) {
-    struct quest_list *quest;
+int quest_stage(CharData *ch, char *qname) {
+    QuestList *quest;
 
     if (!ch)
         return (int)quest_find_max_stage(qname);
@@ -557,8 +557,8 @@ int quest_stage(char_data *ch, char *qname) {
  * more than 254 stages in your quest you are an evil bastard and should seek
  * help.
  */
-void quest_complete(char_data *ch, char_data *vict, char *qname, char *error_string) {
-    struct quest_list *quest = quest_find_char(vict, qname);
+void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_string) {
+    QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
         if (ch) {
@@ -566,7 +566,7 @@ void quest_complete(char_data *ch, char_data *vict, char *qname, char *error_str
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -577,7 +577,7 @@ void quest_complete(char_data *ch, char_data *vict, char *qname, char *error_str
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete already-completed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -588,7 +588,7 @@ void quest_complete(char_data *ch, char_data *vict, char *qname, char *error_str
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete already-failed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -604,8 +604,8 @@ void quest_complete(char_data *ch, char_data *vict, char *qname, char *error_str
     }
 }
 
-void quest_fail(char_data *ch, char_data *vict, char *qname, char *error_string) {
-    struct quest_list *quest = quest_find_char(vict, qname);
+void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
+    QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
         if (ch) {
@@ -613,7 +613,7 @@ void quest_fail(char_data *ch, char_data *vict, char *qname, char *error_string)
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -624,7 +624,7 @@ void quest_fail(char_data *ch, char_data *vict, char *qname, char *error_string)
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail already-completed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -635,7 +635,7 @@ void quest_fail(char_data *ch, char_data *vict, char *qname, char *error_string)
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail already-failed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -652,9 +652,9 @@ void quest_fail(char_data *ch, char_data *vict, char *qname, char *error_string)
  * quest advance
  *
  */
-void quest_advance(char_data *ch, char_data *vict, char *qname, char *error_string, int amount) {
+void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string, int amount) {
     short max_stage;
-    struct quest_list *quest = quest_find_char(vict, qname);
+    QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
         if (ch) {
@@ -662,7 +662,7 @@ void quest_advance(char_data *ch, char_data *vict, char *qname, char *error_stri
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -673,7 +673,7 @@ void quest_advance(char_data *ch, char_data *vict, char *qname, char *error_stri
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance failed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -684,7 +684,7 @@ void quest_advance(char_data *ch, char_data *vict, char *qname, char *error_stri
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance already completed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -701,7 +701,7 @@ void quest_advance(char_data *ch, char_data *vict, char *qname, char *error_stri
         } else if (error_string) {
             sprintf(buf, "advance past quest max stage of %d", max_stage);
             sprintf(buf1, error_string, buf);
-            mudlog(buf1, NRM, LVL_GOD, TRUE);
+            mudlog(buf1, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -720,8 +720,8 @@ void quest_advance(char_data *ch, char_data *vict, char *qname, char *error_stri
  * quest start
  *
  */
-void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string, char *subclass_abbr) {
-    struct quest_list *quest = quest_find_char(vict, qname);
+void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, char *subclass_abbr) {
+    QuestList *quest = quest_find_char(vict, qname);
     extern int class_ok_race[NUM_RACES][NUM_CLASSES];
     unsigned short quest_num;
     int subclass = CLASS_UNDEFINED;
@@ -732,7 +732,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "start already-started quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -744,7 +744,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
             send_to_char("You must supply the name of the subclass for this quest.\r\n", ch);
         else if (error_string) {
             sprintf(buf, error_string, "start subclass quest without specifying which");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -764,7 +764,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
                     send_to_char(buf, ch);
                 } else if (error_string) {
                     sprintf(buf, error_string, "start subclass quest with one already in progress");
-                    mudlog(buf, NRM, LVL_GOD, TRUE);
+                    mudlog(buf, NRM, LVL_GOD, true);
                 }
                 return;
             }
@@ -778,7 +778,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
                 send_to_char("That's not a valid class.\r\n", ch);
             else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest with invalid class abbreviation");
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
             }
             return;
         }
@@ -790,7 +790,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest on already subclassed player");
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
             }
             return;
         }
@@ -802,7 +802,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest when player's class does not permit it");
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
             }
             return;
         }
@@ -814,7 +814,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest when player's race does not permit it");
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
             }
             return;
         }
@@ -824,7 +824,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
         if (GET_LEVEL(vict) < 10 && !ch) {
             if (error_string) {
                 sprintf(buf, error_string, "start subclass quest before player is level 10");
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
             }
             return;
         }
@@ -834,7 +834,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
         if (!ch && GET_LEVEL(vict) > classes[(int)GET_CLASS(vict)].max_subclass_level) {
             if (error_string) {
                 sprintf(buf, error_string, "start subclass quest after player is past max subclass level");
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
             }
             return;
         }
@@ -843,7 +843,7 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
     }
 
     /* Okay, make the new quest */
-    CREATE(quest, quest_list, 1);
+    CREATE(quest, QuestList, 1);
     quest->quest_id = quest_num;
     quest->stage = QUEST_START;
     quest->next = vict->quests;
@@ -860,8 +860,8 @@ void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string
     }
 }
 
-void quest_rewind(char_data *ch, char_data *vict, char *qname, char *error_string, int amount) {
-    struct quest_list *quest = quest_find_char(vict, qname);
+void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string, int amount) {
+    QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
         if (ch) {
@@ -869,7 +869,7 @@ void quest_rewind(char_data *ch, char_data *vict, char *qname, char *error_strin
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -880,7 +880,7 @@ void quest_rewind(char_data *ch, char_data *vict, char *qname, char *error_strin
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind failed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -891,7 +891,7 @@ void quest_rewind(char_data *ch, char_data *vict, char *qname, char *error_strin
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind already completed quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -903,7 +903,7 @@ void quest_rewind(char_data *ch, char_data *vict, char *qname, char *error_strin
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind past quest first stage");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -918,8 +918,8 @@ void quest_rewind(char_data *ch, char_data *vict, char *qname, char *error_strin
     }
 }
 
-void quest_restart(char_data *ch, char_data *vict, char *qname, char *error_string) {
-    struct quest_list *quest = quest_find_char(vict, qname);
+void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string) {
+    QuestList *quest = quest_find_char(vict, qname);
 
     if (!quest) {
         if (ch) {
@@ -927,7 +927,7 @@ void quest_restart(char_data *ch, char_data *vict, char *qname, char *error_stri
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "restart nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -953,9 +953,9 @@ void quest_restart(char_data *ch, char_data *vict, char *qname, char *error_stri
  * 		this was a completed subclass and the player has CHANGED
  * 		subclass, then they will not be changed back.
  */
-void quest_erase(char_data *ch, char_data *vict, char *qname, char *error_string) {
-    struct quest_list *quest, *prev;
-    /*  struct quest_var_list *vars, *next_vars; */
+void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) {
+    QuestList *quest, *prev;
+    /*   quest_var_list *vars, *next_vars; */
     unsigned short quest_num;
 
     if (!vict->quests) {
@@ -964,7 +964,7 @@ void quest_erase(char_data *ch, char_data *vict, char *qname, char *error_string
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "erase nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
         }
         return;
     }
@@ -1004,7 +1004,7 @@ void quest_erase(char_data *ch, char_data *vict, char *qname, char *error_string
         send_to_char(buf, ch);
     } else if (error_string) {
         sprintf(buf, error_string, "erase nonexistent quest");
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
     }
 }
 
@@ -1019,8 +1019,8 @@ void quest_erase(char_data *ch, char_data *vict, char *qname, char *error_string
  * NOTE:	if has_failed_quest returns 0, and quest_stage also returns 0
  * then the quest does not exist or the player has not started it
  */
-int has_failed_quest(char *qname, char_data *ch) {
-    struct quest_list *quest = quest_find_char(ch, qname);
+int has_failed_quest(char *qname, CharData *ch) {
+    QuestList *quest = quest_find_char(ch, qname);
 
     if (quest && quest->stage == QUEST_FAILURE)
         return 1;
@@ -1038,8 +1038,8 @@ int has_failed_quest(char *qname, char_data *ch) {
  * started it.
  *
  */
-int has_completed_quest(char *qname, char_data *ch) {
-    struct quest_list *quest = quest_find_char(ch, qname);
+int has_completed_quest(char *qname, CharData *ch) {
+    QuestList *quest = quest_find_char(ch, qname);
 
     if (quest && quest->stage == QUEST_SUCCESS)
         return 1;
@@ -1112,7 +1112,7 @@ ACMD(do_qadd) {
     /*
      * rewrite the quest file and add this one in the correct place
      */
-    if ((fp = fopen(ALL_QUEST_FILE, "w")) == NULL) {
+    if ((fp = fopen(ALL_QUEST_FILE, "w")) == nullptr) {
         log("Unable to open ALL_QUEST_FILE in qadd\r\n");
         return;
     }
@@ -1136,7 +1136,7 @@ ACMD(do_qadd) {
         sprintf(buf, "(GC) %s created a new quest %s.", GET_NAME(ch), buf1);
         sprintf(buf2, "New quest %s successfully added.\r\n", buf1);
     }
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
     send_to_char(buf2, ch);
 }
 
@@ -1198,7 +1198,7 @@ ACMD(do_qdel) {
         sprintf(buf, "(GC) %s deleted quest %s.", GET_NAME(ch), buf1);
         sprintf(buf2, "Quest %s successfully deleted.\r\n", buf1);
     }
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
     send_to_char(buf2, ch);
 }
 
@@ -1225,15 +1225,15 @@ ACMD(do_qlist) {
     }
 }
 
-void free_quest_list(char_data *ch) {
-    struct quest_list *quest, *next_quest;
+void free_quest_list(CharData *ch) {
+    QuestList *quest, *next_quest;
 
     quest = ch->quests;
     while (quest) {
         next_quest = quest->next;
         if (quest->variables) {
-            struct quest_var_list *quest_var;
-            struct quest_var_list *next_var;
+            QuestVariableList *quest_var;
+            QuestVariableList *next_var;
 
             quest_var = quest->variables;
 
@@ -1250,7 +1250,7 @@ void free_quest_list(char_data *ch) {
         quest = next_quest;
     }
 
-    ch->quests = NULL;
+    ch->quests = nullptr;
 }
 
 void free_quests() {

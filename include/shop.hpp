@@ -17,7 +17,7 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-struct shop_buy_data {
+struct ShopBuyData {
     int type;
     int amount;
     char *keywords;
@@ -26,30 +26,30 @@ struct shop_buy_data {
 #define BUY_TYPE(i) ((i).type)
 #define BUY_WORD(i) ((i).keywords)
 
-struct shop_data {
+struct ShopData {
     int vnum;       /* Virtual number of this shop		*/
     int *producing; /* Which item to produce (vnum)	*/
     int *amount;
-    float profit_buy;           /* Factor to multiply cost with		*/
-    float profit_sell;          /* Factor to multiply cost with		*/
-    struct shop_buy_data *type; /* Which items to trade			*/
-    char *no_such_item1;        /* Message if keeper hasn't got an item	*/
-    char *no_such_item2;        /* Message if player hasn't got an item	*/
-    char *missing_cash1;        /* Message if keeper hasn't got cash	*/
-    char *missing_cash2;        /* Message if player hasn't got cash	*/
-    char *do_not_buy;           /* If keeper dosn't buy such things	*/
-    char *message_buy;          /* Message when player buys item	*/
-    char *message_sell;         /* Message when player sells item	*/
-    int temper1;                /* How does keeper react if no money	*/
-    int bitvector;              /* Can attack? Use bank? Cast here?	*/
-    int keeper;                 /* The mobil who owns the shop (vnum)*/
-    int with_who;               /* Who does the shop trade with?	*/
-    int *in_room;               /* Where is the shop?			*/
-    int open1, open2;           /* When does the shop open?		*/
-    int close1, close2;         /* When does the shop close?		*/
-    int bankAccount;            /* Store all gold over 15000 (disabled)	*/
-    int lastsort;               /* How many items are sorted in inven?	*/
-    SPECIAL(*func);             /* Secondary spec_proc for shopkeeper	*/
+    float profit_buy;    /* Factor to multiply cost with		*/
+    float profit_sell;   /* Factor to multiply cost with		*/
+    ShopBuyData *type;   /* Which items to trade			*/
+    char *no_such_item1; /* Message if keeper hasn't got an item	*/
+    char *no_such_item2; /* Message if player hasn't got an item	*/
+    char *missing_cash1; /* Message if keeper hasn't got cash	*/
+    char *missing_cash2; /* Message if player hasn't got cash	*/
+    char *do_not_buy;    /* If keeper dosn't buy such things	*/
+    char *message_buy;   /* Message when player buys item	*/
+    char *message_sell;  /* Message when player sells item	*/
+    int temper1;         /* How does keeper react if no money	*/
+    int bitvector;       /* Can attack? Use bank? Cast here?	*/
+    int keeper;          /* The mobil who owns the shop (vnum)*/
+    int with_who;        /* Who does the shop trade with?	*/
+    int *in_room;        /* Where is the shop?			*/
+    int open1, open2;    /* When does the shop open?		*/
+    int close1, close2;  /* When does the shop close?		*/
+    int bankAccount;     /* Store all gold over 15000 (disabled)	*/
+    int lastsort;        /* How many items are sorted in inven?	*/
+    SPECIAL(*func);      /* Secondary spec_proc for shopkeeper	*/
 };
 
 #define MAX_TRADE 5         /* List maximums for compatibility	*/
@@ -81,7 +81,7 @@ struct shop_data {
 #define TRADE_NOTHIEF 32
 #define TRADE_NOWARRIOR 64
 
-struct stack_data {
+struct StackData {
     int data[100];
     int len;
 };
@@ -132,11 +132,11 @@ const char *operator_str[] = {"[({", "])}", "|+", "&*", "^'"};
 
 /* Constant list for printing out who we sell to */
 #ifdef __SHOP_C__
-const char *trade_letters[] = {"Good",                            /* First, the alignment based ones */
-                               "Evil",   "Neutral", "Magic User", /* Then the class based ones */
-                               "Cleric", "Thief",   "Warrior",    "\n"};
+const char *trade_lwwwwwetters[] = {"Good",                            /* First, the alignment based ones */
+                                    "Evil",   "Neutral", "Magic User", /* Then the class based ones */
+                                    "Cleric", "Thief",   "Warrior",    "\n"};
 #else
-extern const char *trade_letters[];
+const char *trade_letters[] = {};
 #endif
 
 #define WILL_START_FIGHT 1
@@ -148,7 +148,7 @@ extern const char *trade_letters[];
 #ifdef __SHOP_C__
 const char *shop_bits[] = {"WILL_FIGHT", "USES_BANK", "\n"};
 #else
-extern const char *shop_bits[];
+const char *shop_bits[] = {};
 #endif
 
 #define MIN_OUTSIDE_BANK 5000
@@ -164,7 +164,7 @@ extern const char *shop_bits[];
 #define MSG_NO_USED_WANDSTAFF "I don't buy used up wands or staves!"
 #define MSG_CANT_KILL_KEEPER "Get out of here before I call the guards!"
 
-bool give_shopkeeper_reject(char_data *ch, char_data *vict, obj_data *obj);
+bool give_shopkeeper_reject(CharData *ch, CharData *vict, ObjData *obj);
 
-extern int top_shop;
-extern struct shop_data *shop_index;
+int top_shop;
+ShopData *shop_index;

@@ -16,7 +16,7 @@
 #include "sysdep.hpp"
 
 #define ASPELL(spellname)                                                                                              \
-    int spellname(int spellnum, int skill, char_data *ch, char_data *victim, obj_data *obj, int savetype)
+    int spellname(int spellnum, int skill, CharData *ch, CharData *victim, ObjData *obj, int savetype)
 
 ASPELL(spell_acid_fog);
 ASPELL(spell_armor_of_gaia);
@@ -75,6 +75,7 @@ ASPELL(spell_relocate);
 ASPELL(spell_remove_curse);
 ASPELL(spell_remove_paralysis);
 ASPELL(spell_resurrect);
+ASPELL(spell_reveal_hidden);
 ASPELL(spell_shift_corpse);
 ASPELL(spell_soul_tap);
 ASPELL(spell_soul_tap_recur);
@@ -89,7 +90,6 @@ ASPELL(spell_vitality);
 ASPELL(spell_wandering_woods);
 ASPELL(spell_wizard_eye);
 ASPELL(spell_word_of_command);
-
 ASPELL(chant_peace);
 ASPELL(chant_ivory_symphony);
 ASPELL(chant_apocalyptic_anthem);

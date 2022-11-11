@@ -20,10 +20,10 @@
 #include "utils.hpp"
 
 /* local functions */
-static void remove_cmd_from_list(reset_com **list, int pos);
+static void remove_cmd_from_list(ResetCommand **list, int pos);
 
 /* Some common code to count the number of commands in the list. */
-int count_commands(reset_com *list) {
+int count_commands(ResetCommand *list) {
     int count = 0;
 
     while (list[count].command != 'S')
@@ -34,16 +34,16 @@ int count_commands(reset_com *list) {
 
 /* Remove a reset command from a list. Takes a pointer to the list so that it
  * may play with the memory locations. */
-static void remove_cmd_from_list(reset_com **list, int pos) {
+static void remove_cmd_from_list(ResetCommand **list, int pos) {
     int count, i, l;
-    struct reset_com *newlist;
+    ResetCommand *newlist;
 
     /* Count number of commands (not including terminator). */
     count = count_commands(*list);
 
     /* Value is 'count' because we didn't include the terminator above but since
      * we're deleting one thing anyway we want one less. */
-    CREATE(newlist, reset_com, count);
+    CREATE(newlist, ResetCommand, count);
 
     /* Even tighter loop to copy old list and skip unwanted command. */
     for (i = 0, l = 0; i < count; i++) {
@@ -58,7 +58,7 @@ static void remove_cmd_from_list(reset_com **list, int pos) {
 }
 
 /* Error check user input and then remove command. */
-void delete_zone_command(zone_data *zone, int pos) {
+void delete_zone_command(ZoneData *zone, int pos) {
     int subcmd = 0;
 
     /* Error check to ensure users hasn't given too large an index. */

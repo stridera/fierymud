@@ -30,28 +30,28 @@ ACMD(do_kick);
 ACMD(do_steal);
 ACMD(do_throatcut);
 
-bool has_piercing_weapon(char_data *ch) {
+bool has_piercing_weapon(CharData *ch) {
     if (GET_EQ(ch, WEAR_WIELD) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_WIELD)))
-        return TRUE;
+        return true;
     if (GET_EQ(ch, WEAR_WIELD2) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_WIELD2)))
-        return TRUE;
+        return true;
     if (GET_EQ(ch, WEAR_2HWIELD) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_2HWIELD)))
-        return TRUE;
-    return FALSE;
+        return true;
+    return false;
 }
 
-bool rogue_ai_action(char_data *ch, char_data *victim) {
+bool rogue_ai_action(CharData *ch, CharData *victim) {
     int roll;
 
     if (!victim) {
-        mudlog("No victim in rogue AI action.", NRM, LVL_GOD, FALSE);
-        return FALSE;
+        mudlog("No victim in rogue AI action.", NRM, LVL_GOD, false);
+        return false;
     }
 
     /* Success in doing an action? */
     roll = number(0, 101);
     if (roll >= GET_LEVEL(ch))
-        return FALSE;
+        return false;
     roll *= 100 / GET_LEVEL(ch);
 
     /*
@@ -60,35 +60,35 @@ bool rogue_ai_action(char_data *ch, char_data *victim) {
     if (CAN_SEE(ch, victim) && roll > 95 && GET_SKILL(ch, SKILL_BACKSTAB) && has_piercing_weapon(ch) &&
         !is_tanking(ch)) {
         do_backstab(ch, GET_NAME(victim), 0, 0);
-        return TRUE;
+        return true;
     }
 
     if (CAN_SEE(ch, victim) && roll > 94 && GET_SKILL(ch, SKILL_THROATCUT) && has_piercing_weapon(ch) &&
         !FIGHTING(ch)) {
         do_throatcut(ch, GET_NAME(victim), 0, 0);
-        return TRUE;
+        return true;
     }
 
     if (CAN_SEE(ch, victim) && roll > 70 && GET_SKILL(ch, SKILL_CORNER) && FIGHTING(ch) == victim && !ch->cornering) {
         do_corner(ch, GET_NAME(victim), 0, 0);
-        return TRUE;
+        return true;
     }
 
     if (CAN_SEE(ch, victim) && roll > 50 && GET_SKILL(ch, SKILL_EYE_GOUGE)) {
         do_eye_gouge(ch, GET_NAME(victim), 0, 0);
-        return TRUE;
+        return true;
     }
 
     if (GET_SKILL(ch, SKILL_KICK)) {
         do_kick(ch, GET_NAME(victim), 0, 0);
-        return TRUE;
+        return true;
     }
 
-    return FALSE;
+    return false;
 }
 
-bool mob_steal(char_data *ch) {
-    struct char_data *vict = get_random_char_around(ch, RAND_AGGRO | RAND_PLAYERS);
+bool mob_steal(CharData *ch) {
+    CharData *vict = get_random_char_around(ch, RAND_AGGRO | RAND_PLAYERS);
 
     if (vict && GET_LEVEL(ch) + 5 > GET_LEVEL(vict)) {
         if (vict->carrying && CAN_SEE_OBJ(ch, vict->carrying) && number(0, 1))
@@ -96,56 +96,33 @@ bool mob_steal(char_data *ch) {
         else
             sprintf(buf1, "%s %s", "coins", GET_NAME(vict));
         do_steal(ch, buf1, 0, 0);
-        return TRUE;
+        return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 /* Bard combat AI */
 
-int mob_cast(char_data *ch, char_data *tch, obj_data *tobj, int spellnum);
-
-/* Bard spell lists */
-const struct spell_pair mob_bard_buffs[] = {
-    {SPELL_DETECT_INVIS, 0, EFF_DETECT_INVIS}, {SPELL_HASTE, 0, EFF_HASTE}, {0, 0, 0}};
-
-/* These spells should all be castable in combat. */
-const struct spell_pair mob_bard_hindrances[] = {{SPELL_BLINDNESS, SPELL_CURE_BLIND, EFF_BLIND},
-                                                 {SPELL_WEB, SPELL_REMOVE_PARALYSIS, EFF_IMMOBILIZED},
-                                                 {SPELL_INSANITY, SPELL_SANE_MIND, EFF_INSANITY},
-                                                 {SPELL_POISON, SPELL_REMOVE_POISON, EFF_POISON},
-                                                 {SPELL_DISEASE, SPELL_HEAL, EFF_DISEASE},
-                                                 {SPELL_SILENCE, 0, 0}, /* Try to cast this, but there's no cure */
-                                                 {SPELL_CURSE, SPELL_REMOVE_CURSE, EFF_CURSE},
-                                                 {SPELL_ENTANGLE, SPELL_REMOVE_PARALYSIS, 0},
-                                                 {0, 0, 0}};
-
-const int mob_bard_offensives[] = {
-    SPELL_VICIOUS_MOCKERY, SPELL_HARM,          SPELL_SHOCKING_GRASP, SPELL_CAUSE_CRITIC, SPELL_CHILL_TOUCH,
-    SPELL_CAUSE_SERIOUS,   SPELL_BURNING_HANDS, SPELL_MAGIC_MISSILE,  SPELL_CAUSE_LIGHT,  0};
-
-const int mob_bard_area_spells[] = {SPELL_CLOUD_OF_DAGGERS, SPELL_COLOR_SPRAY, 0};
-
-const int mob_bard_heals[] = {SPELL_HEAL, SPELL_CURE_CRITIC, SPELL_CURE_SERIOUS, SPELL_CURE_LIGHT, 0};
+int mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 
 /*
  * bard_ai_action
  *
  *
  */
-bool bard_ai_action(char_data *ch, char_data *victim) {
+bool bard_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter, action = 0, roll;
 
     if (!victim) {
-        mudlog("No victim in bard AI action.", NRM, LVL_GOD, FALSE);
-        return FALSE;
+        mudlog("No victim in bard AI action.", NRM, LVL_GOD, false);
+        return false;
     }
 
     /* Success in doing an action? */
     roll = number(0, 101);
     if (roll >= GET_LEVEL(ch))
-        return FALSE;
+        return false;
     roll *= 100 / GET_LEVEL(ch);
 
     /*
@@ -154,19 +131,19 @@ bool bard_ai_action(char_data *ch, char_data *victim) {
     if (CAN_SEE(ch, victim) && roll > 95 && GET_SKILL(ch, SKILL_BACKSTAB) && has_piercing_weapon(ch) &&
         !is_tanking(ch)) {
         do_backstab(ch, GET_NAME(victim), 0, 0);
-        return TRUE;
+        return true;
     }
 
     /* Well no chance of casting any spells today. */
     if (EFF_FLAGGED(ch, EFF_SILENCE))
-        return FALSE;
+        return false;
 
     /* Calculate mob health as a percentage. */
     my_health = (100 * GET_HIT(ch)) / GET_MAX_HIT(ch);
     victim_health = (100 * GET_HIT(victim)) / GET_MAX_HIT(victim);
 
     if ((my_health < 30 && victim_health > 20) && mob_heal_up(ch))
-        return TRUE;
+        return true;
 
     /* Otherwise kill or harm in some fashion */
 
@@ -176,8 +153,8 @@ bool bard_ai_action(char_data *ch, char_data *victim) {
         for (i = 0; mob_bard_area_spells[i]; i++) {
             if (!GET_SKILL(ch, mob_bard_area_spells[i]))
                 continue;
-            if (mob_cast(ch, victim, NULL, mob_bard_area_spells[i]))
-                return TRUE;
+            if (mob_cast(ch, victim, nullptr, mob_bard_area_spells[i]))
+                return true;
             /* Only try the mob's best two spells. */
             if (++counter >= 2)
                 break;
@@ -189,8 +166,8 @@ bool bard_ai_action(char_data *ch, char_data *victim) {
         if (!GET_SKILL(ch, mob_bard_hindrances[i].spell))
             continue;
         if (!has_effect(victim, &mob_bard_hindrances[i])) {
-            if (mob_cast(ch, victim, NULL, mob_bard_hindrances[i].spell))
-                return TRUE;
+            if (mob_cast(ch, victim, nullptr, mob_bard_hindrances[i].spell))
+                return true;
             else
                 break;
         }
@@ -202,15 +179,15 @@ bool bard_ai_action(char_data *ch, char_data *victim) {
         if (!GET_SKILL(ch, mob_bard_offensives[i]))
             continue;
 
-        if (mob_cast(ch, victim, NULL, mob_bard_offensives[i]))
-            return TRUE;
+        if (mob_cast(ch, victim, nullptr, mob_bard_offensives[i]))
+            return true;
 
         /* Only attempt to cast this mob's best 3 spells. */
         if (++counter >= 3)
             break;
     }
 
-    return FALSE;
+    return false;
 }
 
 /*
@@ -218,7 +195,7 @@ bool bard_ai_action(char_data *ch, char_data *victim) {
  *
  * Makes the bard mob check its spells.
  */
-bool check_bard_status(char_data *ch) {
+bool check_bard_status(CharData *ch) {
     int i;
 
     /* Check bad affects */
@@ -228,24 +205,24 @@ bool check_bard_status(char_data *ch) {
 
         /* If the spell can be removed and the mob has it, try to remove it */
         if (mob_bard_hindrances[i].remover && has_effect(ch, &mob_bard_hindrances[i]))
-            if (mob_cast(ch, ch, NULL, mob_bard_hindrances[i].remover))
-                return TRUE;
+            if (mob_cast(ch, ch, nullptr, mob_bard_hindrances[i].remover))
+                return true;
         /* 10% chance to cancel if in combat. */
         if (FIGHTING(ch) && !number(0, 9))
-            return FALSE;
+            return false;
     }
 
     /* Check other spells */
     for (i = 0; mob_bard_buffs[i].spell; i++) {
-        if (!GET_SKILL(ch, mob_bard_buffs[i].spell) || !check_fluid_spell_ok(ch, ch, mob_bard_buffs[i].spell, TRUE))
+        if (!GET_SKILL(ch, mob_bard_buffs[i].spell) || !check_fluid_spell_ok(ch, ch, mob_bard_buffs[i].spell, true))
             continue;
 
         if (has_effect(ch, &mob_bard_buffs[i]))
             continue;
 
-        if (mob_cast(ch, ch, NULL, mob_bard_buffs[i].spell))
-            return TRUE;
+        if (mob_cast(ch, ch, nullptr, mob_bard_buffs[i].spell))
+            return true;
     }
 
-    return FALSE;
+    return false;
 }

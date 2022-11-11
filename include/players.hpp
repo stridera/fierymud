@@ -31,30 +31,30 @@
 #define NUM_QUITTYPES 11
 #define VALID_QUITTYPE(s) ((s) >= 0 && (s) < NUM_QUITTYPES)
 
-extern void build_player_index(void);
-extern int create_player_index_entry(char *name);
-extern void save_player_index(void);
-extern void free_player_index(void);
+void build_player_index(void);
+int create_player_index_entry(char *name);
+void save_player_index(void);
+void free_player_index(void);
 
-extern long get_ptable_by_name(const char *name);
-extern long get_id_by_name(const char *name);
-extern char *get_name_by_id(long id);
-extern int get_pfilename(const char *name, char *filename, int mode);
+long get_ptable_by_name(const char *name);
+long get_id_by_name(const char *name);
+char *get_name_by_id(long id);
+int get_pfilename(const char *name, char *filename, int mode);
 
-extern int load_player(const char *name, char_data *ch);
-extern void save_player_char(char_data *ch);
-extern void delete_player(int pfilepos);
-extern void rename_player(char_data *victim, char *newname);
-extern void init_player(char_data *ch);
-extern void start_player(char_data *ch);
+int load_player(const char *name, CharData *ch);
+void save_player_char(CharData *ch);
+void delete_player(int pfilepos);
+void rename_player(CharData *victim, char *newname);
+void init_player(CharData *ch);
+void start_player(CharData *ch);
 
-extern void add_perm_title(char_data *ch, char *line);
+void add_perm_title(CharData *ch, char *line);
 
-extern void load_ascii_flags(flagvector flags[], int num_flags, char *line);
-extern void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags);
+void load_ascii_flags(flagvector flags[], int num_flags, char *line);
+void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags);
 
-extern void remove_player_from_game(char_data *ch, int removal_mode);
-extern void send_save_description(char_data *ch, char_data *dest, bool entering);
+void remove_player_from_game(CharData *ch, int removal_mode);
+void send_save_description(CharData *ch, CharData *dest, bool entering);
 
 /* get_pfilename() codes */
 #define OBJ_FILE 0

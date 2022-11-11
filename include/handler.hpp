@@ -18,16 +18,16 @@
 #include "sysdep.hpp"
 
 /* handling the affected-structures */
-void effect_total(char_data *ch);
-void do_campout(char_data *ch);
-void effect_modify(char_data *ch, byte loc, sh_int mod, flagvector bitv[], bool add);
-void effect_to_char(char_data *ch, effect *eff);
-void effect_remove(char_data *ch, effect *eff);
-void active_effect_remove(char_data *ch, effect *effect);
-void effect_from_char(char_data *ch, int type);
-void active_effect_from_char(char_data *ch, int type);
-bool affected_by_spell(char_data *ch, int type);
-void effect_join(char_data *ch, effect *eff, bool add_dur, bool avg_dur, bool add_mod, bool avg_mod, bool refresh);
+void effect_total(CharData *ch);
+void do_campout(CharData *ch);
+void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool add);
+void effect_to_char(CharData *ch, effect *eff);
+void effect_remove(CharData *ch, effect *eff);
+void active_effect_remove(CharData *ch, effect *effect);
+void effect_from_char(CharData *ch, int type);
+void active_effect_from_char(CharData *ch, int type);
+bool affected_by_spell(CharData *ch, int type);
+void effect_join(CharData *ch, effect *eff, bool add_dur, bool avg_dur, bool add_mod, bool avg_mod, bool refresh);
 
 /* utility */
 int isname(const char *str, const char *namelist);
@@ -35,8 +35,8 @@ char *fname(const char *namelist);
 
 /* ******** objects *********** */
 
-void obj_to_char(obj_data *object, char_data *ch);
-void obj_from_char(obj_data *object);
+void obj_to_char(ObjData *obj, CharData *ch);
+void obj_from_char(ObjData *obj);
 
 enum equip_result {
     EQUIP_RESULT_ERROR,  /* Internal error; object has not been manipulated */
@@ -44,32 +44,39 @@ enum equip_result {
                             to inventory */
     EQUIP_RESULT_SUCCESS /* Object was equipped */
 };
-void count_hand_eq(char_data *ch, int *hands_used, int *weapon_hands_used);
-bool may_wear_eq(char_data *ch, obj_data *obj, int *where, bool sendmessage);
-enum equip_result equip_char(char_data *ch, obj_data *obj, int pos);
-struct obj_data *unequip_char(char_data *ch, int pos);
+void count_hand_eq(CharData *ch, int *hands_used, int *weapon_hands_used);
+bool may_wear_eq(CharData *ch, ObjData *obj, int *where, bool sendmessage);
+enum equip_result equip_char(CharData *ch, ObjData *obj, int pos);
+ObjData *unequip_char(CharData *ch, int pos);
 
-void obj_to_room(obj_data *object, int room);
-void obj_from_room(obj_data *object);
-void obj_to_obj(obj_data *obj, obj_data *obj_to);
-void obj_from_obj(obj_data *obj);
-void object_list_new_owner(obj_data *list, char_data *ch);
+void obj_to_room(ObjData *obj, int room);
+void obj_from_room(ObjData *obj);
+void obj_to_obj(ObjData *obj, ObjData *obj_to);
+void obj_from_obj(ObjData *obj);
+void object_list_new_owner(ObjData *list, CharData *ch);
 
-void extract_obj(obj_data *obj);
+void extract_obj(ObjData *obj);
 
 /* ******* characters ********* */
 
-void init_char(char_data *ch);
-void update_char(char_data *ch);
+void init_char(CharData *ch);
+void update_char(CharData *ch);
 
-void char_from_room(char_data *ch);
-void char_to_room(char_data *ch, int room);
-void extract_char(char_data *ch);
+void char_from_room(CharData *ch);
+void char_to_room(CharData *ch, int room);
+void extract_char(CharData *ch);
 /* Buru 13/12/97 - coin converters */
-void money_convert(char_data *ch, int amount);
-void copper_to_coins(char_data *ch);
-void convert_coins_copper(char_data *ch);
+void money_convert(CharData *ch, int amount);
+void copper_to_coins(CharData *ch);
+void convert_coins_copper(CharData *ch);
 
 /* mobact.c */
-void forget(char_data *ch, char_data *victim);
-void remember(char_data *ch, char_data *victim);
+void forget(CharData *ch, CharData *victim);
+void remember(CharData *ch, CharData *victim);
+
+/* Global object iterator
+ *
+ * Helps the object extractor in limits.c to iterate over all objects
+ * in the world while destroying some of them. */
+
+ObjData *go_iterator = nullptr;

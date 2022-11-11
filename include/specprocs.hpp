@@ -15,4 +15,4 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-#define SPECIAL(name) int(name)(char_data * ch, void *me, int cmd, char *argument)
+#define SPECIAL(name) int(name)(CharData * ch, void *me, int cmd, char *argument)

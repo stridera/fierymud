@@ -24,21 +24,13 @@
 #define IS_SET(flag, bits) ((flag) & (bits))
 #endif
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-typedef struct {
+struct FBFILE {
     char *buf;  /* start of buffer			*/
     char *ptr;  /* current location pointer		*/
     int size;   /* size in bytes of buffer		*/
     int flags;  /* read/write/append, future expansion	*/
     char *name; /* filename (for delayed writing)	*/
-} FBFILE;
+};
 
 void tag_argument(char *argument, char *tag);
 int fbgetline(FBFILE *fbfl, char *line);

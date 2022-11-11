@@ -13,6 +13,7 @@
 #pragma once
 
 #include "interpreter.hpp"
+#include "money.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -66,26 +67,39 @@ ACMD(do_who);
 
 #define YOU_ARE_BLIND "You can't see a damned thing; you're blind!\r\n"
 
+struct StackNode {
+    ObjData *obj;
+    int count;
+    const char *to_char;
+    const char *to_room;
+    StackNode *next;
+};
+struct GetContext {
+    CharData *ch;
+    StackNode *stack;
+    int coins[NUM_COIN_TYPES];
+};
+
 /* Public functions */
-extern void garble_text(char *string, int percent);
-extern char *drunken_speech(char *string, int drunkenness);
+void garble_text(char *string, int percent);
+char *drunken_speech(char *string, int drunkenness);
 
-bool senses_living(char_data *ch, char_data *vict, int basepct);
-bool senses_living_only(char_data *ch, char_data *vict, int basepct);
+bool senses_living(CharData *ch, CharData *vict, int basepct);
+bool senses_living_only(CharData *ch, CharData *vict, int basepct);
 const char *relative_location_str(int bits);
-void split_coins(char_data *ch, int coins[], unsigned int mode);
+void split_coins(CharData *ch, int coins[], unsigned int mode);
 
-void print_obj_to_char(obj_data *obj, char_data *ch, int mode, char *additional_args);
-void list_obj_to_char(obj_data *list, char_data *ch, int mode);
-void print_char_to_char(char_data *targ, char_data *ch, int mode);
-void list_char_to_char(char_data *list, char_data *ch, int mode);
-void print_room_to_char(room_num room_nr, char_data *ch, bool ignore_brief);
-void look_at_room(char_data *ch, int ignore_brief);
-void check_new_surroundings(char_data *ch, bool old_room_was_dark, bool tx_obvious);
-void look_in_direct(char_data *ch, int dir);
-void look_in_obj(char_data *ch, char *arg);
-void look_at_target(char_data *ch, char *arg);
-void identify_obj(obj_data *obj, char_data *ch, int location);
+void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_args);
+void list_obj_to_char(ObjData *list, CharData *ch, int mode);
+void print_char_to_char(CharData *targ, CharData *ch, int mode);
+void list_char_to_char(CharData *list, CharData *ch, int mode);
+void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief);
+void look_at_room(CharData *ch, int ignore_brief);
+void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
+void look_in_direct(CharData *ch, int dir);
+void look_in_obj(CharData *ch, char *arg);
+void look_at_target(CharData *ch, char *arg);
+void identify_obj(ObjData *obj, CharData *ch, int location);
 const char *status_string(int cur, int max, int mode);
 
 /* status_string mode codes */
@@ -100,24 +114,24 @@ const char *armor_message(int ac);
 const char *perception_message(int perception);
 const char *hiddenness_message(int hiddenness);
 const char *ability_message(int value);
-long xp_percentage(char_data *ch);
-const char *exp_message(char_data *ch);
-const char *exp_bar(char_data *ch, int length, int gradations, int sub_gradations, bool color);
-const char *cooldown_bar(char_data *ch, int cooldown, int length, int gradations, bool color);
+long xp_percentage(CharData *ch);
+const char *exp_message(CharData *ch);
+const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color);
+const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations, bool color);
 const char *proficiency_message(int proficiency);
 
 /* item functions */
-// extern get_context *begin_get_transaction(char_data *ch);
-// extern void end_get_transaction(get_context *context, const void *vict_obj);
-// extern void perform_get_from_room(get_context *context, obj_data *obj);
-// extern void perform_get_from_container(get_context *context, obj_data *obj, obj_data *cont);
-// extern void get_random_object(get_context *context);
+GetContext *begin_get_transaction(CharData *ch);
+void end_get_transaction(GetContext *context, const void *vict_obj);
+void perform_get_from_room(GetContext *context, ObjData *obj);
+void perform_get_from_container(GetContext *context, ObjData *obj, ObjData *cont);
+void get_random_object(GetContext *context);
 
-// extern void get_from_container(char_data *ch, obj_data *cont, char *name, int *amount);
-// extern void get_from_room(char_data *ch, char *name, int amount);
-// extern bool can_take_obj(char_data *ch, obj_data *obj);
-// extern void get_check_money(char_data *ch, obj_data *obj);
+void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount);
+void get_from_room(CharData *ch, char *name, int amount);
+bool can_take_obj(CharData *ch, ObjData *obj);
+void get_check_money(CharData *ch, ObjData *obj);
 
-// extern bool has_corpse_consent(char_data *ch, obj_data *cont);
-// extern bool check_get_disarmed_obj(char_data *ch, char_data *last_to_hold, obj_data *obj);
-// extern int conceal_roll(char_data *ch, obj_data *obj);
+bool has_corpse_consent(CharData *ch, ObjData *cont);
+bool check_get_disarmed_obj(CharData *ch, CharData *last_to_hold, ObjData *obj);
+int conceal_roll(CharData *ch, ObjData *obj);

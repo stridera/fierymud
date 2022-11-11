@@ -16,6 +16,7 @@
 #include "db.hpp"
 #include "interpreter.hpp"
 #include "math.hpp"
+#include "objects.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
@@ -26,17 +27,12 @@
  * name, shortname, initial, color, abbrev, scale
  */
 
-struct coindef coindefs[NUM_COIN_TYPES] = {{"platinum", "plat", "p", "&6&b", "p", 1000},
-                                           {"gold", NULL, "g", "&3&b", "g", 100},
-                                           {"silver", NULL, "s", "&7&b", "s", 10},
-                                           {"copper", NULL, "c", "&3", "c", 1}};
-
 bool is_coin_name(char *name, int cointype) {
     if (!str_cmp(name, COIN_NAME(cointype)))
-        return TRUE;
+        return true;
     if (COIN_SHORTNAME(cointype) && !str_cmp(name, COIN_SHORTNAME(cointype)))
-        return TRUE;
-    return FALSE;
+        return true;
+    return false;
 }
 
 #define APPENDCOIN(coin) sprintf(buf, "%s%s%d" ANRM " %s", buf, COIN_COLOR(coin), coins[coin], COIN_NAME(coin))
@@ -95,8 +91,8 @@ void statemoney(char *buf, const int coins[]) {
 /* Prints a string about some money, in the requested number of spaces,
  * using at most two types of coin. */
 void briefmoney(char *buf, int spaces, int amt) {
-    bool topset = FALSE;
-    bool lowset = FALSE;
+    bool topset = false;
+    bool lowset = false;
     int toptype = 0, topval = 0, topchars = 0, lowtype = 0, lowval = 0, lowchars = 0, padding = 0;
     int i, maxval = 9;
     int coins[4];
@@ -116,12 +112,12 @@ void briefmoney(char *buf, int spaces, int amt) {
     for (i = 0; i < 4; i++) {
         if (coins[i]) {
             if (!topset) {
-                topset = TRUE;
+                topset = true;
                 toptype = i;
                 topval = coins[i];
                 topchars = sprintf(buf, "%d", topval); /* count digits */
             } else if (!lowset) {
-                lowset = TRUE;
+                lowset = true;
                 lowtype = i;
                 lowval = coins[i];
                 lowchars = sprintf(buf, "%d", lowval); /* count digits */
@@ -132,7 +128,7 @@ void briefmoney(char *buf, int spaces, int amt) {
     /* If the top coin type and low coin type can't fit within the requested
      * space, only the top will be used */
     if (lowset && lowchars + topchars > spaces - 2)
-        lowset = FALSE;
+        lowset = false;
 
     *buf = '\0';
 
@@ -156,7 +152,7 @@ bool parse_money(char **money, int coins[]) {
     char arg[MAX_INPUT_LENGTH];
     int amount, type;
     char *last;
-    bool found_coins = FALSE;
+    bool found_coins = false;
 
     coins[PLATINUM] = 0;
     coins[GOLD] = 0;
@@ -175,12 +171,12 @@ bool parse_money(char **money, int coins[]) {
         }
         amount = atoi(arg);
         *money = any_one_arg(*money, arg);
-        if (!*arg || (type = parse_obj_name(NULL, arg, NULL, NUM_COIN_TYPES, coindefs, sizeof(coindef))) < 0) {
+        if (!*arg || (type = parse_obj_name(nullptr, arg, nullptr, NUM_COIN_TYPES, coindefs, sizeof(CoinDef))) < 0) {
             *money = last;
             break;
         }
         coins[type] += amount;
-        found_coins = TRUE;
+        found_coins = true;
     }
 
     return found_coins;
@@ -247,14 +243,14 @@ void money_desc(int amount, char **shortdesc, char **keywords) {
         *keywords = kwbuf;
 }
 
-struct obj_data *create_money(const int coins[]) {
-    struct obj_data *obj;
+ObjData *create_money(const int coins[]) {
+    ObjData *obj;
     int amount = coins[PLATINUM] + coins[GOLD] + coins[SILVER] + coins[COPPER];
     int which;
 
     if (amount <= 0) {
         mprintf(L_ERROR, LVL_IMMORT, "SYSERR: create_money: Attempt to create %d money.", amount);
-        return NULL;
+        return nullptr;
     }
 
     for (which = 0; which < NUM_COIN_TYPES; ++which)
@@ -263,11 +259,11 @@ struct obj_data *create_money(const int coins[]) {
                     "SYSERR: create_money: Attempt to "
                     "create money with %d %s.",
                     coins[which], COIN_NAME(which));
-            return NULL;
+            return nullptr;
         }
 
     obj = create_obj();
-    CREATE(obj->ex_description, extra_descr_data, 1);
+    CREATE(obj->ex_description, ExtraDescriptionData, 1);
 
     GET_OBJ_TYPE(obj) = ITEM_MONEY;
     GET_OBJ_WEAR(obj) = ITEM_WEAR_TAKE;

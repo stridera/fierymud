@@ -22,24 +22,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* name, color, verb1st, verb2nd, action */
-
-struct damdef damtypes[NUM_DAMTYPES] = {{"slash", "&3", "slash", "slashes", "slash"},
-                                        {"pierce", "&3", "pierce", "pierces", "slash"},
-                                        {"crush", "&3", "crush", "crushes", "crush"},
-                                        {"shock", "&4&b", "shock", "shocks", "shock"},
-                                        {"fire", "&1&b", "burn", "burns", "flame"},
-                                        {"water", "&4", "drown", "drowns", "flood"},
-                                        {"cold", "&4", "freeze", "freezes", "freeze"},
-                                        {"acid", "&2", "corrode", "corrodes", "spray"},
-                                        {"poison", "&2&b", "poison", "poisons", "poison"},
-                                        {"heal", "&6", "harm", "harms", "harm"},
-                                        {"align", "&6&b", "rebuke", "rebukes", "retribution"},
-                                        {"dispel", "&5&b", "dispel", "dispels", "dispersion"},
-                                        {"discorporate", "&5", "discorporate", "discorporates", "discorporation"},
-                                        {"mental", "", "punish", "punishes", "punishment"}};
-
-int parse_damtype(char_data *ch, char *arg) {
+int parse_damtype(CharData *ch, char *arg) {
     return parse_obj_name(ch, arg, "damage type", NUM_DAMTYPES, damtypes, sizeof(damdef));
 }
 
@@ -53,7 +36,7 @@ int parse_damtype(char_data *ch, char *arg) {
  * start getting toward 0 susceptibility before evasion becomes very
  * probable. */
 
-bool damage_evasion(char_data *ch, char_data *attacker, obj_data *weapon, int dtype) {
+bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype) {
     int s;
 
     /* Ether mobs are not immune at all to blessed physical attacks. */
@@ -102,7 +85,7 @@ int skill_to_dtype(int skill) {
     }
 }
 
-void damage_evasion_message(char_data *ch, char_data *vict, obj_data *weapon, int dtype) {
+void damage_evasion_message(CharData *ch, CharData *vict, ObjData *weapon, int dtype) {
     int damtype = dtype;
 
     if (weapon) {
@@ -112,15 +95,15 @@ void damage_evasion_message(char_data *ch, char_data *vict, obj_data *weapon, in
     /* Check for physical attacks against not-so-solid opponents. */
     if ((damtype == DAM_SLASH || damtype == DAM_PIERCE || damtype == DAM_CRUSH) && !RIGID(vict)) {
         if (weapon) {
-            act(EVASIONCLR "Your $o passes harmlessly through $N" EVASIONCLR "!&0", FALSE, ch, weapon, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o passes harmlessly through $N" EVASIONCLR "!&0", FALSE, ch, weapon,
+            act(EVASIONCLR "Your $o passes harmlessly through $N" EVASIONCLR "!&0", false, ch, weapon, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o passes harmlessly through $N" EVASIONCLR "!&0", false, ch, weapon,
                 vict, TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o passes harmlessly through you.&0", FALSE, ch, weapon, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o passes harmlessly through you.&0", false, ch, weapon, vict, TO_VICT);
         } else {
-            act(EVASIONCLR "Your fist passes harmlessly through $N" EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR "'s fist passes harmlessly through $N" EVASIONCLR "!&0", FALSE, ch, 0, vict,
+            act(EVASIONCLR "Your fist passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s fist passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR "'s fist passes harmlessly through you.&0", FALSE, ch, 0, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s fist passes harmlessly through you.&0", false, ch, 0, vict, TO_VICT);
         }
         return;
     }
@@ -130,51 +113,51 @@ void damage_evasion_message(char_data *ch, char_data *vict, obj_data *weapon, in
     switch (damtype) {
     case DAM_SLASH:
         if (weapon) {
-            act(EVASIONCLR "Your $o slides harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, weapon, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o slides harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, weapon, vict,
+            act(EVASIONCLR "Your $o slides harmlessly off $N" EVASIONCLR "!&0", false, ch, weapon, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o slides harmlessly off $N" EVASIONCLR "!&0", false, ch, weapon, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o slides harmlessly off you.&0", FALSE, ch, weapon, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o slides harmlessly off you.&0", false, ch, weapon, vict, TO_VICT);
         } else {
-            act(EVASIONCLR "Your blade slides harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR "'s blade slides harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, 0, vict,
+            act(EVASIONCLR "Your blade slides harmlessly off $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s blade slides harmlessly off $N" EVASIONCLR "!&0", false, ch, 0, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR "'s blade slides harmlessly off you.&0", FALSE, ch, 0, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s blade slides harmlessly off you.&0", false, ch, 0, vict, TO_VICT);
         }
         break;
     case DAM_PIERCE:
         if (weapon) {
-            act(EVASIONCLR "Your $o fails to pierce $N" EVASIONCLR " at all!&0", FALSE, ch, weapon, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o fails to pierce $N" EVASIONCLR " at all!&0", FALSE, ch, weapon, vict,
+            act(EVASIONCLR "Your $o fails to pierce $N" EVASIONCLR " at all!&0", false, ch, weapon, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o fails to pierce $N" EVASIONCLR " at all!&0", false, ch, weapon, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o fails to pierce you at all.&0", FALSE, ch, weapon, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o fails to pierce you at all.&0", false, ch, weapon, vict, TO_VICT);
         } else {
-            act(EVASIONCLR "You fail to pierce $N" EVASIONCLR " at all!&0", FALSE, ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR " fails to pierce $N" EVASIONCLR " at all!&0", FALSE, ch, 0, vict,
+            act(EVASIONCLR "You fail to pierce $N" EVASIONCLR " at all!&0", false, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR " fails to pierce $N" EVASIONCLR " at all!&0", false, ch, 0, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR " fails to pierce you at all.&0", FALSE, ch, 0, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR " fails to pierce you at all.&0", false, ch, 0, vict, TO_VICT);
         }
         break;
     case DAM_CRUSH:
         if (weapon) {
-            act(EVASIONCLR "Your $o bounces harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, weapon, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o bounces harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, weapon, vict,
+            act(EVASIONCLR "Your $o bounces harmlessly off $N" EVASIONCLR "!&0", false, ch, weapon, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o bounces harmlessly off $N" EVASIONCLR "!&0", false, ch, weapon, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR "'s $o bounces harmlessly off you.&0", FALSE, ch, weapon, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s $o bounces harmlessly off you.&0", false, ch, weapon, vict, TO_VICT);
         } else {
-            act(EVASIONCLR "Your fist bounces harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR "'s fist bounces harmlessly off $N" EVASIONCLR "!&0", FALSE, ch, 0, vict,
+            act(EVASIONCLR "Your fist bounces harmlessly off $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR "'s fist bounces harmlessly off $N" EVASIONCLR "!&0", false, ch, 0, vict,
                 TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR "'s fist bounces harmlessly off you.&0", FALSE, ch, 0, vict, TO_VICT);
+            act(EVASIONCLR "$n" EVASIONCLR "'s fist bounces harmlessly off you.&0", false, ch, 0, vict, TO_VICT);
         }
         break;
     case DAM_POISON:
         sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s $N" EVASIONCLR ", but $E is immune!&0",
                 damtypes[damtype].verb1st);
-        act(buf, FALSE, ch, 0, vict, TO_NOTVICT);
+        act(buf, false, ch, 0, vict, TO_NOTVICT);
         sprintf(buf, EVASIONCLR "You try to %s $N" EVASIONCLR ", but $E is immune!&0", damtypes[damtype].verb1st);
-        act(buf, FALSE, ch, 0, vict, TO_CHAR);
+        act(buf, false, ch, 0, vict, TO_CHAR);
         sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s you, but you are immune!&0", damtypes[damtype].verb1st);
-        act(buf, FALSE, ch, 0, vict, TO_VICT);
+        act(buf, false, ch, 0, vict, TO_VICT);
         break;
     case DAM_SHOCK:
     case DAM_FIRE:
@@ -192,30 +175,30 @@ void damage_evasion_message(char_data *ch, char_data *vict, obj_data *weapon, in
         else
             sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on $N" EVASIONCLR "!",
                     damtypes[damtype].action);
-        act(buf, FALSE, ch, 0, vict, TO_NOTVICT);
+        act(buf, false, ch, 0, vict, TO_NOTVICT);
         if (number(1, 3) == 1)
             sprintf(buf, EVASIONCLR "You try to %s $N" EVASIONCLR ", but $E is completely unaffected!&0",
                     damtypes[damtype].verb1st);
         else
             sprintf(buf, EVASIONCLR "Your %s has no effect on $N" EVASIONCLR "!", damtypes[damtype].action);
-        act(buf, FALSE, ch, 0, vict, TO_CHAR);
+        act(buf, false, ch, 0, vict, TO_CHAR);
         if (number(1, 3) == 1)
             sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s you, but you are completely unaffected!&0",
                     damtypes[damtype].verb1st);
         else
             sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on you!", damtypes[damtype].action);
-        act(buf, FALSE, ch, 0, vict, TO_VICT);
+        act(buf, false, ch, 0, vict, TO_VICT);
         break;
     }
 }
 
-int weapon_damtype(obj_data *obj) {
+int weapon_damtype(ObjData *obj) {
     if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
         return skill_to_dtype(TYPE_HIT + GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE));
     return DAM_CRUSH;
 }
 
-int physical_damtype(char_data *ch) {
+int physical_damtype(CharData *ch) {
     if (equipped_weapon(ch))
         return weapon_damtype(equipped_weapon(ch));
     else

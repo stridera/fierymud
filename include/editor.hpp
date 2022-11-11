@@ -15,7 +15,7 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-enum ed_command_type {
+enum EditorCommandEnum {
     ED_BEGIN,
     ED_CLEAR,        /* /c */
     ED_FORMAT,       /* /f */
@@ -41,18 +41,33 @@ enum ed_cleanup_action { ED_NO_ACTION, ED_FREE_DATA, NUM_ED_CLEANUP_ACTIONS };
 #define ED_DEFAULT_MAX_LINES 100
 #define ED_DEFAULT_PAGE_WIDTH 78
 
-#define EDITOR_FUNC(name) enum ed_status_type(name)(editor_context * edit)
+#define EDITOR_FUNC(name) enum ed_status_type(name)(EditorContext * edit)
 
-struct editor_context {
-    struct descriptor_data *descriptor;
+struct EditorContext {
+    DescriptorData *descriptor;
 
     char *string;
     size_t max_length;
     size_t max_lines;
     void *data;
 
-    enum ed_command_type command;
+    enum EditorCommandEnum command;
     const char *argument;
+};
+
+struct EditorData {
+    bool started;
+    char *string;
+    char **destination;
+    char *begin_string;
+    size_t length;
+    size_t max_length;
+    size_t lines;
+    size_t max_lines;
+    void *data;
+    enum ed_cleanup_action cleanup_action;
+
+    EDITOR_FUNC(*action[NUM_ED_COMMAND_TYPES]);
 };
 
 /* Function prototypes */
@@ -69,11 +84,11 @@ EDITOR_FUNC(editor_default_exit);
 EDITOR_FUNC(editor_default_spellcheck);
 EDITOR_FUNC(editor_default_other);
 
-const struct descriptor_data *editor_edited_by(char **message);
-void editor_interpreter(descriptor_data *d, char *line);
-void editor_init(descriptor_data *d, char **string, size_t max_length);
-void editor_set_callback_data(descriptor_data *d, void *data, enum ed_cleanup_action action);
-void editor_set_callback(descriptor_data *d, enum ed_command_type type, EDITOR_FUNC(*callback));
-void editor_set_max_lines(descriptor_data *d, size_t max_lines);
-void editor_set_begin_string(descriptor_data *d, char *string, ...) __attribute__((format(printf, 2, 3)));
-void editor_cleanup(descriptor_data *d);
+const DescriptorData *editor_edited_by(char **message);
+void editor_interpreter(DescriptorData *d, char *line);
+void editor_init(DescriptorData *d, char **string, size_t max_length);
+void editor_set_callback_data(DescriptorData *d, void *data, enum ed_cleanup_action action);
+void editor_set_callback(DescriptorData *d, enum EditorCommandEnum type, EDITOR_FUNC(*callback));
+void editor_set_max_lines(DescriptorData *d, size_t max_lines);
+void editor_set_begin_string(DescriptorData *d, char *string, ...) __attribute__((format(printf, 2, 3)));
+void editor_cleanup(DescriptorData *d);

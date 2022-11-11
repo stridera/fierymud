@@ -11,6 +11,7 @@
  ***************************************************************************/
 #pragma once
 
+#include "rules.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -43,37 +44,37 @@
  */
 
 /* list of edits made to a message */
-struct board_message_edit {
+struct BoardMessageEdit {
     char *editor;
     time_t time;
-    board_message_edit *next;
+    BoardMessageEdit *next;
 };
 
-struct board_iter {
+struct BoardIter {
     int index;
 };
 
 /* board message */
-struct board_message {
+struct BoardMessage {
     char *poster; /* player name */
     int level;    /* player's level */
     time_t time;  /* time of posting */
     char *subject;
     char *message;
     bool sticky; /* sticky messages float towards the top of the board */
-    board_message_edit *edits;
-    char_data *editing; /* message currently being edited by... */
+    BoardMessageEdit *edits;
+    CharData *editing; /* message currently being edited by... */
 };
 
-struct board_data {
+struct BoardData {
     int number; /* board id (i.e., vnum) */
 
-    rule *privileges[NUM_BPRIV];
+    Rule *privileges[NUM_BPRIV];
 
     char *alias; /* letters, numbers, underscore only; used as filename */
     char *title; /* any characters */
 
-    board_message **messages;
+    BoardMessage **messages;
     int message_count;
 
     bool locked; /* locked by moderator */
@@ -82,30 +83,30 @@ struct board_data {
 
 /* editing meta data, goes in editor's callback data */
 struct board_editing_data {
-    board_data *board;
-    board_message *message;
+    BoardData *board;
+    BoardMessage *message;
     char *subject;
     bool sticky;
 };
 
-// extern board_data *board(int num);
-// extern board_message *board_message(const board_data *board, int num);
+BoardData *board(int num);
+BoardMessage *board_message(const BoardData *board, int num);
 
-// extern board_iter *board_iterator();
-// extern const board_data *next_board(board_iter *iter);
-// extern void free_board_iterator(board_iter *iter);
+BoardIter *board_iterator();
+const BoardData *next_board(BoardIter *iter);
+void free_board_iterator(BoardIter *iter);
 
-// extern int board_count();
-// extern bool valid_alias(const char *alias);
+int board_count();
+bool valid_alias(const char *alias);
 
-// extern void board_init();
-// extern void board_cleanup();
-// extern void save_board_index();
-// extern void save_board(board_data *board);
+void board_init();
+void board_cleanup();
+void save_board_index();
+void save_board(BoardData *board);
 
-// extern void look_at_board(char_data *ch, const board_data *board, const obj_data *face);
-// extern void read_message(char_data *ch, board_data *board, int msg);
-// extern void edit_message(char_data *ch, board_data *board, int msg);
-// extern void remove_message(char_data *ch, board_data *board, int msg, const obj_data *face);
-// extern void write_message(char_data *ch, board_data *board, const char *subject);
-// extern bool has_board_privilege(char_data *ch, const board_data *board, int privnum);
+void look_at_board(CharData *ch, const BoardData *board, const ObjData *face);
+void read_message(CharData *ch, BoardData *board, int msg);
+void edit_message(CharData *ch, BoardData *board, int msg);
+void remove_message(CharData *ch, BoardData *board, int msg, const ObjData *face);
+void write_message(CharData *ch, BoardData *board, const char *subject);
+bool has_board_privilege(CharData *ch, const BoardData *board, int privnum);

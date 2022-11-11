@@ -15,9 +15,9 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-/* void hp_check_position( char_data *ch); */
-void alter_hit(char_data *ch, int amount, bool cap_amount);
-void hurt_char(char_data *ch, char_data *attacker, int amount, bool cap_amount);
-void alter_mana(char_data *ch, int amount);
-void alter_move(char_data *ch, int amount);
-void check_regen_rates(char_data *ch);
+/* void hp_check_position( CharData *ch); */
+void alter_hit(CharData *ch, int amount, bool cap_amount);
+void hurt_char(CharData *ch, CharData *attacker, int amount, bool cap_amount);
+void alter_mana(CharData *ch, int amount);
+void alter_move(CharData *ch, int amount);
+void check_regen_rates(CharData *ch);

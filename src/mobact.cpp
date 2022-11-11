@@ -12,7 +12,8 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "act.hpp" #include "ai.hpp"
+#include "act.hpp"
+#include "ai.hpp"
 #include "casting.hpp"
 #include "comm.hpp"
 #include "composition.hpp"
@@ -32,10 +33,6 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* external structs */
-extern struct char_data *combat_list; /* head of l-list of fighting chars */
-extern struct char_data *next_combat_list;
-
 /* External functions */
 ACMD(do_stand);
 ACMD(do_recline);
@@ -49,33 +46,33 @@ ACMD(do_track);
 ACMD(do_hide);
 ACMD(do_sneak);
 ACMD(do_douse);
-bool update_inventory(char_data *ch, obj_data *obj, int where);
-struct char_data *check_guard(char_data *ch, char_data *victim, int gag_output);
-void get_check_money(char_data *ch, obj_data *obj);
-void perform_wear(char_data *ch, obj_data *obj, int where);
-int find_eq_pos(char_data *ch, obj_data *obj, char *arg);
-bool mob_cast(char_data *ch, char_data *tch, obj_data *tobj, int spellnum);
-void hunt_victim(char_data *ch);
-void start_memming(char_data *ch);
+bool update_inventory(CharData *ch, ObjData *obj, int where);
+CharData *check_guard(CharData *ch, CharData *victim, int gag_output);
+void get_check_money(CharData *ch, ObjData *obj);
+void perform_wear(CharData *ch, ObjData *obj, int where);
+int find_eq_pos(CharData *ch, ObjData *obj, char *arg);
+bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
+void hunt_victim(CharData *ch);
+void start_memming(CharData *ch);
 
 /* Local functions */
-bool check_mob_status(char_data *ch);
-void remember(char_data *ch, char_data *victim);
-void mob_attempt_equip(char_data *ch);
-bool mob_memory_action(char_data *ch, bool allow_spells);
-void memory_attack_announce(char_data *ch, char_data *victim);
-void memory_attack(char_data *ch, char_data *vict);
-void track_victim_check(char_data *ch, char_data *vict);
-bool mob_memory_check(char_data *ch);
+bool check_mob_status(CharData *ch);
+void remember(CharData *ch, CharData *victim);
+void mob_attempt_equip(CharData *ch);
+bool mob_memory_action(CharData *ch, bool allow_spells);
+void memory_attack_announce(CharData *ch, CharData *victim);
+void memory_attack(CharData *ch, CharData *vict);
+void track_victim_check(CharData *ch, CharData *vict);
+bool mob_memory_check(CharData *ch);
 /* mobile_activity subfunctions */
-void mob_scavenge(char_data *ch);
-bool mob_movement(char_data *ch);
-bool mob_assist(char_data *ch);
-void mob_attack(char_data *ch, char_data *victim);
-bool check_spellbank(char_data *ch);
+void mob_scavenge(CharData *ch);
+bool mob_movement(CharData *ch);
+bool mob_assist(CharData *ch);
+void mob_attack(CharData *ch, CharData *victim);
+bool check_spellbank(CharData *ch);
 
 void mobile_activity(void) {
-    struct char_data *ch, *next_ch;
+    CharData *ch, *next_ch;
     extern int no_specials;
 
     for (ch = character_list; ch; ch = next_ch) {
@@ -114,7 +111,7 @@ void mobile_activity(void) {
 
         /* Execute any special procs. */
         if (MOB_PERFORMS_SCRIPTS(ch) && MOB_FLAGGED(ch, MOB_SPEC) && !no_specials) {
-            if (mob_index[GET_MOB_RNUM(ch)].func == NULL) {
+            if (mob_index[GET_MOB_RNUM(ch)].func == nullptr) {
                 sprintf(buf, "%s (#%d): Attempting to call non-existing mob func", GET_NAME(ch), GET_MOB_VNUM(ch));
                 log(buf);
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_SPEC);
@@ -141,7 +138,7 @@ void mobile_activity(void) {
          */
         if (EFF_FLAGGED(ch, EFF_ON_FIRE) && number(0, 1)) {
             /* If the mob is flagged !CLASS_AI, then just douse, don't try to cast. */
-            if (MOB_FLAGGED(ch, MOB_NO_CLASS_AI) ? TRUE : !mob_cast(ch, ch, NULL, SPELL_EXTINGUISH))
+            if (MOB_FLAGGED(ch, MOB_NO_CLASS_AI) ? true : !mob_cast(ch, ch, nullptr, SPELL_EXTINGUISH))
                 do_douse(ch, "", 0, 0);
             continue;
         }
@@ -224,7 +221,7 @@ void mobile_activity(void) {
          * marked memory, has someone in its memory.
          */
         if (!MOB_FLAGGED(ch, MOB_SENTINEL) && MOB_FLAGGED(ch, MOB_SLOW_TRACK) && MOB_FLAGGED(ch, MOB_MEMORY))
-            if (mob_memory_action(ch, FALSE))
+            if (mob_memory_action(ch, false))
                 continue;
     }
 }
@@ -235,8 +232,8 @@ void mobile_activity(void) {
  * This handles special mobile activity, called every PULSE_VIOLENCE.
  */
 void mobile_spec_activity(void) {
-    struct char_data *ch, *next_ch, *vict;
-    int found = FALSE;
+    CharData *ch, *next_ch, *vict;
+    int found = false;
 
     for (ch = character_list; ch; ch = next_ch) {
         next_ch = ch->next;
@@ -261,12 +258,12 @@ void mobile_spec_activity(void) {
 
         /* Pets, courtesy of Banyal */
         if (PLAYERALLY(ch) && PRF_FLAGGED(ch->master, PRF_PETASSIST)) {
-            found = FALSE;
+            found = false;
             for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room)
                 if (ch != vict && (ch->master == vict) && FIGHTING(vict) && ch != FIGHTING(vict)) {
-                    act("&7$n assists $s master!&0", FALSE, ch, 0, vict, TO_ROOM);
-                    attack(ch, check_guard(ch, FIGHTING(vict), FALSE));
-                    found = TRUE;
+                    act("&7$n assists $s master!&0", false, ch, 0, vict, TO_ROOM);
+                    attack(ch, check_guard(ch, FIGHTING(vict), false));
+                    found = true;
                     break;
                 }
             if (found)
@@ -311,7 +308,7 @@ void mobile_spec_activity(void) {
          * Attempt to summon victim, dim door to victim, or just fast track.
          */
         if (GET_SKILL(ch, SPELL_SUMMON) || GET_SKILL(ch, SPELL_DIMENSION_DOOR) || MOB_FLAGGED(ch, MOB_FAST_TRACK))
-            if (mob_memory_action(ch, TRUE))
+            if (mob_memory_action(ch, true))
                 continue;
     }
 }
@@ -321,7 +318,7 @@ void mobile_spec_activity(void) {
    are in battle to attempt special skills, such as bash or spellcasting.
 */
 void perform_mob_violence(void) {
-    struct char_data *ch;
+    CharData *ch;
 
     for (ch = combat_list; ch; ch = next_combat_list) {
         next_combat_list = ch->next_fighting;
@@ -337,7 +334,7 @@ void perform_mob_violence(void) {
                 if (GET_POS(ch) < POS_STANDING) {
                     GET_POS(ch) = POS_STANDING;
                     GET_STANCE(ch) = STANCE_FIGHTING;
-                    act("&0&3$n scrambles to $s feet!&0", TRUE, ch, 0, 0, TO_ROOM);
+                    act("&0&3$n scrambles to $s feet!&0", true, ch, 0, 0, TO_ROOM);
                 } else
                     mob_attack(ch, FIGHTING(ch));
             }
@@ -345,28 +342,28 @@ void perform_mob_violence(void) {
     }
 }
 
-bool mob_movement(char_data *ch) {
-    struct char_data *vict;
+bool mob_movement(CharData *ch) {
+    CharData *vict;
     int door = number(0, 18);
 
     if (door >= NUM_OF_DIRS || !CAN_GO(ch, door))
-        return FALSE;
+        return false;
     if (ROOM_FLAGGED(CH_NDEST(ch, door), ROOM_NOMOB) || ROOM_FLAGGED(CH_NDEST(ch, door), ROOM_DEATH))
-        return FALSE;
+        return false;
     if (MOB_FLAGGED(ch, MOB_STAY_ZONE) && CH_DEST(ch, door)->zone != CH_ROOM(ch)->zone)
-        return FALSE;
+        return false;
     if (EFF_FLAGGED(ch, EFF_CHARM) && !MOB_FLAGGED(ch, MOB_ILLUSORY))
-        return FALSE;
+        return false;
 
     /* Don't wander off while someone is fighting you! */
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room)
         if (FIGHTING(vict) == ch)
-            return FALSE;
+            return false;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ISOLATION)) {
-        act("$n looks vainly about for an exit.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n looks vainly about for an exit.", true, ch, 0, 0, TO_ROOM);
         /* True since it did *something* (looking around) */
-        return TRUE;
+        return true;
     }
 
     /* If we made it through all the checks above, then move! */
@@ -375,21 +372,21 @@ bool mob_movement(char_data *ch) {
     if (EFF_FLAGGED(ch, EFF_MISDIRECTION)) {
         if (number(1, NUM_OF_DIRS) == 1) {
             /* Decided to stay but pretend to move */
-            perform_move(ch, door, 1, TRUE);
+            perform_move(ch, door, 1, true);
         } else {
             /* Decided to move */
-            perform_move(ch, number(0, NUM_OF_DIRS - 1), 1, TRUE);
+            perform_move(ch, number(0, NUM_OF_DIRS - 1), 1, true);
             SET_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
-            perform_move(ch, door, 1, FALSE);
+            perform_move(ch, door, 1, false);
             REMOVE_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
         }
     } else
-        perform_move(ch, door, 1, FALSE);
-    return TRUE;
+        perform_move(ch, door, 1, false);
+    return true;
 }
 
-bool mob_assist(char_data *ch) {
-    struct char_data *vict, *cvict = NULL;
+bool mob_assist(CharData *ch) {
+    CharData *vict, *cvict = nullptr;
 
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room) {
         if (!will_assist(ch, vict))
@@ -410,31 +407,31 @@ bool mob_assist(char_data *ch) {
                  number(1, 100 + GET_CHA(FIGHTING(vict)) - GET_CHA(vict)) < 50) {
             act("$n moves to join the fight, but gets a good look at $N and stops, "
                 "confused.",
-                TRUE, ch, 0, FIGHTING(vict), TO_ROOM);
-            act("You want to help, but $N looks like your friend too!", FALSE, ch, 0, FIGHTING(vict), TO_CHAR);
-            return FALSE;
+                true, ch, 0, FIGHTING(vict), TO_ROOM);
+            act("You want to help, but $N looks like your friend too!", false, ch, 0, FIGHTING(vict), TO_CHAR);
+            return false;
         } else {
-            act("$n jumps to the aid of $N!", FALSE, ch, 0, vict, TO_ROOM);
+            act("$n jumps to the aid of $N!", false, ch, 0, vict, TO_ROOM);
             mob_attack(ch, FIGHTING(vict));
-            return TRUE;
+            return true;
         }
     }
     if (cvict) {
         int chuckle = number(1, 10);
         if (chuckle == 1)
-            act("$n watches the battle in amusement.", FALSE, ch, 0, cvict, TO_ROOM);
+            act("$n watches the battle in amusement.", false, ch, 0, cvict, TO_ROOM);
         else if (chuckle == 2)
-            act("$n chuckles as $e watches the fight.", FALSE, ch, 0, cvict, TO_ROOM);
+            act("$n chuckles as $e watches the fight.", false, ch, 0, cvict, TO_ROOM);
         else if (chuckle == 3) {
-            act("$n takes note of your battle tactics.", FALSE, ch, 0, FIGHTING(cvict), TO_CHAR);
-            act("$n takes note of $N's battle tactics.", FALSE, ch, 0, FIGHTING(cvict), TO_ROOM);
+            act("$n takes note of your battle tactics.", false, ch, 0, FIGHTING(cvict), TO_CHAR);
+            act("$n takes note of $N's battle tactics.", false, ch, 0, FIGHTING(cvict), TO_ROOM);
         }
     }
 
-    return FALSE;
+    return false;
 }
 
-void mob_attack(char_data *ch, char_data *victim) {
+void mob_attack(CharData *ch, CharData *victim) {
     if (CASTING(ch))
         return;
 
@@ -446,7 +443,7 @@ void mob_attack(char_data *ch, char_data *victim) {
     /* See if anyone is guarding the victim.
      * But guarding doesn't apply if this NPC was already fighting the victim. */
     if (FIGHTING(ch) != victim)
-        victim = check_guard(ch, victim, FALSE);
+        victim = check_guard(ch, victim, false);
 
     /* Mob should not execute any special mobile AI procedures. */
     if (!MOB_FLAGGED(ch, MOB_NO_CLASS_AI)) {
@@ -524,16 +521,16 @@ void mob_attack(char_data *ch, char_data *victim) {
         attack(ch, victim);
 }
 
-void mob_scavenge(char_data *ch) {
+void mob_scavenge(CharData *ch) {
     int best_value, value;
-    struct obj_data *best_obj, *obj;
+    ObjData *best_obj, *obj;
 
     /* If there's nothing to pick up, return.  50% chance otherwise. */
     if (!world[ch->in_room].contents || !number(0, 1))
         return;
 
     best_value = 0;
-    best_obj = NULL;
+    best_obj = nullptr;
 
     /* Find the most desirable item in the room. */
     for (obj = world[ch->in_room].contents; obj; obj = obj->next_content)
@@ -543,10 +540,10 @@ void mob_scavenge(char_data *ch) {
         }
 
     /* And then pick it up. */
-    if (best_obj != NULL) {
-        struct get_context *context = begin_get_transaction(ch);
+    if (best_obj != nullptr) {
+        GetContext *context = begin_get_transaction(ch);
         perform_get_from_room(context, best_obj);
-        end_get_transaction(context, NULL);
+        end_get_transaction(context, nullptr);
     }
 }
 
@@ -557,9 +554,9 @@ void mob_scavenge(char_data *ch) {
  * Returns 1 as soon as something is worn or removed.  0
  * otherwise.
  */
-void mob_attempt_equip(char_data *ch) {
+void mob_attempt_equip(CharData *ch) {
     int where;
-    struct obj_data *obj;
+    ObjData *obj;
 
     if (GET_RACE(ch) == RACE_ANIMAL)
         return;
@@ -568,7 +565,7 @@ void mob_attempt_equip(char_data *ch) {
         if (!CAN_SEE_OBJ(ch, obj))
             continue;
 
-        where = find_eq_pos(ch, obj, NULL);
+        where = find_eq_pos(ch, obj, nullptr);
         if (where >= 0) {
             if (GET_EQ(ch, where)) {
                 if (appraise_item(ch, GET_EQ(ch, where)) >= appraise_item(ch, obj))
@@ -588,12 +585,12 @@ void mob_attempt_equip(char_data *ch) {
  *
  * Expects a mob with the MOB_MEMORY flag.
  */
-bool mob_memory_action(char_data *ch, bool allow_spells) {
-    struct descriptor_data *d, *next_d;
-    memory_rec *names;
+bool mob_memory_action(CharData *ch, bool allow_spells) {
+    DescriptorData *d, *next_d;
+    MemoryRec *names;
 
     if (!MEMORY(ch))
-        return FALSE;
+        return false;
 
     /* Check everyone logged on against the memory. */
     for (d = descriptor_list; d; d = next_d) {
@@ -612,11 +609,11 @@ bool mob_memory_action(char_data *ch, bool allow_spells) {
                 if (world[ch->in_room].zone == world[d->character->in_room].zone) {
                     /* First try to summon. */
                     if (GET_LEVEL(d->character) <= GET_SKILL(ch, SKILL_SPHERE_SUMMON) + 3)
-                        if (mob_cast(ch, d->character, NULL, SPELL_SUMMON))
-                            return TRUE;
+                        if (mob_cast(ch, d->character, nullptr, SPELL_SUMMON))
+                            return true;
                     /* Then try to dimension door. */
-                    if (mob_cast(ch, d->character, NULL, SPELL_DIMENSION_DOOR))
-                        return TRUE;
+                    if (mob_cast(ch, d->character, nullptr, SPELL_DIMENSION_DOOR))
+                        return true;
                 }
             }
 
@@ -624,19 +621,19 @@ bool mob_memory_action(char_data *ch, bool allow_spells) {
                 !EVENT_FLAGGED(ch, EVENT_TRACK)) {
                 do_track(ch, GET_NAMELIST(d->character), 0, 0);
                 track_victim_check(ch, d->character);
-                return TRUE;
+                return true;
             }
         }
     }
-    return FALSE;
+    return false;
 }
 
-bool mob_memory_check(char_data *ch) {
-    struct char_data *vict;
-    memory_rec *names;
+bool mob_memory_check(CharData *ch) {
+    CharData *vict;
+    MemoryRec *names;
 
     if (!MEMORY(ch))
-        return FALSE;
+        return false;
 
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room) {
         if (IS_NPC(vict) || !CAN_SEE(ch, vict) || PRF_FLAGGED(vict, PRF_NOHASSLE))
@@ -646,13 +643,13 @@ bool mob_memory_check(char_data *ch) {
             if (names->id != GET_IDNUM(vict))
                 continue;
             track_victim_check(ch, vict);
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
 
-void memory_attack_announce(char_data *ch, char_data *vict) {
+void memory_attack_announce(CharData *ch, CharData *vict) {
     /* No announcement if the mob is trying to be sneaky. */
     if (EFF_FLAGGED(ch, EFF_SNEAK) || GET_HIDDENNESS(ch) > 0)
         return;
@@ -662,23 +659,23 @@ void memory_attack_announce(char_data *ch, char_data *vict) {
         return;
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
-        act("$n silently moves in for the attack.", TRUE, ch, 0, vict, TO_ROOM);
+        act("$n silently moves in for the attack.", true, ch, 0, vict, TO_ROOM);
     } else if (GET_RACE(ch) == RACE_ANIMAL) {
-        act("$n growls angrily at $N, and attacks!", FALSE, ch, 0, vict, TO_NOTVICT);
-        act("$n growls angrily at you, and attacks!", FALSE, ch, 0, vict, TO_VICT);
+        act("$n growls angrily at $N, and attacks!", false, ch, 0, vict, TO_NOTVICT);
+        act("$n growls angrily at you, and attacks!", false, ch, 0, vict, TO_VICT);
     } else {
         switch (number(1, 10)) {
         case 1:
-            act("$n growls, 'Thought you could walk away from a fight, eh?'", FALSE, ch, 0, vict, TO_ROOM);
+            act("$n growls, 'Thought you could walk away from a fight, eh?'", false, ch, 0, vict, TO_ROOM);
             break;
         case 2:
             /* Using GET_NAME because a mob wouldn't growl "someone" */
             sprintf(buf, "$n growls, 'This ends here and now, %s!'", GET_NAME(vict));
-            act(buf, FALSE, ch, 0, vict, TO_ROOM);
+            act(buf, false, ch, 0, vict, TO_ROOM);
             break;
         case 10:
         default:
-            act("$n snarls, 'You're not getting away that easily!'", FALSE, ch, 0, vict, TO_ROOM);
+            act("$n snarls, 'You're not getting away that easily!'", false, ch, 0, vict, TO_ROOM);
             break;
             /*
              * Add more messages here for variety!
@@ -687,7 +684,7 @@ void memory_attack_announce(char_data *ch, char_data *vict) {
     }
 }
 
-void track_victim_check(char_data *ch, char_data *vict) {
+void track_victim_check(CharData *ch, CharData *vict) {
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL))
         return;
     if (ch->in_room == vict->in_room || ((vict = find_char_around_char(ch, find_vis_by_name(ch, GET_NAME(vict)))) &&
@@ -699,19 +696,19 @@ void track_victim_check(char_data *ch, char_data *vict) {
 }
 
 /* Add victim to ch's memory list. */
-void remember(char_data *ch, char_data *victim) {
-    memory_rec *tmp;
-    bool present = FALSE;
+void remember(CharData *ch, CharData *victim) {
+    MemoryRec *tmp;
+    bool present = false;
 
     if (!IS_NPC(ch) || IS_NPC(victim) || PRF_FLAGGED(victim, PRF_NOHASSLE))
         return;
 
     for (tmp = MEMORY(ch); tmp && !present; tmp = tmp->next)
         if (tmp->id == GET_IDNUM(victim))
-            present = TRUE;
+            present = true;
 
     if (!present) {
-        CREATE(tmp, memory_rec, 1);
+        CREATE(tmp, MemoryRec, 1);
         tmp->next = MEMORY(ch);
         tmp->id = GET_IDNUM(victim);
         MEMORY(ch) = tmp;
@@ -719,8 +716,8 @@ void remember(char_data *ch, char_data *victim) {
 }
 
 /* Make character forget a victim. */
-void forget(char_data *ch, char_data *victim) {
-    memory_rec *curr, *prev = NULL;
+void forget(CharData *ch, CharData *victim) {
+    MemoryRec *curr, *prev = nullptr;
 
     if (!(curr = MEMORY(ch)))
         return;
@@ -742,8 +739,8 @@ void forget(char_data *ch, char_data *victim) {
 }
 
 /* erase ch's memory */
-void clear_memory(char_data *ch) {
-    memory_rec *curr, *next;
+void clear_memory(CharData *ch) {
+    MemoryRec *curr, *next;
 
     curr = MEMORY(ch);
 
@@ -753,26 +750,26 @@ void clear_memory(char_data *ch) {
         curr = next;
     }
 
-    MEMORY(ch) = NULL;
+    MEMORY(ch) = nullptr;
 }
 
 /* Returns true if victim is in the mob's memory, false otherwise */
-bool in_memory(char_data *ch, char_data *vict) {
-    memory_rec *memory;
+bool in_memory(CharData *ch, CharData *vict) {
+    MemoryRec *memory;
 
     for (memory = MEMORY(ch); memory; memory = memory->next)
         if (memory->id == GET_IDNUM(vict))
-            return TRUE;
+            return true;
 
-    return FALSE;
+    return false;
 }
 
 /* This function checks mobs for spell ups */
-bool check_mob_status(char_data *ch) {
+bool check_mob_status(CharData *ch) {
     switch (GET_CLASS(ch)) {
     case CLASS_BARD:
         if (check_bard_status(ch))
-            return TRUE;
+            return true;
         break;
     case CLASS_SORCERER:
     case CLASS_PYROMANCER:
@@ -780,7 +777,7 @@ bool check_mob_status(char_data *ch) {
     case CLASS_NECROMANCER:
     case CLASS_ILLUSIONIST:
         if (check_sorcerer_status(ch))
-            return TRUE;
+            return true;
         break;
     case CLASS_CLERIC:
     case CLASS_DRUID:
@@ -790,32 +787,32 @@ bool check_mob_status(char_data *ch) {
     case CLASS_ANTI_PALADIN:
         /* check_cleric_status is useless in combat */
         if (!FIGHTING(ch) && check_cleric_status(ch))
-            return TRUE;
+            return true;
         break;
     }
-    return FALSE;
+    return false;
 }
 
-bool check_spellbank(char_data *ch) {
+bool check_spellbank(CharData *ch) {
     int i;
     /* If any spell circles are not fully charged, start memming and
-     * return TRUE */
+     * return true */
     for (i = 1; i < NUM_SPELL_CIRCLES; ++i)
         if (GET_MOB_SPLBANK(ch, i) < spells_of_circle[(int)GET_LEVEL(ch)][i]) {
-            do_sit(ch, NULL, 0, 0);
+            do_sit(ch, nullptr, 0, 0);
             if (GET_POS(ch) == POS_SITTING && GET_STANCE(ch) >= STANCE_RESTING && GET_STANCE(ch) <= STANCE_ALERT) {
                 act(MEM_MODE(ch) == PRAY ? "$n begins praying to $s deity."
                                          : "$n takes out $s books and begins to study.",
-                    TRUE, ch, 0, 0, TO_ROOM);
+                    true, ch, 0, 0, TO_ROOM);
                 start_memming(ch);
-                return TRUE;
+                return true;
             }
         }
-    return FALSE;
+    return false;
 }
 
-void remove_from_all_memories(char_data *ch) {
-    struct char_data *tch, *next_tch;
+void remove_from_all_memories(CharData *ch) {
+    CharData *tch, *next_tch;
 
     for (tch = character_list; tch; tch = next_tch) {
         next_tch = tch->next;
@@ -831,7 +828,7 @@ void remove_from_all_memories(char_data *ch) {
     }
 }
 
-bool dragonlike_attack(char_data *ch) {
+bool dragonlike_attack(CharData *ch) {
     int roll = number(0, 150 - GET_LEVEL(ch));
 
     /* At level 100, 10% chance to breath, 2% chance for each different type */
@@ -884,13 +881,13 @@ bool dragonlike_attack(char_data *ch) {
                 break;
             }
         }
-        return TRUE;
+        return true;
     }
 
     /* At level 100, 10% chance to sweep */
     else if (roll < 10 && GET_SKILL(ch, SKILL_SWEEP)) {
         do_sweep(ch, "", 0, 0);
-        return TRUE;
+        return true;
     }
 
     /* At level 100, 10% chance to roar */
@@ -903,7 +900,7 @@ bool dragonlike_attack(char_data *ch) {
          * crash if passed an invalid cmd value.
          */
         do_roar(ch, "", cmd_roar, 0);
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }

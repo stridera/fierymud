@@ -26,23 +26,23 @@
 
 int find_help(char *keyword);
 
-void free_help(help_index_element *help);
+void free_help(HelpIndexElement *help);
 
 /* function protos */
-void hedit_disp_menu(descriptor_data *d);
-void hedit_parse(descriptor_data *d, char *arg);
-void hedit_setup_new(descriptor_data *d);
-void hedit_setup_existing(descriptor_data *d, int real_num);
-void hedit_save_to_disk(descriptor_data *d);
-void hedit_save_internally(descriptor_data *d);
+void hedit_disp_menu(DescriptorData *d);
+void hedit_parse(DescriptorData *d, char *arg);
+void hedit_setup_new(DescriptorData *d);
+void hedit_setup_existing(DescriptorData *d, int real_num);
+void hedit_save_to_disk(DescriptorData *d);
+void hedit_save_internally(DescriptorData *d);
 void index_boot(int mode);
 
 /*
  * Utils and exported functions.
  */
 
-void hedit_setup_new(descriptor_data *d) {
-    CREATE(OLC_HELP(d), help_index_element, 1);
+void hedit_setup_new(DescriptorData *d) {
+    CREATE(OLC_HELP(d), HelpIndexElement, 1);
     OLC_HELP(d)->keyword = strdup(OLC_STORAGE(d));
     OLC_HELP(d)->entry = strdup("KEYWORDS\r\n\r\nThis help file is unfinished.\r\n");
     OLC_HELP(d)->min_level = 0;
@@ -53,8 +53,8 @@ void hedit_setup_new(descriptor_data *d) {
 
 /*------------------------------------------------------------------------*/
 
-void hedit_setup_existing(descriptor_data *d, int real_num) {
-    CREATE(OLC_HELP(d), help_index_element, 1);
+void hedit_setup_existing(DescriptorData *d, int real_num) {
+    CREATE(OLC_HELP(d), HelpIndexElement, 1);
     OLC_HELP(d)->keyword = strdup(help_table[real_num].keyword);
     OLC_HELP(d)->entry = strdup(help_table[real_num].entry);
     OLC_HELP(d)->min_level = help_table[real_num].min_level;
@@ -63,14 +63,14 @@ void hedit_setup_existing(descriptor_data *d, int real_num) {
     hedit_disp_menu(d);
 }
 
-void hedit_save_internally(descriptor_data *d) {
-    struct help_index_element *new_help_table = NULL;
+void hedit_save_internally(DescriptorData *d) {
+    HelpIndexElement *new_help_table = nullptr;
     int i;
-    char *temp = NULL;
+    char *temp = nullptr;
 
     /* add a new help element into the list */
     if (OLC_ZNUM(d) > top_of_helpt) {
-        CREATE(new_help_table, help_index_element, top_of_helpt + 2);
+        CREATE(new_help_table, HelpIndexElement, top_of_helpt + 2);
         for (i = 0; i <= top_of_helpt; i++)
             new_help_table[i] = help_table[i];
         new_help_table[++top_of_helpt] = *OLC_HELP(d);
@@ -107,7 +107,7 @@ void hedit_save_internally(descriptor_data *d) {
 
 /*------------------------------------------------------------------------*/
 
-void hedit_save_to_disk(descriptor_data *d) {
+void hedit_save_to_disk(DescriptorData *d) {
     FILE *fp;
     int i;
 
@@ -138,8 +138,8 @@ void hedit_save_to_disk(descriptor_data *d) {
 /* Menu functions */
 
 /* the main menu */
-void hedit_disp_menu(descriptor_data *d) {
-    struct help_index_element *help;
+void hedit_disp_menu(DescriptorData *d) {
+    HelpIndexElement *help;
 
     get_char_cols(d->character);
 
@@ -161,7 +161,7 @@ void hedit_disp_menu(descriptor_data *d) {
  * The main loop
  */
 
-void hedit_parse(descriptor_data *d, char *arg) {
+void hedit_parse(DescriptorData *d, char *arg) {
     int i;
 
     switch (OLC_MODE(d)) {
@@ -184,7 +184,7 @@ void hedit_parse(descriptor_data *d, char *arg) {
             index_boot(DB_BOOT_HLP);
 
             sprintf(buf, "OLC: %s edits help for %s.", GET_NAME(d->character), OLC_HELP(d)->keyword);
-            mudlog(buf, CMP, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), true);
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_STRUCTS);
             send_to_char("Help saved to memory.\r\n", d->character);
@@ -284,7 +284,7 @@ void hedit_parse(descriptor_data *d, char *arg) {
 
     case HEDIT_ENTRY:
         /* should never get here */
-        mudlog("SYSERR: Reached HEDIT_ENTRY in hedit_parse", BRF, LVL_ATTENDANT, TRUE);
+        mudlog("SYSERR: Reached HEDIT_ENTRY in hedit_parse", BRF, LVL_ATTENDANT, true);
         break;
     case HEDIT_MIN_LEVEL:
         if (*arg) {
@@ -333,10 +333,10 @@ int find_help(char *keyword) {
     }
 }
 
-void free_help(help_index_element *help) {
+void free_help(HelpIndexElement *help) {
     if (help->keyword)
         free(help->keyword);
     if (help->entry)
         free(help->entry);
-    memset(help, 0, sizeof(help_index_element));
+    memset(help, 0, sizeof(HelpIndexElement));
 }

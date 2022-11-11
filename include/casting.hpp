@@ -162,11 +162,11 @@
 
 /* Keeping track of casters, so destroyed objects can abort spells cast on them.
  * These functions are defined in spell_parser.c. */
-void targets_remember_caster(char_data *caster);
-void obj_forget_caster(obj_data *obj, char_data *caster);
-void char_forget_caster(char_data *ch, char_data *caster);
-void obj_forget_casters(obj_data *obj);
-void char_forget_casters(char_data *ch);
+void targets_remember_caster(CharData *caster);
+void obj_forget_caster(ObjData *obj, CharData *caster);
+void char_forget_caster(CharData *ch, CharData *caster);
+void obj_forget_casters(ObjData *obj);
+void char_forget_casters(CharData *ch);
 
 #define MANUAL_SPELL(spellname) imp_skill |= spellname(spellnum, skill, caster, cvict, ovict, savetype);
 
@@ -180,51 +180,32 @@ void char_forget_casters(char_data *ch);
         char_forget_caster((ch)->casting.tch, ch);                                                                     \
     WAIT_STATE(ch, PULSE_VIOLENCE / 2);
 
-int mag_damage(int skill, char_data *ch, char_data *victim, int spellnum, int savetype);
-
-int mag_affect(int skill, char_data *ch, char_data *victim, int spellnum, int savetype, int casttype);
-
-void perform_mag_group(int skill, char_data *ch, char_data *tch, int spellnum, int savetype);
-
-int mag_group(int skill, char_data *ch, int spellnum, int savetype);
-
-int mag_mass(int skill, char_data *ch, int spellnum, int savetype);
-
-int mag_area(int skill, char_data *ch, int spellnum, int savetype);
-
-int mag_summon(int skill, char_data *ch, char_data *vict, obj_data *obj, int spellnum, int savetype);
-
-int mag_point(int skill, char_data *ch, char_data *victim, int spellnum, int savetype);
-
-int mag_unaffect(int skill, char_data *ch, char_data *victim, int spellnum, int type);
-
-int mag_alter_obj(int skill, char_data *ch, obj_data *obj, int spellnum, int type);
-
-int mag_bulk_objs(int skill, char_data *ch, int spellnum, int type);
-
-int mag_creation(int skill, char_data *ch, int spellnum);
-
-int call_magic(char_data *caster, char_data *cvict, obj_data *ovict, int spellnum, int skill, int casttype);
-
-int mag_room(int skill, char_data *ch, int spellnum);
-
-void mag_objectmagic(char_data *ch, obj_data *obj, char *argument);
-
-int cast_spell(char_data *ch, char_data *tch, obj_data *tobj, int spellnum);
+int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int savetype);
+int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int savetype, int casttype);
+void perform_mag_group(int skill, CharData *ch, CharData *tch, int spellnum, int savetype);
+int mag_group(int skill, CharData *ch, int spellnum, int savetype);
+int mag_mass(int skill, CharData *ch, int spellnum, int savetype);
+int mag_area(int skill, CharData *ch, int spellnum, int savetype);
+int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spellnum, int savetype);
+int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savetype);
+int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int type);
+int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int type);
+int mag_bulk_objs(int skill, CharData *ch, int spellnum, int type);
+int mag_creation(int skill, CharData *ch, int spellnum);
+int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, int skill, int casttype);
+int mag_room(int skill, CharData *ch, int spellnum);
+void mag_objectmagic(CharData *ch, ObjData *obj, char *argument);
+int cast_spell(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 
 /* other prototypes */
-void free_mem_list(char_data *ch);
-void free_scribe_list(char_data *ch);
-void init_mem_list(char_data *ch);
-void save_mem_list(char_data *ch);
-int add_spell(char_data *ch, int spell, int can_cast, int mem_time, bool verbose);
+void free_mem_list(CharData *ch);
+void free_scribe_list(CharData *ch);
+void init_mem_list(CharData *ch);
+void save_mem_list(CharData *ch);
+int add_spell(CharData *ch, int spell, int can_cast, int mem_time, bool verbose);
 
 #include "events.hpp"
 EVENTFUNC(delayed_cast_event);
 EVENTFUNC(room_undo_event);
-delayed_cast_event_obj *construct_delayed_cast(char_data *ch, char_data *victim, int spellnum, int routines,
-                                                      int rounds, int wait, int skill, int savetype, bool sustained);
-
-extern int spells_of_circle[LVL_IMPL + 1][NUM_SPELL_CIRCLES + 1];
-extern const char *targets[NUM_TAR_FLAGS + 1];
-extern const char *routines[NUM_ROUTINE_TYPES + 1];
+DelayedCastEventObj *construct_delayed_cast(CharData *ch, CharData *victim, int spellnum, int routines, int rounds,
+                                            int wait, int skill, int savetype, bool sustained);

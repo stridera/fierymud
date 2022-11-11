@@ -41,8 +41,8 @@ int grab_number(char **name) {
 }
 
 /******* MATCH_OBJ_FUNCs *******/
-/* A MATCH_OBJ_FUNC compares an object and a find-context, returning TRUE
- * if the object matches the function predicate and FALSE if it doesn't.
+/* A MATCH_OBJ_FUNC compares an object and a find-context, returning true
+ * if the object matches the function predicate and false if it doesn't.
  */
 
 static MATCH_OBJ_FUNC(match_vis_obj) { return CAN_SEE_OBJ(context->ch, obj); }
@@ -50,16 +50,16 @@ static MATCH_OBJ_FUNC(match_vis_obj) { return CAN_SEE_OBJ(context->ch, obj); }
 static MATCH_OBJ_FUNC(match_obj_by_name) {
     if (isname(context->string, obj->name))
         if (--context->number <= 0)
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
 static MATCH_OBJ_FUNC(match_vis_obj_by_name) {
     if (isname(context->string, obj->name))
         if (CAN_SEE_OBJ(context->ch, obj))
             if (--context->number <= 0)
-                return TRUE;
-    return FALSE;
+                return true;
+    return false;
 }
 
 static MATCH_OBJ_FUNC(match_obj_by_id) { return (GET_ID(obj) == context->number); }
@@ -82,7 +82,7 @@ static MATCH_OBJ_FUNC(match_vis_by_type) {
 
 /******* MATCH_CHAR_FUNCs *******/
 /* A MATCH_CHAR_FUNC compares a character and a find-context, returning
- * TRUE if the character matches the function predicate and FALSE if it
+ * true if the character matches the function predicate and false if it
  * doesn't.
  */
 
@@ -91,18 +91,18 @@ static MATCH_CHAR_FUNC(match_vis_char) { return CAN_SEE(context->ch, ch); }
 static MATCH_CHAR_FUNC(match_char_by_name) {
     if (isname(context->string, GET_NAMELIST(ch)))
         if (--context->number <= 0)
-            return TRUE;
+            return true;
 
-    return FALSE;
+    return false;
 }
 
 static MATCH_CHAR_FUNC(match_vis_char_by_name) {
     if (isname(context->string, GET_NAMELIST(ch)))
         if (CAN_SEE(context->ch, ch))
             if (--context->number <= 0)
-                return TRUE;
+                return true;
 
-    return FALSE;
+    return false;
 }
 
 static MATCH_CHAR_FUNC(match_char_by_id) { return (GET_ID(ch) == context->number); }
@@ -128,8 +128,8 @@ static MATCH_CHAR_FUNC(match_vis_player_by_name) { return !IS_NPC(ch) && match_v
  * must provide match functions.
  */
 
-struct find_context find_vis(char_data *ch) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_vis(CharData *ch) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_vis_obj;
     context.char_func = match_vis_char;
     context.ch = ch;
@@ -137,8 +137,8 @@ struct find_context find_vis(char_data *ch) {
 }
 
 /* Find obj/chars using DG id */
-struct find_context find_by_id(int id) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_by_id(int id) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_obj_by_id;   /* func for checking objs */
     context.char_func = match_char_by_id; /* func for checking mobs */
     context.number = id;
@@ -146,8 +146,8 @@ struct find_context find_by_id(int id) {
 }
 
 /* Find obj/chars visible to a given character using DG id */
-struct find_context find_vis_by_id(char_data *ch, int id) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_vis_by_id(CharData *ch, int id) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_vis_obj_by_id;
     context.char_func = match_vis_char_by_id;
     context.number = id;
@@ -156,8 +156,8 @@ struct find_context find_vis_by_id(char_data *ch, int id) {
 }
 
 /* Find objs/chars using namelist */
-struct find_context find_by_name(char *name) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_by_name(char *name) {
+    FindContext context = NULL_FCONTEXT;
     if (*name == UID_CHAR) {
         context.obj_func = match_obj_by_id;
         context.char_func = match_char_by_id;
@@ -172,8 +172,8 @@ struct find_context find_by_name(char *name) {
 }
 
 /* Find objs/chars visible to a given char using namelist */
-struct find_context find_vis_by_name(char_data *ch, char *name) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_vis_by_name(CharData *ch, char *name) {
+    FindContext context = NULL_FCONTEXT;
     if (*name == UID_CHAR) {
         context.obj_func = match_vis_obj_by_id;
         context.char_func = match_vis_char_by_id;
@@ -184,15 +184,15 @@ struct find_context find_vis_by_name(char_data *ch, char *name) {
         context.number = grab_number(&name);
         context.string = name;
         if (!str_cmp(name, "self") || !str_cmp(name, "me"))
-            context.override = TRUE;
+            context.override = true;
     }
     context.ch = ch;
     return context;
 }
 
 /* Find objs/mobs by rnum */
-struct find_context find_by_rnum(int rnum) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_by_rnum(int rnum) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_obj_by_rnum;
     context.char_func = match_mob_by_rnum;
     context.number = rnum;
@@ -200,8 +200,8 @@ struct find_context find_by_rnum(int rnum) {
 }
 
 /* Find objs/mobs by vnum */
-struct find_context find_by_vnum(int vnum) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_by_vnum(int vnum) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_obj_by_vnum;
     context.char_func = match_mob_by_vnum;
     context.number = vnum;
@@ -209,8 +209,8 @@ struct find_context find_by_vnum(int vnum) {
 }
 
 /* Find objs/mobs by vnum visible to ch */
-struct find_context find_vis_by_vnum(char_data *ch, int vnum) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_vis_by_vnum(CharData *ch, int vnum) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_vis_obj_by_vnum;
     context.char_func = match_vis_mob_by_vnum;
     context.number = vnum;
@@ -219,16 +219,16 @@ struct find_context find_vis_by_vnum(char_data *ch, int vnum) {
 }
 
 /* Find objs by type */
-struct find_context find_by_type(int type) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_by_type(int type) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_by_type;
     context.number = type;
     return context;
 }
 
 /* Find objs by type visible to ch */
-struct find_context find_vis_by_type(char_data *ch, int type) {
-    struct find_context context = NULL_FCONTEXT;
+FindContext find_vis_by_type(CharData *ch, int type) {
+    FindContext context = NULL_FCONTEXT;
     context.obj_func = match_vis_by_type;
     context.number = type;
     context.ch = ch;
@@ -236,16 +236,16 @@ struct find_context find_vis_by_type(char_data *ch, int type) {
 }
 
 /* Find players using name */
-struct find_context find_plr_by_name(char *name) {
-    struct find_context context = find_by_name(name);
+FindContext find_plr_by_name(char *name) {
+    FindContext context = find_by_name(name);
     if (*name != UID_CHAR)
         context.char_func = match_player_by_name;
     return context;
 }
 
 /* Find players visible to a given char using name */
-struct find_context find_vis_plr_by_name(char_data *ch, char *name) {
-    struct find_context context = find_vis_by_name(ch, name);
+FindContext find_vis_plr_by_name(CharData *ch, char *name) {
+    FindContext context = find_vis_by_name(ch, name);
     if (*name != UID_CHAR)
         context.char_func = match_vis_player_by_name;
     return context;
@@ -257,47 +257,47 @@ struct find_context find_vis_plr_by_name(char_data *ch, char *name) {
  */
 
 /* used by find_objs_in_list */
-static struct obj_data *next_obj_in_list(obj_iterator *iter) {
-    struct obj_data *list = iter->next;
+static ObjData *next_obj_in_list(obj_iterator *iter) {
+    ObjData *list = iter->next;
     while (list) {
         if (OBJ_MATCH(iter->context, list))
             break;
         list = list->next_content;
     }
-    iter->next = list ? list->next_content : NULL;
+    iter->next = list ? list->next_content : nullptr;
     return iter->obj = list;
 }
 
-static struct obj_data *next_obj_in_eq(obj_iterator *iter) {
-    struct char_data *ch = iter->data;
+static ObjData *next_obj_in_eq(obj_iterator *iter) {
+    CharData *ch = (CharData *)iter->data;
 
     while (iter->pos < NUM_WEARS) {
         if (GET_EQ(ch, iter->pos) && OBJ_MATCH(iter->context, GET_EQ(ch, iter->pos)))
             return iter->obj = GET_EQ(ch, iter->pos++);
         iter->pos++;
     }
-    return NULL;
+    return nullptr;
 }
 
-static struct char_data *next_char_in_room(char_iterator *iter) {
-    struct char_data *list = iter->next;
+static CharData *next_char_in_room(char_iterator *iter) {
+    CharData *list = iter->next;
     while (list) {
         if (CHAR_MATCH(iter->context, list))
             break;
         list = list->next_in_room;
     }
-    iter->next = list ? list->next_in_room : NULL;
+    iter->next = list ? list->next_in_room : nullptr;
     return iter->ch = list;
 }
 
-static struct char_data *next_char_in_world(char_iterator *iter) {
-    struct char_data *list = iter->next;
+static CharData *next_char_in_world(char_iterator *iter) {
+    CharData *list = iter->next;
     while (list) {
         if (CHAR_MATCH(iter->context, list))
             break;
         list = list->next;
     }
-    iter->next = list ? list->next : NULL;
+    iter->next = list ? list->next : nullptr;
     return iter->ch = list;
 }
 
@@ -310,18 +310,18 @@ static struct char_data *next_char_in_world(char_iterator *iter) {
 /* Traverse the contents of an object list, looking for a matching obj
  * by using the provided find context.
  */
-struct obj_data *find_obj_in_list(obj_data *list, find_context context) {
+ObjData *find_obj_in_list(ObjData *list, FindContext context) {
     while (list) {
         if (OBJ_MATCH(context, list))
             return list;
         list = list->next_content;
     }
 
-    return NULL;
+    return nullptr;
 }
 
-struct obj_iterator find_objs_in_list(obj_data *list, find_context context) {
-    struct obj_iterator iter = NULL_ITER(NULL);
+obj_iterator find_objs_in_list(ObjData *list, FindContext context) {
+    obj_iterator iter = NULL_ITER(nullptr);
     iter.next = list;
     iter.context = context;
     iter.next_func = next_obj_in_list;
@@ -331,8 +331,8 @@ struct obj_iterator find_objs_in_list(obj_data *list, find_context context) {
 /* Find a matching object in a list by using the provided find context.
  * Recurs into containers.  Preorder matching.
  */
-struct obj_data *find_obj_in_list_recur(obj_data *list, find_context context) {
-    struct obj_data *i;
+ObjData *find_obj_in_list_recur(ObjData *list, FindContext context) {
+    ObjData *i;
 
     while (list) {
         if (OBJ_MATCH(context, list))
@@ -342,13 +342,13 @@ struct obj_data *find_obj_in_list_recur(obj_data *list, find_context context) {
         list = list->next_content;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 /* Iterate through the equipment on a character, looking for a matching
  * object by using the provided find context.
  */
-struct obj_data *find_obj_in_eq(char_data *ch, int *where, find_context context) {
+ObjData *find_obj_in_eq(CharData *ch, int *where, FindContext context) {
     int i;
 
     for (i = 0; i < NUM_WEARS; ++i)
@@ -361,14 +361,14 @@ struct obj_data *find_obj_in_eq(char_data *ch, int *where, find_context context)
     if (where)
         *where = -1;
 
-    return NULL;
+    return nullptr;
 }
 
 /* Iterate through the global object list, looking for a matching object
  * by using the provided find context.
  */
-struct obj_data *find_obj_in_world(find_context context) {
-    struct obj_data *obj = object_list;
+ObjData *find_obj_in_world(FindContext context) {
+    ObjData *obj = object_list;
 
     while (obj) {
         if (OBJ_MATCH(context, obj))
@@ -376,7 +376,7 @@ struct obj_data *find_obj_in_world(find_context context) {
         obj = obj->next;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 /* Look for a matching object using a provided find context, moving
@@ -384,11 +384,11 @@ struct obj_data *find_obj_in_world(find_context context) {
  * character's equipment first, followed by his/her inventory,
  * the contents of the room, and finally the world at large.
  */
-struct obj_data *find_obj_around_char(char_data *ch, find_context context) {
-    struct obj_data *obj;
+ObjData *find_obj_around_char(CharData *ch, FindContext context) {
+    ObjData *obj;
 
     /* scan equipment */
-    if ((obj = find_obj_in_eq(ch, NULL, context)))
+    if ((obj = find_obj_in_eq(ch, nullptr, context)))
         return obj;
 
     /* scan inventory */
@@ -403,7 +403,7 @@ struct obj_data *find_obj_around_char(char_data *ch, find_context context) {
     if ((obj = find_obj_in_world(context)))
         return obj;
 
-    return NULL;
+    return nullptr;
 }
 
 /* Look for a matching object using a provided find context, moving
@@ -414,11 +414,11 @@ struct obj_data *find_obj_around_char(char_data *ch, find_context context) {
  * other objects in the same room, and finally a search of the whole
  * world.
  */
-struct obj_data *find_obj_around_obj(obj_data *obj, find_context context) {
-    struct obj_data *tobj;
+ObjData *find_obj_around_obj(ObjData *obj, FindContext context) {
+    ObjData *tobj;
     int rm;
 
-    extern int obj_room(obj_data * obj); /* from dg_scripts.c */
+    extern int obj_room(ObjData * obj); /* from dg_scripts.c */
 
     /* self */
     if (OBJ_MATCH(context, obj))
@@ -432,7 +432,7 @@ struct obj_data *find_obj_around_obj(obj_data *obj, find_context context) {
     if (obj->in_obj && OBJ_MATCH(context, obj->in_obj))
         return obj->in_obj;
 
-    if (obj->worn_by && (tobj = find_obj_in_eq(obj->worn_by, NULL, context)))
+    if (obj->worn_by && (tobj = find_obj_in_eq(obj->worn_by, nullptr, context)))
         return tobj; /* something else worn by char */
 
     if (obj->carried_by && (tobj = find_obj_in_list(obj->carried_by->carrying, context)))
@@ -451,8 +451,8 @@ struct obj_data *find_obj_around_obj(obj_data *obj, find_context context) {
  * important that we find the object regardless of whether it is in the
  * room or not.
  */
-struct obj_data *find_obj_around_room(room_data *room, find_context context) {
-    struct obj_data *obj;
+ObjData *find_obj_around_room(RoomData *room, FindContext context) {
+    ObjData *obj;
 
     if ((obj = find_obj_in_list(room->contents, context)))
         return obj;
@@ -460,7 +460,7 @@ struct obj_data *find_obj_around_room(room_data *room, find_context context) {
     if (context.obj_func == match_obj_by_id || context.obj_func == match_vis_obj_by_id)
         return find_obj_in_world(context);
 
-    return NULL;
+    return nullptr;
 }
 
 /* Look for a matching object by name, moving progressively outwards
@@ -471,12 +471,12 @@ struct obj_data *find_obj_around_room(room_data *room, find_context context) {
  * if it gets this far,
  *
  */
-struct obj_data *find_obj_for_mtrig(char_data *ch, char *name) {
-    struct obj_data *obj;
-    struct find_context context = find_vis_by_name(ch, name);
+ObjData *find_obj_for_mtrig(CharData *ch, char *name) {
+    ObjData *obj;
+    FindContext context = find_vis_by_name(ch, name);
 
     /* scan equipment */
-    if ((obj = find_obj_in_eq(ch, NULL, context)))
+    if ((obj = find_obj_in_eq(ch, nullptr, context)))
         return obj;
 
     /* scan inventory */
@@ -491,14 +491,14 @@ struct obj_data *find_obj_for_mtrig(char_data *ch, char *name) {
     if ((obj = find_obj_in_world(find_by_name(name))))
         return obj;
 
-    return NULL;
+    return nullptr;
 }
 
 /* Traverse the people in a room, looking for a matching char by using
  * the provided find context.
  */
-struct char_data *find_char_in_room(room_data *room, find_context context) {
-    struct char_data *ch = room ? room->people : NULL;
+CharData *find_char_in_room(RoomData *room, FindContext context) {
+    CharData *ch = room ? room->people : nullptr;
 
     if (context.override)
         return context.ch;
@@ -509,14 +509,14 @@ struct char_data *find_char_in_room(room_data *room, find_context context) {
         ch = ch->next_in_room;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 /* Iterate through the global character list, looking for a matching
  * character by using the provided find context.
  */
-struct char_data *find_char_in_world(find_context context) {
-    struct char_data *ch = character_list;
+CharData *find_char_in_world(FindContext context) {
+    CharData *ch = character_list;
 
     if (context.override)
         return context.ch;
@@ -527,14 +527,14 @@ struct char_data *find_char_in_world(find_context context) {
         ch = ch->next;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 /* Iterate through the descriptor list, looking for a matching character
  * by using the provided find context.
  */
-struct char_data *find_char_by_desc(find_context context) {
-    struct descriptor_data *d = descriptor_list;
+CharData *find_char_by_desc(FindContext context) {
+    DescriptorData *d = descriptor_list;
 
     if (context.override)
         return context.ch;
@@ -549,15 +549,15 @@ struct char_data *find_char_by_desc(find_context context) {
         d = d->next;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 /* Look for a matching character using a provided find context, moving
  * progressively outwards from a given character.  Checks the room
  * followed by the world at large.
  */
-struct char_data *find_char_around_char(char_data *ch, find_context context) {
-    struct char_data *targ;
+CharData *find_char_around_char(CharData *ch, FindContext context) {
+    CharData *targ;
 
     /* scan room */
     if ((targ = find_char_in_room(&world[ch->in_room], context)))
@@ -567,7 +567,7 @@ struct char_data *find_char_around_char(char_data *ch, find_context context) {
     if ((targ = find_char_in_world(context)))
         return targ;
 
-    return NULL;
+    return nullptr;
 }
 
 /* Look for a matching character using a provided find context, moving
@@ -575,8 +575,8 @@ struct char_data *find_char_around_char(char_data *ch, find_context context) {
  * the object, followed by other characters in the room with the object,
  * followed by a search of the whole world.
  */
-struct char_data *find_char_around_obj(obj_data *obj, find_context context) {
-    struct char_data *ch;
+CharData *find_char_around_obj(ObjData *obj, FindContext context) {
+    CharData *ch;
 
     while (obj->in_obj)
         obj = obj->in_obj;
@@ -600,8 +600,8 @@ struct char_data *find_char_around_obj(obj_data *obj, find_context context) {
  * is important that we find the character regardless of whether it is
  * in the room or not.
  */
-struct char_data *find_char_around_room(room_data *room, find_context context) {
-    struct char_data *ch;
+CharData *find_char_around_room(RoomData *room, FindContext context) {
+    CharData *ch;
 
     extern MATCH_CHAR_FUNC(match_dg_vis_char_by_id);
 
@@ -612,7 +612,7 @@ struct char_data *find_char_around_room(room_data *room, find_context context) {
         context.char_func == match_dg_vis_char_by_id)
         return find_char_in_world(context);
 
-    return NULL;
+    return nullptr;
 }
 
 /* Look for a matching character by name, moving progressively outwards
@@ -623,8 +623,8 @@ struct char_data *find_char_around_room(room_data *room, find_context context) {
  * if it gets this far, it probably means
  *
  */
-struct char_data *find_char_for_mtrig(char_data *ch, char *name) {
-    struct char_data *targ;
+CharData *find_char_for_mtrig(CharData *ch, char *name) {
+    CharData *targ;
 
     /* scan room */
     if ((targ = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, name))))
@@ -634,7 +634,7 @@ struct char_data *find_char_for_mtrig(char_data *ch, char *name) {
     if ((targ = find_char_in_world(find_by_name(name))))
         return targ;
 
-    return NULL;
+    return nullptr;
 }
 
 /* Generic Find, designed to find any object/character                    */
@@ -651,7 +651,7 @@ struct char_data *find_char_for_mtrig(char_data *ch, char *name) {
 /* The routine returns a pointer to the next word in *arg (just like the  */
 /* one_argument routine).                                                 */
 
-int generic_find(char *arg, int bitvector, char_data *ch, char_data **tch, obj_data **tobj) {
+int generic_find(char *arg, int bitvector, CharData *ch, CharData **tch, ObjData **tobj) {
     char name[MAX_INPUT_LENGTH];
     one_argument(arg, name);
     if (!*name)
@@ -663,16 +663,16 @@ int generic_find(char *arg, int bitvector, char_data *ch, char_data **tch, obj_d
  * Universal find, designed to find any object/character
  * universal_find acts just like generic_find, but the user chooses
  * what criteria to search by.  Additionally, the find_context *must*
- * supply a char_data pointer if any of the FIND_ flags besides
+ * supply a CharData pointer if any of the FIND_ flags besides
  * FIND_CHAR_WORLD and FIND_OBJ_WORLD are asserted.
  */
-int universal_find(find_context context, int bitvector, char_data **tch, obj_data **tobj) {
-    struct char_data *ch = context.ch;
+int universal_find(FindContext context, int bitvector, CharData **tch, ObjData **tobj) {
+    CharData *ch = context.ch;
 
     if (tch)
-        *tch = NULL;
+        *tch = nullptr;
     if (tobj)
-        *tobj = NULL;
+        *tobj = nullptr;
 
     if (IS_SET(bitvector, FIND_CHAR_ROOM) && tch && ch && ch->in_room != NOWHERE) {
         if ((*tch = find_char_in_room(&world[ch->in_room], context)))
@@ -683,7 +683,7 @@ int universal_find(find_context context, int bitvector, char_data **tch, obj_dat
             return (FIND_CHAR_WORLD);
     }
     if (IS_SET(bitvector, FIND_OBJ_EQUIP) && tobj && ch) {
-        if ((*tobj = find_obj_in_eq(ch, NULL, context)))
+        if ((*tobj = find_obj_in_eq(ch, nullptr, context)))
             return (FIND_OBJ_EQUIP);
     }
     if (IS_SET(bitvector, FIND_OBJ_INV) && tobj && ch) {
@@ -701,9 +701,9 @@ int universal_find(find_context context, int bitvector, char_data **tch, obj_dat
     return (0);
 }
 
-static struct obj_data *next_obj(obj_iterator *iter) {
-    struct char_data *ch = iter->data;
-    struct obj_data *next;
+static ObjData *next_obj(obj_iterator *iter) {
+    CharData *ch = iter->data;
+    ObjData *next;
 
     if (IS_SET(iter->mode, FIND_OBJ_EQUIP) && ch) {
         if ((next = next_obj_in_eq(iter)))
@@ -720,7 +720,7 @@ static struct obj_data *next_obj(obj_iterator *iter) {
                 REMOVE_BIT(iter->mode, FIND_OBJ_INV);
             return next;
         }
-        iter->next = NULL;
+        iter->next = nullptr;
         REMOVE_BIT(iter->mode, FIND_OBJ_INV);
         return next_obj(iter);
     }
@@ -733,7 +733,7 @@ static struct obj_data *next_obj(obj_iterator *iter) {
                 REMOVE_BIT(iter->mode, FIND_OBJ_ROOM);
             return next;
         }
-        iter->next = NULL;
+        iter->next = nullptr;
         REMOVE_BIT(iter->mode, FIND_OBJ_ROOM);
         return next_obj(iter);
     }
@@ -746,25 +746,25 @@ static struct obj_data *next_obj(obj_iterator *iter) {
                 REMOVE_BIT(iter->mode, FIND_OBJ_WORLD);
             return next;
         }
-        iter->next = NULL;
+        iter->next = nullptr;
         REMOVE_BIT(iter->mode, FIND_OBJ_WORLD);
         return next_obj(iter);
     }
 
     else
-        return NULL;
+        return nullptr;
 }
 
-static struct char_data *next_char(char_iterator *iter) {
-    struct char_data *ch = iter->data;
-    struct char_data *next;
+static CharData *next_char(char_iterator *iter) {
+    CharData *ch = iter->data;
+    CharData *next;
 
     if (IS_SET(iter->mode, FIND_CHAR_ROOM) && ch && ch->in_room != NOWHERE) {
         if (!iter->next)
             iter->next = world[ch->in_room].people;
         if ((next = next_char_in_room(iter)))
             return next;
-        iter->next = NULL;
+        iter->next = nullptr;
         REMOVE_BIT(iter->mode, FIND_CHAR_ROOM);
         return next_char(iter);
     }
@@ -774,23 +774,23 @@ static struct char_data *next_char(char_iterator *iter) {
             iter->next = character_list;
         if ((next = next_char_in_world(iter)))
             return next;
-        iter->next = NULL;
+        iter->next = nullptr;
         REMOVE_BIT(iter->mode, FIND_CHAR_WORLD);
         return next_char(iter);
     }
 
     else
-        return NULL;
+        return nullptr;
 }
 
-struct obj_iterator find_objs(find_context context, int bitvector) {
-    struct obj_iterator iter = NULL_ITER(NULL);
+obj_iterator find_objs(FindContext context, int bitvector) {
+    obj_iterator iter = NULL_ITER(nullptr);
     iter.mode = bitvector;
     iter.data = context.ch;
     iter.context = context;
     iter.next_func = next_obj;
     if (IS_SET(bitvector, FIND_OBJ_INV))
-        iter.next = context.ch ? context.ch->carrying : NULL;
+        iter.next = context.ch ? context.ch->carrying : nullptr;
     /*
      * It's not absolutely necessary to initialize the next member here;
      * next_objs() will automatically do this.  However, we do it anyway
@@ -809,8 +809,8 @@ struct obj_iterator find_objs(find_context context, int bitvector) {
     return iter;
 }
 
-struct char_iterator find_chars(find_context context, int bitvector) {
-    struct char_iterator iter = NULL_ITER(NULL);
+char_iterator find_chars(FindContext context, int bitvector) {
+    char_iterator iter = NULL_ITER(nullptr);
     iter.mode = bitvector;
     iter.data = context.ch;
     iter.context = context;
@@ -818,16 +818,16 @@ struct char_iterator find_chars(find_context context, int bitvector) {
     return iter;
 }
 
-struct obj_data *find_obj_for_keyword(obj_data *obj, const char *name) {
+ObjData *find_obj_for_keyword(ObjData *obj, const char *name) {
     if (!str_cmp(name, "self") || !str_cmp(name, "me"))
         return obj;
-    return NULL;
+    return nullptr;
 }
 
-struct char_data *find_char_for_keyword(char_data *ch, const char *name) {
+CharData *find_char_for_keyword(CharData *ch, const char *name) {
     if (!str_cmp(name, "self") || !str_cmp(name, "me"))
         return ch;
-    return NULL;
+    return nullptr;
 }
 
 /* a function to scan for "all" or "all.x" */
@@ -841,10 +841,10 @@ int find_all_dots(char **arg) {
         return FIND_INDIV;
 }
 
-struct char_data *get_random_char_around(char_data *ch, int mode) {
+CharData *get_random_char_around(CharData *ch, int mode) {
     int count = 0;
-    struct char_data *vict = NULL;
-    struct char_data *i;
+    CharData *vict = nullptr;
+    CharData *i;
 
     if (!ch)
         return vict;

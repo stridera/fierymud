@@ -49,20 +49,20 @@
 #include "utils.hpp"
 
 /* function protos */
-void sdedit_disp_menu(descriptor_data *d);
-void sdedit_parse(descriptor_data *d, char *arg);
-void sdedit_setup_existing(descriptor_data *d, int real_num);
-void sdedit_save_to_disk(descriptor_data *d);
-void sdedit_save_internally(descriptor_data *d);
+void sdedit_disp_menu(DescriptorData *d);
+void sdedit_parse(DescriptorData *d, char *arg);
+void sdedit_setup_existing(DescriptorData *d, int real_num);
+void sdedit_save_to_disk(DescriptorData *d);
+void sdedit_save_internally(DescriptorData *d);
 
 /*------------------------------------------------------------------------*/
 
-void sdedit_setup_existing(descriptor_data *d, int real_num) {
-    struct spell_dam *spell;
+void sdedit_setup_existing(DescriptorData *d, int real_num) {
+    SpellDamage *spell;
 
     if (GET_LEVEL(d->character) < LVL_HEAD_B)
         return;
-    CREATE(spell, spell_dam, 1);
+    CREATE(spell, SpellDamage, 1);
     *spell = spell_dam_info[real_num];
     OLC_SD(d) = spell;
     OLC_VAL(d) = 0;
@@ -71,13 +71,13 @@ void sdedit_setup_existing(descriptor_data *d, int real_num) {
     sdedit_disp_menu(d);
 }
 
-void sdedit_disp_menu(descriptor_data *d) {
+void sdedit_disp_menu(DescriptorData *d) {
     char cbuf2[600];
-    struct spell_dam *spell;
-    char *nrm = CLR(d->character, ANRM);
-    char *yel = CLR(d->character, FYEL);
-    char *grn = CLR(d->character, FGRN);
-    char *red = CLR(d->character, FRED);
+    SpellDamage *spell;
+    const char *nrm = CLR(d->character, ANRM);
+    const char *yel = CLR(d->character, FYEL);
+    const char *grn = CLR(d->character, FGRN);
+    const char *red = CLR(d->character, FRED);
     spell = OLC_SD(d);
 
     sprintf(buf,
@@ -119,8 +119,8 @@ void sdedit_disp_menu(descriptor_data *d) {
             "\r\n"
             "Enter choice:\r\n",
             /*5 */ yel, nrm, grn, spell->max_bonus, nrm,
-            /*Bonus */ yel, nrm, grn, (spell->use_bonus ? "TRUE" : "FALSE"), nrm,
-            /*Intern*/ yel, nrm, grn, (spell->intern_dam ? "TRUE" : "FALSE"), nrm,
+            /*Bonus */ yel, nrm, grn, (spell->use_bonus ? "true" : "false"), nrm,
+            /*Intern*/ yel, nrm, grn, (spell->intern_dam ? "true" : "false"), nrm,
             /*E*/ yel, nrm, grn, spell->lvl_mult, nrm, yel, nrm, yel, nrm, yel, nrm, grn, nrm, yel, nrm, grn, nrm, yel,
             nrm, grn, nrm, red, nrm, grn, (spell->note ? spell->note : ""), nrm);
     send_to_char(buf, d->character);
@@ -129,9 +129,9 @@ void sdedit_disp_menu(descriptor_data *d) {
     OLC_MODE(d) = SDEDIT_MAIN_MENU;
 }
 
-void sdedit_save_internally(descriptor_data *d) {
+void sdedit_save_internally(DescriptorData *d) {
 
-    struct spell_dam *spell = NULL;
+    SpellDamage *spell = nullptr;
     spell = OLC_SD(d);
 
     /*free old note first!! */
@@ -148,14 +148,14 @@ void sdedit_save_internally(descriptor_data *d) {
 
 /*------------------------------------------------------------------------*/
 
-void sdedit_save_to_disk(descriptor_data *d) {
+void sdedit_save_to_disk(DescriptorData *d) {
     sh_int i;
     FILE *ifptr;
 
-    if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == NULL) {
+    if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == nullptr) {
 
         sprintf(buf2, "Error writting spell dam file\r\n");
-        mudlog(buf2, NRM, LVL_IMPL, TRUE);
+        mudlog(buf2, NRM, LVL_IMPL, true);
     } else {
 
         fprintf(ifptr, "Spell dam file:\n");
@@ -175,7 +175,7 @@ void sdedit_save_to_disk(descriptor_data *d) {
     }
 }
 
-void sdedit_parse(descriptor_data *d, char *arg) {
+void sdedit_parse(DescriptorData *d, char *arg) {
     int i = 0;
 
     switch (OLC_MODE(d)) {
@@ -232,9 +232,9 @@ void sdedit_parse(descriptor_data *d, char *arg) {
         case 'i':
         case 'I':
             if (OLC_SD(d)->intern_dam)
-                OLC_SD(d)->intern_dam = FALSE;
+                OLC_SD(d)->intern_dam = false;
             else
-                OLC_SD(d)->intern_dam = TRUE;
+                OLC_SD(d)->intern_dam = true;
             OLC_MODE(d) = SDEDIT_MAIN_MENU;
             OLC_VAL(d) = 1;
             sdedit_disp_menu(d);
@@ -248,9 +248,9 @@ void sdedit_parse(descriptor_data *d, char *arg) {
         case 'T':
             /*switch bonus on and off SDEDIT_USE_BONUS */
             if (OLC_SD(d)->use_bonus)
-                OLC_SD(d)->use_bonus = FALSE;
+                OLC_SD(d)->use_bonus = false;
             else
-                OLC_SD(d)->use_bonus = TRUE;
+                OLC_SD(d)->use_bonus = true;
             OLC_MODE(d) = SDEDIT_MAIN_MENU;
             OLC_VAL(d) = 1;
             sdedit_disp_menu(d);
@@ -291,7 +291,7 @@ void sdedit_parse(descriptor_data *d, char *arg) {
         if (*arg)
             OLC_SD(d)->note = strdup(arg);
         else
-            OLC_SD(d)->note = NULL;
+            OLC_SD(d)->note = nullptr;
         break;
 
     case SDEDIT_PC_STATIC:
@@ -322,7 +322,7 @@ void sdedit_parse(descriptor_data *d, char *arg) {
             sdedit_save_internally(d);
             sdedit_save_to_disk(d);
             sprintf(buf, "OLC: %s edits spell damage.", GET_NAME(d->character));
-            mudlog(buf, CMP, LVL_IMPL, TRUE);
+            mudlog(buf, CMP, LVL_IMPL, true);
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_ALL);
             /*cleanup_olc(d, CLEANUP_STRUCTS); */

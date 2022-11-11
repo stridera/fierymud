@@ -38,22 +38,22 @@
 /*
  * Function prototypes.
  */
-void zedit_disp_menu(descriptor_data *d);
-void zedit_setup(descriptor_data *d, int room_num);
-void add_cmd_to_list(reset_com **list, reset_com *newcmd, int pos);
-void remove_cmd_from_list(reset_com **list, int pos);
-void delete_command(descriptor_data *d, int pos);
-int new_command(descriptor_data *d, int pos);
-int start_change_command(descriptor_data *d, int pos);
-void zedit_disp_comtype(descriptor_data *d);
-void zedit_disp_arg1(descriptor_data *d);
-void zedit_disp_sarg(descriptor_data *d);
-void zedit_disp_arg2(descriptor_data *d);
-void zedit_disp_arg3(descriptor_data *d);
-void zedit_save_internally(descriptor_data *d);
+void zedit_disp_menu(DescriptorData *d);
+void zedit_setup(DescriptorData *d, int room_num);
+void add_cmd_to_list(ResetCommand **list, ResetCommand *newcmd, int pos);
+void remove_cmd_from_list(ResetCommand **list, int pos);
+void delete_command(DescriptorData *d, int pos);
+int new_command(DescriptorData *d, int pos);
+int start_change_command(DescriptorData *d, int pos);
+void zedit_disp_comtype(DescriptorData *d);
+void zedit_disp_arg1(DescriptorData *d);
+void zedit_disp_sarg(DescriptorData *d);
+void zedit_disp_arg2(DescriptorData *d);
+void zedit_disp_arg3(DescriptorData *d);
+void zedit_save_internally(DescriptorData *d);
 void zedit_save_to_disk(int zone_num);
 void zedit_create_index(int znum, char *type);
-void zedit_new_zone(char_data *ch, int vzone_num);
+void zedit_new_zone(CharData *ch, int vzone_num);
 
 /*-------------------------------------------------------------------*/
 /*
@@ -71,12 +71,12 @@ void zedit_new_zone(char_data *ch, int vzone_num);
 
 /*-------------------------------------------------------------------*/
 
-void zedit_setup(descriptor_data *d, int room_num) {
-    struct zone_data *zone;
+void zedit_setup(DescriptorData *d, int room_num) {
+    ZoneData *zone;
     int subcmd = 0, count = 0, cmd_room = -1;
 
     /*. Alloc some zone shaped space . */
-    CREATE(zone, zone_data, 1);
+    CREATE(zone, ZoneData, 1);
 
     /*. Copy in zone header info . */
     zone->name = strdup(zone_table[OLC_ZNUM(d)].name);
@@ -96,7 +96,7 @@ void zedit_setup(descriptor_data *d, int room_num) {
     /*
      * Start the reset command list with a terminator.
      */
-    CREATE(zone->cmd, reset_com, 1);
+    CREATE(zone->cmd, ResetCommand, 1);
     zone->cmd[0].command = 'S';
 
     /*
@@ -134,9 +134,9 @@ void zedit_setup(descriptor_data *d, int room_num) {
 /*-------------------------------------------------------------------*/
 /*. Create a new zone .*/
 
-void zedit_new_zone(char_data *ch, int vzone_num) {
+void zedit_new_zone(CharData *ch, int vzone_num) {
     FILE *fp;
-    struct zone_data *new_table;
+    ZoneData *new_table;
     int i, room;
 
     if (vzone_num < 0) {
@@ -160,7 +160,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.zon", ZON_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new zone file", BRF, LVL_HEAD_B, TRUE);
+        mudlog("SYSERR: OLC: Can't write new zone file", BRF, LVL_HEAD_B, true);
         send_to_char("Could not write zone file.\r\n", ch);
         return;
     }
@@ -170,7 +170,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
     /*. Create Rooms file . */
     sprintf(buf, "%s/%d.wld", WLD_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new world file", BRF, LVL_HEAD_B, TRUE);
+        mudlog("SYSERR: OLC: Can't write new world file", BRF, LVL_HEAD_B, true);
         send_to_char("Could not write world file.\r\n", ch);
         return;
     }
@@ -182,7 +182,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.mob", MOB_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new mob file", BRF, LVL_HEAD_B, TRUE);
+        mudlog("SYSERR: OLC: Can't write new mob file", BRF, LVL_HEAD_B, true);
         send_to_char("Could not write mobile file.\r\n", ch);
         return;
     }
@@ -194,7 +194,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.obj", OBJ_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new obj file", BRF, LVL_HEAD_B, TRUE);
+        mudlog("SYSERR: OLC: Can't write new obj file", BRF, LVL_HEAD_B, true);
         send_to_char("Could not write object file.\r\n", ch);
         return;
     }
@@ -206,7 +206,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.shp", SHP_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new shop file", BRF, LVL_HEAD_B, TRUE);
+        mudlog("SYSERR: OLC: Can't write new shop file", BRF, LVL_HEAD_B, true);
         send_to_char("Could not write shop file.\r\n", ch);
         return;
     }
@@ -218,7 +218,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.trg", TRG_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new trigger file", BRF, LVL_IMPL, TRUE);
+        mudlog("SYSERR: OLC: Can't write new trigger file", BRF, LVL_IMPL, true);
         send_to_char("Could not write trigger file.\r\n", ch);
         return;
     }
@@ -243,7 +243,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
      * through top_of_zone (top_of_zone_table + 1 items) and a new one which
      * makes it top_of_zone_table + 2 elements large.
      */
-    CREATE(new_table, zone_data, top_of_zone_table + 2);
+    CREATE(new_table, ZoneData, top_of_zone_table + 2);
     new_table[top_of_zone_table + 1].number = 198999;
 
     if (vzone_num > zone_table[top_of_zone_table].number) {
@@ -252,7 +252,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
          * top_of_zone_table + 1 items over and set write point to before the
          * the last record for the for() loop below.
          */
-        memcpy(new_table, zone_table, (sizeof(zone_data) * (top_of_zone_table + 1)));
+        memcpy(new_table, zone_table, (sizeof(ZoneData) * (top_of_zone_table + 1)));
         i = top_of_zone_table + 1;
     } else
         /*
@@ -274,7 +274,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
     /*
      * No zone commands, just terminate it with an 'S'
      */
-    CREATE(new_table[i].cmd, reset_com, 1);
+    CREATE(new_table[i].cmd, ResetCommand, 1);
     new_table[i].cmd[0].command = 'S';
 
     /*
@@ -297,7 +297,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
      */
 
     sprintf(buf, "OLC: %s creates new zone #%d", GET_NAME(ch), vzone_num);
-    mudlog(buf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+    mudlog(buf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
     send_to_char("Zone created successfully.\r\n", ch);
 
     return;
@@ -308,7 +308,7 @@ void zedit_new_zone(char_data *ch, int vzone_num) {
 void zedit_create_index(int znum, char *type) {
     FILE *newfile, *oldfile;
     char new_name[32], old_name[32], *prefix;
-    int num, found = FALSE;
+    int num, found = false;
 
     switch (*type) {
     case 'z':
@@ -341,11 +341,11 @@ void zedit_create_index(int znum, char *type) {
 
     if (!(oldfile = fopen(old_name, "r"))) {
         sprintf(buf, "SYSERR: OLC: Failed to open %s", buf);
-        mudlog(buf, BRF, LVL_HEAD_B, TRUE);
+        mudlog(buf, BRF, LVL_HEAD_B, true);
         return;
     } else if (!(newfile = fopen(new_name, "w"))) {
         sprintf(buf, "SYSERR: OLC: Failed to open %s", buf);
-        mudlog(buf, BRF, LVL_HEAD_B, TRUE);
+        mudlog(buf, BRF, LVL_HEAD_B, true);
         return;
     }
 
@@ -361,7 +361,7 @@ void zedit_create_index(int znum, char *type) {
         } else if (!found) {
             sscanf(buf, "%d", &num);
             if (num > znum) {
-                found = TRUE;
+                found = true;
                 fprintf(newfile, "%s\n", buf1);
             }
         }
@@ -379,7 +379,7 @@ void zedit_create_index(int znum, char *type) {
 /*. Save all the information on the players descriptor back into
     the zone table .*/
 
-void zedit_save_internally(descriptor_data *d) {
+void zedit_save_internally(DescriptorData *d) {
     int subcmd = 0, cmd_room = -2, room_num = real_room(OLC_NUM(d));
 
     /*
@@ -447,14 +447,14 @@ void zedit_save_internally(descriptor_data *d) {
 void zedit_save_to_disk(int zone_num) {
     int subcmd, arg1 = -1, arg2 = -1, arg3 = -1;
     char fname[64];
-    const char *sarg = NULL;
-    const char *comment = NULL;
+    const char *sarg = nullptr;
+    const char *comment = nullptr;
     FILE *zfile;
 
     sprintf(fname, "%s/%d.new", ZON_PREFIX, zone_table[zone_num].number);
     if (!(zfile = fopen(fname, "w"))) {
         sprintf(buf, "SYSERR: OLC: zedit_save_to_disk:  Can't write zone %d.", zone_table[zone_num].number);
-        mudlog(buf, BRF, LVL_GOD, TRUE);
+        mudlog(buf, BRF, LVL_GOD, true);
         return;
     }
 
@@ -540,7 +540,7 @@ void zedit_save_to_disk(int zone_num) {
             continue;
         default:
             sprintf(buf, "SYSERR: OLC: z_save_to_disk(): Unknown cmd '%c' - NOT saving", ZCMD.command);
-            mudlog(buf, BRF, LVL_GOD, TRUE);
+            mudlog(buf, BRF, LVL_GOD, true);
             continue;
         }
         if (strchr("MOPEDGR", ZCMD.command))
@@ -568,9 +568,9 @@ void zedit_save_to_disk(int zone_num) {
  * so that it may play with the memory locations.
  */
 
-void add_cmd_to_list(reset_com **list, reset_com *newcmd, int pos) {
+void add_cmd_to_list(ResetCommand **list, ResetCommand *newcmd, int pos) {
     int count, i, l;
-    struct reset_com *newlist;
+    ResetCommand *newlist;
 
     /*
      * Count number of commands (not including terminator).
@@ -580,7 +580,7 @@ void add_cmd_to_list(reset_com **list, reset_com *newcmd, int pos) {
     /*
      * Value is +2 for the terminator and new field to add.
      */
-    CREATE(newlist, reset_com, count + 2);
+    CREATE(newlist, ResetCommand, count + 2);
 
     /*
      * Even tighter loop to copy the old list and insert a new command.
@@ -608,9 +608,9 @@ void add_cmd_to_list(reset_com **list, reset_com *newcmd, int pos) {
  * so that it may play with the memory locations.
  */
 
-void remove_cmd_from_list(reset_com **list, int pos) {
+void remove_cmd_from_list(ResetCommand **list, int pos) {
     int count, i, l;
-    struct reset_com *newlist;
+    ResetCommand *newlist;
 
     /*
      * Count number of commands (not including terminator)
@@ -621,7 +621,7 @@ void remove_cmd_from_list(reset_com **list, int pos) {
      * Value is 'count' because we didn't include the terminator above
      * but since we're deleting one thing anyway we want one less.
      */
-    CREATE(newlist, reset_com, count);
+    CREATE(newlist, ResetCommand, count);
 
     /*
      * Even tighter loop to copy old list and skip unwanted command.
@@ -652,9 +652,9 @@ void remove_cmd_from_list(reset_com **list, int pos) {
 /*-------------------------------------------------------------------*/
 /*. Error check user input and then add new (blank) command .*/
 
-int new_command(descriptor_data *d, int pos) {
+int new_command(DescriptorData *d, int pos) {
     int subcmd = 0;
-    struct reset_com *new_com;
+    ResetCommand *new_com;
 
     /*
      * Error check to ensure users hasn't given too large an index
@@ -668,7 +668,7 @@ int new_command(descriptor_data *d, int pos) {
     /*
      * Ok, let's add a new (blank) command
      */
-    CREATE(new_com, reset_com, 1);
+    CREATE(new_com, ResetCommand, 1);
     new_com->command = 'N';
 #if defined(DEBUG)
     log("new_command called add_cmd_to_list.");
@@ -680,7 +680,7 @@ int new_command(descriptor_data *d, int pos) {
 /*-------------------------------------------------------------------*/
 /*. Error check user input and then remove command .*/
 
-void delete_command(descriptor_data *d, int pos) {
+void delete_command(DescriptorData *d, int pos) {
     int subcmd = 0;
 
     /*
@@ -703,7 +703,7 @@ void delete_command(descriptor_data *d, int pos) {
 /*-------------------------------------------------------------------*/
 /*. Error check user input and then setup change .*/
 
-int start_change_command(descriptor_data *d, int pos) {
+int start_change_command(DescriptorData *d, int pos) {
     int subcmd = 0;
 
     /*
@@ -729,7 +729,7 @@ int start_change_command(descriptor_data *d, int pos) {
 /*
  * the main menu
  */
-void zedit_disp_menu(descriptor_data *d) {
+void zedit_disp_menu(DescriptorData *d) {
     int subcmd = 0, counter = 0;
 
     get_char_cols(d->character);
@@ -845,7 +845,7 @@ void zedit_disp_menu(descriptor_data *d) {
  * Print the command type menu and setup response catch.
  */
 
-void zedit_disp_comtype(descriptor_data *d) {
+void zedit_disp_comtype(DescriptorData *d) {
     get_char_cols(d->character);
     sprintf(buf,
 #if defined(CLEAR_SCREEN)
@@ -866,7 +866,7 @@ void zedit_disp_comtype(descriptor_data *d) {
 /*. Print the appropriate message for the command type for arg1 and set
   up the input catch clause .*/
 
-void zedit_disp_arg1(descriptor_data *d) {
+void zedit_disp_arg1(DescriptorData *d) {
     switch (OLC_CMD(d).command) {
     case 'F':
     case 'M':
@@ -893,7 +893,7 @@ void zedit_disp_arg1(descriptor_data *d) {
          * We should never get here  .
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_arg1(): Help!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: zedit_disp_arg1(): Help!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         return;
     }
@@ -903,7 +903,7 @@ void zedit_disp_arg1(descriptor_data *d) {
 /*. Print the appropriate message for the command type for arg2 and set
   up the input catch clause .*/
 
-void zedit_disp_arg2(descriptor_data *d) {
+void zedit_disp_arg2(DescriptorData *d) {
     int i = 0;
 
     switch (OLC_CMD(d).command) {
@@ -937,7 +937,7 @@ void zedit_disp_arg2(descriptor_data *d) {
          * We should never get here, but just in case...
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_arg2(): Help!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: zedit_disp_arg2(): Help!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         return;
     }
@@ -948,7 +948,7 @@ void zedit_disp_arg2(descriptor_data *d) {
 /*. Print the appropriate message for the command type for arg3 and set
     up the input catch clause .*/
 
-void zedit_disp_arg3(descriptor_data *d) {
+void zedit_disp_arg3(DescriptorData *d) {
     int i = 0;
 
     switch (OLC_CMD(d).command) {
@@ -994,14 +994,14 @@ void zedit_disp_arg3(descriptor_data *d) {
          * We should never get here, just in case.
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_arg3(): Help!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: zedit_disp_arg3(): Help!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         return;
     }
     OLC_MODE(d) = ZEDIT_ARG3;
 }
 
-void zedit_disp_sarg(descriptor_data *d) {
+void zedit_disp_sarg(DescriptorData *d) {
     /*  int i = 0; */
     switch (OLC_CMD(d).command) {
     case 'F':
@@ -1020,7 +1020,7 @@ void zedit_disp_sarg(descriptor_data *d) {
          * We should never get here, just in case.
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_sarg(): Help!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: zedit_disp_sarg(): Help!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         return;
     }
@@ -1030,7 +1030,7 @@ void zedit_disp_sarg(descriptor_data *d) {
  *    	                The GARGANTAUN event handler                     *
  *************************************************************************/
 
-void zedit_parse(descriptor_data *d, char *arg) {
+void zedit_parse(DescriptorData *d, char *arg) {
     int pos, i = 0;
     /*  char spos; */
 
@@ -1044,7 +1044,7 @@ void zedit_parse(descriptor_data *d, char *arg) {
             send_to_char("Saving zone info in memory.\r\n", d->character);
             zedit_save_internally(d);
             sprintf(buf, "OLC: %s edits zone info for room %d.", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
             /* FALL THROUGH */
         case 'n':
         case 'N':
@@ -1208,7 +1208,7 @@ void zedit_parse(descriptor_data *d, char *arg) {
         /*. Parse the input for which type of command this is,
            and goto next quiz . */
         OLC_CMD(d).command = toupper(*arg);
-        if (!OLC_CMD(d).command || (strchr("MOPEDGRF", OLC_CMD(d).command) == NULL)) {
+        if (!OLC_CMD(d).command || (strchr("MOPEDGRF", OLC_CMD(d).command) == nullptr)) {
             send_to_char("Invalid choice, try again:\r\n", d->character);
         } else {
             if (OLC_CMD(d).command == 'F') {
@@ -1285,7 +1285,7 @@ void zedit_parse(descriptor_data *d, char *arg) {
              * We should never get here.
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG1: Ack!", BRF, LVL_GOD, TRUE);
+            mudlog("SYSERR: OLC: zedit_parse(): case ARG1: Ack!", BRF, LVL_GOD, true);
             send_to_char("Oops...\r\n", d->character);
             break;
         }
@@ -1355,7 +1355,7 @@ void zedit_parse(descriptor_data *d, char *arg) {
              * We should never get here, but just in case...
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG2: Ack!", BRF, LVL_GOD, TRUE);
+            mudlog("SYSERR: OLC: zedit_parse(): case ARG2: Ack!", BRF, LVL_GOD, true);
             send_to_char("Oops...\r\n", d->character);
             break;
         }
@@ -1411,7 +1411,7 @@ void zedit_parse(descriptor_data *d, char *arg) {
              * We should never get here, but just in case...
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG3: Ack!", BRF, LVL_GOD, TRUE);
+            mudlog("SYSERR: OLC: zedit_parse(): case ARG3: Ack!", BRF, LVL_GOD, true);
             send_to_char("Oops...\r\n", d->character);
             break;
         }
@@ -1436,7 +1436,7 @@ void zedit_parse(descriptor_data *d, char *arg) {
              * We should never get here, but just in case...
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG3: Ack!", BRF, LVL_GOD, TRUE);
+            mudlog("SYSERR: OLC: zedit_parse(): case ARG3: Ack!", BRF, LVL_GOD, true);
             send_to_char("Oops...\r\n", d->character);
             break;
         }
@@ -1540,7 +1540,7 @@ void zedit_parse(descriptor_data *d, char *arg) {
     default:
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_parse(): Reached default case!", BRF, LVL_GOD, TRUE);
+        mudlog("SYSERR: OLC: zedit_parse(): Reached default case!", BRF, LVL_GOD, true);
         send_to_char("Oops...\r\n", d->character);
         break;
     }

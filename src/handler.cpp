@@ -28,7 +28,7 @@
 #include "events.hpp"
 #include "fight.hpp"
 #include "interpreter.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "pfiles.hpp"
@@ -42,15 +42,12 @@
 #include "trophy.hpp"
 #include "utils.hpp"
 
-/* external vars */
-extern char *MENU;
-
 /* external functions */
-void free_char(char_data *ch);
-void remove_follower(char_data *ch);
-void abort_casting(char_data *ch);
+void free_char(CharData *ch);
+void remove_follower(CharData *ch);
+void abort_casting(CharData *ch);
 
-static int apply_ac(char_data *ch, int eq_pos);
+static int apply_ac(CharData *ch, int eq_pos);
 
 char *fname(const char *namelist) {
     static char holder[30];
@@ -93,7 +90,7 @@ int isname(const char *str, const char *namelist) {
     }
 }
 
-void effect_modify(char_data *ch, byte loc, sh_int mod, flagvector bitv[], bool add) {
+void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool add) {
     int i;
 
     if (add) {
@@ -243,10 +240,10 @@ void effect_modify(char_data *ch, byte loc, sh_int mod, flagvector bitv[], bool 
 /* This updates a character by subtracting everything he is affected by */
 /* restoring original abilities, and then affecting all again           */
 /* The character may not be in a room at this point.                    */
-void effect_total(char_data *ch) {
-    void start_char_falling(char_data * ch);
+void effect_total(CharData *ch) {
+    void start_char_falling(CharData * ch);
 
-    struct effect *eff;
+    effect *eff;
     int i, j, old_hp = GET_MAX_HIT(ch);
 
     /* Remove effects of equipment. */
@@ -256,12 +253,12 @@ void effect_total(char_data *ch) {
                 GET_AC(ch) += apply_ac(ch, i);
             for (j = 0; j < MAX_OBJ_APPLIES; j++)
                 effect_modify(ch, GET_EQ(ch, i)->applies[j].location, GET_EQ(ch, i)->applies[j].modifier,
-                              GET_OBJ_EFF_FLAGS(GET_EQ(ch, i)), FALSE);
+                              GET_OBJ_EFF_FLAGS(GET_EQ(ch, i)), false);
         }
 
     /* Remove spell effects. */
     for (eff = ch->effects; eff; eff = eff->next)
-        effect_modify(ch, eff->location, eff->modifier, eff->flags, FALSE);
+        effect_modify(ch, eff->location, eff->modifier, eff->flags, false);
 
     /* Now that all affects should be removed...let's make sure that
        their natural stats are where they should be. This was done in
@@ -287,12 +284,12 @@ void effect_total(char_data *ch) {
                 GET_AC(ch) -= apply_ac(ch, i);
             for (j = 0; j < MAX_OBJ_APPLIES; j++)
                 effect_modify(ch, GET_EQ(ch, i)->applies[j].location, GET_EQ(ch, i)->applies[j].modifier,
-                              GET_OBJ_EFF_FLAGS(GET_EQ(ch, i)), TRUE);
+                              GET_OBJ_EFF_FLAGS(GET_EQ(ch, i)), true);
         }
 
     /* And put the spells back too. */
     for (eff = ch->effects; eff; eff = eff->next)
-        effect_modify(ch, eff->location, eff->modifier, eff->flags, TRUE);
+        effect_modify(ch, eff->location, eff->modifier, eff->flags, true);
 
     /* Update stats */
     if (!IS_NPC(ch)) {
@@ -306,7 +303,7 @@ void effect_total(char_data *ch) {
         GET_MAX_HIT(ch) += con_aff(ch);
 
         /* Fix hp */
-        alter_hit(ch, old_hp - GET_MAX_HIT(ch), TRUE);
+        alter_hit(ch, old_hp - GET_MAX_HIT(ch), true);
 
         /* Cap perception stat */
         GET_PERCEPTION(ch) = MAX(0, MIN(GET_PERCEPTION(ch), 1000));
@@ -338,7 +335,7 @@ void effect_total(char_data *ch) {
             if (!EFF_FLAGGED(ch, EFF_FLY)) {
                 if (!EVENT_FLAGGED(ch, EVENT_FALLTOGROUND)) {
                     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_FALLTOGROUND);
-                    event_create(EVENT_FALLTOGROUND, falltoground_event, ch, FALSE, &(ch->events), 0);
+                    event_create(EVENT_FALLTOGROUND, falltoground_event, ch, false, &(ch->events), 0);
                 }
             } else {
                 overweight_check(ch);
@@ -349,10 +346,10 @@ void effect_total(char_data *ch) {
     }
 }
 
-/* Insert an effect in a char_data structure
+/* Insert an effect in a CharData structure
    Automatically sets apropriate bits and apply's */
-void effect_to_char(char_data *ch, effect *eff) {
-    struct effect *effect_alloc;
+void effect_to_char(CharData *ch, effect *eff) {
+    effect *effect_alloc;
 
     CREATE(effect_alloc, effect, 1);
 
@@ -360,7 +357,7 @@ void effect_to_char(char_data *ch, effect *eff) {
     effect_alloc->next = ch->effects;
     ch->effects = effect_alloc;
 
-    effect_modify(ch, eff->location, eff->modifier, eff->flags, TRUE);
+    effect_modify(ch, eff->location, eff->modifier, eff->flags, true);
 
     effect_total(ch);
 }
@@ -370,12 +367,12 @@ void effect_to_char(char_data *ch, effect *eff) {
  * reaches zero). Pointer *eff must never be NIL!  Frees mem and calls
  * effect_total
  */
-void effect_remove(char_data *ch, effect *eff) {
-    struct effect *temp;
+void effect_remove(CharData *ch, effect *eff) {
+    effect *temp;
 
     assert(ch->effects);
 
-    effect_modify(ch, eff->location, eff->modifier, eff->flags, FALSE);
+    effect_modify(ch, eff->location, eff->modifier, eff->flags, false);
 
     REMOVE_FROM_LIST(eff, ch->effects, next);
     free(eff);
@@ -383,8 +380,8 @@ void effect_remove(char_data *ch, effect *eff) {
 }
 
 /* Call effect_remove with every spell of spelltype "skill" */
-void effect_from_char(char_data *ch, int type) {
-    struct effect *hjp, *next;
+void effect_from_char(CharData *ch, int type) {
+    effect *hjp, *next;
 
     for (hjp = ch->effects; hjp; hjp = next) {
         next = hjp->next;
@@ -397,8 +394,8 @@ void effect_from_char(char_data *ch, int type) {
  *
  * This function allows you to remove spells/skills and send the
  * wearoff message. */
-void active_effect_from_char(char_data *ch, int type) {
-    struct effect *hjp, *next;
+void active_effect_from_char(CharData *ch, int type) {
+    effect *hjp, *next;
 
     for (hjp = ch->effects; hjp; hjp = next) {
         next = hjp->next;
@@ -407,17 +404,17 @@ void active_effect_from_char(char_data *ch, int type) {
     }
 }
 
-void lose_levitation_messages(char_data *ch) {
+void lose_levitation_messages(CharData *ch) {
     if (GET_POS(ch) >= POS_STANDING) {
         cprintf(ch, "%s\r\n", skills[SPELL_LEVITATE].wearoff);
-        act("$n floats back to the ground.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n floats back to the ground.", true, ch, 0, 0, TO_ROOM);
     } else {
         send_to_char("Your weight feels normal again.\r\n", ch);
     }
 }
 
-void active_effect_remove(char_data *ch, effect *effect) {
-    if (skills[effect->type].wearoff != NULL) {
+void active_effect_remove(CharData *ch, effect *effect) {
+    if (skills[effect->type].wearoff != nullptr) {
         /* Whether to send a message about the spell going away: */
 
         /* Naturally, there has to be a message to send. */
@@ -452,19 +449,19 @@ void active_effect_remove(char_data *ch, effect *effect) {
  * Return if a char is affected by a spell (SPELL_XXX), NULL indicates
  * not affected
  */
-bool affected_by_spell(char_data *ch, int type) {
-    struct effect *hjp;
-    if (ch->effects == NULL)
-        return FALSE;
+bool affected_by_spell(CharData *ch, int type) {
+    effect *hjp;
+    if (ch->effects == nullptr)
+        return false;
     for (hjp = ch->effects; hjp; hjp = hjp->next)
         if (hjp->type == type)
-            return TRUE;
+            return true;
 
-    return FALSE;
+    return false;
 }
 
-void effect_join(char_data *ch, effect *eff, bool add_dur, bool avg_dur, bool add_mod, bool avg_mod, bool refresh) {
-    struct effect *hjp;
+void effect_join(CharData *ch, effect *eff, bool add_dur, bool avg_dur, bool add_mod, bool avg_mod, bool refresh) {
+    effect *hjp;
     int i;
 
     for (hjp = ch->effects; hjp; hjp = hjp->next)
@@ -500,7 +497,7 @@ void effect_join(char_data *ch, effect *eff, bool add_dur, bool avg_dur, bool ad
  * Initialize a character according to class and race.
  * For new characters only! */
 
-void init_char(char_data *ch) {
+void init_char(CharData *ch) {
     init_char_class(ch); /* class.c */
     init_char_race(ch);  /* races.c */
     update_char(ch);
@@ -513,19 +510,19 @@ void init_char(char_data *ch) {
  * Therefore, it's appropriate for when you change a character's
  * race, or they subclass or gain a level. */
 
-void update_char(char_data *ch) {
+void update_char(CharData *ch) {
     update_skills(ch);     /* spells.c */
     update_char_class(ch); /* class.c */
     update_char_race(ch);  /* races.c */
 }
 
 /* How many lights on this guy? */
-int char_lightlevel(char_data *ch) {
+int char_lightlevel(CharData *ch) {
     int j, llevel = 0;
-    obj_data *obj, *next_obj;
+    ObjData *obj, *next_obj;
 
     for (j = 0; j < NUM_WEARS; j++)
-        if (GET_EQ(ch, j) != NULL && GET_OBJ_TYPE(GET_EQ(ch, j)) == ITEM_LIGHT &&
+        if (GET_EQ(ch, j) != nullptr && GET_OBJ_TYPE(GET_EQ(ch, j)) == ITEM_LIGHT &&
             GET_OBJ_VAL(GET_EQ(ch, j), VAL_LIGHT_LIT))
             llevel++;
 
@@ -542,15 +539,15 @@ int char_lightlevel(char_data *ch) {
 }
 
 /* move a player out of a room */
-void char_from_room(char_data *ch) {
-    struct char_data *temp;
+void char_from_room(CharData *ch) {
+    CharData *temp;
 
-    if (ch == NULL || ch->in_room == NOWHERE) {
+    if (ch == nullptr || ch->in_room == NOWHERE) {
         log("SYSERR: NULL or NOWHERE in handler.c, char_from_room");
         /*exit(1); */
     }
 
-    if (FIGHTING(ch) != NULL)
+    if (FIGHTING(ch) != nullptr)
         stop_fighting(ch);
     stop_attackers(ch);
 
@@ -558,13 +555,13 @@ void char_from_room(char_data *ch) {
 
     REMOVE_FROM_LIST(ch, world[ch->in_room].people, next_in_room);
     ch->in_room = NOWHERE;
-    ch->next_in_room = NULL;
+    ch->next_in_room = nullptr;
 }
 
 /* place a character in a room */
-void char_to_room(char_data *ch, int room) {
+void char_to_room(CharData *ch, int room) {
     EVENTFUNC(autodouse_event);
-    void start_char_falling(char_data * ch);
+    void start_char_falling(CharData * ch);
     char ctrbuf[100];
 
     if (!ch) {
@@ -581,7 +578,7 @@ void char_to_room(char_data *ch, int room) {
 
         /* Kill flames immediately upon entering a water room */
         if (EFF_FLAGGED(ch, EFF_ON_FIRE) && IS_WATER(IN_ROOM(ch))) {
-            event_create(EVENT_AUTODOUSE, autodouse_event, ch, FALSE, &(ch->events), 0);
+            event_create(EVENT_AUTODOUSE, autodouse_event, ch, false, &(ch->events), 0);
         }
 
         if (SECT(room) == SECT_AIR)
@@ -589,60 +586,60 @@ void char_to_room(char_data *ch, int room) {
 
         /* Quick aggro for players */
         else if (!ALONE(ch) && !IS_NPC(ch) && !PRF_FLAGGED(ch, PRF_NOHASSLE)) {
-            struct char_data *tch = find_aggr_target(ch);
+            CharData *tch = find_aggr_target(ch);
             if (tch && number(0, 5))
-                event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, tch, 0), TRUE, &(ch->events), 0);
+                event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, tch, 0), true, &(ch->events), 0);
         }
     }
 }
 
 /* give an object to a char   */
-void obj_to_char(obj_data *object, char_data *ch) {
-    if (object && ch) {
-        object->next_content = ch->carrying;
-        ch->carrying = object;
-        object->carried_by = ch;
-        if (GET_OBJ_TYPE(object) == ITEM_LIGHT && GET_OBJ_VAL(object, VAL_LIGHT_LIT))
+void obj_to_char(ObjData *obj, CharData *ch) {
+    if (obj && ch) {
+        obj->next_content = ch->carrying;
+        ch->carrying = obj;
+        obj->carried_by = ch;
+        if (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL(obj, VAL_LIGHT_LIT))
             world[ch->in_room].light++;
-        object->in_room = NOWHERE;
-        IS_CARRYING_W(ch) += GET_OBJ_WEIGHT(object);
+        obj->in_room = NOWHERE;
+        IS_CARRYING_W(ch) += GET_OBJ_WEIGHT(obj);
         IS_CARRYING_N(ch)++;
 
         if (!IS_NPC(ch))
             SET_FLAG(PLR_FLAGS(ch), PLR_AUTOSAVE);
         if (PLAYERALLY(ch))
-            stop_decomposing(object);
+            stop_decomposing(obj);
         overweight_check(ch);
     } else
         log("SYSERR:handler.c:obj_to_char() NULL obj or char");
 }
 
 /* take an object from a char */
-void obj_from_char(obj_data *object) {
-    struct obj_data *temp;
+void obj_from_char(ObjData *obj) {
+    ObjData *temp;
 
-    if (object == NULL) {
+    if (obj == nullptr) {
         log("SYSERR:handler.c:obj_from_char() NULL object");
         return;
     }
-    if (GET_OBJ_TYPE(object) == ITEM_LIGHT && GET_OBJ_VAL(object, VAL_LIGHT_LIT))
-        world[object->carried_by->in_room].light--;
+    if (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL(obj, VAL_LIGHT_LIT))
+        world[obj->carried_by->in_room].light--;
 
-    REMOVE_FROM_LIST(object, object->carried_by->carrying, next_content);
+    REMOVE_FROM_LIST(obj, obj->carried_by->carrying, next_content);
 
-    if (!IS_NPC(object->carried_by))
-        SET_FLAG(PLR_FLAGS(object->carried_by), PLR_AUTOSAVE);
-    if (MORTALALLY(object->carried_by))
-        start_decomposing(object);
+    if (!IS_NPC(obj->carried_by))
+        SET_FLAG(PLR_FLAGS(obj->carried_by), PLR_AUTOSAVE);
+    if (MORTALALLY(obj->carried_by))
+        start_decomposing(obj);
 
-    IS_CARRYING_W(object->carried_by) -= GET_OBJ_WEIGHT(object);
-    IS_CARRYING_N(object->carried_by)--;
-    object->carried_by = NULL;
-    object->next_content = NULL;
+    IS_CARRYING_W(obj->carried_by) -= GET_OBJ_WEIGHT(obj);
+    IS_CARRYING_N(obj->carried_by)--;
+    obj->carried_by = nullptr;
+    obj->next_content = nullptr;
 }
 
 /* Return the effect of a piece of armor in position eq_pos */
-static int apply_ac(char_data *ch, int eq_pos) {
+static int apply_ac(CharData *ch, int eq_pos) {
     int factor;
 
     assert(GET_EQ(ch, eq_pos));
@@ -669,7 +666,7 @@ static int apply_ac(char_data *ch, int eq_pos) {
     return (factor * GET_OBJ_VAL(GET_EQ(ch, eq_pos), VAL_ARMOR_AC));
 }
 
-void count_hand_eq(char_data *ch, int *hands_used, int *weapon_hands_used) {
+void count_hand_eq(CharData *ch, int *hands_used, int *weapon_hands_used) {
     *hands_used = *weapon_hands_used = 0;
     if (GET_EQ(ch, WEAR_2HWIELD)) {
         (*hands_used) += 2;
@@ -691,11 +688,11 @@ void count_hand_eq(char_data *ch, int *hands_used, int *weapon_hands_used) {
     }
 }
 
-bool may_wear_eq(char_data *ch,        /* Who is trying to wear something */
-                 struct obj_data *obj, /* The object being put on */
-                 int *where,           /* The position it should be worn at */
-                 bool sendmessage      /* Whether to send a rejection message to ch,
-                                          if the item could not be worn. */
+bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
+                 ObjData *obj,    /* The object being put on */
+                 int *where,      /* The position it should be worn at */
+                 bool sendmessage /* Whether to send a rejection message to ch,
+                                     if the item could not be worn. */
 ) {
     int a = 0, w = 0;
     /*
@@ -745,8 +742,8 @@ bool may_wear_eq(char_data *ch,        /* Who is trying to wear something */
     if (!CAN_WEAR(obj, wear_bitvectors[*where]) || (*where == 0 && GET_OBJ_TYPE(obj) != ITEM_LIGHT) ||
         (*where == 0 && GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_WEAR(obj) != ITEM_WEAR_TAKE + ITEM_WEAR_HOLD)) {
         if (!(IS_NPC(ch)) && sendmessage)
-            act("You can't wear $p there.", FALSE, ch, obj, 0, TO_CHAR);
-        return FALSE;
+            act("You can't wear $p there.", false, ch, obj, 0, TO_CHAR);
+        return false;
     }
 
     /* for neck, finger, wrist, held, and wielded, try pos 2 if pos 1 is already
@@ -769,16 +766,16 @@ bool may_wear_eq(char_data *ch,        /* Who is trying to wear something */
         if ((GET_OBJ_WEAR(obj) & ITEM_WEAR_2HWIELD) && a) {
             if (sendmessage)
                 send_to_char("You need both hands free for this weapon!\r\n", ch);
-            return FALSE;
+            return false;
         } else if (a > 1) {
             if (sendmessage)
                 send_to_char("Both of your hands are already using something.\r\n", ch);
-            return FALSE;
+            return false;
         } else if (a == 1 && w > 0 && (*where == WEAR_WIELD || *where == WEAR_WIELD2) &&
                    !(GET_SKILL(ch, SKILL_DUAL_WIELD))) {
             if (sendmessage)
                 send_to_char("You don't have the co-ordination to dual wield.\r\n", ch);
-            return FALSE;
+            return false;
         }
     }
 
@@ -786,20 +783,20 @@ bool may_wear_eq(char_data *ch,        /* Who is trying to wear something */
     if (GET_EQ(ch, *where)) {
         if (sendmessage)
             send_to_char(already_wearing[*where], ch);
-        return FALSE;
+        return false;
     }
 
     /* The NO_EQ_RESTRICT flag overrides the remaining considerations. */
     if (IS_NPC(ch) && MOB_FLAGGED(ch, MOB_NO_EQ_RESTRICT))
-        return TRUE;
+        return true;
 
     /* Check the level of the object. */
     if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch)) {
         if (!IS_NPC(ch) && sendmessage) {
-            act("You're not a high enough level to use $p.", FALSE, ch, obj, 0, TO_CHAR);
-            act("$n struggles and fails to use $p.", TRUE, ch, obj, 0, TO_ROOM);
+            act("You're not a high enough level to use $p.", false, ch, obj, 0, TO_CHAR);
+            act("$n struggles and fails to use $p.", true, ch, obj, 0, TO_ROOM);
         }
-        return FALSE;
+        return false;
     }
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
@@ -810,28 +807,28 @@ bool may_wear_eq(char_data *ch,        /* Who is trying to wear something */
               (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
               (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))))) {
             if (sendmessage)
-                act("You can not use $p.", FALSE, ch, obj, 0, TO_CHAR);
-            return FALSE;
+                act("You can not use $p.", false, ch, obj, 0, TO_CHAR);
+            return false;
         }
 
         if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
             if (sendmessage)
                 send_to_char("It's too heavy for you to use.\r\n", ch);
-            return FALSE;
+            return false;
         }
     }
 
     /* You can only wear something on your belt if you are wearing a belt. */
     if (*where == WEAR_OBELT && !GET_EQ(ch, WEAR_WAIST)) {
         if (sendmessage)
-            act("You'll need to wear a belt first.", FALSE, ch, obj, 0, TO_CHAR);
-        return FALSE;
+            act("You'll need to wear a belt first.", false, ch, obj, 0, TO_CHAR);
+        return false;
     }
 
-    return TRUE;
+    return true;
 }
 
-enum equip_result equip_char(char_data *ch, obj_data *obj, int pos) {
+enum equip_result equip_char(CharData *ch, ObjData *obj, int pos) {
     int j;
 
     assert(pos >= 0 && pos < NUM_WEARS);
@@ -863,7 +860,7 @@ enum equip_result equip_char(char_data *ch, obj_data *obj, int pos) {
         mprintf(L_ERROR, LVL_GOD, "SYSERR: ch->in_room = NOWHERE when equipping char.");
 
     for (j = 0; j < MAX_OBJ_APPLIES; j++)
-        effect_modify(ch, obj->applies[j].location, obj->applies[j].modifier, GET_OBJ_EFF_FLAGS(obj), TRUE);
+        effect_modify(ch, obj->applies[j].location, obj->applies[j].modifier, GET_OBJ_EFF_FLAGS(obj), true);
 
     if (PLAYERALLY(ch))
         stop_decomposing(obj);
@@ -872,15 +869,15 @@ enum equip_result equip_char(char_data *ch, obj_data *obj, int pos) {
     return EQUIP_RESULT_SUCCESS;
 }
 
-struct obj_data *unequip_char(char_data *ch, int pos) {
+ObjData *unequip_char(CharData *ch, int pos) {
     int j;
-    struct obj_data *obj;
+    ObjData *obj;
 
     assert(pos >= 0 && pos < NUM_WEARS);
     assert(GET_EQ(ch, pos));
 
     obj = GET_EQ(ch, pos);
-    obj->worn_by = NULL;
+    obj->worn_by = nullptr;
     obj->worn_on = -1;
 
     if (GET_OBJ_TYPE(obj) == ITEM_ARMOR)
@@ -892,14 +889,14 @@ struct obj_data *unequip_char(char_data *ch, int pos) {
     } else
         log("SYSERR: ch->in_room = NOWHERE when unequipping char.");
 
-    GET_EQ(ch, pos) = NULL;
+    GET_EQ(ch, pos) = nullptr;
     IS_CARRYING_W(ch) -= GET_OBJ_WEIGHT(obj);
 
     /* Reapply all the racial effects in case they were removed above. */
     update_char(ch);
 
     for (j = 0; j < MAX_OBJ_APPLIES; j++)
-        effect_modify(ch, obj->applies[j].location, obj->applies[j].modifier, obj->obj_flags.effect_flags, FALSE);
+        effect_modify(ch, obj->applies[j].location, obj->applies[j].modifier, obj->obj_flags.effect_flags, false);
 
     if (MORTALALLY(ch))
         start_decomposing(obj);
@@ -908,17 +905,17 @@ struct obj_data *unequip_char(char_data *ch, int pos) {
 }
 
 EVENTFUNC(sink_and_lose_event) {
-    struct sink_and_lose *data = (sink_and_lose *)event_obj;
-    struct obj_data *obj = data->obj;
+    SinkAndLose *data = (SinkAndLose *)event_obj;
+    ObjData *obj = data->obj;
     int room = data->room;
-    char *conjugation;
+    const char *conjugation;
 
     if (obj->in_room == room) {
         if (isplural(GET_OBJ_NAME(obj)))
             conjugation = "";
         else
             conjugation = "s";
-        act("$p&4&b sink$T like a rock.&0", FALSE, 0, obj, conjugation, TO_ROOM);
+        act("$p&4&b sink$T like a rock.&0", false, 0, obj, conjugation, TO_ROOM);
         extract_obj(obj);
     }
 
@@ -926,51 +923,51 @@ EVENTFUNC(sink_and_lose_event) {
 }
 
 /* put an object in a room */
-void obj_to_room(obj_data *object, int room) {
-    void start_obj_falling(obj_data * obj);
+void obj_to_room(ObjData *obj, int room) {
+    void start_obj_falling(ObjData * obj);
     char otrbuf[50];
-    struct sink_and_lose *sinkdata;
+    SinkAndLose *sinkdata;
 
-    if (!object) {
+    if (!obj) {
         log("SYSERR: NULL object pointer passed to obj_to_room");
     } else if (room < 0 || room > top_of_world) {
-        sprintf(otrbuf, "SYSERR: obj_to_room: obj)%d room)%d", GET_OBJ_VNUM(object), room);
+        sprintf(otrbuf, "SYSERR: obj_to_room: obj)%d room)%d", GET_OBJ_VNUM(obj), room);
         log(otrbuf);
     } else {
-        object->next_content = world[room].contents;
-        world[room].contents = object;
-        object->in_room = room;
-        object->carried_by = NULL;
-        if (GET_OBJ_TYPE(object) == ITEM_LIGHT && GET_OBJ_VAL(object, VAL_LIGHT_LIT))
-            world[object->in_room].light++;
+        obj->next_content = world[room].contents;
+        world[room].contents = obj;
+        obj->in_room = room;
+        obj->carried_by = nullptr;
+        if (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL(obj, VAL_LIGHT_LIT))
+            world[obj->in_room].light++;
 
         /* Falling or sinking - the !FALL flag prevents both */
-        if (!OBJ_FLAGGED(object, ITEM_NOFALL)) {
+        if (!OBJ_FLAGGED(obj, ITEM_NOFALL)) {
             /* Will the object sink in water? */
-            if ((SECT(room) == SECT_SHALLOWS || SECT(room) == SECT_WATER) && (!OBJ_FLAGGED(object, ITEM_FLOAT))) {
+            if ((SECT(room) == SECT_SHALLOWS || SECT(room) == SECT_WATER) && (!OBJ_FLAGGED(obj, ITEM_FLOAT))) {
                 /* Yep, say goodbye. */
-                CREATE(sinkdata, sink_and_lose, 1);
+                CREATE(sinkdata, SinkAndLose, 1);
                 sinkdata->room = room;
-                sinkdata->obj = object;
-                event_create(EVENT_SINK_AND_LOSE, &sink_and_lose_event, sinkdata, TRUE, &(object->events), 2);
+                sinkdata->obj = obj;
+                event_create(EVENT_SINK_AND_LOSE, &sink_and_lose_event, sinkdata, true, &(obj->events), 2);
                 return;
             } else if (SECT(room) == SECT_AIR)
-                start_obj_falling(object);
+                start_obj_falling(obj);
 
             if (ROOM_FLAGGED(room, ROOM_HOUSE))
                 SET_FLAG(ROOM_FLAGS(room), ROOM_HOUSE_CRASH);
             /* if this is a player corpse, save the new room vnum to
                the corpse control record. This can later be optimized as
                a flag, much like houses  -  nechtrous */
-            if (IS_PLR_CORPSE(object))
-                update_corpse(object);
+            if (IS_PLR_CORPSE(obj))
+                update_corpse(obj);
         }
     }
 }
 
 /* Take an object from a room */
-void obj_from_room(obj_data *object) {
-    struct obj_data *temp;
+void obj_from_room(ObjData *object) {
+    ObjData *temp;
 
     if (!object || object->in_room == NOWHERE) {
         log("SYSERR:handler.c:obj_from_room() NULL obj or obj->in_room = -1");
@@ -985,12 +982,12 @@ void obj_from_room(obj_data *object) {
     if (ROOM_FLAGGED(object->in_room, ROOM_HOUSE))
         SET_FLAG(ROOM_FLAGS(object->in_room), ROOM_HOUSE_CRASH);
     object->in_room = NOWHERE;
-    object->next_content = NULL;
+    object->next_content = nullptr;
 }
 
 /* put an object in an object (quaint)  */
-void obj_to_obj(obj_data *obj, obj_data *obj_to) {
-    struct obj_data *tmp_obj;
+void obj_to_obj(ObjData *obj, ObjData *obj_to) {
+    ObjData *tmp_obj;
     int weight_reduction;
     float reduction;
 
@@ -1029,13 +1026,13 @@ void obj_to_obj(obj_data *obj, obj_data *obj_to) {
 }
 
 /* remove an object from an object */
-void obj_from_obj(obj_data *obj) {
-    struct obj_data *temp, *obj_from;
+void obj_from_obj(ObjData *obj) {
+    ObjData *temp, *obj_from;
     extern int short_pc_corpse_time;
     int weight_reduction;
     float reduction;
 
-    if (obj->in_obj == NULL) {
+    if (obj->in_obj == nullptr) {
         log("error (handler.c): trying to illegally extract obj from obj");
         return;
     }
@@ -1060,8 +1057,8 @@ void obj_from_obj(obj_data *obj) {
     else if (temp->worn_by)
         IS_CARRYING_W(temp->worn_by) -= GET_OBJ_WEIGHT(obj) - reduction;
 
-    obj->in_obj = NULL;
-    obj->next_content = NULL;
+    obj->in_obj = nullptr;
+    obj->next_content = nullptr;
 
     /* to fix some eq duping, if obj_from is a pcorpse, save the corpse */
     if (IS_PLR_CORPSE(obj_from)) {
@@ -1072,16 +1069,9 @@ void obj_from_obj(obj_data *obj) {
     }
 }
 
-/* Global object iterator
- *
- * Helps the object extractor in limits.c to iterate over all objects
- * in the world while destroying some of them. */
-
-struct obj_data *go_iterator = NULL;
-
 /* Extract an object from the world */
-void extract_obj(obj_data *obj) {
-    struct obj_data *temp;
+void extract_obj(ObjData *obj) {
+    ObjData *temp;
 
     if (obj->casters)
         obj_forget_casters(obj);
@@ -1101,7 +1091,7 @@ void extract_obj(obj_data *obj) {
         else
             log("CORPSE: %s has been extracted from an unknown location", obj->short_description);
     }
-    if (obj->worn_by != NULL)
+    if (obj->worn_by != nullptr)
         if (unequip_char(obj->worn_by, obj->worn_on) != obj)
             log("SYSERR: Inconsistent worn_by and worn_on pointers!!");
 
@@ -1130,7 +1120,7 @@ void extract_obj(obj_data *obj) {
     free_obj(obj);
 }
 
-void purge_objs(char_data *ch) {
+void purge_objs(CharData *ch) {
     int i;
 
     while (ch->carrying)
@@ -1142,16 +1132,16 @@ void purge_objs(char_data *ch) {
 }
 
 /* Extract a ch completely from the world, and leave his stuff behind  */
-void extract_char(char_data *ch) {
-    struct char_data *temp;
-    struct descriptor_data *d;
-    struct obj_data *obj;
+void extract_char(CharData *ch) {
+    CharData *temp;
+    DescriptorData *d;
+    ObjData *obj;
     int i, freed = 0;
-    void dismount_char(char_data * ch);
-    void stop_guarding(char_data * ch);
+    void dismount_char(CharData * ch);
+    void stop_guarding(CharData * ch);
     ACMD(do_return);
-    void die_groupee(char_data * ch);
-    void die_consentee_clean(char_data * ch);
+    void die_groupee(CharData * ch);
+    void die_consentee_clean(CharData * ch);
 
     if (ch->in_room == NOWHERE) {
         sprintf(buf, "SYSERR:handler.c:extract_char: NOWHERE extracting char: %s", GET_NAME(ch));
@@ -1176,7 +1166,7 @@ void extract_char(char_data *ch) {
      * body.
      */
     if (POSSESSED(ch))
-        do_return(ch, NULL, 0, 0);
+        do_return(ch, nullptr, 0, 0);
 
     die_consentee_clean(ch);
 
@@ -1184,7 +1174,7 @@ void extract_char(char_data *ch) {
         die_follower(ch);
 
     if (IS_GROUPED(ch))
-        ungroup(ch, TRUE, FALSE);
+        ungroup(ch, true, false);
 
     if (RIDING(ch) || RIDDEN_BY(ch))
         dismount_char(ch);
@@ -1196,24 +1186,24 @@ void extract_char(char_data *ch) {
 
     if (ch->cornering) {
         if (ch->cornering->cornered_by == ch)
-            ch->cornering->cornered_by = NULL;
-        ch->cornering = NULL;
+            ch->cornering->cornered_by = nullptr;
+        ch->cornering = nullptr;
     }
     if (ch->cornered_by) {
         if (ch->cornered_by->cornering == ch)
-            ch->cornered_by->cornering = NULL;
-        ch->cornering = NULL;
+            ch->cornered_by->cornering = nullptr;
+        ch->cornering = nullptr;
     }
     /* Forget snooping, if applicable */
     if (ch->desc) {
         if (ch->desc->snooping) {
-            ch->desc->snooping->snoop_by = NULL;
-            ch->desc->snooping = NULL;
+            ch->desc->snooping->snoop_by = nullptr;
+            ch->desc->snooping = nullptr;
         }
         if (ch->desc->snoop_by) {
             write_to_output("Your victim is no longer among us.\r\n", ch->desc->snoop_by);
-            ch->desc->snoop_by->snooping = NULL;
-            ch->desc->snoop_by = NULL;
+            ch->desc->snoop_by->snooping = nullptr;
+            ch->desc->snoop_by = nullptr;
         }
     }
 
@@ -1234,7 +1224,7 @@ void extract_char(char_data *ch) {
 
     /* Remove runtime link to clan */
     if (GET_CLAN_MEMBERSHIP(ch))
-        GET_CLAN_MEMBERSHIP(ch)->player = NULL;
+        GET_CLAN_MEMBERSHIP(ch)->player = nullptr;
 
     /* transfer equipment to room */
     for (i = 0; i < NUM_WEARS; i++)
@@ -1267,7 +1257,7 @@ void extract_char(char_data *ch) {
         freed = 1;
     }
 
-    if (!freed && ch->desc != NULL) {
+    if (!freed && ch->desc != nullptr) {
         STATE(ch->desc) = CON_MENU;
         write_to_output(MENU, ch->desc);
     } else { /* if a player gets purged from within the game */

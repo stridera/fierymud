@@ -14,7 +14,7 @@
 
 #include "money.hpp"
 #include "rooms.hpp"
-#include "strings.h"
+#include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "text.hpp"
@@ -23,12 +23,12 @@
 
 /* external declarations and prototypes **********************************/
 
-extern struct zone_data *zone_table;
-extern struct index_data *obj_index;
+// struct ZoneData *zone_table;
+// struct IndexData *obj_index;
 
 /* This should be in weather.h, but IS_DARK uses hemisphere data, so we
  * need it here. */
-extern struct hemisphere_data hemispheres[NUM_HEMISPHERES];
+// struct HemisphereData hemispheres[NUM_HEMISPHERES];
 
 #define log log_printf
 #define mprintf mudlog_printf
@@ -37,28 +37,29 @@ extern struct hemisphere_data hemispheres[NUM_HEMISPHERES];
 void mudlog(const char *str, unsigned char type, int level, byte file);
 
 /* public functions in utils.c */
-void perform_random_gem_drop(char_data *);
-bool event_target_valid(char_data *ch);
-int con_aff(char_data *ch);
+void perform_random_gem_drop(CharData *);
+bool event_target_valid(CharData *ch);
+int con_aff(CharData *ch);
 int static_ac(int dex);
 void log(const char *str, ...) __attribute__((format(printf, 1, 2)));
 int touch(const char *path);
 void mudlog_printf(int severity, int level, const char *str, ...) __attribute__((format(printf, 3, 4)));
 const char *sprint_log_severity(int severity);
 int parse_log_severity(const char *severity);
-void log_death_trap(char_data *ch);
+void log_death_trap(CharData *ch);
 int get_line(FILE *fl, char *buf);
-struct time_info_data age(char_data *ch);
-int num_pc_in_room(room_data *room);
-int load_modifier(char_data *ch);
-const char *movewords(char_data *ch, int cmd, int room, int leaving);
+TimeInfoData age(CharData *ch);
+int num_pc_in_room(RoomData *room);
+int load_modifier(CharData *ch);
+const char *movewords(CharData *ch, int cmd, int room, int leaving);
 void build_count(void);
-int monk_weight_penalty(char_data *ch);
+int monk_weight_penalty(CharData *ch);
 int find_zone(int num);
-int parse_obj_name(char_data *ch, char *arg, char *objname, int numobjs, void *objects, int objsize);
+int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numobjs, void *objects, int objsize);
 void init_flagvectors();
 long exp_next_level(int level, int class_num);
 void init_exp_table(void);
+CharData *is_playing(char *vict_name);
 
 void sort(void algorithm(int[], int, int(int a, int b)), int array[], int count, int comparator(int, int));
 void bubblesort(int array[], int count, int comparator(int a, int b));
@@ -66,7 +67,7 @@ void insertsort(int array[], int count, int comparator(int a, int b));
 void quicksort(int array[], int count, int comparator(int a, int b));
 void optquicksort(int array[], int count, int comparator(int a, int b));
 
-void update_pos(char_data *victim);
+void update_pos(CharData *victim);
 
 int yesno_result(char *answer);
 #define YESNO_NONE 0  /* just pressed enter (probably wanted default) */
@@ -77,7 +78,7 @@ int yesno_result(char *answer);
 char *statelength(int inches);
 char *stateweight(float pounds);
 char *format_apply(int apply, int amount);
-void drop_core(char_data *ch, const char *desc);
+void drop_core(CharData *ch, const char *desc);
 
 /* various constants *****************************************************/
 
@@ -179,7 +180,7 @@ void drop_core(char_data *ch, const char *desc);
     } while (0)
 
 #define LOOP_THRU_PEOPLE(IN_ROOM, PLAYER)                                                                              \
-    for ((IN_ROOM) = world[(PLAYER)->in_room].people; (IN_ROOM) != NULL; (IN_ROOM) = (IN_ROOM)->next_in_room)
+    for ((IN_ROOM) = world[(PLAYER)->in_room].people; (IN_ROOM) != nullptr; (IN_ROOM) = (IN_ROOM)->next_in_room)
 
 /* basic bitvector utils *************************************************/
 
@@ -201,7 +202,7 @@ void SET_FLAGS(flagvector field[], const flagvector flags[], const int num_flags
 void REMOVE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
 void TOGGLE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
 void COPY_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
-extern flagvector *ALL_FLAGS;
+flagvector *ALL_FLAGS;
 #define HAS_FLAGS(field, num_flags) (ANY_FLAGGED((field), ALL_FLAGS, (num_flags)))
 #define CLEAR_FLAGS(field, num_flags) (REMOVE_FLAGS((field), ALL_FLAGS, (num_flags)))
 
@@ -565,7 +566,7 @@ extern flagvector *ALL_FLAGS;
 #define PERS(ch, vict) (CAN_SEE((vict), (ch)) ? GET_NAME(ch) : "someone")
 
 #define ALONE(ch)                                                                                                      \
-    (!(ch) || ((ch)->in_room == NOWHERE) || (((ch)->next_in_room == NULL) && (world[(ch)->in_room].people == (ch))))
+    (!(ch) || ((ch)->in_room == NOWHERE) || (((ch)->next_in_room == nullptr) && (world[(ch)->in_room].people == (ch))))
 
 /* OS compatibility ******************************************************/
 
@@ -574,12 +575,12 @@ extern flagvector *ALL_FLAGS;
 #define NULL (void *)0
 #endif
 
-#if !defined(FALSE)
-#define FALSE 0
+#if !defined(false)
+#define false 0
 #endif
 
-#if !defined(TRUE)
-#define TRUE (!FALSE)
+#if !defined(true)
+#define true (!false)
 #endif
 
 /* defines for fseek */

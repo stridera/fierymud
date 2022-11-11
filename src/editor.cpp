@@ -90,52 +90,28 @@ static struct {
     },
 };
 
-/*
- * Although struct editor_data is referenced from structs.h,
- * because it is only a pointer, we can locally define the
- * struct here, which makes it private to editor.c.  This
- * prevents code in other modules from modifying anything
- * in the editor.  But don't add code to editor.c just to
- * access this struct.  Add proper methods, and make sure
- * what you want to do can't be done with the existing hooks.
- */
-struct editor_data {
-    bool started;
-    char *string;
-    char **destination;
-    char *begin_string;
-    size_t length;
-    size_t max_length;
-    size_t lines;
-    size_t max_lines;
-    void *data;
-    enum ed_cleanup_action cleanup_action;
-
-    EDITOR_FUNC(*action[NUM_ED_COMMAND_TYPES]);
-};
-
-static struct editor_context *create_context(descriptor_data *d, enum ed_command_type command, const char *argument);
-static struct descriptor_data *consume_context(editor_context *c);
-static void editor_action(descriptor_data *d, enum ed_command_type command, char *argument);
-static void editor_append(descriptor_data *d, char *line);
+static EditorContext *create_context(DescriptorData *d, enum EditorCommandEnum command, const char *argument);
+static DescriptorData *consume_context(EditorContext *c);
+static void editor_action(DescriptorData *d, enum EditorCommandEnum command, char *argument);
+static void editor_append(DescriptorData *d, char *line);
 static bool editor_format_text(char **string, int indent, size_t max_length, int first_line, int last_line);
 static int editor_replace_string(char **string, char *pattern, char *replacement, bool replace_all, size_t max_length);
 static size_t limit_lines(char *string, size_t max_lines);
 static EVENTFUNC(editor_start);
 
-extern void ispell_check(descriptor_data *d, const char *word);
+void ispell_check(DescriptorData *d, const char *word);
 
-const struct descriptor_data *editor_edited_by(char **message) {
-    struct descriptor_data *d;
+const DescriptorData *editor_edited_by(char **message) {
+    DescriptorData *d;
 
     for (d = descriptor_list; d; d = d->next)
         if (d->editor && d->editor->destination == message)
             return d;
 
-    return NULL;
+    return nullptr;
 }
 
-void editor_init(descriptor_data *d, char **string, size_t max_length) {
+void editor_init(DescriptorData *d, char **string, size_t max_length) {
     if (!d) {
         log("SYSERR: NULL descriptor passed to editor_init");
         return;
@@ -152,22 +128,22 @@ void editor_init(descriptor_data *d, char **string, size_t max_length) {
         editor_cleanup(d);
     }
 
-    CREATE(d->editor, editor_data, 1);
+    CREATE(d->editor, EditorData, 1);
 
-    d->editor->started = FALSE;
-    d->editor->string = (string && *string && **string) ? strdup(*string) : NULL;
+    d->editor->started = false;
+    d->editor->string = (string && *string && **string) ? strdup(*string) : nullptr;
     d->editor->destination = string;
-    d->editor->begin_string = NULL;
+    d->editor->begin_string = nullptr;
     d->editor->max_length = max_length;
     d->editor->max_lines = 9999;
-    d->editor->data = NULL;
+    d->editor->data = nullptr;
     d->editor->cleanup_action = ED_NO_ACTION;
 
-    event_create(EVENT_EDITOR_START, editor_start, d, FALSE, NULL, 0);
+    event_create(EVENT_EDITOR_START, editor_start, d, false, nullptr, 0);
 }
 
 EVENTFUNC(editor_start) {
-    struct descriptor_data *d = (descriptor_data *)event_obj;
+    DescriptorData *d = (DescriptorData *)event_obj;
 
     if (!d)
         log("SYSERR: NULL descriptor passed to editor_start");
@@ -180,7 +156,7 @@ EVENTFUNC(editor_start) {
             log("WARNING: editor_start: editor max_length is %d > MAX_STRING_LENGTH;"
                 " format command disabled",
                 d->editor->max_length);
-        d->editor->started = TRUE;
+        d->editor->started = true;
         if (d->editor->string) {
             d->editor->lines = limit_lines(d->editor->string, d->editor->max_lines);
             d->editor->length = strlen(d->editor->string);
@@ -189,13 +165,13 @@ EVENTFUNC(editor_start) {
             d->editor->string[d->editor->length - 1] = '\0';
             d->editor->length = d->editor->max_length;
         }
-        editor_action(d, ED_BEGIN, NULL);
+        editor_action(d, ED_BEGIN, nullptr);
     }
 
     return EVENT_FINISHED;
 }
 
-void editor_set_callback_data(descriptor_data *d, void *data, enum ed_cleanup_action action) {
+void editor_set_callback_data(DescriptorData *d, void *data, enum ed_cleanup_action action) {
     if (!d) {
         log("SYSERR: NULL descriptor passed to editor_set_callback_data");
         return;
@@ -211,7 +187,7 @@ void editor_set_callback_data(descriptor_data *d, void *data, enum ed_cleanup_ac
     d->editor->cleanup_action = action;
 }
 
-void editor_set_callback(descriptor_data *d, enum ed_command_type type, EDITOR_FUNC(*callback)) {
+void editor_set_callback(DescriptorData *d, enum EditorCommandEnum type, EDITOR_FUNC(*callback)) {
     if (!d) {
         log("SYSERR: NULL descriptor passed to editor_set_callback");
         return;
@@ -231,7 +207,7 @@ void editor_set_callback(descriptor_data *d, enum ed_command_type type, EDITOR_F
     d->editor->action[type] = callback;
 }
 
-void editor_set_max_lines(descriptor_data *d, size_t max_lines) {
+void editor_set_max_lines(DescriptorData *d, size_t max_lines) {
     if (!d) {
         log("SYSERR: NULL descriptor passed to editor_set_max_lines");
         return;
@@ -253,7 +229,7 @@ void editor_set_max_lines(descriptor_data *d, size_t max_lines) {
     d->editor->max_lines = max_lines;
 }
 
-void editor_set_begin_string(descriptor_data *d, char *string, ...) {
+void editor_set_begin_string(DescriptorData *d, char *string, ...) {
     va_list args;
     char buf[MAX_STRING_LENGTH];
 
@@ -280,10 +256,10 @@ void editor_set_begin_string(descriptor_data *d, char *string, ...) {
     d->editor->begin_string = strdup(buf);
 }
 
-static struct editor_context *create_context(descriptor_data *d, enum ed_command_type command, const char *argument) {
-    struct editor_context *context;
+static EditorContext *create_context(DescriptorData *d, enum EditorCommandEnum command, const char *argument) {
+    EditorContext *context;
 
-    CREATE(context, editor_context, 1);
+    CREATE(context, EditorContext, 1);
     context->descriptor = d;
     context->string = d->editor->string;
     context->max_length = d->editor->max_length;
@@ -294,8 +270,8 @@ static struct editor_context *create_context(descriptor_data *d, enum ed_command
     return context;
 }
 
-static struct descriptor_data *consume_context(editor_context *c) {
-    struct descriptor_data *d = c->descriptor;
+static DescriptorData *consume_context(EditorContext *c) {
+    DescriptorData *d = c->descriptor;
 
     if ((d->editor->string = c->string)) {
         d->editor->length = strlen(d->editor->string);
@@ -312,8 +288,8 @@ static struct descriptor_data *consume_context(editor_context *c) {
     return d;
 }
 
-static void editor_action(descriptor_data *d, enum ed_command_type command, char *argument) {
-    struct editor_context *context;
+static void editor_action(DescriptorData *d, enum EditorCommandEnum command, char *argument) {
+    EditorContext *context;
 
     if (command < 0 || command >= NUM_ED_COMMAND_TYPES)
         command = ED_OTHER;
@@ -332,7 +308,7 @@ static void editor_action(descriptor_data *d, enum ed_command_type command, char
         editor_cleanup(d);
 }
 
-void editor_interpreter(descriptor_data *d, char *line) {
+void editor_interpreter(DescriptorData *d, char *line) {
     char *argument = line;
     size_t i;
 
@@ -347,7 +323,7 @@ void editor_interpreter(descriptor_data *d, char *line) {
     skip_spaces(&argument);
 
     if (!d->editor->started)
-        editor_action(d, ED_BEGIN, NULL);
+        editor_action(d, ED_BEGIN, nullptr);
 
     /* If the line doesn't start with a /, it's not a command: append it */
     if (*argument != ED_CMD_CHAR)
@@ -357,7 +333,7 @@ void editor_interpreter(descriptor_data *d, char *line) {
     else if (*(++argument)) {
         for (i = 0; i < NUM_ED_COMMAND_TYPES; ++i)
             if (*argument == command_types[i].command) {
-                editor_action(d, i, argument + 1);
+                editor_action(d, (EditorCommandEnum)i, argument + 1);
                 break;
             }
         /* editor action not found above */
@@ -366,7 +342,7 @@ void editor_interpreter(descriptor_data *d, char *line) {
     }
 }
 
-static void editor_append(descriptor_data *d, char *line) {
+static void editor_append(DescriptorData *d, char *line) {
     size_t line_length = strlen(line) + 2; /* +2 for \r\n */
     size_t space_left = d->editor->max_length - d->editor->length;
     size_t new_length = d->editor->length + line_length;
@@ -405,7 +381,7 @@ static void editor_append(descriptor_data *d, char *line) {
     d->editor->lines++;
 }
 
-void editor_cleanup(descriptor_data *d) {
+void editor_cleanup(DescriptorData *d) {
     if (!d) {
         log("SYSERR: NULL descriptor passed to editor_set_other_handler");
         return;
@@ -427,14 +403,14 @@ void editor_cleanup(descriptor_data *d) {
         free(d->editor->data);
 
     free(d->editor);
-    d->editor = NULL;
+    d->editor = nullptr;
 }
 
 EDITOR_FUNC(editor_default_begin) {
     dprintf(edit->descriptor, "%s  (/s saves, /h for help)\r\n",
             edit->descriptor->editor->begin_string ? edit->descriptor->editor->begin_string : "Write your message.");
 
-    editor_action(edit->descriptor, ED_LIST, NULL);
+    editor_action(edit->descriptor, ED_LIST, nullptr);
 
     return ED_PROCESSED;
 }
@@ -442,7 +418,7 @@ EDITOR_FUNC(editor_default_begin) {
 EDITOR_FUNC(editor_default_clear) {
     if (edit->string) {
         free(edit->string);
-        edit->string = NULL;
+        edit->string = nullptr;
         dprintf(edit->descriptor, "Current buffer cleared.\r\n");
     } else
         dprintf(edit->descriptor, "Current buffer empty.\r\n");
@@ -530,7 +506,7 @@ EDITOR_FUNC(editor_default_insert_line) {
     char *str, temp, *start;
     int line, insert_line;
     size_t final_length;
-    struct descriptor_data *d = edit->descriptor;
+    DescriptorData *d = edit->descriptor;
     const char *argument = edit->argument;
 
     if (!edit->string) {
@@ -605,7 +581,7 @@ EDITOR_FUNC(editor_default_edit_line) {
     char *str, *start, *cut, *cont;
     int line, edit_line;
     size_t final_length;
-    struct descriptor_data *d = edit->descriptor;
+    DescriptorData *d = edit->descriptor;
     const char *argument = edit->argument;
 
     if (!edit->string) {
@@ -665,7 +641,7 @@ EDITOR_FUNC(editor_default_edit_line) {
 }
 
 EDITOR_FUNC(editor_default_replace) {
-    bool replace_all = FALSE;
+    bool replace_all = false;
     char arg[MAX_INPUT_LENGTH], search[MAX_INPUT_LENGTH], replace[MAX_INPUT_LENGTH], *argument;
     int replaced;
 
@@ -680,7 +656,7 @@ EDITOR_FUNC(editor_default_replace) {
     /* Does the user want it indented? */
     if (*argument == 'a') {
         ++argument;
-        replace_all = TRUE;
+        replace_all = true;
     }
 
     argument = delimited_arg_case(argument, search, '\'');
@@ -717,7 +693,7 @@ EDITOR_FUNC(editor_default_replace) {
 
 EDITOR_FUNC(editor_default_delete_line) {
     int first_line, last_line, line = 1, total_len = 1;
-    struct descriptor_data *d = edit->descriptor;
+    DescriptorData *d = edit->descriptor;
     char *start, *str;
 
     if (!(str = edit->string)) {
@@ -775,9 +751,9 @@ EDITOR_FUNC(editor_default_delete_line) {
 
 EDITOR_FUNC(editor_default_list) {
     int first_line, last_line, line, lines;
-    struct descriptor_data *d = edit->descriptor;
+    DescriptorData *d = edit->descriptor;
     bool show_nums = (edit->command == ED_LIST_NUMERIC);
-    char *str, *start = NULL, temp;
+    char *str, *start = nullptr, temp;
 
     if (!(str = edit->string)) {
         dprintf(edit->descriptor, "Current buffer empty.\r\n");
@@ -860,7 +836,7 @@ EDITOR_FUNC(editor_default_list) {
  * to prevent editor_cleanup from freeing it.
  */
 EDITOR_FUNC(editor_default_exit) {
-    struct descriptor_data *d = edit->descriptor;
+    DescriptorData *d = edit->descriptor;
 
     if (edit->command == ED_EXIT_SAVE) {
         if (!d->editor->destination) {
@@ -873,8 +849,8 @@ EDITOR_FUNC(editor_default_exit) {
                 /* TODO: do we need a flag to say whether to free this or not? */
                 free(*d->editor->destination);
             *d->editor->destination = d->editor->string ? d->editor->string : strdup("Nothing.\r\n");
-            d->editor->string = NULL;
-            edit->string = NULL;
+            d->editor->string = nullptr;
+            edit->string = nullptr;
         }
     } else
         dprintf(d, "Edit aborted.  Changes not saved.\r\n");
@@ -908,8 +884,8 @@ EDITOR_FUNC(editor_default_spellcheck) {
  */
 static bool editor_format_text(char **string, int indent, size_t max_length, int first_line, int last_line) {
     int line_chars, color_chars = 0, i;
-    bool cap_next = TRUE, cap_next_next = FALSE, pass_line = FALSE;
-    char *flow, *start = NULL, temp;
+    bool cap_next = true, cap_next_next = false, pass_line = false;
+    char *flow, *start = nullptr, temp;
     char formatted[MAX_STRING_LENGTH + 16] = "";
     char str[MAX_STRING_LENGTH + 16];
 
@@ -920,7 +896,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
     }
 
     /* XXX: Want to make sure the string doesn't grow either... */
-    if ((flow = *string) == NULL)
+    if ((flow = *string) == nullptr)
         return 0;
 
     strcpy(str, flow);
@@ -971,14 +947,14 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
             }
 
             if (cap_next_next) {
-                cap_next_next = FALSE;
-                cap_next = TRUE;
+                cap_next_next = false;
+                cap_next = true;
             }
 
             /* This is so that if we stopped on a sentence, we move off the sentence
              * delimiter. */
             while (strchr(".!?", *flow)) {
-                cap_next_next = TRUE;
+                cap_next_next = true;
                 flow++;
             }
 
@@ -1011,7 +987,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
             }
 
             if (cap_next) {
-                cap_next = FALSE;
+                cap_next = false;
                 CAP(start);
             } else if (line_chars > 0) {
                 strcat(formatted, " ");
@@ -1063,7 +1039,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
  * Code from stock TBAMUD.
  */
 static int editor_replace_string(char **string, char *pattern, char *replacement, bool replace_all, size_t max_length) {
-    char *replace_buffer = NULL;
+    char *replace_buffer = nullptr;
     char *flow, *jetsam, temp;
     int len, i;
 
@@ -1077,7 +1053,7 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
     str_start(replace_buffer, max_length);
 
     if (replace_all) {
-        while ((flow = strstr(flow, pattern)) != NULL) {
+        while ((flow = strstr(flow, pattern)) != nullptr) {
             ++i;
             temp = *flow;
             *flow = '\0';
@@ -1092,7 +1068,7 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
             jetsam = flow;
         }
         str_cat(replace_buffer, jetsam);
-    } else if ((flow = strstr(*string, pattern)) != NULL) {
+    } else if ((flow = strstr(*string, pattern)) != nullptr) {
         ++i;
         flow += strlen(pattern);
         len = (flow - *string) - strlen(pattern);

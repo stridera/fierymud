@@ -15,5 +15,5 @@
 #include "db.hpp"
 #include "structs.hpp"
 
-int count_commands(reset_com *list);
-void delete_zone_command(zone_data *zone, int pos);
+int count_commands(ResetCommand *list);
+void delete_zone_command(ZoneData *zone, int pos);

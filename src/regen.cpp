@@ -18,7 +18,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "math.hpp"
 #include "races.hpp"
 #include "skills.hpp"
@@ -26,18 +26,18 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void improve_skill(char_data *ch, int skill);
-void stop_berserking(char_data *ch);
-void start_berserking(char_data *ch);
+void improve_skill(CharData *ch, int skill);
+void stop_berserking(CharData *ch);
+void start_berserking(CharData *ch);
 
 #define PULSES_PER_MUD_HOUR (SECS_PER_MUD_HOUR * PASSES_PER_SEC)
 
 EVENTFUNC(hp_regen_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
     int gain, delay = 0;
-    bool is_dying = FALSE;
+    bool is_dying = false;
 
-    void slow_death(char_data * victim);
+    void slow_death(CharData * victim);
 
     if (GET_HIT(ch) < GET_MAX_HIT(ch)) {
         if (GET_STANCE(ch) <= STANCE_STUNNED) {
@@ -45,10 +45,10 @@ EVENTFUNC(hp_regen_event) {
                 /* In slow_death(), the character may die. */
                 slow_death(ch);
             } else
-                hurt_char(ch, NULL, 1, TRUE);
-            is_dying = TRUE;
+                hurt_char(ch, nullptr, 1, true);
+            is_dying = true;
         } else
-            hurt_char(ch, NULL, -1, TRUE);
+            hurt_char(ch, nullptr, -1, true);
 
         if (GET_HIT(ch) < GET_MAX_HIT(ch) && !DECEASED(ch)) {
             if (is_dying)
@@ -66,7 +66,7 @@ EVENTFUNC(hp_regen_event) {
 }
 
 EVENTFUNC(mana_regen_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
     int gain, delay = 0;
 
     if (GET_MANA(ch) < GET_MAX_MANA(ch)) {
@@ -82,7 +82,7 @@ EVENTFUNC(mana_regen_event) {
 }
 
 EVENTFUNC(move_regen_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
     int gain, delay = 0;
 
     if (GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
@@ -101,7 +101,7 @@ EVENTFUNC(move_regen_event) {
 }
 
 EVENTFUNC(rage_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
 
     /* Berserking: diminish rage quickly. */
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
@@ -112,7 +112,7 @@ EVENTFUNC(rage_event) {
         if (GET_RAGE(ch) % 7 == 0 && FIGHTING(ch))
             improve_skill(ch, SKILL_BERSERK);
         if (!FIGHTING(ch))
-            event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, find_aggr_target(ch), 0), TRUE,
+            event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, find_aggr_target(ch), 0), true,
                          &(ch->events), 0);
     }
 
@@ -136,7 +136,7 @@ EVENTFUNC(rage_event) {
         start_berserking(ch);
         send_to_char("&1&8Your rage consumes you, taking control of your body...&0\r\n", ch);
         if (IN_ROOM(ch) != NOWHERE)
-            act("$n shudders as $s rage causes $m to go berserk!", TRUE, ch, 0, 0, TO_ROOM);
+            act("$n shudders as $s rage causes $m to go berserk!", true, ch, 0, 0, TO_ROOM);
     }
 
     if (GET_RAGE(ch) > 0)
@@ -149,7 +149,7 @@ EVENTFUNC(rage_event) {
     }
 }
 
-void set_regen_event(char_data *ch, int eventtype) {
+void set_regen_event(CharData *ch, int eventtype) {
     long time;
     int gain;
 
@@ -159,32 +159,32 @@ void set_regen_event(char_data *ch, int eventtype) {
     if (eventtype == EVENT_REGEN_HP && !EVENT_FLAGGED(ch, EVENT_REGEN_HP) && GET_HIT(ch) < GET_MAX_HIT(ch)) {
         gain = hit_gain(ch);
         time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
-        event_create(EVENT_REGEN_HP, hp_regen_event, ch, FALSE, &(ch->events), time);
+        event_create(EVENT_REGEN_HP, hp_regen_event, ch, false, &(ch->events), time);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_HP);
     }
     if (eventtype == EVENT_REGEN_MANA && !EVENT_FLAGGED(ch, EVENT_REGEN_MANA) && GET_MANA(ch) < GET_MAX_MANA(ch) &&
-        FALSE) {
+        false) {
         gain = mana_gain(ch);
         time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
-        event_create(EVENT_REGEN_HP, mana_regen_event, ch, FALSE, &(ch->events), time);
+        event_create(EVENT_REGEN_HP, mana_regen_event, ch, false, &(ch->events), time);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MANA);
     }
     if (eventtype == EVENT_REGEN_MOVE && !EVENT_FLAGGED(ch, EVENT_REGEN_MOVE) && GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
         gain = move_gain(ch);
         time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
-        event_create(EVENT_REGEN_MOVE, move_regen_event, ch, FALSE, &(ch->events), time);
+        event_create(EVENT_REGEN_MOVE, move_regen_event, ch, false, &(ch->events), time);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MOVE);
     }
     if (eventtype == EVENT_RAGE && !EVENT_FLAGGED(ch, EVENT_RAGE) &&
         (GET_RAGE(ch) > 0 || (GET_SKILL(ch, SKILL_BERSERK) && PLR_FLAGGED(ch, PLR_MEDITATE)))) {
-        event_create(EVENT_RAGE, rage_event, ch, FALSE, &(ch->events), 0);
+        event_create(EVENT_RAGE, rage_event, ch, false, &(ch->events), 0);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_RAGE);
     }
 }
 
 /* subtracts amount of hitpoints from ch's current */
 
-void alter_hit(char_data *ch, int amount, bool cap_amount) {
+void alter_hit(CharData *ch, int amount, bool cap_amount) {
     int old_hit = 0;
 
     if (ch->in_room <= NOWHERE)
@@ -207,7 +207,7 @@ void alter_hit(char_data *ch, int amount, bool cap_amount) {
 
 /* Modifies HP, causes dying/falling unconscious/recovery.
  * Starts regeneration event if necessary. */
-void hurt_char(char_data *ch, char_data *attacker, int amount, bool cap_amount) {
+void hurt_char(CharData *ch, CharData *attacker, int amount, bool cap_amount) {
     if (IN_ROOM(ch) == NOWHERE)
         abort();
     alter_hit(ch, amount, cap_amount);
@@ -219,7 +219,7 @@ void hurt_char(char_data *ch, char_data *attacker, int amount, bool cap_amount) 
 }
 
 /* subtracts amount of mana from ch's current and starts points event */
-void alter_mana(char_data *ch, int amount) {
+void alter_mana(CharData *ch, int amount) {
     if (ch->in_room <= NOWHERE)
         return;
 
@@ -230,7 +230,7 @@ void alter_mana(char_data *ch, int amount) {
 }
 
 /* subtracts amount of moves from ch's current and starts points event */
-void alter_move(char_data *ch, int amount) {
+void alter_move(CharData *ch, int amount) {
     if (ch->in_room <= NOWHERE)
         return;
 
@@ -241,7 +241,7 @@ void alter_move(char_data *ch, int amount) {
 }
 
 /* Ensure that all regeneration is taking place */
-void check_regen_rates(char_data *ch) {
+void check_regen_rates(CharData *ch) {
     if (ch->in_room <= NOWHERE)
         return;
     set_regen_event(ch, EVENT_REGEN_HP);

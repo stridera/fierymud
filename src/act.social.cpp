@@ -79,8 +79,8 @@ int find_action(int cmd) {
 
 ACMD(do_action) {
     int act_nr;
-    struct social_messg *action;
-    struct char_data *vict;
+    social_messg *action;
+    CharData *vict;
 
     if ((act_nr = find_action(cmd)) < 0) {
         send_to_char("That action is not supported.\r\n", ch);
@@ -108,7 +108,7 @@ ACMD(do_action) {
         act(action->others_auto, action->hide, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_POS(vict) < action->min_victim_position)
-            act("$N is not in a proper position for that.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
+            act("$N is not in a proper position for that.", false, ch, 0, vict, TO_CHAR | TO_SLEEP);
         else {
             act(action->char_found, 0, ch, 0, vict, TO_CHAR | TO_SLEEP);
             act(action->others_found, action->hide, ch, 0, vict, TO_NOTVICT);
@@ -118,7 +118,7 @@ ACMD(do_action) {
 }
 
 ACMD(do_insult) {
-    struct char_data *victim;
+    CharData *victim;
 
     one_argument(argument, arg);
 
@@ -134,24 +134,24 @@ ACMD(do_insult) {
                 case 0:
                     if (GET_SEX(ch) == SEX_MALE) {
                         if (GET_SEX(victim) == SEX_MALE)
-                            act("$n accuses you of fighting like a brownie!", FALSE, ch, 0, victim, TO_VICT);
+                            act("$n accuses you of fighting like a brownie!", false, ch, 0, victim, TO_VICT);
                         else
-                            act("$n tells you that you'd lose a beauty contest against a troll.", FALSE, ch, 0, victim,
+                            act("$n tells you that you'd lose a beauty contest against a troll.", false, ch, 0, victim,
                                 TO_VICT);
                     } else { /* Ch == Woman */
                         if (GET_SEX(victim) == SEX_MALE)
-                            act("$n accuses you of having the smallest... (brain?)", FALSE, ch, 0, victim, TO_VICT);
+                            act("$n accuses you of having the smallest... (brain?)", false, ch, 0, victim, TO_VICT);
                     }
                     break;
                 case 1:
-                    act("$n calls your mother a bitch!", FALSE, ch, 0, victim, TO_VICT);
+                    act("$n calls your mother a bitch!", false, ch, 0, victim, TO_VICT);
                     break;
                 default:
-                    act("$n tells you to get lost!", FALSE, ch, 0, victim, TO_VICT);
+                    act("$n tells you to get lost!", false, ch, 0, victim, TO_VICT);
                     break;
                 } /* end switch */
 
-                act("$n insults $N.", TRUE, ch, 0, victim, TO_NOTVICT);
+                act("$n insults $N.", true, ch, 0, victim, TO_NOTVICT);
             } else { /* ch == victim */
                 send_to_char("You feel insulted.\r\n", ch);
             }
@@ -169,7 +169,7 @@ char *fread_action(FILE *fl, int nr) {
         exit(1);
     }
     if (*buf == '#')
-        return (NULL);
+        return (nullptr);
     else {
         *(buf + strlen(buf) - 1) = '\0';
         CREATE(rslt, char, strlen(buf) + 1);
@@ -182,7 +182,7 @@ void boot_social_messages(void) {
     FILE *fl;
     int nr, i, hide, min_pos, curr_soc = -1;
     char next_soc[100];
-    struct social_messg *temp;
+    social_messg *temp;
 
     /* open social file */
     if (!(fl = fopen(SOCMESS_FILE, "r"))) {
@@ -203,7 +203,7 @@ void boot_social_messages(void) {
             break;
         if ((nr = find_command(next_soc)) < 0) {
             sprintf(buf, "Unknown social '%s' in social file", next_soc);
-            log(buf);
+            log("%s", buf);
         }
         if (fscanf(fl, " %d %d \n", &hide, &min_pos) != 2) {
             fprintf(stderr, "Format error in social file near social '%s'\n", next_soc);
@@ -270,7 +270,7 @@ void free_action(social_messg *mess) {
 }
 
 void free_social_messages() {
-    struct social_messg *mess;
+    social_messg *mess;
     int i;
 
     for (i = 0; i <= list_top; i++) {

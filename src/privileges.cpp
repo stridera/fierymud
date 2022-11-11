@@ -23,6 +23,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "modify.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
@@ -31,12 +32,12 @@
 
 struct privflagdef prv_flags[NUM_PRV_FLAGS] = {
     {"clan admin", LVL_ADMIN, clan_admin_check},
-    {"title", LVL_GAMEMASTER, NULL},
-    {"anon toggle", LVL_ATTENDANT, NULL},
-    {"auto gain", LVL_ATTENDANT, NULL},
+    {"title", LVL_GAMEMASTER, nullptr},
+    {"anon toggle", LVL_ATTENDANT, nullptr},
+    {"auto gain", LVL_ATTENDANT, nullptr},
 };
 
-static struct grant_type *grant_in_list(grant_type *list, int grant) {
+static GrantType *grant_in_list(GrantType *list, int grant) {
     while (list) {
         if (list->grant == grant)
             break;
@@ -46,11 +47,11 @@ static struct grant_type *grant_in_list(grant_type *list, int grant) {
     return list;
 }
 
-static bool remove_grant(grant_type **list, int grant) {
-    struct grant_type dummy, *temp, *node;
+static bool remove_grant(GrantType **list, int grant) {
+    GrantType dummy, *temp, *node;
 
     if (!list)
-        return FALSE;
+        return false;
 
     dummy.next = *list;
     node = &dummy;
@@ -62,17 +63,17 @@ static bool remove_grant(grant_type **list, int grant) {
             free(temp->grantor);
             free(temp);
             *list = dummy.next;
-            return TRUE;
+            return true;
         }
         node = node->next;
     }
 
-    return FALSE;
+    return false;
 }
 
-static void add_grant(grant_type **list, int grant, const char *grantor, int grant_level) {
-    struct grant_type *temp;
-    CREATE(temp, grant_type, 1);
+static void add_grant(GrantType **list, int grant, const char *grantor, int grant_level) {
+    GrantType *temp;
+    CREATE(temp, GrantType, 1);
     temp->grant = grant;
     temp->grantor = strdup(grantor);
     temp->level = grant_level;
@@ -83,7 +84,7 @@ static void add_grant(grant_type **list, int grant, const char *grantor, int gra
 /*
  * Precondition:
  */
-void cache_grants(char_data *ch) {
+void cache_grants(CharData *ch) {
     int cmd;
 
     if (!GET_GRANT_CACHE(ch))
@@ -106,7 +107,7 @@ void cache_grants(char_data *ch) {
     }
 }
 
-int command_grant_usability(char_data *ch, int cmd) {
+int command_grant_usability(CharData *ch, int cmd) {
     int usability = CMD_NOT_GRANTED, i;
 
     /* If we are in a command group with the command, we can use it */
@@ -133,13 +134,13 @@ int command_grant_usability(char_data *ch, int cmd) {
     return usability;
 }
 
-static bool can_grant_group(char_data *ch, int group) {
+static bool can_grant_group(CharData *ch, int group) {
     if (group < 0 && group >= num_cmd_groups)
-        return FALSE;
+        return false;
     else if (grant_in_list(GET_REVOKE_GROUPS(ch), group))
-        return FALSE;
+        return false;
     else if (grant_in_list(GET_GRANT_GROUPS(ch), group))
-        return TRUE;
+        return true;
     else
         return (cmd_groups[group].minimum_level <= GET_LEVEL(ch));
 }
@@ -169,17 +170,17 @@ static void cache_grant(flagvector *cache, int cmd, bool is_group, bool set) {
     }
 }
 
-static void str_cat_command_grant_list(char *buf, grant_type *grant) {
+static void str_cat_command_grant_list(char *buf, GrantType *grant) {
     for (; grant; grant = grant->next)
         str_catf(buf, "  CMD %-20s %s (%d)\r\n", cmd_info[grant->grant].command, grant->grantor, grant->level);
 }
 
-static void str_cat_grant_group_list(char *buf, grant_type *grant) {
+static void str_cat_grant_group_list(char *buf, GrantType *grant) {
     for (; grant; grant = grant->next)
         str_catf(buf, "  GRP %-20s %s (%d)\r\n", cmd_groups[grant->grant].alias, grant->grantor, grant->level);
 }
 
-static void do_list_grants(char_data *ch, char_data *vict) {
+static void do_list_grants(CharData *ch, CharData *vict) {
     int found = 0;
     unsigned int priv;
 
@@ -226,7 +227,7 @@ static void do_list_grants(char_data *ch, char_data *vict) {
     page_string(ch, buf);
 }
 
-static void send_grant_usage(char_data *ch) {
+static void send_grant_usage(CharData *ch) {
     send_to_char(
         "Usage: grant <name> [ command <command> | group <group> ] [ level ]\r\n"
         "       grant <name> flag <flag>\r\n"
@@ -240,11 +241,11 @@ static void send_grant_usage(char_data *ch) {
 #define GRANT_COMMAND 0
 #define GRANT_GROUP 1
 
-static void do_command_grant_revoke(char_data *ch, char_data *vict, char *argument, int subcmd, int type) {
-    struct grant_type **list, **unlist, **temp;
-    struct grant_type *grant;
+static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument, int subcmd, int type) {
+    GrantType **list, **unlist, **temp;
+    GrantType *grant;
     flagvector *cache, *uncache;
-    struct command_group *group;
+    CommandGroup *group;
     int level, command = 0;
     const char *past_action, *preposition;
     char name[MAX_INPUT_LENGTH];
@@ -262,11 +263,11 @@ static void do_command_grant_revoke(char_data *ch, char_data *vict, char *argume
     } else if (type == GRANT_COMMAND) {
         list = &GET_GRANTS(vict);
         unlist = &GET_REVOKES(vict);
-        is_group = FALSE;
+        is_group = false;
     } else {
         list = &GET_GRANT_GROUPS(vict);
         unlist = &GET_REVOKE_GROUPS(vict);
-        is_group = TRUE;
+        is_group = true;
     }
     if (subcmd == SCMD_REVOKE) {
         temp = list;
@@ -327,22 +328,22 @@ static void do_command_grant_revoke(char_data *ch, char_data *vict, char *argume
                 GET_NAME(vict), arg, grant->grantor, grant->level);
     else if (subcmd == SCMD_UNGRANT) {
         remove_grant(unlist, command);
-        cache_grant(uncache, command, is_group, FALSE);
+        cache_grant(uncache, command, is_group, false);
         remove_grant(list, command);
-        cache_grant(cache, command, is_group, FALSE);
+        cache_grant(cache, command, is_group, false);
         cprintf(ch, "Revoked all grants on %s for %s.\r\n", GET_NAME(vict), arg);
     } else {
         remove_grant(unlist, command);
-        cache_grant(uncache, command, is_group, FALSE);
+        cache_grant(uncache, command, is_group, false);
         add_grant(list, command, GET_NAME(ch), level);
-        cache_grant(cache, command, is_group, TRUE);
+        cache_grant(cache, command, is_group, true);
         cprintf(ch, "%c%s %s %s %s at level %d.\r\n", UPPER(*past_action), past_action + 1, arg, preposition,
                 GET_NAME(vict), level);
     }
 }
 
-static int clear_grant_list(char_data *ch, grant_type **list) {
-    struct grant_type *node, *next;
+static int clear_grant_list(CharData *ch, GrantType **list) {
+    GrantType *node, *next;
     int count = 0;
 
     if (!list)
@@ -357,12 +358,12 @@ static int clear_grant_list(char_data *ch, grant_type **list) {
         }
     }
 
-    *list = NULL;
+    *list = nullptr;
 
     return count;
 }
 
-static void do_clear_grants(char_data *ch, char_data *vict) {
+static void do_clear_grants(CharData *ch, CharData *vict) {
     int count = 0;
     count += clear_grant_list(ch, &GET_GRANTS(vict));
     count += clear_grant_list(ch, &GET_REVOKES(vict));
@@ -374,11 +375,11 @@ static void do_clear_grants(char_data *ch, char_data *vict) {
     cprintf(ch, "%d grant%s cleared.\r\n", count, count == 1 ? "" : "s");
 }
 
-static void do_flag_grant_revoke(char_data *ch, char_data *vict, char *argument, int subcmd) {
+static void do_flag_grant_revoke(CharData *ch, CharData *vict, char *argument, int subcmd) {
     int flag;
 
     any_one_arg(argument, arg);
-    flag = search_block(arg, privilege_bits, FALSE);
+    flag = search_block(arg, privilege_bits, false);
 
     if (!*arg)
         send_grant_usage(ch);
@@ -403,7 +404,7 @@ static void do_flag_grant_revoke(char_data *ch, char_data *vict, char *argument,
 }
 
 ACMD(do_grant) {
-    struct char_data *vict;
+    CharData *vict;
 
     argument = any_one_arg(argument, arg);
     if (!*arg) {
@@ -420,7 +421,7 @@ ACMD(do_grant) {
     if (subcmd == SCMD_GRANT && GET_LEVEL(ch) >= GET_LEVEL(vict) && (!*arg || is_abbrev(arg, "list")))
         do_list_grants(ch, vict);
     else if (ch != vict && GET_LEVEL(ch) <= GET_LEVEL(vict))
-        act("You cannot grant or revoke $N's commands.", FALSE, ch, 0, vict, TO_CHAR);
+        act("You cannot grant or revoke $N's commands.", false, ch, 0, vict, TO_CHAR);
     else if (is_abbrev(arg, "command"))
         do_command_grant_revoke(ch, vict, argument, subcmd, GRANT_COMMAND);
     else if (is_abbrev(arg, "group"))
@@ -435,8 +436,8 @@ ACMD(do_grant) {
         send_grant_usage(ch);
 }
 
-void write_player_grants(FILE *fl, char_data *ch) {
-    struct grant_type *grant;
+void write_player_grants(FILE *fl, CharData *ch) {
+    GrantType *grant;
 
     if (GET_GRANTS(ch)) {
         fprintf(fl, "grants:\n");
@@ -467,12 +468,12 @@ void write_player_grants(FILE *fl, char_data *ch) {
     }
 }
 
-static void read_player_grant_list(FILE *fl, grant_type **list, int (*cmd_lookup)(char *name)) {
+static void read_player_grant_list(FILE *fl, GrantType **list, int (*cmd_lookup)(char *name)) {
     char line[MAX_INPUT_LENGTH + 1], *ptr;
-    struct grant_type *grant;
+    GrantType *grant;
     int line_fail;
 
-    while (TRUE) {
+    while (true) {
         get_line(fl, line);
         if (*line == '~')
             return;
@@ -481,11 +482,11 @@ static void read_player_grant_list(FILE *fl, grant_type **list, int (*cmd_lookup
                     "SYSERR: read_player_grants: invalid command/group or grantor "
                     "(err 1): %s",
                     line);
-            mudlog(buf, BRF, LVL_IMMORT, TRUE);
+            mudlog(buf, BRF, LVL_IMMORT, true);
             return;
         }
         line_fail = 0;
-        CREATE(grant, grant_type, 1);
+        CREATE(grant, GrantType, 1);
         ptr = strchr(line, ' ');
         if (ptr) {
             *(ptr++) = '\0';
@@ -510,12 +511,12 @@ static void read_player_grant_list(FILE *fl, grant_type **list, int (*cmd_lookup
                     "SYSERR: read_player_grants: invalid command/group or grantor "
                     "(err 2.%d): %s/%s",
                     line_fail, line, ptr ? ptr : "(null)");
-            mudlog(buf, BRF, LVL_IMMORT, TRUE);
+            mudlog(buf, BRF, LVL_IMMORT, true);
             free(grant);
         }
     }
 }
 
-void read_player_grants(FILE *fl, grant_type **list) { read_player_grant_list(fl, list, find_command); }
+void read_player_grants(FILE *fl, GrantType **list) { read_player_grant_list(fl, list, find_command); }
 
-void read_player_grant_groups(FILE *fl, grant_type **list) { read_player_grant_list(fl, list, find_command_group); }
+void read_player_grant_groups(FILE *fl, GrantType **list) { read_player_grant_list(fl, list, find_command_group); }

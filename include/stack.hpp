@@ -122,10 +122,11 @@
  */
 #define linked_stack(type)                                                                                             \
     struct {                                                                                                           \
-        struct node {                                                                                                  \
+        node {                                                                                                         \
             type value;                                                                                                \
-            struct node *next;                                                                                         \
-        } *stack, *temp;                                                                                               \
+            node *next;                                                                                                \
+        }                                                                                                              \
+        *stack, *temp;                                                                                                 \
         type null;                                                                                                     \
         type last_pop;                                                                                                 \
     }
@@ -137,7 +138,7 @@
  */
 #define ls_init(var, default)                                                                                          \
     do {                                                                                                               \
-        (var).stack = NULL;                                                                                            \
+        (var).stack = nullptr;                                                                                         \
         (var).null = (default);                                                                                        \
     } while (0)
 
@@ -158,8 +159,8 @@
  * undefined behavior.
  */
 #define ls_pop(var)                                                                                                    \
-    (((((var).last_pop = (var).stack->value), TRUE) && (((var).temp = (var).stack), TRUE) &&                           \
-      (((var).stack = (var).stack->next), TRUE) && (free((var).temp), TRUE))                                           \
+    (((((var).last_pop = (var).stack->value), true) && (((var).temp = (var).stack), true) &&                           \
+      (((var).stack = (var).stack->next), true) && (free((var).temp), true))                                           \
          ? (var).last_pop                                                                                              \
          : (var).last_pop)
 
@@ -191,5 +192,5 @@
             (var).stack = (var).stack->next;                                                                           \
             free((var).temp);                                                                                          \
         }                                                                                                              \
-        (var).stack = NULL;                                                                                            \
+        (var).stack = nullptr;                                                                                         \
     } while (0)

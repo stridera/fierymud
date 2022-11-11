@@ -31,6 +31,7 @@
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "modify.hpp"
 #include "players.hpp"
 #include "races.hpp"
@@ -48,25 +49,21 @@
 #include "vsearch.hpp"
 #include "weather.hpp"
 
-/* extern variables */
-extern int pk_allowed;
-extern struct spell_dam spell_dam_info[MAX_SPELLS + 1];
-
 /* global */
 int boot_high = 0;
 
-void print_spells_in_book(char_data *ch, obj_data *obj, char *dest_buf);
-void look_at_target(char_data *ch, char *arg);
-int ideal_mountlevel(char_data *ch);
-int ideal_tamelevel(char_data *ch);
-int mountlevel(char_data *ch);
-void speech_report(char_data *ch, char_data *tch);
-static void do_farsee(char_data *ch, int dir);
+void print_spells_in_book(CharData *ch, ObjData *obj, char *dest_buf);
+void look_at_target(CharData *ch, char *arg);
+int ideal_mountlevel(CharData *ch);
+int ideal_tamelevel(CharData *ch);
+int mountlevel(CharData *ch);
+void speech_report(CharData *ch, CharData *tch);
+static void do_farsee(CharData *ch, int dir);
 
-bool senses_living(char_data *ch, char_data *vict, int basepct) {
+bool senses_living(CharData *ch, CharData *vict, int basepct) {
     /* You cannot sense anyone if you're unconscious, or they have wizinvis on. */
     if (!EFF_FLAGGED(ch, EFF_SENSE_LIFE) || !AWAKE(ch) || (GET_INVIS_LEV(vict) > GET_LEVEL(ch)))
-        return FALSE;
+        return false;
     /* Being busy with fighting or casting reduces your sensitivity. */
     if (FIGHTING(ch) || CASTING(ch))
         basepct = (67 * basepct) / 100;
@@ -80,11 +77,11 @@ bool senses_living(char_data *ch, char_data *vict, int basepct) {
 /* This function will also determine whether you sense a creature, but it will
  * return false if you could see it by any other means: if it's visible, or
  * you can see it in infrared. */
-bool senses_living_only(char_data *ch, char_data *vict, int basepct) {
+bool senses_living_only(CharData *ch, CharData *vict, int basepct) {
     /* CAN_SEE takes care of darkness, invisibility, and wizinvis.
      * CAN_SEE_BY_INFRA takes care of infravision. */
     if (CAN_SEE(ch, vict) || CAN_SEE_BY_INFRA(ch, vict))
-        return FALSE;
+        return false;
     return senses_living(ch, vict, basepct);
 }
 
@@ -104,7 +101,7 @@ const char *relative_location_str(int bits) {
 }
 
 /* Component function of print_obj_to_char */
-static void print_note_to_char(obj_data *obj, char_data *ch) {
+static void print_note_to_char(ObjData *obj, CharData *ch) {
     if (obj->ex_description)
         cprintf(ch, "%s", obj->ex_description->description);
     if (obj->action_description)
@@ -115,10 +112,10 @@ static void print_note_to_char(obj_data *obj, char_data *ch) {
 }
 
 /* Component function of print_obj_to_char */
-static void print_obj_vnum_to_char(obj_data *obj, char_data *ch) { cprintf(ch, " @W[@B%d@W]@0", GET_OBJ_VNUM(obj)); }
+static void print_obj_vnum_to_char(ObjData *obj, CharData *ch) { cprintf(ch, " @W[@B%d@W]@0", GET_OBJ_VNUM(obj)); }
 
 /* Component function of print_obj_to_char */
-static void print_obj_flags_to_char(obj_data *obj, char_data *ch) {
+static void print_obj_flags_to_char(ObjData *obj, CharData *ch) {
     /* Small local buffer.   Increase the size when adding additional flags */
     char buf[300];
 
@@ -158,7 +155,7 @@ static void print_obj_flags_to_char(obj_data *obj, char_data *ch) {
 }
 
 /* Component function of print_obj_to_char */
-static void print_obj_auras_to_char(obj_data *obj, char_data *ch) {
+static void print_obj_auras_to_char(ObjData *obj, CharData *ch) {
     if (OBJ_EFF_FLAGGED(obj, EFF_HEX))
         cprintf(ch, "It is imbued with a &9&bdark aura&0.\r\n");
     if (OBJ_EFF_FLAGGED(obj, EFF_BLESS))
@@ -166,7 +163,7 @@ static void print_obj_auras_to_char(obj_data *obj, char_data *ch) {
 }
 
 /* Show one of an obj's desc to a char; uses SHOW_ flags */
-void print_obj_to_char(obj_data *obj, char_data *ch, int mode, char *additional_args) {
+void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_args) {
     bool show_flags = IS_SET(mode, SHOW_FLAGS);
 
     /* Remove the flags from the show mode */
@@ -194,7 +191,7 @@ void print_obj_to_char(obj_data *obj, char_data *ch, int mode, char *additional_
         if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON)
             cprintf(ch, "%s", "It looks like a drink container.");
         else if (GET_OBJ_TYPE(obj) == ITEM_SPELLBOOK)
-            print_spells_in_book(ch, obj, NULL);
+            print_spells_in_book(ch, obj, nullptr);
         else if (GET_OBJ_TYPE(obj) == ITEM_NOTE)
             print_note_to_char(obj, ch);
         else if (GET_OBJ_TYPE(obj) == ITEM_BOARD) {
@@ -219,9 +216,9 @@ void print_obj_to_char(obj_data *obj, char_data *ch, int mode, char *additional_
 }
 
 /* Print a list of objs to a char; uses SHOW_ flags */
-void list_obj_to_char(obj_data *list, char_data *ch, int mode) {
-    struct obj_data *i, *j, *display;
-    bool found = FALSE;
+void list_obj_to_char(ObjData *list, CharData *ch, int mode) {
+    ObjData *i, *j, *display;
+    bool found = false;
     int num, raw_mode = mode;
 
     /* Remove the flags from the show mode.   The flags can still be
@@ -264,8 +261,8 @@ void list_obj_to_char(obj_data *list, char_data *ch, int mode) {
         if (num > 0) {
             if (num != 1)
                 cprintf(ch, "[%d] ", num);
-            print_obj_to_char(display, ch, raw_mode, NULL);
-            found = TRUE;
+            print_obj_to_char(display, ch, raw_mode, nullptr);
+            found = true;
         }
     }
     if (!found && !IS_SET(raw_mode, SHOW_NO_FAIL_MSG))
@@ -276,13 +273,13 @@ void list_obj_to_char(obj_data *list, char_data *ch, int mode) {
 }
 
 /* Component function for print_char_to_char */
-static void print_char_vnum_to_char(char_data *targ, char_data *ch) {
+static void print_char_vnum_to_char(CharData *targ, CharData *ch) {
     if (IS_NPC(targ))
         cprintf(ch, "@W[@B%5d@W]@0 ", GET_MOB_VNUM(targ));
 }
 
 /* Component function for print_char_to_char */
-static void print_char_position_to_char(char_data *targ, char_data *ch) {
+static void print_char_position_to_char(CharData *targ, CharData *ch) {
     if (GET_POS(targ) < 0 || GET_POS(targ) >= NUM_POSITIONS || GET_STANCE(targ) < 0 ||
         GET_STANCE(targ) >= NUM_STANCES) {
         cprintf(ch, " is here in a very unnatural pose.");
@@ -319,7 +316,7 @@ static void print_char_position_to_char(char_data *targ, char_data *ch) {
 }
 
 /* Component function for print_char_to_char */
-static void print_char_long_desc_to_char(char_data *targ, char_data *ch) {
+static void print_char_long_desc_to_char(CharData *targ, CharData *ch) {
     char buf[513];
 
     if (IS_NPC(targ) && !MOB_FLAGGED(targ, MOB_PLAYER_PHANTASM) && GET_LDESC(targ) &&
@@ -374,7 +371,7 @@ static void print_char_long_desc_to_char(char_data *targ, char_data *ch) {
 }
 
 /* Component function for print_char_to_char */
-static void print_char_flags_to_char(char_data *targ, char_data *ch) {
+static void print_char_flags_to_char(CharData *targ, CharData *ch) {
     /* Small local buf.   Make bigger if more flags are added */
     char buf[514];
 
@@ -494,7 +491,7 @@ const char *status_string(int cur, int max, int mode) {
 }
 
 /* Component function for print_char_to_char */
-static void print_char_appearance_to_char(char_data *targ, char_data *ch) {
+static void print_char_appearance_to_char(CharData *targ, CharData *ch) {
     char buf[16];
 
     strncpy(buf, HSSH(targ), sizeof(buf));
@@ -512,170 +509,170 @@ static void print_char_appearance_to_char(char_data *targ, char_data *ch) {
 }
 
 /* Component function for print_char_to_char */
-static void print_char_riding_status_to_char(char_data *targ, char_data *ch) {
+static void print_char_riding_status_to_char(CharData *targ, CharData *ch) {
     char buf[257];
 
     if (RIDING(targ) && RIDING(targ)->in_room == targ->in_room) {
         if (RIDING(targ) == ch)
-            act("$e is riding on you.", FALSE, targ, 0, ch, TO_VICT);
+            act("$e is riding on you.", false, targ, 0, ch, TO_VICT);
         else {
             sprintf(buf, "$e is riding on %s.", PERS(RIDING(targ), ch));
-            act(buf, FALSE, targ, 0, ch, TO_VICT);
+            act(buf, false, targ, 0, ch, TO_VICT);
         }
     } else if (RIDDEN_BY(targ) && RIDDEN_BY(targ)->in_room == targ->in_room) {
         if (RIDDEN_BY(targ) == ch)
-            act("You are mounted upon $m.", FALSE, targ, 0, ch, TO_VICT);
+            act("You are mounted upon $m.", false, targ, 0, ch, TO_VICT);
         else {
             sprintf(buf, "%s is mounted upon $m.", PERS(RIDDEN_BY(targ), ch));
-            act(buf, FALSE, targ, 0, ch, TO_VICT);
+            act(buf, false, targ, 0, ch, TO_VICT);
         }
     }
 }
 
 /* Component function for print_char_to_char */
-static void print_char_equipment_to_char(char_data *targ, char_data *ch) {
+static void print_char_equipment_to_char(CharData *targ, CharData *ch) {
     int j;
-    bool found = FALSE;
+    bool found = false;
     for (j = 0; !found && j < NUM_WEARS; j++)
         if (GET_EQ(targ, j) && CAN_SEE_OBJ(ch, GET_EQ(targ, j))) {
-            found = TRUE;
+            found = true;
             break;
         }
 
     if (found) {
-        act("$n is using:", FALSE, targ, 0, ch, TO_VICT);
+        act("$n is using:", false, targ, 0, ch, TO_VICT);
         for (j = 0; j < NUM_WEARS; j++)
             if (GET_EQ(targ, wear_order_index[j]) && CAN_SEE_OBJ(ch, GET_EQ(targ, wear_order_index[j]))) {
                 cprintf(ch, "%s", where[wear_order_index[j]]);
-                print_obj_to_char(GET_EQ(targ, wear_order_index[j]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, NULL);
+                print_obj_to_char(GET_EQ(targ, wear_order_index[j]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, nullptr);
             }
     }
 }
 
 /* Component function for print_char_to_char */
-static void print_char_spells_to_char(char_data *targ, char_data *ch) {
+static void print_char_spells_to_char(CharData *targ, CharData *ch) {
     /* Things you can only see with detect magic */
     if (EFF_FLAGGED(ch, EFF_DETECT_MAGIC) || PRF_FLAGGED(ch, PRF_HOLYLIGHT)) {
         if (affected_by_spell(targ, SPELL_ARMOR))
-            act("A &7&btranslucent shimmering aura&0 surrounds $M.&0", TRUE, ch, 0, targ, TO_CHAR);
+            act("A &7&btranslucent shimmering aura&0 surrounds $M.&0", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_BLESS))
             act("The &8shimmering telltales&0 of a &3&bmagical blessing&0 flutter "
                 "about $S head.&0",
-                TRUE, ch, 0, targ, TO_CHAR);
+                true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DEMONIC_ASPECT))
-            act("A &1demonic tinge&0 circulates in $S &1blood&0.", TRUE, ch, 0, targ, TO_CHAR);
+            act("A &1demonic tinge&0 circulates in $S &1blood&0.", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DEMONIC_MUTATION))
-            act("Two &1large &8red&0&1 horns&0 sprout from $S head.", TRUE, ch, 0, targ, TO_CHAR);
+            act("Two &1large &8red&0&1 horns&0 sprout from $S head.", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DARK_PRESENCE))
-            act("You sense a &9&bdark presence&0 within $M.&0", TRUE, ch, 0, targ, TO_CHAR);
+            act("You sense a &9&bdark presence&0 within $M.&0", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DRAGONS_HEALTH))
-            act("The power of &5dragon's blood&0 fills $M&0!", TRUE, ch, 0, targ, TO_CHAR);
+            act("The power of &5dragon's blood&0 fills $M&0!", true, ch, 0, targ, TO_CHAR);
         else if (affected_by_spell(targ, SPELL_LESSER_ENDURANCE) || affected_by_spell(targ, SPELL_ENDURANCE) ||
                  affected_by_spell(targ, SPELL_GREATER_ENDURANCE) || affected_by_spell(targ, SPELL_VITALITY) ||
                  affected_by_spell(targ, SPELL_GREATER_VITALITY))
-            act("$S health appears to be bolstered by magical power.", TRUE, ch, 0, targ, TO_CHAR);
+            act("$S health appears to be bolstered by magical power.", true, ch, 0, targ, TO_CHAR);
         if (EFF_FLAGGED(targ, EFF_RAY_OF_ENFEEB))
-            act("A &3malevolent spell&0 is draining $S &1strength&0.", TRUE, ch, 0, targ, TO_CHAR);
+            act("A &3malevolent spell&0 is draining $S &1strength&0.", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_CHILL_TOUCH))
-            act("A &6weakening chill&0 circulates in $S&0 veins.", TRUE, ch, 0, targ, TO_CHAR);
+            act("A &6weakening chill&0 circulates in $S&0 veins.", true, ch, 0, targ, TO_CHAR);
     }
 
     /* AC protection spells */
     if (EFF_FLAGGED(targ, EFF_STONE_SKIN))
-        act("&9&b$S body seems to be made of stone!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&9&b$S body seems to be made of stone!&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_BARKSKIN))
-        act("&3$S skin is thick, brown, and wrinkly.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&3$S skin is thick, brown, and wrinkly.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_BONE_ARMOR))
-        act("&7Heavy bony plates cover $S body.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&7Heavy bony plates cover $S body.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_DEMONSKIN))
-        act("&1$S skin is shiny, smooth, and &bvery red&0&1.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&1$S skin is shiny, smooth, and &bvery red&0&1.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_GAIAS_CLOAK))
-        act("&2A whirlwind of leaves and &3sticks&2 whips around $S body.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&2A whirlwind of leaves and &3sticks&2 whips around $S body.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_ICE_ARMOR))
-        act("&8A layer of &4solid ice&0&8 covers $M entirely.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&8A layer of &4solid ice&0&8 covers $M entirely.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_MIRAGE))
         act("&7$S image &1wavers&7 and &9&bshimmers&0&7 and is somewhat "
             "indistinct.&0",
-            TRUE, ch, 0, targ, TO_CHAR);
+            true, ch, 0, targ, TO_CHAR);
 
     /* Miscellaneous spell effects */
     if (EFF_FLAGGED(targ, EFF_BLIND))
-        act("$S &0&b&9dull &0eyes suggest $E is blind!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("$S &0&b&9dull &0eyes suggest $E is blind!&0", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_CONFUSION)) {
         if (GET_POS(targ) >= POS_KNEELING) {
             if (GET_STANCE(targ) >= STANCE_RESTING)
                 act("$S eyes &5drift&0 and &3dart&0 comically about, and $E has "
                     "trouble balancing.",
-                    TRUE, ch, 0, targ, TO_CHAR);
+                    true, ch, 0, targ, TO_CHAR);
             else
-                act("$E seems to have trouble balancing.", TRUE, ch, 0, targ, TO_CHAR);
+                act("$E seems to have trouble balancing.", true, ch, 0, targ, TO_CHAR);
         } else if (GET_STANCE(targ) >= STANCE_RESTING)
-            act("$S eyes &5drift&0 and &3dart&0 comically about.", TRUE, ch, 0, targ, TO_CHAR);
+            act("$S eyes &5drift&0 and &3dart&0 comically about.", true, ch, 0, targ, TO_CHAR);
     }
     if (EFF_FLAGGED(targ, EFF_SANCTUARY)) {
         if (IS_EVIL(targ))
-            act("&9&b$S body is surrounded by a black aura!&0", TRUE, ch, 0, targ, TO_CHAR);
+            act("&9&b$S body is surrounded by a black aura!&0", true, ch, 0, targ, TO_CHAR);
         else if (IS_GOOD(targ))
-            act("&7&b$S body is surrounded by a white aura!&0", TRUE, ch, 0, targ, TO_CHAR);
+            act("&7&b$S body is surrounded by a white aura!&0", true, ch, 0, targ, TO_CHAR);
         else
-            act("&4&b$S body is surrounded by a blue aura!&0", TRUE, ch, 0, targ, TO_CHAR);
+            act("&4&b$S body is surrounded by a blue aura!&0", true, ch, 0, targ, TO_CHAR);
     }
     if (EFF_FLAGGED(targ, EFF_SOULSHIELD)) {
         if (IS_EVIL(targ))
-            act("&1&b$S body is surrounded by cleansing flames!&0", TRUE, ch, 0, targ, TO_CHAR);
+            act("&1&b$S body is surrounded by cleansing flames!&0", true, ch, 0, targ, TO_CHAR);
         else
-            act("&7&b$S body is surrounded by cleansing flames!&0", TRUE, ch, 0, targ, TO_CHAR);
+            act("&7&b$S body is surrounded by cleansing flames!&0", true, ch, 0, targ, TO_CHAR);
     }
     if (EFF_FLAGGED(targ, EFF_FIRESHIELD))
-        act("&1&b$S body is encased in fire!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&1&b$S body is encased in fire!&0", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_COLDSHIELD))
-        act("&4&b$S body is encased in jagged ice!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&4&b$S body is encased in jagged ice!&0", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_MINOR_GLOBE) && EFF_FLAGGED(ch, EFF_DETECT_MAGIC))
-        act("&1$S body is encased in a shimmering globe!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&1$S body is encased in a shimmering globe!&0", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_MAJOR_GLOBE))
-        act("&1&b$S body is encased in shimmering globe of force!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&1&b$S body is encased in shimmering globe of force!&0", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS)) {
         /* The spell of entangle can set major or minor paralysis. */
         if (affected_by_spell(targ, SPELL_ENTANGLE)) {
             if (EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS))
-                act("&2$E is held fast by &bthick twining vines&0&2.&0", TRUE, ch, 0, targ, TO_CHAR);
+                act("&2$E is held fast by &bthick twining vines&0&2.&0", true, ch, 0, targ, TO_CHAR);
             else
-                act("&2$E is entwined by a tangled mass of vines.&0", TRUE, ch, 0, targ, TO_CHAR);
+                act("&2$E is entwined by a tangled mass of vines.&0", true, ch, 0, targ, TO_CHAR);
         } else
             act("&6$E is completely still, and shows no awareness of $S "
                 "surroundings.&0",
-                TRUE, ch, 0, targ, TO_CHAR);
+                true, ch, 0, targ, TO_CHAR);
     } else if (EFF_FLAGGED(targ, EFF_MESMERIZED)) {
         act("$E gazes carefully at a point in the air directly in front of $S "
             "nose,\r\n"
             "as if deliberating upon a puzzle or problem.",
-            TRUE, ch, 0, targ, TO_CHAR);
+            true, ch, 0, targ, TO_CHAR);
         act("$E gazes carefully at a point in the air directly in front of $S nose,\r\n"
             "as if deliberating upon a puzzle or problem.",
-            TRUE, ch, 0, targ, TO_CHAR);
+            true, ch, 0, targ, TO_CHAR);
     }
     if (affected_by_spell(targ, SPELL_WEB))
-        act("&2&b$S is tangled in glowing &3&bwebs!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&2&b$S is tangled in glowing &3&bwebs!&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HELL))
-        act("&1&bHuge leathery &9bat-like&1 wings sprout from $S back.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&1&bHuge leathery &9bat-like&1 wings sprout from $S back.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_WINGS_OF_HEAVEN))
-        act("&7&b$E has a pair of beautiful bright white wings.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&7&b$E has a pair of beautiful bright white wings.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_MAGIC_TORCH))
-        act("$E is being followed by a &1bright glowing light&0.", TRUE, ch, 0, targ, TO_CHAR);
+        act("$E is being followed by a &1bright glowing light&0.", true, ch, 0, targ, TO_CHAR);
 
     /* Other miscellaneous effects */
     if (EFF_FLAGGED(ch, EFF_DETECT_POISON) && EFF_FLAGGED(targ, EFF_POISON))
-        act("You sense @Mpoison@0 coursing through $S veins.", TRUE, ch, 0, targ, TO_CHAR);
+        act("You sense @Mpoison@0 coursing through $S veins.", true, ch, 0, targ, TO_CHAR);
     if (EFF_FLAGGED(targ, EFF_ON_FIRE))
-        act("&1&b$E is on FIRE!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&1&b$E is on FIRE!&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_CIRCLE_OF_LIGHT))
-        act("&7&bA circle of light floats over $S head.&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("&7&bA circle of light floats over $S head.&0", true, ch, 0, targ, TO_CHAR);
     if (PRF_FLAGGED(targ, PRF_HOLYLIGHT) && !IS_NPC(targ))
-        act("$S entire body &0&bglows&0&6 faintly!&0", TRUE, ch, 0, targ, TO_CHAR);
+        act("$S entire body &0&bglows&0&6 faintly!&0", true, ch, 0, targ, TO_CHAR);
 }
 
 /* Show a character to another character; uses SHOW_ flags */
-void print_char_to_char(char_data *targ, char_data *ch, int mode) {
+void print_char_to_char(CharData *targ, CharData *ch, int mode) {
     bool show_flags = IS_SET(mode, SHOW_FLAGS);
 
     /* Remove the flags from the show mode. */
@@ -726,7 +723,7 @@ void print_char_to_char(char_data *targ, char_data *ch, int mode) {
 }
 
 /* Component function of list_char_to_char */
-static void print_life_sensed_msg(char_data *ch, int num_sensed) {
+static void print_life_sensed_msg(CharData *ch, int num_sensed) {
 #define SENSELIFECLR "&7&b"
 
     if (num_sensed == 0)
@@ -747,7 +744,7 @@ static void print_life_sensed_msg(char_data *ch, int num_sensed) {
 }
 
 /* Component function of list_char_to_char */
-static void print_char_infra_to_char(char_data *targ, char_data *ch, int mode) {
+static void print_char_infra_to_char(CharData *targ, CharData *ch, int mode) {
     /* Remove the flags from the show mode. */
     REMOVE_BIT(mode, SHOW_MASK);
 
@@ -764,8 +761,8 @@ static void print_char_infra_to_char(char_data *targ, char_data *ch, int mode) {
 }
 
 /* Prints a list of chars to another char; uses SHOW_ flags */
-void list_char_to_char(char_data *list, char_data *ch, int mode) {
-    struct char_data *i, *j, *display;
+void list_char_to_char(CharData *list, CharData *ch, int mode) {
+    CharData *i, *j, *display;
     int num_seen;
     int num_sensed = 0; /* How many characters will you detect only via sense life? */
     int raw_mode = mode;
@@ -828,7 +825,7 @@ void list_char_to_char(char_data *list, char_data *ch, int mode) {
                 cprintf(ch, "[%d] ", num_seen);
             if (CAN_SEE(ch, display))
                 print_char_to_char(display, ch, raw_mode);
-            else /* CAN_SEE_BY_INFRA would return TRUE here */
+            else /* CAN_SEE_BY_INFRA would return true here */
                 print_char_infra_to_char(display, ch, raw_mode);
         }
     }
@@ -841,7 +838,7 @@ void list_char_to_char(char_data *list, char_data *ch, int mode) {
 }
 
 ACMD(do_trophy) {
-    struct char_data *tch;
+    CharData *tch;
 
     one_argument(argument, arg);
 
@@ -859,22 +856,22 @@ ACMD(do_trophy) {
 
 ACMD(do_viewdam) {
 
-    char *nrm = CLR(ch, ANRM);
-    char *grn = CLR(ch, FGRN);
-    char *red = CLR(ch, FRED);
-    char *bld = CLR(ch, ABLD);
+    const char *nrm = CLR(ch, ANRM);
+    const char *grn = CLR(ch, FGRN);
+    const char *red = CLR(ch, FRED);
+    const char *bld = CLR(ch, ABLD);
     int i;
-    bool use = FALSE;
+    bool use = false;
 
     one_argument(argument, arg);
     if (!*arg)
-        use = TRUE;
+        use = true;
 
     sprintf(buf2, "&0&4Fiery Spells, List of Damages&0\r\n");
-    sprintf(buf2,
-            "%s%sSPELL                         ID %sNPC%s%s- DI FA RF   "
-            "%sPC%s%s- DI FA %sB%s%s-LM   MAX   ON/OFF %sINT%s%s- ON/OFF%s\r\n",
-            buf2, red, bld, nrm, red, bld, nrm, red, bld, nrm, red, bld, nrm, red, nrm);
+    snprintf(buf2, sizeof(buf2),
+             "%s%sSPELL                         ID %sNPC%s%s- DI FA RF   "
+             "%sPC%s%s- DI FA %sB%s%s-LM   MAX   ON/OFF %sINT%s%s- ON/OFF%s\r\n",
+             buf2, red, bld, nrm, red, bld, nrm, red, bld, nrm, red, bld, nrm, red, nrm);
     if (is_number(arg)) {
         if (is_number(arg)) {
             i = atoi(arg);
@@ -883,7 +880,7 @@ ACMD(do_viewdam) {
                     cprintf(ch, "%s%s%-22s%-8d%-3d%-3d%-8d%-3d%-5d%-4d%-5d%-12s%s%s \r\n", buf2, grn, (skills[i].name),
                             SD_SPELL(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i),
                             SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_LVL_MULT(i), SD_BONUS(i),
-                            (SD_USE_BONUS(i) ? "TRUE" : "FALSE"), (SD_INTERN_DAM(i) ? "TRUE" : "FALSE"), nrm);
+                            (SD_USE_BONUS(i) ? "true" : "false"), (SD_INTERN_DAM(i) ? "true" : "false"), nrm);
                     return;
                 }
             }
@@ -894,7 +891,7 @@ ACMD(do_viewdam) {
             if (str_cmp(skills[i].name, "!UNUSED!")) {
                 cprintf(ch, "%s%-22s%-8d%-3d%-3d%-8d%-3d%-5d%-4d%-3d%s%s\r\n", grn, skills[i].name, SD_SPELL(i),
                         SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i),
-                        SD_PC_NO_FACE(i), SD_LVL_MULT(i), SD_BONUS(i), (SD_USE_BONUS(i) ? "TRUE" : "FALSE"), nrm);
+                        SD_PC_NO_FACE(i), SD_LVL_MULT(i), SD_BONUS(i), (SD_USE_BONUS(i) ? "true" : "false"), nrm);
             }
         }
         return;
@@ -907,7 +904,7 @@ ACMD(do_viewdam) {
                 continue;
             sprintf(buf2, "%s%s%-22s%-8d%-3d%-3d%-8d%-3d%-5d%-4d%-3d%s%s\r\n", buf2, grn, (skills[i].name), SD_SPELL(i),
                     SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i),
-                    SD_LVL_MULT(i), SD_BONUS(i), (SD_USE_BONUS(i) ? "TRUE" : "FALSE"), nrm);
+                    SD_LVL_MULT(i), SD_BONUS(i), (SD_USE_BONUS(i) ? "true" : "false"), nrm);
         }
         page_string(ch, buf2);
         return;
@@ -919,8 +916,8 @@ ACMD(do_viewdam) {
     return;
 }
 
-/* search_for_doors() - returns TRUE if a door was located. */
-static int search_for_doors(char_data *ch, char *arg) {
+/* search_for_doors() - returns true if a door was located. */
+static int search_for_doors(CharData *ch, char *arg) {
     int door;
 
     for (door = 0; door < NUM_OF_DIRS; ++door)
@@ -932,25 +929,25 @@ static int search_for_doors(char_data *ch, char *arg) {
                 sprintf(buf, "&8You have found%s hidden %s %s.&0",
                         CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
                         CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
-                act(buf, FALSE, ch, 0, CH_EXIT(ch, door)->keyword, TO_CHAR);
+                act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_CHAR);
                 sprintf(buf, "$n has found%s hidden %s %s.",
                         CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
                         CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
-                act(buf, FALSE, ch, 0, CH_EXIT(ch, door)->keyword, TO_ROOM);
+                act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_ROOM);
                 REMOVE_BIT(CH_EXIT(ch, door)->exit_info, EX_HIDDEN);
                 send_gmcp_room(ch);
-                return TRUE;
+                return true;
             }
         }
 
-    return FALSE;
+    return false;
 }
 
 ACMD(do_search) {
     long orig_hide;
-    bool found_something = FALSE, target = FALSE;
-    struct char_data *j;
-    struct obj_data *k;
+    bool found_something = false, target = false;
+    CharData *j;
+    ObjData *k;
 
     /*
      * If for some reason you can't see, then you can't search.
@@ -989,7 +986,7 @@ ACMD(do_search) {
                     return;
                 } else {
                     k = k->contains;
-                    target = TRUE;
+                    target = true;
                 }
             } else {
                 /* Maybe they meant to search for a door by that name? */
@@ -1013,15 +1010,15 @@ ACMD(do_search) {
             if (GET_OBJ_HIDDENNESS(k) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                 GET_OBJ_HIDDENNESS(k) = 0;
                 if (!OBJ_FLAGGED(k, ITEM_WAS_DISARMED))
-                    k->last_to_hold = NULL;
+                    k->last_to_hold = nullptr;
                 if (orig_hide <= GET_PERCEPTION(ch) && !GET_OBJ_HIDDENNESS(k)) {
-                    act("You reveal $p!", FALSE, ch, k, 0, TO_CHAR);
-                    act("$n reveals $p!", TRUE, ch, k, 0, TO_ROOM);
+                    act("You reveal $p!", false, ch, k, 0, TO_CHAR);
+                    act("$n reveals $p!", true, ch, k, 0, TO_ROOM);
                 } else {
-                    act("You find $p!", FALSE, ch, k, 0, TO_CHAR);
-                    act("$n finds $p!", TRUE, ch, k, 0, TO_ROOM);
+                    act("You find $p!", false, ch, k, 0, TO_CHAR);
+                    act("$n finds $p!", true, ch, k, 0, TO_ROOM);
                 }
-                found_something = TRUE;
+                found_something = true;
             }
         }
 
@@ -1046,13 +1043,13 @@ ACMD(do_search) {
                     if (GET_HIDDENNESS(j) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                         GET_HIDDENNESS(j) = 0;
                         if (orig_hide <= GET_PERCEPTION(ch) && !IS_HIDDEN(j))
-                            act("You point out $N lurking here!", FALSE, ch, 0, j, TO_CHAR);
+                            act("You point out $N lurking here!", false, ch, 0, j, TO_CHAR);
                         else
-                            act("You find $N lurking here!", FALSE, ch, 0, j, TO_CHAR);
-                        act("$n points out $N lurking here!", TRUE, ch, 0, j, TO_NOTVICT);
+                            act("You find $N lurking here!", false, ch, 0, j, TO_CHAR);
+                        act("$n points out $N lurking here!", true, ch, 0, j, TO_NOTVICT);
                         if (GET_PERCEPTION(j) + number(0, 200) > GET_PERCEPTION(ch))
-                            act("You think $n has spotted you!", TRUE, ch, 0, j, TO_VICT);
-                        found_something = TRUE;
+                            act("You think $n has spotted you!", true, ch, 0, j, TO_VICT);
+                        found_something = true;
                     }
                 }
     }
@@ -1072,7 +1069,7 @@ ACMD(do_exits) {
 }
 
 /* Shows a room to a char */
-void print_room_to_char(room_num room_nr, char_data *ch, bool ignore_brief) {
+void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief) {
     if (IS_DARK(room_nr) && !CAN_SEE_IN_DARK(ch)) {
         /* The dark version... you can't see much, but you might see exits to
          * nearby, lighted rooms. You might see creatures by infravision. */
@@ -1111,7 +1108,7 @@ void print_room_to_char(room_num room_nr, char_data *ch, bool ignore_brief) {
     list_char_to_char(world[room_nr].people, ch, SHOW_LONG_DESC | SHOW_FLAGS | SHOW_SKIP_SELF | SHOW_STACK);
 }
 
-void look_at_room(char_data *ch, int ignore_brief) {
+void look_at_room(CharData *ch, int ignore_brief) {
     if (EFF_FLAGGED(ch, EFF_BLIND))
         cprintf(ch, "You see nothing but infinite darkness...\r\n");
     else if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG) && !PRF_FLAGGED(ch, PRF_HOLYLIGHT))
@@ -1135,7 +1132,7 @@ void look_at_room(char_data *ch, int ignore_brief) {
  * relocate
  */
 
-void check_new_surroundings(char_data *ch, bool old_room_was_dark, bool tx_obvious) {
+void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious) {
 
     if (GET_STANCE(ch) < STANCE_SLEEPING)
         /* You know nothing. */
@@ -1163,9 +1160,9 @@ void check_new_surroundings(char_data *ch, bool old_room_was_dark, bool tx_obvio
     }
 }
 
-void look_in_direction(char_data *ch, int dir) {
-    bool look_at_magic_wall(char_data * ch, int dir, bool sees_next_room);
-    struct Exit *exit = CH_EXIT(ch, dir);
+void look_in_direction(CharData *ch, int dir) {
+    bool look_at_magic_wall(CharData * ch, int dir, bool sees_next_room);
+    Exit *exit = CH_EXIT(ch, dir);
 
     if (ROOM_EFF_FLAGGED(CH_NROOM(ch), ROOM_EFF_ISOLATION) && GET_LEVEL(ch) < LVL_IMMORT) {
         cprintf(ch, "%s",
@@ -1183,10 +1180,11 @@ void look_in_direction(char_data *ch, int dir) {
 
         /* If the exit is hidden, we don't want to display any info! */
         if (EXIT_IS_HIDDEN(exit) && GET_LEVEL(ch) < LVL_IMMORT) {
-            look_at_magic_wall(ch, dir, FALSE);
+            look_at_magic_wall(ch, dir, false);
         } else if (EXIT_IS_CLOSED(exit)) {
-            cprintf(ch, "The %s %s closed.\r\n", exit_name(exit), isplural(exit_name(exit)) ? "are" : "is");
-            look_at_magic_wall(ch, dir, FALSE);
+            const char *blah = isplural(exit_name(exit)) ? "are" : "is";
+            cprintf(ch, "The %s %s closed.\r\n", exit_name(exit), blah);
+            look_at_magic_wall(ch, dir, false);
         } else {
             if (EXIT_IS_DOOR(exit))
                 cprintf(ch, "The %s %s open.\r\n", exit_name(exit), isplural(exit_name(exit)) ? "are" : "is");
@@ -1196,9 +1194,9 @@ void look_in_direction(char_data *ch, int dir) {
                 cprintf(ch,
                         "&1&8The edge of a circle of fire burns wildly in this "
                         "direction.&0\r\n");
-            look_at_magic_wall(ch, dir, TRUE);
+            look_at_magic_wall(ch, dir, true);
         }
-    } else if (!look_at_magic_wall(ch, dir, FALSE))
+    } else if (!look_at_magic_wall(ch, dir, false))
         cprintf(ch, "You see nothing special.\r\n");
 }
 
@@ -1221,9 +1219,9 @@ static const char *describe_fullness(int remaining, int capacity) {
     return fullness;
 }
 
-void look_in_obj(char_data *ch, char *arg) {
-    struct obj_data *obj = NULL;
-    struct char_data *dummy = NULL;
+void look_in_obj(CharData *ch, char *arg) {
+    ObjData *obj = nullptr;
+    CharData *dummy = nullptr;
     int bits;
 
     if (!*arg)
@@ -1254,19 +1252,19 @@ void look_in_obj(char_data *ch, char *arg) {
         cprintf(ch, "There's nothing inside that!\r\n");
 }
 
-static char *find_exdesc(char *word, extra_descr_data *list) {
-    struct extra_descr_data *i;
+static char *find_exdesc(char *word, ExtraDescriptionData *list) {
+    ExtraDescriptionData *i;
 
     for (i = list; i; i = i->next)
         if (isname(word, i->keyword))
             return (i->description);
 
-    return NULL;
+    return nullptr;
 }
 
-static bool consider_obj_exdesc(obj_data *obj, char *arg, char_data *ch, char *additional_args) {
+static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *additional_args) {
     char *desc;
-    if ((desc = find_exdesc(arg, obj->ex_description)) != NULL) {
+    if ((desc = find_exdesc(arg, obj->ex_description)) != nullptr) {
         if (desc == obj->ex_description->description)
             /* First extra desc: show object normally */
             print_obj_to_char(obj, ch, SHOW_FULL_DESC, additional_args);
@@ -1274,17 +1272,17 @@ static bool consider_obj_exdesc(obj_data *obj, char *arg, char_data *ch, char *a
             /* For subsequent extra descs, suppress special object output */
             page_string(ch, desc);
     } else if (!isname(arg, obj->name))
-        return FALSE;
+        return false;
     else if (GET_OBJ_TYPE(obj) == ITEM_NOTE)
-        print_obj_to_char(obj, ch, SHOW_FULL_DESC, NULL);
+        print_obj_to_char(obj, ch, SHOW_FULL_DESC, nullptr);
     else if (GET_OBJ_TYPE(obj) == ITEM_BOARD) {
         if (is_number(additional_args))
             read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(additional_args));
         else
             look_at_board(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), obj);
     } else
-        act("You see nothing special about $p.", FALSE, ch, obj, 0, TO_CHAR);
-    return TRUE;
+        act("You see nothing special about $p.", false, ch, obj, 0, TO_CHAR);
+    return true;
 }
 
 /*
@@ -1292,10 +1290,10 @@ static bool consider_obj_exdesc(obj_data *obj, char *arg, char_data *ch, char *a
  * matches the target.   First, see if there is another char in the room
  * with the name.   Then check local objs for exdescs.
  */
-void look_at_target(char_data *ch, char *argument) {
+void look_at_target(CharData *ch, char *argument) {
     int bits, j;
-    struct char_data *found_char = NULL;
-    struct obj_data *obj = NULL, *found_obj = NULL;
+    CharData *found_char = nullptr;
+    ObjData *obj = nullptr, *found_obj = nullptr;
     char *desc;
     char arg[MAX_INPUT_LENGTH];
     char *number = "";
@@ -1314,13 +1312,13 @@ void look_at_target(char_data *ch, char *argument) {
     if (found_char) {
         print_char_to_char(found_char, ch, SHOW_FULL_DESC);
         if (ch != found_char) {
-            act("$n looks at you.", TRUE, ch, 0, found_char, TO_VICT);
-            act("$n looks at $N.", TRUE, ch, 0, found_char, TO_NOTVICT);
+            act("$n looks at you.", true, ch, 0, found_char, TO_VICT);
+            act("$n looks at $N.", true, ch, 0, found_char, TO_NOTVICT);
         }
         return;
     }
     /* Does the argument match an extra desc in the room? */
-    if ((desc = find_exdesc(arg, world[ch->in_room].ex_description)) != NULL) {
+    if ((desc = find_exdesc(arg, world[ch->in_room].ex_description)) != nullptr) {
         page_string(ch, desc);
         return;
     }
@@ -1351,7 +1349,7 @@ void look_at_target(char_data *ch, char *argument) {
 }
 
 #define MAX_FARSEE_DISTANCE 4
-static void do_farsee(char_data *ch, int dir) {
+static void do_farsee(CharData *ch, int dir) {
     int original, distance;
     static const char *farsee_desc[MAX_FARSEE_DISTANCE + 1] = {
         "far beyond reason ", "ridiculously far ", "even farther ", "farther ", "",
@@ -1379,7 +1377,7 @@ static void do_farsee(char_data *ch, int dir) {
         cprintf(ch, "\r\n&0&6You extend your vision %s%s%s%s.&0\r\n", farsee_desc[distance],
                 (dir == UP || dir == DOWN) ? "" : "to the ", dirs[dir], (dir == UP || dir == DOWN) ? "wards" : "");
 
-        print_room_to_char(ch->in_room, ch, TRUE);
+        print_room_to_char(ch->in_room, ch, true);
 
         /* Yes, spell casters will be able to see farther. */
         if (!distance || number(1, 125) > GET_SKILL(ch, SKILL_SPHERE_DIVIN)) {
@@ -1405,8 +1403,9 @@ ACMD(do_read) {
     else if (!*argument)
         cprintf(ch, "Read what?\r\n");
     else if (is_number(argument)) {
-        struct obj_data *obj;
-        universal_find(find_vis_by_type(ch, ITEM_BOARD), FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, NULL, &obj);
+        ObjData *obj;
+        universal_find(find_vis_by_type(ch, ITEM_BOARD), FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, nullptr,
+                       &obj);
         if (obj)
             read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(argument));
         else
@@ -1435,12 +1434,12 @@ ACMD(do_look) {
         cprintf(ch, "Your view is obscured by a thick fog.\r\n");
     else if (!*arg) {
         /* If the room is dark, look_at_room() will handle it. */
-        look_at_room(ch, TRUE);
+        look_at_room(ch, true);
     } else if (IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch)) {
         cprintf(ch, "It is too dark to see anything.\r\n");
     } else if (is_abbrev(arg, "in"))
         look_in_obj(ch, argument);
-    else if ((look_type = searchblock(arg, dirs, FALSE)) >= 0)
+    else if ((look_type = searchblock(arg, dirs, false)) >= 0)
         look_in_direction(ch, look_type);
     else if (is_abbrev(arg, "at"))
         look_at_target(ch, argument);
@@ -1449,8 +1448,8 @@ ACMD(do_look) {
 }
 
 ACMD(do_examine) {
-    struct char_data *vict;
-    struct obj_data *obj;
+    CharData *vict;
+    ObjData *obj;
 
     one_argument(argument, arg);
 
@@ -1468,9 +1467,9 @@ ACMD(do_examine) {
             look_in_obj(ch, arg);
 }
 
-void identify_obj(obj_data *obj, char_data *ch, int location) {
+void identify_obj(ObjData *obj, CharData *ch, int location) {
     int i;
-    trig_data *t;
+    TrigData *t;
 
     if (location)
         cprintf(ch,
@@ -1577,8 +1576,8 @@ void identify_obj(obj_data *obj, char_data *ch, int location) {
 
 ACMD(do_identify) {
     int bits;
-    struct char_data *found_char = NULL;
-    struct obj_data *obj = NULL;
+    CharData *found_char = nullptr;
+    ObjData *obj = nullptr;
 
     if (FIGHTING(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
         cprintf(ch, "You're a little busy to be looking over an item right now!\r\n");
@@ -1619,7 +1618,7 @@ ACMD(do_identify) {
 }
 
 ACMD(do_inventory) {
-    struct char_data *vict = NULL;
+    CharData *vict = nullptr;
 
     /* Immortals can target another character to see their inventory */
     one_argument(argument, arg);
@@ -1634,7 +1633,7 @@ ACMD(do_inventory) {
     if (vict == ch)
         cprintf(ch, "You are carrying:\r\n");
     else
-        act("$N is carrying:", TRUE, ch, 0, vict, TO_CHAR);
+        act("$N is carrying:", true, ch, 0, vict, TO_CHAR);
 
     list_obj_to_char(vict->carrying, ch, SHOW_SHORT_DESC | SHOW_FLAGS | SHOW_STACK);
 }
@@ -1647,11 +1646,11 @@ ACMD(do_equipment) {
         if (GET_EQ(ch, wear_order_index[i])) {
             if (CAN_SEE_OBJ(ch, GET_EQ(ch, wear_order_index[i]))) {
                 cprintf(ch, where[wear_order_index[i]]);
-                print_obj_to_char(GET_EQ(ch, wear_order_index[i]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, NULL);
-                found = TRUE;
+                print_obj_to_char(GET_EQ(ch, wear_order_index[i]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, nullptr);
+                found = true;
             } else {
                 cprintf(ch, "%sSomething.\r\n", where[wear_order_index[i]]);
-                found = TRUE;
+                found = true;
             }
         }
     }
@@ -1764,7 +1763,7 @@ ACMD(do_help) {
 /* Construct a single line of the who list, which depicts a mortal, and
  * concatenate it to a buffer. */
 
-static void cat_mortal_wholine(char *mbuf, const char *title, const struct char_data *ch, const bool show_as_anon,
+static void cat_mortal_wholine(char *mbuf, const char *title, CharData *ch, const bool show_as_anon,
                                const bool show_area_in, const bool show_full_class, const bool show_color_nameflags) {
     if (show_as_anon)
         sprintf(mbuf, "%s&0[%s] %s%s&0 %s&0", mbuf, "&9&b-Anon-&0",
@@ -1801,8 +1800,8 @@ static void cat_mortal_wholine(char *mbuf, const char *title, const struct char_
 char *WHO_USAGE = "Usage: who [minlev-maxlev] [-qrzw] [-n name] [-c classes]\r\n";
 
 ACMD(do_who) {
-    struct descriptor_data *d;
-    struct char_data *wch;
+    DescriptorData *d;
+    CharData *wch;
     char Imm_buf_title[MAX_STRING_LENGTH];
     char Imm_buf[MAX_STRING_LENGTH];
     char buf[MAX_STRING_LENGTH];
@@ -1816,10 +1815,10 @@ ACMD(do_who) {
     char a[120];
     char check[3];
     int low = 0, high = LVL_IMPL, showclass = CLASS_UNDEFINED;
-    bool who_room = FALSE, who_zone = FALSE, who_quest = 0;
-    bool outlaws = FALSE, noimm = FALSE, nomort = FALSE;
-    bool who_where = FALSE, level_range = FALSE;
-    bool show_as_anon = FALSE, show_area_in = FALSE;
+    bool who_room = false, who_zone = false, who_quest = 0;
+    bool outlaws = false, noimm = false, nomort = false;
+    bool who_where = false, level_range = false;
+    bool show_as_anon = false, show_area_in = false;
     int b, c, e;
     int Wizards = 0, Mortals = 0;
 
@@ -1839,36 +1838,36 @@ ACMD(do_who) {
         if (isdigit(*arg)) {
             sscanf(arg, "%d-%d", &low, &high);
             strcpy(buf, buf1);
-            level_range = TRUE;
+            level_range = true;
         } else if (*arg == '-') {
             mode = *(arg + 1); /* just in case; we destroy arg in the switch */
             switch (mode) {
                 /* 'o' - show only outlaws */
             case 'o':
-                outlaws = TRUE;
+                outlaws = true;
                 strcpy(buf, buf1);
                 break;
                 /* 'z' - show only folks in the same zone as me */
             case 'z':
                 if (pk_allowed && GET_LEVEL(ch) < LVL_IMMORT) {
-                    who_zone = FALSE;
+                    who_zone = false;
                     cprintf(ch, "Wouldn't you like to know?\r\n");
                     return;
                 } else {
-                    who_zone = TRUE;
+                    who_zone = true;
                     strcpy(buf, buf1);
                 }
                 break;
                 /* 'q' - show only folks with (quest) flag */
             case 'q':
-                who_quest = TRUE;
+                who_quest = true;
                 strcpy(buf, buf1);
                 break;
                 /* 'l' - show only folks within a certain level range */
             case 'l':
                 half_chop(buf1, arg, buf);
                 sscanf(arg, "%d-%d", &low, &high);
-                level_range = TRUE;
+                level_range = true;
                 break;
                 /* 'n' - show only someone with a specific name */
                 /* BUG (?) - if no name matches, it then goes on to check titles? */
@@ -1877,13 +1876,13 @@ ACMD(do_who) {
                 break;
                 /* 'r' - show only people in the same room with me */
             case 'r':
-                who_room = TRUE;
+                who_room = true;
                 strcpy(buf, buf1);
                 break;
                 /* 'w' - show where people are, by putting their area name after their
                  * name */
             case 'w':
-                who_where = TRUE;
+                who_where = true;
                 strcpy(buf, buf1);
                 break;
                 /* 'c' - show only people of a specific class */
@@ -1915,7 +1914,7 @@ ACMD(do_who) {
                     PRF_FLAGGED(wch, PRF_ANON) && GET_LEVEL(ch) < LVL_IMMORT && wch != ch, /* show_as_anon */
                     ((!pk_allowed && !PRF_FLAGGED(wch, PRF_ANON)) || wch == ch || GET_LEVEL(ch) >= LVL_IMMORT) &&
                         who_where,              /* show_area_in */
-                    TRUE,                       /* show_full_class */
+                    true,                       /* show_full_class */
                     GET_LEVEL(ch) >= LVL_IMMORT /* show mortal name flag colors (freeze, rename) */
                 );
             }
@@ -2034,13 +2033,13 @@ ACMD(do_who) {
 
             /* Decide what details to display */
 
-            show_area_in = FALSE;
-            show_as_anon = FALSE;
+            show_area_in = false;
+            show_as_anon = false;
 
             if (GET_LEVEL(ch) >= LVL_IMMORT || ch == wch || (!PRF_FLAGGED(wch, PRF_ANON) && !pk_allowed)) {
                 show_area_in = who_where;
             } else if (PRF_FLAGGED(wch, PRF_ANON)) {
-                show_as_anon = TRUE;
+                show_as_anon = true;
             }
 
             cat_mortal_wholine(Mort_buf, buf2, wch, show_as_anon, show_area_in, showclass != CLASS_UNDEFINED,
@@ -2210,8 +2209,8 @@ ACMD(do_users) {
                                                                   mortally wounded was over flowing */
     char ipbuf[MAX_STRING_LENGTH], userbuf[MAX_STRING_LENGTH];
     char name_search[MAX_INPUT_LENGTH], host_search[MAX_INPUT_LENGTH];
-    struct char_data *tch;
-    struct descriptor_data *d;
+    CharData *tch;
+    DescriptorData *d;
     size_t i;
     int low = 0, high = LVL_IMPL, num_can_see = 0;
     int showclass = CLASS_UNDEFINED, outlaws = 0, playing = 0, deadweight = 0, ipsort = 0;
@@ -2456,9 +2455,9 @@ ACMD(do_gen_ps) {
     }
 }
 
-static void perform_mortal_where(char_data *ch, char *arg) {
-    struct char_data *i;
-    struct descriptor_data *d;
+static void perform_mortal_where(CharData *ch, char *arg) {
+    CharData *i;
+    DescriptorData *d;
 
     if (!*arg) {
         send_to_char("Players in your zone\r\n--------------------\r\n", ch);
@@ -2483,7 +2482,7 @@ static void perform_mortal_where(char_data *ch, char *arg) {
     }
 }
 
-static void print_object_location(int num, obj_data *obj, char_data *ch, int recur) {
+static void print_object_location(int num, ObjData *obj, CharData *ch, int recur) {
     if (num > 0)
         sprintf(buf, "O%3d. %-25s - ", num, strip_ansi(obj->short_description));
     else
@@ -2503,10 +2502,10 @@ static void print_object_location(int num, obj_data *obj, char_data *ch, int rec
         pprintf(ch, "%sin an unknown location\r\n", buf);
 }
 
-static void perform_immort_where(char_data *ch, char *arg) {
-    struct char_data *i;
-    struct obj_data *k;
-    struct descriptor_data *d;
+static void perform_immort_where(CharData *ch, char *arg) {
+    CharData *i;
+    ObjData *k;
+    DescriptorData *d;
     int num = 0, found = 0;
 
     if (!*arg) {
@@ -2534,7 +2533,7 @@ static void perform_immort_where(char_data *ch, char *arg) {
         for (num = 0, k = object_list; k; k = k->next)
             if (CAN_SEE_OBJ(ch, k) && isname(arg, k->name)) {
                 found = 1;
-                print_object_location(++num, k, ch, TRUE);
+                print_object_location(++num, k, ch, true);
             }
         if (found)
             start_paging(ch);
@@ -2553,7 +2552,7 @@ ACMD(do_where) {
 }
 
 ACMD(do_consider) {
-    struct char_data *victim;
+    CharData *victim;
     int diff, mountdiff, tamediff, mountmsg = 0;
     int apparent_vlvl;
 
@@ -2577,8 +2576,8 @@ ACMD(do_consider) {
     diff = apparent_vlvl - GET_LEVEL(ch);
 
     if (!IS_NPC(ch) || !IS_NPC(victim)) {
-        act("$n sizes $N up with a quick glance.", FALSE, ch, 0, victim, TO_NOTVICT);
-        act("$n sizes you up with a quick glance.", FALSE, ch, 0, victim, TO_VICT);
+        act("$n sizes $N up with a quick glance.", false, ch, 0, victim, TO_NOTVICT);
+        act("$n sizes you up with a quick glance.", false, ch, 0, victim, TO_VICT);
     }
 
     if (diff <= -10)
@@ -2630,12 +2629,12 @@ ACMD(do_consider) {
     }
     if (mountmsg) {
         sprintf(buf, "%s.", buf);
-        act(buf, FALSE, ch, 0, victim, TO_CHAR);
+        act(buf, false, ch, 0, victim, TO_CHAR);
     }
 }
 
 ACMD(do_diagnose) {
-    struct char_data *vict;
+    CharData *vict;
 
     one_argument(argument, buf);
 
@@ -2665,7 +2664,7 @@ ACMD(do_color) {
         send_to_char(buf, ch);
         return;
     }
-    if (((tp = searchblock(arg, ctypes, FALSE)) == -1)) {
+    if (((tp = searchblock(arg, ctypes, false)) == -1)) {
         send_to_char("Usage: color { Off | Sparse | Normal | Complete }\r\n", ch);
         return;
     }
@@ -2685,7 +2684,7 @@ ACMD(do_color) {
 ACMD(do_commands) {
     int i, j, v, cmd_num;
     int wizhelp = 0, socials = 0;
-    struct char_data *vict;
+    CharData *vict;
 
     int num_elements, column_height, box_height, num_xcolumns, num_rows, cont;
 
@@ -2897,7 +2896,7 @@ const char *ability_message(int value) {
         return rolls_abils_result[4];
 }
 
-long xp_percentage(char_data *ch) {
+long xp_percentage(CharData *ch) {
     long current, total, next_level;
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
@@ -2923,7 +2922,7 @@ long xp_percentage(char_data *ch) {
     }
 }
 
-const char *exp_message(char_data *ch) {
+const char *exp_message(CharData *ch) {
     long percent, current, total, etl;
     char *messages[] = {
         "&4&8You still have a very long way to go to your next level.&0",
@@ -2967,7 +2966,7 @@ const char *exp_message(char_data *ch) {
         return "&1You are somewhere along the way to your next level.&0";
 }
 
-const char *exp_bar(char_data *ch, int length, int gradations, int sub_gradations, bool color) {
+const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color) {
     static char bar[120];
     int i;
     int grad_count, length_per_grad, distance;
@@ -3077,7 +3076,7 @@ const char *exp_bar(char_data *ch, int length, int gradations, int sub_gradation
     return bar;
 }
 
-const char *cooldown_bar(char_data *ch, int cooldown, int length, int gradations, bool color) {
+const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations, bool color) {
     static char bar[120];
     char *p = bar;
     int i, grad_count, length_per_grad, distance, current, total;
@@ -3128,7 +3127,7 @@ const char *cooldown_bar(char_data *ch, int cooldown, int length, int gradations
     return bar;
 }
 
-static void show_abilities(char_data *ch, char_data *tch, bool verbose) {
+static void show_abilities(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
         sprintf(buf,
                 "Str: &3%s&0    Int: &3%s&0     Wis: &3%s&0\r\n"
@@ -3154,7 +3153,7 @@ static void show_abilities(char_data *ch, char_data *tch, bool verbose) {
     send_to_char(buf, ch);
 }
 
-static void show_points(char_data *ch, char_data *tch, bool verbose) {
+static void show_points(CharData *ch, CharData *tch, bool verbose) {
     sprintf(buf,
             "Hit points: &1&b%d&0[&1%d&0] (&3%d&0)   Moves: &2&b%d&0[&2%d&0] "
             "(&3%d&0)\r\n",
@@ -3187,7 +3186,7 @@ static void show_points(char_data *ch, char_data *tch, bool verbose) {
     send_to_char(buf, ch);
 }
 
-static void show_alignment(char_data *ch, char_data *tch, bool verbose) {
+static void show_alignment(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
         sprintf(buf, "Alignment: %s%s&0 (%s%d&0)  ", IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
                 align_message(GET_ALIGNMENT(tch)), IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
@@ -3198,7 +3197,7 @@ static void show_alignment(char_data *ch, char_data *tch, bool verbose) {
     send_to_char(buf, ch);
 }
 
-static void show_load(char_data *ch, char_data *tch, bool verbose) {
+static void show_load(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
         sprintf(buf, "Encumbrance: &3&8%s&0 (&3&8%.2f&0/&3%d&0 lb)  ",
                 (CURRENT_LOAD(tch) >= 0 && CURRENT_LOAD(tch) <= 10) ? carry_desc[CURRENT_LOAD(tch)]
@@ -3209,7 +3208,7 @@ static void show_load(char_data *ch, char_data *tch, bool verbose) {
     send_to_char(buf, ch);
 }
 
-static void show_saves(char_data *ch, char_data *tch, bool verbose) {
+static void show_saves(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
         sprintf(buf,
                 "Saving throws: PAR[&3&8%s&0/&3&8%d&0] "
@@ -3230,7 +3229,7 @@ static void show_saves(char_data *ch, char_data *tch, bool verbose) {
 #define PURSE_ELEMS(ch, coin) COIN_COLOR(coin), GET_PURSE_COINS(ch, coin), capitalize(COIN_NAME(coin))
 #define BANK_ELEMS(ch, coin) COIN_COLOR(coin), GET_ACCOUNT_COINS(ch, coin), capitalize(COIN_NAME(coin))
 
-static void show_coins(char_data *ch, char_data *tch) {
+static void show_coins(CharData *ch, CharData *tch) {
     cprintf(ch,
             "Coins carried: " COIN_FMT ", " COIN_FMT ", " COIN_FMT ", and " COIN_FMT EOL "Coins in bank: " COIN_FMT
             ", " COIN_FMT ", " COIN_FMT ", and " COIN_FMT EOL,
@@ -3238,7 +3237,7 @@ static void show_coins(char_data *ch, char_data *tch) {
             BANK_ELEMS(tch, PLATINUM), BANK_ELEMS(tch, GOLD), BANK_ELEMS(tch, SILVER), BANK_ELEMS(tch, COPPER));
 }
 
-static void show_conditions(char_data *ch, char_data *tch, bool verbose) {
+static void show_conditions(CharData *ch, CharData *tch, bool verbose) {
     buf[0] = '\0';
     if (verbose) {
         if (GET_COND(tch, FULL) < 6 && GET_COND(tch, FULL) > -1) {
@@ -3270,15 +3269,15 @@ static void show_conditions(char_data *ch, char_data *tch, bool verbose) {
     send_to_char(buf, ch);
 }
 
-static void show_exp(char_data *ch, char_data *tch) {
+static void show_exp(CharData *ch, CharData *tch) {
     sprintf(buf, "Exp: %s\r\n", exp_message(tch));
     if (!IS_STARSTAR(tch) && GET_LEVEL(tch) > 0)
         sprintf(buf + strlen(buf), "   <%s>\r\n", exp_bar(tch, 60, 20, 20, COLOR_LEV(ch) >= C_NRM));
     send_to_char(buf, ch);
 }
 
-static void show_active_spells(char_data *ch, char_data *tch) {
-    struct effect *eff;
+static void show_active_spells(CharData *ch, CharData *tch) {
+    effect *eff;
 
     if (tch->effects) {
         strcpy(buf,
@@ -3307,9 +3306,9 @@ ACMD(do_experience) {
 }
 
 ACMD(do_score) {
-    struct time_info_data playing_time;
-    struct time_info_data real_time_passed(time_t t2, time_t t1);
-    struct char_data *tch;
+    TimeInfoData playing_time;
+    TimeInfoData real_time_passed(time_t t2, time_t t1);
+    CharData *tch;
 
     one_argument(argument, arg);
 
@@ -3365,7 +3364,7 @@ ACMD(do_score) {
     show_abilities(ch, tch, GET_LEVEL(ch) < 10);
     show_points(ch, tch, GET_LEVEL(ch) < 50);
     show_alignment(ch, tch, GET_LEVEL(ch) < 35);
-    show_load(ch, tch, TRUE); /* always verbose */
+    show_load(ch, tch, true); /* always verbose */
 
     str_start(buf, sizeof(buf));
 
@@ -3462,7 +3461,7 @@ ACMD(do_score) {
     cprintf(ch, "Playing time: &3&b%d&0&3 day%s&0 and &3&b%d&0&3 hour%s&0\r\n", playing_time.day,
             playing_time.day == 1 ? "" : "s", playing_time.hours, playing_time.hours == 1 ? "" : "s");
 
-    show_conditions(ch, tch, TRUE);
+    show_conditions(ch, tch, true);
     speech_report(ch, tch);
     if (GET_LEVEL(tch) < LVL_IMMORT)
         show_exp(ch, REAL_CHAR(tch));
@@ -3508,8 +3507,8 @@ const char *proficiency_message(int proficiency) {
 ACMD(do_spells) {
     int circle_spells[MAX_CIRCLE][MAX_SPELLS_PER_CIRCLE];
     int i, j, k, circle, skillnum, sphere, max_vis_circle, xcircle = 0, numspellsknown = 0;
-    char *s_circle = NULL, *s_vict = NULL;
-    struct char_data *tch;
+    char *s_circle = nullptr, *s_vict = nullptr;
+    CharData *tch;
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
     /* Extract the arguments of the command */
@@ -3661,7 +3660,7 @@ ACMD(do_spells) {
 
 ACMD(do_listspells) {
     int circle_spells[MAX_CIRCLE][MAX_SPELLS_PER_CIRCLE];
-    int i, j, k, circle, class, page_length;
+    int i, j, k, circle, class_num, page_length;
     int magic_class_index[NUM_CLASSES], num_magic_classes;
     /* 20000 bytes is not enough: */
     char mybuf[50000];
@@ -3710,19 +3709,21 @@ ACMD(do_listspells) {
                 if (!(page_length > 1 ? (j % (page_length - 1)) : j)) {
                     strcat(mybuf, "&4&uSpell               &0&u");
                     for (class_num = 0; class_num < num_magic_classes; ++class_num)
-                        sprintf(mybuf, "%s %2.2s", mybuf, strip_ansi(classes[magic_class_index[class_num]].abbrev));
+                        snprintf(mybuf, sizeof(mybuf), "%s %2.2s", mybuf,
+                                 strip_ansi(classes[magic_class_index[class_num]].abbrev));
                     strcat(mybuf, "&0\r\n");
                 }
                 ++j;
 
-                sprintf(mybuf, "%s%-20.20s ", mybuf, skills[i].name);
+                snprintf(mybuf, sizeof(mybuf) - 4, "%s%-20.20s ", mybuf, skills[i].name);
                 for (class_num = 0; class_num < num_magic_classes; ++class_num)
                     if (skills[i].min_level[magic_class_index[class_num]] < LVL_IMMORT) {
                         if (circle)
-                            sprintf(mybuf, "%s&3%2d ", mybuf,
-                                    (skills[i].min_level[magic_class_index[class_num]] - 1) / 8 + 1);
+                            snprintf(mybuf, sizeof(mybuf), "%s&3%2d ", mybuf,
+                                     (skills[i].min_level[magic_class_index[class_num]] - 1) / 8 + 1);
                         else
-                            sprintf(mybuf, "%s&3%2d ", mybuf, skills[i].min_level[magic_class_index[class]]);
+                            snprintf(mybuf, sizeof(mybuf), "%s&3%2d ", mybuf,
+                                     skills[i].min_level[magic_class_index[class_num]]);
                     } else
                         strcat(mybuf, "&0 0 ");
                 strcat(mybuf, "&0\r\n");
@@ -3758,13 +3759,13 @@ ACMD(do_listspells) {
 }
 
 ACMD(do_skills) {
-    int level_max_skill(char_data * ch, int level, int skill);
+    int level_max_skill(CharData * ch, int level, int skill);
     const char *fullmastered = " &7-&b*&0&7-&0";
     const char *mastered = "  * ";
     const char *normal = "    ";
     const char *mastery;
     int i, x;
-    struct char_data *tch;
+    CharData *tch;
     char points[MAX_INPUT_LENGTH];
     bool godpeek;
 
@@ -3781,11 +3782,11 @@ ACMD(do_skills) {
             return;
         }
         sprintf(buf, "%s knows of the following skills:\r\n", GET_NAME(tch));
-        godpeek = TRUE;
+        godpeek = true;
     } else {
         strcpy(buf, "You know of the following skills:\r\n");
         tch = ch;
-        godpeek = FALSE;
+        godpeek = false;
     }
 
     strcpy(buf2, buf);
@@ -3828,8 +3829,8 @@ ACMD(do_skills) {
     page_string(ch, buf2);
 }
 
-static int scan_chars(char_data *ch, int room, int dis, int dir, int seen_any) {
-    struct char_data *i;
+static int scan_chars(CharData *ch, int room, int dis, int dir, int seen_any) {
+    CharData *i;
     int count = 0;
 
     /*
@@ -3877,47 +3878,47 @@ static int scan_chars(char_data *ch, int room, int dis, int dir, int seen_any) {
 
 /* This tests for conditions that will stop a scan entirely.
  * If it returns false, you can't see through the exit at all. */
-bool exit_is_scannable(char_data *ch, exit *exit) {
+bool exit_is_scannable(CharData *ch, Exit *exit) {
 
     if (!exit)
-        return FALSE;
+        return false;
 
     if (!EXIT_IS_OPEN(exit))
-        return FALSE;
+        return false;
 
     if (EXIT_IS_HIDDEN(exit) && GET_LEVEL(ch) < LVL_IMMORT)
-        return FALSE;
+        return false;
 
     if (EXIT_NDEST(exit) == NOWHERE)
-        return FALSE;
+        return false;
 
-    if (EXIT_DEST(exit) == NULL)
-        return FALSE;
+    if (EXIT_DEST(exit) == nullptr)
+        return false;
 
     if (ROOM_FLAGGED(EXIT_NDEST(exit), ROOM_NOSCAN))
-        return FALSE;
+        return false;
 
-    return TRUE;
+    return true;
 }
 
 /* This tests for conditions that will stop you from scanning in a
  * specific room. But even if it returns false, you might be able
  * to scan beyond this room. */
-bool room_is_scannable(char_data *ch, int room) {
+bool room_is_scannable(CharData *ch, int room) {
 
     if (room == NOWHERE)
-        return FALSE;
+        return false;
 
     /* Note that we DO want people to be able to scan creatures who
      * are in dark rooms. Though it's unrealistic, scan is just too
      * useless when that isn't allowed. */
-    return TRUE;
+    return true;
 }
 
 ACMD(do_scan) {
     int dir, only_dir = -1, dis, maxdis, found = 0;
     int from_room, to_room;
-    struct Exit *exit;
+    Exit *exit;
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (EFF_FLAGGED(ch, EFF_BLIND)) {
@@ -3931,7 +3932,7 @@ ACMD(do_scan) {
     }
 
     any_one_arg(argument, arg);
-    if (*arg && (only_dir = searchblock(arg, dirs, FALSE)) == -1) {
+    if (*arg && (only_dir = searchblock(arg, dirs, false)) == -1) {
         send_to_char("That is not a direction.\r\n", ch);
         return;
     }
@@ -3961,7 +3962,7 @@ ACMD(do_scan) {
     if (ROOM_EFF_FLAGGED(CH_NROOM(ch), ROOM_EFF_ISOLATION) && GET_LEVEL(ch) < LVL_IMMORT)
         maxdis = 0;
 
-    act("$n scans the area.", TRUE, ch, 0, 0, TO_ROOM);
+    act("$n scans the area.", true, ch, 0, 0, TO_ROOM);
 
     found = scan_chars(ch, ch->in_room, 0, NORTH, found);
 
@@ -3986,8 +3987,8 @@ ACMD(do_scan) {
 }
 
 ACMD(do_innate) {
-    struct char_data *vict;
-    struct obj_data *obj;
+    CharData *vict;
+    ObjData *obj;
     *buf = '\0';
 
     argument = delimited_arg(argument, arg, '\'');
@@ -4367,8 +4368,8 @@ ACMD(do_innate) {
 
 ACMD(do_songs) {
     int i;
-    bool found = FALSE;
-    struct char_data *tch = ch;
+    bool found = false;
+    CharData *tch = ch;
 
     if (GET_SKILL(ch, SKILL_CHANT) < 1) {
         send_to_char("Huh?!?\r\n", ch);
@@ -4394,7 +4395,7 @@ ACMD(do_songs) {
         if (GET_SKILL(tch, i) <= 0)
             continue;
         sprintf(buf, "%s  %s\r\n", buf, skills[i].name);
-        found = TRUE;
+        found = true;
     }
 
     if (found)
@@ -4405,8 +4406,8 @@ ACMD(do_songs) {
 
 ACMD(do_music) {
     int i;
-    bool found = FALSE;
-    struct char_data *tch = ch;
+    bool found = false;
+    CharData *tch = ch;
 
     if (GET_SKILL(ch, SKILL_PERFORM) < 1) {
         send_to_char("Huh?!?\r\n", ch);
@@ -4432,7 +4433,7 @@ ACMD(do_music) {
         if (GET_SKILL(tch, i) <= 0)
             continue;
         sprintf(buf, "%s  %s\r\n", buf, skills[i].name);
-        found = TRUE;
+        found = true;
     }
 
     if (found)
@@ -4442,7 +4443,7 @@ ACMD(do_music) {
 }
 
 ACMD(do_last_tells) {
-    struct char_data *tch;
+    CharData *tch;
 
     one_argument(argument, arg);
 
@@ -4459,7 +4460,7 @@ ACMD(do_last_tells) {
 }
 
 ACMD(do_last_gossips) {
-    struct char_data *tch;
+    CharData *tch;
 
     one_argument(argument, arg);
 

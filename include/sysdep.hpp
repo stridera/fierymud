@@ -59,10 +59,10 @@
 #include <memory.h>
 #endif
 
-extern char *malloc(), *calloc(), *realloc();
-extern void free();
+char *malloc(), *calloc(), *realloc();
+void free();
 
-extern void abort(), exit();
+void abort(), exit();
 
 #endif /* Standard headers.  */
 

@@ -22,7 +22,7 @@
 #include "exits.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "movement.hpp"
 #include "olc.hpp" /* for real_zone */
 #include "pfiles.hpp"
@@ -34,18 +34,18 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
+void sub_write(char *arg, CharData *ch, byte find_invis, int targets);
 long asciiflag_conv(char *flag);
-room_data *get_room(char *name);
-int script_driver(void *go_address, trig_data *trig, int type, int mode);
+RoomData *get_room(char *name);
+int script_driver(void *go_address, TrigData *trig, int type, int mode);
 int get_room_location(char *name);
-struct find_context find_dg_by_name(char *name);
+FindContext find_dg_by_name(char *name);
 
-#define WCMD(name) void(name)(room_data * room, trig_data * t, char *argument, int cmd, int subcmd)
+#define WCMD(name) void(name)(RoomData * room, TrigData * t, char *argument, int cmd, int subcmd)
 
-struct wld_command_info {
+struct WorldCommandInfo {
     char *command;
-    void (*command_pointer)(room_data *room, trig_data *t, char *argument, int cmd, int subcmd);
+    void (*command_pointer)(RoomData *room, TrigData *t, char *argument, int cmd, int subcmd);
     int subcmd;
 };
 
@@ -54,17 +54,17 @@ struct wld_command_info {
 #define SCMD_WECHOAROUND 1
 
 /* attaches room vnum to msg and sends it to script_log */
-void wld_log(room_data *room, trig_data *t, char *msg) {
+void wld_log(RoomData *room, TrigData *t, char *msg) {
     char buf[MAX_INPUT_LENGTH + 100];
 
-    void script_log(trig_data * t, char *msg);
+    void script_log(TrigData * t, char *msg);
 
     sprintf(buf, "(TRG)(room %d): %s", room->vnum, msg);
     script_log(t, buf);
 }
 
 /* sends str to room */
-void act_to_room(char *str, room_data *room) {
+void act_to_room(char *str, RoomData *room) {
     /* no one is in the room */
     if (!room->people)
         return;
@@ -74,8 +74,8 @@ void act_to_room(char *str, room_data *room) {
      * TO_ROOM and TO_CHAR for some char in the room.
      * (just dont use $n or you might get strange results)
      */
-    act(str, FALSE, room->people, 0, 0, TO_ROOM);
-    act(str, FALSE, room->people, 0, 0, TO_CHAR);
+    act(str, false, room->people, 0, 0, TO_ROOM);
+    act(str, false, room->people, 0, 0, TO_CHAR);
 }
 
 /* World commands */
@@ -92,7 +92,7 @@ WCMD(do_wasound) {
     }
 
     for (door = 0; door < NUM_OF_DIRS; door++) {
-        struct Exit *exit;
+        Exit *exit;
 
         if ((exit = room->exits[door]) && (exit->to_room != NOWHERE) && room != &world[exit->to_room])
             act_to_room(argument, &world[exit->to_room]);
@@ -111,7 +111,7 @@ WCMD(do_wecho) {
 
 WCMD(do_wsend) {
     char buf[MAX_INPUT_LENGTH], *msg;
-    char_data *ch;
+    CharData *ch;
 
     msg = any_one_arg(argument, buf);
 
@@ -129,9 +129,9 @@ WCMD(do_wsend) {
 
     if ((ch = find_char_around_room(room, find_dg_by_name(buf)))) {
         if (subcmd == SCMD_WSEND)
-            sub_write(msg, ch, TRUE, TO_CHAR);
+            sub_write(msg, ch, true, TO_CHAR);
         else if (subcmd == SCMD_WECHOAROUND)
-            sub_write(msg, ch, TRUE, TO_ROOM);
+            sub_write(msg, ch, true, TO_ROOM);
     }
 
     else
@@ -165,8 +165,8 @@ WCMD(do_wzoneecho) {
 WCMD(do_wdoor) {
     char target[MAX_INPUT_LENGTH], direction[MAX_INPUT_LENGTH];
     char field[MAX_INPUT_LENGTH], *value, *desc;
-    room_data *rm;
-    struct Exit *exit;
+    RoomData *rm;
+    Exit *exit;
     int dir, fd, to_room;
 
     const char *door_field[] = {"purge", "description", "flags", "key", "name", "room", "\n"};
@@ -180,7 +180,7 @@ WCMD(do_wdoor) {
         return;
     }
 
-    if ((rm = get_room(target)) == NULL) {
+    if ((rm = get_room(target)) == nullptr) {
         wld_log(room, t, "wdoor: invalid target");
         return;
     }
@@ -190,7 +190,7 @@ WCMD(do_wdoor) {
         return;
     }
 
-    if ((fd = searchblock(field, door_field, FALSE)) == -1) {
+    if ((fd = searchblock(field, door_field, false)) == -1) {
         wld_log(room, t, "wdoor: invalid field");
         return;
     }
@@ -205,7 +205,7 @@ WCMD(do_wdoor) {
             if (exit->keyword)
                 free(exit->keyword);
             free(exit);
-            rm->exits[dir] = NULL;
+            rm->exits[dir] = nullptr;
         }
     }
 
@@ -250,7 +250,7 @@ WCMD(do_wdoor) {
 }
 
 WCMD(do_wteleport) {
-    char_data *ch, *next_ch;
+    CharData *ch, *next_ch;
     int target;
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
@@ -294,7 +294,7 @@ WCMD(do_wteleport) {
 }
 
 WCMD(do_wforce) {
-    char_data *ch, *next_ch;
+    CharData *ch, *next_ch;
     char arg1[MAX_INPUT_LENGTH], *line;
 
     line = one_argument(argument, arg1);
@@ -328,7 +328,7 @@ WCMD(do_wforce) {
 
 /* increases the target's exp */
 WCMD(do_wexp) {
-    char_data *ch;
+    CharData *ch;
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     two_arguments(argument, name, amount);
@@ -346,11 +346,11 @@ WCMD(do_wexp) {
     }
 }
 
-/* purge all objects an npcs in room, or specified object or mob */
+/* purge all objects an npcs in room, or specified obj or mob */
 WCMD(do_wpurge) {
     char arg[MAX_INPUT_LENGTH];
-    char_data *ch, *next_ch;
-    obj_data *obj, *next_obj;
+    CharData *ch, *next_ch;
+    ObjData *obj, *next_obj;
 
     one_argument(argument, arg);
 
@@ -391,8 +391,8 @@ WCMD(do_wload) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH], arg3[MAX_INPUT_LENGTH], arg4[MAX_INPUT_LENGTH];
     char *line;
     int number = 0, rnum;
-    char_data *mob, *ch;
-    obj_data *object, *object2;
+    CharData *mob, *ch;
+    ObjData *obj, *object2;
 
     line = two_arguments(argument, arg1, arg2);
 
@@ -402,7 +402,7 @@ WCMD(do_wload) {
     }
 
     if (is_abbrev(arg1, "mob")) {
-        if ((mob = read_mobile(number, VIRTUAL)) == NULL) {
+        if ((mob = read_mobile(number, VIRTUAL)) == nullptr) {
             wld_log(room, t, "wload: bad mob vnum");
             return;
         }
@@ -415,8 +415,8 @@ WCMD(do_wload) {
     }
 
     else if (is_abbrev(arg1, "obj")) {
-        if ((object = read_object(number, VIRTUAL)) == NULL) {
-            wld_log(room, t, "wload: bad object vnum");
+        if ((obj = read_object(number, VIRTUAL)) == nullptr) {
+            wld_log(room, t, "wload: bad obj vnum");
             return;
         }
 
@@ -426,22 +426,22 @@ WCMD(do_wload) {
         }
 
         if (*line == '\0') {
-            obj_to_room(object, rnum);
+            obj_to_room(obj, rnum);
         } else {
             two_arguments(line, arg3, arg4);
             if (is_abbrev(arg3, "mob")) {
                 if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
-                    obj_to_char(object, mob);
+                    obj_to_char(obj, mob);
                 }
             } else if (is_abbrev(arg3, "obj")) {
                 if ((object2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
-                    obj_to_obj(object, object2);
+                    obj_to_obj(obj, object2);
                 } else {
                     wld_log(room, t, "wload: no target found");
                 }
             } else if (is_abbrev(arg3, "plr")) {
                 if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
-                    obj_to_char(object, ch);
+                    obj_to_char(obj, ch);
                 } else {
                     wld_log(room, t, "wload: no target found");
                 }
@@ -457,7 +457,7 @@ WCMD(do_wload) {
 WCMD(do_wheal) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
     int dam = 0;
-    char_data *ch;
+    CharData *ch;
 
     two_arguments(argument, name, amount);
 
@@ -475,7 +475,7 @@ WCMD(do_wheal) {
             send_to_char("Being a god, you don't need healing.\r\n", ch);
             return;
         }
-        hurt_char(ch, NULL, -dam, TRUE);
+        hurt_char(ch, nullptr, -dam, true);
     } else
         wld_log(room, t, "wheal: target not found");
 }
@@ -483,7 +483,7 @@ WCMD(do_wheal) {
 WCMD(do_wdamage) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH], damtype[MAX_INPUT_LENGTH];
     int dam = 0, dtype = DAM_UNDEFINED;
-    char_data *ch;
+    CharData *ch;
 
     t->damdone = 0;
 
@@ -536,13 +536,13 @@ WCMD(do_wdamage) {
  * since its a bit pointless.. conversley, we CAN match any player in the mud,
  * even invis/hidden whatever
  */
-WCMD(do_wld_quest) { perform_quest(t, argument, NULL, NULL, room); }
+WCMD(do_wld_quest) { perform_quest(t, argument, nullptr, nullptr, room); }
 
 WCMD(do_wat) {
     char location[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    room_data *r2;
+    RoomData *r2;
 
-    void wld_command_interpreter(room_data * room, trig_data * t, char *argument);
+    void wld_command_interpreter(RoomData * room, TrigData * t, char *argument);
 
     half_chop(argument, location, arg2);
 
@@ -551,7 +551,7 @@ WCMD(do_wat) {
         return;
     }
     r2 = get_room(location);
-    if (r2 == NULL) {
+    if (r2 == nullptr) {
         wld_log(room, t, "wat: location not found");
         return;
     }
@@ -562,8 +562,8 @@ WCMD(do_wat) {
 WCMD(do_w_run_room_trig) {
     char arg1[MAX_INPUT_LENGTH];
     int runtrig, found = 0;
-    struct script_data *sc;
-    trig_data *tr;
+    ScriptData *sc;
+    TrigData *tr;
 
     if (!*argument) {
         wld_log(room, t, "w_run_room_trig called with no argument");
@@ -599,9 +599,9 @@ WCMD(do_w_run_room_trig) {
 WCMD(do_wld_log) { wld_log(room, t, argument); }
 
 WCMD(do_wrent) {
-    struct char_data *ch;
+    CharData *ch;
 
-    extern void rem_memming(char_data * ch);
+    extern void rem_memming(CharData * ch);
 
     argument = any_one_arg(argument, arg);
 
@@ -624,7 +624,7 @@ WCMD(do_wrent) {
         wld_log(room, t, "wrent called on player without descriptor");
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        act("$N ceases $s meditative trance.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$N ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         send_to_char("&8You stop meditating.\r\n&0", ch);
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
@@ -632,11 +632,11 @@ WCMD(do_wrent) {
     rem_memming(ch);
     sprintf(buf, "%s rented by trigger %d in %s (%d).", GET_NAME(ch), GET_TRIG_VNUM(t), world[ch->in_room].name,
             world[ch->in_room].vnum);
-    mudlog(buf, NRM, LVL_IMMORT, TRUE);
+    mudlog(buf, NRM, LVL_IMMORT, true);
     remove_player_from_game(ch, QUIT_WRENT);
 }
 
-const struct wld_command_info wld_cmd_info[] = {
+const WorldCommandInfo wld_cmd_info[] = {
     {"RESERVED", 0, 0}, /* this must be first -- for specprocs */
 
     {"wasound", do_wasound, 0},
@@ -663,7 +663,7 @@ const struct wld_command_info wld_cmd_info[] = {
 /*
  *  This is the command interpreter used by rooms, called by script_driver.
  */
-void wld_command_interpreter(room_data *room, trig_data *t, char *argument) {
+void wld_command_interpreter(RoomData *room, TrigData *t, char *argument) {
     int cmd, length;
     char *line, arg[MAX_INPUT_LENGTH];
 

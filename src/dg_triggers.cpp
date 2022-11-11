@@ -26,48 +26,30 @@
 #include "money.hpp"
 #include "olc.hpp"
 #include "skills.hpp"
-#include "strings.h"
+#include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* External variables */
-extern const char *cmd_door[];
-
 /* external functions from scripts.c */
-void add_var(trig_var_data **var_list, const char *name, const char *value);
-int script_driver(void *go_address, trig_data *trig, int type, int mode);
-
-/* mob trigger types */
-const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
-                            "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
-                            "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "\n"};
-
-/* obj trigger types */
-const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
-                             "Drop",   "Give",   "Wear",    "DEATH",  "Remove",  "UNUSED", "UNUSED",
-                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
-
-/* wld trigger types */
-const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
-                             "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
-                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
+// void add_var(TriggerVariableData **var_list, const char *name, const char *value);
+// int script_driver(void *go_address, TrigData *trig, int type, int mode);
 
 /*
  *  General functions used by several triggers
  */
 
-bool char_susceptible_to_triggers(const struct char_data *ch) {
+bool char_susceptible_to_triggers(const CharData *ch) {
     if (!ch || GET_INVIS_LEV(ch))
-        return FALSE;
+        return false;
     else
-        return TRUE;
+        return true;
 }
 
 int is_substring(const char *sub, const char *string) {
     const char *s;
 
-    if ((s = str_str(string, sub))) {
+    if ((s = strstr(string, sub))) {
         int len = strlen(string);
         int sublen = strlen(sub);
 
@@ -112,8 +94,8 @@ int word_check(const char *str, const char *wordlist) {
  * a percentage chance to run each time it's checked.  Only one random
  * trigger will be executed.
  */
-void random_mtrigger(char_data *ch) {
-    trig_data *t;
+void random_mtrigger(CharData *ch) {
+    TrigData *t;
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_RANDOM) || !char_susceptible_to_triggers(ch))
         return;
@@ -135,8 +117,8 @@ void random_mtrigger(char_data *ch) {
  * array for platinum, gold, silver, and copper.  Only one bribe trigger
  * will be executed.
  */
-void bribe_mtrigger(char_data *ch, char_data *actor, int coins[]) {
-    trig_data *t;
+void bribe_mtrigger(CharData *ch, CharData *actor, int coins[]) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int raw_value;
     int type;
@@ -168,15 +150,15 @@ void bribe_mtrigger(char_data *ch, char_data *actor, int coins[]) {
  * Checked whenever the actor enters a room from the given direction.
  * Each mobile can have multiple greet triggers, and all mobiles with
  * great triggers in the room will be checked.
- * Returns TRUE if the entry should be allowed and FALSE otherwise.
+ * Returns true if the entry should be allowed and false otherwise.
  * Quits immediately if either the mobile is extracted or the actor
  * is killed.
  */
-int greet_mtrigger(char_data *actor, int dir) {
-    trig_data *t;
-    char_data *ch, *next_in_room;
+int greet_mtrigger(CharData *actor, int dir) {
+    TrigData *t;
+    CharData *ch, *next_in_room;
     char buf[MAX_INPUT_LENGTH];
-    int ret_val = TRUE;
+    int ret_val = true;
 
     if (!char_susceptible_to_triggers(actor))
         return 1;
@@ -194,9 +176,9 @@ int greet_mtrigger(char_data *actor, int dir) {
                 add_var(&GET_TRIG_VARS(t), "direction", dirs[rev_dir[dir]]);
                 ADD_UID_VAR(buf, t, actor, "actor");
                 if (!script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW))
-                    ret_val = FALSE;
+                    ret_val = false;
                 if (!ch || DECEASED(actor))
-                    return FALSE;
+                    return false;
             }
         }
     }
@@ -207,10 +189,10 @@ int greet_mtrigger(char_data *actor, int dir) {
  * MOBILE ENTRY
  *
  * Checked whenever ch attempts to enter a room with vnum destination.
- * Returns TRUE if the entry should be allowed and FALSE otherwise.
+ * Returns true if the entry should be allowed and false otherwise.
  */
-int entry_mtrigger(char_data *ch, int destination) {
-    trig_data *t;
+int entry_mtrigger(CharData *ch, int destination) {
+    TrigData *t;
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_ENTRY) || !char_susceptible_to_triggers(ch))
         return 1;
@@ -220,10 +202,10 @@ int entry_mtrigger(char_data *ch, int destination) {
             sprintf(buf, "%d", destination);
             add_var(&GET_TRIG_VARS(t), "destination", buf);
             if (!script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW) || !ch)
-                return FALSE;
+                return false;
         }
     }
-    return TRUE;
+    return true;
 }
 
 /*
@@ -232,12 +214,12 @@ int entry_mtrigger(char_data *ch, int destination) {
  * Checked whenever a command is typed.  Checks all mobiles in the room
  * for command triggers, and the first matching command trigger is used.
  * Command triggers with "*" for arguments match all commands.
- * Returns TRUE if the normal command action should be blocked, and
- * FALSE otherwise.
+ * Returns true if the normal command action should be blocked, and
+ * false otherwise.
  */
-int command_mtrigger(char_data *actor, char *cmd, char *argument) {
-    char_data *ch, *ch_next;
-    trig_data *t;
+int command_mtrigger(CharData *actor, char *cmd, char *argument) {
+    CharData *ch, *ch_next;
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor))
@@ -253,7 +235,7 @@ int command_mtrigger(char_data *actor, char *cmd, char *argument) {
 
                 if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
                     sprintf(buf, "SYSERR: Command Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                    mudlog(buf, NRM, LVL_ATTENDANT, TRUE);
+                    mudlog(buf, NRM, LVL_ATTENDANT, true);
                     continue;
                 }
 
@@ -273,9 +255,9 @@ int command_mtrigger(char_data *actor, char *cmd, char *argument) {
     return 0;
 }
 
-void speech_mtrigger(char_data *actor, char *str) {
-    char_data *ch, *ch_next;
-    trig_data *t;
+void speech_mtrigger(CharData *actor, char *str) {
+    CharData *ch, *ch_next;
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor))
@@ -292,7 +274,7 @@ void speech_mtrigger(char_data *actor, char *str) {
 
                 if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
                     sprintf(buf, "SYSERR: Speech Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                    mudlog(buf, NRM, LVL_GOD, TRUE);
+                    mudlog(buf, NRM, LVL_GOD, true);
                     continue;
                 }
 
@@ -308,8 +290,8 @@ void speech_mtrigger(char_data *actor, char *str) {
 }
 
 /* ch is the vict from ask/whisper/tell, ie the mob */
-void speech_to_mtrigger(char_data *actor, char_data *ch, char *str) {
-    trig_data *t;
+void speech_to_mtrigger(CharData *actor, CharData *ch, char *str) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor) || !char_susceptible_to_triggers(ch))
@@ -323,7 +305,7 @@ void speech_to_mtrigger(char_data *actor, char_data *ch, char *str) {
 
             if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
                 sprintf(buf, "SYSERR: Speech-to Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 continue;
             }
 
@@ -337,9 +319,9 @@ void speech_to_mtrigger(char_data *actor, char_data *ch, char *str) {
         }
 }
 
-void act_mtrigger(char_data *ch, const char *str, const char_data *actor, const char_data *victim,
-                  const obj_data *object, const obj_data *target, char *arg, char *arg2) {
-    trig_data *t;
+void act_mtrigger(const CharData *ch, const char *str, const CharData *actor, const CharData *victim,
+                  const ObjData *obj, const ObjData *target, char *arg, char *arg2) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     extern int circle_shutdown;
 
@@ -357,7 +339,7 @@ void act_mtrigger(char_data *ch, const char *str, const char_data *actor, const 
 
             if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
                 sprintf(buf, "SYSERR: Act Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 continue;
             }
 
@@ -368,8 +350,8 @@ void act_mtrigger(char_data *ch, const char *str, const char_data *actor, const 
                     ADD_UID_VAR(buf, t, actor, "actor");
                 if (victim)
                     ADD_UID_VAR(buf, t, victim, "victim");
-                if (object)
-                    ADD_UID_VAR(buf, t, object, "object");
+                if (obj)
+                    ADD_UID_VAR(buf, t, obj, "object");
                 if (target)
                     ADD_UID_VAR(buf, t, target, "target");
                 if (arg) {
@@ -387,8 +369,8 @@ void act_mtrigger(char_data *ch, const char *str, const char_data *actor, const 
         }
 }
 
-void fight_mtrigger(char_data *ch) {
-    trig_data *t;
+void fight_mtrigger(CharData *ch) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_FIGHT) || !FIGHTING(ch))
@@ -406,8 +388,8 @@ void fight_mtrigger(char_data *ch) {
     }
 }
 
-void hitprcnt_mtrigger(char_data *ch) {
-    trig_data *t;
+void hitprcnt_mtrigger(CharData *ch) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_HITPRCNT) || !FIGHTING(ch))
@@ -427,8 +409,8 @@ void hitprcnt_mtrigger(char_data *ch) {
     }
 }
 
-int receive_mtrigger(char_data *ch, char_data *actor, obj_data *obj) {
-    trig_data *t;
+int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_RECEIVE) || !char_susceptible_to_triggers(actor) ||
@@ -439,7 +421,7 @@ int receive_mtrigger(char_data *ch, char_data *actor, obj_data *obj) {
         if (IS_SET(GET_TRIG_TYPE(t), MTRIG_RECEIVE)) {
             if (GET_TRIG_DEPTH(t)) {
                 /* The receive trigger is currently executing */
-                act("$N isn't ready to accept $p.", FALSE, actor, obj, ch, TO_CHAR);
+                act("$N isn't ready to accept $p.", false, actor, obj, ch, TO_CHAR);
                 return 0;
             } else if (number(1, 100) <= GET_TRIG_NARG(t)) {
                 ADD_UID_VAR(buf, t, actor, "actor");
@@ -452,8 +434,8 @@ int receive_mtrigger(char_data *ch, char_data *actor, obj_data *obj) {
     return 1;
 }
 
-int death_mtrigger(char_data *ch, char_data *actor) {
-    trig_data *t;
+int death_mtrigger(CharData *ch, CharData *actor) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int ret_val = 1;
 
@@ -473,8 +455,8 @@ int death_mtrigger(char_data *ch, char_data *actor) {
     return ret_val;
 }
 
-void load_mtrigger(char_data *ch) {
-    trig_data *t;
+void load_mtrigger(CharData *ch) {
+    TrigData *t;
 
     if (!SCRIPT_CHECK(ch, MTRIG_LOAD) || !char_susceptible_to_triggers(ch))
         return;
@@ -487,10 +469,10 @@ void load_mtrigger(char_data *ch) {
     }
 }
 
-int cast_mtrigger(char_data *actor, char_data *ch, int spellnum) {
-    trig_data *t;
+int cast_mtrigger(CharData *actor, CharData *ch, int spellnum) {
+    TrigData *t;
 
-    if (ch == NULL)
+    if (ch == nullptr)
         return 1;
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_CAST) || !char_susceptible_to_triggers(actor) ||
@@ -510,9 +492,9 @@ int cast_mtrigger(char_data *actor, char_data *ch, int spellnum) {
     return 1;
 }
 
-int leave_mtrigger(char_data *actor, int dir) {
-    trig_data *t;
-    char_data *ch;
+int leave_mtrigger(CharData *actor, int dir) {
+    TrigData *t;
+    CharData *ch;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor))
@@ -536,9 +518,9 @@ int leave_mtrigger(char_data *actor, int dir) {
     return 1;
 }
 
-int door_mtrigger(char_data *actor, int subcmd, int dir) {
-    trig_data *t;
-    char_data *ch;
+int door_mtrigger(CharData *actor, int subcmd, int dir) {
+    TrigData *t;
+    CharData *ch;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor))
@@ -562,8 +544,8 @@ int door_mtrigger(char_data *actor, int subcmd, int dir) {
     return 1;
 }
 
-void time_mtrigger(char_data *ch) {
-    trig_data *t;
+void time_mtrigger(CharData *ch) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     /* This trigger is called if the hour is the same as specified in Narg. */
@@ -584,8 +566,8 @@ void time_mtrigger(char_data *ch) {
  *  object triggers
  */
 
-void random_otrigger(obj_data *obj) {
-    trig_data *t;
+void random_otrigger(ObjData *obj) {
+    TrigData *t;
 
     if (!SCRIPT_CHECK(obj, OTRIG_RANDOM))
         return;
@@ -598,8 +580,8 @@ void random_otrigger(obj_data *obj) {
     }
 }
 
-int timer_otrigger(obj_data *obj) {
-    trig_data *t;
+int timer_otrigger(ObjData *obj) {
+    TrigData *t;
 
     if (!SCRIPT_CHECK(obj, OTRIG_TIMER))
         return 1;
@@ -611,8 +593,8 @@ int timer_otrigger(obj_data *obj) {
     return 1;
 }
 
-int get_otrigger(obj_data *obj, char_data *actor) {
-    trig_data *t;
+int get_otrigger(ObjData *obj, CharData *actor) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(obj, OTRIG_GET) || !char_susceptible_to_triggers(actor))
@@ -630,8 +612,8 @@ int get_otrigger(obj_data *obj, char_data *actor) {
 }
 
 /* checks for command trigger on specific object. assumes obj has cmd trig */
-int cmd_otrig(obj_data *obj, char_data *actor, char *cmd, char *argument, int type) {
-    trig_data *t;
+int cmd_otrig(ObjData *obj, CharData *actor, char *cmd, char *argument, int type) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (obj && SCRIPT_CHECK(obj, OTRIG_COMMAND))
@@ -641,7 +623,7 @@ int cmd_otrig(obj_data *obj, char_data *actor, char *cmd, char *argument, int ty
 
             if (IS_SET(GET_TRIG_NARG(t), type) && (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
                 sprintf(buf, "SYSERR: O-Command Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 continue;
             }
 
@@ -661,8 +643,8 @@ int cmd_otrig(obj_data *obj, char_data *actor, char *cmd, char *argument, int ty
     return 0;
 }
 
-int command_otrigger(char_data *actor, char *cmd, char *argument) {
-    obj_data *obj;
+int command_otrigger(CharData *actor, char *cmd, char *argument) {
+    ObjData *obj;
     int i;
 
     if (!char_susceptible_to_triggers(actor))
@@ -683,10 +665,10 @@ int command_otrigger(char_data *actor, char *cmd, char *argument) {
     return 0;
 }
 
-void attack_otrigger(char_data *actor, char_data *victim, int dam) {
+void attack_otrigger(CharData *actor, CharData *victim, int dam) {
     char buf[MAX_INPUT_LENGTH], dam_str[MAX_INPUT_LENGTH];
-    trig_data *t;
-    obj_data *obj;
+    TrigData *t;
+    ObjData *obj;
     int i;
 
     if (!char_susceptible_to_triggers(actor))
@@ -722,8 +704,8 @@ void attack_otrigger(char_data *actor, char_data *victim, int dam) {
     }
 }
 
-int wear_otrigger(obj_data *obj, char_data *actor, int where) {
-    trig_data *t;
+int wear_otrigger(ObjData *obj, CharData *actor, int where) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(obj, OTRIG_WEAR) || !char_susceptible_to_triggers(actor))
@@ -742,9 +724,9 @@ int wear_otrigger(obj_data *obj, char_data *actor, int where) {
     return 1;
 }
 
-int death_otrigger(char_data *actor) {
-    trig_data *t;
-    obj_data *obj;
+int death_otrigger(CharData *actor) {
+    TrigData *t;
+    ObjData *obj;
     char buf[MAX_INPUT_LENGTH];
     int i;
 
@@ -762,8 +744,8 @@ int death_otrigger(char_data *actor) {
     return 1;
 }
 
-int drop_otrigger(obj_data *obj, char_data *actor) {
-    trig_data *t;
+int drop_otrigger(ObjData *obj, CharData *actor) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_DROP))
@@ -780,8 +762,8 @@ int drop_otrigger(obj_data *obj, char_data *actor) {
     return 1;
 }
 
-int remove_otrigger(obj_data *obj, char_data *actor) {
-    trig_data *t;
+int remove_otrigger(ObjData *obj, CharData *actor) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_REMOVE))
@@ -798,8 +780,8 @@ int remove_otrigger(obj_data *obj, char_data *actor) {
     return 1;
 }
 
-int give_otrigger(obj_data *obj, char_data *actor, char_data *victim) {
-    trig_data *t;
+int give_otrigger(ObjData *obj, CharData *actor, CharData *victim) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_GIVE))
@@ -817,8 +799,8 @@ int give_otrigger(obj_data *obj, char_data *actor, char_data *victim) {
     return 1;
 }
 
-void load_otrigger(obj_data *obj) {
-    trig_data *t;
+void load_otrigger(ObjData *obj) {
+    TrigData *t;
 
     if (!SCRIPT_CHECK(obj, OTRIG_LOAD))
         return;
@@ -831,11 +813,11 @@ void load_otrigger(obj_data *obj) {
     }
 }
 
-int cast_otrigger(char_data *actor, obj_data *obj, int spellnum) {
-    trig_data *t;
+int cast_otrigger(CharData *actor, ObjData *obj, int spellnum) {
+    TrigData *t;
     char buf[16];
 
-    if (obj == NULL || !char_susceptible_to_triggers(actor))
+    if (obj == nullptr || !char_susceptible_to_triggers(actor))
         return 1;
 
     if (!SCRIPT_CHECK(obj, OTRIG_CAST))
@@ -854,11 +836,11 @@ int cast_otrigger(char_data *actor, obj_data *obj, int spellnum) {
     return 1;
 }
 
-int leave_otrigger(room_data *room, char_data *actor, int dir) {
-    trig_data *t;
+int leave_otrigger(RoomData *room, CharData *actor, int dir) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int final = 1;
-    obj_data *obj, *obj_next;
+    ObjData *obj, *obj_next;
 
     if (!char_susceptible_to_triggers(actor))
         return 1;
@@ -885,8 +867,8 @@ int leave_otrigger(room_data *room, char_data *actor, int dir) {
     return final;
 }
 
-int consume_otrigger(obj_data *obj, char_data *actor, int cmd) {
-    trig_data *t;
+int consume_otrigger(ObjData *obj, CharData *actor, int cmd) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_CONSUME))
@@ -919,8 +901,8 @@ int consume_otrigger(obj_data *obj, char_data *actor, int cmd) {
     return 1;
 }
 
-void time_otrigger(obj_data *obj) {
-    trig_data *t;
+void time_otrigger(ObjData *obj) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(obj, OTRIG_TIME))
@@ -940,8 +922,8 @@ void time_otrigger(obj_data *obj) {
  *  world triggers
  */
 
-void random_wtrigger(room_data *room) {
-    trig_data *t;
+void random_wtrigger(RoomData *room) {
+    TrigData *t;
 
     if (!SCRIPT_CHECK(room, WTRIG_RANDOM))
         return;
@@ -954,8 +936,8 @@ void random_wtrigger(room_data *room) {
     }
 }
 
-int preentry_wtrigger(room_data *room, char_data *actor, int dir) {
-    trig_data *t;
+int preentry_wtrigger(RoomData *room, CharData *actor, int dir) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int rev_dir[] = {SOUTH, WEST, NORTH, EAST, DOWN, UP};
 
@@ -973,11 +955,11 @@ int preentry_wtrigger(room_data *room, char_data *actor, int dir) {
     return 1;
 }
 
-int postentry_wtrigger(char_data *actor, int dir) {
-    trig_data *t;
+int postentry_wtrigger(CharData *actor, int dir) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int rev_dir[] = {SOUTH, WEST, NORTH, EAST, DOWN, UP};
-    struct room_data *room = &world[IN_ROOM(actor)];
+    struct RoomData *room = &world[IN_ROOM(actor)];
 
     if (!SCRIPT_CHECK(room, WTRIG_POSTENTRY) || !char_susceptible_to_triggers(actor))
         return 1;
@@ -993,8 +975,8 @@ int postentry_wtrigger(char_data *actor, int dir) {
     return 1;
 }
 
-void reset_wtrigger(room_data *room) {
-    trig_data *t;
+void reset_wtrigger(RoomData *room) {
+    TrigData *t;
 
     if (!SCRIPT_CHECK(room, WTRIG_RESET))
         return;
@@ -1007,9 +989,9 @@ void reset_wtrigger(room_data *room) {
     }
 }
 
-int command_wtrigger(char_data *actor, char *cmd, char *argument) {
-    struct room_data *room;
-    trig_data *t;
+int command_wtrigger(CharData *actor, char *cmd, char *argument) {
+    RoomData *room;
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(&world[IN_ROOM(actor)], WTRIG_COMMAND) || !char_susceptible_to_triggers(actor))
@@ -1022,7 +1004,7 @@ int command_wtrigger(char_data *actor, char *cmd, char *argument) {
 
         if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
             sprintf(buf, "SYSERR: W-Command Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
             continue;
         }
 
@@ -1039,9 +1021,9 @@ int command_wtrigger(char_data *actor, char *cmd, char *argument) {
     return 0;
 }
 
-void speech_wtrigger(char_data *actor, char *str) {
-    struct room_data *room;
-    trig_data *t;
+void speech_wtrigger(CharData *actor, char *str) {
+    RoomData *room;
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(&world[IN_ROOM(actor)], WTRIG_SPEECH) || !char_susceptible_to_triggers(actor))
@@ -1054,7 +1036,7 @@ void speech_wtrigger(char_data *actor, char *str) {
 
         if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
             sprintf(buf, "SYSERR: W-Speech Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-            mudlog(buf, NRM, LVL_GOD, TRUE);
+            mudlog(buf, NRM, LVL_GOD, true);
             continue;
         }
 
@@ -1068,9 +1050,9 @@ void speech_wtrigger(char_data *actor, char *str) {
     }
 }
 
-int drop_wtrigger(obj_data *obj, char_data *actor) {
-    struct room_data *room;
-    trig_data *t;
+int drop_wtrigger(ObjData *obj, CharData *actor) {
+    RoomData *room;
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int ret_val;
 
@@ -1093,9 +1075,9 @@ int drop_wtrigger(obj_data *obj, char_data *actor) {
     return 1;
 }
 
-int cast_wtrigger(char_data *actor, char_data *vict, obj_data *obj, int spellnum) {
-    room_data *room;
-    trig_data *t;
+int cast_wtrigger(CharData *actor, CharData *vict, ObjData *obj, int spellnum) {
+    RoomData *room;
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(&world[IN_ROOM(actor)], WTRIG_CAST) || !char_susceptible_to_triggers(actor))
@@ -1120,8 +1102,8 @@ int cast_wtrigger(char_data *actor, char_data *vict, obj_data *obj, int spellnum
     return 1;
 }
 
-int leave_wtrigger(room_data *room, char_data *actor, int dir) {
-    trig_data *t;
+int leave_wtrigger(RoomData *room, CharData *actor, int dir) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(room, WTRIG_LEAVE) || !char_susceptible_to_triggers(actor))
@@ -1138,9 +1120,9 @@ int leave_wtrigger(room_data *room, char_data *actor, int dir) {
     return 1;
 }
 
-int door_wtrigger(char_data *actor, int subcmd, int dir) {
-    room_data *room;
-    trig_data *t;
+int door_wtrigger(CharData *actor, int subcmd, int dir) {
+    RoomData *room;
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(&world[IN_ROOM(actor)], WTRIG_DOOR) || !char_susceptible_to_triggers(actor))
@@ -1159,8 +1141,8 @@ int door_wtrigger(char_data *actor, int subcmd, int dir) {
     return 1;
 }
 
-void time_wtrigger(room_data *room) {
-    trig_data *t;
+void time_wtrigger(RoomData *room) {
+    TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
     if (!SCRIPT_CHECK(room, WTRIG_TIME))

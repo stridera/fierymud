@@ -26,7 +26,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
-#include "limits.h"
+#include "limits.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "movement.hpp"
@@ -46,7 +46,7 @@
 /**********************************************************/
 
 EVENTFUNC(room_undo_event) {
-    struct room_undo_event_obj *room_undo = (room_undo_event_obj *)event_obj;
+    RoomUndoEventObj *room_undo = (RoomUndoEventObj *)event_obj;
     int room, exit, connect_room;
 
     room = room_undo->room;
@@ -63,9 +63,9 @@ EVENTFUNC(room_undo_event) {
 }
 
 EVENTFUNC(delayed_cast_event) {
-    struct delayed_cast_event_obj *cast = (delayed_cast_event_obj *)event_obj;
-    struct char_data *ch = cast->ch;
-    struct char_data *victim = cast->victim;
+    DelayedCastEventObj *cast = (DelayedCastEventObj *)event_obj;
+    CharData *ch = cast->ch;
+    CharData *victim = cast->victim;
     int spellnum = cast->spell;
     int room = cast->room;
     int routines = cast->routines;
@@ -107,11 +107,11 @@ EVENTFUNC(delayed_cast_event) {
             if (victim)
                 act("White light from no particular source suddenly fills the room, "
                     "then vanishes.",
-                    FALSE, victim, 0, 0, TO_ROOM);
+                    false, victim, 0, 0, TO_ROOM);
         } else { /* song/chant */
             if (ch && IN_ROOM(ch) == room) {
                 send_to_char("Your words dissolve into peaceful nothingness...\r\n", ch);
-                act("$n's words fade away into peaceful nothingness...\r\n", FALSE, ch, 0, 0, TO_ROOM);
+                act("$n's words fade away into peaceful nothingness...\r\n", false, ch, 0, 0, TO_ROOM);
             }
         }
         return EVENT_FINISHED;
@@ -162,10 +162,10 @@ EVENTFUNC(delayed_cast_event) {
                 SET_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
             switch (spellnum) {
             case SPELL_PYRE:
-                spell_pyre_recur(spellnum, skill, ch, victim, NULL, savetype);
+                spell_pyre_recur(spellnum, skill, ch, victim, nullptr, savetype);
                 break;
             case SPELL_SOUL_TAP:
-                spell_soul_tap_recur(spellnum, skill, ch, victim, NULL, savetype);
+                spell_soul_tap_recur(spellnum, skill, ch, victim, nullptr, savetype);
                 break;
             }
             if (victim && DECEASED(victim))
@@ -173,18 +173,18 @@ EVENTFUNC(delayed_cast_event) {
         }
 
         /* Violent spells cause fights. */
-        if (SINFO.violent && ch && victim && attack_ok(victim, ch, FALSE))
-            set_fighting(victim, ch, FALSE);
+        if (SINFO.violent && ch && victim && attack_ok(victim, ch, false))
+            set_fighting(victim, ch, false);
     }
     REMOVE_FLAG(EFF_FLAGS(ch), EFF_REMOTE_AGGR);
 
     return wait;
 }
 
-struct delayed_cast_event_obj *construct_delayed_cast(char_data *ch, char_data *victim, int spellnum, int routines,
-                                                      int rounds, int wait, int skill, int savetype, bool sustained) {
-    struct delayed_cast_event_obj *event_obj;
-    CREATE(event_obj, delayed_cast_event_obj, 1);
+DelayedCastEventObj *construct_delayed_cast(CharData *ch, CharData *victim, int spellnum, int routines, int rounds,
+                                            int wait, int skill, int savetype, bool sustained) {
+    DelayedCastEventObj *event_obj;
+    CREATE(event_obj, DelayedCastEventObj, 1);
     event_obj->ch = ch;
     event_obj->victim = victim;
     event_obj->spell = spellnum;

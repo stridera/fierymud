@@ -10,7 +10,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#include "limits.h"
+#include "limits.hpp"
 
 #include "casting.hpp"
 #include "clan.hpp"
@@ -33,8 +33,8 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-extern long max_exp_gain(char_data *ch);
-extern long exp_death_loss(char_data *ch, int level);
+long max_exp_gain(CharData *ch);
+long exp_death_loss(CharData *ch, int level);
 
 ACMD(do_shapechange);
 
@@ -61,7 +61,7 @@ int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6) {
 }
 
 /* manapoint gain pr. game hour */
-int mana_gain(char_data *ch) {
+int mana_gain(CharData *ch) {
     int gain;
 
     if (IS_NPC(ch)) {
@@ -102,7 +102,7 @@ int mana_gain(char_data *ch) {
     return (gain);
 }
 
-int hit_gain(char_data *ch)
+int hit_gain(CharData *ch)
 /* Hitpoint gain pr. game hour */
 {
     int gain;
@@ -159,7 +159,7 @@ int hit_gain(char_data *ch)
     return (gain);
 }
 
-int move_gain(char_data *ch)
+int move_gain(CharData *ch)
 /* move gain pr. game hour */
 {
     int gain;
@@ -210,9 +210,9 @@ int move_gain(char_data *ch)
     return (gain);
 }
 
-void set_title(char_data *ch, char *title) {
+void set_title(CharData *ch, char *title) {
     if (!title) {
-        GET_TITLE(ch) = NULL;
+        GET_TITLE(ch) = nullptr;
         return;
     }
 
@@ -225,7 +225,7 @@ void set_title(char_data *ch, char *title) {
     GET_TITLE(ch) = strdup(title);
 }
 
-void gain_exp(char_data *ch, long gain, unsigned int mode) {
+void gain_exp(CharData *ch, long gain, unsigned int mode) {
     int num_levels = 0;
     long xp_needed, old_xp;
 
@@ -366,7 +366,7 @@ void gain_exp(char_data *ch, long gain, unsigned int mode) {
     }
 }
 
-void gain_condition(char_data *ch, int condition, int value) {
+void gain_condition(CharData *ch, int condition, int value) {
     bool intoxicated;
 
     /* mobs don't get hungry */
@@ -421,8 +421,8 @@ void gain_condition(char_data *ch, int condition, int value) {
     }
 }
 
-void check_idling(char_data *ch) {
-    void perform_immort_invis(char_data * ch, int level); /* act.wizard.c */
+void check_idling(CharData *ch) {
+    void perform_immort_invis(CharData * ch, int level); /* act.wizard.c */
 
     ++(ch->char_specials.timer);
 
@@ -455,7 +455,7 @@ void check_idling(char_data *ch) {
     if (ch->char_specials.timer >= 4) {
         if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE && (!ch->forward || ch->in_room != 0)) {
             GET_WAS_IN(ch) = ch->in_room;
-            act("$n disappears into the void.", TRUE, ch, 0, 0, TO_ROOM);
+            act("$n disappears into the void.", true, ch, 0, 0, TO_ROOM);
             send_to_char("You have been idle, and are pulled into a void.\r\n", ch);
             save_player(ch);
             char_from_room(ch);
@@ -470,18 +470,18 @@ void check_idling(char_data *ch) {
                 }
                 if (ch->desc)
                     close_socket(ch->desc);
-                ch->desc = NULL;
+                ch->desc = nullptr;
                 sprintf(buf, "%s force-rented and extracted (idle).", GET_NAME(ch));
-                mudlog(buf, BRF, LVL_GOD, TRUE);
+                mudlog(buf, BRF, LVL_GOD, true);
                 remove_player_from_game(ch, QUIT_TIMEOUT);
             }
         }
     }
 }
 
-void weardown_light(obj_data *obj) {
-    struct char_data *ch;
-    char *lightmsg = NULL;
+void weardown_light(ObjData *obj) {
+    CharData *ch;
+    char *lightmsg = nullptr;
 
     /* Don't wear down permanant lights. */
     if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == LIGHT_PERMANENT)
@@ -505,21 +505,21 @@ void weardown_light(obj_data *obj) {
         lightmsg = "sputters out and dies.";
         break;
     default:
-        lightmsg = NULL;
+        lightmsg = nullptr;
     }
 
     if (lightmsg) {
         if (ch) {
             /* Messages sent when the light's being carried by someone */
             sprintf(buf, "&3Your $o&3 %s&0", lightmsg);
-            act(buf, FALSE, ch, obj, 0, TO_CHAR);
+            act(buf, false, ch, obj, 0, TO_CHAR);
             sprintf(buf, "&3$n&3's $o&3 %s&0", lightmsg);
-            act(buf, FALSE, ch, obj, 0, TO_ROOM);
+            act(buf, false, ch, obj, 0, TO_ROOM);
         } else if (obj->in_room != NOWHERE && world[obj->in_room].people) {
             /* Messages sent when the light is on the ground */
             sprintf(buf, "&3$p&3 %s&0", lightmsg);
-            act(buf, FALSE, world[obj->in_room].people, obj, 0, TO_ROOM);
-            act(buf, FALSE, world[obj->in_room].people, obj, 0, TO_CHAR);
+            act(buf, false, world[obj->in_room].people, obj, 0, TO_ROOM);
+            act(buf, false, world[obj->in_room].people, obj, 0, TO_CHAR);
         }
     }
 
@@ -530,18 +530,18 @@ void weardown_light(obj_data *obj) {
         else if (ch)
             world[ch->in_room].light--;
         /* Set the object to "not lit" */
-        GET_OBJ_VAL(obj, VAL_LIGHT_LIT) = FALSE;
+        GET_OBJ_VAL(obj, VAL_LIGHT_LIT) = false;
     }
 }
 
-void extract_corpse(obj_data *obj) {
-    struct obj_data *i, *next;
+void extract_corpse(ObjData *obj) {
+    ObjData *i, *next;
 
     if (obj->carried_by)
-        act("$p decays in your hands.", FALSE, obj->carried_by, obj, 0, TO_CHAR);
+        act("$p decays in your hands.", false, obj->carried_by, obj, 0, TO_CHAR);
     else if ((obj->in_room != NOWHERE) && (world[obj->in_room].people)) {
-        act("A quivering horde of maggots consumes $p.", TRUE, world[obj->in_room].people, obj, 0, TO_ROOM);
-        act("A quivering horde of maggots consumes $p.", TRUE, world[obj->in_room].people, obj, 0, TO_CHAR);
+        act("A quivering horde of maggots consumes $p.", true, world[obj->in_room].people, obj, 0, TO_ROOM);
+        act("A quivering horde of maggots consumes $p.", true, world[obj->in_room].people, obj, 0, TO_CHAR);
     }
 
     for (i = obj->contains; i; i = next) {
@@ -555,7 +555,7 @@ void extract_corpse(obj_data *obj) {
             obj_to_room(i, obj->in_room);
             start_decomposing(i);
         } else
-            assert(FALSE);
+            assert(false);
     }
 
     extract_obj(obj);
@@ -563,7 +563,7 @@ void extract_corpse(obj_data *obj) {
 
 #define BLOOD_DROP_OBJ 34 /* the vnum of the blood object */
 #define BLOOD_POOL_OBJ 35 /* the vnum of the blood object */
-void decay_object(obj_data *obj) {
+void decay_object(ObjData *obj) {
     char *msg;
 
     /* Nothing special if it's inside another object */
@@ -611,12 +611,12 @@ void decay_object(obj_data *obj) {
     case ITEM_OTHER:
         /* Blood pools "crumble" into smaller blood droplets. */
         if (GET_OBJ_VNUM(obj) == BLOOD_POOL_OBJ) {
-            struct obj_data *temp = read_object(BLOOD_DROP_OBJ, VIRTUAL);
+            ObjData *temp = read_object(BLOOD_DROP_OBJ, VIRTUAL);
             GET_OBJ_DECOMP(temp) = 2;
             GET_OBJ_VAL(temp, VAL_BLOOD_ROOM) = obj->in_room;
             obj_to_room(temp, obj->in_room);
             /* Silent extraction. */
-            msg = NULL;
+            msg = nullptr;
         }
         break;
     case ITEM_FOUNTAIN:
@@ -627,18 +627,16 @@ void decay_object(obj_data *obj) {
     }
 
     if (world[obj->in_room].people) {
-        act(msg, TRUE, world[obj->in_room].people, obj, 0, TO_ROOM);
-        act(msg, TRUE, world[obj->in_room].people, obj, 0, TO_CHAR);
+        act(msg, true, world[obj->in_room].people, obj, 0, TO_ROOM);
+        act(msg, true, world[obj->in_room].people, obj, 0, TO_CHAR);
     }
     extract_obj(obj);
 }
 
 /* Update PCs, NPCs, and objects */
 void point_update(void) {
-    struct char_data *i, *next_char;
-    struct obj_data *j;
-
-    extern struct obj_data *go_iterator;
+    CharData *i, *next_char;
+    ObjData *j;
 
     /* characters */
     for (i = character_list; i; i = next_char) {
@@ -658,8 +656,8 @@ void point_update(void) {
         }
 
         if (EFF_FLAGGED(i, EFF_DISEASE)) {
-            act("&3$n&3 pauses a moment as $e purges $s stomach contents.&0", TRUE, i, 0, 0, TO_ROOM);
-            act("&3You feel VERY ill and purge the contents of your stomach.&0", FALSE, i, 0, 0, TO_CHAR);
+            act("&3$n&3 pauses a moment as $e purges $s stomach contents.&0", true, i, 0, 0, TO_ROOM);
+            act("&3You feel VERY ill and purge the contents of your stomach.&0", false, i, 0, 0, TO_CHAR);
             gain_condition(i, FULL, -6);
             gain_condition(i, DRUNK, -1);
             gain_condition(i, THIRST, -6 * HOURLY_THIRST_CHANGE);
@@ -700,9 +698,9 @@ void point_update(void) {
         /* Try to catch invalid objects that could crash the mud. */
         if (j->in_room < 0 || j->in_room > top_of_world) {
             if (!(j->worn_by || j->carried_by || j->in_obj)) {
-                mudlog("POINT_UPDATE OBJ ERROR: Object in NOWHERE, extracting", NRM, LVL_GOD, TRUE);
+                mudlog("POINT_UPDATE OBJ ERROR: Object in NOWHERE, extracting", NRM, LVL_GOD, true);
                 sprintf(buf, "Object %d, \"%s\"", GET_OBJ_VNUM(j), j->name);
-                mudlog(buf, NRM, LVL_GOD, TRUE);
+                mudlog(buf, NRM, LVL_GOD, true);
                 extract_obj(j);
                 continue;
             }
@@ -734,8 +732,8 @@ void point_update(void) {
  *
  * The time to decompose is in ticks. A tick is approximately 75 real seconds.
  */
-void start_decomposing(obj_data *obj) {
-    struct obj_data *o;
+void start_decomposing(ObjData *obj) {
+    ObjData *o;
     int ticks;
 
     if (GET_OBJ_LEVEL(obj) < 100 && !OBJ_FLAGGED(obj, ITEM_PERMANENT)) {
@@ -762,8 +760,8 @@ void start_decomposing(obj_data *obj) {
             start_decomposing(o);
 }
 
-void stop_decomposing(obj_data *obj) {
-    struct obj_data *o;
+void stop_decomposing(ObjData *obj) {
+    ObjData *o;
 
     REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_DECOMP);
     for (o = obj->contains; o; o = o->next_content)

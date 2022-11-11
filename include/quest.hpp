@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include "rooms.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -22,7 +23,7 @@
 /* for a subclass quest, the top 4 bits are reserved (3 bits to choose dest
  * class (dependent on current class => 8 choices from current class max*/
 #define MAX_SUBCLASS_QUEST_ID ((2 << ARRAY_LOCN) - 1)
-struct quest_info {
+struct QuestInfo {
     unsigned short quest_id; /* 16 bits = 65536 possible quests
                               * although the top bit is reserved for subclasses
                               */
@@ -32,17 +33,17 @@ struct quest_info {
                               */
 };
 
-struct quest_var_list {
+struct QuestVariableList {
     char *var;
     char *val;
-    struct quest_var_list *next;
+    QuestVariableList *next;
 };
 
-struct quest_list {
+struct QuestList {
     unsigned short quest_id;
     unsigned char stage;
-    struct quest_var_list *variables;
-    struct quest_list *next;
+    QuestVariableList *variables;
+    QuestList *next;
 };
 
 #define QUEST_FAILURE 0x00
@@ -55,25 +56,25 @@ struct quest_list {
 /*
  * quest function definitions
  */
-void perform_quest(trig_data *t, char *argument, char_data *ch, obj_data *obj, room_data *room);
-void quest_advance(char_data *ch, char_data *vict, char *qname, char *error_string, int amount);
-void quest_start(char_data *ch, char_data *vict, char *qname, char *error_string, char *subclass);
-void quest_complete(char_data *ch, char_data *vict, char *qname, char *error_string);
-void quest_fail(char_data *ch, char_data *vict, char *qname, char *error_string);
-void quest_rewind(char_data *ch, char_data *vict, char *qname, char *error_string, int amount);
-void quest_restart(char_data *ch, char_data *vict, char *qname, char *error_string);
-void quest_erase(char_data *ch, char_data *vict, char *qname, char *error_string);
-int quest_stage(char_data *ch, char *qname);
-void set_quest_variable(char_data *ch, char_data *vict, char *qname, char *error_string, char *variable, char *value);
-char *get_quest_variable(char_data *ch, char *qname, char *variable);
-int has_failed_quest(char *qname, char_data *ch);
-int has_completed_quest(char *qname, char_data *ch);
+void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, RoomData *room);
+void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string, int amount);
+void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, char *subclass);
+void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_string);
+void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string);
+void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string, int amount);
+void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string);
+void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string);
+int quest_stage(CharData *ch, char *qname);
+void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_string, char *variable, char *value);
+char *get_quest_variable(CharData *ch, char *qname, char *variable);
+int has_failed_quest(char *qname, CharData *ch);
+int has_completed_quest(char *qname, CharData *ch);
 unsigned short quest_find_num(char *qname);
 char *check_quest_name(char *qname);
-void free_quest_list(char_data *ch);
+void free_quest_list(CharData *ch);
 void free_quests(void);
 
 #ifndef __QUEST_C__
-extern int max_quests;
-extern struct quest_info *all_quests;
+int max_quests;
+QuestInfo *all_quests;
 #endif

@@ -15,16 +15,11 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-/* The cardinal directions: used as index to room_data.dir_option[] */
-#define NORTH 0
-#define EAST 1
-#define SOUTH 2
-#define WEST 3
-#define UP 4
-#define DOWN 5
-#define NUM_OF_DIRS 6 /* number of directions in a room (nsewud) */
+const char *dirs[NUM_OF_DIRS + 1] = {"north", "east", "south", "west", "up", "down", "\n"};
 
-extern const char *dirs[NUM_OF_DIRS + 1];
-extern const char *capdirs[NUM_OF_DIRS + 1];
-extern const char *dirpreposition[NUM_OF_DIRS + 1];
-extern const int rev_dir[NUM_OF_DIRS];
+const char *capdirs[NUM_OF_DIRS + 1] = {"N", "E", "S", "W", "U", "D", "\n"};
+
+const char *dirpreposition[NUM_OF_DIRS + 1] = {
+    "to the north", "to the east", "to the south", "to the west", "in the ceiling", "in the floor", "\n"};
+
+const int rev_dir[NUM_OF_DIRS] = {SOUTH, WEST, NORTH, EAST, DOWN, UP};

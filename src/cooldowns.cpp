@@ -20,47 +20,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
-                                            "bash",
-                                            "instant kill",
-                                            "disarm",
-                                            "fumbling primary weapon",
-                                            "dropped primary weapon",
-                                            "fumbling secondary weapon",
-                                            "dropped secondary weapon",
-                                            "summon mount",
-                                            "lay hands",
-                                            "first aid",
-                                            "eye gouge",
-                                            "throatcut",
-                                            "shapechange",
-                                            "chant",
-                                            "innate invis",
-                                            "innate chaz",
-                                            "innate darkness",
-                                            "innate levitate",
-                                            "innate syll",
-                                            "innate tren",
-                                            "innate tass",
-                                            "innate brill",
-                                            "innate ascen",
-                                            "innate harness",
-                                            "breathe",
-                                            "innate create",
-                                            "innate illumination",
-                                            "innate faerie step",
-                                            "music 1",
-                                            "music 2",
-                                            "music 3",
-                                            "music 4",
-                                            "music 5",
-                                            "music 6",
-                                            "music 7",
-                                            "innate blinding beauty",
-                                            "innate statue"
-                                            "\n"};
-
-void cooldown_wearoff(char_data *ch, int cooldown) {
+void cooldown_wearoff(CharData *ch, int cooldown) {
     switch (cooldown) {
     case CD_DROPPED_PRIMARY:
     case CD_DROPPED_SECONDARY:
@@ -69,22 +29,22 @@ void cooldown_wearoff(char_data *ch, int cooldown) {
         break;
     case CD_FUMBLING_PRIMARY:
     case CD_FUMBLING_SECONDARY:
-        act("$n finally regains control of $s weapon.", FALSE, ch, 0, 0, TO_ROOM);
-        act("You finally regain control of your weapon.", FALSE, ch, 0, 0, TO_CHAR);
+        act("$n finally regains control of $s weapon.", false, ch, 0, 0, TO_ROOM);
+        act("You finally regain control of your weapon.", false, ch, 0, 0, TO_CHAR);
         break;
     }
 }
 
 EVENTFUNC(cooldown_handler) {
-    struct char_data *ch = (char_data *)event_obj;
-    int i, found = FALSE;
+    CharData *ch = (CharData *)event_obj;
+    int i, found = false;
 
     for (i = 0; i < NUM_COOLDOWNS; ++i) {
         if (GET_COOLDOWN(ch, i)) {
             /* Decrement cooldown counter */
             if ((GET_COOLDOWN(ch, i) -= PULSE_COOLDOWN) > 0) {
                 /* Cooldown still nonzero */
-                found = TRUE;
+                found = true;
                 continue;
             } else
                 /* Set to zero in case it went negative */
@@ -101,17 +61,17 @@ EVENTFUNC(cooldown_handler) {
     return EVENT_FINISHED;
 }
 
-void SET_COOLDOWN(char_data *ch, int type, int amount) {
+void SET_COOLDOWN(CharData *ch, int type, int amount) {
     GET_COOLDOWN(ch, type) = amount;
     GET_COOLDOWN_MAX(ch, type) = amount;
 
     if (amount && !EVENT_FLAGGED(ch, EVENT_COOLDOWN)) {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_COOLDOWN);
-        event_create(EVENT_COOLDOWN, cooldown_handler, ch, FALSE, &ch->events, PULSE_COOLDOWN);
+        event_create(EVENT_COOLDOWN, cooldown_handler, ch, false, &ch->events, PULSE_COOLDOWN);
     }
 }
 
-void clear_cooldowns(char_data *ch) {
+void clear_cooldowns(CharData *ch) {
     int i;
     for (i = 0; i < NUM_COOLDOWNS; ++i)
         GET_COOLDOWN(ch, i) = 0;

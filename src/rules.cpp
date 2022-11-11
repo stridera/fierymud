@@ -24,24 +24,33 @@
 /* our own little private buffer, similar to what is declared in db.c */
 static char arg[MAX_STRING_LENGTH];
 
-DECLARE_RULE_VTABLE(Clan);
+// DECLARE_RULE_VTABLE(Clan);
+struct RuleVTable _clan_vtable;
+struct RuleVTable _command_vtable;
+struct RuleVTable _level_vtable;
+struct RuleVTable _namelist_vtable;
+struct RuleVTable _and_vtable;
+struct RuleVTable _not_vtable;
+struct RuleVTable _or_vtable;
 /* DECLARE_RULE_VTABLE(command); */
-DECLARE_RULE_VTABLE(level);
-DECLARE_RULE_VTABLE(namelist);
-
-DECLARE_RULE_VTABLE(and);
-DECLARE_RULE_VTABLE(not );
-DECLARE_RULE_VTABLE(or);
+// DECLARE_RULE_VTABLE(level);
+// DECLARE_RULE_VTABLE(namelist);
+// DECLARE_RULE_VTABLE(and);
+// DECLARE_RULE_VTABLE(not );
+// DECLARE_RULE_VTABLE(or);
 
 void init_rules() {
-    struct rule_vtable *vtable_list[] = {&RULE_VTABLE(and), &RULE_VTABLE(Clan),
-                                         /* &RULE_VTABLE(command), */
-                                         &RULE_VTABLE(level), &RULE_VTABLE(namelist), &RULE_VTABLE(not ),
-                                         &RULE_VTABLE(or), NULL};
+    // RuleVTable *vtable_list[] = {&RULE_VTABLE(and), &RULE_VTABLE(clan),
+    //                              /* &RULE_VTABLE(command), */
+    //                              &RULE_VTABLE(level), &RULE_VTABLE(namelist), &RULE_VTABLE(not ), &RULE_VTABLE(or),
+    //                              nullptr};
+    RuleVTable *vtable_list[] = {&_and_vtable, &_clan_vtable,
+                                 /* &RULE_VTABLE(command), */
+                                 &_level_vtable, &_namelist_vtable, &_not_vtable, &_or_vtable, nullptr};
     size_t pos;
 
     for (pos = 0; vtable_list[pos]; ++pos)
-        REGISTER_RULE_VTABLE(vtable_list[pos]);
+        register_rule_vtable(vtable_list[pos]);
 }
 
 /*
@@ -49,40 +58,59 @@ void init_rules() {
  */
 
 /* rule data type */
-BEGIN_RULE_DATATYPE;
-unsigned int number;
-unsigned int rank;
-PUBLISH_RULE_DATATYPE(clan_rule);
+struct ClanRule { // BEGIN_RULE_DATATYPE;
+    RuleVTable *_vtable;
+    unsigned int number;
+    unsigned int rank;
+}; // PUBLISH_RULE_DATATYPE(ClanRule);
 
-RULE_CONSTRUCTOR(make_clan_rule)(unsigned int clan, unsigned int rank) {
-    clan_rule *cr = MAKE_RULE(Clan, clan_rule);
+// RULE_CONSTRUCTOR(make_clan_rule)
+Rule *make_clan_rule(unsigned int clan, unsigned int rank) {
+    // ClanRule *cr = (ClanRule *)rulealloc(sizeof(ClanRule), &_clan_vtable); // MAKE_RULE(clan, ClanRule);
+    ClanRule *cr;
+    cr = (ClanRule *)calloc(1, sizeof(ClanRule));
     cr->number = clan;
     cr->rank = rank;
-    return (rule_t *)cr;
+    return (Rule *)cr;
 }
 
-BEGIN_RULE_FUNC_MATCHER(clan, clan_rule) {
+// RULE_SIG_MATCHER((_clan_matcher)) {
+bool(_clan_matcher)(const Rule *_rule, CharData *ch) {
+    const ClanRule *rule = (ClanRule *)_rule;
     return GET_CLAN(ch) && GET_CLAN(ch)->number == rule->number && !OUTRANKS(rule->rank, GET_CLAN_RANK(ch));
 }
+// BEGIN_RULE_FUNC_MATCHER(clan, ClanRule) {
+//     return GET_CLAN(ch) && GET_CLAN(ch)->number == rule->number && !OUTRANKS(rule->rank, GET_CLAN_RANK(ch));
+// }
 
-END_RULE_FUNC BEGIN_RULE_FUNC_DESTRUCTOR(clan, clan_rule) { free(rule); }
+END_RULE_FUNC BEGIN_RULE_FUNC_DESTRUCTOR(clan, ClanRule) { free(rule); }
 
-END_RULE_FUNC BEGIN_RULE_FUNC_PRINT(clan, clan_rule) { snprintf(buf, size, "%u %u", rule->number, rule->rank); }
+END_RULE_FUNC BEGIN_RULE_FUNC_PRINT(clan, ClanRule) { snprintf(buf, size, "%u %u", rule->number, rule->rank); }
 
-END_RULE_FUNC BEGIN_RULE_FUNC_ABBR(clan, clan_rule) {
+END_RULE_FUNC BEGIN_RULE_FUNC_ABBR(clan, ClanRule) {
     snprintf(buf, size, "%u" FCYN "%u" ANRM, rule->number, rule->rank);
 }
 
-END_RULE_FUNC BEGIN_RULE_FUNC_VERBOSE(clan, clan_rule) {
-    struct clan *clan = find_clan_by_number(rule->number);
+END_RULE_FUNC
+
+void _clan_verbose(char *buf, size_t size, const Rule *_rule) {
+    const ClanRule *rule = (const ClanRule *)_rule;
+
+    // BEGIN_RULE_FUNC_VERBOSE(clan, ClanRule) {
+    clan *clan = find_clan_by_number(rule->number);
     if (clan)
         snprintf(buf, size, "clan %s, rank %u", clan->abbreviation, rule->rank);
     else
         snprintf(buf, size, "unknown clan %u, rank %u", rule->number, rule->rank);
 }
 
-END_RULE_FUNC BEGIN_RULE_FUNC_PARSE(clan, clan_rule) {
-    struct clan *clan;
+END_RULE_FUNC
+
+// BEGIN_RULE_FUNC_PARSE(clan, ClanRule) {
+// RULE_SIG_PARSE((_clan_parse)) {
+Rule *(_clan_parse)(const char *buf) {
+
+    clan *clan;
     unsigned int number, rank;
     if (sscanf(buf, "%u %u", &number, &rank) == 2)
         return make_clan_rule(number, rank);
@@ -90,9 +118,9 @@ END_RULE_FUNC BEGIN_RULE_FUNC_PARSE(clan, clan_rule) {
         buf = fetch_word(buf, arg, sizeof(arg));
         skip_over(buf, S_WHITESPACE);
         if (!(clan = find_clan(arg)))
-            return NULL; /* invalid clan */
+            return nullptr; /* invalid clan */
         else if (!is_number(buf))
-            return NULL; /* invalid rank */
+            return nullptr; /* invalid rank */
         else
             return make_clan_rule(clan->number, atoi(buf));
     }
@@ -104,16 +132,19 @@ END_RULE_FUNC PUBLISH_RULE_VTABLE(clan);
  * LEVEL RANGE RULE
  */
 
-BEGIN_RULE_DATATYPE;
-int min;
-int max;
-PUBLISH_RULE_DATATYPE(range_rule);
+// BEGIN_RULE_DATATYPE;
+struct {
+    RuleVTable *_vtable;
+    int min;
+    int max;
+    // PUBLISH_RULE_DATATYPE(range_rule);
+} range_rule;
 
 RULE_CONSTRUCTOR(make_level_rule)(int min_level, int max_level) {
     range_rule *rr = MAKE_RULE(level, range_rule);
     rr->min = min_level;
     rr->max = max_level;
-    return (rule_t *)rr;
+    return (Rule *)rr;
 }
 
 BEGIN_RULE_FUNC_MATCHER(level, range_rule) { return GET_LEVEL(ch) >= rule->min && GET_LEVEL(ch) <= rule->max; }
@@ -133,7 +164,7 @@ END_RULE_FUNC BEGIN_RULE_FUNC_PARSE(level, range_rule) {
     if (sscanf(buf, "%d %d", &min, &max) == 2)
         return make_level_rule(min, max);
     else
-        return NULL;
+        return nullptr;
 }
 
 END_RULE_FUNC PUBLISH_RULE_VTABLE(level);
@@ -149,7 +180,7 @@ PUBLISH_RULE_DATATYPE(namelist_rule);
 RULE_CONSTRUCTOR(make_namelist_rule)(const char *namelist) {
     namelist_rule *nr = MAKE_RULE(namelist, namelist_rule);
     nr->namelist = strdup(namelist);
-    return (rule_t *)nr;
+    return (Rule *)nr;
 }
 
 BEGIN_RULE_FUNC_MATCHER(namelist, namelist_rule) { return isname(GET_NAME(ch), rule->namelist); }
@@ -174,8 +205,8 @@ END_RULE_FUNC PUBLISH_RULE_VTABLE(namelist);
  */
 
 BEGIN_RULE_DATATYPE;
-rule_t *left;
-rule_t *right;
+Rule *left;
+Rule *right;
 PUBLISH_RULE_DATATYPE(binary_rule);
 
 #define BINARY_AND 0
@@ -183,8 +214,8 @@ PUBLISH_RULE_DATATYPE(binary_rule);
 #define BINARY_NAND 2 /* not implemented */
 #define BINARY_NOR 3  /* not implemented */
 
-static RULE_CONSTRUCTOR(make_binary_rule)(rule_t *left, rule_t *right, int binary_type) {
-    binary_rule *br = NULL;
+static RULE_CONSTRUCTOR(make_binary_rule)(Rule *left, Rule *right, int binary_type) {
+    binary_rule *br = nullptr;
     switch (binary_type) {
     case BINARY_AND:
         br = MAKE_RULE(and, binary_rule);
@@ -193,16 +224,16 @@ static RULE_CONSTRUCTOR(make_binary_rule)(rule_t *left, rule_t *right, int binar
         br = MAKE_RULE(or, binary_rule);
         break;
     default:
-        return NULL;
+        return nullptr;
     }
     br->left = left;
     br->right = right;
-    return (rule_t *)br;
+    return (Rule *)br;
 }
 
-RULE_CONSTRUCTOR(make_and_rule)(rule_t *left, rule_t *right) { return make_binary_rule(left, right, 0); }
+RULE_CONSTRUCTOR(make_and_rule)(Rule *left, Rule *right) { return make_binary_rule(left, right, 0); }
 
-RULE_CONSTRUCTOR(make_or_rule)(rule_t *left, rule_t *right) { return make_binary_rule(left, right, 1); }
+RULE_CONSTRUCTOR(make_or_rule)(Rule *left, Rule *right) { return make_binary_rule(left, right, 1); }
 
 BEGIN_RULE_FUNC_MATCHER(and, binary_rule) { return rule_matches(rule->left, ch) && rule_matches(rule->right, ch); }
 
@@ -267,35 +298,35 @@ END_RULE_FUNC BEGIN_RULE_FUNC_VERBOSE(and, binary_rule) { print_binary_rule(buf,
 
 END_RULE_FUNC BEGIN_RULE_FUNC_VERBOSE(or, binary_rule) { print_binary_rule(buf, size, " or ", rule, true); }
 
-END_RULE_FUNC bool process_binary_rule(const char *buf, rule_t **left, rule_t **right) {
+END_RULE_FUNC bool process_binary_rule(const char *buf, Rule **left, Rule **right) {
     const char *start = buf, *end;
     char *temp;
-    *left = NULL;
-    *right = NULL;
+    *left = nullptr;
+    *right = nullptr;
 
     if (*start != '(')
-        return FALSE;
+        return false;
     for (end = ++start; *end && *end != ')'; ++end)
         ;
     if (start == end || *end != ')')
-        return FALSE;
+        return false;
     CREATE(temp, char, end - start + 1);
     strncpy(temp, start, end - start);
     *left = parse_rule(temp);
     free(temp);
     if (!*left)
-        return FALSE;
+        return false;
     start = ++end;
     if (*start != ' ' || *(start + 1) != '(' || *(start + 2) == '\0') {
         free_rule(*left);
-        return FALSE;
+        return false;
     }
     start += 2;
     for (end = (start += 2); *end && *end != ')'; ++end)
         ;
     if (start == end || *end != ')') {
         free_rule(*left);
-        return FALSE;
+        return false;
     }
     CREATE(temp, char, end - start + 1);
     strncpy(temp, start, end - start);
@@ -303,23 +334,23 @@ END_RULE_FUNC bool process_binary_rule(const char *buf, rule_t **left, rule_t **
     free(temp);
     if (!*right) {
         free_rule(*left);
-        return FALSE;
+        return false;
     }
-    return TRUE;
+    return true;
 }
 
 BEGIN_RULE_FUNC_PARSE(and, binary_rule) {
-    rule_t *left = NULL, *right = NULL;
+    Rule *left = nullptr, *right = nullptr;
     if (!process_binary_rule(buf, &left, &right))
-        return NULL;
-    return make_binary_rule(left, right, TRUE);
+        return nullptr;
+    return make_binary_rule(left, right, true);
 }
 
 END_RULE_FUNC BEGIN_RULE_FUNC_PARSE(or, binary_rule) {
-    rule_t *left = NULL, *right = NULL;
+    Rule *left = nullptr, *right = nullptr;
     if (!process_binary_rule(buf, &left, &right))
-        return NULL;
-    return make_binary_rule(left, right, FALSE);
+        return nullptr;
+    return make_binary_rule(left, right, false);
 }
 
 END_RULE_FUNC PUBLISH_RULE_VTABLE_MANUAL(and, and, binary, binary, and, and, and);
@@ -329,13 +360,13 @@ PUBLISH_RULE_VTABLE_MANUAL(or, or, binary, binary, or, or, or);
  * NOT RULE
  */
 BEGIN_RULE_DATATYPE;
-rule_t *child;
+Rule *child;
 PUBLISH_RULE_DATATYPE(unary_rule);
 
-RULE_CONSTRUCTOR(make_not_rule)(rule_t *child) {
+RULE_CONSTRUCTOR(make_not_rule)(Rule *child) {
     unary_rule *ur = MAKE_RULE(not, unary_rule);
     ur->child = child;
-    return (rule_t *)ur;
+    return (Rule *)ur;
 }
 
 BEGIN_RULE_FUNC_MATCHER(not, unary_rule) { return !rule_matches(rule->child, ch); }
@@ -364,11 +395,11 @@ END_RULE_FUNC BEGIN_RULE_FUNC_VERBOSE(not, unary_rule) {
     snprintf(buf, size, ")");
 }
 END_RULE_FUNC BEGIN_RULE_FUNC_PARSE(not, unary_rule) {
-    rule_t *child = parse_rule(buf);
+    Rule *child = parse_rule(buf);
     if (child)
         return make_not_rule(child);
     else
-        return NULL;
+        return nullptr;
 }
 
 END_RULE_FUNC PUBLISH_RULE_VTABLE_MANUAL(not, not, unary, unary, not, not, not );

@@ -18,12 +18,12 @@
 #define CLR_ESCAPE 1
 #define CLR_STRIP 2
 
-extern void init_colors(void);
-extern int process_colors(char *out, size_t max_len, const char *in, int mode);
-extern int count_color_chars(const char *string);
-extern int ansi_strlen(const char *string);
-extern char *strip_ansi(const char *string);
-extern char *escape_ansi(const char *string);
+void init_colors(void);
+int process_colors(char *out, size_t max_len, const char *in, int mode);
+int count_color_chars(const char *string);
+int ansi_strlen(const char *string);
+char *strip_ansi(const char *string);
+char *escape_ansi(const char *string);
 
 /* General color codes */
 #define ANUL ""         /* No effect                            */
@@ -121,7 +121,7 @@ extern char *escape_ansi(const char *string);
 #define ABHCYN "\x1B[1;5;36m" /* Foreground Blinking Bright Cyan    */
 #define ABHWHT "\x1B[1;5;37m" /* Foreground Blinking Bright White   */
 
-/* Conditional color.  pass it a pointer to a char_data and a color level. */
+/* Conditional color.  pass it a pointer to a CharData and a color level. */
 #define C_OFF 0
 #define C_SPR 1
 #define C_NRM 2

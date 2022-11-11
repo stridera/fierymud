@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include "races.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -44,19 +45,63 @@
 #define MIN_ALIGNMENT (-1000)
 #define MAX_ALIGNMENT (1000)
 
-extern int class_ok_race[][NUM_CLASSES];
-extern const char *stats_display;
+const char *stats_display =
+    "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
+    "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
+    "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n";
 
-extern int get_base_saves(char_data *ch, int type);
-extern void roll_natural_abils(char_data *ch);
-extern int roll_mob_skill(int level);
-extern int roll_skill(char_data *ch, int skill);
+#define Y true
+#define N false
 
-extern struct obj_data *equipped_weapon(char_data *ch);
-/* Whether you evade a simple yes-or-no attack, like sleep or word of command */
-extern bool boolean_attack_evasion(char_data *ch, int power, int dtype);
-extern int dam_suscept_adjust(char_data *ch, char_data *victim, obj_data *weapon, int dam, int dtype);
-extern bool damage_evasion(char_data *ch, char_data *attacker, obj_data *weapon, int dtype);
+int class_ok_race[NUM_RACES][NUM_CLASSES] = {
+    /* RACE   So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
+    /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
+    /* El */ {Y, Y, Y, Y, Y, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
+    /* Gn */ {Y, Y, Y, N, N, N, N, Y, Y, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
+    /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
+    /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
+    /* Dr */ {Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y},
+    /* Du */ {N, Y, Y, Y, N, Y, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y},
+    /* Og */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
+    /* Or */ {Y, Y, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, Y, N, Y, N, Y, N, Y, Y, Y, Y},
+    /* HE */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N},
+    /* Ba */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, N},
+    /* Ha */ {Y, Y, Y, Y, N, N, N, N, N, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
+    /*plnt*/ {},
+    /*hmnd*/ {},
+    /*anml*/ {},
+    /*drgn*/ {},
+    /*gint*/ {},
+    /*othr*/ {},
+    /*gbln*/ {},
+    /*demn*/ {},
+    /*brwn*/ {},
+    /*fire*/ {},
+    /*frst*/ {},
+    /*acid*/ {},
+    /*ligh*/ {},
+    /*gas */ {},
+    /*DbFi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, N, Y, N},
+    /*DbFr*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, N, Y, Y, N},
+    /*DbAc*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbLi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*DbGa*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
+    /*svrf*/ {Y, Y, Y, N, N, N, N, N, Y, Y, N, Y, Y, N, N, N, Y, Y, Y, Y, Y, Y, Y, N},
+    /*SFae*/ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
+    /*UFae*/ {Y, Y, Y, N, N, N, N, Y, N, N, N, Y, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
+    /*nmph*/ {Y, Y, N, Y, N, N, Y, Y, Y, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
+};
+
+int get_base_saves(CharData *ch, int type);
+void roll_natural_abils(CharData *ch);
+int roll_mob_skill(int level);
+int roll_skill(CharData *ch, int skill);
+
+// extern obj_data *equipped_weapon(CharData *ch);
+// /* Whether you evade a simple yes-or-no attack, like sleep or word of command */
+bool boolean_attack_evasion(CharData *ch, int power, int dtype);
+int dam_suscept_adjust(CharData *ch, CharData *victim, ObjData *weapon, int dam, int dtype);
+bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype);
 #define EVASIONCLR "&6"
 
 #define DAMVERB1(ch) (damtypes[COMPOSITION_DAM(ch)].verb1st)
@@ -64,9 +109,10 @@ extern bool damage_evasion(char_data *ch, char_data *attacker, obj_data *weapon,
 
 #define SOLIDCHAR(ch) (RIGID(ch) && !MOB_FLAGGED((ch), MOB_ILLUSORY))
 
-extern void composition_check(char_data *ch);
-extern int susceptibility(char_data *ch, int dtype);
-extern const char *align_color(int align);
-extern void critical_stance_message(char_data *ch);
-extern void alter_pos(char_data *ch, int newpos, int newstance);
-extern void hp_pos_check(char_data *ch, char_data *attacker, int dam);
+void composition_check(CharData *ch);
+int susceptibility(CharData *ch, int dtype);
+const char *align_color(int align);
+void critical_stance_message(CharData *ch);
+void alter_pos(CharData *ch, int newpos, int newstance);
+void hp_pos_check(CharData *ch, CharData *attacker, int dam);
+ObjData *equipped_weapon(CharData *ch);

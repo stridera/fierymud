@@ -22,12 +22,50 @@
 
 #define PULSE_COOLDOWN (1 RL_SEC)
 
-extern const char *cooldowns[NUM_COOLDOWNS + 1];
+const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
+                                            "bash",
+                                            "instant kill",
+                                            "disarm",
+                                            "fumbling primary weapon",
+                                            "dropped primary weapon",
+                                            "fumbling secondary weapon",
+                                            "dropped secondary weapon",
+                                            "summon mount",
+                                            "lay hands",
+                                            "first aid",
+                                            "eye gouge",
+                                            "throatcut",
+                                            "shapechange",
+                                            "chant",
+                                            "innate invis",
+                                            "innate chaz",
+                                            "innate darkness",
+                                            "innate levitate",
+                                            "innate syll",
+                                            "innate tren",
+                                            "innate tass",
+                                            "innate brill",
+                                            "innate ascen",
+                                            "innate harness",
+                                            "breathe",
+                                            "innate create",
+                                            "innate illumination",
+                                            "innate faerie step",
+                                            "music 1",
+                                            "music 2",
+                                            "music 3",
+                                            "music 4",
+                                            "music 5",
+                                            "music 6",
+                                            "music 7",
+                                            "innate blinding beauty",
+                                            "innate statue"
+                                            "\n"};
 
 #define CD_CURRENT 0
 #define CD_MAX 1
 
 #define GET_COOLDOWN(ch, i) ((ch)->char_specials.cooldowns[(i)][CD_CURRENT])
 #define GET_COOLDOWN_MAX(ch, i) ((ch)->char_specials.cooldowns[(i)][CD_MAX])
-void SET_COOLDOWN(char_data *ch, int type, int amount);
-void clear_cooldowns(char_data *ch);
+void SET_COOLDOWN(CharData *ch, int type, int amount);
+void clear_cooldowns(CharData *ch);

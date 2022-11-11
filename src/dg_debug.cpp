@@ -36,7 +36,7 @@
  * see also:	do_varset
  */
 ACMD(do_varset) {
-    extern void add_var(trig_var_data * *var_list, char *name, char *value);
+    extern void add_var(TriggerVariableData * *var_list, char *name, char *value);
     char victtype[10];
     int vnum;
 
@@ -72,7 +72,7 @@ ACMD(do_varset) {
      * pass it to add_var
      */
     if (!str_cmp("mob", victtype)) {
-        struct char_data *found_char = NULL;
+        CharData *found_char = nullptr;
 
         found_char = world[(ch->in_room)].people;
 
@@ -82,11 +82,11 @@ ACMD(do_varset) {
             send_to_char("Unable to find that mob in this room\r\n", ch);
         else {
             if (!SCRIPT(found_char))
-                CREATE(SCRIPT(found_char), script_data, 1);
+                CREATE(SCRIPT(found_char), ScriptData, 1);
             add_var(&(SCRIPT(found_char)->global_vars), buf, argument);
         }
     } else if (!str_cmp("obj", victtype)) {
-        struct obj_data *found_obj = NULL;
+        ObjData *found_obj = nullptr;
         found_obj = ch->carrying;
         while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
             found_obj = found_obj->next_content;
@@ -100,7 +100,7 @@ ACMD(do_varset) {
             send_to_char("Unable to find that obj in inventory or room\r\n", ch);
         else {
             if (!SCRIPT(found_obj))
-                CREATE(SCRIPT(found_obj), script_data, 1);
+                CREATE(SCRIPT(found_obj), ScriptData, 1);
             add_var(&(SCRIPT(found_obj)->global_vars), buf, argument);
         }
     } else if (!str_cmp("room", victtype)) {
@@ -109,7 +109,7 @@ ACMD(do_varset) {
             send_to_char("That room does not exist!\r\n", ch);
         else {
             if (!SCRIPT(&world[rnum]))
-                CREATE(SCRIPT(&world[rnum]), script_data, 1);
+                CREATE(SCRIPT(&world[rnum]), ScriptData, 1);
             add_var(&(SCRIPT(&world[rnum])->global_vars), buf, argument);
         }
     } else {
@@ -130,7 +130,7 @@ ACMD(do_varset) {
  * see also:	do_varset
  */
 ACMD(do_varunset) {
-    extern void remove_var(trig_var_data * *var_list, char *name, char *value);
+    extern void remove_var(TriggerVariableData * *var_list, char *name, char *value);
     char victtype[10];
     int vnum;
     skip_spaces(&argument);
@@ -165,7 +165,7 @@ ACMD(do_varunset) {
      * pass it to remove_var
      */
     if (!str_cmp("mob", victtype)) {
-        struct char_data *found_char = NULL;
+        CharData *found_char = nullptr;
 
         found_char = world[(ch->in_room)].people;
 
@@ -176,7 +176,7 @@ ACMD(do_varunset) {
         else
             remove_var(&(SCRIPT(found_char)->global_vars), buf, argument);
     } else if (!str_cmp("obj", victtype)) {
-        struct obj_data *found_obj = NULL;
+        ObjData *found_obj = nullptr;
         found_obj = ch->carrying;
         while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
             found_obj = found_obj->next_content;

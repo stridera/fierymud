@@ -46,7 +46,7 @@ void init_colors(void) {
 
     /* Initialize the color lists with null pointers */
     for (i = 0; i < CHARS; ++i)
-        REL_COLORS[i] = ABS_COLORS[i] = NULL;
+        REL_COLORS[i] = ABS_COLORS[i] = nullptr;
 
     /* Copy relative color codes to the lists */
     for (i = 0; i < rel_color_count; ++i)
@@ -59,7 +59,7 @@ void init_colors(void) {
 
 int process_colors(char *out, size_t max_len, const char *in, int mode) {
     char *dst, *tmp, type;
-    const char *code = NULL, *src;
+    const char *code = nullptr, *src;
 
     if (!in || !out)
         return 0;
@@ -89,7 +89,7 @@ int process_colors(char *out, size_t max_len, const char *in, int mode) {
             else if (type == CABS)
                 code = ABS_COLORS[(int)*src];
             else
-                assert(FALSE);
+                assert(false);
             if (code)
                 while (*code && dst - tmp < max_len)
                     *dst++ = *code++;

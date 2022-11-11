@@ -17,10 +17,10 @@
 /* prototype exported functions from dg_olc.c */
 void script_copy(void *dst, void *src, int type);
 void script_save_to_disk(FILE *fp, void *item, int type);
-void dg_olc_script_free(descriptor_data *d);
-void dg_olc_script_copy(descriptor_data *d);
-void dg_script_menu(descriptor_data *d);
-int dg_script_edit_parse(descriptor_data *d, char *arg);
+void dg_olc_script_free(DescriptorData *d);
+void dg_olc_script_copy(DescriptorData *d);
+void dg_script_menu(DescriptorData *d);
+int dg_script_edit_parse(DescriptorData *d, char *arg);
 
 /* define the largest set of commands for as trigger */
 #define MAX_CMD_LENGTH 16384 /* 16k should be plenty and then some */

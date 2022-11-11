@@ -22,22 +22,11 @@
 #include "utils.hpp"
 
 /* name, color, weight_min, weight_max, height_min, height_max */
-struct sizedef sizes[NUM_SIZES] = {
-    /* TINY */ {"tiny", "&b&1", 1, 3, 1, 18},
-    /* SMALL */ {"small", "&b&8", 5, 40, 19, 42},
-    /* MEDIUM */ {"medium", "&3", 40, 300, 42, 92},
-    /* LARGE */ {"large", "&b&4", 300, 1000, 90, 186},
-    /* HUGE */ {"huge", "&b&3", 1000, 4000, 196, 384},
-    /* GIANT */ {"giant", "&5", 4000, 16000, 384, 768},
-    /* GARGANTUAN */ {"gargantuan", "&1", 16000, 64000, 768, 1536},
-    /* COLOSSAL */ {"colossal", "&2&b", 64000, 256000, 1536, 3072},
-    /* TITANIC */ {"titanic", "&6&b", 256000, 1024000, 3072, 6144},
-    /* MOUNTAINOUS */ {"mountainous", "&7&b", 1024000, 4096000, 6144, 12288}};
 
-int parse_size(char_data *ch, char *arg) { return parse_obj_name(ch, arg, "size", NUM_SIZES, sizes, sizeof(sizedef)); }
+int parse_size(CharData *ch, char *arg) { return parse_obj_name(ch, arg, "size", NUM_SIZES, sizes, sizeof(sizedef)); }
 
 /* Set a character's height and weight. */
-void set_init_height_weight(char_data *ch) {
+void set_init_height_weight(CharData *ch) {
     int race = GET_RACE(ch), defsize;
 
     /* First give the char a height and weight based on the standard size
@@ -100,7 +89,7 @@ void set_init_height_weight(char_data *ch) {
  * Also, due to base values being saved, you would always have the same
  * values when you change back to your normal size. */
 
-void reset_height_weight(char_data *ch) {
+void reset_height_weight(CharData *ch) {
     int bsize, asize;
 
     asize = ch->player.natural_size + ch->player.mod_size;
@@ -132,7 +121,7 @@ void reset_height_weight(char_data *ch) {
  *
  * Set a character's size, AT creation. */
 
-void set_base_size(char_data *ch, int newsize) {
+void set_base_size(CharData *ch, int newsize) {
     ch->player.base_size = newsize;
     ch->player.natural_size = newsize;
     ch->player.base_height = number(sizes[newsize].height_min, sizes[newsize].height_max);
@@ -145,7 +134,7 @@ void set_base_size(char_data *ch, int newsize) {
  * Bluntly changes a character's natural size.  For use *after* creation.
  * Probably from a wizard using "set <char> size <foo>". */
 
-void change_natural_size(char_data *ch, int newsize) {
+void change_natural_size(CharData *ch, int newsize) {
     if (newsize == ch->player.natural_size)
         return;
     if (newsize < 0 || newsize >= NUM_SIZES) {
@@ -164,12 +153,12 @@ void change_natural_size(char_data *ch, int newsize) {
  * if positive, the char is getting bigger; if negative, the character
  * is shrinking. */
 
-void adjust_size(char_data *ch, int delta) {
+void adjust_size(CharData *ch, int delta) {
     ch->player.mod_size += delta;
     reset_height_weight(ch);
 }
 
-void show_sizes(char_data *ch) {
+void show_sizes(CharData *ch) {
     int i;
     char hrange[MAX_STRING_LENGTH];
     char wrange[MAX_STRING_LENGTH];

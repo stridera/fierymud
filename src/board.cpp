@@ -24,6 +24,7 @@
 #include "interpreter.hpp"
 #include "math.hpp"
 #include "modify.hpp"
+#include "objects.hpp"
 #include "rules.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
@@ -42,13 +43,13 @@ static EDITOR_FUNC(board_special);
 
 /******* BOARD VARIABLES *******/
 static int num_boards = 0;
-static struct board_data **board_index = NULL; /* array of pointers to boards */
-static struct board_data null_board;           /* public undefined board */
+static BoardData **board_index = nullptr; /* array of pointers to boards */
+static BoardData null_board;              /* public undefined board */
 
 static const struct privilege_info {
     char abbr[5];
-    char *alias;
-    char *message;
+    const char *alias;
+    const char *message;
 } privilege_data[NUM_BPRIV] = {
     {"READ", "read", "read"},
     {"WRIT", "write-new", "write new"},
@@ -64,15 +65,15 @@ static const struct privilege_info {
 
 bool valid_alias(const char *alias) {
     if (!alias || !*alias)
-        return FALSE;
+        return false;
     for (; *alias; ++alias)
         if (!VALID_ALIAS_CHAR(*alias))
-            return FALSE;
-    return TRUE;
+            return false;
+    return true;
 }
 
-static void free_message(board_message *msg) {
-    struct board_message_edit *edit;
+static void free_message(BoardMessage *msg) {
+    BoardMessageEdit *edit;
     free(msg->poster);
     free(msg->subject);
     free(msg->message);
@@ -86,7 +87,7 @@ static void free_message(board_message *msg) {
     free(msg);
 }
 
-static void free_board(board_data *board) {
+static void free_board(BoardData *board) {
     int i;
 
     if (board == &null_board) {
@@ -114,20 +115,20 @@ void board_cleanup() {
         free_board(board_index[i]);
 
     free(board_index);
-    board_index = NULL;
+    board_index = nullptr;
     num_boards = 0;
 }
 
-static struct board_data *new_board(const char *alias) {
-    struct board_data *board;
+static BoardData *new_board(const char *alias) {
+    BoardData *board;
     size_t priv;
 
     if (!valid_alias(alias))
-        return NULL;
+        return nullptr;
 
     ++num_boards;
-    RECREATE(board_index, board_data *, num_boards);
-    CREATE(board, board_data, 1);
+    RECREATE(board_index, BoardData *, num_boards);
+    CREATE(board, BoardData, 1);
 
     board->number = (num_boards > 1 ? board_index[num_boards - 2]->number : 0) + 1;
     board->alias = strdup(alias);
@@ -144,29 +145,29 @@ static struct board_data *new_board(const char *alias) {
     return board;
 }
 
-static bool delete_board(board_data *board) {
+static bool delete_board(BoardData *board) {
     int i;
-    bool found = FALSE;
+    bool found = false;
     char filename[MAX_INPUT_LENGTH];
     char bkupname[MAX_INPUT_LENGTH];
 
     if (board->editing)
-        return FALSE;
+        return false;
 
     for (i = 0; i < num_boards; ++i) {
         if (found)
             board_index[i - 1] = board_index[i];
         else if (board_index[i] == board) {
-            board_index[i] = NULL;
-            found = TRUE;
+            board_index[i] = nullptr;
+            found = true;
         }
     }
 
     if (!found)
-        return FALSE;
+        return false;
 
     --num_boards;
-    board_index[num_boards] = NULL;
+    board_index[num_boards] = nullptr;
 
     sprintf(filename, BOARD_PREFIX "/%s" BOARD_SUFFIX, board->alias);
     sprintf(bkupname, BOARD_PREFIX "/%s.bak", board->alias);
@@ -177,10 +178,10 @@ static bool delete_board(board_data *board) {
 
     save_board_index();
 
-    return TRUE;
+    return true;
 }
 
-struct board_data *board(int num) {
+BoardData *board(int num) {
     int i;
 
     /* Maybe replace this with a binary search if we get a lot of boards. */
@@ -192,69 +193,69 @@ struct board_data *board(int num) {
     return &null_board;
 }
 
-static struct board_data *find_board(const char *str) {
+static BoardData *find_board(const char *str) {
     int i;
 
     if (!str || !*str)
-        return NULL;
+        return nullptr;
     else if (is_integer(str))
         return board(atoi(str));
     else {
         for (i = 0; i < num_boards; ++i)
             if (!str_cmp(board_index[i]->alias, str))
                 return board_index[i];
-        return NULL;
+        return nullptr;
     }
 }
 
-struct board_message *board_message(const struct board_data *board, int num) {
+BoardMessage *board_message(const BoardData *board, int num) {
     if (board && num > 0 && num <= board->message_count)
         return board->messages[num - 1];
     else
-        return NULL;
+        return nullptr;
 }
 
-struct board_iter *board_iterator() {
-    struct board_iter *iter;
-    CREATE(iter, board_iter, 1);
+BoardIter *board_iterator() {
+    BoardIter *iter;
+    CREATE(iter, BoardIter, 1);
     return iter;
 }
 
-const struct board_data *next_board(board_iter *iter) {
+const BoardData *next_board(BoardIter *iter) {
     if (!VALID_BOARD_INDEX(iter->index))
-        return NULL;
+        return nullptr;
     return board_index[iter->index++];
 }
 
-void free_board_iterator(board_iter *iter) { free(iter); }
+void free_board_iterator(BoardIter *iter) { free(iter); }
 
 int board_count() { return num_boards; }
 
-bool has_board_privilege(char_data *ch, const struct board_data *board, int privnum) {
-    const struct rule *priv;
+bool has_board_privilege(CharData *ch, const BoardData *board, int privnum) {
+    const Rule *priv;
 
     if (!VALID_PRIV_NUM(privnum)) {
         log("SYSERR: invalid privilege %d passed to has_board_privilege", privnum);
-        return FALSE;
+        return false;
     }
 
     if (can_use_command(ch, find_command("boardadmin")))
-        return TRUE;
+        return true;
 
     priv = board->privileges[privnum];
 
     return rule_matches(priv, ch);
 }
 
-static bool delete_message(board_data *board, board_message *msg) {
+static bool delete_message(BoardData *board, BoardMessage *msg) {
     int i;
-    bool found = FALSE;
+    bool found = false;
 
     for (i = 0; i < board->message_count; ++i)
         if (found)
             board->messages[i - 1] = board->messages[i];
         else if (board->messages[i] == msg)
-            found = TRUE;
+            found = true;
 
     if (found)
         board->message_count--;
@@ -264,10 +265,10 @@ static bool delete_message(board_data *board, board_message *msg) {
     return found;
 }
 
-static struct board_message *add_new_message(board_data *board, char_data *ch, char *subject, char *message) {
-    struct board_message *msg;
+static BoardMessage *add_new_message(BoardData *board, CharData *ch, char *subject, char *message) {
+    BoardMessage *msg;
 
-    CREATE(msg, board_message, 1);
+    CREATE(msg, BoardMessage, 1);
     msg->poster = strdup(GET_NAME(ch));
     msg->level = GET_LEVEL(ch);
     msg->time = time(0);
@@ -276,17 +277,17 @@ static struct board_message *add_new_message(board_data *board, char_data *ch, c
     ;
 
     board->message_count++;
-    RECREATE(board->messages, board_message *, board->message_count);
+    RECREATE(board->messages, BoardMessage *, board->message_count);
     board->messages[board->message_count - 1] = msg;
 
     return msg;
 }
 
-static void fix_message_order(board_data *board) {
-    struct board_message **newindex;
+static void fix_message_order(BoardData *board) {
+    BoardMessage **newindex;
     int dest, src;
 
-    CREATE(newindex, board_message *, board->message_count);
+    CREATE(newindex, BoardMessage *, board->message_count);
 
     /* Copy over stickies first */
     for (dest = src = board->message_count - 1; src >= 0; --src)
@@ -302,15 +303,15 @@ static void fix_message_order(board_data *board) {
     board->messages = newindex;
 }
 
-static void apply_message_edit(board_message *msg, char_data *editor, char *subject, char *message) {
-    struct board_message_edit *edit;
+static void apply_message_edit(BoardMessage *msg, CharData *editor, char *subject, char *message) {
+    BoardMessageEdit *edit;
 
     free(msg->subject);
     msg->subject = subject ? subject : strdup("");
     free(msg->message);
     msg->message = message ? message : strdup("Nothing.\r\n");
 
-    CREATE(edit, board_message_edit, 1);
+    CREATE(edit, BoardMessageEdit, 1);
     edit->editor = strdup(GET_NAME(editor));
     edit->time = time(0);
     edit->next = msg->edits;
@@ -320,7 +321,7 @@ static void apply_message_edit(board_message *msg, char_data *editor, char *subj
 /******* FILE INTERFACE FUNCTIONS *******/
 
 /* Used by load_board */
-static void parse_privilege(board_data *board, char *line) {
+static void parse_privilege(BoardData *board, char *line) {
     char arg[MAX_INPUT_LENGTH];
     int num;
 
@@ -336,38 +337,38 @@ static void parse_privilege(board_data *board, char *line) {
 }
 
 /* Called by board_init */
-static struct board_data *load_board(const char *name) {
+static BoardData *load_board(const char *name) {
     FILE *fl;
     char filename[MAX_INPUT_LENGTH + 40];
-    struct board_data *board;
-    struct board_message *msg = NULL;
+    BoardData *board;
+    BoardMessage *msg = nullptr;
     char line[MAX_INPUT_LENGTH + 1];
     char tag[128];
     struct temp_record {
-        struct board_message *msg;
-        struct temp_record *next;
-    } *list = NULL, *temp;
+        BoardMessage *msg;
+        temp_record *next;
+    } *list = nullptr, *temp;
     int i;
-    struct board_message_edit *edit;
+    BoardMessageEdit *edit;
     char editname[MAX_INPUT_LENGTH];
 
     if (!name) {
         log("SYSERR: NULL board name passed to load_board()");
-        return NULL;
+        return nullptr;
     }
 
     if (!valid_alias(name)) {
         log("SYSERR: invalid character in board name passed to load_board()");
-        return NULL;
+        return nullptr;
     }
 
     sprintf(filename, BOARD_PREFIX "/%s" BOARD_SUFFIX, name);
     if (!(fl = fopen(filename, "r"))) {
         log("SYSERR: Couldn't open board file %s", filename);
-        return NULL;
+        return nullptr;
     }
 
-    CREATE(board, board_data, 1);
+    CREATE(board, BoardData, 1);
     board->alias = strdup(name);
 
     /* Read in board info */
@@ -416,13 +417,13 @@ static struct board_data *load_board(const char *name) {
         tag_argument(line, tag);
 
         if (!strcmp(tag, "~~")) {
-            msg = NULL;
+            msg = nullptr;
             continue;
         }
 
         /* Create message and put it in a temporary linked list */
         if (!msg) {
-            CREATE(msg, board_message, 1);
+            CREATE(msg, BoardMessage, 1);
             CREATE(temp, temp_record, 1);
             temp->next = list;
             list = temp;
@@ -433,7 +434,7 @@ static struct board_data *load_board(const char *name) {
         switch (toupper(*tag)) {
         case 'E':
             if (!strcmp(tag, "edit")) {
-                CREATE(edit, board_message_edit, 1);
+                CREATE(edit, BoardMessageEdit, 1);
                 if (sscanf(line, "%s %ld", editname, &edit->time) == 2) {
                     edit->editor = strdup(editname);
                     edit->next = msg->edits;
@@ -484,7 +485,7 @@ static struct board_data *load_board(const char *name) {
     }
 
     /* Transfer linked-list of messages to board's message array */
-    CREATE(board->messages, board_message *, board->message_count + 1);
+    CREATE(board->messages, BoardMessage *, board->message_count + 1);
     for (i = board->message_count - 1; i >= 0; --i) {
         temp = list;
         list = list->next;
@@ -499,10 +500,10 @@ void board_init() {
     FILE *fl;
     char name[MAX_INPUT_LENGTH];
     struct temp_record {
-        struct board_data *board;
-        struct temp_record *next;
-    } *list = NULL, *temp;
-    struct board_data *board;
+        BoardData *board;
+        temp_record *next;
+    } *list = nullptr, *temp;
+    BoardData *board;
     int i;
 
     if (num_boards || board_index) {
@@ -535,7 +536,7 @@ void board_init() {
     }
 
     /* Transfer boards from linked list to board index array */
-    CREATE(board_index, board_data *, num_boards + 1);
+    CREATE(board_index, BoardData *, num_boards + 1);
     for (i = num_boards - 1; i >= 0; --i) {
         temp = list;
         list = list->next;
@@ -546,33 +547,33 @@ void board_init() {
     fclose(fl);
 
     /* Initialize the undefined board */
-    memset(&null_board, 0x0, sizeof(board_data));
+    memset(&null_board, 0x0, sizeof(BoardData));
     null_board.number = 0;
     null_board.alias = "undef";
     null_board.title = "Undefined Board";
 }
 
-static bool reload_board(board_data *board) {
+static bool reload_board(BoardData *board) {
     int i = 0;
-    struct board_data *new_board;
+    BoardData *new_board;
 
     if (!(new_board = load_board(board->alias))) {
         log("SYSERR: Unable to reload existing board '%s' from file", board->alias);
-        return FALSE;
+        return false;
     }
 
     for (i = 0; i < num_boards; ++i)
         if (board_index[i] == board) {
             free(board_index[i]);
             board_index[i] = new_board;
-            return TRUE;
+            return true;
         }
 
     if (new_board)
         free_board(new_board);
 
     /* board not found */
-    return FALSE;
+    return false;
 }
 
 void save_board_index() {
@@ -590,7 +591,7 @@ void save_board_index() {
     fclose(fl);
 }
 
-static const char *print_privilege(board_data *board, int priv) {
+static const char *print_privilege(BoardData *board, int priv) {
     static char buf[MAX_INPUT_LENGTH];
     size_t len;
 
@@ -601,12 +602,12 @@ static const char *print_privilege(board_data *board, int priv) {
     return buf;
 }
 
-void save_board(board_data *board) {
+void save_board(BoardData *board) {
     FILE *fl;
     char filename[MAX_INPUT_LENGTH + 40];
     char tempfilename[MAX_INPUT_LENGTH + 40];
-    struct board_message *msg;
-    struct board_message_edit *edit;
+    BoardMessage *msg;
+    BoardMessageEdit *edit;
     int i;
 
     if (!board) {
@@ -651,7 +652,7 @@ void save_board(board_data *board) {
 
 /******* COMMAND INTERFACE *******/
 
-void look_at_board(char_data *ch, const struct board_data *board, const struct obj_data *face) {
+void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
     int i;
     char buf[MAX_INPUT_LENGTH];
 
@@ -674,9 +675,9 @@ void look_at_board(char_data *ch, const struct board_data *board, const struct o
 }
 
 ACMD(do_boardadmin) {
-    struct board_data *board;
+    BoardData *board;
     int i, j;
-    struct rule *rule;
+    Rule *rule;
 
     argument = any_one_arg(argument, arg);
     skip_spaces(&argument);
@@ -829,7 +830,7 @@ ACMD(do_boardadmin) {
         else if (!(board = find_board(arg)))
             cprintf(ch, "No such board: %s\r\n", arg);
         else if (!*argument)
-            look_at_board(ch, board, NULL);
+            look_at_board(ch, board, nullptr);
         else if (!is_number(argument))
             send_to_char("Which message do you want to read?\r\n", ch);
         else
@@ -859,7 +860,7 @@ ACMD(do_boardadmin) {
         else if (!*argument || !is_number(argument))
             send_to_char("Which message do you want to remove?\r\n", ch);
         else
-            remove_message(ch, board, atoi(argument), NULL);
+            remove_message(ch, board, atoi(argument), nullptr);
     }
 
     else if (is_abbrev(arg, "write")) {
@@ -905,11 +906,11 @@ ACMD(do_boardadmin) {
             ch);
 }
 
-void read_message(char_data *ch, board_data *board, int msgnum) {
-    struct board_message *msg;
+void read_message(CharData *ch, BoardData *board, int msgnum) {
+    BoardMessage *msg;
     char timebuf[32];
     char buf[MAX_INPUT_LENGTH];
-    struct board_message_edit *edit;
+    BoardMessageEdit *edit;
 
     if (!has_board_privilege(ch, board, BPRIV_READ)) {
         send_to_char("The words don't seem to make any sense to you.\r\n", ch);
@@ -939,9 +940,9 @@ void read_message(char_data *ch, board_data *board, int msgnum) {
     start_paging(ch);
 }
 
-void edit_message(char_data *ch, board_data *board, int msgnum) {
-    struct board_editing_data *edit_data;
-    struct board_message *msg;
+void edit_message(CharData *ch, BoardData *board, int msgnum) {
+    board_editing_data *edit_data;
+    BoardMessage *msg;
 
     if (!(msg = board_message(board, msgnum))) {
         if (has_board_privilege(ch, board, BPRIV_READ))
@@ -992,8 +993,8 @@ void edit_message(char_data *ch, board_data *board, int msgnum) {
     editor_set_callback(ch->desc, ED_HELP, board_help);
 }
 
-void remove_message(char_data *ch, board_data *board, int msgnum, const struct obj_data *face) {
-    struct board_message *msg;
+void remove_message(CharData *ch, BoardData *board, int msgnum, const ObjData *face) {
+    BoardMessage *msg;
 
     if (!(msg = board_message(board, msgnum))) {
         if (has_board_privilege(ch, board, BPRIV_READ))
@@ -1031,8 +1032,8 @@ void remove_message(char_data *ch, board_data *board, int msgnum, const struct o
     save_board(board);
 }
 
-void write_message(char_data *ch, board_data *board, const char *subject) {
-    struct board_editing_data *edit_data;
+void write_message(CharData *ch, BoardData *board, const char *subject) {
+    board_editing_data *edit_data;
 
     if (!board || board == &null_board) {
         send_to_char("Error writing on board.\r\n", ch);
@@ -1055,7 +1056,7 @@ void write_message(char_data *ch, board_data *board, const char *subject) {
     edit_data->board = board;
     edit_data->subject = strdup(subject);
 
-    editor_init(ch->desc, NULL, MAX_MSG_LEN);
+    editor_init(ch->desc, nullptr, MAX_MSG_LEN);
     editor_set_begin_string(ch->desc, "Write your message.");
     editor_set_callback_data(ch->desc, edit_data, ED_FREE_DATA);
     editor_set_callback(ch->desc, ED_EXIT_SAVE, board_save);
@@ -1067,9 +1068,9 @@ void write_message(char_data *ch, board_data *board, const char *subject) {
 }
 
 static EDITOR_FUNC(board_save) {
-    struct descriptor_data *d = edit->descriptor;
-    struct board_editing_data *edit_data = (board_editing_data *)edit->data;
-    struct board_message *msg = edit_data->message;
+    DescriptorData *d = edit->descriptor;
+    board_editing_data *edit_data = (board_editing_data *)edit->data;
+    BoardMessage *msg = edit_data->message;
 
     if (edit->command == ED_EXIT_SAVE) {
         dprintf(d, "Message posted.\r\n");
@@ -1081,7 +1082,7 @@ static EDITOR_FUNC(board_save) {
 
         msg->sticky = edit_data->sticky;
 
-        edit->string = NULL;
+        edit->string = nullptr;
 
         fix_message_order(edit_data->board);
         save_board(edit_data->board);
@@ -1091,15 +1092,15 @@ static EDITOR_FUNC(board_save) {
     }
 
     if (msg)
-        msg->editing = NULL;
+        msg->editing = nullptr;
     edit_data->board->editing--;
 
     return ED_PROCESSED;
 }
 
 static EDITOR_FUNC(board_special) {
-    struct descriptor_data *d = edit->descriptor;
-    struct board_editing_data *edit_data = (board_editing_data *)edit->data;
+    DescriptorData *d = edit->descriptor;
+    board_editing_data *edit_data = (board_editing_data *)edit->data;
 
     if (!edit->argument)
         return ED_IGNORED;
@@ -1128,8 +1129,8 @@ static EDITOR_FUNC(board_special) {
 }
 
 static EDITOR_FUNC(board_list) {
-    struct descriptor_data *d = edit->descriptor;
-    struct board_editing_data *edit_data = (board_editing_data *)edit->data;
+    DescriptorData *d = edit->descriptor;
+    board_editing_data *edit_data = (board_editing_data *)edit->data;
     char buf[32];
     time_t tm;
 
@@ -1142,8 +1143,8 @@ static EDITOR_FUNC(board_list) {
 }
 
 static EDITOR_FUNC(board_help) {
-    struct descriptor_data *d = edit->descriptor;
-    struct board_editing_data *edit_data = (board_editing_data *)edit->data;
+    DescriptorData *d = edit->descriptor;
+    board_editing_data *edit_data = (board_editing_data *)edit->data;
 
     string_to_output(d,
                      "Editor command formats: /<letter>\r\n\r\n"
@@ -1182,16 +1183,17 @@ static EDITOR_FUNC(board_help) {
 }
 
 ACMD(do_edit) {
-    struct obj_data *obj;
+    ObjData *obj;
 
     argument = any_one_arg(argument, arg);
     skip_spaces(&argument);
 
     if (is_number(arg) &&
-        universal_find(find_vis_by_type(ch, ITEM_BOARD), FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, NULL, &obj) &&
+        universal_find(find_vis_by_type(ch, ITEM_BOARD), FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, nullptr,
+                       &obj) &&
         obj)
         edit_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(arg));
-    else if (!generic_find(arg, FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, ch, NULL, &obj) || !obj)
+    else if (!generic_find(arg, FIND_OBJ_EQUIP | FIND_OBJ_ROOM | FIND_OBJ_WORLD, ch, nullptr, &obj) || !obj)
         send_to_char("What do you want to edit?\r\n", ch);
     else if (GET_OBJ_TYPE(obj) != ITEM_BOARD)
         send_to_char("You can only edit board messages.\r\n", ch);

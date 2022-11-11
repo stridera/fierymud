@@ -46,57 +46,68 @@ bool delete_mobile(obj_num rnum);
 
 /*. Utils exported from olc.c .*/
 void strip_string(char *);
-void cleanup_olc(descriptor_data *d, byte cleanup_type);
-void get_char_cols(char_data *ch);
+void cleanup_olc(DescriptorData *d, byte cleanup_type);
+void get_char_cols(CharData *ch);
 void olc_add_to_save_list(int zone, byte type);
 void olc_remove_from_save_list(int zone, byte type);
 void free_save_list(void);
-void free_olc_zone_list(char_data *ch);
-bool has_olc_access(char_data *ch, zone_vnum zone);
+void free_olc_zone_list(CharData *ch);
+bool has_olc_access(CharData *ch, zone_vnum zone);
 int real_zone(int number);
 
 /*. OLC structs .*/
+struct OLCCommandGroup {
+    char *alias;
+    char *name;
+    char *description;
+    int minimum_level;
+    int *commands;
+};
 
-struct olc_data {
+struct RoomData;
+struct ZoneData;
+struct HelpIndexElement;
+struct ShopData;
+struct OLCData {
     int mode;
     int zone_num;
     int number;
     int value;
     char *storage;
-    struct char_data *mob;
-    struct room_data *room;
-    struct obj_data *obj;
-    struct zone_data *zone;
-    struct shop_data *shop;
-    struct spell_dam *spell;
-    struct extra_descr_data *desc;
-    struct help_index_element *help;
-    struct trig_data *trig;
+    CharData *mob;
+    RoomData *room;
+    ObjData *obj;
+    ZoneData *zone;
+    ShopData *shop;
+    SpellDamage *spell;
+    ExtraDescriptionData *desc;
+    HelpIndexElement *help;
+    TrigData *trig;
     int script_mode;
     int trigger_position;
     int item_type;
-    struct trig_proto_list *script;
+    TriggerPrototypeList *script;
     /* char *storage;*/ /* for holding commands etc.. */
-    struct olc_command_group *group;
-    struct obj_data *item;
+    OLCCommandGroup *group;
+    ObjData *item;
 };
 
-struct olc_save_info {
+struct OLCSaveInfo {
     int zone;
     char type;
-    struct olc_save_info *next;
+    OLCSaveInfo *next;
 };
 
 /*
  * Exported globals.
  */
-#ifdef _OASIS_OLC_
-char *nrm, *grn, *cyn, *yel, *blk, *red;
-struct olc_save_info *olc_save_list = NULL;
-#else
-extern char *nrm, *grn, *cyn, *yel, *blk, *red;
-extern struct olc_save_info *olc_save_list;
-#endif
+// #ifdef _OASIS_OLC_
+// char *nrm, *grn, *cyn, *yel, *blk, *red;
+//  OLCSaveInfo *olc_save_list = NULL;
+// #else
+const char *nrm, *grn, *cyn, *yel, *blk, *red;
+OLCSaveInfo *olc_save_list;
+// #endif
 
 /*
  * Descriptor access macros.
@@ -327,3 +338,17 @@ extern struct olc_save_info *olc_save_list;
 #define MAX_EXTRA_DESC 512
 #define MAX_MOB_DESC 1024
 #define MAX_OBJ_DESC 512
+
+const char *save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
+/*
+ * Internal data structures.
+ */
+
+struct OLCSCommandData {
+    char *text;
+    int con_type;
+};
+
+struct OLCSCommandData olc_scmd_info[] = {{"room", CON_REDIT},      {"object", CON_OEDIT}, {"room", CON_ZEDIT},
+                                          {"mobile", CON_MEDIT},    {"shop", CON_SEDIT},   {"help", CON_HEDIT},
+                                          {"trigger", CON_TRIGEDIT}};

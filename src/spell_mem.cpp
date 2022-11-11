@@ -19,19 +19,18 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "players.hpp"
 #include "regen.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
 #define MEM_INTERVAL PULSE_VIOLENCE / 4
 #define SCRIBE_INTERVAL PASSES_PER_SEC
-
-const char *circle_abbrev[NUM_SPELL_CIRCLES + 1] = {"!UNUSED!", " 1st", " 2nd", " 3rd", " 4th", " 5th", " 6th", " 7th",
-                                                    " 8th",     " 9th", "10th", "11th", "12th", "13th", "14th"};
 
 /* --------function prototypes ---------*/
 ACMD(do_meditate);
@@ -40,158 +39,36 @@ ACMD(do_action);
 ACMD(do_scribe);
 
 /* memorizing and praying */
-void show_spell_list(char_data *ch, char_data *tch);
-int rem_spell(char_data *ch, int spell);
-int check_spell_memory(char_data *ch, int spellnum);
-void charge_mem(char_data *ch, int spellnum);
+void show_spell_list(CharData *ch, CharData *tch);
+int rem_spell(CharData *ch, int spell);
+int check_spell_memory(CharData *ch, int spellnum);
+void charge_mem(CharData *ch, int spellnum);
 void update_spell_mem(void);
-void start_memming(char_data *ch);
-void rem_memming(char_data *ch);
-int set_mem_time(char_data *ch, int spell);
-void save_mem_list(char_data *ch);
-int restore_spells(char_data *ch, int spell, int state);
-void assign_mem_list(char_data *ch);
-void done_memming(char_data *ch);
+void start_memming(CharData *ch);
+void rem_memming(CharData *ch);
+int set_mem_time(CharData *ch, int spell);
+void save_mem_list(CharData *ch);
+int restore_spells(CharData *ch, int spell, int state);
+void assign_mem_list(CharData *ch);
+void done_memming(CharData *ch);
 
 /* spell book stuff */
-int add_spell_to_book(char_data *ch, obj_data *obj, int spell);
-int book_contains_spell(obj_data *obj, int spell);
-struct obj_data *find_spellbook_with_spell(char_data *ch, int spell);
-struct char_data *find_teacher_for_spell(char_data *ch, int spell);
-void print_spells_in_book(char_data *ch, obj_data *obj, char *dest_buf);
-int room_in_book(obj_data *obj, int pages);
-void start_scribing(char_data *ch);
-void clear_scribing(char_data *ch);
-int add_spell_scribe(char_data *ch, int spell);
-int rem_spell_scribe(char_data *ch, int spell);
-int get_spell_pages(char_data *ch, int spell);
-int start_scribing_spell(char_data *ch, obj_data *spellbook, scribing *scr);
+int add_spell_to_book(CharData *ch, ObjData *obj, int spell);
+int book_contains_spell(ObjData *obj, int spell);
+ObjData *find_spellbook_with_spell(CharData *ch, int spell);
+CharData *find_teacher_for_spell(CharData *ch, int spell);
+void print_spells_in_book(CharData *ch, ObjData *obj, char *dest_buf);
+int room_in_book(ObjData *obj, int pages);
+void start_scribing(CharData *ch);
+void clear_scribing(CharData *ch);
+int add_spell_scribe(CharData *ch, int spell);
+int rem_spell_scribe(CharData *ch, int spell);
+int get_spell_pages(CharData *ch, int spell);
+int start_scribing_spell(CharData *ch, ObjData *spellbook, Scribing *scr);
 
-/* ------ global data ------ */
-struct char_data *memming = 0; /* head of memming characters linked list */
+CharData *memming = 0; /* head of memming characters linked list */
 
-/*---- spell table -------
- * This table describes how many spells a caster can memorize from a
- * specific CIRCLE at each level. This is class Independent. Class
- * dependencies can be controlled using spell_level() calls in class.c
- * IF YOU CHANGE THIS ARRAY, YOU MUST CHANGE STRUCTS.H MAX_CHAR_SPELLS
- * to the new value...
- */
-
-int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)] = {
-    /* level 0 and circle 0 are NOT USED!!! */
-    /* 0  1   2   3   4   5   6   7   8   9  10  11  12  13  14<-SPELL CIRCLE */
-
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 0 */
-    {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 1 CIRCLE 1 */
-    {0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 2 */
-    {0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 3 */
-    {0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 4 */
-    {0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 5 */
-    {0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 6 */
-    {0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 7 */
-    {0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 8 */
-    {0, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 9 CIRCLE 2 */
-    {0, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 10 */
-    {0, 7, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 11 */
-    {0, 7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 12 */
-    {0, 7, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 13 */
-    {0, 7, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 14 */
-    {0, 7, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 15 */
-    {0, 7, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 16 */
-    {0, 7, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 17 CIRCLE 3 */
-    {0, 7, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 18 */
-    {0, 7, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 19 */
-    {0, 7, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 20 */
-    {0, 7, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 21 */
-    {0, 7, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 22 */
-    {0, 7, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 23 */
-    {0, 7, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 24 */
-    {0, 7, 7, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 25 CIRCLE 4 */
-    {0, 7, 7, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 26 */
-    {0, 7, 7, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 27 */
-    {0, 7, 7, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 28 */
-    {0, 7, 7, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 29 */
-    {0, 7, 7, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 30 */
-    {0, 7, 7, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 31 */
-    {0, 7, 7, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 32 */
-    {0, 7, 7, 6, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 33 CIRCLE 5 */
-    {0, 7, 7, 6, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 34 */
-    {0, 7, 7, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 35 */
-    {0, 7, 7, 6, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 36 */
-    {0, 7, 7, 6, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 37 */
-    {0, 7, 7, 6, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 38 */
-    {0, 7, 7, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 39 */
-    {0, 7, 7, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 40 */
-    {0, 7, 7, 6, 6, 6, 1, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 41 CIRCLE 6 */
-    {0, 7, 7, 6, 6, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 42 */
-    {0, 7, 7, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 43 */
-    {0, 7, 7, 6, 6, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 44 */
-    {0, 7, 7, 6, 6, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 45 */
-    {0, 7, 7, 6, 6, 6, 5, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 46 */
-    {0, 7, 7, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 47 */
-    {0, 7, 7, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0},       /* level 48 */
-    {0, 7, 7, 7, 6, 6, 6, 1, 0, 0, 0, 0, 0, 0, 0},       /* level 49 CIRCLE 7 */
-    {0, 7, 7, 7, 6, 6, 6, 2, 0, 0, 0, 0, 0, 0, 0},       /* level 50 */
-    {0, 7, 7, 7, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0},       /* level 51 */
-    {0, 7, 7, 7, 6, 6, 6, 4, 0, 0, 0, 0, 0, 0, 0},       /* level 52 */
-    {0, 7, 7, 7, 6, 6, 6, 5, 0, 0, 0, 0, 0, 0, 0},       /* level 53 */
-    {0, 7, 7, 7, 6, 6, 6, 5, 0, 0, 0, 0, 0, 0, 0},       /* level 54 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0},       /* level 55 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0},       /* level 56 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 1, 0, 0, 0, 0, 0, 0},       /* level 57 CIRCLE 8 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 2, 0, 0, 0, 0, 0, 0},       /* level 58 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0, 0},       /* level 59 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 4, 0, 0, 0, 0, 0, 0},       /* level 60 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 5, 0, 0, 0, 0, 0, 0},       /* level 61 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 5, 0, 0, 0, 0, 0, 0},       /* level 62 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0},       /* level 63 */
-    {0, 7, 7, 7, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0},       /* level 64 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 1, 0, 0, 0, 0, 0},       /* level 65 CIRCLE 9 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 2, 0, 0, 0, 0, 0},       /* level 66 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 3, 0, 0, 0, 0, 0},       /* level 67 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 4, 0, 0, 0, 0, 0},       /* level 68 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 5, 0, 0, 0, 0, 0},       /* level 69 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 5, 0, 0, 0, 0, 0},       /* level 70 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 5, 0, 0, 0, 0, 0},       /* level 71 */
-    {0, 7, 7, 7, 7, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0},       /* level 72 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 1, 0, 0, 0, 0},       /* level 73 CIRCLE 10 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 2, 0, 0, 0, 0},       /* level 74 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 3, 0, 0, 0, 0},       /* level 75 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 4, 0, 0, 0, 0},       /* level 76 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 5, 0, 0, 0, 0},       /* level 77 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 5, 0, 0, 0, 0},       /* level 78 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 5, 0, 0, 0, 0},       /* level 79 */
-    {0, 8, 7, 7, 7, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0},       /* level 80 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 1, 0, 0, 0},       /* level 81 CIRCLE 11 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 2, 0, 0, 0},       /* level 82 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 3, 0, 0, 0},       /* level 83 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 4, 0, 0, 0},       /* level 84 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 4, 0, 0, 0},       /* level 85 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 4, 0, 0, 0},       /* level 86 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 4, 0, 0, 0},       /* level 87 */
-    {0, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 4, 0, 0, 0},       /* level 88 */
-    {0, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 5, 1, 0, 0},       /* level 89 CIRCLE 12 */
-    {0, 8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 5, 2, 0, 0},       /* level 90 */
-    {0, 8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 5, 3, 0, 0},       /* level 91 */
-    {0, 8, 8, 8, 8, 7, 7, 7, 6, 6, 6, 5, 4, 0, 0},       /* level 92 */
-    {0, 8, 8, 8, 8, 7, 7, 7, 6, 6, 6, 5, 4, 0, 0},       /* level 93 */
-    {0, 8, 8, 8, 8, 8, 7, 7, 7, 6, 6, 5, 4, 0, 0},       /* level 94 */
-    {0, 8, 8, 8, 8, 8, 7, 7, 7, 6, 6, 5, 4, 0, 0},       /* level 95 */
-    {0, 8, 8, 8, 8, 8, 8, 7, 7, 6, 6, 5, 4, 0, 0},       /* level 96 */
-    {0, 9, 9, 8, 8, 8, 8, 8, 7, 7, 6, 5, 4, 1, 0},       /* level 97 CIRCLE 13 */
-    {0, 9, 9, 9, 9, 9, 9, 8, 7, 7, 6, 5, 4, 2, 0},       /* level 98 */
-    {0, 10, 10, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 0}, /* level 99 */
-    {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0},
-    /* level 100 */                                          /* Immortal+ */
-    {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0}, /* level 101 */
-    {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0}, /* level 102 */
-    {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0}, /* level 103 */
-    {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0}, /* level 104 */
-    {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0}  /* level 105 CIRCLE 14 */
-}; /* 11+11+11+11+11+11+11+11+11+11+8+7+6 = 131 = max_char_spells  */
-
-int mob_mem_time(char_data *ch, int circle) {
+int mob_mem_time(CharData *ch, int circle) {
     double mem_time;
 
     mem_time = 9 - (GET_LEVEL(ch) - circle_to_level(circle)) / 2;
@@ -207,8 +84,8 @@ int mob_mem_time(char_data *ch, int circle) {
 }
 
 EVENTFUNC(memming_event) {
-    struct char_data *ch = (char_data *)event_obj;
-    struct mem_list *cur = 0;
+    CharData *ch = (CharData *)event_obj;
+    MemorizedList *cur = 0;
     char buf[256];
     int i;
 
@@ -291,7 +168,7 @@ EVENTFUNC(memming_event) {
 
             /* reset so the guy has to remem after casting it. */
             cur->mem_time = set_mem_time(ch, cur->spell);
-            cur->can_cast = TRUE;
+            cur->can_cast = true;
             GET_SPELL_MEM(ch).num_memmed++;
             if (GET_SPELL_MEM(ch).num_memmed == GET_SPELL_MEM(ch).num_spells || !cur->next) {
                 done_memming(ch);
@@ -303,11 +180,11 @@ EVENTFUNC(memming_event) {
 }
 
 EVENTFUNC(scribe_event) {
-    struct char_data *ch = (char_data *)event_obj;
-    struct scribing *cur, *next_scribing;
-    struct obj_data *obj;
-    struct obj_data *held_right = 0;
-    struct obj_data *held_left = 0;
+    CharData *ch = (CharData *)event_obj;
+    Scribing *cur, *next_scribing;
+    ObjData *obj;
+    ObjData *held_right = 0;
+    ObjData *held_left = 0;
     int right_type = 0, left_type = 0;
 
     /* Check for conditions that will interrupt scribing. */
@@ -372,7 +249,7 @@ EVENTFUNC(scribe_event) {
 
     if (!LIGHT_OK(ch)) {
         send_to_char("It is too dark, so you stop scribing.\r\n", ch);
-        act("Unable to see, $n gives up scribing.", TRUE, ch, 0, 0, TO_ROOM);
+        act("Unable to see, $n gives up scribing.", true, ch, 0, 0, TO_ROOM);
         clear_scribing(ch);
         return EVENT_FINISHED;
     }
@@ -386,7 +263,7 @@ EVENTFUNC(scribe_event) {
         sprintf(buf, "You've lost your source for %s!\r\n", skill_name(cur->spell));
         send_to_char(buf, ch);
         send_to_char("&3With a weary sigh, you stop scribing.&0\r\n", ch);
-        act("$n sighs and stops scribing.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n sighs and stops scribing.", true, ch, 0, 0, TO_ROOM);
         clear_scribing(ch);
         return EVENT_FINISHED;
     }
@@ -454,7 +331,7 @@ EVENTFUNC(scribe_event) {
 to be added to the list, or just display the current list, respectively. */
 ACMD(do_memorize) {
     int spell, circle;
-    struct char_data *tch;
+    CharData *tch;
 
     if (!ch || IS_NPC(ch))
         return;
@@ -534,15 +411,15 @@ ACMD(do_memorize) {
     }
 
     /* finally, the spell is available...add it to the list */
-    add_spell(ch, spell, FALSE, 0, TRUE);
+    add_spell(ch, spell, false, 0, true);
     if (!MEMMING(ch))
-        act("$n takes out $s books and begins to study.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n takes out $s books and begins to study.", true, ch, 0, 0, TO_ROOM);
     start_memming(ch);
 }
 
 ACMD(do_pray) {
     int spell, circle;
-    struct char_data *tch;
+    CharData *tch;
 
     if (!ch || IS_NPC(ch))
         return;
@@ -609,18 +486,18 @@ ACMD(do_pray) {
         return;
     }
 
-    add_spell(ch, spell, FALSE, 0, TRUE);
+    add_spell(ch, spell, false, 0, true);
     if (!MEMMING(ch))
-        act("$n begins praying to $s deity.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n begins praying to $s deity.", true, ch, 0, 0, TO_ROOM);
     start_memming(ch);
 }
 
-void wipe_mem(char_data *ch) {
+void wipe_mem(CharData *ch) {
     int i;
-    struct mem_list *cur, *next;
+    MemorizedList *cur, *next;
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        act("$n ceases $s meditative trance.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         send_to_char("&8You stop meditating.\r\n&0", ch);
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
@@ -634,8 +511,8 @@ void wipe_mem(char_data *ch) {
     GET_SPELL_MEM(ch).num_memmed = 0;
 
     cur = GET_SPELL_MEM(ch).list_head;
-    GET_SPELL_MEM(ch).list_head = NULL;
-    GET_SPELL_MEM(ch).list_tail = NULL;
+    GET_SPELL_MEM(ch).list_head = nullptr;
+    GET_SPELL_MEM(ch).list_tail = nullptr;
 
     while (cur) {
         next = cur->next;
@@ -707,11 +584,11 @@ ACMD(do_meditate) {
     }
 
     if (GET_CLASS(ch) == CLASS_BERSERKER) {
-        act("$n closes $s eyes and begins meditating.\r\n", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n closes $s eyes and begins meditating.\r\n", true, ch, 0, 0, TO_ROOM);
         send_to_char("You begin to meditate, letting your rage build...\r\n", ch);
         check_regen_rates(ch);
     } else {
-        act("$n begins meditating to improve $s concentration.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n begins meditating to improve $s concentration.", true, ch, 0, 0, TO_ROOM);
         send_to_char("You begin to meditate.\r\n", ch);
     }
 
@@ -721,8 +598,8 @@ ACMD(do_meditate) {
 }
 
 /* add a spell to the char's mem_list */
-int add_spell(char_data *ch, int spell, int can_cast, int mem_time, bool verbose) {
-    struct mem_list *cur;
+int add_spell(CharData *ch, int spell, int can_cast, int mem_time, bool verbose) {
+    MemorizedList *cur;
     char buf[128];
     int circle = SPELL_CIRCLE(ch, spell);
 
@@ -737,13 +614,13 @@ int add_spell(char_data *ch, int spell, int can_cast, int mem_time, bool verbose
 
     /* initialize the ptr and check it before proceeding */
     if (GET_SPELL_MEM(ch).num_spells == 0 || !GET_SPELL_MEM(ch).list_tail || !GET_SPELL_MEM(ch).list_head) {
-        CREATE(cur, mem_list, 1);
-        cur->next = NULL;
+        CREATE(cur, MemorizedList, 1);
+        cur->next = nullptr;
         GET_SPELL_MEM(ch).list_head = cur;
         GET_SPELL_MEM(ch).list_tail = cur;
     } else {
-        CREATE(cur, mem_list, 1);
-        cur->next = NULL;
+        CREATE(cur, MemorizedList, 1);
+        cur->next = nullptr;
         GET_SPELL_MEM(ch).list_tail->next = cur;
         GET_SPELL_MEM(ch).list_tail = cur;
     }
@@ -767,8 +644,8 @@ int add_spell(char_data *ch, int spell, int can_cast, int mem_time, bool verbose
 }
 
 /* remove the first instance of a spell from the char's memorize list */
-int rem_spell(char_data *ch, int spell) {
-    struct mem_list dummy, *cur, *temp = NULL;
+int rem_spell(CharData *ch, int spell) {
+    MemorizedList dummy, *cur, *temp = nullptr;
     int found = 0;
 
     dummy.next = GET_SPELL_MEM(ch).list_head;
@@ -791,7 +668,7 @@ int rem_spell(char_data *ch, int spell) {
         GET_SPELL_MEM(ch).list_head = dummy.next;
 
     if (!GET_SPELL_MEM(ch).list_head)
-        GET_SPELL_MEM(ch).list_tail = NULL;
+        GET_SPELL_MEM(ch).list_tail = nullptr;
 
     if (temp == GET_SPELL_MEM(ch).list_tail)
         GET_SPELL_MEM(ch).list_tail = cur;
@@ -799,19 +676,19 @@ int rem_spell(char_data *ch, int spell) {
     return found;
 }
 
-void free_mem_list(char_data *ch) {
-    struct mem_list *next, *mem = GET_SPELL_MEM(ch).list_head;
+void free_mem_list(CharData *ch) {
+    MemorizedList *next, *mem = GET_SPELL_MEM(ch).list_head;
     while (mem) {
         next = mem->next;
         free(mem);
         mem = next;
     }
-    GET_SPELL_MEM(ch).list_head = NULL;
-    GET_SPELL_MEM(ch).list_tail = NULL;
+    GET_SPELL_MEM(ch).list_head = nullptr;
+    GET_SPELL_MEM(ch).list_tail = nullptr;
 }
 
-void free_scribe_list(char_data *ch) {
-    struct scribing *next;
+void free_scribe_list(CharData *ch) {
+    Scribing *next;
     while (ch->scribe_list) {
         next = ch->scribe_list->next;
         free(ch->scribe_list);
@@ -819,7 +696,7 @@ void free_scribe_list(char_data *ch) {
     }
 }
 
-void show_memorized_slots(char_data *ch, char_data *tch)
+void show_memorized_slots(CharData *ch, CharData *tch)
 #define _MEM_PER_CIRCLE 10
 {
     struct {
@@ -829,14 +706,14 @@ void show_memorized_slots(char_data *ch, char_data *tch)
         } memorized[_MEM_PER_CIRCLE];
         int num_memorized;
     } circles[NUM_SPELL_CIRCLES];
-    int circle, pos, memming = FALSE, time_remaining, show_next;
-    struct mem_list *mem;
+    int circle, pos, memming = false, time_remaining, show_next;
+    MemorizedList *mem;
 
     memset(circles, 0x0, sizeof(circles));
 
     for (mem = GET_SPELL_MEM(tch).list_head; mem; mem = mem->next) {
         if (!mem->can_cast) {
-            memming = TRUE;
+            memming = true;
             continue;
         }
         /* Spell circles are 1-based whereas our array is 0-based */
@@ -926,7 +803,7 @@ void show_memorized_slots(char_data *ch, char_data *tch)
 
 #undef _MEM_PER_CIRCLE
 
-void show_available_slots(char_data *ch, char_data *tch) {
+void show_available_slots(CharData *ch, CharData *tch) {
     int circle, avail, found;
 
     str_start(buf, sizeof(buf));
@@ -959,20 +836,20 @@ void show_available_slots(char_data *ch, char_data *tch) {
     send_to_char(buf, ch);
 }
 
-void show_spell_list(char_data *ch, char_data *tch) {
+void show_spell_list(CharData *ch, CharData *tch) {
     show_memorized_slots(ch, tch);
     show_available_slots(ch, tch);
 }
 
-int check_spell_memory(char_data *ch, int spellnum) {
-    struct mem_list *cur;
+int check_spell_memory(CharData *ch, int spellnum) {
+    MemorizedList *cur;
 
     cur = GET_SPELL_MEM(ch).list_head;
 
     /* traverse the list and find out if the spell is memmed or not. */
     while (cur) {
         if (cur->spell == spellnum && cur->can_cast)
-            return TRUE;
+            return true;
 
         cur = cur->next;
     }
@@ -981,8 +858,8 @@ int check_spell_memory(char_data *ch, int spellnum) {
     return 0;
 }
 
-void charge_mem(char_data *ch, int spellnum) {
-    struct mem_list *cur;
+void charge_mem(CharData *ch, int spellnum) {
+    MemorizedList *cur;
 
     /*
      * Mobs don't memorize specific spells; they only recharge
@@ -1007,36 +884,36 @@ void charge_mem(char_data *ch, int spellnum) {
     }
 }
 
-void start_memming(char_data *ch) {
+void start_memming(CharData *ch) {
     if (!MEMMING(ch)) {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_MEM);
-        event_create(EVENT_MEM, memming_event, ch, FALSE, &(ch->events), MEM_INTERVAL);
+        event_create(EVENT_MEM, memming_event, ch, false, &(ch->events), MEM_INTERVAL);
     }
 }
 
-void done_memming(char_data *ch) {
+void done_memming(CharData *ch) {
     if (MEM_MODE(ch) == MEMORIZE) {
         send_to_char("You have completed your studies.\r\n", ch);
-        act("$n closes $s book and smiles.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n closes $s book and smiles.", true, ch, 0, 0, TO_ROOM);
     } else if (MEM_MODE(ch) == PRAY) {
         send_to_char("Your prayers are complete.\r\n", ch);
-        act("$n finishes praying to $s deity.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n finishes praying to $s deity.", true, ch, 0, 0, TO_ROOM);
     }
     rem_memming(ch);
 }
 
-void rem_memming(char_data *ch) {
+void rem_memming(CharData *ch) {
     REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_MEM);
     cancel_event(GET_EVENTS(ch), EVENT_MEM);
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        act("$n ceases $s meditative trance.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         send_to_char("&8You stop meditating.\r\n&0", ch);
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 }
 
-int spell_mem_time(char_data *ch, int spell) {
+int spell_mem_time(CharData *ch, int spell) {
     double mem_time;
 
     mem_time = 9 - ((int)GET_LEVEL(ch) - skills[spell].min_level[(int)GET_CLASS(ch)]) / 2;
@@ -1051,7 +928,7 @@ int spell_mem_time(char_data *ch, int spell) {
     return MAX((int)mem_time, 1);
 }
 
-int set_mem_time(char_data *ch, int spell) {
+int set_mem_time(CharData *ch, int spell) {
     int mem_time;
 
     mem_time = spell_mem_time(ch, spell);
@@ -1062,7 +939,7 @@ int set_mem_time(char_data *ch, int spell) {
         /* There's a 1-5% chance it will be a deep trance and take only 1 second. */
         if (number(1, 100) <= 1 + GET_SKILL(ch, SKILL_MEDITATE) / 25) {
             send_to_char("You go into a deep trance...\r\n", ch);
-            act("$n falls into a deep trance...", TRUE, ch, 0, 0, TO_ROOM);
+            act("$n falls into a deep trance...", true, ch, 0, 0, TO_ROOM);
             mem_time = 1;
         }
     }
@@ -1071,21 +948,21 @@ int set_mem_time(char_data *ch, int spell) {
 }
 
 /* Okay, we can finally save the char's spell list on disk. */
-void init_mem_list(char_data *ch) {
+void init_mem_list(CharData *ch) {
     int remove, circle;
-    struct mem_list *mem, *next_mem;
+    MemorizedList *mem, *next_mem;
 
     if (!ch || IS_NPC(ch))
         return;
 
     for (mem = GET_SPELL_MEM(ch).list_head; mem; mem = next_mem) {
         next_mem = mem->next;
-        remove = FALSE;
+        remove = false;
         circle = SPELL_CIRCLE(ch, mem->spell);
         if (GET_LEVEL(ch) < skills[mem->spell].min_level[(int)GET_CLASS(ch)])
-            remove = TRUE;
+            remove = true;
         else if (spells_of_circle[(int)GET_LEVEL(ch)][circle] < GET_SPELL_MEM(ch).num_circle[circle])
-            remove = TRUE;
+            remove = true;
         if (remove)
             rem_spell(ch, mem->spell);
     }
@@ -1104,7 +981,7 @@ void init_mem_list(char_data *ch) {
  *
  */
 
-int is_spellbook_with_spell(obj_data *obj, int spell) {
+int is_spellbook_with_spell(ObjData *obj, int spell) {
 
     return obj->obj_flags.type_flag == ITEM_SPELLBOOK && book_contains_spell(obj, spell);
 }
@@ -1116,8 +993,8 @@ int is_spellbook_with_spell(obj_data *obj, int spell) {
  *
  */
 
-struct obj_data *find_spellbook_with_spell(char_data *ch, int spell) {
-    struct obj_data *obj;
+ObjData *find_spellbook_with_spell(CharData *ch, int spell) {
+    ObjData *obj;
 
     for (obj = ch->carrying; obj; obj = obj->next_content) {
         if (is_spellbook_with_spell(obj, spell) && CAN_SEE_OBJ(ch, obj))
@@ -1142,14 +1019,14 @@ struct obj_data *find_spellbook_with_spell(char_data *ch, int spell) {
  * the given spell.
  *
  */
-int book_contains_spell(obj_data *obj, int spell) {
-    struct spell_book_list *entry;
+int book_contains_spell(ObjData *obj, int spell) {
+    SpellBookList *entry;
 
     for (entry = obj->spell_book; entry; entry = entry->next)
         if (entry->spell == spell)
-            return TRUE;
+            return true;
 
-    return FALSE;
+    return false;
 }
 
 /*
@@ -1165,9 +1042,9 @@ int book_contains_spell(obj_data *obj, int spell) {
  *
  */
 
-void print_spells_in_book(char_data *ch, obj_data *obj, char *dest_buf) {
+void print_spells_in_book(CharData *ch, ObjData *obj, char *dest_buf) {
     int spage = 0, fpage = 0;
-    struct spell_book_list *entry;
+    SpellBookList *entry;
     char list_buf[MAX_STRING_LENGTH];
     char *obuf = list_buf;
 
@@ -1212,35 +1089,35 @@ void print_spells_in_book(char_data *ch, obj_data *obj, char *dest_buf) {
  *
  */
 
-int add_spell_to_book(char_data *ch, obj_data *obj, int spell) {
-    struct spell_book_list *entry;
+int add_spell_to_book(CharData *ch, ObjData *obj, int spell) {
+    SpellBookList *entry;
     int pages;
 
     if (book_contains_spell(obj, spell)) {
         send_to_char("That spell is already in this book.\r\n", ch);
-        return FALSE;
+        return false;
     }
 
     pages = get_spell_pages(ch, spell);
 
     if (!room_in_book(obj, pages)) {
         send_to_char("Your spellbook is too full for that spell.\r\n", ch);
-        return FALSE;
+        return false;
     }
 
     if (obj->spell_book) {
         for (entry = obj->spell_book; entry->next; entry = entry->next)
             ;
-        CREATE(entry->next, spell_book_list, 1);
+        CREATE(entry->next, SpellBookList, 1);
         entry = entry->next;
     } else {
-        CREATE(entry, spell_book_list, 1);
+        CREATE(entry, SpellBookList, 1);
         obj->spell_book = entry;
     }
 
     entry->spell = spell;
     entry->length = pages;
-    return TRUE;
+    return true;
 }
 
 /*
@@ -1250,8 +1127,8 @@ int add_spell_to_book(char_data *ch, obj_data *obj, int spell) {
  *
  */
 
-int pages_left_in_book(obj_data *obj) {
-    struct spell_book_list *entry;
+int pages_left_in_book(ObjData *obj) {
+    SpellBookList *entry;
     int pages_used = 0;
 
     if (obj->obj_flags.type_flag != ITEM_SPELLBOOK)
@@ -1272,12 +1149,12 @@ int pages_left_in_book(obj_data *obj) {
 
 ACMD(do_scribe) {
     int spellnum, pages_needed, pages_left;
-    struct obj_data *book = 0, *pen, *sourcebook;
-    struct char_data *teacher;
-    struct obj_data *held_right = GET_EQ(ch, WEAR_HOLD);
-    struct obj_data *held_left = GET_EQ(ch, WEAR_HOLD2);
+    ObjData *book = 0, *pen, *sourcebook;
+    CharData *teacher;
+    ObjData *held_right = GET_EQ(ch, WEAR_HOLD);
+    ObjData *held_left = GET_EQ(ch, WEAR_HOLD2);
     int right_type = 0, left_type = 0;
-    struct scribing *sl;
+    Scribing *sl;
 
     /* Mobs can't scribe. */
 
@@ -1389,11 +1266,11 @@ ACMD(do_scribe) {
     pages_left = pages_left_in_book(book);
     if (!room_in_book(book, pages_needed)) {
         if (pages_left == 0) {
-            act("$P is full.", FALSE, ch, 0, book, TO_CHAR);
+            act("$P is full.", false, ch, 0, book, TO_CHAR);
         } else {
             sprintf(buf, "You'd need %d pages to scribe that, but $P only has %d page%s left.", pages_needed,
                     pages_left, pages_left == 1 ? "" : "s");
-            act(buf, FALSE, ch, 0, book, TO_CHAR);
+            act(buf, false, ch, 0, book, TO_CHAR);
         }
         return;
     }
@@ -1417,7 +1294,7 @@ ACMD(do_scribe) {
 
     if (!EVENT_FLAGGED(ch, EVENT_SCRIBE)) {
         start_scribing(ch);
-        act("$n picks up $s $o and starts writing in $P.", TRUE, ch, pen, book, TO_ROOM);
+        act("$n picks up $s $o and starts writing in $P.", true, ch, pen, book, TO_ROOM);
         sprintf(buf, "You begin scribing %s.\r\n", skill_name(spellnum));
         send_to_char(buf, ch);
     } else {
@@ -1434,8 +1311,8 @@ ACMD(do_scribe) {
  *
  */
 
-struct char_data *find_teacher_for_spell(char_data *ch, int spell) {
-    struct char_data *dude;
+CharData *find_teacher_for_spell(CharData *ch, int spell) {
+    CharData *dude;
 
     for (dude = world[ch->in_room].people; dude; dude = dude->next_in_room) {
 
@@ -1465,49 +1342,49 @@ struct char_data *find_teacher_for_spell(char_data *ch, int spell) {
  *
  */
 
-int room_in_book(obj_data *obj, int pages) { return pages_left_in_book(obj) >= pages; }
+int room_in_book(ObjData *obj, int pages) { return pages_left_in_book(obj) >= pages; }
 
 /*
  * start_scribing_spell
  *
  * Determine if a spell can be scribed, and give feedback.
- * Returns TRUE if it can be scribed, FALSE otherwise.
+ * Returns true if it can be scribed, false otherwise.
  *
  */
 
-int start_scribing_spell(char_data *ch, obj_data *spellbook, scribing *scr) {
-    struct char_data *teacher;
-    struct obj_data *sourcebook;
+int start_scribing_spell(CharData *ch, ObjData *spellbook, Scribing *scr) {
+    CharData *teacher;
+    ObjData *sourcebook;
 
     /* Is there room in the book? */
 
     if (scr->pages > pages_left_in_book(spellbook)) {
-        act("&3There is no room to scribe $T&3 in $p&3.&0", FALSE, ch, spellbook, skill_name(scr->spell), TO_CHAR);
-        return FALSE;
+        act("&3There is no room to scribe $T&3 in $p&3.&0", false, ch, spellbook, skill_name(scr->spell), TO_CHAR);
+        return false;
     }
 
     /* Find out who/what we're scribing from. */
     teacher = find_teacher_for_spell(ch, scr->spell);
     if (teacher) {
         sprintf(buf, "With $N's help, you start scribing %s.", skill_name(scr->spell));
-        act(buf, FALSE, ch, 0, teacher, TO_CHAR);
+        act(buf, false, ch, 0, teacher, TO_CHAR);
         sprintf(buf, "With $N's help, $n starts scribing %s.", skill_name(scr->spell));
-        act(buf, TRUE, ch, 0, teacher, TO_NOTVICT);
+        act(buf, true, ch, 0, teacher, TO_NOTVICT);
         sprintf(buf, "With your help, $n starts scribing %s.", skill_name(scr->spell));
-        act(buf, FALSE, ch, 0, teacher, TO_VICT);
-        return TRUE;
+        act(buf, false, ch, 0, teacher, TO_VICT);
+        return true;
     }
 
     sourcebook = find_spellbook_with_spell(ch, scr->spell);
     if (sourcebook) {
-        act("You start scribing $T from $o.", FALSE, ch, sourcebook, skill_name(scr->spell), TO_CHAR);
-        act("$n starts scribing from $o.", TRUE, ch, sourcebook, 0, TO_ROOM);
-        return TRUE;
+        act("You start scribing $T from $o.", false, ch, sourcebook, skill_name(scr->spell), TO_CHAR);
+        act("$n starts scribing from $o.", true, ch, sourcebook, 0, TO_ROOM);
+        return true;
     }
 
     sprintf(buf, "There is no source for %s nearby, so you skip it for now.\r\n", skill_name(scr->spell));
     send_to_char(buf, ch);
-    return FALSE;
+    return false;
 }
 
 /*
@@ -1517,15 +1394,15 @@ int start_scribing_spell(char_data *ch, obj_data *spellbook, scribing *scr) {
  *
  */
 
-void clear_scribing(char_data *ch) {
-    struct scribing *this;
+void clear_scribing(CharData *ch) {
+    Scribing *scribe;
 
     REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_SCRIBE);
 
-    this = ch->scribe_list;
-    while (this) {
-        rem_spell_scribe(ch, this->spell);
-        this = ch->scribe_list;
+    scribe = ch->scribe_list;
+    while (scribe) {
+        rem_spell_scribe(ch, scribe->spell);
+        scribe = ch->scribe_list;
     }
     ch->scribe_list = 0;
 }
@@ -1537,10 +1414,10 @@ void clear_scribing(char_data *ch) {
  *
  */
 
-int add_spell_scribe(char_data *ch, int spell) {
-    struct scribing *cur, *sc;
+int add_spell_scribe(CharData *ch, int spell) {
+    Scribing *cur, *sc;
 
-    CREATE(cur, scribing, 1);
+    CREATE(cur, Scribing, 1);
     if (!ch->scribe_list) {
         ch->scribe_list = cur;
     } else {
@@ -1563,8 +1440,8 @@ int add_spell_scribe(char_data *ch, int spell) {
  *
  */
 
-int rem_spell_scribe(char_data *ch, int spell) {
-    struct scribing *temp, *cur;
+int rem_spell_scribe(CharData *ch, int spell) {
+    Scribing *temp, *cur;
 
     cur = temp = ch->scribe_list;
 
@@ -1590,10 +1467,10 @@ int rem_spell_scribe(char_data *ch, int spell) {
  *
  */
 
-void start_scribing(char_data *ch) {
+void start_scribing(CharData *ch) {
     if (!EVENT_FLAGGED(ch, EVENT_SCRIBE)) {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_SCRIBE);
-        event_create(EVENT_SCRIBE, scribe_event, ch, FALSE, &(ch->events), SCRIBE_INTERVAL);
+        event_create(EVENT_SCRIBE, scribe_event, ch, false, &(ch->events), SCRIBE_INTERVAL);
     }
 }
 
@@ -1607,7 +1484,7 @@ void start_scribing(char_data *ch) {
  *
  */
 
-int get_spell_pages(char_data *ch, int spell) {
+int get_spell_pages(CharData *ch, int spell) {
     float pages = 0, factor;
     int x;
 

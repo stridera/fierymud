@@ -23,79 +23,65 @@
 #include "interpreter.hpp"
 #include "math.hpp"
 #include "screen.hpp"
+#include "shop.hpp"
 #include "skills.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
 /*. External functions .*/
-extern void zedit_setup(descriptor_data *d, int room_num);
-extern void zedit_save_to_disk(int zone);
-extern void zedit_new_zone(char_data *ch, int new_zone);
-extern void medit_setup_new(descriptor_data *d);
-extern void medit_setup_existing(descriptor_data *d, int rmob_num);
-extern void medit_save_to_disk(int zone);
-extern void redit_setup_new(descriptor_data *d);
-extern void redit_setup_existing(descriptor_data *d, int rroom_num);
-extern void redit_save_to_disk(int zone);
-extern void oedit_setup_new(descriptor_data *d);
-extern void oedit_setup_existing(descriptor_data *d, int robj_num);
-extern void oedit_reverse_exdescs(int zone, char_data *ch);
-int oedit_reverse_exdesc(int real_num, char_data *ch);
-extern void oedit_save_to_disk(int zone);
-extern void sedit_setup_new(descriptor_data *d);
-extern void sedit_setup_existing(descriptor_data *d, int robj_num);
-extern void sedit_save_to_disk(int zone);
-extern void sdedit_setup_new(descriptor_data *d);
-extern void sdedit_setup_existing(descriptor_data *d, int robj_num);
-extern void hedit_save_to_disk(descriptor_data *d);
-extern int real_shop(int vnum);
-extern void free_shop(shop_data *shop);
-extern void free_room(room_data *room);
-extern void medit_free_mobile(char_data *mob);
-extern void free_help(help_index_element *help);
-extern int find_help(char *keyword);
-extern void trigedit_setup_new(descriptor_data *d);
-extern void trigedit_setup_existing(descriptor_data *d, int rtrg_num);
-extern int real_trigger(int vnum);
+void zedit_setup(DescriptorData *d, int room_num);
+void zedit_save_to_disk(int zone);
+void zedit_new_zone(CharData *ch, int new_zone);
+void medit_setup_new(DescriptorData *d);
+void medit_setup_existing(DescriptorData *d, int rmob_num);
+void medit_save_to_disk(int zone);
+void redit_setup_new(DescriptorData *d);
+void redit_setup_existing(DescriptorData *d, int rroom_num);
+void redit_save_to_disk(int zone);
+void oedit_setup_new(DescriptorData *d);
+void oedit_setup_existing(DescriptorData *d, int robj_num);
+void oedit_reverse_exdescs(int zone, CharData *ch);
+int oedit_reverse_exdesc(int real_num, CharData *ch);
+void oedit_save_to_disk(int zone);
+void sedit_setup_new(DescriptorData *d);
+void sedit_setup_existing(DescriptorData *d, int robj_num);
+void sedit_save_to_disk(int zone);
+void sdedit_setup_new(DescriptorData *d);
+void sdedit_setup_existing(DescriptorData *d, int robj_num);
+void hedit_save_to_disk(DescriptorData *d);
+int real_shop(int vnum);
+void free_shop(ShopData *shop);
+void free_room(RoomData *room);
+void medit_free_mobile(CharData *mob);
+void free_help(HelpIndexElement *help);
+int find_help(char *keyword);
+void trigedit_setup_new(DescriptorData *d);
+void trigedit_setup_existing(DescriptorData *d, int rtrg_num);
+int real_trigger(int vnum);
 
 /*. Internal function prototypes .*/
-void olc_saveinfo(char_data *ch);
+void olc_saveinfo(CharData *ch);
 
 /*. Internal data .*/
 
-const char *save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
-
-/*
- * Internal data structures.
- */
-
-struct olc_scmd_data {
-    char *text;
-    int con_type;
-};
-
-struct olc_scmd_data olc_scmd_info[] = {{"room", CON_REDIT},      {"object", CON_OEDIT}, {"room", CON_ZEDIT},
-                                        {"mobile", CON_MEDIT},    {"shop", CON_SEDIT},   {"help", CON_HEDIT},
-                                        {"trigger", CON_TRIGEDIT}};
-
-bool has_olc_access(char_data *ch, zone_vnum zone) {
-    struct olc_zone_list *list;
+bool has_olc_access(CharData *ch, zone_vnum zone) {
+    OLCZoneList *list;
     for (list = GET_OLC_ZONES(ch); list; list = list->next)
         if (list->zone == zone)
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
-void free_olc_zone_list(char_data *ch) {
-    struct olc_zone_list *list, *next;
+void free_olc_zone_list(CharData *ch) {
+    OLCZoneList *list, *next;
     for (list = GET_OLC_ZONES(ch); list; list = next) {
         next = list->next;
         free(list);
     }
 }
 
-void olc_delete(char_data *ch, int subcmd, int vnum) {
+void olc_delete(CharData *ch, int subcmd, int vnum) {
     char *ename;
     int rnum;
 
@@ -159,7 +145,7 @@ void olc_delete(char_data *ch, int subcmd, int vnum) {
 
 ACMD(do_olc) {
     int number = -1, real_num, action = OLC_ACTION_NONE;
-    struct descriptor_data *d;
+    DescriptorData *d;
 
     if (IS_NPC(ch))
         /*. No screwing arround . */
@@ -250,8 +236,8 @@ ACMD(do_olc) {
 
             sprintf(buf, "OLC: %s reverses object extra descs for %d, %s.", GET_NAME(ch), number,
                     obj_proto[real_num].short_description);
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
-            oedit_reverse_exdesc(real_num, NULL);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+            oedit_reverse_exdesc(real_num, nullptr);
             return;
 
         } else if (subcmd == SCMD_OLC_OEDIT && strn_cmp("zrevex", buf1, 6) == 0) {
@@ -267,7 +253,7 @@ ACMD(do_olc) {
             }
 
             sprintf(buf, "OLC: %s reverses object extra descs for zone %d.", GET_NAME(ch), zone_table[real_num].number);
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
             oedit_reverse_exdescs(real_num, ch);
             return;
 
@@ -305,7 +291,7 @@ ACMD(do_olc) {
     d = ch->desc;
 
     /*. Give descriptor an OLC struct . */
-    CREATE(d->olc, olc_data, 1);
+    CREATE(d->olc, OLCData, 1);
 
     /*
      * Find the zone.
@@ -330,7 +316,7 @@ ACMD(do_olc) {
         return;
     }
     if (action == OLC_ACTION_SAVE) {
-        const char *type = NULL;
+        const char *type = nullptr;
 
         switch (subcmd) {
         case SCMD_OLC_REDIT:
@@ -359,7 +345,7 @@ ACMD(do_olc) {
         sprintf(buf, "Saving all %ss in zone %d.\r\n", type, zone_table[OLC_ZNUM(d)].number);
         send_to_char(buf, ch);
         sprintf(buf, "OLC: %s saves %s info for zone %d.", GET_NAME(ch), type, zone_table[OLC_ZNUM(d)].number);
-        mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+        mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
 
         switch (subcmd) {
         case SCMD_OLC_REDIT:
@@ -471,7 +457,7 @@ ACMD(do_olc) {
         STATE(d) = CON_HEDIT;
         break;
     }
-    act("$n starts using OLC.", TRUE, d->character, 0, 0, TO_ROOM);
+    act("$n starts using OLC.", true, d->character, 0, 0, TO_ROOM);
     SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
 }
 
@@ -479,8 +465,8 @@ ACMD(do_olc) {
  Internal utlities
 \*------------------------------------------------------------*/
 
-void olc_saveinfo(char_data *ch) {
-    struct olc_save_info *entry;
+void olc_saveinfo(CharData *ch) {
+    OLCSaveInfo *entry;
 
     if (olc_save_list)
         send_to_char("The following OLC components need saving:-\r\n", ch);
@@ -500,25 +486,25 @@ void olc_saveinfo(char_data *ch) {
 /*. Add an entry to the 'to be saved' list .*/
 
 void olc_add_to_save_list(int zone, byte type) {
-    struct olc_save_info *new;
+    OLCSaveInfo *saveinfo;
 
     /*. Return if it's already in the list . */
-    for (new = olc_save_list; new; new = new->next)
-        if ((new->zone == zone) && (new->type == type))
+    for (saveinfo = olc_save_list; saveinfo; saveinfo = saveinfo->next)
+        if ((saveinfo->zone == zone) && (saveinfo->type == type))
             return;
 
-    CREATE(new, olc_save_info, 1);
-    new->zone = zone;
-    new->type = type;
-    new->next = olc_save_list;
-    olc_save_list = new;
+    CREATE(saveinfo, OLCSaveInfo, 1);
+    saveinfo->zone = zone;
+    saveinfo->type = type;
+    saveinfo->next = olc_save_list;
+    olc_save_list = saveinfo;
 }
 
 /*. Remove an entry from the 'to be saved' list .*/
 
 void olc_remove_from_save_list(int zone, byte type) {
-    struct olc_save_info **entry;
-    struct olc_save_info *temp;
+    OLCSaveInfo **entry;
+    OLCSaveInfo *temp;
 
     for (entry = &olc_save_list; *entry; entry = &(*entry)->next)
         if (((*entry)->zone == zone) && ((*entry)->type == type)) {
@@ -533,7 +519,7 @@ void olc_remove_from_save_list(int zone, byte type) {
    see at color level NRM.   Changing the entries here will change
    the colour scheme throught the OLC.*/
 
-void get_char_cols(char_data *ch) {
+void get_char_cols(CharData *ch) {
     nrm = CLR(ch, ANRM);
     grn = CLR(ch, FGRN);
     cyn = CLR(ch, FCYN);
@@ -564,7 +550,7 @@ void strip_string(char *buffer) {
    attatched to a descriptor, sets all flags back to how they
    should be .*/
 
-void cleanup_olc(descriptor_data *d, byte cleanup_type) {
+void cleanup_olc(DescriptorData *d, byte cleanup_type) {
     if (d->olc) {
         /*
          * Check for a room.
@@ -680,15 +666,15 @@ void cleanup_olc(descriptor_data *d, byte cleanup_type) {
         if (d->character) {
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
             STATE(d) = CON_PLAYING;
-            act("$n stops using OLC.", TRUE, d->character, 0, 0, TO_ROOM);
+            act("$n stops using OLC.", true, d->character, 0, 0, TO_ROOM);
         }
         free(d->olc);
-        d->olc = NULL;
+        d->olc = nullptr;
     }
 }
 
 void free_save_list() {
-    struct olc_save_info *sld, *next_sld;
+    OLCSaveInfo *sld, *next_sld;
 
     for (sld = olc_save_list; sld; sld = next_sld) {
         next_sld = sld->next;

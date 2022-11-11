@@ -21,7 +21,7 @@
 #include "interpreter.hpp"
 #include "math.hpp"
 #include "movement.hpp"
-#include "queue.h"
+#include "queue.hpp"
 #include "regen.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
@@ -29,11 +29,8 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* external variables */
-extern unsigned long pulse;
-
-struct queue *event_q; /* the event queue */
-int processing_events = FALSE;
+Queue *event_q; /* the event queue */
+int processing_events = false;
 
 const char *eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
                                          "autodouse",       /* 1 */
@@ -72,22 +69,22 @@ const char *eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
 /*                        EVENT UTILITY FUNCTIONS                        */
 /*************************************************************************/
 
-bool char_has_event(char_data *ch, int eventtype) {
-    struct event *e;
+bool char_has_event(CharData *ch, int eventtype) {
+    Event *e;
 
     for (e = ch->events; e; e = e->next)
         if (e->num == eventtype)
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
-bool char_has_delayed_command(char_data *ch, const char *command) {
-    struct event *e;
+bool char_has_delayed_command(CharData *ch, const char *command) {
+    Event *e;
 
     for (e = ch->events; e; e = e->next)
-        if (e->num == EVENT_COMMAND && e->event_obj && !strcmp(command, ((command_event_data *)(e->event_obj))->cmd))
-            return TRUE;
-    return FALSE;
+        if (e->num == EVENT_COMMAND && e->event_obj && !strcmp(command, ((CommandEventData *)(e->event_obj))->cmd))
+            return true;
+    return false;
 }
 
 /*************************************************************************/
@@ -104,8 +101,8 @@ bool char_has_delayed_command(char_data *ch, const char *command) {
  */
 
 EVENTFUNC(battle_paralysis_handler) {
-    struct effect eff;
-    struct char_data *vict = ((generic_event_data *)event_obj)->vict;
+    effect eff;
+    CharData *vict = ((GenericEventData *)event_obj)->vict;
 
     if (FIGHTING(vict))
         stop_fighting(vict);
@@ -129,14 +126,14 @@ EVENTFUNC(battle_paralysis_handler) {
  */
 
 EVENTFUNC(casting_handler) {
-    struct char_data *ch = (char_data *)event_obj;
-    struct obj_data *obj;
+    CharData *ch = (CharData *)event_obj;
+    ObjData *obj;
     int i;
     char castbuf[256];
-    int tar_invalid = FALSE, found = FALSE;
+    int tar_invalid = false, found = false;
 
-    void abort_casting(char_data * ch);
-    void complete_spell(char_data * ch);
+    void abort_casting(CharData * ch);
+    void complete_spell(CharData * ch);
 
     if (!CASTING(ch))
         return EVENT_FINISHED;
@@ -154,23 +151,23 @@ EVENTFUNC(casting_handler) {
         switch (ch->casting.target_status) {
         case TARGET_IN_ROOM:
             if (ch->casting.obj->in_room != ch->in_room)
-                tar_invalid = TRUE;
+                tar_invalid = true;
             break;
         case TARGET_IN_WORLD:
             break;
         case TARGET_IN_INV:
             for (obj = ch->carrying; obj; obj = obj->next_content)
                 if (ch->casting.obj == obj)
-                    found = TRUE;
+                    found = true;
             if (!found)
-                tar_invalid = TRUE;
+                tar_invalid = true;
             break;
         case TARGET_EQUIP:
             for (i = 0; i < NUM_WEARS; ++i)
                 if (ch->casting.obj == ch->equipment[i])
-                    found = TRUE;
+                    found = true;
             if (!found)
-                tar_invalid = TRUE;
+                tar_invalid = true;
             break;
         default:
             sprintf(castbuf, "SYSERR: Error in casting_handler() at obj valid check for spell %d.", ch->casting.spell);
@@ -180,13 +177,13 @@ EVENTFUNC(casting_handler) {
         switch (ch->casting.target_status) {
         case TARGET_IN_ROOM:
             if (ch->casting.tch->in_room != ch->in_room)
-                tar_invalid = TRUE;
+                tar_invalid = true;
             break;
         case TARGET_IN_WORLD:
             break;
         case TARGET_FIGHTING:
             if (!FIGHTING(ch) || ch->casting.tch != FIGHTING(ch))
-                tar_invalid = TRUE;
+                tar_invalid = true;
             break;
         case TARGET_SELF:
             break;
@@ -233,8 +230,8 @@ EVENTFUNC(casting_handler) {
  */
 
 EVENTFUNC(die_event) {
-    struct char_data *ch = ((generic_event_data *)event_obj)->ch;
-    struct char_data *killer = ((generic_event_data *)event_obj)->vict;
+    CharData *ch = ((GenericEventData *)event_obj)->ch;
+    CharData *killer = ((GenericEventData *)event_obj)->vict;
 
     if (event_target_valid(killer))
         perform_die(ch, killer);
@@ -250,11 +247,11 @@ EVENTFUNC(die_event) {
  */
 
 EVENTFUNC(hurt_event) {
-    struct char_data *victim = ((hurt_event_data *)event_obj)->victim;
-    struct char_data *attacker = ((hurt_event_data *)event_obj)->attacker;
-    int dam = ((hurt_event_data *)event_obj)->damage;
+    CharData *victim = ((HurtEventData *)event_obj)->victim;
+    CharData *attacker = ((HurtEventData *)event_obj)->attacker;
+    int dam = ((HurtEventData *)event_obj)->damage;
 
-    hurt_char(victim, attacker, dam, TRUE);
+    hurt_char(victim, attacker, dam, true);
     return EVENT_FINISHED;
 }
 
@@ -264,21 +261,21 @@ EVENTFUNC(hurt_event) {
  */
 
 EVENTFUNC(extract_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
 
     extract_char(ch);
 
     return EVENT_FINISHED;
 }
 
-void sethurtevent(char_data *ch, char_data *vict, int dam) {
-    struct hurt_event_data *he;
+void sethurtevent(CharData *ch, CharData *vict, int dam) {
+    HurtEventData *he;
 
-    CREATE(he, hurt_event_data, 1);
+    CREATE(he, HurtEventData, 1);
     he->victim = vict;
     he->attacker = ch;
     he->damage = dam;
-    event_create(EVENT_HURT, hurt_event, he, TRUE, &(vict->events), 0);
+    event_create(EVENT_HURT, hurt_event, he, true, &(vict->events), 0);
 }
 
 /* Fullpurge
@@ -286,11 +283,11 @@ void sethurtevent(char_data *ch, char_data *vict, int dam) {
  * Extracts a mob from the game and its objects, too.
  */
 
-void fullpurge_char(char_data *ch) { event_create(EVENT_FULLPURGE, fullpurge_event, ch, FALSE, &(ch->events), 0); }
+void fullpurge_char(CharData *ch) { event_create(EVENT_FULLPURGE, fullpurge_event, ch, false, &(ch->events), 0); }
 
 EVENTFUNC(fullpurge_event) {
-    struct char_data *ch = (char_data *)event_obj;
-    void purge_objs(char_data * ch);
+    CharData *ch = (CharData *)event_obj;
+    void purge_objs(CharData * ch);
 
     purge_objs(ch);
     extract_char(ch);
@@ -298,13 +295,13 @@ EVENTFUNC(fullpurge_event) {
     return EVENT_FINISHED;
 }
 
-void overweight_check(char_data *ch) {
+void overweight_check(CharData *ch) {
     if (GET_POS(ch) == POS_FLYING && too_heavy_to_fly(ch) && !EVENT_FLAGGED(ch, EVENT_OVERWEIGHT))
-        event_create(EVENT_OVERWEIGHT, overweight_event, ch, FALSE, &(ch->events), 0);
+        event_create(EVENT_OVERWEIGHT, overweight_event, ch, false, &(ch->events), 0);
 }
 
 EVENTFUNC(overweight_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
 
     /* Prerequisites:
      * - you are flying
@@ -319,10 +316,10 @@ EVENTFUNC(overweight_event) {
     } else {
         if (IS_SPLASHY(IN_ROOM(ch))) {
             cprintf(ch, "You fall into the water with a splash!\r\n");
-            act("$n falls into the water with a splash.", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n falls into the water with a splash.", false, ch, 0, 0, TO_ROOM);
         } else {
             cprintf(ch, "You fall down!\r\n");
-            act("$n falls to the ground!", FALSE, ch, 0, 0, TO_ROOM);
+            act("$n falls to the ground!", false, ch, 0, 0, TO_ROOM);
         }
         alter_pos(ch, POS_SITTING, GET_STANCE(ch));
     }
@@ -331,7 +328,7 @@ EVENTFUNC(overweight_event) {
 }
 
 EVENTFUNC(falltoground_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
     /* Prerequisites:
      *  - Your position is POS_FLYING
      *  - You do not have EFF_FLY
@@ -343,10 +340,10 @@ EVENTFUNC(falltoground_event) {
 
     if (IS_SPLASHY(IN_ROOM(ch))) {
         cprintf(ch, "You fall into the water with a splash!\r\n");
-        act("$n falls into the water with a splash.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n falls into the water with a splash.", false, ch, 0, 0, TO_ROOM);
     } else {
         cprintf(ch, "You fall to the ground.\r\n");
-        act("$n falls to the ground.", FALSE, ch, 0, 0, TO_ROOM);
+        act("$n falls to the ground.", false, ch, 0, 0, TO_ROOM);
     }
     alter_pos(ch, POS_STANDING, GET_STANCE(ch));
     REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_FALLTOGROUND);
@@ -354,25 +351,25 @@ EVENTFUNC(falltoground_event) {
     return EVENT_FINISHED;
 }
 
-void delayed_command(char_data *ch, char *command, int delay, bool repeatable) {
-    struct command_event_data *ce;
+void delayed_command(CharData *ch, char *command, int delay, bool repeatable) {
+    CommandEventData *ce;
 
     if (!repeatable && char_has_delayed_command(ch, command))
         return;
 
-    CREATE(ce, command_event_data, 1);
+    CREATE(ce, CommandEventData, 1);
     ce->ch = ch;
     ce->cmd = strdup(command);
-    event_create(EVENT_COMMAND, command_event, ce, TRUE, &(ch->events), delay);
+    event_create(EVENT_COMMAND, command_event, ce, true, &(ch->events), delay);
 }
 
 void free_command_event_data(void *e) {
-    free(((command_event_data *)e)->cmd);
+    free(((CommandEventData *)e)->cmd);
     free(e);
 }
 
 EVENTFUNC(command_event) {
-    struct command_event_data *ce = (command_event_data *)event_obj;
+    CommandEventData *ce = (CommandEventData *)event_obj;
 
     command_interpreter(ce->ch, ce->cmd);
 
@@ -387,10 +384,10 @@ EVENTFUNC(command_event) {
 void event_init(void) { event_q = queue_init(); }
 
 /* creates an event and returns it */
-struct event *event_create(int eventnum, EVENTFUNC(*func), void *event_obj, bool free_obj, event **list, long when) {
-    struct event *new_event;
+Event *event_create(int eventnum, EVENTFUNC(*func), void *event_obj, bool free_obj, Event **list, long when) {
+    Event *new_event;
 
-    CREATE(new_event, event, 1);
+    CREATE(new_event, Event, 1);
     new_event->num = eventnum;
     new_event->func = func;
     new_event->event_obj = event_obj;
@@ -409,19 +406,19 @@ struct event *event_create(int eventnum, EVENTFUNC(*func), void *event_obj, bool
 }
 
 /* Frees an event obj */
-void free_event_obj(event *event) {
+void free_event_obj(Event *event) {
     if (event->event_obj) {
         if (event->num == EVENT_COMMAND)
             free_command_event_data(event->event_obj);
         else
             free(event->event_obj);
-        event->event_obj = NULL;
+        event->event_obj = nullptr;
     }
 }
 
 /* removes the event from the system */
-void event_cancel(event *event) {
-    struct event *temp;
+void event_cancel(Event *event) {
+    Event *temp;
 
     if (!event) {
         log("SYSERR:  Attempted to cancel a NULL event");
@@ -443,7 +440,7 @@ void event_cancel(event *event) {
 }
 
 /* removes an event based on type */
-void cancel_event(event *eventlist, int eventtype) {
+void cancel_event(Event *eventlist, int eventtype) {
     while (eventlist && eventlist->num != eventtype)
         eventlist = eventlist->next;
     if (eventlist)
@@ -452,12 +449,12 @@ void cancel_event(event *eventlist, int eventtype) {
 
 /* Process any events whose time has come. */
 void event_process(void) {
-    struct event *the_event, *temp;
-    struct event **list;
+    Event *the_event, *temp;
+    Event **list;
     long new_time;
 
     while ((long)pulse >= queue_key(event_q)) {
-        if (!(the_event = (event *)queue_head(event_q))) {
+        if (!(the_event = (Event *)queue_head(event_q))) {
             log("SYSERR: Attempt to get a NULL event");
             return;
         }
@@ -470,7 +467,7 @@ void event_process(void) {
             list = the_event->eventlist;
             REMOVE_FROM_LIST(the_event, *(the_event->eventlist), next);
         } else {
-            list = NULL;
+            list = nullptr;
         }
 
         /* call event func, reenqueue event if retval > 0 */
@@ -492,7 +489,7 @@ void event_process(void) {
 }
 
 /* returns the time remaining before the event */
-long event_time(event *event) {
+long event_time(Event *event) {
     long when;
 
     when = queue_elmt_key(event->q_el);
@@ -502,9 +499,9 @@ long event_time(event *event) {
 
 /* frees all events in the queue */
 void event_free_all(void) {
-    struct event *the_event;
+    Event *the_event;
 
-    while ((the_event = (event *)queue_head(event_q))) {
+    while ((the_event = (Event *)queue_head(event_q))) {
         if (the_event->free_obj && the_event->event_obj)
             free_event_obj(the_event);
         free(the_event);
@@ -515,25 +512,25 @@ void event_free_all(void) {
 
 /* Cancel all events in a list. Probably because the character or object
  * that owns the list is being extracted. */
-void cancel_event_list(event **list) {
-    struct event *e, *next_e;
+void cancel_event_list(Event **list) {
+    Event *e, *next_e;
 
     e = *list;
     while (e) {
         next_e = e->next;
-        e->next = NULL;
-        e->eventlist = NULL; /* Prevents cancel_event() from messing with the list */
+        e->next = nullptr;
+        e->eventlist = nullptr; /* Prevents cancel_event() from messing with the list */
         event_cancel(e);
         e = next_e;
     }
-    *list = NULL;
+    *list = nullptr;
 }
 
 /* should be removed eventually so that event lists are attached to
- *  char_data struct and removed form queue when the character is removed
+ *  CharData  and removed form queue when the character is removed
  * check to make sure the target of any timed event is still valid */
-bool event_target_valid(char_data *ch) {
-    struct char_data *current = NULL;
+bool event_target_valid(CharData *ch) {
+    CharData *current = nullptr;
 
     for (current = character_list; current; current = current->next) {
         /* loop through current valid players and see if the ADDRESS of the valid
@@ -541,23 +538,23 @@ bool event_target_valid(char_data *ch) {
          * target.
          */
         if (ch == current)
-            return TRUE;
+            return true;
     }
 
     /* no valid target found...return; */
-    return FALSE;
+    return false;
 }
 
-const char *eventname(event *e) {
+const char *eventname(Event *e) {
     if (e->num < 1 || e->num > MAX_EVENT)
         return eventnames[0];
     return eventnames[e->num];
 }
 
-struct generic_event_data *mkgenericevent(char_data *ch, char_data *vict, obj_data *obj) {
-    struct generic_event_data *d;
+GenericEventData *mkgenericevent(CharData *ch, CharData *vict, ObjData *obj) {
+    GenericEventData *d;
 
-    CREATE(d, generic_event_data, 1);
+    CREATE(d, GenericEventData, 1);
     d->ch = ch;
     d->vict = vict;
     d->obj = obj;

@@ -146,24 +146,8 @@ int sprintascii(char *out, flagvector bits) {
     return j;
 }
 
-#define MAX_STR_TOKENS 50
-#define STR_HASH_BUCKETS 32
-#define VALID_STR_TOKEN(tok) ((tok) >= 0 && (tok) < MAX_STR_TOKENS)
-static struct str_token {
-    char *buf;
-    char *pos;
-    size_t size;
-    str_token next_in_hash;
-} str_data[MAX_STR_TOKENS];
-static int next_str_token = 0;
-static str_token str_hash[STR_HASH_BUCKETS] = {NULL};
-
-#define STR_HASH(addr) (((unsigned int)(addr)) % STR_HASH_BUCKETS)
-#define SPACE_USED(tok) ((tok)->pos - (tok)->buf + 1)
-#define SPACE_LEFT(tok) ((tok)->size - SPACE_USED(tok))
-
 static void kill_str_token(char *buf) {
-    str_token x, tok;
+    StrToken *x, *tok;
     for (x = str_hash[STR_HASH(buf)]; x; x = x->next_in_hash) {
         if (x->buf == buf) {
             if (x == str_hash[STR_HASH(buf)])
@@ -177,9 +161,9 @@ static void kill_str_token(char *buf) {
     }
 }
 
-static str_token new_str_token(char *buf, size_t max_size) {
-    str_token tok;
-    str_token new_token = &str_data[(next_str_token++) % MAX_STR_TOKENS];
+static StrToken *new_str_token(char *buf, size_t max_size) {
+    StrToken *tok;
+    StrToken *new_token = &str_data[(next_str_token++) % MAX_STR_TOKENS];
 
     kill_str_token(buf);
     kill_str_token(new_token->buf);
@@ -187,7 +171,7 @@ static str_token new_str_token(char *buf, size_t max_size) {
     new_token->buf = buf;
     new_token->pos = buf;
     new_token->size = max_size;
-    new_token->next_in_hash = NULL;
+    new_token->next_in_hash = nullptr;
 
     for (tok = str_hash[STR_HASH(buf)]; tok && tok->next_in_hash; tok = tok->next_in_hash)
         ;
@@ -199,32 +183,32 @@ static str_token new_str_token(char *buf, size_t max_size) {
     return new_token;
 }
 
-static str_token find_str_token(char *buf) {
-    str_token tok;
+static StrToken *find_str_token(char *buf) {
+    StrToken *tok;
     for (tok = str_hash[STR_HASH(buf)]; tok; tok = tok->next_in_hash)
         if (tok->buf == buf)
             return tok;
-    return NULL;
+    return nullptr;
 }
 
-static void str_update(str_token token) {
+static void str_update(StrToken *token) {
     if (*token->pos)
         token->pos += strlen(token->pos);
 }
 
-str_token str_start(char *buf, size_t max_size) {
+StrToken *str_start(char *buf, size_t max_size) {
     *buf = '\0';
     return new_str_token(buf, max_size);
 }
 
 size_t str_space(char *buf) {
-    str_token token = find_str_token(buf);
+    StrToken *token = find_str_token(buf);
     str_update(token);
     return token ? SPACE_LEFT(token) : 0;
 }
 
 void str_cat(char *buf, const char *str) {
-    str_token token = find_str_token(buf);
+    StrToken *token = find_str_token(buf);
 
     if (token) {
         str_update(token);
@@ -238,7 +222,7 @@ void str_cat(char *buf, const char *str) {
 }
 
 void strn_cat(char *buf, const char *str, size_t size) {
-    str_token token = find_str_token(buf);
+    StrToken *token = find_str_token(buf);
 
     if (token) {
         str_update(token);
@@ -253,7 +237,7 @@ void strn_cat(char *buf, const char *str, size_t size) {
 
 void str_catf(char *buf, const char *format, ...) {
     va_list args;
-    str_token token = find_str_token(buf);
+    StrToken *token = find_str_token(buf);
     int size;
 
     va_start(args, format);
@@ -274,7 +258,7 @@ void str_catf(char *buf, const char *format, ...) {
 
 void strn_catf(char *buf, size_t size, const char *format, ...) {
     va_list args;
-    str_token token = find_str_token(buf);
+    StrToken *token = find_str_token(buf);
     int printed;
 
     va_start(args, format);
@@ -295,7 +279,7 @@ void strn_catf(char *buf, size_t size, const char *format, ...) {
 }
 
 char *str_end(char *buf) {
-    str_token token = find_str_token(buf);
+    StrToken *token = find_str_token(buf);
     if (!token)
         return buf + strlen(buf);
     str_update(token);
@@ -307,7 +291,7 @@ static struct {
     const char *str;
     int totallen;
     const char *ellipsis;
-} __ellipsis = {(1 << 3) - 1, NULL, 0, 0};
+} __ellipsis = {(1 << 3) - 1, nullptr, 0, 0};
 
 const void *ellipsis(const char *str, int maxlen, int mode) {
 
@@ -361,7 +345,7 @@ const char *str_str(const char *cs, const char *ct) {
     const char *s, *t;
 
     if (!cs || !ct)
-        return NULL;
+        return nullptr;
 
     while (*cs) {
         t = ct;
@@ -380,5 +364,5 @@ const char *str_str(const char *cs, const char *ct) {
             return s;
     }
 
-    return NULL;
+    return nullptr;
 }

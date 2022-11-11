@@ -34,7 +34,7 @@
 
 #include <sys/stat.h> /* For stat() */
 
-int monk_weight_penalty(char_data *ch) {
+int monk_weight_penalty(CharData *ch) {
     if (!IS_NPC(ch) && GET_CLASS(ch) == CLASS_MONK && GET_LEVEL(ch) >= 20) {
         int limit = CAN_CARRY_W(ch) * (0.8 + (GET_STR(ch) / 1000.0));
 
@@ -109,7 +109,7 @@ void init_exp_table(void) {
     }
 }
 
-long exp_next_level(int level, int class) {
+long exp_next_level(int level, int class_num) {
     double gain_factor;
 
     if (level > LVL_IMPL || level < 0) {
@@ -117,17 +117,17 @@ long exp_next_level(int level, int class) {
         return 0;
     }
 
-    /* God levels should all be the same for any class */
+    /* God levels should all be the same for any class_num */
     if (level >= LVL_IMMORT)
         gain_factor = 1;
     else
-        gain_factor = EXP_GAIN_FACTOR(class);
+        gain_factor = EXP_GAIN_FACTOR(class_num);
 
     return exp_table[level] * gain_factor;
 }
 
 /* log a death trap hit */
-void log_death_trap(char_data *ch) {
+void log_death_trap(CharData *ch) {
     mprintf(L_STAT, LVL_IMMORT, "%s hit death trap #%d (%s)", GET_NAME(ch), world[IN_ROOM(ch)].vnum,
             world[IN_ROOM(ch)].name);
 }
@@ -201,7 +201,7 @@ void mudlog(const char *str, unsigned char type, int level, byte file) {
 
 void mudlog_printf(int severity, int level, const char *str, ...) {
     static char buf[MAX_STRING_LENGTH], timestr[32];
-    struct descriptor_data *i;
+    DescriptorData *i;
     time_t ct;
     va_list args;
     size_t slen;
@@ -240,14 +240,12 @@ const char *sprint_log_severity(int severity) {
 }
 
 int parse_log_severity(const char *severity) {
-    int sev = search_block(severity, log_severities, FALSE);
+    int sev = search_block(severity, log_severities, false);
     if (sev >= 0)
         return (sev + 1) * 10;
     else
         return sev;
 }
-
-flagvector *ALL_FLAGS = NULL;
 
 void init_flagvectors() {
     const int num_flags[] = {
@@ -277,16 +275,16 @@ bool ALL_FLAGGED(const flagvector field[], const flagvector flags[], const int n
     int i;
     for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
         if (flags[i] && !IS_SET(field[i], flags[i]))
-            return FALSE;
-    return TRUE;
+            return false;
+    return true;
 }
 
 bool ANY_FLAGGED(const flagvector field[], const flagvector flags[], const int num_flags) {
     int i;
     for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
         if (IS_SET(field[i], flags[i]))
-            return TRUE;
-    return FALSE;
+            return true;
+    return false;
 }
 
 void SET_FLAGS(flagvector field[], const flagvector flags[], const int num_flags) {
@@ -314,9 +312,9 @@ void COPY_FLAGS(flagvector field[], const flagvector flags[], const int num_flag
 }
 
 /* Calculate the REAL time passed over the last t2-t1 centuries (secs) */
-struct time_info_data real_time_passed(time_t t2, time_t t1) {
+TimeInfoData real_time_passed(time_t t2, time_t t1) {
     long secs;
-    struct time_info_data now;
+    TimeInfoData now;
 
     secs = (long)(t2 - t1);
 
@@ -333,9 +331,9 @@ struct time_info_data real_time_passed(time_t t2, time_t t1) {
 }
 
 /* Calculate the MUD time passed over the last t2-t1 centuries (secs) */
-struct time_info_data mud_time_passed(time_t t2, time_t t1) {
+TimeInfoData mud_time_passed(time_t t2, time_t t1) {
     long secs;
-    struct time_info_data now;
+    TimeInfoData now;
 
     secs = (long)(t2 - t1);
 
@@ -353,8 +351,8 @@ struct time_info_data mud_time_passed(time_t t2, time_t t1) {
     return now;
 }
 
-struct time_info_data age(char_data *ch) {
-    struct time_info_data player_age;
+TimeInfoData age(CharData *ch) {
+    TimeInfoData player_age;
 
     player_age = mud_time_passed(time(0), ch->player.time.birth);
 
@@ -364,15 +362,15 @@ struct time_info_data age(char_data *ch) {
 }
 
 EVENTFUNC(mobquit_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
 
     /* Critter is going to leave the game now */
 
     /* Send a message to those nearby */
     if (GET_POS(ch) < POS_SITTING)
-        act("With a heroic effort, $n drags $mself to $s feet and runs off.", TRUE, ch, 0, 0, TO_ROOM);
+        act("With a heroic effort, $n drags $mself to $s feet and runs off.", true, ch, 0, 0, TO_ROOM);
     else
-        act("$n turns and moves off, disappearing swiftly into the distance.", TRUE, ch, 0, 0, TO_ROOM);
+        act("$n turns and moves off, disappearing swiftly into the distance.", true, ch, 0, 0, TO_ROOM);
 
     /* Destroy all of its items (else extract_char() will dump them
      * on the ground) */
@@ -384,26 +382,26 @@ EVENTFUNC(mobquit_event) {
 }
 
 EVENTFUNC(autodouse_event) {
-    struct char_data *ch = (char_data *)event_obj;
+    CharData *ch = (CharData *)event_obj;
 
     if (EFF_FLAGGED(ch, EFF_ON_FIRE)) {
-        act("$n's flames go out with a hiss as $e enters the water.", FALSE, ch, 0, 0, TO_ROOM);
-        act("Your flames quickly go out as you enter the water.", FALSE, ch, 0, 0, TO_CHAR);
+        act("$n's flames go out with a hiss as $e enters the water.", false, ch, 0, 0, TO_ROOM);
+        act("Your flames quickly go out as you enter the water.", false, ch, 0, 0, TO_CHAR);
         REMOVE_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
     }
 
     return EVENT_FINISHED;
 }
 
-void die_consentee_clean(char_data *ch) {
+void die_consentee_clean(CharData *ch) {
     /*aim is to search through character list and check if he been consented
        if so clean it up*/
-    static struct char_data *i;
+    static CharData *i;
 
     for (i = character_list; i; i = i->next) {
         if (CONSENT(i) == ch) {
             send_to_char("&0&7&bThe person you consented to has left the game.&0\r\n", i);
-            CONSENT(i) = NULL;
+            CONSENT(i) = nullptr;
         }
     }
 }
@@ -437,19 +435,19 @@ int get_line(FILE *fl, char *buf) {
     }
 }
 
-int num_pc_in_room(room_data *room) {
+int num_pc_in_room(RoomData *room) {
     int i = 0;
-    struct char_data *ch;
+    CharData *ch;
 
-    for (ch = room->people; ch != NULL; ch = ch->next_in_room)
+    for (ch = room->people; ch != nullptr; ch = ch->next_in_room)
         if (!IS_NPC(ch))
             i++;
 
     return i;
 }
 
-struct char_data *is_playing(char *vict_name) {
-    struct descriptor_data *i;
+CharData *is_playing(char *vict_name) {
+    DescriptorData *i;
     for (i = descriptor_list; i; i = i->next)
         if (i->connected == CON_PLAYING) {
             if (!str_cmp(GET_NAME(i->character), vict_name))
@@ -457,10 +455,10 @@ struct char_data *is_playing(char *vict_name) {
             else if (i->original && !str_cmp(GET_NAME(i->original), vict_name))
                 return i->original;
         }
-    return NULL;
+    return nullptr;
 }
 
-int load_modifier(char_data *ch) {
+int load_modifier(CharData *ch) {
     int p, ccw;
 
     if (GET_LEVEL(ch) > 50)
@@ -488,7 +486,7 @@ int load_modifier(char_data *ch) {
     return 300;
 }
 
-const char *movewords(char_data *ch, int dir, int room, int leaving) {
+const char *movewords(CharData *ch, int dir, int room, int leaving) {
     if (GET_POS(ch) == POS_FLYING)
         return (leaving ? "flies" : "flies in");
 
@@ -553,7 +551,7 @@ void build_count() {
     }
 }
 
-int pick_random_gem_drop(char_data *ch) {
+int pick_random_gem_drop(CharData *ch) {
 
     int slot;
     int phase;
@@ -635,10 +633,10 @@ int pick_random_gem_drop(char_data *ch) {
     return number(common_gem_vnums[slot][0], common_gem_vnums[slot][1]);
 }
 
-void perform_random_gem_drop(char_data *ch) {
+void perform_random_gem_drop(CharData *ch) {
     int vnum = pick_random_gem_drop(ch);
     int rnum;
-    struct obj_data *od;
+    ObjData *od;
 
     if (!vnum)
         return;
@@ -647,7 +645,7 @@ void perform_random_gem_drop(char_data *ch) {
 
     if (rnum < 0) {
         sprintf(buf, "SYSERR: Can't perform random gem drop - no object with vnum %d", vnum);
-        mudlog(buf, NRM, LVL_IMMORT, TRUE);
+        mudlog(buf, NRM, LVL_IMMORT, true);
         return;
     }
 
@@ -655,7 +653,7 @@ void perform_random_gem_drop(char_data *ch) {
 
     if (!od) {
         sprintf(buf, "RGD Error: Could not read object (vnum %d)!", vnum);
-        mudlog(buf, BRF, LVL_IMMORT, TRUE);
+        mudlog(buf, BRF, LVL_IMMORT, true);
         return;
     }
 
@@ -813,7 +811,7 @@ struct objdef {
 
 #define OBJNAME(i) (((objdef *)((char *)(objects) + objsize * i))->name)
 
-int parse_obj_name(char_data *ch, char *arg, char *objname, int numobjs, void *objects, int objsize) {
+int parse_obj_name(const CharData *ch, const char *arg, const char *objname, int numobjs, void *objects, int objsize) {
     int i, answer = -1, best = -1;
 
     if (!*arg) {
@@ -884,14 +882,14 @@ void bubblesort(int array[], int count, int comparator(int a, int b)) {
     bool swap;
 
     do {
-        swap = FALSE;
+        swap = false;
         --count;
         for (i = 0; i < count; ++i)
             if (comparator(array[i], array[i + 1]) > 0) {
                 t = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = t;
-                swap = TRUE;
+                swap = true;
             }
     } while (swap);
 }
@@ -945,7 +943,7 @@ void optquicksort(int array[], int count, int comparator(int a, int b)) {
         if (L < R) {
             pivot = array[L];
             if (i == MAX_LEVELS - 1)
-                return /* FALSE */;
+                return /* false */;
             while (L < R) {
                 while (comparator(array[R], pivot) >= 0 && L < R)
                     R--;
@@ -963,17 +961,17 @@ void optquicksort(int array[], int count, int comparator(int a, int b)) {
         } else
             --i;
     }
-    return /* TRUE */;
+    return /* true */;
 
 #undef MAX_LEVELS
 }
 
-void drop_core(char_data *ch, const char *desc) {
+void drop_core(CharData *ch, const char *desc) {
     static int corenum = 0;
     char initcorename[MAX_STRING_LENGTH];
     char corename[MAX_STRING_LENGTH];
-    struct stat finfo;
-    bool dropped = FALSE;
+    stat finfo;
+    bool dropped = false;
 
     pid_t child = fork();
 
@@ -990,10 +988,10 @@ void drop_core(char_data *ch, const char *desc) {
         sprintf(initcorename, "core.%d", child);
         if (stat(initcorename, &finfo) == 0) {
             rename(initcorename, corename);
-            dropped = TRUE;
+            dropped = true;
         } else if (stat("core", &finfo) == 0) {
             rename("core", corename);
-            dropped = TRUE;
+            dropped = true;
         } else {
             log("SYSERR: Could not find core file named %s or %s", initcorename, "core");
         }

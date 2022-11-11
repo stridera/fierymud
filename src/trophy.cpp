@@ -25,8 +25,8 @@
  * trophy nodes, numbering TROPHY_LENGTH.
  */
 
-void init_trophy(char_data *ch) {
-    struct trophy_node *node;
+void init_trophy(CharData *ch) {
+    TrophyNode *node;
     int i;
 
     /* Destroy existing trophy list (if any) */
@@ -34,7 +34,7 @@ void init_trophy(char_data *ch) {
 
     /* Create trophy list */
     for (i = 0; i < TROPHY_LENGTH; i++) {
-        CREATE(node, trophy_node, 1);
+        CREATE(node, TrophyNode, 1);
         if (i == 0) {
             GET_TROPHY(ch) = node;
             node->prev = node;
@@ -48,11 +48,11 @@ void init_trophy(char_data *ch) {
     }
 }
 
-void add_trophy(char_data *ch, int kill_type, int id, float amount) {
+void add_trophy(CharData *ch, int kill_type, int id, float amount) {
     /* Move head node backwards onto oldest */
     GET_TROPHY(ch)->prev->next = GET_TROPHY(ch);
     GET_TROPHY(ch) = GET_TROPHY(ch)->prev;
-    GET_TROPHY(ch)->prev->next = NULL;
+    GET_TROPHY(ch)->prev->next = nullptr;
 
     /* Use for this kill */
     GET_TROPHY(ch)->kill_type = kill_type;
@@ -60,13 +60,13 @@ void add_trophy(char_data *ch, int kill_type, int id, float amount) {
     GET_TROPHY(ch)->amount = amount;
 }
 
-void kill_to_trophy(char_data *vict, char_data *killer, float amount) {
+void kill_to_trophy(CharData *vict, CharData *killer, float amount) {
     int kill_type, id;
-    struct trophy_node *node;
+    TrophyNode *node;
 
     if (IS_NPC(killer)) {
         sprintf(buf, "SYSERR: Non-player '%s' (%d) in kill_to_trophy()", GET_NAME(killer), GET_MOB_VNUM(killer));
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
@@ -88,16 +88,16 @@ void kill_to_trophy(char_data *vict, char_data *killer, float amount) {
     add_trophy(killer, kill_type, id, amount);
 }
 
-void load_trophy(FILE *file, char_data *ch) {
+void load_trophy(FILE *file, CharData *ch) {
     int kill_type, id;
     float amount;
     char line[MAX_INPUT_LENGTH + 1];
-    struct trophy_node *node;
+    TrophyNode *node;
 
     node = GET_TROPHY(ch);
     if (!node) {
         sprintf(buf, "SYSERR: Player %s has no trophy list", GET_NAME(ch));
-        mudlog(buf, NRM, LVL_GOD, TRUE);
+        mudlog(buf, NRM, LVL_GOD, true);
         return;
     }
 
@@ -113,8 +113,8 @@ void load_trophy(FILE *file, char_data *ch) {
     } while (kill_type != TROPHY_NONE);
 }
 
-void save_trophy(FILE *file, char_data *ch) {
-    struct trophy_node *node;
+void save_trophy(FILE *file, CharData *ch) {
+    TrophyNode *node;
 
     if (GET_TROPHY(ch) && GET_TROPHY(ch)->kill_type) {
         fprintf(file, "trophy:\n");
@@ -125,19 +125,19 @@ void save_trophy(FILE *file, char_data *ch) {
     }
 }
 
-void free_trophy(char_data *ch) {
-    struct trophy_node *node, *next_node;
+void free_trophy(CharData *ch) {
+    TrophyNode *node, *next_node;
 
     for (node = GET_TROPHY(ch); node; node = next_node) {
         next_node = node->next;
         free(node);
     }
 
-    GET_TROPHY(ch) = NULL;
+    GET_TROPHY(ch) = nullptr;
 }
 
-void show_trophy(char_data *ch, char_data *vict) {
-    struct trophy_node *node;
+void show_trophy(CharData *ch, CharData *vict) {
+    TrophyNode *node;
     int id;
     char *name;
 
@@ -185,8 +185,8 @@ void show_trophy(char_data *ch, char_data *vict) {
     }
 }
 
-float get_kills_vnum(trophy_node *trophy, int vnum) {
-    struct trophy_node *node;
+float get_kills_vnum(TrophyNode *trophy, int vnum) {
+    TrophyNode *node;
 
     for (node = trophy; node; node = node->next)
         if (node->kill_type == TROPHY_MOBILE && node->id == vnum)
@@ -195,8 +195,8 @@ float get_kills_vnum(trophy_node *trophy, int vnum) {
     return 0;
 }
 
-float get_kills_id(trophy_node *trophy, int id) {
-    struct trophy_node *node;
+float get_kills_id(TrophyNode *trophy, int id) {
+    TrophyNode *node;
 
     for (node = trophy; node; node = node->next)
         if (node->kill_type == TROPHY_PLAYER && node->id == id)
@@ -205,7 +205,7 @@ float get_kills_id(trophy_node *trophy, int id) {
     return 0;
 }
 
-float get_trophy_kills(char_data *ch, char_data *vict) {
+float get_trophy_kills(CharData *ch, CharData *vict) {
     if (IS_NPC(ch))
         return 0;
 
@@ -215,7 +215,7 @@ float get_trophy_kills(char_data *ch, char_data *vict) {
         return get_kills_id(GET_TROPHY(ch), GET_ID(vict));
 }
 
-float exp_trophy_modifier(char_data *ch, char_data *vict) {
+float exp_trophy_modifier(CharData *ch, CharData *vict) {
     float amount = get_trophy_kills(ch, vict);
 
     if (amount < 2.01)

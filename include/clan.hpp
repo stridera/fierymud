@@ -9,15 +9,17 @@
 
 #pragma once
 
+#include "clan.hpp"
+#include "money.hpp"
 #include "privileges.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
 /* Defaults */
-#define ALLOW_CLAN_LINKLOAD TRUE
-#define ALLOW_CLAN_ALTS TRUE
-#define ALLOW_CLAN_QUIT TRUE
-#define BACKUP_CLAN_ON_DELETE TRUE
+#define ALLOW_CLAN_LINKLOAD true
+#define ALLOW_CLAN_ALTS true
+#define ALLOW_CLAN_QUIT true
+#define BACKUP_CLAN_ON_DELETE true
 
 #define CPRIV_DESC 0
 #define CPRIV_MOTD 1
@@ -72,7 +74,8 @@
 #define MAX_CLAN_NAME_LEN 30
 #define MAX_CLAN_TITLE_LEN 30
 
-struct clan_rank {
+struct ClanMembership;
+struct ClanRank {
     char *title;
     flagvector privileges[FLAGVECTOR_SIZE(NUM_CLAN_PRIVS)];
 };
@@ -94,40 +97,65 @@ struct Clan {
 
     /* Lists */
     size_t rank_count; /* array length */
-    clan_rank *ranks;  /* dynamically-allocated array */
+    ClanRank *ranks;   /* dynamically-allocated array */
 
-    clan_membership *people; /* linked list */
-    size_t people_count;     /* cached total number of people */
+    ClanMembership *people; /* linked list */
+    size_t people_count;    /* cached total number of people */
 
-    clan_membership *members; /* start of members in people list */
-    size_t member_count;      /* cached number of members */
+    ClanMembership *members; /* start of members in people list */
+    size_t member_count;     /* cached number of members */
 
-    clan_membership *admins; /* start of admins in people list */
-    size_t admin_count;      /* cached number of admins */
+    ClanMembership *admins; /* start of admins in people list */
+    size_t admin_count;     /* cached number of admins */
 
-    clan_membership *applicants; /* start of applicants in people list */
-    size_t applicant_count;      /* cached number of applicants */
+    ClanMembership *applicants; /* start of applicants in people list */
+    size_t applicant_count;     /* cached number of applicants */
 
-    clan_membership *rejects; /* start of rejects in people list */
-    size_t reject_count;      /* cached number of rejects */
+    ClanMembership *rejects; /* start of rejects in people list */
+    size_t reject_count;     /* cached number of rejects */
 };
 
-struct clan_membership {
+struct ClanMembership {
     char *name;
     unsigned int rank;
     time_t since;
     union {
-        clan_membership *alts;
-        clan_membership *member;
+        ClanMembership *alts;
+        ClanMembership *member;
     } relation;
-    clan_membership *next;
+    ClanMembership *next;
     Clan *clan;
-    char_data *player;
+    CharData *player;
 };
 
-struct clan_snoop {
+struct ClanSnoop {
     Clan *clan;
-    clan_snoop *next;
+    ClanSnoop *next;
+};
+
+/***************************************************************************
+ * Clan Constants
+ ***************************************************************************/
+const struct {
+    const char *abbr;
+    bool default_on;
+    const char *desc;
+} clan_privileges[NUM_CLAN_PRIVS] = {
+    {"desc", false, "Change Description"},
+    {"motd", false, "Change Message of the Day"},
+    {"grant", false, "Grant Privilege"},
+    {"ranks", false, "Change Ranks"},
+    {"title", false, "Change Titles"},
+    {"enroll", false, "Enroll"},
+    {"expel", false, "Expel"},
+    {"promote", false, "Promote"},
+    {"demote", false, "Demote"},
+    {"appfee", false, "Change Application Fee"},
+    {"applev", false, "Change Application Level"},
+    {"dues", false, "Change Dues"},
+    {"withdraw", false, "Withdraw"},
+    {"alts", true, "Alts"},
+    {"chat", true, "Chat"},
 };
 
 #define GET_CLAN_MEMBERSHIP(ch) ((ch)->player_specials->clan)
@@ -136,7 +164,7 @@ struct clan_snoop {
 #define GET_CLAN_TITLE(ch) (IS_CLAN_MEMBER(ch) ? GET_CLAN(ch)->ranks[GET_CLAN_RANK(ch) - 1].title : NULL)
 #define MEMBER_CAN(member, priv)                                                                                       \
     (IS_MEMBER_RANK(member->rank) && IS_FLAGGED(member->clan->ranks[member->rank - 1].privileges, (priv)))
-#define HAS_CLAN_PRIV(ch, priv) (GET_CLAN_MEMBERSHIP(ch) ? MEMBER_CAN(GET_CLAN_MEMBERSHIP(ch), (priv)) : FALSE)
+#define HAS_CLAN_PRIV(ch, priv) (GET_CLAN_MEMBERSHIP(ch) ? MEMBER_CAN(GET_CLAN_MEMBERSHIP(ch), (priv)) : false)
 #define CAN_DO_PRIV(ch, priv) (IS_CLAN_ADMIN(ch) || IS_CLAN_SUPERADMIN(ch) || HAS_CLAN_PRIV((ch), (priv)))
 #define GET_CLAN_SNOOP(ch) ((ch)->player_specials->clan_snoop)
 
@@ -145,19 +173,19 @@ void save_clans(void);
 Clan *find_clan(const char *id);
 Clan *find_clan_by_abbr(const char *abbr);
 Clan *find_clan_by_number(unsigned int number);
-clan_membership *find_clan_membership(const char *name);
-clan_membership *find_clan_membership_in_clan(const char *name, const Clan *clan);
-bool revoke_clan_membership(clan_membership *);
-void add_clan_membership(Clan *, clan_membership *);
+ClanMembership *find_clan_membership(const char *name);
+ClanMembership *find_clan_membership_in_clan(const char *name, const Clan *clan);
+bool revoke_clan_membership(ClanMembership *);
+void add_clan_membership(Clan *, ClanMembership *);
 void save_clan(const Clan *);
 void update_clan(Clan *);
 void free_clans(void);
-void clan_notification(const Clan *, const char_data *skip, const char *str, ...) __attribute__((format(printf, 3, 4)));
-void clan_set_title(char_data *ch);
+void clan_notification(const Clan *, const CharData *skip, const char *str, ...) __attribute__((format(printf, 3, 4)));
+void clan_set_title(CharData *ch);
 Clan *alloc_clan(void);
 void dealloc_clan(Clan *);
 typedef Clan **clan_iter;
-unsigned int days_until_reapply(const clan_membership *member);
+unsigned int days_until_reapply(const ClanMembership *member);
 PRIV_FUNC(clan_admin_check);
 
 clan_iter clans_start(void);

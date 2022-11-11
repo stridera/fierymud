@@ -11,7 +11,10 @@
  * claim of ownership or copyright was made anywhere in the file.          *
  ***************************************************************************/
 
+#pragma once
+
 #include "fight.hpp"
+#include "rooms.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -96,129 +99,148 @@
           recurse into each other */
 
 /* one line of the trigger */
-struct cmdlist_element {
+struct CmdlistElement {
     char *cmd; /* one line of a trigger */
-    struct cmdlist_element *original;
-    struct cmdlist_element *next;
+    CmdlistElement *original;
+    CmdlistElement *next;
 };
 
-struct trig_var_data {
+struct TriggerVariableData {
     char *name;  /* name of variable  */
     char *value; /* value of variable */
 
-    struct trig_var_data *next;
+    TriggerVariableData *next;
 };
 
 /* structure for triggers */
-struct trig_data {
-    int nr;                             /* trigger's rnum                  */
-    byte attach_type;                   /* mob/obj/wld intentions          */
-    byte data_type;                     /* type of game_data for trig      */
-    char *name;                         /* name of trigger                 */
-    long trigger_type;                  /* type of trigger (for bitvector) */
-    struct cmdlist_element *cmdlist;    /* top of command list             */
-    struct cmdlist_element *curr_state; /* ptr to current line of trigger  */
-    int narg;                           /* numerical argument              */
-    char *arglist;                      /* argument list                   */
-    int depth;                          /* depth into nest ifs/whiles/etc  */
-    int loops;                          /* loop iteration counter          */
-    struct event *wait_event;           /* event to pause the trigger      */
-    ubyte purged;                       /* trigger is set to be purged     */
-    ubyte running;                      /* trigger is running              */
-    int damdone;                        /* Amount of damage done by a *damage command */
-    struct trig_var_data *var_list;     /* list of local vars for trigger  */
+struct TrigData {
+    int nr;                        /* trigger's rnum                  */
+    byte attach_type;              /* mob/obj/wld intentions          */
+    byte data_type;                /* type of game_data for trig      */
+    char *name;                    /* name of trigger                 */
+    long trigger_type;             /* type of trigger (for bitvector) */
+    CmdlistElement *cmdlist;       /* top of command list             */
+    CmdlistElement *curr_state;    /* ptr to current line of trigger  */
+    int narg;                      /* numerical argument              */
+    char *arglist;                 /* argument list                   */
+    int depth;                     /* depth into nest ifs/whiles/etc  */
+    int loops;                     /* loop iteration counter          */
+    Event *wait_event;             /* event to pause the trigger      */
+    ubyte purged;                  /* trigger is set to be purged     */
+    ubyte running;                 /* trigger is running              */
+    int damdone;                   /* Amount of damage done by a *damage command */
+    TriggerVariableData *var_list; /* list of local vars for trigger  */
 
-    struct trig_data *next;
-    struct trig_data *next_in_world; /* next in the global trigger list */
+    TrigData *next;
+    TrigData *next_in_world; /* next in the global trigger list */
 };
 
 /* a complete script (composed of several triggers) */
-struct script_data {
-    long types;                        /* bitvector of trigger types */
-    struct trig_data *trig_list;       /* list of triggers           */
-    struct trig_var_data *global_vars; /* list of global variables   */
-    ubyte purged;                      /* script is set to be purged */
+struct ScriptData {
+    long types;                       /* bitvector of trigger types */
+    TrigData *trig_list;              /* list of triggers           */
+    TriggerVariableData *global_vars; /* list of global variables   */
+    ubyte purged;                     /* script is set to be purged */
 
-    struct script_data *next; /* used for purged_scripts    */
+    ScriptData *next; /* used for purged_scripts    */
 };
+
+TrigData *trigger_list = nullptr; /* all attached triggers */
+
+/* mob trigger types */
+const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
+                            "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
+                            "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "\n"};
+
+/* obj trigger types */
+const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
+                             "Drop",   "Give",   "Wear",    "DEATH",  "Remove",  "UNUSED", "UNUSED",
+                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
+
+/* wld trigger types */
+const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
+                             "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
+                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
 
 /* function prototypes for dg_scripts.c */
 int find_real_zone_by_room(room_num vznum);
 int real_zone(int zvnum);
 
 /* function prototypes from triggers.c */
-void act_mtrigger(char_data *ch, const char *str, const struct char_data *actor, const struct char_data *victim,
-                  const struct obj_data *object, const struct obj_data *target, char *arg, char *arg2);
-void speech_mtrigger(char_data *actor, char *str);
-void speech_to_mtrigger(char_data *actor, char_data *ch, char *str);
-void speech_wtrigger(char_data *actor, char *str);
-int greet_mtrigger(char_data *actor, int dir);
-int entry_mtrigger(char_data *ch, int destination);
-int preentry_wtrigger(room_data *room, char_data *actor, int dir);
-int postentry_wtrigger(char_data *actor, int dir);
-int timer_otrigger(obj_data *obj);
-int drop_otrigger(obj_data *obj, char_data *actor);
-int get_otrigger(obj_data *obj, char_data *actor);
-int drop_wtrigger(obj_data *obj, char_data *actor);
-int give_otrigger(obj_data *obj, char_data *actor, char_data *victim);
-int remove_otrigger(obj_data *obj, char_data *actor);
-int receive_mtrigger(char_data *ch, char_data *actor, obj_data *obj);
-void bribe_mtrigger(char_data *ch, char_data *actor, int *cPtr);
-int wear_otrigger(obj_data *obj, char_data *actor, int where);
-int command_mtrigger(char_data *actor, char *cmd, char *argument);
-int command_otrigger(char_data *actor, char *cmd, char *argument);
-int command_wtrigger(char_data *actor, char *cmd, char *argument);
-int death_mtrigger(char_data *ch, char_data *actor);
-int death_otrigger(char_data *ch);
-void fight_mtrigger(char_data *ch);
-void attack_otrigger(char_data *actor, char_data *victim, int dam);
-void hitprcnt_mtrigger(char_data *ch);
-void load_mtrigger(char_data *ch);
-void load_otrigger(obj_data *obj);
-int cast_mtrigger(char_data *actor, char_data *ch, int spellnum);
-int cast_otrigger(char_data *actor, obj_data *obj, int spellnum);
-int cast_wtrigger(char_data *actor, char_data *vict, obj_data *obj, int spellnum);
+void act_mtrigger(const CharData *ch, const char *str, const CharData *actor, const CharData *victim,
+                  const ObjData *obj, const ObjData *target, char *arg, char *arg2);
+void speech_mtrigger(CharData *actor, char *str);
+void speech_to_mtrigger(CharData *actor, CharData *ch, char *str);
+void speech_wtrigger(CharData *actor, char *str);
+int greet_mtrigger(CharData *actor, int dir);
+int entry_mtrigger(CharData *ch, int destination);
+int preentry_wtrigger(RoomData *room, CharData *actor, int dir);
+int postentry_wtrigger(CharData *actor, int dir);
+int timer_otrigger(ObjData *obj);
+int drop_otrigger(ObjData *obj, CharData *actor);
+int get_otrigger(ObjData *obj, CharData *actor);
+int drop_wtrigger(ObjData *obj, CharData *actor);
+int give_otrigger(ObjData *obj, CharData *actor, CharData *victim);
+int remove_otrigger(ObjData *obj, CharData *actor);
+int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj);
+void bribe_mtrigger(CharData *ch, CharData *actor, int *cPtr);
+int wear_otrigger(ObjData *obj, CharData *actor, int where);
+int command_mtrigger(CharData *actor, char *cmd, char *argument);
+int command_otrigger(CharData *actor, char *cmd, char *argument);
+int command_wtrigger(CharData *actor, char *cmd, char *argument);
+int death_mtrigger(CharData *ch, CharData *actor);
+int death_otrigger(CharData *ch);
+void fight_mtrigger(CharData *ch);
+void attack_otrigger(CharData *actor, CharData *victim, int dam);
+void hitprcnt_mtrigger(CharData *ch);
+void load_mtrigger(CharData *ch);
+void load_otrigger(ObjData *obj);
+int cast_mtrigger(CharData *actor, CharData *ch, int spellnum);
+int cast_otrigger(CharData *actor, ObjData *obj, int spellnum);
+int cast_wtrigger(CharData *actor, CharData *vict, ObjData *obj, int spellnum);
 
-int leave_mtrigger(char_data *actor, int dir);
-int leave_otrigger(room_data *room, char_data *actor, int dir);
-int leave_wtrigger(room_data *room, char_data *actor, int dir);
-int consume_otrigger(obj_data *obj, char_data *actor, int cmd);
-int door_mtrigger(char_data *actor, int subcmd, int dir);
-int door_wtrigger(char_data *actor, int subcmd, int dir);
+int leave_mtrigger(CharData *actor, int dir);
+int leave_otrigger(RoomData *room, CharData *actor, int dir);
+int leave_wtrigger(RoomData *room, CharData *actor, int dir);
+int consume_otrigger(ObjData *obj, CharData *actor, int cmd);
+int door_mtrigger(CharData *actor, int subcmd, int dir);
+int door_wtrigger(CharData *actor, int subcmd, int dir);
 
-void time_mtrigger(char_data *ch);
-void time_otrigger(obj_data *obj);
-void time_wtrigger(room_data *room);
+void time_mtrigger(CharData *ch);
+void time_otrigger(ObjData *obj);
+void time_wtrigger(RoomData *room);
 
-void reset_wtrigger(room_data *room);
+void reset_wtrigger(RoomData *room);
 
-void random_mtrigger(char_data *ch);
-void random_otrigger(obj_data *obj);
-void random_wtrigger(room_data *ch);
+void random_mtrigger(CharData *ch);
+void random_otrigger(ObjData *obj);
+void random_wtrigger(RoomData *ch);
 
 /* function prototypes from scripts.c */
 void script_trigger_check(void);
-void add_trigger(script_data *sc, trig_data *t, int loc);
+void add_trigger(ScriptData *sc, TrigData *t, int loc);
 
-void do_stat_trigger(char_data *ch, trig_data *trig);
-void do_sstat_room(char_data *ch, char *buf, room_data *rm);
-void do_sstat_object(char_data *ch, char *buf, obj_data *j);
-void do_sstat_character(char_data *ch, char *buf, char_data *k);
+void do_stat_trigger(CharData *ch, TrigData *trig);
+void do_sstat_room(CharData *ch, char *buf, RoomData *rm);
+void do_sstat_object(CharData *ch, char *buf, ObjData *j);
+void do_sstat_character(CharData *ch, char *buf, CharData *k);
 
-void script_log(trig_data *t, char *msg);
+void script_log(TrigData *t, char *msg);
 void dg_read_trigger(FILE *fp, void *i, int type);
-void dg_obj_trigger(char *line, obj_data *obj);
+void dg_obj_trigger(char *line, ObjData *obj);
 void assign_triggers(void *i, int type);
-struct trig_data *read_trigger(int nr);
+TrigData *read_trigger(int nr);
 void parse_trigger(FILE *trig_f, int nr);
 int real_trigger(int vnum);
-void extract_script(script_data *sc);
-void fullpurge_char(char_data *ch);
+void extract_script(ScriptData *sc);
+void fullpurge_char(CharData *ch);
 void check_time_triggers(void);
-void free_trigger(trig_data *trig);
-void free_varlist(trig_var_data *vd);
-void free_proto_script(trig_proto_list **list);
-bool format_script(descriptor_data *d, int indent_quantum);
+void free_trigger(TrigData *trig);
+void free_varlist(TriggerVariableData *vd);
+void free_proto_script(TriggerPrototypeList **list);
+bool format_script(DescriptorData *d, int indent_quantum);
+
+void add_var(TriggerVariableData **var_list, const char *name, const char *value);
 
 /* Macros for scripts */
 
@@ -253,21 +275,10 @@ bool format_script(descriptor_data *d, int indent_quantum);
     }
 
 /* typedefs that the dg functions rely on */
-typedef struct index_data index_data;
-typedef struct room_data room_data;
-typedef struct obj_data obj_data;
-typedef struct trig_data trig_data;
-typedef struct char_data char_data;
+// typedef struct index_data index_data;
+// typedef struct room_data room_data;
+// typedef obj_data ObjData;
+// typedef struct trig_data trig_data;
+// typedef char_data CharData;
 
-#ifndef __DG_SCRIPTS_C__
-extern struct trig_data *trigger_list;
-#endif
-
-#ifndef __DG_TRIGGERS_C__
-extern const char *trig_types[];
-extern const char *otrig_types[];
-extern const char *wtrig_types[];
-
-#endif
-
-extern int script_driver(void *go_address, trig_data *trig, int type, int mode);
+int script_driver(void *go_address, TrigData *trig, int type, int mode);

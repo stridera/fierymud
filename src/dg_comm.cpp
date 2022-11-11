@@ -36,7 +36,7 @@ char *any_one_name(char *argument, char *first_arg) {
     return argument;
 }
 
-void sub_write_to_char(char_data *ch, char *tokens[], char_data *ctokens[], obj_data *otokens[], char type[]) {
+void sub_write_to_char(CharData *ch, char *tokens[], CharData *ctokens[], ObjData *otokens[], char type[]) {
     char sb[MAX_STRING_LENGTH];
     int i;
 
@@ -115,15 +115,15 @@ void sub_write_to_char(char_data *ch, char *tokens[], char_data *ctokens[], obj_
         send_to_char(CAP(sb), ch);
 }
 
-void sub_write(char *arg, char_data *ch, byte find_invis, int targets) {
+void sub_write(char *arg, CharData *ch, byte find_invis, int targets) {
     char str[MAX_INPUT_LENGTH * 2];
     char type[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
     char *tokens[MAX_INPUT_LENGTH], *s, *p;
-    char_data *ctokens[MAX_INPUT_LENGTH];
-    obj_data *otokens[MAX_INPUT_LENGTH];
+    CharData *ctokens[MAX_INPUT_LENGTH];
+    ObjData *otokens[MAX_INPUT_LENGTH];
 
-    char_data *to;
-    obj_data *obj;
+    CharData *to;
+    ObjData *obj;
     int i;
     int sleep = 1; /* mainly for windows compiles */
     int olc = 0;
@@ -134,15 +134,15 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets) {
     tokens[0] = str;
 
     for (i = 0, p = arg, s = str; *p;) {
-        ctokens[i] = NULL;
-        otokens[i] = NULL;
+        ctokens[i] = nullptr;
+        otokens[i] = nullptr;
         switch (*p) {
         case '~':
         case '@':
         case '^':
         case '>':
         case '*':
-            /* get char_data, move to next token */
+            /* get CharData, move to next token */
             type[i] = *p;
             *s = '\0';
             ++p;
@@ -153,7 +153,7 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets) {
             break;
 
         case '`':
-            /* get obj_data, move to next token */
+            /* get ObjData, move to next token */
             type[i] = *p;
             *s = '\0';
             ++p;
@@ -162,7 +162,7 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets) {
                 obj = find_obj_in_world(find_by_name(name));
             else if (!(obj = find_obj_in_list(world[IN_ROOM(ch)].contents, find_vis_by_name(ch, name))))
                 ;
-            else if (!(obj = find_obj_in_eq(ch, NULL, find_vis_by_name(ch, name))))
+            else if (!(obj = find_obj_in_eq(ch, nullptr, find_vis_by_name(ch, name))))
                 ;
             else
                 obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, name));
@@ -181,7 +181,7 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets) {
     }
 
     *s = '\0';
-    tokens[++i] = NULL;
+    tokens[++i] = nullptr;
 
     if (IS_SET(targets, TO_CHAR) && SENDOK(ch))
         sub_write_to_char(ch, tokens, ctokens, otokens, type);
