@@ -1020,7 +1020,7 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
     /* reduce damage by 5%, then increase 1% per 10 points of true int and wis average */
     dam *= .95;
 
-    dam *= (1 + ((GET_AFFECTED_INT(ch) + GET_AFFECTED_WIS(ch)) / 200));
+    dam *= (1 + ((GET_AFFECTED_INT(ch) + GET_AFFECTED_WIS(ch)) / 2000));
 
     /* and finally, inflict the damage */
     damage(ch, victim, dam, damage_spellnum);
