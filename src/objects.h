@@ -181,6 +181,8 @@
 
 #define VAL_ARMOR_AC 0
 
+#define VAL_TREASURE_AC 0
+
 #define VAL_POTION_LEVEL 0
 #define VAL_POTION_SPELL_1 1
 #define VAL_POTION_SPELL_2 2

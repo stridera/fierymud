@@ -811,6 +811,7 @@ void oedit_disp_val1_menu(struct descriptor_data *d) {
         send_to_char("Modifier to Hitroll:\r\n", d->character);
         break;
     case ITEM_ARMOR:
+    case ITEM_TREASURE:
         send_to_char("Apply to AC:\r\n", d->character);
         break;
     case ITEM_CONTAINER:
@@ -1095,6 +1096,7 @@ void oedit_disp_obj_values(struct descriptor_data *d) {
                 nrm);
         break;
     case ITEM_ARMOR:
+    case ITEM_TREASURE:
         sprintf(buf, "      AC-Apply : %s%d%s\r\n", cyn, GET_OBJ_VAL(obj, VAL_ARMOR_AC), nrm);
         break;
     case ITEM_TRAP:

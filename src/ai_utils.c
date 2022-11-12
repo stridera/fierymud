@@ -286,6 +286,7 @@ int appraise_item(struct char_data *ch, struct obj_data *obj) {
         /* charges total (value 1) doesn't matter right now */
         break;
     case ITEM_ARMOR:
+    case ITEM_TREASURE:
         value = GET_OBJ_VAL(obj, VAL_ARMOR_AC);
         break;
     case ITEM_CONTAINER:

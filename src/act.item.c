@@ -1805,7 +1805,6 @@ ACMD(do_compare) {
                 act("$p seems to have more charges than $P.", FALSE, ch, obj1, obj2, TO_CHAR);
             }
             break;
-        case ITEM_TREASURE:
         case ITEM_MONEY:
             if (GET_OBJ_COST(obj1) == GET_OBJ_COST(obj2))
                 send_to_char("They look equally valuable.\r\n", ch);
@@ -1816,6 +1815,7 @@ ACMD(do_compare) {
             }
             break;
         case ITEM_ARMOR:
+        case ITEM_TREASURE:
             if (GET_OBJ_VAL(obj1, VAL_ARMOR_AC) == GET_OBJ_VAL(obj2, VAL_ARMOR_AC))
                 send_to_char("They look like they offer similar protection.\r\n", ch);
             else {

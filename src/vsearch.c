@@ -1180,7 +1180,7 @@ const struct vsearch_object_value_type {
     {24, {ITEM_WEAPON}},                                     /* damsizedice */
     {25, {ITEM_WEAPON}},                                     /* attacktype */
     {26, {ITEM_WEAPON}},                                     /* average */
-    {27, {ITEM_ARMOR}},                                      /* armor */
+    {27, {ITEM_ARMOR, ITEM_TREASURE}},                       /* armor */
     {28, {ITEM_CONTAINER, ITEM_DRINKCON, ITEM_FOUNTAIN}},    /* capacity */
     {29, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                    /* contains */
     {30, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                    /* liquid */
@@ -1274,6 +1274,7 @@ ACMD(do_osearch) {
             header_type = "To-Dam, Average";
             break;
         case ITEM_ARMOR:
+        case ITEM_TREASURE:
             header_type = "AC-Apply";
             break;
         case ITEM_TRAP:
@@ -1465,7 +1466,7 @@ ACMD(do_osearch) {
                     GET_OBJ_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_WEIGHT(obj), 5 + count_color_chars(buf), buf);
             switch (subcmd) {
             case SCMD_VWEAR:
-                if (GET_OBJ_TYPE(obj) == ITEM_ARMOR && GET_OBJ_VAL(obj, VAL_ARMOR_AC))
+                if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) && GET_OBJ_VAL(obj, VAL_ARMOR_AC))
                     sprintf(vbuf, "%s %+dac", vbuf, GET_OBJ_VAL(obj, VAL_ARMOR_AC));
                 for (temp = 0; temp < MAX_OBJ_APPLIES; ++temp)
                     if (obj->applies[temp].modifier) {
@@ -1510,6 +1511,7 @@ ACMD(do_osearch) {
                             GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj));
                     break;
                 case ITEM_ARMOR:
+                case ITEM_TREASURE:
                     sprintf(vbuf, "%s%2dac", vbuf, GET_OBJ_VAL(obj, VAL_ARMOR_AC));
                     break;
                 case ITEM_TRAP:

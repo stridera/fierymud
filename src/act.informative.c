@@ -1542,6 +1542,7 @@ void identify_obj(struct obj_data *obj, struct char_data *ch, int location) {
                 GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj));
         break;
     case ITEM_ARMOR:
+    case ITEM_TREASURE:
         cprintf(ch, "AC-apply is %d\r\n", GET_OBJ_VAL(obj, VAL_ARMOR_AC));
         break;
     case ITEM_LIGHT:
