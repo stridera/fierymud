@@ -97,7 +97,9 @@
 #define EFF_HEX 79           /* The evil side of blessing, to hurt ether chars */
 #define EFF_DETECT_POISON 80 /* Char is sensitive to poison */
 #define EFF_SONG_OF_REST 81
-#define NUM_EFF_FLAGS 82     /* Keep me updated */
+#define EFF_DISPLACEMENT 82
+#define EFF_GREATER_DISPLACEMENT 83
+#define NUM_EFF_FLAGS 84     /* Keep me updated */
 
 extern const char *effect_flags[NUM_EFF_FLAGS + 1];
 
