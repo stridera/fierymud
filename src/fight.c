@@ -2074,6 +2074,23 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
         calc_thaco -= (GET_SKILL(ch, SKILL_BAREHAND) / 2);
     }
 
+    /* check for bless/hex - VALUES: 0 to 20 */
+    if (EFF_FLAGGED(ch, EFF_BLESS) || EFF_FLAGGED(ch, EFF_HEX)) {
+        if (IS_GOOD(ch) && IS_EVIL(victim)) 
+            calc_thaco -= GET_LEVEL(ch) / 5; /* good characters get a big bonus to attacking evil characters */
+        if (IS_GOOD(ch) && IS_NEUTRAL(victim))
+            calc_thaco -= GET_LEVEL(ch) / 10; /* good characters get a smaller bonus to attacking neutral characters */
+        if (IS_GOOD(ch) && IS_GOOD(victim))
+            calc_thaco += GET_LEVEL(ch) / 10; /* good characters get a small penalty to attacking good characters */
+        if (IS_EVIL(ch) && IS_GOOD(victim))
+            calc_thaco -= GET_LEVEL(ch) / 5; /* evil characters get a big bonus to attacking good characters */
+        if (IS_EVIL(ch) && IS_NEUTRAL(victim))
+            calc_thaco -= GET_LEVEL(ch) / 5; /* evil characters get a small bonus to attacking neutral characters */
+        if (IS_EVIL(ch) && IS_EVIL(victim))
+            calc_thaco += GET_LEVEL(ch) / 10; /* evil characters get a small penalty to attacking evil characters */
+        if (IS_NEUTRAL(ch) && !IS_NEUTRAL(victim))
+            calc_thaco -= GET_LEVEL(ch) / 10; /* neutral characters get a small bonus to attacking good or evil characters */
+    }
     /* calc_thaco ranges from 290 to -290 */
     diceroll = number(1, 200);
 
