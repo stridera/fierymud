@@ -1017,8 +1017,8 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
             act("$n cringes with a pained look on $s face.", TRUE, victim, 0, 0, TO_ROOM);
     }
 
-    /* reduce damage by 5%, then increase 2% per 10 points of true int */
-    dam *= .95;
+    /* reduce damage by 10%, then increase 2% per 10 points of true int */
+    dam *= .9;
 
     dam *= 1 + ((GET_AFFECTED_INT(ch) / 500));
 
