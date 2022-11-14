@@ -1144,17 +1144,13 @@ bool perform_wear(struct char_data *ch, /* Who is trying to wear something */
 int find_eq_pos(struct char_data *ch, struct obj_data *obj, char *arg) {
     int where = -1;
 
-    static const char *keywords[] = {"light",      "finger",     "!RESERVED!", "neck",       "!RESERVED!", "body",
+    static const char *keywords[] = {"!RESERVED!", "finger",     "!RESERVED!", "neck",       "!RESERVED!", "body",
                                      "head",       "legs",       "feet",       "hands",      "arms",       "shield",
                                      "about",      "waist",      "wrist",      "!RESERVED!", "!RESERVED!", "!RESERVED!",
                                      "!RESERVED!", "!RESERVED!", "!RESERVED!", "eyes",       "face",       "ear",
-                                     "!RESERVED!", "badge",      "belt",       "\n"};
+                                     "!RESERVED!", "badge",      "belt",       "hover",      "\n"};
 
     if (!arg || !*arg) {
-        /* Allow wearing of light objects in light pos.  Gets overridden
-           by any other can wear flags below. - myc 5 Dec 2006 */
-        if (GET_OBJ_TYPE(obj) == ITEM_LIGHT)
-            where = WEAR_LIGHT;
         if (CAN_WEAR(obj, ITEM_WEAR_FINGER))
             where = WEAR_FINGER_R;
         if (CAN_WEAR(obj, ITEM_WEAR_NECK))
