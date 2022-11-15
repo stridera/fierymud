@@ -267,12 +267,12 @@ void init_flagvectors() {
     for (i = 0; i < FLAGVECTOR_SIZE(max); ++i)
         ALL_FLAGS[i] = ~0;
 
-    if (sizeof(flagvector) != 4) {
-        log("SYSERR: WARNING! Flagvector type size isn't the expected 4 bytes!");
-        log("SYSERR: WARNING! You may have to fix a lot of things...");
-        log("SYSERR: WARNING! This may cause problems with player and world files "
-            "especially.");
-    }
+    // if (sizeof(flagvector) != 4) {
+    //     log("SYSERR: WARNING! Flagvector type size isn't the expected 4 bytes!");
+    //     log("SYSERR: WARNING! You may have to fix a lot of things...");
+    //     log("SYSERR: WARNING! This may cause problems with player and world files "
+    //         "especially.");
+    // }
 }
 
 bool ALL_FLAGGED(const flagvector field[], const flagvector flags[], const int num_flags) {

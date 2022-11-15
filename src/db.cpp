@@ -963,13 +963,8 @@ void index_boot(int mode) {
             exit(1);
             break;
         }
-        /* Ok, not sure we ever use this in mini-mud mode so I'm making it
-           to where the index is loaded instead of the MINDEX_FILE even
-           in mini_mud mode which is dev mode. */
-        if (mini_mud)
-            index_filename = INDEX_FILE;
-        else
-            index_filename = INDEX_FILE;
+
+        index_filename = INDEX_FILE;
 
         sprintf(buf2, "%s/%s", prefix, index_filename);
 
