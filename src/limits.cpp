@@ -265,7 +265,7 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
         if (!IS_SET(mode, GAIN_IGNORE_NAME_BOUNDARY)) {
             /* There's a level 10 limit for players with disapproved names */
             if (PLR_FLAGGED(ch, PLR_NAPPROVE) && GET_LEVEL(ch) >= 10) {
-                cprintf(ch, AHCYN "You can gain no more levels or experience until your name is approved!\r\n" ANRM);
+                char_printf(ch, AHCYN "You can gain no more levels or experience until your name is approved!\n" ANRM);
                 return;
             }
         }
@@ -299,16 +299,16 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
          */
         if (GET_EXP(ch) != old_xp && GET_EXP(ch) == xp_needed - 1) {
             if (level_gain && GET_LEVEL(ch) < LVL_MAX_MORT)
-                cprintf(ch, AHCYN "You are ready for the next level!\r\n" ANRM);
+                char_printf(ch, AHCYN "You are ready for the next level!\n" ANRM);
             else if (GET_LEVEL(ch) == LVL_MAX_MORT) {
                 if (PLR_FLAGGED(ch, PLR_GOTSTARS)) {
-                    cprintf(ch, AFMAG "You got your %s " AFMAG "back again!\r\n" ANRM, CLASS_STARS(ch));
-                    all_except_printf(ch, "%s regained %s %s!\r\n", GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
+                    char_printf(ch, AFMAG "You got your %s " AFMAG "back again!\n" ANRM, CLASS_STARS(ch));
+                    all_except_printf(ch, "%s regained %s %s!\n", GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
                 } else {
                     SET_FLAG(PLR_FLAGS(ch), PLR_GOTSTARS);
-                    cprintf(ch, AFMAG "You have achieved %s " AFMAG "status in %s" AFMAG "!!\r\n" ANRM, CLASS_STARS(ch),
-                            CLASS_FULL(ch));
-                    all_except_printf(ch, AFMAG "%s " AFMAG "has achieved %s " AFMAG "status in %s" AFMAG "!!\r\n" ANRM,
+                    char_printf(ch, AFMAG "You have achieved %s " AFMAG "status in %s" AFMAG "!!\n" ANRM,
+                                CLASS_STARS(ch), CLASS_FULL(ch));
+                    all_except_printf(ch, AFMAG "%s " AFMAG "has achieved %s " AFMAG "status in %s" AFMAG "!!\n" ANRM,
                                       GET_NAME(ch), CLASS_STARS(ch), CLASS_FULL(ch));
                 }
             }
@@ -324,20 +324,20 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
 
         if (num_levels && !IS_SET(mode, GAIN_IGNORE_NAME_BOUNDARY)) {
             if (PLR_FLAGGED(ch, PLR_NAPPROVE)) {
-                cprintf(ch, AHCYN
-                        "Your name must be approved by a god before "
-                        "level 10!\r\nPlease contact a god as soon as "
-                        "possible!\r\n" ANRM);
+                char_printf(ch, AHCYN
+                            "Your name must be approved by a god before "
+                            "level 10!\nPlease contact a god as soon as "
+                            "possible!\n" ANRM);
             }
         }
 
         if (num_levels == 1) {
-            cprintf(ch, AHWHT "You gain a level!\r\n" ANRM);
-            all_except_printf(ch, "%s advanced to level %d!\r\n", GET_NAME(ch), GET_LEVEL(ch));
+            char_printf(ch, AHWHT "You gain a level!\n" ANRM);
+            all_except_printf(ch, "%s advanced to level %d!\n", GET_NAME(ch), GET_LEVEL(ch));
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
         } else if (num_levels > 1) {
-            cprintf(ch, AHWHT "You gain %d levels to %d!\r\n" ANRM, num_levels, GET_LEVEL(ch));
-            all_except_printf(ch, "%s advances %d levels to level %d!\r\n", GET_NAME(ch), num_levels, GET_LEVEL(ch));
+            char_printf(ch, AHWHT "You gain %d levels to %d!\n" ANRM, num_levels, GET_LEVEL(ch));
+            all_except_printf(ch, "%s advances %d levels to level %d!\n", GET_NAME(ch), num_levels, GET_LEVEL(ch));
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d (from %d)", GET_NAME(ch),
                     GET_LEVEL(ch), GET_LEVEL(ch) - num_levels);
         }
@@ -352,13 +352,13 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
             advance_level(ch, LEVEL_LOSE);
         }
         if (num_levels == 1) {
-            cprintf(ch, AHWHT "You lose a level!\r\n" ANRM);
-            all_except_printf(ch, "%s lost level %d!\r\n", GET_NAME(ch), GET_LEVEL(ch) + 1);
+            char_printf(ch, AHWHT "You lose a level!\n" ANRM);
+            all_except_printf(ch, "%s lost level %d!\n", GET_NAME(ch), GET_LEVEL(ch) + 1);
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s lost level %d", GET_NAME(ch), GET_LEVEL(ch) + 1);
         } else if (num_levels > 1) {
-            cprintf(ch, AHWHT "You lose %d levels from %d to %d!\r\n" ANRM, num_levels, GET_LEVEL(ch) + num_levels,
-                    GET_LEVEL(ch));
-            all_except_printf(ch, "%s lost %d levels from %d to %d!\r\n", GET_NAME(ch), num_levels,
+            char_printf(ch, AHWHT "You lose %d levels from %d to %d!\n" ANRM, num_levels, GET_LEVEL(ch) + num_levels,
+                        GET_LEVEL(ch));
+            all_except_printf(ch, "%s lost %d levels from %d to %d!\n", GET_NAME(ch), num_levels,
                               GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s lost %d levels from %d to %d", GET_NAME(ch),
                     num_levels, GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
@@ -397,23 +397,23 @@ void gain_condition(CharData *ch, int condition, int value) {
     if (GET_COND(ch, condition) == 5) {
         switch (condition) {
         case FULL:
-            send_to_char("You're a little hungry.\r\n", ch);
+            send_to_char("You're a little hungry.\n", ch);
             return;
         case THIRST:
-            send_to_char("You're a little thirsty.\r\n", ch);
+            send_to_char("You're a little thirsty.\n", ch);
             return;
         }
     } else if (!GET_COND(ch, condition)) {
         switch (condition) {
         case FULL:
-            send_to_char("You are hungry.\r\n", ch);
+            send_to_char("You are hungry.\n", ch);
             return;
         case THIRST:
-            send_to_char("You are thirsty.\r\n", ch);
+            send_to_char("You are thirsty.\n", ch);
             return;
         case DRUNK:
             if (intoxicated)
-                send_to_char("You are now sober.\r\n", ch);
+                send_to_char("You are now sober.\n", ch);
             return;
         default:
             break;
@@ -443,7 +443,7 @@ void check_idling(CharData *ch) {
             /* this immort has been idle for 10+ mins */
             if (GET_AUTOINVIS(ch) > 0 && GET_INVIS_LEV(ch) < GET_AUTOINVIS(ch)) {
                 /* this char is not already invis beyond the immorts invis level */
-                sprintf(buf, "You have been idle for ten minutes.  Auto-invis to level %d engaged.\r\n",
+                sprintf(buf, "You have been idle for ten minutes.  Auto-invis to level %d engaged.\n",
                         GET_AUTOINVIS(ch));
                 send_to_char(buf, ch);
                 perform_immort_invis(ch, GET_AUTOINVIS(ch));
@@ -456,7 +456,7 @@ void check_idling(CharData *ch) {
         if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE && (!ch->forward || ch->in_room != 0)) {
             GET_WAS_IN(ch) = ch->in_room;
             act("$n disappears into the void.", true, ch, 0, 0, TO_ROOM);
-            send_to_char("You have been idle, and are pulled into a void.\r\n", ch);
+            send_to_char("You have been idle, and are pulled into a void.\n", ch);
             save_player(ch);
             char_from_room(ch);
             char_to_room(ch, 0);
@@ -670,13 +670,13 @@ void point_update(void) {
             if (IS_THIRSTY(i))
                 ;
             /* send_to_char("Your hunger and thirst are draining your energy
-             * rapidly.\r\n", i); */
+             * rapidly.\n", i); */
             else {
-                /* send_to_char("You are feeling weak from hunger.\r\n", i); */
+                /* send_to_char("You are feeling weak from hunger.\n", i); */
                 gain_condition(i, THIRST, -HOURLY_THIRST_CHANGE);
             }
         } else if (IS_THIRSTY(i)) {
-            /* send_to_char("You feel dizzy from extreme thirst.\r\n", i); */
+            /* send_to_char("You feel dizzy from extreme thirst.\n", i); */
             gain_condition(i, FULL, -1);
         } else {
             gain_condition(i, FULL, -1);

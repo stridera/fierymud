@@ -31,6 +31,7 @@
 #include "races.hpp"
 #include "shop.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -52,7 +53,7 @@
 /*-------------------------------------------------------------------*/
 /* external variables */
 
-PlayerSpecialData dummy_mob;
+extern PlayerSpecialData dummy_mob;
 
 /*-------------------------------------------------------------------*/
 /*. Handy  macros .*/
@@ -146,8 +147,8 @@ void medit_setup_new(DescriptorData *d) {
     /*. default strings . */
     GET_NAMELIST(mob) = strdup("mob unfinished");
     GET_SDESC(mob) = strdup("the unfinished mob");
-    GET_MOBLDESC(mob) = strdup("An unfinished mob stands here.\r\n");
-    GET_DDESC(mob) = strdup("It looks unfinished.\r\n");
+    GET_MOBLDESC(mob) = strdup("An unfinished mob stands here.\n");
+    GET_DDESC(mob) = strdup("It looks unfinished.\n");
     GET_CLASS(mob) = CLASS_DEFAULT;
 
     OLC_MOB(d) = mob;
@@ -523,7 +524,7 @@ void medit_save_to_disk(int zone_num) {
     for (i = zone * 100; i <= top; i++) {
         if ((rmob_num = real_mobile(i)) != -1) {
             if (fprintf(mob_file, "#%d\n", i) < 0) {
-                mudlog("SYSERR: OLC: Cannot write mob file!\r\n", BRF, LVL_GOD, true);
+                mudlog("SYSERR: OLC: Cannot write mob file!\n", BRF, LVL_GOD, true);
                 fclose(mob_file);
                 return;
             }
@@ -616,10 +617,10 @@ void medit_disp_stances(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     for (i = 0; *stance_types[i] != '\n'; i++) {
-        sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, stance_types[i]);
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, stance_types[i]);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter stance number:\r\n", d->character);
+    send_to_char("Enter stance number:\n", d->character);
 }
 
 /*. Display positions (sitting, standing etc) .*/
@@ -633,10 +634,10 @@ void medit_disp_positions(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     for (i = 0; *position_types[i] != '\n'; i++) {
-        sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, position_types[i]);
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, position_types[i]);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter position number:\r\n", d->character);
+    send_to_char("Enter position number:\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -654,10 +655,10 @@ void medit_disp_sex(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     for (i = 0; i < NUM_SEXES; i++) {
-        sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, genders[i]);
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, genders[i]);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter gender number:\r\n", d->character);
+    send_to_char("Enter gender number:\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -674,10 +675,10 @@ void medit_size(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     for (i = 0; i < NUM_SIZES; i++) {
-        sprintf(buf, "%s%2d%s) %c%s\r\n", grn, i, nrm, (sizes[i].name)[0], sizes[i].name + 1);
+        sprintf(buf, "%s%2d%s) %c%s\n", grn, i, nrm, (sizes[i].name)[0], sizes[i].name + 1);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter size number:\r\n", d->character);
+    send_to_char("Enter size number:\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -691,10 +692,10 @@ void medit_disp_attack_types(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     for (i = 0; i < NUM_ATTACK_TYPES; i++) {
-        sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, attack_hit_text[i].singular);
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, attack_hit_text[i].singular);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter attack type:\r\n", d->character);
+    send_to_char("Enter attack type:\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -718,11 +719,11 @@ void medit_disp_mob_flags(DescriptorData *d) {
                 break;
             sprintf(buf, "%s%s%2d%s) %-20.20s", buf, grn, FLAG_INDEX + 1, nrm, action_bits[FLAG_INDEX]);
         }
-        send_to_char(strcat(buf, "\r\n"), d->character);
+        send_to_char(strcat(buf, "\n"), d->character);
     }
 
     sprintflag(buf1, MOB_FLAGS(OLC_MOB(d)), NUM_MOB_FLAGS, action_bits);
-    sprintf(buf, "\r\nCurrent flags : %s%s%s\r\nEnter mob flags (0 to quit) : ", cyn, buf1, nrm);
+    sprintf(buf, "\nCurrent flags : %s%s%s\nEnter mob flags (0 to quit) : ", cyn, buf1, nrm);
     send_to_char(buf, d->character);
 }
 
@@ -732,13 +733,13 @@ void medit_class_types(DescriptorData *d) {
     int i;
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("\r\nListings of Classes\r\n", d->character);
+    send_to_char("\nListings of Classes\n", d->character);
 #endif
     for (i = 0; i < NUM_CLASSES; i++) {
-        sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, classes[i].plainname);
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, classes[i].plainname);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter Class:\r\n", d->character);
+    send_to_char("Enter Class:\n", d->character);
 }
 
 void medit_race_types(DescriptorData *d) {
@@ -746,13 +747,13 @@ void medit_race_types(DescriptorData *d) {
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
     /*send_to_char(".[H.[J", d->character);    */
-    send_to_char("\r\nListings of Races\r\n", d->character);
+    send_to_char("\nListings of Races\n", d->character);
 #endif
     for (i = 0; i < NUM_RACES; i++) {
-        sprintf(buf, "%s%2d%s) %s\r\n", grn, i, nrm, races[i].plainname);
+        sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, races[i].plainname);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter Races:\r\n", d->character);
+    send_to_char("Enter Races:\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -774,11 +775,11 @@ void medit_disp_aff_flags(DescriptorData *d) {
                 break;
             sprintf(buf, "%s%s%2d%s) %-20.20s", buf, grn, FLAG_INDEX + 1, nrm, effect_flags[FLAG_INDEX]);
         }
-        send_to_char(strcat(buf, "\r\n"), d->character);
+        send_to_char(strcat(buf, "\n"), d->character);
     }
 
     sprintflag(buf1, EFF_FLAGS(OLC_MOB(d)), NUM_EFF_FLAGS, effect_flags);
-    sprintf(buf, "\r\nCurrent flags   : %s%s%s\r\nEnter aff flags (0 to quit):\r\n", cyn, buf1, nrm);
+    sprintf(buf, "\nCurrent flags   : %s%s%s\nEnter aff flags (0 to quit):\n", cyn, buf1, nrm);
     send_to_char(buf, d->character);
 }
 
@@ -794,11 +795,11 @@ void medit_disp_lifeforces(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     for (i = 0; i < NUM_LIFEFORCES; i++) {
-        sprintf(buf, "%s%2d%s) %s%c%s%s\r\n", grn, i, nrm, lifeforces[i].color, UPPER((lifeforces[i].name)[0]),
+        sprintf(buf, "%s%2d%s) %s%c%s%s\n", grn, i, nrm, lifeforces[i].color, UPPER((lifeforces[i].name)[0]),
                 lifeforces[i].name + 1, nrm);
         send_to_char(buf, d->character);
     }
-    send_to_char("Enter life force number:\r\n", d->character);
+    send_to_char("Enter life force number:\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -809,7 +810,7 @@ void medit_disp_compositions(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     list_olc_compositions(d->character);
-    send_to_char("Enter composition number:\r\n", d->character);
+    send_to_char("Enter composition number:\n", d->character);
 }
 
 /*-------------------------------------------------------------------*/
@@ -828,15 +829,15 @@ void medit_disp_menu(DescriptorData *d) {
 #if defined(CLEAR_SCREEN)
             ".[H.[J"
 #endif
-            "-- Mob: '&5%s&0'  vnum: [&2%5d&0]\r\n"
-            "&2&b0&0) Alias: &6%s&0\r\n"
-            "&2&b1&0) Short: &6%s&0\r\n"
+            "-- Mob: '&5%s&0'  vnum: [&2%5d&0]\n"
+            "&2&b0&0) Alias: &6%s&0\n"
+            "&2&b1&0) Short: &6%s&0\n"
             "&2&b2&0) Long : &6%s&0\r"
-            "&2&b3&0) Description:\r\n&6%s&0"
+            "&2&b3&0) Description:\n&6%s&0"
             "&2&b4&0) Race: &6%-10s&0            &2&b5&0) Size: &6%-10s&0        "
-            " &2&b6&0) Gender: &6%s&0\r\n"
+            " &2&b6&0) Gender: &6%s&0\n"
             "&2&b7&0) Level: &6%-3d&0                  &2&b8&0) Class: &6%-10s&0 "
-            "       &2&b9&0) Alignment: &6%d&0\r\n",
+            "       &2&b9&0) Alignment: &6%d&0\n",
             GET_SDESC(mob), OLC_NUM(d), GET_NAMELIST(mob), GET_SDESC(mob), GET_MOBLDESC(mob), GET_DDESC(mob),
             RACE_PLAINNAME(mob), SIZE_DESC(mob), genders[(int)GET_SEX(mob)], GET_LEVEL(mob),
             classes[(int)GET_CLASS(mob)].plainname, GET_ALIGNMENT(mob));
@@ -844,15 +845,15 @@ void medit_disp_menu(DescriptorData *d) {
 
     sprintf(buf,
             "&2&bA&0) Hitroll    : (&6%3d&0) [&6&b%3d&0]    &2&bB&0) Damroll     : "
-            "(&6%3d&0) [&6&b%3d&0]\r\n"
+            "(&6%3d&0) [&6&b%3d&0]\n"
             "&2&bC&0&0) # Dam Dice : (&6%3d&0) [&6&b%3d&0]    &2&bD&0) Size Dam Die: "
-            "(&6%3d&0) [&6&b%3d&0]  (ie. XdY + Z) \r\n"
+            "(&6%3d&0) [&6&b%3d&0]  (ie. XdY + Z) \n"
             "&2&bE&0) # HP Dice  : (&6%3d&0) [&6&b%3d&0]    &2&bF&0) Size HP Dice: "
-            "(&6%3d&0) [&6&b%3d&0] &2&bG&0) Bonus: (&6%5d&0) [&6&b%5d&0]\r\n"
+            "(&6%3d&0) [&6&b%3d&0] &2&bG&0) Bonus: (&6%5d&0) [&6&b%5d&0]\n"
             "&2&bH&0) Armor Class: (&6%3d&0) [&6&b%3d&0]    &2&bI&0) Exp         : "
-            "[&6&b%9ld&0]\r\n"
+            "[&6&b%9ld&0]\n"
             "&2&bJ&0) Gold       : [&6&b%8d&0]     &2&bK&0) Platinum     : "
-            "[&6&b%9d&0]\r\n",
+            "[&6&b%9d&0]\n",
             (mob->points.hitroll), (mob->mob_specials.ex_hitroll), (mob->points.damroll),
             (mob->mob_specials.ex_damroll), (mob->mob_specials.damnodice), (mob->mob_specials.ex_damnodice),
             (mob->mob_specials.damsizedice), (mob->mob_specials.ex_damsizedice), (mob)->points.hit,
@@ -866,18 +867,18 @@ void medit_disp_menu(DescriptorData *d) {
 
     sprintf(buf,
             "&2&bL&0) Perception : [&6&b%4ld&0]         &2&bM&0) Hiddenness  : "
-            "[&6&b%4ld&0]\r\n"
-            "&2&bN&0) Life Force    : %s%c%s&0\r\n"
-            "&2&bO&0) Composition   : %s%c%s&0\r\n"
-            "&2&bP&0) Stance        : &6%s&0\r\n"
-            "&2&bR&0) Load Position : &6%s&0\r\n"
-            "&2&bT&0) Default Pos   : &6%s&0\r\n"
-            "&2&bU&0) Attack Type   : &6%s&0\r\n"
-            "&2&bV&0) Act Flags     : &6%s&0\r\n"
-            "&2&bW&0) Aff Flags     : &6%s&0\r\n"
-            "&2&bS&0) Script        : &6%s&0\r\n"
-            "&2&bQ&0) Quit\r\n"
-            "Enter choice:\r\n",
+            "[&6&b%4ld&0]\n"
+            "&2&bN&0) Life Force    : %s%c%s&0\n"
+            "&2&bO&0) Composition   : %s%c%s&0\n"
+            "&2&bP&0) Stance        : &6%s&0\n"
+            "&2&bR&0) Load Position : &6%s&0\n"
+            "&2&bT&0) Default Pos   : &6%s&0\n"
+            "&2&bU&0) Attack Type   : &6%s&0\n"
+            "&2&bV&0) Act Flags     : &6%s&0\n"
+            "&2&bW&0) Aff Flags     : &6%s&0\n"
+            "&2&bS&0) Script        : &6%s&0\n"
+            "&2&bQ&0) Quit\n"
+            "Enter choice:\n",
             GET_PERCEPTION(mob), GET_HIDDENNESS(mob), LIFEFORCE_COLOR(mob), UPPER(*LIFEFORCE_NAME(mob)),
             LIFEFORCE_NAME(mob) + 1, COMPOSITION_COLOR(mob), UPPER(*COMPOSITION_NAME(mob)), COMPOSITION_NAME(mob) + 1,
             stance_types[(int)GET_STANCE(mob)], position_types[(int)GET_POS(mob)],
@@ -896,7 +897,7 @@ void medit_parse(DescriptorData *d, char *arg) {
     int i;
     if (OLC_MODE(d) > MEDIT_NUMERICAL_RESPONSE) {
         if (!*arg || (!isdigit(arg[0]) && ((*arg == '-') && (!isdigit(arg[1]))))) {
-            send_to_char("Field must be numerical, try again:\r\n", d->character);
+            send_to_char("Field must be numerical, try again:\n", d->character);
             return;
         }
     }
@@ -910,7 +911,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         case 'y':
         case 'Y':
             /*. Save the mob in memory and to disk  . */
-            send_to_char("Saving mobile to memory.\r\n", d->character);
+            send_to_char("Saving mobile to memory.\n", d->character);
             medit_save_internally(d);
             sprintf(buf, "OLC: %s edits mob %d", GET_NAME(d->character), OLC_NUM(d));
             mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
@@ -922,8 +923,8 @@ void medit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             return;
         default:
-            send_to_char("Invalid choice!\r\n", d->character);
-            send_to_char("Do you wish to save the mobile?\r\n", d->character);
+            send_to_char("Invalid choice!\n", d->character);
+            send_to_char("Do you wish to save the mobile?\n", d->character);
             return;
         }
         break;
@@ -935,7 +936,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Anything been changed? */
-                send_to_char("Do you wish to save the changes to the mobile? (y/n)\r\n", d->character);
+                send_to_char("Do you wish to save the changes to the mobile? (y/n)\n", d->character);
                 OLC_MODE(d) = MEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
@@ -954,7 +955,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             break;
         case '3':
             OLC_MODE(d) = MEDIT_D_DESC;
-            write_to_output("Enter mob description: (/s saves /h for help)\r\n\r\n", d);
+            write_to_output("Enter mob description: (/s saves /h for help)\n\n", d);
             string_write(d, &OLC_MOB(d)->player.description, MAX_MOB_DESC);
             OLC_VAL(d) = 1;
             return;
@@ -1098,19 +1099,19 @@ void medit_parse(DescriptorData *d, char *arg) {
                20060409 - RLS case '?': if (GET_MOB_RNUM(OLC_MOB(d)) == -1)
                {
                send_to_char("You cannot purge a non-existent (unsaved) mob! Choose
-               again:\r\n",d->character);
+               again:\n",d->character);
                }
                else if (GET_LEVEL(d->character)<LVL_HEAD_B)
                {
                sprintf(buf,"You are too low level to purge! Get a level %d or greater
-               to do this.\r\n",LVL_HEAD_B); send_to_char(buf,d->character);
+               to do this.\n",LVL_HEAD_B); send_to_char(buf,d->character);
                }
                else
                {
                OLC_MODE(d) = MEDIT_PURGE_MOBILE;
                * make extra sure*
                send_to_char("Purging will also remove all existing mobiles of this
-               sort!\r\n", d->character); send_to_char("Are you sure you wish to
+               sort!\n", d->character); send_to_char("Are you sure you wish to
                PERMANENTLY DELETE the mobile? (y/n) : ", d->character);
                }
                return; */
@@ -1119,9 +1120,9 @@ void medit_parse(DescriptorData *d, char *arg) {
             return;
         }
         if (i != 0) {
-            send_to_char(i == 1    ? "\r\nEnter new value : "
-                         : i == -1 ? "\r\nEnter new text :\r\n] "
-                                   : "\r\nOops...:\r\n",
+            send_to_char(i == 1    ? "\nEnter new value : "
+                         : i == -1 ? "\nEnter new text :\n] "
+                                   : "\nOops...:\n",
                          d->character);
             return;
         }
@@ -1150,7 +1151,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             free(GET_MOBLDESC(OLC_MOB(d)));
         if (arg && *arg) {
             strcpy(buf, arg);
-            strcat(buf, "\r\n");
+            strcat(buf, "\n");
             GET_MOBLDESC(OLC_MOB(d)) = strdup(buf);
         } else
             GET_MOBLDESC(OLC_MOB(d)) = strdup("undefined");
@@ -1163,7 +1164,7 @@ void medit_parse(DescriptorData *d, char *arg) {
          */
         cleanup_olc(d, CLEANUP_ALL);
         mudlog("SYSERR: OLC: medit_parse(): Reached D_DESC case!", BRF, LVL_GOD, true);
-        send_to_char("Oops...\r\n", d->character);
+        send_to_char("Oops...\n", d->character);
         break;
         /*-------------------------------------------------------------------*/
     case MEDIT_NPC_FLAGS:
@@ -1321,7 +1322,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
     case MEDIT_CLASS:
         if (atoi(arg) < 0 || atoi(arg) >= NUM_CLASSES) {
-            send_to_char("That choice is out of range.  Please try again:\r\n", d->character);
+            send_to_char("That choice is out of range.  Please try again:\n", d->character);
             return;
         }
         GET_CLASS(OLC_MOB(d)) = atoi(arg);
@@ -1329,7 +1330,7 @@ void medit_parse(DescriptorData *d, char *arg) {
 
     case MEDIT_RACE:
         if (atoi(arg) < 0 || atoi(arg) >= NUM_RACES) {
-            send_to_char("That choice is out of range.  Please try again:\r\n", d->character);
+            send_to_char("That choice is out of range.  Please try again:\n", d->character);
             return;
         }
         GET_RACE(OLC_MOB(d)) = atoi(arg);
@@ -1343,7 +1344,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         case 'y':
         case 'Y':
             /*. Splat the mob in memory .. */
-            send_to_char("Purging mobile from memory.\r\n", d->character);
+            send_to_char("Purging mobile from memory.\n", d->character);
 
             /*need to remove all existing mobs of this type too.. */
             /*ok..we use save internally, but we are purging because of the mode */
@@ -1356,8 +1357,8 @@ void medit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             return;
         default:
-            send_to_char("Invalid choice!\r\n", d->character);
-            send_to_char("Do you wish to purge the mobile?\r\n", d->character);
+            send_to_char("Invalid choice!\n", d->character);
+            send_to_char("Do you wish to purge the mobile?\n", d->character);
             return;
         }
         break;
@@ -1367,7 +1368,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
         mudlog("SYSERR: OLC: medit_parse(): Reached default case!", BRF, LVL_GOD, true);
-        send_to_char("Oops...\r\n", d->character);
+        send_to_char("Oops...\n", d->character);
         break;
     }
     /*-------------------------------------------------------------------*/

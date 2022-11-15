@@ -12,7 +12,7 @@
 
 #include "act.hpp"
 
-#include "board.hpp" 
+#include "board.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
 #include "comm.hpp"
@@ -90,7 +90,7 @@ int do_misdirected_move(CharData *actor, int dir) {
 
     LOOP_THRU_PEOPLE(people, actor) {
         if (actor == people) {
-            sprintf(buf, "Your &5illusion&0 %s %s.\r\n", movewords(actor, dir, actor->in_room, true), dirs[dir]);
+            sprintf(buf, "Your &5illusion&0 %s %s.\n", movewords(actor, dir, actor->in_room, true), dirs[dir]);
             send_to_char(buf, actor);
         } else if (!AWAKE(people))
             ;
@@ -105,7 +105,7 @@ int do_misdirected_move(CharData *actor, int dir) {
 
 bool try_to_sense_arrival(CharData *observer, CharData *mover) {
     if (senses_living(observer, mover, 50)) {
-        send_to_char("You sense that a living creature has arrived.\r\n", observer);
+        send_to_char("You sense that a living creature has arrived.\n", observer);
         return true;
     } else {
         return false;
@@ -114,7 +114,7 @@ bool try_to_sense_arrival(CharData *observer, CharData *mover) {
 
 bool try_to_sense_departure(CharData *observer, CharData *mover) {
     if (senses_living(observer, mover, 50)) {
-        send_to_char("You feel that a living creature has departed.\r\n", observer);
+        send_to_char("You feel that a living creature has departed.\n", observer);
         return true;
     } else {
         return false;
@@ -137,7 +137,7 @@ void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, 
             sprintf(buf, "%s %s.", msg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
             act(buf, false, mover, 0, observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
-            sprintf(buf, "&1&bA %s-sized creature rides %s on a %s mount.&0\r\n", SIZE_DESC(mover), dirs[direction],
+            sprintf(buf, "&1&bA %s-sized creature rides %s on a %s mount.&0\n", SIZE_DESC(mover), dirs[direction],
                     SIZE_DESC(mount));
             send_to_char(buf, observer);
         } else if (!try_to_sense_departure(observer, mount)) {
@@ -151,7 +151,7 @@ void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, 
             act(msg, false, mover, 0, observer, TO_VICT);
     } else if (!CAN_SEE(observer, mover)) {
         if (CAN_SEE_BY_INFRA(observer, mover)) {
-            sprintf(buf1, "&1&bA %s-sized creature leaves %s.&0\r\n", SIZE_DESC(mover), dirs[direction]);
+            sprintf(buf1, "&1&bA %s-sized creature leaves %s.&0\n", SIZE_DESC(mover), dirs[direction]);
             send_to_char(buf1, observer);
         } else {
             /* Try sensing because it's too dark, or mover is invis */
@@ -178,7 +178,7 @@ void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount,
         if (CAN_SEE(observer, mount) || CAN_SEE(observer, mover)) {
             act(buf2, false, mover, 0, observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
-            sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s, riding a %s mount.&0\r\n", SIZE_DESC(mover),
+            sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s, riding a %s mount.&0\n", SIZE_DESC(mover),
                     (direction < UP ? "the " : ""),
                     (direction == UP     ? "below"
                      : direction == DOWN ? "above"
@@ -192,7 +192,7 @@ void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount,
     } else if (!CAN_SEE(observer, mover)) {
         /* Invisibility or darkness - try to see by infra, or sense life. */
         if (CAN_SEE_BY_INFRA(observer, mover)) {
-            sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s.&0\r\n", SIZE_DESC(mover),
+            sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s.&0\n", SIZE_DESC(mover),
                     (direction < UP ? "the " : ""),
                     (direction == UP     ? "below"
                      : direction == DOWN ? "above"
@@ -253,12 +253,12 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         return false;
 
     if (EVENT_FLAGGED(ch, EVENT_GRAVITY) && !EFF_FLAGGED(ch, EFF_LEVITATE)) {
-        send_to_char("You're in free fall!\r\n", ch);
+        send_to_char("You're in free fall!\n", ch);
         return false;
     }
 
     if (EFF_FLAGGED(ch, EFF_IMMOBILIZED)) {
-        send_to_char("You're unable to move!\r\n", ch);
+        send_to_char("You're unable to move!\n", ch);
         return false;
     }
 
@@ -335,14 +335,14 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
 
     if (GET_MOVE(motivator) < need_movement) {
         if (need_specials_check && motivator->master)
-            send_to_char("You are too exhausted to follow.\r\n", motivator);
+            send_to_char("You are too exhausted to follow.\n", motivator);
         else
-            send_to_char("You are too exhausted.\r\n", motivator);
+            send_to_char("You are too exhausted.\n", motivator);
         if (mount) {
             if (need_specials_check && motivator->master)
-                send_to_char("Your mount is too exhausted to follow.\r\n", actor);
+                send_to_char("Your mount is too exhausted to follow.\n", actor);
             else
-                send_to_char("Your mount is too exhausted.\r\n", actor);
+                send_to_char("Your mount is too exhausted.\n", actor);
         }
         return false;
     }
@@ -353,7 +353,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
 
         /* A tamed mount shouldn't wander off while you're mounted upon it */
         if (EFF_FLAGGED(ch, EFF_TAMED))
-            send_to_char("You've been tamed.  Now act it!\r\n", ch);
+            send_to_char("You've been tamed.  Now act it!\n", ch);
 
         /* A non-tamed mount will attempt to buck instead of wandering, during a
          * fight */
@@ -380,7 +380,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* Charmed critters can't wander off (unless animated) */
     if (EFF_FLAGGED(actor, EFF_CHARM) && !MOB_FLAGGED(actor, MOB_ANIMATED) && actor->master &&
         actor->in_room == actor->master->in_room) {
-        send_to_char("The thought of leaving your master makes you weep.\r\n", actor);
+        send_to_char("The thought of leaving your master makes you weep.\n", actor);
         return false;
     }
 
@@ -391,17 +391,17 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* Fishes and the like can't enter land rooms. */
     if (MOB_FLAGGED(actor, MOB_AQUATIC) && !flying) {
         if (!IS_WATER(actor->in_room)) {
-            send_to_char("There isn't enough water here to swim that way!\r\n", actor);
+            send_to_char("There isn't enough water here to swim that way!\n", actor);
             act("$n flounders on the ground, gasping for air!", false, actor, 0, 0, TO_ROOM);
             return false;
         }
         if (!IS_WATER(CH_NDEST(actor, dir)) && SECT(CH_NDEST(actor, dir)) != SECT_AIR) {
-            send_to_char("You can't swim that way!\r\n", actor);
+            send_to_char("You can't swim that way!\n", actor);
             return false;
         }
     } else if (mount && MOB_FLAGGED(mount, MOB_AQUATIC) && !flying) {
         if (!IS_WATER(actor->in_room)) {
-            send_to_char("There isn't enough water here to swim that way!\r\n", actor);
+            send_to_char("There isn't enough water here to swim that way!\n", actor);
             act("$n flounders on the ground, gasping for air!", false, mount, 0, 0, TO_ROOM);
             return false;
         }
@@ -413,7 +413,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
 
     if ((SECT(actor->in_room) == SECT_AIR) || (SECT(CH_NDEST(actor, dir)) == SECT_AIR)) {
         if (!flying && dir == UP) {
-            send_to_char("&7Try flapping your wings.&0\r\n", actor);
+            send_to_char("&7Try flapping your wings.&0\n", actor);
             return false;
         }
     }
@@ -421,7 +421,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* We need either a boat or fly spell in water rooms */
     if ((SECT(actor->in_room) == SECT_WATER) || (SECT(CH_NDEST(actor, dir)) == SECT_WATER)) {
         if (!boat && !flying) {
-            send_to_char("You need a boat or wings to go there.\r\n", actor);
+            send_to_char("You need a boat or wings to go there.\n", actor);
             return false;
         }
     }
@@ -444,7 +444,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
 
     if (ROOM_FLAGGED(CH_NROOM(actor), ROOM_ATRIUM)) {
         if (!House_can_enter(actor, vnum)) {
-            send_to_char("That's private property -- no trespassing!\r\n", actor);
+            send_to_char("That's private property -- no trespassing!\n", actor);
             return false;
         }
     }
@@ -452,11 +452,11 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (ROOM_FLAGGED(CH_NDEST(actor, dir), ROOM_TUNNEL)) {
             if (mount) {
-                send_to_char("There isn't enough room there, while mounted.\r\n", actor);
+                send_to_char("There isn't enough room there, while mounted.\n", actor);
                 return false;
             }
             if (num_pc_in_room(CH_DEST(actor, dir)) > 1) {
-                send_to_char("There isn't enough room there for more than one person!\r\n", actor);
+                send_to_char("There isn't enough room there for more than one person!\n", actor);
                 return false;
             }
         }
@@ -473,20 +473,20 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         if (ch->master) {
             if (GET_LEVEL(ch->master) < LVL_IMMORT) {
                 if (ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_GODROOM)) {
-                    send_to_char("&0&8A mysterious powerful force pushes you back.&0\r\n", ch);
+                    send_to_char("&0&8A mysterious powerful force pushes you back.&0\n", ch);
                     return false;
                 }
             } else {
                 if (ch->master->in_room != CH_NDEST(ch, dir)) {
                     if (ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_GODROOM)) {
-                        send_to_char("&0&8A mysterious powerful force pushes you back.&0\r\n", ch);
+                        send_to_char("&0&8A mysterious powerful force pushes you back.&0\n", ch);
                         return false;
                     }
                 }
             }
         } else {
             if (ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_GODROOM)) {
-                send_to_char("&0&8A mysterious powerful force pushes you back.&0\r\n", ch);
+                send_to_char("&0&8A mysterious powerful force pushes you back.&0\n", ch);
                 return false;
             }
         }
@@ -496,13 +496,13 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     if (CH_OUTSIDE(motivator) && (zone_table[world[motivator->in_room].zone]).wind_speed >= WIND_GALE) {
         if ((zone_table[world[motivator->in_room].zone]).wind_dir == (dir + 2) % 4) {
             need_movement *= 2;
-            send_to_char("The wind beats hard upon your body as you forge ahead.\r\n", actor);
+            send_to_char("The wind beats hard upon your body as you forge ahead.\n", actor);
         }
     }
 
     /* If camouflaged and entering a building, snap into visibility */
     if (EFF_FLAGGED(ch, EFF_CAMOUFLAGED) && INDOORS(CH_NDEST(actor, dir))) {
-        send_to_char("You reveal yourself as you step indoors.\r\n", ch);
+        send_to_char("You reveal yourself as you step indoors.\n", ch);
         effect_from_char(ch, SPELL_NATURES_EMBRACE);
         GET_HIDDENNESS(ch) = 0;
     }
@@ -510,7 +510,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     alter_move(motivator, need_movement);
 
     if (mount) {
-        sprintf(buf2, "You ride %s on %s.\r\n", dirs[dir], PERS(mount, actor));
+        sprintf(buf2, "You ride %s on %s.\n", dirs[dir], PERS(mount, actor));
         act(buf2, true, actor, 0, 0, TO_CHAR);
         sprintf(mmsg, "$n rides %s on", dirs[dir]);
     } else {
@@ -656,7 +656,7 @@ bool perform_move(CharData *ch, int dir, int need_specials_check, bool misdirect
                     if (IN_ROOM(k->follower) != IN_ROOM(ch))
                         act("&3Oops!  $n&0&3 seems to have wandered off again.&0", false, k->follower, 0, ch, TO_VICT);
                 } else {
-                    sprintf(buf, "You follow $N %s.\r\n", dirs[dir]);
+                    sprintf(buf, "You follow $N %s.\n", dirs[dir]);
                     act(buf, false, k->follower, 0, ch, TO_CHAR);
                     if (perform_move(k->follower, dir, 1, false) && IS_MOB(k->follower) && PLAYERALLY(k->follower)) {
                         if (GET_MOVE(k->follower) == 0) {
@@ -703,7 +703,7 @@ ACMD(do_move) {
     if (*arg && EFF_FLAGGED(ch, EFF_MISDIRECTION) && subcmd >= SCMD_STAY && subcmd <= SCMD_DOWN) {
 
         if (RIDING(ch) || RIDDEN_BY(ch)) {
-            send_to_char("You can't misdirect people while riding.\r\n", ch);
+            send_to_char("You can't misdirect people while riding.\n", ch);
             return;
         }
 
@@ -713,7 +713,7 @@ ACMD(do_move) {
         } else {
             misdir = parse_direction(arg);
             if (misdir < 0) {
-                send_to_char("That isn't a direction.\r\n", ch);
+                send_to_char("That isn't a direction.\n", ch);
                 return;
             }
         }
@@ -723,7 +723,7 @@ ACMD(do_move) {
         SET_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
         /* Send confused people off in a random direction. */
         if (CONFUSED(ch) && number(0, 1) == 0) {
-            send_to_char("&5You are confused!&0\r\n", ch);
+            send_to_char("&5You are confused!&0\n", ch);
             subcmd = SCMD_STAY + number(1, 6);
         }
         perform_move(ch, subcmd - 1, 0, false);
@@ -733,13 +733,13 @@ ACMD(do_move) {
 
     /* Send confused people off in a random direction. */
     if (CONFUSED(ch) && number(0, 1) == 0) {
-        send_to_char("&5You are confused!&0\r\n", ch);
+        send_to_char("&5You are confused!&0\n", ch);
         subcmd = SCMD_STAY + number(1, 6);
     }
 
     switch (subcmd) {
     case SCMD_STAY:
-        send_to_char("Ok, you stay put.\r\n", ch);
+        send_to_char("Ok, you stay put.\n", ch);
         break;
     case SCMD_NORTH:
     case SCMD_EAST:
@@ -753,7 +753,7 @@ ACMD(do_move) {
         if (argument && *arg && (subcmd = searchblock(arg, dirs, 0)) >= 0)
             perform_move(ch, subcmd, 0, false);
         else
-            send_to_char("Which way do you want to go?\r\n", ch);
+            send_to_char("Which way do you want to go?\n", ch);
     }
 }
 
@@ -765,7 +765,7 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
 
         if ((dir = parse_direction(dirname)) == -1) { /* Partial Match */
             if (!quiet)
-                send_to_char("That's not a direction.\r\n", ch);
+                send_to_char("That's not a direction.\n", ch);
             return -1;
         }
 
@@ -774,20 +774,20 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
                 return dir;
             else {
                 if (!quiet) {
-                    sprintf(buf2, "I see no %s there.\r\n", name);
+                    sprintf(buf2, "I see no %s there.\n", name);
                     send_to_char(buf2, ch);
                 }
                 return -1;
             }
         } else {
             if (!quiet)
-                send_to_char("I really don't see how you can close anything there.\r\n", ch);
+                send_to_char("I really don't see how you can close anything there.\n", ch);
             return -1;
         }
     } else { /* try to locate the keyword */
         if (!name || !*name) {
             if (!quiet) {
-                sprintf(buf2, "What is it you want to %s?\r\n", cmdname);
+                sprintf(buf2, "What is it you want to %s?\n", cmdname);
                 send_to_char(buf2, ch);
             }
             return -1;
@@ -797,7 +797,7 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
                 return dir;
         }
         if (!quiet) {
-            sprintf(buf2, "There doesn't seem to be %s %s here.\r\n", AN(name), name);
+            sprintf(buf2, "There doesn't seem to be %s %s here.\n", AN(name), name);
             send_to_char(buf2, ch);
         }
         return -1;
@@ -817,13 +817,13 @@ void open_object(CharData *ch, ObjData *obj, bool quiet) {
 
     if (OBJ_IS_OPEN(obj)) {
         if (!quiet && ch)
-            send_to_char("It's already open.\r\n", ch);
+            send_to_char("It's already open.\n", ch);
         return;
     }
 
     if (!OBJ_IS_UNLOCKED(obj)) {
         if (!quiet && ch) {
-            send_to_char("It seems to be locked.\r\n", ch);
+            send_to_char("It seems to be locked.\n", ch);
             act("$n tries to open $p, but it's locked.", false, ch, obj, 0, TO_ROOM);
         }
         return;
@@ -849,7 +849,7 @@ void close_object(CharData *ch, ObjData *obj, bool quiet) {
 
     if (!OBJ_IS_OPEN(obj)) {
         if (!quiet && ch)
-            send_to_char("It's already closed.\r\n", ch);
+            send_to_char("It's already closed.\n", ch);
         return;
     }
 
@@ -877,7 +877,7 @@ void unlock_object(CharData *ch, ObjData *obj, bool quiet) {
 
     if (OBJ_IS_OPEN(obj)) {
         if (!quiet && ch)
-            send_to_char("It's already open!\r\n", ch);
+            send_to_char("It's already open!\n", ch);
         return;
     }
 
@@ -887,12 +887,12 @@ void unlock_object(CharData *ch, ObjData *obj, bool quiet) {
         keyvnum = GET_OBJ_VAL(obj, VAL_CONTAINER_KEY);
         if (keyvnum < 0) {
             if (!quiet)
-                send_to_char("Odd - you can't seem to find a keyhole.\r\n", ch);
+                send_to_char("Odd - you can't seem to find a keyhole.\n", ch);
             return;
         }
         if (!(key = carried_key(ch, keyvnum))) {
             if (!quiet)
-                send_to_char("You don't seem to have the proper key.\r\n", ch);
+                send_to_char("You don't seem to have the proper key.\n", ch);
             return;
         }
     }
@@ -906,7 +906,7 @@ void unlock_object(CharData *ch, ObjData *obj, bool quiet) {
                 act("You insert $P, only to find that $p isn't locked.", false, ch, obj, key, TO_CHAR);
                 act("$n inserts $P into $p, only to find that it isn't locked.", false, ch, obj, key, TO_ROOM);
             } else {
-                send_to_char("Oh... it wasn't locked.\r\n", ch);
+                send_to_char("Oh... it wasn't locked.\n", ch);
             }
         }
         return;
@@ -941,7 +941,7 @@ void lock_object(CharData *ch, ObjData *obj, bool quiet) {
 
     if (OBJ_IS_OPEN(obj)) {
         if (!quiet && ch)
-            send_to_char("You'll need to close it first.\r\n", ch);
+            send_to_char("You'll need to close it first.\n", ch);
         return;
     }
 
@@ -951,12 +951,12 @@ void lock_object(CharData *ch, ObjData *obj, bool quiet) {
         keyvnum = GET_OBJ_VAL(obj, VAL_CONTAINER_KEY);
         if (keyvnum < 0) {
             if (!quiet)
-                send_to_char("Odd - you can't seem to find a keyhole.\r\n", ch);
+                send_to_char("Odd - you can't seem to find a keyhole.\n", ch);
             return;
         }
         if (!(key = carried_key(ch, keyvnum))) {
             if (!quiet)
-                send_to_char("You don't seem to have the proper key.\r\n", ch);
+                send_to_char("You don't seem to have the proper key.\n", ch);
             return;
         }
     }
@@ -970,7 +970,7 @@ void lock_object(CharData *ch, ObjData *obj, bool quiet) {
                 act("You insert $P, only to find that $p is already locked.", false, ch, obj, key, TO_CHAR);
                 act("$n inserts $P into $p, only to find that it's already locked.", false, ch, obj, key, TO_ROOM);
             } else {
-                send_to_char("It seems to be locked already.\r\n", ch);
+                send_to_char("It seems to be locked already.\n", ch);
             }
         }
         return;
@@ -1009,18 +1009,18 @@ void pick_object(CharData *ch, ObjData *obj) {
      */
 
     if (OBJ_IS_OPEN(obj)) {
-        send_to_char("It's already open!\r\n", ch);
+        send_to_char("It's already open!\n", ch);
         return;
     }
 
     if (OBJ_IS_UNLOCKED(obj)) {
-        send_to_char("Oh... it wasn't locked, after all.\r\n", ch);
+        send_to_char("Oh... it wasn't locked, after all.\n", ch);
         act("$n sets to picking $p, but soon realizes that it isn't locked.", false, ch, obj, 0, TO_ROOM);
         return;
     }
 
     if (OBJ_IS_PICKPROOF(obj)) {
-        send_to_char("It resists your attempts to pick it.\r\n", ch);
+        send_to_char("It resists your attempts to pick it.\n", ch);
         act("$n sets to picking $p, but soon gives up.", false, ch, obj, 0, TO_ROOM);
         return;
     }
@@ -1028,7 +1028,7 @@ void pick_object(CharData *ch, ObjData *obj) {
     /* Try your skill. */
 
     if (number(1, 101) > GET_SKILL(ch, SKILL_PICK_LOCK)) {
-        send_to_char("You failed to pick the lock.\r\n", ch);
+        send_to_char("You failed to pick the lock.\n", ch);
         improve_skill(ch, SKILL_PICK_LOCK);
         return;
     }
@@ -1040,13 +1040,13 @@ void pick_object(CharData *ch, ObjData *obj) {
     /* Feedback. */
 
     act("$n skillfully picks the lock on $p.", false, ch, obj, key, TO_ROOM);
-    send_to_char("You skillfully pick the lock.\r\n", ch);
+    send_to_char("You skillfully pick the lock.\n", ch);
 }
 
 void perform_door_action(CharData *ch, int subcmd, int door) {
     if (!SOLIDCHAR(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        cprintf(ch, "You can't operate doors in your %s%s&0 state.\r\n", COMPOSITION_COLOR(ch),
-                COMPOSITION_ADJECTIVE(ch));
+        char_printf(ch, "You can't operate doors in your %s%s&0 state.\n", COMPOSITION_COLOR(ch),
+                    COMPOSITION_ADJECTIVE(ch));
         return;
     }
 
@@ -1072,7 +1072,7 @@ void perform_door_action(CharData *ch, int subcmd, int door) {
     default:
         sprintf(buf, "SYSERR: perform_door_action() called with invalid subcommand %d", subcmd);
         mudlog(buf, BRF, LVL_GOD, false);
-        cprintf(ch, "Sorry, there's been an internal error.\r\n");
+        char_printf(ch, "Sorry, there's been an internal error.\n");
         break;
     }
 }
@@ -1084,13 +1084,13 @@ ACMD(do_gen_door) {
     CharData *victim = nullptr;
 
     if (FIGHTING(ch)) {
-        send_to_char("You are too busy fighting to concentrate on that right now.\r\n", ch);
+        send_to_char("You are too busy fighting to concentrate on that right now.\n", ch);
         return;
     }
 
     skip_spaces(&argument);
     if (!*argument) {
-        sprintf(buf, "%s what?\r\n", cmd_door[subcmd]);
+        sprintf(buf, "%s what?\n", cmd_door[subcmd]);
         send_to_char(CAP(buf), ch);
         return;
     }
@@ -1116,18 +1116,18 @@ ACMD(do_gen_door) {
     if (GET_OBJ_TYPE(obj) == ITEM_BOARD && (subcmd == SCMD_LOCK || subcmd == SCMD_UNLOCK)) {
         BoardData *brd = board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER));
         if (!brd || !has_board_privilege(ch, brd, BPRIV_LOCK))
-            send_to_char("You can't figure out how.\r\n", ch);
+            send_to_char("You can't figure out how.\n", ch);
         else if (subcmd == SCMD_LOCK) {
             if (brd->locked)
-                cprintf(ch, "%s is already locked.\r\n", obj->short_description);
+                char_printf(ch, "%s is already locked.\n", obj->short_description);
             else
-                cprintf(ch, "You lock %s, preventing others from posting.\r\n", obj->short_description);
+                char_printf(ch, "You lock %s, preventing others from posting.\n", obj->short_description);
             brd->locked = true;
         } else {
             if (brd->locked)
-                cprintf(ch, "You unlock %s, allowing others to post.\r\n", obj->short_description);
+                char_printf(ch, "You unlock %s, allowing others to post.\n", obj->short_description);
             else
-                cprintf(ch, "%s is already unlocked.\r\n", obj->short_description);
+                char_printf(ch, "%s is already unlocked.\n", obj->short_description);
             brd->locked = false;
         }
         return;
@@ -1141,7 +1141,7 @@ ACMD(do_gen_door) {
         if (door >= 0) {
             perform_door_action(ch, subcmd, door);
         } else {
-            cprintf(ch, "You can't %s that.\r\n", cmd_door[subcmd]);
+            char_printf(ch, "You can't %s that.\n", cmd_door[subcmd]);
         }
         return;
     }
@@ -1149,8 +1149,8 @@ ACMD(do_gen_door) {
     /* If you're made of fluid, the only way you can open/close/etc. something
      * is if it's an object in your inventory. */
     if (!SOLIDCHAR(ch) && obj->carried_by != ch && GET_LEVEL(ch) < LVL_IMMORT) {
-        cprintf(ch, "You can't manipulate solid objects in your %s%s&0 state.\r\n", COMPOSITION_COLOR(ch),
-                COMPOSITION_ADJECTIVE(ch));
+        char_printf(ch, "You can't manipulate solid objects in your %s%s&0 state.\n", COMPOSITION_COLOR(ch),
+                    COMPOSITION_ADJECTIVE(ch));
         return;
     }
 
@@ -1173,7 +1173,7 @@ ACMD(do_gen_door) {
     default:
         sprintf(buf, "SYSERR: do_gen_door() called with invalid subcommand %d", subcmd);
         mudlog(buf, BRF, LVL_GOD, false);
-        cprintf(ch, "Sorry, there's been an internal error.\r\n");
+        char_printf(ch, "Sorry, there's been an internal error.\n");
         break;
     }
 }
@@ -1184,7 +1184,7 @@ ACMD(do_enter) {
     int i, rnum;
 
     if (FIGHTING(ch)) {
-        send_to_char("You are too busy fighting to leave right now.\r\n", ch);
+        send_to_char("You are too busy fighting to leave right now.\n", ch);
         return;
     }
 
@@ -1193,29 +1193,29 @@ ACMD(do_enter) {
     /* Enter without args: try to enter an adjacent building. */
     if (!*arg) {
         if (ROOM_FLAGGED(CH_NROOM(ch), ROOM_INDOORS))
-            send_to_char("You are already indoors.\r\n", ch);
+            send_to_char("You are already indoors.\n", ch);
         else
             for (i = 0; i < NUM_OF_DIRS; ++i)
                 if (CH_EXIT(ch, i) && !EXIT_IS_CLOSED(CH_EXIT(ch, i)) && ROOM_FLAGGED(CH_NDEST(ch, i), ROOM_INDOORS)) {
                     if (CONFUSED(ch)) {
-                        send_to_char("&5You are confused!&0\r\n", ch);
+                        send_to_char("&5You are confused!&0\n", ch);
                         i = number(0, 5);
                     }
                     perform_move(ch, i, 1, false);
                     return;
                 }
-        send_to_char("You can't seem to find anything to enter.\r\n", ch);
+        send_to_char("You can't seem to find anything to enter.\n", ch);
         return;
     }
 
     if (!(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg)))) {
-        sprintf(buf, "There is no %s here.\r\n", arg);
+        sprintf(buf, "There is no %s here.\n", arg);
         send_to_char(buf, ch);
         return;
     }
 
     if (GET_OBJ_TYPE(obj) != ITEM_PORTAL) {
-        send_to_char("You can't enter that!\r\n", ch);
+        send_to_char("You can't enter that!\n", ch);
         return;
     }
 
@@ -1226,7 +1226,7 @@ ACMD(do_enter) {
 
     if ((rnum = real_room(GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION))) == NOWHERE) {
         act("$p flares for a second then dies down.&0", false, ch, obj, 0, TO_ROOM);
-        send_to_char("It flares and then dies down - it must be broken!\r\n", ch);
+        send_to_char("It flares and then dies down - it must be broken!\n", ch);
         return;
     }
 
@@ -1323,23 +1323,23 @@ ACMD(do_leave) {
     int door;
 
     if (FIGHTING(ch)) {
-        send_to_char("You are too busy fighting to leave!\r\n", ch);
+        send_to_char("You are too busy fighting to leave!\n", ch);
         return;
     }
     if (!ROOM_FLAGGED(CH_NROOM(ch), ROOM_INDOORS))
-        send_to_char("You are outside.. where do you want to go?\r\n", ch);
+        send_to_char("You are outside.. where do you want to go?\n", ch);
     else {
         for (door = 0; door < NUM_OF_DIRS; door++)
             if (CH_NDEST(ch, door) != NOWHERE)
                 if (!EXIT_IS_CLOSED(CH_EXIT(ch, door)) && !ROOM_FLAGGED(CH_NDEST(ch, door), ROOM_INDOORS)) {
                     if (CONFUSED(ch)) {
-                        send_to_char("&5You are confused!&0\r\n", ch);
+                        send_to_char("&5You are confused!&0\n", ch);
                         door = number(0, 5);
                     }
                     perform_move(ch, door, 1, false);
                     return;
                 }
-        send_to_char("I see no obvious exits to the outside.\r\n", ch);
+        send_to_char("I see no obvious exits to the outside.\n", ch);
     }
 }
 
@@ -1358,15 +1358,15 @@ ACMD(do_doorbash)
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (FIGHTING(ch)) {
-            send_to_char("You can't take time out to do that just yet!\r\n", ch);
+            send_to_char("You can't take time out to do that just yet!\n", ch);
             return;
         }
         if (GET_SIZE(ch) < SIZE_LARGE) {
-            send_to_char("&0You do not feel massive enough!&0\r\n", ch);
+            send_to_char("&0You do not feel massive enough!&0\n", ch);
             return;
         }
         if (!GET_SKILL(ch, SKILL_DOORBASH)) {
-            send_to_char("You don't have that skill.\r\n", ch);
+            send_to_char("You don't have that skill.\n", ch);
             return;
         }
         probability = chance + GET_LEVEL(ch);
@@ -1376,17 +1376,17 @@ ACMD(do_doorbash)
 
     one_argument(argument, arg);
     if (!*arg) {
-        cprintf(ch, "What direction?\r\n");
+        char_printf(ch, "What direction?\n");
         return;
     }
 
     if ((dir = parse_direction(arg)) < 0) {
-        cprintf(ch, "That isn't a valid direction.\r\n");
+        char_printf(ch, "That isn't a valid direction.\n");
         return;
     }
 
     if (CONFUSED(ch) && number(0, 1) == 0) {
-        send_to_char("&5You are confused!&0\r\n", ch);
+        send_to_char("&5You are confused!&0\n", ch);
         dir = number(0, 5);
     }
 
@@ -1400,7 +1400,7 @@ ACMD(do_doorbash)
 
     exit = CH_EXIT(ch, dir);
     if (!exit || EXIT_NDEST(exit) == NOWHERE || EXIT_IS_HIDDEN(exit)) {
-        cprintf(ch, "Even YOU couldn't bash through that!\r\n");
+        char_printf(ch, "Even YOU couldn't bash through that!\n");
         return;
     }
 
@@ -1409,7 +1409,7 @@ ACMD(do_doorbash)
 
     /* Is the way open already? */
     if (EXIT_IS_OPEN(exit)) {
-        cprintf(ch, "There is no obstruction!\r\n");
+        char_printf(ch, "There is no obstruction!\n");
         return;
     }
 
@@ -1417,12 +1417,12 @@ ACMD(do_doorbash)
     if (exit->keyword == nullptr) {
         mprintf(L_WARN, LVL_GOD, "SYSERR:act.item.c:do_doorbash():A one sided door in room %d",
                 world[ch->in_room].vnum);
-        cprintf(ch, "This exit seems broken.   Please tell a god.\r\n");
+        char_printf(ch, "This exit seems broken.   Please tell a god.\n");
         return;
     } else if (!EXIT_IS_DOOR(exit)) {
         mprintf(L_WARN, LVL_GOD, "SYSERR:act.item.c:do_doorbash():A closed nondoor exit in room %d",
                 world[ch->in_room].vnum);
-        cprintf(ch, "This exit seems broken.   Please tell a god.\r\n");
+        char_printf(ch, "This exit seems broken.   Please tell a god.\n");
         return;
     }
 
@@ -1436,7 +1436,7 @@ ACMD(do_doorbash)
 
     if (EXIT_IS_LOCKED(exit) && (EXIT_IS_PICKPROOF(exit) || probability < 80)) {
         /* You failed, or it was unbashable. */
-        cprintf(ch, "You CHARGE at the %s &0but merely bounce off!&0\r\n", exit_name(exit));
+        char_printf(ch, "You CHARGE at the %s &0but merely bounce off!&0\n", exit_name(exit));
         sprintf(buf, "$n &0CHARGES at the %s&0 and literally bounces off!", exit_name(exit));
         act(buf, false, ch, 0, 0, TO_ROOM);
 
@@ -1453,7 +1453,7 @@ ACMD(do_doorbash)
             WAIT_STATE(ch, PULSE_VIOLENCE * 3);
         }
 
-        room_printf(ndest, "There is a *CRASH* and %s shudders a bit.\r\n", exit_name(exit));
+        room_printf(ndest, "There is a *CRASH* and %s shudders a bit.\n", exit_name(exit));
         return;
     }
 
@@ -1462,7 +1462,7 @@ ACMD(do_doorbash)
 
     sprintf(buf, "&0$n &0*CRASHES* through the %s&0!", exit_name(exit));
     act(buf, false, ch, 0, 0, TO_ROOM);
-    sprintf(buf, "&0You *CHARGE* at the %s &0and crash through it!&0\r\n", exit_name(exit));
+    sprintf(buf, "&0You *CHARGE* at the %s &0and crash through it!&0\n", exit_name(exit));
     send_to_char(buf, ch);
 
     if (dest->exits[rev_dir[dir]]) {
@@ -1501,7 +1501,7 @@ void char_drag_entry(CharData *ch, CharData *vict) {
     if (AWAKE(vict))
         look_at_room(vict, false);
     else
-        send_to_char("Your dreams grow bumpy, as if someone were dragging you...\r\n", vict);
+        send_to_char("Your dreams grow bumpy, as if someone were dragging you...\n", vict);
 }
 
 ACMD(do_drag) {
@@ -1514,12 +1514,12 @@ ACMD(do_drag) {
     skip_spaces(&argument);
 
     if (!*arg || !*argument) {
-        send_to_char("Drag what? Where?\r\n", ch);
+        send_to_char("Drag what? Where?\n", ch);
         return;
     }
 
     if (GET_POS(ch) != POS_STANDING) {
-        send_to_char("You don't have the proper leverage to do that.  Try standing.\r\n", ch);
+        send_to_char("You don't have the proper leverage to do that.  Try standing.\n", ch);
         return;
     }
 
@@ -1527,7 +1527,7 @@ ACMD(do_drag) {
      * Start by figuring out what (or whom) we're dragging.
      */
     if (!(found = generic_find(arg, FIND_OBJ_ROOM | FIND_CHAR_ROOM, ch, &tch, &tobj))) {
-        send_to_char("Can't find that!\r\n", ch);
+        send_to_char("Can't find that!\n", ch);
         return;
     }
 
@@ -1536,7 +1536,7 @@ ACMD(do_drag) {
      * also, you might think they're substantial-feeling because that's
      * part of the illusion) */
     if (tobj && !RIGID(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        sprintf(buf, "You can't handle solid objects in your %s%s&0 condition.\r\n", COMPOSITION_COLOR(ch),
+        sprintf(buf, "You can't handle solid objects in your %s%s&0 condition.\n", COMPOSITION_COLOR(ch),
                 COMPOSITION_ADJECTIVE(ch));
         send_to_char(buf, ch);
         return;
@@ -1570,18 +1570,18 @@ ACMD(do_drag) {
     if (found == FIND_CHAR_ROOM) {
 
         if (ch == tch) {
-            send_to_char("One foot in front of the other, now...\r\n", ch);
+            send_to_char("One foot in front of the other, now...\n", ch);
             return;
         }
 
         if (GET_LEVEL(ch) < LVL_IMMORT && GET_LEVEL(tch) < LVL_IMMORT) {
             if (IS_NPC(tch)) {
-                send_to_char("You can't drag NPC's!\r\n", ch);
+                send_to_char("You can't drag NPC's!\n", ch);
                 return;
             }
 
             if (CONSENT(tch) != ch) {
-                send_to_char("Not without consent you don't!\r\n", ch);
+                send_to_char("Not without consent you don't!\n", ch);
                 return;
             }
 
@@ -1596,13 +1596,13 @@ ACMD(do_drag) {
             }
 
             if (GET_WEIGHT(tch) > 3 * CAN_CARRY_W(ch)) {
-                act("$N is too heavy for you to drag.\r\n", false, ch, 0, tch, TO_CHAR);
+                act("$N is too heavy for you to drag.\n", false, ch, 0, tch, TO_CHAR);
                 return;
             }
         } else if (GET_LEVEL(tch) >= GET_LEVEL(ch) && CONSENT(tch) != ch) {
             /* Immorts can drag anyone, except other immorts of same or higher level
              */
-            send_to_char("You can't drag someone a higher level than you.\r\n", ch);
+            send_to_char("You can't drag someone a higher level than you.\n", ch);
             return;
         }
 
@@ -1619,12 +1619,12 @@ ACMD(do_drag) {
              * you can also drag corpses.
              */
             if (!CAN_WEAR(tobj, ITEM_WEAR_TAKE) && !IS_CORPSE(tobj)) {
-                send_to_char("You cant drag that!\r\n", ch);
+                send_to_char("You cant drag that!\n", ch);
                 return;
             }
 
             if (GET_OBJ_WEIGHT(tobj) > 3 * CAN_CARRY_W(ch)) {
-                send_to_char("It is too heavy for you to drag.\r\n", ch);
+                send_to_char("It is too heavy for you to drag.\n", ch);
                 return;
             }
         }
@@ -1639,7 +1639,7 @@ ACMD(do_drag) {
     }
 
     else {
-        send_to_char("You can't drag that!\r\n", ch);
+        send_to_char("You can't drag that!\n", ch);
         return;
     }
 
@@ -1651,13 +1651,13 @@ ACMD(do_drag) {
     if ((dir = parse_direction(arg)) < 0) {
         /* Not a valid direction.  Try to drag into a portal. */
         if (!(portal = find_obj_in_list(world[from_room].contents, find_vis_by_name(ch, arg)))) {
-            sprintf(buf, "Can't find a '%s' to drag into!\r\n", arg);
+            sprintf(buf, "Can't find a '%s' to drag into!\n", arg);
             send_to_char(buf, ch);
             return;
         }
 
         if (GET_OBJ_TYPE(portal) != ITEM_PORTAL) {
-            send_to_char("You can only drag things into portals!\r\n", ch);
+            send_to_char("You can only drag things into portals!\n", ch);
             return;
         }
 
@@ -1697,13 +1697,13 @@ ACMD(do_drag) {
 
         if (GET_LEVEL(ch) < LVL_GOD) {
             if (GET_MOVE(ch) < move_cost + 6) {
-                send_to_char("You are too exhausted!\r\n", ch);
+                send_to_char("You are too exhausted!\n", ch);
                 return;
             }
         }
 
         if (CONFUSED(ch)) {
-            send_to_char("&5You are confused!&0\r\n", ch);
+            send_to_char("&5You are confused!&0\n", ch);
             dir = number(0, 5);
         }
 
@@ -1778,17 +1778,17 @@ ACMD(do_fly) {
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("You can't even twitch, much less fly!\r\n", ch);
+        send_to_char("You can't even twitch, much less fly!\n", ch);
         return;
     }
 
     if (!EFF_FLAGGED(ch, EFF_FLY) && GET_LEVEL(ch) < LVL_IMMORT) {
-        send_to_char("You do not have the means to fly.\r\n", ch);
+        send_to_char("You do not have the means to fly.\n", ch);
         return;
     }
 
     if (GET_POS(ch) != POS_FLYING && too_heavy_to_fly(ch)) {
-        cprintf(ch, "You try to rise up, but you can't get off the ground!\r\n");
+        char_printf(ch, "You try to rise up, but you can't get off the ground!\n");
         act("$n rises up on $s toes, as if trying to fly.", true, ch, 0, 0, TO_ROOM);
         return;
     }
@@ -1799,7 +1799,7 @@ ACMD(do_fly) {
         act("&6&b$n&6&b begins to float.&0", true, ch, 0, 0, TO_ROOM);
         break;
     case POS_FLYING:
-        send_to_char("You are already flying.\r\n", ch);
+        send_to_char("You are already flying.\n", ch);
         return;
     case POS_PRONE:
     case POS_SITTING:
@@ -1835,7 +1835,7 @@ ACMD(do_stand) {
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("You can't even twitch, much less stand up!\r\n", ch);
+        send_to_char("You can't even twitch, much less stand up!\n", ch);
         return;
     }
 
@@ -1885,12 +1885,12 @@ ACMD(do_sit) {
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("You can't even twitch, much less sit down!\r\n", ch);
+        send_to_char("You can't even twitch, much less sit down!\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
-        send_to_char("You're too incensed to sit down!\r\n", ch);
+        send_to_char("You're too incensed to sit down!\n", ch);
         return;
     }
 
@@ -1900,7 +1900,7 @@ ACMD(do_sit) {
         act("$n sits up.", false, ch, 0, 0, TO_ROOM);
         break;
     case POS_SITTING:
-        send_to_char("You're sitting already.\r\n", ch);
+        send_to_char("You're sitting already.\n", ch);
         return;
     case POS_KNEELING:
         act("You stop kneeling and sit down.", false, ch, 0, 0, TO_CHAR);
@@ -1934,7 +1934,7 @@ ACMD(do_kneel) {
         act("Alas, you cannot summon the will.", false, ch, 0, 0, TO_CHAR);
         return;
     case STANCE_SLEEPING:
-        send_to_char("You seem to be having a dream of infancy.\r\n", ch);
+        send_to_char("You seem to be having a dream of infancy.\n", ch);
         return;
     case STANCE_FIGHTING:
         act("Kneel while fighting?  Are you MAD?", false, ch, 0, 0, TO_CHAR);
@@ -1942,12 +1942,12 @@ ACMD(do_kneel) {
     }
 
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
-        send_to_char("You're too incensed to kneel down!\r\n", ch);
+        send_to_char("You're too incensed to kneel down!\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("You can't even twitch, much less get to your knees!\r\n", ch);
+        send_to_char("You can't even twitch, much less get to your knees!\n", ch);
         return;
     }
 
@@ -1961,7 +1961,7 @@ ACMD(do_kneel) {
         act("$n stops sitting and gets to $s knees.", true, ch, 0, 0, TO_ROOM);
         break;
     case POS_KNEELING:
-        send_to_char("You are kneeling already.\r\n", ch);
+        send_to_char("You are kneeling already.\n", ch);
         return;
     case POS_FLYING:
         act("You stop flying and kneel.", false, ch, 0, 0, TO_CHAR);
@@ -1988,7 +1988,7 @@ ACMD(do_recline) {
         act("Alas, you cannot summon the will.", false, ch, 0, 0, TO_CHAR);
         return;
     case STANCE_SLEEPING:
-        send_to_char("You dream of lying down.\r\n", ch);
+        send_to_char("You dream of lying down.\n", ch);
         return;
     case STANCE_FIGHTING:
         act("Lie down while fighting?  Are you MAD?", false, ch, 0, 0, TO_CHAR);
@@ -1996,18 +1996,18 @@ ACMD(do_recline) {
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("You can't even twitch, much less lie down!\r\n", ch);
+        send_to_char("You can't even twitch, much less lie down!\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
-        send_to_char("You're too incensed to lie down!\r\n", ch);
+        send_to_char("You're too incensed to lie down!\n", ch);
         return;
     }
 
     switch (GET_POS(ch)) {
     case POS_PRONE:
-        send_to_char("You are already lying down.\r\n", ch);
+        send_to_char("You are already lying down.\n", ch);
         return;
     case POS_SITTING:
         act("You stop sitting and lie down.", false, ch, 0, 0, TO_CHAR);
@@ -2044,10 +2044,10 @@ ACMD(do_rest) {
         act("That is the least of your concerns.", false, ch, 0, 0, TO_CHAR);
         return;
     case STANCE_SLEEPING:
-        send_to_char("You seem to be quite restful already.\r\n", ch);
+        send_to_char("You seem to be quite restful already.\n", ch);
         return;
     case STANCE_RESTING:
-        send_to_char("You are already resting.\r\n", ch);
+        send_to_char("You are already resting.\n", ch);
         return;
     case STANCE_FIGHTING:
         act("Rest while fighting?  Are you MAD?", false, ch, 0, 0, TO_CHAR);
@@ -2055,18 +2055,18 @@ ACMD(do_rest) {
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("In your paralyzed state, you find this impossible.\r\n", ch);
+        send_to_char("In your paralyzed state, you find this impossible.\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
-        send_to_char("You're too incensed to rest!\r\n", ch);
+        send_to_char("You're too incensed to rest!\n", ch);
         return;
     }
 
     switch (GET_POS(ch)) {
     case POS_PRONE:
-        send_to_char("You relax.\r\n", ch);
+        send_to_char("You relax.\n", ch);
         act("You see some of the tension leave $n's body.", true, ch, 0, 0, TO_ROOM);
         break;
     case POS_SITTING:
@@ -2074,18 +2074,18 @@ ACMD(do_rest) {
         act("$n finds a comfortable spot where $e is sitting.", true, ch, 0, 0, TO_ROOM);
         break;
     case POS_KNEELING:
-        send_to_char("You slump and relax your posture.\r\n", ch);
+        send_to_char("You slump and relax your posture.\n", ch);
         act("$n relaxes a bit.", true, ch, 0, 0, TO_ROOM);
         GET_POS(ch) = POS_SITTING;
         break;
     case POS_FLYING:
-        send_to_char("You stop floating and rest your tired bones.\r\n", ch);
+        send_to_char("You stop floating and rest your tired bones.\n", ch);
         act("$n stops floating and takes a rest.", true, ch, 0, 0, TO_ROOM);
         GET_POS(ch) = POS_SITTING;
         break;
     case POS_STANDING:
     default:
-        send_to_char("You sit down and relax.\r\n", ch);
+        send_to_char("You sit down and relax.\n", ch);
         act("$n sits down in a comfortable spot.", true, ch, 0, 0, TO_ROOM);
         GET_POS(ch) = POS_SITTING;
         break;
@@ -2109,35 +2109,35 @@ ACMD(do_alert) {
         act("That is utterly beyond your current abilities.", false, ch, 0, 0, TO_CHAR);
         return;
     case STANCE_SLEEPING:
-        send_to_char("Let's try this in stages.  How about waking up first?\r\n", ch);
+        send_to_char("Let's try this in stages.  How about waking up first?\n", ch);
         return;
     case STANCE_ALERT:
-        send_to_char("You are already about as tense as you can get.\r\n", ch);
+        send_to_char("You are already about as tense as you can get.\n", ch);
         return;
     case STANCE_FIGHTING:
-        send_to_char("Being as you're in a battle and all, you're pretty alert already!\r\n", ch);
+        send_to_char("Being as you're in a battle and all, you're pretty alert already!\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("In your paralyzed state, you find this impossible.\r\n", ch);
+        send_to_char("In your paralyzed state, you find this impossible.\n", ch);
         return;
     }
 
     switch (GET_POS(ch)) {
     case POS_PRONE:
-        send_to_char("You stop relaxing and try to become more aware of your surroundings.\r\n", ch);
+        send_to_char("You stop relaxing and try to become more aware of your surroundings.\n", ch);
         break;
     case POS_SITTING:
-        send_to_char("You sit up straight and start to pay attention.\r\n", ch);
+        send_to_char("You sit up straight and start to pay attention.\n", ch);
         act("$n sits at attention.", true, ch, 0, 0, TO_ROOM);
         break;
     case POS_KNEELING:
-        send_to_char("You straighten up a bit.\r\n", ch);
+        send_to_char("You straighten up a bit.\n", ch);
         act("$n straightens up a bit.", true, ch, 0, 0, TO_ROOM);
         break;
     default:
-        send_to_char("You tense up and become more alert.\r\n", ch);
+        send_to_char("You tense up and become more alert.\n", ch);
         break;
     }
 
@@ -2156,26 +2156,26 @@ ACMD(do_sleep) {
         act("You are beyond sleep.", false, ch, 0, 0, TO_CHAR);
         return;
     case STANCE_SLEEPING:
-        send_to_char("You are already sound asleep.\r\n", ch);
+        send_to_char("You are already sound asleep.\n", ch);
         return;
     case STANCE_FIGHTING:
-        send_to_char("Sleep while fighting?  Are you MAD?\r\n", ch);
+        send_to_char("Sleep while fighting?  Are you MAD?\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-        send_to_char("In your paralyzed state, you find this impossible.\r\n", ch);
+        send_to_char("In your paralyzed state, you find this impossible.\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
-        send_to_char("You're too incensed to take a nap!\r\n", ch);
+        send_to_char("You're too incensed to take a nap!\n", ch);
         return;
     }
 
     switch (GET_POS(ch)) {
     case POS_PRONE:
-        send_to_char("You go to sleep.\r\n", ch);
+        send_to_char("You go to sleep.\n", ch);
         act("$n goes to sleep.", true, ch, 0, 0, TO_ROOM);
         break;
     case POS_FLYING:
@@ -2183,7 +2183,7 @@ ACMD(do_sleep) {
         act("$n stops floating, and lies down to sleep.", true, ch, 0, 0, TO_ROOM);
         break;
     default:
-        send_to_char("You lie down and go to sleep.\r\n", ch);
+        send_to_char("You lie down and go to sleep.\n", ch);
         act("$n lies down and goes to sleep.", true, ch, 0, 0, TO_ROOM);
     }
 
@@ -2200,7 +2200,7 @@ ACMD(do_wake) {
     one_argument(argument, arg);
     if (*arg) {
         if (GET_STANCE(ch) < STANCE_RESTING)
-            send_to_char("Maybe you should wake yourself up first.\r\n", ch);
+            send_to_char("Maybe you should wake yourself up first.\n", ch);
         else if ((vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))) == nullptr)
             send_to_char(NOPERSON, ch);
         else if (vict == ch)
@@ -2221,11 +2221,11 @@ ACMD(do_wake) {
             return;
     }
     if (EFF_FLAGGED(ch, EFF_SLEEP))
-        send_to_char("You can't wake up!\r\n", ch);
+        send_to_char("You can't wake up!\n", ch);
     else if (GET_STANCE(ch) > STANCE_SLEEPING)
-        send_to_char("You are already awake...\r\n", ch);
+        send_to_char("You are already awake...\n", ch);
     else {
-        send_to_char("You awaken.\r\n", ch);
+        send_to_char("You awaken.\n", ch);
         act("$n awakens.", true, ch, 0, 0, TO_ROOM);
         GET_POS(ch) = POS_SITTING;
         GET_STANCE(ch) = STANCE_RESTING;
@@ -2237,7 +2237,7 @@ ACMD(do_follow) {
     CharData *leader;
 
     if (subcmd == SCMD_SHADOW && !GET_SKILL(ch, SKILL_SHADOW)) {
-        send_to_char("You aren't skilled enough to shadow someone.\r\n", ch);
+        send_to_char("You aren't skilled enough to shadow someone.\n", ch);
         return;
     }
 
@@ -2247,11 +2247,11 @@ ACMD(do_follow) {
         if (ch->master)
             act("You are following $N.", false, ch, 0, ch->master, TO_CHAR);
         else
-            send_to_char("You are not following anyone.\r\n", ch);
+            send_to_char("You are not following anyone.\n", ch);
         return;
     }
 
-    if (!str_cmp(arg, "off"))
+    if (!strcmp(arg, "off"))
         leader = ch;
     else if (!(leader = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         send_to_char(NOPERSON, ch);
@@ -2266,11 +2266,11 @@ ACMD(do_follow) {
         if (ch->master)
             stop_follower(ch, 0);
         else
-            send_to_char("You aren't following anyone.\r\n", ch);
+            send_to_char("You aren't following anyone.\n", ch);
     } else if (ch->master == leader)
         act("You are already following $N.", false, ch, 0, leader, TO_CHAR);
     else if (GET_LEVEL(ch) < LVL_GOD && PRF_FLAGGED(leader, PRF_NOFOLLOW))
-        send_to_char("That person would rather not have followers right now.\r\n", ch);
+        send_to_char("That person would rather not have followers right now.\n", ch);
     else {
         if (ch->master)
             stop_follower(ch, 0);
@@ -2312,11 +2312,11 @@ ACMD(do_abandon) {
 
         if (!*arg) {
             if (ch->followers) {
-                sprintf(buf, "You are being followed by:\r\n");
+                sprintf(buf, "You are being followed by:\n");
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
                         if (CAN_SEE_MOVING(ch, k->follower)) {
-                            sprintf(buf, "%s  %s\r\n", buf, GET_NAME(k->follower));
+                            sprintf(buf, "%s  %s\n", buf, GET_NAME(k->follower));
                             found = true;
                         }
                     }
@@ -2325,12 +2325,12 @@ ACMD(do_abandon) {
             if (found) {
                 page_string(ch, buf);
             } else {
-                send_to_char("Nobody is following you.\r\n", ch);
+                send_to_char("Nobody is following you.\n", ch);
             }
             return;
         }
 
-        if (!str_cmp(arg, "all")) {
+        if (!strcmp(arg, "all")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
@@ -2340,19 +2340,19 @@ ACMD(do_abandon) {
                         }
                     } else {
                         if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
-                            send_to_char("You can not abandon immortals.\r\n", ch);
+                            send_to_char("You can not abandon immortals.\n", ch);
                             found = true;
                         }
                     }
                 }
             }
             if (!found) {
-                send_to_char("Nobody is following you.\r\n", ch);
+                send_to_char("Nobody is following you.\n", ch);
             }
             return;
         }
 
-        if (!str_cmp(arg, "pets")) {
+        if (!strcmp(arg, "pets")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (EFF_FLAGGED(k->follower, EFF_CHARM)) {
@@ -2362,12 +2362,12 @@ ACMD(do_abandon) {
                 }
             }
             if (!found) {
-                send_to_char("You do not have any pets following you.\r\n", ch);
+                send_to_char("You do not have any pets following you.\n", ch);
             }
             return;
         }
 
-        if (!str_cmp(arg, "players")) {
+        if (!strcmp(arg, "players")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (!(EFF_FLAGGED(k->follower, EFF_CHARM))) {
@@ -2378,7 +2378,7 @@ ACMD(do_abandon) {
                             }
                         } else {
                             if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
-                                send_to_char("You can not abandon immortals.\r\n", ch);
+                                send_to_char("You can not abandon immortals.\n", ch);
                                 found = true;
                             }
                         }
@@ -2386,7 +2386,7 @@ ACMD(do_abandon) {
                 }
             }
             if (!found) {
-                send_to_char("You do not have any players following you.\r\n", ch);
+                send_to_char("You do not have any players following you.\n", ch);
             }
             return;
         }
@@ -2395,7 +2395,7 @@ ACMD(do_abandon) {
             send_to_char(NOPERSON, ch);
             return;
         } else if (ch == follower) {
-            send_to_char("You can't abandon yourself.\r\n", ch);
+            send_to_char("You can't abandon yourself.\n", ch);
             return;
         } else if (ch->followers) {
             for (k = ch->followers; k; k = k->next) {
@@ -2404,7 +2404,7 @@ ACMD(do_abandon) {
                         stop_follower(k->follower, 0);
                         found = true;
                     } else {
-                        send_to_char("You can not abandon immortals.\r\n", ch);
+                        send_to_char("You can not abandon immortals.\n", ch);
                         found = true;
                     }
                 }
@@ -2416,14 +2416,14 @@ ACMD(do_abandon) {
     } else {
         if (!*arg) {
             if (ch->followers) {
-                sprintf(buf, "You are being followed by:\r\n");
+                sprintf(buf, "You are being followed by:\n");
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
                         if (EFF_FLAGGED(k->follower, EFF_INVISIBLE)) {
-                            sprintf(buf, "%s  %s (invis)\r\n", buf, GET_NAME(k->follower));
+                            sprintf(buf, "%s  %s (invis)\n", buf, GET_NAME(k->follower));
                             found = true;
                         } else {
-                            sprintf(buf, "%s  %s\r\n", buf, GET_NAME(k->follower));
+                            sprintf(buf, "%s  %s\n", buf, GET_NAME(k->follower));
                             found = true;
                         }
                     }
@@ -2432,36 +2432,36 @@ ACMD(do_abandon) {
             if (found) {
                 page_string(ch, buf);
             } else {
-                send_to_char("Nobody is following you.\r\n", ch);
+                send_to_char("Nobody is following you.\n", ch);
             }
             return;
         }
 
-        if (!str_cmp(arg, "all")) {
+        if (!strcmp(arg, "all")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
                         if ((EFF_FLAGGED(k->follower, EFF_INVISIBLE)) && (!CAN_SEE(ch, k->follower))) {
-                            sprintf(buf, "%s stops following you.\r\n", GET_NAME(k->follower));
+                            sprintf(buf, "%s stops following you.\n", GET_NAME(k->follower));
                             send_to_char(buf, ch);
                         }
                         stop_follower(k->follower, 0);
                         found = true;
                     } else {
                         if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
-                            send_to_char("You can not abandon immortals.\r\n", ch);
+                            send_to_char("You can not abandon immortals.\n", ch);
                             found = true;
                         }
                     }
                 }
             }
             if (!found) {
-                send_to_char("Nobody is following you.\r\n", ch);
+                send_to_char("Nobody is following you.\n", ch);
             }
             return;
         }
 
-        if (!str_cmp(arg, "pets")) {
+        if (!strcmp(arg, "pets")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (EFF_FLAGGED(k->follower, EFF_CHARM)) {
@@ -2471,25 +2471,25 @@ ACMD(do_abandon) {
                 }
             }
             if (!found) {
-                send_to_char("You do not have any pets following you.\r\n", ch);
+                send_to_char("You do not have any pets following you.\n", ch);
             }
             return;
         }
 
-        if (!str_cmp(arg, "players")) {
+        if (!strcmp(arg, "players")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (!(EFF_FLAGGED(k->follower, EFF_CHARM))) {
                         if (GET_LEVEL(k->follower) < LVL_GOD) {
                             if ((EFF_FLAGGED(k->follower, EFF_INVISIBLE)) && (!CAN_SEE(ch, k->follower))) {
-                                sprintf(buf, "%s stops following you.\r\n", GET_NAME(k->follower));
+                                sprintf(buf, "%s stops following you.\n", GET_NAME(k->follower));
                                 send_to_char(buf, ch);
                             }
                             stop_follower(k->follower, 0);
                             found = true;
                         } else {
                             if (GET_INVIS_LEV(k->follower) < GET_LEVEL(ch)) {
-                                send_to_char("You can not abandon immortals.\r\n", ch);
+                                send_to_char("You can not abandon immortals.\n", ch);
                                 found = true;
                             }
                         }
@@ -2497,7 +2497,7 @@ ACMD(do_abandon) {
                 }
             }
             if (!found) {
-                send_to_char("You do not have any players following you.\r\n", ch);
+                send_to_char("You do not have any players following you.\n", ch);
             }
             return;
         }
@@ -2506,20 +2506,20 @@ ACMD(do_abandon) {
             send_to_char(NOPERSON, ch);
             return;
         } else if (ch == follower) {
-            send_to_char("You can't abandon yourself.\r\n", ch);
+            send_to_char("You can't abandon yourself.\n", ch);
             return;
         } else if (ch->followers) {
             for (k = ch->followers; k; k = k->next) {
                 if (k->follower == follower) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
                         if ((EFF_FLAGGED(k->follower, EFF_INVISIBLE)) && (!CAN_SEE(ch, k->follower))) {
-                            sprintf(buf, "%s stops following you.\r\n", GET_NAME(k->follower));
+                            sprintf(buf, "%s stops following you.\n", GET_NAME(k->follower));
                             send_to_char(buf, ch);
                         }
                         stop_follower(k->follower, 0);
                         found = true;
                     } else {
-                        send_to_char("You can not abandon immortals.\r\n", ch);
+                        send_to_char("You can not abandon immortals.\n", ch);
                         found = true;
                     }
                 }
@@ -2571,35 +2571,35 @@ ACMD(do_mount) {
     CharData *vict;
 
     if (FIGHTING(ch)) {
-        send_to_char("You are too busy fighting to try that right now.\r\n", ch);
+        send_to_char("You are too busy fighting to try that right now.\n", ch);
         return;
     }
 
     one_argument(argument, arg);
 
     if (!*arg) {
-        send_to_char("Mount who?\r\n", ch);
+        send_to_char("Mount who?\n", ch);
         return;
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
-        send_to_char("There is no-one by that name here.\r\n", ch);
+        send_to_char("There is no-one by that name here.\n", ch);
         return;
     } else if (!IS_NPC(vict)) {
-        send_to_char("Ehh... no.\r\n", ch);
+        send_to_char("Ehh... no.\n", ch);
         return;
     } else if (RIDING(ch) || RIDDEN_BY(ch)) {
-        send_to_char("You are already mounted.\r\n", ch);
+        send_to_char("You are already mounted.\n", ch);
         return;
     } else if (RIDING(vict) || RIDDEN_BY(vict)) {
-        send_to_char("It is already mounted.\r\n", ch);
+        send_to_char("It is already mounted.\n", ch);
         return;
     } else if (GET_LEVEL(ch) < LVL_IMMORT && !MOB_FLAGGED(vict, MOB_MOUNTABLE)) {
-        send_to_char("You can't mount that!\r\n", ch);
+        send_to_char("You can't mount that!\n", ch);
         return;
     } else if (!GET_SKILL(ch, SKILL_MOUNT)) {
-        send_to_char("First you need to learn *how* to mount.\r\n", ch);
+        send_to_char("First you need to learn *how* to mount.\n", ch);
         return;
     } else if (ch == vict) {
-        send_to_char("Not likely.\r\n", ch);
+        send_to_char("Not likely.\n", ch);
         return;
     } else if (RIGID(ch) && !RIGID(vict) && GET_LEVEL(ch) < LVL_IMMORT) {
         if (GET_COMPOSITION(vict) == COMP_ETHER) {
@@ -2654,11 +2654,11 @@ ACMD(do_mount) {
 
 ACMD(do_dismount) {
     if (!RIDING(ch))
-        send_to_char("You aren't even riding anything.\r\n", ch);
+        send_to_char("You aren't even riding anything.\n", ch);
     else if (FIGHTING(ch))
-        send_to_char("You would get hacked to pieces if you dismount now!\r\n", ch);
+        send_to_char("You would get hacked to pieces if you dismount now!\n", ch);
     else if (SECT(ch->in_room) == SECT_WATER && !can_travel_on_water(ch) && GET_POS(ch) != POS_FLYING)
-        send_to_char("Yah, right, and then drown...\r\n", ch);
+        send_to_char("Yah, right, and then drown...\n", ch);
     else if (mount_fall(ch, RIDING(ch)) && number(0, 1) == 0) {
         act("As you begin dismounting, you slip and fall down.", false, ch, 0, RIDING(ch), TO_CHAR);
         act("$n starts to dismount, but slips and falls down.", false, ch, 0, RIDING(ch), TO_ROOM);
@@ -2675,11 +2675,11 @@ ACMD(do_dismount) {
 
 ACMD(do_buck) {
     if (!RIDDEN_BY(ch))
-        send_to_char("You're not even being ridden!\r\n", ch);
+        send_to_char("You're not even being ridden!\n", ch);
     else if (FIGHTING(ch))
-        send_to_char("Worry about this &bafter&0 the battle!\r\n", ch);
+        send_to_char("Worry about this &bafter&0 the battle!\n", ch);
     else if (EFF_FLAGGED(ch, EFF_TAMED))
-        send_to_char("But you're tamed!\r\n", ch);
+        send_to_char("But you're tamed!\n", ch);
     else
         perform_buck(ch, false);
 }
@@ -2692,16 +2692,16 @@ ACMD(do_tame) {
     int chance_tame, chance_attack, lvldiff;
 
     if (FIGHTING(ch)) {
-        send_to_char("You can't tame while fighting!\r\n", ch);
+        send_to_char("You can't tame while fighting!\n", ch);
         return;
     }
     one_argument(argument, arg);
 
     if (!*arg) {
-        send_to_char("Tame who?\r\n", ch);
+        send_to_char("Tame who?\n", ch);
         return;
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
-        send_to_char("There is no such creature here.\r\n", ch);
+        send_to_char("There is no such creature here.\n", ch);
         return;
     } else if (!IS_NPC(vict) || (GET_LEVEL(ch) < LVL_IMMORT && !MOB_FLAGGED(vict, MOB_MOUNTABLE))) {
         act("You can't tame $N.", false, ch, 0, vict, TO_CHAR);
@@ -2710,7 +2710,7 @@ ACMD(do_tame) {
         act("$E seems quite tame already.", false, ch, 0, vict, TO_CHAR);
         return;
     } else if (!GET_SKILL(ch, SKILL_TAME)) {
-        send_to_char("You don't even know how to tame something.\r\n", ch);
+        send_to_char("You don't even know how to tame something.\n", ch);
         return;
     }
 

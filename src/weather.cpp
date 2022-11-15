@@ -26,6 +26,51 @@
  * the game boots (and are updated as the game runs).
  */
 
+const char *wind_speeds[] = {
+    "", "&8&6breeze", "&8&6strong wind", "&4gale-force wind", "&4&8hurricane-strength &0&6wind", "\n"};
+
+const char *precip[] = {"&6&brain", "&7&bsnow", "\n"};
+
+const char *daylight_change[] = {
+    "&9&bThe night has begun.&0\n",
+    "&6&bThe &3sun &6rises in the east.&0\n",
+    "&6&bThe day has begun.&0\n",
+    "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\n",
+};
+
+const char *seasons[] = {"winter", "spring", "summer", "autumn", "\n"};
+
+const char *season_change[] = {
+    "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\n",
+    "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\n",
+    "Spring gives way to Summer.\n",
+    "Summer passes and Autumn begins.\n",
+};
+
+HemisphereData hemispheres[NUM_HEMISPHERES] = {
+    {"Northwestern", SUN_DARK, WINTER},
+    {"Northeastern", SUN_LIGHT, SUMMER},
+    {"Southwestern", SUN_DARK, WINTER},
+    {"Southeastern", SUN_LIGHT, SUMMER},
+};
+
+/* setup all the climate zones.  these are BASE values, and will be modified
+ * for each actual zone at run-time based on the settings here...
+ */
+ClimateData climates[NUM_CLIMATES] =
+    {/* climate         temperature    precipitation   wind speed
+        allowed_disasters */
+     {"None", TEMP_MILD, PRECIP_NONE, WIND_NONE, DISASTER_NONE},
+     {"Semiarid", TEMP_HOT, PRECIP_NONE, WIND_NONE, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
+     {"Arid", TEMP_MILD, PRECIP_DRIZZLE, WIND_STRONG, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
+     {"Oceanic", TEMP_MILD, PRECIP_DRIZZLE, WIND_BREEZE, DISASTER_TSUNAMI | DISASTER_WATERSPOUT | DISASTER_HURRICANE},
+     {"Temperate", TEMP_WARM, PRECIP_LIGHT, WIND_BREEZE, DISASTER_FLOOD | DISASTER_TORNADO | DISASTER_EARTHQUAKE},
+     {"Subtropical", TEMP_HOT, PRECIP_LIGHT, WIND_BREEZE, DISASTER_FLOOD | DISASTER_HEATWAVE | DISASTER_HURRICANE},
+     {"Tropical", TEMP_COOL, PRECIP_LIGHT, WIND_BREEZE, DISASTER_HURRICANE | DISASTER_HEATWAVE},
+     {"Subarctic", TEMP_COLD, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD},
+     {"Arctic", TEMP_FREEZING, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD},
+     {"Alpine", TEMP_COLD, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD}};
+
 void increment_game_time(void) {
     time_info.hours++;
 
@@ -177,17 +222,17 @@ void init_weather() {
 char *wind_message(int current, int original) {
     if (original == WIND_NONE) {
         if (current == WIND_NONE)
-            strcpy(buf, "&6The air is calm.&0\r\n");
+            strcpy(buf, "&6The air is calm.&0\n");
         else
-            sprintf(buf, "&6A &0%s&0 &6begins to blow around you.&0\r\n", wind_speeds[current]);
+            sprintf(buf, "&6A &0%s&0 &6begins to blow around you.&0\n", wind_speeds[current]);
     } else if (current > original)
-        sprintf(buf, "&6The &7%s &6increases to a &7%s.&0\r\n", wind_speeds[original], wind_speeds[current]);
+        sprintf(buf, "&6The &7%s &6increases to a &7%s.&0\n", wind_speeds[original], wind_speeds[current]);
     else if (current == original)
-        sprintf(buf, "&6A &7%s &6is blowing around you.&0\r\n", wind_speeds[current]);
+        sprintf(buf, "&6A &7%s &6is blowing around you.&0\n", wind_speeds[current]);
     else if (current != WIND_NONE)
-        sprintf(buf, "&6The &7%s &6subsides to a &7%s.&0\r\n", wind_speeds[original], wind_speeds[current]);
+        sprintf(buf, "&6The &7%s &6subsides to a &7%s.&0\n", wind_speeds[original], wind_speeds[current]);
     else
-        sprintf(buf, "&6The &7%s &6calms and the air becomes still.&0\r\n", wind_speeds[original]);
+        sprintf(buf, "&6The &7%s &6calms and the air becomes still.&0\n", wind_speeds[original]);
     return buf;
 }
 
@@ -224,30 +269,30 @@ void update_wind(int zone_rnum) {
     else if (zone->wind_speed < WIND_NONE)
         zone->wind_speed = WIND_NONE;
 
-    cbprintf(cb_outdoor, (void *)zone_rnum, "%s", wind_message(zone->wind_speed, original));
+    callback_printf(cb_outdoor, (void *)zone_rnum, "%s", wind_message(zone->wind_speed, original));
 }
 
 char *temperature_message(int temperature) {
     char *message;
 
     if (temperature <= 0)
-        message = "It's too c-c-c-cold to be outside!\r\n";
+        message = "It's too c-c-c-cold to be outside!\n";
     else if (temperature <= 30)
-        message = "It's really c-c-c-cold!!\r\n";
+        message = "It's really c-c-c-cold!!\n";
     else if (temperature <= 50)
-        message = "It's cold!\r\n";
+        message = "It's cold!\n";
     else if (temperature <= 65)
-        message = "It's cool out here.\r\n";
+        message = "It's cool out here.\n";
     else if (temperature <= 75)
-        message = "It's mild out today.\r\n";
+        message = "It's mild out today.\n";
     else if (temperature <= 90)
-        message = "It's nice and warm out.\r\n";
+        message = "It's nice and warm out.\n";
     else if (temperature <= 100)
-        message = "It's hot out here.\r\n";
+        message = "It's hot out here.\n";
     else if (temperature <= 150)
-        message = "It's really, really hot here.\r\n";
+        message = "It's really, really hot here.\n";
     else
-        message = "It's hotter than anyone could imagine!\r\n";
+        message = "It's hotter than anyone could imagine!\n";
     return message;
 }
 
@@ -302,67 +347,67 @@ void update_temperature(int zone_rnum) {
     else if (zone->temperature < TEMP_FREEZING)
         zone->temperature = TEMP_FREEZING;
 
-    cbprintf(cb_outdoor, (void *)zone_rnum, "%s", temperature_message(zone->temperature));
+    callback_printf(cb_outdoor, (void *)zone_rnum, "%s", temperature_message(zone->temperature));
 }
 
 char *precipitation_message(ZoneData *zone, int original) {
     if (original > PRECIP_GRAY_CLOUDS) {
         if (zone->precipitation > original)
-            sprintf(buf, "&9&8It starts %sing &9&8harder.&0\r\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&9&8It starts %sing &9&8harder.&0\n", GET_PRECIP_TYPE(zone));
         else if (zone->precipitation == original)
-            sprintf(buf, "&5It continues to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&5It continues to %s.&0\n", GET_PRECIP_TYPE(zone));
         else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
-            sprintf(buf, "&5The %s &5starts coming down a little lighter.&0\r\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&5The %s &5starts coming down a little lighter.&0\n", GET_PRECIP_TYPE(zone));
         else
-            sprintf(buf, "&5It continues to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&5It continues to %s.&0\n", GET_PRECIP_TYPE(zone));
     } else if (original) {
         if (zone->precipitation <= PRECIP_GRAY_CLOUDS) {
             switch (original) {
             case PRECIP_PARTLY_CLOUDY:
                 strcpy(buf,
                        "&4&8The sky is filled with small &7bil&0&7low&8ing white "
-                       "&7c&0&7l&6ou&7d&8s.&0\r\n");
+                       "&7c&0&7l&6ou&7d&8s.&0\n");
                 break;
             case PRECIP_MOSTLY_CLOUDY:
                 strcpy(buf,
                        "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the "
-                       "sky.&0\r\n");
+                       "sky.&0\n");
                 break;
             case PRECIP_GRAY_CLOUDS:
                 if (HEMISPHERE(zone).sunlight == SUN_DARK)
                     strcpy(buf,
                            "&9&bDark, ominous clouds&0 &4cover the sky, shrouding "
-                           "the &7&8moon&8.&0\r\n");
+                           "the &7&8moon&8.&0\n");
                 else
                     strcpy(buf,
                            "&9&bOminously dark clouds&0 &4fill the sky, blocking "
-                           "out all &3sunlight.&0\r\n");
+                           "out all &3sunlight.&0\n");
                 break;
             default:
                 /* Should not occur. */
-                return "NULL PRECIPITATION\r\n";
+                return "NULL PRECIPITATION\n";
             }
         } else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
-            sprintf(buf, "&9&8It begins to %s.&0\r\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&9&8It begins to %s.&0\n", GET_PRECIP_TYPE(zone));
     } else if (zone->precipitation)
         strcpy(buf,
                "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 "
-               "&4appear in the &bsky.&0\r\n");
+               "&4appear in the &bsky.&0\n");
     else
         switch (HEMISPHERE(zone).sunlight) {
         case SUN_LIGHT:
         case SUN_RISE:
-            strcpy(buf, "&5The &3&bsun&0 &5shows &bbrightly&0 &5in the clear &4&bsky.&0\r\n");
+            strcpy(buf, "&5The &3&bsun&0 &5shows &bbrightly&0 &5in the clear &4&bsky.&0\n");
             break;
         case SUN_DARK:
-            strcpy(buf, "&5The &7moon&0 &5shines &8brightly&0 &5in the clear &4sky.&0\r\n");
+            strcpy(buf, "&5The &7moon&0 &5shines &8brightly&0 &5in the clear &4sky.&0\n");
             break;
         case SUN_SET:
-            strcpy(buf, "&5The &3&8sun&0 &5glows &8&1red&0 &5in the clear &4sky.&0\r\n");
+            strcpy(buf, "&5The &3&8sun&0 &5glows &8&1red&0 &5in the clear &4sky.&0\n");
             break;
         default:
             /* Should not occur. */
-            return "NULL PRECIPITATION\r\n";
+            return "NULL PRECIPITATION\n";
         }
     return buf;
 }
@@ -395,7 +440,7 @@ void update_precipitation(int zone_rnum) {
     else if (zone->precipitation < PRECIP_NONE)
         zone->precipitation = PRECIP_NONE;
 
-    cbprintf(cb_outdoor, (void *)zone_rnum, "%s", precipitation_message(zone, original));
+    callback_printf(cb_outdoor, (void *)zone_rnum, "%s", precipitation_message(zone, original));
 }
 
 /* Update the weather for all zones. */

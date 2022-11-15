@@ -101,13 +101,9 @@ struct OLCSaveInfo {
 /*
  * Exported globals.
  */
-// #ifdef _OASIS_OLC_
-// char *nrm, *grn, *cyn, *yel, *blk, *red;
-//  OLCSaveInfo *olc_save_list = NULL;
-// #else
-const char *nrm, *grn, *cyn, *yel, *blk, *red;
-OLCSaveInfo *olc_save_list;
-// #endif
+
+extern const char *nrm, *grn, *cyn, *yel, *blk, *red;
+extern OLCSaveInfo *olc_save_list;
 
 /*
  * Descriptor access macros.
@@ -339,16 +335,15 @@ OLCSaveInfo *olc_save_list;
 #define MAX_MOB_DESC 1024
 #define MAX_OBJ_DESC 512
 
-const char *save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
+extern const char *save_info_msg[5];
+
 /*
  * Internal data structures.
  */
 
 struct OLCSCommandData {
-    char *text;
+    const char *text;
     int con_type;
 };
 
-struct OLCSCommandData olc_scmd_info[] = {{"room", CON_REDIT},      {"object", CON_OEDIT}, {"room", CON_ZEDIT},
-                                          {"mobile", CON_MEDIT},    {"shop", CON_SEDIT},   {"help", CON_HEDIT},
-                                          {"trigger", CON_TRIGEDIT}};
+extern OLCSCommandData olc_scmd_info[];

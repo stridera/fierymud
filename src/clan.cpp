@@ -21,10 +21,12 @@
 #include "modify.hpp"
 #include "players.hpp"
 #include "screen.hpp"
-#include "strings.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+
+#include <fmt/format.h>
 
 #define CLANCMD(name) void(name)(CharData * ch, ClanMembership * member, Clan * clan, char *argument)
 
@@ -32,12 +34,12 @@ CLANCMD(clan_list) {
     clan_iter iter;
 
     if (clan_count() == 0) {
-        cprintf(ch, "No clans have formed yet.\r\n");
+        char_printf(ch, "No clans have formed yet.\n");
         return;
     }
 
     /* List clans, # of members, power, and app fee */
-    pprintf(ch, AUND " Num   Clan           Members/Power  App Fee/Lvl\r\n" ANRM);
+    pprintf(ch, AUND " Num   Clan           Members/Power  App Fee/Lvl\n" ANRM);
     for (iter = clans_start(); iter != clans_end(); ++iter) {
         pprintf(ch,
                 "[%3d]  " ELLIPSIS_FMT
@@ -61,7 +63,7 @@ CLANCMD(clan_bank) {
     preposition = deposit ? "into" : "from";
 
     if (!parse_money(&argument, coins)) {
-        cprintf(ch, "How much do you want to %s?\r\n", verb);
+        char_printf(ch, "How much do you want to %s?\n", verb);
         return;
     }
 
@@ -70,7 +72,7 @@ CLANCMD(clan_bank) {
         if (GET_LEVEL(ch) < LVL_GOD) {
             if (GET_PLATINUM(ch) < coins[PLATINUM] || GET_GOLD(ch) < coins[GOLD] || GET_SILVER(ch) < coins[SILVER] ||
                 GET_COPPER(ch) < coins[COPPER]) {
-                cprintf(ch, "You do not have that kind of money!\r\n");
+                char_printf(ch, "You do not have that kind of money!\n");
                 return;
             }
 
@@ -83,7 +85,7 @@ CLANCMD(clan_bank) {
     } else {
         if (clan->treasure[PLATINUM] < coins[PLATINUM] || clan->treasure[GOLD] < coins[GOLD] ||
             clan->treasure[SILVER] < coins[SILVER] || clan->treasure[COPPER] < coins[COPPER]) {
-            cprintf(ch, "The clan is not wealthy enough for your needs!\r\n");
+            char_printf(ch, "The clan is not wealthy enough for your needs!\n");
             return;
         }
         GET_PLATINUM(ch) += coins[PLATINUM];
@@ -94,7 +96,7 @@ CLANCMD(clan_bank) {
     }
 
     statemoney(buf, coins);
-    cprintf(ch, "You %s %s %s's account: %s\r\n", verb, preposition, clan->abbreviation, buf);
+    char_printf(ch, "You %s %s %s's account: %s\n", verb, preposition, clan->abbreviation, buf);
 
     if (deposit) {
         clan->treasure[PLATINUM] += coins[PLATINUM];
@@ -128,7 +130,7 @@ CLANCMD(clan_tell) {
     skip_spaces(&argument);
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
-        cprintf(ch, "Your lips move, but no sound forms.\r\n");
+        char_printf(ch, "Your lips move, but no sound forms.\n");
         return;
     }
 
@@ -136,14 +138,14 @@ CLANCMD(clan_tell) {
         return;
 
     if (!*argument) {
-        cprintf(ch, "What do you want to tell the clan?\r\n");
+        char_printf(ch, "What do you want to tell the clan?\n");
         return;
     }
 
     argument = drunken_speech(argument, GET_COND(ch, DRUNK));
 
-    cprintf(ch, AFMAG "You tell %s" AFMAG ", '" AHMAG "%s" AFMAG "'\r\n" ANRM,
-            member ? "your clan" : clan->abbreviation, argument);
+    char_printf(ch, AFMAG "You tell %s" AFMAG ", '" AHMAG "%s" AFMAG "'\n" ANRM,
+                member ? "your clan" : clan->abbreviation, argument);
 
     for (d = descriptor_list; d; d = d->next) {
         if (!IS_PLAYING(d) || !d->character)
@@ -158,9 +160,9 @@ CLANCMD(clan_tell) {
             continue;
         if ((IS_CLAN_SUPERADMIN(tch) && is_snooping(tch, clan)) ||
             (GET_CLAN(tch) == clan && !OUTRANKS(MIN_ALT_RANK, GET_CLAN_RANK(tch))))
-            cprintf(FORWARD(tch), AFMAG "%s tells %s" AFMAG ", '" AHMAG "%s" AFMAG "'\r\n" ANRM,
-                    GET_INVIS_LEV(me) > GET_LEVEL(tch) ? "Someone" : GET_NAME(me),
-                    member && !IS_CLAN_SUPERADMIN(tch) ? "your clan" : clan->abbreviation, argument);
+            char_printf(FORWARD(tch), AFMAG "%s tells %s" AFMAG ", '" AHMAG "%s" AFMAG "'\n" ANRM,
+                        GET_INVIS_LEV(me) > GET_LEVEL(tch) ? "Someone" : GET_NAME(me),
+                        member && !IS_CLAN_SUPERADMIN(tch) ? "your clan" : clan->abbreviation, argument);
     }
 }
 
@@ -171,17 +173,17 @@ CLANCMD(clan_set) {
         char *old_abbr = clan->abbreviation;
         skip_spaces(&argument);
         if (strlen(strip_ansi(argument)) > MAX_CLAN_ABBR_LEN) {
-            cprintf(ch, "Clan abbreviationss may be at most %d characters in length.\r\n", MAX_CLAN_ABBR_LEN);
+            char_printf(ch, "Clan abbreviationss may be at most %d characters in length.\n", MAX_CLAN_ABBR_LEN);
             return;
         }
-        clan->abbreviation = ""; /* so find_clan doesn't find this clan */
+        clan->abbreviation = nullptr; /* so find_clan doesn't find this clan */
         if (find_clan(argument)) {
-            cprintf(ch, "A clan with that name or abbreviation already exists!\r\n");
+            char_printf(ch, "A clan with that name or abbreviation already exists!\n");
             clan->abbreviation = old_abbr; /* revert */
             return;
         }
-        clan->abbreviation = strdupf("%s&0", argument);
-        cprintf(ch, "%s is now abbreviated %s.\r\n", clan->name, clan->abbreviation);
+        clan->abbreviation = strdup(fmt::format("{}&0", argument).c_str());
+        char_printf(ch, "%s is now abbreviated %s.\n", clan->name, clan->abbreviation);
         mprintf(L_STAT, LVL_GOD, "(CLAN) %s changes %s's to %s", GET_NAME(ch), clan->name, clan->abbreviation);
         free(old_abbr);
     }
@@ -190,7 +192,7 @@ CLANCMD(clan_set) {
         int i;
 
         if (clan->rank_count >= MAX_CLAN_RANKS) {
-            cprintf(ch, "%s already has the maximum number of ranks.\r\n", clan->name);
+            char_printf(ch, "%s already has the maximum number of ranks.\n", clan->name);
             return;
         }
 
@@ -204,82 +206,82 @@ CLANCMD(clan_set) {
             else
                 REMOVE_FLAG(clan->ranks[clan->rank_count - 1].privileges, i);
 
-        cprintf(ch, "You add a new rank (%u) to %s.\r\n", clan->rank_count, clan->name);
+        char_printf(ch, "You add a new rank (%u) to %s.\n", clan->rank_count, clan->name);
         clan_notification(clan, ch, "%s adds a new rank to your clan.", GET_NAME(ch));
     }
 
     else if (is_abbrev(arg, "appfee")) {
         any_one_arg(argument, arg);
         if (!is_number(arg)) {
-            cprintf(ch, "How much platinum should the clan's application fee be?\r\n");
+            char_printf(ch, "How much platinum should the clan's application fee be?\n");
             return;
         }
         clan->app_fee = atoi(arg);
-        cprintf(ch, "%s's application fee is now %u platinum.\r\n", clan->name, clan->app_fee);
+        char_printf(ch, "%s's application fee is now %u platinum.\n", clan->name, clan->app_fee);
     }
 
     else if (is_abbrev(arg, "applev")) {
         unsigned int level;
         any_one_arg(argument, arg);
         if (!is_number(arg)) {
-            cprintf(ch, "What should the clan's minimum application level be?\r\n");
+            char_printf(ch, "What should the clan's minimum application level be?\n");
             return;
         }
         level = atoi(arg);
         if (level < 1 || level > LVL_IMPL) {
-            cprintf(ch, "The minimum application level must be between 1 and %d.\r\n", LVL_IMPL);
+            char_printf(ch, "The minimum application level must be between 1 and %d.\n", LVL_IMPL);
             return;
         }
         clan->app_level = level;
-        cprintf(ch, "%s's minimum application level is now %u.\r\n", clan->name, clan->app_level);
+        char_printf(ch, "%s's minimum application level is now %u.\n", clan->name, clan->app_level);
     }
 
     else if (is_abbrev(arg, "delrank")) {
         if (clan->rank_count <= MIN_CLAN_RANKS) {
-            cprintf(ch, "%s already has the minimum number of ranks.\r\n", clan->name);
+            char_printf(ch, "%s already has the minimum number of ranks.\n", clan->name);
             return;
         }
 
         --clan->rank_count;
         free(clan->ranks[clan->rank_count].title);
 
-        cprintf(ch, "You remove a rank (%u) from %s.\r\n", clan->rank_count + 1, clan->name);
+        char_printf(ch, "You remove a rank (%u) from %s.\n", clan->rank_count + 1, clan->name);
         clan_notification(clan, ch, "%s removes a rank from your clan.", GET_NAME(ch));
 
         for (member = clan->members; member; member = member->next)
             if (member->rank == clan->rank_count + 1) {
                 --member->rank;
                 if (member->player)
-                    cprintf(FORWARD(member->player), AFMAG "You have been automatically promoted to rank %u.\r\n" ANRM,
-                            member->rank);
+                    char_printf(FORWARD(member->player),
+                                AFMAG "You have been automatically promoted to rank %u.\n" ANRM, member->rank);
             }
     }
 
     else if (is_abbrev(arg, "dues")) {
         any_one_arg(argument, arg);
         if (!is_number(arg)) {
-            cprintf(ch, "How much platinum should the clan's dues be?\r\n");
+            char_printf(ch, "How much platinum should the clan's dues be?\n");
             return;
         }
         clan->dues = atoi(arg);
-        cprintf(ch, "%s's monthly dues are now %u platinum.\r\n", clan->name, clan->dues);
+        char_printf(ch, "%s's monthly dues are now %u platinum.\n", clan->name, clan->dues);
     }
 
     else if (is_abbrev(arg, "name")) {
         char *old_name = clan->name;
         skip_spaces(&argument);
         if (strlen(strip_ansi(argument)) > MAX_CLAN_NAME_LEN) {
-            cprintf(ch, "Clan names may be at most %d characters in length.\r\n", MAX_CLAN_NAME_LEN);
+            char_printf(ch, "Clan names may be at most %d characters in length.\n", MAX_CLAN_NAME_LEN);
             return;
         }
-        clan->name = ""; /* so find_clan doesn't find this clan */
+        clan->name = nullptr; /* so find_clan doesn't find this clan */
         if (find_clan(argument)) {
-            cprintf(ch, "A clan with that name already exists!\r\n");
+            char_printf(ch, "A clan with that name already exists!\n");
             clan->name = old_name; /* revert */
             return;
         }
-        clan->name = strdupf("%s&0", argument);
-        cprintf(ch, "%s is now named %s.\r\n", old_name, clan->name);
+        clan->name = strdup(fmt::format("{}&0", argument).c_str());
+        char_printf(ch, "%s is now named %s.\n", old_name, clan->name);
         mprintf(L_STAT, LVL_GOD, "(CLAN) %s renames %s to %s", GET_NAME(ch), old_name, clan->name);
         free(old_name);
     }
@@ -288,26 +290,26 @@ CLANCMD(clan_set) {
         unsigned int rank;
         argument = any_one_arg(argument, arg);
         if (!*arg) {
-            cprintf(ch, "For which rank do you want to set a title?\r\n");
+            char_printf(ch, "For which rank do you want to set a title?\n");
             return;
         }
         rank = atoi(arg);
         if (!is_number(arg) || rank < 1 || rank > clan->rank_count) {
-            cprintf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%u.\r\n", arg, clan->rank_count);
+            char_printf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%u.\n", arg, clan->rank_count);
             return;
         }
         skip_spaces(&argument);
         if (!IS_CLAN_SUPERADMIN(ch) && !IS_CLAN_ADMIN(ch) && OUTRANKS(rank, GET_CLAN_RANK(ch))) {
-            cprintf(ch, "You cannot set the title for a rank above your own.\r\n");
+            char_printf(ch, "You cannot set the title for a rank above your own.\n");
             return;
         }
         if (strlen(strip_ansi(argument)) > MAX_CLAN_TITLE_LEN) {
-            cprintf(ch, "Clan titles may be at most %u characters long.\r\n", MAX_CLAN_TITLE_LEN);
+            char_printf(ch, "Clan titles may be at most %u characters long.\n", MAX_CLAN_TITLE_LEN);
             return;
         }
         free(clan->ranks[rank - 1].title);
-        clan->ranks[rank - 1].title = strdupf("%s&0", argument);
-        cprintf(ch, "Rank %u's title is now: %s\r\n", rank, argument);
+        clan->ranks[rank - 1].title = strdup(fmt::format("{}&0", argument).c_str());
+        char_printf(ch, "Rank %u's title is now: %s\n", rank, argument);
         clan_notification(clan, ch, "%s has changed rank %u's title to %s.", GET_NAME(ch), rank, argument);
     }
 
@@ -326,7 +328,7 @@ CLANCMD(clan_alt) {
     argument = any_one_arg(argument, arg);
 
     if (!*arg) {
-        cprintf(ch, "Whom do you want to add or remove as an alt?\r\n");
+        char_printf(ch, "Whom do you want to add or remove as an alt?\n");
         return;
     }
 
@@ -335,37 +337,38 @@ CLANCMD(clan_alt) {
      * to be online for that.
      */
     for (alt = member->relation.alts; alt; alt = alt->next) {
-        if (!str_cmp(alt->name, arg)) {
-            cprintf(ch, "You remove %s as one of %s%s clan alts.\r\n", alt->name,
-                    ch == member->player ? "your" : member->name, ch == member->player ? "" : "'s");
+        if (!strcmp(alt->name, arg)) {
+            char_printf(ch, "You remove %s as one of %s%s clan alts.\n", alt->name,
+                        ch == member->player ? "your" : member->name, ch == member->player ? "" : "'s");
             if (ch != member->player && member->player)
-                cprintf(FORWARD(member->player), AFMAG "%s removes %s as one of your clan alts.\r\n" ANRM, GET_NAME(ch),
-                        alt->name);
+                char_printf(FORWARD(member->player), AFMAG "%s removes %s as one of your clan alts.\n" ANRM,
+                            GET_NAME(ch), alt->name);
             if (alt->player)
-                cprintf(FORWARD(alt->player), AFMAG "You are no longer one of %s's clan alts.\r\n" ANRM, member->name);
+                char_printf(FORWARD(alt->player), AFMAG "You are no longer one of %s's clan alts.\n" ANRM,
+                            member->name);
             revoke_clan_membership(alt);
             return;
         }
     }
 
     if (!(tch = find_char_by_desc(find_vis_by_name(ch, arg))))
-        cprintf(ch, "There's no one online by the name of %s.\r\n", arg);
+        char_printf(ch, "There's no one online by the name of %s.\n", arg);
     else if (ch == tch)
-        cprintf(ch, "You want to be your own alt?\r\n");
+        char_printf(ch, "You want to be your own alt?\n");
     else if (GET_CLAN_MEMBERSHIP(tch))
-        cprintf(ch, "%s is already in a clan!\r\n", GET_NAME(tch));
+        char_printf(ch, "%s is already in a clan!\n", GET_NAME(tch));
     else if (!IS_CLAN_SUPERADMIN(ch) && !IS_CLAN_ADMIN(ch) && strcmp(ch->desc->host, tch->desc->host))
-        cprintf(ch, "%s was not found logged in as your alt.\r\n", GET_NAME(tch));
+        char_printf(ch, "%s was not found logged in as your alt.\n", GET_NAME(tch));
     else if (IS_CLAN_SUPERADMIN(tch))
-        cprintf(ch, "%s is already a clan super-admin!\r\n", GET_NAME(tch));
+        char_printf(ch, "%s is already a clan super-admin!\n", GET_NAME(tch));
     else {
-        cprintf(ch, "You make %s one of %s%s clan alts.\r\n", GET_NAME(tch),
-                ch == member->player ? "your" : member->name, ch == member->player ? "" : "'s");
-        cprintf(tch, AFMAG "%s makes you one of %s%s clan alts.\r\n" ANRM, GET_NAME(ch),
-                ch == member->player ? HSHR(member->player) : member->name, ch == member->player ? "" : "'s");
+        char_printf(ch, "You make %s one of %s%s clan alts.\n", GET_NAME(tch),
+                    ch == member->player ? "your" : member->name, ch == member->player ? "" : "'s");
+        char_printf(tch, AFMAG "%s makes you one of %s%s clan alts.\n" ANRM, GET_NAME(ch),
+                    ch == member->player ? HSHR(member->player) : member->name, ch == member->player ? "" : "'s");
         if (ch != member->player && member->player)
-            cprintf(FORWARD(member->player), AFMAG "%s makes %s one of your clan alts.\r\n" ANRM, GET_NAME(ch),
-                    GET_NAME(tch));
+            char_printf(FORWARD(member->player), AFMAG "%s makes %s one of your clan alts.\n" ANRM, GET_NAME(ch),
+                        GET_NAME(tch));
         CREATE(alt, ClanMembership, 1);
         alt->name = strdup(GET_NAME(tch));
         alt->rank = ALT_RANK_OFFSET + member->rank;
@@ -383,19 +386,19 @@ CLANCMD(clan_alt) {
 
 CLANCMD(clan_apply) {
     if (GET_LEVEL(ch) < LVL_GOD && GET_PLATINUM(ch) < clan->app_fee) {
-        cprintf(ch,
-                "You don't have enough money to cover the %u platinum "
-                "application fee.\r\n",
-                clan->app_fee);
+        char_printf(ch,
+                    "You don't have enough money to cover the %u platinum "
+                    "application fee.\n",
+                    clan->app_fee);
         return;
     }
 
     if (GET_LEVEL(ch) < clan->app_level) {
-        cprintf(ch, "%s does not accept players beneath level %u.\r\n", clan->name, clan->app_level);
+        char_printf(ch, "%s does not accept players beneath level %u.\n", clan->name, clan->app_level);
         return;
     }
 
-    cprintf(ch, "You apply to %s.\r\n", clan->name);
+    char_printf(ch, "You apply to %s.\n", clan->name);
 
     if (GET_LEVEL(ch) < LVL_GOD) {
         GET_PLATINUM(ch) -= clan->app_fee;
@@ -421,11 +424,11 @@ CLANCMD(clan_create) {
     fetch_word(argument, buf, sizeof(buf));
 
     if (!*buf)
-        cprintf(ch, "What is the abbreviation for the new clan?\r\n");
+        char_printf(ch, "What is the abbreviation for the new clan?\n");
     else if (strlen(strip_ansi(buf)) > 10)
-        cprintf(ch, "Clan abbreviations can be at most 10 visible characters long.\r\n");
+        char_printf(ch, "Clan abbreviations can be at most 10 visible characters long.\n");
     else if (find_clan_by_abbr(strip_ansi(buf)))
-        cprintf(ch, "A clan with a similar abbreviation already exists.\r\n");
+        char_printf(ch, "A clan with a similar abbreviation already exists.\n");
     else {
         strcat(buf, "&0");
         clan = alloc_clan();
@@ -460,7 +463,7 @@ CLANCMD(clan_create) {
         clan->applicant_count = 0;
         clan->applicants = nullptr;
 
-        cprintf(ch, "New clan created.\r\n");
+        char_printf(ch, "New clan created.\n");
         mprintf(L_STAT, LVL_GOD, "(CLAN) %s creates new clan: %s", GET_NAME(ch), buf);
 
         save_clan(clan);
@@ -475,22 +478,22 @@ CLANCMD(update_clan_rank) {
 
     if (is_abbrev(arg, "demote")) {
         if (!IS_CLAN_SUPERADMIN(ch) && ch != member->player && !OUTRANKS(GET_CLAN_RANK(ch), member->rank))
-            cprintf(ch, "You cannot demote someone at or above your rank.\r\n");
+            char_printf(ch, "You cannot demote someone at or above your rank.\n");
         else if (member->rank == clan->rank_count)
-            cprintf(ch, "%s is already the minimum rank.\r\n", member->name);
+            char_printf(ch, "%s is already the minimum rank.\n", member->name);
         else if (!IS_MEMBER_RANK(member->rank))
-            cprintf(ch, "%s isn't a clan member.\r\n", member->name);
+            char_printf(ch, "%s isn't a clan member.\n", member->name);
         else {
             rank = member->rank + 1;
             action = "demote";
         }
     } else if (is_abbrev(arg, "promote")) {
         if (!IS_CLAN_SUPERADMIN(ch) && !OUTRANKS(GET_CLAN_RANK(ch), member->rank))
-            cprintf(ch, "You cannot promote someone at or above your rank.\r\n");
+            char_printf(ch, "You cannot promote someone at or above your rank.\n");
         else if (member->rank == RANK_LEADER)
-            cprintf(ch, "%s is already the maximum rank.\r\n", member->name);
+            char_printf(ch, "%s is already the maximum rank.\n", member->name);
         else if (!IS_MEMBER_RANK(member->rank))
-            cprintf(ch, "%s isn't a clan member.\r\n", member->name);
+            char_printf(ch, "%s isn't a clan member.\n", member->name);
         else {
             rank = member->rank - 1;
             action = "promote";
@@ -505,12 +508,12 @@ CLANCMD(update_clan_rank) {
         return;
 
     if (ch == member->player)
-        cprintf(ch, "You %s yourself to rank %u: %s\r\n", action, rank, clan->ranks[rank - 1].title);
+        char_printf(ch, "You %s yourself to rank %u: %s\n", action, rank, clan->ranks[rank - 1].title);
     else {
         if (member->player)
-            cprintf(FORWARD(member->player), AFMAG "%s has %sd you to rank %u: " ANRM "%s\r\n", GET_NAME(ch), action,
-                    rank, clan->ranks[rank - 1].title);
-        cprintf(ch, "You %s %s to rank %u: %s\r\n", action, member->name, rank, clan->ranks[rank - 1].title);
+            char_printf(FORWARD(member->player), AFMAG "%s has %sd you to rank %u: " ANRM "%s\n", GET_NAME(ch), action,
+                        rank, clan->ranks[rank - 1].title);
+        char_printf(ch, "You %s %s to rank %u: %s\n", action, member->name, rank, clan->ranks[rank - 1].title);
     }
     member->rank = RANK_NONE; /* Temporary so they don't get the notification */
     clan_notification(clan, ch, "%s has %sd %s to rank %u: " ANRM "%s", GET_NAME(ch), action, member->name, rank,
@@ -524,7 +527,7 @@ CLANCMD(update_clan_rank) {
 
 CLANCMD(clan_destroy) {
     clan_notification(clan, ch, "Your clan has been disbanded!");
-    cprintf(ch, AFMAG "You have deleted the clan %s.\r\n" ANRM, clan->name);
+    char_printf(ch, AFMAG "You have deleted the clan %s.\n" ANRM, clan->name);
     mprintf(L_STAT, LVL_GOD, "(CLAN) %s has destroyed the clan %s.", GET_NAME(ch), clan->name);
     dealloc_clan(clan);
 }
@@ -544,11 +547,11 @@ CLANCMD(clan_enroll) {
     update_clan(clan);
     save_clan(clan);
 
-    cprintf(ch, "You %s %s %s %s.\r\n", member->rank == RANK_LEADER ? "appoint" : "enroll", member->name,
-            member->rank == RANK_LEADER ? "the leader of" : "in", clan->name);
+    char_printf(ch, "You %s %s %s %s.\n", member->rank == RANK_LEADER ? "appoint" : "enroll", member->name,
+                member->rank == RANK_LEADER ? "the leader of" : "in", clan->name);
     if (member->player)
-        cprintf(FORWARD(member->player), AFMAG "You've been %s %s" AFMAG "!\r\n" ANRM,
-                member->rank == RANK_LEADER ? "appointed the leader of" : "enrolled in", clan->name);
+        char_printf(FORWARD(member->player), AFMAG "You've been %s %s" AFMAG "!\n" ANRM,
+                    member->rank == RANK_LEADER ? "appointed the leader of" : "enrolled in", clan->name);
 
     mprintf(L_STAT, LVL_GOD, "(CLAN) %s enrolls %s in %s.", GET_NAME(ch), member->name, clan->name);
 }
@@ -557,18 +560,18 @@ CLANCMD(clan_expel) {
     char *name = strdup(member->name);
 
     if (!IS_CLAN_SUPERADMIN(ch) && !OUTRANKS(GET_CLAN_RANK(ch), member->rank)) {
-        cprintf(ch, "%s outranks you!\r\n", name);
+        char_printf(ch, "%s outranks you!\n", name);
         free(name);
         return;
     }
 
     clan = member->clan;
 
-    cprintf(ch, "You expel %s from %s.\r\n", name, clan->name);
+    char_printf(ch, "You expel %s from %s.\n", name, clan->name);
 
     if (member->player)
-        cprintf(FORWARD(member->player), AFMAG "%s has expelled you from %s" AFMAG ".\r\n" ANRM, GET_NAME(ch),
-                clan->name);
+        char_printf(FORWARD(member->player), AFMAG "%s has expelled you from %s" AFMAG ".\n" ANRM, GET_NAME(ch),
+                    clan->name);
 
     mprintf(L_STAT, LVL_GOD, "(CLAN) %s expels %s from %s.", GET_NAME(ch), name, clan->name);
     revoke_clan_membership(member);
@@ -596,7 +599,7 @@ CLANCMD(clan_priv) {
     rank = atoi(arg);
 
     if (rank < RANK_LEADER || rank > clan->rank_count) {
-        cprintf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%d.\r\n", arg, clan->rank_count);
+        char_printf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%d.\n", arg, clan->rank_count);
         return;
     }
 
@@ -605,36 +608,36 @@ CLANCMD(clan_priv) {
         if (is_abbrev(arg, clan_privileges[priv].abbr))
             break;
     if (priv >= NUM_CLAN_PRIVS) {
-        cprintf(ch,
-                "'%s' is an invalid privilege.  Valid privileges are "
-                "listed on clan info.\r\n",
-                arg);
+        char_printf(ch,
+                    "'%s' is an invalid privilege.  Valid privileges are "
+                    "listed on clan info.\n",
+                    arg);
         return;
     }
 
     if (!IS_CLAN_SUPERADMIN(ch) && !IS_CLAN_ADMIN(ch) && !HAS_CLAN_PRIV(ch, priv)) {
-        cprintf(ch, "You cannot grant or revoke a privilege you do not have!\r\n");
+        char_printf(ch, "You cannot grant or revoke a privilege you do not have!\n");
         return;
     }
 
     if (IS_CLAN_MEMBER(ch) && !OUTRANKS(GET_CLAN_RANK(ch), rank)) {
-        cprintf(ch, "You may only grant or revoke privileges on ranks below yours.\r\n");
+        char_printf(ch, "You may only grant or revoke privileges on ranks below yours.\n");
         return;
     }
 
     if (action == GRANT) {
         if (IS_FLAGGED(clan->ranks[rank - 1].privileges, priv))
-            cprintf(ch, "Rank %d already has the %s privilege.\r\n", rank, clan_privileges[priv].desc);
+            char_printf(ch, "Rank %d already has the %s privilege.\n", rank, clan_privileges[priv].desc);
         else {
             SET_FLAG(clan->ranks[rank - 1].privileges, priv);
-            cprintf(ch, "Granted rank %d access to the %s privilege.\r\n", rank, clan_privileges[priv].desc);
+            char_printf(ch, "Granted rank %d access to the %s privilege.\n", rank, clan_privileges[priv].desc);
         }
     } else if (action == REVOKE) {
         if (IS_FLAGGED(clan->ranks[rank - 1].privileges, priv)) {
             REMOVE_FLAG(clan->ranks[rank - 1].privileges, priv);
-            cprintf(ch, "Revoked rank %d access to the %s privilege.\r\n", rank, clan_privileges[priv].desc);
+            char_printf(ch, "Revoked rank %d access to the %s privilege.\n", rank, clan_privileges[priv].desc);
         } else
-            cprintf(ch, "Rank %d doesn't have the %s privilege.\r\n", rank, clan_privileges[priv].desc);
+            char_printf(ch, "Rank %d doesn't have the %s privilege.\n", rank, clan_privileges[priv].desc);
     }
 
     save_clan(clan);
@@ -648,7 +651,7 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
 
     strcpy(buf,
            "----------------------------------------------------------------"
-           "------\r\n");
+           "------\n");
     sprintf(buf1, "[ Clan %u: %s ]", clan->number, clan->name);
     memcpy(buf + 29 - strlen(clan->name) / 2, buf1, strlen(buf1));
     pprintf(ch, "%s", buf);
@@ -661,43 +664,43 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
             "Members: " AFYEL "%u" ANRM
             "  "
             "Power: " AFYEL "%u" ANRM
-            "\r\n"
+            "\n"
             "Applicants: " AFYEL "%u" ANRM
             "  "
             "App Fee: " AFCYN "%up" ANRM
             "  "
             "App Level: " AFYEL "%u" ANRM
             "  "
-            "Dues: " AFCYN "%up" ANRM "\r\n",
+            "Dues: " AFCYN "%up" ANRM "\n",
             clan->abbreviation, clan->rank_count, clan->member_count, clan->power, clan->applicant_count, clan->app_fee,
             clan->app_level, clan->dues);
 
     if (show_all) {
         statemoney(buf, clan->treasure);
-        pprintf(ch, "Treasure: %s\r\n", buf);
+        pprintf(ch, "Treasure: %s\n", buf);
 
-        pprintf(ch, "\r\nRanks:\r\n");
+        pprintf(ch, "\nRanks:\n");
         for (i = 0; i < clan->rank_count; ++i)
-            pprintf(ch, "%3u  %s\r\n", i + 1, clan->ranks[i].title);
+            pprintf(ch, "%3u  %s\n", i + 1, clan->ranks[i].title);
 
-        pprintf(ch, "\r\nPrivileges:\r\n         ");
+        pprintf(ch, "\nPrivileges:\n         ");
         for (j = 1; j <= clan->rank_count; ++j)
             pprintf(ch, "%3u", j);
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
-            pprintf(ch, "\r\n%-9s", clan_privileges[i].abbr);
+            pprintf(ch, "\n%-9s", clan_privileges[i].abbr);
             for (j = 0; j < clan->rank_count; ++j)
                 pprintf(ch, "  %s%c" ANRM, IS_FLAGGED(clan->ranks[j].privileges, i) ? AFGRN : AFRED,
                         IS_FLAGGED(clan->ranks[j].privileges, i) ? 'Y' : 'N');
         }
-        pprintf(ch, "\r\n");
+        pprintf(ch, "\n");
     }
 
     if (clan->description)
-        pprintf(ch, "\r\nDescription:\r\n%s", clan->description);
+        pprintf(ch, "\nDescription:\n%s", clan->description);
 
     if (show_all)
         if (clan->motd)
-            pprintf(ch, "\r\nMessage of the Day:\r\n%s", clan->motd);
+            pprintf(ch, "\nMessage of the Day:\n%s", clan->motd);
 
     start_paging(ch);
 }
@@ -709,42 +712,42 @@ CLANCMD(clan_info) {
         if (clan)
             show_clan_info(ch, clan);
         else
-            cprintf(ch, "Which clan's info do you want to view?\r\n");
+            char_printf(ch, "Which clan's info do you want to view?\n");
     } else if ((clan = find_clan(arg)))
         show_clan_info(ch, clan);
     else
-        cprintf(ch, "'%s' does not refer to a valid clan.\r\n", arg);
+        char_printf(ch, "'%s' does not refer to a valid clan.\n", arg);
 }
 
 static void show_clan_member_status(CharData *ch, CharData *tch) {
     if (IS_CLAN_SUPERADMIN(tch))
-        cprintf(ch, "%s %s a clan super-administrator.\r\n", ch == tch ? "You" : GET_NAME(tch),
-                ch == tch ? "are" : "is");
+        char_printf(ch, "%s %s a clan super-administrator.\n", ch == tch ? "You" : GET_NAME(tch),
+                    ch == tch ? "are" : "is");
     else if (IS_CLAN_REJECT(tch)) {
         unsigned int days = days_until_reapply(GET_CLAN_MEMBERSHIP(tch));
-        cprintf(ch, "%s %s rejected from %s and may re-apply in %d day%s.\r\n", ch == tch ? "You" : GET_NAME(tch),
-                ch == tch ? "were" : "was", GET_CLAN(tch)->name, days, days == 1 ? "" : "s");
+        char_printf(ch, "%s %s rejected from %s and may re-apply in %d day%s.\n", ch == tch ? "You" : GET_NAME(tch),
+                    ch == tch ? "were" : "was", GET_CLAN(tch)->name, days, days == 1 ? "" : "s");
     } else if (IS_CLAN_ADMIN(tch))
-        cprintf(ch, "%s %s an administrator for %s.\r\n", ch == tch ? "You" : GET_NAME(tch), ch == tch ? "are" : "is",
-                GET_CLAN(tch)->name);
+        char_printf(ch, "%s %s an administrator for %s.\n", ch == tch ? "You" : GET_NAME(tch), ch == tch ? "are" : "is",
+                    GET_CLAN(tch)->name);
     else if (IS_CLAN_MEMBER(tch) || IS_CLAN_ALT(tch) || IS_CLAN_APPLICANT(tch)) {
         strftime(buf, sizeof(buf), "%a, %d %b %Y", localtime(&GET_CLAN_MEMBERSHIP(tch)->since));
         pprintf(ch,
-                "Clan membership status for %s:\r\n"
-                "  Clan: %s\r\n",
+                "Clan membership status for %s:\n"
+                "  Clan: %s\n",
                 GET_NAME(tch), GET_CLAN(tch)->name);
         if (IS_CLAN_MEMBER(tch))
-            pprintf(ch, "  Rank: %d - %s%s\r\n", GET_CLAN_RANK(tch), GET_CLAN_TITLE(tch),
+            pprintf(ch, "  Rank: %d - %s%s\n", GET_CLAN_RANK(tch), GET_CLAN_TITLE(tch),
                     IS_CLAN_LEADER(tch) ? " (Leader)" : "");
         else if (IS_CLAN_ALT(tch))
-            pprintf(ch, "  Alt rank: %d (%s)\r\n", GET_CLAN_RANK(tch) - ALT_RANK_OFFSET,
+            pprintf(ch, "  Alt rank: %d (%s)\n", GET_CLAN_RANK(tch) - ALT_RANK_OFFSET,
                     GET_CLAN_MEMBERSHIP(tch)->relation.member->name);
         else if (IS_CLAN_APPLICANT(tch))
-            pprintf(ch, "  Rank: Applicant\r\n");
-        pprintf(ch, "  Member since: %s\r\n", buf);
+            pprintf(ch, "  Rank: Applicant\n");
+        pprintf(ch, "  Member since: %s\n", buf);
         if (IS_CLAN_MEMBER(tch)) {
             if (HAS_FLAGS(GET_CLAN(tch)->ranks[GET_CLAN_RANK(tch) - 1].privileges, NUM_CLAN_PRIVS)) {
-                ScreenBuf sb = new_screen_buf();
+                ScreenBuf *sb = new_screen_buf();
                 int i, seen = 0;
                 const size_t len = strlen("  Privileges: ");
                 sb_set_first_indentation(sb, len);
@@ -753,12 +756,12 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                     if (HAS_CLAN_PRIV(tch, i))
                         sb_append(sb, "%s%s", seen++ ? ", " : "", clan_privileges[i].abbr);
                 /* skip over the first 14 spaces (dummy indentation) */
-                pprintf(ch, "  Privileges: %s\r\n", sb_get_buffer(sb) + len);
+                pprintf(ch, "  Privileges: %s\n", sb_get_buffer(sb) + len);
                 free_screen_buf(sb);
             }
             if (GET_CLAN_MEMBERSHIP(tch)->relation.alts) {
                 ClanMembership *alt;
-                ScreenBuf sb = new_screen_buf();
+                ScreenBuf *sb = new_screen_buf();
                 int seen = 0;
                 const size_t len = strlen("  Alts: ");
                 sb_set_first_indentation(sb, len);
@@ -766,14 +769,14 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                 for (alt = GET_CLAN_MEMBERSHIP(tch)->relation.alts; alt; alt = alt->next)
                     sb_append(sb, "%s%s", seen++ ? ", " : "", alt->name);
                 /* skip over the first 8 spaces (dummy indentation) */
-                pprintf(ch, "  Alts: %s\r\n", sb_get_buffer(sb) + len);
+                pprintf(ch, "  Alts: %s\n", sb_get_buffer(sb) + len);
                 free_screen_buf(sb);
             }
         }
         start_paging(ch);
     } else
-        cprintf(ch, "%s %s not associated with any clan.\r\n", ch == tch ? "You" : GET_NAME(tch),
-                ch == tch ? "are" : "is");
+        char_printf(ch, "%s %s not associated with any clan.\n", ch == tch ? "You" : GET_NAME(tch),
+                    ch == tch ? "are" : "is");
 }
 
 CLANCMD(clan_status) {
@@ -785,7 +788,7 @@ CLANCMD(clan_status) {
         if ((tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
             show_clan_member_status(ch, tch);
         else
-            cprintf(ch, "Couldn't find a player by the name of '%s'.\r\n", arg);
+            char_printf(ch, "Couldn't find a player by the name of '%s'.\n", arg);
     } else
         show_clan_member_status(ch, ch);
 }
@@ -835,7 +838,7 @@ CLANCMD(clan_edit) {
     strcpy(data->string, argument);
 
     if (editor_edited_by(message)) {
-        cprintf(ch, "%s's %s is already being edited.", clan->name, argument);
+        char_printf(ch, "%s's %s is already being edited.", clan->name, argument);
         return;
     }
 
@@ -850,15 +853,15 @@ CLANCMD(clan_edit) {
 
 CLANCMD(clan_quit) {
     if (IS_CLAN_APPLICANT(ch))
-        cprintf(ch, "You are no longer applying to %s.\r\n", clan->name);
+        char_printf(ch, "You are no longer applying to %s.\n", clan->name);
     else if (IS_CLAN_ALT(ch))
-        cprintf(ch, "You are no longer a clan alt in %s.\r\n", clan->name);
+        char_printf(ch, "You are no longer a clan alt in %s.\n", clan->name);
     else if (IS_CLAN_ADMIN(ch))
-        cprintf(ch, "You are no longer an administrator for %s.\r\n", clan->name);
+        char_printf(ch, "You are no longer an administrator for %s.\n", clan->name);
     else if (IS_CLAN_MEMBER(ch))
-        cprintf(ch, "You are no longer a member of %s.\r\n", clan->name);
+        char_printf(ch, "You are no longer a member of %s.\n", clan->name);
     else
-        cprintf(ch, "You are no longer in %s.\r\n", clan->name);
+        char_printf(ch, "You are no longer in %s.\n", clan->name);
     if (!IS_CLAN_ALT(ch)) {
         mprintf(L_STAT, LVL_GOD, "(CLAN) %s quits %s.", GET_NAME(ch), clan->name);
         clan_notification(clan, ch, "%s has quit your clan.", GET_NAME(ch));
@@ -875,13 +878,13 @@ CLANCMD(clan_reject) {
     save_clan(clan);
 
     if (member->player)
-        cprintf(FORWARD(member->player),
-                AFMAG "You have been rejected from %s and may reapply in %u " AFMAG "days.\r\n" ANRM,
-                member->clan->name, days_until_reapply(member));
+        char_printf(FORWARD(member->player),
+                    AFMAG "You have been rejected from %s and may reapply in %u " AFMAG "days.\n" ANRM,
+                    member->clan->name, days_until_reapply(member));
 
     mprintf(L_STAT, LVL_GOD, "(CLAN) %s rejects %s's application to %s.", GET_NAME(ch), member->name,
             member->clan->name);
-    cprintf(ch, "You reject %s's application to %s.\r\n", member->name, clan->name);
+    char_printf(ch, "You reject %s's application to %s.\n", member->name, clan->name);
     clan_notification(clan, ch, "%s rejects %s's application to your clan.", GET_NAME(ch), member->name);
 }
 
@@ -893,26 +896,26 @@ CLANCMD(clan_snoop) {
 
     if (!*arg) {
         if (GET_CLAN_SNOOP(ch)) {
-            cprintf(ch, "You are currently snooping:\r\n");
+            char_printf(ch, "You are currently snooping:\n");
             for (snoop = GET_CLAN_SNOOP(ch); snoop; snoop = snoop->next)
-                cprintf(ch, "  %s\r\n", snoop->clan->name);
+                char_printf(ch, "  %s\n", snoop->clan->name);
         } else
-            cprintf(ch, "You are not currently snooping any clan channels.\r\n");
+            char_printf(ch, "You are not currently snooping any clan channels.\n");
     }
 
-    else if (!str_cmp(arg, "off")) {
+    else if (!strcmp(arg, "off")) {
         if (GET_CLAN_SNOOP(ch)) {
             while (GET_CLAN_SNOOP(ch)) {
                 snoop = GET_CLAN_SNOOP(ch)->next;
                 free(GET_CLAN_SNOOP(ch));
                 GET_CLAN_SNOOP(ch) = snoop;
             }
-            cprintf(ch, "You are no longer snooping any clan channels.\r\n");
+            char_printf(ch, "You are no longer snooping any clan channels.\n");
         } else
-            cprintf(ch, "You are not currently snooping any clan channels.\r\n");
+            char_printf(ch, "You are not currently snooping any clan channels.\n");
     }
 
-    else if (!str_cmp(arg, "all")) {
+    else if (!strcmp(arg, "all")) {
         for (iter = clans_start(); iter != clans_end(); ++iter)
             if (!is_snooping(ch, *iter)) {
                 CREATE(snoop, ClanSnoop, 1);
@@ -920,7 +923,7 @@ CLANCMD(clan_snoop) {
                 snoop->next = GET_CLAN_SNOOP(ch);
                 GET_CLAN_SNOOP(ch) = snoop;
             }
-        cprintf(ch, "You are now snooping all clan channels.\r\n");
+        char_printf(ch, "You are now snooping all clan channels.\n");
     }
 
     else if ((clan = find_clan(arg))) {
@@ -938,18 +941,18 @@ CLANCMD(clan_snoop) {
                     }
                 }
             }
-            cprintf(ch, "You are no longer snooping %s.\r\n", clan->name);
+            char_printf(ch, "You are no longer snooping %s.\n", clan->name);
         } else {
             CREATE(snoop, ClanSnoop, 1);
             snoop->clan = clan;
             snoop->next = GET_CLAN_SNOOP(ch);
             GET_CLAN_SNOOP(ch) = snoop;
-            cprintf(ch, "You are now snooping %s.\r\n", clan->name);
+            char_printf(ch, "You are now snooping %s.\n", clan->name);
         }
     }
 
     else
-        cprintf(ch, "'%s' does not refer to a valid clan.\r\n", arg);
+        char_printf(ch, "'%s' does not refer to a valid clan.\n", arg);
 }
 
 static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
@@ -987,13 +990,17 @@ static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
     else
         name_color = "";
 
-    cprintf(ch, "[%3s] %s%-10s" ANRM " " ELLIPSIS_FMT " %s\r\n", level, name_color, member->name,
-            ELLIPSIS_STR(title, 25), last_logon);
+    char_printf(ch,
+                "[%3s] %s%-10s" ANRM
+                " "
+                "%-*.*s%s"
+                " %s\n",
+                level, name_color, member->name, ELLIPSIS_STR(title, 25), last_logon);
 }
 
 static void send_clan_who_header(CharData *ch) {
-    cprintf(ch, " " AUND "Lvl" ANRM "  " AUND "Name     " ANRM "  " AUND "Rank                    " ANRM "  " AUND
-                "Last Login            " ANRM "\r\n");
+    char_printf(ch, " " AUND "Lvl" ANRM "  " AUND "Name     " ANRM "  " AUND "Rank                    " ANRM "  " AUND
+                    "Last Login            " ANRM "\n");
 }
 
 CLANCMD(clan_who) {
@@ -1001,7 +1008,7 @@ CLANCMD(clan_who) {
     CharData *tch;
     bool found = false;
 
-    cprintf(ch, AHYEL "Members in " ANRM "%s" AHYEL ":" ANRM "\r\n", clan->name);
+    char_printf(ch, AHYEL "Members in " ANRM "%s" AHYEL ":" ANRM "\n", clan->name);
 
     for (d = descriptor_list; d; d = d->next) {
         if (!IS_PLAYING(d))
@@ -1028,11 +1035,11 @@ CLANCMD(clan_who) {
         }
 
     if (!clan->member_count)
-        cprintf(ch, "  None!\r\n");
+        char_printf(ch, "  None!\n");
 
     if (clan->applicant_count) {
         found = false;
-        cprintf(ch, AHYEL "Applicants to " ANRM "%s" AHYEL ":" ANRM "\r\n", clan->name);
+        char_printf(ch, AHYEL "Applicants to " ANRM "%s" AHYEL ":" ANRM "\n", clan->name);
         for (member = clan->applicants; member && IS_APPLICANT_RANK(member->rank); member = member->next) {
             if (!found) {
                 send_clan_who_header(ch);
@@ -1172,7 +1179,7 @@ ACMD(do_clan) {
     unsigned int group;
 
     if (IS_NPC(ch) || !ch->desc) {
-        cprintf(ch, "%s", HUH);
+        char_printf(ch, "%s", HUH);
         return;
     }
 
@@ -1186,10 +1193,10 @@ ACMD(do_clan) {
             if (IS_SET(command->args, CLAN)) {
                 argument = any_one_arg(argument, arg);
                 if (!*arg) {
-                    cprintf(ch, "Which clan?\r\n");
+                    char_printf(ch, "Which clan?\n");
                     return;
                 } else if (!(clan = find_clan(arg))) {
-                    cprintf(ch, "'%s' does not refer to a valid clan.\r\n", arg);
+                    char_printf(ch, "'%s' does not refer to a valid clan.\n", arg);
                     return;
                 }
             }
@@ -1197,16 +1204,16 @@ ACMD(do_clan) {
                 argument = any_one_arg(argument, arg);
                 CAP(arg);
                 if (!*arg) {
-                    cprintf(ch, "Whom do you want to %s?\r\n", arg);
+                    char_printf(ch, "Whom do you want to %s?\n", arg);
                     return;
                 } else if (!(member = find_clan_membership(arg))) {
-                    cprintf(ch, "%s is not a member or applicant of any clan.\r\n", arg);
+                    char_printf(ch, "%s is not a member or applicant of any clan.\n", arg);
                     return;
                 } else if (IS_SET(command->args, APPLICANT) && member->rank != RANK_APPLICANT) {
-                    cprintf(ch, "%s is not an applicant of any clan.\r\n", arg);
+                    char_printf(ch, "%s is not an applicant of any clan.\n", arg);
                     return;
                 } else if (!IS_CLAN_SUPERADMIN(ch) && GET_CLAN(ch) != member->clan) {
-                    cprintf(ch, "%s is not a member of your clan.\r\n", arg);
+                    char_printf(ch, "%s is not a member of your clan.\n", arg);
                     return;
                 }
                 if (!IS_SET(command->args, CLAN))
@@ -1231,22 +1238,22 @@ ACMD(do_clan) {
                 continue;
             if (can_use_clan_command(ch, command)) {
                 if (*buf) {
-                    cprintf(ch, "\r\n%s", buf);
+                    char_printf(ch, "\n%s", buf);
                     *buf = '\0';
                 }
-                cprintf(ch, "\r\n   clan %-8s", command->name);
+                char_printf(ch, "\n   clan %-8s", command->name);
                 if (IS_SET(command->args, CLAN))
-                    cprintf(ch, " <clan>");
+                    char_printf(ch, " <clan>");
                 if (IS_SET(command->args, APPLICANT))
-                    cprintf(ch, " <applicant>");
+                    char_printf(ch, " <applicant>");
                 else if (IS_SET(command->args, MEMBER))
-                    cprintf(ch, " <member>");
+                    char_printf(ch, " <member>");
                 if (command->more_args)
-                    cprintf(ch, " %s", command->more_args);
+                    char_printf(ch, " %s", command->more_args);
             }
         }
     }
-    cprintf(ch, "\r\n");
+    char_printf(ch, "\n");
 }
 
 ACMD(do_ctell) {
@@ -1260,25 +1267,25 @@ ACMD(do_ctell) {
         else {
             argument = any_one_arg(argument, arg);
             if (!*arg)
-                cprintf(ch, "Which clan do you want to talk to?\r\n");
+                char_printf(ch, "Which clan do you want to talk to?\n");
             else if (!(clan = find_clan(arg)))
-                cprintf(ch,
-                        "'%s' does not refer to a valid clan.\r\nYou can "
-                        "only omit the clan if you are snooping just one "
-                        "clan.\r\n",
-                        arg);
+                char_printf(ch,
+                            "'%s' does not refer to a valid clan.\nYou can "
+                            "only omit the clan if you are snooping just one "
+                            "clan.\n",
+                            arg);
             else if (!is_snooping(me, clan))
-                cprintf(ch, "You must be snooping %s first.\r\n", clan->name);
+                char_printf(ch, "You must be snooping %s first.\n", clan->name);
             else
                 clan_tell(ch, nullptr, clan, argument);
         }
     } else if (!clan || IS_CLAN_REJECT(me))
-        cprintf(ch, "You're not part of a clan.\r\n");
+        char_printf(ch, "You're not part of a clan.\n");
     else if (IS_CLAN_APPLICANT(me))
-        cprintf(ch, "You're not part of a clan.\r\n");
+        char_printf(ch, "You're not part of a clan.\n");
     else if (CAN_DO_PRIV(me, CPRIV_CHAT) ||
              (IS_CLAN_ALT(me) && MEMBER_CAN(GET_CLAN_MEMBERSHIP(me)->relation.member, CPRIV_CHAT)))
         clan_tell(ch, GET_CLAN_MEMBERSHIP(me), clan, argument);
     else
-        cprintf(ch, "You don't have access to clan chat.\r\n");
+        char_printf(ch, "You don't have access to clan chat.\n");
 }

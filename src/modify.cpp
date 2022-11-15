@@ -23,10 +23,11 @@
 #include "interpreter.hpp"
 #include "mail.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "olc.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
-#include "strings.hpp"
+// #include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -105,30 +106,30 @@ void parse_action(int command, char *string, DescriptorData *d) {
     switch (command) {
     case PARSE_HELP:
         write_to_output(
-            "Editor command formats: /<letter>\r\n\r\n"
-            "/a         -  aborts editor\r\n"
-            "/c         -  clears buffer\r\n"
-            "/d#        -  deletes a line #\r\n"
-            "/e# <text> -  changes the line at # with <text>\r\n",
+            "Editor command formats: /<letter>\n\n"
+            "/a         -  aborts editor\n"
+            "/c         -  clears buffer\n"
+            "/d#        -  deletes a line #\n"
+            "/e# <text> -  changes the line at # with <text>\n",
             d);
         if (STATE(d) == CON_TRIGEDIT)
-            write_to_output("/f#        -  formats text with given indentation amount\r\n", d);
+            write_to_output("/f#        -  formats text with given indentation amount\n", d);
         else
             write_to_output(
-                "/f         -  formats text\r\n"
-                "/fi        -  indented formatting of text\r\n",
+                "/f         -  formats text\n"
+                "/fi        -  indented formatting of text\n",
                 d);
         write_to_output(
-            "/h         -  list text editor commands\r\n"
-            "/i# <text> -  inserts <text> before line #\r\n"
-            "/l         -  lists buffer\r\n"
-            "/n         -  lists buffer with line numbers\r\n"
+            "/h         -  list text editor commands\n"
+            "/i# <text> -  inserts <text> before line #\n"
+            "/l         -  lists buffer\n"
+            "/n         -  lists buffer with line numbers\n"
             "/r 'a' 'b' -  replace 1st occurrence of text <a> in "
-            "buffer with text <b>\r\n"
+            "buffer with text <b>\n"
             "/ra 'a' 'b'-  replace all occurrences of text <a> within "
-            "buffer with text <b>\r\n"
-            "              usage: /r[a] 'pattern' 'replacement'\r\n"
-            "/s         -  saves text\r\n",
+            "buffer with text <b>\n"
+            "              usage: /r[a] 'pattern' 'replacement'\n"
+            "/s         -  saves text\n",
             d);
         break;
     case PARSE_FORMAT:
@@ -137,9 +138,9 @@ void parse_action(int command, char *string, DescriptorData *d) {
             i = is_number(string) ? atoi(string) : 3;
             replaced = format_script(d, i);
             if (replaced)
-                write_to_output("Script formatted.\r\n", d);
+                write_to_output("Script formatted.\n", d);
             else
-                write_to_output("Script not formatted.\r\n", d);
+                write_to_output("Script not formatted.\n", d);
             return;
         }
         while (isalpha(string[j]) && j < 2) {
@@ -150,7 +151,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
             ++j;
         }
         format_text(d->str, flags, d, d->max_str);
-        sprintf(buf, "Text formatted with%s indent.\r\n", (indent ? "" : "out"));
+        sprintf(buf, "Text formatted with%s indent.\n", (indent ? "" : "out"));
         write_to_output(buf, d);
         break;
     case PARSE_REPLACE:
@@ -166,44 +167,44 @@ void parse_action(int command, char *string, DescriptorData *d) {
             j++;
         }
         if ((s = strtok(string, "'")) == nullptr) {
-            write_to_output("Invalid format.\r\n", d);
+            write_to_output("Invalid format.\n", d);
             return;
         } else if ((s = strtok(nullptr, "'")) == nullptr) {
-            write_to_output("Target string must be enclosed in single quotes.\r\n", d);
+            write_to_output("Target string must be enclosed in single quotes.\n", d);
             return;
         } else if ((t = strtok(nullptr, "'")) == nullptr) {
-            write_to_output("No replacement string.\r\n", d);
+            write_to_output("No replacement string.\n", d);
             return;
         } else if ((t = strtok(nullptr, "'")) == nullptr) {
-            write_to_output("Replacement string must be enclosed in single quotes.\r\n", d);
+            write_to_output("Replacement string must be enclosed in single quotes.\n", d);
             return;
         } else if ((total_len = ((strlen(t) - strlen(s)) + strlen(*d->str))) <= d->max_str) {
             if ((replaced = replace_str(d->str, s, t, rep_all, d->max_str)) > 0) {
-                sprintf(buf, "Replaced %d occurrence%sof '%s' with '%s'.\r\n", replaced, ((replaced != 1) ? "s " : " "),
+                sprintf(buf, "Replaced %d occurrence%sof '%s' with '%s'.\n", replaced, ((replaced != 1) ? "s " : " "),
                         s, t);
                 write_to_output(buf, d);
             } else if (replaced == 0) {
-                sprintf(buf, "String '%s' not found.\r\n", s);
+                sprintf(buf, "String '%s' not found.\n", s);
                 write_to_output(buf, d);
             } else
                 write_to_output(
                     "ERROR: Replacement string causes buffer overflow, "
-                    "aborted replace.\r\n",
+                    "aborted replace.\n",
                     d);
         } else
-            write_to_output("Not enough space left in buffer.\r\n", d);
+            write_to_output("Not enough space left in buffer.\n", d);
         break;
     case PARSE_DELETE:
         switch (sscanf(string, " %d - %d ", &line_low, &line_high)) {
         case 0:
-            write_to_output("You must specify a line number or range to delete.\r\n", d);
+            write_to_output("You must specify a line number or range to delete.\n", d);
             return;
         case 1:
             line_high = line_low;
             break;
         case 2:
             if (line_high < line_low) {
-                write_to_output("That range is invalid.\r\n", d);
+                write_to_output("That range is invalid.\n", d);
                 return;
             }
             break;
@@ -212,7 +213,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
         i = 1;
         total_len = 1;
         if ((s = *d->str) == nullptr) {
-            write_to_output("Buffer is empty.\r\n", d);
+            write_to_output("Buffer is empty.\n", d);
             return;
         } else if (line_low > 0) {
             while (s && (i < line_low))
@@ -221,7 +222,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
                     s++;
                 }
             if ((i < line_low) || (s == nullptr)) {
-                write_to_output("Line(s) out of range; not deleting.\r\n", d);
+                write_to_output("Line(s) out of range; not deleting.\n", d);
                 return;
             }
 
@@ -241,10 +242,10 @@ void parse_action(int command, char *string, DescriptorData *d) {
             *t = '\0';
             RECREATE(*d->str, char, strlen(*d->str) + 3);
 
-            sprintf(buf, "%d line%sdeleted.\r\n", total_len, ((total_len != 1) ? "s " : " "));
+            sprintf(buf, "%d line%sdeleted.\n", total_len, ((total_len != 1) ? "s " : " "));
             write_to_output(buf, d);
         } else {
-            write_to_output("Invalid line numbers to delete must be higher than 0.\r\n", d);
+            write_to_output("Invalid line numbers to delete must be higher than 0.\n", d);
             return;
         }
         break;
@@ -270,15 +271,15 @@ void parse_action(int command, char *string, DescriptorData *d) {
         }
 
         if (line_low < 1) {
-            write_to_output("Line numbers must be greater than 0.\r\n", d);
+            write_to_output("Line numbers must be greater than 0.\n", d);
             return;
         } else if (line_high < line_low) {
-            write_to_output("That range is invalid.\r\n", d);
+            write_to_output("That range is invalid.\n", d);
             return;
         }
         *buf = '\0';
         if ((line_high < 999999) || (line_low > 1))
-            sprintf(buf, "Current buffer range [%d - %d]:\r\n", line_low, line_high);
+            sprintf(buf, "Current buffer range [%d - %d]:\n", line_low, line_high);
         i = 1;
         total_len = 0;
         s = *d->str;
@@ -288,7 +289,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
                 s++;
             }
         if ((i < line_low) || (s == nullptr)) {
-            write_to_output("Line(s) out of range; no buffer listing.\r\n", d);
+            write_to_output("Line(s) out of range; no buffer listing.\n", d);
             return;
         }
         t = s;
@@ -309,7 +310,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
              * This is kind of annoying...but some people like it.
              */
 #if 0
-	sprintf(buf, "%s\r\n%d line%sshown.\r\n", buf, total_len, ((total_len != 1) ? "s " : " "));
+	sprintf(buf, "%s\n%d line%sshown.\n", buf, total_len, ((total_len != 1) ? "s " : " "));
 #endif
         page_string_desc(d, buf);
         break;
@@ -335,11 +336,11 @@ void parse_action(int command, char *string, DescriptorData *d) {
         }
 
         if (line_low < 1) {
-            write_to_output("Line numbers must be greater than 0.\r\n", d);
+            write_to_output("Line numbers must be greater than 0.\n", d);
             return;
         }
         if (line_high < line_low) {
-            write_to_output("That range is invalid.\r\n", d);
+            write_to_output("That range is invalid.\n", d);
             return;
         }
         *buf = '\0';
@@ -352,7 +353,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
                 s++;
             }
         if ((i < line_low) || (s == nullptr)) {
-            write_to_output("Line(s) out of range; no buffer listing.\r\n", d);
+            write_to_output("Line(s) out of range; no buffer listing.\n", d);
             return;
         }
         t = s;
@@ -363,7 +364,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
                 s++;
                 temp = *s;
                 *s = '\0';
-                sprintf(buf, "%s%4d: ", buf, (i - 1));
+                snprintf(buf, sizeof(buf), "%s%4d: ", buf, (i - 1));
                 strcat(buf, t);
                 *s = temp;
                 t = s;
@@ -381,16 +382,16 @@ void parse_action(int command, char *string, DescriptorData *d) {
     case PARSE_INSERT:
         half_chop(string, buf, buf2);
         if (*buf == '\0') {
-            write_to_output("You must specify a line number before which to insert text.\r\n", d);
+            write_to_output("You must specify a line number before which to insert text.\n", d);
             return;
         }
         line_low = atoi(buf);
-        strcat(buf2, "\r\n");
+        strcat(buf2, "\n");
 
         i = 1;
         *buf = '\0';
         if ((s = *d->str) == nullptr) {
-            write_to_output("Buffer is empty, nowhere to insert.\r\n", d);
+            write_to_output("Buffer is empty, nowhere to insert.\n", d);
             return;
         }
         if (line_low > 0) {
@@ -400,14 +401,14 @@ void parse_action(int command, char *string, DescriptorData *d) {
                     s++;
                 }
             if ((i < line_low) || (s == nullptr)) {
-                write_to_output("Line number out of range; insert aborted.\r\n", d);
+                write_to_output("Line number out of range; insert aborted.\n", d);
                 return;
             }
             temp = *s;
             *s = '\0';
             if ((strlen(*d->str) + strlen(buf2) + strlen(s + 1) + 3) > d->max_str) {
                 *s = temp;
-                write_to_output("Insert text pushes buffer over maximum size, insert aborted.\r\n", d);
+                write_to_output("Insert text pushes buffer over maximum size, insert aborted.\n", d);
                 return;
             }
             if (*d->str && (**d->str != '\0'))
@@ -419,9 +420,9 @@ void parse_action(int command, char *string, DescriptorData *d) {
             RECREATE(*d->str, char, strlen(buf) + 3);
 
             strcpy(*d->str, buf);
-            write_to_output("Line inserted.\r\n", d);
+            write_to_output("Line inserted.\n", d);
         } else {
-            write_to_output("Line number must be higher than 0.\r\n", d);
+            write_to_output("Line number must be higher than 0.\n", d);
             return;
         }
         break;
@@ -429,16 +430,16 @@ void parse_action(int command, char *string, DescriptorData *d) {
     case PARSE_EDIT:
         half_chop(string, buf, buf2);
         if (*buf == '\0') {
-            write_to_output("You must specify a line number at which to change text.\r\n", d);
+            write_to_output("You must specify a line number at which to change text.\n", d);
             return;
         }
         line_low = atoi(buf);
-        strcat(buf2, "\r\n");
+        strcat(buf2, "\n");
 
         i = 1;
         *buf = '\0';
         if ((s = *d->str) == nullptr) {
-            write_to_output("Buffer is empty, nothing to change.\r\n", d);
+            write_to_output("Buffer is empty, nothing to change.\n", d);
             return;
         }
         if (line_low > 0) {
@@ -454,7 +455,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
              * Make sure that there was a THAT line in the text.
              */
             if ((i < line_low) || (s == nullptr)) {
-                write_to_output("Line number out of range; change aborted.\r\n", d);
+                write_to_output("Line number out of range; change aborted.\n", d);
                 return;
             }
             /*
@@ -495,7 +496,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
             if (strlen(buf) > d->max_str) {
                 write_to_output(
                     "Change causes new length to exceed buffer maximum "
-                    "size, aborted.\r\n",
+                    "size, aborted.\n",
                     d);
                 return;
             }
@@ -504,14 +505,14 @@ void parse_action(int command, char *string, DescriptorData *d) {
              */
             RECREATE(*d->str, char, strlen(buf) + 3);
             strcpy(*d->str, buf);
-            write_to_output("Line changed.\r\n", d);
+            write_to_output("Line changed.\n", d);
         } else {
-            write_to_output("Line number must be higher than 0.\r\n", d);
+            write_to_output("Line number must be higher than 0.\n", d);
             return;
         }
         break;
     default:
-        write_to_output("Invalid option.\r\n", d);
+        write_to_output("Invalid option.\n", d);
         mudlog("SYSERR: invalid command passed to parse_action", BRF, LVL_HEAD_C, true);
         return;
     }
@@ -541,33 +542,33 @@ void string_add(DescriptorData *d, char *str) {
             if (*(d->str)) {
                 free(*d->str);
                 *(d->str) = nullptr;
-                write_to_output("Current buffer cleared.\r\n", d);
+                write_to_output("Current buffer cleared.\n", d);
             } else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 'd':
             if (*d->str)
                 parse_action(PARSE_DELETE, actions, d);
             else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 'e':
             if (*d->str)
                 parse_action(PARSE_EDIT, actions, d);
             else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 'f':
             if (*(d->str))
                 parse_action(PARSE_FORMAT, actions, d);
             else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 'i':
             if (*(d->str))
                 parse_action(PARSE_INSERT, actions, d);
             else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 'h':
             parse_action(PARSE_HELP, actions, d);
@@ -576,44 +577,44 @@ void string_add(DescriptorData *d, char *str) {
             if (*d->str)
                 parse_action(PARSE_LIST_NORM, actions, d);
             else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 'n':
             if (*d->str)
                 parse_action(PARSE_LIST_NUM, actions, d);
             else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 'r':
             if (*d->str)
                 parse_action(PARSE_REPLACE, actions, d);
             else
-                write_to_output("Current buffer empty.\r\n", d);
+                write_to_output("Current buffer empty.\n", d);
             break;
         case 's':
             terminator = 1;
             *str = '\0';
             break;
         default:
-            write_to_output("Invalid option.\r\n", d);
+            write_to_output("Invalid option.\n", d);
             break;
         }
     }
 
     /* Comparisons below this point are made with d->max_str - 3.
-     * That leaves 3 spaces after the last text entered by the user: \r\n\0   */
+     * That leaves 3 spaces after the last text entered by the user: \n\0   */
     if (!(*d->str)) {
         if (strlen(str) > d->max_str - 3) {
-            send_to_char("String too long - Truncated.\r\n", d->character);
+            send_to_char("String too long - Truncated.\n", d->character);
             *(str + d->max_str) = '\0';
         }
         CREATE(*d->str, char, strlen(str) + 3);
         strcpy(*d->str, str);
         if (strlen(str))
-            strcat(*d->str, "\r\n");
+            strcat(*d->str, "\n");
     } else if (!action) {
         if (strlen(str) + strlen(*d->str) > d->max_str - 3) {
-            send_to_char("String too long, limit reached on message.  Last line ignored.\r\n", d->character);
+            send_to_char("String too long, limit reached on message.  Last line ignored.\n", d->character);
             return;
         } else {
             if (!(*d->str = (char *)realloc(*d->str, strlen(*d->str) + strlen(str) + 3))) {
@@ -621,7 +622,7 @@ void string_add(DescriptorData *d, char *str) {
                 exit(1);
             }
             strcat(*d->str, str);
-            strcat(*d->str, "\r\n");
+            strcat(*d->str, "\n");
         }
     }
 
@@ -644,9 +645,9 @@ void string_add(DescriptorData *d, char *str) {
                     s++;
                 }
             if (i > d->max_buffer_lines) {
-                sprintf(buf, "The buffer has %d lines, which is over the limit of %d.\r\n", i, d->max_buffer_lines);
+                sprintf(buf, "The buffer has %d lines, which is over the limit of %d.\n", i, d->max_buffer_lines);
                 write_to_output(buf, d);
-                write_to_output("Unable to save.  Use /a if you want to abort.\r\n", d);
+                write_to_output("Unable to save.  Use /a if you want to abort.\n", d);
                 return;
             }
         }
@@ -670,7 +671,7 @@ void string_add(DescriptorData *d, char *str) {
             if (STATE(d) == CON_EXDESC)
                 *d->str = strdup("");
             else
-                *d->str = strdup("Nothing.\r\n");
+                *d->str = strdup("Nothing.\n");
         }
 
         if (STATE(d) == CON_MEDIT)
@@ -705,9 +706,9 @@ void string_add(DescriptorData *d, char *str) {
         else if (!d->connected && (PLR_FLAGGED(d->character, PLR_MAILING))) {
             if ((terminator == 1) && *d->str) {
                 store_mail(d->mail_to, GET_IDNUM(d->character), d->mail_vnum, *d->str);
-                write_to_output("Message sent!\r\n", d);
+                write_to_output("Message sent!\n", d);
             } else {
-                write_to_output("Mail aborted.\r\n", d);
+                write_to_output("Mail aborted.\n", d);
                 if (d->mail_vnum != NOTHING) {
                     ObjData *obj = read_object(d->mail_vnum, VIRTUAL);
                     if (obj)
@@ -718,12 +719,12 @@ void string_add(DescriptorData *d, char *str) {
             d->mail_vnum = NOTHING;
             free(*d->str);
             free(d->str);
-            /*  write_to_output("Message sent!\r\n", d);
+            /*  write_to_output("Message sent!\n", d);
                if (!IS_NPC(d->character))
                REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING); */
         } else if (STATE(d) == CON_EXDESC) {
             if (terminator != 1)
-                write_to_output("Description aborted.\r\n", d);
+                write_to_output("Description aborted.\n", d);
             STATE(d) = CON_PLAYING;
         } else if (!d->connected && d->character && !IS_NPC(d->character)) {
             if (terminator == 1) {
@@ -738,7 +739,7 @@ void string_add(DescriptorData *d, char *str) {
                 else
                     *d->str = nullptr;
                 d->backstr = nullptr;
-                write_to_output("Message aborted.\r\n", d);
+                write_to_output("Message aborted.\n", d);
             }
         }
         if (d->character && !IS_NPC(d->character)) {
@@ -765,15 +766,15 @@ ACMD(do_skillset) {
     argument = one_argument(argument, name);
 
     if (!*name) { /* no arguments. print an informative text */
-        send_to_char("Syntax: skillset <name> '<skill>' <value>\r\n", ch);
-        strcpy(buf, "Skill being one of the following:\r\n");
+        send_to_char("Syntax: skillset <name> '<skill>' <value>\n", ch);
+        strcpy(buf, "Skill being one of the following:\n");
         for (j = 0, k = 0; j <= TOP_SKILL; ++j) {
             i = skill_sort_info[j];
             if (*skills[i].name == '!')
                 continue;
             sprintf(buf + strlen(buf), "%-18.18s ", skills[i].name);
             if (k % 4 == 3) { /* last column */
-                strcat(buf, "\r\n");
+                strcat(buf, "\n");
                 send_to_char(buf, ch);
                 *buf = '\0';
             }
@@ -781,7 +782,7 @@ ACMD(do_skillset) {
         }
         if (*buf)
             send_to_char(buf, ch);
-        send_to_char("\r\n", ch);
+        send_to_char("\n", ch);
         return;
     }
     if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, name)))) {
@@ -793,23 +794,23 @@ ACMD(do_skillset) {
     /* If there is no chars in argument */
     if (!*argument) {
         if (GET_LEVEL(vict) < GET_LEVEL(ch) || ch == vict) {
-            strcpy(buf, "Current values of skills:\r\n");
+            strcpy(buf, "Current values of skills:\n");
             for (i = 0; i <= TOP_SKILL; ++i) {
                 if (*skills[i].name == '!' || !GET_ISKILL(vict, i))
                     continue;
-                sprintf(buf, "%s%-20.20s %d\r\n", buf, skills[i].name, GET_ISKILL(vict, i));
+                sprintf(buf, "%s%-20.20s %d\n", buf, skills[i].name, GET_ISKILL(vict, i));
             }
             page_string(ch, buf);
         } else
-            send_to_char("You are unable to divine any information.\r\n", ch);
+            send_to_char("You are unable to divine any information.\n", ch);
         return;
     }
 
     if (*argument == '*') {
         for (i = 1; i <= TOP_SKILL; ++i) {
             SET_SKILL(vict, i, 1000);
-            if (str_cmp(skills[i].name, "!UNUSED!")) {
-                sprintf(buf2, "You change %s's skill level in %s to 100.\r\n", GET_NAME(vict), skills[i].name);
+            if (strcmp(skills[i].name, "!UNUSED!")) {
+                sprintf(buf2, "You change %s's skill level in %s to 100.\n", GET_NAME(vict), skills[i].name);
                 send_to_char(buf2, ch);
             }
         }
@@ -819,23 +820,23 @@ ACMD(do_skillset) {
     argument = delimited_arg(argument, arg, '\'');
 
     if ((skill = find_talent_num(arg, TALENT)) <= 0) {
-        send_to_char("Unrecognized skill.\r\n", ch);
+        send_to_char("Unrecognized skill.\n", ch);
         return;
     }
 
     argument = one_argument(argument, arg);
 
     if (!*arg) {
-        send_to_char("Learned value expected.\r\n", ch);
+        send_to_char("Learned value expected.\n", ch);
         return;
     } else if ((value = atoi(arg)) < 0) {
-        send_to_char("Minimum value for learned is 0.\r\n", ch);
+        send_to_char("Minimum value for learned is 0.\n", ch);
         return;
     } else if (value > 1000) {
-        send_to_char("Max value for learned is 1000.\r\n", ch);
+        send_to_char("Max value for learned is 1000.\n", ch);
         return;
     } else if (IS_NPC(vict)) {
-        send_to_char("You can't set NPC skills.\r\n", ch);
+        send_to_char("You can't set NPC skills.\n", ch);
         return;
     }
     sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict), skills[skill].name, value);
@@ -843,7 +844,7 @@ ACMD(do_skillset) {
 
     SET_SKILL(vict, skill, value);
 
-    sprintf(buf2, "You change %s's %s to %d.\r\n", GET_NAME(vict), skills[skill].name, value);
+    sprintf(buf2, "You change %s's %s to %d.\n", GET_NAME(vict), skills[skill].name, value);
     send_to_char(buf2, ch);
 }
 
@@ -1116,14 +1117,14 @@ void start_paging_desc(DescriptorData *d) {
     /* Now that the show is on the road, any fragmentary text must be put in
      * the list of lines with the rest of the text */
     if (d->paging_fragment) {
-        add_paging_fragment(d, paging_buf, sprintf(paging_buf, "%s\r\n", d->paging_fragment));
+        add_paging_fragment(d, paging_buf, sprintf(paging_buf, "%s\n", d->paging_fragment));
         free(d->paging_fragment);
         d->paging_fragment = nullptr;
     }
 
     /* Notify player if there was too much text to fit in the pager */
     if (d->paging_skipped) {
-        sprintf(buf, "***   OVERFLOW  %d line%s skipped   ***\r\n\r\n", d->paging_skipped,
+        sprintf(buf, "***   OVERFLOW  %d line%s skipped   ***\n\n", d->paging_skipped,
                 d->paging_skipped == 1 ? "" : "s");
         send_to_char(buf, d->character);
     }

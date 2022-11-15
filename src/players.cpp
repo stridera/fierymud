@@ -34,10 +34,13 @@
 #include "retain_comms.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "trophy.hpp"
 #include "utils.hpp"
+
+#include <algorithm>
 
 /* local functions */
 static void load_effects(FILE *fl, CharData *ch);
@@ -260,7 +263,7 @@ long get_ptable_by_name(const char *name) {
     int i;
 
     for (i = 0; i <= top_of_p_table; i++)
-        if (!str_cmp(player_table[i].name, name))
+        if (is_equals(player_table[i].name, name))
             return (i);
 
     return (-1);
@@ -270,7 +273,7 @@ long get_id_by_name(const char *name) {
     int i;
 
     for (i = 0; i <= top_of_p_table; i++)
-        if (!str_cmp(player_table[i].name, name))
+        if (is_equals(player_table[i].name, name))
             return (player_table[i].id);
 
     return (-1);
@@ -285,7 +288,6 @@ char *get_name_by_id(long id) {
 
     return (nullptr);
 }
-
 /* Stuff related to the save/load player system. */
 /* New load_char reads ASCII Player Files. Load a char, true if loaded, false
  * if not. */
@@ -297,7 +299,6 @@ int load_player(const char *name, CharData *ch) {
     bool found_damroll = false;
     bool found_hitroll = false;
 
-    extern int mortal_start_room;
     extern void do_wiztitle(char *outbuf, CharData *vict, char *argument);
 
     if ((id = get_ptable_by_name(name)) < 0)
@@ -1395,7 +1396,7 @@ void start_player(CharData *ch) {
 
 void remove_player_from_game(CharData *ch, int quit_mode) {
     if (!(GET_LEVEL(ch) >= LVL_IMMORT && GET_INVIS_LEV(ch))) {
-        all_except_printf(ch, "The world seems to pause momentarily as %s leaves this realm.\r\n", GET_NAME(ch));
+        all_except_printf(ch, "The world seems to pause momentarily as %s leaves this realm.\n", GET_NAME(ch));
     }
 
     GET_QUIT_REASON(ch) = quit_mode;
@@ -1430,7 +1431,7 @@ void send_save_description(CharData *ch, CharData *dest, bool entering) {
         sprintf(buf, quit_statement[quitreason], GET_NAME(ch), buf1);
     }
     if (dest) {
-        cprintf(dest, "%s\r\n", buf);
+        char_printf(dest, "%s\n", buf);
     } else {
         mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
     }

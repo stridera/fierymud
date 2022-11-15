@@ -1,6 +1,7 @@
 #pragma once
 
 #include "defines.hpp"
+#include "structs.hpp"
 
 /* Bard spell lists */
 const SpellPair mob_bard_buffs[] = {{SPELL_DETECT_INVIS, 0, EFF_DETECT_INVIS}, {SPELL_HASTE, 0, EFF_HASTE}, {0, 0, 0}};

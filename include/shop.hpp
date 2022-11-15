@@ -97,9 +97,7 @@ struct StackData {
 #define OPER_NOT 4
 #define MAX_OPER 4
 
-#ifdef __SHOP_C__
-const char *operator_str[] = {"[({", "])}", "|+", "&*", "^'"};
-#endif
+extern const char *operator_str[];
 
 #define SHOP_NUM(i) (shop_index[(i)].vnum)
 #define SHOP_KEEPER(i) (shop_index[(i)].keeper)
@@ -130,26 +128,14 @@ const char *operator_str[] = {"[({", "])}", "|+", "&*", "^'"};
 #define NOTRADE_THIEF(i) (IS_SET(SHOP_TRADE_WITH((i)), TRADE_NOTHIEF))
 #define NOTRADE_WARRIOR(i) (IS_SET(SHOP_TRADE_WITH((i)), TRADE_NOWARRIOR))
 
-/* Constant list for printing out who we sell to */
-#ifdef __SHOP_C__
-const char *trade_lwwwwwetters[] = {"Good",                            /* First, the alignment based ones */
-                                    "Evil",   "Neutral", "Magic User", /* Then the class based ones */
-                                    "Cleric", "Thief",   "Warrior",    "\n"};
-#else
-const char *trade_letters[] = {};
-#endif
-
 #define WILL_START_FIGHT 1
 #define WILL_BANK_MONEY 2
 
 #define SHOP_KILL_CHARS(i) (IS_SET(SHOP_BITVECTOR(i), WILL_START_FIGHT))
 #define SHOP_USES_BANK(i) (IS_SET(SHOP_BITVECTOR(i), WILL_BANK_MONEY))
 
-#ifdef __SHOP_C__
-const char *shop_bits[] = {"WILL_FIGHT", "USES_BANK", "\n"};
-#else
-const char *shop_bits[] = {};
-#endif
+extern const char *trade_letters[];
+extern const char *shop_bits[];
 
 #define MIN_OUTSIDE_BANK 5000
 #define MAX_OUTSIDE_BANK 15000
@@ -166,5 +152,5 @@ const char *shop_bits[] = {};
 
 bool give_shopkeeper_reject(CharData *ch, CharData *vict, ObjData *obj);
 
-int top_shop;
-ShopData *shop_index;
+extern int top_shop;
+extern ShopData *shop_index;

@@ -56,7 +56,7 @@ EVENTFUNC(room_undo_event) {
     world[room].exits[exit]->to_room = connect_room;
     send_to_room(
         "&2The forest seems to come alive... Trees and shrubs move "
-        "about, finally resting in different locations.&0\r\n",
+        "about, finally resting in different locations.&0\n",
         room);
     REMOVE_FLAG(ROOM_FLAGS(room), ROOM_ALT_EXIT);
     return EVENT_FINISHED;
@@ -102,7 +102,7 @@ EVENTFUNC(delayed_cast_event) {
     if (ROOM_FLAGGED(room, ROOM_PEACEFUL) && SINFO.violent) {
         if (IS_SPELL(spellnum)) {
             if (ch && IN_ROOM(ch) == room) {
-                send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n", ch);
+                send_to_char("A flash of white light fills the room, dispelling your violent magic!\n", ch);
             }
             if (victim)
                 act("White light from no particular source suddenly fills the room, "
@@ -110,8 +110,8 @@ EVENTFUNC(delayed_cast_event) {
                     false, victim, 0, 0, TO_ROOM);
         } else { /* song/chant */
             if (ch && IN_ROOM(ch) == room) {
-                send_to_char("Your words dissolve into peaceful nothingness...\r\n", ch);
-                act("$n's words fade away into peaceful nothingness...\r\n", false, ch, 0, 0, TO_ROOM);
+                send_to_char("Your words dissolve into peaceful nothingness...\n", ch);
+                act("$n's words fade away into peaceful nothingness...\n", false, ch, 0, 0, TO_ROOM);
             }
         }
         return EVENT_FINISHED;

@@ -26,6 +26,7 @@
 #include "exits.hpp"
 #include "fight.hpp"
 #include "handler.hpp"
+#include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
 #include "math.hpp"
@@ -44,7 +45,6 @@
 int real_mobile(int);
 
 void half_chop(char *string, char *arg1, char *arg2);
-int is_abbrev(char *arg1, char *arg2);
 bool is_grouped(CharData *ch, CharData *tch);
 void add_follower(CharData *ch, CharData *leader);
 int dice(int number, int size);
@@ -282,7 +282,7 @@ void effect_update(void) {
             /* this room effect has expired */
             if (ROOM_EFF_FLAGGED(reff->room, reff->effect) && skills[reff->spell].wearoff) {
                 send_to_room(skills[reff->spell].wearoff, reff->room);
-                send_to_room("\r\n", reff->room);
+                send_to_room("\n", reff->room);
             }
 
             /* remove the effect */
@@ -335,13 +335,13 @@ int mag_material(CharData *ch, int item0, int item1, int item2, int extract, int
         if (verbose) {
             switch (number(0, 2)) {
             case 0:
-                send_to_char("A wart sprouts on your nose.\r\n", ch);
+                send_to_char("A wart sprouts on your nose.\n", ch);
                 break;
             case 1:
-                send_to_char("Your hair falls out in clumps.\r\n", ch);
+                send_to_char("Your hair falls out in clumps.\n", ch);
                 break;
             case 2:
-                send_to_char("A huge corn develops on your big toe.\r\n", ch);
+                send_to_char("A huge corn develops on your big toe.\n", ch);
                 break;
             }
         }
@@ -362,7 +362,7 @@ int mag_material(CharData *ch, int item0, int item1, int item2, int extract, int
         }
     }
     if (verbose) {
-        send_to_char("A puff of smoke rises from your pack.\r\n", ch);
+        send_to_char("A puff of smoke rises from your pack.\n", ch);
         act("A puff of smoke rises from $n's pack.", true, ch, nullptr, nullptr, TO_ROOM);
     }
     return (true);
@@ -739,7 +739,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
     case SPELL_EXORCISM:
         if (GET_RACE(victim) != RACE_DEMON) {
-            send_to_char("That spell only has effect on demonic creatures.\r\n", ch);
+            send_to_char("That spell only has effect on demonic creatures.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         if (GET_ALIGNMENT(ch) >= 990 && skill - GET_LEVEL(victim) > 30 && !mag_savingthrow(victim, SAVING_SPELL) &&
@@ -759,7 +759,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
         if (GET_ALIGNMENT(ch) <= 400) {
-            send_to_char("You are not holy enough to cast that spell!\r\n", ch);
+            send_to_char("You are not holy enough to cast that spell!\n", ch);
             return CAST_RESULT_CHARGE;
         }
         /* This spell is meant to cause great concern to demonic forces so it'll be
@@ -785,7 +785,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_FLAMESTRIKE:
         /* max dam 80 for neutral from max 8d9+8 online */
         if (IS_EVIL(ch)) {
-            send_to_char("You are not holy enough to cast that spell!\r\n", ch);
+            send_to_char("You are not holy enough to cast that spell!\n", ch);
             return 0;
         }
         dam *= (GET_ALIGNMENT(ch) * 0.0007) + 0.8;
@@ -821,7 +821,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_HELLFIRE_BRIMSTONE:
         /* looks like area version of stygian eruption */
         if (GET_ALIGNMENT(ch) >= -400) {
-            send_to_char("You are not unholy enough to cast that spell!\r\n", ch);
+            send_to_char("You are not unholy enough to cast that spell!\n", ch);
             return CAST_RESULT_CHARGE;
         }
         /* max dam 300 from 30d5+25 online */
@@ -851,7 +851,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
     case SPELL_LESSER_EXORCISM:
         if (GET_RACE(victim) != RACE_DEMON) {
-            send_to_char("That spell only has effect on demonic creatures.\r\n", ch);
+            send_to_char("That spell only has effect on demonic creatures.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         if (GET_ALIGNMENT(ch) >= 990 && skill - GET_LEVEL(victim) > 30 && !mag_savingthrow(victim, SAVING_SPELL) &&
@@ -871,7 +871,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
         if (GET_ALIGNMENT(ch) <= 400) {
-            send_to_char("You are not holy enough to cast that spell!\r\n", ch);
+            send_to_char("You are not holy enough to cast that spell!\n", ch);
             return CAST_RESULT_CHARGE;
         }
         /* This spell is meant to cause great concern to demonic forces so it'll be
@@ -932,7 +932,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
     case SPELL_STYGIAN_ERUPTION:
         if (GET_ALIGNMENT(ch) >= -400) {
-            send_to_char("You are not unholy enough to cast that spell!\r\n", ch);
+            send_to_char("You are not unholy enough to cast that spell!\n", ch);
             return CAST_RESULT_CHARGE;
         }
         /* max dam 176 from 12d5+36 online */
@@ -1031,7 +1031,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 switch (number(1, 3)) {
                 case 1:
                     act("&1&8$n bursts into flame!&0", false, victim, 0, 0, TO_ROOM);
-                    send_to_char("&1&8Your skin and clothes ignite into flame!&0\r\n", victim);
+                    send_to_char("&1&8Your skin and clothes ignite into flame!&0\n", victim);
                     break;
                 case 2:
                     sprintf(buf, "%s light%s", skills[spellnum].name,
@@ -1041,7 +1041,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
                     act("&1&8Your $t $N on fire!&0", false, ch, buf, victim, TO_CHAR);
                     break;
                 case 3:
-                    send_to_char("&1&8Flames spread across your body!&0\r\n", victim);
+                    send_to_char("&1&8Flames spread across your body!&0\n", victim);
                     act("&1&8Flames envelope $n!&0", false, victim, 0, 0, TO_ROOM);
                     break;
                 }
@@ -1057,7 +1057,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             if (temp > number(0, 500)) {
                 WAIT_STATE(victim, MAX(3, PULSE_VIOLENCE * (skill - GET_LEVEL(victim)) / 20));
                 act("&4&b$n&4&b freezes up!&0", true, victim, 0, 0, TO_ROOM);
-                send_to_char("&4&bYour joints stiffen as the frost penetrates you!&0\r\n", victim);
+                send_to_char("&4&bYour joints stiffen as the frost penetrates you!&0\n", victim);
                 STOP_CASTING(victim);
                 event_create(EVENT_BATTLE_PARALYSIS, battle_paralysis_handler, mkgenericevent(ch, victim, 0), true,
                              &(victim->events), 0);
@@ -1122,7 +1122,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SPELL_LESSER_ENDURANCE) || affected_by_spell(victim, SPELL_ENDURANCE) ||
             affected_by_spell(victim, SPELL_GREATER_ENDURANCE) || affected_by_spell(victim, SPELL_VITALITY) ||
             affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH)) {
-            send_to_char("Nothing happens!\r\n", ch);
+            send_to_char("Nothing happens!\n", ch);
             return CAST_RESULT_CHARGE;
         }
 
@@ -1165,7 +1165,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_BLESS:
 
         if (GET_LEVEL(ch) < LVL_IMMORT && !IS_GOOD(ch) && casttype == CAST_SPELL) {
-            send_to_char("The gods have forsaken you in your evilness!\r\n", ch);
+            send_to_char("The gods have forsaken you in your evilness!\n", ch);
             act("There is no effect.  $U$n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
@@ -1187,7 +1187,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Alignment Checks! */
         if (IS_EVIL(victim)) {
             act("You can't bless evil people!", false, ch, 0, 0, TO_CHAR);
-            act("$n tries to awaken your inner angel.\r\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
+            act("$n tries to awaken your inner angel.\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
             act("$n fails to awaken $N's inner angel.", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         }
@@ -1201,7 +1201,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
         to_char = "$N is inspired by your gods.";
-        to_vict = "Your inner angel is inspired by $n.\r\nYou feel righteous.";
+        to_vict = "Your inner angel is inspired by $n.\nYou feel righteous.";
         to_room = "$N is inspired to do good by $n.";
         break;
 
@@ -1211,7 +1211,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
 
         if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            send_to_char("You seem unable to blind this creature.\r\n", ch);
+            send_to_char("You seem unable to blind this creature.\n", ch);
             return CAST_RESULT_CHARGE;
         }
 
@@ -1311,8 +1311,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_COLDSHIELD:
 
         if (EFF_FLAGGED(ch, EFF_FIRESHIELD)) {
-            cprintf(ch, "The shield of fire around %s body negates your spell.\r\n",
-                    ch == victim ? "your" : HSHR(victim));
+            char_printf(ch, "The shield of fire around %s body negates your spell.\n",
+                        ch == victim ? "your" : HSHR(victim));
             return CAST_RESULT_CHARGE;
         }
 
@@ -1329,8 +1329,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         i = (GET_DEX(victim) + GET_WIS(victim) - 100) / 10;
         if (i > number(1, 100)) {
             act("$n's eyes start to cross, but $e shakes it off.", true, victim, 0, 0, TO_ROOM);
-            send_to_char("Your eyes start to &5spin off&0 in different directions, but you manage\r\n", ch);
-            send_to_char("to bring them back under control.\r\n", ch);
+            send_to_char("Your eyes start to &5spin off&0 in different directions, but you manage\n", ch);
+            send_to_char("to bring them back under control.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         SET_FLAG(eff[0].flags, EFF_CONFUSION);
@@ -1367,7 +1367,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_DARK_PRESENCE:
 
         if (GET_LEVEL(ch) < LVL_IMMORT && !IS_EVIL(ch) && casttype == CAST_SPELL) {
-            send_to_char("In your goodness, the dark gods have forsaken you!\r\n", ch);
+            send_to_char("In your goodness, the dark gods have forsaken you!\n", ch);
             act("Nothing happens.  $U$n looks rather forlorn.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
@@ -1387,7 +1387,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Alignment Checks! */
         if (IS_GOOD(victim)) {
             act("You can't protect an evil ally if they are GOOD!", false, ch, 0, 0, TO_CHAR);
-            act("$n tries to enrage your inner demon.\r\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
+            act("$n tries to enrage your inner demon.\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
             act("$n fails to enrage $N's inner demon.", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         }
@@ -1400,12 +1400,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             to_vict = "&9&bA dark presence fills your mind.&0";
             if (ch == victim)
                 to_room =
-                    "$n seizes up in pain!\r\n"
+                    "$n seizes up in pain!\n"
                     "$n crosses $s arms on $s chest, and is surrounded by a dark "
                     "presence.";
             else
                 to_room =
-                    "$n seizes up in pain!\r\n"
+                    "$n seizes up in pain!\n"
                     "$n grabs $N, who is surrounded by a dark presence.";
         } else {
             eff[1].location = APPLY_DAMROLL;
@@ -1415,12 +1415,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             to_vict = "&9&bA dark presence fills your mind and body!&0";
             if (ch == victim)
                 to_room =
-                    "$n seizes up in pain!\r"
+                    "$n seizes up in pain!"
                     "\n$n crosses $s arms on $s chest, and is enraged by a dark "
                     "presence.";
             else
                 to_room =
-                    "$n seizes up in pain!\r"
+                    "$n seizes up in pain!"
                     "\n$n grabs $N, who is enraged by a dark presence.";
         }
         SET_FLAG(eff[2].flags, EFF_HEX);
@@ -1431,7 +1431,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_DEMONIC_MUTATION:
 
         if (affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION)) {
-            send_to_char("You're feeling pretty demonic already.\r\n", victim);
+            send_to_char("You're feeling pretty demonic already.\n", victim);
             return CAST_RESULT_CHARGE;
         }
 
@@ -1464,7 +1464,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Alignement Check! */
         if (IS_GOOD(victim)) {
             act("You can't protect an evil ally if they are GOOD!", false, ch, 0, 0, TO_CHAR);
-            act("$n tries to wrap you in demonic skin!\r\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
+            act("$n tries to wrap you in demonic skin!\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
             act("$n fails to wrap $N is a demonic skin of protection.", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         } else if (GET_ALIGNMENT(victim) > 0) {
@@ -1535,7 +1535,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         to_char = "Your diseased air infects $N!";
         to_vict =
             "&3You choke and gasp on $n's foul air as a sick feeling "
-            "overtakes you.\r\n"
+            "overtakes you.\n"
             "You feel seriously ill!&0";
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
         break;
@@ -1543,7 +1543,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_EARTH_BLESSING:
 
         if (GET_LEVEL(ch) < LVL_IMMORT && !IS_NEUTRAL(ch) && casttype == CAST_SPELL) {
-            send_to_char("Nature has forsaken you in your zealousness!\r\n", ch);
+            send_to_char("Nature has forsaken you in your zealousness!\n", ch);
             act("There is no effect.  $U$n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
@@ -1565,14 +1565,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Alignment Checks! */
         if (IS_EVIL(victim)) {
             act("You can't bless evil people!", false, ch, 0, 0, TO_CHAR);
-            act("$n tries to attune you to nature.\r\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
+            act("$n tries to attune you to nature.\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
             act("$n fails to attune $N to nature.", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         }
 
         if (IS_GOOD(victim)) {
             act("You can't bless good people!", false, ch, 0, 0, TO_CHAR);
-            act("$n tries to attune you to nature.\r\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
+            act("$n tries to attune you to nature.\nSilly isn't $e?", false, ch, 0, victim, TO_VICT);
             act("$n fails to attune $N to nature.", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         }
@@ -1586,7 +1586,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
         to_char = "$N is imbued with the power of nature.";
-        to_vict = "$n imbues you with the power of nature.\r\nYou feel righteous.";
+        to_vict = "$n imbues you with the power of nature.\nYou feel righteous.";
         to_room = "$N is imbued with the power of nature by $n.";
         break;
 
@@ -1609,7 +1609,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             to_vict = "You are warded from &3earth&0.";
             to_char = "You protect $N from &3earth&0.";
         } else {
-            send_to_char("What element do you want to ward against?\r\n", ch);
+            send_to_char("What element do you want to ward against?\n", ch);
             return 0;
         }
 
@@ -1656,7 +1656,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             to_char = "You increase $N's charisma!";
             to_room = "$N looks more charismatic!";
         } else {
-            send_to_char("What abiliy do you want to enhance?\r\n", ch);
+            send_to_char("What abiliy do you want to enhance?\n", ch);
             return 0;
         }
 
@@ -1673,7 +1673,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
             affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
             affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            send_to_char("You are already enhanced!\r\n", victim);
+            send_to_char("You are already enhanced!\n", victim);
             return 0;
         }
 
@@ -1695,7 +1695,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
             affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
             affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            send_to_char("You are already enhanced!\r\n", victim);
+            send_to_char("You are already enhanced!\n", victim);
             return 0;
         }
 
@@ -1717,7 +1717,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
             affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
             affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            send_to_char("You are already enhanced!\r\n", victim);
+            send_to_char("You are already enhanced!\n", victim);
             return 0;
         }
 
@@ -1739,7 +1739,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
             affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
             affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            send_to_char("You are already enhanced!\r\n", victim);
+            send_to_char("You are already enhanced!\n", victim);
             return 0;
         }
 
@@ -1761,7 +1761,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
             affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
             affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            send_to_char("You are already enhanced!\r\n", victim);
+            send_to_char("You are already enhanced!\n", victim);
             return 0;
         }
 
@@ -1783,7 +1783,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
             affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
             affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            send_to_char("You are already enhanced!\r\n", victim);
+            send_to_char("You are already enhanced!\n", victim);
             return 0;
         }
 
@@ -1896,8 +1896,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             to_vict = "&3&bYou charge your hands with corrosive chi.&0";
             to_room = "&3&b$N charges $S hands with corrosive chi.&0";
         } else {
-            send_to_char("What element do you want to imbue?\r\n", ch);
-            send_to_char("Fire, ice, lightning, or acid?\r\n", ch);
+            send_to_char("What element do you want to imbue?\n", ch);
+            send_to_char("Fire, ice, lightning, or acid?\n", ch);
             return 0;
         }
         eff[0].duration = (skill / 10) + wis_app[GET_WIS(ch)].bonus; /* max 15 */
@@ -1906,8 +1906,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_FIRESHIELD:
 
         if (EFF_FLAGGED(ch, EFF_COLDSHIELD)) {
-            cprintf(ch, "The shield of ice around %s body negates your spell.\r\n",
-                    ch == victim ? "your" : HSHR(victim));
+            char_printf(ch, "The shield of ice around %s body negates your spell.\n",
+                        ch == victim ? "your" : HSHR(victim));
             return CAST_RESULT_CHARGE;
         }
 
@@ -1968,7 +1968,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_HARNESS:
 
         if (EFF_FLAGGED(victim, EFF_HARNESS)) {
-            send_to_char("You have already harnessed your energy!\r\n", victim);
+            send_to_char("You have already harnessed your energy!\n", victim);
             return CAST_RESULT_CHARGE;
         }
 
@@ -2005,7 +2005,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (affected_by_spell(victim, SPELL_NIGHT_VISION)) {
             if (victim == ch) {
-                send_to_char("You are already enchanted with enhanced vision.\r\n", ch);
+                send_to_char("You are already enchanted with enhanced vision.\n", ch);
                 act("$n looks a little overprotective.", true, ch, 0, 0, TO_ROOM);
             } else {
                 act("$N seems to be able to sort of see enough already.", false, ch, 0, victim, TO_CHAR);
@@ -2110,13 +2110,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         to_room =
             "$n &0&5w&4e&5av&4es a &5mesme&4rizing pa&5ttern before &0$N's "
-            "eyes.\r\n"
+            "eyes.\n"
             "$U$N appears entranced, as if working out a puzzle of some kind.";
         to_vict =
             "$n shows you a truly fascinating puzzle.  You simply must work "
             "it out.";
         to_char =
-            "You weave a mesmerizing pattern before $N, and $E seems\r\n"
+            "You weave a mesmerizing pattern before $N, and $E seems\n"
             "to be utterly absorbed by it.";
 
         SET_FLAG(eff[0].flags, EFF_MESMERIZED);
@@ -2201,7 +2201,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            send_to_char("You can only channel one element at a time.\r\n", victim);
+            send_to_char("You can only channel one element at a time.\n", victim);
             return 0;
         }
 
@@ -2217,7 +2217,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            send_to_char("You can only channel one element at a time.\r\n", victim);
+            send_to_char("You can only channel one element at a time.\n", victim);
             return 0;
         }
 
@@ -2233,7 +2233,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            send_to_char("You can only channel one element at a time.\r\n", victim);
+            send_to_char("You can only channel one element at a time.\n", victim);
             return 0;
         }
 
@@ -2249,7 +2249,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
             affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            send_to_char("You can only channel one element at a time.\r\n", victim);
+            send_to_char("You can only channel one element at a time.\n", victim);
             return 0;
         }
 
@@ -2353,7 +2353,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Modify hp by alignment */
         eff[0].modifier *= GET_ALIGNMENT(victim) / 1000.0;
 
-        to_vict = "Your prayer is answered...\r\nYou feel full of life!";
+        to_vict = "Your prayer is answered...\nYou feel full of life!";
         to_room = "$N perks up, looking full of life.";
         break;
 
@@ -2362,7 +2362,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Alignment Check! */
         if (IS_EVIL(victim)) {
             act("You can't protect an ally if they are EVIL!", false, ch, 0, victim, TO_CHAR);
-            act("$n tries to protect you from evil!\r\nSilly isn't $e.", false, ch, 0, victim, TO_VICT);
+            act("$n tries to protect you from evil!\nSilly isn't $e.", false, ch, 0, victim, TO_VICT);
             act("$n fails to protect $N from evil.  DUH!", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         }
@@ -2378,7 +2378,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Alignment Check! */
         if (IS_GOOD(victim)) {
             act("You can't protect an ally if they are GOOD!", false, ch, 0, victim, TO_CHAR);
-            act("$n tries to protect you from evil!\r\nSilly isn't $e.", false, ch, 0, victim, TO_VICT);
+            act("$n tries to protect you from evil!\nSilly isn't $e.", false, ch, 0, victim, TO_VICT);
             act("$n fails to protect $N from good.  DUH!", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         }
@@ -2395,7 +2395,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
             affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
             affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            send_to_char("You can only be protected from one element at a time.\n", victim);
             return 0;
         }
 
@@ -2412,7 +2412,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
             affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
             affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            send_to_char("You can only be protected from one element at a time.\n", victim);
             return 0;
         }
 
@@ -2429,7 +2429,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
             affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
             affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            send_to_char("You can only be protected from one element at a time.\n", victim);
             return 0;
         }
 
@@ -2446,7 +2446,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
             affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
             affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            send_to_char("You can only be protected from one element at a time.\r\n", victim);
+            send_to_char("You can only be protected from one element at a time.\n", victim);
             return 0;
         }
 
@@ -2490,14 +2490,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             act("$n seems confused as to your state of mortality.", false, ch, 0, victim, TO_VICT);
             act("$n tries to rebuke $N's buried undead nature.  Must be buried too deep.", true, ch, 0, victim,
                 TO_ROOM);
-            send_to_char("Your rebuke elicits nothing but a raised eyebrow.\r\n", ch);
+            send_to_char("Your rebuke elicits nothing but a raised eyebrow.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         if (mag_savingthrow(victim, SAVING_SPELL)) {
             act("You stare blankly at $n as $e attempts to rebuke you.", false, ch, 0, victim, TO_VICT);
 
             act("$N looks at $n blankly as $e calls down a spell of condemnation.", true, ch, 0, victim, TO_NOTVICT);
-            send_to_char("Your rebuke elicits nothing but a blank stare.\r\n", ch);
+            send_to_char("Your rebuke elicits nothing but a blank stare.\n", ch);
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
         eff[0].location = APPLY_STR;
@@ -2561,7 +2561,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
 
         if (MOB_FLAGGED(victim, MOB_NOSILENCE)) {
-            send_to_char("You seem unable to silence this one.\r\n", ch);
+            send_to_char("You seem unable to silence this one.\n", ch);
             return CAST_RESULT_CHARGE;
         }
 
@@ -2587,7 +2587,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                                                 (POSSESSED(victim) && GET_LEVEL(POSSESSOR(victim)) < 100))) ||
                                /* ch is shapechanged? */
                                (POSSESSED(ch) && GET_LEVEL(POSSESSOR(ch)) < 100))) {
-            send_to_char("Use the 'nap' command instead!\r\n", ch);
+            send_to_char("Use the 'nap' command instead!\n", ch);
             return CAST_RESULT_CHARGE;
         }
 
@@ -2702,7 +2702,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
 
         if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            send_to_char("You seem unable to blind this creature.\r\n", ch);
+            send_to_char("You seem unable to blind this creature.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         if (mag_savingthrow(victim, savetype)) {
@@ -2730,7 +2730,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_VAPORFORM:
 
         if (GET_COMPOSITION(victim) != COMP_FLESH) {
-            send_to_char("Your body cannot sustain this change.\r\n", victim);
+            send_to_char("Your body cannot sustain this change.\n", victim);
             return CAST_RESULT_CHARGE;
         }
 
@@ -2747,7 +2747,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_WATERFORM:
 
         if (GET_COMPOSITION(victim) != COMP_FLESH) {
-            send_to_char("Your body cannot sustain this change.\r\n", victim);
+            send_to_char("Your body cannot sustain this change.\n", victim);
             return CAST_RESULT_CHARGE;
         }
 
@@ -2797,7 +2797,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_WINGS_OF_HEAVEN:
 
         if (affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
-            send_to_char("You already have something sticking out of your back.\r\n", victim);
+            send_to_char("You already have something sticking out of your back.\n", victim);
             return CAST_RESULT_CHARGE;
         }
 
@@ -2819,7 +2819,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_WINGS_OF_HELL:
 
         if (affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
-            send_to_char("You already have something sticking out of your back.\r\n", victim);
+            send_to_char("You already have something sticking out of your back.\n", victim);
             return CAST_RESULT_CHARGE;
         }
 
@@ -3099,11 +3099,11 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_SONG_OF_REST);
         eff[0].duration = skill / (15 - (GET_CHA(ch) / 20)); /* max 10 */
         if (ch != victim) {
-            to_char = "You sing $N a gentle lullaby to help $M rest.\r\n";
+            to_char = "You sing $N a gentle lullaby to help $M rest.\n";
             to_room = "$n sings $N a gentle lullaby to help $M rest.";
             to_vict = "$n sings you a gentle lullaby to help you rest.";
         } else {
-            to_vict = "You sing yourself a lullaby.\r\n";
+            to_vict = "You sing yourself a lullaby.\n";
             to_room = "$n sings a lullaby to $Mself.";
         }
         break;
@@ -3282,19 +3282,19 @@ int mag_group(int skill, CharData *ch, int spellnum, int savetype) {
     switch (spellnum) {
     case SPELL_DIVINE_ESSENCE:
         to_room = "&3&b$n&3&b invokes $s deity's divine essence to fill the area!&0";
-        to_char = "&3&bYou invoke your deity's divine essence!&0\r\n";
+        to_char = "&3&bYou invoke your deity's divine essence!&0\n";
         break;
     case SONG_FREEDOM_SONG:
         to_room = "&7&b$n&7&b performs a song to break the chains that bind!&0";
-        to_char = "&7&bYou perform a song to break the chains that bind!&0\r\n";
+        to_char = "&7&bYou perform a song to break the chains that bind!&0\n";
         break;
     case SONG_HEARTHSONG:
         to_room = "&3&b$n&3&b deepens the bonds of community and fellowship amongst you.&0";
-        to_char = "&3&bYou deepen the bonds of community and fellowship with your group.&0\r\n";
+        to_char = "&3&bYou deepen the bonds of community and fellowship with your group.&0\n";
         break;
     case SONG_HEROIC_JOURNEY:
         to_room = "&6&b$n&6&b spins a tale of great triumph and adventure for your party!&0";
-        to_char = "&6&bYou spin a tale of great triumph and adventure for your party!&0\r\n";
+        to_char = "&6&bYou spin a tale of great triumph and adventure for your party!&0\n";
         break;
     default:
         to_room = nullptr;
@@ -3409,7 +3409,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
     CharData *tch, *next_tch;
     char *to_char = nullptr;
     char *to_room = nullptr;
-    int casttype = nullptr;
+    int casttype = 0;
     bool found = false;
     bool damage = true;
 
@@ -3466,7 +3466,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         }
         to_char = "&3You gesture and the earth begins to shake all around you!&0";
         to_room = "$n&3 gracefully gestures and the earth begins to shake violently!&0";
-        send_to_zone("&3The ground &1rumbles&3 and shakes!&0\r\n", IN_ZONE_VNUM(ch), IN_ROOM(ch), STANCE_SLEEPING);
+        send_to_zone("&3The ground &1rumbles&3 and shakes!&0\n", IN_ZONE_VNUM(ch), IN_ROOM(ch), STANCE_SLEEPING);
         break;
     case SKILL_ELECTRIFY:
         to_char = "&4&8You send out electricity in all directions...&0";
@@ -3779,7 +3779,7 @@ CharData *create_undead(CharData *orig, CharData *caster, bool ISPC) {
         }
     }
 
-    strcat(long_buf, "\r\n");
+    strcat(long_buf, "\n");
     GET_NAME(new_mob) = strdup(short_buf);
     new_mob->player.long_descr = strdup(long_buf);
     GET_NAMELIST(new_mob) = strdup(alias_buf);
@@ -4009,7 +4009,7 @@ void phantasm_transform(CharData *ch, CharData *model, int life_hours) {
         /* So the copy's height, weight, and size all come from the
          * model's affected values. */
         sprintf(short_buf, "the illusion of %s", GET_NAME(model));
-        sprintf(long_buf, "The illusion of %s waits here.\r\n", GET_NAME(model));
+        sprintf(long_buf, "The illusion of %s waits here.\n", GET_NAME(model));
         sprintf(alias_buf, "illusion %s", GET_NAMELIST(model));
 
         ch->player.weight = model->player.weight;
@@ -4022,7 +4022,7 @@ void phantasm_transform(CharData *ch, CharData *model, int life_hours) {
         ch->player.base_height = model->player.base_height;
     } else {
         sprintf(short_buf, "the illusion of %s", GET_NAME(ch));
-        sprintf(long_buf, "The illusion of %s waits here.\r\n", GET_NAME(ch));
+        sprintf(long_buf, "The illusion of %s waits here.\n", GET_NAME(ch));
         sprintf(alias_buf, "illusion %s", GET_NAMELIST(ch));
     }
     GET_NAME(ch) = strdup(short_buf);
@@ -4079,7 +4079,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         return 0;
 
     if (EFF_FLAGGED(ch, EFF_CHARM) && !MOB_FLAGGED(ch, MOB_ANIMATED)) {
-        send_to_char("You are too giddy to have any followers!\r\n", ch);
+        send_to_char("You are too giddy to have any followers!\n", ch);
         return CAST_RESULT_CHARGE;
     }
 
@@ -4087,19 +4087,19 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
     case SPELL_ANIMATE_DEAD:
         /* first make sure it's a corpse */
         if (!obj || !IS_CORPSE(obj)) {
-            send_to_char("A corpse would help, don't you think?\r\n", ch);
+            send_to_char("A corpse would help, don't you think?\n", ch);
             return CAST_RESULT_CHARGE;
         }
 
         /* if it was a pc corpse, fail automatically (for now at least) */
         if (IS_PLR_CORPSE(obj)) {
             if (!pk_allowed) {
-                send_to_char("Raising PC corpses is not currently allowed.\r\n", ch);
+                send_to_char("Raising PC corpses is not currently allowed.\n", ch);
                 return CAST_RESULT_CHARGE;
             }
         } else if ((GET_OBJ_VAL(obj, VAL_CONTAINER_CORPSE) == CORPSE_NPC_NORAISE) || /* unraisable */
                    ((orig_mob_rnum = GET_OBJ_MOB_FROM(obj)) == NOBODY)) {
-            send_to_char("That corpse is much too decayed to raise.\r\n", ch);
+            send_to_char("That corpse is much too decayed to raise.\n", ch);
             return CAST_RESULT_CHARGE;
         }
 
@@ -4202,7 +4202,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         new_mob = summon_phantasm(ch, pvnum, duration);
         if (new_mob == nullptr) {
             act("The spell fizzles.", false, 0, 0, 0, TO_ROOM);
-            send_to_char("The spell fizzles.\r\n", ch);
+            send_to_char("The spell fizzles.\n", ch);
             return 0;
         }
 
@@ -4238,7 +4238,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         /* Simulacrum is like the phantasm spell, except it duplicates an
          * existing creature. */
         if (!vict) {
-            send_to_char("Who did you want to duplicate?\r\n", ch);
+            send_to_char("Who did you want to duplicate?\n", ch);
             return 0;
         }
         if (GET_LEVEL(vict) > skill) {
@@ -4261,11 +4261,11 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
                 new_mob = copyplayer(ch, vict);
                 if (new_mob == nullptr) {
                     act("The spell fizzles.", false, 0, 0, 0, TO_ROOM);
-                    send_to_char("The spell fizzles.\r\n", ch);
+                    send_to_char("The spell fizzles.\n", ch);
                     return 0;
                 }
             } else {
-                send_to_char("Sadly, that's impossible.\r\n", ch);
+                send_to_char("Sadly, that's impossible.\n", ch);
                 return 0;
             }
             phantasm_transform(new_mob, vict, duration);
@@ -4278,7 +4278,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
             new_mob = duplicate_char(vict, ch->in_room);
             if (!new_mob) {
                 act("The spell fizzles.", false, 0, 0, 0, TO_ROOM);
-                send_to_char("The spell fizzles.\r\n", ch);
+                send_to_char("The spell fizzles.\n", ch);
                 return 0;
             }
             phantasm_transform(new_mob, vict, duration);
@@ -4345,35 +4345,35 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
     switch (spellnum) {
     case SPELL_CURE_LIGHT:
         hit = dice(2, 8) + 1;
-        send_to_char("You feel better.\r\n", victim);
+        send_to_char("You feel better.\n", victim);
         break;
     case SPELL_CURE_SERIOUS:
         hit = dice(4, 8) + 2;
-        send_to_char("You feel much better!\r\n", victim);
+        send_to_char("You feel much better!\n", victim);
         break;
     case SPELL_CURE_CRITIC:
         hit = dice(6, 8) + 3;
-        send_to_char("You feel a lot better!\r\n", victim);
+        send_to_char("You feel a lot better!\n", victim);
         break;
     case SPELL_HEAL:
         hit = dice(50, 2);
-        send_to_char("A warm feeling floods your body.\r\n", victim);
+        send_to_char("A warm feeling floods your body.\n", victim);
         break;
     case SPELL_FULL_HEAL:
         hit = dice(100, 2) + 30;
-        send_to_char("&7You have been FULLY healed!&0\r\n", victim);
+        send_to_char("&7You have been FULLY healed!&0\n", victim);
         break;
     case SPELL_VIGORIZE_LIGHT:
         move = dice(3, 8) + 5;
-        send_to_char("You feel vigorized!\r\n", victim);
+        send_to_char("You feel vigorized!\n", victim);
         break;
     case SPELL_VIGORIZE_SERIOUS:
         move = dice(5, 8) + 5;
-        send_to_char("You feel vigorized!\r\n", victim);
+        send_to_char("You feel vigorized!\n", victim);
         break;
     case SPELL_VIGORIZE_CRITIC:
         move = dice(7, 8) + 5;
-        send_to_char("You feel vigorized!\r\n", victim);
+        send_to_char("You feel vigorized!\n", victim);
         break;
     case SPELL_NOURISHMENT:
         switch (SECT(victim->in_room)) {
@@ -4419,13 +4419,13 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
         break;
     case SPELL_INVIGORATE:
         move = GET_MAX_MOVE(victim);
-        send_to_char("You feel fully vigorized!\r\n", victim);
+        send_to_char("You feel fully vigorized!\n", victim);
         break;
     case SPELL_NATURES_EMBRACE:
         hide = skill * 5;
         break;
     case SPELL_CONCEALMENT:
-        send_to_char("&9&bYou vanish.&0\r\n", victim);
+        send_to_char("&9&bYou vanish.&0\n", victim);
         act("&9&b$N&9&b slowly fades out of existence.&0", true, ch, 0, victim, TO_ROOM);
         hide = skill * 4;
         break;
@@ -4461,7 +4461,7 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
 
 int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int type) {
     int spell = 0;
-    char *to_vict = nullptr, *to_room = nullptr;
+    const char *to_vict = nullptr, *to_room = nullptr;
 
     if (victim == nullptr)
         return 0;
@@ -4493,11 +4493,11 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         }
         if ((spellnum == SPELL_HEAL || spellnum == SPELL_FULL_HEAL) && affected_by_spell(victim, SPELL_DISEASE)) {
             effect_from_char(victim, SPELL_DISEASE);
-            send_to_char("Your disease has been cured.\r\n", victim);
+            send_to_char("Your disease has been cured.\n", victim);
         }
         if ((spellnum == SPELL_HEAL || spellnum == SPELL_FULL_HEAL) && affected_by_spell(victim, SPELL_POISON)) {
             effect_from_char(victim, SPELL_POISON);
-            send_to_char("The poison in your system has been cleansed.\r\n", victim);
+            send_to_char("The poison in your system has been cleansed.\n", victim);
             check_regen_rates(victim); /* speed up regen rate immediately */
         }
         break;
@@ -4509,11 +4509,11 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         break;
     case SPELL_EXTINGUISH:
         REMOVE_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
-        send_to_char("You are doused with a magical liquid.\r\n", victim);
+        send_to_char("You are doused with a magical liquid.\n", victim);
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     case SONG_JOYFUL_NOISE:
         spell = SPELL_SILENCE;
-        send_to_char("&3&bYou make such a racket it pierces the silence!&0\r\n", ch);
+        send_to_char("&3&bYou make such a racket it pierces the silence!&0\n", ch);
         act("&3&b$N makes such a racket it pierces the silence!&0", true, victim, 0, ch, TO_NOTVICT);
         to_vict = "The noise shatters the silence about you!";
         to_room = "$n begins to make sound again!";
@@ -4899,7 +4899,7 @@ int mag_creation(int skill, CharData *ch, int spellnum) {
         case SECT_WATER:
         case SECT_UNDERWATER:
         case SECT_AIR:
-            cprintf(ch, "Nothing happens.\r\n");
+            char_printf(ch, "Nothing happens.\n");
             act("$n completes $s spell, but nothing happens.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
             break;
@@ -4945,12 +4945,12 @@ int mag_creation(int skill, CharData *ch, int spellnum) {
         to_char = "You create $p.";
         break;
     default:
-        send_to_char("Spell unimplemented, it would seem.\r\n", ch);
+        send_to_char("Spell unimplemented, it would seem.\n", ch);
         return 0;
     }
 
     if (!(tobj = read_object(z, VIRTUAL))) {
-        send_to_char("I seem to have goofed.\r\n", ch);
+        send_to_char("I seem to have goofed.\n", ch);
         sprintf(buf, "SYSERR: spell_creations, spell %d, obj %d: obj not found", spellnum, z);
         log(buf);
         return 0;
@@ -4983,12 +4983,12 @@ int mag_room(int skill, CharData *ch, int spellnum) {
     switch (spellnum) {
     case SPELL_CIRCLE_OF_FIRE:
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_CIRCLE_FIRE)) {
-            send_to_char("The room is already on fire.\r\n", ch);
+            send_to_char("The room is already on fire.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         if (SECT(ch->in_room) == SECT_SHALLOWS || SECT(ch->in_room) == SECT_WATER ||
             SECT(ch->in_room) == SECT_UNDERWATER) {
-            send_to_char("Impossible. There is too much water here.\r\n", ch);
+            send_to_char("Impossible. There is too much water here.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         eff = ROOM_EFF_CIRCLE_FIRE;
@@ -4999,7 +4999,7 @@ int mag_room(int skill, CharData *ch, int spellnum) {
         break;
     case SPELL_URBAN_RENEWAL:
         if (SECT(ch->in_room) == SECT_FOREST || ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOREST)) {
-            send_to_char("There is already enough foliage here to constitute a forest.\r\n", ch);
+            send_to_char("There is already enough foliage here to constitute a forest.\n", ch);
             return CAST_RESULT_CHARGE;
         }
         eff = ROOM_EFF_FOREST;
@@ -5199,7 +5199,7 @@ bool check_fluid_spell_ok(CharData *ch, CharData *victim, int spellnum, bool qui
         return true;
     if (!spell_suitable_for_fluid_characters(spellnum)) {
         if (!quiet) {
-            cprintf(victim, "The spell is unable to take hold in your substance.\r\n");
+            char_printf(victim, "The spell is unable to take hold in your substance.\n");
             if (ch && ch != victim)
                 act("The spell is unable to alter $N's substance.", false, ch, 0, victim, TO_CHAR);
         }
@@ -5273,7 +5273,7 @@ bool look_at_magic_wall(CharData *ch, int dir, bool sees_next_room) {
 
     for (wall = world[ch->in_room].contents; wall; wall = wall->next_content) {
         if (GET_OBJ_TYPE(wall) == ITEM_WALL && GET_OBJ_VAL(wall, VAL_WALL_DIRECTION) == dir) {
-            sprintf(buf, "%s &0is standing here.\r\n", wall->short_description);
+            sprintf(buf, "%s &0is standing here.\n", wall->short_description);
             CAP(buf);
             send_to_char(buf, ch);
             return true;
@@ -5287,7 +5287,7 @@ bool look_at_magic_wall(CharData *ch, int dir, bool sees_next_room) {
             for (wall = world[next_room].contents; wall; wall = wall->next_content)
                 if (GET_OBJ_TYPE(wall) == ITEM_WALL &&
                     world[next_room].exits[GET_OBJ_VAL(wall, VAL_WALL_DIRECTION)]->to_room == ch->in_room) {
-                    sprintf(buf, "You see %s&0 a short distance away.\r\n", wall->short_description);
+                    sprintf(buf, "You see %s&0 a short distance away.\n", wall->short_description);
                     send_to_char(buf, ch);
                     return true;
                 }

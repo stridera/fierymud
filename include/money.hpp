@@ -24,10 +24,7 @@ struct CoinDef {
     int scale;
 };
 
-struct CoinDef coindefs[NUM_COIN_TYPES] = {{"platinum", "plat", "p", "&6&b", "p", 1000},
-                                           {"gold", nullptr, "g", "&3&b", "g", 100},
-                                           {"silver", nullptr, "s", "&7&b", "s", 10},
-                                           {"copper", nullptr, "c", "&3", "c", 1}};
+extern CoinDef coindefs[NUM_COIN_TYPES];
 
 #define VALID_COIN(coin) (coin >= 0 && coin < NUM_COIN_TYPES)
 #define COIN_NAME(coin) (VALID_COIN(coin) ? coindefs[coin].name : "coin")
@@ -51,8 +48,8 @@ bool is_coin_name(const char *name, int cointype);
     ((coins)[PLATINUM] * PLATINUM_SCALE + (coins)[GOLD] * GOLD_SCALE + (coins)[SILVER] * SILVER_SCALE +                \
      (coins)[COPPER] * COPPER_SCALE)
 
-void statemoney(const char *buf, const int coins[]);
+void statemoney(char *buf, const int coins[]);
 bool parse_money(char **money, int coins[]);
-void briefmoney(const char *buf, int spaces, int amt);
+void briefmoney(char *buf, int spaces, int amt);
 void money_desc(int amount, const char **shortdesc, const char **keywords);
 ObjData *create_money(const int coins[]);

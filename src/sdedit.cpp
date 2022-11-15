@@ -81,17 +81,17 @@ void sdedit_disp_menu(DescriptorData *d) {
     spell = OLC_SD(d);
 
     sprintf(buf,
-            "Editing Spell: %s%-21s%s %s%d%s\r\n\n"
-            "         %sDAMAGES TO NPC:%s\r\n\n"
-            "%s1%s) Number of dice to be used:        %s%d%s\r\n"
-            "%s2%s) Number on the face of the dice:   %s%d%s\r\n"
-            "%sR%s) %% dmg to NPCs 100 full effect :   %s%d%s\r\n"
-            "%sA%s) NPC Static number                 %s%d%s\r\n"
-            "         %sDAMAGES TO PC:%s\r\n\n"
-            "%s3%s) Number of dice to be used:        %s%d%s\r\n"
-            "%s4%s) Number on the face of the dice:   %s%d%s\r\n"
-            "%sB%s) PC Static number:                 %s%d%s\r\n"
-            "         %sGENERAL TO BOTH:%s\r\n\n",
+            "Editing Spell: %s%-21s%s %s%d%s\n\n"
+            "         %sDAMAGES TO NPC:%s\n\n"
+            "%s1%s) Number of dice to be used:        %s%d%s\n"
+            "%s2%s) Number on the face of the dice:   %s%d%s\n"
+            "%sR%s) %% dmg to NPCs 100 full effect :   %s%d%s\n"
+            "%sA%s) NPC Static number                 %s%d%s\n"
+            "         %sDAMAGES TO PC:%s\n\n"
+            "%s3%s) Number of dice to be used:        %s%d%s\n"
+            "%s4%s) Number on the face of the dice:   %s%d%s\n"
+            "%sB%s) PC Static number:                 %s%d%s\n"
+            "         %sGENERAL TO BOTH:%s\n\n",
             grn, (skills[spell->spell].name), nrm, grn, spell->spell, nrm, red, nrm, yel, nrm, grn, spell->npc_no_dice,
             grn,
             /*2 */ yel, nrm, grn, spell->npc_no_face, nrm,
@@ -101,23 +101,23 @@ void sdedit_disp_menu(DescriptorData *d) {
             /*B*/ yel, nrm, grn, spell->pc_static, nrm, red, nrm);
 
     sprintf(cbuf2,
-            "%s5%s) Max Bonus possible:               %s%d%s\r\n"
-            "%sT%s) Toggle Wether to use Max Bonus:   %s%s%s\r\n"
-            "%sI%s) Toggle Internal Damage On/Off:    %s%s%s\r\n"
-            "%sE%s) LVL Multiplie		%s%d%s\r\n"
-            "%sN%s) Edit Spell Note.\r\n"
-            "%sQ%s) Quit\r\n"
-            "\r\n"
+            "%s5%s) Max Bonus possible:               %s%d%s\n"
+            "%sT%s) Toggle Wether to use Max Bonus:   %s%s%s\n"
+            "%sI%s) Toggle Internal Damage On/Off:    %s%s%s\n"
+            "%sE%s) LVL Multiplie		%s%d%s\n"
+            "%sN%s) Edit Spell Note.\n"
+            "%sQ%s) Quit\n"
+            "\n"
             "%sUSED BY PC to NPC%s: - %sNPC + MIN(Max_bonus, level/2) + "
-            "NPC_STATIC%s\r\n"
+            "NPC_STATIC%s\n"
             "%sUSED BY NPC to PC%s: - %sNPC + MIN(Max_bonus, level/2) + "
-            "NPC_STATIC%s\r\n"
+            "NPC_STATIC%s\n"
             "%sUSED BY PC to PC %s: - %sPC  + MIN(Max_bonus, level/4) + "
-            "PC_STATIC%s\r\n\n"
-            "%sSpell Note:%s\r\n"
-            "%s%s%s\r\n"
-            "\r\n"
-            "Enter choice:\r\n",
+            "PC_STATIC%s\n\n"
+            "%sSpell Note:%s\n"
+            "%s%s%s\n"
+            "\n"
+            "Enter choice:\n",
             /*5 */ yel, nrm, grn, spell->max_bonus, nrm,
             /*Bonus */ yel, nrm, grn, (spell->use_bonus ? "true" : "false"), nrm,
             /*Intern*/ yel, nrm, grn, (spell->intern_dam ? "true" : "false"), nrm,
@@ -154,7 +154,7 @@ void sdedit_save_to_disk(DescriptorData *d) {
 
     if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == nullptr) {
 
-        sprintf(buf2, "Error writting spell dam file\r\n");
+        sprintf(buf2, "Error writting spell dam file\n");
         mudlog(buf2, NRM, LVL_IMPL, true);
     } else {
 
@@ -184,7 +184,7 @@ void sdedit_parse(DescriptorData *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) {
-                send_to_char("Do you wish to save this?\r\n", d->character);
+                send_to_char("Do you wish to save this?\n", d->character);
                 OLC_MODE(d) = SDEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
@@ -256,15 +256,15 @@ void sdedit_parse(DescriptorData *d, char *arg) {
             sdedit_disp_menu(d);
             return;
         default:
-            send_to_char("Not a option sorry\r\n", d->character);
+            send_to_char("Not a option sorry\n", d->character);
             sdedit_disp_menu(d);
             return;
         }
         if (i > 0) {
-            send_to_char("Enter new value\r\n>", d->character);
+            send_to_char("Enter new value\n>", d->character);
             return;
         } else if (i < 0) {
-            send_to_char("Enter Note Max 60 letters\r\n]", d->character);
+            send_to_char("Enter Note Max 60 letters\n]", d->character);
             return;
         }
         return;
@@ -326,16 +326,16 @@ void sdedit_parse(DescriptorData *d, char *arg) {
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_ALL);
             /*cleanup_olc(d, CLEANUP_STRUCTS); */
-            send_to_char("Your spell dam changes have been saved to memory.\r\n", d->character);
+            send_to_char("Your spell dam changes have been saved to memory.\n", d->character);
             break;
         case 'n':
         case 'N':
             /*free everything up, including strings etc */
-            send_to_char("Changes to spell damage not saved\r\n", d->character);
+            send_to_char("Changes to spell damage not saved\n", d->character);
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            send_to_char("Invalid choice!\r\nDo you wish to save this help internally?\r\n", d->character);
+            send_to_char("Invalid choice!\nDo you wish to save this help internally?\n", d->character);
             break;
         }
         return;

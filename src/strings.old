@@ -17,10 +17,10 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* str_cmp: a case-insensitive version of strcmp */
+/* strcmp: a case-insensitive version of strcmp */
 /* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
 /* scan 'till found different or end of both                 */
-int str_cmp(const char *arg1, const char *arg2) {
+int strcmp(const char *arg1, const char *arg2) {
     int chk, i;
 
     for (i = 0; *(arg1 + i) || *(arg2 + i); i++)
@@ -33,10 +33,10 @@ int str_cmp(const char *arg1, const char *arg2) {
     return (0);
 }
 
-/* strn_cmp: a case-insensitive version of strncmp */
+/* strncmp: a case-insensitive version of strncmp */
 /* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
 /* scan 'till found different, end of both, or n reached     */
-int strn_cmp(const char *arg1, const char *arg2, int n) {
+int strncmp(const char *arg1, const char *arg2, int n) {
     int chk, i;
 
     for (i = 0; (*(arg1 + i) || *(arg2 + i)) && (n > 0); i++, n--)
@@ -132,7 +132,7 @@ int sprintascii(char *out, flagvector bits) {
     int i, j = 0;
     /* 32 bits, don't just add letters to try to get more unless flagvector is
      * also as large. */
-    char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
+    const char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
 
     for (i = 0; flags[i]; ++i)
         if (bits & (1 << i))

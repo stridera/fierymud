@@ -83,81 +83,78 @@ ACMD(do_toggle) {
 
     };
     char *tog_messages[][2] = {
-        /*00 */ {"You are now safe from summoning by other players.\r\n",
-                 "You may now be summoned by other players.\r\n"},
+        /*00 */ {"You are now safe from summoning by other players.\n", "You may now be summoned by other players.\n"},
         /*01 */
-        {"Nohassle disabled, mobs will attack you now.\r\n", "Nohassle enabled, mobs will leave you alone now.\r\n"},
-        /*02 */ {"Brief mode off.\r\n", "Brief mode on.\r\n"},
-        /*03 */ {"Compact mode off.\r\n", "Compact mode on.\r\n"},
-        /*04 */ {"You can now hear tells.\r\n", "You are now deaf to tells.\r\n"},
-        /*05 */ {"You are no longer AFK.\r\n", "You are now AFK.\r\n"},
+        {"Nohassle disabled, mobs will attack you now.\n", "Nohassle enabled, mobs will leave you alone now.\n"},
+        /*02 */ {"Brief mode off.\n", "Brief mode on.\n"},
+        /*03 */ {"Compact mode off.\n", "Compact mode on.\n"},
+        /*04 */ {"You can now hear tells.\n", "You are now deaf to tells.\n"},
+        /*05 */ {"You are no longer AFK.\n", "You are now AFK.\n"},
         /*06 */
-        {"You can now hear shouts.\r\n", "You are now deaf to shouts.\r\n"},
+        {"You can now hear shouts.\n", "You are now deaf to shouts.\n"},
         /*07 */
-        {"You can now hear gossip.\r\n", "You are now deaf to gossip.\r\n"},
+        {"You can now hear gossip.\n", "You are now deaf to gossip.\n"},
         /*08 */
-        {"You will receive hints when you enter typos.\r\n", "You will not receive any hints when entering typos.\r\n"},
+        {"You will receive hints when you enter typos.\n", "You will not receive any hints when entering typos.\n"},
         /*09 */
-        {"You can now hear the Wiz-channel.\r\n", "You are now deaf to the Wiz-channel.\r\n"},
+        {"You can now hear the Wiz-channel.\n", "You are now deaf to the Wiz-channel.\n"},
         /*10 */
-        {"You are no longer part of the Quest.\r\n", "Okay, you are part of the Quest!\r\n"},
+        {"You are no longer part of the Quest.\n", "Okay, you are part of the Quest!\n"},
         /*11 */
-        {"You will no longer see the room flags.\r\n", "You will now see the room flags.\r\n"},
+        {"You will no longer see the room flags.\n", "You will now see the room flags.\n"},
         /*12 */
-        {"You will now have your communication repeated.\r\n",
-         "You will no longer have your communication repeated.\r\n"},
-        /*13 */ {"HolyLight mode off.\r\n", "HolyLight mode on.\r\n"},
-        /*14 */ {"Autoexits disabled.\r\n", "Autoexits enabled.\r\n"},
+        {"You will now have your communication repeated.\n", "You will no longer have your communication repeated.\n"},
+        /*13 */ {"HolyLight mode off.\n", "HolyLight mode on.\n"},
+        /*14 */ {"Autoexits disabled.\n", "Autoexits enabled.\n"},
         /*15 */
-        {"You will now receive petitions from mortals!\r\n", "You are now deaf to petitions!\r\n"},
+        {"You will now receive petitions from mortals!\n", "You are now deaf to petitions!\n"},
         /*16 */
-        {"You will no longer automatically split coins from corpses.\r\n",
-         "You will now automatically split coins from corpses!\r\n"},
+        {"You will no longer automatically split coins from corpses.\n",
+         "You will now automatically split coins from corpses!\n"},
         /*17 */
-        {"You are no longer anonymous.\r\n", "You are now anonymous.\r\n"},
+        {"You are no longer anonymous.\n", "You are now anonymous.\n"},
         /*18 */
-        {"You will no longer see vnums.\r\n", "You will now see vnums.\r\n"},
+        {"You will no longer see vnums.\n", "You will now see vnums.\n"},
         /*19 */ {nullptr, nullptr},
         /*20 */
-        {"Your area spells will now hit your race align in towns.\r\n",
-         "Your area spells won't hit your race align in towns.\r\n"},
+        {"Your area spells will now hit your race align in towns.\n",
+         "Your area spells won't hit your race align in towns.\n"},
         /*21 */
-        {"You feel nice and no longer vicious.\r\n", "You will now kill mortally wounded victims.\r\n"},
+        {"You feel nice and no longer vicious.\n", "You will now kill mortally wounded victims.\n"},
         /*22 */
-        {"You will now auto-engage upon being offensively cast upon.\r\n",
-         "You will no longer auto-engage upon being offensively cast upon.\r\n"},
+        {"You will now auto-engage upon being offensively cast upon.\n",
+         "You will no longer auto-engage upon being offensively cast upon.\n"},
         /*23 */ {nullptr, nullptr},
         /*24 */
-        {"You will now let anyone follow you.\r\n", "You will now avoid attracting new followers.\r\n"},
+        {"You will now let anyone follow you.\n", "You will now avoid attracting new followers.\n"},
         /*25 */
-        {"You will now only be seen by people who might normally see you.\r\n",
-         "You will now be seen by anyone in the same room as you.\r\n"},
+        {"You will now only be seen by people who might normally see you.\n",
+         "You will now be seen by anyone in the same room as you.\n"},
         /*26 */
-        {"You will now hear clan communication.\r\n", "You will no longer hear clan communication.\r\n"},
+        {"You will now hear clan communication.\n", "You will no longer hear clan communication.\n"},
         /*27 */
-        {"You will no longer hear communication while in OLC.\r\n",
-         "You will now hear communication while in OLC.\r\n"},
+        {"You will no longer hear communication while in OLC.\n", "You will now hear communication while in OLC.\n"},
         /*28 */
         {"Line numbers will not be displayed when entering the string "
-         "editor.\r\n",
-         "Line numbers will be displayed when entering the string editor.\r\n"},
+         "editor.\n",
+         "Line numbers will be displayed when entering the string editor.\n"},
         /*29 */
-        {"You will no longer automatically loot items from corpses.\r\n",
-         "You will now automatically loot items from corpses.\r\n"},
+        {"You will no longer automatically loot items from corpses.\n",
+         "You will now automatically loot items from corpses.\n"},
         /*30 */
-        {"You will no longer automatically loot treasure from corpses.\r\n",
-         "You will now automatically loot treasure from corpses.\r\n"},
+        {"You will no longer automatically loot treasure from corpses.\n",
+         "You will now automatically loot treasure from corpses.\n"},
         /*31 */ {nullptr, nullptr},
         /*32 */
-        {"Objects will now stack in lists.\r\n", "Objects will no longer stack in lists.\r\n"},
+        {"Objects will now stack in lists.\n", "Objects will no longer stack in lists.\n"},
         /*33 */
-        {"Mobiles will now stack in lists.\r\n", "Mobiles will no longer stack in lists.\r\n"},
+        {"Mobiles will now stack in lists.\n", "Mobiles will no longer stack in lists.\n"},
         /*34 */
-        {"When you cast sacrificial spells, they may now auto-target you.\r\n",
+        {"When you cast sacrificial spells, they may now auto-target you.\n",
          "When you cast sacrificial spells, they will no longer auto-target "
-         "you.\r\n"},
+         "you.\n"},
         /*34 */
-        {"Your pet will no longer assist you as you fight.\r\n", "Your pet will now assist you as you fight.\r\n"},
+        {"Your pet will no longer assist you as you fight.\n", "Your pet will now assist you as you fight.\n"},
     };
 
     argument = one_argument(argument, arg);
@@ -178,7 +175,7 @@ ACMD(do_toggle) {
 
         if (*arg) {
             if (GET_LEVEL(ch) < LVL_GOD || !(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
-                send_to_char("Toggle what!?\r\n", ch);
+                send_to_char("Toggle what!?\n", ch);
                 return;
             }
             /* Handle switched/shapechanged players. */
@@ -191,8 +188,8 @@ ACMD(do_toggle) {
         }
 
         strcpy(buf,
-               "             FieryMUD TOGGLES!  (See HELP TOGGLE)\r\n"
-               "===============================================================\r\n");
+               "             FieryMUD TOGGLES!  (See HELP TOGGLE)\n"
+               "===============================================================\n");
         for (column = i = 0; *fields[i].cmd != '\n'; ++i) {
             if (i != SCMD_ANON || !PRV_FLAGGED(tch, PRV_ANON_TOGGLE))
                 if (fields[i].level > GET_LEVEL(tch))
@@ -226,13 +223,13 @@ ACMD(do_toggle) {
                 break;
             }
             sprintf(buf, "%s %s%11s  %5s&0 %s", buf, set ? QHWHT : QWHT, fields[i].cmd, buf2,
-                    column == 2 ? "\r\n" : "| ");
+                    column == 2 ? "\n" : "| ");
             if (++column >= 3)
                 column = 0;
         }
         if (column)
-            strcat(buf, "\r\n");
-        strcat(buf, "===============================================================\r\n");
+            strcat(buf, "\n");
+        strcat(buf, "===============================================================\n");
         send_to_char(buf, ch);
         return;
     }
@@ -245,69 +242,69 @@ ACMD(do_toggle) {
         one_argument(argument, arg);
         if (!*arg) {
             if (GET_WIMP_LEV(tch)) {
-                sprintf(buf, "Your current wimp level is %d hit points.\r\n", GET_WIMP_LEV(tch));
+                sprintf(buf, "Your current wimp level is %d hit points.\n", GET_WIMP_LEV(tch));
                 send_to_char(buf, ch);
             } else
-                send_to_char("At the moment, you're not a wimp.  (sure, sure...)\r\n", ch);
+                send_to_char("At the moment, you're not a wimp.  (sure, sure...)\n", ch);
         } else if (isdigit(*arg)) {
             if ((wimp_lev = atoi(arg))) {
                 if (wimp_lev < 0)
-                    send_to_char("Heh, heh, heh.. we are jolly funny today, eh?\r\n", ch);
+                    send_to_char("Heh, heh, heh.. we are jolly funny today, eh?\n", ch);
                 else if (wimp_lev > GET_MAX_HIT(tch))
-                    send_to_char("That doesn't make much sense, now does it?\r\n", ch);
+                    send_to_char("That doesn't make much sense, now does it?\n", ch);
                 else {
-                    sprintf(buf, "Okay, you'll wimp out if you drop below %d hit points.\r\n", wimp_lev);
+                    sprintf(buf, "Okay, you'll wimp out if you drop below %d hit points.\n", wimp_lev);
                     send_to_char(buf, tch);
                     GET_WIMP_LEV(tch) = wimp_lev;
                 }
             } else {
-                send_to_char("Okay, you'll now tough out fights to the bitter end.\r\n", ch);
+                send_to_char("Okay, you'll now tough out fights to the bitter end.\n", ch);
                 GET_WIMP_LEV(tch) = 0;
             }
         } else
-            send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n", ch);
+            send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\n", ch);
         return;
     case SCMD_PAGELENGTH:
         one_argument(argument, arg);
         if (!*arg) {
             if (GET_PAGE_LENGTH(tch) > 0) {
-                sprintf(buf, "Your current page length is %d.\r\n", GET_PAGE_LENGTH(tch));
+                sprintf(buf, "Your current page length is %d.\n", GET_PAGE_LENGTH(tch));
                 send_to_char(buf, ch);
             } else {
-                send_to_char("Your page length is not valid.  Reset to 22.\r\n", ch);
+                send_to_char("Your page length is not valid.  Reset to 22.\n", ch);
                 GET_PAGE_LENGTH(tch) = 22;
             }
         } else if (isdigit(*arg)) {
             if ((page_length = atoi(arg))) {
                 if (page_length < 1)
-                    send_to_char("Invalid page length.\r\n", ch);
+                    send_to_char("Invalid page length.\n", ch);
                 else if (page_length > 50)
-                    send_to_char("Max page length is 50 right now.\r\n", ch);
+                    send_to_char("Max page length is 50 right now.\n", ch);
                 else {
-                    sprintf(buf, "Your new page length is %d lines.\r\n", page_length);
+                    sprintf(buf, "Your new page length is %d lines.\n", page_length);
                     send_to_char(buf, ch);
                     GET_PAGE_LENGTH(tch) = page_length;
                 }
             } else {
-                send_to_char("Page length restored to default (22 lines).\r\n", ch);
+                send_to_char("Page length restored to default (22 lines).\n", ch);
                 GET_PAGE_LENGTH(tch) = 22;
             }
         } else
-            send_to_char("Specify at how many lines you want your page length to be.  (0 for default length)\r\n", ch);
+            send_to_char("Specify at how many lines you want your page length to be.  (0 for default length)\n", ch);
         return;
     case SCMD_AUTOINVIS:
         any_one_arg(argument, arg);
         if (!*arg) {
             if (GET_AUTOINVIS(tch) == -1)
-                send_to_char("Autoinvis is off.\r\n", ch);
+                send_to_char("Autoinvis is off.\n", ch);
             else if (GET_AUTOINVIS(tch) < -1 || GET_AUTOINVIS(tch) > GET_LEVEL(tch)) {
-                sprintf(buf, "Your autoinvis is an invalid value: %d\r\n", GET_AUTOINVIS(tch));
+                sprintf(buf, "Your autoinvis is an invalid value: %d\n", GET_AUTOINVIS(tch));
                 send_to_char(buf, ch);
             } else if (GET_AUTOINVIS(tch) == GET_LEVEL(tch)) {
-                sprintf(buf, "Autoinvis is maxxed to &5&b%d&0.\r\n", GET_AUTOINVIS(tch));
+                sprintf(buf, "Autoinvis is maxxed to &5&b%d&0.\n", GET_AUTOINVIS(tch));
                 send_to_char(buf, ch);
             } else {
-                sprintf(buf, "Autoinvis is set to &6&b%d&0.\r\n", GET_AUTOINVIS(tch));
+                sprintf(buf, "Autoinvis is set to &6&b%d&0.\n", GET_AUTOINVIS(tch));
                 send_to_char(buf, ch);
             }
         } else {
@@ -318,30 +315,30 @@ ACMD(do_toggle) {
             else if (!strncasecmp(arg, "on", 3))
                 i = GET_LEVEL(tch);
             else {
-                send_to_char("Invalid input: autoinvis is a number between 0 and your level.\r\n", ch);
-                send_to_char("You may also enter -1 or 'off' to disable it, or 'on' which will\r\n", ch);
-                send_to_char("set it to the maximum value: your level.\r\n", ch);
+                send_to_char("Invalid input: autoinvis is a number between 0 and your level.\n", ch);
+                send_to_char("You may also enter -1 or 'off' to disable it, or 'on' which will\n", ch);
+                send_to_char("set it to the maximum value: your level.\n", ch);
                 return;
             }
 
             if (GET_AUTOINVIS(tch) == i) {
                 if (i == -1)
-                    send_to_char("Your autoinvis is already off.\r\n", ch);
+                    send_to_char("Your autoinvis is already off.\n", ch);
                 else if (i == GET_LEVEL(tch)) {
-                    sprintf(buf, "Your autoinvis is already maxxed to %d.\r\n", GET_AUTOINVIS(tch));
+                    sprintf(buf, "Your autoinvis is already maxxed to %d.\n", GET_AUTOINVIS(tch));
                     send_to_char(buf, ch);
                 } else {
-                    sprintf(buf, "Your autoinvis is already %d.\r\n", i);
+                    sprintf(buf, "Your autoinvis is already %d.\n", i);
                     send_to_char(buf, ch);
                 }
             } else if (i < -1 || i > GET_LEVEL(tch)) {
-                send_to_char("Invalid input: autoinvis is a number between -1 and your level.\r\n", ch);
+                send_to_char("Invalid input: autoinvis is a number between -1 and your level.\n", ch);
             } else {
                 GET_AUTOINVIS(tch) = i;
                 if (i == -1)
-                    send_to_char("Autoinvis off.\r\n", ch);
+                    send_to_char("Autoinvis off.\n", ch);
                 else {
-                    sprintf(buf, "Your autoinvis is set to %d.\r\n", i);
+                    sprintf(buf, "Your autoinvis is set to %d.\n", i);
                     send_to_char(buf, ch);
                 }
             }

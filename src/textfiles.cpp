@@ -83,36 +83,36 @@ ACMD(do_reload) {
         files[i] = 0;
 
     any_one_arg(argument, arg);
-    if (!str_cmp(arg, "all"))
+    if (!strcmp(arg, "all"))
         SET_FLAGS(files, ALL_FLAGS, NUM_TEXT_FILES);
     else
         for (argument = any_one_arg(argument, arg); *arg; argument = any_one_arg(argument, arg)) {
             found = false;
             for (i = 0; i < NUM_TEXT_FILES; ++i)
-                if (!str_cmp(text_files[i].name, arg)) {
+                if (!strcmp(text_files[i].name, arg)) {
                     SET_FLAG(files, i);
                     found = true;
                     break;
                 }
-            if (!str_cmp(arg, "xhelp"))
+            if (!strcmp(arg, "xhelp"))
                 reload_help = true;
-            else if (!str_cmp(arg, "xnames")) {
+            else if (!strcmp(arg, "xnames")) {
                 reload_xnames();
-                send_to_char("xnames file reloaded.\r\n", ch);
+                send_to_char("xnames file reloaded.\n", ch);
                 return;
             } else if (!found) {
-                cprintf(ch, "Unrecognized text file name '%s'.\r\n", arg);
+                char_printf(ch, "Unrecognized text file name '%s'.\n", arg);
             }
         }
 
     if (!reload_help && !HAS_FLAGS(files, NUM_TEXT_FILES)) {
-        send_to_char("No known text files given.  Text files available:\r\n", ch);
+        send_to_char("No known text files given.  Text files available:\n", ch);
         for (i = 0; i < NUM_TEXT_FILES; ++i)
-            cprintf(ch, "%-11.11s%s", text_files[i].name, !((i + COLS) % 7) ? "\r\n" : "");
-        cprintf(ch, "xhelp      %s", !(i % COLS) ? "\r\n" : "");
-        cprintf(ch, "xnames      %s", !(i % COLS) ? "\r\n" : "");
+            char_printf(ch, "%-11.11s%s", text_files[i].name, !((i + COLS) % 7) ? "\n" : "");
+        char_printf(ch, "xhelp      %s", !(i % COLS) ? "\n" : "");
+        char_printf(ch, "xnames      %s", !(i % COLS) ? "\n" : "");
         if (i % COLS)
-            cprintf(ch, "\r\n");
+            char_printf(ch, "\n");
         return;
     }
 
@@ -120,7 +120,7 @@ ACMD(do_reload) {
         if (IS_FLAGGED(files, i)) {
             file_to_string_alloc(text_files[i].path, &text_files[i].text);
             text_files[i].last_update = file_last_update(text_files[i].path);
-            cprintf(ch, "Reloaded %s text from file.\r\n", text_files[i].name);
+            char_printf(ch, "Reloaded %s text from file.\n", text_files[i].name);
         }
 
     if (reload_help) {
@@ -167,24 +167,24 @@ ACMD(do_tedit) {
     any_one_arg(argument, arg);
 
     if (!*arg) {
-        send_to_char("Text files available to be edited:\r\n", ch);
+        send_to_char("Text files available to be edited:\n", ch);
         for (i = 0; i < NUM_TEXT_FILES; ++i)
             if (GET_LEVEL(ch) >= text_files[i].level)
-                cprintf(ch, "%-11.11s%s", text_files[i].name, !((i + 1) % COLS) ? "\r\n" : "");
+                char_printf(ch, "%-11.11s%s", text_files[i].name, !((i + 1) % COLS) ? "\n" : "");
         if (i == 0)
-            cprintf(ch, "None.\r\n");
+            char_printf(ch, "None.\n");
         else if (--i % COLS)
-            cprintf(ch, "\r\n");
+            char_printf(ch, "\n");
         return;
     }
 
     for (i = 0; i < NUM_TEXT_FILES; ++i)
         if (GET_LEVEL(ch) >= text_files[i].level)
-            if (!str_cmp(arg, text_files[i].name))
+            if (!strcmp(arg, text_files[i].name))
                 break;
 
     if (i >= NUM_TEXT_FILES) {
-        send_to_char("Invalid text editor option.\r\n", ch);
+        send_to_char("Invalid text editor option.\n", ch);
         return;
     }
 

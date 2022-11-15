@@ -83,7 +83,7 @@ ACMD(do_action) {
     CharData *vict;
 
     if ((act_nr = find_action(cmd)) < 0) {
-        send_to_char("That action is not supported.\r\n", ch);
+        send_to_char("That action is not supported.\n", ch);
         return;
     }
     action = soc_mess_list[act_nr];
@@ -95,16 +95,16 @@ ACMD(do_action) {
 
     if (!*buf) {
         send_to_char(action->char_no_arg, ch);
-        send_to_char("\r\n", ch);
+        send_to_char("\n", ch);
         act(action->others_no_arg, action->hide, ch, 0, 0, TO_ROOM);
         return;
     }
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
         send_to_char(action->not_found, ch);
-        send_to_char("\r\n", ch);
+        send_to_char("\n", ch);
     } else if (vict == ch) {
         send_to_char(action->char_auto, ch);
-        send_to_char("\r\n", ch);
+        send_to_char("\n", ch);
         act(action->others_auto, action->hide, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_POS(vict) < action->min_victim_position)
@@ -124,10 +124,10 @@ ACMD(do_insult) {
 
     if (*arg) {
         if (!(victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
-            send_to_char("Can't hear you!\r\n", ch);
+            send_to_char("Can't hear you!\n", ch);
         else {
             if (victim != ch) {
-                sprintf(buf, "You insult %s.\r\n", GET_NAME(victim));
+                sprintf(buf, "You insult %s.\n", GET_NAME(victim));
                 send_to_char(buf, ch);
 
                 switch (number(0, 2)) {
@@ -153,11 +153,11 @@ ACMD(do_insult) {
 
                 act("$n insults $N.", true, ch, 0, victim, TO_NOTVICT);
             } else { /* ch == victim */
-                send_to_char("You feel insulted.\r\n", ch);
+                send_to_char("You feel insulted.\n", ch);
             }
         }
     } else
-        send_to_char("I'm sure you don't want to insult *everybody*...\r\n", ch);
+        send_to_char("I'm sure you don't want to insult *everybody*...\n", ch);
 }
 
 char *fread_action(FILE *fl, int nr) {

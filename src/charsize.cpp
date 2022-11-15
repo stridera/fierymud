@@ -22,6 +22,17 @@
 #include "utils.hpp"
 
 /* name, color, weight_min, weight_max, height_min, height_max */
+struct sizedef sizes[NUM_SIZES] = {
+    /* TINY */ {"tiny", "&b&1", 1, 3, 1, 18},
+    /* SMALL */ {"small", "&b&8", 5, 40, 19, 42},
+    /* MEDIUM */ {"medium", "&3", 40, 300, 42, 92},
+    /* LARGE */ {"large", "&b&4", 300, 1000, 90, 186},
+    /* HUGE */ {"huge", "&b&3", 1000, 4000, 196, 384},
+    /* GIANT */ {"giant", "&5", 4000, 16000, 384, 768},
+    /* GARGANTUAN */ {"gargantuan", "&1", 16000, 64000, 768, 1536},
+    /* COLOSSAL */ {"colossal", "&2&b", 64000, 256000, 1536, 3072},
+    /* TITANIC */ {"titanic", "&6&b", 256000, 1024000, 3072, 6144},
+    /* MOUNTAINOUS */ {"mountainous", "&7&b", 1024000, 4096000, 6144, 12288}};
 
 int parse_size(CharData *ch, char *arg) { return parse_obj_name(ch, arg, "size", NUM_SIZES, sizes, sizeof(sizedef)); }
 
@@ -163,16 +174,16 @@ void show_sizes(CharData *ch) {
     char hrange[MAX_STRING_LENGTH];
     char wrange[MAX_STRING_LENGTH];
 
-    send_to_char("The character sizes are:\r\n\r\n", ch);
-    send_to_char("Idx  Name          Height range                              Weight range\r\n", ch);
+    send_to_char("The character sizes are:\n\n", ch);
+    send_to_char("Idx  Name          Height range                              Weight range\n", ch);
     send_to_char(
         "---  ------------  ----------------------------------------  "
-        "-------------------------\r\n",
+        "-------------------------\n",
         ch);
     for (i = 0; i < NUM_SIZES; i++) {
         sprintf(hrange, "%-18s - %-18s", statelength(sizes[i].height_min), statelength(sizes[i].height_max));
         sprintf(wrange, "%-11s - %-11s", stateweight(sizes[i].weight_min), stateweight(sizes[i].weight_max));
-        sprintf(buf, "% 3d  %s%-12s&0  %-40s  %s\r\n", i, sizes[i].color, sizes[i].name, hrange, wrange);
+        sprintf(buf, "% 3d  %s%-12s&0  %-40s  %s\n", i, sizes[i].color, sizes[i].name, hrange, wrange);
         send_to_char(buf, ch);
     }
 }

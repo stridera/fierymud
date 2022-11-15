@@ -251,7 +251,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
                     while (*string) {
                         string = fetch_word(string, buf1, sizeof(buf1));
                         for (i = 0; i < NUM_CLAN_PRIVS; ++i)
-                            if (!str_cmp(clan_privileges[i].abbr, buf1)) {
+                            if (!strcmp(clan_privileges[i].abbr, buf1)) {
                                 clan->rank_count = MAX(clan->rank_count, num);
                                 SET_FLAG(clan->ranks[num - 1].privileges, i);
                                 break;
@@ -491,7 +491,7 @@ ClanMembership *find_clan_membership_in_clan(const char *name, const Clan *clan)
     ClanMembership *member = clan->people;
 
     while (member) {
-        if (!str_cmp(name, member->name))
+        if (!strcmp(name, member->name))
             return member;
 
         if (IS_ALT_RANK(member->rank)) {
@@ -649,7 +649,7 @@ void add_clan_membership(Clan *clan, ClanMembership *member) {
     member->clan = clan;
 }
 
-void clan_notification(const Clan *clan, CharData *skip, const char *messg, ...) {
+void clan_notification(Clan *clan, CharData *skip, const char *messg, ...) {
     DescriptorData *d;
     size_t found = false;
     va_list args;
@@ -666,7 +666,7 @@ void clan_notification(const Clan *clan, CharData *skip, const char *messg, ...)
                     va_start(args, messg);
                     vsnprintf(comm_buf + found, sizeof(comm_buf) - found, messg, args);
                     va_end(args);
-                    strcat(comm_buf, AFMAG " ]]\r\n" ANRM);
+                    strcat(comm_buf, AFMAG " ]]\n" ANRM);
                     found = true;
                 }
                 string_to_output(d, comm_buf);

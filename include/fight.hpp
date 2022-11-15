@@ -23,16 +23,7 @@ struct AttackHitType {
     const char *singular;
     const char *plural;
 };
-
-struct AttackHitType attack_hit_text[] = {{"hit", "hits"}, /* 0 */
-                                          {"sting", "stings"},   {"whip", "whips"},         {"slash", "slashes"},
-                                          {"bite", "bites"},     {"bludgeon", "bludgeons"}, /* 5 */
-                                          {"crush", "crushes"},  {"pound", "pounds"},       {"claw", "claws"},
-                                          {"maul", "mauls"},     {"thrash", "thrashes"}, /* 10 */
-                                          {"pierce", "pierces"}, {"blast", "blasts"},       {"punch", "punches"},
-                                          {"stab", "stabs"},     {"burn", "burns"}, /* 15 */
-                                          {"freeze", "freezes"}, {"corrode", "corrodes"},   {"shock", "shocks"},
-                                          {"poison", "poisons"}, {"smite", "smites"}}; /* 20 */
+extern AttackHitType attack_hit_text[];
 
 /* General target linking */
 void set_battling(CharData *ch, CharData *target);
@@ -66,3 +57,7 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose);
 bool mass_attack_ok(CharData *ch, CharData *victim, bool verbose);
 void stop_fighting(CharData *ch);
 #define attack(ch, victim) hit(ch, victim, TYPE_UNDEFINED)
+
+/* Structures */
+extern CharData *combat_list;
+extern CharData *next_combat_list;

@@ -74,7 +74,5 @@ char *check_quest_name(char *qname);
 void free_quest_list(CharData *ch);
 void free_quests(void);
 
-#ifndef __QUEST_C__
-int max_quests;
-QuestInfo *all_quests;
-#endif
+extern int max_quests;
+extern QuestInfo *all_quests;

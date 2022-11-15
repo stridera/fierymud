@@ -64,6 +64,65 @@ void setup_drinkcon(ObjData *obj, int newliq);
 /***************************************************************************
  *  declarations of most of the 'global' variables                         *
  ***************************************************************************/
+char buf[MAX_STRING_LENGTH];
+char buf1[MAX_STRING_LENGTH];
+char buf2[MAX_STRING_LENGTH];
+char arg[MAX_STRING_LENGTH];
+
+RoomData *world = nullptr;                  /* array of rooms                 */
+int top_of_world = 0;                       /* ref to top element of world         */
+RoomEffectNode *room_effect_list = nullptr; /* list of room effects */
+
+CharData *character_list = nullptr; /* global linked list of chars */
+
+IndexData **trig_index; /* index table for triggers      */
+int top_of_trigt = 0;   /* top of trigger index table    */
+long max_id = 100000;   /* for unique mob/obj id's       */
+
+IndexData *mob_index;                       /* index table for mobile file         */
+CharData *mob_proto;                        /* prototypes for mobs                 */
+ObjData *obj_proto;                         /* prototypes for objs                 */
+int top_of_mobt = 0;                        /* top of mobile index table         */
+ObjData *object_list = nullptr;             /* global linked list of objs         */
+IndexData *obj_index;                       /* index table for object file         */
+                                            /* prototypes for objs                 */
+int top_of_objt = 0;                        /* top of object index table         */
+SpellDamage spell_dam_info[MAX_SPELLS + 1]; /*internal spell dam */
+ZoneData *zone_table;                       /* zone table                         */
+int top_of_zone_table = 0;                  /* top element of zone tab         */
+message_list fight_messages[MAX_MESSAGES];  /* fighting messages */
+
+PlayerIndexElement *player_table = nullptr; /* index to plr file */
+int top_of_p_table = 0;                     /* ref to top of table                 */
+int top_of_p_file = 0;                      /* ref of size of p file         */
+long top_idnum = 0;                         /* highest idnum in use                 */
+
+HelpIndexElement *help_table = 0; /* the help table         */
+int top_of_helpt = 0;             /* top of help index table         */
+
+// ObjData *obj_proto;
+// int top_of_objt;
+// IndexData *mob_index;
+// CharData *mob_proto;
+// int top_of_mobt;
+// ZoneData *zone_table;
+// int top_of_zone_table;
+// IndexData **trig_index;
+// int top_of_trigt;
+// long max_id;
+
+// int top_of_helpt;
+// HelpIndexElement *help_table;
+
+TimeInfoData time_info;
+
+str_app_type str_app[101];
+dex_skill_type dex_app_skill[101];
+dex_app_type dex_app[101];
+con_app_type con_app[101];
+int_app_type int_app[101];
+wis_app_type wis_app[101];
+cha_app_type cha_app[101];
 
 int no_mail = 0; /* mail disabled?                 */
 #ifdef DEV
@@ -430,7 +489,7 @@ void boot_spell_dams() {
                   sprintf(buf, "%s", line);
                   log(buf);
             */
-            if (str_cmp(line, "spell_dam")) {
+            if (strcmp(line, "spell_dam")) {
                 log("Error in booting spell dams");
             /* return;
 	     */ }
@@ -1208,7 +1267,6 @@ void setup_dir(FILE *fl, int room, int dir) {
 
 /* make sure the start rooms exist & resolve their vnums to rnums */
 void check_start_rooms(void) {
-        int r_mortal_start_room, r_immort_start_room, r_frozen_start_room;
 
         if ((r_mortal_start_room = real_room(mortal_start_room)) < 0) {
             log("SYSERR:  Mortal start room does not exist.  Change in config.c.");
@@ -1471,7 +1529,7 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
  * function!  No other changes need to be made anywhere in the code.
  */
 
-#define CASE(test) if (!matched && !str_cmp(keyword, test) && (matched = 1))
+#define CASE(test) if (!matched && !strcmp(keyword, test) && (matched = 1))
 #define RANGE(low, high) (num_arg = MAX((low), MIN((high), (num_arg))))
 /* modified for the 100 attrib scale */
 void interpret_espec(char *keyword, char *value, int i, int nr) {
@@ -1590,7 +1648,7 @@ void parse_mobile(FILE *mob_f, int nr) {
         mob_proto[i].player.namelist = fread_string(mob_f, buf2);
         tmpptr = mob_proto[i].player.short_descr = fread_string(mob_f, buf2);
         if (tmpptr && *tmpptr)
-            if (!str_cmp(fname(tmpptr), "a") || !str_cmp(fname(tmpptr), "an") || !str_cmp(fname(tmpptr), "the"))
+            if (!strcmp(fname(tmpptr), "a") || !strcmp(fname(tmpptr), "an") || !strcmp(fname(tmpptr), "the"))
                 *tmpptr = LOWER(*tmpptr);
         mob_proto[i].player.long_descr = fread_string(mob_f, buf2);
         mob_proto[i].player.description = fread_string(mob_f, buf2);
@@ -1750,7 +1808,7 @@ char *parse_object(FILE *obj_f, int nr) {
         }
         tmpptr = obj_proto[i].short_description = fread_string(obj_f, buf2);
         if (*tmpptr)
-            if (!str_cmp(fname(tmpptr), "a") || !str_cmp(fname(tmpptr), "an") || !str_cmp(fname(tmpptr), "the"))
+            if (!strcmp(fname(tmpptr), "a") || !strcmp(fname(tmpptr), "an") || !strcmp(fname(tmpptr), "the"))
                 *tmpptr = LOWER(*tmpptr);
 
         tmpptr = obj_proto[i].description = fread_string(obj_f, buf2);
@@ -1992,10 +2050,10 @@ void load_help(FILE *fl) {
         }
         while (*key != '$') {
             /* read in the corresponding help entry */
-            strcpy(entry, strcat(key, "\r\n"));
+            strcpy(entry, strcat(key, "\n"));
             get_one_line(fl, line);
             while (*line != '#') {
-                strcat(entry, strcat(line, "\r\n"));
+                strcat(entry, strcat(line, "\n"));
                 get_one_line(fl, line);
             }
 
@@ -2032,7 +2090,7 @@ int hsort(const void *a, const void *b) {
         a1 = (HelpIndexElement *)a;
         b1 = (HelpIndexElement *)b;
 
-        return (str_cmp(a1->keyword, b1->keyword));
+        return (strcmp(a1->keyword, b1->keyword));
 }
 
 void free_help_table(void) {
@@ -2059,7 +2117,7 @@ int vnum_zone(char *searchname, CharData *ch) {
 
         for (nr = 0; nr <= top_of_zone_table; nr++) {
             if (isname(searchname, zone_table[nr].name)) {
-                sprintf(buf, "%3d. [%5d] %s\r\n", ++found, zone_table[nr].number, zone_table[nr].name);
+                sprintf(buf, "%3d. [%5d] %s\n", ++found, zone_table[nr].number, zone_table[nr].name);
                 send_to_char(buf, ch);
             }
         }
@@ -2563,13 +2621,12 @@ char *fread_string(FILE *fl, const char *error) {
                 fprintf(stderr, "SYSERR: fread_string: format error at or near %s\n", error);
                 exit(1);
             }
-            /* If there is a '~', end the string; else put an "\r\n" over the '\n'. */
+            /* If there is a '~', end the string; else put an "\n" over the '\n'. */
             if ((point = strchr(tmp, '~')) != nullptr) {
                 *point = '\0';
                 done = 1;
             } else {
                 point = tmp + strlen(tmp) - 1;
-                *(point++) = '\r';
                 *(point++) = '\n';
                 *point = '\0';
             }
@@ -2757,7 +2814,7 @@ int file_to_string(const char *name, char *buf) {
          */
         while (fgets(tmp, READ_SIZE, fl)) {
             tmp[strlen(tmp) - 1] = '\0';
-            strcat(tmp, "\r\n");
+            strcat(tmp, "\n");
             if (strlen(buf) + strlen(tmp) + 1 > MAX_STRING_LENGTH) {
                 fclose(fl);
                 return 0;
@@ -3067,7 +3124,7 @@ bool _parse_name(char *arg, char *name) {
 
         /* We need the case-insensitive search_block since arg can have uppercase */
         for (i = 0; *cmd_info[i].command != '\n'; ++i)
-            if (!str_cmp(arg, cmd_info[i].command))
+            if (!strcmp(arg, cmd_info[i].command))
                 return true;
         if (search_block(arg, smart_ass, true) >= 0)
             return true;

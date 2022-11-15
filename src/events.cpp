@@ -211,7 +211,7 @@ EVENTFUNC(casting_handler) {
 
         for (i = 1; i <= ch->casting.casting_time; i += 2)
             strcat(castbuf, "*");
-        strcat(castbuf, "\r\n");
+        strcat(castbuf, "\n");
         send_to_char(castbuf, ch);
     }
 
@@ -308,17 +308,17 @@ EVENTFUNC(overweight_event) {
      * - you are too heavy to fly
      */
     if (affected_by_spell(ch, SPELL_FLY))
-        cprintf(ch, "The spell supporting you falters, unable to bear your weight!\r\n");
+        char_printf(ch, "The spell supporting you falters, unable to bear your weight!\n");
     else
-        cprintf(ch, "You cannot fly with so much weight!\r\n");
+        char_printf(ch, "You cannot fly with so much weight!\n");
     if (SECT(IN_ROOM(ch)) == SECT_AIR) {
         alter_pos(ch, POS_STANDING, GET_STANCE(ch));
     } else {
         if (IS_SPLASHY(IN_ROOM(ch))) {
-            cprintf(ch, "You fall into the water with a splash!\r\n");
+            char_printf(ch, "You fall into the water with a splash!\n");
             act("$n falls into the water with a splash.", false, ch, 0, 0, TO_ROOM);
         } else {
-            cprintf(ch, "You fall down!\r\n");
+            char_printf(ch, "You fall down!\n");
             act("$n falls to the ground!", false, ch, 0, 0, TO_ROOM);
         }
         alter_pos(ch, POS_SITTING, GET_STANCE(ch));
@@ -339,10 +339,10 @@ EVENTFUNC(falltoground_event) {
      * room. You will fall to the ground. */
 
     if (IS_SPLASHY(IN_ROOM(ch))) {
-        cprintf(ch, "You fall into the water with a splash!\r\n");
+        char_printf(ch, "You fall into the water with a splash!\n");
         act("$n falls into the water with a splash.", false, ch, 0, 0, TO_ROOM);
     } else {
-        cprintf(ch, "You fall to the ground.\r\n");
+        char_printf(ch, "You fall to the ground.\n");
         act("$n falls to the ground.", false, ch, 0, 0, TO_ROOM);
     }
     alter_pos(ch, POS_STANDING, GET_STANCE(ch));

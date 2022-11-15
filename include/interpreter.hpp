@@ -78,12 +78,10 @@ struct SortStruct {
 };
 
 /* necessary for CMD_IS macro */
-#ifndef __INTERPRETER_C__
-extern CommandInfo cmd_info[];
+extern const CommandInfo cmd_info[];
 extern const char *command_flags[];
 extern int num_of_cmds;
 extern SortStruct *cmd_sort_info;
-#endif
 
 /* this is the new xnames structure --Gurlaek 6/9/1999 */
 struct XName {

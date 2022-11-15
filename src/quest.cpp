@@ -43,7 +43,7 @@ void boot_quests() {
     max_quests = 0;
 
     if ((fl = fopen(ALL_QUEST_FILE, "r")) == nullptr) {
-        fprintf(stderr, "Unable to find any quest data file (non-fatal)\r\n");
+        fprintf(stderr, "Unable to find any quest data file (non-fatal)\n");
         return;
     }
 
@@ -83,20 +83,20 @@ bool quest_stat(CharData *ch, CharData *vict, char *qname) {
     if ((qid_num = real_quest(quest->quest_id)) >= 0) {
         sprintf(buf, "Quest %s: ", all_quests[qid_num].quest_name);
         if (quest->stage == QUEST_SUCCESS)
-            strcat(buf, "Completed\r\n");
+            strcat(buf, "Completed\n");
         else if (quest->stage == QUEST_FAILURE)
-            strcat(buf, "Failed\r\n");
+            strcat(buf, "Failed\n");
         else {
-            sprintf(buf2, "Stage %d\r\n", quest->stage);
+            sprintf(buf2, "Stage %d\n", quest->stage);
             strcat(buf, buf2);
         }
         send_to_char(buf, ch);
         for (vars = quest->variables; vars; vars = vars->next) {
-            sprintf(buf, "\t%s = %s\r\n", vars->var, vars->val);
+            sprintf(buf, "\t%s = %s\n", vars->var, vars->val);
             send_to_char(buf, ch);
         }
     } else {
-        sprintf(buf, "Invalid quest: %s\r\n", qname);
+        sprintf(buf, "Invalid quest: %s\n", qname);
         send_to_char(buf, ch);
     }
 
@@ -112,7 +112,7 @@ void quest_mstat(CharData *ch, CharData *vict) {
             any = true;
 
     if (!any)
-        send_to_char("No quest data found.\r\n", ch);
+        send_to_char("No quest data found.\n", ch);
 }
 
 CharData *quest_id_char(TrigData *t, CharData *ch, char *name) {
@@ -129,7 +129,7 @@ CharData *quest_id_char(TrigData *t, CharData *ch, char *name) {
                     "find player %s in trigger %d",
                     name, GET_TRIG_VNUM(t));
         else if (ch)
-            send_to_char("There's no player by that name here.\r\n", ch);
+            send_to_char("There's no player by that name here.\n", ch);
         return nullptr;
     }
     return vict;
@@ -143,7 +143,7 @@ ACMD(do_qstat) {
     argument = any_one_arg(argument, buf1); /* quest */
 
     if (!*arg) {
-        send_to_char("Usage: qstat <player> [<quest>]\r\n", ch);
+        send_to_char("Usage: qstat <player> [<quest>]\n", ch);
         return;
     }
 
@@ -155,11 +155,11 @@ ACMD(do_qstat) {
 
         /* Try and figure out which quest we want. */
         if (!(quest_name = check_quest_name(buf1))) {
-            send_to_char("That is not a valid quest name.\r\n", ch);
+            send_to_char("That is not a valid quest name.\n", ch);
             return;
         }
         if (!quest_stat(ch, vict, quest_name)) {
-            send_to_char("No quest data was found.\r\n", ch);
+            send_to_char("No quest data was found.\n", ch);
         }
     } else {
         /* One argument: display all quests for this player */
@@ -186,7 +186,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
             if ((vict = quest_id_char(nullptr, ch, buf1)))
                 quest_mstat(ch, vict);
         } else {
-            send_to_char("Usage: quest mstat <player>\r\n", ch);
+            send_to_char("Usage: quest mstat <player>\n", ch);
         }
         return;
     }
@@ -200,7 +200,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
                     GET_TRIG_VNUM(t));
             mudlog(buf, NRM, LVL_GOD, true);
         } else if (ch)
-            send_to_char("Usage: quest <command> <quest> <player> [<subclass>] [<var name> <var value>]\r\n", ch);
+            send_to_char("Usage: quest <command> <quest> <player> [<subclass>] [<var name> <var value>]\n", ch);
         return;
     }
 
@@ -213,7 +213,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
                      buf1, GET_TRIG_VNUM(t));
             mudlog(buf, NRM, LVL_GOD, true);
         } else if (ch)
-            send_to_char("That is not a valid quest name.\r\n", ch);
+            send_to_char("That is not a valid quest name.\n", ch);
         return;
     }
 
@@ -303,9 +303,9 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
         argument = any_one_arg(argument, buf1);
         argument = any_one_arg(argument, buf2);
         if (ch && !*buf1)
-            send_to_char("Which variable?\r\n", ch);
+            send_to_char("Which variable?\n", ch);
         else if (ch && !*buf2) {
-            sprintf(buf, "Variable %s on %s for quest %s: %s\r\n", buf1, GET_NAME(vict), quest_name,
+            sprintf(buf, "Variable %s on %s for quest %s: %s\n", buf1, GET_NAME(vict), quest_name,
                     get_quest_variable(vict, quest_name, buf1));
             send_to_char(buf, ch);
         } else if (*buf1 && *buf2)
@@ -370,13 +370,13 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
         if (quest_find_char(vict, quest_name)) {
             amount = quest_stage(vict, quest_name);
             if (amount == QUEST_FAILURE)
-                sprintf(buf, "%s has failed the %s quest.\r\n", GET_NAME(vict), quest_name);
+                sprintf(buf, "%s has failed the %s quest.\n", GET_NAME(vict), quest_name);
             else if (amount == QUEST_SUCCESS)
-                sprintf(buf, "%s has completed the %s quest.\r\n", GET_NAME(vict), quest_name);
+                sprintf(buf, "%s has completed the %s quest.\n", GET_NAME(vict), quest_name);
             else
-                sprintf(buf, "%s is on stage %d of the %s quest.\r\n", GET_NAME(vict), amount, quest_name);
+                sprintf(buf, "%s is on stage %d of the %s quest.\n", GET_NAME(vict), amount, quest_name);
         } else {
-            sprintf(buf, "%s has not started the %s quest.\r\n", GET_NAME(vict), quest_name);
+            sprintf(buf, "%s has not started the %s quest.\n", GET_NAME(vict), quest_name);
         }
         send_to_char(buf, ch);
     }
@@ -387,7 +387,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      */
     else if (ch && !strcmp(arg, "stat")) {
         if (!quest_stat(ch, vict, quest_name)) {
-            send_to_char("No quest data was found.\r\n", ch);
+            send_to_char("No quest data was found.\n", ch);
         }
     }
 
@@ -397,7 +397,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
             sprintf(buf1, error_string, buf);
             mudlog(buf1, NRM, LVL_GOD, true);
         } else if (ch) {
-            sprintf(buf, "Sorry, %s is not a valid quest command.\r\n", arg);
+            sprintf(buf, "Sorry, %s is not a valid quest command.\n", arg);
             send_to_char(buf, ch);
         }
     }
@@ -409,7 +409,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
  * descr:	internal routine to return the quest_id for  a specified quest
  * name so that all quests can be referred to by names externally.
  *
- * NOTE:	uses strn_cmp so abbreviations of quest anmes are tolerated.
+ * NOTE:	uses strncmp so abbreviations of quest anmes are tolerated.
  */
 unsigned short quest_find_num(char *qname) {
     int count;
@@ -418,7 +418,7 @@ unsigned short quest_find_num(char *qname) {
      * return its quest id.
      */
     for (count = 0; count < max_quests; count++) {
-        if (!strn_cmp(all_quests[count].quest_name, qname, strlen(qname)))
+        if (!strncmp(all_quests[count].quest_name, qname, strlen(qname)))
             return all_quests[count].quest_id;
     }
     return 0;
@@ -431,7 +431,7 @@ unsigned short quest_find_num(char *qname) {
 char *check_quest_name(char *qname) {
     int count;
     for (count = 0; count < max_quests; count++)
-        if (!strn_cmp(all_quests[count].quest_name, qname, strlen(qname)))
+        if (!strncmp(all_quests[count].quest_name, qname, strlen(qname)))
             return all_quests[count].quest_name;
     return nullptr;
 }
@@ -445,7 +445,7 @@ short quest_find_max_stage(char *qname) {
     int count = 0;
 
     for (count = 0; count < max_quests; count++)
-        if (!strn_cmp(all_quests[count].quest_name, qname, strlen(qname)))
+        if (!strncmp(all_quests[count].quest_name, qname, strlen(qname)))
             return all_quests[count].maxstages;
     return 0;
 }
@@ -488,7 +488,7 @@ void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_s
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "You can't set variables on a quest %s hasn't started yet.\r\n", GET_NAME(vict));
+            sprintf(buf, "You can't set variables on a quest %s hasn't started yet.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else {
             sprintf(buf, error_string, "set variable on nonexistent quest");
@@ -514,7 +514,7 @@ void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_s
     quest->variables = vars;
 
     if (ch) {
-        sprintf(buf, "Set quest %s variable %s to '%s' on %s.\r\n", qname, variable, value, GET_NAME(vict));
+        sprintf(buf, "Set quest %s variable %s to '%s' on %s.\n", qname, variable, value, GET_NAME(vict));
         send_to_char(buf, ch);
     }
 }
@@ -562,7 +562,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete nonexistent quest");
@@ -573,7 +573,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
 
     if (quest->stage == QUEST_SUCCESS) {
         if (ch) {
-            sprintf(buf, "%s has already completed that quest!\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already completed that quest!\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete already-completed quest");
@@ -584,7 +584,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
 
     if (quest->stage == QUEST_FAILURE) {
         if (ch) {
-            sprintf(buf, "%s has already failed that quest!\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already failed that quest!\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete already-failed quest");
@@ -595,11 +595,11 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
 
     quest->stage = QUEST_SUCCESS;
 
-    sprintf(buf, "Congratulations, you completed the %s quest!\r\n", qname);
+    sprintf(buf, "Congratulations, you completed the %s quest!\n", qname);
     send_to_char(buf, vict);
 
     if (ch) {
-        sprintf(buf, "Set the %s quest to &8completed&0 on %s.\r\n", qname, GET_NAME(vict));
+        sprintf(buf, "Set the %s quest to &8completed&0 on %s.\n", qname, GET_NAME(vict));
         send_to_char(buf, ch);
     }
 }
@@ -609,7 +609,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail nonexistent quest");
@@ -620,7 +620,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
 
     if (quest->stage == QUEST_SUCCESS) {
         if (ch) {
-            sprintf(buf, "%s has already completed that quest!\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already completed that quest!\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail already-completed quest");
@@ -631,7 +631,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
 
     if (quest->stage == QUEST_FAILURE) {
         if (ch) {
-            sprintf(buf, "%s has already failed that quest!\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already failed that quest!\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail already-failed quest");
@@ -643,7 +643,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
     quest->stage = QUEST_FAILURE;
 
     if (ch) {
-        sprintf(buf, "Set the %s quest to &8failed&0 on %s.\r\n", qname, GET_NAME(vict));
+        sprintf(buf, "Set the %s quest to &8failed&0 on %s.\n", qname, GET_NAME(vict));
         send_to_char(buf, ch);
     }
 }
@@ -658,7 +658,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance nonexistent quest");
@@ -669,7 +669,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
 
     if (quest->stage == QUEST_FAILURE) {
         if (ch) {
-            sprintf(buf, "%s has already failed this quest.  Use quest restart.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already failed this quest.  Use quest restart.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance failed quest");
@@ -680,7 +680,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
 
     if (quest->stage == QUEST_SUCCESS) {
         if (ch) {
-            sprintf(buf, "%s has already completed this quest.  Use quest restart.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already completed this quest.  Use quest restart.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance already completed quest");
@@ -695,7 +695,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
         if (ch) {
             sprintf(buf,
                     "You can't advance past the quest's max stage.  %s's stage set "
-                    "to max.\r\n",
+                    "to max.\n",
                     GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
@@ -710,8 +710,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
     quest->stage += amount;
 
     if (ch) {
-        sprintf(buf, "Advanced the %s quest's stage by %d to %d on %s.\r\n", qname, amount, quest->stage,
-                GET_NAME(vict));
+        sprintf(buf, "Advanced the %s quest's stage by %d to %d on %s.\n", qname, amount, quest->stage, GET_NAME(vict));
         send_to_char(buf, ch);
     }
 }
@@ -728,7 +727,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
 
     if (quest) {
         if (ch) {
-            sprintf(buf, "%s has already started this quest.  Use quest restart.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already started this quest.  Use quest restart.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "start already-started quest");
@@ -741,7 +740,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
 
     if (!*subclass_abbr && IS_SUBCLASS_QUEST(quest_num)) {
         if (ch)
-            send_to_char("You must supply the name of the subclass for this quest.\r\n", ch);
+            send_to_char("You must supply the name of the subclass for this quest.\n", ch);
         else if (error_string) {
             sprintf(buf, error_string, "start subclass quest without specifying which");
             mudlog(buf, NRM, LVL_GOD, true);
@@ -759,7 +758,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
                 if (ch) {
                     sprintf(buf,
                             "%s is already on a subclass quest.  Erase it before "
-                            "starting another.\r\n",
+                            "starting another.\n",
                             GET_NAME(vict));
                     send_to_char(buf, ch);
                 } else if (error_string) {
@@ -775,7 +774,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
 
         if (subclass == CLASS_UNDEFINED) {
             if (ch)
-                send_to_char("That's not a valid class.\r\n", ch);
+                send_to_char("That's not a valid class.\n", ch);
             else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest with invalid class abbreviation");
                 mudlog(buf, NRM, LVL_GOD, true);
@@ -786,7 +785,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         /* Is the player a base class? */
         if (classes[(int)GET_CLASS(vict)].is_subclass) {
             if (ch) {
-                sprintf(buf, "%s has already subclassed.\r\n", GET_NAME(vict));
+                sprintf(buf, "%s has already subclassed.\n", GET_NAME(vict));
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest on already subclassed player");
@@ -798,7 +797,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         /* Is the proposed class a subclass of the player's current class? */
         if (!classes[subclass].is_subclass || !classes[subclass].subclass_of == GET_CLASS(vict)) {
             if (ch) {
-                sprintf(buf, "Invalid subclass for %s's class.\r\n", GET_NAME(vict));
+                sprintf(buf, "Invalid subclass for %s's class.\n", GET_NAME(vict));
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest when player's class does not permit it");
@@ -810,7 +809,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         /* Does the player's race permit this subclass? */
         if (!class_ok_race[(int)GET_RACE(vict)][subclass]) {
             if (ch) {
-                sprintf(buf, "Invalid subclass for %s's race.\r\n", GET_NAME(vict));
+                sprintf(buf, "Invalid subclass for %s's race.\n", GET_NAME(vict));
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest when player's race does not permit it");
@@ -855,7 +854,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
     }
 
     if (ch) {
-        sprintf(buf, "Started the %s quest on %s and set stage to 1.\r\n", qname, GET_NAME(vict));
+        sprintf(buf, "Started the %s quest on %s and set stage to 1.\n", qname, GET_NAME(vict));
         send_to_char(buf, ch);
     }
 }
@@ -865,7 +864,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind nonexistent quest");
@@ -876,7 +875,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
 
     if (quest->stage == QUEST_FAILURE) {
         if (ch) {
-            sprintf(buf, "%s has already failed this quest.  Use quest restart.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already failed this quest.  Use quest restart.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind failed quest");
@@ -887,7 +886,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
 
     if (quest->stage == QUEST_SUCCESS) {
         if (ch) {
-            sprintf(buf, "%s has already completed this quest.  Use quest restart.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s has already completed this quest.  Use quest restart.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind already completed quest");
@@ -899,7 +898,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
     if (quest->stage - amount < 1) {
         quest->stage = 1;
         if (ch) {
-            sprintf(buf, "You can't rewind past the first stage.  %s's stage set to 1.\r\n", GET_NAME(vict));
+            sprintf(buf, "You can't rewind past the first stage.  %s's stage set to 1.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind past quest first stage");
@@ -912,8 +911,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
     quest->stage -= amount;
 
     if (ch) {
-        sprintf(buf, "Rewound the %s quest's stage by %d to %d on %s.\r\n", qname, amount, quest->stage,
-                GET_NAME(vict));
+        sprintf(buf, "Rewound the %s quest's stage by %d to %d on %s.\n", qname, amount, quest->stage, GET_NAME(vict));
         send_to_char(buf, ch);
     }
 }
@@ -923,7 +921,7 @@ void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "restart nonexistent quest");
@@ -935,7 +933,7 @@ void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string
     quest->stage = QUEST_START;
 
     if (ch) {
-        sprintf(buf, "Restarted the %s quest on %s by resetting stage to 1.\r\n", qname, GET_NAME(vict));
+        sprintf(buf, "Restarted the %s quest on %s by resetting stage to 1.\n", qname, GET_NAME(vict));
         send_to_char(buf, ch);
     }
 }
@@ -960,7 +958,7 @@ void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) 
 
     if (!vict->quests) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\r\n", GET_NAME(vict));
+            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "erase nonexistent quest");
@@ -993,14 +991,14 @@ void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) 
         */
         free(quest);
         if (ch) {
-            sprintf(buf, "Erased the %s quest from %s.\r\n", qname, GET_NAME(vict));
+            sprintf(buf, "Erased the %s quest from %s.\n", qname, GET_NAME(vict));
             send_to_char(buf, ch);
         }
         return;
     }
 
     if (ch) {
-        sprintf(buf, "%s hasn't started that quest yet.\r\n", GET_NAME(vict));
+        sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
         send_to_char(buf, ch);
     } else if (error_string) {
         sprintf(buf, error_string, "erase nonexistent quest");
@@ -1060,19 +1058,19 @@ ACMD(do_qadd) {
     argument = any_one_arg(argument, buf2);
 
     if (!*buf1 || !*buf2) {
-        send_to_char("Usage: qadd <quest_name> <max_stages> [<yes_if_subclass_quest>]\r\n", ch);
+        send_to_char("Usage: qadd <quest_name> <max_stages> [<yes_if_subclass_quest>]\n", ch);
         return;
     }
 
     if (strlen(buf1) >= MAX_QNAME_LEN) {
-        sprintf(buf, "The quest name may not be longer than %d characters.\r\n", MAX_QNAME_LEN - 1);
+        sprintf(buf, "The quest name may not be longer than %d characters.\n", MAX_QNAME_LEN - 1);
         send_to_char(buf, ch);
         return;
     }
 
     /* Can't create a new quest with the same name as another one! */
     if (quest_find_num(buf1)) {
-        sprintf(buf, "There's already a quest named %s!\r\n", buf1);
+        sprintf(buf, "There's already a quest named %s!\n", buf1);
         send_to_char(buf, ch);
         return;
     }
@@ -1082,7 +1080,7 @@ ACMD(do_qadd) {
      * longer than 0, otherwise all quests are subclass quests.
      */
     argument = any_one_arg(argument, arg);
-    if (*arg && !strn_cmp("yes", arg, strlen(arg))) {
+    if (*arg && !strncmp("yes", arg, strlen(arg))) {
         max_id = (MAX_SUBCLASS_QUEST_ID | SUBCLASS_BIT);
         new_id |= SUBCLASS_BIT;
     } else
@@ -1096,16 +1094,16 @@ ACMD(do_qadd) {
     }
 
     if (new_id > max_id) {
-        send_to_char("No free quest IDs are left.  Remove some old ones first.\r\n", ch);
+        send_to_char("No free quest IDs are left.  Remove some old ones first.\n", ch);
         return;
     }
 
     if (!(stages = atoi(buf2))) {
-        send_to_char("You must specify an integer for the maximum number of stages.\r\n", ch);
+        send_to_char("You must specify an integer for the maximum number of stages.\n", ch);
         return;
     }
     if (real_quest(new_id) != NOWHERE) {
-        send_to_char("Unable to allocate a quest ID for the new quest.\r\n", ch);
+        send_to_char("Unable to allocate a quest ID for the new quest.\n", ch);
         return;
     }
 
@@ -1113,7 +1111,7 @@ ACMD(do_qadd) {
      * rewrite the quest file and add this one in the correct place
      */
     if ((fp = fopen(ALL_QUEST_FILE, "w")) == nullptr) {
-        log("Unable to open ALL_QUEST_FILE in qadd\r\n");
+        log("Unable to open ALL_QUEST_FILE in qadd\n");
         return;
     }
     if (max_quests)
@@ -1131,10 +1129,10 @@ ACMD(do_qadd) {
     boot_quests();
     if (new_id & SUBCLASS_BIT) {
         sprintf(buf, "(GC) %s created a new subclass quest %s.", GET_NAME(ch), buf1);
-        sprintf(buf2, "New &8subclass&0 quest %s successfully added.\r\n", buf1);
+        sprintf(buf2, "New &8subclass&0 quest %s successfully added.\n", buf1);
     } else {
         sprintf(buf, "(GC) %s created a new quest %s.", GET_NAME(ch), buf1);
-        sprintf(buf2, "New quest %s successfully added.\r\n", buf1);
+        sprintf(buf2, "New quest %s successfully added.\n", buf1);
     }
     mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
     send_to_char(buf2, ch);
@@ -1154,7 +1152,7 @@ ACMD(do_qdel) {
     argument = any_one_arg(argument, buf1);
 
     if (!*buf1) {
-        send_to_char("Usage: qdel <quest_name>\r\n", ch);
+        send_to_char("Usage: qdel <quest_name>\n", ch);
         return;
     }
 
@@ -1164,21 +1162,21 @@ ACMD(do_qdel) {
      * think we should be a little more careful than that when deleting.
      */
     for (i = 0; i < max_quests; i++)
-        if (!str_cmp(all_quests[i].quest_name, buf1)) {
+        if (!strcmp(all_quests[i].quest_name, buf1)) {
             quest_num = all_quests[i].quest_id;
             break;
         }
 
     /* We didn't find the quest. */
     if (!quest_num) {
-        sprintf(buf, "There is no quest named %s.\r\n", buf1);
+        sprintf(buf, "There is no quest named %s.\n", buf1);
         send_to_char(buf, ch);
         return;
     }
 
     /* Rewrite the quest file and drop this one. */
     if (!(fp = fopen(ALL_QUEST_FILE, "w"))) {
-        log("Unable to open ALL_QUEST_FILE in qdel.\r\n");
+        log("Unable to open ALL_QUEST_FILE in qdel.\n");
         return;
     }
 
@@ -1193,10 +1191,10 @@ ACMD(do_qdel) {
     boot_quests();
     if (IS_SUBCLASS_QUEST(quest_num)) {
         sprintf(buf, "(GC) %s deleted subclass quest %s.", GET_NAME(ch), buf1);
-        sprintf(buf2, "Subclass quest %s successfully deleted.\r\n", buf1);
+        sprintf(buf2, "Subclass quest %s successfully deleted.\n", buf1);
     } else {
         sprintf(buf, "(GC) %s deleted quest %s.", GET_NAME(ch), buf1);
-        sprintf(buf2, "Quest %s successfully deleted.\r\n", buf1);
+        sprintf(buf2, "Quest %s successfully deleted.\n", buf1);
     }
     mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
     send_to_char(buf2, ch);
@@ -1212,14 +1210,14 @@ ACMD(do_qlist) {
     char intbuf[8];
     char msgbuf[100];
 
-    sprintf(msgbuf, "There are %d quests:\r\n====================\r\n", max_quests);
+    sprintf(msgbuf, "There are %d quests:\n====================\n", max_quests);
     send_to_char(msgbuf, ch);
-    sprintf(msgbuf, "%35s %6s %15s\r\n", "Quest Name", "Stages", "Quest Type");
+    sprintf(msgbuf, "%35s %6s %15s\n", "Quest Name", "Stages", "Quest Type");
     send_to_char(msgbuf, ch);
 
     for (i = 0; i < max_quests; i++) {
         sprintf(intbuf, "%d", all_quests[i].maxstages);
-        sprintf(msgbuf, "%35s %6s %15s\r\n", all_quests[i].quest_name, intbuf,
+        sprintf(msgbuf, "%35s %6s %15s\n", all_quests[i].quest_name, intbuf,
                 (IS_SUBCLASS_QUEST(all_quests[i].quest_id)) ? "Subclass Quest" : "Regular Quest");
         send_to_char(msgbuf, ch);
     }

@@ -22,8 +22,23 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+DamageDef damtypes[NUM_DAMTYPES] = {{"slash", "&3", "slash", "slashes", "slash"},
+                                    {"pierce", "&3", "pierce", "pierces", "slash"},
+                                    {"crush", "&3", "crush", "crushes", "crush"},
+                                    {"shock", "&4&b", "shock", "shocks", "shock"},
+                                    {"fire", "&1&b", "burn", "burns", "flame"},
+                                    {"water", "&4", "drown", "drowns", "flood"},
+                                    {"cold", "&4", "freeze", "freezes", "freeze"},
+                                    {"acid", "&2", "corrode", "corrodes", "spray"},
+                                    {"poison", "&2&b", "poison", "poisons", "poison"},
+                                    {"heal", "&6", "harm", "harms", "harm"},
+                                    {"align", "&6&b", "rebuke", "rebukes", "retribution"},
+                                    {"dispel", "&5&b", "dispel", "dispels", "dispersion"},
+                                    {"discorporate", "&5", "discorporate", "discorporates", "discorporation"},
+                                    {"mental", "", "punish", "punishes", "punishment"}};
+
 int parse_damtype(CharData *ch, char *arg) {
-    return parse_obj_name(ch, arg, "damage type", NUM_DAMTYPES, damtypes, sizeof(damdef));
+    return parse_obj_name(ch, arg, "damage type", NUM_DAMTYPES, damtypes, sizeof(DamageDef));
 }
 
 /* damage_evasion()

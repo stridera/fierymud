@@ -26,14 +26,10 @@
 #include "money.hpp"
 #include "olc.hpp"
 #include "skills.hpp"
-#include "strings.hpp"
+// #include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-
-/* external functions from scripts.c */
-// void add_var(TriggerVariableData **var_list, const char *name, const char *value);
-// int script_driver(void *go_address, TrigData *trig, int type, int mode);
 
 /*
  *  General functions used by several triggers
@@ -239,7 +235,7 @@ int command_mtrigger(CharData *actor, char *cmd, char *argument) {
                     continue;
                 }
 
-                if (*GET_TRIG_ARG(t) == '*' || !strn_cmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
+                if (*GET_TRIG_ARG(t) == '*' || !strncmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
                     ADD_UID_VAR(buf, t, actor, "actor");
                     skip_spaces(&argument);
                     add_var(&GET_TRIG_VARS(t), "arg", argument);
@@ -628,7 +624,7 @@ int cmd_otrig(ObjData *obj, CharData *actor, char *cmd, char *argument, int type
             }
 
             if (IS_SET(GET_TRIG_NARG(t), type) &&
-                (*GET_TRIG_ARG(t) == '*' || !strn_cmp(GET_TRIG_ARG(t), cmd, strlen(cmd)))) {
+                (*GET_TRIG_ARG(t) == '*' || !strncmp(GET_TRIG_ARG(t), cmd, strlen(cmd)))) {
 
                 ADD_UID_VAR(buf, t, actor, "actor");
                 skip_spaces(&argument);
@@ -1008,7 +1004,7 @@ int command_wtrigger(CharData *actor, char *cmd, char *argument) {
             continue;
         }
 
-        if (*GET_TRIG_ARG(t) == '*' || !strn_cmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
+        if (*GET_TRIG_ARG(t) == '*' || !strncmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
             ADD_UID_VAR(buf, t, actor, "actor");
             skip_spaces(&argument);
             add_var(&GET_TRIG_VARS(t), "arg", argument);

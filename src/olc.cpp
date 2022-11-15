@@ -29,7 +29,14 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/*. External functions .*/
+const char *nrm, *grn, *cyn, *yel, *blk, *red;
+OLCSaveInfo *olc_save_list;
+const char *save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
+OLCSCommandData olc_scmd_info[] = {{"room", CON_REDIT},      {"object", CON_OEDIT}, {"room", CON_ZEDIT},
+                                   {"mobile", CON_MEDIT},    {"shop", CON_SEDIT},   {"help", CON_HEDIT},
+                                   {"trigger", CON_TRIGEDIT}};
+
+//  External functions
 void zedit_setup(DescriptorData *d, int room_num);
 void zedit_save_to_disk(int zone);
 void zedit_new_zone(CharData *ch, int new_zone);
@@ -95,30 +102,30 @@ void olc_delete(CharData *ch, int subcmd, int vnum) {
     case SCMD_OLC_MEDIT:
         /* delete mobile */
         if ((rnum = real_mobile(vnum)) == NOTHING) {
-            send_to_char("There is no such mobile.\r\n", ch);
+            send_to_char("There is no such mobile.\n", ch);
             return;
         }
         sprintf(buf, "OLC: %s deletes mobile #%d.", GET_NAME(ch), vnum);
         if (delete_mobile(rnum)) {
-            sprintf(buf, "Mobile %d deleted.\r\n", vnum);
+            sprintf(buf, "Mobile %d deleted.\n", vnum);
             send_to_char(buf, ch);
         } else {
-            send_to_char("ERROR.  Mobile not deleted.\r\n", ch);
+            send_to_char("ERROR.  Mobile not deleted.\n", ch);
         }
         return;
         break;
     case SCMD_OLC_OEDIT:
         /* delete object */
         if ((rnum = real_object(vnum)) == NOTHING) {
-            send_to_char("There is no such object.\r\n", ch);
+            send_to_char("There is no such object.\n", ch);
             return;
         }
         sprintf(buf, "OLC: %s deletes object #%d.", GET_NAME(ch), vnum);
         if (delete_object(rnum)) {
-            sprintf(buf, "Object %d deleted.\r\n", vnum);
+            sprintf(buf, "Object %d deleted.\n", vnum);
             send_to_char(buf, ch);
         } else {
-            send_to_char("ERROR.  Object not deleted.\r\n", ch);
+            send_to_char("ERROR.  Object not deleted.\n", ch);
         }
         return;
         break;
@@ -129,7 +136,7 @@ void olc_delete(CharData *ch, int subcmd, int vnum) {
         ename = "those";
     }
 
-    cprintf(ch, "You can't delete %ss.\r\n", ename);
+    char_printf(ch, "You can't delete %ss.\n", ename);
 }
 
 /*------------------------------------------------------------*\
@@ -168,20 +175,20 @@ ACMD(do_olc) {
         case SCMD_OLC_OEDIT:
         case SCMD_OLC_MEDIT:
         case SCMD_OLC_SEDIT:
-            sprintf(buf, "Specify a %s VNUM to edit.\r\n", olc_scmd_info[subcmd].text);
+            sprintf(buf, "Specify a %s VNUM to edit.\n", olc_scmd_info[subcmd].text);
             send_to_char(buf, ch);
             return;
         case SCMD_OLC_HEDIT:
-            send_to_char("Specify a help topic to edit.\r\n", ch);
+            send_to_char("Specify a help topic to edit.\n", ch);
             return;
         case SCMD_OLC_SDEDIT:
-            send_to_char("Specify a spell name to edit.\r\n", ch);
+            send_to_char("Specify a spell name to edit.\n", ch);
             return;
         }
     }
 
     if (!isdigit(*buf1)) {
-        if (strn_cmp("save", buf1, 4) == 0) {
+        if (strncmp("save", buf1, 4) == 0) {
             if (!*buf2) {
                 if (subcmd == SCMD_OLC_HEDIT) {
                     action = OLC_ACTION_SAVE;
@@ -190,25 +197,25 @@ ACMD(do_olc) {
                     action = OLC_ACTION_SAVE;
                     number = (GET_OLC_ZONES(ch)->zone * 100);
                 } else {
-                    send_to_char("Save which zone?\r\n", ch);
+                    send_to_char("Save which zone?\n", ch);
                     return;
                 }
             } else {
                 action = OLC_ACTION_SAVE;
                 number = atoi(buf2) * 100;
             }
-        } else if (!strn_cmp("del", buf1, 4)) {
+        } else if (!strncmp("del", buf1, 4)) {
 
 #ifdef PRODUCTION
-            send_to_char("Don't delete things in the production mud please!\r\n", ch);
+            send_to_char("Don't delete things in the production mud please!\n", ch);
             return;
 #endif
 
             if (!*buf2) {
-                send_to_char("Delete which entity?\r\n", ch);
+                send_to_char("Delete which entity?\n", ch);
                 return;
             } else if (!isdigit(*buf2)) {
-                send_to_char("Please supply the vnum of the entity to be deleted.\r\n", ch);
+                send_to_char("Please supply the vnum of the entity to be deleted.\n", ch);
                 return;
             }
             number = atoi(buf2);
@@ -222,15 +229,15 @@ ACMD(do_olc) {
              *             on objects that got reversed on load by now-supplanted code
              *             in db.c */
 
-        } else if (subcmd == SCMD_OLC_OEDIT && strn_cmp("revex", buf1, 5) == 0) {
+        } else if (subcmd == SCMD_OLC_OEDIT && strncmp("revex", buf1, 5) == 0) {
             if (!*buf2) {
-                send_to_char("Reverse extra descs for which object?\r\n", ch);
+                send_to_char("Reverse extra descs for which object?\n", ch);
                 return;
             }
 
             number = atoi(buf2);
             if ((real_num = real_object(number)) < 0) {
-                send_to_char("There is no such object.\r\n", ch);
+                send_to_char("There is no such object.\n", ch);
                 return;
             }
 
@@ -240,15 +247,15 @@ ACMD(do_olc) {
             oedit_reverse_exdesc(real_num, nullptr);
             return;
 
-        } else if (subcmd == SCMD_OLC_OEDIT && strn_cmp("zrevex", buf1, 6) == 0) {
+        } else if (subcmd == SCMD_OLC_OEDIT && strncmp("zrevex", buf1, 6) == 0) {
             if (!*buf2) {
-                send_to_char("Reverse object extra descs in which zone?\r\n", ch);
+                send_to_char("Reverse object extra descs in which zone?\n", ch);
                 return;
             }
 
             number = atoi(buf2) * 100;
             if ((real_num = find_real_zone_by_room(number)) == -1) {
-                send_to_char("Sorry, there is no zone for that number!\r\n", ch);
+                send_to_char("Sorry, there is no zone for that number!\n", ch);
                 return;
             }
 
@@ -258,13 +265,13 @@ ACMD(do_olc) {
             return;
 
         } else if (subcmd == SCMD_OLC_ZEDIT && GET_LEVEL(ch) >= LVL_HEAD_B && *buf1) {
-            if ((strn_cmp("new", buf1, 3) == 0) && *buf2)
+            if ((strncmp("new", buf1, 3) == 0) && *buf2)
                 zedit_new_zone(ch, atoi(buf2));
             else
-                send_to_char("Specify a zone number.\r\n", ch);
+                send_to_char("Specify a zone number.\n", ch);
             return;
         } else if (subcmd != SCMD_OLC_SDEDIT && subcmd != SCMD_OLC_ZEDIT && subcmd != SCMD_OLC_REDIT) {
-            send_to_char("Yikes!   Stop that, someone will get hurt!\r\n", ch);
+            send_to_char("Yikes!   Stop that, someone will get hurt!\n", ch);
             return;
         }
     }
@@ -280,10 +287,10 @@ ACMD(do_olc) {
         if (d->connected == olc_scmd_info[subcmd].con_type)
             if (d->olc && OLC_NUM(d) == number && number != NOTHING) {
                 if (subcmd == SCMD_OLC_HEDIT)
-                    sprintf(buf, "Help files are currently being edited by %s\r\n",
+                    sprintf(buf, "Help files are currently being edited by %s\n",
                             (CAN_SEE(ch, d->character) ? GET_NAME(d->character) : "someone"));
                 else
-                    sprintf(buf, "That %s is currently being edited by %s.\r\n", olc_scmd_info[subcmd].text,
+                    sprintf(buf, "That %s is currently being edited by %s.\n", olc_scmd_info[subcmd].text,
                             GET_NAME(d->character));
                 send_to_char(buf, ch);
                 return;
@@ -298,7 +305,7 @@ ACMD(do_olc) {
      */
     if ((subcmd != SCMD_OLC_HEDIT) && (subcmd != SCMD_OLC_SDEDIT)) {
         if ((OLC_ZNUM(d) = find_real_zone_by_room(number)) == -1) {
-            send_to_char("Sorry, there is no zone for that number!\r\n", ch);
+            send_to_char("Sorry, there is no zone for that number!\n", ch);
             free(d->olc);
             return;
         }
@@ -307,11 +314,11 @@ ACMD(do_olc) {
      * Everyone but IMPLs can only edit zones they have been assigned.
      */
     if (subcmd == SCMD_OLC_HEDIT && GET_LEVEL(ch) < LVL_GOD && !has_olc_access(ch, HEDIT_PERMISSION)) {
-        send_to_char("You do not have permission to edit help files.\r\n", ch);
+        send_to_char("You do not have permission to edit help files.\n", ch);
         free(d->olc);
         return;
     } else if (GET_LEVEL(ch) < LVL_GRGOD && !has_olc_access(ch, zone_table[OLC_ZNUM(d)].number)) {
-        send_to_char("You do not have permission to edit this zone.\r\n", ch);
+        send_to_char("You do not have permission to edit this zone.\n", ch);
         free(d->olc);
         return;
     }
@@ -339,10 +346,10 @@ ACMD(do_olc) {
             break;
         }
         if (!type) {
-            send_to_char("Oops, I forgot what you wanted to save.\r\n", ch);
+            send_to_char("Oops, I forgot what you wanted to save.\n", ch);
             return;
         }
-        sprintf(buf, "Saving all %ss in zone %d.\r\n", type, zone_table[OLC_ZNUM(d)].number);
+        sprintf(buf, "Saving all %ss in zone %d.\n", type, zone_table[OLC_ZNUM(d)].number);
         send_to_char(buf, ch);
         sprintf(buf, "OLC: %s saves %s info for zone %d.", GET_NAME(ch), type, zone_table[OLC_ZNUM(d)].number);
         mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
@@ -383,7 +390,7 @@ ACMD(do_olc) {
         if (OLC_ZNUM(d) > top_of_helpt) {
             if (find_help(OLC_STORAGE(d)) > NOTHING) {
                 cleanup_olc(d, CLEANUP_ALL);
-                send_to_char("That help topic already exists.\r\n", ch);
+                send_to_char("That help topic already exists.\n", ch);
                 return;
             }
             sprintf(buf, "Do you wish to add a help topic on '%s'? ", OLC_STORAGE(d));
@@ -409,8 +416,8 @@ ACMD(do_olc) {
         break;
     case SCMD_OLC_SDEDIT:
         real_num = find_spell_num(argument);
-        if ((real_num < 0) || (real_num > TOP_SKILL) || (!str_cmp("!UNUSED!", skills[real_num].name))) {
-            send_to_char("Your spell could not be found.\r\n", ch);
+        if ((real_num < 0) || (real_num > TOP_SKILL) || (!strcmp("!UNUSED!", skills[real_num].name))) {
+            send_to_char("Your spell could not be found.\n", ch);
             return;
         }
         sdedit_setup_existing(d, real_num);
@@ -425,7 +432,7 @@ ACMD(do_olc) {
         break;
     case SCMD_OLC_ZEDIT:
         if ((real_num = real_room(number)) < 0) {
-            send_to_char("That room does not exist.\r\n", ch);
+            send_to_char("That room does not exist.\n", ch);
             free(d->olc);
             return;
         }
@@ -469,12 +476,12 @@ void olc_saveinfo(CharData *ch) {
     OLCSaveInfo *entry;
 
     if (olc_save_list)
-        send_to_char("The following OLC components need saving:-\r\n", ch);
+        send_to_char("The following OLC components need saving:-\n", ch);
     else
-        send_to_char("The database is up to date.\r\n", ch);
+        send_to_char("The database is up to date.\n", ch);
 
     for (entry = olc_save_list; entry; entry = entry->next) {
-        sprintf(buf, " - %s for zone %d.\r\n", save_info_msg[(int)entry->type], entry->zone);
+        sprintf(buf, " - %s for zone %d.\n", save_info_msg[(int)entry->type], entry->zone);
         send_to_char(buf, ch);
     }
 }
@@ -528,7 +535,7 @@ void get_char_cols(CharData *ch) {
     red = CLR(ch, FRED);
 }
 
-/*. This procedure removes the '\r\n' from a string so that it may be
+/*. This procedure removes the '\n' from a string so that it may be
    saved to a file.   Use it only on buffers, not on the oringinal
    strings.*/
 

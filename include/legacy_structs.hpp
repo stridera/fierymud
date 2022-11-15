@@ -81,7 +81,7 @@ struct rent_info {
     int rentcode;
     int net_cost_per_diem;
     int nitems;
-    legacy_char_coins_data coins;
+    legacy_char_coins coins;
     int spare6;
     int spare7;
     int spare8;
@@ -112,7 +112,7 @@ struct legacy_char_point_data {
     sh_int move;
     sh_int max_move; /* Max move for PC/NPC                     */
     sh_int armor;    /* Internal -100..100, external -10..10 AC */
-    legacy_char_coins_data coins;
+    legacy_char_coins coins;
     long exp; /* The experience of the player            */
               /* The experience of the player            */
 
@@ -221,7 +221,7 @@ struct legacy_affected_type {
     long bitvector2;
     long bitvector3;
 
-    affected_type *next;
+    legacy_affected_type *next;
 };
 
 struct char_file_u {

@@ -28,9 +28,10 @@ struct CommandGroupInfo {
 };
 
 #define top_of_cmd_groups (cmd_groups + num_cmd_groups)
-CommandGroup *cmd_groups;
-int num_cmd_groups;
-CommandGroupInfo *grp_info;
+
+extern CommandGroup *cmd_groups;
+extern int num_cmd_groups;
+extern CommandGroupInfo *grp_info;
 
 #define CMD_USEABLE_FOR_LEVEL(ch, cmd) (cmd_info[(cmd)].minimum_level <= GET_LEVEL(ch))
 

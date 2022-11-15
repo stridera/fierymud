@@ -31,7 +31,7 @@ struct Exit {
     room_num to_room;          /* Where it leads (real number)       */
 };
 
-const char *cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
+extern const char *cmd_door[];
 
 #define EXIT_IS_DOOR(e) ((e)->exit_info & EX_ISDOOR)
 #define EXIT_IS_CLOSED(e) ((e)->exit_info & EX_CLOSED)

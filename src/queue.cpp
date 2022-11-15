@@ -17,7 +17,7 @@
 #include "utils.hpp"
 
 /* external variables */
-unsigned long pulse;
+extern unsigned long pulse;
 
 /* returns a new, initialized queue */
 Queue *queue_init(void) {

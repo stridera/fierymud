@@ -31,13 +31,30 @@
 #include "races.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
-#include "strings.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "trophy.hpp"
 #include "utils.hpp"
 
 #define PULSES_PER_MUD_HOUR (SECS_PER_MUD_HOUR * PASSES_PER_SEC)
+
+/* mob trigger types */
+const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
+                            "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
+                            "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "\n"};
+
+/* obj trigger types */
+const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
+                             "Drop",   "Give",   "Wear",    "DEATH",  "Remove",  "UNUSED", "UNUSED",
+                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
+
+/* wld trigger types */
+const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
+                             "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
+                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
+
+TrigData *trigger_list = nullptr; /* all attached triggers */
 
 /* external functions */
 int find_target_room(CharData *ch, char *rawroomstr);
@@ -267,31 +284,31 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
 
     get_char_cols(ch);
 
-    sprintf(sb, "Trigger Name: '%s%s%s',  VNum: [%s%5d%s], RNum: [%5d]\r\n", yel, GET_TRIG_NAME(trig), nrm, grn,
+    sprintf(sb, "Trigger Name: '%s%s%s',  VNum: [%s%5d%s], RNum: [%5d]\n", yel, GET_TRIG_NAME(trig), nrm, grn,
             GET_TRIG_VNUM(trig), nrm, GET_TRIG_RNUM(trig));
     send_to_char(sb, ch);
 
     if (trig->attach_type == OBJ_TRIGGER) {
-        send_to_char("Trigger Intended Assignment: Objects\r\n", ch);
+        send_to_char("Trigger Intended Assignment: Objects\n", ch);
         sprintbit(GET_TRIG_TYPE(trig), otrig_types, buf);
     } else if (trig->attach_type == WLD_TRIGGER) {
-        send_to_char("Trigger Intended Assignment: Rooms\r\n", ch);
+        send_to_char("Trigger Intended Assignment: Rooms\n", ch);
         sprintbit(GET_TRIG_TYPE(trig), wtrig_types, buf);
     } else {
-        send_to_char("Trigger Intended Assignment: Mobiles\r\n", ch);
+        send_to_char("Trigger Intended Assignment: Mobiles\n", ch);
         sprintbit(GET_TRIG_TYPE(trig), trig_types, buf);
     }
 
-    sprintf(sb, "Trigger Type: %s, Numeric Arg: %d, Arg list: %s\r\n", buf, GET_TRIG_NARG(trig),
+    sprintf(sb, "Trigger Type: %s, Numeric Arg: %d, Arg list: %s\n", buf, GET_TRIG_NARG(trig),
             ((GET_TRIG_ARG(trig) && *GET_TRIG_ARG(trig)) ? GET_TRIG_ARG(trig) : "None"));
 
-    strcat(sb, "Commands:\r\n\r\n");
+    strcat(sb, "Commands:\n\n");
 
     cmd_list = trig->cmdlist;
     while (cmd_list) {
         if (cmd_list->cmd) {
             strcat(sb, escape_ansi(cmd_list->cmd));
-            strcat(sb, "\r\n");
+            strcat(sb, "\n");
         }
         cmd_list = cmd_list->next;
     }
@@ -321,14 +338,14 @@ void script_stat(CharData *ch, char *buf, ScriptData *sc) {
 
     get_char_cols(ch);
 
-    buf += sprintf(buf, "Global Variables: %s\r\n", sc->global_vars ? "" : "None");
+    buf += sprintf(buf, "Global Variables: %s\n", sc->global_vars ? "" : "None");
 
     for (tv = sc->global_vars; tv; tv = tv->next) {
         if (*(tv->value) == UID_CHAR) {
             find_uid_name(tv->value, name);
-            buf += sprintf(buf, "    %15s:  %s\r\n", tv->name, name);
+            buf += sprintf(buf, "    %15s:  %s\n", tv->name, name);
         } else
-            buf += sprintf(buf, "    %15s:  %s\r\n", tv->name, tv->value);
+            buf += sprintf(buf, "    %15s:  %s\n", tv->name, tv->value);
     }
 
     for (t = TRIGGERS(sc); t; t = t->next) {
@@ -337,16 +354,16 @@ void script_stat(CharData *ch, char *buf, ScriptData *sc) {
 #if 1
         if (GET_TRIG_WAIT(t)) {
             buf += sprintf(buf,
-                           "  Wait: %ld, Current line: %s\r\n"
-                           "  Variables: %s\r\n",
+                           "  Wait: %ld, Current line: %s\n"
+                           "  Variables: %s\n",
                            event_time(GET_TRIG_WAIT(t)), t->curr_state->cmd, GET_TRIG_VARS(t) ? "" : "None");
 
             for (tv = GET_TRIG_VARS(t); tv; tv = tv->next) {
                 if (*(tv->value) == UID_CHAR) {
                     find_uid_name(tv->value, name);
-                    buf += sprintf(buf, "    %15s:  %s\r\n", tv->name, name);
+                    buf += sprintf(buf, "    %15s:  %s\n", tv->name, name);
                 } else
-                    buf += sprintf(buf, "    %15s:  %s\r\n", tv->name, tv->value);
+                    buf += sprintf(buf, "    %15s:  %s\n", tv->name, tv->value);
             }
         }
 #endif
@@ -354,17 +371,17 @@ void script_stat(CharData *ch, char *buf, ScriptData *sc) {
 }
 
 void do_sstat_room(CharData *ch, char *buf, RoomData *rm) {
-    strcpy(buf, "Script information:\r\n");
+    strcpy(buf, "Script information:\n");
     if (SCRIPT(rm))
         script_stat(ch, buf + strlen(buf), SCRIPT(rm));
     else
-        strcat(buf, "  None.\r\n");
+        strcat(buf, "  None.\n");
 }
 
 void do_sstat_object(CharData *ch, char *buf, ObjData *j) {
-    strcpy(buf, "Script information:\r\n");
+    strcpy(buf, "Script information:\n");
     if (!SCRIPT(j)) {
-        strcat(buf, "  None.\r\n");
+        strcat(buf, "  None.\n");
         return;
     }
 
@@ -372,9 +389,9 @@ void do_sstat_object(CharData *ch, char *buf, ObjData *j) {
 }
 
 void do_sstat_character(CharData *ch, char *buf, CharData *k) {
-    strcpy(buf, "Script information:\r\n");
+    strcpy(buf, "Script information:\n");
     if (!SCRIPT(k)) {
-        strcat(buf, "  None.\r\n");
+        strcat(buf, "  None.\n");
         return;
     }
 
@@ -420,7 +437,7 @@ ACMD(do_attach) {
     two_arguments(argument, targ_name, loc_name);
 
     if (!*arg || !*targ_name || !*trig_name) {
-        send_to_char("Usage: attach { mtr | otr | wtr } { trigger } { name } [ location ]\r\n", ch);
+        send_to_char("Usage: attach { mtr | otr | wtr } { trigger } { name } [ location ]\n", ch);
         return;
     }
 
@@ -439,14 +456,14 @@ ACMD(do_attach) {
                         CREATE(SCRIPT(victim), ScriptData, 1);
                     add_trigger(SCRIPT(victim), trig, loc);
 
-                    sprintf(buf, "Trigger %d (%s) attached to %s.\r\n", tn, GET_TRIG_NAME(trig), GET_SHORT(victim));
+                    sprintf(buf, "Trigger %d (%s) attached to %s.\n", tn, GET_TRIG_NAME(trig), GET_SHORT(victim));
                     send_to_char(buf, ch);
                 } else
-                    send_to_char("That trigger does not exist.\r\n", ch);
+                    send_to_char("That trigger does not exist.\n", ch);
             } else
-                send_to_char("Players can't have scripts.\r\n", ch);
+                send_to_char("Players can't have scripts.\n", ch);
         } else
-            send_to_char("That mob does not exist.\r\n", ch);
+            send_to_char("That mob does not exist.\n", ch);
     }
 
     else if (is_abbrev(arg, "otr")) {
@@ -460,13 +477,13 @@ ACMD(do_attach) {
                     CREATE(SCRIPT(obj), ScriptData, 1);
                 add_trigger(SCRIPT(obj), trig, loc);
 
-                sprintf(buf, "Trigger %d (%s) attached to %s.\r\n", tn, GET_TRIG_NAME(trig),
+                sprintf(buf, "Trigger %d (%s) attached to %s.\n", tn, GET_TRIG_NAME(trig),
                         (obj->short_description ? obj->short_description : obj->name));
                 send_to_char(buf, ch);
             } else
-                send_to_char("That trigger does not exist.\r\n", ch);
+                send_to_char("That trigger does not exist.\n", ch);
         } else
-            send_to_char("That object does not exist.\r\n", ch);
+            send_to_char("That object does not exist.\n", ch);
     }
 
     else if (is_abbrev(arg, "wtr")) {
@@ -481,24 +498,24 @@ ACMD(do_attach) {
                         CREATE(world[room].script, ScriptData, 1);
                     add_trigger(world[room].script, trig, loc);
 
-                    sprintf(buf, "Trigger %d (%s) attached to room %d.\r\n", tn, GET_TRIG_NAME(trig), world[room].vnum);
+                    sprintf(buf, "Trigger %d (%s) attached to room %d.\n", tn, GET_TRIG_NAME(trig), world[room].vnum);
                     send_to_char(buf, ch);
                 } else
-                    send_to_char("That trigger does not exist.\r\n", ch);
+                    send_to_char("That trigger does not exist.\n", ch);
             }
         } else
-            send_to_char("You need to supply a room number.\r\n", ch);
+            send_to_char("You need to supply a room number.\n", ch);
     }
 
     else
-        send_to_char("Please specify 'mtr', otr', or 'wtr'.\r\n", ch);
+        send_to_char("Please specify 'mtr', otr', or 'wtr'.\n", ch);
 }
 
 /* adds a variable with given name and value to trigger */
 void add_var(TriggerVariableData **var_list, const char *name, const char *value) {
     TriggerVariableData *vd;
 
-    for (vd = *var_list; vd && str_cmp(vd->name, name); vd = vd->next)
+    for (vd = *var_list; vd && strcmp(vd->name, name); vd = vd->next)
         ;
 
     if (vd) {
@@ -591,45 +608,45 @@ ACMD(do_detach) {
     one_argument(argument, arg3);
 
     if (!*arg1 || !*arg2) {
-        send_to_char("Usage: detach [ mob | object ] { target } { trigger | 'all' }\r\n", ch);
+        send_to_char("Usage: detach [ mob | object ] { target } { trigger | 'all' }\n", ch);
         return;
     }
 
-    if (!str_cmp(arg1, "room")) {
+    if (!strcmp(arg1, "room")) {
         room = &world[IN_ROOM(ch)];
         if (!SCRIPT(room))
-            send_to_char("This room does not have any triggers.\r\n", ch);
-        else if (!str_cmp(arg2, "all")) {
+            send_to_char("This room does not have any triggers.\n", ch);
+        else if (!strcmp(arg2, "all")) {
             extract_script(SCRIPT(room));
             SCRIPT(room) = nullptr;
-            send_to_char("All triggers removed from room.\r\n", ch);
+            send_to_char("All triggers removed from room.\n", ch);
         }
 
         else if (remove_trigger(SCRIPT(room), arg2)) {
-            send_to_char("Trigger removed.\r\n", ch);
+            send_to_char("Trigger removed.\n", ch);
             if (!TRIGGERS(SCRIPT(room))) {
                 extract_script(SCRIPT(room));
                 SCRIPT(room) = nullptr;
             }
         } else
-            send_to_char("That trigger was not found.\r\n", ch);
+            send_to_char("That trigger was not found.\n", ch);
     }
 
     else {
         if (is_abbrev(arg1, "mob")) {
             if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, arg2))))
-                send_to_char("No such mobile around.\r\n", ch);
+                send_to_char("No such mobile around.\n", ch);
             else if (!*arg3)
-                send_to_char("You must specify a trigger to remove.\r\n", ch);
+                send_to_char("You must specify a trigger to remove.\n", ch);
             else
                 trigger = arg3;
         }
 
         else if (is_abbrev(arg1, "object")) {
             if (!(obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2))))
-                send_to_char("No such object around.\r\n", ch);
+                send_to_char("No such object around.\n", ch);
             else if (!*arg3)
-                send_to_char("You must specify a trigger to remove.\r\n", ch);
+                send_to_char("You must specify a trigger to remove.\n", ch);
             else
                 trigger = arg3;
         } else {
@@ -646,54 +663,54 @@ ACMD(do_detach) {
             else if ((obj = find_obj_in_world(find_vis_by_name(ch, arg1))))
                 ;
             else
-                send_to_char("Nothing around by that name.\r\n", ch);
+                send_to_char("Nothing around by that name.\n", ch);
 
             trigger = arg2;
         }
 
         if (victim) {
             if (!IS_NPC(victim))
-                send_to_char("Players don't have triggers.\r\n", ch);
+                send_to_char("Players don't have triggers.\n", ch);
 
             else if (!SCRIPT(victim))
-                send_to_char("That mob doesn't have any triggers.\r\n", ch);
-            else if (!str_cmp(arg2, "all")) {
+                send_to_char("That mob doesn't have any triggers.\n", ch);
+            else if (!strcmp(arg2, "all")) {
                 extract_script(SCRIPT(victim));
                 SCRIPT(victim) = nullptr;
-                sprintf(buf, "All triggers removed from %s.\r\n", GET_SHORT(victim));
+                sprintf(buf, "All triggers removed from %s.\n", GET_SHORT(victim));
                 send_to_char(buf, ch);
             }
 
             else if (remove_trigger(SCRIPT(victim), trigger)) {
-                send_to_char("Trigger removed.\r\n", ch);
+                send_to_char("Trigger removed.\n", ch);
                 if (!TRIGGERS(SCRIPT(victim))) {
                     extract_script(SCRIPT(victim));
                     SCRIPT(victim) = nullptr;
                 }
             } else
-                send_to_char("That trigger was not found.\r\n", ch);
+                send_to_char("That trigger was not found.\n", ch);
         }
 
         else if (obj) {
             if (!SCRIPT(obj))
-                send_to_char("That object doesn't have any triggers.\r\n", ch);
+                send_to_char("That object doesn't have any triggers.\n", ch);
 
-            else if (!str_cmp(arg2, "all")) {
+            else if (!strcmp(arg2, "all")) {
                 extract_script(SCRIPT(obj));
                 SCRIPT(obj) = nullptr;
-                sprintf(buf, "All triggers removed from %s.\r\n",
+                sprintf(buf, "All triggers removed from %s.\n",
                         obj->short_description ? obj->short_description : obj->name);
                 send_to_char(buf, ch);
             }
 
             else if (remove_trigger(SCRIPT(obj), trigger)) {
-                send_to_char("Trigger removed.\r\n", ch);
+                send_to_char("Trigger removed.\n", ch);
                 if (!TRIGGERS(SCRIPT(obj))) {
                     extract_script(SCRIPT(obj));
                     SCRIPT(obj) = nullptr;
                 }
             } else
-                send_to_char("That trigger was not found.\r\n", ch);
+                send_to_char("That trigger was not found.\n", ch);
         }
     }
 }
@@ -709,10 +726,10 @@ void free_var_el(TriggerVariableData *var) {
  * remove var name from var_list
  * returns 1 if found, else 0
  */
-int remove_var(TriggerVariableData **var_list, char *name) {
+int remove_var(TriggerVariableData **var_list, const char *name) {
     TriggerVariableData *i, *j;
 
-    for (j = nullptr, i = *var_list; i && str_cmp(name, i->name); j = i, i = i->next)
+    for (j = nullptr, i = *var_list; i && strcmp(name, i->name); j = i, i = i->next)
         ;
 
     if (i) {
@@ -793,7 +810,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * globals and static variables.
      */
     for (vd = GET_TRIG_VARS(trig); vd; vd = vd->next)
-        if (!str_cmp(vd->name, var))
+        if (!strcmp(vd->name, var))
             break;
 
     /*
@@ -804,7 +821,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     if (!vd && sc)
         for (vd = sc->global_vars; vd; vd = vd->next)
-            if (!str_cmp(vd->name, var))
+            if (!strcmp(vd->name, var))
                 break;
 
     /*
@@ -844,7 +861,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         if (vd)
             strcpy(str, vd->value);
         else {
-            if (!str_cmp(var, "self")) {
+            if (!strcmp(var, "self")) {
                 switch (type) {
                 case MOB_TRIGGER:
                     UID_VAR(str, ch);
@@ -859,7 +876,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
             /* General scripting variable "damdone", which is the amount of damage
              * that was done by a wdamage, mdamage, or odamage command. */
-            else if (!str_cmp(var, "damdone")) {
+            else if (!strcmp(var, "damdone")) {
                 sprintf(str, "%d", trig->damdone);
             } else
                 *str = '\0';
@@ -913,7 +930,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * If no local or global variable named self was found above,
      * then we must be referring to the runner of the trigger.
      */
-    else if (!str_cmp(var, "self")) {
+    else if (!strcmp(var, "self")) {
         c = ch;
         o = obj;
         r = room;
@@ -925,16 +942,16 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     else {
 
-        if (!str_cmp(var, "time")) {
-            if (!str_cmp(field, "hour"))
+        if (!strcmp(var, "time")) {
+            if (!strcmp(field, "hour"))
                 sprintf(str, "%d", time_info.hours);
-            else if (!str_cmp(field, "day"))
+            else if (!strcmp(field, "day"))
                 sprintf(str, "%d", time_info.day);
-            else if (!str_cmp(field, "month"))
+            else if (!strcmp(field, "month"))
                 sprintf(str, "%d", time_info.month);
-            else if (!str_cmp(field, "year"))
+            else if (!strcmp(field, "year"))
                 sprintf(str, "%d", time_info.year);
-            else if (!str_cmp(field, "stamp")) {
+            else if (!strcmp(field, "stamp")) {
                 num = time_info.year * SECS_PER_MUD_YEAR + time_info.month * SECS_PER_MUD_MONTH +
                       time_info.day * SECS_PER_MUD_DAY + time_info.hours * SECS_PER_MUD_HOUR;
                 /* Only game-hour granularity is available in triggers. */
@@ -947,10 +964,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!str_cmp(var, "random")) {
+        else if (!strcmp(var, "random")) {
 
             /* Pick a random character in the room */
-            if (!str_cmp(field, "char")) {
+            if (!strcmp(field, "char")) {
                 if (type == MOB_TRIGGER)
                     c = get_random_char_around(ch, RAND_DG_MOB);
                 else if (type == OBJ_TRIGGER)
@@ -962,7 +979,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
 
             /* Locate a random room globally */
-            else if (!str_cmp(field, "room")) {
+            else if (!strcmp(field, "room")) {
                 do {
                     num = number(0, top_of_world);
                 } while (ROOM_FLAGGED(num, ROOM_PRIVATE) || ROOM_FLAGGED(num, ROOM_DEATH) ||
@@ -971,7 +988,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
 
             /* Pick a random room in the zone */
-            else if (!str_cmp(field, "room_in_zone")) {
+            else if (!strcmp(field, "room_in_zone")) {
                 if (type == MOB_TRIGGER && ch->in_room != NOWHERE)
                     num = world[ch->in_room].zone;
                 else if (type == OBJ_TRIGGER && (num = obj_room(obj)) != NOWHERE)
@@ -992,22 +1009,22 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Static functions */
-        else if (!str_cmp(var, "get")) {
+        else if (!strcmp(var, "get")) {
             /* %get.obj_shortdesc[VNUM]% */
-            if (!str_cmp(field, "obj_shortdesc")) {
+            if (!strcmp(field, "obj_shortdesc")) {
                 if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
                     strcpy(str, obj_proto[num].short_description);
                 else
                     sprintf(str, "[no description for object %s]", value);
 
-            } else if (!str_cmp(field, "obj_noadesc")) {
+            } else if (!strcmp(field, "obj_noadesc")) {
                 /* %get.obj_noadesc[VNUM]% */
                 if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
                     strcpy(str, without_article(obj_proto[num].short_description));
                 else
                     sprintf(str, "[no description for object %s]", value);
 
-            } else if (!str_cmp(field, "obj_pldesc")) {
+            } else if (!strcmp(field, "obj_pldesc")) {
                 /* %get.obj_pldesc[VNUM]% */
                 if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
                     strcpy(str, pluralize(obj_proto[num].short_description));
@@ -1015,32 +1032,32 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     sprintf(str, "[no description for object %s]", value);
 
                 /* %get.mob_shortdesc[VNUM]% */
-            } else if (!str_cmp(field, "mob_shortdesc")) {
+            } else if (!strcmp(field, "mob_shortdesc")) {
                 if (is_positive_integer(value) && (num = real_mobile(atoi(value))) >= 0)
                     strcpy(str, mob_proto[num].player.short_descr);
                 else
                     sprintf(str, "[no description for mobile %s]", value);
 
                 /* %get.obj_count[VNUM]% is the number of objects with VNUM in game */
-            } else if (!str_cmp(field, "obj_count")) {
+            } else if (!strcmp(field, "obj_count")) {
                 if ((num = real_object(atoi(value))) >= 0)
                     sprintf(str, "%d", obj_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.mob_count[VNUM]% is the number of mobiles with VNUM in game */
-            } else if (!str_cmp(field, "mob_count")) {
+            } else if (!strcmp(field, "mob_count")) {
                 if ((num = real_mobile(atoi(value))) >= 0)
                     sprintf(str, "%d", mob_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.room[VNUM]% returns a UID variable pointing to that room */
-            } else if (!str_cmp(field, "room")) {
+            } else if (!strcmp(field, "room")) {
                 if ((num = real_room(atoi(value))) >= 0)
                     ROOM_UID_VAR(str, num);
                 else
                     strcpy(str, "0");
                 /* %get.people[VNUM]% is the number of people in room */
-            } else if (!str_cmp(field, "people")) {
+            } else if (!strcmp(field, "people")) {
                 if (is_positive_integer(value) && (num = real_room(atoi(value))) >= 0) {
                     ch = world[num].people;
                     for (num = 0; ch; ch = ch->next_in_room)
@@ -1052,7 +1069,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     sprintf(buf2, "get.people[%s]: room '-1' does not exist", value);
                     script_log(trig, buf2);
                 }
-            } else if (!str_cmp(field, "opposite_dir")) {
+            } else if (!strcmp(field, "opposite_dir")) {
                 if ((num = search_block(value, dirs, false)) >= 0)
                     strcpy(str, dirs[rev_dir[num]]);
                 else {
@@ -1064,7 +1081,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                         *(str++) = *(value + num);
                     *str = '\0';
                 }
-            } else if (!str_cmp(field, "uidchar"))
+            } else if (!strcmp(field, "uidchar"))
                 sprintf(str, "%c", UID_CHAR);
             else {
                 *str = '\0';
@@ -1074,35 +1091,35 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* String functions */
-        else if (!str_cmp(var, "string")) {
+        else if (!strcmp(var, "string")) {
 
-            if (!str_cmp(field, "reverse")) {
+            if (!strcmp(field, "reverse")) {
                 for (num = strlen(value) - 1; num >= 0; --num)
                     *(str++) = *(value + num);
                 *str = '\0';
             }
 
-            else if (!str_cmp(field, "length"))
+            else if (!strcmp(field, "length"))
                 sprintf(str, "%d", strlen(value));
 
-            else if (!str_cmp(field, "tolower")) {
+            else if (!strcmp(field, "tolower")) {
                 do {
                     *(str++) = LOWER(*(value++));
                 } while (*value);
             }
 
-            else if (!str_cmp(field, "toupper")) {
+            else if (!strcmp(field, "toupper")) {
                 do {
                     *(str++) = UPPER(*(value++));
                 } while (*value);
             }
 
-            else if (!str_cmp(field, "cap") || !str_cmp(field, "capitalize")) {
+            else if (!strcmp(field, "cap") || !strcmp(field, "capitalize")) {
                 strcpy(str, value);
                 CAP(str);
             }
 
-            else if (!str_cmp(field, "firstword"))
+            else if (!strcmp(field, "firstword"))
                 any_one_arg(value, str);
 
             else {
@@ -1126,90 +1143,90 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     if (c) {
         /* String identifiers */
-        if (!str_cmp(field, "name"))
+        if (!strcmp(field, "name"))
             strcpy(str, GET_SHORT(c) ? GET_SHORT(c) : GET_NAME(c));
-        else if (!str_cmp(field, "p") || !str_cmp(field, "hisher"))
+        else if (!strcmp(field, "p") || !strcmp(field, "hisher"))
             strcpy(str, HSHR(c)); /* Possessive pronoun */
-        else if (!str_cmp(field, "o") || !str_cmp(field, "himher"))
+        else if (!strcmp(field, "o") || !strcmp(field, "himher"))
             strcpy(str, HMHR(c)); /* Objective pronoun */
-        else if (!str_cmp(field, "n") || !str_cmp(field, "heshe"))
+        else if (!strcmp(field, "n") || !strcmp(field, "heshe"))
             strcpy(str, HSSH(c)); /* Nominative pronoun */
-        else if (!str_cmp(field, "alias"))
+        else if (!strcmp(field, "alias"))
             strcpy(str, GET_NAME(c));
-        else if (!str_cmp(field, "title"))
+        else if (!strcmp(field, "title"))
             strcpy(str, GET_TITLE(c) ? GET_TITLE(c) : "");
 
         /* Identifying numbers */
-        else if (!str_cmp(field, "vnum"))
+        else if (!strcmp(field, "vnum"))
             sprintf(str, "%d", GET_MOB_VNUM(c));
-        else if (!str_cmp(field, "id"))
+        else if (!strcmp(field, "id"))
             sprintf(str, "%ld", GET_ID(c));
 
         /* Attributes */
-        else if (!str_cmp(field, "sex") || !str_cmp(field, "gender"))
+        else if (!strcmp(field, "sex") || !strcmp(field, "gender"))
             strcpy(str, genders[(int)GET_SEX(c)]);
-        else if (!str_cmp(field, "class")) {
+        else if (!strcmp(field, "class")) {
             strcpy(str, CLASS_PLAINNAME(c));
             CAP(str);
-        } else if (!str_cmp(field, "race"))
+        } else if (!strcmp(field, "race"))
             strcpy(str, races[(int)GET_RACE(c)].name);
-        else if (!str_cmp(field, "level"))
+        else if (!strcmp(field, "level"))
             sprintf(str, "%d", GET_LEVEL(c));
 
-        else if (!str_cmp(field, "weight"))
+        else if (!strcmp(field, "weight"))
             sprintf(str, "%d", GET_WEIGHT(c));
-        else if (!str_cmp(field, "height"))
+        else if (!strcmp(field, "height"))
             sprintf(str, "%d", GET_HEIGHT(c));
-        else if (!str_cmp(field, "size"))
+        else if (!strcmp(field, "size"))
             sprintf(str, "%s", SIZE_DESC(c));
 
-        else if (!str_cmp(field, "cha"))
+        else if (!strcmp(field, "cha"))
             sprintf(str, "%d", GET_VIEWED_CHA(c));
-        else if (!str_cmp(field, "str"))
+        else if (!strcmp(field, "str"))
             sprintf(str, "%d", GET_VIEWED_STR(c));
-        else if (!str_cmp(field, "int"))
+        else if (!strcmp(field, "int"))
             sprintf(str, "%d", GET_VIEWED_INT(c));
-        else if (!str_cmp(field, "wis"))
+        else if (!strcmp(field, "wis"))
             sprintf(str, "%d", GET_VIEWED_WIS(c));
-        else if (!str_cmp(field, "con"))
+        else if (!strcmp(field, "con"))
             sprintf(str, "%d", GET_VIEWED_CON(c));
-        else if (!str_cmp(field, "dex"))
+        else if (!strcmp(field, "dex"))
             sprintf(str, "%d", GET_VIEWED_DEX(c));
 
-        else if (!str_cmp(field, "real_cha"))
+        else if (!strcmp(field, "real_cha"))
             sprintf(str, "%d", GET_CHA(c));
-        else if (!str_cmp(field, "real_str"))
+        else if (!strcmp(field, "real_str"))
             sprintf(str, "%d", GET_STR(c));
-        else if (!str_cmp(field, "real_int"))
+        else if (!strcmp(field, "real_int"))
             sprintf(str, "%d", GET_INT(c));
-        else if (!str_cmp(field, "real_wis"))
+        else if (!strcmp(field, "real_wis"))
             sprintf(str, "%d", GET_WIS(c));
-        else if (!str_cmp(field, "real_con"))
+        else if (!strcmp(field, "real_con"))
             sprintf(str, "%d", GET_CON(c));
-        else if (!str_cmp(field, "real_dex"))
+        else if (!strcmp(field, "real_dex"))
             sprintf(str, "%d", GET_DEX(c));
 
-        else if (!str_cmp(field, "hit"))
+        else if (!strcmp(field, "hit"))
             sprintf(str, "%d", GET_HIT(c));
-        else if (!str_cmp(field, "maxhit"))
+        else if (!strcmp(field, "maxhit"))
             sprintf(str, "%d", GET_MAX_HIT(c));
-        else if (!str_cmp(field, "move"))
+        else if (!strcmp(field, "move"))
             sprintf(str, "%d", GET_MOVE(c));
-        else if (!str_cmp(field, "maxmove"))
+        else if (!strcmp(field, "maxmove"))
             sprintf(str, "%d", GET_MAX_MOVE(c));
-        else if (!str_cmp(field, "armor"))
+        else if (!strcmp(field, "armor"))
             sprintf(str, "%d", GET_AC(c));
-        else if (!str_cmp(field, "hitroll"))
+        else if (!strcmp(field, "hitroll"))
             sprintf(str, "%d", GET_HITROLL(c));
-        else if (!str_cmp(field, "damroll"))
+        else if (!strcmp(field, "damroll"))
             sprintf(str, "%d", GET_DAMROLL(c));
-        else if (!str_cmp(field, "exp"))
+        else if (!strcmp(field, "exp"))
             sprintf(str, "%ld", GET_EXP(c));
-        else if (!str_cmp(field, "perception"))
+        else if (!strcmp(field, "perception"))
             sprintf(str, "%ld", GET_PERCEPTION(c));
-        else if (!str_cmp(field, "hiddenness"))
+        else if (!strcmp(field, "hiddenness"))
             sprintf(str, "%ld", GET_HIDDENNESS(c));
-        else if (!str_cmp(field, "align") || !str_cmp(field, "alignment"))
+        else if (!strcmp(field, "align") || !strcmp(field, "alignment"))
             sprintf(str, "%d", GET_ALIGNMENT(c));
 
         else if (is_coin_name(field, PLATINUM))
@@ -1222,7 +1239,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%d", GET_COPPER(c));
 
         /* Flags */
-        else if (!str_cmp(field, "flags")) {
+        else if (!strcmp(field, "flags")) {
             *str = '\0';
             if (IS_NPC(c)) /* ACT flags */
                 sprintflag(str, MOB_FLAGS(c), NUM_MOB_FLAGS, action_bits);
@@ -1232,7 +1249,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 if (HAS_FLAGS(PRF_FLAGS(c), NUM_PRF_FLAGS))
                     sprintflag(str + strlen(str), PRF_FLAGS(c), NUM_PRF_FLAGS, preference_bits);
             }
-        } else if (!str_cmp(field, "flagged")) {
+        } else if (!strcmp(field, "flagged")) {
             if (IS_NPC(c)) {
                 if ((num = search_block(value, action_bits, false)) >= 0)
                     strcpy(str, MOB_FLAGGED(c, num) ? "1" : "0");
@@ -1252,10 +1269,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     script_log(trig, buf2);
                 }
             }
-        } else if (!str_cmp(field, "aff_flags") || !str_cmp(field, "eff_flags"))
+        } else if (!strcmp(field, "aff_flags") || !strcmp(field, "eff_flags"))
             sprintflag(str, EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags);
 
-        else if (!str_cmp(field, "aff_flagged") || !str_cmp(field, "eff_flagged")) {
+        else if (!strcmp(field, "aff_flagged") || !strcmp(field, "eff_flagged")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, EFF_FLAGGED(c, num) ? "1" : "0");
             else {
@@ -1264,7 +1281,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 script_log(trig, buf2);
             }
 
-        } else if (!str_cmp(field, "spells")) {
+        } else if (!strcmp(field, "spells")) {
             effect *eff;
             *str = '\0';
             for (eff = c->effects; eff; eff = eff->next)
@@ -1272,7 +1289,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcat(str, skills[eff->type].name);
                     strcat(str, " ");
                 }
-        } else if (!str_cmp(field, "has_spell")) {
+        } else if (!strcmp(field, "has_spell")) {
             if ((num = find_talent_num(value, 0)) >= 0)
                 strcpy(str, affected_by_spell(c, num) ? "1" : "0");
             else {
@@ -1283,26 +1300,26 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Character relationships */
-        else if (!str_cmp(field, "fighting"))
+        else if (!strcmp(field, "fighting"))
             UID_VAR(str, FIGHTING(c));
-        else if (!str_cmp(field, "hunting"))
+        else if (!strcmp(field, "hunting"))
             UID_VAR(str, HUNTING(c));
-        else if (!str_cmp(field, "riding"))
+        else if (!strcmp(field, "riding"))
             UID_VAR(str, RIDING(c));
-        else if (!str_cmp(field, "ridden_by"))
+        else if (!strcmp(field, "ridden_by"))
             UID_VAR(str, RIDDEN_BY(c));
-        else if (!str_cmp(field, "consented"))
+        else if (!strcmp(field, "consented"))
             UID_VAR(str, CONSENT(c));
-        else if (!str_cmp(field, "master"))
+        else if (!strcmp(field, "master"))
             UID_VAR(str, c->master);
-        else if (!str_cmp(field, "next_in_room")) {
+        else if (!strcmp(field, "next_in_room")) {
             /* Skip any wiz-invis folks */
             while (c->next_in_room && GET_INVIS_LEV(c->next_in_room))
                 c = c->next_in_room;
             UID_VAR(str, c->next_in_room);
-        } else if (!str_cmp(field, "group_size"))
+        } else if (!strcmp(field, "group_size"))
             sprintf(str, "%d", group_size(c));
-        else if (!str_cmp(field, "group_member")) {
+        else if (!strcmp(field, "group_member")) {
             ch = c->group_master ? c->group_master : c;
 
             num = atoi(value);
@@ -1325,7 +1342,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Quests */
-        else if (!str_cmp(field, "quest_variable")) {
+        else if (!strcmp(field, "quest_variable")) {
             if (!*value) {
                 script_log(trig, "quest_variable called without specifying a quest");
                 strcpy(str, "0");
@@ -1344,7 +1361,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!str_cmp(field, "quest_stage")) {
+        else if (!strcmp(field, "quest_stage")) {
             if (!*value) {
                 script_log(trig, "quest_stage called without specifying a quest");
                 strcpy(str, "0");
@@ -1354,7 +1371,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(str, "%d", quest_stage(c, value));
         }
 
-        else if (!str_cmp(field, "has_completed")) {
+        else if (!strcmp(field, "has_completed")) {
             if (!*value) {
                 script_log(trig, "has_completed called without specifying a quest");
                 strcpy(str, "0");
@@ -1364,7 +1381,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, has_completed_quest(value, c) ? "1" : "0");
         }
 
-        else if (!str_cmp(field, "has_failed")) {
+        else if (!strcmp(field, "has_failed")) {
             if (!*value) {
                 script_log(trig, "has_failed called without specifying a quest");
                 strcpy(str, "0");
@@ -1375,8 +1392,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Object relationships */
-        else if (!str_cmp(field, "inventory")) {
-            if (!str_cmp(value, "count"))
+        else if (!strcmp(field, "inventory")) {
+            if (!strcmp(value, "count"))
                 sprintf(str, "%d", IS_CARRYING_N(c));
             else if (*value) {
                 /* An argument was given: find a specific object. */
@@ -1391,9 +1408,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             } else
                 /* No argument given: return the first inventory item */
                 UID_VAR(str, c->carrying);
-        } else if (!str_cmp(field, "worn")) {
+        } else if (!strcmp(field, "worn")) {
             int pos;
-            if (!str_cmp(value, "count")) {
+            if (!strcmp(value, "count")) {
                 for (num = pos = 0; pos < NUM_WEARS; ++pos)
                     if (GET_EQ(c, pos))
                         ++num;
@@ -1402,7 +1419,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 UID_VAR(str, GET_EQ(c, pos));
             else
                 strcpy(str, "0");
-        } else if (!str_cmp(field, "wearing")) {
+        } else if (!strcmp(field, "wearing")) {
             if (is_positive_integer(value)) {
                 int pos;
                 num = atoi(value);
@@ -1418,19 +1435,19 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, "0");
         }
 
-        else if (!str_cmp(field, "position")) {
+        else if (!strcmp(field, "position")) {
             strcpy(str, position_types[(int)GET_POS(c)]);
-        } else if (!str_cmp(field, "stance"))
+        } else if (!strcmp(field, "stance"))
             strcpy(str, stance_types[(int)GET_STANCE(c)]);
 
-        else if (!str_cmp(field, "room")) {
+        else if (!strcmp(field, "room")) {
             if (IN_ROOM(c) >= 0 && IN_ROOM(c) <= top_of_world)
                 sprintf(str, "%d", world[IN_ROOM(c)].vnum);
             else
                 strcpy(str, "-1");
         }
 
-        else if (!str_cmp(field, "talent") || !str_cmp(field, "skill")) {
+        else if (!strcmp(field, "talent") || !strcmp(field, "skill")) {
             int talent = find_talent_num(value, 0);
             if (talent < 0)
                 strcpy(str, "0");
@@ -1438,18 +1455,18 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(str, "%d", GET_SKILL(c, talent));
         }
 
-        else if (!str_cmp(field, "clan")) {
+        else if (!strcmp(field, "clan")) {
             if (!IS_NPC(c) && GET_CLAN(c))
                 strcpy(str, GET_CLAN(c)->name);
             else
                 *str = '\0';
-        } else if (!str_cmp(field, "clan_rank"))
+        } else if (!strcmp(field, "clan_rank"))
             sprintf(str, "%d", IS_NPC(c) ? 0 : GET_CLAN_RANK(c));
 
-        else if (!str_cmp(field, "can_be_seen"))
+        else if (!strcmp(field, "can_be_seen"))
             strcpy(str, type == MOB_TRIGGER && !CAN_SEE(ch, c) ? "0" : "1");
 
-        else if (!str_cmp(field, "trophy")) {
+        else if (!strcmp(field, "trophy")) {
             if (IS_NPC(c))
                 *str = '\0';
             else {
@@ -1483,56 +1500,56 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
     else if (o) {
         /* String identifiers */
-        if (!str_cmp(field, "name"))
+        if (!strcmp(field, "name"))
             strcpy(str, o->name);
-        else if (!str_cmp(field, "shortdesc"))
+        else if (!strcmp(field, "shortdesc"))
             strcpy(str, o->short_description);
-        else if (!str_cmp(field, "description"))
+        else if (!strcmp(field, "description"))
             strcpy(str, o->description);
 
         /* Identifying numbers */
-        else if (!str_cmp(field, "vnum"))
+        else if (!strcmp(field, "vnum"))
             sprintf(str, "%d", GET_OBJ_VNUM(o));
-        else if (!str_cmp(field, "type"))
+        else if (!strcmp(field, "type"))
             strcpy(str, OBJ_TYPE_NAME(o));
-        else if (!str_cmp(field, "id"))
+        else if (!strcmp(field, "id"))
             sprintf(str, "%ld", GET_ID(o));
 
         /* Numerical attributes */
-        else if (!str_cmp(field, "weight"))
+        else if (!strcmp(field, "weight"))
             sprintf(str, "%.2f", o->obj_flags.weight);
-        else if (!str_cmp(field, "cost"))
+        else if (!strcmp(field, "cost"))
             sprintf(str, "%d", GET_OBJ_COST(o));
-        else if (!str_cmp(field, "cost_per_day") || !str_cmp(field, "rent"))
+        else if (!strcmp(field, "cost_per_day") || !strcmp(field, "rent"))
             strcpy(str, "0");
-        else if (!str_cmp(field, "level"))
+        else if (!strcmp(field, "level"))
             sprintf(str, "%d", GET_OBJ_LEVEL(o));
-        else if (!str_cmp(field, "val0"))
+        else if (!strcmp(field, "val0"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 0));
-        else if (!str_cmp(field, "val1"))
+        else if (!strcmp(field, "val1"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 1));
-        else if (!str_cmp(field, "val2"))
+        else if (!strcmp(field, "val2"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 2));
-        else if (!str_cmp(field, "val3"))
+        else if (!strcmp(field, "val3"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 3));
-        else if (!str_cmp(field, "timer"))
+        else if (!strcmp(field, "timer"))
             sprintf(str, "%d", GET_OBJ_TIMER(o));
-        else if (!str_cmp(field, "decomp"))
+        else if (!strcmp(field, "decomp"))
             sprintf(str, "%d", GET_OBJ_DECOMP(o));
-        else if (!str_cmp(field, "hiddenness"))
+        else if (!strcmp(field, "hiddenness"))
             sprintf(str, "%ld", GET_OBJ_HIDDENNESS(o));
-        else if (!str_cmp(field, "affect") || !str_cmp(field, "effect")) {
+        else if (!strcmp(field, "affect") || !strcmp(field, "effect")) {
             if (!is_positive_integer(value) || (num = atoi(value)) > 5)
                 *str = '\0';
             else
                 sprintf(str, "%+d %s", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
-        } else if (!str_cmp(field, "affect_value") || !str_cmp(field, "effect_value"))
+        } else if (!strcmp(field, "affect_value") || !strcmp(field, "effect_value"))
             sprintf(str, "%d", is_positive_integer(value) && (num = atoi(value) <= 5) ? o->applies[num].modifier : 0);
 
         /* Flags */
-        else if (!str_cmp(field, "flags"))
+        else if (!strcmp(field, "flags"))
             sprintflag(str, GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits);
-        else if (!str_cmp(field, "flagged")) {
+        else if (!strcmp(field, "flagged")) {
             if ((num = search_block(value, extra_bits, false)) >= 0)
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
             else {
@@ -1540,10 +1557,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(buf2, "unrecognized object extra bit '%s' to %%%s.flagged[]%%", value, var);
                 script_log(trig, buf2);
             }
-        } else if (!str_cmp(field, "spells"))
+        } else if (!strcmp(field, "spells"))
             sprintflag(str, GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags);
 
-        else if (!str_cmp(field, "has_spell")) {
+        else if (!strcmp(field, "has_spell")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, OBJ_EFF_FLAGGED(o, num) ? "1" : "0");
             else {
@@ -1554,23 +1571,23 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Location */
-        else if (!str_cmp(field, "room")) {
+        else if (!strcmp(field, "room")) {
             num = obj_room(o);
             if (num != NOWHERE)
                 sprintf(str, "%d", world[num].vnum);
             else
                 strcpy(str, "-1");
-        } else if (!str_cmp(field, "carried_by"))
+        } else if (!strcmp(field, "carried_by"))
             UID_VAR(str, o->carried_by);
-        else if (!str_cmp(field, "worn_by"))
+        else if (!strcmp(field, "worn_by"))
             UID_VAR(str, o->worn_by);
-        else if (!str_cmp(field, "worn_on")) {
+        else if (!strcmp(field, "worn_on")) {
             if (o->worn_by)
                 sprinttype(o->worn_on, wear_positions, str);
             else
                 *str = '\0';
-        } else if (!str_cmp(field, "contents")) {
-            if (!str_cmp(value, "count")) {
+        } else if (!strcmp(field, "contents")) {
+            if (!strcmp(value, "count")) {
                 for (num = 0, o = o->contains; o; o = o->next_content)
                     ++num;
                 sprintf(str, "%d", num);
@@ -1586,7 +1603,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcpy(str, "0");
             } else
                 UID_VAR(str, o->contains);
-        } else if (!str_cmp(field, "next_in_list"))
+        } else if (!strcmp(field, "next_in_list"))
             UID_VAR(str, o->next_content);
 
         else {
@@ -1600,19 +1617,19 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * Room variables
      */
     else if (r) {
-        if (!str_cmp(field, "name"))
+        if (!strcmp(field, "name"))
             strcpy(str, r->name);
 
-        else if (!str_cmp(field, "vnum"))
+        else if (!strcmp(field, "vnum"))
             sprintf(str, "%d", r->vnum);
-        else if (!strn_cmp(field, "sector", 6))
+        else if (!strncmp(field, "sector", 6))
             sprintf(str, "%s", sectors[r->sector_type].name);
-        else if (!str_cmp(field, "is_dark"))
+        else if (!strcmp(field, "is_dark"))
             strcpy(str, r->light > 0 ? "1" : "0");
 
-        else if (!str_cmp(field, "flags"))
+        else if (!strcmp(field, "flags"))
             sprintflag(str, r->room_flags, NUM_ROOM_FLAGS, room_bits);
-        else if (!str_cmp(field, "flagged")) {
+        else if (!strcmp(field, "flagged")) {
             if ((num = search_block(value, room_bits, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
             else {
@@ -1620,9 +1637,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(buf2, "unrecognized room flag '%s' to %%%s.flagged%%", value, var);
                 script_log(trig, buf2);
             }
-        } else if (!str_cmp(field, "effects") || !str_cmp(field, "affects"))
+        } else if (!strcmp(field, "effects") || !strcmp(field, "affects"))
             sprintflag(str, r->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
-        else if (!str_cmp(field, "has_effect") || !str_cmp(field, "has_affect")) {
+        else if (!strcmp(field, "has_effect") || !strcmp(field, "has_affect")) {
             if ((num = search_block(value, room_effects, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
             else {
@@ -1632,8 +1649,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!str_cmp(field, "objects")) {
-            if (!str_cmp(value, "count")) {
+        else if (!strcmp(field, "objects")) {
+            if (!strcmp(value, "count")) {
                 for (num = 0, o = r->contents; o; o = o->next_content)
                     ++num;
                 sprintf(str, "%d", num);
@@ -1649,8 +1666,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcpy(str, "0");
             } else
                 UID_VAR(str, r->contents);
-        } else if (!str_cmp(field, "people")) {
-            if (!str_cmp(value, "count")) {
+        } else if (!strcmp(field, "people")) {
+            if (!strcmp(value, "count")) {
                 for (num = 0, c = r->people; c; c = c->next_in_room)
                     if (!GET_INVIS_LEV(c))
                         ++num;
@@ -1680,14 +1697,14 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, "-1");
             else if (!*value) /* %room.DIR% is a vnum */
                 sprintf(str, "%d", r->exits[num]->to_room != NOWHERE ? world[r->exits[num]->to_room].vnum : -1);
-            else if (!str_cmp(value, "room")) { /* %room.DIR[room]% */
+            else if (!strcmp(value, "room")) { /* %room.DIR[room]% */
                 if (r->exits[num]->to_room != NOWHERE)
                     ROOM_UID_VAR(str, r->exits[num]->to_room);
                 else
                     strcpy(str, "0");
-            } else if (!str_cmp(value, "key")) /* %room.DIR[key]% */
+            } else if (!strcmp(value, "key")) /* %room.DIR[key]% */
                 sprintf(str, "%d", r->exits[num]->key);
-            else if (!str_cmp(value, "bits")) /* %room.DIR[bits]% */
+            else if (!strcmp(value, "bits")) /* %room.DIR[bits]% */
                 sprintbit(r->exits[num]->exit_info, exit_bits, str);
             else
                 *str = '\0';
@@ -1847,46 +1864,46 @@ void eval_op(char *op, char *lhs, char *rhs, char *result, void *go, ScriptData 
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) == atoi(rhs));
         else
-            sprintf(result, "%d", !str_cmp(lhs, rhs));
+            sprintf(result, "%d", !strcmp(lhs, rhs));
     }
 
     else if (!strcmp("!=", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) != atoi(rhs));
         else
-            sprintf(result, "%d", str_cmp(lhs, rhs));
+            sprintf(result, "%d", strcmp(lhs, rhs));
     }
 
     else if (!strcmp("<=", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) <= atoi(rhs));
         else
-            sprintf(result, "%d", str_cmp(lhs, rhs) <= 0);
+            sprintf(result, "%d", strcmp(lhs, rhs) <= 0);
     }
 
     else if (!strcmp(">=", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) >= atoi(rhs));
         else
-            sprintf(result, "%d", str_cmp(lhs, rhs) <= 0);
+            sprintf(result, "%d", strcmp(lhs, rhs) <= 0);
     }
 
     else if (!strcmp("<", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) < atoi(rhs));
         else
-            sprintf(result, "%d", str_cmp(lhs, rhs) < 0);
+            sprintf(result, "%d", strcmp(lhs, rhs) < 0);
     }
 
     else if (!strcmp(">", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) > atoi(rhs));
         else
-            sprintf(result, "%d", str_cmp(lhs, rhs) > 0);
+            sprintf(result, "%d", strcmp(lhs, rhs) > 0);
     }
 
     else if (!strcmp("/=", op))
-        sprintf(result, "%c", str_str(lhs, rhs) ? '1' : '0');
+        sprintf(result, "%c", strstr(lhs, rhs) ? '1' : '0');
 
     else if (!strcmp("*", op))
         sprintf(result, "%d", atoi(lhs) * atoi(rhs));
@@ -2001,7 +2018,7 @@ int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData
 
     for (i = 0; *ops[i] != '\n'; i++)
         for (j = 0; tokens[j]; j++)
-            if (!strn_cmp(ops[i], tokens[j], strlen(ops[i]))) {
+            if (!strncmp(ops[i], tokens[j], strlen(ops[i]))) {
                 *tokens[j] = '\0';
                 p = tokens[j] + strlen(ops[i]);
 
@@ -2048,9 +2065,9 @@ CmdlistElement *find_end(TrigData *trig, CmdlistElement *cl) {
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strn_cmp("if ", p, 3))
+        if (!strncmp("if ", p, 3))
             c = find_end(trig, c);
-        else if (!strn_cmp("end", p, 3))
+        else if (!strncmp("end", p, 3))
             return c;
 
         if (!c->next) {
@@ -2078,22 +2095,22 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
         for (p = c->cmd; *p && isspace(*p); p++)
             ; /* skip spaces */
 
-        if (!strn_cmp("if ", p, 3))
+        if (!strncmp("if ", p, 3))
             c = find_end(trig, c);
 
-        else if (!strn_cmp("elseif ", p, 7)) {
+        else if (!strncmp("elseif ", p, 7)) {
             if (process_if(p + 7, go, sc, trig, type)) {
                 GET_TRIG_DEPTH(trig)++;
                 return c;
             }
         }
 
-        else if (!strn_cmp("else", p, 4)) {
+        else if (!strncmp("else", p, 4)) {
             GET_TRIG_DEPTH(trig)++;
             return c;
         }
 
-        else if (!strn_cmp("end", p, 3))
+        else if (!strncmp("end", p, 3))
             return c;
 
         if (!c->next) {
@@ -2105,7 +2122,7 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
     /* If we got here, it's the last line, if it's not an end, log it. */
     for (p = c->cmd; *p && isspace(*p); ++p)
         ; /* skip spaces */
-    if (strn_cmp("end", p, 3))
+    if (strncmp("end", p, 3))
         script_log(trig, "'if' without 'end'. (error 5)");
 
     return c;
@@ -2127,7 +2144,7 @@ void process_wait(void *go, TrigData *trig, int type, char *cmd, CmdlistElement 
         return;
     }
 
-    else if (!strn_cmp(arg, "until ", 6)) {
+    else if (!strncmp(arg, "until ", 6)) {
 
         /* valid forms of time are 14:30 and 1430 */
         if (sscanf(arg, "until %ld:%ld", &hr, &min) == 2)
@@ -2263,7 +2280,7 @@ void process_global(ScriptData *sc, TrigData *trig, char *cmd) {
         skip_spaces(&varlist);
 
         for (vd = GET_TRIG_VARS(trig); vd; vd = vd->next)
-            if (!str_cmp(vd->name, arg))
+            if (!strcmp(vd->name, arg))
                 break;
 
         if (!vd) {
@@ -2370,14 +2387,14 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
         if (*p == '*')
             continue;
 
-        else if (!strn_cmp(p, "if ", 3)) {
+        else if (!strncmp(p, "if ", 3)) {
             if (process_if(p + 3, go, sc, trig, type))
                 GET_TRIG_DEPTH(trig)++;
             else
                 cl = find_else_end(trig, cl, go, sc, type);
         }
 
-        else if (!strn_cmp("elseif ", p, 7) || !strn_cmp("else", p, 4)) {
+        else if (!strncmp("elseif ", p, 7) || !strncmp("else", p, 4)) {
             /* If not in an if-block, ignore the extra 'else[if]' and warn about it.
              */
             if (GET_TRIG_DEPTH(trig) == 1) {
@@ -2386,7 +2403,7 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
             }
             cl = find_end(trig, cl);
             GET_TRIG_DEPTH(trig)--;
-        } else if (!strn_cmp("while ", p, 6)) {
+        } else if (!strncmp("while ", p, 6)) {
             temp = find_done(cl);
             if (!temp) {
                 script_log(trig, "'while' without 'done'.");
@@ -2397,15 +2414,15 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                 cl = temp;
                 loops = 0;
             }
-        } else if (!strn_cmp("switch ", p, 7)) {
+        } else if (!strncmp("switch ", p, 7)) {
             cl = find_case(trig, cl, go, sc, type, p + 7);
-        } else if (!strn_cmp("end", p, 3)) {
+        } else if (!strncmp("end", p, 3)) {
             if (GET_TRIG_DEPTH(trig) == 1) {
                 script_log(trig, "'end' without 'if'.");
                 continue;
             }
             GET_TRIG_DEPTH(trig)--;
-        } else if (!strn_cmp("done", p, 4)) {
+        } else if (!strncmp("done", p, 4)) {
             /* if in a while loop, cl->original is non-NULL */
             if (cl->original) {
                 char *orig_cmd = cl->original->cmd;
@@ -2428,9 +2445,9 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                     }
                 }
             }
-        } else if (!strn_cmp("break", p, 5)) {
+        } else if (!strncmp("break", p, 5)) {
             cl = find_done(cl);
-        } else if (!strn_cmp("case", p, 4)) {
+        } else if (!strncmp("case", p, 4)) {
             /* Do nothing, this allows multiple cases to a single instance */
         }
 
@@ -2438,25 +2455,25 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
 
             var_subst(go, sc, trig, type, p, cmd);
 
-            if (!strn_cmp(cmd, "eval ", 5))
+            if (!strncmp(cmd, "eval ", 5))
                 process_eval(go, sc, trig, type, cmd);
 
-            else if (!strn_cmp(cmd, "halt", 4))
+            else if (!strncmp(cmd, "halt", 4))
                 break;
 
-            else if (!strn_cmp(cmd, "global ", 7))
+            else if (!strncmp(cmd, "global ", 7))
                 process_global(sc, trig, cmd);
 
-            else if (!strn_cmp(cmd, "return ", 7))
+            else if (!strncmp(cmd, "return ", 7))
                 ret_val = process_return(trig, cmd);
 
-            else if (!strn_cmp(cmd, "set ", 4))
+            else if (!strncmp(cmd, "set ", 4))
                 process_set(sc, trig, cmd);
 
-            else if (!strn_cmp(cmd, "unset ", 6))
+            else if (!strncmp(cmd, "unset ", 6))
                 process_unset(sc, trig, cmd);
 
-            else if (!strn_cmp(cmd, "wait ", 5)) {
+            else if (!strncmp(cmd, "wait ", 5)) {
                 process_wait(go, trig, type, cmd, cl);
                 depth--;
                 return ret_val;
@@ -2513,13 +2530,13 @@ ACMD(do_tstat) {
         vnum = atoi(str);
         rnum = real_trigger(vnum);
         if (rnum < 0) {
-            send_to_char("That vnum does not exist.\r\n", ch);
+            send_to_char("That vnum does not exist.\n", ch);
             return;
         }
 
         do_stat_trigger(ch, trig_index[rnum]->proto);
     } else
-        send_to_char("Usage: tstat <vnum>\r\n", ch);
+        send_to_char("Usage: tstat <vnum>\n", ch);
 }
 
 /*
@@ -2540,18 +2557,18 @@ CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptDa
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strn_cmp("while ", p, 6) || !strn_cmp("switch", p, 6))
+        if (!strncmp("while ", p, 6) || !strncmp("switch", p, 6))
             c = find_done(c);
-        else if (!strn_cmp("case ", p, 5)) {
+        else if (!strncmp("case ", p, 5)) {
             char case_expr[MAX_STRING_LENGTH];
             char result[16]; /* == always returns an integer, so it shouuld be safe */
             eval_expr(p + 5, case_expr, go, sc, trig, type);
             eval_op("==", cond_expr, case_expr, result, go, sc, trig);
             if (*result && *result != '0')
                 return c;
-        } else if (!strn_cmp("default", p, 7))
+        } else if (!strncmp("default", p, 7))
             return c;
-        else if (!strn_cmp("done", p, 3))
+        else if (!strncmp("done", p, 3))
             return c;
     }
     return c;
@@ -2573,9 +2590,9 @@ CmdlistElement *find_done(CmdlistElement *cl) {
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strn_cmp("while ", p, 6) || !strn_cmp("switch ", p, 7))
+        if (!strncmp("while ", p, 6) || !strncmp("switch ", p, 7))
             c = find_done(c);
-        else if (!strn_cmp("done", p, 3))
+        else if (!strncmp("done", p, 3))
             return c;
     }
 

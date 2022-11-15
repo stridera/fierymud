@@ -183,7 +183,7 @@ FindContext find_vis_by_name(CharData *ch, char *name) {
         context.char_func = match_vis_char_by_name;
         context.number = grab_number(&name);
         context.string = name;
-        if (!str_cmp(name, "self") || !str_cmp(name, "me"))
+        if (!strcmp(name, "self") || !strcmp(name, "me"))
             context.override = true;
     }
     context.ch = ch;
@@ -702,7 +702,7 @@ int universal_find(FindContext context, int bitvector, CharData **tch, ObjData *
 }
 
 static ObjData *next_obj(obj_iterator *iter) {
-    CharData *ch = iter->data;
+    CharData *ch = (CharData *)iter->data;
     ObjData *next;
 
     if (IS_SET(iter->mode, FIND_OBJ_EQUIP) && ch) {
@@ -756,7 +756,7 @@ static ObjData *next_obj(obj_iterator *iter) {
 }
 
 static CharData *next_char(char_iterator *iter) {
-    CharData *ch = iter->data;
+    CharData *ch = (CharData *)iter->data;
     CharData *next;
 
     if (IS_SET(iter->mode, FIND_CHAR_ROOM) && ch && ch->in_room != NOWHERE) {
@@ -819,13 +819,13 @@ char_iterator find_chars(FindContext context, int bitvector) {
 }
 
 ObjData *find_obj_for_keyword(ObjData *obj, const char *name) {
-    if (!str_cmp(name, "self") || !str_cmp(name, "me"))
+    if (!strcmp(name, "self") || !strcmp(name, "me"))
         return obj;
     return nullptr;
 }
 
 CharData *find_char_for_keyword(CharData *ch, const char *name) {
-    if (!str_cmp(name, "self") || !str_cmp(name, "me"))
+    if (!strcmp(name, "self") || !strcmp(name, "me"))
         return ch;
     return nullptr;
 }

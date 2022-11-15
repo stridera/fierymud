@@ -61,21 +61,7 @@ struct CompositionDef {
     int sus_acid;
     int sus_poison;
 };
-
-struct CompositionDef compositions[NUM_COMPOSITIONS] = {
-    {"flesh", "flesh", "fleshy", "&1", DAM_CRUSH, PHASE_SOLID, 100, 100, 100, 100, 100, 100, 100, 100, 100},
-    {"earth", "earth", "earthy", "&3", DAM_CRUSH, PHASE_SOLID, 90, 120, 50, 75, 75, 120, 40, 80, 0},
-    {"air", "air", "gaseous", "&6", DAM_SHOCK, PHASE_GAS, 20, 20, 20, 0, 120, 75, 0, 0, 0},
-    {"fire", "fire", "fiery", "&1&b", DAM_FIRE, PHASE_PLASMA, 30, 30, 30, 75, 0, 120, 100, 0, 0},
-    {"water", "water", "watery", "&4&b", DAM_WATER, PHASE_LIQUID, 120, 60, 40, 100, 50, 0, 120, 0, 0},
-    {"ice", "ice", "icy", "&4", DAM_CRUSH, PHASE_SOLID, 75, 90, 120, 100, 75, 0, 0, 0, 0},
-    {"mist", "mist", "misty", "&6&b", DAM_CRUSH, PHASE_GAS, 30, 30, 30, 80, 50, 100, 120, 0, 0},
-    {"ether", "nothing", "ethereal", "&5", DAM_SLASH, PHASE_ETHER, 0, 0, 0, 75, 75, 50, 25, 0, 0},
-    {"metal", "metal", "metallic", "&9&b", DAM_CRUSH, PHASE_SOLID, 25, 40, 75, 100, 25, 30, 50, 120, 0},
-    {"stone", "stone", "stony", "&8", DAM_CRUSH, PHASE_SOLID, 50, 75, 90, 0, 50, 75, 50, 100, 0},
-    {"bone", "bone", "bony", "&7&b", DAM_CRUSH, PHASE_SOLID, 80, 50, 120, 25, 120, 100, 25, 100, 0},
-    {"lava", "lava", "fluid", "&1", DAM_FIRE, PHASE_SOLID, 40, 40, 40, 50, 25, 120, 100, 50, 0},
-    {"plant", "plant material", "woody", "&2", DAM_SLASH, PHASE_SOLID, 120, 70, 60, 75, 120, 50, 75, 100, 50}};
+extern struct CompositionDef compositions[NUM_COMPOSITIONS];
 
 int parse_composition(CharData *ch, char *arg);
 void set_base_composition(CharData *ch, int newcomposition);

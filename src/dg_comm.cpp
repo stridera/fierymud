@@ -103,7 +103,7 @@ void sub_write_to_char(CharData *ch, char *tokens[], CharData *ctokens[], ObjDat
     }
 
     strcat(sb, tokens[i]);
-    strcat(sb, "\r\n");
+    strcat(sb, "\n");
 
     /* Want to capitalize it... by passing it through CAP, which will
      * skip past any &D color codes.

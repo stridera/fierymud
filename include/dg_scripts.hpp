@@ -134,6 +134,10 @@ struct TrigData {
     TrigData *next;
     TrigData *next_in_world; /* next in the global trigger list */
 };
+extern const char *trig_types[];
+extern const char *otrig_types[];
+extern const char *wtrig_types[];
+extern TrigData *trigger_list;
 
 /* a complete script (composed of several triggers) */
 struct ScriptData {
@@ -144,23 +148,6 @@ struct ScriptData {
 
     ScriptData *next; /* used for purged_scripts    */
 };
-
-TrigData *trigger_list = nullptr; /* all attached triggers */
-
-/* mob trigger types */
-const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
-                            "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
-                            "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "\n"};
-
-/* obj trigger types */
-const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
-                             "Drop",   "Give",   "Wear",    "DEATH",  "Remove",  "UNUSED", "UNUSED",
-                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
-
-/* wld trigger types */
-const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
-                             "Drop",   "Postentry", "UNUSED",  "UNUSED", "UNUSED", "UNUSED", "UNUSED",
-                             "UNUSED", "Cast",      "Leave",   "Door",   "UNUSED", "Time",   "\n"};
 
 /* function prototypes for dg_scripts.c */
 int find_real_zone_by_room(room_num vznum);
@@ -241,6 +228,7 @@ void free_proto_script(TriggerPrototypeList **list);
 bool format_script(DescriptorData *d, int indent_quantum);
 
 void add_var(TriggerVariableData **var_list, const char *name, const char *value);
+int remove_var(TriggerVariableData **var_list, const char *name);
 
 /* Macros for scripts */
 

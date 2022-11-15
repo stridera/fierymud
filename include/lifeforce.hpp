@@ -33,16 +33,7 @@ struct LifeDef {
     int sus_dispel;
     int sus_mental;
 };
-
-/* Values:
- *
- *   Name, Color,
- *   SUSCEPTIBILITY: heal, discorporate, dispel magic, mental
- */
-
-struct LifeDef lifeforces[NUM_LIFEFORCES] = {{"life", "&2&b", 100, 0, 0, 100},    {"undead", "&9&b", 75, 50, 0, 100},
-                                             {"magic", "&4&b", 0, 120, 50, 0},    {"celestial", "&6", 100, 50, 0, 75},
-                                             {"demonic", "&1&b", 100, 50, 0, 75}, {"elemental", "&3", 50, 100, 0, 50}};
+extern LifeDef lifeforces[NUM_LIFEFORCES];
 
 int parse_lifeforce(CharData *ch, char *arg);
 void convert_lifeforce(CharData *ch, int newlifeforce);

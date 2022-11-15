@@ -26,7 +26,7 @@ struct GrantType {
 };
 
 struct privflagdef {
-    char *desc;
+    const char *desc;
     int level;
     PRIV_FUNC(*update_func);
 };

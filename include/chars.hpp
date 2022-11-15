@@ -45,52 +45,8 @@
 #define MIN_ALIGNMENT (-1000)
 #define MAX_ALIGNMENT (1000)
 
-const char *stats_display =
-    "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\r\n"
-    "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\r\n"
-    "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\r\n\r\n";
-
-#define Y true
-#define N false
-
-int class_ok_race[NUM_RACES][NUM_CLASSES] = {
-    /* RACE   So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
-    /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* El */ {Y, Y, Y, Y, Y, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* Gn */ {Y, Y, Y, N, N, N, N, Y, Y, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
-    /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
-    /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
-    /* Dr */ {Y, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, N, N, Y, N, Y, N, Y, Y, Y, Y},
-    /* Du */ {N, Y, Y, Y, N, Y, N, N, N, Y, Y, N, N, N, Y, N, Y, N, Y, N, N, N, N, Y},
-    /* Og */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
-    /* Or */ {Y, Y, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N, Y, N, Y, N, Y, N, Y, Y, Y, Y},
-    /* HE */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, Y, N, Y, N, N, Y, Y, Y, Y, Y, N},
-    /* Ba */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, N},
-    /* Ha */ {Y, Y, Y, Y, N, N, N, N, N, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
-    /*plnt*/ {},
-    /*hmnd*/ {},
-    /*anml*/ {},
-    /*drgn*/ {},
-    /*gint*/ {},
-    /*othr*/ {},
-    /*gbln*/ {},
-    /*demn*/ {},
-    /*brwn*/ {},
-    /*fire*/ {},
-    /*frst*/ {},
-    /*acid*/ {},
-    /*ligh*/ {},
-    /*gas */ {},
-    /*DbFi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, N, Y, N},
-    /*DbFr*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, N, Y, Y, N},
-    /*DbAc*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
-    /*DbLi*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
-    /*DbGa*/ {Y, Y, N, Y, Y, Y, N, N, Y, N, N, Y, Y, N, Y, Y, Y, Y, N, N, Y, Y, Y, N},
-    /*svrf*/ {Y, Y, Y, N, N, N, N, N, Y, Y, N, Y, Y, N, N, N, Y, Y, Y, Y, Y, Y, Y, N},
-    /*SFae*/ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
-    /*UFae*/ {Y, Y, Y, N, N, N, N, Y, N, N, N, Y, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
-    /*nmph*/ {Y, Y, N, Y, N, N, Y, Y, Y, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
-};
+extern const char *stats_display;
+extern int class_ok_race[NUM_RACES][NUM_CLASSES];
 
 int get_base_saves(CharData *ch, int type);
 void roll_natural_abils(CharData *ch);

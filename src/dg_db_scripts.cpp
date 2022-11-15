@@ -62,11 +62,11 @@ void parse_trigger(FILE *trig_f, int nr) {
     cmds = s = fread_string(trig_f, buf2);
 
     CREATE(trig->cmdlist, CmdlistElement, 1);
-    trig->cmdlist->cmd = strdup(strtok(s, "\r\n"));
+    trig->cmdlist->cmd = strdup(strtok(s, "\n"));
     cle = trig->cmdlist;
     cle->next = nullptr; /*remove dangling pointers */
 
-    while ((s = strtok(nullptr, "\r\n"))) {
+    while ((s = strtok(nullptr, "\n"))) {
         CREATE(cle->next, CmdlistElement, 1);
         cle = cle->next;
         cle->cmd = strdup(s);

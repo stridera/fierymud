@@ -14,7 +14,6 @@
 
 #include "money.hpp"
 #include "rooms.hpp"
-#include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "text.hpp"
@@ -137,7 +136,7 @@ void drop_core(CharData *ch, const char *desc);
 #define LOWER(c) (IS_UPPER(c) ? ((c) + ('a' - 'A')) : (c))
 #define UPPER(c) (IS_LOWER(c) ? ((c) + ('A' - 'a')) : (c))
 
-#define IS_NEWLINE(ch) ((ch) == '\n' || (ch) == '\r')
+#define IS_NEWLINE(ch) ((ch) == '\n')
 #define CAP(st) (cap_by_color(st))
 
 #define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
@@ -202,7 +201,8 @@ void SET_FLAGS(flagvector field[], const flagvector flags[], const int num_flags
 void REMOVE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
 void TOGGLE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
 void COPY_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
-flagvector *ALL_FLAGS;
+
+extern flagvector *ALL_FLAGS;
 #define HAS_FLAGS(field, num_flags) (ANY_FLAGGED((field), ALL_FLAGS, (num_flags)))
 #define CLEAR_FLAGS(field, num_flags) (REMOVE_FLAGS((field), ALL_FLAGS, (num_flags)))
 
@@ -569,19 +569,6 @@ flagvector *ALL_FLAGS;
     (!(ch) || ((ch)->in_room == NOWHERE) || (((ch)->next_in_room == nullptr) && (world[(ch)->in_room].people == (ch))))
 
 /* OS compatibility ******************************************************/
-
-/* there could be some strange OS which doesn't have NULL... */
-#ifndef NULL
-#define NULL (void *)0
-#endif
-
-#if !defined(false)
-#define false 0
-#endif
-
-#if !defined(true)
-#define true (!false)
-#endif
 
 /* defines for fseek */
 #ifndef SEEK_SET

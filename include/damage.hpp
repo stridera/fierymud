@@ -39,31 +39,18 @@
 #define DAM_MENTAL 13
 #define NUM_DAMTYPES 14 /* keep updated */
 
-struct damdef {
+struct DamageDef {
     const char *name;
     const char *color;
     const char *verb1st;
     const char *verb2nd;
     const char *action;
 };
+extern DamageDef damtypes[NUM_DAMTYPES];
 
 #define VALID_DAMTYPE(d) (d >= 0 && d < NUM_DAMTYPES)
 
 /* name, color, verb1st, verb2nd, action */
-struct damdef damtypes[NUM_DAMTYPES] = {{"slash", "&3", "slash", "slashes", "slash"},
-                                        {"pierce", "&3", "pierce", "pierces", "slash"},
-                                        {"crush", "&3", "crush", "crushes", "crush"},
-                                        {"shock", "&4&b", "shock", "shocks", "shock"},
-                                        {"fire", "&1&b", "burn", "burns", "flame"},
-                                        {"water", "&4", "drown", "drowns", "flood"},
-                                        {"cold", "&4", "freeze", "freezes", "freeze"},
-                                        {"acid", "&2", "corrode", "corrodes", "spray"},
-                                        {"poison", "&2&b", "poison", "poisons", "poison"},
-                                        {"heal", "&6", "harm", "harms", "harm"},
-                                        {"align", "&6&b", "rebuke", "rebukes", "retribution"},
-                                        {"dispel", "&5&b", "dispel", "dispels", "dispersion"},
-                                        {"discorporate", "&5", "discorporate", "discorporates", "discorporation"},
-                                        {"mental", "", "punish", "punishes", "punishment"}};
 
 int parse_damtype(CharData *ch, char *arg);
 

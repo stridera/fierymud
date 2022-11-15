@@ -106,10 +106,10 @@ EVENTFUNC(gravity_event) {
 
         if (event->distance_fallen == 0) {
             if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
-                act("&1&bYou find yourself in midair and begin descending.&0\r\n\r\n", false, ch, 0, 0, TO_CHAR);
+                act("&1&bYou find yourself in midair and begin descending.&0\n\n", false, ch, 0, 0, TO_CHAR);
                 act("&1&b$n finds $mself in midair and begins descending.&0", false, ch, 0, 0, TO_ROOM);
             } else {
-                act("&1&bYou find yourself on thin air and fall&0 &2DOWN!&0\r\n\r\n", false, ch, 0, 0, TO_CHAR);
+                act("&1&bYou find yourself on thin air and fall&0 &2DOWN!&0\n\n", false, ch, 0, 0, TO_CHAR);
                 act("&1&b$n finds $mself on thin air and falls&0 &2DOWN!&0", false, ch, 0, 0, TO_ROOM);
                 falling_yell(ch);
             }
@@ -119,13 +119,13 @@ EVENTFUNC(gravity_event) {
         char_to_room(ch, to_room);
 
         if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
-            send_to_char("\r\n&2You float slowly downward.&0\r\n\r\n", ch);
+            send_to_char("\n&2You float slowly downward.&0\n\n", ch);
             act("&2$n floats slowly down from above.&0", false, ch, 0, 0, TO_ROOM);
         } else if (GET_SKILL(ch, SKILL_SAFEFALL)) {
-            send_to_char("\r\n&2You fall gracefully DOWN!&0\r\n\r\n", ch);
+            send_to_char("\n&2You fall gracefully DOWN!&0\n\n", ch);
             act("&2$n gracefully falls from above.&0", false, ch, 0, 0, TO_ROOM);
         } else {
-            send_to_char("\r\n&2DOWN!&0\r\n\r\n", ch);
+            send_to_char("\n&2DOWN!&0\n\n", ch);
             act("&2$n falls screaming from above.&0", false, ch, 0, 0, TO_ROOM);
         }
 
@@ -149,7 +149,7 @@ EVENTFUNC(gravity_event) {
                 ch ? "char" : "obj", world[event->start_room].vnum, world[in_room].vnum);
         log(buf);
         if (ch)
-            send_to_char("\r\nParadoxically, you end up where you began.\r\n", ch);
+            send_to_char("\nParadoxically, you end up where you began.\n", ch);
         CANCEL_GRAVITY;
     }
 
@@ -288,10 +288,10 @@ void gravity_assisted_landing(CharData *ch, int distance_fallen) {
     /* Levitation protects from damage */
     if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
         if (IS_WATER(IN_ROOM(ch))) {
-            send_to_char("\r\nYou come to rest above the surface of the water.\r\n", ch);
+            send_to_char("\nYou come to rest above the surface of the water.\n", ch);
             act("$n comes to rest above the surface of the water.", false, ch, 0, 0, TO_ROOM);
         } else {
-            send_to_char("\r\nYou come to rest just above the ground.\r\n", ch);
+            send_to_char("\nYou come to rest just above the ground.\n", ch);
             act("$n's descent ends just above the ground.", false, ch, 0, 0, TO_ROOM);
         }
         return;
@@ -304,19 +304,19 @@ void gravity_assisted_landing(CharData *ch, int distance_fallen) {
     /* If we have safe fall skill, then we take no damage
        for five rooms, partially for 5-15 and full at 15 David Endre 3/8/99 */
     if (IS_WATER(IN_ROOM(ch))) {
-        send_to_char("\r\nYou land with a tremendous &4SPLASH&2!&0\r\n", ch);
+        send_to_char("\nYou land with a tremendous &4SPLASH&2!&0\n", ch);
         act("$n lands with a tremendous &4SPLASH&2!&0", false, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen <= 5) {
             GET_POS(ch) = POS_STANDING;
             GET_STANCE(ch) = STANCE_ALERT;
-            send_to_char("\r\nYou tuck and roll, performing a beautiful landing!\r\n", ch);
+            send_to_char("\nYou tuck and roll, performing a beautiful landing!\n", ch);
             act("$n tucks and rolls, performing a beautiful landing!", false, ch, 0, 0, TO_ROOM);
         } else if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen < 15) {
-            send_to_char("\r\nYou gracefully land without taking too much damage.\r\n", ch);
+            send_to_char("\nYou gracefully land without taking too much damage.\n", ch);
             act("$n gracefully lands without taking too much damage.", false, ch, 0, 0, TO_ROOM);
         } else {
-            send_to_char("\r\nYou land with a resounding &1S&2P&1L&2A&1T&2!&0\r\n", ch);
+            send_to_char("\nYou land with a resounding &1S&2P&1L&2A&1T&2!&0\n", ch);
             act("$n lands with a resounding &1S&2P&1L&2A&1T&2!&0", false, ch, 0, 0, TO_ROOM);
         }
     }
@@ -349,7 +349,7 @@ void stop_follower(CharData *ch, int violent) {
 
     if (EFF_FLAGGED(ch, EFF_CHARM)) {
         if (DECEASED(ch))
-            send_to_char("A wave of sorrow nearly overcomes you.\r\n", ch->master);
+            send_to_char("A wave of sorrow nearly overcomes you.\n", ch->master);
         else if (violent) {
             act("You realize that $N is a jerk!", false, ch, 0, ch->master, TO_CHAR);
             act("$n realizes that $N is a jerk!", false, ch, 0, ch->master, TO_NOTVICT);
@@ -462,7 +462,7 @@ void disband_group(CharData *master, bool verbose, bool forceful) {
     assert(master->groupees);
 
     if (verbose)
-        send_to_char(forceful ? "&2&8The group has been disbanded.&0\r\n" : "&2&8You disband the group.&0\r\n", master);
+        send_to_char(forceful ? "&2&8The group has been disbanded.&0\n" : "&2&8You disband the group.&0\n", master);
 
     while (master->groupees) {
         g = master->groupees;
@@ -489,8 +489,8 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             CharData *new_master = ch->groupees->groupee;
 
             if (verbose) {
-                send_to_char("&2&8You're no longer leading your group.&0\r\n", ch);
-                send_to_char("&2&8You're now leading the group!&0\r\n", new_master);
+                send_to_char("&2&8You're no longer leading your group.&0\n", ch);
+                send_to_char("&2&8You're now leading the group!&0\n", new_master);
             }
 
             /* Move groupees to new master. */
@@ -776,12 +776,12 @@ void mount_pos_check(CharData *mount) {
         /* What we really need is a generic "got wet" function, which would take
          * care of flames and ruin people's spellbooks (KIDDING!) */
         if (EFF_FLAGGED(ch, EFF_ON_FIRE)) {
-            cprintf(ch,
-                    "You fall into the water, and your flames are put out with a "
-                    "hiss of steam.\r\n");
+            char_printf(ch,
+                        "You fall into the water, and your flames are put out with a "
+                        "hiss of steam.\n");
             act("$n falls into the water.  $U$s flames go out with a hissing sound.", false, ch, 0, 0, TO_ROOM);
         } else {
-            cprintf(ch, "You fall into the water.\r\n");
+            char_printf(ch, "You fall into the water.\n");
             act("$n falls into the water.", false, ch, 0, 0, TO_ROOM);
         }
         GET_POS(ch) = POS_PRONE;
@@ -794,7 +794,7 @@ void mount_pos_check(CharData *mount) {
         GET_STANCE(ch) = STANCE_ALERT;
         WAIT_STATE(ch, PULSE_VIOLENCE);
     } else {
-        cprintf(ch, "You find yourself dumped to the ground.\r\n");
+        char_printf(ch, "You find yourself dumped to the ground.\n");
         act("$n is dumped onto the ground.", false, ch, 0, 0, TO_ROOM);
         GET_POS(ch) = POS_PRONE;
         GET_STANCE(ch) = STANCE_ALERT;

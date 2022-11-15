@@ -20,6 +20,8 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+const char *cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
+
 Exit *create_exit(int dest_room) {
     Exit *e;
 

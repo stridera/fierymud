@@ -17,6 +17,18 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+/* Values for the spheredef struct:
+ *
+ *   Name, color, skill
+ */
+
+SphereDef spheres[NUM_SPHERES] = {{"generic", "&5", SKILL_SPHERE_GENERIC},  {"fire", "&1", SKILL_SPHERE_FIRE},
+                                  {"water", "&4", SKILL_SPHERE_WATER},      {"earth", "&3", SKILL_SPHERE_EARTH},
+                                  {"air", "&6", SKILL_SPHERE_AIR},          {"healing", "&2", SKILL_SPHERE_HEALING},
+                                  {"protection", "&4", SKILL_SPHERE_PROT},  {"enchantment", "&5", SKILL_SPHERE_ENCHANT},
+                                  {"summoning", "&3", SKILL_SPHERE_SUMMON}, {"death", "&9&b", SKILL_SPHERE_DEATH},
+                                  {"divination", "&6", SKILL_SPHERE_DIVIN}};
+
 int _skill_to_sphere(int skill, int recursed) {
     switch (skill) {
     case SKILL_SPHERE_GENERIC:

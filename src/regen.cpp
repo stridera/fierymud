@@ -134,7 +134,7 @@ EVENTFUNC(rage_event) {
             GET_POS(ch) = POS_STANDING;
         }
         start_berserking(ch);
-        send_to_char("&1&8Your rage consumes you, taking control of your body...&0\r\n", ch);
+        send_to_char("&1&8Your rage consumes you, taking control of your body...&0\n", ch);
         if (IN_ROOM(ch) != NOWHERE)
             act("$n shudders as $s rage causes $m to go berserk!", true, ch, 0, 0, TO_ROOM);
     }
@@ -142,7 +142,7 @@ EVENTFUNC(rage_event) {
     if (GET_RAGE(ch) > 0)
         return 4 * PASSES_PER_SEC;
     else {
-        send_to_char("Your rage recedes and you feel calmer.\r\n", ch);
+        send_to_char("Your rage recedes and you feel calmer.\n", ch);
         stop_berserking(ch);
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_RAGE);
         return EVENT_FINISHED;

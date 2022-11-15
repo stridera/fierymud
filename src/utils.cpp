@@ -28,11 +28,15 @@
 #include "races.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "weather.hpp"
 
+#include <fmt/format.h>
 #include <sys/stat.h> /* For stat() */
+
+flagvector *ALL_FLAGS;
 
 int monk_weight_penalty(CharData *ch) {
     if (!IS_NPC(ch) && GET_CLASS(ch) == CLASS_MONK && GET_LEVEL(ch) >= 20) {
@@ -225,7 +229,7 @@ void mudlog_printf(int severity, int level, const char *str, ...) {
     /* Make it "[ buf ]" */
     buf[0] = '[';
     buf[1] = ' ';
-    strcpy(buf + slen + 2, " ]\r\n");
+    strcpy(buf + slen + 2, " ]\n");
 
     for (i = descriptor_list; i; i = i->next)
         if (!i->connected && !PLR_FLAGGED(i->character, PLR_WRITING) && !EDITING(i))
@@ -400,7 +404,7 @@ void die_consentee_clean(CharData *ch) {
 
     for (i = character_list; i; i = i->next) {
         if (CONSENT(i) == ch) {
-            send_to_char("&0&7&bThe person you consented to has left the game.&0\r\n", i);
+            send_to_char("&0&7&bThe person you consented to has left the game.&0\n", i);
             CONSENT(i) = nullptr;
         }
     }
@@ -450,9 +454,9 @@ CharData *is_playing(char *vict_name) {
     DescriptorData *i;
     for (i = descriptor_list; i; i = i->next)
         if (i->connected == CON_PLAYING) {
-            if (!str_cmp(GET_NAME(i->character), vict_name))
+            if (!strcmp(GET_NAME(i->character), vict_name))
                 return i->character;
-            else if (i->original && !str_cmp(GET_NAME(i->original), vict_name))
+            else if (i->original && !strcmp(GET_NAME(i->original), vict_name))
                 return i->original;
         }
     return nullptr;
@@ -811,12 +815,12 @@ struct objdef {
 
 #define OBJNAME(i) (((objdef *)((char *)(objects) + objsize * i))->name)
 
-int parse_obj_name(const CharData *ch, const char *arg, const char *objname, int numobjs, void *objects, int objsize) {
+int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numobjs, void *objects, int objsize) {
     int i, answer = -1, best = -1;
 
     if (!*arg) {
         if (ch) {
-            sprintf(buf, "What %s?\r\n", objname);
+            sprintf(buf, "What %s?\n", objname);
             send_to_char(buf, ch);
         }
         return -1;
@@ -845,7 +849,7 @@ int parse_obj_name(const CharData *ch, const char *arg, const char *objname, int
         answer = best;
     if (answer == -1) {
         if (ch) {
-            sprintf(buf, "There is no such %s.\r\n", objname);
+            sprintf(buf, "There is no such %s.\n", objname);
             send_to_char(buf, ch);
         }
     }
@@ -970,7 +974,7 @@ void drop_core(CharData *ch, const char *desc) {
     static int corenum = 0;
     char initcorename[MAX_STRING_LENGTH];
     char corename[MAX_STRING_LENGTH];
-    stat finfo;
+    struct stat finfo;
     bool dropped = false;
 
     pid_t child = fork();
@@ -997,9 +1001,9 @@ void drop_core(CharData *ch, const char *desc) {
         }
         if (ch) {
             if (dropped) {
-                cprintf(ch, "The core was dumped to %s\r\n", corename);
+                char_printf(ch, "The core was dumped to %s\n", corename);
             } else {
-                cprintf(ch, "Sorry, the core dump failed!\r\n");
+                char_printf(ch, "Sorry, the core dump failed!\n");
             }
         }
     }

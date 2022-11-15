@@ -50,7 +50,7 @@ struct SkillDef {
     const char *wearoff;
 };
 
-struct SkillDef skills[TOP_SKILL_DEFINE + 1];
+extern SkillDef skills[TOP_SKILL_DEFINE + 1];
 
 #define SINFO skills[spellnum]
 
@@ -82,18 +82,7 @@ void skill_assign(int skillnum, int class_code, int level);
 int talent_type(int skill_num);
 bool get_spell_assignment_circle(CharData *ch, int spell, int *circle_assignment, int *level_assignment);
 
-const char *talent_types[5] = {
-    "talent", "spell", "skill", "chant", "song",
-};
-
-const char *targets[NUM_TAR_FLAGS + 1] = {"IGNORE",    "CHAR_ROOM", "CHAR_WORLD", "FIGHT_SELF", "FIGHT_VICT",
-                                          "SELF_ONLY", "NOT_SELF",  "OBJ_INV",    "OBJ_ROOM",   "OBJ_WORLD",
-                                          "OBJ_EQUIP", "STRING",    "NIGHT_ONLY", "DAY_ONLY",   "OUTDOORS",
-                                          "GROUND",    "CONTACT",   "DIRECT",     "\n"};
-
-const char *routines[NUM_ROUTINE_TYPES + 1] = {
-    "DAMAGE", "AFFECT", "UNAFFECT", "POINT",  "ALTER_OBJ", "GROUP",     "MASS",
-    "AREA",   "SUMMON", "CREATION", "MANUAL", "ROOM",      "BULK_OBJS", "\n",
-};
-
-static int skill_sort_info[TOP_SKILL + 1];
+extern const char *talent_types[5];
+extern const char *targets[NUM_TAR_FLAGS + 1];
+extern const char *routines[NUM_ROUTINE_TYPES + 1];
+extern int skill_sort_info[TOP_SKILL + 1];

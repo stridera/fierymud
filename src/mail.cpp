@@ -28,24 +28,23 @@
 
 char *RICK_SALA =
     "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
-    "=~=~=~=~=~=~=\r\n"
+    "=~=~=~=~=~=~=\n"
     "=~=~=  Rick Sala known to many as his admin character "
-    "Pergus        =~=~=\r\n"
+    "Pergus        =~=~=\n"
     "=~=~=  passed away on June 21, 2006.                        "
-    "        =~=~=\r\n"
+    "        =~=~=\n"
     "=~=~=  Rick was a valuable friend and asset to us all and "
-    "is sorely =~=~=\r\n"
+    "is sorely =~=~=\n"
     "=~=~=  missed for his wit, humor, and the friend he was to "
-    "us all.  =~=~=\r\n"
+    "us all.  =~=~=\n"
     "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
-    "=~=~=~=~=~=~=\r\n";
+    "=~=~=~=~=~=~=\n";
 
 void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
 void postmaster_check_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
 void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
 
 void money_convert(CharData *ch, int amount);
-int no_mail;
 int find_name(char *name);
 
 MailIndex *mail_index = 0;   /* list of recs in the mail file  */
@@ -153,7 +152,7 @@ void index_mail(long id_to_index, long pos) {
    and indexes all entries currently in the mail file. */
 int scan_file(void) {
     FILE *mail_file;
-    header_block_type next_block;
+    HeaderBlock next_block;
     int total_messages = 0, block_num = 0;
     char buf[100];
 
@@ -163,7 +162,7 @@ int scan_file(void) {
         fclose(mail_file);
         return 1;
     }
-    while (fread(&next_block, sizeof(header_block_type), 1, mail_file)) {
+    while (fread(&next_block, sizeof(HeaderBlock), 1, mail_file)) {
         if (next_block.block_type == HEADER_BLOCK) {
             index_mail(next_block.header_data.to, block_num * BLOCK_SIZE);
             total_messages++;
@@ -202,15 +201,15 @@ int has_mail(long recipient) {
 
 /*void store_mail(long to, long from, char *message_pointer)*/
 void store_mail(long to, long from, int vnum, char *message_pointer) {
-    header_block_type header;
+    HeaderBlock header;
     DataBlock data;
     long last_address, target_address;
     char *msg_txt = message_pointer;
     int bytes_written = 0;
     int total_length = strlen(message_pointer);
 
-    assert(sizeof(header_block_type) == sizeof(DataBlock));
-    assert(sizeof(header_block_type) == BLOCK_SIZE);
+    assert(sizeof(HeaderBlock) == sizeof(DataBlock));
+    assert(sizeof(HeaderBlock) == BLOCK_SIZE);
 
     if (from < 0 || to < 0 || !*message_pointer) {
         log("SYSERR: Mail system -- non-fatal error #5.");
@@ -297,7 +296,7 @@ char *read_delete(long recipient, int *obj_vnum)
    recipient_formatted is the name as it should appear on the mail
    header (i.e. the text handed to the player) */
 {
-    header_block_type header;
+    HeaderBlock header;
     DataBlock data;
     MailIndex *mail_pointer, *prev_mail;
     PositionList *position_pointer;
@@ -354,10 +353,10 @@ char *read_delete(long recipient, int *obj_vnum)
     *obj_vnum = header.header_data.vnum;
 
     sprintf(buf,
-            " * * * * &2FieryMUD Mail System&0 * * * *\r\n"
-            "Date: %s\r\n"
-            "  To: %s\r\n"
-            "From: %s\r\n\r\n",
+            " * * * * &2FieryMUD Mail System&0 * * * *\n"
+            "Date: %s\n"
+            "  To: %s\n"
+            "From: %s\n\n",
             buf1, get_name_by_id(recipient), get_name_by_id(header.header_data.from));
 
     string_size = (sizeof(char) * (strlen(buf) + strlen(header.txt) + 3));
@@ -403,18 +402,18 @@ SPECIAL(postmaster) {
         return 0;
 
     if (no_mail) {
-        send_to_char("Sorry, the mail system is having technical difficulties.\r\n", ch);
+        send_to_char("Sorry, the mail system is having technical difficulties.\n", ch);
         return 0;
     }
 
     if (CMD_IS("mail")) {
-        postmaster_send_mail(ch, me, cmd, argument);
+        postmaster_send_mail(ch, (CharData *)me, cmd, argument);
         return 1;
     } else if (CMD_IS("check")) {
-        postmaster_check_mail(ch, me, cmd, argument);
+        postmaster_check_mail(ch, (CharData *)me, cmd, argument);
         return 1;
     } else if (CMD_IS("receive")) {
-        postmaster_receive_mail(ch, me, cmd, argument);
+        postmaster_receive_mail(ch, (CharData *)me, cmd, argument);
         return 1;
     } else
         return 0;
@@ -479,14 +478,14 @@ void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
         price += STAMP_PRICE * .1;
         price += GET_OBJ_WEIGHT(obj) * 100;
     } else if (*buf2) {
-        cprintf(ch, "You don't seem to have a %s to mail.\r\n", buf2);
+        char_printf(ch, "You don't seem to have a %s to mail.\n", buf2);
         return;
     }
 
     if (GET_CASH(ch) < price) {
         if (GET_LEVEL(ch) < 100) {
             sprintf(buf,
-                    "$n tells you, 'A stamp costs %d copper coins.'\r\n"
+                    "$n tells you, 'A stamp costs %d copper coins.'\n"
                     "$n tells you, '...which I see you can't afford.'",
                     price);
             act(buf, false, mailman, 0, ch, TO_VICT);
@@ -515,13 +514,13 @@ void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
 
     if (GET_LEVEL(ch) < 100)
         sprintf(buf,
-                "$n tells you, 'I'll take %d coins for the stamp.'\r\n"
+                "$n tells you, 'I'll take %d coins for the stamp.'\n"
                 "$n tells you, 'Write your message, (/s saves /h for help)'",
                 price);
     else
         sprintf(buf,
                 "$n tells you, 'I refuse to take money from a deity.  This "
-                "stamp is on me.'\r\n"
+                "stamp is on me.'\n"
                 "$n tells you, 'Write your message, (/s saves /h for help)'");
 
     act(buf, false, mailman, 0, ch, TO_VICT);
@@ -569,7 +568,7 @@ void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, char *arg
         obj->action_description = read_delete(GET_IDNUM(ch), &obj_vnum);
 
         if (obj->action_description == nullptr)
-            obj->action_description = strdup("Mail system error - please report.  Error #11.\r\n");
+            obj->action_description = strdup("Mail system error - please report.  Error #11.\n");
 
         obj_to_char(obj, ch);
 

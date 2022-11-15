@@ -138,7 +138,7 @@ OCMD(do_oforce) {
         return;
     }
 
-    if (!str_cmp(arg1, "all")) {
+    if (!strcmp(arg1, "all")) {
         if ((room = obj_room(obj)) == NOWHERE)
             obj_log(obj, t, "oforce called by object in NOWHERE");
         else {
@@ -273,7 +273,7 @@ OCMD(do_oteleport) {
     if (target == NOWHERE)
         obj_log(obj, t, "oteleport target is an invalid room");
 
-    else if (!str_cmp(arg1, "all")) {
+    else if (!strcmp(arg1, "all")) {
         rm = obj_room(obj);
         if (target == rm)
             obj_log(obj, t, "oteleport target is itself");
@@ -374,7 +374,7 @@ OCMD(do_oheal) {
 
     if ((ch = find_char_around_obj(obj, find_dg_by_name(name)))) {
         if (GET_LEVEL(ch) >= LVL_IMMORT) {
-            send_to_char("Being a god, you don't need healing.\r\n", ch);
+            send_to_char("Being a god, you don't need healing.\n", ch);
             return;
         }
         hurt_char(ch, nullptr, -dam, true);

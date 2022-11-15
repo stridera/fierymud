@@ -162,7 +162,7 @@ void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
 
         /* Sending the message to the bystander or target. */
         format_act(buf, saybuf, ch, tobj, tch, gch);
-        cprintf(gch, "%s", buf);
+        char_printf(gch, "%s", buf);
     }
 }
 
@@ -191,19 +191,19 @@ int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, 
     /* Don't check PEACEFUL and NOMAGIC flags for gods */
     if (GET_LEVEL(caster) < LVL_ATTENDANT) {
         if (IS_SPELL(spellnum) && ROOM_FLAGGED(caster->in_room, ROOM_NOMAGIC)) {
-            send_to_char("Your magic fizzles out and dies.\r\n", caster);
+            send_to_char("Your magic fizzles out and dies.\n", caster);
             act("$n's magic fizzles out and dies.", false, caster, 0, 0, TO_ROOM);
             return false;
         }
 
         if (ROOM_FLAGGED(caster->in_room, ROOM_PEACEFUL) && SINFO.violent) {
             if (IS_SPELL(spellnum)) {
-                send_to_char("A flash of white light fills the room, dispelling your violent magic!\r\n", caster);
+                send_to_char("A flash of white light fills the room, dispelling your violent magic!\n", caster);
                 act("White light from no particular source suddenly fills the room, then vanishes.", false, caster, 0,
                     0, TO_ROOM);
             } else { /* song/chant */
-                send_to_char("Your words dissolve into peaceful nothingness...\r\n", caster);
-                act("$n's words fade away into peaceful nothingness...\r\n", false, caster, 0, 0, TO_ROOM);
+                send_to_char("Your words dissolve into peaceful nothingness...\n", caster);
+                act("$n's words fade away into peaceful nothingness...\n", false, caster, 0, 0, TO_ROOM);
             }
             return false;
         }
@@ -697,7 +697,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             if (tch) {
                 if (tch == ch) {
                     if (SINFO.targets & TAR_NOT_SELF) {
-                        send_to_char("You cannot cast this spell upon yourself.\r\n", ch);
+                        send_to_char("You cannot cast this spell upon yourself.\n", ch);
                         return;
                     } else {
                         act("You point $p at yourself.", false, ch, obj, 0, TO_CHAR);
@@ -739,7 +739,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                 act("$n waves $p in the air.", true, ch, obj, 0, TO_ROOM);
             }
         } else if (*arg) {
-            sprintf(buf, "You can't see any %s here.\r\n", arg);
+            sprintf(buf, "You can't see any %s here.\n", arg);
             send_to_char(buf, ch);
             return;
         } else {
@@ -835,16 +835,16 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             if (obj != nullptr)
                 extract_obj(obj);
         } else if (scroll_failure == SCROLL_FAILURE_NOTSELF) {
-            send_to_char("You cannot cast this spell on yourself.\r\n", ch);
+            send_to_char("You cannot cast this spell on yourself.\n", ch);
             return;
         } else if (scroll_failure == SCROLL_FAILURE_ONLYSELF) {
-            send_to_char("You can only cast this spell on yourself.\r\n", ch);
+            send_to_char("You can only cast this spell on yourself.\n", ch);
             return;
         } else if (!(*arg)) {
             act("What do you want to recite $p at?", false, ch, obj, nullptr, TO_CHAR);
             return;
         } else {
-            sprintf(buf, "You can't see any %s here.\r\n", arg);
+            sprintf(buf, "You can't see any %s here.\n", arg);
             send_to_char(buf, ch);
             return;
         }
@@ -876,13 +876,13 @@ bool check_spell_stance_position(CharData *ch, int spellnum) {
     if (GET_STANCE(ch) < STANCE_ALERT) {
         switch (GET_STANCE(ch)) {
         case STANCE_SLEEPING:
-            send_to_char("You dream about great magical powers.\r\n", ch);
+            send_to_char("You dream about great magical powers.\n", ch);
             break;
         case STANCE_RESTING:
-            send_to_char("You cannot concentrate while resting.\r\n", ch);
+            send_to_char("You cannot concentrate while resting.\n", ch);
             break;
         default:
-            send_to_char("You can't do much of anything like this!\r\n", ch);
+            send_to_char("You can't do much of anything like this!\n", ch);
             break;
         }
         return 0;
@@ -891,19 +891,19 @@ bool check_spell_stance_position(CharData *ch, int spellnum) {
     if (GET_POS(ch) < SINFO.minpos) {
         switch (SINFO.minpos) {
         case POS_FLYING:
-            cprintf(ch, "You must be flying to cast this spell.\r\n");
+            char_printf(ch, "You must be flying to cast this spell.\n");
             break;
         case POS_STANDING:
-            cprintf(ch, "You can only cast this spell while standing.\r\n");
+            char_printf(ch, "You can only cast this spell while standing.\n");
             break;
         case POS_KNEELING:
-            cprintf(ch, "You must at least be kneeling to cast this spell.\r\n");
+            char_printf(ch, "You must at least be kneeling to cast this spell.\n");
             break;
         case POS_SITTING:
-            cprintf(ch, "You'll have to at least sit up to cast this spell.\r\n");
+            char_printf(ch, "You'll have to at least sit up to cast this spell.\n");
             break;
         default:
-            cprintf(ch, "Sorry, you can't cast this spell.  Who knows why.\r\n");
+            char_printf(ch, "Sorry, you can't cast this spell.  Who knows why.\n");
             break;
         }
         return 0;
@@ -934,7 +934,7 @@ int cast_spell(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
     }
 
     if (GET_STANCE(ch) == STANCE_FIGHTING && !SINFO.fighting_ok && GET_LEVEL(ch) <= LVL_IMMORT) {
-        send_to_char("Impossible!  You can't concentrate enough!\r\n", ch);
+        send_to_char("Impossible!  You can't concentrate enough!\n", ch);
         return 0;
     }
 
@@ -942,13 +942,13 @@ int cast_spell(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         return 0;
 
     if (EFF_FLAGGED(ch, EFF_CHARM) && (ch->master == tch) && SINFO.violent) {
-        send_to_char("You are afraid you might hurt your master!\r\n", ch);
+        send_to_char("You are afraid you might hurt your master!\n", ch);
         return 0;
     }
     if (!check_spell_target(spellnum, ch, tch, tobj))
         return 0;
     if (IS_SET(SINFO.routines, MAG_GROUP) && !IS_GROUPED(ch)) {
-        send_to_char("You can't cast this spell if you're not in a group!\r\n", ch);
+        send_to_char("You can't cast this spell if you're not in a group!\n", ch);
         return 0;
     }
     if (GET_LEVEL(ch) < LVL_IMMORT) {
@@ -957,14 +957,14 @@ int cast_spell(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         case CLASS_PALADIN:
         case CLASS_RANGER:
             if (!IS_GOOD(ch)) {
-                send_to_char("Your deity has removed your holy powers!\r\n", ch);
+                send_to_char("Your deity has removed your holy powers!\n", ch);
                 return 0;
             }
             break;
         case CLASS_DIABOLIST:
         case CLASS_ANTI_PALADIN:
             if (!IS_EVIL(ch)) {
-                send_to_char("Your deity has removed your unholy powers!\r\n", ch);
+                send_to_char("Your deity has removed your unholy powers!\n", ch);
                 return 0;
             }
             break;
@@ -996,20 +996,20 @@ int chant(CharData *ch, CharData *tch, ObjData *obj, int chantnum) {
     }
 
     if (GET_STANCE(ch) == STANCE_FIGHTING && !skills[chantnum].fighting_ok && GET_LEVEL(ch) <= LVL_IMMORT) {
-        send_to_char("Impossible!  You can't concentrate enough!\r\n", ch);
+        send_to_char("Impossible!  You can't concentrate enough!\n", ch);
         return 0;
     }
 
     if (GET_STANCE(ch) < STANCE_ALERT) {
         switch (GET_STANCE(ch)) {
         case STANCE_SLEEPING:
-            send_to_char("You dream about great magical powers.\r\n", ch);
+            send_to_char("You dream about great magical powers.\n", ch);
             break;
         case STANCE_RESTING:
-            send_to_char("You cannot concentrate while resting.\r\n", ch);
+            send_to_char("You cannot concentrate while resting.\n", ch);
             break;
         default:
-            send_to_char("You can't do much of anything like this!\r\n", ch);
+            send_to_char("You can't do much of anything like this!\n", ch);
             break;
         }
         return 0;
@@ -1018,19 +1018,19 @@ int chant(CharData *ch, CharData *tch, ObjData *obj, int chantnum) {
     if (GET_POS(ch) < skills[chantnum].minpos) {
         switch (skills[chantnum].minpos) {
         case POS_FLYING:
-            cprintf(ch, "You must be flying to chant this song.\r\n");
+            char_printf(ch, "You must be flying to chant this song.\n");
             break;
         case POS_STANDING:
-            cprintf(ch, "You can only chant this song while standing.\r\n");
+            char_printf(ch, "You can only chant this song while standing.\n");
             break;
         case POS_KNEELING:
-            cprintf(ch, "You must at least be kneeling to chant this song.\r\n");
+            char_printf(ch, "You must at least be kneeling to chant this song.\n");
             break;
         case POS_SITTING:
-            cprintf(ch, "You'll have to at least sit up to chant this song.\r\n");
+            char_printf(ch, "You'll have to at least sit up to chant this song.\n");
             break;
         default:
-            cprintf(ch, "Sorry, you can't chant this song.  Who knows why.\r\n");
+            char_printf(ch, "Sorry, you can't chant this song.  Who knows why.\n");
             break;
         }
         return 0;
@@ -1039,19 +1039,19 @@ int chant(CharData *ch, CharData *tch, ObjData *obj, int chantnum) {
     if (!check_spell_target(chantnum, ch, tch, obj))
         return 0;
     if (EFF_FLAGGED(ch, EFF_CHARM) && (ch->master == tch) && skills[chantnum].violent) {
-        send_to_char("You are afraid you might hurt your master!\r\n", ch);
+        send_to_char("You are afraid you might hurt your master!\n", ch);
         return 0;
     }
     if (IS_SET(skills[chantnum].routines, MAG_GROUP) && !IS_GROUPED(ch)) {
-        send_to_char("You can't chant this song if you're not in a group!\r\n", ch);
+        send_to_char("You can't chant this song if you're not in a group!\n", ch);
         return 0;
     }
 
     act("$n begins chanting in a deep voice.", false, ch, 0, 0, TO_ROOM);
-    send_to_char("You begin chanting in a deep voice.\r\n", ch);
+    send_to_char("You begin chanting in a deep voice.\n", ch);
 
     if (number(0, 101) > 50 + GET_SKILL(ch, SKILL_CHANT)) {
-        send_to_char("You choke and grunt a raspy wail of pain.\r\n", ch);
+        send_to_char("You choke and grunt a raspy wail of pain.\n", ch);
         act("$n chokes on $s tears and coughs a raspy grunt.", true, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
@@ -1076,8 +1076,8 @@ bool music( CharData *ch, int music) {
             else
                 sprintf(buf1, "%d hours", hours);
             sprintf(buf,
-                    "You're still drained from performing recently!\r\n"
-                    "You'll be able to perform again in another %s.\r\n",
+                    "You're still drained from performing recently!\n"
+                    "You'll be able to perform again in another %s.\n",
                     buf1);
             send_to_char(buf, ch);
             return true;
@@ -1096,20 +1096,20 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
     }
 
     if (GET_STANCE(ch) == STANCE_FIGHTING && !skills[songnum].fighting_ok && GET_LEVEL(ch) <= LVL_IMMORT) {
-        send_to_char("Impossible!  You can't concentrate enough!\r\n", ch);
+        send_to_char("Impossible!  You can't concentrate enough!\n", ch);
         return 0;
     }
 
     if (GET_STANCE(ch) < STANCE_ALERT) {
         switch (GET_STANCE(ch)) {
         case STANCE_SLEEPING:
-            send_to_char("You dream about heart-stopping performances.\r\n", ch);
+            send_to_char("You dream about heart-stopping performances.\n", ch);
             break;
         case STANCE_RESTING:
-            send_to_char("You cannot concentrate while resting.\r\n", ch);
+            send_to_char("You cannot concentrate while resting.\n", ch);
             break;
         default:
-            send_to_char("You can't do much of anything like this!\r\n", ch);
+            send_to_char("You can't do much of anything like this!\n", ch);
             break;
         }
         return 0;
@@ -1118,19 +1118,19 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
     if (GET_POS(ch) < skills[songnum].minpos) {
         switch (skills[songnum].minpos) {
         case POS_FLYING:
-            cprintf(ch, "You must be flying to perform this.\r\n");
+            char_printf(ch, "You must be flying to perform this.\n");
             break;
         case POS_STANDING:
-            cprintf(ch, "You can only perform this while standing.\r\n");
+            char_printf(ch, "You can only perform this while standing.\n");
             break;
         case POS_KNEELING:
-            cprintf(ch, "You must at least be kneeling to perform this.\r\n");
+            char_printf(ch, "You must at least be kneeling to perform this.\n");
             break;
         case POS_SITTING:
-            cprintf(ch, "You'll have to at least sit up to perform this.\r\n");
+            char_printf(ch, "You'll have to at least sit up to perform this.\n");
             break;
         default:
-            cprintf(ch, "Sorry, you can't perform this.  Who knows why.\r\n");
+            char_printf(ch, "Sorry, you can't perform this.  Who knows why.\n");
             break;
         }
         return 0;
@@ -1139,19 +1139,19 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
     if (!check_spell_target(songnum, ch, tch, obj))
         return 0;
     if (EFF_FLAGGED(ch, EFF_CHARM) && (ch->master == tch) && skills[songnum].violent) {
-        send_to_char("You are afraid you might hurt your master!\r\n", ch);
+        send_to_char("You are afraid you might hurt your master!\n", ch);
         return 0;
     }
     if (IS_SET(skills[songnum].routines, MAG_GROUP) && !IS_GROUPED(ch)) {
-        send_to_char("You can't perform this if you're not in a group!\r\n", ch);
+        send_to_char("You can't perform this if you're not in a group!\n", ch);
         return 0;
     }
 
     act("$n begins playing beautiful music.", false, ch, 0, 0, TO_ROOM);
-    send_to_char("You begin a virtuosic performance.\r\n", ch);
+    send_to_char("You begin a virtuosic performance.\n", ch);
 
     if (number(0, 101) > 50 + GET_SKILL(ch, SKILL_PERFORM)) {
-        send_to_char("You choke and grunt a raspy wail of pain.\r\n", ch);
+        send_to_char("You choke and grunt a raspy wail of pain.\n", ch);
         act("$n chokes on $s tears and coughs a raspy grunt.", true, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
@@ -1181,27 +1181,27 @@ ACMD(do_cast) {
     int target_status = TARGET_NULL;
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
-        send_to_char("Your lips move, but no sound forms.\r\n", ch);
+        send_to_char("Your lips move, but no sound forms.\n", ch);
         return;
     }
 
     if (CASTING(ch)) {
-        send_to_char("But you are already casting a spell!\r\n", ch);
+        send_to_char("But you are already casting a spell!\n", ch);
         return;
     }
 
     if (GET_STANCE(ch) < STANCE_ALERT) {
-        send_to_char("You are too relaxed.\r\n", ch);
+        send_to_char("You are too relaxed.\n", ch);
         return;
     }
 
     if (subcmd == SCMD_CHANT) {
         if (IS_NPC(ch)) {
-            send_to_char("NPC's can't chant!\r\n", ch);
+            send_to_char("NPC's can't chant!\n", ch);
             return;
         }
         if (!GET_SKILL(ch, SKILL_CHANT)) {
-            send_to_char("You imitate a monk chanting...Monkey see, monkey do?\r\n", ch);
+            send_to_char("You imitate a monk chanting...Monkey see, monkey do?\n", ch);
             return;
         }
         if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, CD_CHANT)) {
@@ -1211,8 +1211,8 @@ ACMD(do_cast) {
             else
                 sprintf(buf1, "%d hours", hours);
             sprintf(buf,
-                    "You're still out of breath from chanting recently!\r\n"
-                    "You'll be able to chant again in another %s.\r\n",
+                    "You're still out of breath from chanting recently!\n"
+                    "You'll be able to chant again in another %s.\n",
                     buf1);
             send_to_char(buf, ch);
             return;
@@ -1221,11 +1221,11 @@ ACMD(do_cast) {
 
     if (subcmd == SCMD_PERFORM) {
         if (IS_NPC(ch)) {
-            send_to_char("NPC's can't perform!\r\n", ch);
+            send_to_char("NPC's can't perform!\n", ch);
             return;
         }
         if (!GET_SKILL(ch, SKILL_PERFORM)) {
-            send_to_char("You have no idea how to perform anything good.\r\n", ch);
+            send_to_char("You have no idea how to perform anything good.\n", ch);
             return;
         }
         if (GET_LEVEL(ch) < LVL_GOD) {
@@ -1252,7 +1252,7 @@ ACMD(do_cast) {
                 if (!GET_COOLDOWN(ch, CD_MUSIC_1))
                     break;
             default:
-                sprintf(buf, "You're still drained from performing recently!\r\n");
+                sprintf(buf, "You're still drained from performing recently!\n");
                 send_to_char(buf, ch);
                 if GET_COOLDOWN (ch, CD_MUSIC_1) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_1) / (1 MUD_HR);
@@ -1260,7 +1260,7 @@ ACMD(do_cast) {
                         strcpy(buf1, "hour");
                     else {
                         sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance one will refresh in %s.\r\n", buf1);
+                        sprintf(buf, "Performance one will refresh in %s.\n", buf1);
                         send_to_char(buf, ch);
                     }
                 }
@@ -1270,7 +1270,7 @@ ACMD(do_cast) {
                         strcpy(buf1, "hour");
                     else {
                         sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance two will refresh in %s.\r\n", buf1);
+                        sprintf(buf, "Performance two will refresh in %s.\n", buf1);
                         send_to_char(buf, ch);
                     }
                 }
@@ -1280,7 +1280,7 @@ ACMD(do_cast) {
                         strcpy(buf1, "hour");
                     else {
                         sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance three will refresh in %s.\r\n", buf1);
+                        sprintf(buf, "Performance three will refresh in %s.\n", buf1);
                         send_to_char(buf, ch);
                     }
                 }
@@ -1290,7 +1290,7 @@ ACMD(do_cast) {
                         strcpy(buf1, "hour");
                     else {
                         sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance four will refresh in %s.\r\n", buf1);
+                        sprintf(buf, "Performance four will refresh in %s.\n", buf1);
                         send_to_char(buf, ch);
                     }
                 }
@@ -1300,7 +1300,7 @@ ACMD(do_cast) {
                         strcpy(buf1, "hour");
                     else {
                         sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance five will refresh in %s.\r\n", buf1);
+                        sprintf(buf, "Performance five will refresh in %s.\n", buf1);
                         send_to_char(buf, ch);
                     }
                 }
@@ -1310,7 +1310,7 @@ ACMD(do_cast) {
                         strcpy(buf1, "hour");
                     else {
                         sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance six will refresh in %s.\r\n", buf1);
+                        sprintf(buf, "Performance six will refresh in %s.\n", buf1);
                         send_to_char(buf, ch);
                     }
                 }
@@ -1320,7 +1320,7 @@ ACMD(do_cast) {
                         strcpy(buf1, "hour");
                     else {
                         sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance seven will refresh in %s.\r\n", buf1);
+                        sprintf(buf, "Performance seven will refresh in %s.\n", buf1);
                         send_to_char(buf, ch);
                     }
                 }
@@ -1333,30 +1333,30 @@ ACMD(do_cast) {
 
     if (!*arg) {
         if (subcmd == SCMD_CHANT)
-            send_to_char("What do you want to chant?\r\n", ch);
+            send_to_char("What do you want to chant?\n", ch);
         else if (subcmd == SCMD_PERFORM)
-            send_to_char("What do you want to perform?\r\n", ch);
+            send_to_char("What do you want to perform?\n", ch);
         else
-            send_to_char("Cast what where?\r\n", ch);
+            send_to_char("Cast what where?\n", ch);
         return;
     }
 
     if (subcmd == SCMD_CHANT) {
         spellnum = find_chant_num(arg);
         if (!IS_CHANT(spellnum)) {
-            send_to_char("Chant what?!?\r\n", ch);
+            send_to_char("Chant what?!?\n", ch);
             return;
         }
     } else if (subcmd == SCMD_PERFORM) {
         spellnum = find_song_num(arg);
         if (!IS_SONG(spellnum)) {
-            send_to_char("Perform what?!?\r\n", ch);
+            send_to_char("Perform what?!?\n", ch);
             return;
         }
     } else {
         spellnum = find_spell_num(arg);
         if (!IS_SPELL(spellnum)) {
-            send_to_char("Cast what?!?\r\n", ch);
+            send_to_char("Cast what?!?\n", ch);
             return;
         }
     }
@@ -1364,17 +1364,17 @@ ACMD(do_cast) {
     /* Can the caster actually cast this spell? */
     if (GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] || !GET_SKILL(ch, spellnum)) {
         if (subcmd == SCMD_CHANT)
-            send_to_char("You do not know that chant!\r\n", ch);
+            send_to_char("You do not know that chant!\n", ch);
         else if (subcmd == SCMD_PERFORM)
-            send_to_char("You do not know that music!\r\n", ch);
+            send_to_char("You do not know that music!\n", ch);
         else
-            send_to_char("You do not know that spell!\r\n", ch);
+            send_to_char("You do not know that spell!\n", ch);
         return;
     }
 
     /* Is the spell memorized?  PC's only. */
     if (subcmd == SCMD_CAST && !IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT && !check_spell_memory(ch, spellnum)) {
-        send_to_char("You do not have that spell memorized!\r\n", ch);
+        send_to_char("You do not have that spell memorized!\n", ch);
         return;
     }
 
@@ -1390,18 +1390,18 @@ ACMD(do_cast) {
     if (!target) {
         if (*arg) {
             if (subcmd == SCMD_CHANT)
-                send_to_char("Cannot find the target of your chant!\r\n", ch);
+                send_to_char("Cannot find the target of your chant!\n", ch);
             else if (subcmd == SCMD_PERFORM)
-                send_to_char("Cannot find the target of your music!\r\n", ch);
+                send_to_char("Cannot find the target of your music!\n", ch);
             else
-                send_to_char("Cannot find the target of your spell!\r\n", ch);
+                send_to_char("Cannot find the target of your spell!\n", ch);
         } else {
             if (subcmd == SCMD_CHANT)
-                send_to_char("To whom should the chant be sung?\r\n", ch);
+                send_to_char("To whom should the chant be sung?\n", ch);
             else if (subcmd == SCMD_PERFORM)
-                send_to_char("To whom should the music be played?\r\n", ch);
+                send_to_char("To whom should the music be played?\n", ch);
             else {
-                sprintf(buf, "Upon %s should the spell be cast?\r\n",
+                sprintf(buf, "Upon %s should the spell be cast?\n",
                         IS_SET(SINFO.targets, TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_WORLD | TAR_STRING) ? "what"
                                                                                                        : "whom");
                 send_to_char(buf, ch);
@@ -1417,19 +1417,19 @@ ACMD(do_cast) {
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         if (subcmd == SCMD_CHANT) {
             act("$n starts chanting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            cprintf(ch,
-                    "You begin chanting, but your throat causes you to "
-                    "cough up blood!\r\n");
+            char_printf(ch,
+                        "You begin chanting, but your throat causes you to "
+                        "cough up blood!\n");
         } else if (subcmd == SCMD_PERFORM) {
             act("$n starts playing, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            cprintf(ch,
-                    "You begin playing, but your throat causes you to "
-                    "cough up blood!\r\n");
+            char_printf(ch,
+                        "You begin playing, but your throat causes you to "
+                        "cough up blood!\n");
         } else {
             act("$n starts casting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            cprintf(ch,
-                    "You begin casting, but your throat causes you to "
-                    "cough up blood!\r\n");
+            char_printf(ch,
+                        "You begin casting, but your throat causes you to "
+                        "cough up blood!\n");
         }
         WAIT_STATE(ch, PULSE_VIOLENCE);
         return;
@@ -1476,7 +1476,7 @@ ACMD(do_cast) {
 
     } else if (subcmd == SCMD_PERFORM) {
         if (cha_app[GET_CHA(ch)].music == 0) {
-            send_to_char("Your Charisma is too low to perform!\r\n", ch);
+            send_to_char("Your Charisma is too low to perform!\n", ch);
         }
         for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
             switch (i) {
@@ -1597,27 +1597,27 @@ bool check_spell_target(int spellnum, CharData *ch, CharData *tch, ObjData *tobj
     const char *noun = IS_CHANT(spellnum) ? "song" : "spell";
 
     if (IS_SET(SINFO.targets, TAR_SELF_ONLY) && tch != ch && GET_LEVEL(ch) < LVL_GOD) {
-        cprintf(ch, "You can only %s this %s %s yourself!\r\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
+        char_printf(ch, "You can only %s this %s %s yourself!\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_NOT_SELF) && tch == ch) {
-        cprintf(ch, "You cannot %s this %s %s yourself!\r\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
+        char_printf(ch, "You cannot %s this %s %s yourself!\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_OUTDOORS) && CH_INDOORS(ch)) {
-        cprintf(ch, "This area is too enclosed to %s that %s!\r\n", verb, noun);
+        char_printf(ch, "This area is too enclosed to %s that %s!\n", verb, noun);
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_GROUND) && !CH_INDOORS(ch) && !QUAKABLE(IN_ROOM(ch))) {
-        cprintf(ch, "You must be on solid ground to %s that %s!\r\n", verb, noun);
+        char_printf(ch, "You must be on solid ground to %s that %s!\n", verb, noun);
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_NIGHT_ONLY) && SUN(IN_ROOM(ch)) == SUN_LIGHT) {
-        cprintf(ch, "You cannot %s this %s during the day!\r\n", verb, noun);
+        char_printf(ch, "You cannot %s this %s during the day!\n", verb, noun);
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_DAY_ONLY) && SUN(IN_ROOM(ch)) == SUN_DARK) {
-        cprintf(ch, "You can only %s this %s during the day!\r\n", verb, noun);
+        char_printf(ch, "You can only %s this %s during the day!\n", verb, noun);
         return false;
     }
     return true;
@@ -1731,7 +1731,7 @@ void complete_spell(CharData *ch) {
     }
 
     if (GET_LEVEL(ch) < LVL_GOD && ch->casting.spell != SPELL_VENTRILOQUATE) {
-        send_to_char("You complete your spell.\r\n", ch);
+        send_to_char("You complete your spell.\n", ch);
         act("$n completes $s spell...", false, ch, 0, 0, TO_ROOM);
     }
 
@@ -1847,9 +1847,9 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
     /* An injured throat makes it difficult to cast. */
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         act("$n starts casting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-        cprintf(ch,
-                "You begin casting, but your throat causes you to "
-                "cough up blood!\r\n");
+        char_printf(ch,
+                    "You begin casting, but your throat causes you to "
+                    "cough up blood!\n");
         WAIT_STATE(ch, PULSE_VIOLENCE);
         return true; /* makes caller think we cast a spell so they don't try again
                       */
@@ -2002,9 +2002,9 @@ void start_chant(CharData *ch) {
 
     /* Message to caster */
     if (GET_LEVEL(ch) < LVL_GOD)
-        send_to_char("You start chanting...\r\n", ch);
+        send_to_char("You start chanting...\n", ch);
     else
-        send_to_char("You cast your spell...\r\n", ch);
+        send_to_char("You cast your spell...\n", ch);
 }
 
 /*

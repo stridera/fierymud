@@ -22,15 +22,22 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+#include <fmt/format.h>
+
 /* coindefs[]
  *
  * name, shortname, initial, color, abbrev, scale
  */
 
-bool is_coin_name(char *name, int cointype) {
-    if (!str_cmp(name, COIN_NAME(cointype)))
+CoinDef coindefs[NUM_COIN_TYPES] = {{"platinum", "plat", "p", "&6&b", "p", 1000},
+                                    {"gold", nullptr, "g", "&3&b", "g", 100},
+                                    {"silver", nullptr, "s", "&7&b", "s", 10},
+                                    {"copper", nullptr, "c", "&3", "c", 1}};
+
+bool is_coin_name(const char *name, int cointype) {
+    if (!strcmp(name, COIN_NAME(cointype)))
         return true;
-    if (COIN_SHORTNAME(cointype) && !str_cmp(name, COIN_SHORTNAME(cointype)))
+    if (COIN_SHORTNAME(cointype) && !strcmp(name, COIN_SHORTNAME(cointype)))
         return true;
     return false;
 }
@@ -283,27 +290,31 @@ ObjData *create_money(const int coins[]) {
             which = SILVER;
         else if (coins[COPPER])
             which = COPPER;
-        obj->name = strdupf("%s coin", COIN_NAME(which));
-        obj->short_description = strdupf("a %s", obj->name);
-        obj->description = strdupf("A single %s is lying here.", obj->name);
+        obj->name = strdup(fmt::format("{} coin", COIN_NAME(which)).c_str());
+        obj->short_description = strdup(fmt::format("a {}", obj->name).c_str());
+        obj->description = strdup(fmt::format("A single {} is lying here.", obj->name).c_str());
         obj->ex_description->keyword = strdup(obj->name);
-        obj->ex_description->description = strdupf("A shiny %s!", obj->name);
+        obj->ex_description->description = strdup(fmt::format("A shiny {}!", obj->name).c_str());
     } else {
         money_desc(amount, &obj->short_description, &obj->name);
         obj->name = strdup(obj->name);
         obj->short_description = strdup(obj->short_description);
         obj->ex_description->keyword = strdup(obj->name);
-        obj->description = strdupf("%s is lying here.", obj->short_description);
+        obj->description = strdup(fmt::format("{} is lying here.", obj->short_description).c_str());
         cap_by_color(obj->description);
         if (amount < 10)
-            obj->ex_description->description = strdupf("There are %d coins.", amount);
+            obj->ex_description->description = strdup(fmt::format("There are {} coins.", amount).c_str());
         else if (amount < 100)
-            obj->ex_description->description = strdupf("There are about %d coins.", (amount / 10) * 10);
+            obj->ex_description->description =
+                strdup(fmt::format("There are about {} coins.", (amount / 10) * 10).c_str());
         else if (amount < 1000)
-            obj->ex_description->description = strdupf("It looks to be about %d coins.", (amount / 100) * 100);
+            obj->ex_description->description =
+                strdup(fmt::format("It looks to be about {} coins.", (amount / 100) * 100).c_str());
         else if (amount < 100000)
-            obj->ex_description->description = strdupf("You guess there are maybe %d coins.",
-                                                       ((amount / 1000) + random_number(0, amount / 1000)) * 1000);
+            obj->ex_description->description =
+                strdup(fmt::format("You guess there are maybe {} coins.",
+                                   ((amount / 1000) + random_number(0, amount / 1000)) * 1000)
+                           .c_str());
         else
             obj->ex_description->description = strdup("There are a LOT of coins.");
     }

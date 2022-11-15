@@ -97,62 +97,9 @@ struct sectordef {
     char notes[200];
 };
 
-/* roomdef is: NAME, COLOR, MV, FALL_MOD, QDAM_MOD, CAMP, WET, NOCAMP_EXCUSE,
- * NOTES */
-const struct sectordef sectors[NUM_SECTORS] = {
-    /*  0 */ {"Structure", "&7", 1, 0, 0, false, false, "You always pitch a tent indoors?", ""},
-    /*  1 */
-    {"City", "&8&b", 1, 5, 100, false, false, "Ye can't pitch a tent on the sidewalk fool.", "Always lit."},
-    /*  2 */
-    {"Field", "&3", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
-    /*  3 */
-    {"Forest", "&2", 3, 10, 125, true, false, "(yes, you can camp here)", ""},
-    /*  4 */
-    {"Mountains", "&3", 6, 20, 115, true, false, "(yes, you can camp here)", ""},
-    /*  5 */
-    {"Shallows", "&6", 4, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
-    /*  6 */
-    {"Water", "&4&b", 2, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
-    /*  7 */
-    {"Underwater", "&4", 5, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
-    /*  8 */
-    {"Air", "&6&b", 1, 0, 0, false, false, "You can't camp in mid-air.", ""},
-    /*  9 */
-    {"Road", "&8", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
-    /* 10 */
-    {"Grasslands", "&2&b", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
-    /* 11 */
-    {"Cave", "&3&b", 2, 15, 150, true, false, "(yes, you can camp here)", ""},
-    /* 12 */
-    {"Ruins", "&9&b", 2, 10, 125, true, false, "(yes, you can camp here)", ""},
-    /* 13 */
-    {"Swamp", "&2&b", 4, 10, 125, true, true, "(yes, you can camp here)", ""},
-    /* 14 */
-    {"Beach", "&3&b", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
-    /* 15 */
-    {"Underdark", "&9&b", 2, 10, 125, true, false, "(yes, you can camp here)", ""},
-    /* 16 */
-    {"Astraplane", "&6&b", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
-    /* 17 */
-    {"Airplane", "&6", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
-    /* 18 */
-    {"Fireplane", "&1&b", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
-    /* 19 */
-    {"Earthplane", "&3", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
-    /* 20 */
-    {"Etherealplane", "&5", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
-    /* 21 */
-    {"Avernus", "&5&b", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
-};
-
-const char *room_bits[NUM_ROOM_FLAGS + 1] = {
-    "DARK",   "DEATH",     "!MOB",      "INDOORS",     "PEACEFUL", "SOUNDPROOF", "!TRACK", "!MAGIC",
-    "TUNNEL", "PRIVATE",   "GODROOM",   "HOUSE",       "HCRSH",    "ATRIUM",     "OLC",    "*BFS_MARK*",
-    "NOWELL", "NORECALL",  "UNDERDARK", "!SUMMON",     "NOSHIFT",  "GUILDHALL",  "!SCAN",  "ALT_EXIT",
-    "MAP",    "ALWAYSLIT", "ARENA",     "OBSERVATORY", "\n"};
-
-const char *room_effects[NUM_ROOM_EFF_FLAGS + 1] = {"FOG",         "DARKNESS",  "CONT_LIGHT", "FOREST",
-                                                    "CIRCLE_FIRE", "ISOLATION", "\n"};
+extern const struct sectordef sectors[NUM_SECTORS];
+extern const char *room_bits[NUM_ROOM_FLAGS + 1];
+extern const char *room_effects[NUM_ROOM_EFF_FLAGS + 1];
 
 struct RoomData {
     room_num vnum;                        /* Room's vnum              */

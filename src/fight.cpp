@@ -46,7 +46,18 @@
 #include "trophy.hpp"
 #include "utils.hpp"
 
-/* Structures */
+/* Globals */
+
+AttackHitType attack_hit_text[] = {{"hit", "hits"}, /* 0 */
+                                   {"sting", "stings"},   {"whip", "whips"},         {"slash", "slashes"},
+                                   {"bite", "bites"},     {"bludgeon", "bludgeons"}, /* 5 */
+                                   {"crush", "crushes"},  {"pound", "pounds"},       {"claw", "claws"},
+                                   {"maul", "mauls"},     {"thrash", "thrashes"}, /* 10 */
+                                   {"pierce", "pierces"}, {"blast", "blasts"},       {"punch", "punches"},
+                                   {"stab", "stabs"},     {"burn", "burns"}, /* 15 */
+                                   {"freeze", "freezes"}, {"corrode", "corrodes"},   {"shock", "shocks"},
+                                   {"poison", "poisons"}, {"smite", "smites"}}; /* 20 */
+
 CharData *combat_list = nullptr; /* head of l-list of fighting chars */
 CharData *next_combat_list = nullptr;
 
@@ -291,7 +302,7 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose) {
 
     if (ch != victim && (ROOM_FLAGGED(victim->in_room, ROOM_PEACEFUL) || ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL))) {
         if (verbose)
-            send_to_char("You feel ashamed trying to disturb the peace of this room.\r\n", ch);
+            send_to_char("You feel ashamed trying to disturb the peace of this room.\n", ch);
         return false;
     }
 
@@ -338,9 +349,9 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose) {
             return true;
         if (verbose) {
             if (pet)
-                send_to_char("Sorry, you can't attack someone else's pet!\r\n", ch);
+                send_to_char("Sorry, you can't attack someone else's pet!\n", ch);
             else
-                send_to_char("Sorry, player killing isn't allowed.\r\n", ch);
+                send_to_char("Sorry, player killing isn't allowed.\n", ch);
         }
         return false;
     }
@@ -358,7 +369,7 @@ bool mass_attack_ok(CharData *ch, CharData *victim, bool verbose) {
 
     if (IS_PC(ch) && PLAYERALLY(victim) && !ROOM_FLAGGED(victim->in_room, ROOM_ARENA)) {
         if (verbose)
-            send_to_char("You can't attack someone's pet!\r\n", ch);
+            send_to_char("You can't attack someone's pet!\n", ch);
         return false;
     }
 
@@ -516,7 +527,7 @@ void check_killer(CharData *ch, CharData *vict) {
         SET_FLAG(PLR_FLAGS(ch), PLR_KILLER);
         mprintf(BRF, LVL_IMMORT, "PC Killer bit set on %s for initiating attack on %s at %s.", GET_NAME(ch),
                 GET_NAME(vict), world[vict->in_room].name);
-        send_to_char("If you want to be a PLAYER KILLER, so be it...\r\n", ch);
+        send_to_char("If you want to be a PLAYER KILLER, so be it...\n", ch);
     }
 }
 
@@ -779,7 +790,7 @@ void death_cry(CharData *ch) {
 
 void arena_death(CharData *ch) {
     int door, destination, wasdark;
-    extern int r_mortal_start_room;
+    int r_mortal_start_room;
 
     /* Make sure they have positive hit points */
 
@@ -809,7 +820,7 @@ void arena_death(CharData *ch) {
     alter_pos(ch, POS_SITTING, STANCE_RESTING);
 
     wasdark = IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch);
-    send_to_char("An invisible hand removes you from the battlefield.\r\n", ch);
+    send_to_char("An invisible hand removes you from the battlefield.\n", ch);
     act("$n's still body is lifted away by an invisible force.", true, ch, nullptr, nullptr, TO_ROOM);
     dismount_char(ch);
     char_from_room(ch);
@@ -993,7 +1004,7 @@ static void receive_kill_credit(CharData *ch, CharData *vict, long exp) {
 
     exp = MAX(exp, 1);
 
-    send_to_char("You receive your share of experience.\r\n", ch);
+    send_to_char("You receive your share of experience.\n", ch);
 
     /* Adjust exp for paladins */
     if (GET_CLASS(ch) == CLASS_PALADIN) {
@@ -1769,7 +1780,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
                 delayed_command(victim, "flee", 0, false);
         } else if (!IS_NPC(victim) && GET_WIMP_LEV(victim) && (victim != ch) &&
                    GET_HIT(victim) < GET_WIMP_LEV(victim)) {
-            send_to_char("You attempt to flee!\r\n", victim);
+            send_to_char("You attempt to flee!\n", victim);
             delayed_command(victim, "flee", 0, false);
         }
     }
@@ -1948,7 +1959,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     }
 
     if (FIGHTING(ch) != victim && EFF_FLAGGED(ch, EFF_BLIND)) {
-        send_to_char("You cant see a thing!\r\n", ch);
+        send_to_char("You cant see a thing!\n", ch);
         mprintf(L_ERROR, LVL_GOD, "hit(): %s is blind but tried to attack new target %s [room %d]", GET_NAME(ch),
                 GET_NAME(victim), CH_RVNUM(ch));
         return;
@@ -2243,7 +2254,7 @@ void perform_violence(void) {
         }
 #ifdef MAJORPCODE
         if (EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-            send_to_char("You remain paralyzed and can't do a thing to defend yourself..\r\n", ch);
+            send_to_char("You remain paralyzed and can't do a thing to defend yourself..\n", ch);
             act("$n strains to respond to $N's attack, but the paralysis is too "
                 "overpowering.",
                 false, ch, 0, FIGHTING(ch), TO_ROOM);
@@ -2261,7 +2272,7 @@ void perform_violence(void) {
             continue;
 
         if (GET_POS(ch) < POS_STANDING) {
-            send_to_char("You can't fight while sitting!!\r\n", ch);
+            send_to_char("You can't fight while sitting!!\n", ch);
             continue;
         }
 
@@ -2409,7 +2420,7 @@ bool check_disarmed(CharData *ch) {
     } else {
         if (GET_COOLDOWN(ch, CD_FUMBLING_PRIMARY) || GET_COOLDOWN(ch, CD_FUMBLING_SECONDARY)) {
             act("$n is trying to get a steady grip on $s weapon.", false, ch, 0, 0, TO_ROOM);
-            send_to_char("You can't seem to get a steady grip on your weapon.\r\n", ch);
+            send_to_char("You can't seem to get a steady grip on your weapon.\n", ch);
         } else if (IS_NPC(ch))
             act("$n struggles to regain $s weapon.", false, ch, 0, 0, TO_ROOM);
     }
@@ -2424,7 +2435,7 @@ ACMD(do_aggr) {
     int hp;
 
     if (IS_NPC(ch)) {
-        send_to_char("NPCs can't set their aggressiveness!\r\n", ch);
+        send_to_char("NPCs can't set their aggressiveness!\n", ch);
         return;
     }
 
@@ -2433,24 +2444,24 @@ ACMD(do_aggr) {
     /* No argument?   Check aggressiveness. */
     if (!*buf) {
         if (GET_AGGR_LEV(ch) <= 0) {
-            send_to_char("You are not aggressive to monsters.\r\n", ch);
+            send_to_char("You are not aggressive to monsters.\n", ch);
             return;
         }
-        sprintf(buf, "You will be aggressive unless your hitpoints drop below %d.\r\n", GET_AGGR_LEV(ch));
+        sprintf(buf, "You will be aggressive unless your hitpoints drop below %d.\n", GET_AGGR_LEV(ch));
         send_to_char(buf, ch);
         return;
     }
 
     hp = atoi(buf);
 
-    if (str_cmp(buf, "off") == 0 || (!hp && *buf == '0')) {
+    if (strcmp(buf, "off") == 0 || (!hp && *buf == '0')) {
         GET_AGGR_LEV(ch) = 0;
-        send_to_char("You are no longer aggressive to monsters.\r\n", ch);
+        send_to_char("You are no longer aggressive to monsters.\n", ch);
         return;
     }
 
     if (hp < 0) {
-        send_to_char("Aggressive while dying?   Not likely!\r\n", ch);
+        send_to_char("Aggressive while dying?   Not likely!\n", ch);
         return;
     }
 

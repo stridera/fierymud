@@ -44,7 +44,7 @@ void index_boot(int mode);
 void hedit_setup_new(DescriptorData *d) {
     CREATE(OLC_HELP(d), HelpIndexElement, 1);
     OLC_HELP(d)->keyword = strdup(OLC_STORAGE(d));
-    OLC_HELP(d)->entry = strdup("KEYWORDS\r\n\r\nThis help file is unfinished.\r\n");
+    OLC_HELP(d)->entry = strdup("KEYWORDS\n\nThis help file is unfinished.\n");
     OLC_HELP(d)->min_level = 0;
     OLC_HELP(d)->duplicate = 0;
     OLC_VAL(d) = 0;
@@ -120,7 +120,7 @@ void hedit_save_to_disk(DescriptorData *d) {
         if (help_table[i].duplicate > 0)
             continue;
 
-        /*. Remove the '\r\n' sequences from entry . */
+        /*. Remove the '\n' sequences from entry . */
         strcpy(buf1, help_table[i].entry ? help_table[i].entry : "Empty");
         strip_string(buf1);
 
@@ -146,11 +146,11 @@ void hedit_disp_menu(DescriptorData *d) {
     help = OLC_HELP(d);
 
     sprintf(buf,
-            "Keywords       : %s%s\r\n"
-            "%s1%s) Entry       :\r\n%s%s"
-            "%s2%s) Min Level   : %s%d\r\n"
-            "%sQ%s) Quit\r\n"
-            "Enter choice:\r\n",
+            "Keywords       : %s%s\n"
+            "%s1%s) Entry       :\n%s%s"
+            "%s2%s) Min Level   : %s%d\n"
+            "%sQ%s) Quit\n"
+            "Enter choice:\n",
             yel, help->keyword, grn, nrm, yel, help->entry, grn, nrm, yel, help->min_level, grn, nrm);
     send_to_char(buf, d->character);
 
@@ -187,7 +187,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
             mudlog(buf, CMP, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), true);
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_STRUCTS);
-            send_to_char("Help saved to memory.\r\n", d->character);
+            send_to_char("Help saved to memory.\n", d->character);
             break;
         case 'n':
         case 'N':
@@ -195,7 +195,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            send_to_char("Invalid choice!\r\nDo you wish to save this help internally?\r\n", d->character);
+            send_to_char("Invalid choice!\nDo you wish to save this help internally?\n", d->character);
             break;
         }
         return; /* end of HEDIT_CONFIRM_SAVESTRING */
@@ -221,17 +221,17 @@ void hedit_parse(DescriptorData *d, char *arg) {
                     cleanup_olc(d, CLEANUP_ALL);
                     break;
                 }
-                sprintf(buf, "Do you wish to add help on '%s'?\r\n", OLC_STORAGE(d));
+                sprintf(buf, "Do you wish to add help on '%s'?\n", OLC_STORAGE(d));
                 send_to_char(buf, d->character);
                 OLC_MODE(d) = HEDIT_CONFIRM_ADD;
             } else {
-                sprintf(buf, "Do you wish to edit help on '%s'?\r\n", help_table[OLC_ZNUM(d)].keyword);
+                sprintf(buf, "Do you wish to edit help on '%s'?\n", help_table[OLC_ZNUM(d)].keyword);
                 send_to_char(buf, d->character);
                 OLC_MODE(d) = HEDIT_CONFIRM_EDIT;
             }
             break;
         default:
-            sprintf(buf, "Invalid choice!\r\nDo you wish to edit help on '%s'?\r\n", help_table[OLC_ZNUM(d)].keyword);
+            sprintf(buf, "Invalid choice!\nDo you wish to edit help on '%s'?\n", help_table[OLC_ZNUM(d)].keyword);
             send_to_char(buf, d->character);
             break;
         }
@@ -250,7 +250,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            sprintf(buf, "Invalid choice!\r\nDo you wish to add help on '%s'?\r\n", OLC_STORAGE(d));
+            sprintf(buf, "Invalid choice!\nDo you wish to add help on '%s'?\n", OLC_STORAGE(d));
             send_to_char(buf, d->character);
             break;
         }
@@ -261,19 +261,19 @@ void hedit_parse(DescriptorData *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Something was modified */
-                send_to_char("Do you wish to save this help internally?\r\n", d->character);
+                send_to_char("Do you wish to save this help internally?\n", d->character);
                 OLC_MODE(d) = HEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
             break;
         case '1':
             OLC_MODE(d) = HEDIT_ENTRY;
-            write_to_output("Enter the help info: (/s saves /h for help)\r\n\r\n", d);
+            write_to_output("Enter the help info: (/s saves /h for help)\n\n", d);
             string_write(d, &OLC_HELP(d)->entry, MAX_STRING_LENGTH);
             OLC_VAL(d) = 1;
             break;
         case '2':
-            send_to_char("Enter the minimum level a player has to be to read this help:\r\n", d->character);
+            send_to_char("Enter the minimum level a player has to be to read this help:\n", d->character);
             OLC_MODE(d) = HEDIT_MIN_LEVEL;
             return;
         default:
@@ -319,9 +319,9 @@ int find_help(char *keyword) {
 
         if (bot > top)
             return -1;
-        else if (!(chk = strn_cmp(keyword, help_table[mid].keyword, minlen))) {
+        else if (!(chk = strncmp(keyword, help_table[mid].keyword, minlen))) {
             /* trace backwards to find first matching entry. Thanks Jeff Fink! */
-            while ((mid > 0) && (!(chk = strn_cmp(keyword, help_table[mid - 1].keyword, minlen))))
+            while ((mid > 0) && (!(chk = strncmp(keyword, help_table[mid - 1].keyword, minlen))))
                 mid--;
             return mid;
         } else {

@@ -105,10 +105,10 @@ ACMD(do_ban) {
 
     if (!*argument) {
         if (!ban_list) {
-            send_to_char("No sites are banned.\r\n", ch);
+            send_to_char("No sites are banned.\n", ch);
             return;
         }
-        strcpy(format, "%-25.25s  %-8.8s  %-11.11s  %-16.16s\r\n");
+        strcpy(format, "%-25.25s  %-8.8s  %-11.11s  %-16.16s\n");
         sprintf(buf, format, "Banned Site Name", "Ban Type", "Banned On", "Banned By");
         send_to_char(buf, ch);
         sprintf(buf, format, "---------------------------------", "---------------------------------",
@@ -128,16 +128,16 @@ ACMD(do_ban) {
     }
     two_arguments(argument, flag, site);
     if (!*site || !*flag) {
-        send_to_char("Usage: ban {all | select | new} site_name\r\n", ch);
+        send_to_char("Usage: ban {all | select | new} site_name\n", ch);
         return;
     }
-    if (!(!str_cmp(flag, "select") || !str_cmp(flag, "all") || !str_cmp(flag, "new"))) {
-        send_to_char("Flag must be ALL, SELECT, or NEW.\r\n", ch);
+    if (!(!strcmp(flag, "select") || !strcmp(flag, "all") || !strcmp(flag, "new"))) {
+        send_to_char("Flag must be ALL, SELECT, or NEW.\n", ch);
         return;
     }
     for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
-        if (!str_cmp(ban_node->site, site)) {
-            send_to_char("That site has already been banned -- unban it to change the ban type.\r\n", ch);
+        if (!strcmp(ban_node->site, site)) {
+            send_to_char("That site has already been banned -- unban it to change the ban type.\n", ch);
             return;
         }
     }
@@ -152,7 +152,7 @@ ACMD(do_ban) {
     ban_node->date = time(0);
 
     for (i = BAN_NEW; i <= BAN_ALL; i++)
-        if (!str_cmp(flag, ban_types[i]))
+        if (!strcmp(flag, ban_types[i]))
             ban_node->type = i;
 
     ban_node->next = ban_list;
@@ -160,7 +160,7 @@ ACMD(do_ban) {
 
     sprintf(buf, "%s has banned %s for %s players.", GET_NAME(ch), site, ban_types[ban_node->type]);
     mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
-    send_to_char("Site banned.\r\n", ch);
+    send_to_char("Site banned.\n", ch);
     write_ban_list();
 }
 
@@ -171,23 +171,23 @@ ACMD(do_unban) {
 
     one_argument(argument, site);
     if (!*site) {
-        send_to_char("A site to unban might help.\r\n", ch);
+        send_to_char("A site to unban might help.\n", ch);
         return;
     }
     ban_node = ban_list;
     while (ban_node && !found) {
-        if (!str_cmp(ban_node->site, site))
+        if (!strcmp(ban_node->site, site))
             found = 1;
         else
             ban_node = ban_node->next;
     }
 
     if (!found) {
-        send_to_char("That site is not currently banned.\r\n", ch);
+        send_to_char("That site is not currently banned.\n", ch);
         return;
     }
     REMOVE_FROM_LIST(ban_node, ban_list, next);
-    send_to_char("Site unbanned.\r\n", ch);
+    send_to_char("Site unbanned.\n", ch);
     sprintf(buf, "%s removed the %s-player ban on %s.", GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
     mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
 
@@ -209,12 +209,12 @@ int Valid_Name(char *newname) {
 
     /*
      * Make sure someone isn't trying to create this same name.  We want to
-     * do a 'str_cmp' so people can't do 'Bob' and 'BoB'.  The creating login
+     * do a 'strcmp' so people can't do 'Bob' and 'BoB'.  The creating login
      * will not have a character name yet and other people sitting at the
      * prompt won't have characters yet.
      */
     for (dt = descriptor_list; dt; dt = dt->next) {
-        if (dt->character && GET_NAME(dt->character) && !str_cmp(GET_NAME(dt->character), newname)) {
+        if (dt->character && GET_NAME(dt->character) && !strcmp(GET_NAME(dt->character), newname)) {
             return (STATE(dt) == CON_PLAYING);
         }
     }
@@ -322,7 +322,7 @@ void send_to_xnames(char *name) {
     *tempname = '\0';
 
     if (!(xnames = fopen(XNAME_FILE, "a"))) {
-        mudlog("SYSERR: Cannot open xnames file.\r\n", BRF, LVL_IMMORT, true);
+        mudlog("SYSERR: Cannot open xnames file.\n", BRF, LVL_IMMORT, true);
         return;
     }
 
@@ -376,25 +376,25 @@ ACMD(do_xnames) {
 
     two_arguments(argument, flag, name);
 
-    if (*flag && !str_cmp(flag, "reload")) {
+    if (*flag && !strcmp(flag, "reload")) {
         reload_xnames();
-        send_to_char("Done.\r\n", ch);
+        send_to_char("Done.\n", ch);
         return;
     }
 
     if (!*flag || !*name) {
-        send_to_char("Usage: xnames {add NAME | reload}\r\n", ch);
+        send_to_char("Usage: xnames {add NAME | reload}\n", ch);
         return;
     }
 
     if (is_abbrev(flag, "add")) {
         if (!Valid_Name(name)) {
-            send_to_char("Name is already banned.\r\n", ch);
+            send_to_char("Name is already banned.\n", ch);
             return;
         }
         send_to_xnames(name);
-        send_to_char("Done.\r\n", ch);
+        send_to_char("Done.\n", ch);
     } else {
-        send_to_char("Usage: xnames {add NAME | reload}\r\n", ch);
+        send_to_char("Usage: xnames {add NAME | reload}\n", ch);
     }
 }

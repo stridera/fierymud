@@ -22,15 +22,21 @@
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+
+#include <fmt/format.h>
 
 /*
  * Private globals
  */
 /* The dynamically allocated array of command groups. */
-#define top_of_cmd_groups (cmd_groups + num_cmd_groups)
+
+CommandGroup *cmd_groups;
+int num_cmd_groups;
+CommandGroupInfo *grp_info;
 
 /*
  * Private interface
@@ -48,7 +54,7 @@ int find_command_group(char *name) {
     CommandGroup *group = cmd_groups;
 
     while (group < top_of_cmd_groups) {
-        if (!str_cmp(group->alias, name))
+        if (!strcmp(group->alias, name))
             return GROUP_NUM(group);
         ++group;
     }
@@ -104,21 +110,21 @@ ACMD(do_gedit) {
     /* Edit which command group? */
     argument = any_one_arg(argument, arg);
     if (!*arg) {
-        send_to_char("Specify a command group to edit.\r\n", ch);
+        send_to_char("Specify a command group to edit.\n", ch);
         return;
     }
 
     /* Make sure it exists, or create a new one */
-    if (!str_cmp(arg, "new"))
+    if (!strcmp(arg, "new"))
         group = -1;
-    else if (!str_cmp(arg, "save")) {
-        send_to_char("Saving all command groups.\r\n", ch);
+    else if (!strcmp(arg, "save")) {
+        send_to_char("Saving all command groups.\n", ch);
         sprintf(buf, "OLC: %s saves command groups.", GET_NAME(ch));
         mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
         gedit_save_to_disk();
         return;
     } else if ((group = find_command_group(arg)) < 0) {
-        cprintf(ch, "Command group '%s' not found.  Use 'gedit new' to create it.\r\n", arg);
+        char_printf(ch, "Command group '%s' not found.  Use 'gedit new' to create it.\n", arg);
         return;
     }
 
@@ -126,7 +132,7 @@ ACMD(do_gedit) {
     if (group >= 0)
         for (d = descriptor_list; d; d = d->next)
             if (d->connected == CON_GEDIT && d->olc && OLC_NUM(d) == group) {
-                cprintf(ch, "That command group is currently being edited by %s.\r\n", PERS(ch, d->character));
+                char_printf(ch, "That command group is currently being edited by %s.\n", PERS(ch, d->character));
                 return;
             }
     d = ch->desc;
@@ -185,7 +191,7 @@ static void gedit_setup_new(DescriptorData *d) {
 
     OLC_GROUP(d)->alias = strdup("newgroup");
     OLC_GROUP(d)->name = strdup("New Command Group");
-    OLC_GROUP(d)->description = strdup("A new command group.\r\n");
+    OLC_GROUP(d)->description = strdup("A new command group.\n");
     OLC_GROUP(d)->commands = nullptr;
 
     gedit_disp_menu(d);
@@ -199,32 +205,32 @@ void gedit_parse(DescriptorData *d, char *arg) {
     case GEDIT_MAIN_MENU:
         switch (LOWER(*arg)) {
         case '1':
-            write_to_output("Enter new group alias:\r\n", d);
+            write_to_output("Enter new group alias:\n", d);
             OLC_MODE(d) = GEDIT_ALIAS;
             break;
         case '2':
-            write_to_output("Enter new group name:\r\n", d);
+            write_to_output("Enter new group name:\n", d);
             OLC_MODE(d) = GEDIT_NAME;
             break;
         case '3':
-            write_to_output("Enter new group description (/s saves /h for help):\r\n\r\n", d);
+            write_to_output("Enter new group description (/s saves /h for help):\n\n", d);
             OLC_MODE(d) = GEDIT_DESCRIPTION;
             string_write(d, &OLC_GROUP(d)->description, MAX_STRING_LENGTH);
             break;
         case '4':
-            write_to_output("Enter minimum level for admin access to group:\r\n", d);
+            write_to_output("Enter minimum level for admin access to group:\n", d);
             OLC_MODE(d) = GEDIT_LEVEL;
             break;
         case 'a':
-            write_to_output("Command to add to group:\r\n", d);
+            write_to_output("Command to add to group:\n", d);
             OLC_MODE(d) = GEDIT_ADD_COMMAND;
             break;
         case 'r':
-            write_to_output("Command to remove from group:\r\n", d);
+            write_to_output("Command to remove from group:\n", d);
             OLC_MODE(d) = GEDIT_REMOVE_COMMAND;
             break;
         case 'c':
-            write_to_output("All commands cleared.\r\n", d);
+            write_to_output("All commands cleared.\n", d);
             free(OLC_GROUP(d)->commands);
             OLC_GROUP(d)->commands = nullptr;
             OLC_VAL(d) = 1;
@@ -235,16 +241,16 @@ void gedit_parse(DescriptorData *d, char *arg) {
                 if (i != OLC_NUM(d) && !strcmp(cmd_groups[i].alias, OLC_GROUP(d)->alias)) {
                     write_to_output(
                         "This command group has the same alias as another "
-                        "existing group.\r\n"
-                        "It cannot be saved until the alias is changed.\r\n",
+                        "existing group.\n"
+                        "It cannot be saved until the alias is changed.\n",
                         d);
                     return;
                 }
             if (OLC_VAL(d)) {
-                write_to_output("Do you wish to save the changes to the command group? (y/n)\r\n", d);
+                write_to_output("Do you wish to save the changes to the command group? (y/n)\n", d);
                 OLC_MODE(d) = GEDIT_CONFIRM_SAVE;
             } else {
-                write_to_output("No changes made.\r\n", d);
+                write_to_output("No changes made.\n", d);
                 cleanup_olc(d, CLEANUP_ALL);
             }
         }
@@ -253,7 +259,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
         skip_spaces(&arg);
         if (!*arg) {
             write_to_output(
-                "Group alias must consist of at least one letter or number.\r\n"
+                "Group alias must consist of at least one letter or number.\n"
                 "Try again: ",
                 d);
             return;
@@ -261,7 +267,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
         for (i = 0; arg[i]; ++i)
             if (!isalpha(arg[i]) && !isdigit(arg[i])) {
                 write_to_output(
-                    "Group alias may only consist of letters and numbers.\r\n"
+                    "Group alias may only consist of letters and numbers.\n"
                     "Try again: ",
                     d);
                 return;
@@ -305,7 +311,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
         if (OLC_GROUP(d)->commands) {
             for (i = 0; OLC_GROUP(d)->commands[i]; ++i)
                 if (OLC_GROUP(d)->commands[i] == num) {
-                    write_to_output("This command group already contains that command.\r\n", d);
+                    write_to_output("This command group already contains that command.\n", d);
                     gedit_disp_menu(d);
                     return;
                 }
@@ -339,13 +345,13 @@ void gedit_parse(DescriptorData *d, char *arg) {
                 break;
             }
         }
-        write_to_output("This command group does not contain that command.\r\n", d);
+        write_to_output("This command group does not contain that command.\n", d);
         gedit_disp_menu(d);
         return;
     case GEDIT_CONFIRM_SAVE:
         switch (LOWER(*arg)) {
         case 'y':
-            write_to_output("Saving command group in memory.\r\n", d);
+            write_to_output("Saving command group in memory.\n", d);
             gedit_save_internally(d);
             sprintf(buf, "OLC: %s edits command group %s.", GET_NAME(d->character), OLC_GROUP(d)->alias);
             mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
@@ -355,8 +361,8 @@ void gedit_parse(DescriptorData *d, char *arg) {
             break;
         default:
             write_to_output(
-                "Invalid choice!\r\n"
-                "Do you wish to save the command group?\r\n",
+                "Invalid choice!\n"
+                "Do you wish to save the command group?\n",
                 d);
             break;
         }
@@ -366,41 +372,40 @@ void gedit_parse(DescriptorData *d, char *arg) {
 }
 
 void gedit_disp_menu(DescriptorData *d) {
+    std::string resp;
     OLCCommandGroup *group = OLC_GROUP(d);
     int i;
 
     get_char_cols(d->character);
 
-    str_start(buf, sizeof(buf));
-
-    str_catf(buf,
+    resp += fmt::format(
 #if defined(CLEAR_SCREEN)
-             ".[H.[J"
+        ".[H.[J"
 #endif
-             "-- Command Group: id [%s%5d%s]\r\n"
-             "%s1%s) Alias       : %s%s\r\n"
-             "%s2%s) Name        : %s%s\r\n"
-             "%s3%s) Description :\r\n%s%s"
-             "%s4%s) Minimum Lvl : %s%d\r\n"
-             "%sGroup Commands :\r\n",
-             grn, OLC_NUM(d), nrm, grn, nrm, yel, group->alias, grn, nrm, yel, group->name, grn, nrm, yel,
-             group->description, grn, nrm, yel, group->minimum_level, nrm);
+        "-- Command Group: id [{}{:5}{}]\n"
+        "{}1{}) Alias       : {}{}\n"
+        "{}2{}) Name        : {}{}\n"
+        "{}3{}) Description :\n{}{}"
+        "{}4{}) Minimum Lvl : {}{}\n"
+        "{}Group Commands :\n",
+        grn, OLC_NUM(d), nrm, grn, nrm, yel, group->alias, grn, nrm, yel, group->name, grn, nrm, yel,
+        group->description, grn, nrm, yel, group->minimum_level, nrm);
 
     if (group->commands)
         for (i = 0; group->commands[i]; ++i)
-            str_catf(buf, "  %s\r\n", cmd_info[group->commands[i]].command);
+            resp += fmt::format("  {}\n", cmd_info[group->commands[i]].command);
     else
-        str_cat(buf, "  None.\r\n");
+        resp += "  None.\n";
 
-    str_catf(buf,
-             "%sA%s) Add command to group.\r\n"
-             "%sR%s) Remove command from group.\r\n"
-             "%sC%s) Clear all commands in group.\r\n"
-             "%sQ%s) Quit\r\n"
-             "Enter your choice : ",
-             grn, nrm, grn, nrm, grn, nrm, grn, nrm);
+    resp += fmt::format(
+        "{}A{}) Add command to group.\n"
+        "{}R{}) Remove command from group.\n"
+        "{}C{}) Clear all commands in group.\n"
+        "{}Q{}) Quit\n"
+        "Enter your choice : ",
+        grn, nrm, grn, nrm, grn, nrm, grn, nrm);
 
-    write_to_output(buf, d);
+    write_to_output(resp.c_str(), d);
 
     OLC_MODE(d) = GEDIT_MAIN_MENU;
 }
@@ -495,11 +500,11 @@ static void gedit_save_to_disk() {
                 "desc:\n%s~\n"
                 "level: %d\n"
                 "commands:\n",
-                filter_chars(buf, group->alias, "\r\n"), filter_chars(buf1, group->name, "\r\n"),
+                filter_chars(buf, group->alias, "\n"), filter_chars(buf1, group->name, "\n"),
                 filter_chars(buf2, group->description, "\r~"), group->minimum_level);
         for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
             if (group_in_list(grp_info[cmd].groups, group))
-                fprintf(file, "%s\n", filter_chars(buf, cmd_info[cmd].command, "\r\n"));
+                fprintf(file, "%s\n", filter_chars(buf, cmd_info[cmd].command, "\n"));
         fprintf(file, "~\n~~\n");
     }
 
@@ -581,6 +586,7 @@ void boot_command_groups() {
 }
 
 void do_show_command_groups(CharData *ch, char *argument) {
+    std::string resp;
     CommandGroup *group;
     int num, cmd, grp, found = 0;
 
@@ -588,71 +594,69 @@ void do_show_command_groups(CharData *ch, char *argument) {
 
     if (*argument && (num = find_command_group(argument)) >= 0) {
         group = &cmd_groups[num];
-        str_start(buf, sizeof(buf));
-        str_catf(buf,
-                 "Command Group    : @y%s@0 (@g%d@0)\r\n"
-                 "Name             : @c%s@0\r\n"
-                 "Description      :\r\n@c%s@0"
-                 "Min. Admin Lvl.  : @c%d@0\r\n"
-                 "Commands         : @c",
-                 group->alias, num, group->name, group->description, group->minimum_level);
+        resp += fmt::format(
+            "Command Group    : @y{}@0 (@g{}@0)\n"
+            "Name             : @c{}@0\n"
+            "Description      :\n@c{}@0"
+            "Min. Admin Lvl.  : @c{}@0\n"
+            "Commands         : @c",
+            group->alias, num, group->name, group->description, group->minimum_level);
         for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
             if (grp_info[cmd].groups)
                 for (grp = 0; grp_info[cmd].groups[grp] >= 0; ++grp)
                     if (grp_info[cmd].groups[grp] == num)
-                        str_catf(buf, "%s%s", found++ ? ", " : "", cmd_info[cmd].command);
-        str_cat(buf, found ? "@0\r\n" : "NONE@0\r\n");
-        send_to_char(buf, ch);
+                        resp += fmt::format("{}{}", found++ ? ", " : "", cmd_info[cmd].command);
+        resp += found ? "@0\n" : "NONE@0\n";
+        send_to_char(resp.c_str(), ch);
     } else if (cmd_groups) {
         send_to_char(
-            "Alias         MinLvl  Name\r\n"
-            "------------  ------  ---------------------------------\r\n",
+            "Alias         MinLvl  Name\n"
+            "------------  ------  ---------------------------------\n",
             ch);
         for (group = cmd_groups; group < top_of_cmd_groups; ++group)
-            cprintf(ch, "%-16.16s %3d  %s\r\n", group->alias, group->minimum_level, group->name);
+            char_printf(ch, "%-16.16s %3d  %s\n", group->alias, group->minimum_level, group->name);
     } else
-        send_to_char("No command groups.\r\n", ch);
+        send_to_char("No command groups.\n", ch);
 }
 
 void do_show_command(CharData *ch, char *argument) {
-    CommandInfo *command;
+    std::string resp;
+    const CommandInfo *command;
     int cmd, grp;
 
     skip_spaces(&argument);
 
     if (!*argument) {
-        send_to_char("Usage: show command <command>\r\n", ch);
+        send_to_char("Usage: show command <command>\n", ch);
         return;
     }
 
     if ((cmd = parse_command(argument)) <= 0) {
-        send_to_char("Command not found.\r\n", ch);
+        send_to_char("Command not found.\n", ch);
         return;
     }
 
     command = &cmd_info[cmd];
 
-    str_start(buf, sizeof(buf));
-
     sprintbit(command->flags, command_flags, buf1);
 
-    str_catf(buf,
-             "Command           : @y%s@0 (@g%d@0)\r\n"
-             "Minimum Position  : @c%s@0\r\n"
-             "Minimum Stance    : @c%s@0\r\n"
-             "Minimum Level     : @c%d@0\r\n"
-             "Subcommand Code   : @c%d@0\r\n"
-             "Usage Flags       : @c%s@0\r\n"
-             "Groups            : @c",
-             command->command, cmd, position_types[(int)command->minimum_position],
-             stance_types[(int)command->minimum_stance], command->minimum_level, command->subcmd, buf1);
+    resp += fmt::format(
+        "Command           : @y{}@0 (@g{}@0)\n"
+        "Minimum Position  : @c{}@0\n"
+        "Minimum Stance    : @c{}@0\n"
+        "Minimum Level     : @c{}@0\n"
+        "Subcommand Code   : @c{}@0\n"
+        "Usage Flags       : @c{}@0\n"
+        "Groups            : @c",
+        command->command, cmd, position_types[(int)command->minimum_position],
+        stance_types[(int)command->minimum_stance], command->minimum_level, command->subcmd, buf1);
 
     if (grp_info[cmd].groups) {
         for (grp = 0; grp_info[cmd].groups[grp] >= 0; ++grp)
-            str_catf(buf, "%s%s", grp ? ", " : "", cmd_groups[grp_info[cmd].groups[grp]].alias);
-        str_cat(buf, "@0\r\n");
+            resp += fmt::format("{}{}", grp ? ", " : "", cmd_groups[grp_info[cmd].groups[grp]].alias);
+        resp += "@0\n";
     } else
-        str_cat(buf, "NONE@0\r\n");
+        resp += "NONE@0\n";
 
-    send_to_char(buf, ch);
+    send_to_char(resp.c_str(), ch);
 }

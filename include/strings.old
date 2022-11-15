@@ -16,7 +16,7 @@
 
 const void *ellipsis(const char *str, int maxlen, int mode);
 
-#define EOL "\r\n"
+#define EOL "\n"
 
 #define ELLIPSIS_FMT "%-*.*s%s"
 #define __ELLIPSIS_W1 (1 << 0)
@@ -26,8 +26,8 @@ const void *ellipsis(const char *str, int maxlen, int mode);
     (intptr_t) ellipsis((str), (maxlen), __ELLIPSIS_W1), (intptr_t)ellipsis((str), (maxlen), __ELLIPSIS_W2), (str),    \
         (char *)ellipsis((str), (maxlen), __ELLIPSIS_E)
 
-int str_cmp(const char *arg1, const char *arg2);
-int strn_cmp(const char *arg1, const char *arg2, int n);
+int strcmp(const char *arg1, const char *arg2);
+int strncmp(const char *arg1, const char *arg2, int n);
 const char *str_str(const char *cs, const char *ct);
 char *strdupf(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 
@@ -49,7 +49,7 @@ static struct StrToken {
 static int next_str_token = 0;
 static StrToken *str_hash[STR_HASH_BUCKETS] = {nullptr};
 
-#define STR_HASH(addr) (((unsigned int)(addr)) % STR_HASH_BUCKETS)
+#define STR_HASH(addr) (((char *)(addr)) % STR_HASH_BUCKETS)
 #define SPACE_USED(tok) ((tok)->pos - (tok)->buf + 1)
 #define SPACE_LEFT(tok) ((tok)->size - SPACE_USED(tok))
 

@@ -121,7 +121,7 @@ ACMD(do_mdamage) {
     CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh!?\r\n", ch);
+        send_to_char("Huh!?\n", ch);
         return;
     }
 
@@ -202,7 +202,7 @@ ACMD(do_mskillset) {
     int skspnum;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
     argument = one_argument(argument, arg);
@@ -241,7 +241,7 @@ ACMD(do_masound) {
     int door;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -275,7 +275,7 @@ ACMD(do_mkill) {
     CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -326,7 +326,7 @@ ACMD(do_mjunk) {
     ObjData *obj_next;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -378,7 +378,7 @@ ACMD(do_mechoaround) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -409,7 +409,7 @@ ACMD(do_msend) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -438,7 +438,7 @@ ACMD(do_mecho) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -465,7 +465,7 @@ ACMD(do_m_run_room_trig) {
     ScriptData *sc;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -509,7 +509,7 @@ ACMD(do_mload) {
     ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -542,7 +542,7 @@ ACMD(do_mload) {
         }
         /* Reuse arg1 for third argument: force mload to room */
         any_one_arg(argument, arg1);
-        if (!CAN_WEAR(obj, ITEM_WEAR_TAKE) || !str_cmp(arg1, "room"))
+        if (!CAN_WEAR(obj, ITEM_WEAR_TAKE) || !strcmp(arg1, "room"))
             obj_to_room(obj, IN_ROOM(ch));
         else
             obj_to_char(obj, ch);
@@ -563,7 +563,7 @@ ACMD(do_mpurge) {
     ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -619,7 +619,7 @@ ACMD(do_mgoto) {
     int location;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -649,7 +649,7 @@ ACMD(do_mat) {
     int original;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -693,7 +693,7 @@ ACMD(do_mteleport) {
     CharData *vict, *next_ch;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -712,7 +712,7 @@ ACMD(do_mteleport) {
     if (target == NOWHERE)
         mob_log(ch, "mteleport target is an invalid room");
 
-    else if (!str_cmp(arg1, "all")) {
+    else if (!strcmp(arg1, "all")) {
         if (target == IN_ROOM(ch)) {
             mob_log(ch, "mteleport all target is itself");
             return;
@@ -750,7 +750,7 @@ ACMD(do_mforce) {
     char arg[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -767,7 +767,7 @@ ACMD(do_mforce) {
         return;
     }
 
-    if (!str_cmp(arg, "all")) {
+    if (!strcmp(arg, "all")) {
         DescriptorData *i;
         CharData *vch;
 
@@ -803,7 +803,7 @@ ACMD(do_mexp) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -835,7 +835,7 @@ ACMD(do_mgold) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -869,12 +869,12 @@ ACMD(do_mob_log) {
     char errbuf[MAX_STRING_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_CHARM)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -902,12 +902,12 @@ ACMD(do_quest) {
      * use this command too.
      */
     if (!MOB_OR_IMPL(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
     if (MOB_FLAGGED(ch, MOB_ANIMATED) || EFF_FLAGGED(ch, EFF_CHARM)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -926,7 +926,7 @@ ACMD(do_msave) {
     char arg[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\r\n", ch);
+        send_to_char("Huh?!?\n", ch);
         return;
     }
 
@@ -943,7 +943,7 @@ ACMD(do_msave) {
         return;
     }
 
-    if (!str_cmp(arg, "all")) {
+    if (!strcmp(arg, "all")) {
         DescriptorData *i;
         CharData *vch;
 

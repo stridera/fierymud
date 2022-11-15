@@ -27,6 +27,24 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+SkillDef skills[TOP_SKILL_DEFINE + 1];
+
+const char *talent_types[5] = {
+    "talent", "spell", "skill", "chant", "song",
+};
+
+const char *targets[NUM_TAR_FLAGS + 1] = {"IGNORE",    "CHAR_ROOM", "CHAR_WORLD", "FIGHT_SELF", "FIGHT_VICT",
+                                          "SELF_ONLY", "NOT_SELF",  "OBJ_INV",    "OBJ_ROOM",   "OBJ_WORLD",
+                                          "OBJ_EQUIP", "STRING",    "NIGHT_ONLY", "DAY_ONLY",   "OUTDOORS",
+                                          "GROUND",    "CONTACT",   "DIRECT",     "\n"};
+
+const char *routines[NUM_ROUTINE_TYPES + 1] = {
+    "DAMAGE", "AFFECT", "UNAFFECT", "POINT",  "ALTER_OBJ", "GROUP",     "MASS",
+    "AREA",   "SUMMON", "CREATION", "MANUAL", "ROOM",      "BULK_OBJS", "\n",
+};
+
+int skill_sort_info[TOP_SKILL + 1];
+
 int talent_type(int skill_num) {
     if (IS_SKILL(skill_num))
         return SKILL;
@@ -139,10 +157,10 @@ void improve_skill(CharData *ch, int skill) {
     /* returns 1000 for most skills, but caps some others lower */
     if (percent >= maxpercent) {
         SET_SKILL(ch, skill, maxpercent);
-        sprintf(skillbuf, "&8You feel about as skilled in %s as possible!&0\r\n", skills[skill].name);
+        sprintf(skillbuf, "&8You feel about as skilled in %s as possible!&0\n", skills[skill].name);
     } else {
         SET_SKILL(ch, skill, percent);
-        sprintf(skillbuf, "&8You feel your skill in %s improving.\r\n&0", skills[skill].name);
+        sprintf(skillbuf, "&8You feel your skill in %s improving.\n&0", skills[skill].name);
     }
     send_to_char(skillbuf, ch);
 }

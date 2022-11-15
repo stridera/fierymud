@@ -12,6 +12,7 @@
 
 #include "rules.hpp"
 
+#ifdef __OLD_CODE_DO_NOT_USE__
 #include "clan.hpp"
 #include "conf.hpp"
 #include "handler.hpp"
@@ -403,3 +404,4 @@ END_RULE_FUNC BEGIN_RULE_FUNC_PARSE(not, unary_rule) {
 }
 
 END_RULE_FUNC PUBLISH_RULE_VTABLE_MANUAL(not, not, unary, unary, not, not, not );
+#endif

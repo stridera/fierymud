@@ -45,7 +45,7 @@ void add_retained_comms(CharData *ch, int type, char *msg) {
 
     CREATE(new_node, CommNode, 1);
     new_node->time = time(0);
-    new_node->msg = strdup(filter_chars(buf2, msg, "\r\n"));
+    new_node->msg = strdup(filter_chars(buf2, msg, "\n"));
     new_node->next = nullptr;
     if (node == nullptr) {
         SET_RETAINED_COMM_TYPE(tch, type, new_node);
@@ -89,16 +89,16 @@ void save_retained_comms(FILE *file, CharData *ch, int type) {
     CommNode *node;
 
     if (type == TYPE_RETAINED_TELLS) {
-        fprintf(file, "tells:\r\n");
+        fprintf(file, "tells:\n");
     } else if (type == TYPE_RETAINED_GOSSIPS) {
-        fprintf(file, "gossips:\r\n");
+        fprintf(file, "gossips:\n");
     }
 
     node = GET_RETAINED_COMM_TYPE(ch, type);
     for (; node; node = node->next) {
-        fprintf(file, "%ld %s\r\n", node->time, node->msg);
+        fprintf(file, "%ld %s\n", node->time, node->msg);
     }
-    fprintf(file, "$\r\n");
+    fprintf(file, "$\n");
 }
 
 void free_retained_comms(CharData *ch) {
@@ -122,7 +122,7 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
     char timebuf[32];
 
     if (IS_MOB(REAL_CHAR(ch))) {
-        send_to_char("Nobody talks to mobs.  Such a sad life.\r\n", ch);
+        send_to_char("Nobody talks to mobs.  Such a sad life.\n", ch);
     }
 
     if (type == TYPE_RETAINED_TELLS) {
@@ -138,24 +138,23 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
 
     if (node == nullptr) {
         if (ch == vict) {
-            sprintf(buf, "%sYour recent %s list is empty.%s\r\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
+            sprintf(buf, "%sYour recent %s list is empty.%s\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
         } else {
-            sprintf(buf, "%s%s's recent %s list is empty.%s\r\n", CLR(ch, FGRN), GET_NAME(vict), comm_name,
+            sprintf(buf, "%s%s's recent %s list is empty.%s\n", CLR(ch, FGRN), GET_NAME(vict), comm_name,
                     CLR(ch, ANRM));
         }
         send_to_char(buf, ch);
     } else {
         if (ch == vict) {
-            sprintf(buf, "%sYour recent %s list:%s\r\n\r\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
+            sprintf(buf, "%sYour recent %s list:%s\n\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
         } else {
-            sprintf(buf, "%s%s's recent %s list is:%s\r\n\r\n", CLR(ch, FGRN), GET_NAME(vict), comm_name,
-                    CLR(ch, ANRM));
+            sprintf(buf, "%s%s's recent %s list is:%s\n\n", CLR(ch, FGRN), GET_NAME(vict), comm_name, CLR(ch, ANRM));
         }
         send_to_char(buf, ch);
         for (; node; node = node->next) {
             log("log contains: %s", node->msg);
             strftime(timebuf, 32, TIMEFMT_LOG, localtime(&node->time));
-            sprintf(buf, "%s: %s\r\n", timebuf, node->msg);
+            sprintf(buf, "%s: %s\n", timebuf, node->msg);
             send_to_char(buf, ch);
         }
     }

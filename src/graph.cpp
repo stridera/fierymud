@@ -180,7 +180,7 @@ int find_track_victim(CharData *ch, char *name, int maxdist, CharData **victim) 
         return BFS_ERROR;
 
     /* Did you say "track me"? */
-    if (!str_cmp(name, "self") || !str_cmp(name, "me")) {
+    if (!strcmp(name, "self") || !strcmp(name, "me")) {
         *victim = ch;
         return BFS_ALREADY_THERE;
     }
@@ -285,15 +285,15 @@ ACMD(do_track) {
     int trackskill;
 
     if (FIGHTING(ch)) {
-        send_to_char("You are too busy to look for a trail.\r\n", ch);
+        send_to_char("You are too busy to look for a trail.\n", ch);
         return;
     }
     if (!GET_SKILL(ch, SKILL_TRACK) && !IS_NPC(ch)) {
-        send_to_char("You have no idea how.\r\n", ch);
+        send_to_char("You have no idea how.\n", ch);
         return;
     }
     if (CONFUSED(ch)) {
-        send_to_char("You're far too confused to track anyone!\r\n", ch);
+        send_to_char("You're far too confused to track anyone!\n", ch);
         return;
     }
 
@@ -324,7 +324,7 @@ ACMD(do_track) {
 
     /* If you are already tracking, "track" stops you. */
     if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
-        send_to_char("You stop tracking.\r\n", ch);
+        send_to_char("You stop tracking.\n", ch);
         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
         return;
@@ -333,14 +333,14 @@ ACMD(do_track) {
     /* Figure out who they're trying to track. */
     one_argument(argument, arg);
     if (!*arg) {
-        send_to_char("Whom are you trying to track?\r\n", ch);
+        send_to_char("Whom are you trying to track?\n", ch);
         return;
     }
 
     find_track_victim(ch, arg, track.range, &vict);
 
     if (!vict) {
-        send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+        send_to_char("You can not seem to find tracks for that person.\n", ch);
         if (!IS_NPC(ch) && !POSSESSED(ch))
             WAIT_STATE(ch, PULSE_VIOLENCE);
         return;
@@ -349,12 +349,12 @@ ACMD(do_track) {
     /* Now vict is the person we are trying to track. */
 
     if (vict == ch) {
-        send_to_char("Awesome!  You've found yourself!\r\n", ch);
+        send_to_char("Awesome!  You've found yourself!\n", ch);
         return;
     }
 
     if (GET_LEVEL(ch) < LVL_IMMORT && GET_LEVEL(vict) >= LVL_IMMORT) {
-        send_to_char("You feel their touches in everything around you.  How do you expect to track a god?\r\n", ch);
+        send_to_char("You feel their touches in everything around you.  How do you expect to track a god?\n", ch);
         return;
     }
 
@@ -364,7 +364,7 @@ ACMD(do_track) {
     }
 
     if (EFF_FLAGGED(vict, EFF_NOTRACK)) {
-        send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+        send_to_char("You can not seem to find tracks for that person.\n", ch);
         return;
     }
 
@@ -374,7 +374,7 @@ ACMD(do_track) {
                 return;
 
     if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
-        send_to_char("You stop tracking.\r\n", ch);
+        send_to_char("You stop tracking.\n", ch);
         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
         return;
     }
@@ -393,7 +393,7 @@ ACMD(do_hunt) {
     TrackInfo track;
 
     if (FIGHTING(ch)) {
-        send_to_char("You are too busy to look for a trail.\r\n", ch);
+        send_to_char("You are too busy to look for a trail.\n", ch);
         return;
     }
 
@@ -401,12 +401,12 @@ ACMD(do_hunt) {
         return;
 
     if (!GET_SKILL(ch, SKILL_HUNT)) {
-        send_to_char("You have no idea how.\r\n", ch);
+        send_to_char("You have no idea how.\n", ch);
         return;
     }
 
     if (CONFUSED(ch)) {
-        send_to_char("You're far too confused to go hunting!\r\n", ch);
+        send_to_char("You're far too confused to go hunting!\n", ch);
         return;
     }
 
@@ -418,16 +418,16 @@ ACMD(do_hunt) {
         return;
 
     if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
-        send_to_char("You stop tracking.\r\n", ch);
+        send_to_char("You stop tracking.\n", ch);
         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
         return;
     }
 
     argument = one_argument(argument, arg);
-    if (!str_cmp(" follow", argument) || !str_cmp(" f", argument)) {
+    if (!strcmp(" follow", argument) || !strcmp(" f", argument)) {
         if (GET_CLASS(ch) != CLASS_HUNTER && (GET_LEVEL(ch) < LVL_IMMORT)) {
-            send_to_char("You do not have enough skills to follow someone after hunting.\r\n", ch);
+            send_to_char("You do not have enough skills to follow someone after hunting.\n", ch);
             return;
         }
         follow = true;
@@ -435,14 +435,14 @@ ACMD(do_hunt) {
 
     /*check for second argument :follow */
     if (!*arg) {
-        send_to_char("Whom are you trying to hunt?\r\n", ch);
+        send_to_char("Whom are you trying to hunt?\n", ch);
         return;
     }
 
     find_track_victim(ch, arg, track.range, &vict);
 
     if (!vict) {
-        send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+        send_to_char("You can not seem to find tracks for that person.\n", ch);
         if (!IS_NPC(ch) && !POSSESSED(ch))
             WAIT_STATE(ch, PULSE_VIOLENCE);
         return;
@@ -451,12 +451,12 @@ ACMD(do_hunt) {
     /* Now vict is the person we are trying to track. */
 
     if (vict == ch) {
-        send_to_char("Awesome!   You've found yourself!\r\n", ch);
+        send_to_char("Awesome!   You've found yourself!\n", ch);
         return;
     }
 
     if (GET_LEVEL(ch) < LVL_IMMORT && GET_LEVEL(vict) >= LVL_IMMORT) {
-        send_to_char("You're pretty sure you're not the predator of this relationship.\r\n", ch);
+        send_to_char("You're pretty sure you're not the predator of this relationship.\n", ch);
         return;
     }
 
@@ -466,7 +466,7 @@ ACMD(do_hunt) {
     }
 
     if (EFF_FLAGGED(vict, EFF_NOTRACK)) {
-        send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+        send_to_char("You can not seem to find tracks for that person.\n", ch);
         return;
     }
 
@@ -474,7 +474,7 @@ ACMD(do_hunt) {
         return;
 
     if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
-        send_to_char("You stop hunting.\r\n", ch);
+        send_to_char("You stop hunting.\n", ch);
         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
         return;
@@ -538,7 +538,7 @@ bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool
         if (prob < 15)
             prob = 15;
         if (random() % 100 > prob) {
-            send_to_char("All traces seem to have been lost in the waves...\r\n", ch);
+            send_to_char("All traces seem to have been lost in the waves...\n", ch);
             if (!IS_NPC(ch) && !POSSESSED(ch))
                 WAIT_STATE(ch, PULSE_VIOLENCE);
             return false;
@@ -554,31 +554,31 @@ bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool
 
     if (dir == BFS_NO_PATH || dist > track.sense) {
         /* Nope, you got nothing */
-        send_to_char("You can not seem to find tracks for that person.\r\n", ch);
+        send_to_char("You can not seem to find tracks for that person.\n", ch);
         return false;
     } else if (dist == 0) {
         /* Yeah, the target seems to be right here... */
-        send_to_char("Funny, the tracks seem to end right here!\r\n", ch);
+        send_to_char("Funny, the tracks seem to end right here!\n", ch);
         return false;
     } else if (dist > track.range) {
         /* Out of range, but still sense-able. */
         if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {
             if ((dist - track.range) <= 5) {
-                sprintf(buf, "You get a very very strong sense of %s.\r\n", HMHR(victim));
+                sprintf(buf, "You get a very very strong sense of %s.\n", HMHR(victim));
                 send_to_char(buf, ch);
             } else if ((dist - track.range) <= 10) {
-                act("You sense $M strongly, but you cannot find any tracks.\r\n", false, ch, 0, victim, TO_CHAR);
+                act("You sense $M strongly, but you cannot find any tracks.\n", false, ch, 0, victim, TO_CHAR);
             } else {
-                sprintf(buf, "Hmmm... You only just sense %s.\r\n", HMHR(victim));
+                sprintf(buf, "Hmmm... You only just sense %s.\n", HMHR(victim));
                 send_to_char(buf, ch);
             }
         } else {
-            act("Hmmm... You sense $M.  $U$E must be close.\r\n", false, ch, 0, victim, TO_CHAR);
+            act("Hmmm... You sense $M.  $U$E must be close.\n", false, ch, 0, victim, TO_CHAR);
         }
         return false;
     } else {
         /* In range.  Let the tracking commence. */
-        send_to_char("You begin to search for tracks...\r\n", ch);
+        send_to_char("You begin to search for tracks...\n", ch);
         CREATE(track_event, TrackDelayedEventObj, 1);
         track_event->ch = ch;
         track_event->victim = victim;
@@ -617,7 +617,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     case BFS_ERROR:
         return false;
     case BFS_ALREADY_THERE:
-        send_to_char("The tracks come to an end here!\r\n", ch);
+        send_to_char("The tracks come to an end here!\n", ch);
         if (track_room == -2) { /*follow victim */
             cmd = find_command("follow");
             do_follow(ch, GET_NAMELIST(victim), cmd, 0);
@@ -629,7 +629,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
 
     /* Has the victim has moved out of range? */
     if (dist > track.range) {
-        send_to_char("The trail has faded away.\r\n", ch);
+        send_to_char("The trail has faded away.\n", ch);
         return false;
     }
 
@@ -639,31 +639,31 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
         if (prob < 2)
             prob = 2;
         if (random() % 100 > prob) {
-            send_to_char("The trail is lost in the churning water.\r\n", ch);
+            send_to_char("The trail is lost in the churning water.\n", ch);
             return false;
         }
     }
 
     /* Might lose the trail for stealthy people */
     if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_HIDDENNESS(victim) > number(0, 500)) {
-        send_to_char("You can't seem to find any more tracks.\r\n", ch);
+        send_to_char("You can't seem to find any more tracks.\n", ch);
         return false;
     }
 
     /* Can't track while fighting */
     if (FIGHTING(ch)) {
-        send_to_char("You give up the chase for the fight!\r\n", ch);
+        send_to_char("You give up the chase for the fight!\n", ch);
         return false;
     }
 
     /* Eh, you started resting? */
     if (GET_STANCE(ch) < STANCE_ALERT) {
-        send_to_char("You are too relaxed to continue tracking now.\r\n", ch);
+        send_to_char("You are too relaxed to continue tracking now.\n", ch);
         return false;
     }
 
     if (GET_POS(ch) < POS_STANDING) {
-        send_to_char("You stop tracking.\r\n", ch);
+        send_to_char("You stop tracking.\n", ch);
         return false;
     }
 
@@ -674,7 +674,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     /* Mobs with MOB_STAY_ZONE shouldn't track outside the zone */
     if (IS_NPC(ch)) {
         if (MOB_FLAGGED(ch, MOB_STAY_ZONE) && CH_ROOM(ch)->zone != CH_ROOM(victim)->zone) {
-            send_to_char("You lose your victim's tracks.\r\n", ch);
+            send_to_char("You lose your victim's tracks.\n", ch);
             return false;
         }
     }
@@ -682,7 +682,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     /* Umm, I don't think this will work. */
     if (track_room <= -1) { /*if hunt stop rangers hunting in town */
         if ((GET_CLASS(ch) == CLASS_RANGER) && (GET_LEVEL(ch) < LVL_IMMORT)) {
-            send_to_char("You lose your victim's tracks.\r\n", ch);
+            send_to_char("You lose your victim's tracks.\n", ch);
             return false;
         }
     }
@@ -690,13 +690,13 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     /*check for a door */
     if (EXIT_IS_CLOSED(CH_EXIT(ch, direction)) && GET_LEVEL(ch) < LVL_GOD) {
         strcpy(doorname, exit_name(CH_EXIT(ch, direction)));
-        sprintf(buf, "You try to open the %s.\r\n", doorname);
+        sprintf(buf, "You try to open the %s.\n", doorname);
         send_to_char(buf, ch);
         sprintf(doorname, "%s %s", doorname, dirs[direction]);
         cmd = find_command("cmd");
         do_gen_door(ch, doorname, cmd, 0);
         if (EXIT_IS_CLOSED(CH_EXIT(ch, direction))) {
-            cprintf(ch, "You stop tracking.\r\n");
+            char_printf(ch, "You stop tracking.\n");
             return false;
         } else {
             return true;
@@ -704,14 +704,14 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     }
 
     /* You get to move toward the victim. */
-    sprintf(buf, "&0You find signs of a track %s from here!&0\r\n", dirs[direction]);
+    sprintf(buf, "&0You find signs of a track %s from here!&0\n", dirs[direction]);
     send_to_char(buf, ch);
     if (!perform_move(ch, direction, 1, false))
         return false;
     act("&0$n searches for tracks.&0", true, ch, 0, 0, TO_ROOM);
     /*check to see if in room */
     if ((ch->in_room == track_room) || (ch->in_room == victim->in_room)) {
-        send_to_char("The tracks come to an end here!\r\n", ch);
+        send_to_char("The tracks come to an end here!\n", ch);
         if (track_room == -2) { /*follow victim */
             cmd = find_command("follow");
             do_follow(ch, GET_NAMELIST(victim), cmd, 0);

@@ -15,17 +15,76 @@
 #include "exits.hpp"
 #include "handler.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+/* roomdef is: NAME, COLOR, MV, FALL_MOD, QDAM_MOD, CAMP, WET, NOCAMP_EXCUSE,
+ * NOTES */
+const struct sectordef sectors[NUM_SECTORS] = {
+    /*  0 */ {"Structure", "&7", 1, 0, 0, false, false, "You always pitch a tent indoors?", ""},
+    /*  1 */
+    {"City", "&8&b", 1, 5, 100, false, false, "Ye can't pitch a tent on the sidewalk fool.", "Always lit."},
+    /*  2 */
+    {"Field", "&3", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /*  3 */
+    {"Forest", "&2", 3, 10, 125, true, false, "(yes, you can camp here)", ""},
+    /*  4 */
+    {"Mountains", "&3", 6, 20, 115, true, false, "(yes, you can camp here)", ""},
+    /*  5 */
+    {"Shallows", "&6", 4, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
+    /*  6 */
+    {"Water", "&4&b", 2, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
+    /*  7 */
+    {"Underwater", "&4", 5, 0, 0, false, true, "Go buy a floating tent and try again.", ""},
+    /*  8 */
+    {"Air", "&6&b", 1, 0, 0, false, false, "You can't camp in mid-air.", ""},
+    /*  9 */
+    {"Road", "&8", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /* 10 */
+    {"Grasslands", "&2&b", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /* 11 */
+    {"Cave", "&3&b", 2, 15, 150, true, false, "(yes, you can camp here)", ""},
+    /* 12 */
+    {"Ruins", "&9&b", 2, 10, 125, true, false, "(yes, you can camp here)", ""},
+    /* 13 */
+    {"Swamp", "&2&b", 4, 10, 125, true, true, "(yes, you can camp here)", ""},
+    /* 14 */
+    {"Beach", "&3&b", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    /* 15 */
+    {"Underdark", "&9&b", 2, 10, 125, true, false, "(yes, you can camp here)", ""},
+    /* 16 */
+    {"Astraplane", "&6&b", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 17 */
+    {"Airplane", "&6", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 18 */
+    {"Fireplane", "&1&b", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 19 */
+    {"Earthplane", "&3", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 20 */
+    {"Etherealplane", "&5", 1, 5, 100, true, false, "(yes, you can camp here)", "(don't use)"},
+    /* 21 */
+    {"Avernus", "&5&b", 1, 0, 0, true, false, "(yes, you can camp here)", "(don't use)"},
+};
+
+const char *room_bits[NUM_ROOM_FLAGS + 1] = {
+    "DARK",   "DEATH",     "!MOB",      "INDOORS",     "PEACEFUL", "SOUNDPROOF", "!TRACK", "!MAGIC",
+    "TUNNEL", "PRIVATE",   "GODROOM",   "HOUSE",       "HCRSH",    "ATRIUM",     "OLC",    "*BFS_MARK*",
+    "NOWELL", "NORECALL",  "UNDERDARK", "!SUMMON",     "NOSHIFT",  "GUILDHALL",  "!SCAN",  "ALT_EXIT",
+    "MAP",    "ALWAYSLIT", "ARENA",     "OBSERVATORY", "\n"};
+
+const char *room_effects[NUM_ROOM_EFF_FLAGS + 1] = {"FOG",         "DARKNESS",  "CONT_LIGHT", "FOREST",
+                                                    "CIRCLE_FIRE", "ISOLATION", "\n"};
+
 /* act.movement.c */
 void cantgo_msg(CharData *ch, int dir) {
-    char *bumpinto = nullptr;
+    const char *bumpinto = nullptr;
 
     if (!CONFUSED(ch)) {
-        send_to_char("Alas, you cannot go that way...\r\n", ch);
+        send_to_char("Alas, you cannot go that way...\n", ch);
         return;
     }
 
@@ -205,13 +264,13 @@ bool check_can_go(CharData *ch, int dir, bool quiet) {
         if (EXIT_IS_CLOSED(exit)) {
             if (!quiet) {
                 if (exit->keyword && *(exit->keyword)) {
-                    sprintf(buf, "The %s seem%s to be closed.\r\n", fname(exit->keyword),
+                    sprintf(buf, "The %s seem%s to be closed.\n", fname(exit->keyword),
                             isplural(exit->keyword) ? "" : "s");
                     send_to_char(buf, ch);
                 } else {
                     sprintf(buf, "SYSERR: room %d, exit %d has no keyword", CH_ROOM(ch)->vnum, dir);
                     mudlog(buf, BRF, LVL_GOD, true);
-                    send_to_char("It seems to be closed.\r\n", ch);
+                    send_to_char("It seems to be closed.\n", ch);
                 }
             }
             return false;
@@ -243,19 +302,19 @@ void open_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't open that.\r\n", ch);
+            send_to_char("You can't open that.\n", ch);
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
         if (!quiet && ch)
-            send_to_char("It's already open.\r\n", ch);
+            send_to_char("It's already open.\n", ch);
         return;
     }
 
     if (EXIT_IS_LOCKED(exit)) {
         if (!quiet && ch)
-            send_to_char("It seems to be locked.\r\n", ch);
+            send_to_char("It seems to be locked.\n", ch);
         return;
     }
 
@@ -271,7 +330,7 @@ void open_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room */
 
         if (!quiet) {
-            sprintf(buf, "The %s is opened from the other side.\r\n", exit_name(oexit));
+            sprintf(buf, "The %s is opened from the other side.\n", exit_name(oexit));
             send_to_room(buf, exit->to_room);
             send_gmcp_room(ch);
         }
@@ -301,13 +360,13 @@ void close_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't close that.\r\n", ch);
+            send_to_char("You can't close that.\n", ch);
         return;
     }
 
     if (EXIT_IS_CLOSED(exit)) {
         if (!quiet && ch)
-            send_to_char("It's already closed.\r\n", ch);
+            send_to_char("It's already closed.\n", ch);
         return;
     }
 
@@ -325,7 +384,7 @@ void close_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room */
 
         if (!quiet) {
-            sprintf(buf, "The %s is closed from the other side.\r\n", exit_name(oexit));
+            sprintf(buf, "The %s is closed from the other side.\n", exit_name(oexit));
             send_to_room(buf, exit->to_room);
         }
     }
@@ -357,13 +416,13 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't unlock that.\r\n", ch);
+            send_to_char("You can't unlock that.\n", ch);
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
         if (!quiet && ch)
-            send_to_char("It isn't even closed!\r\n", ch);
+            send_to_char("It isn't even closed!\n", ch);
         return;
     }
 
@@ -373,12 +432,12 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         keyvnum = exit->key;
         if (keyvnum < 0) {
             if (!quiet)
-                send_to_char("Odd - you can't seem to find a keyhole.\r\n", ch);
+                send_to_char("Odd - you can't seem to find a keyhole.\n", ch);
             return;
         }
         if (!(key = carried_key(ch, keyvnum))) {
             if (!quiet)
-                send_to_char("You don't seem to have the proper key.\r\n", ch);
+                send_to_char("You don't seem to have the proper key.\n", ch);
             return;
         }
     }
@@ -388,7 +447,7 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_LOCKED(exit)) {
         if (!quiet && ch) {
-            send_to_char("Oh... it wasn't locked, after all.\r\n", ch);
+            send_to_char("Oh... it wasn't locked, after all.\n", ch);
             if (key)
                 act("$n inserts $p into the lock on the $F, but finds that it wasn't "
                     "locked.",
@@ -410,7 +469,7 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room */
 
         if (!quiet) {
-            sprintf(buf, "The %s is unlocked from the other side.\r\n", exit_name(oexit));
+            sprintf(buf, "The %s is unlocked from the other side.\n", exit_name(oexit));
             send_to_room(buf, exit->to_room);
         }
     }
@@ -451,13 +510,13 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't unlock that.\r\n", ch);
+            send_to_char("You can't unlock that.\n", ch);
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
         if (!quiet && ch)
-            send_to_char("You'll have to close it first.\r\n", ch);
+            send_to_char("You'll have to close it first.\n", ch);
         return;
     }
 
@@ -467,12 +526,12 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         keyvnum = exit->key;
         if (keyvnum < 0) {
             if (!quiet)
-                send_to_char("Odd - you can't seem to find a keyhole.\r\n", ch);
+                send_to_char("Odd - you can't seem to find a keyhole.\n", ch);
             return;
         }
         if (!(key = carried_key(ch, keyvnum))) {
             if (!quiet)
-                send_to_char("You don't seem to have the proper key.\r\n", ch);
+                send_to_char("You don't seem to have the proper key.\n", ch);
             return;
         }
     }
@@ -482,7 +541,7 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (EXIT_IS_LOCKED(exit)) {
         if (!quiet && ch) {
-            send_to_char("It seems to be locked already.\r\n", ch);
+            send_to_char("It seems to be locked already.\n", ch);
             if (key)
                 act("$n inserts $p into the lock on the $F, but finds that it was "
                     "already locked.",
@@ -506,7 +565,7 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room. */
 
         if (!quiet) {
-            sprintf(buf, "The %s is locked from the other side.\r\n", exit_name(oexit));
+            sprintf(buf, "The %s is locked from the other side.\n", exit_name(oexit));
             send_to_room(buf, exit->to_room);
         }
     }
@@ -550,12 +609,12 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
      */
 
     if (!EXIT_IS_DOOR(exit)) {
-        send_to_char("You can't pick that.\r\n", ch);
+        send_to_char("You can't pick that.\n", ch);
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
-        send_to_char("It isn't even closed!\r\n", ch);
+        send_to_char("It isn't even closed!\n", ch);
         return;
     }
 
@@ -563,13 +622,13 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
         act("$n goes to pick the lock on the $T, but discovers that it isn't "
             "locked.",
             false, ch, 0, exit_name(exit), TO_ROOM);
-        send_to_char("Oh... it wasn't locked, after all.\r\n", ch);
+        send_to_char("Oh... it wasn't locked, after all.\n", ch);
         return;
     }
 
     if (EXIT_IS_PICKPROOF(exit)) {
         act("$n attempts to pick the lock on the $T.", false, ch, 0, exit_name(exit), TO_ROOM);
-        send_to_char("It resists your attempts to pick it.\r\n", ch);
+        send_to_char("It resists your attempts to pick it.\n", ch);
         return;
     }
 
@@ -577,7 +636,7 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
 
     if (number(1, 101) > GET_SKILL(ch, SKILL_PICK_LOCK)) {
         act("$n attempts to pick the lock on the $T.", false, ch, 0, exit_name(exit), TO_ROOM);
-        send_to_char("You failed to pick the lock.\r\n", ch);
+        send_to_char("You failed to pick the lock.\n", ch);
         improve_skill(ch, SKILL_PICK_LOCK);
         return;
     }
@@ -598,7 +657,7 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
 
     /* Feedback to this room. */
 
-    send_to_char("The lock yields to your skills.\r\n", ch);
+    send_to_char("The lock yields to your skills.\n", ch);
     sprintf(buf, "$n skillfully picks the lock on the %s.", exit_name(exit));
     act(buf, false, ch, 0, 0, TO_ROOM);
     send_gmcp_room(ch);
@@ -625,14 +684,14 @@ void send_auto_exits(CharData *ch, int roomnum) {
         if (GET_LEVEL(ch) >= LVL_IMMORT)
             strcpy(buf, " &5&b<&0&5isolation&b>&0");
         else {
-            send_to_char("&2Obvious exits: &6None&0.\r\n", ch);
+            send_to_char("&2Obvious exits: &6None&0.\n", ch);
             return;
         }
     }
 
     for (dir = 0; dir < NUM_OF_DIRS; dir++) {
         if ((exit = room->exits[dir]) && ((dest = EXIT_DEST(exit))) && can_see_exit(ch, roomnum, exit)) {
-            sprintf(buf, "%s &0-&6%s", buf, capdirs[dir]);
+            snprintf(buf, sizeof(buf), "%s &0-&6%s", buf, capdirs[dir]);
             if (EXIT_IS_CLOSED(exit))
                 sprintf(buf, "%s#", buf);
             if (EXIT_IS_HIDDEN(exit))
@@ -640,7 +699,7 @@ void send_auto_exits(CharData *ch, int roomnum) {
         }
     }
 
-    sprintf(buf2, "&2Obvious exits:%s&0\r\n", *buf ? buf : " &6None&0.");
+    sprintf(buf2, "&2Obvious exits:%s&0\n", *buf ? buf : " &6None&0.");
     send_to_char(buf2, ch);
 }
 
@@ -654,10 +713,10 @@ void send_full_exits(CharData *ch, int roomnum) {
 
     if (ROOM_EFF_FLAGGED(roomnum, ROOM_EFF_ISOLATION)) {
         if (GET_LEVEL(ch) < LVL_IMMORT) {
-            send_to_char("Obvious exits:\r\n None.\r\n", ch);
+            send_to_char("Obvious exits:\n None.\n", ch);
             return;
         } else {
-            strcpy(buf, "&9&b(&0exits obscured by &5isolation&0&9&b)&0\r\n");
+            strcpy(buf, "&9&b(&0exits obscured by &5isolation&0&9&b)&0\n");
         }
     }
 
@@ -675,7 +734,7 @@ void send_full_exits(CharData *ch, int roomnum) {
                 }
                 sprintbit(exit->exit_info, exit_bits, buf1 + strlen(buf1));
                 strcat(buf1, "&8&9]&0");
-                sprintf(buf2, "%-5s - [%5d] %s%s\r\n", dirs[dir], dest->vnum, dest->name, buf1);
+                sprintf(buf2, "%-5s - [%5d] %s%s\n", dirs[dir], dest->vnum, dest->name, buf1);
             } else {
                 sprintf(buf2, "%-5s - ", dirs[dir]);
                 if (EXIT_IS_CLOSED(exit))
@@ -684,18 +743,18 @@ void send_full_exits(CharData *ch, int roomnum) {
                     strcat(buf2, "Too dark to tell");
                 else
                     strcat(buf2, dest->name);
-                strcat(buf2, "\r\n");
+                strcat(buf2, "\n");
             }
             strcat(buf, CAP(buf2));
         }
     }
 
     if (*buf) {
-        send_to_char("Obvious exits:\r\n", ch);
+        send_to_char("Obvious exits:\n", ch);
         send_to_char(buf, ch);
         send_to_char("&0", ch);
     } else
-        send_to_char("There are no obvious exits.\r\n", ch);
+        send_to_char("There are no obvious exits.\n", ch);
 }
 
 bool room_contains_char(int roomnum, CharData *ch) {

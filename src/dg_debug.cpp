@@ -36,34 +36,33 @@
  * see also:	do_varset
  */
 ACMD(do_varset) {
-    extern void add_var(TriggerVariableData * *var_list, char *name, char *value);
     char victtype[10];
     int vnum;
 
     skip_spaces(&argument);
     if (!*argument) {
-        send_to_char("Usage: varset {mob|obj|room} <vnum> <varname> [<varval>]\r\n", ch);
+        send_to_char("Usage: varset {mob|obj|room} <vnum> <varname> [<varval>]\n", ch);
         return;
     }
 
     argument = one_argument(argument, victtype);
     if (!*victtype) {
-        send_to_char("Usage: varset {MOB|OBJ|ROOM} <vnum> <varname> [<varval>]\r\n", ch);
+        send_to_char("Usage: varset {MOB|OBJ|ROOM} <vnum> <varname> [<varval>]\n", ch);
         return;
     }
 
     argument = one_argument(argument, buf);
     if (!*buf) {
-        send_to_char("Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\r\n", ch);
+        send_to_char("Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\n", ch);
         return;
     }
     if (!(vnum = atoi(buf))) {
-        send_to_char("Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\r\n", ch);
+        send_to_char("Usage: varset {mob|obj|room} <VNUM> <varname> [<varval>]\n", ch);
         return;
     }
     argument = one_argument(argument, buf);
     if (!*buf) {
-        send_to_char("Usage: varset {mob|obj|room} <vnum> <VARNAME> [<varval>]\r\n", ch);
+        send_to_char("Usage: varset {mob|obj|room} <vnum> <VARNAME> [<varval>]\n", ch);
         return;
     }
 
@@ -71,7 +70,7 @@ ACMD(do_varset) {
      * based on type to set, we need to grab the right array to
      * pass it to add_var
      */
-    if (!str_cmp("mob", victtype)) {
+    if (!strcmp("mob", victtype)) {
         CharData *found_char = nullptr;
 
         found_char = world[(ch->in_room)].people;
@@ -79,13 +78,13 @@ ACMD(do_varset) {
         while (found_char && (GET_MOB_VNUM(found_char) != vnum))
             found_char = found_char->next_in_room;
         if (!found_char)
-            send_to_char("Unable to find that mob in this room\r\n", ch);
+            send_to_char("Unable to find that mob in this room\n", ch);
         else {
             if (!SCRIPT(found_char))
                 CREATE(SCRIPT(found_char), ScriptData, 1);
             add_var(&(SCRIPT(found_char)->global_vars), buf, argument);
         }
-    } else if (!str_cmp("obj", victtype)) {
+    } else if (!strcmp("obj", victtype)) {
         ObjData *found_obj = nullptr;
         found_obj = ch->carrying;
         while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
@@ -97,23 +96,23 @@ ACMD(do_varset) {
         }
 
         if (!found_obj)
-            send_to_char("Unable to find that obj in inventory or room\r\n", ch);
+            send_to_char("Unable to find that obj in inventory or room\n", ch);
         else {
             if (!SCRIPT(found_obj))
                 CREATE(SCRIPT(found_obj), ScriptData, 1);
             add_var(&(SCRIPT(found_obj)->global_vars), buf, argument);
         }
-    } else if (!str_cmp("room", victtype)) {
+    } else if (!strcmp("room", victtype)) {
         int rnum = real_room(vnum);
         if (rnum == NOWHERE)
-            send_to_char("That room does not exist!\r\n", ch);
+            send_to_char("That room does not exist!\n", ch);
         else {
             if (!SCRIPT(&world[rnum]))
                 CREATE(SCRIPT(&world[rnum]), ScriptData, 1);
             add_var(&(SCRIPT(&world[rnum])->global_vars), buf, argument);
         }
     } else {
-        send_to_char("Usage: varset {MOB|OBJ|ROOM} <vnum> <varname> [<varval>]\r\n", ch);
+        send_to_char("Usage: varset {MOB|OBJ|ROOM} <vnum> <varname> [<varval>]\n", ch);
     }
 }
 
@@ -130,33 +129,32 @@ ACMD(do_varset) {
  * see also:	do_varset
  */
 ACMD(do_varunset) {
-    extern void remove_var(TriggerVariableData * *var_list, char *name, char *value);
     char victtype[10];
     int vnum;
     skip_spaces(&argument);
     if (!*argument) {
-        send_to_char("Usage: varunset {mob|obj|room} <rnum> <varname>\r\n", ch);
+        send_to_char("Usage: varunset {mob|obj|room} <rnum> <varname>\n", ch);
         return;
     }
 
     argument = one_argument(argument, victtype);
     if (!*victtype) {
-        send_to_char("Usage: varunset {MOB|OBJ|ROOM} <vnum> <varname>\r\n", ch);
+        send_to_char("Usage: varunset {MOB|OBJ|ROOM} <vnum> <varname>\n", ch);
         return;
     }
 
     argument = one_argument(argument, buf);
     if (!*buf) {
-        send_to_char("Usage: varunset {mob|obj|room} <VNUM> <varname>\r\n", ch);
+        send_to_char("Usage: varunset {mob|obj|room} <VNUM> <varname>\n", ch);
         return;
     }
     if (!(vnum = atoi(buf))) {
-        send_to_char("Usage: varunset {mob|obj|room} <VNUM> <varname>\r\n", ch);
+        send_to_char("Usage: varunset {mob|obj|room} <VNUM> <varname>\n", ch);
         return;
     }
     argument = one_argument(argument, buf);
     if (!*buf) {
-        send_to_char("Usage: varunset {mob|obj|room} <vnum> <VARNAME>\r\n", ch);
+        send_to_char("Usage: varunset {mob|obj|room} <vnum> <VARNAME>\n", ch);
         return;
     }
 
@@ -164,7 +162,7 @@ ACMD(do_varunset) {
      * based on type to unset, we need to grab the right array to
      * pass it to remove_var
      */
-    if (!str_cmp("mob", victtype)) {
+    if (!strcmp("mob", victtype)) {
         CharData *found_char = nullptr;
 
         found_char = world[(ch->in_room)].people;
@@ -172,10 +170,10 @@ ACMD(do_varunset) {
         while (found_char && (GET_MOB_VNUM(found_char) != vnum))
             found_char = found_char->next_in_room;
         if (!found_char)
-            send_to_char("Unable to find that mob in this room\r\n", ch);
+            send_to_char("Unable to find that mob in this room\n", ch);
         else
-            remove_var(&(SCRIPT(found_char)->global_vars), buf, argument);
-    } else if (!str_cmp("obj", victtype)) {
+            remove_var(&(SCRIPT(found_char)->global_vars), buf);
+    } else if (!strcmp("obj", victtype)) {
         ObjData *found_obj = nullptr;
         found_obj = ch->carrying;
         while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
@@ -187,17 +185,17 @@ ACMD(do_varunset) {
         }
 
         if (!found_obj)
-            send_to_char("Unable to find that obj in inventory or room\r\n", ch);
+            send_to_char("Unable to find that obj in inventory or room\n", ch);
         else
-            remove_var(&(SCRIPT(found_obj)->global_vars), buf, argument);
-    } else if (!str_cmp("room", victtype)) {
+            remove_var(&(SCRIPT(found_obj)->global_vars), buf);
+    } else if (!strcmp("room", victtype)) {
         int rnum = real_room(vnum);
         if (rnum == NOWHERE)
-            send_to_char("That room does not exist!\r\n", ch);
+            send_to_char("That room does not exist!\n", ch);
         else
-            remove_var(&(SCRIPT(&world[rnum])->global_vars), buf, argument);
+            remove_var(&(SCRIPT(&world[rnum])->global_vars), buf);
     } else {
-        send_to_char("Usage: varunset {MOB|OBJ|ROOM} <vnum> <varname>\r\n", ch);
+        send_to_char("Usage: varunset {MOB|OBJ|ROOM} <vnum> <varname>\n", ch);
     }
 }
 

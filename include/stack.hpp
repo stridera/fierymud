@@ -32,7 +32,7 @@
  *   for (i = 0; i < 20; ++i)
  *     as_push(stack, i);
  *   while (!as_empty(stack))
- *     printf("%d\r\n", as_pop(stack));
+ *     printf("%d\n", as_pop(stack));
  * }
  */
 

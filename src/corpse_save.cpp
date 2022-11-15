@@ -52,10 +52,12 @@ points of interest are:
 #include "math.hpp"
 #include "objects.hpp"
 #include "pfiles.hpp"
-#include "strings.hpp"
+// #include "strings.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+
+#include <string.h>
 
 struct corpse_data {
     int id;
@@ -117,7 +119,6 @@ static ObjData *load_corpse(int id) {
     char fname[MAX_STRING_LENGTH];
     ObjData *obj, *containers[MAX_CONTAINER_DEPTH + 1];
     int location, depth, i;
-    extern int r_mortal_start_room;
 
     if (!get_corpse_filename(id, fname)) {
         log("SYSERR: invalid id passed from load_corpse.");
@@ -145,7 +146,7 @@ static ObjData *load_corpse(int id) {
     }
 
     if (build_object(fl, &obj, &location)) {
-        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !str_str(obj->name, "corpse")) {
+        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !strstr(obj->name, "corpse")) {
             sprintf(buf, "SYSERR: First object '%s' loaded from corpse %d not corpse", obj->short_description, id);
             log(buf);
             extract_obj(obj);
@@ -367,12 +368,12 @@ void show_corpses(CharData *ch, char *argument) {
 
     if (corpse_control.count) {
         send_to_char(
-            "Id  Corpse              Level  Decomp  Location\r\n"
+            "Id  Corpse              Level  Decomp  Location\n"
             "-------------------------------------------------------------"
-            "------\r\n",
+            "------\n",
             ch);
         for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next) {
-            if (!strn_cmp(entry->corpse->short_description, "the corpse of ", 14))
+            if (!strncmp(entry->corpse->short_description, "the corpse of ", 14))
                 strcpy(buf1, entry->corpse->short_description + 14);
             else
                 strcpy(buf1, entry->corpse->name);
@@ -387,9 +388,9 @@ void show_corpses(CharData *ch, char *argument) {
                 sprintf(buf2, "worn by %s", GET_NAME(entry->corpse->worn_by));
             else
                 strcpy(buf2, "an unknown location");
-            cprintf(ch, "%-4d%-20.20s%5d  %6d  %25s\r\n", entry->id, buf1, GET_OBJ_LEVEL(entry->corpse),
-                    GET_OBJ_DECOMP(entry->corpse), buf2);
+            char_printf(ch, "%-4d%-20.20s%5d  %6d  %25s\n", entry->id, buf1, GET_OBJ_LEVEL(entry->corpse),
+                        GET_OBJ_DECOMP(entry->corpse), buf2);
         }
     } else
-        send_to_char("There are no player corpses in the game.\r\n", ch);
+        send_to_char("There are no player corpses in the game.\n", ch);
 }

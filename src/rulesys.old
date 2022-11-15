@@ -9,7 +9,7 @@
  *  of the Johns Hopkins University                                        *
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
-
+#ifdef __OLD_CODE_DO_NOT_USE__
 #include "conf.hpp"
 #include "rules.hpp"
 #include "structs.hpp"
@@ -100,3 +100,5 @@ void sprint_rule(char *buf, size_t size, Rule *rule) {
     } else
         snprintf(buf, size, "NULL");
 }
+
+#endif

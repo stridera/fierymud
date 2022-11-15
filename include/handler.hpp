@@ -79,4 +79,4 @@ void remember(CharData *ch, CharData *victim);
  * Helps the object extractor in limits.c to iterate over all objects
  * in the world while destroying some of them. */
 
-ObjData *go_iterator = nullptr;
+extern ObjData *go_iterator;

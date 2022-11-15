@@ -180,7 +180,7 @@ void add_clan_membership(Clan *, ClanMembership *);
 void save_clan(const Clan *);
 void update_clan(Clan *);
 void free_clans(void);
-void clan_notification(const Clan *, const CharData *skip, const char *str, ...) __attribute__((format(printf, 3, 4)));
+void clan_notification(Clan *, CharData *skip, const char *str, ...) __attribute__((format(printf, 3, 4)));
 void clan_set_title(CharData *ch);
 Clan *alloc_clan(void);
 void dealloc_clan(Clan *);

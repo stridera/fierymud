@@ -565,7 +565,3 @@ struct CampEvent {
     CharData *ch;
     int was_in;
 };
-
-#ifdef MEMORY_DEBUG
-#include "zmalloc.h"
-#endif

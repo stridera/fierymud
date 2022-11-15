@@ -10,30 +10,14 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
-#define __COMM_C__
-/* if yer really hard core....
-#define __STRICT_ANSI__
-*/
-#include "conf.hpp"
-#include "sysdep.hpp"
-
-#ifdef CIRCLE_WINDOWS /* Includes for Win32 */
-#include <direct.h>
-#include <mmsystem.h>
-#else /* Includes for UNIX */
-#include <netdb.h>
-#include <netinet/in.h>
-#include <signal.h>
-#include <sys/resource.h>
-#include <sys/socket.h>
-#endif
+#include "comm.hpp"
 
 #include "act.hpp"
 #include "board.hpp"
 #include "casting.hpp"
 #include "clan.hpp"
-#include "comm.hpp"
 #include "commands.hpp"
+#include "conf.hpp"
 #include "constants.hpp"
 #include "cooldowns.hpp"
 #include "db.hpp"
@@ -58,8 +42,15 @@
 #include "screen.hpp"
 #include "skills.hpp"
 #include "structs.hpp"
+#include "sysdep.hpp"
 #include "utils.hpp"
 #include "weather.hpp"
+
+#include <netdb.h>
+#include <netinet/in.h>
+#include <signal.h>
+#include <sys/resource.h>
+#include <sys/socket.h>
 
 #ifdef HAVE_ARPA_TELNET_H
 #include <arpa/telnet.h>
@@ -70,9 +61,6 @@
 #ifndef INVALID_SOCKET
 #define INVALID_SOCKET -1
 #endif
-
-#define YES 1
-#define NO 0
 
 #define GMCP 201
 
@@ -86,6 +74,25 @@ ush_int port;
 socket_t mother_desc;
 
 struct timeval null_time;
+
+DescriptorData *descriptor_list = nullptr; /* master desc list */
+unsigned long global_pulse = 0;            /* number of pulses since game start */
+unsigned long pulse = 0;                   /* number of pulses since game started */
+
+/* local globals */
+char comm_buf[MAX_STRING_LENGTH] = {'\0'};
+txt_block *bufpool = 0;        /* pool of large output buffers */
+int buf_largecount = 0;        /* # of large buffers which exist */
+int buf_overflows = 0;         /* # of overflows of output */
+int buf_switches = 0;          /* # of switches from small to large buf */
+int circle_shutdown = 0;       /* clean shutdown */
+int circle_reboot = 0;         /* reboot the game after a shutdown */
+int no_specials = 0;           /* Suppress ass. of special routines */
+int max_players = 0;           /* max descriptors available */
+int tics = 0;                  /* for extern checkpointing */
+int scheck = 0;                /* for syntax checking mode */
+int dg_act_check;              /* toggle for act_trigger */
+int gossip_channel_active = 1; /* Flag for turning on or off gossip for the whole MUD */
 
 /* functions in this file */
 int get_from_q(txt_q *queue, char *dest, int *aliased);
@@ -225,7 +232,7 @@ int main(int argc, char **argv) {
 
     log("Initializing runtime game constants.");
     init_flagvectors();
-    init_rules();
+    // init_rules();
     init_colors();
     init_races();
     init_classes();
@@ -284,7 +291,7 @@ void hotboot_recover() {
     /* There are some descriptors open which will hang forever then? */
     if (!fp) {
         perror("hotboot_recover:fopen");
-        log("Hotboot file not found.  Exiting.\r\n");
+        log("Hotboot file not found.  Exiting.\n");
         exit(1);
     }
 
@@ -312,7 +319,7 @@ void hotboot_recover() {
             break;
 
         /* Write something, and check if it goes error-free */
-        if (write_to_descriptor(desc, "\r\nRestoring from hotboot...\r\n") < 0) {
+        if (write_to_descriptor(desc, "\nRestoring from hotboot...\n") < 0) {
             close(desc); /* nope */
             continue;
         }
@@ -343,10 +350,10 @@ void hotboot_recover() {
             fOld = false;
 
         if (!fOld) {
-            write_to_descriptor(desc, "\r\nSomehow, your character was lost in the hotboot.  Sorry.\r\n");
+            write_to_descriptor(desc, "\nSomehow, your character was lost in the hotboot.  Sorry.\n");
             close_socket(d);
         } else {
-            sprintf(buf, "\r\n%sHotboot recovery complete.%s\r\n", CLR(d->character, HGRN), CLR(d->character, ANRM));
+            sprintf(buf, "\n%sHotboot recovery complete.%s\n", CLR(d->character, HGRN), CLR(d->character, ANRM));
             write_to_descriptor(desc, buf);
             enter_player_game(d);
             d->connected = CON_PLAYING;
@@ -625,27 +632,27 @@ void reboot_mud_prep() {
     auto_save_all();
     House_save_all();
     all_printf(
-        "Rebooting.. come back in a minute or two.\r\n"
-        "           &1&b** ****** ****&0\r\n"
-        "         &1&b**&0 &3&b***     *****&0  &1&b**&0\r\n"
-        "       &1&b**&0 &3&b**      &1&b*&0     &3&b***&0  &1&b*&0\r\n"
-        "       &1&b*&0    &3&b** **   *   *  *&0 &1&b**&0\r\n"
-        "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\r\n"
-        "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\r\n"
-        "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\r\n"
+        "Rebooting.. come back in a minute or two.\n"
+        "           &1&b** ****** ****&0\n"
+        "         &1&b**&0 &3&b***     *****&0  &1&b**&0\n"
+        "       &1&b**&0 &3&b**      &1&b*&0     &3&b***&0  &1&b*&0\n"
+        "       &1&b*&0    &3&b** **   *   *  *&0 &1&b**&0\n"
+        "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\n"
+        "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\n"
+        "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\n"
         "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 "
-        "&1&b*&0\r\n");
+        "&1&b*&0\n");
     all_printf(
-        "        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\r\n"
-        "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\r\n"
-        "                &1&b*&0   &3&b*&0 &1&b*&0\r\n"
-        "               &1&b*&0  &3&b* *&0  &1&b*&0\r\n"
-        "              &1&b*&0  &3&b*  **&0  &1&b*&0\r\n"
-        "              &1&b*&0 &3&b**   *&0 &1&b*&0\r\n"
-        "                &1&b*&0 &3&b*&0 &1&b*&0\r\n"
-        "                &1&b*&0 &3&b*&0  &1&b**&0\r\n"
-        "               &1&b**&0     &1&b****&0\r\n"
-        "              &1&b***&0  &3&b* *&0    &1&b****&0\r\n");
+        "        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\n"
+        "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\n"
+        "                &1&b*&0   &3&b*&0 &1&b*&0\n"
+        "               &1&b*&0  &3&b* *&0  &1&b*&0\n"
+        "              &1&b*&0  &3&b*  **&0  &1&b*&0\n"
+        "              &1&b*&0 &3&b**   *&0 &1&b*&0\n"
+        "                &1&b*&0 &3&b*&0 &1&b*&0\n"
+        "                &1&b*&0 &3&b*&0  &1&b**&0\n"
+        "               &1&b**&0     &1&b****&0\n"
+        "              &1&b***&0  &3&b* *&0    &1&b****&0\n");
     touch("../.fastboot");
 }
 
@@ -660,13 +667,13 @@ void personal_reboot_warning(CharData *ch) {
         minutes_till = (reboot_pulse - global_pulse - 1) / (PASSES_PER_SEC * 60) + 1;
         if (minutes_till == 1) {
             seconds_till = (reboot_pulse - global_pulse) / PASSES_PER_SEC;
-            cprintf(ch, "\r\n\007&4&b***&0 &7&b%d second%s to reboot&0 &4&b***&0\r\n", seconds_till,
-                    seconds_till == 1 ? "" : "s");
+            char_printf(ch, "\n\007&4&b***&0 &7&b%d second%s to reboot&0 &4&b***&0\n", seconds_till,
+                        seconds_till == 1 ? "" : "s");
         } else {
-            cprintf(ch,
-                    "\r\n\007&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in "
-                    "&6&b%d minute%s&0  &1&b*&3&bATTENTION&1&b*&0\r\n",
-                    minutes_till, minutes_till == 1 ? "" : "s");
+            char_printf(ch,
+                        "\n\007&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in "
+                        "&6&b%d minute%s&0  &1&b*&3&bATTENTION&1&b*&0\n",
+                        minutes_till, minutes_till == 1 ? "" : "s");
         }
     }
 }
@@ -674,7 +681,7 @@ void personal_reboot_warning(CharData *ch) {
 void rebootwarning(int minutes) {
     all_printf(
         "&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in &6&b%d "
-        "minute%s&0  &1&b*&3&bATTENTION&1&b*&0\r\n",
+        "minute%s&0  &1&b*&3&bATTENTION&1&b*&0\n",
         minutes, minutes == 1 ? "" : "s");
 }
 
@@ -684,15 +691,15 @@ void cancel_auto_reboot(int postponed) {
 
     reboot_warning = 0;
     if (postponed)
-        all_printf("&6*** Automatic Reboot Postponed ***&0\r\n");
+        all_printf("&6*** Automatic Reboot Postponed ***&0\n");
     else
-        all_printf("&6&b*** Automatic Reboot Cancelled ***&0\r\n");
+        all_printf("&6&b*** Automatic Reboot Cancelled ***&0\n");
 
     if (should_restrict) {
         if (restrict_reason == RESTRICT_NONE || restrict_reason == RESTRICT_AUTOBOOT) {
             should_restrict = 0;
             restrict_reason = RESTRICT_NONE;
-            all_printf("*** Mortal logins reenabled ***\r\n");
+            all_printf("*** Mortal logins reenabled ***\n");
             log("Login restriction removed.");
         }
     }
@@ -735,7 +742,7 @@ void check_auto_rebooting() {
                 log("Mortal logins prevented due to imminent automatic reboot.");
                 should_restrict = LVL_IMMORT;
                 restrict_reason = RESTRICT_AUTOBOOT;
-                all_printf("*** No more mortal logins ***\r\n");
+                all_printf("*** No more mortal logins ***\n");
             }
             reboot_warning = 1;
             last_reboot_warning = minutes_till;
@@ -743,8 +750,7 @@ void check_auto_rebooting() {
             /* Additional warnings during the last minute */
             seconds_till = (reboot_pulse - global_pulse) / PASSES_PER_SEC;
             if (seconds_till == 30 || seconds_till == 10 || seconds_till == 5) {
-                all_printf("&4&b*&0 &7&b%d second%s to reboot&0 &4&b*&0\r\n", seconds_till,
-                           seconds_till == 1 ? "" : "s");
+                all_printf("&4&b*&0 &7&b%d second%s to reboot&0 &4&b*&0\n", seconds_till, seconds_till == 1 ? "" : "s");
             }
         }
     }
@@ -917,7 +923,7 @@ void game_loop(int mother_desc) {
                         d->prompt_mode = 0;
                     else if (perform_alias(d, comm)) /* run it through aliasing system */
                         get_from_q(&d->input, comm, &aliased);
-                    dprintf(d, "\r\n");
+                    desc_printf(d, "\n");
                     command_interpreter(d->character, comm); /* send it to interpreter */
                 }
             }
@@ -1129,7 +1135,7 @@ void offer_gmcp_services(DescriptorData *d) {
             "}%s"
             "%sClient.Map {"
             "\"url\":\"%s\""
-            "}%s",
+            "}%s\n",
             gmcp_start_data, mudlet_client_version, mudlet_client_url, gmcp_end_data, gmcp_start_data, mudlet_map_url,
             gmcp_end_data);
 
@@ -1152,7 +1158,7 @@ void echo_off(DescriptorData *d) {
         (char)0,
     };
 
-    dprintf(d, "%s", off_string);
+    desc_printf(d, "%s", off_string);
 }
 
 void send_gmcp_prompt(DescriptorData *d) {
@@ -1299,7 +1305,7 @@ void echo_on(DescriptorData *d) {
         (char)IAC, (char)WONT, (char)TELOPT_ECHO, (char)TELOPT_NAOFFD, (char)TELOPT_NAOCRD, (char)0,
     };
 
-    dprintf(d, on_string);
+    desc_printf(d, on_string);
 }
 
 char *prompt_str(CharData *ch) {
@@ -1348,7 +1354,7 @@ char *prompt_str(CharData *ch) {
             pre_length += sprintf(cur + pre_length, "<AFK> ");
         /* If any flags above, insert newline. */
         if (pre_length) {
-            pre_length += sprintf(cur + pre_length, "\r\n");
+            pre_length += sprintf(cur + pre_length, "\n");
             /* Advance cursor. */
             cur += pre_length;
         }
@@ -1511,7 +1517,7 @@ char *prompt_str(CharData *ch) {
                 cur += sprintf(cur, "%d", GET_LEVEL(ch));
                 break;
             case '_':
-                cur += sprintf(cur, "\r\n");
+                cur += sprintf(cur, "\n");
                 break;
             case '-':
                 cur += sprintf(cur, " ");
@@ -1693,7 +1699,7 @@ void make_prompt(DescriptorData *d) {
         char prompt[MAX_INPUT_LENGTH];
         sprintf(prompt,
                 "\r[ Return to continue, (q)uit, (r)efresh, (b)ack, or page number "
-                "(%d/%d) ]\r\n",
+                "(%d/%d) ]\n",
                 PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
         write_to_descriptor(d->descriptor, prompt);
     } else if (EDITING(d) || d->str)
@@ -1757,7 +1763,7 @@ bool casting_command(DescriptorData *d, char *txt) {
         return false;
 
     /* Handle the casting-ok command immediately. */
-    dprintf(d, "\r\n");
+    desc_printf(d, "\n");
     command_interpreter(d->character, txt);
     return true;
 }
@@ -1955,7 +1961,7 @@ int new_descriptor(int s) {
         sockets_connected++;
 
     if (sockets_connected >= max_players) {
-        write_to_descriptor(desc, "Sorry, FieryMUD is full right now... please try again later!\r\n");
+        write_to_descriptor(desc, "Sorry, FieryMUD is full right now... please try again later!\n");
         CLOSE_SOCKET(desc);
         return 0;
     }
@@ -1984,7 +1990,7 @@ int new_descriptor(int s) {
         write_to_descriptor(desc, BANNEDINTHEUSA);
         write_to_descriptor(desc, BANNEDINTHEUSA2);
         write_to_descriptor(desc, BANNEDINTHEUSA3);
-        sprintf(buf, "\r\n Connection logged from: %s\r\n\r\n", newd->host);
+        sprintf(buf, "\n Connection logged from: %s\n\n", newd->host);
         write_to_descriptor(desc, buf);
         CLOSE_SOCKET(desc);
         mprintf(L_STAT, LVL_GOD, "BANNED: Connection attempt denied from [%s]", newd->host);
@@ -2004,8 +2010,7 @@ int new_descriptor(int s) {
 
     offer_gmcp(newd);
 
-    dprintf(newd, "Do you want ANSI terminal support? (Y/n) ");
-
+    write_to_descriptor(desc, "Do you want ANSI terminal support? (Y/n)\n");
     return 0;
 }
 
@@ -2013,8 +2018,8 @@ int process_output(DescriptorData *t) {
     static char i[LARGE_BUFSIZE + GARBAGE_SPACE];
     static int result;
 
-    /* we may need this \r\n for later -- see below */
-    strcpy(i, "\r\n");
+    /* we may need this \n for later -- see below */
+    strcpy(i, "\n");
 
     /* now, append the 'real' output */
     strcpy(i + 2, t->output);
@@ -2025,7 +2030,7 @@ int process_output(DescriptorData *t) {
 
     /* add the extra CRLF if the person isn't in compact mode */
     if (!t->connected && t->character && !PRF_FLAGGED(t->character, PRF_COMPACT))
-        strcat(i + 2, "\r\n");
+        strcat(i + 2, "\n");
 
     /*
      * now, send the output.  If this is an 'interruption', use the prepended
@@ -2038,7 +2043,7 @@ int process_output(DescriptorData *t) {
 
     /* handle snooping: prepend "% " and send to snooper */
     if (t->snoop_by)
-        dprintf(t->snoop_by, "&2((&0 %s &2))&0", t->output);
+        desc_printf(t->snoop_by, "&2((&0 %s &2))&0", t->output);
 
     /*
      * if we were using a large buffer, put the large buffer on the buffer pool
@@ -2190,7 +2195,7 @@ int process_input(DescriptorData *t) {
             if (IS_NEWLINE(*ptr) || space_left <= 0) { /* End of command, process it */
                 *write_point = '\0';
                 if (t->snoop_by)
-                    dprintf(t->snoop_by, "&6>>&b %s &0\r\n", tmp);
+                    desc_printf(t->snoop_by, "&6>>&b %s &0\n", tmp);
 
                 failed_subst = 0;
 
@@ -2214,7 +2219,7 @@ int process_input(DescriptorData *t) {
 
                 if (space_left <= 0) {
                     char buffer[MAX_INPUT_LENGTH + 64];
-                    snprintf(buffer, sizeof(buffer), "Line too long.  Truncated to:\r\n%s\r\n", tmp);
+                    snprintf(buffer, sizeof(buffer), "Line too long.  Truncated to:\n%s\n", tmp);
                     if (write_to_descriptor(t->descriptor, buffer) < 0)
                         return -1;
                     while (*ptr && !IS_NEWLINE(*ptr)) /* Find next newline */
@@ -2266,7 +2271,7 @@ int perform_subst(DescriptorData *t, char *orig, char *subst) {
 
     /* now find the second '^' */
     if (!(second = strchr(first, '^'))) {
-        dprintf(t, "Invalid substitution.\r\n");
+        desc_printf(t, "Invalid substitution.\n");
         return 1;
     }
     /* terminate "first" at the position of the '^' and make 'second' point
@@ -2275,7 +2280,7 @@ int perform_subst(DescriptorData *t, char *orig, char *subst) {
 
     /* now, see if the contents of the first string appear in the original */
     if (!(strpos = strstr(orig, first))) {
-        dprintf(t, "Invalid substitution.\r\n");
+        desc_printf(t, "Invalid substitution.\n");
         return 1;
     }
     /* now, we construct the new_str string for output. */
@@ -2310,7 +2315,7 @@ void close_socket(DescriptorData *d) {
         d->snooping->snoop_by = nullptr;
 
     if (d->snoop_by) {
-        dprintf(d->snoop_by, "Your victim is no longer among us.\r\n");
+        desc_printf(d->snoop_by, "Your victim is no longer among us.\n");
         d->snoop_by->snooping = nullptr;
     }
 
@@ -2407,7 +2412,7 @@ void check_idle_passwords(void) {
             if (d->character && STATE(d) == CON_MENU)
                 save_player_char(d->character);
             echo_on(d);
-            dprintf(d, "\r\nTimed out... goodbye.\r\n");
+            desc_printf(d, "\nTimed out... goodbye.\n");
             STATE(d) = CON_CLOSE;
         }
     }
@@ -2538,8 +2543,8 @@ void signal_setup(void) {
  *       Public routines for system-to-player-communication        *
  **************************************************************** */
 
-/* aka cprintf */
-void char_printf(CharData *ch, const char *messg, ...) {
+/* aka char_printf */
+void char_printf(const CharData *ch, const char *messg, ...) {
     va_list args;
 
     static unsigned int vcount = 0;
@@ -2780,7 +2785,7 @@ int speech_ok(CharData *ch, int quiet) {
          */
         sd->speech_rate = SPAM_THRESHOLD * 1.5;
         if (!quiet)
-            cprintf(ch, "&5&bYour mouth refuses to move!&0\r\n");
+            char_printf(ch, "&5&bYour mouth refuses to move!&0\n");
         return false;
 
     } else if (sd->speech_rate > SPAM_THRESHOLD / 2) {
@@ -2793,10 +2798,10 @@ int speech_ok(CharData *ch, int quiet) {
         if (sd->speech_rate > SPAM_THRESHOLD) {
             sd->speech_rate = SPAM_THRESHOLD * 1.5;
             if (!quiet)
-                cprintf(ch, "&6&bYou feel laryngitis coming on!&0\r\n");
+                char_printf(ch, "&6&bYou feel laryngitis coming on!&0\n");
         } else {
             if (!quiet)
-                cprintf(ch, "&5Your throat feels a little sore.&0\r\n");
+                char_printf(ch, "&5Your throat feels a little sore.&0\n");
         }
     }
 
@@ -2826,11 +2831,11 @@ void speech_report(CharData *ch, CharData *tch) {
     sd->last_speech_time = global_pulse;
 
     if (sd->speech_rate > SPAM_THRESHOLD)
-        cprintf(ch, "&5&b%s %s an acute case of laryngitis.&0\r\n", ch == tch ? "You" : GET_NAME(tch),
-                ch == tch ? "have" : "has");
+        char_printf(ch, "&5&b%s %s an acute case of laryngitis.&0\n", ch == tch ? "You" : GET_NAME(tch),
+                    ch == tch ? "have" : "has");
     else if (sd->speech_rate > SPAM_THRESHOLD / 2)
-        cprintf(ch, "&5%s%s throat feels a little sore.&0\r\n", ch == tch ? "Your" : GET_NAME(tch),
-                ch == tch ? "" : "'s");
+        char_printf(ch, "&5%s%s throat feels a little sore.&0\n", ch == tch ? "Your" : GET_NAME(tch),
+                    ch == tch ? "" : "'s");
 }
 
 void cure_laryngitis(CharData *ch) {
@@ -3041,7 +3046,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         if (ch && ((MOB_PERFORMS_SCRIPTS(ch) && SCRIPT_CHECK(ch, MTRIG_ACT)) || SENDOK(ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, ch);
         }
-        cprintf(ch, "%s", lbuf);
+        char_printf(ch, "%s", lbuf);
 
         return;
     }
@@ -3051,7 +3056,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         if (to && ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
-            cprintf(to, "%s", lbuf);
+            char_printf(to, "%s", lbuf);
         }
 
         return;
@@ -3085,48 +3090,49 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         return;
     }
 
-    victim = std::get<CharData *>(vict_obj);
-    if (to_victroom) {
-        if (victim) {
-            in_room = victim->in_room;
-            if (in_room == NOWHERE) {
-                log("SYSERR: act(): TO_VICTROOM option used but vict is in NOWHERE");
+    if (std::holds_alternative<ObjData *>(vict_obj)) {
+        if (to_victroom) {
+            victim = std::get<CharData *>(vict_obj);
+            if (victim) {
+                in_room = victim->in_room;
+                if (in_room == NOWHERE) {
+                    log("SYSERR: act(): TO_VICTROOM option used but vict is in NOWHERE");
+                    return;
+                }
+            } else {
+                log("SYSERR: act(): TO_VICTROOM option used but vict is NULL");
                 return;
             }
-        } else {
-            log("SYSERR: act(): TO_VICTROOM option used but vict is NULL");
-            return;
         }
+
+        for (to = world[in_room].people; to; to = to->next_in_room)
+            if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
+                !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != victim))) {
+                format_act(lbuf, str, ch, obj, vict_obj, to);
+                char_printf(to, "%s", lbuf);
+            }
+        /*
+         * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
+         * into OBSERVATORY rooms, allowing players standing in observatories
+         * to watch arena battles safely.
+         */
+        if (ROOM_FLAGGED(in_room, ROOM_ARENA))
+            for (i = 0; i < NUM_OF_DIRS; ++i)
+                if (world[in_room].exits[i] && world[in_room].exits[i]->to_room != NOWHERE &&
+                    world[in_room].exits[i]->to_room != in_room &&
+                    ROOM_FLAGGED(world[in_room].exits[i]->to_room, ROOM_OBSERVATORY))
+                    for (to = world[world[in_room].exits[i]->to_room].people; to; to = to->next_in_room)
+                        if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
+                            (type == TO_ROOM || (to != victim))) {
+                            char_printf(to, "&4&8<&0%s&0&4&8>&0 ", world[in_room].name);
+                            format_act(lbuf, str, ch, obj, vict_obj, to);
+                            char_printf(to, "%s", lbuf);
+                        }
     }
-
-    for (to = world[in_room].people; to; to = to->next_in_room)
-        if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
-            !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != victim))) {
-            format_act(lbuf, str, ch, obj, vict_obj, to);
-            cprintf(to, "%s", lbuf);
-        }
-
-    /*
-     * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
-     * into OBSERVATORY rooms, allowing players standing in observatories
-     * to watch arena battles safely.
-     */
-    if (ROOM_FLAGGED(in_room, ROOM_ARENA))
-        for (i = 0; i < NUM_OF_DIRS; ++i)
-            if (world[in_room].exits[i] && world[in_room].exits[i]->to_room != NOWHERE &&
-                world[in_room].exits[i]->to_room != in_room &&
-                ROOM_FLAGGED(world[in_room].exits[i]->to_room, ROOM_OBSERVATORY))
-                for (to = world[world[in_room].exits[i]->to_room].people; to; to = to->next_in_room)
-                    if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
-                        (type == TO_ROOM || (to != victim))) {
-                        cprintf(to, "&4&8<&0%s&0&4&8>&0 ", world[in_room].name);
-                        format_act(lbuf, str, ch, obj, vict_obj, to);
-                        cprintf(to, "%s", lbuf);
-                    }
 }
 
 /* deprecated functions */
-void send_to_char(const char *messg, CharData *ch) {
+void send_to_char(const char *messg, const CharData *ch) {
     if (ch->desc && messg && *messg)
         string_to_output(ch->desc, messg);
 }

@@ -24,17 +24,7 @@ struct sizedef {
     int height_max;
 };
 
-struct sizedef sizes[NUM_SIZES] = {
-    /* TINY */ {"tiny", "&b&1", 1, 3, 1, 18},
-    /* SMALL */ {"small", "&b&8", 5, 40, 19, 42},
-    /* MEDIUM */ {"medium", "&3", 40, 300, 42, 92},
-    /* LARGE */ {"large", "&b&4", 300, 1000, 90, 186},
-    /* HUGE */ {"huge", "&b&3", 1000, 4000, 196, 384},
-    /* GIANT */ {"giant", "&5", 4000, 16000, 384, 768},
-    /* GARGANTUAN */ {"gargantuan", "&1", 16000, 64000, 768, 1536},
-    /* COLOSSAL */ {"colossal", "&2&b", 64000, 256000, 1536, 3072},
-    /* TITANIC */ {"titanic", "&6&b", 256000, 1024000, 3072, 6144},
-    /* MOUNTAINOUS */ {"mountainous", "&7&b", 1024000, 4096000, 6144, 12288}};
+extern struct sizedef sizes[NUM_SIZES];
 
 #define VALID_SIZENUM(num) ((num) >= 0 && (num) < NUM_SIZES)
 #define VALID_SIZE(ch) (VALID_SIZENUM(GET_SIZE(ch)))

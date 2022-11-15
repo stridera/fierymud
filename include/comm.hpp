@@ -37,7 +37,7 @@ void send_gmcp_room(CharData *ch);
 
 /* deprecated functions */
 void send_to_all(const char *messg);
-void send_to_char(const char *messg, CharData *ch);
+void send_to_char(const char *messg, const CharData *ch);
 void send_to_room(const char *messg, int room);
 void send_to_zone(const char *messg, int zone_vnum, int skip_room, int min_stance);
 void write_to_output(const char *txt, DescriptorData *d);
@@ -60,28 +60,23 @@ void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d);
 void desc_printf(DescriptorData *t, const char *txt, ...) __attribute__((format(printf, 2, 3)));
 extern void string_to_output(DescriptorData *t, const char *txt);
 
-/* Convenience aliases */
-#define cprintf char_printf
-#define dprintf desc_printf
-#define cbprintf callback_printf
-
 typedef RETSIGTYPE sigfunc(int);
 
-DescriptorData *descriptor_list = nullptr; /* master desc list */
-unsigned long global_pulse = 0;            /* number of pulses since game start */
-unsigned long pulse = 0;                   /* number of pulses since game started */
+extern DescriptorData *descriptor_list;
+extern unsigned long global_pulse;
+extern unsigned long pulse;
 
 /* local globals */
-static char comm_buf[MAX_STRING_LENGTH] = {'\0'};
-txt_block *bufpool = 0;        /* pool of large output buffers */
-int buf_largecount = 0;        /* # of large buffers which exist */
-int buf_overflows = 0;         /* # of overflows of output */
-int buf_switches = 0;          /* # of switches from small to large buf */
-int circle_shutdown = 0;       /* clean shutdown */
-int circle_reboot = 0;         /* reboot the game after a shutdown */
-int no_specials = 0;           /* Suppress ass. of special routines */
-int max_players = 0;           /* max descriptors available */
-int tics = 0;                  /* for extern checkpointing */
-int scheck = 0;                /* for syntax checking mode */
-int dg_act_check;              /* toggle for act_trigger */
-int gossip_channel_active = 1; /* Flag for turning on or off gossip for the whole MUD */
+extern char comm_buf[MAX_STRING_LENGTH];
+extern txt_block *bufpool;
+extern int buf_largecount;
+extern int buf_overflows;
+extern int buf_switches;
+extern int circle_shutdown;
+extern int circle_reboot;
+extern int no_specials;
+extern int max_players;
+extern int tics;
+extern int scheck;
+extern int dg_act_check;
+extern int gossip_channel_active;

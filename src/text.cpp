@@ -182,7 +182,7 @@ void format_text(char **ptr_string, int mode, DescriptorData *d, int maxlen) {
             *flow = '\0';
 
             if ((total_chars + strlen(start) + 1) > 79) {
-                strcat(formatted, "\r\n");
+                strcat(formatted, "\n");
                 total_chars = 0;
             }
 
@@ -204,7 +204,7 @@ void format_text(char **ptr_string, int mode, DescriptorData *d, int maxlen) {
 
         if (cap_next_next) {
             if ((total_chars + 3) > 79) {
-                strcat(formatted, "\r\n");
+                strcat(formatted, "\n");
                 total_chars = 0;
             } else {
                 strcat(formatted, "  ");
@@ -218,7 +218,7 @@ void format_text(char **ptr_string, int mode, DescriptorData *d, int maxlen) {
     while (flow > formatted && isspace(*flow))
         *(flow--) = 0;
 
-    strcat(formatted, "\r\n");
+    strcat(formatted, "\n");
 
     if ((int)(strlen(formatted)) > maxlen)
         formatted[maxlen] = '\0';
@@ -606,13 +606,13 @@ const char *fetch_word(const char *string, char *buf, size_t buf_space) {
 /*
  * Create a new screen buffer.
  */
-ScreenBuf new_screen_buf(void) {
+ScreenBuf *new_screen_buf(void) {
     ScreenBuf *sb;
     CREATE(sb, ScreenBuf, 1);
     sb->buf = nullptr;
     sb->lines = nullptr;
     sb->line_width = ED_DEFAULT_PAGE_WIDTH;
-    return *sb;
+    return sb;
 }
 
 /*
@@ -767,7 +767,7 @@ static void sb_compile_lines(ScreenBuf *sb, size_t start_line) {
                     sb_increase_buffer(sb, sb->capacity);
                     write = sb->buf + offset;
                 }
-                strcpy(write, "\r\n");
+                strcpy(write, "\n");
                 write += 2;
                 line_len = 0;
 
@@ -822,7 +822,7 @@ static void sb_compile_lines(ScreenBuf *sb, size_t start_line) {
                     sb_increase_buffer(sb, sb->capacity);
                     write = sb->buf + offset;
                 }
-                strcpy(write, "\r\n");
+                strcpy(write, "\n");
                 write += 2;
                 line_len = 0;
 

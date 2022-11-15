@@ -9,6 +9,8 @@
  *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
  ***************************************************************************/
 
+#include "rogue.hpp"
+
 #include "ai.hpp"
 #include "casting.hpp"
 #include "comm.hpp"
@@ -21,6 +23,7 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "magic.hpp"
 
 /* External functions */
 ACMD(do_backstab);

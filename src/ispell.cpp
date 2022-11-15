@@ -122,7 +122,7 @@ void ispell_check(DescriptorData *d, const char *word) {
         return;
 
     if (!*word || !(pc = get_ispell_line(word))) {
-        dprintf(d, "Spellchecker failed.\r\n");
+        desc_printf(d, "Spellchecker failed.\n");
         return;
     }
 
@@ -130,20 +130,20 @@ void ispell_check(DescriptorData *d, const char *word) {
     case '*':
     case '+': /* root */
     case '-': /* compound */
-        dprintf(d, "'%s' is spelled correctly.\r\n", word);
+        desc_printf(d, "'%s' is spelled correctly.\n", word);
         break;
     case '&': /* miss */
     case '?': /* guess */
-        dprintf(d, "'%s' not found.  Possible words: %s", word, strchr(pc, ':') + 1);
+        desc_printf(d, "'%s' not found.  Possible words: %s", word, strchr(pc, ':') + 1);
         break;
     case '#': /* none */
-        dprintf(d, "Unable to find anything that matches '%s'.\r\n", word);
+        desc_printf(d, "Unable to find anything that matches '%s'.\n", word);
         break;
     case '\n': /* no response at all */
-        dprintf(d, "No response from spellchecker.\r\n");
+        desc_printf(d, "No response from spellchecker.\n");
         break;
     default:
-        dprintf(d, "Unknown output from spellchecker: %s\r\n", pc);
+        desc_printf(d, "Unknown output from spellchecker: %s\n", pc);
     }
 }
 
@@ -151,24 +151,24 @@ ACMD(do_ispell) {
     const char *pc;
 
     if (ispell_pid < 0) {
-        send_to_char("Spellchecker is not running.\r\n", ch);
+        send_to_char("Spellchecker is not running.\n", ch);
         return;
     }
 
     skip_spaces(&argument);
     if (!*argument || strchr(argument, ' ')) {
-        send_to_char("Invalid input.\r\n", ch);
+        send_to_char("Invalid input.\n", ch);
         return;
     }
 
     if (*argument == '+') {
         if (GET_LEVEL(ch) < LVL_IMMORT) {
-            send_to_char("You may not add entries to the dictionary.\r\n", ch);
+            send_to_char("You may not add entries to the dictionary.\n", ch);
             return;
         }
         for (pc = argument + 1; *pc; ++pc)
             if (!isalpha(*pc)) {
-                cprintf(ch, "'%s' contains non-alphabetic character: %c\r\n", argument, *pc);
+                char_printf(ch, "'%s' contains non-alphabetic character: %c\n", argument, *pc);
                 return;
             }
         fprintf(ispell_out, "*%s\n", argument + 1);

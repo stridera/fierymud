@@ -53,7 +53,7 @@ DECLARE_ITERATOR_TYPE(char, ch, CharData *);
 #define NULL_ITER(defval)                                                                                              \
     { defval, defval, 0, 0, nullptr, NULL_FCONTEXT, nullptr }
 
-#define next(iter) (((iter).next_func)(&(iter)))
+#define NEXT_FUNC(iter) (((iter).next_func)(&(iter)))
 
 int grab_number(char **name);
 

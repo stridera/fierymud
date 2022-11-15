@@ -95,3 +95,5 @@ struct MailIndex {
     PositionList *list_start; /* list of mail positions	*/
     MailIndex *next;          /* link to next one		*/
 };
+
+extern int no_mail;

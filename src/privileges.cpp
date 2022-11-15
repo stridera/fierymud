@@ -30,6 +30,8 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+#include <fmt/format.h>
+
 struct privflagdef prv_flags[NUM_PRV_FLAGS] = {
     {"clan admin", LVL_ADMIN, clan_admin_check},
     {"title", LVL_GAMEMASTER, nullptr},
@@ -170,71 +172,75 @@ static void cache_grant(flagvector *cache, int cmd, bool is_group, bool set) {
     }
 }
 
-static void str_cat_command_grant_list(char *buf, GrantType *grant) {
+static std::string str_cat_command_grant_list(GrantType *grant) {
+    std::string resp = "";
+
     for (; grant; grant = grant->next)
-        str_catf(buf, "  CMD %-20s %s (%d)\r\n", cmd_info[grant->grant].command, grant->grantor, grant->level);
+        resp += fmt::format("  CMD {:>20} {} ({})\n", cmd_info[grant->grant].command, grant->grantor, grant->level);
+    return resp;
 }
 
-static void str_cat_grant_group_list(char *buf, GrantType *grant) {
+static std::string str_cat_grant_group_list(GrantType *grant) {
+    std::string resp = "";
     for (; grant; grant = grant->next)
-        str_catf(buf, "  GRP %-20s %s (%d)\r\n", cmd_groups[grant->grant].alias, grant->grantor, grant->level);
+        resp += fmt::format("  GRP {:>20} {} ({})\n", cmd_groups[grant->grant].alias, grant->grantor, grant->level);
+    return resp;
 }
 
 static void do_list_grants(CharData *ch, CharData *vict) {
-    int found = 0;
+    std::string resp;
+    bool found = false;
     unsigned int priv;
 
-    str_start(buf, sizeof(buf));
-
-    str_catf(buf, "%s's grants:\r\n", GET_NAME(vict));
+    resp += fmt::format("{}'s grants:\n", GET_NAME(vict));
 
     if (GET_GRANTS(vict)) {
-        found = 1;
-        str_cat_command_grant_list(buf, GET_GRANTS(vict));
+        found = true;
+        resp += str_cat_command_grant_list(GET_GRANTS(vict));
     }
 
     if (GET_GRANT_GROUPS(vict)) {
-        found = 1;
-        str_cat_grant_group_list(buf, GET_GRANT_GROUPS(vict));
+        found = true;
+        resp += str_cat_grant_group_list(GET_GRANT_GROUPS(vict));
     }
 
     for (priv = 0; priv < NUM_PRV_FLAGS; ++priv)
         if (PRV_FLAGGED(vict, priv)) {
-            found = 1;
-            str_catf(buf, "  FLG %c%-19s (%d)\r\n", UPPER(*prv_flags[priv].desc), prv_flags[priv].desc + 1,
-                     prv_flags[priv].level);
+            found = true;
+            resp += fmt::format("  FLG {}{:>19} ({})\n", UPPER(*prv_flags[priv].desc), prv_flags[priv].desc + 1,
+                                prv_flags[priv].level);
         }
 
     if (!found)
-        str_cat(buf, "  None!\r\n");
+        resp += "  None!\n";
 
-    found = 0;
-    str_catf(buf, "%s's revocations:\r\n", GET_NAME(vict));
+    found = false;
+    resp += fmt::format("{}'s revocations:\n", GET_NAME(vict));
 
     if (GET_REVOKES(vict)) {
-        found = 1;
-        str_cat_command_grant_list(buf, GET_REVOKES(vict));
+        found = true;
+        resp += str_cat_command_grant_list(GET_REVOKES(vict));
     }
 
     if (GET_REVOKE_GROUPS(vict)) {
-        found = 1;
-        str_cat_grant_group_list(buf, GET_REVOKE_GROUPS(vict));
+        found = true;
+        resp += str_cat_grant_group_list(GET_REVOKE_GROUPS(vict));
     }
 
     if (!found)
-        str_cat(buf, "  None!\r\n");
+        resp += "  None!\n";
 
-    page_string(ch, buf);
+    page_string(ch, resp.c_str());
 }
 
 static void send_grant_usage(CharData *ch) {
     send_to_char(
-        "Usage: grant <name> [ command <command> | group <group> ] [ level ]\r\n"
-        "       grant <name> flag <flag>\r\n"
-        "       revoke <name> [ command <command> | group <group> ] [ level ]\r\n"
-        "       revoke <name> flag <flag>\r\n"
-        "       ungrant <name> [ command <command> | group <group> ]\r\n"
-        "       grant <name> [ clear | list ]\r\n",
+        "Usage: grant <name> [ command <command> | group <group> ] [ level ]\n"
+        "       grant <name> flag <flag>\n"
+        "       revoke <name> [ command <command> | group <group> ] [ level ]\n"
+        "       revoke <name> flag <flag>\n"
+        "       ungrant <name> [ command <command> | group <group> ]\n"
+        "       grant <name> [ clear | list ]\n",
         ch);
 }
 
@@ -257,7 +263,7 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
 
     if ((subcmd != SCMD_GRANT && subcmd != SCMD_REVOKE && subcmd != SCMD_UNGRANT) ||
         (type != GRANT_COMMAND && type != GRANT_GROUP)) {
-        send_to_char("Warning: grant command incorrectly invoked.\r\n", ch);
+        send_to_char("Warning: grant command incorrectly invoked.\n", ch);
         log("SYSERR: do_grant incorrectly invoked");
         return;
     } else if (type == GRANT_COMMAND) {
@@ -285,7 +291,7 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
     }
 
     if (ch == vict) {
-        send_to_char("You cannot grant or revoke your own commands.\r\n", ch);
+        send_to_char("You cannot grant or revoke your own commands.\n", ch);
         return;
     }
     if (!*arg) {
@@ -294,51 +300,50 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
     }
 
     if (type == GRANT_COMMAND && ((command = parse_command(arg)) <= 0 || !strcpy(name, arg))) {
-        send_to_char("No such command.\r\n", ch);
+        send_to_char("No such command.\n", ch);
         list_similar_commands(ch, arg);
         return;
     }
 
     else if (type == GRANT_GROUP && ((command = find_command_group(arg)) < 0 || !sprintf(name, "the %s group", arg))) {
         int found = 0;
-        str_start(buf, sizeof(buf));
-        str_cat(buf, "No such command group.");
+        std::string resp = "No such group.\n";
         if (cmd_groups) {
-            str_cat(buf, "  Possible groups:\r\n");
+            resp = "  Possible groups:\n";
             for (group = cmd_groups; group < top_of_cmd_groups; ++group)
-                str_catf(buf, "%s%-15s", found++ % 4 == 0 ? "\r\n" : "", group->alias);
+                resp += fmt::format("{}{:>15}", found++ % 4 == 0 ? "\n" : "", group->alias);
         }
-        str_cat(buf, "\r\n");
-        send_to_char(buf, ch);
+        resp += "\n";
+        send_to_char(resp.c_str(), ch);
         return;
     }
 
     else if (type == GRANT_COMMAND && !can_use_command(ch, command))
-        send_to_char("You cannot grant or revoke a command you yourself cannot use.\r\n", ch);
+        send_to_char("You cannot grant or revoke a command you yourself cannot use.\n", ch);
     else if (type == GRANT_GROUP && !can_grant_group(ch, command))
-        send_to_char("You cannot grant or revoke a group you yourself cannot use.\r\n", ch);
+        send_to_char("You cannot grant or revoke a group you yourself cannot use.\n", ch);
     else if (subcmd != SCMD_UNGRANT && grant_in_list(*list, command))
-        cprintf(ch, "%s has already has %s %s.\r\n", GET_NAME(vict), arg, past_action);
+        char_printf(ch, "%s has already has %s %s.\n", GET_NAME(vict), arg, past_action);
     else if (((grant = grant_in_list(*unlist, command)) ||
               (subcmd == SCMD_UNGRANT && (grant = grant_in_list(*list, command)))) &&
              grant->level > GET_LEVEL(ch))
-        cprintf(ch,
-                "You cannot change %s's access to %s, because %s (level %d) "
-                "granted or revoked it.\r\n",
-                GET_NAME(vict), arg, grant->grantor, grant->level);
+        char_printf(ch,
+                    "You cannot change %s's access to %s, because %s (level %d) "
+                    "granted or revoked it.\n",
+                    GET_NAME(vict), arg, grant->grantor, grant->level);
     else if (subcmd == SCMD_UNGRANT) {
         remove_grant(unlist, command);
         cache_grant(uncache, command, is_group, false);
         remove_grant(list, command);
         cache_grant(cache, command, is_group, false);
-        cprintf(ch, "Revoked all grants on %s for %s.\r\n", GET_NAME(vict), arg);
+        char_printf(ch, "Revoked all grants on %s for %s.\n", GET_NAME(vict), arg);
     } else {
         remove_grant(unlist, command);
         cache_grant(uncache, command, is_group, false);
         add_grant(list, command, GET_NAME(ch), level);
         cache_grant(cache, command, is_group, true);
-        cprintf(ch, "%c%s %s %s %s at level %d.\r\n", UPPER(*past_action), past_action + 1, arg, preposition,
-                GET_NAME(vict), level);
+        char_printf(ch, "%c%s %s %s %s at level %d.\n", UPPER(*past_action), past_action + 1, arg, preposition,
+                    GET_NAME(vict), level);
     }
 }
 
@@ -372,7 +377,7 @@ static void do_clear_grants(CharData *ch, CharData *vict) {
     CLEAR_FLAGS(GET_GRANT_CACHE(vict), num_of_cmds);
     CLEAR_FLAGS(GET_REVOKE_CACHE(vict), num_of_cmds);
     CLEAR_FLAGS(PRV_FLAGS(vict), NUM_PRV_FLAGS);
-    cprintf(ch, "%d grant%s cleared.\r\n", count, count == 1 ? "" : "s");
+    char_printf(ch, "%d grant%s cleared.\n", count, count == 1 ? "" : "s");
 }
 
 static void do_flag_grant_revoke(CharData *ch, CharData *vict, char *argument, int subcmd) {
@@ -384,22 +389,22 @@ static void do_flag_grant_revoke(CharData *ch, CharData *vict, char *argument, i
     if (!*arg)
         send_grant_usage(ch);
     else if (flag < 0) {
-        cprintf(ch, "'%s' is not a valid privilege flag.  Try one of:\r\n", arg);
+        char_printf(ch, "'%s' is not a valid privilege flag.  Try one of:\n", arg);
         for (flag = 0; flag < NUM_PRV_FLAGS; ++flag)
-            cprintf(ch, "%-15s %-20s %d\r\n", privilege_bits[flag], prv_flags[flag].desc, prv_flags[flag].level);
+            char_printf(ch, "%-15s %-20s %d\n", privilege_bits[flag], prv_flags[flag].desc, prv_flags[flag].level);
     } else if (prv_flags[flag].level > GET_LEVEL(ch))
-        cprintf(ch, "You don't have the ability to set that flag.\r\n");
+        char_printf(ch, "You don't have the ability to set that flag.\n");
     else if (subcmd == SCMD_GRANT) {
         SET_FLAG(PRV_FLAGS(vict), flag);
         if (prv_flags[flag].update_func)
             (prv_flags[flag].update_func)(vict, flag);
-        cprintf(ch, "Granted %s to %s at level %d.\r\n", prv_flags[flag].desc, GET_NAME(vict), prv_flags[flag].level);
+        char_printf(ch, "Granted %s to %s at level %d.\n", prv_flags[flag].desc, GET_NAME(vict), prv_flags[flag].level);
     } else {
         REMOVE_FLAG(PRV_FLAGS(vict), flag);
         if (prv_flags[flag].update_func)
             (prv_flags[flag].update_func)(vict, flag);
-        cprintf(ch, "Ungranted %s from %s at level %d.\r\n", prv_flags[flag].desc, GET_NAME(vict),
-                prv_flags[flag].level);
+        char_printf(ch, "Ungranted %s from %s at level %d.\n", prv_flags[flag].desc, GET_NAME(vict),
+                    prv_flags[flag].level);
     }
 }
 

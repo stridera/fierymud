@@ -343,24 +343,24 @@ void editor_interpreter(DescriptorData *d, char *line) {
 }
 
 static void editor_append(DescriptorData *d, char *line) {
-    size_t line_length = strlen(line) + 2; /* +2 for \r\n */
+    size_t line_length = strlen(line) + 2; /* +2 for \n */
     size_t space_left = d->editor->max_length - d->editor->length;
     size_t new_length = d->editor->length + line_length;
     char *orig_string;
     char *new_string;
 
     if (d->editor->lines >= d->editor->max_lines) {
-        dprintf(d, "Too many lines - Input ignored.  Max lines: %u lines.\r\n", d->editor->max_lines);
+        desc_printf(d, "Too many lines - Input ignored.  Max lines: %u lines.\n", d->editor->max_lines);
         return;
     }
 
     if (line_length >= space_left) {
         /* Shorter than 3?  To short for even a newline.  Ignore line. */
         if (space_left <= 3) {
-            dprintf(d, "String too long - Input ignored.  Max length: %u characters.\r\n", d->editor->max_length);
+            desc_printf(d, "String too long - Input ignored.  Max length: %u characters.\n", d->editor->max_length);
             return;
         }
-        dprintf(d, "String too long - Input truncated.  Max length: %u characters.\r\n", d->editor->max_length);
+        desc_printf(d, "String too long - Input truncated.  Max length: %u characters.\n", d->editor->max_length);
         new_length = d->editor->max_length - 1;
     }
 
@@ -373,7 +373,7 @@ static void editor_append(DescriptorData *d, char *line) {
         line[line_length + 2] = '\0';
     }
     strcpy(new_string + d->editor->length, line);
-    strcpy(new_string + d->editor->length + line_length - 2, "\r\n");
+    strcpy(new_string + d->editor->length + line_length - 2, "\n");
     if (orig_string)
         free(orig_string);
     d->editor->length += line_length;
@@ -407,8 +407,9 @@ void editor_cleanup(DescriptorData *d) {
 }
 
 EDITOR_FUNC(editor_default_begin) {
-    dprintf(edit->descriptor, "%s  (/s saves, /h for help)\r\n",
-            edit->descriptor->editor->begin_string ? edit->descriptor->editor->begin_string : "Write your message.");
+    desc_printf(edit->descriptor, "%s  (/s saves, /h for help)\n",
+                edit->descriptor->editor->begin_string ? edit->descriptor->editor->begin_string
+                                                       : "Write your message.");
 
     editor_action(edit->descriptor, ED_LIST, nullptr);
 
@@ -419,9 +420,9 @@ EDITOR_FUNC(editor_default_clear) {
     if (edit->string) {
         free(edit->string);
         edit->string = nullptr;
-        dprintf(edit->descriptor, "Current buffer cleared.\r\n");
+        desc_printf(edit->descriptor, "Current buffer cleared.\n");
     } else
-        dprintf(edit->descriptor, "Current buffer empty.\r\n");
+        desc_printf(edit->descriptor, "Current buffer empty.\n");
 
     return ED_PROCESSED;
 }
@@ -431,7 +432,7 @@ EDITOR_FUNC(editor_default_format) {
     int first_line, last_line;
 
     if (!edit->string) {
-        dprintf(edit->descriptor, "Current buffer empty.\r\n");
+        desc_printf(edit->descriptor, "Current buffer empty.\n");
         return ED_PROCESSED;
     }
 
@@ -453,7 +454,7 @@ EDITOR_FUNC(editor_default_format) {
         break;
     case 2: /* user specified two numbers */
         if (last_line < first_line) {
-            dprintf(edit->descriptor, "That range is invalid.\r\n");
+            desc_printf(edit->descriptor, "That range is invalid.\n");
             return ED_PROCESSED;
         }
         break;
@@ -461,43 +462,43 @@ EDITOR_FUNC(editor_default_format) {
     first_line = MAX(1, first_line);
 
     if (editor_format_text(&edit->string, indent, edit->max_length, first_line, last_line))
-        dprintf(edit->descriptor, "Text formatted with%s indent.\r\n", indent ? "" : "out");
+        desc_printf(edit->descriptor, "Text formatted with%s indent.\n", indent ? "" : "out");
     else
-        dprintf(edit->descriptor, "Text format failed.\r\n");
+        desc_printf(edit->descriptor, "Text format failed.\n");
 
     return ED_PROCESSED;
 }
 
 EDITOR_FUNC(editor_default_help) {
-    dprintf(edit->descriptor,
-            "Editor command formats: /<letter>\r\n\r\n"
-            "/a          -  abort editor\r\n"
-            "/c          -  clear buffer\r\n"
-            "/d#         -  delete line #\r\n"
-            "/e# <text>  -  change the line at # with <text>\r\n"
-            "/f          -  format entire text\r\n"
-            "/fi         -  indented formatting of text\r\n"
-            "/h          -  list text editor commands\r\n"
-            "/k <word>   -  spellcheck word\r\n"
-            "/i# <text>  -  insert <text> at line #\r\n");
-    dprintf(edit->descriptor,
-            "/l          -  list entire buffer\r\n"
-            "/n          -  list entire buffer with line numbers\r\n"
-            "/r <a> <b>  -  replace 1st occurrence of text <a> in buffer with "
-            "text <b>\r\n"
-            "/ra <a> <b> -  replace all occurrences of text <a> within buffer "
-            "with text <b>\r\n"
-            "               usage: /r[a] pattern replacement\r\n"
-            "                      /r[a] 'pattern' 'replacement'\r\n"
-            "                      (enclose in single quotes for multi-word "
-            "phrases)\r\n"
-            "/s          -  save text\r\n");
-    dprintf(edit->descriptor,
-            "\r\n"
-            "Note: /d, /f, /fi, /l, and /n also accept ranges of lines.  For "
-            "instance:\r\n"
-            "   /d 2 5   -  delete lines 2 through 5\r\n"
-            "   /fi3 6   -  format lines 3 through 6 with indent\r\n");
+    desc_printf(edit->descriptor,
+                "Editor command formats: /<letter>\n\n"
+                "/a          -  abort editor\n"
+                "/c          -  clear buffer\n"
+                "/d#         -  delete line #\n"
+                "/e# <text>  -  change the line at # with <text>\n"
+                "/f          -  format entire text\n"
+                "/fi         -  indented formatting of text\n"
+                "/h          -  list text editor commands\n"
+                "/k <word>   -  spellcheck word\n"
+                "/i# <text>  -  insert <text> at line #\n");
+    desc_printf(edit->descriptor,
+                "/l          -  list entire buffer\n"
+                "/n          -  list entire buffer with line numbers\n"
+                "/r <a> <b>  -  replace 1st occurrence of text <a> in buffer with "
+                "text <b>\n"
+                "/ra <a> <b> -  replace all occurrences of text <a> within buffer "
+                "with text <b>\n"
+                "               usage: /r[a] pattern replacement\n"
+                "                      /r[a] 'pattern' 'replacement'\n"
+                "                      (enclose in single quotes for multi-word "
+                "phrases)\n"
+                "/s          -  save text\n");
+    desc_printf(edit->descriptor,
+                "\n"
+                "Note: /d, /f, /fi, /l, and /n also accept ranges of lines.  For "
+                "instance:\n"
+                "   /d 2 5   -  delete lines 2 through 5\n"
+                "   /fi3 6   -  format lines 3 through 6 with indent\n");
 
     return ED_PROCESSED;
 }
@@ -510,7 +511,7 @@ EDITOR_FUNC(editor_default_insert_line) {
     const char *argument = edit->argument;
 
     if (!edit->string) {
-        dprintf(d, "Current buffer empty; nowhere to insert.\r\n");
+        desc_printf(d, "Current buffer empty; nowhere to insert.\n");
         return ED_PROCESSED;
     }
 
@@ -519,14 +520,14 @@ EDITOR_FUNC(editor_default_insert_line) {
         ++argument;
 
     if (!isdigit(*argument)) {
-        dprintf(d, "Specify a line number at which to insert.\r\n");
+        desc_printf(d, "Specify a line number at which to insert.\n");
         return ED_PROCESSED;
     }
 
     insert_line = atoi(argument);
 
     if (insert_line <= 0) {
-        dprintf(d, "Line number must be higher than 0.\r\n");
+        desc_printf(d, "Line number must be higher than 0.\n");
         return ED_PROCESSED;
     }
 
@@ -539,7 +540,7 @@ EDITOR_FUNC(editor_default_insert_line) {
 
     final_length = strlen(edit->string) + strlen(argument) + 2;
     if (final_length > edit->max_length) {
-        dprintf(d, "Insert text pushes buffer over maximum size, insert aborted.\r\n");
+        desc_printf(d, "Insert text pushes buffer over maximum size, insert aborted.\n");
         return ED_PROCESSED;
     }
 
@@ -553,26 +554,25 @@ EDITOR_FUNC(editor_default_insert_line) {
         }
 
     if (line < insert_line || !str || !*str) {
-        dprintf(d, "Line number out of range; insert aborted.\r\n");
+        desc_printf(d, "Line number out of range; insert aborted.\n");
         return ED_PROCESSED;
     }
 
     start = edit->string;
     CREATE(edit->string, char, final_length + 1);
-    str_start(edit->string, final_length + 1);
 
     temp = *str;
     *str = '\0';
-    str_cat(edit->string, start);
+    strcat(edit->string, start);
     *str = temp;
 
-    str_cat(edit->string, argument);
-    str_cat(edit->string, "\r\n");
+    strcat(edit->string, argument);
+    strcat(edit->string, "\n");
 
-    str_cat(edit->string, str);
+    strcat(edit->string, str);
 
     free(start);
-    dprintf(d, "Line inserted.\r\n");
+    desc_printf(d, "Line inserted.\n");
 
     return ED_PROCESSED;
 }
@@ -585,14 +585,14 @@ EDITOR_FUNC(editor_default_edit_line) {
     const char *argument = edit->argument;
 
     if (!edit->string) {
-        dprintf(d, "Specify a line number at which to insert.\r\n");
+        desc_printf(d, "Specify a line number at which to insert.\n");
         return ED_PROCESSED;
     }
 
     edit_line = atoi(argument);
 
     if (edit_line <= 0) {
-        dprintf(d, "Line number must be higher than 0.\r\n");
+        desc_printf(d, "Line number must be higher than 0.\n");
         return ED_PROCESSED;
     }
 
@@ -618,7 +618,7 @@ EDITOR_FUNC(editor_default_edit_line) {
         str = strchr(str, '\n');
 
     if (line < edit_line || !cut || !str) {
-        dprintf(d, "Line number out of range; line replacement aborted.\r\n");
+        desc_printf(d, "Line number out of range; line replacement aborted.\n");
         return ED_PROCESSED;
     }
 
@@ -628,14 +628,13 @@ EDITOR_FUNC(editor_default_edit_line) {
     final_length = strlen(start) + strlen(argument) + 3 + strlen(cont);
 
     CREATE(edit->string, char, final_length);
-    str_start(edit->string, final_length);
-    str_cat(edit->string, start);
-    str_cat(edit->string, argument);
-    str_cat(edit->string, "\r\n");
-    str_cat(edit->string, cont);
+    strcat(edit->string, start);
+    strcat(edit->string, argument);
+    strcat(edit->string, "\n");
+    strcat(edit->string, cont);
 
     free(start);
-    dprintf(d, "Line replaced.\r\n");
+    desc_printf(d, "Line replaced.\n");
 
     return ED_PROCESSED;
 }
@@ -646,7 +645,7 @@ EDITOR_FUNC(editor_default_replace) {
     int replaced;
 
     if (!edit->string) {
-        dprintf(edit->descriptor, "Current buffer empty.\r\n");
+        desc_printf(edit->descriptor, "Current buffer empty.\n");
         return ED_PROCESSED;
     }
 
@@ -661,32 +660,32 @@ EDITOR_FUNC(editor_default_replace) {
 
     argument = delimited_arg_case(argument, search, '\'');
     if (!*search) {
-        dprintf(edit->descriptor, "No target search string.\r\n");
+        desc_printf(edit->descriptor, "No target search string.\n");
         return ED_PROCESSED;
     }
 
     argument = delimited_arg_case(argument, replace, '\'');
     if (!*replace) {
-        dprintf(edit->descriptor, "No replacement string.\r\n");
+        desc_printf(edit->descriptor, "No replacement string.\n");
         return ED_PROCESSED;
     }
 
     skip_spaces(&argument);
     if (*argument) {
-        dprintf(edit->descriptor,
-                "Invalid search format.  Enclose search/replacement strings in "
-                "single quotes.\r\n");
+        desc_printf(edit->descriptor,
+                    "Invalid search format.  Enclose search/replacement strings in "
+                    "single quotes.\n");
         return ED_PROCESSED;
     }
 
     replaced = editor_replace_string(&edit->string, search, replace, replace_all, edit->max_length);
     if (replaced > 0)
-        dprintf(edit->descriptor, "Replaced %d occurance%s of '%s' with '%s'.\r\n", replaced, replaced == 1 ? "" : "s",
-                search, replace);
+        desc_printf(edit->descriptor, "Replaced %d occurance%s of '%s' with '%s'.\n", replaced,
+                    replaced == 1 ? "" : "s", search, replace);
     else if (replaced == 0)
-        dprintf(edit->descriptor, "String '%s' not found.\r\n", search);
+        desc_printf(edit->descriptor, "String '%s' not found.\n", search);
     else
-        dprintf(edit->descriptor, "Replacement string causes buffer overflow: aborted replace.\r\n");
+        desc_printf(edit->descriptor, "Replacement string causes buffer overflow: aborted replace.\n");
 
     return ED_PROCESSED;
 }
@@ -697,7 +696,7 @@ EDITOR_FUNC(editor_default_delete_line) {
     char *start, *str;
 
     if (!(str = edit->string)) {
-        dprintf(edit->descriptor, "Current buffer empty.\r\n");
+        desc_printf(edit->descriptor, "Current buffer empty.\n");
         return ED_PROCESSED;
     }
 
@@ -714,10 +713,10 @@ EDITOR_FUNC(editor_default_delete_line) {
     }
 
     if (first_line < 1) {
-        dprintf(d, "Line numbers must be greater than 0.\r\n");
+        desc_printf(d, "Line numbers must be greater than 0.\n");
         return ED_PROCESSED;
     } else if (last_line < first_line) {
-        dprintf(d, "That line range is invalid.\r\n");
+        desc_printf(d, "That line range is invalid.\n");
         return ED_PROCESSED;
     }
 
@@ -727,7 +726,7 @@ EDITOR_FUNC(editor_default_delete_line) {
             ++str;
         }
     if (!str || !*str || line < first_line) {
-        dprintf(d, "Line(s) out of range; not deleting.\r\n");
+        desc_printf(d, "Line(s) out of range; not deleting.\n");
         return ED_PROCESSED;
     }
     start = str;
@@ -745,7 +744,7 @@ EDITOR_FUNC(editor_default_delete_line) {
     *start = '\0';
     RECREATE(edit->string, char, strlen(edit->string) + 3);
 
-    dprintf(d, "%d line%s deleted.\r\n", total_len, total_len == 1 ? "" : "s");
+    desc_printf(d, "%d line%s deleted.\n", total_len, total_len == 1 ? "" : "s");
     return ED_PROCESSED;
 }
 
@@ -756,7 +755,7 @@ EDITOR_FUNC(editor_default_list) {
     char *str, *start = nullptr, temp;
 
     if (!(str = edit->string)) {
-        dprintf(edit->descriptor, "Current buffer empty.\r\n");
+        desc_printf(edit->descriptor, "Current buffer empty.\n");
         return ED_PROCESSED;
     }
 
@@ -773,15 +772,15 @@ EDITOR_FUNC(editor_default_list) {
     }
 
     if (first_line < 1) {
-        dprintf(d, "Line numbers must be greater than 0.\r\n");
+        desc_printf(d, "Line numbers must be greater than 0.\n");
         return ED_PROCESSED;
     } else if (last_line < first_line) {
-        dprintf(d, "That line range is invalid.\r\n");
+        desc_printf(d, "That line range is invalid.\n");
         return ED_PROCESSED;
     }
 
     if (first_line > 1 || last_line < 99999)
-        pdprintf(d, "Current buffer range [%d - %d]:\r\n", first_line, last_line);
+        pdprintf(d, "Current buffer range [%d - %d]:\n", first_line, last_line);
 
     line = 1;
     lines = 0;
@@ -793,7 +792,7 @@ EDITOR_FUNC(editor_default_list) {
         }
 
     if (line < first_line || !str) {
-        dprintf(d, "Line%s out of range; no buffer listing.\r\n", last_line - first_line ? "(s)" : "");
+        desc_printf(d, "Line%s out of range; no buffer listing.\n", last_line - first_line ? "(s)" : "");
         return ED_PROCESSED;
     }
 
@@ -806,7 +805,7 @@ EDITOR_FUNC(editor_default_list) {
                 temp = *str;
                 *str = '\0';
             }
-            pdprintf(d, "%4d: %s\r\n", line, start);
+            pdprintf(d, "%4d: %s\n", line, start);
             if (str)
                 *str = temp;
         }
@@ -840,26 +839,26 @@ EDITOR_FUNC(editor_default_exit) {
 
     if (edit->command == ED_EXIT_SAVE) {
         if (!d->editor->destination) {
-            dprintf(d, "ERROR: No location to save changes to.  Edit aborted.\r\n");
+            desc_printf(d, "ERROR: No location to save changes to.  Edit aborted.\n");
             log("SYSERR: d->editor->destination NULL in save attempt in "
                 "editor_default_exit");
         } else {
-            dprintf(d, "Changes saved.\r\n");
+            desc_printf(d, "Changes saved.\n");
             if (*d->editor->destination)
                 /* TODO: do we need a flag to say whether to free this or not? */
                 free(*d->editor->destination);
-            *d->editor->destination = d->editor->string ? d->editor->string : strdup("Nothing.\r\n");
+            *d->editor->destination = d->editor->string ? d->editor->string : strdup("Nothing.\n");
             d->editor->string = nullptr;
             edit->string = nullptr;
         }
     } else
-        dprintf(d, "Edit aborted.  Changes not saved.\r\n");
+        desc_printf(d, "Edit aborted.  Changes not saved.\n");
 
     return ED_PROCESSED;
 }
 
 EDITOR_FUNC(editor_default_other) {
-    dprintf(edit->descriptor, "Invalid option.\r\n");
+    desc_printf(edit->descriptor, "Invalid option.\n");
     return ED_PROCESSED;
 }
 
@@ -981,7 +980,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
             }
 
             if (line_chars + strlen(start) + 1 - color_chars > ED_DEFAULT_PAGE_WIDTH) {
-                strcat(formatted, "\r\n");
+                strcat(formatted, "\n");
                 line_chars = 0;
                 color_chars = count_color_chars(start);
             }
@@ -1002,7 +1001,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
 
         if (cap_next_next && *flow) {
             if (line_chars + 3 - color_chars > ED_DEFAULT_PAGE_WIDTH) {
-                strcat(formatted, "\r\n");
+                strcat(formatted, "\n");
                 line_chars = 0;
                 color_chars = count_color_chars(start);
             } else if (*flow == '\"' || *flow == '\'') {
@@ -1019,10 +1018,10 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
     }
 
     if (*flow)
-        strcat(formatted, "\r\n");
+        strcat(formatted, "\n");
     strcat(formatted, flow);
     if (!*flow)
-        strcat(formatted, "\r\n");
+        strcat(formatted, "\n");
 
     if (strlen(formatted) + 1 > max_length) {
         /* Make sure the string is nul- and newline-terminated */
@@ -1050,7 +1049,6 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
     i = 0;
     jetsam = *string;
     flow = *string;
-    str_start(replace_buffer, max_length);
 
     if (replace_all) {
         while ((flow = strstr(flow, pattern)) != nullptr) {
@@ -1061,20 +1059,20 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
                 i = -1;
                 break;
             }
-            str_cat(replace_buffer, jetsam);
-            str_cat(replace_buffer, replacement);
+            strcat(replace_buffer, jetsam);
+            strcat(replace_buffer, replacement);
             *flow = temp;
             flow += strlen(pattern);
             jetsam = flow;
         }
-        str_cat(replace_buffer, jetsam);
+        strcat(replace_buffer, jetsam);
     } else if ((flow = strstr(*string, pattern)) != nullptr) {
         ++i;
         flow += strlen(pattern);
         len = (flow - *string) - strlen(pattern);
-        strn_cat(replace_buffer, *string, len);
-        str_cat(replace_buffer, replacement);
-        str_cat(replace_buffer, flow);
+        strncat(replace_buffer, *string, len);
+        strcat(replace_buffer, replacement);
+        strcat(replace_buffer, flow);
     }
 
     if (i > 0) {

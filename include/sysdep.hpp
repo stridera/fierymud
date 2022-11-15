@@ -72,10 +72,6 @@ void abort(), exit();
 #include <sys/types.h>
 #endif
 
-#ifdef CIRCLE_WINDOWS
-#include <sys\types.h>
-#endif
-
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
@@ -196,7 +192,7 @@ typedef int socket_t;
  * -fno-strict-prototypes, so that these definitions don't clash with
  * previous prototypes.
  */
-
+#ifdef __DONT_USE__
 #ifndef HAVE_RANDOM /* prototypes for my own random function */
 void srandom(unsigned long initial_seed);
 unsigned long random(void);
@@ -303,3 +299,4 @@ size_t strnlen(const char *str, size_t maxlen);
 #endif
 
 #endif /* __GNUC__ */
+#endif /* __DONT_USE__ */

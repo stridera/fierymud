@@ -122,39 +122,11 @@ char *wind_message(int current_wind, int original_wind);
 char *temperature_message(int temperature);
 char *precipitation_message(ZoneData *zone, int original);
 
-const char *wind_speeds[] = {
-    "", "&8&6breeze", "&8&6strong wind", "&4gale-force wind", "&4&8hurricane-strength &0&6wind", "\n"};
-
-const char *precip[] = {"&6&brain", "&7&bsnow", "\n"};
-
-const char *daylight_change[] = {
-    "&9&bThe night has begun.&0\r\n",
-    "&6&bThe &3sun &6rises in the east.&0\r\n",
-    "&6&bThe day has begun.&0\r\n",
-    "&5&bThe &3&bsun &5slowly disapp&0&5ears in th&9&be west.&0\r\n",
-};
-
-const char *seasons[] = {"winter", "spring", "summer", "autumn", "\n"};
-
-const char *season_change[] = {
-    "&7&bWinter takes hold as &0&3Autumn&0 &7&bfades into history...&0\r\n",
-    "&2&bThe bite of &7&bWinter &2is gone as &3Spring &2begins.&0\r\n",
-    "Spring gives way to Summer.\r\n",
-    "Summer passes and Autumn begins.\r\n",
-};
-
 /* hemispheres for weather and time NE< NW< SE< SW */
 struct HemisphereData {
     const char *name;
     int season;
     int sunlight;
-};
-
-struct HemisphereData hemispheres[NUM_HEMISPHERES] = {
-    {"Northwestern", SUN_DARK, WINTER},
-    {"Northeastern", SUN_LIGHT, SUMMER},
-    {"Southwestern", SUN_DARK, WINTER},
-    {"Southeastern", SUN_LIGHT, SUMMER},
 };
 
 /* climate structs are initialized in an array, where the index
@@ -168,19 +140,10 @@ struct ClimateData {
     int allowed_disasters;
 };
 
-/* setup all the climate zones.  these are BASE values, and will be modified
- * for each actual zone at run-time based on the settings here...
- */
-struct ClimateData climates[NUM_CLIMATES] =
-    {/* climate         temperature    precipitation   wind speed
-        allowed_disasters */
-     {"None", TEMP_MILD, PRECIP_NONE, WIND_NONE, DISASTER_NONE},
-     {"Semiarid", TEMP_HOT, PRECIP_NONE, WIND_NONE, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
-     {"Arid", TEMP_MILD, PRECIP_DRIZZLE, WIND_STRONG, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
-     {"Oceanic", TEMP_MILD, PRECIP_DRIZZLE, WIND_BREEZE, DISASTER_TSUNAMI | DISASTER_WATERSPOUT | DISASTER_HURRICANE},
-     {"Temperate", TEMP_WARM, PRECIP_LIGHT, WIND_BREEZE, DISASTER_FLOOD | DISASTER_TORNADO | DISASTER_EARTHQUAKE},
-     {"Subtropical", TEMP_HOT, PRECIP_LIGHT, WIND_BREEZE, DISASTER_FLOOD | DISASTER_HEATWAVE | DISASTER_HURRICANE},
-     {"Tropical", TEMP_COOL, PRECIP_LIGHT, WIND_BREEZE, DISASTER_HURRICANE | DISASTER_HEATWAVE},
-     {"Subarctic", TEMP_COLD, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD},
-     {"Arctic", TEMP_FREEZING, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD},
-     {"Alpine", TEMP_COLD, PRECIP_LIGHT, WIND_STRONG, DISASTER_HAILSTORM | DISASTER_BLIZZARD}};
+extern const char *wind_speeds[];
+extern const char *precip[];
+extern const char *daylight_change[];
+extern const char *seasons[];
+extern const char *season_change[];
+extern HemisphereData hemispheres[NUM_HEMISPHERES];
+extern ClimateData climates[NUM_CLIMATES];

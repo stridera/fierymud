@@ -156,7 +156,7 @@ WCMD(do_wzoneecho) {
             sprintf(buf, "wzoneecho called for nonexistent zone %s", zone_name);
             wld_log(room, t, buf);
         } else {
-            sprintf(buf, "%s\r\n", msg);
+            sprintf(buf, "%s\n", msg);
             send_to_zone(buf, zone_vnum, NOWHERE, STANCE_RESTING);
         }
     }
@@ -221,10 +221,10 @@ WCMD(do_wdoor) {
                 free(exit->general_description);
             CREATE(desc, char, strlen(value) + 1);
             strcpy(desc, value);
-            replace_str(&desc, "\\n", "\r\n", 1, MAX_INPUT_LENGTH);
+            replace_str(&desc, "\\n", "\n", 1, MAX_INPUT_LENGTH);
             CREATE(exit->general_description, char, strlen(desc) + 3);
             strcpy(exit->general_description, desc);
-            strcat(exit->general_description, "\r\n");
+            strcat(exit->general_description, "\n");
             free(desc);
             break;
         case 2: /* flags       */
@@ -266,7 +266,7 @@ WCMD(do_wteleport) {
     if (target == NOWHERE)
         wld_log(room, t, "wteleport target is an invalid room");
 
-    else if (!str_cmp(arg1, "all")) {
+    else if (!strcmp(arg1, "all")) {
         if (world[target].vnum == room->vnum) {
             wld_log(room, t, "wteleport all target is itself");
             return;
@@ -304,7 +304,7 @@ WCMD(do_wforce) {
         return;
     }
 
-    if (!str_cmp(arg1, "all")) {
+    if (!strcmp(arg1, "all")) {
         for (ch = room->people; ch; ch = next_ch) {
             next_ch = ch->next_in_room;
 
@@ -472,7 +472,7 @@ WCMD(do_wheal) {
 
     if ((ch = find_char_around_room(room, find_dg_by_name(name)))) {
         if (GET_LEVEL(ch) >= LVL_IMMORT) {
-            send_to_char("Being a god, you don't need healing.\r\n", ch);
+            send_to_char("Being a god, you don't need healing.\n", ch);
             return;
         }
         hurt_char(ch, nullptr, -dam, true);
@@ -625,7 +625,7 @@ WCMD(do_wrent) {
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$N ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        send_to_char("&8You stop meditating.\r\n&0", ch);
+        send_to_char("&8You stop meditating.\n&0", ch);
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 

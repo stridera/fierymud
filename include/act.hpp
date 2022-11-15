@@ -65,7 +65,7 @@ ACMD(do_who);
 #define SHOW_SKIP_SELF (1 << 7)
 #define SHOW_MASK (SHOW_NO_FAIL_MSG | SHOW_STACK | SHOW_FLAGS | SHOW_SKIP_SELF)
 
-#define YOU_ARE_BLIND "You can't see a damned thing; you're blind!\r\n"
+#define YOU_ARE_BLIND "You can't see a damned thing; you're blind!\n"
 
 struct StackNode {
     ObjData *obj;
@@ -122,7 +122,7 @@ const char *proficiency_message(int proficiency);
 
 /* item functions */
 GetContext *begin_get_transaction(CharData *ch);
-void end_get_transaction(GetContext *context, const void *vict_obj);
+void end_get_transaction(GetContext *context, ObjData *vict_obj);
 void perform_get_from_room(GetContext *context, ObjData *obj);
 void perform_get_from_container(GetContext *context, ObjData *obj, ObjData *cont);
 void get_random_object(GetContext *context);

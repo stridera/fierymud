@@ -42,6 +42,8 @@
 #include "trophy.hpp"
 #include "utils.hpp"
 
+ObjData *go_iterator = nullptr;
+
 /* external functions */
 void free_char(CharData *ch);
 void remove_follower(CharData *ch);
@@ -406,10 +408,10 @@ void active_effect_from_char(CharData *ch, int type) {
 
 void lose_levitation_messages(CharData *ch) {
     if (GET_POS(ch) >= POS_STANDING) {
-        cprintf(ch, "%s\r\n", skills[SPELL_LEVITATE].wearoff);
+        char_printf(ch, "%s\n", skills[SPELL_LEVITATE].wearoff);
         act("$n floats back to the ground.", true, ch, 0, 0, TO_ROOM);
     } else {
-        send_to_char("Your weight feels normal again.\r\n", ch);
+        send_to_char("Your weight feels normal again.\n", ch);
     }
 }
 
@@ -430,7 +432,7 @@ void active_effect_remove(CharData *ch, effect *effect) {
                     lose_levitation_messages(ch);
                     break;
                 default:
-                    cprintf(ch, "%s\r\n", skills[effect->type].wearoff);
+                    char_printf(ch, "%s\n", skills[effect->type].wearoff);
                 }
             }
         }
@@ -707,34 +709,34 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
         ITEM_WEAR_HOLD,  ITEM_WEAR_HOLD,   ITEM_WEAR_2HWIELD, ITEM_WEAR_EYES,  ITEM_WEAR_FACE,  ITEM_WEAR_EAR,
         ITEM_WEAR_EAR,   ITEM_WEAR_BADGE,  ITEM_WEAR_OBELT,   ITEM_WEAR_HOVER};
 
-    char *already_wearing[] = {"You're already using a light.\r\n",
-                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\r\n",
-                               "You're already wearing something on both of your ring fingers.\r\n",
-                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\r\n",
-                               "You can't wear anything else around your neck.\r\n",
-                               "You're already wearing something on your body.\r\n",
-                               "You're already wearing something on your head.\r\n",
-                               "You're already wearing something on your legs.\r\n",
-                               "You're already wearing something on your feet.\r\n",
-                               "You're already wearing something on your hands.\r\n",
-                               "You're already wearing something on your arms.\r\n",
-                               "You're already using a shield.\r\n",
-                               "You're already wearing something about your body.\r\n",
-                               "You already have something around your waist.\r\n",
-                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\r\n",
-                               "You're already wearing something around both of your wrists.\r\n",
-                               "You're already wielding a weapon.\r\n",
-                               "You're already wielding a weapon there!\r\n",
-                               "You're already holding something.\r\n",
-                               "You're already holding something.\r\n",
-                               "You're already wielding a weapon.\r\n",
-                               "You're already wearing something on your eyes.\r\n",
-                               "You're already wearing something on your face.\r\n",
-                               "YOU SHOULD NEVER SEE THIS REPORT IT!.\r\n",
-                               "You're already wearing something in both of your ears.\r\n",
-                               "You're already wearing a badge.\r\n",
-                               "You can't attach any more to your belt.\r\n",
-                               "You already have something hovering around you.\r\n"};
+    char *already_wearing[] = {"You're already using a light.\n",
+                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
+                               "You're already wearing something on both of your ring fingers.\n",
+                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
+                               "You can't wear anything else around your neck.\n",
+                               "You're already wearing something on your body.\n",
+                               "You're already wearing something on your head.\n",
+                               "You're already wearing something on your legs.\n",
+                               "You're already wearing something on your feet.\n",
+                               "You're already wearing something on your hands.\n",
+                               "You're already wearing something on your arms.\n",
+                               "You're already using a shield.\n",
+                               "You're already wearing something about your body.\n",
+                               "You already have something around your waist.\n",
+                               "YOU SHOULD NEVER SEE THIS MESSAGE.   PLEASE REPORT.\n",
+                               "You're already wearing something around both of your wrists.\n",
+                               "You're already wielding a weapon.\n",
+                               "You're already wielding a weapon there!\n",
+                               "You're already holding something.\n",
+                               "You're already holding something.\n",
+                               "You're already wielding a weapon.\n",
+                               "You're already wearing something on your eyes.\n",
+                               "You're already wearing something on your face.\n",
+                               "YOU SHOULD NEVER SEE THIS REPORT IT!.\n",
+                               "You're already wearing something in both of your ears.\n",
+                               "You're already wearing a badge.\n",
+                               "You can't attach any more to your belt.\n",
+                               "You already have something hovering around you.\n"};
 
     /* first, make sure that the wear position is valid. */
     /* Only allow light items in the light pos, and then only
@@ -765,16 +767,16 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
 
         if ((GET_OBJ_WEAR(obj) & ITEM_WEAR_2HWIELD) && a) {
             if (sendmessage)
-                send_to_char("You need both hands free for this weapon!\r\n", ch);
+                send_to_char("You need both hands free for this weapon!\n", ch);
             return false;
         } else if (a > 1) {
             if (sendmessage)
-                send_to_char("Both of your hands are already using something.\r\n", ch);
+                send_to_char("Both of your hands are already using something.\n", ch);
             return false;
         } else if (a == 1 && w > 0 && (*where == WEAR_WIELD || *where == WEAR_WIELD2) &&
                    !(GET_SKILL(ch, SKILL_DUAL_WIELD))) {
             if (sendmessage)
-                send_to_char("You don't have the co-ordination to dual wield.\r\n", ch);
+                send_to_char("You don't have the co-ordination to dual wield.\n", ch);
             return false;
         }
     }
@@ -813,7 +815,7 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
 
         if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
             if (sendmessage)
-                send_to_char("It's too heavy for you to use.\r\n", ch);
+                send_to_char("It's too heavy for you to use.\n", ch);
             return false;
         }
     }
@@ -1201,7 +1203,7 @@ void extract_char(CharData *ch) {
             ch->desc->snooping = nullptr;
         }
         if (ch->desc->snoop_by) {
-            write_to_output("Your victim is no longer among us.\r\n", ch->desc->snoop_by);
+            write_to_output("Your victim is no longer among us.\n", ch->desc->snoop_by);
             ch->desc->snoop_by->snooping = nullptr;
             ch->desc->snoop_by = nullptr;
         }
