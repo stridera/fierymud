@@ -581,7 +581,7 @@ static int binary_auto_equip(struct char_data *ch, struct obj_data *obj, int loc
  */
 bool build_object(FILE *fl, struct obj_data **objp, int *location) {
     struct obj_data *obj, *proto;
-    int num, num2, apply = 0;
+    int r_num, num, num2, apply = 0;
     float f;
     char line[MAX_INPUT_LENGTH], tag[128], *value;
     struct extra_descr_data *desc, *last_desc = NULL;
@@ -596,10 +596,45 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
         return FALSE;
     }
 
-    *objp = obj = create_obj();
+    /* We're going to short circuit to existing items for any found with an existing vnum.*/
+    get_line(fl, line);
+    tag_argument(line, tag);
+
+    if (strcmp(tag, "vnum")) {
+        sprintf(buf, "SYSERR: Invalid Object File.  Object Vnum not found.");
+        log(buf);
+        return FALSE;
+    }
+
+    num = atoi(line);
     *location = WEAR_INVENTORY;
 
+    // If we have an existing object, lets use the existing object proto.
+    if (num > -1) {
+        if ((r_num = real_object(num)) < 0) {
+            sprintf(buf, "SYSERR: Invalid Object found in file.  Object Vnum not found.");
+            return FALSE;
+        }
+        *objp = read_object(r_num, REAL);
+        while (get_line(fl, line)) {
+            /* Only thing we care about is location, lets throw away the rest.*/
+            if (!strcmp(line, "~~"))
+                break;
+
+            tag_argument(line, tag);
+            if (!strcmp(tag, "location"))
+                *location = atoi(line);
+        }
+        return TRUE;
+    }
+
+    /* vnum is -1, let's create a custom object.  */
+    *objp = obj = create_obj();
+    obj->item_number = -1;
+
     while (get_line(fl, line)) {
+        /* Short circuit for any object with a known vnum. */
+
         if (!strcmp(line, "~~"))
             break;
 
@@ -711,9 +746,7 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
                 goto bad_tag;
             break;
         case 'V':
-            if (!strcmp(tag, "vnum"))
-                obj->item_number = real_object(num);
-            else if (!strcmp(tag, "values")) {
+            if (!strcmp(tag, "values")) {
                 num = 0;
                 while (get_line(fl, line) && *line != '~')
                     if (num < NUM_VALUES)
@@ -754,10 +787,10 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
         return FALSE;
     }
 
-    /*
-     * Check to see if the loaded object has strings that match the
-     * prototype.  If so, replace them.
-     */
+/*
+ * Check to see if the loaded object has strings that match the
+ * prototype.  If so, replace them.
+ */
 #define CHECK_PROTO_STR(address)                                                                                       \
     do {                                                                                                               \
         if (!obj->address)                                                                                             \
