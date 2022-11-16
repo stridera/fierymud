@@ -1017,6 +1017,11 @@ int mag_damage(int skill, struct char_data *ch, struct char_data *victim, int sp
             act("$n cringes with a pained look on $s face.", TRUE, victim, 0, 0, TO_ROOM);
     }
 
+    /* reduce damage by 10%, then increase 2% per 10 points of true int */
+    dam *= .9;
+
+    dam *= 1 + ((GET_AFFECTED_INT(ch) / 500));
+
     /* and finally, inflict the damage */
     damage(ch, victim, dam, damage_spellnum);
 
@@ -4382,9 +4387,9 @@ int mag_point(int skill, struct char_data *ch, struct char_data *victim, int spe
     if (victim == NULL)
         return 0;
 
-    sus = susceptibility(victim, skills[spellnum].damage_type);
+    sus = susceptibility(victim, skills[spellnum].damage_type); 
 
-    multiplier = 2 + (skill / 24); /* max 6 */
+    multiplier = (GET_AFFECTED_WIS(ch) / 24) + (skill / 24); /* min 1, max 8 */
 
     switch (spellnum) {
     case SPELL_CURE_LIGHT:
