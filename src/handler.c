@@ -743,8 +743,7 @@ bool may_wear_eq(struct char_data *ch, /* Who is trying to wear something */
     /* first, make sure that the wear position is valid. */
     /* Only allow light items in the light pos, and then only
        when they cannot be worn anywhere else. */
-    if (!CAN_WEAR(obj, wear_bitvectors[*where]) || (*where == 0 && GET_OBJ_TYPE(obj) != ITEM_LIGHT) ||
-        (*where == 0 && GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_WEAR(obj) != ITEM_WEAR_TAKE + ITEM_WEAR_HOLD)) {
+    if (!CAN_WEAR(obj, wear_bitvectors[*where])) {
         if (!(IS_NPC(ch)) && sendmessage)
             act("You can't wear $p there.", FALSE, ch, obj, 0, TO_CHAR);
         return FALSE;
