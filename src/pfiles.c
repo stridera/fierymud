@@ -624,6 +624,21 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
             tag_argument(line, tag);
             if (!strcmp(tag, "location"))
                 *location = atoi(line);
+            if (!strcmp(tag, "hiddenness"))
+                GET_OBJ_HIDDENNESS(obj) = LIMIT(0, num, 1000);
+            if (!strcmp(tag, "spells")) {
+                for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
+                    ;
+                while (get_line(fl, line) && *line != '~') {
+                    CREATE(spell, struct spell_book_list, 1);
+                    sscanf(line, "%d %d", &spell->spell, &spell->length);
+                    if (last_spell)
+                        last_spell->next = spell;
+                    else /* This means obj->spell_book is NULL */
+                        obj->spell_book = spell;
+                    last_spell = spell;
+                }
+            }
         }
         return TRUE;
     }
