@@ -622,6 +622,8 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
                 break;
 
             tag_argument(line, tag);
+            if (!strcmp(tag, "effects"))
+                load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
             if (!strcmp(tag, "location"))
                 *location = atoi(line);
             if (!strcmp(tag, "hiddenness"))
@@ -639,6 +641,15 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
                     last_spell = spell;
                 }
             }
+            if (!strcmp(tag, "values")) {
+                num = 0;
+                while (get_line(fl, line) && *line != '~')
+                    if (num < NUM_VALUES)
+                        GET_OBJ_VAL(obj, num++) = atoi(line);
+                limit_obj_values(obj);
+            }
+            if (!strcmp(tag, "flags"))
+                load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
         }
         return TRUE;
     }
