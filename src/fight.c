@@ -2032,8 +2032,8 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
             else if (IS_NPC(ch) && ch->mob_specials.attack_type != 0)
                 type = ch->mob_specials.attack_type + TYPE_HIT;
             else if (GET_RACE(ch) == RACE_DRAGONBORN_FIRE || GET_RACE(ch) == RACE_DRAGONBORN_FROST
-            || GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_ACID
-            || GET_RACE(ch) == RACE_DRAGONBORN_GAS)
+                    || GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_ACID
+                    || GET_RACE(ch) == RACE_DRAGONBORN_GAS)
                 type = TYPE_CLAW;
             else
                 type = TYPE_HIT;
@@ -2121,6 +2121,33 @@ void hit(struct char_data *ch, struct char_data *victim, int type) {
         damage_evasion_message(ch, victim, weapon, dtype);
         set_fighting(victim, ch, TRUE);
         return;
+    }
+
+    /* adjust for additional effects like Displacement */
+    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+        int displaced, mtype;
+        mtype = type - TYPE_HIT; /* get the damage message */
+
+        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
+            if (number(1, 4) == 1)  /* 25% chance to ignore damage */
+                displaced = TRUE;
+        }
+
+        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+            if (number(1, 2) == 1)  /* 50% chance to ignore damage */
+                displaced = TRUE;
+        }
+
+        if (displaced == TRUE) {    
+            sprintf(buf, "&9&b$n takes a guess at $N's position but misses with $s %s!&0", attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_NOTVICT);
+            sprintf(buf, "&9&bYou take a guess at $N's position but miss with your %s!&0", attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_CHAR);
+            sprintf(buf, "&9&b$n takes a guess your position but misses with $s %s!&0", attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_VICT);
+            set_fighting(victim, ch, TRUE);
+            return;
+        }
     }
 
     /* The attacker missed the victim. */
