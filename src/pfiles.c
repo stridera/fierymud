@@ -633,8 +633,6 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
     obj->item_number = -1;
 
     while (get_line(fl, line)) {
-        /* Short circuit for any object with a known vnum. */
-
         if (!strcmp(line, "~~"))
             break;
 
