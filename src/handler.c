@@ -252,7 +252,7 @@ void effect_total(struct char_data *ch) {
     /* Remove effects of equipment. */
     for (i = 0; i < NUM_WEARS; i++)
         if (GET_EQ(ch, i)) {
-            if (GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_ARMOR)
+            if (GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_ARMOR || GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_TREASURE)
                 GET_AC(ch) += apply_ac(ch, i);
             for (j = 0; j < MAX_OBJ_APPLIES; j++)
                 effect_modify(ch, GET_EQ(ch, i)->applies[j].location, GET_EQ(ch, i)->applies[j].modifier,
@@ -283,7 +283,7 @@ void effect_total(struct char_data *ch) {
     /* Alrighty, add the equipment effects back in. */
     for (i = 0; i < NUM_WEARS; i++)
         if (GET_EQ(ch, i)) {
-            if (GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_ARMOR)
+            if (GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_ARMOR || GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_TREASURE)
                 GET_AC(ch) -= apply_ac(ch, i);
             for (j = 0; j < MAX_OBJ_APPLIES; j++)
                 effect_modify(ch, GET_EQ(ch, i)->applies[j].location, GET_EQ(ch, i)->applies[j].modifier,
@@ -648,7 +648,7 @@ static int apply_ac(struct char_data *ch, int eq_pos) {
 
     assert(GET_EQ(ch, eq_pos));
 
-    if (GET_OBJ_TYPE(GET_EQ(ch, eq_pos)) != ITEM_ARMOR)
+    if (GET_OBJ_TYPE(GET_EQ(ch, eq_pos)) != ITEM_ARMOR && GET_OBJ_TYPE(GET_EQ(ch, eq_pos)) != ITEM_TREASURE)
         return 0;
 
     switch (eq_pos) {
@@ -857,7 +857,7 @@ enum equip_result equip_char(struct char_data *ch, struct obj_data *obj, int pos
     obj->worn_by = ch;
     obj->worn_on = pos;
 
-    if (GET_OBJ_TYPE(obj) == ITEM_ARMOR)
+    if (GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE)
         GET_AC(ch) -= apply_ac(ch, pos);
 
     if (ch->in_room != NOWHERE) {
@@ -887,7 +887,7 @@ struct obj_data *unequip_char(struct char_data *ch, int pos) {
     obj->worn_by = NULL;
     obj->worn_on = -1;
 
-    if (GET_OBJ_TYPE(obj) == ITEM_ARMOR)
+    if (GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE)
         GET_AC(ch) += apply_ac(ch, pos);
 
     if (ch->in_room != NOWHERE) {

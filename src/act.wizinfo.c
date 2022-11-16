@@ -420,6 +420,7 @@ void do_stat_object(struct char_data *ch, struct obj_data *j) {
                      : "<&1INVALID&0>");
         break;
     case ITEM_ARMOR:
+    case ITEM_TREASURE:
         str_catf(buf, "AC-apply: [%d]\r\n", GET_OBJ_VAL(j, VAL_ARMOR_AC));
         break;
     case ITEM_TRAP:
