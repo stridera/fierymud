@@ -615,7 +615,7 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
             sprintf(buf, "SYSERR: Invalid Object found in file.  Object Vnum not found.");
             return FALSE;
         }
-        *objp = read_object(r_num, REAL);
+        *objp = obj = read_object(r_num, REAL);
         while (get_line(fl, line)) {
             /* Only thing we care about is location, lets throw away the rest.*/
             if (!strcmp(line, "~~"))
