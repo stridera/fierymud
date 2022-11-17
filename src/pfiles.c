@@ -617,6 +617,8 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
             return FALSE;
         }
         *objp = obj = read_object(r_num, REAL);
+        GET_OBJ_HIDDENNESS(obj) = 0; /* If it's in your inventory, it's visible. */
+
         while (get_line(fl, line)) {
             /* Only thing we care about is location, lets throw away the rest.*/
             if (!strcmp(line, "~~"))
@@ -629,8 +631,6 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
             else if (!strcmp(tag, "location"))
                 *location = atoi(line);
-            else if (!strcmp(tag, "hiddenness"))
-                GET_OBJ_HIDDENNESS(obj) = LIMIT(0, num, 1000);
             else if (!strcmp(tag, "spells")) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
