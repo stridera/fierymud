@@ -615,15 +615,41 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
             sprintf(buf, "SYSERR: Invalid Object found in file.  Object Vnum not found.");
             return FALSE;
         }
-        *objp = read_object(r_num, REAL);
+        *objp = obj = read_object(r_num, REAL);
         while (get_line(fl, line)) {
             /* Only thing we care about is location, lets throw away the rest.*/
             if (!strcmp(line, "~~"))
                 break;
 
             tag_argument(line, tag);
+            if (!strcmp(tag, "effects"))
+                load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
             if (!strcmp(tag, "location"))
                 *location = atoi(line);
+            if (!strcmp(tag, "hiddenness"))
+                GET_OBJ_HIDDENNESS(obj) = LIMIT(0, num, 1000);
+            if (!strcmp(tag, "spells")) {
+                for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
+                    ;
+                while (get_line(fl, line) && *line != '~') {
+                    CREATE(spell, struct spell_book_list, 1);
+                    sscanf(line, "%d %d", &spell->spell, &spell->length);
+                    if (last_spell)
+                        last_spell->next = spell;
+                    else /* This means obj->spell_book is NULL */
+                        obj->spell_book = spell;
+                    last_spell = spell;
+                }
+            }
+            if (!strcmp(tag, "values")) {
+                num = 0;
+                while (get_line(fl, line) && *line != '~')
+                    if (num < NUM_VALUES)
+                        GET_OBJ_VAL(obj, num++) = atoi(line);
+                limit_obj_values(obj);
+            }
+            if (!strcmp(tag, "flags"))
+                load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
         }
         return TRUE;
     }
