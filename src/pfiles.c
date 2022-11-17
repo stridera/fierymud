@@ -217,6 +217,7 @@ static bool write_object_record(struct obj_data *obj, FILE *fl, int location) {
     write_ascii_flags(fl, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS);
     fprintf(fl, "\n");
     fprintf(fl, "wear: %d\n", GET_OBJ_WEAR(obj));
+    fprintf(fl, "hiddenness: %d\n", GET_OBJ_HIDDENNESS(obj));
 
     for (i = 0; i < MAX_OBJ_APPLIES && !obj->applies[i].location; ++i)
         ;
@@ -622,13 +623,15 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
                 break;
 
             tag_argument(line, tag);
+            num = atoi(line);
+
             if (!strcmp(tag, "effects"))
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
-            if (!strcmp(tag, "location"))
+            else if (!strcmp(tag, "location"))
                 *location = atoi(line);
-            if (!strcmp(tag, "hiddenness"))
+            else if (!strcmp(tag, "hiddenness"))
                 GET_OBJ_HIDDENNESS(obj) = LIMIT(0, num, 1000);
-            if (!strcmp(tag, "spells")) {
+            else if (!strcmp(tag, "spells")) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
                 while (get_line(fl, line) && *line != '~') {
@@ -640,15 +643,13 @@ bool build_object(FILE *fl, struct obj_data **objp, int *location) {
                         obj->spell_book = spell;
                     last_spell = spell;
                 }
-            }
-            if (!strcmp(tag, "values")) {
+            } else if (!strcmp(tag, "values")) {
                 num = 0;
                 while (get_line(fl, line) && *line != '~')
                     if (num < NUM_VALUES)
                         GET_OBJ_VAL(obj, num++) = atoi(line);
                 limit_obj_values(obj);
-            }
-            if (!strcmp(tag, "flags"))
+            } else if (!strcmp(tag, "flags"))
                 load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
         }
         return TRUE;
