@@ -271,6 +271,13 @@ extern void free_aliases(struct alias_data *alias_list);
 #define SCMD_OLC_HEDIT 6
 #define SCMD_OLC_TRIGEDIT 7
 #define SCMD_OLC_SDEDIT 8
+#define SCMD_OLC_REDIT 9
+#define SCMD_OLC_RCOPY 10
+#define SCMD_OLC_OCOPY 11
+#define SCMD_OLC_ZCOPY 12
+#define SCMD_OLC_MCOPY 13
+#define SCMD_OLC_SCOPY 14
+#define SCMD_OLC_TRIGCOPY 15
 
 /* do_light */
 #define SCMD_LIGHT 0
