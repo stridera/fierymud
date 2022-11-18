@@ -203,6 +203,7 @@ ACMD(do_olc) {
 
     if (!*buf1) { /* No argument given. */
         switch (subcmd) {
+        case SCMD_OLC_REDIT:
         case SCMD_OLC_OCOPY:
         case SCMD_OLC_ZCOPY:
         case SCMD_OLC_MCOPY:
@@ -537,9 +538,24 @@ ACMD(do_olc) {
         medit_setup_existing(d, real_num);
         STATE(d) = CON_MEDIT;
         break;
+    case SCMD_OLC_TRIGCOPY:
+        if ((real_num = real_trigger(number)) < 0) {
+            send_to_char("The source trigger does not exist.\r\n", ch);
+            return;
+        }
+
+        number = atoi(buf2);
+        if ((real_trigger(number)) >= 0) {
+            send_to_char("The target trigger already exists.\r\n", ch);
+            return;
+        }
+
+        OLC_NUM(d) = number;
+        trigedit_setup_existing(d, real_num);
+        STATE(d) = CON_TRIGEDIT;
+        break;
     case SCMD_OLC_ZCOPY:
     case SCMD_OLC_SCOPY:
-    case SCMD_OLC_TRIGCOPY:
         send_to_char("Sorry, this command is not yet implemented.\r\n", ch);
         return;
     }
