@@ -1,5 +1,5 @@
 import argparse
-
+from mud_objects import Mob
 
 def process_file(filename, vnum=-1):
     print(f"Processing {filename}")

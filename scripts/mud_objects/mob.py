@@ -1,77 +1,49 @@
 class Mob:
-    def __init__(self, vnum, namelist, short_desc, long_desc, description, act, affected_by, alignment, level, hitroll, ac, hit, mana, damage):
-        self.vnum = vnum
-        self.namelist = namelist
-        self.short_desc = short_desc
-        self.long_desc = long_desc
-        self.description = description
-        self.act = act
-        self.affected_by = affected_by
-        self.alignment = alignment
-        self.level = level
-        self.hitroll = hitroll
-        self.ac = ac
-        self.hit = hit
-        self.mana = mana
-        self.damage = damage
+    def __init__(self):
+        self.vnum = -1
+        self.namelist = []
+        self.short_desc = '' 
+        self.long_desc = ''
+        self.description = ''
+        self.flags = None
+        self.affected_by = None
+        self.alignment = 0
+        self.level = 0
+        self.hitroll =  
+        self.ac = 
+        self.hit = 
+        self.mana = 
+        self.damage = 
 
+'''
+#3000
+bigby wizard shopkeeper~
+Bigby~
+Bigby walks around behind the counter, muttering powerful incantations.
+~
+Bigby looks to be very old, but he is far from senile.  The raw magical power
+that emanates from him is almost frightening, but he seems to be somewhat less
+than concerned by the likes of you.  Best to not make him notice you - just buy
+what you came in for and then leave him alone.    
+~
+-2147358694 8 900 E
+99 20 0 0d0+0 0d0+0
+30 0 0 30
+3 3 1 0 13 0 2
+Str: 30
+Dex: 30
+Int: 30
+Wis: 30
+Con: 30
+Cha: 30
+AFF2: 0
+AFF3: 0
+MOB2: 8
+PERC: 0
+HIDE: 0
+Lifeforce: 0
+Composition: 0
+Stance: 6
+E
 
-"""
-
-    mob_index[i].virtual = nr;
-    mob_proto[i].player.namelist = fread_string(mob_f, buf2);
-    tmpptr = mob_proto[i].player.short_descr = fread_string(mob_f, buf2);
-    mob_proto[i].player.long_descr = fread_string(mob_f, buf2);
-    mob_proto[i].player.description = fread_string(mob_f, buf2);
-
-    /* *** Numeric data *** */
-    get_line(mob_f, line);
-    sscanf(line, "%s %s %d %c", f1, f2, t + 2, &letter);
-    MOB_FLAGS(mob_proto + i)[0] = asciiflag_conv(f1);
-    EFF_FLAGS(mob_proto + i)[0] = asciiflag_conv(f2);
-    GET_ALIGNMENT(mob_proto + i) = t[2];
-
-    switch (letter) {
-    case 'S': /* Simple monsters */
-        parse_simple_mob(mob_f, i, nr);
-        break;
-    case 'E': /* Circle3 Enhanced monsters */
-        parse_enhanced_mob(mob_f, i, nr);
-        break;
-        /* add new mob types here.. */
-    default:
-        fprintf(stderr, "Unsupported mob type '%c' in mob #%d\n", letter, nr);
-        exit(1);
-        break;
-    }
-
-    letter = fread_letter(mob_f);
-    ungetc(letter, mob_f);
-    while (letter == 'T') {
-        dg_read_trigger(mob_f, &mob_proto[i], MOB_TRIGGER);
-        letter = fread_letter(mob_f);
-        ungetc(letter, mob_f);
-    }
-
-    mob_proto[i].affected_abils = mob_proto[i].natural_abils;
-
-    for (j = 0; j < NUM_WEARS; j++)
-        mob_proto[i].equipment[j] = NULL;
-
-    mob_proto[i].desc = NULL;
-
-    letter = fread_letter(mob_f);
-    if (letter == '>') {
-        while (fread_letter(mob_f) != '|')
-            ;
-        fprintf(stderr, "Mob %d has a mobprog still!\n", nr);
-    } else
-        ungetc(letter, mob_f);
-
-    if (mob_proto[i].mob_specials.default_pos < 0 || mob_proto[i].mob_specials.default_pos >= NUM_POSITIONS) {
-        mob_proto[i].mob_specials.default_pos = POS_STANDING;
-    }
-    if (mob_proto[i].char_specials.position < 0 || mob_proto[i].char_specials.position >= NUM_POSITIONS) {
-        mob_proto[i].char_specials.position = POS_STANDING;
-    }
-"""
+'''
