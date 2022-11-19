@@ -1,12 +1,25 @@
 import argparse
 from mud_objects import Mob
 
+
 def process_file(filename, vnum=-1):
     print(f"Processing {filename}")
+    current_vnum = -1
+    data = []
     with open(filename) as f:
         for line in f:
+            line = line.rstrip()
             if line.startswith('#'):
-                print(line, end='')
+                if current_vnum >= 0 and (vnum == -1 or vnum == current_vnum):
+                    print(f"Processing vnum {current_vnum}")
+                    mob = Mob(current_vnum)
+                    print(f"Data: {data}\n\n")
+                    mob.parse(data)
+                    print(mob.stats)
+                    return
+                current_vnum = int(line[1:])
+            else:
+                data.append(line)
 
 
 def process_index(index_file, vnum):
@@ -31,7 +44,7 @@ if __name__ == '__main__':
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Converts a mob file to use ascii flags.')
     parser.add_argument('--file', help='The mob file to convert or index file to convert all.',
-                        type=str, default='lib/world/mob/index')
+                        type=str, default='../lib/world/mob/index')
     parser.add_argument('-n', '--number', help='The mob number to convert.', type=int, default=-1)
     args = parser.parse_args()
     main(args.file, args.number)

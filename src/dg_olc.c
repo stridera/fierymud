@@ -43,7 +43,7 @@ void script_save_to_disk(FILE *fp, void *item, int type) {
     else if (type == WLD_TRIGGER)
         t = ((struct room_data *)item)->proto_script;
     else {
-        log("SYSERR: Invalid type passed to script_save_mobobj_to_disk()");
+        log("SYSERR: Invalid type passed to script_save_to_disk()");
         return;
     }
 

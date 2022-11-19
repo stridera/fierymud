@@ -1,19 +1,18 @@
-class Mob:
-    def __init__(self):
-        self.vnum = -1
-        self.namelist = []
-        self.short_desc = '' 
-        self.long_desc = ''
-        self.description = ''
-        self.flags = None
-        self.affected_by = None
-        self.alignment = 0
-        self.level = 0
-        self.hitroll =  
-        self.ac = 
-        self.hit = 
-        self.mana = 
-        self.damage = 
+from .mudobject import MudObject, MudTypes
+
+
+class Mob(MudObject):
+    def __init__(self, vnum):
+        super().__init__(vnum)
+        self.type = MudTypes.MOB
+
+    def parse(self, data):
+        self.stats = {}
+        self.stats['namelist'] = self.readString(data)
+        self.stats['short_descr'] = self.readString(data)
+        self.stats['long_descr'] = self.readString(data)
+        self.stats['description'] = self.readString(data)
+
 
 '''
 #3000

@@ -11,3 +11,7 @@ CMakeFiles
 Makefile
 CMakeCache.txt
 build/
+
+# Python stuff
+.venv/
+__pycache__/

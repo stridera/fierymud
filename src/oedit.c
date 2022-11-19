@@ -396,6 +396,7 @@ void oedit_save_internally(struct descriptor_data *d) {
 
 void oedit_save_to_disk(int zone_num) {
     int counter, counter2, realcounter;
+    char bits0[128], bits1[128], bits2[128];
     FILE *fp;
     struct obj_data *obj;
     struct extra_descr_data *ex_desc;
@@ -416,23 +417,22 @@ void oedit_save_to_disk(int zone_num) {
             } else
                 *buf1 = '\0';
 
-            fprintf(fp,
-                    "#%d\n"
-                    "%s~\n"
-                    "%s~\n"
-                    "%s~\n"
-                    "%s~\n"
-                    "%d %ld %d %d\n"
-                    "%d %d %d %d %d %d %d\n"
-                    "%.2f %d %d %ld %d %d %ld %ld\n",
-                    GET_OBJ_VNUM(obj), (obj->name && *obj->name) ? obj->name : "undefined",
-                    (obj->short_description && *obj->short_description) ? obj->short_description : "undefined",
-                    (obj->description && *obj->description) ? obj->description : "undefined", buf1, GET_OBJ_TYPE(obj),
-                    GET_OBJ_FLAGS(obj)[0], GET_OBJ_WEAR(obj), GET_OBJ_LEVEL(obj), GET_OBJ_VAL(obj, 0),
-                    GET_OBJ_VAL(obj, 1), GET_OBJ_VAL(obj, 2), GET_OBJ_VAL(obj, 3), GET_OBJ_VAL(obj, 4),
-                    GET_OBJ_VAL(obj, 5), GET_OBJ_VAL(obj, 6), GET_OBJ_WEIGHT(obj), GET_OBJ_COST(obj),
-                    GET_OBJ_TIMER(obj), GET_OBJ_EFF_FLAGS(obj)[0], 0, 0, GET_OBJ_EFF_FLAGS(obj)[1],
-                    GET_OBJ_EFF_FLAGS(obj)[2]);
+            fprintf(fp, "#%d\n", GET_OBJ_VNUM(obj));
+            fprintf(fp, "%s~\n", (obj->name && *obj->name) ? obj->name : "undefined");
+            fprintf(fp, "%s~\n",
+                    (obj->short_description && *obj->short_description) ? obj->short_description : "undefined");
+            fprintf(fp, "%s~\n", (obj->description && *obj->description) ? obj->description : "undefined");
+            fprintf(fp, "%s~\n", buf1);
+            sprintascii(bits0, GET_OBJ_FLAGS(obj)[0]);
+            sprintascii(bits1, GET_OBJ_WEAR(obj));
+            fprintf(fp, "%d %s %s %d\n", GET_OBJ_TYPE(obj), bits0, bits1, GET_OBJ_LEVEL(obj));
+            fprintf(fp, "%d %d %d %d %d %d %d\n", GET_OBJ_VAL(obj, 0), GET_OBJ_VAL(obj, 1), GET_OBJ_VAL(obj, 2),
+                    GET_OBJ_VAL(obj, 3), GET_OBJ_VAL(obj, 4), GET_OBJ_VAL(obj, 5), GET_OBJ_VAL(obj, 6));
+            sprintascii(bits0, GET_OBJ_EFF_FLAGS(obj)[0]);
+            sprintascii(bits1, GET_OBJ_EFF_FLAGS(obj)[1]);
+            sprintascii(bits2, GET_OBJ_EFF_FLAGS(obj)[2]);
+            fprintf(fp, "%.2f %d %d %s %d %d %s %s\n", GET_OBJ_WEIGHT(obj), GET_OBJ_COST(obj), GET_OBJ_TIMER(obj),
+                    bits0, 0, 0, bits1, bits2);
 
             script_save_to_disk(fp, obj, OBJ_TRIGGER);
 
@@ -469,8 +469,10 @@ void oedit_save_to_disk(int zone_num) {
             if (obj->obj_flags.hiddenness)
                 fprintf(fp, "H\n%ld\n", obj->obj_flags.hiddenness);
 
-            if (GET_OBJ_FLAGS(obj)[1])
-                fprintf(fp, "X\n%ld\n", GET_OBJ_FLAGS(obj)[1]);
+            if (GET_OBJ_FLAGS(obj)[1]) {
+                sprintascii(bits0, GET_OBJ_FLAGS(obj)[1]);
+                fprintf(fp, "X\n%s\n", bits0);
+            }
         }
     }
 

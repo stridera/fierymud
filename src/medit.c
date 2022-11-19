@@ -505,7 +505,7 @@ void medit_save_internally(struct descriptor_data *d) {
 void medit_save_to_disk(int zone_num) {
     int i, rmob_num, zone, top;
     FILE *mob_file;
-    char fname[64];
+    char fname[64], bits[128], bits2[128];
     struct char_data *mob;
 
     zone = zone_table[zone_num].number;
@@ -537,24 +537,23 @@ void medit_save_to_disk(int zone_num) {
             strcpy(buf2, (GET_DDESC(mob) && *GET_DDESC(mob)) ? GET_DDESC(mob) : "undefined");
             strip_string(buf2);
 
-            fprintf(mob_file,
-                    "%s~\n"
-                    "%s~\n"
-                    "%s~\n"
-                    "%s~\n"
-                    "%ld %ld %d E\n"
-                    "%d %d %d %dd%d+%d %dd%d+%d\n"
-                    "%d %d %ld %d\n"
-                    "%d %d %d %d %d %d %d\n",
-                    (GET_NAMELIST(mob) && *GET_NAMELIST(mob)) ? GET_NAMELIST(mob) : "undefined",
-                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", buf1, buf2, MOB_FLAGS(mob)[0],
-                    EFF_FLAGS(mob)[0], GET_ALIGNMENT(mob), GET_LEVEL(mob),
+            /* Turn bitfields into ascii. */
+            sprintascii(bits, MOB_FLAGS(mob)[0]);
+            sprintascii(bits2, EFF_FLAGS(mob)[0]);
+
+            fprintf(mob_file, "%s~\n", (GET_NAMELIST(mob) && *GET_NAMELIST(mob)) ? GET_NAMELIST(mob) : "undefined");
+            fprintf(mob_file, "%s~\n", (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined");
+            fprintf(mob_file, "%s~\n", buf1); /* Long Desc */
+            fprintf(mob_file, "%s~\n", buf2); /* Description */
+            fprintf(mob_file, "%s %s %d E\n", bits, bits2, GET_ALIGNMENT(mob));
+            fprintf(mob_file, "%d %d %d %dd%d+%d %dd%d+%d\n", GET_LEVEL(mob),
                     20 - mob->mob_specials.ex_hitroll, /* Hitroll -> THAC0 */
                     GET_EX_AC(mob) / 10, (mob)->mob_specials.ex_hpnumdice, (mob)->mob_specials.ex_hpsizedice,
                     GET_MOVE(mob), (mob)->mob_specials.ex_damnodice, (mob)->mob_specials.ex_damsizedice,
-                    mob->mob_specials.ex_damroll, GET_EX_GOLD(mob), GET_EX_PLATINUM(mob), GET_EX_EXP(mob), zone,
-                    GET_POS(mob), GET_DEFAULT_POS(mob), GET_SEX(mob), GET_CLASS(mob), GET_RACE(mob),
-                    GET_RACE_ALIGN(mob), GET_SIZE(mob));
+                    mob->mob_specials.ex_damroll);
+            fprintf(mob_file, "%d %d %ld %d\n", GET_EX_GOLD(mob), GET_EX_PLATINUM(mob), GET_EX_EXP(mob), zone);
+            fprintf(mob_file, "%d %d %d %d %d %d %d\n", GET_POS(mob), GET_DEFAULT_POS(mob), GET_SEX(mob),
+                    GET_CLASS(mob), GET_RACE(mob), GET_RACE_ALIGN(mob), GET_SIZE(mob));
 
             /*
              * Deal with Extra stats in case they are there.
@@ -574,9 +573,12 @@ void medit_save_to_disk(int zone_num) {
             if (GET_CHA(mob) != 11)
                 fprintf(mob_file, "Cha: %d\n", GET_CHA(mob));
 
-            fprintf(mob_file, "AFF2: %ld\n", EFF_FLAGS(mob)[1]);
-            fprintf(mob_file, "AFF3: %ld\n", EFF_FLAGS(mob)[2]);
-            fprintf(mob_file, "MOB2: %ld\n", MOB_FLAGS(mob)[1]);
+            sprintascii(bits, EFF_FLAGS(mob)[1]);
+            fprintf(mob_file, "AFF2: %s\n", bits);
+            sprintascii(bits, EFF_FLAGS(mob)[2]);
+            fprintf(mob_file, "AFF3: %s\n", bits);
+            sprintascii(bits, MOB_FLAGS(mob)[1]);
+            fprintf(mob_file, "MOB2: %s\n", bits);
             fprintf(mob_file, "PERC: %ld\n", GET_PERCEPTION(mob));
             fprintf(mob_file, "HIDE: %ld\n", GET_HIDDENNESS(mob));
             fprintf(mob_file, "Lifeforce: %d\n", GET_LIFEFORCE(mob));
