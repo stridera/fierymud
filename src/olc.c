@@ -191,6 +191,26 @@ ACMD(do_olc) {
         case SCMD_OLC_SDEDIT:
             send_to_char("Specify a spell name to edit.\r\n", ch);
             return;
+        case SCMD_OLC_OCOPY:
+        case SCMD_OLC_ZCOPY:
+        case SCMD_OLC_MCOPY:
+        case SCMD_OLC_SCOPY:
+        case SCMD_OLC_TRIGCOPY:
+            send_to_char("Specify a source and target VNUM.\r\n", ch);
+            return;
+        }
+    }
+
+    if (!*buf1) { /* No argument given. */
+        switch (subcmd) {
+        case SCMD_OLC_REDIT:
+        case SCMD_OLC_OCOPY:
+        case SCMD_OLC_ZCOPY:
+        case SCMD_OLC_MCOPY:
+        case SCMD_OLC_SCOPY:
+        case SCMD_OLC_TRIGCOPY:
+            send_to_char("Specify a source and target VNUM.\r\n", ch);
+            return;
         }
     }
 
@@ -470,7 +490,76 @@ ACMD(do_olc) {
     case SCMD_OLC_HEDIT:
         STATE(d) = CON_HEDIT;
         break;
+    case SCMD_OLC_RCOPY:
+        if ((real_num = real_room(number)) < 0) {
+            send_to_char("That source room does not exist.\r\n", ch);
+            return;
+        }
+
+        number = atoi(buf2);
+        if ((real_room(number)) >= 0) {
+            send_to_char("The target room already exists.\r\n", ch);
+            return;
+        }
+
+        OLC_NUM(d) = number;
+        redit_setup_existing(d, real_num);
+        STATE(d) = CON_REDIT;
+        break;
+    case SCMD_OLC_OCOPY:
+        if ((real_num = real_object(number)) < 0) {
+            send_to_char("The source object does not exist.\r\n", ch);
+            return;
+        }
+
+        number = atoi(buf2);
+        if ((real_object(number)) >= 0) {
+            send_to_char("The target object already exists.\r\n", ch);
+            return;
+        }
+
+        OLC_NUM(d) = number;
+        oedit_setup_existing(d, real_num);
+        STATE(d) = CON_OEDIT;
+        break;
+    case SCMD_OLC_MCOPY:
+        if ((real_num = real_mobile(number)) < 0) {
+            send_to_char("The source mobile does not exist.\r\n", ch);
+            return;
+        }
+
+        number = atoi(buf2);
+        if ((real_mobile(number)) >= 0) {
+            send_to_char("The target mobile already exists.\r\n", ch);
+            return;
+        }
+
+        OLC_NUM(d) = number;
+        medit_setup_existing(d, real_num);
+        STATE(d) = CON_MEDIT;
+        break;
+    case SCMD_OLC_TRIGCOPY:
+        if ((real_num = real_trigger(number)) < 0) {
+            send_to_char("The source trigger does not exist.\r\n", ch);
+            return;
+        }
+
+        number = atoi(buf2);
+        if ((real_trigger(number)) >= 0) {
+            send_to_char("The target trigger already exists.\r\n", ch);
+            return;
+        }
+
+        OLC_NUM(d) = number;
+        trigedit_setup_existing(d, real_num);
+        STATE(d) = CON_TRIGEDIT;
+        break;
+    case SCMD_OLC_ZCOPY:
+    case SCMD_OLC_SCOPY:
+        send_to_char("Sorry, this command is not yet implemented.\r\n", ch);
+        return;
     }
+
     act("$n starts using OLC.", TRUE, d->character, 0, 0, TO_ROOM);
     SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
 }
