@@ -1,4 +1,6 @@
 from .mudobject import MudObject, MudTypes
+from .flags import MOB_FLAGS, EFFECTS
+import re
 
 
 class Mob(MudObject):
@@ -12,6 +14,45 @@ class Mob(MudObject):
         self.stats['short_descr'] = self.readString(data)
         self.stats['long_descr'] = self.readString(data)
         self.stats['description'] = self.readString(data)
+
+        mob_flags, effect_flags, align, _ = data.pop(0).split()
+        self.stats['mob_flags'] = self.readFlags(mob_flags, MOB_FLAGS)
+        self.stats['effect_flags'] = self.readFlags(effect_flags, EFFECTS)
+        self.stats['alignment'] = int(align)
+
+        level, hitroll, hp_num_dice, hp_size_dice, move, \
+            dam_num_dice, dam_size_dice, dam_roll_bonus = re.split(r'[ d+]', data.pop(0))
+        self.stats['level'] = int(level)
+        self.stats['hitroll'] = int(hitroll)
+        self.stats['hp_num_dice'] = int(hp_num_dice)
+        self.stats['hp_size_dice'] = int(hp_size_dice)
+        self.stats['move'] = int(move)
+        self.stats['dam_num_dice'] = int(dam_num_dice)
+        self.stats['dam_size_dice'] = int(dam_size_dice)
+        self.stats['dam_roll_bonus'] = int(dam_roll_bonus)
+
+        gold, plat, exp, zone = data.pop(0).split()
+        self.stats['gold'] = int(gold)
+        self.stats['plat'] = int(plat)
+        self.stats['exp'] = int(exp)
+        self.stats['zone'] = int(zone)
+
+        position, default_position, gender, class_num, race, race_align, size = data.pop(0).split()
+
+        self.stats['position'] = int(position)
+        self.stats['default_position'] = int(default_position)
+        self.stats['gender'] = int(gender)
+        self.stats['class_num'] = int(class_num)
+        self.stats['race'] = int(race)
+        self.stats['race_align'] = int(race_align)
+        self.stats['size'] = int(size)
+
+        # End of static data, now we read the dynamic data
+        for line in data:
+            if line.startswith('AFF2'):
+                self.stats['effect_flags'].append(line.split()[1], 32)
+            if line.startswith('AFF2'):
+                self.stats['effect_flags'].append(line.split()[1], 64)
 
 
 '''

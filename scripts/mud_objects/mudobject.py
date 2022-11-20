@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from enum import Enum
 import re
 from typing import List
+from .utils import BitFlags
 
 
 class MudTypes(Enum):
@@ -29,13 +30,12 @@ class MudObject(ABC):
         """
         pass
 
-    def readString(self, data: List[str]):
+    def readString(self, data: List[str]) -> str:
         """
         Reads a string from the data
         :param data: The data to read from
         :return: The string read
         """
-        print(f"Reading string from {data}")
         text = ""
         line = data.pop(0).rstrip()
         while not line.endswith("~"):
@@ -43,15 +43,12 @@ class MudObject(ABC):
             line = data.pop(0).rstrip()
         text += line[:-1]
 
-        return re.sub(r'&.', '', text)
+        return re.sub(r'&.', '', text).rstrip()
 
-    def readFlags(self, data: List[str]):
+    def readFlags(self, data: str, flags: List[str], int offset=0) -> BitFlags:
         """
         Reads a string of flags from the data
         :param data: The data to read from
         :return: The flags read
         """
-        print(f"Reading flags from {data}")
-        flags = []
-
-        return flags
+        return BitFlags(data, flags, offset)
