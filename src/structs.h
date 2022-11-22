@@ -437,7 +437,7 @@ typedef int zone_vnum;
  * throughout the code for "bitvector_t" and change them yourself if you'd
  * like this extra flexibility. */
 typedef unsigned long int flagvector;
-#define FLAGBLOCK_SIZE ((flagvector)8 * sizeof(flagvector)) /* 8 bits = 1 byte */
+#define FLAGBLOCK_SIZE 32 /*((flagvector)8 * sizeof(flagvector))*/ /* 8 bits = 1 byte */
 #define FLAGVECTOR_SIZE(flags) (((flags)-1) / FLAGBLOCK_SIZE + 1)
 
 #include "objects.h"

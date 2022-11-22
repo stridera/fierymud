@@ -326,11 +326,14 @@ static void print_char_long_desc_to_char(struct char_data *targ, struct char_dat
 
     if (IS_NPC(targ) && !MOB_FLAGGED(targ, MOB_PLAYER_PHANTASM) && GET_LDESC(targ) &&
         GET_POS(targ) == GET_DEFAULT_POS(targ) && GET_STANCE(targ) != STANCE_FIGHTING &&
-        !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS) && 
+        !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS) &&
         !EFF_FLAGGED(targ, EFF_MESMERIZED)) {
-        /* Copy to buffer, and cut off te newline. */
+        /* Copy to buffer, and cut off the newline. (If it exists.)*/
         strcpy(buf, GET_LDESC(targ));
-        buf[MAX(strlen(GET_LDESC(targ)) - 2, 0)] = '\0';
+        if (buf[MAX(strlen(GET_LDESC(targ)) - 2, 0)] == '\r')
+            buf[MAX(strlen(GET_LDESC(targ)) - 2, 0)] = '\0';
+        else if (buf[MAX(strlen(GET_LDESC(targ)) - 1, 0)] == '\n')
+            buf[MAX(strlen(GET_LDESC(targ)) - 1, 0)] = '\0';
         cprintf(ch, "%s", buf);
         return;
     }
@@ -422,7 +425,7 @@ static void print_char_flags_to_char(struct char_data *targ, struct char_data *c
 
     if (EFF_FLAGGED(targ, EFF_ON_FIRE))
         str_cat(buf, " (@Rburning@0)");
-    
+
     if (EFF_FLAGGED(targ, EFF_IMMOBILIZED))
         str_cat(buf, " (@Rimmobilized@0)");
 
@@ -653,7 +656,8 @@ static void print_char_spells_to_char(struct char_data *targ, struct char_data *
             "as if deliberating upon a puzzle or problem.",
             TRUE, ch, 0, targ, TO_CHAR);
         act("$E gazes carefully at a point in the air directly in front of $S nose,\r\n"
-            "as if deliberating upon a puzzle or problem.", TRUE, ch, 0, targ, TO_CHAR);
+            "as if deliberating upon a puzzle or problem.",
+            TRUE, ch, 0, targ, TO_CHAR);
     }
     if (affected_by_spell(targ, SPELL_WEB))
         act("&2&b$S is tangled in glowing &3&bwebs!&0", TRUE, ch, 0, targ, TO_CHAR);
@@ -3993,8 +3997,6 @@ ACMD(do_innate) {
 
     argument = delimited_arg(argument, arg, '\'');
     skip_spaces(&argument);
-    
-    
 
     if (!*arg) {
         send_to_char("You have the following innate skills and effects:\r\n", ch);
@@ -4016,10 +4018,10 @@ ACMD(do_innate) {
             send_to_char(" breathe gas\r\n", ch);
         if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN)
             send_to_char(" brill\r\n", ch);
-        if (GET_RACE(ch) == RACE_ORC) 
+        if (GET_RACE(ch) == RACE_ORC)
             send_to_char(" chaz\r\n", ch);
         if (GET_RACE(ch) == RACE_GNOME)
-            send_to_char(" create (as spell minor creation)\r\n", ch); 
+            send_to_char(" create (as spell minor creation)\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             send_to_char(" darkness\r\n", ch);
         if (GET_CLASS(ch) == CLASS_PRIEST || GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_PALADIN ||
@@ -4039,16 +4041,17 @@ ACMD(do_innate) {
             send_to_char(" illumination\r\n", ch);
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_HALFLING ||
             GET_RACE(ch) == RACE_HALF_ELF || GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_DRAGONBORN_FIRE ||
-            GET_RACE(ch) == RACE_DRAGONBORN_FROST || GET_RACE(ch) == RACE_DRAGONBORN_ACID || 
-            GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS || GET_RACE(ch) == RACE_SVERFNEBLIN || 
-            GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
+            GET_RACE(ch) == RACE_DRAGONBORN_FROST || GET_RACE(ch) == RACE_DRAGONBORN_ACID ||
+            GET_RACE(ch) == RACE_DRAGONBORN_LIGHTNING || GET_RACE(ch) == RACE_DRAGONBORN_GAS ||
+            GET_RACE(ch) == RACE_SVERFNEBLIN || GET_RACE(ch) == RACE_FAERIE_SEELIE ||
+            GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             send_to_char(" infravision*\r\n", ch);
         if (GET_RACE(ch) == RACE_DUERGAR)
             send_to_char(" invisible\r\n", ch);
         if (GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
             send_to_char(" layhands\r\n", ch);
         if (GET_RACE(ch) == RACE_DROW)
-            send_to_char(" levitate\r\n", ch); 
+            send_to_char(" levitate\r\n", ch);
         if (GET_CLASS(ch) == CLASS_PALADIN)
             send_to_char(" protection from evil*\r\n", ch);
         if (GET_CLASS(ch) == CLASS_ANTI_PALADIN)
@@ -4057,7 +4060,7 @@ ACMD(do_innate) {
             send_to_char(" roar\r\n", ch);
         if (GET_RACE(ch) == RACE_HALFLING)
             send_to_char(" sense life*\r\n", ch);
-        if (GET_RACE(ch) ==  RACE_GNOME)
+        if (GET_RACE(ch) == RACE_GNOME)
             send_to_char(" statue\r\n", ch);
         if (GET_SKILL(ch, SKILL_SWEEP))
             send_to_char(" sweep\r\n", ch);
@@ -4075,11 +4078,12 @@ ACMD(do_innate) {
             return;
         }
 
-        if (is_abbrev(arg, "breathe") && (GET_SKILL(ch, SKILL_BREATHE_FIRE) || GET_SKILL(ch, SKILL_BREATHE_FROST) || 
-            GET_SKILL(ch, SKILL_BREATHE_ACID) || GET_SKILL(ch, SKILL_BREATHE_GAS) || GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) )) {
+        if (is_abbrev(arg, "breathe") && (GET_SKILL(ch, SKILL_BREATHE_FIRE) || GET_SKILL(ch, SKILL_BREATHE_FROST) ||
+                                          GET_SKILL(ch, SKILL_BREATHE_ACID) || GET_SKILL(ch, SKILL_BREATHE_GAS) ||
+                                          GET_SKILL(ch, SKILL_BREATHE_LIGHTNING))) {
             send_to_char("Usage: breathe <fire|gas|frost|acid|lightning>\r\n", ch);
             return;
-        } 
+        }
 
         if (is_abbrev(arg, "doorbash") && GET_SKILL(ch, SKILL_DOORBASH)) {
             send_to_char("Usage: doorbash <direction>\r\n", ch);
@@ -4101,7 +4105,8 @@ ACMD(do_innate) {
                             send_to_char("You don't see that here.\r\n", ch);
                         }
                     } else {
-                        if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
+                        if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) &&
+                            !ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
                             call_magic(ch, 0, 0, SPELL_DARKNESS, GET_LEVEL(ch), CAST_SPELL);
                             if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                                 SET_COOLDOWN(ch, CD_INNATE_DARKNESS, 7 MUD_HR);
@@ -4110,7 +4115,8 @@ ACMD(do_innate) {
                     }
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can create darkness again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_DARKNESS) / 10));
+                    cprintf(ch, "You can create darkness again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_DARKNESS) / 10));
                 }
                 return;
             }
@@ -4132,7 +4138,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_INVISIBLE, 9 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can turn invisible again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_INVISIBLE) / 10));
+                    cprintf(ch, "You can turn invisible again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_INVISIBLE) / 10));
                 }
                 return;
             }
@@ -4148,7 +4155,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_LEVITATE, 9 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can levitate again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_LEVITATE) / 10));
+                    cprintf(ch, "You can levitate again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_LEVITATE) / 10));
                 }
                 return;
             }
@@ -4183,7 +4191,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_SYLL, 7 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can be more graceful again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_SYLL) / 10));
+                    cprintf(ch, "You can be more graceful again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_SYLL) / 10));
                 }
                 return;
             }
@@ -4196,7 +4205,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_BRILL, 7 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can boost your intelligence again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_BRILL) / 10));
+                    cprintf(ch, "You can boost your intelligence again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_BRILL) / 10));
                 }
                 return;
             }
@@ -4209,7 +4219,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_TASS, 7 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can seek wisdom again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_TASS) / 10));
+                    cprintf(ch, "You can seek wisdom again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_TASS) / 10));
                 }
                 return;
             }
@@ -4223,7 +4234,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_TREN, 7 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can fortify yourself again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_TREN) / 10));
+                    cprintf(ch, "You can fortify yourself again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_TREN) /
+        10));
                 }
                 return;
             }
@@ -4237,24 +4249,26 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_ASCEN, 7 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can reliven your charming nature again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_ASCEN) / 10));
+                    cprintf(ch, "You can reliven your charming nature again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_ASCEN) / 10));
                 }
                 return;
             }
         }
         if (is_abbrev(arg, "harness")) {
-            if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
+            if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE ||
+                GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS)) {
                     call_magic(ch, ch, 0, SPELL_HARNESS, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_HARNESS, 10 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can boost your magical abilities again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_HARNESS) / 10));
+                    cprintf(ch, "You can boost your magical abilities again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_HARNESS) / 10));
                 }
                 return;
             }
-
         }
 
         if (is_abbrev(arg, "sweep") && GET_SKILL(ch, SKILL_SWEEP)) {
@@ -4283,23 +4297,24 @@ ACMD(do_innate) {
                                 send_to_char("You don't see that here.\r\n", ch);
                             }
                         } else {
-                            if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION))  {
+                            if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION)) {
                                 call_magic(ch, 0, 0, SPELL_ILLUMINATION, GET_LEVEL(ch), CAST_SPELL);
                                 if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                                     SET_COOLDOWN(ch, CD_INNATE_ILLUMINATION, 7 MUD_HR);
                             } else {
                                 send_to_char("The room is pretty damn bright already!\r\n", ch);
                             }
-                        }    
+                        }
                     } else {
                         send_to_char("The room is too foggy to see anything!\r\n", ch);
                     }
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can create light again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) / 10));
+                    cprintf(ch, "You can create light again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) / 10));
                 }
                 return;
-            }  
+            }
         }
 
         if (is_abbrev(arg, "faerie step")) {
@@ -4315,12 +4330,12 @@ ACMD(do_innate) {
                             SET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP, 7 MUD_HR);
                     }
                 } else {
-                        send_to_char("You're too tired right now.\r\n", ch);
-                        cprintf(ch, "You can use faerie step again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10));
+                    send_to_char("You're too tired right now.\r\n", ch);
+                    cprintf(ch, "You can use faerie step again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10));
                 }
                 return;
             }
-
         }
 
         if (is_abbrev(arg, "blinding beauty")) {
@@ -4331,7 +4346,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY, 10 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can blind with your beauty again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY) / 10));
+                    cprintf(ch, "You can blind with your beauty again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY) / 10));
                 }
             }
             return;
@@ -4344,7 +4360,8 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_STATUE, 10 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\r\n", ch);
-                    cprintf(ch, "You can disguise yourself again in %d seconds.\r\n", (GET_COOLDOWN(ch, CD_INNATE_STATUE) / 10));
+                    cprintf(ch, "You can disguise yourself again in %d seconds.\r\n",
+                            (GET_COOLDOWN(ch, CD_INNATE_STATUE) / 10));
                 }
                 return;
             }

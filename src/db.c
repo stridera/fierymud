@@ -1113,8 +1113,8 @@ void discrete_load(FILE *fl, int mode) {
         }
 }
 
-long asciiflag_conv(char *flag) {
-        long flags = 0;
+flagvector asciiflag_conv(char *flag) {
+        unsigned long flags = 0;
         register char *p;
 
         if (is_integer(flag))
@@ -2608,14 +2608,14 @@ int con_aff(struct char_data *ch) {
 
 /* read and allocate space for a '~'-terminated string from a given file */
 char *fread_string(FILE *fl, char *error) {
-        char buf[MAX_STRING_LENGTH], tmp[512], *rslt;
+        char buf[MAX_STRING_LENGTH], tmp[MAX_STRING_LENGTH], *rslt;
         register char *point;
         int done = 0, length = 0, templength = 0;
 
         *buf = '\0';
 
         do {
-            if (!fgets(tmp, 512, fl)) {
+            if (!fgets(tmp, MAX_STRING_LENGTH, fl)) {
                 fprintf(stderr, "SYSERR: fread_string: format error at or near %s\n", error);
                 exit(1);
             }

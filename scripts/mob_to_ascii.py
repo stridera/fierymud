@@ -47,6 +47,7 @@ def process_file(filename, vnum=-1):
                 elif k in ['AFF2', 'AFF3', 'MOB2']:
                     f.write(f'{k}: {v.as_ascii()}\n')
             f.write('E\n')
+        f.write("$\n")
 
 
 def process_index(index_file, vnum):

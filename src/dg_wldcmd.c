@@ -35,7 +35,7 @@
 #include "utils.h"
 
 void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
-long asciiflag_conv(char *flag);
+flagvector asciiflag_conv(char *flag);
 room_data *get_room(char *name);
 int script_driver(void *go_address, trig_data *trig, int type, int mode);
 int get_room_location(char *name);

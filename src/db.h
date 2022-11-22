@@ -97,7 +97,7 @@ int vnum_object(char *searchname, struct char_data *ch);
 bool _parse_name(char *arg, char *name);
 void start_player(struct char_data *ch);
 
-long asciiflag_conv(char *flag);
+flagvector asciiflag_conv(char *flag);
 void tag_argument(char *argument, char *tag);
 #define TAG_IS(tagname) (!strcmp(tag, tagname))
 void kill_ems(char *str);

@@ -29,7 +29,7 @@
 void trig_data_copy(trig_data *this, const trig_data *trg);
 
 extern void half_chop(char *string, char *arg1, char *arg2);
-extern long asciiflag_conv(char *flag);
+extern flagvector asciiflag_conv(char *flag);
 
 void parse_trigger(FILE *trig_f, int nr) {
     int t[2], k, attach_type;
