@@ -709,9 +709,10 @@ void print_char_to_char(struct char_data *targ, struct char_data *ch, int mode) 
         break;
 
     case SHOW_FULL_DESC:
-        if (targ->player.description)
+        if (targ->player.description) {
             cprintf(ch, "%s", targ->player.description);
-        else
+            cprintf(ch, "\r\n");
+        } else
             cprintf(ch, "You see nothing special about %s.\r\n", HMHR(targ));
         /* Fall through */
     case SHOW_BASIC_DESC:
