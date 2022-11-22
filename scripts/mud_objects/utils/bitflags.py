@@ -7,7 +7,7 @@ class BitFlags:
     Class to handle bit flags
     """
 
-    def __init__(self, flags: List[str] = []):
+    def __init__(self, flags: List[str] = [], offset: int = 0):
         """
         :param data: Data to parse
         :param flags: List of flags
@@ -15,15 +15,21 @@ class BitFlags:
 
         self.ascii_flags = list(map(chr, range(97, 123))) + list(map(chr, range(65, 91)))
         self.bits_set = []
+        self.offset = offset
+        self.flags = flags
 
-    def parse(self, data: str, offset: int = 0) -> Self:
+    def reset(self) -> Self:
         self.bits_set = []
-        self.append(data, offset)
 
-    def append(self, data: str, offset: int = 0):
+    def parse(self, data: str) -> Self:
+        self.bits_set = []
+        self.set_flags(data)
+        return self
+
+    def set_flags(self, data: str) -> Self:
         """
-        Appends a flag to the list
-        :param flag: The flag to append
+        set_flagss a flag to the list
+        :param flag: The flag to set_flags
         :return: None
         """
         if data.lstrip('-').isdigit():
@@ -32,19 +38,19 @@ class BitFlags:
                 int_flag |= 1 << 32
 
             int_flag = int(data)
-            self.bits_set = [i for i in range(32) if int_flag & (1 << i + offset)]
-
+            self.bits_set += [i for i in range(32) if int_flag & (1 << i)]
         else:
-            self.bits_set = [self.ascii_flags.index(flag) for flag in [*data]]
+            self.bits_set += [self.ascii_flags.index(flag) for flag in [*data]]
 
-        self.flags = flags
+        self.bits_set.sort()
         return self
 
     def as_ascii(self):
         """
         :return: The flags as ascii
         """
-        return ''.join([self.ascii_flags[i] for i in self.bits_set])
+        resp = ''.join([self.ascii_flags[i] for i in self.bits_set])
+        return resp if resp else '0'
 
     def __str__(self):
         """
@@ -53,9 +59,9 @@ class BitFlags:
         result = []
         for i in self.bits_set:
             if i < len(self.flags):
-                result.append(self.flags[i])
+                result.append(self.flags[i+self.offset])
             else:
-                result.append(f"UNKNOWN({i})")
+                result.append(f"UNKNOWN({i+self.offset})")
         return ', '.join(result)
 
     def __repr__(self):
@@ -73,19 +79,22 @@ if __name__ == '__main__':
 
     bf = BitFlags(flags)
     # Integers
-    assert str(bf.parse("0")) == ''
-    assert str(bf.parse("1")) == 'flag0'
-    assert str(bf.parse("2")) == 'flag1'
-    assert str(bf.parse("3")) == 'flag0, flag1'
-    assert str(bf.parse("4")) == 'flag2'
-    assert str(bf.parse("5")) == 'flag0, flag2'
-    assert str(bf.parse("6")) == 'flag1, flag2'
-    assert bf.parse("-2147358694").as_ascii() == "bdelnopqF"
+    assert str(bf.parse('0')) == '', bf.parse('0')
+    assert str(bf.parse('1')) == 'flag0', bf.parse('1')
+    assert str(bf.parse('2')) == 'flag1', bf.parse('2')
+    assert str(bf.parse('3')) == 'flag0, flag1', bf.parse('3')
+    assert str(bf.parse('4')) == 'flag2', bf.parse('4')
+    assert str(bf.parse('5')) == 'flag0, flag2', bf.parse('5')
+    assert str(bf.parse('6')) == 'flag1, flag2', bf.parse('6')
+    assert bf.parse('-2147358694').as_ascii() == 'bdelnopqF', bf.parse('-2147358694').as_ascii()
 
     # ASCII
+    assert str(bf.parse('')) == '', bf.parse('0')
+    assert str(bf.parse('a')) == 'flag0', bf.parse('a')
+    assert (str(bf.parse('bdelnopqF')) ==
+            'flag1, flag3, flag4, flag11, flag13, flag14, flag15, flag16, flag31'), bf.parse('bdelnopqF')
 
-    assert str(bf.parse('')) == ''
-    assert str(bf.parse("a")) == 'flag0'
-    assert (str(bf.parse("bdelnopqF")) ==
-            'flag1, flag3, flag4, flag11, flag13, flag14, flag15, flag16, flag31')
-    print("All tests passed!")
+    # Append
+    assert str(bf.parse('2').set_flags('1')) == 'flag0, flag1', bf.parse('2').set_flags('1')
+
+    print('All tests passed!')

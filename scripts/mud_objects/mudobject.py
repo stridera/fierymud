@@ -16,7 +16,7 @@ class MudTypes(Enum):
 
 
 class MudObject(ABC):
-    def __init__(self, vnum):
+    def __init__(self, vnum: int):
         self.vnum = vnum
         self.type = None
         self.stats = {}
@@ -40,15 +40,15 @@ class MudObject(ABC):
         line = data.pop(0).rstrip()
         while not line.endswith("~"):
             text += line + " "
-            line = data.pop(0).rstrip()
+            line = data.pop(0).strip()
         text += line[:-1]
 
         return re.sub(r'&.', '', text).rstrip()
 
-    def readFlags(self, data: str, flags: List[str], int offset=0) -> BitFlags:
+    def readFlags(self, data: str, flags: List[str], offset: int = 0) -> BitFlags:
         """
         Reads a string of flags from the data
         :param data: The data to read from
         :return: The flags read
         """
-        return BitFlags(data, flags, offset)
+        return BitFlags(flags, offset).parse(data)

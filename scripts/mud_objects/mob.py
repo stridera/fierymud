@@ -20,16 +20,17 @@ class Mob(MudObject):
         self.stats['effect_flags'] = self.readFlags(effect_flags, EFFECTS)
         self.stats['alignment'] = int(align)
 
-        level, hitroll, hp_num_dice, hp_size_dice, move, \
+        level, hitroll, ac, hp_num_dice, hp_size_dice, move, \
             dam_num_dice, dam_size_dice, dam_roll_bonus = re.split(r'[ d+]', data.pop(0))
         self.stats['level'] = int(level)
         self.stats['hitroll'] = int(hitroll)
+        self.stats['ac'] = int(ac)
         self.stats['hp_num_dice'] = int(hp_num_dice)
         self.stats['hp_size_dice'] = int(hp_size_dice)
         self.stats['move'] = int(move)
-        self.stats['dam_num_dice'] = int(dam_num_dice)
-        self.stats['dam_size_dice'] = int(dam_size_dice)
-        self.stats['dam_roll_bonus'] = int(dam_roll_bonus)
+        self.stats['extra_dam_num_dice'] = int(dam_num_dice)
+        self.stats['extra_dam_size_dice'] = int(dam_size_dice)
+        self.stats['extra_dam_roll_bonus'] = int(dam_roll_bonus)
 
         gold, plat, exp, zone = data.pop(0).split()
         self.stats['gold'] = int(gold)
@@ -50,9 +51,16 @@ class Mob(MudObject):
         # End of static data, now we read the dynamic data
         for line in data:
             if line.startswith('AFF2'):
-                self.stats['effect_flags'].append(line.split()[1], 32)
-            if line.startswith('AFF2'):
-                self.stats['effect_flags'].append(line.split()[1], 64)
+                self.stats['AFF2'] = self.readFlags(line.split()[1], EFFECTS, 32)
+            elif line.startswith('AFF3'):
+                self.stats['AFF3'] = self.readFlags(line.split()[1], EFFECTS, 64)
+            elif line.startswith('MOB2'):
+                self.stats['MOB2'] = self.readFlags(line.split()[1], MOB_FLAGS, 32)
+            elif line.startswith('E'):
+                break
+            else:
+                k, v = line.split()
+                self.stats[k[:-1]] = v
 
 
 '''
