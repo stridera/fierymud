@@ -404,6 +404,7 @@ void do_stat_object(CharData *ch, ObjData *j) {
                 : "<&1INVALID&0>");
         break;
     case ITEM_ARMOR:
+    case ITEM_TREASURE:
         resp += fmt::format("AC-apply: [{}]\n", GET_OBJ_VAL(j, VAL_ARMOR_AC));
         break;
     case ITEM_TRAP:

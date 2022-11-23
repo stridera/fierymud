@@ -2062,6 +2062,24 @@ void hit(CharData *ch, CharData *victim, int type) {
         calc_thaco -= (GET_SKILL(ch, SKILL_BAREHAND) / 2);
     }
 
+    /* check for bless/hex - VALUES: 0 to 20 */
+    if (EFF_FLAGGED(ch, EFF_BLESS) || EFF_FLAGGED(ch, EFF_HEX)) {
+        if (IS_GOOD(ch) && IS_EVIL(victim))
+            calc_thaco -= GET_LEVEL(ch) / 5; /* good characters get a big bonus to attacking evil characters */
+        if (IS_GOOD(ch) && IS_NEUTRAL(victim))
+            calc_thaco -= GET_LEVEL(ch) / 10; /* good characters get a smaller bonus to attacking neutral characters */
+        if (IS_GOOD(ch) && IS_GOOD(victim))
+            calc_thaco += GET_LEVEL(ch) / 10; /* good characters get a small penalty to attacking good characters */
+        if (IS_EVIL(ch) && IS_GOOD(victim))
+            calc_thaco -= GET_LEVEL(ch) / 5; /* evil characters get a big bonus to attacking good characters */
+        if (IS_EVIL(ch) && IS_NEUTRAL(victim))
+            calc_thaco -= GET_LEVEL(ch) / 5; /* evil characters get a small bonus to attacking neutral characters */
+        if (IS_EVIL(ch) && IS_EVIL(victim))
+            calc_thaco += GET_LEVEL(ch) / 10; /* evil characters get a small penalty to attacking evil characters */
+        if (IS_NEUTRAL(ch) && !IS_NEUTRAL(victim))
+            calc_thaco -=
+                GET_LEVEL(ch) / 10; /* neutral characters get a small bonus to attacking good or evil characters */
+    }
     /* calc_thaco ranges from 290 to -290 */
     diceroll = number(1, 200);
 
@@ -2092,6 +2110,66 @@ void hit(CharData *ch, CharData *victim, int type) {
         damage_evasion_message(ch, victim, weapon, dtype);
         set_fighting(victim, ch, true);
         return;
+    }
+
+    /* adjust for additional effects like Displacement */
+    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+        int displaced, mtype;
+        mtype = type - TYPE_HIT; /* get the damage message */
+
+        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
+            if (number(1, 4) == 1) /* 25% chance to ignore damage */
+                displaced = TRUE;
+        }
+
+        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+            if (number(1, 2) == 1) /* 50% chance to ignore damage */
+                displaced = TRUE;
+        }
+
+        if (displaced == TRUE) {
+            sprintf(buf, "&9&b$n takes a guess at $N's position but misses with $s %s!&0",
+                    attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_NOTVICT);
+            sprintf(buf, "&9&bYou take a guess at $N's position but miss with your %s!&0",
+                    attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_CHAR);
+            sprintf(buf, "&9&b$n takes a guess your position but misses with $s %s!&0",
+                    attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_VICT);
+            set_fighting(victim, ch, TRUE);
+            return;
+        }
+    }
+
+    /* adjust for additional effects like Displacement */
+    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+        int displaced, mtype;
+        mtype = type - TYPE_HIT; /* get the damage message */
+
+        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
+            if (number(1, 4) == 1) /* 25% chance to ignore damage */
+                displaced = TRUE;
+        }
+
+        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+            if (number(1, 2) == 1) /* 50% chance to ignore damage */
+                displaced = TRUE;
+        }
+
+        if (displaced == TRUE) {
+            sprintf(buf, "&9&b$n takes a guess at $N's position but misses with $s %s!&0",
+                    attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_NOTVICT);
+            sprintf(buf, "&9&bYou take a guess at $N's position but miss with your %s!&0",
+                    attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_CHAR);
+            sprintf(buf, "&9&b$n takes a guess your position but misses with $s %s!&0",
+                    attack_hit_text[mtype].singular);
+            act(buf, FALSE, ch, 0, victim, TO_VICT);
+            set_fighting(victim, ch, TRUE);
+            return;
+        }
     }
 
     /* The attacker missed the victim. */

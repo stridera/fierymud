@@ -107,6 +107,7 @@ int value_spell_effect(int flag) {
     case EFF_VAMP_TOUCH:
         return 50;
     case EFF_HASTE:
+    case EFF_DISPLACEMENT:
         return 60;
     case EFF_MAJOR_GLOBE:
     case EFF_HARNESS:
@@ -114,6 +115,7 @@ int value_spell_effect(int flag) {
     case EFF_NEGATE_COLD:
     case EFF_NEGATE_AIR:
     case EFF_NEGATE_EARTH:
+    case EFF_GREATER_DISPLACEMENT:
         return 70;
     case EFF_BLUR:
         return 80;
@@ -286,6 +288,7 @@ int appraise_item(CharData *ch, ObjData *obj) {
         /* charges total (value 1) doesn't matter right now */
         break;
     case ITEM_ARMOR:
+    case ITEM_TREASURE:
         value = GET_OBJ_VAL(obj, VAL_ARMOR_AC);
         break;
     case ITEM_CONTAINER:

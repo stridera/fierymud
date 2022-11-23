@@ -1145,17 +1145,13 @@ bool perform_wear(CharData *ch,           /* Who is trying to wear something */
 int find_eq_pos(CharData *ch, ObjData *obj, char *arg) {
     int where = -1;
 
-    static const char *keywords[] = {"light",      "finger",     "!RESERVED!", "neck",       "!RESERVED!", "body",
+    static const char *keywords[] = {"!RESERVED!", "finger",     "!RESERVED!", "neck",       "!RESERVED!", "body",
                                      "head",       "legs",       "feet",       "hands",      "arms",       "shield",
                                      "about",      "waist",      "wrist",      "!RESERVED!", "!RESERVED!", "!RESERVED!",
                                      "!RESERVED!", "!RESERVED!", "!RESERVED!", "eyes",       "face",       "ear",
-                                     "!RESERVED!", "badge",      "belt",       "\n"};
+                                     "!RESERVED!", "badge",      "belt",       "hover",      "\n"};
 
     if (!arg || !*arg) {
-        /* Allow wearing of light objects in light pos.  Gets overridden
-           by any other can wear flags below. - myc 5 Dec 2006 */
-        if (GET_OBJ_TYPE(obj) == ITEM_LIGHT)
-            where = WEAR_LIGHT;
         if (CAN_WEAR(obj, ITEM_WEAR_FINGER))
             where = WEAR_FINGER_R;
         if (CAN_WEAR(obj, ITEM_WEAR_NECK))
@@ -1806,7 +1802,6 @@ ACMD(do_compare) {
                 act("$p seems to have more charges than $P.", false, ch, obj1, obj2, TO_CHAR);
             }
             break;
-        case ITEM_TREASURE:
         case ITEM_MONEY:
             if (GET_OBJ_COST(obj1) == GET_OBJ_COST(obj2))
                 send_to_char("They look equally valuable.\n", ch);
@@ -1817,6 +1812,7 @@ ACMD(do_compare) {
             }
             break;
         case ITEM_ARMOR:
+        case ITEM_TREASURE:
             if (GET_OBJ_VAL(obj1, VAL_ARMOR_AC) == GET_OBJ_VAL(obj2, VAL_ARMOR_AC))
                 send_to_char("They look like they offer similar protection.\n", ch);
             else {

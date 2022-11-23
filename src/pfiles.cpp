@@ -216,6 +216,7 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
     write_ascii_flags(fl, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS);
     fprintf(fl, "\n");
     fprintf(fl, "wear: %d\n", GET_OBJ_WEAR(obj));
+    fprintf(fl, "hiddenness: %d\n", GET_OBJ_HIDDENNESS(obj));
 
     for (i = 0; i < MAX_OBJ_APPLIES && !obj->applies[i].location; ++i)
         ;
@@ -579,7 +580,7 @@ static int binary_auto_equip(CharData *ch, ObjData *obj, int location) {
  */
 bool build_object(FILE *fl, ObjData **objp, int *location) {
     ObjData *obj, *proto;
-    int num, num2, apply = 0;
+    int r_num, num, num2, apply = 0;
     float f;
     char line[MAX_INPUT_LENGTH], tag[128], *value;
     ExtraDescriptionData *desc, *last_desc = nullptr;
@@ -592,8 +593,67 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
         return false;
     }
 
-    *objp = obj = create_obj();
+    /* We're going to short circuit to existing items for any found with an existing vnum.*/
+    get_line(fl, line);
+    tag_argument(line, tag);
+
+    if (strcmp(tag, "vnum")) {
+        sprintf(buf, "SYSERR: Invalid Object File.  Object Vnum not found.");
+        log(buf);
+        return false;
+    }
+
+    num = atoi(line);
     *location = WEAR_INVENTORY;
+
+    // If we have an existing object, lets use the existing object proto.
+    if (num > -1) {
+        if ((r_num = real_object(num)) < 0) {
+            sprintf(buf, "SYSERR: Invalid Object found in file.  Object Vnum not found.");
+            return false;
+        }
+        *objp = obj = read_object(r_num, REAL);
+        GET_OBJ_HIDDENNESS(obj) = 0; /* If it's in your inventory, it's visible. */
+
+        while (get_line(fl, line)) {
+            /* Only thing we care about is location, lets throw away the rest.*/
+            if (!strcmp(line, "~~"))
+                break;
+
+            tag_argument(line, tag);
+            num = atoi(line);
+
+            if (!strcmp(tag, "effects"))
+                load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
+            else if (!strcmp(tag, "location"))
+                *location = atoi(line);
+            else if (!strcmp(tag, "spells")) {
+                for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
+                    ;
+                while (get_line(fl, line) && *line != '~') {
+                    CREATE(spell, struct spell_book_list, 1);
+                    sscanf(line, "%d %d", &spell->spell, &spell->length);
+                    if (last_spell)
+                        last_spell->next = spell;
+                    else /* This means obj->spell_book is NULL */
+                        obj->spell_book = spell;
+                    last_spell = spell;
+                }
+            } else if (!strcmp(tag, "values")) {
+                num = 0;
+                while (get_line(fl, line) && *line != '~')
+                    if (num < NUM_VALUES)
+                        GET_OBJ_VAL(obj, num++) = atoi(line);
+                limit_obj_values(obj);
+            } else if (!strcmp(tag, "flags"))
+                load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
+        }
+        return TRUE;
+    }
+
+    /* vnum is -1, let's create a custom object.  */
+    *objp = obj = create_obj();
+    obj->item_number = -1;
 
     while (get_line(fl, line)) {
         if (!strcmp(line, "~~"))
@@ -707,9 +767,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 goto bad_tag;
             break;
         case 'V':
-            if (!strcmp(tag, "vnum"))
-                obj->item_number = real_object(num);
-            else if (!strcmp(tag, "values")) {
+            if (!strcmp(tag, "values")) {
                 num = 0;
                 while (get_line(fl, line) && *line != '~')
                     if (num < NUM_VALUES)
@@ -750,10 +808,10 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
         return false;
     }
 
-    /*
-     * Check to see if the loaded object has strings that match the
-     * prototype.  If so, replace them.
-     */
+/*
+ * Check to see if the loaded object has strings that match the
+ * prototype.  If so, replace them.
+ */
 #define CHECK_PROTO_STR(address)                                                                                       \
     do {                                                                                                               \
         if (!obj->address)                                                                                             \

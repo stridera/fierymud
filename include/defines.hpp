@@ -488,7 +488,9 @@
 #define EFF_HEX 79           /* The evil side of blessing, to hurt ether chars */
 #define EFF_DETECT_POISON 80 /* Char is sensitive to poison */
 #define EFF_SONG_OF_REST 81
-#define NUM_EFF_FLAGS 82 /* Keep me updated */
+#define EFF_DISPLACEMENT 82
+#define EFF_GREATER_DISPLACEMENT 83
+#define NUM_EFF_FLAGS 84 /* Keep me updated */
 
 /* Preference flags: used by CharData.player_specials.pref */
 #define PRF_BRIEF 0       /* Room descs won't normally be shown */
@@ -1179,6 +1181,7 @@
 #define VAL_WEAPON_DICE_SIZE 2
 #define VAL_WEAPON_DAM_TYPE 3
 
+#define VAL_TREASURE_AC 0
 #define VAL_ARMOR_AC 0
 
 #define VAL_POTION_LEVEL 0

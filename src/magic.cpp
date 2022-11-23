@@ -1011,6 +1011,11 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             act("$n cringes with a pained look on $s face.", true, victim, 0, 0, TO_ROOM);
     }
 
+    /* reduce damage by 10%, then increase 2% per 10 points of true int */
+    dam *= .9;
+
+    dam *= 1 + ((GET_AFFECTED_INT(ch) / 500));
+
     /* and finally, inflict the damage */
     damage(ch, victim, dam, damage_spellnum);
 
@@ -1192,12 +1197,31 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = 1 + (skill >= 50);
+        eff[0].location = APPLY_SAVING_SPELL;
+        eff[0].modifier = -2 - (skill / 10);
         eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
-        eff[1].location = APPLY_SAVING_SPELL;
-        eff[1].modifier = -2 - (skill / 10);
-        eff[1].duration = eff[0].duration;
+        if (skill < 55) {
+            to_char = "$N is inspired by your gods.";
+            to_vict = "Your inner angel is inspired by $n.\r\nYou feel righteous.";
+            if (ch == victim)
+                to_room = "$n is inspired to do good.";
+            else
+                to_room = "$N is inspired to do good by $n.";
+        } else {
+            eff[1].location = APPLY_DAMROLL;
+            eff[1].modifier = 1 + (skill > 95);
+            eff[1].duration = eff[0].duration;
+            to_char = "$N is inspired by your gods in divine euphoria!";
+            to_vict = "Your inner angel is inspired by $n.\r\nYou feel a wave of divine euphoria!";
+            if (ch == victim)
+                to_room =
+                    "$n is inspired to do good.\r"
+                    "\n$n is overcome with divine euphoria!";
+            else
+                to_room =
+                    "$N is inspired to do good by $n.\r"
+                    "\n$N is overcome with divine euphoria!";
+        }
         SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
         to_char = "$N is inspired by your gods.";
@@ -1577,12 +1601,31 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        eff[0].location = APPLY_HITROLL;
-        eff[0].modifier = 1 + (skill >= 50);
+        eff[0].location = APPLY_SAVING_SPELL;
+        eff[0].modifier = -2 - (skill / 10);
         eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
-        eff[1].location = APPLY_SAVING_SPELL;
-        eff[1].modifier = -2 - (skill / 10);
-        eff[1].duration = eff[0].duration;
+        if (skill < 55) {
+            to_char = "$N is imbued with the power of nature.";
+            to_vict = "$n imbues you with the power of nature.";
+            if (ch == victim)
+                to_room = "$N is imbued with the power of nature.";
+            else
+                to_room = "$N is imbued with the power of nature by $n.";
+        } else {
+            eff[1].location = APPLY_DAMROLL;
+            eff[1].modifier = 1 + (skill > 95);
+            eff[1].duration = eff[0].duration;
+            to_char = "$N is imbued with the glorious might of nature!";
+            to_vict = "$n imbues you with nature's glory!\r\nYou feel supernaturally mighty!";
+            if (ch == victim)
+                to_room =
+                    "$N is imbued with nature's glory!\r"
+                    "\n$n is bolstered with supernatural might!";
+            else
+                to_room =
+                    "$N is imbued with nature's glory by $n!\r"
+                    "\n$N is bolstered with supernatural might!";
+        }
         SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
         to_char = "$N is imbued with the power of nature.";
@@ -4340,7 +4383,7 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
 
     sus = susceptibility(victim, skills[spellnum].damage_type);
 
-    multiplier = 2 + (skill / 24); /* max 6 */
+    multiplier = (GET_AFFECTED_WIS(ch) / 24) + (skill / 24); /* min 1, max 8 */
 
     switch (spellnum) {
     case SPELL_CURE_LIGHT:

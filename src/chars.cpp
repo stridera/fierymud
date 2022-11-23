@@ -48,7 +48,7 @@ constexpr bool N = false;
 int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* RACE   So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
     /* Hu */ {Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
-    /* El */ {Y, Y, Y, Y, Y, N, Y, Y, N, N, N, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N},
+    /* El */ {Y, Y, Y, Y, Y, N, Y, Y, N, N, N, N, Y, N, N, Y, N, Y, Y, Y, Y, Y, Y, N},
     /* Gn */ {Y, Y, Y, N, N, N, N, Y, Y, N, N, N, Y, N, N, Y, N, N, Y, Y, Y, Y, Y, N},
     /* Dw */ {N, Y, Y, Y, Y, N, N, N, N, N, Y, N, Y, N, Y, Y, N, N, Y, Y, N, N, N, N},
     /* Tr */ {N, N, N, Y, N, N, N, N, Y, N, Y, N, N, N, Y, N, N, N, Y, N, N, N, N, Y},
