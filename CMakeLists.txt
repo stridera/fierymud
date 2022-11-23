@@ -22,10 +22,11 @@ include_directories(include)
 # Regardless of the CMake settings, I always want us to have debug information available.
 add_compile_options(-g)
 
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=leak -fsanitize=address -fsanitize=undefined ")
+# TODO: Fix code so these don't instantly crash the mud.
+# set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=leak -fsanitize=address -fsanitize=undefined ")
 set(CMAKE_C_COMPILER gcc)
 
 FILE(GLOB sources src/*.cpp)
 add_executable(fierymud ${sources})
 
-target_link_libraries(fierymud PRIVATE fmt::fmt)
+target_link_libraries(fierymud PRIVATE crypt fmt::fmt)

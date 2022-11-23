@@ -1,4 +1,5 @@
 lib/
+*.bak/
 bin/
 log/
 cmake-build-debug/*
