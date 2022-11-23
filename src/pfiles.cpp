@@ -631,7 +631,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
                 while (get_line(fl, line) && *line != '~') {
-                    CREATE(spell, struct spell_book_list, 1);
+                    CREATE(spell, SpellBookList, 1);
                     sscanf(line, "%d %d", &spell->spell, &spell->length);
                     if (last_spell)
                         last_spell->next = spell;
@@ -648,7 +648,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
             } else if (!strcmp(tag, "flags"))
                 load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
         }
-        return TRUE;
+        return true;
     }
 
     /* vnum is -1, let's create a custom object.  */
