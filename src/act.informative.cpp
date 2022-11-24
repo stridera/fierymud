@@ -326,10 +326,7 @@ static void print_char_long_desc_to_char(CharData *targ, CharData *ch) {
         GET_POS(targ) == GET_DEFAULT_POS(targ) && GET_STANCE(targ) != STANCE_FIGHTING &&
         !EFF_FLAGGED(targ, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(targ, EFF_MAJOR_PARALYSIS) &&
         !EFF_FLAGGED(targ, EFF_MESMERIZED)) {
-        /* Copy to buffer, and cut off te newline. */
-        strcpy(buf, GET_LDESC(targ));
-        buf[MAX(strlen(GET_LDESC(targ)) - 2, 0)] = '\0';
-        char_printf(ch, "%s", buf);
+        char_printf(ch, "%s", GET_LDESC(targ));
         return;
     }
 
@@ -678,7 +675,6 @@ void print_char_to_char(CharData *targ, CharData *ch, int mode) {
 
     /* Remove the flags from the show mode. */
     REMOVE_BIT(mode, SHOW_MASK);
-
     switch (mode) {
     case SHOW_SHORT_DESC:
         if (show_flags && PRF_FLAGGED(ch, PRF_SHOWVNUMS))
@@ -703,7 +699,7 @@ void print_char_to_char(CharData *targ, CharData *ch, int mode) {
 
     case SHOW_FULL_DESC:
         if (targ->player.description)
-            char_printf(ch, "%s", targ->player.description);
+            char_printf(ch, "%s\r\n", targ->player.description);
         else
             char_printf(ch, "You see nothing special about %s.\n", HMHR(targ));
         /* Fall through */

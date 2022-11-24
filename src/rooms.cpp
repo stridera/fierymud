@@ -691,7 +691,7 @@ void send_auto_exits(CharData *ch, int roomnum) {
 
     for (dir = 0; dir < NUM_OF_DIRS; dir++) {
         if ((exit = room->exits[dir]) && ((dest = EXIT_DEST(exit))) && can_see_exit(ch, roomnum, exit)) {
-            snprintf(buf, sizeof(buf), "%s &0-&6%s", buf, capdirs[dir]);
+            sprintf(buf, "%s &0-&6%s", buf, capdirs[dir]);
             if (EXIT_IS_CLOSED(exit))
                 sprintf(buf, "%s#", buf);
             if (EXIT_IS_HIDDEN(exit))
