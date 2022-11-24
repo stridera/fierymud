@@ -2019,7 +2019,7 @@ int process_output(DescriptorData *t) {
     static int result;
 
     /* we may need this \n for later -- see below */
-    strcpy(i, "\n");
+    strcpy(i, "\r\n");
 
     /* now, append the 'real' output */
     strcpy(i + 2, t->output);
@@ -3104,31 +3104,30 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
                 return;
             }
         }
-
-        for (to = world[in_room].people; to; to = to->next_in_room)
-            if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
-                !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != victim))) {
-                format_act(lbuf, str, ch, obj, vict_obj, to);
-                char_printf(to, "%s", lbuf);
-            }
-        /*
-         * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
-         * into OBSERVATORY rooms, allowing players standing in observatories
-         * to watch arena battles safely.
-         */
-        if (ROOM_FLAGGED(in_room, ROOM_ARENA))
-            for (i = 0; i < NUM_OF_DIRS; ++i)
-                if (world[in_room].exits[i] && world[in_room].exits[i]->to_room != NOWHERE &&
-                    world[in_room].exits[i]->to_room != in_room &&
-                    ROOM_FLAGGED(world[in_room].exits[i]->to_room, ROOM_OBSERVATORY))
-                    for (to = world[world[in_room].exits[i]->to_room].people; to; to = to->next_in_room)
-                        if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
-                            (type == TO_ROOM || (to != victim))) {
-                            char_printf(to, "&4&8<&0%s&0&4&8>&0 ", world[in_room].name);
-                            format_act(lbuf, str, ch, obj, vict_obj, to);
-                            char_printf(to, "%s", lbuf);
-                        }
     }
+    for (to = world[in_room].people; to; to = to->next_in_room)
+        if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
+            !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != victim))) {
+            format_act(lbuf, str, ch, obj, vict_obj, to);
+            char_printf(to, "%s", lbuf);
+        }
+    /*
+     * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
+     * into OBSERVATORY rooms, allowing players standing in observatories
+     * to watch arena battles safely.
+     */
+    if (ROOM_FLAGGED(in_room, ROOM_ARENA))
+        for (i = 0; i < NUM_OF_DIRS; ++i)
+            if (world[in_room].exits[i] && world[in_room].exits[i]->to_room != NOWHERE &&
+                world[in_room].exits[i]->to_room != in_room &&
+                ROOM_FLAGGED(world[in_room].exits[i]->to_room, ROOM_OBSERVATORY))
+                for (to = world[world[in_room].exits[i]->to_room].people; to; to = to->next_in_room)
+                    if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
+                        (type == TO_ROOM || (to != victim))) {
+                        char_printf(to, "&4&8<&0%s&0&4&8>&0 ", world[in_room].name);
+                        format_act(lbuf, str, ch, obj, vict_obj, to);
+                        char_printf(to, "%s", lbuf);
+                    }
 }
 
 /* deprecated functions */

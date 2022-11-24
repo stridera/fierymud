@@ -3340,17 +3340,17 @@ ACMD(do_score) {
             strcpy(buf2, "@YInvalid!@0");
         else
             sprintf(buf2, "%s%c%s", compositions[BASE_COMPOSITION(tch)].color,
-                    UPPER(*(compositions[BASE_COMPOSITION(tch)].name)), compositions[BASE_COMPOSITION(tch)].name + 1);
+                    toupper(*(compositions[BASE_COMPOSITION(tch)].name)), compositions[BASE_COMPOSITION(tch)].name + 1);
         buf += fmt::format(
-            "  Size: &3&8{}{}&0  Gender: &3&8{}&0\n"
+            "  Size: &3&8{}&0  Gender: &3&8{}&0\n"
             "Race: {}  Life force: {}{}{}&0  "
             "Composition: {}{}{}&0{}&0{}\n",
-            UPPER(*SIZE_DESC(tch)), SIZE_DESC(tch) + 1, buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch),
-            UPPER(*LIFEFORCE_NAME(tch)), LIFEFORCE_NAME(tch) + 1, COMPOSITION_COLOR(tch), UPPER(*COMPOSITION_NAME(tch)),
-            COMPOSITION_NAME(tch) + 1, *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
+            capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), toupper(*LIFEFORCE_NAME(tch)),
+            LIFEFORCE_NAME(tch) + 1, COMPOSITION_COLOR(tch), toupper(*COMPOSITION_NAME(tch)), COMPOSITION_NAME(tch) + 1,
+            *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
     } else
-        buf += fmt::format("  Race: {}  Size: &3&8{}{}&0  Gender: &3&8{}&0\n", RACE_ABBR(tch), UPPER(*SIZE_DESC(tch)),
-                           SIZE_DESC(tch) + 1, buf1);
+        buf += fmt::format("  Race: {}  Size: &3&8{}&0  Gender: &3&8{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)),
+                           buf1);
 
     buf += fmt::format(
         "Age: &3&b{}&0&3 year{}&0, &3&b{}&0&3 month{}&0  "
@@ -3364,7 +3364,7 @@ ACMD(do_score) {
     show_alignment(ch, tch, GET_LEVEL(ch) < 35);
     show_load(ch, tch, true); /* always verbose */
 
-    buf += "Status: ";
+    buf = "Status: ";
 
     if (GET_POS(tch) == POS_FLYING)
         buf += "&6&bFlying&0\n";
@@ -4383,7 +4383,7 @@ ACMD(do_songs) {
     if (ch == tch)
         strcpy(buf, "You know the following songs:\n");
     else
-        sprintf(buf, "%c%s knows the following songs:\n", UPPER(*GET_NAME(tch)), GET_NAME(tch) + 1);
+        sprintf(buf, "%c%s knows the following songs:\n", toupper(*GET_NAME(tch)), GET_NAME(tch) + 1);
 
     for (i = MAX_SKILLS + 1; i <= MAX_CHANTS; ++i) {
         if (*skills[i].name == '!')
@@ -4421,7 +4421,7 @@ ACMD(do_music) {
     if (ch == tch)
         strcpy(buf, "You know the following music:\n");
     else
-        sprintf(buf, "%c%s knows the following music:\n", UPPER(*GET_NAME(tch)), GET_NAME(tch) + 1);
+        sprintf(buf, "%c%s knows the following music:\n", toupper(*GET_NAME(tch)), GET_NAME(tch) + 1);
 
     for (i = MAX_SKILLS + 1; i <= MAX_SONGS; ++i) {
         if (*skills[i].name == '!')
