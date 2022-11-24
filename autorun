@@ -16,21 +16,21 @@ while ( : ) do
   export MALLOC_CHECK_
   DATE=`date`
   echo "autorun starting game $DATE" as `whoami`>> syslog
-  echo "running bin/fiery $FLAGS $PORT" >> syslog
+  echo "running bin/fierymud $FLAGS $PORT" >> syslog
   echo "MALLOC_CHECK=$MALLOC_CHECK_" >> syslog                                 
 
   chmod 660 lib/core.* > /dev/null 2>&1;
   ulimit -c unlimited
 
-  bin/fiery $FLAGS $PORT >> syslog 2>&1
+  bin/fierymud $FLAGS $PORT >> syslog 2>&1
 
   tail -30 syslog > syslog.CRASH
 
    # this is to generate the death counts.
-  php "/home/fieryweb/www/death/proc_rip.php" >> syslog
+  # php "/home/fieryweb/www/death/proc_rip.php" >> syslog
   sleep 5
   # this will email users, to let tem know fiery has reset .
-  php "/home/fieryweb/script/mailreset.php" >> syslog
+  # php "/home/fieryweb/script/mailreset.php" >> syslog
   fgrep "self-delete" syslog >> log/delete
   fgrep "death trap" syslog >> log/dts
   fgrep "killed" syslog >> log/rip
