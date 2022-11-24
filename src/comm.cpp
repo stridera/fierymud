@@ -3090,19 +3090,20 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         return;
     }
 
-    if (std::holds_alternative<ObjData *>(vict_obj)) {
-        if (to_victroom) {
-            victim = std::get<CharData *>(vict_obj);
-            if (victim) {
-                in_room = victim->in_room;
-                if (in_room == NOWHERE) {
-                    log("SYSERR: act(): TO_VICTROOM option used but vict is in NOWHERE");
-                    return;
-                }
-            } else {
-                log("SYSERR: act(): TO_VICTROOM option used but vict is NULL");
+    if (std::holds_alternative<CharData *>(vict_obj)) {
+        victim = std::get<CharData *>(vict_obj);
+    }
+
+    if (to_victroom) {
+        if (victim) {
+            in_room = victim->in_room;
+            if (in_room == NOWHERE) {
+                log("SYSERR: act(): TO_VICTROOM option used but vict is in NOWHERE");
                 return;
             }
+        } else {
+            log("SYSERR: act(): TO_VICTROOM option used but vict is NULL");
+            return;
         }
     }
     for (to = world[in_room].people; to; to = to->next_in_room)
