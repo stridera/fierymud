@@ -50,8 +50,10 @@
 #include "vsearch.hpp"
 #include "weather.hpp"
 
+#include <algorithm>
 #include <fmt/format.h>
 #include <string>
+#include <vector>
 
 /* global */
 int boot_high = 0;
@@ -2684,6 +2686,7 @@ ACMD(do_commands) {
     int i, j, v, cmd_num;
     int wizhelp = 0, socials = 0;
     CharData *vict;
+    std::string resp;
 
     int num_elements, column_height, box_height, num_xcolumns, num_rows, cont;
 
@@ -2706,68 +2709,28 @@ ACMD(do_commands) {
     else if (subcmd == SCMD_WIZHELP)
         wizhelp = 1;
 
-    sprintf(buf, "The following %s%s are available to %s:\n", wizhelp ? "privileged " : "",
-            socials ? "socials" : "commands", vict == ch ? "you" : GET_NAME(vict));
-    send_to_char(buf, ch);
+    resp = fmt::format("The following {}{} are available to {}:\r\n", wizhelp ? "privileged " : "",
+                       socials ? "socials" : "commands", vict == ch ? "you" : GET_NAME(vict));
 
     /* Prepare to make a list of commands with vertically-sorted columns. */
-
-    /* Count how many commands will be printed */
-
+    std::vector<std::string> commands;
     for (num_elements = 0, cmd_num = 1; cmd_num < num_of_cmds; cmd_num++) {
         i = cmd_sort_info[cmd_num].sort_pos;
         if (cmd_info[i].minimum_level >= 0 && can_use_command(vict, i) &&
             (cmd_info[i].minimum_level >= LVL_IMMORT) == wizhelp && (wizhelp || socials == cmd_sort_info[i].is_social))
-            num_elements++;
+            commands.push_back(cmd_info[i].command);
     }
 
-    box_height = num_elements / COMMANDS_LIST_COLUMNS + 1;
-    num_xcolumns = num_elements % COMMANDS_LIST_COLUMNS;
-    num_rows = box_height + (num_xcolumns ? 1 : 0);
+    size_t max_command_len = std::ranges::max_element(commands, std::ranges::less(), &std::string::length)->length();
 
-    /* Fill the text buffer with spaces and appropriate newlines */
-    for (j = 0; j < num_rows; j++) {
-        for (i = 0; i < 77; i++)
-            buf[j * 79 + i] = ' ';
-        buf[(j + 1) * 79 - 1] = '\n';
+    num_elements = 0;
+    for (auto &command : commands) {
+        resp += fmt::format("{:<{}}", command, max_command_len + 2);
+        if (++num_elements % COMMANDS_LIST_COLUMNS == 0)
+            resp += "\r\n";
     }
 
-    /* Insert the commands into the buffer */
-
-    cmd_num = 1;
-
-    for (i = 0; i < COMMANDS_LIST_COLUMNS; i++) {
-        column_height = box_height + (i < num_xcolumns ? 1 : 0);
-        for (j = 0; j < column_height; j++) {
-            /* Ready to print an element - find the next valid command */
-            for (cont = 1; cmd_num < num_of_cmds && cont; cmd_num++) {
-                v = cmd_sort_info[cmd_num].sort_pos;
-                if (cmd_info[v].minimum_level >= 0 && can_use_command(vict, v) &&
-                    (cmd_info[v].minimum_level >= LVL_IMMORT) == wizhelp &&
-                    (wizhelp || socials == cmd_sort_info[v].is_social)) {
-                    strncpy(buf + j * 79 + i * 11, cmd_info[v].command, strlen(cmd_info[v].command));
-                    /* Break out of cmd_num loop, let j loop continue */
-                    cont = 0;
-                }
-            }
-        }
-        /* Cmd number always seems to be one ahead now */
-        cmd_num--;
-    }
-
-    buf[79 * (box_height - 1) + 11 * num_xcolumns] = '\0';
-    /*
-     * If the number of columns with an extra row is 0, then the output
-     * already ends with \n.   But if it's not 0, then add it.   Either
-     * way, make sure the string is null-terminated.
-     */
-    if (num_xcolumns) {
-        buf[79 * (box_height - 1) + 11 * num_xcolumns] = '\r';
-        buf[79 * (box_height - 1) + 11 * num_xcolumns + 1] = '\n';
-        buf[79 * (box_height - 1) + 11 * num_xcolumns + 2] = '\0';
-    } else
-        buf[79 * (box_height - 1) + 11 * num_xcolumns] = '\0';
-    page_string(ch, buf);
+    page_string(ch, resp.c_str());
 }
 
 const char *save_message(int save) {
