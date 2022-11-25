@@ -929,7 +929,8 @@ int cast_spell(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
 
     if (spellnum < 0 || spellnum > TOP_SKILL_DEFINE) {
         sprintf(buf, "SYSERR: cast_spell trying to call spellnum %d\n", spellnum);
-        log(buf);
+        log("%s", buf);
+        ;
         return 0;
     }
 
@@ -991,7 +992,8 @@ int chant(CharData *ch, CharData *tch, ObjData *obj, int chantnum) {
 
     if (chantnum < 0 || chantnum > TOP_SKILL_DEFINE) {
         sprintf(buf, "SYSERR: chant trying to call chantnum %d", chantnum);
-        log(buf);
+        log("%s", buf);
+        ;
         return 0;
     }
 
@@ -1091,7 +1093,8 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
 
     if (songnum < 0 || songnum > TOP_SKILL_DEFINE) {
         sprintf(buf, "SYSERR: perform trying to call songnum %d", songnum);
-        log(buf);
+        log("%s", buf);
+        ;
         return 0;
     }
 

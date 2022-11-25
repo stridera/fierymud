@@ -26,19 +26,13 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-char *RICK_SALA =
-    "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
-    "=~=~=~=~=~=~=\n"
-    "=~=~=  Rick Sala known to many as his admin character "
-    "Pergus        =~=~=\n"
-    "=~=~=  passed away on June 21, 2006.                        "
-    "        =~=~=\n"
-    "=~=~=  Rick was a valuable friend and asset to us all and "
-    "is sorely =~=~=\n"
-    "=~=~=  missed for his wit, humor, and the friend he was to "
-    "us all.  =~=~=\n"
-    "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~"
-    "=~=~=~=~=~=~=\n";
+const char *RICK_SALA =
+    "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=\n"
+    "=~=~=  Rick Sala known to many as his admin character Pergus        =~=~=\n"
+    "=~=~=  passed away on June 21, 2006.                                =~=~=\n"
+    "=~=~=  Rick was a valuable friend and asset to us all and is sorely =~=~=\n"
+    "=~=~=  missed for his wit, humor, and the friend he was to us all.  =~=~=\n"
+    "=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=\n";
 
 void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
 void postmaster_check_mail(CharData *ch, CharData *mailman, int cmd, char *arg);
@@ -174,14 +168,16 @@ int scan_file(void) {
     file_end_pos = ftell(mail_file);
     fclose(mail_file);
     sprintf(buf, "   %ld bytes read.", file_end_pos);
-    log(buf);
+    log("%s", buf);
+    ;
     if (file_end_pos % BLOCK_SIZE) {
         log("SYSERR: Error booting mail system -- Mail file corrupt!");
         log("SYSERR: Mail disabled!");
         return 0;
     }
     sprintf(buf, "   Mail file read -- %d messages.", total_messages);
-    log(buf);
+    log("%s", buf);
+    ;
     return 1;
 } /* end of scan_file */
 

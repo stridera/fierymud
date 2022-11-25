@@ -31,7 +31,7 @@ ACMD(do_toggle) {
     CharData *tch;
 
     struct set_struct {
-        char *cmd;
+        const char *cmd;
         int level;
         int bitvector;
     }
@@ -82,7 +82,7 @@ ACMD(do_toggle) {
          * interpreter.h, even if you don't intend to use it. */
 
     };
-    char *tog_messages[][2] = {
+    const char *tog_messages[][2] = {
         /*00 */ {"You are now safe from summoning by other players.\n", "You may now be summoned by other players.\n"},
         /*01 */
         {"Nohassle disabled, mobs will attack you now.\n", "Nohassle enabled, mobs will leave you alone now.\n"},

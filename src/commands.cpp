@@ -50,7 +50,7 @@ static void gedit_save_to_disk();
 
 int command_group_number(CommandGroup *group) { return VALID_GROUP_NUM(group) ? GROUP_NUM(group) : -1; }
 
-int find_command_group(char *name) {
+int find_command_group(const char *name) {
     CommandGroup *group = cmd_groups;
 
     while (group < top_of_cmd_groups) {

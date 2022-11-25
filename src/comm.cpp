@@ -1305,7 +1305,7 @@ void echo_on(DescriptorData *d) {
         (char)IAC, (char)WONT, (char)TELOPT_ECHO, (char)TELOPT_NAOFFD, (char)TELOPT_NAOCRD, (char)0,
     };
 
-    desc_printf(d, on_string);
+    string_to_output(d, on_string);
 }
 
 char *prompt_str(CharData *ch) {

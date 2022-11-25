@@ -36,7 +36,7 @@ extern CommandGroupInfo *grp_info;
 #define CMD_USEABLE_FOR_LEVEL(ch, cmd) (cmd_info[(cmd)].minimum_level <= GET_LEVEL(ch))
 
 ACMD(do_gedit);
-int find_command_group(char *name);
+int find_command_group(const char *name);
 int command_group_number(CommandGroup *group);
 bool can_use_command(CharData *ch, int cmd);
 void boot_command_groups();

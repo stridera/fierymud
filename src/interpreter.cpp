@@ -1737,16 +1737,16 @@ void display_classes(DescriptorData *d, int select) {
 }
 
 /* return first space-delimited token in arg1; remainder of string in arg2 */
-void half_chop(char *string, char *arg1, char *arg2) {
+void half_chop(char *str, char *arg1, char *arg2) {
     char *temp;
 
-    temp = any_one_arg(string, arg1);
+    temp = any_one_arg(str, arg1);
     skip_spaces(&temp);
     strcpy(arg2, temp);
 }
 
 /* Used in specprocs, mostly.  (Exactly) matches "command" to cmd number */
-int find_command(char *command) {
+int find_command(const char *command) {
     int cmd;
 
     for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
@@ -2227,7 +2227,8 @@ void nanny(DescriptorData *d, char *arg) {
                    connection.  Yes I'm evil - RSD 8/29/2002 <-- genius
                  */
                 sprintf(buf, "%s is being ninja rejected by the name approval code.", tmp_name);
-                log(buf);
+                log("%s", buf);
+                ;
                 write_to_output("Welcome back!\n", d);
                 write_to_output("Password: ", d);
                 echo_off(d);
@@ -2279,12 +2280,14 @@ void nanny(DescriptorData *d, char *arg) {
             get_pfilename(GET_NAME(d->character), buf, PLR_FILE);
             if (unlink(buf) == 0) {
                 sprintf(buf, "SYSERR: Deleted existing player file for NEW ch %s.", GET_NAME(d->character));
-                log(buf);
+                log("%s", buf);
+                ;
             }
             get_pfilename(GET_NAME(d->character), buf, OBJ_FILE);
             if (unlink(buf) == 0) {
                 sprintf(buf, "SYSERR: Deleted existing object file for NEW ch %s.", GET_NAME(d->character));
-                log(buf);
+                log("%s", buf);
+                ;
             }
 
 #ifdef PRODUCTION
@@ -2335,7 +2338,8 @@ void nanny(DescriptorData *d, char *arg) {
         } else {
             if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
                 sprintf(buf, "Renaming player %s to %s!", GET_NAME(d->character), arg);
-                log(buf);
+                log("%s", buf);
+                ;
 
                 /* send the old name to the invalid list */
                 send_to_xnames(GET_NAME(d->character));
@@ -2556,7 +2560,8 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_QRACE:
         load_result = interpret_race_selection(*arg);
         sprintf(buf, " Argument: %d, Result: %d", *arg, load_result);
-        log(buf);
+        log("%s", buf);
+        ;
         if (load_result == RACE_UNDEFINED) {
             write_to_output(
                 "\n&3Please choose by entering the letter next to the "

@@ -125,22 +125,21 @@ ACMD(do_desc) {
         act("$n appears rather introspective.", true, ch, 0, 0, TO_ROOM);
 
     editor_init(ch->desc, &ch->player.description, maxlen);
-    editor_set_begin_string(ch->desc,
-                            "Enter the text you'd like others to see when they look at you "
-                            "(limit %d lines).\n",
-                            maxlines);
+    editor_set_begin_string(
+        ch->desc, "Enter the text you'd like others to see when they look at you (limit %d lines).\n", maxlines);
     editor_set_max_lines(ch->desc, maxlines);
 }
 
 ACMD(do_say) {
-    skip_spaces(&argument);
-    delete_doubledollar(argument);
+    char *args = strdup(argument);
+    skip_spaces(&args);
+    delete_doubledollar(args);
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
         char_printf(ch, "You lips move, but no sound forms.\n");
         return;
     }
-    if (!*argument) {
+    if (!*args) {
         char_printf(ch, "Yes, but WHAT do you want to say?\n");
         return;
     }
@@ -149,16 +148,16 @@ ACMD(do_say) {
         return;
 
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        argument = strip_ansi(argument);
+        args = strip_ansi(args);
 
-    argument = drunken_speech(argument, GET_COND(ch, DRUNK));
+    args = drunken_speech(args, GET_COND(ch, DRUNK));
 
-    act("You say, '$T@0'", false, ch, 0, argument, TO_CHAR | TO_OLC);
-    act("$n says, '$T@0'", false, ch, 0, argument, TO_ROOM | TO_OLC);
+    act("You say, '$T@0'", false, ch, 0, args, TO_CHAR | TO_OLC);
+    act("$n says, '$T@0'", false, ch, 0, args, TO_ROOM | TO_OLC);
 
     /* trigger check */
-    speech_mtrigger(ch, argument);
-    speech_wtrigger(ch, argument);
+    speech_mtrigger(ch, args);
+    speech_wtrigger(ch, args);
 }
 
 ACMD(do_gsay) {
@@ -301,7 +300,7 @@ ACMD(do_reply) {
 
 ACMD(do_spec_comm) {
     CharData *vict;
-    char *action_sing, *action_plur, *action_others;
+    const char *action_sing, *action_plur, *action_others;
 
     if (subcmd == SCMD_WHISPER) {
         action_sing = "whisper to";

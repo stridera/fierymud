@@ -137,7 +137,7 @@ int sprintascii(char *out, flagvector bits) {
     int i, j = 0;
     /* 32 bits, don't just add letters to try to get more unless flagvector is
      * also as large. */
-    char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
+    const char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
 
     for (i = 0; flags[i]; ++i)
         if (bits & (1 << i))

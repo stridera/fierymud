@@ -59,7 +59,7 @@ const char *exit_name(Exit *exit) { return exit->keyword ? fname(exit->keyword) 
 
 #define SHOW_EXDESC_LEN 57
 
-char *exit_dest_desc(Exit *e) {
+const char *exit_dest_desc(Exit *e) {
     static char buf[MAX_STRING_LENGTH];
     int nlpos, len, showlen;
 

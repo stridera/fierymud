@@ -1524,19 +1524,22 @@ void skill_assign(int skillnum, int class_num, int level) {
 
     if (skillnum < 0 || skillnum > TOP_SKILL_DEFINE) {
         sprintf(buf, "SYSERR: attempting assign to illegal talent num %d", skillnum);
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
     if (class_num < 0 || class_num >= NUM_CLASSES) {
         sprintf(buf, "SYSERR: assigning '%s' to illegal class_num %d", skill_name(skillnum), class_num);
-        log(buf);
+        log("%s", buf);
+        ;
         okay = false;
     }
 
     if (level < 1 || level > LVL_IMPL) {
         sprintf(buf, "SYSERR: assigning '%s' to illegal level %d", skill_name(skillnum), level);
-        log(buf);
+        log("%s", buf);
+        ;
         okay = false;
     }
 

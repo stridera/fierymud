@@ -1793,7 +1793,8 @@ ASPELL(spell_relocate) {
         send_to_char("You failed.\n", ch);
         WAIT_STATE(ch, PULSE_VIOLENCE);
         sprintf(buf, "SYSERR: %s tried to relocate to %s in room -1.", GET_NAME(ch), GET_NAME(victim));
-        log(buf);
+        log("%s", buf);
+        ;
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
     if (GET_LEVEL(victim) >= LVL_IMMORT && GET_LEVEL(ch) < GET_LEVEL(victim)) {
@@ -1908,6 +1909,8 @@ ASPELL(spell_remove_paralysis) {
         }
 
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+    } else {
+        return CAST_RESULT_CHARGE;
     }
 }
 

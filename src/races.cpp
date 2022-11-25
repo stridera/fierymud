@@ -1399,7 +1399,8 @@ void init_races(void) {
                     "init_races: Too many skills assigned to race %s.  "
                     "Increase NUM_RACE_SKILLS in races.h to at least %d",
                     races[race].name, pos);
-            log(buf);
+            log("%s", buf);
+            ;
             exit(1);
         }
     }

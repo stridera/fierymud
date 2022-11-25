@@ -1059,7 +1059,8 @@ paging_line *paging_goto_page(DescriptorData *d, int page) {
                         "SYSERR: Pager tried to go to page %d, but there were only %d "
                         "lines at %d per page!",
                         destpage + 1, j + (i + 1) * page_length, page_length);
-                log(buf);
+                log("%s", buf);
+                ;
             }
             pl = pl->next;
         }

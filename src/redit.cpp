@@ -258,7 +258,8 @@ void redit_save_internally(DescriptorData *d) {
                             "SYSERR:redit.c:redit_save_internally(): Unknown command: %d "
                             "in zone %s.",
                             ZCMD.command, zone_table[zone].name);
-                    log(buf);
+                    log("%s", buf);
+                    ;
                     mudlog(buf, BRF, LVL_GOD, true);
                 }
         /* update load rooms, to fix creeping load room problem */

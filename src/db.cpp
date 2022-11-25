@@ -153,7 +153,7 @@ int file_to_string_alloc(const char *name, char **buf);
 void check_start_rooms(void);
 void renum_world(void);
 void renum_zone_table(void);
-void log_zone_error(int zone, int cmd_no, char *message);
+void log_zone_error(int zone, int cmd_no, const char *message);
 void reset_time(void);
 void clear_char(CharData *ch);
 long get_set_exp(int level, int race, int class_num, int zone);
@@ -471,7 +471,7 @@ void boot_spell_dams() {
         int i;
         FILE *ifptr;
         char line[256];
-        char *err = "Spell Dam";
+        const char *err = "Spell Dam";
         if ((ifptr = fopen(SPELL_DAM_FILE, "r")) == nullptr) {
             log("No spells dam file it should be at lib/misc/spell_dam.");
             exit(1);
@@ -481,13 +481,13 @@ void boot_spell_dams() {
             get_line(ifptr, line);
             /*
                   sprintf(buf, "%s", line);
-                  log(buf);
+                  log("%s", buf);;
                   get_line(ifptr, line);
                   sprintf(buf, "%s", line);
-                  log(buf);
+                  log("%s", buf);;
                   get_line(ifptr, line);
                   sprintf(buf, "%s", line);
-                  log(buf);
+                  log("%s", buf);;
             */
             if (strcmp(line, "spell_dam")) {
                 log("Error in booting spell dams");
@@ -911,7 +911,8 @@ void reset_time(void) {
             hemispheres[HEMISPHERE_SOUTHEAST].season = SPRING;
             strcat(buf, "Autumn");
         }
-        log(buf);
+        log("%s", buf);
+        ;
 
         log("Current Gametime: %dH %dD %dM %dY.", time_info.hours, time_info.day, time_info.month, time_info.year);
 
@@ -1068,7 +1069,7 @@ int tmp_debug = 0;
 void discrete_load(FILE *fl, int mode) {
         int nr = -1, last = 0;
         char line[256];
-        char *modes[] = {"world", "mob", "obj", "ZON", "SHP", "HLP", "trg"};
+        const char *modes[] = {"world", "mob", "obj", "ZON", "SHP", "HLP", "trg"};
         for (;;) {
             /*
              * we have to do special processing with the obj files because they have
@@ -1224,13 +1225,11 @@ void parse_room(FILE *fl, int virtual_nr) {
 void setup_dir(FILE *fl, int room, int dir) {
         int t[5];
         char line[256];
-        char log_buf[100];
 
         sprintf(buf2, "room #%d, direction D%d", world[room].vnum, dir);
         /* added by gurlaek to stop memory leaks detected by insure++ 8/26/1999 */
         if (world[room].exits[dir]) {
-            sprintf(log_buf, "SYSERR:db.c:setup_dir:creating direction [%d] for room %d twice!", dir, world[room].vnum);
-            log(log_buf);
+            log("SYSERR:db.c:setup_dir:creating direction [%d] for room %d twice!", dir, world[room].vnum);
         } else {
             world[room].exits[dir] = create_exit(NOWHERE);
         }
@@ -1293,7 +1292,8 @@ void renum_world(void) {
                                     "SYSERR:db.c:renum_world():Invalid exit to NOWHERE for dir "
                                     "%s in room %d",
                                     dirs[door], world[room].vnum);
-                            log(buf);
+                            log("%s", buf);
+                            ;
                         }
                     }
 }
@@ -1602,7 +1602,7 @@ void parse_espec(char *buf, int i, int nr) {
             while (isspace(*ptr))
                 ptr++;
         } else
-            ptr = "";
+            ptr = strdup("");
 
         interpret_espec(buf, ptr, i, nr);
 }
@@ -2308,7 +2308,7 @@ void zone_update(void) {
             }
 }
 
-void log_zone_error(int zone, int cmd_no, char *message) {
+void log_zone_error(int zone, int cmd_no, const char *message) {
         char buf[256];
 
         sprintf(buf, "SYSERR: error in zone file: %s", message);

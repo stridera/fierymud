@@ -1644,7 +1644,7 @@ ACMD(do_equipment) {
     for (i = 0; i < NUM_WEARS; i++) {
         if (GET_EQ(ch, wear_order_index[i])) {
             if (CAN_SEE_OBJ(ch, GET_EQ(ch, wear_order_index[i]))) {
-                char_printf(ch, where[wear_order_index[i]]);
+                char_printf(ch, "%s", where[wear_order_index[i]]);
                 print_obj_to_char(GET_EQ(ch, wear_order_index[i]), ch, SHOW_SHORT_DESC | SHOW_FLAGS, nullptr);
                 found = true;
             } else {
@@ -1796,7 +1796,7 @@ static void cat_mortal_wholine(char *mbuf, const char *title, CharData *ch, cons
         sprintf(mbuf + strlen(mbuf), " (%s)", zone_table[world[IN_ROOM(ch)].zone].name);
 }
 
-char *WHO_USAGE = "Usage: who [minlev-maxlev] [-qrzw] [-n name] [-c classes]\n";
+const char *WHO_USAGE = "Usage: who [minlev-maxlev] [-qrzw] [-n name] [-c classes]\n";
 
 ACMD(do_who) {
     DescriptorData *d;
@@ -2203,11 +2203,12 @@ static void sortc(int l, int u) {
 
 ACMD(do_users) {
     char line[200], line2[220], idletime[10], classname[20];
-    char state[30], *timeptr, *format, mode, hostnum[40];
+    char state[30], *timeptr, mode, hostnum[40];
     char roomstuff[200], room[26], nametrun[11], position[17]; /* Changed position to 17 from 9 cuz
                                                                   mortally wounded was over flowing */
     char ipbuf[MAX_STRING_LENGTH], userbuf[MAX_STRING_LENGTH];
     char name_search[MAX_INPUT_LENGTH], host_search[MAX_INPUT_LENGTH];
+    const char *format;
     CharData *tch;
     DescriptorData *d;
     size_t i;

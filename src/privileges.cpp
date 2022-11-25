@@ -473,7 +473,7 @@ void write_player_grants(FILE *fl, CharData *ch) {
     }
 }
 
-static void read_player_grant_list(FILE *fl, GrantType **list, int (*cmd_lookup)(char *name)) {
+static void read_player_grant_list(FILE *fl, GrantType **list, int (*cmd_lookup)(const char *name)) {
     char line[MAX_INPUT_LENGTH + 1], *ptr;
     GrantType *grant;
     int line_fail;

@@ -77,8 +77,8 @@ bool switch_ok(CharData *ch) {
 const struct breath_type {
     const char *name;
     const int spell;
-    char *to_char;
-    char *to_room;
+    const char *to_char;
+    const char *to_room;
 } breath_info[] = {
     {"fire", SPELL_FIRE_BREATH, "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0\n",
      "&1$n&1 snorts and a gout of &bf&3i&7r&1e&0&1 shoots out of $s "

@@ -100,10 +100,12 @@ void save_player_objects(CharData *ch) {
 
     if (fclose(fl)) {
         sprintf(buf, "SYSERR: Error closing rent file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     } else if (rename(tempfilename, filename)) {
         sprintf(buf, "SYSERR: Error renaming temporary rent file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     }
 }
 
@@ -395,13 +397,15 @@ void save_quests(CharData *ch) {
 
     if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
         sprintf(buf, "SYSERR: save_quests() couldn't get temp file name for %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), frename, QUEST_FILE)) {
         sprintf(buf, "SYSERR: save_quests() couldn't get quest file name for %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
@@ -441,10 +445,12 @@ void save_quests(CharData *ch) {
 
     if (fclose(fp)) {
         sprintf(buf, "SYSERR: Error closing quest file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     } else if (rename(fname, frename)) {
         sprintf(buf, "SYSERR: Error renaming quest file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     }
 }
 
@@ -455,13 +461,15 @@ void save_pets(CharData *ch) {
 
     if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
         sprintf(buf, "SYSERR: save_pets() couldn't get temp file name for %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), frename, PET_FILE)) {
         sprintf(buf, "SYSERR: save_pets() couldn't get pet file name for %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
@@ -482,10 +490,12 @@ void save_pets(CharData *ch) {
 
     if (fclose(fp)) {
         sprintf(buf, "SYSERR: Error closing pet file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     } else if (rename(fname, frename)) {
         sprintf(buf, "SYSERR: Error renaming pet file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     }
 }
 
@@ -589,7 +599,8 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
     if (!objp || !location) {
         sprintf(buf, "SYSERR: Invalid obj or location pointers passed to build_object");
-        log(buf);
+        log("%s", buf);
+        ;
         return false;
     }
 
@@ -599,7 +610,8 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
     if (strcmp(tag, "vnum")) {
         sprintf(buf, "SYSERR: Invalid Object File.  Object Vnum not found.");
-        log(buf);
+        log("%s", buf);
+        ;
         return false;
     }
 
@@ -798,7 +810,8 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
         default:
         bad_tag:
             sprintf(buf, "SYSERR: Unknown tag %s in rent file: %s", tag, line);
-            log(buf);
+            log("%s", buf);
+            ;
             break;
         }
     }
@@ -896,7 +909,8 @@ bool load_objects(CharData *ch) {
     if (!(get_line(fl, line) && is_integer(line))) {
         /* Object file may be in the 'old' format.  Attempt to load thusly. */
         sprintf(buf, "Invalid rent code for %s: attempting to load via legacy code...", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         fclose(fl);
         if (load_binary_objects(ch)) {
             log("   Success!");
@@ -1190,7 +1204,8 @@ static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
                                 "SYSERR: restore_binary_object() found corrupt spellbook "
                                 "list '%s'",
                                 store->spells_in_book);
-                        log(buf);
+                        log("%s", buf);
+                        ;
                     } else {
                         entry->spell = atoi(spell_parse);
                         spell_parse = strsep(&list_parse, "_");
@@ -1201,7 +1216,8 @@ static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
                                     "SYSERR: restore_binary_object() found corrupt spellbook "
                                     "list '%s'",
                                     store->spells_in_book);
-                            log(buf);
+                            log("%s", buf);
+                            ;
                         } else {
                             entry->length = atoi(spell_parse);
                         }
@@ -1472,7 +1488,8 @@ FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
 
     if (!get_pfilename(player_name, filename, OBJ_FILE)) {
         sprintf(buf, "SYSERR: Unable to construct filename to load objects for %s", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         if (ch)
             send_to_char("Couldn't construct the filename!\n", ch);
         return nullptr;
@@ -1532,7 +1549,8 @@ bool convert_player_obj_file(char *player_name, CharData *ch) {
     /* Prepare output file */
     if (!get_pfilename(player_name, filename, OBJ_FILE)) {
         sprintf(buf, "SYSERR: Unable to construct filename to save objects for %s", player_name);
-        log(buf);
+        log("%s", buf);
+        ;
         fclose(fl);
         return false;
     }
@@ -1547,7 +1565,8 @@ bool convert_player_obj_file(char *player_name, CharData *ch) {
 
     if (feof(fl)) {
         sprintf(buf, "SYSERR: Object file for %s is too small", player_name);
-        log(buf);
+        log("%s", buf);
+        ;
         fclose(fl);
         fclose(fnew);
         return false;
@@ -1578,11 +1597,13 @@ bool convert_player_obj_file(char *player_name, CharData *ch) {
 
     if (rename(tempfilename, filename)) {
         sprintf(buf, " * * * Error renaming %s to %s: %s * * *", tempfilename, filename, strerror(errno));
-        log(buf);
+        log("%s", buf);
+        ;
         return false;
     } else {
         sprintf(buf, "Player object file converted to ASCII format: %s", player_name);
-        log(buf);
+        log("%s", buf);
+        ;
         if (ch) {
             strcat(buf, "\n");
             page_string(ch, buf);

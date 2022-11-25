@@ -90,5 +90,5 @@ void editor_init(DescriptorData *d, char **string, size_t max_length);
 void editor_set_callback_data(DescriptorData *d, void *data, enum ed_cleanup_action action);
 void editor_set_callback(DescriptorData *d, enum EditorCommandEnum type, EDITOR_FUNC(*callback));
 void editor_set_max_lines(DescriptorData *d, size_t max_lines);
-void editor_set_begin_string(DescriptorData *d, char *string, ...) __attribute__((format(printf, 2, 3)));
+void editor_set_begin_string(DescriptorData *d, const char *string, ...) __attribute__((format(printf, 2, 3)));
 void editor_cleanup(DescriptorData *d);

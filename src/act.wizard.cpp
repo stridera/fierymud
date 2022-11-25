@@ -610,17 +610,20 @@ ACMD(do_shutdown) {
 
     if (!*arg) {
         sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         send_to_all("Shutting down.\n");
         circle_shutdown = 1;
     } else if (!strcmp(arg, "reboot")) {
         sprintf(buf, "(GC) Reboot by %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         reboot_mud_prep();
         circle_shutdown = circle_reboot = 1;
     } else if (!strcmp(arg, "now")) {
         sprintf(buf, "(GC) Shutdown NOW by %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         send_to_all(
             "Rebooting.. come back in a minute or two.\n"
             "           &1&b** ****** ****&0\n"
@@ -648,13 +651,15 @@ ACMD(do_shutdown) {
 
     } else if (!strcmp(arg, "die")) {
         sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         send_to_all("Shutting down for maintenance.\n");
         touch("../.killscript");
         circle_shutdown = 1;
     } else if (!strcmp(arg, "pause")) {
         sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         send_to_all("Shutting down for maintenance.\n");
         touch("../pause");
         circle_shutdown = 1;
@@ -1263,7 +1268,8 @@ ACMD(do_dc) {
     sprintf(buf, "Connection #%d closed.\n", num_to_dc);
     send_to_char(buf, ch);
     sprintf(buf, "(GC) Connection closed by %s.", GET_NAME(ch));
-    log(buf);
+    log("%s", buf);
+    ;
 }
 
 ACMD(do_wizlock) {
@@ -1509,7 +1515,7 @@ void broadcast_name(char *name) {
             write_to_output(temp, d);
 }
 
-char *reasons[] = {
+const char *reasons[] = {
     "Compound words. Examples: LadyJade, BraveBlade, ImmortalSoul\n These "
     "types of names give a player an unearned arrogance above\n other "
     "players and in some instances above the gods.",
@@ -1805,7 +1811,7 @@ ACMD(do_wizutil) {
             send_to_char("Rerolled not functinal for now\n", ch);
             break;
             /*sprintf(buf, "(GC) %s has rerolled %s.", GET_NAME(ch), GET_NAME(vict));
-               log(buf);
+               log("%s", buf);;
                sprintf(buf, "New stats: Str %d/%d, Int %d, Wis %d, Dex %d, Con %d, Cha
                %d\n", GET_STR(vict), GET_ADD(vict), GET_INT(vict), GET_WIS(vict),
                GET_DEX(vict), GET_CON(vict), GET_CHA(vict));
@@ -1946,10 +1952,10 @@ ACMD(do_set) {
     int parse_diety(CharData * ch, char arg);
 
     struct set_struct {
-        char *cmd;
-        char level;
-        char pcnpc;
-        char type;
+        const char *cmd;
+        const char level;
+        const char pcnpc;
+        const char type;
     } fields[] = {{"brief", LVL_ATTENDANT, PC, BINARY}, /* 0 */
                   {"", LVL_GAMEMASTER, PC, BINARY},
                   /* 1 */ /* was invstart, now UNUSED */
@@ -2669,17 +2675,17 @@ ACMD(do_game) {
     char field[MAX_INPUT_LENGTH], rest[MAX_INPUT_LENGTH];
     char shortbuf[40], linebuf[160];
     int i, n_visible = 0, value;
-    char *msg;
+    const char *msg;
 
     struct {
-        char *name;
-        int has_value; /* Is it on/off (0) or does it have a value (1) */
+        const char *name;
+        const int has_value; /* Is it on/off (0) or does it have a value (1) */
         int *config;
-        int min_level;
-        char *turn_on;
-        char *turn_off;
-        char *enabled;
-        char *disabled;
+        const int min_level;
+        const char *turn_on;
+        const char *turn_off;
+        const char *enabled;
+        const char *disabled;
     } commands[] = {
         {"RACES", 0, &races_allowed, LVL_ADMIN, "[&2&bSYS: %s allows race logins&0]\n",
          "[&1&bSYS: %s disallows race logins&0]\n", "Race login allowed", "Race login not allowed"},
@@ -2839,7 +2845,8 @@ ACMD(do_autoboot) {
         sprintf(buf, "[ %s postponed autoboot for %d minutes ]\n", GET_NAME(ch), minutes);
         send_to_imms(buf);
         sprintf(buf, "(GC) %s postponed autoboot for %d minutes.", GET_NAME(ch), minutes);
-        log(buf);
+        log("%s", buf);
+        ;
 
         cancel_auto_reboot(1);
         return;
@@ -2860,7 +2867,8 @@ ACMD(do_autoboot) {
         sprintf(buf, "[ %s set autoboot to &2&bON&0 ]\n", GET_NAME(ch));
         send_to_imms(buf);
         sprintf(buf, "(GC) %s turned on autoboot.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
 
         /* Make sure the reboot is a minimum amount of time away */
         if (reboot_pulse - global_pulse < 60 * PASSES_PER_SEC * reboot_warning_minutes) {
@@ -2885,7 +2893,8 @@ ACMD(do_autoboot) {
         sprintf(buf, "[ %s set autoboot to &1&bOFF&0 ]\n", GET_NAME(ch));
         send_to_imms(buf);
         sprintf(buf, "(GC) %s turned off autoboot.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
 
         cancel_auto_reboot(0);
         return;
@@ -2911,7 +2920,8 @@ ACMD(do_autoboot) {
         sprintf(buf, "[ %s set reboot warning time to %d minutes ]\n", GET_NAME(ch), reboot_warning_minutes);
         send_to_imms(buf);
         sprintf(buf, "(GC) %s set reboot warning time to %d minutes.", GET_NAME(ch), reboot_warning_minutes);
-        log(buf);
+        log("%s", buf);
+        ;
 
         /* The rest of this block is about managing warnings, which is moot
          * unless reboot_auto is true, so: */
@@ -2965,7 +2975,8 @@ ACMD(do_autoboot) {
         sprintf(buf, "[ %s set the mud to reboot in &7&b%02d:%02d&0 ]\n", GET_NAME(ch), hours, mins);
         send_to_imms(buf);
         sprintf(buf, "(GC) %s set the mud to reboot in %02d:%02d.", GET_NAME(ch), hours, mins);
-        log(buf);
+        log("%s", buf);
+        ;
 
         reboot_pulse = global_pulse + 60 * PASSES_PER_SEC * minutes;
         if (minutes <= reboot_warning_minutes) {
@@ -3182,7 +3193,8 @@ ACMD(do_terminate) {
             false, ch, 0, victim, TO_ROOM);
         act("&9&bYou destroy &0$N &9&bforever.&0", false, ch, 0, victim, TO_CHAR);
         sprintf(buf, "%s has terminated %s!", GET_NAME(ch), GET_NAME(victim));
-        log(buf);
+        log("%s", buf);
+        ;
         extract_char(victim);
         return;
     }
@@ -3205,14 +3217,14 @@ ACMD(do_pfilemaint) {
     char file_name[255], tmp_name[255];
     PlayerIndexElement *new_player_table = nullptr;
 
-    static char *rlist[] = {"",
-                            "Invalid Characters",
-                            "Too Short",
-                            "Too Long",
-                            "Reserved Fill Word",
-                            "Reserved Word",
-                            "Xname or MOB/OBJ name",
-                            "Inactivity"};
+    static const char *rlist[] = {"",
+                                  "Invalid Characters",
+                                  "Too Short",
+                                  "Too Long",
+                                  "Reserved Fill Word",
+                                  "Reserved Word",
+                                  "Xname or MOB/OBJ name",
+                                  "Inactivity"};
 
     if (should_restrict != GET_LEVEL(ch)) {
         send_to_char("First <wizlock> and make sure everyone logs out before executing this command.\n", ch);
@@ -3227,7 +3239,8 @@ ACMD(do_pfilemaint) {
     }
 
     sprintf(buf, "PFILEMAINT: (GC) Started by %s", GET_NAME(ch));
-    log(buf);
+    log("%s", buf);
+    ;
     send_to_char("Processing player files\n", ch);
 
     /* copy the player index to a backup file */
@@ -3375,7 +3388,8 @@ ACMD(do_hotboot) {
     }
 
     sprintf(buf, "(GC) Hotboot initiated by %s.", GET_NAME(ch));
-    log(buf);
+    log("%s", buf);
+    ;
 
     sprintf(buf, "\n %s<<< HOTBOOT by %s - please remain seated! >>>%s\n", CLR(ch, HRED), GET_NAME(ch), CLR(ch, ANRM));
 

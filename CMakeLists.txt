@@ -9,6 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # TODO: Resolve all warnings!
 # add_compile_options(-Werror -Wall -Wextra)
+add_compile_options(-Wno-format-overflow -Wno-format-truncation -Wno-write-strings -Wno-format)
 
 # Fetch and use libfmt
 FetchContent_Declare(fmt

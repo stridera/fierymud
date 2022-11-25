@@ -1059,61 +1059,34 @@ ACMD(do_pour) {
 }
 
 void wear_message(CharData *ch, ObjData *obj, int where) {
-    char *wear_messages[][2] = {
+    const char *wear_messages[][2] = {
         {"$n starts using $p as a light.", "You start using $p as a light."},
-
         {"$n slides $p onto $s right ring finger.", "You slide $p onto your right ring finger."},
-
         {"$n slides $p onto $s left ring finger.", "You slide $p onto your left ring finger."},
-
         {"$n wears $p around $s neck.", "You wear $p around your neck."},
-
         {"$n wears $p around $s neck.", "You wear $p around your neck."},
-
         {"$n wears $p on $s body.", "You wear $p on your body."},
-
         {"$n wears $p on $s head.", "You wear $p on your head."},
-
         {"$n puts $p on $s legs.", "You put $p on your legs."},
-
         {"$n wears $p on $s feet.", "You wear $p on your feet."},
-
         {"$n puts $p on $s hands.", "You put $p on your hands."},
-
         {"$n wears $p on $s arms.", "You wear $p on your arms."},
-
         {"$n straps $p around $s arm as a shield.", "You start to use $p as a shield."},
-
         {"$n wears $p about $s body.", "You wear $p around your body."},
-
         {"$n wears $p around $s waist.", "You wear $p around your waist."},
-
         {"$n puts $p on $s right wrist.", "You put $p on your right wrist."},
-
         {"$n puts $p on $s left wrist.", "You put $p on your left wrist."},
-
         {"$n wields $p.", "You wield $p."},
-
         {"$n wields $p.", "You wield $p."},
-
         {"$n grabs $p.", "You grab $p."},
-
         {"$n grabs $p.", "You grab $p."},
-
         {"$n wields $p.", "You wield $p."},
-
         {"$n wears $p over $s eyes.", "You wear $p over your eyes."},
-
         {"$n wears $p on $s face.", "You wear $p on your face."},
-
         {"$n wears $p in $s left ear.", "You wear $p in your left ear."},
-
         {"$n wears $p in $s right ear.", "You wear $p in your right ear."},
-
         {"$n wears $p as a badge.", "You wear $p as a badge."},
-
         {"$n attaches $p to $s belt.", "You attach $p to your belt."},
-
         {"$p begins to hover over $n's shoulder.", "$p starts to hover over your shoulder."}
 
     };

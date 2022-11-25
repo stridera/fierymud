@@ -481,7 +481,7 @@ void check_idling(CharData *ch) {
 
 void weardown_light(ObjData *obj) {
     CharData *ch;
-    char *lightmsg = nullptr;
+    const char *lightmsg = nullptr;
 
     /* Don't wear down permanant lights. */
     if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == LIGHT_PERMANENT)

@@ -3314,7 +3314,7 @@ void perform_mag_group(int skill, CharData *ch, CharData *tch, int spellnum, int
 
 int mag_group(int skill, CharData *ch, int spellnum, int savetype) {
     CharData *tch, *next_tch;
-    char *to_room, *to_char;
+    const char *to_room, *to_char;
 
     if (ch == nullptr)
         return 0;
@@ -3450,8 +3450,8 @@ int mag_bulk_objs(int skill, CharData *ch, int spellnum, int savetype) {
 
 int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
     CharData *tch, *next_tch;
-    char *to_char = nullptr;
-    char *to_room = nullptr;
+    const char *to_char = nullptr;
+    const char *to_room = nullptr;
     int casttype = 0;
     bool found = false;
     bool damage = true;
@@ -3904,7 +3904,8 @@ CharData *load_summoned_mob(int vnum, int destroom) {
     int r_num;
     if ((r_num = real_mobile(vnum)) < 0) {
         sprintf(buf, "SYSERR: tried to summon mob with nonexistent vnum %d", vnum);
-        log(buf);
+        log("%s", buf);
+        ;
         return nullptr;
     }
     mob = read_mobile(r_num, REAL);
@@ -4722,7 +4723,8 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         break;
     default:
         sprintf(buf, "SYSERR: unknown spellnum %d passed to mag_unaffect", spellnum);
-        log(buf);
+        log("%s", buf);
+        ;
         return CAST_RESULT_CHARGE;
     }
 
@@ -4746,8 +4748,8 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
 /* Return value: CAST_RESULT_ flags.
  */
 int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savetype) {
-    char *to_char = nullptr;
-    char *to_room = nullptr;
+    const char *to_char = nullptr;
+    const char *to_room = nullptr;
     int i;
     int result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 
@@ -4995,7 +4997,8 @@ int mag_creation(int skill, CharData *ch, int spellnum) {
     if (!(tobj = read_object(z, VIRTUAL))) {
         send_to_char("I seem to have goofed.\n", ch);
         sprintf(buf, "SYSERR: spell_creations, spell %d, obj %d: obj not found", spellnum, z);
-        log(buf);
+        log("%s", buf);
+        ;
         return 0;
     }
     if (give_char)
@@ -5068,7 +5071,8 @@ int mag_room(int skill, CharData *ch, int spellnum) {
                 "SYSERR: unknown spellnum %d "
                 "passed to mag_unaffect",
                 spellnum);
-        log(buf);
+        log("%s", buf);
+        ;
         return CAST_RESULT_CHARGE;
     }
 

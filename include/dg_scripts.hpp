@@ -156,9 +156,9 @@ int real_zone(int zvnum);
 /* function prototypes from triggers.c */
 void act_mtrigger(const CharData *ch, const char *str, const CharData *actor, const CharData *victim,
                   const ObjData *obj, const ObjData *target, char *arg, char *arg2);
-void speech_mtrigger(CharData *actor, char *str);
-void speech_to_mtrigger(CharData *actor, CharData *ch, char *str);
-void speech_wtrigger(CharData *actor, char *str);
+void speech_mtrigger(CharData *actor, const char *str);
+void speech_to_mtrigger(CharData *actor, CharData *ch, const char *str);
+void speech_wtrigger(CharData *actor, const char *str);
 int greet_mtrigger(CharData *actor, int dir);
 int entry_mtrigger(CharData *ch, int destination);
 int preentry_wtrigger(RoomData *room, CharData *actor, int dir);

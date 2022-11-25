@@ -42,7 +42,7 @@ bool is_integer(const char *str);
 bool is_positive_integer(const char *str);
 bool is_negative_integer(const char *str);
 bool is_number(const char *str);
-int find_command(char *command);
+int find_command(const char *command);
 int parse_command(char *command);
 void skip_slash(char **string);
 void skip_spaces(char **string);
@@ -268,13 +268,12 @@ void free_aliases(AliasData *alias_list);
 #define SCMD_OLC_HEDIT 6
 #define SCMD_OLC_TRIGEDIT 7
 #define SCMD_OLC_SDEDIT 8
-#define SCMD_OLC_REDIT 9
-#define SCMD_OLC_RCOPY 10
-#define SCMD_OLC_OCOPY 11
-#define SCMD_OLC_ZCOPY 12
-#define SCMD_OLC_MCOPY 13
-#define SCMD_OLC_SCOPY 14
-#define SCMD_OLC_TRIGCOPY 15
+#define SCMD_OLC_RCOPY 9
+#define SCMD_OLC_OCOPY 10
+#define SCMD_OLC_ZCOPY 11
+#define SCMD_OLC_MCOPY 12
+#define SCMD_OLC_SCOPY 13
+#define SCMD_OLC_TRIGCOPY 14
 
 /* do_light */
 #define SCMD_LIGHT 0

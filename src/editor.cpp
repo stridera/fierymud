@@ -118,7 +118,7 @@ void editor_init(DescriptorData *d, char **string, size_t max_length) {
     }
 
     if (max_length < 1) {
-        log("SYSERR: invalid max_length %d passed to editor_init", max_length);
+        log("SYSERR: invalid max_length %zu passed to editor_init", max_length);
         return;
     }
 
@@ -153,7 +153,7 @@ EVENTFUNC(editor_start) {
         log("SYSERR: Editor already started on descriptor passed to editor_start");
     else {
         if (!d->editor->action[ED_FORMAT] && d->editor->max_length > MAX_STRING_LENGTH)
-            log("WARNING: editor_start: editor max_length is %d > MAX_STRING_LENGTH;"
+            log("WARNING: editor_start: editor max_length is %zu > MAX_STRING_LENGTH;"
                 " format command disabled",
                 d->editor->max_length);
         d->editor->started = true;
@@ -214,22 +214,19 @@ void editor_set_max_lines(DescriptorData *d, size_t max_lines) {
     }
 
     if (!EDITING(d)) {
-        log("SYSERR: Editor not initialized on descriptor passed to "
-            "editor_set_max_lines");
+        log("SYSERR: Editor not initialized on descriptor passed to editor_set_max_lines");
         return;
     }
 
     if (max_lines <= 0) {
-        log("SYSERR: Invalid maximum number of lines %d specified in "
-            "editor_set_max_lines",
-            max_lines);
+        log("SYSERR: Invalid maximum number of lines %zu specified in editor_set_max_lines", max_lines);
         return;
     }
 
     d->editor->max_lines = max_lines;
 }
 
-void editor_set_begin_string(DescriptorData *d, char *string, ...) {
+void editor_set_begin_string(DescriptorData *d, const char *string, ...) {
     va_list args;
     char buf[MAX_STRING_LENGTH];
 
@@ -350,17 +347,17 @@ static void editor_append(DescriptorData *d, char *line) {
     char *new_string;
 
     if (d->editor->lines >= d->editor->max_lines) {
-        desc_printf(d, "Too many lines - Input ignored.  Max lines: %u lines.\n", d->editor->max_lines);
+        desc_printf(d, "Too many lines - Input ignored.  Max lines: %zu lines.\n", d->editor->max_lines);
         return;
     }
 
     if (line_length >= space_left) {
         /* Shorter than 3?  To short for even a newline.  Ignore line. */
         if (space_left <= 3) {
-            desc_printf(d, "String too long - Input ignored.  Max length: %u characters.\n", d->editor->max_length);
+            desc_printf(d, "String too long - Input ignored.  Max length: %zu characters.\n", d->editor->max_length);
             return;
         }
-        desc_printf(d, "String too long - Input truncated.  Max length: %u characters.\n", d->editor->max_length);
+        desc_printf(d, "String too long - Input truncated.  Max length: %zu characters.\n", d->editor->max_length);
         new_length = d->editor->max_length - 1;
     }
 

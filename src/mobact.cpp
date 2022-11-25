@@ -49,7 +49,7 @@ ACMD(do_douse);
 bool update_inventory(CharData *ch, ObjData *obj, int where);
 CharData *check_guard(CharData *ch, CharData *victim, int gag_output);
 void get_check_money(CharData *ch, ObjData *obj);
-void perform_wear(CharData *ch, ObjData *obj, int where, bool collective=false);
+void perform_wear(CharData *ch, ObjData *obj, int where, bool collective = false);
 int find_eq_pos(CharData *ch, ObjData *obj, char *arg);
 bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 void hunt_victim(CharData *ch);
@@ -113,7 +113,8 @@ void mobile_activity(void) {
         if (MOB_PERFORMS_SCRIPTS(ch) && MOB_FLAGGED(ch, MOB_SPEC) && !no_specials) {
             if (mob_index[GET_MOB_RNUM(ch)].func == nullptr) {
                 sprintf(buf, "%s (#%d): Attempting to call non-existing mob func", GET_NAME(ch), GET_MOB_VNUM(ch));
-                log(buf);
+                log("%s", buf);
+                ;
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_SPEC);
             } else if ((mob_index[GET_MOB_RNUM(ch)].func)(ch, ch, 0, ""))
                 /* If it executes okay, go on to the next mob. */

@@ -47,7 +47,7 @@ extern const char *cmd_door[];
 
 #define CAN_GO(ch, dir) (CH_EXIT(ch, dir) && EXIT_DEST(CH_EXIT(ch, dir)) && !EXIT_IS_CLOSED(CH_EXIT(ch, dir)))
 
-char *exit_dest_desc(Exit *e);
+const char *exit_dest_desc(Exit *e);
 Exit *create_exit(int dest_room);
 bool exit_has_keyword(Exit *exit, const char *name);
 Exit *opposite_exit(Exit *exit, room_num roomvnum, int dir);

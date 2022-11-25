@@ -134,12 +134,14 @@ static ObjData *load_corpse(int id) {
         depth = atoi(buf1);
         if ((depth = real_room(depth)) < 0) {
             sprintf(buf, "SYSERR: Unable to locate room %s for corpse %d", buf1, id);
-            log(buf);
+            log("%s", buf);
+            ;
             depth = r_mortal_start_room;
         }
     } else {
         sprintf(buf, "SYSERR: First line of corpse file not room vnum for corpse %d", id);
-        log(buf);
+        log("%s", buf);
+        ;
         if (strchr(buf1, ':'))
             rewind(fl);
         depth = r_mortal_start_room;
@@ -148,7 +150,8 @@ static ObjData *load_corpse(int id) {
     if (build_object(fl, &obj, &location)) {
         if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !strstr(obj->name, "corpse")) {
             sprintf(buf, "SYSERR: First object '%s' loaded from corpse %d not corpse", obj->short_description, id);
-            log(buf);
+            log("%s", buf);
+            ;
             extract_obj(obj);
             return nullptr;
         }
@@ -158,7 +161,8 @@ static ObjData *load_corpse(int id) {
         obj_to_room(obj, depth);
     } else {
         sprintf(buf, "SYSERR: Unable to read in corpse data for corpse %d in load_corpse", id);
-        log(buf);
+        log("%s", buf);
+        ;
         return nullptr;
     }
 
@@ -299,7 +303,8 @@ void boot_corpses(void) {
 
         if (!(corpse = load_corpse(id))) {
             sprintf(buf, "SYSERR: Unable to load corpse %d in corpse control list", id);
-            log(buf);
+            log("%s", buf);
+            ;
             continue;
         }
 

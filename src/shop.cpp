@@ -45,6 +45,16 @@ const char *trade_letters[] = {"Good",                            /* First, the 
 const char *operator_str[] = {"[({", "])}", "|+", "&*", "^'"};
 const char *shop_bits[] = {"WILL_FIGHT", "USES_BANK", "\n"};
 
+const char *msg_not_open_yet = "Come back later!";
+const char *msg_not_reopen_yet = "Sorry, we have closed, but come back later.";
+const char *msg_closed_for_day = "Sorry, come back tomorrow.";
+const char *msg_no_steal_here = "$n is a bloody thief!";
+const char *msg_no_see_char = "I don't trade with someone I can't see!";
+const char *msg_no_sell_align = "Get out of here before I call the guards!";
+const char *msg_no_sell_class = "We don't serve your kind here!";
+const char *msg_no_used_wandstaff = "I don't buy used up wands or staves!";
+const char *msg_cant_kill_keeper = "Get out of here before I call the guards!";
+
 /* Forward/External function declarations */
 ACMD(do_tell);
 ACMD(do_action);
@@ -59,7 +69,7 @@ int is_ok_char(CharData *keeper, CharData *ch, int shop_nr) {
     char buf[200];
 
     if (!(CAN_SEE(keeper, ch))) {
-        do_say(keeper, MSG_NO_SEE_CHAR, cmd_say, 0);
+        do_say(keeper, strdup(msg_no_see_char), cmd_say, 0);
         return (false);
     }
     if (IS_GOD(ch))
@@ -67,7 +77,7 @@ int is_ok_char(CharData *keeper, CharData *ch, int shop_nr) {
 
     if ((IS_GOOD(ch) && NOTRADE_GOOD(shop_nr)) || (IS_EVIL(ch) && NOTRADE_EVIL(shop_nr)) ||
         (IS_NEUTRAL(ch) && NOTRADE_NEUTRAL(shop_nr))) {
-        sprintf(buf, "%s %s", GET_NAME(ch), MSG_NO_SELL_ALIGN);
+        sprintf(buf, "%s %s", GET_NAME(ch), msg_no_sell_align);
         do_tell(keeper, buf, cmd_tell, 0);
         return (false);
     }
@@ -76,7 +86,7 @@ int is_ok_char(CharData *keeper, CharData *ch, int shop_nr) {
 
     if ((IS_MAGIC_USER(ch) && NOTRADE_MAGIC_USER(shop_nr)) || (IS_CLERIC(ch) && NOTRADE_CLERIC(shop_nr)) ||
         (IS_ROGUE(ch) && NOTRADE_THIEF(shop_nr)) || (IS_WARRIOR(ch) && NOTRADE_WARRIOR(shop_nr))) {
-        sprintf(buf, "%s %s", GET_NAME(ch), MSG_NO_SELL_CLASS);
+        sprintf(buf, "%s %s", GET_NAME(ch), msg_no_sell_class);
         do_tell(keeper, buf, cmd_tell, 0);
         return (false);
     }
@@ -88,12 +98,12 @@ int is_open(CharData *keeper, int shop_nr, int msg) {
 
     *buf = 0;
     if (SHOP_OPEN1(shop_nr) > time_info.hours)
-        strcpy(buf, MSG_NOT_OPEN_YET);
+        strcpy(buf, msg_not_open_yet);
     else if (SHOP_CLOSE1(shop_nr) < time_info.hours) {
         if (SHOP_OPEN2(shop_nr) > time_info.hours)
-            strcpy(buf, MSG_NOT_REOPEN_YET);
+            strcpy(buf, msg_not_reopen_yet);
         else if (SHOP_CLOSE2(shop_nr) < time_info.hours)
-            strcpy(buf, MSG_CLOSED_FOR_DAY);
+            strcpy(buf, msg_closed_for_day);
     }
     if (!(*buf))
         return (true);
@@ -533,7 +543,7 @@ void shopping_buy(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
             do_action(keeper, GET_NAME(ch), cmd_snicker, 0);
             return;
         case 1:
-            do_echo(keeper, "smokes on his joint.", cmd_emote, SCMD_EMOTE);
+            do_echo(keeper, strdup("smokes on his joint."), cmd_emote, SCMD_EMOTE);
             return;
         default:
             return;
@@ -620,7 +630,7 @@ void shopping_buy(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     if (GET_LEVEL(ch) < LVL_IMMORT)
         apply_getcash(keeper, copperamt);
 
-    sprintf(tempstr, times_message(ch->carrying, 0, bought));
+    strcpy(tempstr, times_message(ch->carrying, 0, bought));
     sprintf(buf, "$n buys %s.", tempstr);
     act(buf, false, ch, obj, 0, TO_ROOM);
 
@@ -661,11 +671,12 @@ ObjData *get_selling_obj(CharData *ch, char *name, CharData *keeper, int shop_nr
         sprintf(buf, shop_index[shop_nr].do_not_buy, GET_NAME(ch));
         break;
     case OBJECT_DEAD:
-        sprintf(buf, "%s %s", GET_NAME(ch), MSG_NO_USED_WANDSTAFF);
+        sprintf(buf, "%s %s", GET_NAME(ch), msg_no_used_wandstaff);
         break;
     default:
         sprintf(buf, "Illegal return value of %d from trade_with() (shop.c)", result);
-        log(buf);
+        log("%s", buf);
+        ;
         sprintf(buf, "%s An error has occurred.", GET_NAME(ch));
         break;
     }
@@ -980,7 +991,7 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
                 else {
                     index++;
                     if (!(*name) || isname(name, last_obj->name))
-                        pprintf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr));
+                        pprintf(ch, "%s", list_object(keeper, last_obj, ch, cnt, index, shop_nr));
                     cnt = 1;
                     last_obj = obj;
                 }
@@ -993,7 +1004,7 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
         else
             pprintf(ch, "Currently, there is nothing for sale.\n");
     } else if (!(*name) || isname(name, last_obj->name))
-        pprintf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr));
+        pprintf(ch, "%s", list_object(keeper, last_obj, ch, cnt, index, shop_nr));
 
     start_paging(ch);
 }
@@ -1073,7 +1084,7 @@ SPECIAL(shop_keeper) {
         return (false);
 
     if (CMD_IS("steal")) {
-        sprintf(argm, "$N shouts '%s'", MSG_NO_STEAL_HERE);
+        sprintf(argm, "$N shouts '%s'", msg_no_steal_here);
         do_action(keeper, GET_NAME(ch), cmd_slap, 0);
         act(argm, false, ch, 0, keeper, TO_CHAR);
         return (true);
@@ -1103,7 +1114,7 @@ int ok_damage_shopkeeper(CharData *ch, CharData *victim) {
         for (index = 0; index < top_shop; index++)
             if ((GET_MOB_RNUM(victim) == SHOP_KEEPER(index)) && !SHOP_KILL_CHARS(index)) {
                 do_action(victim, GET_NAME(ch), cmd_slap, 0);
-                sprintf(buf, "%s %s", GET_NAME(ch), MSG_CANT_KILL_KEEPER);
+                sprintf(buf, "%s %s", GET_NAME(ch), msg_cant_kill_keeper);
                 do_tell(victim, buf, cmd_tell, 0);
                 return (false);
             }
@@ -1132,7 +1143,8 @@ int add_to_list(ShopBuyData *list, int type, int *len, int *val, int *amount) {
 int end_read_list(ShopBuyData *list, int len, int error) {
     if (error) {
         sprintf(buf, "Raise MAX_SHOP_OBJ constant in shop.h to %d", len + error);
-        log(buf);
+        log("%s", buf);
+        ;
     }
     BUY_WORD(list[len]) = 0;
     BUY_AMOUNT(list[len]) = 0;

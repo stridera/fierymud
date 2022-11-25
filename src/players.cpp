@@ -624,7 +624,8 @@ int load_player(const char *name, CharData *ch) {
         default:
         bad_tag:
             sprintf(buf, "SYSERR: Unknown tag %s in pfile %s: %s", tag, name, line);
-            log(buf);
+            log("%s", buf);
+            ;
         }
     }
 
@@ -714,7 +715,8 @@ void save_player_char(CharData *ch) {
 
     if (IS_NPC(ch) || GET_PFILEPOS(ch) < 0) {
         sprintf(buf, "SYSERR: Attempt to save %s (NPC or no PFILEPOS)", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
@@ -742,13 +744,15 @@ void save_player_char(CharData *ch) {
 
     if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
         sprintf(buf, "SYSERR: Couldn't make file name for saving %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), frename, PLR_FILE)) {
         sprintf(buf, "SYSERR: Couldn't make final file name for %s.", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         return;
     }
 
@@ -995,10 +999,12 @@ void save_player_char(CharData *ch) {
 
     if (fclose(fl)) {
         sprintf(buf, "SYSERR: Error closing player file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     } else if (rename(fname, frename)) {
         sprintf(buf, "SYSERR: Error renaming player file for %s after write", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     }
 
     /* More char_to_store code to add spell and eq affections back in. */
@@ -1052,7 +1058,8 @@ void save_player_char(CharData *ch) {
         save_player_index();
 
     sprintf(buf, "Saved player %s.", GET_NAME(ch));
-    log(buf);
+    log("%s", buf);
+    ;
 }
 
 /* delete_player() removes all files associated with a player who is
@@ -1260,7 +1267,8 @@ void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
                         "SYSERR: load_ascii_flags: attempting to read in flags for "
                         "block %d, but only %ld blocks allowed for flagvector type",
                         i, FLAGVECTOR_SIZE(num_flags));
-                log(buf);
+                log("%s", buf);
+                ;
             }
         } else
             flags[i] = asciiflag_conv(line);

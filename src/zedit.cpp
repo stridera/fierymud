@@ -592,7 +592,8 @@ void add_cmd_to_list(ResetCommand **list, ResetCommand *newcmd, int pos) {
 #if defined(DEBUG)
         sprintf(buf, "add_cmd_to_list: added %c %d %d %d %d", newlist[i].command, newlist[i].arg1, newlist[i].arg2,
                 newlist[i].arg3, newlist[i].line);
-        log(buf);
+        log("%s", buf);
+        ;
 #endif
     }
 
@@ -640,7 +641,8 @@ void remove_cmd_from_list(ResetCommand **list, int pos) {
         else
             sprintf(buf, "remove_cmd_from_list: deleted %c %d %d %d %d", (*list)[i].command, (*list)[i].arg1,
                     (*list)[i].arg2, (*list)[i].arg3, (*list)[i].line);
-        log(buf);
+        log("%s", buf);
+        ;
 #endif
     }
     /*

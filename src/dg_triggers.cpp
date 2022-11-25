@@ -251,7 +251,7 @@ int command_mtrigger(CharData *actor, char *cmd, char *argument) {
     return 0;
 }
 
-void speech_mtrigger(CharData *actor, char *str) {
+void speech_mtrigger(CharData *actor, const char *str) {
     CharData *ch, *ch_next;
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
@@ -286,7 +286,7 @@ void speech_mtrigger(CharData *actor, char *str) {
 }
 
 /* ch is the vict from ask/whisper/tell, ie the mob */
-void speech_to_mtrigger(CharData *actor, CharData *ch, char *str) {
+void speech_to_mtrigger(CharData *actor, CharData *ch, const char *str) {
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
@@ -1017,7 +1017,7 @@ int command_wtrigger(CharData *actor, char *cmd, char *argument) {
     return 0;
 }
 
-void speech_wtrigger(CharData *actor, char *str) {
+void speech_wtrigger(CharData *actor, const char *str) {
     RoomData *room;
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];

@@ -147,7 +147,8 @@ EVENTFUNC(gravity_event) {
                 "Falling room loop detected: "
                 "%s started falling in room %d; is now in %d",
                 ch ? "char" : "obj", world[event->start_room].vnum, world[in_room].vnum);
-        log(buf);
+        log("%s", buf);
+        ;
         if (ch)
             send_to_char("\nParadoxically, you end up where you began.\n", ch);
         CANCEL_GRAVITY;

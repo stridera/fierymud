@@ -232,7 +232,8 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
         break;
     default:
         sprintf(buf, "SYSERR:handler.c:effect_modify() Unknown apply adjust attempt for: %s", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
         break;
     }
 
@@ -441,7 +442,8 @@ void active_effect_remove(CharData *ch, effect *effect) {
                 "SYSERR: handler.c active_effect_remove() no wear-off message; "
                 "effect->type = %d on %s.",
                 effect->type, GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     }
 
     effect_remove(ch, effect);
@@ -1146,7 +1148,8 @@ void extract_char(CharData *ch) {
 
     if (ch->in_room == NOWHERE) {
         sprintf(buf, "SYSERR:handler.c:extract_char: NOWHERE extracting char: %s", GET_NAME(ch));
-        log(buf);
+        log("%s", buf);
+        ;
     }
 
     /*

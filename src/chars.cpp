@@ -93,7 +93,8 @@ int get_base_saves(CharData *ch, int type) {
 
     if (type < 0 || type >= NUM_SAVES) {
         sprintf(buf, "SYSERR: get_base_saves: invalid type %d", type);
-        log(buf);
+        log("%s", buf);
+        ;
         return 100;
     }
 
@@ -223,7 +224,8 @@ void roll_natural_abils(CharData *ch) {
             default:
                 sprintf(buf, "SYSERR: roll_natural_abils(): class '%s' statorder is broken",
                         classes[(int)GET_CLASS(ch)].name);
-                log(buf);
+                log("%s", buf);
+                ;
             }
         }
     } else {

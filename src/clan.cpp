@@ -44,7 +44,7 @@ CLANCMD(clan_list) {
         pprintf(ch,
                 "[%3d]  " ELLIPSIS_FMT
                 " "
-                "%3u/%-5u   " AHCYN "%5up" ANRM "/%-3u\n",
+                "%3zu/%-5u   " AHCYN "%5up" ANRM "/%-3u\n",
                 (*iter)->number, ELLIPSIS_STR((*iter)->abbreviation, 18), (*iter)->member_count, (*iter)->power,
                 (*iter)->app_fee, (*iter)->app_level);
     }
@@ -206,7 +206,7 @@ CLANCMD(clan_set) {
             else
                 REMOVE_FLAG(clan->ranks[clan->rank_count - 1].privileges, i);
 
-        char_printf(ch, "You add a new rank (%u) to %s.\n", clan->rank_count, clan->name);
+        char_printf(ch, "You add a new rank (%zu) to %s.\n", clan->rank_count, clan->name);
         clan_notification(clan, ch, "%s adds a new rank to your clan.", GET_NAME(ch));
     }
 
@@ -245,7 +245,7 @@ CLANCMD(clan_set) {
         --clan->rank_count;
         free(clan->ranks[clan->rank_count].title);
 
-        char_printf(ch, "You remove a rank (%u) from %s.\n", clan->rank_count + 1, clan->name);
+        char_printf(ch, "You remove a rank (%zu) from %s.\n", clan->rank_count + 1, clan->name);
         clan_notification(clan, ch, "%s removes a rank from your clan.", GET_NAME(ch));
 
         for (member = clan->members; member; member = member->next)
@@ -295,7 +295,7 @@ CLANCMD(clan_set) {
         }
         rank = atoi(arg);
         if (!is_number(arg) || rank < 1 || rank > clan->rank_count) {
-            char_printf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%u.\n", arg, clan->rank_count);
+            char_printf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%zu.\n", arg, clan->rank_count);
             return;
         }
         skip_spaces(&argument);
@@ -599,7 +599,7 @@ CLANCMD(clan_priv) {
     rank = atoi(arg);
 
     if (rank < RANK_LEADER || rank > clan->rank_count) {
-        char_printf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%d.\n", arg, clan->rank_count);
+        char_printf(ch, "'%s' is an invalid rank.  Valid ranks are 1-%zu.\n", arg, clan->rank_count);
         return;
     }
 
@@ -659,13 +659,13 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
     pprintf(ch,
             "Nickname: " AFYEL "%s" ANRM
             "  "
-            "Ranks: " AFYEL "%u" ANRM
+            "Ranks: " AFYEL "%zu" ANRM
             "  "
-            "Members: " AFYEL "%u" ANRM
+            "Members: " AFYEL "%zu" ANRM
             "  "
             "Power: " AFYEL "%u" ANRM
             "\n"
-            "Applicants: " AFYEL "%u" ANRM
+            "Applicants: " AFYEL "%zu" ANRM
             "  "
             "App Fee: " AFCYN "%up" ANRM
             "  "
@@ -681,11 +681,11 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
 
         pprintf(ch, "\nRanks:\n");
         for (i = 0; i < clan->rank_count; ++i)
-            pprintf(ch, "%3u  %s\n", i + 1, clan->ranks[i].title);
+            pprintf(ch, "%3zu  %s\n", i + 1, clan->ranks[i].title);
 
         pprintf(ch, "\nPrivileges:\n         ");
         for (j = 1; j <= clan->rank_count; ++j)
-            pprintf(ch, "%3u", j);
+            pprintf(ch, "%3zu", j);
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
             pprintf(ch, "\n%-9s", clan_privileges[i].abbr);
             for (j = 0; j < clan->rank_count; ++j)
@@ -815,6 +815,7 @@ static EDITOR_FUNC(clan_edit_done) {
 
 CLANCMD(clan_edit) {
     char **message;
+    const char *editing;
     ClanEdit *data;
 
     if (!ch->desc)
@@ -824,10 +825,10 @@ CLANCMD(clan_edit) {
 
     if (is_abbrev(arg, "motd")) {
         message = &clan->motd;
-        argument = "message of the day";
+        editing = "message of the day";
     } else if (is_abbrev(arg, "desc")) {
         message = &clan->description;
-        argument = "description";
+        editing = "description";
     } else {
         log("SYSECR: E unknown string specified");
         return;
@@ -835,17 +836,17 @@ CLANCMD(clan_edit) {
 
     CREATE(data, ClanEdit, 1);
     data->clan = clan;
-    strcpy(data->string, argument);
+    strcpy(data->string, arg);
 
     if (editor_edited_by(message)) {
-        char_printf(ch, "%s's %s is already being edited.", clan->name, argument);
+        char_printf(ch, "%s's %s is already being edited.", clan->name, editing);
         return;
     }
 
     act("$n begins writing on a large scroll.", true, ch, 0, 0, TO_ROOM);
 
     editor_init(ch->desc, message, MAX_DESC_LENGTH);
-    editor_set_begin_string(ch->desc, "Edit %s's %s below.", clan->name, argument);
+    editor_set_begin_string(ch->desc, "Edit %s's %s below.", clan->name, editing);
     editor_set_callback_data(ch->desc, data, ED_FREE_DATA);
     editor_set_callback(ch->desc, ED_EXIT_SAVE, clan_edit_done);
     editor_set_callback(ch->desc, ED_EXIT_ABORT, clan_edit_done);
@@ -990,12 +991,8 @@ static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
     else
         name_color = "";
 
-    char_printf(ch,
-                "[%3s] %s%-10s" ANRM
-                " "
-                "%-*.*s%s"
-                " %s\n",
-                level, name_color, member->name, ELLIPSIS_STR(title, 25), last_logon);
+    char_printf(ch, "[%3s] %s%-10s" ANRM " " ELLIPSIS_FMT " %s\n", level, name_color, member->name,
+                ELLIPSIS_STR(title, 25), last_logon);
 }
 
 static void send_clan_who_header(CharData *ch) {
