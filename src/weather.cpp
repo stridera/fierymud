@@ -171,10 +171,7 @@ void update_season() {
     init_weather();
 }
 
-static CBP_FUNC(cb_outdoor) {
-    CharData *ch = (CharData *)obj;
-    int zone_rnum = (intptr_t)data;
-
+static int cb_outdoor(CharData *ch, int zone_rnum) {
     return (AWAKE(ch) && CH_OUTSIDE(ch) && IN_ZONE_RNUM(ch) == zone_rnum);
 }
 
@@ -269,7 +266,7 @@ void update_wind(int zone_rnum) {
     else if (zone->wind_speed < WIND_NONE)
         zone->wind_speed = WIND_NONE;
 
-    callback_printf(cb_outdoor, (void *)zone_rnum, "%s", wind_message(zone->wind_speed, original));
+    callback_printf(cb_outdoor, zone_rnum, "%s", wind_message(zone->wind_speed, original));
 }
 
 char *temperature_message(int temperature) {
@@ -347,7 +344,7 @@ void update_temperature(int zone_rnum) {
     else if (zone->temperature < TEMP_FREEZING)
         zone->temperature = TEMP_FREEZING;
 
-    callback_printf(cb_outdoor, (void *)zone_rnum, "%s", temperature_message(zone->temperature));
+    callback_printf(cb_outdoor, zone_rnum, "%s", temperature_message(zone->temperature));
 }
 
 char *precipitation_message(ZoneData *zone, int original) {
@@ -440,7 +437,7 @@ void update_precipitation(int zone_rnum) {
     else if (zone->precipitation < PRECIP_NONE)
         zone->precipitation = PRECIP_NONE;
 
-    callback_printf(cb_outdoor, (void *)zone_rnum, "%s", precipitation_message(zone, original));
+    callback_printf(cb_outdoor, zone_rnum, "%s", precipitation_message(zone, original));
 }
 
 /* Update the weather for all zones. */

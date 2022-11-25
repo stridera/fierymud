@@ -22,7 +22,7 @@
 static struct {
     int visited;
     const char *str;
-    int totallen;
+    size_t totallen;
     const char *ellipsis;
 } __ellipsis = {(1 << 3) - 1, nullptr, 0, 0};
 
@@ -65,7 +65,7 @@ const void *ellipsis(const char *str, int maxlen, int mode) {
     __ellipsis.visited |= mode;
 
     if (mode == __ELLIPSIS_W1 || mode == __ELLIPSIS_W2)
-        return (void *)__ellipsis.totallen;
+        return (const void *)__ellipsis.totallen;
     else if (mode == __ELLIPSIS_E)
         return __ellipsis.ellipsis;
     else

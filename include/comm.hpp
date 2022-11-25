@@ -21,7 +21,7 @@
 
 #define HOTBOOT_FILE "hotboot.dat"
 
-#define CBP_FUNC(name) int(name)(void *obj, void *data)
+#define CBP_FUNC(name) int(name)(CharData *, int)
 
 /* comm.c */
 void all_printf(const char *messg, ...) __attribute__((format(printf, 1, 2)));
@@ -30,7 +30,7 @@ void char_printf(const CharData *ch, const char *messg, ...) __attribute__((form
 void room_printf(int rrnum, const char *messg, ...) __attribute__((format(printf, 2, 3)));
 void zone_printf(int zone_vnum, int skip_room, int min_stance, const char *messg, ...)
     __attribute__((format(printf, 4, 5)));
-void callback_printf(CBP_FUNC(callback), void *data, const char *messg, ...) __attribute__((format(printf, 3, 4)));
+void callback_printf(CBP_FUNC(callback), int, const char *messg, ...) __attribute__((format(printf, 3, 4)));
 void close_socket(DescriptorData *d);
 int speech_ok(CharData *ch, int quiet);
 void send_gmcp_room(CharData *ch);

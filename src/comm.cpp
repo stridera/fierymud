@@ -2586,7 +2586,7 @@ void zone_printf(int zone_vnum, int skip_room, int min_stance, const char *messg
         }
 }
 
-void callback_printf(CBP_FUNC(callback), void *data, const char *messg, ...) {
+void callback_printf(CBP_FUNC(callback), int data, const char *messg, ...) {
     DescriptorData *i;
     bool found;
     va_list args;
