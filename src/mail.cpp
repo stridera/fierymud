@@ -196,7 +196,7 @@ int has_mail(long recipient) {
 */
 
 /*void store_mail(long to, long from, char *message_pointer)*/
-void store_mail(long to, long from, int vnum, char *message_pointer) {
+bool store_mail(long to, long from, int vnum, char *message_pointer) {
     HeaderBlock header;
     DataBlock data;
     long last_address, target_address;
@@ -204,12 +204,18 @@ void store_mail(long to, long from, int vnum, char *message_pointer) {
     int bytes_written = 0;
     int total_length = strlen(message_pointer);
 
+    if (sizeof(HEADER_BLOCK) != BLOCK_SIZE || sizeof(HeaderBlock) != sizeof(HEADER_BLOCK)) {
+        log("SYSERR: Mail system -- fatal error #4!!!");
+        no_mail = 1;
+        return false;
+    }
+
     assert(sizeof(HeaderBlock) == sizeof(DataBlock));
     assert(sizeof(HeaderBlock) == BLOCK_SIZE);
 
     if (from < 0 || to < 0 || !*message_pointer) {
         log("SYSERR: Mail system -- non-fatal error #5.");
-        return;
+        return false;
     }
     memset((char *)&header, 0, sizeof(header)); /* clear the record */
     header.block_type = HEADER_BLOCK;
@@ -226,7 +232,7 @@ void store_mail(long to, long from, int vnum, char *message_pointer) {
     write_to_file(&header, BLOCK_SIZE, target_address);
 
     if (strlen(msg_txt) <= HEADER_BLOCK_DATASIZE)
-        return; /* that was the whole message */
+        return true; /* that was the whole message */
 
     bytes_written = HEADER_BLOCK_DATASIZE;
     msg_txt += HEADER_BLOCK_DATASIZE; /* move pointer to next bit of text */
@@ -279,6 +285,7 @@ void store_mail(long to, long from, int vnum, char *message_pointer) {
         bytes_written += strlen(data.txt);
         msg_txt += strlen(data.txt);
     }
+    return true;
 } /* store mail */
 
 /* READ_DELETE */
@@ -399,7 +406,7 @@ SPECIAL(postmaster) {
 
     if (no_mail) {
         send_to_char("Sorry, the mail system is having technical difficulties.\n", ch);
-        return 0;
+        return 1;
     }
 
     if (CMD_IS("mail")) {

@@ -42,7 +42,7 @@
 
 int scan_file(void);
 int has_mail(long recipient);
-void store_mail(long to, long from, int vnum, char *message_pointer);
+bool store_mail(long to, long from, int vnum, char *message_pointer);
 char *read_delete(long recipient, int *obj_vnum);
 void free_mail_index(void);
 
@@ -70,8 +70,7 @@ struct HeaderData {
 /* size of the data part of a data block */
 #define DATA_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - sizeof(char))
 
-/* note that an extra space is allowed in all string fields for the
-   terminating null character.  */
+/* note that an extra space is allowed in all string fields for the terminating null character.  */
 
 struct HeaderBlock {
     long block_type;                     /* is this a header or data block?	*/

@@ -705,8 +705,10 @@ void string_add(DescriptorData *d, char *str) {
             hedit_disp_menu(d);
         else if (!d->connected && (PLR_FLAGGED(d->character, PLR_MAILING))) {
             if ((terminator == 1) && *d->str) {
-                store_mail(d->mail_to, GET_IDNUM(d->character), d->mail_vnum, *d->str);
-                write_to_output("Message sent!\n", d);
+                if (store_mail(d->mail_to, GET_IDNUM(d->character), d->mail_vnum, *d->str))
+                    write_to_output("Message sent!\n", d);
+                else
+                    write_to_output("Mail system error - message not sent.\n", d);
             } else {
                 write_to_output("Mail aborted.\n", d);
                 if (d->mail_vnum != NOTHING) {
