@@ -3335,15 +3335,14 @@ ACMD(do_score) {
         else if (!VALID_COMPOSITIONNUM(BASE_COMPOSITION(tch)))
             strcpy(buf2, "@YInvalid!@0");
         else
-            sprintf(buf2, "%s%c%s", compositions[BASE_COMPOSITION(tch)].color,
-                    toupper(*(compositions[BASE_COMPOSITION(tch)].name)), compositions[BASE_COMPOSITION(tch)].name + 1);
+            sprintf(buf2, "%s%s", compositions[BASE_COMPOSITION(tch)].color,
+                    capitalize(compositions[BASE_COMPOSITION(tch)].name));
         buf += fmt::format(
             "  Size: &3&8{}&0  Gender: &3&8{}&0\n"
-            "Race: {}  Life force: {}{}{}&0  "
-            "Composition: {}{}{}&0{}&0{}\n",
-            capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), toupper(*LIFEFORCE_NAME(tch)),
-            LIFEFORCE_NAME(tch) + 1, COMPOSITION_COLOR(tch), toupper(*COMPOSITION_NAME(tch)), COMPOSITION_NAME(tch) + 1,
-            *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
+            "Race: {}  Life force: {}{}&0  "
+            "Composition: {}{}&0{}&0{}\n",
+            capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), capitalize(LIFEFORCE_NAME(tch)),
+            COMPOSITION_COLOR(tch), capitalize(COMPOSITION_NAME(tch)), *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
     } else
         buf += fmt::format("  Race: {}  Size: &3&8{}&0  Gender: &3&8{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)),
                            buf1);
@@ -4379,7 +4378,7 @@ ACMD(do_songs) {
     if (ch == tch)
         strcpy(buf, "You know the following songs:\n");
     else
-        sprintf(buf, "%c%s knows the following songs:\n", toupper(*GET_NAME(tch)), GET_NAME(tch) + 1);
+        sprintf(buf, "%s knows the following songs:\n", capitalize(GET_NAME(tch)));
 
     for (i = MAX_SKILLS + 1; i <= MAX_CHANTS; ++i) {
         if (*skills[i].name == '!')
@@ -4417,7 +4416,7 @@ ACMD(do_music) {
     if (ch == tch)
         strcpy(buf, "You know the following music:\n");
     else
-        sprintf(buf, "%c%s knows the following music:\n", toupper(*GET_NAME(tch)), GET_NAME(tch) + 1);
+        sprintf(buf, "%s knows the following music:\n", capitalize(GET_NAME(tch)));
 
     for (i = MAX_SKILLS + 1; i <= MAX_SONGS; ++i) {
         if (*skills[i].name == '!')
