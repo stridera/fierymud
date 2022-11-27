@@ -116,7 +116,7 @@ struct RoomData {
     /* bitvector for spells/skills */
     flagvector room_effects[FLAGVECTOR_SIZE(NUM_ROOM_EFF_FLAGS)];
 
-    byte light; /* Number of light sources in room     */
+    int light; /* Number of light sources in room     */
     SPECIAL(*func);
 
     TriggerPrototypeList *proto_script; /* list of default triggers  */
