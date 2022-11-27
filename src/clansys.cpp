@@ -21,11 +21,6 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/*
- * Needed for mkdir in init_clans.  This is only guaranteed to work on
- * systems with the GNU C library.  But I don't forsee us switching to
- * Windows or something anytime soon.
- */
 #include <sys/stat.h>
 
 /***************************************************************************

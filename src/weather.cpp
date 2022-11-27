@@ -58,8 +58,7 @@ HemisphereData hemispheres[NUM_HEMISPHERES] = {
  * for each actual zone at run-time based on the settings here...
  */
 ClimateData climates[NUM_CLIMATES] =
-    {/* climate         temperature    precipitation   wind speed
-        allowed_disasters */
+    {/* climate         temperature    precipitation   wind speed    allowed_disasters */
      {"None", TEMP_MILD, PRECIP_NONE, WIND_NONE, DISASTER_NONE},
      {"Semiarid", TEMP_HOT, PRECIP_NONE, WIND_NONE, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
      {"Arid", TEMP_MILD, PRECIP_DRIZZLE, WIND_STRONG, DISASTER_SANDSTORM | DISASTER_HEATWAVE},
@@ -123,7 +122,7 @@ void update_daylight() {
         return;
     }
 
-    /* Season change: send the message to everybody. */
+    /* Day to Night to Day; send the message to everybody. */
     for (d = descriptor_list; d; d = d->next)
         if (STATE(d) == CON_PLAYING && d->character && AWAKE(d->character) && CH_OUTSIDE(d->character))
             write_to_output(daylight_change[hemispheres[IN_HEMISPHERE(d->character)].sunlight], d);

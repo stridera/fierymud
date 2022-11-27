@@ -162,9 +162,7 @@ ACMD(do_infodump);
 ACMD(do_insult);
 ACMD(do_invis);
 ACMD(do_iptables);
-#ifndef CIRCLE_WINDOWS
 ACMD(do_ispell);
-#endif
 ACMD(do_kick);
 ACMD(do_kill);
 ACMD(do_kneel);
@@ -590,9 +588,7 @@ const CommandInfo cmd_info[] = {
     {"insult", POS_PRONE, STANCE_RESTING, do_insult, 0, 0, 0},
     {"invis", POS_PRONE, STANCE_DEAD, do_invis, LVL_IMMORT, 0, CMD_ANY},
     {"iptables", POS_PRONE, STANCE_DEAD, do_iptables, LVL_HEAD_C, 0, CMD_ANY},
-#ifndef CIRCLE_WINDOWS
     {"ispell", POS_PRONE, STANCE_DEAD, do_ispell, LVL_IMMORT, 0, CMD_ANY},
-#endif
 
     {"junk", POS_PRONE, STANCE_RESTING, do_drop, 0, SCMD_JUNK, 0},
 

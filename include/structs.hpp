@@ -402,8 +402,7 @@ struct CharData {
                                         /* Events */
     Casting casting;                    /* note this is NOT a pointer */
     Event *events;                      /* List of events related to this character */
-    int event_flags[EVENT_FLAG_FIELDS]; /* Bitfield of events active on this
-                                           character */
+    int event_flags[EVENT_FLAG_FIELDS]; /* Bitfield of events active on this character */
 };
 
 /* ====================================================================== */

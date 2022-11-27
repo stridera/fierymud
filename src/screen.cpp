@@ -25,14 +25,14 @@ static const char *ABS_COLORS[CHARS];
 
 void init_colors(void) {
     const struct {
-        char code;
+        const char code;
         const char *ansi;
     } rel_color_list[] = {{CREL, AREL}, {'0', ANRM}, {'1', FRED}, {'2', FGRN}, {'3', FYEL}, {'4', FBLU},
                           {'5', FMAG},  {'6', FCYN}, {'7', FWHT}, {'8', ABLD}, {'9', FBLK}, {'u', AUND},
                           {'b', ABLD},  {'d', ADAR}, {'R', BRED}, {'G', BGRN}, {'Y', BYEL}, {'B', BBLU},
                           {'M', BMAG},  {'C', BCYN}, {'W', BWHT}, {'L', BBLK}, {'K', BLBK}, {'_', "\n"}};
     const struct {
-        char code;
+        const char code;
         const char *ansi;
     } abs_color_list[] = {
         {CABS, AABS}, {'0', ANRM},  {'1', AFRED}, {'2', AFGRN}, {'3', AFYEL}, {'4', AFBLU}, {'5', AFMAG},

@@ -148,25 +148,9 @@ void free_invalid_list(void);
  *  main game loop and related stuff                                    *
  ********************************************************************* */
 
-/* Windows doesn't have gettimeofday, so we'll simulate it. */
-#ifdef CIRCLE_WINDOWS
-
-void gettimeofday(timeval *t, timezone *dummy) {
-    DWORD millisec = GetTickCount();
-
-    t->tv_sec = (int)(millisec / 1000);
-    t->tv_usec = (millisec % 1000) * 1000;
-}
-
-#endif
-
 int main(int argc, char **argv) {
     int pos = 1;
     const char *dir;
-
-#ifdef MEMORY_DEBUG
-    zmalloc_init();
-#endif
 
     port = DFLT_PORT;
     dir = DFLT_DIR;
@@ -183,8 +167,7 @@ int main(int argc, char **argv) {
                 exit(1);
             }
             break;
-        case 'H': /* -H<socket number> recover from hotboot, this is the control
-                     socket */
+        case 'H': /* -H<socket number> recover from hotboot, this is the control socket */
             num_hotboots = 1;
             mother_desc = atoi(argv[pos] + 2);
             break;
@@ -220,11 +203,7 @@ int main(int argc, char **argv) {
             exit(1);
         }
     }
-#ifdef CIRCLE_WINDOWS
-    if (_chdir(dir) < 0) {
-#else
     if (chdir(dir) < 0) {
-#endif
         perror("Fatal error changing to data directory");
         exit(1);
     }
@@ -248,27 +227,6 @@ int main(int argc, char **argv) {
 
     log("Clearing game world.");
     destroy_db();
-
-#ifdef MEMORY_DEBUG
-    if (!scheck) {
-        log("Clearing other memory.");
-        free_bufpools();     /* comm.c */
-        free_player_index(); /* db.c */
-        free_messages();     /* fight.c */
-        free_text_files();   /* db.c */
-        board_cleanup();     /* board.c */
-        free(cmd_sort_info);
-        free_social_messages(); /* act.social.c */
-        free_help_table();      /* db.c */
-        free_invalid_list();    /* ban.c */
-        free_save_list();       /* olc.c */
-        free_clans();           /* clan.c */
-        free(ships);
-        free_mail_index(); /* mail.c */
-    }
-
-    zmalloc_check();
-#endif
 
     return 0;
 }
@@ -384,10 +342,8 @@ void init_game(int port) {
 
     boot_db();
 
-#ifndef CIRCLE_WINDOWS
     log("Signal trapping.");
     signal_setup();
-#endif
 
     /* Decide when to reboot */
     reboot_pulse = 3600 * PASSES_PER_SEC * (reboot_hours_base - reboot_hours_deviation) +
@@ -398,17 +354,13 @@ void init_game(int port) {
 
     log("Entering game loop.");
 
-#ifndef CIRCLE_WINDOWS
     ispell_init();
-#endif
 
     game_loop(mother_desc);
 
     auto_save_all();
 
-#ifndef CIRCLE_WINDOWS
     ispell_done();
-#endif
 
     log("Closing all sockets.");
     while (descriptor_list)
@@ -475,33 +427,10 @@ int init_socket(int port) {
      * number anyway, so ths point is (hopefully) moot.
      */
 
-#ifdef CIRCLE_WINDOWS
-    {
-        WORD wVersionRequested;
-        WSADATA wsaData;
-
-        wVersionRequested = MAKEWORD(1, 1);
-
-        if (WSAStartup(wVersionRequested, &wsaData) != 0) {
-            log("WinSock not available!\n");
-            exit(1);
-        }
-        if ((wsaData.iMaxSockets - 4) < max_players) {
-            max_players = wsaData.iMaxSockets - 4;
-        }
-        log("Max players set to %d", max_players);
-
-        if ((s = socket(PF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-            fprintf(stderr, "Error opening network connection: Winsock err #%d\n", WSAGetLastError());
-            exit(1);
-        }
-    }
-#else
     if ((s = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("Error creating socket");
         exit(1);
     }
-#endif /* CIRCLE_WINDOWS */
 
 #if defined(SO_SNDBUF)
     opt = LARGE_BUFSIZE + GARBAGE_SPACE;
@@ -549,10 +478,6 @@ int init_socket(int port) {
 int get_max_players(void) {
     int max_descs = 0;
     char *method;
-
-#if defined(CIRCLE_OS2) || defined(CIRCLE_WINDOWS)
-    return MAX_PLAYERS;
-#else
 
     /*
      * First, we'll try using getrlimit/setrlimit.  This will probably work
@@ -624,7 +549,6 @@ int get_max_players(void) {
     }
     log("Setting player limit to %d using %s.", max_descs, method);
     return max_descs;
-#endif /* WINDOWS or OS2 */
 }
 
 void reboot_mud_prep() {
@@ -804,10 +728,8 @@ void game_loop(int mother_desc) {
 
         maxdesc = mother_desc;
         for (d = descriptor_list; d; d = d->next) {
-#ifndef CIRCLE_WINDOWS
             if (d->descriptor > maxdesc)
                 maxdesc = d->descriptor;
-#endif
             FD_SET(d->descriptor, &input_set);
             FD_SET(d->descriptor, &output_set);
             FD_SET(d->descriptor, &exc_set);
@@ -845,16 +767,12 @@ void game_loop(int mother_desc) {
 
         /* go to sleep */
         do {
-#ifdef CIRCLE_WINDOWS
-            Sleep(timeout.tv_sec * 1000 + timeout.tv_usec / 1000);
-#else
             if (select(0, (fd_set *)0, (fd_set *)0, (fd_set *)0, &timeout) < 0) {
                 if (errno != EINTR) {
                     perror("Select sleep");
                     exit(1);
                 }
             }
-#endif /* CIRCLE_WINDOWS */
             gettimeofday(&now, nullptr);
             timeout = timediff(last_time, now);
         } while (timeout.tv_usec || timeout.tv_sec);
@@ -2069,17 +1987,12 @@ int write_to_descriptor(socket_t desc, const char *txt) {
     total = strlen(txt);
 
     do {
-#ifdef CIRCLE_WINDOWS
-        if ((bytes_written = send(desc, txt, total, 0)) < 0) {
-            if (WSAGetLastError() == WSAEWOULDBLOCK)
-#else
         if ((bytes_written = write(desc, txt, total)) < 0) {
 #ifdef EWOULDBLOCK
             if (errno == EWOULDBLOCK)
                 errno = EAGAIN;
 #endif /* EWOULDBLOCK */
             if (errno == EAGAIN)
-#endif /* CIRCLE_WINDOWS */
                 log("process_output: socket write would block, about to close");
             else
                 perror("Write to socket");
@@ -2113,17 +2026,12 @@ int process_input(DescriptorData *t) {
             log("process_input: about to close connection: input overflow");
             return -1;
         }
-#ifdef CIRCLE_WINDOWS
-        if ((bytes_read = recv(t->descriptor, read_point, space_left, 0)) < 0) {
-            if (WSAGetLastError() != WSAEWOULDBLOCK) {
-#else
         if ((bytes_read = read(t->descriptor, read_point, space_left)) < 0) {
 #ifdef EWOULDBLOCK
             if (errno == EWOULDBLOCK)
                 errno = EAGAIN;
 #endif /* EWOULDBLOCK */
             if (errno != EAGAIN) {
-#endif /* CIRCLE_WINDOWS */
                 log("process_input: about to lose connection");
                 return -1; /* some error condition was encountered on read */
             } else {
@@ -2425,14 +2333,6 @@ void check_idle_passwords(void) {
  * O_NONBLOCK.  Krusty old NeXT machines!  (Thanks to Michael Jones for
  * this and various other NeXT fixes.)
  */
-#ifdef CIRCLE_WINDOWS
-
-void nonblock(socket_t s) {
-    long val = 1;
-    ioctlsocket(s, FIONBIO, &val);
-}
-
-#else
 
 #ifndef O_NONBLOCK
 #define O_NONBLOCK O_NDELAY
@@ -2481,9 +2381,7 @@ RETSIGTYPE hupsig(int signo) {
 }
 
 void signal_setup(void) {
-#ifndef CIRCLE_OS2
     itimerval itime;
-#endif
     timeval interval;
 
     /* user signal 1: reread wizlists.  Used by autowiz system. */
@@ -2505,14 +2403,12 @@ void signal_setup(void) {
      * caught in an infinite loop for more than 3 minutes.  Doesn't work with
      * OS/2.
      */
-#ifndef CIRCLE_OS2
     interval.tv_sec = 180;
     interval.tv_usec = 0;
     itime.it_interval = interval;
     itime.it_value = interval;
     setitimer(ITIMER_VIRTUAL, &itime, nullptr);
     signal(SIGVTALRM, checkpointing);
-#endif
 
     /* just to be on the safe side: */
     signal(SIGHUP, hupsig);
@@ -2520,24 +2416,7 @@ void signal_setup(void) {
     signal(SIGTERM, hupsig);
     signal(SIGPIPE, SIG_IGN);
     signal(SIGALRM, SIG_IGN);
-
-#ifdef CIRCLE_OS2
-#if defined(SIGABRT)
-    signal(SIGABRT, hupsig);
-#endif
-#if defined(SIGFPE)
-    signal(SIGFPE, hupsig);
-#endif
-#if defined(SIGILL)
-    signal(SIGILL, hupsig);
-#endif
-#if defined(SIGSEGV)
-    signal(SIGSEGV, hupsig);
-#endif
-#endif /* CIRCLE_OS2 */
 }
-
-#endif /* CIRCLE_WINDOWS */
 
 /* ****************************************************************
  *       Public routines for system-to-player-communication        *
@@ -2932,7 +2811,7 @@ void format_act(char *rtn, const char *orig, const CharData *ch, ActArg obj, Act
                 CHECK_NULL(victim_object, SANA(victim_object));
                 break;
             case 't':
-                cval = std::get<const char *>(vict_obj);
+                cval = std::get<const char *>(obj);
                 CHECK_NULL(cval, cval);
                 strcpy(target_string, i);
                 break;

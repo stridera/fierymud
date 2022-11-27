@@ -49,19 +49,16 @@
 #define TEMP_FIRE_PLANE 200
 
 /* precipitation rates */
-#define PRECIP_NONE 0          /* not a cloud in the sky, sunny */
-#define PRECIP_PARTLY_CLOUDY 1 /* a few clouds, a little sun    */
-#define PRECIP_MOSTLY_CLOUDY 2 /* no sunny day...               */
-#define PRECIP_GRAY_CLOUDS 3   /* wow, it's gonna rain/snow!    */
-#define PRECIP_DRIZZLE 4       /* snow flurries or drizzly rain */
-#define PRECIP_LIGHT 5         /* trace amounts of rain or snow */
-#define PRECIP_ACTIVE 6        /* hey, it's raining or snowing! */
-#define PRECIP_HEAVY 7         /* it's really coming down now!  */
-#define PRECIP_DANGEROUS                                                                                               \
-    8 /* most likely accompanied by                                                                                    \
-       * WIND_GALE or higher, and probably                                                                             \
-       * will result in disaster soon                                                                                  \
-       */
+#define PRECIP_NONE 0          // not a cloud in the sky, sunny
+#define PRECIP_PARTLY_CLOUDY 1 // a few clouds, a little sun
+#define PRECIP_MOSTLY_CLOUDY 2 // no sunny day...
+#define PRECIP_GRAY_CLOUDS 3   // wow, it's gonna rain/snow!
+#define PRECIP_DRIZZLE 4       // snow flurries or drizzly rain
+#define PRECIP_LIGHT 5         // trace amounts of rain or snow
+#define PRECIP_ACTIVE 6        // hey, it's raining or snowing!
+#define PRECIP_HEAVY 7         // it's really coming down now!
+#define PRECIP_DANGEROUS 8 // most likely accompanied by WIND_GALE or higher, and probably will result in disaster soon
+
 /* keep track of which messages to send to users. */
 #define PRECIP_TYPE_RAIN 0
 #define PRECIP_TYPE_SNOW 1
@@ -71,10 +68,7 @@
 #define WIND_BREEZE 1
 #define WIND_STRONG 2
 #define WIND_GALE 3
-#define WIND_HURRICANE                                                                                                 \
-    4 /* if accompanied by precipitation,                                                                              \
-       * things are gonna get ugly...                                                                                  \
-       */
+#define WIND_HURRICANE 4 // if accompanied by precipitation, things are gonna get ugly...
 
 /* Disaster types */
 #define DISASTER_NONE 0

@@ -125,11 +125,6 @@ wis_app_type wis_app[101];
 cha_app_type cha_app[101];
 
 int no_mail = 0; /* mail disabled?                 */
-#ifdef DEV
-int mini_mud = 1; /* mini-mud mode?                 */
-#else
-int mini_mud = 0; /* mini-mud mode?                 */
-#endif
 
 ResetQType reset_q; /* queue of zones to be reset         */
 
@@ -645,11 +640,6 @@ void boot_db(void) {
 
         reset_q.head = reset_q.tail = nullptr;
 
-        if (!mini_mud) {
-            log("Booting houses.");
-            House_boot();
-        }
-
         log("Booting corpses.");
         boot_corpses();
         log("Booting quests.");
@@ -912,7 +902,6 @@ void reset_time(void) {
             strcat(buf, "Autumn");
         }
         log("%s", buf);
-        ;
 
         log("Current Gametime: %dH %dD %dM %dY.", time_info.hours, time_info.day, time_info.month, time_info.year);
 
@@ -1336,8 +1325,6 @@ void renum_zone_table(void) {
                     break;
                 }
                 if (a < 0 || b < 0) {
-                    if (!mini_mud)
-                        log_zone_error(zone, cmd_no, "Invalid vnum, cmd disabled");
                     ZCMD.command = '*';
                 }
             }

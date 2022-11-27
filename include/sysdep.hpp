@@ -152,15 +152,8 @@ void abort(), exit();
 #endif
 
 /* Define the type of a socket and other miscellany */
-#ifdef CIRCLE_WINDOWS /* Definitions for Win32 */
-#define FD_SETSIZE 1024
-#include <winsock.h>
-typedef SOCKET socket_t;
-#define CLOSE_SOCKET(sock) closesocket(sock)
-#else /* Definitions for UNIX */
 typedef int socket_t;
 #define CLOSE_SOCKET(sock) close(sock)
-#endif
 
 /* Function prototypes ************************************************/
 

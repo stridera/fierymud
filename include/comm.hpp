@@ -15,13 +15,15 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+#include <functional>
 #include <variant>
 
 #define NUM_RESERVED_DESCS 8
 
 #define HOTBOOT_FILE "hotboot.dat"
 
-#define CBP_FUNC(name) int(name)(CharData *, int)
+// #define CBP_FUNC(name) int(name)(CharData *, int)
+using CBP_FUNC = std::function<int(CharData *, int)>;
 
 /* comm.c */
 void all_printf(const char *messg, ...) __attribute__((format(printf, 1, 2)));

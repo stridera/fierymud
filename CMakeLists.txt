@@ -18,6 +18,10 @@ FetchContent_Declare(fmt
 )
 FetchContent_MakeAvailable(fmt)
 
+# JSON
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
 include_directories(include)
 
 # Regardless of the CMake settings, I always want us to have debug information available.
@@ -30,4 +34,4 @@ set(CMAKE_C_COMPILER gcc)
 FILE(GLOB sources src/*.cpp)
 add_executable(fierymud ${sources})
 
-target_link_libraries(fierymud PRIVATE crypt fmt::fmt)
+target_link_libraries(fierymud PRIVATE crypt fmt::fmt nlohmann_json::nlohmann_json)
