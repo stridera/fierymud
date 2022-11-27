@@ -1090,7 +1090,7 @@ void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief) {
         char_printf(ch, "%s%s%s\n", CLR(ch, FCYN), world[room_nr].name, CLR(ch, ANRM));
 
     if (!PRF_FLAGGED(ch, PRF_BRIEF) || ignore_brief || ROOM_FLAGGED(room_nr, ROOM_DEATH))
-        char_printf(ch, "%s", world[room_nr].description);
+        char_printf(ch, "%s\n", world[room_nr].description);
 
     if (ROOM_EFF_FLAGGED(room_nr, ROOM_EFF_ILLUMINATION))
         char_printf(ch, "&3A soft &7glow&0&3 suffuses the area with &blight&0&3.&0\n");

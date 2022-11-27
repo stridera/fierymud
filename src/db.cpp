@@ -2625,6 +2625,10 @@ char *fread_string(FILE *fl, const char *error) {
             }
         } while (!done);
 
+        // Strip trailing newlines.
+        while (length > 0 && buf[length - 1] == '\n')
+            buf[--length] = '\0';
+
         /* allocate space for the new string and copy it */
         if (strlen(buf) > 0) {
             CREATE(rslt, char, length + 1);

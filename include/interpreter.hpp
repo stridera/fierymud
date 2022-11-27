@@ -15,7 +15,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-#define ACMD(name) void(name)(CharData * ch, char *argument, int cmd, int subcmd)
+#define ACMD(name)                                                                                                     \
+    void(name)(CharData * ch, [[maybe_unused]] char *argument, [[maybe_unused]] int cmd, [[maybe_unused]] int subcmd)
 
 #define CMD_NAME (cmd_info[cmd].command)
 #define CMD_IS(cmd_name) (!strcmp(cmd_name, cmd_info[cmd].command))
