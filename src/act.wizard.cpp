@@ -2834,7 +2834,7 @@ ACMD(do_autoboot) {
 
         minutes = 2 * reboot_warning_minutes;
 
-        if (reboot_pulse - global_pulse > minutes * 60 * PASSES_PER_SEC) {
+        if (reboot_pulse - global_pulse > (unsigned long)minutes * 60 * PASSES_PER_SEC) {
             sprintf(buf, "Not postponing reboot because it's over %d minutes away.\n", 2 * reboot_warning_minutes);
             send_to_char(buf, ch);
             return;
@@ -2871,7 +2871,7 @@ ACMD(do_autoboot) {
         ;
 
         /* Make sure the reboot is a minimum amount of time away */
-        if (reboot_pulse - global_pulse < 60 * PASSES_PER_SEC * reboot_warning_minutes) {
+        if (reboot_pulse - global_pulse < (unsigned long)60 * PASSES_PER_SEC * reboot_warning_minutes) {
             reboot_pulse = global_pulse + 60 * PASSES_PER_SEC * reboot_warning_minutes;
         }
         check_auto_rebooting();

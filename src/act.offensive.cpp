@@ -165,15 +165,15 @@ ACMD(do_breathe) {
         return;
     }
 
-    if ((GET_SKILL(ch, SKILL_BREATHE_FIRE) > 0) && (breath_info[type].name == "fire")) {
+    if ((GET_SKILL(ch, SKILL_BREATHE_FIRE) > 0) && (breath_info[type].spell == SPELL_FIRE_BREATH)) {
         breath_energy = SKILL_BREATHE_FIRE;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_FROST) > 0) && (breath_info[type].name == "frost")) {
+    } else if ((GET_SKILL(ch, SKILL_BREATHE_FROST) > 0) && (breath_info[type].spell == SPELL_FROST_BREATH)) {
         breath_energy = SKILL_BREATHE_FROST;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_ACID) > 0) && (breath_info[type].name == "acid")) {
+    } else if ((GET_SKILL(ch, SKILL_BREATHE_ACID) > 0) && (breath_info[type].spell == SPELL_ACID_BREATH)) {
         breath_energy = SKILL_BREATHE_ACID;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_GAS) > 0) && (breath_info[type].name == "gas")) {
+    } else if ((GET_SKILL(ch, SKILL_BREATHE_GAS) > 0) && (breath_info[type].spell == SPELL_GAS_BREATH)) {
         breath_energy = SKILL_BREATHE_GAS;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) > 0) && (breath_info[type].name == "lightning")) {
+    } else if ((GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) > 0) && (breath_info[type].spell == SPELL_LIGHTNING_BREATH)) {
         breath_energy = SKILL_BREATHE_LIGHTNING;
     } else {
         send_to_char("You cannot breathe that kind of energy!\n", ch);
@@ -1150,8 +1150,8 @@ ACMD(do_bash) {
     if (GET_LEVEL(vict) >= LVL_IMMORT)
         percent = prob + 1; /* insta-fail */
 
-    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) && damage_evasion(vict, ch, 0, DAM_CRUSH) ||
-        MOB_FLAGGED(vict, MOB_ILLUSORY)) {
+    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
+        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))) {
         act(EVASIONCLR "You charge right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
         act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
         act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", false, ch, 0, vict, TO_VICT);

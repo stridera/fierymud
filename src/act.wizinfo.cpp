@@ -1185,6 +1185,8 @@ static std::string print_zone_to_buf(int zone) {
 }
 
 void do_show_sectors(CharData *ch, char *argument) {
+    (void)argument;
+
     int i;
     const sectordef *s;
 
@@ -1201,6 +1203,8 @@ void do_show_sectors(CharData *ch, char *argument) {
 }
 
 void do_show_compositions(CharData *ch, char *argument) {
+    (void)argument;
+
     int i;
 
     sprintf(buf,
@@ -1224,6 +1228,8 @@ void do_show_compositions(CharData *ch, char *argument) {
 }
 
 void do_show_lifeforces(CharData *ch, char *argument) {
+    (void)argument;
+
     int i;
 
     sprintf(buf, "Idx  Life force   %sHeal&0  %sDisc.&0  %sDispel&0  %sMental&0\n", damtypes[DAM_HEAL].color,
@@ -2046,7 +2052,6 @@ void reboot_info(CharData *ch) {
 ACMD(do_world) {
     struct stat statbuf;
 
-    extern time_t *boot_time;
     extern int make_count;
     extern ACMD(do_date);
 
