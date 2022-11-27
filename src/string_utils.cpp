@@ -73,21 +73,16 @@ const void *ellipsis(const char *str, int maxlen, int mode) {
 }
 
 void sprintbit(long bitvector, const char *names[], char *result) {
-    long nr, i;
+    long i;
     char *orig_pos = result;
 
     /* Assuming 8 bits to a byte... */
-    for (i = 0, nr = 0; (i < sizeof(bitvector) * 8) && bitvector; ++i) {
+    for (i = 0; *names[i] != '\n'; i++) {
         if (IS_SET(bitvector, (1 << i))) {
-            if (*names[nr] != '\n')
-                strcpy(result, names[nr]);
-            else
-                strcpy(result, "UNDEFINED");
+            strcpy(result, names[i]);
             result += strlen(result);
             *(result++) = ' ';
         }
-        if (*names[nr] != '\n')
-            ++nr;
     }
 
     if (orig_pos == result)
@@ -106,8 +101,10 @@ void sprinttype(int type, const char *names[], char *result) {
 
     if (*names[nr] != '\n')
         strcpy(result, names[nr]);
-    else
+    else {
         strcpy(result, "UNDEFINED");
+        log("SYSERR: Unknown type %d in sprinttype.", type);
+    }
 }
 
 void sprintflag(char *result, flagvector flags[], int num_flags, const char *names[]) {

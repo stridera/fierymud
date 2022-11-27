@@ -341,16 +341,16 @@ OCMD(do_dgoload) {
                 if ((obj2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_obj(obj1, obj2);
                 } else {
-                    obj_log(obj1, t, "wload: no target found");
+                    obj_log(obj1, t, "oload: no target found");
                 }
             } else if (is_abbrev(arg3, "plr")) {
                 if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_char(obj1, ch);
                 } else {
-                    obj_log(obj1, t, "wload: no target found");
+                    obj_log(obj1, t, "oload: no target found");
                 }
             } else {
-                obj_log(obj1, t, "wload: bad subtype");
+                obj_log(obj1, t, "oload: bad subtype");
             }
         }
     } else {

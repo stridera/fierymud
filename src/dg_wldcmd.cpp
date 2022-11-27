@@ -425,7 +425,7 @@ WCMD(do_wload) {
             return;
         }
 
-        if (*line == '\0') {
+        if (*line == '\0' || *line == '\r' || *line == '\n') {
             obj_to_room(obj, rnum);
         } else {
             two_arguments(line, arg3, arg4);

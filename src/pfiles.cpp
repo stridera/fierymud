@@ -606,12 +606,14 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
     /* We're going to short circuit to existing items for any found with an existing vnum.*/
     get_line(fl, line);
+    if (feof(fl)) {
+        return false;
+    }
     tag_argument(line, tag);
 
     if (strcmp(tag, "vnum")) {
         sprintf(buf, "SYSERR: Invalid Object File.  Object Vnum not found.");
         log("%s", buf);
-        ;
         return false;
     }
 
