@@ -594,7 +594,7 @@ ACMD(do_teleport) {
         char_from_room(victim);
         char_to_room(victim, target);
         act("$n arrives from a puff of smoke.", false, victim, 0, 0, TO_ROOM);
-        act("$n has teleported you!", false, ch, 0, (char *)victim, TO_VICT);
+        act("$n has teleported you!", false, ch, 0, victim, TO_VICT);
         check_new_surroundings(victim, wasdark, true);
     }
 }
