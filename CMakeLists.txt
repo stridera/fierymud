@@ -34,3 +34,5 @@ FILE(GLOB sources src/*.cpp)
 add_executable(fierymud ${sources})
 
 target_link_libraries(fierymud PRIVATE crypt fmt::fmt nlohmann_json::nlohmann_json)
+
+install (TARGETS fierymud DESTINATION bin)
