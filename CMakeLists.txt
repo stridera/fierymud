@@ -10,6 +10,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_compile_options(-Werror -Wno-format-overflow -Wno-format-truncation -Wno-write-strings -Wno-format -Wno-unused-variable)
 # add_compile_options(-Werror -Wall -Wextra) // Ideal end state
 
+# Add the git hash to a variable so we can see it in the game
+execute_process(
+      COMMAND git log -1 --format=%h
+      WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+      OUTPUT_VARIABLE GIT_HASH
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      )
+
 # Fetch and use libfmt
 FetchContent_Declare(fmt
   GIT_REPOSITORY https://github.com/fmtlib/fmt.git
@@ -20,6 +28,11 @@ FetchContent_MakeAvailable(fmt)
 # JSON
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
 FetchContent_MakeAvailable(json)
+
+configure_file(src/version.hpp.in generated_sources/version.hpp @ONLY)
+add_library(version INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/generated_sources/version.hpp)
+target_include_directories(version INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/generated_sources/)
+
 
 include_directories(include)
 

@@ -50,6 +50,7 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "version.hpp"
 #include "vsearch.hpp"
 #include "weather.hpp"
 
@@ -2059,7 +2060,14 @@ ACMD(do_world) {
     stat("../bin/fiery", &statbuf);
     strcpy(buf, ctime(&statbuf.st_mtime));
     buf[strlen(buf) - 1] = '\0'; /* cut off newline */
-    char_printf(ch, "Build: %d  Compiled: %s\n", make_count, buf);
+
+    std::string git_hash = "";
+    if (GET_LEVEL(ch) >= LVL_GOD) {
+        git_hash = get_git_hash();
+        if (!git_hash.empty())
+            git_hash = fmt::format(" Git Hash: {}", git_hash);
+    }
+    char_printf(ch, "Build: %d  Compiled: %s %s\n", make_count, buf, git_hash.c_str());
     do_date(ch, nullptr, 0, SCMD_UPTIME);
     char_printf(ch, "There are %5d rooms in %3d zones online.\n", top_of_world + 1, top_of_zone_table + 1);
 
