@@ -2391,7 +2391,7 @@ void perform_violence(void) {
 
             if (victim && FIGHTING(ch) != victim) {
                 act("$n switches to $N!", false, ch, 0, victim, TO_NOTVICT);
-                act("$n switches to YOU!", false, ch, 0, 0, TO_VICT);
+                act("$n switches to YOU!", false, ch, 0, victim, TO_VICT);
                 switch_target(ch, victim);
                 hits = 1;
                 secondary_hits = 0;
