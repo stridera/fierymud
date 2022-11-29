@@ -5,3 +5,4 @@
 
 constexpr std::string_view get_git_hash() { return "@GIT_HASH@"; }
 constexpr unsigned int get_build_number() { return @FIERYMUD_BUILD_NUMBER@; }
+constexpr std::string_view get_build_date() { return "@FIERYMUD_BUILD_DATE@"; }
