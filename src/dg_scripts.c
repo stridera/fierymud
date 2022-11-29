@@ -20,12 +20,14 @@
 #include "class.h"
 #include "comm.h"
 #include "conf.h"
+#include "composition.h"
 #include "constants.h"
 #include "db.h"
 #include "events.h"
 #include "exits.h"
 #include "handler.h"
 #include "interpreter.h"
+#include "lifeforce.h"
 #include "math.h"
 #include "modify.h"
 #include "olc.h"
@@ -1158,6 +1160,10 @@ void find_replacement(void *go, struct script_data *sc, trig_data *trig, int typ
             CAP(str);
         } else if (!str_cmp(field, "race"))
             strcpy(str, races[(int)GET_RACE(c)].name);
+        else if (!str_cmp(field, "composition"))
+            strcpy(str, compositions[(int)GET_COMPOSITION(c)].name);
+        else if (!str_cmp(field, "lifeforce"))
+            strcpy(str, lifeforces[(int)GET_LIFEFORCE(c)].name);
         else if (!str_cmp(field, "level"))
             sprintf(str, "%d", GET_LEVEL(c));
 
