@@ -59,7 +59,7 @@ int talent_type(int skill_num) {
 
 const char *skill_name(int num) {
     if (num <= 0 || num >= TOP_SKILL_DEFINE) {
-        if (num == -1)
+        if (num == 0)
             return "UNUSED";
         else
             return "UNDEFINED";

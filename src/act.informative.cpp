@@ -1513,15 +1513,15 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
             (GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_3) < 1)) {
             char_printf(ch, "Its magical spells are too esoteric to identify.\n");
         } else {
-            sprintf(buf, "This %s casts: ", OBJ_TYPE_NAME(obj));
+            char_printf(ch, "This %s casts: ", OBJ_TYPE_NAME(obj));
 
             if (GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1) >= 1)
-                snprintf(buf, sizeof(buf), "%s %s", buf, skills[GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1)].name);
+                char_printf(ch, "%s", skills[GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1)].name);
             if (GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_2) >= 1)
-                snprintf(buf, sizeof(buf), "%s %s", buf, skills[GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_2)].name);
+                char_printf(ch, ", %s", skills[GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_2)].name);
             if (GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_3) >= 1)
-                snprintf(buf, sizeof(buf), "%s %s", buf, skills[GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_3)].name);
-            char_printf(ch, "%s\n", buf);
+                char_printf(ch, ", and %s", skills[GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_3)].name);
+            char_printf(ch, "\n");
         }
         break;
     case ITEM_WAND:
