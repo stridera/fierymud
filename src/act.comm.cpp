@@ -628,8 +628,7 @@ ACMD(do_gen_comm) {
      */
     if (subcmd == SCMD_GOSSIP && POSSESSED(ch) && GET_LEVEL(POSSESSOR(ch)) < 100 && GET_NAME(ch) && *GET_NAME(ch)) {
         shapechanged = true;
-        sprintf(buf1, "%c%s (%s) gossips, '%s'\n", UPPER(*GET_NAME(ch)), GET_NAME(ch) + 1, GET_NAME(POSSESSOR(ch)),
-                argument);
+        sprintf(buf1, "%s (%s) gossips, '%s'\n", capitalize(GET_NAME(ch)), GET_NAME(POSSESSOR(ch)), argument);
     }
 
     /* now send all the strings out */
@@ -680,7 +679,7 @@ ACMD(do_qcomm) {
     skip_spaces(&argument);
 
     if (!*argument)
-        char_printf(ch, "%c%s? Yes, fine %s we must, but WHAT??\n", UPPER(*CMD_NAME), CMD_NAME, CMD_NAME);
+        char_printf(ch, "%s? Yes, fine %s we must, but WHAT??\n", capitalize(CMD_NAME), CMD_NAME);
     else if (speech_ok(ch, 0)) {
         argument = drunken_speech(argument, GET_COND(ch, DRUNK));
 

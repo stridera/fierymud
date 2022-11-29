@@ -173,7 +173,7 @@ void stat_extra_descs(ExtraDescriptionData *ed, CharData *ch, char *buf, bool sh
     if (showtext) {
         strcpy(buf, "");
         for (desc = ed; desc; desc = desc->next)
-            sprintf(buf, "%s&4*&0 %s%s%s\n%s", buf, CLR(ch, FCYN), desc->keyword, CLR(ch, ANRM), desc->description);
+            sprintf(buf, "%s&4*&0 %s%s%s\n%s\n", buf, CLR(ch, FCYN), desc->keyword, CLR(ch, ANRM), desc->description);
     } else {
         count = 0;
         for (desc = ed; desc; desc = desc->next)
@@ -608,9 +608,9 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     /* Strings */
     if (IS_NPC(k)) {
-        resp += fmt::format("L-Des: {}", (GET_LDESC(k) ? GET_LDESC(k) : "<None>\n"));
+        resp += fmt::format("L-Des: {}\n", (GET_LDESC(k) ? GET_LDESC(k) : "<None>"));
         if (k->player.description) {
-            resp += fmt::format("Desc: {}", k->player.description);
+            resp += fmt::format("Desc: {}\n", k->player.description);
         }
     } else
         resp += fmt::format("Title: {}\n", (k->player.title ? k->player.title : "<None>"));
@@ -623,10 +623,9 @@ void do_stat_character(CharData *ch, CharData *k) {
                 Dieties[(int) GET_DIETY(ch)].diety_name : "None");
     */
     sprinttype(GET_SEX(k), genders, buf1);
-    resp += fmt::format("Size: {}{}, Gender: {}\n", UPPER(*SIZE_DESC(k)), SIZE_DESC(k) + 1, buf1);
-    resp +=
-        fmt::format("Life force: {}{}{}&0, Composition: {}{}{}&0\n", LIFEFORCE_COLOR(k), UPPER(*LIFEFORCE_NAME(k)),
-                    LIFEFORCE_NAME(k) + 1, COMPOSITION_COLOR(k), UPPER(*COMPOSITION_NAME(k)), COMPOSITION_NAME(k) + 1);
+    resp += fmt::format("Size: {}, Gender: {}\n", capitalize(SIZE_DESC(k)), buf1);
+    resp += fmt::format("Life force: {}{}&0, Composition: {}{}&0\n", LIFEFORCE_COLOR(k), capitalize(LIFEFORCE_NAME(k)),
+                        COMPOSITION_COLOR(k), capitalize(COMPOSITION_NAME(k)));
     resp += fmt::format("Class: {}, Lev: [{}{:2d}{}], XP: [{}{:7}{}], Align: [{:4d}]\n", CLASS_FULL(k), CLR(ch, FYEL),
                         GET_LEVEL(k), CLR(ch, ANRM), CLR(ch, FYEL), GET_EXP(k), CLR(ch, ANRM), GET_ALIGNMENT(k));
 
@@ -1218,12 +1217,12 @@ void do_show_compositions(CharData *ch, char *argument) {
     send_to_char("---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\n", ch);
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
         sprintf(buf,
-                "%2d.  %s%c%-10s  % 5d  % 6d  % 5d  % 5d  % 4d  % 4d  % 5d  % 4d  "
+                "%2d.  %s%-11s  % 5d  % 6d  % 5d  % 5d  % 4d  % 4d  % 5d  % 4d  "
                 "% 6d&0\n",
-                i, compositions[i].color, UPPER(*(compositions[i].name)), compositions[i].name + 1,
-                compositions[i].sus_slash, compositions[i].sus_pierce, compositions[i].sus_crush,
-                compositions[i].sus_shock, compositions[i].sus_fire, compositions[i].sus_water,
-                compositions[i].sus_cold, compositions[i].sus_acid, compositions[i].sus_poison);
+                i, compositions[i].color, capitalize(compositions[i].name), compositions[i].sus_slash,
+                compositions[i].sus_pierce, compositions[i].sus_crush, compositions[i].sus_shock,
+                compositions[i].sus_fire, compositions[i].sus_water, compositions[i].sus_cold, compositions[i].sus_acid,
+                compositions[i].sus_poison);
         send_to_char(buf, ch);
     }
 }
@@ -1238,9 +1237,9 @@ void do_show_lifeforces(CharData *ch, char *argument) {
     send_to_char(buf, ch);
     send_to_char("---  -----------  ----  -----  ------  ------\n", ch);
     for (i = 0; i < NUM_LIFEFORCES; i++) {
-        sprintf(buf, "%2d.  %s%c%-10s  % 4d  % 5d  % 6d  % 6d&0\n", i, lifeforces[i].color,
-                UPPER(*(lifeforces[i].name)), lifeforces[i].name + 1, lifeforces[i].sus_heal,
-                lifeforces[i].sus_discorporate, lifeforces[i].sus_dispel, lifeforces[i].sus_mental);
+        sprintf(buf, "%2d.  %s%-11s  % 4d  % 5d  % 6d  % 6d&0\n", i, lifeforces[i].color,
+                capitalize(lifeforces[i].name), lifeforces[i].sus_heal, lifeforces[i].sus_discorporate,
+                lifeforces[i].sus_dispel, lifeforces[i].sus_mental);
         send_to_char(buf, ch);
     }
 }

@@ -795,8 +795,7 @@ void medit_disp_lifeforces(DescriptorData *d) {
     send_to_char("[H[J", d->character);
 #endif
     for (i = 0; i < NUM_LIFEFORCES; i++) {
-        sprintf(buf, "%s%2d%s) %s%c%s%s\n", grn, i, nrm, lifeforces[i].color, UPPER((lifeforces[i].name)[0]),
-                lifeforces[i].name + 1, nrm);
+        sprintf(buf, "%s%2d%s) %s%s%s\n", grn, i, nrm, lifeforces[i].color, capitalize(lifeforces[i].name), nrm);
         send_to_char(buf, d->character);
     }
     send_to_char("Enter life force number:\n", d->character);
@@ -868,8 +867,8 @@ void medit_disp_menu(DescriptorData *d) {
     sprintf(buf,
             "&2&bL&0) Perception : [&6&b%4ld&0]         &2&bM&0) Hiddenness  : "
             "[&6&b%4ld&0]\n"
-            "&2&bN&0) Life Force    : %s%c%s&0\n"
-            "&2&bO&0) Composition   : %s%c%s&0\n"
+            "&2&bN&0) Life Force    : %s%s&0\n"
+            "&2&bO&0) Composition   : %s%s&0\n"
             "&2&bP&0) Stance        : &6%s&0\n"
             "&2&bR&0) Load Position : &6%s&0\n"
             "&2&bT&0) Default Pos   : &6%s&0\n"
@@ -879,11 +878,10 @@ void medit_disp_menu(DescriptorData *d) {
             "&2&bS&0) Script        : &6%s&0\n"
             "&2&bQ&0) Quit\n"
             "Enter choice:\n",
-            GET_PERCEPTION(mob), GET_HIDDENNESS(mob), LIFEFORCE_COLOR(mob), UPPER(*LIFEFORCE_NAME(mob)),
-            LIFEFORCE_NAME(mob) + 1, COMPOSITION_COLOR(mob), UPPER(*COMPOSITION_NAME(mob)), COMPOSITION_NAME(mob) + 1,
-            stance_types[(int)GET_STANCE(mob)], position_types[(int)GET_POS(mob)],
-            position_types[(int)GET_DEFAULT_POS(mob)], attack_hit_text[GET_ATTACK(mob)].singular, buf1, buf2,
-            mob->proto_script ? "&6&bSet&0" : "&6Not Set&0");
+            GET_PERCEPTION(mob), GET_HIDDENNESS(mob), LIFEFORCE_COLOR(mob), capitalize(LIFEFORCE_NAME(mob)),
+            COMPOSITION_COLOR(mob), capitalize(COMPOSITION_NAME(mob)), stance_types[(int)GET_STANCE(mob)],
+            position_types[(int)GET_POS(mob)], position_types[(int)GET_DEFAULT_POS(mob)],
+            attack_hit_text[GET_ATTACK(mob)].singular, buf1, buf2, mob->proto_script ? "&6&bSet&0" : "&6Not Set&0");
     send_to_char(buf, d->character);
 
     OLC_MODE(d) = MEDIT_MAIN_MENU;

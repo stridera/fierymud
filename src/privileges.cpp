@@ -207,8 +207,7 @@ static void do_list_grants(CharData *ch, CharData *vict) {
     for (priv = 0; priv < NUM_PRV_FLAGS; ++priv)
         if (PRV_FLAGGED(vict, priv)) {
             found = true;
-            resp += fmt::format("  FLG {}{:>19} ({})\n", UPPER(*prv_flags[priv].desc), prv_flags[priv].desc + 1,
-                                prv_flags[priv].level);
+            resp += fmt::format("  FLG {:>20} ({})\n", capitalize(prv_flags[priv].desc), prv_flags[priv].level);
         }
 
     if (!found)
@@ -342,8 +341,7 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
         cache_grant(uncache, command, is_group, false);
         add_grant(list, command, GET_NAME(ch), level);
         cache_grant(cache, command, is_group, true);
-        char_printf(ch, "%c%s %s %s %s at level %d.\n", UPPER(*past_action), past_action + 1, arg, preposition,
-                    GET_NAME(vict), level);
+        char_printf(ch, "%s %s %s %s at level %d.\n", capitalize(past_action), arg, preposition, GET_NAME(vict), level);
     }
 }
 

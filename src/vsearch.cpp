@@ -113,10 +113,10 @@ static void page_char_to_char(CharData *mob, CharData *ch, int nfound) {
     /* Extra chars to account for: */
     count = count_color_chars(RACE_ABBR(mob));
 
-    pprintf(ch, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s %3d  %-*s  %s%c%-8s&0  %s%c%s&0\n", nfound, grn, GET_MOB_VNUM(mob),
-            nrm, ELLIPSIS_STR(mob->player.short_descr, 39), CLASS_ABBR(mob), GET_LEVEL(mob), 9 + count, RACE_ABBR(mob),
-            LIFEFORCE_COLOR(mob), UPPER(*(LIFEFORCE_NAME(mob))), LIFEFORCE_NAME(mob) + 1, COMPOSITION_COLOR(mob),
-            UPPER(*(COMPOSITION_NAME(mob))), COMPOSITION_NAME(mob) + 1);
+    pprintf(ch, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s %3d  %-*s  %s%-7s&0  %s%s&0\n", nfound, grn, GET_MOB_VNUM(mob), nrm,
+            ELLIPSIS_STR(mob->player.short_descr, 39), CLASS_ABBR(mob), GET_LEVEL(mob), 9 + count, RACE_ABBR(mob),
+            LIFEFORCE_COLOR(mob), capitalize((LIFEFORCE_NAME(mob))), COMPOSITION_COLOR(mob),
+            capitalize((COMPOSITION_NAME(mob))));
 }
 
 /* vsearch_type struct used by each vsearch subcommand */
@@ -1456,7 +1456,8 @@ ACMD(do_osearch) {
                     GET_OBJ_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_WEIGHT(obj), 5 + count_color_chars(buf), buf);
             switch (subcmd) {
             case SCMD_VWEAR:
-                if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) && GET_OBJ_VAL(obj, VAL_ARMOR_AC))
+                if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&
+                    GET_OBJ_VAL(obj, VAL_ARMOR_AC))
                     sprintf(vbuf, "%s %+dac", vbuf, GET_OBJ_VAL(obj, VAL_ARMOR_AC));
                 for (temp = 0; temp < MAX_OBJ_APPLIES; ++temp)
                     if (obj->applies[temp].modifier) {
@@ -1764,8 +1765,8 @@ ACMD(do_esearch) {
                     sprintf(buf, "%s%s%s: ", grn, exit->keyword, nrm);
                 sprintbit(exit->exit_info, exit_bits, buf + strlen(buf));
                 buf[strlen(buf) - 1] = '\0'; /* remove trailing space */
-                pprintf(ch, "%4d. %s%c%-4s%s at [%s%5d%s] %-20.20s [%s]\n", ++found, yel, UPPER(*dirs[dir]),
-                        dirs[dir] + 1, nrm, grn, world[nr].vnum, nrm, world[nr].name, buf);
+                pprintf(ch, "%4d. %s%-4s%s at [%s%5d%s] %-20.20s [%s]\n", ++found, yel, capitalize(dirs[dir]), nrm, grn,
+                        world[nr].vnum, nrm, world[nr].name, buf);
             }
         }
     }
