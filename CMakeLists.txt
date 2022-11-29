@@ -29,6 +29,7 @@ FetchContent_MakeAvailable(fmt)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
+
 configure_file(src/version.hpp.in generated_sources/version.hpp @ONLY)
 add_library(version INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/generated_sources/version.hpp)
 target_include_directories(version INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/generated_sources/)
@@ -46,6 +47,6 @@ set(CMAKE_C_COMPILER gcc)
 FILE(GLOB sources src/*.cpp)
 add_executable(fierymud ${sources})
 
-target_link_libraries(fierymud PRIVATE crypt fmt::fmt nlohmann_json::nlohmann_json)
+target_link_libraries(fierymud PRIVATE version crypt fmt::fmt nlohmann_json::nlohmann_json)
 
 install (TARGETS fierymud DESTINATION bin)
