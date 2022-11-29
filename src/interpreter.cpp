@@ -41,6 +41,7 @@
 #include "sysdep.hpp"
 #include "textfiles.hpp"
 #include "utils.hpp"
+#include "version.hpp"
 
 /* external functions */
 void broadcast_name(char *name);
@@ -70,7 +71,6 @@ void set_innate(CharData *ch, char *arg);
 void trigedit_parse(DescriptorData *d, char *arg);
 char *diety_selection;
 void appear(CharData *ch);
-int make_count = 0;
 EVENTFUNC(name_timeout);
 bool ispell_name_check(char *);
 
@@ -2047,7 +2047,6 @@ void nanny(DescriptorData *d, char *arg) {
     char tmp_name[MAX_INPUT_LENGTH];
     extern int max_bad_pws;
     extern void modify_player_index_file(char *name, char *newname);
-    extern int make_count;
     int color = 0;
     int set_new_home_town(int race, int class_num, char);
     int i;
@@ -2095,8 +2094,8 @@ void nanny(DescriptorData *d, char *arg) {
 
     switch (STATE(d)) {
     case CON_QANSI:
-        if ((make_count >= 0)) {
-            sprintf(bcbuf, " %d", make_count);
+        if ((get_build_number() >= 0)) {
+            sprintf(bcbuf, " %d", get_build_number());
         }
         switch (yesno_result(arg)) {
         case YESNO_YES:

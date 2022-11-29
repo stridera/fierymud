@@ -574,9 +574,6 @@ void boot_db(void) {
         log("Reading anews, credits, help, bground, info and motds.");
         boot_text();
 
-        log("Getting Build Count.");
-        build_count();
-
         log("   Skills.");
         init_skills();
 

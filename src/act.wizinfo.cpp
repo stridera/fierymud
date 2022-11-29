@@ -2053,7 +2053,6 @@ void reboot_info(CharData *ch) {
 ACMD(do_world) {
     struct stat statbuf;
 
-    extern int make_count;
     extern ACMD(do_date);
 
     do_date(ch, nullptr, 0, SCMD_DATE);
@@ -2067,7 +2066,7 @@ ACMD(do_world) {
         if (!git_hash.empty())
             git_hash = fmt::format(" Git Hash: {}", git_hash);
     }
-    char_printf(ch, "Build: %d  Compiled: %s %s\n", make_count, buf, git_hash.c_str());
+    char_printf(ch, "Build: %d  Compiled: %s %s\n", get_build_number(), buf, git_hash.c_str());
     do_date(ch, nullptr, 0, SCMD_UPTIME);
     char_printf(ch, "There are %5d rooms in %3d zones online.\n", top_of_world + 1, top_of_zone_table + 1);
 

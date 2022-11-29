@@ -44,6 +44,7 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "version.hpp"
 
 #include <fmt/format.h>
 #include <math.h>
@@ -2115,13 +2116,12 @@ const char *idea_types[] = {"bug", "typo", "idea", "note"};
 
 void send_to_mantis(CharData *ch, int category, const char *str) {
     std::string url;
-    extern int make_count;
 
     if (!ch || !str || !*str)
         return;
 
     url = fmt::format("curl -s \"http://bug.fierymud.org/fiery_report.php?plr={}&room={}&cat={}&build={}&msg=",
-                      GET_NAME(ch), CH_RVNUM(ch), idea_types[category], make_count);
+                      GET_NAME(ch), CH_RVNUM(ch), idea_types[category], get_build_number());
 
     for (const char *p = str; *p; ++p)
         if (isalpha(*p) || isdigit(*p))

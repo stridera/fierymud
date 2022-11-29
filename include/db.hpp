@@ -67,7 +67,6 @@ static const char *BAN_FILE = "etc/badsites";           /* for the siteban syste
 static const char *HCONTROL_FILE = "etc/hcontrol";      /* for the house system		*/
 static const char *CCONTROL_FILE = "etc/ccontrol";      /* for the corpse save system   */
 static const char *CLAN_INDEX_FILE = "etc/clans/index"; /* list of clans	*/
-static const char *MAKE_COUNT = "../log/make_count";    /* for build counter        */
 static const char *GROUP_FILE = "etc/cmdgroups";        /* for cmd group grant system	*/
 
 static const char *INFODUMP_PREFIX = "infodump";

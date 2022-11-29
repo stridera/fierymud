@@ -546,15 +546,6 @@ const char *movewords(CharData *ch, int dir, int room, int leaving) {
     }
 }
 
-void build_count() {
-    FILE *fd;
-    extern int make_count;
-    if ((fd = fopen(MAKE_COUNT, "r"))) {
-        fscanf(fd, "%d", &make_count);
-        fclose(fd);
-    }
-}
-
 int pick_random_gem_drop(CharData *ch) {
 
     int slot;

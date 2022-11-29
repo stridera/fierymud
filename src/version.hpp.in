@@ -3,9 +3,5 @@
 
 // This file is processed by CMake and generates version.hpp.
 
-std::string_view get_git_hash() { return "@GIT_HASH@"; }
-
-const char circlemud_version[] = {"CircleMUD, version 3.00 beta patchlevel 11\n"};
-const char mudlet_client_version[] = {"0.3"};
-const char mudlet_client_url[] = {"http://www.fierymud.org/mudlet/FierymudOfficial.mpackage"};
-const char mudlet_map_url[] = {"http://www.fierymud.org/mudlet/default_map.dat"};
+constexpr std::string_view get_git_hash() { return "@GIT_HASH@"; }
+constexpr unsigned int get_build_number() { return @FIERYMUD_BUILD_NUMBER@; }
