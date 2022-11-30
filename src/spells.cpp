@@ -1539,7 +1539,7 @@ ASPELL(spell_moonwell) {
          PRF_FLAGGED(victim, PRF_NOFOLLOW))) {
         act("&8A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, 0, TO_ROOM);
         act("&8A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, 0, TO_CHAR);
-        act("&8A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, 0, TO_VICT);
+        act("&8A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, victim, TO_VICT);
         return CAST_RESULT_CHARGE;
     }
     if ((portal = read_object(OBJ_VNUM_MOONWELL, VIRTUAL)) == nullptr) {

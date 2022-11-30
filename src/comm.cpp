@@ -2931,6 +2931,10 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
     }
 
     if (type == TO_VICT) {
+        if (!std::holds_alternative<CharData *>(vict_obj)) {
+            log("SYSERR: act: TO_VICT: no victim sent.  str: %s", str);
+            return;
+        }
         to = std::get<CharData *>(vict_obj);
         if (to && ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch))) {
