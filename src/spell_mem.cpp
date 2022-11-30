@@ -862,7 +862,7 @@ void show_memorized_slots(CharData *ch, CharData *tch)
     sprintf(buf2, "%s %s %s:", ch == tch ? "You" : GET_NAME(tch), ch == tch ? "have" : "has",
             MEM_MODE(tch) == MEMORIZE ? "memorized" : "prayed for");
     if (memming)
-        resp += fmt::format("{:^37}{} {} currently {}:\n\n", buf2, ch == tch ? "You" : GET_NAME(tch),
+        resp += fmt::format("{:<49}{} {} currently {}:\n\n", buf2, ch == tch ? "You" : GET_NAME(tch),
                             ch == tch ? "are" : "is", MEM_MODE(tch) == MEMORIZE ? "memorizing" : "praying for");
     else
         resp += fmt::format("{}\n\n", buf2);
@@ -882,7 +882,7 @@ void show_memorized_slots(CharData *ch, CharData *tch)
             else
                 resp += fmt::format(AHBLU "{:9}" ANRM "  ", "");
 
-            resp += fmt::format("{:2} - {:^21}{}", circles[circle].memorized[pos].memorized,
+            resp += fmt::format("{:2} - {:<31}{}", circles[circle].memorized[pos].memorized,
                                 skill_name(circles[circle].memorized[pos].spellnum),
                                 mem || time_remaining || show_next ? "" : "\n");
 
