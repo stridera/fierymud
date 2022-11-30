@@ -1044,7 +1044,7 @@ void command_interpreter(CharData *ch, char *argument) {
         (command_wtrigger(ch, arg, line) || command_mtrigger(ch, arg, line) || command_otrigger(ch, arg, line)))
         return; /* command trigger took over */
 
-    for (length = strlen(arg), cmd = 0; *cmd_info[cmd].command != '\n'; cmd++)
+    for (length = strlen(arg), cmd = 1; *cmd_info[cmd].command != '\n'; cmd++)
         if (!strncasecmp(cmd_info[cmd].command, arg, length))
             if (can_use_command(ch, cmd))
                 break;
