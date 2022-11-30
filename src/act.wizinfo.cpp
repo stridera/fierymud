@@ -398,7 +398,7 @@ void do_stat_object(CharData *ch, ObjData *j) {
         break;
     case ITEM_WEAPON:
         resp += fmt::format(
-            "Todam: %dd%d (avg %.1f), Message type: %d, '%s'\n", GET_OBJ_VAL(j, VAL_WEAPON_DICE_NUM),
+            "Todam: {}d{} (avg %{:.1f}), Message type: {}, '{}'\n", GET_OBJ_VAL(j, VAL_WEAPON_DICE_NUM),
             GET_OBJ_VAL(j, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(j), GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE),
             GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) >= 0 && GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) <= TYPE_ALIGN - TYPE_HIT
                 ? attack_hit_text[GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE)].singular
