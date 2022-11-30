@@ -33,10 +33,10 @@ int strcmp(const char *arg1, const char *arg2) {
     return (0);
 }
 
-/* strncmp: a case-insensitive version of strncmp */
+/* strncasecmp : a case-insensitive version of strncasecmp  */
 /* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
 /* scan 'till found different, end of both, or n reached     */
-int strncmp(const char *arg1, const char *arg2, int n) {
+int strncasecmp (const char *arg1, const char *arg2, int n) {
     int chk, i;
 
     for (i = 0; (*(arg1 + i) || *(arg2 + i)) && (n > 0); i++, n--)

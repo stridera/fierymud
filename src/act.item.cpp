@@ -1613,7 +1613,7 @@ ACMD(do_conceal) {
         send_to_char("You aren't skilled enough to conceal an item.\n", ch);
     else if (!*arg)
         send_to_char("What do you want to conceal?\n", ch);
-    else if (!strcmp(arg, "all") || !strncmp(arg, "all.", 4))
+    else if (!strcmp(arg, "all") || !strncasecmp(arg, "all.", 4))
         send_to_char("You can't conceal multiple items at once.\n", ch);
     else if (ch->in_room == NOWHERE ||
              !(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg))))
@@ -1697,7 +1697,7 @@ ACMD(do_touch) {
 
     if (!*arg)
         send_to_char("Touch what?\n", ch);
-    else if (!strcmp(arg, "all") || !strncmp(arg, "all.", 4))
+    else if (!strcmp(arg, "all") || !strncasecmp(arg, "all.", 4))
         send_to_char("One at a time...\n", ch);
     else if (ch->in_room == NOWHERE ||
              !(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg))))
@@ -1726,7 +1726,8 @@ ACMD(do_compare) {
 
     if (!*buf1 || !*buf2)
         send_to_char("Compare what?\n", ch);
-    else if (!strcmp(buf1, "all") || !strncmp(buf1, "all.", 4) || !strcmp(buf2, "all") || !strncmp(buf2, "all.", 4))
+    else if (!strcmp(buf1, "all") || !strncasecmp(buf1, "all.", 4) || !strcmp(buf2, "all") ||
+             !strncasecmp(buf2, "all.", 4))
         send_to_char("You can only compare two items at a time!\n", ch);
     else if (!(obj1 = find_obj_in_list(ch->carrying, find_vis_by_name(ch, buf1))))
         char_printf(ch, "You don't have a %s.\n", buf1);

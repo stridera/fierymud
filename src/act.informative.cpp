@@ -1741,9 +1741,9 @@ ACMD(do_help) {
         if (bot > top) {
             char_printf(ch, "There is no help on that word.\n");
             return;
-        } else if (!(chk = strncmp(argument, help_table[mid].keyword, minlen))) {
+        } else if (!(chk = strncasecmp(argument, help_table[mid].keyword, minlen))) {
             /* trace backwards to find first matching entry. Thanks Jeff Fink! */
-            while ((mid > 0) && (!(chk = strncmp(argument, help_table[mid - 1].keyword, minlen))))
+            while ((mid > 0) && (!(chk = strncasecmp(argument, help_table[mid - 1].keyword, minlen))))
                 mid--;
             /* Added level check */
             if (GET_LEVEL(ch) >= help_table[mid].min_level) {

@@ -27,7 +27,7 @@ const void *ellipsis(const char *str, int maxlen, int mode);
         (char *)ellipsis((str), (maxlen), __ELLIPSIS_E)
 
 int strcmp(const char *arg1, const char *arg2);
-int strncmp(const char *arg1, const char *arg2, int n);
+int strncasecmp (const char *arg1, const char *arg2, int n);
 const char *str_str(const char *cs, const char *ct);
 char *strdupf(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 

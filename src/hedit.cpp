@@ -319,9 +319,9 @@ int find_help(char *keyword) {
 
         if (bot > top)
             return -1;
-        else if (!(chk = strncmp(keyword, help_table[mid].keyword, minlen))) {
+        else if (!(chk = strncasecmp(keyword, help_table[mid].keyword, minlen))) {
             /* trace backwards to find first matching entry. Thanks Jeff Fink! */
-            while ((mid > 0) && (!(chk = strncmp(keyword, help_table[mid - 1].keyword, minlen))))
+            while ((mid > 0) && (!(chk = strncasecmp(keyword, help_table[mid - 1].keyword, minlen))))
                 mid--;
             return mid;
         } else {

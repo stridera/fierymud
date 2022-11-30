@@ -812,7 +812,7 @@ bool format_script(DescriptorData *d, int indent_quantum) {
 
         /* Does this line open a new scope? */
         for (i = 0; cmd_scopes[i].name; ++i)
-            if (!strncmp(line, cmd_scopes[i].name, cmd_scopes[i].length))
+            if (!strncasecmp(line, cmd_scopes[i].name, cmd_scopes[i].length))
                 break;
 
         /* If it does, i will not point to the last cmd_scopes entry */
@@ -855,7 +855,7 @@ bool format_script(DescriptorData *d, int indent_quantum) {
             }
         } else {
             /* Didn't find a scope opener */
-            if (!strncmp(line, "end", 3)) {
+            if (!strncasecmp(line, "end", 3)) {
                 switch (as_peek(stack).scope) {
                 case CS_IF:
                 case CS_ELSEIF:
@@ -866,7 +866,7 @@ bool format_script(DescriptorData *d, int indent_quantum) {
                 default:
                     ABORT("Unmatched 'end'");
                 }
-            } else if (!strncmp(line, "done", 4)) {
+            } else if (!strncasecmp(line, "done", 4)) {
                 do {
                     if (as_peek(stack).scope == CS_WHILE)
                         break;
@@ -883,7 +883,7 @@ bool format_script(DescriptorData *d, int indent_quantum) {
                 } while (0);
                 scope = as_pop(stack);
                 indent -= indent_quantum;
-            } else if (!strncmp(line, "break", 5)) {
+            } else if (!strncasecmp(line, "break", 5)) {
                 array_stack(Scope) temp;
                 as_init(temp, as_size(stack), as_null(stack));
                 /* Search the stack for a while, case, or default */

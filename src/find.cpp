@@ -834,7 +834,7 @@ CharData *find_char_for_keyword(CharData *ch, const char *name) {
 int find_all_dots(char **arg) {
     if (!strcmp(*arg, "all"))
         return FIND_ALL;
-    else if (!strncmp(*arg, "all.", 4)) {
+    else if (!strncasecmp(*arg, "all.", 4)) {
         *arg += 4;
         return FIND_ALLDOT;
     } else

@@ -1617,7 +1617,7 @@ void do_show_file(CharData *ch, char *argument) {
     }
 
     for (i = 0; fields[i].name; ++i)
-        if (!strncmp(arg, fields[i].name, strlen(arg)))
+        if (!strncasecmp(arg, fields[i].name, strlen(arg)))
             break;
 
     if (!fields[i].name) {
@@ -2003,7 +2003,7 @@ ACMD(do_show) {
 
     for (i = 0; fields[i].name; ++i)
         if (fields[i].level <= GET_LEVEL(ch))
-            if (!strncmp(arg, fields[i].name, strlen(arg)))
+            if (!strncasecmp(arg, fields[i].name, strlen(arg)))
                 break;
 
     if (GET_LEVEL(ch) < fields[i].level) {
@@ -2151,7 +2151,7 @@ ACMD(do_infodump) {
     argument = any_one_arg(argument, arg);
 
     for (i = 0; fields[i].name; ++i)
-        if (!strncmp(arg, fields[i].name, strlen(arg)))
+        if (!strncasecmp(arg, fields[i].name, strlen(arg)))
             break;
 
     if (!fields[i].name) {

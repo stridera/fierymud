@@ -568,7 +568,7 @@ void obj_command_interpreter(ObjData *obj, TrigData *t, char *argument) {
 
     /* find the command */
     for (length = strlen(arg), cmd = 0; *obj_cmd_info[cmd].command != '\n'; cmd++)
-        if (!strncmp(obj_cmd_info[cmd].command, arg, length))
+        if (!strncasecmp(obj_cmd_info[cmd].command, arg, length))
             break;
 
     if (*obj_cmd_info[cmd].command == '\n') {

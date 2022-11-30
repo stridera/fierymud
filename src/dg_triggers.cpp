@@ -235,7 +235,7 @@ int command_mtrigger(CharData *actor, char *cmd, char *argument) {
                     continue;
                 }
 
-                if (*GET_TRIG_ARG(t) == '*' || !strncmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
+                if (*GET_TRIG_ARG(t) == '*' || !strncasecmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
                     ADD_UID_VAR(buf, t, actor, "actor");
                     skip_spaces(&argument);
                     add_var(&GET_TRIG_VARS(t), "arg", argument);
@@ -624,7 +624,7 @@ int cmd_otrig(ObjData *obj, CharData *actor, char *cmd, char *argument, int type
             }
 
             if (IS_SET(GET_TRIG_NARG(t), type) &&
-                (*GET_TRIG_ARG(t) == '*' || !strncmp(GET_TRIG_ARG(t), cmd, strlen(cmd)))) {
+                (*GET_TRIG_ARG(t) == '*' || !strncasecmp(GET_TRIG_ARG(t), cmd, strlen(cmd)))) {
 
                 ADD_UID_VAR(buf, t, actor, "actor");
                 skip_spaces(&argument);
@@ -1004,7 +1004,7 @@ int command_wtrigger(CharData *actor, char *cmd, char *argument) {
             continue;
         }
 
-        if (*GET_TRIG_ARG(t) == '*' || !strncmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
+        if (*GET_TRIG_ARG(t) == '*' || !strncasecmp(GET_TRIG_ARG(t), cmd, strlen(cmd))) {
             ADD_UID_VAR(buf, t, actor, "actor");
             skip_spaces(&argument);
             add_var(&GET_TRIG_VARS(t), "arg", argument);

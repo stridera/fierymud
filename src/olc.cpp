@@ -208,7 +208,7 @@ ACMD(do_olc) {
     }
 
     if (!isdigit(*buf1)) {
-        if (strncmp("save", buf1, 4) == 0) {
+        if (strncasecmp("save", buf1, 4) == 0) {
             if (!*buf2) {
                 if (subcmd == SCMD_OLC_HEDIT) {
                     action = OLC_ACTION_SAVE;
@@ -224,7 +224,7 @@ ACMD(do_olc) {
                 action = OLC_ACTION_SAVE;
                 number = atoi(buf2) * 100;
             }
-        } else if (!strncmp("del", buf1, 4)) {
+        } else if (!strncasecmp("del", buf1, 4)) {
 
 #ifdef PRODUCTION
             send_to_char("Don't delete things in the production mud please!\n", ch);
@@ -249,7 +249,7 @@ ACMD(do_olc) {
              *             on objects that got reversed on load by now-supplanted code
              *             in db.c */
 
-        } else if (subcmd == SCMD_OLC_OEDIT && strncmp("revex", buf1, 5) == 0) {
+        } else if (subcmd == SCMD_OLC_OEDIT && strncasecmp("revex", buf1, 5) == 0) {
             if (!*buf2) {
                 send_to_char("Reverse extra descs for which object?\n", ch);
                 return;
@@ -267,7 +267,7 @@ ACMD(do_olc) {
             oedit_reverse_exdesc(real_num, nullptr);
             return;
 
-        } else if (subcmd == SCMD_OLC_OEDIT && strncmp("zrevex", buf1, 6) == 0) {
+        } else if (subcmd == SCMD_OLC_OEDIT && strncasecmp("zrevex", buf1, 6) == 0) {
             if (!*buf2) {
                 send_to_char("Reverse object extra descs in which zone?\n", ch);
                 return;
@@ -285,7 +285,7 @@ ACMD(do_olc) {
             return;
 
         } else if (subcmd == SCMD_OLC_ZEDIT && GET_LEVEL(ch) >= LVL_HEAD_B && *buf1) {
-            if ((strncmp("new", buf1, 3) == 0) && *buf2)
+            if ((strncasecmp("new", buf1, 3) == 0) && *buf2)
                 zedit_new_zone(ch, atoi(buf2));
             else
                 send_to_char("Specify a zone number.\n", ch);

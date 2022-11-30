@@ -387,7 +387,7 @@ const char *without_article(const char *s) {
     int i;
 
     for (i = 0; articles[i][0] != '\n'; i++) {
-        if (!strncmp(articles[i], s, strlen(articles[i]))) {
+        if (!strncasecmp(articles[i], s, strlen(articles[i]))) {
             return s + strlen(articles[i]);
         }
     }
@@ -463,7 +463,7 @@ const char *pluralize(const char *s) {
     /* Begin analyzing the given string */
 
     /* First deal with "some" */
-    if (!strncmp("some ", s, strlen("some "))) {
+    if (!strncasecmp("some ", s, strlen("some "))) {
         megabuf_used(sprintf(u, "quantities of %s", s + strlen("some ")));
         return u;
     }

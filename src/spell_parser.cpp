@@ -121,7 +121,7 @@ void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
             strcpy(lbuf, skills[spellnum].name);
             while (*(lbuf + ofs))
                 for (j = 0; *(syls[j].org); j++)
-                    if (!strncmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
+                    if (!strncasecmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
                         strcat(spellbuf, syls[j].new_char);
                         ofs += strlen(syls[j].org);
                     }
@@ -663,7 +663,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
     switch (GET_OBJ_TYPE(obj)) {
     case ITEM_STAFF:
         act("You tap $p three times on the ground.", false, ch, obj, 0, TO_CHAR);
-        if (obj->action_description && strncmp(obj->action_description, "Nothing.", 8))
+        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
             act(obj->action_description, false, ch, obj, 0, TO_ROOM);
         else
             act("$n taps $p three times on the ground.", false, ch, obj, 0, TO_ROOM);
@@ -701,7 +701,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                         return;
                     } else {
                         act("You point $p at yourself.", false, ch, obj, 0, TO_CHAR);
-                        if (obj->action_description && strncmp(obj->action_description, "Nothing.", 8))
+                        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
                             act(obj->action_description, false, ch, obj, tobj, TO_ROOM);
                         else
                             act("$n points $p at $mself.", false, ch, obj, 0, TO_ROOM);
@@ -714,7 +714,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                      * reason to give the name of the target to observers... */
 
                     if (ch->in_room == tch->in_room) {
-                        if (obj->action_description && strncmp(obj->action_description, "Nothing.", 8))
+                        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
                             act(obj->action_description, false, ch, obj, tch, TO_ROOM);
                         else {
                             act("$n points $p at $N.", true, ch, obj, tch, TO_NOTVICT);
@@ -727,7 +727,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             } else if (tobj) {
                 act("You point $p at $P.", false, ch, obj, tobj, TO_CHAR);
                 if (ch->in_room == tobj->in_room) {
-                    if (obj->action_description && strncmp(obj->action_description, "Nothing.", 8))
+                    if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
                         act(obj->action_description, false, ch, obj, tobj, TO_ROOM);
                     else
                         act("$n points $p at $P.", true, ch, obj, tobj, TO_ROOM);
@@ -802,7 +802,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                         scroll_success = true;
                         act("You recite $p which dissolves.", true, ch, obj, 0, TO_CHAR);
                         /* Decide what message to send to the room. */
-                        if (obj->action_description && strncmp(obj->action_description, "Nothing.", 8))
+                        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
                             /* The scroll has a specific action desription message. */
                             act(obj->action_description, false, ch, obj, nullptr, TO_ROOM);
                         else if (tch) {
@@ -852,7 +852,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
     case ITEM_POTION:
         tch = ch;
         act("You quaff $p.", false, ch, obj, nullptr, TO_CHAR);
-        if (obj->action_description && strncmp(obj->action_description, "Nothing.", 8))
+        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
             act(obj->action_description, false, ch, obj, nullptr, TO_ROOM);
         else
             act("$n quaffs $p.", true, ch, obj, nullptr, TO_ROOM);
@@ -1918,7 +1918,7 @@ void start_chant(CharData *ch) {
     /* Change the syllables of the spoken spell */
     while (*(lbuf + ofs))
         for (j = 0; *(syls[j].org); j++)
-            if (!strncmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
+            if (!strncasecmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
                 strcat(garblebuf, syls[j].new_char);
                 ofs += strlen(syls[j].org);
             }

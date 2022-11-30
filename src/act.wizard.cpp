@@ -1562,7 +1562,7 @@ ACMD(do_name) {
                and the player is not yourself
              */
             if (((STATE(d) == CON_NAME_WAIT_APPROVAL) || (PLR_FLAGGED(d->character, PLR_NAPPROVE))) &&
-                ((d != ch->desc) && (strncmp(GET_NAME(d->character), arg, strlen(arg)) == 0))) {
+                ((d != ch->desc) && (strncasecmp(GET_NAME(d->character), arg, strlen(arg)) == 0))) {
                 /* create the player in the pfile if he isn't there already */
                 if (GET_PFILEPOS(d->character) < 0) {
                     GET_PFILEPOS(d->character) = create_player_index_entry(GET_NAME(d->character));
@@ -1623,7 +1623,7 @@ ACMD(do_name) {
                 continue;
 
             if (((STATE(d) == CON_NAME_WAIT_APPROVAL) || (PLR_FLAGGED(d->character, PLR_NAPPROVE))) &&
-                (d != ch->desc) && (strncmp(GET_NAME(d->character), arg, strlen(arg)) == 0)) {
+                (d != ch->desc) && (strncasecmp(GET_NAME(d->character), arg, strlen(arg)) == 0)) {
                 sprintf(buf, "The name: %s has been declined by %s, reason %d.", GET_NAME(d->character), GET_NAME(ch),
                         choice + 1);
                 mudlog(buf, NRM, LVL_IMMORT, true);
@@ -2098,7 +2098,7 @@ ACMD(do_set) {
         }
     }
     for (l = 0; *(fields[l].cmd) != '\n'; l++)
-        if (!strncmp(field, fields[l].cmd, strlen(field)))
+        if (!strncasecmp(field, fields[l].cmd, strlen(field)))
             break;
 
     if (GET_LEVEL(ch) < fields[l].level) {
@@ -3534,7 +3534,7 @@ ACMD(do_pscan) {
     half_chop(argument, arg1, arg2);
     num = atoi(arg2);
 
-    if (!strncmp(arg1, "obj", MAX_INPUT_LENGTH)) {
+    if (!strncasecmp(arg1, "obj", MAX_INPUT_LENGTH)) {
         if (!strlen(arg2) || !isdigit(arg2[0])) {
             send_to_char("Usage: pscan obj <vnum>\n", ch);
             return;
@@ -3567,7 +3567,7 @@ ACMD(do_objupdate) {
         return;
     }
 
-    if (!strncmp(arg1, "all", 4)) {
+    if (!strncasecmp(arg1, "all", 4)) {
         if (!*arg2) {
             send_to_char(
                 "If you really want to update all obsolete object files, "
@@ -3575,7 +3575,7 @@ ACMD(do_objupdate) {
                 ch);
             return;
         }
-        if (strncmp("yes", arg2, 4)) {
+        if (strncasecmp("yes", arg2, 4)) {
             send_to_char("I'm not sure you really mean it!\n", ch);
             return;
         }

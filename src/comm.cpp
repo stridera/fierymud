@@ -1667,7 +1667,7 @@ bool casting_command(DescriptorData *d, char *txt) {
     any_one_arg(txt, arg);
 
     for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
-        if (!strncmp(cmd_info[cmd].command, arg, strlen(arg)))
+        if (!strncasecmp(cmd_info[cmd].command, arg, strlen(arg)))
             if (can_use_command(d->character, cmd))
                 break;
 

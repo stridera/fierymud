@@ -1622,7 +1622,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
         else if (!strcmp(field, "vnum"))
             sprintf(str, "%d", r->vnum);
-        else if (!strncmp(field, "sector", 6))
+        else if (!strncasecmp(field, "sector", 6))
             sprintf(str, "%s", sectors[r->sector_type].name);
         else if (!strcmp(field, "is_dark"))
             strcpy(str, r->light > 0 ? "1" : "0");
@@ -2018,7 +2018,7 @@ int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData
 
     for (i = 0; *ops[i] != '\n'; i++)
         for (j = 0; tokens[j]; j++)
-            if (!strncmp(ops[i], tokens[j], strlen(ops[i]))) {
+            if (!strncasecmp(ops[i], tokens[j], strlen(ops[i]))) {
                 *tokens[j] = '\0';
                 p = tokens[j] + strlen(ops[i]);
 
@@ -2065,9 +2065,9 @@ CmdlistElement *find_end(TrigData *trig, CmdlistElement *cl) {
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strncmp("if ", p, 3))
+        if (!strncasecmp("if ", p, 3))
             c = find_end(trig, c);
-        else if (!strncmp("end", p, 3))
+        else if (!strncasecmp("end", p, 3))
             return c;
 
         if (!c->next) {
@@ -2095,22 +2095,22 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
         for (p = c->cmd; *p && isspace(*p); p++)
             ; /* skip spaces */
 
-        if (!strncmp("if ", p, 3))
+        if (!strncasecmp("if ", p, 3))
             c = find_end(trig, c);
 
-        else if (!strncmp("elseif ", p, 7)) {
+        else if (!strncasecmp("elseif ", p, 7)) {
             if (process_if(p + 7, go, sc, trig, type)) {
                 GET_TRIG_DEPTH(trig)++;
                 return c;
             }
         }
 
-        else if (!strncmp("else", p, 4)) {
+        else if (!strncasecmp("else", p, 4)) {
             GET_TRIG_DEPTH(trig)++;
             return c;
         }
 
-        else if (!strncmp("end", p, 3))
+        else if (!strncasecmp("end", p, 3))
             return c;
 
         if (!c->next) {
@@ -2122,7 +2122,7 @@ CmdlistElement *find_else_end(TrigData *trig, CmdlistElement *cl, void *go, Scri
     /* If we got here, it's the last line, if it's not an end, log it. */
     for (p = c->cmd; *p && isspace(*p); ++p)
         ; /* skip spaces */
-    if (strncmp("end", p, 3))
+    if (strncasecmp("end", p, 3))
         script_log(trig, "'if' without 'end'. (error 5)");
 
     return c;
@@ -2144,7 +2144,7 @@ void process_wait(void *go, TrigData *trig, int type, char *cmd, CmdlistElement 
         return;
     }
 
-    else if (!strncmp(arg, "until ", 6)) {
+    else if (!strncasecmp(arg, "until ", 6)) {
 
         /* valid forms of time are 14:30 and 1430 */
         if (sscanf(arg, "until %ld:%ld", &hr, &min) == 2)
@@ -2387,14 +2387,14 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
         if (*p == '*')
             continue;
 
-        else if (!strncmp(p, "if ", 3)) {
+        else if (!strncasecmp(p, "if ", 3)) {
             if (process_if(p + 3, go, sc, trig, type))
                 GET_TRIG_DEPTH(trig)++;
             else
                 cl = find_else_end(trig, cl, go, sc, type);
         }
 
-        else if (!strncmp("elseif ", p, 7) || !strncmp("else", p, 4)) {
+        else if (!strncasecmp("elseif ", p, 7) || !strncasecmp("else", p, 4)) {
             /* If not in an if-block, ignore the extra 'else[if]' and warn about it.
              */
             if (GET_TRIG_DEPTH(trig) == 1) {
@@ -2403,7 +2403,7 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
             }
             cl = find_end(trig, cl);
             GET_TRIG_DEPTH(trig)--;
-        } else if (!strncmp("while ", p, 6)) {
+        } else if (!strncasecmp("while ", p, 6)) {
             temp = find_done(cl);
             if (!temp) {
                 script_log(trig, "'while' without 'done'.");
@@ -2414,15 +2414,15 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                 cl = temp;
                 loops = 0;
             }
-        } else if (!strncmp("switch ", p, 7)) {
+        } else if (!strncasecmp("switch ", p, 7)) {
             cl = find_case(trig, cl, go, sc, type, p + 7);
-        } else if (!strncmp("end", p, 3)) {
+        } else if (!strncasecmp("end", p, 3)) {
             if (GET_TRIG_DEPTH(trig) == 1) {
                 script_log(trig, "'end' without 'if'.");
                 continue;
             }
             GET_TRIG_DEPTH(trig)--;
-        } else if (!strncmp("done", p, 4)) {
+        } else if (!strncasecmp("done", p, 4)) {
             /* if in a while loop, cl->original is non-NULL */
             if (cl->original) {
                 char *orig_cmd = cl->original->cmd;
@@ -2445,9 +2445,9 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
                     }
                 }
             }
-        } else if (!strncmp("break", p, 5)) {
+        } else if (!strncasecmp("break", p, 5)) {
             cl = find_done(cl);
-        } else if (!strncmp("case", p, 4)) {
+        } else if (!strncasecmp("case", p, 4)) {
             /* Do nothing, this allows multiple cases to a single instance */
         }
 
@@ -2455,25 +2455,25 @@ int script_driver(void *go_address, TrigData *trig, int type, int mode) {
 
             var_subst(go, sc, trig, type, p, cmd);
 
-            if (!strncmp(cmd, "eval ", 5))
+            if (!strncasecmp(cmd, "eval ", 5))
                 process_eval(go, sc, trig, type, cmd);
 
-            else if (!strncmp(cmd, "halt", 4))
+            else if (!strncasecmp(cmd, "halt", 4))
                 break;
 
-            else if (!strncmp(cmd, "global ", 7))
+            else if (!strncasecmp(cmd, "global ", 7))
                 process_global(sc, trig, cmd);
 
-            else if (!strncmp(cmd, "return ", 7))
+            else if (!strncasecmp(cmd, "return ", 7))
                 ret_val = process_return(trig, cmd);
 
-            else if (!strncmp(cmd, "set ", 4))
+            else if (!strncasecmp(cmd, "set ", 4))
                 process_set(sc, trig, cmd);
 
-            else if (!strncmp(cmd, "unset ", 6))
+            else if (!strncasecmp(cmd, "unset ", 6))
                 process_unset(sc, trig, cmd);
 
-            else if (!strncmp(cmd, "wait ", 5)) {
+            else if (!strncasecmp(cmd, "wait ", 5)) {
                 process_wait(go, trig, type, cmd, cl);
                 depth--;
                 return ret_val;
@@ -2557,18 +2557,18 @@ CmdlistElement *find_case(TrigData *trig, CmdlistElement *cl, void *go, ScriptDa
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strncmp("while ", p, 6) || !strncmp("switch", p, 6))
+        if (!strncasecmp("while ", p, 6) || !strncasecmp("switch", p, 6))
             c = find_done(c);
-        else if (!strncmp("case ", p, 5)) {
+        else if (!strncasecmp("case ", p, 5)) {
             char case_expr[MAX_STRING_LENGTH];
             char result[16]; /* == always returns an integer, so it shouuld be safe */
             eval_expr(p + 5, case_expr, go, sc, trig, type);
             eval_op("==", cond_expr, case_expr, result, go, sc, trig);
             if (*result && *result != '0')
                 return c;
-        } else if (!strncmp("default", p, 7))
+        } else if (!strncasecmp("default", p, 7))
             return c;
-        else if (!strncmp("done", p, 3))
+        else if (!strncasecmp("done", p, 3))
             return c;
     }
     return c;
@@ -2590,9 +2590,9 @@ CmdlistElement *find_done(CmdlistElement *cl) {
         for (p = c->cmd; *p && isspace(*p); p++)
             ;
 
-        if (!strncmp("while ", p, 6) || !strncmp("switch ", p, 7))
+        if (!strncasecmp("while ", p, 6) || !strncasecmp("switch ", p, 7))
             c = find_done(c);
-        else if (!strncmp("done", p, 3))
+        else if (!strncasecmp("done", p, 3))
             return c;
     }
 

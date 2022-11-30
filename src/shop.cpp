@@ -1205,7 +1205,7 @@ int read_type_list(FILE *shop_f, ShopBuyData *list, int new_format, int max) {
         else
             *(END_OF(buf) - 1) = 0;
         for (index = 0, num = NOTHING; index < NUM_ITEM_TYPES; ++index)
-            if (!strncmp(item_types[index].name, buf, strlen(item_types[index].name))) {
+            if (!strncasecmp(item_types[index].name, buf, strlen(item_types[index].name))) {
                 num = index;
                 strcpy(buf, buf + strlen(item_types[index].name));
                 break;

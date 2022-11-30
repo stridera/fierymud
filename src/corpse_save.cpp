@@ -378,7 +378,7 @@ void show_corpses(CharData *ch, char *argument) {
             "------\n",
             ch);
         for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next) {
-            if (!strncmp(entry->corpse->short_description, "the corpse of ", 14))
+            if (!strncasecmp(entry->corpse->short_description, "the corpse of ", 14))
                 strcpy(buf1, entry->corpse->short_description + 14);
             else
                 strcpy(buf1, entry->corpse->name);

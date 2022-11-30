@@ -1045,7 +1045,7 @@ void command_interpreter(CharData *ch, char *argument) {
         return; /* command trigger took over */
 
     for (length = strlen(arg), cmd = 0; *cmd_info[cmd].command != '\n'; cmd++)
-        if (!strncmp(cmd_info[cmd].command, arg, length))
+        if (!strncasecmp(cmd_info[cmd].command, arg, length))
             if (can_use_command(ch, cmd))
                 break;
 
@@ -1366,7 +1366,7 @@ int searchblock(char *arg, const char **list, bool exact) {
             l = 1; /* Avoid "" to match the first available
                     * string */
         for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncmp(arg, *(list + i), l))
+            if (!strncasecmp(arg, *(list + i), l))
                 return (i);
     }
 
@@ -1386,10 +1386,9 @@ int search_block(const char *arg, const char **list, bool exact) {
     } else {
         len = strlen(arg);
         if (!len)
-            len = 1; /* Avoid "" to match the first available
-                        string */
+            len = 1; /* Avoid "" to match the first available string */
         for (i = 0; **(list + i) != '\n'; i++)
-            if (!strncmp(arg, *(list + i), (unsigned)len))
+            if (!strncasecmp(arg, *(list + i), (unsigned)len))
                 return (i);
     }
 
@@ -1756,7 +1755,7 @@ int parse_command(char *command) {
     int cmd, length = strlen(command);
 
     for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
-        if (!strncmp(cmd_info[cmd].command, command, length))
+        if (!strncasecmp(cmd_info[cmd].command, command, length))
             return cmd;
 
     return -1;
@@ -2384,7 +2383,7 @@ void nanny(DescriptorData *d, char *arg) {
         if (!*arg)
             close_socket(d);
         else {
-            if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
+            if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
                 sprintf(buf, "Bad PW: %s [%s]", GET_NAME(d->character), d->host);
                 mudlog(buf, BRF, LVL_GOD, true);
                 GET_BAD_PWS(d->character)++;
@@ -2493,7 +2492,7 @@ void nanny(DescriptorData *d, char *arg) {
 
     case CON_CNFPASSWD:
     case CON_CHPWD_VRFY:
-        if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
+        if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
             write_to_output("\nPasswords don't match... start over.\n", d);
             write_to_output("Password: ", d);
             if (STATE(d) == CON_CNFPASSWD)
@@ -2877,7 +2876,7 @@ void nanny(DescriptorData *d, char *arg) {
         break;
 
     case CON_CHPWD_GETOLD:
-        if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
+        if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
             echo_on(d);
             write_to_output("\nIncorrect password.\n", d);
             write_to_output(MENU, d);
@@ -2892,7 +2891,7 @@ void nanny(DescriptorData *d, char *arg) {
 
     case CON_DELCNF1:
         echo_on(d);
-        if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
+        if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
             write_to_output("\nIncorrect password.\n", d);
             write_to_output(MENU, d);
             STATE(d) = CON_MENU;

@@ -41,14 +41,16 @@ void init_objtypes(void) {
         type = &item_types[i];
         if (!type->name || !*type->name) {
             sprintf(buf, "SYSERR: No name for object type %d in obj_type_def in objects.c", i);
-            log("%s", buf);;
+            log("%s", buf);
+            ;
         }
         if (!type->desc || !*type->desc) {
             sprintf(buf,
                     "SYSERR: No description for object type %d in obj_type_def in "
                     "objects.c",
                     i);
-            log("%s", buf);;
+            log("%s", buf);
+            ;
         }
         for (j = 0; j < NUM_VALUES; ++j)
             if (type->value[j].max < type->value[j].min) {
@@ -56,7 +58,8 @@ void init_objtypes(void) {
                         "SYSERR: max less than min for %s value %d in obj_type_def in "
                         "objects.c",
                         type->name, j);
-                log("%s", buf);;
+                log("%s", buf);
+                ;
             }
     }
 }
@@ -391,7 +394,7 @@ void name_from_drinkcon(ObjData *obj, int type) {
         /* The aliases are long enough to have more than just the drink name */
         (obj->name)[aliaslen] == ' ' &&
         /* An alias terminates just where the drink name should */
-        !strncmp(LIQ_ALIAS(type), obj->name, aliaslen))
+        !strncasecmp(LIQ_ALIAS(type), obj->name, aliaslen))
     /* Same string: we are go for removal */
     {
         new_name = strdup((obj->name) + aliaslen + 1);

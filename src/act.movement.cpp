@@ -707,7 +707,7 @@ ACMD(do_move) {
             return;
         }
 
-        if (!strncmp("st", arg, 2)) {
+        if (!strncasecmp("st", arg, 2)) {
             /* Misdirection is "stay" */
             misdir = -1;
         } else {

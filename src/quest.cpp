@@ -276,7 +276,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      * Advances player <vict> by <amount> stages in the quest <quest_name>.
      * Defaults to 1 stage.
      */
-    if (!strncmp(arg, "advance", strlen(arg))) {
+    if (!strncasecmp(arg, "advance", strlen(arg))) {
         argument = any_one_arg(argument, buf1);
         amount = atoi(buf1);
         if (!amount && !*buf1) /* If no amount given, then advance by 1. */
@@ -288,7 +288,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      *
      * Start player <vict> on the quest <quest_name>.
      */
-    else if (!strncmp(arg, "start", strlen(arg))) {
+    else if (!strncasecmp(arg, "start", strlen(arg))) {
         argument = any_one_arg(argument, buf1);
         quest_start(ch, vict, quest_name, error_string, buf1);
     }
@@ -299,7 +299,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      * quest <quest_name>, or check quest variable <buf1> on player <vict>
      * on the quest <quest_name>.
      */
-    else if (!strncmp(arg, "variable", strlen(arg))) {
+    else if (!strncasecmp(arg, "variable", strlen(arg))) {
         argument = any_one_arg(argument, buf1);
         argument = any_one_arg(argument, buf2);
         if (ch && !*buf1)
@@ -324,14 +324,14 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      *
      * Sets quest <quest_name> to complete on player <vict>.
      */
-    else if (!strncmp(arg, "complete", strlen(arg)))
+    else if (!strncasecmp(arg, "complete", strlen(arg)))
         quest_complete(ch, vict, quest_name, error_string);
 
     /* fail
      *
      * Sets quest <quest_name> to failed on player <vict>.
      */
-    else if (!strncmp(arg, "fail", strlen(arg)))
+    else if (!strncasecmp(arg, "fail", strlen(arg)))
         quest_fail(ch, vict, quest_name, error_string);
 
     /* rewind
@@ -339,7 +339,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      * Rewinds player <vict> by <amount> stages in the quest <quest_name>.
      * Defaults to 1 stage.
      */
-    else if (!strncmp(arg, "rewind", strlen(arg))) {
+    else if (!strncasecmp(arg, "rewind", strlen(arg))) {
         argument = any_one_arg(argument, buf1);
         amount = atoi(buf1);
         if (!amount && !*buf1) /* If no amount given, then rewind by 1. */
@@ -352,21 +352,21 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      * Start player <vict> on the quest <quest_name> if they have already
      * started it.
      */
-    else if (!strncmp(arg, "restart", strlen(arg)))
+    else if (!strncasecmp(arg, "restart", strlen(arg)))
         quest_restart(ch, vict, quest_name, error_string);
 
     /* erase
      *
      * Erase quest <quest_name> on player <vict>.
      */
-    else if (!strncmp(arg, "erase", strlen(arg)))
+    else if (!strncasecmp(arg, "erase", strlen(arg)))
         quest_erase(ch, vict, quest_name, error_string);
 
     /* stage
      *
      * Shows stage for quest <quest_name> on player <vict>.
      */
-    else if (ch && !strncmp(arg, "stage", strlen(arg))) {
+    else if (ch && !strncasecmp(arg, "stage", strlen(arg))) {
         if (quest_find_char(vict, quest_name)) {
             amount = quest_stage(vict, quest_name);
             if (amount == QUEST_FAILURE)
@@ -409,7 +409,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
  * descr:	internal routine to return the quest_id for  a specified quest
  * name so that all quests can be referred to by names externally.
  *
- * NOTE:	uses strncmp so abbreviations of quest anmes are tolerated.
+ * NOTE:	uses strncasecmp  so abbreviations of quest anmes are tolerated.
  */
 unsigned short quest_find_num(char *qname) {
     int count;
@@ -418,7 +418,7 @@ unsigned short quest_find_num(char *qname) {
      * return its quest id.
      */
     for (count = 0; count < max_quests; count++) {
-        if (!strncmp(all_quests[count].quest_name, qname, strlen(qname)))
+        if (!strncasecmp(all_quests[count].quest_name, qname, strlen(qname)))
             return all_quests[count].quest_id;
     }
     return 0;
@@ -431,7 +431,7 @@ unsigned short quest_find_num(char *qname) {
 char *check_quest_name(char *qname) {
     int count;
     for (count = 0; count < max_quests; count++)
-        if (!strncmp(all_quests[count].quest_name, qname, strlen(qname)))
+        if (!strncasecmp(all_quests[count].quest_name, qname, strlen(qname)))
             return all_quests[count].quest_name;
     return nullptr;
 }
@@ -445,7 +445,7 @@ short quest_find_max_stage(char *qname) {
     int count = 0;
 
     for (count = 0; count < max_quests; count++)
-        if (!strncmp(all_quests[count].quest_name, qname, strlen(qname)))
+        if (!strncasecmp(all_quests[count].quest_name, qname, strlen(qname)))
             return all_quests[count].maxstages;
     return 0;
 }
@@ -1080,7 +1080,7 @@ ACMD(do_qadd) {
      * longer than 0, otherwise all quests are subclass quests.
      */
     argument = any_one_arg(argument, arg);
-    if (*arg && !strncmp("yes", arg, strlen(arg))) {
+    if (*arg && !strncasecmp("yes", arg, strlen(arg))) {
         max_id = (MAX_SUBCLASS_QUEST_ID | SUBCLASS_BIT);
         new_id |= SUBCLASS_BIT;
     } else
