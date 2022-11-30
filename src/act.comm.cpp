@@ -433,7 +433,7 @@ ACMD(do_page) {
         char_printf(ch, "Whom do you wish to page?\n");
     else {
         sprintf(buf, "\007\007*%s* %s\n", GET_NAME(ch), buf2);
-        if (!strcmp(arg, "all")) {
+        if (!strcasecmp(arg, "all")) {
             if (GET_LEVEL(ch) > LVL_GOD) {
                 for (d = descriptor_list; d; d = d->next)
                     if (!d->connected && d->character)

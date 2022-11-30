@@ -229,7 +229,7 @@ void list_obj_to_char(ObjData *list, CharData *ch, int mode) {
      * accessed from raw_mode. */
     REMOVE_BIT(mode, SHOW_MASK);
 
-#define STRINGS_MATCH(x, y, member) ((x)->member == (y)->member || !strcmp((x)->member, (y)->member))
+#define STRINGS_MATCH(x, y, member) ((x)->member == (y)->member || !strcasecmp((x)->member, (y)->member))
 #define OBJECTS_MATCH(x, y)                                                                                            \
     ((x)->item_number == (y)->item_number &&                                                                           \
      (mode == SHOW_LONG_DESC ? STRINGS_MATCH((x), (y), description) : STRINGS_MATCH((x), (y), short_description)))
@@ -771,7 +771,7 @@ void list_char_to_char(CharData *list, CharData *ch, int mode) {
     REMOVE_BIT(mode, SHOW_MASK);
 
 #define STRINGS_MATCH(x, y, member)                                                                                    \
-    ((x)->player.member == (y)->player.member || !strcmp((x)->player.member, (y)->player.member))
+    ((x)->player.member == (y)->player.member || !strcasecmp((x)->player.member, (y)->player.member))
 #define CHARS_MATCH(x, y)                                                                                              \
     (GET_MOB_VNUM(x) == GET_MOB_VNUM(y) && FIGHTING(x) == FIGHTING(y) && CASTING(x) == CASTING(y) &&                   \
      (mode == SHOW_SHORT_DESC ? STRINGS_MATCH((x), (y), short_descr) : STRINGS_MATCH((x), (y), long_descr)) &&         \
@@ -875,7 +875,7 @@ ACMD(do_viewdam) {
         if (is_number(arg)) {
             i = atoi(arg);
             if ((i < MAX_SKILLS) && (i > 0)) {
-                if (strcmp(skills[i].name, "!UNUSED!")) {
+                if (strcasecmp(skills[i].name, "!UNUSED!")) {
                     char_printf(ch, "%s%s%-22s%-8d%-3d%-3d%-8d%-3d%-5d%-4d%-5d%-12s%s%s \n", buf2, grn,
                                 (skills[i].name), SD_SPELL(i), SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i),
                                 SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i), SD_PC_NO_FACE(i), SD_LVL_MULT(i),
@@ -886,9 +886,9 @@ ACMD(do_viewdam) {
             }
         }
 
-    } else if (!strcmp("all", arg)) {
+    } else if (!strcasecmp("all", arg)) {
         for (i = 1; i <= MAX_SPELLS; i++) {
-            if (strcmp(skills[i].name, "!UNUSED!")) {
+            if (strcasecmp(skills[i].name, "!UNUSED!")) {
                 char_printf(ch, "%s%-22s%-8d%-3d%-3d%-8d%-3d%-5d%-4d%-3d%s%s\n", grn, skills[i].name, SD_SPELL(i),
                             SD_NPC_NO_DICE(i), SD_NPC_NO_FACE(i), SD_NPC_REDUCE_FACTOR(i), SD_PC_NO_DICE(i),
                             SD_PC_NO_FACE(i), SD_LVL_MULT(i), SD_BONUS(i), (SD_USE_BONUS(i) ? "true" : "false"), nrm);
@@ -1956,7 +1956,7 @@ ACMD(do_who) {
         if ((noimm && GET_LEVEL(wch) >= LVL_IMMORT) || (nomort && GET_LEVEL(wch) < LVL_IMMORT)) {
             continue;
         }
-        if (*name_search && strcmp(GET_NAME(wch), name_search) &&
+        if (*name_search && strcasecmp(GET_NAME(wch), name_search) &&
             (!GET_TITLE(wch) || !strstr(GET_TITLE(wch), name_search))) {
             continue;
         }
@@ -2186,10 +2186,10 @@ static void sortc(int l, int u) {
     for (;;) {
         do
             i++;
-        while (i <= u && strcmp(iplist[i], item) < 0);
+        while (i <= u && strcasecmp(iplist[i], item) < 0);
         do
             j--;
-        while (strcmp(iplist[j], item) > 0);
+        while (strcasecmp(iplist[j], item) > 0);
         if (i > j)
             break;
         swapc(i, j);
@@ -2306,7 +2306,7 @@ ACMD(do_users) {
 
             if (*host_search && !strstr(d->host, host_search))
                 continue;
-            if (*name_search && strcmp(GET_NAME(tch), name_search))
+            if (*name_search && strcasecmp(GET_NAME(tch), name_search))
                 continue;
             if (!CAN_SEE(ch, tch) || GET_LEVEL(tch) < low || GET_LEVEL(tch) > high)
                 continue;
@@ -2409,14 +2409,14 @@ ACMD(do_users) {
         sortc(0, counter);
         for (forcnt = 0; forcnt <= counter; forcnt++) {
             for (cntr = 0; cntr <= counter; cntr++)
-                if (strcmp(iplist[forcnt], iplist[cntr]) == 0)
+                if (strcasecmp(iplist[forcnt], iplist[cntr]) == 0)
                     repeats[forcnt]++;
         }
         for (forcnt = 0; forcnt <= counter; forcnt++)
             if (*userlist[forcnt]) {
                 if (forcnt > 0) {
-                    if (strcmp(iplist[forcnt], iplist[forcnt - 1]) != 0) {
-                        if (strcmp(color, "&7") == 0)
+                    if (strcasecmp(iplist[forcnt], iplist[forcnt - 1]) != 0) {
+                        if (strcasecmp(color, "&7") == 0)
                             strcpy(color, "&7&b");
                         else
                             strcpy(color, "&7");

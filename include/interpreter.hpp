@@ -19,7 +19,7 @@
     void(name)(CharData * ch, [[maybe_unused]] char *argument, [[maybe_unused]] int cmd, [[maybe_unused]] int subcmd)
 
 #define CMD_NAME (cmd_info[cmd].command)
-#define CMD_IS(cmd_name) (!strcmp(cmd_name, cmd_info[cmd].command))
+#define CMD_IS(cmd_name) (!strcasecmp(cmd_name, cmd_info[cmd].command))
 #define IS_MOVE(cmdnum) (cmdnum >= 1 && cmdnum <= 6)
 
 void command_interpreter(CharData *ch, char *argument);

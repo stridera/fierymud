@@ -542,7 +542,7 @@ ACMD(do_mload) {
         }
         /* Reuse arg1 for third argument: force mload to room */
         any_one_arg(argument, arg1);
-        if (!CAN_WEAR(obj, ITEM_WEAR_TAKE) || !strcmp(arg1, "room"))
+        if (!CAN_WEAR(obj, ITEM_WEAR_TAKE) || !strcasecmp(arg1, "room"))
             obj_to_room(obj, IN_ROOM(ch));
         else
             obj_to_char(obj, ch);
@@ -712,7 +712,7 @@ ACMD(do_mteleport) {
     if (target == NOWHERE)
         mob_log(ch, "mteleport target is an invalid room");
 
-    else if (!strcmp(arg1, "all")) {
+    else if (!strcasecmp(arg1, "all")) {
         if (target == IN_ROOM(ch)) {
             mob_log(ch, "mteleport all target is itself");
             return;
@@ -767,7 +767,7 @@ ACMD(do_mforce) {
         return;
     }
 
-    if (!strcmp(arg, "all")) {
+    if (!strcasecmp(arg, "all")) {
         DescriptorData *i;
         CharData *vch;
 
@@ -943,7 +943,7 @@ ACMD(do_msave) {
         return;
     }
 
-    if (!strcmp(arg, "all")) {
+    if (!strcasecmp(arg, "all")) {
         DescriptorData *i;
         CharData *vch;
 

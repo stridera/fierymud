@@ -1010,7 +1010,7 @@ ACMD(do_pour) {
             act("Where do you want it?  Out or in what?", false, ch, 0, 0, TO_CHAR);
             return;
         }
-        if (!strcmp(arg2, "out")) {
+        if (!strcasecmp(arg2, "out")) {
             act("$n empties $p.", false, ch, from_obj, 0, TO_ROOM);
             act("You empty $p.", false, ch, from_obj, 0, TO_CHAR);
             liquid_from_container(from_obj, GET_OBJ_VAL(from_obj, VAL_DRINKCON_REMAINING));
@@ -1169,7 +1169,7 @@ int find_eq_pos(CharData *ch, ObjData *obj, char *arg) {
     } else {
         /* 2/6/02 - DCE Put in a check for !. Players could wear item !,
            and it would put the item in the light position. */
-        if (!strcmp(arg, "!") || (where = search_block(arg, keywords, false)) < 0) {
+        if (!strcasecmp(arg, "!") || (where = search_block(arg, keywords, false)) < 0) {
             sprintf(buf, "'%s'?  What part of your body is THAT?\n", arg);
             send_to_char(buf, ch);
         }
@@ -1613,7 +1613,7 @@ ACMD(do_conceal) {
         send_to_char("You aren't skilled enough to conceal an item.\n", ch);
     else if (!*arg)
         send_to_char("What do you want to conceal?\n", ch);
-    else if (!strcmp(arg, "all") || !strncasecmp(arg, "all.", 4))
+    else if (!strcasecmp(arg, "all") || !strncasecmp(arg, "all.", 4))
         send_to_char("You can't conceal multiple items at once.\n", ch);
     else if (ch->in_room == NOWHERE ||
              !(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg))))
@@ -1697,7 +1697,7 @@ ACMD(do_touch) {
 
     if (!*arg)
         send_to_char("Touch what?\n", ch);
-    else if (!strcmp(arg, "all") || !strncasecmp(arg, "all.", 4))
+    else if (!strcasecmp(arg, "all") || !strncasecmp(arg, "all.", 4))
         send_to_char("One at a time...\n", ch);
     else if (ch->in_room == NOWHERE ||
              !(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg))))
@@ -1726,7 +1726,7 @@ ACMD(do_compare) {
 
     if (!*buf1 || !*buf2)
         send_to_char("Compare what?\n", ch);
-    else if (!strcmp(buf1, "all") || !strncasecmp(buf1, "all.", 4) || !strcmp(buf2, "all") ||
+    else if (!strcasecmp(buf1, "all") || !strncasecmp(buf1, "all.", 4) || !strcasecmp(buf2, "all") ||
              !strncasecmp(buf2, "all.", 4))
         send_to_char("You can only compare two items at a time!\n", ch);
     else if (!(obj1 = find_obj_in_list(ch->carrying, find_vis_by_name(ch, buf1))))

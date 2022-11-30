@@ -2251,7 +2251,7 @@ ACMD(do_follow) {
         return;
     }
 
-    if (!strcmp(arg, "off"))
+    if (!strcasecmp(arg, "off"))
         leader = ch;
     else if (!(leader = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         send_to_char(NOPERSON, ch);
@@ -2330,7 +2330,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcmp(arg, "all")) {
+        if (!strcasecmp(arg, "all")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
@@ -2352,7 +2352,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcmp(arg, "pets")) {
+        if (!strcasecmp(arg, "pets")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (EFF_FLAGGED(k->follower, EFF_CHARM)) {
@@ -2367,7 +2367,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcmp(arg, "players")) {
+        if (!strcasecmp(arg, "players")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (!(EFF_FLAGGED(k->follower, EFF_CHARM))) {
@@ -2437,7 +2437,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcmp(arg, "all")) {
+        if (!strcasecmp(arg, "all")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
@@ -2461,7 +2461,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcmp(arg, "pets")) {
+        if (!strcasecmp(arg, "pets")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (EFF_FLAGGED(k->follower, EFF_CHARM)) {
@@ -2476,7 +2476,7 @@ ACMD(do_abandon) {
             return;
         }
 
-        if (!strcmp(arg, "players")) {
+        if (!strcasecmp(arg, "players")) {
             if (ch->followers) {
                 for (k = ch->followers; k; k = k->next) {
                     if (!(EFF_FLAGGED(k->follower, EFF_CHARM))) {

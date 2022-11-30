@@ -266,7 +266,7 @@ WCMD(do_wteleport) {
     if (target == NOWHERE)
         wld_log(room, t, "wteleport target is an invalid room");
 
-    else if (!strcmp(arg1, "all")) {
+    else if (!strcasecmp(arg1, "all")) {
         if (world[target].vnum == room->vnum) {
             wld_log(room, t, "wteleport all target is itself");
             return;
@@ -304,7 +304,7 @@ WCMD(do_wforce) {
         return;
     }
 
-    if (!strcmp(arg1, "all")) {
+    if (!strcasecmp(arg1, "all")) {
         for (ch = room->people; ch; ch = next_ch) {
             next_ch = ch->next_in_room;
 

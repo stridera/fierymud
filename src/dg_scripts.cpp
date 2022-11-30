@@ -515,7 +515,7 @@ ACMD(do_attach) {
 void add_var(TriggerVariableData **var_list, const char *name, const char *value) {
     TriggerVariableData *vd;
 
-    for (vd = *var_list; vd && strcmp(vd->name, name); vd = vd->next)
+    for (vd = *var_list; vd && strcasecmp(vd->name, name); vd = vd->next)
         ;
 
     if (vd) {
@@ -612,11 +612,11 @@ ACMD(do_detach) {
         return;
     }
 
-    if (!strcmp(arg1, "room")) {
+    if (!strcasecmp(arg1, "room")) {
         room = &world[IN_ROOM(ch)];
         if (!SCRIPT(room))
             send_to_char("This room does not have any triggers.\n", ch);
-        else if (!strcmp(arg2, "all")) {
+        else if (!strcasecmp(arg2, "all")) {
             extract_script(SCRIPT(room));
             SCRIPT(room) = nullptr;
             send_to_char("All triggers removed from room.\n", ch);
@@ -674,7 +674,7 @@ ACMD(do_detach) {
 
             else if (!SCRIPT(victim))
                 send_to_char("That mob doesn't have any triggers.\n", ch);
-            else if (!strcmp(arg2, "all")) {
+            else if (!strcasecmp(arg2, "all")) {
                 extract_script(SCRIPT(victim));
                 SCRIPT(victim) = nullptr;
                 sprintf(buf, "All triggers removed from %s.\n", GET_SHORT(victim));
@@ -695,7 +695,7 @@ ACMD(do_detach) {
             if (!SCRIPT(obj))
                 send_to_char("That object doesn't have any triggers.\n", ch);
 
-            else if (!strcmp(arg2, "all")) {
+            else if (!strcasecmp(arg2, "all")) {
                 extract_script(SCRIPT(obj));
                 SCRIPT(obj) = nullptr;
                 sprintf(buf, "All triggers removed from %s.\n",
@@ -729,7 +729,7 @@ void free_var_el(TriggerVariableData *var) {
 int remove_var(TriggerVariableData **var_list, const char *name) {
     TriggerVariableData *i, *j;
 
-    for (j = nullptr, i = *var_list; i && strcmp(name, i->name); j = i, i = i->next)
+    for (j = nullptr, i = *var_list; i && strcasecmp(name, i->name); j = i, i = i->next)
         ;
 
     if (i) {
@@ -810,7 +810,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * globals and static variables.
      */
     for (vd = GET_TRIG_VARS(trig); vd; vd = vd->next)
-        if (!strcmp(vd->name, var))
+        if (!strcasecmp(vd->name, var))
             break;
 
     /*
@@ -821,7 +821,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     if (!vd && sc)
         for (vd = sc->global_vars; vd; vd = vd->next)
-            if (!strcmp(vd->name, var))
+            if (!strcasecmp(vd->name, var))
                 break;
 
     /*
@@ -861,7 +861,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         if (vd)
             strcpy(str, vd->value);
         else {
-            if (!strcmp(var, "self")) {
+            if (!strcasecmp(var, "self")) {
                 switch (type) {
                 case MOB_TRIGGER:
                     UID_VAR(str, ch);
@@ -876,7 +876,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
             /* General scripting variable "damdone", which is the amount of damage
              * that was done by a wdamage, mdamage, or odamage command. */
-            else if (!strcmp(var, "damdone")) {
+            else if (!strcasecmp(var, "damdone")) {
                 sprintf(str, "%d", trig->damdone);
             } else
                 *str = '\0';
@@ -930,7 +930,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * If no local or global variable named self was found above,
      * then we must be referring to the runner of the trigger.
      */
-    else if (!strcmp(var, "self")) {
+    else if (!strcasecmp(var, "self")) {
         c = ch;
         o = obj;
         r = room;
@@ -942,16 +942,16 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     else {
 
-        if (!strcmp(var, "time")) {
-            if (!strcmp(field, "hour"))
+        if (!strcasecmp(var, "time")) {
+            if (!strcasecmp(field, "hour"))
                 sprintf(str, "%d", time_info.hours);
-            else if (!strcmp(field, "day"))
+            else if (!strcasecmp(field, "day"))
                 sprintf(str, "%d", time_info.day);
-            else if (!strcmp(field, "month"))
+            else if (!strcasecmp(field, "month"))
                 sprintf(str, "%d", time_info.month);
-            else if (!strcmp(field, "year"))
+            else if (!strcasecmp(field, "year"))
                 sprintf(str, "%d", time_info.year);
-            else if (!strcmp(field, "stamp")) {
+            else if (!strcasecmp(field, "stamp")) {
                 num = time_info.year * SECS_PER_MUD_YEAR + time_info.month * SECS_PER_MUD_MONTH +
                       time_info.day * SECS_PER_MUD_DAY + time_info.hours * SECS_PER_MUD_HOUR;
                 /* Only game-hour granularity is available in triggers. */
@@ -964,10 +964,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!strcmp(var, "random")) {
+        else if (!strcasecmp(var, "random")) {
 
             /* Pick a random character in the room */
-            if (!strcmp(field, "char")) {
+            if (!strcasecmp(field, "char")) {
                 if (type == MOB_TRIGGER)
                     c = get_random_char_around(ch, RAND_DG_MOB);
                 else if (type == OBJ_TRIGGER)
@@ -979,7 +979,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
 
             /* Locate a random room globally */
-            else if (!strcmp(field, "room")) {
+            else if (!strcasecmp(field, "room")) {
                 do {
                     num = number(0, top_of_world);
                 } while (ROOM_FLAGGED(num, ROOM_PRIVATE) || ROOM_FLAGGED(num, ROOM_DEATH) ||
@@ -988,7 +988,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
 
             /* Pick a random room in the zone */
-            else if (!strcmp(field, "room_in_zone")) {
+            else if (!strcasecmp(field, "room_in_zone")) {
                 if (type == MOB_TRIGGER && ch->in_room != NOWHERE)
                     num = world[ch->in_room].zone;
                 else if (type == OBJ_TRIGGER && (num = obj_room(obj)) != NOWHERE)
@@ -1009,22 +1009,22 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Static functions */
-        else if (!strcmp(var, "get")) {
+        else if (!strcasecmp(var, "get")) {
             /* %get.obj_shortdesc[VNUM]% */
-            if (!strcmp(field, "obj_shortdesc")) {
+            if (!strcasecmp(field, "obj_shortdesc")) {
                 if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
                     strcpy(str, obj_proto[num].short_description);
                 else
                     sprintf(str, "[no description for object %s]", value);
 
-            } else if (!strcmp(field, "obj_noadesc")) {
+            } else if (!strcasecmp(field, "obj_noadesc")) {
                 /* %get.obj_noadesc[VNUM]% */
                 if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
                     strcpy(str, without_article(obj_proto[num].short_description));
                 else
                     sprintf(str, "[no description for object %s]", value);
 
-            } else if (!strcmp(field, "obj_pldesc")) {
+            } else if (!strcasecmp(field, "obj_pldesc")) {
                 /* %get.obj_pldesc[VNUM]% */
                 if (is_positive_integer(value) && (num = real_object(atoi(value))) >= 0)
                     strcpy(str, pluralize(obj_proto[num].short_description));
@@ -1032,32 +1032,32 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     sprintf(str, "[no description for object %s]", value);
 
                 /* %get.mob_shortdesc[VNUM]% */
-            } else if (!strcmp(field, "mob_shortdesc")) {
+            } else if (!strcasecmp(field, "mob_shortdesc")) {
                 if (is_positive_integer(value) && (num = real_mobile(atoi(value))) >= 0)
                     strcpy(str, mob_proto[num].player.short_descr);
                 else
                     sprintf(str, "[no description for mobile %s]", value);
 
                 /* %get.obj_count[VNUM]% is the number of objects with VNUM in game */
-            } else if (!strcmp(field, "obj_count")) {
+            } else if (!strcasecmp(field, "obj_count")) {
                 if ((num = real_object(atoi(value))) >= 0)
                     sprintf(str, "%d", obj_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.mob_count[VNUM]% is the number of mobiles with VNUM in game */
-            } else if (!strcmp(field, "mob_count")) {
+            } else if (!strcasecmp(field, "mob_count")) {
                 if ((num = real_mobile(atoi(value))) >= 0)
                     sprintf(str, "%d", mob_index[num].number);
                 else
                     strcpy(str, "0");
                 /* %get.room[VNUM]% returns a UID variable pointing to that room */
-            } else if (!strcmp(field, "room")) {
+            } else if (!strcasecmp(field, "room")) {
                 if ((num = real_room(atoi(value))) >= 0)
                     ROOM_UID_VAR(str, num);
                 else
                     strcpy(str, "0");
                 /* %get.people[VNUM]% is the number of people in room */
-            } else if (!strcmp(field, "people")) {
+            } else if (!strcasecmp(field, "people")) {
                 if (is_positive_integer(value) && (num = real_room(atoi(value))) >= 0) {
                     ch = world[num].people;
                     for (num = 0; ch; ch = ch->next_in_room)
@@ -1069,7 +1069,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     sprintf(buf2, "get.people[%s]: room '-1' does not exist", value);
                     script_log(trig, buf2);
                 }
-            } else if (!strcmp(field, "opposite_dir")) {
+            } else if (!strcasecmp(field, "opposite_dir")) {
                 if ((num = search_block(value, dirs, false)) >= 0)
                     strcpy(str, dirs[rev_dir[num]]);
                 else {
@@ -1081,7 +1081,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                         *(str++) = *(value + num);
                     *str = '\0';
                 }
-            } else if (!strcmp(field, "uidchar"))
+            } else if (!strcasecmp(field, "uidchar"))
                 sprintf(str, "%c", UID_CHAR);
             else {
                 *str = '\0';
@@ -1091,35 +1091,35 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* String functions */
-        else if (!strcmp(var, "string")) {
+        else if (!strcasecmp(var, "string")) {
 
-            if (!strcmp(field, "reverse")) {
+            if (!strcasecmp(field, "reverse")) {
                 for (num = strlen(value) - 1; num >= 0; --num)
                     *(str++) = *(value + num);
                 *str = '\0';
             }
 
-            else if (!strcmp(field, "length"))
+            else if (!strcasecmp(field, "length"))
                 sprintf(str, "%d", strlen(value));
 
-            else if (!strcmp(field, "tolower")) {
+            else if (!strcasecmp(field, "tolower")) {
                 do {
                     *(str++) = LOWER(*(value++));
                 } while (*value);
             }
 
-            else if (!strcmp(field, "toupper")) {
+            else if (!strcasecmp(field, "toupper")) {
                 do {
                     *(str++) = UPPER(*(value++));
                 } while (*value);
             }
 
-            else if (!strcmp(field, "cap") || !strcmp(field, "capitalize")) {
+            else if (!strcasecmp(field, "cap") || !strcasecmp(field, "capitalize")) {
                 strcpy(str, value);
                 CAP(str);
             }
 
-            else if (!strcmp(field, "firstword"))
+            else if (!strcasecmp(field, "firstword"))
                 any_one_arg(value, str);
 
             else {
@@ -1143,90 +1143,90 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      */
     if (c) {
         /* String identifiers */
-        if (!strcmp(field, "name"))
+        if (!strcasecmp(field, "name"))
             strcpy(str, GET_SHORT(c) ? GET_SHORT(c) : GET_NAME(c));
-        else if (!strcmp(field, "p") || !strcmp(field, "hisher"))
+        else if (!strcasecmp(field, "p") || !strcasecmp(field, "hisher"))
             strcpy(str, HSHR(c)); /* Possessive pronoun */
-        else if (!strcmp(field, "o") || !strcmp(field, "himher"))
+        else if (!strcasecmp(field, "o") || !strcasecmp(field, "himher"))
             strcpy(str, HMHR(c)); /* Objective pronoun */
-        else if (!strcmp(field, "n") || !strcmp(field, "heshe"))
+        else if (!strcasecmp(field, "n") || !strcasecmp(field, "heshe"))
             strcpy(str, HSSH(c)); /* Nominative pronoun */
-        else if (!strcmp(field, "alias"))
+        else if (!strcasecmp(field, "alias"))
             strcpy(str, GET_NAME(c));
-        else if (!strcmp(field, "title"))
+        else if (!strcasecmp(field, "title"))
             strcpy(str, GET_TITLE(c) ? GET_TITLE(c) : "");
 
         /* Identifying numbers */
-        else if (!strcmp(field, "vnum"))
+        else if (!strcasecmp(field, "vnum"))
             sprintf(str, "%d", GET_MOB_VNUM(c));
-        else if (!strcmp(field, "id"))
+        else if (!strcasecmp(field, "id"))
             sprintf(str, "%ld", GET_ID(c));
 
         /* Attributes */
-        else if (!strcmp(field, "sex") || !strcmp(field, "gender"))
+        else if (!strcasecmp(field, "sex") || !strcasecmp(field, "gender"))
             strcpy(str, genders[(int)GET_SEX(c)]);
-        else if (!strcmp(field, "class")) {
+        else if (!strcasecmp(field, "class")) {
             strcpy(str, CLASS_PLAINNAME(c));
             CAP(str);
-        } else if (!strcmp(field, "race"))
+        } else if (!strcasecmp(field, "race"))
             strcpy(str, races[(int)GET_RACE(c)].name);
-        else if (!strcmp(field, "level"))
+        else if (!strcasecmp(field, "level"))
             sprintf(str, "%d", GET_LEVEL(c));
 
-        else if (!strcmp(field, "weight"))
+        else if (!strcasecmp(field, "weight"))
             sprintf(str, "%d", GET_WEIGHT(c));
-        else if (!strcmp(field, "height"))
+        else if (!strcasecmp(field, "height"))
             sprintf(str, "%d", GET_HEIGHT(c));
-        else if (!strcmp(field, "size"))
+        else if (!strcasecmp(field, "size"))
             sprintf(str, "%s", SIZE_DESC(c));
 
-        else if (!strcmp(field, "cha"))
+        else if (!strcasecmp(field, "cha"))
             sprintf(str, "%d", GET_VIEWED_CHA(c));
-        else if (!strcmp(field, "str"))
+        else if (!strcasecmp(field, "str"))
             sprintf(str, "%d", GET_VIEWED_STR(c));
-        else if (!strcmp(field, "int"))
+        else if (!strcasecmp(field, "int"))
             sprintf(str, "%d", GET_VIEWED_INT(c));
-        else if (!strcmp(field, "wis"))
+        else if (!strcasecmp(field, "wis"))
             sprintf(str, "%d", GET_VIEWED_WIS(c));
-        else if (!strcmp(field, "con"))
+        else if (!strcasecmp(field, "con"))
             sprintf(str, "%d", GET_VIEWED_CON(c));
-        else if (!strcmp(field, "dex"))
+        else if (!strcasecmp(field, "dex"))
             sprintf(str, "%d", GET_VIEWED_DEX(c));
 
-        else if (!strcmp(field, "real_cha"))
+        else if (!strcasecmp(field, "real_cha"))
             sprintf(str, "%d", GET_CHA(c));
-        else if (!strcmp(field, "real_str"))
+        else if (!strcasecmp(field, "real_str"))
             sprintf(str, "%d", GET_STR(c));
-        else if (!strcmp(field, "real_int"))
+        else if (!strcasecmp(field, "real_int"))
             sprintf(str, "%d", GET_INT(c));
-        else if (!strcmp(field, "real_wis"))
+        else if (!strcasecmp(field, "real_wis"))
             sprintf(str, "%d", GET_WIS(c));
-        else if (!strcmp(field, "real_con"))
+        else if (!strcasecmp(field, "real_con"))
             sprintf(str, "%d", GET_CON(c));
-        else if (!strcmp(field, "real_dex"))
+        else if (!strcasecmp(field, "real_dex"))
             sprintf(str, "%d", GET_DEX(c));
 
-        else if (!strcmp(field, "hit"))
+        else if (!strcasecmp(field, "hit"))
             sprintf(str, "%d", GET_HIT(c));
-        else if (!strcmp(field, "maxhit"))
+        else if (!strcasecmp(field, "maxhit"))
             sprintf(str, "%d", GET_MAX_HIT(c));
-        else if (!strcmp(field, "move"))
+        else if (!strcasecmp(field, "move"))
             sprintf(str, "%d", GET_MOVE(c));
-        else if (!strcmp(field, "maxmove"))
+        else if (!strcasecmp(field, "maxmove"))
             sprintf(str, "%d", GET_MAX_MOVE(c));
-        else if (!strcmp(field, "armor"))
+        else if (!strcasecmp(field, "armor"))
             sprintf(str, "%d", GET_AC(c));
-        else if (!strcmp(field, "hitroll"))
+        else if (!strcasecmp(field, "hitroll"))
             sprintf(str, "%d", GET_HITROLL(c));
-        else if (!strcmp(field, "damroll"))
+        else if (!strcasecmp(field, "damroll"))
             sprintf(str, "%d", GET_DAMROLL(c));
-        else if (!strcmp(field, "exp"))
+        else if (!strcasecmp(field, "exp"))
             sprintf(str, "%ld", GET_EXP(c));
-        else if (!strcmp(field, "perception"))
+        else if (!strcasecmp(field, "perception"))
             sprintf(str, "%ld", GET_PERCEPTION(c));
-        else if (!strcmp(field, "hiddenness"))
+        else if (!strcasecmp(field, "hiddenness"))
             sprintf(str, "%ld", GET_HIDDENNESS(c));
-        else if (!strcmp(field, "align") || !strcmp(field, "alignment"))
+        else if (!strcasecmp(field, "align") || !strcasecmp(field, "alignment"))
             sprintf(str, "%d", GET_ALIGNMENT(c));
 
         else if (is_coin_name(field, PLATINUM))
@@ -1239,7 +1239,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%d", GET_COPPER(c));
 
         /* Flags */
-        else if (!strcmp(field, "flags")) {
+        else if (!strcasecmp(field, "flags")) {
             *str = '\0';
             if (IS_NPC(c)) /* ACT flags */
                 sprintflag(str, MOB_FLAGS(c), NUM_MOB_FLAGS, action_bits);
@@ -1249,7 +1249,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 if (HAS_FLAGS(PRF_FLAGS(c), NUM_PRF_FLAGS))
                     sprintflag(str + strlen(str), PRF_FLAGS(c), NUM_PRF_FLAGS, preference_bits);
             }
-        } else if (!strcmp(field, "flagged")) {
+        } else if (!strcasecmp(field, "flagged")) {
             if (IS_NPC(c)) {
                 if ((num = search_block(value, action_bits, false)) >= 0)
                     strcpy(str, MOB_FLAGGED(c, num) ? "1" : "0");
@@ -1269,10 +1269,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     script_log(trig, buf2);
                 }
             }
-        } else if (!strcmp(field, "aff_flags") || !strcmp(field, "eff_flags"))
+        } else if (!strcasecmp(field, "aff_flags") || !strcasecmp(field, "eff_flags"))
             sprintflag(str, EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags);
 
-        else if (!strcmp(field, "aff_flagged") || !strcmp(field, "eff_flagged")) {
+        else if (!strcasecmp(field, "aff_flagged") || !strcasecmp(field, "eff_flagged")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, EFF_FLAGGED(c, num) ? "1" : "0");
             else {
@@ -1281,7 +1281,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 script_log(trig, buf2);
             }
 
-        } else if (!strcmp(field, "spells")) {
+        } else if (!strcasecmp(field, "spells")) {
             effect *eff;
             *str = '\0';
             for (eff = c->effects; eff; eff = eff->next)
@@ -1289,7 +1289,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcat(str, skills[eff->type].name);
                     strcat(str, " ");
                 }
-        } else if (!strcmp(field, "has_spell")) {
+        } else if (!strcasecmp(field, "has_spell")) {
             if ((num = find_talent_num(value, 0)) >= 0)
                 strcpy(str, affected_by_spell(c, num) ? "1" : "0");
             else {
@@ -1300,26 +1300,26 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Character relationships */
-        else if (!strcmp(field, "fighting"))
+        else if (!strcasecmp(field, "fighting"))
             UID_VAR(str, FIGHTING(c));
-        else if (!strcmp(field, "hunting"))
+        else if (!strcasecmp(field, "hunting"))
             UID_VAR(str, HUNTING(c));
-        else if (!strcmp(field, "riding"))
+        else if (!strcasecmp(field, "riding"))
             UID_VAR(str, RIDING(c));
-        else if (!strcmp(field, "ridden_by"))
+        else if (!strcasecmp(field, "ridden_by"))
             UID_VAR(str, RIDDEN_BY(c));
-        else if (!strcmp(field, "consented"))
+        else if (!strcasecmp(field, "consented"))
             UID_VAR(str, CONSENT(c));
-        else if (!strcmp(field, "master"))
+        else if (!strcasecmp(field, "master"))
             UID_VAR(str, c->master);
-        else if (!strcmp(field, "next_in_room")) {
+        else if (!strcasecmp(field, "next_in_room")) {
             /* Skip any wiz-invis folks */
             while (c->next_in_room && GET_INVIS_LEV(c->next_in_room))
                 c = c->next_in_room;
             UID_VAR(str, c->next_in_room);
-        } else if (!strcmp(field, "group_size"))
+        } else if (!strcasecmp(field, "group_size"))
             sprintf(str, "%d", group_size(c));
-        else if (!strcmp(field, "group_member")) {
+        else if (!strcasecmp(field, "group_member")) {
             ch = c->group_master ? c->group_master : c;
 
             num = atoi(value);
@@ -1342,7 +1342,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Quests */
-        else if (!strcmp(field, "quest_variable")) {
+        else if (!strcasecmp(field, "quest_variable")) {
             if (!*value) {
                 script_log(trig, "quest_variable called without specifying a quest");
                 strcpy(str, "0");
@@ -1361,7 +1361,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!strcmp(field, "quest_stage")) {
+        else if (!strcasecmp(field, "quest_stage")) {
             if (!*value) {
                 script_log(trig, "quest_stage called without specifying a quest");
                 strcpy(str, "0");
@@ -1371,7 +1371,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(str, "%d", quest_stage(c, value));
         }
 
-        else if (!strcmp(field, "has_completed")) {
+        else if (!strcasecmp(field, "has_completed")) {
             if (!*value) {
                 script_log(trig, "has_completed called without specifying a quest");
                 strcpy(str, "0");
@@ -1381,7 +1381,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, has_completed_quest(value, c) ? "1" : "0");
         }
 
-        else if (!strcmp(field, "has_failed")) {
+        else if (!strcasecmp(field, "has_failed")) {
             if (!*value) {
                 script_log(trig, "has_failed called without specifying a quest");
                 strcpy(str, "0");
@@ -1392,8 +1392,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Object relationships */
-        else if (!strcmp(field, "inventory")) {
-            if (!strcmp(value, "count"))
+        else if (!strcasecmp(field, "inventory")) {
+            if (!strcasecmp(value, "count"))
                 sprintf(str, "%d", IS_CARRYING_N(c));
             else if (*value) {
                 /* An argument was given: find a specific object. */
@@ -1408,9 +1408,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             } else
                 /* No argument given: return the first inventory item */
                 UID_VAR(str, c->carrying);
-        } else if (!strcmp(field, "worn")) {
+        } else if (!strcasecmp(field, "worn")) {
             int pos;
-            if (!strcmp(value, "count")) {
+            if (!strcasecmp(value, "count")) {
                 for (num = pos = 0; pos < NUM_WEARS; ++pos)
                     if (GET_EQ(c, pos))
                         ++num;
@@ -1419,7 +1419,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 UID_VAR(str, GET_EQ(c, pos));
             else
                 strcpy(str, "0");
-        } else if (!strcmp(field, "wearing")) {
+        } else if (!strcasecmp(field, "wearing")) {
             if (is_positive_integer(value)) {
                 int pos;
                 num = atoi(value);
@@ -1435,19 +1435,19 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, "0");
         }
 
-        else if (!strcmp(field, "position")) {
+        else if (!strcasecmp(field, "position")) {
             strcpy(str, position_types[(int)GET_POS(c)]);
-        } else if (!strcmp(field, "stance"))
+        } else if (!strcasecmp(field, "stance"))
             strcpy(str, stance_types[(int)GET_STANCE(c)]);
 
-        else if (!strcmp(field, "room")) {
+        else if (!strcasecmp(field, "room")) {
             if (IN_ROOM(c) >= 0 && IN_ROOM(c) <= top_of_world)
                 sprintf(str, "%d", world[IN_ROOM(c)].vnum);
             else
                 strcpy(str, "-1");
         }
 
-        else if (!strcmp(field, "talent") || !strcmp(field, "skill")) {
+        else if (!strcasecmp(field, "talent") || !strcasecmp(field, "skill")) {
             int talent = find_talent_num(value, 0);
             if (talent < 0)
                 strcpy(str, "0");
@@ -1455,18 +1455,18 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(str, "%d", GET_SKILL(c, talent));
         }
 
-        else if (!strcmp(field, "clan")) {
+        else if (!strcasecmp(field, "clan")) {
             if (!IS_NPC(c) && GET_CLAN(c))
                 strcpy(str, GET_CLAN(c)->name);
             else
                 *str = '\0';
-        } else if (!strcmp(field, "clan_rank"))
+        } else if (!strcasecmp(field, "clan_rank"))
             sprintf(str, "%d", IS_NPC(c) ? 0 : GET_CLAN_RANK(c));
 
-        else if (!strcmp(field, "can_be_seen"))
+        else if (!strcasecmp(field, "can_be_seen"))
             strcpy(str, type == MOB_TRIGGER && !CAN_SEE(ch, c) ? "0" : "1");
 
-        else if (!strcmp(field, "trophy")) {
+        else if (!strcasecmp(field, "trophy")) {
             if (IS_NPC(c))
                 *str = '\0';
             else {
@@ -1500,56 +1500,56 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
     else if (o) {
         /* String identifiers */
-        if (!strcmp(field, "name"))
+        if (!strcasecmp(field, "name"))
             strcpy(str, o->name);
-        else if (!strcmp(field, "shortdesc"))
+        else if (!strcasecmp(field, "shortdesc"))
             strcpy(str, o->short_description);
-        else if (!strcmp(field, "description"))
+        else if (!strcasecmp(field, "description"))
             strcpy(str, o->description);
 
         /* Identifying numbers */
-        else if (!strcmp(field, "vnum"))
+        else if (!strcasecmp(field, "vnum"))
             sprintf(str, "%d", GET_OBJ_VNUM(o));
-        else if (!strcmp(field, "type"))
+        else if (!strcasecmp(field, "type"))
             strcpy(str, OBJ_TYPE_NAME(o));
-        else if (!strcmp(field, "id"))
+        else if (!strcasecmp(field, "id"))
             sprintf(str, "%ld", GET_ID(o));
 
         /* Numerical attributes */
-        else if (!strcmp(field, "weight"))
+        else if (!strcasecmp(field, "weight"))
             sprintf(str, "%.2f", o->obj_flags.weight);
-        else if (!strcmp(field, "cost"))
+        else if (!strcasecmp(field, "cost"))
             sprintf(str, "%d", GET_OBJ_COST(o));
-        else if (!strcmp(field, "cost_per_day") || !strcmp(field, "rent"))
+        else if (!strcasecmp(field, "cost_per_day") || !strcasecmp(field, "rent"))
             strcpy(str, "0");
-        else if (!strcmp(field, "level"))
+        else if (!strcasecmp(field, "level"))
             sprintf(str, "%d", GET_OBJ_LEVEL(o));
-        else if (!strcmp(field, "val0"))
+        else if (!strcasecmp(field, "val0"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 0));
-        else if (!strcmp(field, "val1"))
+        else if (!strcasecmp(field, "val1"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 1));
-        else if (!strcmp(field, "val2"))
+        else if (!strcasecmp(field, "val2"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 2));
-        else if (!strcmp(field, "val3"))
+        else if (!strcasecmp(field, "val3"))
             sprintf(str, "%d", GET_OBJ_VAL(o, 3));
-        else if (!strcmp(field, "timer"))
+        else if (!strcasecmp(field, "timer"))
             sprintf(str, "%d", GET_OBJ_TIMER(o));
-        else if (!strcmp(field, "decomp"))
+        else if (!strcasecmp(field, "decomp"))
             sprintf(str, "%d", GET_OBJ_DECOMP(o));
-        else if (!strcmp(field, "hiddenness"))
+        else if (!strcasecmp(field, "hiddenness"))
             sprintf(str, "%ld", GET_OBJ_HIDDENNESS(o));
-        else if (!strcmp(field, "affect") || !strcmp(field, "effect")) {
+        else if (!strcasecmp(field, "affect") || !strcasecmp(field, "effect")) {
             if (!is_positive_integer(value) || (num = atoi(value)) > 5)
                 *str = '\0';
             else
                 sprintf(str, "%+d %s", o->applies[num].modifier, apply_types[(int)o->applies[num].location]);
-        } else if (!strcmp(field, "affect_value") || !strcmp(field, "effect_value"))
+        } else if (!strcasecmp(field, "affect_value") || !strcasecmp(field, "effect_value"))
             sprintf(str, "%d", is_positive_integer(value) && (num = atoi(value) <= 5) ? o->applies[num].modifier : 0);
 
         /* Flags */
-        else if (!strcmp(field, "flags"))
+        else if (!strcasecmp(field, "flags"))
             sprintflag(str, GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits);
-        else if (!strcmp(field, "flagged")) {
+        else if (!strcasecmp(field, "flagged")) {
             if ((num = search_block(value, extra_bits, false)) >= 0)
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
             else {
@@ -1557,10 +1557,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(buf2, "unrecognized object extra bit '%s' to %%%s.flagged[]%%", value, var);
                 script_log(trig, buf2);
             }
-        } else if (!strcmp(field, "spells"))
+        } else if (!strcasecmp(field, "spells"))
             sprintflag(str, GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags);
 
-        else if (!strcmp(field, "has_spell")) {
+        else if (!strcasecmp(field, "has_spell")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
                 strcpy(str, OBJ_EFF_FLAGGED(o, num) ? "1" : "0");
             else {
@@ -1571,23 +1571,23 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         }
 
         /* Location */
-        else if (!strcmp(field, "room")) {
+        else if (!strcasecmp(field, "room")) {
             num = obj_room(o);
             if (num != NOWHERE)
                 sprintf(str, "%d", world[num].vnum);
             else
                 strcpy(str, "-1");
-        } else if (!strcmp(field, "carried_by"))
+        } else if (!strcasecmp(field, "carried_by"))
             UID_VAR(str, o->carried_by);
-        else if (!strcmp(field, "worn_by"))
+        else if (!strcasecmp(field, "worn_by"))
             UID_VAR(str, o->worn_by);
-        else if (!strcmp(field, "worn_on")) {
+        else if (!strcasecmp(field, "worn_on")) {
             if (o->worn_by)
                 sprinttype(o->worn_on, wear_positions, str);
             else
                 *str = '\0';
-        } else if (!strcmp(field, "contents")) {
-            if (!strcmp(value, "count")) {
+        } else if (!strcasecmp(field, "contents")) {
+            if (!strcasecmp(value, "count")) {
                 for (num = 0, o = o->contains; o; o = o->next_content)
                     ++num;
                 sprintf(str, "%d", num);
@@ -1603,7 +1603,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcpy(str, "0");
             } else
                 UID_VAR(str, o->contains);
-        } else if (!strcmp(field, "next_in_list"))
+        } else if (!strcasecmp(field, "next_in_list"))
             UID_VAR(str, o->next_content);
 
         else {
@@ -1617,19 +1617,19 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
      * Room variables
      */
     else if (r) {
-        if (!strcmp(field, "name"))
+        if (!strcasecmp(field, "name"))
             strcpy(str, r->name);
 
-        else if (!strcmp(field, "vnum"))
+        else if (!strcasecmp(field, "vnum"))
             sprintf(str, "%d", r->vnum);
         else if (!strncasecmp(field, "sector", 6))
             sprintf(str, "%s", sectors[r->sector_type].name);
-        else if (!strcmp(field, "is_dark"))
+        else if (!strcasecmp(field, "is_dark"))
             strcpy(str, r->light > 0 ? "1" : "0");
 
-        else if (!strcmp(field, "flags"))
+        else if (!strcasecmp(field, "flags"))
             sprintflag(str, r->room_flags, NUM_ROOM_FLAGS, room_bits);
-        else if (!strcmp(field, "flagged")) {
+        else if (!strcasecmp(field, "flagged")) {
             if ((num = search_block(value, room_bits, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
             else {
@@ -1637,9 +1637,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 sprintf(buf2, "unrecognized room flag '%s' to %%%s.flagged%%", value, var);
                 script_log(trig, buf2);
             }
-        } else if (!strcmp(field, "effects") || !strcmp(field, "affects"))
+        } else if (!strcasecmp(field, "effects") || !strcasecmp(field, "affects"))
             sprintflag(str, r->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
-        else if (!strcmp(field, "has_effect") || !strcmp(field, "has_affect")) {
+        else if (!strcasecmp(field, "has_effect") || !strcasecmp(field, "has_affect")) {
             if ((num = search_block(value, room_effects, false)) >= 0)
                 strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
             else {
@@ -1649,8 +1649,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
         }
 
-        else if (!strcmp(field, "objects")) {
-            if (!strcmp(value, "count")) {
+        else if (!strcasecmp(field, "objects")) {
+            if (!strcasecmp(value, "count")) {
                 for (num = 0, o = r->contents; o; o = o->next_content)
                     ++num;
                 sprintf(str, "%d", num);
@@ -1666,8 +1666,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                     strcpy(str, "0");
             } else
                 UID_VAR(str, r->contents);
-        } else if (!strcmp(field, "people")) {
-            if (!strcmp(value, "count")) {
+        } else if (!strcasecmp(field, "people")) {
+            if (!strcasecmp(value, "count")) {
                 for (num = 0, c = r->people; c; c = c->next_in_room)
                     if (!GET_INVIS_LEV(c))
                         ++num;
@@ -1697,14 +1697,14 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 strcpy(str, "-1");
             else if (!*value) /* %room.DIR% is a vnum */
                 sprintf(str, "%d", r->exits[num]->to_room != NOWHERE ? world[r->exits[num]->to_room].vnum : -1);
-            else if (!strcmp(value, "room")) { /* %room.DIR[room]% */
+            else if (!strcasecmp(value, "room")) { /* %room.DIR[room]% */
                 if (r->exits[num]->to_room != NOWHERE)
                     ROOM_UID_VAR(str, r->exits[num]->to_room);
                 else
                     strcpy(str, "0");
-            } else if (!strcmp(value, "key")) /* %room.DIR[key]% */
+            } else if (!strcasecmp(value, "key")) /* %room.DIR[key]% */
                 sprintf(str, "%d", r->exits[num]->key);
-            else if (!strcmp(value, "bits")) /* %room.DIR[bits]% */
+            else if (!strcasecmp(value, "bits")) /* %room.DIR[bits]% */
                 sprintbit(r->exits[num]->exit_info, exit_bits, str);
             else
                 *str = '\0';
@@ -1846,78 +1846,78 @@ void eval_op(char *op, char *lhs, char *rhs, char *result, void *go, ScriptData 
         ;
 
     /* find the op, and figure out the value */
-    if (!strcmp("||", op)) {
+    if (!strcasecmp("||", op)) {
         if ((!*lhs || (*lhs == '0')) && (!*rhs || (*rhs == '0')))
             strcpy(result, "0");
         else
             strcpy(result, "1");
     }
 
-    else if (!strcmp("&&", op)) {
+    else if (!strcasecmp("&&", op)) {
         if (!*lhs || (*lhs == '0') || !*rhs || (*rhs == '0'))
             strcpy(result, "0");
         else
             strcpy(result, "1");
     }
 
-    else if (!strcmp("==", op)) {
+    else if (!strcasecmp("==", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) == atoi(rhs));
         else
-            sprintf(result, "%d", !strcmp(lhs, rhs));
+            sprintf(result, "%d", !strcasecmp(lhs, rhs));
     }
 
-    else if (!strcmp("!=", op)) {
+    else if (!strcasecmp("!=", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) != atoi(rhs));
         else
-            sprintf(result, "%d", strcmp(lhs, rhs));
+            sprintf(result, "%d", strcasecmp(lhs, rhs));
     }
 
-    else if (!strcmp("<=", op)) {
+    else if (!strcasecmp("<=", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) <= atoi(rhs));
         else
-            sprintf(result, "%d", strcmp(lhs, rhs) <= 0);
+            sprintf(result, "%d", strcasecmp(lhs, rhs) <= 0);
     }
 
-    else if (!strcmp(">=", op)) {
+    else if (!strcasecmp(">=", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) >= atoi(rhs));
         else
-            sprintf(result, "%d", strcmp(lhs, rhs) <= 0);
+            sprintf(result, "%d", strcasecmp(lhs, rhs) <= 0);
     }
 
-    else if (!strcmp("<", op)) {
+    else if (!strcasecmp("<", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) < atoi(rhs));
         else
-            sprintf(result, "%d", strcmp(lhs, rhs) < 0);
+            sprintf(result, "%d", strcasecmp(lhs, rhs) < 0);
     }
 
-    else if (!strcmp(">", op)) {
+    else if (!strcasecmp(">", op)) {
         if (is_num(lhs) && is_num(rhs))
             sprintf(result, "%d", atoi(lhs) > atoi(rhs));
         else
-            sprintf(result, "%d", strcmp(lhs, rhs) > 0);
+            sprintf(result, "%d", strcasecmp(lhs, rhs) > 0);
     }
 
-    else if (!strcmp("/=", op))
+    else if (!strcasecmp("/=", op))
         sprintf(result, "%c", strstr(lhs, rhs) ? '1' : '0');
 
-    else if (!strcmp("*", op))
+    else if (!strcasecmp("*", op))
         sprintf(result, "%d", atoi(lhs) * atoi(rhs));
 
-    else if (!strcmp("/", op))
+    else if (!strcasecmp("/", op))
         sprintf(result, "%d", (n = atoi(rhs)) ? (atoi(lhs) / n) : 0);
 
-    else if (!strcmp("+", op))
+    else if (!strcasecmp("+", op))
         sprintf(result, "%d", atoi(lhs) + atoi(rhs));
 
-    else if (!strcmp("-", op))
+    else if (!strcasecmp("-", op))
         sprintf(result, "%d", atoi(lhs) - atoi(rhs));
 
-    else if (!strcmp("!", op)) {
+    else if (!strcasecmp("!", op)) {
         if (is_num(rhs))
             sprintf(result, "%d", !atoi(rhs));
         else
@@ -2280,7 +2280,7 @@ void process_global(ScriptData *sc, TrigData *trig, char *cmd) {
         skip_spaces(&varlist);
 
         for (vd = GET_TRIG_VARS(trig); vd; vd = vd->next)
-            if (!strcmp(vd->name, arg))
+            if (!strcasecmp(vd->name, arg))
                 break;
 
         if (!vd) {

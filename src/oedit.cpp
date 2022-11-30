@@ -756,7 +756,7 @@ void oedit_disp_spells_menu(DescriptorData *d) {
 #endif
     /* Fixed to use all spells --gurlaek 7/22/1999 */
     for (counter = 0; counter <= MAX_SPELLS; counter++) {
-        if (strcmp(skills[counter].name, "!UNUSED!")) {
+        if (strcasecmp(skills[counter].name, "!UNUSED!")) {
             sprintf(buf, "%s%2d%s) %s%-20.20s %s", grn, counter, nrm, yel, skills[counter].name,
                     !(++columns % 3) ? "\n" : "");
             send_to_char(buf, d->character);
@@ -1493,7 +1493,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
         case ITEM_SCROLL:
         case ITEM_POTION:
             GET_OBJ_VAL(OLC_OBJ(d), 1) = number;
-            if (number < 0 || number > MAX_SPELLS || !strcmp(skills[number].name, "!UNUSED!")) {
+            if (number < 0 || number > MAX_SPELLS || !strcasecmp(skills[number].name, "!UNUSED!")) {
                 oedit_disp_val2_menu(d);
                 return;
             }
@@ -1522,7 +1522,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
         case ITEM_SCROLL:
         case ITEM_POTION:
             GET_OBJ_VAL(OLC_OBJ(d), 2) = number;
-            if (number < 0 || number > MAX_SPELLS || !strcmp(skills[number].name, "!UNUSED!")) {
+            if (number < 0 || number > MAX_SPELLS || !strcasecmp(skills[number].name, "!UNUSED!")) {
                 oedit_disp_val3_menu(d);
                 return;
             }
@@ -1545,7 +1545,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
         case ITEM_WAND:
         case ITEM_STAFF:
             GET_OBJ_VAL(OLC_OBJ(d), 3) = number;
-            if (number < 0 || number > MAX_SPELLS || !strcmp(skills[number].name, "!UNUSED!")) {
+            if (number < 0 || number > MAX_SPELLS || !strcasecmp(skills[number].name, "!UNUSED!")) {
                 oedit_disp_val4_menu(d);
                 return;
             }

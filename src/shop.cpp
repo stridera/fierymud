@@ -184,7 +184,7 @@ int evaluate_expression(ObjData *obj, char *expr) {
                 strncpy(name, end, ptr - end);
                 name[ptr - end] = 0;
                 for (index = 0; *extra_bits[index] != '\n'; index++)
-                    if (!strcmp(name, extra_bits[index])) {
+                    if (!strcasecmp(name, extra_bits[index])) {
                         push(&vals, OBJ_FLAGGED(obj, index));
                         break;
                     }
@@ -1521,7 +1521,7 @@ void show_shops(CharData *ch, char *arg) {
     }
 
     else {
-        if (!strcmp(arg, ".")) {
+        if (!strcasecmp(arg, ".")) {
             for (shop_nr = 0; shop_nr < top_shop; shop_nr++)
                 if (ok_shop_room(shop_nr, world[ch->in_room].vnum))
                     break;

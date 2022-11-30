@@ -180,7 +180,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     /* Check for the "mstat" command first, since it requires one fewer argument
      * than the rest of them.  This one can only be done by a character (not a
      * trigger). */
-    if (*arg && !strcmp(arg, "mstat") && ch) {
+    if (*arg && !strcasecmp(arg, "mstat") && ch) {
         if (*buf1) {
             /* OK: mstat command, buf1 = player name */
             if ((vict = quest_id_char(nullptr, ch, buf1)))
@@ -385,7 +385,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
      *
      * Shows variable data for a quest
      */
-    else if (ch && !strcmp(arg, "stat")) {
+    else if (ch && !strcasecmp(arg, "stat")) {
         if (!quest_stat(ch, vict, quest_name)) {
             send_to_char("No quest data was found.\n", ch);
         }
@@ -476,7 +476,7 @@ char *get_quest_variable(CharData *vict, char *qname, char *variable) {
         return "0";
 
     for (vars = quest->variables; vars; vars = vars->next)
-        if (!strcmp(variable, vars->var))
+        if (!strcasecmp(variable, vars->var))
             return vars->val;
 
     return "0";
@@ -498,7 +498,7 @@ void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_s
     }
 
     for (vars = quest->variables; vars; vars = vars->next)
-        if (!strcmp(variable, vars->var)) {
+        if (!strcasecmp(variable, vars->var)) {
             strncpy(vars->val, value, 20);
             return;
         }
@@ -1162,7 +1162,7 @@ ACMD(do_qdel) {
      * think we should be a little more careful than that when deleting.
      */
     for (i = 0; i < max_quests; i++)
-        if (!strcmp(all_quests[i].quest_name, buf1)) {
+        if (!strcasecmp(all_quests[i].quest_name, buf1)) {
             quest_num = all_quests[i].quest_id;
             break;
         }

@@ -68,9 +68,9 @@ static bool messages_match(StackNode *node, ObjData *obj, const char *to_char, c
     if (incumbent->item_number == obj->item_number || BOTH_OBJ_TYPES_MATCH(incumbent, obj, ITEM_MONEY))
         if (BOTH_OBJ_TYPES_MATCH(incumbent, obj, ITEM_MONEY) ||
             incumbent->short_description == obj->short_description ||
-            !strcmp(incumbent->short_description, obj->short_description))
-            if (node->to_char == to_char || !node->to_char || !strcmp(node->to_char, to_char))
-                if (node->to_room == to_room || !node->to_room || !strcmp(node->to_room, to_room))
+            !strcasecmp(incumbent->short_description, obj->short_description))
+            if (node->to_char == to_char || !node->to_char || !strcasecmp(node->to_char, to_char))
+                if (node->to_room == to_room || !node->to_room || !strcasecmp(node->to_room, to_room))
                     return true;
     return false;
 
@@ -163,14 +163,14 @@ bool has_corpse_consent(CharData *ch, ObjData *cont) {
     }
 
     sprintf(buf, "corpse %s", GET_NAME(ch));
-    if (!strcmp(buf, cont->name)) {
+    if (!strcasecmp(buf, cont->name)) {
         /* if it's your own corpse then you have consent */
         return true;
     }
 
     if (REAL_CHAR(ch) != ch) {
         sprintf(buf, "corpse %s", GET_NAME(REAL_CHAR(ch)));
-        if (!strcmp(buf, cont->name)) {
+        if (!strcasecmp(buf, cont->name)) {
             /* if you're shapeshifted and it's your own corpse */
             return true;
         }
@@ -182,7 +182,7 @@ bool has_corpse_consent(CharData *ch, ObjData *cont) {
                 /* if the d->character is consented to the person who's acting */
                 /* on the corpse then the act is allowed.                      */
                 sprintf(buf, "corpse %s", GET_NAME(d->character));
-                if (!strcmp(buf, cont->name) && CONSENT(d->character) == ch) {
+                if (!strcasecmp(buf, cont->name) && CONSENT(d->character) == ch) {
                     return true;
                 }
             }
@@ -454,7 +454,7 @@ ACMD(do_get) {
         send_to_char("Your arms are already full!\n", ch);
     else if (!amount)
         send_to_char("So you don't want to get anything?\n", ch);
-    else if (!strcmp(obj_name, "all."))
+    else if (!strcasecmp(obj_name, "all."))
         send_to_char("Get all of what?\n", ch);
     else if (!*cont_name)
         get_from_room(ch, obj_name, amount);

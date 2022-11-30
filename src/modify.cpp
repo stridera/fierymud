@@ -811,7 +811,7 @@ ACMD(do_skillset) {
     if (*argument == '*') {
         for (i = 1; i <= TOP_SKILL; ++i) {
             SET_SKILL(vict, i, 1000);
-            if (strcmp(skills[i].name, "!UNUSED!")) {
+            if (strcasecmp(skills[i].name, "!UNUSED!")) {
                 sprintf(buf2, "You change %s's skill level in %s to 100.\n", GET_NAME(vict), skills[i].name);
                 send_to_char(buf2, ch);
             }

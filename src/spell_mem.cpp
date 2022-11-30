@@ -671,7 +671,7 @@ ACMD(do_forget) {
         return;
     }
 
-    if (!strcmp(arg, "all")) {
+    if (!strcasecmp(arg, "all")) {
         wipe_mem(ch);
         return;
     }

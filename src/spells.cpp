@@ -2366,14 +2366,14 @@ ASPELL(spell_magical_wall) {
             return 0;
         }
         sprintf(material, buf);
-        if (!*buf || !strcmp("stone", buf)) {
+        if (!*buf || !strcasecmp("stone", buf)) {
             sprintf(material, "stone");
             sprintf(mcolor, "&9&b");
-        } else if (!strcmp("ice", buf)) {
+        } else if (!strcasecmp("ice", buf)) {
             sprintf(mcolor, "&6&b");
-        } else if (!strcmp("brick", buf)) {
+        } else if (!strcasecmp("brick", buf)) {
             sprintf(mcolor, "&1");
-        } else if (!strcmp("wood", buf)) {
+        } else if (!strcasecmp("wood", buf)) {
             sprintf(mcolor, "&3");
         } else {
             send_to_char("The material must be brick, ice, stone, or wood.\n", ch);

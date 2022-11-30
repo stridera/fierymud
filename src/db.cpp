@@ -484,7 +484,7 @@ void boot_spell_dams() {
                   sprintf(buf, "%s", line);
                   log("%s", buf);;
             */
-            if (strcmp(line, "spell_dam")) {
+            if (strcasecmp(line, "spell_dam")) {
                 log("Error in booting spell dams");
             /* return;
 	     */ }
@@ -1508,7 +1508,7 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
  * function!  No other changes need to be made anywhere in the code.
  */
 
-#define CASE(test) if (!matched && !strcmp(keyword, test) && (matched = 1))
+#define CASE(test) if (!matched && !strcasecmp(keyword, test) && (matched = 1))
 #define RANGE(low, high) (num_arg = MAX((low), MIN((high), (num_arg))))
 /* modified for the 100 attrib scale */
 void interpret_espec(char *keyword, char *value, int i, int nr) {
@@ -1597,7 +1597,7 @@ void parse_enhanced_mob(FILE *mob_f, int i, int nr) {
         parse_simple_mob(mob_f, i, nr);
 
         while (get_line(mob_f, line)) {
-            if (!strcmp(line, "E")) /* end of the ehanced section */
+            if (!strcasecmp(line, "E")) /* end of the ehanced section */
                 return;
             else if (*line == '#') { /* we've hit the next mob, maybe? */
                 fprintf(stderr, "Unterminated E section in mob #%d\n", nr);
@@ -1627,7 +1627,8 @@ void parse_mobile(FILE *mob_f, int nr) {
         mob_proto[i].player.namelist = fread_string(mob_f, buf2);
         tmpptr = mob_proto[i].player.short_descr = fread_string(mob_f, buf2);
         if (tmpptr && *tmpptr)
-            if (!strcmp(fname(tmpptr), "a") || !strcmp(fname(tmpptr), "an") || !strcmp(fname(tmpptr), "the"))
+            if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") ||
+                !strcasecmp(fname(tmpptr), "the"))
                 *tmpptr = LOWER(*tmpptr);
         mob_proto[i].player.long_descr = fread_string(mob_f, buf2);
         mob_proto[i].player.description = fread_string(mob_f, buf2);
@@ -1724,7 +1725,7 @@ void init_obj_proto(ObjData *obj) {
                 /* If there is an extra description whose keywords exactly
                  * match the object's aliases, give it "food" as well. */
                 for (ed = obj->ex_description; ed; ed = ed->next)
-                    if (!strcmp(ed->keyword, obj->name)) {
+                    if (!strcasecmp(ed->keyword, obj->name)) {
                         free(ed->keyword);
                         ed->keyword = (char *)malloc(strlen(s) + 1);
                         strcpy(ed->keyword, s);
@@ -1787,7 +1788,8 @@ char *parse_object(FILE *obj_f, int nr) {
         }
         tmpptr = obj_proto[i].short_description = fread_string(obj_f, buf2);
         if (*tmpptr)
-            if (!strcmp(fname(tmpptr), "a") || !strcmp(fname(tmpptr), "an") || !strcmp(fname(tmpptr), "the"))
+            if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") ||
+                !strcasecmp(fname(tmpptr), "the"))
                 *tmpptr = LOWER(*tmpptr);
 
         tmpptr = obj_proto[i].description = fread_string(obj_f, buf2);
@@ -2069,7 +2071,7 @@ int hsort(const void *a, const void *b) {
         a1 = (HelpIndexElement *)a;
         b1 = (HelpIndexElement *)b;
 
-        return (strcmp(a1->keyword, b1->keyword));
+        return (strcasecmp(a1->keyword, b1->keyword));
 }
 
 void free_help_table(void) {
@@ -3107,7 +3109,7 @@ bool _parse_name(char *arg, char *name) {
 
         /* We need the case-insensitive search_block since arg can have uppercase */
         for (i = 0; *cmd_info[i].command != '\n'; ++i)
-            if (!strcmp(arg, cmd_info[i].command))
+            if (!strcasecmp(arg, cmd_info[i].command))
                 return true;
         if (search_block(arg, smart_ass, true) >= 0)
             return true;

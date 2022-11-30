@@ -436,7 +436,7 @@ ACMD(do_olc) {
         break;
     case SCMD_OLC_SDEDIT:
         real_num = find_spell_num(argument);
-        if ((real_num < 0) || (real_num > TOP_SKILL) || (!strcmp("!UNUSED!", skills[real_num].name))) {
+        if ((real_num < 0) || (real_num > TOP_SKILL) || (!strcasecmp("!UNUSED!", skills[real_num].name))) {
             send_to_char("Your spell could not be found.\n", ch);
             return;
         }

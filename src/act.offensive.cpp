@@ -2135,7 +2135,7 @@ ACMD(do_hitall) {
 
     /* Find out whether to hit "all" or just aggressive monsters */
     one_argument(argument, arg);
-    if (!strcmp(arg, "all") || subcmd == SCMD_TANTRUM)
+    if (!strcasecmp(arg, "all") || subcmd == SCMD_TANTRUM)
         hit_all = 1;
 
     /* Hit all aggressive monsters in room */

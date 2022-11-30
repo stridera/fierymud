@@ -102,7 +102,7 @@ void start_player(CharData *ch);
 
 long asciiflag_conv(char *flag);
 void tag_argument(char *argument, char *tag);
-#define TAG_IS(tagname) (!strcmp(tag, tagname))
+#define TAG_IS(tagname) (!strcasecmp(tag, tagname))
 void kill_ems(char *str);
 void copy_extra_descriptions(ExtraDescriptionData **to, ExtraDescriptionData *from);
 

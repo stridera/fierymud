@@ -54,7 +54,7 @@ int find_command_group(const char *name) {
     CommandGroup *group = cmd_groups;
 
     while (group < top_of_cmd_groups) {
-        if (!strcmp(group->alias, name))
+        if (!strcasecmp(group->alias, name))
             return GROUP_NUM(group);
         ++group;
     }
@@ -115,9 +115,9 @@ ACMD(do_gedit) {
     }
 
     /* Make sure it exists, or create a new one */
-    if (!strcmp(arg, "new"))
+    if (!strcasecmp(arg, "new"))
         group = -1;
-    else if (!strcmp(arg, "save")) {
+    else if (!strcasecmp(arg, "save")) {
         send_to_char("Saving all command groups.\n", ch);
         sprintf(buf, "OLC: %s saves command groups.", GET_NAME(ch));
         mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
@@ -238,7 +238,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
             break;
         case 'q':
             for (i = 0; i < num_cmd_groups; ++i)
-                if (i != OLC_NUM(d) && !strcmp(cmd_groups[i].alias, OLC_GROUP(d)->alias)) {
+                if (i != OLC_NUM(d) && !strcasecmp(cmd_groups[i].alias, OLC_GROUP(d)->alias)) {
                     write_to_output(
                         "This command group has the same alias as another "
                         "existing group.\n"
@@ -541,9 +541,9 @@ void boot_command_groups() {
     num_cmd_groups = 0;
 
     while (get_line(file, line)) {
-        if (!strcmp(line, "~~~"))
+        if (!strcasecmp(line, "~~~"))
             break;
-        else if (!strcmp(line, "~~")) {
+        else if (!strcasecmp(line, "~~")) {
             ++num_cmd_groups;
             group = nullptr;
             continue;
@@ -559,15 +559,15 @@ void boot_command_groups() {
 
         tag_argument(line, tag);
 
-        if (!strcmp(tag, "alias"))
+        if (!strcasecmp(tag, "alias"))
             group->alias = strdup(line);
-        else if (!strcmp(tag, "name"))
+        else if (!strcasecmp(tag, "name"))
             group->name = strdup(line);
-        else if (!strcmp(tag, "desc"))
+        else if (!strcasecmp(tag, "desc"))
             group->description = fread_string(file, "boot_command_groups");
-        else if (!strcmp(tag, "level"))
+        else if (!strcasecmp(tag, "level"))
             group->minimum_level = atoi(line);
-        else if (!strcmp(tag, "commands")) {
+        else if (!strcasecmp(tag, "commands")) {
             while (get_line(file, line)) {
                 if (*line == '~')
                     break;

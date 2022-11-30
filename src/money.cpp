@@ -35,9 +35,9 @@ CoinDef coindefs[NUM_COIN_TYPES] = {{"platinum", "plat", "p", "&6&b", "p", 1000}
                                     {"copper", nullptr, "c", "&3", "c", 1}};
 
 bool is_coin_name(const char *name, int cointype) {
-    if (!strcmp(name, COIN_NAME(cointype)))
+    if (!strcasecmp(name, COIN_NAME(cointype)))
         return true;
-    if (COIN_SHORTNAME(cointype) && !strcmp(name, COIN_SHORTNAME(cointype)))
+    if (COIN_SHORTNAME(cointype) && !strcasecmp(name, COIN_SHORTNAME(cointype)))
         return true;
     return false;
 }

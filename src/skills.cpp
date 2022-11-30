@@ -83,7 +83,7 @@ int find_talent_num(char *name, int should_restrict) {
             continue;
 
         /* Exact match.  This is the skill we're looking for. */
-        if (!strcmp(name, skills[index].name))
+        if (!strcasecmp(name, skills[index].name))
             return index;
 
         /*
@@ -91,7 +91,7 @@ int find_talent_num(char *name, int should_restrict) {
          * index immediately, in case we find a better match later.
          */
         if (is_abbrev(name, skills[index].name)) {
-            if (abbrevmatch == -1 || strcmp(skills[index].name, skills[abbrevmatch].name) == -1) {
+            if (abbrevmatch == -1 || strcasecmp(skills[index].name, skills[abbrevmatch].name) == -1) {
                 abbrevmatch = index;
                 continue;
             }
@@ -1506,7 +1506,7 @@ void init_skills(void) {
     effecto(SKILL_AWARE, "aware", "");
 }
 
-static int skill_comparator(int a, int b) { return strcmp(skills[a].name, skills[b].name); }
+static int skill_comparator(int a, int b) { return strcasecmp(skills[a].name, skills[b].name); }
 
 void sort_skills(void) {
     int i;

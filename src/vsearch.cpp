@@ -261,7 +261,7 @@ bool parse_vlist_args(CharData *ch, char *argument, int *first, int *last) {
 
     if (is_abbrev(arg, "from"))
         argument = any_one_arg(argument, arg);
-    else if (!strcmp("*", arg)) {
+    else if (!strcasecmp("*", arg)) {
         *first = 0;
         *last = MAX_VNUM;
         return true;
@@ -416,7 +416,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
          */
     case BOOLEAN:
         argument = any_one_arg(argument, arg);
-        if (!strcmp(arg, "1") || is_abbrev(arg, "true") || is_abbrev(arg, "yes") || is_abbrev(arg, "one") ||
+        if (!strcasecmp(arg, "1") || is_abbrev(arg, "true") || is_abbrev(arg, "yes") || is_abbrev(arg, "one") ||
             is_abbrev(arg, "on"))
             *value = 1;
         else if (is_abbrev(arg, "00000000") || is_abbrev(arg, "false") || is_abbrev(arg, "no") ||
@@ -505,17 +505,17 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
             break;
         } else if (is_abbrev(arg, "equals") || is_abbrev(arg, "is") || is_abbrev(arg, "=="))
             *compare = EQ;
-        else if (!strcmp(arg, "gt") || !strcmp(arg, ">"))
+        else if (!strcasecmp(arg, "gt") || !strcasecmp(arg, ">"))
             *compare = GT;
-        else if (!strcmp(arg, "lt") || !strcmp(arg, "<"))
+        else if (!strcasecmp(arg, "lt") || !strcasecmp(arg, "<"))
             *compare = LT;
-        else if (!strcmp(arg, "ge") || !strcmp(arg, ">="))
+        else if (!strcasecmp(arg, "ge") || !strcasecmp(arg, ">="))
             *compare = GE;
-        else if (!strcmp(arg, "le") || !strcmp(arg, "<="))
+        else if (!strcasecmp(arg, "le") || !strcasecmp(arg, "<="))
             *compare = LE;
-        else if (!strcmp(arg, "ne") || is_abbrev(arg, "not") || !strcmp(arg, "!=") || !strcmp(arg, "<>"))
+        else if (!strcasecmp(arg, "ne") || is_abbrev(arg, "not") || !strcasecmp(arg, "!=") || !strcasecmp(arg, "<>"))
             *compare = NE;
-        else if (!strcmp(arg, "bt") || is_abbrev(arg, "between")) {
+        else if (!strcasecmp(arg, "bt") || is_abbrev(arg, "between")) {
             *compare = BT;
             argument = any_one_arg(argument, arg);
             if (!*arg || (!isdigit(*arg) && *arg != '-' && *arg != '+')) {
@@ -629,7 +629,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         }
         if (*argument == ' ')
             *(argument++) = '\0';
-        if (!strcmp(arg, "is") && **string != '\'') {
+        if (!strcasecmp(arg, "is") && **string != '\'') {
             argument = delimited_arg(argument, arg, '\'');
             if (*argument == ' ')
                 *(argument++) = '\0';

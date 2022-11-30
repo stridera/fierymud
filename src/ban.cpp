@@ -48,7 +48,7 @@ void load_banned(void) {
         next_node->date = date;
 
         for (i = BAN_NOT; i <= BAN_ALL; i++)
-            if (!strcmp(ban_type, ban_types[i]))
+            if (!strcasecmp(ban_type, ban_types[i]))
                 next_node->type = i;
 
         next_node->next = ban_list;
@@ -131,12 +131,12 @@ ACMD(do_ban) {
         send_to_char("Usage: ban {all | select | new} site_name\n", ch);
         return;
     }
-    if (!(!strcmp(flag, "select") || !strcmp(flag, "all") || !strcmp(flag, "new"))) {
+    if (!(!strcasecmp(flag, "select") || !strcasecmp(flag, "all") || !strcasecmp(flag, "new"))) {
         send_to_char("Flag must be ALL, SELECT, or NEW.\n", ch);
         return;
     }
     for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
-        if (!strcmp(ban_node->site, site)) {
+        if (!strcasecmp(ban_node->site, site)) {
             send_to_char("That site has already been banned -- unban it to change the ban type.\n", ch);
             return;
         }
@@ -152,7 +152,7 @@ ACMD(do_ban) {
     ban_node->date = time(0);
 
     for (i = BAN_NEW; i <= BAN_ALL; i++)
-        if (!strcmp(flag, ban_types[i]))
+        if (!strcasecmp(flag, ban_types[i]))
             ban_node->type = i;
 
     ban_node->next = ban_list;
@@ -176,7 +176,7 @@ ACMD(do_unban) {
     }
     ban_node = ban_list;
     while (ban_node && !found) {
-        if (!strcmp(ban_node->site, site))
+        if (!strcasecmp(ban_node->site, site))
             found = 1;
         else
             ban_node = ban_node->next;
@@ -209,12 +209,12 @@ int Valid_Name(char *newname) {
 
     /*
      * Make sure someone isn't trying to create this same name.  We want to
-     * do a 'strcmp' so people can't do 'Bob' and 'BoB'.  The creating login
+     * do a 'strcasecmp' so people can't do 'Bob' and 'BoB'.  The creating login
      * will not have a character name yet and other people sitting at the
      * prompt won't have characters yet.
      */
     for (dt = descriptor_list; dt; dt = dt->next) {
-        if (dt->character && GET_NAME(dt->character) && !strcmp(GET_NAME(dt->character), newname)) {
+        if (dt->character && GET_NAME(dt->character) && !strcasecmp(GET_NAME(dt->character), newname)) {
             return (STATE(dt) == CON_PLAYING);
         }
     }
@@ -248,7 +248,7 @@ int Valid_Name(char *newname) {
                 z++;
             }
             invalid_name[z] = '\0';
-            if (strcmp(tempname, invalid_name) == 0)
+            if (strcasecmp(tempname, invalid_name) == 0)
                 return 0;
         } else {
             if (strstr(tempname, invalid_name))
@@ -376,7 +376,7 @@ ACMD(do_xnames) {
 
     two_arguments(argument, flag, name);
 
-    if (*flag && !strcmp(flag, "reload")) {
+    if (*flag && !strcasecmp(flag, "reload")) {
         reload_xnames();
         send_to_char("Done.\n", ch);
         return;

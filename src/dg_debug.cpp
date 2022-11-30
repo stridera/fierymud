@@ -70,7 +70,7 @@ ACMD(do_varset) {
      * based on type to set, we need to grab the right array to
      * pass it to add_var
      */
-    if (!strcmp("mob", victtype)) {
+    if (!strcasecmp("mob", victtype)) {
         CharData *found_char = nullptr;
 
         found_char = world[(ch->in_room)].people;
@@ -84,7 +84,7 @@ ACMD(do_varset) {
                 CREATE(SCRIPT(found_char), ScriptData, 1);
             add_var(&(SCRIPT(found_char)->global_vars), buf, argument);
         }
-    } else if (!strcmp("obj", victtype)) {
+    } else if (!strcasecmp("obj", victtype)) {
         ObjData *found_obj = nullptr;
         found_obj = ch->carrying;
         while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
@@ -102,7 +102,7 @@ ACMD(do_varset) {
                 CREATE(SCRIPT(found_obj), ScriptData, 1);
             add_var(&(SCRIPT(found_obj)->global_vars), buf, argument);
         }
-    } else if (!strcmp("room", victtype)) {
+    } else if (!strcasecmp("room", victtype)) {
         int rnum = real_room(vnum);
         if (rnum == NOWHERE)
             send_to_char("That room does not exist!\n", ch);
@@ -162,7 +162,7 @@ ACMD(do_varunset) {
      * based on type to unset, we need to grab the right array to
      * pass it to remove_var
      */
-    if (!strcmp("mob", victtype)) {
+    if (!strcasecmp("mob", victtype)) {
         CharData *found_char = nullptr;
 
         found_char = world[(ch->in_room)].people;
@@ -173,7 +173,7 @@ ACMD(do_varunset) {
             send_to_char("Unable to find that mob in this room\n", ch);
         else
             remove_var(&(SCRIPT(found_char)->global_vars), buf);
-    } else if (!strcmp("obj", victtype)) {
+    } else if (!strcasecmp("obj", victtype)) {
         ObjData *found_obj = nullptr;
         found_obj = ch->carrying;
         while (found_obj && (GET_OBJ_VNUM(found_obj) != vnum))
@@ -188,7 +188,7 @@ ACMD(do_varunset) {
             send_to_char("Unable to find that obj in inventory or room\n", ch);
         else
             remove_var(&(SCRIPT(found_obj)->global_vars), buf);
-    } else if (!strcmp("room", victtype)) {
+    } else if (!strcasecmp("room", victtype)) {
         int rnum = real_room(vnum);
         if (rnum == NOWHERE)
             send_to_char("That room does not exist!\n", ch);

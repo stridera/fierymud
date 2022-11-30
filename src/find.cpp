@@ -183,7 +183,7 @@ FindContext find_vis_by_name(CharData *ch, char *name) {
         context.char_func = match_vis_char_by_name;
         context.number = grab_number(&name);
         context.string = name;
-        if (!strcmp(name, "self") || !strcmp(name, "me"))
+        if (!strcasecmp(name, "self") || !strcasecmp(name, "me"))
             context.override = true;
     }
     context.ch = ch;
@@ -819,20 +819,20 @@ char_iterator find_chars(FindContext context, int bitvector) {
 }
 
 ObjData *find_obj_for_keyword(ObjData *obj, const char *name) {
-    if (!strcmp(name, "self") || !strcmp(name, "me"))
+    if (!strcasecmp(name, "self") || !strcasecmp(name, "me"))
         return obj;
     return nullptr;
 }
 
 CharData *find_char_for_keyword(CharData *ch, const char *name) {
-    if (!strcmp(name, "self") || !strcmp(name, "me"))
+    if (!strcasecmp(name, "self") || !strcasecmp(name, "me"))
         return ch;
     return nullptr;
 }
 
 /* a function to scan for "all" or "all.x" */
 int find_all_dots(char **arg) {
-    if (!strcmp(*arg, "all"))
+    if (!strcasecmp(*arg, "all"))
         return FIND_ALL;
     else if (!strncasecmp(*arg, "all.", 4)) {
         *arg += 4;

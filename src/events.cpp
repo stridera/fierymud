@@ -82,7 +82,7 @@ bool char_has_delayed_command(CharData *ch, const char *command) {
     Event *e;
 
     for (e = ch->events; e; e = e->next)
-        if (e->num == EVENT_COMMAND && e->event_obj && !strcmp(command, ((CommandEventData *)(e->event_obj))->cmd))
+        if (e->num == EVENT_COMMAND && e->event_obj && !strcasecmp(command, ((CommandEventData *)(e->event_obj))->cmd))
             return true;
     return false;
 }

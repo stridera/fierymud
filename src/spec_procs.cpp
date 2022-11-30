@@ -66,7 +66,7 @@ SPECIAL(guild) {
         if (!*argument)
             return 0; /* process via the regular command */
 
-        if (strcmp(argument, "gain"))
+        if (strcasecmp(argument, "gain"))
             return 0; /* process via the regular command */
 
         if (getbaseclass(GET_CLASS((CharData *)(me))) != getbaseclass(GET_CLASS(ch))) {
@@ -830,7 +830,7 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument, int color) {
         targ = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, target));
     }
 
-    if (!strcmp(target, "self") || !strcmp(target, "me")) {
+    if (!strcasecmp(target, "self") || !strcasecmp(target, "me")) {
         targ = ch;
     }
 

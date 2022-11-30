@@ -83,20 +83,20 @@ ACMD(do_reload) {
         files[i] = 0;
 
     any_one_arg(argument, arg);
-    if (!strcmp(arg, "all"))
+    if (!strcasecmp(arg, "all"))
         SET_FLAGS(files, ALL_FLAGS, NUM_TEXT_FILES);
     else
         for (argument = any_one_arg(argument, arg); *arg; argument = any_one_arg(argument, arg)) {
             found = false;
             for (i = 0; i < NUM_TEXT_FILES; ++i)
-                if (!strcmp(text_files[i].name, arg)) {
+                if (!strcasecmp(text_files[i].name, arg)) {
                     SET_FLAG(files, i);
                     found = true;
                     break;
                 }
-            if (!strcmp(arg, "xhelp"))
+            if (!strcasecmp(arg, "xhelp"))
                 reload_help = true;
-            else if (!strcmp(arg, "xnames")) {
+            else if (!strcasecmp(arg, "xnames")) {
                 reload_xnames();
                 send_to_char("xnames file reloaded.\n", ch);
                 return;
@@ -180,7 +180,7 @@ ACMD(do_tedit) {
 
     for (i = 0; i < NUM_TEXT_FILES; ++i)
         if (GET_LEVEL(ch) >= text_files[i].level)
-            if (!strcmp(arg, text_files[i].name))
+            if (!strcasecmp(arg, text_files[i].name))
                 break;
 
     if (i >= NUM_TEXT_FILES) {

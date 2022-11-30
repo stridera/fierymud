@@ -337,7 +337,7 @@ CLANCMD(clan_alt) {
      * to be online for that.
      */
     for (alt = member->relation.alts; alt; alt = alt->next) {
-        if (!strcmp(alt->name, arg)) {
+        if (!strcasecmp(alt->name, arg)) {
             char_printf(ch, "You remove %s as one of %s%s clan alts.\n", alt->name,
                         ch == member->player ? "your" : member->name, ch == member->player ? "" : "'s");
             if (ch != member->player && member->player)
@@ -357,7 +357,7 @@ CLANCMD(clan_alt) {
         char_printf(ch, "You want to be your own alt?\n");
     else if (GET_CLAN_MEMBERSHIP(tch))
         char_printf(ch, "%s is already in a clan!\n", GET_NAME(tch));
-    else if (!IS_CLAN_SUPERADMIN(ch) && !IS_CLAN_ADMIN(ch) && strcmp(ch->desc->host, tch->desc->host))
+    else if (!IS_CLAN_SUPERADMIN(ch) && !IS_CLAN_ADMIN(ch) && strcasecmp(ch->desc->host, tch->desc->host))
         char_printf(ch, "%s was not found logged in as your alt.\n", GET_NAME(tch));
     else if (IS_CLAN_SUPERADMIN(tch))
         char_printf(ch, "%s is already a clan super-admin!\n", GET_NAME(tch));
@@ -904,7 +904,7 @@ CLANCMD(clan_snoop) {
             char_printf(ch, "You are not currently snooping any clan channels.\n");
     }
 
-    else if (!strcmp(arg, "off")) {
+    else if (!strcasecmp(arg, "off")) {
         if (GET_CLAN_SNOOP(ch)) {
             while (GET_CLAN_SNOOP(ch)) {
                 snoop = GET_CLAN_SNOOP(ch)->next;
@@ -916,7 +916,7 @@ CLANCMD(clan_snoop) {
             char_printf(ch, "You are not currently snooping any clan channels.\n");
     }
 
-    else if (!strcmp(arg, "all")) {
+    else if (!strcasecmp(arg, "all")) {
         for (iter = clans_start(); iter != clans_end(); ++iter)
             if (!is_snooping(ch, *iter)) {
                 CREATE(snoop, ClanSnoop, 1);

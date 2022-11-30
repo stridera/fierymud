@@ -2532,7 +2532,7 @@ ACMD(do_aggr) {
 
     hp = atoi(buf);
 
-    if (strcmp(buf, "off") == 0 || (!hp && *buf == '0')) {
+    if (strcasecmp(buf, "off") == 0 || (!hp && *buf == '0')) {
         GET_AGGR_LEV(ch) = 0;
         send_to_char("You are no longer aggressive to monsters.\n", ch);
         return;

@@ -246,7 +246,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
                     while (*string) {
                         string = fetch_word(string, buf1, sizeof(buf1));
                         for (i = 0; i < NUM_CLAN_PRIVS; ++i)
-                            if (!strcmp(clan_privileges[i].abbr, buf1)) {
+                            if (!strcasecmp(clan_privileges[i].abbr, buf1)) {
                                 clan->rank_count = MAX(clan->rank_count, num);
                                 SET_FLAG(clan->ranks[num - 1].privileges, i);
                                 break;
@@ -486,7 +486,7 @@ ClanMembership *find_clan_membership_in_clan(const char *name, const Clan *clan)
     ClanMembership *member = clan->people;
 
     while (member) {
-        if (!strcmp(name, member->name))
+        if (!strcasecmp(name, member->name))
             return member;
 
         if (IS_ALT_RANK(member->rank)) {

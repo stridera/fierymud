@@ -36,7 +36,7 @@ void register_rule_vtable(RuleVTable *vtable) {
         swap = false;
         --pos;
         for (i = 0; i < pos; ++i)
-            if (strcmp(vtables[i]->name, vtables[i + 1]->name) > 0) {
+            if (strcasecmp(vtables[i]->name, vtables[i + 1]->name) > 0) {
                 vtable = vtables[i];
                 vtables[i] = vtables[i + 1];
                 vtables[i + 1] = vtable;
@@ -55,7 +55,7 @@ RuleVTable *find_rule_vtable(const char *type) {
 
     while (first <= last) {
         mid = (first + last) / 2;
-        comp = strcmp(type, vtables[mid]->name);
+        comp = strcasecmp(type, vtables[mid]->name);
         if (comp > 0)
             first = mid + 1; /* search top half */
         else if (comp < 0) {

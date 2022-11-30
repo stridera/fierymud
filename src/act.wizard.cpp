@@ -78,7 +78,7 @@ void do_wiztitle(char *outbuf, CharData *vict, char *argu);
 ACMD(do_inctime) {
     skip_spaces(&argument);
 
-    if (strcmp(argument, "yes") != 0) {
+    if (strcasecmp(argument, "yes") != 0) {
         send_to_char(
             "Are you sure you want to move time forward?\n"
             "If so, type 'inctime yes'.\n",
@@ -115,7 +115,7 @@ ACMD(do_iptables) {
     argument = one_argument(argument, arg);
 
     /* "list" is the default action */
-    if (strcmp(arg, "list") == 0 || !arg[0]) {
+    if (strcasecmp(arg, "list") == 0 || !arg[0]) {
         sprintf(cBuf3, "/sbin/iptables --list FieryMUD -v -n --line-numbers > %s", tmpfile);
         system(cBuf3);
 
@@ -130,7 +130,7 @@ ACMD(do_iptables) {
 
         sprintf(cBuf3, "rm %s", tmpfile);
         system(cBuf3);
-    } else if (strcmp(arg, "add") == 0) {
+    } else if (strcasecmp(arg, "add") == 0) {
         one_argument(argument, arg);
 
         if (!*arg) {
@@ -142,7 +142,7 @@ ACMD(do_iptables) {
             if (normalize_ip_address(arg, buf)) {
                 /* The string given is not a good IP address.  See if it's a player's
                  * name. */
-                if (!strcmp("me", arg)) {
+                if (!strcasecmp("me", arg)) {
                     vict = ch;
                 } else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
                     send_to_char("Nobody by that name (or invalid IP address).\n", ch);
@@ -178,7 +178,7 @@ ACMD(do_iptables) {
 
             /* buf now contains normalized IP address string */
 
-            if (!strcmp("127.0.0.1", buf)) {
+            if (!strcasecmp("127.0.0.1", buf)) {
                 send_to_char("Cancelled - adding 127.0.0.1 is unnecessary.\n", ch);
                 return;
             }
@@ -236,7 +236,7 @@ ACMD(do_iptables) {
             }
         }
 
-    } else if (strcmp(arg, "del") == 0) {
+    } else if (strcasecmp(arg, "del") == 0) {
         one_argument(argument, arg);
         if (!*arg) {
             send_to_char("Which line should be deleted?\n", ch);
@@ -444,7 +444,7 @@ ACMD(do_goto) {
     FollowType *k;
 
     skip_spaces(&argument);
-    if (strcmp(argument, "home") == 0) {
+    if (strcasecmp(argument, "home") == 0) {
         if ((location = real_room(GET_HOMEROOM(ch))) < 0) {
             send_to_char("Your home room is invalid.\n", ch);
             return;
@@ -526,7 +526,7 @@ ACMD(do_trans) {
     one_argument(argument, buf);
     if (!*buf)
         send_to_char("Whom do you wish to transfer?\n", ch);
-    else if (strcmp("all", buf)) {
+    else if (strcasecmp("all", buf)) {
         if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, buf))))
             send_to_char(NOPERSON, ch);
         else if (victim == ch)
@@ -614,13 +614,13 @@ ACMD(do_shutdown) {
         ;
         send_to_all("Shutting down.\n");
         circle_shutdown = 1;
-    } else if (!strcmp(arg, "reboot")) {
+    } else if (!strcasecmp(arg, "reboot")) {
         sprintf(buf, "(GC) Reboot by %s.", GET_NAME(ch));
         log("%s", buf);
         ;
         reboot_mud_prep();
         circle_shutdown = circle_reboot = 1;
-    } else if (!strcmp(arg, "now")) {
+    } else if (!strcasecmp(arg, "now")) {
         sprintf(buf, "(GC) Shutdown NOW by %s.", GET_NAME(ch));
         log("%s", buf);
         ;
@@ -649,14 +649,14 @@ ACMD(do_shutdown) {
         circle_shutdown = 1;
         circle_reboot = 2;
 
-    } else if (!strcmp(arg, "die")) {
+    } else if (!strcasecmp(arg, "die")) {
         sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
         log("%s", buf);
         ;
         send_to_all("Shutting down for maintenance.\n");
         touch("../.killscript");
         circle_shutdown = 1;
-    } else if (!strcmp(arg, "pause")) {
+    } else if (!strcasecmp(arg, "pause")) {
         sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
         log("%s", buf);
         ;
@@ -1348,7 +1348,7 @@ ACMD(do_force) {
 
     if (!*arg || !*to_force)
         send_to_char("Whom do you wish to force do what?\n", ch);
-    else if ((GET_LEVEL(ch) < LVL_GRGOD) || (strcmp("all", arg) && strcmp("room", arg))) {
+    else if ((GET_LEVEL(ch) < LVL_GRGOD) || (strcasecmp("all", arg) && strcasecmp("room", arg))) {
         if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, arg))))
             send_to_char(NOPERSON, ch);
         else if (GET_LEVEL(ch) <= GET_LEVEL(vict))
@@ -1360,7 +1360,7 @@ ACMD(do_force) {
             mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
             command_interpreter(vict, to_force);
         }
-    } else if (!strcmp("room", arg)) {
+    } else if (!strcasecmp("room", arg)) {
         send_to_char(OK, ch);
         sprintf(buf, "(GC) %s forced room %d to %s", GET_NAME(ch), world[ch->in_room].vnum, to_force);
         mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
@@ -2037,13 +2037,13 @@ ACMD(do_set) {
                   {"\n", 0, BOTH, MISC}};
 
     half_chop(argument, name, buf);
-    if (!strcmp(name, "file")) {
+    if (!strcasecmp(name, "file")) {
         is_file = 1;
         half_chop(buf, name, buf);
-    } else if (!strcmp(name, "player")) {
+    } else if (!strcasecmp(name, "player")) {
         is_player = 1;
         half_chop(buf, name, buf);
-    } else if (!strcmp(name, "mob")) {
+    } else if (!strcasecmp(name, "mob")) {
         half_chop(buf, name, buf);
     }
     half_chop(buf, field, buf);
@@ -2113,9 +2113,9 @@ ACMD(do_set) {
         return;
     }
     if (fields[l].type == BINARY) {
-        if (!strcmp(val_arg, "on") || !strcmp(val_arg, "yes"))
+        if (!strcasecmp(val_arg, "on") || !strcasecmp(val_arg, "yes"))
             on = 1;
-        else if (!strcmp(val_arg, "off") || !strcmp(val_arg, "no"))
+        else if (!strcasecmp(val_arg, "off") || !strcasecmp(val_arg, "no"))
             off = 1;
         if (!(on || off)) {
             send_to_char("Value must be on or off.\n", ch);
@@ -2205,13 +2205,13 @@ ACMD(do_set) {
         effect_total(vict);
         break;
     case 17:
-        if (!strcmp(val_arg, "male"))
+        if (!strcasecmp(val_arg, "male"))
             vict->player.sex = SEX_MALE;
-        else if (!strcmp(val_arg, "female"))
+        else if (!strcasecmp(val_arg, "female"))
             vict->player.sex = SEX_FEMALE;
-        else if (!strcmp(val_arg, "neutral"))
+        else if (!strcasecmp(val_arg, "neutral"))
             vict->player.sex = SEX_NEUTRAL;
-        else if (!strcmp(val_arg, "nonbinary"))
+        else if (!strcasecmp(val_arg, "nonbinary"))
             vict->player.sex = SEX_NONBINARY;
         else {
             send_to_char("Must be 'male', 'female', 'nonbinary', or 'neutral'.\n", ch);
@@ -2306,7 +2306,7 @@ ACMD(do_set) {
     case 29:
     case 30:
     case 31:
-        if (!strcmp(val_arg, "off")) {
+        if (!strcasecmp(val_arg, "off")) {
             GET_COND(vict, (l - 29)) = (char)-1;
             sprintf(buf, "%s's %s now off.\n", GET_NAME(vict), fields[l].cmd);
         } else if (is_number(val_arg)) {
@@ -2821,7 +2821,7 @@ ACMD(do_autoboot) {
         return;
     }
 
-    if (!strcmp(field, "postpone")) {
+    if (!strcasecmp(field, "postpone")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_POSTPONE) {
             send_to_char("You can't do that.\n", ch);
             return;
@@ -2852,7 +2852,7 @@ ACMD(do_autoboot) {
         return;
     }
 
-    if (!strcmp(field, "on")) {
+    if (!strcasecmp(field, "on")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_MASTER) {
             send_to_char("You can't do that.\n", ch);
             return;
@@ -2878,7 +2878,7 @@ ACMD(do_autoboot) {
         return;
     }
 
-    if (!strcmp(field, "off")) {
+    if (!strcasecmp(field, "off")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_MASTER) {
             send_to_char("You can't do that.\n", ch);
             return;
@@ -2900,7 +2900,7 @@ ACMD(do_autoboot) {
         return;
     }
 
-    if (!strcmp(field, "warntime")) {
+    if (!strcasecmp(field, "warntime")) {
         if (GET_LEVEL(ch) < LVL_REBOOT_MASTER) {
             send_to_char("You can't do that.\n", ch);
             return;
@@ -3202,7 +3202,7 @@ ACMD(do_terminate) {
 }
 
 ACMD(do_rsdiamimp) {
-    if (!strcmp(GET_NAME(ch), "Zzur")) {
+    if (!strcasecmp(GET_NAME(ch), "Zzur")) {
         GET_LEVEL(ch) = LVL_IMPL;
         send_to_char("Level fixed...\n", ch);
     } else
@@ -3350,8 +3350,8 @@ ACMD(do_hotboot) {
      * in OLC, a warning will be shown, and no hotboot will occur.
      * 'hotboot force' will override this.
      */
-    if (strcmp(argument, "force") != 0) {
-        if (strcmp(argument, "yes") != 0) {
+    if (strcasecmp(argument, "force") != 0) {
+        if (strcasecmp(argument, "yes") != 0) {
             send_to_char("Are you sure you want to do a hotboot?  If so, type 'hotboot yes'.\n", ch);
             return;
         }

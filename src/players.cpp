@@ -352,66 +352,66 @@ int load_player(const char *name, CharData *ch) {
 
         switch (toupper(*tag)) {
         case 'A':
-            if (!strcmp(tag, "ac"))
+            if (!strcasecmp(tag, "ac"))
                 GET_AC(ch) = num;
-            else if (!strcmp(tag, "alignment"))
+            else if (!strcasecmp(tag, "alignment"))
                 GET_ALIGNMENT(ch) = LIMIT(-1000, num, 1000);
-            else if (!strcmp(tag, "aliases"))
+            else if (!strcasecmp(tag, "aliases"))
                 read_aliases_ascii(fl, ch);
-            else if (!strcmp(tag, "aggression"))
+            else if (!strcasecmp(tag, "aggression"))
                 GET_AGGR_LEV(ch) = num;
-            else if (!strcmp(tag, "autoinvis"))
+            else if (!strcasecmp(tag, "autoinvis"))
                 GET_AUTOINVIS(ch) = num;
             else
                 goto bad_tag;
             break;
 
         case 'B':
-            if (!strcmp(tag, "badpasswords"))
+            if (!strcasecmp(tag, "badpasswords"))
                 GET_BAD_PWS(ch) = num;
-            else if (!strcmp(tag, "bank"))
+            else if (!strcasecmp(tag, "bank"))
                 load_coins(line, GET_BANK_COINS(ch));
-            else if (!strcmp(tag, "birthtime"))
+            else if (!strcasecmp(tag, "birthtime"))
                 ch->player.time.birth = atol(line);
-            else if (!strcmp(tag, "base_height"))
+            else if (!strcasecmp(tag, "base_height"))
                 ch->player.base_height = num;
-            else if (!strcmp(tag, "base_weight"))
+            else if (!strcasecmp(tag, "base_weight"))
                 ch->player.base_weight = num;
-            else if (!strcmp(tag, "base_size"))
+            else if (!strcasecmp(tag, "base_size"))
                 ch->player.base_size = LIMIT(0, num, NUM_SIZES - 1);
             else
                 goto bad_tag;
             break;
 
         case 'C':
-            if (!strcmp(tag, "charisma"))
+            if (!strcasecmp(tag, "charisma"))
                 GET_NATURAL_CHA(ch) = num;
-            else if (!strcmp(tag, "class"))
+            else if (!strcasecmp(tag, "class"))
                 GET_CLASS(ch) = LIMIT(0, num, NUM_CLASSES - 1);
-            else if (!strcmp(tag, "constitution"))
+            else if (!strcasecmp(tag, "constitution"))
                 GET_NATURAL_CON(ch) = num;
-            else if (!strcmp(tag, "cash"))
+            else if (!strcasecmp(tag, "cash"))
                 load_coins(line, GET_COINS(ch));
-            else if (!strcmp(tag, "clan"))
+            else if (!strcasecmp(tag, "clan"))
                 load_clan(line, ch);
-            else if (!strcmp(tag, "currenttitle"))
+            else if (!strcasecmp(tag, "currenttitle"))
                 GET_TITLE(ch) = strdup(line);
-            else if (!strcmp(tag, "composition"))
+            else if (!strcasecmp(tag, "composition"))
                 BASE_COMPOSITION(ch) = num;
-            else if (!strcmp(tag, "cooldowns"))
+            else if (!strcasecmp(tag, "cooldowns"))
                 load_cooldowns(fl, ch);
             else
                 goto bad_tag;
             break;
 
         case 'D':
-            if (!strcmp(tag, "description"))
+            if (!strcasecmp(tag, "description"))
                 ch->player.description = fread_string(fl, "load_player");
-            else if (!strcmp(tag, "dexterity"))
+            else if (!strcasecmp(tag, "dexterity"))
                 GET_NATURAL_DEX(ch) = num;
-            else if (!strcmp(tag, "drunkenness"))
+            else if (!strcasecmp(tag, "drunkenness"))
                 GET_COND(ch, DRUNK) = LIMIT(-1, num, 24);
-            else if (!strcmp(tag, "damroll")) {
+            else if (!strcasecmp(tag, "damroll")) {
                 GET_BASE_DAMROLL(ch) = num;
                 found_damroll = true;
             } else
@@ -419,48 +419,48 @@ int load_player(const char *name, CharData *ch) {
             break;
 
         case 'E':
-            if (!strcmp(tag, "experience"))
+            if (!strcasecmp(tag, "experience"))
                 GET_EXP(ch) = atol(line);
-            else if (!strcmp(tag, "effectflags"))
+            else if (!strcasecmp(tag, "effectflags"))
                 load_ascii_flags(EFF_FLAGS(ch), NUM_EFF_FLAGS, line);
-            else if (!strcmp(tag, "effects"))
+            else if (!strcasecmp(tag, "effects"))
                 load_effects(fl, ch);
             else
                 goto bad_tag;
             break;
 
         case 'F':
-            if (!strcmp(tag, "freezelevel"))
+            if (!strcasecmp(tag, "freezelevel"))
                 GET_FREEZE_LEV(ch) = LIMIT(0, num, LVL_IMPL);
             else
                 goto bad_tag;
             break;
 
         case 'G':
-            if (!strcmp(tag, "gossips"))
+            if (!strcasecmp(tag, "gossips"))
                 load_retained_comms(fl, ch, TYPE_RETAINED_GOSSIPS);
-            else if (!strcmp(tag, "grants"))
+            else if (!strcasecmp(tag, "grants"))
                 read_player_grants(fl, &GET_GRANTS(ch));
-            else if (!strcmp(tag, "grantgroups"))
+            else if (!strcasecmp(tag, "grantgroups"))
                 read_player_grant_groups(fl, &GET_GRANT_GROUPS(ch));
             else
                 goto bad_tag;
             break;
 
         case 'H':
-            if (!strcmp(tag, "hitpoints"))
+            if (!strcasecmp(tag, "hitpoints"))
                 scan_slash(line, &GET_HIT(ch), &GET_BASE_HIT(ch));
-            else if (!strcmp(tag, "height"))
+            else if (!strcasecmp(tag, "height"))
                 GET_HEIGHT(ch) = num;
-            else if (!strcmp(tag, "host")) {
+            else if (!strcasecmp(tag, "host")) {
                 if (GET_HOST(ch))
                     free(GET_HOST(ch));
                 GET_HOST(ch) = strdup(line);
-            } else if (!strcmp(tag, "hunger"))
+            } else if (!strcasecmp(tag, "hunger"))
                 GET_COND(ch, FULL) = LIMIT(-1, num, 24);
-            else if (!strcmp(tag, "home"))
+            else if (!strcasecmp(tag, "home"))
                 GET_HOMEROOM(ch) = num;
-            else if (!strcmp(tag, "hitroll")) {
+            else if (!strcasecmp(tag, "hitroll")) {
                 GET_BASE_HITROLL(ch) = num;
                 found_hitroll = true;
             } else
@@ -468,56 +468,56 @@ int load_player(const char *name, CharData *ch) {
             break;
 
         case 'I':
-            if (!strcmp(tag, "id"))
+            if (!strcasecmp(tag, "id"))
                 GET_IDNUM(ch) = atol(line);
-            else if (!strcmp(tag, "intelligence"))
+            else if (!strcasecmp(tag, "intelligence"))
                 GET_NATURAL_INT(ch) = num;
-            else if (!strcmp(tag, "invislevel"))
+            else if (!strcasecmp(tag, "invislevel"))
                 GET_INVIS_LEV(ch) = LIMIT(0, num, LVL_IMPL);
             else
                 goto bad_tag;
             break;
 
         case 'L':
-            if (!strcmp(tag, "level"))
+            if (!strcasecmp(tag, "level"))
                 GET_LEVEL(ch) = LIMIT(0, num, LVL_IMPL);
-            else if (!strcmp(tag, "lastlevel"))
+            else if (!strcasecmp(tag, "lastlevel"))
                 GET_LASTLEVEL(ch) = num;
-            else if (!strcmp(tag, "lastlogintime"))
+            else if (!strcasecmp(tag, "lastlogintime"))
                 ch->player.time.logon = num;
-            else if (!strcmp(tag, "lifeforce"))
+            else if (!strcasecmp(tag, "lifeforce"))
                 GET_LIFEFORCE(ch) = num;
-            else if (!strcmp(tag, "loadroom"))
+            else if (!strcasecmp(tag, "loadroom"))
                 GET_LOADROOM(ch) = num;
-            else if (!strcmp(tag, "logview"))
+            else if (!strcasecmp(tag, "logview"))
                 GET_LOG_VIEW(ch) = num;
             else
                 goto bad_tag;
             break;
 
         case 'M':
-            if (!strcmp(tag, "mana"))
+            if (!strcasecmp(tag, "mana"))
                 scan_slash(line, &GET_MANA(ch), &GET_MAX_MANA(ch));
-            else if (!strcmp(tag, "move"))
+            else if (!strcasecmp(tag, "move"))
                 scan_slash(line, &GET_MOVE(ch), &GET_MAX_MOVE(ch));
-            else if (!strcmp(tag, "mem"))
+            else if (!strcasecmp(tag, "mem"))
                 load_spell_mem(fl, ch);
             else
                 goto bad_tag;
             break;
 
         case 'N':
-            if (!strcmp(tag, "name")) {
+            if (!strcasecmp(tag, "name")) {
                 GET_NAME(ch) = strdup(line);
                 GET_NAMELIST(ch) = strdup(line);
-            } else if (!strcmp(tag, "natural_size"))
+            } else if (!strcasecmp(tag, "natural_size"))
                 ch->player.natural_size = LIMIT(0, num, NUM_SIZES - 1);
             else
                 goto bad_tag;
             break;
 
         case 'O':
-            if (!strcmp(tag, "olczones")) {
+            if (!strcasecmp(tag, "olczones")) {
                 OLCZoneList *zone;
                 char *next = line;
                 while ((next = any_one_arg(next, buf)) && is_number(buf)) {
@@ -531,91 +531,91 @@ int load_player(const char *name, CharData *ch) {
             break;
 
         case 'P':
-            if (!strcmp(tag, "pagelength"))
+            if (!strcasecmp(tag, "pagelength"))
                 GET_PAGE_LENGTH(ch) = LIMIT(5, num, 250);
-            else if (!strcmp(tag, "password"))
+            else if (!strcasecmp(tag, "password"))
                 strcpy(GET_PASSWD(ch), line);
-            else if (!strcmp(tag, "playerflags"))
+            else if (!strcasecmp(tag, "playerflags"))
                 load_ascii_flags(PLR_FLAGS(ch), NUM_PLR_FLAGS, line);
-            else if (!strcmp(tag, "poofin"))
+            else if (!strcasecmp(tag, "poofin"))
                 GET_POOFIN(ch) = strdup(line);
-            else if (!strcmp(tag, "poofout"))
+            else if (!strcasecmp(tag, "poofout"))
                 GET_POOFOUT(ch) = strdup(line);
-            else if (!strcmp(tag, "prefflags"))
+            else if (!strcasecmp(tag, "prefflags"))
                 load_ascii_flags(PRF_FLAGS(ch), NUM_PRF_FLAGS, line);
-            else if (!strcmp(tag, "privflags"))
+            else if (!strcasecmp(tag, "privflags"))
                 load_ascii_flags(PRV_FLAGS(ch), NUM_PRV_FLAGS, line);
-            else if (!strcmp(tag, "prompt"))
+            else if (!strcasecmp(tag, "prompt"))
                 GET_PROMPT(ch) = strdup(line);
             else
                 goto bad_tag;
             break;
 
         case 'R':
-            if (!strcmp(tag, "race"))
+            if (!strcasecmp(tag, "race"))
                 GET_RACE(ch) = LIMIT(0, num, NUM_RACES - 1);
             else
                 goto bad_tag;
             break;
 
         case 'S':
-            if (!strcmp(tag, "savingthrows")) {
+            if (!strcasecmp(tag, "savingthrows")) {
                 char *next = line;
                 i = 0;
                 while (*(next = any_one_arg(next, buf)) && i < NUM_SAVES)
                     GET_SAVE(ch, i++) = atoi(buf);
-            } else if (!strcmp(tag, "saveroom"))
+            } else if (!strcasecmp(tag, "saveroom"))
                 GET_SAVEROOM(ch) = num;
-            else if (!strcmp(tag, "sex"))
+            else if (!strcasecmp(tag, "sex"))
                 GET_SEX(ch) = LIMIT(0, num, NUM_SEXES - 1);
             /* "size" is a holdover which meant the same thing as "base_size" */
-            else if (!strcmp(tag, "size"))
+            else if (!strcasecmp(tag, "size"))
                 ch->player.base_size = LIMIT(0, num, NUM_SIZES - 1);
-            else if (!strcmp(tag, "skills"))
+            else if (!strcasecmp(tag, "skills"))
                 load_skills(fl, ch);
-            else if (!strcmp(tag, "strength"))
+            else if (!strcasecmp(tag, "strength"))
                 GET_NATURAL_STR(ch) = num;
             else
                 goto bad_tag;
             break;
 
         case 'Q':
-            if (!strcmp(tag, "quit_reason"))
+            if (!strcasecmp(tag, "quit_reason"))
                 GET_QUIT_REASON(ch) = num;
             break;
 
         case 'T':
-            if (!strcmp(tag, "tells"))
+            if (!strcasecmp(tag, "tells"))
                 load_retained_comms(fl, ch, TYPE_RETAINED_TELLS);
-            else if (!strcmp(tag, "thirst"))
+            else if (!strcasecmp(tag, "thirst"))
                 GET_COND(ch, THIRST) = LIMIT(-1, num, 24);
-            else if (!strcmp(tag, "title"))
+            else if (!strcasecmp(tag, "title"))
                 add_perm_title(ch, line);
-            else if (!strcmp(tag, "timeplayed"))
+            else if (!strcasecmp(tag, "timeplayed"))
                 ch->player.time.played = num;
-            else if (!strcmp(tag, "trophy"))
+            else if (!strcasecmp(tag, "trophy"))
                 load_trophy(fl, ch);
             else
                 goto bad_tag;
             break;
 
         case 'U':
-            if (!strcmp(tag, "revokes"))
+            if (!strcasecmp(tag, "revokes"))
                 read_player_grants(fl, &GET_REVOKES(ch));
-            else if (!strcmp(tag, "revokegroups"))
+            else if (!strcasecmp(tag, "revokegroups"))
                 read_player_grant_groups(fl, &GET_REVOKE_GROUPS(ch));
             else
                 goto bad_tag;
             break;
 
         case 'W':
-            if (!strcmp(tag, "weight"))
+            if (!strcasecmp(tag, "weight"))
                 GET_WEIGHT(ch) = num;
-            else if (!strcmp(tag, "wimpy"))
+            else if (!strcasecmp(tag, "wimpy"))
                 GET_WIMP_LEV(ch) = LIMIT(0, num, LVL_IMPL);
-            else if (!strcmp(tag, "wisdom"))
+            else if (!strcasecmp(tag, "wisdom"))
                 GET_NATURAL_WIS(ch) = num;
-            else if (!strcmp(tag, "wiztitle"))
+            else if (!strcasecmp(tag, "wiztitle"))
                 do_wiztitle(buf, ch, line);
             else
                 goto bad_tag;
@@ -728,7 +728,7 @@ void save_player_char(CharData *ch) {
         if (ch->desc->host && *ch->desc->host) {
             if (!GET_HOST(ch))
                 GET_HOST(ch) = strdup(ch->desc->host);
-            else if (GET_HOST(ch) && strcmp(GET_HOST(ch), ch->desc->host)) {
+            else if (GET_HOST(ch) && strcasecmp(GET_HOST(ch), ch->desc->host)) {
                 free(GET_HOST(ch));
                 GET_HOST(ch) = strdup(ch->desc->host);
             }
@@ -1187,7 +1187,7 @@ static void read_aliases_ascii(FILE *file, CharData *ch) {
         /* Read the aliased command to buf. */
         get_line(file, buf);
 
-        if (!strcmp(buf, "0")) /* last alias line a single 0 */
+        if (!strcasecmp(buf, "0")) /* last alias line a single 0 */
             return;
 
         replacement = any_one_arg(buf, buf1);
@@ -1202,7 +1202,7 @@ static void read_aliases_ascii(FILE *file, CharData *ch) {
             alias->type = ALIAS_SIMPLE;
         alias->next = GET_ALIASES(ch);
         GET_ALIASES(ch) = alias;
-    } while (strcmp(buf, "0")); /* while buf is not "0" */
+    } while (strcasecmp(buf, "0")); /* while buf is not "0" */
 }
 
 static void load_spell_mem(FILE *fl, CharData *ch) {

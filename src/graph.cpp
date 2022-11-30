@@ -180,7 +180,7 @@ int find_track_victim(CharData *ch, char *name, int maxdist, CharData **victim) 
         return BFS_ERROR;
 
     /* Did you say "track me"? */
-    if (!strcmp(name, "self") || !strcmp(name, "me")) {
+    if (!strcasecmp(name, "self") || !strcasecmp(name, "me")) {
         *victim = ch;
         return BFS_ALREADY_THERE;
     }
@@ -425,7 +425,7 @@ ACMD(do_hunt) {
     }
 
     argument = one_argument(argument, arg);
-    if (!strcmp(" follow", argument) || !strcmp(" f", argument)) {
+    if (!strcasecmp(" follow", argument) || !strcasecmp(" f", argument)) {
         if (GET_CLASS(ch) != CLASS_HUNTER && (GET_LEVEL(ch) < LVL_IMMORT)) {
             send_to_char("You do not have enough skills to follow someone after hunting.\n", ch);
             return;

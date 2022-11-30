@@ -203,7 +203,7 @@ static BoardData *find_board(const char *str) {
         return board(atoi(str));
     else {
         for (i = 0; i < num_boards; ++i)
-            if (!strcmp(board_index[i]->alias, str))
+            if (!strcasecmp(board_index[i]->alias, str))
                 return board_index[i];
         return nullptr;
     }
@@ -378,13 +378,13 @@ static BoardData *load_board(const char *name) {
     while (get_line(fl, line)) {
         tag_argument(line, tag);
 
-        if (!strcmp(tag, "~~"))
+        if (!strcasecmp(tag, "~~"))
             break;
 
         switch (toupper(*tag)) {
         case 'A':
-            if (!strcmp(tag, "alias")) {
-                if (strcmp(board->alias, line))
+            if (!strcasecmp(tag, "alias")) {
+                if (strcasecmp(board->alias, line))
                     log("SYSERR: Board alias in board file (%s) doesn't match entry in "
                         "index (%s)",
                         line, board->alias);
@@ -392,19 +392,19 @@ static BoardData *load_board(const char *name) {
                 goto bad_board_tag;
             break;
         case 'N':
-            if (!strcmp(tag, "number"))
+            if (!strcasecmp(tag, "number"))
                 board->number = atoi(line);
             else
                 goto bad_board_tag;
             break;
         case 'P':
-            if (!strcmp(tag, "privilege"))
+            if (!strcasecmp(tag, "privilege"))
                 parse_privilege(board, line);
             else
                 goto bad_board_tag;
             break;
         case 'T':
-            if (!strcmp(tag, "title"))
+            if (!strcasecmp(tag, "title"))
                 board->title = strdup(line);
             else
                 goto bad_board_tag;
@@ -419,7 +419,7 @@ static BoardData *load_board(const char *name) {
     while (get_line(fl, line)) {
         tag_argument(line, tag);
 
-        if (!strcmp(tag, "~~")) {
+        if (!strcasecmp(tag, "~~")) {
             msg = nullptr;
             continue;
         }
@@ -436,7 +436,7 @@ static BoardData *load_board(const char *name) {
 
         switch (toupper(*tag)) {
         case 'E':
-            if (!strcmp(tag, "edit")) {
+            if (!strcasecmp(tag, "edit")) {
                 CREATE(edit, BoardMessageEdit, 1);
                 if (sscanf(line, "%s %ld", editname, &edit->time) == 2) {
                     edit->editor = strdup(editname);
@@ -450,33 +450,33 @@ static BoardData *load_board(const char *name) {
                 goto bad_msg_tag;
             break;
         case 'L':
-            if (!strcmp(tag, "level"))
+            if (!strcasecmp(tag, "level"))
                 msg->level = atoi(line);
             else
                 goto bad_msg_tag;
             break;
         case 'M':
-            if (!strcmp(tag, "message"))
+            if (!strcasecmp(tag, "message"))
                 msg->message = fread_string(fl, "load_board");
             else
                 goto bad_msg_tag;
             break;
         case 'P':
-            if (!strcmp(tag, "poster"))
+            if (!strcasecmp(tag, "poster"))
                 msg->poster = strdup(line);
             else
                 goto bad_msg_tag;
             break;
         case 'S':
-            if (!strcmp(tag, "subject"))
+            if (!strcasecmp(tag, "subject"))
                 msg->subject = strdup(line);
-            else if (!strcmp(tag, "sticky"))
+            else if (!strcasecmp(tag, "sticky"))
                 msg->sticky = atoi(line);
             else
                 goto bad_msg_tag;
             break;
         case 'T':
-            if (!strcmp(tag, "time"))
+            if (!strcasecmp(tag, "time"))
                 msg->time = atol(line);
             else
                 goto bad_msg_tag;
@@ -684,7 +684,7 @@ ACMD(do_boardadmin) {
     argument = any_one_arg(argument, arg);
     skip_spaces(&argument);
 
-    if (!strcmp(arg, "delete")) {
+    if (!strcasecmp(arg, "delete")) {
         if (!*argument)
             send_to_char("Which board do you want to delete?\n", ch);
         else if (!(board = find_board(argument)))
@@ -695,7 +695,7 @@ ACMD(do_boardadmin) {
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) %s deleted board %s.", GET_NAME(ch), argument);
     }
 
-    else if (!strcmp(arg, "create")) {
+    else if (!strcasecmp(arg, "create")) {
         if (!*argument)
             send_to_char("What do you want the new board's alias to be?\n", ch);
         else if (!valid_alias(argument))
@@ -707,7 +707,7 @@ ACMD(do_boardadmin) {
         }
     }
 
-    else if (!strcmp(arg, "reload")) {
+    else if (!strcasecmp(arg, "reload")) {
         if (!*argument)
             send_to_char("Which board do you want to delete?\n", ch);
         else if (!(board = find_board(argument)))
@@ -718,7 +718,7 @@ ACMD(do_boardadmin) {
             mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) %s reloaded board %s.", GET_NAME(ch), argument);
     }
 
-    else if (!strcmp(arg, "title")) {
+    else if (!strcasecmp(arg, "title")) {
         argument = any_one_arg(argument, arg);
         skip_spaces(&argument);
         if (!*arg)
@@ -793,11 +793,11 @@ ACMD(do_boardadmin) {
             send_to_char("Which privilege do you want to change?\n", ch);
             return;
         }
-        if (!strcmp(arg, "all"))
+        if (!strcasecmp(arg, "all"))
             i = -1; /* Set all privileges at once */
         else {
             for (i = 0; i < NUM_BPRIV; ++i)
-                if (!strcmp(privilege_data[i].abbr, arg) || is_abbrev(privilege_data[i].alias, arg))
+                if (!strcasecmp(privilege_data[i].abbr, arg) || is_abbrev(privilege_data[i].alias, arg))
                     break;
             if (i >= NUM_BPRIV) {
                 send_to_char("Invalid privilege.  Allowed privileges:\n", ch);
@@ -955,7 +955,7 @@ void edit_message(CharData *ch, BoardData *board, int msgnum) {
         return;
     }
 
-    if (!strcmp(msg->poster, GET_NAME(ch))) {
+    if (!strcasecmp(msg->poster, GET_NAME(ch))) {
         if (!has_board_privilege(ch, board, BPRIV_EDIT_OWN) && !has_board_privilege(ch, board, BPRIV_EDIT_ANY)) {
             send_to_char("You can't edit your own posts on this board.\n", ch);
             return;
@@ -1007,7 +1007,7 @@ void remove_message(CharData *ch, BoardData *board, int msgnum, const ObjData *f
         return;
     }
 
-    if (!strcmp(msg->poster, GET_NAME(ch))) {
+    if (!strcasecmp(msg->poster, GET_NAME(ch))) {
         if (!has_board_privilege(ch, board, BPRIV_REMOVE_OWN) && !has_board_privilege(ch, board, BPRIV_REMOVE_ANY)) {
             send_to_char("You can't remove your own posts on this board.\n", ch);
             return;

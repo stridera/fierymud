@@ -341,7 +341,8 @@ static void list_objects(ObjData *list, CharData *ch, int indent, int last_inden
 #define PRETTY_INDENTATION false
 #define OBJECTS_MATCH(x, y)                                                                                            \
     ((x)->item_number == (y)->item_number &&                                                                           \
-     ((x)->short_description == (y)->short_description || !strcmp((x)->short_description, (y)->short_description)) &&  \
+     ((x)->short_description == (y)->short_description ||                                                              \
+      !strcasecmp((x)->short_description, (y)->short_description)) &&                                                  \
      (x)->contains == (y)->contains)
 
     /* Loop through the list of objects */
@@ -611,7 +612,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     }
     tag_argument(line, tag);
 
-    if (strcmp(tag, "vnum")) {
+    if (strcasecmp(tag, "vnum")) {
         sprintf(buf, "SYSERR: Invalid Object File.  Object Vnum not found.");
         log("%s", buf);
         return false;
@@ -631,17 +632,17 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
         while (get_line(fl, line)) {
             /* Only thing we care about is location, lets throw away the rest.*/
-            if (!strcmp(line, "~~"))
+            if (!strcasecmp(line, "~~"))
                 break;
 
             tag_argument(line, tag);
             num = atoi(line);
 
-            if (!strcmp(tag, "effects"))
+            if (!strcasecmp(tag, "effects"))
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
-            else if (!strcmp(tag, "location"))
+            else if (!strcasecmp(tag, "location"))
                 *location = atoi(line);
-            else if (!strcmp(tag, "spells")) {
+            else if (!strcasecmp(tag, "spells")) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
                 while (get_line(fl, line) && *line != '~') {
@@ -653,13 +654,13 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                         obj->spell_book = spell;
                     last_spell = spell;
                 }
-            } else if (!strcmp(tag, "values")) {
+            } else if (!strcasecmp(tag, "values")) {
                 num = 0;
                 while (get_line(fl, line) && *line != '~')
                     if (num < NUM_VALUES)
                         GET_OBJ_VAL(obj, num++) = atoi(line);
                 limit_obj_values(obj);
-            } else if (!strcmp(tag, "flags"))
+            } else if (!strcasecmp(tag, "flags"))
                 load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
         }
         return true;
@@ -670,7 +671,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     obj->item_number = -1;
 
     while (get_line(fl, line)) {
-        if (!strcmp(line, "~~"))
+        if (!strcasecmp(line, "~~"))
             break;
 
         tag_argument(line, tag);
@@ -679,9 +680,9 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
         switch (UPPER(*tag)) {
         case 'A':
-            if (!strcmp(tag, "adesc"))
+            if (!strcasecmp(tag, "adesc"))
                 obj->action_description = fread_string(fl, "build_object");
-            else if (!strcmp(tag, "applies")) {
+            else if (!strcasecmp(tag, "applies")) {
                 while (get_line(fl, line) && *line != '~' && apply < MAX_OBJ_APPLIES) {
                     sscanf(line, "%d %d", &num, &num2);
                     obj->applies[apply].location = LIMIT(0, num, NUM_APPLY_TYPES - 1);
@@ -692,23 +693,23 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 goto bad_tag;
             break;
         case 'C':
-            if (!strcmp(tag, "cost"))
+            if (!strcasecmp(tag, "cost"))
                 GET_OBJ_COST(obj) = MAX(0, num);
             else
                 goto bad_tag;
             break;
         case 'D':
-            if (!strcmp(tag, "desc"))
+            if (!strcasecmp(tag, "desc"))
                 obj->description = strdup(line);
-            else if (!strcmp(tag, "decomp"))
+            else if (!strcasecmp(tag, "decomp"))
                 GET_OBJ_DECOMP(obj) = MAX(0, num);
             else
                 goto bad_tag;
             break;
         case 'E':
-            if (!strcmp(tag, "effects"))
+            if (!strcasecmp(tag, "effects"))
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
-            else if (!strcmp(tag, "extradesc")) {
+            else if (!strcasecmp(tag, "extradesc")) {
                 CREATE(desc, ExtraDescriptionData, 1);
                 desc->keyword = strdup(line);
                 desc->description = fread_string(fl, "build_object");
@@ -721,35 +722,35 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 goto bad_tag;
             break;
         case 'F':
-            if (!strcmp(tag, "flags"))
+            if (!strcasecmp(tag, "flags"))
                 load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
             else
                 goto bad_tag;
             break;
         case 'H':
-            if (!strcmp(tag, "hiddenness"))
+            if (!strcasecmp(tag, "hiddenness"))
                 GET_OBJ_HIDDENNESS(obj) = LIMIT(0, num, 1000);
             else
                 goto bad_tag;
             break;
         case 'L':
-            if (!strcmp(tag, "location"))
+            if (!strcasecmp(tag, "location"))
                 *location = num;
-            else if (!strcmp(tag, "level"))
+            else if (!strcasecmp(tag, "level"))
                 GET_OBJ_LEVEL(obj) = LIMIT(0, num, LVL_IMPL);
             else
                 goto bad_tag;
             break;
         case 'N':
-            if (!strcmp(tag, "name"))
+            if (!strcasecmp(tag, "name"))
                 obj->name = strdup(line);
             else
                 goto bad_tag;
             break;
         case 'S':
-            if (!strcmp(tag, "shortdesc"))
+            if (!strcasecmp(tag, "shortdesc"))
                 obj->short_description = strdup(line);
-            else if (!strcmp(tag, "spells")) {
+            else if (!strcasecmp(tag, "spells")) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
                 while (get_line(fl, line) && *line != '~') {
@@ -765,11 +766,11 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 goto bad_tag;
             break;
         case 'T':
-            if (!strcmp(tag, "type"))
+            if (!strcasecmp(tag, "type"))
                 GET_OBJ_TYPE(obj) = LIMIT(0, num, NUM_ITEM_TYPES - 1);
-            else if (!strcmp(tag, "timer"))
+            else if (!strcasecmp(tag, "timer"))
                 GET_OBJ_TIMER(obj) = MAX(0, num);
-            else if (!strcmp(tag, "triggers")) {
+            else if (!strcasecmp(tag, "triggers")) {
                 if (!SCRIPT(obj))
                     CREATE(SCRIPT(obj), ScriptData, 1);
                 while (get_line(fl, line) && *line != '~') {
@@ -781,13 +782,13 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 goto bad_tag;
             break;
         case 'V':
-            if (!strcmp(tag, "values")) {
+            if (!strcasecmp(tag, "values")) {
                 num = 0;
                 while (get_line(fl, line) && *line != '~')
                     if (num < NUM_VALUES)
                         GET_OBJ_VAL(obj, num++) = atoi(line);
                 limit_obj_values(obj);
-            } else if (!strcmp(tag, "variables")) {
+            } else if (!strcasecmp(tag, "variables")) {
                 if (!SCRIPT(obj))
                     CREATE(SCRIPT(obj), ScriptData, 1);
                 while (get_line(fl, line) && *line != '~') {
@@ -802,9 +803,9 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 goto bad_tag;
             break;
         case 'W':
-            if (!strcmp(tag, "weight"))
+            if (!strcasecmp(tag, "weight"))
                 GET_OBJ_WEIGHT(obj) = MAX(0, f);
-            else if (!strcmp(tag, "wear"))
+            else if (!strcasecmp(tag, "wear"))
                 GET_OBJ_WEAR(obj) = num;
             else
                 goto bad_tag;
@@ -831,7 +832,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     do {                                                                                                               \
         if (!obj->address)                                                                                             \
             obj->address = proto->address;                                                                             \
-        else if (!*obj->address || (proto->address && *proto->address && !strcmp(obj->address, proto->address))) {     \
+        else if (!*obj->address || (proto->address && *proto->address && !strcasecmp(obj->address, proto->address))) { \
             free(obj->address);                                                                                        \
             obj->address = proto->address;                                                                             \
         }                                                                                                              \
@@ -871,7 +872,8 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
             num = true;
             for (desc = obj->ex_description, last_desc = proto->ex_description; desc && last_desc;
                  desc = desc->next, last_desc = last_desc->next)
-                if (strcmp(desc->keyword, last_desc->keyword) || strcmp(desc->description, last_desc->description))
+                if (strcasecmp(desc->keyword, last_desc->keyword) ||
+                    strcasecmp(desc->description, last_desc->description))
                     num = false;
             if (desc || last_desc)
                 num = false;
@@ -1136,9 +1138,9 @@ void load_pets(CharData *ch) {
                     if (*tag == '$')
                         break;
 
-                    if (!strcmp(tag, "desc"))
+                    if (!strcasecmp(tag, "desc"))
                         GET_DESCRIPTION(pet) = strdup(line);
-                    else if (!strcmp(tag, "namelist"))
+                    else if (!strcasecmp(tag, "namelist"))
                         GET_NAMELIST(pet) = strdup(line);
                     else {
                         sprintf(buf, "SYSERR: Unknown tag %s in %s's pet file: %s", tag, GET_NAME(ch), line);

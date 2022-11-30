@@ -1986,7 +1986,7 @@ void start_chant(CharData *ch) {
 
             /* Intelligence check to determine the target.  If we know the spell we
              * know the target */
-            if (number(0, 101) < GET_INT(gch) || !strcmp(spellbuf, skills[ch->casting.spell].name) || (bad) ||
+            if (number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) || (bad) ||
                 GET_LEVEL(gch) >= LVL_GOD) {
                 if (ch->casting.tch == gch)
                     /* Target is the receiver of the message */

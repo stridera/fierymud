@@ -398,7 +398,7 @@ void do_stat_object(CharData *ch, ObjData *j) {
         break;
     case ITEM_WEAPON:
         resp += fmt::format(
-            "Todam: {}d{} (avg %{:.1f}), Message type: {}, '{}'\n", GET_OBJ_VAL(j, VAL_WEAPON_DICE_NUM),
+            "Todam: {}d{} (avg {:.1f}), Message type: {}, '{}'\n", GET_OBJ_VAL(j, VAL_WEAPON_DICE_NUM),
             GET_OBJ_VAL(j, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(j), GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE),
             GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) >= 0 && GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE) <= TYPE_ALIGN - TYPE_HIT
                 ? attack_hit_text[GET_OBJ_VAL(j, VAL_WEAPON_DAM_TYPE)].singular
@@ -542,7 +542,7 @@ ACMD(do_estat) {
     if (!ch->desc)
         return;
 
-    if (subcmd == SCMD_RESTAT || !strcmp(buf1, "room")) {
+    if (subcmd == SCMD_RESTAT || !strcasecmp(buf1, "room")) {
         if (subcmd == SCMD_RESTAT && *buf1)
             tmp = isdigit(*buf1) ? real_room(atoi(buf1)) : NOWHERE;
         else if (subcmd != SCMD_RESTAT && *buf2)
@@ -558,7 +558,7 @@ ACMD(do_estat) {
     } else {
         if (subcmd == SCMD_OESTAT)
             otarg = buf1;
-        else if (!strcmp(buf1, "obj"))
+        else if (!strcasecmp(buf1, "obj"))
             otarg = buf2;
         else
             otarg = buf1;
@@ -1262,7 +1262,7 @@ void do_show_zones(CharData *ch, char *argument) {
 
     any_one_arg(argument, arg);
 
-    if (!strcmp(arg, ".")) {
+    if (!strcasecmp(arg, ".")) {
         zonebuf += print_zone_to_buf(world[ch->in_room].zone);
         send_to_char(zonebuf.c_str(), ch);
     } else if (*arg && is_number(arg)) {

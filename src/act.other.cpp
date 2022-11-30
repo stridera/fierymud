@@ -117,7 +117,7 @@ ACMD(do_guard) {
         return;
     }
 
-    if (!strcmp(arg, "off"))
+    if (!strcasecmp(arg, "off"))
         vict = ch;
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         send_to_char("That person is not here.\n", ch);
@@ -309,7 +309,7 @@ ACMD(do_quit) {
         return;
     }
 
-    if (!*arg || strcmp(arg, "yes")) {
+    if (!*arg || strcasecmp(arg, "yes")) {
         send_to_char("You must type 'quit yes' to leave this world.\n", ch);
         send_to_char(
             "Note: You will lose &1&beverything&0 if you quit!  Camping "
@@ -559,7 +559,7 @@ ACMD(do_shapechange) {
         return;
     }
 
-    if (!strcmp(arg, "me")) {
+    if (!strcasecmp(arg, "me")) {
         send_to_char("You are already in your normal form.\n", ch);
         return;
     }
@@ -767,7 +767,7 @@ ACMD(do_save) {
     if (GET_LEVEL(ch) >= LVL_GOD) {
         one_argument(argument, arg);
 
-        if (!strcmp(arg, "all")) {
+        if (!strcasecmp(arg, "all")) {
             auto_save_all();
             char_printf(ch, "You have saved all players in the realm.\n");
             mprintf(L_STAT, MAX(GET_LEVEL(ch), GET_INVIS_LEV(ch)), "(GC) %s has saved all players in the realm.",
@@ -1209,7 +1209,7 @@ ACMD(do_steal) {
         percent = 101 + 50;
 
     /* First check whether the thief wants to steal money */
-    if (strcmp(obj_name, "coins") && strcmp(obj_name, "gold")) {
+    if (strcasecmp(obj_name, "coins") && strcasecmp(obj_name, "gold")) {
 
         /* If not money, look for an item in the victim's inventory */
         if (!(obj = find_obj_in_list(vict->carrying, find_vis_by_name(ch, obj_name)))) {
@@ -1317,7 +1317,7 @@ ACMD(do_level) {
 
     if (!*arg)
         do_experience(ch, argument, 0, 0);
-    else if (!strcmp(arg, "gain"))
+    else if (!strcasecmp(arg, "gain"))
         send_to_char("You can only do that in your guild.\n", ch);
     else
         send_to_char("Huh?!?\n", ch);
@@ -1555,7 +1555,7 @@ ACMD(do_consent) {
         return;
     }
 
-    if (!strcmp(arg, "off"))
+    if (!strcasecmp(arg, "off"))
         target = ch; /* consent self to turn it off */
     else if (!(target = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
         send_to_char(NOPERSON, ch);
@@ -1715,7 +1715,7 @@ ACMD(do_group) {
         return;
     }
 
-    if (!strcmp("all", arg)) {
+    if (!strcasecmp("all", arg)) {
         group_all = true;
         tch = nullptr;
     } else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {

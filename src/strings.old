@@ -17,10 +17,10 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* strcmp: a case-insensitive version of strcmp */
+/* strcasecmp: a case-insensitive version of strcasecmp */
 /* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
 /* scan 'till found different or end of both                 */
-int strcmp(const char *arg1, const char *arg2) {
+int strcasecmp(const char *arg1, const char *arg2) {
     int chk, i;
 
     for (i = 0; *(arg1 + i) || *(arg2 + i); i++)

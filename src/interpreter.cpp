@@ -1139,7 +1139,7 @@ void command_interpreter(CharData *ch, char *argument) {
 /* completely rewritten --Fingon */
 AliasData *find_alias(AliasData *alias, char *str) {
     for (; alias; alias = alias->next)
-        if (!strcmp(alias->alias, str))
+        if (!strcasecmp(alias->alias, str))
             return alias;
 
     return nullptr;
@@ -1212,7 +1212,7 @@ ACMD(do_alias) {
 
             /* otherwise, either add or redefine an alias */
 
-            if (!strcmp(arg, "alias")) {
+            if (!strcasecmp(arg, "alias")) {
                 send_to_char("You can't alias 'alias'.\n", ch);
                 return;
             }
@@ -1344,7 +1344,7 @@ int perform_alias(DescriptorData *d, char *orig) {
  * it to be returned.  Returns -1 if not found; 0..n otherwise.  Array
  * must be terminated with a '\n' so it knows to stop searching.
  *
- * searchblock follows a similar naming convention to strcmp:
+ * searchblock follows a similar naming convention to strcasecmp:
  * searchblock is case-sensitive, search_block is case-insensitive.
  * Often, which one you use only depends on the case of items in your
  * list, because any_one_arg and one_argument always return lower case
@@ -1359,7 +1359,7 @@ int searchblock(char *arg, const char **list, bool exact) {
 
     if (exact) {
         for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcmp(arg, *(list + i)))
+            if (!strcasecmp(arg, *(list + i)))
                 return (i);
     } else {
         if (!l)
@@ -1381,7 +1381,7 @@ int search_block(const char *arg, const char **list, bool exact) {
 
     if (exact) {
         for (i = 0; **(list + i) != '\n'; i++)
-            if (!strcmp(arg, *(list + i)))
+            if (!strcasecmp(arg, *(list + i)))
                 return (i);
     } else {
         len = strlen(arg);
@@ -1745,7 +1745,7 @@ int find_command(const char *command) {
     int cmd;
 
     for (cmd = 0; *cmd_info[cmd].command != '\n'; ++cmd)
-        if (!strcmp(cmd_info[cmd].command, command))
+        if (!strcasecmp(cmd_info[cmd].command, command))
             return cmd;
 
     return -1;
@@ -1807,7 +1807,7 @@ int find_name(const char *name) {
     int i;
 
     for (i = 0; i <= top_of_p_table; i++) {
-        if (!strcmp((player_table + i)->name, name))
+        if (!strcasecmp((player_table + i)->name, name))
             return i;
     }
 
@@ -2474,7 +2474,7 @@ void nanny(DescriptorData *d, char *arg) {
 
     case CON_NEWPASSWD:
     case CON_CHPWD_GETNEW:
-        if (!*arg || strlen(arg) > MAX_PWD_LENGTH || strlen(arg) < 3 || !strcmp(arg, GET_NAME(d->character))) {
+        if (!*arg || strlen(arg) > MAX_PWD_LENGTH || strlen(arg) < 3 || !strcasecmp(arg, GET_NAME(d->character))) {
             write_to_output("\nIllegal password.\n", d);
             write_to_output("Password: ", d);
             return;
@@ -2906,7 +2906,7 @@ void nanny(DescriptorData *d, char *arg) {
         break;
 
     case CON_DELCNF2:
-        if (!strcmp(arg, "yes")) {
+        if (!strcasecmp(arg, "yes")) {
             if (PLR_FLAGGED(d->character, PLR_FROZEN)) {
                 write_to_output("You try to kill yourself, but the ice stops you.\n", d);
                 write_to_output("Character not deleted.\n\n", d);
@@ -3109,7 +3109,8 @@ void sort_commands(void) {
     /* Sort.  'a' starts at 1, not 0, to remove 'RESERVED' */
     for (a = 1; a < num_of_cmds - 1; a++)
         for (b = a + 1; b < num_of_cmds; b++)
-            if (strcmp(cmd_info[cmd_sort_info[a].sort_pos].command, cmd_info[cmd_sort_info[b].sort_pos].command) > 0) {
+            if (strcasecmp(cmd_info[cmd_sort_info[a].sort_pos].command, cmd_info[cmd_sort_info[b].sort_pos].command) >
+                0) {
                 tmp = cmd_sort_info[a].sort_pos;
                 cmd_sort_info[a].sort_pos = cmd_sort_info[b].sort_pos;
                 cmd_sort_info[b].sort_pos = tmp;

@@ -454,9 +454,9 @@ CharData *is_playing(char *vict_name) {
     DescriptorData *i;
     for (i = descriptor_list; i; i = i->next)
         if (i->connected == CON_PLAYING) {
-            if (!strcmp(GET_NAME(i->character), vict_name))
+            if (!strcasecmp(GET_NAME(i->character), vict_name))
                 return i->character;
-            else if (i->original && !strcmp(GET_NAME(i->original), vict_name))
+            else if (i->original && !strcasecmp(GET_NAME(i->original), vict_name))
                 return i->original;
         }
     return nullptr;
