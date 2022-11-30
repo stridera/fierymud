@@ -199,12 +199,12 @@ ACMD(do_iptables) {
             /* Find out which ports (if any) are already opened for the
              * requested address */
             while (get_line(tmp, cBuf)) {
-                if (strstr(cBuf, buf2)) {
+                if (strcasestr(cBuf, buf2)) {
                     /* ip address found */
                     for (i = 0; i < num_ports; i++) {
                         if (!ports_open[i]) {
                             sprintf(buf1, " tcp dpt:%d ", ports_to_open[i]);
-                            if (strstr(cBuf, buf1)) {
+                            if (strcasestr(cBuf, buf1)) {
                                 ports_open[i] = true;
                                 num_ports_open++;
                             }
@@ -1768,7 +1768,7 @@ void do_wiztitle(char *outbuf, CharData *vict, char *argument) {
 
     if (IS_NPC(vict))
         sprintf(buf, "Mobile's do not have godly titles...nice try.\n");
-    else if (strstr(argument, "[") || strstr(argument, "]"))
+    else if (strcasestr(argument, "[") || strcasestr(argument, "]"))
         sprintf(buf, "Godly Titles can't contain the [ or ] characters.\n");
     else if (strlen(argument) >= MAX_INPUT_LENGTH)
         sprintf(buf, "Sorry, godly titles can't be longer than %d characters.\n", MAX_INPUT_LENGTH - 1);

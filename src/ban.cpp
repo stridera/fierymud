@@ -71,7 +71,7 @@ int isbanned(char *hostname) {
         *nextchar = LOWER(*nextchar);
 
     for (banned_node = ban_list; banned_node; banned_node = banned_node->next)
-        if (strstr(hostname, banned_node->site)) /* if hostname is a substring */
+        if (strcasestr(hostname, banned_node->site)) /* if hostname is a substring */
             i = MAX(i, banned_node->type);
 
     return i;
@@ -251,7 +251,7 @@ int Valid_Name(char *newname) {
             if (strcasecmp(tempname, invalid_name) == 0)
                 return 0;
         } else {
-            if (strstr(tempname, invalid_name))
+            if (strcasestr(tempname, invalid_name))
                 return 0;
         }
     }

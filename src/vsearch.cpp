@@ -168,7 +168,7 @@ bool string_find(const char *query, const char *string, bool name) {
     else if (name)
         return isname(query, string);
     else
-        return strstr(string, query) ? true : false;
+        return strcasestr(string, query) ? true : false;
 }
 
 /* string_start
@@ -178,7 +178,7 @@ bool string_find(const char *query, const char *string, bool name) {
 bool string_start(const char *query, const char *string) {
     if (!string)
         return false;
-    return strstr(string, query) == string;
+    return strcasestr(string, query) == string;
 }
 
 /*

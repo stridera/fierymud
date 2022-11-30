@@ -148,7 +148,7 @@ static ObjData *load_corpse(int id) {
     }
 
     if (build_object(fl, &obj, &location)) {
-        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !strstr(obj->name, "corpse")) {
+        if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !strcasestr(obj->name, "corpse")) {
             sprintf(buf, "SYSERR: First object '%s' loaded from corpse %d not corpse", obj->short_description, id);
             log("%s", buf);
             ;

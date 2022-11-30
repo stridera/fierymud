@@ -2187,7 +2187,7 @@ int perform_subst(DescriptorData *t, char *orig, char *subst) {
     *(second++) = '\0';
 
     /* now, see if the contents of the first string appear in the original */
-    if (!(strpos = strstr(orig, first))) {
+    if (!(strpos = strcasestr(orig, first))) {
         desc_printf(t, "Invalid substitution.\n");
         return 1;
     }

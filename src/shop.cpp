@@ -1296,7 +1296,7 @@ void boot_the_shops(FILE *shop_f, char *filename, int rec_count) {
         } else {
             if (*buf == '$') /* EOF */
                 done = true;
-            else if (strstr(buf, VERSION3_TAG)) /* New format marker */
+            else if (strcasestr(buf, VERSION3_TAG)) /* New format marker */
                 new_format = 1;
             free(buf); /* Plug memory leak! */
         }

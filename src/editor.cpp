@@ -902,7 +902,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
         if (!start)
             return 0;
         strcat(formatted, strcat(start, "\n"));
-        flow = strstr(flow, "\n");
+        flow = strcasestr(flow, "\n");
         strcpy(str, ++flow);
     }
 
@@ -1048,7 +1048,7 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
     flow = *string;
 
     if (replace_all) {
-        while ((flow = strstr(flow, pattern)) != nullptr) {
+        while ((flow = strcasestr(flow, pattern)) != nullptr) {
             ++i;
             temp = *flow;
             *flow = '\0';
@@ -1063,7 +1063,7 @@ static int editor_replace_string(char **string, char *pattern, char *replacement
             jetsam = flow;
         }
         strcat(replace_buffer, jetsam);
-    } else if ((flow = strstr(*string, pattern)) != nullptr) {
+    } else if ((flow = strcasestr(*string, pattern)) != nullptr) {
         ++i;
         flow += strlen(pattern);
         len = (flow - *string) - strlen(pattern);

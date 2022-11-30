@@ -554,7 +554,7 @@ int remove_trigger(ScriptData *sc, char *name) {
     if (!sc)
         return 0;
 
-    if ((cname = strstr(name, ".")) || (!isdigit(*name))) {
+    if ((cname = strcasestr(name, ".")) || (!isdigit(*name))) {
         string = true;
         if (cname) {
             *cname = '\0';
@@ -1903,7 +1903,7 @@ void eval_op(char *op, char *lhs, char *rhs, char *result, void *go, ScriptData 
     }
 
     else if (!strcasecmp("/=", op))
-        sprintf(result, "%c", strstr(lhs, rhs) ? '1' : '0');
+        sprintf(result, "%c", strcasestr(lhs, rhs) ? '1' : '0');
 
     else if (!strcasecmp("*", op))
         sprintf(result, "%d", atoi(lhs) * atoi(rhs));

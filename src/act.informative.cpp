@@ -1957,7 +1957,7 @@ ACMD(do_who) {
             continue;
         }
         if (*name_search && strcasecmp(GET_NAME(wch), name_search) &&
-            (!GET_TITLE(wch) || !strstr(GET_TITLE(wch), name_search))) {
+            (!GET_TITLE(wch) || !strcasestr(GET_TITLE(wch), name_search))) {
             continue;
         }
         if (outlaws && !PLR_FLAGGED(wch, PLR_KILLER) && !PLR_FLAGGED(wch, PLR_THIEF)) {
@@ -2304,7 +2304,7 @@ ACMD(do_users) {
             else if (!(tch = d->character))
                 continue;
 
-            if (*host_search && !strstr(d->host, host_search))
+            if (*host_search && !strcasestr(d->host, host_search))
                 continue;
             if (*name_search && strcasecmp(GET_NAME(tch), name_search))
                 continue;

@@ -100,7 +100,7 @@ int replace_str(char **string, const char *pattern, const char *replacement, int
     flow = *string;
     *replace_buffer = '\0';
     if (rep_all) {
-        while ((flow = (char *)strstr(flow, pattern)) != nullptr) {
+        while ((flow = (char *)strcasestr(flow, pattern)) != nullptr) {
             if ((int)((strlen(replace_buffer) + strlen(jetsam) - strlen(pattern) + strlen(replacement))) > max_size) {
                 i = -1;
                 break;
@@ -116,7 +116,7 @@ int replace_str(char **string, const char *pattern, const char *replacement, int
         }
         strcat(replace_buffer, jetsam);
     } else {
-        if ((flow = (char *)strstr(*string, pattern)) != nullptr) {
+        if ((flow = (char *)strcasestr(*string, pattern)) != nullptr) {
             i++;
             flow += strlen(pattern);
             len = ((char *)flow - (char *)*string) - strlen(pattern);
@@ -342,11 +342,11 @@ char *with_indefinite_article(const char *s) {
         t++;
     }
 
-    /* Create a string of length one to pass to strstr(). */
+    /* Create a string of length one to pass to strcasestr(). */
     if (*t) {
         fcbuf[0] = *t;
         fcbuf[1] = '\0';
-        if (strstr("AEIOUaeiou", fcbuf))
+        if (strcasestr("AEIOUaeiou", fcbuf))
             isvowel = true;
     }
 

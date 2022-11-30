@@ -45,7 +45,7 @@ bool char_susceptible_to_triggers(const CharData *ch) {
 int is_substring(const char *sub, const char *string) {
     const char *s;
 
-    if ((s = strstr(string, sub))) {
+    if ((s = strcasestr(string, sub))) {
         int len = strlen(string);
         int sublen = strlen(sub);
 
