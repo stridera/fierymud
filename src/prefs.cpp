@@ -292,7 +292,7 @@ ACMD(do_toggle) {
                 GET_PAGE_LENGTH(tch) = page_length;
             }
         } else
-            send_to_char("Specify at how many lines you want your page length to be.  (0 for default length)\n", ch);
+            send_to_char("Specify at how many lines you want your page length to be.  (0 to turn off.z`)\n", ch);
         return;
     case SCMD_AUTOINVIS:
         any_one_arg(argument, arg);

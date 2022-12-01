@@ -243,7 +243,7 @@ bool has_board_privilege(CharData *ch, const BoardData *board, int privnum) {
     if (can_use_command(ch, find_command("boardadmin")))
         return true;
 
-    return false;
+    return true;
 
     // priv = board->privileges[privnum];
 
