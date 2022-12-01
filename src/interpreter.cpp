@@ -531,6 +531,8 @@ const CommandInfo cmd_info[] = {
     {"go", POS_STANDING, STANCE_ALERT, do_move, 0, 0, CMD_HIDE | CMD_OLC | CMD_NOFIGHT},
     {"gossip", POS_PRONE, STANCE_SLEEPING, do_gen_comm, LVL_GOSSIP, SCMD_GOSSIP,
      CMD_MEDITATE | CMD_CAST | CMD_HIDE | CMD_OLC},
+    {".", POS_PRONE, STANCE_SLEEPING, do_gen_comm, LVL_GOSSIP, SCMD_GOSSIP,
+     CMD_MEDITATE | CMD_CAST | CMD_HIDE | CMD_OLC},
     {"gouge", POS_STANDING, STANCE_ALERT, do_eye_gouge, 1, 0, 0},
     {"groan", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"group", POS_PRONE, STANCE_SLEEPING, do_group, 1, 0, CMD_HIDE | CMD_OLC},
