@@ -41,6 +41,7 @@
 #include "rules.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -1107,6 +1108,7 @@ void echo_off(DescriptorData *d) {
 
 void send_gmcp_prompt(DescriptorData *d) {
     CharData *ch = d->character, *vict = FIGHTING(ch), *tank;
+    char position[MAX_STRING_LENGTH];
     effect *eff;
 
     static char gmcp_prompt[MAX_STRING_LENGTH];
@@ -1119,21 +1121,27 @@ void send_gmcp_prompt(DescriptorData *d) {
 
     /* Need to construct a json string.  Would be nice to get a module to do it
        for us, but the code base is too old to rely on something like that. */
-    cur +=
-        sprintf(cur,
-                "%sChar {"
-                "\"name\":\"%s\","
-                "\"class\":\"%s\","
-                "\"exp_percent\":%ld,"
-                "\"alignment\":%d,"
-                "\"hiddenness\":%ld,"
-                "\"level\":%d,"
-                "\"Vitals\": {"
-                "\"hp\":%d, \"max_hp\": %d,"
-                "\"mv\":%d, \"max_mv\": %d "
-                "}}%s",
-                gmcp_start_data, GET_NAME(ch), CLASS_NAME(ch), xp_percentage(ch), GET_ALIGNMENT(ch), GET_HIDDENNESS(ch),
-                GET_LEVEL(ch), GET_HIT(ch), GET_MAX_HIT(ch), GET_MOVE(ch), GET_MAX_MOVE(ch), gmcp_end_data);
+    if (d->original)
+        sprinttype(GET_POS(d->original), position_types, position);
+    else
+        sprinttype(GET_POS(d->character), position_types, position);
+
+    cur += sprintf(cur,
+                   "%sChar {"
+                   "\"name\":\"%s\","
+                   "\"class\":\"%s\","
+                   "\"exp_percent\":%ld,"
+                   "\"alignment\":%d,"
+                   "\"position\":\"%s\","
+                   "\"hiddenness\":%ld,"
+                   "\"level\":%d,"
+                   "\"Vitals\": {"
+                   "\"hp\":%d, \"max_hp\": %d,"
+                   "\"mv\":%d, \"max_mv\": %d "
+                   "}}%s",
+                   gmcp_start_data, GET_NAME(ch), CLASS_NAME(ch), xp_percentage(ch), GET_ALIGNMENT(ch), position,
+                   GET_HIDDENNESS(ch), GET_LEVEL(ch), GET_HIT(ch), GET_MAX_HIT(ch), GET_MOVE(ch), GET_MAX_MOVE(ch),
+                   gmcp_end_data);
 
     cur += sprintf(cur,
                    "%sChar.Worth {"
