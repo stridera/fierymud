@@ -41,43 +41,43 @@ ACMD(do_toggle) {
       interpreter.h.
     *********************/
     fields[] = {
-        {"NoSummon", LVL_IMMORT, PRF_SUMMONABLE},
-        {"NoHassle", LVL_IMMORT, PRF_NOHASSLE},
-        {"Brief", 0, PRF_BRIEF},
-        {"Compact", 0, PRF_COMPACT},
-        {"NoTell", 0, PRF_NOTELL},
-        {"AFK", 0, PRF_AFK},
-        {"NoShout", 0, PRF_DEAF},
-        {"NoGossip", 0, PRF_NOGOSS},
-        {"NoHints", 0, PRF_NOHINTS},
-        {"NoWiznet", LVL_IMMORT, PRF_NOWIZ},
-        {"Quest", LVL_IMMORT, PRF_QUEST},
-        {"RoomFlags", LVL_IMMORT, PRF_ROOMFLAGS},
-        {"NoRepeat", 0, PRF_NOREPEAT},
-        {"Holylight", LVL_IMMORT, PRF_HOLYLIGHT},
-        {"Autoexit", 0, PRF_AUTOEXIT},
-        {"NoPetition", LVL_IMMORT, PRF_NOPETI},
-        {"AutoSplit", 0, PRF_AUTOSPLIT},
-        {"Anonymous", 50, PRF_ANON},
-        {"ShowVnums", LVL_IMMORT, PRF_SHOWVNUMS},
-        {"Wimpy", 0, 0},
-        {"NiceArea", 0, PRF_NICEAREA},
-        {"Vicious", 0, PRF_VICIOUS},
-        {"Passive", 0, PRF_PASSIVE},
-        {"PageLength", 0, 0},
-        {"NoFollow", 0, PRF_NOFOLLOW},
-        {"RoomVis", LVL_IMMORT, PRF_ROOMVIS},
-        {"NoClanComm", 0, PRF_NOCLANCOMM},
-        {"OLCComm", LVL_IMMORT, PRF_OLCCOMM},
-        {"LineNums", 0, PRF_LINENUMS},
-        {"AutoLoot", 0, PRF_AUTOLOOT},
-        {"AutoTreas", 0, PRF_AUTOTREAS},
-        {"AutoInvis", LVL_IMMORT, 0},
-        {"ExpandObjs", 0, PRF_EXPAND_OBJS},
-        {"ExpandMobs", 0, PRF_EXPAND_MOBS},
-        {"Sacrificial", LVL_IMMORT, PRF_SACRIFICIAL},
-        {"PetAssist", 0, PRF_PETASSIST},
-        {"\n", 0, 0},
+        /* 00 */ {"NoSummon", LVL_IMMORT, PRF_SUMMONABLE},
+        /* 01 */ {"NoHassle", LVL_IMMORT, PRF_NOHASSLE},
+        /* 02 */ {"Brief", 0, PRF_BRIEF},
+        /* 03 */ {"Compact", 0, PRF_COMPACT},
+        /* 04 */ {"NoTell", 0, PRF_NOTELL},
+        /* 05 */ {"AFK", 0, PRF_AFK},
+        /* 06 */ {"NoShout", 0, PRF_DEAF},
+        /* 07 */ {"NoGossip", 0, PRF_NOGOSS},
+        /* 08 */ {"NoHints", 0, PRF_NOHINTS},
+        /* 09 */ {"NoWiznet", LVL_IMMORT, PRF_NOWIZ},
+        /* 10 */ {"Quest", LVL_IMMORT, PRF_QUEST},
+        /* 11 */ {"RoomFlags", LVL_IMMORT, PRF_ROOMFLAGS},
+        /* 12 */ {"NoRepeat", 0, PRF_NOREPEAT},
+        /* 13 */ {"Holylight", LVL_IMMORT, PRF_HOLYLIGHT},
+        /* 14 */ {"Autoexit", 0, PRF_AUTOEXIT},
+        /* 15 */ {"NoPetition", LVL_IMMORT, PRF_NOPETI},
+        /* 16 */ {"AutoSplit", 0, PRF_AUTOSPLIT},
+        /* 17 */ {"Anonymous", 50, PRF_ANON},
+        /* 18 */ {"ShowVnums", LVL_IMMORT, PRF_SHOWVNUMS},
+        /* 19 */ {"Wimpy", 0, 0},
+        /* 20 */ {"NiceArea", 0, PRF_NICEAREA},
+        /* 21 */ {"Vicious", 0, PRF_VICIOUS},
+        /* 22 */ {"Passive", 0, PRF_PASSIVE},
+        /* 23 */ {"PageLength", 0, 0},
+        /* 24 */ {"NoFollow", 0, PRF_NOFOLLOW},
+        /* 25 */ {"RoomVis", LVL_IMMORT, PRF_ROOMVIS},
+        /* 26 */ {"NoClanComm", 0, PRF_NOCLANCOMM},
+        /* 27 */ {"OLCComm", LVL_IMMORT, PRF_OLCCOMM},
+        /* 28 */ {"LineNums", 0, PRF_LINENUMS},
+        /* 29 */ {"AutoLoot", 0, PRF_AUTOLOOT},
+        /* 30 */ {"AutoTreas", 0, PRF_AUTOTREAS},
+        /* 31 */ {"AutoInvis", LVL_IMMORT, 0},
+        /* 32 */ {"ExpandObjs", 0, PRF_EXPAND_OBJS},
+        /* 33 */ {"ExpandMobs", 0, PRF_EXPAND_MOBS},
+        /* 34 */ {"Sacrificial", LVL_IMMORT, PRF_SACRIFICIAL},
+        /* 35 */ {"PetAssist", 0, PRF_PETASSIST},
+        /* 36 */ {"\n", 0, 0},
         /* If you add another toggle, add a corresponding SCMD_ define in
          * interpreter.h, even if you don't intend to use it. */
 
@@ -206,8 +206,11 @@ ACMD(do_toggle) {
                     strcpy(buf2, "NO");
                 break;
             case SCMD_PAGELENGTH:
-                sprintf(buf2, "%d", GET_PAGE_LENGTH(tch));
-                set = GET_PAGE_LENGTH(tch) != 22;
+                if (GET_PAGE_LENGTH(tch) == 0)
+                    strcpy(buf2, "NONE");
+                else
+                    sprintf(buf2, "%d", GET_PAGE_LENGTH(tch));
+                set = GET_PAGE_LENGTH(tch);
                 break;
             case SCMD_AUTOINVIS:
                 if (GET_AUTOINVIS(tch) == -1) {
@@ -267,27 +270,26 @@ ACMD(do_toggle) {
     case SCMD_PAGELENGTH:
         one_argument(argument, arg);
         if (!*arg) {
-            if (GET_PAGE_LENGTH(tch) > 0) {
+            if (GET_PAGE_LENGTH(tch) == 0) {
+                send_to_char("Pagelength is turned off.\n", ch);
+            } else if (GET_PAGE_LENGTH(tch) > 0) {
                 sprintf(buf, "Your current page length is %d.\n", GET_PAGE_LENGTH(tch));
                 send_to_char(buf, ch);
             } else {
-                send_to_char("Your page length is not valid.  Reset to 22.\n", ch);
-                GET_PAGE_LENGTH(tch) = 22;
+                send_to_char("Your page length is not valid.  Reset to off.\n", ch);
+                GET_PAGE_LENGTH(tch) = 0;
             }
         } else if (isdigit(*arg)) {
-            if ((page_length = atoi(arg))) {
-                if (page_length < 1)
-                    send_to_char("Invalid page length.\n", ch);
-                else if (page_length > 50)
-                    send_to_char("Max page length is 50 right now.\n", ch);
-                else {
-                    sprintf(buf, "Your new page length is %d lines.\n", page_length);
-                    send_to_char(buf, ch);
-                    GET_PAGE_LENGTH(tch) = page_length;
-                }
-            } else {
-                send_to_char("Page length restored to default (22 lines).\n", ch);
-                GET_PAGE_LENGTH(tch) = 22;
+            page_length = atoi(arg);
+            if (page_length == 0) {
+                send_to_char("Pagelength turned off.\n", ch);
+                GET_PAGE_LENGTH(tch) = 0;
+            } else if (page_length < 1)
+                send_to_char("Invalid page length.\n", ch);
+            else {
+                sprintf(buf, "Your new page length is %d lines.\n", page_length);
+                send_to_char(buf, ch);
+                GET_PAGE_LENGTH(tch) = page_length;
             }
         } else
             send_to_char("Specify at how many lines you want your page length to be.  (0 for default length)\n", ch);

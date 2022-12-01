@@ -75,7 +75,7 @@ void send_save_description(CharData *ch, CharData *dest, bool entering);
 
 /* Changing the values below may screw up existing ascii player files. */
 
-#define DEFAULT_PAGE_LENGTH 22
+#define DEFAULT_PAGE_LENGTH 0
 #define PFDEF_HUNGER 0
 #define PFDEF_THIRST 0
 #define PFDEF_DRUNK 0

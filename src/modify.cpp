@@ -870,7 +870,7 @@ static int get_page_length(DescriptorData *d) {
         else if (d->character)
             page_length = GET_PAGE_LENGTH(d->character);
         if (page_length <= 0 || page_length > 50)
-            page_length = 22;
+            page_length = 0;
     }
 
     return page_length;
@@ -940,6 +940,12 @@ static void paging_addstr(DescriptorData *d, const char *str) {
     int col = 1, spec_code = false;
     const char *line_start, *s;
     char *tmp;
+
+    // If pagelength is set to 0, don't page
+    if (!get_page_length(d)) {
+        write_to_output(str, d);
+        return;
+    }
 
     if (d->paging_fragment) {
         sprintf(paging_buf, "%s%s", d->paging_fragment, str);
