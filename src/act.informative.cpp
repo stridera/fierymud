@@ -1929,13 +1929,15 @@ ACMD(do_who) {
     } /* end while arg process */
 
     /* begin "who" with no args */
-#ifdef PRODUCTION
-    strcpy(Imm_buf_title, "*** Active deities on FieryMud:\n\n");
-    strcpy(Mort_buf_title, "*** Active players on FieryMud:\n\n");
-#else
-    strcpy(Imm_buf_title, "*** Active TEST deities on FieryTESTMud:\n\n");
-    strcpy(Mort_buf_title, "*** Active TEST players on FieryTESTMud:\n\n");
-#endif
+
+    if (environment == ENV_PROD) {
+        strcpy(Imm_buf_title, "*** Active deities on FieryMud:\n\n");
+        strcpy(Mort_buf_title, "*** Active players on FieryMud:\n\n");
+    } else {
+        strcpy(buf, environments[environment]);
+        sprintf(Imm_buf_title, "*** Active %s deities on Fiery%sMud:\n\n", buf, buf);
+        sprintf(Mort_buf_title, "*** Active %s players on Fiery%sMud:\n\n", buf, buf);
+    }
 
     for (d = descriptor_list; d; d = d->next) {
         /* Check various reasons we should skip this player... */

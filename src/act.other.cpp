@@ -2210,17 +2210,17 @@ ACMD(do_gen_write) {
     fclose(fl);
     send_to_char("Thanks for the bug, idea, or typo comment!\n", ch);
 
-/*
- * If this is the production mud, send the bug/typo/idea to mantis
- */
-#ifdef PRODUCTION
-    switch (subcmd) {
-    case SCMD_BUG:
-    case SCMD_TYPO:
-    case SCMD_IDEA:
-        send_to_mantis(ch, subcmd, argument);
+    /*
+     * If this is the production mud, send the bug/typo/idea to mantis
+     */
+    if (environment == ENV_PROD) {
+        switch (subcmd) {
+        case SCMD_BUG:
+        case SCMD_TYPO:
+        case SCMD_IDEA:
+            send_to_mantis(ch, subcmd, argument);
+        }
     }
-#endif
 }
 
 ACMD(do_peace) {

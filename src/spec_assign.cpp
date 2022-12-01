@@ -250,11 +250,6 @@ void assign_objects(void) {
        test and production builds.  All assigns on the test mud that are NOT on
        production should fall into here and as the areas are moved to prodcution
        they should come out of this section.  RSD */
-
-#ifndef PRODUCTION
-    ASSIGNOBJ(36112, holyw_weapon); /* Unholy Bane */
-
-#endif
 }
 
 /* assign special procedures to rooms */

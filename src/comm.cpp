@@ -150,10 +150,11 @@ void free_invalid_list(void);
 
 int main(int argc, char **argv) {
     int pos = 1;
-    const char *dir;
+    const char *dir, *env;
 
     port = DFLT_PORT;
     dir = DFLT_DIR;
+    env = DFLT_ENV;
 
     while ((pos < argc) && (*(argv[pos]) == '-')) {
         switch (*(argv[pos] + 1)) {
@@ -164,6 +165,16 @@ int main(int argc, char **argv) {
                 dir = argv[pos];
             else {
                 log("Directory arg expected after option -d.");
+                exit(1);
+            }
+            break;
+        case 'e':
+            if (*(argv[pos] + 2))
+                env = argv[pos] + 2;
+            else if (++pos < argc)
+                env = argv[pos];
+            else {
+                log("Environment arg expected after option -e.");
                 exit(1);
             }
             break;
@@ -203,11 +214,26 @@ int main(int argc, char **argv) {
             exit(1);
         }
     }
+
     if (chdir(dir) < 0) {
         perror("Fatal error changing to data directory");
         exit(1);
     }
     log("Using %s as data directory.", dir);
+
+    if (strcasecmp(env, "test") == 0) {
+        environment = ENV_TEST;
+        log("Running in test mode.");
+    } else if (strcasecmp(env, "dev") == 0) {
+        environment = ENV_DEV;
+        log("Running in dev mode.");
+    } else if (strcasecmp(env, "prod") == 0) {
+        environment = ENV_PROD;
+        log("Running in production mode.");
+    } else {
+        log("Unknown environment '%s'; valid choices are 'test', 'dev', and 'prod'.", env);
+        exit(1);
+    }
 
     log("Initializing runtime game constants.");
     init_flagvectors();

@@ -22,6 +22,7 @@
 #include "constants.hpp"
 #include "cooldowns.hpp"
 #include "db.hpp"
+#include "defines.hpp"
 #include "dg_scripts.hpp"
 #include "events.hpp"
 #include "fight.hpp"
@@ -2102,16 +2103,20 @@ void nanny(DescriptorData *d, char *arg) {
             SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
             SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
             write_to_output("Color is on.\n", d);
-#ifdef PRODUCTION
-            write_to_output(GREETINGS, d);
-            write_to_output(GREETINGS2, d);
-            write_to_output(GREETINGS3, d);
-            write_to_output(GREETINGS4, d);
-#else
-            write_to_output(TEST_GREETING, d);
-            write_to_output(TEST_GREETING2, d);
-            write_to_output(TEST_GREETING3, d);
-#endif
+            if (environment == ENV_PROD) {
+                write_to_output(GREETINGS, d);
+                write_to_output(GREETINGS2, d);
+                write_to_output(GREETINGS3, d);
+                write_to_output(GREETINGS4, d);
+            } else if (environment == ENV_TEST) {
+                write_to_output(TEST_GREETING, d);
+                write_to_output(TEST_GREETING2, d);
+                write_to_output(TEST_GREETING3, d);
+            } else if (environment == ENV_DEV) {
+                write_to_output(DEV_GREETING, d);
+                write_to_output(DEV_GREETING2, d);
+                write_to_output(DEV_GREETING3, d);
+            }
             write_to_output(bcbuf, d);
             write_to_output(WHOAREYOU, d);
             STATE(d) = CON_GET_NAME;
@@ -2120,16 +2125,20 @@ void nanny(DescriptorData *d, char *arg) {
             REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
             REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
             write_to_output("Color is off.\n", d);
-#ifdef PRODUCTION
-            write_to_output(GREETINGS, d);
-            write_to_output(GREETINGS2, d);
-            write_to_output(GREETINGS3, d);
-            write_to_output(GREETINGS4, d);
-#else
-            write_to_output(TEST_GREETING, d);
-            write_to_output(TEST_GREETING2, d);
-            write_to_output(TEST_GREETING3, d);
-#endif
+            if (environment == ENV_PROD) {
+                write_to_output(GREETINGS, d);
+                write_to_output(GREETINGS2, d);
+                write_to_output(GREETINGS3, d);
+                write_to_output(GREETINGS4, d);
+            } else if (environment == ENV_TEST) {
+                write_to_output(TEST_GREETING, d);
+                write_to_output(TEST_GREETING2, d);
+                write_to_output(TEST_GREETING3, d);
+            } else if (environment == ENV_DEV) {
+                write_to_output(DEV_GREETING, d);
+                write_to_output(DEV_GREETING2, d);
+                write_to_output(DEV_GREETING3, d);
+            }
             write_to_output(bcbuf, d);
             write_to_output(WHOAREYOU, d);
             STATE(d) = CON_GET_NAME;
@@ -2284,19 +2293,10 @@ void nanny(DescriptorData *d, char *arg) {
                 ;
             }
 
-#ifdef PRODUCTION
             STATE(d) = CON_NAME_CHECK;
             write_to_output(NAMES_EXPLANATION, d);
             sprintf(buf, "Do you believe \"%s\" is acceptable by these standards? (Y/N) ", GET_NAME(d->character));
             write_to_output(buf, d);
-            break;
-#else
-            sprintf(buf, "\nGive me a password for %s: ", GET_NAME(d->character));
-            write_to_output(buf, d);
-            echo_off(d);
-            STATE(d) = CON_NEWPASSWD;
-#endif
-
             break;
         case YESNO_NO:
             write_to_output("Okay, what IS it, then? ", d);
@@ -2430,10 +2430,7 @@ void nanny(DescriptorData *d, char *arg) {
                 return;
 
             if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
-                write_to_output(
-                    "Your name has been deemed unacceptable.  Please "
-                    "choose a new one.\n",
-                    d);
+                write_to_output("Your name has been deemed unacceptable.  Please choose a new one.\n", d);
                 write_to_output("Name: ", d);
                 STATE(d) = CON_NEW_NAME;
                 return;

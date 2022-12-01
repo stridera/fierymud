@@ -250,21 +250,12 @@
 #define LVL_IMMORT 100   /* Avatar */
 #define LVL_MAX_MORT 99  /* Mortal */
 
-#ifdef PRODUCTION
 #define LVL_ADMIN 104
 #define LVL_BUILDER 104
 #define LVL_GAMEMASTER 103
 #define LVL_ATTENDANT 102
 #define LVL_RESTORE 103
 #define LVL_PURGE 103
-#else
-#define LVL_ADMIN 103
-#define LVL_BUILDER 101
-#define LVL_GAMEMASTER 102
-#define LVL_ATTENDANT 101
-#define LVL_RESTORE 1
-#define LVL_PURGE 101
-#endif
 
 #define LVL_FREEZE LVL_GRGOD
 
@@ -275,7 +266,10 @@
 
 /* Level required for rebooting, shutdown, autoboot */
 
-#ifdef PRODUCTION
+#define ENV_PROD 0
+#define ENV_TEST 1
+#define ENV_DEV 2
+
 /* Full use of "autoboot" and "shutdown" commands.
  * You can cancel/enable/set time of automatic reboot,
  * or (obviously) use shutdown to stop or restart the mud immediately */
@@ -285,11 +279,6 @@
 /* You can get the time of the next automatic reboot with "autoboot" or "world"
  */
 #define LVL_REBOOT_VIEW LVL_GOD
-#else
-#define LVL_REBOOT_MASTER LVL_HEAD_B
-#define LVL_REBOOT_POSTPONE LVL_IMMORT
-#define LVL_REBOOT_VIEW 1
-#endif
 
 #define LVL_GOSSIP 1
 

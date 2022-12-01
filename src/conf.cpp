@@ -1,4 +1,9 @@
 #include "conf.hpp"
+
+#include <string>
+
+using namespace std::string_literals;
+
 /*
  * Below are several constants which you can change to alter certain aspects
  * of the way CircleMUD acts.  Since this is a .c file, all you have to do
@@ -33,13 +38,8 @@ int charm_allowed = false;
 int sleep_allowed = false;
 int roomeffect_allowed = true;
 
-#ifdef PRODUCTION
 int races_allowed = true;
 int evil_races_allowed = false; /* Allows good races only. */
-#else
-int races_allowed = true;
-int evil_races_allowed = true;
-#endif
 
 /* do you have to visit your guild to level? */
 int level_gain = true;
@@ -82,11 +82,7 @@ int reboot_hours_deviation = 30; /* added to or subtracted from reboot_hours_bas
 int reboot_warning_minutes = 10;
 
 /* Setting this to false will prevent the mud from rebooting itself */
-#ifdef PRODUCTION
 int reboot_auto = true;
-#else
-int reboot_auto = false;
-#endif
 
 /* reboot_pulse is the time, on the pulse clock (global_pulse),
  * when the mud will actually reboot. This initial value is temporary.
@@ -131,6 +127,9 @@ int num_hotboots = 0;                /* are we doing a hotboot? */
 int should_restrict = 0;             /* level of game restriction         */
 int restrict_reason = RESTRICT_NONE; /* reason for should_restrict > 0 */
 
+int environment = ENV_PROD; /* 0 = production, 1 = test, 2 = dev */
+const char *environments[] = {"PROD", "TEST", "DEV"};
+
 /*
  * This is the default port the game should run on if no port is given on
  * the command-line.  NOTE WELL: If you're using the 'autorun' script, the
@@ -141,6 +140,9 @@ int DFLT_PORT = 9999;
 
 /* default directory to use as data directory */
 const char *DFLT_DIR = "lib";
+
+/* default environment */
+const char *DFLT_ENV = "test";
 
 /* maximum number of players allowed before game starts to turn people away */
 int MAX_PLAYERS = 300;
@@ -187,7 +189,6 @@ const char *GREETINGS =
     "      .       &3&b/   ___\\_}              ___    _____ ______&0           . \n"
     "      .       &3&b|  |   __  ________     |_ \\  /  | | |  |   \\&0         . \n"
     "      .       &3&b|  |__/  \\/  __ \\ |\\__ / /  \\/   | | |  |    \\&0        . \n";
-
 const char *GREETINGS2 =
     "      .       &3&b|  ____\\ |  {_/ /  __ / /        | | |  | |\\  \\&0       . \n"
     "      .       &1&b|  |  |  | {___/  /\\ Y /|  /\\/\\  | | |  | | |  |&0      . \n"
@@ -196,7 +197,6 @@ const char *GREETINGS2 =
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
     "      .      &7&bMud based on: Copper DikuMud I (B.1) by Swiftest&0       "
     ". \n";
-
 const char *GREETINGS3 =
     "      .    &7&bDikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,&0   "
     ". \n"
@@ -209,31 +209,41 @@ const char *GREETINGS3 =
     "\n";
 
 const char *GREETINGS4 = "                                                     Build No.";
-
 const char *TEST_GREETING =
     "\n\n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
-    "      .      &3&b________         _________________  _______________&0    "
-    ". \n"
-    "      .     &3&b/   ___\\_}        \\____      ____/ \\/    \\     "
-    "____/&0    . \n"
-    "      .     &3&b|  |   __  ________    \\_   /|  ___/   __/    /&0        "
-    " . \n"
-    "      .     &3&b|  |__/  \\/  __ \\ |\\__ / / | |  |__   /   |  |&0       "
-    "   . \n";
+    "      .      &3&b________         _________________  _______________&0    . \n"
+    "      .     &3&b/   ___\\_}        \\____      ____/ \\/    \\     ____/&0    . \n"
+    "      .     &3&b|  |   __  ________    \\_   /|  ___/   __/    /&0         . \n"
+    "      .     &3&b|  |__/  \\/  __ \\ |\\__ / / | |  |__   /   |  |&0          . \n";
 const char *TEST_GREETING2 =
-    "      .     &3&b|  ____\\ |  {_/ /  __ / /  | |   __|   \\  |  |&0        "
-    "  . \n"
-    "      .     &1&b|  |  |  | {___/  /\\ Y /|  | |  |__ \\   \\ |  |&0       "
-    "   . \n"
-    "      .     &1&b|  |  |  | \\___|  |/  / |  | |     \\_\\   \\|  |&0      "
-    "    . \n"
-    "      .     &1&b|__|  \\__/_____/__|__/  |__| \\_____/_____/|__|&0        "
-    "  . \n"
+    "      .     &3&b|  ____\\ |  {_/ /  __ / /  | |   __|   \\  |  |&0          . \n"
+    "      .     &1&b|  |  |  | {___/  /\\ Y /|  | |  |__ \\   \\ |  |&0          . \n"
+    "      .     &1&b|  |  |  | \\___|  |/  / |  | |     \\_\\  \\|  |&0          . \n"
+    "      .     &1&b|__|  \\__/_____/__|__/  |__| \\_____/_____/|__|&0          . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
-    "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . "
-    "\n";
+    "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . \n";
 const char *TEST_GREETING3 =
+    "      .    DikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,   . \n"
+    "      .      Tom Madsen, Michael Seifert, and Sebastian Hammer.     . \n"
+    "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
+    "                                                     Build No.";
+
+const char *DEV_GREETING =
+    "\n\n"
+    "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
+    "      .     &3&b ________               _____   _______ _        ___    &0. \n"
+    "      .     &3&b/   _____}             |     \\ |       \\ \\      /  /    &0. \n"
+    "      .     &3&b|  |   __  ________    |   _  \\|  _____/  \\    /  /     &0. \n"
+    "      .     &3&b|  |__/  \\/  __ \\ |\\__ / /| \\  \\  |__ \\    \\  /  /      &0. \n";
+const char *DEV_GREETING2 =
+    "      .     &3&b|  ____\\ |  {_/ /  __ / / | /  /   __| \\    \\/  /       &0. \n"
+    "      .     &1&b|  |  |  | {___/  /\\ Y /  |/  /|  |____ \\      /        &0. \n"
+    "      .     &1&b|  |  |  | \\___|  |/  /|     / |       \\ \\    /         &0. \n"
+    "      .     &1&b|__|  \\__/_____/__|__/ |____/  |_______/  \\__/          &0. \n"
+    "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
+    "      .      Mud based on: Copper DikuMud I (B.1) by Swiftest       . \n";
+const char *DEV_GREETING3 =
     "      .    DikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,   . \n"
     "      .      Tom Madsen, Michael Seifert, and Sebastian Hammer.     . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"

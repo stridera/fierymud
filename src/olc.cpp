@@ -225,11 +225,10 @@ ACMD(do_olc) {
                 number = atoi(buf2) * 100;
             }
         } else if (!strncasecmp("del", buf1, 4)) {
-
-#ifdef PRODUCTION
-            send_to_char("Don't delete things in the production mud please!\n", ch);
-            return;
-#endif
+            if (environment == ENV_PROD) {
+                send_to_char("Don't delete things in the production mud please!\n", ch);
+                return;
+            }
 
             if (!*buf2) {
                 send_to_char("Delete which entity?\n", ch);
