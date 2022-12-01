@@ -554,7 +554,10 @@ char *strip_chars(char *str, const char *chars) { return filter_chars(str, str, 
 char *filter_chars(char *buf, const char *src, const char *chars) {
     char *dest = buf;
 
-    while ((*dest = *src)) {
+    if (!src)
+        return "";
+
+    while (*dest = *src) {
         if (!strchr(chars, *dest))
             ++dest;
         ++src;
