@@ -1668,7 +1668,7 @@ void do_show_file(CharData *ch, char *argument) {
     for (cur_line = 0; !feof(file); get_line(file, buf)) {
         ++cur_line;
         if (cur_line > num_lines - req_lines)
-            filebuf += fmt::format("%s\n", buf);
+            filebuf += fmt::format("{}\n", buf);
     }
 
     fclose(file);
