@@ -1,14 +1,3 @@
-/***************************************************************************
- *   File: dg_scripts.c                                   Part of FieryMUD *
- *  Usage: contains general functions for using scripts.                   *
- *                                                                         *
- *  All rights reserved.  See license.doc for complete information.        *
- *                                                                         *
- *  FieryMUD Copyright (C) 1998, 1999, 2000 by the Fiery Consortium        *
- *                                                                         *
- * This code was received origonally from HubisMUD in 1998 and no lable or *
- * claim of ownership or copyright was made anywhere in the file.          *
- ***************************************************************************/
 
 #include "dg_scripts.hpp"
 
