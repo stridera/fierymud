@@ -223,28 +223,18 @@ void assign_mobiles(void) {
 /* assign special procedures to objects */
 void assign_objects(void) {
     SPECIAL(bank);
-    SPECIAL(holyw_weapon);
-    SPECIAL(fire_weapon);
-    SPECIAL(lightning_weapon);
-    SPECIAL(frost_weapon);
-    SPECIAL(vampiric_weapon);
     SPECIAL(red_recall);
     SPECIAL(green_recall);
     SPECIAL(blue_recall);
     SPECIAL(gray_recall);
     SPECIAL(summon_dragon);
 
-    ASSIGNOBJ(3056, red_recall);      /* Red scrolls of recall goodness! */
-    ASSIGNOBJ(3057, green_recall);    /* Red scrolls of recall goodness! */
-    ASSIGNOBJ(3058, blue_recall);     /* Red scrolls of recall goodness! */
-    ASSIGNOBJ(30010, gray_recall);    /* Red scrolls of recall goodness! */
-    ASSIGNOBJ(1213, vampiric_weapon); /* Calian Slayer */
-
-    ASSIGNOBJ(5104, lightning_weapon); /* stone dagger */
-    ASSIGNOBJ(48804, frost_weapon);    /* lightweight baton */
-    ASSIGNOBJ(6366, fire_weapon);      /* Celestial Betrayer */
-    ASSIGNOBJ(18890, summon_dragon);   /* dragonhelm */
-    ASSIGNOBJ(18891, summon_dragon);   /* dragonhelm */
+    ASSIGNOBJ(3056, red_recall);     /* Red scrolls of recall goodness! */
+    ASSIGNOBJ(3057, green_recall);   /* Red scrolls of recall goodness! */
+    ASSIGNOBJ(3058, blue_recall);    /* Red scrolls of recall goodness! */
+    ASSIGNOBJ(30010, gray_recall);   /* Red scrolls of recall goodness! */
+    ASSIGNOBJ(18890, summon_dragon); /* dragonhelm */
+    ASSIGNOBJ(18891, summon_dragon); /* dragonhelm */
 
     /* Ok, there's a if not defined section here for the difference between the
        test and production builds.  All assigns on the test mud that are NOT on
