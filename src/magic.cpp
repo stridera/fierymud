@@ -4053,7 +4053,7 @@ void phantasm_transform(CharData *ch, CharData *model, int life_hours) {
         /* So the copy's height, weight, and size all come from the
          * model's affected values. */
         sprintf(short_buf, "the illusion of %s", GET_NAME(model));
-        sprintf(long_buf, "The illusion of %s waits here.\n", GET_NAME(model));
+        sprintf(long_buf, "The illusion of %s waits here.", GET_NAME(model));
         sprintf(alias_buf, "illusion %s", GET_NAMELIST(model));
 
         ch->player.weight = model->player.weight;
@@ -4066,7 +4066,7 @@ void phantasm_transform(CharData *ch, CharData *model, int life_hours) {
         ch->player.base_height = model->player.base_height;
     } else {
         sprintf(short_buf, "the illusion of %s", GET_NAME(ch));
-        sprintf(long_buf, "The illusion of %s waits here.\n", GET_NAME(ch));
+        sprintf(long_buf, "The illusion of %s waits here.", GET_NAME(ch));
         sprintf(alias_buf, "illusion %s", GET_NAMELIST(ch));
     }
     GET_NAME(ch) = strdup(short_buf);
@@ -4251,6 +4251,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         }
 
         /* need to add charm flag */
+        memset(&eff, 0, sizeof(eff));
         eff.type = SPELL_CHARM;
         eff.duration = 1000;
         SET_FLAG(eff.flags, EFF_CHARM);
@@ -4330,6 +4331,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         SET_FLAG(MOB_FLAGS(new_mob), MOB_NOSCRIPT); /* Prevent specprocs and triggers */
 
         /* need to add charm flag */
+        memset(&eff, 0, sizeof(eff));
         eff.type = SPELL_CHARM;
         eff.duration = 1000;
         SET_FLAG(eff.flags, EFF_CHARM);
