@@ -1081,6 +1081,11 @@ ACMD(do_restore) {
     CharData *vict;
     int i;
 
+    if (environment != ENV_PROD || GET_LEVEL(ch) >= LVL_RESTORE) {
+        send_to_char("You are not godly enough for that!\n", ch);
+        return;
+    }
+
     one_argument(argument, buf);
     if (!*buf)
         send_to_char("Whom do you wish to restore?\n", ch);

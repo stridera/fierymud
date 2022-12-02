@@ -2055,7 +2055,7 @@ ACMD(do_world) {
     do_date(ch, nullptr, 0, SCMD_DATE);
 
     std::string git_hash = "";
-    if (GET_LEVEL(ch) >= LVL_GOD) {
+    if (environment != ENV_PROD || GET_LEVEL(ch) >= LVL_GOD) {
         git_hash = get_git_hash();
         if (!git_hash.empty())
             git_hash = fmt::format(" Git Hash: {}", git_hash);

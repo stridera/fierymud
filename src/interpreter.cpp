@@ -724,7 +724,7 @@ const CommandInfo cmd_info[] = {
     {"rescue", POS_STANDING, STANCE_ALERT, do_rescue, 0, 0, 0},
     /*{ "readlist" , POS_PRONE   , STANCE_DEAD    , do_readlist , LVL_GOD, 0, 0
        },*/
-    {"restore", POS_PRONE, STANCE_DEAD, do_restore, LVL_RESTORE, 0, CMD_OLC},
+    {"restore", POS_PRONE, STANCE_DEAD, do_restore, 0, 0, CMD_OLC},
     {"rrestore", POS_PRONE, STANCE_DEAD, do_rrestore, LVL_IMMORT, 0, CMD_OLC},
     {"pain", POS_PRONE, STANCE_DEAD, do_pain, LVL_RESTORE, 0, CMD_OLC},
     {"rpain", POS_PRONE, STANCE_DEAD, do_rpain, LVL_RESTORE, 0, CMD_OLC},
