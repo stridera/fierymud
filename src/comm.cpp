@@ -1788,12 +1788,6 @@ void desc_printf(DescriptorData *t, const char *txt, ...) {
             ++scount;
         string_to_output(t, txt);
     }
-
-    /* TODO: check this debug data and determine if the split
-     * for static strings is necessary
-     */
-    if ((vcount + scount) % 100 == 0)
-        fprintf(stderr, "DEBUG :: log :: vprintf calls - %u, fputs calls - %u\n", vcount, scount);
 }
 
 /* Add a new string to a player's output queue */

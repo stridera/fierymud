@@ -158,12 +158,6 @@ void log(const char *str, ...) {
         ++scount;
     }
     fputs("\n", stderr);
-
-    /* TODO: check this debug data and determine if the split
-     * for static strings is necessary
-     */
-    if ((vcount + scount) % 100 == 0)
-        fprintf(stderr, "DEBUG :: log :: vprintf calls - %u, fputs calls - %u\n", vcount, scount);
 }
 
 /* the "touch" command, essentially. */
