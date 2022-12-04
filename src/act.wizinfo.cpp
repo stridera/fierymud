@@ -1457,10 +1457,9 @@ void do_show_classes(CharData *ch, char *argument) {
             sprintf(buf1, "%-2d", classes[i].max_subclass_level);
         else
             strcpy(buf1, "  ");
-        resp += fmt::format(" {:>{}}  {:>5}  {:>8}  {:^10}  {}\n", 13 + chars, 13 + chars, classes[i].displayname,
-                            mem_mode, classes[i].homeroom,
-                            classes[i].subclass_of == CLASS_UNDEFINED ? "" : classes[classes[i].subclass_of].plainname,
-                            buf1);
+        resp += fmt::format(
+            " {:>{}}  {:>5}  {:>8}  {:^10}  {}\n", classes[i].displayname, 12 + chars, mem_mode, classes[i].homeroom,
+            classes[i].subclass_of == CLASS_UNDEFINED ? "" : classes[classes[i].subclass_of].plainname, buf1);
     }
     page_string(ch, resp.c_str());
 }
