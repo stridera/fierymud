@@ -1129,6 +1129,8 @@ void load_pets(CharData *ch) {
                 }
 
                 GET_EXP(pet) = 0;
+                GET_MAX_MOVE(pet) *= 15;
+                GET_MOVE(pet) = GET_MAX_MOVE(pet);
                 SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
                 SET_FLAG(MOB_FLAGS(pet), MOB_PET);
 

@@ -150,6 +150,5 @@ int sprintascii(char *out, flagvector bits) {
 
 bool is_equals(const std::string_view &lhs, const std::string_view &rhs) {
     auto to_lower{std::ranges::views::transform(::tolower)};
-    auto l = lhs | std::views::transform(::tolower);
     return std::ranges::equal(lhs | to_lower, rhs | to_lower);
 }
