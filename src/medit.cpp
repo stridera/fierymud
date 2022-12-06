@@ -36,6 +36,8 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+#include <fmt/format.h>
+
 /*
  * Set this to 1 for debugging logs in medit_save_internally.
  */
@@ -820,69 +822,65 @@ void medit_disp_compositions(DescriptorData *d) {
  */
 void medit_disp_menu(DescriptorData *d) {
     CharData *mob;
+    std::string menu = "";
 
     mob = OLC_MOB(d);
     get_char_cols(d->character);
 
-    sprintf(buf,
 #if defined(CLEAR_SCREEN)
-            ".[H.[J"
+    menu += ".[H.[J";
 #endif
-            "-- Mob: '&5%s&0'  vnum: [&2%5d&0]\n"
-            "&2&b0&0) Alias: &6%s&0\n"
-            "&2&b1&0) Short: &6%s&0\n"
-            "&2&b2&0) Long : &6%s&0\r"
-            "&2&b3&0) Description:\n&6%s&0"
-            "&2&b4&0) Race: &6%-10s&0            &2&b5&0) Size: &6%-10s&0        "
-            " &2&b6&0) Gender: &6%s&0\n"
-            "&2&b7&0) Level: &6%-3d&0                  &2&b8&0) Class: &6%-10s&0 "
-            "       &2&b9&0) Alignment: &6%d&0\n",
-            GET_SDESC(mob), OLC_NUM(d), GET_NAMELIST(mob), GET_SDESC(mob), GET_MOBLDESC(mob), GET_DDESC(mob),
-            RACE_PLAINNAME(mob), SIZE_DESC(mob), genders[(int)GET_SEX(mob)], GET_LEVEL(mob),
-            classes[(int)GET_CLASS(mob)].plainname, GET_ALIGNMENT(mob));
-    send_to_char(buf, d->character);
+    menu += fmt::format("-- Mob: '&5{})&0'  vnum: [&2{:5}&0]\n", GET_SDESC(mob), OLC_NUM(d));
+    menu += fmt::format("&2&b0&0) Alias: &6{}&0\n", GET_NAMELIST(mob));
+    menu += fmt::format("&2&b1&0) Short: &6{}&0\n", GET_SDESC(mob));
+    menu += fmt::format("&2&b2&0) Long : &6{}&0\n", GET_MOBLDESC(mob));
+    menu += fmt::format("&2&b3&0) Description:\n&6{}&0\n", GET_DDESC(mob));
+    menu +=
+        fmt::format("&2&b4&0) Race: &6{:<10}&0\t\t&2&b5&0) Size: &6{:<10}&0\t\t", RACE_PLAINNAME(mob), SIZE_DESC(mob));
+    menu += fmt::format("&2&b6&0) Gender: &6{}&0\n", genders[(int)GET_SEX(mob)]);
+    menu += fmt::format("&2&b7&0) Level: &6{:<3}&0\t\t\t&2&b8&0) Class: &6{:<10}&0\t\t", GET_LEVEL(mob),
+                        classes[(int)GET_CLASS(mob)].plainname);
+    menu += fmt::format("&2&b9&0) Alignment: &6{}&0\n", GET_ALIGNMENT(mob));
+    send_to_char(menu.c_str(), d->character);
 
-    sprintf(buf,
-            "&2&bA&0) Hitroll    : (&6%3d&0) [&6&b%3d&0]    &2&bB&0) Damroll     : "
-            "(&6%3d&0) [&6&b%3d&0]\n"
-            "&2&bC&0&0) # Dam Dice : (&6%3d&0) [&6&b%3d&0]    &2&bD&0) Size Dam Die: "
-            "(&6%3d&0) [&6&b%3d&0]  (ie. XdY + Z) \n"
-            "&2&bE&0) # HP Dice  : (&6%3d&0) [&6&b%3d&0]    &2&bF&0) Size HP Dice: "
-            "(&6%3d&0) [&6&b%3d&0] &2&bG&0) Bonus: (&6%5d&0) [&6&b%5d&0]\n"
-            "&2&bH&0) Armor Class: (&6%3d&0) [&6&b%3d&0]    &2&bI&0) Exp         : "
-            "[&6&b%9ld&0]\n"
-            "&2&bJ&0) Gold       : [&6&b%8d&0]     &2&bK&0) Platinum     : "
-            "[&6&b%9d&0]\n",
-            (mob->points.hitroll), (mob->mob_specials.ex_hitroll), (mob->points.damroll),
-            (mob->mob_specials.ex_damroll), (mob->mob_specials.damnodice), (mob->mob_specials.ex_damnodice),
-            (mob->mob_specials.damsizedice), (mob->mob_specials.ex_damsizedice), (mob)->points.hit,
-            (mob->mob_specials.ex_hpnumdice), (mob->points.mana), (mob->mob_specials.ex_hpsizedice),
-            (GET_EX_MAIN_HP(mob) + (mob)->points.move), GET_MOVE(mob), GET_AC(mob), GET_EX_AC(mob),
-            (long)GET_EX_EXP(mob), GET_EX_GOLD(mob), GET_EX_PLATINUM(mob));
-    send_to_char(buf, d->character);
+    menu = "";
+    menu += fmt::format("&2&bA&0) Hitroll    : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->points.hitroll,
+                        mob->mob_specials.ex_hitroll);
+    menu += fmt::format("&2&bB&0) Damroll     : (&6{:3}&0)+[&6&b{:3}&0]\n", mob->points.damroll,
+                        mob->mob_specials.ex_damroll);
+    menu += fmt::format("&2&bC&0&0) # Dam Dice : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->mob_specials.damnodice,
+                        mob->mob_specials.ex_damnodice);
+    menu += fmt::format("&2&bD&0) Size Dam Die: (&6{:3}&0)+[&6&b{:3}&0]    (ie. XdY + Z)\n",
+                        mob->mob_specials.damsizedice, mob->mob_specials.ex_damsizedice);
+    menu +=
+        fmt::format("&2&bE&0) # HP Dice  : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->points.hit, mob->mob_specials.ex_hpnumdice);
+    menu += fmt::format("&2&bF&0) Size HP Dice: (&6{:3}&0)+[&6&b{:3}&0]\t", mob->points.mana,
+                        mob->mob_specials.ex_hpsizedice);
+    menu += fmt::format("&2&bG&0) Bonus: (&6{:5}&0)+[&6&b{:5}&0]\n", GET_EX_MAIN_HP(mob) + (mob)->points.move,
+                        GET_MOVE(mob));
+    menu += fmt::format("&2&bH&0) Armor Class: (&6{:3}&0)+[&6&b{:3}&0]\t", GET_AC(mob), GET_EX_AC(mob));
+    menu += fmt::format("&2&bI&0) Exp         : [&6&b{:9}&0]\n", GET_EX_EXP(mob));
+    menu += fmt::format("&2&bJ&0) Gold       : [&6&b{:8}&0]\t&2&bK&0) Platinum    : [&6&b{:9}&0]\n", GET_EX_GOLD(mob),
+                        GET_EX_PLATINUM(mob));
+    menu += fmt::format("&2&bL&0) Perception : [&6&b{:4}&0]\t\t&2&bM&0) Hiddenness  : [&6&b{:4}&0]\n",
+                        GET_PERCEPTION(mob), GET_HIDDENNESS(mob));
+    send_to_char(menu.c_str(), d->character);
 
     sprintflag(buf1, MOB_FLAGS(mob), NUM_MOB_FLAGS, action_bits);
     sprintflag(buf2, EFF_FLAGS(mob), NUM_EFF_FLAGS, effect_flags);
 
-    sprintf(buf,
-            "&2&bL&0) Perception : [&6&b%4ld&0]         &2&bM&0) Hiddenness  : "
-            "[&6&b%4ld&0]\n"
-            "&2&bN&0) Life Force    : %s%s&0\n"
-            "&2&bO&0) Composition   : %s%s&0\n"
-            "&2&bP&0) Stance        : &6%s&0\n"
-            "&2&bR&0) Load Position : &6%s&0\n"
-            "&2&bT&0) Default Pos   : &6%s&0\n"
-            "&2&bU&0) Attack Type   : &6%s&0\n"
-            "&2&bV&0) Act Flags     : &6%s&0\n"
-            "&2&bW&0) Aff Flags     : &6%s&0\n"
-            "&2&bS&0) Script        : &6%s&0\n"
-            "&2&bQ&0) Quit\n"
-            "Enter choice:\n",
-            GET_PERCEPTION(mob), GET_HIDDENNESS(mob), LIFEFORCE_COLOR(mob), capitalize(LIFEFORCE_NAME(mob)),
-            COMPOSITION_COLOR(mob), capitalize(COMPOSITION_NAME(mob)), stance_types[(int)GET_STANCE(mob)],
-            position_types[(int)GET_POS(mob)], position_types[(int)GET_DEFAULT_POS(mob)],
-            attack_hit_text[GET_ATTACK(mob)].singular, buf1, buf2, mob->proto_script ? "&6&bSet&0" : "&6Not Set&0");
-    send_to_char(buf, d->character);
+    menu = "";
+    menu += fmt::format("&2&bN&0) Life Force    : {}{}&0\n", LIFEFORCE_COLOR(mob), capitalize(LIFEFORCE_NAME(mob)));
+    menu += fmt::format("&2&bO&0) Composition   : {}{}&0\n", COMPOSITION_COLOR(mob), capitalize(COMPOSITION_NAME(mob)));
+    menu += fmt::format("&2&bP&0) Stance        : &6{}&0\n", stance_types[(int)GET_STANCE(mob)]);
+    menu += fmt::format("&2&bR&0) Load Position : &6{}&0\n", position_types[(int)GET_POS(mob)]);
+    menu += fmt::format("&2&bT&0) Default Pos   : &6{}&0\n", position_types[(int)GET_DEFAULT_POS(mob)]);
+    menu += fmt::format("&2&bU&0) Attack Type   : &6{}&0\n", attack_hit_text[GET_ATTACK(mob)].singular);
+    menu += fmt::format("&2&bV&0) Act Flags     : &6{}&0\n", buf1);
+    menu += fmt::format("&2&bW&0) Aff Flags     : &6{}&0\n", buf2);
+    menu += fmt::format("&2&bS&0) Script        : &6{}&0\n", mob->proto_script ? "&6&bSet&0" : "&6Not Set&0");
+    menu += "&2&bQ&0) Quit\nEnter choice:\n";
+    send_to_char(menu.c_str(), d->character);
 
     OLC_MODE(d) = MEDIT_MAIN_MENU;
 }

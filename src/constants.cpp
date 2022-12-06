@@ -68,14 +68,17 @@ const char *player_bits[NUM_PLR_FLAGS + 1] = {"KILLER",     "THIEF",
                                               "\n"};
 
 /* MOB_x */
-const char *action_bits[NUM_MOB_FLAGS + 1] = {
-    "SPEC",      "SENTINEL",       "SCAVENGER",      "ISNPC",      "AWARE",           "AGGR",
-    "STAY_ZONE", "WIMPY",          "AGGR_EVIL",      "AGGR_GOOD",  "AGGR_NEUTRAL",    "MEMORY",
-    "HELPER",    "!CHARM",         "!SUMMN",         "!SLEEP",     "!BASH",           "!BLIND",
-    "MOUNTABLE", "NO_EQ_RESTRICT", "FAST_TRACK",     "SLOW_TRACK", "CASTINGDONTUSE",  "SUMMONED_MOUNT",
-    "AQUATIC",   "AGGR_EVIL_RACE", "AGGR_GOOD_RACE", "!SILENCE",   "NOVICIOUS",       "TEACHER",
-    "ANIMATED",  "PEACEFUL",       "!POISON",        "ILLUSORY",   "PLAYER_PHANTASM", "!CLASS_AI",
-    "!SCRIPT",   "PEACEKEEPER",    "PROTECTOR",      "\n"};
+const char *action_bits[NUM_MOB_FLAGS + 1] = {"SPEC",       "SENTINEL",       "SCAVENGER",       "ISNPC",
+                                              "AWARE",      "AGGR",           "STAY_ZONE",       "WIMPY",
+                                              "AGGR_EVIL",  "AGGR_GOOD",      "AGGR_NEUTRAL",    "MEMORY",
+                                              "HELPER",     "!CHARM",         "!SUMMN",          "!SLEEP",
+                                              "!BASH",      "!BLIND",         "MOUNTABLE",       "NO_EQ_RESTRICT",
+                                              "FAST_TRACK", "SLOW_TRACK",     "CASTINGDONTUSE",  "SUMMONED_MOUNT",
+                                              "AQUATIC",    "AGGR_EVIL_RACE", "AGGR_GOOD_RACE",  "!SILENCE",
+                                              "NOVICIOUS",  "TEACHER",        "ANIMATED",        "PEACEFUL",
+                                              "!POISON",    "ILLUSORY",       "PLAYER_PHANTASM", "!CLASS_AI",
+                                              "!SCRIPT",    "PEACEKEEPER",    "PROTECTOR",       "PET",
+                                              "\n"};
 
 /* PRF_x */
 const char *preference_bits[NUM_PRF_FLAGS + 1] = {
