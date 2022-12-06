@@ -1,23 +1,24 @@
-from .mudobject import MudObject, MudTypes
+from .mudobject import MudObject, Dice, MudTypes
 from .flags import MOB_FLAGS, EFFECTS
 import re
 
 
 class Mob(MudObject):
+
     def __init__(self, vnum):
         super().__init__(vnum)
         self.type = MudTypes.MOB
 
     def parse(self, data):
         self.stats = {}
-        self.stats['namelist'] = self.readString(data)
-        self.stats['short_descr'] = self.readString(data)
-        self.stats['long_descr'] = self.readString(data)
-        self.stats['description'] = self.readString(data)
+        self.stats['namelist'] = self.read_string(data)
+        self.stats['short_descr'] = self.read_string(data)
+        self.stats['long_descr'] = self.read_string(data)
+        self.stats['description'] = self.read_string(data)
 
         mob_flags, effect_flags, align, _ = data.pop(0).split()
-        self.stats['mob_flags'] = self.readFlags(mob_flags, MOB_FLAGS)
-        self.stats['effect_flags'] = self.readFlags(effect_flags, EFFECTS)
+        self.stats['mob_flags'] = self.read_flags(mob_flags, MOB_FLAGS)
+        self.stats['effect_flags'] = self.read_flags(effect_flags, EFFECTS)
         self.stats['alignment'] = int(align)
 
         level, hitroll, ac, hp_num_dice, hp_size_dice, move, \
@@ -25,12 +26,10 @@ class Mob(MudObject):
         self.stats['level'] = int(level)
         self.stats['hitroll'] = int(hitroll)
         self.stats['ac'] = int(ac)
-        self.stats['hp_num_dice'] = int(hp_num_dice)
-        self.stats['hp_size_dice'] = int(hp_size_dice)
+        self.stats['hp_dice'] = Dice(int(hp_num_dice), int(hp_size_dice), 0)
         self.stats['move'] = int(move)
-        self.stats['extra_dam_num_dice'] = int(dam_num_dice)
-        self.stats['extra_dam_size_dice'] = int(dam_size_dice)
-        self.stats['extra_dam_roll_bonus'] = int(dam_roll_bonus)
+        self.stats['dam_dice'] = Dice(int(dam_num_dice), int(dam_size_dice),
+                                      int(dam_roll_bonus))
 
         gold, plat, exp, zone = data.pop(0).split()
         self.stats['gold'] = int(gold)
@@ -38,7 +37,8 @@ class Mob(MudObject):
         self.stats['exp'] = int(exp)
         self.stats['zone'] = int(zone)
 
-        position, default_position, gender, class_num, race, race_align, size = data.pop(0).split()
+        position, default_position, gender, class_num, race, race_align, size = data.pop(
+            0).split()
 
         self.stats['position'] = int(position)
         self.stats['default_position'] = int(default_position)
@@ -51,11 +51,12 @@ class Mob(MudObject):
         # End of static data, now we read the dynamic data
         for line in data:
             if line.startswith('AFF2'):
-                self.stats['AFF2'] = self.readFlags(line.split()[1], EFFECTS, 32)
+                self.stats['effect_flags'].set_flags(line.split()[1], 32)
             elif line.startswith('AFF3'):
-                self.stats['AFF3'] = self.readFlags(line.split()[1], EFFECTS, 64)
+                self.stats['effect_flags'].set_flags(line.split()[1], 64)
             elif line.startswith('MOB2'):
-                self.stats['MOB2'] = self.readFlags(line.split()[1], MOB_FLAGS, 32)
+                self.stats['mob_flags'].set_flags(line.split()[1], 32)
+
             elif line.startswith('E'):
                 break
             else:
