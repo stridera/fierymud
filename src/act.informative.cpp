@@ -1268,9 +1268,11 @@ static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *add
         if (desc == obj->ex_description->description)
             /* First extra desc: show object normally */
             print_obj_to_char(obj, ch, SHOW_FULL_DESC, additional_args);
-        else
+        else {
             /* For subsequent extra descs, suppress special object output */
             page_string(ch, desc);
+            page_string(ch, "\r\n");
+        }
     } else if (!isname(arg, obj->name))
         return false;
     else if (GET_OBJ_TYPE(obj) == ITEM_NOTE)
