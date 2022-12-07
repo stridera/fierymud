@@ -432,6 +432,7 @@ struct DescriptorData {
     char host[HOST_LENGTH + 1]; /* hostname                              */
     byte bad_pws;               /* number of bad pw attemps this login   */
     byte idle_tics;             /* tics idle at password prompt          */
+    bool supports_ansi = false; /* does this client support ansi?        */
     int connected;              /* mode of 'connectedness'               */
     int wait;                   /* wait for how many loops               */
     bool gmcp_enabled;          /* Shall we send additional GMCP data    */

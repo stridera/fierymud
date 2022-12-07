@@ -2095,62 +2095,35 @@ void nanny(DescriptorData *d, char *arg) {
         }
 
     switch (STATE(d)) {
-    case CON_QANSI:
+    case CON_GET_NAME:
+
         if ((get_build_number() >= 0)) {
             sprintf(bcbuf, " %d", get_build_number());
         }
-        switch (yesno_result(arg)) {
-        case YESNO_YES:
-        case YESNO_NONE:
+        if (d->supports_ansi) {
             SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
             SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
-            write_to_output("Color is on.\n", d);
-            if (environment == ENV_PROD) {
-                write_to_output(GREETINGS, d);
-                write_to_output(GREETINGS2, d);
-                write_to_output(GREETINGS3, d);
-                write_to_output(GREETINGS4, d);
-            } else if (environment == ENV_TEST) {
-                write_to_output(TEST_GREETING, d);
-                write_to_output(TEST_GREETING2, d);
-                write_to_output(TEST_GREETING3, d);
-            } else if (environment == ENV_DEV) {
-                write_to_output(DEV_GREETING, d);
-                write_to_output(DEV_GREETING2, d);
-                write_to_output(DEV_GREETING3, d);
-            }
-            write_to_output(bcbuf, d);
-            write_to_output(WHOAREYOU, d);
-            STATE(d) = CON_GET_NAME;
-            break;
-        case YESNO_NO:
+        } else {
             REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
             REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
-            write_to_output("Color is off.\n", d);
-            if (environment == ENV_PROD) {
-                write_to_output(GREETINGS, d);
-                write_to_output(GREETINGS2, d);
-                write_to_output(GREETINGS3, d);
-                write_to_output(GREETINGS4, d);
-            } else if (environment == ENV_TEST) {
-                write_to_output(TEST_GREETING, d);
-                write_to_output(TEST_GREETING2, d);
-                write_to_output(TEST_GREETING3, d);
-            } else if (environment == ENV_DEV) {
-                write_to_output(DEV_GREETING, d);
-                write_to_output(DEV_GREETING2, d);
-                write_to_output(DEV_GREETING3, d);
-            }
-            write_to_output(bcbuf, d);
-            write_to_output(WHOAREYOU, d);
-            STATE(d) = CON_GET_NAME;
-            break;
-        default:
-            write_to_output("Please answer Y or N.\n", d);
-            write_to_output("Do you want ANSI terminal support? (Y/n) \n", d);
         }
-        break;
-    case CON_GET_NAME:
+        if (environment == ENV_PROD) {
+            write_to_output(GREETINGS, d);
+            write_to_output(GREETINGS2, d);
+            write_to_output(GREETINGS3, d);
+            write_to_output(GREETINGS4, d);
+        } else if (environment == ENV_TEST) {
+            write_to_output(TEST_GREETING, d);
+            write_to_output(TEST_GREETING2, d);
+            write_to_output(TEST_GREETING3, d);
+        } else if (environment == ENV_DEV) {
+            write_to_output(DEV_GREETING, d);
+            write_to_output(DEV_GREETING2, d);
+            write_to_output(DEV_GREETING3, d);
+        }
+        write_to_output(bcbuf, d);
+        write_to_output(WHOAREYOU, d);
+
         /* They merely pressed enter... disconnect them. */
         if (!*arg) {
             close_socket(d);

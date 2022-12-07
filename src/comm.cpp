@@ -45,6 +45,7 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "version.hpp"
 #include "weather.hpp"
 
 #include <netdb.h>
@@ -1067,8 +1068,17 @@ void record_usage(void) {
 
 void offer_gmcp(DescriptorData *d) {
     char offer_gmcp[] = {(char)IAC, (char)WILL, (char)GMCP, (char)0};
-
     write_to_descriptor(d->descriptor, offer_gmcp);
+}
+
+void request_ttype(DescriptorData *d) {
+    char request_ttype[] = {(char)IAC, (char)DO, (char)TELOPT_TTYPE, (char)0};
+    write_to_descriptor(d->descriptor, request_ttype);
+}
+
+void send_opt(DescriptorData *d, byte a) {
+    const byte buf[] = {(char)IAC, (char)SB, a, (char)TELQUAL_SEND, (char)IAC, (char)SE};
+    write_to_descriptor(d->descriptor, buf);
 }
 
 void offer_gmcp_services(DescriptorData *d) {
@@ -1088,8 +1098,29 @@ void offer_gmcp_services(DescriptorData *d) {
 }
 
 void handle_gmcp_request(DescriptorData *d, char *txt) {
+    // log("GMCP request: %s", txt);
     /* This is for GMCP requests from the clients. */
     /* Do nothing now, but we might want to actually handle this in the future. */
+}
+
+static bool supports_ansi(std::string_view detected_term) {
+    static const std::vector<std::string_view> ansi_terms{"xterm", "mudlet", "ansi",      "vt100",
+                                                          "vt102", "vt220",  "terminator"};
+    for (auto &ansi_term : ansi_terms)
+        if (matches_start(ansi_term, detected_term))
+            return true;
+    return false;
+}
+
+void handle_telopt_request(DescriptorData *d, char *txt) {
+
+    if (supports_ansi(txt)) {
+        d->supports_ansi = true;
+        write_to_descriptor(d->descriptor, "Color is on.\r\n");
+    } else {
+        d->supports_ansi = false;
+        write_to_descriptor(d->descriptor, "Color is off.\r\n");
+    }
 }
 
 /*
@@ -1877,7 +1908,8 @@ void init_descriptor(DescriptorData *newd, int desc) {
     newd->bufptr = 0;
     newd->wait = 1;
     newd->gmcp_enabled = false;
-    STATE(newd) = CON_QANSI;
+
+    STATE(newd) = CON_GET_NAME;
 
     if (++last_desc == 1000)
         last_desc = 1;
@@ -1954,9 +1986,9 @@ int new_descriptor(int s) {
     newd->next = descriptor_list;
     descriptor_list = newd;
 
+    request_ttype(newd);
     offer_gmcp(newd);
 
-    write_to_descriptor(desc, "Do you want ANSI terminal support? (Y/n)\n");
     return 0;
 }
 
@@ -2042,7 +2074,7 @@ int process_input(DescriptorData *t) {
     int buf_length, bytes_read, space_left, command_space_left, failed_subst, telopt = 0;
     char *ptr, *read_point, *write_point = nullptr, *write_cmd_point = nullptr;
     char tmp[MAX_INPUT_LENGTH + 8], telnet_opts[MAX_INPUT_LENGTH + 8], telcmd = 0;
-    bool data_mode = false;
+    int data_mode = 0;
 
     buf_length = strlen(t->inbuf);
     read_point = t->inbuf + buf_length;
@@ -2085,41 +2117,57 @@ int process_input(DescriptorData *t) {
             telopt = 1;
         } else if (telopt == 1 && *ptr == (char)SE) {
             /* End of negotiations */
-            if (!data_mode) {
+            if (data_mode == 0) {
                 log("Error, attempting to end a telnet negotiation we never started!");
             } else {
                 telopt = 0;
-                data_mode = false;
                 *write_cmd_point = '\0';
-                handle_gmcp_request(t, telnet_opts);
+                if (data_mode == 1)
+                    handle_gmcp_request(t, telnet_opts);
+                else if (data_mode == 2)
+                    handle_telopt_request(t, telnet_opts);
+                data_mode = 0;
             }
         } else if (telopt == 1) {
             telopt = 2;
             telcmd = *ptr;
-        } else if (telopt == 2 && *ptr == (char)GMCP) { /* Ready to handle GMCP data */
-            if (telcmd == (char)DO) {
-                telopt = 0;
-                t->gmcp_enabled = true;
-                offer_gmcp_services(t);
-            } else if (telcmd == (char)DONT) {
-                telopt = 0;
-                t->gmcp_enabled = false;
-            } else if (telcmd == (char)SB) {
-                /* Start listening to new GMCP command. */
-                write_cmd_point = telnet_opts;
-                *write_cmd_point = '\0';
-                command_space_left = MAX_INPUT_LENGTH - 1;
-                telopt = 0;
-                data_mode = true;
-            } else {
-                telopt = 0;
-                /* ERROR */
-                log("Invalid GMCP code %hhu", (unsigned char)telcmd);
-            }
         } else if (telopt == 2) {
-            /* Ignore echo requests for new. */
-            if (*ptr != (char)TELOPT_ECHO)
-                log("Invalid 2nd level IAC code %hhu", (unsigned char)*ptr);
+            if (*ptr == (char)GMCP) { /* Ready to handle GMCP data */
+                if (telcmd == (char)DO) {
+                    telopt = 0;
+                    t->gmcp_enabled = true;
+                    offer_gmcp_services(t);
+                } else if (telcmd == (char)DONT) {
+                    telopt = 0;
+                    t->gmcp_enabled = false;
+                } else if (telcmd == (char)SB) {
+                    /* Start listening to new GMCP command. */
+                    write_cmd_point = telnet_opts;
+                    *write_cmd_point = '\0';
+                    command_space_left = MAX_INPUT_LENGTH - 1;
+                    telopt = 0;
+                    data_mode = 1;
+                } else {
+                    telopt = 0;
+                    /* ERROR */
+                    log("Invalid GMCP code %hhu", (unsigned char)telcmd);
+                }
+                /* Responding to terminal type. */
+            } else if (*ptr == TELOPT_TTYPE)
+                if (telcmd == (char)WILL)
+                    send_opt(t, (char)TELOPT_TTYPE);
+                else if (telcmd == (char)SB) {
+                    *ptr++; // Step past the null IS
+                    /* Start listening for the terminal type. */
+                    write_cmd_point = telnet_opts;
+                    *write_cmd_point = '\0';
+                    command_space_left = MAX_INPUT_LENGTH - 1;
+                    telopt = 0;
+                    data_mode = 2;
+                }
+                /* Ignore echo requests for new. */
+                else if (*ptr != (char)TELOPT_ECHO)
+                    log("Invalid 2nd level IAC code %hhu", (unsigned char)*ptr);
         } else if (telopt > 0) { /* If we are here, there is an error */
             log("Invalid telnet IAC code %d", (int)*ptr);
         } else if (data_mode) {
@@ -2337,7 +2385,7 @@ void check_idle_passwords(void) {
 
     for (d = descriptor_list; d; d = next_d) {
         next_d = d->next;
-        if (STATE(d) != CON_PASSWORD && STATE(d) != CON_GET_NAME && STATE(d) != CON_QANSI && STATE(d) != CON_MENU &&
+        if (STATE(d) != CON_PASSWORD && STATE(d) != CON_GET_NAME && STATE(d) != CON_MENU &&
             STATE(d) != CON_ISPELL_BOOT) {
             continue;
         }

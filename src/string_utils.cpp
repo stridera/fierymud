@@ -152,3 +152,31 @@ bool is_equals(const std::string_view &lhs, const std::string_view &rhs) {
     auto to_lower{std::ranges::views::transform(::tolower)};
     return std::ranges::equal(lhs | to_lower, rhs | to_lower);
 }
+
+bool matches_start(std::string_view lhs, std::string_view rhs) {
+    if (lhs.size() > rhs.size() || lhs.empty())
+        return false;
+    return is_equals(lhs, rhs.substr(0, lhs.size()));
+}
+
+// c++23
+// bool matches(std::string_view lhs, std::string_view rhs) {
+//     if (lhs.size() != rhs.size())
+//         return false;
+//     return std::ranges::all_of(std::ranges::zip_view(lhs, rhs),
+//                                [](auto pr) { return tolower(pr.first) == tolower(pr.second); });
+// }
+
+// bool matches_end(std::string_view lhs, std::string_view rhs) {
+//     if (lhs.size() > rhs.size() || lhs.empty())
+//         return false;
+//     auto rhs_remaining = rhs.substr(rhs.size() - lhs.size(), lhs.size());
+//     auto zipped_reverse = std::ranges::zip_view(lhs, rhs_remaining) | std::ranges::views::reverse;
+//     return std::ranges::all_of(zipped_reverse, [](auto pr) { return tolower(pr.first) == tolower(pr.second); });
+// }
+
+// bool matches_inside(std::string_view needle, std::string_view haystack) {
+//     auto needle_low = needle | std::ranges::views::transform(tolower);
+//     auto haystack_low = haystack | std::ranges::views::transform(tolower);
+//     return !std::ranges::search(haystack_low, needle_low).empty();
+// }

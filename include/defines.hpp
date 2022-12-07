@@ -148,7 +148,6 @@
 #define CON_DELCNF1 15      /* Delete confirmation 1           */
 #define CON_DELCNF2 16      /* Delete confirmation 2           */
 #define CON_QRACE 17        /* Complete Race Seletion Menu     */
-#define CON_QANSI 18        /* Prompt for term type            */
 #define CON_OEDIT 19        /*. OLC mode - object edit        .*/
 #define CON_REDIT 20        /*. OLC mode - room edit          .*/
 #define CON_ZEDIT 21        /*. OLC mode - zone info edit     .*/
