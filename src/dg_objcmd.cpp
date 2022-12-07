@@ -306,25 +306,25 @@ OCMD(do_dgoload) {
     line = two_arguments(argument, arg1, arg2);
 
     if (!*arg1 || !*arg2 || !is_number(arg2) || ((number = atoi(arg2)) < 0)) {
-        obj_log(obj1, t, "oload: bad syntax");
+        obj_log(obj, t, "oload: bad syntax");
         return;
     }
 
-    if ((room_num = obj_room(obj1)) == NOWHERE) {
-        obj_log(obj1, t, "oload: object in NOWHERE trying to load");
+    if ((room_num = obj_room(obj)) == NOWHERE) {
+        obj_log(obj, t, "oload: object in NOWHERE trying to load");
         return;
     }
 
     if (is_abbrev(arg1, "mob")) {
         if ((mob = read_mobile(number, VIRTUAL)) == nullptr) {
-            obj_log(obj1, t, "oload: bad mob vnum");
+            obj_log(obj, t, "oload: bad mob vnum");
             return;
         }
         char_to_room(mob, room_num);
         load_mtrigger(mob);
-    } else if (is_abbrev(arg1, "obj1")) {
+    } else if (is_abbrev(arg1, "obj")) {
         if ((obj1 = read_object(number, VIRTUAL)) == nullptr) {
-            obj_log(obj1, t, "oload: bad object vnum");
+            obj_log(obj, t, "oload: bad object vnum");
             return;
         }
 
@@ -337,24 +337,24 @@ OCMD(do_dgoload) {
                 if ((mob = find_char_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_char(obj1, mob);
                 }
-            } else if (is_abbrev(arg3, "obj1")) {
+            } else if (is_abbrev(arg3, "obj")) {
                 if ((obj2 = find_obj_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_obj(obj1, obj2);
                 } else {
-                    obj_log(obj1, t, "oload: no target found");
+                    obj_log(obj, t, "oload: no target found");
                 }
             } else if (is_abbrev(arg3, "plr")) {
                 if ((ch = find_char_around_room(room, find_dg_by_name(arg4)))) {
                     obj_to_char(obj1, ch);
                 } else {
-                    obj_log(obj1, t, "oload: no target found");
+                    obj_log(obj, t, "oload: no target found");
                 }
             } else {
-                obj_log(obj1, t, "oload: bad subtype");
+                obj_log(obj, t, "oload: bad subtype");
             }
         }
     } else {
-        obj_log(obj1, t, "oload: bad type");
+        obj_log(obj, t, "oload: bad type");
     }
 }
 
