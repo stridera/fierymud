@@ -2044,7 +2044,6 @@ void set_player_name(CharData *ch, char *name) {
 
 /* deal with newcomers and other non-playing sockets */
 void nanny(DescriptorData *d, char *arg) {
-    char bcbuf[15] = "0";
     int player_i, load_result;
     char tmp_name[MAX_INPUT_LENGTH];
     extern int max_bad_pws;
@@ -2072,13 +2071,6 @@ void nanny(DescriptorData *d, char *arg) {
 
     skip_spaces(&arg);
 
-    if (d->character == nullptr) {
-        CREATE(d->character, CharData, 1);
-        clear_char(d->character);
-        CREATE(d->character->player_specials, PlayerSpecialData, 1);
-        d->character->desc = d;
-    }
-
     /* Quick check for the OLC states. */
     for (player_i = 0; olc_functions[player_i].state >= 0; ++player_i)
         if (STATE(d) == olc_functions[player_i].state) {
@@ -2096,33 +2088,6 @@ void nanny(DescriptorData *d, char *arg) {
 
     switch (STATE(d)) {
     case CON_GET_NAME:
-
-        if ((get_build_number() >= 0)) {
-            sprintf(bcbuf, " %d", get_build_number());
-        }
-        if (d->supports_ansi) {
-            SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-            SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
-        } else {
-            REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-            REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
-        }
-        if (environment == ENV_PROD) {
-            write_to_output(GREETINGS, d);
-            write_to_output(GREETINGS2, d);
-            write_to_output(GREETINGS3, d);
-            write_to_output(GREETINGS4, d);
-        } else if (environment == ENV_TEST) {
-            write_to_output(TEST_GREETING, d);
-            write_to_output(TEST_GREETING2, d);
-            write_to_output(TEST_GREETING3, d);
-        } else if (environment == ENV_DEV) {
-            write_to_output(DEV_GREETING, d);
-            write_to_output(DEV_GREETING2, d);
-            write_to_output(DEV_GREETING3, d);
-        }
-        write_to_output(bcbuf, d);
-        write_to_output(WHOAREYOU, d);
 
         /* They merely pressed enter... disconnect them. */
         if (!*arg) {

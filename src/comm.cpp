@@ -1113,14 +1113,37 @@ static bool supports_ansi(std::string_view detected_term) {
 }
 
 void handle_telopt_request(DescriptorData *d, char *txt) {
+    char bcbuf[15] = "0";
 
     if (supports_ansi(txt)) {
-        d->supports_ansi = true;
+        SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
+        SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
         write_to_descriptor(d->descriptor, "Color is on.\r\n");
     } else {
-        d->supports_ansi = false;
+        REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
+        REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
         write_to_descriptor(d->descriptor, "Color is off.\r\n");
     }
+    if ((get_build_number() >= 0)) {
+        sprintf(bcbuf, " %d", get_build_number());
+    }
+
+    if (environment == ENV_PROD) {
+        write_to_output(GREETINGS, d);
+        write_to_output(GREETINGS2, d);
+        write_to_output(GREETINGS3, d);
+        write_to_output(GREETINGS4, d);
+    } else if (environment == ENV_TEST) {
+        write_to_output(TEST_GREETING, d);
+        write_to_output(TEST_GREETING2, d);
+        write_to_output(TEST_GREETING3, d);
+    } else if (environment == ENV_DEV) {
+        write_to_output(DEV_GREETING, d);
+        write_to_output(DEV_GREETING2, d);
+        write_to_output(DEV_GREETING3, d);
+    }
+    write_to_output(bcbuf, d);
+    write_to_output(WHOAREYOU, d);
 }
 
 /*
@@ -1908,6 +1931,13 @@ void init_descriptor(DescriptorData *newd, int desc) {
     newd->bufptr = 0;
     newd->wait = 1;
     newd->gmcp_enabled = false;
+
+    if (newd->character == nullptr) {
+        CREATE(newd->character, CharData, 1);
+        clear_char(newd->character);
+        CREATE(newd->character->player_specials, PlayerSpecialData, 1);
+        newd->character->desc = newd;
+    }
 
     STATE(newd) = CON_GET_NAME;
 
