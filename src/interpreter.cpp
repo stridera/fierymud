@@ -2451,8 +2451,13 @@ void nanny(DescriptorData *d, char *arg) {
             if (GET_CLAN(d->character) && GET_CLAN(d->character)->motd)
                 desc_printf(d, "\n%s%s news:\n%s", GET_CLAN(d->character)->name, ANRM, GET_CLAN(d->character)->motd);
 
-            sprintf(buf, "%s [%s] has connected.  Last login: %ld.", GET_NAME(d->character), d->host,
-                    d->character->player.time.logon);
+            // Convert timestamp to string
+            time_t t = d->character->player.time.logon;
+            struct tm *tm = localtime(&t);
+            char datestring[256];
+            strftime(datestring, sizeof(datestring), "%a %b %d %H:%M:%S %Y", tm);
+
+            sprintf(buf, "%s [%s] has connected.  Last login: %s.", GET_NAME(d->character), d->host, datestring);
             mudlog(buf, BRF,
                    MAX(LVL_IMMORT,
                        MIN(GET_LEVEL(d->character), MAX(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character)))),
