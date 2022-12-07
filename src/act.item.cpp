@@ -66,7 +66,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         /* Modify roll by weight. */
-        roll *= (MAX_CONCEAL_WEIGHT - GET_OBJ_WEIGHT(obj)) / ((float)MAX_CONCEAL_WEIGHT);
+        roll *= (MAX_CONCEAL_WEIGHT - GET_OBJ_EFFECTIVE_WEIGHT(obj)) / ((float)MAX_CONCEAL_WEIGHT);
 
         /* It is more difficult to conceal items of a level closer to your own. */
         roll -= GET_OBJ_LEVEL(obj) - GET_LEVEL(ch);
@@ -78,7 +78,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
 void perform_put(CharData *ch, ObjData *obj, ObjData *cont) {
     if (!drop_otrigger(obj, ch))
         return;
-    if (GET_OBJ_WEIGHT(cont) + GET_OBJ_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
+    if (GET_OBJ_EFFECTIVE_WEIGHT(cont) + GET_OBJ_EFFECTIVE_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
         act("$p won't fit in $P.", false, ch, obj, cont, TO_CHAR);
     else if (OBJ_FLAGGED(obj, ITEM_NODROP))
         act("You can't put $p in $P - it must be CURSED!", false, ch, obj, cont, TO_CHAR);
@@ -213,7 +213,7 @@ ACMD(do_stow) {
                 return;
             else if (OBJ_FLAGGED(obj, ITEM_NODROP))
                 act("You can't stow $p in $P because it's CURSED!", false, ch, obj, cont, TO_CHAR);
-            else if (cont && GET_OBJ_WEIGHT(cont) + GET_OBJ_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
+            else if (cont && GET_OBJ_EFFECTIVE_WEIGHT(cont) + GET_OBJ_EFFECTIVE_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
                 act("$p won't fit in $P.", false, ch, obj, cont, TO_CHAR);
             else {
                 int roll = conceal_roll(ch, obj);
@@ -1284,7 +1284,7 @@ ACMD(do_wield) {
         return;
     }
 
-    if (GET_OBJ_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
+    if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
         send_to_char("It's too heavy for you to use.\n", ch);
         return;
     }
@@ -1621,7 +1621,7 @@ ACMD(do_conceal) {
     else if (!CAN_WEAR(obj, ITEM_WEAR_TAKE) && GET_LEVEL(ch) < LVL_IMMORT) {
         act("You can't seem to shift $p's position.", false, ch, obj, 0, TO_CHAR);
         act("$n tugs at $p, unable to move it.", true, ch, obj, 0, TO_ROOM);
-    } else if (GET_OBJ_WEIGHT(obj) > MAX_CONCEAL_WEIGHT && GET_LEVEL(ch) < LVL_IMMORT) {
+    } else if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > MAX_CONCEAL_WEIGHT && GET_LEVEL(ch) < LVL_IMMORT) {
         send_to_char("You can't hide something that large!\n", ch);
         act("$n drags $p around, trying to conceal it, but it's just too large.", true, ch, obj, 0, TO_ROOM);
     } else if (IS_WATER(IN_ROOM(ch)) && GET_LEVEL(ch) < LVL_IMMORT)

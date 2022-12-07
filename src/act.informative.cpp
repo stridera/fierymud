@@ -1506,7 +1506,8 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
         char_printf(ch, "Item provides: %s\n", buf);
     }
 
-    char_printf(ch, "Weight: %.2f, Value: %d, Level: %d\n", GET_OBJ_WEIGHT(obj), GET_OBJ_COST(obj), GET_OBJ_LEVEL(obj));
+    char_printf(ch, "Weight: %.2f, Effective Weight: %.2f,  Value: %d, Level: %d\n", GET_OBJ_WEIGHT(obj),
+                GET_OBJ_EFFECTIVE_WEIGHT(obj), GET_OBJ_COST(obj), GET_OBJ_LEVEL(obj));
 
     switch (GET_OBJ_TYPE(obj)) {
     case ITEM_SCROLL:

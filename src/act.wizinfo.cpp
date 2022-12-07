@@ -361,10 +361,10 @@ void do_stat_object(CharData *ch, ObjData *j) {
     sprintflag(buf1, GET_OBJ_EFF_FLAGS(j), NUM_EFF_FLAGS, effect_flags);
     resp += fmt::format("Spell Effects : {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
 
-    resp += fmt::format(
-        "Weight: {:.2f}, Value: {}, "
-        "Timer: {}, Decomp time: {}, Hiddenness: {}\n",
-        GET_OBJ_WEIGHT(j), GET_OBJ_COST(j), GET_OBJ_TIMER(j), GET_OBJ_DECOMP(j), GET_OBJ_HIDDENNESS(j));
+    resp +=
+        fmt::format("Weight: {:.2f}, Effective Weight: {:.2f}, Value: {}, Timer: {}, Decomp time: {}, Hiddenness: {}\n",
+                    GET_OBJ_WEIGHT(j), GET_OBJ_EFFECTIVE_WEIGHT(j), GET_OBJ_COST(j), GET_OBJ_TIMER(j),
+                    GET_OBJ_DECOMP(j), GET_OBJ_HIDDENNESS(j));
 
     if (j->in_room == NOWHERE)
         strcpy(buf1, "Nowhere");
@@ -742,7 +742,7 @@ void do_stat_character(CharData *ch, CharData *k) {
     for (i = a = found = 0; i < NUM_WEARS; i++)
         if (GET_EQ(k, i)) {
             ++found;
-            a += GET_OBJ_WEIGHT(GET_EQ(k, i));
+            a += GET_OBJ_EFFECTIVE_WEIGHT(GET_EQ(k, i));
         }
     resp += fmt::format(
         "Max Carry: {} ({} weight); "

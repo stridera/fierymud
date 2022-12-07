@@ -1623,7 +1623,7 @@ ACMD(do_drag) {
                 return;
             }
 
-            if (GET_OBJ_WEIGHT(tobj) > 3 * CAN_CARRY_W(ch)) {
+            if (GET_OBJ_EFFECTIVE_WEIGHT(tobj) > 3 * CAN_CARRY_W(ch)) {
                 send_to_char("It is too heavy for you to drag.\n", ch);
                 return;
             }
@@ -1635,7 +1635,7 @@ ACMD(do_drag) {
             return;
         }
 
-        move_cost = MIN(4, GET_OBJ_WEIGHT(tobj) / 50 + sectors[SECT(ch->in_room)].mv);
+        move_cost = MIN(4, GET_OBJ_EFFECTIVE_WEIGHT(tobj) / 50 + sectors[SECT(ch->in_room)].mv);
     }
 
     else {

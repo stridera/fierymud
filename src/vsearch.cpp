@@ -1340,7 +1340,7 @@ ACMD(do_osearch) {
             match = (CAN_WEAR(obj, flags[0]) == flags[0]);
             break;
         case 8:
-            match = numeric_compare(GET_OBJ_WEIGHT(obj), value, bound, compare);
+            match = numeric_compare(GET_OBJ_EFFECTIVE_WEIGHT(obj), value, bound, compare);
             break;
         case 9:
             match = numeric_compare(GET_OBJ_COST(obj), value, bound, compare);
@@ -1452,8 +1452,8 @@ ACMD(do_osearch) {
                     : GET_OBJ_LEVEL(obj) > 74  ? "&6"
                     : GET_OBJ_LEVEL(obj) > 49  ? "&2"
                                                : "",
-                    GET_OBJ_LEVEL(obj), GET_OBJ_WEIGHT(obj) > 9999 ? "&5" : "",
-                    GET_OBJ_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_WEIGHT(obj), 5 + count_color_chars(buf), buf);
+                    GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
+                    GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), 5 + count_color_chars(buf), buf);
             switch (subcmd) {
             case SCMD_VWEAR:
                 if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&

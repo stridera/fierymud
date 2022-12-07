@@ -1832,6 +1832,7 @@ char *parse_object(FILE *obj_f, int nr) {
             /*exit(1); */
         }
 
+        obj_proto[i].obj_flags.effective_weight = obj_proto[i].obj_flags.weight;
         obj_proto[i].obj_flags.cost = t[1];
         obj_proto[i].obj_flags.timer = t[2];
         obj_proto[i].obj_flags.effect_flags[0] = t[3];

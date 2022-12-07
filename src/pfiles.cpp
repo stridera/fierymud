@@ -150,6 +150,7 @@ static bool write_rent_code(FILE *fl, int rentcode) {
 bool write_objects(ObjData *obj, FILE *fl, int location) {
     ObjData *temp;
     bool success = true;
+    int weight_reduction;
 
     if (obj) {
         /*
@@ -159,13 +160,7 @@ bool write_objects(ObjData *obj, FILE *fl, int location) {
          */
         write_objects(obj->next_content, fl, location);
 
-        for (temp = obj->contains; temp; temp = temp->next_content)
-            GET_OBJ_WEIGHT(obj) -= GET_OBJ_WEIGHT(temp);
-
         success = write_object_record(obj, fl, location);
-
-        for (temp = obj->contains; temp; temp = temp->next_content)
-            GET_OBJ_WEIGHT(obj) += GET_OBJ_WEIGHT(temp);
 
         /*
          * The contents of an item must be written directly after the
@@ -804,7 +799,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
             break;
         case 'W':
             if (!strcasecmp(tag, "weight"))
-                GET_OBJ_WEIGHT(obj) = MAX(0, f);
+                GET_OBJ_EFFECTIVE_WEIGHT(obj) = GET_OBJ_WEIGHT(obj) = MAX(0, f);
             else if (!strcasecmp(tag, "wear"))
                 GET_OBJ_WEAR(obj) = num;
             else
@@ -857,6 +852,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
          * Once the weights are all updated, it would be a good idea to linkload
          * and save everyone, to change all their object weights. */
         GET_OBJ_WEIGHT(obj) = GET_OBJ_WEIGHT(proto);
+        GET_OBJ_EFFECTIVE_WEIGHT(obj) = GET_OBJ_EFFECTIVE_WEIGHT(proto);
         /* We also need to fix the liquid container weights, since they will
          * have been set to empty just now. */
         if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON)
@@ -1174,6 +1170,7 @@ static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
     GET_OBJ_VAL(obj, 3) = store->value[3];
     GET_OBJ_FLAGS(obj)[0] = store->extra_flags;
     GET_OBJ_WEIGHT(obj) = store->weight;
+    GET_OBJ_EFFECTIVE_WEIGHT(obj) = store->weight;
     GET_OBJ_TIMER(obj) = store->timer;
     GET_OBJ_HIDDENNESS(obj) = store->hiddenness;
 

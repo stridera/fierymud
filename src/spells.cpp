@@ -2288,7 +2288,7 @@ void create_magical_wall(int room, int power, int dir, int spell, char *material
     GET_OBJ_VAL(wall, VAL_WALL_HITPOINTS) = GET_OBJ_VAL(wall, VAL_WALL_DISPELABLE);
     GET_OBJ_VAL(wall, VAL_WALL_SPELL) = spell;
     GET_OBJ_DECOMP(wall) = 3 + power / 30; /* 3-6 hours */
-    GET_OBJ_WEIGHT(wall) = 5000;
+    GET_OBJ_EFFECTIVE_WEIGHT(wall) = 5000;
 
     obj_to_room(wall, room);
 

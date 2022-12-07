@@ -358,18 +358,18 @@ void weight_change_object(ObjData *obj, float weight) {
     CharData *tmp_ch;
 
     if (obj->in_room != NOWHERE) {
-        GET_OBJ_WEIGHT(obj) += weight;
+        GET_OBJ_EFFECTIVE_WEIGHT(obj) += weight;
     } else if ((tmp_ch = obj->carried_by)) {
         obj_from_char(obj);
-        GET_OBJ_WEIGHT(obj) += weight;
+        GET_OBJ_EFFECTIVE_WEIGHT(obj) += weight;
         obj_to_char(obj, tmp_ch);
     } else if ((tmp_obj = obj->in_obj)) {
         obj_from_obj(obj);
-        GET_OBJ_WEIGHT(obj) += weight;
+        GET_OBJ_EFFECTIVE_WEIGHT(obj) += weight;
         obj_to_obj(obj, tmp_obj);
     } else {
         /* Object is not in the world yet. */
-        GET_OBJ_WEIGHT(obj) += weight;
+        GET_OBJ_EFFECTIVE_WEIGHT(obj) += weight;
     }
 }
 

@@ -1244,7 +1244,7 @@ ACMD(do_steal) {
             }
         } else {
             /* Steal an item from inventory */
-            percent += GET_OBJ_WEIGHT(obj); /* Make heavy harder */
+            percent += GET_OBJ_EFFECTIVE_WEIGHT(obj); /* Make heavy harder */
             if (AWAKE(vict) && (percent > GET_SKILL(ch, SKILL_STEAL))) {
                 /* You failed. */
                 caught = true;

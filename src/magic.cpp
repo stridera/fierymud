@@ -4796,7 +4796,7 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
             to_char = "$p is too powerful for you to bless.";
 
         /* Too heavy */
-        else if (GET_OBJ_WEIGHT(obj) > 5 * skill)
+        else if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > 5 * skill)
             to_char = "$p is too large for you to bless.";
 
         /* Some sort of impurity (or already blessed) */
@@ -4855,7 +4855,7 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
             to_char = "$p is too powerful for you to hex.";
 
         /* Too heavy */
-        else if (GET_OBJ_WEIGHT(obj) > 5 * skill)
+        else if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > 5 * skill)
             to_char = "$p is too large for you to hex.";
 
         /* Some sort of impurity (or already hexed) */
