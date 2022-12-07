@@ -1170,9 +1170,9 @@ void send_gmcp_prompt(DescriptorData *d) {
                    "\"hp\":%d, \"max_hp\": %d,"
                    "\"mv\":%d, \"max_mv\": %d "
                    "}}%s",
-                   gmcp_start_data, GET_NAME(ch), CLASS_NAME(ch), xp_percentage(ch), GET_ALIGNMENT(ch), position,
-                   GET_HIDDENNESS(ch), GET_LEVEL(ch), GET_HIT(ch), GET_MAX_HIT(ch), GET_MOVE(ch), GET_MAX_MOVE(ch),
-                   gmcp_end_data);
+                   gmcp_start_data, strip_ansi(GET_NAME(ch)), CLASS_NAME(ch), xp_percentage(REAL_CHAR(ch)),
+                   GET_ALIGNMENT(ch), position, GET_HIDDENNESS(ch), GET_LEVEL(ch), GET_HIT(ch), GET_MAX_HIT(ch),
+                   GET_MOVE(ch), GET_MAX_MOVE(ch), gmcp_end_data);
 
     cur += sprintf(cur,
                    "%sChar.Worth {"
