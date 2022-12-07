@@ -69,7 +69,7 @@ int isname(const char *str, const char *namelist) {
     curname = namelist;
     for (;;) {
         for (curstr = str;; curstr++, curname++) {
-            if (!*curstr && !isalpha(*curname))
+            if (!*curstr)
                 return (1);
 
             if (!*curname)
