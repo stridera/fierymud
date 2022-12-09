@@ -3309,7 +3309,7 @@ ACMD(do_score) {
         buf += fmt::format(
             "  Size: &3&8{}&0  Gender: &3&8{}&0\n"
             "Race: {}  Life force: {}{}&0  "
-            "Composition: {}{}&0{}&0{}\n",
+            "Composition: {}{}&0{}&0{}{}&0\n",
             capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), capitalize(LIFEFORCE_NAME(tch)),
             COMPOSITION_COLOR(tch), capitalize(COMPOSITION_NAME(tch)), *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
     } else
