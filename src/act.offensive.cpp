@@ -599,13 +599,16 @@ ACMD(do_backstab) {
 
     one_argument(argument, buf);
 
-    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
-        if (!FIGHTING(ch)) {
+    if (!buf || !*buf) {
+        if (FIGHTING(ch)) {
+            vict = FIGHTING(ch);
+        } else {
             send_to_char("Backstab who?\n", ch);
             return;
-        } else {
-            vict = FIGHTING(ch);
         }
+    } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
+        send_to_char("Backstab who?\n", ch);
+        return;
     }
 
     if (vict == ch) {
@@ -1295,14 +1298,18 @@ ACMD(do_kick) {
 
     one_argument(argument, arg);
 
-    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+    if (!arg || !*arg) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
             send_to_char("Kick who?\n", ch);
             return;
         }
+    } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+        send_to_char("Kick who?\n", ch);
+        return;
     }
+
     if (vict == ch) {
         send_to_char("Aren't we funny today...\n", ch);
         return;
