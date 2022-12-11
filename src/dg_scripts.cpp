@@ -1217,6 +1217,10 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%ld", GET_HIDDENNESS(c));
         else if (!strcasecmp(field, "align") || !strcasecmp(field, "alignment"))
             sprintf(str, "%d", GET_ALIGNMENT(c));
+        else if (!strcasecmp(field, "composition"))
+            strcpy(str, compositions[(int)GET_COMPOSITION(c)].name);
+        else if (!strcasecmp(field, "lifeforce"))
+            strcpy(str, lifeforces[(int)GET_LIFEFORCE(c)].name);
 
         else if (is_coin_name(field, PLATINUM))
             sprintf(str, "%d", GET_PLATINUM(c));
@@ -1226,6 +1230,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%d", GET_SILVER(c));
         else if (is_coin_name(field, COPPER))
             sprintf(str, "%d", GET_COPPER(c));
+
 
         /* Flags */
         else if (!strcasecmp(field, "flags")) {
