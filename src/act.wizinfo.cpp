@@ -1179,7 +1179,7 @@ ACMD(do_last) {
    code 3 times ... -je, 4/6/93 */
 
 static std::string print_zone_to_buf(int zone) {
-    return fmt::format("{:3} {:^30} Age: {:3}; Reset: {:3} ({}); ZF:{}: Top: {:5}\n", zone_table[zone].number,
+    return fmt::format("{:3} {:<40} Age: {:3}; Reset: {:3} ({}); ZF:{}: Top: {:5}\n", zone_table[zone].number,
                        zone_table[zone].name, zone_table[zone].age, zone_table[zone].lifespan,
                        zone_table[zone].reset_mode, zone_table[zone].zone_factor, zone_table[zone].top);
 }
@@ -1472,11 +1472,11 @@ void do_show_races(CharData *ch, char *argument) {
 
     if (!*argument) {
         resp =
-            "Race              Humanoid  Align    Size      HR/DR\n"
-            "----------------  --------  -------  --------  ------\n";
+            "Race                   Humanoid  Align    Size        HR/DR\n"
+            "---------------------  --------  -------  ----------  ------\n";
         for (i = 0; i < NUM_RACES; i++) {
             chars = count_color_chars(races[i].fullname);
-            resp += fmt::format(" {:>{}}   {:>8}  {:>5}    {:^8}  {}/{}\n", 15 + chars, 15 + chars, races[i].fullname,
+            resp += fmt::format(" {:<{}}   {:<8}  {:<5}    {:<10}  {}/{}\n", races[i].fullname, 20 + chars,
                                 YESNO(races[i].humanoid), races[i].def_align, sizes[races[i].def_size].name,
                                 races[i].bonus_hitroll, races[i].bonus_damroll);
         }
@@ -1503,7 +1503,6 @@ void do_show_races(CharData *ch, char *argument) {
             compositions[race->def_composition].name, race->bonus_damroll, race->bonus_hitroll, race->mweight_lo,
             race->mweight_hi, race->fweight_lo, race->fweight_hi, race->mheight_lo, race->mheight_hi, race->fheight_lo,
             race->fheight_hi);
-
         sprintflag(buf2, race->effect_flags, NUM_EFF_FLAGS, effect_flags);
         resp += fmt::format(
             "Attribute Scales  : Str  Dex  Int  Wis  Con  Cha\n"
