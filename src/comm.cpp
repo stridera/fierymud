@@ -1328,7 +1328,7 @@ void send_mssp(DescriptorData *d) {
         if (!t->connected)
             sockets_playing++;
 
-    mssp_data = fmt::format("{:c}{:c}{:c}{:c}", IAC, SB, MSSP, MSSP_VAR);
+    mssp_data = fmt::format("{:c}{:c}{:c}", IAC, SB, MSSP);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "NAME", MSSP_VAL, "FieryMUD");
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "PLAYERS", MSSP_VAL, sockets_playing);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "UPTIME", MSSP_VAL, boot_time[0]);
@@ -2247,8 +2247,8 @@ int process_input(DescriptorData *t) {
                     send_mssp(t);
             } else if (*ptr != (char)TELOPT_ECHO) {
                 /* Ignore echo requests for new. */
-            } else
-                log("Invalid 2nd level IAC code %hhu", (unsigned char)*ptr);
+            }
+
         } else if (telopt > 0) { /* If we are here, there is an error */
             log("Invalid telnet IAC code %d", (int)*ptr);
         } else if (data_mode) {
