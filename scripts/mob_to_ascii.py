@@ -1,6 +1,6 @@
 import argparse
 from os import rename
-from mud_objects import Mob
+from mud import Mob
 
 
 def process_file(filename, vnum=-1):

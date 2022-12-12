@@ -228,6 +228,40 @@ SPELLS = [
     "BONE_DRAW",  # 226
     "PYRE_RECOIL",  # 227
     "WORLD_TELEPORT",  # 228
+    "INN_SYLL",  # 229
+    "INN_TREN",  # 230
+    "INN_TASS",  # 231
+    "INN_BRILL",  # 232
+    "INN_ASCEN",  # 233
+    "SPIRIT_ARROWS",  # 234
+    "PROT_FROM_GOOD",  # 235
+    "ANCESTRAL_VENGEANCE",  # 236
+    "CIRCLE_OF_DEATH",  # 237
+    "BALEFUL_POLYMORPH",  # 238
+    "SPIRIT_RAY",  # 239
+    "VICIOUS_MOCKERY",  # 240
+    "REMOVE_PARALYSIS",  # 241
+    "CLOUD_OF_DAGGERS",  # 242
+    "REVEAL_HIDDEN",  # 243
+    "BLINDING_BEAUTY",  # 244
+    "ACID_FOG",  # 245
+    "WEB",  # 246
+    "EARTH_BLESSING",  # 247
+    "PROTECT_FIRE",  # 248
+    "PROTECT_COLD",  # 249
+    "PROTECT_ACID",  # 250
+    "PROTECT_SHOCK",  # 251
+    "ENHANCE_STR",  # 252
+    "ENHANCE_DEX",  # 253
+    "ENHANCE_CON",  # 254
+    "ENHANCE_INT",  # 255
+    "ENHANCE_WIS",  # 256
+    "ENHANCE_CHA",  # 257
+    "MONK_FIRE",  # 258
+    "MONK_COLD",  # 259
+    "MONK_ACID",  # 260
+    "MONK_SHOCK",  # 261
+    "STATUE",  # 262
 ]
 
 OBJECT_TYPES = [
@@ -285,6 +319,38 @@ WEAR_FLAGS = [
     "EAR",  # /* Can be worn in ear        */
     "BADGE",  # /* Can be worn as badge      */
     "BELT",  # /* Can be worn on belt       */
+    "HOVER",  # /*Hovers above you    */
+]
+
+WEAR_LOCATIONS = [
+    "WEAR_LIGHT",  # 0
+    "WEAR_FINGER_R",  # 1
+    "WEAR_FINGER_L",  # 2
+    "WEAR_NECK_1",  # 3
+    "WEAR_NECK_2",  # 4
+    "WEAR_BODY",  # 5
+    "WEAR_HEAD",  # 6
+    "WEAR_LEGS",  # 7
+    "WEAR_FEET",  # 8
+    "WEAR_HANDS",  # 9
+    "WEAR_ARMS",  # 10
+    "WEAR_SHIELD",  # 11
+    "WEAR_ABOUT",  # 12
+    "WEAR_WAIST",  # 13
+    "WEAR_WRIST_R",  # 14
+    "WEAR_WRIST_L",  # 15
+    "WEAR_WIELD",  # 16
+    "WEAR_WIELD2",  # 17
+    "WEAR_HOLD",  # 18
+    "WEAR_HOLD2",  # 19
+    "WEAR_2HWIELD",  # 20
+    "WEAR_EYES",  # 21
+    "WEAR_FACE",  # 22
+    "WEAR_LEAR",  # 23
+    "WEAR_REAR",  # 24
+    "WEAR_BADGE",  # 25
+    "WEAR_OBELT",  # 26
+    "WEAR_HOVER",  # 27
 ]
 
 EXTRA_OBJ_FLAGS = [
@@ -456,6 +522,12 @@ DAMAGE_TYPES = [
     "BLAST",
     "PUNCH",
     "STAB",
+    "FIRE",
+    "COLD",
+    "ACID",
+    "SHOCK",
+    "POISON",
+    "ALIGN",
 ]
 
 LIQUIDS = [
