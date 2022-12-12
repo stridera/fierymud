@@ -277,6 +277,7 @@ ACMD(do_csearch);
 ACMD(do_esearch);
 ACMD(do_msearch);
 ACMD(do_osearch);
+ACMD(do_olocate);
 ACMD(do_rsearch);
 ACMD(do_ssearch);
 ACMD(do_tsearch);
@@ -664,6 +665,7 @@ const CommandInfo cmd_info[] = {
     {"oedit", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_OEDIT, 0},
     {"ocopy", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_OCOPY, 0},
     {"olist", POS_PRONE, STANCE_DEAD, do_osearch, LVL_ATTENDANT, SCMD_VLIST, CMD_ANY},
+    {"olocate", POS_PRONE, STANCE_DEAD, do_olocate, LVL_ATTENDANT, SCMD_VLIST, CMD_ANY},
     {"onum", POS_PRONE, STANCE_DEAD, do_osearch, LVL_ATTENDANT, SCMD_VNUM, CMD_ANY},
     {"osearch", POS_PRONE, STANCE_DEAD, do_osearch, LVL_ATTENDANT, SCMD_VSEARCH, CMD_ANY},
     {"ostat", POS_PRONE, STANCE_DEAD, do_vstat, LVL_ATTENDANT, SCMD_OSTAT, CMD_ANY},

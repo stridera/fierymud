@@ -1014,6 +1014,44 @@ ACMD(do_stat) {
     }
 }
 
+ACMD(do_olocate) {
+    int number = 0;
+    ObjData *obj;
+    std::string response;
+
+    one_argument(argument, buf);
+
+    if (!*buf) {
+        send_to_char("Search for what?\n", ch);
+        return;
+    }
+
+    response = fmt::format("Objects with name '{}' in the world:\n", buf);
+    for (obj = object_list; obj; obj = obj->next) {
+        if (isname(buf, obj->name)) {
+            number++;
+            response += fmt::format("  {:3} [{:5}] {:25} ", number, GET_OBJ_VNUM(obj), obj->short_description);
+            if (obj->carried_by)
+                response += fmt::format("carried by {:10}", GET_NAME(obj->carried_by));
+            else if (obj->worn_by)
+                response += fmt::format("worn by {:10}", GET_NAME(obj->worn_by));
+            else if (obj->in_room != NOWHERE)
+                response += fmt::format("in room {:10} [{}]", world[obj->in_room].name, obj->in_room);
+            else if (obj->in_obj)
+                response += fmt::format("inside {:10}", obj->in_obj->short_description);
+            else
+                response += fmt::format("in an unknown location");
+            response += "\n";
+
+            if (number >= 100) {
+                response += "More than 100 matches found.  Listing stopped.\n";
+                break;
+            }
+        }
+    }
+    send_to_char(response.c_str(), ch);
+}
+
 ACMD(do_vstat) {
     CharData *mob;
     ObjData *obj;
