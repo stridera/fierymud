@@ -1340,6 +1340,9 @@ void send_mssp(DescriptorData *d) {
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "LEVELS", MSSP_VAL, 99);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "RACES", MSSP_VAL, NUM_RACES);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "SKILLS", MSSP_VAL, 118);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "DISCORD", MSSP_VAL, "https://discord.gg/aqhapUCgFz");
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "WEBSITE", MSSP_VAL, "https://www.fierymud.org/");
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "GENRE", MSSP_VAL, "Fantasy");
 
     mssp_data += fmt::format("{:c}{:c}", IAC, SE);
     write_to_descriptor(d->descriptor, mssp_data.c_str());
