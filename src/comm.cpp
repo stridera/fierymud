@@ -1341,6 +1341,7 @@ void send_mssp(DescriptorData *d) {
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "RACES", MSSP_VAL, NUM_RACES);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "SKILLS", MSSP_VAL, 118);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "DISCORD", MSSP_VAL, "https://discord.gg/aqhapUCgFz");
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "ICON", MSSP_VAL, "https://www.fierymud.org/images/fiery64.png");
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "WEBSITE", MSSP_VAL, "https://www.fierymud.org/");
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "GENRE", MSSP_VAL, "Fantasy");
 
