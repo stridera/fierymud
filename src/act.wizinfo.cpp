@@ -1030,9 +1030,9 @@ ACMD(do_olocate) {
             number++;
             response += fmt::format("  {:3} [{:5}] {:25} ", number, GET_OBJ_VNUM(obj), obj->short_description);
             if (obj->carried_by)
-                response += fmt::format("carried by {:10}", GET_NAME(obj->carried_by));
+                response += fmt::format("carried by {:10} at {} [{}]", GET_NAME(obj->carried_by), world[obj->carried_by->in_room].name, obj->carried_by->in_room);
             else if (obj->worn_by)
-                response += fmt::format("worn by {:10}", GET_NAME(obj->worn_by));
+                response += fmt::format("worn by {:10} at {} [{}]", GET_NAME(obj->worn_by), world[obj->worn_by->in_room].name, obj->worn_by->in_room);
             else if (obj->in_room != NOWHERE)
                 response += fmt::format("in room {:10} [{}]", world[obj->in_room].name, obj->in_room);
             else if (obj->in_obj)
