@@ -48,6 +48,7 @@
 #include "version.hpp"
 #include "weather.hpp"
 
+#include <fmt/format.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <signal.h>
@@ -65,10 +66,16 @@
 #endif
 
 #define GMCP 201
+#define MSSP 70
+#define MSSP_VAR 1
+#define MSSP_VAL 2
 
 char ga_string[] = {(char)IAC, (char)GA, (char)0};
 char gmcp_start_data[] = {(char)IAC, (char)SB, (char)GMCP, (char)0};
 char gmcp_end_data[] = {(char)IAC, (char)SE, (char)0};
+
+char mssp_start_data[] = {(char)IAC, (char)SB, (char)MSSP};
+char mssp_end_data[] = {(char)IAC, (char)SE, (char)0};
 
 ACMD(do_shapechange);
 
@@ -1066,6 +1073,11 @@ void record_usage(void) {
 #endif
 }
 
+void offer_mssp(DescriptorData *d) {
+    char offer_mssp[] = {(char)IAC, (char)WILL, (char)MSSP, (char)0};
+    write_to_descriptor(d->descriptor, offer_mssp);
+}
+
 void offer_gmcp(DescriptorData *d) {
     char offer_gmcp[] = {(char)IAC, (char)WILL, (char)GMCP, (char)0};
     write_to_descriptor(d->descriptor, offer_gmcp);
@@ -1301,6 +1313,36 @@ void send_gmcp_room(CharData *ch) {
         cur += sprintf(cur, "}}%s", gmcp_end_data);
     }
     write_to_descriptor(ch->desc->descriptor, response);
+}
+
+void send_mssp(DescriptorData *d) {
+    std::string mssp_data;
+    DescriptorData *t;
+    int sockets_playing = 0;
+
+    if (!d) {
+        return;
+    }
+
+    for (t = descriptor_list; t; t = t->next)
+        if (!t->connected)
+            sockets_playing++;
+
+    mssp_data = fmt::format("{:c}{:c}{:c}{:c}", IAC, SB, MSSP, MSSP_VAR);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "NAME", MSSP_VAL, "FieryMUD");
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "PLAYERS", MSSP_VAL, sockets_playing);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "UPTIME", MSSP_VAL, boot_time[0]);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "AREAS", MSSP_VAL, top_of_zone_table + 1);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "MOBILES", MSSP_VAL, top_of_mobt + 1);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "OBJECTS", MSSP_VAL, top_of_objt + 1);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "ROOMS", MSSP_VAL, top_of_world + 1);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "CLASSES", MSSP_VAL, NUM_CLASSES);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "LEVELS", MSSP_VAL, 99);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "RACES", MSSP_VAL, NUM_RACES);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "SKILLS", MSSP_VAL, 118);
+
+    mssp_data += fmt::format("{:c}{:c}", IAC, SE);
+    write_to_descriptor(d->descriptor, mssp_data.c_str());
 }
 
 /*
@@ -2017,6 +2059,7 @@ int new_descriptor(int s) {
     descriptor_list = newd;
 
     request_ttype(newd);
+    offer_mssp(newd);
     offer_gmcp(newd);
 
     return 0;
@@ -2183,7 +2226,7 @@ int process_input(DescriptorData *t) {
                     log("Invalid GMCP code %hhu", (unsigned char)telcmd);
                 }
                 /* Responding to terminal type. */
-            } else if (*ptr == TELOPT_TTYPE)
+            } else if (*ptr == TELOPT_TTYPE) {
                 if (telcmd == (char)WILL)
                     send_opt(t, (char)TELOPT_TTYPE);
                 else if (telcmd == (char)SB) {
@@ -2195,9 +2238,13 @@ int process_input(DescriptorData *t) {
                     telopt = 0;
                     data_mode = 2;
                 }
+            } else if (*ptr == (char)MSSP) {
+                if (telcmd == (char)DO)
+                    send_mssp(t);
+            } else if (*ptr != (char)TELOPT_ECHO) {
                 /* Ignore echo requests for new. */
-                else if (*ptr != (char)TELOPT_ECHO)
-                    log("Invalid 2nd level IAC code %hhu", (unsigned char)*ptr);
+            } else
+                log("Invalid 2nd level IAC code %hhu", (unsigned char)*ptr);
         } else if (telopt > 0) { /* If we are here, there is an error */
             log("Invalid telnet IAC code %d", (int)*ptr);
         } else if (data_mode) {
