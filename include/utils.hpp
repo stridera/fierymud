@@ -515,7 +515,7 @@ extern flagvector *ALL_FLAGS;
 
 #define HSHR(ch)                                                                                                       \
     (GET_SEX(ch) ? (GET_SEX(ch) == SEX_MALE ? "his" : (GET_SEX(ch) == SEX_FEMALE ? "her" : "their")) : "its")
-#define HSSH(ch) (GET_SEX(ch) ? (GET_SEX(ch) == SEX_MALE ? "he" : (GET_SEX(ch) == SEX_FEMALE ? "her" : "they")) : "it")
+#define HSSH(ch) (GET_SEX(ch) ? (GET_SEX(ch) == SEX_MALE ? "he" : (GET_SEX(ch) == SEX_FEMALE ? "she" : "they")) : "it")
 #define HMHR(ch) (GET_SEX(ch) ? (GET_SEX(ch) == SEX_MALE ? "him" : (GET_SEX(ch) == SEX_FEMALE ? "her" : "them")) : "it")
 #define HISHER(ch) HSHR(ch)
 #define HESHE(ch) HSSH(ch)
