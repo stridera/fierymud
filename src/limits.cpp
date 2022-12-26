@@ -38,28 +38,6 @@ long exp_death_loss(CharData *ch, int level);
 
 ACMD(do_shapechange);
 
-/* When age < 15 return the value p0 */
-/* When age in 15..29 calculate the line between p1 & p2 */
-/* When age in 30..44 calculate the line between p2 & p3 */
-/* When age in 45..59 calculate the line between p3 & p4 */
-/* When age in 60..79 calculate the line between p4 & p5 */
-/* When age >= 80 return the value p6 */
-int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6) {
-
-    if (age < 15)
-        return (p0); /* < 15   */
-    else if (age <= 29)
-        return (int)(p1 + (((age - 15) * (p2 - p1)) / 15)); /* 15..29 */
-    else if (age <= 44)
-        return (int)(p2 + (((age - 30) * (p3 - p2)) / 15)); /* 30..44 */
-    else if (age <= 59)
-        return (int)(p3 + (((age - 45) * (p4 - p3)) / 15)); /* 45..59 */
-    else if (age <= 79)
-        return (int)(p4 + (((age - 60) * (p5 - p4)) / 20)); /* 60..79 */
-    else
-        return (p6); /* >= 80 */
-}
-
 /* manapoint gain pr. game hour */
 int mana_gain(CharData *ch) {
     int gain;
@@ -70,10 +48,6 @@ int mana_gain(CharData *ch) {
     } else {
         gain = graf(age(ch).year, 4, 8, 12, 16, 12, 10, 8);
         gain = gain + MIN(ch->char_specials.managain, 100);
-
-        /* Class calculations */
-
-        /* Skill/Spell calculations */
 
         /* Position calculations    */
         switch (GET_STANCE(ch)) {
@@ -90,10 +64,6 @@ int mana_gain(CharData *ch) {
         }
 
         gain = (gain * MANA_REGEN_FACTOR(ch)) / 100;
-
-        /* Do not allow this code to operate on NPCs!  Crash! */
-        /* if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
-           gain >>= 2; */
     }
 
     if (EFF_FLAGGED(ch, EFF_POISON))
@@ -112,10 +82,8 @@ int hit_gain(CharData *ch)
         /* Neat and fast */
     } else {
 
-        gain = graf(age(ch).year, 8, 12, 20, 32, 16, 10, 4);
-
         /* This brings your max_hp into the formula... */
-        gain = ((GET_MAX_HIT(ch) * .05) + gain) / 2;
+        gain = GET_MAX_HIT(ch) * .05;
 
         /* Max hitgain stat on a char is 100 */
         gain = gain + MIN(ch->char_specials.hitgain, 100) + 2;
@@ -147,10 +115,6 @@ int hit_gain(CharData *ch)
         }
 
         gain = (gain * HIT_REGEN_FACTOR(ch)) / 100;
-
-        /* Do not allow this code to operate on NPCs!  Crash! */
-        /* if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
-           gain >>= 2; */
     }
 
     if (EFF_FLAGGED(ch, EFF_POISON))
@@ -168,11 +132,7 @@ int move_gain(CharData *ch)
         return ((GET_MAX_MOVE(ch) * .1) + GET_LEVEL(ch));
         /* Neat and fast */
     } else {
-        gain = graf(age(ch).year, 2, 3, 3, 5, 4, 3, 1);
-
-        gain = ((GET_MAX_MOVE(ch) * .1) + gain) / 2;
-
-        /* Class/Level calculations */
+        gain = GET_MAX_MOVE(ch) * .1;
 
         /* Skill/Spell calculations */
         if (EFF_FLAGGED(ch, EFF_SONG_OF_REST) &&
@@ -195,9 +155,6 @@ int move_gain(CharData *ch)
                 gain += (gain >> 1); /* Total = 1.5x */
             break;
         }
-        /* Do not allow this code to operate on NPCs!  Crash! */
-        /* if (IS_HUNGRY(ch) || IS_THIRSTY(ch))
-           gain >>= 2; */
     }
 
     if (EFF_FLAGGED(ch, EFF_POISON))
