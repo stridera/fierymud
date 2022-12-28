@@ -252,7 +252,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     if (!leave_otrigger(&world[IN_ROOM(ch)], ch, dir) || IN_ROOM(ch) != was_in)
         return false;
 
-    if (EVENT_FLAGGED(ch, EVENT_GRAVITY) && !EFF_FLAGGED(ch, EFF_LEVITATE)) {
+    if (EVENT_FLAGGED(ch, EVENT_GRAVITY) && !EFF_FLAGGED(ch, EFF_FEATHER_FALL)) {
         send_to_char("You're in free fall!\n", ch);
         return false;
     }
@@ -313,8 +313,8 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     flying = GET_POS(actor) == POS_FLYING || GET_POS(motivator) == POS_FLYING || GET_LEVEL(actor) >= LVL_IMMORT ||
              GET_LEVEL(motivator) >= LVL_IMMORT;
 
-    /* LEVITATING */
-    if (!flying && (EFF_FLAGGED(actor, EFF_LEVITATE) || EFF_FLAGGED(motivator, EFF_LEVITATE)))
+    /* FEATHER FALL */
+    if (!flying && (EFF_FLAGGED(actor, EFF_FEATHER_FALL) || EFF_FLAGGED(motivator, EFF_FEATHER_FALL)))
         levitating = 1;
 
     /* Determine movement points needed */

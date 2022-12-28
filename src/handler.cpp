@@ -409,7 +409,7 @@ void active_effect_from_char(CharData *ch, int type) {
 
 void lose_levitation_messages(CharData *ch) {
     if (GET_POS(ch) >= POS_STANDING) {
-        char_printf(ch, "%s\n", skills[SPELL_LEVITATE].wearoff);
+        char_printf(ch, "%s\n", skills[SPELL_FEATHER_FALL].wearoff);
         act("$n floats back to the ground.", true, ch, 0, 0, TO_ROOM);
     } else {
         send_to_char("Your weight feels normal again.\n", ch);
@@ -429,7 +429,7 @@ void active_effect_remove(CharData *ch, effect *effect) {
 
             if (GET_STANCE(ch) > STANCE_STUNNED && skills[effect->type].wearoff) {
                 switch (effect->type) {
-                case SPELL_LEVITATE:
+                case SPELL_FEATHER_FALL:
                     lose_levitation_messages(ch);
                     break;
                 default:

@@ -4226,10 +4226,10 @@ This spell seems to be unimplemented.
 
 See Also: HELP, INFO, SPELLS
 #0
-LEVITATE
+FEATHER FALL
 
 ================================================
-Usage	      : cast 'levitate' <victim>
+Usage	      : cast 'feather fall' <victim>
 Aggressive    : No
 Accumulative  : No
 Duration      : Proficiency
@@ -4237,7 +4237,7 @@ Type of spell : Sphere of Enchantment
 Classes	      : Cryomancer, Pyromancer, Sorcerer
 ================================================
 
-Levitate allows a sorcerer to cause a person to lift slightly off the ground to
+FEATHER FALL allows a sorcerer to cause a person to lift slightly off the ground to
 defeat gravity somewhat.  This spell is a weaker version of fly.
 
 See Also: FLY
@@ -6214,7 +6214,7 @@ Safefall will allow a monk to safely roll out of a fall from a particular
 altitude.  Gravity however will have its revenge.  A monk can only survive
 a fall from a few hundred feet higher than that of normal folk.
 
-See Also: LEVITATE, FLY, PETITION
+See Also: FEATHER FALL, FLY, PETITION
 #0
 "SANE MIND"
 
@@ -6848,7 +6848,7 @@ douse				mass invisibility
 teleport
 lightning bolt			[34m[1mCircle 10:[0m
 ray of enfeeblement		negate cold
-levitate			waterform
+feather fall			waterform
 coldshield
 ice dagger
 
@@ -6984,7 +6984,7 @@ teleport
 fireball			[34m[1mCircle 10:[0m
 infravision			greater firewalk
 ray of enfeeblement		negate heat
-levitate
+feather fall
 fireshield
 mirage
 flame blade
@@ -7048,7 +7048,7 @@ lightning bolt			????
 infravision
 minor paralysis
 ray of enfeeblement
-levitate
+feather fall
 fireshield
 coldshield
 minor globe
@@ -8057,7 +8057,7 @@ Creates either pretty angels' wings or ickie-looking batwings upon the
 caster's back. Will allow the caster to float, but not to cross open
 water. For that, you need a boat of some sort.
 
-See Also: FLY, LEVITATE
+See Also: FLY, FEATHER FALL
 #0
 WIZAT
 

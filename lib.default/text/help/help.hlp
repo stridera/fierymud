@@ -6900,10 +6900,10 @@ level.
   
 See also: HELP, INFO, SPELLS, CLASS, EXPERIENCE
 #0
-LEVITATE
+"FEATHER FALL"
  
 ============================================================
-Usage         : cast 'levitate' [<target>]
+Usage         : cast 'feather fall' [<target>]
 Min. position : standing
 OK in combat  : no
 Aggressive    : no
@@ -6918,8 +6918,8 @@ Classes       : Cryomancer     Circle 4
               : Sorcerer       Circle 4
 ============================================================
  
-LEVITATE allows a sorcerer to cause a person to lift slightly off the 
-ground to defeat gravity somewhat. This spell is a weaker version of FLY.
+FEATHRE FALL allows a sorcerer to cause a person to lift slightly off the 
+ground and defeat gravity somewhat by negating falling damage.
  
 See also: FLY
 #0
@@ -8974,7 +8974,7 @@ The following codes are available for use in the prompt:
        g     darkness                h     disarm
        i     first aid               j     instant kill
        k     invisible               l     lay hands
-       m     levitate                n     shapechange
+       m     feather fall            n     shapechange
        o     summon mount            p     syll
        q     tass                    r     throatcut
        s     tren                
@@ -10011,7 +10011,7 @@ of a fall from a particularly high altitude. Gravity however will have
 its revenge. A monk can only survive a fall from a few hundred feet 
 higher than that of normal folk.
 
-See also: LEVITATE, FLY, PETITION
+See also: FEATHER FALL, FLY, PETITION
 #0
 SANCTUARY
 
@@ -11940,7 +11940,7 @@ shocking grasp                  iceball
 &4&bCircle 4:&0                 relocate*
 coldshield                     
 ice dagger                      &4&bCircle 10:&0
-levitate                        negate cold
+feather fall                    negate cold
 lightning bolt                  waterform*
 ray of enfeeblement            
 teleport                        &4&bCircle 11:&0
@@ -12133,7 +12133,7 @@ poison                          &b&4Circle 9:&0
 strength                        soul tap
                                
 &b&4Circle 4:&0                 &b&4Circle 10:&0
-bone armor                      bone draw
+bone armor                      bone cage
 coldshield                      rebuke undead
 spinechiller
                                 &b&4Circle 11:&0
@@ -12260,7 +12260,7 @@ fireball                        &4&bCircle 10:&0
 fireshield                      cremate
 flame blade                     negate heat
 infravision                    
-levitate                        &4&bCircle 11:&0
+feather fall                    &4&bCircle 11:&0
 mirage                          meteorswarm*
 ray of enfeeblement            
 teleport                        &4&bCircle 12:&0
@@ -12328,7 +12328,7 @@ shocking grasp                  disintegrate
 coldshield                     
 fireshield                      &4&bCircle 10:&0
 infravision                     meteorswarm*
-levitate                       
+feather fall                       
 lightning bolt                  &4&bCircle 11:&0
 minor globe                     enlarge
 minor paralysis                 reduce
@@ -14236,7 +14236,7 @@ Creates either pretty angel wings or icky-looking bat wings upon the
 caster's back. Will allow the caster to float, but not to cross open 
 water. For that, you need a boat of some sort.
 
-See also: FLY, LEVITATE
+See also: FLY, FEATHER FALL
 #0
 WISDOM TASS
  

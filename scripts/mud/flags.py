@@ -102,7 +102,7 @@ SPELLS = [
     "MINOR_CREATION",  # 100
     "CONCEALMENT",  # 101
     "RAY_OF_ENFEEB",  # 102
-    "LEVITATE",  # 103
+    "FEATHER_FALL",  # 103
     "WIZARD_EYE",  # 104
     "FIRESHIELD",  # 105
     "COLDSHIELD",  # 106
@@ -225,7 +225,7 @@ SPELLS = [
     "IRON_MAIDEN",  # 223
     "FRACTURE",  # 224
     "FRACTURE_SHRAPNEL",  # 225
-    "BONE_DRAW",  # 226
+    "BONE_CAGE",  # 226
     "PYRE_RECOIL",  # 227
     "WORLD_TELEPORT",  # 228
     "INN_SYLL",  # 229
@@ -459,7 +459,7 @@ EFFECTS = [
     "UNUSED",  # 33
     "MINOR_PARALYSIS",  # 34
     "HURT_THROAT",  # 35
-    "LEVITATE",  # 36
+    "FEATHER_FALL",  # 36
     "WATERBREATH",  # 37
     "SOULSHIELD",  # 38
     "SILENCE",  # 39
@@ -659,7 +659,7 @@ EFFECTS = [
     "UNDEFINED",  # Room for future expansion 33
     "EFF_MINOR_PARALYSIS",  # 34
     "EFF_HURT_THROAT",  # 35
-    "EFF_LEVITATE",  # 36
+    "EFF_FEATHER_FALL",  # 36
     "EFF_WATERBREATH",  # 37
     "EFF_SOULSHIELD",  # 38
     "EFF_SILENCE",  # 39
