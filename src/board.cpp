@@ -670,7 +670,7 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
 
     for (i = board->message_count - 1; i >= 0; --i) {
         strftime(buf, 15, TIMEFMT_DATE, localtime(&board->messages[i]->time));
-        paging_printf(ch, "{}{:-2d}" ANRM " : {:-11s} : {:-12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
+        paging_printf(ch, "{}{:-2d}" ANRM " : {:<11s} : {:<12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
                       i + 1, buf, board->messages[i]->poster,
                       board->messages[i]->subject ? board->messages[i]->subject : "<no title>");
     }
