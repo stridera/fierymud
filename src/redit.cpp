@@ -17,6 +17,7 @@
 #include "dg_olc.hpp"
 #include "directions.hpp"
 #include "exits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -254,13 +255,9 @@ void redit_save_internally(DescriptorData *d) {
                 case '*':
                     break;
                 default:
-                    sprintf(buf,
-                            "SYSERR:redit.c:redit_save_internally(): Unknown command: %d "
-                            "in zone %s.",
-                            ZCMD.command, zone_table[zone].name);
-                    log("%s", buf);
-                    ;
-                    mudlog(buf, BRF, LVL_GOD, true);
+                    log(LogSeverity::Warn, LVL_GOD,
+                        "SYSERR:redit.c:redit_save_internally(): Unknown command: {} in zone {}.", ZCMD.command,
+                        zone_table[zone].name);
                 }
         /* update load rooms, to fix creeping load room problem */
         if (room_num <= mortal_start_room)
@@ -299,7 +296,7 @@ void redit_save_to_disk(int zone_num) {
 
     sprintf(buf, "%s/%d.new", WLD_PREFIX, zone_table[zone_num].number);
     if (!(fp = fopen(buf, "w+"))) {
-        mudlog("SYSERR: OLC: Cannot open room file!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: Cannot open room file!");
         return;
     }
     for (counter = zone_table[zone_num].number * 100; counter <= zone_table[zone_num].top; counter++) {
@@ -626,7 +623,7 @@ void redit_parse(DescriptorData *d, char *arg) {
         case 'Y':
             redit_save_internally(d);
             sprintf(buf, "OLC: %s edits room %d.", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
             /*
              * Do NOT free strings! Just the room structure.
              */
@@ -736,7 +733,7 @@ void redit_parse(DescriptorData *d, char *arg) {
         /*
          * We will NEVER get here, we hope.
          */
-        mudlog("SYSERR: Reached REDIT_DESC case in parse_redit", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: Reached REDIT_DESC case in parse_redit");
         break;
 
     case REDIT_FLAGS:
@@ -818,7 +815,7 @@ void redit_parse(DescriptorData *d, char *arg) {
 
     case REDIT_EXIT_DESCRIPTION:
         /* we should NEVER get here */
-        mudlog("SYSERR: Reached REDIT_EXIT_DESC case in parse_redit", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: Reached REDIT_EXIT_DESC case in parse_redit");
         break;
 
     case REDIT_EXIT_KEYWORD:
@@ -926,7 +923,7 @@ void redit_parse(DescriptorData *d, char *arg) {
 
     default:
         /* we should never get here */
-        mudlog("SYSERR: Reached default case in parse_redit", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: Reached default case in parse_redit");
         break;
     }
     /*. If we get this far, something has be changed . */

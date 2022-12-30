@@ -34,6 +34,7 @@
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "messages.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -419,9 +420,10 @@ void do_stat_object(CharData *ch, ObjData *j) {
                                 GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), buf2, GET_OBJ_VAL(j, VAL_CONTAINER_KEY),
                                 GET_OBJ_VAL(j, VAL_CONTAINER_WEIGHT_REDUCTION), YESNO(IS_CORPSE(j)));
         } else {
-            resp += fmt::format("Weight capacity: {}, Id: {}, Corpse: {}, Player Corpse: {}, Raisable: {}\n",
-                GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), GET_OBJ_VAL(j, VAL_CORPSE_ID), YESNO(IS_CORPSE(j)),
-                YESNO(IS_PLR_CORPSE(j)), YESNO(GET_OBJ_VAL(j, VAL_CONTAINER_CORPSE) == CORPSE_NPC));
+            resp +=
+                fmt::format("Weight capacity: {}, Id: {}, Corpse: {}, Player Corpse: {}, Raisable: {}\n",
+                            GET_OBJ_VAL(j, VAL_CONTAINER_CAPACITY), GET_OBJ_VAL(j, VAL_CORPSE_ID), YESNO(IS_CORPSE(j)),
+                            YESNO(IS_PLR_CORPSE(j)), YESNO(GET_OBJ_VAL(j, VAL_CONTAINER_CORPSE) == CORPSE_NPC));
         }
         break;
     case ITEM_DRINKCON:
@@ -1030,9 +1032,11 @@ ACMD(do_olocate) {
             number++;
             response += fmt::format("  {:3} [{:5}] {:25} ", number, GET_OBJ_VNUM(obj), obj->short_description);
             if (obj->carried_by)
-                response += fmt::format("carried by {:10} at {} [{}]", GET_NAME(obj->carried_by), world[obj->carried_by->in_room].name, obj->carried_by->in_room);
+                response += fmt::format("carried by {:10} at {} [{}]", GET_NAME(obj->carried_by),
+                                        world[obj->carried_by->in_room].name, obj->carried_by->in_room);
             else if (obj->worn_by)
-                response += fmt::format("worn by {:10} at {} [{}]", GET_NAME(obj->worn_by), world[obj->worn_by->in_room].name, obj->worn_by->in_room);
+                response += fmt::format("worn by {:10} at {} [{}]", GET_NAME(obj->worn_by),
+                                        world[obj->worn_by->in_room].name, obj->worn_by->in_room);
             else if (obj->in_room != NOWHERE)
                 response += fmt::format("in room {:10} [{}]", world[obj->in_room].name, obj->in_room);
             else if (obj->in_obj)
@@ -1226,14 +1230,14 @@ void do_show_sectors(CharData *ch, char *argument) {
     int i;
     const sectordef *s;
 
-    pprintf(ch, "Sector type     Mv  Camp  Wet  Notes\n");
-    pprintf(ch,
-            "--------------  --  ----  ---  "
-            "----------------------------------------------\n");
+    paging_printf(ch, "Sector type     Mv  Camp  Wet  Notes\n");
+    paging_printf(ch,
+                  "--------------  --  ----  ---  "
+                  "----------------------------------------------\n");
     for (i = 0; i < NUM_SECTORS; i++) {
         s = &sectors[i];
-        pprintf(ch, " %s%-13s&0  %2d  %s  %s  %s\n", s->color, s->name, s->mv, s->campable ? "&2Camp&0" : "    ",
-                s->wet ? "&6Wet&0" : "   ", s->notes);
+        paging_printf(ch, " {}{:<13s}&0  {:2d}  {}  {}  {}\n", s->color, s->name, s->mv,
+                      s->campable ? "&2Camp&0" : "    ", s->wet ? "&6Wet&0" : "   ", s->notes);
     }
     start_paging(ch);
 }
@@ -1335,13 +1339,13 @@ void do_show_player(CharData *ch, char *argument) {
     }
     strftime(buf1, MAX_STRING_LENGTH, TIMEFMT_DATE, localtime(&(vict->player.time.birth)));
     strftime(buf2, MAX_STRING_LENGTH, TIMEFMT_DATE, localtime(&(vict->player.time.logon)));
-    char_printf(ch, "Player: %-12s (%s) [%2d %s] (%s)\n", GET_NAME(vict), genders[(int)GET_SEX(vict)], GET_LEVEL(vict),
-                CLASS_ABBR(vict), RACE_ABBR(vict));
+    char_printf(ch, "Player: {:<12s} ({}) [{:2d} {}] ({})\n", GET_NAME(vict), genders[(int)GET_SEX(vict)],
+                GET_LEVEL(vict), CLASS_ABBR(vict), RACE_ABBR(vict));
     char_printf(ch,
-                "Coins held:    [%7dp / %7dg / %7ds / %7dc]\n"
-                "Coins banked:  [%7dp / %7dg / %7ds / %7dc]\n"
-                "Exp: %-8ld   Align: %-5d\n"
-                "Started: %s   Last: %s   Played: %3dh %2dm\n",
+                "Coins held:    [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
+                "Coins banked:  [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
+                "Exp: {:-8ld}   Align: {:-5d}\n"
+                "Started: {}   Last: {}   Played: {:3d}h {:2d}m\n",
                 GET_PLATINUM(vict), GET_GOLD(vict), GET_SILVER(vict), GET_COPPER(vict), GET_BANK_PLATINUM(vict),
                 GET_BANK_GOLD(vict), GET_BANK_SILVER(vict), GET_BANK_COPPER(vict), GET_EXP(vict), GET_ALIGNMENT(vict),
                 buf1, buf2, (int)(vict->player.time.played / 3600), (int)(vict->player.time.played / 60 % 60));
@@ -1671,7 +1675,7 @@ void do_show_file(CharData *ch, char *argument) {
     /* open the requested file */
     if (!(file = fopen(fields[i].path, "r"))) {
         sprintf(buf, "SYSERR: Error opening file %s using 'file' command.", fields[i].path);
-        mudlog(buf, BRF, LVL_IMPL, true);
+        log(LogSeverity::Warn, LVL_IMPL, buf);
         return;
     }
 
@@ -1693,7 +1697,7 @@ void do_show_file(CharData *ch, char *argument) {
     /* close and re-open */
     if (!(file = fopen(fields[i].path, "r"))) {
         sprintf(buf2, "SYSERR: Error opening file %s using 'file' command.", fields[i].path);
-        mudlog(buf2, BRF, LVL_IMPL, true);
+        log(LogSeverity::Warn, LVL_IMPL, buf2);
         return;
     }
 
@@ -1772,8 +1776,8 @@ void do_show_spell(CharData *ch, int spellnum) {
     send_to_char(buf, ch);
 
     /* Stance */
-    char_printf(ch, "Min pos     : %s\n", position_types[spell->minpos]);
-    char_printf(ch, "Fighting?   : %s\n", spell->fighting_ok ? "&1Yes&0" : "No");
+    char_printf(ch, "Min pos     : {}\n", position_types[spell->minpos]);
+    char_printf(ch, "Fighting?   : {}\n", spell->fighting_ok ? "&1Yes&0" : "No");
 
     /* Targets */
     sprintf(buf, "Targets     :");
@@ -1955,12 +1959,12 @@ void do_show_skill(CharData *ch, char *argument) {
 void do_show_date_names(CharData *ch, char *argument) {
     int i;
 
-    pprintf(ch, "Day names:\n");
+    paging_printf(ch, "Day names:\n");
     for (i = 0; i < DAYS_PER_WEEK; ++i)
-        pprintf(ch, "  %d - %s\n", i + 1, weekdays[i]);
-    pprintf(ch, "\nMonth names:\n");
+        paging_printf(ch, "  {:d} - {}\n", i + 1, weekdays[i]);
+    paging_printf(ch, "\nMonth names:\n");
     for (i = 0; i < MONTHS_PER_YEAR; ++i)
-        pprintf(ch, "  %d - %s\n", i + 1, month_name[i]);
+        paging_printf(ch, "  {:d} - {}\n", i + 1, month_name[i]);
 
     start_paging(ch);
 }
@@ -1968,14 +1972,14 @@ void do_show_date_names(CharData *ch, char *argument) {
 void do_show_liquids(CharData *ch, char *argument) {
     int i;
 
-    pprintf(ch,
-            "&uLiquid           &0  &uColor             &0  &u+Drunk&0  "
-            "&u+Full&0  &u-Thirst&0\n");
+    paging_printf(ch,
+                  "&uLiquid           &0  &uColor             &0  &u+Drunk&0  "
+                  "&u+Full&0  &u-Thirst&0\n");
 
     for (i = 0; i < NUM_LIQ_TYPES; ++i)
-        pprintf(ch, "%-17.17s  %-18.18s  %6d  %5d  %7d\n", liquid_types[i].name, liquid_types[i].color_desc,
-                liquid_types[i].condition_effects[DRUNK], liquid_types[i].condition_effects[FULL],
-                liquid_types[i].condition_effects[THIRST]);
+        paging_printf(ch, "{:<17s}  {:<18s}  {:6d}  {:5d}  {:7d}\n", liquid_types[i].name, liquid_types[i].color_desc,
+                      liquid_types[i].condition_effects[DRUNK], liquid_types[i].condition_effects[FULL],
+                      liquid_types[i].condition_effects[THIRST]);
 
     start_paging(ch);
 }
@@ -2068,9 +2072,9 @@ void reboot_info(CharData *ch) {
     m = ((reboot_pulse - global_pulse) % (3600 * PASSES_PER_SEC)) / (60 * PASSES_PER_SEC);
     s = ((reboot_pulse - global_pulse) % (60 * PASSES_PER_SEC)) / PASSES_PER_SEC;
     if (reboot_auto)
-        char_printf(ch, "Reboot in %02d:%02d:%02d.\n", h, m, s);
+        char_printf(ch, "Reboot in {:02d}:{:02d}:{:02d}.\n", h, m, s);
     else
-        char_printf(ch, "Automatic rebooting is &1off&0; would reboot in %02d:%02d:%02d.\n", h, m, s);
+        char_printf(ch, "Automatic rebooting is &1off&0; would reboot in {:02d}:{:02d}:{:02d}.\n", h, m, s);
 
     if (num_hotboots > 0) {
         char_printf(ch, "%d hotboot%s since last shutdown.  Hotboot history:\n", num_hotboots,
@@ -2095,9 +2099,9 @@ ACMD(do_world) {
             git_hash = fmt::format(" Git Hash: {}", git_hash);
     }
     std::string bd{get_build_date()};
-    char_printf(ch, "Build: %d  Compiled: %s %s\n", get_build_number(), bd.c_str(), git_hash.c_str());
+    char_printf(ch, "Build: {:d}  Compiled: {} {}\n", get_build_number(), bd.c_str(), git_hash.c_str());
     do_date(ch, nullptr, 0, SCMD_UPTIME);
-    char_printf(ch, "There are %5d rooms in %3d zones online.\n", top_of_world + 1, top_of_zone_table + 1);
+    char_printf(ch, "There are {:5d} rooms in {:3d} zones online.\n", top_of_world + 1, top_of_zone_table + 1);
 
     if (GET_LEVEL(ch) >= LVL_REBOOT_VIEW)
         reboot_info(ch);
@@ -2122,7 +2126,7 @@ void infodump_spellassign(CharData *ch, char *argument) {
     }
 
     if (!(fl = fopen(fname, "w"))) {
-        char_printf(ch, "ERROR: Could not write file %s.\n", fname);
+        char_printf(ch, "ERROR: Could not write file {}.\n", fname);
         return;
     }
 

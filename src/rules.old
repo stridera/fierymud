@@ -21,6 +21,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* our own little private buffer, similar to what is declared in db.c */
 static char arg[MAX_STRING_LENGTH];

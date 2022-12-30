@@ -12,6 +12,7 @@
 #include "conf.hpp"
 #include "db.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -130,20 +131,20 @@ void ispell_check(DescriptorData *d, const char *word) {
     case '*':
     case '+': /* root */
     case '-': /* compound */
-        desc_printf(d, "'%s' is spelled correctly.\n", word);
+        desc_printf(d, "'{}' is spelled correctly.\n", word);
         break;
     case '&': /* miss */
     case '?': /* guess */
-        desc_printf(d, "'%s' not found.  Possible words: %s", word, strchr(pc, ':') + 1);
+        desc_printf(d, "'{}' not found.  Possible words: {}", word, strchr(pc, ':') + 1);
         break;
     case '#': /* none */
-        desc_printf(d, "Unable to find anything that matches '%s'.\n", word);
+        desc_printf(d, "Unable to find anything that matches '{}'.\n", word);
         break;
     case '\n': /* no response at all */
         desc_printf(d, "No response from spellchecker.\n");
         break;
     default:
-        desc_printf(d, "Unknown output from spellchecker: %s\n", pc);
+        desc_printf(d, "Unknown output from spellchecker: {}\n", pc);
     }
 }
 
@@ -168,7 +169,7 @@ ACMD(do_ispell) {
         }
         for (pc = argument + 1; *pc; ++pc)
             if (!isalpha(*pc)) {
-                char_printf(ch, "'%s' contains non-alphabetic character: %c\n", argument, *pc);
+                char_printf(ch, "'{}' contains non-alphabetic character: {:c}\n", argument, *pc);
                 return;
             }
         fprintf(ispell_out, "*%s\n", argument + 1);

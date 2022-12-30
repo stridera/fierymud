@@ -29,6 +29,7 @@
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "movement.hpp"
@@ -379,7 +380,7 @@ int sorcerer_single_target(CharData *ch, int spell, int power) {
     double exponent;
 
     if (!get_spell_assignment_circle(ch, spell, &circle, &minlevel)) {
-        log("SYSERR: Cannot get circle/level of spell %d for %s", spell, GET_NAME(ch));
+        log("SYSERR: Cannot get circle/level of spell {:d} for {}", spell, GET_NAME(ch));
         return 1;
     }
 
@@ -402,7 +403,7 @@ int sorcerer_single_target(CharData *ch, int spell, int power) {
      */
     exponent = 1.2 + 0.3 * minlevel / 100.0 + (power - minlevel) * (0.004 * minlevel - 0.2) / 100.0;
 
-    log("sorcerer_single_target: exponent =%0.2f power=%d minlevel=%d\n", exponent, power, minlevel);
+    log("sorcerer_single_target: exponent ={:0.2f} power={:d} minlevel={:d}\n", exponent, power, minlevel);
 
     switch (circle) {
     case 1:
@@ -1335,7 +1336,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_COLDSHIELD:
 
         if (EFF_FLAGGED(ch, EFF_FIRESHIELD)) {
-            char_printf(ch, "The shield of fire around %s body negates your spell.\n",
+            char_printf(ch, "The shield of fire around {} body negates your spell.\n",
                         ch == victim ? "your" : HSHR(victim));
             return CAST_RESULT_CHARGE;
         }
@@ -1949,7 +1950,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_FIRESHIELD:
 
         if (EFF_FLAGGED(ch, EFF_COLDSHIELD)) {
-            char_printf(ch, "The shield of ice around %s body negates your spell.\n",
+            char_printf(ch, "The shield of ice around {} body negates your spell.\n",
                         ch == victim ? "your" : HSHR(victim));
             return CAST_RESULT_CHARGE;
         }
@@ -3903,9 +3904,7 @@ CharData *load_summoned_mob(int vnum, int destroom) {
     CharData *mob;
     int r_num;
     if ((r_num = real_mobile(vnum)) < 0) {
-        sprintf(buf, "SYSERR: tried to summon mob with nonexistent vnum %d", vnum);
-        log("%s", buf);
-        ;
+        log("SYSERR: tried to summon mob with nonexistent vnum {}", vnum);
         return nullptr;
     }
     mob = read_mobile(r_num, REAL);
@@ -4724,9 +4723,7 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         to_room = "$n's inspiration chills suddenly.";
         break;
     default:
-        sprintf(buf, "SYSERR: unknown spellnum %d passed to mag_unaffect", spellnum);
-        log("%s", buf);
-        ;
+        log("SYSERR: unknown spellnum {:d} passed to mag_unaffect", spellnum);
         return CAST_RESULT_CHARGE;
     }
 
@@ -4998,9 +4995,7 @@ int mag_creation(int skill, CharData *ch, int spellnum) {
 
     if (!(tobj = read_object(z, VIRTUAL))) {
         send_to_char("I seem to have goofed.\n", ch);
-        sprintf(buf, "SYSERR: spell_creations, spell %d, obj %d: obj not found", spellnum, z);
-        log("%s", buf);
-        ;
+        log("SYSERR: spell_creations, spell {:d}, obj {:d}: obj not found", spellnum, z);
         return 0;
     }
     if (give_char)
@@ -5069,12 +5064,7 @@ int mag_room(int skill, CharData *ch, int spellnum) {
         /* add more room spells continual here */
 
     default:
-        sprintf(buf,
-                "SYSERR: unknown spellnum %d "
-                "passed to mag_unaffect",
-                spellnum);
-        log("%s", buf);
-        ;
+        log("SYSERR: unknown spellnum {:d} passed to mag_unaffect", spellnum);
         return CAST_RESULT_CHARGE;
     }
 

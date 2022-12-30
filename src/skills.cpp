@@ -21,6 +21,7 @@
 #include "events.hpp"
 #include "fight.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "races.hpp"
 #include "structs.hpp"
@@ -1523,23 +1524,17 @@ void skill_assign(int skillnum, int class_num, int level) {
     int okay = true;
 
     if (skillnum < 0 || skillnum > TOP_SKILL_DEFINE) {
-        sprintf(buf, "SYSERR: attempting assign to illegal talent num %d", skillnum);
-        log("%s", buf);
-        ;
+        log("SYSERR: attempting assign to illegal talent num {:d}", skillnum);
         return;
     }
 
     if (class_num < 0 || class_num >= NUM_CLASSES) {
-        sprintf(buf, "SYSERR: assigning '%s' to illegal class_num %d", skill_name(skillnum), class_num);
-        log("%s", buf);
-        ;
+        log("SYSERR: assigning '{}' to illegal class_num {:d}", skill_name(skillnum), class_num);
         okay = false;
     }
 
     if (level < 1 || level > LVL_IMPL) {
-        sprintf(buf, "SYSERR: assigning '%s' to illegal level %d", skill_name(skillnum), level);
-        log("%s", buf);
-        ;
+        log("SYSERR: assigning '{}' to illegal level {:d}", skill_name(skillnum), level);
         okay = false;
     }
 

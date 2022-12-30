@@ -17,6 +17,7 @@
 #include "constants.hpp"
 #include "db.hpp"
 #include "genzon.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "objects.hpp"
 #include "olc.hpp"
@@ -161,7 +162,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.zon", ZON_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new zone file", BRF, LVL_HEAD_B, true);
+        log(LogSeverity::Warn, LVL_HEAD_B, "SYSERR: OLC: Can't write new zone file");
         send_to_char("Could not write zone file.\n", ch);
         return;
     }
@@ -171,7 +172,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
     /*. Create Rooms file . */
     sprintf(buf, "%s/%d.wld", WLD_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new world file", BRF, LVL_HEAD_B, true);
+        log(LogSeverity::Warn, LVL_HEAD_B, "SYSERR: OLC: Can't write new world file");
         send_to_char("Could not write world file.\n", ch);
         return;
     }
@@ -183,7 +184,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.mob", MOB_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new mob file", BRF, LVL_HEAD_B, true);
+        log(LogSeverity::Warn, LVL_HEAD_B, "SYSERR: OLC: Can't write new mob file");
         send_to_char("Could not write mobile file.\n", ch);
         return;
     }
@@ -195,7 +196,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.obj", OBJ_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new obj file", BRF, LVL_HEAD_B, true);
+        log(LogSeverity::Warn, LVL_HEAD_B, "SYSERR: OLC: Can't write new obj file");
         send_to_char("Could not write object file.\n", ch);
         return;
     }
@@ -207,7 +208,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.shp", SHP_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new shop file", BRF, LVL_HEAD_B, true);
+        log(LogSeverity::Warn, LVL_HEAD_B, "SYSERR: OLC: Can't write new shop file");
         send_to_char("Could not write shop file.\n", ch);
         return;
     }
@@ -219,7 +220,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      */
     sprintf(buf, "%s/%d.trg", TRG_PREFIX, vzone_num);
     if (!(fp = fopen(buf, "w"))) {
-        mudlog("SYSERR: OLC: Can't write new trigger file", BRF, LVL_IMPL, true);
+        log(LogSeverity::Warn, LVL_IMPL, "SYSERR: OLC: Can't write new trigger file");
         send_to_char("Could not write trigger file.\n", ch);
         return;
     }
@@ -298,7 +299,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      */
 
     sprintf(buf, "OLC: %s creates new zone #%d", GET_NAME(ch), vzone_num);
-    mudlog(buf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+    log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
     send_to_char("Zone created successfully.\n", ch);
 
     return;
@@ -342,12 +343,10 @@ void zedit_create_index(int znum, char *type) {
     sprintf(new_name, "%s/newindex", prefix);
 
     if (!(oldfile = fopen(old_name, "r"))) {
-        sprintf(buf, "SYSERR: OLC: Failed to open %s", buf);
-        mudlog(buf, BRF, LVL_HEAD_B, true);
+        log(LogSeverity::Warn, LVL_HEAD_B, "SYSERR: OLC: Failed to open {}", buf);
         return;
     } else if (!(newfile = fopen(new_name, "w"))) {
-        sprintf(buf, "SYSERR: OLC: Failed to open %s", buf);
-        mudlog(buf, BRF, LVL_HEAD_B, true);
+        log(LogSeverity::Warn, LVL_HEAD_B, "SYSERR: OLC: Failed to open {}", buf);
         return;
     }
 
@@ -455,8 +454,8 @@ void zedit_save_to_disk(int zone_num) {
 
     sprintf(fname, "%s/%d.new", ZON_PREFIX, zone_table[zone_num].number);
     if (!(zfile = fopen(fname, "w"))) {
-        sprintf(buf, "SYSERR: OLC: zedit_save_to_disk:  Can't write zone %d.", zone_table[zone_num].number);
-        mudlog(buf, BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_save_to_disk:  Can't write zone {:d}.",
+            zone_table[zone_num].number);
         return;
     }
 
@@ -541,8 +540,8 @@ void zedit_save_to_disk(int zone_num) {
              */
             continue;
         default:
-            sprintf(buf, "SYSERR: OLC: z_save_to_disk(): Unknown cmd '%c' - NOT saving", ZCMD.command);
-            mudlog(buf, BRF, LVL_GOD, true);
+            log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: z_save_to_disk(): Unknown cmd '{:c}' - NOT saving",
+                ZCMD.command);
             continue;
         }
         if (strchr("MOPEDGR", ZCMD.command))
@@ -590,10 +589,8 @@ void add_cmd_to_list(ResetCommand **list, ResetCommand *newcmd, int pos) {
     for (i = 0, l = 0; i <= count; i++) {
         newlist[i] = ((i == pos) ? *newcmd : (*list)[l++]);
 #if defined(DEBUG)
-        sprintf(buf, "add_cmd_to_list: added %c %d %d %d %d", newlist[i].command, newlist[i].arg1, newlist[i].arg2,
-                newlist[i].arg3, newlist[i].line);
-        log("%s", buf);
-        ;
+        log("add_cmd_to_list: added {:c} {:d} {:d} {:d} {:d}", newlist[i].command, newlist[i].arg1, newlist[i].arg2,
+            newlist[i].arg3, newlist[i].line);
 #endif
     }
 
@@ -639,10 +636,8 @@ void remove_cmd_from_list(ResetCommand **list, int pos) {
         }
 #if defined(DEBUG)
         else
-            sprintf(buf, "remove_cmd_from_list: deleted %c %d %d %d %d", (*list)[i].command, (*list)[i].arg1,
-                    (*list)[i].arg2, (*list)[i].arg3, (*list)[i].line);
-        log("%s", buf);
-        ;
+            log("remove_cmd_from_list: deleted {:c} {:d} {:d} {:d} {:d}", (*list)[i].command, (*list)[i].arg1,
+                (*list)[i].arg2, (*list)[i].arg3, (*list)[i].line);
 #endif
     }
     /*
@@ -897,7 +892,7 @@ void zedit_disp_arg1(DescriptorData *d) {
          * We should never get here  .
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_arg1(): Help!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_disp_arg1(): Help!");
         send_to_char("Oops...\n", d->character);
         return;
     }
@@ -941,7 +936,7 @@ void zedit_disp_arg2(DescriptorData *d) {
          * We should never get here, but just in case...
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_arg2(): Help!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_disp_arg2(): Help!");
         send_to_char("Oops...\n", d->character);
         return;
     }
@@ -998,7 +993,7 @@ void zedit_disp_arg3(DescriptorData *d) {
          * We should never get here, just in case.
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_arg3(): Help!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_disp_arg3(): Help!");
         send_to_char("Oops...\n", d->character);
         return;
     }
@@ -1024,7 +1019,7 @@ void zedit_disp_sarg(DescriptorData *d) {
          * We should never get here, just in case.
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_disp_sarg(): Help!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_disp_sarg(): Help!");
         send_to_char("Oops...\n", d->character);
         return;
     }
@@ -1048,8 +1043,8 @@ void zedit_parse(DescriptorData *d, char *arg) {
             send_to_char("Saving zone info in memory.\n", d->character);
             zedit_save_internally(d);
             sprintf(buf, "OLC: %s edits zone info for room %d.", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
-            /* FALL THROUGH */
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+        /* FALL THROUGH */
         case 'n':
         case 'N':
             cleanup_olc(d, CLEANUP_ALL);
@@ -1289,7 +1284,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
              * We should never get here.
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG1: Ack!", BRF, LVL_GOD, true);
+            log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_parse(): case ARG1: Ack!");
             send_to_char("Oops...\n", d->character);
             break;
         }
@@ -1359,7 +1354,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
              * We should never get here, but just in case...
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG2: Ack!", BRF, LVL_GOD, true);
+            log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_parse(): case ARG2: Ack!");
             send_to_char("Oops...\n", d->character);
             break;
         }
@@ -1415,7 +1410,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
              * We should never get here, but just in case...
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG3: Ack!", BRF, LVL_GOD, true);
+            log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_parse(): case ARG3: Ack!");
             send_to_char("Oops...\n", d->character);
             break;
         }
@@ -1440,7 +1435,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
              * We should never get here, but just in case...
              */
             cleanup_olc(d, CLEANUP_ALL);
-            mudlog("SYSERR: OLC: zedit_parse(): case ARG3: Ack!", BRF, LVL_GOD, true);
+            log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_parse(): case ARG3: Ack!");
             send_to_char("Oops...\n", d->character);
             break;
         }
@@ -1544,7 +1539,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
     default:
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: zedit_parse(): Reached default case!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: zedit_parse(): Reached default case!");
         send_to_char("Oops...\n", d->character);
         break;
     }

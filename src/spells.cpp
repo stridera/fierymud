@@ -28,6 +28,7 @@
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "messages.hpp"
@@ -1792,9 +1793,7 @@ ASPELL(spell_relocate) {
     if (victim->in_room == -1) {
         send_to_char("You failed.\n", ch);
         WAIT_STATE(ch, PULSE_VIOLENCE);
-        sprintf(buf, "SYSERR: %s tried to relocate to %s in room -1.", GET_NAME(ch), GET_NAME(victim));
-        log("%s", buf);
-        ;
+        log("SYSERR: {} tried to relocate to {} in room -1.", GET_NAME(ch), GET_NAME(victim));
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
     if (GET_LEVEL(victim) >= LVL_IMMORT && GET_LEVEL(ch) < GET_LEVEL(victim)) {
@@ -2365,7 +2364,7 @@ ASPELL(spell_magical_wall) {
             send_to_char("That's far too exotic a material!\n", ch);
             return 0;
         }
-        sprintf(material, buf);
+        strcpy(material, buf);
         if (!*buf || !strcasecmp("stone", buf)) {
             sprintf(material, "stone");
             sprintf(mcolor, "&9&b");
@@ -2701,8 +2700,8 @@ ASPELL(spell_summon) {
             sprintf(buf, "You failed because %s has summon protection on.\n", GET_NAME(victim));
             send_to_char(buf, ch);
 
-            sprintf(buf, "%s failed summoning %s to %s.", GET_NAME(ch), GET_NAME(victim), world[ch->in_room].name);
-            mudlog(buf, BRF, LVL_IMMORT, true);
+            log(LogSeverity::Warn, LVL_IMMORT, "{} failed summoning {} to {}.", GET_NAME(ch), GET_NAME(victim),
+                world[ch->in_room].name);
             return CAST_RESULT_CHARGE;
         }
     }
@@ -2874,21 +2873,21 @@ ASPELL(spell_summon_corpse) {
     o_zone = world[ch->in_room].zone;
     c_zone = world[obj->in_room].zone;
     if (o_zone != c_zone) {
-        char_printf(ch, "%s is much too far away for your magic to reach it.\n", obj->short_description);
+        char_printf(ch, "{} is much too far away for your magic to reach it.\n", obj->short_description);
         return CAST_RESULT_CHARGE;
     }
 
     /* The spell also requires consent. */
     if (!has_corpse_consent(ch, obj)) {
         send_to_char("Perhaps with consent. . . \n", ch);
-        mprintf(L_STAT | L_NOFILE, LVL_IMMORT, "%s tried to summon %s without consent!", GET_NAME(ch),
-                obj->short_description);
+        log(LogSeverity::Stat, LVL_IMMORT, "{} tried to summon {} without consent!", GET_NAME(ch),
+            obj->short_description);
         return CAST_RESULT_CHARGE;
     }
 
     /* If they're in the same room, don't bother. */
     if (obj->in_room == ch->in_room) {
-        char_printf(ch, "%s is already here!\n", obj->short_description);
+        char_printf(ch, "{} is already here!\n", obj->short_description);
         return CAST_RESULT_CHARGE;
     }
 
@@ -2922,14 +2921,14 @@ ASPELL(spell_shift_corpse) {
     /* And we have permission */
     if (!has_corpse_consent(ch, obj)) {
         send_to_char("Perhaps with consent. . . \n", ch);
-        mprintf(L_STAT | L_NOFILE, LVL_IMMORT, "%s tried to summon %s without consent!", GET_NAME(ch),
-                obj->short_description);
+        log(LogSeverity::Stat, LVL_IMMORT, "{} tried to summon {} without consent!", GET_NAME(ch),
+            obj->short_description);
         return CAST_RESULT_CHARGE;
     }
 
     /* Make sure it's not already there */
     if (obj->in_room == ch->in_room) {
-        char_printf(ch, "%s is already here!\n", obj->short_description);
+        char_printf(ch, "{} is already here!\n", obj->short_description);
         return CAST_RESULT_CHARGE;
     }
 
@@ -2941,7 +2940,7 @@ ASPELL(spell_shift_corpse) {
     obj_to_room(obj, ch->in_room);
 
     /* Success to the new room */
-    char_printf(ch, "The hand of &9&bdeath&0 delivers %s to your feet.\n", obj->short_description);
+    char_printf(ch, "The hand of &9&bdeath&0 delivers {} to your feet.\n", obj->short_description);
 
     act("The hand of &9&bdeath&0 delivers $p to $n's feet.", false, ch, obj, 0, TO_ROOM);
 
@@ -3232,7 +3231,7 @@ ASPELL(spell_fear) {
         }
     } else {
         sprintf(buf, "SYSERR: spell_fear() got invalid spellnum %d", spellnum);
-        mudlog(buf, BRF, LVL_GOD, false);
+        log(LogSeverity::Warn, LVL_GOD, buf);
         return 0;
     }
 

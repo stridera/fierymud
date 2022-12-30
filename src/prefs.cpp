@@ -20,6 +20,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 #define TOG_OFF 0
 #define TOG_ON 1

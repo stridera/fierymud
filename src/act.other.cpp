@@ -28,6 +28,7 @@
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "messages.hpp"
@@ -236,7 +237,7 @@ ACMD(do_subclass) {
         sprintf(buf, "%s finished subclass quest \"%s\" with unknown target subclass \"%s\"", GET_NAME(ch),
                 all_quests[real_quest(quest->quest_id)].quest_name,
                 get_quest_variable(ch, all_quests[real_quest(quest->quest_id)].quest_name, "subclass_name"));
-        log("%s", buf);
+        log(buf);
         send_to_char("There is an error in your subclass quest.  Ask a god to reset it.\n", ch);
         return;
     }
@@ -265,9 +266,9 @@ ACMD(do_subclass) {
         /* Hubis crap */
         check_regen_rates(ch);
 
-        char_printf(ch, "You have successfully subclassed as %s!\n", with_indefinite_article(CLASS_FULL(ch)));
-        all_except_printf(ch, "%s has subclassed to %s!\n", GET_NAME(ch), CLASS_FULL(ch));
-        mprintf(L_STAT, LVL_GOD, "%s has subclassed to %s", GET_NAME(ch), CLASS_FULL(ch));
+        char_printf(ch, "You have successfully subclassed as {}!\n", with_indefinite_article(CLASS_FULL(ch)));
+        all_except_printf(ch, "{} has subclassed to {}!\n", GET_NAME(ch), CLASS_FULL(ch));
+        log(LogSeverity::Stat, LVL_GOD, "{} has subclassed to {}", GET_NAME(ch), CLASS_FULL(ch));
         return;
     }
 
@@ -331,7 +332,7 @@ ACMD(do_quit) {
     act("$n has left the game.", true, ch, 0, 0, TO_ROOM);
 
     sprintf(buf, "%s has quit the game.", GET_NAME(ch));
-    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
     send_to_char("Goodbye, friend.  Come back soon!\n", ch);
 
     /* transfer objects to room */
@@ -662,7 +663,7 @@ ACMD(do_shapechange) {
                 "SYSERR: %s tried to shapechange into nonexistent "
                 "mob prototype V#%d",
                 GET_NAME(ch), creatures[index].vnum);
-        mudlog(buf, BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, buf);
         return;
     }
 
@@ -770,8 +771,8 @@ ACMD(do_save) {
         if (!strcasecmp(arg, "all")) {
             auto_save_all();
             char_printf(ch, "You have saved all players in the realm.\n");
-            mprintf(L_STAT, MAX(GET_LEVEL(ch), GET_INVIS_LEV(ch)), "(GC) %s has saved all players in the realm.",
-                    GET_NAME(ch));
+            log(LogSeverity::Stat, MAX(GET_LEVEL(ch), GET_INVIS_LEV(ch)), "(GC) {} has saved all players in the realm.",
+                GET_NAME(ch));
             return;
         } else if (*arg)
             /*  try to locate this player within the realm */
@@ -785,7 +786,7 @@ ACMD(do_save) {
         return;
 
     if (!target) {
-        char_printf(ch, "No player by the name of %s is currently in the game.\n", arg);
+        char_printf(ch, "No player by the name of {} is currently in the game.\n", arg);
         return;
     }
 
@@ -796,14 +797,14 @@ ACMD(do_save) {
 
     if (cmd) {
         if (ch == target)
-            char_printf(ch, "Saving %s.\n", GET_NAME(ch));
+            char_printf(ch, "Saving {}.\n", GET_NAME(ch));
         else
-            char_printf(ch, "You have force-saved %s.\n", GET_NAME(target));
+            char_printf(ch, "You have force-saved {}.\n", GET_NAME(target));
     }
     save_player(target);
 
     if (ch != target)
-        mprintf(L_STAT, GET_LEVEL(ch), "(GC) %s has saved %s to file.", GET_NAME(ch), GET_NAME(target));
+        log(LogSeverity::Stat, GET_LEVEL(ch), "(GC) {} has saved {} to file.", GET_NAME(ch), GET_NAME(target));
 }
 
 /* generic function for commands which are normally overridden by
@@ -959,7 +960,7 @@ EVENTFUNC(camp_event) {
 
     sprintf(buf, "%s has camped in %s (%d).", GET_NAME(ch), world[ch->in_room].name, world[ch->in_room].vnum);
 
-    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
     REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
     remove_player_from_game(ch, QUIT_CAMP);
     return EVENT_FINISHED;
@@ -1295,7 +1296,7 @@ ACMD(do_steal) {
                 GET_PLATINUM(ch) += coins[PLATINUM];
                 GET_PLATINUM(vict) -= coins[PLATINUM];
                 statemoney(buf, coins);
-                char_printf(ch, "Woohoo! You stole %s.\n", buf);
+                char_printf(ch, "Woohoo! You stole {}.\n", buf);
             } else {
                 send_to_char("You couldn't get any coins...\n", ch);
             }
@@ -1351,10 +1352,10 @@ ACMD(do_title) {
         send_to_char("You can't title yourself -- you shouldn't have abused it!\n", ch);
     else if (GET_LEVEL(ch) >= LVL_IMMORT) {
         if (strlen(argument) > MAX_TITLE_LENGTH)
-            char_printf(ch, "Sorry, titles can't be longer than %d characters.\n", MAX_TITLE_LENGTH);
+            char_printf(ch, "Sorry, titles can't be longer than {:d} characters.\n", MAX_TITLE_LENGTH);
         else {
             set_title(ch, argument);
-            char_printf(ch, "Okay, you're now %s %s.\n", GET_NAME(ch), GET_TITLE(ch));
+            char_printf(ch, "Okay, you're now {} {}.\n", GET_NAME(ch), GET_TITLE(ch));
             save_player_char(ch);
         }
     } else if (!*argument) {
@@ -1375,11 +1376,11 @@ ACMD(do_title) {
                         "  0) <no title>\n");
             if (GET_PERM_TITLES(ch))
                 while (GET_PERM_TITLES(ch)[titles]) {
-                    char_printf(ch, "  %d) %s\n", titles + 1, GET_PERM_TITLES(ch)[titles]);
+                    char_printf(ch, "  {:d}) {}\n", titles + 1, GET_PERM_TITLES(ch)[titles]);
                     ++titles;
                 }
             if (GET_CLAN(ch) && IS_CLAN_MEMBER(ch))
-                char_printf(ch, "  %d) %s %s\n", ++titles, GET_CLAN_TITLE(ch), GET_CLAN(ch)->abbreviation);
+                char_printf(ch, "  {:d}) {} {}\n", ++titles, GET_CLAN_TITLE(ch), GET_CLAN(ch)->abbreviation);
             char_printf(ch, "Use 'title <number>' to switch your title.\n");
         }
     } else if (!is_positive_integer(argument))
@@ -1830,7 +1831,7 @@ ACMD(do_group) {
 static void split_share(CharData *giver, CharData *receiver, int coins[]) {
     if (coins[PLATINUM] || coins[GOLD] || coins[SILVER] || coins[COPPER]) {
         statemoney(buf, coins);
-        char_printf(receiver, "You %s %s.\n", giver == receiver ? "keep" : "receive", buf);
+        char_printf(receiver, "You {} {}.\n", giver == receiver ? "keep" : "receive", buf);
     } else
         send_to_char("You forego your share.\n", receiver);
     GET_PLATINUM(receiver) += coins[PLATINUM];
@@ -1945,7 +1946,7 @@ ACMD(do_split) {
 
     for (i = 0; i < NUM_COIN_TYPES; ++i)
         if (coins[i] > GET_COINS(ch)[i]) {
-            char_printf(ch, "You don't have enough %s!\n", COIN_NAME(i));
+            char_printf(ch, "You don't have enough {}!\n", COIN_NAME(i));
             return;
         }
 
@@ -1968,7 +1969,7 @@ ACMD(do_use) {
         case SCMD_RECITE:
         case SCMD_QUAFF:
             if (!(mag_item = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg)))) {
-                char_printf(ch, "You don't seem to have %s %s.\n", AN(arg), arg);
+                char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
                 return;
             }
             break;
@@ -1976,7 +1977,7 @@ ACMD(do_use) {
             /* Item isn't in first hand, now check the second. */
             mag_item = GET_EQ(ch, WEAR_HOLD2);
             if (!mag_item || !isname(arg, mag_item->name)) {
-                char_printf(ch, "You don't seem to be holding %s %s.\n", AN(arg), arg);
+                char_printf(ch, "You don't seem to be holding {} {}.\n", AN(arg), arg);
                 return;
             }
             break;
@@ -2161,7 +2162,7 @@ ACMD(do_gen_write) {
         }
         get_pfilename(arg, buf, NOTES_FILE);
         filename = buf;
-        char_printf(ch, "%s\n", buf);
+        char_printf(ch, "{}\n", buf);
         break;
     case SCMD_BUG:
         filename = BUG_FILE;
@@ -2190,7 +2191,7 @@ ACMD(do_gen_write) {
         return;
     }
 
-    mprintf(L_STAT, LVL_IMMORT, "%s by %s [%d]: %s", idea_types[subcmd], GET_NAME(ch), CH_RVNUM(ch), argument);
+    log(LogSeverity::Stat, LVL_IMMORT, "%s by %s [%d]: %s", idea_types[subcmd], GET_NAME(ch), CH_RVNUM(ch), argument);
 
     if (stat(filename, &fbuf) >= 0 && fbuf.st_size >= max_filesize) {
         send_to_char("Sorry, the file is full right now.. try again later.\n", ch);
@@ -2345,7 +2346,7 @@ ACMD(do_summon_mount) {
                 strcpy(buf1, "hour");
             else
                 sprintf(buf1, "%d hours", i);
-            char_printf(ch, "You must wait another %s before you can summon your mount.\n", buf1);
+            char_printf(ch, "You must wait another {} before you can summon your mount.\n", buf1);
             return;
         }
     }

@@ -19,6 +19,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 const char *cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
 

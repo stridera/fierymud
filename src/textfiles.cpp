@@ -18,6 +18,7 @@
 #include "editor.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "modify.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
@@ -101,16 +102,16 @@ ACMD(do_reload) {
                 send_to_char("xnames file reloaded.\n", ch);
                 return;
             } else if (!found) {
-                char_printf(ch, "Unrecognized text file name '%s'.\n", arg);
+                char_printf(ch, "Unrecognized text file name '{}'.\n", arg);
             }
         }
 
     if (!reload_help && !HAS_FLAGS(files, NUM_TEXT_FILES)) {
         send_to_char("No known text files given.  Text files available:\n", ch);
         for (i = 0; i < NUM_TEXT_FILES; ++i)
-            char_printf(ch, "%-11.11s%s", text_files[i].name, !((i + COLS) % 7) ? "\n" : "");
-        char_printf(ch, "xhelp      %s", !(i % COLS) ? "\n" : "");
-        char_printf(ch, "xnames      %s", !(i % COLS) ? "\n" : "");
+            char_printf(ch, "{:<11s}{}", text_files[i].name, !((i + COLS) % 7) ? "\n" : "");
+        char_printf(ch, "xhelp      {}", !(i % COLS) ? "\n" : "");
+        char_printf(ch, "xnames      {}", !(i % COLS) ? "\n" : "");
         if (i % COLS)
             char_printf(ch, "\n");
         return;
@@ -120,7 +121,7 @@ ACMD(do_reload) {
         if (IS_FLAGGED(files, i)) {
             file_to_string_alloc(text_files[i].path, &text_files[i].text);
             text_files[i].last_update = file_last_update(text_files[i].path);
-            char_printf(ch, "Reloaded %s text from file.\n", text_files[i].name);
+            char_printf(ch, "Reloaded {} text from file.\n", text_files[i].name);
         }
 
     if (reload_help) {
@@ -146,10 +147,11 @@ static EDITOR_FUNC(text_save) {
     if (edit->command == ED_EXIT_SAVE) {
         if ((fl = fopen(text->path, "w"))) {
             fputs(stripcr(buf1, edit->string), fl);
-            mprintf(L_STAT, LVL_GAMEMASTER, "(GC): %s edits file '%s' in tedit", GET_NAME(d->character), text->path);
+            log(LogSeverity::Stat, LVL_GAMEMASTER, "(GC): {} edits file '{}' in tedit", GET_NAME(d->character),
+                text->path);
             fclose(fl);
         } else
-            mprintf(L_ERROR, LVL_GAMEMASTER, "SYSERR: Can't write file '%s' for tedit", text->path);
+            log(LogSeverity::Error, LVL_GAMEMASTER, "SYSERR: Can't write file '{}' for tedit", text->path);
     }
 
     act("$n stops writing on the large scroll.", true, d->character, 0, 0, TO_ROOM);
@@ -170,7 +172,7 @@ ACMD(do_tedit) {
         send_to_char("Text files available to be edited:\n", ch);
         for (i = 0; i < NUM_TEXT_FILES; ++i)
             if (GET_LEVEL(ch) >= text_files[i].level)
-                char_printf(ch, "%-11.11s%s", text_files[i].name, !((i + 1) % COLS) ? "\n" : "");
+                char_printf(ch, "{:<11s}{}", text_files[i].name, !((i + 1) % COLS) ? "\n" : "");
         if (i == 0)
             char_printf(ch, "None.\n");
         else if (--i % COLS)

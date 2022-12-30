@@ -26,6 +26,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 

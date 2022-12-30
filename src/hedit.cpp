@@ -16,6 +16,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -184,7 +185,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
             index_boot(DB_BOOT_HLP);
 
             sprintf(buf, "OLC: %s edits help for %s.", GET_NAME(d->character), OLC_HELP(d)->keyword);
-            mudlog(buf, CMP, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), true);
+            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), buf);
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_STRUCTS);
             send_to_char("Help saved to memory.\n", d->character);
@@ -284,7 +285,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
 
     case HEDIT_ENTRY:
         /* should never get here */
-        mudlog("SYSERR: Reached HEDIT_ENTRY in hedit_parse", BRF, LVL_ATTENDANT, true);
+        log(LogSeverity::Warn, LVL_ATTENDANT, "SYSERR: Reached HEDIT_ENTRY in hedit_parse");
         break;
     case HEDIT_MIN_LEVEL:
         if (*arg) {

@@ -20,6 +20,7 @@
 #include "directions.hpp"
 #include "genzon.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "olc.hpp"
@@ -40,26 +41,14 @@ void init_objtypes(void) {
     for (i = 0; i < NUM_ITEM_TYPES; ++i) {
         type = &item_types[i];
         if (!type->name || !*type->name) {
-            sprintf(buf, "SYSERR: No name for object type %d in obj_type_def in objects.c", i);
-            log("%s", buf);
-            ;
+            log("SYSERR: No name for object type {:d} in obj_type_def in objects.c", i);
         }
         if (!type->desc || !*type->desc) {
-            sprintf(buf,
-                    "SYSERR: No description for object type %d in obj_type_def in "
-                    "objects.c",
-                    i);
-            log("%s", buf);
-            ;
+            log("SYSERR: No description for object type {:d} in obj_type_def in objects.c", i);
         }
         for (j = 0; j < NUM_VALUES; ++j)
             if (type->value[j].max < type->value[j].min) {
-                sprintf(buf,
-                        "SYSERR: max less than min for %s value %d in obj_type_def in "
-                        "objects.c",
-                        type->name, j);
-                log("%s", buf);
-                ;
+                log("SYSERR: max less than min for {} value {:d} in obj_type_def in objects.c", type->name, j);
             }
     }
 }
@@ -164,8 +153,7 @@ bool delete_object(obj_num rnum) {
     bool save_this_zone;
 
     if (rnum == NOTHING || rnum > top_of_objt) {
-        sprintf(buf, "ERR: delete_object() rnum %d out of range", rnum);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_object() rnum {} out of range", rnum);
         return false;
     }
 
@@ -174,8 +162,7 @@ bool delete_object(obj_num rnum) {
 
     zrnum = find_real_zone_by_room(GET_OBJ_VNUM(obj));
     if (zrnum == -1) {
-        sprintf(buf, "ERR: delete_object() can't identify zone for obj vnum %d", vnum);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_object() can't identify zone for obj vnum {}", vnum);
         return false;
     }
 
@@ -497,11 +484,9 @@ void setup_drinkcon(ObjData *obj, int newliq) {
 
         if (strlen(line) > 4 && line[0] == '*' && line[3] == ' ') {
             if (line[2] != 'e' && line[2] != 'l') {
-                sprintf(buf,
-                        "Error setting up drinkcon %d: expected 'l' or 'e' in adesc, "
-                        "but got #%d",
-                        GET_OBJ_VNUM(obj), line[2]);
-                mudlog(buf, BRF, LVL_IMMORT, true);
+                log(LogSeverity::Warn, LVL_IMMORT,
+                    "Error setting up drinkcon {:d}: expected 'l' or 'e' in adesc, but got #{:d}", GET_OBJ_VNUM(obj),
+                    line[2]);
             } else {
                 if (line[2] == 'l' && GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING) > 0) {
                     /* Processing input line with liquid present */
@@ -533,11 +518,9 @@ void setup_drinkcon(ObjData *obj, int newliq) {
                     REPLACE_OBJ_STR(obj, description, newtext);
                     break;
                 default:
-                    sprintf(buf,
-                            "Error setting up drinkcon %d: expected 'n', 's', or 'l' in "
-                            "adesc, but got #%d",
-                            GET_OBJ_VNUM(obj), line[1]);
-                    mudlog(buf, BRF, LVL_IMMORT, true);
+                    log(LogSeverity::Warn, LVL_IMMORT,
+                        "Error setting up drinkcon %d: expected 'n', 's', or 'l' in adesc, but got #%d",
+                        GET_OBJ_VNUM(obj), line[1]);
                     free(newtext);
                 }
             }
@@ -555,8 +538,9 @@ void liquid_from_container(ObjData *container, int amount) {
         return;
 
     if (GET_OBJ_TYPE(container) != ITEM_DRINKCON) {
-        mprintf(L_ERROR, LVL_IMMORT, "liquid_from_container asked to remove %d oz from %s", amount,
-                GET_OBJ_NAME(container));
+        std::string container_name = GET_OBJ_NAME(container);
+        log(LogSeverity::Error, LVL_IMMORT, "liquid_from_container asked to remove {:d} oz from {}", amount,
+            container_name);
         return;
     }
 
@@ -564,10 +548,10 @@ void liquid_from_container(ObjData *container, int amount) {
     remaining = GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING) - loss;
 
     if (loss == 0) {
-        mprintf(L_ERROR, LVL_IMMORT,
-                "liquid_from_container is not removing any liquid from %s "
-                "(requested: %d)",
-                GET_OBJ_NAME(container), amount);
+        log(LogSeverity::Error, LVL_IMMORT,
+            "liquid_from_container is not removing any liquid from %s "
+            "(requested: %d)",
+            GET_OBJ_NAME(container), amount);
         return;
     }
 
@@ -595,8 +579,8 @@ void liquid_to_container(ObjData *container, int amount, int liquid_type, bool p
     change = final_amount - GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING);
 
     if (change < 0) {
-        mprintf(L_ERROR, LVL_IMMORT, "liquid_to_container is not adding any liquid to %s (requested: %d)",
-                GET_OBJ_NAME(container), amount);
+        log(LogSeverity::Error, LVL_IMMORT, "liquid_to_container is not adding any liquid to %s (requested: %d)",
+            GET_OBJ_NAME(container), amount);
         return;
     }
 

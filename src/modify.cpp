@@ -28,6 +28,7 @@
 #include "screen.hpp"
 #include "skills.hpp"
 // #include "strings.hpp"
+#include "logging.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -513,7 +514,7 @@ void parse_action(int command, char *string, DescriptorData *d) {
         break;
     default:
         write_to_output("Invalid option.\n", d);
-        mudlog("SYSERR: invalid command passed to parse_action", BRF, LVL_HEAD_C, true);
+        log(LogSeverity::Warn, LVL_HEAD_C, "SYSERR: invalid command passed to parse_action");
         return;
     }
 }
@@ -841,13 +842,11 @@ ACMD(do_skillset) {
         send_to_char("You can't set NPC skills.\n", ch);
         return;
     }
-    sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict), skills[skill].name, value);
-    mudlog(buf2, BRF, -1, true);
+    log(LogSeverity::Warn, -1, "{} changed {}'s {} to {:d}.", GET_NAME(ch), GET_NAME(vict), skills[skill].name, value);
 
     SET_SKILL(vict, skill, value);
 
-    sprintf(buf2, "You change %s's %s to %d.\n", GET_NAME(vict), skills[skill].name, value);
-    send_to_char(buf2, ch);
+    char_printf(ch, "You change {}'s {} to {:d}.\n", GET_NAME(vict), skills[skill].name, value);
 }
 
 /******************/
@@ -1001,16 +1000,23 @@ static void paging_addstr(DescriptorData *d, const char *str) {
     }
 }
 
-void paging_printf(CharData *ch, const char *messg, ...) {
-    va_list args;
-
-    if (ch->desc && messg && *messg) {
-        va_start(args, messg);
-        vsnprintf(paging_pbuf, sizeof(paging_pbuf), messg, args);
-        va_end(args);
+void paging_printf(CharData *ch, std::string_view messg) {
+    if (ch->desc && !messg.empty()) {
+        strncpy(paging_pbuf, messg.data(), messg.size());
         paging_addstr(ch->desc, paging_pbuf);
     }
 }
+
+// void paging_printf(CharData *ch, const char *messg, ...) {
+//     va_list args;
+
+//     if (ch->desc && messg && *messg) {
+//         va_start(args, messg);
+//         vsnprintf(paging_pbuf, sizeof(paging_pbuf), messg, args);
+//         va_end(args);
+//         paging_addstr(ch->desc, paging_pbuf);
+//     }
+// }
 
 void desc_paging_printf(DescriptorData *d, const char *messg, ...) {
     va_list args;
@@ -1063,12 +1069,8 @@ paging_line *paging_goto_page(DescriptorData *d, int page) {
     for (i = 0; i < destpage; i++)
         for (j = 0; j < page_length; j++) {
             if (!pl->next) {
-                sprintf(buf,
-                        "SYSERR: Pager tried to go to page %d, but there were only %d "
-                        "lines at %d per page!",
-                        destpage + 1, j + (i + 1) * page_length, page_length);
-                log("%s", buf);
-                ;
+                log("SYSERR: Pager tried to go to page {:d}, but there were only {:d} lines at {:d} per page!",
+                    destpage + 1, j + (i + 1) * page_length, page_length);
             }
             pl = pl->next;
         }

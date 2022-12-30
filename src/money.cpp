@@ -15,6 +15,7 @@
 #include "conf.hpp"
 #include "db.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "objects.hpp"
 #include "screen.hpp"
@@ -256,16 +257,14 @@ ObjData *create_money(const int coins[]) {
     int which;
 
     if (amount <= 0) {
-        mprintf(L_ERROR, LVL_IMMORT, "SYSERR: create_money: Attempt to create %d money.", amount);
+        log(LogSeverity::Error, LVL_IMMORT, "SYSERR: create_money: Attempt to create {:d} money.", amount);
         return nullptr;
     }
 
     for (which = 0; which < NUM_COIN_TYPES; ++which)
         if (coins[which] < 0) {
-            mprintf(L_ERROR, LVL_IMMORT,
-                    "SYSERR: create_money: Attempt to "
-                    "create money with %d %s.",
-                    coins[which], COIN_NAME(which));
+            log(LogSeverity::Error, LVL_IMMORT, "SYSERR: create_money: Attempt to create money with {:d} {}.",
+                coins[which], COIN_NAME(which));
             return nullptr;
         }
 

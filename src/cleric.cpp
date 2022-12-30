@@ -19,6 +19,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "races.hpp"
@@ -77,7 +78,7 @@ bool cleric_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter, action = 0;
 
     if (!victim) {
-        mudlog("No victim in cleric AI action.", NRM, LVL_GOD, false);
+        log("No victim in cleric AI action.");
         return false;
     }
 

@@ -20,6 +20,7 @@
 #include "events.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "money.hpp"
 #include "screen.hpp"
@@ -306,7 +307,7 @@ void perform_get_from_container(GetContext *context, ObjData *obj, ObjData *cont
                 obj_to_char(obj, ch);
                 unhide_object(obj);
                 if (IS_PLR_CORPSE(cont))
-                    log("CORPSE: %s gets %s from %s.", GET_NAME(ch), strip_ansi(obj->short_description),
+                    log("CORPSE: {} gets {} from {}.", GET_NAME(ch), strip_ansi(obj->short_description),
                         cont->short_description);
                 perform_get_check_money(context, obj);
             }
@@ -428,9 +429,9 @@ void get_from_room(CharData *ch, char *name, int amount) {
         if (dotmode == FIND_ALL)
             send_to_char("There doesn't seem to be anything here.\n", ch);
         else
-            char_printf(ch, "You don't see any %s%s here.\n", name, isplural(name) ? "" : "s");
+            char_printf(ch, "You don't see any {}{} here.\n", name, isplural(name) ? "" : "s");
     } else if (!confused && dotmode == FIND_INDIV && amount > 0)
-        char_printf(ch, "There %s only %d %s%s.\n", found == 1 ? "was" : "were", found, name,
+        char_printf(ch, "There {} only {} {}{}.\n", found == 1 ? "was" : "were", found, name,
                     !isplural(name) && found > 1 ? "s" : "");
 }
 
@@ -484,11 +485,11 @@ ACMD(do_get) {
             if (cont_dotmode == FIND_ALL)
                 char_printf(ch, "There are no containers here.\n");
             else
-                char_printf(ch, "There are no %s%s.\n", cont_name, isplural(cont_name) ? "" : "s");
+                char_printf(ch, "There are no {}{}.\n", cont_name, isplural(cont_name) ? "" : "s");
         } else if (amount > 0) {
             amount = orig_amt - amount;
             if (amount > 0)
-                char_printf(ch, "There %s only %d %s%s.\n", amount == 1 ? "was" : "were", amount, obj_name,
+                char_printf(ch, "There {} only {} {}{}.\n", amount == 1 ? "was" : "were", amount, obj_name,
                             !isplural(obj_name) && amount > 1 ? "s" : "");
         }
     }
@@ -524,7 +525,7 @@ ACMD(do_palm) {
     /* No container - palm from room */
     else if (!*arg2) {
         if (!(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg1))))
-            char_printf(ch, "You don't see %s %s here.\n", AN(arg1), arg1);
+            char_printf(ch, "You don't see {} {} here.\n", AN(arg1), arg1);
         else if (!check_get_disarmed_obj(ch, obj->last_to_hold, obj) && can_take_obj(ch, obj) &&
                  get_otrigger(obj, ch)) {
             int people = 0;
@@ -570,7 +571,7 @@ ACMD(do_palm) {
     } else {
         cont_mode = generic_find(arg2, FIND_OBJ_EQUIP | FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tch, &cont);
         if (!cont)
-            char_printf(ch, "You can't find %s %s.\n", AN(arg2), arg2);
+            char_printf(ch, "You can't find {} {}.\n", AN(arg2), arg2);
         else if (GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
             act("$p is not a container.", false, ch, cont, 0, TO_CHAR);
         else if (IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
@@ -611,7 +612,7 @@ ACMD(do_palm) {
                     if (SOLIDCHAR(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                         unhide_object(obj);
                         if (IS_PLR_CORPSE(cont))
-                            log("CORPSE: %s palms %s from %s.", GET_NAME(ch), strip_ansi(obj->short_description),
+                            log("CORPSE: {} palms {} from {}.", GET_NAME(ch), strip_ansi(obj->short_description),
                                 cont->short_description);
                         get_check_money(ch, obj);
                         WAIT_STATE(ch, PULSE_VIOLENCE);

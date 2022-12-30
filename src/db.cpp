@@ -32,6 +32,7 @@
 #include "handler.hpp"
 #include "house.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "mail.hpp"
 #include "math.hpp"
 #include "money.hpp"
@@ -476,13 +477,13 @@ void boot_spell_dams() {
             get_line(ifptr, line);
             /*
                   sprintf(buf, "%s", line);
-                  log("%s", buf);;
+                  log( buf);;
                   get_line(ifptr, line);
                   sprintf(buf, "%s", line);
-                  log("%s", buf);;
+                  log( buf);;
                   get_line(ifptr, line);
                   sprintf(buf, "%s", line);
-                  log("%s", buf);;
+                  log( buf);;
             */
             if (strcasecmp(line, "spell_dam")) {
                 log("Error in booting spell dams");
@@ -898,7 +899,7 @@ void reset_time(void) {
             hemispheres[HEMISPHERE_SOUTHEAST].season = SPRING;
             strcat(buf, "Autumn");
         }
-        log("%s", buf);
+        log(buf);
 
         log("Current Gametime: %dH %dD %dM %dY.", time_info.hours, time_info.day, time_info.month, time_info.year);
 
@@ -1253,11 +1254,11 @@ void check_start_rooms(void) {
             exit(1);
         }
         if ((r_immort_start_room = real_room(immort_start_room)) < 0) {
-            log("%s", "SYSERR:  Warning: Immort start room does not exist.  Change in config.c.");
+            log("SYSERR:  Warning: Immort start room does not exist.  Change in config.c.");
             r_immort_start_room = r_mortal_start_room;
         }
         if ((r_frozen_start_room = real_room(frozen_start_room)) < 0) {
-            log("%s", "SYSERR:  Warning: Frozen start room does not exist.  Change in config.c.");
+            log("SYSERR:  Warning: Frozen start room does not exist.  Change in config.c.");
             r_frozen_start_room = r_mortal_start_room;
         }
 }
@@ -1278,7 +1279,7 @@ void renum_world(void) {
                                     "SYSERR:db.c:renum_world():Invalid exit to NOWHERE for dir "
                                     "%s in room %d",
                                     dirs[door], world[room].vnum);
-                            log("%s", buf);
+                            log(buf);
                             ;
                         }
                     }
@@ -1438,7 +1439,7 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
 
         /*auto ac stuff */
         /*        l = get_ac(GET_LEVEL(mob_proto + i), GET_RACE(mob_proto + i),
-           GET_CLASS(mob_proto + i)); sprintf(buf, "get is: %d", l); mudlog(buf, BRF,
+           GET_CLASS(mob_proto + i)); sprintf(buf, "get is: %d", l); log(buf, LogSeverity::Warn,
            LVL_IMPL, true);
          */
         if ((mob_proto[i].mob_specials.ex_armor != 100))
@@ -1693,8 +1694,10 @@ void parse_mobile(FILE *mob_f, int nr) {
 
 void verify_obj_spell(ObjData *obj, int valnum, bool zero_ok) {
         if (!IS_SPELL(GET_OBJ_VAL(obj, valnum)) && !(zero_ok && GET_OBJ_VAL(obj, valnum) == 0)) {
-            mprintf(L_WARN, LVL_IMMORT, "ERROR: Invalid spell in object prototype. vnum=%d spellnum=%d",
-                    GET_OBJ_VNUM(obj), GET_OBJ_VAL(obj, valnum));
+            int object_vnum = GET_OBJ_VNUM(obj);
+            int spellnum = GET_OBJ_VAL(obj, valnum);
+            log(LogSeverity::Warn, LVL_IMMORT, "ERROR: Invalid spell in object prototype. vnum={:d} spellnum={:d}",
+                object_vnum, spellnum);
             /* Replace invalid spell with a benign value */
             if (zero_ok)
                 GET_OBJ_VAL(obj, valnum) = 0;
@@ -2275,9 +2278,6 @@ void zone_update(void) {
         for (update_u = reset_q.head; update_u; update_u = update_u->next)
             if (zone_table[update_u->zone_to_reset].reset_mode == 2 || is_empty(update_u->zone_to_reset)) {
                 reset_zone(update_u->zone_to_reset, false);
-                sprintf(buf, "Auto zone reset: %s", zone_table[update_u->zone_to_reset].name);
-                mudlog(buf, CMP, LVL_GOD, false);
-                /* dequeue */
                 if (update_u == reset_q.head)
                     reset_q.head = reset_q.head->next;
                 else {
@@ -2299,11 +2299,11 @@ void log_zone_error(int zone, int cmd_no, const char *message) {
         char buf[256];
 
         sprintf(buf, "SYSERR: error in zone file: %s", message);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, buf);
 
         sprintf(buf, "SYSERR: ...offending cmd: '%c' cmd in zone #%d, line %d", ZCMD.command, zone_table[zone].number,
                 ZCMD.line);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, buf);
 }
 
 #define ZONE_ERROR(message)                                                                                            \
@@ -2455,11 +2455,11 @@ void reset_zone(int zone, byte pop) {
                     } else {
                         obj = read_object(ZCMD.arg1, REAL);
                         if (equip_char(mob, obj, ZCMD.arg3) != EQUIP_RESULT_SUCCESS) {
-                            mprintf(L_ERROR, 101,
-                                    "EQUIP zone command for %s [%d] in room %d to equip %s "
-                                    "[%d] failed.",
-                                    GET_NAME(mob), GET_MOB_VNUM(mob), ROOM_RNUM_TO_VNUM(mob->in_room),
-                                    obj->short_description, GET_OBJ_VNUM(obj));
+                            log(LogSeverity::Error, 101,
+                                "EQUIP zone command for %s [%d] in room %d to equip %s "
+                                "[%d] failed.",
+                                GET_NAME(mob), GET_MOB_VNUM(mob), ROOM_RNUM_TO_VNUM(mob->in_room),
+                                obj->short_description, GET_OBJ_VNUM(obj));
                             extract_obj(obj);
                         }
                         last_cmd = 1;
@@ -2648,7 +2648,7 @@ void free_char(CharData *ch) {
          * which would have cleared all battling variables.  So if ch is *still*
          * in some kind of battle mode here, something is definitely wrong. */
         if (ch->attackers || ch->target)
-            mprintf(L_ERROR, LVL_GOD, "free_char: %s is in battle", GET_NAME(ch));
+            log(LogSeverity::Error, LVL_GOD, "free_char: %s is in battle", GET_NAME(ch));
 
         while (ch->effects)
             effect_remove(ch, ch->effects);

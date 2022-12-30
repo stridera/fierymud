@@ -17,6 +17,7 @@
 #include "db.hpp"
 #include "events.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -239,7 +240,7 @@ void trigedit_parse(DescriptorData *d, char *arg) {
         case 'y':
             trigedit_save(d);
             sprintf(buf, "OLC: %s edits trigger %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), true);
+            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), buf);
             /* fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);
@@ -504,7 +505,7 @@ void trigedit_save(DescriptorData *d) {
 
     if (!(trig_file = fopen(fname, "w"))) {
         sprintf(logbuf, "SYSERR: OLC: Can't open trig file \"%s\"", fname);
-        mudlog(logbuf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+        log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), logbuf);
         return;
     }
 
@@ -514,7 +515,7 @@ void trigedit_save(DescriptorData *d) {
 
             if (fprintf(trig_file, "#%d\n", i) < 0) {
                 sprintf(logbuf, "SYSERR: OLC: Can't write trig file!");
-                mudlog(logbuf, BRF, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+                log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), logbuf);
                 fclose(trig_file);
                 return;
             }

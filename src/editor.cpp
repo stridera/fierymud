@@ -21,6 +21,7 @@
 #include "conf.hpp"
 #include "events.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "screen.hpp"
@@ -194,13 +195,12 @@ void editor_set_callback(DescriptorData *d, enum EditorCommandEnum type, EDITOR_
     }
 
     if (type < 0 || type >= NUM_ED_COMMAND_TYPES) {
-        log("SYSERR: Invalid editor command type %d passed to editor_set_callback", type);
+        log("SYSERR: Invalid editor command type {} passed to editor_set_callback", (int)type);
         return;
     }
 
     if (!EDITING(d)) {
-        log("SYSERR: Editor not initialized on descriptor passed to "
-            "editor_set_callback");
+        log("SYSERR: Editor not initialized on descriptor passed to editor_set_callback");
         return;
     }
 
@@ -347,17 +347,17 @@ static void editor_append(DescriptorData *d, char *line) {
     char *new_string;
 
     if (d->editor->lines >= d->editor->max_lines) {
-        desc_printf(d, "Too many lines - Input ignored.  Max lines: %zu lines.\n", d->editor->max_lines);
+        desc_printf(d, "Too many lines - Input ignored.  Max lines: {} lines.\n", d->editor->max_lines);
         return;
     }
 
     if (line_length >= space_left) {
         /* Shorter than 3?  To short for even a newline.  Ignore line. */
         if (space_left <= 3) {
-            desc_printf(d, "String too long - Input ignored.  Max length: %zu characters.\n", d->editor->max_length);
+            desc_printf(d, "String too long - Input ignored.  Max length: {} characters.\n", d->editor->max_length);
             return;
         }
-        desc_printf(d, "String too long - Input truncated.  Max length: %zu characters.\n", d->editor->max_length);
+        desc_printf(d, "String too long - Input truncated.  Max length: {} characters.\n", d->editor->max_length);
         new_length = d->editor->max_length - 1;
     }
 
@@ -385,8 +385,7 @@ void editor_cleanup(DescriptorData *d) {
     }
 
     if (!EDITING(d)) {
-        log("SYSERR: Editor not initialized on descriptor passed to "
-            "editor_cleanup");
+        log("SYSERR: Editor not initialized on descriptor passed to editor_cleanup");
         return;
     }
 
@@ -741,7 +740,7 @@ EDITOR_FUNC(editor_default_delete_line) {
     *start = '\0';
     RECREATE(edit->string, char, strlen(edit->string) + 3);
 
-    desc_printf(d, "%d line%s deleted.\n", total_len, total_len == 1 ? "" : "s");
+    desc_printf(d, "{:d} line{} deleted.\n", total_len, total_len == 1 ? "" : "s");
     return ED_PROCESSED;
 }
 
@@ -789,7 +788,7 @@ EDITOR_FUNC(editor_default_list) {
         }
 
     if (line < first_line || !str) {
-        desc_printf(d, "Line%s out of range; no buffer listing.\n", last_line - first_line ? "(s)" : "");
+        desc_printf(d, "Line{} out of range; no buffer listing.\n", last_line - first_line ? "(s)" : "");
         return ED_PROCESSED;
     }
 

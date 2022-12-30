@@ -24,6 +24,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "modify.hpp"
@@ -394,14 +395,15 @@ void oedit_save_internally(DescriptorData *d) {
 /*------------------------------------------------------------------------*/
 
 void oedit_save_to_disk(int zone_num) {
+    std::string output;
     int counter, counter2, realcounter;
     FILE *fp;
     ObjData *obj;
     ExtraDescriptionData *ex_desc;
 
-    sprintf(buf, "%s/%d.new", OBJ_PREFIX, zone_table[zone_num].number);
-    if (!(fp = fopen(buf, "w+"))) {
-        mudlog("SYSERR: OLC: Cannot open objects file!", BRF, LVL_GOD, true);
+    auto filename = fmt::format("{}/{}.new", OBJ_PREFIX, zone_table[zone_num].number);
+    if (!(fp = fopen(filename.c_str(), "w+"))) {
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: Cannot open objects file!");
         return;
     }
     /*
@@ -421,7 +423,7 @@ void oedit_save_to_disk(int zone_num) {
                     "%s~\n"
                     "%s~\n"
                     "%s~\n"
-                    "%d %ld %d %d\n"
+                    "%d %ld %ld %d\n"
                     "%d %d %d %d %d %d %d\n"
                     "%.2f %d %d %ld %d %d %ld %ld\n",
                     GET_OBJ_VNUM(obj), (obj->name && *obj->name) ? obj->name : "undefined",
@@ -444,7 +446,7 @@ void oedit_save_to_disk(int zone_num) {
                      * Sanity check to prevent nasty protection faults.
                      */
                     if (!*ex_desc->keyword || !*ex_desc->description) {
-                        mudlog("SYSERR: OLC: oedit_save_to_disk: Corrupt ex_desc!", BRF, LVL_GOD, true);
+                        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: oedit_save_to_disk: Corrupt ex_desc!");
                         continue;
                     }
                     strcpy(buf1, ex_desc->description);
@@ -782,11 +784,11 @@ void oedit_disp_boards(DescriptorData *d) {
     int i = 1;
 
     while ((board = next_board(iter)))
-        desc_printf(d, "%s%d%s) %s\n", grn, i++, nrm, board->title);
+        desc_printf(d, "{}{}{}) {}\n", grn, i++, nrm, board->title);
 
     free_board_iterator(iter);
 
-    desc_printf(d, "\n%sEnter board choice:\n", nrm);
+    desc_printf(d, "\n{}Enter board choice:\n", nrm);
 }
 
 /*
@@ -827,7 +829,7 @@ void oedit_disp_val1_menu(DescriptorData *d) {
         send_to_char("Pages in spellbook:\n", d->character);
         break;
     case ITEM_MONEY:
-        desc_printf(d, "Number of %s coins:\n", COIN_NAME(PLATINUM));
+        desc_printf(d, "Number of {} coins:\n", COIN_NAME(PLATINUM));
         break;
     case ITEM_PORTAL:
         send_to_char("Room to go to:\n", d->character);
@@ -877,7 +879,7 @@ void oedit_disp_val2_menu(DescriptorData *d) {
         send_to_char("Initial contents (ounces):\n", d->character);
         break;
     case ITEM_MONEY:
-        desc_printf(d, "Number of %s coins:\n", COIN_NAME(GOLD));
+        desc_printf(d, "Number of {} coins:\n", COIN_NAME(GOLD));
         break;
     case ITEM_PORTAL:
         oedit_disp_portal_messages_menu(d, portal_entry_messages);
@@ -920,7 +922,7 @@ void oedit_disp_val3_menu(DescriptorData *d) {
         oedit_liquid_type(d);
         break;
     case ITEM_MONEY:
-        desc_printf(d, "Number of %s coins:\n", COIN_NAME(SILVER));
+        desc_printf(d, "Number of {} coins:\n", COIN_NAME(SILVER));
         break;
     case ITEM_PORTAL:
         oedit_disp_portal_messages_menu(d, portal_character_messages);
@@ -956,7 +958,7 @@ void oedit_disp_val4_menu(DescriptorData *d) {
         send_to_char("Poisoned (0 = not poison):\n", d->character);
         break;
     case ITEM_MONEY:
-        desc_printf(d, "Number of %s coins : ", COIN_NAME(COPPER));
+        desc_printf(d, "Number of {} coins : ", COIN_NAME(COPPER));
         break;
     case ITEM_PORTAL:
         oedit_disp_portal_messages_menu(d, portal_exit_messages);
@@ -1252,15 +1254,15 @@ void oedit_parse(DescriptorData *d, char *arg) {
             if (STATE(d) == CON_IEDIT) {
                 write_to_output("Saving changes to object.\n", d);
                 iedit_save_changes(d);
-                sprintf(buf, "OLC: %s edits unique obj %s", GET_NAME(d->character), OLC_IOBJ(d)->short_description);
-                mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+                log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits unique obj {}",
+                    GET_NAME(d->character), OLC_IOBJ(d)->short_description);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
                 STATE(d) = CON_PLAYING;
             } else {
                 send_to_char("Saving object to memory.\n", d->character);
                 oedit_save_internally(d);
-                sprintf(buf, "OLC: %s edits obj %d", GET_NAME(d->character), OLC_NUM(d));
-                mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+                log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits obj {}",
+                    GET_NAME(d->character), OLC_NUM(d));
             }
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
@@ -1690,9 +1692,9 @@ void oedit_parse(DescriptorData *d, char *arg) {
             /*need to remove all existing objects of this type too.. */
             /*ok..we use save internally, but we are purging because of the mode */
             oedit_save_internally(d);
-            sprintf(buf, "OLC: %s PURGES object %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
-            /* FALL THROUGH */
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} PURGES object {:d}",
+                GET_NAME(d->character), OLC_NUM(d));
+        /* FALL THROUGH */
         case 'n':
         case 'N':
             cleanup_olc(d, CLEANUP_ALL);
@@ -1704,7 +1706,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
         }
         break;
     default:
-        mudlog("SYSERR: OLC: Reached default case in oedit_parse()!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: Reached default case in oedit_parse()!");
         send_to_char("Oops...\n", d->character);
         break;
     }

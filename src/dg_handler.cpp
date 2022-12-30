@@ -16,6 +16,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* remove a single trigger from a mob/obj/room */
 void extract_trigger(TrigData *trig) {

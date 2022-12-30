@@ -29,6 +29,7 @@
 #include "fight.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "pfiles.hpp"
@@ -232,7 +233,7 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
         break;
     default:
         sprintf(buf, "SYSERR:handler.c:effect_modify() Unknown apply adjust attempt for: %s", GET_NAME(ch));
-        log("%s", buf);
+        log(buf);
         ;
         break;
     }
@@ -409,7 +410,7 @@ void active_effect_from_char(CharData *ch, int type) {
 
 void lose_levitation_messages(CharData *ch) {
     if (GET_POS(ch) >= POS_STANDING) {
-        char_printf(ch, "%s\n", skills[SPELL_LEVITATE].wearoff);
+        char_printf(ch, "{}\n", skills[SPELL_LEVITATE].wearoff);
         act("$n floats back to the ground.", true, ch, 0, 0, TO_ROOM);
     } else {
         send_to_char("Your weight feels normal again.\n", ch);
@@ -433,7 +434,7 @@ void active_effect_remove(CharData *ch, effect *effect) {
                     lose_levitation_messages(ch);
                     break;
                 default:
-                    char_printf(ch, "%s\n", skills[effect->type].wearoff);
+                    char_printf(ch, "{}\n", skills[effect->type].wearoff);
                 }
             }
         }
@@ -442,7 +443,7 @@ void active_effect_remove(CharData *ch, effect *effect) {
                 "SYSERR: handler.c active_effect_remove() no wear-off message; "
                 "effect->type = %d on %s.",
                 effect->type, GET_NAME(ch));
-        log("%s", buf);
+        log(buf);
         ;
     }
 
@@ -837,15 +838,16 @@ enum equip_result equip_char(CharData *ch, ObjData *obj, int pos) {
     assert(pos >= 0 && pos < NUM_WEARS);
 
     if (GET_EQ(ch, pos)) {
-        mprintf(L_ERROR, LVL_GOD, "SYSERR: Char is already equipped: %s, %s", GET_NAME(ch), obj->short_description);
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: Char is already equipped: {}, {}", GET_NAME(ch),
+            obj->short_description);
         return EQUIP_RESULT_ERROR;
     }
     if (obj->carried_by) {
-        mprintf(L_ERROR, LVL_GOD, "SYSERR: EQUIP: Obj is carried_by when equip.");
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: EQUIP: Obj is carried_by when equip.");
         return EQUIP_RESULT_ERROR;
     }
     if (obj->in_room != NOWHERE) {
-        mprintf(L_ERROR, LVL_GOD, "SYSERR: EQUIP: Obj is in_room when equip.");
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: EQUIP: Obj is in_room when equip.");
         return EQUIP_RESULT_ERROR;
     }
 
@@ -860,7 +862,7 @@ enum equip_result equip_char(CharData *ch, ObjData *obj, int pos) {
         if (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL(obj, VAL_LIGHT_LIT))
             world[ch->in_room].light++;
     } else
-        mprintf(L_ERROR, LVL_GOD, "SYSERR: ch->in_room = NOWHERE when equipping char.");
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: ch->in_room = NOWHERE when equipping char.");
 
     for (j = 0; j < MAX_OBJ_APPLIES; j++)
         effect_modify(ch, obj->applies[j].location, obj->applies[j].modifier, GET_OBJ_EFF_FLAGS(obj), true);
@@ -1085,14 +1087,14 @@ void extract_obj(ObjData *obj) {
            falsely claim the code ate their corpse. RSD 11/12/2000
          */
         if (obj->in_room != NOWHERE)
-            log("CORPSE: %s has been extracted from %s [%d]", obj->short_description, world[obj->in_room].name,
+            log("CORPSE: {} has been extracted from {} [{:d}]", obj->short_description, world[obj->in_room].name,
                 world[obj->in_room].vnum);
         else if (obj->in_obj)
-            log("CORPSE: %s has been extracted from inside %s", obj->short_description, obj->in_obj->short_description);
+            log("CORPSE: {} has been extracted from inside {}", obj->short_description, obj->in_obj->short_description);
         else if (obj->carried_by)
-            log("CORPSE: %s has been extracted from %s's inventory", obj->short_description, GET_NAME(obj->carried_by));
+            log("CORPSE: {} has been extracted from {}'s inventory", obj->short_description, GET_NAME(obj->carried_by));
         else
-            log("CORPSE: %s has been extracted from an unknown location", obj->short_description);
+            log("CORPSE: {} has been extracted from an unknown location", obj->short_description);
     }
     if (obj->worn_by != nullptr)
         if (unequip_char(obj->worn_by, obj->worn_on) != obj)
@@ -1147,9 +1149,7 @@ void extract_char(CharData *ch) {
     void die_consentee_clean(CharData * ch);
 
     if (ch->in_room == NOWHERE) {
-        sprintf(buf, "SYSERR:handler.c:extract_char: NOWHERE extracting char: %s", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR:handler.c:extract_char: NOWHERE extracting char: {}", GET_NAME(ch));
     }
 
     /*

@@ -25,6 +25,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 void improve_skill(CharData *ch, int skill);
 void stop_berserking(CharData *ch);

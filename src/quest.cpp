@@ -21,6 +21,7 @@
 #include "dg_scripts.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "races.hpp"
 #include "structs.hpp"
@@ -124,10 +125,8 @@ CharData *quest_id_char(TrigData *t, CharData *ch, char *name) {
         vict = nullptr;
     if (!vict) {
         if (t)
-            mprintf(L_WARN, LVL_GOD,
-                    "QUEST ERROR: quest command couldn't "
-                    "find player %s in trigger %d",
-                    name, GET_TRIG_VNUM(t));
+            log(LogSeverity::Warn, LVL_GOD, "QUEST ERROR: quest command couldn't find player {} in trigger {}", name,
+                GET_TRIG_VNUM(t));
         else if (ch)
             send_to_char("There's no player by that name here.\n", ch);
         return nullptr;
@@ -194,11 +193,8 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     /* Make sure we have a quest command. */
     if (!*arg || !*buf1 || !*buf2) {
         if (t) {
-            sprintf(buf,
-                    "QUEST ERROR: quest command called with less than 3 args by "
-                    "trigger %d",
-                    GET_TRIG_VNUM(t));
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, "QUEST ERROR: quest command called with less than 3 args by trigger {:d}",
+                GET_TRIG_VNUM(t));
         } else if (ch)
             send_to_char("Usage: quest <command> <quest> <player> [<subclass>] [<var name> <var value>]\n", ch);
         return;
@@ -207,11 +203,8 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     /* Try and figure out which quest we want. */
     if (!(quest_name = check_quest_name(buf1))) {
         if (t) {
-            snprintf(buf, MAX_STRING_LENGTH,
-                     "QUEST ERROR: quest command tried to access invalid quest %s in "
-                     "trigger %d",
-                     buf1, GET_TRIG_VNUM(t));
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD,
+                "QUEST ERROR: quest command tried to access invalid quest {} in trigger {:d}", buf1, GET_TRIG_VNUM(t));
         } else if (ch)
             send_to_char("That is not a valid quest name.\n", ch);
         return;
@@ -311,12 +304,10 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
         } else if (*buf1 && *buf2)
             set_quest_variable(ch, vict, quest_name, error_string, buf1, buf2);
         else if (!*buf1) {
-            sprintf(buf, error_string, "set variable with no variable");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "set variable with no variable");
         } else if (!*buf2) {
             sprintf(e2, "set variable \"%s\" with no value", buf1);
-            sprintf(buf, error_string, e2);
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, error_string, e2);
         }
     }
 
@@ -395,7 +386,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
         if (t) {
             sprintf(buf, "use an invalid command %s", arg);
             sprintf(buf1, error_string, buf);
-            mudlog(buf1, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf1);
         } else if (ch) {
             sprintf(buf, "Sorry, %s is not a valid quest command.\n", arg);
             send_to_char(buf, ch);
@@ -492,7 +483,7 @@ void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_s
             send_to_char(buf, ch);
         } else {
             sprintf(buf, error_string, "set variable on nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -566,7 +557,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -577,7 +568,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete already-completed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -588,7 +579,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "complete already-failed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -613,7 +604,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -624,7 +615,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail already-completed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -635,7 +626,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "fail already-failed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -662,7 +653,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -673,7 +664,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance failed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -684,7 +675,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "advance already completed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -701,7 +692,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
         } else if (error_string) {
             sprintf(buf, "advance past quest max stage of %d", max_stage);
             sprintf(buf1, error_string, buf);
-            mudlog(buf1, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf1);
         }
         return;
     }
@@ -731,7 +722,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "start already-started quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -743,7 +734,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
             send_to_char("You must supply the name of the subclass for this quest.\n", ch);
         else if (error_string) {
             sprintf(buf, error_string, "start subclass quest without specifying which");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -763,7 +754,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
                     send_to_char(buf, ch);
                 } else if (error_string) {
                     sprintf(buf, error_string, "start subclass quest with one already in progress");
-                    mudlog(buf, NRM, LVL_GOD, true);
+                    log(LogSeverity::Stat, LVL_GOD, buf);
                 }
                 return;
             }
@@ -777,7 +768,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
                 send_to_char("That's not a valid class.\n", ch);
             else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest with invalid class abbreviation");
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, buf);
             }
             return;
         }
@@ -789,7 +780,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest on already subclassed player");
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, buf);
             }
             return;
         }
@@ -801,7 +792,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest when player's class does not permit it");
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, buf);
             }
             return;
         }
@@ -813,7 +804,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
                 send_to_char(buf, ch);
             } else if (error_string) {
                 sprintf(buf, error_string, "start subclass quest when player's race does not permit it");
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, buf);
             }
             return;
         }
@@ -823,7 +814,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         if (GET_LEVEL(vict) < 10 && !ch) {
             if (error_string) {
                 sprintf(buf, error_string, "start subclass quest before player is level 10");
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, buf);
             }
             return;
         }
@@ -833,7 +824,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         if (!ch && GET_LEVEL(vict) > classes[(int)GET_CLASS(vict)].max_subclass_level) {
             if (error_string) {
                 sprintf(buf, error_string, "start subclass quest after player is past max subclass level");
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, buf);
             }
             return;
         }
@@ -868,7 +859,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -879,7 +870,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind failed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -890,7 +881,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind already completed quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -902,7 +893,7 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "rewind past quest first stage");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -925,7 +916,7 @@ void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "restart nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -962,7 +953,7 @@ void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) 
             send_to_char(buf, ch);
         } else if (error_string) {
             sprintf(buf, error_string, "erase nonexistent quest");
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, buf);
         }
         return;
     }
@@ -1002,7 +993,7 @@ void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) 
         send_to_char(buf, ch);
     } else if (error_string) {
         sprintf(buf, error_string, "erase nonexistent quest");
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, buf);
     }
 }
 
@@ -1134,7 +1125,7 @@ ACMD(do_qadd) {
         sprintf(buf, "(GC) %s created a new quest %s.", GET_NAME(ch), buf1);
         sprintf(buf2, "New quest %s successfully added.\n", buf1);
     }
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
     send_to_char(buf2, ch);
 }
 
@@ -1196,7 +1187,7 @@ ACMD(do_qdel) {
         sprintf(buf, "(GC) %s deleted quest %s.", GET_NAME(ch), buf1);
         sprintf(buf2, "Quest %s successfully deleted.\n", buf1);
     }
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
     send_to_char(buf2, ch);
 }
 

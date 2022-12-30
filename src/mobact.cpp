@@ -24,6 +24,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "races.hpp"
@@ -112,9 +113,7 @@ void mobile_activity(void) {
         /* Execute any special procs. */
         if (MOB_PERFORMS_SCRIPTS(ch) && MOB_FLAGGED(ch, MOB_SPEC) && !no_specials) {
             if (mob_index[GET_MOB_RNUM(ch)].func == nullptr) {
-                sprintf(buf, "%s (#%d): Attempting to call non-existing mob func", GET_NAME(ch), GET_MOB_VNUM(ch));
-                log("%s", buf);
-                ;
+                log("{} (#{:d}): Attempting to call non-existing mob func", GET_NAME(ch), GET_MOB_VNUM(ch));
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_SPEC);
             } else if ((mob_index[GET_MOB_RNUM(ch)].func)(ch, ch, 0, ""))
                 /* If it executes okay, go on to the next mob. */

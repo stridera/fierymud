@@ -15,6 +15,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
@@ -265,7 +266,7 @@ void update_wind(int zone_rnum) {
     else if (zone->wind_speed < WIND_NONE)
         zone->wind_speed = WIND_NONE;
 
-    callback_printf(cb_outdoor, zone_rnum, "%s", wind_message(zone->wind_speed, original));
+    callback_printf(cb_outdoor, zone_rnum, "{}", wind_message(zone->wind_speed, original));
 }
 
 char *temperature_message(int temperature) {
@@ -343,7 +344,7 @@ void update_temperature(int zone_rnum) {
     else if (zone->temperature < TEMP_FREEZING)
         zone->temperature = TEMP_FREEZING;
 
-    callback_printf(cb_outdoor, zone_rnum, "%s", temperature_message(zone->temperature));
+    callback_printf(cb_outdoor, zone_rnum, "{}", temperature_message(zone->temperature));
 }
 
 char *precipitation_message(ZoneData *zone, int original) {
@@ -436,7 +437,7 @@ void update_precipitation(int zone_rnum) {
     else if (zone->precipitation < PRECIP_NONE)
         zone->precipitation = PRECIP_NONE;
 
-    callback_printf(cb_outdoor, zone_rnum, "%s", precipitation_message(zone, original));
+    callback_printf(cb_outdoor, zone_rnum, precipitation_message(zone, original));
 }
 
 /* Update the weather for all zones. */

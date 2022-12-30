@@ -28,6 +28,7 @@
 #include "handler.hpp"
 #include "house.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "messages.hpp"
@@ -271,7 +272,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         else {
             sprintf(buf, "do_simple_move: %s is at %d, while mount %s is at %d", GET_NAME(ch), IN_ROOM(ch),
                     GET_NAME(RIDING(ch)), IN_ROOM(RIDING(ch)));
-            mudlog(buf, NRM, LVL_IMMORT, false);
+            log(LogSeverity::Stat, LVL_IMMORT, buf);
         }
         mount = motivator;
     } else if (RIDDEN_BY(ch)) {
@@ -281,7 +282,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         else {
             sprintf(buf, "do_simple_move: %s is at %d, while rider %s is at %d", GET_NAME(ch), IN_ROOM(ch),
                     GET_NAME(RIDDEN_BY(ch)), IN_ROOM(RIDDEN_BY(ch)));
-            mudlog(buf, NRM, LVL_IMMORT, false);
+            log(LogSeverity::Stat, LVL_IMMORT, buf);
         }
         mount = motivator;
     }
@@ -997,7 +998,7 @@ void pick_object(CharData *ch, ObjData *obj) {
     ObjData *key = nullptr;
 
     if (!ch) {
-        mudlog("SYSERR: pick_object() called with no actor", BRF, LVL_GOD, false);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: pick_object() called with no actor");
         return;
     }
 
@@ -1045,7 +1046,7 @@ void pick_object(CharData *ch, ObjData *obj) {
 
 void perform_door_action(CharData *ch, int subcmd, int door) {
     if (!SOLIDCHAR(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        char_printf(ch, "You can't operate doors in your %s%s&0 state.\n", COMPOSITION_COLOR(ch),
+        char_printf(ch, "You can't operate doors in your {}{}&0 state.\n", COMPOSITION_COLOR(ch),
                     COMPOSITION_ADJECTIVE(ch));
         return;
     }
@@ -1071,7 +1072,7 @@ void perform_door_action(CharData *ch, int subcmd, int door) {
         break;
     default:
         sprintf(buf, "SYSERR: perform_door_action() called with invalid subcommand %d", subcmd);
-        mudlog(buf, BRF, LVL_GOD, false);
+        log(LogSeverity::Warn, LVL_GOD, buf);
         char_printf(ch, "Sorry, there's been an internal error.\n");
         break;
     }
@@ -1119,15 +1120,15 @@ ACMD(do_gen_door) {
             send_to_char("You can't figure out how.\n", ch);
         else if (subcmd == SCMD_LOCK) {
             if (brd->locked)
-                char_printf(ch, "%s is already locked.\n", obj->short_description);
+                char_printf(ch, "{} is already locked.\n", obj->short_description);
             else
-                char_printf(ch, "You lock %s, preventing others from posting.\n", obj->short_description);
+                char_printf(ch, "You lock {}, preventing others from posting.\n", obj->short_description);
             brd->locked = true;
         } else {
             if (brd->locked)
-                char_printf(ch, "You unlock %s, allowing others to post.\n", obj->short_description);
+                char_printf(ch, "You unlock {}, allowing others to post.\n", obj->short_description);
             else
-                char_printf(ch, "%s is already unlocked.\n", obj->short_description);
+                char_printf(ch, "{} is already unlocked.\n", obj->short_description);
             brd->locked = false;
         }
         return;
@@ -1141,7 +1142,7 @@ ACMD(do_gen_door) {
         if (door >= 0) {
             perform_door_action(ch, subcmd, door);
         } else {
-            char_printf(ch, "You can't %s that.\n", cmd_door[subcmd]);
+            char_printf(ch, "You can't {} that.\n", cmd_door[subcmd]);
         }
         return;
     }
@@ -1149,7 +1150,7 @@ ACMD(do_gen_door) {
     /* If you're made of fluid, the only way you can open/close/etc. something
      * is if it's an object in your inventory. */
     if (!SOLIDCHAR(ch) && obj->carried_by != ch && GET_LEVEL(ch) < LVL_IMMORT) {
-        char_printf(ch, "You can't manipulate solid objects in your %s%s&0 state.\n", COMPOSITION_COLOR(ch),
+        char_printf(ch, "You can't manipulate solid objects in your {}{}&0 state.\n", COMPOSITION_COLOR(ch),
                     COMPOSITION_ADJECTIVE(ch));
         return;
     }
@@ -1172,7 +1173,7 @@ ACMD(do_gen_door) {
         break;
     default:
         sprintf(buf, "SYSERR: do_gen_door() called with invalid subcommand %d", subcmd);
-        mudlog(buf, BRF, LVL_GOD, false);
+        log(LogSeverity::Warn, LVL_GOD, buf);
         char_printf(ch, "Sorry, there's been an internal error.\n");
         break;
     }
@@ -1415,13 +1416,13 @@ ACMD(do_doorbash)
 
     /* Is the exit broken? */
     if (exit->keyword == nullptr) {
-        mprintf(L_WARN, LVL_GOD, "SYSERR:act.item.c:do_doorbash():A one sided door in room %d",
-                world[ch->in_room].vnum);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR:act.item.c:do_doorbash():A one sided door in room {:d}",
+            world[ch->in_room].vnum);
         char_printf(ch, "This exit seems broken.   Please tell a god.\n");
         return;
     } else if (!EXIT_IS_DOOR(exit)) {
-        mprintf(L_WARN, LVL_GOD, "SYSERR:act.item.c:do_doorbash():A closed nondoor exit in room %d",
-                world[ch->in_room].vnum);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR:act.item.c:do_doorbash():A closed nondoor exit in room {:d}",
+            world[ch->in_room].vnum);
         char_printf(ch, "This exit seems broken.   Please tell a god.\n");
         return;
     }
@@ -1436,7 +1437,7 @@ ACMD(do_doorbash)
 
     if (EXIT_IS_LOCKED(exit) && (EXIT_IS_PICKPROOF(exit) || probability < 80)) {
         /* You failed, or it was unbashable. */
-        char_printf(ch, "You CHARGE at the %s &0but merely bounce off!&0\n", exit_name(exit));
+        char_printf(ch, "You CHARGE at the {} &0but merely bounce off!&0\n", exit_name(exit));
         sprintf(buf, "$n &0CHARGES at the %s&0 and literally bounces off!", exit_name(exit));
         act(buf, false, ch, 0, 0, TO_ROOM);
 
@@ -1453,7 +1454,7 @@ ACMD(do_doorbash)
             WAIT_STATE(ch, PULSE_VIOLENCE * 3);
         }
 
-        room_printf(ndest, "There is a *CRASH* and %s shudders a bit.\n", exit_name(exit));
+        room_printf(ndest, "There is a *CRASH* and {} shudders a bit.\n", exit_name(exit));
         return;
     }
 
@@ -1630,8 +1631,8 @@ ACMD(do_drag) {
         }
 
         if (IS_PLR_CORPSE(tobj) && !has_corpse_consent(ch, tobj)) {
-            mprintf(L_STAT, LVL_IMMORT, "CORPSE: %s tried to drag %s without CONSENT!", GET_NAME(ch),
-                    tobj->short_description);
+            log(LogSeverity::Stat, LVL_IMMORT, "CORPSE: %s tried to drag %s without CONSENT!", GET_NAME(ch),
+                tobj->short_description);
             return;
         }
 

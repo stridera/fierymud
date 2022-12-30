@@ -25,6 +25,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 void sub_write(char *arg, CharData *ch, byte find_invis, int targets);
 int get_room_location(char *room);

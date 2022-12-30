@@ -22,6 +22,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "money.hpp"
 #include "pfiles.hpp"
@@ -117,7 +118,7 @@ long exp_next_level(int level, int class_num) {
     double gain_factor;
 
     if (level > LVL_IMPL || level < 0) {
-        log("SYSERR: Requesting exp for invalid level %d!", level);
+        log("SYSERR: Requesting exp for invalid level {:d}!", level);
         return 0;
     }
 
@@ -128,36 +129,6 @@ long exp_next_level(int level, int class_num) {
         gain_factor = EXP_GAIN_FACTOR(class_num);
 
     return exp_table[level] * gain_factor;
-}
-
-/* log a death trap hit */
-void log_death_trap(CharData *ch) {
-    mprintf(L_STAT, LVL_IMMORT, "%s hit death trap #%d (%s)", GET_NAME(ch), world[IN_ROOM(ch)].vnum,
-            world[IN_ROOM(ch)].name);
-}
-
-/* writes a string to the log */
-void log(const char *str, ...) {
-    char timestr[32];
-    time_t ct;
-    va_list args;
-
-    static unsigned int vcount = 0;
-    static unsigned int scount = 0;
-
-    ct = time(0);
-    strftime(timestr, 32, TIMEFMT_LOG, localtime(&ct));
-    fprintf(stderr, "%-24.24s :: ", timestr);
-    if (strchr(str, '%')) {
-        va_start(args, str);
-        vfprintf(stderr, str, args);
-        va_end(args);
-        ++vcount;
-    } else {
-        fputs(str, stderr);
-        ++scount;
-    }
-    fputs("\n", stderr);
 }
 
 /* the "touch" command, essentially. */
@@ -171,78 +142,6 @@ int touch(const char *path) {
         fclose(fl);
         return 0;
     }
-}
-
-/*
- * mudlog -- log mud messages to a file & to online imm's syslogs
- * based on syslog by Fen Jul 3, 1992
- */
-void mudlog(const char *str, unsigned char type, int level, byte file) {
-    switch (type) {
-    case OFF:
-        type = L_CRIT;
-        break;
-    case BRF:
-        type = L_WARN;
-        break;
-    case NRM:
-        type = L_STAT;
-        break;
-    case CMP:
-        type = L_DEBUG;
-        break;
-    }
-    if (!file)
-        type |= L_NOFILE;
-    mudlog_printf(type, level, "%s", str);
-}
-
-void mudlog_printf(int severity, int level, const char *str, ...) {
-    static char buf[MAX_STRING_LENGTH], timestr[32];
-    DescriptorData *i;
-    time_t ct;
-    va_list args;
-    size_t slen;
-
-    ct = time(0);
-    strftime(timestr, 32, TIMEFMT_LOG, localtime(&ct));
-
-    va_start(args, str);
-    slen = vsnprintf(buf + 2, sizeof(buf) - 2, str, args);
-    va_end(args);
-    if (slen >= sizeof(buf) - 7)
-        slen = sizeof(buf) - 8;
-
-    if (!IS_SET(severity, L_NOFILE))
-        fprintf(stderr, "%-24.24s :: %s\n", timestr, buf + 2);
-    /* Drop the L_NOFILE bit if it was set */
-    REMOVE_BIT(severity, L_NOFILE);
-    if (level < 0 || level > LVL_IMPL)
-        return;
-
-    /* Make it "[ buf ]" */
-    buf[0] = '[';
-    buf[1] = ' ';
-    strcpy(buf + slen + 2, " ]\n");
-
-    for (i = descriptor_list; i; i = i->next)
-        if (!i->connected && !PLR_FLAGGED(i->character, PLR_WRITING) && !EDITING(i))
-            if (GET_LEVEL(i->character) >= level && GET_LOG_VIEW(i->character) <= severity)
-                string_to_output(i, buf);
-}
-
-const char *sprint_log_severity(int severity) {
-    REMOVE_BIT(severity, L_NOFILE);
-
-    return log_severities[LIMIT(0, (severity - 1) / 10, 6)];
-}
-
-int parse_log_severity(const char *severity) {
-    int sev = search_block(severity, log_severities, false);
-    if (sev >= 0)
-        return (sev + 1) * 10;
-    else
-        return sev;
 }
 
 void init_flagvectors() {
@@ -260,13 +159,6 @@ void init_flagvectors() {
     CREATE(ALL_FLAGS, flagvector, FLAGVECTOR_SIZE(max));
     for (i = 0; i < FLAGVECTOR_SIZE(max); ++i)
         ALL_FLAGS[i] = ~0;
-
-    // if (sizeof(flagvector) != 4) {
-    //     log("SYSERR: WARNING! Flagvector type size isn't the expected 4 bytes!");
-    //     log("SYSERR: WARNING! You may have to fix a lot of things...");
-    //     log("SYSERR: WARNING! This may cause problems with player and world files "
-    //         "especially.");
-    // }
 }
 
 bool ALL_FLAGGED(const flagvector field[], const flagvector flags[], const int num_flags) {
@@ -633,16 +525,14 @@ void perform_random_gem_drop(CharData *ch) {
     rnum = real_object(vnum);
 
     if (rnum < 0) {
-        sprintf(buf, "SYSERR: Can't perform random gem drop - no object with vnum %d", vnum);
-        mudlog(buf, NRM, LVL_IMMORT, true);
+        log(LogSeverity::Stat, LVL_IMMORT, "SYSERR: Can't perform random gem drop - no object with vnum {}", vnum);
         return;
     }
 
     od = read_object(rnum, REAL);
 
     if (!od) {
-        sprintf(buf, "RGD Error: Could not read object (vnum %d)!", vnum);
-        mudlog(buf, BRF, LVL_IMMORT, true);
+        log(LogSeverity::Warn, LVL_IMMORT, "RGD Error: Could not read object (vnum {})!", vnum);
         return;
     }
 
@@ -982,11 +872,11 @@ void drop_core(CharData *ch, const char *desc) {
             rename("core", corename);
             dropped = true;
         } else {
-            log("SYSERR: Could not find core file named %s or %s", initcorename, "core");
+            log("SYSERR: Could not find core file named {} or {}", initcorename, "core");
         }
         if (ch) {
             if (dropped) {
-                char_printf(ch, "The core was dumped to %s\n", corename);
+                char_printf(ch, "The core was dumped to {}\n", corename);
             } else {
                 char_printf(ch, "Sorry, the core dump failed!\n");
             }

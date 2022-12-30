@@ -22,6 +22,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "pfiles.hpp"
 #include "players.hpp"
@@ -46,8 +47,7 @@ int mana_gain(CharData *ch) {
         /* Neat and fast */
         gain = GET_LEVEL(ch);
     } else {
-        gain = graf(age(ch).year, 4, 8, 12, 16, 12, 10, 8);
-        gain = gain + MIN(ch->char_specials.managain, 100);
+        gain = MIN(ch->char_specials.managain, 100);
 
         /* Position calculations    */
         switch (GET_STANCE(ch)) {
@@ -259,13 +259,13 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
                 char_printf(ch, AHCYN "You are ready for the next level!\n" ANRM);
             else if (GET_LEVEL(ch) == LVL_MAX_MORT) {
                 if (PLR_FLAGGED(ch, PLR_GOTSTARS)) {
-                    char_printf(ch, AFMAG "You got your %s " AFMAG "back again!\n" ANRM, CLASS_STARS(ch));
-                    all_except_printf(ch, "%s regained %s %s!\n", GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
+                    char_printf(ch, AFMAG "You got your {} " AFMAG "back again!\n" ANRM, CLASS_STARS(ch));
+                    all_except_printf(ch, "{} regained {} {}!\n", GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
                 } else {
                     SET_FLAG(PLR_FLAGS(ch), PLR_GOTSTARS);
-                    char_printf(ch, AFMAG "You have achieved %s " AFMAG "status in %s" AFMAG "!!\n" ANRM,
+                    char_printf(ch, AFMAG "You have achieved {} " AFMAG "status in {}" AFMAG "!!\n" ANRM,
                                 CLASS_STARS(ch), CLASS_FULL(ch));
-                    all_except_printf(ch, AFMAG "%s " AFMAG "has achieved %s " AFMAG "status in %s" AFMAG "!!\n" ANRM,
+                    all_except_printf(ch, AFMAG "{} " AFMAG "has achieved {} " AFMAG "status in {}" AFMAG "!!\n" ANRM,
                                       GET_NAME(ch), CLASS_STARS(ch), CLASS_FULL(ch));
                 }
             }
@@ -282,21 +282,21 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
         if (num_levels && !IS_SET(mode, GAIN_IGNORE_NAME_BOUNDARY)) {
             if (PLR_FLAGGED(ch, PLR_NAPPROVE)) {
                 char_printf(ch, AHCYN
-                            "Your name must be approved by a god before "
-                            "level 10!\nPlease contact a god as soon as "
+                            "Your name must be approved by a god before level 10!\nPlease contact a god as soon as "
                             "possible!\n" ANRM);
             }
         }
 
         if (num_levels == 1) {
             char_printf(ch, AHWHT "You gain a level!\n" ANRM);
-            all_except_printf(ch, "%s advanced to level %d!\n", GET_NAME(ch), GET_LEVEL(ch));
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
+            all_except_printf(ch, "{} advanced to level {:d}!\n", GET_NAME(ch), GET_LEVEL(ch));
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} advanced to level {:d}", GET_NAME(ch),
+                GET_LEVEL(ch));
         } else if (num_levels > 1) {
-            char_printf(ch, AHWHT "You gain %d levels to %d!\n" ANRM, num_levels, GET_LEVEL(ch));
-            all_except_printf(ch, "%s advances %d levels to level %d!\n", GET_NAME(ch), num_levels, GET_LEVEL(ch));
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s advanced to level %d (from %d)", GET_NAME(ch),
-                    GET_LEVEL(ch), GET_LEVEL(ch) - num_levels);
+            char_printf(ch, AHWHT "You gain {:d} levels to {:d}!\n" ANRM, num_levels, GET_LEVEL(ch));
+            all_except_printf(ch, "{} advances {:d} levels to level {:d}!\n", GET_NAME(ch), num_levels, GET_LEVEL(ch));
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} advanced to level {:d} (from {:d})",
+                GET_NAME(ch), GET_LEVEL(ch), GET_LEVEL(ch) - num_levels);
         }
     } else if (gain < 0) {
         GET_EXP(ch) += gain;
@@ -310,15 +310,16 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
         }
         if (num_levels == 1) {
             char_printf(ch, AHWHT "You lose a level!\n" ANRM);
-            all_except_printf(ch, "%s lost level %d!\n", GET_NAME(ch), GET_LEVEL(ch) + 1);
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s lost level %d", GET_NAME(ch), GET_LEVEL(ch) + 1);
+            all_except_printf(ch, "{} lost level {:d}!\n", GET_NAME(ch), GET_LEVEL(ch) + 1);
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} lost level {:d}", GET_NAME(ch),
+                GET_LEVEL(ch) + 1);
         } else if (num_levels > 1) {
-            char_printf(ch, AHWHT "You lose %d levels from %d to %d!\n" ANRM, num_levels, GET_LEVEL(ch) + num_levels,
-                        GET_LEVEL(ch));
-            all_except_printf(ch, "%s lost %d levels from %d to %d!\n", GET_NAME(ch), num_levels,
+            char_printf(ch, AHWHT "You lose {:d} levels from {:d} to {:d}!\n" ANRM, num_levels,
+                        GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
+            all_except_printf(ch, "{} lost {:d} levels from {:d} to {:d}!\n", GET_NAME(ch), num_levels,
                               GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "%s lost %d levels from %d to %d", GET_NAME(ch),
-                    num_levels, GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} lost {:d} levels from {:d} to {:d}",
+                GET_NAME(ch), num_levels, GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
         }
     }
 }
@@ -428,8 +429,7 @@ void check_idling(CharData *ch) {
                 if (ch->desc)
                     close_socket(ch->desc);
                 ch->desc = nullptr;
-                sprintf(buf, "%s force-rented and extracted (idle).", GET_NAME(ch));
-                mudlog(buf, BRF, LVL_GOD, true);
+                log(LogSeverity::Warn, LVL_GOD, "{} force-rented and extracted (idle).", GET_NAME(ch));
                 remove_player_from_game(ch, QUIT_TIMEOUT);
             }
         }
@@ -655,9 +655,8 @@ void point_update(void) {
         /* Try to catch invalid objects that could crash the mud. */
         if (j->in_room < 0 || j->in_room > top_of_world) {
             if (!(j->worn_by || j->carried_by || j->in_obj)) {
-                mudlog("POINT_UPDATE OBJ ERROR: Object in NOWHERE, extracting", NRM, LVL_GOD, true);
-                sprintf(buf, "Object %d, \"%s\"", GET_OBJ_VNUM(j), j->name);
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, "POINT_UPDATE OBJ ERROR: Object in NOWHERE, extracting Object {:d}",
+                    GET_OBJ_VNUM(j), j->name);
                 extract_obj(j);
                 continue;
             }

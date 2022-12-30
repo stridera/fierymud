@@ -26,6 +26,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "movement.hpp"
@@ -93,7 +94,7 @@ int get_base_saves(CharData *ch, int type) {
 
     if (type < 0 || type >= NUM_SAVES) {
         sprintf(buf, "SYSERR: get_base_saves: invalid type %d", type);
-        log("%s", buf);
+        log(buf);
         ;
         return 100;
     }
@@ -224,7 +225,7 @@ void roll_natural_abils(CharData *ch) {
             default:
                 sprintf(buf, "SYSERR: roll_natural_abils(): class '%s' statorder is broken",
                         classes[(int)GET_CLASS(ch)].name);
-                log("%s", buf);
+                log(buf);
                 ;
             }
         }
@@ -500,7 +501,7 @@ void hp_stance_alteration(CharData *ch, CharData *attacker, int newpos, int news
                 "alter_pos() left values at %s/%s (for %s)",
                 position_types[newpos], stance_types[newstance], position_types[GET_POS(ch)],
                 stance_types[GET_STANCE(ch)], GET_NAME(ch));
-        mudlog(buf, BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, buf);
     }
 
     /* Send messages and cause dying. */

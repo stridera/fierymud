@@ -14,13 +14,15 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+#include <string>
+#include <string_view>
+
 #define CLR_PARSE 0
 #define CLR_ESCAPE 1
 #define CLR_STRIP 2
 
-void init_colors(void);
-int process_colors(char *out, size_t max_len, const char *in, int mode);
-int count_color_chars(const char *string);
+[[nodiscard]] std::string process_colors(std::string_view str, int mode);
+[[nodiscard]] int count_color_chars(std::string_view str) noexcept;
 int ansi_strlen(const char *string);
 char *strip_ansi(const char *string);
 char *escape_ansi(const char *string);

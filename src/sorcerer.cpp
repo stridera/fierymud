@@ -21,6 +21,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "races.hpp"
@@ -41,7 +42,7 @@ bool sorcerer_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter;
 
     if (!victim) {
-        mudlog("No victim in sorcerer AI action.", NRM, LVL_GOD, false);
+        log(LogSeverity::Stat, LVL_GOD, "No victim in sorcerer AI action.");
         return false;
     }
 

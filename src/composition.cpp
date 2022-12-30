@@ -33,6 +33,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* Values for the compdef struct:
  *

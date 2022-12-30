@@ -24,6 +24,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "skills.hpp"
@@ -431,9 +432,9 @@ SPECIAL(bank) {
 
     if (CMD_IS("balance")) {
         statemoney(buf, GET_COINS(ch));
-        char_printf(ch, "Coins carried:   %s\n", buf);
+        char_printf(ch, "Coins carried:   {}\n", buf);
         statemoney(buf, GET_BANK_COINS(ch));
-        char_printf(ch, "Coins in bank:   %s\n", buf);
+        char_printf(ch, "Coins in bank:   {}\n", buf);
         return true;
     }
 
@@ -446,13 +447,13 @@ SPECIAL(bank) {
 
         for (i = 0; i < NUM_COIN_TYPES; ++i)
             if (coins[i] > GET_COINS(ch)[i]) {
-                char_printf(ch, "You don't have enough %s!\n", COIN_NAME(i));
+                char_printf(ch, "You don't have enough {}!\n", COIN_NAME(i));
                 return true;
             }
 
         act("$n makes a bank transaction.", true, ch, 0, 0, TO_ROOM);
         statemoney(buf, coins);
-        char_printf(ch, "You deposit %s.\n", buf);
+        char_printf(ch, "You deposit {}.\n", buf);
 
         for (i = 0; i < NUM_COIN_TYPES; ++i) {
             GET_COINS(ch)[i] -= coins[i];
@@ -473,7 +474,7 @@ SPECIAL(bank) {
                 GET_COINS(ch)[i] = 0;
             }
             statemoney(buf, coins);
-            char_printf(ch, "You were carrying %s.\n", buf);
+            char_printf(ch, "You were carrying {}.\n", buf);
         }
         return true;
     }
@@ -493,7 +494,7 @@ SPECIAL(bank) {
 
         act("$n makes a bank transaction.", true, ch, 0, 0, TO_ROOM);
         statemoney(buf, coins);
-        char_printf(ch, "You withdraw %s.\n", buf);
+        char_printf(ch, "You withdraw {}.\n", buf);
 
         for (i = 0; i < NUM_COIN_TYPES; ++i) {
             GET_BANK_COINS(ch)[i] -= coins[i];
@@ -979,23 +980,13 @@ int red_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(6001) == NOWHERE) {
-            send_to_char(
-                "ERROR: Could not find your guild, nor the gates "
-                "of Anduin. Please tell a god!\n",
-                ch);
-            sprintf(buf,
-                    "ERROR: Couldn't find the real room for vnums "
-                    "%i or %i",
-                    room, 6001);
+            send_to_char("ERROR: Could not find your guild, nor the gates of Anduin. Please tell a god!\n", ch);
+            log(LogSeverity::Stat, LVL_IMMORT, "ERROR: Couldn't find the real room for vnums %i or %i", room, 6001);
 
-            mudlog(buf, NRM, LVL_IMMORT, true);
             return NOWHERE;
         };
 
-        send_to_char(
-            "ERROR: Could not find your guild! Please tell a "
-            "god!\n",
-            ch);
+        send_to_char("ERROR: Could not find your guild! Please tell a god!\n", ch);
         return real_room(6001);
     };
 
@@ -1079,7 +1070,7 @@ int green_recall_room(CharData *ch) {
                     "%i or %i",
                     room, 3002);
 
-            mudlog(buf, NRM, LVL_IMMORT, true);
+            log(LogSeverity::Stat, LVL_IMMORT, buf);
             return NOWHERE;
         };
 
@@ -1139,7 +1130,7 @@ int blue_recall_room(CharData *ch) {
                     "%i or %i",
                     room, 6001);
 
-            mudlog(buf, NRM, LVL_IMMORT, true);
+            log(LogSeverity::Stat, LVL_IMMORT, buf);
             return NOWHERE;
         };
 
@@ -1201,7 +1192,7 @@ int gray_recall_room(CharData *ch) {
                     "%i or %i",
                     room, 30030);
 
-            mudlog(buf, NRM, LVL_IMMORT, true);
+            log(LogSeverity::Stat, LVL_IMMORT, buf);
             return NOWHERE;
         };
 
@@ -1253,7 +1244,7 @@ SPECIAL(summon_dragon) {
                 strcpy(buf1, "hour");
             else
                 sprintf(buf1, "%d hours", i);
-            char_printf(ch, "You must wait another %s before you can summon your mount.\n", buf1);
+            char_printf(ch, "You must wait another {} before you can summon your mount.\n", buf1);
             return true;
         }
 

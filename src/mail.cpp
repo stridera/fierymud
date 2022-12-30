@@ -18,6 +18,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "modify.hpp"
 #include "objects.hpp"
 #include "players.hpp"
@@ -167,17 +168,13 @@ int scan_file(void) {
 
     file_end_pos = ftell(mail_file);
     fclose(mail_file);
-    sprintf(buf, "   %ld bytes read.", file_end_pos);
-    log("%s", buf);
-    ;
+    log("   {} bytes read.", file_end_pos);
     if (file_end_pos % BLOCK_SIZE) {
         log("SYSERR: Error booting mail system -- Mail file corrupt!");
         log("SYSERR: Mail disabled!");
         return 0;
     }
-    sprintf(buf, "   Mail file read -- %d messages.", total_messages);
-    log("%s", buf);
-    ;
+    log("   Mail file read -- {} messages.", total_messages);
     return 1;
 } /* end of scan_file */
 
@@ -481,7 +478,7 @@ void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
         price += STAMP_PRICE * .1;
         price += GET_OBJ_EFFECTIVE_WEIGHT(obj) * 100;
     } else if (*buf2) {
-        char_printf(ch, "You don't seem to have a %s to mail.\n", buf2);
+        char_printf(ch, "You don't seem to have a {} to mail.\n", buf2);
         return;
     }
 

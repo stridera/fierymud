@@ -35,6 +35,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* Externals */
 ACMD(do_follow);

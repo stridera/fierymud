@@ -21,6 +21,7 @@
 #include "dg_olc.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "screen.hpp"
 #include "shop.hpp"
@@ -136,7 +137,7 @@ void olc_delete(CharData *ch, int subcmd, int vnum) {
         ename = "those";
     }
 
-    char_printf(ch, "You can't delete %ss.\n", ename);
+    char_printf(ch, "You can't delete {}s.\n", ename);
 }
 
 /*------------------------------------------------------------*\
@@ -260,9 +261,9 @@ ACMD(do_olc) {
                 return;
             }
 
-            sprintf(buf, "OLC: %s reverses object extra descs for %d, %s.", GET_NAME(ch), number,
-                    obj_proto[real_num].short_description);
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)),
+                "OLC: {} reverses object extra descs for {:d}, {}.", GET_NAME(ch), number,
+                obj_proto[real_num].short_description);
             oedit_reverse_exdesc(real_num, nullptr);
             return;
 
@@ -278,8 +279,8 @@ ACMD(do_olc) {
                 return;
             }
 
-            sprintf(buf, "OLC: %s reverses object extra descs for zone %d.", GET_NAME(ch), zone_table[real_num].number);
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)),
+                "OLC: {} reverses object extra descs for zone {:d}.", GET_NAME(ch), zone_table[real_num].number);
             oedit_reverse_exdescs(real_num, ch);
             return;
 
@@ -371,7 +372,7 @@ ACMD(do_olc) {
         sprintf(buf, "Saving all %ss in zone %d.\n", type, zone_table[OLC_ZNUM(d)].number);
         send_to_char(buf, ch);
         sprintf(buf, "OLC: %s saves %s info for zone %d.", GET_NAME(ch), type, zone_table[OLC_ZNUM(d)].number);
-        mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+        log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
 
         switch (subcmd) {
         case SCMD_OLC_REDIT:
@@ -611,7 +612,7 @@ void olc_remove_from_save_list(int zone, byte type) {
 }
 
 /*. Set the colour string pointers for that which this char will
-   see at color level NRM.   Changing the entries here will change
+   see at color level LogSeverity::Stat.   Changing the entries here will change
    the colour scheme throught the OLC.*/
 
 void get_char_cols(CharData *ch) {

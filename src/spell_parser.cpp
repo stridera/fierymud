@@ -24,6 +24,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "screen.hpp"
@@ -162,7 +163,7 @@ void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
 
         /* Sending the message to the bystander or target. */
         format_act(buf, saybuf, ch, tobj, tch, gch);
-        char_printf(gch, "%s", buf);
+        char_printf(gch, "{}", buf);
     }
 }
 
@@ -928,9 +929,7 @@ int cast_spell(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
     int sphere, cresult = 0;
 
     if (spellnum < 0 || spellnum > TOP_SKILL_DEFINE) {
-        sprintf(buf, "SYSERR: cast_spell trying to call spellnum %d\n", spellnum);
-        log("%s", buf);
-        ;
+        log("SYSERR: cast_spell trying to call spellnum {:d}\n", spellnum);
         return 0;
     }
 
@@ -991,9 +990,7 @@ int chant(CharData *ch, CharData *tch, ObjData *obj, int chantnum) {
     int cresult;
 
     if (chantnum < 0 || chantnum > TOP_SKILL_DEFINE) {
-        sprintf(buf, "SYSERR: chant trying to call chantnum %d", chantnum);
-        log("%s", buf);
-        ;
+        log("SYSERR: chant trying to call chantnum {:d}", chantnum);
         return 0;
     }
 
@@ -1092,9 +1089,7 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
     int cresult;
 
     if (songnum < 0 || songnum > TOP_SKILL_DEFINE) {
-        sprintf(buf, "SYSERR: perform trying to call songnum %d", songnum);
-        log("%s", buf);
-        ;
+        log("SYSERR: perform trying to call songnum {:d}", songnum);
         return 0;
     }
 
@@ -1600,27 +1595,27 @@ bool check_spell_target(int spellnum, CharData *ch, CharData *tch, ObjData *tobj
     const char *noun = IS_CHANT(spellnum) ? "song" : "spell";
 
     if (IS_SET(SINFO.targets, TAR_SELF_ONLY) && tch != ch && GET_LEVEL(ch) < LVL_GOD) {
-        char_printf(ch, "You can only %s this %s %s yourself!\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
+        char_printf(ch, "You can only {} this {} {} yourself!\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_NOT_SELF) && tch == ch) {
-        char_printf(ch, "You cannot %s this %s %s yourself!\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
+        char_printf(ch, "You cannot {} this {} {} yourself!\n", verb, noun, IS_CHANT(spellnum) ? "to" : "upon");
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_OUTDOORS) && CH_INDOORS(ch)) {
-        char_printf(ch, "This area is too enclosed to %s that %s!\n", verb, noun);
+        char_printf(ch, "This area is too enclosed to {} that {}!\n", verb, noun);
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_GROUND) && !CH_INDOORS(ch) && !QUAKABLE(IN_ROOM(ch))) {
-        char_printf(ch, "You must be on solid ground to %s that %s!\n", verb, noun);
+        char_printf(ch, "You must be on solid ground to {} that {}!\n", verb, noun);
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_NIGHT_ONLY) && SUN(IN_ROOM(ch)) == SUN_LIGHT) {
-        char_printf(ch, "You cannot %s this %s during the day!\n", verb, noun);
+        char_printf(ch, "You cannot {} this {} during the day!\n", verb, noun);
         return false;
     }
     if (IS_SET(SINFO.targets, TAR_DAY_ONLY) && SUN(IN_ROOM(ch)) == SUN_DARK) {
-        char_printf(ch, "You can only %s this %s during the day!\n", verb, noun);
+        char_printf(ch, "You can only {} this {} during the day!\n", verb, noun);
         return false;
     }
     return true;
@@ -2046,9 +2041,8 @@ void targets_remember_caster(CharData *caster) {
          * should also be low. */
         for (temp = caster->casting.obj->casters; temp; temp = temp->next_caster)
             if (temp == caster) {
-                sprintf(buf, "1. CIRCULAR CAST LIST ERROR: %s was already casting at %s!", GET_NAME(caster),
-                        caster->casting.obj->short_description);
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, "1. CIRCULAR CAST LIST ERROR: {} was already casting at {}!",
+                    GET_NAME(caster), caster->casting.obj->short_description);
                 return;
             }
         caster->next_caster = caster->casting.obj->casters;
@@ -2058,9 +2052,8 @@ void targets_remember_caster(CharData *caster) {
     if (caster->casting.tch) {
         for (temp = caster->casting.tch->casters; temp; temp = temp->next_caster)
             if (temp == caster) {
-                sprintf(buf, "2. CIRCULAR CAST LIST ERROR: %s was already casting at %s!", GET_NAME(caster),
-                        GET_NAME(caster->casting.tch));
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, "2. CIRCULAR CAST LIST ERROR: {} was already casting at {}!",
+                    GET_NAME(caster), GET_NAME(caster->casting.tch));
                 return;
             }
         caster->next_caster = caster->casting.tch->casters;

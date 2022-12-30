@@ -19,6 +19,7 @@
 #include "events.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "skills.hpp"
@@ -47,7 +48,7 @@ bool warrior_ai_action(CharData *ch, CharData *victim) {
     CharData *tch;
 
     if (!victim) {
-        mudlog("No victim in warrior AI action.", NRM, LVL_GOD, false);
+        log(LogSeverity::Stat, LVL_GOD, "No victim in warrior AI action.");
         return false;
     }
 

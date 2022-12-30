@@ -41,6 +41,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "olc.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
@@ -153,9 +154,7 @@ void sdedit_save_to_disk(DescriptorData *d) {
     FILE *ifptr;
 
     if ((ifptr = fopen(SPELL_DAM_FILE, "w")) == nullptr) {
-
-        sprintf(buf2, "Error writting spell dam file\n");
-        mudlog(buf2, NRM, LVL_IMPL, true);
+        log(LogSeverity::Stat, LVL_IMPL, "Error writting spell dam file\n");
     } else {
 
         fprintf(ifptr, "Spell dam file:\n");
@@ -321,8 +320,7 @@ void sdedit_parse(DescriptorData *d, char *arg) {
         case 'Y':
             sdedit_save_internally(d);
             sdedit_save_to_disk(d);
-            sprintf(buf, "OLC: %s edits spell damage.", GET_NAME(d->character));
-            mudlog(buf, CMP, LVL_IMPL, true);
+            log(LogSeverity::Debug, LVL_IMPL, "OLC: {} edits spell damage.", GET_NAME(d->character));
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_ALL);
             /*cleanup_olc(d, CLEANUP_STRUCTS); */

@@ -10,12 +10,14 @@
 #pragma once
 
 #include "defines.hpp"
+#include "logging.hpp"
 #include "utils.hpp"
 
 // #include "objects.hpp"
 // #include "prefs.hpp"
 // #include "structs.hpp"
 // #include "utils.hpp"
+#include "logging.hpp"
 
 #define DEFAULT_PROMPT 4
 
@@ -48,5 +50,4 @@ extern const char *weekdays[DAYS_PER_WEEK];
 extern const char *rolls_abils_result[];
 extern const char *month_name[MONTHS_PER_YEAR];
 extern const int sharp[];
-extern const char *log_severities[8];
 extern const char *default_prompts[][2];

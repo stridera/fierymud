@@ -22,6 +22,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "modify.hpp"
@@ -322,12 +323,12 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
     else if (type == GRANT_GROUP && !can_grant_group(ch, command))
         send_to_char("You cannot grant or revoke a group you yourself cannot use.\n", ch);
     else if (subcmd != SCMD_UNGRANT && grant_in_list(*list, command))
-        char_printf(ch, "%s has already has %s %s.\n", GET_NAME(vict), arg, past_action);
+        char_printf(ch, "{} has already has {} {}.\n", GET_NAME(vict), arg, past_action);
     else if (((grant = grant_in_list(*unlist, command)) ||
               (subcmd == SCMD_UNGRANT && (grant = grant_in_list(*list, command)))) &&
              grant->level > GET_LEVEL(ch))
         char_printf(ch,
-                    "You cannot change %s's access to %s, because %s (level %d) "
+                    "You cannot change {}'s access to {}, because {} (level %d) "
                     "granted or revoked it.\n",
                     GET_NAME(vict), arg, grant->grantor, grant->level);
     else if (subcmd == SCMD_UNGRANT) {
@@ -335,13 +336,13 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
         cache_grant(uncache, command, is_group, false);
         remove_grant(list, command);
         cache_grant(cache, command, is_group, false);
-        char_printf(ch, "Revoked all grants on %s for %s.\n", GET_NAME(vict), arg);
+        char_printf(ch, "Revoked all grants on {} for {}.\n", GET_NAME(vict), arg);
     } else {
         remove_grant(unlist, command);
         cache_grant(uncache, command, is_group, false);
         add_grant(list, command, GET_NAME(ch), level);
         cache_grant(cache, command, is_group, true);
-        char_printf(ch, "%s %s %s %s at level %d.\n", capitalize(past_action), arg, preposition, GET_NAME(vict), level);
+        char_printf(ch, "{} {} {} {} at level %d.\n", capitalize(past_action), arg, preposition, GET_NAME(vict), level);
     }
 }
 
@@ -375,7 +376,7 @@ static void do_clear_grants(CharData *ch, CharData *vict) {
     CLEAR_FLAGS(GET_GRANT_CACHE(vict), num_of_cmds);
     CLEAR_FLAGS(GET_REVOKE_CACHE(vict), num_of_cmds);
     CLEAR_FLAGS(PRV_FLAGS(vict), NUM_PRV_FLAGS);
-    char_printf(ch, "%d grant%s cleared.\n", count, count == 1 ? "" : "s");
+    char_printf(ch, "{} grant{} cleared.\n", count, count == 1 ? "" : "s");
 }
 
 static void do_flag_grant_revoke(CharData *ch, CharData *vict, char *argument, int subcmd) {
@@ -387,21 +388,21 @@ static void do_flag_grant_revoke(CharData *ch, CharData *vict, char *argument, i
     if (!*arg)
         send_grant_usage(ch);
     else if (flag < 0) {
-        char_printf(ch, "'%s' is not a valid privilege flag.  Try one of:\n", arg);
+        char_printf(ch, "'{}' is not a valid privilege flag.  Try one of:\n", arg);
         for (flag = 0; flag < NUM_PRV_FLAGS; ++flag)
-            char_printf(ch, "%-15s %-20s %d\n", privilege_bits[flag], prv_flags[flag].desc, prv_flags[flag].level);
+            char_printf(ch, "{:<15s} {:<20s} {}\n", privilege_bits[flag], prv_flags[flag].desc, prv_flags[flag].level);
     } else if (prv_flags[flag].level > GET_LEVEL(ch))
         char_printf(ch, "You don't have the ability to set that flag.\n");
     else if (subcmd == SCMD_GRANT) {
         SET_FLAG(PRV_FLAGS(vict), flag);
         if (prv_flags[flag].update_func)
             (prv_flags[flag].update_func)(vict, flag);
-        char_printf(ch, "Granted %s to %s at level %d.\n", prv_flags[flag].desc, GET_NAME(vict), prv_flags[flag].level);
+        char_printf(ch, "Granted {} to {} at level {}.\n", prv_flags[flag].desc, GET_NAME(vict), prv_flags[flag].level);
     } else {
         REMOVE_FLAG(PRV_FLAGS(vict), flag);
         if (prv_flags[flag].update_func)
             (prv_flags[flag].update_func)(vict, flag);
-        char_printf(ch, "Ungranted %s from %s at level %d.\n", prv_flags[flag].desc, GET_NAME(vict),
+        char_printf(ch, "Ungranted {} from {} at level {}.\n", prv_flags[flag].desc, GET_NAME(vict),
                     prv_flags[flag].level);
     }
 }
@@ -481,11 +482,8 @@ static void read_player_grant_list(FILE *fl, GrantType **list, int (*cmd_lookup)
         if (*line == '~')
             return;
         else if (strchr(line, ':')) {
-            sprintf(buf,
-                    "SYSERR: read_player_grants: invalid command/group or grantor "
-                    "(err 1): %s",
-                    line);
-            mudlog(buf, BRF, LVL_IMMORT, true);
+            log(LogSeverity::Warn, LVL_IMMORT,
+                "SYSERR: read_player_grants: invalid command/group or grantor (err 1): {}", line);
             return;
         }
         line_fail = 0;
@@ -510,11 +508,9 @@ static void read_player_grant_list(FILE *fl, GrantType **list, int (*cmd_lookup)
             grant->next = *list;
             *list = grant;
         } else {
-            sprintf(buf,
-                    "SYSERR: read_player_grants: invalid command/group or grantor "
-                    "(err 2.%d): %s/%s",
-                    line_fail, line, ptr ? ptr : "(null)");
-            mudlog(buf, BRF, LVL_IMMORT, true);
+            log(LogSeverity::Warn, LVL_IMMORT,
+                "SYSERR: read_player_grants: invalid command/group or grantor (err 2.{:d}): {}/{}", line_fail, line,
+                ptr ? ptr : "(null)");
             free(grant);
         }
     }

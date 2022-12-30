@@ -17,6 +17,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* same as any_one_arg except that it stops at punctuation */
 char *any_one_name(char *argument, char *first_arg) {

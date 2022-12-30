@@ -28,6 +28,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
+#include "logging.hpp"
 #include "messages.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -92,12 +93,12 @@ ACMD(do_ksearch);
 /* Common macros */
 #define UNRECOGNIZED_ARG(arg)                                                                                          \
     {                                                                                                                  \
-        char_printf(ch, "Unrecognized vsearch mode: %s\n", (arg));                                                     \
+        char_printf(ch, "Unrecognized vsearch mode: {}\n", (arg));                                                     \
         return;                                                                                                        \
     }
 #define UNRECOGNIZED_RETURN(arg, ret)                                                                                  \
     {                                                                                                                  \
-        char_printf(ch, "Unrecognized vsearch mode: %s\n", (arg));                                                     \
+        char_printf(ch, "Unrecognized vsearch mode: {}\n", (arg));                                                     \
         return (ret);                                                                                                  \
     }
 
@@ -113,10 +114,10 @@ static void page_char_to_char(CharData *mob, CharData *ch, int nfound) {
     /* Extra chars to account for: */
     count = count_color_chars(RACE_ABBR(mob));
 
-    pprintf(ch, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s %3d  %-*s  %s%-7s&0  %s%s&0\n", nfound, grn, GET_MOB_VNUM(mob), nrm,
-            ELLIPSIS_STR(mob->player.short_descr, 39), CLASS_ABBR(mob), GET_LEVEL(mob), 9 + count, RACE_ABBR(mob),
-            LIFEFORCE_COLOR(mob), capitalize((LIFEFORCE_NAME(mob))), COMPOSITION_COLOR(mob),
-            capitalize((COMPOSITION_NAME(mob))));
+    paging_printf(ch, "{:4d}. [{:s}{:5d}{:s}] {:s} {:s} {:3d} {:s} {:s}{:s}&0 {:s}{:s}&0\n", nfound, grn,
+                  GET_MOB_VNUM(mob), nrm, ellipsis(mob->player.short_descr, 39), CLASS_ABBR(mob), GET_LEVEL(mob),
+                  RACE_ABBR(mob), LIFEFORCE_COLOR(mob), capitalize((LIFEFORCE_NAME(mob))), COMPOSITION_COLOR(mob),
+                  capitalize((COMPOSITION_NAME(mob))));
 }
 
 /* vsearch_type struct used by each vsearch subcommand */
@@ -372,7 +373,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
             return true;
         send_to_char("Allowed search fields:", ch);
         for (temp = 0; modes[temp].type; ++temp)
-            char_printf(ch, "%s%-16s", !(temp % 4) ? "\n" : "", modes[temp].name);
+            char_printf(ch, "{}{:<16s}", !(temp % 4) ? "\n" : "", modes[temp].name);
         send_to_char("\n", ch);
         return false;
     }
@@ -808,7 +809,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%-16s", damtypes[temp].name);
             }
             strcat(buf, "\n");
-            char_printf(ch, "%s", buf);
+            char_printf(ch, buf);
             return false;
         }
         if ((*value = parse_damtype(ch, arg)) < 0)
@@ -824,7 +825,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%-16s", LIQ_NAME(temp));
             }
             strcat(buf, "\n");
-            char_printf(ch, "%s", buf);
+            char_printf(ch, buf);
             return false;
         }
         if ((*value = parse_liquid(ch, arg)) < 0)
@@ -1086,12 +1087,12 @@ ACMD(do_msearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch,
-                        "Index  VNum   Mobile Short-Desc                       "
-                        "Class/Level/Race/Life Force/Composition\n");
-                pprintf(ch,
-                        "----- ------- --------------------------------------- "
-                        "---------------------------------------\n");
+                paging_printf(ch,
+                              "Index  VNum   Mobile Short-Desc                       "
+                              "Class/Level/Race/Life Force/Composition\n");
+                paging_printf(ch,
+                              "----- ------- --------------------------------------- "
+                              "---------------------------------------\n");
             }
             page_char_to_char(mob, ch, ++found);
         }
@@ -1435,122 +1436,126 @@ ACMD(do_osearch) {
 #define OBJ_TITLE_LENGTH 30
 
         if (match) {
+            std::string vbuf;
             /* Extra chars to account for: */
             temp = count_color_chars(obj->short_description);
             /* Actual string length (sans color chars) */
             temp_found = strlen(obj->short_description) - temp;
             briefmoney(buf, 6, GET_OBJ_COST(obj));
-            sprintf(vbuf, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s%3d&0 %s%5g&0 %*s " ANRM, ++found, grn, obj_index[nr].vnum,
-                    nrm, ELLIPSIS_STR(obj->short_description, OBJ_TITLE_LENGTH),
-                    GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
-                    : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
-                    : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
-                    : GET_OBJ_LEVEL(obj) > 101 ? "&4&b"
-                    : GET_OBJ_LEVEL(obj) > 100 ? "&1&b"
-                    : GET_OBJ_LEVEL(obj) > 99  ? "&3&b"
-                    : GET_OBJ_LEVEL(obj) > 89  ? "&5"
-                    : GET_OBJ_LEVEL(obj) > 74  ? "&6"
-                    : GET_OBJ_LEVEL(obj) > 49  ? "&2"
-                                               : "",
-                    GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
-                    GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), 5 + count_color_chars(buf), buf);
+            // "%4d. [%s%5d%s] %s %s%3d&0 %s%5g&0 %*s " ANRM,
+            vbuf = fmt::format("{:4d}. [{}{:5d}{}] {} {}{:3d}&0 {}{}&0 {:{}}&0", ++found, grn, obj_index[nr].vnum, nrm,
+                               ellipsis(obj->short_description, OBJ_TITLE_LENGTH),
+                               GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
+                               : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
+                               : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
+                               : GET_OBJ_LEVEL(obj) > 101 ? "&4&b"
+                               : GET_OBJ_LEVEL(obj) > 100 ? "&1&b"
+                               : GET_OBJ_LEVEL(obj) > 99  ? "&3&b"
+                               : GET_OBJ_LEVEL(obj) > 89  ? "&5"
+                               : GET_OBJ_LEVEL(obj) > 74  ? "&6"
+                               : GET_OBJ_LEVEL(obj) > 49  ? "&2"
+                                                          : "",
+                               GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
+                               GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj),
+                               5 + count_color_chars(buf), buf);
             switch (subcmd) {
             case SCMD_VWEAR:
                 if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&
                     GET_OBJ_VAL(obj, VAL_ARMOR_AC))
-                    sprintf(vbuf, "%s %+dac", vbuf, GET_OBJ_VAL(obj, VAL_ARMOR_AC));
+                    vbuf += fmt::format(" {:d}ac", GET_OBJ_VAL(obj, VAL_ARMOR_AC));
                 for (temp = 0; temp < MAX_OBJ_APPLIES; ++temp)
                     if (obj->applies[temp].modifier) {
                         sprinttype(obj->applies[temp].location, apply_abbrevs, buf);
-                        sprintf(vbuf, "%s %+d%s", vbuf, obj->applies[temp].modifier, buf);
+                        vbuf += fmt::format("{}{}", obj->applies[temp].modifier, buf);
                     }
                 break;
             case SCMD_VLIST:
             case SCMD_VSEARCH:
             case SCMD_VNUM:
-                sprintf(vbuf, "%s%.7s ", vbuf, OBJ_TYPE_NAME(obj));
-                /* fall through */
+                vbuf += fmt::format("{:.7s} ", OBJ_TYPE_NAME(obj));
+            /* fall through */
             case SCMD_VITEM:
                 switch (GET_OBJ_TYPE(obj)) {
                 case ITEM_LIGHT:
                     if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == LIGHT_PERMANENT)
-                        sprintf(vbuf, "%s<infinite>", vbuf);
+                        vbuf += "<infinite>";
                     else
-                        sprintf(vbuf, "%s%4d hours", vbuf, GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING));
+                        vbuf += fmt::format("{:4d} hours", GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING));
                     break;
                 case ITEM_SCROLL:
                 case ITEM_POTION:
                     if (GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1) == GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_2) &&
                         GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_2) == GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_3) &&
                         GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1) > 0) {
-                        sprintf(vbuf, "%s%s%s%s x 3", vbuf, cyn, skill_name(GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1)), nrm);
+                        vbuf += fmt::format("{}{}{} x 3", cyn, skill_name(GET_OBJ_VAL(obj, VAL_SCROLL_SPELL_1)), nrm);
                     } else {
                         for (temp = 1, temp_found = 0; temp <= 3; ++temp)
                             if (GET_OBJ_VAL(obj, temp) > 0)
-                                sprintf(vbuf, "%s%s%s%s%s", vbuf, temp_found++ ? ", " : "", cyn,
-                                        skill_name(GET_OBJ_VAL(obj, temp)), nrm);
+                                vbuf += fmt::format("{}{}{}{}", temp_found++ ? ", " : "", cyn,
+                                                    skill_name(GET_OBJ_VAL(obj, temp)), nrm);
                     }
                     break;
                 case ITEM_WAND:
                 case ITEM_STAFF:
-                    sprintf(vbuf, "%s%2d/%2d %s%s%s", vbuf, GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT),
-                            GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES), cyn, skill_name(GET_OBJ_VAL(obj, VAL_WAND_SPELL)),
-                            nrm);
+                    vbuf += fmt::format("{:2d}/{:2d} {}{}{}", GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT),
+                                        GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES), cyn,
+                                        skill_name(GET_OBJ_VAL(obj, VAL_WAND_SPELL)), nrm);
                     break;
                 case ITEM_WEAPON:
-                    sprintf(vbuf, "%s%3dD%-2d avg %.1f", vbuf, GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM),
-                            GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj));
+                    vbuf += fmt::format("{:3d}d{:2d} avg {:.1f}", GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM),
+                                        GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj));
                     break;
                 case ITEM_ARMOR:
                 case ITEM_TREASURE:
-                    sprintf(vbuf, "%s%2dac", vbuf, GET_OBJ_VAL(obj, VAL_ARMOR_AC));
+                    vbuf += fmt::format("{:2d}ac", GET_OBJ_VAL(obj, VAL_ARMOR_AC));
                     break;
                 case ITEM_TRAP:
-                    sprintf(vbuf, "%s%dhp %s", vbuf, GET_OBJ_VAL(obj, VAL_TRAP_HITPOINTS),
-                            skill_name(GET_OBJ_VAL(obj, VAL_TRAP_SPELL)));
+                    vbuf += fmt::format("{:d}hp {}", GET_OBJ_VAL(obj, VAL_TRAP_HITPOINTS),
+                                        skill_name(GET_OBJ_VAL(obj, VAL_TRAP_SPELL)));
                     break;
                 case ITEM_CONTAINER:
-                    sprintf(vbuf, "%s%s%d", vbuf, subcmd == SCMD_VITEM ? "" : "size ",
-                            GET_OBJ_VAL(obj, VAL_CONTAINER_CAPACITY));
+                    vbuf += fmt::format("{}{:d}", subcmd == SCMD_VITEM ? "" : "size ",
+                                        GET_OBJ_VAL(obj, VAL_CONTAINER_CAPACITY));
                     break;
                 case ITEM_DRINKCON:
                 case ITEM_FOUNTAIN:
-                    sprintf(vbuf, "%s%2d/%2d %s%s", vbuf, GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING),
-                            GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY), IS_POISONED(obj) ? "poison " : "",
-                            LIQ_NAME(GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID)));
+                    vbuf += fmt::format("{:2d}/{:2d} {}{}", GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING),
+                                        GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY), IS_POISONED(obj) ? "poison " : "",
+                                        LIQ_NAME(GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID)));
                     break;
                 case ITEM_FOOD:
-                    sprintf(vbuf, "%s%d hrs%s", vbuf, GET_OBJ_VAL(obj, VAL_FOOD_FILLINGNESS),
-                            IS_POISONED(obj) ? " poisoned" : "");
+                    vbuf += fmt::format("{:d} hrs{}", GET_OBJ_VAL(obj, VAL_FOOD_FILLINGNESS),
+                                        IS_POISONED(obj) ? " poisoned" : "");
                     break;
                 case ITEM_MONEY:
                     temp_found = false;
                     if (GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM)) {
-                        sprintf(vbuf, "%s%d%sp%s", vbuf, GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM), CLR(ch, HCYN), nrm);
+                        vbuf += fmt::format("{:d}{}p{}", GET_OBJ_VAL(obj, VAL_MONEY_PLATINUM), CLR(ch, HCYN), nrm);
                         temp_found = true;
                     }
                     if (GET_OBJ_VAL(obj, VAL_MONEY_GOLD))
-                        sprintf(vbuf, "%s%s%d%sg%s", vbuf, temp_found++ ? " " : "", GET_OBJ_VAL(obj, VAL_MONEY_GOLD),
-                                CLR(ch, HYEL), nrm);
+                        vbuf += fmt::format("{}{:d}{}g{}", temp_found++ ? " " : "", GET_OBJ_VAL(obj, VAL_MONEY_GOLD),
+                                            CLR(ch, HYEL), nrm);
                     if (GET_OBJ_VAL(obj, VAL_MONEY_SILVER))
-                        sprintf(vbuf, "%s%s%ds", vbuf, temp_found++ ? " " : "", GET_OBJ_VAL(obj, VAL_MONEY_SILVER));
+                        vbuf += fmt::format("{}{:d}{}s{}", temp_found++ ? " " : "", GET_OBJ_VAL(obj, VAL_MONEY_SILVER),
+                                            CLR(ch, HGRN), nrm);
                     if (GET_OBJ_VAL(obj, VAL_MONEY_COPPER))
-                        sprintf(vbuf, "%s%s%d%sc%s", vbuf, temp_found++ ? " " : "", GET_OBJ_VAL(obj, VAL_MONEY_COPPER),
-                                yel, nrm);
+                        vbuf += fmt::format("{}{:d}{}c{}", temp_found++ ? " " : "", GET_OBJ_VAL(obj, VAL_MONEY_COPPER),
+                                            CLR(ch, HRED), nrm);
                     break;
                 case ITEM_PORTAL:
                     temp = real_room(GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION));
-                    sprintf(vbuf, "%s%s[%s%5d%s] %.18s", vbuf, subcmd == SCMD_VITEM ? "" : "to room ", grn,
-                            GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION), nrm,
-                            temp == NOWHERE ? "NOWHERE" : world[temp].name);
+                    vbuf += fmt::format("{}[{}{:5d}{}] {:.18s}", subcmd == SCMD_VITEM ? "" : "to room ", grn,
+                                        GET_OBJ_VAL(obj, VAL_PORTAL_DESTINATION), nrm,
+                                        temp == NOWHERE ? "NOWHERE" : world[temp].name);
                     break;
                 }
             }
             if (found == 1) {
-                pprintf(ch, header1);
-                pprintf(ch, header2);
+                paging_printf(ch, header1);
+                paging_printf(ch, header2);
             }
-            pprintf(ch, "%s\n", vbuf);
+            paging_printf(ch, "{}\n", vbuf);
         }
     }
     if (found)
@@ -1658,12 +1663,12 @@ ACMD(do_rsearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch,
-                        "Index VNum    Title                              Sector   "
-                        "    Indoors Lit Exits\n");
-                pprintf(ch,
-                        "----- ------- ---------------------------------- "
-                        "------------ ------- --- -------\n");
+                paging_printf(ch,
+                              "Index VNum    Title                              Sector   "
+                              "    Indoors Lit Exits\n");
+                paging_printf(ch,
+                              "----- ------- ---------------------------------- "
+                              "------------ ------- --- -------\n");
             }
 #define MARK_EXIT(r, d)                                                                                                \
     (!(r).exits[d]                       ? "&0&9"                                                                      \
@@ -1673,14 +1678,15 @@ ACMD(do_rsearch) {
                                          : "&0&2")
 #define ROOM_TITLE_LENGTH 34
 
-            pprintf(ch, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s%-10.10s&0 %d %s%s %s%s%s%s%s%s%s%s%s%s%s%s&0\n", ++found,
-                    grn, world[nr].vnum, nrm, ELLIPSIS_STR(world[nr].name, ROOM_TITLE_LENGTH),
-                    sectors[world[nr].sector_type].color, sectors[world[nr].sector_type].name,
-                    sectors[world[nr].sector_type].mv, ROOM_FLAGGED(nr, ROOM_INDOORS) ? "&3indoors&0 " : "        ",
-                    ROOM_FLAGGED(nr, ROOM_ALWAYSLIT) || world[nr].sector_type == SECT_CITY ? "&3&blit&0" : "&9&bno &0",
-                    MARK_EXIT(world[nr], NORTH), capdirs[NORTH], MARK_EXIT(world[nr], SOUTH), capdirs[SOUTH],
-                    MARK_EXIT(world[nr], EAST), capdirs[EAST], MARK_EXIT(world[nr], WEST), capdirs[WEST],
-                    MARK_EXIT(world[nr], UP), capdirs[UP], MARK_EXIT(world[nr], DOWN), capdirs[DOWN]);
+            paging_printf(
+                ch, "{:4d} [{}{:5d}{}] {} {}{}{}&0 {} {}{} {}{}{}{}{}{}{}{}{}{}{}&0\n", ++found, grn, world[nr].vnum,
+                nrm, ellipsis(world[nr].name, ROOM_TITLE_LENGTH), sectors[world[nr].sector_type].color,
+                sectors[world[nr].sector_type].name, sectors[world[nr].sector_type].mv,
+                ROOM_FLAGGED(nr, ROOM_INDOORS) ? "&3indoors&0 " : "        ",
+                ROOM_FLAGGED(nr, ROOM_ALWAYSLIT) || world[nr].sector_type == SECT_CITY ? "&3&blit&0" : "&9&bno &0",
+                MARK_EXIT(world[nr], NORTH), capdirs[NORTH], MARK_EXIT(world[nr], SOUTH), capdirs[SOUTH],
+                MARK_EXIT(world[nr], EAST), capdirs[EAST], MARK_EXIT(world[nr], WEST), capdirs[WEST],
+                MARK_EXIT(world[nr], UP), capdirs[UP], MARK_EXIT(world[nr], DOWN), capdirs[DOWN]);
         }
     }
     if (found)
@@ -1750,12 +1756,12 @@ ACMD(do_esearch) {
             }
             if (match) {
                 if (!found) {
-                    pprintf(ch,
-                            "Index Dir      RoomNum Room Title           Exit "
-                            "Name/Key/Bits\n");
-                    pprintf(ch,
-                            "----- -----    ---------------------------- "
-                            "-----------------------\n");
+                    paging_printf(ch,
+                                  "Index Dir      RoomNum Room Title           Exit "
+                                  "Name/Key/Bits\n");
+                    paging_printf(ch,
+                                  "----- -----    ---------------------------- "
+                                  "-----------------------\n");
                 }
                 if (!exit->keyword)
                     *buf = '\0';
@@ -1765,8 +1771,8 @@ ACMD(do_esearch) {
                     sprintf(buf, "%s%s%s: ", grn, exit->keyword, nrm);
                 sprintbit(exit->exit_info, exit_bits, buf + strlen(buf));
                 buf[strlen(buf) - 1] = '\0'; /* remove trailing space */
-                pprintf(ch, "%4d. %s%-4s%s at [%s%5d%s] %-20.20s [%s]\n", ++found, yel, capitalize(dirs[dir]), nrm, grn,
-                        world[nr].vnum, nrm, world[nr].name, buf);
+                paging_printf(ch, "{:4d}. {}{:<4s}{} at [{}{:5d}{}] {:<20s} [{}]\n", ++found, yel,
+                              capitalize(dirs[dir]), nrm, grn, world[nr].vnum, nrm, world[nr].name, buf);
             }
         }
     }
@@ -1871,15 +1877,15 @@ ACMD(do_ssearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch, "Index  VNum   RoomNum Room Title (Shop Keeper)\n");
-                pprintf(ch,
-                        "----- ------- ------- "
-                        "---------------------------------------\n");
+                paging_printf(ch, "Index  VNum   RoomNum Room Title (Shop Keeper)\n");
+                paging_printf(ch,
+                              "----- ------- ------- "
+                              "---------------------------------------\n");
             }
             temp = real_room(SHOP_ROOM(nr, 0));
-            pprintf(ch, "%3d. [%5d] (%5d) %s (%s)\n", ++found, SHOP_NUM(nr), SHOP_ROOM(nr, 0),
-                    temp == NOWHERE ? "<NOWHERE>" : world[temp].name,
-                    SHOP_KEEPER(nr) == NOBODY ? "no one" : mob_proto[SHOP_KEEPER(nr)].player.short_descr);
+            paging_printf(ch, "{:3d}. [{:5d}] ({:5d}) {} ({})\n", ++found, SHOP_NUM(nr), SHOP_ROOM(nr, 0),
+                          temp == NOWHERE ? "<NOWHERE>" : world[temp].name,
+                          SHOP_KEEPER(nr) == NOBODY ? "no one" : mob_proto[SHOP_KEEPER(nr)].player.short_descr);
         }
     }
 
@@ -2003,14 +2009,14 @@ ACMD(do_tsearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch,
-                        "Index  VNum   Trigger Name                             "
-                        "Trigger Type \n");
-                pprintf(ch,
-                        "----- ------- ---------------------------------------- "
-                        "------------------\n");
+                paging_printf(ch,
+                              "Index  VNum   Trigger Name                             "
+                              "Trigger Type \n");
+                paging_printf(ch,
+                              "----- ------- ---------------------------------------- "
+                              "------------------\n");
             }
-            pprintf(ch, "%s", t_listdisplay(nr, ++found));
+            paging_printf(ch, t_listdisplay(nr, ++found));
         }
     }
 
@@ -2138,17 +2144,17 @@ ACMD(do_zsearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch,
-                        "Num Name                           Age Reset  Freq Factor "
-                        "Top VNum\n");
-                pprintf(ch,
-                        "--- ------------------------------ --- ----------- ------ "
-                        "--------\n");
+                paging_printf(ch,
+                              "Num Name                           Age Reset  Freq Factor "
+                              "Top VNum\n");
+                paging_printf(ch,
+                              "--- ------------------------------ --- ----------- ------ "
+                              "--------\n");
             }
             ++found;
             sprinttype(zone->reset_mode, zone_reset_modes, buf);
-            pprintf(ch, "%3d %-30.30s %3d %-6s  %3d %6d    %5d\n", zone->number, zone->name, zone->age, buf,
-                    zone->lifespan, zone->zone_factor, zone->top);
+            paging_printf(ch, "{:3d} {:<30s} {:3d} {:<6s}  {:3d} {:6d}    {:5d}\n", zone->number, zone->name, zone->age,
+                          buf, zone->lifespan, zone->zone_factor, zone->top);
         }
     }
     if (found)
@@ -2317,10 +2323,10 @@ ACMD(do_csearch) {
             }
             if (match) {
                 if (!found) {
-                    pprintf(ch, "Index RoomNum Zone Command\n");
-                    pprintf(ch,
-                            "----- ------- "
-                            "----------------------------------------------------------\n");
+                    paging_printf(ch, "Index RoomNum Zone Command\n");
+                    paging_printf(ch,
+                                  "----- ------- "
+                                  "----------------------------------------------------------\n");
                 }
 
                 vbuflen = sprintf(vbuf, "%4d. [%s%5d%s] ", ++found, grn, world[cmd_room].vnum, nrm);
@@ -2370,7 +2376,7 @@ ACMD(do_csearch) {
                                 : "open");
                     break;
                 }
-                pprintf(ch, vbuf);
+                paging_printf(ch, vbuf);
             }
         }
     }
@@ -2415,7 +2421,7 @@ ACMD(do_ksearch) {
     SkillDef *skill;
 
     if (subcmd != SCMD_VSEARCH) {
-        char_printf(ch, "%s", HUH);
+        char_printf(ch, HUH);
         return;
     } else if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_skill_modes, &value, &bound, &string, &compare,
                                    flags, &first, &last))
@@ -2513,11 +2519,11 @@ ACMD(do_ksearch) {
         }
         if (match) {
             if (!found) {
-                pprintf(ch,
-                        "Skill/Spell/Chant          Vio  Qst  H/O  Routines     "
-                        "Targets      Damage\n"
-                        "-------------------------  ---  ---  ---  -----------  "
-                        "-----------  --------\n");
+                paging_printf(ch,
+                              "Skill/Spell/Chant          Vio  Qst  H/O  Routines     "
+                              "Targets      Damage\n"
+                              "-------------------------  ---  ---  ---  -----------  "
+                              "-----------  --------\n");
             }
             ++found;
             temp = talent_type(nr);
@@ -2547,11 +2553,11 @@ ACMD(do_ksearch) {
                     strcpy(buf2 + 9, "...");
             } else
                 strcpy(buf2, "NONE");
-            pprintf(ch, "%s%-26.26s@0 %3s  %3s  %3s  %-12.12s %-12.12s %s%s@0\n", color, skill->name,
-                    temp != SKILL ? YESNO(skill->violent) : "n/a", temp != SKILL ? YESNO(skill->quest) : "n/a",
-                    temp == SKILL ? YESNO(skill->humanoid) : "n/a", temp != SKILL ? buf1 : "n/a", buf2,
-                    VALID_DAMTYPE(skill->damage_type) ? damtypes[skill->damage_type].color : "",
-                    VALID_DAMTYPE(skill->damage_type) ? damtypes[skill->damage_type].name : "n/a");
+            paging_printf(ch, "{}{:<26s}@0 {:<3s}  {:<3s}  {:<3s}  {:<12s} {:<12s} {}{}@0\n", color, skill->name,
+                          temp != SKILL ? YESNO(skill->violent) : "n/a", temp != SKILL ? YESNO(skill->quest) : "n/a",
+                          temp == SKILL ? YESNO(skill->humanoid) : "n/a", temp != SKILL ? buf1 : "n/a", buf2,
+                          VALID_DAMTYPE(skill->damage_type) ? damtypes[skill->damage_type].color : "",
+                          VALID_DAMTYPE(skill->damage_type) ? damtypes[skill->damage_type].name : "n/a");
         }
     }
 

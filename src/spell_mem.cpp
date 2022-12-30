@@ -28,6 +28,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 #include <fmt/format.h>
 
@@ -470,7 +472,7 @@ ACMD(do_memorize) {
         if (!*arg)
             char_printf(ch, "You don't need to memorize spells to cast them.\n");
         else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
-            char_printf(ch, "%s", NOPERSON);
+            char_printf(ch,  NOPERSON);
         else if (MEM_MODE(tch) != MEMORIZE)
             char_printf(ch, "%s does not study sorcery.\n", GET_NAME(tch));
         else
@@ -558,9 +560,9 @@ ACMD(do_pray) {
         if (!*arg)
             char_printf(ch, "You don't need to pray for spells to cast them.\n");
         else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
-            char_printf(ch, "%s", NOPERSON);
+            char_printf(ch,  NOPERSON);
         else if (MEM_MODE(tch) != PRAY)
-            char_printf(ch, "%s does not pray for spells.\n", GET_NAME(tch));
+            char_printf(ch, "{} does not pray for spells.\n", GET_NAME(tch));
         else
             show_spell_list(ch, tch);
         return;

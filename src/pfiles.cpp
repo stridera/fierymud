@@ -22,6 +22,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "legacy_structs.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "movement.hpp"
@@ -53,20 +54,19 @@ void save_player_objects(CharData *ch) {
         return;
 
     if (!get_pfilename(GET_NAME(ch), tempfilename, TEMP_FILE)) {
-        sprintf(buf, "SYSERR: Couldn't make temporary file name for saving objects for %s.", GET_NAME(ch));
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Couldn't make temporary file name for saving objects for {}.",
+            GET_NAME(ch));
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), filename, OBJ_FILE)) {
-        sprintf(buf, "SYSERR: Couldn't make final file name for saving objects for %s.", GET_NAME(ch));
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Couldn't make final file name for saving objects for {}.",
+            GET_NAME(ch));
         return;
     }
 
     if (!(fl = fopen(tempfilename, "w"))) {
-        sprintf(buf, "SYSERR: Couldn't open player file %s for write", tempfilename);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Couldn't open player file {} for write", tempfilename);
         return;
     }
 
@@ -99,13 +99,9 @@ void save_player_objects(CharData *ch) {
     }
 
     if (fclose(fl)) {
-        sprintf(buf, "SYSERR: Error closing rent file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error closing rent file for {} after write", GET_NAME(ch));
     } else if (rename(tempfilename, filename)) {
-        sprintf(buf, "SYSERR: Error renaming temporary rent file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error renaming temporary rent file for {} after write", GET_NAME(ch));
     }
 }
 
@@ -212,8 +208,8 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
     fprintf(fl, "effects: ");
     write_ascii_flags(fl, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS);
     fprintf(fl, "\n");
-    fprintf(fl, "wear: %d\n", GET_OBJ_WEAR(obj));
-    fprintf(fl, "hiddenness: %d\n", GET_OBJ_HIDDENNESS(obj));
+    fprintf(fl, "wear: %ld\n", GET_OBJ_WEAR(obj));
+    fprintf(fl, "hiddenness: %ld\n", GET_OBJ_HIDDENNESS(obj));
 
     for (i = 0; i < MAX_OBJ_APPLIES && !obj->applies[i].location; ++i)
         ;
@@ -372,11 +368,11 @@ static void list_objects(ObjData *list, CharData *ch, int indent, int last_inden
             while (pos >= last_indent)
                 buf[--pos] = ' ';
             if (first_indent)
-                char_printf(ch, "%s", first_indent);
+                char_printf(ch, first_indent);
             else
-                char_printf(ch, "%s", buf);
+                char_printf(ch, buf);
             if (num != 1)
-                char_printf(ch, "[%d] ", num);
+                char_printf(ch, "[{:d}] ", num);
             print_obj_to_char(display, ch, SHOW_SHORT_DESC | SHOW_FLAGS, nullptr);
             if (display->contains) {
                 list_objects(display->contains, ch, indent + 3, indent, nullptr);
@@ -392,22 +388,17 @@ void save_quests(CharData *ch) {
     char fname[PLAYER_FILENAME_LENGTH], frename[PLAYER_FILENAME_LENGTH];
 
     if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
-        sprintf(buf, "SYSERR: save_quests() couldn't get temp file name for %s.", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: save_quests() couldn't get temp file name for {}.", GET_NAME(ch));
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), frename, QUEST_FILE)) {
-        sprintf(buf, "SYSERR: save_quests() couldn't get quest file name for %s.", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: save_quests() couldn't get quest file name for {}.", GET_NAME(ch));
         return;
     }
 
     if (!(fp = fopen(fname, "w"))) {
-        sprintf(buf, "SYSERR: save_quests() couldn't open file %s for write", fname);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: save_quests() couldn't open file {} for write", fname);
         return;
     }
 
@@ -440,13 +431,9 @@ void save_quests(CharData *ch) {
     }
 
     if (fclose(fp)) {
-        sprintf(buf, "SYSERR: Error closing quest file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error closing quest file for {} after write", GET_NAME(ch));
     } else if (rename(fname, frename)) {
-        sprintf(buf, "SYSERR: Error renaming quest file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error renaming quest file for {} after write", GET_NAME(ch));
     }
 }
 
@@ -456,22 +443,17 @@ void save_pets(CharData *ch) {
     FollowType *k;
 
     if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
-        sprintf(buf, "SYSERR: save_pets() couldn't get temp file name for %s.", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: save_pets() couldn't get temp file name for {}.", GET_NAME(ch));
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), frename, PET_FILE)) {
-        sprintf(buf, "SYSERR: save_pets() couldn't get pet file name for %s.", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: save_pets() couldn't get pet file name for {}.", GET_NAME(ch));
         return;
     }
 
     if (!(fp = fopen(fname, "w"))) {
-        sprintf(buf, "SYSERR: save_pets() couldn't open file %s for write", fname);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: save_pets() couldn't open file {} for write", fname);
         return;
     }
 
@@ -485,13 +467,9 @@ void save_pets(CharData *ch) {
     }
 
     if (fclose(fp)) {
-        sprintf(buf, "SYSERR: Error closing pet file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error closing pet file for {} after write", GET_NAME(ch));
     } else if (rename(fname, frename)) {
-        sprintf(buf, "SYSERR: Error renaming pet file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error renaming pet file for {} after write", GET_NAME(ch));
     }
 }
 
@@ -594,9 +572,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     TrigData *trig;
 
     if (!objp || !location) {
-        sprintf(buf, "SYSERR: Invalid obj or location pointers passed to build_object");
-        log("%s", buf);
-        ;
+        log("SYSERR: Invalid obj or location pointers passed to build_object");
         return false;
     }
 
@@ -608,8 +584,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     tag_argument(line, tag);
 
     if (strcasecmp(tag, "vnum")) {
-        sprintf(buf, "SYSERR: Invalid Object File.  Object Vnum not found.");
-        log("%s", buf);
+        log("SYSERR: Invalid Object File.  Object Vnum not found.");
         return false;
     }
 
@@ -807,9 +782,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
             break;
         default:
         bad_tag:
-            sprintf(buf, "SYSERR: Unknown tag %s in rent file: %s", tag, line);
-            log("%s", buf);
-            ;
+            log("SYSERR: Unknown tag {} in rent file: {}", tag, line);
             break;
         }
     }
@@ -908,9 +881,7 @@ bool load_objects(CharData *ch) {
 
     if (!(get_line(fl, line) && is_integer(line))) {
         /* Object file may be in the 'old' format.  Attempt to load thusly. */
-        sprintf(buf, "Invalid rent code for %s: attempting to load via legacy code...", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("Invalid rent code for {}: attempting to load via legacy code...", GET_NAME(ch));
         fclose(fl);
         if (load_binary_objects(ch)) {
             log("   Success!");
@@ -922,8 +893,8 @@ bool load_objects(CharData *ch) {
                 "There was a problem (error 02) loading your objects from disk.\n"
                 "Contact a God for assistance.@0\n",
                 ch);
-            sprintf(buf, "%s entering game with no equipment. (error 02)", GET_NAME(ch));
-            mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} entering game with no equipment. (error 02)",
+                GET_NAME(ch));
             return false;
         }
     }
@@ -984,8 +955,7 @@ void load_quests(CharData *ch) {
                     "Contact a God for assistance.\n",
                     ch);
             }
-            sprintf(buf, "%s starting up with no quests.", GET_NAME(ch));
-            mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} starting up with no quests.", GET_NAME(ch));
             ch->quests = (QuestList *)nullptr;
         } else {
             while (!feof(fl)) {
@@ -1007,11 +977,9 @@ void load_quests(CharData *ch) {
                     if (curr->quest_id == qid) {
                         if (!duplicates) {
                             duplicates = true;
-                            sprintf(buf,
-                                    "SYSERR: Player %s had duplicate of quest %d (skipped) "
-                                    "(possibly more)",
-                                    GET_NAME(ch), qid);
-                            mudlog(buf, NRM, LVL_GOD, true);
+                            log(LogSeverity::Stat, LVL_GOD,
+                                "SYSERR: Player %s had duplicate of quest %d (skipped) (possibly more)", GET_NAME(ch),
+                                qid);
                         }
                         skipquest = true;
                         break;
@@ -1023,11 +991,8 @@ void load_quests(CharData *ch) {
                     skipquest = true;
                     if (!nonexistent) {
                         nonexistent = true;
-                        sprintf(buf,
-                                "SYSERR: Player %s had nonexistent quest %d (skipped) "
-                                "(possibly more)",
-                                GET_NAME(ch), qid);
-                        mudlog(buf, NRM, LVL_GOD, true);
+                        log(LogSeverity::Stat, LVL_GOD,
+                            "SYSERR: Player %s had nonexistent quest %d (skipped) (possibly more)", GET_NAME(ch), qid);
                     }
                 }
 
@@ -1203,24 +1168,15 @@ static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
                         /* Corrupt spell list - just put magic missile */
                         entry->spell = SPELL_MAGIC_MISSILE;
                         entry->length = 1;
-                        sprintf(buf,
-                                "SYSERR: restore_binary_object() found corrupt spellbook "
-                                "list '%s'",
-                                store->spells_in_book);
-                        log("%s", buf);
-                        ;
+                        log("SYSERR: restore_binary_object() found corrupt spellbook list '{}'", store->spells_in_book);
                     } else {
                         entry->spell = atoi(spell_parse);
                         spell_parse = strsep(&list_parse, "_");
                         if (!spell_parse || !*spell_parse) {
                             /* Length corrupt - just put 1 page */
                             entry->length = 1;
-                            sprintf(buf,
-                                    "SYSERR: restore_binary_object() found corrupt spellbook "
-                                    "list '%s'",
-                                    store->spells_in_book);
-                            log("%s", buf);
-                            ;
+                            log("SYSERR: restore_binary_object() found corrupt spellbook list '{}'",
+                                store->spells_in_book);
                         } else {
                             entry->length = atoi(spell_parse);
                         }
@@ -1462,17 +1418,17 @@ static int gen_receptionist(CharData *ch, CharData *recep, int cmd, char *arg, i
             "You begin to lose consciousness...",
             false, recep, 0, ch, TO_VICT);
         quit_mode = QUIT_CRYO;
-        sprintf(buf, "%s has cryo-rented.", GET_NAME(ch));
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has cryo-rented.", GET_NAME(ch));
     } else {
         act("@W$n@W tells you, 'Rent?  Sure, come this way!'\n"
             "$U$n stores your belongings and helps you into your private "
             "chamber.&0",
             false, recep, 0, ch, TO_VICT);
         quit_mode = QUIT_RENT;
-        sprintf(buf, "%s has rented in %s (%d).", GET_NAME(ch), world[ch->in_room].name, world[ch->in_room].vnum);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has rented in {} ({:d}).", GET_NAME(ch),
+            world[ch->in_room].name, world[ch->in_room].vnum);
     }
 
-    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
     act("$n helps $N into $S private chamber.", false, recep, 0, ch, TO_NOTVICT);
 
     remove_player_from_game(ch, quit_mode);
@@ -1490,9 +1446,7 @@ FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
     char filename[MAX_INPUT_LENGTH];
 
     if (!get_pfilename(player_name, filename, OBJ_FILE)) {
-        sprintf(buf, "SYSERR: Unable to construct filename to load objects for %s", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Unable to construct filename to load objects for {}", GET_NAME(ch));
         if (ch)
             send_to_char("Couldn't construct the filename!\n", ch);
         return nullptr;
@@ -1545,31 +1499,26 @@ bool convert_player_obj_file(char *player_name, CharData *ch) {
     fclose(fl);
     fl = open_player_obj_file(player_name, ch, true);
     if (!fl) {
-        mudlog("SYSERR: convert_player_file couldn't reopen object file!", NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: convert_player_file couldn't reopen object file!");
         return false;
     }
 
     /* Prepare output file */
     if (!get_pfilename(player_name, filename, OBJ_FILE)) {
-        sprintf(buf, "SYSERR: Unable to construct filename to save objects for %s", player_name);
-        log("%s", buf);
-        ;
+        log("SYSERR: Unable to construct filename to save objects for {}.", player_name);
         fclose(fl);
         return false;
     }
 
     snprintf(tempfilename, sizeof(tempfilename), "%s.temp", filename);
     if (!(fnew = fopen(tempfilename, "w"))) {
-        sprintf(buf, "SYSERR: Couldn't open player file %s for write", tempfilename);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Couldn't open player file {} for write", tempfilename);
         fclose(fl);
         return false;
     }
 
     if (feof(fl)) {
-        sprintf(buf, "SYSERR: Object file for %s is too small", player_name);
-        log("%s", buf);
-        ;
+        log("SYSERR: Object file for {} is too small", player_name);
         fclose(fl);
         fclose(fnew);
         return false;
@@ -1599,14 +1548,10 @@ bool convert_player_obj_file(char *player_name, CharData *ch) {
     fclose(fnew);
 
     if (rename(tempfilename, filename)) {
-        sprintf(buf, " * * * Error renaming %s to %s: %s * * *", tempfilename, filename, strerror(errno));
-        log("%s", buf);
-        ;
+        log(" * * * Error renaming {} to {}: {} * * *", tempfilename, filename, strerror(errno));
         return false;
     } else {
-        sprintf(buf, "Player object file converted to ASCII format: %s", player_name);
-        log("%s", buf);
-        ;
+        log("Player object file converted to ASCII format: {}", player_name);
         if (ch) {
             strcat(buf, "\n");
             page_string(ch, buf);

@@ -26,6 +26,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 HouseControlRec house_control[MAX_HOUSES];
 int num_of_houses = 0;
@@ -412,7 +414,7 @@ void hcontrol_pay_house(CharData *ch, char *arg) {
         send_to_char("Unknown house.\n", ch);
     else {
         sprintf(buf, "Payment for house %s collected by %s.", arg, GET_NAME(ch));
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
 
         house_control[i].last_payment = time(0);
         House_save_control();

@@ -15,7 +15,9 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+#include <fmt/format.h>
 #include <functional>
+#include <string_view>
 #include <variant>
 
 #define NUM_RESERVED_DESCS 8
@@ -25,14 +27,39 @@
 // #define CBP_FUNC(name) int(name)(CharData *, int)
 using CBP_FUNC = std::function<int(CharData *, int)>;
 
-/* comm.c */
-void all_printf(const char *messg, ...) __attribute__((format(printf, 1, 2)));
-void all_except_printf(CharData *ch, const char *messg, ...) __attribute__((format(printf, 2, 3)));
-void char_printf(const CharData *ch, const char *messg, ...) __attribute__((format(printf, 2, 3)));
-void room_printf(int rrnum, const char *messg, ...) __attribute__((format(printf, 2, 3)));
-void zone_printf(int zone_vnum, int skip_room, int min_stance, const char *messg, ...)
-    __attribute__((format(printf, 4, 5)));
-void callback_printf(CBP_FUNC(callback), int, const char *messg, ...) __attribute__((format(printf, 3, 4)));
+// Updated functions to use variadic templates and std::string_view
+template <typename... Args> void all_printf(std::string_view str, Args &&...args) {
+    all_printf(fmt::vformat(str, fmt::make_format_args(args...)));
+}
+void all_printf(std::string_view str);
+template <typename... Args> void all_except_printf(CharData *ch, std::string_view str, Args &&...args) {
+    all_except_printf(ch, fmt::vformat(str, fmt::make_format_args(args...)));
+}
+void all_except_printf(CharData *ch, std::string_view str);
+template <typename... Args> void char_printf(const CharData *ch, std::string_view str, Args &&...args) {
+    char_printf(ch, fmt::vformat(str, fmt::make_format_args(args...)));
+}
+void char_printf(const CharData *ch, std::string_view str);
+template <typename... Args> void room_printf(int rvnum, std::string_view str, Args &&...args) {
+    room_printf(rvnum, fmt::vformat(str, fmt::make_format_args(args...)));
+}
+void room_printf(int rvnum, std::string_view str);
+template <typename... Args>
+void zone_printf(int zone_vnum, int skip_room, int min_stance, std::string_view str, Args &&...args) {
+    zone_printf(zone_vnum, skip_room, min_stance, fmt::vformat(str, fmt::make_format_args(args...)));
+}
+void zone_printf(int zone_vnum, int skip_room, int min_stance, std::string_view str);
+template <typename... Args>
+void callback_printf(CBP_FUNC(callback), int min_stance, std::string_view str, Args &&...args) {
+    callback_printf(callback, min_stance, fmt::vformat(str, fmt::make_format_args(args...)));
+}
+void callback_printf(CBP_FUNC(callback), int min_stance, std::string_view str);
+
+template <typename... Args> void outdoor_printf(int zone_num, std::string_view str, Args &&...args) {
+    outdoor_printf(zone_num, fmt::vformat(str, fmt::make_format_args(args...)));
+}
+void outdoor_printf(int zone_num, std::string_view str);
+
 void close_socket(DescriptorData *d);
 int speech_ok(CharData *ch, int quiet);
 void send_gmcp_room(CharData *ch);
@@ -57,10 +84,14 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
 #define TO_OLC (1 << 8)      /* persons doing OLC may see msg */
 #define TO_VICTROOM (1 << 9) /* destination room will be vict's, not char's */
 
-int write_to_descriptor(socket_t desc, const char *txt);
+void string_to_output(DescriptorData *t, std::string_view txt);
+int write_to_descriptor(socket_t desc, std::string_view txt);
 void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d);
-void desc_printf(DescriptorData *t, const char *txt, ...) __attribute__((format(printf, 2, 3)));
-extern void string_to_output(DescriptorData *t, const char *txt);
+// void desc_printf(DescriptorData *t, const char *txt, ...) __attribute__((format(printf, 2, 3)));
+template <typename... Args> void desc_printf(DescriptorData *t, std::string_view txt, Args &&...args) {
+    desc_printf(t, fmt::vformat(txt, fmt::make_format_args(args...)));
+}
+inline void desc_printf(DescriptorData *t, std::string_view txt) { string_to_output(t, txt); }
 
 typedef RETSIGTYPE sigfunc(int);
 

@@ -56,6 +56,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 int get_room_location(char *room);
 int obj_room(ObjData *obj);
@@ -137,7 +139,7 @@ ACMD(do_mdamage) {
         *damdone = 0;
     else {
         sprintf(buf, "[ WARN: do_mdamage() for %s - can't identify running trigger ]", GET_NAME(ch));
-        mudlog(buf, BRF, LVL_GOD, false);
+        log(LogSeverity::Warn, LVL_GOD, buf);
     }
 
     if (!*name) {

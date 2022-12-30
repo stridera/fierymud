@@ -25,6 +25,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 void trig_data_copy(TrigData *current, const TrigData *trg);
 
@@ -309,7 +311,7 @@ void assign_triggers(void *i, int type) {
             if (rnum == -1) {
                 sprintf(buf, "SYSERR: trigger #%d non-existent, for mob #%d", trg_proto->vnum,
                         mob_index[GET_MOB_RNUM(mob)].vnum);
-                log("%s", buf);
+                log( buf);
                 ;
             } else {
                 if (!SCRIPT(mob))
@@ -327,7 +329,7 @@ void assign_triggers(void *i, int type) {
             if (rnum == -1) {
                 sprintf(buf, "SYSERR: trigger #%d non-existent, for obj #%d", trg_proto->vnum,
                         GET_OBJ_RNUM(obj) == NOTHING ? NOTHING : obj_index[GET_OBJ_RNUM(obj)].vnum);
-                log("%s", buf);
+                log( buf);
                 ;
             } else {
                 if (!SCRIPT(obj))
@@ -344,7 +346,7 @@ void assign_triggers(void *i, int type) {
             rnum = real_trigger(trg_proto->vnum);
             if (rnum == -1) {
                 sprintf(buf, "SYSERR: trigger #%d non-existent, for room #%d", trg_proto->vnum, room->vnum);
-                log("%s", buf);
+                log( buf);
                 ;
             } else {
                 if (!SCRIPT(room))

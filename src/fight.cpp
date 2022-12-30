@@ -31,6 +31,7 @@
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "movement.hpp"
@@ -102,10 +103,10 @@ void set_battling(CharData *ch, CharData *target) {
      * switch skill, and the caller should be aware of the situation and call
      * stop_battling() if it decides that ch will change its target */
     if (ch->target) {
-        mprintf(L_ERROR, LVL_GOD, "set_battling: %s is already battling %s", GET_NAME(ch), GET_NAME(ch->target));
+        log(LogSeverity::Error, LVL_GOD, "set_battling: {} is already battling {}", GET_NAME(ch), GET_NAME(ch->target));
         if (set_battling_corecount_1 < 3) {
             drop_core(nullptr, "set_battling_I");
-            mprintf(L_ERROR, LVL_GOD, "set_battling: core dropped (I)");
+            log(LogSeverity::Error, LVL_GOD, "set_battling: core dropped (I)");
             set_battling_corecount_1++;
         }
         stop_battling(ch);
@@ -118,11 +119,11 @@ void set_battling(CharData *ch, CharData *target) {
      */
     for (c = target->attackers; c; c = c->next_attacker)
         if (c == ch) {
-            mprintf(L_ERROR, LVL_GOD, "set_battling: %s is already in attacker list for %s", GET_NAME(ch),
-                    GET_NAME(target));
+            log(LogSeverity::Error, LVL_GOD, "set_battling: {} is already in attacker list for {}", GET_NAME(ch),
+                GET_NAME(target));
             if (set_battling_corecount_2 < 3) {
                 drop_core(nullptr, "set_battling_II");
-                mprintf(L_ERROR, LVL_GOD, "set_battling: core dropped (II)");
+                log(LogSeverity::Error, LVL_GOD, "set_battling: core dropped (II)");
                 set_battling_corecount_2++;
             }
             return;
@@ -136,10 +137,10 @@ void set_battling(CharData *ch, CharData *target) {
      */
     for (c = combat_list; c; c = c->next_fighting)
         if (c == ch) {
-            mprintf(L_ERROR, LVL_GOD, "set_battling: %s is already in the combat list", GET_NAME(ch));
+            log(LogSeverity::Error, LVL_GOD, "set_battling: {} is already in the combat list", GET_NAME(ch));
             if (set_battling_corecount_3 < 3) {
                 drop_core(nullptr, "set_battling_III");
-                mprintf(L_ERROR, LVL_GOD, "set_battling: core dropped (III)");
+                log(LogSeverity::Error, LVL_GOD, "set_battling: core dropped (III)");
                 set_battling_corecount_3++;
             }
             return;
@@ -162,10 +163,10 @@ void stop_battling(CharData *ch) {
         REMOVE_FROM_LIST(ch, ch->target->attackers, next_attacker);
         ch->target = nullptr;
     } else {
-        mprintf(L_ERROR, LVL_GOD, "SYSERR: stop_battling: %s has no target", GET_NAME(ch));
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: stop_battling: {} has no target", GET_NAME(ch));
         if (stop_battling_corecount < 3) {
             drop_core(nullptr, "stop_battling_no_target");
-            mprintf(L_ERROR, LVL_GOD, "stop_battling: core dropped");
+            log(LogSeverity::Error, LVL_GOD, "stop_battling: core dropped");
             stop_battling_corecount++;
         }
     }
@@ -525,8 +526,8 @@ void check_killer(CharData *ch, CharData *vict) {
     if (!PLR_FLAGGED(vict, PLR_KILLER) && !PLR_FLAGGED(vict, PLR_THIEF) && !PLR_FLAGGED(ch, PLR_KILLER) &&
         !IS_NPC(ch) && !IS_NPC(vict) && (ch != vict)) {
         SET_FLAG(PLR_FLAGS(ch), PLR_KILLER);
-        mprintf(BRF, LVL_IMMORT, "PC Killer bit set on %s for initiating attack on %s at %s.", GET_NAME(ch),
-                GET_NAME(vict), world[vict->in_room].name);
+        log(LogSeverity::Warn, LVL_IMMORT, "PC Killer bit set on {} for initiating attack on {} at {}.", GET_NAME(ch),
+            GET_NAME(vict), world[vict->in_room].name);
         send_to_char("If you want to be a PLAYER KILLER, so be it...\n", ch);
     }
 }
@@ -934,7 +935,7 @@ void die(CharData *ch, CharData *killer) {
         else
             sprintf(buf2, "%s died", GET_NAME(ch));
         clan_notification(GET_CLAN(ch), ch, "%s.", buf2);
-        mprintf(L_STAT, LVL_IMMORT, "%s in %s [%d]", buf2, world[ch->in_room].name, world[ch->in_room].vnum);
+        log(LogSeverity::Stat, LVL_IMMORT, "%s in %s [%d]", buf2, world[ch->in_room].name, world[ch->in_room].vnum);
     }
 
     /* Stop the fighting */
@@ -1110,7 +1111,7 @@ static void append_damage_amount(char *b, const char *msg, int dam, int type) {
     if (damage_amounts) {
         if (type != TO_VICT && type != TO_NOTVICT && type != TO_CHAR && type != TO_ROOM) {
             sprintf(b, "SYSERR: append_damage_amounts: unrecognized target type %d", type);
-            log("%s", b);
+            log(b);
             type = TO_NOTVICT;
         }
         if (dam < 0) {
@@ -1530,7 +1531,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
 
     if (DECEASED(victim)) {
         sprintf(buf, "SYSERR: Attempt to damage a corpse in room num %d", world[victim->in_room].vnum);
-        log("%s", buf);
+        log(buf);
         return VICTIM_DEAD;
     }
 
@@ -1741,7 +1742,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
                     "Error: Damage of %d was predicted to kill %s, but victim "
                     "survived with %d hp",
                     dam, GET_NAME(victim), GET_HIT(victim));
-            mudlog(buf, BRF, LVL_GOD, true);
+            log(LogSeverity::Warn, LVL_GOD, buf);
         }
     }
 
@@ -1943,8 +1944,8 @@ void hit(CharData *ch, CharData *victim, int type) {
 
     /* This should not happen */
     if (IN_ROOM(ch) != IN_ROOM(victim)) {
-        mprintf(L_ERROR, LVL_GOD, "hit(): %s [%d] is not in the same room as %s [%d]", GET_NAME(ch), CH_RVNUM(ch),
-                GET_NAME(victim), CH_RVNUM(victim));
+        log(LogSeverity::Error, LVL_GOD, "hit(): {} [{:d}] is not in the same room as {} [{:d}]", GET_NAME(ch),
+            CH_RVNUM(ch), GET_NAME(victim), CH_RVNUM(victim));
         return;
     }
 
@@ -1960,8 +1961,8 @@ void hit(CharData *ch, CharData *victim, int type) {
 
     if (FIGHTING(ch) != victim && EFF_FLAGGED(ch, EFF_BLIND)) {
         send_to_char("You cant see a thing!\n", ch);
-        mprintf(L_ERROR, LVL_GOD, "hit(): %s is blind but tried to attack new target %s [room %d]", GET_NAME(ch),
-                GET_NAME(victim), CH_RVNUM(ch));
+        log(LogSeverity::Error, LVL_GOD, "hit(): {} is blind but tried to attack new target {} [room {:d}]", GET_NAME(ch),
+            GET_NAME(victim), CH_RVNUM(ch));
         return;
     }
 

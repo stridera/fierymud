@@ -13,6 +13,7 @@
 #include "comm.hpp"
 #include "conf.hpp"
 #include "db.hpp"
+#include "logging.hpp"
 #include "players.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
@@ -65,8 +66,8 @@ void kill_to_trophy(CharData *vict, CharData *killer, float amount) {
     TrophyNode *node;
 
     if (IS_NPC(killer)) {
-        sprintf(buf, "SYSERR: Non-player '%s' (%d) in kill_to_trophy()", GET_NAME(killer), GET_MOB_VNUM(killer));
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Non-player '{}' ({:d}) in kill_to_trophy()", GET_NAME(killer),
+            GET_MOB_VNUM(killer));
         return;
     }
 
@@ -96,8 +97,7 @@ void load_trophy(FILE *file, CharData *ch) {
 
     node = GET_TROPHY(ch);
     if (!node) {
-        sprintf(buf, "SYSERR: Player %s has no trophy list", GET_NAME(ch));
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Player {} has no trophy list", GET_NAME(ch));
         return;
     }
 

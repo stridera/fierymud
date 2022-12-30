@@ -19,6 +19,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 #define MEGABUF_SIZE 100000
 static char megabuf[MEGABUF_SIZE]; /* Arbitrary large size */

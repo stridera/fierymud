@@ -40,6 +40,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /**********************************************************/
 /* Event functions for spells that use time-based effects */

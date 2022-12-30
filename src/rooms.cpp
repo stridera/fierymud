@@ -14,6 +14,7 @@
 #include "directions.hpp"
 #include "exits.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "skills.hpp"
@@ -268,8 +269,8 @@ bool check_can_go(CharData *ch, int dir, bool quiet) {
                             isplural(exit->keyword) ? "" : "s");
                     send_to_char(buf, ch);
                 } else {
-                    sprintf(buf, "SYSERR: room %d, exit %d has no keyword", CH_ROOM(ch)->vnum, dir);
-                    mudlog(buf, BRF, LVL_GOD, true);
+                    log(LogSeverity::Warn, LVL_GOD, "SYSERR: room {:d}, exit {:d} has no keyword", CH_ROOM(ch)->vnum,
+                        dir);
                     send_to_char("It seems to be closed.\n", ch);
                 }
             }
@@ -596,7 +597,7 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
         return;
 
     if (!ch) {
-        mudlog("SYSERR: pick_door() called with no actor", BRF, LVL_IMMORT, false);
+        log(LogSeverity::Warn, LVL_IMMORT, "SYSERR: pick_door() called with no actor");
         return;
     }
 

@@ -14,6 +14,7 @@
 #include "conf.hpp"
 #include "db.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "players.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
@@ -152,7 +153,6 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
         }
         send_to_char(buf, ch);
         for (; node; node = node->next) {
-            log("log contains: %s", node->msg);
             strftime(timebuf, 32, TIMEFMT_LOG, localtime(&node->time));
             sprintf(buf, "%s: %s\n", timebuf, node->msg);
             send_to_char(buf, ch);

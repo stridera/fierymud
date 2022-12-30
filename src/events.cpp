@@ -28,6 +28,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 Queue *event_q; /* the event queue */
 int processing_events = false;
@@ -142,7 +144,7 @@ EVENTFUNC(casting_handler) {
     if (!IS_SPELL(ch->casting.spell)) {
         STOP_CASTING(ch);
         sprintf(castbuf, "SYSERR: removed casting loop on %s", GET_NAME(ch));
-        log("%s", castbuf);
+        log( castbuf);
         return EVENT_FINISHED;
     }
 
@@ -171,7 +173,7 @@ EVENTFUNC(casting_handler) {
             break;
         default:
             sprintf(castbuf, "SYSERR: Error in casting_handler() at obj valid check for spell %d.", ch->casting.spell);
-            log("%s", castbuf);
+            log( castbuf);
         }
     } else if (ch->casting.tch) { /* target is a char */
         switch (ch->casting.target_status) {
@@ -192,7 +194,7 @@ EVENTFUNC(casting_handler) {
                     "SYSERR: Error in casting_handler() at char valid check for "
                     "spell %d.",
                     ch->casting.spell);
-            log("%s", castbuf);
+            log( castbuf);
         }
     }
 

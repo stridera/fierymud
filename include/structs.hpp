@@ -16,6 +16,8 @@
 #include "spell_mem.hpp"
 #include "sysdep.hpp"
 
+#include <string>
+
 typedef int room_num;
 typedef int obj_num;
 typedef int zone_vnum;
@@ -442,10 +444,7 @@ struct DescriptorData {
     char inbuf[MAX_RAW_INPUT_LENGTH];  /* buffer for raw input            */
     char last_input[MAX_INPUT_LENGTH]; /* the last input                  */
     char small_outbuf[SMALL_BUFSIZE];  /* standard output buffer                */
-    char *output;                      /* ptr to the current output buffer      */
-    int bufptr;                        /* ptr to end of current output          */
-    int bufspace;                      /* space left in the output buffer       */
-    txt_block *large_outbuf;           /* ptr to large buffer, if we need it    */
+    std::string output;                /* ptr to the current output buffer      */
     txt_q input;                       /* q of unprocessed input                */
     CharData *character;               /* linked to char                        */
     CharData *original;                /* original char if switched             */

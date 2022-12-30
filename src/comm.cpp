@@ -31,6 +31,7 @@
 #include "handler.hpp"
 #include "house.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "mail.hpp"
 #include "math.hpp"
 #include "modify.hpp"
@@ -247,7 +248,6 @@ int main(int argc, char **argv) {
     log("Initializing runtime game constants.");
     init_flagvectors();
     // init_rules();
-    init_colors();
     init_races();
     init_classes();
     init_objtypes();
@@ -886,7 +886,7 @@ void game_loop(int mother_desc) {
         /* send queued output out to the operating system (ultimately to user) */
         for (d = descriptor_list; d; d = next_d) {
             next_d = d->next;
-            if (FD_ISSET(d->descriptor, &output_set) && *(d->output)) {
+            if (FD_ISSET(d->descriptor, &output_set) && !d->output.empty()) {
                 if (process_output(d) < 0)
                     close_socket(d);
                 else
@@ -1169,7 +1169,7 @@ void echo_off(DescriptorData *d) {
         (char)0,
     };
 
-    desc_printf(d, "%s", off_string);
+    desc_printf(d, off_string);
 }
 
 void send_gmcp_prompt(DescriptorData *d) {
@@ -1758,9 +1758,9 @@ void make_prompt(DescriptorData *d) {
         write_to_descriptor(d->descriptor, "] ");
     else if (!d->connected) {
         char *prompt = prompt_str(d->character);
-        process_colors(prompt, MAX_STRING_LENGTH, prompt, COLOR_LEV(d->character) >= C_NRM ? CLR_PARSE : CLR_STRIP);
 
-        write_to_descriptor(d->descriptor, prompt);
+        write_to_descriptor(d->descriptor,
+                            process_colors(prompt, COLOR_LEV(d->character) >= C_NRM ? CLR_PARSE : CLR_STRIP));
         send_gmcp_prompt(d);
     }
 }
@@ -1861,90 +1861,16 @@ int get_from_q(txt_q *queue, char *dest, int *aliased) {
 void flush_queues(DescriptorData *d) {
     int dummy;
 
-    if (d->large_outbuf) {
-        d->large_outbuf->next = bufpool;
-        bufpool = d->large_outbuf;
-    }
-
     while (get_from_q(&d->input, buf2, &dummy))
         ;
 }
 
-/* aka dprintf */
-void desc_printf(DescriptorData *t, const char *txt, ...) {
-    va_list args;
-
-    static unsigned int vcount = 0;
-    static unsigned int scount = 0;
-
-    if (txt && *txt) {
-        if (strchr(txt, '%')) {
-            va_start(args, txt);
-            vsnprintf(comm_buf, sizeof(comm_buf), txt, args);
-            va_end(args);
-            txt = comm_buf;
-            ++vcount;
-        } else
-            ++scount;
-        string_to_output(t, txt);
-    }
-}
-
 /* Add a new string to a player's output queue */
-void string_to_output(DescriptorData *t, const char *txt) {
-    int size;
-    static char new_txt[2 * MAX_STRING_LENGTH];
-
-    if (!t || !txt || !*txt)
+void string_to_output(DescriptorData *t, std::string_view txt) {
+    if (!t || txt.empty())
         return;
 
-    size = process_colors(new_txt, sizeof(new_txt), txt,
-                          t->character && COLOR_LEV(t->character) >= C_NRM ? CLR_PARSE : CLR_STRIP);
-
-    /* if we're in the overflow state already, ignore this new output */
-    if (t->bufptr < 0)
-        return;
-
-    /* if we have enough space, just write to buffer and that's it! */
-    if (t->bufspace > size) {
-        strcpy(t->output + t->bufptr, new_txt);
-        t->bufspace -= size;
-        t->bufptr += size;
-        return;
-    }
-
-    /*
-     * If we're already using the large buffer, or if even the large buffer
-     * is too small to handle this new text, chuck the text and switch to the
-     * overflow state.
-     */
-    if (t->large_outbuf || ((size + strlen(t->output)) > LARGE_BUFSIZE)) {
-        t->bufptr = -1;
-        buf_overflows++;
-        return;
-    }
-
-    buf_switches++;
-
-    /* if the pool has a buffer in it, grab it */
-    if (bufpool != nullptr) {
-        t->large_outbuf = bufpool;
-        bufpool = bufpool->next;
-    } else { /* else create a new one */
-        CREATE(t->large_outbuf, txt_block, 1);
-        CREATE(t->large_outbuf->text, char, LARGE_BUFSIZE);
-        buf_largecount++;
-    }
-
-    strcpy(t->large_outbuf->text, t->output); /* copy to big buffer */
-    t->output = t->large_outbuf->text;        /* make big buffer primary */
-    strcat(t->output, new_txt);               /* now add new text */
-
-    /* set the pointer for the next write */
-    t->bufptr = strlen(t->output);
-
-    /* calculate how much space is left in the buffer */
-    t->bufspace = LARGE_BUFSIZE - 1 - t->bufptr;
+    t->output += process_colors(txt, t->character && COLOR_LEV(t->character) >= C_NRM ? CLR_PARSE : CLR_STRIP);
 }
 
 void free_bufpools(void) {
@@ -1969,12 +1895,7 @@ void init_descriptor(DescriptorData *newd, int desc) {
 
     newd->descriptor = desc;
     newd->idle_tics = 0;
-    newd->output = newd->small_outbuf;
-    newd->bufspace = SMALL_BUFSIZE - 1;
     newd->login_time = time(0);
-    *newd->inbuf = '\0';
-    *newd->output = '\0';
-    newd->bufptr = 0;
     newd->wait = 1;
     newd->gmcp_enabled = false;
 
@@ -2047,14 +1968,10 @@ int new_descriptor(int s) {
         sprintf(buf, "\n Connection logged from: %s\n\n", newd->host);
         write_to_descriptor(desc, buf);
         CLOSE_SOCKET(desc);
-        mprintf(L_STAT, LVL_GOD, "BANNED: Connection attempt denied from [%s]", newd->host);
+        log(LogSeverity::Stat, LVL_GOD, "BANNED: Connection attempt denied from [{}]", newd->host);
         free(newd);
         return 0;
     }
-#if 0
-    /* Log new connections - probably unnecessary, but you may want it */
-    mprintf(L_STAT, LVL_GOD, "New connection from [%s]", newd->host);
-#endif
 
     init_descriptor(newd, desc);
 
@@ -2070,77 +1987,41 @@ int new_descriptor(int s) {
 }
 
 int process_output(DescriptorData *t) {
-    static char i[LARGE_BUFSIZE + GARBAGE_SPACE];
     static int result;
-
-    /* we may need this \n for later -- see below */
-    strcpy(i, "\r\n");
-
-    /* now, append the 'real' output */
-    strcpy(i + 2, t->output);
-
-    /* if we're in the overflow state, notify the user */
-    if (t->bufptr < 0)
-        strcat(i, "**OVERFLOW**");
 
     /* add the extra CRLF if the person isn't in compact mode */
     if (!t->connected && t->character && !PRF_FLAGGED(t->character, PRF_COMPACT))
-        strcat(i + 2, "\n");
+        t->output += "\n";
 
     /*
      * now, send the output.  If this is an 'interruption', use the prepended
      * CRLF, otherwise send the straight output sans CRLF.
      */
     if (!t->prompt_mode) /* && !t->connected) */
-        result = write_to_descriptor(t->descriptor, i);
+        result = write_to_descriptor(t->descriptor, "\r\n" + t->output);
     else
-        result = write_to_descriptor(t->descriptor, i + 2);
+        result = write_to_descriptor(t->descriptor, t->output);
 
     /* handle snooping: prepend "% " and send to snooper */
     if (t->snoop_by)
-        desc_printf(t->snoop_by, "&2((&0 %s &2))&0", t->output);
+        desc_printf(t->snoop_by, "&2((&0 {}} &2))&0", t->output);
 
-    /*
-     * if we were using a large buffer, put the large buffer on the buffer pool
-     * and switch back to the small one
-     */
-    if (t->large_outbuf) {
-        t->large_outbuf->next = bufpool;
-        bufpool = t->large_outbuf;
-        t->large_outbuf = nullptr;
-        t->output = t->small_outbuf;
-    }
-    /* reset total bufspace back to that of a small buffer */
-    t->bufspace = SMALL_BUFSIZE - 1;
-    t->bufptr = 0;
-    *(t->output) = '\0';
+    t->output.clear();
 
     return result;
 }
 
-int write_to_descriptor(socket_t desc, const char *txt) {
+int write_to_descriptor(socket_t desc, std::string_view txt) {
     int total, bytes_written;
 
-    total = strlen(txt);
+    total = txt.length();
+    bytes_written = write(desc, txt.data(), total);
 
-    do {
-        if ((bytes_written = write(desc, txt, total)) < 0) {
-#ifdef EWOULDBLOCK
-            if (errno == EWOULDBLOCK)
-                errno = EAGAIN;
-#endif /* EWOULDBLOCK */
-            if (errno == EAGAIN)
-                log("process_output: socket write would block, about to close");
-            else
-                perror("Write to socket");
-            return -1;
-        } else {
-            txt += bytes_written;
-            total -= bytes_written;
-        }
-    } while (total > 0);
-
-    return 0;
+    if (bytes_written < 0) {
+        perror("Write to socket");
+        return -1;
+    } else
+        return bytes_written;
 }
 
 /*
@@ -2432,21 +2313,21 @@ void close_socket(DescriptorData *d) {
         if (IS_PLAYING(d)) {
             save_player_char(d->character);
             act("$n has lost $s link.", true, d->character, 0, 0, TO_ROOM);
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Closing link to: %s.",
-                    GET_NAME(d->character));
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Closing link to: %s.",
+                GET_NAME(d->character));
             d->character->desc = nullptr;
         } else {
             if (GET_NAME(d->character))
-                mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: %s.",
-                        GET_NAME(d->character));
+                log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: %s.",
+                    GET_NAME(d->character));
             /*else
-               mprintf(L_STAT, LVL_IMMORT, "Losing player: <null>.");
+               log(LogSeverity::Stat, LVL_IMMORT, "Losing player: <null>.");
                d->character->desc = NULL;
                free_char(d->character);
              */
         }
     } else
-        mprintf(L_INFO, LVL_IMMORT, "Losing descriptor without char.");
+        log(LogSeverity::Info, LVL_IMMORT, "Losing descriptor without char.");
 
     /* JE 2/22/95 -- part of my unending quest to make switch stable */
     if (d->original && d->original->desc)
@@ -2519,14 +2400,14 @@ RETSIGTYPE checkpointing(int signo) {
 }
 
 RETSIGTYPE dump_core(int signo) {
-    mprintf(L_STAT, LVL_IMMORT, "Received SIGUSR1 - dumping core.");
+    log(LogSeverity::Info, LVL_IMMORT, "Received SIGUSR1 - dumping core.");
     drop_core(nullptr, "usrsig");
 }
 
 RETSIGTYPE unrestrict_game(int signo) {
     extern struct BanListElement *ban_list;
 
-    mprintf(L_WARN, LVL_IMMORT, "Received SIGUSR2 - completely unrestricting game (emergent)");
+    log(LogSeverity::Warn, LVL_IMMORT, "Received SIGUSR2 - completely unrestricting game (emergent)");
     ban_list = nullptr;
     should_restrict = 0;
     restrict_reason = RESTRICT_NONE;
@@ -2575,179 +2456,94 @@ void signal_setup(void) {
     signal(SIGALRM, SIG_IGN);
 }
 
-/* ****************************************************************
- *       Public routines for system-to-player-communication        *
- **************************************************************** */
+// Updated variadic functions
+void all_printf(std::string_view str) {
+    DescriptorData *i;
 
-/* aka char_printf */
-void char_printf(const CharData *ch, const char *messg, ...) {
-    va_list args;
+    for (i = descriptor_list; i; i = i->next)
+        if (!i->connected)
+            string_to_output(i, str);
+}
 
-    static unsigned int vcount = 0;
-    static unsigned int scount = 0;
+void all_except_printf(CharData *ch, std::string_view str) {
+    DescriptorData *i;
+    CharData *avoid = REAL_CHAR(ch);
 
-    if (ch->desc && messg && *messg) {
-        if (strchr(messg, '%')) {
-            va_start(args, messg);
-            vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
-            va_end(args);
-            messg = comm_buf;
-            ++vcount;
-        } else
-            ++scount;
-        string_to_output(ch->desc, messg);
+    for (i = descriptor_list; i; i = i->next)
+        if (!i->connected && i->character != avoid)
+            string_to_output(i, str);
+}
+
+void char_printf(const CharData *ch, std::string_view str) {
+    if (ch->desc)
+        string_to_output(ch->desc, str);
+}
+
+void room_printf(int rvnum, std::string_view str) {
+    CharData *i;
+    RoomData *room;
+    Exit *exit;
+    int dir;
+
+    if (rvnum >= 0 && rvnum <= top_of_world)
+        room = &world[rvnum];
+    else {
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: bad room rnum {} passed to send_to_room", rvnum);
+        return;
+    }
+
+    if (!room)
+        return;
+
+    for (i = room->people; i; i = i->next_in_room)
+        if (i->desc)
+            string_to_output(i->desc, str);
+
+    /* Reflect to OBSERVATORY rooms if this room is an ARENA. */
+    if (ROOM_FLAGGED(rvnum, ROOM_ARENA)) {
+        for (dir = 0; dir < NUM_OF_DIRS; ++dir) {
+            if ((exit = room->exits[dir]) && EXIT_NDEST(exit) != NOWHERE && EXIT_NDEST(exit) != rvnum &&
+                ROOM_FLAGGED(EXIT_NDEST(exit), ROOM_OBSERVATORY)) {
+                for (i = EXIT_DEST(exit)->people; i; i = i->next_in_room)
+                    if (i->desc) {
+                        string_to_output(i->desc, str);
+                        break;
+                    }
+            }
+        }
     }
 }
 
-void zone_printf(int zone_vnum, int skip_room, int min_stance, const char *messg, ...) {
+void zone_printf(int zone_vnum, int skip_room, int min_stance, std::string_view str) {
     DescriptorData *i;
-    va_list args;
-    bool found = false;
-    int zone_num = real_zone(zone_vnum);
+    int zone_rnum = real_zone(zone_vnum);
 
-    if (!messg || !*messg)
+    if (zone_rnum == NOWHERE) {
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: bad zone vnum {} passed to send_to_zone", zone_vnum);
         return;
+    }
 
     for (i = descriptor_list; i; i = i->next)
-        if (!i->connected && i->character && GET_STANCE(i->character) >= min_stance &&
-            IN_ROOM(i->character) != NOWHERE && IN_ROOM(i->character) != skip_room &&
-            IN_ZONE_RNUM(i->character) == zone_num) {
-            if (!found) {
-                va_start(args, messg);
-                vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
-                va_end(args);
-                found = true;
-            }
-            string_to_output(i, comm_buf);
-        }
+        if (!i->connected && i->character && i->character->in_room != NOWHERE && i->character->in_room != skip_room &&
+            i->character->char_specials.stance >= min_stance && world[i->character->in_room].zone == zone_rnum)
+            string_to_output(i, str);
 }
 
-void callback_printf(CBP_FUNC(callback), int data, const char *messg, ...) {
+void callback_printf(CBP_FUNC(callback), int data, std::string_view str) {
     DescriptorData *i;
-    bool found;
-    va_list args;
 
-    if (messg && *messg)
-        for (i = descriptor_list; i; i = i->next)
-            if (!i->connected && i->character && callback(i->character, data)) {
-                if (!found) {
-                    va_start(args, messg);
-                    vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
-                    va_end(args);
-                    found = true;
-                }
-                string_to_output(i, comm_buf);
-            }
+    for (i = descriptor_list; i; i = i->next)
+        if (!i->connected && i->character && i->character->desc && callback(i->character, data))
+            string_to_output(i, str);
 }
 
-void all_except_printf(CharData *ch, const char *messg, ...) {
+void outdoor_printf(int zone_num, std::string_view str) {
     DescriptorData *i;
-    va_list args;
-    bool found = false;
-    CharData *avoid = REAL_CHAR(ch);
-
-    if (messg && *messg)
-        for (i = descriptor_list; i; i = i->next)
-            if (!i->connected && !(avoid && avoid->desc && avoid->desc == i)) {
-                if (!found) {
-                    va_start(args, messg);
-                    vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
-                    va_end(args);
-                    found = true;
-                }
-                string_to_output(i, comm_buf);
-            }
-}
-
-void all_printf(const char *messg, ...) {
-    DescriptorData *i;
-    va_list args;
-    bool found = false;
-
-    if (messg && *messg)
-        for (i = descriptor_list; i; i = i->next)
-            if (!i->connected) {
-                if (!found) {
-                    va_start(args, messg);
-                    vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
-                    va_end(args);
-                    found = true;
-                }
-                string_to_output(i, comm_buf);
-            }
-}
-
-void outdoor_printf(int zone_num, char *messg, ...) {
-    DescriptorData *i;
-    va_list args;
-    bool found = false;
-
-    if (!messg || !*messg)
-        return;
 
     for (i = descriptor_list; i; i = i->next)
         if (!i->connected && i->character && AWAKE(i->character) && CH_OUTSIDE(i->character) &&
-            IN_ZONE_RNUM(i->character) == zone_num && STATE(i) == CON_PLAYING) {
-            if (!found) {
-                va_start(args, messg);
-                vsnprintf(comm_buf, sizeof(comm_buf), messg, args);
-                va_end(args);
-                found = true;
-            }
-            string_to_output(i, comm_buf);
-        }
-}
-
-void room_printf(int roomnum, const char *messg, ...) {
-    CharData *i;
-    int dir, rmnmlen;
-    RoomData *room;
-    Exit *exit;
-    bool found = false;
-    va_list args;
-
-    if (!messg || !*messg)
-        return;
-
-    if (roomnum >= 0 && roomnum <= top_of_world)
-        room = &world[roomnum];
-    else {
-        mprintf(L_ERROR, LVL_GOD, "SYSERR: bad room rnum %d passed to send_to_room", roomnum);
-        return;
-    }
-
-    for (i = room->people; i; i = i->next_in_room)
-        if (i->desc) {
-            if (!found) {
-                snprintf(comm_buf, sizeof(comm_buf), "@B<@0%s@B>@0 ", room->name);
-                rmnmlen = strlen(comm_buf);
-                va_start(args, messg);
-                vsnprintf(comm_buf + rmnmlen, sizeof(comm_buf) - rmnmlen, messg, args);
-                va_end(args);
-                found = true;
-            }
-            /* Skip over the room name */
-            string_to_output(i->desc, comm_buf + rmnmlen);
-        }
-
-    /* Reflect to OBSERVATORY rooms if this room is an ARENA. */
-    if (ROOM_FLAGGED(roomnum, ROOM_ARENA)) {
-        for (dir = 0; dir < NUM_OF_DIRS; ++dir)
-            if ((exit = room->exits[dir]) && EXIT_NDEST(exit) != NOWHERE && EXIT_NDEST(exit) != roomnum &&
-                ROOM_FLAGGED(EXIT_NDEST(exit), ROOM_OBSERVATORY))
-                for (i = EXIT_DEST(exit)->people; i; i = i->next_in_room)
-                    if (i->desc) {
-                        if (!found) {
-                            snprintf(comm_buf, sizeof(comm_buf), "@B<@0%s@B>@0 ", room->name);
-                            rmnmlen = strlen(comm_buf);
-                            va_start(args, messg);
-                            vsnprintf(comm_buf + rmnmlen, sizeof(comm_buf) - rmnmlen, messg, args);
-                            va_end(args);
-                            found = true;
-                        }
-                        string_to_output(i->desc, comm_buf);
-                    }
-    }
+            IN_ZONE_RNUM(i->character) == zone_num && STATE(i) == CON_PLAYING)
+            string_to_output(i, str);
 }
 
 /* SPEECH_OK
@@ -3082,7 +2878,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         if (ch && ((MOB_PERFORMS_SCRIPTS(ch) && SCRIPT_CHECK(ch, MTRIG_ACT)) || SENDOK(ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, ch);
         }
-        char_printf(ch, "%s", lbuf);
+        char_printf(ch, lbuf);
 
         return;
     }
@@ -3096,7 +2892,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         if (to && ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
-            char_printf(to, "%s", lbuf);
+            char_printf(to, lbuf);
         }
 
         return;
@@ -3150,7 +2946,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != victim))) {
             format_act(lbuf, str, ch, obj, vict_obj, to);
-            char_printf(to, "%s", lbuf);
+            char_printf(to, lbuf);
         }
     /*
      * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
@@ -3165,9 +2961,9 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
                 for (to = world[world[in_room].exits[i]->to_room].people; to; to = to->next_in_room)
                     if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
                         (type == TO_ROOM || (to != victim))) {
-                        char_printf(to, "&4&8<&0%s&0&4&8>&0 ", world[in_room].name);
+                        char_printf(to, "&4&8<&0{}&0&4&8>&0 ", world[in_room].name);
                         format_act(lbuf, str, ch, obj, vict_obj, to);
-                        char_printf(to, "%s", lbuf);
+                        char_printf(to, lbuf);
                     }
 }
 
@@ -3184,7 +2980,7 @@ void write_to_output(const char *messg, DescriptorData *d) {
 
 void send_to_all(const char *messg) { all_printf("%s", messg); }
 
-void send_to_room(const char *messg, int room) { room_printf(room, "%s", messg); }
+void send_to_room(const char *messg, int room) { room_printf(room, messg); }
 
 void send_to_zone(const char *messg, int zone_vnum, int skip_room, int min_stance) {
     zone_printf(zone_vnum, skip_room, min_stance, "%s", messg);

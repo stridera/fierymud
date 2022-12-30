@@ -21,6 +21,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 DamageDef damtypes[NUM_DAMTYPES] = {{"slash", "&3", "slash", "slashes", "slash"},
                                     {"pierce", "&3", "pierce", "pierces", "slash"},

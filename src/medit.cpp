@@ -25,6 +25,7 @@
 #include "genzon.hpp"
 #include "handler.hpp"
 #include "lifeforce.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -516,7 +517,7 @@ void medit_save_to_disk(int zone_num) {
 
     sprintf(fname, "%s/%d.new", MOB_PREFIX, zone);
     if (!(mob_file = fopen(fname, "w"))) {
-        mudlog("SYSERR: OLC: Cannot open mob file!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: Cannot open mob file!");
         return;
     }
 
@@ -526,7 +527,7 @@ void medit_save_to_disk(int zone_num) {
     for (i = zone * 100; i <= top; i++) {
         if ((rmob_num = real_mobile(i)) != -1) {
             if (fprintf(mob_file, "#%d\n", i) < 0) {
-                mudlog("SYSERR: OLC: Cannot write mob file!\n", BRF, LVL_GOD, true);
+                log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: Cannot write mob file!");
                 fclose(mob_file);
                 return;
             }
@@ -910,7 +911,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             send_to_char("Saving mobile to memory.\n", d->character);
             medit_save_internally(d);
             sprintf(buf, "OLC: %s edits mob %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
             /* FALL THROUGH */
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
@@ -1159,7 +1160,7 @@ void medit_parse(DescriptorData *d, char *arg) {
          * We should never get here.
          */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: medit_parse(): Reached D_DESC case!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: medit_parse(): Reached D_DESC case!");
         send_to_char("Oops...\n", d->character);
         break;
         /*-------------------------------------------------------------------*/
@@ -1346,8 +1347,8 @@ void medit_parse(DescriptorData *d, char *arg) {
             /*ok..we use save internally, but we are purging because of the mode */
             medit_save_internally(d);
             sprintf(buf, "OLC: %s PURGES mob %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
-            /* FALL THROUGH */
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+        /* FALL THROUGH */
         case 'n':
         case 'N':
             cleanup_olc(d, CLEANUP_ALL);
@@ -1363,7 +1364,7 @@ void medit_parse(DescriptorData *d, char *arg) {
     default:
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: medit_parse(): Reached default case!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: medit_parse(): Reached default case!");
         send_to_char("Oops...\n", d->character);
         break;
     }
@@ -1408,8 +1409,7 @@ bool delete_mobile(obj_num rnum) {
     bool save_this_zone, mload_just_deleted;
 
     if (rnum == NOTHING || rnum > top_of_mobt) {
-        sprintf(buf, "ERR: delete_mobile() rnum %d out of range", rnum);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_mobile() rnum %d out of range", rnum);
         return false;
     }
 
@@ -1418,8 +1418,7 @@ bool delete_mobile(obj_num rnum) {
 
     zrnum = find_real_zone_by_room(GET_MOB_VNUM(mob));
     if (zrnum == -1) {
-        sprintf(buf, "ERR: delete_mobile() can't identify zone for mob vnum %d", vnum);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_mobile() can't identify zone for mob vnum %d", vnum);
         return false;
     }
 

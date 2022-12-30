@@ -13,6 +13,7 @@
 #include "exits.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -747,7 +748,7 @@ void script_log(TrigData *t, char *msg) {
         snprintf(buf, 255, "ERROR trigger %d (%s): %s", GET_TRIG_VNUM(t), GET_TRIG_NAME(t), msg);
     else
         snprintf(buf, 255, "ERROR in trigger: %s", msg);
-    mudlog(buf, NRM, LVL_GOD, true);
+    log(LogSeverity::Stat, LVL_GOD, buf);
 }
 
 /*
@@ -835,9 +836,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         room = (RoomData *)go;
         break;
     default:
-        log("SYSERR: find_replacement encountered invalid trig type (%d) in trig "
-            "%d",
-            type, GET_TRIG_VNUM(trig));
+        log("SYSERR: find_replacement encountered invalid trig type ({:d}) in trig {:d}", type, GET_TRIG_VNUM(trig));
         *str = '\0';
         return;
     }
@@ -1089,7 +1088,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             }
 
             else if (!strcasecmp(field, "length"))
-                sprintf(str, "%d", strlen(value));
+                sprintf(str, "%zu", strlen(value));
 
             else if (!strcasecmp(field, "tolower")) {
                 do {
@@ -1230,7 +1229,6 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%d", GET_SILVER(c));
         else if (is_coin_name(field, COPPER))
             sprintf(str, "%d", GET_COPPER(c));
-
 
         /* Flags */
         else if (!strcasecmp(field, "flags")) {

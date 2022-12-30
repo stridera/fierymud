@@ -27,6 +27,7 @@
 #include "events.hpp"
 #include "fight.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "mail.hpp"
 #include "math.hpp"
 #include "messages.hpp"
@@ -1929,7 +1930,7 @@ int perform_dupe_check(DescriptorData *d) {
         write_to_output("Reconnecting.\n", d);
         act("$n has reconnected.", true, d->character, 0, 0, TO_ROOM);
         sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), true);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
         break;
     case USURP:
         write_to_output("Overriding old connection.\n", d);
@@ -1937,12 +1938,12 @@ int perform_dupe_check(DescriptorData *d) {
             "$n's body has been taken over by a new spirit!",
             true, d->character, 0, 0, TO_ROOM);
         sprintf(buf, "%s has re-logged in ... disconnecting old socket.", GET_NAME(d->character));
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), true);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
         break;
     case UNSWITCH:
         write_to_output("Reconnecting to unswitched char.", d);
         sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), true);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
         break;
     }
 
@@ -2171,9 +2172,7 @@ void nanny(DescriptorData *d, char *arg) {
                    think it's a valid existing character name and boot the
                    connection.  Yes I'm evil - RSD 8/29/2002 <-- genius
                  */
-                sprintf(buf, "%s is being ninja rejected by the name approval code.", tmp_name);
-                log("%s", buf);
-                ;
+                log("{} is being ninja rejected by the name approval code.", tmp_name);
                 write_to_output("Welcome back!\n", d);
                 write_to_output("Password: ", d);
                 echo_off(d);
@@ -2189,7 +2188,6 @@ void nanny(DescriptorData *d, char *arg) {
             }
 
             set_player_name(d->character, tmp_name);
-
             sprintf(buf, "\nDo you want to make a new character called %s? ", tmp_name);
             write_to_output(buf, d);
             STATE(d) = CON_NAME_CNFRM;
@@ -2201,8 +2199,8 @@ void nanny(DescriptorData *d, char *arg) {
         switch (yesno_result(arg)) {
         case YESNO_YES:
             if (isbanned(d->host) >= BAN_NEW) {
-                sprintf(buf, "Request for new char %s denied from [%s] (siteban)", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, "Request for new char {} denied from [{}] (siteban)",
+                    GET_NAME(d->character), d->host);
                 write_to_output("Sorry, new characters are not allowed from your site!\n", d);
                 STATE(d) = CON_CLOSE;
                 return;
@@ -2214,8 +2212,8 @@ void nanny(DescriptorData *d, char *arg) {
                 } else {
                     write_to_output("Sorry, new players can't be created at the moment.\n", d);
                 }
-                sprintf(buf, "Request for new char %s denied from %s (wizlock)", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, "Request for new char {} denied from {} (wizlock)",
+                    GET_NAME(d->character), d->host);
                 STATE(d) = CON_CLOSE;
                 return;
             }
@@ -2224,15 +2222,11 @@ void nanny(DescriptorData *d, char *arg) {
                leftover old character of the same name... I hope RSD 10/11/2000 */
             get_pfilename(GET_NAME(d->character), buf, PLR_FILE);
             if (unlink(buf) == 0) {
-                sprintf(buf, "SYSERR: Deleted existing player file for NEW ch %s.", GET_NAME(d->character));
-                log("%s", buf);
-                ;
+                log("SYSERR: Deleted existing player file for NEW ch {}.", GET_NAME(d->character));
             }
             get_pfilename(GET_NAME(d->character), buf, OBJ_FILE);
             if (unlink(buf) == 0) {
-                sprintf(buf, "SYSERR: Deleted existing object file for NEW ch %s.", GET_NAME(d->character));
-                log("%s", buf);
-                ;
+                log("SYSERR: Deleted existing object file for NEW ch {}.", GET_NAME(d->character));
             }
 
             STATE(d) = CON_NAME_CHECK;
@@ -2273,9 +2267,7 @@ void nanny(DescriptorData *d, char *arg) {
             return;
         } else {
             if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
-                sprintf(buf, "Renaming player %s to %s!", GET_NAME(d->character), arg);
-                log("%s", buf);
-                ;
+                log("Renaming player {} to {}!", GET_NAME(d->character), arg);
 
                 /* send the old name to the invalid list */
                 send_to_xnames(GET_NAME(d->character));
@@ -2326,8 +2318,7 @@ void nanny(DescriptorData *d, char *arg) {
             close_socket(d);
         else {
             if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
-                sprintf(buf, "Bad PW: %s [%s]", GET_NAME(d->character), d->host);
-                mudlog(buf, BRF, LVL_GOD, true);
+                log(LogSeverity::Warn, LVL_GOD, "Bad PW: {} [{}]", GET_NAME(d->character), d->host);
                 GET_BAD_PWS(d->character)++;
                 save_player_char(d->character);
                 if (++(d->bad_pws) >= max_bad_pws) { /* 3 strikes and you're out. */
@@ -2343,13 +2334,10 @@ void nanny(DescriptorData *d, char *arg) {
             GET_BAD_PWS(d->character) = 0;
 
             if (isbanned(d->host) == BAN_SELECT && !PLR_FLAGGED(d->character, PLR_SITEOK)) {
-                write_to_output(
-                    "Sorry, this char has not been cleared for login from "
-                    "your site!\n",
-                    d);
+                write_to_output("Sorry, this char has not been cleared for login from your site!\n", d);
                 STATE(d) = CON_CLOSE;
-                sprintf(buf, "Connection attempt for %s denied from %s", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, "Connection attempt for {} denied from {}", GET_NAME(d->character),
+                    d->host);
                 return;
             }
             if (GET_LEVEL(d->character) < should_restrict) {
@@ -2363,8 +2351,8 @@ void nanny(DescriptorData *d, char *arg) {
                         d);
                 }
                 STATE(d) = CON_CLOSE;
-                sprintf(buf, "Request for login denied for %s [%s] (wizlock)", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_GOD, true);
+                log(LogSeverity::Stat, LVL_GOD, "Request for login denied for {} [{}] (wizlock)",
+                    GET_NAME(d->character), d->host);
                 return;
             }
             /* check and make sure no other copies of this player are logged in */
@@ -2389,19 +2377,17 @@ void nanny(DescriptorData *d, char *arg) {
             }
 
             if (GET_CLAN(d->character) && GET_CLAN(d->character)->motd)
-                desc_printf(d, "\n%s%s news:\n%s", GET_CLAN(d->character)->name, ANRM, GET_CLAN(d->character)->motd);
+                desc_printf(d, "\n{}{} news:\n{}", GET_CLAN(d->character)->name, ANRM, GET_CLAN(d->character)->motd);
 
             // Convert timestamp to string
             time_t t = d->character->player.time.logon;
             struct tm *tm = localtime(&t);
             char datestring[256];
             strftime(datestring, sizeof(datestring), "%a %b %d %H:%M:%S %Y", tm);
-
-            sprintf(buf, "%s [%s] has connected.  Last login: %s.", GET_NAME(d->character), d->host, datestring);
-            mudlog(buf, BRF,
-                   MAX(LVL_IMMORT,
-                       MIN(GET_LEVEL(d->character), MAX(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character)))),
-                   true);
+            log(LogSeverity::Warn,
+                MAX(LVL_IMMORT,
+                    MIN(GET_LEVEL(d->character), MAX(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character)))),
+                "{} [{}] has connected.  Last login: {}.", GET_NAME(d->character), d->host, datestring);
             if (load_result) {
                 sprintf(buf,
                         "\n\n\007\007\007"
@@ -2497,14 +2483,9 @@ void nanny(DescriptorData *d, char *arg) {
         break;
     case CON_QRACE:
         load_result = interpret_race_selection(*arg);
-        sprintf(buf, " Argument: %d, Result: %d", *arg, load_result);
-        log("%s", buf);
-        ;
+        log(" Argument: {}, Result: {}", *arg, load_result);
         if (load_result == RACE_UNDEFINED) {
-            write_to_output(
-                "\n&3Please choose by entering the letter next to the "
-                "race of your choice.&0\n",
-                d);
+            write_to_output("\n&3Please choose by entering the letter next to the race of your choice.&0\n", d);
             send_race_menu(d);
             write_to_output("\nRace: ", d);
             return;
@@ -2732,10 +2713,8 @@ void nanny(DescriptorData *d, char *arg) {
                 event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
                 write_to_output(
-                    "\nNow you must wait for your name to be approved by "
-                    "an immortal.\n"
-                    "If no one is available, you will be auto approved in "
-                    "a short time.\n",
+                    "\nNow you must wait for your name to be approved by an immortal.\n"
+                    "If no one is available, you will be auto approved in a short time.\n",
                     d);
                 broadcast_name(GET_NAME(d->character));
                 STATE(d) = CON_NAME_WAIT_APPROVAL;
@@ -2749,8 +2728,7 @@ void nanny(DescriptorData *d, char *arg) {
                 }
                 init_player(d->character);
                 save_player_char(d->character);
-                sprintf(buf, "%s [%s] new player.", GET_NAME(d->character), d->host);
-                mudlog(buf, NRM, LVL_IMMORT, true);
+                log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] new player.", GET_NAME(d->character), d->host);
                 write_to_output("\n*** PRESS RETURN: ", d);
                 STATE(d) = CON_RMOTD;
                 break;
@@ -2869,8 +2847,8 @@ void nanny(DescriptorData *d, char *arg) {
                     "Goodbye.\n",
                     GET_NAME(d->character));
             write_to_output(buf, d);
-            sprintf(buf, "%s (lev %d) has self-deleted.", GET_NAME(d->character), GET_LEVEL(d->character));
-            mudlog(buf, NRM, LVL_GOD, true);
+            log(LogSeverity::Stat, LVL_GOD, "{} (lev {:d}) has self-deleted.", GET_NAME(d->character),
+                GET_LEVEL(d->character));
             STATE(d) = CON_CLOSE;
             return;
         } else {
@@ -3008,12 +2986,11 @@ EVENTFUNC(name_timeout) {
         write_to_output(get_text(TEXT_MOTD), d);
         write_to_output("\n\n*** PRESS RETURN: ", d);
         if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
-            sprintf(buf, "%s [%s] has connected with a new name.", GET_NAME(d->character), d->host);
-            mudlog(buf, NRM, LVL_IMMORT, true);
+            log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] has connected with a new name.", GET_NAME(d->character),
+                d->host);
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
         } else {
-            sprintf(buf, "%s [%s] new player.", GET_NAME(d->character), d->host);
-            mudlog(buf, NRM, LVL_IMMORT, true);
+            log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] new player.", GET_NAME(d->character), d->host);
         }
         STATE(d) = CON_RMOTD;
     }

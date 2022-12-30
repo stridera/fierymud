@@ -14,6 +14,7 @@
 
 #include "conf.hpp"
 #include "db.hpp"
+#include "logging.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -245,20 +246,6 @@ const char *month_name[MONTHS_PER_YEAR] = {"Month of Winter", /* 0 */
 const int sharp[] = {0, 0, 0, 1,  /* Slashing */
                      0, 0, 0, 0,  /* Bludgeon */
                      0, 0, 0, 0}; /* Pierce   */
-
-/*
- * Only access this array directly if you are listing them all out.
- * Otherwise use sprint_log_severity and parse_log_severity to
- * convert a value to a string and vice-versa.
- */
-const char *log_severities[8] = {"fine",        /* 10 */
-                                 "informative", /* 20 */
-                                 "debug",       /* 30 */
-                                 "status",      /* 40 */
-                                 "warning",     /* 50 */
-                                 "error",       /* 60 */
-                                 "critical",    /* 70 */
-                                 "\n"};
 
 const char *default_prompts[][2] = {{"Basic", "&0%hhp %vmv>&0 "},
                                     {"Colorized Basic", "&1&b%h&0&1hp &2&b%v&0&2mv&0> "},

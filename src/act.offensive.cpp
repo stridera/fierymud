@@ -21,6 +21,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "messages.hpp"
@@ -548,8 +549,7 @@ bool instantkill(CharData *ch, CharData *victim) {
 
 void slow_death(CharData *victim) {
     if (!victim) {
-        mudlog("Attempting to use slow_death on a NULL character!", BRF, LVL_GOD, true);
-        log("Attempting to use slow_death on a NULL character!");
+        log(LogSeverity::Warn, LVL_GOD, "Attempting to use slow_death on a NULL character!");
         return;
     }
 

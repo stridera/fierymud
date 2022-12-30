@@ -18,12 +18,13 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
+#include "magic.hpp"
 #include "math.hpp"
 #include "skills.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "magic.hpp"
 
 /* External functions */
 ACMD(do_backstab);
@@ -47,7 +48,7 @@ bool rogue_ai_action(CharData *ch, CharData *victim) {
     int roll;
 
     if (!victim) {
-        mudlog("No victim in rogue AI action.", NRM, LVL_GOD, false);
+        log(LogSeverity::Stat, LVL_GOD, "No victim in rogue AI action.");
         return false;
     }
 
@@ -118,7 +119,7 @@ bool bard_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter, action = 0, roll;
 
     if (!victim) {
-        mudlog("No victim in bard AI action.", NRM, LVL_GOD, false);
+        log(LogSeverity::Stat, LVL_GOD, "No victim in bard AI action.");
         return false;
     }
 

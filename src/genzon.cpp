@@ -18,6 +18,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* local functions */
 static void remove_cmd_from_list(ResetCommand **list, int pos);

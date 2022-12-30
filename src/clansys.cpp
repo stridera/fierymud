@@ -14,6 +14,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "players.hpp"
 #include "screen.hpp"
@@ -392,7 +393,7 @@ static void perform_save_clan(const Clan *clan) {
     sprintf(filename, "%s/%d%s", CLAN_PREFIX, clan->number, CLAN_SUFFIX);
     sprintf(temp_filename, "%s/%d.tmp", CLAN_PREFIX, clan->number);
     if (!(fl = fopen(temp_filename, "w"))) {
-        mprintf(L_ERROR, LVL_GOD, "SYSERR: Couldn't open temp clan file %s for write", temp_filename);
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: Couldn't open temp clan file {} for write", temp_filename);
         return;
     }
 

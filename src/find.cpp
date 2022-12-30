@@ -22,6 +22,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /*
  * Takes a name, and if it is of the form '#.name', skips over the

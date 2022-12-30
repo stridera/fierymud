@@ -20,6 +20,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* name, color, weight_min, weight_max, height_min, height_max */
 struct sizedef sizes[NUM_SIZES] = {
@@ -150,7 +152,7 @@ void change_natural_size(CharData *ch, int newsize) {
         return;
     if (newsize < 0 || newsize >= NUM_SIZES) {
         sprintf(buf, "SYSERR: change_size(): invalid size %d", newsize);
-        log("%s", buf);
+        log( buf);
         ;
         return;
     }

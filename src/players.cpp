@@ -24,6 +24,7 @@
 #include "dg_scripts.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "money.hpp"
 #include "olc.hpp"
@@ -313,8 +314,7 @@ int load_player(const char *name, CharData *ch) {
         return -1;
 
     if (!(fl = fopen(fname, "r"))) {
-        sprintf(buf, "SYSERR: Couldn't open player file %s", fname);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Couldn't open player file {}", fname);
         return (-1);
     }
 
@@ -623,9 +623,7 @@ int load_player(const char *name, CharData *ch) {
 
         default:
         bad_tag:
-            sprintf(buf, "SYSERR: Unknown tag %s in pfile %s: %s", tag, name, line);
-            log("%s", buf);
-            ;
+            log("SYSERR: Unknown tag {} in pfile {}: {}", tag, name, line);
         }
     }
 
@@ -714,9 +712,7 @@ void save_player_char(CharData *ch) {
     ObjData *char_eq[NUM_WEARS];
 
     if (IS_NPC(ch) || GET_PFILEPOS(ch) < 0) {
-        sprintf(buf, "SYSERR: Attempt to save %s (NPC or no PFILEPOS)", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Attempt to save {} (NPC or no PFILEPOS)", GET_NAME(ch));
         return;
     }
 
@@ -743,22 +739,17 @@ void save_player_char(CharData *ch) {
     }
 
     if (!get_pfilename(GET_NAME(ch), fname, TEMP_FILE)) {
-        sprintf(buf, "SYSERR: Couldn't make file name for saving %s.", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Couldn't make file name for saving {}.", GET_NAME(ch));
         return;
     }
 
     if (!get_pfilename(GET_NAME(ch), frename, PLR_FILE)) {
-        sprintf(buf, "SYSERR: Couldn't make final file name for %s.", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Couldn't make final file name for {}.", GET_NAME(ch));
         return;
     }
 
     if (!(fl = fopen(fname, "w"))) {
-        sprintf(buf, "SYSERR: Couldn't open player file %s for write", fname);
-        mudlog(buf, NRM, LVL_GOD, true);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Couldn't open player file {} for write", fname);
         return;
     }
 
@@ -998,13 +989,9 @@ void save_player_char(CharData *ch) {
     write_player_grants(fl, ch);
 
     if (fclose(fl)) {
-        sprintf(buf, "SYSERR: Error closing player file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error closing player file for {} after write", GET_NAME(ch));
     } else if (rename(fname, frename)) {
-        sprintf(buf, "SYSERR: Error renaming player file for %s after write", GET_NAME(ch));
-        log("%s", buf);
-        ;
+        log("SYSERR: Error renaming player file for {} after write", GET_NAME(ch));
     }
 
     /* More char_to_store code to add spell and eq affections back in. */
@@ -1057,9 +1044,7 @@ void save_player_char(CharData *ch) {
     if (player_table[id].flags != i || save_index)
         save_player_index();
 
-    sprintf(buf, "Saved player %s.", GET_NAME(ch));
-    log("%s", buf);
-    ;
+    log("Saved player {}.", GET_NAME(ch));
 }
 
 /* delete_player() removes all files associated with a player who is
@@ -1263,12 +1248,9 @@ void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
     while (line && *line) {
         if (FLAGVECTOR_SIZE(num_flags) <= i) {
             if (*line != '0') {
-                sprintf(buf,
-                        "SYSERR: load_ascii_flags: attempting to read in flags for "
-                        "block %d, but only %ld blocks allowed for flagvector type",
-                        i, FLAGVECTOR_SIZE(num_flags));
-                log("%s", buf);
-                ;
+                log("SYSERR: load_ascii_flags: attempting to read in flags for block {:d}, but only {} blocks allowed "
+                    "for flagvector type",
+                    i, FLAGVECTOR_SIZE(num_flags));
             }
         } else
             flags[i] = asciiflag_conv(line);
@@ -1439,8 +1421,8 @@ void send_save_description(CharData *ch, CharData *dest, bool entering) {
         sprintf(buf, quit_statement[quitreason], GET_NAME(ch), buf1);
     }
     if (dest) {
-        char_printf(dest, "%s\n", buf);
+        char_printf(dest, "{}\n", buf);
     } else {
-        mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), true);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
     }
 }

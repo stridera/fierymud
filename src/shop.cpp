@@ -23,6 +23,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "screen.hpp"
@@ -455,8 +456,8 @@ void apply_cost(int cost, CharData *ch) {
     int haveP, haveG, haveS, haveC;
 
     if (cost <= 0 || cost > GET_CASH(ch)) {
-        sprintf(buf, "ERR: %s being charged %d but doesn't have that much money", GET_NAME(ch), cost);
-        mudlog(buf, BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch),
+            cost);
         return;
     }
 
@@ -486,8 +487,8 @@ void apply_cost(int cost, CharData *ch) {
     }
 
     if (haveP < 0) {
-        sprintf(buf, "SYSERR: %s being charged %d and ended up with negative platinum!", GET_NAME(ch), cost);
-        mudlog(buf, BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: {} being charged {:d} and ended up with negative platinum!",
+            GET_NAME(ch), cost);
         haveP = 0;
     }
 
@@ -674,9 +675,7 @@ ObjData *get_selling_obj(CharData *ch, char *name, CharData *keeper, int shop_nr
         sprintf(buf, "%s %s", GET_NAME(ch), msg_no_used_wandstaff);
         break;
     default:
-        sprintf(buf, "Illegal return value of %d from trade_with() (shop.c)", result);
-        log("%s", buf);
-        ;
+        log("Illegal return value of {:d} from trade_with() (shop.c)", result);
         sprintf(buf, "%s An error has occurred.", GET_NAME(ch));
         break;
     }
@@ -976,12 +975,12 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
             if ((!(*name) || isname(name, obj->name)) && CAN_SEE_OBJ(ch, obj) && (obj->obj_flags.cost > 0)) {
                 if (!any) {
                     any = true;
-                    pprintf(ch,
-                            " ##  Lvl  Item                                          "
-                            "         Cost\n");
-                    pprintf(ch,
-                            "---  ---  ------------------------------------------------  "
-                            "-------------\n");
+                    paging_printf(ch,
+                                  " ##  Lvl  Item                                          "
+                                  "         Cost\n");
+                    paging_printf(ch,
+                                  "---  ---  ------------------------------------------------  "
+                                  "-------------\n");
                 }
                 if (!last_obj) {
                     last_obj = obj;
@@ -991,7 +990,7 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
                 else {
                     index++;
                     if (!(*name) || isname(name, last_obj->name))
-                        pprintf(ch, "%s", list_object(keeper, last_obj, ch, cnt, index, shop_nr));
+                        paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr));
                     cnt = 1;
                     last_obj = obj;
                 }
@@ -1000,11 +999,11 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     index++;
     if (!any) {
         if (*name)
-            pprintf(ch, "Presently, none of those are for sale.\n");
+            paging_printf(ch, "Presently, none of those are for sale.\n");
         else
-            pprintf(ch, "Currently, there is nothing for sale.\n");
+            paging_printf(ch, "Currently, there is nothing for sale.\n");
     } else if (!(*name) || isname(name, last_obj->name))
-        pprintf(ch, "%s", list_object(keeper, last_obj, ch, cnt, index, shop_nr));
+        paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr));
 
     start_paging(ch);
 }
@@ -1142,9 +1141,7 @@ int add_to_list(ShopBuyData *list, int type, int *len, int *val, int *amount) {
 
 int end_read_list(ShopBuyData *list, int len, int error) {
     if (error) {
-        sprintf(buf, "Raise MAX_SHOP_OBJ constant in shop.h to %d", len + error);
-        log("%s", buf);
-        ;
+        log("Raise MAX_SHOP_OBJ constant in shop.h to {:d}", len + error);
     }
     BUY_WORD(list[len]) = 0;
     BUY_AMOUNT(list[len]) = 0;

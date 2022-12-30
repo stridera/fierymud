@@ -16,6 +16,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
@@ -159,7 +160,7 @@ ACMD(do_ban) {
     ban_list = ban_node;
 
     sprintf(buf, "%s has banned %s for %s players.", GET_NAME(ch), site, ban_types[ban_node->type]);
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
     send_to_char("Site banned.\n", ch);
     write_ban_list();
 }
@@ -189,7 +190,7 @@ ACMD(do_unban) {
     REMOVE_FROM_LIST(ban_node, ban_list, next);
     send_to_char("Site unbanned.\n", ch);
     sprintf(buf, "%s removed the %s-player ban on %s.", GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
-    mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
 
     free(ban_node);
     write_ban_list();
@@ -322,7 +323,7 @@ void send_to_xnames(char *name) {
     *tempname = '\0';
 
     if (!(xnames = fopen(XNAME_FILE, "a"))) {
-        mudlog("SYSERR: Cannot open xnames file.\n", BRF, LVL_IMMORT, true);
+        log(LogSeverity::Warn, LVL_IMMORT, "SYSERR: Cannot open xnames file.\n");
         return;
     }
 

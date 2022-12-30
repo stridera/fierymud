@@ -16,6 +16,7 @@
 #include "conf.hpp"
 #include "constants.hpp"
 #include "db.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "objects.hpp"
 #include "olc.hpp"
@@ -490,10 +491,10 @@ void sedit_save_to_disk(int zone_num) {
 
     sprintf(fname, "%s/%d.new", SHP_PREFIX, zone);
     if (!(shop_file = fopen(fname, "w"))) {
-        mudlog("SYSERR: OLC: Cannot open shop file!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: Cannot open shop file!");
         return;
     } else if (fprintf(shop_file, "CircleMUD v3.0 Shop File~\n") < 0) {
-        mudlog("SYSERR: OLC: Cannot write to shop file!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: Cannot write to shop file!");
         fclose(shop_file);
         return;
     }
@@ -819,7 +820,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
             send_to_char("Saving shop to memory.\n", d->character);
             sedit_save_internally(d);
             sprintf(buf, "OLC: %s edits shop %d", GET_NAME(d->character), OLC_NUM(d));
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
         case 'n':
@@ -1139,7 +1140,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
     default:
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
-        mudlog("SYSERR: OLC: sedit_parse(): Reached default case!", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: sedit_parse(): Reached default case!");
         send_to_char("Oops...\n", d->character);
         break;
     }

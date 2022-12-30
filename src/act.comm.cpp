@@ -31,6 +31,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* extern variables */
 void garble_text(char *string, int percent) {
@@ -196,7 +198,7 @@ ACMD(do_gsay) {
             act(buf, false, ch, 0, f->groupee, TO_VICT | TO_SLEEP | TO_OLC);
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-        char_printf(ch, "%s", OK);
+        char_printf(ch,  OK);
     else {
         sprintf(buf, "@gYou group say, '&0%s@g'@0", argument);
         act(buf, false, ch, 0, 0, TO_CHAR | TO_SLEEP | TO_OLC);
@@ -208,7 +210,7 @@ static void perform_tell(CharData *ch, CharData *vict, char *arg) {
         arg = strip_ansi(arg);
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-        char_printf(ch, "%s", OK);
+        char_printf(ch,  OK);
     else {
         sprintf(buf, "@WYou tell $N@W, '%s@W'@0", arg);
         act(buf, false, ch, 0, vict, TO_CHAR | TO_SLEEP | TO_OLC);
@@ -241,7 +243,7 @@ ACMD(do_tell) {
     if (!*buf || !*buf2)
         char_printf(ch, "Who do you wish to tell what??\n");
     else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
-        char_printf(ch, "%s", NOPERSON);
+        char_printf(ch,  NOPERSON);
     else if (ch == vict)
         char_printf(ch, "You try to tell yourself something.\n");
     else if (PRF_FLAGGED(ch, PRF_NOTELL))
@@ -317,7 +319,7 @@ ACMD(do_spec_comm) {
     if (!*buf || !*buf2)
         char_printf(ch, "Whom do you want to %s.. and what??\n", action_sing);
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf))))
-        char_printf(ch, "%s", NOPERSON);
+        char_printf(ch,  NOPERSON);
     else if (vict == ch)
         char_printf(ch, "You can't get your mouth close enough to your ear...\n");
     else if (PLR_FLAGGED(vict, PLR_WRITING) && !PRF_FLAGGED(vict, PRF_OLCCOMM))
@@ -331,7 +333,7 @@ ACMD(do_spec_comm) {
         sprintf(buf, "$n %s you, '%s@0'", action_plur, argument);
         act(buf, false, ch, 0, vict, TO_VICT | TO_OLC);
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-            char_printf(ch, "%s", OK);
+            char_printf(ch,  OK);
         else {
             sprintf(buf, "You %s %s, '%s@0'", action_sing, GET_NAME(vict), argument);
             act(buf, false, ch, 0, 0, TO_CHAR | TO_OLC);
@@ -363,7 +365,7 @@ ACMD(do_write) {
     generic_find(surface_name, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_OBJ_EQUIP, ch, &dummy, &surface);
 
     if (!surface) {
-        char_printf(ch, "You can't find a %s to write on.\n", surface_name);
+        char_printf(ch, "You can't find a {} to write on.\n", surface_name);
         return;
     }
 
@@ -378,7 +380,7 @@ ACMD(do_write) {
     if (*implement_name) {
         generic_find(implement_name, FIND_OBJ_INV | FIND_OBJ_EQUIP, ch, &dummy, &implement);
         if (!implement) {
-            char_printf(ch, "You can't find a %s to write with.\n", implement_name);
+            char_printf(ch, "You can't find a {} to write with.\n", implement_name);
             return;
         }
     } else if (GET_OBJ_TYPE(surface) == ITEM_NOTE) {
@@ -406,12 +408,12 @@ ACMD(do_write) {
     }
 
     if (GET_OBJ_TYPE(surface) != ITEM_NOTE) {
-        char_printf(ch, "You can't write on %s.\n", surface->short_description);
+        char_printf(ch, "You can't write on {}.\n", surface->short_description);
         return;
     }
 
     if (GET_OBJ_TYPE(implement) != ITEM_PEN) {
-        char_printf(ch, "You can't write with %s.\n", implement->short_description);
+        char_printf(ch, "You can't write with {}.\n", implement->short_description);
         return;
     }
 
@@ -445,7 +447,7 @@ ACMD(do_page) {
         if ((vict = find_char_around_char(ch, find_vis_by_name(ch, arg))) != nullptr) {
             act(buf, false, ch, 0, vict, TO_VICT);
             if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-                char_printf(ch, "%s", OK);
+                char_printf(ch,  OK);
             else
                 act(buf, false, ch, 0, vict, TO_CHAR);
             return;
@@ -553,7 +555,7 @@ ACMD(do_gen_comm) {
         return;
     }
     if (PLR_FLAGGED(ch, PLR_NOSHOUT)) {
-        char_printf(ch, "%s", com_msgs[subcmd][0]);
+        char_printf(ch,  com_msgs[subcmd][0]);
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_SOUNDPROOF) && GET_LEVEL(ch) < LVL_IMMORT) {
@@ -568,7 +570,7 @@ ACMD(do_gen_comm) {
 
     /* make sure the char is on the channel */
     if (PRF_FLAGGED(ch, channels[subcmd])) {
-        char_printf(ch, "%s", com_msgs[subcmd][2]);
+        char_printf(ch,  com_msgs[subcmd][2]);
         return;
     }
 
@@ -610,7 +612,7 @@ ACMD(do_gen_comm) {
 
     /* first, set up strings to be given to the communicator */
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-        char_printf(ch, "%s", OK);
+        char_printf(ch,  OK);
     else {
         if (COLOR_LEV(ch) >= C_CMP)
             sprintf(buf1, "%sYou %s, '%s%s%s'%s", color_on, com_msgs[subcmd][1], argument, ANRM, color_on, ANRM);
@@ -650,7 +652,7 @@ ACMD(do_gen_comm) {
             continue;
 
         if (COLOR_LEV(i->character) >= C_NRM)
-            desc_printf(i, "%s", color_on);
+            desc_printf(i, color_on);
 
         /*
          * If the gossiper is shapechanged and this descriptor can see both
@@ -658,14 +660,14 @@ ACMD(do_gen_comm) {
          * both names instead of just the actual gossiper.
          */
         if (shapechanged && CAN_SEE(i->character, ch) && CAN_SEE(i->character, POSSESSOR(ch)))
-            desc_printf(i, "%s", buf1);
+            desc_printf(i, buf1);
         else {
             act(buf, false, ch, 0, i->character, TO_VICT | TO_SLEEP | TO_OLC);
             format_act(buf1, buf, ch, 0, i->character, i->character);
             add_retained_comms(i->character, TYPE_RETAINED_GOSSIPS, buf1);
         }
         if (COLOR_LEV(i->character) >= C_NRM)
-            desc_printf(i, "%s", ANRM);
+            desc_printf(i, ANRM);
     }
 }
 
@@ -679,12 +681,12 @@ ACMD(do_qcomm) {
     skip_spaces(&argument);
 
     if (!*argument)
-        char_printf(ch, "%s? Yes, fine %s we must, but WHAT??\n", capitalize(CMD_NAME), CMD_NAME);
+        char_printf(ch, "{}? Yes, fine {} we must, but WHAT??\n", capitalize(CMD_NAME), CMD_NAME);
     else if (speech_ok(ch, 0)) {
         argument = drunken_speech(argument, GET_COND(ch, DRUNK));
 
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-            char_printf(ch, "%s", OK);
+            char_printf(ch,  OK);
         else {
             if (subcmd == SCMD_QSAY) {
                 if (EFF_FLAGGED(ch, EFF_SILENCE)) {

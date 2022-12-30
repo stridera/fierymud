@@ -34,6 +34,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* classes[]
  *
@@ -987,7 +989,7 @@ void give_newbie_eq(CharData *ch) {
 
     if (!VALID_CLASS(ch)) {
         sprintf(buf, "SYSERR: give_newbie_eq() called for char with invalid class of %d", GET_CLASS(ch));
-        log("%s", buf);
+        log( buf);
         ;
         return;
     }
@@ -1279,7 +1281,7 @@ void update_char_class(CharData *ch) {
     if (!VALID_CLASS(ch)) {
         char buf[500];
         sprintf(buf, "update_char_class: %s doesn't have a valid class (%d).", GET_NAME(ch), GET_CLASS(ch));
-        log("%s", buf);
+        log( buf);
         ;
         return;
     }

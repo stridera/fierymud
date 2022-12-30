@@ -15,18 +15,24 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+#include <fmt/format.h>
+#include <string>
+
 void string_write_limit(DescriptorData *d, char **writeto, size_t len, int maxlines);
 void string_write(DescriptorData *d, char **writeto, size_t len);
 void mail_write(DescriptorData *d, char **writeto, size_t len, long recipient);
 
 /* PAGING */
-
 /* page_string and page_string_desc will also start paging */
 void page_string(CharData *ch, const char *str);
 void page_string_desc(DescriptorData *d, const char *str);
 
 /* paging_printf will collect data, but you must then call start_paging */
-void paging_printf(CharData *ch, const char *messg, ...) __attribute__((format(printf, 2, 3)));
+template <typename... Args> void paging_printf(CharData *ch, std::string_view messg, Args &&...args) {
+    paging_printf(ch, fmt::vformat(messg, fmt::make_format_args(args...)));
+}
+void paging_printf(CharData *ch, std::string_view messg);
+
 void desc_paging_printf(DescriptorData *d, const char *messg, ...) __attribute__((format(printf, 2, 3)));
 
 void start_paging(CharData *ch);
@@ -34,7 +40,6 @@ void start_paging_desc(DescriptorData *desc);
 void free_paged_text(DescriptorData *d);
 void get_paging_input(DescriptorData *d, char *input);
 
-#define pprintf paging_printf
 #define pdprintf desc_paging_printf
 #define PAGING(d) (d->paging_numlines)
 #define PAGING_PAGE(d) (d->paging_curpage)

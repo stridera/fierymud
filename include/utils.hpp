@@ -29,23 +29,13 @@
  * need it here. */
 // struct HemisphereData hemispheres[NUM_HEMISPHERES];
 
-#define log log_printf
-#define mprintf mudlog_printf
-
-/* deprecated functions */
-void mudlog(const char *str, unsigned char type, int level, byte file);
-
 /* public functions in utils.c */
 void perform_random_gem_drop(CharData *);
 bool event_target_valid(CharData *ch);
 int con_aff(CharData *ch);
 int static_ac(int dex);
-void log(const char *str, ...) __attribute__((format(printf, 1, 2)));
 int touch(const char *path);
-void mudlog_printf(int severity, int level, const char *str, ...) __attribute__((format(printf, 3, 4)));
-const char *sprint_log_severity(int severity);
-int parse_log_severity(const char *severity);
-void log_death_trap(CharData *ch);
+
 int get_line(FILE *fl, char *buf);
 TimeInfoData age(CharData *ch);
 int num_pc_in_room(RoomData *room);
@@ -83,22 +73,6 @@ void drop_core(CharData *ch, const char *desc);
 
 /* generic multi-purpose flag constants */
 #define FAIL_SILENTLY (1 << 0)
-
-/* defines for mudlog() */
-#define OFF 0
-#define BRF 1
-#define NRM 2
-#define CMP 3
-
-/* severity defines for mprintf(): gaps for future additions */
-#define L_CRIT 70  /* serious errors (data corruption, need reboot) */
-#define L_ERROR 60 /* other non-fatal errors: something's broke */
-#define L_WARN 50  /* warnings: stuff is still working */
-#define L_STAT 40  /* mud status: players login, deaths, etc */
-#define L_DEBUG 30 /* coding debug/script errors */
-#define L_INFO 20  /* monotonous info: zone resets, etc */
-#define L_TRACE 10 /* trace info: hard core debug maybe? */
-#define L_NOFILE (1 << 7)
 
 /* breadth-first searching */
 #define BFS_ERROR -1

@@ -12,6 +12,7 @@
 
 #include "string_utils.hpp"
 
+#include "logging.hpp"
 #include "screen.hpp"
 #include "utils.hpp"
 
@@ -19,57 +20,11 @@
 #include <ranges>
 #include <string>
 
-static struct {
-    int visited;
-    const char *str;
-    size_t totallen;
-    const char *ellipsis;
-} __ellipsis = {(1 << 3) - 1, nullptr, 0, 0};
-
-const void *ellipsis(const char *str, int maxlen, int mode) {
-
-    if (__ellipsis.visited == (1 << 3) - 1 || __ellipsis.str != str) {
-        int clr, vis, i;
-
-        __ellipsis.visited = 0;
-        __ellipsis.str = str;
-
-        for (vis = clr = 0; *str; ++str) {
-            if (*str == CREL || *str == CABS) {
-                ++str;
-                ++clr;
-                if (*str != CREL && *str != CABS)
-                    ++clr;
-                else
-                    ++vis;
-            } else
-                ++vis;
-            if (vis > maxlen)
-                break;
-        }
-
-        if (vis > maxlen)
-            for (i = 4; i > 0; --i) {
-                --str;
-                if (*(str - 1) == CREL || *(str - 1) == CABS) {
-                    --str;
-                    clr -= 2;
-                    ++i;
-                }
-            }
-
-        __ellipsis.totallen = clr + (vis <= maxlen ? maxlen : maxlen - 3);
-        __ellipsis.ellipsis = vis > maxlen ? ANRM "..." : ANRM;
+const std::string_view ellipsis(const std::string str, int maxlen) {
+    if (str.length() > maxlen) {
+        return str.substr(0, maxlen) + "...";
     }
-
-    __ellipsis.visited |= mode;
-
-    if (mode == __ELLIPSIS_W1 || mode == __ELLIPSIS_W2)
-        return (const void *)__ellipsis.totallen;
-    else if (mode == __ELLIPSIS_E)
-        return __ellipsis.ellipsis;
-    else
-        return 0; /* major error */
+    return str;
 }
 
 void sprintbit(long bitvector, const char *names[], char *result) {
@@ -103,7 +58,7 @@ void sprinttype(int type, const char *names[], char *result) {
         strcpy(result, names[nr]);
     else {
         strcpy(result, "UNDEFINED");
-        log("SYSERR: Unknown type %d in sprinttype.", type);
+        log("SYSERR: Unknown type {} in sprinttype.", type);
     }
 }
 
@@ -157,6 +112,21 @@ bool matches_start(std::string_view lhs, std::string_view rhs) {
     if (lhs.size() > rhs.size() || lhs.empty())
         return false;
     return is_equals(lhs, rhs.substr(0, lhs.size()));
+}
+
+std::string_view trim(std::string_view str) {
+    // auto is_space{[](char c) { return std::isspace(c); }};
+    // auto first_non_space{std::ranges::find_if_not(str, is_space)};
+    // auto last_non_space{std::ranges::find_if_not(str | std::ranges::views::reverse, is_space)};
+    // return str.substr(first_non_space - str.begin(), last_non_space - first_non_space);
+    return str;
+}
+
+std::string_view rtrim(std::string_view str, std::string_view chars) {
+    // auto is_char{[&chars](char c) { return chars.find(c) != std::string_view::npos; }};
+    // auto last_non_char{std::ranges::find_if_not(str | std::ranges::views::reverse, is_char)};
+    // return str.substr(0, last_non_char - str.begin());
+    return str;
 }
 
 // c++23

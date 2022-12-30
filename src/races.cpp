@@ -21,6 +21,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "regen.hpp"
 #include "skills.hpp"
@@ -1395,12 +1396,8 @@ void init_races(void) {
             break;
         }
         if (pos > NUM_RACE_SKILLS) {
-            sprintf(buf,
-                    "init_races: Too many skills assigned to race %s.  "
-                    "Increase NUM_RACE_SKILLS in races.h to at least %d",
-                    races[race].name, pos);
-            log("%s", buf);
-            ;
+            log("init_races: Too many skills assigned to race {}.  Increase NUM_RACE_SKILLS in races.h to at least {:d}",
+                races[race].name, pos);
             exit(1);
         }
     }
@@ -1605,7 +1602,7 @@ void init_char_race(CharData *ch) {
 
 void update_char_race(CharData *ch) {
     if (!VALID_RACE(ch)) {
-        log("update_char_race: %s doesn't have a valid race (%d).", GET_NAME(ch), GET_RACE(ch));
+        log("update_char_race: {} doesn't have a valid race ({:d}).", GET_NAME(ch), GET_RACE(ch));
         return;
     }
 

@@ -22,6 +22,7 @@
 #include "editor.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "objects.hpp"
@@ -664,13 +665,14 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
         return;
     }
 
-    char_printf(ch, "There %s %d message%s on %s.\n", board->message_count == 1 ? "is" : "are", board->message_count,
+    char_printf(ch, "There {} %d message{} on {}.\n", board->message_count == 1 ? "is" : "are", board->message_count,
                 board->message_count == 1 ? "" : "s", face ? face->short_description : "the board");
 
     for (i = board->message_count - 1; i >= 0; --i) {
         strftime(buf, 15, TIMEFMT_DATE, localtime(&board->messages[i]->time));
-        pprintf(ch, "%s%-2d" ANRM " : %-11s : %-12s:: %s" ANRM "\n", board->messages[i]->sticky ? FCYN : "", i + 1, buf,
-                board->messages[i]->poster, board->messages[i]->subject ? board->messages[i]->subject : "<no title>");
+        paging_printf(ch, "{}{:-2d}" ANRM " : {:-11s} : {:-12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
+                      i + 1, buf, board->messages[i]->poster,
+                      board->messages[i]->subject ? board->messages[i]->subject : "<no title>");
     }
 
     start_paging(ch);
@@ -688,11 +690,14 @@ ACMD(do_boardadmin) {
         if (!*argument)
             send_to_char("Which board do you want to delete?\n", ch);
         else if (!(board = find_board(argument)))
-            char_printf(ch, "No such board: %s\n", argument);
+            char_printf(ch, "No such board: {}\n", argument);
         else if (!delete_board(board))
-            char_printf(ch, "Unable to delete board %s.\n", board->alias);
-        else
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) %s deleted board %s.", GET_NAME(ch), argument);
+            char_printf(ch, "Unable to delete board {}.\n", board->alias);
+        else {
+            auto name = std::string(GET_NAME(ch));
+            auto board_name = std::string(argument);
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} deleted board {}.", name, board_name);
+        }
     }
 
     else if (!strcasecmp(arg, "create")) {
@@ -703,7 +708,8 @@ ACMD(do_boardadmin) {
         else {
             board = new_board(argument);
             send_to_char("New board created.\n", ch);
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) %s created board %s.", GET_NAME(ch), argument);
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} created board {}.", GET_NAME(ch),
+                argument);
         }
     }
 
@@ -711,11 +717,12 @@ ACMD(do_boardadmin) {
         if (!*argument)
             send_to_char("Which board do you want to delete?\n", ch);
         else if (!(board = find_board(argument)))
-            char_printf(ch, "No such board: %s\n", argument);
+            char_printf(ch, "No such board: {}\n", argument);
         else if (!reload_board(board))
-            char_printf(ch, "Unable to reload board %s.\n", board->alias);
+            char_printf(ch, "Unable to reload board {}.\n", board->alias);
         else
-            mprintf(L_STAT, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) %s reloaded board %s.", GET_NAME(ch), argument);
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} reloaded board {}.", GET_NAME(ch),
+                argument);
     }
 
     else if (!strcasecmp(arg, "title")) {
@@ -724,9 +731,9 @@ ACMD(do_boardadmin) {
         if (!*arg)
             send_to_char("Which board's title do you want to change?\n", ch);
         else if (!(board = find_board(arg)))
-            char_printf(ch, "No such board: %s\n", arg);
+            char_printf(ch, "No such board: {}\n", arg);
         else {
-            char_printf(ch, "Board title changed from '%s' to '%s'.\n", board->title, argument);
+            char_printf(ch, "Board title changed from '{}' to '{}'.\n", board->title, argument);
             free(board->title);
             board->title = strdup(argument);
             save_board(board);
@@ -737,12 +744,12 @@ ACMD(do_boardadmin) {
         send_to_char(AUND "Num" ANRM " " AUND "Msg" ANRM " " AUND "Alias    " ANRM " " AUND "Title              " ANRM,
                      ch);
         for (j = 0; j < NUM_BPRIV; ++j)
-            char_printf(ch, " " AUND "%-4.4s" ANRM, privilege_data[j].abbr);
+            char_printf(ch, " " AUND "{:<4s}" ANRM, privilege_data[j].abbr);
         send_to_char("\n", ch);
         for (i = 0; i < num_boards; ++i) {
             board = board_index[i];
-            char_printf(ch, "%-3d %3d %s%-9s" ANRM " " ELLIPSIS_FMT, board->number, board->message_count,
-                        board->locked ? FRED : "", board->alias, ELLIPSIS_STR(board->title, 19));
+            char_printf(ch, fmt::format("{:3d} {:3d} {:9s} {:19s}", board->number, board->message_count, board->alias,
+                                        ellipsis(board->title, 19)));
             // for (j = 0; j < NUM_BPRIV; ++j) {
             //     rule_abbr(buf, board->privileges[j]);
             //     char_printf(ch, " " FGRN "%c" ANRM "%3s", UPPER(*rule_name(board->privileges[j])), buf);
@@ -757,22 +764,22 @@ ACMD(do_boardadmin) {
         if (!*argument)
             send_to_char("Which board do you want info on?\n", ch);
         else if (!(board = find_board(argument)))
-            char_printf(ch, "No such board: %s\n", argument);
+            char_printf(ch, "No such board: {}\n", argument);
         else {
             char_printf(ch,
-                        "Board          : " FYEL "%s" ANRM " (" FGRN "%d" ANRM
+                        "Board          : " FYEL "{}" ANRM " (" FGRN "%d" ANRM
                         ")\n"
-                        "Title          : " FCYN "%s" ANRM
+                        "Title          : " FCYN "{}" ANRM
                         "\n"
                         "Messages       : " FCYN "%d" ANRM
                         "\n"
-                        "Locked         : " FCYN "%s" ANRM
+                        "Locked         : " FCYN "{}" ANRM
                         "\n"
                         "Privileges     :\n",
                         board->alias, board->number, board->title, board->message_count, YESNO(board->locked));
             // for (i = 0; i < NUM_BPRIV; ++i) {
             //     rule_verbose(buf, sizeof(buf), board->privileges[i]);
-            //     char_printf(ch, "  %c%-11s : %s\n", UPPER(*privilege_data[i].alias), privilege_data[i].alias + 1,
+            //     char_printf(ch, "  %c%-11s : {}\n", UPPER(*privilege_data[i].alias), privilege_data[i].alias + 1,
             //     buf);
             // }
         }
@@ -785,7 +792,7 @@ ACMD(do_boardadmin) {
             return;
         }
         if (!(board = find_board(arg))) {
-            char_printf(ch, "No such board: %s\n", arg);
+            char_printf(ch, "No such board: {}\n", arg);
             return;
         }
         argument = any_one_arg(argument, arg);
@@ -802,7 +809,7 @@ ACMD(do_boardadmin) {
             if (i >= NUM_BPRIV) {
                 send_to_char("Invalid privilege.  Allowed privileges:\n", ch);
                 for (i = 0; i < NUM_BPRIV; ++i)
-                    char_printf(ch, "  %s %s\n", privilege_data[i].abbr, privilege_data[i].alias);
+                    char_printf(ch, "  {} {}\n", privilege_data[i].abbr, privilege_data[i].alias);
                 return;
             }
         }
@@ -812,10 +819,10 @@ ACMD(do_boardadmin) {
         // }
         // rule_verbose(buf, sizeof(buf), rule);
         // if (i >= 0) {
-        //     char_printf(ch, "Set %s's %s privilege to %s.\n", board->alias, privilege_data[i].alias, buf);
+        //     char_printf(ch, "Set {}'s {} privilege to {}.\n", board->alias, privilege_data[i].alias, buf);
         //     board->privileges[i] = rule;
         // } else {
-        //     char_printf(ch, "Set %s's privileges to %s.\n", board->alias, buf);
+        //     char_printf(ch, "Set {}'s privileges to {}.\n", board->alias, buf);
         //     for (i = 0; i < NUM_BPRIV; ++i)
         //         if (i == 0)
         //             board->privileges[i] = rule;
@@ -831,7 +838,7 @@ ACMD(do_boardadmin) {
         if (!*arg)
             send_to_char("Which board do you want to view?\n", ch);
         else if (!(board = find_board(arg)))
-            char_printf(ch, "No such board: %s\n", arg);
+            char_printf(ch, "No such board: {}\n", arg);
         else if (!*argument)
             look_at_board(ch, board, nullptr);
         else if (!is_number(argument))
@@ -846,7 +853,7 @@ ACMD(do_boardadmin) {
         if (!*arg)
             send_to_char("On which board do you want to edit a message?\n", ch);
         else if (!(board = find_board(arg)))
-            char_printf(ch, "No such board: %s\n", arg);
+            char_printf(ch, "No such board: {}\n", arg);
         else if (!*argument || !is_number(argument))
             send_to_char("Which message do you want to edit?\n", ch);
         else
@@ -859,7 +866,7 @@ ACMD(do_boardadmin) {
         if (!*arg)
             send_to_char("On which board do you want to remove a message?\n", ch);
         else if (!(board = find_board(arg)))
-            char_printf(ch, "No such board: %s\n", arg);
+            char_printf(ch, "No such board: {}\n", arg);
         else if (!*argument || !is_number(argument))
             send_to_char("Which message do you want to remove?\n", ch);
         else
@@ -872,7 +879,7 @@ ACMD(do_boardadmin) {
         if (!*arg)
             send_to_char("Which board do you want to write on?\n", ch);
         else if (!(board = find_board(arg)))
-            char_printf(ch, "No such board: %s\n", arg);
+            char_printf(ch, "No such board: {}\n", arg);
         else
             write_message(ch, board, argument);
     }
@@ -881,9 +888,9 @@ ACMD(do_boardadmin) {
         if (!*argument)
             send_to_char("Which board do you want to toggle the lock on?\n", ch);
         else if (!(board = find_board(argument)))
-            char_printf(ch, "No such board: %s\n", arg);
+            char_printf(ch, "No such board: {}\n", arg);
         else {
-            char_printf(ch, "The %s board is now %slocked.\n", board->alias,
+            char_printf(ch, "The {} board is now {}locked.\n", board->alias,
                         (board->locked = !board->locked) ? "" : "un");
             save_board(board);
         }
@@ -929,16 +936,16 @@ void read_message(CharData *ch, BoardData *board, int msgnum) {
 
     sprintf(buf, "  posted by %s, %s", msg->poster, timebuf);
 
-    pprintf(ch, FCYN "Message %d %s: " ANRM "%s" AFCYN "\n%s%-70s" ANRM "\n", msgnum,
-            msg->sticky ? HCYN "(sticky) " AFCYN : "", msg->subject, msg->edits ? "" : AUND, buf);
+    paging_printf(ch, FCYN "Message {:d} {}: " ANRM "{}" AFCYN "\n{}{:<70}" ANRM "\n", msgnum,
+                  msg->sticky ? HCYN "(sticky) " AFCYN : "", msg->subject, msg->edits ? "" : AUND, buf);
 
     for (edit = msg->edits; edit; edit = edit->next) {
         strftime(timebuf, 32, TIMEFMT_LOG, localtime(&edit->time));
         sprintf(buf, "  edited by %s, %s", edit->editor, timebuf);
-        pprintf(ch, FCYN "%s%-70s" ANRM "\n", edit->next ? "" : AUND, buf);
+        paging_printf(ch, FCYN "{}{:<70}" ANRM "\n", edit->next ? "" : AUND, buf);
     }
 
-    pprintf(ch, "%s", msg->message);
+    paging_printf(ch, msg->message);
 
     start_paging(ch);
 }
@@ -971,8 +978,7 @@ void edit_message(CharData *ch, BoardData *board, int msgnum) {
     }
 
     if (msg->editing) {
-        char_printf(ch, "%c%s is currently editing that message.\n", UPPER(*PERS(msg->editing, ch)),
-                    PERS(msg->editing, ch) + 1);
+        char_printf(ch, "{} is currently editing that message.\n", capitalize(PERS(msg->editing, ch)));
         return;
     }
 
@@ -1023,12 +1029,11 @@ void remove_message(CharData *ch, BoardData *board, int msgnum, const ObjData *f
     }
 
     if (msg->editing) {
-        char_printf(ch, "%c%s is currently editing that message.\n", UPPER(*PERS(msg->editing, ch)),
-                    PERS(msg->editing, ch) + 1);
+        char_printf(ch, "{} is currently editing that message.\n", capitalize(PERS(msg->editing, ch)));
         return;
     }
 
-    char_printf(ch, "Removed message %d from %s%s.\n", msgnum, face ? face->short_description : board->alias,
+    char_printf(ch, "Removed message {:d} from {}{}.\n", msgnum, face ? face->short_description : board->alias,
                 face ? "" : " board");
 
     delete_message(board, msg);
@@ -1119,10 +1124,10 @@ static EDITOR_FUNC(board_special) {
             free(edit_data->subject);
         edit_data->subject = strdup(s);
 
-        desc_printf(d, "Message subject set to: %s\n", s);
+        desc_printf(d, "Message subject set to: {}\n", s);
     } else if (*edit->argument == 'y') {
         if (has_board_privilege(d->character, edit_data->board, BPRIV_WRITE_STICKY))
-            desc_printf(d, "Message set as %ssticky.\n", (edit_data->sticky = !edit_data->sticky) ? "" : "non-");
+            desc_printf(d, "Message set as {}sticky.\n", (edit_data->sticky = !edit_data->sticky) ? "" : "non-");
         else
             string_to_output(d, "You don't have the ability to make stickies on this board.\n");
     } else
@@ -1139,7 +1144,7 @@ static EDITOR_FUNC(board_list) {
 
     tm = edit_data->message ? edit_data->message->time : time(0);
     strftime(buf, 32, TIMEFMT_LOG, localtime(&tm));
-    desc_printf(d, "%s" AUND "%s by %s :: %-30s\n" ANRM, edit_data->sticky ? AHCYN : AFCYN, buf,
+    desc_printf(d, "{}" AUND "{} by {} :: {:<30s}\n" ANRM, edit_data->sticky ? AHCYN : AFCYN, buf,
                 edit_data->message ? edit_data->message->poster : GET_NAME(d->character), edit_data->subject);
 
     return ED_IGNORED;

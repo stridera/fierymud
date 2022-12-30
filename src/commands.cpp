@@ -19,6 +19,7 @@
 #include "constants.hpp"
 #include "db.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
 #include "olc.hpp"
@@ -119,12 +120,11 @@ ACMD(do_gedit) {
         group = -1;
     else if (!strcasecmp(arg, "save")) {
         send_to_char("Saving all command groups.\n", ch);
-        sprintf(buf, "OLC: %s saves command groups.", GET_NAME(ch));
-        mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(ch)), true);
+        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves command groups.", GET_NAME(ch));
         gedit_save_to_disk();
         return;
     } else if ((group = find_command_group(arg)) < 0) {
-        char_printf(ch, "Command group '%s' not found.  Use 'gedit new' to create it.\n", arg);
+        char_printf(ch, "Command group '{}' not found.  Use 'gedit new' to create it.\n", arg);
         return;
     }
 
@@ -132,7 +132,7 @@ ACMD(do_gedit) {
     if (group >= 0)
         for (d = descriptor_list; d; d = d->next)
             if (d->connected == CON_GEDIT && d->olc && OLC_NUM(d) == group) {
-                char_printf(ch, "That command group is currently being edited by %s.\n", PERS(ch, d->character));
+                char_printf(ch, "That command group is currently being edited by {}.\n", PERS(ch, d->character));
                 return;
             }
     d = ch->desc;
@@ -354,7 +354,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
             write_to_output("Saving command group in memory.\n", d);
             gedit_save_internally(d);
             sprintf(buf, "OLC: %s edits command group %s.", GET_NAME(d->character), OLC_GROUP(d)->alias);
-            mudlog(buf, CMP, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), true);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
             /* Fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);
@@ -489,7 +489,7 @@ static void gedit_save_to_disk() {
     int cmd;
 
     if (!(file = fopen(GROUP_FILE, "w"))) {
-        mudlog("SYSERR: OLC: gedit_save_to_disk: Can't write to command group file.", BRF, LVL_GOD, true);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: gedit_save_to_disk: Can't write to command group file.");
         return;
     }
 
@@ -614,7 +614,7 @@ void do_show_command_groups(CharData *ch, char *argument) {
             "------------  ------  ---------------------------------\n",
             ch);
         for (group = cmd_groups; group < top_of_cmd_groups; ++group)
-            char_printf(ch, "%-16.16s %3d  %s\n", group->alias, group->minimum_level, group->name);
+            char_printf(ch, "{:<16s} {:3d}  {}\n", group->alias, group->minimum_level, group->name);
     } else
         send_to_char("No command groups.\n", ch);
 }

@@ -15,6 +15,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
+#include "logging.hpp"
+
 
 /* external variables */
 extern unsigned long pulse;

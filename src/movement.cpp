@@ -22,6 +22,7 @@
 #include "events.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "regen.hpp"
 #include "skills.hpp"
@@ -143,12 +144,8 @@ EVENTFUNC(gravity_event) {
 
     /* to_room is now the room the char/obj is currently in */
     if (to_room == event->start_room) {
-        sprintf(buf,
-                "Falling room loop detected: "
-                "%s started falling in room %d; is now in %d",
-                ch ? "char" : "obj", world[event->start_room].vnum, world[in_room].vnum);
-        log("%s", buf);
-        ;
+        log("Falling room loop detected: {} started falling in room {:d}; is now in {:d}", ch ? "char" : "obj",
+            world[event->start_room].vnum, world[in_room].vnum);
         if (ch)
             send_to_char("\nParadoxically, you end up where you began.\n", ch);
         CANCEL_GRAVITY;
