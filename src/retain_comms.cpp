@@ -123,7 +123,7 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
     char timebuf[32];
 
     if (IS_MOB(REAL_CHAR(ch))) {
-        send_to_char("Nobody talks to mobs.  Such a sad life.\n", ch);
+        char_printf(ch, "Nobody talks to mobs.  Such a sad life.\n");
     }
 
     if (type == TYPE_RETAINED_TELLS) {
@@ -144,18 +144,18 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
             sprintf(buf, "%s%s's recent %s list is empty.%s\n", CLR(ch, FGRN), GET_NAME(vict), comm_name,
                     CLR(ch, ANRM));
         }
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     } else {
         if (ch == vict) {
             sprintf(buf, "%sYour recent %s list:%s\n\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
         } else {
             sprintf(buf, "%s%s's recent %s list is:%s\n\n", CLR(ch, FGRN), GET_NAME(vict), comm_name, CLR(ch, ANRM));
         }
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         for (; node; node = node->next) {
             strftime(timebuf, 32, TIMEFMT_LOG, localtime(&node->time));
             sprintf(buf, "%s: %s\n", timebuf, node->msg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
     }
 }

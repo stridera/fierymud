@@ -123,7 +123,7 @@ ACMD(do_mdamage) {
     CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh!?\n", ch);
+        char_printf(ch, "Huh!?\n");
         return;
     }
 
@@ -204,7 +204,7 @@ ACMD(do_mskillset) {
     int skspnum;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
     argument = one_argument(argument, arg);
@@ -243,7 +243,7 @@ ACMD(do_masound) {
     int door;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -277,7 +277,7 @@ ACMD(do_mkill) {
     CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -328,7 +328,7 @@ ACMD(do_mjunk) {
     ObjData *obj_next;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -380,7 +380,7 @@ ACMD(do_mechoaround) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -411,7 +411,7 @@ ACMD(do_msend) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -440,7 +440,7 @@ ACMD(do_mecho) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -467,7 +467,7 @@ ACMD(do_m_run_room_trig) {
     ScriptData *sc;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -511,7 +511,7 @@ ACMD(do_mload) {
     ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -565,7 +565,7 @@ ACMD(do_mpurge) {
     ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -621,7 +621,7 @@ ACMD(do_mgoto) {
     int location;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -651,7 +651,7 @@ ACMD(do_mat) {
     int original;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -695,7 +695,7 @@ ACMD(do_mteleport) {
     CharData *vict, *next_ch;
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -752,7 +752,7 @@ ACMD(do_mforce) {
     char arg[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -805,7 +805,7 @@ ACMD(do_mexp) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -837,7 +837,7 @@ ACMD(do_mgold) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -871,12 +871,12 @@ ACMD(do_mob_log) {
     char errbuf[MAX_STRING_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_CHARM)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -904,12 +904,12 @@ ACMD(do_quest) {
      * use this command too.
      */
     if (!MOB_OR_IMPL(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
     if (MOB_FLAGGED(ch, MOB_ANIMATED) || EFF_FLAGGED(ch, EFF_CHARM)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
@@ -928,7 +928,7 @@ ACMD(do_msave) {
     char arg[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 

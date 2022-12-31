@@ -550,7 +550,7 @@ ACMD(do_estat) {
         else
             tmp = ch->in_room;
         if (tmp == NOWHERE)
-            send_to_char("No such room.\n", ch);
+            char_printf(ch, "No such room.\n");
         else {
             stat_extra_descs(world[tmp].ex_description, ch, buf, true);
             page_string(ch, buf);
@@ -564,12 +564,12 @@ ACMD(do_estat) {
             otarg = buf1;
 
         if (!*otarg) {
-            send_to_char("Usage: estat room [<vnum>]\n", ch);
-            send_to_char("       estat obj <name>\n", ch);
+            char_printf(ch, "Usage: estat room [<vnum>]\n");
+            char_printf(ch, "       estat obj <name>\n");
         } else if (isdigit(*otarg)) {
             tmp = atoi(otarg);
             if ((r_num = real_object(tmp)) < 0)
-                send_to_char("There is no object with that number.\n", ch);
+                char_printf(ch, "There is no object with that number.\n");
             else {
                 stat_extra_descs(obj_proto[r_num].ex_description, ch, buf, true);
                 page_string(ch, buf);
@@ -578,7 +578,7 @@ ACMD(do_estat) {
             stat_extra_descs(obj->ex_description, ch, buf, true);
             page_string(ch, buf);
         } else {
-            send_to_char("No such object around.\n", ch);
+            char_printf(ch, "No such object around.\n");
         }
     }
 }
@@ -942,7 +942,7 @@ ACMD(do_stat) {
         else
             tmp = ch->in_room;
         if (tmp == NOWHERE)
-            send_to_char("No such room.\n", ch);
+            char_printf(ch, "No such room.\n");
         else
             do_stat_room(ch, tmp);
     } else if (subcmd == SCMD_SSTAT || is_abbrev(buf1, "shop")) {
@@ -951,50 +951,50 @@ ACMD(do_stat) {
         else
             do_stat_shop(ch, buf2);
     } else if (!*buf1) {
-        send_to_char("Stats on who or what?\n", ch);
+        char_printf(ch, "Stats on who or what?\n");
     } else if (is_abbrev(buf1, "mob")) {
         if (!*buf2)
-            send_to_char("Stats on which mobile?\n", ch);
+            char_printf(ch, "Stats on which mobile?\n");
         else {
             if ((victim = find_char_around_char(ch, find_vis_by_name(ch, buf2))))
                 do_stat_character(ch, victim);
             else
-                send_to_char("No such mobile around.\n", ch);
+                char_printf(ch, "No such mobile around.\n");
         }
     } else if (is_abbrev(buf1, "player")) {
         if (!*buf2) {
-            send_to_char("Stats on which player?\n", ch);
+            char_printf(ch, "Stats on which player?\n");
         } else {
             if ((victim = find_char_around_char(ch, find_vis_plr_by_name(ch, buf2))))
                 do_stat_character(ch, victim);
             else
-                send_to_char("No such player around.\n", ch);
+                char_printf(ch, "No such player around.\n");
         }
     } else if (is_abbrev(buf1, "file")) {
         if (!*buf2) {
-            send_to_char("Stats on which player?\n", ch);
+            char_printf(ch, "Stats on which player?\n");
         } else {
             CREATE(victim, CharData, 1);
             clear_char(victim);
             if (load_player(buf2, victim) > -1) {
                 if (GET_LEVEL(victim) > GET_LEVEL(ch))
-                    send_to_char("Sorry, you can't do that.\n", ch);
+                    char_printf(ch, "Sorry, you can't do that.\n");
                 else
                     do_stat_character(ch, victim);
                 free_char(victim);
             } else {
-                send_to_char("There is no such player.\n", ch);
+                char_printf(ch, "There is no such player.\n");
                 free(victim);
             }
         }
     } else if (is_abbrev(buf1, "object")) {
         if (!*buf2)
-            send_to_char("Stats on which object?\n", ch);
+            char_printf(ch, "Stats on which object?\n");
         else {
             if ((obj = find_obj_around_char(ch, find_vis_by_name(ch, buf2))))
                 do_stat_object(ch, obj);
             else
-                send_to_char("No such object around.\n", ch);
+                char_printf(ch, "No such object around.\n");
         }
     } else {
         if ((obj = find_obj_in_eq(ch, nullptr, find_vis_by_name(ch, buf1))))
@@ -1010,7 +1010,7 @@ ACMD(do_stat) {
         else if ((obj = find_obj_in_world(find_vis_by_name(ch, buf1))))
             do_stat_object(ch, obj);
         else
-            send_to_char("Nothing around by that name.\n", ch);
+            char_printf(ch, "Nothing around by that name.\n");
     }
 }
 
@@ -1022,7 +1022,7 @@ ACMD(do_olocate) {
     one_argument(argument, buf);
 
     if (!*buf) {
-        send_to_char("Search for what?\n", ch);
+        char_printf(ch, "Search for what?\n");
         return;
     }
 
@@ -1051,7 +1051,7 @@ ACMD(do_olocate) {
             }
         }
     }
-    send_to_char(response.c_str(), ch);
+    char_printf(ch, response.c_str());
 }
 
 ACMD(do_vstat) {
@@ -1062,16 +1062,16 @@ ACMD(do_vstat) {
     two_arguments(argument, buf, buf2);
 
     if (subcmd == SCMD_VSTAT && (!*buf || !*buf2 || !isdigit(*buf2))) {
-        send_to_char("Usage: vstat { obj | mob } <number>\n", ch);
+        char_printf(ch, "Usage: vstat { obj | mob } <number>\n");
     } else if (subcmd == SCMD_MSTAT && (!*buf || !isdigit(*buf))) {
-        send_to_char("Usage: mstat <number>\n", ch);
+        char_printf(ch, "Usage: mstat <number>\n");
     } else if (subcmd == SCMD_OSTAT && (!*buf || !isdigit(*buf))) {
-        send_to_char("Usage: ostat <number>\n", ch);
+        char_printf(ch, "Usage: ostat <number>\n");
     } else if ((number = (subcmd == SCMD_VSTAT ? atoi(buf2) : atoi(buf))) < 0) {
-        send_to_char("A NEGATIVE number??\n", ch);
+        char_printf(ch, "A NEGATIVE number??\n");
     } else if (subcmd == SCMD_MSTAT || (subcmd == SCMD_VSTAT && is_abbrev(buf, "mob"))) {
         if ((r_num = real_mobile(number)) < 0) {
-            send_to_char("There is no monster with that number.\n", ch);
+            char_printf(ch, "There is no monster with that number.\n");
             return;
         }
         mob = read_mobile(r_num, REAL);
@@ -1080,14 +1080,14 @@ ACMD(do_vstat) {
         extract_char(mob);
     } else if (subcmd == SCMD_OSTAT || (subcmd == SCMD_VSTAT && is_abbrev(buf, "obj"))) {
         if ((r_num = real_object(number)) < 0) {
-            send_to_char("There is no object with that number.\n", ch);
+            char_printf(ch, "There is no object with that number.\n");
             return;
         }
         obj = read_object(r_num, REAL);
         do_stat_object(ch, obj);
         extract_obj(obj);
     } else
-        send_to_char("That'll have to be either 'obj' or 'mob'.\n", ch);
+        char_printf(ch, "That'll have to be either 'obj' or 'mob'.\n");
 }
 
 ACMD(do_zstat) {
@@ -1104,7 +1104,7 @@ ACMD(do_zstat) {
 
     rnum = find_zone(vnum);
     if (rnum == -1) {
-        send_to_char("There is no such zone.\n", ch);
+        char_printf(ch, "There is no such zone.\n");
         return;
     }
 
@@ -1133,7 +1133,7 @@ ACMD(do_zstat) {
             : z->wind_dir == EAST  ? "East"
             : z->wind_dir == WEST  ? "West"
                                    : "<INVALID>");
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 }
 
 ACMD(do_players) {
@@ -1145,7 +1145,7 @@ ACMD(do_players) {
 
     /* show usage */
     if (strlen(arg) != 1 || !isalpha(*arg)) {
-        send_to_char("'players <letter>' shows all player names beginning with <letter>\n", ch);
+        char_printf(ch, "'players <letter>' shows all player names beginning with <letter>\n");
         return;
     }
 
@@ -1191,7 +1191,7 @@ ACMD(do_last) {
 
     one_argument(argument, arg);
     if (!*arg) {
-        send_to_char("For whom do you wish to search?\n", ch);
+        char_printf(ch, "For whom do you wish to search?\n");
         return;
     }
 
@@ -1199,18 +1199,18 @@ ACMD(do_last) {
     clear_char(victim);
 
     if (load_player(arg, victim) < 0) {
-        send_to_char("There is no such player.\n", ch);
+        char_printf(ch, "There is no such player.\n");
         free(victim);
         return;
     }
     if (GET_LEVEL(victim) > GET_LEVEL(ch) && GET_LEVEL(ch) < LVL_HEAD_B) {
-        send_to_char("You are not sufficiently godly for that!\n", ch);
+        char_printf(ch, "You are not sufficiently godly for that!\n");
         free_char(victim);
         return;
     }
     sprintf(buf, "[%5ld] [%2d %s] %-12s : %-18s : %-20s\n", GET_IDNUM(victim), GET_LEVEL(victim), CLASS_ABBR(victim),
             GET_NAME(victim), GET_HOST(victim), ctime(&victim->player.time.logon));
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     free_char(victim);
 }
@@ -1253,8 +1253,8 @@ void do_show_compositions(CharData *ch, char *argument) {
             damtypes[DAM_SLASH].color, damtypes[DAM_PIERCE].color, damtypes[DAM_CRUSH].color, damtypes[DAM_SHOCK].color,
             damtypes[DAM_FIRE].color, damtypes[DAM_WATER].color, damtypes[DAM_COLD].color, damtypes[DAM_ACID].color,
             damtypes[DAM_POISON].color);
-    send_to_char(buf, ch);
-    send_to_char("---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\n", ch);
+    char_printf(ch, buf);
+    char_printf(ch, "---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\n");
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
         sprintf(buf,
                 "%2d.  %s%-11s  % 5d  % 6d  % 5d  % 5d  % 4d  % 4d  % 5d  % 4d  "
@@ -1263,7 +1263,7 @@ void do_show_compositions(CharData *ch, char *argument) {
                 compositions[i].sus_pierce, compositions[i].sus_crush, compositions[i].sus_shock,
                 compositions[i].sus_fire, compositions[i].sus_water, compositions[i].sus_cold, compositions[i].sus_acid,
                 compositions[i].sus_poison);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 }
 
@@ -1274,25 +1274,25 @@ void do_show_lifeforces(CharData *ch, char *argument) {
 
     sprintf(buf, "Idx  Life force   %sHeal&0  %sDisc.&0  %sDispel&0  %sMental&0\n", damtypes[DAM_HEAL].color,
             damtypes[DAM_DISCORPORATE].color, damtypes[DAM_DISPEL].color, damtypes[DAM_MENTAL].color);
-    send_to_char(buf, ch);
-    send_to_char("---  -----------  ----  -----  ------  ------\n", ch);
+    char_printf(ch, buf);
+    char_printf(ch, "---  -----------  ----  -----  ------  ------\n");
     for (i = 0; i < NUM_LIFEFORCES; i++) {
         sprintf(buf, "%2d.  %s%-11s  % 4d  % 5d  % 6d  % 6d&0\n", i, lifeforces[i].color,
                 capitalize(lifeforces[i].name), lifeforces[i].sus_heal, lifeforces[i].sus_discorporate,
                 lifeforces[i].sus_dispel, lifeforces[i].sus_mental);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 }
 
 void do_show_damtypes(CharData *ch, char *argument) {
     int i;
 
-    send_to_char("Idx  Damage type      Verb 1st         Verb 2nd          Action \n", ch);
-    send_to_char("---  -------------    -------------    --------------    ----------\n", ch);
+    char_printf(ch, "Idx  Damage type      Verb 1st         Verb 2nd          Action \n");
+    char_printf(ch, "---  -------------    -------------    --------------    ----------\n");
     for (i = 0; i < NUM_DAMTYPES; i++) {
         sprintf(buf, "%2d.  %s%-15s  %-15s  %-15s   %-15s&0\n", i, damtypes[i].color, damtypes[i].name,
                 damtypes[i].verb1st, damtypes[i].verb2nd, damtypes[i].action);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 }
 
@@ -1304,13 +1304,13 @@ void do_show_zones(CharData *ch, char *argument) {
 
     if (!strcasecmp(arg, ".")) {
         zonebuf += print_zone_to_buf(world[ch->in_room].zone);
-        send_to_char(zonebuf.c_str(), ch);
+        char_printf(ch, zonebuf.c_str());
     } else if (*arg && is_number(arg)) {
         if ((zrnum = find_zone(atoi(arg))) == NOWHERE)
-            send_to_char("That is not a valid zone.\n", ch);
+            char_printf(ch, "That is not a valid zone.\n");
         else {
             zonebuf += print_zone_to_buf(zrnum);
-            send_to_char(zonebuf.c_str(), ch);
+            char_printf(ch, zonebuf.c_str());
         }
     } else {
         for (zrnum = 0; zrnum <= top_of_zone_table; ++zrnum)
@@ -1388,7 +1388,7 @@ void do_show_stats(CharData *ch, char *argument) {
             "   %5d buf switches          %5d overflows\n",
             players, connected, top_of_p_table + 1, mobiles, top_of_mobt + 1, objects, top_of_objt + 1,
             top_of_world + 1, top_of_zone_table + 1, buf_largecount, buf_switches, buf_overflows);
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 }
 
 void do_show_errors(CharData *ch, char *argument) {
@@ -1412,7 +1412,7 @@ void do_show_errors(CharData *ch, char *argument) {
             sprintf(buf, "%s [%5d] %-30s %s\n", buf, world[rn].vnum, world[rn].name, buf2);
         }
     }
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 }
 
 void do_show_death(CharData *ch, char *argument) {
@@ -1424,7 +1424,7 @@ void do_show_death(CharData *ch, char *argument) {
     for (room = 0, found = 0; room <= top_of_world; ++room)
         if (ROOM_FLAGGED(room, ROOM_DEATH))
             resp += fmt::format("{:2}: [{:5}] {}\n", ++found, world[room].vnum, world[room].name);
-    send_to_char(resp.c_str(), ch);
+    char_printf(ch, resp.c_str());
 }
 
 void do_show_godrooms(CharData *ch, char *argument) {
@@ -1437,7 +1437,7 @@ void do_show_godrooms(CharData *ch, char *argument) {
     for (room = 0, found = 0; room <= top_of_world; ++room)
         if (ROOM_FLAGGED(room, ROOM_GODROOM))
             resp += fmt::format("{:2}: [{:5}] {}\n", ++found, world[room].vnum, world[room].name);
-    send_to_char(resp.c_str(), ch);
+    char_printf(ch, resp.c_str());
 }
 
 void do_show_houses(CharData *ch, char *argument) {
@@ -1454,16 +1454,16 @@ void do_show_notes(CharData *ch, char *argument) {
     any_one_arg(argument, arg);
 
     if (!*arg) {
-        send_to_char("A name would help.\n", ch);
+        char_printf(ch, "A name would help.\n");
         return;
     }
     if (!get_pfilename(arg, buf2, NOTES_FILE)) {
-        send_to_char("Couldn't find that player.\n", ch);
+        char_printf(ch, "Couldn't find that player.\n");
         return;
     }
 
     if (!(notes = fopen(buf2, "rt"))) {
-        send_to_char("There are no notes for that file.\n", ch);
+        char_printf(ch, "There are no notes for that file.\n");
         return;
     }
 
@@ -1577,7 +1577,7 @@ void do_show_exp(CharData *ch, char *argument) {
     any_one_arg(argument, arg);
 
     if (!*arg) {
-        send_to_char("Usage: show exp <class>\n", ch);
+        char_printf(ch, "Usage: show exp <class>\n");
         return;
     }
 
@@ -1594,7 +1594,7 @@ void do_show_exp(CharData *ch, char *argument) {
             return;
         }
     }
-    send_to_char("Invalid class.\n", ch);
+    char_printf(ch, "Invalid class.\n");
 }
 
 void do_show_snoop(CharData *ch, char *argument) {
@@ -1602,10 +1602,9 @@ void do_show_snoop(CharData *ch, char *argument) {
     int i = 0;
     DescriptorData *d;
 
-    send_to_char(
+    char_printf(ch,
         "People currently snooping:\n"
-        "--------------------------\n",
-        ch);
+        "--------------------------\n");
     for (d = descriptor_list; d; d = d->next) {
         if (d->snooping == nullptr || d->character == nullptr)
             continue;
@@ -1616,10 +1615,10 @@ void do_show_snoop(CharData *ch, char *argument) {
         i++;
         sprintf(buf, "%-10s%s - snooped by %s%s.\n", GET_NAME(d->snooping->character), QNRM, GET_NAME(d->character),
                 QNRM);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
     if (i == 0)
-        send_to_char("No one is currently snooping.\n", ch);
+        char_printf(ch, "No one is currently snooping.\n");
 }
 
 void do_show_sizes(CharData *ch, char *argument) {
@@ -1650,7 +1649,7 @@ void do_show_file(CharData *ch, char *argument) {
         for (i = 0; fields[i].level; ++i)
             if (fields[i].level <= GET_LEVEL(ch))
                 sprintf(buf, "%s%-15s%s\n", buf, fields[i].name, fields[i].path);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
 
@@ -1659,11 +1658,11 @@ void do_show_file(CharData *ch, char *argument) {
             break;
 
     if (!fields[i].name) {
-        send_to_char("That is not a valid option!\n", ch);
+        char_printf(ch, "That is not a valid option!\n");
         return;
     }
     if (GET_LEVEL(ch) < fields[i].level) {
-        send_to_char("You are not godly enough to view that file!\n", ch);
+        char_printf(ch, "You are not godly enough to view that file!\n");
         return;
     }
 
@@ -1764,7 +1763,7 @@ void do_show_spell(CharData *ch, int spellnum) {
     bool anytargets = false, anyroutines = false, anyassignments = false;
 
     if (!IS_SPELL(spellnum)) {
-        send_to_char("There is no such spell.\n", ch);
+        char_printf(ch, "There is no such spell.\n");
         return;
     }
 
@@ -1773,7 +1772,7 @@ void do_show_spell(CharData *ch, int spellnum) {
     /* Number and name */
     strcpy(buf2, spell->name);
     sprintf(buf, "&2Spell #%d&0, &5&b%s&0\n", spellnum, CAP(buf2));
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Stance */
     char_printf(ch, "Min pos     : {}\n", position_types[spell->minpos]);
@@ -1790,30 +1789,30 @@ void do_show_spell(CharData *ch, int spellnum) {
     if (!anytargets)
         strcat(buf, " -none-");
     strcat(buf, "\n");
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Violent */
     /* Damage type */
     if (spell->violent) {
-        send_to_char("Violent     : &1&bYes&0\n", ch);
+        char_printf(ch, "Violent     : &1&bYes&0\n");
         if (VALID_DAMTYPE(spell->damage_type))
             sprintf(buf, "Damtype     : %s%s&0\n", damtypes[spell->damage_type].color,
                     damtypes[spell->damage_type].name);
         else
             sprintf(buf, "Damtype     : &1&bINVALID (%d)&0\n", spell->damage_type);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     } else {
-        send_to_char("Violent     : &6No&0\n", ch);
-        send_to_char("Damtype     : -na-\n", ch);
+        char_printf(ch, "Violent     : &6No&0\n");
+        char_printf(ch, "Damtype     : -na-\n");
     }
 
     /* Sphere */
     if (IS_SPHERE_SKILL(spell->sphere)) {
         sprintf(buf, "Sphere      : %s\n", skills[spell->sphere].name);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     } else {
         sprintf(buf, "Sphere      : &1&bINVALID (%d)&0\n", spell->sphere);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 
     /* Routines */
@@ -1827,34 +1826,34 @@ void do_show_spell(CharData *ch, int spellnum) {
     if (!anyroutines)
         strcat(buf, " -none-");
     strcat(buf, "\n");
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Mana */
     sprintf(buf, "Mana        : max %d  min %d  chg %d\n", spell->mana_max, spell->mana_min, spell->mana_change);
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Mem time */
     sprintf(buf, "Mem time    : %d\n", spell->mem_time);
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Cast time */
     sprintf(buf, "Cast time   : %d\n", spell->cast_time);
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Pages */
     sprintf(buf, "Pages       : &3%d&0\n", spell->pages);
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Quest */
     sprintf(buf, "Quest       : %s\n", spell->quest ? "&2&bYes&0" : "&4&bNo&0");
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     /* Wearoff message */
     if (spell->wearoff && *(spell->wearoff)) {
         sprintf(buf, "Wearoff     : &6%s&0\n", spell->wearoff);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     } else
-        send_to_char("Wearoff     : -none-\n", ch);
+        char_printf(ch, "Wearoff     : -none-\n");
 
     /* Assignments */
     for (i = 0; i < NUM_CLASSES; i++)
@@ -1863,10 +1862,10 @@ void do_show_spell(CharData *ch, int spellnum) {
                     13 + count_color_chars(classes[i].displayname), classes[i].displayname,
                     level_to_circle(spell->min_level[i]));
             anyassignments = true;
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
     if (!anyassignments)
-        send_to_char("Assignments : -none-\n", ch);
+        char_printf(ch, "Assignments : -none-\n");
 }
 
 void do_show_skill(CharData *ch, char *argument) {
@@ -1877,12 +1876,12 @@ void do_show_skill(CharData *ch, char *argument) {
     skip_spaces(&argument);
 
     if (!*argument) {
-        send_to_char("Usage: show skill <skill name>\n", ch);
+        char_printf(ch, "Usage: show skill <skill name>\n");
         return;
     }
 
     if ((skill_num = find_talent_num(argument, 0)) < 0) {
-        send_to_char("Unrecognized skill name.\n", ch);
+        char_printf(ch, "Unrecognized skill name.\n");
         return;
     }
 
@@ -1953,7 +1952,7 @@ void do_show_skill(CharData *ch, char *argument) {
         }
     }
 
-    send_to_char(resp.c_str(), ch);
+    char_printf(ch, resp.c_str());
 }
 
 void do_show_date_names(CharData *ch, char *argument) {
@@ -2033,7 +2032,7 @@ ACMD(do_show) {
                 resp += fmt::format("{:>15}{}", fields[i].name, (i + 1) % 5 ? "" : "\n");
         if (i % 5)
             resp += "\n";
-        send_to_char(resp.c_str(), ch);
+        char_printf(ch, resp.c_str());
         return;
     }
 
@@ -2045,17 +2044,17 @@ ACMD(do_show) {
                 break;
 
     if (GET_LEVEL(ch) < fields[i].level) {
-        send_to_char("You are not godly enough for that!\n", ch);
+        char_printf(ch, "You are not godly enough for that!\n");
         return;
     }
 
     if (!fields[i].name) {
-        send_to_char("That's not something you can show.\n", ch);
+        char_printf(ch, "That's not something you can show.\n");
         return;
     }
 
     if (!fields[i].command) {
-        send_to_char("Error retrieving information.\n", ch);
+        char_printf(ch, "Error retrieving information.\n");
         return;
     }
 
@@ -2121,7 +2120,7 @@ void infodump_spellassign(CharData *ch, char *argument) {
     bool startedclass;
 
     if (!get_infodump_filename("spellassign", fname)) {
-        send_to_char("ERROR: Could not get the output filename.\n", ch);
+        char_printf(ch, "ERROR: Could not get the output filename.\n");
         return;
     }
 
@@ -2159,7 +2158,7 @@ void infodump_spellassign(CharData *ch, char *argument) {
     }
     fclose(fl);
     sprintf(buf, "Dumped spell assignments to %s\n", fname);
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 }
 
 /* The purpose of info dumps is to output game data in a format that will
@@ -2182,7 +2181,7 @@ ACMD(do_infodump) {
             resp += fmt::format("{:>15}{}", fields[i].name, (i + 1) % 5 ? "" : "\n");
         if (i % 5)
             resp += "\n";
-        send_to_char(resp.c_str(), ch);
+        char_printf(ch, resp.c_str());
         return;
     }
 
@@ -2193,12 +2192,12 @@ ACMD(do_infodump) {
             break;
 
     if (!fields[i].name) {
-        send_to_char("That's not something you can infodump.\n", ch);
+        char_printf(ch, "That's not something you can infodump.\n");
         return;
     }
 
     if (!fields[i].command) {
-        send_to_char("Error identifying what you wanted to dump.\n", ch);
+        char_printf(ch, "Error identifying what you wanted to dump.\n");
         return;
     }
 

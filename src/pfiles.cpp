@@ -270,7 +270,7 @@ void show_rent(CharData *ch, char *argument) {
     any_one_arg(argument, name);
 
     if (!*name) {
-        send_to_char("Show rent for whom?\n", ch);
+        char_printf(ch, "Show rent for whom?\n");
         return;
     }
 
@@ -281,12 +281,12 @@ void show_rent(CharData *ch, char *argument) {
     name[0] = UPPER(name[0]);
 
     if (!get_line(fl, buf)) {
-        send_to_char("Error reading reading rent code.\n", ch);
+        char_printf(ch, "Error reading reading rent code.\n");
         return;
     }
 
     if (!is_integer(buf)) {
-        send_to_char("This file is in the obsolete binary format.  Please use 'objupdate' to fix it.\n", ch);
+        char_printf(ch, "This file is in the obsolete binary format.  Please use 'objupdate' to fix it.\n");
         return;
     }
 
@@ -612,6 +612,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
             else if (!strcasecmp(tag, "location"))
                 *location = atoi(line);
+
             else if (!strcasecmp(tag, "spells")) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
@@ -888,11 +889,10 @@ bool load_objects(CharData *ch) {
             return true;
         } else {
             log("   Failed!");
-            send_to_char(
-                "\n@W********************* NOTICE *********************\n"
-                "There was a problem (error 02) loading your objects from disk.\n"
-                "Contact a God for assistance.@0\n",
-                ch);
+            char_printf(ch,
+                        "\n@W********************* NOTICE *********************\n"
+                        "There was a problem (error 02) loading your objects from disk.\n"
+                        "Contact a God for assistance.@0\n");
             log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} entering game with no equipment. (error 02)",
                 GET_NAME(ch));
             return false;
@@ -949,11 +949,10 @@ void load_quests(CharData *ch) {
             if (errno != ENOENT) { /* if it fails, NOT because of no file */
                 sprintf(buf1, "SYSERR: READING QUEST FILE %s (5)", fname);
                 perror(buf1);
-                send_to_char(
-                    "\n********************* NOTICE *********************\n"
-                    "There was a problem loading your quests from disk.\n"
-                    "Contact a God for assistance.\n",
-                    ch);
+                char_printf(ch,
+                            "\n********************* NOTICE *********************\n"
+                            "There was a problem loading your quests from disk.\n"
+                            "Contact a God for assistance.\n");
             }
             log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} starting up with no quests.", GET_NAME(ch));
             ch->quests = (QuestList *)nullptr;
@@ -1448,7 +1447,7 @@ FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
     if (!get_pfilename(player_name, filename, OBJ_FILE)) {
         log("SYSERR: Unable to construct filename to load objects for {}", GET_NAME(ch));
         if (ch)
-            send_to_char("Couldn't construct the filename!\n", ch);
+            char_printf(ch, "Couldn't construct the filename!\n");
         return nullptr;
     }
 
@@ -1458,11 +1457,11 @@ FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
             perror(buf);
             if (ch) {
                 sprintf(buf, "&1&bI/O Error %d&0: %s\n", errno, strerror(errno));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             }
         } else if (ch && !quiet) {
             sprintf(buf, "There is no object file for %s.\n", player_name);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
         return nullptr;
     }
@@ -1572,12 +1571,12 @@ void convert_player_obj_files(CharData *ch) {
 
     sprintf(buf, "Examined %d player object file%s and updated %d.\n", top_of_p_table + 1,
             top_of_p_table + 1 == 1 ? "" : "s", converted);
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 }
 
 void convert_single_player_obj_file(CharData *ch, char *name) {
     if (!convert_player_obj_file(name, ch))
-        send_to_char("The object file was not converted.\n", ch);
+        char_printf(ch, "The object file was not converted.\n");
 }
 
 /* save_player

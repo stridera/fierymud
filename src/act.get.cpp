@@ -191,7 +191,7 @@ bool has_corpse_consent(CharData *ch, ObjData *cont) {
     }
 
     /* no consent and not your own corpse */
-    send_to_char("Not without consent you don't!\n", ch);
+    char_printf(ch, "Not without consent you don't!\n");
 
     return false;
 }
@@ -328,7 +328,7 @@ void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount) {
     if (IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
         act("$p is closed.", false, ch, cont, 0, TO_CHAR);
     else if (!RIGID(ch) && cont->carried_by != ch && GET_LEVEL(ch) < LVL_IMMORT)
-        send_to_char("You can't handle solid objects in your condition.\n", ch);
+        char_printf(ch, "You can't handle solid objects in your condition.\n");
     else {
         iter = find_objs_in_list(cont->contains, obj_dotmode == FIND_ALL ? find_vis(ch) : find_vis_by_name(ch, name));
         while ((obj = NEXT_FUNC(iter))) {
@@ -396,7 +396,7 @@ void get_from_room(CharData *ch, char *name, int amount) {
     INIT_GCONTEXT(context, ch);
 
     if (!RIGID(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        send_to_char("In your fluid state, you can't pick things up.\n", ch);
+        char_printf(ch, "In your fluid state, you can't pick things up.\n");
         return;
     }
 
@@ -409,7 +409,7 @@ void get_from_room(CharData *ch, char *name, int amount) {
     while ((obj = NEXT_FUNC(iter))) {
         ++found;
         if (confused) {
-            send_to_char("&5You fumble haphazardly...&0\n", ch);
+            char_printf(ch, "&5You fumble haphazardly...&0\n");
             get_random_object(&context);
             /* Note: this loop cannot be allowed to continue, because the
              * iterator may have been invalided by get_random_object().
@@ -427,7 +427,7 @@ void get_from_room(CharData *ch, char *name, int amount) {
 
     if (!found) {
         if (dotmode == FIND_ALL)
-            send_to_char("There doesn't seem to be anything here.\n", ch);
+            char_printf(ch, "There doesn't seem to be anything here.\n");
         else
             char_printf(ch, "You don't see any {}{} here.\n", name, isplural(name) ? "" : "s");
     } else if (!confused && dotmode == FIND_INDIV && amount > 0)
@@ -450,19 +450,19 @@ ACMD(do_get) {
     one_argument(argument, cont_name);
 
     if (!*obj_name)
-        send_to_char("Get what?\n", ch);
+        char_printf(ch, "Get what?\n");
     else if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch) && GET_LEVEL(ch) < LVL_IMMORT)
-        send_to_char("Your arms are already full!\n", ch);
+        char_printf(ch, "Your arms are already full!\n");
     else if (!amount)
-        send_to_char("So you don't want to get anything?\n", ch);
+        char_printf(ch, "So you don't want to get anything?\n");
     else if (!strcasecmp(obj_name, "all."))
-        send_to_char("Get all of what?\n", ch);
+        char_printf(ch, "Get all of what?\n");
     else if (!*cont_name)
         get_from_room(ch, obj_name, amount);
     else if (CONFUSED(ch))
-        send_to_char("You're too confused!\n", ch);
+        char_printf(ch, "You're too confused!\n");
     else if ((cont_dotmode = find_all_dots(&cont_name)) == FIND_ALLDOT && !*cont_name)
-        send_to_char("Get from all of what?\n", ch);
+        char_printf(ch, "Get from all of what?\n");
     else {
         iter = find_objs(cont_dotmode == FIND_ALL ? find_vis(ch) : find_vis_by_name(ch, cont_name),
                          FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_OBJ_EQUIP);
@@ -503,7 +503,7 @@ ACMD(do_palm) {
     CharData *tch;
 
     if (CONFUSED(ch)) {
-        send_to_char("You are too confused.\n", ch);
+        char_printf(ch, "You are too confused.\n");
         return;
     }
 
@@ -515,13 +515,13 @@ ACMD(do_palm) {
     if (!GET_SKILL(ch, SKILL_CONCEAL))
         do_get(ch, argument, cmd, 0);
     if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch) && GET_LEVEL(ch) < LVL_GOD)
-        send_to_char("Your arms are already full!\n", ch);
+        char_printf(ch, "Your arms are already full!\n");
     else if (!*arg1)
-        send_to_char("Palm what?\n", ch);
+        char_printf(ch, "Palm what?\n");
     else if (obj_dotmode != FIND_INDIV)
-        send_to_char("You can only palm one item at a time!\n", ch);
+        char_printf(ch, "You can only palm one item at a time!\n");
     else if (cont_dotmode != FIND_INDIV)
-        send_to_char("You can only palm an item from one container at a time!\n", ch);
+        char_printf(ch, "You can only palm an item from one container at a time!\n");
     /* No container - palm from room */
     else if (!*arg2) {
         if (!(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg1))))

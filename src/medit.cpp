@@ -617,13 +617,13 @@ void medit_disp_stances(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; *stance_types[i] != '\n'; i++) {
         sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, stance_types[i]);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter stance number:\n", d->character);
+    char_printf(d->character, "Enter stance number:\n");
 }
 
 /*. Display positions (sitting, standing etc) .*/
@@ -634,13 +634,13 @@ void medit_disp_positions(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; *position_types[i] != '\n'; i++) {
         sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, position_types[i]);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter position number:\n", d->character);
+    char_printf(d->character, "Enter position number:\n");
 }
 
 /*-------------------------------------------------------------------*/
@@ -655,13 +655,13 @@ void medit_disp_sex(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_SEXES; i++) {
         sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, genders[i]);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter gender number:\n", d->character);
+    char_printf(d->character, "Enter gender number:\n");
 }
 
 /*-------------------------------------------------------------------*/
@@ -675,13 +675,13 @@ void medit_size(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_SIZES; i++) {
         sprintf(buf, "%s%2d%s) %c%s\n", grn, i, nrm, (sizes[i].name)[0], sizes[i].name + 1);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter size number:\n", d->character);
+    char_printf(d->character, "Enter size number:\n");
 }
 
 /*-------------------------------------------------------------------*/
@@ -692,13 +692,13 @@ void medit_disp_attack_types(DescriptorData *d) {
 
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_ATTACK_TYPES; i++) {
         sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, attack_hit_text[i].singular);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter attack type:\n", d->character);
+    char_printf(d->character, "Enter attack type:\n");
 }
 
 /*-------------------------------------------------------------------*/
@@ -711,7 +711,7 @@ void medit_disp_mob_flags(DescriptorData *d) {
 
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
 
     /* Outer loop goes through rows, inner loop goes through columns. */
@@ -722,12 +722,12 @@ void medit_disp_mob_flags(DescriptorData *d) {
                 break;
             sprintf(buf, "%s%s%2d%s) %-20.20s", buf, grn, FLAG_INDEX + 1, nrm, action_bits[FLAG_INDEX]);
         }
-        send_to_char(strcat(buf, "\n"), d->character);
+        char_printf(d->character, strcat(buf, "\n"));
     }
 
     sprintflag(buf1, MOB_FLAGS(OLC_MOB(d)), NUM_MOB_FLAGS, action_bits);
     sprintf(buf, "\nCurrent flags : %s%s%s\nEnter mob flags (0 to quit) : ", cyn, buf1, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 }
 
 #undef FLAG_INDEX
@@ -736,27 +736,27 @@ void medit_class_types(DescriptorData *d) {
     int i;
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("\nListings of Classes\n", d->character);
+    char_printf(d->character, "\nListings of Classes\n");
 #endif
     for (i = 0; i < NUM_CLASSES; i++) {
         sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, classes[i].plainname);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter Class:\n", d->character);
+    char_printf(d->character, "Enter Class:\n");
 }
 
 void medit_race_types(DescriptorData *d) {
     int i;
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    /*send_to_char(".[H.[J", d->character);    */
-    send_to_char("\nListings of Races\n", d->character);
+    /*char_printf(d->character, ".[H.[J");    */
+    char_printf(d->character, "\nListings of Races\n");
 #endif
     for (i = 0; i < NUM_RACES; i++) {
         sprintf(buf, "%s%2d%s) %s\n", grn, i, nrm, races[i].plainname);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter Races:\n", d->character);
+    char_printf(d->character, "Enter Races:\n");
 }
 
 /*-------------------------------------------------------------------*/
@@ -769,7 +769,7 @@ void medit_disp_aff_flags(DescriptorData *d) {
 
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i <= NUM_EFF_FLAGS / columns; ++i) {
         *buf = '\0';
@@ -778,12 +778,12 @@ void medit_disp_aff_flags(DescriptorData *d) {
                 break;
             sprintf(buf, "%s%s%2d%s) %-20.20s", buf, grn, FLAG_INDEX + 1, nrm, effect_flags[FLAG_INDEX]);
         }
-        send_to_char(strcat(buf, "\n"), d->character);
+        char_printf(d->character, strcat(buf, "\n"));
     }
 
     sprintflag(buf1, EFF_FLAGS(OLC_MOB(d)), NUM_EFF_FLAGS, effect_flags);
     sprintf(buf, "\nCurrent flags   : %s%s%s\nEnter aff flags (0 to quit):\n", cyn, buf1, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 }
 
 #undef FLAG_INDEX
@@ -795,13 +795,13 @@ void medit_disp_lifeforces(DescriptorData *d) {
     int i;
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_LIFEFORCES; i++) {
         sprintf(buf, "%s%2d%s) %s%s%s\n", grn, i, nrm, lifeforces[i].color, capitalize(lifeforces[i].name), nrm);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
-    send_to_char("Enter life force number:\n", d->character);
+    char_printf(d->character, "Enter life force number:\n");
 }
 
 /*-------------------------------------------------------------------*/
@@ -809,10 +809,10 @@ void medit_disp_lifeforces(DescriptorData *d) {
 
 void medit_disp_compositions(DescriptorData *d) {
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     list_olc_compositions(d->character);
-    send_to_char("Enter composition number:\n", d->character);
+    char_printf(d->character, "Enter composition number:\n");
 }
 
 /*-------------------------------------------------------------------*/
@@ -842,7 +842,7 @@ void medit_disp_menu(DescriptorData *d) {
     menu += fmt::format("&2&b7&0) Level: &6{:<3}&0\t\t\t&2&b8&0) Class: &6{:<10}&0\t\t", GET_LEVEL(mob),
                         classes[(int)GET_CLASS(mob)].plainname);
     menu += fmt::format("&2&b9&0) Alignment: &6{}&0\n", GET_ALIGNMENT(mob));
-    send_to_char(menu.c_str(), d->character);
+    char_printf(d->character, menu.c_str());
 
     menu = "";
     menu += fmt::format("&2&bA&0) Hitroll    : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->points.hitroll,
@@ -865,7 +865,7 @@ void medit_disp_menu(DescriptorData *d) {
                         GET_EX_PLATINUM(mob));
     menu += fmt::format("&2&bL&0) Perception : [&6&b{:4}&0]\t\t&2&bM&0) Hiddenness  : [&6&b{:4}&0]\n",
                         GET_PERCEPTION(mob), GET_HIDDENNESS(mob));
-    send_to_char(menu.c_str(), d->character);
+    char_printf(d->character, menu.c_str());
 
     sprintflag(buf1, MOB_FLAGS(mob), NUM_MOB_FLAGS, action_bits);
     sprintflag(buf2, EFF_FLAGS(mob), NUM_EFF_FLAGS, effect_flags);
@@ -881,7 +881,7 @@ void medit_disp_menu(DescriptorData *d) {
     menu += fmt::format("&2&bW&0) Aff Flags     : &6{}&0\n", buf2);
     menu += fmt::format("&2&bS&0) Script        : &6{}&0\n", mob->proto_script ? "&6&bSet&0" : "&6Not Set&0");
     menu += "&2&bQ&0) Quit\nEnter choice:\n";
-    send_to_char(menu.c_str(), d->character);
+    char_printf(d->character, menu.c_str());
 
     OLC_MODE(d) = MEDIT_MAIN_MENU;
 }
@@ -894,7 +894,7 @@ void medit_parse(DescriptorData *d, char *arg) {
     int i;
     if (OLC_MODE(d) > MEDIT_NUMERICAL_RESPONSE) {
         if (!*arg || (!isdigit(arg[0]) && ((*arg == '-') && (!isdigit(arg[1]))))) {
-            send_to_char("Field must be numerical, try again:\n", d->character);
+            char_printf(d->character, "Field must be numerical, try again:\n");
             return;
         }
     }
@@ -908,7 +908,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         case 'y':
         case 'Y':
             /*. Save the mob in memory and to disk  . */
-            send_to_char("Saving mobile to memory.\n", d->character);
+            char_printf(d->character, "Saving mobile to memory.\n");
             medit_save_internally(d);
             sprintf(buf, "OLC: %s edits mob %d", GET_NAME(d->character), OLC_NUM(d));
             log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
@@ -920,8 +920,8 @@ void medit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             return;
         default:
-            send_to_char("Invalid choice!\n", d->character);
-            send_to_char("Do you wish to save the mobile?\n", d->character);
+            char_printf(d->character, "Invalid choice!\n");
+            char_printf(d->character, "Do you wish to save the mobile?\n");
             return;
         }
         break;
@@ -933,7 +933,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Anything been changed? */
-                send_to_char("Do you wish to save the changes to the mobile? (y/n)\n", d->character);
+                char_printf(d->character, "Do you wish to save the changes to the mobile? (y/n)\n");
                 OLC_MODE(d) = MEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
@@ -952,7 +952,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             break;
         case '3':
             OLC_MODE(d) = MEDIT_D_DESC;
-            write_to_output("Enter mob description: (/s saves /h for help)\n\n", d);
+            string_to_output(d, "Enter mob description: (/s saves /h for help)\n\n");
             string_write(d, &OLC_MOB(d)->player.description, MAX_MOB_DESC);
             OLC_VAL(d) = 1;
             return;
@@ -1092,35 +1092,14 @@ void medit_parse(DescriptorData *d, char *arg) {
             OLC_SCRIPT_EDIT_MODE(d) = SCRIPT_MAIN_MENU;
             dg_script_menu(d);
             return;
-            /*  purging = bad thing!  removed from display back in 2k?, commented out
-               20060409 - RLS case '?': if (GET_MOB_RNUM(OLC_MOB(d)) == -1)
-               {
-               send_to_char("You cannot purge a non-existent (unsaved) mob! Choose
-               again:\n",d->character);
-               }
-               else if (GET_LEVEL(d->character)<LVL_HEAD_B)
-               {
-               sprintf(buf,"You are too low level to purge! Get a level %d or greater
-               to do this.\n",LVL_HEAD_B); send_to_char(buf,d->character);
-               }
-               else
-               {
-               OLC_MODE(d) = MEDIT_PURGE_MOBILE;
-               * make extra sure*
-               send_to_char("Purging will also remove all existing mobiles of this
-               sort!\n", d->character); send_to_char("Are you sure you wish to
-               PERMANENTLY DELETE the mobile? (y/n) : ", d->character);
-               }
-               return; */
         default:
             medit_disp_menu(d);
             return;
         }
         if (i != 0) {
-            send_to_char(i == 1    ? "\nEnter new value : "
-                         : i == -1 ? "\nEnter new text :\n] "
-                                   : "\nOops...:\n",
-                         d->character);
+            char_printf(d->character, i == 1    ? "\nEnter new value : "
+                                      : i == -1 ? "\nEnter new text :\n] "
+                                                : "\nOops...:\n");
             return;
         }
         break;
@@ -1161,7 +1140,7 @@ void medit_parse(DescriptorData *d, char *arg) {
          */
         cleanup_olc(d, CLEANUP_ALL);
         log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: medit_parse(): Reached D_DESC case!");
-        send_to_char("Oops...\n", d->character);
+        char_printf(d->character, "Oops...\n");
         break;
         /*-------------------------------------------------------------------*/
     case MEDIT_NPC_FLAGS:
@@ -1319,7 +1298,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
     case MEDIT_CLASS:
         if (atoi(arg) < 0 || atoi(arg) >= NUM_CLASSES) {
-            send_to_char("That choice is out of range.  Please try again:\n", d->character);
+            char_printf(d->character, "That choice is out of range.  Please try again:\n");
             return;
         }
         GET_CLASS(OLC_MOB(d)) = atoi(arg);
@@ -1327,7 +1306,7 @@ void medit_parse(DescriptorData *d, char *arg) {
 
     case MEDIT_RACE:
         if (atoi(arg) < 0 || atoi(arg) >= NUM_RACES) {
-            send_to_char("That choice is out of range.  Please try again:\n", d->character);
+            char_printf(d->character, "That choice is out of range.  Please try again:\n");
             return;
         }
         GET_RACE(OLC_MOB(d)) = atoi(arg);
@@ -1341,7 +1320,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         case 'y':
         case 'Y':
             /*. Splat the mob in memory .. */
-            send_to_char("Purging mobile from memory.\n", d->character);
+            char_printf(d->character, "Purging mobile from memory.\n");
 
             /*need to remove all existing mobs of this type too.. */
             /*ok..we use save internally, but we are purging because of the mode */
@@ -1354,8 +1333,8 @@ void medit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             return;
         default:
-            send_to_char("Invalid choice!\n", d->character);
-            send_to_char("Do you wish to purge the mobile?\n", d->character);
+            char_printf(d->character, "Invalid choice!\n");
+            char_printf(d->character, "Do you wish to purge the mobile?\n");
             return;
         }
         break;
@@ -1365,7 +1344,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
         log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: medit_parse(): Reached default case!");
-        send_to_char("Oops...\n", d->character);
+        char_printf(d->character, "Oops...\n");
         break;
     }
     /*-------------------------------------------------------------------*/

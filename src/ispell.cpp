@@ -152,19 +152,19 @@ ACMD(do_ispell) {
     const char *pc;
 
     if (ispell_pid < 0) {
-        send_to_char("Spellchecker is not running.\n", ch);
+        char_printf(ch, "Spellchecker is not running.\n");
         return;
     }
 
     skip_spaces(&argument);
     if (!*argument || strchr(argument, ' ')) {
-        send_to_char("Invalid input.\n", ch);
+        char_printf(ch, "Invalid input.\n");
         return;
     }
 
     if (*argument == '+') {
         if (GET_LEVEL(ch) < LVL_IMMORT) {
-            send_to_char("You may not add entries to the dictionary.\n", ch);
+            char_printf(ch, "You may not add entries to the dictionary.\n");
             return;
         }
         for (pc = argument + 1; *pc; ++pc)

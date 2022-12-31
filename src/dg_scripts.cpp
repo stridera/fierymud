@@ -276,16 +276,16 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
 
     sprintf(sb, "Trigger Name: '%s%s%s',  VNum: [%s%5d%s], RNum: [%5d]\n", yel, GET_TRIG_NAME(trig), nrm, grn,
             GET_TRIG_VNUM(trig), nrm, GET_TRIG_RNUM(trig));
-    send_to_char(sb, ch);
+    char_printf(ch, sb);
 
     if (trig->attach_type == OBJ_TRIGGER) {
-        send_to_char("Trigger Intended Assignment: Objects\n", ch);
+        char_printf(ch, "Trigger Intended Assignment: Objects\n");
         sprintbit(GET_TRIG_TYPE(trig), otrig_types, buf);
     } else if (trig->attach_type == WLD_TRIGGER) {
-        send_to_char("Trigger Intended Assignment: Rooms\n", ch);
+        char_printf(ch, "Trigger Intended Assignment: Rooms\n");
         sprintbit(GET_TRIG_TYPE(trig), wtrig_types, buf);
     } else {
-        send_to_char("Trigger Intended Assignment: Mobiles\n", ch);
+        char_printf(ch, "Trigger Intended Assignment: Mobiles\n");
         sprintbit(GET_TRIG_TYPE(trig), trig_types, buf);
     }
 
@@ -427,7 +427,7 @@ ACMD(do_attach) {
     two_arguments(argument, targ_name, loc_name);
 
     if (!*arg || !*targ_name || !*trig_name) {
-        send_to_char("Usage: attach { mtr | otr | wtr } { trigger } { name } [ location ]\n", ch);
+        char_printf(ch, "Usage: attach { mtr | otr | wtr } { trigger } { name } [ location ]\n");
         return;
     }
 
@@ -447,13 +447,13 @@ ACMD(do_attach) {
                     add_trigger(SCRIPT(victim), trig, loc);
 
                     sprintf(buf, "Trigger %d (%s) attached to %s.\n", tn, GET_TRIG_NAME(trig), GET_SHORT(victim));
-                    send_to_char(buf, ch);
+                    char_printf(ch, buf);
                 } else
-                    send_to_char("That trigger does not exist.\n", ch);
+                    char_printf(ch, "That trigger does not exist.\n");
             } else
-                send_to_char("Players can't have scripts.\n", ch);
+                char_printf(ch, "Players can't have scripts.\n");
         } else
-            send_to_char("That mob does not exist.\n", ch);
+            char_printf(ch, "That mob does not exist.\n");
     }
 
     else if (is_abbrev(arg, "otr")) {
@@ -469,11 +469,11 @@ ACMD(do_attach) {
 
                 sprintf(buf, "Trigger %d (%s) attached to %s.\n", tn, GET_TRIG_NAME(trig),
                         (obj->short_description ? obj->short_description : obj->name));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             } else
-                send_to_char("That trigger does not exist.\n", ch);
+                char_printf(ch, "That trigger does not exist.\n");
         } else
-            send_to_char("That object does not exist.\n", ch);
+            char_printf(ch, "That object does not exist.\n");
     }
 
     else if (is_abbrev(arg, "wtr")) {
@@ -489,16 +489,16 @@ ACMD(do_attach) {
                     add_trigger(world[room].script, trig, loc);
 
                     sprintf(buf, "Trigger %d (%s) attached to room %d.\n", tn, GET_TRIG_NAME(trig), world[room].vnum);
-                    send_to_char(buf, ch);
+                    char_printf(ch, buf);
                 } else
-                    send_to_char("That trigger does not exist.\n", ch);
+                    char_printf(ch, "That trigger does not exist.\n");
             }
         } else
-            send_to_char("You need to supply a room number.\n", ch);
+            char_printf(ch, "You need to supply a room number.\n");
     }
 
     else
-        send_to_char("Please specify 'mtr', otr', or 'wtr'.\n", ch);
+        char_printf(ch, "Please specify 'mtr', otr', or 'wtr'.\n");
 }
 
 /* adds a variable with given name and value to trigger */
@@ -598,45 +598,45 @@ ACMD(do_detach) {
     one_argument(argument, arg3);
 
     if (!*arg1 || !*arg2) {
-        send_to_char("Usage: detach [ mob | object ] { target } { trigger | 'all' }\n", ch);
+        char_printf(ch, "Usage: detach [ mob | object ] { target } { trigger | 'all' }\n");
         return;
     }
 
     if (!strcasecmp(arg1, "room")) {
         room = &world[IN_ROOM(ch)];
         if (!SCRIPT(room))
-            send_to_char("This room does not have any triggers.\n", ch);
+            char_printf(ch, "This room does not have any triggers.\n");
         else if (!strcasecmp(arg2, "all")) {
             extract_script(SCRIPT(room));
             SCRIPT(room) = nullptr;
-            send_to_char("All triggers removed from room.\n", ch);
+            char_printf(ch, "All triggers removed from room.\n");
         }
 
         else if (remove_trigger(SCRIPT(room), arg2)) {
-            send_to_char("Trigger removed.\n", ch);
+            char_printf(ch, "Trigger removed.\n");
             if (!TRIGGERS(SCRIPT(room))) {
                 extract_script(SCRIPT(room));
                 SCRIPT(room) = nullptr;
             }
         } else
-            send_to_char("That trigger was not found.\n", ch);
+            char_printf(ch, "That trigger was not found.\n");
     }
 
     else {
         if (is_abbrev(arg1, "mob")) {
             if (!(victim = find_char_around_char(ch, find_vis_by_name(ch, arg2))))
-                send_to_char("No such mobile around.\n", ch);
+                char_printf(ch, "No such mobile around.\n");
             else if (!*arg3)
-                send_to_char("You must specify a trigger to remove.\n", ch);
+                char_printf(ch, "You must specify a trigger to remove.\n");
             else
                 trigger = arg3;
         }
 
         else if (is_abbrev(arg1, "object")) {
             if (!(obj = find_obj_around_char(ch, find_vis_by_name(ch, arg2))))
-                send_to_char("No such object around.\n", ch);
+                char_printf(ch, "No such object around.\n");
             else if (!*arg3)
-                send_to_char("You must specify a trigger to remove.\n", ch);
+                char_printf(ch, "You must specify a trigger to remove.\n");
             else
                 trigger = arg3;
         } else {
@@ -653,54 +653,54 @@ ACMD(do_detach) {
             else if ((obj = find_obj_in_world(find_vis_by_name(ch, arg1))))
                 ;
             else
-                send_to_char("Nothing around by that name.\n", ch);
+                char_printf(ch, "Nothing around by that name.\n");
 
             trigger = arg2;
         }
 
         if (victim) {
             if (!IS_NPC(victim))
-                send_to_char("Players don't have triggers.\n", ch);
+                char_printf(ch, "Players don't have triggers.\n");
 
             else if (!SCRIPT(victim))
-                send_to_char("That mob doesn't have any triggers.\n", ch);
+                char_printf(ch, "That mob doesn't have any triggers.\n");
             else if (!strcasecmp(arg2, "all")) {
                 extract_script(SCRIPT(victim));
                 SCRIPT(victim) = nullptr;
                 sprintf(buf, "All triggers removed from %s.\n", GET_SHORT(victim));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             }
 
             else if (remove_trigger(SCRIPT(victim), trigger)) {
-                send_to_char("Trigger removed.\n", ch);
+                char_printf(ch, "Trigger removed.\n");
                 if (!TRIGGERS(SCRIPT(victim))) {
                     extract_script(SCRIPT(victim));
                     SCRIPT(victim) = nullptr;
                 }
             } else
-                send_to_char("That trigger was not found.\n", ch);
+                char_printf(ch, "That trigger was not found.\n");
         }
 
         else if (obj) {
             if (!SCRIPT(obj))
-                send_to_char("That object doesn't have any triggers.\n", ch);
+                char_printf(ch, "That object doesn't have any triggers.\n");
 
             else if (!strcasecmp(arg2, "all")) {
                 extract_script(SCRIPT(obj));
                 SCRIPT(obj) = nullptr;
                 sprintf(buf, "All triggers removed from %s.\n",
                         obj->short_description ? obj->short_description : obj->name);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             }
 
             else if (remove_trigger(SCRIPT(obj), trigger)) {
-                send_to_char("Trigger removed.\n", ch);
+                char_printf(ch, "Trigger removed.\n");
                 if (!TRIGGERS(SCRIPT(obj))) {
                     extract_script(SCRIPT(obj));
                     SCRIPT(obj) = nullptr;
                 }
             } else
-                send_to_char("That trigger was not found.\n", ch);
+                char_printf(ch, "That trigger was not found.\n");
         }
     }
 }
@@ -2522,13 +2522,13 @@ ACMD(do_tstat) {
         vnum = atoi(str);
         rnum = real_trigger(vnum);
         if (rnum < 0) {
-            send_to_char("That vnum does not exist.\n", ch);
+            char_printf(ch, "That vnum does not exist.\n");
             return;
         }
 
         do_stat_trigger(ch, trig_index[rnum]->proto);
     } else
-        send_to_char("Usage: tstat <vnum>\n", ch);
+        char_printf(ch, "Usage: tstat <vnum>\n");
 }
 
 /*

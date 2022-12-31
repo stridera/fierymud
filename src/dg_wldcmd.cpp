@@ -23,6 +23,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "movement.hpp"
 #include "olc.hpp" /* for real_zone */
 #include "pfiles.hpp"
@@ -33,8 +34,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 void sub_write(char *arg, CharData *ch, byte find_invis, int targets);
 long asciiflag_conv(char *flag);
@@ -158,8 +157,7 @@ WCMD(do_wzoneecho) {
             sprintf(buf, "wzoneecho called for nonexistent zone %s", zone_name);
             wld_log(room, t, buf);
         } else {
-            sprintf(buf, "%s\n", msg);
-            send_to_zone(buf, zone_vnum, NOWHERE, STANCE_RESTING);
+            zone_printf(zone_vnum, NOWHERE, STANCE_RESTING, msg);
         }
     }
 }
@@ -474,7 +472,7 @@ WCMD(do_wheal) {
 
     if ((ch = find_char_around_room(room, find_dg_by_name(name)))) {
         if (GET_LEVEL(ch) >= LVL_IMMORT) {
-            send_to_char("Being a god, you don't need healing.\n", ch);
+            char_printf(ch, "Being a god, you don't need healing.\n");
             return;
         }
         hurt_char(ch, nullptr, -dam, true);
@@ -627,7 +625,7 @@ WCMD(do_wrent) {
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$N ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        send_to_char("&8You stop meditating.\n&0", ch);
+        char_printf(ch, "&8You stop meditating.\n&0");
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 

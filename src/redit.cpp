@@ -446,7 +446,7 @@ void redit_disp_extradesc_menu(DescriptorData *d) {
 
     strcat(buf, !extra_desc->next ? "<NOT SET>\n" : "Set.\n");
     strcat(buf, "Enter choice (0 to quit) : ");
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = REDIT_EXTRADESC_MENU;
 }
 
@@ -490,7 +490,7 @@ void redit_disp_exit_menu(DescriptorData *d) {
             OLC_EXIT(d)->keyword ? OLC_EXIT(d)->keyword : "<NONE>", grn, nrm, cyn, OLC_EXIT(d)->key, grn, nrm, cyn,
             buf2, grn, nrm);
 
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = REDIT_EXIT_MENU;
 }
 
@@ -506,7 +506,7 @@ void redit_disp_exit_flag_menu(DescriptorData *d) {
             "%s3%s) Description\n"
             "Enter choice:\n",
             grn, nrm, grn, nrm, grn, nrm, grn, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 }
 
 /*
@@ -519,7 +519,7 @@ void redit_disp_flag_menu(DescriptorData *d) {
 
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
 
     for (i = 0; i <= NUM_ROOM_FLAGS / columns; ++i) {
@@ -527,7 +527,7 @@ void redit_disp_flag_menu(DescriptorData *d) {
         for (j = 0; j < columns; ++j)
             if (FLAG_INDEX < NUM_ROOM_FLAGS)
                 sprintf(buf, "%s%s%2d%s) %-20.20s ", buf, grn, FLAG_INDEX + 1, nrm, room_bits[FLAG_INDEX]);
-        send_to_char(strcat(buf, "\n"), d->character);
+        char_printf(d->character, strcat(buf, "\n"));
     }
 
     sprintflag(buf1, OLC_ROOM(d)->room_flags, NUM_ROOM_FLAGS, room_bits);
@@ -535,7 +535,7 @@ void redit_disp_flag_menu(DescriptorData *d) {
             "\nRoom flags: %s%s%s\n"
             "Enter room flags, 0 to quit : ",
             cyn, buf1, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = REDIT_FLAGS;
 }
 
@@ -550,7 +550,7 @@ void redit_disp_sector_menu(DescriptorData *d) {
     int i, j;
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
 
     for (i = 0; i < NUM_SECTORS / columns; ++i) {
@@ -558,10 +558,10 @@ void redit_disp_sector_menu(DescriptorData *d) {
         for (j = 0; j < columns; ++j)
             if (TYPE_INDEX < NUM_SECTORS)
                 sprintf(buf, "%s%s%2d%s) %-20.20s ", buf, grn, TYPE_INDEX + 1, nrm, sectors[TYPE_INDEX].name);
-        send_to_char(strcat(buf, "\n"), d->character);
+        char_printf(d->character, strcat(buf, "\n"));
     }
 
-    send_to_char("\nEnter sector type, 0 to cancel : ", d->character);
+    char_printf(d->character, "\nEnter sector type, 0 to cancel : ");
     OLC_MODE(d) = REDIT_SECTOR;
 }
 
@@ -604,7 +604,7 @@ void redit_disp_menu(DescriptorData *d) {
             "%sQ%s) Quit\n"
             "Enter choice:\n",
             buf, grn, nrm, grn, nrm, cyn, room->proto_script ? "Set." : "Not Set.", grn, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 
     OLC_MODE(d) = REDIT_MAIN_MENU;
 }
@@ -628,7 +628,7 @@ void redit_parse(DescriptorData *d, char *arg) {
              * Do NOT free strings! Just the room structure.
              */
             cleanup_olc(d, CLEANUP_STRUCTS);
-            send_to_char("Room saved to memory.\n", d->character);
+            char_printf(d->character, "Room saved to memory.\n");
             break;
         case 'n':
         case 'N':
@@ -636,7 +636,7 @@ void redit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            send_to_char("Invalid choice!\nDo you wish to save this room internally?\n", d->character);
+            char_printf(d->character, "Invalid choice!\nDo you wish to save this room internally?\n");
             break;
         }
         return;
@@ -646,21 +646,21 @@ void redit_parse(DescriptorData *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Something has been modified. */
-                send_to_char("Do you wish to save this room internally?\n", d->character);
+                char_printf(d->character, "Do you wish to save this room internally?\n");
                 OLC_MODE(d) = REDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
             return;
         case '1':
-            send_to_char("Enter room name:]\n", d->character);
+            char_printf(d->character, "Enter room name:]\n");
             OLC_MODE(d) = REDIT_NAME;
             break;
         case '2':
             OLC_MODE(d) = REDIT_DESC;
 #if defined(CLEAR_SCREEN)
-            write_to_output("\x1B[H\x1B[J", d);
+            string_to_output(d, "\x1B[H\x1B[J");
 #endif
-            write_to_output("Enter room description: (/s saves /h for help)\n\n", d);
+            string_to_output(d, "Enter room description: (/s saves /h for help)\n\n");
             string_write(d, &OLC_ROOM(d)->description, MAX_ROOM_DESC);
             OLC_VAL(d) = 1;
             break;
@@ -712,7 +712,7 @@ void redit_parse(DescriptorData *d, char *arg) {
             dg_script_menu(d);
             return;
         default:
-            send_to_char("Invalid choice!\n", d->character);
+            char_printf(d->character, "Invalid choice!\n");
             redit_disp_menu(d);
             break;
         }
@@ -739,7 +739,7 @@ void redit_parse(DescriptorData *d, char *arg) {
     case REDIT_FLAGS:
         number = atoi(arg);
         if ((number < 0) || (number > NUM_ROOM_FLAGS)) {
-            send_to_char("That is not a valid choice!\n", d->character);
+            char_printf(d->character, "That is not a valid choice!\n");
             redit_disp_flag_menu(d);
         } else if (number == 0)
             break;
@@ -755,7 +755,7 @@ void redit_parse(DescriptorData *d, char *arg) {
     case REDIT_SECTOR:
         number = atoi(arg);
         if (number < 0 || number > NUM_SECTORS) {
-            send_to_char("Invalid choice!\n", d->character);
+            char_printf(d->character, "Invalid choice!\n");
             redit_disp_sector_menu(d);
             return;
         } else if (number != 0)
@@ -768,20 +768,20 @@ void redit_parse(DescriptorData *d, char *arg) {
             break;
         case '1':
             OLC_MODE(d) = REDIT_EXIT_NUMBER;
-            send_to_char("Exit to room number:\n", d->character);
+            char_printf(d->character, "Exit to room number:\n");
             return;
         case '2':
             OLC_MODE(d) = REDIT_EXIT_DESCRIPTION;
-            write_to_output("Enter exit description: (/s saves /h for help)\n\n", d);
+            string_to_output(d, "Enter exit description: (/s saves /h for help)\n\n");
             string_write(d, &OLC_EXIT(d)->general_description, MAX_EXIT_DESC);
             return;
         case '3':
             OLC_MODE(d) = REDIT_EXIT_KEYWORD;
-            send_to_char("Enter keywords:\n", d->character);
+            char_printf(d->character, "Enter keywords:\n");
             return;
         case '4':
             OLC_MODE(d) = REDIT_EXIT_KEY;
-            send_to_char("Enter key number:\n", d->character);
+            char_printf(d->character, "Enter key number:\n");
             return;
         case '5':
             redit_disp_exit_flag_menu(d);
@@ -798,7 +798,7 @@ void redit_parse(DescriptorData *d, char *arg) {
             OLC_EXIT(d) = nullptr;
             break;
         default:
-            send_to_char("Try again:\n", d->character);
+            char_printf(d->character, "Try again:\n");
             return;
         }
         break;
@@ -806,7 +806,7 @@ void redit_parse(DescriptorData *d, char *arg) {
     case REDIT_EXIT_NUMBER:
         if ((number = atoi(arg)) != -1)
             if ((number = real_room(number)) < 0) {
-                send_to_char("That room does not exist.  Try again:\n", d->character);
+                char_printf(d->character, "That room does not exist.  Try again:\n");
                 return;
             }
         OLC_EXIT(d)->to_room = number;
@@ -833,7 +833,7 @@ void redit_parse(DescriptorData *d, char *arg) {
     case REDIT_EXIT_DOORFLAGS:
         number = atoi(arg);
         if ((number < 0) || (number > 3)) {
-            send_to_char("That's not a valid choice!\n", d->character);
+            char_printf(d->character, "That's not a valid choice!\n");
             redit_disp_exit_flag_menu(d);
         } else {
             /*
@@ -892,17 +892,17 @@ void redit_parse(DescriptorData *d, char *arg) {
         } break;
         case 1:
             OLC_MODE(d) = REDIT_EXTRADESC_KEY;
-            send_to_char("Enter keywords, separated by spaces:\n", d->character);
+            char_printf(d->character, "Enter keywords, separated by spaces:\n");
             return;
         case 2:
             OLC_MODE(d) = REDIT_EXTRADESC_DESCRIPTION;
-            write_to_output("Enter extra description: (/s saves /h for help)\n\n", d);
+            string_to_output(d, "Enter extra description: (/s saves /h for help)\n\n");
             string_write(d, &OLC_DESC(d)->description, MAX_DESC_LENGTH);
             return;
 
         case 3:
             if (!OLC_DESC(d)->keyword || !OLC_DESC(d)->description) {
-                send_to_char("You can't edit the next extra desc without completing this one.\n", d->character);
+                char_printf(d->character, "You can't edit the next extra desc without completing this one.\n");
                 redit_disp_extradesc_menu(d);
             } else {
                 ExtraDescriptionData *new_extra;

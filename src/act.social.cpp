@@ -85,7 +85,7 @@ ACMD(do_action) {
     CharData *vict;
 
     if ((act_nr = find_action(cmd)) < 0) {
-        send_to_char("That action is not supported.\n", ch);
+        char_printf(ch, "That action is not supported.\n");
         return;
     }
     action = soc_mess_list[act_nr];
@@ -96,17 +96,17 @@ ACMD(do_action) {
         *buf = '\0';
 
     if (!*buf) {
-        send_to_char(action->char_no_arg, ch);
-        send_to_char("\n", ch);
+        char_printf(ch, action->char_no_arg);
+        char_printf(ch, "\n");
         act(action->others_no_arg, action->hide, ch, 0, 0, TO_ROOM);
         return;
     }
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
-        send_to_char(action->not_found, ch);
-        send_to_char("\n", ch);
+        char_printf(ch, action->not_found);
+        char_printf(ch, "\n");
     } else if (vict == ch) {
-        send_to_char(action->char_auto, ch);
-        send_to_char("\n", ch);
+        char_printf(ch, action->char_auto);
+        char_printf(ch, "\n");
         act(action->others_auto, action->hide, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_POS(vict) < action->min_victim_position)
@@ -126,11 +126,11 @@ ACMD(do_insult) {
 
     if (*arg) {
         if (!(victim = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
-            send_to_char("Can't hear you!\n", ch);
+            char_printf(ch, "Can't hear you!\n");
         else {
             if (victim != ch) {
                 sprintf(buf, "You insult %s.\n", GET_NAME(victim));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
 
                 switch (number(0, 2)) {
                 case 0:
@@ -155,11 +155,11 @@ ACMD(do_insult) {
 
                 act("$n insults $N.", true, ch, 0, victim, TO_NOTVICT);
             } else { /* ch == victim */
-                send_to_char("You feel insulted.\n", ch);
+                char_printf(ch, "You feel insulted.\n");
             }
         }
     } else
-        send_to_char("I'm sure you don't want to insult *everybody*...\n", ch);
+        char_printf(ch, "I'm sure you don't want to insult *everybody*...\n");
 }
 
 char *fread_action(FILE *fl, int nr) {

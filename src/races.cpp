@@ -1430,7 +1430,7 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
 
     if (!*arg) {
         if (ch)
-            send_to_char("What race?\n", ch);
+            char_printf(ch, "What race?\n");
         return RACE_UNDEFINED;
     }
 
@@ -1457,7 +1457,7 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
         race = best;
     if (race == RACE_UNDEFINED) {
         if (ch)
-            send_to_char("There is no such race.\n", ch);
+            char_printf(ch, "There is no such race.\n");
     }
 
     /* There are no validity checks. */
@@ -1481,7 +1481,7 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
     if (!races[race].playable) {
         if (ch) {
             sprintf(buf, "The %s race is not available to mortals.\n", races[race].name);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
         return RACE_UNDEFINED;
     }
@@ -1506,11 +1506,11 @@ void send_race_menu(DescriptorData *d) {
     char idx;
     int i;
 
-    write_to_output("\nThe following races are available:\n", d);
+    string_to_output(d, "\nThe following races are available:\n");
     for (i = 0, idx = 'a'; i < NUM_RACES; i++) {
         if (races[i].playable && (evil_races_allowed || races[i].racealign == RACE_ALIGN_GOOD)) {
             sprintf(buf, "  &7%c)&0 %s\n", idx, races[i].fullname);
-            write_to_output(buf, d);
+            string_to_output(d, buf);
             idx++;
         }
     }

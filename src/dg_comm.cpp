@@ -112,9 +112,9 @@ void sub_write_to_char(CharData *ch, char *tokens[], CharData *ctokens[], ObjDat
      * However, if it starts with &0, that's the signal that the
      * script writer does not want it capitalized. */
     if ((sb[0] == CREL || sb[0] == CABS) && sb[1] == '0')
-        send_to_char(sb, ch);
+        char_printf(ch, sb);
     else
-        send_to_char(CAP(sb), ch);
+        char_printf(ch, CAP(sb));
 }
 
 void sub_write(char *arg, CharData *ch, byte find_invis, int targets) {

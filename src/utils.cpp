@@ -290,7 +290,7 @@ void die_consentee_clean(CharData *ch) {
 
     for (i = character_list; i; i = i->next) {
         if (CONSENT(i) == ch) {
-            send_to_char("&0&7&bThe person you consented to has left the game.&0\n", i);
+            char_printf(i, "&0&7&bThe person you consented to has left the game.&0\n");
             CONSENT(i) = nullptr;
         }
     }
@@ -696,7 +696,7 @@ int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numob
     if (!*arg) {
         if (ch) {
             sprintf(buf, "What %s?\n", objname);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
         return -1;
     }
@@ -725,7 +725,7 @@ int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numob
     if (answer == -1) {
         if (ch) {
             sprintf(buf, "There is no such %s.\n", objname);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
     }
     return answer;

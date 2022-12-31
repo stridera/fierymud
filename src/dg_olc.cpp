@@ -152,7 +152,7 @@ void trigedit_disp_menu(DescriptorData *d) {
             grn, nrm, cyn, OLC_STORAGE(d),      /* the command list       */
             grn, nrm);                          /* quit colors            */
 
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = TRIGEDIT_MAIN_MENU;
 }
 
@@ -175,15 +175,15 @@ void trigedit_disp_types(DescriptorData *d) {
 
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_TRIG_TYPE_FLAGS; i++) {
         sprintf(buf, "%s%2d%s) %-20.20s  %s", grn, i + 1, nrm, types[i], !(++columns % 2) ? "\n" : "");
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintbit(GET_TRIG_TYPE(OLC_TRIG(d)), types, buf1);
     sprintf(buf, "\nCurrent types : %s%s%s\nEnter type (0 to quit):\n", cyn, buf1, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 }
 
 void trigedit_parse(DescriptorData *d, char *arg) {
@@ -195,20 +195,20 @@ void trigedit_parse(DescriptorData *d, char *arg) {
         case 'q':
             if (OLC_VAL(d)) { /* Anything been changed? */
                 if (!GET_TRIG_TYPE(OLC_TRIG(d))) {
-                    send_to_char("Invalid Trigger Type! Answer a to abort quit!\n", d->character);
+                    char_printf(d->character, "Invalid Trigger Type! Answer a to abort quit!\n");
                 }
-                send_to_char("Do you wish to save the changes to the trigger? (y/n)\n", d->character);
+                char_printf(d->character, "Do you wish to save the changes to the trigger? (y/n)\n");
                 OLC_MODE(d) = TRIGEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
             return;
         case '1':
             OLC_MODE(d) = TRIGEDIT_NAME;
-            send_to_char("Name:\n", d->character);
+            char_printf(d->character, "Name:\n");
             break;
         case '2':
             OLC_MODE(d) = TRIGEDIT_INTENDED;
-            send_to_char("0: Mobiles, 1: Objects, 2: Rooms:\n", d->character);
+            char_printf(d->character, "0: Mobiles, 1: Objects, 2: Rooms:\n");
             break;
         case '3':
             OLC_MODE(d) = TRIGEDIT_TYPES;
@@ -216,15 +216,15 @@ void trigedit_parse(DescriptorData *d, char *arg) {
             break;
         case '4':
             OLC_MODE(d) = TRIGEDIT_NARG;
-            send_to_char("Numeric argument:\n", d->character);
+            char_printf(d->character, "Numeric argument:\n");
             break;
         case '5':
             OLC_MODE(d) = TRIGEDIT_ARGUMENT;
-            send_to_char("Argument:\n", d->character);
+            char_printf(d->character, "Argument:\n");
             break;
         case '6':
             OLC_MODE(d) = TRIGEDIT_COMMANDS;
-            send_to_char("Enter trigger commands: (/s saves /h for help)\n\n", d->character);
+            char_printf(d->character, "Enter trigger commands: (/s saves /h for help)\n\n");
             string_write(d, &OLC_STORAGE(d), MAX_CMD_LENGTH);
             OLC_VAL(d) = 1;
 
@@ -248,8 +248,8 @@ void trigedit_parse(DescriptorData *d, char *arg) {
         case 'a': /* abort quitting */
             break;
         default:
-            send_to_char("Invalid choice!\n", d->character);
-            send_to_char("Do you wish to save the trigger?\n", d->character);
+            char_printf(d->character, "Invalid choice!\n");
+            char_printf(d->character, "Do you wish to save the trigger?\n");
             return;
         }
         break;
@@ -606,24 +606,24 @@ void dg_script_menu(DescriptorData *d) {
 #else
 #define FMT "     Script Editor\n\n     Trigger List:\n"
 #endif
-    send_to_char(FMT, d->character);
+    char_printf(d->character, FMT);
 #undef FMT
 
     editscript = OLC_SCRIPT(d);
     while (editscript) {
         sprintf(buf, "     %2d) [%s%d%s] %s%s%s", ++i, cyn, editscript->vnum, nrm, cyn,
                 trig_index[real_trigger(editscript->vnum)]->proto->name, nrm);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
         if (trig_index[real_trigger(editscript->vnum)]->proto->attach_type != OLC_ITEM_TYPE(d))
             sprintf(buf, "   %s** Mis-matched Trigger Type **%s\n", grn, nrm);
         else
             sprintf(buf, "\n");
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
 
         editscript = editscript->next;
     }
     if (i == 0)
-        send_to_char("     <none>\n", d->character);
+        char_printf(d->character, "     <none>\n");
 
     sprintf(buf,
             "\n"
@@ -632,7 +632,7 @@ void dg_script_menu(DescriptorData *d) {
             " %sX%s)  Exit Script Editor\n\n"
             "     Enter choice:\n",
             grn, nrm, grn, nrm, grn, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 }
 
 int dg_script_edit_parse(DescriptorData *d, const char *arg) {
@@ -658,20 +658,20 @@ int dg_script_edit_parse(DescriptorData *d, const char *arg) {
             return 0;
         case 'n':
         case 'N':
-            send_to_char("\nPlease enter trigger vnum:\n", d->character);
+            char_printf(d->character, "\nPlease enter trigger vnum:\n");
             OLC_SCRIPT_EDIT_MODE(d) = SCRIPT_NEW_TRIGGER;
             break;
         case 'd':
         case 'D':
             if (OLC_SCRIPT(d) == (TriggerPrototypeList *)nullptr)
-                send_to_char("Cannot delete a trigger as there are none!\n", d->character);
+                char_printf(d->character, "Cannot delete a trigger as there are none!\n");
             else {
-                send_to_char("     Which entry should be deleted?  0 to abort:\n", d->character);
+                char_printf(d->character, "     Which entry should be deleted?  0 to abort:\n");
                 OLC_SCRIPT_EDIT_MODE(d) = SCRIPT_DEL_TRIGGER;
             }
             break;
         default:
-            send_to_char("\nUnrecognized command.  Try again:\n", d->character);
+            char_printf(d->character, "\nUnrecognized command.  Try again:\n");
             break;
         }
         return 1;
@@ -684,10 +684,9 @@ int dg_script_edit_parse(DescriptorData *d, const char *arg) {
             break; /* this aborts a new trigger entry */
 
         if (real_trigger(vnum) < 0) {
-            send_to_char(
-                "Invalid Trigger VNUM!\n"
-                "Please enter vnum:\n",
-                d->character);
+            char_printf(d->character,
+                        "Invalid Trigger VNUM!\n"
+                        "Please enter vnum:\n");
             return 1;
         }
 
@@ -725,7 +724,7 @@ int dg_script_edit_parse(DescriptorData *d, const char *arg) {
         }
 
         if (pos) { /* damn fool specified a non-existent position */
-            send_to_char("No such trigger!\nTry Again:\n", d->character);
+            char_printf(d->character, "No such trigger!\nTry Again:\n");
             return 1;
         }
         /* we are going to free currtrig...so we need to join up around it */
@@ -770,7 +769,7 @@ bool format_script(DescriptorData *d, int indent_quantum) {
 #define COMPLAIN(msg)                                                                                                  \
     do {                                                                                                               \
         snprintf(error, sizeof(error) - 1, msg " (line %d)!\n", line_num);                                             \
-        write_to_output(error, d);                                                                                     \
+        string_to_output(d, error);                                                                                    \
     } while (0)
 #define ABORT(msg)                                                                                                     \
     do {                                                                                                               \

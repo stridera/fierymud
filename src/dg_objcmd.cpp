@@ -376,7 +376,7 @@ OCMD(do_oheal) {
 
     if ((ch = find_char_around_obj(obj, find_dg_by_name(name)))) {
         if (GET_LEVEL(ch) >= LVL_IMMORT) {
-            send_to_char("Being a god, you don't need healing.\n", ch);
+            char_printf(ch, "Being a god, you don't need healing.\n");
             return;
         }
         hurt_char(ch, nullptr, -dam, true);

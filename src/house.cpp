@@ -129,14 +129,14 @@ void House_listrent(CharData *ch, int vnum) {
         return;
     if (!(fl = fopen(fname, "r"))) {
         sprintf(buf, "No objects on file for house #%d.\n", vnum);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
     while (!feof(fl)) {
         if (!build_object(fl, &obj, &location))
             break;
         sprintf(buf, "[%5d] %s\n", GET_OBJ_VNUM(obj), obj->short_description);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         extract_obj(obj);
     }
 
@@ -236,7 +236,7 @@ void hcontrol_list_houses(CharData *ch) {
     char built_on[128], last_pay[128], own_name[128];
 
     if (!num_of_houses) {
-        send_to_char("No houses have been defined.\n", ch);
+        char_printf(ch, "No houses have been defined.\n");
         return;
     }
     strcpy(buf,
@@ -273,7 +273,7 @@ void hcontrol_list_houses(CharData *ch) {
             strcat(buf, "\n");
         }
     }
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 }
 
 void hcontrol_build_house(CharData *ch, char *arg) {
@@ -283,40 +283,40 @@ void hcontrol_build_house(CharData *ch, char *arg) {
     long owner;
 
     if (num_of_houses >= MAX_HOUSES) {
-        send_to_char("Max houses already defined.\n", ch);
+        char_printf(ch, "Max houses already defined.\n");
         return;
     }
 
     /* first arg: house's vnum */
     arg = one_argument(arg, arg1);
     if (!*arg1) {
-        send_to_char(HCONTROL_FORMAT, ch);
+        char_printf(ch, HCONTROL_FORMAT);
         return;
     }
     virt_house = atoi(arg1);
     if ((real_house = real_room(virt_house)) < 0) {
-        send_to_char("No such room exists.\n", ch);
+        char_printf(ch, "No such room exists.\n");
         return;
     }
     if ((find_house(virt_house)) >= 0) {
-        send_to_char("House already exists.\n", ch);
+        char_printf(ch, "House already exists.\n");
         return;
     }
 
     /* second arg: direction of house's exit */
     arg = one_argument(arg, arg1);
     if (!*arg1) {
-        send_to_char(HCONTROL_FORMAT, ch);
+        char_printf(ch, HCONTROL_FORMAT);
         return;
     }
     if ((exit_num = searchblock(arg1, dirs, false)) < 0) {
         sprintf(buf, "'%s' is not a valid direction.\n", arg1);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
     if (TOROOM(real_house, exit_num) == NOWHERE) {
         sprintf(buf, "There is no exit %s from room %d.\n", dirs[exit_num], virt_house);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
 
@@ -324,19 +324,19 @@ void hcontrol_build_house(CharData *ch, char *arg) {
     virt_atrium = world[real_atrium].vnum;
 
     if (TOROOM(real_atrium, rev_dir[exit_num]) != real_house) {
-        send_to_char("A house's exit must be a two-way door.\n", ch);
+        char_printf(ch, "A house's exit must be a two-way door.\n");
         return;
     }
 
     /* third arg: player's name */
     arg = one_argument(arg, arg1);
     if (!*arg1) {
-        send_to_char(HCONTROL_FORMAT, ch);
+        char_printf(ch, HCONTROL_FORMAT);
         return;
     }
     if ((owner = get_id_by_name(arg1)) < 0) {
         sprintf(buf, "Unknown player '%s'.\n", arg1);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
 
@@ -356,7 +356,7 @@ void hcontrol_build_house(CharData *ch, char *arg) {
     SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
     House_crashsave(virt_house);
 
-    send_to_char("House built.   Mazel tov!\n", ch);
+    char_printf(ch, "House built.   Mazel tov!\n");
     House_save_control();
 }
 
@@ -365,11 +365,11 @@ void hcontrol_destroy_house(CharData *ch, char *arg) {
     int real_atrium, real_house;
 
     if (!*arg) {
-        send_to_char(HCONTROL_FORMAT, ch);
+        char_printf(ch, HCONTROL_FORMAT);
         return;
     }
     if ((i = find_house(atoi(arg))) < 0) {
-        send_to_char("Unknown house.\n", ch);
+        char_printf(ch, "Unknown house.\n");
         return;
     }
     if ((real_atrium = real_room(house_control[i].atrium)) < 0)
@@ -392,7 +392,7 @@ void hcontrol_destroy_house(CharData *ch, char *arg) {
 
     num_of_houses--;
 
-    send_to_char("House deleted.\n", ch);
+    char_printf(ch, "House deleted.\n");
     House_save_control();
 
     /*
@@ -409,16 +409,16 @@ void hcontrol_pay_house(CharData *ch, char *arg) {
     int i;
 
     if (!*arg)
-        send_to_char(HCONTROL_FORMAT, ch);
+        char_printf(ch, HCONTROL_FORMAT);
     else if ((i = find_house(atoi(arg))) < 0)
-        send_to_char("Unknown house.\n", ch);
+        char_printf(ch, "Unknown house.\n");
     else {
         sprintf(buf, "Payment for house %s collected by %s.", arg, GET_NAME(ch));
         log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
 
         house_control[i].last_payment = time(0);
         House_save_control();
-        send_to_char("Payment recorded.\n", ch);
+        char_printf(ch, "Payment recorded.\n");
     }
 }
 
@@ -437,7 +437,7 @@ ACMD(do_hcontrol) {
     else if (is_abbrev(arg1, "show"))
         hcontrol_list_houses(ch);
     else
-        send_to_char(HCONTROL_FORMAT, ch);
+        char_printf(ch, HCONTROL_FORMAT);
 }
 
 /* The house command, used by mortal house owners to assign guests */
@@ -448,24 +448,24 @@ ACMD(do_house) {
     one_argument(argument, arg);
 
     if (!ROOM_FLAGGED(ch->in_room, ROOM_HOUSE))
-        send_to_char("You must be in your house to set guests.\n", ch);
+        char_printf(ch, "You must be in your house to set guests.\n");
     else if ((i = find_house(world[ch->in_room].vnum)) < 0)
-        send_to_char("Um.. this house seems to be screwed up.\n", ch);
+        char_printf(ch, "Um.. this house seems to be screwed up.\n");
     else if (GET_IDNUM(ch) != house_control[i].owner)
-        send_to_char("Only the primary owner can set guests.\n", ch);
+        char_printf(ch, "Only the primary owner can set guests.\n");
     else if (!*arg) {
-        send_to_char("Guests of your house:\n", ch);
+        char_printf(ch, "Guests of your house:\n");
         if (house_control[i].num_of_guests == 0)
-            send_to_char("   None.\n", ch);
+            char_printf(ch, "   None.\n");
         else
             for (j = 0; j < house_control[i].num_of_guests; j++) {
                 strcpy(buf, NAME(house_control[i].guests[j]));
-                send_to_char(strcat(CAP(buf), "\n"), ch);
+                char_printf(ch, strcat(CAP(buf), "\n"));
             }
     } else if ((id = get_id_by_name(arg)) < 0)
-        send_to_char("No such player.\n", ch);
+        char_printf(ch, "No such player.\n");
     else if (id == GET_IDNUM(ch))
-        send_to_char("It's your house!\n", ch);
+        char_printf(ch, "It's your house!\n");
     else {
         for (j = 0; j < house_control[i].num_of_guests; j++)
             if (house_control[i].guests[j] == id) {
@@ -473,17 +473,17 @@ ACMD(do_house) {
                     house_control[i].guests[j] = house_control[i].guests[j + 1];
                 house_control[i].num_of_guests--;
                 House_save_control();
-                send_to_char("Guest deleted.\n", ch);
+                char_printf(ch, "Guest deleted.\n");
                 return;
             }
         if (house_control[i].num_of_guests == MAX_GUESTS) {
-            send_to_char("You have too many guests already.\n", ch);
+            char_printf(ch, "You have too many guests already.\n");
             return;
         }
         j = house_control[i].num_of_guests++;
         house_control[i].guests[j] = id;
         House_save_control();
-        send_to_char("Guest added.\n", ch);
+        char_printf(ch, "Guest added.\n");
     }
 }
 

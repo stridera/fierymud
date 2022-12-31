@@ -75,6 +75,6 @@ void list_olc_compositions(CharData *ch) {
 
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
         sprintf(buf, "&2% 2d&0) %s%s&0\n", i, compositions[i].color, capitalize(compositions[i].name));
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 }

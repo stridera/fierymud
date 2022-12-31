@@ -99,7 +99,7 @@ ACMD(do_reload) {
                 reload_help = true;
             else if (!strcasecmp(arg, "xnames")) {
                 reload_xnames();
-                send_to_char("xnames file reloaded.\n", ch);
+                char_printf(ch, "xnames file reloaded.\n");
                 return;
             } else if (!found) {
                 char_printf(ch, "Unrecognized text file name '{}'.\n", arg);
@@ -107,7 +107,7 @@ ACMD(do_reload) {
         }
 
     if (!reload_help && !HAS_FLAGS(files, NUM_TEXT_FILES)) {
-        send_to_char("No known text files given.  Text files available:\n", ch);
+        char_printf(ch, "No known text files given.  Text files available:\n");
         for (i = 0; i < NUM_TEXT_FILES; ++i)
             char_printf(ch, "{:<11s}{}", text_files[i].name, !((i + COLS) % 7) ? "\n" : "");
         char_printf(ch, "xhelp      {}", !(i % COLS) ? "\n" : "");
@@ -169,7 +169,7 @@ ACMD(do_tedit) {
     any_one_arg(argument, arg);
 
     if (!*arg) {
-        send_to_char("Text files available to be edited:\n", ch);
+        char_printf(ch, "Text files available to be edited:\n");
         for (i = 0; i < NUM_TEXT_FILES; ++i)
             if (GET_LEVEL(ch) >= text_files[i].level)
                 char_printf(ch, "{:<11s}{}", text_files[i].name, !((i + 1) % COLS) ? "\n" : "");
@@ -186,7 +186,7 @@ ACMD(do_tedit) {
                 break;
 
     if (i >= NUM_TEXT_FILES) {
-        send_to_char("Invalid text editor option.\n", ch);
+        char_printf(ch, "Invalid text editor option.\n");
         return;
     }
 

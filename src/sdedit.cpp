@@ -124,8 +124,8 @@ void sdedit_disp_menu(DescriptorData *d) {
             /*Intern*/ yel, nrm, grn, (spell->intern_dam ? "true" : "false"), nrm,
             /*E*/ yel, nrm, grn, spell->lvl_mult, nrm, yel, nrm, yel, nrm, yel, nrm, grn, nrm, yel, nrm, grn, nrm, yel,
             nrm, grn, nrm, red, nrm, grn, (spell->note ? spell->note : ""), nrm);
-    send_to_char(buf, d->character);
-    send_to_char(cbuf2, d->character);
+    char_printf(d->character, buf);
+    char_printf(d->character, cbuf2);
 
     OLC_MODE(d) = SDEDIT_MAIN_MENU;
 }
@@ -183,7 +183,7 @@ void sdedit_parse(DescriptorData *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) {
-                send_to_char("Do you wish to save this?\n", d->character);
+                char_printf(d->character, "Do you wish to save this?\n");
                 OLC_MODE(d) = SDEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
@@ -255,15 +255,15 @@ void sdedit_parse(DescriptorData *d, char *arg) {
             sdedit_disp_menu(d);
             return;
         default:
-            send_to_char("Not a option sorry\n", d->character);
+            char_printf(d->character, "Not a option sorry\n");
             sdedit_disp_menu(d);
             return;
         }
         if (i > 0) {
-            send_to_char("Enter new value\n>", d->character);
+            char_printf(d->character, "Enter new value\n>");
             return;
         } else if (i < 0) {
-            send_to_char("Enter Note Max 60 letters\n]", d->character);
+            char_printf(d->character, "Enter Note Max 60 letters\n]");
             return;
         }
         return;
@@ -324,16 +324,16 @@ void sdedit_parse(DescriptorData *d, char *arg) {
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_ALL);
             /*cleanup_olc(d, CLEANUP_STRUCTS); */
-            send_to_char("Your spell dam changes have been saved to memory.\n", d->character);
+            char_printf(d->character, "Your spell dam changes have been saved to memory.\n");
             break;
         case 'n':
         case 'N':
             /*free everything up, including strings etc */
-            send_to_char("Changes to spell damage not saved\n", d->character);
+            char_printf(d->character, "Changes to spell damage not saved\n");
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            send_to_char("Invalid choice!\nDo you wish to save this help internally?\n", d->character);
+            char_printf(d->character, "Invalid choice!\nDo you wish to save this help internally?\n");
             break;
         }
         return;

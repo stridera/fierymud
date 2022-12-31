@@ -163,7 +163,7 @@ void improve_skill(CharData *ch, int skill) {
         SET_SKILL(ch, skill, percent);
         sprintf(skillbuf, "&8You feel your skill in %s improving.\n&0", skills[skill].name);
     }
-    send_to_char(skillbuf, ch);
+    char_printf(ch, skillbuf);
 }
 
 /* Improve a skill as a result of an offensive act against someone.

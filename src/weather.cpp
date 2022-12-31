@@ -126,7 +126,7 @@ void update_daylight() {
     /* Day to Night to Day; send the message to everybody. */
     for (d = descriptor_list; d; d = d->next)
         if (STATE(d) == CON_PLAYING && d->character && AWAKE(d->character) && CH_OUTSIDE(d->character))
-            write_to_output(daylight_change[hemispheres[IN_HEMISPHERE(d->character)].sunlight], d);
+            string_to_output(d, daylight_change[hemispheres[IN_HEMISPHERE(d->character)].sunlight]);
 }
 
 void update_season() {
@@ -165,7 +165,7 @@ void update_season() {
     /* Season change: send the message to everybody. */
     for (d = descriptor_list; d; d = d->next)
         if (STATE(d) == CON_PLAYING && d->character && AWAKE(d->character) && CH_OUTSIDE(d->character))
-            write_to_output(season_change[hemispheres[IN_HEMISPHERE(d->character)].season], d);
+            string_to_output(d, season_change[hemispheres[IN_HEMISPHERE(d->character)].season]);
 
     /* Refresh weather for all zones for new season. */
     init_weather();

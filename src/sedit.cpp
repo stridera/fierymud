@@ -575,13 +575,13 @@ void sedit_products_menu(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char(".[H.[J", d->character);
+    char_printf(d->character, ".[H.[J");
 #endif
-    send_to_char("##     VNUM     Product                           Unique\n", d->character);
+    char_printf(d->character, "##     VNUM     Product                           Unique\n");
     for (i = 0; S_PRODUCT(shop, i) != -1; i++) {
         sprintf(buf, "%2d - [%s%5d%s] - %s%-30s: %s%s\n", i, cyn, obj_index[S_PRODUCT(shop, i)].vnum, nrm, yel,
                 obj_proto[S_PRODUCT(shop, i)].short_description, (S_AMOUNT(shop, i) ? "YES" : "NO"), nrm);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintf(buf,
             "\n"
@@ -591,7 +591,7 @@ void sedit_products_menu(DescriptorData *d) {
             "%sQ%s) Quit\n"
             "Enter choice:\n",
             grn, nrm, grn, nrm, grn, nrm, grn, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 
     OLC_MODE(d) = SEDIT_PRODUCTS_MENU;
 }
@@ -606,11 +606,11 @@ void sedit_compact_rooms_menu(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; S_ROOM(shop, i) != -1; i++) {
         sprintf(buf, "%2d - [%s%5d%s]  | %s", i, cyn, S_ROOM(shop, i), nrm, !(++count % 5) ? "\n" : "");
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintf(buf,
             "\n"
@@ -620,7 +620,7 @@ void sedit_compact_rooms_menu(DescriptorData *d) {
             "%sQ%s) Quit\n"
             "Enter choice:\n",
             grn, nrm, grn, nrm, grn, nrm, grn, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 
     OLC_MODE(d) = SEDIT_ROOMS_MENU;
 }
@@ -635,13 +635,13 @@ void sedit_rooms_menu(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char(".[H.[J", d->character);
+    char_printf(d->character, ".[H.[J");
 #endif
-    send_to_char("##     VNUM     Room\n\n", d->character);
+    char_printf(d->character, "##     VNUM     Room\n\n");
     for (i = 0; S_ROOM(shop, i) != -1; i++) {
         sprintf(buf, "%2d - [%s%5d%s] - %s%s%s\n", i, cyn, S_ROOM(shop, i), nrm, yel,
                 world[real_room(S_ROOM(shop, i))].name, nrm);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintf(buf,
             "\n"
@@ -651,7 +651,7 @@ void sedit_rooms_menu(DescriptorData *d) {
             "%sQ%s) Quit\n"
             "Enter choice:\n",
             grn, nrm, grn, nrm, grn, nrm, grn, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 
     OLC_MODE(d) = SEDIT_ROOMS_MENU;
 }
@@ -666,13 +666,13 @@ void sedit_namelist_menu(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char(".[H.[J", d->character);
+    char_printf(d->character, ".[H.[J");
 #endif
-    send_to_char("##              Type   Namelist\n\n", d->character);
+    char_printf(d->character, "##              Type   Namelist\n\n");
     for (i = 0; S_BUYTYPE(shop, i) != -1; i++) {
         sprintf(buf, "%2d - %s%15s%s - %s%s%s\n", i, cyn, item_types[S_BUYTYPE(shop, i)].name, nrm, yel,
                 S_BUYWORD(shop, i) ? S_BUYWORD(shop, i) : "<None>", nrm);
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintf(buf,
             "\n"
@@ -681,7 +681,7 @@ void sedit_namelist_menu(DescriptorData *d) {
             "%sQ%s) Quit\n"
             "Enter choice:\n",
             grn, nrm, grn, nrm, grn, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = SEDIT_NAMELIST_MENU;
 }
 
@@ -692,15 +692,15 @@ void sedit_shop_flags_menu(DescriptorData *d) {
 
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_SHOP_FLAGS; i++) {
         sprintf(buf, "%s%2d%s) %-20.20s   %s", grn, i + 1, nrm, shop_bits[i], !(++count % 2) ? "\n" : "");
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintbit(S_BITVECTOR(OLC_SHOP(d)), shop_bits, buf1);
     sprintf(buf, "\nCurrent Shop Flags : %s%s%s\nEnter choice:\n", cyn, buf1, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = SEDIT_SHOP_FLAGS;
 }
 
@@ -711,18 +711,18 @@ void sedit_no_trade_menu(DescriptorData *d) {
 
     get_char_cols(d->character);
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_TRADERS; i++) {
         sprintf(buf, "%s%2d%s) %-20.20s   %s", grn, i + 1, nrm, trade_letters[i], !(++count % 2) ? "\n" : "");
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintbit(S_NOTRADE(OLC_SHOP(d)), trade_letters, buf1);
     sprintf(buf,
             "\nCurrently won't trade with: %s%s%s\n"
             "Enter choice:\n",
             cyn, buf1, nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = SEDIT_NOTRADE;
 }
 
@@ -734,14 +734,14 @@ void sedit_types_menu(DescriptorData *d) {
     get_char_cols(d->character);
 
 #if defined(CLEAR_SCREEN)
-    send_to_char("[H[J", d->character);
+    char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_ITEM_TYPES; i++) {
         sprintf(buf, "%s%2d%s) %s%-20s%s  %s", grn, i, nrm, cyn, item_types[i].name, nrm, !(++count % 3) ? "\n" : "");
-        send_to_char(buf, d->character);
+        char_printf(d->character, buf);
     }
     sprintf(buf, "%sEnter choice:\n", nrm);
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
     OLC_MODE(d) = SEDIT_TYPE_MENU;
 }
 
@@ -774,7 +774,7 @@ void sedit_disp_menu(DescriptorData *d) {
             nrm, grn, nrm, cyn, S_CLOSE1(shop), grn, nrm, cyn, S_OPEN2(shop), nrm, grn, nrm, cyn, S_CLOSE2(shop), grn,
             nrm, cyn, S_BUYPROFIT(shop), nrm, grn, nrm, cyn, S_SELLPROFIT(shop), grn, nrm, yel, S_NOITEM1(shop), grn,
             nrm, yel, S_NOITEM2(shop), grn, nrm, yel, S_NOCASH1(shop), grn, nrm, yel, S_NOCASH2(shop));
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 
     sprintf(buf,
 #if defined(CLEAR_SCREEN)
@@ -793,7 +793,7 @@ void sedit_disp_menu(DescriptorData *d) {
             grn, nrm, yel, S_NOBUY(shop), grn, nrm, yel, S_BUY(shop), grn, nrm, yel, S_SELL(shop), grn, nrm, cyn, buf1,
             grn, nrm, cyn, buf2, grn, nrm, grn, nrm, grn, nrm, grn, nrm);
 
-    send_to_char(buf, d->character);
+    char_printf(d->character, buf);
 
     OLC_MODE(d) = SEDIT_MAIN_MENU;
 }
@@ -807,7 +807,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
 
     if (OLC_MODE(d) > SEDIT_NUMERICAL_RESPONSE) {
         if (!isdigit(arg[0]) && ((*arg == '-') && (!isdigit(arg[1])))) {
-            send_to_char("Field must be numerical, try again:\n", d->character);
+            char_printf(d->character, "Field must be numerical, try again:\n");
             return;
         }
     }
@@ -817,7 +817,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
         switch (*arg) {
         case 'y':
         case 'Y':
-            send_to_char("Saving shop to memory.\n", d->character);
+            char_printf(d->character, "Saving shop to memory.\n");
             sedit_save_internally(d);
             sprintf(buf, "OLC: %s edits shop %d", GET_NAME(d->character), OLC_NUM(d));
             log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
@@ -828,7 +828,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             return;
         default:
-            send_to_char("Invalid choice!\nDo you wish to save the shop?\n", d->character);
+            char_printf(d->character, "Invalid choice!\nDo you wish to save the shop?\n");
             return;
         }
         break;
@@ -839,14 +839,14 @@ void sedit_parse(DescriptorData *d, char *arg) {
         case 'q':
         case 'Q':
             if (OLC_VAL(d)) { /* Anything been changed? */
-                send_to_char("Do you wish to save the changes to the shop? (y/n)\n", d->character);
+                char_printf(d->character, "Do you wish to save the changes to the shop? (y/n)\n");
                 OLC_MODE(d) = SEDIT_CONFIRM_SAVESTRING;
             } else
                 cleanup_olc(d, CLEANUP_ALL);
             return;
         case '0':
             OLC_MODE(d) = SEDIT_KEEPER;
-            send_to_char("Enter vnum of shop keeper:\n", d->character);
+            char_printf(d->character, "Enter vnum of shop keeper:\n");
             return;
         case '1':
             OLC_MODE(d) = SEDIT_OPEN1;
@@ -930,8 +930,8 @@ void sedit_parse(DescriptorData *d, char *arg) {
         }
 
         if (i != 0) {
-            send_to_char(i == 1 ? "\nEnter new value : " : (i == -1 ? "\nEnter new text :\n] " : "Oops...\n"),
-                         d->character);
+            char_printf(d->character,
+                        i == 1 ? "\nEnter new value : " : (i == -1 ? "\nEnter new text :\n] " : "Oops...\n"));
             return;
         }
         break;
@@ -944,7 +944,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
             return;
         case 'd':
         case 'D':
-            send_to_char("\nDelete which entry?\n", d->character);
+            char_printf(d->character, "\nDelete which entry?\n");
             OLC_MODE(d) = SEDIT_DELETE_TYPE;
             return;
         case 'q':
@@ -957,17 +957,17 @@ void sedit_parse(DescriptorData *d, char *arg) {
         switch (*arg) {
         case 'a':
         case 'A':
-            send_to_char("\nEnter new product vnum:\n", d->character);
+            char_printf(d->character, "\nEnter new product vnum:\n");
             OLC_MODE(d) = SEDIT_NEW_PRODUCT;
             return;
         case 'd':
         case 'D':
-            send_to_char("\nDelete which product?\n", d->character);
+            char_printf(d->character, "\nDelete which product?\n");
             OLC_MODE(d) = SEDIT_DELETE_PRODUCT;
             return;
         case 'u':
         case 'U':
-            send_to_char("\nChange which entry?\n", d->character);
+            char_printf(d->character, "\nChange which entry?\n");
             OLC_MODE(d) = SEDIT_UNIQUE;
             return;
         case 'q':
@@ -980,7 +980,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
         switch (*arg) {
         case 'a':
         case 'A':
-            send_to_char("\nEnter new room vnum:\n", d->character);
+            char_printf(d->character, "\nEnter new room vnum:\n");
             OLC_MODE(d) = SEDIT_NEW_ROOM;
             return;
         case 'c':
@@ -993,7 +993,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
             return;
         case 'd':
         case 'D':
-            send_to_char("\nDelete which room?\n", d->character);
+            char_printf(d->character, "\nDelete which room?\n");
             OLC_MODE(d) = SEDIT_DELETE_ROOM;
             return;
         case 'q':
@@ -1041,7 +1041,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
         i = atoi(arg);
         if ((i = atoi(arg)) != -1)
             if ((i = real_mobile(i)) < 0) {
-                send_to_char("That mobile does not exist, try again:\n", d->character);
+                char_printf(d->character, "That mobile does not exist, try again:\n");
                 return;
             }
 
@@ -1072,7 +1072,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
         break;
     case SEDIT_TYPE_MENU:
         OLC_VAL(d) = MAX(0, MIN(NUM_ITEM_TYPES - 1, atoi(arg)));
-        send_to_char("Enter namelist (return for none) :]\n", d->character);
+        char_printf(d->character, "Enter namelist (return for none) :]\n");
         OLC_MODE(d) = SEDIT_NAMELIST;
         return;
     case SEDIT_DELETE_TYPE:
@@ -1082,7 +1082,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
     case SEDIT_NEW_PRODUCT:
         if ((i = atoi(arg)) != -1)
             if ((i = real_object(i)) == -1) {
-                send_to_char("That object does not exist, try again:\n", d->character);
+                char_printf(d->character, "That object does not exist, try again:\n");
                 return;
             }
         if (i > 0) {
@@ -1096,7 +1096,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
             ;
         if ((i = atoi(arg)) != -1) {
             if (!(i < k))
-                send_to_char("&0&1&bThat product entry does not exist, try again : &0\n", d->character);
+                char_printf(d->character, "&0&1&bThat product entry does not exist, try again : &0\n");
             else
                 sedit_unique_change(OLC_SHOP(d), i);
         }
@@ -1110,7 +1110,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
     case SEDIT_NEW_ROOM:
         if ((i = atoi(arg)) != -1)
             if ((i = real_room(i)) < 0) {
-                send_to_char("That room does not exist, try again:\n", d->character);
+                char_printf(d->character, "That room does not exist, try again:\n");
                 return;
             }
         if (i >= 0)
@@ -1141,7 +1141,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
         /*. We should never get here . */
         cleanup_olc(d, CLEANUP_ALL);
         log(LogSeverity::Warn, LVL_GOD, "SYSERR: OLC: sedit_parse(): Reached default case!");
-        send_to_char("Oops...\n", d->character);
+        char_printf(d->character, "Oops...\n");
         break;
     }
 

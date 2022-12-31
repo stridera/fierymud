@@ -234,14 +234,13 @@ static void do_list_grants(CharData *ch, CharData *vict) {
 }
 
 static void send_grant_usage(CharData *ch) {
-    send_to_char(
-        "Usage: grant <name> [ command <command> | group <group> ] [ level ]\n"
-        "       grant <name> flag <flag>\n"
-        "       revoke <name> [ command <command> | group <group> ] [ level ]\n"
-        "       revoke <name> flag <flag>\n"
-        "       ungrant <name> [ command <command> | group <group> ]\n"
-        "       grant <name> [ clear | list ]\n",
-        ch);
+    char_printf(ch,
+                "Usage: grant <name> [ command <command> | group <group> ] [ level ]\n"
+                "       grant <name> flag <flag>\n"
+                "       revoke <name> [ command <command> | group <group> ] [ level ]\n"
+                "       revoke <name> flag <flag>\n"
+                "       ungrant <name> [ command <command> | group <group> ]\n"
+                "       grant <name> [ clear | list ]\n");
 }
 
 #define GRANT_COMMAND 0
@@ -263,7 +262,7 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
 
     if ((subcmd != SCMD_GRANT && subcmd != SCMD_REVOKE && subcmd != SCMD_UNGRANT) ||
         (type != GRANT_COMMAND && type != GRANT_GROUP)) {
-        send_to_char("Warning: grant command incorrectly invoked.\n", ch);
+        char_printf(ch, "Warning: grant command incorrectly invoked.\n");
         log("SYSERR: do_grant incorrectly invoked");
         return;
     } else if (type == GRANT_COMMAND) {
@@ -291,7 +290,7 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
     }
 
     if (ch == vict) {
-        send_to_char("You cannot grant or revoke your own commands.\n", ch);
+        char_printf(ch, "You cannot grant or revoke your own commands.\n");
         return;
     }
     if (!*arg) {
@@ -300,7 +299,7 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
     }
 
     if (type == GRANT_COMMAND && ((command = parse_command(arg)) <= 0 || !strcpy(name, arg))) {
-        send_to_char("No such command.\n", ch);
+        char_printf(ch, "No such command.\n");
         list_similar_commands(ch, arg);
         return;
     }
@@ -314,14 +313,14 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
                 resp += fmt::format("{}{:>15}", found++ % 4 == 0 ? "\n" : "", group->alias);
         }
         resp += "\n";
-        send_to_char(resp.c_str(), ch);
+        char_printf(ch, resp.c_str());
         return;
     }
 
     else if (type == GRANT_COMMAND && !can_use_command(ch, command))
-        send_to_char("You cannot grant or revoke a command you yourself cannot use.\n", ch);
+        char_printf(ch, "You cannot grant or revoke a command you yourself cannot use.\n");
     else if (type == GRANT_GROUP && !can_grant_group(ch, command))
-        send_to_char("You cannot grant or revoke a group you yourself cannot use.\n", ch);
+        char_printf(ch, "You cannot grant or revoke a group you yourself cannot use.\n");
     else if (subcmd != SCMD_UNGRANT && grant_in_list(*list, command))
         char_printf(ch, "{} has already has {} {}.\n", GET_NAME(vict), arg, past_action);
     else if (((grant = grant_in_list(*unlist, command)) ||
@@ -417,7 +416,7 @@ ACMD(do_grant) {
     }
 
     if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
-        send_to_char(NOPERSON, ch);
+        char_printf(ch, NOPERSON);
         return;
     }
 

@@ -508,20 +508,20 @@ void hp_stance_alteration(CharData *ch, CharData *attacker, int newpos, int news
     switch (GET_STANCE(ch)) {
     case STANCE_MORT:
         act("$n is mortally wounded, and will die soon if not aided.", true, ch, 0, 0, TO_ROOM);
-        send_to_char("You are mortally wounded, and will die soon if not aided.\n", ch);
+        char_printf(ch, "You are mortally wounded, and will die soon if not aided.\n");
         break;
     case STANCE_INCAP:
         act("$n is incapacitated and will slowly die, if not aided.", true, ch, 0, 0, TO_ROOM);
-        send_to_char("You are incapacitated an will slowly die, if not aided.\n", ch);
+        char_printf(ch, "You are incapacitated an will slowly die, if not aided.\n");
         break;
     case STANCE_STUNNED:
         act("$n is stunned, but will probably regain consciousness again.", true, ch, 0, 0, TO_ROOM);
-        send_to_char("You're stunned, but will probably regain consciousness again.\n", ch);
+        char_printf(ch, "You're stunned, but will probably regain consciousness again.\n");
         break;
     case STANCE_DEAD:
         die(ch, attacker);
         act("$n is dead!  R.I.P.", false, ch, 0, 0, TO_ROOM);
-        send_to_char("You are dead!  Sorry...\n", ch);
+        char_printf(ch, "You are dead!  Sorry...\n");
         break;
     default:
         if (dam < 0) {
@@ -530,7 +530,7 @@ void hp_stance_alteration(CharData *ch, CharData *attacker, int newpos, int news
                 act("$n appears to be stabilized, but $e remains unconscious.", true, ch, 0, 0, TO_ROOM);
             } else {
                 act("$n regains consciousness.", true, ch, 0, 0, TO_ROOM);
-                send_to_char("You regain consciousness.\n", ch);
+                char_printf(ch, "You regain consciousness.\n");
                 look_at_room(ch, false);
             }
         }
@@ -592,7 +592,7 @@ void hp_pos_check(CharData *ch, CharData *attacker, int dam) {
         if (GET_HIT(ch) < (GET_MAX_HIT(ch) >> 2)) {
             sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\n", CLRLV(ch, FRED, C_SPR),
                     CLRLV(ch, ANRM, C_SPR));
-            send_to_char(buf2, ch);
+            char_printf(ch, buf2);
         }
     }
 }

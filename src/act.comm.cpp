@@ -467,16 +467,16 @@ ACMD(do_order) {
     half_chop(argument, name, message);
 
     if (!*name || !*message)
-        send_to_char("Order who to do what?\n", ch);
+        char_printf(ch, "Order who to do what?\n");
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, name))) &&
              !is_abbrev(name, "followers"))
-        send_to_char("That person isn't here.\n", ch);
+        char_printf(ch, "That person isn't here.\n");
     else if (ch == vict)
-        send_to_char("You obviously suffer from schizophrenia.\n", ch);
+        char_printf(ch, "You obviously suffer from schizophrenia.\n");
     else {
         /* modified to allow animateds to order - 321 */
         if (EFF_FLAGGED(ch, EFF_CHARM)) {
-            send_to_char("Your superior would not approve of you giving orders.\n", ch);
+            char_printf(ch, "Your superior would not approve of you giving orders.\n");
             return;
         }
         if (vict) {
@@ -491,7 +491,7 @@ ACMD(do_order) {
                 if ((vict->master != ch) || !EFF_FLAGGED(vict, EFF_CHARM))
                     act("$n has an indifferent look.", false, vict, 0, 0, TO_ROOM);
                 else {
-                    send_to_char(OK, ch);
+                    char_printf(ch, OK);
                     command_interpreter(vict, message);
                     WAIT_STATE(ch, PULSE_VIOLENCE / 2);
                 }
@@ -511,12 +511,12 @@ ACMD(do_order) {
             if (found) {
                 if (anyawake) {
                     WAIT_STATE(ch, PULSE_VIOLENCE / 2);
-                    send_to_char(OK, ch);
+                    char_printf(ch, OK);
                 } else {
-                    send_to_char("None of your subjects are awake.\n", ch);
+                    char_printf(ch, "None of your subjects are awake.\n");
                 }
             } else
-                send_to_char("Nobody here is a loyal subject of yours!\n", ch);
+                char_printf(ch, "Nobody here is a loyal subject of yours!\n");
         }
     }
 }

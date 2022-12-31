@@ -915,7 +915,7 @@ int parse_class(CharData *ch, CharData *vict, char *arg) {
 
     if (!*arg) {
         if (ch)
-            send_to_char("What class?\n", ch);
+            char_printf(ch, "What class?\n");
         return CLASS_UNDEFINED;
     }
 
@@ -942,7 +942,7 @@ int parse_class(CharData *ch, CharData *vict, char *arg) {
 
     if (class_num == CLASS_UNDEFINED) {
         if (ch)
-            send_to_char("There is no such class.\n", ch);
+            char_printf(ch, "There is no such class.\n");
     }
 
     /* There are no validity checks. */
@@ -966,7 +966,7 @@ int parse_class(CharData *ch, CharData *vict, char *arg) {
     if (!classes[class_num].active) {
         if (ch) {
             sprintf(buf, "The %s class is not available to mortals.\n", classes[class_num].name);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
         return CLASS_UNDEFINED;
     }

@@ -163,7 +163,7 @@ SPECIAL(guild_guard) {
     /* Ok, it's guarded and you can't get in :P and no other case
        will allow you in */
 
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
     act(buf2, false, ch, 0, 0, TO_ROOM);
     return true;
 }
@@ -305,7 +305,7 @@ void copper_to_coins(CharData *ch) {
 void money_convert(CharData *ch, int amount) {
     if (GET_CASH(ch) < 1) {
         if (GET_LEVEL(ch) < 100)
-            send_to_char("You don't have enough!\n", ch);
+            char_printf(ch, "You don't have enough!\n");
         else
             return;
         return;
@@ -349,8 +349,8 @@ SPECIAL(pet_shop) {
     pet_room = ch->in_room + 1;
 
     if (CMD_IS("list")) {
-        send_to_char("Pet                                     Cost           Ridability\n", ch);
-        send_to_char("--------------------------------------  -------------  ----------\n", ch);
+        char_printf(ch, "Pet                                     Cost           Ridability\n");
+        char_printf(ch, "--------------------------------------  -------------  ----------\n");
         for (pet = world[pet_room].people; pet; pet = pet->next_in_room) {
             mountdiff = mountlevel(pet) - ideal_mountlevel(ch);
             bp = PET_PRICE(pet);
@@ -366,7 +366,7 @@ SPECIAL(pet_shop) {
                     : mountdiff < 2                  ? "fair"
                     : mountdiff < 4                  ? "bad"
                                                      : "awful");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
         return (true);
     } else if (CMD_IS("buy")) {
@@ -374,23 +374,23 @@ SPECIAL(pet_shop) {
         argument = one_argument(argument, pet_name);
 
         if (!*buf) {
-            send_to_char("What do you want to buy?\n", ch);
+            char_printf(ch, "What do you want to buy?\n");
             return (true);
         }
         for (flw = ch->followers; flw; flw = flw->next) {
             if (EFF_FLAGGED(flw->follower, EFF_CHARM)) {
-                send_to_char("You already have a pet!\n", ch);
+                char_printf(ch, "You already have a pet!\n");
                 return (true);
             }
         }
 
         if (!(pet = find_char_in_room(&world[pet_room], find_by_name(buf)))) {
-            send_to_char("There is no such pet!\n", ch);
+            char_printf(ch, "There is no such pet!\n");
             return (true);
         }
         if (GET_LEVEL(ch) < LVL_IMMORT) {
             if (GET_CASH(ch) < PET_PRICE(pet)) {
-                send_to_char("You don't have enough money!\n", ch);
+                char_printf(ch, "You don't have enough money!\n");
                 return true;
             }
             apply_cost(PET_PRICE(pet), ch);
@@ -414,7 +414,7 @@ SPECIAL(pet_shop) {
         char_to_room(pet, ch->in_room);
         add_follower(pet, ch);
 
-        send_to_char("May you enjoy your pet.\n", ch);
+        char_printf(ch, "May you enjoy your pet.\n");
         act("$n buys $N as a pet.", false, ch, 0, pet, TO_ROOM);
 
         return 1;
@@ -441,7 +441,7 @@ SPECIAL(bank) {
     else if (CMD_IS("deposit")) {
 
         if (!parse_money(&argument, coins)) {
-            send_to_char("You can only deposit platinum, gold, silver, and copper coins.\n", ch);
+            char_printf(ch, "You can only deposit platinum, gold, silver, and copper coins.\n");
             return true;
         }
 
@@ -465,9 +465,9 @@ SPECIAL(bank) {
 
     else if (CMD_IS("dump")) {
         if (GET_CASH(ch) <= 0)
-            send_to_char("You don't have any coins to deposit!\n", ch);
+            char_printf(ch, "You don't have any coins to deposit!\n");
         else {
-            send_to_char("You dump all your coins on the counter to be deposited.\n", ch);
+            char_printf(ch, "You dump all your coins on the counter to be deposited.\n");
             for (i = 0; i < NUM_COIN_TYPES; ++i) {
                 GET_BANK_COINS(ch)[i] += GET_COINS(ch)[i];
                 coins[i] = GET_COINS(ch)[i];
@@ -481,14 +481,14 @@ SPECIAL(bank) {
 
     else if (CMD_IS("withdraw")) {
         if (!parse_money(&argument, coins)) {
-            send_to_char("You can only withdraw platinum, gold, silver, and copper coins.\n", ch);
+            char_printf(ch, "You can only withdraw platinum, gold, silver, and copper coins.\n");
             return true;
         }
 
         for (i = 0; i < NUM_COIN_TYPES; ++i)
             if (coins[i] > GET_BANK_COINS(ch)[i]) {
                 sprintf(buf, "You don't have enough %s in the bank!\n", COIN_NAME(i));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return true;
             }
 
@@ -521,19 +521,19 @@ SPECIAL(bank) {
             amount = atoi(arg1);
             if (!*arg2) {
                 sprintf(buf, "Exchange %s of what? Platinum?Gold?Silver?Copper?\n", arg1);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return 1;
             }
             half_chop(arg2, arg3, arg2);
             if (!*arg3) {
                 sprintf(buf, "Exchange %s to what? Platinum? Gold? Silver? Copper?\n", arg2);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return 1;
             }
             half_chop(arg2, arg4, arg2);
             if (!*arg4) {
                 sprintf(buf, "Exchange %s to what? Platinum? Gold? Silver? Copper?\n", arg3);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return 1;
             }
             if (is_abbrev(arg3, "copper")) {
@@ -550,7 +550,7 @@ SPECIAL(bank) {
                 multfrom = 1000;
             } else {
                 sprintf(buf, "What kind of currency is that?\n");
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return 1;
             }
             if (is_abbrev(arg4, "copper")) {
@@ -563,17 +563,17 @@ SPECIAL(bank) {
                 type2 = 4;
             } else {
                 sprintf(buf, "What kind of currency is that?\n");
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return 1;
             }
 
             if (type1 == type2) {
-                send_to_char("That would be pointless, try using two different types of currency.\n", ch);
+                char_printf(ch, "That would be pointless, try using two different types of currency.\n");
                 return 1;
             }
 
             if (amount <= 0) {
-                send_to_char("The bank doesn't make money because it's dumb! Try a positive value.\n", ch);
+                char_printf(ch, "The bank doesn't make money because it's dumb! Try a positive value.\n");
                 return 1;
             }
 
@@ -597,7 +597,7 @@ SPECIAL(bank) {
             }
 
             if (ok == 0) {
-                send_to_char("You don't have that many coins of that type!\n", ch);
+                char_printf(ch, "You don't have that many coins of that type!\n");
                 return 1;
             }
 
@@ -634,19 +634,19 @@ SPECIAL(bank) {
                 break;
             default:
                 log("SYSERR: bank error: invalid type2 in spec proc");
-                send_to_char("Bank error.\n", ch);
+                char_printf(ch, "Bank error.\n");
                 return 1;
             }
 
             if ((ok == 0) && type2 > type1) {
-                send_to_char("That's not the right multiple to convert to that type!\n", ch);
+                char_printf(ch, "That's not the right multiple to convert to that type!\n");
                 return 1;
             }
 
             if (GET_CASH(ch) < (amount + charge)) {
-                send_to_char("You don't have enough money!\n", ch);
+                char_printf(ch, "You don't have enough money!\n");
                 sprintf(buf, "The fee for that transaction would be %d copper.\n", charge);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return 1;
             }
 
@@ -668,9 +668,8 @@ SPECIAL(bank) {
             money_convert(ch, charge);
             GET_COPPER(ch) -= charge;
             copper = amount / multto;
-            sprintf(buf, "You receive %d %s.\n", copper, ctype2);
-            sprintf(buf, "%sYou pay %d copper for the transaction.\n", buf, charge);
-            send_to_char(buf, ch);
+            char_printf(ch, "You receive {:d} {}.\n", copper, ctype2);
+            char_printf(ch, "You pay {:d} copper for the transaction.\n", charge);
 
             switch (type2) {
             case 1:
@@ -689,10 +688,9 @@ SPECIAL(bank) {
 
             return 1;
         } else {
-            send_to_char(
-                "Format: exchange <quantity> <from type> <to type>\n      "
-                "  exchange 10 copper silver\n",
-                ch);
+            char_printf(ch,
+                        "Format: exchange <quantity> <from type> <to type>\n      "
+                        "  exchange 10 copper silver\n");
             return 1;
         }
     } else {
@@ -838,12 +836,12 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument, int color) {
     /* Make sure the target is valid. */
 
     if (!targ) {
-        send_to_char("You do not see that person here!\n", ch);
+        char_printf(ch, "You do not see that person here!\n");
         return true;
     }
 
     if (IS_NPC(targ)) {
-        send_to_char("The guildmaster would think you funny...\n", ch);
+        char_printf(ch, "The guildmaster would think you funny...\n");
         return true;
     }
 
@@ -851,7 +849,7 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument, int color) {
         return true;
 
     if (GET_LEVEL(targ) >= LVL_IMMORT && targ != ch) {
-        send_to_char("Mortal magicks on a GOD?! Are you CRAZY?!\n", ch);
+        char_printf(ch, "Mortal magicks on a GOD?! Are you CRAZY?!\n");
         return true;
     }
 
@@ -889,7 +887,7 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument, int color) {
      * to work and that it has a proper target.  We can destroy it and
      * send out the appropriate messages. */
 
-    send_to_char("You recite the scroll, which dissolves.\n", ch);
+    char_printf(ch, "You recite the scroll, which dissolves.\n");
 
     if (targ == ch) {
         act("$n recites a scroll of recall at $mself.", false, ch, 0, targ, TO_ROOM);
@@ -980,13 +978,13 @@ int red_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(6001) == NOWHERE) {
-            send_to_char("ERROR: Could not find your guild, nor the gates of Anduin. Please tell a god!\n", ch);
+            char_printf(ch, "ERROR: Could not find your guild, nor the gates of Anduin. Please tell a god!\n");
             log(LogSeverity::Stat, LVL_IMMORT, "ERROR: Couldn't find the real room for vnums %i or %i", room, 6001);
 
             return NOWHERE;
         };
 
-        send_to_char("ERROR: Could not find your guild! Please tell a god!\n", ch);
+        char_printf(ch, "ERROR: Could not find your guild! Please tell a god!\n");
         return real_room(6001);
     };
 
@@ -1061,10 +1059,9 @@ int green_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(3002) == NOWHERE) {
-            send_to_char(
-                "ERROR: Could not find your guild, nor the Mielikki "
-                "altar. Please tell a god!\n",
-                ch);
+            char_printf(ch,
+                        "ERROR: Could not find your guild, nor the Mielikki "
+                        "altar. Please tell a god!\n");
             sprintf(buf,
                     "ERROR: Couldn't find the real room for vnums "
                     "%i or %i",
@@ -1074,10 +1071,9 @@ int green_recall_room(CharData *ch) {
             return NOWHERE;
         };
 
-        send_to_char(
-            "ERROR: Could not find your guild! Please tell a "
-            "god!\n",
-            ch);
+        char_printf(ch,
+                    "ERROR: Could not find your guild! Please tell a "
+                    "god!\n");
         return real_room(3002);
     };
 
@@ -1121,10 +1117,9 @@ int blue_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(10001) == NOWHERE) {
-            send_to_char(
-                "ERROR: Could not find your guild, nor the the "
-                "Arctic Temple. Please tell a god!\n",
-                ch);
+            char_printf(ch,
+                        "ERROR: Could not find your guild, nor the the "
+                        "Arctic Temple. Please tell a god!\n");
             sprintf(buf,
                     "ERROR: Couldn't find the real room for vnums "
                     "%i or %i",
@@ -1134,10 +1129,9 @@ int blue_recall_room(CharData *ch) {
             return NOWHERE;
         };
 
-        send_to_char(
-            "ERROR: Could not find your guild! Please tell a "
-            "god!\n",
-            ch);
+        char_printf(ch,
+                    "ERROR: Could not find your guild! Please tell a "
+                    "god!\n");
         return real_room(6001);
     };
 
@@ -1183,10 +1177,9 @@ int gray_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(30030) == NOWHERE) {
-            send_to_char(
-                "ERROR: Could not find your guild, nor the the "
-                "Ogakh itself. Please tell a god!\n",
-                ch);
+            char_printf(ch,
+                        "ERROR: Could not find your guild, nor the the "
+                        "Ogakh itself. Please tell a god!\n");
             sprintf(buf,
                     "ERROR: Couldn't find the real room for vnums "
                     "%i or %i",
@@ -1196,10 +1189,9 @@ int gray_recall_room(CharData *ch) {
             return NOWHERE;
         };
 
-        send_to_char(
-            "ERROR: Could not find your guild! Please tell a "
-            "god!\n",
-            ch);
+        char_printf(ch,
+                    "ERROR: Could not find your guild! Please tell a "
+                    "god!\n");
         return real_room(30030);
     };
 
@@ -1218,12 +1210,12 @@ SPECIAL(summon_dragon) {
         return false;
 
     if (FIGHTING(ch)) {
-        send_to_char("You can't concentrate enough while you are fighting.\n", ch);
+        char_printf(ch, "You can't concentrate enough while you are fighting.\n");
         return true;
     }
 
     if ((GET_CLASS(ch) != CLASS_PALADIN) && (GET_CLASS(ch) != CLASS_ANTI_PALADIN)) {
-        send_to_char("You have no idea what you are trying to accomplish.\n", ch);
+        char_printf(ch, "You have no idea what you are trying to accomplish.\n");
         return true;
     }
 
@@ -1234,7 +1226,7 @@ SPECIAL(summon_dragon) {
     /* Fewer limitations for gods */
     if (GET_LEVEL(ch) < LVL_GOD) {
         if (CH_INDOORS(ch)) {
-            send_to_char("That won't work indoors!\n", ch);
+            char_printf(ch, "That won't work indoors!\n");
             return true;
         }
 
@@ -1251,12 +1243,12 @@ SPECIAL(summon_dragon) {
         /* Only allow one mount */
         for (fol = ch->followers; fol; fol = fol->next)
             if (IS_NPC(fol->follower) && MOB_FLAGGED(fol->follower, MOB_MOUNTABLE)) {
-                send_to_char("You already have a mount!\n", ch);
+                char_printf(ch, "You already have a mount!\n");
                 return true;
             }
     }
 
-    send_to_char("You begin calling for a mount...\n", ch);
+    char_printf(ch, "You begin calling for a mount...\n");
 
     if (GET_CLASS(ch) == CLASS_PALADIN)
         summon_mount(ch, 18890, 4 * GET_LEVEL(ch), GET_ALIGNMENT(ch) / 2);

@@ -142,7 +142,7 @@ void show_trophy(CharData *ch, CharData *vict) {
     char *name;
 
     if (IS_NPC(vict)) {
-        send_to_char("Mobs don't have trophies, genius!\n", ch);
+        char_printf(ch, "Mobs don't have trophies, genius!\n");
         return;
     }
 
@@ -152,7 +152,7 @@ void show_trophy(CharData *ch, CharData *vict) {
         } else {
             sprintf(buf, "%s%s's trophy list is empty.%s\n", CLR(ch, FGRN), GET_NAME(vict), CLR(ch, ANRM));
         }
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
 
@@ -160,10 +160,10 @@ void show_trophy(CharData *ch, CharData *vict) {
         sprintf(buf, "%sYour trophy list is:%s\n\n", CLR(ch, FGRN), CLR(ch, ANRM));
     else
         sprintf(buf, "%s%s's trophy list is:%s\n\n", CLR(ch, FGRN), GET_NAME(vict), CLR(ch, ANRM));
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     sprintf(buf, "%s%sKills       Mobiles%s\n", CLR(ch, HRED), CLR(ch, AUND), CLR(ch, ANRM));
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
 
     for (node = GET_TROPHY(vict); node; node = node->next) {
 
@@ -181,7 +181,7 @@ void show_trophy(CharData *ch, CharData *vict) {
                 : node->amount < 7.99 ? CLR(ch, HYEL)
                                       : CLR(ch, HRED),
                 node->amount, CLR(ch, ANRM), name, CLR(ch, ANRM));
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 }
 

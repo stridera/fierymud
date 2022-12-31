@@ -342,7 +342,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
 
     if (!mode || !modes || !value || !bound || !string || !compare || !flags || !first || !last) {
         if (ch)
-            send_to_char("Error in parsing arguments.\n", ch);
+            char_printf(ch, "Error in parsing arguments.\n");
         log("Bad internal argument passed to parse_vsearch_args.");
         return false;
     }
@@ -371,10 +371,10 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
     if (!*arg) {
         if (subcmd != SCMD_VSEARCH)
             return true;
-        send_to_char("Allowed search fields:", ch);
+        char_printf(ch, "Allowed search fields:");
         for (temp = 0; modes[temp].type; ++temp)
             char_printf(ch, "{}{:<16s}", !(temp % 4) ? "\n" : "", modes[temp].name);
-        send_to_char("\n", ch);
+        char_printf(ch, "\n");
         return false;
     }
     /*
@@ -424,7 +424,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                  is_abbrev(arg, "zero") || is_abbrev(arg, "off"))
             *value = 0;
         else {
-            send_to_char("Search value should be boolean ('yes' or 'no').\n", ch);
+            char_printf(ch, "Search value should be boolean ('yes' or 'no').\n");
             return false;
         }
         break;
@@ -435,7 +435,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         argument = delimited_arg(argument, arg, '\'');
         *value = find_spell_num(arg);
         if (*value < 0) {
-            send_to_char("Invalid spell name.\n", ch);
+            char_printf(ch, "Invalid spell name.\n");
             return false;
         }
         break;
@@ -461,13 +461,13 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp]);
             }
             strcat(buf, "\n");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         *value = search_block(arg, modes[type].lookup, false);
         if (*value < 0) {
             sprintf(buf, "Invalid %s type: %s\n", modes[type].name, arg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         if (modes[type].data == TYPE)
@@ -520,7 +520,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
             *compare = BT;
             argument = any_one_arg(argument, arg);
             if (!*arg || (!isdigit(*arg) && *arg != '-' && *arg != '+')) {
-                send_to_char("Expected numeric bound, but didn't get it.\n", ch);
+                char_printf(ch, "Expected numeric bound, but didn't get it.\n");
                 return false;
             }
             *bound = atoi(arg);
@@ -531,7 +531,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
             *compare = BT;
             argument = any_one_arg(argument, arg);
             if (!*arg || !isdigit(*arg)) {
-                send_to_char("Expected zone number, but didn't get it.\n", ch);
+                char_printf(ch, "Expected zone number, but didn't get it.\n");
                 return false;
             }
             *value = atoi(arg);
@@ -545,7 +545,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         }
         argument = any_one_arg(argument, arg);
         if (!*arg || (!isdigit(*arg) && *arg != '-' && *arg != '+')) {
-            send_to_char("Expected numeric comparison, but didn't get it.\n", ch);
+            char_printf(ch, "Expected numeric comparison, but didn't get it.\n");
             return false;
         }
         *value = atoi(arg);
@@ -565,13 +565,13 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%s%-16s", buf, classes[temp].plainname);
             }
             strcat(buf, "\n");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         *value = parse_class(0, 0, arg);
         if (*value < 0) {
             sprintf(buf, "Invalid class: %s\n", arg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         break;
@@ -585,13 +585,13 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%s%-16s", buf, races[temp].plainname);
             }
             strcat(buf, "\n");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         *value = parse_race(0, 0, arg);
         if (*value < 0) {
             sprintf(buf, "Invalid race: %s\n", arg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         break;
@@ -605,13 +605,13 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%s%-16s", buf, sizes[temp].name);
             }
             strcat(buf, "\n");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         *value = parse_size(0, arg);
         if (*value < 0) {
             sprintf(buf, "Invalid size: %s\n", arg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         break;
@@ -625,7 +625,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         *compare = (*(argument + 1) != '\''); /* single quote = exact matching */
         argument = delimited_arg(argument, arg, '\'');
         if (!*arg) {
-            send_to_char("What string do you want to search for?\n", ch);
+            char_printf(ch, "What string do you want to search for?\n");
             return false;
         }
         if (*argument == ' ')
@@ -663,7 +663,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp]);
             }
             strcat(buf, "\n");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         for (temp = 0; *arg; delimited_arg(argument, arg, '\'')) {
@@ -671,7 +671,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 SET_FLAG(flags, *value);
             else if (is_abbrev(arg, "from")) {
                 if (!temp) {
-                    send_to_char("No flags provided before vnum bound.\n", ch);
+                    char_printf(ch, "No flags provided before vnum bound.\n");
                     return false;
                 }
                 break;
@@ -691,7 +691,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
     case TRGTYPE:
         argument = any_one_arg(argument, arg);
         if (!*arg) {
-            send_to_char("What kind of trigger do you want to search for?\n", ch);
+            char_printf(ch, "What kind of trigger do you want to search for?\n");
             return false;
         }
         if (is_abbrev(arg, "mobile"))
@@ -702,12 +702,12 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
             *value = WLD_TRIGGER;
         else {
             sprintf(buf, "Unknown trigger attachment type: %s\n", arg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         any_one_arg(argument, arg);
         if (!*arg) {
-            send_to_char("What kind of trigger do you want to search for?\n", ch);
+            char_printf(ch, "What kind of trigger do you want to search for?\n");
             return false;
         }
         for (temp = 0; *arg; any_one_arg(argument, arg)) {
@@ -719,7 +719,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 *flags |= (1 << *bound);
             else if (is_abbrev(arg, "from")) {
                 if (!temp) {
-                    send_to_char("No types provided before vnum bound.\n", ch);
+                    char_printf(ch, "No types provided before vnum bound.\n");
                     return false;
                 }
                 break;
@@ -739,7 +739,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%s%-16s", buf, hemispheres[temp].name);
             }
             strcat(buf, "\n");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         for (temp = 0; temp < NUM_HEMISPHERES; ++temp)
@@ -748,7 +748,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         *value = temp;
         if (*value >= NUM_HEMISPHERES) {
             sprintf(buf, "Invalid hemisphere: %s\n", arg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         break;
@@ -762,7 +762,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 sprintf(buf, "%s%-16s", buf, climates[temp].name);
             }
             strcat(buf, "\n");
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         for (temp = 0; temp < NUM_CLIMATES; ++temp)
@@ -771,7 +771,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         *value = temp;
         if (*value >= NUM_CLIMATES) {
             sprintf(buf, "Invalid climate: %s\n", arg);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return false;
         }
         break;
@@ -856,11 +856,11 @@ ACMD(do_vsearch) {
     argument = any_one_arg(argument, arg);
     if (!*arg) {
         if (subcmd == SCMD_VSEARCH)
-            send_to_char("Usage: vsearch <type> <field> <query> [[from] <start_vnum> [to] [<end_vnum>]]\n", ch);
+            char_printf(ch, "Usage: vsearch <type> <field> <query> [[from] <start_vnum> [to] [<end_vnum>]]\n");
         else if (subcmd == SCMD_VLIST)
-            send_to_char("Usage: vlist <type> [[from] <start_vnum> [to] [<end_vnum>] | *]\n", ch);
+            char_printf(ch, "Usage: vlist <type> [[from] <start_vnum> [to] [<end_vnum>] | *]\n");
         else if (subcmd == SCMD_VNUM)
-            send_to_char("Usage: vnum <type> <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: vnum <type> <name> [[from] <start_vnum> [to] <end_vnum>]\n");
         return;
     }
 
@@ -947,7 +947,7 @@ ACMD(do_msearch) {
     } else {
         any_one_arg(argument, arg);
         if (subcmd == SCMD_VNUM && !*arg) {
-            send_to_char("Usage: mnum <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: mnum <name> [[from] <start_vnum> [to] <end_vnum>]\n");
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_mobile_modes, &value, &bound, &string, &compare,
@@ -961,7 +961,7 @@ ACMD(do_msearch) {
                     value = temp;
                 }
             if (!found) {
-                send_to_char("That is not a valid attack type.\n", ch);
+                char_printf(ch, "That is not a valid attack type.\n");
                 return;
             }
         }
@@ -1101,7 +1101,7 @@ ACMD(do_msearch) {
     if (found) {
         start_paging(ch);
     } else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 const struct VSearchType vsearch_object_modes[] = {
@@ -1208,7 +1208,7 @@ ACMD(do_osearch) {
     } else {
         any_one_arg(argument, arg);
         if (subcmd == SCMD_VNUM && !*arg) {
-            send_to_char("Usage: onum <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: onum <name> [[from] <start_vnum> [to] <end_vnum>]\n");
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_object_modes, &value, &bound, &string, &compare,
@@ -1223,7 +1223,7 @@ ACMD(do_osearch) {
                     value = temp;
                 }
             if (!found) {
-                send_to_char("That is not a valid attack type.\n", ch);
+                char_printf(ch, "That is not a valid attack type.\n");
                 return;
             }
         }
@@ -1235,7 +1235,7 @@ ACMD(do_osearch) {
                         if (value_types[type].item_types[nr] == cmd)
                             found = 1;
                     if (!found) {
-                        send_to_char("Invalid search mode for the given object type.\n", ch);
+                        char_printf(ch, "Invalid search mode for the given object type.\n");
                         return;
                     }
                 }
@@ -1443,7 +1443,7 @@ ACMD(do_osearch) {
             temp_found = strlen(obj->short_description) - temp;
             briefmoney(buf, 6, GET_OBJ_COST(obj));
             // "%4d. [%s%5d%s] %s %s%3d&0 %s%5g&0 %*s " ANRM,
-            vbuf = fmt::format("{:4d}. [{}{:5d}{}] {} {}{:3d}&0 {}{}&0 {:{}}&0", ++found, grn, obj_index[nr].vnum, nrm,
+            vbuf = fmt::format("{:4d}. [{}{:5d}{}] {} {}{:3d}&0 {}{}&0 {}&0", ++found, grn, obj_index[nr].vnum, nrm,
                                ellipsis(obj->short_description, OBJ_TITLE_LENGTH),
                                GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
                                : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
@@ -1456,8 +1456,7 @@ ACMD(do_osearch) {
                                : GET_OBJ_LEVEL(obj) > 49  ? "&2"
                                                           : "",
                                GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
-                               GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj),
-                               5 + count_color_chars(buf), buf);
+                               GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), buf);
             switch (subcmd) {
             case SCMD_VWEAR:
                 if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&
@@ -1561,7 +1560,7 @@ ACMD(do_osearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 ACMD(do_vitem) {
@@ -1580,7 +1579,7 @@ ACMD(do_vitem) {
            "Possible types are:");
     for (i = 0; i < NUM_ITEM_TYPES; ++i)
         sprintf(buf, "%s%s%-15s", buf, !(i % 5) ? "\n" : "", lowercase(item_types[i].name));
-    send_to_char(strcat(buf, "\n"), ch);
+    char_printf(ch, strcat(buf, "\n"));
 }
 
 ACMD(do_vwear) {
@@ -1599,7 +1598,7 @@ ACMD(do_vwear) {
            "Possible positions are:");
     for (i = 0; *wear_bits[i] != '\n'; ++i)
         sprintf(buf, "%s%s%-15s", buf, !(i % 5) ? "\n" : "", lowercase(wear_bits[i]));
-    send_to_char(strcat(buf, "\n"), ch);
+    char_printf(ch, strcat(buf, "\n"));
 }
 
 const struct VSearchType vsearch_room_modes[] = {
@@ -1622,7 +1621,7 @@ ACMD(do_rsearch) {
     } else {
         any_one_arg(argument, arg);
         if (subcmd == SCMD_VNUM && !*arg) {
-            send_to_char("Usage: rnum <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: rnum <name> [[from] <start_vnum> [to] <end_vnum>]\n");
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_room_modes, &value, &bound, &string, &compare,
@@ -1692,7 +1691,7 @@ ACMD(do_rsearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 const struct VSearchType vsearch_exit_modes[] = {
@@ -1715,7 +1714,7 @@ ACMD(do_esearch) {
     } else {
         any_one_arg(argument, arg);
         if (subcmd == SCMD_VNUM && !*arg) {
-            send_to_char("Usage: enum <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: enum <name> [[from] <start_vnum> [to] <end_vnum>]\n");
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_exit_modes, &value, &bound, &string, &compare,
@@ -1779,7 +1778,7 @@ ACMD(do_esearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 const struct VSearchType vsearch_shop_modes[] = {
@@ -1806,7 +1805,7 @@ ACMD(do_ssearch) {
     } else {
         any_one_arg(argument, arg);
         if (subcmd == SCMD_VNUM && !*arg) {
-            send_to_char("Usage: snum <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: snum <name> [[from] <start_vnum> [to] <end_vnum>]\n");
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_shop_modes, &value, &bound, &string, &compare,
@@ -1892,7 +1891,7 @@ ACMD(do_ssearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 const struct VSearchType vsearch_trigger_modes[] = {
@@ -1949,7 +1948,7 @@ ACMD(do_tsearch) {
     } else {
         any_one_arg(argument, arg);
         if (subcmd == SCMD_VNUM && !*arg) {
-            send_to_char("Usage: tnum <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: tnum <name> [[from] <start_vnum> [to] <end_vnum>]\n");
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_trigger_modes, &value, &bound, &string, &compare,
@@ -1966,7 +1965,7 @@ ACMD(do_tsearch) {
                 value = WLD_TRIGGER;
             else {
                 sprintf(buf, "Unknown trigger attachment type: %s\n", string);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 return;
             }
         }
@@ -2023,7 +2022,7 @@ ACMD(do_tsearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 const char *zone_reset_modes[] = {"never", "empty", "normal", "\n"};
@@ -2075,7 +2074,7 @@ ACMD(do_zsearch) {
         }
         if (first < 0 || first > MAX_VNUM || last < 0 || last > MAX_VNUM) {
             sprintf(buf, "Values must be between 0 and %d.\n", MAX_VNUM);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return;
         }
         /* If the order of the vnums are reversed, then swap em. */
@@ -2087,7 +2086,7 @@ ACMD(do_zsearch) {
     } else {
         any_one_arg(argument, arg);
         if (subcmd == SCMD_VNUM && !*arg) {
-            send_to_char("Usage: znum <name> [[from] <start_vnum> [to] <end_vnum>]\n", ch);
+            char_printf(ch, "Usage: znum <name> [[from] <start_vnum> [to] <end_vnum>]\n");
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_zone_modes, &value, &bound, &string, &compare,
@@ -2160,7 +2159,7 @@ ACMD(do_zsearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 #define DOOR_RESET_OPEN (1 << 0)
@@ -2383,7 +2382,7 @@ ACMD(do_csearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }
 
 const struct VSearchType vsearch_skill_modes[] = {
@@ -2564,5 +2563,5 @@ ACMD(do_ksearch) {
     if (found)
         start_paging(ch);
     else
-        send_to_char("No matches found.\n", ch);
+        char_printf(ch, "No matches found.\n");
 }

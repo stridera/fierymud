@@ -177,7 +177,7 @@ ACMD(do_toggle) {
 
         if (*arg) {
             if (GET_LEVEL(ch) < LVL_GOD || !(tch = find_char_around_char(ch, find_vis_by_name(ch, arg)))) {
-                send_to_char("Toggle what!?\n", ch);
+                char_printf(ch, "Toggle what!?\n");
                 return;
             }
             /* Handle switched/shapechanged players. */
@@ -235,7 +235,7 @@ ACMD(do_toggle) {
         if (column)
             strcat(buf, "\n");
         strcat(buf, "===============================================================\n");
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
 
@@ -248,68 +248,68 @@ ACMD(do_toggle) {
         if (!*arg) {
             if (GET_WIMP_LEV(tch)) {
                 sprintf(buf, "Your current wimp level is %d hit points.\n", GET_WIMP_LEV(tch));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             } else
-                send_to_char("At the moment, you're not a wimp.  (sure, sure...)\n", ch);
+                char_printf(ch, "At the moment, you're not a wimp.  (sure, sure...)\n");
         } else if (isdigit(*arg)) {
             if ((wimp_lev = atoi(arg))) {
                 if (wimp_lev < 0)
-                    send_to_char("Heh, heh, heh.. we are jolly funny today, eh?\n", ch);
+                    char_printf(ch, "Heh, heh, heh.. we are jolly funny today, eh?\n");
                 else if (wimp_lev > GET_MAX_HIT(tch))
-                    send_to_char("That doesn't make much sense, now does it?\n", ch);
+                    char_printf(ch, "That doesn't make much sense, now does it?\n");
                 else {
                     sprintf(buf, "Okay, you'll wimp out if you drop below %d hit points.\n", wimp_lev);
-                    send_to_char(buf, tch);
+                    char_printf(tch, buf);
                     GET_WIMP_LEV(tch) = wimp_lev;
                 }
             } else {
-                send_to_char("Okay, you'll now tough out fights to the bitter end.\n", ch);
+                char_printf(ch, "Okay, you'll now tough out fights to the bitter end.\n");
                 GET_WIMP_LEV(tch) = 0;
             }
         } else
-            send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\n", ch);
+            char_printf(ch, "Specify at how many hit points you want to wimp out at.  (0 to disable)\n");
         return;
     case SCMD_PAGELENGTH:
         one_argument(argument, arg);
         if (!*arg) {
             if (GET_PAGE_LENGTH(tch) == 0) {
-                send_to_char("Pagelength is turned off.\n", ch);
+                char_printf(ch, "Pagelength is turned off.\n");
             } else if (GET_PAGE_LENGTH(tch) > 0) {
                 sprintf(buf, "Your current page length is %d.\n", GET_PAGE_LENGTH(tch));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             } else {
-                send_to_char("Your page length is not valid.  Reset to off.\n", ch);
+                char_printf(ch, "Your page length is not valid.  Reset to off.\n");
                 GET_PAGE_LENGTH(tch) = 0;
             }
         } else if (isdigit(*arg)) {
             page_length = atoi(arg);
             if (page_length == 0) {
-                send_to_char("Pagelength turned off.\n", ch);
+                char_printf(ch, "Pagelength turned off.\n");
                 GET_PAGE_LENGTH(tch) = 0;
             } else if (page_length < 1)
-                send_to_char("Invalid page length.\n", ch);
+                char_printf(ch, "Invalid page length.\n");
             else {
                 sprintf(buf, "Your new page length is %d lines.\n", page_length);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 GET_PAGE_LENGTH(tch) = page_length;
             }
         } else
-            send_to_char("Specify at how many lines you want your page length to be.  (0 to turn off.z`)\n", ch);
+            char_printf(ch, "Specify at how many lines you want your page length to be.  (0 to turn off.z`)\n");
         return;
     case SCMD_AUTOINVIS:
         any_one_arg(argument, arg);
         if (!*arg) {
             if (GET_AUTOINVIS(tch) == -1)
-                send_to_char("Autoinvis is off.\n", ch);
+                char_printf(ch, "Autoinvis is off.\n");
             else if (GET_AUTOINVIS(tch) < -1 || GET_AUTOINVIS(tch) > GET_LEVEL(tch)) {
                 sprintf(buf, "Your autoinvis is an invalid value: %d\n", GET_AUTOINVIS(tch));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             } else if (GET_AUTOINVIS(tch) == GET_LEVEL(tch)) {
                 sprintf(buf, "Autoinvis is maxxed to &5&b%d&0.\n", GET_AUTOINVIS(tch));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             } else {
                 sprintf(buf, "Autoinvis is set to &6&b%d&0.\n", GET_AUTOINVIS(tch));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             }
         } else {
             if (isdigit(*arg) || *arg == '-')
@@ -319,31 +319,31 @@ ACMD(do_toggle) {
             else if (!strncasecmp(arg, "on", 3))
                 i = GET_LEVEL(tch);
             else {
-                send_to_char("Invalid input: autoinvis is a number between 0 and your level.\n", ch);
-                send_to_char("You may also enter -1 or 'off' to disable it, or 'on' which will\n", ch);
-                send_to_char("set it to the maximum value: your level.\n", ch);
+                char_printf(ch, "Invalid input: autoinvis is a number between 0 and your level.\n");
+                char_printf(ch, "You may also enter -1 or 'off' to disable it, or 'on' which will\n");
+                char_printf(ch, "set it to the maximum value: your level.\n");
                 return;
             }
 
             if (GET_AUTOINVIS(tch) == i) {
                 if (i == -1)
-                    send_to_char("Your autoinvis is already off.\n", ch);
+                    char_printf(ch, "Your autoinvis is already off.\n");
                 else if (i == GET_LEVEL(tch)) {
                     sprintf(buf, "Your autoinvis is already maxxed to %d.\n", GET_AUTOINVIS(tch));
-                    send_to_char(buf, ch);
+                    char_printf(ch, buf);
                 } else {
                     sprintf(buf, "Your autoinvis is already %d.\n", i);
-                    send_to_char(buf, ch);
+                    char_printf(ch, buf);
                 }
             } else if (i < -1 || i > GET_LEVEL(tch)) {
-                send_to_char("Invalid input: autoinvis is a number between -1 and your level.\n", ch);
+                char_printf(ch, "Invalid input: autoinvis is a number between -1 and your level.\n");
             } else {
                 GET_AUTOINVIS(tch) = i;
                 if (i == -1)
-                    send_to_char("Autoinvis off.\n", ch);
+                    char_printf(ch, "Autoinvis off.\n");
                 else {
                     sprintf(buf, "Your autoinvis is set to %d.\n", i);
-                    send_to_char(buf, ch);
+                    char_printf(ch, buf);
                 }
             }
         }
@@ -354,7 +354,7 @@ ACMD(do_toggle) {
     }
 
     if (result)
-        send_to_char(tog_messages[i][TOG_ON], ch);
+        char_printf(ch, tog_messages[i][TOG_ON]);
     else
-        send_to_char(tog_messages[i][TOG_OFF], ch);
+        char_printf(ch, tog_messages[i][TOG_OFF]);
 }

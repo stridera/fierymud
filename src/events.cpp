@@ -214,7 +214,7 @@ EVENTFUNC(casting_handler) {
         for (i = 1; i <= ch->casting.casting_time; i += 2)
             strcat(castbuf, "*");
         strcat(castbuf, "\n");
-        send_to_char(castbuf, ch);
+        char_printf(ch, castbuf);
     }
 
     ch->casting.casting_time -= 2;

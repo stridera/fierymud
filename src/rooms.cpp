@@ -85,7 +85,7 @@ void cantgo_msg(CharData *ch, int dir) {
     const char *bumpinto = nullptr;
 
     if (!CONFUSED(ch)) {
-        send_to_char("Alas, you cannot go that way...\n", ch);
+        char_printf(ch, "Alas, you cannot go that way...\n");
         return;
     }
 
@@ -267,11 +267,11 @@ bool check_can_go(CharData *ch, int dir, bool quiet) {
                 if (exit->keyword && *(exit->keyword)) {
                     sprintf(buf, "The %s seem%s to be closed.\n", fname(exit->keyword),
                             isplural(exit->keyword) ? "" : "s");
-                    send_to_char(buf, ch);
+                    char_printf(ch, buf);
                 } else {
                     log(LogSeverity::Warn, LVL_GOD, "SYSERR: room {:d}, exit {:d} has no keyword", CH_ROOM(ch)->vnum,
                         dir);
-                    send_to_char("It seems to be closed.\n", ch);
+                    char_printf(ch, "It seems to be closed.\n");
                 }
             }
             return false;
@@ -303,19 +303,19 @@ void open_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't open that.\n", ch);
+            char_printf(ch, "You can't open that.\n");
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
         if (!quiet && ch)
-            send_to_char("It's already open.\n", ch);
+            char_printf(ch, "It's already open.\n");
         return;
     }
 
     if (EXIT_IS_LOCKED(exit)) {
         if (!quiet && ch)
-            send_to_char("It seems to be locked.\n", ch);
+            char_printf(ch, "It seems to be locked.\n");
         return;
     }
 
@@ -331,8 +331,7 @@ void open_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room */
 
         if (!quiet) {
-            sprintf(buf, "The %s is opened from the other side.\n", exit_name(oexit));
-            send_to_room(buf, exit->to_room);
+            room_printf(exit->to_room, "The {} is opened from the other side.\n", exit_name(oexit));
             send_gmcp_room(ch);
         }
     }
@@ -340,7 +339,7 @@ void open_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
     /* Feedback to this room */
 
     if (ch && !quiet) {
-        send_to_char(OK, ch);
+        char_printf(ch, OK);
         sprintf(buf, "$n opens the %s.", exit_name(exit));
         act(buf, false, ch, 0, 0, TO_ROOM);
         send_gmcp_room(ch);
@@ -361,13 +360,13 @@ void close_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't close that.\n", ch);
+            char_printf(ch, "You can't close that.\n");
         return;
     }
 
     if (EXIT_IS_CLOSED(exit)) {
         if (!quiet && ch)
-            send_to_char("It's already closed.\n", ch);
+            char_printf(ch, "It's already closed.\n");
         return;
     }
 
@@ -385,15 +384,14 @@ void close_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room */
 
         if (!quiet) {
-            sprintf(buf, "The %s is closed from the other side.\n", exit_name(oexit));
-            send_to_room(buf, exit->to_room);
+            room_printf(exit->to_room, "The {} is closed from the other side.\n", exit_name(oexit));
         }
     }
 
     /* Feedback to this room */
 
     if (ch && !quiet) {
-        send_to_char(OK, ch);
+        char_printf(ch, OK);
         sprintf(buf, "$n closes the %s.", exit_name(exit));
         act(buf, false, ch, 0, 0, TO_ROOM);
         send_gmcp_room(ch);
@@ -417,13 +415,13 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't unlock that.\n", ch);
+            char_printf(ch, "You can't unlock that.\n");
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
         if (!quiet && ch)
-            send_to_char("It isn't even closed!\n", ch);
+            char_printf(ch, "It isn't even closed!\n");
         return;
     }
 
@@ -433,12 +431,12 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         keyvnum = exit->key;
         if (keyvnum < 0) {
             if (!quiet)
-                send_to_char("Odd - you can't seem to find a keyhole.\n", ch);
+                char_printf(ch, "Odd - you can't seem to find a keyhole.\n");
             return;
         }
         if (!(key = carried_key(ch, keyvnum))) {
             if (!quiet)
-                send_to_char("You don't seem to have the proper key.\n", ch);
+                char_printf(ch, "You don't seem to have the proper key.\n");
             return;
         }
     }
@@ -448,7 +446,7 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_LOCKED(exit)) {
         if (!quiet && ch) {
-            send_to_char("Oh... it wasn't locked, after all.\n", ch);
+            char_printf(ch, "Oh... it wasn't locked, after all.\n");
             if (key)
                 act("$n inserts $p into the lock on the $F, but finds that it wasn't "
                     "locked.",
@@ -470,8 +468,7 @@ void unlock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room */
 
         if (!quiet) {
-            sprintf(buf, "The %s is unlocked from the other side.\n", exit_name(oexit));
-            send_to_room(buf, exit->to_room);
+            room_printf(exit->to_room, "The {} is unlocked from the other side.\n", exit_name(oexit));
         }
     }
 
@@ -511,13 +508,13 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (!EXIT_IS_DOOR(exit)) {
         if (!quiet && ch)
-            send_to_char("You can't unlock that.\n", ch);
+            char_printf(ch, "You can't unlock that.\n");
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
         if (!quiet && ch)
-            send_to_char("You'll have to close it first.\n", ch);
+            char_printf(ch, "You'll have to close it first.\n");
         return;
     }
 
@@ -527,12 +524,12 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         keyvnum = exit->key;
         if (keyvnum < 0) {
             if (!quiet)
-                send_to_char("Odd - you can't seem to find a keyhole.\n", ch);
+                char_printf(ch, "Odd - you can't seem to find a keyhole.\n");
             return;
         }
         if (!(key = carried_key(ch, keyvnum))) {
             if (!quiet)
-                send_to_char("You don't seem to have the proper key.\n", ch);
+                char_printf(ch, "You don't seem to have the proper key.\n");
             return;
         }
     }
@@ -542,7 +539,7 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
 
     if (EXIT_IS_LOCKED(exit)) {
         if (!quiet && ch) {
-            send_to_char("It seems to be locked already.\n", ch);
+            char_printf(ch, "It seems to be locked already.\n");
             if (key)
                 act("$n inserts $p into the lock on the $F, but finds that it was "
                     "already locked.",
@@ -566,8 +563,7 @@ void lock_door(CharData *ch, room_num roomnum, int dir, bool quiet) {
         /* Feedback to the other room. */
 
         if (!quiet) {
-            sprintf(buf, "The %s is locked from the other side.\n", exit_name(oexit));
-            send_to_room(buf, exit->to_room);
+            room_printf(exit->to_room, "The {} is locked from the other side.\n", exit_name(oexit));
         }
     }
 
@@ -610,12 +606,12 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
      */
 
     if (!EXIT_IS_DOOR(exit)) {
-        send_to_char("You can't pick that.\n", ch);
+        char_printf(ch, "You can't pick that.\n");
         return;
     }
 
     if (EXIT_IS_OPEN(exit)) {
-        send_to_char("It isn't even closed!\n", ch);
+        char_printf(ch, "It isn't even closed!\n");
         return;
     }
 
@@ -623,13 +619,13 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
         act("$n goes to pick the lock on the $T, but discovers that it isn't "
             "locked.",
             false, ch, 0, exit_name(exit), TO_ROOM);
-        send_to_char("Oh... it wasn't locked, after all.\n", ch);
+        char_printf(ch, "Oh... it wasn't locked, after all.\n");
         return;
     }
 
     if (EXIT_IS_PICKPROOF(exit)) {
         act("$n attempts to pick the lock on the $T.", false, ch, 0, exit_name(exit), TO_ROOM);
-        send_to_char("It resists your attempts to pick it.\n", ch);
+        char_printf(ch, "It resists your attempts to pick it.\n");
         return;
     }
 
@@ -637,7 +633,7 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
 
     if (number(1, 101) > GET_SKILL(ch, SKILL_PICK_LOCK)) {
         act("$n attempts to pick the lock on the $T.", false, ch, 0, exit_name(exit), TO_ROOM);
-        send_to_char("You failed to pick the lock.\n", ch);
+        char_printf(ch, "You failed to pick the lock.\n");
         improve_skill(ch, SKILL_PICK_LOCK);
         return;
     }
@@ -658,7 +654,7 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
 
     /* Feedback to this room. */
 
-    send_to_char("The lock yields to your skills.\n", ch);
+    char_printf(ch, "The lock yields to your skills.\n");
     sprintf(buf, "$n skillfully picks the lock on the %s.", exit_name(exit));
     act(buf, false, ch, 0, 0, TO_ROOM);
     send_gmcp_room(ch);
@@ -685,7 +681,7 @@ void send_auto_exits(CharData *ch, int roomnum) {
         if (GET_LEVEL(ch) >= LVL_IMMORT)
             strcpy(buf, " &5&b<&0&5isolation&b>&0");
         else {
-            send_to_char("&2Obvious exits: &6None&0.\n", ch);
+            char_printf(ch, "&2Obvious exits: &6None&0.\n");
             return;
         }
     }
@@ -701,7 +697,7 @@ void send_auto_exits(CharData *ch, int roomnum) {
     }
 
     sprintf(buf2, "&2Obvious exits:%s&0\n", *buf ? buf : " &6None&0.");
-    send_to_char(buf2, ch);
+    char_printf(ch, buf2);
 }
 
 void send_full_exits(CharData *ch, int roomnum) {
@@ -714,7 +710,7 @@ void send_full_exits(CharData *ch, int roomnum) {
 
     if (ROOM_EFF_FLAGGED(roomnum, ROOM_EFF_ISOLATION)) {
         if (GET_LEVEL(ch) < LVL_IMMORT) {
-            send_to_char("Obvious exits:\n None.\n", ch);
+            char_printf(ch, "Obvious exits:\n None.\n");
             return;
         } else {
             strcpy(buf, "&9&b(&0exits obscured by &5isolation&0&9&b)&0\n");
@@ -751,11 +747,11 @@ void send_full_exits(CharData *ch, int roomnum) {
     }
 
     if (*buf) {
-        send_to_char("Obvious exits:\n", ch);
-        send_to_char(buf, ch);
-        send_to_char("&0", ch);
+        char_printf(ch, "Obvious exits:\n");
+        char_printf(ch, buf);
+        char_printf(ch, "&0");
     } else
-        send_to_char("There are no obvious exits.\n", ch);
+        char_printf(ch, "There are no obvious exits.\n");
 }
 
 bool room_contains_char(int roomnum, CharData *ch) {

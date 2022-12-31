@@ -15,13 +15,12 @@
 #include "comm.hpp"
 #include "conf.hpp"
 #include "db.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "races.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* name, color, weight_min, weight_max, height_min, height_max */
 struct sizedef sizes[NUM_SIZES] = {
@@ -152,7 +151,7 @@ void change_natural_size(CharData *ch, int newsize) {
         return;
     if (newsize < 0 || newsize >= NUM_SIZES) {
         sprintf(buf, "SYSERR: change_size(): invalid size %d", newsize);
-        log( buf);
+        log(buf);
         ;
         return;
     }
@@ -177,16 +176,15 @@ void show_sizes(CharData *ch) {
     char hrange[MAX_STRING_LENGTH];
     char wrange[MAX_STRING_LENGTH];
 
-    send_to_char("The character sizes are:\n\n", ch);
-    send_to_char("Idx  Name          Height range                              Weight range\n", ch);
-    send_to_char(
-        "---  ------------  ----------------------------------------  "
-        "-------------------------\n",
-        ch);
+    char_printf(ch, "The character sizes are:\n\n");
+    char_printf(ch, "Idx  Name          Height range                              Weight range\n");
+    char_printf(ch,
+                "---  ------------  ----------------------------------------  "
+                "-------------------------\n");
     for (i = 0; i < NUM_SIZES; i++) {
         sprintf(hrange, "%-18s - %-18s", statelength(sizes[i].height_min), statelength(sizes[i].height_max));
         sprintf(wrange, "%-11s - %-11s", stateweight(sizes[i].weight_min), stateweight(sizes[i].weight_max));
         sprintf(buf, "% 3d  %s%-12s&0  %-40s  %s\n", i, sizes[i].color, sizes[i].name, hrange, wrange);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 }

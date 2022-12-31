@@ -1007,11 +1007,11 @@ void list_similar_commands(CharData *ch, char *arg) {
                 continue;
             if (levenshtein_distance(arg, cmd_info[cmd].command) <= 2) {
                 if (!found) {
-                    send_to_char("\nDid you mean:\n", ch);
+                    char_printf(ch, "\nDid you mean:\n");
                     found = true;
                 }
                 sprintf(buf, "  %s\n", cmd_info[cmd].command);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             }
         }
     }
@@ -1063,73 +1063,73 @@ void command_interpreter(CharData *ch, char *argument) {
     if (PLR_FLAGGED(ch, PLR_MEDITATE) && !IS_SET(cmd_info[cmd].flags, CMD_MEDITATE)) {
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        send_to_char("&8You stop meditating.\n&0", ch);
+        char_printf(ch, "&8You stop meditating.\n&0");
     }
 
     if (*cmd_info[cmd].command == '\n') {
-        send_to_char(HUH, ch);
+        char_printf(ch, HUH);
         list_similar_commands(ch, arg);
     } else if (PLR_FLAGGED(ch, PLR_FROZEN) && GET_LEVEL(ch) < LVL_HEAD_B)
-        send_to_char("You try, but the mind-numbing cold prevents you...\n", ch);
+        char_printf(ch, "You try, but the mind-numbing cold prevents you...\n");
     else if (ch->desc && STATE(ch->desc) != CON_PLAYING && !IS_SET(cmd_info[cmd].flags, CMD_OLC)) {
         if (ch->desc->olc)
-            send_to_char("You can't use that command while in OLC.\n", ch);
+            char_printf(ch, "You can't use that command while in OLC.\n");
         else
-            send_to_char("You can't use that command while writing.\n", ch);
+            char_printf(ch, "You can't use that command while writing.\n");
     } else if (PLR_FLAGGED(ch, PLR_BOUND) && GET_LEVEL(ch) < LVL_IMMORT && !IS_SET(cmd_info[cmd].flags, CMD_BOUND))
-        send_to_char("You try, but you're bound tight...\n", ch);
+        char_printf(ch, "You try, but you're bound tight...\n");
     else if (EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS) && !IS_SET(cmd_info[cmd].flags, CMD_MAJOR_PARA))
-        send_to_char("&6You're paralyzed to the bone!\n&0", ch);
+        char_printf(ch, "&6You're paralyzed to the bone!\n&0");
     else if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) && !IS_SET(cmd_info[cmd].flags, CMD_MINOR_PARA))
-        send_to_char("&6You're paralyzed to the bone!\n&0", ch);
+        char_printf(ch, "&6You're paralyzed to the bone!\n&0");
     else if (EFF_FLAGGED(ch, EFF_MESMERIZED) && GET_LEVEL(ch) < 100)
-        send_to_char("You are too preoccupied with pretty illusions to do anything.\n", ch);
+        char_printf(ch, "You are too preoccupied with pretty illusions to do anything.\n");
     else if (CASTING(ch) && !IS_SET(cmd_info[cmd].flags, CMD_CAST))
-        send_to_char("&8You are busy spellcasting...&0\n", ch);
+        char_printf(ch, "&8You are busy spellcasting...&0\n");
     else if (cmd_info[cmd].command_pointer == nullptr)
-        send_to_char("Sorry, that command hasn't been implemented yet.\n", ch);
+        char_printf(ch, "Sorry, that command hasn't been implemented yet.\n");
     else if (IS_NPC(ch) && cmd_info[cmd].minimum_level >= LVL_IMMORT)
-        send_to_char("You can't use immortal commands while switched.\n", ch);
+        char_printf(ch, "You can't use immortal commands while switched.\n");
     else if (GET_STANCE(ch) == STANCE_FIGHTING && cmd_info[cmd].flags & CMD_NOFIGHT)
-        send_to_char("No way!  You're fighting for your life!\n", ch);
+        char_printf(ch, "No way!  You're fighting for your life!\n");
     else if (GET_STANCE(ch) < cmd_info[cmd].minimum_stance) {
         switch (GET_STANCE(ch)) {
         case STANCE_DEAD:
-            send_to_char("Lie still; you are DEAD!!! :-(\n", ch);
+            char_printf(ch, "Lie still; you are DEAD!!! :-(\n");
             break;
         case STANCE_INCAP:
         case STANCE_MORT:
-            send_to_char("You are in a pretty bad shape, unable to do anything!\n", ch);
+            char_printf(ch, "You are in a pretty bad shape, unable to do anything!\n");
             break;
         case STANCE_STUNNED:
-            send_to_char("All you can do right now is think about the stars!\n", ch);
+            char_printf(ch, "All you can do right now is think about the stars!\n");
             break;
         case STANCE_SLEEPING:
-            send_to_char("In your dreams, or what?\n", ch);
+            char_printf(ch, "In your dreams, or what?\n");
             break;
         case STANCE_RESTING:
-            send_to_char("Nah... You feel too relaxed to do that..\n", ch);
+            char_printf(ch, "Nah... You feel too relaxed to do that..\n");
             break;
         default:
-            send_to_char("I don't know what you're up to, but you can't do that!\n", ch);
+            char_printf(ch, "I don't know what you're up to, but you can't do that!\n");
             break;
         }
     } else if (GET_POS(ch) < cmd_info[cmd].minimum_position)
         switch (cmd_info[cmd].minimum_position) {
         case POS_PRONE:
-            send_to_char("I don't know what kind of pretzel you've twisted yourself into!\n", ch);
+            char_printf(ch, "I don't know what kind of pretzel you've twisted yourself into!\n");
             break;
         case POS_SITTING:
-            send_to_char("Maybe you should sit up first?\n", ch);
+            char_printf(ch, "Maybe you should sit up first?\n");
             break;
         case POS_KNEELING:
-            send_to_char("Maybe you should kneel first?\n", ch);
+            char_printf(ch, "Maybe you should kneel first?\n");
             break;
         case POS_STANDING:
-            send_to_char("Maybe you should get on your feet first?\n", ch);
+            char_printf(ch, "Maybe you should get on your feet first?\n");
             break;
         default:
-            send_to_char("You'd better take to the air first.\n", ch);
+            char_printf(ch, "You'd better take to the air first.\n");
             break;
         }
     else if (no_specials || !special(ch, cmd, line))
@@ -1182,21 +1182,21 @@ ACMD(do_alias) {
         vict = ch;
 
     if (IS_NPC(vict)) {
-        send_to_char("NPCs don't have aliases.\n", ch);
+        char_printf(ch, "NPCs don't have aliases.\n");
         return;
     }
 
     if (!*arg) {
         /* no argument specified -- list currently defined aliases */
-        send_to_char("Currently defined aliases:\n", ch);
+        char_printf(ch, "Currently defined aliases:\n");
 
         if ((alias = GET_ALIASES(vict)))
             for (; alias; alias = alias->next) {
                 sprintf(buf, "%-15s %s\n", alias->alias, alias->replacement);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             }
         else
-            send_to_char(" None.\n", ch);
+            char_printf(ch, " None.\n");
     } else if (ch == vict || (GET_LEVEL(ch) >= LVL_ADMIN && GET_LEVEL(ch) > GET_LEVEL(vict))) {
         /* otherwise, add or remove aliases */
 
@@ -1211,15 +1211,15 @@ ACMD(do_alias) {
         /* if no replacement string is specified, assume we want to delete */
         if (!*repl) {
             if (alias)
-                send_to_char("Alias deleted.\n", ch);
+                char_printf(ch, "Alias deleted.\n");
             else
-                send_to_char("No such alias.\n", ch);
+                char_printf(ch, "No such alias.\n");
         } else {
 
             /* otherwise, either add or redefine an alias */
 
             if (!strcasecmp(arg, "alias")) {
-                send_to_char("You can't alias 'alias'.\n", ch);
+                char_printf(ch, "You can't alias 'alias'.\n");
                 return;
             }
 
@@ -1234,11 +1234,11 @@ ACMD(do_alias) {
                 alias->type = ALIAS_SIMPLE;
             alias->next = GET_ALIASES(vict);
             GET_ALIASES(vict) = alias;
-            send_to_char("Alias added.\n", ch);
+            char_printf(ch, "Alias added.\n");
         }
     } else {
         sprintf(buf, "You cannot modify %s's aliases.\n", GET_NAME(vict));
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 }
 
@@ -1652,19 +1652,18 @@ void display_classes(DescriptorData *d, int select) {
     clericok = class_ok_race[char_race][CLASS_CLERIC];
     /* commenter out by Fingh 11/7 class_ok_race[char_race][CLASS_SHAMAN]; */
     if (select) {
-        send_to_char(subclass_descrip, d->character);
-        send_to_char(subclass_descrip2, d->character);
-        send_to_char("\n&5Class selection menu - \n ", d->character); /* Added return newline after menu - RSD */
+        char_printf(d->character, subclass_descrip);
+        char_printf(d->character, subclass_descrip2);
+        char_printf(d->character, "\n&5Class selection menu - \n "); /* Added return newline after menu - RSD */
     }
-    /*  send_to_char("&1&b(&0&5*&1&b) denotes a class available to your
-     * race!&0&5\n\n", d->character); */
+    /*  char_printf(d->character, "&1&b(&0&5*&1&b) denotes a class available to your race!&0&5\n\n"); */
 
     /*
 
        for (x = 0; x < NUM_CLASSES; x++)
        if (class_ok_race[(int)GET_RACE(d->character)][x])
-       send_to_char(class_display[x], d->character);
-       send_to_char("\nClass: ", d->character);
+       char_printf(d->character, class_display[x]);
+       char_printf(d->character, "\nClass: ");
      */
     /* Subclassing explaination/preface */
     /*  sprintf(buf,"&5&b");
@@ -1694,8 +1693,8 @@ void display_classes(DescriptorData *d, int select) {
         sprintf(buf2, "%s%-16.16s", buf2, "======");
       }
       sprintf(buf,"%s\n", buf);
-      send_to_char(buf, d->character);
-      send_to_char(buf2, d->character);
+      char_printf(d->character, buf);
+      char_printf(d->character, buf2);
       sprintf(buf, "\n&5");
       for (x=0;x<MAX(MAX(MAX(WARRIOR_SUBCLASSES, CLERIC_SUBCLASSES),
       MAGE_SUBCLASSES), ROGUE_SUBCLASSES);x++) { if(warriorok) if (x <
@@ -1733,8 +1732,8 @@ void display_classes(DescriptorData *d, int select) {
         sprintf(buf, "%s\n&6Choose -%s%s%s%s: ", buf, warriorok ? " [&0&1&bw&0&6]arrior" : "",
                 clericok ? " [&0&1&bc&0&6]leric" : "", mageok ? " [&0&1&bs&0&6]orcerer" : "",
                 rogueok ? " [&0&1&br&0&6]ogue" : "");
-    send_to_char(buf, d->character);
-    send_to_char("&0", d->character);
+    char_printf(d->character, buf);
+    char_printf(d->character, "&0");
 }
 
 /* return first space-delimited token in arg1; remainder of string in arg2 */
@@ -1843,7 +1842,7 @@ int perform_dupe_check(DescriptorData *d) {
             continue;
 
         if (k->original && (GET_IDNUM(k->original) == id)) { /* switched char */
-            write_to_output("\nMultiple login detected -- disconnecting.\n", k);
+            string_to_output(k, "\nMultiple login detected -- disconnecting.\n");
             STATE(k) = CON_CLOSE;
             if (k->character && k->original->player.level <= 100) {
                 if (POSSESSED(k->character))
@@ -1859,14 +1858,14 @@ int perform_dupe_check(DescriptorData *d) {
             k->original = nullptr;
         } else if (k->character && (GET_IDNUM(k->character) == id)) {
             if (!target && STATE(k) == CON_PLAYING) {
-                write_to_output("\nThis body has been usurped!\n", k);
+                string_to_output(k, "\nThis body has been usurped!\n");
                 target = k->character;
                 mode = USURP;
             }
             k->character->desc = nullptr;
             k->character = nullptr;
             k->original = nullptr;
-            write_to_output("\nMultiple login detected -- disconnecting.\n", k);
+            string_to_output(k, "\nMultiple login detected -- disconnecting.\n");
             STATE(k) = CON_CLOSE;
         }
     }
@@ -1927,13 +1926,13 @@ int perform_dupe_check(DescriptorData *d) {
 
     switch (mode) {
     case RECON:
-        write_to_output("Reconnecting.\n", d);
+        string_to_output(d, "Reconnecting.\n");
         act("$n has reconnected.", true, d->character, 0, 0, TO_ROOM);
         sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
         log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
         break;
     case USURP:
-        write_to_output("Overriding old connection.\n", d);
+        string_to_output(d, "Overriding old connection.\n");
         act("$n suddenly keels over in pain, surrounded by a white aura...\n"
             "$n's body has been taken over by a new spirit!",
             true, d->character, 0, 0, TO_ROOM);
@@ -1941,7 +1940,7 @@ int perform_dupe_check(DescriptorData *d) {
         log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
         break;
     case UNSWITCH:
-        write_to_output("Reconnecting to unswitched char.", d);
+        string_to_output(d, "Reconnecting to unswitched char.");
         sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
         log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
         break;
@@ -2081,9 +2080,9 @@ void nanny(DescriptorData *d, char *arg) {
             if (*arg == '~') {
                 if (PRF_FLAGGED(d->character, PRF_OLCCOMM)) {
                     command_interpreter(d->character, ++arg);
-                    write_to_output("~: ", d);
+                    string_to_output(d, "~: ");
                 } else
-                    write_to_output("You must have OLCComm toggled on to use commands in OLC.\n", d);
+                    string_to_output(d, "You must have OLCComm toggled on to use commands in OLC.\n");
             } else
                 (*olc_functions[player_i].func)(d, arg);
             return;
@@ -2107,10 +2106,9 @@ void nanny(DescriptorData *d, char *arg) {
 
         if ((_parse_name(arg, tmp_name)) || strlen(tmp_name) < 2 || strlen(tmp_name) > MAX_NAME_LENGTH ||
             fill_word(strcpy(buf, tmp_name)) || reserved_word(buf)) {
-            write_to_output(
-                "Invalid name, please try another.\n"
-                "Name: ",
-                d);
+            string_to_output(d,
+                             "Invalid name, please try another.\n"
+                             "Name: ");
             return;
         }
 
@@ -2136,7 +2134,7 @@ void nanny(DescriptorData *d, char *arg) {
                     REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
                 }
                 sprintf(buf, "\nDo you want to make a new character called %s? ", tmp_name);
-                write_to_output(buf, d);
+                string_to_output(d, buf);
                 STATE(d) = CON_NAME_CNFRM;
             } else {
                 /* An existing player's name was entered, and the pfile was successfully
@@ -2158,7 +2156,7 @@ void nanny(DescriptorData *d, char *arg) {
                     REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
                 }
 
-                write_to_output("Password: ", d);
+                string_to_output(d, "Password: ");
                 echo_off(d);
                 d->idle_tics = 0;
                 STATE(d) = CON_PASSWORD;
@@ -2173,8 +2171,9 @@ void nanny(DescriptorData *d, char *arg) {
                    connection.  Yes I'm evil - RSD 8/29/2002 <-- genius
                  */
                 log("{} is being ninja rejected by the name approval code.", tmp_name);
-                write_to_output("Welcome back!\n", d);
-                write_to_output("Password: ", d);
+                string_to_output(d,
+                                 "Welcome back!\n"
+                                 "Password: ");
                 echo_off(d);
                 d->idle_tics = 0;
                 STATE(d) = CON_ISPELL_BOOT;
@@ -2182,14 +2181,14 @@ void nanny(DescriptorData *d, char *arg) {
             }
 
             if (!Valid_Name(tmp_name)) {
-                write_to_output("Invalid name, please try another.\n", d);
-                write_to_output("Name: ", d);
+                string_to_output(d,
+                                 "Invalid name, please try another.\n"
+                                 "Name: ");
                 return;
             }
 
             set_player_name(d->character, tmp_name);
-            sprintf(buf, "\nDo you want to make a new character called %s? ", tmp_name);
-            write_to_output(buf, d);
+            string_to_output(d, "\nDo you want to make a new character called {}? ", tmp_name);
             STATE(d) = CON_NAME_CNFRM;
             /* End of new player business */
         }
@@ -2201,16 +2200,16 @@ void nanny(DescriptorData *d, char *arg) {
             if (isbanned(d->host) >= BAN_NEW) {
                 log(LogSeverity::Stat, LVL_GOD, "Request for new char {} denied from [{}] (siteban)",
                     GET_NAME(d->character), d->host);
-                write_to_output("Sorry, new characters are not allowed from your site!\n", d);
+                string_to_output(d, "Sorry, new characters are not allowed from your site!\n");
                 STATE(d) = CON_CLOSE;
                 return;
             }
             if (should_restrict) {
                 if (restrict_reason == RESTRICT_AUTOBOOT) {
-                    write_to_output("Sorry, no new players because the mud is rebooting shortly.\n", d);
-                    write_to_output("Please try again in five minutes.\n", d);
+                    string_to_output(d, "Sorry, no new players because the mud is rebooting shortly.\n");
+                    string_to_output(d, "Please try again in five minutes.\n");
                 } else {
-                    write_to_output("Sorry, new players can't be created at the moment.\n", d);
+                    string_to_output(d, "Sorry, new players can't be created at the moment.\n");
                 }
                 log(LogSeverity::Stat, LVL_GOD, "Request for new char {} denied from {} (wizlock)",
                     GET_NAME(d->character), d->host);
@@ -2230,40 +2229,40 @@ void nanny(DescriptorData *d, char *arg) {
             }
 
             STATE(d) = CON_NAME_CHECK;
-            write_to_output(NAMES_EXPLANATION, d);
+            string_to_output(d, NAMES_EXPLANATION);
             sprintf(buf, "Do you believe \"%s\" is acceptable by these standards? (Y/N) ", GET_NAME(d->character));
-            write_to_output(buf, d);
+            string_to_output(d, buf);
             break;
         case YESNO_NO:
-            write_to_output("Okay, what IS it, then? ", d);
+            string_to_output(d, "Okay, what IS it, then? ");
             clear_player_name(d->character);
             STATE(d) = CON_GET_NAME;
             break;
         default:
-            write_to_output("Please answer yes or no: ", d);
+            string_to_output(d, "Please answer yes or no: ");
         }
         break;
     case CON_NEW_NAME:
         if (!*arg) {
-            write_to_output("Name: ", d);
+            string_to_output(d, "Name: ");
             return;
         }
         if ((_parse_name(arg, tmp_name)) || strlen(tmp_name) < 2 || strlen(tmp_name) > MAX_NAME_LENGTH ||
             fill_word(strcpy(buf, tmp_name)) || reserved_word(buf)) {
-            write_to_output(
-                "c> Invalid name, please try another.\n"
-                "Name: ",
-                d);
+            string_to_output(d,
+                             "c> Invalid name, please try another.\n"
+                             "Name: ");
             return;
         }
         if ((player_i = load_player(tmp_name, d->character)) > -1) {
-            write_to_output("That name is already taken!\n", d);
-            write_to_output("Name: ", d);
+            string_to_output(d, "That name is already taken!\n");
+            string_to_output(d, "Name: ");
             return;
         }
         if (!Valid_Name(arg)) {
-            write_to_output("d> Invalid name, please try another.\n", d);
-            write_to_output("Name: ", d);
+            string_to_output(d,
+                             "d> Invalid name, please try another.\n"
+                             "Name: ");
             return;
         } else {
             if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
@@ -2280,25 +2279,24 @@ void nanny(DescriptorData *d, char *arg) {
                 set_player_name(d->character, arg);
             }
 
-            write_to_output("Now you must wait to be re-approved.\n", d);
+            string_to_output(d, "Now you must wait to be re-approved.\n");
             if (!PLR_FLAGGED(d->character, PLR_NAPPROVE))
                 SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
             event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
-            write_to_output(
-                "Now you must wait for your name to be approved by an immortal.\n"
-                "If no one is available, you will be granted entry in a VERY short "
-                "time.\n",
-                d);
+            string_to_output(d,
+                             "Now you must wait for your name to be approved by an immortal.\n"
+                             "If no one is available, you will be granted entry in a VERY short "
+                             "time.\n");
             broadcast_name(GET_NAME(d->character));
             STATE(d) = CON_NAME_WAIT_APPROVAL;
         }
         break;
     case CON_NAME_WAIT_APPROVAL:
-        write_to_output("You must wait to be approved.\n", d);
+        string_to_output(d, "You must wait to be approved.\n");
         break;
     case CON_ISPELL_BOOT:
-        write_to_output("\nWrong password... disconnecting.\n", d);
+        string_to_output(d, "\nWrong password... disconnecting.\n");
         STATE(d) = CON_CLOSE;
         break;
     case CON_PASSWORD: /* get pwd for known player      */
@@ -2322,10 +2320,10 @@ void nanny(DescriptorData *d, char *arg) {
                 GET_BAD_PWS(d->character)++;
                 save_player_char(d->character);
                 if (++(d->bad_pws) >= max_bad_pws) { /* 3 strikes and you're out. */
-                    write_to_output("Wrong password... disconnecting.\n", d);
+                    string_to_output(d, "Wrong password... disconnecting.\n");
                     STATE(d) = CON_CLOSE;
                 } else {
-                    write_to_output("Wrong password.\nPassword: ", d);
+                    string_to_output(d, "Wrong password.\nPassword: ");
                     echo_off(d);
                 }
                 return;
@@ -2334,7 +2332,7 @@ void nanny(DescriptorData *d, char *arg) {
             GET_BAD_PWS(d->character) = 0;
 
             if (isbanned(d->host) == BAN_SELECT && !PLR_FLAGGED(d->character, PLR_SITEOK)) {
-                write_to_output("Sorry, this char has not been cleared for login from your site!\n", d);
+                string_to_output(d, "Sorry, this char has not been cleared for login from your site!\n");
                 STATE(d) = CON_CLOSE;
                 log(LogSeverity::Stat, LVL_GOD, "Connection attempt for {} denied from {}", GET_NAME(d->character),
                     d->host);
@@ -2342,13 +2340,10 @@ void nanny(DescriptorData *d, char *arg) {
             }
             if (GET_LEVEL(d->character) < should_restrict) {
                 if (restrict_reason == RESTRICT_AUTOBOOT) {
-                    write_to_output("The game is restricted due to an imminent reboot.\n", d);
-                    write_to_output("Please try again in 2-3 minutes.\n", d);
+                    string_to_output(d, "The game is restricted due to an imminent reboot.\n");
+                    string_to_output(d, "Please try again in 2-3 minutes.\n");
                 } else {
-                    write_to_output(
-                        "The game is temporarily restricted.  Please Try "
-                        "again later.\n",
-                        d);
+                    string_to_output(d, "The game is temporarily restricted.  Please Try again later.\n");
                 }
                 STATE(d) = CON_CLOSE;
                 log(LogSeverity::Stat, LVL_GOD, "Request for login denied for {} [{}] (wizlock)",
@@ -2360,20 +2355,20 @@ void nanny(DescriptorData *d, char *arg) {
                 return;
 
             if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
-                write_to_output("Your name has been deemed unacceptable.  Please choose a new one.\n", d);
-                write_to_output("Name: ", d);
+                string_to_output(d, "Your name has been deemed unacceptable.  Please choose a new one.\n");
+                string_to_output(d, "Name: ");
                 STATE(d) = CON_NEW_NAME;
                 return;
             }
 
             if (GET_LEVEL(d->character) >= LVL_IMMORT)
-                write_to_output(get_text(TEXT_IMOTD), d);
+                string_to_output(d, get_text(TEXT_IMOTD));
             else
-                write_to_output(get_text(TEXT_MOTD), d);
+                string_to_output(d, get_text(TEXT_MOTD));
 
             if (d->character->player.time.logon < get_text_update_time(TEXT_NEWS)) {
-                write_to_output(NEWSUPDATED1, d);
-                write_to_output(NEWSUPDATED2, d);
+                string_to_output(d, NEWSUPDATED1);
+                string_to_output(d, NEWSUPDATED2);
             }
 
             if (GET_CLAN(d->character) && GET_CLAN(d->character)->motd)
@@ -2394,10 +2389,10 @@ void nanny(DescriptorData *d, char *arg) {
                         "%s%d LOGIN FAILURE%s SINCE LAST SUCCESSFUL LOGIN.%s\n",
                         CLRLV(d->character, FRED, C_SPR), load_result, (load_result > 1) ? "S" : "",
                         CLRLV(d->character, ANRM, C_SPR));
-                write_to_output(buf, d);
+                string_to_output(d, buf);
                 GET_BAD_PWS(d->character) = 0;
             }
-            write_to_output("\n\n*** PRESS RETURN: ", d);
+            string_to_output(d, "\n\n*** PRESS RETURN: ");
             STATE(d) = CON_RMOTD;
         }
         break;
@@ -2405,14 +2400,14 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_NEWPASSWD:
     case CON_CHPWD_GETNEW:
         if (!*arg || strlen(arg) > MAX_PWD_LENGTH || strlen(arg) < 3 || !strcasecmp(arg, GET_NAME(d->character))) {
-            write_to_output("\nIllegal password.\n", d);
-            write_to_output("Password: ", d);
+            string_to_output(d, "\nIllegal password.\n");
+            string_to_output(d, "Password: ");
             return;
         }
         strncpy(GET_PASSWD(d->character), CRYPT(arg, GET_NAME(d->character)), MAX_PWD_LENGTH);
         *(GET_PASSWD(d->character) + MAX_PWD_LENGTH) = '\0';
 
-        write_to_output("\nPlease retype password: ", d);
+        string_to_output(d, "\nPlease retype password: ");
         if (STATE(d) == CON_NEWPASSWD)
             STATE(d) = CON_CNFPASSWD;
         else
@@ -2423,8 +2418,8 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_CNFPASSWD:
     case CON_CHPWD_VRFY:
         if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
-            write_to_output("\nPasswords don't match... start over.\n", d);
-            write_to_output("Password: ", d);
+            string_to_output(d, "\nPasswords don't match... start over.\n");
+            string_to_output(d, "Password: ");
             if (STATE(d) == CON_CNFPASSWD)
                 STATE(d) = CON_NEWPASSWD;
             else
@@ -2434,13 +2429,13 @@ void nanny(DescriptorData *d, char *arg) {
         echo_on(d);
 
         if (STATE(d) == CON_CNFPASSWD) {
-            write_to_output("\nWhat is your sex (M/F)? ", d);
+            string_to_output(d, "\nWhat is your sex (M/F)? ");
             STATE(d) = CON_QSEX;
         } else {
             save_player_char(d->character);
             echo_on(d);
-            write_to_output("\nDone.\n", d);
-            write_to_output(MENU, d);
+            string_to_output(d, "\nDone.\n");
+            string_to_output(d, MENU);
             STATE(d) = CON_MENU;
         }
 
@@ -2457,16 +2452,15 @@ void nanny(DescriptorData *d, char *arg) {
             d->character->player.sex = SEX_FEMALE;
             break;
         default:
-            write_to_output(
-                "\nThat is not a sex!\n"
-                "What IS your sex? (M/F) ",
-                d);
+            string_to_output(d,
+                             "\nThat is not a sex!\n"
+                             "What IS your sex? (M/F) ");
             return;
             break;
         }
         if (races_allowed) {
             send_race_menu(d);
-            write_to_output("\nRace: ", d);
+            string_to_output(d, "\nRace: ");
             STATE(d) = CON_QRACE;
             break;
         } else {
@@ -2485,9 +2479,9 @@ void nanny(DescriptorData *d, char *arg) {
         load_result = interpret_race_selection(*arg);
         log(" Argument: {}, Result: {}", *arg, load_result);
         if (load_result == RACE_UNDEFINED) {
-            write_to_output("\n&3Please choose by entering the letter next to the race of your choice.&0\n", d);
+            string_to_output(d, "\n&3Please choose by entering the letter next to the race of your choice.&0\n");
             send_race_menu(d);
-            write_to_output("\nRace: ", d);
+            string_to_output(d, "\nRace: ");
             return;
         } else
             GET_RACE(d->character) = load_result;
@@ -2498,13 +2492,13 @@ void nanny(DescriptorData *d, char *arg) {
         switch (yesno_result(arg)) {
         case YESNO_YES:
             sprintf(buf, "\nGive me a password for %s: ", GET_NAME(d->character));
-            write_to_output(buf, d);
+            string_to_output(d, buf);
             echo_off(d);
             STATE(d) = CON_NEWPASSWD;
             break;
         default:
             tmp_name[0] = '\0';
-            write_to_output("\nPlease enter a different name: ", d);
+            string_to_output(d, "\nPlease enter a different name: ");
             clear_player_name(d->character);
             STATE(d) = CON_GET_NAME;
             break;
@@ -2514,7 +2508,7 @@ void nanny(DescriptorData *d, char *arg) {
         /*
            load_result = parse_class(NULL, d->character, *arg);
            if (load_result == CLASS_UNDEFINED) {
-           write_to_output("\nInvalid selection.\nClass: ", d);
+           string_to_output(d, "\nInvalid selection.\nClass: ");
            return;
            } else
            GET_CLASS(d->character) = load_result;
@@ -2524,7 +2518,7 @@ void nanny(DescriptorData *d, char *arg) {
             if (class_ok_race[(int)GET_RACE(d->character)][CLASS_WARRIOR])
                 load_result = CLASS_WARRIOR;
             else {
-                write_to_output("\nInvalid selection.\nClass: ", d);
+                string_to_output(d, "\nInvalid selection.\nClass: ");
                 return;
             }
             break;
@@ -2532,7 +2526,7 @@ void nanny(DescriptorData *d, char *arg) {
             if (class_ok_race[(int)GET_RACE(d->character)][CLASS_CLERIC])
                 load_result = CLASS_CLERIC;
             else {
-                write_to_output("\nInvalid selection.\nClass: ", d);
+                string_to_output(d, "\nInvalid selection.\nClass: ");
                 return;
             }
             break;
@@ -2540,7 +2534,7 @@ void nanny(DescriptorData *d, char *arg) {
             if (class_ok_race[(int)GET_RACE(d->character)][CLASS_SORCERER])
                 load_result = CLASS_SORCERER;
             else {
-                write_to_output("\nInvalid selection.\nClass: ", d);
+                string_to_output(d, "\nInvalid selection.\nClass: ");
                 return;
             }
             break;
@@ -2548,7 +2542,7 @@ void nanny(DescriptorData *d, char *arg) {
             if (class_ok_race[(int)GET_RACE(d->character)][CLASS_ROGUE])
                 load_result = CLASS_ROGUE;
             else {
-                write_to_output("\nInvalid selection.\nClass: ", d);
+                string_to_output(d, "\nInvalid selection.\nClass: ");
                 return;
             }
             break;
@@ -2556,7 +2550,7 @@ void nanny(DescriptorData *d, char *arg) {
                if (class_ok_race[(int)GET_RACE(d->character)][CLASS_SHAMAN])
                load_result = CLASS_SHAMAN;
                else {
-               write_to_output("\nInvalid selection.\nClass: ", d);
+               string_to_output(d, "\nInvalid selection.\nClass: ");
                return;
                }
                break; */
@@ -2567,7 +2561,7 @@ void nanny(DescriptorData *d, char *arg) {
                   sprintf(buf2, "%s0) Back to Class Selection\n\nSelection:
                ",buf2); page_string(d, buf2); STATE(d) = CON_CLASSHELP; return; */
         default:
-            write_to_output("\nInvalid selection.\nClass: ", d);
+            string_to_output(d, "\nInvalid selection.\nClass: ");
             return;
         }
         GET_CLASS(d->character) = load_result;
@@ -2577,7 +2571,7 @@ void nanny(DescriptorData *d, char *arg) {
 
         GET_HOMEROOM(d->character) = classes[(int)GET_CLASS(d->character)].homeroom;
 
-        write_to_output("\nPlease press ENTER to roll your attributes: ", d);
+        string_to_output(d, "\nPlease press ENTER to roll your attributes: ");
         STATE(d) = CON_QROLLSTATS;
 
         /* This is the place we'd ask about hometown selection. */
@@ -2606,7 +2600,7 @@ void nanny(DescriptorData *d, char *arg) {
 
         /* Here is some code to gracefully exit this state if it gets entered
          * by mistake. */
-        write_to_output("\nPlease press ENTER to roll your attributes: ", d);
+        string_to_output(d, "\nPlease press ENTER to roll your attributes: ");
         STATE(d) = CON_QROLLSTATS;
         break;
 
@@ -2623,49 +2617,43 @@ void nanny(DescriptorData *d, char *arg) {
 
             roll_natural_abils(d->character);
             new_rollor_display(d->character, roll_table);
-            sprintf(buf,
-                    "\n\r        Con:  %s                Wis:  %s\n"
-                    "        Str:  %s                Intel:%s\n"
-                    "        Dex:  %s                Char: %s\n",
-                    rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
-                    rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
-                    rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
-            write_to_output(buf, d);
-            write_to_output(
-                "\n\nYou may keep these stats if you wish (&0&6Enter "
-                "y&0),\nor if you wish"
-                " you may try for better stats (&0&6Enter n&0)(y/n):",
-                d);
+            string_to_output(d,
+                             "\n"
+                             "        Con:  {}                Wis:  {}\n"
+                             "        Str:  {}                Intel:{}\n"
+                             "        Dex:  {}                Char: {}\n"
+                             "\n\nYou may keep these stats if you wish (&0&6Enter y&0),\n"
+                             "or if you wish you may try for better stats (&0&6Enter n&0)(y/n):",
+                             rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
+                             rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
+                             rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
             return;
         }
 
-        write_to_output(
-            "\n\n&0&7&bYou have three bonus's to use choose the "
-            "stat carefully:&0\n",
-            d);
-        write_to_output(stats_display, d);
-        write_to_output("\n&0&7&bPlease enter your first bonus selection:&0\n", d);
+        string_to_output(d, "\n\n&0&7&bYou have three bonus's to use choose the stat carefully:&0\n");
+        string_to_output(d, stats_display);
+        string_to_output(d, "\n&0&7&bPlease enter your first bonus selection:&0\n");
         STATE(d) = CON_QBONUS1;
         break;
     case CON_QBONUS1:
         load_result = bonus_stat(d->character, *arg);
         if (!load_result) {
-            write_to_output("&0&1That selection was not offered, please try again&0\n\n", d);
+            string_to_output(d, "&0&1That selection was not offered, please try again&0\n\n");
             return;
         }
-        write_to_output(stats_display, d);
-        write_to_output("\n&0&7&bPlease enter your second bonus selection:&0\n", d);
+        string_to_output(d, stats_display);
+        string_to_output(d, "\n&0&7&bPlease enter your second bonus selection:&0\n");
 
         STATE(d) = CON_QBONUS2;
         break;
     case CON_QBONUS2:
         load_result = bonus_stat(d->character, *arg);
         if (!load_result) {
-            write_to_output("&0&1That selection was not offered, please try again&0\n\n", d);
+            string_to_output(d, "&0&1That selection was not offered, please try again&0\n\n");
             return;
         }
-        write_to_output(stats_display, d);
-        write_to_output("\n&0&7&bPlease enter your third bonus selection:&0\n", d);
+        string_to_output(d, stats_display);
+        string_to_output(d, "\n&0&7&bPlease enter your third bonus selection:&0\n");
 
         STATE(d) = CON_QBONUS3;
         break;
@@ -2673,18 +2661,17 @@ void nanny(DescriptorData *d, char *arg) {
         load_result = bonus_stat(d->character, *arg);
 
         if (!load_result) {
-            write_to_output("&0&1That selection was not offered, please try again&0\n\n", d);
+            string_to_output(d, "&0&1That selection was not offered, please try again&0\n\n");
             return;
         }
 
         d->character->actual_abils = d->character->natural_abils;
         scale_attribs(d->character);
 
-        write_to_output(
-            "&0&4\n\nRolling for this character is complete!!\n"
-            "&0&4&bDo you wish to keep this character (Y/n)?\n"
-            "(Answering 'n' will take you back to gender selection.)&0  ",
-            d);
+        string_to_output(d,
+                         "&0&4\n\nRolling for this character is complete!!\n"
+                         "&0&4&bDo you wish to keep this character (Y/n)?\n"
+                         "(Answering 'n' will take you back to gender selection.)&0  ");
         STATE(d) = CON_QCANCHAR;
         break;
     case CON_QCANCHAR:
@@ -2695,15 +2682,14 @@ void nanny(DescriptorData *d, char *arg) {
             for (i = 0; i < 6; i++) {
                 GET_ROLL(d->character, i) = 0;
             }
-            write_to_output("\nWhat is your sex (M/F)? ", d);
+            string_to_output(d, "\nWhat is your sex (M/F)? ");
             STATE(d) = CON_QSEX;
             break;
         case YESNO_OTHER:
-            write_to_output("\nPlease answer yes or no.\n", d);
-            write_to_output(
-                "&0&4&bDo you wish to keep this character (Y/n)?\n"
-                "(Answering 'n' will take you back to gender selection.)&0  ",
-                d);
+            string_to_output(d,
+                             "\nPlease answer yes or no.\n"
+                             "&0&4&bDo you wish to keep this character (Y/n)?\n"
+                             "(Answering 'n' will take you back to gender selection.)&0  ");
             break;
         default:
             if (approve_names && (top_of_p_table + 1) && napprove_pause) {
@@ -2712,10 +2698,9 @@ void nanny(DescriptorData *d, char *arg) {
                 }
                 event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
-                write_to_output(
-                    "\nNow you must wait for your name to be approved by an immortal.\n"
-                    "If no one is available, you will be auto approved in a short time.\n",
-                    d);
+                string_to_output(d,
+                                 "\nNow you must wait for your name to be approved by an immortal.\n"
+                                 "If no one is available, you will be auto approved in a short time.\n");
                 broadcast_name(GET_NAME(d->character));
                 STATE(d) = CON_NAME_WAIT_APPROVAL;
                 break;
@@ -2729,14 +2714,14 @@ void nanny(DescriptorData *d, char *arg) {
                 init_player(d->character);
                 save_player_char(d->character);
                 log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] new player.", GET_NAME(d->character), d->host);
-                write_to_output("\n*** PRESS RETURN: ", d);
+                string_to_output(d, "\n*** PRESS RETURN: ");
                 STATE(d) = CON_RMOTD;
                 break;
             }
         }
         break;
     case CON_RMOTD: /* read CR after printing motd   */
-        write_to_output(MENU, d);
+        string_to_output(d, MENU);
         STATE(d) = CON_MENU;
         break;
 
@@ -2749,23 +2734,22 @@ void nanny(DescriptorData *d, char *arg) {
         case '1':
 
             load_result = enter_player_game(d);
-            send_to_char(WELC_MESSG, d->character);
+            char_printf(d->character, WELC_MESSG);
             act("$n has entered the game.", true, d->character, 0, 0, TO_ROOM);
 
             STATE(d) = CON_PLAYING;
             if (!GET_LEVEL(d->character)) {
                 start_player(d->character);
-                send_to_char(START_MESSG, d->character);
+                char_printf(d->character, START_MESSG);
                 give_newbie_eq(d->character);
             }
             look_at_room(d->character, false);
             if (has_mail(GET_IDNUM(d->character)))
-                send_to_char("You have mail waiting.\n", d->character);
+                char_printf(d->character, "You have mail waiting.\n");
             if (load_result == 2) { /* rented items lost */
-                send_to_char(
-                    "\n\007You could not afford your rent!\n"
-                    "Your possesions have been donated to the Salvation Army!\n",
-                    d->character);
+                char_printf(d->character,
+                            "\n\007You could not afford your rent!\n"
+                            "Your possesions have been donated to the Salvation Army!\n");
             }
             personal_reboot_warning(d->character);
             d->prompt_mode = 1;
@@ -2777,21 +2761,21 @@ void nanny(DescriptorData *d, char *arg) {
             break;
 
         case '3':
-            write_to_output("\nEnter your old password: ", d);
+            string_to_output(d, "\nEnter your old password: ");
             echo_off(d);
             STATE(d) = CON_CHPWD_GETOLD;
             break;
             /*    case '5':
-                  write_to_output("\n This has been temporarily removed.\n", d);
-                  write_to_output(MENU, d);
+                  string_to_output(d, "\n This has been temporarily removed.\n");
+                  string_to_output(d, MENU);
                   STATE(d) = CON_MENU; */
-            /*      write_to_output("\nEnter your password for verification: ", d);
+            /*      string_to_output(d, "\nEnter your password for verification: ");
                echo_off(d);
                STATE(d) = CON_DELCNF1; */
             /*      break; */
         default:
-            write_to_output("\nUnknown menu option.\n", d);
-            write_to_output(MENU, d);
+            string_to_output(d, "\nUnknown menu option.\n");
+            string_to_output(d, MENU);
             break;
         }
 
@@ -2800,12 +2784,12 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_CHPWD_GETOLD:
         if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
             echo_on(d);
-            write_to_output("\nIncorrect password.\n", d);
-            write_to_output(MENU, d);
+            string_to_output(d, "\nIncorrect password.\n");
+            string_to_output(d, MENU);
             STATE(d) = CON_MENU;
             return;
         } else {
-            write_to_output("\nEnter a new password: ", d);
+            string_to_output(d, "\nEnter a new password: ");
             STATE(d) = CON_CHPWD_GETNEW;
             return;
         }
@@ -2814,15 +2798,14 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_DELCNF1:
         echo_on(d);
         if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
-            write_to_output("\nIncorrect password.\n", d);
-            write_to_output(MENU, d);
+            string_to_output(d, "\nIncorrect password.\n");
+            string_to_output(d, MENU);
             STATE(d) = CON_MENU;
         } else {
-            write_to_output(
-                "\nYOU ARE ABOUT TO DELETE THIS CHARACTER PERMANENTLY.\n"
-                "ARE YOU ABSOLUTELY SURE?\n\n"
-                "Please type \"yes\" to confirm: ",
-                d);
+            string_to_output(d,
+                             "\nYOU ARE ABOUT TO DELETE THIS CHARACTER PERMANENTLY.\n"
+                             "ARE YOU ABSOLUTELY SURE?\n\n"
+                             "Please type \"yes\" to confirm: ");
             STATE(d) = CON_DELCNF2;
         }
         break;
@@ -2830,8 +2813,8 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_DELCNF2:
         if (!strcasecmp(arg, "yes")) {
             if (PLR_FLAGGED(d->character, PLR_FROZEN)) {
-                write_to_output("You try to kill yourself, but the ice stops you.\n", d);
-                write_to_output("Character not deleted.\n\n", d);
+                string_to_output(d, "You try to kill yourself, but the ice stops you.\n");
+                string_to_output(d, "Character not deleted.\n\n");
                 STATE(d) = CON_CLOSE;
                 return;
             }
@@ -2846,14 +2829,14 @@ void nanny(DescriptorData *d, char *arg) {
                     "Character '%s' deleted!\n"
                     "Goodbye.\n",
                     GET_NAME(d->character));
-            write_to_output(buf, d);
+            string_to_output(d, buf);
             log(LogSeverity::Stat, LVL_GOD, "{} (lev {:d}) has self-deleted.", GET_NAME(d->character),
                 GET_LEVEL(d->character));
             STATE(d) = CON_CLOSE;
             return;
         } else {
-            write_to_output("\nCharacter not deleted.\n", d);
-            write_to_output(MENU, d);
+            string_to_output(d, "\nCharacter not deleted.\n");
+            string_to_output(d, MENU);
             STATE(d) = CON_MENU;
         }
         break;
@@ -2884,7 +2867,7 @@ long max_exp_gain(CharData *ch) {
 
     current = (long)(0.2 * (float)total);
     /*sprintf(buf, "max exp gain is %ld, but total %ld, percent 20\n", current,
-       total); send_to_char(buf, ch);
+       total); char_printf(ch, buf);
      */
     return current;
 }
@@ -2982,9 +2965,9 @@ EVENTFUNC(name_timeout) {
            FREAKING DECLINED wouldn't sneak online anyway if they
            sat at the prompt not choosing a new name. - RSD 11/11/2000
          */
-        write_to_output("You have been auto-approved.\n", d);
-        write_to_output(get_text(TEXT_MOTD), d);
-        write_to_output("\n\n*** PRESS RETURN: ", d);
+        string_to_output(d, "You have been auto-approved.\n");
+        string_to_output(d, get_text(TEXT_MOTD));
+        string_to_output(d, "\n\n*** PRESS RETURN: ");
         if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
             log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] has connected with a new name.", GET_NAME(d->character),
                 d->host);

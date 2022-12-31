@@ -355,23 +355,23 @@ void gain_condition(CharData *ch, int condition, int value) {
     if (GET_COND(ch, condition) == 5) {
         switch (condition) {
         case FULL:
-            send_to_char("You're a little hungry.\n", ch);
+            char_printf(ch, "You're a little hungry.\n");
             return;
         case THIRST:
-            send_to_char("You're a little thirsty.\n", ch);
+            char_printf(ch, "You're a little thirsty.\n");
             return;
         }
     } else if (!GET_COND(ch, condition)) {
         switch (condition) {
         case FULL:
-            send_to_char("You are hungry.\n", ch);
+            char_printf(ch, "You are hungry.\n");
             return;
         case THIRST:
-            send_to_char("You are thirsty.\n", ch);
+            char_printf(ch, "You are thirsty.\n");
             return;
         case DRUNK:
             if (intoxicated)
-                send_to_char("You are now sober.\n", ch);
+                char_printf(ch, "You are now sober.\n");
             return;
         default:
             break;
@@ -403,7 +403,7 @@ void check_idling(CharData *ch) {
                 /* this char is not already invis beyond the immorts invis level */
                 sprintf(buf, "You have been idle for ten minutes.  Auto-invis to level %d engaged.\n",
                         GET_AUTOINVIS(ch));
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
                 perform_immort_invis(ch, GET_AUTOINVIS(ch));
             }
         }
@@ -414,7 +414,7 @@ void check_idling(CharData *ch) {
         if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE && (!ch->forward || ch->in_room != 0)) {
             GET_WAS_IN(ch) = ch->in_room;
             act("$n disappears into the void.", true, ch, 0, 0, TO_ROOM);
-            send_to_char("You have been idle, and are pulled into a void.\n", ch);
+            char_printf(ch, "You have been idle, and are pulled into a void.\n");
             save_player(ch);
             char_from_room(ch);
             char_to_room(ch, 0);
@@ -615,32 +615,13 @@ void point_update(void) {
         if (EFF_FLAGGED(i, EFF_DISEASE)) {
             act("&3$n&3 pauses a moment as $e purges $s stomach contents.&0", true, i, 0, 0, TO_ROOM);
             act("&3You feel VERY ill and purge the contents of your stomach.&0", false, i, 0, 0, TO_CHAR);
-            gain_condition(i, FULL, -6);
             gain_condition(i, DRUNK, -1);
-            gain_condition(i, THIRST, -6 * HOURLY_THIRST_CHANGE);
         }
 
         if (IS_NPC(i))
             continue;
 
-        if (IS_HUNGRY(i)) {
-            if (IS_THIRSTY(i))
-                ;
-            /* send_to_char("Your hunger and thirst are draining your energy
-             * rapidly.\n", i); */
-            else {
-                /* send_to_char("You are feeling weak from hunger.\n", i); */
-                gain_condition(i, THIRST, -HOURLY_THIRST_CHANGE);
-            }
-        } else if (IS_THIRSTY(i)) {
-            /* send_to_char("You feel dizzy from extreme thirst.\n", i); */
-            gain_condition(i, FULL, -1);
-        } else {
-            gain_condition(i, FULL, -1);
-            gain_condition(i, THIRST, -HOURLY_THIRST_CHANGE);
-        }
         gain_condition(i, DRUNK, -1);
-
         check_idling(i);
     }
 

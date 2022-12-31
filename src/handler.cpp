@@ -413,7 +413,7 @@ void lose_levitation_messages(CharData *ch) {
         char_printf(ch, "{}\n", skills[SPELL_LEVITATE].wearoff);
         act("$n floats back to the ground.", true, ch, 0, 0, TO_ROOM);
     } else {
-        send_to_char("Your weight feels normal again.\n", ch);
+        char_printf(ch, "Your weight feels normal again.\n");
     }
 }
 
@@ -769,16 +769,16 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
 
         if ((GET_OBJ_WEAR(obj) & ITEM_WEAR_2HWIELD) && a) {
             if (sendmessage)
-                send_to_char("You need both hands free for this weapon!\n", ch);
+                char_printf(ch, "You need both hands free for this weapon!\n");
             return false;
         } else if (a > 1) {
             if (sendmessage)
-                send_to_char("Both of your hands are already using something.\n", ch);
+                char_printf(ch, "Both of your hands are already using something.\n");
             return false;
         } else if (a == 1 && w > 0 && (*where == WEAR_WIELD || *where == WEAR_WIELD2) &&
                    !(GET_SKILL(ch, SKILL_DUAL_WIELD))) {
             if (sendmessage)
-                send_to_char("You don't have the co-ordination to dual wield.\n", ch);
+                char_printf(ch, "You don't have the co-ordination to dual wield.\n");
             return false;
         }
     }
@@ -786,7 +786,7 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
     /* If something is in that position, you can't wear something else there. */
     if (GET_EQ(ch, *where)) {
         if (sendmessage)
-            send_to_char(already_wearing[*where], ch);
+            char_printf(ch, already_wearing[*where]);
         return false;
     }
 
@@ -817,7 +817,7 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
 
         if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_EFFECTIVE_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
             if (sendmessage)
-                send_to_char("It's too heavy for you to use.\n", ch);
+                char_printf(ch, "It's too heavy for you to use.\n");
             return false;
         }
     }
@@ -1205,7 +1205,7 @@ void extract_char(CharData *ch) {
             ch->desc->snooping = nullptr;
         }
         if (ch->desc->snoop_by) {
-            write_to_output("Your victim is no longer among us.\n", ch->desc->snoop_by);
+            string_to_output(ch->desc->snoop_by, "Your victim is no longer among us.\n");
             ch->desc->snoop_by->snooping = nullptr;
             ch->desc->snoop_by = nullptr;
         }
@@ -1263,7 +1263,7 @@ void extract_char(CharData *ch) {
 
     if (!freed && ch->desc != nullptr) {
         STATE(ch->desc) = CON_MENU;
-        write_to_output(MENU, ch->desc);
+        string_to_output(ch->desc, MENU);
     } else { /* if a player gets purged from within the game */
         if (!freed)
             free_char(ch);

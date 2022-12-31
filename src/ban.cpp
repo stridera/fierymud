@@ -106,15 +106,15 @@ ACMD(do_ban) {
 
     if (!*argument) {
         if (!ban_list) {
-            send_to_char("No sites are banned.\n", ch);
+            char_printf(ch, "No sites are banned.\n");
             return;
         }
         strcpy(format, "%-25.25s  %-8.8s  %-11.11s  %-16.16s\n");
         sprintf(buf, format, "Banned Site Name", "Ban Type", "Banned On", "Banned By");
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         sprintf(buf, format, "---------------------------------", "---------------------------------",
                 "---------------------------------", "---------------------------------");
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
 
         for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
             if (ban_node->date) {
@@ -123,22 +123,22 @@ ACMD(do_ban) {
             } else
                 strcpy(site, "Unknown");
             sprintf(buf, format, ban_node->site, ban_types[ban_node->type], site, ban_node->name);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
         return;
     }
     two_arguments(argument, flag, site);
     if (!*site || !*flag) {
-        send_to_char("Usage: ban {all | select | new} site_name\n", ch);
+        char_printf(ch, "Usage: ban {all | select | new} site_name\n");
         return;
     }
     if (!(!strcasecmp(flag, "select") || !strcasecmp(flag, "all") || !strcasecmp(flag, "new"))) {
-        send_to_char("Flag must be ALL, SELECT, or NEW.\n", ch);
+        char_printf(ch, "Flag must be ALL, SELECT, or NEW.\n");
         return;
     }
     for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
         if (!strcasecmp(ban_node->site, site)) {
-            send_to_char("That site has already been banned -- unban it to change the ban type.\n", ch);
+            char_printf(ch, "That site has already been banned -- unban it to change the ban type.\n");
             return;
         }
     }
@@ -161,7 +161,7 @@ ACMD(do_ban) {
 
     sprintf(buf, "%s has banned %s for %s players.", GET_NAME(ch), site, ban_types[ban_node->type]);
     log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
-    send_to_char("Site banned.\n", ch);
+    char_printf(ch, "Site banned.\n");
     write_ban_list();
 }
 
@@ -172,7 +172,7 @@ ACMD(do_unban) {
 
     one_argument(argument, site);
     if (!*site) {
-        send_to_char("A site to unban might help.\n", ch);
+        char_printf(ch, "A site to unban might help.\n");
         return;
     }
     ban_node = ban_list;
@@ -184,11 +184,11 @@ ACMD(do_unban) {
     }
 
     if (!found) {
-        send_to_char("That site is not currently banned.\n", ch);
+        char_printf(ch, "That site is not currently banned.\n");
         return;
     }
     REMOVE_FROM_LIST(ban_node, ban_list, next);
-    send_to_char("Site unbanned.\n", ch);
+    char_printf(ch, "Site unbanned.\n");
     sprintf(buf, "%s removed the %s-player ban on %s.", GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
     log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
 
@@ -379,23 +379,23 @@ ACMD(do_xnames) {
 
     if (*flag && !strcasecmp(flag, "reload")) {
         reload_xnames();
-        send_to_char("Done.\n", ch);
+        char_printf(ch, "Done.\n");
         return;
     }
 
     if (!*flag || !*name) {
-        send_to_char("Usage: xnames {add NAME | reload}\n", ch);
+        char_printf(ch, "Usage: xnames {add NAME | reload}\n");
         return;
     }
 
     if (is_abbrev(flag, "add")) {
         if (!Valid_Name(name)) {
-            send_to_char("Name is already banned.\n", ch);
+            char_printf(ch, "Name is already banned.\n");
             return;
         }
         send_to_xnames(name);
-        send_to_char("Done.\n", ch);
+        char_printf(ch, "Done.\n");
     } else {
-        send_to_char("Usage: xnames {add NAME | reload}\n", ch);
+        char_printf(ch, "Usage: xnames {add NAME | reload}\n");
     }
 }

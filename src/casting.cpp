@@ -27,6 +27,7 @@
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "movement.hpp"
@@ -40,8 +41,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /**********************************************************/
 /* Event functions for spells that use time-based effects */
@@ -56,10 +55,9 @@ EVENTFUNC(room_undo_event) {
     connect_room = room_undo->connect_room;
 
     world[room].exits[exit]->to_room = connect_room;
-    send_to_room(
-        "&2The forest seems to come alive... Trees and shrubs move "
-        "about, finally resting in different locations.&0\n",
-        room);
+    room_printf(
+        room,
+        "&2The forest seems to come alive... Trees and shrubs move about, finally resting in different locations.&0\n");
     REMOVE_FLAG(ROOM_FLAGS(room), ROOM_ALT_EXIT);
     return EVENT_FINISHED;
 }
@@ -104,7 +102,7 @@ EVENTFUNC(delayed_cast_event) {
     if (ROOM_FLAGGED(room, ROOM_PEACEFUL) && SINFO.violent) {
         if (IS_SPELL(spellnum)) {
             if (ch && IN_ROOM(ch) == room) {
-                send_to_char("A flash of white light fills the room, dispelling your violent magic!\n", ch);
+                char_printf(ch, "A flash of white light fills the room, dispelling your violent magic!\n");
             }
             if (victim)
                 act("White light from no particular source suddenly fills the room, "
@@ -112,7 +110,7 @@ EVENTFUNC(delayed_cast_event) {
                     false, victim, 0, 0, TO_ROOM);
         } else { /* song/chant */
             if (ch && IN_ROOM(ch) == room) {
-                send_to_char("Your words dissolve into peaceful nothingness...\n", ch);
+                char_printf(ch, "Your words dissolve into peaceful nothingness...\n");
                 act("$n's words fade away into peaceful nothingness...\n", false, ch, 0, 0, TO_ROOM);
             }
         }

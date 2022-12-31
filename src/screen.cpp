@@ -38,10 +38,14 @@ std::string process_colors(std::string_view str, int mode) {
     for (auto c : str) {
         if (mode == CLR_PARSE) {
             if (code != '\0') {
-                if (code == CREL)
-                    resp += rel_color_list.at(c);
-                else if (code == CABS)
-                    resp += abs_color_list.at(c);
+                try {
+                    if (code == CREL)
+                        resp += rel_color_list.at(c);
+                    else if (code == CABS)
+                        resp += abs_color_list.at(c);
+                } catch (std::out_of_range &e) {
+                    log("SYSERR: process_colors called with unknown color code {:c}", c);
+                }
                 code = '\0';
                 continue;
             } else if (c == CREL || c == CABS)

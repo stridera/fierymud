@@ -53,11 +53,10 @@ points of interest are:
 #include "objects.hpp"
 #include "pfiles.hpp"
 // #include "strings.hpp"
+#include "logging.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 #include <string.h>
 
@@ -136,13 +135,13 @@ static ObjData *load_corpse(int id) {
         depth = atoi(buf1);
         if ((depth = real_room(depth)) < 0) {
             sprintf(buf, "SYSERR: Unable to locate room %s for corpse %d", buf1, id);
-            log( buf);
+            log(buf);
             ;
             depth = r_mortal_start_room;
         }
     } else {
         sprintf(buf, "SYSERR: First line of corpse file not room vnum for corpse %d", id);
-        log( buf);
+        log(buf);
         ;
         if (strchr(buf1, ':'))
             rewind(fl);
@@ -152,7 +151,7 @@ static ObjData *load_corpse(int id) {
     if (build_object(fl, &obj, &location)) {
         if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !strcasestr(obj->name, "corpse")) {
             sprintf(buf, "SYSERR: First object '%s' loaded from corpse %d not corpse", obj->short_description, id);
-            log( buf);
+            log(buf);
             ;
             extract_obj(obj);
             return nullptr;
@@ -163,7 +162,7 @@ static ObjData *load_corpse(int id) {
         obj_to_room(obj, depth);
     } else {
         sprintf(buf, "SYSERR: Unable to read in corpse data for corpse %d in load_corpse", id);
-        log( buf);
+        log(buf);
         ;
         return nullptr;
     }
@@ -305,7 +304,7 @@ void boot_corpses(void) {
 
         if (!(corpse = load_corpse(id))) {
             sprintf(buf, "SYSERR: Unable to load corpse %d in corpse control list", id);
-            log( buf);
+            log(buf);
             ;
             continue;
         }
@@ -374,10 +373,9 @@ void show_corpses(CharData *ch, char *argument) {
     corpse_data *entry;
 
     if (corpse_control.count) {
-        send_to_char(
-            "Id  Corpse              Level  Decomp  Location\n"
-            "-------------------------------------------------------------------\n",
-            ch);
+        char_printf(ch,
+                    "Id  Corpse              Level  Decomp  Location\n"
+                    "-------------------------------------------------------------------\n");
         for (entry = SENTINEL->next; entry != SENTINEL; entry = entry->next) {
             if (!strncasecmp(entry->corpse->short_description, "the corpse of ", 14))
                 strcpy(buf1, entry->corpse->short_description + 14);
@@ -398,5 +396,5 @@ void show_corpses(CharData *ch, char *argument) {
                         GET_OBJ_DECOMP(entry->corpse), buf2);
         }
     } else
-        send_to_char("There are no player corpses in the game.\n", ch);
+        char_printf(ch, "There are no player corpses in the game.\n");
 }

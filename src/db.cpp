@@ -2103,7 +2103,7 @@ int vnum_zone(char *searchname, CharData *ch) {
         for (nr = 0; nr <= top_of_zone_table; nr++) {
             if (isname(searchname, zone_table[nr].name)) {
                 sprintf(buf, "%3d. [%5d] %s\n", ++found, zone_table[nr].number, zone_table[nr].name);
-                send_to_char(buf, ch);
+                char_printf(ch, buf);
             }
         }
         return (found);

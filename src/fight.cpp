@@ -303,7 +303,7 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose) {
 
     if (ch != victim && (ROOM_FLAGGED(victim->in_room, ROOM_PEACEFUL) || ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL))) {
         if (verbose)
-            send_to_char("You feel ashamed trying to disturb the peace of this room.\n", ch);
+            char_printf(ch, "You feel ashamed trying to disturb the peace of this room.\n");
         return false;
     }
 
@@ -350,9 +350,9 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose) {
             return true;
         if (verbose) {
             if (pet)
-                send_to_char("Sorry, you can't attack someone else's pet!\n", ch);
+                char_printf(ch, "Sorry, you can't attack someone else's pet!\n");
             else
-                send_to_char("Sorry, player killing isn't allowed.\n", ch);
+                char_printf(ch, "Sorry, player killing isn't allowed.\n");
         }
         return false;
     }
@@ -370,7 +370,7 @@ bool mass_attack_ok(CharData *ch, CharData *victim, bool verbose) {
 
     if (IS_PC(ch) && PLAYERALLY(victim) && !ROOM_FLAGGED(victim->in_room, ROOM_ARENA)) {
         if (verbose)
-            send_to_char("You can't attack someone's pet!\n", ch);
+            char_printf(ch, "You can't attack someone's pet!\n");
         return false;
     }
 
@@ -528,7 +528,7 @@ void check_killer(CharData *ch, CharData *vict) {
         SET_FLAG(PLR_FLAGS(ch), PLR_KILLER);
         log(LogSeverity::Warn, LVL_IMMORT, "PC Killer bit set on {} for initiating attack on {} at {}.", GET_NAME(ch),
             GET_NAME(vict), world[vict->in_room].name);
-        send_to_char("If you want to be a PLAYER KILLER, so be it...\n", ch);
+        char_printf(ch, "If you want to be a PLAYER KILLER, so be it...\n");
     }
 }
 
@@ -821,7 +821,7 @@ void arena_death(CharData *ch) {
     alter_pos(ch, POS_SITTING, STANCE_RESTING);
 
     wasdark = IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch);
-    send_to_char("An invisible hand removes you from the battlefield.\n", ch);
+    char_printf(ch, "An invisible hand removes you from the battlefield.\n");
     act("$n's still body is lifted away by an invisible force.", true, ch, nullptr, nullptr, TO_ROOM);
     dismount_char(ch);
     char_from_room(ch);
@@ -1005,7 +1005,7 @@ static void receive_kill_credit(CharData *ch, CharData *vict, long exp) {
 
     exp = MAX(exp, 1);
 
-    send_to_char("You receive your share of experience.\n", ch);
+    char_printf(ch, "You receive your share of experience.\n");
 
     /* Adjust exp for paladins */
     if (GET_CLASS(ch) == CLASS_PALADIN) {
@@ -1781,7 +1781,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
                 delayed_command(victim, "flee", 0, false);
         } else if (!IS_NPC(victim) && GET_WIMP_LEV(victim) && (victim != ch) &&
                    GET_HIT(victim) < GET_WIMP_LEV(victim)) {
-            send_to_char("You attempt to flee!\n", victim);
+            char_printf(victim, "You attempt to flee!\n");
             delayed_command(victim, "flee", 0, false);
         }
     }
@@ -1960,7 +1960,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     }
 
     if (FIGHTING(ch) != victim && EFF_FLAGGED(ch, EFF_BLIND)) {
-        send_to_char("You cant see a thing!\n", ch);
+        char_printf(ch, "You cant see a thing!\n");
         log(LogSeverity::Error, LVL_GOD, "hit(): {} is blind but tried to attack new target {} [room {:d}]", GET_NAME(ch),
             GET_NAME(victim), CH_RVNUM(ch));
         return;
@@ -2333,7 +2333,7 @@ void perform_violence(void) {
         }
 #ifdef MAJORPCODE
         if (EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS)) {
-            send_to_char("You remain paralyzed and can't do a thing to defend yourself..\n", ch);
+            char_printf(ch, "You remain paralyzed and can't do a thing to defend yourself..\n");
             act("$n strains to respond to $N's attack, but the paralysis is too "
                 "overpowering.",
                 false, ch, 0, FIGHTING(ch), TO_ROOM);
@@ -2351,7 +2351,7 @@ void perform_violence(void) {
             continue;
 
         if (GET_POS(ch) < POS_STANDING) {
-            send_to_char("You can't fight while sitting!!\n", ch);
+            char_printf(ch, "You can't fight while sitting!!\n");
             continue;
         }
 
@@ -2499,7 +2499,7 @@ bool check_disarmed(CharData *ch) {
     } else {
         if (GET_COOLDOWN(ch, CD_FUMBLING_PRIMARY) || GET_COOLDOWN(ch, CD_FUMBLING_SECONDARY)) {
             act("$n is trying to get a steady grip on $s weapon.", false, ch, 0, 0, TO_ROOM);
-            send_to_char("You can't seem to get a steady grip on your weapon.\n", ch);
+            char_printf(ch, "You can't seem to get a steady grip on your weapon.\n");
         } else if (IS_NPC(ch))
             act("$n struggles to regain $s weapon.", false, ch, 0, 0, TO_ROOM);
     }
@@ -2514,7 +2514,7 @@ ACMD(do_aggr) {
     int hp;
 
     if (IS_NPC(ch)) {
-        send_to_char("NPCs can't set their aggressiveness!\n", ch);
+        char_printf(ch, "NPCs can't set their aggressiveness!\n");
         return;
     }
 
@@ -2523,11 +2523,11 @@ ACMD(do_aggr) {
     /* No argument?   Check aggressiveness. */
     if (!*buf) {
         if (GET_AGGR_LEV(ch) <= 0) {
-            send_to_char("You are not aggressive to monsters.\n", ch);
+            char_printf(ch, "You are not aggressive to monsters.\n");
             return;
         }
         sprintf(buf, "You will be aggressive unless your hitpoints drop below %d.\n", GET_AGGR_LEV(ch));
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return;
     }
 
@@ -2535,12 +2535,12 @@ ACMD(do_aggr) {
 
     if (strcasecmp(buf, "off") == 0 || (!hp && *buf == '0')) {
         GET_AGGR_LEV(ch) = 0;
-        send_to_char("You are no longer aggressive to monsters.\n", ch);
+        char_printf(ch, "You are no longer aggressive to monsters.\n");
         return;
     }
 
     if (hp < 0) {
-        send_to_char("Aggressive while dying?   Not likely!\n", ch);
+        char_printf(ch, "Aggressive while dying?   Not likely!\n");
         return;
     }
 

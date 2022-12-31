@@ -71,7 +71,7 @@ ASPELL(chant_apocalyptic_anthem) {
     if (ch->in_room == NOWHERE)
         return 0;
 
-    send_to_char("You let the anthem of the apocalypse ring!\n", ch);
+    char_printf(ch, "You let the anthem of the apocalypse ring!\n");
     act("$n chants an anthem of demise and fatality!", false, ch, 0, 0, TO_ROOM);
 
     for (tch = world[ch->in_room].people; tch; tch = next_tch) {
@@ -112,7 +112,7 @@ ASPELL(spell_armor_of_gaia) {
         return 0;
 
     if (GET_EQ(victim, WEAR_BODY) && GET_EQ(victim, WEAR_LEGS) && GET_EQ(victim, WEAR_ARMS)) {
-        send_to_char("Your body is too encumbered to don the armor.\n", victim);
+        char_printf(victim, "Your body is too encumbered to don the armor.\n");
         return CAST_RESULT_CHARGE;
     }
     if (ch == victim) {
@@ -181,7 +181,7 @@ ASPELL(spell_banish) {
     /* Failure */
     if (roll < 50) {
         act("Nothing happens.", false, ch, 0, victim, TO_ROOM);
-        send_to_char("Nothing happens.\n", ch);
+        char_printf(ch, "Nothing happens.\n");
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
@@ -263,10 +263,9 @@ ASPELL(spell_charm) {
         return 0;
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char(
-            "A flash of white light fills the room, dispelling your "
-            "violent magic!\n",
-            ch);
+        char_printf(ch,
+                    "A flash of white light fills the room, dispelling your "
+                    "violent magic!\n");
         act("White light from no particular source suddenly fills the room, "
             "then vanishes.",
             false, ch, 0, 0, TO_ROOM);
@@ -274,30 +273,30 @@ ASPELL(spell_charm) {
     }
 
     if (victim == ch)
-        send_to_char("You like yourself even better!\n", ch);
+        char_printf(ch, "You like yourself even better!\n");
     else if (!IS_NPC(victim)) {
         if (charm_allowed == 0)
             if (!PRF_FLAGGED(victim, PRF_SUMMONABLE))
-                send_to_char("You fail because SUMMON protection is on!\n", ch);
+                char_printf(ch, "You fail because SUMMON protection is on!\n");
     } else if (EFF_FLAGGED(victim, EFF_SANCTUARY))
-        send_to_char("Your victim is protected by sanctuary!\n", ch);
+        char_printf(ch, "Your victim is protected by sanctuary!\n");
     else if (MOB_FLAGGED(victim, MOB_NOCHARM))
-        send_to_char("Your victim resists!\n", ch);
+        char_printf(ch, "Your victim resists!\n");
     /* modded so animateds CAN cast charm *grin* - 321 */
     else if (EFF_FLAGGED(ch, EFF_CHARM) && !MOB_FLAGGED(ch, MOB_ANIMATED))
-        send_to_char("You can't have any followers of your own!\n", ch);
+        char_printf(ch, "You can't have any followers of your own!\n");
     else if (EFF_FLAGGED(victim, EFF_CHARM) || skill < GET_LEVEL(victim) + 10 || MOB_FLAGGED(victim, MOB_ILLUSORY))
-        send_to_char("You fail.\n", ch);
+        char_printf(ch, "You fail.\n");
     /* player charming another player - no legal reason for this */
     else if (!charm_allowed && !IS_NPC(victim))
-        send_to_char("You fail - shouldn't be doing it anyway.\n", ch);
+        char_printf(ch, "You fail - shouldn't be doing it anyway.\n");
     else if (!attack_ok(ch, victim, false))
-        send_to_char("You fail - shouldn't be doing it anyway.\n", ch);
+        char_printf(ch, "You fail - shouldn't be doing it anyway.\n");
     else if (number(1, 100) > susceptibility(victim, DAM_MENTAL)) {
         act("$N resists your charming magic.", false, ch, 0, victim, TO_CHAR);
         act("You resist $n's attempt to charm you.", false, ch, 0, victim, TO_VICT);
     } else if (mag_savingthrow(victim, SAVING_SPELL) || skill - GET_LEVEL(victim) < number(0, 200))
-        send_to_char("Your victim resists!\n", ch);
+        char_printf(ch, "Your victim resists!\n");
     else {
         if (victim->master)
             stop_follower(victim, 0);
@@ -360,7 +359,7 @@ ASPELL(spell_color_spray) {
         return 0;
 
     act("&8A rainbow of &1c&3o&2l&4o&5r&7 bursts from $n's hands!&0", false, ch, 0, 0, TO_ROOM);
-    send_to_char("&8A rainbow of &1c&3o&2l&4o&5r&7 bursts from your hands!&0\n", ch);
+    char_printf(ch, "&8A rainbow of &1c&3o&2l&4o&5r&7 bursts from your hands!&0\n");
     for (vict = world[ch->in_room].people; vict; vict = next_vict) {
         next_vict = vict->next_in_room;
         if (GET_LEVEL(vict) >= LVL_IMMORT && !IS_NPC(vict))
@@ -474,14 +473,14 @@ ASPELL(spell_color_spray) {
                 act("&8$n falls to the ground, momentarily stunned.&0", false, vict, 0, 0, TO_ROOM);
             }
             sprintf(buf, "&8A &3shocking&0 %s &8FLASH&0 &8makes you lose your balance!&0\n", color);
-            send_to_char(buf, vict);
+            char_printf(vict, buf);
             WAIT_STATE(vict, PULSE_VIOLENCE * 3);
             GET_POS(vict) = POS_SITTING;
             GET_STANCE(vict) = STANCE_ALERT;
             continue;
         } else {
             sprintf(buf, "&8You are dazzled by a %s&0&8 beam of light!&0\n", color);
-            send_to_char(buf, vict);
+            char_printf(vict, buf);
 
             /* cast the spell effect with half power */
             mag_affect(skill >> 1, ch, vict, effect, SAVING_SPELL, CAST_SPELL);
@@ -540,7 +539,7 @@ ASPELL(spell_dark_feast) {
         return 0;
 
     if (!IS_CORPSE(obj)) {
-        send_to_char("That is not a corpse!\n", ch);
+        char_printf(ch, "That is not a corpse!\n");
         return CAST_RESULT_CHARGE;
     }
 
@@ -587,7 +586,7 @@ ASPELL(spell_darkness) {
                 act("$p quickly &8&bsputters &9&bout.&0.", false, ch, obj, 0, TO_ROOM);
             }
         } else {
-            send_to_char(NOEFFECT, ch);
+            char_printf(ch, NOEFFECT);
             return CAST_RESULT_CHARGE;
         }
     } else { /* De-Light the room */
@@ -598,7 +597,7 @@ ASPELL(spell_darkness) {
             eff = 0;
             world[ch->in_room].light--;
         } else if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-            send_to_char(NOEFFECT, ch);
+            char_printf(ch, NOEFFECT);
             return CAST_RESULT_CHARGE;
         } else {
             act("You engulf the area in a magical darkness!", true, ch, 0, 0, TO_CHAR);
@@ -643,7 +642,7 @@ ASPELL(spell_degeneration) {
     }
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of white light fills the room, dispelling your violent magic!\n", ch);
+        char_printf(ch, "A flash of white light fills the room, dispelling your violent magic!\n");
         act("White light from no particular source suddenly fills the room, then vanishes.", false, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
@@ -660,7 +659,7 @@ ASPELL(spell_dimension_door) {
 
     /* Dim Door should only work to players in your zone */
     if (IS_NPC(victim) || PRF_FLAGGED(victim, PRF_NOFOLLOW) || GET_LEVEL(victim) >= LVL_IMMORT) {
-        send_to_char("You failed.\n", ch);
+        char_printf(ch, "You failed.\n");
         return CAST_RESULT_CHARGE;
     }
     czone = world[ch->in_room].zone;
@@ -793,7 +792,7 @@ ASPELL(spell_enlightenment) {
         sprintf(buf, "Race: %s\nClass: %s\n", RACE_ABBR(victim), CLASS_WIDE(victim));
     }
     sprintf(buf, "%sLevel: %d\n", buf, GET_LEVEL(victim));
-    send_to_char(buf, ch);
+    char_printf(ch, buf);
     if (IS_NPC(ch) || GET_LEVEL(ch) < LVL_IMMORT)
         WAIT_STATE(ch, PULSE_VIOLENCE * 4);
 
@@ -809,7 +808,7 @@ ASPELL(spell_flame_blade) {
 
     count_hand_eq(ch, &hands, &weapons);
     if (hands > 1 || weapons) {
-        send_to_char("Your hands are not free to wield the blade.\n", ch);
+        char_printf(ch, "Your hands are not free to wield the blade.\n");
         return CAST_RESULT_CHARGE;
     }
     act("&1&b$n&1&b summons a blade of &0&1pure flame&b to aid $m.&0", true, ch, 0, 0, TO_ROOM);
@@ -863,7 +862,7 @@ ASPELL(spell_fracture) {
         return 0;
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of white light fills the room, dispelling your violent magic!\n", ch);
+        char_printf(ch, "A flash of white light fills the room, dispelling your violent magic!\n");
         act("White from no particular source suddenly fills the room, then vanishes.", false, victim, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
@@ -899,7 +898,7 @@ ASPELL(spell_fracture) {
                 break;
             }
         if (!victim) {
-            send_to_char("You look around, but can't find an acceptable body.\n", ch);
+            char_printf(ch, "You look around, but can't find an acceptable body.\n");
             return CAST_RESULT_CHARGE;
         }
     }
@@ -920,7 +919,7 @@ ASPELL(spell_heavens_gate) {
     if (ch == nullptr || victim == nullptr)
         return 0;
     if (IS_NPC(victim)) {
-        send_to_char("You cannot target NPCs with this spell.\n", ch);
+        char_printf(ch, "You cannot target NPCs with this spell.\n");
         return 0;
     }
     if (victim->in_room == 0)
@@ -979,7 +978,7 @@ ASPELL(spell_hells_gate) {
     if (ch == nullptr || victim == nullptr)
         return 0;
     if (IS_NPC(victim)) {
-        send_to_char("You cannot target NPCs with this spell.\n", ch);
+        char_printf(ch, "You cannot target NPCs with this spell.\n");
         return 0;
     }
     if (victim->in_room == 0)
@@ -1037,7 +1036,7 @@ ASPELL(spell_ice_dagger) {
         return 0;
     count_hand_eq(ch, &hands, &weapons);
     if (hands > 1 || weapons) {
-        send_to_char("Your hands are not free to wield the dagger.\n", ch);
+        char_printf(ch, "Your hands are not free to wield the dagger.\n");
         return CAST_RESULT_CHARGE;
     }
     act("&7&b$n&7&b summons a dagger of &0&4glimmering ice&7&b to aid $m.&0", true, ch, 0, 0, TO_ROOM);
@@ -1055,15 +1054,15 @@ ASPELL(spell_identify) {
     void identify_obj(ObjData * obj, CharData * ch, int location);
 
     if (obj) {
-        send_to_char("You feel informed:\n", ch);
+        char_printf(ch, "You feel informed:\n");
         identify_obj(obj, ch, 0);
     } else if (victim) { /* victim */
         sprintf(buf, "Name: %s\n", GET_NAME(victim));
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         if (!IS_NPC(victim)) {
             sprintf(buf, "%s is %d years, %d months, %d days and %d hours old.\n", GET_NAME(victim), age(victim).year,
                     age(victim).month, age(victim).day, age(victim).hours);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
         }
         sprintf(buf, "Height %s; Weight %s\n", statelength(GET_HEIGHT(victim)), stateweight(GET_WEIGHT(victim)));
         /*      sprintf(buf, "%sLevel: %d, Hits: %d, Mana: %d\n", buf,
@@ -1074,7 +1073,7 @@ ASPELL(spell_identify) {
            %d\n", buf, GET_STR(victim), GET_INT(victim), GET_WIS(victim),
            GET_DEX(victim), GET_CON(victim), GET_CHA(victim));
          */
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         sprintf(buf, "$E is composed of %s%s&0, and $S nature is %s%s.", COMPOSITION_COLOR(victim),
                 COMPOSITION_NAME(victim), LIFEFORCE_COLOR(victim), LIFEFORCE_NAME(victim));
         act(buf, false, ch, 0, victim, TO_CHAR);
@@ -1098,7 +1097,7 @@ ASPELL(spell_illumination) {
     if (obj != nullptr) { /* Light an obj */
         if (GET_OBJ_TYPE(obj) != ITEM_LIGHT) {
             /* The item isn't a LIGHT item */
-            send_to_char(NOEFFECT, ch);
+            char_printf(ch, NOEFFECT);
             return CAST_RESULT_CHARGE;
         }
         if (GET_OBJ_VAL(obj, VAL_LIGHT_REMAINING) == LIGHT_PERMANENT) {
@@ -1158,7 +1157,7 @@ ASPELL(spell_illumination) {
              * will only wear off once -- leading to a permanently lit room!
              */
         } else if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION)) {
-            send_to_char(NOEFFECT, ch);
+            char_printf(ch, NOEFFECT);
             return CAST_RESULT_CHARGE;
         } else {
             act("&8The room magically lights up!&0", false, ch, 0, 0, TO_CHAR);
@@ -1209,7 +1208,7 @@ ASPELL(spell_isolation) {
     /* You can't cast this spell in peaceful rooms. */
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of light appears, dispelling your spell!\n", ch);
+        char_printf(ch, "A flash of light appears, dispelling your spell!\n");
         act("Bright light suddenly fills the room, "
             "then vanishes.",
             false, ch, 0, 0, TO_ROOM);
@@ -1217,10 +1216,10 @@ ASPELL(spell_isolation) {
     }
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ISOLATION)) {
-        send_to_char(NOEFFECT, ch);
+        char_printf(ch, NOEFFECT);
         return CAST_RESULT_CHARGE;
     } else {
-        send_to_room("&8&bA wide and diffuse veil of sorts descends upon the area.&0\n", ch->in_room);
+        room_printf(ch->in_room, "&8&bA wide and diffuse veil of sorts descends upon the area.&0\n");
         CREATE(reff, RoomEffectNode, 1);
 
         reff->room = ch->in_room;
@@ -1244,7 +1243,7 @@ ASPELL(chant_ivory_symphony) {
     if (ch->in_room == NOWHERE)
         return 0;
 
-    send_to_char("You sing a flowing ivory song...\n", ch);
+    char_printf(ch, "You sing a flowing ivory song...\n");
     act("$n sings a strangely alarming tune...", false, ch, 0, 0, TO_ROOM);
 
     is_dark = IS_DARK(ch->in_room);
@@ -1489,7 +1488,7 @@ ASPELL(spell_minor_creation) {
         return 0;
 
     if (!(ch->casting.misc) || !*(ch->casting.misc)) {
-        send_to_char("What are you trying to create?\n", ch);
+        char_printf(ch, "What are you trying to create?\n");
         return 0;
     }
     half_chop(ch->casting.misc, buf, buf2);
@@ -1504,7 +1503,7 @@ ASPELL(spell_minor_creation) {
         if ((r_num = real_object(1000 + i)) < 0) {
             log("SYSERR: Error in function spell_minor_create: target item not "
                 "found.");
-            send_to_char("Something is wrong with minor create.   Please tell a god.\n", ch);
+            char_printf(ch, "Something is wrong with minor create.   Please tell a god.\n");
             return 0;
         }
         cobj = read_object(r_num, REAL);
@@ -1518,7 +1517,7 @@ ASPELL(spell_minor_creation) {
 
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     } else {
-        send_to_char("You have no idea how to create such an item.\n", ch);
+        char_printf(ch, "You have no idea how to create such an item.\n");
         return CAST_RESULT_CHARGE;
     }
 }
@@ -1530,7 +1529,7 @@ ASPELL(spell_moonwell) {
     if (ch == nullptr || victim == nullptr)
         return 0;
     if (IS_NPC(victim)) {
-        send_to_char("You cannot target NPCs with this spell.\n", ch);
+        char_printf(ch, "You cannot target NPCs with this spell.\n");
         return 0;
     }
     if (victim->in_room == 0)
@@ -1594,7 +1593,7 @@ ASPELL(chant_peace) {
     }
 
     act("A peaceful feeling washes into the room, dousing all violence!", false, ch, 0, 0, TO_ROOM);
-    send_to_char("You douse all violence!\n", ch);
+    char_printf(ch, "You douse all violence!\n");
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
@@ -1631,7 +1630,7 @@ ASPELL(spell_preserve) {
         return 0;
 
     if (!IS_CORPSE(obj)) {
-        send_to_char("You can only preserve a corpse!\n", ch);
+        char_printf(ch, "You can only preserve a corpse!\n");
         return CAST_RESULT_CHARGE;
     }
     sprintf(buf, "$p is preserved for %d more hours.", GET_LEVEL(ch));
@@ -1660,13 +1659,8 @@ ASPELL(spell_pyre) {
         return 0;
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char(
-            "A flash of white light fills the room, dispelling your "
-            "violent magic!\n",
-            ch);
-        act("White from no particular source suddenly fills the room, then "
-            "vanishes.",
-            false, victim, 0, 0, TO_ROOM);
+        char_printf(ch, "A flash of white light fills the room, dispelling your violent magic!\n");
+        act("White from no particular source suddenly fills the room, then vanishes.", false, victim, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
 
@@ -1702,7 +1696,7 @@ ASPELL(spell_pyre) {
             victim = ch;
 
         if (!victim) {
-            send_to_char("You look around, but can't find an acceptable body.\n", ch);
+            char_printf(ch, "You look around, but can't find an acceptable body.\n");
             return CAST_RESULT_CHARGE;
         }
     }
@@ -1786,22 +1780,22 @@ ASPELL(spell_relocate) {
     if (!ch || !victim)
         return 0;
     if (IS_NPC(victim) || PRF_FLAGGED(victim, PRF_NOFOLLOW)) {
-        send_to_char("You failed.\n", ch);
+        char_printf(ch, "You failed.\n");
         WAIT_STATE(ch, PULSE_VIOLENCE * 10);
         return CAST_RESULT_CHARGE;
     }
     if (victim->in_room == -1) {
-        send_to_char("You failed.\n", ch);
+        char_printf(ch, "You failed.\n");
         WAIT_STATE(ch, PULSE_VIOLENCE);
         log("SYSERR: {} tried to relocate to {} in room -1.", GET_NAME(ch), GET_NAME(victim));
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
     if (GET_LEVEL(victim) >= LVL_IMMORT && GET_LEVEL(ch) < GET_LEVEL(victim)) {
-        send_to_char("Your magics are stamped out by the gods.\n", ch);
+        char_printf(ch, "Your magics are stamped out by the gods.\n");
         return CAST_RESULT_CHARGE;
     } else {
         if (victim->in_room == ch->in_room) {
-            send_to_char("You are already here.\n", ch);
+            char_printf(ch, "You are already here.\n");
             return CAST_RESULT_CHARGE;
         }
         dismount_char(ch);
@@ -2010,7 +2004,7 @@ ASPELL(spell_soul_tap) {
         return 0;
 
     if (ch == victim) {
-        send_to_char("Tapping our own soul?  Not very effective...\n", ch);
+        char_printf(ch, "Tapping our own soul?  Not very effective...\n");
         return CAST_RESULT_CHARGE;
     }
 
@@ -2119,7 +2113,7 @@ ASPELL(spell_wandering_woods) {
         return 0;
 
     if (SECT(ch->in_room) != SECT_FOREST && !ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOREST)) {
-        send_to_char("You are not in a forest.\n", ch);
+        char_printf(ch, "You are not in a forest.\n");
         return CAST_RESULT_CHARGE;
     }
 
@@ -2157,23 +2151,21 @@ ASPELL(spell_wandering_woods) {
         }
         changed = true;
         SET_FLAG(ROOM_FLAGS(next_room), ROOM_ALT_EXIT);
-        send_to_room(
-            "&2The forest seems to come alive... Trees and "
-            "shrubs move about, finally resting in different locations.&0\n",
-            next_room);
+        room_printf(next_room,
+                    "&2The forest seems to come alive... Trees and shrubs move about, finally resting in different "
+                    "locations.&0\n");
     }
     if (changed) {
         act("&2&b$n&2&b exudes a &0&2green&b glow as $e speaks with "
             "the surrounding forest...&0",
             true, ch, 0, 0, TO_ROOM);
         act("&2&bYou begin to speak with the surrounding forest...&0", false, ch, 0, 0, TO_CHAR);
-        send_to_room(
-            "&2The forest seems to come alive... Trees and "
-            "shrubs move about, finally resting in different locations.&0\n",
-            ch->in_room);
+        room_printf(ch->in_room,
+                    "&2The forest seems to come alive... Trees and shrubs move about, finally resting in different "
+                    "locations.&0\n");
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     } else {
-        send_to_char("&2The surrounding forest resists your command.&0\n", ch);
+        char_printf(ch, "&2The surrounding forest resists your command.&0\n");
         return CAST_RESULT_CHARGE;
     }
 }
@@ -2185,16 +2177,16 @@ ASPELL(spell_wizard_eye) {
         return 0;
 
     if (GET_LEVEL(victim) >= LVL_IMMORT) {
-        send_to_char("You failed.\n", ch);
+        char_printf(ch, "You failed.\n");
         return CAST_RESULT_CHARGE;
     }
 
     if (skill < number(1, 100)) {
-        send_to_char("You failed.\n", ch);
+        char_printf(ch, "You failed.\n");
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
-    send_to_char("&6&bYou close your eyes and let your vision wander.&0\n", ch);
+    char_printf(ch, "&6&bYou close your eyes and let your vision wander.&0\n");
     room = ch->in_room;
     char_from_room(ch);
     char_to_room(ch, victim->in_room);
@@ -2202,7 +2194,7 @@ ASPELL(spell_wizard_eye) {
     char_from_room(ch);
     char_to_room(ch, room);
     if (!IS_NPC(victim))
-        send_to_char("&9&bYou feel like you are being watched...&0\n", victim);
+        char_printf(victim, "&9&bYou feel like you are being watched...&0\n");
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
@@ -2214,16 +2206,16 @@ ASPELL(spell_word_of_command) {
     if ((ch->casting.misc) && *(ch->casting.misc))
         half_chop(ch->casting.misc, buf, buf2);
     if (!*buf2) {
-        send_to_char("What do you want them to do?\n", ch);
+        char_printf(ch, "What do you want them to do?\n");
         return 0;
     }
     half_chop(buf2, buf2, buf);                               /* only 1 word commands */
     if (GET_LEVEL(victim) >= LVL_IMMORT && !IS_NPC(victim)) { /* no commanding gods */
-        send_to_char("You best be careful who you try commanding!\n", ch);
+        char_printf(ch, "You best be careful who you try commanding!\n");
         return CAST_RESULT_CHARGE;
     }
     if (GET_LEVEL(victim) >= GET_LEVEL(ch)) { /* only command chars lower lvl */
-        send_to_char("That being is too experienced for you to command.\n", ch);
+        char_printf(ch, "That being is too experienced for you to command.\n");
         return CAST_RESULT_CHARGE;
     }
 
@@ -2292,12 +2284,11 @@ void create_magical_wall(int room, int power, int dir, int spell, char *material
     obj_to_room(wall, room);
 
     if (dir == UP)
-        sprintf(buf2, "%sA wall of %s appears above.&0\n", mcolor, material);
+        room_printf(room, "{}A wall of {} appears above.&0\n", mcolor, material);
     else if (dir == DOWN)
-        sprintf(buf2, "%sA wall of %s appears below.&0\n", mcolor, material);
+        room_printf(room, "{}A wall of {} appears below.&0\n", mcolor, material);
     else
-        sprintf(buf2, "%sA wall of %s appears to the %s.&0\n", mcolor, material, dirs[dir]);
-    send_to_room(buf2, room);
+        room_printf(room, "{}A wall of {} appears to the {}.&0\n", mcolor, material, dirs[dir]);
 }
 
 /* General wall-creation function. */
@@ -2310,7 +2301,7 @@ ASPELL(spell_magical_wall) {
         return 0;
 
     if (!(ch->casting.misc) || !*(ch->casting.misc)) {
-        send_to_char("In what direction should the wall be cast?\n", ch);
+        char_printf(ch, "In what direction should the wall be cast?\n");
         return 0;
     }
 
@@ -2323,20 +2314,20 @@ ASPELL(spell_magical_wall) {
     }
 
     if (dir == -1) {
-        send_to_char("That is not a proper direction.\n", ch);
+        char_printf(ch, "That is not a proper direction.\n");
         return 0;
     }
 
     /* You can't cast this spell in peaceful rooms. */
 
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("A flash of white light fills the room, dispelling your violent magic!\n", ch);
+        char_printf(ch, "A flash of white light fills the room, dispelling your violent magic!\n");
         act("White light from no particular source suddenly fills the room, then vanishes.", false, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
     }
 
     if (!CAN_GO(ch, dir)) {
-        send_to_char("There is no exit that direction.\n", ch);
+        char_printf(ch, "There is no exit that direction.\n");
         return CAST_RESULT_CHARGE;
     }
 
@@ -2344,7 +2335,7 @@ ASPELL(spell_magical_wall) {
 
     for (sobj = world[ch->in_room].contents; sobj; sobj = sobj->next_content) {
         if (GET_OBJ_TYPE(sobj) == ITEM_WALL && GET_OBJ_VAL(sobj, VAL_WALL_DIRECTION) == dir) {
-            send_to_char("There is already a wall there!\n", ch);
+            char_printf(ch, "There is already a wall there!\n");
             return CAST_RESULT_CHARGE;
         }
     }
@@ -2361,7 +2352,7 @@ ASPELL(spell_magical_wall) {
     case SPELL_ILLUSORY_WALL:
         half_chop(buf2, buf, arg);
         if (strlen(buf) > 38) {
-            send_to_char("That's far too exotic a material!\n", ch);
+            char_printf(ch, "That's far too exotic a material!\n");
             return 0;
         }
         strcpy(material, buf);
@@ -2375,7 +2366,7 @@ ASPELL(spell_magical_wall) {
         } else if (!strcasecmp("wood", buf)) {
             sprintf(mcolor, "&3");
         } else {
-            send_to_char("The material must be brick, ice, stone, or wood.\n", ch);
+            char_printf(ch, "The material must be brick, ice, stone, or wood.\n");
             return 0;
         }
         break;
@@ -2437,7 +2428,7 @@ ASPELL(spell_dispel_magic) {
 
     if (victim) {
         if (GET_LEVEL(ch) < LVL_IMMORT && !attack_ok(ch, victim, false) && CONSENT(victim) != ch) {
-            send_to_char("Not without consent you don't!\n", ch);
+            char_printf(ch, "Not without consent you don't!\n");
             return CAST_RESULT_CHARGE;
         }
         if (ch != victim) {
@@ -2476,7 +2467,7 @@ ASPELL(spell_dispel_magic) {
         }
 
         if (!didanything) {
-            send_to_char("You failed.\n", ch);
+            char_printf(ch, "You failed.\n");
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
 
@@ -2508,10 +2499,10 @@ ASPELL(spell_dispel_magic) {
                     act("$p&0 fades into existence.", false, ch, obj, 0, TO_CHAR);
                     act("$p&0 fades into existence.", false, ch, obj, 0, TO_ROOM);
                 } else
-                    send_to_char("You fail.\n", ch);
+                    char_printf(ch, "You fail.\n");
                 return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
             } else {
-                send_to_char(NOEFFECT, ch);
+                char_printf(ch, NOEFFECT);
                 return CAST_RESULT_CHARGE;
             }
         }
@@ -2533,7 +2524,7 @@ int room_recall_check(CharData *ch, CharData *victim, ObjData *obj) {
             act("You speak the words on $p, but nothing happens!", false, ch, obj, 0, TO_CHAR);
         } else {
             act("$n's spell dissipates uselessly.", true, ch, 0, 0, TO_ROOM);
-            send_to_char("You feel a force drawing you away for a moment, but then the spell falters.\n", victim);
+            char_printf(victim, "You feel a force drawing you away for a moment, but then the spell falters.\n");
             if (victim != ch)
                 act("$N begins to disappear, but then the spell falters.", true, ch, 0, victim, TO_CHAR);
         }
@@ -2597,7 +2588,7 @@ ASPELL(spell_teleport) {
 
     /* Check for success. */
     if (number(1, 100) > 10 + skill * 2) {
-        send_to_char("&7The spell swirls about and dies away.&0\n", ch);
+        char_printf(ch, "&7The spell swirls about and dies away.&0\n");
         if (ch == victim)
             act("&7$n tries to teleport $mself, but fails.&0", false, ch, 0, victim, TO_NOTVICT);
         else
@@ -2616,7 +2607,7 @@ ASPELL(spell_teleport) {
      * when the area has no suitable destination rooms. */
     if (!tries) {
         act("$n flickers briefly.", false, victim, 0, 0, TO_ROOM);
-        send_to_char("The spell sputters out.\n", victim);
+        char_printf(victim, "The spell sputters out.\n");
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
@@ -2647,7 +2638,7 @@ ASPELL(spell_summon) {
     track = find_track_victim(ch, ch->casting.misc, skill / 5, &victim);
 
     if (track == BFS_ERROR) {
-        send_to_char("Your magic dissipates uselessly.\n", ch);
+        char_printf(ch, "Your magic dissipates uselessly.\n");
         return CAST_RESULT_IMPROVE;
     }
     if (track == BFS_NO_PATH && victim) {
@@ -2655,28 +2646,28 @@ ASPELL(spell_summon) {
             track = BFS_ALREADY_THERE;
     }
     if (track == BFS_NO_PATH || !victim || world[ch->in_room].zone != world[victim->in_room].zone) {
-        send_to_char("That person is too far away.\n", ch);
+        char_printf(ch, "That person is too far away.\n");
         return CAST_RESULT_CHARGE;
     }
 
     if (GET_LEVEL(victim) > MIN(LVL_IMMORT, skill + 3)) {
-        send_to_char("You aren't proficient enough to summon such a powerful being.\n", ch);
+        char_printf(ch, "You aren't proficient enough to summon such a powerful being.\n");
         return CAST_RESULT_CHARGE;
     }
 
     if (MOB_FLAGGED(victim, MOB_NOSUMMON) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
         sprintf(buf, "You feel your magic probing %s, but it can't seem to get a grip.\n", PERS(victim, ch));
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         return CAST_RESULT_CHARGE;
     }
 
     if (ROOM_FLAGGED(IN_ROOM(victim), ROOM_NOSUMMON)) {
-        send_to_char("A negating force blocks your spell.\n", ch);
+        char_printf(ch, "A negating force blocks your spell.\n");
         return CAST_RESULT_CHARGE;
     }
 
     if ((ROOM_FLAGGED(IN_ROOM(ch), ROOM_ARENA) && !ROOM_FLAGGED(IN_ROOM(victim), ROOM_ARENA))) {
-        send_to_char("You can't summon someone into an arena room.\n", ch);
+        char_printf(ch, "You can't summon someone into an arena room.\n");
         return CAST_RESULT_CHARGE;
     }
 
@@ -2695,10 +2686,10 @@ ASPELL(spell_summon) {
                     "Type NOSUMMON to allow other players to summon you.\n",
                     GET_NAME(ch), world[ch->in_room].name,
                     (ch->player.sex == SEX_MALE) ? "He" : ((ch->player.sex == SEX_FEMALE) ? "She" : "They"));
-            send_to_char(buf, victim);
+            char_printf(victim, buf);
 
             sprintf(buf, "You failed because %s has summon protection on.\n", GET_NAME(victim));
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
 
             log(LogSeverity::Warn, LVL_IMMORT, "{} failed summoning {} to {}.", GET_NAME(ch), GET_NAME(victim),
                 world[ch->in_room].name);
@@ -2707,7 +2698,7 @@ ASPELL(spell_summon) {
     }
 
     if (!IS_PC(victim) && mag_savingthrow(victim, SAVING_SPELL)) {
-        send_to_char(SUMMON_FAIL, ch);
+        char_printf(ch, SUMMON_FAIL);
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
@@ -2808,7 +2799,7 @@ ASPELL(spell_locate_object) {
     }
 
     if (!found) {
-        send_to_char("You sense nothing.\n", ch);
+        char_printf(ch, "You sense nothing.\n");
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
@@ -2839,7 +2830,7 @@ ASPELL(spell_locate_object) {
             sprintf(buf, "%s's location is uncertain.\n", o->short_description);
 
         CAP(buf);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -2864,7 +2855,7 @@ ASPELL(spell_summon_corpse) {
 
     /* Make sure the obj is valid */
     if (!obj) {
-        send_to_char("Couldn't find any such corpse!\n", ch);
+        char_printf(ch, "Couldn't find any such corpse!\n");
         return CAST_RESULT_CHARGE;
     }
 
@@ -2879,7 +2870,7 @@ ASPELL(spell_summon_corpse) {
 
     /* The spell also requires consent. */
     if (!has_corpse_consent(ch, obj)) {
-        send_to_char("Perhaps with consent. . . \n", ch);
+        char_printf(ch, "Perhaps with consent. . . \n");
         log(LogSeverity::Stat, LVL_IMMORT, "{} tried to summon {} without consent!", GET_NAME(ch),
             obj->short_description);
         return CAST_RESULT_CHARGE;
@@ -2899,10 +2890,9 @@ ASPELL(spell_summon_corpse) {
     obj_to_room(obj, ch->in_room);
 
     /* Print success to the new room. */
-    send_to_room(
-        "From within a cloud of &9&bdarkness&0, a corpse "
-        "materializes.\n",
-        ch->in_room);
+    room_printf(ch->in_room,
+                "From within a cloud of &9&bdarkness&0, a corpse "
+                "materializes.\n");
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
@@ -2914,13 +2904,13 @@ ASPELL(spell_shift_corpse) {
 
     /* Make sure the obj is valid */
     if (!obj) {
-        send_to_char("Couldn't find any such corpse!\n", ch);
+        char_printf(ch, "Couldn't find any such corpse!\n");
         return CAST_RESULT_CHARGE;
     }
 
     /* And we have permission */
     if (!has_corpse_consent(ch, obj)) {
-        send_to_char("Perhaps with consent. . . \n", ch);
+        char_printf(ch, "Perhaps with consent. . . \n");
         log(LogSeverity::Stat, LVL_IMMORT, "{} tried to summon {} without consent!", GET_NAME(ch),
             obj->short_description);
         return CAST_RESULT_CHARGE;
@@ -2963,12 +2953,12 @@ ASPELL(spell_resurrect) {
         return 0;
     /* no ressing imms+ */
     if (GET_LEVEL(victim) > (LVL_IMMORT - 1)) {
-        send_to_char("No need to resurrect a god.\n", ch);
+        char_printf(ch, "No need to resurrect a god.\n");
         return CAST_RESULT_CHARGE;
     }
     /* no ressing mobs */
     if (IS_NPC(victim)) {
-        send_to_char("You can not resurrect creatures.\n", ch);
+        char_printf(ch, "You can not resurrect creatures.\n");
         return CAST_RESULT_CHARGE;
     }
     /* look for the proper corpse within the room */
@@ -3031,7 +3021,7 @@ ASPELL(spell_resurrect) {
         }
     }
     /* corpse was not found in room */
-    send_to_char("There is no corpse here with that description.\n", ch);
+    char_printf(ch, "There is no corpse here with that description.\n");
     return CAST_RESULT_CHARGE;
 }
 
@@ -3078,7 +3068,7 @@ ASPELL(spell_moonbeam) {
     }
 
     if (numvicts == 0) {
-        send_to_char("No one seems to care.\n", ch);
+        char_printf(ch, "No one seems to care.\n");
         return CAST_RESULT_CHARGE;
     }
 

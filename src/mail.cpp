@@ -402,7 +402,7 @@ SPECIAL(postmaster) {
         return 0;
 
     if (no_mail) {
-        send_to_char("Sorry, the mail system is having technical difficulties.\n", ch);
+        char_printf(ch, "Sorry, the mail system is having technical difficulties.\n");
         return 1;
     }
 

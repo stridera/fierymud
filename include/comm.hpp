@@ -64,13 +64,6 @@ void close_socket(DescriptorData *d);
 int speech_ok(CharData *ch, int quiet);
 void send_gmcp_room(CharData *ch);
 
-/* deprecated functions */
-void send_to_all(const char *messg);
-void send_to_char(const char *messg, const CharData *ch);
-void send_to_room(const char *messg, int room);
-void send_to_zone(const char *messg, int zone_vnum, int skip_room, int min_stance);
-void write_to_output(const char *txt, DescriptorData *d);
-
 using ActArg = std::variant<std::nullptr_t, ObjData *, CharData *, const char *, int>;
 void format_act(char *rtn, const char *orig, const CharData *ch, ActArg obj, ActArg vict_obj, const CharData *to);
 void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, ActArg vict_obj, int type);
@@ -84,6 +77,9 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
 #define TO_OLC (1 << 8)      /* persons doing OLC may see msg */
 #define TO_VICTROOM (1 << 9) /* destination room will be vict's, not char's */
 
+template <typename... Args> void string_to_output(DescriptorData *t, std::string_view str, Args &&...args) {
+    string_to_output(t, fmt::vformat(str, fmt::make_format_args(args...)));
+}
 void string_to_output(DescriptorData *t, std::string_view txt);
 int write_to_descriptor(socket_t desc, std::string_view txt);
 void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d);

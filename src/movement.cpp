@@ -120,13 +120,13 @@ EVENTFUNC(gravity_event) {
         char_to_room(ch, to_room);
 
         if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
-            send_to_char("\n&2You float slowly downward.&0\n\n", ch);
+            char_printf(ch, "\n&2You float slowly downward.&0\n\n");
             act("&2$n floats slowly down from above.&0", false, ch, 0, 0, TO_ROOM);
         } else if (GET_SKILL(ch, SKILL_SAFEFALL)) {
-            send_to_char("\n&2You fall gracefully DOWN!&0\n\n", ch);
+            char_printf(ch, "\n&2You fall gracefully DOWN!&0\n\n");
             act("&2$n gracefully falls from above.&0", false, ch, 0, 0, TO_ROOM);
         } else {
-            send_to_char("\n&2DOWN!&0\n\n", ch);
+            char_printf(ch, "\n&2DOWN!&0\n\n");
             act("&2$n falls screaming from above.&0", false, ch, 0, 0, TO_ROOM);
         }
 
@@ -147,7 +147,7 @@ EVENTFUNC(gravity_event) {
         log("Falling room loop detected: {} started falling in room {:d}; is now in {:d}", ch ? "char" : "obj",
             world[event->start_room].vnum, world[in_room].vnum);
         if (ch)
-            send_to_char("\nParadoxically, you end up where you began.\n", ch);
+            char_printf(ch, "\nParadoxically, you end up where you began.\n");
         CANCEL_GRAVITY;
     }
 
@@ -286,10 +286,10 @@ void gravity_assisted_landing(CharData *ch, int distance_fallen) {
     /* Levitation protects from damage */
     if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
         if (IS_WATER(IN_ROOM(ch))) {
-            send_to_char("\nYou come to rest above the surface of the water.\n", ch);
+            char_printf(ch, "\nYou come to rest above the surface of the water.\n");
             act("$n comes to rest above the surface of the water.", false, ch, 0, 0, TO_ROOM);
         } else {
-            send_to_char("\nYou come to rest just above the ground.\n", ch);
+            char_printf(ch, "\nYou come to rest just above the ground.\n");
             act("$n's descent ends just above the ground.", false, ch, 0, 0, TO_ROOM);
         }
         return;
@@ -302,19 +302,19 @@ void gravity_assisted_landing(CharData *ch, int distance_fallen) {
     /* If we have safe fall skill, then we take no damage
        for five rooms, partially for 5-15 and full at 15 David Endre 3/8/99 */
     if (IS_WATER(IN_ROOM(ch))) {
-        send_to_char("\nYou land with a tremendous &4SPLASH&2!&0\n", ch);
+        char_printf(ch, "\nYou land with a tremendous &4SPLASH&2!&0\n");
         act("$n lands with a tremendous &4SPLASH&2!&0", false, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen <= 5) {
             GET_POS(ch) = POS_STANDING;
             GET_STANCE(ch) = STANCE_ALERT;
-            send_to_char("\nYou tuck and roll, performing a beautiful landing!\n", ch);
+            char_printf(ch, "\nYou tuck and roll, performing a beautiful landing!\n");
             act("$n tucks and rolls, performing a beautiful landing!", false, ch, 0, 0, TO_ROOM);
         } else if (GET_SKILL(ch, SKILL_SAFEFALL) && distance_fallen < 15) {
-            send_to_char("\nYou gracefully land without taking too much damage.\n", ch);
+            char_printf(ch, "\nYou gracefully land without taking too much damage.\n");
             act("$n gracefully lands without taking too much damage.", false, ch, 0, 0, TO_ROOM);
         } else {
-            send_to_char("\nYou land with a resounding &1S&2P&1L&2A&1T&2!&0\n", ch);
+            char_printf(ch, "\nYou land with a resounding &1S&2P&1L&2A&1T&2!&0\n");
             act("$n lands with a resounding &1S&2P&1L&2A&1T&2!&0", false, ch, 0, 0, TO_ROOM);
         }
     }
@@ -347,7 +347,7 @@ void stop_follower(CharData *ch, int violent) {
 
     if (EFF_FLAGGED(ch, EFF_CHARM)) {
         if (DECEASED(ch))
-            send_to_char("A wave of sorrow nearly overcomes you.\n", ch->master);
+            char_printf(ch->master, "A wave of sorrow nearly overcomes you.\n");
         else if (violent) {
             act("You realize that $N is a jerk!", false, ch, 0, ch->master, TO_CHAR);
             act("$n realizes that $N is a jerk!", false, ch, 0, ch->master, TO_NOTVICT);
@@ -460,7 +460,7 @@ void disband_group(CharData *master, bool verbose, bool forceful) {
     assert(master->groupees);
 
     if (verbose)
-        send_to_char(forceful ? "&2&8The group has been disbanded.&0\n" : "&2&8You disband the group.&0\n", master);
+        char_printf(master, forceful ? "&2&8The group has been disbanded.&0\n" : "&2&8You disband the group.&0\n");
 
     while (master->groupees) {
         g = master->groupees;
@@ -487,8 +487,8 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             CharData *new_master = ch->groupees->groupee;
 
             if (verbose) {
-                send_to_char("&2&8You're no longer leading your group.&0\n", ch);
-                send_to_char("&2&8You're now leading the group!&0\n", new_master);
+                char_printf(ch, "&2&8You're no longer leading your group.&0\n");
+                char_printf(new_master, "&2&8You're now leading the group!&0\n");
             }
 
             /* Move groupees to new master. */

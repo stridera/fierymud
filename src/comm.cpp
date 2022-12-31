@@ -1141,21 +1141,21 @@ void handle_telopt_request(DescriptorData *d, char *txt) {
     }
 
     if (environment == ENV_PROD) {
-        write_to_output(GREETINGS, d);
-        write_to_output(GREETINGS2, d);
-        write_to_output(GREETINGS3, d);
-        write_to_output(GREETINGS4, d);
+        string_to_output(d, GREETINGS);
+        string_to_output(d, GREETINGS2);
+        string_to_output(d, GREETINGS3);
+        string_to_output(d, GREETINGS4);
     } else if (environment == ENV_TEST) {
-        write_to_output(TEST_GREETING, d);
-        write_to_output(TEST_GREETING2, d);
-        write_to_output(TEST_GREETING3, d);
+        string_to_output(d, TEST_GREETING);
+        string_to_output(d, TEST_GREETING2);
+        string_to_output(d, TEST_GREETING3);
     } else if (environment == ENV_DEV) {
-        write_to_output(DEV_GREETING, d);
-        write_to_output(DEV_GREETING2, d);
-        write_to_output(DEV_GREETING3, d);
+        string_to_output(d, DEV_GREETING);
+        string_to_output(d, DEV_GREETING2);
+        string_to_output(d, DEV_GREETING3);
     }
-    write_to_output(bcbuf, d);
-    write_to_output(WHOAREYOU, d);
+    string_to_output(d, bcbuf);
+    string_to_output(d, WHOAREYOU);
 }
 
 /*
@@ -2488,7 +2488,7 @@ void room_printf(int rvnum, std::string_view str) {
     if (rvnum >= 0 && rvnum <= top_of_world)
         room = &world[rvnum];
     else {
-        log(LogSeverity::Error, LVL_GOD, "SYSERR: bad room rnum {} passed to send_to_room", rvnum);
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: bad room rnum {} passed to room_printf", rvnum);
         return;
     }
 
@@ -2519,7 +2519,7 @@ void zone_printf(int zone_vnum, int skip_room, int min_stance, std::string_view 
     int zone_rnum = real_zone(zone_vnum);
 
     if (zone_rnum == NOWHERE) {
-        log(LogSeverity::Error, LVL_GOD, "SYSERR: bad zone vnum {} passed to send_to_zone", zone_vnum);
+        log(LogSeverity::Error, LVL_GOD, "SYSERR: bad zone vnum {} passed to zone_printf", zone_vnum);
         return;
     }
 
@@ -2965,23 +2965,4 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
                         format_act(lbuf, str, ch, obj, vict_obj, to);
                         char_printf(to, lbuf);
                     }
-}
-
-/* deprecated functions */
-void send_to_char(const char *messg, const CharData *ch) {
-    if (ch->desc && messg && *messg)
-        string_to_output(ch->desc, messg);
-}
-
-void write_to_output(const char *messg, DescriptorData *d) {
-    if (messg && *messg)
-        string_to_output(d, messg);
-}
-
-void send_to_all(const char *messg) { all_printf("%s", messg); }
-
-void send_to_room(const char *messg, int room) { room_printf(room, messg); }
-
-void send_to_zone(const char *messg, int zone_vnum, int skip_room, int min_stance) {
-    zone_printf(zone_vnum, skip_room, min_stance, "%s", messg);
 }

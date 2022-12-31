@@ -62,7 +62,7 @@ bool switch_ok(CharData *ch) {
 
     if (number(1, 101) > GET_SKILL(ch, SKILL_SWITCH)) {
         act("&8$n tries to switch opponents, but becomes confused!&0", false, ch, 0, 0, TO_ROOM);
-        send_to_char("&8You try to switch opponents and become confused.&0\n", ch);
+        char_printf(ch, "&8You try to switch opponents and become confused.&0\n");
         stop_fighting(ch);
         improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
         return false;
@@ -70,7 +70,7 @@ bool switch_ok(CharData *ch) {
 
     stop_fighting(ch);
     act("&8$n switches opponents!&0", false, ch, 0, 0, TO_ROOM);
-    send_to_char("&8You switch opponents!&0\n", ch);
+    char_printf(ch, "&8You switch opponents!&0\n");
     improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
     return true;
 }
@@ -142,7 +142,7 @@ ACMD(do_breathe) {
      * you need actual life to generate poison gas! */
     /*
     if (GET_SKILL(ch, SKILL_BREATHE) < 1 || EFF_FLAGGED(ch, EFF_CHARM)) {
-        send_to_char("You huff and puff but to no avail.\n", ch);
+        char_printf(ch, "You huff and puff but to no avail.\n");
         act("$n huffs and puffs but to no avail.", false, ch, 0, 0, TO_ROOM);
         return;
     }
@@ -151,7 +151,7 @@ ACMD(do_breathe) {
         (GET_SKILL(ch, SKILL_BREATHE_GAS) < 1 && GET_SKILL(ch, SKILL_BREATHE_FIRE) < 1 &&
          GET_SKILL(ch, SKILL_BREATHE_FROST) < 1 && GET_SKILL(ch, SKILL_BREATHE_ACID) < 1 &&
          GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) < 1)) {
-        send_to_char("You huff and puff but to no avail.\n", ch);
+        char_printf(ch, "You huff and puff but to no avail.\n");
         act("$n huffs and puffs but to no avail.", false, ch, 0, 0, TO_ROOM);
         return;
     }
@@ -162,7 +162,7 @@ ACMD(do_breathe) {
             break;
 
     if (!breath_info[type].name) {
-        send_to_char("Usage: breathe <fire / gas / frost / acid / lightning>\n", ch);
+        char_printf(ch, "Usage: breathe <fire / gas / frost / acid / lightning>\n");
         return;
     }
 
@@ -177,7 +177,7 @@ ACMD(do_breathe) {
     } else if ((GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) > 0) && (breath_info[type].spell == SPELL_LIGHTNING_BREATH)) {
         breath_energy = SKILL_BREATHE_LIGHTNING;
     } else {
-        send_to_char("You cannot breathe that kind of energy!\n", ch);
+        char_printf(ch, "You cannot breathe that kind of energy!\n");
         return;
     }
 
@@ -192,7 +192,7 @@ ACMD(do_breathe) {
         }
     }
 
-    send_to_char(breath_info[type].to_char, ch);
+    char_printf(ch, breath_info[type].to_char);
     act(breath_info[type].to_room, false, ch, 0, 0, TO_ROOM);
 
     for (tch = world[ch->in_room].people; tch; tch = next_tch) {
@@ -238,10 +238,10 @@ ACMD(do_roar) {
     if (subcmd == SCMD_HOWL) {
         if (!GET_SKILL(ch, SKILL_BATTLE_HOWL) || !EFF_FLAGGED(ch, EFF_SPIRIT_WOLF) || !EFF_FLAGGED(ch, EFF_BERSERK)) {
             if (SUN(IN_ROOM(ch)) == SUN_DARK && CH_OUTSIDE(ch)) {
-                send_to_char("You form an O with your mouth and howl at the moon.\n", ch);
+                char_printf(ch, "You form an O with your mouth and howl at the moon.\n");
                 act("$n starts howling at the moon.   Eerie.", false, ch, 0, 0, TO_ROOM);
             } else {
-                send_to_char("You howl madly, making a fool of yourself.\n", ch);
+                char_printf(ch, "You howl madly, making a fool of yourself.\n");
                 act("$n howls madly, looking like a fool.", false, ch, 0, 0, TO_ROOM);
             }
             return;
@@ -253,18 +253,18 @@ ACMD(do_roar) {
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
         act("$n opens $s mouth wide and lets out a little cough.", false, ch, 0, 0, TO_ROOM);
-        send_to_char("You take a deep breath and release a vicious cough!\n", ch);
+        char_printf(ch, "You take a deep breath and release a vicious cough!\n");
         return;
     }
 
     if (subcmd == SCMD_HOWL) {
         act("$n opens his mouth and a &1&8demonic &0&1howl&0 echoes out!", false, ch, 0, 0, TO_ROOM);
-        send_to_char("You let out a demonic battle howl, striking fear into your enemies!\n", ch);
+        char_printf(ch, "You let out a demonic battle howl, striking fear into your enemies!\n");
     } else {
         act("&9&b$n&9&b makes your soul quake with a vicious "
             "&1ROOOOOAAAAAARRRRRR!&0",
             false, ch, 0, 0, TO_ROOM);
-        send_to_char("&9&bYou take a deep breath and release a vicious &1ROOOOOAAAAARRRRRR!&0\n", ch);
+        char_printf(ch, "&9&bYou take a deep breath and release a vicious &1ROOOOOAAAAARRRRRR!&0\n");
     }
 
     for (tch = world[ch->in_room].people; tch; tch = next_tch) {
@@ -304,14 +304,14 @@ ACMD(do_roar) {
             if (number(0, 1)) {
                 sprintf(buf, "A loud %s jolts you from your slumber!\n",
                         subcmd == SCMD_HOWL ? "OOOOAAAOAOOHHH howl" : "ROAAARRRRRR");
-                send_to_char(buf, tch);
+                char_printf(tch, buf);
                 act("$n jumps up dazedly, awakened by the noise!", true, tch, 0, 0, TO_ROOM);
                 GET_POS(tch) = POS_SITTING;
                 GET_STANCE(tch) = STANCE_ALERT;
                 WAIT_STATE(tch, PULSE_VIOLENCE);
             }
         } else if (GET_DEX(tch) - 15 < number(0, 100) && GET_POS(tch) >= POS_STANDING) {
-            send_to_char("In your panicked rush to flee, you trip!\n", tch);
+            char_printf(tch, "In your panicked rush to flee, you trip!\n");
             act("In a panicked rush to flee, $n trips!", false, tch, 0, 0, TO_ROOM);
             GET_POS(tch) = POS_SITTING;
             GET_STANCE(tch) = STANCE_ALERT;
@@ -341,12 +341,12 @@ ACMD(do_sweep) {
         return;
 
     if (GET_SKILL(ch, SKILL_SWEEP) < 1 || EFF_FLAGGED(ch, EFF_CHARM)) {
-        send_to_char("Huh?!?\n", ch);
+        char_printf(ch, "Huh?!?\n");
         return;
     }
 
     act("&2$n&2 sweeps with $s enormous tail!&0", false, ch, 0, 0, TO_ROOM);
-    send_to_char("&2You sweep with your enormous tail!&0\n", ch);
+    char_printf(ch, "&2You sweep with your enormous tail!&0\n");
 
     for (tch = world[ch->in_room].people; tch; tch = next_tch) {
         next_tch = tch->next_in_room;
@@ -394,13 +394,13 @@ ACMD(do_assist) {
     one_argument(argument, arg);
 
     if (FIGHTING(ch))
-        send_to_char("You're already fighting!\n", ch);
+        char_printf(ch, "You're already fighting!\n");
     else if (!*arg)
-        send_to_char("Whom do you wish to assist?\n", ch);
+        char_printf(ch, "Whom do you wish to assist?\n");
     else if (!(helpee = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
-        send_to_char(NOPERSON, ch);
+        char_printf(ch, NOPERSON);
     else if (helpee == ch)
-        send_to_char("Usually, you assist someone else.\n", ch);
+        char_printf(ch, "Usually, you assist someone else.\n");
     else {
         for (opponent = world[ch->in_room].people; opponent && (FIGHTING(opponent) != helpee);
              opponent = opponent->next_in_room)
@@ -430,17 +430,17 @@ ACMD(do_disengage) {
     }
 
     if (!FIGHTING(ch)) {
-        send_to_char("You are not fighting anyone.\n", ch);
+        char_printf(ch, "You are not fighting anyone.\n");
         return;
     }
 
     if (FIGHTING(FIGHTING(ch)) == ch) {
-        send_to_char("No way! You are fighting for your life!\n", ch);
+        char_printf(ch, "No way! You are fighting for your life!\n");
         return;
     }
 
     stop_fighting(ch);
-    send_to_char("You disengage from combat.\n", ch);
+    char_printf(ch, "You disengage from combat.\n");
     WAIT_STATE(ch, PULSE_VIOLENCE);
 }
 
@@ -450,21 +450,21 @@ ACMD(do_hit) {
     one_argument(argument, arg);
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS))
-        send_to_char("&8It is just too dark!&0\n", ch);
+        char_printf(ch, "&8It is just too dark!&0\n");
     else if (EFF_FLAGGED(ch, EFF_BLIND))
-        send_to_char("You can't see a thing!\n", ch);
+        char_printf(ch, "You can't see a thing!\n");
     else if (!*arg)
-        send_to_char("Hit who?\n", ch);
+        char_printf(ch, "Hit who?\n");
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
-        send_to_char("They don't seem to be here.\n", ch);
+        char_printf(ch, "They don't seem to be here.\n");
     else if (vict == ch) {
-        send_to_char("You hit yourself...OUCH!.\n", ch);
+        char_printf(ch, "You hit yourself...OUCH!.\n");
         act("$n hits $mself, and says OUCH!", false, ch, 0, vict, TO_ROOM);
     } else if (EFF_FLAGGED(ch, EFF_CHARM) && (ch->master == vict))
         act("$N is just such a good friend, you simply can't hit $M.", false, ch, 0, vict, TO_CHAR);
     else if (attack_ok(ch, vict, true)) {
         if (vict == FIGHTING(ch)) {
-            send_to_char("&7You're doing the best you can!&0\n", ch);
+            char_printf(ch, "&7You're doing the best you can!&0\n");
             return;
         } else if (!FIGHTING(ch) || switch_ok(ch)) {
             if (CONFUSED(ch))
@@ -479,11 +479,11 @@ ACMD(do_kill) {
     CharData *vict;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-        send_to_char("&8It is just too damn dark!&0\n", ch);
+        char_printf(ch, "&8It is just too damn dark!&0\n");
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("You feel ashamed trying to disturb the peace of this room.\n", ch);
+        char_printf(ch, "You feel ashamed trying to disturb the peace of this room.\n");
         return;
     }
 
@@ -494,14 +494,14 @@ ACMD(do_kill) {
     one_argument(argument, arg);
 
     if (!*arg) {
-        send_to_char("Kill who?\n", ch);
+        char_printf(ch, "Kill who?\n");
     } else {
         if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))))
-            send_to_char("They aren't here.\n", ch);
+            char_printf(ch, "They aren't here.\n");
         else if (ch == vict)
-            send_to_char("Your mother would be so sad.. :(\n", ch);
+            char_printf(ch, "Your mother would be so sad.. :(\n");
         else if (GET_LEVEL(vict) == LVL_IMPL)
-            send_to_char("&1You dare NOT do that!&0\n", ch);
+            char_printf(ch, "&1You dare NOT do that!&0\n");
         else {
             act("You chop $M to pieces!   Ah!   The blood!", false, ch, 0, vict, TO_CHAR);
             act("$N chops you to pieces!", false, vict, 0, ch, TO_CHAR);
@@ -564,7 +564,7 @@ void slow_death(CharData *victim) {
     act("&8$n is dead!   R.I.P.&0", true, victim, 0, 0, TO_ROOM);
     if (AWAKE(victim)) {
         act("&8You feel yourself slipping away and falling into the abyss.&0", false, victim, 0, 0, TO_CHAR);
-        send_to_char("&0&8Your life fades away ....\n", victim);
+        char_printf(victim, "&0&8Your life fades away ....\n");
     }
 
     die(victim, nullptr);
@@ -574,9 +574,9 @@ void quickdeath(CharData *victim, CharData *ch) {
     if (GET_LEVEL(victim) >= LVL_IMMORT || (ch && MOB_FLAGGED(ch, MOB_ILLUSORY)))
         return;
 
-    send_to_char("You deliver the killing blow.\n", ch);
+    char_printf(ch, "You deliver the killing blow.\n");
     act("$n's strike upon $N is faster than the eye can see.", true, ch, 0, victim, TO_NOTVICT);
-    send_to_char("You feel a sharp sting, and all goes black.\n", victim);
+    char_printf(victim, "You feel a sharp sting, and all goes black.\n");
 
     hurt_char(victim, ch, GET_MAX_HIT(victim) + 20, false);
 }
@@ -588,12 +588,12 @@ ACMD(do_backstab) {
     ObjData *weapon;
 
     if (GET_COOLDOWN(ch, CD_BACKSTAB)) {
-        send_to_char("Give yourself a chance to get back into position!\n", ch);
+        char_printf(ch, "Give yourself a chance to get back into position!\n");
         return;
     }
 
     if (GET_SKILL(ch, SKILL_BACKSTAB) < 1) {
-        send_to_char("You don't know how.\n", ch);
+        char_printf(ch, "You don't know how.\n");
         return;
     }
 
@@ -603,16 +603,16 @@ ACMD(do_backstab) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
-            send_to_char("Backstab who?\n", ch);
+            char_printf(ch, "Backstab who?\n");
             return;
         }
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
-        send_to_char("Backstab who?\n", ch);
+        char_printf(ch, "Backstab who?\n");
         return;
     }
 
     if (vict == ch) {
-        send_to_char("How can you sneak up on yourself?\n", ch);
+        char_printf(ch, "How can you sneak up on yourself?\n");
         return;
     }
 
@@ -633,7 +633,7 @@ ACMD(do_backstab) {
     }
 
     if (EFF_FLAGGED(ch, EFF_BLIND)) {
-        send_to_char("You can't see a thing!\n", ch);
+        char_printf(ch, "You can't see a thing!\n");
         return;
     }
 
@@ -645,7 +645,7 @@ ACMD(do_backstab) {
         weapon = GET_EQ(ch, WEAR_2HWIELD);
 
     if (!weapon) {
-        send_to_char("Backstab with what, your fist?\n", ch);
+        char_printf(ch, "Backstab with what, your fist?\n");
         return;
     }
 
@@ -655,7 +655,7 @@ ACMD(do_backstab) {
         weapon = GET_EQ(ch, WEAR_WIELD2);
 
     if (!IS_WEAPON_PIERCING(weapon)) {
-        send_to_char("Piercing weapons must be used to backstab.\n", ch);
+        char_printf(ch, "Piercing weapons must be used to backstab.\n");
         return;
     }
 
@@ -804,12 +804,12 @@ ACMD(do_flee) {
 
     /* Don't show this message for sleeping and below */
     if (GET_STANCE(ch) > STANCE_SLEEPING && (IS_NPC(ch) ? GET_MOB_WAIT(ch) : CHECK_WAIT(ch))) {
-        send_to_char("You cannot flee yet!\n", ch);
+        char_printf(ch, "You cannot flee yet!\n");
         return;
     }
 
     if (FIGHTING(ch) && EFF_FLAGGED(ch, EFF_BERSERK)) {
-        send_to_char("You're too angry to leave this fight!\n", ch);
+        char_printf(ch, "You're too angry to leave this fight!\n");
         return;
     }
 
@@ -828,10 +828,10 @@ ACMD(do_flee) {
     case STANCE_MORT:
     case STANCE_INCAP:
     case STANCE_STUNNED:
-        send_to_char("It's a bit too late for that.\n", ch);
+        char_printf(ch, "It's a bit too late for that.\n");
         break;
     case STANCE_SLEEPING:
-        send_to_char("You dream of fleeing!\n", ch);
+        char_printf(ch, "You dream of fleeing!\n");
         break;
     default:
         switch (GET_POS(ch)) {
@@ -840,7 +840,7 @@ ACMD(do_flee) {
         case POS_KNEELING:
             abort_casting(ch);
             act("Looking panicked, $n scrambles madly to $s feet!", true, ch, 0, 0, TO_ROOM);
-            send_to_char("You scramble madly to your feet!\n", ch);
+            char_printf(ch, "You scramble madly to your feet!\n");
             GET_POS(ch) = POS_STANDING;
             GET_STANCE(ch) = STANCE_ALERT;
             if (IS_NPC(ch))
@@ -861,7 +861,7 @@ ACMD(do_flee) {
                     act("$n panics, and attempts to flee!", true, ch, 0, 0, TO_ROOM);
                     if (do_simple_move(ch, attempt, true)) {
                         sprintf(buf, "&0You panic and flee %s!&0\n", dirs[attempt]);
-                        send_to_char(buf, ch);
+                        char_printf(ch, buf);
                     } else
                         act("$n tries to flee, but can't!", true, ch, 0, 0, TO_ROOM);
                     return;
@@ -869,7 +869,7 @@ ACMD(do_flee) {
             }
             /* All 6 attempts failed! */
             act("$n tries to flee, but PANICS instead!", true, ch, 0, 0, TO_ROOM);
-            send_to_char("PANIC!   You couldn't escape!\n", ch);
+            char_printf(ch, "PANIC!   You couldn't escape!\n");
         }
     }
 }
@@ -882,33 +882,33 @@ ACMD(do_retreat) {
         return;
 
     if (!GET_SKILL(ch, SKILL_RETREAT)) {
-        send_to_char("Try flee instead!\n", ch);
+        char_printf(ch, "Try flee instead!\n");
         return;
     }
 
     if (!FIGHTING(ch)) {
-        send_to_char("You're not fighting anyone!\n", ch);
+        char_printf(ch, "You're not fighting anyone!\n");
         return;
     }
 
     one_argument(argument, arg);
 
     if (!*arg) {
-        send_to_char("Retreat where!?\n", ch);
+        char_printf(ch, "Retreat where!?\n");
         return;
     }
 
     dir = searchblock(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
-        send_to_char("You can't retreat that way!\n", ch);
+        char_printf(ch, "You can't retreat that way!\n");
         return;
     }
 
     /*
        for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
        if (FIGHTING(tch) == ch) {
-       send_to_char("&8You cannot retreat while tanking!&0\n", ch);
+       char_printf(ch, "&8You cannot retreat while tanking!&0\n");
        return;
        }
      */
@@ -927,7 +927,7 @@ ACMD(do_retreat) {
         ch->in_room = to_room;
 
         sprintf(buf, "\nYou skillfully retreat %s.\n", dirs[dir]);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
     }
     /* If fighting a mob that can switch, maybe get attacked. */
     else if (IS_NPC(FIGHTING(ch)) && FIGHTING(FIGHTING(ch)) != ch && GET_SKILL(FIGHTING(ch), SKILL_SWITCH) &&
@@ -935,11 +935,11 @@ ACMD(do_retreat) {
         stop_fighting(FIGHTING(ch));
         act("$n fails to retreat, catching $N's attention!", true, ch, 0, FIGHTING(ch), TO_NOTVICT);
         act("You notice $n trying to escape and attack $m!", false, ch, 0, FIGHTING(ch), TO_VICT);
-        send_to_char("You fail to retreat, and catch the attention of your opponent!\n", ch);
+        char_printf(ch, "You fail to retreat, and catch the attention of your opponent!\n");
         attack(FIGHTING(ch), ch);
     } else {
         act("$n stumbles and trips as $e fails to retreat!", true, ch, 0, 0, TO_ROOM);
-        send_to_char("You stumble and trip as you try to retreat!\n", ch);
+        char_printf(ch, "You stumble and trip as you try to retreat!\n");
         if (GET_LEVEL(ch) < LVL_GOD) {
             GET_POS(ch) = POS_SITTING;
             GET_STANCE(ch) = STANCE_ALERT;
@@ -960,26 +960,26 @@ ACMD(do_gretreat) {
         return;
 
     if (!GET_SKILL(ch, SKILL_GROUP_RETREAT)) {
-        send_to_char("Try flee instead!\n", ch);
+        char_printf(ch, "Try flee instead!\n");
         return;
     }
 
     if (!FIGHTING(ch)) {
-        send_to_char("You're not fighting anyone!\n", ch);
+        char_printf(ch, "You're not fighting anyone!\n");
         return;
     }
 
     argument = one_argument(argument, arg);
 
     if (!*arg) {
-        send_to_char("Retreat where!?\n", ch);
+        char_printf(ch, "Retreat where!?\n");
         return;
     }
 
     dir = searchblock(arg, dirs, false);
 
     if (dir < 0 || !CH_DEST(ch, dir)) {
-        send_to_char("You can't retreat that way!\n", ch);
+        char_printf(ch, "You can't retreat that way!\n");
         return;
     }
 
@@ -999,9 +999,9 @@ ACMD(do_gretreat) {
         k->can_see_master = CAN_SEE(k->follower, ch);
 
     if (!opponents)
-        send_to_char("You must be tanking to successfully lead your group in retreat!\n", ch);
+        char_printf(ch, "You must be tanking to successfully lead your group in retreat!\n");
     else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) < opponents * number(20, 24))
-        send_to_char("There are too many opponents to retreat from!\n", ch);
+        char_printf(ch, "There are too many opponents to retreat from!\n");
 
     /* Successful retreat? */
     else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) > number(0, 81) && !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) &&
@@ -1014,7 +1014,7 @@ ACMD(do_gretreat) {
         act(buf, true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
         sprintf(buf, "\nYou skillfully lead your group %s.\n", dirs[dir]);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
 
         for (k = ch->followers; k; k = next_k) {
             next_k = k->next;
@@ -1027,7 +1027,7 @@ ACMD(do_gretreat) {
         }
     } else {
         act("$n stumbles and trips as $e fails to retreat!", true, ch, 0, 0, TO_ROOM);
-        send_to_char("You stumble and trip as you try to retreat!\n", ch);
+        char_printf(ch, "You stumble and trip as you try to retreat!\n");
         if (GET_LEVEL(ch) < LVL_GOD) {
             GET_POS(ch) = POS_SITTING;
             GET_STANCE(ch) = STANCE_ALERT;
@@ -1057,29 +1057,29 @@ ACMD(do_bash) {
     }
 
     if (!GET_SKILL(ch, skill)) {
-        send_to_char("You're not really sure how...\n", ch);
+        char_printf(ch, "You're not really sure how...\n");
         return;
     }
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-            send_to_char("&8It's just too dark!&0\n", ch);
+            char_printf(ch, "&8It's just too dark!&0\n");
             return;
         }
 
         if (EFF_FLAGGED(ch, EFF_BLIND)) {
-            send_to_char("You can't see a thing!\n", ch);
+            char_printf(ch, "You can't see a thing!\n");
             return;
         }
 
         if (skill == SKILL_BODYSLAM && FIGHTING(ch)) {
-            send_to_char("You can't bodyslam in combat...\n", ch);
+            char_printf(ch, "You can't bodyslam in combat...\n");
             return;
         }
 
         if (GET_COOLDOWN(ch, CD_BASH)) {
             sprintf(buf, "You haven't reoriented yourself for another %s yet!\n", skills[skill].name);
-            send_to_char(buf, ch);
+            char_printf(ch, buf);
             return;
         }
     }
@@ -1090,7 +1090,7 @@ ACMD(do_bash) {
         vict = FIGHTING(ch);
         if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
             sprintf(buf, "%s who?\n", skills[skill].name);
-            send_to_char(CAP(buf), ch);
+            char_printf(ch, CAP(buf));
             return;
         }
     }
@@ -1103,7 +1103,7 @@ ACMD(do_bash) {
     }
 
     if (vict == ch) {
-        send_to_char("Aren't we funny today...\n", ch);
+        char_printf(ch, "Aren't we funny today...\n");
         return;
     }
     if (vict == ch->guarding) {
@@ -1158,7 +1158,7 @@ ACMD(do_bash) {
         act(EVASIONCLR "You charge right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
         act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
         act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", false, ch, 0, vict, TO_VICT);
-        send_to_char("You fall down!\n", ch);
+        char_printf(ch, "You fall down!\n");
         act("$n falls down!", false, ch, 0, 0, TO_ROOM);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         GET_POS(ch) = POS_SITTING;
@@ -1180,7 +1180,7 @@ ACMD(do_bash) {
 
     if (GET_SIZE(vict) - GET_SIZE(ch) > 1) {
         sprintf(buf, "&7&bYou fall over as you try to %s someone so large!&0\n", skills[skill].name);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         act("&7&b$n BOUNCES off $N, as $e tries to $t $N's much larger size.&0", false, ch, skills[skill].name, vict,
             TO_NOTVICT);
         act("&7&b$n BOUNCES off you as $e tries to $t your much larger size.&0", false, ch, skills[skill].name, vict,
@@ -1191,7 +1191,7 @@ ACMD(do_bash) {
                 "&7&bYou fall over as you try to %s someone with such small "
                 "size.&0\n",
                 skills[skill].name);
-        send_to_char(buf, ch);
+        char_printf(ch, buf);
         act("&7&b$n trips over $N, as $e tries to $t $N's much smaller size.&0", false, ch, skills[skill].name, vict,
             TO_NOTVICT);
         act("&7&b$n trips over you as $e tries to $t your much smaller size.&0", false, ch, skills[skill].name, vict,
@@ -1206,7 +1206,7 @@ ACMD(do_bash) {
             alter_pos(vict, POS_SITTING, STANCE_ALERT);
     } else {
         if (skill == SKILL_BASH && !GET_EQ(ch, WEAR_SHIELD))
-            send_to_char("You need to wear a shield to make it a success!\n", ch);
+            char_printf(ch, "You need to wear a shield to make it a success!\n");
         /* damage comes before alter_pos here. If alter_pos came first, then if
          * the fight was started by this action, you might be in a sitting
          * position when the fight began, which would make you automatically
@@ -1227,19 +1227,19 @@ ACMD(do_rescue) {
     one_argument(argument, arg);
 
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
-        send_to_char("Whom do you want to rescue?\n", ch);
+        char_printf(ch, "Whom do you want to rescue?\n");
         return;
     }
     if (vict == ch) {
-        send_to_char("What about fleeing instead?\n", ch);
+        char_printf(ch, "What about fleeing instead?\n");
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("You feel ashamed trying to disturb the peace of this room.\n", ch);
+        char_printf(ch, "You feel ashamed trying to disturb the peace of this room.\n");
         return;
     }
     if (FIGHTING(ch) == vict) {
-        send_to_char("How can you rescue someone you are trying to kill?\n", ch);
+        char_printf(ch, "How can you rescue someone you are trying to kill?\n");
         return;
     }
     if (!vict->attackers) {
@@ -1247,7 +1247,7 @@ ACMD(do_rescue) {
         return;
     }
     if (GET_SKILL(ch, SKILL_RESCUE) == 0) {
-        send_to_char("But only true warriors can do this!\n", ch);
+        char_printf(ch, "But only true warriors can do this!\n");
         return;
     }
 
@@ -1264,12 +1264,12 @@ ACMD(do_rescue) {
     prob = GET_SKILL(ch, SKILL_RESCUE);
 
     if (percent > prob) {
-        send_to_char("You fail the rescue!\n", ch);
+        char_printf(ch, "You fail the rescue!\n");
         WAIT_STATE(ch, PULSE_VIOLENCE);
         improve_skill_offensively(ch, attacker, SKILL_RESCUE);
         return;
     }
-    send_to_char("Banzai!   To the rescue...\n", ch);
+    char_printf(ch, "Banzai!   To the rescue...\n");
     act("You are rescued by $N, you are confused!", false, vict, 0, ch, TO_CHAR);
     act("$n heroically rescues $N!", false, ch, 0, vict, TO_NOTVICT);
 
@@ -1292,7 +1292,7 @@ ACMD(do_kick) {
     int percent, prob;
 
     if (GET_SKILL(ch, SKILL_KICK) == 0) {
-        send_to_char("You'd better leave all the martial arts to fighters.\n", ch);
+        char_printf(ch, "You'd better leave all the martial arts to fighters.\n");
         return;
     }
 
@@ -1302,16 +1302,16 @@ ACMD(do_kick) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
-            send_to_char("Kick who?\n", ch);
+            char_printf(ch, "Kick who?\n");
             return;
         }
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
-        send_to_char("Kick who?\n", ch);
+        char_printf(ch, "Kick who?\n");
         return;
     }
 
     if (vict == ch) {
-        send_to_char("Aren't we funny today...\n", ch);
+        char_printf(ch, "Aren't we funny today...\n");
         return;
     }
 
@@ -1319,7 +1319,7 @@ ACMD(do_kick) {
         return;
 
     if (EFF_FLAGGED(ch, EFF_IMMOBILIZED)) {
-        send_to_char("You can't lift your legs!\n", ch);
+        char_printf(ch, "You can't lift your legs!\n");
         return;
     }
 
@@ -1360,12 +1360,12 @@ ACMD(do_eye_gouge) {
     effect eff;
 
     if (GET_SKILL(ch, SKILL_EYE_GOUGE) == 0) {
-        send_to_char("You would do such a despicable act!?   Horrible!\n", ch);
+        char_printf(ch, "You would do such a despicable act!?   Horrible!\n");
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_BLIND)) {
-        send_to_char("It's going to be hard to gouge someone's eyes out if you can't even see.\n", ch);
+        char_printf(ch, "It's going to be hard to gouge someone's eyes out if you can't even see.\n");
         return;
     }
 
@@ -1375,21 +1375,21 @@ ACMD(do_eye_gouge) {
         if (FIGHTING(ch))
             vict = FIGHTING(ch);
         else {
-            send_to_char("Whose eyes do you want to gouge out?\n", ch);
+            char_printf(ch, "Whose eyes do you want to gouge out?\n");
             return;
         }
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
-        send_to_char("Nobody here by that name.\n", ch);
+        char_printf(ch, "Nobody here by that name.\n");
         return;
     }
 
     if (FIGHTING(ch) && FIGHTING(ch) != vict) {
-        send_to_char("You need to be facing each other for this to work.\n", ch);
+        char_printf(ch, "You need to be facing each other for this to work.\n");
         return;
     }
 
     if (vict == ch) {
-        send_to_char("That would make life difficult, wouldn't it?\n", ch);
+        char_printf(ch, "That would make life difficult, wouldn't it?\n");
         return;
     }
 
@@ -1398,7 +1398,7 @@ ACMD(do_eye_gouge) {
         return;
 
     if (GET_COOLDOWN(ch, CD_EYE_GOUGE)) {
-        send_to_char("You aren't able to find an opening yet!\n", ch);
+        char_printf(ch, "You aren't able to find an opening yet!\n");
         return;
     }
 
@@ -1449,22 +1449,22 @@ ACMD(do_springleap) {
     int percent, prob, dmg;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !CAN_SEE_IN_DARK(ch)) {
-        send_to_char("&8It is too dark!&0\n", ch);
+        char_printf(ch, "&8It is too dark!&0\n");
         return;
     }
 
     if (!GET_SKILL(ch, SKILL_SPRINGLEAP)) {
-        send_to_char("You'd better leave all the martial arts to monks.\n", ch);
+        char_printf(ch, "You'd better leave all the martial arts to monks.\n");
         return;
     }
 
     if (GET_POS(ch) > POS_SITTING) {
-        send_to_char("You can't spring from that position, try sitting!\n", ch);
+        char_printf(ch, "You can't spring from that position, try sitting!\n");
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_IMMOBILIZED)) {
-        send_to_char("You can't lift your legs!\n", ch);
+        char_printf(ch, "You can't lift your legs!\n");
         return;
     }
 
@@ -1474,13 +1474,13 @@ ACMD(do_springleap) {
         if (FIGHTING(ch))
             vict = FIGHTING(ch);
         else {
-            send_to_char("&0Spring-leap whom?&0\n", ch);
+            char_printf(ch, "&0Spring-leap whom?&0\n");
             return;
         }
     }
 
     if (vict == ch) {
-        send_to_char("That might hurt too much...\n", ch);
+        char_printf(ch, "That might hurt too much...\n");
         return;
     }
 
@@ -1582,36 +1582,36 @@ ACMD(do_throatcut) {
     bool skipcast = false;
 
     if (GET_COOLDOWN(ch, CD_THROATCUT)) {
-        send_to_char("You've drawn too much attention to yourself to throatcut now!\n", ch);
+        char_printf(ch, "You've drawn too much attention to yourself to throatcut now!\n");
         return;
     }
 
     random = dice(1, 6);
 
     if ((GET_LEVEL(ch) < LVL_IMMORT) && (GET_SKILL(ch, SKILL_THROATCUT) == 0)) {
-        send_to_char("You aren't skilled enough!\n", ch);
+        char_printf(ch, "You aren't skilled enough!\n");
         return;
     }
 
     if (FIGHTING(ch)) {
-        send_to_char("You can't be stealthy enough to do this while fighting!\n", ch);
+        char_printf(ch, "You can't be stealthy enough to do this while fighting!\n");
         return;
     }
 
     if (RIDING(ch)) {
-        send_to_char("Cut someone's throat while riding???   I don't think so!\n", ch);
+        char_printf(ch, "Cut someone's throat while riding???   I don't think so!\n");
         return;
     }
 
     one_argument(argument, buf);
 
     if ((!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) && (!(vict == ch))) {
-        send_to_char("Cut whose throat?\n", ch);
+        char_printf(ch, "Cut whose throat?\n");
         return;
     }
 
     if (vict == ch) {
-        send_to_char("Hey, life's not that bad!\n", ch);
+        char_printf(ch, "Hey, life's not that bad!\n");
         return;
     }
 
@@ -1625,7 +1625,7 @@ ACMD(do_throatcut) {
     }
 
     if (!weapon) {
-        send_to_char("&0You need a one-handed slashing weapon to cut throats.&0\n", ch);
+        char_printf(ch, "&0You need a one-handed slashing weapon to cut throats.&0\n");
         return;
     }
 
@@ -1636,12 +1636,12 @@ ACMD(do_throatcut) {
     }
 
     if (!WEAPON_CAN_THROATCUT(weapon)) {
-        send_to_char("&0You need a one-handed slashing weapon to cut throats.&0\n", ch);
+        char_printf(ch, "&0You need a one-handed slashing weapon to cut throats.&0\n");
         return;
     }
 
     if (FIGHTING(vict)) {
-        send_to_char("&0You can't cut the throat of a fighting person -- they're too alert!&0\n", ch);
+        char_printf(ch, "&0You can't cut the throat of a fighting person -- they're too alert!&0\n");
         return;
     }
 
@@ -1658,10 +1658,10 @@ ACMD(do_throatcut) {
     if (GET_RACE(vict) == RACE_DRAGON_GENERAL || GET_RACE(vict) == RACE_DRAGON_FIRE ||
         GET_RACE(vict) == RACE_DRAGON_ACID || GET_RACE(vict) == RACE_DRAGON_FROST ||
         GET_RACE(vict) == RACE_DRAGON_LIGHTNING || GET_RACE(vict) == RACE_DRAGON_GAS) {
-        send_to_char("Cut the throat... of a dragon... RIGHT!!!!!\n", ch);
+        char_printf(ch, "Cut the throat... of a dragon... RIGHT!!!!!\n");
         return;
     } else if ((GET_SIZE(vict) > GET_SIZE(ch) + 2) || (GET_SIZE(vict) < GET_SIZE(ch) - 2)) {
-        send_to_char("Maybe if you were close to the same size it would work!!\n", ch);
+        char_printf(ch, "Maybe if you were close to the same size it would work!!\n");
         return;
     }
 
@@ -1875,13 +1875,13 @@ ACMD(do_disarm) {
     bool disarm_prim = true;
 
     if (GET_SKILL(ch, SKILL_DISARM) == 0) {
-        send_to_char("You don't know how to disarm.\n", ch);
+        char_printf(ch, "You don't know how to disarm.\n");
         return;
     }
 
     /* Make sure we're fighting someone who'll be disarmed */
     if (!FIGHTING(ch)) {
-        send_to_char("You can only disarm someone who you're fighting.\n", ch);
+        char_printf(ch, "You can only disarm someone who you're fighting.\n");
         return;
     }
 
@@ -1889,7 +1889,7 @@ ACMD(do_disarm) {
 
     /* Fighting yourself? Unlikely... but anyway: */
     if (ch == tch) {
-        send_to_char("Try 'remove' instead.\n", ch);
+        char_printf(ch, "Try 'remove' instead.\n");
         return;
     }
 
@@ -1897,18 +1897,18 @@ ACMD(do_disarm) {
 
     /* Need mv to perform disarm */
     if (GET_MOVE(ch) < move_cost) {
-        send_to_char("You don't have the energy to do that.\n", ch);
+        char_printf(ch, "You don't have the energy to do that.\n");
         return;
     }
 
     if (GET_COOLDOWN(ch, CD_FUMBLING_PRIMARY) || GET_COOLDOWN(ch, CD_FUMBLING_SECONDARY)) {
-        send_to_char("Impossible!  You're already fumbling for your own weapon.\n", ch);
+        char_printf(ch, "Impossible!  You're already fumbling for your own weapon.\n");
         return;
     }
 
     /* Can't disarm them if you can't see them */
     if (!CAN_SEE(ch, tch)) {
-        send_to_char("It's pretty hard to disarm someone you can't even see...\n", ch);
+        char_printf(ch, "It's pretty hard to disarm someone you can't even see...\n");
         return;
     }
 
@@ -1922,7 +1922,7 @@ ACMD(do_disarm) {
         ch_pos = WEAR_WIELD2;
         disarm_prim = false;
     } else {
-        send_to_char("You must be wielding some kind of weapon.\n", ch);
+        char_printf(ch, "You must be wielding some kind of weapon.\n");
         return;
     }
 
@@ -1957,12 +1957,12 @@ ACMD(do_disarm) {
 
     /* Unlikely, but but just in case: */
     if (GET_OBJ_TYPE(obj) != ITEM_WEAPON) {
-        send_to_char("You can only disarm weapons.\n", ch);
+        char_printf(ch, "You can only disarm weapons.\n");
         return;
     }
 
     if (CONFUSED(ch)) {
-        send_to_char("You're way too addle-headed to disarm anyone.\n", ch);
+        char_printf(ch, "You're way too addle-headed to disarm anyone.\n");
         return;
     }
 
@@ -2116,24 +2116,24 @@ ACMD(do_hitall) {
 
     if (subcmd == SCMD_TANTRUM) {
         if (!GET_SKILL(ch, SKILL_TANTRUM)) {
-            send_to_char("You throw a hissy-fit, hoping someone will notice you.\n", ch);
+            char_printf(ch, "You throw a hissy-fit, hoping someone will notice you.\n");
             act("$n sobs to $mself loudly, soliciting attention.", true, ch, 0, 0, TO_ROOM);
             return;
         }
         if (!EFF_FLAGGED(ch, EFF_BERSERK)) {
-            send_to_char("You're not feeling quite up to throwing a tantrum right now.\n", ch);
+            char_printf(ch, "You're not feeling quite up to throwing a tantrum right now.\n");
             return;
         }
     } else if (!GET_SKILL(ch, SKILL_HITALL)) {
-        send_to_char("You don't know how to.\n", ch);
+        char_printf(ch, "You don't know how to.\n");
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-        send_to_char("You feel ashamed trying to disturb the peace of this room.\n", ch);
+        char_printf(ch, "You feel ashamed trying to disturb the peace of this room.\n");
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_HOUSE)) {
-        send_to_char("Sorry, it's too cramped here for nasty maneuvers!\n", ch);
+        char_printf(ch, "Sorry, it's too cramped here for nasty maneuvers!\n");
         return;
     }
 
@@ -2152,12 +2152,12 @@ ACMD(do_hitall) {
 
     if (subcmd == SCMD_TANTRUM) {
         act("$n flings $s limbs around wildly, swiping at everything nearby!", false, ch, 0, 0, TO_ROOM);
-        send_to_char("You throw an incensed tantrum, attacking all nearby!\n", ch);
+        char_printf(ch, "You throw an incensed tantrum, attacking all nearby!\n");
         if (GET_SKILL(ch, SKILL_TANTRUM) >= percent)
             success = true;
     } else {
         act("$n makes a concerted circular attack at everything nearby!", false, ch, 0, 0, TO_NOTVICT);
-        send_to_char("You spin in a circle, attempting to hit everything within range.\n", ch);
+        char_printf(ch, "You spin in a circle, attempting to hit everything within range.\n");
         if (GET_SKILL(ch, SKILL_HITALL) >= percent)
             success = true;
     }
@@ -2203,7 +2203,7 @@ ACMD(do_corner) {
     int chance;
 
     if (!GET_SKILL(ch, SKILL_CORNER)) {
-        send_to_char("You aren't skilled enough to corner an opponent!\n", ch);
+        char_printf(ch, "You aren't skilled enough to corner an opponent!\n");
         return;
     }
 
@@ -2213,12 +2213,12 @@ ACMD(do_corner) {
     if (!*arg && FIGHTING(ch))
         vict = FIGHTING(ch);
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg))) || vict != FIGHTING(ch)) {
-        send_to_char("You have to be fighting someone to corner them!\n", ch);
+        char_printf(ch, "You have to be fighting someone to corner them!\n");
         return;
     }
 
     if (CONFUSED(ch)) {
-        send_to_char("You're far too confused to corner anyone.\n", ch);
+        char_printf(ch, "You're far too confused to corner anyone.\n");
         return;
     }
 
@@ -2256,7 +2256,7 @@ ACMD(do_peck) {
         return;
 
     if (GET_SKILL(ch, SKILL_PECK) <= 0) {
-        send_to_char("How do you expect to do that?\n", ch);
+        char_printf(ch, "How do you expect to do that?\n");
         return;
     }
 
@@ -2265,12 +2265,12 @@ ACMD(do_peck) {
         if (FIGHTING(ch))
             vict = FIGHTING(ch);
         else {
-            send_to_char("Peck whom?\n", ch);
+            char_printf(ch, "Peck whom?\n");
             return;
         }
     }
     if (ch == vict) {
-        send_to_char("Ouch, that hurts!\n", ch);
+        char_printf(ch, "Ouch, that hurts!\n");
         return;
     }
 
@@ -2309,7 +2309,7 @@ ACMD(do_claw) {
         return;
 
     if (GET_SKILL(ch, SKILL_CLAW) <= 0) {
-        send_to_char("Grow some longer fingernails first!\n", ch);
+        char_printf(ch, "Grow some longer fingernails first!\n");
         return;
     }
 
@@ -2318,12 +2318,12 @@ ACMD(do_claw) {
         if (FIGHTING(ch))
             vict = FIGHTING(ch);
         else {
-            send_to_char("Claw whom?\n", ch);
+            char_printf(ch, "Claw whom?\n");
             return;
         }
     }
     if (ch == vict) {
-        send_to_char("Ouch, that hurts!\n", ch);
+        char_printf(ch, "Ouch, that hurts!\n");
         return;
     }
 
@@ -2359,7 +2359,7 @@ ACMD(do_electrify) {
         return;
 
     if (GET_SKILL(ch, SKILL_ELECTRIFY) <= 0) {
-        send_to_char("Good luck with that one!\n", ch);
+        char_printf(ch, "Good luck with that one!\n");
         return;
     }
 
@@ -2367,9 +2367,9 @@ ACMD(do_electrify) {
         mag_area(GET_SKILL(ch, SKILL_ELECTRIFY), ch, SKILL_ELECTRIFY, SAVING_BREATH);
     else {
         if (IS_WATER(ch->in_room))
-            send_to_char("The water around you sizzles, but you are unable to gatherany power...\n", ch);
+            char_printf(ch, "The water around you sizzles, but you are unable to gatherany power...\n");
         else
-            send_to_char("The air around you crackles, but you are unable to gather any power...\n", ch);
+            char_printf(ch, "The air around you crackles, but you are unable to gather any power...\n");
         act("A quick spike of electricity runs across $n's skin.", true, ch, 0, 0, TO_ROOM);
     }
 
@@ -2402,22 +2402,22 @@ void stop_berserking(CharData *ch) {
 
 ACMD(do_berserk) {
     if (!GET_SKILL(ch, SKILL_BERSERK)) {
-        send_to_char("You flail your arms about, acting like a crazy person.\n", ch);
+        char_printf(ch, "You flail your arms about, acting like a crazy person.\n");
         act("$n goes berserk, thrashing about the area.", false, ch, 0, 0, TO_ROOM);
         return;
     }
 
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
-        send_to_char("You're already out of control!\n", ch);
+        char_printf(ch, "You're already out of control!\n");
         return;
     }
 
     if (GET_RAGE(ch) < RAGE_ANGRY) {
-        send_to_char("You're not angry enough yet!\n", ch);
+        char_printf(ch, "You're not angry enough yet!\n");
         return;
     }
 
-    send_to_char("You feel your blood begin to boil, and your self-control starts to slip...\n", ch);
+    char_printf(ch, "You feel your blood begin to boil, and your self-control starts to slip...\n");
     act("$n's eyes flash and anger clouds $s face.", true, ch, 0, 0, TO_ROOM);
 
     start_berserking(ch);
@@ -2440,16 +2440,16 @@ ACMD(do_stomp) {
     }
 
     if (CH_INDOORS(ch)) {
-        send_to_char("You MUST be crazy, trying to do that in here!\n", ch);
+        char_printf(ch, "You MUST be crazy, trying to do that in here!\n");
         return;
     }
 
     if (!QUAKABLE(IN_ROOM(ch))) {
-        send_to_char("There's no ground to stomp on here!\n", ch);
+        char_printf(ch, "There's no ground to stomp on here!\n");
         return;
     }
 
-    send_to_char("&8&3You stomp one foot on the ground heavily, shaking the earth!&0\n", ch);
+    char_printf(ch, "&8&3You stomp one foot on the ground heavily, shaking the earth!&0\n");
     act("&8&3$n crashes a foot into the ground, causing it to crack around "
         "$m...&0",
         true, ch, 0, 0, TO_ROOM);
