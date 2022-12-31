@@ -1647,6 +1647,7 @@ ACMD(do_inventory) {
 
 ACMD(do_equipment) {
     int i, found = 0;
+    one_argument(argument, arg);
 
     char_printf(ch, "You are using:\n");
     for (i = 0; i < NUM_WEARS; i++) {
@@ -1659,7 +1660,8 @@ ACMD(do_equipment) {
                 char_printf(ch, "{}Something.\n", where[wear_order_index[i]]);
                 found = true;
             }
-        }
+        } else if (*arg && is_equals(arg, "all"))
+            char_printf(ch, "{}Nothing.\n", where[wear_order_index[i]]);
     }
     if (!found)
         char_printf(ch, " Nothing.\n");
