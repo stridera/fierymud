@@ -194,7 +194,7 @@ void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_ar
     case SHOW_BASIC_DESC:
     case SHOW_FULL_DESC:
         if (obj->ex_description && !(GET_OBJ_TYPE(obj) == ITEM_BOARD && is_number(additional_args)))
-            char_printf(ch, obj->ex_description->description);
+            char_printf(ch, "{}\n", obj->ex_description->description);
         if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON)
             char_printf(ch, "It looks like a drink container.");
         else if (GET_OBJ_TYPE(obj) == ITEM_SPELLBOOK)

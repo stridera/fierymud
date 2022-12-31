@@ -776,7 +776,7 @@ EDITOR_FUNC(editor_default_list) {
     }
 
     if (first_line > 1 || last_line < 99999)
-        pdprintf(d, "Current buffer range [%d - %d]:\n", first_line, last_line);
+        desc_paging_printf(d, "Current buffer range [%d - %d]:\n", first_line, last_line);
 
     line = 1;
     lines = 0;
@@ -801,7 +801,7 @@ EDITOR_FUNC(editor_default_list) {
                 temp = *str;
                 *str = '\0';
             }
-            pdprintf(d, "%4d: %s\n", line, start);
+            desc_paging_printf(d, "%4d: %s\n", line, start);
             if (str)
                 *str = temp;
         }
@@ -816,7 +816,7 @@ EDITOR_FUNC(editor_default_list) {
             temp = *str;
             *str = '\0';
         }
-        pdprintf(d, "%s", start);
+        desc_paging_printf(d, "%s", start);
         if (str)
             *str = temp;
     }

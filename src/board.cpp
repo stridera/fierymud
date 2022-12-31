@@ -665,7 +665,7 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
         return;
     }
 
-    char_printf(ch, "There {} %d message{} on {}.\n", board->message_count == 1 ? "is" : "are", board->message_count,
+    char_printf(ch, "There {} {} message{} on {}.\n", board->message_count == 1 ? "is" : "are", board->message_count,
                 board->message_count == 1 ? "" : "s", face ? face->short_description : "the board");
 
     for (i = board->message_count - 1; i >= 0; --i) {

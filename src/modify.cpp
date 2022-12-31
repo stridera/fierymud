@@ -21,19 +21,20 @@
 #include "dg_scripts.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "mail.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "olc.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
-// #include "strings.hpp"
-#include "logging.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void parse_action(int command, char *string, DescriptorData *d);
+#include <ranges>
+
+using namespace std::string_view_literals;
 
 /* action modes for parse_action */
 #define PARSE_FORMAT 0
@@ -842,13 +843,6 @@ ACMD(do_skillset) {
 /*   PAGINATION   */
 /******************/
 
-#define PAGE_WIDTH 120
-#define MAX_MORTAL_PAGEBUF 81920
-#define MAX_IMMORT_PAGEBUF 512000
-
-char paging_pbuf[MAX_STRING_LENGTH];
-char paging_buf[MAX_STRING_LENGTH];
-
 static int get_page_length(DescriptorData *d) {
     int page_length = 22;
 
@@ -864,70 +858,7 @@ static int get_page_length(DescriptorData *d) {
     return page_length;
 }
 
-static void add_paging_element(DescriptorData *d, paging_line *pl) {
-    int page_length = get_page_length(d);
-
-    if (d->paging_tail) {
-        d->paging_tail->next = pl;
-        d->paging_tail = pl;
-    } else {
-        d->paging_lines = pl;
-        d->paging_tail = pl;
-    }
-
-    /* Recalculate number of pages */
-    d->paging_numlines++;
-    d->paging_numpages = d->paging_numlines / page_length;
-    if (d->paging_numlines % page_length)
-        d->paging_numpages++;
-    d->paging_bufsize += sizeof(paging_line) + strlen(pl->line) + 1;
-}
-
-static bool ok_paging_add(DescriptorData *d, int size) {
-    int maxbuf = MAX_MORTAL_PAGEBUF;
-
-    if (d->paging_skipped) {
-        d->paging_skipped++;
-        return false;
-    }
-
-    if (d->original) {
-        if (GET_LEVEL(d->original) < LVL_IMMORT)
-            maxbuf = MAX_MORTAL_PAGEBUF;
-        else
-            maxbuf = MAX_IMMORT_PAGEBUF;
-    } else if (d->character) {
-        if (GET_LEVEL(d->character) < LVL_IMMORT)
-            maxbuf = MAX_MORTAL_PAGEBUF;
-        else
-            maxbuf = MAX_IMMORT_PAGEBUF;
-    }
-
-    if (d->paging_bufsize + size > maxbuf) {
-        d->paging_skipped++;
-        return false;
-    } else {
-        return true;
-    }
-}
-
-static void add_paging_fragment(DescriptorData *d, const char *line, int len) {
-    paging_line *pl;
-
-    if (ok_paging_add(d, len + 1)) {
-        CREATE(pl, paging_line, 1);
-        pl->line = (char *)(malloc(len + 1));
-        memcpy(pl->line, line, len + 1);
-        pl->line[len] = '\0';
-
-        add_paging_element(d, pl);
-    }
-}
-
-static void paging_addstr(DescriptorData *d, const char *str) {
-    int col = 1, spec_code = false;
-    const char *line_start, *s;
-    char *tmp;
+static void paging_addstr(DescriptorData *d, std::string_view str) {
 
     // If pagelength is set to 0, don't page
     if (!get_page_length(d)) {
@@ -935,209 +866,75 @@ static void paging_addstr(DescriptorData *d, const char *str) {
         return;
     }
 
-    if (d->paging_fragment) {
-        sprintf(paging_buf, "%s%s", d->paging_fragment, str);
-        free(d->paging_fragment);
-        d->paging_fragment = nullptr;
-        line_start = paging_buf;
-    } else {
-        line_start = str;
+    for (auto line : str | std::views::split('\n')) {
+        std::string line_str{line.begin(), line.end()};
+        d->page_outbuf->emplace_back(std::move(line_str));
     }
 
-    s = line_start;
+    if (!d->page_outbuf->empty() && d->page_outbuf->back().empty())
+        d->page_outbuf->pop_back();
 
-    for (;; s++) {
-        /* End of string */
-        if (*s == '\0') {
-            if (s != line_start) {
-                tmp = strdup(line_start);
-                d->paging_fragment = tmp;
-            }
-            return;
-
-            /* Check for the begining of an ANSI color code block. */
-        } else if (*s == '\x1B' && !spec_code)
-            spec_code = true;
-
-        /* Check for the end of an ANSI color code block. */
-        else if (*s == 'm' && spec_code)
-            spec_code = false;
-
-        /* Check for inline ansi too! */
-        else if ((*s == CREL || *s == CABS) && !spec_code) {
-            s++;
-            continue;
-
-            /* Check for everything else. */
-        } else if (!spec_code) {
-            /* Carriage return puts us in column one. */
-            if (*s == '\r')
-                col = 1;
-            /* Newline puts us on the next line. */
-            else if (*s == '\n') {
-                add_paging_fragment(d, line_start, s - line_start + 1);
-                line_start = s + 1;
-
-                /* We need to check here and see if we are over the page width,
-                 * and if so, compensate by going to the begining of the next line. */
-            } else if (col++ > PAGE_WIDTH) {
-                col = 1;
-                add_paging_fragment(d, line_start, s - line_start);
-                line_start = s;
-            }
-        }
-    }
+    d->paging_numpages = (d->page_outbuf->size() + get_page_length(d) - 1) / get_page_length(d);
 }
 
-void paging_printf(CharData *ch, std::string_view messg) {
-    if (ch->desc && !messg.empty()) {
-        strncpy(paging_pbuf, messg.data(), messg.size());
-        paging_addstr(ch->desc, paging_pbuf);
-    }
-}
+void paging_printf(CharData *ch, std::string_view messg) { paging_addstr(ch->desc, messg); }
 
-// void paging_printf(CharData *ch, const char *messg, ...) {
-//     va_list args;
-
-//     if (ch->desc && messg && *messg) {
-//         va_start(args, messg);
-//         vsnprintf(paging_pbuf, sizeof(paging_pbuf), messg, args);
-//         va_end(args);
-//         paging_addstr(ch->desc, paging_pbuf);
-//     }
-// }
-
-void desc_paging_printf(DescriptorData *d, const char *messg, ...) {
-    va_list args;
-
-    if (messg && *messg) {
-        va_start(args, messg);
-        vsnprintf(paging_pbuf, sizeof(paging_pbuf), messg, args);
-        va_end(args);
-        paging_addstr(d, paging_pbuf);
-    }
-}
-
-void free_paged_text(DescriptorData *d) {
-    paging_line *pl, *plnext;
-
-    for (pl = d->paging_lines; pl; pl = plnext) {
-        free(pl->line);
-        plnext = pl->next;
-        free(pl);
-    }
-    if (d->paging_fragment) {
-        free(d->paging_fragment);
-        d->paging_fragment = nullptr;
-    }
-    d->paging_lines = nullptr;
-    d->paging_tail = nullptr;
-    d->paging_numlines = 0;
-    d->paging_numpages = 0;
-    d->paging_curpage = 0;
-    d->paging_bufsize = 0;
-    d->paging_skipped = 0;
-}
-
-paging_line *paging_goto_page(DescriptorData *d, int page) {
-    int destpage = page;
-    int page_length = get_page_length(d);
-    int i, j;
-    paging_line *pl;
-
-    /* Decide exactly which page to go to */
-    if (destpage < 0)
-        destpage = 0;
-    else if (destpage >= PAGING_NUMPAGES(d))
-        destpage = PAGING_NUMPAGES(d) - 1;
-
-    PAGING_PAGE(d) = destpage;
-
-    /* Go to it */
-    pl = d->paging_lines;
-    for (i = 0; i < destpage; i++)
-        for (j = 0; j < page_length; j++) {
-            if (!pl->next) {
-                log("SYSERR: Pager tried to go to page {:d}, but there were only {:d} lines at {:d} per page!",
-                    destpage + 1, j + (i + 1) * page_length, page_length);
-            }
-            pl = pl->next;
-        }
-
-    return pl;
-}
+void desc_paging_printf(DescriptorData *d, std::string_view messg) { paging_addstr(d, messg); }
 
 void get_paging_input(DescriptorData *d, char *input) {
-    int i, page_length;
-    paging_line *line;
-
     one_argument(input, buf);
 
     /* Q is for quit. :) */
     if (LOWER(*buf) == 'q') {
-        free_paged_text(d);
+        d->page_outbuf->clear();
         return;
     }
     /* R is for refresh */
     else if (LOWER(*buf) == 'r')
-        line = paging_goto_page(d, PAGING_PAGE(d));
-
+        // Do nothing, just refresh the page
+        ;
     /* B is for back */
     else if (LOWER(*buf) == 'b')
-        line = paging_goto_page(d, PAGING_PAGE(d) - 1);
+        d->paging_curpage--;
 
     /* A digit: goto a page */
-    else if (isdigit(*buf))
-        line = paging_goto_page(d, atoi(buf) - 1);
-
-    else if (*buf) {
+    else if (isdigit(*buf)) {
+        int page = atoi(buf);
+        if (page > 0 && page <= d->page_outbuf->size() / get_page_length(d)) {
+            d->paging_curpage = atoi(buf) - 1;
+        } else {
+            char_printf(d->character, "Invalid page number.\n");
+            return;
+        }
+    } else if (*buf) {
         /* Other input: quit the pager */
-        free_paged_text(d);
+        d->page_outbuf->clear();
         return;
     } else
         /* No input: goto the next page */
-        line = paging_goto_page(d, PAGING_PAGE(d) + 1);
+        d->paging_curpage++;
 
-    page_length = get_page_length(d);
-    for (i = 0; i < page_length && line; i++) {
-        char_printf(d->character, line->line);
-        line = line->next;
-    }
-
-    if (!line)
-        free_paged_text(d);
+    print_current_page(d);
 }
 
 void start_paging_desc(DescriptorData *d) {
-    int i, page_length = get_page_length(d);
-    paging_line *line = d->paging_lines;
+    d->paging_curpage = 0;
+    print_current_page(d);
+}
 
-    PAGING_PAGE(d) = 0;
-
-    /* Now that the show is on the road, any fragmentary text must be put in
-     * the list of lines with the rest of the text */
-    if (d->paging_fragment) {
-        add_paging_fragment(d, paging_buf, sprintf(paging_buf, "%s\n", d->paging_fragment));
-        free(d->paging_fragment);
-        d->paging_fragment = nullptr;
+void print_current_page(DescriptorData *d) {
+    int page_length = get_page_length(d);
+    if (d->paging_curpage < 0 || d->paging_curpage >= d->page_outbuf->size() / page_length) {
+        log(LogSeverity::Error, -1, "Paging error: page {} of {}.", d->paging_curpage,
+            d->page_outbuf->size() / page_length);
+        d->page_outbuf->clear();
+        return;
     }
 
-    /* Notify player if there was too much text to fit in the pager */
-    if (d->paging_skipped) {
-        sprintf(buf, "***   OVERFLOW  %d line%s skipped   ***\n\n", d->paging_skipped,
-                d->paging_skipped == 1 ? "" : "s");
-        char_printf(d->character, buf);
-    }
-
-    /* Send the initial page of text */
-    for (i = 0; i < page_length && line; i++) {
-        char_printf(d->character, line->line);
-        line = line->next;
-    }
-
-    /* Was there no more than one page? */
-    if (!line)
-        free_paged_text(d);
+    auto it = d->page_outbuf->begin();
+    std::advance(it, d->paging_curpage * page_length);
+    for (int i = 0; i < page_length && it != d->page_outbuf->end(); i++, it++)
+        char_printf(d->character, "{}\n", *it);
 }
 
 /* When you have been accumulating some text to someone and are finished,
@@ -1147,12 +944,6 @@ void start_paging(CharData *ch) {
         start_paging_desc(ch->desc);
 }
 
-/* LEGACY !!! */
-void page_line(CharData *ch, char *str) {
-    if (ch->desc)
-        paging_addstr(ch->desc, str);
-}
-
 void page_string(CharData *ch, const char *str) {
     if (ch->desc)
         page_string_desc(ch->desc, str);
@@ -1160,6 +951,6 @@ void page_string(CharData *ch, const char *str) {
 
 void page_string_desc(DescriptorData *d, const char *str) {
     paging_addstr(d, str);
-    if (PAGING(d))
+    if (!d->page_outbuf->empty())
         start_paging_desc(d);
 }

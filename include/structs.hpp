@@ -16,6 +16,7 @@
 #include "spell_mem.hpp"
 #include "sysdep.hpp"
 
+#include <list>
 #include <string>
 
 typedef int room_num;
@@ -463,13 +464,15 @@ struct DescriptorData {
 
     EditorData *editor;
 
+    std::list<std::string> *page_outbuf; /* buffer for paged output */
+    int paging_curpage;                  /* The page which is currently showing   */
+
     /* The pager */
     paging_line *paging_lines; /* The text that is to be paged through  */
     paging_line *paging_tail;  /* End of the list of lines              */
     char *paging_fragment;     /* Intermediate leftover string          */
     int paging_numlines;       /* Number of lines in the list           */
     int paging_numpages;       /* Number of pages to be paged through   */
-    int paging_curpage;        /* The page which is currently showing   */
     int paging_bufsize;        /* Amount of memory currently used       */
     int paging_skipped;        /* Number of lines discarded due to overflow */
 };

@@ -863,7 +863,7 @@ void game_loop(int mother_desc) {
 
                 /* reversed these top 2 if checks so that you can use the page_string */
                 /* function in the editor */
-                if (PAGING(d)) /* reading something w/ pager     */
+                if (!d->page_outbuf->empty()) /* reading something w/ pager     */
                     get_paging_input(d, comm);
                 else if (EDITING(d))
                     editor_interpreter(d, comm);
@@ -1747,12 +1747,11 @@ void make_prompt(DescriptorData *d) {
      * prompt flag.
      */
 
-    if (PAGING(d)) {
+    if (!d->page_outbuf->empty()) {
         char prompt[MAX_INPUT_LENGTH];
-        sprintf(prompt,
-                "\r[ Return to continue, (q)uit, (r)efresh, (b)ack, or page number "
-                "(%d/%d) ]\n",
-                PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
+
+        sprintf(prompt, "\r[ Return to continue, (q)uit, (r)efresh, %s or page number (%d/%d) ]\n",
+                PAGING_PAGE(d) == 0 ? "" : "(b)ack,", PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
         write_to_descriptor(d->descriptor, prompt);
     } else if (EDITING(d) || d->str)
         write_to_descriptor(d->descriptor, "] ");
@@ -1787,7 +1786,7 @@ bool casting_command(DescriptorData *d, char *txt) {
     /*
      * A hack-within-a-hack to enable usage of paging while casting.
      */
-    if (PAGING(d)) {
+    if (!d->page_outbuf->empty()) {
         get_paging_input(d, txt);
         return true;
     } else if (EDITING(d)) {
@@ -1898,6 +1897,7 @@ void init_descriptor(DescriptorData *newd, int desc) {
     newd->login_time = time(0);
     newd->wait = 1;
     newd->gmcp_enabled = false;
+    newd->page_outbuf = new std::list<std::string>();
 
     if (newd->character == nullptr) {
         CREATE(newd->character, CharData, 1);
@@ -2335,9 +2335,11 @@ void close_socket(DescriptorData *d) {
 
     REMOVE_FROM_LIST(d, descriptor_list, next);
 
-    free_paged_text(d);
     if (d->storage)
         free(d->storage);
+
+    if (d->page_outbuf)
+        free(d->page_outbuf);
 
     free(d);
 }
