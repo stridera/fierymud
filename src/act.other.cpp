@@ -186,8 +186,7 @@ ACMD(do_subclass) {
 
     /* If above maximum quest level, bail */
     if (GET_LEVEL(ch) > c->max_subclass_level) {
-        sprintf(buf, "You can no longer subclass, because you are over level %d.\n", c->max_subclass_level);
-        char_printf(ch, buf);
+        char_printf(ch, "You can no longer subclass, because you are over level {}.\n", c->max_subclass_level);
         return;
     }
 
@@ -205,24 +204,17 @@ ACMD(do_subclass) {
         for (subclass = 0; subclass < NUM_CLASSES; subclass++) {
             if (classes[subclass].active && classes[subclass].is_subclass &&
                 classes[subclass].subclass_of == GET_CLASS(ch) && class_ok_race[(int)GET_RACE(ch)][subclass]) {
-                sprintf(buf, "  %s\n", classes[subclass].fmtname);
                 if (!anyvalid) {
                     char_printf(ch, "You may choose from the following classes for your race:\n");
                     anyvalid = 1;
                 }
-                char_printf(ch, buf);
+                char_printf(ch, "  {}\n", classes[subclass].fmtname);
             }
         }
 
         if (anyvalid) {
-            sprintf(buf,
-                    "You have until level %d to subclass. See HELP SUBCLASS_%s for "
-                    "more information.\n",
-                    c->max_subclass_level, c->name);
-            /* Capitalize the "SUBCLASS_class" bit */
-            for (s = buf + 43; *s && *s != ' '; s++)
-                *s = toupper(*s);
-            char_printf(ch, buf);
+            char_printf(ch, "You have until level {} to subclass. See HELP SUBCLASS_{} for more information.\n",
+                        c->max_subclass_level, capitalize(c->name));
         } else
             char_printf(ch, "There are no subclasses available to you.\n");
         return;
@@ -234,10 +226,9 @@ ACMD(do_subclass) {
     subclass =
         parse_class(0, 0, get_quest_variable(ch, all_quests[real_quest(quest->quest_id)].quest_name, "subclass_name"));
     if (subclass == CLASS_UNDEFINED) {
-        sprintf(buf, "%s finished subclass quest \"%s\" with unknown target subclass \"%s\"", GET_NAME(ch),
-                all_quests[real_quest(quest->quest_id)].quest_name,
-                get_quest_variable(ch, all_quests[real_quest(quest->quest_id)].quest_name, "subclass_name"));
-        log(buf);
+        log("{} finished subclass quest \"{}\" with unknown target subclass \"{}\"", GET_NAME(ch),
+            all_quests[real_quest(quest->quest_id)].quest_name,
+            get_quest_variable(ch, all_quests[real_quest(quest->quest_id)].quest_name, "subclass_name"));
         char_printf(ch, "There is an error in your subclass quest.  Ask a god to reset it.\n");
         return;
     }
@@ -273,10 +264,8 @@ ACMD(do_subclass) {
     }
 
     /* Now we know the player is on a subclass quest, but not completed */
-    sprintf(buf, "You are on the way to becoming a %s\n", classes[(int)subclass].fmtname);
-    char_printf(ch, buf);
-    sprintf(buf, "You have until level %d to complete your quest.\n", c->max_subclass_level);
-    char_printf(ch, buf);
+    char_printf(ch, "You are on the way to becoming a {}\n", classes[(int)subclass].fmtname);
+    char_printf(ch, "You have until level {:d} to complete your quest.\n", c->max_subclass_level);
 }
 
 ACMD(do_quit) {
@@ -327,8 +316,7 @@ ACMD(do_quit) {
 
     act("$n has left the game.", true, ch, 0, 0, TO_ROOM);
 
-    sprintf(buf, "%s has quit the game.", GET_NAME(ch));
-    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
+    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has quit the game.", GET_NAME(ch));
     char_printf(ch, "Goodbye, friend.  Come back soon!\n");
 
     /* transfer objects to room */
@@ -474,12 +462,12 @@ ACMD(do_shapechange) {
     if (POSSESSED(ch)) {
         if (!*arg) {
             if (ch->char_specials.timer == 0)
-                sprintf(buf, "You have just recently taken the form of %s.\n", GET_NAME(ch));
+                char_printf(ch, "You have just recently taken the form of {}.\n", GET_NAME(ch));
             else if (ch->char_specials.timer == 1)
-                sprintf(buf, "You have been in the form of %s for 1 hour.\n", GET_NAME(ch));
+                char_printf(ch, "You have been in the form of {} for 1 hour.\n", GET_NAME(ch));
             else
-                sprintf(buf, "You have been in the form of %s for %d hours.\n", GET_NAME(ch), ch->char_specials.timer);
-            char_printf(ch, buf);
+                char_printf(ch, "You have been in the form of {} for {:d} hours.\n", GET_NAME(ch),
+                            ch->char_specials.timer);
         } else if (!is_abbrev(arg, "me"))
             char_printf(ch, "You cannot shapechange to another animal from this form.\n");
         else {
@@ -539,15 +527,10 @@ ACMD(do_shapechange) {
 
     if (GET_COOLDOWN(ch, CD_SHAPECHANGE) && GET_LEVEL(ch) < LVL_IMMORT) {
         i = GET_COOLDOWN(ch, CD_SHAPECHANGE) / (1 MUD_HR) + 1;
-        if (i == 1)
-            strcpy(buf1, "hour");
-        else
-            sprintf(buf1, "%d hours", i);
-        snprintf(buf, sizeof(buf),
-                 "You are still drained from your last shapechange.\n"
-                 "It will be another %s before you can change again.\n",
-                 buf1);
-        char_printf(ch, buf);
+        char_printf(ch,
+                    "You are still drained from your last shapechange.\n"
+                    "It will be another {:d} {} before you can change again.\n",
+                    i, i == 1 ? "hour" : "hours");
         return;
     }
 
@@ -647,19 +630,15 @@ ACMD(do_shapechange) {
     }
 
     if (desired_index >= 0 && desired_index != index) {
-        sprintf(buf, "You didn't feel quite up to changing into %s.\n",
-                with_indefinite_article(creatures[desired_index].name));
-        char_printf(ch, buf);
+        char_printf(ch, "You didn't feel quite up to changing into {}.\n",
+                    with_indefinite_article(creatures[desired_index].name));
     }
 
     /* Attempt to create the mobile. */
     if (!(mob = read_mobile(creatures[index].vnum, VIRTUAL))) {
         char_printf(ch, "You start to change, then feel ill, and slump back to your normal form.\n");
-        sprintf(buf,
-                "SYSERR: %s tried to shapechange into nonexistent "
-                "mob prototype V#%d",
-                GET_NAME(ch), creatures[index].vnum);
-        log(LogSeverity::Warn, LVL_GOD, buf);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: {} tried to shapechange into nonexistent mob prototype V#{:d}",
+            GET_NAME(ch), creatures[index].vnum);
         return;
     }
 
@@ -954,9 +933,9 @@ EVENTFUNC(camp_event) {
     if (!GET_INVIS_LEV(ch))
         act("$n rolls up $s bedroll and tunes out the world.", true, ch, 0, 0, TO_ROOM);
 
-    sprintf(buf, "%s has camped in %s (%d).", GET_NAME(ch), world[ch->in_room].name, world[ch->in_room].vnum);
+    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has camped in {} ({:d}).", GET_NAME(ch),
+        world[ch->in_room].name, world[ch->in_room].vnum);
 
-    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
     REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
     remove_player_from_game(ch, QUIT_CAMP);
     return EVENT_FINISHED;
@@ -1404,8 +1383,7 @@ ACMD(do_title) {
             return;
         }
         if (GET_TITLE(ch)) {
-            sprintf(buf, "Okay, set your title to: %s\n", GET_TITLE(ch));
-            char_printf(ch, buf);
+            char_printf(ch, "Okay, set your title to: {}\n", GET_TITLE(ch));
         } else
             char_printf(ch, "Okay, cleared your title.\n");
     }
@@ -1671,14 +1649,12 @@ void print_group(CharData *ch) {
     if (!ch->group_master && !ch->groupees)
         char_printf(ch, "&2&8But you are not the member of a group!&0\n");
     else {
-        sprintf(buf, "%sYour group consists of:&0\n", CLR(ch, AUND));
-        char_printf(ch, buf);
+        char_printf(ch, "{}Your group consists of:&0\n", CLR(ch, AUND));
 
         k = (ch->group_master ? ch->group_master : ch);
         if (CAN_SEE(ch, k)) {
             make_group_report_line(k, buf);
-            strcat(buf, " (&0&2&bHead of group&0)\n");
-            char_printf(ch, buf);
+            char_printf(ch, " (&0&2&bHead of group&0)\n");
         }
 
         for (f = k->groupees; f; f = f->next) {
@@ -1686,8 +1662,7 @@ void print_group(CharData *ch) {
                 continue;
 
             make_group_report_line(f->groupee, buf);
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "\n");
         }
     }
 }
@@ -1766,12 +1741,10 @@ ACMD(do_group) {
             level_diff = GET_LEVEL(ch) - GET_LEVEL(gch);
 
             if (max_group_difference && (level_diff > max_group_difference || level_diff < -max_group_difference)) {
-                sprintf(buf,
-                        "&2&8You cannot group %s, because the level difference is too "
-                        "great.\n"
-                        "(The maximum allowable difference is currently %d.)&0\n",
-                        GET_NAME(gch), max_group_difference);
-                char_printf(ch, buf);
+                char_printf(ch,
+                            "&2&8You cannot group {}, because the level difference is too great.\n"
+                            "(The maximum allowable difference is currently {:d}.)&0\n",
+                            GET_NAME(gch), max_group_difference);
                 continue;
             }
 
@@ -1811,12 +1784,10 @@ ACMD(do_group) {
     level_diff = GET_LEVEL(ch) - GET_LEVEL(tch);
 
     if (max_group_difference && (level_diff > max_group_difference || level_diff < -max_group_difference)) {
-        sprintf(buf,
-                "&2&8You cannot group %s, because the level difference is too "
-                "great.\n"
-                "(The maximum allowable difference is currently %d.)&0\n",
-                GET_NAME(tch), max_group_difference);
-        char_printf(ch, buf);
+        char_printf(ch,
+                    "&2&8You cannot group {}, because the level difference is too great.\n"
+                    "(The maximum allowable difference is currently {:d}.)&0\n",
+                    GET_NAME(tch), max_group_difference);
         return;
     }
 
@@ -1953,8 +1924,7 @@ ACMD(do_use) {
 
     half_chop(argument, arg, buf);
     if (!*arg) {
-        sprintf(buf2, "What do you want to %s?\n", CMD_NAME);
-        char_printf(ch, buf2);
+        char_printf(ch, "What do you want to {}?\n", CMD_NAME);
         return;
     }
     mag_item = GET_EQ(ch, WEAR_HOLD);
@@ -2018,8 +1988,7 @@ ACMD(do_wimpy) {
 
     if (!*arg) {
         if (GET_WIMP_LEV(ch)) {
-            sprintf(buf, "Your current wimp level is %d hit points.\n", GET_WIMP_LEV(ch));
-            char_printf(ch, buf);
+            char_printf(ch, "Your current wimp level is {:d} hit points.\n", GET_WIMP_LEV(ch));
             return;
         } else {
             char_printf(ch, "At the moment, you're not a wimp.  (sure, sure...)\n");
@@ -2035,8 +2004,7 @@ ACMD(do_wimpy) {
             else if (wimp_lev > (GET_MAX_HIT(ch) >> 1))
                 char_printf(ch, "You can't set your wimp level above half your hit points.\n");
             else {
-                sprintf(buf, "Okay, you'll wimp out if you drop below %d hit points.\n", wimp_lev);
-                char_printf(ch, buf);
+                char_printf(ch, "Okay, you'll wimp out if you drop below {} hit points.\n", wimp_lev);
                 GET_WIMP_LEV(ch) = wimp_lev;
             }
         } else {
@@ -2057,8 +2025,7 @@ ACMD(do_display) {
     if (!*arg || !is_number(arg)) {
         char_printf(ch, "The following pre-set prompts are availible...\n");
         for (i = 0; default_prompts[i][0]; i++) {
-            sprintf(buf, "%2d. %-20s %s\n", i, default_prompts[i][0], default_prompts[i][1]);
-            char_printf(ch, buf);
+            char_printf(ch, "{:2d}. {:<20} {}\n", i, default_prompts[i][0], default_prompts[i][1]);
         }
         char_printf(ch, "Usage: display <number>\n");
         return;
@@ -2075,8 +2042,7 @@ ACMD(do_display) {
         ;
 
     if (i >= x) {
-        sprintf(buf, "The range for the prompt number is 0-%d.\n", x - 1);
-        char_printf(ch, buf);
+        char_printf(ch, "The range for the prompt number is 0-{}.\n", x - 1);
         return;
     }
 
@@ -2084,16 +2050,14 @@ ACMD(do_display) {
         free(GET_PROMPT(ch));
 
     GET_PROMPT(ch) = strdup(default_prompts[i][1]);
-    sprintf(buf, "Set your prompt to the %s preset prompt.\n", default_prompts[i][0]);
-    char_printf(ch, buf);
+    char_printf(ch, "Set your prompt to the {} preset prompt.\n", default_prompts[i][0]);
 }
 
 ACMD(do_prompt) {
     skip_spaces(&argument);
 
     if (!*argument) {
-        sprintf(buf, "Your prompt is currently: %s\n", (GET_PROMPT(ch) ? escape_ansi(GET_PROMPT(ch)) : "n/a"));
-        char_printf(ch, buf);
+        char_printf(ch, "Your prompt is currently: {}\n", (GET_PROMPT(ch) ? escape_ansi(GET_PROMPT(ch)) : "n/a"));
         return;
     }
 
@@ -2104,31 +2068,10 @@ ACMD(do_prompt) {
 
     GET_PROMPT(ch) = strdup(argument);
 
-    sprintf(buf, "Okay, set your prompt to: %s\n", escape_ansi(argument));
-    char_printf(ch, buf);
+    char_printf(ch, "Okay, set your prompt to: {}\n", escape_ansi(argument));
 }
 
 const char *idea_types[] = {"bug", "typo", "idea", "note"};
-
-void send_to_mantis(CharData *ch, int category, const char *str) {
-    std::string url;
-
-    if (!ch || !str || !*str)
-        return;
-
-    url = fmt::format("curl -s \"http://bug.fierymud.org/fiery_report.php?plr={}&room={}&cat={}&build={}&msg=",
-                      GET_NAME(ch), CH_RVNUM(ch), idea_types[category], get_build_number());
-
-    for (const char *p = str; *p; ++p)
-        if (isalpha(*p) || isdigit(*p))
-            url += *p;
-        else
-            url += fmt::format("{:02x}", *p);
-
-    url += "\"";
-
-    system(url.c_str());
-}
 
 ACMD(do_gen_write) {
     FILE *fl;
@@ -2176,7 +2119,7 @@ ACMD(do_gen_write) {
     if (!speech_ok(ch, true)) {
         char_printf(ch,
                     "You have been communicating too frequently recently.\n"
-                    "Please idle momentarily and try to submit your %s again.\n",
+                    "Please idle momentarily and try to submit your {} again.\n",
                     idea_types[subcmd]);
         return;
     }
@@ -2186,7 +2129,7 @@ ACMD(do_gen_write) {
         return;
     }
 
-    log(LogSeverity::Stat, LVL_IMMORT, "%s by %s [%d]: %s", idea_types[subcmd], GET_NAME(ch), CH_RVNUM(ch), argument);
+    log(LogSeverity::Stat, LVL_IMMORT, "{} by {} [{:d}]: {}", idea_types[subcmd], GET_NAME(ch), CH_RVNUM(ch), argument);
 
     if (stat(filename, &fbuf) >= 0 && fbuf.st_size >= max_filesize) {
         char_printf(ch, "Sorry, the file is full right now.. try again later.\n");
@@ -2201,22 +2144,9 @@ ACMD(do_gen_write) {
 
     ct = time(0);
     strftime(buf1, 15, TIMEFMT_DATE, localtime(&ct));
-
     fprintf(fl, "%-8s (%11.11s) [%5d] %s\n", GET_NAME(ch), buf1, world[ch->in_room].vnum, argument);
     fclose(fl);
     char_printf(ch, "Thanks for the bug, idea, or typo comment!\n");
-
-    /*
-     * If this is the production mud, send the bug/typo/idea to mantis
-     */
-    if (environment == ENV_PROD) {
-        switch (subcmd) {
-        case SCMD_BUG:
-        case SCMD_TYPO:
-        case SCMD_IDEA:
-            send_to_mantis(ch, subcmd, argument);
-        }
-    }
 }
 
 ACMD(do_peace) {
@@ -2262,10 +2192,7 @@ ACMD(do_petition) {
     if (!speech_ok(ch, 0))
         return;
 
-    sprintf(buf, "&0&6You petition, '&b%s&0&6'&0\n", argument);
-    char_printf(ch, buf);
-
-    sprintf(buf, "&0&6%s&0&6 petitions, '&b%s&0&6'&0\n", GET_NAME(REAL_CHAR(ch)), argument);
+    char_printf(ch, "&0&6You petition, '&b{}&0&6'&0\n", argument);
 
     for (d = descriptor_list; d; d = d->next) {
         if (!d->character)
@@ -2275,7 +2202,7 @@ ACMD(do_petition) {
             continue;
         if (GET_LEVEL(tch) < LVL_IMMORT)
             continue;
-        char_printf(d->character, buf);
+        char_printf(d->character, "&0&6{}&0&6 petitions, '&b{}&0&6'&0\n", GET_NAME(REAL_CHAR(ch)), argument);
     }
 }
 
@@ -2685,8 +2612,7 @@ ACMD(do_ignore) {
         char_printf(ch, NOPERSON);
         return;
     }
-    sprintf(buf, "You now ignore %s.\n", GET_NAME(target));
-    char_printf(ch, buf);
+    char_printf(ch, "You now ignore {}.\n", GET_NAME(target));
     tch->player_specials->ignored = target;
 }
 

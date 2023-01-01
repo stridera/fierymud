@@ -979,7 +979,7 @@ int red_recall_room(CharData *ch) {
     if (real_room(room) == NOWHERE) {
         if (real_room(6001) == NOWHERE) {
             char_printf(ch, "ERROR: Could not find your guild, nor the gates of Anduin. Please tell a god!\n");
-            log(LogSeverity::Stat, LVL_IMMORT, "ERROR: Couldn't find the real room for vnums %i or %i", room, 6001);
+            log(LogSeverity::Stat, LVL_IMMORT, "ERROR: Couldn't find the real room for vnums {} or {}", room, 6001);
 
             return NOWHERE;
         };
@@ -1059,21 +1059,13 @@ int green_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(3002) == NOWHERE) {
-            char_printf(ch,
-                        "ERROR: Could not find your guild, nor the Mielikki "
-                        "altar. Please tell a god!\n");
-            sprintf(buf,
-                    "ERROR: Couldn't find the real room for vnums "
-                    "%i or %i",
-                    room, 3002);
+            char_printf(ch, "ERROR: Could not find your guild, nor the Mielikki altar. Please tell a god!\n");
+            log(LogSeverity::Stat, LVL_IMMORT, "ERROR: Couldn't find the real room for vnums {} or {}", room, 3002);
 
-            log(LogSeverity::Stat, LVL_IMMORT, buf);
             return NOWHERE;
         };
 
-        char_printf(ch,
-                    "ERROR: Could not find your guild! Please tell a "
-                    "god!\n");
+        char_printf(ch, "ERROR: Could not find your guild! Please tell a god!\n");
         return real_room(3002);
     };
 
@@ -1117,21 +1109,12 @@ int blue_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(10001) == NOWHERE) {
-            char_printf(ch,
-                        "ERROR: Could not find your guild, nor the the "
-                        "Arctic Temple. Please tell a god!\n");
-            sprintf(buf,
-                    "ERROR: Couldn't find the real room for vnums "
-                    "%i or %i",
-                    room, 6001);
-
-            log(LogSeverity::Stat, LVL_IMMORT, buf);
+            char_printf(ch, "ERROR: Could not find your guild, nor the the Arctic Temple. Please tell a god!\n");
+            log(LogSeverity::Stat, LVL_IMMORT, "ERROR: Couldn't find the real room for vnums {} or {}", room, 6001);
             return NOWHERE;
         };
 
-        char_printf(ch,
-                    "ERROR: Could not find your guild! Please tell a "
-                    "god!\n");
+        char_printf(ch, "ERROR: Could not find your guild! Please tell a god!\n");
         return real_room(6001);
     };
 
@@ -1177,21 +1160,12 @@ int gray_recall_room(CharData *ch) {
 
     if (real_room(room) == NOWHERE) {
         if (real_room(30030) == NOWHERE) {
-            char_printf(ch,
-                        "ERROR: Could not find your guild, nor the the "
-                        "Ogakh itself. Please tell a god!\n");
-            sprintf(buf,
-                    "ERROR: Couldn't find the real room for vnums "
-                    "%i or %i",
-                    room, 30030);
-
-            log(LogSeverity::Stat, LVL_IMMORT, buf);
+            char_printf(ch, "ERROR: Could not find your guild, nor the the Ogakh itself. Please tell a god!\n");
+            log(LogSeverity::Stat, LVL_IMMORT, "ERROR: Couldn't find the real room for vnums {} or {}", room, 30030);
             return NOWHERE;
         };
 
-        char_printf(ch,
-                    "ERROR: Could not find your guild! Please tell a "
-                    "god!\n");
+        char_printf(ch, "ERROR: Could not find your guild! Please tell a god!\n");
         return real_room(30030);
     };
 

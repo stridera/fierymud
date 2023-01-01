@@ -150,9 +150,7 @@ void change_natural_size(CharData *ch, int newsize) {
     if (newsize == ch->player.natural_size)
         return;
     if (newsize < 0 || newsize >= NUM_SIZES) {
-        sprintf(buf, "SYSERR: change_size(): invalid size %d", newsize);
-        log(buf);
-        ;
+        log("SYSERR: change_size(): invalid size {:d}", newsize);
         return;
     }
 

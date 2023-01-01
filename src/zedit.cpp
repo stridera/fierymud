@@ -298,8 +298,7 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
      * That quirk has been fixed with the MAX() statement.
      */
 
-    sprintf(buf, "OLC: %s creates new zone #%d", GET_NAME(ch), vzone_num);
-    log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+    log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} creates new zone #{:d}", GET_NAME(ch), vzone_num);
     char_printf(ch, "Zone created successfully.\n");
 
     return;
@@ -1041,8 +1040,8 @@ void zedit_parse(DescriptorData *d, char *arg) {
             /*. Save the zone in memory . */
             char_printf(d->character, "Saving zone info in memory.\n");
             zedit_save_internally(d);
-            sprintf(buf, "OLC: %s edits zone info for room %d.", GET_NAME(d->character), OLC_NUM(d));
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits zone info for room {:d}.",
+                GET_NAME(d->character), OLC_NUM(d));
         /* FALL THROUGH */
         case 'n':
         case 'N':

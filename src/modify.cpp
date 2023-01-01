@@ -866,10 +866,18 @@ static void paging_addstr(DescriptorData *d, std::string_view str) {
         return;
     }
 
-    for (auto line : str | std::views::split('\n')) {
-        std::string line_str{line.begin(), line.end()};
-        d->page_outbuf->emplace_back(std::move(line_str));
-    }
+    // Requires GCC 12
+    // for (auto line : str | std::views::split('\n')) {
+    //     std::string line_str{line.begin(), line.end()};
+    //     // d->page_outbuf->emplace_back(std::move(line_str));
+    // }
+    auto lines = str | std::views::split('\n') | std::views::transform([](auto &&s) {
+                     auto subrange{s | std::views::common};
+                     std::string word{subrange.begin(), subrange.end()};
+                     return word;
+                 });
+    for (auto &&line : lines)
+        d->page_outbuf->emplace_back(std::move(line));
 
     if (!d->page_outbuf->empty() && d->page_outbuf->back().empty())
         d->page_outbuf->pop_back();
@@ -914,19 +922,28 @@ void get_paging_input(DescriptorData *d, char *input) {
         /* No input: goto the next page */
         d->paging_curpage++;
 
+    log(LogSeverity::Debug, -1, "Paging: page {} of {}.", d->paging_curpage, d->paging_numpages);
+    if (d->paging_curpage >= d->paging_numpages) {
+        d->page_outbuf->clear();
+        return;
+    }
+
     print_current_page(d);
 }
 
 void start_paging_desc(DescriptorData *d) {
     d->paging_curpage = 0;
     print_current_page(d);
+
+    // If we only have 1 page, don't bother paging
+    if (d->paging_numpages <= 1)
+        d->page_outbuf->clear();
 }
 
 void print_current_page(DescriptorData *d) {
     int page_length = get_page_length(d);
-    if (d->paging_curpage < 0 || d->paging_curpage >= d->page_outbuf->size() / page_length) {
-        log(LogSeverity::Error, -1, "Paging error: page {} of {}.", d->paging_curpage,
-            d->page_outbuf->size() / page_length);
+    if (d->paging_curpage < 0 || d->paging_curpage >= d->paging_numpages) {
+        log(LogSeverity::Error, -1, "Paging error: page {} of {}.", d->paging_curpage, d->paging_numpages);
         d->page_outbuf->clear();
         return;
     }

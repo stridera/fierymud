@@ -19,6 +19,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "queue.hpp"
@@ -28,8 +29,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 Queue *event_q; /* the event queue */
 int processing_events = false;
@@ -143,8 +142,7 @@ EVENTFUNC(casting_handler) {
     /* Prevent player casting loops */
     if (!IS_SPELL(ch->casting.spell)) {
         STOP_CASTING(ch);
-        sprintf(castbuf, "SYSERR: removed casting loop on %s", GET_NAME(ch));
-        log( castbuf);
+        log("SYSERR: removed casting loop on {}", GET_NAME(ch));
         return EVENT_FINISHED;
     }
 
@@ -172,8 +170,7 @@ EVENTFUNC(casting_handler) {
                 tar_invalid = true;
             break;
         default:
-            sprintf(castbuf, "SYSERR: Error in casting_handler() at obj valid check for spell %d.", ch->casting.spell);
-            log( castbuf);
+            log("SYSERR: Error in casting_handler() at obj valid check for spell {:d}.", ch->casting.spell);
         }
     } else if (ch->casting.tch) { /* target is a char */
         switch (ch->casting.target_status) {
@@ -190,11 +187,7 @@ EVENTFUNC(casting_handler) {
         case TARGET_SELF:
             break;
         default:
-            sprintf(castbuf,
-                    "SYSERR: Error in casting_handler() at char valid check for "
-                    "spell %d.",
-                    ch->casting.spell);
-            log( castbuf);
+            log("SYSERR: Error in casting_handler() at char valid check for spell {:d}.", ch->casting.spell);
         }
     }
 

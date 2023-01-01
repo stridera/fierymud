@@ -239,8 +239,8 @@ void trigedit_parse(DescriptorData *d, char *arg) {
         switch (tolower(*arg)) {
         case 'y':
             trigedit_save(d);
-            sprintf(buf, "OLC: %s edits trigger %d", GET_NAME(d->character), OLC_NUM(d));
-            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), "OLC: {} edits trigger {:d}",
+                GET_NAME(d->character), OLC_NUM(d));
             /* fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);
@@ -504,8 +504,8 @@ void trigedit_save(DescriptorData *d) {
 #endif
 
     if (!(trig_file = fopen(fname, "w"))) {
-        sprintf(logbuf, "SYSERR: OLC: Can't open trig file \"%s\"", fname);
-        log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), logbuf);
+        log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "SYSERR: OLC: Can't open trig file \"{}\"",
+            fname);
         return;
     }
 
@@ -514,8 +514,8 @@ void trigedit_save(DescriptorData *d) {
             trig = trig_index[trig_rnum]->proto;
 
             if (fprintf(trig_file, "#%d\n", i) < 0) {
-                sprintf(logbuf, "SYSERR: OLC: Can't write trig file!");
-                log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), logbuf);
+                log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)),
+                    "SYSERR: OLC: Can't write trig file!");
                 fclose(trig_file);
                 return;
             }

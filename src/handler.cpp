@@ -232,9 +232,7 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
             convert_composition(ch, BASE_COMPOSITION(ch));
         break;
     default:
-        sprintf(buf, "SYSERR:handler.c:effect_modify() Unknown apply adjust attempt for: %s", GET_NAME(ch));
-        log(buf);
-        ;
+        log("SYSERR:handler.c:effect_modify() Unknown apply adjust attempt for: {}", GET_NAME(ch));
         break;
     }
 
@@ -439,12 +437,8 @@ void active_effect_remove(CharData *ch, effect *effect) {
             }
         }
     } else {
-        sprintf(buf,
-                "SYSERR: handler.c active_effect_remove() no wear-off message; "
-                "effect->type = %d on %s.",
-                effect->type, GET_NAME(ch));
-        log(buf);
-        ;
+        log("SYSERR: handler.c active_effect_remove() no wear-off message; effect->type = {:d} on {}.", effect->type,
+            GET_NAME(ch));
     }
 
     effect_remove(ch, effect);
@@ -572,8 +566,7 @@ void char_to_room(CharData *ch, int room) {
     if (!ch) {
         log("SYSERR:handler.c:char_to_room() NULL char pointer");
     } else if (room < 0 || room > top_of_world) {
-        sprintf(ctrbuf, "SYSERR: char_to_room: name)%s room)%d", GET_NAME(ch), room);
-        log(ctrbuf);
+        log("SYSERR: char_to_room: name){} room){:d}", GET_NAME(ch), room);
     } else {
         ch->next_in_room = world[room].people;
         world[room].people = ch;
@@ -929,15 +922,12 @@ EVENTFUNC(sink_and_lose_event) {
 
 /* put an object in a room */
 void obj_to_room(ObjData *obj, int room) {
-    void start_obj_falling(ObjData * obj);
-    char otrbuf[50];
     SinkAndLose *sinkdata;
 
     if (!obj) {
         log("SYSERR: NULL object pointer passed to obj_to_room");
     } else if (room < 0 || room > top_of_world) {
-        sprintf(otrbuf, "SYSERR: obj_to_room: obj)%d room)%d", GET_OBJ_VNUM(obj), room);
-        log(otrbuf);
+        log("SYSERR: obj_to_room: obj){:d} room){:d}", GET_OBJ_VNUM(obj), room);
     } else {
         obj->next_content = world[room].contents;
         world[room].contents = obj;

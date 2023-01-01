@@ -977,7 +977,7 @@ void load_quests(CharData *ch) {
                         if (!duplicates) {
                             duplicates = true;
                             log(LogSeverity::Stat, LVL_GOD,
-                                "SYSERR: Player %s had duplicate of quest %d (skipped) (possibly more)", GET_NAME(ch),
+                                "SYSERR: Player {} had duplicate of quest {:d} (skipped) (possibly more)", GET_NAME(ch),
                                 qid);
                         }
                         skipquest = true;
@@ -991,7 +991,8 @@ void load_quests(CharData *ch) {
                     if (!nonexistent) {
                         nonexistent = true;
                         log(LogSeverity::Stat, LVL_GOD,
-                            "SYSERR: Player %s had nonexistent quest %d (skipped) (possibly more)", GET_NAME(ch), qid);
+                            "SYSERR: Player {} had nonexistent quest {:d} (skipped) (possibly more)", GET_NAME(ch),
+                            qid);
                     }
                 }
 

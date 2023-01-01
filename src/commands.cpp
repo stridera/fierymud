@@ -349,8 +349,8 @@ void gedit_parse(DescriptorData *d, char *arg) {
         case 'y':
             string_to_output(d, "Saving command group in memory.\n");
             gedit_save_internally(d);
-            sprintf(buf, "OLC: %s edits command group %s.", GET_NAME(d->character), OLC_GROUP(d)->alias);
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits command group {}.",
+                GET_NAME(d->character), OLC_GROUP(d)->alias);
             /* Fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);

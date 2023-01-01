@@ -910,8 +910,8 @@ void medit_parse(DescriptorData *d, char *arg) {
             /*. Save the mob in memory and to disk  . */
             char_printf(d->character, "Saving mobile to memory.\n");
             medit_save_internally(d);
-            sprintf(buf, "OLC: %s edits mob %d", GET_NAME(d->character), OLC_NUM(d));
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits mob {:d}",
+                GET_NAME(d->character), OLC_NUM(d));
             /* FALL THROUGH */
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
@@ -1325,8 +1325,8 @@ void medit_parse(DescriptorData *d, char *arg) {
             /*need to remove all existing mobs of this type too.. */
             /*ok..we use save internally, but we are purging because of the mode */
             medit_save_internally(d);
-            sprintf(buf, "OLC: %s PURGES mob %d", GET_NAME(d->character), OLC_NUM(d));
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} PURGES mob {:d}",
+                GET_NAME(d->character), OLC_NUM(d));
         /* FALL THROUGH */
         case 'n':
         case 'N':
@@ -1388,7 +1388,7 @@ bool delete_mobile(obj_num rnum) {
     bool save_this_zone, mload_just_deleted;
 
     if (rnum == NOTHING || rnum > top_of_mobt) {
-        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_mobile() rnum %d out of range", rnum);
+        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_mobile() rnum {:d} out of range", rnum);
         return false;
     }
 
@@ -1397,7 +1397,7 @@ bool delete_mobile(obj_num rnum) {
 
     zrnum = find_real_zone_by_room(GET_MOB_VNUM(mob));
     if (zrnum == -1) {
-        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_mobile() can't identify zone for mob vnum %d", vnum);
+        log(LogSeverity::Stat, LVL_GOD, "ERR: delete_mobile() can't identify zone for mob vnum {:d}", vnum);
         return false;
     }
 

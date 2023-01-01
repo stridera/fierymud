@@ -164,7 +164,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
     /* Open clan file for reading */
     snprintf(filename, sizeof(filename), "%s/%s%s", CLAN_PREFIX, clan_num, CLAN_SUFFIX);
     if (!(fl = fopen(filename, "r"))) {
-        log("Couldn't open clan file '%s'", filename);
+        log("Couldn't open clan file '{}'", filename);
         return false;
     }
 
@@ -239,9 +239,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
                 clan->treasure[PLATINUM] = num;
             else if (TAG_IS("privilege")) {
                 if (num <= 0 || num > MAX_CLAN_RANKS)
-                    log("SYSERR: load_clan: attempt to set clan privilege for "
-                        "invalid rank %d",
-                        num);
+                    log("SYSERR: load_clan: attempt to set clan privilege for invalid rank {:d}", num);
                 else {
                     string = skip_chars(skip_over(line, S_DIGITS), ' ');
                     while (*string) {
@@ -253,9 +251,8 @@ bool load_clan(const char *clan_num, Clan *clan) {
                                 break;
                             }
                         if (i >= NUM_CLAN_PRIVS)
-                            log("SYSERR: load_clan: attempt to assign invalid clan "
-                                "privilege %s to rank %d",
-                                buf1, num);
+                            log("SYSERR: load_clan: attempt to assign invalid clan privilege {} to rank {:d}", buf1,
+                                num);
                     }
                 }
             } else
@@ -270,15 +267,11 @@ bool load_clan(const char *clan_num, Clan *clan) {
         case 'T':
             if (TAG_IS("title")) {
                 if (num <= 0 || num > MAX_CLAN_RANKS)
-                    log("SYSERR: load_clan: attempt to set clan title for "
-                        "invalid rank %d",
-                        num);
+                    log("SYSERR: load_clan: attempt to set clan title for invalid rank {:d}", num);
                 else {
                     string = skip_chars(skip_over(line, S_DIGITS), ' ');
                     if (clan->ranks[num - 1].title)
-                        log("SYSERR: load_clan: attempt to load duplicate clan "
-                            "title for rank %d",
-                            num);
+                        log("SYSERR: load_clan: attempt to load duplicate clan title for rank {:d}", num);
                     else {
                         clan->rank_count = MAX(clan->rank_count, num);
                         clan->ranks[num - 1].title = strdup(string);
@@ -289,7 +282,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
             break;
         default:
         bad_tag:
-            log("SYSERR: Unknown tag %s in clan file %s: %s", tag, clan_num, line);
+            log("SYSERR: Unknown tag {} in clan file {}: {}", tag, clan_num, line);
             break;
         }
     }
@@ -359,7 +352,7 @@ void init_clans(void) {
         load = temp;
     }
 
-    log("%3d clan%s loaded.", num_of_clans, num_of_clans == 1 ? "" : "s");
+    log("{:3d} clan{} loaded.", num_of_clans, num_of_clans == 1 ? "" : "s");
 
     fclose(fl);
 }
@@ -432,7 +425,7 @@ static void perform_save_clan(const Clan *clan) {
     fclose(fl);
 
     if (rename(temp_filename, filename))
-        log("SYSERR: Error renaming temp clan file %s to %s: %s", temp_filename, filename, strerror(errno));
+        log("SYSERR: Error renaming temp clan file {} to {}: {}", temp_filename, filename, strerror(errno));
 }
 
 void save_clan(const Clan *clan) {

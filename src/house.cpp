@@ -19,6 +19,7 @@
 #include "directions.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "objects.hpp"
 #include "pfiles.hpp"
@@ -26,8 +27,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 HouseControlRec house_control[MAX_HOUSES];
 int num_of_houses = 0;
@@ -413,8 +412,8 @@ void hcontrol_pay_house(CharData *ch, char *arg) {
     else if ((i = find_house(atoi(arg))) < 0)
         char_printf(ch, "Unknown house.\n");
     else {
-        sprintf(buf, "Payment for house %s collected by %s.", arg, GET_NAME(ch));
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "Payment for house {} collected by {}.", arg,
+            GET_NAME(ch));
 
         house_control[i].last_payment = time(0);
         House_save_control();

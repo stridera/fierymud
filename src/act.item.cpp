@@ -801,8 +801,7 @@ ACMD(do_drink) {
         sprintf(buf, "$n drinks %s from $p.", LIQ_NAME(GET_OBJ_VAL(temp, VAL_DRINKCON_LIQUID)));
         act(buf, true, ch, temp, 0, TO_ROOM);
 
-        sprintf(buf, "You drink the %s.\n", LIQ_NAME(GET_OBJ_VAL(temp, VAL_DRINKCON_LIQUID)));
-        char_printf(ch, buf);
+        char_printf(ch, "You drink the {}.\n", LIQ_NAME(GET_OBJ_VAL(temp, VAL_DRINKCON_LIQUID)));
 
         /* Let's say you normally drink 1/2 cup (a lot, but hey). */
         amount = 4;
@@ -994,8 +993,7 @@ ACMD(do_pour) {
             return;
         }
         if (!(from_obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg2)))) {
-            sprintf(buf, "There doesn't seem to be %s %s here.\n", AN(arg2), arg2);
-            char_printf(ch, buf);
+            char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(arg2), arg2);
             return;
         }
         if (GET_OBJ_TYPE(from_obj) != ITEM_FOUNTAIN) {
@@ -1172,8 +1170,7 @@ int find_eq_pos(CharData *ch, ObjData *obj, char *arg) {
         /* 2/6/02 - DCE Put in a check for !. Players could wear item !,
            and it would put the item in the light position. */
         if (!strcasecmp(arg, "!") || (where = search_block(arg, keywords, false)) < 0) {
-            sprintf(buf, "'%s'?  What part of your body is THAT?\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "'{}'?  What part of your body is THAT?\n", arg);
         }
     }
 
@@ -1247,8 +1244,7 @@ ACMD(do_wear) {
     /* FIND_INDIV */
     else {
         if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg1)))) {
-            sprintf(buf, "You don't seem to have %s %s.\n", AN(arg1), arg1);
-            char_printf(ch, buf);
+            char_printf(ch, "You don't seem to have {} {}.\n", AN(arg1), arg1);
             return;
         }
         obj = confused_inventory_switch(ch, obj);
@@ -1276,8 +1272,7 @@ ACMD(do_wield) {
     }
 
     if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg)))) {
-        sprintf(buf, "You don't seem to have %s %s.\n", AN(arg), arg);
-        char_printf(ch, buf);
+        char_printf(ch, "You don't seem to have {} {}.\n", AN(arg), arg);
         return;
     }
 

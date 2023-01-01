@@ -1928,8 +1928,7 @@ ACMD(do_who) {
             if (PRF_FLAGGED(wch, PRF_AFK)) {
                 strcat(buf, " (AFK)");
             }
-            strcat(buf, "\n***\n");
-            char_printf(ch, buf);
+            char_printf(ch, "\n***\n");
             return;
         }
     } /* end while arg process */
@@ -2454,10 +2453,9 @@ ACMD(do_gen_ps) {
         break;
     case SCMD_WHOAMI:
         if (POSSESSED(ch))
-            sprintf(buf, "You are %s, currently inhabiting %s's body.\n", GET_NAME(POSSESSOR(ch)), GET_NAME(ch));
+            char_printf(ch, "You are %s, currently inhabiting %s's body.\n", GET_NAME(POSSESSOR(ch)), GET_NAME(ch));
         else
-            sprintf(buf, "You are %s.\n", GET_NAME(ch));
-        char_printf(ch, buf);
+            char_printf(ch, "You are %s.\n", GET_NAME(ch));
         break;
     default:
         return;
@@ -2476,16 +2474,14 @@ static void perform_mortal_where(CharData *ch, char *arg) {
                 i = (d->original ? d->original : d->character);
                 if (i && CAN_SEE(ch, i) && (i->in_room != NOWHERE) &&
                     (world[ch->in_room].zone == world[i->in_room].zone)) {
-                    sprintf(buf, "%-20s - %s\n", GET_NAME(i), world[i->in_room].name);
-                    char_printf(ch, buf);
+                    char_printf(ch, "{:<20} - {}\n", GET_NAME(i), world[i->in_room].name);
                 }
             }
     } else { /* print only FIRST char, not all. */
         for (i = character_list; i; i = i->next)
             if (world[i->in_room].zone == world[ch->in_room].zone && CAN_SEE(ch, i) && (i->in_room != NOWHERE) &&
                 isname(arg, GET_NAMELIST(i))) {
-                sprintf(buf, "%-25s - %s\n", GET_NAME(i), world[i->in_room].name);
-                char_printf(ch, buf);
+                char_printf(ch, "{:<25} - {}\n", GET_NAME(i), world[i->in_room].name);
                 return;
             }
         char_printf(ch, "No-one around by that name.\n");
@@ -2525,11 +2521,11 @@ static void perform_immort_where(CharData *ch, char *arg) {
                 i = (d->original ? d->original : d->character);
                 if (i && CAN_SEE(ch, i) && (i->in_room != NOWHERE)) {
                     if (d->original)
-                        sprintf(buf, "%-20s - [%5d] %s (in %s)\n", GET_NAME(i), world[d->character->in_room].vnum,
-                                world[d->character->in_room].name, GET_NAME(d->character));
+                        char_printf(ch, "{:<20} - [{:5d}] {} (in {})\n", GET_NAME(i), world[d->character->in_room].vnum,
+                                    world[d->character->in_room].name, GET_NAME(d->character));
                     else
-                        sprintf(buf, "%-20s - [%5d] %s\n", GET_NAME(i), world[i->in_room].vnum, world[i->in_room].name);
-                    char_printf(ch, buf);
+                        char_printf(ch, "{:<20} - [{:5d}] {}\n", GET_NAME(i), world[i->in_room].vnum,
+                                    world[i->in_room].name);
                 }
             }
     } else {
@@ -2669,8 +2665,7 @@ ACMD(do_color) {
     one_argument(argument, arg);
 
     if (!*arg) {
-        sprintf(buf, "Your current color level is %s.\n", ctypes[COLOR_LEV(ch)]);
-        char_printf(ch, buf);
+        char_printf(ch, "Your current color level is {}.\n", ctypes[COLOR_LEV(ch)]);
         return;
     }
     if (((tp = searchblock(arg, ctypes, false)) == -1)) {
@@ -2684,8 +2679,7 @@ ACMD(do_color) {
     if (IS_SET(tp, 2))
         SET_FLAG(PRF_FLAGS(ch), PRF_COLOR_2);
 
-    sprintf(buf, "Your %scolor%s is now %s.\n", CLRLV(ch, FRED, C_SPR), CLRLV(ch, ANRM, C_SPR), ctypes[tp]);
-    char_printf(ch, buf);
+    char_printf(ch, "Your {}color{} is now {}.\n", CLRLV(ch, FRED, C_SPR), CLRLV(ch, ANRM, C_SPR), ctypes[tp]);
 }
 
 #define COMMANDS_LIST_COLUMNS 7
@@ -3098,99 +3092,85 @@ const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations,
 
 static void show_abilities(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
-        sprintf(buf,
-                "Str: &3%s&0    Int: &3%s&0     Wis: &3%s&0\n"
-                "Dex: &3%s&0    Con: &3%s&0     Cha: &3%s&0\n",
-                ability_message(GET_VIEWED_STR(tch)), ability_message(GET_VIEWED_INT(tch)),
-                ability_message(GET_VIEWED_WIS(tch)), ability_message(GET_VIEWED_DEX(tch)),
-                ability_message(GET_VIEWED_CON(tch)), ability_message(GET_VIEWED_CHA(tch)));
+        char_printf(ch,
+                    "Str: &3{}&0    Int: &3{}&0     Wis: &3{}&0\n"
+                    "Dex: &3{}&0    Con: &3{}&0     Cha: &3{}&0\n",
+                    ability_message(GET_VIEWED_STR(tch)), ability_message(GET_VIEWED_INT(tch)),
+                    ability_message(GET_VIEWED_WIS(tch)), ability_message(GET_VIEWED_DEX(tch)),
+                    ability_message(GET_VIEWED_CON(tch)), ability_message(GET_VIEWED_CHA(tch)));
     else
-        sprintf(buf,
-                "Str: &3&b%d&0(&3%d&0)     %s%s"
-                "Int: &3&b%d&0(&3%d&0)     %s%s"
-                "Wis: &3&b%d&0(&3%d&0)\n"
-                "Dex: &3&b%d&0(&3%d&0)     %s%s"
-                "Con: &3&b%d&0(&3%d&0)     %s%s"
-                "Cha: &3&b%d&0(&3%d&0)\n",
-                GET_VIEWED_STR(tch), GET_NATURAL_STR(tch), GET_VIEWED_STR(tch) < 100 ? " " : "",
-                GET_NATURAL_STR(tch) < 100 ? " " : "", GET_VIEWED_INT(tch), GET_NATURAL_INT(tch),
-                GET_VIEWED_INT(tch) < 100 ? " " : "", GET_NATURAL_INT(tch) < 100 ? " " : "", GET_VIEWED_WIS(tch),
-                GET_NATURAL_WIS(tch), GET_VIEWED_DEX(tch), GET_NATURAL_DEX(tch), GET_VIEWED_DEX(tch) < 100 ? " " : "",
-                GET_NATURAL_DEX(tch) < 100 ? " " : "", GET_VIEWED_CON(tch), GET_NATURAL_CON(tch),
-                GET_VIEWED_CON(tch) < 100 ? " " : "", GET_NATURAL_CON(tch) < 100 ? " " : "", GET_VIEWED_CHA(tch),
-                GET_NATURAL_CHA(tch));
-    char_printf(ch, buf);
+        char_printf(ch,
+                    "Str: &3&b{:d}&0(&3{:d}&0)     {}{}Int: &3&b{:d}&0(&3{:d}&0)     {}{}Wis: &3&b{:d}&0(&3{:d}&0)\n"
+                    "Dex: &3&b{:d}&0(&3{:d}&0)     {}{}Con: &3&b{:d}&0(&3{:d}&0)     {}{}Cha: &3&b{:d}&0(&3{:d}&0)\n",
+                    GET_VIEWED_STR(tch), GET_NATURAL_STR(tch), GET_VIEWED_STR(tch) < 100 ? " " : "",
+                    GET_NATURAL_STR(tch) < 100 ? " " : "", GET_VIEWED_INT(tch), GET_NATURAL_INT(tch),
+                    GET_VIEWED_INT(tch) < 100 ? " " : "", GET_NATURAL_INT(tch) < 100 ? " " : "", GET_VIEWED_WIS(tch),
+                    GET_NATURAL_WIS(tch), GET_VIEWED_DEX(tch), GET_NATURAL_DEX(tch),
+                    GET_VIEWED_DEX(tch) < 100 ? " " : "", GET_NATURAL_DEX(tch) < 100 ? " " : "", GET_VIEWED_CON(tch),
+                    GET_NATURAL_CON(tch), GET_VIEWED_CON(tch) < 100 ? " " : "", GET_NATURAL_CON(tch) < 100 ? " " : "",
+                    GET_VIEWED_CHA(tch), GET_NATURAL_CHA(tch));
 }
 
 static void show_points(CharData *ch, CharData *tch, bool verbose) {
-    sprintf(buf,
-            "Hit points: &1&b%d&0[&1%d&0] (&3%d&0)   Moves: &2&b%d&0[&2%d&0] "
-            "(&3%d&0)\n",
-            GET_HIT(tch), GET_MAX_HIT(tch), GET_BASE_HIT(tch), GET_MOVE(tch), GET_MAX_MOVE(tch), natural_move(tch));
+    char_printf(ch, "Hit points: &1&b{:d}&0[&1{:d}&0] (&3{:d}&0)   Moves: &2&b{:d}&0[&2{:d}&0] (&3{:d}&0)\n",
+                GET_HIT(tch), GET_MAX_HIT(tch), GET_BASE_HIT(tch), GET_MOVE(tch), GET_MAX_MOVE(tch), natural_move(tch));
 
     if (verbose)
-        sprintf(buf, "%sArmor class: &3&8%s&0 (&3&8%d&0)  ", buf,
-                armor_message(GET_AC(tch) + 5 * monk_weight_penalty(tch)), GET_AC(tch) + 5 * monk_weight_penalty(tch));
+        char_printf(ch, "Armor class: &3&8{}&0 (&3&8{:d}&0)  ",
+                    armor_message(GET_AC(tch) + 5 * monk_weight_penalty(tch)),
+                    GET_AC(tch) + 5 * monk_weight_penalty(tch));
     else
-        sprintf(buf, "%sArmor class: &3&8%d&0  ", buf, GET_AC(tch) + 5 * monk_weight_penalty(tch));
+        char_printf(ch, "Armor class: &3&8{:d}&0  ", GET_AC(tch) + 5 * monk_weight_penalty(tch));
 
     if (verbose)
-        sprintf(buf,
-                "%sHitroll: &3&8%s&0 (&3&8%d&0)  "
-                "Damroll: &3&8%s&0 (&3&8%d&0)\n",
-                buf, hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)),
-                GET_HITROLL(tch) - monk_weight_penalty(tch),
-                hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)),
-                GET_DAMROLL(tch) - monk_weight_penalty(tch));
+        char_printf(
+            ch, "Hitroll: &3&8{}&0 (&3&8{:d}&0)  Damroll: &3&8{}&0 (&3&8{:d}&0)\n",
+            hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)), GET_HITROLL(tch) - monk_weight_penalty(tch),
+            hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)), GET_DAMROLL(tch) - monk_weight_penalty(tch));
     else
-        sprintf(buf, "%sHitroll: &3&b%d&0  Damroll: &3&b%d&0", buf, GET_HITROLL(tch) - monk_weight_penalty(tch),
-                GET_DAMROLL(tch) - monk_weight_penalty(tch));
+        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0", GET_HITROLL(tch) - monk_weight_penalty(tch),
+                    GET_DAMROLL(tch) - monk_weight_penalty(tch));
 
     if (GET_RAGE(tch) || GET_SKILL(tch, SKILL_BERSERK))
-        sprintf(buf, "%s\nRage: &3&b%d&0", buf, GET_RAGE(tch));
+        char_printf(ch, "\nRage: &3&b{:d}&0 ", GET_RAGE(tch));
 
-    sprintf(buf, "%s  Perception: &3&b%ld&0  Concealment: &3&b%ld&0\n", buf, GET_PERCEPTION(tch), GET_HIDDENNESS(tch));
-
-    char_printf(ch, buf);
+    char_printf(ch, "Perception: &3&b{}&0  Concealment: &3&b{}&0\n", GET_PERCEPTION(tch), GET_HIDDENNESS(tch));
 }
 
 static void show_alignment(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
-        sprintf(buf, "Alignment: %s%s&0 (%s%d&0)  ", IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
-                align_message(GET_ALIGNMENT(tch)), IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
-                GET_ALIGNMENT(tch));
+        char_printf(ch, "Alignment: {}{}&0 ({}{:d}&0)  ", IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
+                    align_message(GET_ALIGNMENT(tch)), IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
+                    GET_ALIGNMENT(tch));
     else
-        sprintf(buf, "Alignment: %s%d&0  ", IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
-                GET_ALIGNMENT(tch));
-    char_printf(ch, buf);
+        char_printf(ch, "Alignment: {}{:d}&0  ", IS_EVIL(tch) ? "&1&b" : (IS_GOOD(tch) ? "&3&b" : "&2&b"),
+                    GET_ALIGNMENT(tch));
 }
 
 static void show_load(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
-        sprintf(buf, "Encumbrance: &3&8%s&0 (&3&8%.2f&0/&3%d&0 lb)  ",
-                (CURRENT_LOAD(tch) >= 0 && CURRENT_LOAD(tch) <= 10) ? carry_desc[CURRENT_LOAD(tch)]
-                                                                    : "Your load is ridiculous!",
-                IS_CARRYING_W(tch), CAN_CARRY_W(tch));
+        char_printf(ch, "Encumbrance: &3&8{}&0 (&3&8{:.2f}&0/&3{:d}&0 lb)  ",
+                    (CURRENT_LOAD(tch) >= 0 && CURRENT_LOAD(tch) <= 10) ? carry_desc[CURRENT_LOAD(tch)]
+                                                                        : "Your load is ridiculous!",
+                    IS_CARRYING_W(tch), CAN_CARRY_W(tch));
     else
-        sprintf(buf, "Encumbrance: &3&8%.2f&0/&3%d&0 lb  ", IS_CARRYING_W(tch), CAN_CARRY_W(tch));
-    char_printf(ch, buf);
+        char_printf(ch, "Encumbrance: &3&8{:.2f}&0/&3{:d}&0 lb  ", IS_CARRYING_W(tch), CAN_CARRY_W(tch));
 }
 
 static void show_saves(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
-        sprintf(buf,
-                "Saving throws: PAR[&3&8%s&0/&3&8%d&0] "
-                "ROD[&3&8%s&0/&3&8%d&0] PET[&3&8%s&0/&3&8%d&0] "
-                "BRE[&3&b%s&0/&3&8%d&0] SPE[&3&b%s&0/&3&8%d&0]\n",
-                save_message(GET_SAVE(tch, 0)), GET_SAVE(tch, 0), save_message(GET_SAVE(tch, 1)), GET_SAVE(tch, 1),
-                save_message(GET_SAVE(tch, 2)), GET_SAVE(tch, 2), save_message(GET_SAVE(tch, 3)), GET_SAVE(tch, 3),
-                save_message(GET_SAVE(tch, 4)), GET_SAVE(tch, 4));
+        char_printf(ch,
+                    "Saving throws: PAR[&3&8{}&0/&3&8{:d}&0] "
+                    "ROD[&3&8{}&0/&3&8{:d}&0] PET[&3&8{}&0/&3&8{:d}&0] "
+                    "BRE[&3&b{}&0/&3&8{:d}&0] SPE[&3&b{}&0/&3&8{:d}&0]\n",
+                    save_message(GET_SAVE(tch, 0)), GET_SAVE(tch, 0), save_message(GET_SAVE(tch, 1)), GET_SAVE(tch, 1),
+                    save_message(GET_SAVE(tch, 2)), GET_SAVE(tch, 2), save_message(GET_SAVE(tch, 3)), GET_SAVE(tch, 3),
+                    save_message(GET_SAVE(tch, 4)), GET_SAVE(tch, 4));
     else
-        sprintf(buf,
-                "Saving throws: PAR[&3&b%d&0]  ROD[&3&b%d&0]  "
-                "PET[&3&b%d&0]  BRE[&3&b%d&0]  SPE[&3&b%d&0]\n",
-                GET_SAVE(tch, 0), GET_SAVE(tch, 1), GET_SAVE(tch, 2), GET_SAVE(tch, 3), GET_SAVE(tch, 4));
-    char_printf(ch, buf);
+        char_printf(ch,
+                    "Saving throws: PAR[&3&b{:d}&0]  ROD[&3&b{:d}&0]  "
+                    "PET[&3&b{:d}&0]  BRE[&3&b{:d}&0]  SPE[&3&b{:d}&0]\n",
+                    GET_SAVE(tch, 0), GET_SAVE(tch, 1), GET_SAVE(tch, 2), GET_SAVE(tch, 3), GET_SAVE(tch, 4));
 }
 
 #define COIN_FMT "{}{} " ANRM "{}"
@@ -3230,18 +3210,16 @@ static void show_conditions(CharData *ch, CharData *tch, bool verbose) {
             strcat(buf, "You're a little bit intoxicated.\n");
     } else
         /* the number 0 looks like the letter O */
-        sprintf(buf, "Hunger: %d%s  Thirst: %d%s  Drunkenness: %d%s\n",
-                GET_COND(tch, FULL) < 0 ? 0 : 24 - GET_COND(tch, FULL), GET_COND(tch, FULL) < 0 ? "ff" : "",
-                GET_COND(tch, THIRST) < 0 ? 0 : 24 - GET_COND(tch, THIRST), GET_COND(tch, THIRST) < 0 ? "ff" : "",
-                GET_COND(tch, DRUNK) < 0 ? 0 : GET_COND(tch, DRUNK), GET_COND(tch, DRUNK) < 0 ? "ff" : "");
-    char_printf(ch, buf);
+        char_printf(ch, "Hunger: {:d}{}  Thirst: %d{}  Drunkenness: %d{}\n",
+                    GET_COND(tch, FULL) < 0 ? 0 : 24 - GET_COND(tch, FULL), GET_COND(tch, FULL) < 0 ? "ff" : "",
+                    GET_COND(tch, THIRST) < 0 ? 0 : 24 - GET_COND(tch, THIRST), GET_COND(tch, THIRST) < 0 ? "ff" : "",
+                    GET_COND(tch, DRUNK) < 0 ? 0 : GET_COND(tch, DRUNK), GET_COND(tch, DRUNK) < 0 ? "ff" : "");
 }
 
 static void show_exp(CharData *ch, CharData *tch) {
-    sprintf(buf, "Exp: %s\n", exp_message(tch));
+    char_printf(ch, "Exp: {}\n", exp_message(tch));
     if (!IS_STARSTAR(tch) && GET_LEVEL(tch) > 0)
-        sprintf(buf + strlen(buf), "   <%s>\n", exp_bar(tch, 60, 20, 20, COLOR_LEV(ch) >= C_NRM));
-    char_printf(ch, buf);
+        char_printf(ch, "   <{}>\n", exp_bar(tch, 60, 20, 20, COLOR_LEV(ch) >= C_NRM));
 }
 
 static void show_active_spells(CharData *ch, CharData *tch) {
@@ -3324,7 +3302,7 @@ ACMD(do_score) {
         "Height: &3&b{}&0  Weight: &3&b{}&0\n",
         age(tch).year, age(tch).year == 1 ? "" : "s", age(tch).month, age(tch).month == 1 ? "" : "s",
         statelength(GET_HEIGHT(tch)), stateweight(GET_WEIGHT(tch)));
-    char_printf(ch, buf.c_str());
+    char_printf(ch, buf);
 
     show_abilities(ch, tch, GET_LEVEL(ch) < 10);
     show_points(ch, tch, GET_LEVEL(ch) < 50);
@@ -3414,7 +3392,7 @@ ACMD(do_score) {
             break;
         }
 
-    char_printf(ch, buf.c_str());
+    char_printf(ch, buf);
 
     show_saves(ch, tch, GET_LEVEL(ch) < 75);
     show_coins(ch, tch);
@@ -3508,15 +3486,13 @@ ACMD(do_spells) {
     if (s_circle) {
         xcircle = atoi(s_circle);
         if (xcircle < 1) {
-            sprintf(buf, "The spell circle must be a number between 1 and %d.\n", max_vis_circle);
-            char_printf(ch, buf);
+            char_printf(ch, "The spell circle must be a number between 1 and {:d}.\n", max_vis_circle);
             return;
         } else if (xcircle > max_vis_circle) {
             if (tch == ch)
-                sprintf(buf, "You only know spells up to circle %d.\n", max_vis_circle);
+                char_printf(ch, "You only know spells up to circle {:d}.\n", max_vis_circle);
             else
-                sprintf(buf, "%s only knows spells up to circle %d.\n", CAP(GET_NAME(tch)), max_vis_circle);
-            char_printf(ch, buf);
+                char_printf(ch, "{} only knows spells up to circle {:d}.\n", CAP(GET_NAME(tch)), max_vis_circle);
             return;
         }
     }
@@ -3526,9 +3502,8 @@ ACMD(do_spells) {
         if (tch == ch)
             char_printf(ch, "You don't know any spells.\n");
         else {
-            sprintf(buf, "Being a%s %s, %s has no spells.\n", startsvowel(CLASS_NAME(tch)) ? "n" : "", CLASS_NAME(tch),
-                    GET_NAME(tch));
-            char_printf(ch, buf);
+            char_printf(ch, "Being a{} {}, {} has no spells.\n", startsvowel(CLASS_NAME(tch)) ? "n" : "",
+                        CLASS_NAME(tch), GET_NAME(tch));
         }
         return;
     }
@@ -3556,16 +3531,15 @@ ACMD(do_spells) {
     if (!numspellsknown) {
         if (xcircle) {
             if (tch == ch)
-                sprintf(buf, "You don't know any spells in circle %d.\n", xcircle);
+                char_printf(ch, "You don't know any spells in circle {:d}.\n", xcircle);
             else
-                sprintf(buf, "%s doesn't know any spells in circle %d.\n", CAP(GET_NAME(tch)), xcircle);
+                char_printf(ch, "{} doesn't know any spells in circle {:d}.\n", CAP(GET_NAME(tch)), xcircle);
         } else {
             if (tch == ch)
-                sprintf(buf, "You don't know any spells.\n");
+                char_printf(ch, "You don't know any spells.\n");
             else
-                sprintf(buf, "%s doesn't know any spells.\n", CAP(GET_NAME(tch)));
+                char_printf(ch, "{} doesn't know any spells.\n", CAP(GET_NAME(tch)));
         }
-        char_printf(ch, buf);
         return;
     }
 
@@ -3826,16 +3800,9 @@ static int scan_chars(CharData *ch, int room, int dis, int dir, int seen_any) {
         }
 
         ++count;
-        /*
-              sprintf(buf, "   " ELLIPSIS_FMT ANRM " (%s" ANRM ") : %s %s\n",
-                          ELLIPSIS_STR(GET_NAME(i), 25),
-                          GET_POS(i) == POS_FLYING ? FCYN "fly" :
-                             (GET_POS(i) > POS_SITTING ? "std" : FGRN "sit"),
-                          distance[dis], dis ? dirs[dir] : "");
-              char_printf(ch, buf);
-        */
-        sprintf(buf, "%s %s", distance[dis], dis ? dirs[dir] : "here");
-        char_printf(ch, "   {:>22s} : {}" ANRM " ({}" ANRM ")\n", buf, GET_NAME(i),
+
+        char_printf(ch, "{}{}   {:>22s} : {}" ANRM " ({}" ANRM ")\n", distance[dis], dis ? dirs[dir] : "here",
+                    GET_NAME(i),
                     GET_POS(i) == POS_FLYING ? FCYN "fly" : (GET_POS(i) > POS_SITTING ? "std" : FGRN "sit"));
     }
 

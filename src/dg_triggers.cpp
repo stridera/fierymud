@@ -231,8 +231,8 @@ int command_mtrigger(CharData *actor, char *cmd, char *argument) {
                     continue;
 
                 if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
-                    sprintf(buf, "SYSERR: Command Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                    log(LogSeverity::Stat, LVL_ATTENDANT, buf);
+                    log(LogSeverity::Stat, LVL_ATTENDANT, "SYSERR: Command Trigger #{:d} has no text argument!",
+                        GET_TRIG_VNUM(t));
                     continue;
                 }
 
@@ -270,8 +270,8 @@ void speech_mtrigger(CharData *actor, const char *str) {
                     continue;
 
                 if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
-                    sprintf(buf, "SYSERR: Speech Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                    log(LogSeverity::Stat, LVL_GOD, buf);
+                    log(LogSeverity::Stat, LVL_GOD, "SYSERR: Speech Trigger #{:d} has no text argument!",
+                        GET_TRIG_VNUM(t));
                     continue;
                 }
 
@@ -301,8 +301,8 @@ void speech_to_mtrigger(CharData *actor, CharData *ch, const char *str) {
                 continue;
 
             if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
-                sprintf(buf, "SYSERR: Speech-to Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, "SYSERR: Speech-to Trigger #{:d} has no text argument!",
+                    GET_TRIG_VNUM(t));
                 continue;
             }
 
@@ -335,8 +335,7 @@ void act_mtrigger(const CharData *ch, const char *str, const CharData *actor, co
                 continue;
 
             if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
-                sprintf(buf, "SYSERR: Act Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, "SYSERR: Act Trigger #{:d} has no text argument!", GET_TRIG_VNUM(t));
                 continue;
             }
 
@@ -619,8 +618,8 @@ int cmd_otrig(ObjData *obj, CharData *actor, char *cmd, char *argument, int type
                 continue;
 
             if (IS_SET(GET_TRIG_NARG(t), type) && (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
-                sprintf(buf, "SYSERR: O-Command Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, "SYSERR: O-Command Trigger #{:d} has no text argument!",
+                    GET_TRIG_VNUM(t));
                 continue;
             }
 
@@ -1000,8 +999,7 @@ int command_wtrigger(CharData *actor, char *cmd, char *argument) {
             continue;
 
         if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
-            sprintf(buf, "SYSERR: W-Command Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, "SYSERR: W-Command Trigger #{:d} has no text argument!", GET_TRIG_VNUM(t));
             continue;
         }
 
@@ -1032,8 +1030,7 @@ void speech_wtrigger(CharData *actor, const char *str) {
             continue;
 
         if (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) {
-            sprintf(buf, "SYSERR: W-Speech Trigger #%d has no text argument!", GET_TRIG_VNUM(t));
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, "SYSERR: W-Speech Trigger #{:d} has no text argument!", GET_TRIG_VNUM(t));
             continue;
         }
 

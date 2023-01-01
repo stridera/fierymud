@@ -270,9 +270,8 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         if (IN_ROOM(ch) == IN_ROOM(RIDING(ch)))
             motivator = RIDING(ch);
         else {
-            sprintf(buf, "do_simple_move: %s is at %d, while mount %s is at %d", GET_NAME(ch), IN_ROOM(ch),
-                    GET_NAME(RIDING(ch)), IN_ROOM(RIDING(ch)));
-            log(LogSeverity::Stat, LVL_IMMORT, buf);
+            log(LogSeverity::Stat, LVL_IMMORT, "do_simple_move: {} is at {:d}, while mount {} is at {:d}", GET_NAME(ch),
+                IN_ROOM(ch), GET_NAME(RIDING(ch)), IN_ROOM(RIDING(ch)));
         }
         mount = motivator;
     } else if (RIDDEN_BY(ch)) {
@@ -280,9 +279,8 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         if (IN_ROOM(ch) == IN_ROOM(RIDDEN_BY(ch)))
             actor = RIDDEN_BY(ch);
         else {
-            sprintf(buf, "do_simple_move: %s is at %d, while rider %s is at %d", GET_NAME(ch), IN_ROOM(ch),
-                    GET_NAME(RIDDEN_BY(ch)), IN_ROOM(RIDDEN_BY(ch)));
-            log(LogSeverity::Stat, LVL_IMMORT, buf);
+            log(LogSeverity::Stat, LVL_IMMORT, "do_simple_move: {} is at {:d}, while rider {} is at {:d}", GET_NAME(ch),
+                IN_ROOM(ch), GET_NAME(RIDDEN_BY(ch)), IN_ROOM(RIDDEN_BY(ch)));
         }
         mount = motivator;
     }
@@ -775,8 +773,7 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
                 return dir;
             else {
                 if (!quiet) {
-                    sprintf(buf2, "I see no %s there.\n", name);
-                    char_printf(ch, buf2);
+                    char_printf(ch, "I see no {} there.\n", name);
                 }
                 return -1;
             }
@@ -788,8 +785,7 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
     } else { /* try to locate the keyword */
         if (!name || !*name) {
             if (!quiet) {
-                sprintf(buf2, "What is it you want to %s?\n", cmdname);
-                char_printf(ch, buf2);
+                char_printf(ch, "What is it you want to {}?\n", cmdname);
             }
             return -1;
         }
@@ -798,8 +794,7 @@ int find_door(CharData *ch, const char *name, const char *dirname, const char *c
                 return dir;
         }
         if (!quiet) {
-            sprintf(buf2, "There doesn't seem to be %s %s here.\n", AN(name), name);
-            char_printf(ch, buf2);
+            char_printf(ch, "There doesn't seem to be {} {} here.\n", AN(name), name);
         }
         return -1;
     }
@@ -1071,8 +1066,7 @@ void perform_door_action(CharData *ch, int subcmd, int door) {
         pick_door(ch, CH_NROOM(ch), door);
         break;
     default:
-        sprintf(buf, "SYSERR: perform_door_action() called with invalid subcommand %d", subcmd);
-        log(LogSeverity::Warn, LVL_GOD, buf);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: perform_door_action() called with invalid subcommand {}", subcmd);
         char_printf(ch, "Sorry, there's been an internal error.\n");
         break;
     }
@@ -1172,8 +1166,7 @@ ACMD(do_gen_door) {
         pick_object(ch, obj);
         break;
     default:
-        sprintf(buf, "SYSERR: do_gen_door() called with invalid subcommand %d", subcmd);
-        log(LogSeverity::Warn, LVL_GOD, buf);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: do_gen_door() called with invalid subcommand {}", subcmd);
         char_printf(ch, "Sorry, there's been an internal error.\n");
         break;
     }
@@ -1210,8 +1203,7 @@ ACMD(do_enter) {
     }
 
     if (!(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg)))) {
-        sprintf(buf, "There is no %s here.\n", arg);
-        char_printf(ch, buf);
+        char_printf(ch, "There is no {} here.\n", arg);
         return;
     }
 
@@ -1463,8 +1455,7 @@ ACMD(do_doorbash)
 
     sprintf(buf, "&0$n &0*CRASHES* through the %s&0!", exit_name(exit));
     act(buf, false, ch, 0, 0, TO_ROOM);
-    sprintf(buf, "&0You *CHARGE* at the %s &0and crash through it!&0\n", exit_name(exit));
-    char_printf(ch, buf);
+    char_printf(ch, "&0You *CHARGE* at the {} &0and crash through it!&0\n", exit_name(exit));
 
     if (dest->exits[rev_dir[dir]]) {
         OPEN_DOORK(ndest, rev_dir[dir]);
@@ -1537,9 +1528,8 @@ ACMD(do_drag) {
      * also, you might think they're substantial-feeling because that's
      * part of the illusion) */
     if (tobj && !RIGID(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        sprintf(buf, "You can't handle solid objects in your %s%s&0 condition.\n", COMPOSITION_COLOR(ch),
-                COMPOSITION_ADJECTIVE(ch));
-        char_printf(ch, buf);
+        char_printf(ch, "You can't handle solid objects in your {}{}&0 condition.\n", COMPOSITION_COLOR(ch),
+                    COMPOSITION_ADJECTIVE(ch));
         return;
     } else if (tch && GET_LEVEL(ch) < LVL_IMMORT) {
         if (RIGID(ch) && !RIGID(tch)) {
@@ -1631,7 +1621,7 @@ ACMD(do_drag) {
         }
 
         if (IS_PLR_CORPSE(tobj) && !has_corpse_consent(ch, tobj)) {
-            log(LogSeverity::Stat, LVL_IMMORT, "CORPSE: %s tried to drag %s without CONSENT!", GET_NAME(ch),
+            log(LogSeverity::Stat, LVL_IMMORT, "CORPSE: {} tried to drag {} without CONSENT!", GET_NAME(ch),
                 tobj->short_description);
             return;
         }
@@ -1652,8 +1642,7 @@ ACMD(do_drag) {
     if ((dir = parse_direction(arg)) < 0) {
         /* Not a valid direction.  Try to drag into a portal. */
         if (!(portal = find_obj_in_list(world[from_room].contents, find_vis_by_name(ch, arg)))) {
-            sprintf(buf, "Can't find a '%s' to drag into!\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Can't find a '{}' to drag into!\n", arg);
             return;
         }
 
@@ -1689,7 +1678,7 @@ ACMD(do_drag) {
         }
 
         if (tobj && IS_PLR_CORPSE(tobj))
-            log("CORPSE: %s dragged %s through %s from room %d to room %d", GET_NAME(ch), tobj->short_description,
+            log("CORPSE: {} dragged {} through {} from room {:d} to room {:d}", GET_NAME(ch), tobj->short_description,
                 strip_ansi(portal->short_description), world[from_room].vnum, world[to_room].vnum);
     }
 
@@ -1758,7 +1747,7 @@ ACMD(do_drag) {
         }
 
         if (tobj && IS_PLR_CORPSE(tobj))
-            log("CORPSE: %s drags %s from room %d to room %d.", GET_NAME(ch), tobj->short_description,
+            log("CORPSE: {} drags {} from room {:d} to room {:d}.", GET_NAME(ch), tobj->short_description,
                 world[from_room].vnum, world[to_room].vnum);
     }
 }
@@ -2443,8 +2432,7 @@ ACMD(do_abandon) {
                 for (k = ch->followers; k; k = k->next) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
                         if ((EFF_FLAGGED(k->follower, EFF_INVISIBLE)) && (!CAN_SEE(ch, k->follower))) {
-                            sprintf(buf, "%s stops following you.\n", GET_NAME(k->follower));
-                            char_printf(ch, buf);
+                            char_printf(ch, "{} stops following you.\n", GET_NAME(k->follower));
                         }
                         stop_follower(k->follower, 0);
                         found = true;
@@ -2483,8 +2471,7 @@ ACMD(do_abandon) {
                     if (!(EFF_FLAGGED(k->follower, EFF_CHARM))) {
                         if (GET_LEVEL(k->follower) < LVL_GOD) {
                             if ((EFF_FLAGGED(k->follower, EFF_INVISIBLE)) && (!CAN_SEE(ch, k->follower))) {
-                                sprintf(buf, "%s stops following you.\n", GET_NAME(k->follower));
-                                char_printf(ch, buf);
+                                char_printf(ch, "{} stops following you.\n", GET_NAME(k->follower));
                             }
                             stop_follower(k->follower, 0);
                             found = true;
@@ -2514,8 +2501,7 @@ ACMD(do_abandon) {
                 if (k->follower == follower) {
                     if (GET_LEVEL(k->follower) < LVL_GOD) {
                         if ((EFF_FLAGGED(k->follower, EFF_INVISIBLE)) && (!CAN_SEE(ch, k->follower))) {
-                            sprintf(buf, "%s stops following you.\n", GET_NAME(k->follower));
-                            char_printf(ch, buf);
+                            char_printf(ch, "{} stops following you.\n", GET_NAME(k->follower));
                         }
                         stop_follower(k->follower, 0);
                         found = true;

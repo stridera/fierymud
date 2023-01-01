@@ -174,7 +174,7 @@ static bool delete_board(BoardData *board) {
     sprintf(filename, BOARD_PREFIX "/%s" BOARD_SUFFIX, board->alias);
     sprintf(bkupname, BOARD_PREFIX "/%s.bak", board->alias);
     if (rename(filename, bkupname))
-        log("SYSERR: Error renaming board file %s to backup name", filename);
+        log("SYSERR: Error renaming board file {} to backup name", filename);
 
     free_board(board);
 
@@ -237,7 +237,7 @@ bool has_board_privilege(CharData *ch, const BoardData *board, int privnum) {
     // const Rule *priv;
 
     if (!VALID_PRIV_NUM(privnum)) {
-        log("SYSERR: invalid privilege %d passed to has_board_privilege", privnum);
+        log("SYSERR: invalid privilege {} passed to has_board_privilege", privnum);
         return false;
     }
 
@@ -332,7 +332,7 @@ static void parse_privilege(BoardData *board, char *line) {
     line = any_one_arg(line, arg);
     num = atoi(arg);
     if (num < 0 || num >= NUM_BPRIV) {
-        log("SYSERR: invalid privilege %s in parse_privilege", arg);
+        log("SYSERR: invalid privilege {} in parse_privilege", arg);
         return;
     }
 
@@ -368,7 +368,7 @@ static BoardData *load_board(const char *name) {
 
     sprintf(filename, BOARD_PREFIX "/%s" BOARD_SUFFIX, name);
     if (!(fl = fopen(filename, "r"))) {
-        log("SYSERR: Couldn't open board file %s", filename);
+        log("SYSERR: Couldn't open board file {}", filename);
         return nullptr;
     }
 
@@ -386,9 +386,7 @@ static BoardData *load_board(const char *name) {
         case 'A':
             if (!strcasecmp(tag, "alias")) {
                 if (strcasecmp(board->alias, line))
-                    log("SYSERR: Board alias in board file (%s) doesn't match entry in "
-                        "index (%s)",
-                        line, board->alias);
+                    log("SYSERR: Board alias in board file ({}) doesn't match entry in index ({})", line, board->alias);
             } else
                 goto bad_board_tag;
             break;
@@ -412,7 +410,7 @@ static BoardData *load_board(const char *name) {
             break;
         default:
         bad_board_tag:
-            log("SYSERR: Unknown tag %s in board file %s: %s", tag, name, line);
+            log("SYSERR: Unknown tag {} in board file {}: {}", tag, name, line);
         }
     }
 
@@ -444,7 +442,7 @@ static BoardData *load_board(const char *name) {
                     edit->next = msg->edits;
                     msg->edits = edit;
                 } else {
-                    log("SYSERR: Invalid edit message record for board %s", board->alias);
+                    log("SYSERR: Invalid edit message record for board {}", board->alias);
                     free(edit);
                 }
             } else
@@ -484,7 +482,7 @@ static BoardData *load_board(const char *name) {
             break;
         default:
         bad_msg_tag:
-            log("SYSERR: Unknown tag %s in board file %s: %s", tag, name, line);
+            log("SYSERR: Unknown tag {} in board file {}: {}", tag, name, line);
         }
     }
 
@@ -511,8 +509,7 @@ void board_init() {
     int i;
 
     if (num_boards || board_index) {
-        log("Unsafe attempt to initialize boards; board_init() may already have "
-            "been invoked");
+        log("Unsafe attempt to initialize boards; board_init() may already have been invoked");
         return;
     }
 
@@ -529,7 +526,7 @@ void board_init() {
     /* Get list of board aliases and load boards from file */
     while (get_line(fl, name)) {
         if (!(board = load_board(name))) {
-            log("Unable to load board '%s' specified in index - skipped", name);
+            log("Unable to load board '{}' specified in index - skipped", name);
             continue;
         }
         CREATE(temp, temp_record, 1);
@@ -562,7 +559,7 @@ static bool reload_board(BoardData *board) {
     BoardData *new_board;
 
     if (!(new_board = load_board(board->alias))) {
-        log("SYSERR: Unable to reload existing board '%s' from file", board->alias);
+        log("SYSERR: Unable to reload existing board '{}' from file", board->alias);
         return false;
     }
 
@@ -623,7 +620,7 @@ void save_board(BoardData *board) {
     sprintf(tempfilename, BOARD_PREFIX "/%s.tmp", board->alias);
 
     if (!(fl = fopen(tempfilename, "w"))) {
-        log("SYSERR: Couldn't open temp board file %s for write", tempfilename);
+        log("SYSERR: Couldn't open temp board file {} for write", tempfilename);
         return;
     }
 
@@ -649,9 +646,9 @@ void save_board(BoardData *board) {
     }
 
     if (fclose(fl))
-        log("SYSERR: Error closing board file for %s after write", board->alias);
+        log("SYSERR: Error closing board file for {} after write", board->alias);
     else if (rename(tempfilename, filename))
-        log("SYSERR: Error renaming temporary board file for %s after write", board->alias);
+        log("SYSERR: Error renaming temporary board file for {} after write", board->alias);
 }
 
 /******* COMMAND INTERFACE *******/
@@ -669,9 +666,9 @@ void look_at_board(CharData *ch, const BoardData *board, const ObjData *face) {
                 board->message_count == 1 ? "" : "s", face ? face->short_description : "the board");
 
     for (i = board->message_count - 1; i >= 0; --i) {
-        strftime(buf, 15, TIMEFMT_DATE, localtime(&board->messages[i]->time));
-        paging_printf(ch, "{}{:-2d}" ANRM " : {:<11s} : {:<12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
-                      i + 1, buf, board->messages[i]->poster,
+        auto time = std::chrono::system_clock::from_time_t(board->messages[i]->time);
+        paging_printf(ch, "{}{:-2d}" ANRM " : {:%c} : {:<12s}:: {}" ANRM "\n", board->messages[i]->sticky ? FCYN : "",
+                      i + 1, time, board->messages[i]->poster,
                       board->messages[i]->subject ? board->messages[i]->subject : "<no title>");
     }
 

@@ -745,10 +745,9 @@ void script_log(TrigData *t, char *msg) {
     char buf[256];
 
     if (t)
-        snprintf(buf, 255, "ERROR trigger %d (%s): %s", GET_TRIG_VNUM(t), GET_TRIG_NAME(t), msg);
+        log(LogSeverity::Stat, LVL_GOD, "ERROR trigger {:d} ({}): {}", GET_TRIG_VNUM(t), GET_TRIG_NAME(t), msg);
     else
-        snprintf(buf, 255, "ERROR in trigger: %s", msg);
-    log(LogSeverity::Stat, LVL_GOD, buf);
+        log(LogSeverity::Stat, LVL_GOD, "ERROR in trigger: {}", msg);
 }
 
 /*

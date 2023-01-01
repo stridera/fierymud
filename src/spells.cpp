@@ -3220,8 +3220,7 @@ ASPELL(spell_fear) {
             ret |= inflict_fear(ch, tch, skill, true);
         }
     } else {
-        sprintf(buf, "SYSERR: spell_fear() got invalid spellnum %d", spellnum);
-        log(LogSeverity::Warn, LVL_GOD, buf);
+        log(LogSeverity::Warn, LVL_GOD, "SYSERR: spell_fear() got invalid spellnum {}", spellnum);
         return 0;
     }
 

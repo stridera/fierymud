@@ -22,11 +22,10 @@
 #include "dg_scripts.hpp"
 #include "events.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 void trig_data_copy(TrigData *current, const TrigData *trg);
 
@@ -250,13 +249,11 @@ void dg_read_trigger(FILE *fp, void *proto, int type) {
                 CREATE(room->script, ScriptData, 1);
             add_trigger(SCRIPT(room), read_trigger(rnum), -1);
         } else {
-            sprintf(line, "SYSERR: non-existent trigger #%d assigned to room #%d", vnum, room->vnum);
-            log(line);
+            log("SYSERR: non-existent trigger #{:d} assigned to room #{:d}", vnum, room->vnum);
         }
         break;
     default:
-        sprintf(line, "SYSERR: Trigger vnum #%d assigned to non-mob/obj/room", vnum);
-        log(line);
+        log("SYSERR: Trigger vnum #{:d} assigned to non-mob/obj/room", vnum);
     }
 }
 
@@ -275,8 +272,7 @@ void dg_obj_trigger(char *line, ObjData *obj) {
 
     rnum = real_trigger(vnum);
     if (rnum < 0) {
-        sprintf(line, "SYSERR: Non-existent Trigger (vnum #%d) required for obj %d!", vnum, GET_OBJ_VNUM(obj));
-        log(line);
+        log("SYSERR: Non-existent Trigger (vnum #{:d}) required for obj {:d}!", vnum, GET_OBJ_VNUM(obj));
         return;
     }
 
@@ -309,10 +305,8 @@ void assign_triggers(void *i, int type) {
         while (trg_proto) {
             rnum = real_trigger(trg_proto->vnum);
             if (rnum == -1) {
-                sprintf(buf, "SYSERR: trigger #%d non-existent, for mob #%d", trg_proto->vnum,
-                        mob_index[GET_MOB_RNUM(mob)].vnum);
-                log( buf);
-                ;
+                log("SYSERR: trigger #{:d} non-existent, for mob #{:d}", trg_proto->vnum,
+                    mob_index[GET_MOB_RNUM(mob)].vnum);
             } else {
                 if (!SCRIPT(mob))
                     CREATE(SCRIPT(mob), ScriptData, 1);
@@ -327,10 +321,8 @@ void assign_triggers(void *i, int type) {
         while (trg_proto) {
             rnum = real_trigger(trg_proto->vnum);
             if (rnum == -1) {
-                sprintf(buf, "SYSERR: trigger #%d non-existent, for obj #%d", trg_proto->vnum,
-                        GET_OBJ_RNUM(obj) == NOTHING ? NOTHING : obj_index[GET_OBJ_RNUM(obj)].vnum);
-                log( buf);
-                ;
+                log("SYSERR: trigger #{:d} non-existent, for obj #{:d}", trg_proto->vnum,
+                    GET_OBJ_RNUM(obj) == NOTHING ? NOTHING : obj_index[GET_OBJ_RNUM(obj)].vnum);
             } else {
                 if (!SCRIPT(obj))
                     CREATE(SCRIPT(obj), ScriptData, 1);
@@ -345,9 +337,7 @@ void assign_triggers(void *i, int type) {
         while (trg_proto) {
             rnum = real_trigger(trg_proto->vnum);
             if (rnum == -1) {
-                sprintf(buf, "SYSERR: trigger #%d non-existent, for room #%d", trg_proto->vnum, room->vnum);
-                log( buf);
-                ;
+                log("SYSERR: trigger #{:d} non-existent, for room #{:d}", trg_proto->vnum, room->vnum);
             } else {
                 if (!SCRIPT(room))
                     CREATE(SCRIPT(room), ScriptData, 1);

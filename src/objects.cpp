@@ -519,7 +519,7 @@ void setup_drinkcon(ObjData *obj, int newliq) {
                     break;
                 default:
                     log(LogSeverity::Warn, LVL_IMMORT,
-                        "Error setting up drinkcon %d: expected 'n', 's', or 'l' in adesc, but got #%d",
+                        "Error setting up drinkcon {:d}: expected 'n', 's', or 'l' in adesc, but got #{:d}",
                         GET_OBJ_VNUM(obj), line[1]);
                     free(newtext);
                 }
@@ -549,9 +549,8 @@ void liquid_from_container(ObjData *container, int amount) {
 
     if (loss == 0) {
         log(LogSeverity::Error, LVL_IMMORT,
-            "liquid_from_container is not removing any liquid from %s "
-            "(requested: %d)",
-            GET_OBJ_NAME(container), amount);
+            "liquid_from_container is not removing any liquid from {} (requested: {:d})", GET_OBJ_NAME(container),
+            amount);
         return;
     }
 
@@ -579,7 +578,7 @@ void liquid_to_container(ObjData *container, int amount, int liquid_type, bool p
     change = final_amount - GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING);
 
     if (change < 0) {
-        log(LogSeverity::Error, LVL_IMMORT, "liquid_to_container is not adding any liquid to %s (requested: %d)",
+        log(LogSeverity::Error, LVL_IMMORT, "liquid_to_container is not adding any liquid to {} (requested: {:d})",
             GET_OBJ_NAME(container), amount);
         return;
     }

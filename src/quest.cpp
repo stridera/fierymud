@@ -223,36 +223,26 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     /* Mob / deity error string */
     if (ch) {
         if (t)
-            sprintf(error_string,
-                    "QUEST ERROR: %s (%d) tried to %%s "
-                    "[%s on quest %s in trigger %d]",
-                    GET_NAME(ch), GET_MOB_VNUM(ch), GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
+            sprintf(error_string, "QUEST ERROR: %s (%d) tried to {} [%s on quest %s in trigger %d]", GET_NAME(ch),
+                    GET_MOB_VNUM(ch), GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
         else
-            sprintf(error_string,
-                    "QUEST_ERROR: %s tried to %%s "
-                    "[%s on quest %s]",
-                    GET_NAME(ch), GET_NAME(vict), quest_name);
+            sprintf(error_string, "QUEST_ERROR: %s tried to {} [%s on quest %s]", GET_NAME(ch), GET_NAME(vict),
+                    quest_name);
     }
     /* Object trigger error string */
     else if (obj) {
-        sprintf(error_string,
-                "QUEST ERROR: %s (%d) tried to %%s "
-                "[%s on quest %s in trigger %d]",
-                obj->short_description, GET_OBJ_VNUM(obj), GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
+        sprintf(error_string, "QUEST ERROR: %s (%d) tried to {} [%s on quest %s in trigger %d]", obj->short_description,
+                GET_OBJ_VNUM(obj), GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
     }
     /* Room trigger error string */
     else if (room) {
-        sprintf(error_string,
-                "QUEST ERROR: %s (%d) tried to %%s "
-                "[%s on quest %s in trigger %d]",
-                room->name, room->vnum, GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
+        sprintf(error_string, "QUEST ERROR: %s (%d) tried to {} [%s on quest %s in trigger %d]", room->name, room->vnum,
+                GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
     }
     /* Other error string */
     else {
-        sprintf(error_string,
-                "QUEST ERROR: unknown actor tried to %%s "
-                "[%s on quest %s in trigger %d]",
-                GET_NAME(vict), quest_name, GET_TRIG_VNUM(t));
+        sprintf(error_string, "QUEST ERROR: unknown actor tried to {} [%s on quest %s in trigger %d]", GET_NAME(vict),
+                quest_name, GET_TRIG_VNUM(t));
     }
 
     /*
@@ -306,8 +296,7 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
         else if (!*buf1) {
             log(LogSeverity::Stat, LVL_GOD, error_string, "set variable with no variable");
         } else if (!*buf2) {
-            sprintf(e2, "set variable \"%s\" with no value", buf1);
-            log(LogSeverity::Stat, LVL_GOD, error_string, e2);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "set variable \"{}\" with no value", buf1);
         }
     }
 
@@ -361,15 +350,14 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
         if (quest_find_char(vict, quest_name)) {
             amount = quest_stage(vict, quest_name);
             if (amount == QUEST_FAILURE)
-                sprintf(buf, "%s has failed the %s quest.\n", GET_NAME(vict), quest_name);
+                char_printf(ch, "{} has failed the {} quest.\n", GET_NAME(vict), quest_name);
             else if (amount == QUEST_SUCCESS)
-                sprintf(buf, "%s has completed the %s quest.\n", GET_NAME(vict), quest_name);
+                char_printf(ch, "{} has completed the {} quest.\n", GET_NAME(vict), quest_name);
             else
-                sprintf(buf, "%s is on stage %d of the %s quest.\n", GET_NAME(vict), amount, quest_name);
+                char_printf(ch, "{} is on stage {:d} of the {} quest.\n", GET_NAME(vict), amount, quest_name);
         } else {
-            sprintf(buf, "%s has not started the %s quest.\n", GET_NAME(vict), quest_name);
+            char_printf(ch, "{} has not started the {} quest.\n", GET_NAME(vict), quest_name);
         }
-        char_printf(ch, buf);
     }
 
     /* stat
@@ -385,11 +373,9 @@ void perform_quest(TrigData *t, char *argument, CharData *ch, ObjData *obj, Room
     else {
         if (t) {
             sprintf(buf, "use an invalid command %s", arg);
-            sprintf(buf1, error_string, buf);
-            log(LogSeverity::Stat, LVL_GOD, buf1);
+            log(LogSeverity::Stat, LVL_GOD, error_string, buf);
         } else if (ch) {
-            sprintf(buf, "Sorry, %s is not a valid quest command.\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Sorry, {} is not a valid quest command.\n", arg);
         }
     }
 }
@@ -479,11 +465,9 @@ void set_quest_variable(CharData *ch, CharData *vict, char *qname, char *error_s
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "You can't set variables on a quest %s hasn't started yet.\n", GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "You can't set variables on a quest {} hasn't started yet.\n", GET_NAME(vict));
         } else {
-            sprintf(buf, error_string, "set variable on nonexistent quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "set variable on nonexistent quest");
         }
         return;
     }
@@ -556,8 +540,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
             sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "complete nonexistent quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "complete nonexistent quest");
         }
         return;
     }
@@ -567,8 +550,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
             sprintf(buf, "%s has already completed that quest!\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "complete already-completed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "complete already-completed quest");
         }
         return;
     }
@@ -578,8 +560,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
             sprintf(buf, "%s has already failed that quest!\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "complete already-failed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "complete already-failed quest");
         }
         return;
     }
@@ -603,8 +584,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
             sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "fail nonexistent quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "fail nonexistent quest");
         }
         return;
     }
@@ -614,8 +594,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
             sprintf(buf, "%s has already completed that quest!\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "fail already-completed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "fail already-completed quest");
         }
         return;
     }
@@ -625,8 +604,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
             sprintf(buf, "%s has already failed that quest!\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "fail already-failed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "fail already-failed quest");
         }
         return;
     }
@@ -652,8 +630,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
             sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "advance nonexistent quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "advance nonexistent quest");
         }
         return;
     }
@@ -663,8 +640,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
             sprintf(buf, "%s has already failed this quest.  Use quest restart.\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "advance failed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "advance failed quest");
         }
         return;
     }
@@ -674,8 +650,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
             sprintf(buf, "%s has already completed this quest.  Use quest restart.\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "advance already completed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "advance already completed quest");
         }
         return;
     }
@@ -691,8 +666,7 @@ void quest_advance(CharData *ch, CharData *vict, char *qname, char *error_string
             char_printf(ch, buf);
         } else if (error_string) {
             sprintf(buf, "advance past quest max stage of %d", max_stage);
-            sprintf(buf1, error_string, buf);
-            log(LogSeverity::Stat, LVL_GOD, buf1);
+            log(LogSeverity::Stat, LVL_GOD, error_string, buf);
         }
         return;
     }
@@ -718,11 +692,9 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
 
     if (quest) {
         if (ch) {
-            sprintf(buf, "%s has already started this quest.  Use quest restart.\n", GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "{} has already started this quest.  Use quest restart.\n", GET_NAME(vict));
         } else if (error_string) {
-            sprintf(buf, error_string, "start already-started quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "start already-started quest");
         }
         return;
     }
@@ -733,8 +705,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         if (ch)
             char_printf(ch, "You must supply the name of the subclass for this quest.\n");
         else if (error_string) {
-            sprintf(buf, error_string, "start subclass quest without specifying which");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "start subclass quest without specifying which");
         }
         return;
     }
@@ -747,14 +718,10 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         while (quest) {
             if (quest->quest_id & SUBCLASS_BIT) {
                 if (ch) {
-                    sprintf(buf,
-                            "%s is already on a subclass quest.  Erase it before "
-                            "starting another.\n",
-                            GET_NAME(vict));
-                    char_printf(ch, buf);
+                    char_printf(ch, "{} is already on a subclass quest.  Erase it before starting another.\n",
+                                GET_NAME(vict));
                 } else if (error_string) {
-                    sprintf(buf, error_string, "start subclass quest with one already in progress");
-                    log(LogSeverity::Stat, LVL_GOD, buf);
+                    log(LogSeverity::Stat, LVL_GOD, error_string, "start subclass quest with one already in progress");
                 }
                 return;
             }
@@ -767,8 +734,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
             if (ch)
                 char_printf(ch, "That's not a valid class.\n");
             else if (error_string) {
-                sprintf(buf, error_string, "start subclass quest with invalid class abbreviation");
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, error_string, "start subclass quest with invalid class abbreviation");
             }
             return;
         }
@@ -776,11 +742,9 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         /* Is the player a base class? */
         if (classes[(int)GET_CLASS(vict)].is_subclass) {
             if (ch) {
-                sprintf(buf, "%s has already subclassed.\n", GET_NAME(vict));
-                char_printf(ch, buf);
+                char_printf(ch, "{} has already subclassed.\n", GET_NAME(vict));
             } else if (error_string) {
-                sprintf(buf, error_string, "start subclass quest on already subclassed player");
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, error_string, "start subclass quest on already subclassed player");
             }
             return;
         }
@@ -788,11 +752,10 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         /* Is the proposed class a subclass of the player's current class? */
         if (!classes[subclass].is_subclass || !classes[subclass].subclass_of == GET_CLASS(vict)) {
             if (ch) {
-                sprintf(buf, "Invalid subclass for %s's class.\n", GET_NAME(vict));
-                char_printf(ch, buf);
+                char_printf(ch, "Invalid subclass for {}'s class.\n", GET_NAME(vict));
             } else if (error_string) {
-                sprintf(buf, error_string, "start subclass quest when player's class does not permit it");
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, error_string,
+                    "start subclass quest when player's class does not permit it");
             }
             return;
         }
@@ -800,11 +763,10 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         /* Does the player's race permit this subclass? */
         if (!class_ok_race[(int)GET_RACE(vict)][subclass]) {
             if (ch) {
-                sprintf(buf, "Invalid subclass for %s's race.\n", GET_NAME(vict));
-                char_printf(ch, buf);
+                char_printf(ch, "Invalid subclass for {}'s race.\n", GET_NAME(vict));
             } else if (error_string) {
-                sprintf(buf, error_string, "start subclass quest when player's race does not permit it");
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, error_string,
+                    "start subclass quest when player's race does not permit it");
             }
             return;
         }
@@ -813,8 +775,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
          * unless a deity hooks you up. */
         if (GET_LEVEL(vict) < 10 && !ch) {
             if (error_string) {
-                sprintf(buf, error_string, "start subclass quest before player is level 10");
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, error_string, "start subclass quest before player is level 10");
             }
             return;
         }
@@ -823,8 +784,8 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
          * quest, unless a deity hooks you up. */
         if (!ch && GET_LEVEL(vict) > classes[(int)GET_CLASS(vict)].max_subclass_level) {
             if (error_string) {
-                sprintf(buf, error_string, "start subclass quest after player is past max subclass level");
-                log(LogSeverity::Stat, LVL_GOD, buf);
+                log(LogSeverity::Stat, LVL_GOD, error_string,
+                    "start subclass quest after player is past max subclass level");
             }
             return;
         }
@@ -845,8 +806,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
     }
 
     if (ch) {
-        sprintf(buf, "Started the %s quest on %s and set stage to 1.\n", qname, GET_NAME(vict));
-        char_printf(ch, buf);
+        char_printf(ch, "Started the {} quest on {} and set stage to 1.\n", qname, GET_NAME(vict));
     }
 }
 
@@ -855,33 +815,27 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "{} hasn't started that quest yet.\n", GET_NAME(vict));
         } else if (error_string) {
-            sprintf(buf, error_string, "rewind nonexistent quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "rewind nonexistent quest");
         }
         return;
     }
 
     if (quest->stage == QUEST_FAILURE) {
         if (ch) {
-            sprintf(buf, "%s has already failed this quest.  Use quest restart.\n", GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "{} has already failed this quest.  Use quest restart.\n", GET_NAME(vict));
         } else if (error_string) {
-            sprintf(buf, error_string, "rewind failed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "rewind failed quest");
         }
         return;
     }
 
     if (quest->stage == QUEST_SUCCESS) {
         if (ch) {
-            sprintf(buf, "%s has already completed this quest.  Use quest restart.\n", GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "{} has already completed this quest.  Use quest restart.\n", GET_NAME(vict));
         } else if (error_string) {
-            sprintf(buf, error_string, "rewind already completed quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "rewind already completed quest");
         }
         return;
     }
@@ -889,11 +843,9 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
     if (quest->stage - amount < 1) {
         quest->stage = 1;
         if (ch) {
-            sprintf(buf, "You can't rewind past the first stage.  %s's stage set to 1.\n", GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "You can't rewind past the first stage.  {}'s stage set to 1.\n", GET_NAME(vict));
         } else if (error_string) {
-            sprintf(buf, error_string, "rewind past quest first stage");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "rewind past quest first stage");
         }
         return;
     }
@@ -902,8 +854,8 @@ void quest_rewind(CharData *ch, CharData *vict, char *qname, char *error_string,
     quest->stage -= amount;
 
     if (ch) {
-        sprintf(buf, "Rewound the %s quest's stage by %d to %d on %s.\n", qname, amount, quest->stage, GET_NAME(vict));
-        char_printf(ch, buf);
+        char_printf(ch, "Rewound the {} quest's stage by {} to {} on {}.\n", qname, amount, quest->stage,
+                    GET_NAME(vict));
     }
 }
 
@@ -912,11 +864,9 @@ void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string
 
     if (!quest) {
         if (ch) {
-            sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "{} hasn't started that quest yet.\n", GET_NAME(vict));
         } else if (error_string) {
-            sprintf(buf, error_string, "restart nonexistent quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "restart nonexistent quest");
         }
         return;
     }
@@ -924,8 +874,7 @@ void quest_restart(CharData *ch, CharData *vict, char *qname, char *error_string
     quest->stage = QUEST_START;
 
     if (ch) {
-        sprintf(buf, "Restarted the %s quest on %s by resetting stage to 1.\n", qname, GET_NAME(vict));
-        char_printf(ch, buf);
+        char_printf(ch, "Restarted the {} quest on {} by resetting stage to 1.\n", qname, GET_NAME(vict));
     }
 }
 
@@ -952,8 +901,7 @@ void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) 
             sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
             char_printf(ch, buf);
         } else if (error_string) {
-            sprintf(buf, error_string, "erase nonexistent quest");
-            log(LogSeverity::Stat, LVL_GOD, buf);
+            log(LogSeverity::Stat, LVL_GOD, error_string, "erase nonexistent quest");
         }
         return;
     }
@@ -982,18 +930,15 @@ void quest_erase(CharData *ch, CharData *vict, char *qname, char *error_string) 
         */
         free(quest);
         if (ch) {
-            sprintf(buf, "Erased the %s quest from %s.\n", qname, GET_NAME(vict));
-            char_printf(ch, buf);
+            char_printf(ch, "Erased the {} quest from {}.\n", qname, GET_NAME(vict));
         }
         return;
     }
 
     if (ch) {
-        sprintf(buf, "%s hasn't started that quest yet.\n", GET_NAME(vict));
-        char_printf(ch, buf);
+        char_printf(ch, "{} hasn't started that quest yet.\n", GET_NAME(vict));
     } else if (error_string) {
-        sprintf(buf, error_string, "erase nonexistent quest");
-        log(LogSeverity::Stat, LVL_GOD, buf);
+        log(LogSeverity::Stat, LVL_GOD, error_string, "erase nonexistent quest");
     }
 }
 

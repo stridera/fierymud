@@ -184,8 +184,8 @@ void hedit_parse(DescriptorData *d, char *arg) {
             top_of_helpt = 0;
             index_boot(DB_BOOT_HLP);
 
-            sprintf(buf, "OLC: %s edits help for %s.", GET_NAME(d->character), OLC_HELP(d)->keyword);
-            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), "OLC: {} edits help for {}.",
+                GET_NAME(d->character), OLC_HELP(d)->keyword);
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_STRUCTS);
             char_printf(d->character, "Help saved to memory.\n");

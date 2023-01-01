@@ -865,8 +865,7 @@ void do_stat_character(CharData *ch, CharData *k) {
                 quest = quest->next;
             }
         } else
-            log("SYSERR: do_stat_character: k->quests non-null but no quests exist "
-                "(all_quests == NULL)");
+            log("SYSERR: do_stat_character: k->quests non-null but no quests exist (all_quests == NULL)");
     }
 
     /* Report any events attached. */
@@ -1208,9 +1207,8 @@ ACMD(do_last) {
         free_char(victim);
         return;
     }
-    sprintf(buf, "[%5ld] [%2d %s] %-12s : %-18s : %-20s\n", GET_IDNUM(victim), GET_LEVEL(victim), CLASS_ABBR(victim),
-            GET_NAME(victim), GET_HOST(victim), ctime(&victim->player.time.logon));
-    char_printf(ch, buf);
+    char_printf(ch, "[{:5}] [{:2d} {}] {:<12} : {:<18} : {:<20}\n", GET_IDNUM(victim), GET_LEVEL(victim),
+                CLASS_ABBR(victim), GET_NAME(victim), GET_HOST(victim), ctime(&victim->player.time.logon));
 
     free_char(victim);
 }
@@ -1247,23 +1245,19 @@ void do_show_compositions(CharData *ch, char *argument) {
 
     int i;
 
-    sprintf(buf,
-            "Idx  Composition  %sSlash&0  %sPierce&0  %sCrush&0  %sShock&0  "
-            "%sFire&0  %sWater&0  %sCold&0  %sAcid&0  %sPoison&0\n",
-            damtypes[DAM_SLASH].color, damtypes[DAM_PIERCE].color, damtypes[DAM_CRUSH].color, damtypes[DAM_SHOCK].color,
-            damtypes[DAM_FIRE].color, damtypes[DAM_WATER].color, damtypes[DAM_COLD].color, damtypes[DAM_ACID].color,
-            damtypes[DAM_POISON].color);
-    char_printf(ch, buf);
+    char_printf(ch,
+                "Idx  Composition  {}Slash&0  {}Pierce&0  {}Crush&0  {}Shock&0  "
+                "{}Fire&0  {}Water&0  {}Cold&0  {}Acid&0  {}Poison&0\n",
+                damtypes[DAM_SLASH].color, damtypes[DAM_PIERCE].color, damtypes[DAM_CRUSH].color,
+                damtypes[DAM_SHOCK].color, damtypes[DAM_FIRE].color, damtypes[DAM_WATER].color,
+                damtypes[DAM_COLD].color, damtypes[DAM_ACID].color, damtypes[DAM_POISON].color);
     char_printf(ch, "---  -----------  -----  ------  -----  -----   ---  ----  -----  ----  ------\n");
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
-        sprintf(buf,
-                "%2d.  %s%-11s  % 5d  % 6d  % 5d  % 5d  % 4d  % 4d  % 5d  % 4d  "
-                "% 6d&0\n",
-                i, compositions[i].color, capitalize(compositions[i].name), compositions[i].sus_slash,
-                compositions[i].sus_pierce, compositions[i].sus_crush, compositions[i].sus_shock,
-                compositions[i].sus_fire, compositions[i].sus_water, compositions[i].sus_cold, compositions[i].sus_acid,
-                compositions[i].sus_poison);
-        char_printf(ch, buf);
+        char_printf(ch, "{:2d}.  {}{:<11}  {: 5d}  {: 6d}  {: 5d}  {: 5d}  {: 4d}  {: 4d}  {: 5d}  {: 4d}  {: 6d}&0\n",
+                    i, compositions[i].color, capitalize(compositions[i].name), compositions[i].sus_slash,
+                    compositions[i].sus_pierce, compositions[i].sus_crush, compositions[i].sus_shock,
+                    compositions[i].sus_fire, compositions[i].sus_water, compositions[i].sus_cold,
+                    compositions[i].sus_acid, compositions[i].sus_poison);
     }
 }
 
@@ -1272,15 +1266,13 @@ void do_show_lifeforces(CharData *ch, char *argument) {
 
     int i;
 
-    sprintf(buf, "Idx  Life force   %sHeal&0  %sDisc.&0  %sDispel&0  %sMental&0\n", damtypes[DAM_HEAL].color,
-            damtypes[DAM_DISCORPORATE].color, damtypes[DAM_DISPEL].color, damtypes[DAM_MENTAL].color);
-    char_printf(ch, buf);
+    char_printf(ch, "Idx  Life force   {}Heal&0  {}Disc.&0  {}Dispel&0  {}Mental&0\n", damtypes[DAM_HEAL].color,
+                damtypes[DAM_DISCORPORATE].color, damtypes[DAM_DISPEL].color, damtypes[DAM_MENTAL].color);
     char_printf(ch, "---  -----------  ----  -----  ------  ------\n");
     for (i = 0; i < NUM_LIFEFORCES; i++) {
-        sprintf(buf, "%2d.  %s%-11s  % 4d  % 5d  % 6d  % 6d&0\n", i, lifeforces[i].color,
-                capitalize(lifeforces[i].name), lifeforces[i].sus_heal, lifeforces[i].sus_discorporate,
-                lifeforces[i].sus_dispel, lifeforces[i].sus_mental);
-        char_printf(ch, buf);
+        char_printf(ch, "{:2d}.  {}{:<11}  {: 4d}  {: 5d}  {: 6d}  {: 6d}&0\n", i, lifeforces[i].color,
+                    capitalize(lifeforces[i].name), lifeforces[i].sus_heal, lifeforces[i].sus_discorporate,
+                    lifeforces[i].sus_dispel, lifeforces[i].sus_mental);
     }
 }
 
@@ -1290,9 +1282,8 @@ void do_show_damtypes(CharData *ch, char *argument) {
     char_printf(ch, "Idx  Damage type      Verb 1st         Verb 2nd          Action \n");
     char_printf(ch, "---  -------------    -------------    --------------    ----------\n");
     for (i = 0; i < NUM_DAMTYPES; i++) {
-        sprintf(buf, "%2d.  %s%-15s  %-15s  %-15s   %-15s&0\n", i, damtypes[i].color, damtypes[i].name,
-                damtypes[i].verb1st, damtypes[i].verb2nd, damtypes[i].action);
-        char_printf(ch, buf);
+        char_printf(ch, "{:2d}.  {}{:<15}  {:<15}  {:<15}   {:<15}&0\n", i, damtypes[i].color, damtypes[i].name,
+                    damtypes[i].verb1st, damtypes[i].verb2nd, damtypes[i].action);
     }
 }
 
@@ -1603,8 +1594,8 @@ void do_show_snoop(CharData *ch, char *argument) {
     DescriptorData *d;
 
     char_printf(ch,
-        "People currently snooping:\n"
-        "--------------------------\n");
+                "People currently snooping:\n"
+                "--------------------------\n");
     for (d = descriptor_list; d; d = d->next) {
         if (d->snooping == nullptr || d->character == nullptr)
             continue;
@@ -1673,8 +1664,7 @@ void do_show_file(CharData *ch, char *argument) {
 
     /* open the requested file */
     if (!(file = fopen(fields[i].path, "r"))) {
-        sprintf(buf, "SYSERR: Error opening file %s using 'file' command.", fields[i].path);
-        log(LogSeverity::Warn, LVL_IMPL, buf);
+        log(LogSeverity::Warn, LVL_IMPL, "SYSERR: Error opening file {} using 'file' command.", fields[i].path);
         return;
     }
 
@@ -1695,8 +1685,7 @@ void do_show_file(CharData *ch, char *argument) {
 
     /* close and re-open */
     if (!(file = fopen(fields[i].path, "r"))) {
-        sprintf(buf2, "SYSERR: Error opening file %s using 'file' command.", fields[i].path);
-        log(LogSeverity::Warn, LVL_IMPL, buf2);
+        log(LogSeverity::Warn, LVL_IMPL, "SYSERR: Error opening file {} using 'file' command.", fields[i].path);
         return;
     }
 
@@ -1714,20 +1703,6 @@ void do_show_file(CharData *ch, char *argument) {
 }
 
 bool will_npcs_cast(int spell) {
-    // const SpellPair mob_sorcerer_buffs[];
-    // const int mob_sorcerer_offensives[];
-    // const int mob_sorcerer_area_spells[];
-    // const SpellPair mob_cleric_buffs[];
-    // const SpellPair mob_cleric_hindrances[];
-    // const int mob_cleric_offensives[];
-    // const int mob_cleric_area_spells[];
-    // const int mob_cleric_heals[];
-    // const SpellPair mob_bard_buffs[];
-    // const SpellPair mob_bard_hindrances[];
-    // const int mob_bard_offensives[];
-    // const int mob_bard_area_spells[];
-    // const int mob_bard_heals[];
-
     const int *npc_spell_lists[] = {mob_sorcerer_offensives, mob_sorcerer_area_spells, mob_cleric_offensives,
                                     mob_cleric_area_spells,  mob_cleric_heals,         mob_bard_offensives,
                                     mob_bard_area_spells,    mob_bard_heals,           nullptr};
@@ -1770,9 +1745,7 @@ void do_show_spell(CharData *ch, int spellnum) {
     spell = &skills[spellnum];
 
     /* Number and name */
-    strcpy(buf2, spell->name);
-    sprintf(buf, "&2Spell #%d&0, &5&b%s&0\n", spellnum, CAP(buf2));
-    char_printf(ch, buf);
+    char_printf(ch, "&2Spell #{:d}&0, &5&b{}&0\n", spellnum, capitalize(spell->name));
 
     /* Stance */
     char_printf(ch, "Min pos     : {}\n", position_types[spell->minpos]);
@@ -1796,11 +1769,10 @@ void do_show_spell(CharData *ch, int spellnum) {
     if (spell->violent) {
         char_printf(ch, "Violent     : &1&bYes&0\n");
         if (VALID_DAMTYPE(spell->damage_type))
-            sprintf(buf, "Damtype     : %s%s&0\n", damtypes[spell->damage_type].color,
-                    damtypes[spell->damage_type].name);
+            char_printf(ch, "Damtype     : {}{}&0\n", damtypes[spell->damage_type].color,
+                        damtypes[spell->damage_type].name);
         else
-            sprintf(buf, "Damtype     : &1&bINVALID (%d)&0\n", spell->damage_type);
-        char_printf(ch, buf);
+            char_printf(ch, "Damtype     : &1&bINVALID ({:d})&0\n", spell->damage_type);
     } else {
         char_printf(ch, "Violent     : &6No&0\n");
         char_printf(ch, "Damtype     : -na-\n");
@@ -1808,11 +1780,9 @@ void do_show_spell(CharData *ch, int spellnum) {
 
     /* Sphere */
     if (IS_SPHERE_SKILL(spell->sphere)) {
-        sprintf(buf, "Sphere      : %s\n", skills[spell->sphere].name);
-        char_printf(ch, buf);
+        char_printf(ch, "Sphere      : {}\n", skills[spell->sphere].name);
     } else {
-        sprintf(buf, "Sphere      : &1&bINVALID (%d)&0\n", spell->sphere);
-        char_printf(ch, buf);
+        char_printf(ch, "Sphere      : &1&bINVALID ({:d})&0\n", spell->sphere);
     }
 
     /* Routines */
@@ -1828,41 +1798,26 @@ void do_show_spell(CharData *ch, int spellnum) {
     strcat(buf, "\n");
     char_printf(ch, buf);
 
-    /* Mana */
-    sprintf(buf, "Mana        : max %d  min %d  chg %d\n", spell->mana_max, spell->mana_min, spell->mana_change);
-    char_printf(ch, buf);
-
-    /* Mem time */
-    sprintf(buf, "Mem time    : %d\n", spell->mem_time);
-    char_printf(ch, buf);
-
-    /* Cast time */
-    sprintf(buf, "Cast time   : %d\n", spell->cast_time);
-    char_printf(ch, buf);
-
-    /* Pages */
-    sprintf(buf, "Pages       : &3%d&0\n", spell->pages);
-    char_printf(ch, buf);
-
-    /* Quest */
-    sprintf(buf, "Quest       : %s\n", spell->quest ? "&2&bYes&0" : "&4&bNo&0");
-    char_printf(ch, buf);
+    char_printf(ch, "Mana        : max {:d}  min {:d}  chg {:d}\n", spell->mana_max, spell->mana_min,
+                spell->mana_change);
+    char_printf(ch, "Mem time    : {:d}\n", spell->mem_time);
+    char_printf(ch, "Cast time   : {:d}\n", spell->cast_time);
+    char_printf(ch, "Pages       : &3{:d}&0\n", spell->pages);
+    char_printf(ch, "Quest       : {}\n", spell->quest ? "&2&bYes&0" : "&4&bNo&0");
 
     /* Wearoff message */
     if (spell->wearoff && *(spell->wearoff)) {
-        sprintf(buf, "Wearoff     : &6%s&0\n", spell->wearoff);
-        char_printf(ch, buf);
+        char_printf(ch, "Wearoff     : &6%s&0\n", spell->wearoff);
     } else
         char_printf(ch, "Wearoff     : -none-\n");
 
     /* Assignments */
     for (i = 0; i < NUM_CLASSES; i++)
         if (spell->min_level[i] > 0 && spell->min_level[i] < LVL_IMMORT) {
-            sprintf(buf, "%s%-*s  circle %d\n", anyassignments ? "              " : "Assignments : ",
-                    13 + count_color_chars(classes[i].displayname), classes[i].displayname,
-                    level_to_circle(spell->min_level[i]));
+            char_printf(ch, "{}{:<{}}  circle {:d}\n",
+                        anyassignments ? "              " : "Assignments : ", classes[i].displayname,
+                        13 + count_color_chars(classes[i].displayname), level_to_circle(spell->min_level[i]));
             anyassignments = true;
-            char_printf(ch, buf);
         }
     if (!anyassignments)
         char_printf(ch, "Assignments : -none-\n");

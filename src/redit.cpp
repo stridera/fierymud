@@ -622,8 +622,8 @@ void redit_parse(DescriptorData *d, char *arg) {
         case 'y':
         case 'Y':
             redit_save_internally(d);
-            sprintf(buf, "OLC: %s edits room %d.", GET_NAME(d->character), OLC_NUM(d));
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits room {:d}.",
+                GET_NAME(d->character), OLC_NUM(d));
             /*
              * Do NOT free strings! Just the room structure.
              */

@@ -25,6 +25,7 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "pfiles.hpp"
 #include "players.hpp"
@@ -34,8 +35,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* classes[]
  *
@@ -988,9 +987,7 @@ void give_newbie_eq(CharData *ch) {
     int i;
 
     if (!VALID_CLASS(ch)) {
-        sprintf(buf, "SYSERR: give_newbie_eq() called for char with invalid class of %d", GET_CLASS(ch));
-        log( buf);
-        ;
+        log("SYSERR: give_newbie_eq() called for char with invalid class of {:d}", GET_CLASS(ch));
         return;
     }
 
@@ -1280,9 +1277,7 @@ void init_char_class(CharData *ch) { /* Nothing much to do here. */
 void update_char_class(CharData *ch) {
     if (!VALID_CLASS(ch)) {
         char buf[500];
-        sprintf(buf, "update_char_class: %s doesn't have a valid class (%d).", GET_NAME(ch), GET_CLASS(ch));
-        log( buf);
-        ;
+        log("update_char_class: {} doesn't have a valid class ({:d}).", GET_NAME(ch), GET_CLASS(ch));
         return;
     }
 
@@ -1390,7 +1385,7 @@ void advance_level(CharData *ch, enum level_action action) {
             add_hp += number(5, 10);
         else
             add_hp -= 9;
-        log("SYSERR: Unrecognized class %d in advance_char", c);
+        log("SYSERR: Unrecognized class {:d} in advance_char", c);
     }
 
     /*

@@ -15,12 +15,11 @@
 #include "db.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* extern variables */
 
@@ -129,8 +128,7 @@ ACMD(do_insult) {
             char_printf(ch, "Can't hear you!\n");
         else {
             if (victim != ch) {
-                sprintf(buf, "You insult %s.\n", GET_NAME(victim));
-                char_printf(ch, buf);
+                char_printf(ch, "You insult {}.\n", GET_NAME(victim));
 
                 switch (number(0, 2)) {
                 case 0:
@@ -204,8 +202,7 @@ void boot_social_messages(void) {
         if (*next_soc == '$')
             break;
         if ((nr = find_command(next_soc)) < 0) {
-            sprintf(buf, "Unknown social '%s' in social file", next_soc);
-            log( buf);
+            log("Unknown social '{}' in social file", next_soc);
         }
         if (fscanf(fl, " %d %d \n", &hide, &min_pos) != 2) {
             fprintf(stderr, "Format error in social file near social '%s'\n", next_soc);

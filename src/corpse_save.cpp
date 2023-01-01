@@ -134,15 +134,11 @@ static ObjData *load_corpse(int id) {
     if (is_integer(buf1)) {
         depth = atoi(buf1);
         if ((depth = real_room(depth)) < 0) {
-            sprintf(buf, "SYSERR: Unable to locate room %s for corpse %d", buf1, id);
-            log(buf);
-            ;
+            log("SYSERR: Unable to locate room {} for corpse {:d}", buf1, id);
             depth = r_mortal_start_room;
         }
     } else {
-        sprintf(buf, "SYSERR: First line of corpse file not room vnum for corpse %d", id);
-        log(buf);
-        ;
+        log("SYSERR: First line of corpse file not room vnum for corpse {:d}", id);
         if (strchr(buf1, ':'))
             rewind(fl);
         depth = r_mortal_start_room;
@@ -150,9 +146,7 @@ static ObjData *load_corpse(int id) {
 
     if (build_object(fl, &obj, &location)) {
         if (GET_OBJ_TYPE(obj) != ITEM_CONTAINER || !strcasestr(obj->name, "corpse")) {
-            sprintf(buf, "SYSERR: First object '%s' loaded from corpse %d not corpse", obj->short_description, id);
-            log(buf);
-            ;
+            log("SYSERR: First object '{}' loaded from corpse {:d} not corpse", obj->short_description, id);
             extract_obj(obj);
             return nullptr;
         }
@@ -161,9 +155,7 @@ static ObjData *load_corpse(int id) {
         GET_OBJ_VAL(obj, VAL_CONTAINER_CORPSE) = CORPSE_PC;
         obj_to_room(obj, depth);
     } else {
-        sprintf(buf, "SYSERR: Unable to read in corpse data for corpse %d in load_corpse", id);
-        log(buf);
-        ;
+        log("SYSERR: Unable to read in corpse data for corpse {:d} in load_corpse", id);
         return nullptr;
     }
 
@@ -303,9 +295,7 @@ void boot_corpses(void) {
         id = atoi(buf);
 
         if (!(corpse = load_corpse(id))) {
-            sprintf(buf, "SYSERR: Unable to load corpse %d in corpse control list", id);
-            log(buf);
-            ;
+            log("SYSERR: Unable to load corpse {:d} in corpse control list", id);
             continue;
         }
 

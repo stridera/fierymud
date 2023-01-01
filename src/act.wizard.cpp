@@ -73,9 +73,6 @@ void reboot_mud_prep();
 void rebootwarning(int minutes);
 void update_stats(CharData *ch);
 
-/* Internal funct */
-void do_wiztitle(char *outbuf, CharData *vict, char *argu);
-
 ACMD(do_inctime) {
     skip_spaces(&argument);
 
@@ -497,8 +494,7 @@ ACMD(do_linkload) {
     if (load_player(arg, victim) > -1) {
         if (GET_LEVEL(victim) <= GET_LEVEL(ch)) {
             victim->player.time.logon = time(0);
-            sprintf(buf, "(GC) %s has link-loaded %s.", GET_NAME(ch), GET_NAME(victim));
-            log(LogSeverity::Warn, GET_LEVEL(ch) + 1, buf);
+            log(LogSeverity::Warn, GET_LEVEL(ch) + 1, "(GC) {} has link-loaded {}.", GET_NAME(ch), GET_NAME(victim));
             char_to_room(victim, IN_ROOM(ch));
             load_quests(victim);
             load_objects(victim);
@@ -609,21 +605,15 @@ ACMD(do_shutdown) {
     one_argument(argument, arg);
 
     if (!*arg) {
-        sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-        log(buf);
-        ;
+        log("(GC) Shutdown by {}.", GET_NAME(ch));
         all_printf("Shutting down.\n");
         circle_shutdown = 1;
     } else if (!strcasecmp(arg, "reboot")) {
-        sprintf(buf, "(GC) Reboot by %s.", GET_NAME(ch));
-        log(buf);
-        ;
+        log("(GC) Reboot by {}.", GET_NAME(ch));
         reboot_mud_prep();
         circle_shutdown = circle_reboot = 1;
     } else if (!strcasecmp(arg, "now")) {
-        sprintf(buf, "(GC) Shutdown NOW by %s.", GET_NAME(ch));
-        log(buf);
-        ;
+        log("(GC) Shutdown NOW by {}.", GET_NAME(ch));
         all_printf(
             "Rebooting.. come back in a minute or two.\n"
             "           &1&b** ****** ****&0\n"
@@ -633,9 +623,7 @@ ACMD(do_shutdown) {
             "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\n"
             "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\n"
             "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\n"
-            "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 "
-            "&1&b*&0\n");
-        all_printf(
+            "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 &1&b*&0\n"
             "        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\n"
             "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\n"
             "                &1&b*&0   &3&b*&0 &1&b*&0\n"
@@ -650,16 +638,12 @@ ACMD(do_shutdown) {
         circle_reboot = 2;
 
     } else if (!strcasecmp(arg, "die")) {
-        sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-        log(buf);
-        ;
+        log("(GC) Shutdown by {}.", GET_NAME(ch));
         all_printf("Shutting down for maintenance.\n");
         touch("../.killscript");
         circle_shutdown = 1;
     } else if (!strcasecmp(arg, "pause")) {
-        sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-        log(buf);
-        ;
+        log("(GC) Shutdown by {}.", GET_NAME(ch));
         all_printf("Shutting down for maintenance.\n");
         touch("../pause");
         circle_shutdown = 1;
@@ -821,15 +805,12 @@ ACMD(do_rename) {
         return;
     }
 
-    sprintf(buf2, "&1&bYou have renamed &7%s&1 to &7%s&0\n", GET_NAME(victim), CAP(tmp_name));
-    char_printf(ch, buf2);
-    sprintf(buf2, "(GC) %s has renamed %s to %s", GET_NAME(ch), GET_NAME(victim), tmp_name);
-    log(LogSeverity::Stat, LVL_HEAD_C, buf2);
+    char_printf(ch, "&1&bYou have renamed &7{}&1 to &7{}&0\n", GET_NAME(victim), CAP(tmp_name));
+    log(LogSeverity::Stat, LVL_HEAD_C, "(GC) {} has renamed {} to {}", GET_NAME(ch), GET_NAME(victim), tmp_name);
 
     rename_player(victim, tmp_name);
 
-    sprintf(buf2, "&1&b!!! You have been renamed to &7%s&1.&0\n", GET_NAME(victim));
-    char_printf(victim, buf2);
+    char_printf(victim, "&1&b!!! You have been renamed to &7{}&1.&0\n", GET_NAME(victim));
 }
 
 ACMD(do_return) {
@@ -884,8 +865,7 @@ ACMD(do_load) {
         act("$n makes a quaint, magical gesture with one hand.", true, ch, 0, 0, TO_ROOM);
         act("$n has created $N!", false, ch, 0, mob, TO_ROOM);
         act("You create $N.", false, ch, 0, mob, TO_CHAR);
-        sprintf(buf, "(GC) %s loads mob,  %s", GET_NAME(ch), GET_NAME(mob));
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} loads mob,  {}", GET_NAME(ch), GET_NAME(mob));
         load_mtrigger(mob);
     } else if (is_abbrev(buf, "obj")) {
         if ((r_num = real_object(number)) < 0) {
@@ -898,8 +878,8 @@ ACMD(do_load) {
         act("$n makes a strange magical gesture.", true, ch, 0, 0, TO_ROOM);
         act("$n has created $p!", true, ch, obj, 0, TO_ROOM);
         act("You create $p.", false, ch, obj, 0, TO_CHAR);
-        sprintf(buf, "(GC) %s loads OBJ,  %s", GET_NAME(ch), (obj)->short_description);
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} loads OBJ,  {}", GET_NAME(ch),
+            (obj)->short_description);
     } else
         char_printf(ch, "That'll have to be either 'obj' or 'mob'.\n");
 }
@@ -921,8 +901,7 @@ ACMD(do_purge) {
             act("$n disintegrates $N.", false, ch, 0, vict, TO_NOTVICT);
             act("$n disintegrates YOU!", true, ch, 0, vict, TO_VICT);
             if (!IS_NPC(vict)) {
-                sprintf(buf, "(GC) %s has purged %s.", GET_NAME(ch), GET_NAME(vict));
-                log(LogSeverity::Warn, LVL_GOD, buf);
+                log(LogSeverity::Warn, LVL_GOD, "(GC) {} has purged {}.", GET_NAME(ch), GET_NAME(vict));
                 if (vict->desc) {
                     close_socket(vict->desc);
                     vict->desc = nullptr;
@@ -1269,11 +1248,8 @@ ACMD(do_dc) {
     }
     num_to_dc = d->desc_num;
     close_socket(d);
-    sprintf(buf, "Connection #%d closed.\n", num_to_dc);
-    char_printf(ch, buf);
-    sprintf(buf, "(GC) Connection closed by %s.", GET_NAME(ch));
-    log(buf);
-    ;
+    char_printf(ch, "Connection #{:d} closed.\n", num_to_dc);
+    log("(GC) Connection closed by {}.", GET_NAME(ch));
 }
 
 ACMD(do_wizlock) {
@@ -1299,16 +1275,15 @@ ACMD(do_wizlock) {
 
     switch (should_restrict) {
     case 0:
-        sprintf(buf, "The game is %s completely open.\n", when);
+        char_printf(ch, "The game is {} completely open.\n", when);
         break;
     case 1:
-        sprintf(buf, "The game is %s closed to new players.\n", when);
+        char_printf(ch, "The game is {} closed to new players.\n", when);
         break;
     default:
-        sprintf(buf, "Only level %d and above may enter the game %s.\n", should_restrict, when);
+        char_printf(ch, "Only level {:d} and above may enter the game {}.\n", should_restrict, when);
         break;
     }
-    char_printf(ch, buf);
     if (!*arg && restrict_reason == RESTRICT_AUTOBOOT)
         char_printf(ch, "The restriction was set automatically by the automatic rebooting system.\n");
 }
@@ -1328,17 +1303,14 @@ ACMD(do_date) {
     *(tmstr + strlen(tmstr) - 1) = '\0';
 
     if (subcmd == SCMD_DATE)
-        sprintf(buf, "Current machine time: %s\n", tmstr);
+        char_printf(ch, "Current machine time: {}\n", tmstr);
     else {
         mytime = time(0) - boot_time[0];
         d = mytime / 86400;
         h = (mytime / 3600) % 24;
         m = (mytime / 60) % 60;
-
-        sprintf(buf, "Up since %s: %d day%s, %d:%02d\n", tmstr, d, ((d == 1) ? "" : "s"), h, m);
+        char_printf(ch, "Up since {}: {:d} day{}, {:d}:{:02d}\n", tmstr, d, ((d == 1) ? "" : "s"), h, m);
     }
-
-    char_printf(ch, buf);
 }
 
 ACMD(do_force) {
@@ -1360,14 +1332,14 @@ ACMD(do_force) {
         else {
             char_printf(ch, OK);
             act(buf1, false, ch, nullptr, vict, TO_VICT);
-            sprintf(buf, "(GC) %s forced %s to %s", GET_NAME(ch), GET_NAME(vict), to_force);
-            log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+            log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced {} to {}", GET_NAME(ch),
+                GET_NAME(vict), to_force);
             command_interpreter(vict, to_force);
         }
     } else if (!strcasecmp("room", arg)) {
         char_printf(ch, OK);
-        sprintf(buf, "(GC) %s forced room %d to %s", GET_NAME(ch), world[ch->in_room].vnum, to_force);
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced room {:d} to {}", GET_NAME(ch),
+            world[ch->in_room].vnum, to_force);
 
         for (vict = world[ch->in_room].people; vict; vict = next_force) {
             next_force = vict->next_in_room;
@@ -1378,8 +1350,7 @@ ACMD(do_force) {
         }
     } else { /* force all */
         char_printf(ch, OK);
-        sprintf(buf, "(GC) %s forced all to %s", GET_NAME(ch), to_force);
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced all to {}", GET_NAME(ch), to_force);
 
         for (i = descriptor_list; i; i = next_desc) {
             next_desc = i->next;
@@ -1505,30 +1476,25 @@ ACMD(do_wiznet) {
 /* added for name approval system by fingh 3/31/99 */
 /* Complete name approval system redone by Zantir/David Endre 5/4/99 */
 void broadcast_name(char *name) {
-    char temp[80];
     DescriptorData *d;
-
-    *temp = '\0';
-
-    sprintf(temp, "&2&b%s is awaiting name approval.&0\n", name);
-
     for (d = descriptor_list; d; d = d->next)
         if (IS_PLAYING(d) && d->character && GET_LEVEL(d->character) >= LVL_IMMORT &&
             !PLR_FLAGGED(d->character, PLR_WRITING) && !PLR_FLAGGED(d->character, PLR_MAILING) && !EDITING(d))
-            string_to_output(d, temp);
+            string_to_output(d, "&2&b{} is awaiting name approval.&0\n", name);
 }
 
 const char *reasons[] = {
-    "Compound words. Examples: LadyJade, BraveBlade, ImmortalSoul\n These "
-    "types of names give a player an unearned arrogance above\n other "
-    "players and in some instances above the gods.",
+    "Compound words. Examples: LadyJade, BraveBlade, ImmortalSoul\n"
+    "These types of names give a player an unearned arrogance above\n"
+    "other players and in some instances above the gods.",
     "Offensive words or names, mispelled or backwards. Eg: Sgurd Kcuf Emod",
     "Names from known mythos, movies etc... Examples: Feyd, Conan, Zeus\n "
     "Come on, you can be more creative than reliance on an existing known\n "
     "character.",
-    "Names that do not fit the character you are playing. Examples:\n A "
-    "human named Gruzel\n A troll named Bob\n A boy named Sue\n An orc "
-    "named Ripenthiel",
+    "Names that do not fit the character you are playing. Examples:\n"
+    "A human named Gruzel\n A troll named Bob\n"
+    "A boy named Sue\n"
+    "An orc named Ripenthiel",
     "No offensive words or names from other languages or cultures.",
     "No Nouns verbs or adverbs. Eg. Jester, Red, Dog, Bloody, Hotly, "
     "Freedom\n Pervert, PC, Trouble, McIntosh, Desperado.  Sorry guys LAME.",
@@ -1572,16 +1538,15 @@ ACMD(do_name) {
                     /* initialize the the player */
                     init_player(d->character);
                     /* log the new player */
-                    sprintf(buf, "%s [%s] new player.", GET_NAME(d->character), d->host);
-                    log(LogSeverity::Stat, LVL_IMMORT, buf);
+                    log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] new player.", GET_NAME(d->character), d->host);
                 }
                 /* accept the players name */
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
                 save_player_char(d->character);
 
                 /* log the acceptance of the name */
-                sprintf(buf, "The name: %s has been accepted by %s.", GET_NAME(d->character), GET_NAME(ch));
-                log(LogSeverity::Stat, LVL_IMMORT, buf);
+                log(LogSeverity::Stat, LVL_IMMORT, "The name: {} has been accepted by {}.", GET_NAME(d->character),
+                    GET_NAME(ch));
 
                 /* remove the choose new name flag */
                 if (PLR_FLAGGED(d->character, PLR_NEWNAME))
@@ -1596,8 +1561,7 @@ ACMD(do_name) {
                 }
 
                 /* tell the player the name has been accepted */
-                sprintf(buf, "&2&bThe name: %s has been accepted.&0\n", GET_NAME(d->character));
-                char_printf(ch, buf);
+                char_printf(ch, "&2&bThe name: {} has been accepted.&0\n", GET_NAME(d->character));
                 char_printf(d->character, buf);
                 return;
             }
@@ -1627,16 +1591,12 @@ ACMD(do_name) {
 
             if (((STATE(d) == CON_NAME_WAIT_APPROVAL) || (PLR_FLAGGED(d->character, PLR_NAPPROVE))) &&
                 (d != ch->desc) && (strncasecmp(GET_NAME(d->character), arg, strlen(arg)) == 0)) {
-                sprintf(buf, "The name: %s has been declined by %s, reason %d.", GET_NAME(d->character), GET_NAME(ch),
-                        choice + 1);
-                log(LogSeverity::Stat, LVL_IMMORT, buf);
-                sprintf(buf, "&2&bThe name: %s has been declined.&0\n", GET_NAME(d->character));
-                char_printf(ch, buf);
+                log(LogSeverity::Stat, LVL_IMMORT, "The name: {} has been declined by {}, reason {:d}.",
+                    GET_NAME(d->character), GET_NAME(ch), choice + 1);
+                char_printf(ch, "&2&bThe name: {} has been declined.&0\n", GET_NAME(d->character));
                 send_to_xnames(GET_NAME(d->character));
                 string_to_output(d, "That name has been rejected, because it breaks this rule:\n");
-                *buf = '\0';
-                sprintf(buf, "%s\n", reasons[choice]);
-                string_to_output(d, buf);
+                string_to_output(d, "{}\n", reasons[choice]);
                 SET_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
                 if (STATE(d) == CON_NAME_WAIT_APPROVAL) {
                     string_to_output(d, "Please try another name.\n");
@@ -1658,10 +1618,8 @@ ACMD(do_name) {
 
         if (*arg) {
             if (atoi(arg) == 0) {
-                *buf = '\0';
                 for (z = 0; z < 8; z++)
-                    sprintf(buf, "%s%d. %s\n", buf, z + 1, reasons[z]);
-                char_printf(ch, buf);
+                    char_printf(ch, "{}{%d}. {}\n", buf, z + 1, reasons[z]);
             }
         }
 
@@ -1705,8 +1663,7 @@ ACMD(do_zreset) {
         for (i = 0; i <= top_of_zone_table; i++)
             reset_zone(i, false);
         char_printf(ch, "Reset world.\n");
-        sprintf(buf, "(GC) %s reset entire world.", GET_NAME(ch));
-        log(LogSeverity::Stat, MAX(LVL_GRGOD, GET_INVIS_LEV(ch)), buf);
+        log(LogSeverity::Stat, MAX(LVL_GRGOD, GET_INVIS_LEV(ch)), "(GC) {} reset entire world.", GET_NAME(ch));
         return;
     } else if (!isdigit(*arg)) {
         char_printf(ch, "Usage: zreset [<zone-number>]\n");
@@ -1723,10 +1680,9 @@ ACMD(do_zreset) {
     }
     if (i >= 0 && i <= top_of_zone_table) {
         reset_zone(i, false);
-        sprintf(buf, "Reset zone %d (#%d): %s.\n", i, zone_table[i].number, zone_table[i].name);
-        char_printf(ch, buf);
-        sprintf(buf, "(GC) %s reset zone %d (%s)", GET_NAME(ch), zone_table[i].number, zone_table[i].name);
-        log(LogSeverity::Stat, MAX(LVL_GRGOD, GET_INVIS_LEV(ch)), buf);
+        char_printf(ch, "Reset zone {:d} (#{:d}): {}.\n", i, zone_table[i].number, zone_table[i].name);
+        log(LogSeverity::Stat, MAX(LVL_GRGOD, GET_INVIS_LEV(ch)), "(GC) {} reset zone {:d} ({})", GET_NAME(ch),
+            zone_table[i].number, zone_table[i].name);
     } else
         char_printf(ch, "Invalid zone number.\n");
 }
@@ -1775,9 +1731,7 @@ void do_wiztitle(char *outbuf, CharData *vict, char *argument) {
     else if (strlen(argument) >= MAX_INPUT_LENGTH)
         sprintf(buf, "Sorry, godly titles can't be longer than %d characters.\n", MAX_INPUT_LENGTH - 1);
     else if (noansi_len > WIZ_TITLE_WIDTH)
-        sprintf(buf,
-                "Sorry, text portion of godly titles can't be longer than 12 "
-                "characters.\n");
+        sprintf(buf, "Sorry, text portion of godly titles can't be longer than 12 characters.\n");
     else if (noansi_len == 0) {
         GET_WIZ_TITLE(vict) = nullptr;
         sprintf(buf, "Okay, %s's godly title reset to default.\n", GET_NAME(vict));
@@ -1812,13 +1766,12 @@ ACMD(do_wizutil) {
         case SCMD_REROLL:
             char_printf(ch, "Rerolled not functinal for now\n");
             break;
-            /*sprintf(buf, "(GC) %s has rerolled %s.", GET_NAME(ch), GET_NAME(vict));
-               log( buf);;
-               sprintf(buf, "New stats: Str %d/%d, Int %d, Wis %d, Dex %d, Con %d, Cha
-               %d\n", GET_STR(vict), GET_ADD(vict), GET_INT(vict), GET_WIS(vict),
-               GET_DEX(vict), GET_CON(vict), GET_CHA(vict));
-               char_printf(ch, buf);
-               break; */
+
+            // log("(GC) {} has rerolled {}.", GET_NAME(ch), GET_NAME(vict));
+            // char_printf(ch, "New stats: Str {:d}, Int {:d}, Wis {:d}, Dex {:d}, Con {:d}, Cha {:d}\n ",
+            // GET_STR(vict),
+            //             GET_INT(vict), GET_WIS(vict), GET_DEX(vict), GET_CON(vict), GET_CHA(vict));
+            // break;
         case SCMD_PARDON:
             if (!PLR_FLAGGED(vict, PLR_THIEF) && !PLR_FLAGGED(vict, PLR_KILLER)) {
                 char_printf(ch, "Your victim is not flagged.\n");
@@ -1828,22 +1781,20 @@ ACMD(do_wizutil) {
             REMOVE_FLAG(PLR_FLAGS(vict), PLR_KILLER);
             char_printf(ch, "Pardoned.\n");
             char_printf(vict, "You have been pardoned by the Gods!\n");
-            sprintf(buf, "(GC) %s pardoned by %s", GET_NAME(vict), GET_NAME(ch));
-            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} pardoned by {}", GET_NAME(vict),
+                GET_NAME(ch));
             break;
         case SCMD_NOTITLE:
             result = PLR_TOG_CHK(vict, PLR_NOTITLE);
-            sprintf(buf, "(GC) Notitle %s for %s by %s.", ONOFF(result), GET_NAME(vict), GET_NAME(ch));
-            log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Notitle {} for {} by {}.", ONOFF(result),
+                GET_NAME(vict), GET_NAME(ch));
+            char_printf(ch, "\n");
             break;
         case SCMD_SQUELCH:
             result = PLR_TOG_CHK(vict, PLR_NOSHOUT);
-            sprintf(buf, "(GC) Squelch %s for %s by %s.", ONOFF(result), GET_NAME(vict), GET_NAME(ch));
-            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Squelch {} for {} by {}.", ONOFF(result),
+                GET_NAME(vict), GET_NAME(ch));
+            char_printf(ch, "\n");
             break;
         case SCMD_FREEZE:
             if (ch == vict) {
@@ -2834,9 +2785,7 @@ ACMD(do_autoboot) {
 
         sprintf(buf, "[ %s postponed autoboot for %d minutes ]\n", GET_NAME(ch), minutes);
         send_to_imms(buf);
-        sprintf(buf, "(GC) %s postponed autoboot for %d minutes.", GET_NAME(ch), minutes);
-        log(buf);
-        ;
+        log("(GC) {} postponed autoboot for {:d} minutes.", GET_NAME(ch), minutes);
 
         cancel_auto_reboot(1);
         return;
@@ -2856,9 +2805,7 @@ ACMD(do_autoboot) {
         reboot_auto = true;
         sprintf(buf, "[ %s set autoboot to &2&bON&0 ]\n", GET_NAME(ch));
         send_to_imms(buf);
-        sprintf(buf, "(GC) %s turned on autoboot.", GET_NAME(ch));
-        log(buf);
-        ;
+        log("(GC) {} turned on autoboot.", GET_NAME(ch));
 
         /* Make sure the reboot is a minimum amount of time away */
         if (reboot_pulse - global_pulse < (unsigned long)60 * PASSES_PER_SEC * reboot_warning_minutes) {
@@ -2882,9 +2829,7 @@ ACMD(do_autoboot) {
         reboot_auto = false;
         sprintf(buf, "[ %s set autoboot to &1&bOFF&0 ]\n", GET_NAME(ch));
         send_to_imms(buf);
-        sprintf(buf, "(GC) %s turned off autoboot.", GET_NAME(ch));
-        log(buf);
-        ;
+        log("(GC) {} turned off autoboot.", GET_NAME(ch));
 
         cancel_auto_reboot(0);
         return;
@@ -2909,9 +2854,7 @@ ACMD(do_autoboot) {
 
         sprintf(buf, "[ %s set reboot warning time to %d minutes ]\n", GET_NAME(ch), reboot_warning_minutes);
         send_to_imms(buf);
-        sprintf(buf, "(GC) %s set reboot warning time to %d minutes.", GET_NAME(ch), reboot_warning_minutes);
-        log(buf);
-        ;
+        log("(GC) {} set reboot warning time to {} minutes.", GET_NAME(ch), reboot_warning_minutes);
 
         /* The rest of this block is about managing warnings, which is moot
          * unless reboot_auto is true, so: */
@@ -2964,9 +2907,7 @@ ACMD(do_autoboot) {
         reboot_auto = true;
         sprintf(buf, "[ %s set the mud to reboot in &7&b%02d:%02d&0 ]\n", GET_NAME(ch), hours, mins);
         send_to_imms(buf);
-        sprintf(buf, "(GC) %s set the mud to reboot in %02d:%02d.", GET_NAME(ch), hours, mins);
-        log(buf);
-        ;
+        log("(GC) {} set the mud to reboot in {:02d}:{:02d}.", GET_NAME(ch), hours, mins);
 
         reboot_pulse = global_pulse + 60 * PASSES_PER_SEC * minutes;
         if (minutes <= reboot_warning_minutes) {
@@ -2979,7 +2920,6 @@ ACMD(do_autoboot) {
 }
 
 ACMD(do_copyto) {
-
     /* Only works if you have Oasis OLC */
 
     char buf2[10];
@@ -3178,25 +3118,14 @@ ACMD(do_terminate) {
             close_socket(victim->desc);
             victim->desc = nullptr;
         }
-        act("&9&b$n cuts &0$N's &9&bthroat and buries $s corpse where no one will "
-            "ever find it!&0",
-            false, ch, 0, victim, TO_ROOM);
+        act("&9&b$n cuts &0$N's &9&bthroat and buries $s corpse where no one will ever find it!&0", false, ch, 0,
+            victim, TO_ROOM);
         act("&9&bYou destroy &0$N &9&bforever.&0", false, ch, 0, victim, TO_CHAR);
-        sprintf(buf, "%s has terminated %s!", GET_NAME(ch), GET_NAME(victim));
-        log(buf);
-        ;
+        log("{} has terminated {}!", GET_NAME(ch), GET_NAME(victim));
         extract_char(victim);
         return;
     }
     char_printf(ch, "That player is not playing. If you must, linkload first.\n");
-}
-
-ACMD(do_rsdiamimp) {
-    if (!strcasecmp(GET_NAME(ch), "Zzur")) {
-        GET_LEVEL(ch) = LVL_IMPL;
-        char_printf(ch, "Level fixed...\n");
-    } else
-        char_printf(ch, "Huh?!?\n");
 }
 
 /* This function cleans bogus entries from the player files */
@@ -3228,9 +3157,7 @@ ACMD(do_pfilemaint) {
         }
     }
 
-    sprintf(buf, "PFILEMAINT: (GC) Started by %s", GET_NAME(ch));
-    log(buf);
-    ;
+    log("PFILEMAINT: (GC) Started by {}", GET_NAME(ch));
     char_printf(ch, "Processing player files\n");
 
     /* copy the player index to a backup file */
@@ -3286,12 +3213,9 @@ ACMD(do_pfilemaint) {
             reason = 0;
 
         if (reason) {
-            sprintf(buf, "PFILEMAINT: %ld Player [%s] DELETED: %s.", player_table[i].id, player_table[i].name,
-                    rlist[reason]);
-            log(buf);
+            log("PFILEMAINT: {} Player [{}] DELETED: {}.", player_table[i].id, player_table[i].name, rlist[reason]);
             if (reason == 7) {
-                sprintf(buf, "PFILEMAINT: Level %d Idle: %d days.", player_table[i].level, idle_time);
-                log(buf);
+                log("PFILEMAINT: Level {} Idle: {} days.", player_table[i].level, idle_time);
             }
 
             delete_player(i);
@@ -3305,8 +3229,7 @@ ACMD(do_pfilemaint) {
         char_printf(ch, ".");
     }
 
-    sprintf(buf, "PFILEMAINT: Original: %d Discarded: %d Saved: %d", i, i - j, j);
-    log(buf);
+    log("PFILEMAINT: Original: {:d} Discarded: {:d} Saved: {:d}", i, i - j, j);
 
     log("PFILEMAINT: Destroying old player index table");
     free(player_table);
@@ -3377,9 +3300,7 @@ ACMD(do_hotboot) {
         return;
     }
 
-    sprintf(buf, "(GC) Hotboot initiated by %s.", GET_NAME(ch));
-    log(buf);
-    ;
+    log("(GC) Hotboot initiated by {}.", GET_NAME(ch));
 
     sprintf(buf, "\n %s<<< HOTBOOT by %s - please remain seated! >>>%s\n", CLR(ch, HRED), GET_NAME(ch), CLR(ch, ANRM));
 

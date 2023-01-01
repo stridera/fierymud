@@ -225,7 +225,6 @@ ACMD(do_rrestore);
 ACMD(do_return);
 ACMD(do_retreat);
 ACMD(do_rpain);
-ACMD(do_rsdiamimp);
 ACMD(do_rclone);
 ACMD(do_readlist);
 ACMD(do_rename);
@@ -747,7 +746,6 @@ const CommandInfo cmd_info[] = {
     {"rsearch", POS_PRONE, STANCE_DEAD, do_rsearch, LVL_ATTENDANT, SCMD_VSEARCH, CMD_ANY},
     {"rstat", POS_PRONE, STANCE_DEAD, do_stat, LVL_ATTENDANT, SCMD_RSTAT, CMD_ANY},
     {"sstat", POS_PRONE, STANCE_DEAD, do_stat, LVL_ATTENDANT, SCMD_SSTAT, CMD_ANY},
-    {"rsdiamimp", POS_PRONE, STANCE_DEAD, do_rsdiamimp, -1, 0, 0},
 
     {"say", POS_PRONE, STANCE_RESTING, do_say, 0, 0, CMD_MINOR_PARA | CMD_BOUND | CMD_OLC},
     {"'", POS_PRONE, STANCE_RESTING, do_say, 0, 0, CMD_MINOR_PARA | CMD_BOUND | CMD_OLC},
@@ -1928,21 +1926,21 @@ int perform_dupe_check(DescriptorData *d) {
     case RECON:
         string_to_output(d, "Reconnecting.\n");
         act("$n has reconnected.", true, d->character, 0, 0, TO_ROOM);
-        sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
+            GET_NAME(d->character), d->host);
         break;
     case USURP:
         string_to_output(d, "Overriding old connection.\n");
         act("$n suddenly keels over in pain, surrounded by a white aura...\n"
             "$n's body has been taken over by a new spirit!",
             true, d->character, 0, 0, TO_ROOM);
-        sprintf(buf, "%s has re-logged in ... disconnecting old socket.", GET_NAME(d->character));
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)),
+            "{} has re-logged in ... disconnecting old socket.", GET_NAME(d->character));
         break;
     case UNSWITCH:
         string_to_output(d, "Reconnecting to unswitched char.");
-        sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), buf);
+        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
+            GET_NAME(d->character), d->host);
         break;
     }
 
@@ -2375,21 +2373,15 @@ void nanny(DescriptorData *d, char *arg) {
                 desc_printf(d, "\n{}{} news:\n{}", GET_CLAN(d->character)->name, ANRM, GET_CLAN(d->character)->motd);
 
             // Convert timestamp to string
-            time_t t = d->character->player.time.logon;
-            struct tm *tm = localtime(&t);
-            char datestring[256];
-            strftime(datestring, sizeof(datestring), "%a %b %d %H:%M:%S %Y", tm);
+            auto time = std::chrono::system_clock::from_time_t(d->character->player.time.logon);
             log(LogSeverity::Warn,
                 MAX(LVL_IMMORT,
                     MIN(GET_LEVEL(d->character), MAX(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character)))),
-                "{} [{}] has connected.  Last login: {}.", GET_NAME(d->character), d->host, datestring);
+                "{} [{}] has connected.  Last login: {:%c}.", GET_NAME(d->character), d->host, time);
             if (load_result) {
-                sprintf(buf,
-                        "\n\n\007\007\007"
-                        "%s%d LOGIN FAILURE%s SINCE LAST SUCCESSFUL LOGIN.%s\n",
-                        CLRLV(d->character, FRED, C_SPR), load_result, (load_result > 1) ? "S" : "",
-                        CLRLV(d->character, ANRM, C_SPR));
-                string_to_output(d, buf);
+                string_to_output(d, "\n\n\007\007\007 {}{:d} LOGIN FAILURE{} SINCE LAST SUCCESSFUL LOGIN.{}\n",
+                                 CLRLV(d->character, FRED, C_SPR), load_result, (load_result > 1) ? "S" : "",
+                                 CLRLV(d->character, ANRM, C_SPR));
                 GET_BAD_PWS(d->character) = 0;
             }
             string_to_output(d, "\n\n*** PRESS RETURN: ");

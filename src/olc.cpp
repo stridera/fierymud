@@ -369,10 +369,9 @@ ACMD(do_olc) {
             char_printf(ch, "Oops, I forgot what you wanted to save.\n");
             return;
         }
-        sprintf(buf, "Saving all %ss in zone %d.\n", type, zone_table[OLC_ZNUM(d)].number);
-        char_printf(ch, buf);
-        sprintf(buf, "OLC: %s saves %s info for zone %d.", GET_NAME(ch), type, zone_table[OLC_ZNUM(d)].number);
-        log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+        char_printf(ch, "Saving all {}s in zone {:d}.\n", type, zone_table[OLC_ZNUM(d)].number);
+        log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves {} info for zone {:d}.", GET_NAME(ch),
+            type, zone_table[OLC_ZNUM(d)].number);
 
         switch (subcmd) {
         case SCMD_OLC_REDIT:
@@ -413,12 +412,10 @@ ACMD(do_olc) {
                 char_printf(ch, "That help topic already exists.\n");
                 return;
             }
-            sprintf(buf, "Do you wish to add a help topic on '%s'? ", OLC_STORAGE(d));
-            char_printf(ch, buf);
+            char_printf(ch, "Do you wish to add a help topic on '{}'? ", OLC_STORAGE(d));
             OLC_MODE(d) = HEDIT_CONFIRM_ADD;
         } else {
-            sprintf(buf, "Do you wish to edit the help topic on '%s'? ", help_table[OLC_ZNUM(d)].keyword);
-            char_printf(ch, buf);
+            char_printf(ch, "Do you wish to edit the help topic on '{}'? ", help_table[OLC_ZNUM(d)].keyword);
             OLC_MODE(d) = HEDIT_CONFIRM_EDIT;
         }
     }

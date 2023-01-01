@@ -93,9 +93,7 @@ int get_base_saves(CharData *ch, int type) {
     int i;
 
     if (type < 0 || type >= NUM_SAVES) {
-        sprintf(buf, "SYSERR: get_base_saves: invalid type %d", type);
-        log(buf);
-        ;
+        log("SYSERR: get_base_saves: invalid type {:d}", type);
         return 100;
     }
 
@@ -223,10 +221,7 @@ void roll_natural_abils(CharData *ch) {
                 GET_NATURAL_CHA(ch) = table[i];
                 break;
             default:
-                sprintf(buf, "SYSERR: roll_natural_abils(): class '%s' statorder is broken",
-                        classes[(int)GET_CLASS(ch)].name);
-                log(buf);
-                ;
+                log("SYSERR: roll_natural_abils(): class '{}' statorder is broken", classes[(int)GET_CLASS(ch)].name);
             }
         }
     } else {
@@ -496,12 +491,10 @@ void hp_stance_alteration(CharData *ch, CharData *attacker, int newpos, int news
 
     /* Sanity check. */
     if (GET_POS(ch) != newpos || GET_STANCE(ch) != newstance) {
-        sprintf(buf,
-                "ERR: hp_stance_alteration(): Tried to change to %s/%s but "
-                "alter_pos() left values at %s/%s (for %s)",
-                position_types[newpos], stance_types[newstance], position_types[GET_POS(ch)],
-                stance_types[GET_STANCE(ch)], GET_NAME(ch));
-        log(LogSeverity::Warn, LVL_GOD, buf);
+        log(LogSeverity::Warn, LVL_GOD,
+            "ERR: hp_stance_alteration(): Tried to change to {}/{} but alter_pos() left values at {}/{} (for {})",
+            position_types[newpos], stance_types[newstance], position_types[GET_POS(ch)], stance_types[GET_STANCE(ch)],
+            GET_NAME(ch));
     }
 
     /* Send messages and cause dying. */

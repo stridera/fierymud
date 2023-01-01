@@ -81,6 +81,9 @@ template <typename... Args> void string_to_output(DescriptorData *t, std::string
     string_to_output(t, fmt::vformat(str, fmt::make_format_args(args...)));
 }
 void string_to_output(DescriptorData *t, std::string_view txt);
+template <typename... Args> int write_to_descriptor(socket_t desc, std::string_view str, Args &&...args) {
+    return write_to_descriptor(desc, fmt::vformat(str, fmt::make_format_args(args...)));
+}
 int write_to_descriptor(socket_t desc, std::string_view txt);
 void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d);
 // void desc_printf(DescriptorData *t, const char *txt, ...) __attribute__((format(printf, 2, 3)));

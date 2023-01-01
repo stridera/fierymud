@@ -476,14 +476,11 @@ void boot_spell_dams() {
             get_line(ifptr, line);
             get_line(ifptr, line);
             /*
-                  sprintf(buf, "%s", line);
-                  log( buf);;
+                  log(line);
                   get_line(ifptr, line);
-                  sprintf(buf, "%s", line);
-                  log( buf);;
+                  log(line);
                   get_line(ifptr, line);
-                  sprintf(buf, "%s", line);
-                  log( buf);;
+                  log(line);
             */
             if (strcasecmp(line, "spell_dam")) {
                 log("Error in booting spell dams");
@@ -630,9 +627,8 @@ void boot_db(void) {
         Read_Xname_List();
 
         for (i = 0; i <= top_of_zone_table; i++) {
-            sprintf(buf2, "Resetting %s (rooms %d-%d).", zone_table[i].name, (i ? (zone_table[i - 1].top + 1) : 0),
-                    zone_table[i].top);
-            log(buf2);
+            log("Resetting {} (rooms {:d}-{:d}).", zone_table[i].name, (i ? (zone_table[i - 1].top + 1) : 0),
+                zone_table[i].top);
             reset_zone(i, true);
         }
 
@@ -871,7 +867,7 @@ void reset_time(void) {
             hemispheres[HEMISPHERE_SOUTHEAST].sunlight = SUN_LIGHT;
         }
 
-        sprintf(buf, "Setting up seasons: ");
+        log("Setting up seasons.");
 
         /* setup the seasons */
         if (time_info.month < 4) {
@@ -879,29 +875,25 @@ void reset_time(void) {
             hemispheres[HEMISPHERE_SOUTHWEST].season = SUMMER;
             hemispheres[HEMISPHERE_NORTHEAST].season = WINTER;
             hemispheres[HEMISPHERE_SOUTHEAST].season = SUMMER;
-            strcat(buf, "Winter");
         } else if (time_info.month < 8) {
             hemispheres[HEMISPHERE_NORTHWEST].season = SPRING;
             hemispheres[HEMISPHERE_SOUTHWEST].season = AUTUMN;
             hemispheres[HEMISPHERE_NORTHEAST].season = SPRING;
             hemispheres[HEMISPHERE_SOUTHEAST].season = AUTUMN;
-            strcat(buf, "Spring");
         } else if (time_info.month < 12) {
             hemispheres[HEMISPHERE_NORTHWEST].season = SUMMER;
             hemispheres[HEMISPHERE_SOUTHWEST].season = WINTER;
             hemispheres[HEMISPHERE_NORTHEAST].season = SUMMER;
             hemispheres[HEMISPHERE_SOUTHEAST].season = WINTER;
-            strcat(buf, "Summer");
         } else {
             hemispheres[HEMISPHERE_NORTHWEST].season = AUTUMN;
             hemispheres[HEMISPHERE_SOUTHWEST].season = SPRING;
             hemispheres[HEMISPHERE_NORTHEAST].season = AUTUMN;
             hemispheres[HEMISPHERE_SOUTHEAST].season = SPRING;
-            strcat(buf, "Autumn");
         }
-        log(buf);
 
-        log("Current Gametime: %dH %dD %dM %dY.", time_info.hours, time_info.day, time_info.month, time_info.year);
+        log("Current Gametime: {:d}H {:d}D {:d}M {:d}Y.", time_info.hours, time_info.day, time_info.month,
+            time_info.year);
 
         log("Initializing weather.");
         init_weather();
@@ -1216,7 +1208,7 @@ void setup_dir(FILE *fl, int room, int dir) {
         sprintf(buf2, "room #%d, direction D%d", world[room].vnum, dir);
         /* added by gurlaek to stop memory leaks detected by insure++ 8/26/1999 */
         if (world[room].exits[dir]) {
-            log("SYSERR:db.c:setup_dir:creating direction [%d] for room %d twice!", dir, world[room].vnum);
+            log("SYSERR:db.c:setup_dir:creating direction [{:d}] for room {:d} twice!", dir, world[room].vnum);
         } else {
             world[room].exits[dir] = create_exit(NOWHERE);
         }
@@ -1275,12 +1267,8 @@ void renum_world(void) {
                         rnum = real_room(world[room].exits[door]->to_room);
                         world[room].exits[door]->to_room = rnum;
                         if (rnum == NOWHERE) {
-                            sprintf(buf,
-                                    "SYSERR:db.c:renum_world():Invalid exit to NOWHERE for dir "
-                                    "%s in room %d",
-                                    dirs[door], world[room].vnum);
-                            log(buf);
-                            ;
+                            log("SYSERR:db.c:renum_world():Invalid exit to NOWHERE for dir {} in room {:d}", dirs[door],
+                                world[room].vnum);
                         }
                     }
 }
@@ -1437,11 +1425,6 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
             MAX(0, mob_proto[i].points.coins[PLATINUM] + GET_EX_PLATINUM(mob_proto + i));
         mob_proto[i].points.coins[GOLD] = MAX(0, mob_proto[i].points.coins[GOLD] + GET_EX_GOLD(mob_proto + i));
 
-        /*auto ac stuff */
-        /*        l = get_ac(GET_LEVEL(mob_proto + i), GET_RACE(mob_proto + i),
-           GET_CLASS(mob_proto + i)); sprintf(buf, "get is: %d", l); log(buf, LogSeverity::Warn,
-           LVL_IMPL, true);
-         */
         if ((mob_proto[i].mob_specials.ex_armor != 100))
             mob_proto[i].points.armor =
                 mob_proto[i].mob_specials.ex_armor +
@@ -2296,14 +2279,9 @@ void zone_update(void) {
 }
 
 void log_zone_error(int zone, int cmd_no, const char *message) {
-        char buf[256];
-
-        sprintf(buf, "SYSERR: error in zone file: %s", message);
-        log(LogSeverity::Stat, LVL_GOD, buf);
-
-        sprintf(buf, "SYSERR: ...offending cmd: '%c' cmd in zone #%d, line %d", ZCMD.command, zone_table[zone].number,
-                ZCMD.line);
-        log(LogSeverity::Stat, LVL_GOD, buf);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: error in zone file: {}", message);
+        log(LogSeverity::Stat, LVL_GOD, "SYSERR: ...offending cmd: '{:c}' cmd in zone #{:d}, line {:d}", ZCMD.command,
+            zone_table[zone].number, ZCMD.line);
 }
 
 #define ZONE_ERROR(message)                                                                                            \
@@ -2456,8 +2434,7 @@ void reset_zone(int zone, byte pop) {
                         obj = read_object(ZCMD.arg1, REAL);
                         if (equip_char(mob, obj, ZCMD.arg3) != EQUIP_RESULT_SUCCESS) {
                             log(LogSeverity::Error, 101,
-                                "EQUIP zone command for %s [%d] in room %d to equip %s "
-                                "[%d] failed.",
+                                "EQUIP zone command for {} [{:d}] in room {:d} to equip {} [{:d}] failed.",
                                 GET_NAME(mob), GET_MOB_VNUM(mob), ROOM_RNUM_TO_VNUM(mob->in_room),
                                 obj->short_description, GET_OBJ_VNUM(obj));
                             extract_obj(obj);
@@ -2648,7 +2625,7 @@ void free_char(CharData *ch) {
          * which would have cleared all battling variables.  So if ch is *still*
          * in some kind of battle mode here, something is definitely wrong. */
         if (ch->attackers || ch->target)
-            log(LogSeverity::Error, LVL_GOD, "free_char: %s is in battle", GET_NAME(ch));
+            log(LogSeverity::Error, LVL_GOD, "free_char: {} is in battle", GET_NAME(ch));
 
         while (ch->effects)
             effect_remove(ch, ch->effects);

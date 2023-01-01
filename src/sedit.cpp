@@ -819,8 +819,8 @@ void sedit_parse(DescriptorData *d, char *arg) {
         case 'Y':
             char_printf(d->character, "Saving shop to memory.\n");
             sedit_save_internally(d);
-            sprintf(buf, "OLC: %s edits shop %d", GET_NAME(d->character), OLC_NUM(d));
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), buf);
+            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits shop {:d}",
+                GET_NAME(d->character), OLC_NUM(d));
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
         case 'n':

@@ -467,7 +467,7 @@ CLANCMD(clan_create) {
         clan->applicants = nullptr;
 
         char_printf(ch, "New clan created.\n");
-        log(LogSeverity::Stat, LVL_GOD, "(CLAN) %s creates new clan: %s", GET_NAME(ch), buf);
+        log(LogSeverity::Stat, LVL_GOD, "(CLAN) {} creates new clan: {}", GET_NAME(ch), buf);
 
         save_clan(clan);
     }

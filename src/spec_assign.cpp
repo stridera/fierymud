@@ -13,12 +13,11 @@
 #include "conf.hpp"
 #include "db.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "specprocs.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* functions to perform assignments */
 
@@ -27,7 +26,7 @@ void ASSIGNMOB(int mob, SPECIAL(fname)) {
         mob_index[real_mobile(mob)].func = fname;
 #ifndef TEST
     else
-        log("SYSERR: Attempt to assign spec to non-existent mob #%d", mob);
+        log("SYSERR: Attempt to assign spec to non-existent mob #{:d}", mob);
 #endif
 }
 
@@ -36,7 +35,7 @@ void ASSIGNOBJ(int obj, SPECIAL(fname)) {
         obj_index[real_object(obj)].func = fname;
 #ifndef TEST
     else
-        log("SYSERR: Attempt to assign spec to non-existent obj #%d", obj);
+        log("SYSERR: Attempt to assign spec to non-existent obj #{:d}", obj);
 #endif
 }
 
@@ -45,7 +44,7 @@ void ASSIGNROOM(int room, SPECIAL(fname)) {
         world[real_room(room)].func = fname;
 #ifndef TEST
     else
-        log("SYSERR: Attempt to assign spec to non-existent rm. #%d", room);
+        log("SYSERR: Attempt to assign spec to non-existent rm. #{:d}", room);
 #endif
 }
 

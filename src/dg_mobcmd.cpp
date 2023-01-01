@@ -46,6 +46,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "pfiles.hpp"
@@ -56,8 +57,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 int get_room_location(char *room);
 int obj_room(ObjData *obj);
@@ -138,8 +137,7 @@ ACMD(do_mdamage) {
     if (damdone)
         *damdone = 0;
     else {
-        sprintf(buf, "[ WARN: do_mdamage() for %s - can't identify running trigger ]", GET_NAME(ch));
-        log(LogSeverity::Warn, LVL_GOD, buf);
+        log(LogSeverity::Warn, LVL_GOD, "[ WARN: do_mdamage() for {} - can't identify running trigger ]", GET_NAME(ch));
     }
 
     if (!*name) {

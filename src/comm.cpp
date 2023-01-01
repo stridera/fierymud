@@ -209,7 +209,7 @@ int main(int argc, char **argv) {
             log("Suppressing assignment of special routines.");
             break;
         default:
-            log("SYSERR: Unknown option -%c in argument string.", *(argv[pos] + 1));
+            log("SYSERR: Unknown option -{:c} in argument string.", *(argv[pos] + 1));
             break;
         }
         pos++;
@@ -229,7 +229,7 @@ int main(int argc, char **argv) {
         perror("Fatal error changing to data directory");
         exit(1);
     }
-    log("Using %s as data directory.", dir);
+    log("Using {} as data directory.", dir);
 
     if (strcasecmp(env, "test") == 0) {
         environment = ENV_TEST;
@@ -241,7 +241,7 @@ int main(int argc, char **argv) {
         environment = ENV_PROD;
         log("Running in production mode.");
     } else {
-        log("Unknown environment '%s'; valid choices are 'test', 'dev', and 'prod'.", env);
+        log("Unknown environment '{}'; valid choices are 'test', 'dev', and 'prod'.", env);
         exit(1);
     }
 
@@ -256,7 +256,7 @@ int main(int argc, char **argv) {
     if (scheck) {
         boot_world();
     } else {
-        log("Running game on port %d.", port);
+        log("Running game on port {:d}.", port);
         init_game(port);
     }
 
@@ -408,11 +408,11 @@ void init_game(int port) {
         for (entry = olc_save_list; entry; entry = next_entry) {
             next_entry = entry->next;
             if (entry->type < 0 || entry->type > 4) {
-                log("OLC: Illegal save type %d!", entry->type);
+                log("OLC: Illegal save type {:d}!", entry->type);
             } else if (entry->zone < 0) {
-                log("OLC: Illegal save zone %d!", entry->zone);
+                log("OLC: Illegal save zone {:d}!", entry->zone);
             } else {
-                log("OLC: Reboot saving %s for zone %d.", save_info_msg[(int)entry->type], entry->zone);
+                log("OLC: Reboot saving {} for zone {:d}.", save_info_msg[(int)entry->type], entry->zone);
                 switch (entry->type) {
                 case OLC_SAVE_ROOM:
                     redit_save_to_disk(entry->zone);
@@ -579,10 +579,10 @@ int get_max_players(void) {
     max_descs = MIN(MAX_PLAYERS, max_descs - NUM_RESERVED_DESCS);
 
     if (max_descs <= 0) {
-        log("Non-positive max player limit!  (Set at %d using %s).", max_descs, method);
+        log("Non-positive max player limit!  (Set at {:d} using {}).", max_descs, method);
         exit(1);
     }
-    log("Setting player limit to %d using %s.", max_descs, method);
+    log("Setting player limit to {:d} using {}.", max_descs, method);
     return max_descs;
 }
 
@@ -599,9 +599,7 @@ void reboot_mud_prep() {
         "      &1&b*&0  &3&b** * *&0          &1&b*&0     &1&b*&0\n"
         "      &1&b*&0  &3&b*&0    &1&b**&0            &3&b* *&0 &1&b*&0\n"
         "     &1&b*&0 &3&b* &1&b** *&0     &3&b*   ******&0  &1&b*&0\n"
-        "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 "
-        "&1&b*&0\n");
-    all_printf(
+        "      &1&b*&0   &3&b* &1&b* **&0  &3&b***&0     &1&b*&0  &3&b*&0 &1&b*&0\n"
         "        &1&b*&0  &3&b*  *&0 &1&b**********&0  &3&b***&0 &1&b*&0\n"
         "         &1&b*****&0   &3&b*     *   * *&0 &1&b*&0\n"
         "                &1&b*&0   &3&b*&0 &1&b*&0\n"
@@ -626,12 +624,12 @@ void personal_reboot_warning(CharData *ch) {
         minutes_till = (reboot_pulse - global_pulse - 1) / (PASSES_PER_SEC * 60) + 1;
         if (minutes_till == 1) {
             seconds_till = (reboot_pulse - global_pulse) / PASSES_PER_SEC;
-            char_printf(ch, "\n\007&4&b***&0 &7&b%d second%s to reboot&0 &4&b***&0\n", seconds_till,
+            char_printf(ch, "\n\007&4&b***&0 &7&b{:d} second{} to reboot&0 &4&b***&0\n", seconds_till,
                         seconds_till == 1 ? "" : "s");
         } else {
             char_printf(ch,
-                        "\n\007&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in "
-                        "&6&b%d minute%s&0  &1&b*&3&bATTENTION&1&b*&0\n",
+                        "\n\007&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in &6&b{:d} minute{}&0  "
+                        "&1&b*&3&bATTENTION&1&b*&0\n",
                         minutes_till, minutes_till == 1 ? "" : "s");
         }
     }
@@ -639,8 +637,7 @@ void personal_reboot_warning(CharData *ch) {
 
 void rebootwarning(int minutes) {
     all_printf(
-        "&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in &6&b%d "
-        "minute%s&0  &1&b*&3&bATTENTION&1&b*&0\n",
+        "&1&b*&3&bATTENTION&1&b*&0  The mud will &7&bREBOOT&0 in &6&b{:d} minute{}&0  &1&b*&3&bATTENTION&1&b*&0\n",
         minutes, minutes == 1 ? "" : "s");
 }
 
@@ -1060,15 +1057,15 @@ void record_usage(void) {
             sockets_playing++;
     }
 
-    log("nusage: %-3d sockets connected, %-3d sockets playing", sockets_connected, sockets_playing);
+    log("nusage: {:-3d} sockets connected, {:-3d} sockets playing", sockets_connected, sockets_playing);
 
 #ifdef RUSAGE
     {
         rusage ru;
 
         getrusage(0, &ru);
-        log("rusage: user time: %ld sec, system time: %ld sec, max res size: %ld", ru.ru_utime.tv_sec,
-            ru.ru_stime.tv_sec, ru.ru_maxrss);
+        log("rusage: user time: {} sec, system time: {} sec, max res size: {}", ru.ru_utime.tv_sec, ru.ru_stime.tv_sec,
+            ru.ru_maxrss);
     }
 #endif
 }
@@ -1110,7 +1107,7 @@ void offer_gmcp_services(DescriptorData *d) {
 }
 
 void handle_gmcp_request(DescriptorData *d, char *txt) {
-    // log("GMCP request: %s", txt);
+    // log("GMCP request: {}", txt);
     /* This is for GMCP requests from the clients. */
     /* Do nothing now, but we might want to actually handle this in the future. */
 }
@@ -1750,8 +1747,8 @@ void make_prompt(DescriptorData *d) {
     if (!d->page_outbuf->empty()) {
         char prompt[MAX_INPUT_LENGTH];
 
-        sprintf(prompt, "\r[ Return to continue, (q)uit, (r)efresh, %s or page number (%d/%d) ]\n",
-                PAGING_PAGE(d) == 0 ? "" : "(b)ack,", PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
+        sprintf(prompt, "\r[ Return to continue, (q)uit, (r)efresh,%s or page number (%d/%d) ]\n",
+                PAGING_PAGE(d) == 0 ? "" : " (b)ack,", PAGING_PAGE(d) + 1, PAGING_NUMPAGES(d));
         write_to_descriptor(d->descriptor, prompt);
     } else if (EDITING(d) || d->str)
         write_to_descriptor(d->descriptor, "] ");
@@ -1965,8 +1962,7 @@ int new_descriptor(int s) {
         write_to_descriptor(desc, BANNEDINTHEUSA);
         write_to_descriptor(desc, BANNEDINTHEUSA2);
         write_to_descriptor(desc, BANNEDINTHEUSA3);
-        sprintf(buf, "\n Connection logged from: %s\n\n", newd->host);
-        write_to_descriptor(desc, buf);
+        write_to_descriptor(desc, "\n Connection logged from: {}\n\n", newd->host);
         CLOSE_SOCKET(desc);
         log(LogSeverity::Stat, LVL_GOD, "BANNED: Connection attempt denied from [{}]", newd->host);
         free(newd);
@@ -2108,7 +2104,7 @@ int process_input(DescriptorData *t) {
                 } else {
                     telopt = 0;
                     /* ERROR */
-                    log("Invalid GMCP code %hhu", (unsigned char)telcmd);
+                    log("Invalid GMCP code {}", (unsigned char)telcmd);
                 }
                 /* Responding to terminal type. */
             } else if (*ptr == TELOPT_TTYPE) {
@@ -2131,7 +2127,7 @@ int process_input(DescriptorData *t) {
             }
 
         } else if (telopt > 0) { /* If we are here, there is an error */
-            log("Invalid telnet IAC code %d", (int)*ptr);
+            log("Invalid telnet IAC code {:d}", (int)*ptr);
         } else if (data_mode) {
             /* In telnet data negotiation mode.  Log data to the command buffer. */
             *(write_cmd_point++) = *ptr;
@@ -2141,7 +2137,7 @@ int process_input(DescriptorData *t) {
             if (IS_NEWLINE(*ptr) || space_left <= 0) { /* End of command, process it */
                 *write_point = '\0';
                 if (t->snoop_by)
-                    desc_printf(t->snoop_by, "&6>>&b %s &0\n", tmp);
+                    desc_printf(t->snoop_by, "&6>>&b {} &0\n", tmp);
 
                 failed_subst = 0;
 
@@ -2165,8 +2161,7 @@ int process_input(DescriptorData *t) {
 
                 if (space_left <= 0) {
                     char buffer[MAX_INPUT_LENGTH + 64];
-                    snprintf(buffer, sizeof(buffer), "Line too long.  Truncated to:\n%s\n", tmp);
-                    if (write_to_descriptor(t->descriptor, buffer) < 0)
+                    if (write_to_descriptor(t->descriptor, "Line too long.  Truncated to:\n{}\n", tmp) < 0)
                         return -1;
                     while (*ptr && !IS_NEWLINE(*ptr)) /* Find next newline */
                         ++ptr;
@@ -2313,12 +2308,12 @@ void close_socket(DescriptorData *d) {
         if (IS_PLAYING(d)) {
             save_player_char(d->character);
             act("$n has lost $s link.", true, d->character, 0, 0, TO_ROOM);
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Closing link to: %s.",
+            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Closing link to: {}.",
                 GET_NAME(d->character));
             d->character->desc = nullptr;
         } else {
             if (GET_NAME(d->character))
-                log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: %s.",
+                log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: {}.",
                     GET_NAME(d->character));
             /*else
                log(LogSeverity::Stat, LVL_IMMORT, "Losing player: <null>.");
@@ -2813,7 +2808,7 @@ void format_act(char *rtn, const char *orig, const CharData *ch, ActArg obj, Act
                 break;
             default:
                 log("SYSERR: Illegal $-code to act():\n"
-                    "SYSERR: %s",
+                    "SYSERR: {}",
                     orig);
                 i = "";
                 break;
@@ -2887,7 +2882,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
 
     if (type == TO_VICT) {
         if (!std::holds_alternative<CharData *>(vict_obj)) {
-            log("SYSERR: act: TO_VICT: no victim sent.  str: %s", str);
+            log("SYSERR: act: TO_VICT: no victim sent.  str: {}", str);
             return;
         }
         to = std::get<CharData *>(vict_obj);
@@ -2906,7 +2901,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         if ((ch->in_room != NOWHERE)) {
             in_room = ch->in_room;
         } else {
-            log("SYSERR:comm.c:act(): ch->in_room = -1, %s", GET_NAME(ch));
+            log("SYSERR:comm.c:act(): ch->in_room = -1, {}", GET_NAME(ch));
             return;
         }
     } else if (std::holds_alternative<ObjData *>(obj)) {
@@ -2915,11 +2910,11 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
             if ((target_object->in_room) != 0) {
                 in_room = target_object->in_room;
             } else {
-                log("SYSERR:comm.c:act(): obj->in_room = 0, %s, %d", target_object->name, GET_OBJ_VNUM(target_object));
+                log("SYSERR:comm.c:act(): obj->in_room = 0, {}, {}", target_object->name, GET_OBJ_VNUM(target_object));
                 return;
             }
         } else { /*if here then NO ch and obj->in_room = NOWHERE */
-            log("SYSERR:comm.c:act(): obj->in_room = -1, %s, %d", target_object->name, GET_OBJ_VNUM(target_object));
+            log("SYSERR:comm.c:act(): obj->in_room = -1, {}, {}", target_object->name, GET_OBJ_VNUM(target_object));
             return;
         }
     } else {

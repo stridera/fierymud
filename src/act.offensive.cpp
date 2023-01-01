@@ -860,8 +860,7 @@ ACMD(do_flee) {
                     abort_casting(ch);
                     act("$n panics, and attempts to flee!", true, ch, 0, 0, TO_ROOM);
                     if (do_simple_move(ch, attempt, true)) {
-                        sprintf(buf, "&0You panic and flee %s!&0\n", dirs[attempt]);
-                        char_printf(ch, buf);
+                        char_printf(ch, "&0You panic and flee {}!&0\n", dirs[attempt]);
                     } else
                         act("$n tries to flee, but can't!", true, ch, 0, 0, TO_ROOM);
                     return;
@@ -926,8 +925,7 @@ ACMD(do_retreat) {
         act(buf, true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
 
-        sprintf(buf, "\nYou skillfully retreat %s.\n", dirs[dir]);
-        char_printf(ch, buf);
+        char_printf(ch, "\nYou skillfully retreat {}.\n", dirs[dir]);
     }
     /* If fighting a mob that can switch, maybe get attacked. */
     else if (IS_NPC(FIGHTING(ch)) && FIGHTING(FIGHTING(ch)) != ch && GET_SKILL(FIGHTING(ch), SKILL_SWITCH) &&
@@ -1013,8 +1011,7 @@ ACMD(do_gretreat) {
         ch->in_room = was_in;
         act(buf, true, ch, 0, 0, TO_ROOM);
         ch->in_room = to_room;
-        sprintf(buf, "\nYou skillfully lead your group %s.\n", dirs[dir]);
-        char_printf(ch, buf);
+        char_printf(ch, "\nYou skillfully lead your group {}.\n", dirs[dir]);
 
         for (k = ch->followers; k; k = next_k) {
             next_k = k->next;
@@ -1078,8 +1075,7 @@ ACMD(do_bash) {
         }
 
         if (GET_COOLDOWN(ch, CD_BASH)) {
-            sprintf(buf, "You haven't reoriented yourself for another %s yet!\n", skills[skill].name);
-            char_printf(ch, buf);
+            char_printf(ch, "You haven't reoriented yourself for another {} yet!\n", skills[skill].name);
             return;
         }
     }
@@ -1179,19 +1175,14 @@ ACMD(do_bash) {
     }
 
     if (GET_SIZE(vict) - GET_SIZE(ch) > 1) {
-        sprintf(buf, "&7&bYou fall over as you try to %s someone so large!&0\n", skills[skill].name);
-        char_printf(ch, buf);
+        char_printf(ch, "&7&bYou fall over as you try to {} someone so large!&0\n", skills[skill].name);
         act("&7&b$n BOUNCES off $N, as $e tries to $t $N's much larger size.&0", false, ch, skills[skill].name, vict,
             TO_NOTVICT);
         act("&7&b$n BOUNCES off you as $e tries to $t your much larger size.&0", false, ch, skills[skill].name, vict,
             TO_VICT);
         percent = prob + 1; /* insta-fail */
     } else if (GET_SIZE(ch) - GET_SIZE(vict) > 2) {
-        sprintf(buf,
-                "&7&bYou fall over as you try to %s someone with such small "
-                "size.&0\n",
-                skills[skill].name);
-        char_printf(ch, buf);
+        char_printf(ch, "&7&bYou fall over as you try to {} someone with such small size.&0\n", skills[skill].name);
         act("&7&b$n trips over $N, as $e tries to $t $N's much smaller size.&0", false, ch, skills[skill].name, vict,
             TO_NOTVICT);
         act("&7&b$n trips over you as $e tries to $t your much smaller size.&0", false, ch, skills[skill].name, vict,

@@ -159,8 +159,8 @@ ACMD(do_ban) {
     ban_node->next = ban_list;
     ban_list = ban_node;
 
-    sprintf(buf, "%s has banned %s for %s players.", GET_NAME(ch), site, ban_types[ban_node->type]);
-    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "{} has banned {} for {} players.", GET_NAME(ch), site,
+        ban_types[ban_node->type]);
     char_printf(ch, "Site banned.\n");
     write_ban_list();
 }
@@ -189,8 +189,8 @@ ACMD(do_unban) {
     }
     REMOVE_FROM_LIST(ban_node, ban_list, next);
     char_printf(ch, "Site unbanned.\n");
-    sprintf(buf, "%s removed the %s-player ban on %s.", GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
-    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), buf);
+    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "{} removed the {}-player ban on {}.", GET_NAME(ch),
+        ban_types[ban_node->type], ban_node->site);
 
     free(ban_node);
     write_ban_list();

@@ -119,13 +119,12 @@ void editor_init(DescriptorData *d, char **string, size_t max_length) {
     }
 
     if (max_length < 1) {
-        log("SYSERR: invalid max_length %zu passed to editor_init", max_length);
+        log("SYSERR: invalid max_length {} passed to editor_init", max_length);
         return;
     }
 
     if (EDITING(d)) {
-        log("SYSERR: editor_init called on descriptor editing string: forcing "
-            "abort");
+        log("SYSERR: editor_init called on descriptor editing string: forcing abort");
         editor_cleanup(d);
     }
 
@@ -154,8 +153,7 @@ EVENTFUNC(editor_start) {
         log("SYSERR: Editor already started on descriptor passed to editor_start");
     else {
         if (!d->editor->action[ED_FORMAT] && d->editor->max_length > MAX_STRING_LENGTH)
-            log("WARNING: editor_start: editor max_length is %zu > MAX_STRING_LENGTH;"
-                " format command disabled",
+            log("WARNING: editor_start: editor max_length is {} > MAX_STRING_LENGTH; format command disabled",
                 d->editor->max_length);
         d->editor->started = true;
         if (d->editor->string) {
@@ -179,8 +177,7 @@ void editor_set_callback_data(DescriptorData *d, void *data, enum ed_cleanup_act
     }
 
     if (!EDITING(d)) {
-        log("SYSERR: Editor not initialized on descriptor passed to "
-            "editor_set_callback_data");
+        log("SYSERR: Editor not initialized on descriptor passed to editor_set_callback_data");
         return;
     }
 
@@ -219,7 +216,7 @@ void editor_set_max_lines(DescriptorData *d, size_t max_lines) {
     }
 
     if (max_lines <= 0) {
-        log("SYSERR: Invalid maximum number of lines %zu specified in editor_set_max_lines", max_lines);
+        log("SYSERR: Invalid maximum number of lines {} specified in editor_set_max_lines", max_lines);
         return;
     }
 
@@ -236,8 +233,7 @@ void editor_set_begin_string(DescriptorData *d, const char *string, ...) {
     }
 
     if (!EDITING(d)) {
-        log("SYSERR: Editor not initialized on descriptor passed to "
-            "editor_set_begin_string");
+        log("SYSERR: Editor not initialized on descriptor passed to editor_set_begin_string");
         return;
     }
 
@@ -310,8 +306,7 @@ void editor_interpreter(DescriptorData *d, char *line) {
     size_t i;
 
     if (!EDITING(d)) {
-        log("SYSERR: editor_interpreter invoked on descriptor without allocated "
-            "editor member");
+        log("SYSERR: editor_interpreter invoked on descriptor without allocated editor member");
         return;
     }
 
@@ -836,8 +831,7 @@ EDITOR_FUNC(editor_default_exit) {
     if (edit->command == ED_EXIT_SAVE) {
         if (!d->editor->destination) {
             desc_printf(d, "ERROR: No location to save changes to.  Edit aborted.\n");
-            log("SYSERR: d->editor->destination NULL in save attempt in "
-                "editor_default_exit");
+            log("SYSERR: d->editor->destination NULL in save attempt in editor_default_exit");
         } else {
             desc_printf(d, "Changes saved.\n");
             if (*d->editor->destination)

@@ -935,7 +935,7 @@ void die(CharData *ch, CharData *killer) {
         else
             sprintf(buf2, "%s died", GET_NAME(ch));
         clan_notification(GET_CLAN(ch), ch, "%s.", buf2);
-        log(LogSeverity::Stat, LVL_IMMORT, "%s in %s [%d]", buf2, world[ch->in_room].name, world[ch->in_room].vnum);
+        log(LogSeverity::Stat, LVL_IMMORT, "{} in {} [{:d}]", buf2, world[ch->in_room].name, world[ch->in_room].vnum);
     }
 
     /* Stop the fighting */
@@ -1110,8 +1110,7 @@ static void append_damage_amount(char *b, const char *msg, int dam, int type) {
     };
     if (damage_amounts) {
         if (type != TO_VICT && type != TO_NOTVICT && type != TO_CHAR && type != TO_ROOM) {
-            sprintf(b, "SYSERR: append_damage_amounts: unrecognized target type %d", type);
-            log(b);
+            log("SYSERR: append_damage_amounts: unrecognized target type {:d}", type);
             type = TO_NOTVICT;
         }
         if (dam < 0) {
@@ -1530,8 +1529,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
     bool death = false;
 
     if (DECEASED(victim)) {
-        sprintf(buf, "SYSERR: Attempt to damage a corpse in room num %d", world[victim->in_room].vnum);
-        log(buf);
+        log("SYSERR: Attempt to damage a corpse in room num {:d}", world[victim->in_room].vnum);
         return VICTIM_DEAD;
     }
 
@@ -1738,11 +1736,9 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
         hurt_char(victim, ch, dam, true);
         /* Sanity check */
         if (death && !DECEASED(victim)) {
-            sprintf(buf,
-                    "Error: Damage of %d was predicted to kill %s, but victim "
-                    "survived with %d hp",
-                    dam, GET_NAME(victim), GET_HIT(victim));
-            log(LogSeverity::Warn, LVL_GOD, buf);
+            log(LogSeverity::Warn, LVL_GOD,
+                "Error: Damage of {:d} was predicted to kill {}, but victim survived with {:d} hp", dam,
+                GET_NAME(victim), GET_HIT(victim));
         }
     }
 
@@ -1961,8 +1957,8 @@ void hit(CharData *ch, CharData *victim, int type) {
 
     if (FIGHTING(ch) != victim && EFF_FLAGGED(ch, EFF_BLIND)) {
         char_printf(ch, "You cant see a thing!\n");
-        log(LogSeverity::Error, LVL_GOD, "hit(): {} is blind but tried to attack new target {} [room {:d}]", GET_NAME(ch),
-            GET_NAME(victim), CH_RVNUM(ch));
+        log(LogSeverity::Error, LVL_GOD, "hit(): {} is blind but tried to attack new target {} [room {:d}]",
+            GET_NAME(ch), GET_NAME(victim), CH_RVNUM(ch));
         return;
     }
 

@@ -630,9 +630,8 @@ WCMD(do_wrent) {
     }
 
     rem_memming(ch);
-    sprintf(buf, "%s rented by trigger %d in %s (%d).", GET_NAME(ch), GET_TRIG_VNUM(t), world[ch->in_room].name,
-            world[ch->in_room].vnum);
-    log(LogSeverity::Stat, LVL_IMMORT, buf);
+    log(LogSeverity::Stat, LVL_IMMORT, "{} rented by trigger {:d} in {} ({:d}).", GET_NAME(ch), GET_TRIG_VNUM(t),
+        world[ch->in_room].name, world[ch->in_room].vnum);
     remove_player_from_game(ch, QUIT_WRENT);
 }
 
