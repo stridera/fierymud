@@ -27,6 +27,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "races.hpp"
@@ -35,8 +36,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* Externals */
 ACMD(do_follow);
@@ -566,13 +565,11 @@ bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool
         /* Out of range, but still sense-able. */
         if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {
             if ((dist - track.range) <= 5) {
-                sprintf(buf, "You get a very very strong sense of %s.\n", HMHR(victim));
-                char_printf(ch, buf);
+                char_printf(ch, "You get a very very strong sense of {}.\n", HMHR(victim));
             } else if ((dist - track.range) <= 10) {
                 act("You sense $M strongly, but you cannot find any tracks.\n", false, ch, 0, victim, TO_CHAR);
             } else {
-                sprintf(buf, "Hmmm... You only just sense %s.\n", HMHR(victim));
-                char_printf(ch, buf);
+                char_printf(ch, "Hmmm... You only just sense {}.\n", HMHR(victim));
             }
         } else {
             act("Hmmm... You sense $M.  $U$E must be close.\n", false, ch, 0, victim, TO_CHAR);
@@ -692,8 +689,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     /*check for a door */
     if (EXIT_IS_CLOSED(CH_EXIT(ch, direction)) && GET_LEVEL(ch) < LVL_GOD) {
         strcpy(doorname, exit_name(CH_EXIT(ch, direction)));
-        sprintf(buf, "You try to open the %s.\n", doorname);
-        char_printf(ch, buf);
+        char_printf(ch, "You try to open the {}.\n", doorname);
         sprintf(doorname, "%s %s", doorname, dirs[direction]);
         cmd = find_command("cmd");
         do_gen_door(ch, doorname, cmd, 0);
@@ -706,8 +702,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     }
 
     /* You get to move toward the victim. */
-    sprintf(buf, "&0You find signs of a track %s from here!&0\n", dirs[direction]);
-    char_printf(ch, buf);
+    char_printf(ch, "&0You find signs of a track {} from here!&0\n", dirs[direction]);
     if (!perform_move(ch, direction, 1, false))
         return false;
     act("&0$n searches for tracks.&0", true, ch, 0, 0, TO_ROOM);

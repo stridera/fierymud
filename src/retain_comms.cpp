@@ -120,7 +120,6 @@ void free_comms_node_list(CommNode *root) {
 void show_retained_comms(CharData *ch, CharData *vict, int type) {
     CommNode *node;
     char *comm_name;
-    char timebuf[32];
 
     if (IS_MOB(REAL_CHAR(ch))) {
         char_printf(ch, "Nobody talks to mobs.  Such a sad life.\n");
@@ -139,23 +138,20 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
 
     if (node == nullptr) {
         if (ch == vict) {
-            sprintf(buf, "%sYour recent %s list is empty.%s\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
+            char_printf(ch, "{}Your recent {} list is empty.{}\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
         } else {
-            sprintf(buf, "%s%s's recent %s list is empty.%s\n", CLR(ch, FGRN), GET_NAME(vict), comm_name,
-                    CLR(ch, ANRM));
+            char_printf(ch, "{}{}'s recent {} list is empty.{}\n", CLR(ch, FGRN), GET_NAME(vict), comm_name,
+                        CLR(ch, ANRM));
         }
-        char_printf(ch, buf);
     } else {
         if (ch == vict) {
-            sprintf(buf, "%sYour recent %s list:%s\n\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
+            char_printf(ch, "{}Your recent {} list:{}\n\n", CLR(ch, FGRN), comm_name, CLR(ch, ANRM));
         } else {
-            sprintf(buf, "%s%s's recent %s list is:%s\n\n", CLR(ch, FGRN), GET_NAME(vict), comm_name, CLR(ch, ANRM));
+            char_printf(ch, "{}{}'s recent {} list is:{}\n\n", CLR(ch, FGRN), GET_NAME(vict), comm_name, CLR(ch, ANRM));
         }
-        char_printf(ch, buf);
         for (; node; node = node->next) {
-            strftime(timebuf, 32, TIMEFMT_LOG, localtime(&node->time));
-            sprintf(buf, "%s: %s\n", timebuf, node->msg);
-            char_printf(ch, buf);
+            auto time = std::chrono::system_clock::from_time_t(node->time);
+            char_printf(ch, "{%c}: {}\n", time, node->msg);
         }
     }
 }

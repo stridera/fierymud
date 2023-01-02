@@ -22,6 +22,7 @@
 #include "editor.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "modify.hpp"
@@ -31,8 +32,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* extern variables */
 void garble_text(char *string, int percent) {
@@ -149,8 +148,9 @@ ACMD(do_say) {
     if (!speech_ok(ch, 0))
         return;
 
+    // TODO: Fix this const cast.
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        args = strip_ansi(args);
+        args = const_cast<char *>(strip_ansi(args).c_str());
 
     args = drunken_speech(args, GET_COND(ch, DRUNK));
 
@@ -182,7 +182,7 @@ ACMD(do_gsay) {
     }
 
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        argument = strip_ansi(argument);
+        argument = const_cast<char *>(strip_ansi(argument).c_str());
 
     argument = drunken_speech(argument, GET_COND(ch, DRUNK));
     if (ch->group_master)
@@ -198,7 +198,7 @@ ACMD(do_gsay) {
             act(buf, false, ch, 0, f->groupee, TO_VICT | TO_SLEEP | TO_OLC);
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-        char_printf(ch,  OK);
+        char_printf(ch, OK);
     else {
         sprintf(buf, "@gYou group say, '&0%s@g'@0", argument);
         act(buf, false, ch, 0, 0, TO_CHAR | TO_SLEEP | TO_OLC);
@@ -206,20 +206,21 @@ ACMD(do_gsay) {
 }
 
 static void perform_tell(CharData *ch, CharData *vict, char *arg) {
+    std::string tell{arg};
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        arg = strip_ansi(arg);
+        tell = strip_ansi(tell);
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-        char_printf(ch,  OK);
+        char_printf(ch, OK);
     else {
-        sprintf(buf, "@WYou tell $N@W, '%s@W'@0", arg);
+        sprintf(buf, "@WYou tell $N@W, '%s@W'@0", tell.c_str());
         act(buf, false, ch, 0, vict, TO_CHAR | TO_SLEEP | TO_OLC);
     }
 
     if (vict->forward && !vict->desc)
         vict = vict->forward;
 
-    sprintf(buf, "@W$n@W tells you, '%s@W'@0", arg);
+    sprintf(buf, "@W$n@W tells you, '%s@W'@0", tell.c_str());
     act(buf, false, REAL_CHAR(ch), 0, vict, TO_VICT | TO_SLEEP | TO_OLC);
 
     /* No need to reply to mobs.  Doesn't matter since we use the IDNUM which is always 0 for mobs. */
@@ -228,7 +229,7 @@ static void perform_tell(CharData *ch, CharData *vict, char *arg) {
 
     afk_message(ch, vict);
     if (IS_MOB(vict)) {
-        speech_to_mtrigger(ch, vict, arg);
+        speech_to_mtrigger(ch, vict, tell.c_str());
     } else {
         format_act(buf1, buf, ch, 0, vict, vict);
         add_retained_comms(vict, TYPE_RETAINED_TELLS, buf1);
@@ -243,7 +244,7 @@ ACMD(do_tell) {
     if (!*buf || !*buf2)
         char_printf(ch, "Who do you wish to tell what??\n");
     else if (!(vict = find_char_around_char(ch, find_vis_by_name(ch, buf))))
-        char_printf(ch,  NOPERSON);
+        char_printf(ch, NOPERSON);
     else if (ch == vict)
         char_printf(ch, "You try to tell yourself something.\n");
     else if (PRF_FLAGGED(ch, PRF_NOTELL))
@@ -319,7 +320,7 @@ ACMD(do_spec_comm) {
     if (!*buf || !*buf2)
         char_printf(ch, "Whom do you want to %s.. and what??\n", action_sing);
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf))))
-        char_printf(ch,  NOPERSON);
+        char_printf(ch, NOPERSON);
     else if (vict == ch)
         char_printf(ch, "You can't get your mouth close enough to your ear...\n");
     else if (PLR_FLAGGED(vict, PLR_WRITING) && !PRF_FLAGGED(vict, PRF_OLCCOMM))
@@ -333,7 +334,7 @@ ACMD(do_spec_comm) {
         sprintf(buf, "$n %s you, '%s@0'", action_plur, argument);
         act(buf, false, ch, 0, vict, TO_VICT | TO_OLC);
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-            char_printf(ch,  OK);
+            char_printf(ch, OK);
         else {
             sprintf(buf, "You %s %s, '%s@0'", action_sing, GET_NAME(vict), argument);
             act(buf, false, ch, 0, 0, TO_CHAR | TO_OLC);
@@ -447,7 +448,7 @@ ACMD(do_page) {
         if ((vict = find_char_around_char(ch, find_vis_by_name(ch, arg))) != nullptr) {
             act(buf, false, ch, 0, vict, TO_VICT);
             if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-                char_printf(ch,  OK);
+                char_printf(ch, OK);
             else
                 act(buf, false, ch, 0, vict, TO_CHAR);
             return;
@@ -543,11 +544,8 @@ ACMD(do_gen_comm) {
      */
     static const char *com_msgs[][4] = {
         {"You cannot holler!!\n", "holler", "", FYEL},
-
         {"You cannot shout!!\n", "shout", "Turn off your noshout flag first!\n", FYEL},
-
         {"You cannot gossip!!\n", "gossip", "You aren't even on the channel!\n", FYEL},
-
         {"You cannot congratulate!\n", "congrat", "You aren't even on the channel!\n", FGRN}};
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
@@ -555,7 +553,7 @@ ACMD(do_gen_comm) {
         return;
     }
     if (PLR_FLAGGED(ch, PLR_NOSHOUT)) {
-        char_printf(ch,  com_msgs[subcmd][0]);
+        char_printf(ch, com_msgs[subcmd][0]);
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_SOUNDPROOF) && GET_LEVEL(ch) < LVL_IMMORT) {
@@ -564,13 +562,13 @@ ACMD(do_gen_comm) {
     }
     /* level_can_shout defined in config.c */
     if (GET_LEVEL(ch) < level_can_shout) {
-        char_printf(ch, "You must be at least level %d before you can %s.\n", level_can_shout, com_msgs[subcmd][1]);
+        char_printf(ch, "You must be at least level {:d} before you can {}.\n", level_can_shout, com_msgs[subcmd][1]);
         return;
     }
 
     /* make sure the char is on the channel */
     if (PRF_FLAGGED(ch, channels[subcmd])) {
-        char_printf(ch,  com_msgs[subcmd][2]);
+        char_printf(ch, com_msgs[subcmd][2]);
         return;
     }
 
@@ -588,7 +586,7 @@ ACMD(do_gen_comm) {
 
     /* make sure that there is something there to say! */
     if (!*argument) {
-        char_printf(ch, "Yes, %s, fine, %s we must, but WHAT???\n", com_msgs[subcmd][1], com_msgs[subcmd][1]);
+        char_printf(ch, "Yes, {}, fine, {} we must, but WHAT???\n", com_msgs[subcmd][1], com_msgs[subcmd][1]);
         return;
     }
     if (subcmd == SCMD_HOLLER) {
@@ -603,7 +601,7 @@ ACMD(do_gen_comm) {
         return;
 
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        argument = strip_ansi(argument);
+        argument = const_cast<char *>(strip_ansi(argument).c_str());
 
     argument = drunken_speech(argument, GET_COND(ch, DRUNK));
 
@@ -612,7 +610,7 @@ ACMD(do_gen_comm) {
 
     /* first, set up strings to be given to the communicator */
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-        char_printf(ch,  OK);
+        char_printf(ch, OK);
     else {
         if (COLOR_LEV(ch) >= C_CMP)
             sprintf(buf1, "%sYou %s, '%s%s%s'%s", color_on, com_msgs[subcmd][1], argument, ANRM, color_on, ANRM);
@@ -686,7 +684,7 @@ ACMD(do_qcomm) {
         argument = drunken_speech(argument, GET_COND(ch, DRUNK));
 
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
-            char_printf(ch,  OK);
+            char_printf(ch, OK);
         else {
             if (subcmd == SCMD_QSAY) {
                 if (EFF_FLAGGED(ch, EFF_SILENCE)) {

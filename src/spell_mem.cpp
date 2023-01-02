@@ -18,6 +18,7 @@
 #include "events.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
 #include "players.hpp"
@@ -28,8 +29,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 #include <fmt/format.h>
 
@@ -291,10 +290,9 @@ EVENTFUNC(memming_event) {
 
         if (cur->mem_time < 1) {
             if (MEM_MODE(ch) == MEMORIZE)
-                sprintf(buf, "You have finished memorizing %s.\n", skill_name(cur->spell));
+                char_printf(ch, "You have finished memorizing {}.\n", skill_name(cur->spell));
             else if (MEM_MODE(ch) == PRAY)
-                sprintf(buf, "You have finished praying for %s.\n", skill_name(cur->spell));
-            char_printf(ch, buf);
+                char_printf(ch, "You have finished praying for {}.\n", skill_name(cur->spell));
 
             /* reset so the guy has to remem after casting it. */
             cur->mem_time = set_mem_time(ch, cur->spell);
@@ -390,8 +388,7 @@ EVENTFUNC(scribe_event) {
     /* Did your teacher go away?  Lose your source book somehow? */
 
     if (!find_spellbook_with_spell(ch, cur->spell) && !find_teacher_for_spell(ch, cur->spell)) {
-        sprintf(buf, "You've lost your source for %s!\n", skill_name(cur->spell));
-        char_printf(ch, buf);
+        char_printf(ch, "You've lost your source for {}!\n", skill_name(cur->spell));
         char_printf(ch, "&3With a weary sigh, you stop scribing.&0\n");
         act("$n sighs and stops scribing.", true, ch, 0, 0, TO_ROOM);
         clear_scribing(ch);
@@ -413,8 +410,7 @@ EVENTFUNC(scribe_event) {
 
         if (cur->pages_left > 0) {
             if (PAGE_SCRIBE_TIME > 1) {
-                sprintf(buf, "You finish a page in your spellbook.\n");
-                char_printf(ch, buf);
+                char_printf(ch, "You finish a page in your spellbook.\n");
             }
             return SCRIBE_INTERVAL;
         }
@@ -428,13 +424,11 @@ EVENTFUNC(scribe_event) {
         /* Any more spells in this person's scribe list? */
 
         if (!next_scribing) {
-            sprintf(buf, "&6You have finished scribing %s.  &3You are done scribing.&0\n", skill_name(cur->spell));
-            char_printf(ch, buf);
+            char_printf(ch, "&6You have finished scribing {}.  &3You are done scribing.&0\n", skill_name(cur->spell));
             clear_scribing(ch);
             return EVENT_FINISHED;
         } else {
-            sprintf(buf, "&6You have finished scribing %s&0.\n", skill_name(cur->spell));
-            char_printf(ch, buf);
+            char_printf(ch, "&6You have finished scribing {}&0.\n", skill_name(cur->spell));
         }
 
         rem_spell_scribe(ch, cur->spell);
@@ -472,7 +466,7 @@ ACMD(do_memorize) {
         if (!*arg)
             char_printf(ch, "You don't need to memorize spells to cast them.\n");
         else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
-            char_printf(ch,  NOPERSON);
+            char_printf(ch, NOPERSON);
         else if (MEM_MODE(tch) != MEMORIZE)
             char_printf(ch, "%s does not study sorcery.\n", GET_NAME(tch));
         else
@@ -529,8 +523,7 @@ ACMD(do_memorize) {
 
     /* check number of spells already memmed against the spell_table */
     if (spells_of_circle[(int)GET_LEVEL(ch)][circle] <= GET_SPELL_MEM(ch).num_circle[circle]) {
-        sprintf(buf, "You can memorize no more spells from Circle %d.\n", circle);
-        char_printf(ch, buf);
+        char_printf(ch, "You can memorize no more spells from Circle {:d}.\n", circle);
         return;
     }
 
@@ -560,7 +553,7 @@ ACMD(do_pray) {
         if (!*arg)
             char_printf(ch, "You don't need to pray for spells to cast them.\n");
         else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
-            char_printf(ch,  NOPERSON);
+            char_printf(ch, NOPERSON);
         else if (MEM_MODE(tch) != PRAY)
             char_printf(ch, "{} does not pray for spells.\n", GET_NAME(tch));
         else
@@ -611,8 +604,7 @@ ACMD(do_pray) {
 
     /* check number of spells already memmed against the spell_table */
     if (spells_of_circle[(int)GET_LEVEL(ch)][circle] <= GET_SPELL_MEM(ch).num_circle[circle]) {
-        sprintf(buf, "You can pray for no more spells from Circle %d.\n", circle);
-        char_printf(ch, buf);
+        char_printf(ch, "You can pray for no more spells from Circle {:d}.\n", circle);
         return;
     }
 
@@ -685,11 +677,9 @@ ACMD(do_forget) {
         return;
     } else {
         if (rem_spell(ch, spell)) {
-            sprintf(buf, "You purge %s from your memory.\n", skill_name(spell));
-            char_printf(ch, buf);
+            char_printf(ch, "You purge {} from your memory.\n", skill_name(spell));
         } else {
-            sprintf(buf, "You do not have that spell memorized!\n");
-            char_printf(ch, buf);
+            char_printf(ch, "You do not have that spell memorized!\n");
         }
     }
 }
@@ -730,14 +720,12 @@ ACMD(do_meditate) {
 /* add a spell to the char's mem_list */
 int add_spell(CharData *ch, int spell, int can_cast, int mem_time, bool verbose) {
     MemorizedList *cur;
-    char buf[128];
     int circle = SPELL_CIRCLE(ch, spell);
 
     /* see if ch can even use that circle of spell.... */
     if (!spells_of_circle[(int)GET_LEVEL(ch)][circle]) {
         if (verbose) {
-            sprintf(buf, "You can't use spells from Circle %d yet.\n", circle);
-            char_printf(ch, buf);
+            char_printf(ch, "You can't use spells from Circle {:d} yet.\n", circle);
         }
         return 0;
     }
@@ -765,9 +753,8 @@ int add_spell(CharData *ch, int spell, int can_cast, int mem_time, bool verbose)
         GET_SPELL_MEM(ch).num_memmed++;
 
     if (verbose) {
-        sprintf(buf, "You begin %s %s, which will take %d seconds.\n",
-                MEM_MODE(ch) == MEMORIZE ? "memorizing" : "praying for", skill_name(spell), cur->mem_time);
-        char_printf(ch, buf);
+        char_printf(ch, "You begin {} {}, which will take {:d} seconds.\n",
+                    MEM_MODE(ch) == MEMORIZE ? "memorizing" : "praying for", skill_name(spell), cur->mem_time);
     }
 
     return 1;
@@ -1423,11 +1410,9 @@ ACMD(do_scribe) {
     if (!EVENT_FLAGGED(ch, EVENT_SCRIBE)) {
         start_scribing(ch);
         act("$n picks up $s $o and starts writing in $P.", true, ch, pen, book, TO_ROOM);
-        sprintf(buf, "You begin scribing %s.\n", skill_name(spellnum));
-        char_printf(ch, buf);
+        char_printf(ch, "You begin scribing {}.\n", skill_name(spellnum));
     } else {
-        sprintf(buf, "You make a mental note to scribe %s.\n", skill_name(spellnum));
-        char_printf(ch, buf);
+        char_printf(ch, "You make a mental note to scribe {}.\n", skill_name(spellnum));
     }
 }
 
@@ -1510,8 +1495,7 @@ int start_scribing_spell(CharData *ch, ObjData *spellbook, Scribing *scr) {
         return true;
     }
 
-    sprintf(buf, "There is no source for %s nearby, so you skip it for now.\n", skill_name(scr->spell));
-    char_printf(ch, buf);
+    char_printf(ch, "There is no source for {} nearby, so you skip it for now.\n", skill_name(scr->spell));
     return false;
 }
 

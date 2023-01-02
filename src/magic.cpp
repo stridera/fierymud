@@ -5310,9 +5310,7 @@ bool look_at_magic_wall(CharData *ch, int dir, bool sees_next_room) {
 
     for (wall = world[ch->in_room].contents; wall; wall = wall->next_content) {
         if (GET_OBJ_TYPE(wall) == ITEM_WALL && GET_OBJ_VAL(wall, VAL_WALL_DIRECTION) == dir) {
-            sprintf(buf, "%s &0is standing here.\n", wall->short_description);
-            CAP(buf);
-            char_printf(ch, buf);
+            char_printf(ch, "{}&0 is standing here.\n", capitalize(wall->short_description));
             return true;
         }
     }
@@ -5324,8 +5322,7 @@ bool look_at_magic_wall(CharData *ch, int dir, bool sees_next_room) {
             for (wall = world[next_room].contents; wall; wall = wall->next_content)
                 if (GET_OBJ_TYPE(wall) == ITEM_WALL &&
                     world[next_room].exits[GET_OBJ_VAL(wall, VAL_WALL_DIRECTION)]->to_room == ch->in_room) {
-                    sprintf(buf, "You see %s&0 a short distance away.\n", wall->short_description);
-                    char_printf(ch, buf);
+                    char_printf(ch, "You see {}&0 a short distance away.\n", wall->short_description);
                     return true;
                 }
         }

@@ -638,7 +638,7 @@ ObjData *make_corpse(CharData *ch, CharData *killer) {
 
     corpse->item_number = NOTHING;
     corpse->in_room = NOWHERE;
-    sprintf(buf2, "corpse %s", strip_ansi((ch)->player.namelist));
+    sprintf(buf2, "corpse %s", strip_ansi((ch)->player.namelist).c_str());
     corpse->name = strdup(buf2);
 
     sprintf(buf2, "&0The corpse of %s&0 is lying here.", GET_NAME(ch));
@@ -2522,8 +2522,7 @@ ACMD(do_aggr) {
             char_printf(ch, "You are not aggressive to monsters.\n");
             return;
         }
-        sprintf(buf, "You will be aggressive unless your hitpoints drop below %d.\n", GET_AGGR_LEV(ch));
-        char_printf(ch, buf);
+        char_printf(ch, "You will be aggressive unless your hitpoints drop below {:d}.\n", GET_AGGR_LEV(ch));
         return;
     }
 

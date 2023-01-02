@@ -401,9 +401,8 @@ void check_idling(CharData *ch) {
             /* this immort has been idle for 10+ mins */
             if (GET_AUTOINVIS(ch) > 0 && GET_INVIS_LEV(ch) < GET_AUTOINVIS(ch)) {
                 /* this char is not already invis beyond the immorts invis level */
-                sprintf(buf, "You have been idle for ten minutes.  Auto-invis to level %d engaged.\n",
-                        GET_AUTOINVIS(ch));
-                char_printf(ch, buf);
+                char_printf(ch, "You have been idle for ten minutes.  Auto-invis to level {:d} engaged.\n",
+                            GET_AUTOINVIS(ch));
                 perform_immort_invis(ch, GET_AUTOINVIS(ch));
             }
         }

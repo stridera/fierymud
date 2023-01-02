@@ -265,9 +265,8 @@ bool check_can_go(CharData *ch, int dir, bool quiet) {
         if (EXIT_IS_CLOSED(exit)) {
             if (!quiet) {
                 if (exit->keyword && *(exit->keyword)) {
-                    sprintf(buf, "The %s seem%s to be closed.\n", fname(exit->keyword),
-                            isplural(exit->keyword) ? "" : "s");
-                    char_printf(ch, buf);
+                    char_printf(ch, "The {} seem{} to be closed.\n", fname(exit->keyword),
+                                isplural(exit->keyword) ? "" : "s");
                 } else {
                     log(LogSeverity::Warn, LVL_GOD, "SYSERR: room {:d}, exit {:d} has no keyword", CH_ROOM(ch)->vnum,
                         dir);
@@ -696,8 +695,7 @@ void send_auto_exits(CharData *ch, int roomnum) {
         }
     }
 
-    sprintf(buf2, "&2Obvious exits:%s&0\n", *buf ? buf : " &6None&0.");
-    char_printf(ch, buf2);
+    char_printf(ch, "&2Obvious exits:{}&0\n", *buf ? buf : " &6None&0.");
 }
 
 void send_full_exits(CharData *ch, int roomnum) {
@@ -747,9 +745,7 @@ void send_full_exits(CharData *ch, int roomnum) {
     }
 
     if (*buf) {
-        char_printf(ch, "Obvious exits:\n");
-        char_printf(ch, buf);
-        char_printf(ch, "&0");
+        char_printf(ch, "Obvious exits:\n{}&0", buf);
     } else
         char_printf(ch, "There are no obvious exits.\n");
 }

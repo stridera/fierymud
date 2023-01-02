@@ -55,8 +55,14 @@ std::string process_colors(std::string_view str, int mode) {
             }
             continue;
         } else if (mode == CLR_STRIP) {
-            if (c == CREL || c == CABS)
+            if (code != '\0') {
+                code = '\0';
                 continue;
+            }
+            if (c == CREL || c == CABS) {
+                code = c;
+                continue;
+            }
         } else if (mode == CLR_ESCAPE) {
             if (c == CREL || c == CABS) {
                 resp += c;
@@ -75,35 +81,11 @@ int count_color_chars(std::string_view str) noexcept {
     return std::count_if(str.begin(), str.end(), [](char c) { return c == CREL || c == CABS; });
 }
 
-int ansi_strlen(const char *string) {
-    int num;
-
-    if (!string)
+int ansi_strlen(std::string_view str) {
+    if (str.empty())
         return 0;
 
-    for (num = 0; *string; ++string) {
-        if (*string == CREL || *string == CABS)
-            ++string;
-        else
-            ++num;
-    }
-
-    return num;
-
-    /*
-       return strlen(string) - count_color_chars(string);
-     */
+    return str.length() - count_color_chars(str);
 }
-
-char *strip_ansi(const char *string) {
-    static char buffer[MAX_STRING_LENGTH];
-    auto buf = process_colors(string, CLR_STRIP);
-    strncpy(buffer, buf.data(), buf.size());
-    return buffer;
-}
-char *escape_ansi(const char *string) {
-    static char buffer[MAX_STRING_LENGTH];
-    auto buf = process_colors(string, CLR_ESCAPE);
-    strncpy(buffer, buf.data(), buf.size());
-    return buffer;
-}
+std::string strip_ansi(std::string_view string) { return process_colors(string, CLR_STRIP); }
+std::string escape_ansi(std::string_view string) { return process_colors(string, CLR_ESCAPE); }

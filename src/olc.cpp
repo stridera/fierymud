@@ -108,8 +108,7 @@ void olc_delete(CharData *ch, int subcmd, int vnum) {
         }
         sprintf(buf, "OLC: %s deletes mobile #%d.", GET_NAME(ch), vnum);
         if (delete_mobile(rnum)) {
-            sprintf(buf, "Mobile %d deleted.\n", vnum);
-            char_printf(ch, buf);
+            char_printf(ch, "Mobile {:d} deleted.\n", vnum);
         } else {
             char_printf(ch, "ERROR.  Mobile not deleted.\n");
         }
@@ -123,8 +122,7 @@ void olc_delete(CharData *ch, int subcmd, int vnum) {
         }
         sprintf(buf, "OLC: %s deletes object #%d.", GET_NAME(ch), vnum);
         if (delete_object(rnum)) {
-            sprintf(buf, "Object %d deleted.\n", vnum);
-            char_printf(ch, buf);
+            char_printf(ch, "Object {:d} deleted.\n", vnum);
         } else {
             char_printf(ch, "ERROR.  Object not deleted.\n");
         }
@@ -176,8 +174,7 @@ ACMD(do_olc) {
         case SCMD_OLC_OEDIT:
         case SCMD_OLC_MEDIT:
         case SCMD_OLC_SEDIT:
-            sprintf(buf, "Specify a %s VNUM to edit.\n", olc_scmd_info[subcmd].text);
-            char_printf(ch, buf);
+            char_printf(ch, "Specify a {} VNUM to edit.\n", olc_scmd_info[subcmd].text);
             return;
         case SCMD_OLC_HEDIT:
             char_printf(ch, "Specify a help topic to edit.\n");
@@ -307,12 +304,11 @@ ACMD(do_olc) {
         if (d->connected == olc_scmd_info[subcmd].con_type)
             if (d->olc && OLC_NUM(d) == number && number != NOTHING) {
                 if (subcmd == SCMD_OLC_HEDIT)
-                    sprintf(buf, "Help files are currently being edited by %s\n",
-                            (CAN_SEE(ch, d->character) ? GET_NAME(d->character) : "someone"));
+                    char_printf(ch, "Help files are currently being edited by {}\n",
+                                (CAN_SEE(ch, d->character) ? GET_NAME(d->character) : "someone"));
                 else
-                    sprintf(buf, "That %s is currently being edited by %s.\n", olc_scmd_info[subcmd].text,
-                            GET_NAME(d->character));
-                char_printf(ch, buf);
+                    char_printf(ch, "That {} is currently being edited by {}.\n", olc_scmd_info[subcmd].text,
+                                GET_NAME(d->character));
                 return;
             }
     d = ch->desc;
@@ -567,8 +563,7 @@ void olc_saveinfo(CharData *ch) {
         char_printf(ch, "The database is up to date.\n");
 
     for (entry = olc_save_list; entry; entry = entry->next) {
-        sprintf(buf, " - %s for zone %d.\n", save_info_msg[(int)entry->type], entry->zone);
-        char_printf(ch, buf);
+        char_printf(ch, " - {} for zone {:d}.\n", save_info_msg[(int)entry->type], entry->zone);
     }
 }
 

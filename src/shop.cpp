@@ -552,14 +552,12 @@ void shopping_buy(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     }
 
     if ((IS_CARRYING_N(ch) + 1 > CAN_CARRY_N(ch))) {
-        sprintf(buf, "%s: You can't carry any more items.\n", fname(obj->name));
-        char_printf(ch, buf);
+        char_printf(ch, "{}: You can't carry any more items.\n", fname(obj->name));
         return;
     }
 
     if (!ADDED_WEIGHT_OK(ch, obj)) {
-        sprintf(buf, "%s: You can't carry that much weight.\n", fname(obj->name));
-        char_printf(ch, buf);
+        char_printf(ch, "{}: You can't carry that much weight.\n", fname(obj->name));
         return;
     }
 
@@ -637,8 +635,7 @@ void shopping_buy(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
 
     sprintf(buf, shop_index[shop_nr].message_buy, GET_NAME(ch), 0);
     do_tell(keeper, buf, cmd_tell, 0);
-    sprintf(buf, "You now have %s.\n", tempstr);
-    char_printf(ch, buf);
+    char_printf(ch, "You now have {}.\n", tempstr);
 
     if (SHOP_USES_BANK(shop_nr))
         if (GET_CASH(keeper) > MAX_OUTSIDE_BANK) {
@@ -866,19 +863,13 @@ void shopping_sell(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     sprintf(buf, shop_index[shop_nr].message_sell, GET_NAME(ch), 0);
     do_tell(keeper, buf, cmd_tell, 0);
     if (cashamt == 0) {
-        sprintf(buf, "The shopkeeper now has %s.\n", tempstr);
-        char_printf(ch, buf);
-        sprintf(buf,
-                "You walk away empty handed.\nYou feel guilty for pawning "
-                "worthless garbage.\n");
+        char_printf(ch, "The shopkeeper now has {}.\n", tempstr);
+        char_printf(ch, "You walk away empty handed.\nYou feel guilty for pawning worthless garbage.\n");
     } else {
-        sprintf(buf,
-                "%s accepts %s and pays you &0&b&6%d&0p,&b&3%d&0g,&0%ds,&0&3%d&0c "
-                "coins.\n",
-                GET_NAME(keeper), tempstr, PLATINUM_PART(cashamt), GOLD_PART(cashamt), SILVER_PART(cashamt),
-                COPPER_PART(cashamt));
+        char_printf(ch, "{} accepts {} and pays you &0&b&6{:d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c coins.\n",
+                    GET_NAME(keeper), tempstr, PLATINUM_PART(cashamt), GOLD_PART(cashamt), SILVER_PART(cashamt),
+                    COPPER_PART(cashamt));
     }
-    char_printf(ch, buf);
 
     if (GET_CASH(keeper) < MIN_OUTSIDE_BANK) {
         cashamt = MIN(MAX_OUTSIDE_BANK - GET_CASH(keeper), SHOP_BANK(shop_nr));
@@ -929,31 +920,28 @@ void shopping_value(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     return;
 }
 
-char *list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, int index, int shop_nr) {
-    static char buf[256];
+std::string list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, int index, int shop_nr) {
+    std::string buf;
     char buf2[300], buf3[200];
     int bp;
 
-    sprintf(buf, "%2d)  %3d  ", index, GET_OBJ_LEVEL(obj));
+    buf = fmt::format("{:2d})  {:3d}  {}", index, GET_OBJ_LEVEL(obj), obj->short_description);
 
     /* Compile object name and information */
-    strcpy(buf3, obj->short_description);
     if ((GET_OBJ_TYPE(obj) == ITEM_DRINKCON) && (GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING)))
-        sprintf(END_OF(buf3), " of %s", LIQ_NAME(GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID)));
+        buf += fmt::format(" of {}", LIQ_NAME(GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID)));
     if (!shop_producing(obj, shop_nr))
-        sprintf(END_OF(buf3), " (x%2d)", cnt);
+        buf += fmt::format(" (x{:2d})", cnt);
+    if ((GET_OBJ_TYPE(obj) == ITEM_WAND) || (GET_OBJ_TYPE(obj) == ITEM_STAFF))
+        if (GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT) < GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES))
+            buf += " (partially used)";
 
     /* FUTURE: */
     /* Add glow/hum/etc */
 
-    if ((GET_OBJ_TYPE(obj) == ITEM_WAND) || (GET_OBJ_TYPE(obj) == ITEM_STAFF))
-        if (GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT) < GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES))
-            strcat(buf3, " (partially used)");
     bp = ((int)(buy_price(ch, keeper, obj, shop_nr)));
-    sprintf(buf2, "%-48s  &0&b&6%3d&0p,&b&3%d&0g,&0%ds,&0&3%d&0c\n", strip_ansi(buf3), PLATINUM_PART(bp), GOLD_PART(bp),
-            SILVER_PART(bp), COPPER_PART(bp));
-    strcat(buf, buf2);
-    return (buf);
+    return (fmt::format("{:<56}  &0&b&6{:3d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c\n", strip_ansi(buf.c_str()),
+                        PLATINUM_PART(bp), GOLD_PART(bp), SILVER_PART(bp), COPPER_PART(bp)));
 }
 
 void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
@@ -975,12 +963,8 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
             if ((!(*name) || isname(name, obj->name)) && CAN_SEE_OBJ(ch, obj) && (obj->obj_flags.cost > 0)) {
                 if (!any) {
                     any = true;
-                    paging_printf(ch,
-                                  " ##  Lvl  Item                                          "
-                                  "         Cost\n");
-                    paging_printf(ch,
-                                  "---  ---  ------------------------------------------------  "
-                                  "-------------\n");
+                    paging_printf(ch, " ##  Lvl  Item                                              Cost\n");
+                    paging_printf(ch, "---  ---  ------------------------------------------------  -------------\n");
                 }
                 if (!last_obj) {
                     last_obj = obj;
@@ -1340,8 +1324,7 @@ void handle_detailed_list(char *buf, char *buf1, CharData *ch) {
     if ((strlen(buf1) + strlen(buf) < 78) || (strlen(buf) < 20))
         strcat(buf, buf1);
     else {
-        strcat(buf, "\n");
-        char_printf(ch, buf);
+        char_printf(ch, "{}\n", buf);
         sprintf(buf, "            %s", buf1);
     }
 }
@@ -1351,8 +1334,7 @@ void list_detailed_shop(CharData *ch, int shop_nr) {
     CharData *k;
     int index, temp;
 
-    sprintf(buf, "Vnum:       [%5d], Rnum: [%5d]\n", SHOP_NUM(shop_nr), shop_nr + 1);
-    char_printf(ch, buf);
+    char_printf(ch, "Vnum:       [{:5d}], Rnum: [{:5d}]\n", SHOP_NUM(shop_nr), shop_nr + 1);
 
     strcpy(buf, "Rooms:      ");
     for (index = 0; SHOP_ROOM(shop_nr, index) != NOWHERE; index++) {
@@ -1367,8 +1349,7 @@ void list_detailed_shop(CharData *ch, int shop_nr) {
     if (!index)
         char_printf(ch, "Rooms:      None!\n");
     else {
-        strcat(buf, "\n");
-        char_printf(ch, buf);
+        char_printf(ch, "{}\n", buf);
     }
 
     strcpy(buf, "Shopkeeper: ");
@@ -1385,8 +1366,7 @@ void list_detailed_shop(CharData *ch, int shop_nr) {
     char_printf(ch, buf);
 
     strcpy(buf1, customer_string(shop_nr, true));
-    sprintf(buf, "Customers:  %s\n", (*buf1) ? buf1 : "None");
-    char_printf(ch, buf);
+    char_printf(ch, "Customers:  {}\n", (*buf1) ? buf1 : "None");
 
     strcpy(buf, "Produces:   ");
     for (index = 0; SHOP_PRODUCT(shop_nr, index) != NOTHING; index++) {
@@ -1399,8 +1379,7 @@ void list_detailed_shop(CharData *ch, int shop_nr) {
     if (!index)
         char_printf(ch, "Produces:   Nothing!\n");
     else {
-        strcat(buf, "\n");
-        char_printf(ch, buf);
+        char_printf(ch, "{}\n", buf);
     }
 
     strcpy(buf, "Buys:       ");
@@ -1417,19 +1396,15 @@ void list_detailed_shop(CharData *ch, int shop_nr) {
     if (!index)
         char_printf(ch, "Buys:       Nothing!\n");
     else {
-        strcat(buf, "\n");
-        char_printf(ch, buf);
+        char_printf(ch, "{}\n", buf);
     }
 
-    sprintf(buf, "Buy at:     [%4.2f], Sell at: [%4.2f], Open: [%d-%d, %d-%d]%s", SHOP_SELLPROFIT(shop_nr),
-            SHOP_BUYPROFIT(shop_nr), SHOP_OPEN1(shop_nr), SHOP_CLOSE1(shop_nr), SHOP_OPEN2(shop_nr),
-            SHOP_CLOSE2(shop_nr), "\n");
-
-    char_printf(ch, buf);
+    char_printf(ch, "Buy at:     [{:4.2f}], Sell at: [{:4.2f}], Open: [{:d}-{:d}, {:d}-{:d}]{}",
+                SHOP_SELLPROFIT(shop_nr), SHOP_BUYPROFIT(shop_nr), SHOP_OPEN1(shop_nr), SHOP_CLOSE1(shop_nr),
+                SHOP_OPEN2(shop_nr), SHOP_CLOSE2(shop_nr), "\n");
 
     sprintbit((long)SHOP_BITVECTOR(shop_nr), shop_bits, buf1);
-    sprintf(buf, "Bits:       %s\n", buf1);
-    char_printf(ch, buf);
+    char_printf(ch, "Bits:       {}\n", buf1);
 }
 
 void do_stat_shop(CharData *ch, char *arg) {
@@ -1471,9 +1446,7 @@ void list_shops(CharData *ch, int start, int end) {
             if (!any || !(num % 19)) {
                 any = true;
                 strcat(buf, " ##   Virtual   Keeper    Buy     Sell     Customers   Where\n");
-                strcat(buf,
-                       "----------------------------------------------------------"
-                       "--------------\n");
+                strcat(buf, "------------------------------------------------------------------------\n");
             }
             num++;
             room = real_room(SHOP_ROOM(shop_nr, 0));
@@ -1502,8 +1475,7 @@ int vnum_shop(char *searchname, CharData *ch) {
     for (nr = 0; nr < top_shop; nr++) {
         room = real_room(SHOP_ROOM(nr, 0));
         if (room != NOWHERE && isname(searchname, world[room].name)) {
-            sprintf(buf, "%3d. [%5d] (%5d) %s\n", ++found, SHOP_NUM(nr), SHOP_ROOM(nr, 0), world[room].name);
-            char_printf(ch, buf);
+            char_printf(ch, "{:3d}. [{:5d}] ({:5d}) {}\n", ++found, SHOP_NUM(nr), SHOP_ROOM(nr, 0), world[room].name);
         }
     }
     return found;

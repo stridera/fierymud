@@ -148,22 +148,19 @@ void show_trophy(CharData *ch, CharData *vict) {
 
     if (!GET_TROPHY(vict) || GET_TROPHY(vict)->kill_type == TROPHY_NONE) {
         if (ch == vict) {
-            sprintf(buf, "%sYour trophy list is empty.%s\n", CLR(ch, FGRN), CLR(ch, ANRM));
+            char_printf(ch, "{}Your trophy list is empty.{}\n", CLR(ch, FGRN), CLR(ch, ANRM));
         } else {
-            sprintf(buf, "%s%s's trophy list is empty.%s\n", CLR(ch, FGRN), GET_NAME(vict), CLR(ch, ANRM));
+            char_printf(ch, "{}{}'s trophy list is empty.{}\n", CLR(ch, FGRN), GET_NAME(vict), CLR(ch, ANRM));
         }
-        char_printf(ch, buf);
         return;
     }
 
     if (ch == vict)
-        sprintf(buf, "%sYour trophy list is:%s\n\n", CLR(ch, FGRN), CLR(ch, ANRM));
+        char_printf(ch, "{}Your trophy list is:{}\n\n", CLR(ch, FGRN), CLR(ch, ANRM));
     else
-        sprintf(buf, "%s%s's trophy list is:%s\n\n", CLR(ch, FGRN), GET_NAME(vict), CLR(ch, ANRM));
-    char_printf(ch, buf);
+        char_printf(ch, "{}{}'s trophy list is:{}\n\n", CLR(ch, FGRN), GET_NAME(vict), CLR(ch, ANRM));
 
-    sprintf(buf, "%s%sKills       Mobiles%s\n", CLR(ch, HRED), CLR(ch, AUND), CLR(ch, ANRM));
-    char_printf(ch, buf);
+    char_printf(ch, "{}{}Kills       Mobiles{}\n", CLR(ch, HRED), CLR(ch, AUND), CLR(ch, ANRM));
 
     for (node = GET_TROPHY(vict); node; node = node->next) {
 
@@ -176,12 +173,11 @@ void show_trophy(CharData *ch, CharData *vict) {
                 continue;
         } else
             continue;
-        sprintf(buf, "%s%6.2f     %s%s%s\n",
-                node->amount < 4.99   ? CLR(ch, FYEL)
-                : node->amount < 7.99 ? CLR(ch, HYEL)
-                                      : CLR(ch, HRED),
-                node->amount, CLR(ch, ANRM), name, CLR(ch, ANRM));
-        char_printf(ch, buf);
+        char_printf(ch, "{}{:6.2f}     {}{}{}\n",
+                    node->amount < 4.99   ? CLR(ch, FYEL)
+                    : node->amount < 7.99 ? CLR(ch, HYEL)
+                                          : CLR(ch, HRED),
+                    node->amount, CLR(ch, ANRM), name, CLR(ch, ANRM));
     }
 }
 

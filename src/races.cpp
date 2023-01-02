@@ -1480,8 +1480,7 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
 
     if (!races[race].playable) {
         if (ch) {
-            sprintf(buf, "The %s race is not available to mortals.\n", races[race].name);
-            char_printf(ch, buf);
+            char_printf(ch, "The {} race is not available to mortals.\n", races[race].name);
         }
         return RACE_UNDEFINED;
     }

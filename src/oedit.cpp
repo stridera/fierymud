@@ -504,8 +504,7 @@ int oedit_reverse_exdesc(int real_num, CharData *ch) {
             ex_desc = tmp;
         }
         if (ch) {
-            sprintf(buf, "Reversed exdescs of object %d, %s.\n", GET_OBJ_VNUM(obj), obj->short_description);
-            char_printf(ch, buf);
+            char_printf(ch, "Reversed exdescs of object {:d}, {}.\n", GET_OBJ_VNUM(obj), obj->short_description);
         }
         olc_add_to_save_list(zone_table[find_real_zone_by_room(GET_OBJ_VNUM(obj))].number, OLC_SAVE_OBJ);
         return 1;
@@ -531,9 +530,8 @@ void oedit_reverse_exdescs(int zone, CharData *ch) {
      */
 
     if (ch) {
-        sprintf(buf, "Modified %d of %d object prototype%s in zone %d, %s.\n", nummodified, numprocessed,
-                numprocessed == 1 ? "" : "s", zone_table[zone].number, zone_table[zone].name);
-        char_printf(ch, buf);
+        char_printf(ch, "Modified {:d} of {:d} object prototype{} in zone {:d}, {}.\n", nummodified, numprocessed,
+                    numprocessed == 1 ? "" : "s", zone_table[zone].number, zone_table[zone].name);
     }
 }
 

@@ -20,11 +20,25 @@
 #include <ranges>
 #include <string>
 
-const std::string_view ellipsis(const std::string str, int maxlen) {
-    if (str.length() > maxlen) {
-        return str.substr(0, maxlen) + "...";
+std::string ellipsis(const std::string str, int maxlen) {
+    if (str.length() < maxlen)
+        return str;
+
+    std::string result;
+    bool in_code = false;
+    int len = 0;
+    for (auto c : str) {
+        if (len >= maxlen - 3)
+            break;
+
+        if (in_code || c == CREL || c == CABS) {
+            in_code = !in_code;
+        } else {
+            len++;
+            result += c;
+        }
     }
-    return str;
+    return result + "...";
 }
 
 void sprintbit(long bitvector, const char *names[], char *result) {
@@ -114,20 +128,15 @@ bool matches_start(std::string_view lhs, std::string_view rhs) {
     return is_equals(lhs, rhs.substr(0, lhs.size()));
 }
 
-std::string_view trim(std::string_view str) {
-    // auto is_space{[](char c) { return std::isspace(c); }};
-    // auto first_non_space{std::ranges::find_if_not(str, is_space)};
-    // auto last_non_space{std::ranges::find_if_not(str | std::ranges::views::reverse, is_space)};
-    // return str.substr(first_non_space - str.begin(), last_non_space - first_non_space);
-    return str;
+constexpr std::string_view trim_left(std::string_view s) {
+    return s.substr(std::min(s.find_first_not_of(" \f\n\r\t\v"), s.size()));
 }
 
-std::string_view rtrim(std::string_view str, std::string_view chars) {
-    // auto is_char{[&chars](char c) { return chars.find(c) != std::string_view::npos; }};
-    // auto last_non_char{std::ranges::find_if_not(str | std::ranges::views::reverse, is_char)};
-    // return str.substr(0, last_non_char - str.begin());
-    return str;
+constexpr std::string_view trim_right(std::string_view s) {
+    return s.substr(0, std::min(s.find_last_not_of(" \f\n\r\t\v") + 1, s.size()));
 }
+
+constexpr std::string_view trim(std::string_view s) { return trim_left(trim_right(s)); }
 
 // c++23
 // bool matches(std::string_view lhs, std::string_view rhs) {

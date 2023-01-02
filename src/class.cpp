@@ -964,8 +964,7 @@ int parse_class(CharData *ch, CharData *vict, char *arg) {
 
     if (!classes[class_num].active) {
         if (ch) {
-            sprintf(buf, "The %s class is not available to mortals.\n", classes[class_num].name);
-            char_printf(ch, buf);
+            char_printf(ch, "The {} class is not available to mortals.\n", classes[class_num].name);
         }
         return CLASS_UNDEFINED;
     }

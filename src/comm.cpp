@@ -1202,7 +1202,7 @@ void send_gmcp_prompt(DescriptorData *d) {
                    "\"hp\":%d, \"max_hp\": %d,"
                    "\"mv\":%d, \"max_mv\": %d "
                    "}}%s",
-                   gmcp_start_data, strip_ansi(GET_NAME(ch)), CLASS_NAME(ch), xp_percentage(REAL_CHAR(ch)),
+                   gmcp_start_data, strip_ansi(GET_NAME(ch)).c_str(), CLASS_NAME(ch), xp_percentage(REAL_CHAR(ch)),
                    GET_ALIGNMENT(ch), position, GET_HIDDENNESS(ch), GET_LEVEL(ch), GET_HIT(ch), GET_MAX_HIT(ch),
                    GET_MOVE(ch), GET_MAX_MOVE(ch), gmcp_end_data);
 
@@ -2472,7 +2472,7 @@ void all_except_printf(CharData *ch, std::string_view str) {
 }
 
 void char_printf(const CharData *ch, std::string_view str) {
-    if (ch->desc)
+    if (ch && ch->desc)
         string_to_output(ch->desc, str);
 }
 

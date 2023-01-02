@@ -787,12 +787,11 @@ ASPELL(spell_enlightenment) {
     }
     act("$N&0's mental defenses fail, letting you peer into $S mind.", false, ch, 0, victim, TO_CHAR);
     if (IS_NPC(victim)) {
-        sprintf(buf, "Race: %s\nClass: %s\n", RACE_PLAINNAME(victim), CLASS_PLAINNAME(victim));
+        char_printf(ch, "Race: {}\nClass: {}\nLevel: {}\n", RACE_PLAINNAME(victim), CLASS_PLAINNAME(victim),
+                    GET_LEVEL(victim));
     } else {
-        sprintf(buf, "Race: %s\nClass: %s\n", RACE_ABBR(victim), CLASS_WIDE(victim));
+        char_printf(ch, "Race: {}\nClass: {}\nLevel: {}\n", RACE_ABBR(victim), CLASS_WIDE(victim), GET_LEVEL(victim));
     }
-    sprintf(buf, "%sLevel: %d\n", buf, GET_LEVEL(victim));
-    char_printf(ch, buf);
     if (IS_NPC(ch) || GET_LEVEL(ch) < LVL_IMMORT)
         WAIT_STATE(ch, PULSE_VIOLENCE * 4);
 
@@ -1057,14 +1056,12 @@ ASPELL(spell_identify) {
         char_printf(ch, "You feel informed:\n");
         identify_obj(obj, ch, 0);
     } else if (victim) { /* victim */
-        sprintf(buf, "Name: %s\n", GET_NAME(victim));
-        char_printf(ch, buf);
+        char_printf(ch, "Name: {}\n", GET_NAME(victim));
         if (!IS_NPC(victim)) {
-            sprintf(buf, "%s is %d years, %d months, %d days and %d hours old.\n", GET_NAME(victim), age(victim).year,
-                    age(victim).month, age(victim).day, age(victim).hours);
-            char_printf(ch, buf);
+            char_printf(ch, "{} is {:d} years, {:d} months, {:d} days and {:d} hours old.\n", GET_NAME(victim),
+                        age(victim).year, age(victim).month, age(victim).day, age(victim).hours);
         }
-        sprintf(buf, "Height %s; Weight %s\n", statelength(GET_HEIGHT(victim)), stateweight(GET_WEIGHT(victim)));
+        char_printf(ch, "Height {}; Weight {}\n", statelength(GET_HEIGHT(victim)), stateweight(GET_WEIGHT(victim)));
         /*      sprintf(buf, "%sLevel: %d, Hits: %d, Mana: %d\n", buf,
            GET_LEVEL(victim), GET_HIT(victim), GET_MANA(victim));
            sprintf(buf, "%sAC: %d, Hitroll: %d, Damroll: %d\n", buf,
@@ -1073,7 +1070,6 @@ ASPELL(spell_identify) {
            %d\n", buf, GET_STR(victim), GET_INT(victim), GET_WIS(victim),
            GET_DEX(victim), GET_CON(victim), GET_CHA(victim));
          */
-        char_printf(ch, buf);
         sprintf(buf, "$E is composed of %s%s&0, and $S nature is %s%s.", COMPOSITION_COLOR(victim),
                 COMPOSITION_NAME(victim), LIFEFORCE_COLOR(victim), LIFEFORCE_NAME(victim));
         act(buf, false, ch, 0, victim, TO_CHAR);
@@ -2656,8 +2652,7 @@ ASPELL(spell_summon) {
     }
 
     if (MOB_FLAGGED(victim, MOB_NOSUMMON) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
-        sprintf(buf, "You feel your magic probing %s, but it can't seem to get a grip.\n", PERS(victim, ch));
-        char_printf(ch, buf);
+        char_printf(ch, "You feel your magic probing {}, but it can't seem to get a grip.\n", PERS(victim, ch));
         return CAST_RESULT_CHARGE;
     }
 
@@ -2680,16 +2675,14 @@ ASPELL(spell_summon) {
             return CAST_RESULT_CHARGE;
         }
         if (IS_PC(victim) && !PRF_FLAGGED(victim, PRF_SUMMONABLE) && !PLR_FLAGGED(victim, PLR_KILLER)) {
-            sprintf(buf,
-                    "%s just tried to summon you to: %s.\n"
-                    "%s failed because you have summon protection on.\n"
-                    "Type NOSUMMON to allow other players to summon you.\n",
-                    GET_NAME(ch), world[ch->in_room].name,
-                    (ch->player.sex == SEX_MALE) ? "He" : ((ch->player.sex == SEX_FEMALE) ? "She" : "They"));
-            char_printf(victim, buf);
+            char_printf(victim,
+                        "{} just tried to summon you to: {}.\n"
+                        "{} failed because you have summon protection on.\n"
+                        "Type NOSUMMON to allow other players to summon you.\n",
+                        GET_NAME(ch), world[ch->in_room].name,
+                        (ch->player.sex == SEX_MALE) ? "He" : ((ch->player.sex == SEX_FEMALE) ? "She" : "They"));
 
-            sprintf(buf, "You failed because %s has summon protection on.\n", GET_NAME(victim));
-            char_printf(ch, buf);
+            char_printf(ch, "You failed because {} has summon protection on.\n", GET_NAME(victim));
 
             log(LogSeverity::Warn, LVL_IMMORT, "{} failed summoning {} to {}.", GET_NAME(ch), GET_NAME(victim),
                 world[ch->in_room].name);
@@ -2819,18 +2812,15 @@ ASPELL(spell_locate_object) {
         o = items[i];
 
         if (o->carried_by)
-            sprintf(buf, "%s is being carried by %s.\n", o->short_description, PERS(o->carried_by, ch));
+            char_printf(ch, "{} is being carried by {}.\n", capitalize(o->short_description), PERS(o->carried_by, ch));
         else if (o->in_room != NOWHERE)
-            sprintf(buf, "%s is in %s.\n", o->short_description, world[o->in_room].name);
+            char_printf(ch, "{} is in {}.\n", capitalize(o->short_description), world[o->in_room].name);
         else if (o->in_obj)
-            sprintf(buf, "%s is in %s.\n", o->short_description, o->in_obj->short_description);
+            char_printf(ch, "{} is in {}.\n", capitalize(o->short_description), o->in_obj->short_description);
         else if (o->worn_by)
-            sprintf(buf, "%s is being worn by %s.\n", o->short_description, PERS(o->worn_by, ch));
+            char_printf(ch, "{} is being worn by {}.\n", capitalize(o->short_description), PERS(o->worn_by, ch));
         else
-            sprintf(buf, "%s's location is uncertain.\n", o->short_description);
-
-        CAP(buf);
-        char_printf(ch, buf);
+            char_printf(ch, "{}'s location is uncertain.\n", capitalize(o->short_description));
     }
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;

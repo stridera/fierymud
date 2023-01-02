@@ -130,8 +130,6 @@ SPECIAL(guild_guard) {
     int i, IS_GUARDED = false;
     extern int guild_info[][3];
     CharData *guard = (CharData *)me;
-    char *buf = "The guard humiliates you, and blocks your way.\n";
-    char *buf2 = "The guard humiliates $n, and blocks $s way.";
 
     if (!IS_MOVE(cmd) || EFF_FLAGGED(guard, EFF_BLIND))
         return false;
@@ -140,19 +138,16 @@ SPECIAL(guild_guard) {
         return false;
 
     /* Is the direction even being guarded? */
-
     for (i = 0; guild_info[i][0] != -1; i++) {
         if (world[ch->in_room].vnum == guild_info[i][1] && cmd == guild_info[i][2]) {
             IS_GUARDED = true;
         }
     }
 
-    if (!IS_GUARDED) {
+    if (!IS_GUARDED)
         return false;
-    }
 
     /* Ok, it's guarded, can you class get in? */
-
     for (i = 0; guild_info[i][0] != -1; i++) {
         if (!IS_NPC(ch) && GET_CLASS(ch) == guild_info[i][0] && world[ch->in_room].vnum == guild_info[i][1] &&
             cmd == guild_info[i][2]) {
@@ -160,11 +155,9 @@ SPECIAL(guild_guard) {
         }
     }
 
-    /* Ok, it's guarded and you can't get in :P and no other case
-       will allow you in */
-
-    char_printf(ch, buf);
-    act(buf2, false, ch, 0, 0, TO_ROOM);
+    // Ok, it's guarded and you can't get in :P and no other case will allow you in.
+    char_printf(ch, "The guard humiliates you, and blocks your way.\n");
+    act("The guard humiliates $n, and blocks $s way.", false, ch, 0, 0, TO_ROOM);
     return true;
 }
 
@@ -358,15 +351,14 @@ SPECIAL(pet_shop) {
             temp2 = ((int)((int)(bp / 100) - (temp * 10)));
             temp3 = ((int)((((int)(bp / 10)) - (temp * 100)) - temp2 * 10));
             temp4 = ((int)((((bp) - (temp * 1000)) - (temp2 * 100)) - (temp3 * 10)));
-            sprintf(buf, "%s%d %-36s  &0&b&6%3d&0p,&b&3%d&0g,&0%ds,&0&3%d&0c    %s\n", found++ % 2 == 0 ? "&K" : "",
-                    found, GET_NAME(pet), temp, temp2, temp3, temp4,
-                    !MOB_FLAGGED(pet, MOB_MOUNTABLE) ? "n/a"
-                    : mountdiff > MOUNT_LEVEL_FUDGE  ? "impossible"
-                    : mountdiff < 1                  ? "good"
-                    : mountdiff < 2                  ? "fair"
-                    : mountdiff < 4                  ? "bad"
-                                                     : "awful");
-            char_printf(ch, buf);
+            char_printf(ch, "{}{:d} {:<36}  &0&b&6{:3d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c    {}\n",
+                        found++ % 2 == 0 ? "&K" : "", found, GET_NAME(pet), temp, temp2, temp3, temp4,
+                        !MOB_FLAGGED(pet, MOB_MOUNTABLE) ? "n/a"
+                        : mountdiff > MOUNT_LEVEL_FUDGE  ? "impossible"
+                        : mountdiff < 1                  ? "good"
+                        : mountdiff < 2                  ? "fair"
+                        : mountdiff < 4                  ? "bad"
+                                                         : "awful");
         }
         return (true);
     } else if (CMD_IS("buy")) {
@@ -487,8 +479,7 @@ SPECIAL(bank) {
 
         for (i = 0; i < NUM_COIN_TYPES; ++i)
             if (coins[i] > GET_BANK_COINS(ch)[i]) {
-                sprintf(buf, "You don't have enough %s in the bank!\n", COIN_NAME(i));
-                char_printf(ch, buf);
+                char_printf(ch, "You don't have enough {} in the bank!\n", COIN_NAME(i));
                 return true;
             }
 
@@ -520,20 +511,17 @@ SPECIAL(bank) {
         if (is_number(arg1)) {
             amount = atoi(arg1);
             if (!*arg2) {
-                sprintf(buf, "Exchange %s of what? Platinum?Gold?Silver?Copper?\n", arg1);
-                char_printf(ch, buf);
+                char_printf(ch, "Exchange {} of what? Platinum?Gold?Silver?Copper?\n", arg1);
                 return 1;
             }
             half_chop(arg2, arg3, arg2);
             if (!*arg3) {
-                sprintf(buf, "Exchange %s to what? Platinum? Gold? Silver? Copper?\n", arg2);
-                char_printf(ch, buf);
+                char_printf(ch, "Exchange {} to what? Platinum? Gold? Silver? Copper?\n", arg2);
                 return 1;
             }
             half_chop(arg2, arg4, arg2);
             if (!*arg4) {
-                sprintf(buf, "Exchange %s to what? Platinum? Gold? Silver? Copper?\n", arg3);
-                char_printf(ch, buf);
+                char_printf(ch, "Exchange {} to what? Platinum? Gold? Silver? Copper?\n", arg3);
                 return 1;
             }
             if (is_abbrev(arg3, "copper")) {
@@ -549,8 +537,7 @@ SPECIAL(bank) {
                 type1 = 4;
                 multfrom = 1000;
             } else {
-                sprintf(buf, "What kind of currency is that?\n");
-                char_printf(ch, buf);
+                char_printf(ch, "What kind of currency is that?\n");
                 return 1;
             }
             if (is_abbrev(arg4, "copper")) {
@@ -562,8 +549,7 @@ SPECIAL(bank) {
             } else if (is_abbrev(arg4, "platinum")) {
                 type2 = 4;
             } else {
-                sprintf(buf, "What kind of currency is that?\n");
-                char_printf(ch, buf);
+                char_printf(ch, "What kind of currency is that?\n");
                 return 1;
             }
 
@@ -645,8 +631,7 @@ SPECIAL(bank) {
 
             if (GET_CASH(ch) < (amount + charge)) {
                 char_printf(ch, "You don't have enough money!\n");
-                sprintf(buf, "The fee for that transaction would be %d copper.\n", charge);
-                char_printf(ch, buf);
+                char_printf(ch, "The fee for that transaction would be {:d} copper.\n", charge);
                 return 1;
             }
 

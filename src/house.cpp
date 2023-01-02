@@ -127,15 +127,13 @@ void House_listrent(CharData *ch, int vnum) {
     if (!House_get_filename(vnum, fname))
         return;
     if (!(fl = fopen(fname, "r"))) {
-        sprintf(buf, "No objects on file for house #%d.\n", vnum);
-        char_printf(ch, buf);
+        char_printf(ch, "No objects on file for house #{:d}.\n", vnum);
         return;
     }
     while (!feof(fl)) {
         if (!build_object(fl, &obj, &location))
             break;
-        sprintf(buf, "[%5d] %s\n", GET_OBJ_VNUM(obj), obj->short_description);
-        char_printf(ch, buf);
+        char_printf(ch, "[{:5d}] {}\n", GET_OBJ_VNUM(obj), obj->short_description);
         extract_obj(obj);
     }
 
@@ -238,9 +236,7 @@ void hcontrol_list_houses(CharData *ch) {
         char_printf(ch, "No houses have been defined.\n");
         return;
     }
-    strcpy(buf,
-           "Address   Atrium   Build Date   Guests   Owner            Last "
-           "Paymt\n");
+    strcpy(buf, "Address   Atrium   Build Date   Guests   Owner            Last Paymt\n");
     strcat(buf, "-------   ------   ----------   ------   ------------ ----------\n");
 
     for (i = 0; i < num_of_houses; i++) {
@@ -309,13 +305,11 @@ void hcontrol_build_house(CharData *ch, char *arg) {
         return;
     }
     if ((exit_num = searchblock(arg1, dirs, false)) < 0) {
-        sprintf(buf, "'%s' is not a valid direction.\n", arg1);
-        char_printf(ch, buf);
+        char_printf(ch, "'{}' is not a valid direction.\n", arg1);
         return;
     }
     if (TOROOM(real_house, exit_num) == NOWHERE) {
-        sprintf(buf, "There is no exit %s from room %d.\n", dirs[exit_num], virt_house);
-        char_printf(ch, buf);
+        char_printf(ch, "There is no exit {} from room {:d}.\n", dirs[exit_num], virt_house);
         return;
     }
 
@@ -334,8 +328,7 @@ void hcontrol_build_house(CharData *ch, char *arg) {
         return;
     }
     if ((owner = get_id_by_name(arg1)) < 0) {
-        sprintf(buf, "Unknown player '%s'.\n", arg1);
-        char_printf(ch, buf);
+        char_printf(ch, "Unknown player '{}'.\n", arg1);
         return;
     }
 

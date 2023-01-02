@@ -175,7 +175,7 @@ CLANCMD(clan_set) {
     if (is_abbrev(arg, "abbr")) {
         char *old_abbr = clan->abbreviation;
         skip_spaces(&argument);
-        if (strlen(strip_ansi(argument)) > MAX_CLAN_ABBR_LEN) {
+        if (ansi_strlen(argument) > MAX_CLAN_ABBR_LEN) {
             char_printf(ch, "Clan abbreviationss may be at most {} characters in length.\n", MAX_CLAN_ABBR_LEN);
             return;
         }
@@ -273,7 +273,7 @@ CLANCMD(clan_set) {
     else if (is_abbrev(arg, "name")) {
         char *old_name = clan->name;
         skip_spaces(&argument);
-        if (strlen(strip_ansi(argument)) > MAX_CLAN_NAME_LEN) {
+        if (ansi_strlen(argument) > MAX_CLAN_NAME_LEN) {
             char_printf(ch, "Clan names may be at most {} characters in length.\n", MAX_CLAN_NAME_LEN);
             return;
         }
@@ -306,7 +306,7 @@ CLANCMD(clan_set) {
             char_printf(ch, "You cannot set the title for a rank above your own.\n");
             return;
         }
-        if (strlen(strip_ansi(argument)) > MAX_CLAN_TITLE_LEN) {
+        if (ansi_strlen(argument) > MAX_CLAN_TITLE_LEN) {
             char_printf(ch, "Clan titles may be at most {} characters long.\n", MAX_CLAN_TITLE_LEN);
             return;
         }
@@ -428,9 +428,9 @@ CLANCMD(clan_create) {
 
     if (!*buf)
         char_printf(ch, "What is the abbreviation for the new clan?\n");
-    else if (strlen(strip_ansi(buf)) > 10)
+    else if (ansi_strlen(buf) > 10)
         char_printf(ch, "Clan abbreviations can be at most 10 visible characters long.\n");
-    else if (find_clan_by_abbr(strip_ansi(buf)))
+    else if (find_clan_by_abbr(strip_ansi(buf).c_str()))
         char_printf(ch, "A clan with a similar abbreviation already exists.\n");
     else {
         strcat(buf, "&0");

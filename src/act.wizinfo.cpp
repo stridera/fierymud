@@ -1108,31 +1108,30 @@ ACMD(do_zstat) {
     }
 
     z = &(zone_table[rnum]);
-    sprintf(buf,
-            "Zone &6%d&0: &2%s&0\n"
-            "Vnum range     : &3%d-%d&0\n"
-            "Reset mode     : &3%s&0\n"
-            "Lifespan       : &3%d minutes&0\n"
-            "Zone factor%%   : &3%d&0\n"
-            "Hemisphere     : &3%s&0\n"
-            "Climate        : &3%s&0\n"
-            "Temperature    : &6%d degrees&0\n"
-            "Precipitation  : &6%d&0\n"
-            "Wind speed     : &6%s&0 (&6%d&0)\n"
-            "Wind direction : &6%s&0\n",
-            vnum, z->name, vnum * 100, z->top,
-            z->reset_mode ? ((z->reset_mode == 1) ? "Reset when no players are in zone" : "Normal reset")
-                          : "Never reset",
-            z->lifespan, z->zone_factor,
-            z->hemisphere >= 0 && z->hemisphere < NUM_HEMISPHERES ? hemispheres[z->hemisphere].name : "<INVALID>",
-            z->climate >= 0 && z->climate < NUM_CLIMATES ? climates[z->climate].name : "<INVALID>", z->temperature,
-            z->precipitation, z->wind_speed == WIND_NONE ? "none" : wind_speeds[z->wind_speed], z->wind_speed,
-            z->wind_dir == NORTH   ? "North"
-            : z->wind_dir == SOUTH ? "South"
-            : z->wind_dir == EAST  ? "East"
-            : z->wind_dir == WEST  ? "West"
-                                   : "<INVALID>");
-    char_printf(ch, buf);
+    char_printf(ch,
+                "Zone &6{:d}&0: &2{}&0\n"
+                "Vnum range     : &3{:d}-{:d}&0\n"
+                "Reset mode     : &3{}&0\n"
+                "Lifespan       : &3{:d} minutes&0\n"
+                "Zone factor%   : &3{:d}&0\n"
+                "Hemisphere     : &3{}&0\n"
+                "Climate        : &3{}&0\n"
+                "Temperature    : &6{:d} degrees&0\n"
+                "Precipitation  : &6{:d}&0\n"
+                "Wind speed     : &6{}&0 (&6{:d}&0)\n"
+                "Wind direction : &6{}&0\n",
+                vnum, z->name, vnum * 100, z->top,
+                z->reset_mode ? ((z->reset_mode == 1) ? "Reset when no players are in zone" : "Normal reset")
+                              : "Never reset",
+                z->lifespan, z->zone_factor,
+                z->hemisphere >= 0 && z->hemisphere < NUM_HEMISPHERES ? hemispheres[z->hemisphere].name : "<INVALID>",
+                z->climate >= 0 && z->climate < NUM_CLIMATES ? climates[z->climate].name : "<INVALID>", z->temperature,
+                z->precipitation, z->wind_speed == WIND_NONE ? "none" : wind_speeds[z->wind_speed], z->wind_speed,
+                z->wind_dir == NORTH   ? "North"
+                : z->wind_dir == SOUTH ? "South"
+                : z->wind_dir == EAST  ? "East"
+                : z->wind_dir == WEST  ? "West"
+                                       : "<INVALID>");
 }
 
 ACMD(do_players) {
@@ -1368,18 +1367,17 @@ void do_show_stats(CharData *ch, char *argument) {
     }
     for (obj = object_list; obj; obj = obj->next)
         objects++;
-    sprintf(buf,
-            "Current stats:\n"
-            "   %5d players in game       %5d connected\n"
-            "   %5d registered\n"
-            "   %5d mobiles               %5d prototypes\n"
-            "   %5d objects               %5d prototypes\n"
-            "   %5d rooms                 %5d zones\n"
-            "   %5d large bufs\n"
-            "   %5d buf switches          %5d overflows\n",
-            players, connected, top_of_p_table + 1, mobiles, top_of_mobt + 1, objects, top_of_objt + 1,
-            top_of_world + 1, top_of_zone_table + 1, buf_largecount, buf_switches, buf_overflows);
-    char_printf(ch, buf);
+    char_printf(ch,
+                "Current stats:\n"
+                "   {:5d} players in game       {:5d} connected\n"
+                "   {:5d} registered\n"
+                "   {:5d} mobiles               {:5d} prototypes\n"
+                "   {:5d} objects               {:5d} prototypes\n"
+                "   {:5d} rooms                 {:5d} zones\n"
+                "   {:5d} large bufs\n"
+                "   {:5d} buf switches          {:5d} overflows\n",
+                players, connected, top_of_p_table + 1, mobiles, top_of_mobt + 1, objects, top_of_objt + 1,
+                top_of_world + 1, top_of_zone_table + 1, buf_largecount, buf_switches, buf_overflows);
 }
 
 void do_show_errors(CharData *ch, char *argument) {
@@ -1604,9 +1602,8 @@ void do_show_snoop(CharData *ch, char *argument) {
         if (!CAN_SEE(ch, d->character) || IN_ROOM(d->character) == NOWHERE)
             continue;
         i++;
-        sprintf(buf, "%-10s%s - snooped by %s%s.\n", GET_NAME(d->snooping->character), QNRM, GET_NAME(d->character),
-                QNRM);
-        char_printf(ch, buf);
+        char_printf(ch, "{:<10}{} - snooped by {}{}.\n", GET_NAME(d->snooping->character), QNRM, GET_NAME(d->character),
+                    QNRM);
     }
     if (i == 0)
         char_printf(ch, "No one is currently snooping.\n");
@@ -1636,11 +1633,10 @@ void do_show_file(CharData *ch, char *argument) {
     argument = any_one_arg(argument, arg);
 
     if (!*arg) {
-        strcpy(buf, "Usage: show file <name> <num lines>\n\nFile options:\n");
+        char_printf(ch, "Usage: show file <name> <num lines>\n\nFile options:\n");
         for (i = 0; fields[i].level; ++i)
             if (fields[i].level <= GET_LEVEL(ch))
-                sprintf(buf, "%s%-15s%s\n", buf, fields[i].name, fields[i].path);
-        char_printf(ch, buf);
+                char_printf(ch, "{:<15}{}\n", fields[i].name, fields[i].path);
         return;
     }
 
@@ -1752,17 +1748,15 @@ void do_show_spell(CharData *ch, int spellnum) {
     char_printf(ch, "Fighting?   : {}\n", spell->fighting_ok ? "&1Yes&0" : "No");
 
     /* Targets */
-    sprintf(buf, "Targets     :");
+    char_printf(ch, "Targets     :");
     for (i = 0; i < NUM_TAR_FLAGS; i++)
         if (spell->targets & (1 << i)) {
-            strcat(buf, " ");
-            strcat(buf, targets[i]);
+            char_printf(ch, " {}", targets[i]);
             anytargets = true;
         }
     if (!anytargets)
-        strcat(buf, " -none-");
-    strcat(buf, "\n");
-    char_printf(ch, buf);
+        char_printf(ch, " -none-");
+    char_printf(ch, "\n");
 
     /* Violent */
     /* Damage type */
@@ -1786,17 +1780,15 @@ void do_show_spell(CharData *ch, int spellnum) {
     }
 
     /* Routines */
-    sprintf(buf, "Routines    :");
+    char_printf(ch, "Routines    :");
     for (i = 0; i < NUM_ROUTINE_TYPES; i++)
         if (spell->routines & (1 << i)) {
-            strcat(buf, " ");
-            strcat(buf, routines[i]);
+            char_printf(ch, " {}", routines[i]);
             anyroutines = true;
         }
     if (!anyroutines)
-        strcat(buf, " -none-");
-    strcat(buf, "\n");
-    char_printf(ch, buf);
+        char_printf(ch, " -none-");
+    char_printf(ch, "\n");
 
     char_printf(ch, "Mana        : max {:d}  min {:d}  chg {:d}\n", spell->mana_max, spell->mana_min,
                 spell->mana_change);
@@ -2112,8 +2104,7 @@ void infodump_spellassign(CharData *ch, char *argument) {
             fprintf(fl, "endclass\n\n");
     }
     fclose(fl);
-    sprintf(buf, "Dumped spell assignments to %s\n", fname);
-    char_printf(ch, buf);
+    char_printf(ch, "Dumped spell assignments to {}\n", fname);
 }
 
 /* The purpose of info dumps is to output game data in a format that will

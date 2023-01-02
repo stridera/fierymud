@@ -182,7 +182,6 @@ void show_sizes(CharData *ch) {
     for (i = 0; i < NUM_SIZES; i++) {
         sprintf(hrange, "%-18s - %-18s", statelength(sizes[i].height_min), statelength(sizes[i].height_max));
         sprintf(wrange, "%-11s - %-11s", stateweight(sizes[i].weight_min), stateweight(sizes[i].weight_max));
-        sprintf(buf, "% 3d  %s%-12s&0  %-40s  %s\n", i, sizes[i].color, sizes[i].name, hrange, wrange);
-        char_printf(ch, buf);
+        char_printf(ch, "{: 3d}  {}{:<12}&0  {:<40}  {}\n", i, sizes[i].color, sizes[i].name, hrange, wrange);
     }
 }

@@ -460,14 +460,12 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp]);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         *value = search_block(arg, modes[type].lookup, false);
         if (*value < 0) {
-            sprintf(buf, "Invalid %s type: %s\n", modes[type].name, arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Invalid {} type: {}\n", modes[type].name, arg);
             return false;
         }
         if (modes[type].data == TYPE)
@@ -564,14 +562,13 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%s%-16s", buf, classes[temp].plainname);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         *value = parse_class(0, 0, arg);
         if (*value < 0) {
-            sprintf(buf, "Invalid class: %s\n", arg);
             char_printf(ch, buf);
+            sprintf(buf, "Invalid class: %s\n", arg);
             return false;
         }
         break;
@@ -584,14 +581,12 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%s%-16s", buf, races[temp].plainname);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         *value = parse_race(0, 0, arg);
         if (*value < 0) {
-            sprintf(buf, "Invalid race: %s\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Invalid race: %s\n", arg);
             return false;
         }
         break;
@@ -604,14 +599,12 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%s%-16s", buf, sizes[temp].name);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         *value = parse_size(0, arg);
         if (*value < 0) {
-            sprintf(buf, "Invalid size: %s\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Invalid size: %s\n", arg);
             return false;
         }
         break;
@@ -662,8 +655,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%s%-16s", buf, modes[type].lookup[temp]);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         for (temp = 0; *arg; delimited_arg(argument, arg, '\'')) {
@@ -701,8 +693,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         else if (is_abbrev(arg, "room"))
             *value = WLD_TRIGGER;
         else {
-            sprintf(buf, "Unknown trigger attachment type: %s\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Unknown trigger attachment type: {}\n", arg);
             return false;
         }
         any_one_arg(argument, arg);
@@ -738,8 +729,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%s%-16s", buf, hemispheres[temp].name);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         for (temp = 0; temp < NUM_HEMISPHERES; ++temp)
@@ -747,8 +737,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 break;
         *value = temp;
         if (*value >= NUM_HEMISPHERES) {
-            sprintf(buf, "Invalid hemisphere: %s\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Invalid hemisphere: {}\n", arg);
             return false;
         }
         break;
@@ -761,8 +750,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%s%-16s", buf, climates[temp].name);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         for (temp = 0; temp < NUM_CLIMATES; ++temp)
@@ -770,8 +758,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                 break;
         *value = temp;
         if (*value >= NUM_CLIMATES) {
-            sprintf(buf, "Invalid climate: %s\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "Invalid climate: {}\n", arg);
             return false;
         }
         break;
@@ -808,8 +795,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%-16s", damtypes[temp].name);
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         if ((*value = parse_damtype(ch, arg)) < 0)
@@ -824,8 +810,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
                     strcat(buf, "\n");
                 sprintf(buf, "%-16s", LIQ_NAME(temp));
             }
-            strcat(buf, "\n");
-            char_printf(ch, buf);
+            char_printf(ch, "{}\n", buf);
             return false;
         }
         if ((*value = parse_liquid(ch, arg)) < 0)
@@ -1437,14 +1422,12 @@ ACMD(do_osearch) {
 
         if (match) {
             std::string vbuf;
-            /* Extra chars to account for: */
-            temp = count_color_chars(obj->short_description);
-            /* Actual string length (sans color chars) */
-            temp_found = strlen(obj->short_description) - temp;
+            // How many extra spaces do we need to pad the title to OBJ_TITLE_LENGTH?
+            int str_len = (strlen(obj->short_description) - ansi_strlen(obj->short_description)) * 2;
             briefmoney(buf, 6, GET_OBJ_COST(obj));
-            // "%4d. [%s%5d%s] %s %s%3d&0 %s%5g&0 %*s " ANRM,
-            vbuf = fmt::format("{:4d}. [{}{:5d}{}] {} {}{:3d}&0 {}{}&0 {}&0", ++found, grn, obj_index[nr].vnum, nrm,
-                               ellipsis(obj->short_description, OBJ_TITLE_LENGTH),
+            vbuf = fmt::format("{:4d}. [{}{:5d}{}] {:<{}} {}{:<3d}&0  {}{:>4}&0 {:<{}}&0 ", ++found, grn,
+                               obj_index[nr].vnum, nrm, ellipsis(obj->short_description, OBJ_TITLE_LENGTH),
+                               OBJ_TITLE_LENGTH + str_len,
                                GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
                                : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
                                : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
@@ -1456,7 +1439,8 @@ ACMD(do_osearch) {
                                : GET_OBJ_LEVEL(obj) > 49  ? "&2"
                                                           : "",
                                GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
-                               GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), buf);
+                               GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), buf,
+                               5 + count_color_chars(buf));
             switch (subcmd) {
             case SCMD_VWEAR:
                 if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&
@@ -1471,7 +1455,7 @@ ACMD(do_osearch) {
             case SCMD_VLIST:
             case SCMD_VSEARCH:
             case SCMD_VNUM:
-                vbuf += fmt::format("{:.7s} ", OBJ_TYPE_NAME(obj));
+                vbuf += fmt::format("{:>7} ", OBJ_TYPE_NAME(obj));
             /* fall through */
             case SCMD_VITEM:
                 switch (GET_OBJ_TYPE(obj)) {
@@ -1964,8 +1948,7 @@ ACMD(do_tsearch) {
             else if (is_abbrev(string, "room"))
                 value = WLD_TRIGGER;
             else {
-                sprintf(buf, "Unknown trigger attachment type: %s\n", string);
-                char_printf(ch, buf);
+                char_printf(ch, "Unknown trigger attachment type: {}\n", string);
                 return;
             }
         }
@@ -2073,8 +2056,7 @@ ACMD(do_zsearch) {
                 last = atoi(arg);
         }
         if (first < 0 || first > MAX_VNUM || last < 0 || last > MAX_VNUM) {
-            sprintf(buf, "Values must be between 0 and %d.\n", MAX_VNUM);
-            char_printf(ch, buf);
+            char_printf(ch, "Values must be between 0 and {}.\n", MAX_VNUM);
             return;
         }
         /* If the order of the vnums are reversed, then swap em. */

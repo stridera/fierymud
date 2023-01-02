@@ -1008,8 +1008,7 @@ void list_similar_commands(CharData *ch, char *arg) {
                     char_printf(ch, "\nDid you mean:\n");
                     found = true;
                 }
-                sprintf(buf, "  %s\n", cmd_info[cmd].command);
-                char_printf(ch, buf);
+                char_printf(ch, "  {}\n", cmd_info[cmd].command);
             }
         }
     }
@@ -1190,8 +1189,7 @@ ACMD(do_alias) {
 
         if ((alias = GET_ALIASES(vict)))
             for (; alias; alias = alias->next) {
-                sprintf(buf, "%-15s %s\n", alias->alias, alias->replacement);
-                char_printf(ch, buf);
+                char_printf(ch, "{:<15} {}\n", alias->alias, alias->replacement);
             }
         else
             char_printf(ch, " None.\n");
@@ -1235,8 +1233,7 @@ ACMD(do_alias) {
             char_printf(ch, "Alias added.\n");
         }
     } else {
-        sprintf(buf, "You cannot modify %s's aliases.\n", GET_NAME(vict));
-        char_printf(ch, buf);
+        char_printf(ch, "You cannot modify {}'s aliases.\n", GET_NAME(vict));
     }
 }
 
@@ -2858,9 +2855,7 @@ long max_exp_gain(CharData *ch) {
     total = exp_next_level(GET_LEVEL(ch), GET_CLASS(ch)) - exp_next_level((GET_LEVEL(ch) - 1), GET_CLASS(ch));
 
     current = (long)(0.2 * (float)total);
-    /*sprintf(buf, "max exp gain is %ld, but total %ld, percent 20\n", current,
-       total); char_printf(ch, buf);
-     */
+    // char_printf(ch, "max exp gain is {}, but total {}, percent 20\n", current, total);
     return current;
 }
 

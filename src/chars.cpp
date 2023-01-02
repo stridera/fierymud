@@ -583,9 +583,8 @@ void hp_pos_check(CharData *ch, CharData *attacker, int dam) {
         if (dam > (GET_MAX_HIT(ch) >> 2))
             act("That really did HURT!", false, ch, 0, 0, TO_CHAR);
         if (GET_HIT(ch) < (GET_MAX_HIT(ch) >> 2)) {
-            sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\n", CLRLV(ch, FRED, C_SPR),
-                    CLRLV(ch, ANRM, C_SPR));
-            char_printf(ch, buf2);
+            char_printf(ch, "{}You wish that your wounds would stop BLEEDING so much!{}\n", CLRLV(ch, FRED, C_SPR),
+                        CLRLV(ch, ANRM, C_SPR));
         }
     }
 }

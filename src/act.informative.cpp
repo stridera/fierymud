@@ -2377,7 +2377,7 @@ ACMD(do_users) {
             if (d->original) {
                 if ((d->original->in_room != NOWHERE) && (d->connected == 0)) {
                     sprintf(roomstuff, "%d/%s", world[d->original->in_room].vnum,
-                            strip_ansi(world[d->original->in_room].name));
+                            strip_ansi(world[d->original->in_room].name).c_str());
                     *(room) = '\0';
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
@@ -2388,7 +2388,7 @@ ACMD(do_users) {
             } else {
                 if ((d->character->in_room != NOWHERE) && (d->connected == 0)) {
                     sprintf(roomstuff, "%d/%s", world[d->character->in_room].vnum,
-                            strip_ansi(world[d->character->in_room].name));
+                            strip_ansi(world[d->character->in_room].name).c_str());
                     *(room) = '\0';
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
@@ -2403,7 +2403,7 @@ ACMD(do_users) {
 
         if (d->connected || (!d->connected && CAN_SEE(ch, d->character))) {
             if (ipsort) {
-                strcpy(userlist[counter], strip_ansi(line));
+                strcpy(userlist[counter], strip_ansi(line).c_str());
             } else {
                 sprintf(userbuf, "%s%s", userbuf, line);
             }
@@ -2490,22 +2490,22 @@ static void perform_mortal_where(CharData *ch, char *arg) {
 
 static void print_object_location(int num, ObjData *obj, CharData *ch, int recur) {
     if (num > 0)
-        sprintf(buf, "O%3d. %-25s - ", num, strip_ansi(obj->short_description));
+        paging_printf(ch, "O{:3d}. {:<25} - ", num, strip_ansi(obj->short_description));
     else
-        sprintf(buf, "%34s", " - ");
+        paging_printf(ch, "{:<34}", " - ");
 
     if (obj->in_room > NOWHERE)
-        paging_printf(ch, "{}[{:5d}] {}\n", buf, world[obj->in_room].vnum, world[obj->in_room].name);
+        paging_printf(ch, "[{:5d}] {}\n", world[obj->in_room].vnum, world[obj->in_room].name);
     else if (obj->carried_by)
-        paging_printf(ch, "{}carried by {}\n", buf, PERS(obj->carried_by, ch));
+        paging_printf(ch, "carried by {}\n", PERS(obj->carried_by, ch));
     else if (obj->worn_by)
-        paging_printf(ch, "{}worn by {}\n", buf, PERS(obj->worn_by, ch));
+        paging_printf(ch, "worn by {}\n", PERS(obj->worn_by, ch));
     else if (obj->in_obj) {
-        paging_printf(ch, "{}inside {}{}\n", buf, obj->in_obj->short_description, (recur ? ", which is" : " "));
+        paging_printf(ch, "inside {}{}\n", obj->in_obj->short_description, (recur ? ", which is" : " "));
         if (recur)
             print_object_location(0, obj->in_obj, ch, recur);
     } else
-        paging_printf(ch, "{}in an unknown location\n", buf);
+        paging_printf(ch, "in an unknown location\n");
 }
 
 static void perform_immort_where(CharData *ch, char *arg) {
@@ -3650,7 +3650,7 @@ ACMD(do_listspells) {
                     strcat(mybuf, "&4&uSpell               &0&u");
                     for (class_num = 0; class_num < num_magic_classes; ++class_num)
                         snprintf(mybuf, sizeof(mybuf), "%s %2.2s", mybuf,
-                                 strip_ansi(classes[magic_class_index[class_num]].abbrev));
+                                 strip_ansi(classes[magic_class_index[class_num]].abbrev).c_str());
                     strcat(mybuf, "&0\n");
                 }
                 ++j;
@@ -3801,8 +3801,8 @@ static int scan_chars(CharData *ch, int room, int dis, int dir, int seen_any) {
 
         ++count;
 
-        char_printf(ch, "{}{}   {:>22s} : {}" ANRM " ({}" ANRM ")\n", distance[dis], dis ? dirs[dir] : "here",
-                    GET_NAME(i),
+        auto dist = fmt::format("{} {}", distance[dis], dis ? dirs[dir] : "here");
+        char_printf(ch, "   {:>22s} : {}" ANRM " ({}" ANRM ")\n", dist, GET_NAME(i),
                     GET_POS(i) == POS_FLYING ? FCYN "fly" : (GET_POS(i) > POS_SITTING ? "std" : FGRN "sit"));
     }
 

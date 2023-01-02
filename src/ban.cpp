@@ -98,7 +98,7 @@ void write_ban_list(void) {
 }
 
 ACMD(do_ban) {
-    char flag[MAX_INPUT_LENGTH], site[MAX_INPUT_LENGTH], format[MAX_INPUT_LENGTH], *nextchar;
+    char flag[MAX_INPUT_LENGTH], site[MAX_INPUT_LENGTH], *nextchar;
     int i;
     BanListElement *ban_node;
 
@@ -109,12 +109,10 @@ ACMD(do_ban) {
             char_printf(ch, "No sites are banned.\n");
             return;
         }
-        strcpy(format, "%-25.25s  %-8.8s  %-11.11s  %-16.16s\n");
-        sprintf(buf, format, "Banned Site Name", "Ban Type", "Banned On", "Banned By");
-        char_printf(ch, buf);
-        sprintf(buf, format, "---------------------------------", "---------------------------------",
-                "---------------------------------", "---------------------------------");
-        char_printf(ch, buf);
+        std::string_view format{"{:<25}  {:<8}  {:<11}  {:16}\n"};
+        char_printf(ch, format, "Banned Site Name", "Ban Type", "Banned On", "Banned By");
+        char_printf(ch, format, "---------------------------------", "---------------------------------",
+                    "---------------------------------", "---------------------------------");
 
         for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
             if (ban_node->date) {
@@ -122,8 +120,7 @@ ACMD(do_ban) {
                 strcpy(site, buf1);
             } else
                 strcpy(site, "Unknown");
-            sprintf(buf, format, ban_node->site, ban_types[ban_node->type], site, ban_node->name);
-            char_printf(ch, buf);
+            char_printf(ch, format, ban_node->site, ban_types[ban_node->type], site, ban_node->name);
         }
         return;
     }

@@ -24,6 +24,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "magic.hpp"
 #include "math.hpp"
 #include "movement.hpp"
@@ -33,8 +34,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 /* Values for the compdef struct:
  *
@@ -74,7 +73,6 @@ void list_olc_compositions(CharData *ch) {
     int i;
 
     for (i = 0; i < NUM_COMPOSITIONS; i++) {
-        sprintf(buf, "&2% 2d&0) %s%s&0\n", i, compositions[i].color, capitalize(compositions[i].name));
-        char_printf(ch, buf);
+        char_printf(ch, "&2{: 2d}&0) {}{}&0\n", i, compositions[i].color, capitalize(compositions[i].name));
     }
 }

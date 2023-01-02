@@ -695,8 +695,7 @@ int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numob
 
     if (!*arg) {
         if (ch) {
-            sprintf(buf, "What %s?\n", objname);
-            char_printf(ch, buf);
+            char_printf(ch, "What {}?\n", objname);
         }
         return -1;
     }
@@ -724,8 +723,7 @@ int parse_obj_name(CharData *ch, const char *arg, const char *objname, int numob
         answer = best;
     if (answer == -1) {
         if (ch) {
-            sprintf(buf, "There is no such %s.\n", objname);
-            char_printf(ch, buf);
+            char_printf(ch, "There is no such {}.\n", objname);
         }
     }
     return answer;

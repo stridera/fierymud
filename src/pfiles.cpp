@@ -1457,12 +1457,10 @@ FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
             sprintf(buf, "SYSERR: READING OBJECT FILE %s (5)", filename);
             perror(buf);
             if (ch) {
-                sprintf(buf, "&1&bI/O Error %d&0: %s\n", errno, strerror(errno));
-                char_printf(ch, buf);
+                char_printf(ch, "&1&bI/O Error {:d}&0: {}\n", errno, strerror(errno));
             }
         } else if (ch && !quiet) {
-            sprintf(buf, "There is no object file for %s.\n", player_name);
-            char_printf(ch, buf);
+            char_printf(ch, "There is no object file for {}.\n", player_name);
         }
         return nullptr;
     }
@@ -1570,9 +1568,8 @@ void convert_player_obj_files(CharData *ch) {
             converted++;
     }
 
-    sprintf(buf, "Examined %d player object file%s and updated %d.\n", top_of_p_table + 1,
-            top_of_p_table + 1 == 1 ? "" : "s", converted);
-    char_printf(ch, buf);
+    char_printf(ch, "Examined {:d} player object file{} and updated {:d}.\n", top_of_p_table + 1,
+                top_of_p_table + 1 == 1 ? "" : "s", converted);
 }
 
 void convert_single_player_obj_file(CharData *ch, char *name) {

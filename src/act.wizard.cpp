@@ -166,8 +166,7 @@ ACMD(do_iptables) {
                 }
                 /* We have a valid player with a link */
                 if (normalize_ip_address(desc->host, buf)) {
-                    sprintf(buf2, "Error! Could not normalize host '%s'!\n", desc->host);
-                    char_printf(ch, buf2);
+                    char_printf(ch, "Error! Could not normalize host '{}'!\n", desc->host);
                     return;
                 }
                 /* buf now contains the normlized IP address string for vict */
@@ -215,8 +214,7 @@ ACMD(do_iptables) {
             fclose(tmp);
 
             if (num_ports_open == num_ports) {
-                sprintf(buf1, "%s is already in the table.\n", buf);
-                char_printf(ch, buf1);
+                char_printf(ch, "{} is already in the table.\n", buf);
             } else {
                 /* Open up the desired ports */
                 for (i = 0; i < num_ports; i++) {
@@ -228,8 +226,7 @@ ACMD(do_iptables) {
                         system(cBuf);
                     }
                 }
-                sprintf(buf2, "Ok, added %s to the table.\n", buf);
-                char_printf(ch, buf2);
+                char_printf(ch, "Ok, added {} to the table.\n", buf);
             }
         }
 
@@ -267,8 +264,9 @@ ACMD(do_echo) {
             }
             if (!speech_ok(ch, 0))
                 return;
+            // TODO: Get rid of this const_cast
             if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-                argument = strip_ansi(argument);
+                argument = const_cast<char *>(strip_ansi(argument).c_str());
             sprintf(buf, "$n%s %s&0", subcmd == SCMD_EMOTES ? "'s" : "", argument);
         } else
             sprintf(buf, "%s@0", argument);
@@ -951,10 +949,6 @@ ACMD(do_advance) {
         return;
     }
 
-    /*
-     * I don't know which wise guy commented out this next check, but if
-     * they ever do it again, I'll kill them.
-     */
     if (GET_LEVEL(ch) <= GET_LEVEL(victim)) {
         char_printf(ch, "Maybe that's not such a great idea.\n");
         return;
@@ -968,8 +962,7 @@ ACMD(do_advance) {
         return;
     }
     if (newlevel > LVL_IMPL) {
-        sprintf(buf, "%d is the highest possible level.\n", LVL_IMPL);
-        char_printf(ch, buf);
+        char_printf(ch, "{} is the highest possible level.\n", LVL_IMPL);
         return;
     }
 
@@ -981,6 +974,7 @@ ACMD(do_advance) {
         char_printf(ch, "They are already at that level.\n");
         return;
     }
+
     oldlevel = GET_LEVEL(victim);
     if (newlevel < GET_LEVEL(victim)) {
         char_printf(ch,
@@ -1101,11 +1095,7 @@ ACMD(do_pain) {
     else {
         int change = GET_HIT(vict) * 0.1;
         perform_pain(vict);
-        sprintf(buf,
-                "Their body writhes in pain.  Your displeasure has been known. "
-                "(%d)\n",
-                change);
-        char_printf(ch, buf);
+        char_printf(ch, "Their body writhes in pain.  Your displeasure has been known. ({})\n", change);
         act("A wave of pain and pestilence sent by $N harms you!", false, vict, 0, ch, TO_CHAR | TO_SLEEP);
     }
 }
@@ -1140,8 +1130,7 @@ void perform_immort_invis(CharData *ch, int level) {
     }
 
     GET_INVIS_LEV(ch) = level;
-    sprintf(buf, "Your invisibility level is %d.\n", level);
-    char_printf(ch, buf);
+    char_printf(ch, "Your invisibility level is {:d}.\n", level);
 }
 
 ACMD(do_invis) {
@@ -1177,14 +1166,13 @@ ACMD(do_gecho) {
     if (!*argument)
         char_printf(ch, "That must be a mistake...\n");
     else {
-        sprintf(buf, "%s&0\n", argument);
         for (pt = descriptor_list; pt; pt = pt->next)
             if (!pt->connected && pt->character && pt->character != ch)
-                char_printf(pt->character, buf);
+                char_printf(pt->character, "{}&0\n", argument);
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
             char_printf(ch, OK);
         else
-            char_printf(ch, buf);
+            char_printf(ch, "{}&0\n", argument);
     }
 }
 
@@ -1197,23 +1185,21 @@ ACMD(do_poofset) {
     case SCMD_POOFIN:
         if (argument[0] != '\0') {
             GET_POOFIN(ch) = strdup(argument);
-            sprintf(buf, "Your poofin is now: %s\n", GET_POOFIN(ch));
+            char_printf(ch, "Your poofin is now: %s\n", GET_POOFIN(ch));
         } else
-            sprintf(buf, "Your poofin is: %s\n", GET_POOFIN(ch));
+            char_printf(ch, "Your poofin is: %s\n", GET_POOFIN(ch));
         break;
     case SCMD_POOFOUT:
         if (argument[0] != '\0') {
             GET_POOFOUT(ch) = strdup(argument);
-            sprintf(buf, "Your poofin is now: %s\n", GET_POOFOUT(ch));
+            char_printf(ch, "Your poofin is now: %s\n", GET_POOFOUT(ch));
         } else
-            sprintf(buf, "Your poofout is: %s\n", GET_POOFOUT(ch));
+            char_printf(ch, "Your poofout is: %s\n", GET_POOFOUT(ch));
         break;
     default:
         return;
         break;
     }
-
-    char_printf(ch, buf);
 }
 
 ACMD(do_dc) {
@@ -1624,8 +1610,6 @@ ACMD(do_name) {
         }
 
         for (d = descriptor_list; d; d = d->next) {
-            /* added this NULL check to stop crashes when people where CON_QANSI etc
-             */
             if (d->character) {
                 if (((STATE(d) == CON_NAME_WAIT_APPROVAL) ||
                      (PLR_FLAGGED(d->character, PLR_NAPPROVE) && !(PLR_FLAGGED(d->character, PLR_NEWNAME)))) &&
@@ -1636,8 +1620,7 @@ ACMD(do_name) {
         }
 
         if (strlen(buffer) < 2) {
-            sprintf(buffer, "No one.\n");
-            char_printf(ch, buffer);
+            char_printf(ch, "No one.\n");
         } else {
             char_printf(ch, "The following people are awaiting name approval:\n");
             char_printf(ch, buffer);
@@ -2743,18 +2726,12 @@ ACMD(do_autoboot) {
             if (GET_LEVEL(ch) >= LVL_REBOOT_MASTER) {
                 char_printf(ch, "  autoboot off           - disable automatic reboot\n");
                 char_printf(ch, "  autoboot on            - enable automatic reboot\n");
-                sprintf(buf,
-                        "  autoboot warntime <mn> - warnings begin <mn> minutes before "
-                        "reboot (now %d)\n",
-                        reboot_warning_minutes);
-                char_printf(ch, buf);
+                char_printf(ch, "  autoboot warntime <mn> - warnings begin <mn> minutes before reboot (now {:d})\n",
+                            reboot_warning_minutes);
                 char_printf(ch, "  autoboot [<hr>][:<mn>] - reboot in <hr> hours, <mn> minutes\n");
             }
-            sprintf(buf,
-                    "  autoboot postpone      - postpone reboot to %d minutes from "
-                    "now\n",
-                    2 * reboot_warning_minutes);
-            char_printf(ch, buf);
+            char_printf(ch, "  autoboot postpone      - postpone reboot to {:d} minutes from now\n",
+                        2 * reboot_warning_minutes);
             char_printf(ch, "\n");
         }
 
@@ -2776,8 +2753,7 @@ ACMD(do_autoboot) {
         minutes = 2 * reboot_warning_minutes;
 
         if (reboot_pulse - global_pulse > (unsigned long)minutes * 60 * PASSES_PER_SEC) {
-            sprintf(buf, "Not postponing reboot because it's over %d minutes away.\n", 2 * reboot_warning_minutes);
-            char_printf(ch, buf);
+            char_printf(ch, "Not postponing reboot because it's over {:d} minutes away.\n", 2 * reboot_warning_minutes);
             return;
         }
 
@@ -2941,8 +2917,7 @@ ACMD(do_copyto) {
         return;
     }
     if (rroom <= 0) {
-        sprintf(buf, "There is no room with the number %d.\n", iroom);
-        char_printf(ch, buf);
+        char_printf(ch, "There is no room with the number {:d}.\n", iroom);
         return;
     }
 
@@ -2954,8 +2929,7 @@ ACMD(do_copyto) {
         /* Only works if you have Oasis OLC */
         olc_add_to_save_list((iroom / 100), OLC_SAVE_ROOM);
 
-        sprintf(buf, "You copy the description to room %d.\n", iroom);
-        char_printf(ch, buf);
+        char_printf(ch, "You copy the description to room {:d}.\n", iroom);
     } else
         char_printf(ch, "This room has no description!\n");
 }
@@ -3282,10 +3256,9 @@ ACMD(do_hotboot) {
                 found = true;
             }
 
-            sprintf(buf, "  %s, who is currently busy with: %s%s%s\n",
-                    d->character && GET_NAME(d->character) ? GET_NAME(d->character) : "An unnamed connection",
-                    CLR(ch, FYEL), connected_types[STATE(d)], CLR(ch, ANRM));
-            char_printf(ch, buf);
+            char_printf(ch, "  {}, who is currently busy with: {}{}{}\n",
+                        d->character && GET_NAME(d->character) ? GET_NAME(d->character) : "An unnamed connection",
+                        CLR(ch, FYEL), connected_types[STATE(d)], CLR(ch, ANRM));
         }
 
         if (found) {

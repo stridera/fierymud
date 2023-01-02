@@ -767,8 +767,7 @@ ACMD(do_skillset) {
                 continue;
             sprintf(buf + strlen(buf), "%-18.18s ", skills[i].name);
             if (k % 4 == 3) { /* last column */
-                strcat(buf, "\n");
-                char_printf(ch, buf);
+                char_printf(ch, "{}\n", buf);
                 *buf = '\0';
             }
             ++k;
@@ -803,8 +802,7 @@ ACMD(do_skillset) {
         for (i = 1; i <= TOP_SKILL; ++i) {
             SET_SKILL(vict, i, 1000);
             if (strcasecmp(skills[i].name, "!UNUSED!")) {
-                sprintf(buf2, "You change %s's skill level in %s to 100.\n", GET_NAME(vict), skills[i].name);
-                char_printf(ch, buf2);
+                char_printf(ch, "You change {}'s skill level in {} to 100.\n", GET_NAME(vict), skills[i].name);
             }
         }
         return;
@@ -907,9 +905,9 @@ void get_paging_input(DescriptorData *d, char *input) {
 
     /* A digit: goto a page */
     else if (isdigit(*buf)) {
-        int page = atoi(buf);
-        if (page > 0 && page <= d->page_outbuf->size() / get_page_length(d)) {
-            d->paging_curpage = atoi(buf) - 1;
+        int page = atoi(buf) - 1;
+        if (page > 0 && page < d->paging_numpages) {
+            d->paging_curpage = page;
         } else {
             char_printf(d->character, "Invalid page number.\n");
             return;
@@ -922,7 +920,6 @@ void get_paging_input(DescriptorData *d, char *input) {
         /* No input: goto the next page */
         d->paging_curpage++;
 
-    log(LogSeverity::Debug, -1, "Paging: page {} of {}.", d->paging_curpage, d->paging_numpages);
     if (d->paging_curpage >= d->paging_numpages) {
         d->page_outbuf->clear();
         return;
@@ -942,7 +939,7 @@ void start_paging_desc(DescriptorData *d) {
 
 void print_current_page(DescriptorData *d) {
     int page_length = get_page_length(d);
-    if (d->paging_curpage < 0 || d->paging_curpage >= d->paging_numpages) {
+    if (d->paging_curpage < 0 || d->paging_curpage > d->paging_numpages) {
         log(LogSeverity::Error, -1, "Paging error: page {} of {}.", d->paging_curpage, d->paging_numpages);
         d->page_outbuf->clear();
         return;

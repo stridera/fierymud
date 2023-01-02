@@ -740,8 +740,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                 act("$n waves $p in the air.", true, ch, obj, 0, TO_ROOM);
             }
         } else if (*arg) {
-            sprintf(buf, "You can't see any %s here.\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "You can't see any {} here.\n", arg);
             return;
         } else {
             act("At what should $p be pointed?", false, ch, obj, nullptr, TO_CHAR);
@@ -845,8 +844,7 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             act("What do you want to recite $p at?", false, ch, obj, nullptr, TO_CHAR);
             return;
         } else {
-            sprintf(buf, "You can't see any %s here.\n", arg);
-            char_printf(ch, buf);
+            char_printf(ch, "You can't see any {} here.\n", arg);
             return;
         }
         break;
@@ -1074,11 +1072,10 @@ bool music( CharData *ch, int music) {
                 strcpy(buf1, "hour");
             else
                 sprintf(buf1, "%d hours", hours);
-            sprintf(buf,
+            char_printf(ch,
                     "You're still drained from performing recently!\n"
                     "You'll be able to perform again in another %s.\n",
                     buf1);
-            char_printf(ch, buf);
             return true;
     }
     return false;
@@ -1204,15 +1201,10 @@ ACMD(do_cast) {
         }
         if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, CD_CHANT)) {
             int hours = GET_COOLDOWN(ch, CD_CHANT) / (1 MUD_HR);
-            if (hours == 1)
-                strcpy(buf1, "hour");
-            else
-                sprintf(buf1, "%d hours", hours);
-            sprintf(buf,
-                    "You're still out of breath from chanting recently!\n"
-                    "You'll be able to chant again in another %s.\n",
-                    buf1);
-            char_printf(ch, buf);
+            char_printf(ch,
+                        "You're still out of breath from chanting recently!\n"
+                        "You'll be able to chant again in another {:d} {}.\n",
+                        hours, hours == 1 ? "hour" : "hours");
             return;
         }
     }
@@ -1250,77 +1242,34 @@ ACMD(do_cast) {
                 if (!GET_COOLDOWN(ch, CD_MUSIC_1))
                     break;
             default:
-                sprintf(buf, "You're still drained from performing recently!\n");
-                char_printf(ch, buf);
+                char_printf(ch, "You're still drained from performing recently!\n");
                 if GET_COOLDOWN (ch, CD_MUSIC_1) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_1) / (1 MUD_HR);
-                    if (hours == 1)
-                        strcpy(buf1, "hour");
-                    else {
-                        sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance one will refresh in %s.\n", buf1);
-                        char_printf(ch, buf);
-                    }
+                    char_printf(ch, "Performance one will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_2) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_2) / (1 MUD_HR);
-                    if (hours == 1)
-                        strcpy(buf1, "hour");
-                    else {
-                        sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance two will refresh in %s.\n", buf1);
-                        char_printf(ch, buf);
-                    }
+                    char_printf(ch, "Performance two will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_3) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_3) / (1 MUD_HR);
-                    if (hours == 1)
-                        strcpy(buf1, "hour");
-                    else {
-                        sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance three will refresh in %s.\n", buf1);
-                        char_printf(ch, buf);
-                    }
+                    char_printf(ch, "Performance three will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_4) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_4) / (1 MUD_HR);
-                    if (hours == 1)
-                        strcpy(buf1, "hour");
-                    else {
-                        sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance four will refresh in %s.\n", buf1);
-                        char_printf(ch, buf);
-                    }
+                    char_printf(ch, "Performance four will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_5) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_5) / (1 MUD_HR);
-                    if (hours == 1)
-                        strcpy(buf1, "hour");
-                    else {
-                        sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance five will refresh in %s.\n", buf1);
-                        char_printf(ch, buf);
-                    }
+                    char_printf(ch, "Performance five will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_6) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_6) / (1 MUD_HR);
-                    if (hours == 1)
-                        strcpy(buf1, "hour");
-                    else {
-                        sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance six will refresh in %s.\n", buf1);
-                        char_printf(ch, buf);
-                    }
+                    char_printf(ch, "Performance six will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_7) {
                     int hours = GET_COOLDOWN(ch, CD_MUSIC_7) / (1 MUD_HR);
-                    if (hours == 1)
-                        strcpy(buf1, "hour");
-                    else {
-                        sprintf(buf1, "%d hours", hours);
-                        sprintf(buf, "Performance seven will refresh in %s.\n", buf1);
-                        char_printf(ch, buf);
-                    }
+                    char_printf(ch, "Performance seven will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
                 }
                 return;
             }
@@ -1399,10 +1348,9 @@ ACMD(do_cast) {
             else if (subcmd == SCMD_PERFORM)
                 char_printf(ch, "To whom should the music be played?\n");
             else {
-                sprintf(buf, "Upon %s should the spell be cast?\n",
-                        IS_SET(SINFO.targets, TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_WORLD | TAR_STRING) ? "what"
-                                                                                                       : "whom");
-                char_printf(ch, buf);
+                char_printf(ch, "Upon {} should the spell be cast?\n",
+                            IS_SET(SINFO.targets, TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_WORLD | TAR_STRING) ? "what"
+                                                                                                           : "whom");
             }
         }
         return;

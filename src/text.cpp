@@ -14,13 +14,12 @@
 
 #include "conf.hpp"
 #include "editor.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "screen.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 #define MEGABUF_SIZE 100000
 static char megabuf[MEGABUF_SIZE]; /* Arbitrary large size */
@@ -815,7 +814,7 @@ static void sb_compile_lines(ScreenBuf *sb, size_t start_line) {
             }
             strcpy(write, start);
             write += strlen(start);
-            line_len += strlen(strip_ansi(start));
+            line_len += ansi_strlen(start);
 
             *read = temp;
         }
