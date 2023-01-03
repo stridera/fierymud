@@ -3132,8 +3132,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 eff[8].duration = skill / (15 - (GET_CHA(ch) / 20)); /* max 10 */
             }
         }
-        act("You begin an inspiring performance!", false, ch, 0, victim, TO_CHAR);
-        act("$n begins an inspiring performance!", false, ch, 0, victim, TO_NOTVICT);
         to_vict = "Your spirit swells with inspiration!";
         to_room = "$N's spirit stirs with inspiration!";
         break;
@@ -3152,8 +3150,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SONG_TERROR:
-        act("You perform a haunting melody!", false, ch, 0, victim, TO_CHAR);
-        act("$n performs a haunting melody!", false, ch, 0, victim, TO_NOTVICT);
     case SONG_BALLAD_OF_TEARS:
         eff[0].location = APPLY_SAVING_PARA;
         eff[1].location = APPLY_SAVING_ROD;
@@ -3286,7 +3282,8 @@ void perform_mag_group(int skill, CharData *ch, CharData *tch, int spellnum, int
         mag_affect(skill, ch, tch, SPELL_FAMILIARITY, savetype, CAST_PERFORM);
         break;
     case SONG_HEROIC_JOURNEY:
-        mag_affect(skill, ch, tch, SONG_INSPIRATION, savetype, CAST_SPELL);
+        mag_affect(skill, ch, tch, SONG_INSPIRATION, savetype, CAST_PERFORM);
+        mag_unaffect(skill, ch, tch, SONG_INSPIRATION, savetype);
         break;
     case SPELL_INVIGORATE:
         mag_point(skill, ch, tch, SPELL_INVIGORATE, savetype);
@@ -3614,6 +3611,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
             mag_damage(skill, ch, tch, spellnum, savetype);
         else
             mag_affect(skill, ch, tch, spellnum, savetype, casttype);
+            mag_unaffect(skill, ch, tch, spellnum, savetype);
     }
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
@@ -4650,10 +4648,11 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         if (affected_by_spell(victim, SONG_TERROR) || affected_by_spell(victim, SONG_BALLAD_OF_TEARS)) {
             if (affected_by_spell(victim, SONG_TERROR))
                 spell = SONG_TERROR;
-            if (affected_by_spell(victim, SONG_BALLAD_OF_TEARS))
-                spell = SONG_BALLAD_OF_TEARS;
-            if (spell) /* If already removing a spell, remove it and set ballad of tears now */
-                effect_from_char(victim, spell);
+            if (affected_by_spell(victim, SONG_BALLAD_OF_TEARS)){
+                if (spell) /* If already removing a spell, remove it and set ballad of tears now */
+                    effect_from_char(victim, spell);
+                    spell = SONG_BALLAD_OF_TEARS;
+            }
             to_vict = "$N's music soothes your fears.";
             to_room = "$N's music soothes $n's fears.";
         }
@@ -4713,10 +4712,11 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         if (affected_by_spell(victim, SONG_INSPIRATION) || affected_by_spell(victim, SONG_HEROIC_JOURNEY)) {
             if (affected_by_spell(victim, SONG_INSPIRATION))
                 spell = SONG_INSPIRATION;
-            if (affected_by_spell(victim, SONG_HEROIC_JOURNEY))
+            if (affected_by_spell(victim, SONG_HEROIC_JOURNEY)){
                 spell = SONG_HEROIC_JOURNEY;
-            if (spell) /* If already removing a spell, remove it and set heroic journey now */
-                effect_from_char(victim, spell);
+                if (spell) /* If already removing a spell, remove it and set heroic journey now */
+                    effect_from_char(victim, spell);
+            }
             to_vict = "Your inspiration chills suddenly.";
             to_room = "$n's inspiration chills suddenly.";
         }
@@ -4728,7 +4728,8 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         return CAST_RESULT_CHARGE;
     }
 
-    if (!affected_by_spell(victim, spell) && spellnum != SPELL_HEAL && spellnum != SPELL_FULL_HEAL) {
+    if (!affected_by_spell(victim, spell) && spellnum != SPELL_HEAL && spellnum != SPELL_FULL_HEAL && spellnum != SONG_INSPIRATION  && spellnum != SONG_TERROR &&
+        spellnum != SONG_HEROIC_JOURNEY && spellnum != SONG_BALLAD_OF_TEARS) {
         send_to_char(NOEFFECT, ch);
         return CAST_RESULT_CHARGE;
     }

@@ -1472,7 +1472,7 @@ void init_skills(void) {
      * song, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff
      */
 
-    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, true, TAR_IGNORE, true, MAG_AREA | MAG_UNAFFECT, 0,
+    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, 0,
           false, "Your nerves settle down as the terror leaves you.");
 
     songo(SONG_SONG_OF_REST, "song of rest", POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, 0, false,
@@ -1490,7 +1490,7 @@ void init_skills(void) {
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, false, TAR_IGNORE, false, MAG_GROUP, 0, true,
           "Your familiar disguise melts away.");
 
-    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_GROUP | MAG_UNAFFECT, 0,
+    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_GROUP, 0,
           false, "Your inspiration fades.");
 
     songo(SONG_INSPIRATION, "inspiration", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT | MAG_UNAFFECT, 0,

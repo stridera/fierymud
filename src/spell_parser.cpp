@@ -1150,8 +1150,8 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
         return 0;
     }
 
-    act("$n begins playing beautiful music.", false, ch, 0, 0, TO_ROOM);
-    send_to_char("You begin a virtuosic performance.\n", ch);
+    act("$n puts on a spellbinding performance.", false, ch, 0, 0, TO_ROOM);
+    send_to_char("You put on a virtuosic performance.\n", ch);
 
     if (number(0, 101) > 50 + GET_SKILL(ch, SKILL_PERFORM)) {
         send_to_char("You choke and grunt a raspy wail of pain.\n", ch);

@@ -2457,7 +2457,7 @@ ASPELL(spell_dispel_magic) {
         if ((eff = victim->effects)) {
             while (eff) {
                 next_eff = eff->next;
-                if (IS_SPELL(eff->type) &&
+                if ((IS_SPELL(eff->type) || IS_CHANT(eff->type) || IS_SONG(eff->type)) &&
                     /* Here are some spells you can't dispel. */
                     (eff->type != SPELL_PHANTASM && eff->type != SPELL_ANIMATE_DEAD && eff->type != SPELL_CHARM) &&
                     (!mag_savingthrow(victim, SAVING_PARA) || (!IS_NPC(ch) && GET_LEVEL(ch) > LVL_IMMORT))) {
