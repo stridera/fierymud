@@ -572,7 +572,7 @@ bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool
                 char_printf(ch, "Hmmm... You only just sense {}.\n", HMHR(victim));
             }
         } else {
-            act("Hmmm... You sense $M.  $U$E must be close.\n", false, ch, 0, victim, TO_CHAR);
+            act("Hmmm... You sense $M.  $E must be close.\n", false, ch, 0, victim, TO_CHAR);
         }
         return false;
     } else {

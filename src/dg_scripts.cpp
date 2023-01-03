@@ -1099,7 +1099,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
             else if (!strcasecmp(field, "cap") || !strcasecmp(field, "capitalize")) {
                 strcpy(str, value);
-                CAP(str);
+                cap_by_color(str);
             }
 
             else if (!strcasecmp(field, "firstword"))
@@ -1150,7 +1150,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             strcpy(str, genders[(int)GET_SEX(c)]);
         else if (!strcasecmp(field, "class")) {
             strcpy(str, CLASS_PLAINNAME(c));
-            CAP(str);
+            cap_by_color(str);
         } else if (!strcasecmp(field, "race"))
             strcpy(str, races[(int)GET_RACE(c)].name);
         else if (!strcasecmp(field, "level"))

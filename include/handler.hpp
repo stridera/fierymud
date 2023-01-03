@@ -31,6 +31,7 @@ void effect_join(CharData *ch, effect *eff, bool add_dur, bool avg_dur, bool add
 
 /* utility */
 int isname(const char *str, const char *namelist);
+std::string fname(std::string_view namelist);
 char *fname(const char *namelist);
 
 /* ******** objects *********** */

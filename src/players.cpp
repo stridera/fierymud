@@ -1074,7 +1074,7 @@ void rename_player(CharData *victim, char *newname) {
     if (pfilepos < 0)
         return;
 
-    CAP(newname);
+    cap_by_color(newname);
 
     if (player_table[pfilepos].name)
         free(player_table[pfilepos].name);

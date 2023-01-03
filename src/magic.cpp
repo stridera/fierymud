@@ -648,7 +648,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             act("$n tries to make the evil in Saint $N suffer.", true, victim, 0, ch, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         } else if (IS_NEUTRAL(victim)) {
-            act("Yeah, right there fancy pants.  $U$N doesn't seem to care.", false, ch, 0, victim, TO_CHAR);
+            act("Yeah, right there fancy pants.  $N doesn't seem to care.", false, ch, 0, victim, TO_CHAR);
             act("You don't seem to care that $N is attempting to dispel your "
                 "evilness.",
                 false, ch, 0, victim, TO_VICT);
@@ -672,7 +672,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             act("$N leers at $n as $e tries to rot $S goodness.", true, victim, 0, ch, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
         } else if (IS_NEUTRAL(victim)) {
-            act("Yeah, right there fancy pants.  $U$N doesn't seem to care.", false, ch, 0, victim, TO_CHAR);
+            act("Yeah, right there fancy pants.  $N doesn't seem to care.", false, ch, 0, victim, TO_CHAR);
             act("You don't seem to care that $N is attempting to dispel your "
                 "goodness.",
                 false, ch, 0, victim, TO_VICT);
@@ -1171,7 +1171,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (GET_LEVEL(ch) < LVL_IMMORT && !IS_GOOD(ch) && casttype == CAST_SPELL) {
             char_printf(ch, "The gods have forsaken you in your evilness!\n");
-            act("There is no effect.  $U$n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
+            act("There is no effect.  $n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
 
@@ -1392,7 +1392,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (GET_LEVEL(ch) < LVL_IMMORT && !IS_EVIL(ch) && casttype == CAST_SPELL) {
             char_printf(ch, "In your goodness, the dark gods have forsaken you!\n");
-            act("Nothing happens.  $U$n looks rather forlorn.", true, ch, 0, 0, TO_ROOM);
+            act("Nothing happens.  $n looks rather forlorn.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
 
@@ -1568,7 +1568,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (GET_LEVEL(ch) < LVL_IMMORT && !IS_NEUTRAL(ch) && casttype == CAST_SPELL) {
             char_printf(ch, "Nature has forsaken you in your zealousness!\n");
-            act("There is no effect.  $U$n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
+            act("There is no effect.  $n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
 
@@ -2152,15 +2152,10 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 
         to_room =
-            "$n &0&5w&4e&5av&4es a &5mesme&4rizing pa&5ttern before &0$N's "
-            "eyes.\n"
-            "$U$N appears entranced, as if working out a puzzle of some kind.";
-        to_vict =
-            "$n shows you a truly fascinating puzzle.  You simply must work "
-            "it out.";
-        to_char =
-            "You weave a mesmerizing pattern before $N, and $E seems\n"
-            "to be utterly absorbed by it.";
+            "$n &0&5w&4e&5av&4es a &5mesme&4rizing pa&5ttern before &0$N's eyes.\n"
+            "$N appears entranced, as if working out a puzzle of some kind.";
+        to_vict = "$n shows you a truly fascinating puzzle.  You simply must work it out.";
+        to_char = "You weave a mesmerizing pattern before $N, and $E seems to be utterly absorbed by it.";
 
         SET_FLAG(eff[0].flags, EFF_MESMERIZED);
         eff[0].duration = 2 + skill / 16; /* 2-8 hours */

@@ -326,7 +326,7 @@ void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount) {
     obj_dotmode = find_all_dots(&name);
 
     if (IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
-        act("$p is closed.", false, ch, cont, 0, TO_CHAR);
+        act("$p is closed.", false, ch, cont, nullptr, TO_CHAR);
     else if (!RIGID(ch) && cont->carried_by != ch && GET_LEVEL(ch) < LVL_IMMORT)
         char_printf(ch, "You can't handle solid objects in your condition.\n");
     else {
@@ -344,10 +344,10 @@ void get_from_container(CharData *ch, ObjData *cont, char *name, int *amount) {
 
         if (!found) {
             if (obj_dotmode == FIND_ALL)
-                act("$p seems to be empty.", false, ch, cont, 0, TO_CHAR);
+                act("$p seems to be empty.", false, ch, cont, nullptr, TO_CHAR);
             else {
                 sprintf(buf, "You can't seem to find any %s%s in $p.", name, isplural(name) ? "" : "s");
-                act(buf, false, ch, cont, 0, TO_CHAR);
+                act(buf, false, ch, cont, nullptr, TO_CHAR);
             }
         }
     }
@@ -573,16 +573,16 @@ ACMD(do_palm) {
         if (!cont)
             char_printf(ch, "You can't find {} {}.\n", AN(arg2), arg2);
         else if (GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
-            act("$p is not a container.", false, ch, cont, 0, TO_CHAR);
+            act("$p is not a container.", false, ch, cont, nullptr, TO_CHAR);
         else if (IS_SET(GET_OBJ_VAL(cont, VAL_CONTAINER_BITS), CONT_CLOSED))
-            act("$p is closed.", false, ch, cont, 0, TO_CHAR);
+            act("$p is closed.", false, ch, cont, nullptr, TO_CHAR);
         else if (!IS_PLR_CORPSE(cont) || has_corpse_consent(ch, cont)) {
             if (!(obj = find_obj_in_list(cont->contains, find_vis_by_name(ch, arg1)))) {
                 sprintf(buf, "There doesn't seem to be %s %s in $p.", AN(arg1), arg1);
-                act(buf, false, ch, cont, 0, TO_CHAR);
+                act(buf, false, ch, cont, nullptr, TO_CHAR);
             } else if (cont_mode == FIND_OBJ_INV || can_take_obj(ch, obj)) {
                 if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
-                    act("$p: you can't hold any more items.", false, ch, obj, 0, TO_CHAR);
+                    act("$p: you can't hold any more items.", false, ch, obj, nullptr, TO_CHAR);
                 else if (get_otrigger(obj, ch)) {
 
                     if (SOLIDCHAR(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {

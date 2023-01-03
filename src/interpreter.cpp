@@ -2011,7 +2011,7 @@ int enter_player_game(DescriptorData *d) {
         }
 
     if (!(GET_LEVEL(d->character) >= LVL_IMMORT && GET_INVIS_LEV(d->character))) {
-        all_except_printf(d->character, "The ground shakes slightly with the arrival of %s.\n", GET_NAME(d->character));
+        all_except_printf(d->character, "The ground shakes slightly with the arrival of {}.\n", GET_NAME(d->character));
     }
 
     return load_result;
@@ -2032,7 +2032,7 @@ void set_player_name(CharData *ch, char *name) {
     char *s;
 
     clear_player_name(ch);
-    ch->player.short_descr = strdup(CAP(name));
+    ch->player.short_descr = strdup(cap_by_color(name));
     ch->player.namelist = strdup(name);
 
     for (s = ch->player.namelist; *s; s++)

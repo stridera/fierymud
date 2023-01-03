@@ -34,7 +34,7 @@ void init_retained_comms(CharData *ch) {
     GET_RETAINED_COMMS(ch) = comms;
 }
 
-void add_retained_comms(CharData *ch, int type, char *msg) {
+void add_retained_comms(CharData *ch, int type, const char *msg) {
     CharData *tch;
     CommNode *node, *new_node;
     int i = 0;

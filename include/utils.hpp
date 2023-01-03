@@ -111,8 +111,6 @@ void drop_core(CharData *ch, const char *desc);
 #define UPPER(c) (IS_LOWER(c) ? ((c) + ('A' - 'a')) : (c))
 
 #define IS_NEWLINE(ch) ((ch) == '\n')
-#define CAP(st) (cap_by_color(st))
-
 #define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
 
 /* memory utils **********************************************************/

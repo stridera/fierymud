@@ -129,8 +129,7 @@ CLANCMD(clan_tell) {
     DescriptorData *d;
     CharData *tch;
     CharData *me = REAL_CHAR(ch);
-
-    skip_spaces(&argument);
+    std::string speech{trim(argument)};
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
         char_printf(ch, "Your lips move, but no sound forms.\n");
@@ -140,15 +139,15 @@ CLANCMD(clan_tell) {
     if (!speech_ok(ch, 0))
         return;
 
-    if (!*argument) {
+    if (speech.empty()) {
         char_printf(ch, "What do you want to tell the clan?\n");
         return;
     }
 
-    argument = drunken_speech(argument, GET_COND(ch, DRUNK));
+    speech = drunken_speech(speech, GET_COND(ch, DRUNK));
 
     char_printf(ch, AFMAG "You tell {}" AFMAG ", '" AHMAG "{}" AFMAG "'\n" ANRM,
-                member ? "your clan" : clan->abbreviation, argument);
+                member ? "your clan" : clan->abbreviation, speech);
 
     for (d = descriptor_list; d; d = d->next) {
         if (!IS_PLAYING(d) || !d->character)
@@ -165,7 +164,7 @@ CLANCMD(clan_tell) {
             (GET_CLAN(tch) == clan && !OUTRANKS(MIN_ALT_RANK, GET_CLAN_RANK(tch))))
             char_printf(FORWARD(tch), AFMAG "{} tells {}" AFMAG ", '" AHMAG "{}" AFMAG "'\n" ANRM,
                         GET_INVIS_LEV(me) > GET_LEVEL(tch) ? "Someone" : GET_NAME(me),
-                        member && !IS_CLAN_SUPERADMIN(tch) ? "your clan" : clan->abbreviation, argument);
+                        member && !IS_CLAN_SUPERADMIN(tch) ? "your clan" : clan->abbreviation, speech);
     }
 }
 
@@ -1198,7 +1197,7 @@ ACMD(do_clan) {
             }
             if (IS_SET(command->args, MEMBER | APPLICANT)) {
                 argument = any_one_arg(argument, arg);
-                CAP(arg);
+                cap_by_color(arg);
                 if (!*arg) {
                     char_printf(ch, "Whom do you want to {}?\n", arg);
                     return;

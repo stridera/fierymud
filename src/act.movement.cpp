@@ -1086,7 +1086,7 @@ ACMD(do_gen_door) {
     skip_spaces(&argument);
     if (!*argument) {
         sprintf(buf, "%s what?\n", cmd_door[subcmd]);
-        char_printf(ch, CAP(buf));
+        char_printf(ch, cap_by_color(buf));
         return;
     }
 

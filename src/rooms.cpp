@@ -740,7 +740,7 @@ void send_full_exits(CharData *ch, int roomnum) {
                     strcat(buf2, dest->name);
                 strcat(buf2, "\n");
             }
-            strcat(buf, CAP(buf2));
+            strcat(buf, cap_by_color(buf2));
         }
     }
 

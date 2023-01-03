@@ -29,6 +29,7 @@
 #include "regen.hpp"
 #include "retain_comms.hpp"
 #include "screen.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -43,12 +44,8 @@ void garble_text(char *string, int percent) {
             string[i] = letters[number(0, 12)];
 }
 
-/*
- * Drunk structure and releated code to slur a players speech
- * if they are drunk. Zantir 3/23/01
- */
-
-char *drunken_speech(char *string, int drunkenness) {
+//  Drunk structure and releated code to slur a players speech if they are drunk. Zantir 3/23/01
+std::string drunken_speech(std::string speech, int drunkenness) {
     const struct {
         int min_drunk_level;
         int replacement_count;
@@ -81,32 +78,27 @@ char *drunken_speech(char *string, int drunkenness) {
                                       {3, 2, {"y", "Y"}},
                                       {2, 8, {"z", "ZzzZz", "Zzz", "szz", "sZZz", "ZSz", "zZ", "Z"}}};
 
-    static char drunkbuf[4000]; /* this should be enough (?) */
-    char temp;
-    char *pos = drunkbuf;
+    if (drunkenness <= 0)
+        return speech;
 
-    if (drunkenness > 0) {
-        do {
-            temp = toupper(*string);
-            if (isdigit(*string))
-                *(pos++) = '0' + number(0, 9);
-            else if (isalpha(temp) && drunkenness > drunk_letters[temp - 'A'].min_drunk_level) {
-                strcpy(
-                    pos,
-                    drunk_letters[temp - 'A'].replacements[number(0, drunk_letters[temp - 'A'].replacement_count - 1)]);
-                pos += strlen(pos);
-            } else
-                *(pos++) = *string;
-        } while (*(string++));
-        return drunkbuf;
+    std::string drunkbuf;
+    for (auto ch : speech) {
+        if (isdigit(ch))
+            drunkbuf += '0' + number(0, 9);
+        else if (isalpha(ch)) {
+            char temp = toupper(ch) - 'A';
+            if (drunkenness > drunk_letters[temp].min_drunk_level) {
+                drunk_letters[temp].replacements[number(0, drunk_letters[temp].replacement_count - 1)];
+            }
+        } else
+            drunkbuf += ch;
     }
-
-    return string; /* character is not drunk, just return the string */
+    return drunkbuf;
 }
 
 void afk_message(CharData *ch, CharData *vict) {
     if (PRF_FLAGGED(vict, PRF_AFK)) {
-        act("$N is AFK right now, but received your message.", true, ch, 0, vict, TO_CHAR);
+        act("$N is AFK right now, but received your message.", true, ch, nullptr, vict, TO_CHAR);
         char_printf(vict, "You received the previous message while AFK.\n");
     }
 }
@@ -123,7 +115,7 @@ ACMD(do_desc) {
     maxlines = GET_LEVEL(ch) < LVL_IMMORT ? PLAYER_DESC_LINES : IMMORT_DESC_LINES;
 
     if (GET_STANCE(ch) > STANCE_SLEEPING)
-        act("$n appears rather introspective.", true, ch, 0, 0, TO_ROOM);
+        act("$n appears rather introspective.", true, ch, nullptr, nullptr, TO_ROOM);
 
     editor_init(ch->desc, &ch->player.description, maxlen);
     editor_set_begin_string(
@@ -132,15 +124,14 @@ ACMD(do_desc) {
 }
 
 ACMD(do_say) {
-    char *args = strdup(argument);
-    skip_spaces(&args);
-    delete_doubledollar(args);
+    std::string speech = delete_doubledollar(argument);
+    speech = trim(speech);
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
         char_printf(ch, "You lips move, but no sound forms.\n");
         return;
     }
-    if (!*args) {
+    if (speech.empty()) {
         char_printf(ch, "Yes, but WHAT do you want to say?\n");
         return;
     }
@@ -148,24 +139,22 @@ ACMD(do_say) {
     if (!speech_ok(ch, 0))
         return;
 
-    // TODO: Fix this const cast.
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        args = const_cast<char *>(strip_ansi(args).c_str());
+        speech = strip_ansi(speech);
 
-    args = drunken_speech(args, GET_COND(ch, DRUNK));
-
-    act("You say, '$T@0'", false, ch, 0, args, TO_CHAR | TO_OLC);
-    act("$n says, '$T@0'", false, ch, 0, args, TO_ROOM | TO_OLC);
+    speech = drunken_speech(speech, GET_COND(ch, DRUNK));
+    act("You say, '$T@0'", false, ch, nullptr, speech.c_str(), TO_CHAR | TO_OLC);
+    act("$n says, '$T@0'", false, ch, nullptr, speech.c_str(), TO_ROOM | TO_OLC);
 
     /* trigger check */
-    speech_mtrigger(ch, args);
-    speech_wtrigger(ch, args);
+    speech_mtrigger(ch, speech.c_str());
+    speech_wtrigger(ch, speech.c_str());
 }
 
 ACMD(do_gsay) {
     CharData *k;
     GroupType *f;
-    skip_spaces(&argument);
+    std::string speech = std::string(trim(argument));
 
     if (!ch->group_master && !ch->groupees) {
         char_printf(ch, "But you are not the member of a group!\n");
@@ -176,15 +165,15 @@ ACMD(do_gsay) {
         return;
     }
 
-    if (!*argument) {
+    if (speech.empty()) {
         char_printf(ch, "Yes, but WHAT do you want to group-say?\n");
         return;
     }
 
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        argument = const_cast<char *>(strip_ansi(argument).c_str());
+        speech = strip_ansi(speech);
 
-    argument = drunken_speech(argument, GET_COND(ch, DRUNK));
+    speech = drunken_speech(speech, GET_COND(ch, DRUNK));
     if (ch->group_master)
         k = ch->group_master;
     else
@@ -192,20 +181,20 @@ ACMD(do_gsay) {
 
     sprintf(buf, "@g$n@g tells the group, '&0%s@g'@0", argument);
     if (k != ch)
-        act(buf, false, ch, 0, k, TO_VICT | TO_SLEEP | TO_OLC);
+        act(buf, false, ch, nullptr, k, TO_VICT | TO_SLEEP | TO_OLC);
     for (f = k->groupees; f; f = f->next)
         if (f->groupee != ch)
-            act(buf, false, ch, 0, f->groupee, TO_VICT | TO_SLEEP | TO_OLC);
+            act(buf, false, ch, nullptr, f->groupee, TO_VICT | TO_SLEEP | TO_OLC);
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
         char_printf(ch, OK);
     else {
         sprintf(buf, "@gYou group say, '&0%s@g'@0", argument);
-        act(buf, false, ch, 0, 0, TO_CHAR | TO_SLEEP | TO_OLC);
+        act(buf, false, ch, nullptr, nullptr, TO_CHAR | TO_SLEEP | TO_OLC);
     }
 }
 
-static void perform_tell(CharData *ch, CharData *vict, char *arg) {
+static void perform_tell(CharData *ch, CharData *vict, std::string arg) {
     std::string tell{arg};
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
         tell = strip_ansi(tell);
@@ -214,14 +203,14 @@ static void perform_tell(CharData *ch, CharData *vict, char *arg) {
         char_printf(ch, OK);
     else {
         sprintf(buf, "@WYou tell $N@W, '%s@W'@0", tell.c_str());
-        act(buf, false, ch, 0, vict, TO_CHAR | TO_SLEEP | TO_OLC);
+        act(buf, false, ch, nullptr, vict, TO_CHAR | TO_SLEEP | TO_OLC);
     }
 
     if (vict->forward && !vict->desc)
         vict = vict->forward;
 
     sprintf(buf, "@W$n@W tells you, '%s@W'@0", tell.c_str());
-    act(buf, false, REAL_CHAR(ch), 0, vict, TO_VICT | TO_SLEEP | TO_OLC);
+    act(buf, false, REAL_CHAR(ch), nullptr, vict, TO_VICT | TO_SLEEP | TO_OLC);
 
     /* No need to reply to mobs.  Doesn't matter since we use the IDNUM which is always 0 for mobs. */
     if (!IS_MOB(ch))
@@ -231,8 +220,8 @@ static void perform_tell(CharData *ch, CharData *vict, char *arg) {
     if (IS_MOB(vict)) {
         speech_to_mtrigger(ch, vict, tell.c_str());
     } else {
-        format_act(buf1, buf, ch, 0, vict, vict);
-        add_retained_comms(vict, TYPE_RETAINED_TELLS, buf1);
+        std::string formatted = format_act(buf, ch, 0, vict, vict);
+        add_retained_comms(vict, TYPE_RETAINED_TELLS, formatted.c_str());
     }
 }
 
@@ -252,21 +241,22 @@ ACMD(do_tell) {
     else if (ROOM_FLAGGED(ch->in_room, ROOM_SOUNDPROOF) && GET_LEVEL(ch) < LVL_IMMORT)
         char_printf(ch, "The walls seem to absorb your words.\n");
     else if (!IS_NPC(vict) && !vict->desc && (!vict->forward || !vict->forward->desc)) /* linkless */
-        act("No one here by that name.", false, ch, 0, vict, TO_CHAR | TO_SLEEP | TO_OLC);
+        act("No one here by that name.", false, ch, nullptr, vict, TO_CHAR | TO_SLEEP | TO_OLC);
     else if (PLR_FLAGGED(vict, PLR_WRITING) && !PRF_FLAGGED(vict, PRF_OLCCOMM))
-        act("$E's writing a message right now; try again later.", false, ch, 0, vict, TO_CHAR | TO_SLEEP | TO_OLC);
+        act("$E's writing a message right now; try again later.", false, ch, nullptr, vict,
+            TO_CHAR | TO_SLEEP | TO_OLC);
     else if (vict->desc && EDITING(vict->desc) && !PRF_FLAGGED(vict, PRF_OLCCOMM))
-        act("$E's writing a message right now; try again later.", false, ch, 0, vict, TO_CHAR | TO_SLEEP | TO_OLC);
+        act("$E's writing a message right now; try again later.", false, ch, nullptr, vict,
+            TO_CHAR | TO_SLEEP | TO_OLC);
     else if (((!IS_NPC(vict) && PRF_FLAGGED(vict, PRF_NOTELL)) || ROOM_FLAGGED(vict->in_room, ROOM_SOUNDPROOF)) &&
              (GET_LEVEL(ch) < LVL_IMMORT || (GET_LEVEL(vict) > LVL_IMMORT && GET_LEVEL(ch) < GET_LEVEL(vict))))
-        act("$E can't hear you.", false, ch, 0, vict, TO_CHAR | TO_SLEEP | TO_OLC);
+        act("$E can't hear you.", false, ch, nullptr, vict, TO_CHAR | TO_SLEEP | TO_OLC);
     else if (!IS_NPC(REAL_CHAR(vict)) && REAL_CHAR(vict)->player_specials->ignored == REAL_CHAR(ch))
-        act("$N is ignoring you at the moment.  No dice.", false, ch, 0, REAL_CHAR(vict), TO_CHAR | TO_OLC);
+        act("$N is ignoring you at the moment.  No dice.", false, ch, nullptr, REAL_CHAR(vict), TO_CHAR | TO_OLC);
     else {
         if (!speech_ok(ch, 0))
             return;
-        argument = drunken_speech(buf2, GET_COND(ch, DRUNK));
-        perform_tell(ch, vict, argument);
+        perform_tell(ch, vict, drunken_speech(buf2, GET_COND(ch, DRUNK)));
     }
 }
 
@@ -295,8 +285,7 @@ ACMD(do_reply) {
         else if (PRF_FLAGGED(tch, PRF_NOTELL) && GET_LEVEL(ch) < LVL_GOD)
             char_printf(ch, "That person is now not listening to tells.\n");
         else if (speech_ok(ch, 0)) {
-            argument = drunken_speech(argument, GET_COND(ch, DRUNK));
-            perform_tell(ch, tch, argument);
+            perform_tell(ch, tch, drunken_speech(argument, GET_COND(ch, DRUNK)));
         }
     }
 }
@@ -330,16 +319,15 @@ ACMD(do_spec_comm) {
     else {
         if (!speech_ok(ch, 0))
             return;
-        argument = drunken_speech(buf2, GET_COND(ch, DRUNK));
-        sprintf(buf, "$n %s you, '%s@0'", action_plur, argument);
-        act(buf, false, ch, 0, vict, TO_VICT | TO_OLC);
+        sprintf(buf, "$n %s you, '%s@0'", action_plur, drunken_speech(buf2, GET_COND(ch, DRUNK)).c_str());
+        act(buf, false, ch, nullptr, vict, TO_VICT | TO_OLC);
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
             char_printf(ch, OK);
         else {
             sprintf(buf, "You %s %s, '%s@0'", action_sing, GET_NAME(vict), argument);
-            act(buf, false, ch, 0, 0, TO_CHAR | TO_OLC);
+            act(buf, false, ch, nullptr, nullptr, TO_CHAR | TO_OLC);
         }
-        act(action_others, false, ch, 0, vict, TO_NOTVICT);
+        act(action_others, false, ch, nullptr, vict, TO_NOTVICT);
         afk_message(ch, vict);
         if (IS_MOB(vict))
             speech_to_mtrigger(ch, vict, argument);
@@ -421,7 +409,7 @@ ACMD(do_write) {
     /* we can write - hooray! */
     char_printf(ch, "Write your note.  (/s saves /h for help)\n");
     string_write(ch->desc, &surface->action_description, MAX_NOTE_LENGTH);
-    act("$n begins to jot down a note.", true, ch, 0, 0, TO_ROOM);
+    act("$n begins to jot down a note.", true, ch, nullptr, nullptr, TO_ROOM);
 }
 
 ACMD(do_page) {
@@ -440,17 +428,17 @@ ACMD(do_page) {
             if (GET_LEVEL(ch) > LVL_GOD) {
                 for (d = descriptor_list; d; d = d->next)
                     if (!d->connected && d->character)
-                        act(buf, false, ch, 0, d->character, TO_VICT);
+                        act(buf, false, ch, nullptr, d->character, TO_VICT);
             } else
                 char_printf(ch, "You will never be godly enough to do that!\n");
             return;
         }
         if ((vict = find_char_around_char(ch, find_vis_by_name(ch, arg))) != nullptr) {
-            act(buf, false, ch, 0, vict, TO_VICT);
+            act(buf, false, ch, nullptr, vict, TO_VICT);
             if (PRF_FLAGGED(ch, PRF_NOREPEAT))
                 char_printf(ch, OK);
             else
-                act(buf, false, ch, 0, vict, TO_CHAR);
+                act(buf, false, ch, nullptr, vict, TO_CHAR);
             return;
         } else
             char_printf(ch, "There is no such person in the game!\n");
@@ -481,14 +469,14 @@ ACMD(do_order) {
             return;
         }
         if (vict) {
-            act("$n gives $N an order.", false, ch, 0, vict, TO_ROOM);
+            act("$n gives $N an order.", false, ch, nullptr, vict, TO_ROOM);
 
             if (GET_STANCE(vict) < STANCE_RESTING) {
                 sprintf(buf, "$N is %s and can't hear you.", stance_types[GET_STANCE(vict)]);
-                act(buf, false, ch, 0, vict, TO_CHAR);
+                act(buf, false, ch, nullptr, vict, TO_CHAR);
             } else {
                 sprintf(buf, "$N orders you to '%s'", message);
-                act(buf, false, vict, 0, ch, TO_CHAR);
+                act(buf, false, vict, nullptr, ch, TO_CHAR);
                 if ((vict->master != ch) || !EFF_FLAGGED(vict, EFF_CHARM))
                     act("$n has an indifferent look.", false, vict, 0, 0, TO_ROOM);
                 else {
@@ -582,10 +570,10 @@ ACMD(do_gen_comm) {
     }
 
     /* skip leading spaces */
-    skip_spaces(&argument);
+    std::string speech = std::string(trim(argument));
 
     /* make sure that there is something there to say! */
-    if (!*argument) {
+    if (speech.empty()) {
         char_printf(ch, "Yes, {}, fine, {} we must, but WHAT???\n", com_msgs[subcmd][1], com_msgs[subcmd][1]);
         return;
     }
@@ -601,9 +589,9 @@ ACMD(do_gen_comm) {
         return;
 
     if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-        argument = const_cast<char *>(strip_ansi(argument).c_str());
+        speech = strip_ansi(speech);
 
-    argument = drunken_speech(argument, GET_COND(ch, DRUNK));
+    speech = drunken_speech(speech, GET_COND(ch, DRUNK));
 
     /* set up the color on code */
     strcpy(color_on, com_msgs[subcmd][3]);
@@ -613,13 +601,13 @@ ACMD(do_gen_comm) {
         char_printf(ch, OK);
     else {
         if (COLOR_LEV(ch) >= C_CMP)
-            sprintf(buf1, "%sYou %s, '%s%s%s'%s", color_on, com_msgs[subcmd][1], argument, ANRM, color_on, ANRM);
+            sprintf(buf1, "%sYou %s, '%s%s%s'%s", color_on, com_msgs[subcmd][1], speech.c_str(), ANRM, color_on, ANRM);
         else
-            sprintf(buf1, "You %s, '%s@0'", com_msgs[subcmd][1], argument);
-        act(buf1, false, ch, 0, 0, TO_CHAR | TO_SLEEP | TO_OLC);
+            sprintf(buf1, "You %s, '%s@0'", com_msgs[subcmd][1], speech.c_str());
+        act(buf1, false, ch, nullptr, nullptr, TO_CHAR | TO_SLEEP | TO_OLC);
     }
 
-    sprintf(buf, "$n %ss, '%s'", com_msgs[subcmd][1], argument);
+    sprintf(buf, "$n %ss, '%s'", com_msgs[subcmd][1], speech.c_str());
 
     /*
      * If the gossiper is shapechanged and this descriptor can see both
@@ -628,7 +616,7 @@ ACMD(do_gen_comm) {
      */
     if (subcmd == SCMD_GOSSIP && POSSESSED(ch) && GET_LEVEL(POSSESSOR(ch)) < 100 && GET_NAME(ch) && *GET_NAME(ch)) {
         shapechanged = true;
-        sprintf(buf1, "%s (%s) gossips, '%s'\n", capitalize(GET_NAME(ch)), GET_NAME(POSSESSOR(ch)), argument);
+        sprintf(buf1, "%s (%s) gossips, '%s'\n", capitalize(GET_NAME(ch)), GET_NAME(POSSESSOR(ch)), speech.c_str());
     }
 
     /* now send all the strings out */
@@ -660,9 +648,9 @@ ACMD(do_gen_comm) {
         if (shapechanged && CAN_SEE(i->character, ch) && CAN_SEE(i->character, POSSESSOR(ch)))
             desc_printf(i, buf1);
         else {
-            act(buf, false, ch, 0, i->character, TO_VICT | TO_SLEEP | TO_OLC);
-            format_act(buf1, buf, ch, 0, i->character, i->character);
-            add_retained_comms(i->character, TYPE_RETAINED_GOSSIPS, buf1);
+            act(buf, false, ch, nullptr, i->character, TO_VICT | TO_SLEEP | TO_OLC);
+            auto formatted = format_act(buf, ch, 0, i->character, i->character);
+            add_retained_comms(i->character, TYPE_RETAINED_GOSSIPS, formatted.c_str());
         }
         if (COLOR_LEV(i->character) >= C_NRM)
             desc_printf(i, ANRM);
@@ -676,12 +664,12 @@ ACMD(do_qcomm) {
         char_printf(ch, "You aren't even part of the quest!\n");
         return;
     }
-    skip_spaces(&argument);
+    std::string speech = std::string(trim(argument));
 
-    if (!*argument)
+    if (speech.empty())
         char_printf(ch, "{}? Yes, fine {} we must, but WHAT??\n", capitalize(CMD_NAME), CMD_NAME);
     else if (speech_ok(ch, 0)) {
-        argument = drunken_speech(argument, GET_COND(ch, DRUNK));
+        speech = drunken_speech(speech, GET_COND(ch, DRUNK));
 
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
             char_printf(ch, OK);
@@ -691,10 +679,10 @@ ACMD(do_qcomm) {
                     char_printf(ch, "Your lips move, but no sound forms\n");
                     return;
                 }
-                sprintf(buf, "You quest-say, '%s@0'", argument);
+                sprintf(buf, "You quest-say, '%s@0'", speech.c_str());
             } else
-                strcpy(buf, argument);
-            act(buf, false, ch, 0, argument, TO_CHAR | TO_OLC | TO_SLEEP);
+                strcpy(buf, speech.c_str());
+            act(buf, false, ch, nullptr, speech.c_str(), TO_CHAR | TO_OLC | TO_SLEEP);
         }
 
         if (subcmd == SCMD_QSAY) {
@@ -708,7 +696,7 @@ ACMD(do_qcomm) {
 
         for (i = descriptor_list; i; i = i->next)
             if (!i->connected && i != ch->desc && PRF_FLAGGED(i->character, PRF_QUEST))
-                act(buf, 0, ch, 0, i->character, TO_VICT | TO_SLEEP | TO_OLC);
+                act(buf, false, ch, nullptr, i->character, TO_VICT | TO_SLEEP | TO_OLC);
     }
 }
 

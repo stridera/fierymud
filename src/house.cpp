@@ -257,13 +257,13 @@ void hcontrol_list_houses(CharData *ch) {
         strcpy(own_name, NAME(house_control[i].owner));
 
         sprintf(buf, "%s%7d %7d   %-10s      %2d      %-12s %s\n", buf, house_control[i].vnum, house_control[i].atrium,
-                built_on, house_control[i].num_of_guests, CAP(own_name), last_pay);
+                built_on, house_control[i].num_of_guests, cap_by_color(own_name), last_pay);
 
         if (house_control[i].num_of_guests) {
             strcat(buf, "       Guests: ");
             for (j = 0; j < house_control[i].num_of_guests; j++) {
                 sprintf(buf2, "%s ", NAME(house_control[i].guests[j]));
-                strcat(buf, CAP(buf2));
+                strcat(buf, cap_by_color(buf2));
             }
             strcat(buf, "\n");
         }
@@ -452,7 +452,7 @@ ACMD(do_house) {
         else
             for (j = 0; j < house_control[i].num_of_guests; j++) {
                 strcpy(buf, NAME(house_control[i].guests[j]));
-                char_printf(ch, strcat(CAP(buf), "\n"));
+                char_printf(ch, strcat(cap_by_color(buf), "\n"));
             }
     } else if ((id = get_id_by_name(arg)) < 0)
         char_printf(ch, "No such player.\n");

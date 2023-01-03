@@ -977,7 +977,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
 
             if (cap_next) {
                 cap_next = false;
-                CAP(start);
+                cap_by_color(start);
             } else if (line_chars > 0) {
                 strcat(formatted, " ");
                 line_chars++;

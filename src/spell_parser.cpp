@@ -162,8 +162,8 @@ void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
             snprintf(saybuf, sizeof(saybuf), "Someone utters the words, '%s'.", spellbuf);
 
         /* Sending the message to the bystander or target. */
-        format_act(buf, saybuf, ch, tobj, tch, gch);
-        char_printf(gch, "{}", buf);
+        std::string formatted = format_act(saybuf, ch, tobj, tch, gch);
+        char_printf(gch, formatted);
     }
 }
 

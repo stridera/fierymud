@@ -79,7 +79,7 @@ static void load_clan_member(Clan *clan, const char *line) {
     char name[MAX_NAME_LENGTH + 1];
 
     line = fetch_word(line, name, sizeof(name));
-    CAP(name);
+    cap_by_color(name);
     if ((num = get_ptable_by_name(name)) < 0)
         return;
 
@@ -109,7 +109,7 @@ static void load_clan_member(Clan *clan, const char *line) {
         line = fetch_word(line, name, sizeof(name));
         if (!*name)
             break;
-        CAP(name);
+        cap_by_color(name);
         if (get_ptable_by_name(name) < 0)
             continue;
         CREATE(alt, ClanMembership, 1);

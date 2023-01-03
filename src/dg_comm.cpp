@@ -114,7 +114,7 @@ void sub_write_to_char(CharData *ch, char *tokens[], CharData *ctokens[], ObjDat
     if ((sb[0] == CREL || sb[0] == CABS) && sb[1] == '0')
         char_printf(ch, sb);
     else
-        char_printf(ch, CAP(sb));
+        char_printf(ch, cap_by_color(sb));
 }
 
 void sub_write(char *arg, CharData *ch, byte find_invis, int targets) {

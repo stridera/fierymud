@@ -82,7 +82,7 @@ struct GetContext {
 
 /* Public functions */
 void garble_text(char *string, int percent);
-char *drunken_speech(char *string, int drunkenness);
+std::string drunken_speech(std::string speech, int drunkenness);
 
 bool senses_living(CharData *ch, CharData *vict, int basepct);
 bool senses_living_only(CharData *ch, CharData *vict, int basepct);

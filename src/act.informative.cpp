@@ -341,7 +341,7 @@ static void print_char_long_desc_to_char(CharData *targ, CharData *ch) {
         snprintf(buf, sizeof(buf), "@0%s%s%s @W(@0%s@W)@0 @L(@0%s@L)@0", GET_NAME(targ), GET_TITLE(targ) ? " " : "",
                  GET_TITLE(targ) ? GET_TITLE(targ) : "", RACE_ABBR(targ), SIZE_DESC(targ));
 
-    char_printf(ch, CAP(buf));
+    char_printf(ch, cap_by_color(buf));
 
     if (RIDDEN_BY(targ) && RIDDEN_BY(targ)->in_room == targ->in_room && !IS_NPC(targ))
         char_printf(ch, " is here, ridden by {}.", RIDING(targ) == ch ? "you" : PERS(RIDDEN_BY(targ), ch));
@@ -502,12 +502,12 @@ static void print_char_appearance_to_char(CharData *targ, CharData *ch) {
 
     /* Size and composition */
     if (GET_COMPOSITION(targ) == COMP_FLESH)
-        char_printf(ch, "{} is {}{}&0 in size.\n", CAP(buf), SIZE_COLOR(targ), SIZE_DESC(targ));
+        char_printf(ch, "{} is {}{}&0 in size.\n", cap_by_color(buf), SIZE_COLOR(targ), SIZE_DESC(targ));
     else if (GET_COMPOSITION(targ) == COMP_ETHER)
-        char_printf(ch, "{} is {}{}&0 in size, and is {}insubstantial&0.\n", CAP(buf), SIZE_COLOR(targ),
+        char_printf(ch, "{} is {}{}&0 in size, and is {}insubstantial&0.\n", cap_by_color(buf), SIZE_COLOR(targ),
                     SIZE_DESC(targ), COMPOSITION_COLOR(targ));
     else
-        char_printf(ch, "{} is {}{}&0 in size, and is composed of {}{}&0.\n", CAP(buf), SIZE_COLOR(targ),
+        char_printf(ch, "{} is {}{}&0 in size, and is composed of {}{}&0.\n", cap_by_color(buf), SIZE_COLOR(targ),
                     SIZE_DESC(targ), COMPOSITION_COLOR(targ), COMPOSITION_MASS(targ));
 }
 
@@ -710,7 +710,7 @@ void print_char_to_char(CharData *targ, CharData *ch, int mode) {
         /* Fall through */
     case SHOW_BASIC_DESC:
         strcpy(buf, GET_NAME(targ));
-        char_printf(ch, "{} {}\n", CAP(buf), status_string(GET_HIT(targ), GET_MAX_HIT(targ), STATUS_PHRASE));
+        char_printf(ch, "{} {}\n", cap_by_color(buf), status_string(GET_HIT(targ), GET_MAX_HIT(targ), STATUS_PHRASE));
         print_char_appearance_to_char(targ, ch);
         print_char_spells_to_char(targ, ch);
         if (mode == SHOW_FULL_DESC) {
@@ -1614,7 +1614,7 @@ ACMD(do_identify) {
     /* Partial identification */
     if (GET_CLASS(ch) == CLASS_THIEF || GET_OBJ_LEVEL(obj) < GET_LEVEL(ch) + 11) {
         strcpy(buf, obj->short_description);
-        CAP(buf);
+        cap_by_color(buf);
         char_printf(ch, "{}{}{} look{} like {}.\n", buf, bits == FIND_OBJ_INV ? "" : " ",
                     bits == FIND_OBJ_INV ? "" : relative_location_str(bits), isplural(obj->name) ? "" : "s",
                     OBJ_TYPE_DESC(obj));
@@ -3492,7 +3492,7 @@ ACMD(do_spells) {
             if (tch == ch)
                 char_printf(ch, "You only know spells up to circle {:d}.\n", max_vis_circle);
             else
-                char_printf(ch, "{} only knows spells up to circle {:d}.\n", CAP(GET_NAME(tch)), max_vis_circle);
+                char_printf(ch, "{} only knows spells up to circle {:d}.\n", cap_by_color(GET_NAME(tch)), max_vis_circle);
             return;
         }
     }
@@ -3533,12 +3533,12 @@ ACMD(do_spells) {
             if (tch == ch)
                 char_printf(ch, "You don't know any spells in circle {:d}.\n", xcircle);
             else
-                char_printf(ch, "{} doesn't know any spells in circle {:d}.\n", CAP(GET_NAME(tch)), xcircle);
+                char_printf(ch, "{} doesn't know any spells in circle {:d}.\n", cap_by_color(GET_NAME(tch)), xcircle);
         } else {
             if (tch == ch)
                 char_printf(ch, "You don't know any spells.\n");
             else
-                char_printf(ch, "{} doesn't know any spells.\n", CAP(GET_NAME(tch)));
+                char_printf(ch, "{} doesn't know any spells.\n", cap_by_color(GET_NAME(tch)));
         }
         return;
     }
@@ -3552,7 +3552,7 @@ ACMD(do_spells) {
             paging_printf(ch, "You know of the following {} in &4&bcircle {:d}&0:\n\n",
                           numspellsknown == 1 ? "spell" : "spells", xcircle);
         else
-            paging_printf(ch, "{} knows of the following {} in &4&bcircle {:d}&0:\n\n", CAP(GET_NAME(tch)),
+            paging_printf(ch, "{} knows of the following {} in &4&bcircle {:d}&0:\n\n", cap_by_color(GET_NAME(tch)),
                           numspellsknown == 1 ? "spell" : "spells", xcircle);
     } else {
         if (tch == ch)

@@ -64,9 +64,10 @@ void close_socket(DescriptorData *d);
 int speech_ok(CharData *ch, int quiet);
 void send_gmcp_room(CharData *ch);
 
-using ActArg = std::variant<std::nullptr_t, ObjData *, CharData *, const char *, int>;
-void format_act(char *rtn, const char *orig, const CharData *ch, ActArg obj, ActArg vict_obj, const CharData *to);
-void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, ActArg vict_obj, int type);
+using ActArg = std::variant<std::nullptr_t, ObjData *, CharData *, std::string_view, int>;
+[[nodiscard]] std::string format_act(std::string_view orig, const CharData *ch, ActArg obj, ActArg vict_obj,
+                                     const CharData *to);
+void act(std::string_view str, int hide_invisible, const CharData *ch, ActArg obj, ActArg vict_obj, int type);
 
 /* act() targets */
 #define TO_ROOM 1

@@ -803,7 +803,7 @@ ACMD(do_rename) {
         return;
     }
 
-    char_printf(ch, "&1&bYou have renamed &7{}&1 to &7{}&0\n", GET_NAME(victim), CAP(tmp_name));
+    char_printf(ch, "&1&bYou have renamed &7{}&1 to &7{}&0\n", GET_NAME(victim), cap_by_color(tmp_name));
     log(LogSeverity::Stat, LVL_HEAD_C, "(GC) {} has renamed {} to {}", GET_NAME(ch), GET_NAME(victim), tmp_name);
 
     rename_player(victim, tmp_name);
@@ -2549,12 +2549,12 @@ ACMD(do_set) {
 
     if (fields[l].type == BINARY) {
         sprintf(buf, "%s %s for %s.\n", fields[l].cmd, ONOFF(on), GET_NAME(vict));
-        CAP(buf);
+        cap_by_color(buf);
     } else if (fields[l].type == NUMBER) {
         sprintf(buf, "%s's %s set to %d.\n", GET_NAME(vict), fields[l].cmd, value);
     }
     if (buf[0])
-        char_printf(ch, CAP(buf));
+        char_printf(ch, cap_by_color(buf));
 
     if (!is_file && !IS_NPC(vict) && save)
         save_player_char(vict);

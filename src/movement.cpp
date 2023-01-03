@@ -777,7 +777,7 @@ void mount_pos_check(CharData *mount) {
             char_printf(ch,
                         "You fall into the water, and your flames are put out with a "
                         "hiss of steam.\n");
-            act("$n falls into the water.  $U$s flames go out with a hissing sound.", false, ch, 0, 0, TO_ROOM);
+            act("$n falls into the water.  $s flames go out with a hissing sound.", false, ch, 0, 0, TO_ROOM);
         } else {
             char_printf(ch, "You fall into the water.\n");
             act("$n falls into the water.", false, ch, 0, 0, TO_ROOM);

@@ -52,6 +52,14 @@ void abort_casting(CharData *ch);
 
 static int apply_ac(CharData *ch, int eq_pos);
 
+std::string fname(std::string_view namelist) {
+    auto first_space = namelist.find(' ');
+    if (first_space == std::string_view::npos) {
+        return std::string(namelist);
+    }
+    return std::string(namelist.substr(0, first_space));
+}
+
 char *fname(const char *namelist) {
     static char holder[30];
     char *point;

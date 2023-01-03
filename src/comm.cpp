@@ -55,6 +55,7 @@
 #include <signal.h>
 #include <sys/resource.h>
 #include <sys/socket.h>
+#include <utility>
 
 #ifdef HAVE_ARPA_TELNET_H
 #include <arpa/telnet.h>
@@ -2689,163 +2690,176 @@ const char *ACTNULL = "<NULL>";
 
 /* higher-level communication: the act() function */
 
-void format_act(char *rtn, const char *orig, const CharData *ch, ActArg obj, ActArg vict_obj, const CharData *to) {
-    const CharData *victim = nullptr;
-    const ObjData *target_object = nullptr, *victim_object = nullptr;
-    int ival = 0;
-    const char *cval;
-    char target_string[MAX_STRING_LENGTH] = "\0", target_string2[MAX_STRING_LENGTH] = "\0";
-    const char *i = nullptr;
-    char *bufptr, *j, ibuf[20];
-    bool uppercasenext = false;
+std::string format_act(std::string_view format, const CharData *ch, ActArg obj, ActArg vict_obj, const CharData *to) {
+    std::string rtn;
+    bool code = false;
 
-    bufptr = rtn;
-
-    for (;;) {
-        if (*orig == '$') {
-            switch (*(++orig)) {
-            case 'n': // Show name (or 'someone' if you can't see them) of ch
-                i = PERS(ch, to);
-                break;
-            case 'N': // Show name (or 'someone' if you can't see them) of vict_obj
-                victim = std::get<CharData *>(vict_obj);
-                CHECK_NULL(victim, PERS(victim, to));
-                break;
-            case 'm':
-                i = HMHR(ch);
-                break;
-            case 'M':
-                victim = std::get<CharData *>(vict_obj);
-                CHECK_NULL(victim, HMHR(victim));
-                break;
-            case 's':
-                i = HSHR(ch);
-                break;
-            case 'S':
-                victim = std::get<CharData *>(vict_obj);
-                CHECK_NULL(victim, HSHR(victim));
-                break;
-            case 'D':
-                victim = std::get<CharData *>(vict_obj);
-                CHECK_NULL(victim, without_article(GET_NAME(victim)));
-                break;
-            case 'e':
-                i = HSSH(ch);
-                break;
-            case 'E':
-                victim = std::get<CharData *>(vict_obj);
-                CHECK_NULL(victim, HSSH(victim));
-                break;
-            case 'o':
-                target_object = std::get<ObjData *>(obj);
-                CHECK_NULL(target_object, OBJN(target_object, to));
-                break;
-            case 'O':
-                victim_object = std::get<ObjData *>(vict_obj);
-                CHECK_NULL(victim_object, OBJN(victim_object, to));
-                break;
-            case 'p':
-                target_object = std::get<ObjData *>(obj);
-                CHECK_NULL(target_object, OBJS(target_object, to));
-                break;
-            case 'P':
-                victim_object = std::get<ObjData *>(vict_obj);
-                CHECK_NULL(victim_object, OBJS(victim_object, to));
-                break;
-            case 'a':
-                target_object = std::get<ObjData *>(obj);
-                CHECK_NULL(target_object, SANA(target_object));
-                break;
-            case 'A':
-                victim_object = std::get<ObjData *>(vict_obj);
-                CHECK_NULL(victim_object, SANA(victim_object));
-                break;
-            case 't':
-                cval = std::get<const char *>(obj);
-                CHECK_NULL(cval, cval);
-                strcpy(target_string, i);
-                break;
-            case 'T':
-                cval = std::get<const char *>(vict_obj);
-                CHECK_NULL(cval, cval);
-                strcpy(target_string2, i);
-                break;
-            case 'f':
-                cval = std::get<const char *>(obj);
-                CHECK_NULL(cval, fname(cval));
-                strcpy(target_string, i);
-                break;
-            case 'F':
-                cval = std::get<const char *>(vict_obj);
-                CHECK_NULL(cval, fname(cval));
-                strcpy(target_string2, i);
-                break;
-            case 'i':
-                i = ibuf;
-                ival = std::get<int>(obj);
-                sprintf(ibuf, "%d", ival);
-                break;
-            case 'I':
-                i = ibuf;
-                ival = std::get<int>(vict_obj);
-                sprintf(ibuf, "%d", ival);
-                break;
-                /* uppercase previous word */
-            case 'u':
-                for (j = bufptr; j > rtn && !isspace((int)*(j - 1)); j--)
-                    ;
-                if (j != bufptr)
-                    *j = UPPER(*j);
-                i = "";
-                break;
-                /* uppercase next word */
-            case 'U':
-                uppercasenext = true;
-                i = "";
-                break;
-            case '$':
-                i = "$";
-                break;
-            default:
-                log("SYSERR: Illegal $-code to act():\n"
-                    "SYSERR: {}",
-                    orig);
-                i = "";
-                break;
+    for (auto c : format) {
+        if (!std::exchange(code, false)) {
+            if (c == '$') {
+                code = true;
+            } else {
+                rtn += c;
             }
-            while ((*bufptr = *(i++))) {
-                if (uppercasenext && !isspace((int)*bufptr)) {
-                    *bufptr = UPPER(*bufptr);
-                    uppercasenext = false;
-                }
-                bufptr++;
-            }
-            orig++;
-        } else if (!(*(bufptr++) = *(orig++))) {
+            continue;
+        }
+        switch (c) {
+        case 'n': // Show name (or 'someone' if you can't see them) of ch
+            rtn += PERS(ch, to);
             break;
-        } else if (uppercasenext && !isspace((int)*(bufptr - 1))) {
-            *(bufptr - 1) = UPPER(*(bufptr - 1));
-            uppercasenext = false;
+        case 'N': // Show name (or 'someone' if you can't see them) of vict_obj
+            if (auto victim = std::get_if<CharData *>(&vict_obj)) {
+                rtn += PERS(*victim, to);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'm':
+            rtn += HMHR(ch);
+            break;
+        case 'M':
+            if (auto victim = std::get_if<CharData *>(&vict_obj)) {
+                rtn += HMHR(*victim);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 's':
+            rtn += HSHR(ch);
+            break;
+        case 'S':
+            if (auto victim = std::get_if<CharData *>(&vict_obj)) {
+                rtn += HSHR(*victim);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'D':
+            if (auto victim = std::get_if<CharData *>(&vict_obj)) {
+                rtn += without_article(HSSH(*victim));
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'e':
+            rtn += HSSH(ch);
+            break;
+        case 'E':
+            if (auto victim = std::get_if<CharData *>(&vict_obj)) {
+                rtn += HSSH(*victim);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'o':
+            if (auto target_object = std::get_if<ObjData *>(&obj)) {
+                rtn += OBJN(*target_object, to);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'O':
+            if (auto victim_object = std::get_if<ObjData *>(&vict_obj)) {
+                rtn += OBJN(*victim_object, to);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'p':
+            if (auto target_object = std::get_if<ObjData *>(&obj)) {
+                rtn += OBJS(*target_object, to);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'P':
+            if (auto victim_object = std::get_if<ObjData *>(&vict_obj)) {
+                rtn += OBJS(*victim_object, to);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'a':
+            if (auto target_object = std::get_if<ObjData *>(&obj)) {
+                rtn += SANA(*target_object);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 'A':
+            if (auto victim_object = std::get_if<ObjData *>(&vict_obj)) {
+                rtn += SANA(*victim_object);
+            } else {
+                rtn += ACTNULL;
+            }
+            break;
+        case 't':
+            if (auto obj_as_string_view = std::get_if<std::string_view>(&obj)) {
+                rtn += *obj_as_string_view;
+            } else {
+                log("SYSERR: format_act: $t used with no obj");
+                rtn += ACTNULL;
+            }
+            break;
+        case 'T':
+            if (auto vict_obj_as_string_view = std::get_if<std::string_view>(&vict_obj)) {
+                rtn += *vict_obj_as_string_view;
+            } else {
+                log("SYSERR: format_act: $T used with no vict_obj");
+                rtn += ACTNULL;
+            }
+            break;
+        case 'f':
+            if (auto obj_as_string_view_2 = std::get_if<std::string_view>(&obj)) {
+                rtn += fname(*obj_as_string_view_2);
+            } else {
+                log("SYSERR: format_act: $f used with no obj");
+                rtn += ACTNULL;
+            }
+            break;
+        case 'F':
+            if (auto vict_obj_as_string_view2 = std::get_if<std::string_view>(&vict_obj)) {
+                rtn += fname(*vict_obj_as_string_view2);
+            } else {
+                log("SYSERR: format_act: $F used with no vict_obj");
+                rtn += ACTNULL;
+            }
+            break;
+        case 'i':
+            if (auto obj_as_int = std::get_if<int>(&obj)) {
+                rtn += *obj_as_int;
+            } else {
+                log("SYSERR: format_act: $i used with no obj");
+                rtn += ACTNULL;
+            }
+            break;
+        case 'I':
+            if (auto vict_obj_as_int = std::get_if<int>(&vict_obj))
+                rtn += *vict_obj_as_int;
+            break;
+        case '$':
+            rtn += "$";
+            break;
+        default:
+            log("SYSERR: Illegal $-code to act(): {} ({})", c, format);
+            break;
         }
     }
 
-    *(--bufptr) = '\r';
-    *(++bufptr) = '\n';
-    *(++bufptr) = '\0';
-
-    act_mtrigger(to, rtn, ch, victim, victim_object, target_object, target_string, target_string2);
-
-    CAP(rtn);
+    // act_mtrigger(to, rtn, ch, victim, victim_object, target_object, target_string, target_string2);
+    rtn[0] = std::toupper(rtn[0]);
+    rtn += "\n";
+    return rtn;
 }
 
 /* The "act" action interpreter */
-void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, ActArg vict_obj, int type) {
+void act(std::string_view str, int hide_invisible, const CharData *ch, ActArg obj, ActArg vict_obj, int type) {
     char lbuf[MAX_STRING_LENGTH];
     CharData *to = nullptr, *victim = nullptr;
     ObjData *target_object = nullptr, *victim_object = nullptr;
     int sleep, olc, in_room, i, to_victroom;
 
-    if (!str)
+    if (str.empty() || !ch)
         return;
 
     if (!(dg_act_check = !IS_SET(type, DG_NO_TRIG)))
@@ -2873,9 +2887,9 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
 
     if (type == TO_CHAR) {
         if (ch && ((MOB_PERFORMS_SCRIPTS(ch) && SCRIPT_CHECK(ch, MTRIG_ACT)) || SENDOK(ch))) {
-            format_act(lbuf, str, ch, obj, vict_obj, ch);
+            auto formatted = format_act(str, ch, obj, vict_obj, ch);
+            char_printf(ch, formatted);
         }
-        char_printf(ch, lbuf);
 
         return;
     }
@@ -2888,8 +2902,8 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
         to = std::get<CharData *>(vict_obj);
         if (to && ((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch))) {
-            format_act(lbuf, str, ch, obj, vict_obj, to);
-            char_printf(to, lbuf);
+            auto formatted = format_act(str, ch, obj, vict_obj, to);
+            char_printf(to, formatted);
         }
 
         return;
@@ -2942,8 +2956,8 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
     for (to = world[in_room].people; to; to = to->next_in_room)
         if (((MOB_PERFORMS_SCRIPTS(to) && SCRIPT_CHECK(to, MTRIG_ACT)) || SENDOK(to)) &&
             !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) && (type == TO_ROOM || (to != victim))) {
-            format_act(lbuf, str, ch, obj, vict_obj, to);
-            char_printf(to, lbuf);
+            auto formatted = format_act(str, ch, obj, vict_obj, to);
+            char_printf(to, formatted);
         }
     /*
      * Reflect TO_ROOM and TO_NOTVICT calls that occur in ARENA rooms
@@ -2959,7 +2973,7 @@ void act(const char *str, int hide_invisible, const CharData *ch, ActArg obj, Ac
                     if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
                         (type == TO_ROOM || (to != victim))) {
                         char_printf(to, "&4&8<&0{}&0&4&8>&0 ", world[in_room].name);
-                        format_act(lbuf, str, ch, obj, vict_obj, to);
-                        char_printf(to, lbuf);
+                        auto formatted = format_act(str, ch, obj, vict_obj, to);
+                        char_printf(to, formatted);
                     }
 }

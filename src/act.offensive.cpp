@@ -1086,7 +1086,7 @@ ACMD(do_bash) {
         vict = FIGHTING(ch);
         if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
             sprintf(buf, "%s who?\n", skills[skill].name);
-            char_printf(ch, CAP(buf));
+            char_printf(ch, cap_by_color(buf));
             return;
         }
     }

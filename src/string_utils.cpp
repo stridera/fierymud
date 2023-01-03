@@ -128,16 +128,6 @@ bool matches_start(std::string_view lhs, std::string_view rhs) {
     return is_equals(lhs, rhs.substr(0, lhs.size()));
 }
 
-constexpr std::string_view trim_left(std::string_view s) {
-    return s.substr(std::min(s.find_first_not_of(" \f\n\r\t\v"), s.size()));
-}
-
-constexpr std::string_view trim_right(std::string_view s) {
-    return s.substr(0, std::min(s.find_last_not_of(" \f\n\r\t\v") + 1, s.size()));
-}
-
-constexpr std::string_view trim(std::string_view s) { return trim_left(trim_right(s)); }
-
 // c++23
 // bool matches(std::string_view lhs, std::string_view rhs) {
 //     if (lhs.size() != rhs.size())
