@@ -180,7 +180,6 @@ extern int_app_type int_app[101];
 extern wis_app_type wis_app[101];
 extern cha_app_type cha_app[101];
 
-extern message_list fight_messages[MAX_MESSAGES];
 extern SpellDamage spell_dam_info[MAX_SPELLS + 1];
 
 /* global buffering system */

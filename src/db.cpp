@@ -91,7 +91,6 @@ int top_of_objt = 0;                        /* top of object index table        
 SpellDamage spell_dam_info[MAX_SPELLS + 1]; /*internal spell dam */
 ZoneData *zone_table;                       /* zone table                         */
 int top_of_zone_table = 0;                  /* top element of zone tab         */
-message_list fight_messages[MAX_MESSAGES];  /* fighting messages */
 
 PlayerIndexElement *player_table = nullptr; /* index to plr file */
 int top_of_p_table = 0;                     /* ref to top of table                 */
@@ -597,9 +596,6 @@ void boot_db(void) {
 
         log("Loading help entries.");
         index_boot(DB_BOOT_HLP);
-
-        log("Loading fight messages.");
-        load_messages();
 
         log("Loading social messages.");
         boot_social_messages();

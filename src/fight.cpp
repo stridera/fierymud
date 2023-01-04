@@ -27,6 +27,7 @@
 #include "directions.hpp"
 #include "events.hpp"
 #include "exits.hpp"
+#include "fight_msgs.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
@@ -430,93 +431,6 @@ char *fread_message(FILE *fl, int nr) {
         return action;
     sprintf(buf, "ERROR!   Message #%d missing.", nr);
     return strdup(buf);
-}
-
-void load_messages(void) {
-    FILE *fl;
-    int i, type;
-    message_type *messages;
-    char chk[256];
-
-    if (!(fl = fopen(MESS_FILE, "r"))) {
-        sprintf(buf2, "Error reading combat message file %s", MESS_FILE);
-        perror(buf2);
-        exit(1);
-    }
-    for (i = 0; i < MAX_MESSAGES; i++) {
-        fight_messages[i].a_type = 0;
-        fight_messages[i].number_of_attacks = 0;
-        fight_messages[i].msg = 0;
-    }
-
-    fgets(chk, 256, fl);
-    while (!feof(fl) && (*chk == '\n' || *chk == '*'))
-        fgets(chk, 256, fl);
-
-    while (*chk == 'M') {
-        fgets(chk, 256, fl);
-        sscanf(chk, " %d\n", &type);
-        for (i = 0; (i < MAX_MESSAGES) && (fight_messages[i].a_type != type) && (fight_messages[i].a_type); i++)
-            ;
-        if (i >= MAX_MESSAGES) {
-            fprintf(stderr, "Too many combat messages.   Increase MAX_MESSAGES and recompile.");
-            exit(1);
-        }
-        CREATE(messages, message_type, 1);
-
-        fight_messages[i].number_of_attacks++;
-        fight_messages[i].a_type = type;
-        messages->next = fight_messages[i].msg;
-        fight_messages[i].msg = messages;
-
-        messages->die_msg.attacker_msg = fread_message(fl, i);
-        messages->die_msg.victim_msg = fread_message(fl, i);
-        messages->die_msg.room_msg = fread_message(fl, i);
-        messages->miss_msg.attacker_msg = fread_message(fl, i);
-        messages->miss_msg.victim_msg = fread_message(fl, i);
-        messages->miss_msg.room_msg = fread_message(fl, i);
-        messages->hit_msg.attacker_msg = fread_message(fl, i);
-        messages->hit_msg.victim_msg = fread_message(fl, i);
-        messages->hit_msg.room_msg = fread_message(fl, i);
-        messages->god_msg.attacker_msg = fread_message(fl, i);
-        messages->god_msg.victim_msg = fread_message(fl, i);
-        messages->god_msg.room_msg = fread_message(fl, i);
-        messages->heal_msg.attacker_msg = fread_message(fl, i);
-        messages->heal_msg.victim_msg = fread_message(fl, i);
-        messages->heal_msg.room_msg = fread_message(fl, i);
-        fgets(chk, 256, fl);
-        while (!feof(fl) && (*chk == '\n' || *chk == '*'))
-            fgets(chk, 256, fl);
-    }
-
-    fclose(fl);
-}
-
-void free_messages_type(msg_type *msg) {
-    if (msg->attacker_msg)
-        free(msg->attacker_msg);
-    if (msg->victim_msg)
-        free(msg->victim_msg);
-    if (msg->room_msg)
-        free(msg->room_msg);
-}
-
-void free_messages() {
-    int i;
-
-    for (i = 0; i < MAX_MESSAGES; i++)
-        while (fight_messages[i].msg) {
-            message_type *former = fight_messages[i].msg;
-
-            free_messages_type(&former->die_msg);
-            free_messages_type(&former->miss_msg);
-            free_messages_type(&former->hit_msg);
-            free_messages_type(&former->god_msg);
-            free_messages_type(&former->heal_msg);
-
-            fight_messages[i].msg = fight_messages[i].msg->next;
-            free(former);
-        }
 }
 
 void check_killer(CharData *ch, CharData *vict) {
@@ -1467,7 +1381,6 @@ void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
 bool skill_message(int dam, CharData *ch, CharData *vict, int attacktype, bool death) {
     int i, j, nr;
     char b2[1024];
-    message_type *msg;
     msg_type *type;
 
     ObjData *weap = GET_EQ(ch, WEAR_WIELD);
@@ -1482,43 +1395,43 @@ bool skill_message(int dam, CharData *ch, CharData *vict, int attacktype, bool d
     if (attacktype == SKILL_2BACK)
         weap = GET_EQ(ch, WEAR_WIELD2);
 
-    for (i = 0; i < MAX_MESSAGES; i++) {
-        if (fight_messages[i].a_type == attacktype) {
-            nr = dice(1, fight_messages[i].number_of_attacks);
+    if (fight_messages.contains(attacktype)) {
+        auto msgs = fight_messages.at(attacktype);
+        auto fight_msgs = msgs.begin();
+        // If we have more than one message,
+        if (msgs.size() > 1)
+            std::advance(fight_msgs, number(0, msgs.size() - 1));
 
-            for (j = 1, msg = fight_messages[i].msg; (j < nr) && msg; j++)
-                msg = msg->next;
-
-            if (dam < 0)
-                type = &msg->heal_msg;
-            else if (!IS_NPC(vict) && GET_LEVEL(vict) >= LVL_IMMORT)
-                type = &msg->god_msg;
-            else if (dam != 0) {
-                if (death)
-                    type = &msg->die_msg;
-                else
-                    type = &msg->hit_msg;
-            } else if (ch != vict)
-                type = &msg->miss_msg;
+        ActMessages act_msgs;
+        if (dam < 0)
+            act_msgs = fight_msgs->heal;
+        else if (!IS_NPC(vict) && GET_LEVEL(vict) >= LVL_IMMORT)
+            act_msgs = fight_msgs->god;
+        else if (dam != 0) {
+            if (death)
+                act_msgs = fight_msgs->death;
             else
-                return true; /* don't show a message */
+                act_msgs = fight_msgs->hit;
+        } else if (ch != vict)
+            act_msgs = fight_msgs->miss;
+        else
+            return true; /* don't show a message */
 
-            /* to damager */
-            if (ch != vict) {
-                append_damage_amount(b2, type->attacker_msg, dam, TO_CHAR);
-                act(b2, false, ch, weap, vict, TO_CHAR);
-            }
-
-            /* to target */
-            append_damage_amount(b2, type->victim_msg, dam, TO_VICT);
-            act(b2, false, ch, weap, vict, TO_VICT | TO_SLEEP);
-
-            /* to room */
-            append_damage_amount(b2, type->room_msg, dam, TO_ROOM);
-            act(b2, false, ch, weap, vict, TO_NOTVICT | TO_VICTROOM);
-
-            return true;
+        /* to damager */
+        if (ch != vict) {
+            append_damage_amount(b2, std::string(act_msgs.to_char).c_str(), dam, TO_CHAR);
+            act(b2, false, ch, weap, vict, TO_CHAR);
         }
+
+        /* to target */
+        append_damage_amount(b2, std::string(act_msgs.to_victim).c_str(), dam, TO_VICT);
+        act(b2, false, ch, weap, vict, TO_VICT | TO_SLEEP);
+
+        /* to room */
+        append_damage_amount(b2, std::string(act_msgs.to_room).c_str(), dam, TO_ROOM);
+        act(b2, false, ch, weap, vict, TO_NOTVICT | TO_VICTROOM);
+
+        return true;
     }
     return false;
 }
@@ -1578,7 +1491,6 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
 
                 sprintf(buf, "&6&b$n observes your command over %s and attacks YOU instead!&0", GET_NAME(victim));
                 act(buf, false, ch, 0, victim->master, TO_VICT);
-
                 sprintf(buf, "&6&b$n observes $N commanding %s and attacks $M instead!&0", GET_NAME(victim));
                 act(buf, false, ch, 0, victim->master, TO_NOTVICT);
                 sprintf(buf, "&6&bYou observes $N commanding %s and attacks $M instead!&0", GET_NAME(victim));

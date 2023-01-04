@@ -48,5 +48,4 @@ const char *subclass_descrip =
 const char *subclass_descrip2 =
     "to learn of these ways your new class will posses new and different\n"
     "skills and spells thus altering your power within the realm.  Some\n"
-    "classes will also be required to choose a deity in the future as "
-    "well.&0\n";
+    "classes will also be required to choose a deity in the future as well.&0\n";
