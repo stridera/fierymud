@@ -1660,8 +1660,10 @@ ACMD(do_equipment) {
                 char_printf(ch, "{}Something.\n", where[wear_order_index[i]]);
                 found = true;
             }
-        } else if (*arg && is_equals(arg, "all"))
-            char_printf(ch, "{}Nothing.\n", where[wear_order_index[i]]);
+        } else if (arg && is_equals(arg, "all")) {
+            char_printf(ch, "%sNothing.\n", where[wear_order_index[i]]);
+            found = true;
+        }
     }
     if (!found)
         char_printf(ch, " Nothing.\n");
@@ -3492,7 +3494,8 @@ ACMD(do_spells) {
             if (tch == ch)
                 char_printf(ch, "You only know spells up to circle {:d}.\n", max_vis_circle);
             else
-                char_printf(ch, "{} only knows spells up to circle {:d}.\n", cap_by_color(GET_NAME(tch)), max_vis_circle);
+                char_printf(ch, "{} only knows spells up to circle {:d}.\n", cap_by_color(GET_NAME(tch)),
+                            max_vis_circle);
             return;
         }
     }

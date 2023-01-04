@@ -290,8 +290,7 @@ char *get_name_by_id(long id) {
     return (nullptr);
 }
 /* Stuff related to the save/load player system. */
-/* New load_char reads ASCII Player Files. Load a char, true if loaded, false
- * if not. */
+/* New load_char reads ASCII Player Files. Load a char, true if loaded, false if not. */
 int load_player(const char *name, CharData *ch) {
     int id, i, num;
     FILE *fl;
