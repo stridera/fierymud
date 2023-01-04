@@ -584,7 +584,7 @@ void redit_disp_menu(DescriptorData *d) {
 #endif
             "-- Room: '&5%s&0'  vnum: [&2%5d&0]\n"
             "%s1%s) Name        : %s%s\n"
-            "%s2%s) Description :\n%s%s"
+            "%s2%s) Description :\n%s%s\n"
             "%s3%s) Room flags  : %s%s\n"
             "%s4%s) Sector type : %s%s\n",
             room->name, OLC_NUM(d), grn, nrm, yel, room->name, grn, nrm, yel, room->description, grn, nrm, cyn, buf1,
