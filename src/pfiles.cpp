@@ -637,6 +637,13 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
             else if (!strcasecmp(tag, "location"))
                 *location = atoi(line);
+            else if (!strcasecmp(tag, "extradesc"))
+                // Quickly skip through these in case one of the lines starts with a keyword.
+                // Stop when we get to a line that ends with a ~
+                while (get_line(fl, line)) {
+                    if (line[strlen(line) - 1] == '~')
+                        break;
+                }
             else if (!strcasecmp(tag, "spells")) {
                 for (last_spell = obj->spell_book; last_spell && last_spell->next; last_spell = last_spell->next)
                     ;
@@ -910,7 +917,6 @@ bool load_objects(CharData *ch) {
         /* Object file may be in the 'old' format.  Attempt to load thusly. */
         sprintf(buf, "Invalid rent code for %s: attempting to load via legacy code...", GET_NAME(ch));
         log("%s", buf);
-        ;
         fclose(fl);
         if (load_binary_objects(ch)) {
             log("   Success!");
