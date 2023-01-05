@@ -1119,7 +1119,8 @@ ACMD(do_zstat) {
                 "Temperature    : &6{:d} degrees&0\n"
                 "Precipitation  : &6{:d}&0\n"
                 "Wind speed     : &6{}&0 (&6{:d}&0)\n"
-                "Wind direction : &6{}&0\n",
+                "Wind direction : &6{}&0\n"
+                "Last reset     : &6{:d} minutes ago&0\n",
                 vnum, z->name, vnum * 100, z->top,
                 z->reset_mode ? ((z->reset_mode == 1) ? "Reset when no players are in zone" : "Normal reset")
                               : "Never reset",
@@ -1127,11 +1128,7 @@ ACMD(do_zstat) {
                 z->hemisphere >= 0 && z->hemisphere < NUM_HEMISPHERES ? hemispheres[z->hemisphere].name : "<INVALID>",
                 z->climate >= 0 && z->climate < NUM_CLIMATES ? climates[z->climate].name : "<INVALID>", z->temperature,
                 z->precipitation, z->wind_speed == WIND_NONE ? "none" : wind_speeds[z->wind_speed], z->wind_speed,
-                z->wind_dir == NORTH   ? "North"
-                : z->wind_dir == SOUTH ? "South"
-                : z->wind_dir == EAST  ? "East"
-                : z->wind_dir == WEST  ? "West"
-                                       : "<INVALID>");
+                dirs[z->wind_dir], z->age);
 }
 
 ACMD(do_players) {
