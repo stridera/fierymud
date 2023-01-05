@@ -1106,8 +1106,18 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
     if (txt == "External.Discord.Hello") {
         send_gmcp(d, "External.Discord.Info",
                   {{"applicationid", std::string{discord_app_id}}, {"inviteurl", std::string{discord_invite_url}}});
+        auto now = std::chrono::system_clock::now();
         send_gmcp(d, "External.Discord.Status",
-                  {{"state", "Logging in..."}, {"details", "Connecting to the MUD..."}, {"game", "Fierymud"}});
+                  {
+                      {"state", "Logging in..."},
+                      {"details", "Connecting to the MUD..."},
+                      {"game", "Fierymud"},
+                      {"smallimage", {"servericon"}},
+                      {"smallimagetext", "Fierymud"},
+                      //   {"partysize", 0},
+                      //   {"partymax", 10},
+                      {"starttime", std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch()).count()},
+                  });
     }
     // log("GMCP request: {}", txt);
 }
@@ -1227,7 +1237,16 @@ void send_gmcp_prompt(DescriptorData *d) {
     write_to_descriptor(d->descriptor, ga_string);
     std::string details =
         fmt::format("Character: {}  Class: {}  Level: {}", GET_NAME(ch), capitalize(CLASS_NAME(ch)), GET_LEVEL(ch));
-    send_gmcp(d, "External.Discord.Status", {{"state", "Playing"}, {"details", details}});
+    auto login = std::chrono::system_clock::from_time_t(ch->player.time.logon);
+    send_gmcp(d, "External.Discord.Status",
+              {
+                  {"state", "Playing"},
+                  {"details", details},
+                  {"game", "Fierymud"},
+                  {"smallimage", {"servericon"}},
+                  {"smallimagetext", "Fierymud"},
+                  {"starttime", std::chrono::duration_cast<std::chrono::seconds>(login.time_since_epoch()).count()},
+              });
 }
 
 void send_gmcp_room(CharData *ch) {
