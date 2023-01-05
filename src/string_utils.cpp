@@ -21,7 +21,7 @@
 #include <string>
 
 std::string ellipsis(const std::string str, int maxlen) {
-    if (str.length() < maxlen)
+    if (str.length() < maxlen - 3)
         return str;
 
     std::string result;
@@ -35,8 +35,8 @@ std::string ellipsis(const std::string str, int maxlen) {
             in_code = !in_code;
         } else {
             len++;
-            result += c;
         }
+        result += c;
     }
     return result + "...";
 }

@@ -1423,24 +1423,24 @@ ACMD(do_osearch) {
         if (match) {
             std::string vbuf;
             // How many extra spaces do we need to pad the title to OBJ_TITLE_LENGTH?
-            int str_len = (strlen(obj->short_description) - ansi_strlen(obj->short_description)) * 2;
+            std::string short_desc = ellipsis(obj->short_description, OBJ_TITLE_LENGTH);
             briefmoney(buf, 6, GET_OBJ_COST(obj));
-            vbuf = fmt::format("{:4d}. [{}{:5d}{}] {:<{}} {}{:<3d}&0  {}{:>4}&0 {:<{}}&0 ", ++found, grn,
-                               obj_index[nr].vnum, nrm, ellipsis(obj->short_description, OBJ_TITLE_LENGTH),
-                               OBJ_TITLE_LENGTH + str_len,
-                               GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
-                               : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
-                               : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
-                               : GET_OBJ_LEVEL(obj) > 101 ? "&4&b"
-                               : GET_OBJ_LEVEL(obj) > 100 ? "&1&b"
-                               : GET_OBJ_LEVEL(obj) > 99  ? "&3&b"
-                               : GET_OBJ_LEVEL(obj) > 89  ? "&5"
-                               : GET_OBJ_LEVEL(obj) > 74  ? "&6"
-                               : GET_OBJ_LEVEL(obj) > 49  ? "&2"
-                                                          : "",
-                               GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
-                               GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), buf,
-                               5 + count_color_chars(buf));
+            vbuf =
+                fmt::format("{:4d}. [{}{:5d}{}] {:<{}} {}{:<3d}&0  {}{:>4}&0 {:<{}}&0 ", ++found, grn,
+                            obj_index[nr].vnum, nrm, short_desc, OBJ_TITLE_LENGTH + count_color_chars(short_desc) * 2,
+                            GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
+                            : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
+                            : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
+                            : GET_OBJ_LEVEL(obj) > 101 ? "&4&b"
+                            : GET_OBJ_LEVEL(obj) > 100 ? "&1&b"
+                            : GET_OBJ_LEVEL(obj) > 99  ? "&3&b"
+                            : GET_OBJ_LEVEL(obj) > 89  ? "&5"
+                            : GET_OBJ_LEVEL(obj) > 74  ? "&6"
+                            : GET_OBJ_LEVEL(obj) > 49  ? "&2"
+                                                       : "",
+                            GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
+                            GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), buf,
+                            5 + count_color_chars(buf));
             switch (subcmd) {
             case SCMD_VWEAR:
                 if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&

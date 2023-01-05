@@ -40,20 +40,20 @@ template <typename... Args> void char_printf(const CharData *ch, std::string_vie
     char_printf(ch, fmt::vformat(str, fmt::make_format_args(args...)));
 }
 void char_printf(const CharData *ch, std::string_view str);
+void room_printf(int rvnum, std::string_view str);
 template <typename... Args> void room_printf(int rvnum, std::string_view str, Args &&...args) {
     room_printf(rvnum, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void room_printf(int rvnum, std::string_view str);
+void zone_printf(int zone_vnum, int skip_room, int min_stance, std::string_view str);
 template <typename... Args>
 void zone_printf(int zone_vnum, int skip_room, int min_stance, std::string_view str, Args &&...args) {
     zone_printf(zone_vnum, skip_room, min_stance, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void zone_printf(int zone_vnum, int skip_room, int min_stance, std::string_view str);
+void callback_printf(CBP_FUNC(callback), int min_stance, std::string_view str);
 template <typename... Args>
 void callback_printf(CBP_FUNC(callback), int min_stance, std::string_view str, Args &&...args) {
     callback_printf(callback, min_stance, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void callback_printf(CBP_FUNC(callback), int min_stance, std::string_view str);
 
 template <typename... Args> void outdoor_printf(int zone_num, std::string_view str, Args &&...args) {
     outdoor_printf(zone_num, fmt::vformat(str, fmt::make_format_args(args...)));
