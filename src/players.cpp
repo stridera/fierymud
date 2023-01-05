@@ -1385,7 +1385,7 @@ void start_player(CharData *ch) {
 
 void remove_player_from_game(CharData *ch, int quit_mode) {
     if (!(GET_LEVEL(ch) >= LVL_IMMORT && GET_INVIS_LEV(ch))) {
-        all_except_printf(ch, "The world seems to pause momentarily as %s leaves this realm.\n", GET_NAME(ch));
+        all_except_printf(ch, "The world seems to pause momentarily as {} leaves this realm.\n", GET_NAME(ch));
     }
 
     GET_QUIT_REASON(ch) = quit_mode;
