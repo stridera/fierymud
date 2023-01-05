@@ -3962,9 +3962,9 @@ ACMD(do_innate) {
         if (GET_SKILL(ch, SKILL_DOORBASH))
             char_printf(ch, " doorbash\n");
         if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
-            send_to_char(" faerie step\n", ch);
+            char_printf(ch, " faerie step\n");
         if (GET_RACE(ch) == RACE_DROW)
-            send_to_char(" feather fall\n", ch);
+            char_printf(ch, " feather fall\n");
         if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             char_printf(ch, " fly*\n");
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
