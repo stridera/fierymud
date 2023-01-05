@@ -1661,7 +1661,7 @@ ACMD(do_equipment) {
                 found = true;
             }
         } else if (arg && is_equals(arg, "all")) {
-            char_printf(ch, "%sNothing.\n", where[wear_order_index[i]]);
+            char_printf(ch, "{}Nothing.\n", where[wear_order_index[i]]);
             found = true;
         }
     }
