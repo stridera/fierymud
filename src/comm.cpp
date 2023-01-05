@@ -1104,7 +1104,7 @@ void offer_gmcp_services(DescriptorData *d) {
 void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
     // This is for GMCP requests from the clients.
     if (txt == "External.Discord.Hello") {
-        send_gmcp(d, "External.Discord.Hello", {"applicationid", std::string{discord_app_id}});
+        send_gmcp(d, "External.Discord.Info", {"applicationid", std::string{discord_app_id}});
         send_gmcp(d, "External.Discord.Status", {"state", "Logging in..."});
     }
     // log("GMCP request: {}", txt);
