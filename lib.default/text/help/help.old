@@ -5288,10 +5288,10 @@ You can also use the "LEVEL" command itself to see how close you are to level.
 
 See Also: HELP, INFO, SPELLS
 #0
-LEVITATE
+"FEATHER FALL"
 
 ================================================
-Usage	      : cast 'levitate' <victim>
+Usage	      : cast 'feather fall' <victim>
 Aggressive    : No
 Accumulative  : No
 Duration      : Proficiency
@@ -5299,8 +5299,8 @@ Type of spell : Sphere of Enchantment
 Classes	      : Cryomancer, Pyromancer, Sorcerer
 ================================================
 
-Levitate allows a sorcerer to cause a person to lift slightly off the ground to
-defeat gravity somewhat.  This spell is a weaker version of fly.
+FEATHER FALL allows a sorcerer to cause a person to lift slightly off the
+ground and defeat gravity somewhat by negating falling damage.
 
 See Also: FLY
 #0
@@ -7764,7 +7764,7 @@ Safefall will allow a monk to safely roll out of a fall from a particular
 altitude.  Gravity however will have its revenge.  A monk can only survive
 a fall from a few hundred feet higher than that of normal folk.
 
-See Also: LEVITATE, FLY, PETITION
+See Also: FEATHER FALL, FLY, PETITION
 #0
 SANCTUARY
  
@@ -9398,7 +9398,7 @@ shocking grasp
 &4&bCircle 4&0                        iceball
 coldshield                      mass invisibility
 ice dagger                      relocate*
-levitate
+feather fall
 lightning bolt                  &4&bCircle 10&0
 ray of enfeeblement             negate cold
 teleport                        waterform
@@ -9706,7 +9706,7 @@ fireball                        mass invisibility
 fireshield                      relocate*
 flame blade
 infravision                     &4&bCircle 10&0
-levitate                        cremate
+feather fall                    cremate
 mirage                          negate heat
 ray of enfeeblement
 teleport                        &4&bCircle 11&0
@@ -9776,7 +9776,7 @@ shocking grasp                  &4&bCircle 9&0
 coldshield                      relocate*
 fireshield
 infravision                     &4&bCircle 10&0
-levitate                        meteorswarm*
+feather fall                    meteorswarm*
 lightning bolt
 minor globe                     &4&bCircle 11&0
 minor paralysis                 enlarge
@@ -11461,7 +11461,7 @@ Creates either pretty angels' wings or icky-looking batwings upon the
 caster's back. Will allow the caster to float, but not to cross open
 water. For that, you need a boat of some sort.
 
-See Also: FLY, LEVITATE
+See Also: FLY, FEATHER FALL
 #0
 WISDOM
  

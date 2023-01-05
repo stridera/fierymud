@@ -2251,7 +2251,7 @@ void hit(CharData *ch, CharData *victim, int type) {
         damage(ch, victim, dam, type);
 
         if (ALIVE(victim) && EFF_FLAGGED(victim, EFF_IMMOBILIZED))
-            decrease_modifier(victim, SPELL_BONE_DRAW);
+            decrease_modifier(victim, SPELL_BONE_CAGE);
 
         /* Do after the damage() so we don't send the wrong type. */
         if (ALIVE(ch) && weapon && !number(0, 9) && (type = weapon_proficiency(weapon, weapon_position)) != -1) {

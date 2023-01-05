@@ -225,7 +225,7 @@ int mag_savingthrow(CharData *ch, int type) {
 }
 
 /* Decrease modifier is used to decrease the modifiers for
- * stone skin and bone draw by 1
+ * stone skin and bone cage by 1
  *  Can be used by any effect really with minor code change
  */
 void decrease_modifier(CharData *i, int spell) {
@@ -234,7 +234,7 @@ void decrease_modifier(CharData *i, int spell) {
     for (eff = i->effects; eff; eff = tmp) {
         tmp = eff->next;
         if (eff->type == spell) {
-            if (spell == SPELL_BONE_DRAW) {
+            if (spell == SPELL_BONE_CAGE) {
                 act("One of the bones locking you in place shatters under the attack!", false, i, 0, 0, TO_CHAR);
                 act("One of the bones locking $n in place shatters under the attack!", false, i, 0, 0, TO_ROOM);
             }
@@ -724,8 +724,8 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             act("$N doesn't seem to care that $n is shaking the ground.", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
-        /* Do you fall down?  Levitate and high dex prevent it */
-        if (!EFF_FLAGGED(victim, EFF_LEVITATE) && number(1, 100) >= GET_DEX(victim) - temp) {
+        /* Do you fall down?  Feather Fall and high dex prevent it */
+        if (!EFF_FLAGGED(victim, EFF_FEATHER_FALL) && number(1, 100) >= GET_DEX(victim) - temp) {
             GET_POS(victim) = POS_SITTING;
             GET_STANCE(victim) = STANCE_ALERT;
         } else {
@@ -733,8 +733,8 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             act("$n is unable to knock you to the ground.", true, ch, 0, victim, TO_VICT);
             act("$N manages to keep $S footing.", true, ch, 0, victim, TO_NOTVICT);
         }
-        /* Levitate - cuts damage in half */
-        if (EFF_FLAGGED(victim, EFF_LEVITATE))
+        /* Feather Fall - cuts damage in half */
+        if (EFF_FLAGGED(victim, EFF_FEATHER_FALL))
             dam /= 2;
         break;
     case SPELL_EXORCISM:
@@ -1021,7 +1021,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     if (ALIVE(victim) && EFF_FLAGGED(victim, EFF_IMMOBILIZED) &&
         IS_SET(skills[spellnum].targets, TAR_DIRECT | TAR_CONTACT))
-        decrease_modifier(victim, SPELL_BONE_DRAW);
+        decrease_modifier(victim, SPELL_BONE_CAGE);
 
     if (ALIVE(victim) && dam > 0 && GET_LEVEL(victim) < LVL_IMMORT && !MOB_FLAGGED(ch, MOB_ILLUSORY)) {
 
@@ -1282,7 +1282,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         to_room = "&3$N's&3 skin hardens to a bone carapace.&0";
         break;
 
-    case SPELL_BONE_DRAW:
+    case SPELL_BONE_CAGE:
         if (EFF_FLAGGED(victim, EFF_IMMOBILIZED)) {
             act("$n is already immobilized!", false, ch, 0, victim, TO_CHAR);
             return CAST_RESULT_CHARGE;
@@ -2098,9 +2098,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         to_room = "$N slowly fades out of existence.";
         break;
 
-    case SPELL_LEVITATE:
+    case SPELL_FEATHER_FALL:
 
-        SET_FLAG(eff[0].flags, EFF_LEVITATE);
+        SET_FLAG(eff[0].flags, EFF_FEATHER_FALL);
         eff[0].duration = 5 + (skill / 10);
         to_char = "&6$N&0&6 floats up into the air.&0";
         to_vict = "&6You float up into the air.&0";

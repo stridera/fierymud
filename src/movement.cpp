@@ -106,7 +106,7 @@ EVENTFUNC(gravity_event) {
             dismount_char(RIDDEN_BY(ch));
 
         if (event->distance_fallen == 0) {
-            if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
+            if (EFF_FLAGGED(ch, EFF_FEATHER_FALL)) {
                 act("&1&bYou find yourself in midair and begin descending.&0\n\n", false, ch, 0, 0, TO_CHAR);
                 act("&1&b$n finds $mself in midair and begins descending.&0", false, ch, 0, 0, TO_ROOM);
             } else {
@@ -119,7 +119,7 @@ EVENTFUNC(gravity_event) {
         char_from_room(ch);
         char_to_room(ch, to_room);
 
-        if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
+        if (EFF_FLAGGED(ch, EFF_FEATHER_FALL)) {
             char_printf(ch, "\n&2You float slowly downward.&0\n\n");
             act("&2$n floats slowly down from above.&0", false, ch, 0, 0, TO_ROOM);
         } else if (GET_SKILL(ch, SKILL_SAFEFALL)) {
@@ -157,7 +157,7 @@ EVENTFUNC(gravity_event) {
     if ((ch ? SECT(IN_ROOM(ch)) : SECT(IN_ROOM(obj))) == SECT_AIR)
         if (ch ? CAN_GO(ch, DOWN) : CAN_GO(obj, DOWN)) {
             /* return 1 makes it happen immediately; we want to wait a pulse or so */
-            if (ch && EFF_FLAGGED(ch, EFF_LEVITATE))
+            if (ch && EFF_FLAGGED(ch, EFF_FEATHER_FALL))
                 return 4;
             else
                 return 2;
@@ -284,7 +284,7 @@ void gravity_assisted_landing(CharData *ch, int distance_fallen) {
     int damage = 0;
 
     /* Levitation protects from damage */
-    if (EFF_FLAGGED(ch, EFF_LEVITATE)) {
+    if (EFF_FLAGGED(ch, EFF_FEATHER_FALL)) {
         if (IS_WATER(IN_ROOM(ch))) {
             char_printf(ch, "\nYou come to rest above the surface of the water.\n");
             act("$n comes to rest above the surface of the water.", false, ch, 0, 0, TO_ROOM);

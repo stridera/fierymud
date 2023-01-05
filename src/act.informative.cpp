@@ -3962,7 +3962,9 @@ ACMD(do_innate) {
         if (GET_SKILL(ch, SKILL_DOORBASH))
             char_printf(ch, " doorbash\n");
         if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
-            char_printf(ch, " faerie step\n");
+            send_to_char(" faerie step\n", ch);
+        if (GET_RACE(ch) == RACE_DROW)
+            send_to_char(" feather fall\n", ch);
         if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             char_printf(ch, " fly*\n");
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
@@ -4077,18 +4079,18 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "levitate")) {
+        if (is_abbrev(arg, "feather fall")) {
             if (GET_RACE(ch) == RACE_DROW) {
-                if (EFF_FLAGGED(ch, EFF_LEVITATE))
+                if (EFF_FLAGGED(ch, EFF_FEATHER_FALL))
                     char_printf(ch, "You already levitating.\n");
-                else if (!GET_COOLDOWN(ch, CD_INNATE_LEVITATE)) {
-                    call_magic(ch, ch, 0, SPELL_LEVITATE, GET_LEVEL(ch), CAST_SPELL);
+                else if (!GET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL)) {
+                    call_magic(ch, ch, 0, SPELL_FEATHER_FALL, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                        SET_COOLDOWN(ch, CD_INNATE_LEVITATE, 9 MUD_HR);
+                        SET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL, 9 MUD_HR);
                 } else {
                     char_printf(ch, "You're too tired right now.\n");
-                    char_printf(ch, "You can levitate again in {:d} seconds.\n",
-                                (GET_COOLDOWN(ch, CD_INNATE_LEVITATE) / 10));
+                    char_printf(ch, "You can fall lightly again in {:d} seconds.\n",
+                                (GET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL) / 10));
                 }
                 return;
             }

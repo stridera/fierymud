@@ -1671,7 +1671,7 @@ char *prompt_str(CharData *ch) {
                 temp = CD_LAY_HANDS;
                 break;
             case 'm':
-                temp = CD_INNATE_LEVITATE;
+                temp = CD_INNATE_FEATHER_FALL;
                 break;
             case 'n':
                 temp = CD_SHAPECHANGE;
