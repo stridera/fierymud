@@ -994,8 +994,8 @@ static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
 }
 
 static void send_clan_who_header(CharData *ch) {
-    char_printf(ch, " " AUND "Lvl" ANRM "  " AUND "Name     " ANRM "  " AUND "Rank                    " ANRM "  " AUND
-                    "Last Login            " ANRM "\n");
+    char_printf(ch,
+                " Lvl" ANRM "  Name     " ANRM "  Rank                    " ANRM "  Last Login            " ANRM "\n");
 }
 
 CLANCMD(clan_who) {

@@ -26,6 +26,7 @@ bool is_equals(const std::string_view &lhs, const std::string_view &rhs);
 }
 
 [[nodiscard]] constexpr std::string_view trim(std::string_view s) { return trim_left(trim_right(s)); }
+[[nodiscard]] std::string capitalize_first(std::string_view sv);
 
 // // Compares two strings: are they referring to the same thing. That currently means "case insensitive
 // comparison".

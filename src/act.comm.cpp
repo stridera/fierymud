@@ -565,9 +565,7 @@ ACMD(do_gen_comm) {
     /* This prevents gossiping when the channel is disabled... but allows gods */
     /*  to continue to do so... Selina, 3-26-99 */
     if (!gossip_channel_active && (GET_LEVEL(ch) < LVL_GOD) && (subcmd == SCMD_GOSSIP)) {
-        char_printf(ch,
-                    "You try to gossip, but the heavens have disabled the channel "
-                    "for the time being.\n");
+        char_printf(ch, "You try to gossip, but the heavens have disabled the channel for the time being.\n");
         return;
     }
 
@@ -684,7 +682,7 @@ ACMD(do_qcomm) {
                 sprintf(buf, "You quest-say, '%s@0'", speech.c_str());
             } else
                 strcpy(buf, speech.c_str());
-            act(buf, false, ch, nullptr, speech.c_str(), TO_CHAR | TO_OLC | TO_SLEEP);
+            act(buf, false, ch, nullptr, speech, TO_CHAR | TO_OLC | TO_SLEEP);
         }
 
         if (subcmd == SCMD_QSAY) {

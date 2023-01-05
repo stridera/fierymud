@@ -1538,7 +1538,7 @@ ACMD(do_consent) {
 
     if (target == ch) {
         if (CONSENT(ch)) {
-            act("&8$n&0&8 has revoked $s consent.&0", false, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
+            act("$n&0 has revoked $s consent.&0", false, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
             char_printf(ch, "&8You revoke your consent.&0\n");
             CONSENT(ch) = nullptr;
         } else
@@ -1557,7 +1557,7 @@ ACMD(do_consent) {
     }
 
     if (CONSENT(ch))
-        act("&8$n&0&8 has removed $s consent.&0", false, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
+        act("$n&0 has removed $s consent.&0", false, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
     CONSENT(ch) = target;
     act("&7&bYou give your consent to $N.&0", false, ch, 0, target, TO_CHAR | TO_SLEEP);
     act("&7&b$n has given you $s consent.&0", false, ch, 0, target, TO_VICT | TO_SLEEP);
@@ -1583,20 +1583,20 @@ ACMD(do_bandage) {
         return;
     }
     if (GET_HIT(victim) >= 0 && GET_STANCE(victim) >= STANCE_STUNNED) {
-        act("&8$N looks in pretty good shape already!&0", false, ch, 0, victim, TO_CHAR);
+        act("$N looks in pretty good shape already!&0", false, ch, 0, victim, TO_CHAR);
         return;
     }
 
     if (GET_SKILL(ch, SKILL_BANDAGE) > number(1, 80)) {
         act("&0&8You bandage $N.&0", false, ch, 0, victim, TO_CHAR);
-        act("&8$n&0&8 bandages $N&8's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
+        act("$n&0 bandages $N's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
         hurt_char(victim, nullptr, MAX(-3, GET_SKILL(ch, SKILL_BANDAGE) / -10), true);
     } else {
         act("You fail to bandage $N properly.", false, ch, 0, victim, TO_CHAR);
-        act("&8$n fails an attempt to bandage $N&8's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
+        act("$n fails an attempt to bandage $N's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
         if (DAMAGE_WILL_KILL(victim, 1)) {
             act("Your bandaging was so appalling that $N died!&0", false, ch, 0, victim, TO_CHAR);
-            act("&8$n kills $N with some dismal bandaging.&0", false, ch, 0, victim, TO_NOTVICT);
+            act("$n kills $N with some dismal bandaging.&0", false, ch, 0, victim, TO_NOTVICT);
         }
         hurt_char(victim, nullptr, 1, true);
     }
@@ -1862,7 +1862,7 @@ void split_coins(CharData *ch, int coins[], unsigned int mode) {
      */
 
     char_printf(ch, "&7&bYou split some coins with your group.&0\n");
-    act("&7&8$n splits some coins.&0", true, ch, 0, 0, TO_ROOM);
+    act("&7$n splits some coins.&0", true, ch, 0, 0, TO_ROOM);
     for (j = 0; j < count; ++j) {
         /*
          * A slight hack: for each coin type, if the current group

@@ -190,7 +190,7 @@ ClassDef classes[NUM_CLASSES] = {
      "Paladin",
      "&8Paladin&0     ",
      "&8Pal&0",
-     "&8**&0",
+     "**&0",
      true,
      PRAY,
      true,

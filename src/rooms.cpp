@@ -28,7 +28,7 @@
 const struct sectordef sectors[NUM_SECTORS] = {
     /*  0 */ {"Structure", "&7", 1, 0, 0, false, false, "You always pitch a tent indoors?", ""},
     /*  1 */
-    {"City", "&8&b", 1, 5, 100, false, false, "Ye can't pitch a tent on the sidewalk fool.", "Always lit."},
+    {"City", "&b", 1, 5, 100, false, false, "Ye can't pitch a tent on the sidewalk fool.", "Always lit."},
     /*  2 */
     {"Field", "&3", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
     /*  3 */
@@ -44,7 +44,7 @@ const struct sectordef sectors[NUM_SECTORS] = {
     /*  8 */
     {"Air", "&6&b", 1, 0, 0, false, false, "You can't camp in mid-air.", ""},
     /*  9 */
-    {"Road", "&8", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
+    {"Road", "", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
     /* 10 */
     {"Grasslands", "&2&b", 2, 5, 100, true, false, "(yes, you can camp here)", ""},
     /* 11 */
@@ -718,7 +718,7 @@ void send_full_exits(CharData *ch, int roomnum) {
     for (dir = 0; dir < NUM_OF_DIRS; dir++) {
         if ((exit = room->exits[dir]) && ((dest = EXIT_DEST(exit))) && can_see_exit(ch, roomnum, exit)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT && PRF_FLAGGED(ch, PRF_ROOMFLAGS)) {
-                strcpy(buf1, " &8&9[&0");
+                strcpy(buf1, " &9[&0");
                 /* only show keyword if there is one */
                 if (exit->keyword) {
                     /* Only show key vnum if there is one */
@@ -728,7 +728,7 @@ void send_full_exits(CharData *ch, int roomnum) {
                         sprintf(buf1, "%s&2%s&0 (key %d): ", buf1, exit->keyword, exit->key);
                 }
                 sprintbit(exit->exit_info, exit_bits, buf1 + strlen(buf1));
-                strcat(buf1, "&8&9]&0");
+                strcat(buf1, "&9]&0");
                 sprintf(buf2, "%-5s - [%5d] %s%s\n", dirs[dir], dest->vnum, dest->name, buf1);
             } else {
                 sprintf(buf2, "%-5s - ", dirs[dir]);

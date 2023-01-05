@@ -592,7 +592,7 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
     if (affected_by_spell(targ, SPELL_GAIAS_CLOAK))
         act("&2A whirlwind of leaves and &3sticks&2 whips around $S body.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_ICE_ARMOR))
-        act("&8A layer of &4solid ice&0&8 covers $M entirely.&0", true, ch, 0, targ, TO_CHAR);
+        act("&8A layer of &4solid ice&0 covers $M entirely.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_MIRAGE))
         act("&7$S image &1wavers&7 and &9&bshimmers&0&7 and is somewhat "
             "indistinct.&0",
@@ -3118,15 +3118,15 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
                 GET_HIT(tch), GET_MAX_HIT(tch), GET_BASE_HIT(tch), GET_MOVE(tch), GET_MAX_MOVE(tch), natural_move(tch));
 
     if (verbose)
-        char_printf(ch, "Armor class: &3&8{}&0 (&3&8{:d}&0)  ",
+        char_printf(ch, "Armor class: &3{}&0 (&3{:d}&0)  ",
                     armor_message(GET_AC(tch) + 5 * monk_weight_penalty(tch)),
                     GET_AC(tch) + 5 * monk_weight_penalty(tch));
     else
-        char_printf(ch, "Armor class: &3&8{:d}&0  ", GET_AC(tch) + 5 * monk_weight_penalty(tch));
+        char_printf(ch, "Armor class: &3{:d}&0  ", GET_AC(tch) + 5 * monk_weight_penalty(tch));
 
     if (verbose)
         char_printf(
-            ch, "Hitroll: &3&8{}&0 (&3&8{:d}&0)  Damroll: &3&8{}&0 (&3&8{:d}&0)\n",
+            ch, "Hitroll: &3{}&0 (&3{:d}&0)  Damroll: &3{}&0 (&3{:d}&0)\n",
             hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)), GET_HITROLL(tch) - monk_weight_penalty(tch),
             hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)), GET_DAMROLL(tch) - monk_weight_penalty(tch));
     else
@@ -3151,20 +3151,20 @@ static void show_alignment(CharData *ch, CharData *tch, bool verbose) {
 
 static void show_load(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
-        char_printf(ch, "Encumbrance: &3&8{}&0 (&3&8{:.2f}&0/&3{:d}&0 lb)  ",
+        char_printf(ch, "Encumbrance: &3{}&0 (&3{:.2f}&0/&3{:d}&0 lb)  ",
                     (CURRENT_LOAD(tch) >= 0 && CURRENT_LOAD(tch) <= 10) ? carry_desc[CURRENT_LOAD(tch)]
                                                                         : "Your load is ridiculous!",
                     IS_CARRYING_W(tch), CAN_CARRY_W(tch));
     else
-        char_printf(ch, "Encumbrance: &3&8{:.2f}&0/&3{:d}&0 lb  ", IS_CARRYING_W(tch), CAN_CARRY_W(tch));
+        char_printf(ch, "Encumbrance: &3{:.2f}&0/&3{:d}&0 lb  ", IS_CARRYING_W(tch), CAN_CARRY_W(tch));
 }
 
 static void show_saves(CharData *ch, CharData *tch, bool verbose) {
     if (verbose)
         char_printf(ch,
-                    "Saving throws: PAR[&3&8{}&0/&3&8{:d}&0] "
-                    "ROD[&3&8{}&0/&3&8{:d}&0] PET[&3&8{}&0/&3&8{:d}&0] "
-                    "BRE[&3&b{}&0/&3&8{:d}&0] SPE[&3&b{}&0/&3&8{:d}&0]\n",
+                    "Saving throws: PAR[&3{}&0/&3{:d}&0] "
+                    "ROD[&3{}&0/&3{:d}&0] PET[&3{}&0/&3{:d}&0] "
+                    "BRE[&3&b{}&0/&3{:d}&0] SPE[&3&b{}&0/&3{:d}&0]\n",
                     save_message(GET_SAVE(tch, 0)), GET_SAVE(tch, 0), save_message(GET_SAVE(tch, 1)), GET_SAVE(tch, 1),
                     save_message(GET_SAVE(tch, 2)), GET_SAVE(tch, 2), save_message(GET_SAVE(tch, 3)), GET_SAVE(tch, 3),
                     save_message(GET_SAVE(tch, 4)), GET_SAVE(tch, 4));
@@ -3290,13 +3290,13 @@ ACMD(do_score) {
             sprintf(buf2, "%s%s", compositions[BASE_COMPOSITION(tch)].color,
                     capitalize(compositions[BASE_COMPOSITION(tch)].name));
         buf += fmt::format(
-            "  Size: &3&8{}&0  Gender: &3&8{}&0\n"
+            "  Size: &3{}&0  Gender: &3{}&0\n"
             "Race: {}  Life force: {}{}&0  "
             "Composition: {}{}&0{}&0{}{}&0\n",
             capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), capitalize(LIFEFORCE_NAME(tch)),
             COMPOSITION_COLOR(tch), capitalize(COMPOSITION_NAME(tch)), *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
     } else
-        buf += fmt::format("  Race: {}  Size: &3&8{}&0  Gender: &3&8{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)),
+        buf += fmt::format("  Race: {}  Size: &3{}&0  Gender: &3{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)),
                            buf1);
 
     buf += fmt::format(

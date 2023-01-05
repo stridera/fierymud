@@ -28,7 +28,7 @@
  */
 
 const char *wind_speeds[] = {
-    "", "&8&6breeze", "&8&6strong wind", "&4gale-force wind", "&4&8hurricane-strength &0&6wind", "\n"};
+    "", "&6breeze", "&6strong wind", "&4gale-force wind", "&4&8hurricane-strength &0&6wind", "\n"};
 
 const char *precip[] = {"&6&brain", "&7&bsnow", "\n"};
 
@@ -374,7 +374,7 @@ char *precipitation_message(ZoneData *zone, int original) {
                 if (HEMISPHERE(zone).sunlight == SUN_DARK)
                     strcpy(buf,
                            "&9&bDark, ominous clouds&0 &4cover the sky, shrouding "
-                           "the &7&8moon&8.&0\n");
+                           "the &7&8moon.&0\n");
                 else
                     strcpy(buf,
                            "&9&bOminously dark clouds&0 &4fill the sky, blocking "
@@ -400,7 +400,7 @@ char *precipitation_message(ZoneData *zone, int original) {
             strcpy(buf, "&5The &7moon&0 &5shines &8brightly&0 &5in the clear &4sky.&0\n");
             break;
         case SUN_SET:
-            strcpy(buf, "&5The &3&8sun&0 &5glows &8&1red&0 &5in the clear &4sky.&0\n");
+            strcpy(buf, "&5The &3&8sun&0 &5glows &1red&0 &5in the clear &4sky.&0\n");
             break;
         default:
             /* Should not occur. */

@@ -25,7 +25,7 @@
 /* name, color, weight_min, weight_max, height_min, height_max */
 struct sizedef sizes[NUM_SIZES] = {
     /* TINY */ {"tiny", "&b&1", 1, 3, 1, 18},
-    /* SMALL */ {"small", "&b&8", 5, 40, 19, 42},
+    /* SMALL */ {"small", "&b", 5, 40, 19, 42},
     /* MEDIUM */ {"medium", "&3", 40, 300, 42, 92},
     /* LARGE */ {"large", "&b&4", 300, 1000, 90, 186},
     /* HUGE */ {"huge", "&b&3", 1000, 4000, 196, 384},

@@ -1106,7 +1106,7 @@ static void append_damage_amount(char *b, const char *msg, int dam, int type) {
      * In comm.h, TO_ROOM is 1, TO_VICT is 2, TO_NOTVICT is 3, TO_CHAR is 4
      */
     const char *colors[6] = {
-        "", "&4", "&1&8", "&4", "&3", "&2&8", /* healing */
+        "", "&4", "&1", "&4", "&3", "&2", /* healing */
     };
     if (damage_amounts) {
         if (type != TO_VICT && type != TO_NOTVICT && type != TO_CHAR && type != TO_ROOM) {
@@ -1813,13 +1813,13 @@ bool riposte(CharData *ch, CharData *victim) {
 
     if (GET_SKILL(ch, SKILL_BAREHAND) > 20) {
         act("&8You grab $n's arm and twist it, causing $m to strike $mself!&0", false, ch, 0, victim, TO_VICT);
-        act("&8$N grabs your arm and twists it, causing you to damage to "
+        act("$N grabs your arm and twists it, causing you to damage to "
             "yourself!&0",
             false, ch, 0, victim, TO_CHAR);
         act("&7$N grabs and twists $n's arm, causing $n to hurt $mself!&0", false, ch, 0, victim, TO_NOTVICT);
     } else {
         act("&8You block $n's attack, and strike back!&0", false, ch, 0, victim, TO_VICT);
-        act("&8$N blocks your attack, and strikes back!&0", false, ch, 0, victim, TO_CHAR);
+        act("$N blocks your attack, and strikes back!&0", false, ch, 0, victim, TO_CHAR);
         act("&7$N blocks $n's attack, and strikes back at $m!&0", false, ch, 0, victim, TO_NOTVICT);
     }
 

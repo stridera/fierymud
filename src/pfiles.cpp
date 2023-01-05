@@ -1427,10 +1427,8 @@ static int gen_receptionist(CharData *ch, CharData *recep, int cmd, char *arg, i
         quit_mode = QUIT_CRYO;
         log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has cryo-rented.", GET_NAME(ch));
     } else {
-        act("@W$n@W tells you, 'Rent?  Sure, come this way!'\n"
-            "$U$n stores your belongings and helps you into your private "
-            "chamber.&0",
-            false, recep, 0, ch, TO_VICT);
+        act("@W$n tells you, 'Rent?  Sure, come this way!'&0", false, recep, 0, ch, TO_VICT);
+        act("@W$n stores your belongings and helps you into your private chamber.&0", false, recep, 0, ch, TO_VICT);
         quit_mode = QUIT_RENT;
         log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has rented in {} ({:d}).", GET_NAME(ch),
             world[ch->in_room].name, world[ch->in_room].vnum);

@@ -61,7 +61,7 @@ bool switch_ok(CharData *ch) {
     }
 
     if (number(1, 101) > GET_SKILL(ch, SKILL_SWITCH)) {
-        act("&8$n tries to switch opponents, but becomes confused!&0", false, ch, 0, 0, TO_ROOM);
+        act("$n tries to switch opponents, but becomes confused!&0", false, ch, 0, 0, TO_ROOM);
         char_printf(ch, "&8You try to switch opponents and become confused.&0\n");
         stop_fighting(ch);
         improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
@@ -69,7 +69,7 @@ bool switch_ok(CharData *ch) {
     }
 
     stop_fighting(ch);
-    act("&8$n switches opponents!&0", false, ch, 0, 0, TO_ROOM);
+    act("$n switches opponents!&0", false, ch, 0, 0, TO_ROOM);
     char_printf(ch, "&8You switch opponents!&0\n");
     improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
     return true;
@@ -561,7 +561,7 @@ void slow_death(CharData *victim) {
     }
 
     act("&8With a soft groan, $n slips off into the cold sleep of death.&0", true, victim, 0, 0, TO_ROOM);
-    act("&8$n is dead!   R.I.P.&0", true, victim, 0, 0, TO_ROOM);
+    act("$n is dead!   R.I.P.&0", true, victim, 0, 0, TO_ROOM);
     if (AWAKE(victim)) {
         act("&8You feel yourself slipping away and falling into the abyss.&0", false, victim, 0, 0, TO_CHAR);
         char_printf(victim, "&0&8Your life fades away ....\n");
@@ -1518,7 +1518,7 @@ ACMD(do_springleap) {
     } else if (percent > 0.95 * prob) {
         dmg = dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH);
         act("&0&6You manage to take $N down but also &bfall down yourself!&0 (&3$i&0)", false, ch, dmg, vict, TO_CHAR);
-        act("&0&6$N springs from the ground and knocks you down - &bbut falls in the process!&0 (&1&8$i&0)", false,
+        act("&0&6$N springs from the ground and knocks you down - &bbut falls in the process!&0 (&1$i&0)", false,
             vict, dmg, ch, TO_CHAR);
         act("&0&6$N springs from the ground, knocking $n down and &bfalling in the process!&0 (&4$i&0)", false, vict,
             dmg, ch, TO_NOTVICT);
@@ -1536,9 +1536,9 @@ ACMD(do_springleap) {
         }
     } else {
         dmg = dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH);
-        act("&0&b&8You spring from the ground, knocking $N off balance.&0 (&1&8$i&0)", false, ch, dmg, vict, TO_CHAR);
-        act("&0&b&8$N springs from the ground and knocks you down!&0 (&3$i&0)", false, vict, dmg, ch, TO_CHAR);
-        act("&0&b&8$N springs from the ground, knocking $n down!&0 (&4$i&0)", false, vict, dmg, ch, TO_NOTVICT);
+        act("&0&b&8You spring from the ground, knocking $N off balance.&0 (&1$i&0)", false, ch, dmg, vict, TO_CHAR);
+        act("&0&b$N springs from the ground and knocks you down!&0 (&3$i&0)", false, vict, dmg, ch, TO_CHAR);
+        act("&0&b$N springs from the ground, knocking $n down!&0 (&4$i&0)", false, vict, dmg, ch, TO_NOTVICT);
         WAIT_STATE(ch, PULSE_VIOLENCE);
         WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
         damage(ch, vict, dmg, SKILL_SPRINGLEAP);
@@ -2440,8 +2440,8 @@ ACMD(do_stomp) {
         return;
     }
 
-    char_printf(ch, "&8&3You stomp one foot on the ground heavily, shaking the earth!&0\n");
-    act("&8&3$n crashes a foot into the ground, causing it to crack around "
+    char_printf(ch, "&3You stomp one foot on the ground heavily, shaking the earth!&0\n");
+    act("&3$n crashes a foot into the ground, causing it to crack around "
         "$m...&0",
         true, ch, 0, 0, TO_ROOM);
 

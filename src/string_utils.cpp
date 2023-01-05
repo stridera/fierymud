@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <ranges>
 #include <string>
+#include <utility>
 
 std::string ellipsis(const std::string str, int maxlen) {
     if (str.length() < maxlen - 3)
@@ -58,6 +59,39 @@ void sprintbit(long bitvector, const char *names[], char *result) {
         strcpy(result, "NO BITS");
     else
         *result = '\0'; /* Nul terminate */
+}
+
+std::string cap_string(std::string_view str) {
+    std::string result;
+    bool cap_next = true;
+    for (auto c : str) {
+        if (cap_next) {
+            result += toupper(c);
+            cap_next = false;
+        } else {
+            result += c;
+        }
+        if (c == ' ')
+            cap_next = true;
+    }
+    return result;
+}
+
+std::string capitalize_first(std::string_view sv) {
+    std::string result(sv);
+    // Uppercase the first non-colour-sequence letter.
+    bool skip_next{false};
+    for (auto &c : result) {
+        if (std::exchange(skip_next, false))
+            continue;
+        if (c == CREL || c == CABS)
+            skip_next = true;
+        else {
+            c = toupper(c);
+            break;
+        }
+    }
+    return result;
 }
 
 void sprinttype(int type, const char *names[], char *result) {

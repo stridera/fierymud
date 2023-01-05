@@ -1,21 +1,21 @@
 #include "messages.hpp"
 
 const char *portal_entry_messages[] = {
-    "&8&b$p &0&b&8flares white as $n enters it and disappears.&0\n",
-    "&8&b$p &0&b&8flares as $n enters it and disappears.&0\n",
-    "&8&b$p &0&b&8vibrates violently as $n enters it and then stops.&0\n",
+    "&b$p &0&b&8flares white as $n enters it and disappears.&0\n",
+    "&b$p &0&b&8flares as $n enters it and disappears.&0\n",
+    "&b$p &0&b&8vibrates violently as $n enters it and then stops.&0\n",
     "\n",
 };
 
 const char *portal_character_messages[] = {
     "",
-    "&8&bYou feel your body being ripped apart!&0\n",
-    "&8&b$p &0&b&8vibrates violently as you enter.&0\n",
-    "&8&bYour molecules are ripped apart as you enter $p.&0\n",
-    "&8&bYou appear in a completely different location!&0\n",
+    "&bYou feel your body being ripped apart!&0\n",
+    "&b$p &0&b&8vibrates violently as you enter.&0\n",
+    "&bYour molecules are ripped apart as you enter $p.&0\n",
+    "&bYou appear in a completely different location!&0\n",
     "&9&bYou feel your energy being drained!&0\n",
-    "&8&bYour molecules are ripped apart as you enter $p.&0\n\n"
-    "&8&bYou catch a glimpse of a giant white leopard!&0\n\n"
+    "&bYour molecules are ripped apart as you enter $p.&0\n\n"
+    "&bYou catch a glimpse of a giant white leopard!&0\n\n"
     "&9&bYou feel your energy being drained!&0\n",
     "\n",
 };

@@ -2656,16 +2656,8 @@ void cure_laryngitis(CharData *ch) {
     sd->speech_rate = 0;
 }
 
-const char *ACTNULL = "<NULL>";
-
-#define CHECK_NULL(pointer, expression)                                                                                \
-    if ((pointer) == nullptr)                                                                                          \
-        i = ACTNULL;                                                                                                   \
-    else                                                                                                               \
-        i = (expression);
-
 /* higher-level communication: the act() function */
-
+const char *ACTNULL = "<NULL>";
 std::string format_act(std::string_view format, const CharData *ch, ActArg obj, ActArg vict_obj, const CharData *to) {
     std::string rtn;
     bool code = false;
@@ -2823,9 +2815,8 @@ std::string format_act(std::string_view format, const CharData *ch, ActArg obj, 
     }
 
     // act_mtrigger(to, rtn, ch, victim, victim_object, target_object, target_string, target_string2);
-    rtn[0] = std::toupper(rtn[0]);
     rtn += "\n";
-    return rtn;
+    return capitalize_first(rtn);
 }
 
 /* The "act" action interpreter */
@@ -2948,7 +2939,7 @@ void act(std::string_view str, int hide_invisible, const CharData *ch, ActArg ob
                 for (to = world[world[in_room].exits[i]->to_room].people; to; to = to->next_in_room)
                     if (SENDOK(to) && !(hide_invisible && ch && !CAN_SEE(to, ch)) && (to != ch) &&
                         (type == TO_ROOM || (to != victim))) {
-                        char_printf(to, "&4&8<&0{}&0&4&8>&0 ", world[in_room].name);
+                        char_printf(to, "&4<&0{}&0&4>&0 ", world[in_room].name);
                         auto formatted = format_act(str, ch, obj, vict_obj, to);
                         char_printf(to, formatted);
                     }

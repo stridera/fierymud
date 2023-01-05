@@ -738,10 +738,9 @@ ACMD(do_boardadmin) {
     }
 
     else if (is_abbrev(arg, "list")) {
-        char_printf(ch,
-                    AUND "Num" ANRM " " AUND "Msg" ANRM " " AUND "Alias    " ANRM " " AUND "Title              " ANRM);
+        char_printf(ch, "Num" ANRM " Msg" ANRM " Alias    " ANRM " Title              " ANRM);
         for (j = 0; j < NUM_BPRIV; ++j)
-            char_printf(ch, " " AUND "{:<4s}" ANRM, privilege_data[j].abbr);
+            char_printf(ch, " {:<4s}" ANRM, privilege_data[j].abbr);
         char_printf(ch, "\n");
         for (i = 0; i < num_boards; ++i) {
             board = board_index[i];

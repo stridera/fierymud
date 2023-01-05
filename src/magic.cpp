@@ -1035,14 +1035,14 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 SET_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
                 switch (number(1, 3)) {
                 case 1:
-                    act("&1&8$n bursts into flame!&0", false, victim, 0, 0, TO_ROOM);
+                    act("&1$n bursts into flame!&0", false, victim, 0, 0, TO_ROOM);
                     char_printf(victim, "&1&8Your skin and clothes ignite into flame!&0\n");
                     break;
                 case 2:
                     sprintf(buf, "%s light%s", skills[spellnum].name,
                             skills[spellnum].name[strlen(skills[spellnum].name) - 1] == 's' ? "" : "s");
-                    act("&1&8$n's $t you on fire!&0", false, ch, buf, victim, TO_VICT);
-                    act("&1&8$n's $t $N on fire!&0", false, ch, buf, victim, TO_NOTVICT | TO_VICTROOM);
+                    act("&1$n's $t you on fire!&0", false, ch, buf, victim, TO_VICT);
+                    act("&1$n's $t $N on fire!&0", false, ch, buf, victim, TO_NOTVICT | TO_VICTROOM);
                     act("&1&8Your $t $N on fire!&0", false, ch, buf, victim, TO_CHAR);
                     break;
                 case 3:
@@ -2319,7 +2319,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_CAMOUFLAGED);
         eff[0].duration = (skill / 3) + 1; /* range (1, 34) */
         to_vict = "&9&8You phase into the landscape.&0";
-        to_room = "&9&8$n&9&8 phases into the landscape.&0";
+        to_room = "&9$n&9 phases into the landscape.&0";
         break;
 
     case SPELL_NATURES_GUIDANCE:
@@ -3481,7 +3481,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         break;
     case SPELL_CREMATE:
         to_char = "&1&8You raise up a huge conflaguration in the area.&0";
-        to_room = "&1&8$n summons a huge conflagration burning through the area.&0";
+        to_room = "&1$n summons a huge conflagration burning through the area.&0";
         break;
     case SONG_CROWN_OF_MADNESS:
         to_char = "&2&bYou rend the sanity of those observing you with a tale of the Old Gods!&0";
@@ -3507,7 +3507,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         break;
     case SKILL_ELECTRIFY:
         to_char = "&4&8You send out electricity in all directions...&0";
-        to_room = "&4&8$n&4&8 sends out electricity in all directions...&0";
+        to_room = "&4$n&4 sends out electricity in all directions...&0";
         break;
     case SONG_ENRAPTURE:
         to_char = "&5&bYou unleash a grand illusory performance!&0";
@@ -5346,19 +5346,19 @@ bool wall_block_check(CharData *actor, CharData *motivator, int dir) {
 
         /* See if a wall of ice will put out anyone's flames. */
         if (GET_OBJ_VAL(wall, VAL_WALL_SPELL) == SPELL_WALL_OF_ICE && EFF_FLAGGED(motivator, EFF_ON_FIRE)) {
-            act("$n&0 spreads $mself out on $p&0 and with a &8&bsizzle&0, $s flames "
+            act("$n&0 spreads $mself out on $p&0 and with a &bsizzle&0, $s flames "
                 "are put out.",
                 false, motivator, wall, 0, TO_ROOM);
             act("You spread yourself out on $p&0 and your flames go out in a "
-                "&8&bsizzle of steam&0.",
+                "&bsizzle of steam&0.",
                 false, motivator, wall, 0, TO_CHAR);
             REMOVE_FLAG(EFF_FLAGS(motivator), EFF_ON_FIRE);
         } else if (GET_OBJ_VAL(wall, VAL_WALL_SPELL) == SPELL_WALL_OF_ICE && EFF_FLAGGED(actor, EFF_ON_FIRE)) {
-            act("$n&0 spreads $mself out on $p&0 and with a &8&bsizzle&0, $s flames "
+            act("$n&0 spreads $mself out on $p&0 and with a &bsizzle&0, $s flames "
                 "are put out.",
                 false, actor, wall, 0, TO_ROOM);
             act("You spread yourself out on $p&0 and your flames go out in a "
-                "&8&bsizzle of steam&0.",
+                "&bsizzle of steam&0.",
                 false, actor, wall, 0, TO_CHAR);
             REMOVE_FLAG(EFF_FLAGS(actor), EFF_ON_FIRE);
 
@@ -5424,7 +5424,7 @@ int get_fireshield_damage(CharData *attacker, CharData *victim, int dam) {
                          dam / 3 + number(1, 1 + GET_LEVEL(victim) / 10));
         amount = dam_suscept_adjust(victim, attacker, nullptr, amount, DAM_FIRE);
         if (amount > 0) {
-            act("&1Your limbs are seared by $N&0&1's shield of flames.&0 (&1&8$i&0)", false, attacker, amount, victim,
+            act("&1Your limbs are seared by $N&0&1's shield of flames.&0 (&1$i&0)", false, attacker, amount, victim,
                 TO_CHAR);
             act("&1$n&0&1's limbs are seared by your shield of flames.&0 (&3$i&0)", false, attacker, amount, victim,
                 TO_VICT);
@@ -5446,7 +5446,7 @@ int get_coldshield_damage(CharData *attacker, CharData *victim, int dam) {
                          dam / 3 + number(1, 1 + GET_LEVEL(victim) / 10));
         amount = dam_suscept_adjust(victim, attacker, nullptr, amount, DAM_COLD);
         if (amount > 0) {
-            act("&4You are impaled on $N&0&4's shield of ice.&0 (&1&8$i&0)", false, attacker, amount, victim, TO_CHAR);
+            act("&4You are impaled on $N&0&4's shield of ice.&0 (&1$i&0)", false, attacker, amount, victim, TO_CHAR);
             act("&4$n&0&4 is impaled on your shield of ice.&0 (&3$i&0)", false, attacker, amount, victim, TO_VICT);
             act("&4$n&0&4 is impaled on $N&0&4's shield of ice.&0 (&4$i&0)", false, attacker, amount, victim,
                 TO_NOTVICT);
@@ -5465,7 +5465,7 @@ int get_soulshield_damage(CharData *attacker, CharData *victim, int dam) {
         if (amount > 0) {
             act("&7&b$n's soul suffers upon contact with your aura.&0 (&3$i&0)", true, attacker, amount, victim,
                 TO_VICT);
-            act("&7&bYour soul suffers upon contact with $N's aura.&0 (&1&8$i&0)", true, attacker, amount, victim,
+            act("&7&bYour soul suffers upon contact with $N's aura.&0 (&1$i&0)", true, attacker, amount, victim,
                 TO_CHAR);
             act("&7&b$n's soul suffers upon contact with $N's aura.&0 (&4$i&0)", true, attacker, amount, victim,
                 TO_NOTVICT);

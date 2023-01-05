@@ -451,7 +451,7 @@ ASPELL(spell_color_spray) {
         if (!effect || required > skill)
             continue;
 
-        sprintf(buf, "&8A dazzling %s beam&0&8 shines fully in $n's face!&0", color);
+        sprintf(buf, "&8A dazzling %s beam&0 shines fully in $n's face!&0", color);
         act(buf, false, vict, 0, 0, TO_ROOM);
 
         if (evades_spell(ch, vict, effect, skill))
@@ -461,16 +461,16 @@ ASPELL(spell_color_spray) {
         if (effect < 0) {
             switch (number(0, 3)) {
             case 1:
-                act("&8$n falls over, dazed!&0", false, vict, 0, 0, TO_ROOM);
+                act("$n falls over, dazed!&0", false, vict, 0, 0, TO_ROOM);
                 break;
             case 2:
                 act("&8The beam knocks $n off $s feet!&0", false, vict, 0, 0, TO_ROOM);
                 break;
             case 3:
-                act("&8$n is crumples to the ground in a daze.&0", false, vict, 0, 0, TO_ROOM);
+                act("$n is crumples to the ground in a daze.&0", false, vict, 0, 0, TO_ROOM);
                 break;
             default:
-                act("&8$n falls to the ground, momentarily stunned.&0", false, vict, 0, 0, TO_ROOM);
+                act("$n falls to the ground, momentarily stunned.&0", false, vict, 0, 0, TO_ROOM);
             }
             sprintf(buf, "&8A &3shocking&0 %s &8FLASH&0 &8makes you lose your balance!&0\n", color);
             char_printf(vict, buf);
@@ -479,7 +479,7 @@ ASPELL(spell_color_spray) {
             GET_STANCE(vict) = STANCE_ALERT;
             continue;
         } else {
-            sprintf(buf, "&8You are dazzled by a %s&0&8 beam of light!&0\n", color);
+            sprintf(buf, "&8You are dazzled by a %s&0 beam of light!&0\n", color);
             char_printf(vict, buf);
 
             /* cast the spell effect with half power */
@@ -582,8 +582,8 @@ ASPELL(spell_darkness) {
                 GET_OBJ_VAL(obj, VAL_LIGHT_LIT) = false;
                 /* lost light to the room */
                 world[ch->in_room].light--;
-                act("$p quickly &8&bsputters &9&bout.&0.", false, ch, obj, 0, TO_CHAR);
-                act("$p quickly &8&bsputters &9&bout.&0.", false, ch, obj, 0, TO_ROOM);
+                act("$p quickly &bsputters &9&bout.&0.", false, ch, obj, 0, TO_CHAR);
+                act("$p quickly &bsputters &9&bout.&0.", false, ch, obj, 0, TO_ROOM);
             }
         } else {
             char_printf(ch, NOEFFECT);
@@ -1139,7 +1139,7 @@ ASPELL(spell_illumination) {
     } else { /* Light the room */
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
             act("&8Your magical light dispels the darkness.&0", false, ch, 0, 0, TO_CHAR);
-            act("&8$n's magical light dispels the darkness.&0", false, ch, 0, 0, TO_ROOM);
+            act("$n's magical light dispels the darkness.&0", false, ch, 0, 0, TO_ROOM);
             REMOVE_FLAG(ROOM_EFFECTS(ch->in_room), ROOM_EFF_DARKNESS);
             eff = 0;
             world[ch->in_room].light++;
@@ -1215,7 +1215,7 @@ ASPELL(spell_isolation) {
         char_printf(ch, NOEFFECT);
         return CAST_RESULT_CHARGE;
     } else {
-        room_printf(ch->in_room, "&8&bA wide and diffuse veil of sorts descends upon the area.&0\n");
+        room_printf(ch->in_room, "&bA wide and diffuse veil of sorts descends upon the area.&0\n");
         CREATE(reff, RoomEffectNode, 1);
 
         reff->room = ch->in_room;
@@ -3023,8 +3023,8 @@ ASPELL(spell_moonbeam) {
     /* Todo: establish the movements of the moon, and use that instead of just
      * assuming you can't have moonbeams when the sun is out. */
 
-    act("$n floods the area with cool, soothing &8&bmoon&7beams&0.", false, ch, 0, 0, TO_ROOM);
-    act("You flood the area with cool, soothing &8&bmoon&7beams&0.", false, ch, 0, 0, TO_CHAR);
+    act("$n floods the area with cool, soothing &bmoon&7beams&0.", false, ch, 0, 0, TO_ROOM);
+    act("You flood the area with cool, soothing &bmoon&7beams&0.", false, ch, 0, 0, TO_CHAR);
 
     /* Determine how many victims the spell can affect, given the
      * power of the casting */

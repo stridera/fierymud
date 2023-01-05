@@ -443,9 +443,9 @@ void add_groupee(CharData *master, CharData *groupee) {
         return;
 
     act("&2&8You accept $N &2&8into your group.&0", false, master, 0, groupee, TO_CHAR);
-    act("&2&8You have been accepted into $n&2&8's group.&0", false, master, 0, groupee, TO_VICT);
+    act("&2&8You have been accepted into $n&2's group.&0", false, master, 0, groupee, TO_VICT);
     for (g = master->groupees; g; g = g->next)
-        act("&2&8$N &2&8has joined your group.&0", true, g->groupee, 0, groupee, TO_CHAR);
+        act("&2$N &2&8has joined your group.&0", true, g->groupee, 0, groupee, TO_CHAR);
 
     CREATE(g, GroupType, 1);
     g->groupee = groupee;
@@ -467,7 +467,7 @@ void disband_group(CharData *master, bool verbose, bool forceful) {
         g->groupee->group_master = nullptr;
         master->groupees = g->next;
         if (verbose)
-            act(forceful ? "&2&8The group has been disbanded.&0" : "&2&8$n &2&8has disbanded the group.&0", false,
+            act(forceful ? "&2&8The group has been disbanded.&0" : "&2$n &2&8has disbanded the group.&0", false,
                 master, 0, g->groupee, TO_VICT);
         free(g);
     }
@@ -497,7 +497,7 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             for (g = new_master->groupees; g; g = g->next) {
                 g->groupee->group_master = new_master;
                 if (verbose)
-                    act("&2&8$n &2&8is now leading your group!&0", true, new_master, 0, g->groupee, TO_VICT);
+                    act("&2$n &2&8is now leading your group!&0", true, new_master, 0, g->groupee, TO_VICT);
             }
 
             free(ch->groupees);
@@ -511,9 +511,9 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
         /* Only one other group member? Disband. */
         if (!ch->group_master->groupees->next) {
             if (verbose) {
-                act(forceful ? "&2&8You remove $N from the group.&0" : "&2&8$N has left the group.&0", false,
+                act(forceful ? "&2&8You remove $N from the group.&0" : "&2$N has left the group.&0", false,
                     ch->group_master, 0, ch, TO_CHAR);
-                act(forceful ? "&2&8$n has removed you from the group.&0" : "&2&8You have left your group!&0", false,
+                act(forceful ? "&2$n has removed you from the group.&0" : "&2&8You have left your group!&0", false,
                     ch->group_master, 0, ch, TO_VICT);
             }
             disband_group(ch->group_master, verbose, true);
@@ -534,8 +534,8 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
                     continue;
                 }
                 if (verbose)
-                    act(forceful ? "&2&8$n &2&8has been kicked out of your group!&0"
-                                 : "&2&8$n &2&8has left your group!&0",
+                    act(forceful ? "&2$n &2&8has been kicked out of your group!&0"
+                                 : "&2$n &2&8has left your group!&0",
                         true, ch, 0, g->next->groupee, TO_VICT);
                 g = g->next;
             }
@@ -546,7 +546,7 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             if (verbose) {
                 act(forceful ? "&2&8You have been kicked out of your group.&0" : "&2&8You have left your group!&0",
                     false, ch, 0, 0, TO_CHAR);
-                act(forceful ? "&2&8You have kicked $n &2&8out of your group.&0" : "&2&8$n &2&8has left your group!&0",
+                act(forceful ? "&2&8You have kicked $n &2&8out of your group.&0" : "&2$n &2&8has left your group!&0",
                     false, ch, 0, master, TO_VICT);
             }
         }
