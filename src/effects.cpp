@@ -48,7 +48,7 @@ const char *effect_flags[NUM_EFF_FLAGS + 1] = {"BLIND", /* 0 */
                                                "MAJOR_GROUP",
                                                "MINOR_PARALYSIS",
                                                "HURT_THROAT", /* 35 */
-                                               "LEVITATE",
+                                               "FEATHER_FALL",
                                                "WATERBREATH",
                                                "SOULSHIELD",
                                                "SILENCE",

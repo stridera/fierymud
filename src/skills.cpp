@@ -525,7 +525,7 @@ void init_skills(void) {
            MAG_AFFECT, C1, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 12, false,
            "&3Your skin returns to normal.&0");
 
-    spello(SPELL_BONE_DRAW, "bone draw", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT,
+    spello(SPELL_BONE_CAGE, "bone cage", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT,
            C1, CAST_SPEED2, DAM_SLASH, SKILL_SPHERE_SUMMON, 16, false, "The bones holding you down crumble to dust.");
 
     spello(SPELL_BURNING_HANDS, "burning hands", 30, 10, 3, POS_STANDING, true,
@@ -941,7 +941,7 @@ void init_skills(void) {
     spello(SPELL_LESSER_EXORCISM, "lesser exorcism", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true,
            MAG_DAMAGE, C1, CAST_SPEED5, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, false, nullptr);
 
-    spello(SPELL_LEVITATE, "levitate", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED3,
+    spello(SPELL_FEATHER_FALL, "feather fall", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED3,
            DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 13, false, "You float back to the ground.");
 
     spello(SPELL_LIGHTNING_BOLT, "lightning bolt", 30, 15, 1, POS_STANDING, true,

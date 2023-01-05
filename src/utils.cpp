@@ -488,7 +488,7 @@ const char *movewords(CharData *ch, int dir, int room, int leaving) {
     if (GET_POS(ch) == POS_FLYING)
         return (leaving ? "flies" : "flies in");
 
-    if (EFF_FLAGGED(ch, EFF_LEVITATE) && (dir == DOWN || dir == UP))
+    if (EFF_FLAGGED(ch, EFF_FEATHER_FALL) && (dir == DOWN || dir == UP))
         return (leaving ? "floats" : "floats in");
 
     if (IS_WATER(ch->in_room)) {

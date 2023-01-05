@@ -3991,6 +3991,8 @@ ACMD(do_innate) {
             send_to_char(" doorbash\n", ch);
         if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             send_to_char(" faerie step\n", ch);
+        if (GET_RACE(ch) == RACE_DROW)
+            send_to_char(" feather fall\n", ch);
         if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
             send_to_char(" fly*\n", ch);
         if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE)
@@ -4010,8 +4012,6 @@ ACMD(do_innate) {
             send_to_char(" invisible\n", ch);
         if (GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_ANTI_PALADIN)
             send_to_char(" layhands\n", ch);
-        if (GET_RACE(ch) == RACE_DROW)
-            send_to_char(" levitate\n", ch);
         if (GET_CLASS(ch) == CLASS_PALADIN)
             send_to_char(" protection from evil*\n", ch);
         if (GET_CLASS(ch) == CLASS_ANTI_PALADIN)
@@ -4105,18 +4105,18 @@ ACMD(do_innate) {
             }
         }
 
-        if (is_abbrev(arg, "levitate")) {
+        if (is_abbrev(arg, "feather fall")) {
             if (GET_RACE(ch) == RACE_DROW) {
-                if (EFF_FLAGGED(ch, EFF_LEVITATE))
+                if (EFF_FLAGGED(ch, EFF_FEATHER_FALL))
                     send_to_char("You already levitating.\n", ch);
-                else if (!GET_COOLDOWN(ch, CD_INNATE_LEVITATE)) {
-                    call_magic(ch, ch, 0, SPELL_LEVITATE, GET_LEVEL(ch), CAST_SPELL);
+                else if (!GET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL)) {
+                    call_magic(ch, ch, 0, SPELL_FEATHER_FALL, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                        SET_COOLDOWN(ch, CD_INNATE_LEVITATE, 9 MUD_HR);
+                        SET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL, 9 MUD_HR);
                 } else {
                     send_to_char("You're too tired right now.\n", ch);
-                    char_printf(ch, "You can levitate again in %d seconds.\n",
-                                (GET_COOLDOWN(ch, CD_INNATE_LEVITATE) / 10));
+                    char_printf(ch, "You can fall lightly again in %d seconds.\n",
+                                (GET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL) / 10));
                 }
                 return;
             }
