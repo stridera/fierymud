@@ -13,18 +13,17 @@
 #include "logging.hpp"
 #include "utils.hpp"
 
-// #include "objects.hpp"
-// #include "prefs.hpp"
-// #include "structs.hpp"
-// #include "utils.hpp"
-#include "logging.hpp"
-
 #define DEFAULT_PROMPT 4
 
-extern const char circlemud_version[];
-extern const char mudlet_client_version[];
-extern const char mudlet_client_url[];
-extern const char mudlet_map_url[];
+constexpr char circlemud_version[] = "CircleMUD, version 3.00 beta patchlevel 11\n";
+constexpr char mudlet_client_version[] = "0.3";
+constexpr char mudlet_client_url[] = "http://www.fierymud.org/mudlet/FierymudOfficial.mpackage";
+constexpr char mudlet_map_url[] = "http://www.fierymud.org/mudlet/default_map.dat";
+constexpr char discord_invite[] = "https://discord.gg/aqhapUCgFz";
+constexpr char discord_app_id[] = "998826809686765569";
+constexpr char fierymud_icon[] = "https://www.fierymud.org/images/fiery64.png";
+constexpr char fierymud_url[] = "https://www.fierymud.org";
+
 extern const char *minor_creation_items[];
 extern const char *exit_bits[];
 extern const char *genders[NUM_SEXES + 1];

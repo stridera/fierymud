@@ -1091,26 +1091,23 @@ void send_opt(DescriptorData *d, byte a) {
     write_to_descriptor(d->descriptor, buf);
 }
 
-void offer_gmcp_services(DescriptorData *d) {
-    static char response[MAX_STRING_LENGTH];
-    sprintf(response,
-            "%sClient.GUI {"
-            "\"version\":\"%s\","
-            "\"url\":\"%s\""
-            "}%s"
-            "%sClient.Map {"
-            "\"url\":\"%s\""
-            "}%s\n",
-            gmcp_start_data, mudlet_client_version, mudlet_client_url, gmcp_end_data, gmcp_start_data, mudlet_map_url,
-            gmcp_end_data);
-
-    write_to_descriptor(d->descriptor, response);
+void send_gmcp(DescriptorData *d, std::string_view package, json j) {
+    write_to_descriptor(d->descriptor, fmt::format("{}{} {}{}", gmcp_start_data, package, j.dump(), gmcp_end_data));
 }
 
-void handle_gmcp_request(DescriptorData *d, char *txt) {
+void offer_gmcp_services(DescriptorData *d) {
+    json client = {{"GUI", {{"version", std::string(mudlet_client_version)}, {"url", std::string(mudlet_client_url)}}},
+                   {"Map", {"url", std::string(mudlet_map_url)}}};
+    send_gmcp(d, "Client", client);
+}
+
+void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
+    // This is for GMCP requests from the clients.
+    if (txt == "External.Discord.Hello") {
+        send_gmcp(d, "External.Discord.Hello", {"applicationid", std::string{discord_app_id}});
+        send_gmcp(d, "External.Discord.Status", {"state", "Logging in..."});
+    }
     // log("GMCP request: {}", txt);
-    /* This is for GMCP requests from the clients. */
-    /* Do nothing now, but we might want to actually handle this in the future. */
 }
 
 static bool supports_ansi(std::string_view detected_term) {
@@ -1175,12 +1172,22 @@ void send_gmcp_prompt(DescriptorData *d) {
     char position[MAX_STRING_LENGTH];
     effect *eff;
 
-    static char gmcp_prompt[MAX_STRING_LENGTH];
-    char *cur = gmcp_prompt;
-
     if (!d->gmcp_enabled) {
         write_to_descriptor(d->descriptor, ga_string);
         return;
+    }
+
+    json effects = json::array();
+    for (eff = ch->effects; eff; eff = eff->next) {
+        if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
+            effects.push_back({{"name", skills[eff->type].name}, {"duration", eff->duration}});
+        }
+    }
+
+    json combat = json::object();
+    if (vict && (tank = FIGHTING(vict))) {
+        combat["tank"] = {{"name", PERS(tank, ch)}, {"hp", GET_HIT(tank)}, {"max_hp", GET_MAX_HIT(tank)}};
+        combat["opponent"] = {{"name", PERS(vict, ch)}, {"hp_percent", 100 * GET_HIT(vict) / GET_MAX_HIT(vict)}};
     }
 
     /* Need to construct a json string.  Would be nice to get a module to do it
@@ -1190,70 +1197,33 @@ void send_gmcp_prompt(DescriptorData *d) {
     else
         sprinttype(GET_POS(d->character), position_types, position);
 
-    cur += sprintf(cur,
-                   "%sChar {"
-                   "\"name\":\"%s\","
-                   "\"class\":\"%s\","
-                   "\"exp_percent\":%ld,"
-                   "\"alignment\":%d,"
-                   "\"position\":\"%s\","
-                   "\"hiddenness\":%ld,"
-                   "\"level\":%d,"
-                   "\"Vitals\": {"
-                   "\"hp\":%d, \"max_hp\": %d,"
-                   "\"mv\":%d, \"max_mv\": %d "
-                   "}}%s",
-                   gmcp_start_data, strip_ansi(GET_NAME(ch)).c_str(), CLASS_NAME(ch), xp_percentage(REAL_CHAR(ch)),
-                   GET_ALIGNMENT(ch), position, GET_HIDDENNESS(ch), GET_LEVEL(ch), GET_HIT(ch), GET_MAX_HIT(ch),
-                   GET_MOVE(ch), GET_MAX_MOVE(ch), gmcp_end_data);
+    json gmcp_data = {
+        {"name", strip_ansi(GET_NAME(ch))},
+        {"class", CLASS_NAME(ch)},
+        {"exp_percent", xp_percentage(REAL_CHAR(ch))},
+        {"alignment", GET_ALIGNMENT(ch)},
+        {"position", position},
+        {"hiddenness", GET_HIDDENNESS(ch)},
+        {"level", GET_LEVEL(ch)},
+        {"Vitals",
+         {{"hp", GET_HIT(ch)}, {"max_hp", GET_MAX_HIT(ch)}, {"mv", GET_MOVE(ch)}, {"max_mv", GET_MAX_MOVE(ch)}}},
+        {"Worth",
+         {{"Carried",
+           {{"platinum", GET_PLATINUM(ch)},
+            {"gold", GET_GOLD(ch)},
+            {"silver", GET_SILVER(ch)},
+            {"copper", GET_COPPER(ch)}}},
+          {"Bank",
+           {{"platinum", GET_BANK_PLATINUM(ch)},
+            {"gold", GET_BANK_GOLD(ch)},
+            {"silver", GET_BANK_SILVER(ch)},
+            {"copper", GET_BANK_COPPER(ch)}}}}},
+        {"Effects", effects},
+        {"Combat", combat}};
 
-    cur += sprintf(cur,
-                   "%sChar.Worth {"
-                   "\"Carried\": { "
-                   "\"platinum\":%d,"
-                   "\"gold\":%d,"
-                   "\"silver\":%d,"
-                   "\"copper\":%d"
-                   "},"
-                   "\"Bank\": { "
-                   "\"platinum\":%d,"
-                   "\"gold\":%d,"
-                   "\"silver\":%d,"
-                   "\"copper\":%d"
-                   "}"
-                   "}%s",
-                   gmcp_start_data, GET_PLATINUM(ch), GET_GOLD(ch), GET_SILVER(ch), GET_COPPER(ch),
-                   GET_BANK_PLATINUM(ch), GET_BANK_GOLD(ch), GET_BANK_SILVER(ch), GET_BANK_COPPER(ch), gmcp_end_data);
-
-    cur += sprintf(cur, "%sChar.Effects {", gmcp_start_data);
-    for (eff = ch->effects; eff; eff = eff->next) {
-        if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
-            cur += sprintf(cur, "\"%s\": %d%s", skills[eff->type].name, eff->duration, eff->next ? ", " : "");
-        }
-    }
-    cur += sprintf(cur, "}%s", gmcp_end_data);
-
-    if (vict && (tank = FIGHTING(vict))) {
-        cur += sprintf(cur,
-                       "%sChar.Combat {"
-                       "\"tank\": {"
-                       "\"name\": \"%s\","
-                       "\"hp\": \"%d\","
-                       "\"max_hp\": \"%d\""
-                       "},"
-                       "\"opponent\": {"
-                       "\"name\": \"%s\","
-                       "\"hp_percent\": %d"
-                       "}"
-                       "}%s",
-                       gmcp_start_data, PERS(tank, ch), GET_HIT(tank), GET_MAX_HIT(tank), PERS(vict, ch),
-                       100 * GET_HIT(vict) / GET_MAX_HIT(vict), gmcp_end_data);
-    } else {
-        cur += sprintf(cur, "%sChar.Combat {}%s", gmcp_start_data, gmcp_end_data);
-    }
-
-    cur += sprintf(cur, "%s", ga_string);
-    write_to_descriptor(d->descriptor, gmcp_prompt);
+    send_gmcp(d, "Char", gmcp_data);
+    write_to_descriptor(d->descriptor, ga_string);
+    send_gmcp(d, "External.Discord.Status", {{"state", "Playing"}, {"details", {"Character", GET_NAME(d->character)}}});
 }
 
 void send_gmcp_room(CharData *ch) {
@@ -1269,48 +1239,31 @@ void send_gmcp_room(CharData *ch) {
     }
 
     if (IS_DARK(roomnum) && !CAN_SEE_IN_DARK(ch)) {
-        sprintf(response, "%sRoom.Info {}%s", gmcp_start_data, gmcp_end_data);
-    } else {
-        cur += sprintf(cur,
-                       "%sRoom {"
-                       "\"zone\":\"%s\","
-                       "\"id\":%d,"
-                       "\"name\":\"%s\","
-                       "\"type\":\"%s\","
-                       "\"Exits\": {",
-                       gmcp_start_data, zone_table[room->zone].name, room->vnum, room->name,
-                       sectors[room->sector_type].name);
-
-        bool first = true;
-        int dir;
-
-        for (dir = 0; dir < NUM_OF_DIRS; dir++) {
-            if ((exit = world[roomnum].exits[dir]) && EXIT_DEST(exit) && can_see_exit(ch, roomnum, exit)) {
-                cur += sprintf(cur, "%s\"%s\": {", first ? "" : ",", capdirs[dir]);
-
-                cur += sprintf(cur, "\"to_room\": %d,", EXIT_DEST(exit)->vnum);
-
-                if (EXIT_IS_HIDDEN(exit)) {
-                    cur += sprintf(cur, "\"is_hidden\": true,");
-                }
-
-                if (EXIT_IS_DOOR(exit)) {
-                    cur += sprintf(cur, "\"is_door\": true,");
-                    cur += sprintf(cur, "\"door_name\": \"%s\",", exit->keyword);
-                    cur += sprintf(cur, "\"door\": \"%s\"",
-                                   EXIT_IS_CLOSED(exit) ? EXIT_IS_LOCKED(exit) ? "locked" : "closed" : "open");
-                } else {
-                    cur += sprintf(cur, "\"is_door\": false");
-                }
-
-                cur += sprintf(cur, "}");
-                first = false;
-            }
-        }
-
-        cur += sprintf(cur, "}}%s", gmcp_end_data);
+        send_gmcp(ch->desc, "Room", {});
+        return;
     }
-    write_to_descriptor(ch->desc->descriptor, response);
+
+    json exits = json::object();
+    for (int dir = 0; dir < NUM_OF_DIRS; dir++) {
+        if ((exit = world[roomnum].exits[dir]) && EXIT_DEST(exit) && can_see_exit(ch, roomnum, exit)) {
+            json exit_json = {{"to_room", EXIT_DEST(exit)->vnum}};
+            if (EXIT_IS_DOOR(exit)) {
+                exit_json["is_door"] = true;
+                exit_json["door_name"] = exit->keyword ? exit->keyword : exit->general_description;
+                exit_json["door"] = EXIT_IS_CLOSED(exit) ? EXIT_IS_LOCKED(exit) ? "locked" : "closed" : "open";
+            } else {
+                exit_json["is_door"] = false;
+            }
+            exits[capdirs[dir]] = exit_json;
+        }
+    }
+
+    json gmcp_data = {{{"zone", zone_table[room->zone].name},
+                       {"id", room->vnum},
+                       {"name", room->name},
+                       {"type", sectors[room->sector_type].name},
+                       {"Exits", exits}}};
+    send_gmcp(ch->desc, "Room", gmcp_data);
 }
 
 void send_mssp(DescriptorData *d) {
@@ -1338,9 +1291,9 @@ void send_mssp(DescriptorData *d) {
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "LEVELS", MSSP_VAL, 99);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "RACES", MSSP_VAL, NUM_RACES);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "SKILLS", MSSP_VAL, 118);
-    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "DISCORD", MSSP_VAL, "https://discord.gg/aqhapUCgFz");
-    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "ICON", MSSP_VAL, "https://www.fierymud.org/images/fiery64.png");
-    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "WEBSITE", MSSP_VAL, "https://www.fierymud.org/");
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "DISCORD", MSSP_VAL, discord_invite);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "ICON", MSSP_VAL, fierymud_icon);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "WEBSITE", MSSP_VAL, fierymud_url);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "GENRE", MSSP_VAL, "Fantasy");
 
     mssp_data += fmt::format("{:c}{:c}", IAC, SE);

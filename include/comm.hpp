@@ -17,8 +17,11 @@
 
 #include <fmt/format.h>
 #include <functional>
+#include <nlohmann/json.hpp>
 #include <string_view>
 #include <variant>
+
+using json = nlohmann::json;
 
 #define NUM_RESERVED_DESCS 8
 
@@ -63,6 +66,7 @@ void outdoor_printf(int zone_num, std::string_view str);
 void close_socket(DescriptorData *d);
 int speech_ok(CharData *ch, int quiet);
 void send_gmcp_room(CharData *ch);
+void send_gmcp(DescriptorData *d, std::string_view package, json j);
 
 using ActArg = std::variant<std::nullptr_t, ObjData *, CharData *, std::string_view, int>;
 [[nodiscard]] std::string format_act(std::string_view orig, const CharData *ch, ActArg obj, ActArg vict_obj,
