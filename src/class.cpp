@@ -186,10 +186,10 @@ ClassDef classes[NUM_CLASSES] = {
     /* PALADIN */
     {"paladin",
      "",
-     "&8Paladin&0",
+     "Paladin&0",
      "Paladin",
-     "&8Paladin&0     ",
-     "&8Pal&0",
+     "Paladin&0     ",
+     "Pal&0",
      "**&0",
      true,
      PRAY,

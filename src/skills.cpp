@@ -158,10 +158,10 @@ void improve_skill(CharData *ch, int skill) {
     /* returns 1000 for most skills, but caps some others lower */
     if (percent >= maxpercent) {
         SET_SKILL(ch, skill, maxpercent);
-        sprintf(skillbuf, "&8You feel about as skilled in %s as possible!&0\n", skills[skill].name);
+        sprintf(skillbuf, "You feel about as skilled in %s as possible!&0\n", skills[skill].name);
     } else {
         SET_SKILL(ch, skill, percent);
-        sprintf(skillbuf, "&8You feel your skill in %s improving.\n&0", skills[skill].name);
+        sprintf(skillbuf, "You feel your skill in %s improving.\n&0", skills[skill].name);
     }
     char_printf(ch, skillbuf);
 }
@@ -730,7 +730,7 @@ void init_skills(void) {
            MAG_MANUAL, C1, CAST_SPEED5, DAM_HEAL, SKILL_SPHERE_DEATH, 19, false, nullptr);
 
     spello(SPELL_ENLARGE, "enlarge", 35, 5, 3, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT | MAG_UNAFFECT, C1,
-           CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 29, false, "&8You return to your normal size.&0");
+           CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 29, false, "You return to your normal size.&0");
 
     spello(SPELL_ENLIGHTENMENT, "enlightenment", 0, 0, 0, POS_SITTING, false, TAR_CHAR_ROOM | TAR_NOT_SELF, false,
            MAG_MANUAL, C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 5, false, nullptr);
@@ -878,7 +878,7 @@ void init_skills(void) {
 
     spello(SPELL_ILLUMINATION, "illumination", 50, 25, 5, POS_SITTING, false, TAR_CHAR_ROOM | TAR_OBJ_INV, false,
            MAG_MANUAL, C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false,
-           "&8The magical light fades away.&0");
+           "The magical light fades away.&0");
 
     spello(SPELL_ILLUSORY_WALL, "illusory wall", 0, 0, 0, POS_STANDING, false, TAR_STRING, false, MAG_MANUAL, C1, 18,
            DAM_UNDEFINED, SKILL_SPHERE_GENERIC, 27, true, "The wall dissolves into tiny motes of light...");
@@ -1076,7 +1076,7 @@ void init_skills(void) {
            1, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, false, nullptr);
 
     spello(SPELL_REDUCE, "reduce", 35, 5, 3, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT | MAG_UNAFFECT, C1,
-           CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 29, false, "&8You return to your normal size.&0");
+           CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 29, false, "You return to your normal size.&0");
 
     spello(SPELL_RELOCATE, "relocate", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD | TAR_NOT_SELF, false, MAG_MANUAL,
            C14, 20, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 35, true, nullptr);

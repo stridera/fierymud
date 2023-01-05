@@ -472,20 +472,20 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         if (ch->master) {
             if (GET_LEVEL(ch->master) < LVL_IMMORT) {
                 if (ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_GODROOM)) {
-                    char_printf(ch, "&0&8A mysterious powerful force pushes you back.&0\n");
+                    char_printf(ch, "&0A mysterious powerful force pushes you back.&0\n");
                     return false;
                 }
             } else {
                 if (ch->master->in_room != CH_NDEST(ch, dir)) {
                     if (ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_GODROOM)) {
-                        char_printf(ch, "&0&8A mysterious powerful force pushes you back.&0\n");
+                        char_printf(ch, "&0A mysterious powerful force pushes you back.&0\n");
                         return false;
                     }
                 }
             }
         } else {
             if (ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_GODROOM)) {
-                char_printf(ch, "&0&8A mysterious powerful force pushes you back.&0\n");
+                char_printf(ch, "&0A mysterious powerful force pushes you back.&0\n");
                 return false;
             }
         }
@@ -1468,7 +1468,7 @@ ACMD(do_doorbash)
     /* The things we do to send a message to the destination room... */
     char_from_room(ch);
     char_to_room(ch, ndest);
-    sprintf(buf, "&b&8Splinters and dust fly as $n &0&b*CRASHES* into the room!&0");
+    sprintf(buf, "&bSplinters and dust fly as $n &0&b*CRASHES* into the room!&0");
     act(buf, false, ch, 0, 0, TO_ROOM);
     char_from_room(ch);
     char_to_room(ch, was_in);

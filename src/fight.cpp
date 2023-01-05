@@ -1812,13 +1812,13 @@ bool riposte(CharData *ch, CharData *victim) {
         return false;
 
     if (GET_SKILL(ch, SKILL_BAREHAND) > 20) {
-        act("&8You grab $n's arm and twist it, causing $m to strike $mself!&0", false, ch, 0, victim, TO_VICT);
+        act("You grab $n's arm and twist it, causing $m to strike $mself!&0", false, ch, 0, victim, TO_VICT);
         act("$N grabs your arm and twists it, causing you to damage to "
             "yourself!&0",
             false, ch, 0, victim, TO_CHAR);
         act("&7$N grabs and twists $n's arm, causing $n to hurt $mself!&0", false, ch, 0, victim, TO_NOTVICT);
     } else {
-        act("&8You block $n's attack, and strike back!&0", false, ch, 0, victim, TO_VICT);
+        act("You block $n's attack, and strike back!&0", false, ch, 0, victim, TO_VICT);
         act("$N blocks your attack, and strikes back!&0", false, ch, 0, victim, TO_CHAR);
         act("&7$N blocks $n's attack, and strikes back at $m!&0", false, ch, 0, victim, TO_NOTVICT);
     }

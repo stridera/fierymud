@@ -925,7 +925,7 @@ EVENTFUNC(camp_event) {
        when they log back on. */
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$N ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        char_printf(ch, "&8You stop meditating.\n&0");
+        char_printf(ch, "You stop meditating.\n&0");
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 
@@ -1079,7 +1079,7 @@ ACMD(do_abort) {
     void flush_queues(DescriptorData * d);
 
     if (CASTING(ch)) {
-        char_printf(ch, "&8You abort your spell!&0\n");
+        char_printf(ch, "You abort your spell!&0\n");
         abort_casting(ch);
         if (ch->desc)
             flush_queues(ch->desc);
@@ -1539,7 +1539,7 @@ ACMD(do_consent) {
     if (target == ch) {
         if (CONSENT(ch)) {
             act("$n&0 has revoked $s consent.&0", false, ch, 0, CONSENT(ch), TO_VICT | TO_SLEEP);
-            char_printf(ch, "&8You revoke your consent.&0\n");
+            char_printf(ch, "You revoke your consent.&0\n");
             CONSENT(ch) = nullptr;
         } else
             char_printf(ch, "You haven't given your consent to anyone.\n");
@@ -1588,7 +1588,7 @@ ACMD(do_bandage) {
     }
 
     if (GET_SKILL(ch, SKILL_BANDAGE) > number(1, 80)) {
-        act("&0&8You bandage $N.&0", false, ch, 0, victim, TO_CHAR);
+        act("&0You bandage $N.&0", false, ch, 0, victim, TO_CHAR);
         act("$n&0 bandages $N's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
         hurt_char(victim, nullptr, MAX(-3, GET_SKILL(ch, SKILL_BANDAGE) / -10), true);
     } else {
@@ -1628,7 +1628,7 @@ void make_group_report_line(CharData *ch, char *buffer) {
     else if (GET_HIT(ch) < 1000)
         strcat(buffer, " ");
 
-    sprintf(buf2, "%s%d&0&8h&0/", harm_color, GET_HIT(ch));
+    sprintf(buf2, "%s%d&0h&0/", harm_color, GET_HIT(ch));
     strcat(buffer, buf2);
     if (GET_MAX_HIT(ch) < 10)
         strcat(buffer, "   ");
@@ -1637,7 +1637,7 @@ void make_group_report_line(CharData *ch, char *buffer) {
     else if (GET_MAX_HIT(ch) < 1000)
         strcat(buffer, " ");
 
-    sprintf(buf2, "%s%d&0&8H&0  %3dv/%3dV] [%s]", CLR(ch, AUND), GET_MAX_HIT(ch), GET_MOVE(ch), GET_MAX_MOVE(ch),
+    sprintf(buf2, "%s%d&0H&0  %3dv/%3dV] [%s]", CLR(ch, AUND), GET_MAX_HIT(ch), GET_MOVE(ch), GET_MAX_MOVE(ch),
             CLASS_ABBR(ch));
     strcat(buffer, buf2);
 }
@@ -1647,7 +1647,7 @@ void print_group(CharData *ch) {
     GroupType *f;
 
     if (!ch->group_master && !ch->groupees)
-        char_printf(ch, "&2&8But you are not the member of a group!&0\n");
+        char_printf(ch, "&2But you are not the member of a group!&0\n");
     else {
         char_printf(ch, "{}Your group consists of:&0\n", CLR(ch, AUND));
 
@@ -1699,13 +1699,13 @@ ACMD(do_group) {
         if (ch->group_master || ch->groupees)
             ungroup(ch, true, false);
         else
-            char_printf(ch, "&2&8You're not in a group!&0\n");
+            char_printf(ch, "&2You're not in a group!&0\n");
         return;
     }
 
     /* You can't enroll someone if you're in a group and not the leader. */
     if (ch->group_master) {
-        char_printf(ch, "&2&8You cannot enroll group members without being head of a group.&0\n");
+        char_printf(ch, "&2You cannot enroll group members without being head of a group.&0\n");
         return;
     }
 
@@ -1742,7 +1742,7 @@ ACMD(do_group) {
 
             if (max_group_difference && (level_diff > max_group_difference || level_diff < -max_group_difference)) {
                 char_printf(ch,
-                            "&2&8You cannot group {}, because the level difference is too great.\n"
+                            "&2You cannot group {}, because the level difference is too great.\n"
                             "(The maximum allowable difference is currently {:d}.)&0\n",
                             GET_NAME(gch), max_group_difference);
                 continue;
@@ -1753,17 +1753,17 @@ ACMD(do_group) {
         }
 
         if (!found)
-            char_printf(ch, "&2&8No one has consented you that is not already in a group.&0\n");
+            char_printf(ch, "&2No one has consented you that is not already in a group.&0\n");
         return;
     }
 
     if (tch->group_master && tch->group_master != ch) {
-        char_printf(ch, "&2&8That person is already in a group.&0\n");
+        char_printf(ch, "&2That person is already in a group.&0\n");
         return;
     }
 
     if (tch->groupees) {
-        char_printf(ch, "&2&8That person is leading a group.&0\n");
+        char_printf(ch, "&2That person is leading a group.&0\n");
         return;
     }
 
@@ -1776,7 +1776,7 @@ ACMD(do_group) {
     /* Check for consent unless it's a charmed follower */
     if (CONSENT(tch) != ch && GET_LEVEL(ch) < LVL_IMMORT) {
         if (!(IS_NPC(tch) && tch->master == ch && EFF_FLAGGED(tch, EFF_CHARM))) {
-            act("&2&8You do not have $S consent.&0", true, ch, nullptr, tch, TO_CHAR);
+            act("&2You do not have $S consent.&0", true, ch, nullptr, tch, TO_CHAR);
             return;
         }
     }
@@ -1785,7 +1785,7 @@ ACMD(do_group) {
 
     if (max_group_difference && (level_diff > max_group_difference || level_diff < -max_group_difference)) {
         char_printf(ch,
-                    "&2&8You cannot group {}, because the level difference is too great.\n"
+                    "&2You cannot group {}, because the level difference is too great.\n"
                     "(The maximum allowable difference is currently {:d}.)&0\n",
                     GET_NAME(tch), max_group_difference);
         return;
@@ -1889,7 +1889,7 @@ ACMD(do_split) {
         return;
 
     if (!IS_GROUPED(ch)) {
-        char_printf(ch, "&2&8But you are not a member of any group!&0\n");
+        char_printf(ch, "&2But you are not a member of any group!&0\n");
         return;
     }
 

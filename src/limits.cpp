@@ -560,7 +560,7 @@ void decay_object(ObjData *obj) {
          * identified more explicitly. */
         switch (GET_OBJ_VAL(obj, VAL_WALL_SPELL)) {
         case SPELL_WALL_OF_ICE:
-            msg = "$p &7&8shatters&0 into small, &4quickly-melting&0 shards.";
+            msg = "$p &7shatters&0 into small, &4quickly-melting&0 shards.";
             break;
         }
         break;

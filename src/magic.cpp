@@ -1036,18 +1036,18 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 switch (number(1, 3)) {
                 case 1:
                     act("&1$n bursts into flame!&0", false, victim, 0, 0, TO_ROOM);
-                    char_printf(victim, "&1&8Your skin and clothes ignite into flame!&0\n");
+                    char_printf(victim, "&1Your skin and clothes ignite into flame!&0\n");
                     break;
                 case 2:
                     sprintf(buf, "%s light%s", skills[spellnum].name,
                             skills[spellnum].name[strlen(skills[spellnum].name) - 1] == 's' ? "" : "s");
                     act("&1$n's $t you on fire!&0", false, ch, buf, victim, TO_VICT);
                     act("&1$n's $t $N on fire!&0", false, ch, buf, victim, TO_NOTVICT | TO_VICTROOM);
-                    act("&1&8Your $t $N on fire!&0", false, ch, buf, victim, TO_CHAR);
+                    act("&1Your $t $N on fire!&0", false, ch, buf, victim, TO_CHAR);
                     break;
                 case 3:
-                    char_printf(victim, "&1&8Flames spread across your body!&0\n");
-                    act("&1&8Flames envelope $n!&0", false, victim, 0, 0, TO_ROOM);
+                    char_printf(victim, "&1Flames spread across your body!&0\n");
+                    act("&1Flames envelope $n!&0", false, victim, 0, 0, TO_ROOM);
                     break;
                 }
             }
@@ -1476,7 +1476,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         } else if (spellnum == SPELL_DEMONIC_MUTATION) {
             eff[0].modifier *= 2.5;
             to_vict = "&1Your body fills with a demonic strength.&0";
-            to_room = "&1$n's eyes flash &8red&0&1 as $e suddenly sprouts horns!&0";
+            to_room = "&1$n's eyes flash red&0&1 as $e suddenly sprouts horns!&0";
         }
         break;
 
@@ -2318,7 +2318,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_NATURES_EMBRACE:
         SET_FLAG(eff[0].flags, EFF_CAMOUFLAGED);
         eff[0].duration = (skill / 3) + 1; /* range (1, 34) */
-        to_vict = "&9&8You phase into the landscape.&0";
+        to_vict = "&9You phase into the landscape.&0";
         to_room = "&9$n&9 phases into the landscape.&0";
         break;
 
@@ -3480,7 +3480,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         to_room = "&9&b$n&9&b sends waves of death energy outward in a violent circle.&0";
         break;
     case SPELL_CREMATE:
-        to_char = "&1&8You raise up a huge conflaguration in the area.&0";
+        to_char = "&1You raise up a huge conflaguration in the area.&0";
         to_room = "&1$n summons a huge conflagration burning through the area.&0";
         break;
     case SONG_CROWN_OF_MADNESS:
@@ -3506,7 +3506,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         zone_printf(IN_ZONE_VNUM(ch), IN_ROOM(ch), STANCE_SLEEPING, "&3The ground &1rumbles&3 and shakes!&0\n");
         break;
     case SKILL_ELECTRIFY:
-        to_char = "&4&8You send out electricity in all directions...&0";
+        to_char = "&4You send out electricity in all directions...&0";
         to_room = "&4$n&4 sends out electricity in all directions...&0";
         break;
     case SONG_ENRAPTURE:
@@ -4543,7 +4543,7 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         if (!EFF_FLAGGED(victim, EFF_REDUCE))
             return CAST_RESULT_CHARGE;
         spell = SPELL_REDUCE;
-        to_vict = "&8You return to your normal size.&0";
+        to_vict = "You return to your normal size.&0";
         break;
     case SPELL_EXTINGUISH:
         REMOVE_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
@@ -4665,7 +4665,7 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         if (!EFF_FLAGGED(victim, EFF_ENLARGE))
             return CAST_RESULT_CHARGE;
         spell = SPELL_ENLARGE;
-        to_vict = "&8You return to your normal size.&0";
+        to_vict = "You return to your normal size.&0";
         break;
     case SPELL_REMOVE_CURSE:
         spell = SPELL_CURSE;

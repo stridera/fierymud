@@ -559,13 +559,13 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
         if (affected_by_spell(targ, SPELL_ARMOR))
             act("A &7&btranslucent shimmering aura&0 surrounds $M.&0", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_BLESS))
-            act("The &8shimmering telltales&0 of a &3&bmagical blessing&0 flutter "
+            act("The shimmering telltales&0 of a &3&bmagical blessing&0 flutter "
                 "about $S head.&0",
                 true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DEMONIC_ASPECT))
             act("A &1demonic tinge&0 circulates in $S &1blood&0.", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DEMONIC_MUTATION))
-            act("Two &1large &8red&0&1 horns&0 sprout from $S head.", true, ch, 0, targ, TO_CHAR);
+            act("Two &1large red&0&1 horns&0 sprout from $S head.", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DARK_PRESENCE))
             act("You sense a &9&bdark presence&0 within $M.&0", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_DRAGONS_HEALTH))
@@ -592,7 +592,7 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
     if (affected_by_spell(targ, SPELL_GAIAS_CLOAK))
         act("&2A whirlwind of leaves and &3sticks&2 whips around $S body.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_ICE_ARMOR))
-        act("&8A layer of &4solid ice&0 covers $M entirely.&0", true, ch, 0, targ, TO_CHAR);
+        act("A layer of &4solid ice&0 covers $M entirely.&0", true, ch, 0, targ, TO_CHAR);
     if (affected_by_spell(targ, SPELL_MIRAGE))
         act("&7$S image &1wavers&7 and &9&bshimmers&0&7 and is somewhat "
             "indistinct.&0",
@@ -930,7 +930,7 @@ static int search_for_doors(CharData *ch, char *arg) {
             if (GET_LEVEL(ch) >= LVL_IMMORT ||
                 (CH_EXIT(ch, door)->keyword && arg && isname(arg, CH_EXIT(ch, door)->keyword)) ||
                 GET_INT(ch) > number(0, 200)) {
-                sprintf(buf, "&8You have found%s hidden %s %s.&0",
+                sprintf(buf, "You have found%s hidden %s %s.&0",
                         CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
                         CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
                 act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_CHAR);
@@ -1101,7 +1101,7 @@ void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief) {
     if (ROOM_EFF_FLAGGED(room_nr, ROOM_EFF_FOREST))
         char_printf(ch, "&2&bThick foliage appears to have overgrown the whole area.&0\n");
     if (ROOM_EFF_FLAGGED(room_nr, ROOM_EFF_CIRCLE_FIRE))
-        char_printf(ch, "&1&8A circle of fire burns wildly here, surrounding the area.&0\n");
+        char_printf(ch, "&1A circle of fire burns wildly here, surrounding the area.&0\n");
 
     /* autoexits */
     if (PRF_FLAGGED(ch, PRF_AUTOEXIT))
@@ -1195,7 +1195,7 @@ void look_in_direction(CharData *ch, int dir) {
                 do_farsee(ch, dir);
             else if (exit->to_room != NOWHERE && ROOM_EFF_FLAGGED(exit->to_room, ROOM_EFF_CIRCLE_FIRE))
                 char_printf(ch,
-                            "&1&8The edge of a circle of fire burns wildly in this "
+                            "&1The edge of a circle of fire burns wildly in this "
                             "direction.&0\n");
             look_at_magic_wall(ch, dir, true);
         }
@@ -1371,7 +1371,7 @@ static void do_farsee(CharData *ch, int dir) {
             break;
         }
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG) && !PRF_FLAGGED(ch, PRF_HOLYLIGHT)) {
-            char_printf(ch, "&0&b&8The fog is too thick to see through!&0\n");
+            char_printf(ch, "&0&bThe fog is too thick to see through!&0\n");
             break;
         }
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !PRF_FLAGGED(ch, PRF_HOLYLIGHT)) {
@@ -1661,7 +1661,7 @@ ACMD(do_equipment) {
                 found = true;
             }
         } else if (arg && is_equals(arg, "all")) {
-            char_printf(ch, "{}Nothing.\n", where[wear_order_index[i]]);
+            char_printf(ch, "{}&1Nothing.&0\n", where[wear_order_index[i]]);
             found = true;
         }
     }
@@ -2890,16 +2890,16 @@ long xp_percentage(CharData *ch) {
 const char *exp_message(CharData *ch) {
     long percent, current, total, etl;
     const char *messages[] = {
-        "&4&8You still have a very long way to go to your next level.&0",
-        "&4&8You have gained some progress towards your next level.&0",
+        "&4You still have a very long way to go to your next level.&0",
+        "&4You have gained some progress towards your next level.&0",
         "&6You are about one-quarter of the way to your next level.&0",
-        "&4&8You are about a third of the way to your next level.&0",
-        "&4&8You are almost half-way to your next level.&0",
+        "&4You are about a third of the way to your next level.&0",
+        "&4You are almost half-way to your next level.&0",
         "&6You are just past the half-way point to your next level.&0",
-        "&4&8You are well on your way to your next level.&0",
-        "&4&8You are about three-quarters of the way to your next level.&0",
+        "&4You are well on your way to your next level.&0",
+        "&4You are about three-quarters of the way to your next level.&0",
         "&6You are almost ready to attain your next level.&0",
-        "&4&8You should level anytime now!&0",
+        "&4You should level anytime now!&0",
         "&4You are SO close to the next level.&0",
     };
 
@@ -2920,11 +2920,11 @@ const char *exp_message(CharData *ch) {
     if (IS_STARSTAR(ch))
         return "&3You are as powerful as a mortal can be!&0";
     else if (GET_LEVEL(ch) == LVL_MAX_MORT && current > total)
-        return "&4&8You are working towards getting your stars!&0";
+        return "&4You are working towards getting your stars!&0";
     else if (total - current == 1)
-        return "&4&8You are ready for the next level!&0";
+        return "&4You are ready for the next level!&0";
     else if (percent < 4)
-        return "&4&8You have just begun the journey to your next level.&0";
+        return "&4You have just begun the journey to your next level.&0";
     else if (percent >= 0 && percent <= 100)
         return messages[percent / 10];
     else
@@ -3118,8 +3118,7 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
                 GET_HIT(tch), GET_MAX_HIT(tch), GET_BASE_HIT(tch), GET_MOVE(tch), GET_MAX_MOVE(tch), natural_move(tch));
 
     if (verbose)
-        char_printf(ch, "Armor class: &3{}&0 (&3{:d}&0)  ",
-                    armor_message(GET_AC(tch) + 5 * monk_weight_penalty(tch)),
+        char_printf(ch, "Armor class: &3{}&0 (&3{:d}&0)  ", armor_message(GET_AC(tch) + 5 * monk_weight_penalty(tch)),
                     GET_AC(tch) + 5 * monk_weight_penalty(tch));
     else
         char_printf(ch, "Armor class: &3{:d}&0  ", GET_AC(tch) + 5 * monk_weight_penalty(tch));
@@ -3296,8 +3295,8 @@ ACMD(do_score) {
             capitalize(SIZE_DESC(tch)), buf1, RACE_ABBR(tch), LIFEFORCE_COLOR(tch), capitalize(LIFEFORCE_NAME(tch)),
             COMPOSITION_COLOR(tch), capitalize(COMPOSITION_NAME(tch)), *buf2 ? "(" : "", buf2, *buf2 ? ")" : "");
     } else
-        buf += fmt::format("  Race: {}  Size: &3{}&0  Gender: &3{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)),
-                           buf1);
+        buf +=
+            fmt::format("  Race: {}  Size: &3{}&0  Gender: &3{}&0\n", RACE_ABBR(tch), capitalize(SIZE_DESC(tch)), buf1);
 
     buf += fmt::format(
         "Age: &3&b{}&0&3 year{}&0, &3&b{}&0&3 month{}&0  "
@@ -3347,7 +3346,7 @@ ACMD(do_score) {
                     buf += "&3Sleeping&0\n";
                     break;
                 default:
-                    buf += "&1&8Invalid&0\n";
+                    buf += "&1Invalid&0\n";
                     break;
                 }
             break;
@@ -3382,7 +3381,7 @@ ACMD(do_score) {
                     buf += "&3Lying alert&0\n";
                     break;
                 default:
-                    buf += "&1&8Invalid&0\n";
+                    buf += "&1Invalid&0\n";
                     break;
                 }
             break;
@@ -3390,7 +3389,7 @@ ACMD(do_score) {
             buf += "&1&bFighting&0\n";
             break;
         default:
-            buf += "&1&8Invalid&0\n";
+            buf += "&1Invalid&0\n";
             break;
         }
 

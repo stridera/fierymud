@@ -358,8 +358,8 @@ ASPELL(spell_color_spray) {
     if (!ch)
         return 0;
 
-    act("&8A rainbow of &1c&3o&2l&4o&5r&7 bursts from $n's hands!&0", false, ch, 0, 0, TO_ROOM);
-    char_printf(ch, "&8A rainbow of &1c&3o&2l&4o&5r&7 bursts from your hands!&0\n");
+    act("A rainbow of &1c&3o&2l&4o&5r&7 bursts from $n's hands!&0", false, ch, 0, 0, TO_ROOM);
+    char_printf(ch, "A rainbow of &1c&3o&2l&4o&5r&7 bursts from your hands!&0\n");
     for (vict = world[ch->in_room].people; vict; vict = next_vict) {
         next_vict = vict->next_in_room;
         if (GET_LEVEL(vict) >= LVL_IMMORT && !IS_NPC(vict))
@@ -373,7 +373,7 @@ ASPELL(spell_color_spray) {
 
         /* Blind folks immune to this spell. */
         if (EFF_FLAGGED(vict, EFF_BLIND)) {
-            act("&7A &8searing beam&0&7 falls upon $n's face, but $e appears not to "
+            act("&7A searing beam&0&7 falls upon $n's face, but $e appears not to "
                 "notice.&0",
                 true, vict, 0, 0, TO_ROOM);
             continue;
@@ -451,7 +451,7 @@ ASPELL(spell_color_spray) {
         if (!effect || required > skill)
             continue;
 
-        sprintf(buf, "&8A dazzling %s beam&0 shines fully in $n's face!&0", color);
+        sprintf(buf, "A dazzling %s beam&0 shines fully in $n's face!&0", color);
         act(buf, false, vict, 0, 0, TO_ROOM);
 
         if (evades_spell(ch, vict, effect, skill))
@@ -464,7 +464,7 @@ ASPELL(spell_color_spray) {
                 act("$n falls over, dazed!&0", false, vict, 0, 0, TO_ROOM);
                 break;
             case 2:
-                act("&8The beam knocks $n off $s feet!&0", false, vict, 0, 0, TO_ROOM);
+                act("The beam knocks $n off $s feet!&0", false, vict, 0, 0, TO_ROOM);
                 break;
             case 3:
                 act("$n is crumples to the ground in a daze.&0", false, vict, 0, 0, TO_ROOM);
@@ -472,14 +472,14 @@ ASPELL(spell_color_spray) {
             default:
                 act("$n falls to the ground, momentarily stunned.&0", false, vict, 0, 0, TO_ROOM);
             }
-            sprintf(buf, "&8A &3shocking&0 %s &8FLASH&0 &8makes you lose your balance!&0\n", color);
+            sprintf(buf, "A &3shocking&0 %s FLASH&0 makes you lose your balance!&0\n", color);
             char_printf(vict, buf);
             WAIT_STATE(vict, PULSE_VIOLENCE * 3);
             GET_POS(vict) = POS_SITTING;
             GET_STANCE(vict) = STANCE_ALERT;
             continue;
         } else {
-            sprintf(buf, "&8You are dazzled by a %s&0 beam of light!&0\n", color);
+            sprintf(buf, "You are dazzled by a %s&0 beam of light!&0\n", color);
             char_printf(vict, buf);
 
             /* cast the spell effect with half power */
@@ -1138,7 +1138,7 @@ ASPELL(spell_illumination) {
         act("$p begins glowing with a &3&bbright yellow light&0.", false, ch, obj, 0, TO_ROOM);
     } else { /* Light the room */
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-            act("&8Your magical light dispels the darkness.&0", false, ch, 0, 0, TO_CHAR);
+            act("Your magical light dispels the darkness.&0", false, ch, 0, 0, TO_CHAR);
             act("$n's magical light dispels the darkness.&0", false, ch, 0, 0, TO_ROOM);
             REMOVE_FLAG(ROOM_EFFECTS(ch->in_room), ROOM_EFF_DARKNESS);
             eff = 0;
@@ -1156,8 +1156,8 @@ ASPELL(spell_illumination) {
             char_printf(ch, NOEFFECT);
             return CAST_RESULT_CHARGE;
         } else {
-            act("&8The room magically lights up!&0", false, ch, 0, 0, TO_CHAR);
-            act("&8The room magically lights up!&0", false, ch, 0, 0, TO_ROOM);
+            act("The room magically lights up!&0", false, ch, 0, 0, TO_CHAR);
+            act("The room magically lights up!&0", false, ch, 0, 0, TO_ROOM);
             eff = ROOM_EFF_ILLUMINATION;
             world[ch->in_room].light++;
             ticks = 4 + 20 * skill / 100; /* Lasts 4-24 hours */
@@ -1533,9 +1533,9 @@ ASPELL(spell_moonwell) {
     if (GET_LEVEL(ch) < LVL_IMMORT &&
         (ROOM_FLAGGED(ch->in_room, ROOM_NOWELL) || ROOM_FLAGGED(victim->in_room, ROOM_NOWELL) ||
          PRF_FLAGGED(victim, PRF_NOFOLLOW))) {
-        act("&8A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, 0, TO_ROOM);
-        act("&8A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, 0, TO_CHAR);
-        act("&8A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, victim, TO_VICT);
+        act("A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, 0, TO_ROOM);
+        act("A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, 0, TO_CHAR);
+        act("A&0 &5moonwell&0 &7 appears briefly, then dissolves.&0", true, ch, 0, victim, TO_VICT);
         return CAST_RESULT_CHARGE;
     }
     if ((portal = read_object(OBJ_VNUM_MOONWELL, VIRTUAL)) == nullptr) {
@@ -1936,7 +1936,7 @@ static int search_for_doors(CharData *ch) {
     for (door = 0; door < NUM_OF_DIRS; ++door)
         if (CH_EXIT(ch, door) && CH_EXIT(ch, door)->to_room != NOWHERE &&
             IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
-            sprintf(buf, "&8You have found%s hidden %s %s.&0",
+            sprintf(buf, "You have found%s hidden %s %s.&0",
                     CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
                     CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
             act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_CHAR);

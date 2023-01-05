@@ -2978,7 +2978,7 @@ ACMD(do_rrestore) {
             if (argument && *argument)
                 char_printf(i, "{}@0\n", argument);
             else
-                act("&0&b&4$n &0&b&9spreads $s &0&b&8energy&0&b&9 across the realms "
+                act("&0&b&4$n &0&b&9spreads $s &0&benergy&0&b&9 across the realms "
                     "&0&6restoring&0&b&9 all in $s path!&0",
                     false, ch, 0, i, TO_VICT | TO_SLEEP);
             perform_restore(i);

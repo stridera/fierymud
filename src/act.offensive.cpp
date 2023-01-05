@@ -62,7 +62,7 @@ bool switch_ok(CharData *ch) {
 
     if (number(1, 101) > GET_SKILL(ch, SKILL_SWITCH)) {
         act("$n tries to switch opponents, but becomes confused!&0", false, ch, 0, 0, TO_ROOM);
-        char_printf(ch, "&8You try to switch opponents and become confused.&0\n");
+        char_printf(ch, "You try to switch opponents and become confused.&0\n");
         stop_fighting(ch);
         improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
         return false;
@@ -70,7 +70,7 @@ bool switch_ok(CharData *ch) {
 
     stop_fighting(ch);
     act("$n switches opponents!&0", false, ch, 0, 0, TO_ROOM);
-    char_printf(ch, "&8You switch opponents!&0\n");
+    char_printf(ch, "You switch opponents!&0\n");
     improve_skill_offensively(ch, FIGHTING(ch), SKILL_SWITCH);
     return true;
 }
@@ -258,7 +258,7 @@ ACMD(do_roar) {
     }
 
     if (subcmd == SCMD_HOWL) {
-        act("$n opens his mouth and a &1&8demonic &0&1howl&0 echoes out!", false, ch, 0, 0, TO_ROOM);
+        act("$n opens his mouth and a &1demonic &0&1howl&0 echoes out!", false, ch, 0, 0, TO_ROOM);
         char_printf(ch, "You let out a demonic battle howl, striking fear into your enemies!\n");
     } else {
         act("&9&b$n&9&b makes your soul quake with a vicious "
@@ -450,7 +450,7 @@ ACMD(do_hit) {
     one_argument(argument, arg);
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS))
-        char_printf(ch, "&8It is just too dark!&0\n");
+        char_printf(ch, "It is just too dark!&0\n");
     else if (EFF_FLAGGED(ch, EFF_BLIND))
         char_printf(ch, "You can't see a thing!\n");
     else if (!*arg)
@@ -479,7 +479,7 @@ ACMD(do_kill) {
     CharData *vict;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-        char_printf(ch, "&8It is just too damn dark!&0\n");
+        char_printf(ch, "It is just too damn dark!&0\n");
         return;
     }
     if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
@@ -560,11 +560,11 @@ void slow_death(CharData *victim) {
         return;
     }
 
-    act("&8With a soft groan, $n slips off into the cold sleep of death.&0", true, victim, 0, 0, TO_ROOM);
+    act("With a soft groan, $n slips off into the cold sleep of death.&0", true, victim, 0, 0, TO_ROOM);
     act("$n is dead!   R.I.P.&0", true, victim, 0, 0, TO_ROOM);
     if (AWAKE(victim)) {
-        act("&8You feel yourself slipping away and falling into the abyss.&0", false, victim, 0, 0, TO_CHAR);
-        char_printf(victim, "&0&8Your life fades away ....\n");
+        act("You feel yourself slipping away and falling into the abyss.&0", false, victim, 0, 0, TO_CHAR);
+        char_printf(victim, "&0Your life fades away ....\n");
     }
 
     die(victim, nullptr);
@@ -714,8 +714,7 @@ ACMD(do_backstab) {
         percent = 150; /*silent failure */
 
     if (EFF_FLAGGED(vict, EFF_AWARE) && FIGHTING(vict))
-        percent += number(1, 10); /* It's a little harder to backstab a mob you've
-                                     already backstabed */
+        percent += number(1, 10); /* It's a little harder to backstab a mob you've already backstabed */
 
     prob = MIN(97, GET_SKILL(ch, SKILL_BACKSTAB) - GET_LEVEL(vict) + 90);
 
@@ -776,8 +775,7 @@ ACMD(do_backstab) {
     }
 
     if (EFF_FLAGGED(vict, EFF_AWARE) && FIGHTING(vict))
-        percent2 += number(1, 10); /* It's a little harder to backstab a mob you've
-                                      already backstabed */
+        percent2 += number(1, 10); /* It's a little harder to backstab a mob you've already backstabed */
 
     prob2 = GET_SKILL(ch, SKILL_BACKSTAB);
 
@@ -907,7 +905,7 @@ ACMD(do_retreat) {
     /*
        for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room)
        if (FIGHTING(tch) == ch) {
-       char_printf(ch, "&8You cannot retreat while tanking!&0\n");
+       char_printf(ch, "You cannot retreat while tanking!&0\n");
        return;
        }
      */
@@ -1060,7 +1058,7 @@ ACMD(do_bash) {
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
-            char_printf(ch, "&8It's just too dark!&0\n");
+            char_printf(ch, "It's just too dark!&0\n");
             return;
         }
 
@@ -1440,7 +1438,7 @@ ACMD(do_springleap) {
     int percent, prob, dmg;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !CAN_SEE_IN_DARK(ch)) {
-        char_printf(ch, "&8It is too dark!&0\n");
+        char_printf(ch, "It is too dark!&0\n");
         return;
     }
 
@@ -1518,8 +1516,8 @@ ACMD(do_springleap) {
     } else if (percent > 0.95 * prob) {
         dmg = dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH);
         act("&0&6You manage to take $N down but also &bfall down yourself!&0 (&3$i&0)", false, ch, dmg, vict, TO_CHAR);
-        act("&0&6$N springs from the ground and knocks you down - &bbut falls in the process!&0 (&1$i&0)", false,
-            vict, dmg, ch, TO_CHAR);
+        act("&0&6$N springs from the ground and knocks you down - &bbut falls in the process!&0 (&1$i&0)", false, vict,
+            dmg, ch, TO_CHAR);
         act("&0&6$N springs from the ground, knocking $n down and &bfalling in the process!&0 (&4$i&0)", false, vict,
             dmg, ch, TO_NOTVICT);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -1536,7 +1534,7 @@ ACMD(do_springleap) {
         }
     } else {
         dmg = dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH);
-        act("&0&b&8You spring from the ground, knocking $N off balance.&0 (&1$i&0)", false, ch, dmg, vict, TO_CHAR);
+        act("&0&bYou spring from the ground, knocking $N off balance.&0 (&1$i&0)", false, ch, dmg, vict, TO_CHAR);
         act("&0&b$N springs from the ground and knocks you down!&0 (&3$i&0)", false, vict, dmg, ch, TO_CHAR);
         act("&0&b$N springs from the ground, knocking $n down!&0 (&4$i&0)", false, vict, dmg, ch, TO_NOTVICT);
         WAIT_STATE(ch, PULSE_VIOLENCE);

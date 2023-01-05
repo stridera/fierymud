@@ -27,8 +27,8 @@
  * the game boots (and are updated as the game runs).
  */
 
-const char *wind_speeds[] = {
-    "", "&6breeze", "&6strong wind", "&4gale-force wind", "&4&8hurricane-strength &0&6wind", "\n"};
+const char *wind_speeds[] = {"",  "&6breeze", "&6strong wind", "&4gale-force wind", "&4hurricane-strength &0&6wind",
+                             "\n"};
 
 const char *precip[] = {"&6&brain", "&7&bsnow", "\n"};
 
@@ -350,7 +350,7 @@ void update_temperature(int zone_rnum) {
 char *precipitation_message(ZoneData *zone, int original) {
     if (original > PRECIP_GRAY_CLOUDS) {
         if (zone->precipitation > original)
-            sprintf(buf, "&9&8It starts %sing &9&8harder.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&4It starts %sing harder.&0\n", GET_PRECIP_TYPE(zone));
         else if (zone->precipitation == original)
             sprintf(buf, "&5It continues to %s.&0\n", GET_PRECIP_TYPE(zone));
         else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
@@ -361,31 +361,23 @@ char *precipitation_message(ZoneData *zone, int original) {
         if (zone->precipitation <= PRECIP_GRAY_CLOUDS) {
             switch (original) {
             case PRECIP_PARTLY_CLOUDY:
-                strcpy(buf,
-                       "&4&8The sky is filled with small &7bil&0&7low&8ing white "
-                       "&7c&0&7l&6ou&7d&8s.&0\n");
+                strcpy(buf, "&4The sky is filled with small &7bil&0&7lowing white &7c&0&7l&6ou&7ds.&0\n");
                 break;
             case PRECIP_MOSTLY_CLOUDY:
-                strcpy(buf,
-                       "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the "
-                       "sky.&0\n");
+                strcpy(buf, "&7&bBil&0&7low&bing white &7c&0&7l&6ou&7d&bs &4cover the sky.&0\n");
                 break;
             case PRECIP_GRAY_CLOUDS:
                 if (HEMISPHERE(zone).sunlight == SUN_DARK)
-                    strcpy(buf,
-                           "&9&bDark, ominous clouds&0 &4cover the sky, shrouding "
-                           "the &7&8moon.&0\n");
+                    strcpy(buf, "&9&bDark, ominous clouds&0 &4cover the sky, shrouding the &7moon.&0\n");
                 else
-                    strcpy(buf,
-                           "&9&bOminously dark clouds&0 &4fill the sky, blocking "
-                           "out all &3sunlight.&0\n");
+                    strcpy(buf, "&9&bOminously dark clouds&0 &4fill the sky, blocking out all &3sunlight.&0\n");
                 break;
             default:
                 /* Should not occur. */
                 return "NULL PRECIPITATION\n";
             }
         } else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
-            sprintf(buf, "&9&8It begins to %s.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&9It begins to %s.&0\n", GET_PRECIP_TYPE(zone));
     } else if (zone->precipitation)
         strcpy(buf,
                "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 "
@@ -397,10 +389,10 @@ char *precipitation_message(ZoneData *zone, int original) {
             strcpy(buf, "&5The &3&bsun&0 &5shows &bbrightly&0 &5in the clear &4&bsky.&0\n");
             break;
         case SUN_DARK:
-            strcpy(buf, "&5The &7moon&0 &5shines &8brightly&0 &5in the clear &4sky.&0\n");
+            strcpy(buf, "&5The &7moon&0 &5shines brightly&0 &5in the clear &4sky.&0\n");
             break;
         case SUN_SET:
-            strcpy(buf, "&5The &3&8sun&0 &5glows &1red&0 &5in the clear &4sky.&0\n");
+            strcpy(buf, "&5The &3sun&0 &5glows &1red&0 &5in the clear &4sky.&0\n");
             break;
         default:
             /* Should not occur. */

@@ -1060,7 +1060,7 @@ void command_interpreter(CharData *ch, char *argument) {
     if (PLR_FLAGGED(ch, PLR_MEDITATE) && !IS_SET(cmd_info[cmd].flags, CMD_MEDITATE)) {
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        char_printf(ch, "&8You stop meditating.\n&0");
+        char_printf(ch, "You stop meditating.\n&0");
     }
 
     if (*cmd_info[cmd].command == '\n') {
@@ -1082,7 +1082,7 @@ void command_interpreter(CharData *ch, char *argument) {
     else if (EFF_FLAGGED(ch, EFF_MESMERIZED) && GET_LEVEL(ch) < 100)
         char_printf(ch, "You are too preoccupied with pretty illusions to do anything.\n");
     else if (CASTING(ch) && !IS_SET(cmd_info[cmd].flags, CMD_CAST))
-        char_printf(ch, "&8You are busy spellcasting...&0\n");
+        char_printf(ch, "You are busy spellcasting...&0\n");
     else if (cmd_info[cmd].command_pointer == nullptr)
         char_printf(ch, "Sorry, that command hasn't been implemented yet.\n");
     else if (IS_NPC(ch) && cmd_info[cmd].minimum_level >= LVL_IMMORT)

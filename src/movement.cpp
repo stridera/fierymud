@@ -134,12 +134,12 @@ EVENTFUNC(gravity_event) {
             look_at_room(ch, false);
     } else if (obj) {
         if (event->distance_fallen == 0)
-            act("$p &1&8plummets&0 &2downward!&0", false, 0, obj, 0, TO_ROOM);
+            act("$p &1plummets&0 &2downward!&0", false, 0, obj, 0, TO_ROOM);
 
         obj_from_room(obj);
         obj_to_room(obj, to_room);
 
-        act("$p &1&8falls from above.&0", false, 0, obj, 0, TO_ROOM);
+        act("$p &1falls from above.&0", false, 0, obj, 0, TO_ROOM);
     }
 
     /* to_room is now the room the char/obj is currently in */
@@ -166,9 +166,9 @@ EVENTFUNC(gravity_event) {
     /* No exit down means we've hit the bottom. */
     if (obj) {
         if (IS_SPLASHY(to_room))
-            act("$p &1&8lands with a loud&0 &1SPLASH!&0", false, 0, obj, 0, TO_ROOM);
+            act("$p &1lands with a loud&0 &1SPLASH!&0", false, 0, obj, 0, TO_ROOM);
         else
-            act("$p &1&8lands with a dull&0 &1THUD!&0", false, 0, obj, 0, TO_ROOM);
+            act("$p &1lands with a dull&0 &1THUD!&0", false, 0, obj, 0, TO_ROOM);
     } else if (ch) {
         if (GET_LEVEL(ch) < LVL_IMMORT)
             gravity_assisted_landing(ch, event->distance_fallen);
@@ -442,10 +442,10 @@ void add_groupee(CharData *master, CharData *groupee) {
     if (IS_GROUPED(groupee))
         return;
 
-    act("&2&8You accept $N &2&8into your group.&0", false, master, 0, groupee, TO_CHAR);
-    act("&2&8You have been accepted into $n&2's group.&0", false, master, 0, groupee, TO_VICT);
+    act("&2You accept $N &2into your group.&0", false, master, 0, groupee, TO_CHAR);
+    act("&2You have been accepted into $n&2's group.&0", false, master, 0, groupee, TO_VICT);
     for (g = master->groupees; g; g = g->next)
-        act("&2$N &2&8has joined your group.&0", true, g->groupee, 0, groupee, TO_CHAR);
+        act("&2$N &2has joined your group.&0", true, g->groupee, 0, groupee, TO_CHAR);
 
     CREATE(g, GroupType, 1);
     g->groupee = groupee;
@@ -460,14 +460,14 @@ void disband_group(CharData *master, bool verbose, bool forceful) {
     assert(master->groupees);
 
     if (verbose)
-        char_printf(master, forceful ? "&2&8The group has been disbanded.&0\n" : "&2&8You disband the group.&0\n");
+        char_printf(master, forceful ? "&2The group has been disbanded.&0\n" : "&2You disband the group.&0\n");
 
     while (master->groupees) {
         g = master->groupees;
         g->groupee->group_master = nullptr;
         master->groupees = g->next;
         if (verbose)
-            act(forceful ? "&2&8The group has been disbanded.&0" : "&2$n &2&8has disbanded the group.&0", false,
+            act(forceful ? "&2The group has been disbanded.&0" : "&2$n &2has disbanded the group.&0", false,
                 master, 0, g->groupee, TO_VICT);
         free(g);
     }
@@ -487,8 +487,8 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             CharData *new_master = ch->groupees->groupee;
 
             if (verbose) {
-                char_printf(ch, "&2&8You're no longer leading your group.&0\n");
-                char_printf(new_master, "&2&8You're now leading the group!&0\n");
+                char_printf(ch, "&2You're no longer leading your group.&0\n");
+                char_printf(new_master, "&2You're now leading the group!&0\n");
             }
 
             /* Move groupees to new master. */
@@ -497,7 +497,7 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             for (g = new_master->groupees; g; g = g->next) {
                 g->groupee->group_master = new_master;
                 if (verbose)
-                    act("&2$n &2&8is now leading your group!&0", true, new_master, 0, g->groupee, TO_VICT);
+                    act("&2$n &2is now leading your group!&0", true, new_master, 0, g->groupee, TO_VICT);
             }
 
             free(ch->groupees);
@@ -511,9 +511,9 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
         /* Only one other group member? Disband. */
         if (!ch->group_master->groupees->next) {
             if (verbose) {
-                act(forceful ? "&2&8You remove $N from the group.&0" : "&2$N has left the group.&0", false,
+                act(forceful ? "&2You remove $N from the group.&0" : "&2$N has left the group.&0", false,
                     ch->group_master, 0, ch, TO_CHAR);
-                act(forceful ? "&2$n has removed you from the group.&0" : "&2&8You have left your group!&0", false,
+                act(forceful ? "&2$n has removed you from the group.&0" : "&2You have left your group!&0", false,
                     ch->group_master, 0, ch, TO_VICT);
             }
             disband_group(ch->group_master, verbose, true);
@@ -534,8 +534,8 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
                     continue;
                 }
                 if (verbose)
-                    act(forceful ? "&2$n &2&8has been kicked out of your group!&0"
-                                 : "&2$n &2&8has left your group!&0",
+                    act(forceful ? "&2$n &2has been kicked out of your group!&0"
+                                 : "&2$n &2has left your group!&0",
                         true, ch, 0, g->next->groupee, TO_VICT);
                 g = g->next;
             }
@@ -544,9 +544,9 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             ch->group_master = nullptr;
 
             if (verbose) {
-                act(forceful ? "&2&8You have been kicked out of your group.&0" : "&2&8You have left your group!&0",
+                act(forceful ? "&2You have been kicked out of your group.&0" : "&2You have left your group!&0",
                     false, ch, 0, 0, TO_CHAR);
-                act(forceful ? "&2&8You have kicked $n &2&8out of your group.&0" : "&2$n &2&8has left your group!&0",
+                act(forceful ? "&2You have kicked $n &2out of your group.&0" : "&2$n &2has left your group!&0",
                     false, ch, 0, master, TO_VICT);
             }
         }

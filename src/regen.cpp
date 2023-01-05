@@ -136,7 +136,7 @@ EVENTFUNC(rage_event) {
             GET_POS(ch) = POS_STANDING;
         }
         start_berserking(ch);
-        char_printf(ch, "&1&8Your rage consumes you, taking control of your body...&0\n");
+        char_printf(ch, "&1Your rage consumes you, taking control of your body...&0\n");
         if (IN_ROOM(ch) != NOWHERE)
             act("$n shudders as $s rage causes $m to go berserk!", true, ch, 0, 0, TO_ROOM);
     }

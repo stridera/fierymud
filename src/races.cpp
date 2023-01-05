@@ -92,8 +92,8 @@ RaceDef races[NUM_RACES] = {
     /* ELF */
     {"elf",
      "elf",
-     "&8Elf&0",
-     "&8Elf&0",
+     "Elf&0",
+     "Elf&0",
      "Elf",
      true,
      true,

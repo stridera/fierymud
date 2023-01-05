@@ -561,7 +561,7 @@ void quest_complete(CharData *ch, CharData *vict, char *qname, char *error_strin
     char_printf(vict, "Congratulations, you completed the {} quest!\n", qname);
 
     if (ch) {
-        char_printf(ch, "Set the {} quest to &8completed&0 on {}.\n", qname, GET_NAME(vict));
+        char_printf(ch, "Set the {} quest to completed&0 on {}.\n", qname, GET_NAME(vict));
     }
 }
 
@@ -598,7 +598,7 @@ void quest_fail(CharData *ch, CharData *vict, char *qname, char *error_string) {
     quest->stage = QUEST_FAILURE;
 
     if (ch) {
-        char_printf(ch, "Set the {} quest to &8failed&0 on {}.\n", qname, GET_NAME(vict));
+        char_printf(ch, "Set the {} quest to failed&0 on {}.\n", qname, GET_NAME(vict));
     }
 }
 
@@ -1038,7 +1038,7 @@ ACMD(do_qadd) {
     if (new_id & SUBCLASS_BIT) {
         log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new subclass quest {}.",
             GET_NAME(ch), buf1);
-        char_printf(ch, "New &8subclass&0 quest {} successfully added.\n", buf1);
+        char_printf(ch, "New subclass&0 quest {} successfully added.\n", buf1);
     } else {
         log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new quest {}.", GET_NAME(ch), buf1);
         char_printf(ch, "New quest {} successfully added.\n", buf1);

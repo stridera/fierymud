@@ -620,7 +620,7 @@ void wipe_mem(CharData *ch) {
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        char_printf(ch, "&8You stop meditating.\n&0");
+        char_printf(ch, "You stop meditating.\n&0");
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 
@@ -1023,7 +1023,7 @@ void rem_memming(CharData *ch) {
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        char_printf(ch, "&8You stop meditating.\n&0");
+        char_printf(ch, "You stop meditating.\n&0");
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 }

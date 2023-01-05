@@ -1478,12 +1478,12 @@ char *prompt_str(CharData *ch) {
                 break;
             case 'w':
                 /* All money held. */
-                cur += sprintf(cur, "&0%d&6&8p&0 %d&3&8g&0 %ds %d&3c&0", GET_PLATINUM(ch), GET_GOLD(ch), GET_SILVER(ch),
+                cur += sprintf(cur, "&0%d&6p&0 %d&3g&0 %ds %d&3c&0", GET_PLATINUM(ch), GET_GOLD(ch), GET_SILVER(ch),
                                GET_COPPER(ch));
                 break;
             case 'W':
                 /* All money in bank. */
-                cur += sprintf(cur, "&0%d&6&8p&0 %d&3&8g&0 %ds %d&3c&0", GET_BANK_PLATINUM(ch), GET_BANK_GOLD(ch),
+                cur += sprintf(cur, "&0%d&6p&0 %d&3g&0 %ds %d&3c&0", GET_BANK_PLATINUM(ch), GET_BANK_GOLD(ch),
                                GET_BANK_SILVER(ch), GET_BANK_COPPER(ch));
                 break;
             case 'o':
