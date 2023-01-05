@@ -45,6 +45,7 @@
 #include "regen.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "textfiles.hpp"
@@ -252,11 +253,12 @@ ACMD(do_iptables) {
 }
 
 ACMD(do_echo) {
-    skip_spaces(&argument);
+    std::string echo{trim(argument)};
 
-    if (!*argument)
+    if (echo.empty())
         char_printf(ch, "Yes.. but what?\n");
     else {
+        std::string buf;
         if (subcmd == SCMD_EMOTE || subcmd == SCMD_EMOTES) {
             if (EFF_FLAGGED(ch, EFF_SILENCE)) {
                 char_printf(ch, "Your lips move, but no sound forms.\n");
@@ -264,12 +266,11 @@ ACMD(do_echo) {
             }
             if (!speech_ok(ch, 0))
                 return;
-            // TODO: Get rid of this const_cast
-            if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)
-                argument = const_cast<char *>(strip_ansi(argument).c_str());
-            sprintf(buf, "$n%s %s&0", subcmd == SCMD_EMOTES ? "'s" : "", argument);
+            if (GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT && !IS_NPC(ch))
+                echo = strip_ansi(echo);
+            buf = fmt::format("$n{} {}&0", subcmd == SCMD_EMOTES ? "'s" : "", echo);
         } else
-            sprintf(buf, "%s@0", argument);
+            buf = fmt::format("{}&0", echo);
 
         act(buf, subcmd != SCMD_ECHO, ch, 0, 0, TO_ROOM);
 
