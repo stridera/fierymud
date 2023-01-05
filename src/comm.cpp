@@ -1109,7 +1109,7 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
         auto now = std::chrono::system_clock::now();
         send_gmcp(d, "External.Discord.Status",
                   {
-                      {"state", "Logging in..."},
+                      {"state", "Logging into Fierymud (fierymud.org:4000)"},
                       {"details", "Connecting to the MUD..."},
                       {"game", "Fierymud"},
                       {"smallimage", {"servericon"}},
@@ -1240,7 +1240,7 @@ void send_gmcp_prompt(DescriptorData *d) {
     auto login = std::chrono::system_clock::from_time_t(ch->player.time.logon);
     send_gmcp(d, "External.Discord.Status",
               {
-                  {"state", "Playing"},
+                  {"state", "Playing Fierymud (fierymud.org:4000)"},
                   {"details", details},
                   {"game", "Fierymud"},
                   {"smallimage", {"servericon"}},

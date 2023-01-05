@@ -88,7 +88,9 @@ std::string drunken_speech(std::string speech, int drunkenness) {
         else if (isalpha(ch)) {
             char temp = toupper(ch) - 'A';
             if (drunkenness > drunk_letters[temp].min_drunk_level) {
-                drunk_letters[temp].replacements[number(0, drunk_letters[temp].replacement_count - 1)];
+                drunkbuf += drunk_letters[temp].replacements[number(0, drunk_letters[temp].replacement_count - 1)];
+            } else {
+                drunkbuf += ch;
             }
         } else
             drunkbuf += ch;
