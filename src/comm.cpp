@@ -1104,8 +1104,10 @@ void offer_gmcp_services(DescriptorData *d) {
 void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
     // This is for GMCP requests from the clients.
     if (txt == "External.Discord.Hello") {
-        send_gmcp(d, "External.Discord.Info", {"applicationid", std::string{discord_app_id}});
-        send_gmcp(d, "External.Discord.Status", {"state", "Logging in..."});
+        send_gmcp(d, "External.Discord.Info",
+                  {{"applicationid", std::string{discord_app_id}}, {"inviteurl", std::string{discord_invite_url}}});
+        send_gmcp(d, "External.Discord.Status",
+                  {{"state", "Logging in..."}, {"details", "Connecting to the MUD..."}, {"game", "Fierymud"}});
     }
     // log("GMCP request: {}", txt);
 }
@@ -1223,7 +1225,9 @@ void send_gmcp_prompt(DescriptorData *d) {
 
     send_gmcp(d, "Char", gmcp_data);
     write_to_descriptor(d->descriptor, ga_string);
-    send_gmcp(d, "External.Discord.Status", {{"state", "Playing"}, {"details", {"Character", GET_NAME(d->character)}}});
+    std::string details =
+        fmt::format("Character: {}  Class: {}  Level: {}", GET_NAME(ch), capitalize(CLASS_NAME(ch)), GET_LEVEL(ch));
+    send_gmcp(d, "External.Discord.Status", {{"state", "Playing"}, {"details", details}});
 }
 
 void send_gmcp_room(CharData *ch) {
@@ -1291,7 +1295,7 @@ void send_mssp(DescriptorData *d) {
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "LEVELS", MSSP_VAL, 99);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "RACES", MSSP_VAL, NUM_RACES);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "SKILLS", MSSP_VAL, 118);
-    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "DISCORD", MSSP_VAL, discord_invite);
+    mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "DISCORD", MSSP_VAL, discord_invite_url);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "ICON", MSSP_VAL, fierymud_icon);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "WEBSITE", MSSP_VAL, fierymud_url);
     mssp_data += fmt::format("{:c}{}{:c}{}", MSSP_VAR, "GENRE", MSSP_VAL, "Fantasy");
