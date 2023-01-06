@@ -151,7 +151,7 @@ void show_retained_comms(CharData *ch, CharData *vict, int type) {
         }
         for (; node; node = node->next) {
             auto time = std::chrono::system_clock::from_time_t(node->time);
-            char_printf(ch, "{%c}: {}\n", time, node->msg);
+            char_printf(ch, "{:%c}: {}\n", time, node->msg);
         }
     }
 }
