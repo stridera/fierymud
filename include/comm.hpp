@@ -31,18 +31,18 @@ using json = nlohmann::json;
 using CBP_FUNC = std::function<int(CharData *, int)>;
 
 // Updated functions to use variadic templates and std::string_view
+void all_printf(std::string_view str);
 template <typename... Args> void all_printf(std::string_view str, Args &&...args) {
     all_printf(fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void all_printf(std::string_view str);
+void all_except_printf(CharData *ch, std::string_view str);
 template <typename... Args> void all_except_printf(CharData *ch, std::string_view str, Args &&...args) {
     all_except_printf(ch, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void all_except_printf(CharData *ch, std::string_view str);
+void char_printf(const CharData *ch, std::string_view str);
 template <typename... Args> void char_printf(const CharData *ch, std::string_view str, Args &&...args) {
     char_printf(ch, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void char_printf(const CharData *ch, std::string_view str);
 void room_printf(int rvnum, std::string_view str);
 template <typename... Args> void room_printf(int rvnum, std::string_view str, Args &&...args) {
     room_printf(rvnum, fmt::vformat(str, fmt::make_format_args(args...)));
@@ -57,11 +57,10 @@ template <typename... Args>
 void callback_printf(CBP_FUNC(callback), int min_stance, std::string_view str, Args &&...args) {
     callback_printf(callback, min_stance, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-
+void outdoor_printf(int zone_num, std::string_view str);
 template <typename... Args> void outdoor_printf(int zone_num, std::string_view str, Args &&...args) {
     outdoor_printf(zone_num, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void outdoor_printf(int zone_num, std::string_view str);
 
 void close_socket(DescriptorData *d);
 int speech_ok(CharData *ch, int quiet);
@@ -82,20 +81,19 @@ void act(std::string_view str, int hide_invisible, const CharData *ch, ActArg ob
 #define TO_OLC (1 << 8)      /* persons doing OLC may see msg */
 #define TO_VICTROOM (1 << 9) /* destination room will be vict's, not char's */
 
+void string_to_output(DescriptorData *t, std::string_view txt);
 template <typename... Args> void string_to_output(DescriptorData *t, std::string_view str, Args &&...args) {
     string_to_output(t, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-void string_to_output(DescriptorData *t, std::string_view txt);
+int write_to_descriptor(socket_t desc, std::string_view txt);
 template <typename... Args> int write_to_descriptor(socket_t desc, std::string_view str, Args &&...args) {
     return write_to_descriptor(desc, fmt::vformat(str, fmt::make_format_args(args...)));
 }
-int write_to_descriptor(socket_t desc, std::string_view txt);
-void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d);
-// void desc_printf(DescriptorData *t, const char *txt, ...) __attribute__((format(printf, 2, 3)));
+inline void desc_printf(DescriptorData *t, std::string_view txt) { string_to_output(t, txt); }
 template <typename... Args> void desc_printf(DescriptorData *t, std::string_view txt, Args &&...args) {
     desc_printf(t, fmt::vformat(txt, fmt::make_format_args(args...)));
 }
-inline void desc_printf(DescriptorData *t, std::string_view txt) { string_to_output(t, txt); }
+void write_to_q(char *txt, txt_q *queue, int aliased, DescriptorData *d);
 
 typedef RETSIGTYPE sigfunc(int);
 
