@@ -2795,7 +2795,7 @@ std::string format_act(std::string_view format, const CharData *ch, ActArg obj, 
             break;
         case 'i':
             if (auto obj_as_int = std::get_if<int>(&obj)) {
-                rtn += *obj_as_int;
+                rtn += std::to_string(*obj_as_int);
             } else {
                 log("SYSERR: format_act: $i used with no obj");
                 rtn += ACTNULL;
@@ -2803,7 +2803,11 @@ std::string format_act(std::string_view format, const CharData *ch, ActArg obj, 
             break;
         case 'I':
             if (auto vict_obj_as_int = std::get_if<int>(&vict_obj))
-                rtn += *vict_obj_as_int;
+                rtn += std::to_string(*vict_obj_as_int);
+            else {
+                log("SYSERR: format_act: $I used with no vict_obj");
+                rtn += ACTNULL;
+            }
             break;
         case '$':
             rtn += "$";

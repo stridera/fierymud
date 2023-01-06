@@ -1990,12 +1990,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].duration = 5 + (skill / 14);  /* max 12 */
 
         refresh = false;
-        to_room =
-            "&2A cyclone of leaves and sticks twirls around $n&2, guarding "
-            "$s body.&0";
-        to_vict =
-            "&2A cyclone of leaves and sticks twirls around you, guarding "
-            "your body.&0";
+        to_room = "&2A cyclone of leaves and sticks twirls around $n&2, guarding $s body.&0";
+        to_vict = "&2A cyclone of leaves and sticks twirls around you, guarding your body.&0";
         break;
 
     case SPELL_GLORY:
