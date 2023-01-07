@@ -2455,9 +2455,9 @@ ACMD(do_gen_ps) {
         break;
     case SCMD_WHOAMI:
         if (POSSESSED(ch))
-            char_printf(ch, "You are %s, currently inhabiting %s's body.\n", GET_NAME(POSSESSOR(ch)), GET_NAME(ch));
+            char_printf(ch, "You are {}, currently inhabiting {}'s body.\n", GET_NAME(POSSESSOR(ch)), GET_NAME(ch));
         else
-            char_printf(ch, "You are %s.\n", GET_NAME(ch));
+            char_printf(ch, "You are {}.\n", GET_NAME(ch));
         break;
     default:
         return;

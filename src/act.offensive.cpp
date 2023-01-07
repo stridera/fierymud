@@ -1787,9 +1787,7 @@ ACMD(do_throatcut) {
 
             sprintf(buf1, "&1&bBlood spews everywhere as you nearly incapacitate $N with %s.&0",
                     weapon->short_description);
-            sprintf(buf2,
-                    "&1&bBlood spews everywhere as $n nearly incapacitates you with "
-                    "%s!&0",
+            sprintf(buf2, "&1&bBlood spews everywhere as $n nearly incapacitates you with %s!&0",
                     weapon->short_description);
             sprintf(buf3, "&1&bBlood spews everywhere as $n nearly incapacitates $N with %s!&0",
                     weapon->short_description);
@@ -2439,9 +2437,7 @@ ACMD(do_stomp) {
     }
 
     char_printf(ch, "&3You stomp one foot on the ground heavily, shaking the earth!&0\n");
-    act("&3$n crashes a foot into the ground, causing it to crack around "
-        "$m...&0",
-        true, ch, 0, 0, TO_ROOM);
+    act("&3$n crashes a foot into the ground, causing it to crack around $m...&0", true, ch, 0, 0, TO_ROOM);
 
     for (tch = world[IN_ROOM(ch)].people; tch; tch = next_tch) {
         next_tch = tch->next_in_room;

@@ -577,15 +577,19 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     }
 
     /* We're going to short circuit to existing items for any found with an existing vnum.*/
-    get_line(fl, line);
-    if (feof(fl)) {
-        return false;
-    }
-    tag_argument(line, tag);
+    while (get_line(fl, line)) {
+        if (feof(fl)) {
+            return false;
+        }
+        tag_argument(line, tag);
 
-    if (strcasecmp(tag, "vnum")) {
-        log("SYSERR: Invalid Object File.  Object Vnum not found.");
-        return false;
+        if (strcasecmp(tag, "vnum")) {
+            log("SYSERR: Invalid Object File.  Expected vnum keyword not found.  Instead, we received: {}.  Skipping "
+                "line.",
+                tag);
+        } else {
+            break;
+        }
     }
 
     num = atoi(line);
@@ -594,9 +598,11 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
     // If we have an existing object, lets use the existing object proto.
     if (num > -1) {
         if ((r_num = real_object(num)) < 0) {
-            sprintf(buf, "SYSERR: Invalid Object found in file.  Object Vnum not found.");
-            return false;
+            log("SYSERR: Invalid Object found in file.  Object vnum {} does not exist.  Setting to -1.", num);
+            num = -1;
         }
+    }
+    if (num > -1) {
         *objp = obj = read_object(r_num, REAL);
         GET_OBJ_HIDDENNESS(obj) = 0; /* If it's in your inventory, it's visible. */
 
@@ -921,7 +927,7 @@ static void read_objects(CharData *ch, FILE *fl) {
 
     while (!feof(fl)) {
         if (!build_object(fl, &obj, &location))
-            break;
+            continue;
         location = auto_equip(ch, obj, location);
         depth = MAX(0, -location);
         for (i = MAX_CONTAINER_DEPTH - 1; i >= depth; --i)
