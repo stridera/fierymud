@@ -1134,6 +1134,30 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
             }
             send_gmcp(d, "Char.Skills.List", known_skills);
         }
+    } else if (txt == "Char.Spells.Get") {
+        if (d->character) {
+            MemorizedList *mem;
+            auto memorized_spells = json::array();
+            for (mem = GET_SPELL_MEM(d->character).list_head; mem; mem = mem->next) {
+                memorized_spells.push_back(skills[mem->spell].name);
+            }
+            send_gmcp(d, "Char.Spells.List", memorized_spells);
+        }
+    } else if (txt == "Char.Spells.All") {
+        if (d->character) {
+            auto known_spells = json::array();
+            for (int i = 0; i < MAX_SKILLS; i++) {
+                int skill = skill_sort_info[i];
+                if (!IS_SPELL(i))
+                    continue;
+                if (*skills[i].name == '!')
+                    continue;
+                if (GET_SKILL(d->character, i) <= 0)
+                    continue;
+                known_spells.push_back(skills[i].name);
+            }
+            send_gmcp(d, "Char.Spells.All.List", known_spells);
+        }
     }
     // log("GMCP request: {}", txt);
 }
@@ -2030,7 +2054,7 @@ int process_input(DescriptorData *t) {
 
     do {
         if (space_left <= 0) {
-            log("process_input: about to close connection: input overflow");
+            log("process_input: about to close connection: input overflow [{}]", t->host);
             return -1;
         }
         if ((bytes_read = read(t->descriptor, read_point, space_left)) < 0) {
@@ -2045,7 +2069,7 @@ int process_input(DescriptorData *t) {
                 break; /* the read would have blocked: just means no data there but everything's okay */
             }
         } else if (bytes_read == 0) {
-            log("EOF on socket read (connection broken by peer)");
+            log("EOF on socket read (connection broken by peer) [{}]", t->host);
             return -1;
         }
 
