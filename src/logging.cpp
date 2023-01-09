@@ -17,7 +17,7 @@ void log(LogSeverity severity, int level, std::string_view str) {
     for (i = descriptor_list; i; i = i->next)
         if (!i->connected && !PLR_FLAGGED(i->character, PLR_WRITING) && !EDITING(i))
             if (GET_LEVEL(i->character) >= level && GET_LOG_VIEW(i->character) <= (int)severity)
-                string_to_output(i, "{}\n", str);
+                string_to_output(i, "LOG: {}\n", str);
 }
 
 const char *sprint_log_severity(int severity) { return log_severities[std::clamp(0, (severity - 1) / 10, 6)]; }
