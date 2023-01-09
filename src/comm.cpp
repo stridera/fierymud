@@ -1136,15 +1136,6 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
         }
     } else if (txt == "Char.Spells.Get") {
         if (d->character) {
-            MemorizedList *mem;
-            auto memorized_spells = json::array();
-            for (mem = GET_SPELL_MEM(d->character).list_head; mem; mem = mem->next) {
-                memorized_spells.push_back(skills[mem->spell].name);
-            }
-            send_gmcp(d, "Char.Spells.List", memorized_spells);
-        }
-    } else if (txt == "Char.Spells.All") {
-        if (d->character) {
             auto known_spells = json::array();
             for (int i = 0; i < MAX_SKILLS; i++) {
                 int skill = skill_sort_info[i];
@@ -1156,7 +1147,7 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
                     continue;
                 known_spells.push_back(skills[i].name);
             }
-            send_gmcp(d, "Char.Spells.All.List", known_spells);
+            send_gmcp(d, "Char.Spells.List", known_spells);
         }
     }
     // log("GMCP request: {}", txt);
@@ -1242,6 +1233,12 @@ void send_gmcp_prompt(DescriptorData *d) {
         combat["opponent"] = {{"name", PERS(vict, ch)}, {"hp_percent", 100 * GET_HIT(vict) / GET_MAX_HIT(vict)}};
     }
 
+    MemorizedList *mem;
+    auto memorized_spells = json::array();
+    for (mem = GET_SPELL_MEM(d->character).list_head; mem; mem = mem->next) {
+        memorized_spells.push_back(skills[mem->spell].name);
+    }
+
     /* Need to construct a json string.  Would be nice to get a module to do it
        for us, but the code base is too old to rely on something like that. */
     if (d->original)
@@ -1271,7 +1268,9 @@ void send_gmcp_prompt(DescriptorData *d) {
             {"silver", GET_BANK_SILVER(ch)},
             {"copper", GET_BANK_COPPER(ch)}}}}},
         {"Effects", effects},
-        {"Combat", combat}};
+        {"Combat", combat},
+        {"Memorized", memorized_spells},
+    };
 
     send_gmcp(d, "Char", gmcp_data);
     write_to_descriptor(d->descriptor, ga_string);
