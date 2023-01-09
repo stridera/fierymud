@@ -707,7 +707,8 @@ void check_auto_rebooting() {
             /* Additional warnings during the last minute */
             seconds_till = (reboot_pulse - global_pulse) / PASSES_PER_SEC;
             if (seconds_till == 30 || seconds_till == 10 || seconds_till == 5) {
-                all_printf("&4&b*&0 &7&b%d second%s to reboot&0 &4&b*&0\n", seconds_till, seconds_till == 1 ? "" : "s");
+                all_printf("&4&b*&0 &7&b{:d} second{} to reboot&0 &4&b*&0\n", seconds_till,
+                           seconds_till == 1 ? "" : "s");
             }
         }
     }
