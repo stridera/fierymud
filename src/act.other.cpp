@@ -1654,7 +1654,7 @@ void print_group(CharData *ch) {
         k = (ch->group_master ? ch->group_master : ch);
         if (CAN_SEE(ch, k)) {
             make_group_report_line(k, buf);
-            char_printf(ch, " (&0&2&bHead of group&0)\n");
+            char_printf(ch, "{} (&0&2&bHead of group&0)\n", buf);
         }
 
         for (f = k->groupees; f; f = f->next) {
@@ -1662,7 +1662,7 @@ void print_group(CharData *ch) {
                 continue;
 
             make_group_report_line(f->groupee, buf);
-            char_printf(ch, "\n");
+            char_printf(ch, "{}\n", buf);
         }
     }
 }
