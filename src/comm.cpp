@@ -1993,7 +1993,7 @@ int process_output(DescriptorData *t) {
 
     /* handle snooping: prepend "% " and send to snooper */
     if (t->snoop_by)
-        desc_printf(t->snoop_by, "&2((&0 {}} &2))&0", t->output);
+        desc_printf(t->snoop_by, "&2((&0 {} &2))&0", trim(t->output));
 
     t->output.clear();
 
