@@ -97,7 +97,8 @@ ACMD(do_action) {
     if (!*buf) {
         char_printf(ch, action->char_no_arg);
         char_printf(ch, "\n");
-        act(action->others_no_arg, action->hide, ch, 0, 0, TO_ROOM);
+        if (action->others_no_arg)
+            act(action->others_no_arg, action->hide, ch, 0, 0, TO_ROOM);
         return;
     }
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
@@ -106,7 +107,8 @@ ACMD(do_action) {
     } else if (vict == ch) {
         char_printf(ch, action->char_auto);
         char_printf(ch, "\n");
-        act(action->others_auto, action->hide, ch, 0, 0, TO_ROOM);
+        if (action->others_auto)
+            act(action->others_auto, action->hide, ch, 0, 0, TO_ROOM);
     } else {
         if (GET_POS(vict) < action->min_victim_position)
             act("$N is not in a proper position for that.", false, ch, 0, vict, TO_CHAR | TO_SLEEP);
