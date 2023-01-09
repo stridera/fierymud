@@ -1118,6 +1118,21 @@ void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
                       //   {"partymax", 10},
                       {"starttime", std::chrono::duration_cast<std::chrono::seconds>(now.time_since_epoch()).count()},
                   });
+    } else if (txt == "Char.Skills.Get") {
+        if (d->character) {
+            auto known_skills = json::array();
+            for (int i = 0; i < MAX_SKILLS; i++) {
+                int skill = skill_sort_info[i];
+                if (!IS_SKILL(i))
+                    continue;
+                if (*skills[i].name == '!')
+                    continue;
+                if (GET_SKILL(d->character, i) <= 0)
+                    continue;
+                known_skills.push_back(skills[i].name);
+            }
+            send_gmcp(d, "Char.Skills.List", known_skills);
+        }
     }
     // log("GMCP request: {}", txt);
 }

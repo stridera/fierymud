@@ -2451,7 +2451,7 @@ ACMD(do_gen_ps) {
         char_printf(ch, "\033[H\033[J");
         break;
     case SCMD_VERSION:
-        char_printf(ch, circlemud_version);
+        char_printf(ch, version);
         break;
     case SCMD_WHOAMI:
         if (POSSESSED(ch))
