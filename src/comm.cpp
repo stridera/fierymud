@@ -1297,11 +1297,11 @@ void send_gmcp_room(CharData *ch) {
         }
     }
 
-    json gmcp_data = {{{"zone", zone_table[room->zone].name},
-                       {"id", room->vnum},
-                       {"name", room->name},
-                       {"type", sectors[room->sector_type].name},
-                       {"Exits", exits}}};
+    json gmcp_data = {{"zone", zone_table[room->zone].name},
+                      {"id", room->vnum},
+                      {"name", room->name},
+                      {"type", sectors[room->sector_type].name},
+                      {"Exits", exits}};
     send_gmcp(ch->desc, "Room", gmcp_data);
 }
 
