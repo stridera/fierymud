@@ -195,16 +195,12 @@ const char *GREETINGS2 =
     "      .       &1&b|  |  |  | \\___|  |/  / |  |  |  | \\_/  | L_|  |&0      . \n"
     "      .       &1&b|__|  \\__/_____/__|__/  |__|  |__|_____/______/&0       . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
-    "      .      &7&bMud based on: Copper DikuMud I (B.1) by Swiftest&0       "
-    ". \n";
+    "      .      &7&bMud based on: Copper DikuMud I (B.1) by Swiftest&0       . \n";
 const char *GREETINGS3 =
-    "      .    &7&bDikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,&0   "
-    ". \n"
-    "      .      &7&bTom Madsen, Michael Seifert, and Sebastian Hammer.&0     "
-    ". \n"
+    "      .    &7&bDikuMud creators: Hans Henrik Staerfeldt, Katja Nyboe,&0   . \n"
+    "      .      &7&bTom Madsen, Michael Seifert, and Sebastian Hammer.&0     . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . \n"
-    "      .          &1&bFor Help or Information: &3&bwww.fierymud.org&0      "
-    "    . \n"
+    "      .          &1&bFor Help or Information: &3&bwww.fierymud.org&0          . \n"
     "      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
     "\n";
 

@@ -2577,10 +2577,7 @@ ACMD(do_first_aid) {
     if (GET_HIT(ch) > GET_MAX_HIT(ch))
         GET_HIT(ch) = GET_MAX_HIT(ch);
 
-    char_printf(ch,
-                "You attempt to render first aid unto yourself. "
-                "(" AHGRN "%d" ANRM ")\n",
-                GET_HIT(ch) - orig_hp);
+    char_printf(ch, "You attempt to render first aid unto yourself. (" AHGRN "{:d}" ANRM ")\n", GET_HIT(ch) - orig_hp);
 
     improve_skill(ch, SKILL_FIRST_AID);
 
