@@ -1223,7 +1223,7 @@ void send_gmcp_prompt(DescriptorData *d) {
     json effects = json::array();
     for (eff = ch->effects; eff; eff = eff->next) {
         if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
-            effects.push_back({{"name", skills[eff->type].name}, {"duration", eff->duration}});
+            effects.push_back({{"name", skills[eff->type].name}, {"duration", eff->duration + 1}});
         }
     }
 

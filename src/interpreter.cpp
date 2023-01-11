@@ -2464,7 +2464,6 @@ void nanny(DescriptorData *d, char *arg) {
         break;
     case CON_QRACE:
         load_result = interpret_race_selection(*arg);
-        log(" Argument: {}, Result: {}", *arg, load_result);
         if (load_result == RACE_UNDEFINED) {
             string_to_output(d, "\n&3Please choose by entering the letter next to the race of your choice.&0\n");
             send_race_menu(d);

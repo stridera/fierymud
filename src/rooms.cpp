@@ -23,8 +23,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-/* roomdef is: NAME, COLOR, MV, FALL_MOD, QDAM_MOD, CAMP, WET, NOCAMP_EXCUSE,
- * NOTES */
+/* roomdef is: NAME, COLOR, MV, FALL_MOD, QDAM_MOD, CAMP, WET, NOCAMP_EXCUSE, NOTES */
 const struct sectordef sectors[NUM_SECTORS] = {
     /*  0 */ {"Structure", "&7", 1, 0, 0, false, false, "You always pitch a tent indoors?", ""},
     /*  1 */

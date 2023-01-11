@@ -82,7 +82,7 @@ bool quest_stat(CharData *ch, CharData *vict, char *qname) {
         return false;
 
     if ((qid_num = real_quest(quest->quest_id)) >= 0) {
-        char_printf(ch, "Quest %s: ", all_quests[qid_num].quest_name);
+        char_printf(ch, "Quest {}: ", all_quests[qid_num].quest_name);
         if (quest->stage == QUEST_SUCCESS)
             char_printf(ch, "Completed\n");
         else if (quest->stage == QUEST_FAILURE)
