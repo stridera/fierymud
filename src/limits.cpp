@@ -620,6 +620,8 @@ void point_update(void) {
         if (IS_NPC(i))
             continue;
 
+        gain_condition(i, FULL, -1);
+        gain_condition(i, THIRST, -HOURLY_THIRST_CHANGE);
         gain_condition(i, DRUNK, -1);
         check_idling(i);
     }
