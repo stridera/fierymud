@@ -1311,7 +1311,9 @@ void send_gmcp_room(CharData *ch) {
             json exit_json = {{"to_room", EXIT_DEST(exit)->vnum}};
             if (EXIT_IS_DOOR(exit)) {
                 exit_json["is_door"] = true;
-                exit_json["door_name"] = exit->keyword ? exit->keyword : exit->general_description;
+                exit_json["door_name"] = exit->keyword               ? exit->keyword
+                                         : exit->general_description ? exit->general_description
+                                                                     : "door";
                 exit_json["door"] = EXIT_IS_CLOSED(exit) ? EXIT_IS_LOCKED(exit) ? "locked" : "closed" : "open";
             } else {
                 exit_json["is_door"] = false;
