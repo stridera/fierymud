@@ -483,7 +483,7 @@ void oedit_save_to_disk(int zone_num) {
      * We're fubar'd if we crash between the two lines below.
      */
     remove(buf2);
-    rename(buf, buf2);
+    rename(filename.c_str(), buf2);
 
     olc_remove_from_save_list(zone_table[zone_num].number, OLC_SAVE_OBJ);
 }
