@@ -804,13 +804,13 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
     case LIQUID:
         argument = any_one_arg(argument, arg);
         if (!*arg) {
-            sprintf(buf, "You can search for the following liquid types:");
+            char_printf(ch, "You can search for the following liquid types:");
             for (temp = 0; temp < NUM_LIQ_TYPES; ++temp) {
                 if (!(temp % 4))
-                    strcat(buf, "\n");
-                sprintf(buf, "%-16s", LIQ_NAME(temp));
+                    char_printf(ch, "\n");
+                char_printf(ch, "{:20}", LIQ_NAME(temp));
             }
-            char_printf(ch, "{}\n", buf);
+            char_printf(ch, "\n");
             return false;
         }
         if ((*value = parse_liquid(ch, arg)) < 0)
