@@ -895,7 +895,7 @@ void show_memorized_slots(CharData *ch, CharData *tch)
 
     pos = 0;
     while (mem) {
-        resp += fmt::format("{:<37}{:3} sec: (" AHBLU "{}" ANRM ") {}\n",
+        resp += fmt::format("{:<47}{:3} sec: (" AHBLU "{}" ANRM ") {}\n",
                             !pos++ && GET_SPELL_MEM(tch).num_memmed < 1 ? "   None!" : "", mem->mem_time,
                             CIRCLE_ABBR(tch, mem->spell), skill_name(mem->spell));
         time_remaining += mem->mem_time;
@@ -907,7 +907,7 @@ void show_memorized_slots(CharData *ch, CharData *tch)
     if (show_next)
         time_remaining = show_next;
     if (time_remaining)
-        resp += fmt::format("{}{:<37}{:3} second{} remaining...\n", show_next ? "" : "\n", "", time_remaining,
+        resp += fmt::format("{}{:<47}{:3} second{} remaining...\n", show_next ? "" : "\n", "", time_remaining,
                             time_remaining == 1 ? "" : "s");
     else if (GET_SPELL_MEM(tch).num_memmed < 1)
         resp += "   None!\n";

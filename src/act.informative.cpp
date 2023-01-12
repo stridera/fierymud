@@ -3572,16 +3572,15 @@ ACMD(do_spells) {
                 continue;
             for (j = 0; circle_spells[i][j]; ++j) {
                 if (j == 0 && !xcircle)
-                    sprintf(buf, "&4&bCircle %2d&0", i + 1);
+                    sprintf(buf, "&4&bCircle %2d&0:", i + 1);
                 else
-                    sprintf(buf, "         ");
+                    sprintf(buf, " ");
                 skillnum = circle_spells[i][j];
                 sphere = skill_to_sphere(skillnum);
 
-                paging_printf(ch, fmt::format("{} {} {} {}{}&0\n", buf, skills[skillnum].quest ? "&6*&0" : " ",
+                paging_printf(ch, fmt::format("{:9} {} {:30} {}{}&0\n", buf, skills[skillnum].quest ? "&6*&0" : " ",
                                               ellipsis(skills[skillnum].name, 25), spheres[sphere].color,
-                                              spheres[sphere].name)
-                                      .c_str());
+                                              spheres[sphere].name));
             }
         }
     }
@@ -3633,8 +3632,7 @@ ACMD(do_listspells) {
     }
 
     /*
-     * The argument wasn't a class.   Try and see if it's "all" or "circles"
-     * to list all spells.
+     * The argument wasn't a class.   Try and see if it's "all" or "circles" to list all spells.
      */
     if (class_num == CLASS_UNDEFINED) {
         circle = is_abbrev(arg, "circles");
