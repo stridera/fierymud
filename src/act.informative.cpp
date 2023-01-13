@@ -1033,16 +1033,14 @@ ACMD(do_search) {
             for (j = world[ch->in_room].people; j && (!found_something || GET_LEVEL(ch) >= LVL_IMMORT);
                  j = j->next_in_room)
                 if (IS_HIDDEN(j) && j != ch && !IS_IN_GROUP(ch, j)) {
-                    /* Check whether the searcher could see this character if it weren't
-                     * hidden. */
+                    // Check whether the searcher could see this character if it weren't hidden.
                     orig_hide = GET_HIDDENNESS(j);
                     GET_HIDDENNESS(j) = 0;
                     if (!CAN_SEE(ch, j)) {
                         GET_HIDDENNESS(j) = orig_hide;
                         continue;
                     }
-                    /* The searcher COULD see this character if it weren't hidden. Will
-                     * the searcher discover it? */
+                    // The searcher COULD see this character if it weren't hidden. Will  the searcher discover it?
                     GET_HIDDENNESS(j) = MAX(0, orig_hide - number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
                     if (GET_HIDDENNESS(j) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                         GET_HIDDENNESS(j) = 0;
@@ -1177,7 +1175,7 @@ void look_in_direction(CharData *ch, int dir) {
         if (ROOM_EFF_FLAGGED(CH_NROOM(ch), ROOM_EFF_ISOLATION))
             char_printf(ch, "You peer beyond a veil of &5isolation&0...\n");
         if (exit->general_description)
-            char_printf(ch, exit->general_description);
+            char_printf(ch, "{}\n", exit->general_description);
         else
             char_printf(ch, "You see nothing special.\n");
 
@@ -1185,8 +1183,7 @@ void look_in_direction(CharData *ch, int dir) {
         if (EXIT_IS_HIDDEN(exit) && GET_LEVEL(ch) < LVL_IMMORT) {
             look_at_magic_wall(ch, dir, false);
         } else if (EXIT_IS_CLOSED(exit)) {
-            const char *blah = isplural(exit_name(exit)) ? "are" : "is";
-            char_printf(ch, "The {} {} closed.\n", exit_name(exit), blah);
+            char_printf(ch, "The {} {} closed.\n", exit_name(exit), isplural(exit_name(exit)) ? "are" : "is");
             look_at_magic_wall(ch, dir, false);
         } else {
             if (EXIT_IS_DOOR(exit))
@@ -1194,9 +1191,7 @@ void look_in_direction(CharData *ch, int dir) {
             if (EFF_FLAGGED(ch, EFF_FARSEE) || GET_CLASS(ch) == CLASS_RANGER)
                 do_farsee(ch, dir);
             else if (exit->to_room != NOWHERE && ROOM_EFF_FLAGGED(exit->to_room, ROOM_EFF_CIRCLE_FIRE))
-                char_printf(ch,
-                            "&1The edge of a circle of fire burns wildly in this "
-                            "direction.&0\n");
+                char_printf(ch, "&1The edge of a circle of fire burns wildly in this direction.&0\n");
             look_at_magic_wall(ch, dir, true);
         }
     } else if (!look_at_magic_wall(ch, dir, false))
@@ -3574,11 +3569,11 @@ ACMD(do_spells) {
                 if (j == 0 && !xcircle)
                     sprintf(buf, "&4&bCircle %2d&0:", i + 1);
                 else
-                    sprintf(buf, " ");
+                    sprintf(buf, "          ");
                 skillnum = circle_spells[i][j];
                 sphere = skill_to_sphere(skillnum);
 
-                paging_printf(ch, fmt::format("{:9} {} {:30} {}{}&0\n", buf, skills[skillnum].quest ? "&6*&0" : " ",
+                paging_printf(ch, fmt::format("{} {}{:<30} {}{}&0\n", buf, skills[skillnum].quest ? "&6*&0" : "",
                                               ellipsis(skills[skillnum].name, 25), spheres[sphere].color,
                                               spheres[sphere].name));
             }
