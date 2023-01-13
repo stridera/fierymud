@@ -352,23 +352,8 @@ void gain_condition(CharData *ch, int condition, int value) {
     if (ch->desc && EDITING(ch->desc))
         return;
 
-    if (GET_COND(ch, condition) == 5) {
+    if (!GET_COND(ch, condition)) {
         switch (condition) {
-        case FULL:
-            char_printf(ch, "You're a little hungry.\n");
-            return;
-        case THIRST:
-            char_printf(ch, "You're a little thirsty.\n");
-            return;
-        }
-    } else if (!GET_COND(ch, condition)) {
-        switch (condition) {
-        case FULL:
-            char_printf(ch, "You are hungry.\n");
-            return;
-        case THIRST:
-            char_printf(ch, "You are thirsty.\n");
-            return;
         case DRUNK:
             if (intoxicated)
                 char_printf(ch, "You are now sober.\n");
