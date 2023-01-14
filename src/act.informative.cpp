@@ -923,21 +923,19 @@ ACMD(do_viewdam) {
 /* search_for_doors() - returns true if a door was located. */
 static int search_for_doors(CharData *ch, char *arg) {
     int door;
-
     for (door = 0; door < NUM_OF_DIRS; ++door)
         if (CH_EXIT(ch, door) && CH_EXIT(ch, door)->to_room != NOWHERE &&
             IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT ||
                 (CH_EXIT(ch, door)->keyword && arg && isname(arg, CH_EXIT(ch, door)->keyword)) ||
                 GET_INT(ch) > number(0, 200)) {
-                sprintf(buf, "You have found%s hidden %s %s.&0",
-                        CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
-                        CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
-                act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_CHAR);
-                sprintf(buf, "$n has found%s hidden %s %s.",
-                        CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
-                        CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
-                act(buf, false, ch, 0, CH_EXIT(ch, door)->keyword, TO_ROOM);
+                std::string kw{CH_EXIT(ch, door)->keyword ? CH_EXIT(ch, door)->keyword : "door"};
+                char_printf(ch, "You have found{} hidden {} {}.&0", isplural(kw.c_str()) ? "" : " a", kw,
+                            dirpreposition[door]);
+                auto exit_str = fmt::format("$n has found{} hidden {} {}.", isplural(kw.c_str()) ? "" : " a", kw,
+                                            dirpreposition[door]);
+
+                act(exit_str, false, ch, nullptr, nullptr, TO_ROOM);
                 REMOVE_BIT(CH_EXIT(ch, door)->exit_info, EX_HIDDEN);
                 send_gmcp_room(ch);
                 return true;

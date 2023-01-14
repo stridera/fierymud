@@ -298,7 +298,7 @@ void mobile_spec_activity(void) {
             if ((GET_CLASS(ch) == CLASS_CLERIC || GET_CLASS(ch) == CLASS_DRUID || GET_CLASS(ch) == CLASS_PRIEST ||
                  GET_CLASS(ch) == CLASS_DIABOLIST || GET_CLASS(ch) == CLASS_PALADIN || GET_CLASS(ch) == CLASS_RANGER ||
                  GET_CLASS(ch) == CLASS_BARD) &&
-                100 * GET_HIT(ch) / GET_MAX_HIT(ch) < 95)
+                GET_MAX_HIT(ch) > 0 && 100 * GET_HIT(ch) / GET_MAX_HIT(ch) < 95)
                 if (mob_heal_up(ch))
                     continue;
 

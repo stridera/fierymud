@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Werror -Wno-format-overflow -Wno-format-truncation -Wno-write-strings -Wno-unused-variable)
-# add_compile_options(-Werror -Wall -Wextra) // Ideal end state
+# add_compile_options(-Werror -Wall -Wextra) # Ideal end state
 
 # Avoid warning about DOWNLOAD_EXTRACT_TIMESTAMP in CMake 3.24:
 	if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
