@@ -402,8 +402,6 @@ int sorcerer_single_target(CharData *ch, int spell, int power) {
      */
     exponent = 1.2 + 0.3 * minlevel / 100.0 + (power - minlevel) * (0.004 * minlevel - 0.2) / 100.0;
 
-    log("sorcerer_single_target: exponent ={:0.2f} power={:d} minlevel={:d}\n", exponent, power, minlevel);
-
     switch (circle) {
     case 1:
         return dice(4, 19) + pow(power, exponent);
