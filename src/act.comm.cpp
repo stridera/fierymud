@@ -309,7 +309,7 @@ ACMD(do_spec_comm) {
     half_chop(argument, buf, buf2);
 
     if (!*buf || !*buf2)
-        char_printf(ch, "Whom do you want to %s.. and what??\n", action_sing);
+        char_printf(ch, "Whom do you want to {}.. and what??\n", action_sing);
     else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf))))
         char_printf(ch, NOPERSON);
     else if (vict == ch)
@@ -326,13 +326,13 @@ ACMD(do_spec_comm) {
         if (PRF_FLAGGED(ch, PRF_NOREPEAT))
             char_printf(ch, OK);
         else {
-            sprintf(buf, "You %s %s, '%s@0'", action_sing, GET_NAME(vict), argument);
+            sprintf(buf, "You %s %s, '%s@0'", action_sing, GET_NAME(vict), buf2);
             act(buf, false, ch, nullptr, nullptr, TO_CHAR | TO_OLC);
         }
         act(action_others, false, ch, nullptr, vict, TO_NOTVICT);
         afk_message(ch, vict);
         if (IS_MOB(vict))
-            speech_to_mtrigger(ch, vict, argument);
+            speech_to_mtrigger(ch, vict, buf2);
     }
 }
 
