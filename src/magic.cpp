@@ -2229,6 +2229,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_MONK_ACID:
         /* for potions and scrolls to turn monk punches to acid */
+
+        /* block if no barehand skill */
+        if (!GET_SKILL(victim, SKILL_BAREHAND)) {
+            char_printf(victim, "Only masters of hand to hand combat can gain this effect!\n");
+            return 0;
+        }
+
         /* check if already affected by one of the enhancement types */
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
@@ -2245,6 +2252,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_MONK_COLD:
         /* for potions and scrolls to turn monk punches to ice */
+        /* block if no barehand skill */
+        if (!GET_SKILL(victim, SKILL_BAREHAND)) {
+            char_printf(victim, "Only masters of hand to hand combat can gain this effect!\n");
+            return 0;
+        }
+
         /* check if already affected by one of the enhancement types */
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
@@ -2261,6 +2274,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_MONK_FIRE:
         /* for potions and scrolls to turn monk punches to fire */
+        /* block if no barehand skill */
+        if (!GET_SKILL(victim, SKILL_BAREHAND)) {
+            char_printf(victim, "Only masters of hand to hand combat can gain this effect!\n");
+            return 0;
+        }
+
         /* check if already affected by one of the enhancement types */
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
@@ -2277,6 +2296,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_MONK_SHOCK:
         /* for potions and scrolls to turn monk punches to lightning */
+        /* block if no barehand skill */
+        if (!GET_SKILL(victim, SKILL_BAREHAND)) {
+            char_printf(victim, "Only masters of hand to hand combat can gain this effect!\n");
+            return 0;
+        }
+        
         /* check if already affected by one of the enhancement types */
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
