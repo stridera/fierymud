@@ -410,7 +410,7 @@ ASPELL(spell_color_spray) {
         case 4:
             effect = SPELL_RAY_OF_ENFEEB;
             required = 41;
-            color = "&1screaming red";
+            color = "&1&bscreaming red";
             break;
         case 5:
             effect = SPELL_SILENCE;
@@ -420,7 +420,7 @@ ASPELL(spell_color_spray) {
         case 6:
             effect = SPELL_BLINDNESS;
             required = 56;
-            color = "&9black";
+            color = "&9&bblack";
             break;
         case 7:
             effect = SPELL_DISEASE;
@@ -430,17 +430,17 @@ ASPELL(spell_color_spray) {
         case 8:
             effect = SPELL_INSANITY;
             required = 73;
-            color = "&5rich violet";
+            color = "&5&brich violet";
             break;
         case 9:
             effect = SPELL_DISPEL_MAGIC;
             required = 81;
-            color = "&4blue";
+            color = "&4&bblue";
             break;
         case 10:
             effect = -1; /* knock down */
             required = 89;
-            color = "&3yellow";
+            color = "&3&bbrilliant yellow";
             break;
         default:
             /* always at least 64% chance to do nothing */
