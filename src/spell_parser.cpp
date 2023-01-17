@@ -1142,8 +1142,8 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
         return 0;
     }
 
-    act("$n begins playing beautiful music.", false, ch, 0, 0, TO_ROOM);
-    char_printf(ch, "You begin a virtuosic performance.\n");
+    act("$n puts on a spellbinding performance.", false, ch, 0, 0, TO_ROOM);
+    char_printf(ch, "You put on a virtuosic performance.\n");
 
     if (number(0, 101) > 50 + GET_SKILL(ch, SKILL_PERFORM)) {
         char_printf(ch, "You choke and grunt a raspy wail of pain.\n");
