@@ -1654,7 +1654,7 @@ ACMD(do_rsearch) {
                               "------------ ------- --- -------\n");
             }
 #define MARK_EXIT(r, d)                                                                                                \
-    (!(r).exits[d]                       ? "&0&9"                                                                      \
+    (!(r).exits[d]                       ? "&0&9&b"                                                                    \
      : EXIT_IS_DESCRIPTION((r).exits[d]) ? "&0&6"                                                                      \
      : !EXIT_DEST((r).exits[d])          ? "&1&b"                                                                      \
      : EXIT_IS_DOOR((r).exits[d])        ? "&0&3"                                                                      \

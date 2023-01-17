@@ -2337,8 +2337,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_NATURES_EMBRACE:
         SET_FLAG(eff[0].flags, EFF_CAMOUFLAGED);
         eff[0].duration = (skill / 3) + 1; /* range (1, 34) */
-        to_vict = "&9You phase into the landscape.&0";
-        to_room = "&9$n&9 phases into the landscape.&0";
+        to_vict = "&9&bYou phase into the landscape.&0";
+        to_room = "&9&b$n&9&b phases into the landscape.&0";
         break;
 
     case SPELL_NATURES_GUIDANCE:
@@ -2692,7 +2692,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             eff[1].duration = 0;
 
             to_char = "You temporarily choke $N with your column of smoke.";
-            to_vict = "&9You have been temporarily choked by $n's&9&b column of smoke!&0";
+            to_vict = "&9&bYou have been temporarily choked by $n's&9&b column of smoke!&0";
             to_room = "&9&b$N&9&b is slightly choked by $n's&9&b column of smoke!&0";
         } else {
             eff[0].location = APPLY_HITROLL;
@@ -2705,7 +2705,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             SET_FLAG(eff[1].flags, EFF_BLIND);
 
             to_room = "&9&b$N&9&b is blinded by $n's&9&b column of smoke!&0";
-            to_vict = "&9You have been blinded by $n's&9&b column of smoke&0";
+            to_vict = "&9&bYou have been blinded by $n's&9&b column of smoke&0";
             to_char = "&9&b$N&9&b is blinded by your column of smoke!&0";
         }
         break;

@@ -377,7 +377,7 @@ char *precipitation_message(ZoneData *zone, int original) {
                 return "NULL PRECIPITATION\n";
             }
         } else if (zone->precipitation > PRECIP_GRAY_CLOUDS)
-            sprintf(buf, "&9It begins to %s.&0\n", GET_PRECIP_TYPE(zone));
+            sprintf(buf, "&9&bIt begins to %s.&0\n", GET_PRECIP_TYPE(zone));
     } else if (zone->precipitation)
         strcpy(buf,
                "&4Small &7&bbil&0&7low&bing white &7c&0&7l&6ou&7d&bs&0 "
