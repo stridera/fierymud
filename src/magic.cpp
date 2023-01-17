@@ -1349,7 +1349,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Check for resistance due to high wis/dex.
          * Up to an additional 10% chance to evade. */
         i = (GET_DEX(victim) + GET_WIS(victim) - 100) / 10;
-        if (i > number(1, 100)) {
+        if (mag_savingthrow(victim, savetype) || i > number(1, 100)) {
             act("$n's eyes start to cross, but $e shakes it off.", true, victim, 0, 0, TO_ROOM);
             char_printf(ch, "Your eyes start to &5spin off&0 in different directions, but you manage\n");
             char_printf(ch, "to bring them back under control.\n");
@@ -4671,14 +4671,22 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         to_room = "$N's music soothes $n's fears.";
         break;
     case SPELL_SANE_MIND:
-        if (!EFF_FLAGGED(victim, EFF_INSANITY))
-            return CAST_RESULT_CHARGE;
-        if (affected_by_spell(victim, SPELL_INSANITY))
-            spell = SPELL_INSANITY;
-        if (affected_by_spell(victim, SONG_CROWN_OF_MADNESS))
-            spell = SONG_CROWN_OF_MADNESS;
-        to_vict = "Your mind comes back to reality.";
-        to_room = "$n regains $s senses.";
+        if (affected_by_spell(victim, SPELL_INSANITY) || affected_by_spell(victim, SPELL_CONFUSION) || affected_by_spell(victim, SONG_CROWN_OF_MADNESS)) {
+            if (affected_by_spell(victim, SPELL_INSANITY))
+                spell = SPELL_INSANITY;
+            if (affected_by_spell(victim, SPELL_CONFUSION)) {
+                if (spell) /* If already removing a spell, remove it and set confusion now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_CONFUSION;
+            }
+            if (affected_by_spell(victim, SONG_CROWN_OF_MADNESS)) {
+                if (spell) /* If already removing a spell, remove it and set crown of madness now */
+                    effect_from_char(victim, spell);
+                spell = SONG_CROWN_OF_MADNESS;
+            }
+            to_vict = "Your mind comes back to reality.";
+            to_room = "$n regains $s senses.";
+        }
         break;
     case SPELL_REDUCE:
         if (!EFF_FLAGGED(victim, EFF_ENLARGE))
