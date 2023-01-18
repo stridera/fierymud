@@ -43,7 +43,8 @@ def main(filename: str, type: str, output: str = None):
             output_file = open(json_file, "w", encoding="ascii")
             print(f"Writing {json_file}...", end=" ")
 
-        output_file.write(json.dumps(protos, cls=Encoder))
+        output_file.write(json.dumps(protos, cls=Encoder, indent=4))
+        output_file.write("\n")
 
         print("Done")
 
