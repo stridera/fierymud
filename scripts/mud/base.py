@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from enum import Enum, auto
 from typing import List
 import json
+from json import JSONEncoder
 import re
 
 from .mudfile import MudFile
@@ -160,6 +161,13 @@ class Base(ABC):
             raise ValueError(f"Flag out of range! {flag} >= {len(flaglist)} ({flaglist})")
         return flaglist[flag]
 
+    @staticmethod
+    def decolor(str):
+        """Removes color codes (&d+) from a string"""
+        return re.sub(r"&[0-9a-fA-F]", "", str)
+
+
+class Encoder(JSONEncoder):
     # Writing files
     def default(self, obj):
         """
@@ -179,8 +187,3 @@ class Base(ABC):
         """
         response = {"vnum": self.vnum, "stats": self.stats}
         return json.dumps(response, default=self.default)
-
-    @staticmethod
-    def decolor(str):
-        """Removes color codes (&d+) from a string"""
-        return re.sub(r"&[0-9a-fA-F]", "", str)

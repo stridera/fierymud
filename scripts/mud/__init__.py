@@ -1,3 +1,4 @@
+from .base import Encoder
 from .mudfile import MudFile
 from .mob import Mob
 from .obj import Obj
