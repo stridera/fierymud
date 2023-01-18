@@ -1494,12 +1494,12 @@ void init_skills(void) {
     songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_GROUP, 0,
           false, "Your inspiration fades.");
 
-    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT | MAG_UNAFFECT, 0,
+    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, 0,
           false, "Your inspiration fades.");
 
     songo(SONG_JOYFUL_NOISE, "joyful noise", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_UNAFFECT, 0, false, nullptr);
 
-    songo(SONG_TERROR, "terror", POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT | MAG_UNAFFECT, 0,
+    songo(SONG_TERROR, "terror", POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT, 0,
           false, "Your nerves settle down as the terror leaves you.");
 
     /* Set up non-skill effects */
