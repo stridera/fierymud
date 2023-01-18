@@ -1803,6 +1803,7 @@ ACMD(do_set) {
                   {"lifeforce", LVL_GOD, BOTH, MISC},
                   {"composition", LVL_GOD, BOTH, MISC}, /*75 */
                   {"music", LVL_GAMEMASTER, PC, NUMBER},
+                  {"summon mount", LVL_GOD, PC, NUMBER},
                   {"\n", 0, BOTH, MISC}};
 
     half_chop(argument, name, buf);
@@ -2378,6 +2379,9 @@ ACMD(do_set) {
         GET_COOLDOWN(vict, CD_MUSIC_5) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_MUSIC_6) = RANGE(0, 100);
         GET_COOLDOWN(vict, CD_MUSIC_7) = RANGE(0, 100);
+        break;
+    case 77: /* summon mount for anti and paladin */
+        GET_COOLDOWN(vict, CD_SUMMON_MOUNT) = RANGE(0, 100);
         break;
     default:
         sprintf(buf, "Can't set that!\n");
