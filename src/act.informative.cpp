@@ -1372,7 +1372,7 @@ static void do_farsee(CharData *ch, int dir) {
             break;
         }
 
-        char_printf(ch, "\n&0&6You extend your vision %s%s%s%s.&0\n", farsee_desc[distance],
+        char_printf(ch, "\n&0&6You extend your vision {}{}{}{}.&0\n", farsee_desc[distance],
                     (dir == UP || dir == DOWN) ? "" : "to the ", dirs[dir], (dir == UP || dir == DOWN) ? "wards" : "");
 
         print_room_to_char(ch->in_room, ch, true);

@@ -394,7 +394,7 @@ void check_idling(CharData *ch) {
         return;
     }
 
-    if (ch->char_specials.timer >= 4) {
+    if (ch->char_specials.timer >= 8) {
         if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE && (!ch->forward || ch->in_room != 0)) {
             GET_WAS_IN(ch) = ch->in_room;
             act("$n disappears into the void.", true, ch, 0, 0, TO_ROOM);
@@ -402,7 +402,7 @@ void check_idling(CharData *ch) {
             save_player(ch);
             char_from_room(ch);
             char_to_room(ch, 0);
-        } else if (ch->char_specials.timer >= 7) {
+        } else if (ch->char_specials.timer >= 12) {
             if (ch->forward && ch->forward->desc) {
                 do_shapechange(ch->forward, "me", 0, 1);
             } else {
