@@ -42,7 +42,29 @@ class Dice:
         return f"{self.num}d{self.size}+{self.bonus}"
 
 
-class Base(ABC):
+class Encoder(JSONEncoder):
+    # Writing files
+    def default(self, obj):
+        """
+        Default method for converting the object to json
+        :param obj: The object to convert
+        :return: The converted object
+        """
+        if hasattr(obj, "to_json"):
+            return obj.to_json()
+
+        return obj.__dict__ if hasattr(obj, "__dict__") else str(obj)
+
+    def to_json(self):
+        """
+        Converts the object to a json object
+        :return: The json object
+        """
+        response = {"vnum": self.vnum, "stats": self.stats}
+        return json.dumps(response, default=self.default)
+
+
+class Base(ABC, Encoder):
     """MUD Object Base Class"""
 
     def __init__(self, vnum: int, verbose: bool = False):
@@ -165,25 +187,3 @@ class Base(ABC):
     def decolor(str):
         """Removes color codes (&d+) from a string"""
         return re.sub(r"&[0-9a-fA-F]", "", str)
-
-
-class Encoder(JSONEncoder):
-    # Writing files
-    def default(self, obj):
-        """
-        Default method for converting the object to json
-        :param obj: The object to convert
-        :return: The converted object
-        """
-        if hasattr(obj, "to_json"):
-            return obj.to_json()
-
-        return obj.__dict__ if hasattr(obj, "__dict__") else str(obj)
-
-    def to_json(self):
-        """
-        Converts the object to a json object
-        :return: The json object
-        """
-        response = {"vnum": self.vnum, "stats": self.stats}
-        return json.dumps(response, default=self.default)

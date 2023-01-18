@@ -36,9 +36,6 @@ def main(filename: str, type: str, output: str = None):
         print(f"Processing {mudfile.filename}...", end=" ")
         protos = cls.from_mudfile(mudfile)
 
-        # for proto in protos:
-        #     output_file.write(proto.to_json() + "\n")
-
         if output is None:
             json_file = os.path.splitext(mudfile.current_file())[0] + ".json"
             if output_file is not None:
