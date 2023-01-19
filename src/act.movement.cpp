@@ -91,8 +91,7 @@ int do_misdirected_move(CharData *actor, int dir) {
 
     LOOP_THRU_PEOPLE(people, actor) {
         if (actor == people) {
-            sprintf(buf, "Your &5illusion&0 %s %s.\n", movewords(actor, dir, actor->in_room, true), dirs[dir]);
-            char_printf(actor, buf);
+            char_printf(actor, "Your &5illusion&0 {} {}.\n", movewords(actor, dir, actor->in_room, true), dirs[dir]);
         } else if (!AWAKE(people))
             ;
         else if (SEES_THROUGH_MISDIRECTION(people, actor))
@@ -138,9 +137,8 @@ void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, 
             sprintf(buf, "%s %s.", msg, CAN_SEE(observer, mount) ? GET_NAME(mount) : "something");
             act(buf, false, mover, 0, observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
-            sprintf(buf, "&1&bA %s-sized creature rides %s on a %s mount.&0\n", SIZE_DESC(mover), dirs[direction],
-                    SIZE_DESC(mount));
-            char_printf(observer, buf);
+            char_printf(observer, "&1&bA {}-sized creature rides {} on a {} mount.&0\n", SIZE_DESC(mover),
+                        dirs[direction], SIZE_DESC(mount));
         } else if (!try_to_sense_departure(observer, mount)) {
             /* Try sensing because it's too dark or mover is invis
              * (sneaking and misdirection do not apply when mounted) */
@@ -152,8 +150,7 @@ void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, 
             act(msg, false, mover, 0, observer, TO_VICT);
     } else if (!CAN_SEE(observer, mover)) {
         if (CAN_SEE_BY_INFRA(observer, mover)) {
-            sprintf(buf1, "&1&bA %s-sized creature leaves %s.&0\n", SIZE_DESC(mover), dirs[direction]);
-            char_printf(observer, buf1);
+            char_printf(observer, "&1&bA {}-sized creature leaves {}.&0\n", SIZE_DESC(mover), dirs[direction]);
         } else {
             /* Try sensing because it's too dark, or mover is invis */
             try_to_sense_departure(observer, mover);
@@ -179,13 +176,12 @@ void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount,
         if (CAN_SEE(observer, mount) || CAN_SEE(observer, mover)) {
             act(buf2, false, mover, 0, observer, TO_VICT);
         } else if (CAN_SEE_BY_INFRA(observer, mover) || CAN_SEE_BY_INFRA(observer, mount)) {
-            sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s, riding a %s mount.&0\n", SIZE_DESC(mover),
-                    (direction < UP ? "the " : ""),
-                    (direction == UP     ? "below"
-                     : direction == DOWN ? "above"
-                                         : dirs[rev_dir[direction]]),
-                    SIZE_DESC(mount));
-            char_printf(observer, buf1);
+            char_printf(observer, "&1&bA {}-sized creature arrives from {}{}, riding a {} mount.&0\n", SIZE_DESC(mover),
+                        (direction < UP ? "the " : ""),
+                        (direction == UP     ? "below"
+                         : direction == DOWN ? "above"
+                                             : dirs[rev_dir[direction]]),
+                        SIZE_DESC(mount));
         } else if (!try_to_sense_arrival(observer, mount)) {
             try_to_sense_arrival(observer, mover);
         }
@@ -193,12 +189,11 @@ void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount,
     } else if (!CAN_SEE(observer, mover)) {
         /* Invisibility or darkness - try to see by infra, or sense life. */
         if (CAN_SEE_BY_INFRA(observer, mover)) {
-            sprintf(buf1, "&1&bA %s-sized creature arrives from %s%s.&0\n", SIZE_DESC(mover),
-                    (direction < UP ? "the " : ""),
-                    (direction == UP     ? "below"
-                     : direction == DOWN ? "above"
-                                         : dirs[rev_dir[direction]]));
-            char_printf(observer, buf1);
+            char_printf(observer, "&1&bA {}-sized creature arrives from {}{}.&0\n", SIZE_DESC(mover),
+                        (direction < UP ? "the " : ""),
+                        (direction == UP     ? "below"
+                         : direction == DOWN ? "above"
+                                             : dirs[rev_dir[direction]]));
         } else {
             try_to_sense_arrival(observer, mover);
         }

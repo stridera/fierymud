@@ -609,18 +609,17 @@ void sedit_compact_rooms_menu(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; S_ROOM(shop, i) != -1; i++) {
-        sprintf(buf, "%2d - [%s%5d%s]  | %s", i, cyn, S_ROOM(shop, i), nrm, !(++count % 5) ? "\n" : "");
-        char_printf(d->character, buf);
+        char_printf(d->character, "{:2d} - [{}{:5d}{}]  | {}", i, cyn, S_ROOM(shop, i), nrm,
+                    !(++count % 5) ? "\n" : "");
     }
-    sprintf(buf,
-            "\n"
-            "%sA%s) Add a new room.\n"
-            "%sD%s) Delete a room.\n"
-            "%sL%s) Long display.\n"
-            "%sQ%s) Quit\n"
-            "Enter choice:\n",
-            grn, nrm, grn, nrm, grn, nrm, grn, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\n"
+                "{}A{}) Add a new room.\n"
+                "{}D{}) Delete a room.\n"
+                "{}L{}) Long display.\n"
+                "{}Q{}) Quit\n"
+                "Enter choice:\n",
+                grn, nrm, grn, nrm, grn, nrm, grn, nrm);
 
     OLC_MODE(d) = SEDIT_ROOMS_MENU;
 }
@@ -639,19 +638,17 @@ void sedit_rooms_menu(DescriptorData *d) {
 #endif
     char_printf(d->character, "##     VNUM     Room\n\n");
     for (i = 0; S_ROOM(shop, i) != -1; i++) {
-        sprintf(buf, "%2d - [%s%5d%s] - %s%s%s\n", i, cyn, S_ROOM(shop, i), nrm, yel,
-                world[real_room(S_ROOM(shop, i))].name, nrm);
-        char_printf(d->character, buf);
+        char_printf(d->character, "{:2d} - [{}{:5d}{}] - {}{}{}\n", i, cyn, S_ROOM(shop, i), nrm, yel,
+                    world[real_room(S_ROOM(shop, i))].name, nrm);
     }
-    sprintf(buf,
-            "\n"
-            "%sA%s) Add a new room.\n"
-            "%sD%s) Delete a room.\n"
-            "%sC%s) Compact Display.\n"
-            "%sQ%s) Quit\n"
-            "Enter choice:\n",
-            grn, nrm, grn, nrm, grn, nrm, grn, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\n"
+                "{}A{}) Add a new room.\n"
+                "{}D{}) Delete a room.\n"
+                "{}C{}) Compact Display.\n"
+                "{}Q{}) Quit\n"
+                "Enter choice:\n",
+                grn, nrm, grn, nrm, grn, nrm, grn, nrm);
 
     OLC_MODE(d) = SEDIT_ROOMS_MENU;
 }
@@ -670,18 +667,16 @@ void sedit_namelist_menu(DescriptorData *d) {
 #endif
     char_printf(d->character, "##              Type   Namelist\n\n");
     for (i = 0; S_BUYTYPE(shop, i) != -1; i++) {
-        sprintf(buf, "%2d - %s%15s%s - %s%s%s\n", i, cyn, item_types[S_BUYTYPE(shop, i)].name, nrm, yel,
-                S_BUYWORD(shop, i) ? S_BUYWORD(shop, i) : "<None>", nrm);
-        char_printf(d->character, buf);
+        char_printf(d->character, "{:2d} - {}{:<15s}{} - {}{}{}\n", i, cyn, item_types[S_BUYTYPE(shop, i)].name, nrm,
+                    yel, S_BUYWORD(shop, i) ? S_BUYWORD(shop, i) : "<None>", nrm);
     }
-    sprintf(buf,
-            "\n"
-            "%sA%s) Add a new entry.\n"
-            "%sD%s) Delete an entry.\n"
-            "%sQ%s) Quit\n"
-            "Enter choice:\n",
-            grn, nrm, grn, nrm, grn, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\n"
+                "{}A{}) Add a new entry.\n"
+                "{}D{}) Delete an entry.\n"
+                "{}Q{}) Quit\n"
+                "Enter choice:\n",
+                grn, nrm, grn, nrm, grn, nrm);
     OLC_MODE(d) = SEDIT_NAMELIST_MENU;
 }
 
@@ -695,12 +690,10 @@ void sedit_shop_flags_menu(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_SHOP_FLAGS; i++) {
-        sprintf(buf, "%s%2d%s) %-20.20s   %s", grn, i + 1, nrm, shop_bits[i], !(++count % 2) ? "\n" : "");
-        char_printf(d->character, buf);
+        char_printf(d->character, "{}{:2d}{}) {:<20s}   {}", grn, i + 1, nrm, shop_bits[i], !(++count % 2) ? "\n" : "");
     }
     sprintbit(S_BITVECTOR(OLC_SHOP(d)), shop_bits, buf1);
-    sprintf(buf, "\nCurrent Shop Flags : %s%s%s\nEnter choice:\n", cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character, "\nCurrent Shop Flags : {}{}{}\nEnter choice:\n", cyn, buf1, nrm);
     OLC_MODE(d) = SEDIT_SHOP_FLAGS;
 }
 
@@ -714,15 +707,14 @@ void sedit_no_trade_menu(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_TRADERS; i++) {
-        sprintf(buf, "%s%2d%s) %-20.20s   %s", grn, i + 1, nrm, trade_letters[i], !(++count % 2) ? "\n" : "");
-        char_printf(d->character, buf);
+        char_printf(d->character, "{}{:2d}{}) {:<20s}   {}", grn, i + 1, nrm, trade_letters[i],
+                    !(++count % 2) ? "\n" : "");
     }
     sprintbit(S_NOTRADE(OLC_SHOP(d)), trade_letters, buf1);
-    sprintf(buf,
-            "\nCurrently won't trade with: %s%s%s\n"
-            "Enter choice:\n",
-            cyn, buf1, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "\nCurrently won't trade with: {}{}{}\n"
+                "Enter choice:\n",
+                cyn, buf1, nrm);
     OLC_MODE(d) = SEDIT_NOTRADE;
 }
 
@@ -737,11 +729,10 @@ void sedit_types_menu(DescriptorData *d) {
     char_printf(d->character, "[H[J");
 #endif
     for (i = 0; i < NUM_ITEM_TYPES; i++) {
-        sprintf(buf, "%s%2d%s) %s%-20s%s  %s", grn, i, nrm, cyn, item_types[i].name, nrm, !(++count % 3) ? "\n" : "");
-        char_printf(d->character, buf);
+        char_printf(d->character, "{}{:2d}{}) {}{:<20s}{}  {}", grn, i, nrm, cyn, item_types[i].name, nrm,
+                    !(++count % 3) ? "\n" : "");
     }
-    sprintf(buf, "%sEnter choice:\n", nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character, "{}Enter choice:\n", nrm);
     OLC_MODE(d) = SEDIT_TYPE_MENU;
 }
 

@@ -1083,8 +1083,7 @@ ACMD(do_bash) {
     if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         vict = FIGHTING(ch);
         if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
-            sprintf(buf, "%s who?\n", skills[skill].name);
-            char_printf(ch, cap_by_color(buf));
+            char_printf(ch, "{} who?\n", skills[skill].name);
             return;
         }
     }

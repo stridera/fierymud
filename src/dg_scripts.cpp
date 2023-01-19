@@ -274,9 +274,8 @@ void do_stat_trigger(CharData *ch, TrigData *trig) {
 
     get_char_cols(ch);
 
-    sprintf(sb, "Trigger Name: '%s%s%s',  VNum: [%s%5d%s], RNum: [%5d]\n", yel, GET_TRIG_NAME(trig), nrm, grn,
-            GET_TRIG_VNUM(trig), nrm, GET_TRIG_RNUM(trig));
-    char_printf(ch, sb);
+    char_printf(ch, "Trigger Name: '{}{}{}',  VNum: [{}{:5d}{}], RNum: [{:5d}]\n", yel, GET_TRIG_NAME(trig), nrm, grn,
+                GET_TRIG_VNUM(trig), nrm, GET_TRIG_RNUM(trig));
 
     if (trig->attach_type == OBJ_TRIGGER) {
         char_printf(ch, "Trigger Intended Assignment: Objects\n");

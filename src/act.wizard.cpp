@@ -1022,16 +1022,16 @@ ACMD(do_poofset) {
     case SCMD_POOFIN:
         if (argument[0] != '\0') {
             GET_POOFIN(ch) = strdup(argument);
-            char_printf(ch, "Your poofin is now: %s\n", GET_POOFIN(ch));
+            char_printf(ch, "Your poofin is now: {}\n", GET_POOFIN(ch));
         } else
-            char_printf(ch, "Your poofin is: %s\n", GET_POOFIN(ch));
+            char_printf(ch, "Your poofin is: {}\n", GET_POOFIN(ch));
         break;
     case SCMD_POOFOUT:
         if (argument[0] != '\0') {
             GET_POOFOUT(ch) = strdup(argument);
-            char_printf(ch, "Your poofin is now: %s\n", GET_POOFOUT(ch));
+            char_printf(ch, "Your poofin is now: {}\n", GET_POOFOUT(ch));
         } else
-            char_printf(ch, "Your poofout is: %s\n", GET_POOFOUT(ch));
+            char_printf(ch, "Your poofout is: {}\n", GET_POOFOUT(ch));
         break;
     default:
         return;

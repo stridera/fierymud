@@ -943,11 +943,11 @@ ASPELL(spell_heavens_gate) {
     new_descr->next = portal->ex_description;
     portal->ex_description = new_descr;
     obj_to_room(portal, ch->in_room);
-    act("&7&b$n&7&b calls upon his deity...&0\n&6A soft &btunnel "
-        "of &7light&6 opens up near you, &0&6beckoning you to enter.",
+    act("&7&b$n&7&b calls upon his deity...&0\n"
+        "&6A soft &btunnel of &7light&6 opens up near you, &0&6beckoning you to enter.",
         true, ch, 0, 0, TO_ROOM);
-    act("&7&bYou call upon your deity...&0\n&6A soft &btunnel "
-        "of &7light &6opens up near you, &6beckoning you to enter.&0",
+    act("&7&bYou call upon your deity...&0\n"
+        "&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to enter.&0",
         true, ch, 0, 0, TO_CHAR);
     /* create the portal at the other end */
     tportal = read_object(OBJ_VNUM_HEAVENSGATE, VIRTUAL);
@@ -960,13 +960,8 @@ ASPELL(spell_heavens_gate) {
     new_tdescr->next = tportal->ex_description;
     tportal->ex_description = new_tdescr;
     obj_to_room(tportal, victim->in_room);
-    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to "
-        "enter.&0",
-        true, victim, 0, 0, TO_ROOM);
-    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to "
-        "enter.&0",
-        true, victim, 0, 0, TO_CHAR);
-
+    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to enter.&0", true, victim, 0, 0, TO_ROOM);
+    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to enter.&0", true, victim, 0, 0, TO_CHAR);
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
@@ -984,15 +979,12 @@ ASPELL(spell_hells_gate) {
         return 0;
     if ((ROOM_FLAGGED(ch->in_room, ROOM_NOWELL) || ROOM_FLAGGED(victim->in_room, ROOM_NOWELL)) ||
         PRF_FLAGGED(victim, PRF_NOFOLLOW)) {
-        act("&9&bThe ground begins to quake and open up, briefly revealing "
-            "&1hell&9, then closes.&0",
-            true, ch, 0, 0, TO_ROOM);
-        act("&9&bThe ground begins to quake and open up, briefly revealing "
-            "&1hell&9, then closes.&0",
-            true, ch, 0, 0, TO_CHAR);
-        act("&9&bThe ground begins to quake and open up, briefly revealing "
-            "&1hell&9, then closes.&0",
-            true, ch, 0, 0, TO_VICT);
+        act("&9&bThe ground begins to quake and open up, briefly revealing &1hell&9, then closes.&0", true, ch, 0, 0,
+            TO_ROOM);
+        act("&9&bThe ground begins to quake and open up, briefly revealing &1hell&9, then closes.&0", true, ch, 0, 0,
+            TO_CHAR);
+        act("&9&bThe ground begins to quake and open up, briefly revealing &1hell&9, then closes.&0", true, ch, 0, 0,
+            TO_VICT);
         return CAST_RESULT_CHARGE;
     }
     if ((portal = read_object(OBJ_VNUM_HELLGATE, VIRTUAL)) == nullptr) {

@@ -763,11 +763,11 @@ ACMD(do_boardadmin) {
             char_printf(ch, "No such board: {}\n", argument);
         else {
             char_printf(ch,
-                        "Board          : " FYEL "{}" ANRM " (" FGRN "%d" ANRM
+                        "Board          : " FYEL "{}" ANRM " (" FGRN "{:d}" ANRM
                         ")\n"
                         "Title          : " FCYN "{}" ANRM
                         "\n"
-                        "Messages       : " FCYN "%d" ANRM
+                        "Messages       : " FCYN "{:d}" ANRM
                         "\n"
                         "Locked         : " FCYN "{}" ANRM
                         "\n"
