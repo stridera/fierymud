@@ -42,14 +42,9 @@ CLANCMD(clan_list) {
     /* List clans, # of members, power, and app fee */
     paging_printf(ch, AUND " Num   Clan           Members/Power  App Fee/Lvl\n" ANRM);
     for (iter = clans_start(); iter != clans_end(); ++iter) {
-        paging_printf(ch, fmt::format("[{:3}] {} {:3}/{:5}   {:5}p/{:3}\n", (*iter)->number, (*iter)->abbreviation,
-                                      (*iter)->member_count, (*iter)->power, (*iter)->app_fee, (*iter)->app_level));
-        // pprintf(ch,
-        //         "[%3d]  " ELLIPSIS_FMT
-        //         " "
-        //         "%3zu/%-5u   " AHCYN "%5up" ANRM "/%-3u\n",
-        //         (*iter)->number, ELLIPSIS_STR((*iter)->abbreviation, 18), (*iter)->member_count, (*iter)->power,
-        //         (*iter)->app_fee, (*iter)->app_level);
+        paging_printf(ch, fmt::format("[{:3}] {:<{}} {:3}/{:5}   {:5}p/{:3}\n", (*iter)->number, (*iter)->abbreviation,
+                                      18 + count_color_chars((*iter)->abbreviation) * 2, (*iter)->member_count,
+                                      (*iter)->power, (*iter)->app_fee, (*iter)->app_level));
     }
 
     start_paging(ch);
@@ -255,7 +250,7 @@ CLANCMD(clan_set) {
                 --member->rank;
                 if (member->player)
                     char_printf(FORWARD(member->player),
-                                AFMAG "You have been automatically promoted to rank %u.\n" ANRM, member->rank);
+                                AFMAG "You have been automatically promoted to rank {}.\n" ANRM, member->rank);
             }
     }
 
@@ -266,7 +261,7 @@ CLANCMD(clan_set) {
             return;
         }
         clan->dues = atoi(arg);
-        char_printf(ch, "%s's monthly dues are now {} platinum.\n", clan->name, clan->dues);
+        char_printf(ch, "{}'s monthly dues are now {} platinum.\n", clan->name, clan->dues);
     }
 
     else if (is_abbrev(arg, "name")) {
@@ -388,15 +383,12 @@ CLANCMD(clan_alt) {
 
 CLANCMD(clan_apply) {
     if (GET_LEVEL(ch) < LVL_GOD && GET_PLATINUM(ch) < clan->app_fee) {
-        char_printf(ch,
-                    "You don't have enough money to cover the %u platinum "
-                    "application fee.\n",
-                    clan->app_fee);
+        char_printf(ch, "You don't have enough money to cover the {} platinum application fee.\n", clan->app_fee);
         return;
     }
 
     if (GET_LEVEL(ch) < clan->app_level) {
-        char_printf(ch, "{} does not accept players beneath level %u.\n", clan->name, clan->app_level);
+        char_printf(ch, "{} does not accept players beneath level {}.\n", clan->name, clan->app_level);
         return;
     }
 
@@ -513,7 +505,7 @@ CLANCMD(update_clan_rank) {
         char_printf(ch, "You {} yourself to rank {}: {}\n", action, rank, clan->ranks[rank - 1].title);
     else {
         if (member->player)
-            char_printf(FORWARD(member->player), AFMAG "{} has {}d you to rank %u: " ANRM "{}\n", GET_NAME(ch), action,
+            char_printf(FORWARD(member->player), AFMAG "{} has {}d you to rank {}: " ANRM "{}\n", GET_NAME(ch), action,
                         rank, clan->ranks[rank - 1].title);
         char_printf(ch, "You {} {} to rank {}: {}\n", action, member->name, rank, clan->ranks[rank - 1].title);
     }
@@ -648,9 +640,7 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
     bool show_all =
         ((member && member->clan == clan && OUTRANKS(member->rank, RANK_APPLICANT)) || IS_CLAN_SUPERADMIN(ch));
 
-    strcpy(buf,
-           "----------------------------------------------------------------"
-           "------\n");
+    strcpy(buf, "----------------------------------------------------------------------\n");
     sprintf(buf1, "[ Clan %u: %s ]", clan->number, clan->name);
     memcpy(buf + 29 - strlen(clan->name) / 2, buf1, strlen(buf1));
     paging_printf(ch, buf);
@@ -686,7 +676,7 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
         for (j = 1; j <= clan->rank_count; ++j)
             paging_printf(ch, "{:3}", j);
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
-            paging_printf(ch, "\n{<9}", clan_privileges[i].abbr);
+            paging_printf(ch, "\n{:<9}", clan_privileges[i].abbr);
             for (j = 0; j < clan->rank_count; ++j)
                 paging_printf(ch, "  {}{}" ANRM, IS_FLAGGED(clan->ranks[j].privileges, i) ? AFGRN : AFRED,
                               IS_FLAGGED(clan->ranks[j].privileges, i) ? 'Y' : 'N');
@@ -755,7 +745,7 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
                     if (HAS_CLAN_PRIV(tch, i))
                         sb_append(sb, "%s%s", seen++ ? ", " : "", clan_privileges[i].abbr);
                 /* skip over the first 14 spaces (dummy indentation) */
-                paging_printf(ch, "  Privileges: %s\n", sb_get_buffer(sb) + len);
+                paging_printf(ch, "  Privileges: {}\n", sb_get_buffer(sb) + len);
                 free_screen_buf(sb);
             }
             if (GET_CLAN_MEMBERSHIP(tch)->relation.alts) {
@@ -1034,7 +1024,7 @@ CLANCMD(clan_who) {
 
     if (clan->applicant_count) {
         found = false;
-        char_printf(ch, AHYEL "Applicants to " ANRM "%s" AHYEL ":" ANRM "\n", clan->name);
+        char_printf(ch, AHYEL "Applicants to " ANRM "{}" AHYEL ":" ANRM "\n", clan->name);
         for (member = clan->applicants; member && IS_APPLICANT_RANK(member->rank); member = member->next) {
             if (!found) {
                 send_clan_who_header(ch);
