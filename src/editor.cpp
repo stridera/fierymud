@@ -398,7 +398,7 @@ void editor_cleanup(DescriptorData *d) {
 }
 
 EDITOR_FUNC(editor_default_begin) {
-    desc_printf(edit->descriptor, "%s  (/s saves, /h for help)\n",
+    desc_printf(edit->descriptor, "{}  (/s saves, /h for help)\n",
                 edit->descriptor->editor->begin_string ? edit->descriptor->editor->begin_string
                                                        : "Write your message.");
 

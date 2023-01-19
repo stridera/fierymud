@@ -672,7 +672,7 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
         for (i = 0; i < clan->rank_count; ++i)
             paging_printf(ch, "{:3}  {}\n", i + 1, clan->ranks[i].title);
 
-        paging_printf(ch, "\nPrivileges:\n         ");
+        paging_printf(ch, "\nPrivileges:\n");
         for (j = 1; j <= clan->rank_count; ++j)
             paging_printf(ch, "{:3}", j);
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
@@ -979,13 +979,13 @@ static void send_clan_who_line(CharData *ch, const ClanMembership *member) {
     else
         name_color = "";
 
-    char_printf(
-        ch, fmt::format("{:3s} {:10s} {:25s} {}\n", level, name_color, member->name, ellipsis(title, 25), last_logon));
+    char_printf(ch, fmt::format("{:>3s} {}{:15} {:25s} {}\n", level, name_color, member->name, ellipsis(title, 25),
+                                last_logon));
 }
 
 static void send_clan_who_header(CharData *ch) {
     char_printf(ch,
-                " Lvl" ANRM "  Name     " ANRM "  Rank                    " ANRM "  Last Login            " ANRM "\n");
+                "Lvl " ANRM "Name            " ANRM "Rank                    " ANRM "Last Login            " ANRM "\n");
 }
 
 CLANCMD(clan_who) {
@@ -1024,7 +1024,7 @@ CLANCMD(clan_who) {
 
     if (clan->applicant_count) {
         found = false;
-        char_printf(ch, AHYEL "Applicants to " ANRM "{}" AHYEL ":" ANRM "\n", clan->name);
+        char_printf(ch, AHYEL "\nApplicants to " ANRM "{}" AHYEL ":" ANRM "\n", clan->name);
         for (member = clan->applicants; member && IS_APPLICANT_RANK(member->rank); member = member->next) {
             if (!found) {
                 send_clan_who_header(ch);
@@ -1122,7 +1122,7 @@ static const struct clan_subcommand {
 };
 
 static bool can_use_clan_command(CharData *ch, const clan_subcommand *command) {
-    if (IS_SET(command->type, NONE))
+    if IS_SET (command->type, NONE)
         if (GET_CLAN_RANK(ch) == RANK_NONE && !IS_CLAN_SUPERADMIN(ch))
             return true;
     if (IS_SET(command->type, RANK))
