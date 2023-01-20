@@ -11,7 +11,8 @@
 
 void log(LogSeverity severity, int level, std::string_view str) {
     DescriptorData *i;
-    fmt::print(stderr, "{} :: {}\n", formatted_time(Clock::now()), str);
+    auto now = std::chrono::system_clock::now();
+    fmt::print(stderr, "{:%c} :: {}\n", now, str);
 
     level = std::max(level, LVL_GOD);
     for (i = descriptor_list; i; i = i->next)
