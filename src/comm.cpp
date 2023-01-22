@@ -1165,6 +1165,7 @@ static bool supports_ansi(std::string_view detected_term) {
 void handle_telopt_request(DescriptorData *d, char *txt) {
     char bcbuf[15] = "0";
 
+    d->character->player_specials->client = txt;
     if (supports_ansi(txt)) {
         SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
         SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);

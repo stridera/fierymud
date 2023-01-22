@@ -2208,7 +2208,7 @@ static void sortc(int l, int u) {
 ACMD(do_users) {
     char line[200], line2[220], idletime[10], classname[20];
     char state[30], *timeptr, mode, hostnum[40];
-    char roomstuff[200], room[26], nametrun[11], position[17]; /* Changed position to 17 from 9 cuz
+    char roomstuff[200], room[26], nametrun[11], client[100]; /* Changed position to 17 from 9 cuz
                                                                   mortally wounded was over flowing */
     char ipbuf[MAX_STRING_LENGTH], userbuf[MAX_STRING_LENGTH];
     char name_search[MAX_INPUT_LENGTH], host_search[MAX_INPUT_LENGTH];
@@ -2285,12 +2285,8 @@ ACMD(do_users) {
         }
     } /* end while (parser) */
 
-    strcpy(line,
-           "Soc  Username    User's Host   Idl  Login        "
-           "RoomNo/RoomName      Position\n");
-    strcat(line,
-           "--- ---------- --------------- --- -------- "
-           "------------------------- ---------\n");
+    strcpy(line, "Soc  Username    User's Host   Idl  Login        RoomNo/RoomName      Client\n");
+    strcat(line, "--- ---------- --------------- --- -------- ------------------------- ---------\n");
     strcpy(userbuf, line);
 
     one_argument(argument, arg);
@@ -2348,7 +2344,7 @@ ACMD(do_users) {
         roomstuff[0] = '\0';
         room[0] = '\0';
         nametrun[0] = '\0';
-        position[0] = '\0';
+        client[0] = '\0';
 
         strcat(room, state);
 
@@ -2377,9 +2373,9 @@ ACMD(do_users) {
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
                 }
-                sprinttype(GET_POS(d->original), position_types, position);
+                strncpy(client, d->character->player_specials->client.c_str(), sizeof(client) - 1);
                 strncat(nametrun, GET_NAME(d->original), sizeof(nametrun) - 1);
-                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, position);
+                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
             } else {
                 if ((d->character->in_room != NOWHERE) && (d->connected == 0)) {
                     sprintf(roomstuff, "%d/%s", world[d->character->in_room].vnum,
@@ -2388,9 +2384,9 @@ ACMD(do_users) {
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
                 }
-                sprinttype(GET_POS(d->character), position_types, position);
+                strncpy(client, d->character->player_specials->client.c_str(), sizeof(client) - 1);
                 strncat(nametrun, GET_NAME(d->character), sizeof(nametrun) - 1);
-                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, position);
+                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
             }
         } else
             sprintf(line, format, d->desc_num, "  ---   ", hostnum, idletime, timeptr, " At menu screen or Other ",

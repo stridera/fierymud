@@ -283,6 +283,7 @@ struct PlayerSpecialData {
     char *long_descr;
     char *wiz_title;
     char *host;
+    std::string client;
 };
 
 /* Specials used by NPCs, not PCs */
