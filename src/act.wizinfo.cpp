@@ -1796,7 +1796,7 @@ void do_show_spell(CharData *ch, int spellnum) {
 
     /* Wearoff message */
     if (spell->wearoff && *(spell->wearoff)) {
-        char_printf(ch, "Wearoff     : &6%s&0\n", spell->wearoff);
+        char_printf(ch, "Wearoff     : &6{}&0\n", spell->wearoff);
     } else
         char_printf(ch, "Wearoff     : -none-\n");
 
@@ -2020,12 +2020,12 @@ void reboot_info(CharData *ch) {
         char_printf(ch, "Automatic rebooting is &1off&0; would reboot in {:02d}:{:02d}:{:02d}.\n", h, m, s);
 
     if (num_hotboots > 0) {
-        char_printf(ch, "%d hotboot%s since last shutdown.  Hotboot history:\n", num_hotboots,
+        char_printf(ch, "{:d} hotboot{} since last shutdown.  Hotboot history:\n", num_hotboots,
                     num_hotboots == 1 ? "" : "s");
         for (s = 0; s < num_hotboots; ++s) {
             strcpy(buf, ctime(&boot_time[s + 1]));
             buf[strlen(buf) - 1] = '\0';
-            char_printf(ch, "  %s\n", buf);
+            char_printf(ch, "  {}\n", buf);
         }
     }
 }

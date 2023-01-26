@@ -3200,7 +3200,7 @@ static void show_conditions(CharData *ch, CharData *tch, bool verbose) {
             strcat(buf, "You're a little bit intoxicated.\n");
     } else
         /* the number 0 looks like the letter O */
-        char_printf(ch, "Hunger: {:d}{}  Thirst: %d{}  Drunkenness: %d{}\n",
+        char_printf(ch, "Hunger: {:d}{}  Thirst: {:d}  Drunkenness: {:d}\n",
                     GET_COND(tch, FULL) < 0 ? 0 : 24 - GET_COND(tch, FULL), GET_COND(tch, FULL) < 0 ? "ff" : "",
                     GET_COND(tch, THIRST) < 0 ? 0 : 24 - GET_COND(tch, THIRST), GET_COND(tch, THIRST) < 0 ? "ff" : "",
                     GET_COND(tch, DRUNK) < 0 ? 0 : GET_COND(tch, DRUNK), GET_COND(tch, DRUNK) < 0 ? "ff" : "");

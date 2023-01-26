@@ -468,7 +468,7 @@ ACMD(do_memorize) {
         else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
             char_printf(ch, NOPERSON);
         else if (MEM_MODE(tch) != MEMORIZE)
-            char_printf(ch, "%s does not study sorcery.\n", GET_NAME(tch));
+            char_printf(ch, "{} does not study sorcery.\n", GET_NAME(tch));
         else
             show_spell_list(ch, tch);
         return;

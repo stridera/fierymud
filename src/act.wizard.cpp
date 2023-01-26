@@ -1444,7 +1444,7 @@ ACMD(do_name) {
         if (*arg) {
             if (atoi(arg) == 0) {
                 for (z = 0; z < 8; z++)
-                    char_printf(ch, "{}{%d}. {}\n", buf, z + 1, reasons[z]);
+                    char_printf(ch, "{}{:d}. {}\n", buf, z + 1, reasons[z]);
             }
         }
 

@@ -341,7 +341,8 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
         cache_grant(uncache, command, is_group, false);
         add_grant(list, command, GET_NAME(ch), level);
         cache_grant(cache, command, is_group, true);
-        char_printf(ch, "{} {} {} {} at level %d.\n", capitalize(past_action), arg, preposition, GET_NAME(vict), level);
+        char_printf(ch, "{} {} {} {} at level {:d}.\n", capitalize(past_action), arg, preposition, GET_NAME(vict),
+                    level);
     }
 }
 

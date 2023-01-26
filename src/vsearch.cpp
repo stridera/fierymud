@@ -295,7 +295,7 @@ bool parse_vlist_args(CharData *ch, char *argument, int *first, int *last) {
     }
 
     if (*first < 0 || *first > MAX_VNUM || *last < 0 || *last > MAX_VNUM) {
-        char_printf(ch, "Values must be between 0 and %d.\n", MAX_VNUM);
+        char_printf(ch, "Values must be between 0 and {:d}.\n", MAX_VNUM);
         return false;
     }
 
@@ -586,7 +586,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         }
         *value = parse_race(0, 0, arg);
         if (*value < 0) {
-            char_printf(ch, "Invalid race: %s\n", arg);
+            char_printf(ch, "Invalid race: {}\n", arg);
             return false;
         }
         break;
@@ -604,7 +604,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         }
         *value = parse_size(0, arg);
         if (*value < 0) {
-            char_printf(ch, "Invalid size: %s\n", arg);
+            char_printf(ch, "Invalid size: {}\n", arg);
             return false;
         }
         break;

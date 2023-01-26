@@ -2679,10 +2679,10 @@ void speech_report(CharData *ch, CharData *tch) {
     sd->last_speech_time = global_pulse;
 
     if (sd->speech_rate > SPAM_THRESHOLD)
-        char_printf(ch, "&5&b%s %s an acute case of laryngitis.&0\n", ch == tch ? "You" : GET_NAME(tch),
+        char_printf(ch, "&5&b{} {} an acute case of laryngitis.&0\n", ch == tch ? "You" : GET_NAME(tch),
                     ch == tch ? "have" : "has");
     else if (sd->speech_rate > SPAM_THRESHOLD / 2)
-        char_printf(ch, "&5%s%s throat feels a little sore.&0\n", ch == tch ? "Your" : GET_NAME(tch),
+        char_printf(ch, "&5{}{} throat feels a little sore.&0\n", ch == tch ? "Your" : GET_NAME(tch),
                     ch == tch ? "" : "'s");
 }
 
