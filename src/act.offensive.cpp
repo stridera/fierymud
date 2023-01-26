@@ -1035,7 +1035,7 @@ ACMD(do_gretreat) {
 }
 
 ACMD(do_bash) {
-    CharData *vict;
+    CharData *vict = nullptr;
     int percent, prob, skill, rounds;
 
     switch (subcmd) {
@@ -1080,10 +1080,10 @@ ACMD(do_bash) {
 
     one_argument(argument, arg);
 
-    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+    if (!*arg || !(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
         vict = FIGHTING(ch);
         if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
-            char_printf(ch, "{} who?\n", skills[skill].name);
+            char_printf(ch, "{} who?\n", capitalize(skills[skill].name));
             return;
         }
     }
