@@ -1197,8 +1197,10 @@ ACMD(do_wiznet) {
 
     if (!*argument) {
         char_printf(ch,
-                    "Usage: wiznet <text> | #<level> <text>\n "
-                    "       wiznet @<level> | wiz @\n");
+                    "Usage: \n"
+                    "   wiznet <text> - Send a message over wiznet to all gods.\n "
+                    "   wiznet #<level> <text> - Send message to all gods above <level>\n"
+                    "   wiznet @@ - Show online gods.\n");
         return;
     }
 
@@ -1209,7 +1211,7 @@ ACMD(do_wiznet) {
             half_chop(argument + 1, buf1, argument);
             level = MAX(atoi(buf1), 1);
             if (level > GET_LEVEL(ch)) {
-                char_printf(ch, "You can't wizline above your own level.\n");
+                char_printf(ch, "You can't wiznet above your own level.\n");
                 return;
             }
             explicit_level = true;
