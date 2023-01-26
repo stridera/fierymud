@@ -187,7 +187,7 @@ ACMD(do_breathe) {
                 SET_COOLDOWN(ch, CD_BREATHE, 3 MUD_HR);
             }
         } else {
-            char_printf(ch, "You will have rebuilt your energy in %d seconds.\n", (GET_COOLDOWN(ch, CD_BREATHE) / 10));
+            char_printf(ch, "You will have rebuilt your energy in {} seconds.\n", (GET_COOLDOWN(ch, CD_BREATHE) / 10));
             return;
         }
     }
