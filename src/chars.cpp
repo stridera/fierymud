@@ -164,10 +164,10 @@ void roll_natural_abils(CharData *ch) {
     for (i = 0; i < 6; i++) {
         /* roll a number from 3 to 10 */
         for (j = 0; j < 6; j++)
-            rolls[j] = number(3, 10);
+            rolls[j] = random_number(3, 10);
         /* sum the best 5 out of 6 */
         temp = rolls[0] + rolls[1] + rolls[2] + rolls[3] + rolls[4] + rolls[5] -
-               MIN(rolls[0], MIN(rolls[1], MIN(rolls[2], MIN(rolls[3], MIN(rolls[4], rolls[5])))));
+               std::min(rolls[0], std::min(rolls[1], std::min(rolls[2], std::min(rolls[3], std::min(rolls[4], rolls[5])))));
         /* multiply by 2 */
         temp = temp * 2;
         /* this arranges the rolls from lowest to highest in table[] */
@@ -189,7 +189,7 @@ void roll_natural_abils(CharData *ch) {
     /* ok lets say average = 450 (75 per) if LESS then this then bonus stats */
     /* random spread of bonus 5 stat points */
     while (i <= 450) {
-        j = number(0, 5);
+        j = random_number(0, 5);
         if ((int)table[j] <= 95) {
             table[j] = (ubyte)((int)table[j] + 5);
             i = i + 5;
@@ -238,10 +238,10 @@ void roll_natural_abils(CharData *ch) {
 /* Values range from 55 to 1000. --gurlaek 7/3/1999         */
 
 int roll_mob_skill(int level) {
-    int x, tmp, value = number(50, 100); /* ok give him 50-100 to start with */
+    int x, tmp, value = random_number(50, 100); /* ok give him 50-100 to start with */
 
     for (x = 1; x < level; x++) {
-        tmp = number(5, 15); /* add an additional 5-15 per level */
+        tmp = random_number(5, 15); /* add an additional 5-15 per level */
         if ((value + tmp) <= 1000) {
             value += tmp;
         } else {
@@ -252,9 +252,9 @@ int roll_mob_skill(int level) {
 }
 
 int roll_skill(CharData *ch, int skill) {
-    int value = number(50 + 5 * GET_LEVEL(ch), 100 + 15 * GET_LEVEL(ch));
+    int value = random_number(50 + 5 * GET_LEVEL(ch), 100 + 15 * GET_LEVEL(ch));
     int max = return_max_skill(ch, skill);
-    return MIN(value, max);
+    return std::min(value, max);
 }
 
 void rider_flowoff(CharData *rider, CharData *mount) {
@@ -375,7 +375,7 @@ int susceptibility(CharData *ch, int dtype) {
 /* Use this to determine whether a victim evades some attack that's
  * all or nothing, like sleep. */
 bool boolean_attack_evasion(CharData *ch, int power, int dtype) {
-    return number(1, 100) < MAX(3, 110 + GET_LEVEL(ch) - susceptibility(ch, dtype) - power);
+    return random_number(1, 100) < std::max(3, 110 + GET_LEVEL(ch) - susceptibility(ch, dtype) - power);
 }
 
 ObjData *equipped_weapon(CharData *ch) {

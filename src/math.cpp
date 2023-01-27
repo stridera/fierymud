@@ -15,8 +15,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define NATURAL_E 2.718281828
-
 /*
  * box_muller_transformation
  *
@@ -170,8 +168,8 @@ double logarithmic_evaluation(double x1, double y1, double x2, double y2, double
      * (E^y1 - E^y2) / (x1 - x2) =  a
      */
 
-    double a = (pow(NATURAL_E, y1) - pow(NATURAL_E, y2)) / (x1 - x2);
-    double b = pow(NATURAL_E, y1) - a * x2;
+    double a = (exp(y1) - exp(y2)) / (x1 - x2);
+    double b = exp(y1) - a * x2;
 
     return log(a * x + b);
 }
@@ -229,10 +227,6 @@ int roll_dice(int number, int size) {
 
     return sum;
 }
-
-int MIN(int a, int b) { return a < b ? a : b; }
-
-int MAX(int a, int b) { return a > b ? a : b; }
 
 /*
  * Supply mappings of the natural logarithm, since log() is normally

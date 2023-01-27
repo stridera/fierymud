@@ -295,10 +295,10 @@ void zedit_new_zone(CharData *ch, int vzone_num) {
 
     /*
      * Previously, creating a new zone while invisible gave you away.
-     * That quirk has been fixed with the MAX() statement.
+     * That quirk has been fixed with the std::max() statement.
      */
 
-    log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} creates new zone #{:d}", GET_NAME(ch), vzone_num);
+    log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} creates new zone #{:d}", GET_NAME(ch), vzone_num);
     char_printf(ch, "Zone created successfully.\n");
 
     return;
@@ -1040,7 +1040,7 @@ void zedit_parse(DescriptorData *d, char *arg) {
             /*. Save the zone in memory . */
             char_printf(d->character, "Saving zone info in memory.\n");
             zedit_save_internally(d);
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits zone info for room {:d}.",
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits zone info for room {:d}.",
                 GET_NAME(d->character), OLC_NUM(d));
         /* FALL THROUGH */
         case 'n':
@@ -1494,9 +1494,9 @@ void zedit_parse(DescriptorData *d, char *arg) {
     case ZEDIT_ZONE_TOP:
         /*. Parse and add new top room in zone and return to main menu . */
         if (OLC_ZNUM(d) == top_of_zone_table)
-            OLC_ZONE(d)->top = MAX(OLC_ZNUM(d) * 100, MIN(198999, atoi(arg)));
+            OLC_ZONE(d)->top = std::max(OLC_ZNUM(d) * 100, std::min(198999, atoi(arg)));
         else
-            OLC_ZONE(d)->top = MAX(OLC_ZNUM(d) * 100, MIN(zone_table[OLC_ZNUM(d) + 1].number * 100, atoi(arg)));
+            OLC_ZONE(d)->top = std::max(OLC_ZNUM(d) * 100, std::min(zone_table[OLC_ZNUM(d) + 1].number * 100, atoi(arg)));
         zedit_disp_menu(d);
         break;
         /*-------------------------------------------------------------------*/

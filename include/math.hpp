@@ -49,19 +49,4 @@ double logarithm(double base, double value);
 double power(double base, double exponent);
 
 int random_number(int from, int to);
-#define number(from, to) random_number(from, to)
 int roll_dice(int number, int size);
-#define dice(number, size) roll_dice(number, size)
-
-/* undefine MAX and MIN so that our functions are used instead */
-#ifdef MAX
-#undef MAX
-#endif
-
-#ifdef MIN
-#undef MIN
-#endif
-
-int MAX(int a, int b);
-int MIN(int a, int b);
-#define LIMIT(a, b, c) MIN(MAX((a), (b)), (c))

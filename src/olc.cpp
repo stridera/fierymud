@@ -258,7 +258,7 @@ ACMD(do_olc) {
                 return;
             }
 
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)),
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(ch)),
                 "OLC: {} reverses object extra descs for {:d}, {}.", GET_NAME(ch), number,
                 obj_proto[real_num].short_description);
             oedit_reverse_exdesc(real_num, nullptr);
@@ -276,7 +276,7 @@ ACMD(do_olc) {
                 return;
             }
 
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)),
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(ch)),
                 "OLC: {} reverses object extra descs for zone {:d}.", GET_NAME(ch), zone_table[real_num].number);
             oedit_reverse_exdescs(real_num, ch);
             return;
@@ -366,7 +366,7 @@ ACMD(do_olc) {
             return;
         }
         char_printf(ch, "Saving all {}s in zone {:d}.\n", type, zone_table[OLC_ZNUM(d)].number);
-        log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves {} info for zone {:d}.", GET_NAME(ch),
+        log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves {} info for zone {:d}.", GET_NAME(ch),
             type, zone_table[OLC_ZNUM(d)].number);
 
         switch (subcmd) {

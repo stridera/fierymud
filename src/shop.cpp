@@ -872,7 +872,7 @@ void shopping_sell(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     }
 
     if (GET_CASH(keeper) < MIN_OUTSIDE_BANK) {
-        cashamt = MIN(MAX_OUTSIDE_BANK - GET_CASH(keeper), SHOP_BANK(shop_nr));
+        cashamt = std::min(MAX_OUTSIDE_BANK - GET_CASH(keeper), SHOP_BANK(shop_nr));
         SHOP_BANK(shop_nr) -= cashamt;
         apply_getcash(keeper, cashamt);
     }

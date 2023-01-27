@@ -270,8 +270,8 @@ void falling_yell(CharData *ch) {
                 dirstr = buf2;
             }
 
-            sprintf(buf, "You hear a %s %s from %s, which quickly fades.", number(0, 10) < 5 ? "surprised" : "sudden",
-                    number(0, 10) < 6 ? "shriek" : "yelp", dirstr);
+            sprintf(buf, "You hear a %s %s from %s, which quickly fades.", random_number(0, 10) < 5 ? "surprised" : "sudden",
+                    random_number(0, 10) < 6 ? "shriek" : "yelp", dirstr);
 
             ch->in_room = EXIT_NDEST(world[was_in].exits[dir]);
             act(buf, false, ch, 0, 0, TO_ROOM);
@@ -708,7 +708,7 @@ int movement_bucked(CharData *ch, CharData *mount) {
     if (diff > MOUNT_LEVEL_FUDGE)
         return 1;
 
-    return number(0, 999) < 1 + pow((double)(2 * diff) / MOUNT_LEVEL_FUDGE, 3) * 150 / 8;
+    return random_number(0, 999) < 1 + pow((double)(2 * diff) / MOUNT_LEVEL_FUDGE, 3) * 150 / 8;
 }
 
 /* mount_bucked
@@ -724,7 +724,7 @@ int mount_bucked(CharData *ch, CharData *mount) {
     if (diff > MOUNT_LEVEL_FUDGE)
         return 1;
 
-    return number(0, 999) < 50 + pow((double)(2 * diff) / MOUNT_LEVEL_FUDGE, 3) * 850 / 8;
+    return random_number(0, 999) < 50 + pow((double)(2 * diff) / MOUNT_LEVEL_FUDGE, 3) * 850 / 8;
 }
 
 /* mount_fall
@@ -740,7 +740,7 @@ int mount_fall(CharData *ch, CharData *mount) {
     if (diff > MOUNT_LEVEL_FUDGE)
         return 1;
 
-    return number(0, 999) < 10 + pow((double)(2 * diff) / MOUNT_LEVEL_FUDGE, 3) * 250 / 8;
+    return random_number(0, 999) < 10 + pow((double)(2 * diff) / MOUNT_LEVEL_FUDGE, 3) * 250 / 8;
 }
 
 void mount_warning(CharData *ch, CharData *vict) {

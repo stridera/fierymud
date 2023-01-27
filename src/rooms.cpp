@@ -93,7 +93,7 @@ void cantgo_msg(CharData *ch, int dir) {
     else
         switch (SECT(ch->in_room)) {
         case SECT_CITY:
-            switch (number(0, 1)) {
+            switch (random_number(0, 1)) {
             case 0:
                 bumpinto = "a wall";
                 break;
@@ -108,7 +108,7 @@ void cantgo_msg(CharData *ch, int dir) {
             break;
         case SECT_FOREST:
         case SECT_SWAMP:
-            switch (number(0, 3)) {
+            switch (random_number(0, 3)) {
             case 0:
                 bumpinto = "a large bush";
                 break;
@@ -122,7 +122,7 @@ void cantgo_msg(CharData *ch, int dir) {
             break;
         case SECT_HILLS:
         case SECT_MOUNTAIN:
-            switch (number(0, 5)) {
+            switch (random_number(0, 5)) {
             case 0:
                 bumpinto = "an old stump";
                 break;
@@ -141,7 +141,7 @@ void cantgo_msg(CharData *ch, int dir) {
             }
             break;
         case SECT_SHALLOWS:
-            switch (number(0, 4)) {
+            switch (random_number(0, 4)) {
             case 0:
                 bumpinto = "a steep bank";
                 break;
@@ -157,7 +157,7 @@ void cantgo_msg(CharData *ch, int dir) {
             }
             break;
         case SECT_WATER:
-            switch (number(0, 3)) {
+            switch (random_number(0, 3)) {
             case 0:
                 bumpinto = "a crashing wave";
                 break;
@@ -170,7 +170,7 @@ void cantgo_msg(CharData *ch, int dir) {
             }
             break;
         case SECT_UNDERWATER:
-            switch (number(0, 4)) {
+            switch (random_number(0, 4)) {
             case 0:
                 bumpinto = "a spinning eddy";
                 break;
@@ -189,7 +189,7 @@ void cantgo_msg(CharData *ch, int dir) {
             }
             break;
         case SECT_AIR:
-            switch (number(0, 2)) {
+            switch (random_number(0, 2)) {
             case 0:
                 bumpinto = "a gust of wind";
                 break;
@@ -199,7 +199,7 @@ void cantgo_msg(CharData *ch, int dir) {
             }
             break;
         case SECT_BEACH:
-            switch (number(0, 2)) {
+            switch (random_number(0, 2)) {
             case 0:
                 bumpinto = "a steep sand dune";
                 break;
@@ -212,7 +212,7 @@ void cantgo_msg(CharData *ch, int dir) {
             }
             break;
         case SECT_CAVE:
-            switch (number(0, 2)) {
+            switch (random_number(0, 2)) {
             case 0:
                 bumpinto = "a huge stalagmite";
                 break;
@@ -629,7 +629,7 @@ void pick_door(CharData *ch, room_num roomnum, int dir) {
 
     /* Try your skill. */
 
-    if (number(1, 101) > GET_SKILL(ch, SKILL_PICK_LOCK)) {
+    if (random_number(1, 101) > GET_SKILL(ch, SKILL_PICK_LOCK)) {
         act("$n attempts to pick the lock on the $T.", false, ch, 0, exit_name(exit), TO_ROOM);
         char_printf(ch, "You failed to pick the lock.\n");
         improve_skill(ch, SKILL_PICK_LOCK);

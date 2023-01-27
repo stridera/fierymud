@@ -143,12 +143,12 @@ void improve_skill(CharData *ch, int skill) {
     maxpercent = return_max_skill(ch, skill);
     if (percent <= 0 || percent >= maxpercent)
         return;
-    if (number(0, 140) > GET_WIS(ch) + GET_INT(ch))
+    if (random_number(0, 140) > GET_WIS(ch) + GET_INT(ch))
         return;
 
     /* These skills improve a bit faster than most. */
     if (skill == SKILL_FIRST_AID || skill == SKILL_BANDAGE || skill == SKILL_DOUSE || skill == SKILL_CHANT)
-        percent += number(4, 7);
+        percent += random_number(4, 7);
     else if (skill == SKILL_TAME || skill == SKILL_BASH || skill == SKILL_DISARM || skill == SKILL_SCRIBE ||
              skill == SKILL_SWITCH || skill == SKILL_PERFORM)
         percent += 2;
@@ -1540,13 +1540,13 @@ void skill_assign(int skillnum, int class_num, int level) {
 
     if (okay) {
         skills[skillnum].min_level[class_num] = level;
-        skills[skillnum].lowest_level = MIN(skills[skillnum].lowest_level, level);
+        skills[skillnum].lowest_level = std::min(skills[skillnum].lowest_level, level);
     }
 }
 
-int level_to_circle(int level) { return LIMIT(1, (level - 1) / 8 + 1, NUM_SPELL_CIRCLES); }
+int level_to_circle(int level) { return std::clamp((level - 1) / 8 + 1, 1, NUM_SPELL_CIRCLES); }
 
-int circle_to_level(int circle) { return LIMIT(1, (circle - 1) * 8 + 1, LVL_IMPL); }
+int circle_to_level(int circle) { return std::clamp((circle - 1) * 8 + 1, 1, LVL_IMPL); }
 
 bool get_spell_assignment_circle(CharData *ch, int spell, int *circle_assignment, int *level_assignment) {
     int i, tmp_level;

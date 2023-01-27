@@ -213,7 +213,7 @@ EVENTFUNC(casting_handler) {
     ch->casting.casting_time -= 2;
 
     /* The time between casting updates can vary by +/- 2 ticks. */
-    return PULSE_VIOLENCE / 2 - 2 + number(0, 4);
+    return PULSE_VIOLENCE / 2 - 2 + random_number(0, 4);
 }
 
 /* Yep, you're gonna die.

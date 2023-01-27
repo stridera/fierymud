@@ -1036,11 +1036,11 @@ ACMD(do_qadd) {
      */
     boot_quests();
     if (new_id & SUBCLASS_BIT) {
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new subclass quest {}.",
+        log(LogSeverity::Stat, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new subclass quest {}.",
             GET_NAME(ch), buf1);
         char_printf(ch, "New subclass&0 quest {} successfully added.\n", buf1);
     } else {
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new quest {}.", GET_NAME(ch), buf1);
+        log(LogSeverity::Stat, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new quest {}.", GET_NAME(ch), buf1);
         char_printf(ch, "New quest {} successfully added.\n", buf1);
     }
 }
@@ -1096,11 +1096,11 @@ ACMD(do_qdel) {
     /* Reboot quests. */
     boot_quests();
     if (IS_SUBCLASS_QUEST(quest_num)) {
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} deleted subclass quest {}.", GET_NAME(ch),
+        log(LogSeverity::Stat, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} deleted subclass quest {}.", GET_NAME(ch),
             buf1);
         char_printf(ch, "Subclass quest {} successfully deleted.\n", buf1);
     } else {
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} deleted quest {}.", GET_NAME(ch), buf1);
+        log(LogSeverity::Stat, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} deleted quest {}.", GET_NAME(ch), buf1);
         char_printf(ch, "Quest {} successfully deleted.\n", buf1);
     }
 }

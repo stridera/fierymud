@@ -132,7 +132,7 @@ ACMD(do_insult) {
             if (victim != ch) {
                 char_printf(ch, "You insult {}.\n", GET_NAME(victim));
 
-                switch (number(0, 2)) {
+                switch (random_number(0, 2)) {
                 case 0:
                     if (GET_SEX(ch) == SEX_MALE) {
                         if (GET_SEX(victim) == SEX_MALE)

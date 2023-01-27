@@ -198,7 +198,7 @@ int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)] = {
 CharData *memming = 0; /* head of memming characters linked list */
 
 int mob_mem_time(CharData *ch, int circle) {
-    double mem_time;
+    int mem_time;
 
     mem_time = 9 - (GET_LEVEL(ch) - circle_to_level(circle)) / 2;
 
@@ -209,7 +209,7 @@ int mob_mem_time(CharData *ch, int circle) {
     if (GET_SKILL(ch, SKILL_MEDITATE))
         mem_time *= 0.3 + 0.007 * (100 - GET_SKILL(ch, SKILL_MEDITATE));
 
-    return MAX(mem_time, 1);
+    return std::max(mem_time, 1);
 }
 
 EVENTFUNC(memming_event) {
@@ -284,7 +284,7 @@ EVENTFUNC(memming_event) {
 
         /* check meditate skill */
         if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-            if (number(0, 20) > 17)
+            if (random_number(0, 20) > 17)
                 improve_skill(ch, SKILL_MEDITATE);
         }
 
@@ -397,7 +397,7 @@ EVENTFUNC(scribe_event) {
 
     /* There is a chance to improve the scribe skill in each round of scribing. */
 
-    if (number(1, 20) > 15) {
+    if (random_number(1, 20) > 15) {
         improve_skill(ch, SKILL_SCRIBE);
     }
 
@@ -1040,7 +1040,7 @@ int spell_mem_time(CharData *ch, int spell) {
     if (PLR_FLAGGED(ch, PLR_MEDITATE))
         mem_time *= 0.3 + 0.007 * (100 - GET_SKILL(ch, SKILL_MEDITATE));
 
-    return MAX((int)mem_time, 1);
+    return std::max((int)mem_time, 1);
 }
 
 int set_mem_time(CharData *ch, int spell) {
@@ -1052,14 +1052,14 @@ int set_mem_time(CharData *ch, int spell) {
         improve_skill(ch, SKILL_MEDITATE);
 
         /* There's a 1-5% chance it will be a deep trance and take only 1 second. */
-        if (number(1, 100) <= 1 + GET_SKILL(ch, SKILL_MEDITATE) / 25) {
+        if (random_number(1, 100) <= 1 + GET_SKILL(ch, SKILL_MEDITATE) / 25) {
             char_printf(ch, "You go into a deep trance...\n");
             act("$n falls into a deep trance...", true, ch, 0, 0, TO_ROOM);
             mem_time = 1;
         }
     }
 
-    return MAX((int)mem_time, 1);
+    return std::max((int)mem_time, 1);
 }
 
 /* Okay, we can finally save the char's spell list on disk. */

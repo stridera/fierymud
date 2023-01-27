@@ -383,7 +383,7 @@ void init_game(int port) {
 
     /* Decide when to reboot */
     reboot_pulse = 3600 * PASSES_PER_SEC * (reboot_hours_base - reboot_hours_deviation) +
-                   number(0, 3600 * PASSES_PER_SEC * 2 * reboot_hours_deviation);
+                   random_number(0, 3600 * PASSES_PER_SEC * 2 * reboot_hours_deviation);
 
     if (num_hotboots > 0)
         hotboot_recover();
@@ -542,9 +542,9 @@ int get_max_players(void) {
         if (limit.rlim_max == RLIM_INFINITY)
             max_descs = MAX_PLAYERS + NUM_RESERVED_DESCS;
         else
-            max_descs = MIN(MAX_PLAYERS + NUM_RESERVED_DESCS, limit.rlim_max);
+            max_descs = std::min<int>(MAX_PLAYERS + NUM_RESERVED_DESCS, limit.rlim_max);
 #else
-        max_descs = MIN(MAX_PLAYERS + NUM_RESERVED_DESCS, limit.rlim_max);
+        max_descs = std::min(MAX_PLAYERS + NUM_RESERVED_DESCS, limit.rlim_max);
 #endif
     }
 
@@ -577,7 +577,7 @@ int get_max_players(void) {
 #endif
 
     /* now calculate max _players_ based on max descs */
-    max_descs = MIN(MAX_PLAYERS, max_descs - NUM_RESERVED_DESCS);
+    max_descs = std::min(MAX_PLAYERS, max_descs - NUM_RESERVED_DESCS);
 
     if (max_descs <= 0) {
         log("Non-positive max player limit!  (Set at {:d} using {}).", max_descs, method);
@@ -1599,17 +1599,17 @@ char *prompt_str(CharData *ch) {
             switch (*raw) {
             case 'h':
             case 'H':
-                temp = (100 * GET_HIT(ch)) / MAX(1, GET_MAX_HIT(ch));
+                temp = (100 * GET_HIT(ch)) / std::max(1, GET_MAX_HIT(ch));
                 break;
                 /*
                         case 'm':
                         case 'M':
-                          temp = (100 * GET_MANA(ch)) / MAX(1, GET_MAX_MANA(ch));
+                          temp = (100 * GET_MANA(ch)) / std::max(1, GET_MAX_MANA(ch));
                           break;
                 */
             case 'v':
             case 'V':
-                temp = (100 * GET_MOVE(ch)) / MAX(1, GET_MAX_MOVE(ch));
+                temp = (100 * GET_MOVE(ch)) / std::max(1, GET_MAX_MOVE(ch));
                 break;
             default:
                 /* If we set expecting to 0 ahead of time up here, we'll skip
@@ -2327,12 +2327,12 @@ void close_socket(DescriptorData *d) {
         if (IS_PLAYING(d)) {
             save_player_char(d->character);
             act("$n has lost $s link.", true, d->character, 0, 0, TO_ROOM);
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Closing link to: {}.",
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Closing link to: {}.",
                 GET_NAME(d->character));
             d->character->desc = nullptr;
         } else {
             if (GET_NAME(d->character))
-                log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: {}.",
+                log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "Losing player: {}.",
                     GET_NAME(d->character));
             /*else
                log(LogSeverity::Stat, LVL_IMMORT, "Losing player: <null>.");
@@ -2642,7 +2642,7 @@ int speech_ok(CharData *ch, int quiet) {
         /* Add a random number to discourage brinkmanship. If you keep it up
          * even with a minor sore throat, you don't know what it will take
          * to bring on full-blown laryngitis (which occurs without warning). */
-        sd->speech_rate += number(1, 4);
+        sd->speech_rate += random_number(1, 4);
         if (sd->speech_rate > SPAM_THRESHOLD) {
             sd->speech_rate = SPAM_THRESHOLD * 1.5;
             if (!quiet)

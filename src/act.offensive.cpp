@@ -60,7 +60,7 @@ bool switch_ok(CharData *ch) {
         return false;
     }
 
-    if (number(1, 101) > GET_SKILL(ch, SKILL_SWITCH)) {
+    if (random_number(1, 101) > GET_SKILL(ch, SKILL_SWITCH)) {
         act("$n tries to switch opponents, but becomes confused!&0", false, ch, 0, 0, TO_ROOM);
         char_printf(ch, "You try to switch opponents and become confused.&0\n");
         stop_fighting(ch);
@@ -110,7 +110,7 @@ CharData *random_attack_target(CharData *ch, CharData *target, bool verbose) {
 
     for (i = world[ch->in_room].people; i; i = i->next_in_room) {
         if (i != ch && CAN_SEE(ch, i) && attack_ok(ch, i, false)) {
-            if (chosen == nullptr || number(0, count) == 0)
+            if (chosen == nullptr || random_number(0, count) == 0)
                 chosen = i;
             count++;
         }
@@ -301,7 +301,7 @@ ACMD(do_roar) {
         mag_affect(GET_LEVEL(ch), ch, tch, SPELL_FEAR, SAVING_PARA, CAST_BREATH);
 
         if (SLEEPING(tch)) {
-            if (number(0, 1)) {
+            if (random_number(0, 1)) {
                 sprintf(buf, "A loud %s jolts you from your slumber!\n",
                         subcmd == SCMD_HOWL ? "OOOOAAAOAOOHHH howl" : "ROAAARRRRRR");
                 char_printf(tch, buf);
@@ -310,7 +310,7 @@ ACMD(do_roar) {
                 GET_STANCE(tch) = STANCE_ALERT;
                 WAIT_STATE(tch, PULSE_VIOLENCE);
             }
-        } else if (GET_DEX(tch) - 15 < number(0, 100) && GET_POS(tch) >= POS_STANDING) {
+        } else if (GET_DEX(tch) - 15 < random_number(0, 100) && GET_POS(tch) >= POS_STANDING) {
             char_printf(tch, "In your panicked rush to flee, you trip!\n");
             act("In a panicked rush to flee, $n trips!", false, tch, 0, 0, TO_ROOM);
             GET_POS(tch) = POS_SITTING;
@@ -360,7 +360,7 @@ ACMD(do_sweep) {
             continue;
         if (!IS_NPC(tch) && GET_LEVEL(tch) >= LVL_IMMORT)
             continue;
-        if (GET_VIEWED_DEX(tch) - 15 > number(0, 100) || GET_STANCE(tch) < STANCE_FIGHTING)
+        if (GET_VIEWED_DEX(tch) - 15 > random_number(0, 100) || GET_STANCE(tch) < STANCE_FIGHTING)
             continue;
         if (!attack_ok(ch, tch, false))
             continue;
@@ -528,7 +528,7 @@ bool instantkill(CharData *ch, CharData *victim) {
         return false;
 
     improve_skill_offensively(ch, victim, SKILL_INSTANT_KILL);
-    if (number(1, 101) > GET_SKILL(ch, SKILL_INSTANT_KILL))
+    if (random_number(1, 101) > GET_SKILL(ch, SKILL_INSTANT_KILL))
         return false;
 
     /*chance is now checking DEX and shouldn't happen as often */
@@ -539,7 +539,7 @@ bool instantkill(CharData *ch, CharData *victim) {
     if (!AWAKE(victim) && GET_HIT(victim) > 0)
         chance = 0;
 
-    if (number(1, 1000) >= chance) {
+    if (random_number(1, 1000) >= chance) {
         quickdeath(victim, ch);
         SET_COOLDOWN(ch, CD_INSTANT_KILL, (120 - (GET_LEVEL(ch))) * PULSE_COOLDOWN);
         return true;
@@ -682,7 +682,7 @@ ACMD(do_backstab) {
     /* 50% chance the mob is aware, even in combat */
     if (MOB_FLAGGED(vict, MOB_AWARE) && CAN_SEE(ch, vict) && !EFF_FLAGGED(vict, EFF_MINOR_PARALYSIS) &&
         !EFF_FLAGGED(vict, EFF_MAJOR_PARALYSIS) && FIGHTING(vict) &&
-        number(1, GET_LEVEL(vict)) > GET_SKILL(ch, SKILL_BACKSTAB) / 2) {
+        random_number(1, GET_LEVEL(vict)) > GET_SKILL(ch, SKILL_BACKSTAB) / 2) {
         act("You notice $N trying to sneaking up on you!", false, vict, 0, ch, TO_CHAR);
         act("You failed - $e notices you sneaking up on $m!", false, vict, 0, ch, TO_VICT);
         act("$n notices $N trying to sneak up on $m!", false, vict, 0, ch, TO_NOTVICT);
@@ -708,15 +708,15 @@ ACMD(do_backstab) {
         return;
     }
 
-    percent = number(1, 101); /* 101% is a complete failure */
+    percent = random_number(1, 101); /* 101% is a complete failure */
 
     if (EFF_FLAGGED(vict, EFF_AWARE) && AWAKE(vict) && !FIGHTING(vict))
         percent = 150; /*silent failure */
 
     if (EFF_FLAGGED(vict, EFF_AWARE) && FIGHTING(vict))
-        percent += number(1, 10); /* It's a little harder to backstab a mob you've already backstabed */
+        percent += random_number(1, 10); /* It's a little harder to backstab a mob you've already backstabed */
 
-    prob = MIN(97, GET_SKILL(ch, SKILL_BACKSTAB) - GET_LEVEL(vict) + 90);
+    prob = std::min(97, GET_SKILL(ch, SKILL_BACKSTAB) - GET_LEVEL(vict) + 90);
 
     if (!CAN_SEE(vict, ch))
         prob += GET_SKILL(ch, SKILL_BACKSTAB) / 2; /* add blindfighting skill */
@@ -768,14 +768,14 @@ ACMD(do_backstab) {
     if (!GET_EQ(ch, WEAR_WIELD2) || weapon == GET_EQ(ch, WEAR_WIELD2) || !IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_WIELD2)))
         return;
 
-    percent2 = number(1, 101); /* 101% is a complete failure */
+    percent2 = random_number(1, 101); /* 101% is a complete failure */
 
     if (EFF_FLAGGED(vict, EFF_AWARE) && AWAKE(vict) && !FIGHTING(vict)) {
         percent2 = 150; /*silent failure */
     }
 
     if (EFF_FLAGGED(vict, EFF_AWARE) && FIGHTING(vict))
-        percent2 += number(1, 10); /* It's a little harder to backstab a mob you've already backstabed */
+        percent2 += random_number(1, 10); /* It's a little harder to backstab a mob you've already backstabed */
 
     prob2 = GET_SKILL(ch, SKILL_BACKSTAB);
 
@@ -851,8 +851,8 @@ ACMD(do_flee) {
                 act("PANIC!   You couldn't escape from $N!", true, ch, 0, ch->cornered_by, TO_CHAR);
                 return;
             }
-            for (i = 0; i < 6; i++) {                 /* Make 6 attempts */
-                attempt = number(0, NUM_OF_DIRS - 1); /* Select a random direction */
+            for (i = 0; i < 6; i++) {                        /* Make 6 attempts */
+                attempt = random_number(0, NUM_OF_DIRS - 1); /* Select a random direction */
 
                 if (CAN_GO(ch, attempt) && !ROOM_FLAGGED(CH_NDEST(ch, attempt), ROOM_DEATH)) {
                     abort_casting(ch);
@@ -913,7 +913,7 @@ ACMD(do_retreat) {
     vict = FIGHTING(ch);
 
     /* Successful retreat? */
-    if (GET_SKILL(ch, SKILL_RETREAT) > number(0, 81) && CAN_GO(ch, dir) &&
+    if (GET_SKILL(ch, SKILL_RETREAT) > random_number(0, 81) && CAN_GO(ch, dir) &&
         !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && do_simple_move(ch, dir, true)) {
 
         /* Send message back to original room. */
@@ -927,7 +927,7 @@ ACMD(do_retreat) {
     }
     /* If fighting a mob that can switch, maybe get attacked. */
     else if (IS_NPC(FIGHTING(ch)) && FIGHTING(FIGHTING(ch)) != ch && GET_SKILL(FIGHTING(ch), SKILL_SWITCH) &&
-             GET_SKILL(FIGHTING(ch), SKILL_SWITCH) > number(1, 101)) {
+             GET_SKILL(FIGHTING(ch), SKILL_SWITCH) > random_number(1, 101)) {
         stop_fighting(FIGHTING(ch));
         act("$n fails to retreat, catching $N's attention!", true, ch, 0, FIGHTING(ch), TO_NOTVICT);
         act("You notice $n trying to escape and attack $m!", false, ch, 0, FIGHTING(ch), TO_VICT);
@@ -996,12 +996,12 @@ ACMD(do_gretreat) {
 
     if (!opponents)
         char_printf(ch, "You must be tanking to successfully lead your group in retreat!\n");
-    else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) < opponents * number(20, 24))
+    else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) < opponents * random_number(20, 24))
         char_printf(ch, "There are too many opponents to retreat from!\n");
 
     /* Successful retreat? */
-    else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) > number(0, 81) && !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) &&
-             CAN_GO(ch, dir) && do_simple_move(ch, dir, true)) {
+    else if (GET_SKILL(ch, SKILL_GROUP_RETREAT) > random_number(0, 81) &&
+             !ROOM_FLAGGED(CH_NDEST(ch, dir), ROOM_DEATH) && CAN_GO(ch, dir) && do_simple_move(ch, dir, true)) {
         /* Echo line back to the original room. */
         sprintf(buf, "$n carefully retreats from combat, leading $s group %s.", dirs[dir]);
 
@@ -1120,10 +1120,10 @@ ACMD(do_bash) {
     }
 
     prob = GET_SKILL(ch, skill);
-    percent = number(1, 101); /* 101 is a complete failure */
+    percent = random_number(1, 101); /* 101 is a complete failure */
     switch (skill) {
     case SKILL_BODYSLAM:
-        prob = number(1, 100); /* bodyslam uses random num instead of skill */
+        prob = random_number(1, 100); /* bodyslam uses random num instead of skill */
         prob += GET_LEVEL(ch);
         prob += GET_HITROLL(ch) - monk_weight_penalty(ch);
         percent += GET_SKILL(vict, SKILL_DODGE);
@@ -1244,11 +1244,11 @@ ACMD(do_rescue) {
     num = 1;
     for (c = attacker->next_attacker; c; c = c->next_attacker) {
         num++;
-        if (number(1, num) == 1)
+        if (random_number(1, num) == 1)
             attacker = c;
     }
 
-    percent = number(1, 101); /* 101% is a complete failure */
+    percent = random_number(1, 101); /* 101% is a complete failure */
     prob = GET_SKILL(ch, SKILL_RESCUE);
 
     if (percent > prob) {
@@ -1321,7 +1321,7 @@ ACMD(do_kick) {
     if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
         return;
 
-    percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + number(1, 101);
+    percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + random_number(1, 101);
     prob = GET_SKILL(ch, SKILL_KICK);
     if (percent > prob) {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -1396,7 +1396,7 @@ ACMD(do_eye_gouge) {
     if (CONFUSED(ch))
         vict = random_attack_target(ch, vict, true);
 
-    percent = number(1, 101);
+    percent = random_number(1, 101);
     prob = GET_SKILL(ch, SKILL_EYE_GOUGE);
     WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
     if (percent > prob && AWAKE(vict))
@@ -1479,7 +1479,7 @@ ACMD(do_springleap) {
     if (CONFUSED(ch))
         vict = random_attack_target(ch, vict, true);
 
-    percent = number(6, 77) - (GET_AC(vict) + (5 * monk_weight_penalty(vict))) / 20;
+    percent = random_number(6, 77) - (GET_AC(vict) + (5 * monk_weight_penalty(vict))) / 20;
 
     prob = GET_SKILL(ch, SKILL_SPRINGLEAP);
 
@@ -1574,7 +1574,7 @@ ACMD(do_throatcut) {
         return;
     }
 
-    random = dice(1, 6);
+    random = roll_dice(1, 6);
 
     if ((GET_LEVEL(ch) < LVL_IMMORT) && (GET_SKILL(ch, SKILL_THROATCUT) == 0)) {
         char_printf(ch, "You aren't skilled enough!\n");
@@ -1655,7 +1655,7 @@ ACMD(do_throatcut) {
 
     SET_COOLDOWN(ch, CD_THROATCUT, 3 MUD_HR);
 
-    percent = dice(1, 100);
+    percent = roll_dice(1, 100);
 
     if ((MOB_FLAGGED(vict, MOB_AWARE) || EFF_FLAGGED(vict, EFF_AWARE)) && AWAKE(vict) &&
         !EFF_FLAGGED(vict, EFF_MINOR_PARALYSIS) && !EFF_FLAGGED(vict, EFF_MAJOR_PARALYSIS)) {
@@ -1809,7 +1809,7 @@ ACMD(do_throatcut) {
     }
 
     if (IS_NPC(vict))
-        GET_EXP(vict) = MAX(1, GET_EXP(vict) - expReduction); /* make sure we don't have
+        GET_EXP(vict) = std::max(1l, GET_EXP(vict) - expReduction); /* make sure we don't have
                                                                  negative exp gain for ch */
 
     if (damage_amounts) {
@@ -1969,13 +1969,13 @@ ACMD(do_disarm) {
     if (skl_bonus > 0)
         chance += skl_bonus;
 
-    chance = MAX(1, chance);
+    chance = std::max(1, chance);
 
     /* has char tried to disarm within delay period?  if so, penalize them */
     if (GET_COOLDOWN(ch, CD_DISARM))
         chance -= 30; /* 30% pts */
 
-    rnd_num = number(1, chance);
+    rnd_num = random_number(1, chance);
 
     /*  ** Outcomes **
 
@@ -1991,7 +1991,7 @@ ACMD(do_disarm) {
 
     /* if char tries to disarm again within 1->3 rds of violence, chance of
      * success cut by a ~1/5 */
-    SET_COOLDOWN(ch, CD_DISARM, number(1, 3) * PULSE_VIOLENCE);
+    SET_COOLDOWN(ch, CD_DISARM, random_number(1, 3) * PULSE_VIOLENCE);
 
     if (rnd_num <= 5) {
         act("$n fails $s disarming maneuver so badly, $e drops $s own weapon.", false, ch, 0, tch, TO_NOTVICT);
@@ -2133,7 +2133,7 @@ ACMD(do_hitall) {
 
     /* Hit all aggressive monsters in room */
 
-    percent = number(1, 131);
+    percent = random_number(1, 131);
     WAIT_STATE(ch, PULSE_VIOLENCE);
 
     if (subcmd == SCMD_TANTRUM) {
@@ -2167,7 +2167,7 @@ ACMD(do_hitall) {
             if (damage_evasion(mob, ch, 0, physical_damtype(ch))) {
                 damage_evasion_message(ch, mob, equipped_weapon(ch), physical_damtype(ch));
                 set_fighting(mob, ch, true);
-            } else if (subcmd == SCMD_TANTRUM && number(0, 1))
+            } else if (subcmd == SCMD_TANTRUM && random_number(0, 1))
                 hit(ch, mob, SKILL_BAREHAND);
             else {
                 if (mob != orig_target)
@@ -2221,7 +2221,7 @@ ACMD(do_corner) {
     if (!CAN_SEE(vict, ch))
         chance *= 2;
 
-    if (chance > number(1, 101)) {
+    if (chance > random_number(1, 101)) {
         act("You stand in $N's way, cornering $M!", false, ch, 0, vict, TO_CHAR);
         act("$n stands in your way, cornering you!", false, ch, 0, vict, TO_VICT);
         act("$n stands in $N's way, cornering $M!", true, ch, 0, vict, TO_NOTVICT);
@@ -2274,14 +2274,14 @@ ACMD(do_peck) {
         return;
 
     /* Determine the damage amount.   0 is a miss. */
-    if (number(0, 101) > GET_SKILL(ch, SKILL_PECK))
+    if (random_number(0, 101) > GET_SKILL(ch, SKILL_PECK))
         dam = 0;
     else if (damage_evasion(vict, ch, 0, DAM_PIERCE)) {
         damage_evasion_message(ch, vict, 0, DAM_PIERCE);
         set_fighting(vict, ch, true);
         return;
     } else
-        dam = number(GET_SKILL(ch, SKILL_PECK), GET_LEVEL(ch));
+        dam = random_number(GET_SKILL(ch, SKILL_PECK), GET_LEVEL(ch));
 
     damage(ch, vict, dam_suscept_adjust(ch, vict, 0, dam, DAM_PIERCE), SKILL_PECK);
     improve_skill_offensively(ch, vict, SKILL_PECK);
@@ -2327,14 +2327,14 @@ ACMD(do_claw) {
         return;
 
     /* Determine damage amount. */
-    if (number(0, 101) > GET_SKILL(ch, SKILL_CLAW))
+    if (random_number(0, 101) > GET_SKILL(ch, SKILL_CLAW))
         dam = 0;
     else if (damage_evasion(vict, ch, 0, DAM_SLASH)) {
         damage_evasion_message(ch, vict, 0, DAM_SLASH);
         set_fighting(vict, ch, true);
         return;
     } else
-        dam = number(GET_SKILL(ch, SKILL_CLAW), GET_LEVEL(ch));
+        dam = random_number(GET_SKILL(ch, SKILL_CLAW), GET_LEVEL(ch));
 
     damage(ch, vict, dam_suscept_adjust(ch, vict, 0, dam, DAM_SLASH), SKILL_CLAW);
     improve_skill_offensively(ch, vict, SKILL_CLAW);
@@ -2349,7 +2349,7 @@ ACMD(do_electrify) {
         return;
     }
 
-    if (GET_SKILL(ch, SKILL_ELECTRIFY) > number(0, 101))
+    if (GET_SKILL(ch, SKILL_ELECTRIFY) > random_number(0, 101))
         mag_area(GET_SKILL(ch, SKILL_ELECTRIFY), ch, SKILL_ELECTRIFY, SAVING_BREATH);
     else {
         if (IS_WATER(ch->in_room))
@@ -2453,11 +2453,11 @@ ACMD(do_stomp) {
             if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
                 real_victims = true;
 
-            if (GET_DEX(tch) < number(0, 100))
+            if (GET_DEX(tch) < random_number(0, 100))
                 damage(ch, tch,
-                       dam_suscept_adjust(ch, tch, 0, number(50, GET_SKILL(ch, SKILL_GROUND_SHAKER)), DAM_CRUSH),
+                       dam_suscept_adjust(ch, tch, 0, random_number(50, GET_SKILL(ch, SKILL_GROUND_SHAKER)), DAM_CRUSH),
                        SKILL_GROUND_SHAKER);
-            else if (GET_STR(tch) < number(0, 100)) {
+            else if (GET_STR(tch) < random_number(0, 100)) {
                 if (GET_POS(tch) > POS_SITTING) {
                     damage(ch, tch, 0, SKILL_GROUND_SHAKER);
                     if (IN_ROOM(ch) == IN_ROOM(tch))

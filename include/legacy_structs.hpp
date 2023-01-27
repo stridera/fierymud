@@ -149,7 +149,6 @@ struct legacy_char_special_data_saved {
 struct legacy_player_special_data_saved {
     sh_int skills[LEGACY_TOP_SKILL + 1]; /* array of skills plus skill 0 */
     byte PADDING0;                       /* used to be spells_to_learn                */
-    bool talks[LEGACY_MAX_TONGUE];       /* PC s Tongues 0 for NPC                */
     int wimp_level;                      /* Below this # of hit points, flee!        */
     byte freeze_level;                   /* Level of god who froze char, if any        */
     sh_int invis_level;                  /* level of invisibility                */

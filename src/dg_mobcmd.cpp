@@ -159,7 +159,7 @@ ACMD(do_mdamage) {
     }
 
     /* hitpoint is a short signed int */
-    dam = MAX(-32767, MIN(atoi(amount), 32767));
+    dam = std::clamp(atoi(amount), -32767, 32767);
 
     if (!(victim = find_char_for_mtrig(ch, name))) {
         sprintf(buf, "mdamage: victim (%s) not found", name);

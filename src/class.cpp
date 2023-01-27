@@ -1265,7 +1265,7 @@ int level_max_skill(CharData *ch, int level, int skill) {
         }
         break;
     }
-    return (MIN((10 * level) + 50, max_skill));
+    return (std::min((10 * level) + 50, max_skill));
 }
 
 int return_max_skill(CharData *ch, int skill) { return level_max_skill(ch, GET_LEVEL(ch), skill); }
@@ -1309,7 +1309,7 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_CONJURER:
     case CLASS_BARD:
         if (action == LEVEL_GAIN)
-            add_hp += number(3, 8);
+            add_hp += random_number(3, 8);
         else
             add_hp -= 8;
         break;
@@ -1320,21 +1320,21 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_DIABOLIST:
     case CLASS_MYSTIC:
         if (action == LEVEL_GAIN)
-            add_hp += number(5, 10);
+            add_hp += random_number(5, 10);
         else
             add_hp -= 10;
         break;
 
     case CLASS_DRUID:
         if (action == LEVEL_GAIN)
-            add_hp += number(5, 11);
+            add_hp += random_number(5, 11);
         else
             add_hp -= 11;
         break;
 
     case CLASS_ASSASSIN:
         if (action == LEVEL_GAIN)
-            add_hp += number(7, 12);
+            add_hp += random_number(7, 12);
         else
             add_hp -= 12;
         break;
@@ -1342,21 +1342,21 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_THIEF:
     case CLASS_ROGUE:
         if (action == LEVEL_GAIN)
-            add_hp += number(7, 13);
+            add_hp += random_number(7, 13);
         else
             add_hp -= 13;
         break;
 
     case CLASS_MERCENARY:
         if (action == LEVEL_GAIN)
-            add_hp += number(7, 14);
+            add_hp += random_number(7, 14);
         else
             add_hp -= 14;
         break;
 
     case CLASS_RANGER:
         if (action == LEVEL_GAIN)
-            add_hp += number(9, 13);
+            add_hp += random_number(9, 13);
         else
             add_hp -= 13;
         break;
@@ -1364,7 +1364,7 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_PALADIN:
     case CLASS_ANTI_PALADIN:
         if (action == LEVEL_GAIN)
-            add_hp += number(9, 14);
+            add_hp += random_number(9, 14);
         else
             add_hp -= 14;
         break;
@@ -1374,14 +1374,14 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_BERSERKER:
     case CLASS_HUNTER:
         if (action == LEVEL_GAIN)
-            add_hp += number(10, 15);
+            add_hp += random_number(10, 15);
         else
             add_hp -= 14;
         break;
 
     default:
         if (action == LEVEL_GAIN)
-            add_hp += number(5, 10);
+            add_hp += random_number(5, 10);
         else
             add_hp -= 9;
         log("SYSERR: Unrecognized class {:d} in advance_char", c);
@@ -1399,7 +1399,7 @@ void advance_level(CharData *ch, enum level_action action) {
      * use that instead of whatever we calculated above.
      */
     if (action == LEVEL_LOSE && GET_LASTLEVEL(ch) != 0)
-        add_hp = 0 - (GET_LASTLEVEL(ch) + number(0, 1));
+        add_hp = 0 - (GET_LASTLEVEL(ch) + random_number(0, 1));
 
     /* If over level 30, use constants for hitpoints */
     if (GET_LEVEL(ch) > 30) {

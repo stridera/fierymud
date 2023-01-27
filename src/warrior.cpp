@@ -65,7 +65,7 @@ bool warrior_ai_action(CharData *ch, CharData *victim) {
      * then attempt to bash them first.
      */
     if (!EFF_FLAGGED(ch, EFF_BLIND) && GET_SKILL(ch, SKILL_BASH) && FIGHTING(ch) && GET_EQ(ch, WEAR_SHIELD) &&
-        (number(25, 60) - GET_SKILL(ch, SKILL_BASH)) <= 0)
+        (random_number(25, 60) - GET_SKILL(ch, SKILL_BASH)) <= 0)
         for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
             i = GET_SIZE(ch) - GET_SIZE(tch);
             if (is_grouped(FIGHTING(ch), tch) && !IS_NPC(tch) && CAN_SEE(ch, tch) && CASTING(tch) && i <= 2 &&
@@ -91,7 +91,7 @@ bool warrior_ai_action(CharData *ch, CharData *victim) {
      * Random chance to bash and kick proportional to level.
      * Increased chance to bash mages and clerics.
      */
-    roll = number(0, 101);
+    roll = random_number(0, 101);
     if (roll < GET_LEVEL(ch)) {
 
         roll *= 100 / GET_LEVEL(ch);

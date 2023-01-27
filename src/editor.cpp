@@ -450,7 +450,7 @@ EDITOR_FUNC(editor_default_format) {
         }
         break;
     }
-    first_line = MAX(1, first_line);
+    first_line = std::max(1, first_line);
 
     if (editor_format_text(&edit->string, indent, edit->max_length, first_line, last_line))
         desc_printf(edit->descriptor, "Text formatted with{} indent.\n", indent ? "" : "out");
@@ -1019,7 +1019,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
         formatted[max_length - 2] = '\n';
         formatted[max_length - 3] = '\r';
     }
-    RECREATE(*string, char, MIN(max_length, strlen(formatted) + 1));
+    RECREATE(*string, char, std::min(max_length, strlen(formatted) + 1));
     strcpy(*string, formatted);
     return 1;
 }

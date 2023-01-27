@@ -82,8 +82,8 @@ SPECIAL(guild) {
                 act(buf, false, (CharData *)me, 0, ch, TO_ROOM);
                 /* advance to the next level! */
                 gain_exp(ch, 1, GAIN_IGNORE_LEVEL_BOUNDARY);
-                GET_HIT(ch) = MAX(GET_HIT(ch), GET_MAX_HIT(ch));
-                GET_MOVE(ch) = MAX(GET_MOVE(ch), GET_MAX_MOVE(ch));
+                GET_HIT(ch) = std::max(GET_HIT(ch), GET_MAX_HIT(ch));
+                GET_MOVE(ch) = std::max(GET_MOVE(ch), GET_MAX_MOVE(ch));
                 do_save(ch, "", 0, 0);
             } else {
                 act("$N tells you \"You are as powerful as a mortal can be.\"", false, ch, 0, (CharData *)me, TO_CHAR);
@@ -116,7 +116,6 @@ SPECIAL(dump) {
 
     for (k = world[ch->in_room].contents; k; k = world[ch->in_room].contents) {
         act("$p vanishes in a puff of smoke!", false, 0, k, 0, TO_ROOM);
-        /*   value += MAX(1, MIN(50, GET_OBJ_COST(k) / 10)); */
         extract_obj(k);
     }
     return 1;
@@ -167,7 +166,7 @@ SPECIAL(puff) {
     if (cmd)
         return (0);
 
-    switch (number(0, 60)) {
+    switch (random_number(0, 60)) {
     case 0:
         do_say(ch, "My god!  It's full of stars!", 0, 0);
         return (1);
@@ -588,8 +587,9 @@ SPECIAL(bank) {
             }
 
             ok = 0;
-            exchange_rate =
-                ((17 - (GET_CHA(ch) / 6.0) + number(0, 2) - (number(0, 4) / 10.0) + (number(0, 9) / 10.0)) / 100.0);
+            exchange_rate = ((17 - (GET_CHA(ch) / 6.0) + random_number(0, 2) - (random_number(0, 4) / 10.0) +
+                              (random_number(0, 9) / 10.0)) /
+                             100.0);
             amount = amount * multfrom;
             charge = (int)(ceil(exchange_rate * amount));
 
@@ -691,7 +691,7 @@ void weapon_spell(char *to_ch, char *to_vict, char *to_room, CharData *ch, CharD
     for (i = 0; i < NUM_CLASSES; i++)
         if (skills[spl].min_level[i] < level)
             level = skills[spl].min_level[i];
-    level = MAX(1, MIN(LVL_IMMORT - 1, level));
+    level = std::clamp(level, 1, LVL_IMMORT - 1);
 
     act(to_ch, false, ch, obj, vict, TO_CHAR);
     act(to_vict, false, ch, obj, vict, TO_VICT);
@@ -702,9 +702,9 @@ void weapon_spell(char *to_ch, char *to_vict, char *to_room, CharData *ch, CharD
 SPECIAL(holyw_weapon) {
     CharData *vict = FIGHTING(ch);
 
-    if (cmd || !vict || !number(0, 9))
+    if (cmd || !vict || !random_number(0, 9))
         return 0;
-    if (number(1, 100) > 5)
+    if (random_number(1, 100) > 5)
         return 0;
 
     weapon_spell(
@@ -721,7 +721,7 @@ SPECIAL(holyw_weapon) {
 SPECIAL(vampiric_weapon) {
     CharData *vict = FIGHTING(ch);
 
-    if (!(GET_CLASS(ch) == CLASS_ANTI_PALADIN) || cmd || !vict || number(0, 100) < 97)
+    if (!(GET_CLASS(ch) == CLASS_ANTI_PALADIN) || cmd || !vict || random_number(0, 100) < 97)
         return 0;
 
     weapon_spell("A &9&bblack haze&0 forms around your $p as you strike $N!",
@@ -736,7 +736,7 @@ SPECIAL(fire_weapon) {
 
     if (cmd || !vict)
         return 0;
-    if (number(0, 100) < 90)
+    if (random_number(0, 100) < 90)
         return 0;
 
     weapon_spell("Your $o twinkles &3brightly&0 and sends waves of &6plasma&0 into $N!",
@@ -752,7 +752,7 @@ SPECIAL(lightning_weapon) {
 
     if (cmd || !vict)
         return 0;
-    if (number(0, 100) < 90)
+    if (random_number(0, 100) < 90)
         return 0;
 
     weapon_spell("Your $o glows &4blue&0 and a bolt rushes through the air at $N!",
@@ -768,7 +768,7 @@ SPECIAL(frost_weapon) {
     if (cmd || !vict)
         return 0;
 
-    if (number(0, 100) < 80)
+    if (random_number(0, 100) < 80)
         return 0;
 
     weapon_spell("A burst of freezing air suddenly bursts from your $o!",

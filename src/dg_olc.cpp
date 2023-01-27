@@ -239,8 +239,8 @@ void trigedit_parse(DescriptorData *d, char *arg) {
         switch (tolower(*arg)) {
         case 'y':
             trigedit_save(d);
-            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), "OLC: {} edits trigger {:d}",
-                GET_NAME(d->character), OLC_NUM(d));
+            log(LogSeverity::Debug, std::max<int>(LVL_BUILDER, GET_INVIS_LEV(d->character)),
+                "OLC: {} edits trigger {:d}", GET_NAME(d->character), OLC_NUM(d));
             /* fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);
@@ -504,8 +504,8 @@ void trigedit_save(DescriptorData *d) {
 #endif
 
     if (!(trig_file = fopen(fname, "w"))) {
-        log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "SYSERR: OLC: Can't open trig file \"{}\"",
-            fname);
+        log(LogSeverity::Warn, std::max<int>(LVL_GOD, GET_INVIS_LEV(d->character)),
+            "SYSERR: OLC: Can't open trig file \"{}\"", fname);
         return;
     }
 
@@ -514,7 +514,7 @@ void trigedit_save(DescriptorData *d) {
             trig = trig_index[trig_rnum]->proto;
 
             if (fprintf(trig_file, "#%d\n", i) < 0) {
-                log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(d->character)),
+                log(LogSeverity::Warn, std::max<int>(LVL_GOD, GET_INVIS_LEV(d->character)),
                     "SYSERR: OLC: Can't write trig file!");
                 fclose(trig_file);
                 return;
@@ -800,7 +800,7 @@ bool format_script(DescriptorData *d, int indent_quantum) {
 
     script = strdup(*d->str); /* Make a copy, because of strtok() */
     *out = '\0';
-    max_len = MAX(d->max_str, sizeof(out));
+    max_len = std::max(d->max_str, sizeof(out));
     scope.scope = CS_NONE;
     scope.line_num = 0;
     as_init(stack, 10, scope);

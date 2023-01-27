@@ -356,7 +356,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
             act("You rear backwards, throwing $n to the ground.", false, actor, 0, mount, TO_VICT);
             act("$N rears backwards, throwing $n to the ground.", false, actor, 0, mount, TO_NOTVICT);
             improve_skill(actor, SKILL_RIDING);
-            damage(actor, actor, dice(1, 6), -1);
+            damage(actor, actor, roll_dice(1, 6), -1);
             dismount_char(actor);
         }
 
@@ -429,7 +429,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
             act("You rear backwards, throwing $n to the ground.", false, actor, 0, mount, TO_VICT);
             act("$N rears backwards, throwing $n to the ground.", false, actor, 0, mount, TO_NOTVICT);
             dismount_char(actor);
-            damage(actor, actor, dice(1, 6), -1);
+            damage(actor, actor, roll_dice(1, 6), -1);
             return false;
         }
     }
@@ -514,15 +514,16 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     if (IS_HIDDEN(motivator) || EFF_FLAGGED(motivator, EFF_SNEAK)) {
         if (EFF_FLAGGED(motivator, EFF_SNEAK)) {
             if (!IS_NPC(motivator))
-                GET_HIDDENNESS(motivator) = MAX(0, GET_HIDDENNESS(motivator) - number(2, 5));
+                GET_HIDDENNESS(motivator) = std::max(0l, GET_HIDDENNESS(motivator) - random_number(2, 5));
         }
         /* Camouflage makes you lose minimal hide points per move */
         else if (EFF_FLAGGED(motivator, EFF_CAMOUFLAGED))
-            GET_HIDDENNESS(motivator) = MAX(0, GET_HIDDENNESS(motivator) - number(3, 7));
+            GET_HIDDENNESS(motivator) = std::max(0l, GET_HIDDENNESS(motivator) - random_number(3, 7));
         /* Chance for hiddenness to decrease with a bonus for dex apply
          * and for already sneaking. */
-        else if (number(1, 101) > GET_SKILL(motivator, SKILL_SNEAK) + dex_app_skill[GET_DEX(motivator)].sneak + 15)
-            GET_HIDDENNESS(motivator) = MAX(0, GET_HIDDENNESS(motivator) - GET_LEVEL(motivator) / 2);
+        else if (random_number(1, 101) >
+                 GET_SKILL(motivator, SKILL_SNEAK) + dex_app_skill[GET_DEX(motivator)].sneak + 15)
+            GET_HIDDENNESS(motivator) = std::max(0l, GET_HIDDENNESS(motivator) - GET_LEVEL(motivator) / 2);
         if (!IS_HIDDEN(motivator))
             effect_from_char(motivator, SPELL_NATURES_EMBRACE);
         if (GET_SKILL(motivator, SKILL_SNEAK))
@@ -540,10 +541,10 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* If the room is affected by a circle of fire, damage the person */
     if (ROOM_EFF_FLAGGED(actor->in_room, ROOM_EFF_CIRCLE_FIRE) && !EFF_FLAGGED(actor, EFF_NEGATE_HEAT)) {
         if (GET_LEVEL(actor) < LVL_IMMORT) {
-            mag_damage(GET_LEVEL(actor) + number(1, 10), actor, actor, SPELL_CIRCLE_OF_FIRE, SAVING_SPELL);
+            mag_damage(GET_LEVEL(actor) + random_number(1, 10), actor, actor, SPELL_CIRCLE_OF_FIRE, SAVING_SPELL);
         }
         if (mount && GET_LEVEL(mount) < LVL_IMMORT) {
-            mag_damage(GET_LEVEL(mount) + number(1, 10), mount, mount, SPELL_CIRCLE_OF_FIRE, SAVING_SPELL);
+            mag_damage(GET_LEVEL(mount) + random_number(1, 10), mount, mount, SPELL_CIRCLE_OF_FIRE, SAVING_SPELL);
         }
         if (DECEASED(actor) || (mount && DECEASED(mount)))
             return false;
@@ -575,7 +576,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     /* Note, now that we've officially moved, we should return true after this point since otherwise their followers */
     /* wouldn't follow correctly. */
     if (ROOM_EFF_FLAGGED(actor->in_room, ROOM_EFF_CIRCLE_FIRE) && !EFF_FLAGGED(actor, EFF_NEGATE_HEAT)) {
-        mag_damage(GET_LEVEL(actor) + number(1, 5), actor, actor, SPELL_CIRCLE_OF_FIRE, SAVING_SPELL);
+        mag_damage(GET_LEVEL(actor) + random_number(1, 5), actor, actor, SPELL_CIRCLE_OF_FIRE, SAVING_SPELL);
         if (DECEASED(actor))
             return true;
     }
@@ -643,10 +644,10 @@ bool perform_move(CharData *ch, int dir, int need_specials_check, bool misdirect
             if (k->follower->in_room != to_room && k->follower->in_room == was_in &&
                 GET_POS(k->follower) >= POS_STANDING && !FIGHTING(k->follower) && !CASTING(k->follower) &&
                 k->can_see_master) {
-                if (CONFUSED(k->follower) && number(1, 5) == 1) {
+                if (CONFUSED(k->follower) && random_number(1, 5) == 1) {
                     act("&5You tried to follow $N&0&5, but got all turned around.&0", false, k->follower, 0, ch,
                         TO_CHAR);
-                    perform_move(k->follower, number(0, 5), 1, false);
+                    perform_move(k->follower, random_number(0, 5), 1, false);
                     if (IN_ROOM(k->follower) != IN_ROOM(ch))
                         act("&3Oops!  $n&0&3 seems to have wandered off again.&0", false, k->follower, 0, ch, TO_VICT);
                 } else {
@@ -660,17 +661,17 @@ bool perform_move(CharData *ch, int dir, int need_specials_check, bool misdirect
                                 k->follower, TO_VICT);
                             act("$N gasps for breath.  They don't look like they could walk another step.", false, ch,
                                 0, k->follower, TO_NOTVICT);
-                        } else if (100 * GET_MOVE(k->follower) / MAX(1, GET_MAX_MOVE(k->follower)) < 10) {
+                        } else if (100 * GET_MOVE(k->follower) / std::max(1, GET_MAX_MOVE(k->follower)) < 10) {
                             act("$N is panting loudly.", false, ch, 0, k->follower, TO_CHAR);
                             act("You pant loudly, attempting to catch your breath.", false, ch, 0, k->follower,
                                 TO_VICT);
                             act("$N pants loudly, attempting to catch their breath.", false, ch, 0, k->follower,
                                 TO_NOTVICT);
-                        } else if (100 * GET_MOVE(k->follower) / MAX(1, GET_MAX_MOVE(k->follower)) < 20) {
+                        } else if (100 * GET_MOVE(k->follower) / std::max(1, GET_MAX_MOVE(k->follower)) < 20) {
                             act("$N is starting to pant softly.", false, ch, 0, k->follower, TO_CHAR);
                             act("You pant softly as exhaustion looms.", false, ch, 0, k->follower, TO_VICT);
                             act("$N starts panting softly.", false, ch, 0, k->follower, TO_NOTVICT);
-                        } else if (100 * GET_MOVE(k->follower) / MAX(1, GET_MAX_MOVE(k->follower)) < 30) {
+                        } else if (100 * GET_MOVE(k->follower) / std::max(1, GET_MAX_MOVE(k->follower)) < 30) {
                             act("$N is looking tired.", false, ch, 0, k->follower, TO_CHAR);
                             act("You are starting to feel tired.", false, ch, 0, k->follower, TO_VICT);
                         }
@@ -716,9 +717,9 @@ ACMD(do_move) {
             perform_move(ch, misdir, 0, true);
         SET_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
         /* Send confused people off in a random direction. */
-        if (CONFUSED(ch) && number(0, 1) == 0) {
+        if (CONFUSED(ch) && random_number(0, 1) == 0) {
             char_printf(ch, "&5You are confused!&0\n");
-            subcmd = SCMD_STAY + number(1, 6);
+            subcmd = SCMD_STAY + random_number(1, 6);
         }
         perform_move(ch, subcmd - 1, 0, false);
         REMOVE_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
@@ -726,9 +727,9 @@ ACMD(do_move) {
     }
 
     /* Send confused people off in a random direction. */
-    if (CONFUSED(ch) && number(0, 1) == 0) {
+    if (CONFUSED(ch) && random_number(0, 1) == 0) {
         char_printf(ch, "&5You are confused!&0\n");
-        subcmd = SCMD_STAY + number(1, 6);
+        subcmd = SCMD_STAY + random_number(1, 6);
     }
 
     switch (subcmd) {
@@ -1018,7 +1019,7 @@ void pick_object(CharData *ch, ObjData *obj) {
 
     /* Try your skill. */
 
-    if (number(1, 101) > GET_SKILL(ch, SKILL_PICK_LOCK)) {
+    if (random_number(1, 101) > GET_SKILL(ch, SKILL_PICK_LOCK)) {
         char_printf(ch, "You failed to pick the lock.\n");
         improve_skill(ch, SKILL_PICK_LOCK);
         return;
@@ -1188,7 +1189,7 @@ ACMD(do_enter) {
                 if (CH_EXIT(ch, i) && !EXIT_IS_CLOSED(CH_EXIT(ch, i)) && ROOM_FLAGGED(CH_NDEST(ch, i), ROOM_INDOORS)) {
                     if (CONFUSED(ch)) {
                         char_printf(ch, "&5You are confused!&0\n");
-                        i = number(0, 5);
+                        i = random_number(0, 5);
                     }
                     perform_move(ch, i, 1, false);
                     return;
@@ -1322,7 +1323,7 @@ ACMD(do_leave) {
                 if (!EXIT_IS_CLOSED(CH_EXIT(ch, door)) && !ROOM_FLAGGED(CH_NDEST(ch, door), ROOM_INDOORS)) {
                     if (CONFUSED(ch)) {
                         char_printf(ch, "&5You are confused!&0\n");
-                        door = number(0, 5);
+                        door = random_number(0, 5);
                     }
                     perform_move(ch, door, 1, false);
                     return;
@@ -1342,7 +1343,7 @@ ACMD(do_doorbash)
     room_num ndest;
     int was_in = IN_ROOM(ch);
 
-    chance = number(0, 101);
+    chance = random_number(0, 101);
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (FIGHTING(ch)) {
@@ -1373,9 +1374,9 @@ ACMD(do_doorbash)
         return;
     }
 
-    if (CONFUSED(ch) && number(0, 1) == 0) {
+    if (CONFUSED(ch) && random_number(0, 1) == 0) {
         char_printf(ch, "&5You are confused!&0\n");
-        dir = number(0, 5);
+        dir = random_number(0, 5);
     }
 
     /* There can be walls even where there aren't exits.  So now, prior to
@@ -1592,7 +1593,7 @@ ACMD(do_drag) {
             return;
         }
 
-        move_cost = MIN(4, GET_WEIGHT(tch) / 50 + sectors[SECT(ch->in_room)].mv);
+        move_cost = std::min(4, GET_WEIGHT(tch) / 50 + sectors[SECT(ch->in_room)].mv);
     }
 
     /* Trying to drag an object in the room? */
@@ -1621,7 +1622,7 @@ ACMD(do_drag) {
             return;
         }
 
-        move_cost = MIN(4, GET_OBJ_EFFECTIVE_WEIGHT(tobj) / 50 + sectors[SECT(ch->in_room)].mv);
+        move_cost = std::min<int>(4, GET_OBJ_EFFECTIVE_WEIGHT(tobj) / 50 + sectors[SECT(ch->in_room)].mv);
     }
 
     else {
@@ -1689,7 +1690,7 @@ ACMD(do_drag) {
 
         if (CONFUSED(ch)) {
             char_printf(ch, "&5You are confused!&0\n");
-            dir = number(0, 5);
+            dir = random_number(0, 5);
         }
 
         /* Take tch from the room so they don't see ch's leave message */
@@ -2269,7 +2270,7 @@ ACMD(do_follow) {
             int chance = GET_SKILL(ch, SKILL_SHADOW);
             chance += dex_app_skill[GET_DEX(ch)].sneak;
 
-            if (chance < number(1, 101)) {
+            if (chance < random_number(1, 101)) {
                 REMOVE_FLAG(EFF_FLAGS(ch), EFF_SHADOWING);
                 act("You are noticed as you attempt to secretly follow $N.", false, ch, 0, leader, TO_CHAR);
                 act("$n attempts to secretly follow you, but you spot $m.", true, ch, 0, leader, TO_VICT);
@@ -2545,7 +2546,7 @@ void perform_buck(CharData *mount, int whilemounting) {
     dismount_char(rider);
     if (!whilemounting)
         alter_pos(rider, POS_SITTING, STANCE_ALERT);
-    hurt_char(rider, nullptr, dice(1, 3), true);
+    hurt_char(rider, nullptr, roll_dice(1, 3), true);
 }
 
 ACMD(do_mount) {
@@ -2618,7 +2619,7 @@ ACMD(do_mount) {
         mount_warning(ch, vict);
         alter_pos(ch, POS_SITTING, STANCE_ALERT);
         improve_skill(ch, SKILL_MOUNT);
-        hurt_char(ch, nullptr, dice(1, 2), true);
+        hurt_char(ch, nullptr, roll_dice(1, 2), true);
         return;
     }
 
@@ -2641,12 +2642,12 @@ ACMD(do_dismount) {
         char_printf(ch, "You would get hacked to pieces if you dismount now!\n");
     else if (SECT(ch->in_room) == SECT_WATER && !can_travel_on_water(ch) && GET_POS(ch) != POS_FLYING)
         char_printf(ch, "Yah, right, and then drown...\n");
-    else if (mount_fall(ch, RIDING(ch)) && number(0, 1) == 0) {
+    else if (mount_fall(ch, RIDING(ch)) && random_number(0, 1) == 0) {
         act("As you begin dismounting, you slip and fall down.", false, ch, 0, RIDING(ch), TO_CHAR);
         act("$n starts to dismount, but slips and falls down.", false, ch, 0, RIDING(ch), TO_ROOM);
         alter_pos(ch, POS_SITTING, STANCE_ALERT);
         improve_skill(ch, SKILL_MOUNT);
-        hurt_char(ch, nullptr, dice(1, 2), true);
+        hurt_char(ch, nullptr, roll_dice(1, 2), true);
     } else {
         act("You dismount $N.", false, ch, 0, RIDING(ch), TO_CHAR);
         act("$n dismounts from you.", false, ch, 0, RIDING(ch), TO_VICT);
@@ -2707,8 +2708,8 @@ ACMD(do_tame) {
         chance_attack = 5 + pow(2 * lvldiff / MOUNT_LEVEL_FUDGE, 3) * 600 / 8;
     }
 
-    if (number(0, 999) >= chance_tame) {
-        if (number(0, 999) < chance_attack) {
+    if (random_number(0, 999) >= chance_tame) {
+        if (random_number(0, 999) < chance_attack) {
             act("Your shocking lack of tact has greatly annoyed $N!", false, ch, 0, vict, TO_CHAR);
             act("$n has really pissed $N off!", false, ch, 0, vict, TO_ROOM);
             if (IS_NPC(vict) && AWAKE(vict))

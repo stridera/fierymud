@@ -1252,14 +1252,14 @@ void oedit_parse(DescriptorData *d, char *arg) {
             if (STATE(d) == CON_IEDIT) {
                 string_to_output(d, "Saving changes to object.\n");
                 iedit_save_changes(d);
-                log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits unique obj {}",
+                log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits unique obj {}",
                     GET_NAME(d->character), OLC_IOBJ(d)->short_description);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
                 STATE(d) = CON_PLAYING;
             } else {
                 char_printf(d->character, "Saving object to memory.\n");
                 oedit_save_internally(d);
-                log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits obj {}",
+                log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits obj {}",
                     GET_NAME(d->character), OLC_NUM(d));
             }
             cleanup_olc(d, CLEANUP_STRUCTS);
@@ -1476,7 +1476,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
         break;
 
     case OEDIT_HIDDENNESS:
-        GET_OBJ_HIDDENNESS(OLC_OBJ(d)) = LIMIT(0, number, 1000);
+        GET_OBJ_HIDDENNESS(OLC_OBJ(d)) = std::clamp(number, 0, 1000);
         break;
 
     case OEDIT_VALUE_1:
@@ -1690,7 +1690,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
             /*need to remove all existing objects of this type too.. */
             /*ok..we use save internally, but we are purging because of the mode */
             oedit_save_internally(d);
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} PURGES object {:d}",
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} PURGES object {:d}",
                 GET_NAME(d->character), OLC_NUM(d));
         /* FALL THROUGH */
         case 'n':

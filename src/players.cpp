@@ -185,7 +185,7 @@ void build_player_index(void) {
                (long *)&player_table[i].last);
         player_table[i].name = strdup(name);
         player_table[i].flags = asciiflag_conv(bits);
-        top_idnum = MAX(top_idnum, player_table[i].id);
+        top_idnum = std::max(top_idnum, player_table[i].id);
     }
 
     fclose(plr_index);
@@ -354,7 +354,7 @@ int load_player(const char *name, CharData *ch) {
             if (!strcasecmp(tag, "ac"))
                 GET_AC(ch) = num;
             else if (!strcasecmp(tag, "alignment"))
-                GET_ALIGNMENT(ch) = LIMIT(-1000, num, 1000);
+                GET_ALIGNMENT(ch) = std::clamp(num, -1000, 1000);
             else if (!strcasecmp(tag, "aliases"))
                 read_aliases_ascii(fl, ch);
             else if (!strcasecmp(tag, "aggression"))
@@ -377,7 +377,7 @@ int load_player(const char *name, CharData *ch) {
             else if (!strcasecmp(tag, "base_weight"))
                 ch->player.base_weight = num;
             else if (!strcasecmp(tag, "base_size"))
-                ch->player.base_size = LIMIT(0, num, NUM_SIZES - 1);
+                ch->player.base_size = std::clamp(num, 0, NUM_SIZES - 1);
             else
                 goto bad_tag;
             break;
@@ -386,7 +386,7 @@ int load_player(const char *name, CharData *ch) {
             if (!strcasecmp(tag, "charisma"))
                 GET_NATURAL_CHA(ch) = num;
             else if (!strcasecmp(tag, "class"))
-                GET_CLASS(ch) = LIMIT(0, num, NUM_CLASSES - 1);
+                GET_CLASS(ch) = std::clamp(num, 0, NUM_CLASSES - 1);
             else if (!strcasecmp(tag, "constitution"))
                 GET_NATURAL_CON(ch) = num;
             else if (!strcasecmp(tag, "cash"))
@@ -409,7 +409,7 @@ int load_player(const char *name, CharData *ch) {
             else if (!strcasecmp(tag, "dexterity"))
                 GET_NATURAL_DEX(ch) = num;
             else if (!strcasecmp(tag, "drunkenness"))
-                GET_COND(ch, DRUNK) = LIMIT(-1, num, 24);
+                GET_COND(ch, DRUNK) = std::clamp(num, -1, 24);
             else if (!strcasecmp(tag, "damroll")) {
                 GET_BASE_DAMROLL(ch) = num;
                 found_damroll = true;
@@ -430,7 +430,7 @@ int load_player(const char *name, CharData *ch) {
 
         case 'F':
             if (!strcasecmp(tag, "freezelevel"))
-                GET_FREEZE_LEV(ch) = LIMIT(0, num, LVL_IMPL);
+                GET_FREEZE_LEV(ch) = std::clamp(num, 0, LVL_IMPL);
             else
                 goto bad_tag;
             break;
@@ -456,7 +456,7 @@ int load_player(const char *name, CharData *ch) {
                     free(GET_HOST(ch));
                 GET_HOST(ch) = strdup(line);
             } else if (!strcasecmp(tag, "hunger"))
-                GET_COND(ch, FULL) = LIMIT(-1, num, 24);
+                GET_COND(ch, FULL) = std::clamp(num, -1, 24);
             else if (!strcasecmp(tag, "home"))
                 GET_HOMEROOM(ch) = num;
             else if (!strcasecmp(tag, "hitroll")) {
@@ -472,14 +472,14 @@ int load_player(const char *name, CharData *ch) {
             else if (!strcasecmp(tag, "intelligence"))
                 GET_NATURAL_INT(ch) = num;
             else if (!strcasecmp(tag, "invislevel"))
-                GET_INVIS_LEV(ch) = LIMIT(0, num, LVL_IMPL);
+                GET_INVIS_LEV(ch) = std::clamp(num, 0, LVL_IMPL);
             else
                 goto bad_tag;
             break;
 
         case 'L':
             if (!strcasecmp(tag, "level"))
-                GET_LEVEL(ch) = LIMIT(0, num, LVL_IMPL);
+                GET_LEVEL(ch) = std::clamp(num, 0, LVL_IMPL);
             else if (!strcasecmp(tag, "lastlevel"))
                 GET_LASTLEVEL(ch) = num;
             else if (!strcasecmp(tag, "lastlogintime"))
@@ -510,7 +510,7 @@ int load_player(const char *name, CharData *ch) {
                 GET_NAME(ch) = strdup(line);
                 GET_NAMELIST(ch) = strdup(line);
             } else if (!strcasecmp(tag, "natural_size"))
-                ch->player.natural_size = LIMIT(0, num, NUM_SIZES - 1);
+                ch->player.natural_size = std::clamp(num, 0, NUM_SIZES - 1);
             else
                 goto bad_tag;
             break;
@@ -531,7 +531,7 @@ int load_player(const char *name, CharData *ch) {
 
         case 'P':
             if (!strcasecmp(tag, "pagelength"))
-                GET_PAGE_LENGTH(ch) = LIMIT(5, num, 250);
+                GET_PAGE_LENGTH(ch) = std::clamp(num, 5, 250);
             else if (!strcasecmp(tag, "password"))
                 strcpy(GET_PASSWD(ch), line);
             else if (!strcasecmp(tag, "playerflags"))
@@ -552,7 +552,7 @@ int load_player(const char *name, CharData *ch) {
 
         case 'R':
             if (!strcasecmp(tag, "race"))
-                GET_RACE(ch) = LIMIT(0, num, NUM_RACES - 1);
+                GET_RACE(ch) = std::clamp(num, 0, NUM_RACES - 1);
             else
                 goto bad_tag;
             break;
@@ -566,10 +566,10 @@ int load_player(const char *name, CharData *ch) {
             } else if (!strcasecmp(tag, "saveroom"))
                 GET_SAVEROOM(ch) = num;
             else if (!strcasecmp(tag, "sex"))
-                GET_SEX(ch) = LIMIT(0, num, NUM_SEXES - 1);
+                GET_SEX(ch) = std::clamp(num, 0, NUM_SEXES - 1);
             /* "size" is a holdover which meant the same thing as "base_size" */
             else if (!strcasecmp(tag, "size"))
-                ch->player.base_size = LIMIT(0, num, NUM_SIZES - 1);
+                ch->player.base_size = std::clamp(num, 0, NUM_SIZES - 1);
             else if (!strcasecmp(tag, "skills"))
                 load_skills(fl, ch);
             else if (!strcasecmp(tag, "strength"))
@@ -587,7 +587,7 @@ int load_player(const char *name, CharData *ch) {
             if (!strcasecmp(tag, "tells"))
                 load_retained_comms(fl, ch, TYPE_RETAINED_TELLS);
             else if (!strcasecmp(tag, "thirst"))
-                GET_COND(ch, THIRST) = LIMIT(-1, num, 24);
+                GET_COND(ch, THIRST) = std::clamp(num, -1, 24);
             else if (!strcasecmp(tag, "title"))
                 add_perm_title(ch, line);
             else if (!strcasecmp(tag, "timeplayed"))
@@ -611,7 +611,7 @@ int load_player(const char *name, CharData *ch) {
             if (!strcasecmp(tag, "weight"))
                 GET_WEIGHT(ch) = num;
             else if (!strcasecmp(tag, "wimpy"))
-                GET_WIMP_LEV(ch) = LIMIT(0, num, LVL_IMPL);
+                GET_WIMP_LEV(ch) = std::clamp(num, 0, LVL_IMPL);
             else if (!strcasecmp(tag, "wisdom"))
                 GET_NATURAL_WIS(ch) = num;
             else if (!strcasecmp(tag, "wiztitle"))
@@ -1311,9 +1311,6 @@ void init_player(CharData *ch) {
     ch->player.time.played = 0;
     ch->player.time.logon = time(0);
 
-    for (i = 0; i < MAX_TONGUE; ++i)
-        GET_TALK(ch, i) = 0;
-
     set_base_size(ch, races[(int)GET_RACE(ch)].def_size);
     GET_MAX_MANA(ch) = 100;
     GET_MANA(ch) = GET_MAX_MANA(ch);
@@ -1422,6 +1419,6 @@ void send_save_description(CharData *ch, CharData *dest, bool entering) {
     if (dest) {
         char_printf(dest, "{}\n", buf);
     } else {
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
+        log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)), buf);
     }
 }

@@ -300,14 +300,14 @@ ACMD(do_track) {
 
     /* Give mobs a break on track skill */
     if (!IS_PC(ch))
-        trackskill = MAX(GET_LEVEL(ch), GET_SKILL(ch, SKILL_TRACK));
+        trackskill = std::max<int>(GET_LEVEL(ch), GET_SKILL(ch, SKILL_TRACK));
     else
         trackskill = GET_SKILL(ch, SKILL_TRACK);
 
     /* Determine the range and speed */
-    track.speed = MAX(3, MIN(20, (int)((101 - trackskill) / 2)));
-    track.sense = MAX(1, (int)(trackskill / 3));
-    track.range = MAX(1, (int)(trackskill / 4));
+    track.speed = std::clamp<int>(((101 - trackskill) / 2), 3, 20);
+    track.sense = std::max<int>(1, (trackskill / 3));
+    track.range = std::max<int>(1, (trackskill / 4));
     if ((GET_CLASS(ch) == CLASS_RANGER) || (GET_CLASS(ch) == CLASS_HUNTER)) {
         track.range = track.range + 8;
         track.sense = track.range + 4;
@@ -411,9 +411,9 @@ ACMD(do_hunt) {
         return;
     }
 
-    track.speed = MAX(3, MIN(20, (int)((101 - GET_SKILL(ch, SKILL_TRACK)) / 2)));
-    track.sense = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK)) / 3));
-    track.range = MAX(1, (int)((GET_SKILL(ch, SKILL_TRACK)) / 3));
+    track.speed = std::clamp((101 - GET_SKILL(ch, SKILL_TRACK)) / 2, 3, 20);
+    track.sense = std::max(1, (int)((GET_SKILL(ch, SKILL_TRACK)) / 3));
+    track.range = std::max(1, (int)((GET_SKILL(ch, SKILL_TRACK)) / 3));
 
     if (IS_NPC(ch) && !POSSESSED(ch) && EVENT_FLAGGED(ch, EVENT_TRACK))
         return;
@@ -644,7 +644,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     }
 
     /* Might lose the trail for stealthy people */
-    if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_HIDDENNESS(victim) > number(0, 500)) {
+    if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_HIDDENNESS(victim) > random_number(0, 500)) {
         char_printf(ch, "You can't seem to find any more tracks.\n");
         return false;
     }

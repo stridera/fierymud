@@ -910,7 +910,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             /*. Save the mob in memory and to disk  . */
             char_printf(d->character, "Saving mobile to memory.\n");
             medit_save_internally(d);
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits mob {:d}",
+            log(LogSeverity::Debug, std::max<int>(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits mob {:d}",
                 GET_NAME(d->character), OLC_NUM(d));
             /* FALL THROUGH */
             cleanup_olc(d, CLEANUP_STRUCTS);
@@ -1162,15 +1162,15 @@ void medit_parse(DescriptorData *d, char *arg) {
         /*. Numerical responses . */
 
     case MEDIT_SEX:
-        GET_SEX(OLC_MOB(d)) = MAX(0, MIN(NUM_SEXES - 1, atoi(arg)));
+        GET_SEX(OLC_MOB(d)) = std::clamp(atoi(arg), 0, NUM_SEXES - 1);
         break;
 
     case MEDIT_SIZE:
-        set_base_size(OLC_MOB(d), MAX(0, MIN(NUM_SIZES - 1, atoi(arg))));
+        set_base_size(OLC_MOB(d), std::clamp(atoi(arg), 0, NUM_SIZES - 1));
         break;
 
     case MEDIT_HITROLL:
-        OLC_MOB(d)->mob_specials.ex_hitroll = MAX(-50, MIN(50, atoi(arg)));
+        OLC_MOB(d)->mob_specials.ex_hitroll = std::clamp(atoi(arg), -50, 50);
         OLC_MOB(d)->points.hitroll =
             get_set_hd(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1);
         OLC_MOB(d)->points.hitroll += OLC_MOB(d)->mob_specials.ex_hitroll;
@@ -1178,7 +1178,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
 
     case MEDIT_DAMROLL:
-        OLC_MOB(d)->mob_specials.ex_damroll = MAX(-50, MIN(50, atoi(arg)));
+        OLC_MOB(d)->mob_specials.ex_damroll = std::clamp(atoi(arg), -50, 50);
         OLC_MOB(d)->points.damroll =
             get_set_hd(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 0);
         OLC_MOB(d)->points.damroll += OLC_MOB(d)->mob_specials.ex_damroll;
@@ -1186,14 +1186,14 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
 
     case MEDIT_NDD:
-        OLC_MOB(d)->mob_specials.ex_damnodice = MAX(-30, MIN(30, atoi(arg)));
+        OLC_MOB(d)->mob_specials.ex_damnodice = std::clamp(atoi(arg), -30, 30);
         OLC_MOB(d)->mob_specials.damnodice =
             get_set_dice(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 0);
         OLC_MOB(d)->mob_specials.damnodice += OLC_MOB(d)->mob_specials.ex_damnodice;
         break;
 
     case MEDIT_SDD:
-        OLC_MOB(d)->mob_specials.ex_damsizedice = MAX(-125, MIN(125, atoi(arg)));
+        OLC_MOB(d)->mob_specials.ex_damsizedice = std::clamp(atoi(arg), -125, 125);
         OLC_MOB(d)->mob_specials.damsizedice =
             get_set_dice(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1);
         OLC_MOB(d)->mob_specials.damsizedice += OLC_MOB(d)->mob_specials.ex_damsizedice;
@@ -1201,13 +1201,13 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
 
     case MEDIT_NUM_HP_DICE:
-        OLC_MOB(d)->mob_specials.ex_hpnumdice = MAX(-30, MIN(30, atoi(arg)));
+        OLC_MOB(d)->mob_specials.ex_hpnumdice = std::clamp(atoi(arg), -30, 30);
         OLC_MOB(d)->points.hit = 20;
         OLC_MOB(d)->points.hit += OLC_MOB(d)->mob_specials.ex_hpnumdice;
         break;
 
     case MEDIT_SIZE_HP_DICE:
-        OLC_MOB(d)->mob_specials.ex_hpsizedice = MAX(MIN_ALIGNMENT, MIN(MAX_ALIGNMENT, atoi(arg)));
+        OLC_MOB(d)->mob_specials.ex_hpsizedice = std::clamp(atoi(arg), MIN_ALIGNMENT, MAX_ALIGNMENT);
         OLC_MOB(d)->points.mana =
             get_set_hit(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 2);
         OLC_MOB(d)->points.mana += OLC_MOB(d)->mob_specials.ex_hpsizedice;
@@ -1215,16 +1215,17 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
 
     case MEDIT_ADD_HP:
-        GET_MOVE(OLC_MOB(d)) = MAX(-30000, MIN(30000, atoi(arg)));
+        GET_MOVE(OLC_MOB(d)) = std::clamp(atoi(arg), -30000, 30000);
         GET_EX_MAIN_HP(OLC_MOB(d)) =
             (get_set_hit(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race, OLC_MOB(d)->player.level, 1));
         break;
 
     case MEDIT_AC:
-        GET_EX_AC(OLC_MOB(d)) = MAX(-100, MIN(100, atoi(arg)));
-        GET_AC(OLC_MOB(d)) = MIN(
-            100, MAX(-100, (get_ac(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num) +
-                            GET_EX_AC(OLC_MOB(d)))));
+        GET_EX_AC(OLC_MOB(d)) = std::clamp(atoi(arg), -100, 100);
+        GET_AC(OLC_MOB(d)) =
+            std::clamp((get_ac(OLC_MOB(d)->player.level, OLC_MOB(d)->player.race, OLC_MOB(d)->player.class_num) +
+                        GET_EX_AC(OLC_MOB(d))),
+                       -100, 100);
         break;
 
     case MEDIT_EXP:
@@ -1245,11 +1246,11 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
 
     case MEDIT_PERCEPTION:
-        GET_PERCEPTION(OLC_MOB(d)) = MAX(0, MIN(atol(arg), 1000));
+        GET_PERCEPTION(OLC_MOB(d)) = std::clamp(atol(arg), 0l, 1000l);
         break;
 
     case MEDIT_HIDDENNESS:
-        GET_HIDDENNESS(OLC_MOB(d)) = MAX(0, MIN(atol(arg), 1000));
+        GET_HIDDENNESS(OLC_MOB(d)) = std::clamp(atol(arg), 0l, 1000l);
         break;
 
     case MEDIT_LIFEFORCE:
@@ -1274,27 +1275,27 @@ void medit_parse(DescriptorData *d, char *arg) {
         break;
 
     case MEDIT_STANCE:
-        GET_STANCE(OLC_MOB(d)) = MAX(0, MIN(NUM_STANCES - 1, atoi(arg)));
+        GET_STANCE(OLC_MOB(d)) = std::clamp(atoi(arg), 0, NUM_STANCES - 1);
         break;
 
     case MEDIT_POS:
-        GET_POS(OLC_MOB(d)) = MAX(0, MIN(NUM_POSITIONS - 1, atoi(arg)));
+        GET_POS(OLC_MOB(d)) = std::clamp(atoi(arg), 0, NUM_POSITIONS - 1);
         break;
 
     case MEDIT_DEFAULT_POS:
-        GET_DEFAULT_POS(OLC_MOB(d)) = MAX(0, MIN(NUM_POSITIONS - 1, atoi(arg)));
+        GET_DEFAULT_POS(OLC_MOB(d)) = std::clamp(atoi(arg), 0, NUM_POSITIONS - 1);
         break;
 
     case MEDIT_ATTACK:
-        GET_ATTACK(OLC_MOB(d)) = MAX(0, MIN(NUM_ATTACK_TYPES - 1, atoi(arg)));
+        GET_ATTACK(OLC_MOB(d)) = std::clamp(atoi(arg), 0, NUM_ATTACK_TYPES - 1);
         break;
 
     case MEDIT_LEVEL:
-        GET_LEVEL(OLC_MOB(d)) = MAX(1, MIN(100, atoi(arg)));
+        GET_LEVEL(OLC_MOB(d)) = std::clamp(atoi(arg), 1, 100);
         /* generate autolevel values for mob */
         break;
     case MEDIT_ALIGNMENT:
-        GET_ALIGNMENT(OLC_MOB(d)) = MAX(-1000, MIN(1000, atoi(arg)));
+        GET_ALIGNMENT(OLC_MOB(d)) = std::clamp(atoi(arg), -1000, 1000);
         break;
     case MEDIT_CLASS:
         if (atoi(arg) < 0 || atoi(arg) >= NUM_CLASSES) {
@@ -1325,7 +1326,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             /*need to remove all existing mobs of this type too.. */
             /*ok..we use save internally, but we are purging because of the mode */
             medit_save_internally(d);
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} PURGES mob {:d}",
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} PURGES mob {:d}",
                 GET_NAME(d->character), OLC_NUM(d));
         /* FALL THROUGH */
         case 'n':

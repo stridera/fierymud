@@ -636,9 +636,9 @@ void do_stat_character(CharData *ch, CharData *k) {
 
         resp += fmt::format(
             "Created: [{}], Last Logon: [{}], Played: [{}h {}m]\n"
-            "Age: [{}], Homeroom: [{}], Speaks: [{}/{}/{}]",
+            "Age: [{}], Homeroom: [{}]",
             buf1, buf2, k->player.time.played / 3600, ((k->player.time.played / 3600) % 60), age(k).year,
-            GET_HOMEROOM(k), GET_TALK(k, 0), GET_TALK(k, 1), GET_TALK(k, 2));
+            GET_HOMEROOM(k));
 
         if (GET_CLAN(k)) {
             resp += fmt::format(", Clan: [{}], Rank: [{}]", GET_CLAN(k)->abbreviation, GET_CLAN_RANK(k));

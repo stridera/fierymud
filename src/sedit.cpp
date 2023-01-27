@@ -810,7 +810,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
         case 'Y':
             char_printf(d->character, "Saving shop to memory.\n");
             sedit_save_internally(d);
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits shop {:d}",
+            log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits shop {:d}",
                 GET_NAME(d->character), OLC_NUM(d));
             cleanup_olc(d, CLEANUP_STRUCTS);
             return;
@@ -1044,16 +1044,16 @@ void sedit_parse(DescriptorData *d, char *arg) {
         mob_index[i].func = shop_keeper;
         break;
     case SEDIT_OPEN1:
-        S_OPEN1(OLC_SHOP(d)) = MAX(0, MIN(28, atoi(arg)));
+        S_OPEN1(OLC_SHOP(d)) = std::clamp(atoi(arg), 0, 28);
         break;
     case SEDIT_OPEN2:
-        S_OPEN2(OLC_SHOP(d)) = MAX(0, MIN(28, atoi(arg)));
+        S_OPEN2(OLC_SHOP(d)) = std::clamp(atoi(arg), 0, 28);
         break;
     case SEDIT_CLOSE1:
-        S_CLOSE1(OLC_SHOP(d)) = MAX(0, MIN(28, atoi(arg)));
+        S_CLOSE1(OLC_SHOP(d)) = std::clamp(atoi(arg), 0, 28);
         break;
     case SEDIT_CLOSE2:
-        S_CLOSE2(OLC_SHOP(d)) = MAX(0, MIN(28, atoi(arg)));
+        S_CLOSE2(OLC_SHOP(d)) = std::clamp(atoi(arg), 0, 28);
         break;
     case SEDIT_BUY_PROFIT:
         sscanf(arg, "%f", &S_BUYPROFIT(OLC_SHOP(d)));
@@ -1062,7 +1062,7 @@ void sedit_parse(DescriptorData *d, char *arg) {
         sscanf(arg, "%f", &S_SELLPROFIT(OLC_SHOP(d)));
         break;
     case SEDIT_TYPE_MENU:
-        OLC_VAL(d) = MAX(0, MIN(NUM_ITEM_TYPES - 1, atoi(arg)));
+        OLC_VAL(d) = std::clamp(atoi(arg), 0, NUM_ITEM_TYPES - 1);
         char_printf(d->character, "Enter namelist (return for none) :]\n");
         OLC_MODE(d) = SEDIT_NAMELIST;
         return;
@@ -1113,14 +1113,14 @@ void sedit_parse(DescriptorData *d, char *arg) {
         sedit_rooms_menu(d);
         return;
     case SEDIT_SHOP_FLAGS:
-        if ((i = MAX(0, MIN(NUM_SHOP_FLAGS, atoi(arg)))) > 0) {
+        if ((i = std::clamp(atoi(arg), 0, NUM_SHOP_FLAGS)) > 0) {
             TOGGLE_BIT(S_BITVECTOR(OLC_SHOP(d)), 1 << (i - 1));
             sedit_shop_flags_menu(d);
             return;
         }
         break;
     case SEDIT_NOTRADE:
-        if ((i = MAX(0, MIN(NUM_TRADERS, atoi(arg)))) > 0) {
+        if ((i = std::clamp(atoi(arg), 0, NUM_TRADERS)) > 0) {
             TOGGLE_BIT(S_NOTRADE(OLC_SHOP(d)), 1 << (i - 1));
             sedit_no_trade_menu(d);
             return;

@@ -497,7 +497,7 @@ static void read_player_grant_list(FILE *fl, GrantType **list, int (*cmd_lookup)
                 if (ptr) {
                     *(ptr++) = '\0';
                     grant->grantor = strdup(grant->grantor);
-                    grant->level = LIMIT(0, atoi(ptr), LVL_IMPL);
+                    grant->level = std::clamp(atoi(ptr), 0, LVL_IMPL);
                 } else
                     line_fail = 3;
             } else

@@ -90,7 +90,7 @@ static void load_clan_member(Clan *clan, const char *line) {
     member->player = nullptr;
 
     line = fetch_word(line, name, sizeof(name));
-    member->rank = MAX(1, atoi(name));
+    member->rank = std::max(1, atoi(name));
 
     line = fetch_word(line, name, sizeof(name));
     member->since = atoi(name);
@@ -246,7 +246,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
                         string = fetch_word(string, buf1, sizeof(buf1));
                         for (i = 0; i < NUM_CLAN_PRIVS; ++i)
                             if (!strcasecmp(clan_privileges[i].abbr, buf1)) {
-                                clan->rank_count = MAX(clan->rank_count, num);
+                                clan->rank_count = std::max<size_t>(clan->rank_count, num);
                                 SET_FLAG(clan->ranks[num - 1].privileges, i);
                                 break;
                             }
@@ -273,7 +273,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
                     if (clan->ranks[num - 1].title)
                         log("SYSERR: load_clan: attempt to load duplicate clan title for rank {:d}", num);
                     else {
-                        clan->rank_count = MAX(clan->rank_count, num);
+                        clan->rank_count = std::max<size_t>(clan->rank_count, num);
                         clan->ranks[num - 1].title = strdup(string);
                     }
                 }
@@ -681,7 +681,7 @@ Clan *alloc_clan() {
     unsigned int number = 0;
 
     for (iter = clans_start(); iter != clans_end(); ++iter)
-        number = MAX(number, (*iter)->number);
+        number = std::max(number, (*iter)->number);
 
     ++num_of_clans;
     RECREATE(clans, Clan *, num_of_clans);

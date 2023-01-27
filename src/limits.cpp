@@ -47,7 +47,7 @@ int mana_gain(CharData *ch) {
         /* Neat and fast */
         gain = GET_LEVEL(ch);
     } else {
-        gain = MIN(ch->char_specials.managain, 100);
+        gain = std::min(ch->char_specials.managain, 100);
 
         /* Position calculations    */
         switch (GET_STANCE(ch)) {
@@ -86,7 +86,7 @@ int hit_gain(CharData *ch)
         gain = GET_MAX_HIT(ch) * .05;
 
         /* Max hitgain stat on a char is 100 */
-        gain = gain + MIN(ch->char_specials.hitgain, 100) + 2;
+        gain = gain + std::min(ch->char_specials.hitgain, 100) + 2;
 
         if (GET_RACE(ch) == RACE_TROLL)
             gain += gain * 2;
@@ -203,10 +203,8 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
             return;
     }
 
-    if (!IS_SET(mode, GAIN_IGNORE_CHUNK_LIMITS)) {
-        gain = MIN(max_exp_gain(ch), gain);
-        gain = MAX(-exp_death_loss(ch, GET_LEVEL(ch)), gain);
-    }
+    if (!IS_SET(mode, GAIN_IGNORE_CHUNK_LIMITS))
+        gain = std::clamp(gain, -exp_death_loss(ch, GET_LEVEL(ch)), max_exp_gain(ch));
 
     /* NPCs don't worry about gaining levels, so we can get out */
     if (IS_NPC(ch)) {
@@ -290,12 +288,12 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
         if (num_levels == 1) {
             char_printf(ch, AHWHT "You gain a level!\n" ANRM);
             all_except_printf(ch, "{} advanced to level {:d}!\n", GET_NAME(ch), GET_LEVEL(ch));
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} advanced to level {:d}", GET_NAME(ch),
+            log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} advanced to level {:d}", GET_NAME(ch),
                 GET_LEVEL(ch));
         } else if (num_levels > 1) {
             char_printf(ch, AHWHT "You gain {:d} levels to {:d}!\n" ANRM, num_levels, GET_LEVEL(ch));
             all_except_printf(ch, "{} advances {:d} levels to level {:d}!\n", GET_NAME(ch), num_levels, GET_LEVEL(ch));
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} advanced to level {:d} (from {:d})",
+            log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} advanced to level {:d} (from {:d})",
                 GET_NAME(ch), GET_LEVEL(ch), GET_LEVEL(ch) - num_levels);
         }
     } else if (gain < 0) {
@@ -311,15 +309,16 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
         if (num_levels == 1) {
             char_printf(ch, AHWHT "You lose a level!\n" ANRM);
             all_except_printf(ch, "{} lost level {:d}!\n", GET_NAME(ch), GET_LEVEL(ch) + 1);
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} lost level {:d}", GET_NAME(ch),
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} lost level {:d}", GET_NAME(ch),
                 GET_LEVEL(ch) + 1);
         } else if (num_levels > 1) {
             char_printf(ch, AHWHT "You lose {:d} levels from {:d} to {:d}!\n" ANRM, num_levels,
                         GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
             all_except_printf(ch, "{} lost {:d} levels from {:d} to {:d}!\n", GET_NAME(ch), num_levels,
                               GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} lost {:d} levels from {:d} to {:d}",
-                GET_NAME(ch), num_levels, GET_LEVEL(ch) + num_levels, GET_LEVEL(ch));
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)),
+                "{} lost {:d} levels from {:d} to {:d}", GET_NAME(ch), num_levels, GET_LEVEL(ch) + num_levels,
+                GET_LEVEL(ch));
         }
     }
 }
@@ -343,8 +342,7 @@ void gain_condition(CharData *ch, int condition, int value) {
     if ((condition != DRUNK) && (value > 0) && (GET_COND(ch, condition) == value))
         check_regen_rates(ch);
 
-    GET_COND(ch, condition) = MAX(0, GET_COND(ch, condition));
-    GET_COND(ch, condition) = MIN(24, GET_COND(ch, condition));
+    GET_COND(ch, condition) = std::clamp<sbyte>(GET_COND(ch, condition), 0, 24);
 
     if (PLR_FLAGGED(ch, PLR_WRITING))
         return;

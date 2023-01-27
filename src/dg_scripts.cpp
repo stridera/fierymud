@@ -765,7 +765,7 @@ int get_random_room_in_zone(int znum) {
     --high;
 
     do {
-        to_room = number(low, high);
+        to_room = random_number(low, high);
     } while (ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH) ||
              ROOM_FLAGGED(to_room, ROOM_GODROOM));
 
@@ -963,7 +963,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             /* Locate a random room globally */
             else if (!strcasecmp(field, "room")) {
                 do {
-                    num = number(0, top_of_world);
+                    num = random_number(0, top_of_world);
                 } while (ROOM_FLAGGED(num, ROOM_PRIVATE) || ROOM_FLAGGED(num, ROOM_DEATH) ||
                          ROOM_FLAGGED(num, ROOM_GODROOM));
                 sprintf(str, "%d", world[num].vnum);
@@ -987,7 +987,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
             /* Generate a random number */
             else
-                sprintf(str, "%d", ((num = atoi(field)) > 0) ? number(1, num) : 0);
+                sprintf(str, "%d", ((num = atoi(field)) > 0) ? random_number(1, num) : 0);
         }
 
         /* Static functions */

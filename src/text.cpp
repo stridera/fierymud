@@ -223,7 +223,7 @@ void format_text(char **ptr_string, int mode, DescriptorData *d, int maxlen) {
 
     if ((int)(strlen(formatted)) > maxlen)
         formatted[maxlen] = '\0';
-    RECREATE(*ptr_string, char, MIN(maxlen + 1, strlen(formatted) + 3));
+    RECREATE(*ptr_string, char, std::min<int>(maxlen + 1, strlen(formatted) + 3));
     strcpy(*ptr_string, formatted);
 }
 
@@ -412,7 +412,7 @@ const char *word_pluralize(const char *s) {
 
     len = strlen(s);
     /* We will need to add up to 2 characters on the end */
-    newlen = MIN(MAX_STRING_LENGTH - 3, len);
+    newlen = std::min(MAX_STRING_LENGTH - 3, len);
     strncpy(u, without_article(s), newlen);
     u[newlen] = '\0';
     len = strlen(u);
@@ -490,7 +490,7 @@ const char *pluralize(const char *s) {
 
     /* Finally just apply common rules */
     word = word_pluralize(s);
-    newlen = MIN(MAX_STRING_LENGTH - 1, strlen(word));
+    newlen = std::min<int>(MAX_STRING_LENGTH - 1, strlen(word));
     strncpy(u, word, newlen);
     u[newlen] = '\0';
     megabuf_used(newlen);
@@ -513,7 +513,8 @@ int levenshtein_distance(const char *s1, const char *s2) {
 
     for (i = 1; i <= s1_len; ++i)
         for (j = 1; j <= s2_len; ++j)
-            d[i][j] = MIN(d[i - 1][j] + 1, MIN(d[i][j - 1] + 1, d[i - 1][j - 1] + ((s1[i - 1] == s2[j - 1]) ? 0 : 1)));
+            d[i][j] = std::min(d[i - 1][j] + 1,
+                               std::min(d[i][j - 1] + 1, d[i - 1][j - 1] + ((s1[i - 1] == s2[j - 1]) ? 0 : 1)));
 
     i = d[s1_len][s2_len];
 

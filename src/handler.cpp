@@ -231,7 +231,7 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
         GET_PERCEPTION(ch) += mod;
         break;
     case APPLY_HIDDENNESS:
-        GET_HIDDENNESS(ch) = LIMIT(0, GET_HIDDENNESS(ch) + mod, 1000);
+        GET_HIDDENNESS(ch) = std::clamp(GET_HIDDENNESS(ch) + mod, 0l, 1000l);
         break;
     case APPLY_COMPOSITION:
         if (mod >= 0)
@@ -307,7 +307,7 @@ void effect_total(CharData *ch) {
 
         /* Now that we know current dex, add static AC and then cap */
         GET_AC(ch) -= static_ac(GET_DEX(ch));
-        GET_AC(ch) = LIMIT(MIN_AC, GET_AC(ch), MAX_AC);
+        GET_AC(ch) = std::clamp(GET_AC(ch), MIN_AC, MAX_AC);
 
         /* Calculate HP bonus */
         GET_MAX_HIT(ch) += con_aff(ch);
@@ -316,18 +316,18 @@ void effect_total(CharData *ch) {
         alter_hit(ch, old_hp - GET_MAX_HIT(ch), true);
 
         /* Cap perception stat */
-        GET_PERCEPTION(ch) = MAX(0, MIN(GET_PERCEPTION(ch), 1000));
+        GET_PERCEPTION(ch) = std::clamp(GET_PERCEPTION(ch), 0l, 1000l);
 
         /* Cap damroll/hitroll stats */
-        GET_DAMROLL(ch) = LIMIT(MIN_DAMROLL, GET_DAMROLL(ch), MAX_DAMROLL);
-        GET_HITROLL(ch) = LIMIT(MIN_HITROLL, GET_HITROLL(ch), MAX_HITROLL);
+        GET_DAMROLL(ch) = std::clamp(GET_DAMROLL(ch), MIN_DAMROLL, MAX_DAMROLL);
+        GET_HITROLL(ch) = std::clamp(GET_HITROLL(ch), MIN_HITROLL, MAX_HITROLL);
     } else {
-        GET_DEX(ch) = LIMIT(MIN_ABILITY_VALUE, GET_DEX(ch), MAX_ABILITY_VALUE);
-        GET_INT(ch) = LIMIT(MIN_ABILITY_VALUE, GET_INT(ch), MAX_ABILITY_VALUE);
-        GET_WIS(ch) = LIMIT(MIN_ABILITY_VALUE, GET_WIS(ch), MAX_ABILITY_VALUE);
-        GET_CON(ch) = LIMIT(MIN_ABILITY_VALUE, GET_CON(ch), MAX_ABILITY_VALUE);
-        GET_STR(ch) = LIMIT(MIN_ABILITY_VALUE, GET_STR(ch), MAX_ABILITY_VALUE);
-        GET_CHA(ch) = LIMIT(MIN_ABILITY_VALUE, GET_CHA(ch), MAX_ABILITY_VALUE);
+        GET_DEX(ch) = std::clamp(GET_DEX(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_INT(ch) = std::clamp(GET_INT(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_WIS(ch) = std::clamp(GET_WIS(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_CON(ch) = std::clamp(GET_CON(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_STR(ch) = std::clamp(GET_STR(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_CHA(ch) = std::clamp(GET_CHA(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
     }
 
     check_regen_rates(ch); /* update regen rates (for age) */
@@ -593,7 +593,7 @@ void char_to_room(CharData *ch, int room) {
         /* Quick aggro for players */
         else if (!ALONE(ch) && !IS_NPC(ch) && !PRF_FLAGGED(ch, PRF_NOHASSLE)) {
             CharData *tch = find_aggr_target(ch);
-            if (tch && number(0, 5))
+            if (tch && random_number(0, 5))
                 event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, tch, 0), true, &(ch->events), 0);
         }
     }

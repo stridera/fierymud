@@ -186,7 +186,7 @@ void init_weather() {
         zone_table[i].temperature = climates[climate].base_temperature;
         zone_table[i].precipitation = climates[climate].base_precipitation_rate;
         zone_table[i].wind_speed = climates[climate].base_wind_speed;
-        zone_table[i].wind_dir = number(0, 3); /* Cardinal directions */
+        zone_table[i].wind_dir = random_number(0, 3); /* Cardinal directions */
         zone_table[i].disaster_type = DISASTER_NONE;
         zone_table[i].disaster_duration = 0;
 
@@ -210,9 +210,9 @@ void init_weather() {
         }
 
         /* Check values for correctness. */
-        zone_table[i].temperature = LIMIT(TEMP_FREEZING, zone_table[i].temperature, TEMP_FIRE_PLANE);
-        zone_table[i].precipitation = LIMIT(PRECIP_NONE, zone_table[i].precipitation, PRECIP_DANGEROUS);
-        zone_table[i].wind_speed = LIMIT(WIND_NONE, zone_table[i].wind_speed, WIND_HURRICANE);
+        zone_table[i].temperature = std::clamp(zone_table[i].temperature, TEMP_FREEZING, TEMP_FIRE_PLANE);
+        zone_table[i].precipitation = std::clamp(zone_table[i].precipitation, PRECIP_NONE, PRECIP_DANGEROUS);
+        zone_table[i].wind_speed = std::clamp(zone_table[i].wind_speed, WIND_NONE, WIND_HURRICANE);
     }
 }
 
@@ -240,7 +240,7 @@ void update_wind(int zone_rnum) {
     original = zone->wind_speed;
 
     /* Do we increment or decrement the wind? */
-    switch (number(0, 4)) {
+    switch (random_number(0, 4)) {
     case 0:
     case 1:
         break;
@@ -256,7 +256,7 @@ void update_wind(int zone_rnum) {
     /* see if the wind dir changes, the following dirs are in no
      * specific order, just create a random sampling.
      */
-    change = number(0, 9);
+    change = random_number(0, 9);
     if (change <= 3) /* 0 through 3 are cardinal directions */
         zone->wind_dir = change;
 
@@ -297,9 +297,9 @@ void update_temperature(int zone_rnum) {
     int change;
     struct ZoneData *zone = &zone_table[zone_rnum];
 
-    change = number(0, 5);
+    change = random_number(0, 5);
 
-    if (number(0, 2))
+    if (random_number(0, 2))
         switch (zone->wind_speed) {
         case WIND_NONE:
             zone->temperature += change * 2;
@@ -319,24 +319,24 @@ void update_temperature(int zone_rnum) {
     /* Adjust for the sun... */
     switch (hemispheres[zone->hemisphere].sunlight) {
     case SUN_DARK:
-        zone->temperature -= number(1, 5);
+        zone->temperature -= random_number(1, 5);
         break;
     case SUN_RISE:
-        zone->temperature += number(1, 2);
+        zone->temperature += random_number(1, 2);
         break;
     case SUN_LIGHT:
-        zone->temperature += number(1, 5);
+        zone->temperature += random_number(1, 5);
         break;
     case SUN_SET:
-        zone->temperature -= number(1, 2);
+        zone->temperature -= random_number(1, 2);
         break;
     }
 
     /* Keep temperature in a sane range. */
     if (zone->temperature > BASE_TEMP(zone) + 30)
-        zone->temperature = BASE_TEMP(zone) + 30 + number(1, 5);
+        zone->temperature = BASE_TEMP(zone) + 30 + random_number(1, 5);
     else if (zone->temperature < BASE_TEMP(zone) - 30)
-        zone->temperature = BASE_TEMP(zone) - 30 - number(1, 5);
+        zone->temperature = BASE_TEMP(zone) - 30 - random_number(1, 5);
 
     /* Make sure temp falls in valid range */
     if (zone->temperature > TEMP_FIRE_PLANE)
@@ -408,7 +408,7 @@ void update_precipitation(int zone_rnum) {
     original = zone->precipitation;
 
     /* maintain our bias from wind_speed */
-    change = number(0, 6) - zone->wind_speed;
+    change = random_number(0, 6) - zone->wind_speed;
     switch (change) {
     case 0:
     case 1:

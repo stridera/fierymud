@@ -316,7 +316,7 @@ ACMD(do_quit) {
 
     act("$n has left the game.", true, ch, 0, 0, TO_ROOM);
 
-    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has quit the game.", GET_NAME(ch));
+    log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has quit the game.", GET_NAME(ch));
     char_printf(ch, "Goodbye, friend.  Come back soon!\n");
 
     /* transfer objects to room */
@@ -493,7 +493,7 @@ ACMD(do_shapechange) {
 
             if (GET_LEVEL(player) < LVL_IMMORT) {
                 i = GET_COOLDOWN(player, CD_SHAPECHANGE) / (1 MUD_HR);
-                SET_COOLDOWN(player, CD_SHAPECHANGE, MAX(1, MIN(i, 5)) MUD_HR);
+                SET_COOLDOWN(player, CD_SHAPECHANGE, std::clamp(i, 1, 5) MUD_HR);
             }
 
             player->desc = ch->desc;
@@ -612,7 +612,7 @@ ACMD(do_shapechange) {
         /* This is where the dice roll occurs.  It's some complicated
          * alignment and level calculation.  I dunno. */
         if (GET_LEVEL(ch) < LVL_GOD && index >= 0 &&
-            creatures[i].midlevel - 5 + number(0, abs(GET_ALIGNMENT(ch))) > GET_LEVEL(ch))
+            creatures[i].midlevel - 5 + random_number(0, abs(GET_ALIGNMENT(ch))) > GET_LEVEL(ch))
             continue;
         /* Skip creatures of the wrong class. */
         if (class_num && !IS_SET(creatures[i].type, class_num))
@@ -658,8 +658,8 @@ ACMD(do_shapechange) {
     GET_PROMPT(mob) = strdup(GET_PROMPT(ch));
 
     /* Set up level based on player level and alignment. */
-    GET_LEVEL(mob) = creatures[index].midlevel + MAX(MAX(-5, MIN(5, GET_LEVEL(ch) - creatures[index].midlevel)),
-                                                     ((350 - abs(GET_ALIGNMENT(ch))) * 5) / 350);
+    GET_LEVEL(mob) = creatures[index].midlevel + std::max(std::clamp(GET_LEVEL(ch) - creatures[index].midlevel, -5, 5),
+                                                          ((350 - abs(GET_ALIGNMENT(ch))) * 5) / 350);
 
     /* Set up mob's skills. First, turn off default mob skills that animals
      * shouldn't have.  Yes, it's a shame, since the mob classes set on
@@ -674,8 +674,8 @@ ACMD(do_shapechange) {
             SET_SKILL(mob, creatures[index].skills[i], roll_skill(mob, creatures[index].skills[i]));
 
     /* Scale hp/mv based on player's current/max ratios. */
-    GET_MAX_HIT(mob) = number(creatures[index].minhp, creatures[index].maxhp);
-    GET_MAX_MOVE(mob) = number(creatures[index].minmv, creatures[index].maxmv);
+    GET_MAX_HIT(mob) = random_number(creatures[index].minhp, creatures[index].maxhp);
+    GET_MAX_MOVE(mob) = random_number(creatures[index].minmv, creatures[index].maxmv);
     if (GET_MAX_HIT(ch) == 0)
         GET_HIT(mob) = GET_MAX_HIT(mob);
     else
@@ -746,8 +746,8 @@ ACMD(do_save) {
         if (!strcasecmp(arg, "all")) {
             auto_save_all();
             char_printf(ch, "You have saved all players in the realm.\n");
-            log(LogSeverity::Stat, MAX(GET_LEVEL(ch), GET_INVIS_LEV(ch)), "(GC) {} has saved all players in the realm.",
-                GET_NAME(ch));
+            log(LogSeverity::Stat, std::max<int>(GET_LEVEL(ch), GET_INVIS_LEV(ch)),
+                "(GC) {} has saved all players in the realm.", GET_NAME(ch));
             return;
         } else if (*arg)
             /*  try to locate this player within the realm */
@@ -933,7 +933,7 @@ EVENTFUNC(camp_event) {
     if (!GET_INVIS_LEV(ch))
         act("$n rolls up $s bedroll and tunes out the world.", true, ch, 0, 0, TO_ROOM);
 
-    log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has camped in {} ({:d}).", GET_NAME(ch),
+    log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has camped in {} ({:d}).", GET_NAME(ch),
         world[ch->in_room].name, world[ch->in_room].vnum);
 
     REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
@@ -953,8 +953,8 @@ ACMD(do_unbind) {
             char_printf(ch, "You are free as a bird!\n");
             return;
         }
-        prob = number(1, 70);
-        percent = number(20, 101);
+        prob = random_number(1, 70);
+        percent = random_number(20, 101);
         if (prob > percent) {
             char_printf(ch, "You break free from your binds!\n");
             act("$n breaks free from his binds", false, ch, 0, 0, TO_ROOM);
@@ -970,8 +970,8 @@ ACMD(do_unbind) {
             return;
         }
         if (vict == ch) {
-            prob = number(20, 70);
-            percent = number(1, 101);
+            prob = random_number(20, 70);
+            percent = random_number(1, 101);
             if (prob > percent) {
                 char_printf(ch, "You break free from your binds!\n");
                 act("$n breaks free from his binds", false, ch, 0, 0, TO_ROOM);
@@ -1043,10 +1043,10 @@ ACMD(do_bind) {
                 return;
             }
         } else {
-            prob = number(1, 50);
+            prob = random_number(1, 50);
             prob += GET_SKILL(ch, SKILL_BIND);
             prob += GET_LEVEL(ch);
-            percent = number(50, 200);
+            percent = random_number(50, 200);
             percent += dex_app[GET_DEX(vict)].defensive;
             percent += GET_LEVEL(vict);
 
@@ -1109,9 +1109,9 @@ ACMD(do_hide) {
     skill = GET_SKILL(ch, SKILL_HIDE);
     lower_bound = -0.0008 * pow(skill, 3) + 0.1668 * pow(skill, 2) - 3.225 * skill;
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
-    GET_HIDDENNESS(ch) = number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
+    GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
 
-    GET_HIDDENNESS(ch) = MAX(GET_HIDDENNESS(ch), 0);
+    GET_HIDDENNESS(ch) = std::max(GET_HIDDENNESS(ch), 0l);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
 
@@ -1119,7 +1119,7 @@ ACMD(do_hide) {
 
     REMOVE_FLAG(EFF_FLAGS(ch), EFF_STEALTH);
     if (GET_SKILL(ch, SKILL_STEALTH)) {
-        if (GET_HIDDENNESS(ch) && GET_SKILL(ch, SKILL_STEALTH) > number(0, 101))
+        if (GET_HIDDENNESS(ch) && GET_SKILL(ch, SKILL_STEALTH) > random_number(0, 101))
             SET_FLAG(EFF_FLAGS(ch), EFF_STEALTH);
         improve_skill(ch, SKILL_STEALTH);
     }
@@ -1172,7 +1172,7 @@ ACMD(do_steal) {
     }
 
     /* 101% is a complete failure */
-    percent = number(1, 101) - dex_app_skill[GET_DEX(ch)].p_pocket;
+    percent = random_number(1, 101) - dex_app_skill[GET_DEX(ch)].p_pocket;
     if (!CAN_SEE(vict, ch))
         percent -= dex_app_skill[GET_DEX(ch)].p_pocket;
 
@@ -1256,10 +1256,10 @@ ACMD(do_steal) {
             improve_skill(ch, SKILL_STEAL);
         } else {
             /* Successful theft of coins */
-            coins[PLATINUM] = (GET_PLATINUM(vict) * number(1, 10)) / 100;
-            coins[GOLD] = (GET_GOLD(vict) * number(1, 10)) / 100;
-            coins[SILVER] = (GET_SILVER(vict) * number(1, 10)) / 100;
-            coins[COPPER] = (GET_COPPER(vict) * number(1, 10)) / 100;
+            coins[PLATINUM] = (GET_PLATINUM(vict) * random_number(1, 10)) / 100;
+            coins[GOLD] = (GET_GOLD(vict) * random_number(1, 10)) / 100;
+            coins[SILVER] = (GET_SILVER(vict) * random_number(1, 10)) / 100;
+            coins[COPPER] = (GET_COPPER(vict) * random_number(1, 10)) / 100;
 
             if (CASH_VALUE(coins) > 0) {
                 GET_COPPER(ch) += coins[COPPER];
@@ -1476,7 +1476,7 @@ ACMD(do_douse) {
 
     /* No water, trying to douse yourself */
     else if (ch == vict) {
-        if (GET_SKILL(ch, SKILL_DOUSE) < number(0, 100)) {
+        if (GET_SKILL(ch, SKILL_DOUSE) < random_number(0, 100)) {
             act("$n&0 frantically rolls around on the ground, attempting to douse "
                 "the flames consuming $s body.",
                 true, ch, 0, 0, TO_ROOM);
@@ -1490,7 +1490,7 @@ ACMD(do_douse) {
     }
 
     /* No water, trying to douse someone else */
-    else if (GET_SKILL(ch, SKILL_DOUSE) - 40 < number(0, 100)) {
+    else if (GET_SKILL(ch, SKILL_DOUSE) - 40 < random_number(0, 100)) {
         act("You frantically try to brush the flames from $N&0.", false, ch, 0, vict, TO_CHAR);
         act("$n&0 aids you, attempting to douse your flames.", false, ch, 0, vict, TO_VICT);
         act("$n&0 frantically attempts to brush the flames off $N&0.", false, ch, 0, vict, TO_NOTVICT);
@@ -1587,10 +1587,10 @@ ACMD(do_bandage) {
         return;
     }
 
-    if (GET_SKILL(ch, SKILL_BANDAGE) > number(1, 80)) {
+    if (GET_SKILL(ch, SKILL_BANDAGE) > random_number(1, 80)) {
         act("&0You bandage $N.&0", false, ch, 0, victim, TO_CHAR);
         act("$n&0 bandages $N's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
-        hurt_char(victim, nullptr, MAX(-3, GET_SKILL(ch, SKILL_BANDAGE) / -10), true);
+        hurt_char(victim, nullptr, std::max(-3, GET_SKILL(ch, SKILL_BANDAGE) / -10), true);
     } else {
         act("You fail to bandage $N properly.", false, ch, 0, victim, TO_CHAR);
         act("$n fails an attempt to bandage $N's wounds.&0", false, ch, 0, victim, TO_NOTVICT);
@@ -1851,7 +1851,7 @@ void split_coins(CharData *ch, int coins[], unsigned int mode) {
         share[i] = coins[i] / count;
         coins[i] -= share[i] * count;
         /* coins[i] now contains the remainder...but who gets it? */
-        remainder_start[i] = number(0, count - 1);
+        remainder_start[i] = random_number(0, count - 1);
     }
 
     /*
@@ -2312,10 +2312,10 @@ void summon_mount(CharData *ch, int mob_vnum, int base_hp, int base_mv) {
 
     GET_LEVEL(mount) = 5;
     if (ideal_mountlevel(ch) < GET_LEVEL(mount))
-        GET_LEVEL(mount) = MAX(0, ideal_mountlevel(ch));
-    GET_MAX_HIT(mount) = MAX(10, base_hp + number(50, 100));
+        GET_LEVEL(mount) = std::max(0, ideal_mountlevel(ch));
+    GET_MAX_HIT(mount) = std::max(10, base_hp + random_number(50, 100));
     GET_HIT(mount) = GET_MAX_HIT(mount);
-    GET_MAX_MOVE(mount) = MAX(10, base_mv + number(0, 50));
+    GET_MAX_MOVE(mount) = std::max(10, base_mv + random_number(0, 50));
     GET_MOVE(mount) = GET_MAX_MOVE(mount);
 }
 
@@ -2407,13 +2407,13 @@ ACMD(do_layhand) {
 
         /* Paladins heal all players, and good/neutral mobs, except undead. */
         if (IS_PC(vict) || (!IS_EVIL(vict) && GET_LIFEFORCE(vict) != LIFE_UNDEAD))
-            dam = -1.5 * dam + number(0, 50);
+            dam = -1.5 * dam + random_number(0, 50);
 
         /* Paladins harm all evil mobs and undead, regardless of alignment. */
         else if (GET_LIFEFORCE(vict) == LIFE_UNDEAD)
-            dam = 1.5 * dam + number(50, 150);
+            dam = 1.5 * dam + random_number(50, 150);
         else
-            dam = 1.2 * dam + number(1, 50);
+            dam = 1.2 * dam + random_number(1, 50);
     } else { /* Anti-paladin */
         if (!IS_EVIL(ch)) {
             char_printf(ch, "For your benevolent ways, your god has forsaken you!\n");
@@ -2422,7 +2422,7 @@ ACMD(do_layhand) {
 
         /* Anti-paladins heal the undead, regardless of alignment. */
         if (GET_LIFEFORCE(vict) == LIFE_UNDEAD)
-            dam = -1.5 * dam + number(1, 50);
+            dam = -1.5 * dam + random_number(1, 50);
 
         /* Anti-paladins have no effect on evils. */
         else if (IS_EVIL(vict)) {
@@ -2432,7 +2432,7 @@ ACMD(do_layhand) {
 
         /* Anti-paladins harm good and neutral mobs/players. */
         else
-            dam = 1.2 * dam + number(1, 50);
+            dam = 1.2 * dam + random_number(1, 50);
     }
 
     damage(ch, vict, dam, SKILL_LAY_HANDS);

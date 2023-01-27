@@ -120,7 +120,8 @@ ACMD(do_gedit) {
         group = -1;
     else if (!strcasecmp(arg, "save")) {
         char_printf(ch, "Saving all command groups.\n");
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves command groups.", GET_NAME(ch));
+        log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves command groups.",
+            GET_NAME(ch));
         gedit_save_to_disk();
         return;
     } else if ((group = find_command_group(arg)) < 0) {
@@ -292,7 +293,7 @@ void gedit_parse(DescriptorData *d, char *arg) {
         gedit_disp_menu(d);
         break;
     case GEDIT_LEVEL:
-        OLC_GROUP(d)->minimum_level = LIMIT(0, atoi(arg), LVL_IMPL);
+        OLC_GROUP(d)->minimum_level = std::clamp(atoi(arg), 0, LVL_IMPL);
         gedit_disp_menu(d);
         break;
     case GEDIT_ADD_COMMAND:
@@ -349,8 +350,8 @@ void gedit_parse(DescriptorData *d, char *arg) {
         case 'y':
             string_to_output(d, "Saving command group in memory.\n");
             gedit_save_internally(d);
-            log(LogSeverity::Debug, MAX(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits command group {}.",
-                GET_NAME(d->character), OLC_GROUP(d)->alias);
+            log(LogSeverity::Debug, std::max<int>(LVL_GOD, GET_INVIS_LEV(d->character)),
+                "OLC: {} edits command group {}.", GET_NAME(d->character), OLC_GROUP(d)->alias);
             /* Fall through */
         case 'n':
             cleanup_olc(d, CLEANUP_ALL);

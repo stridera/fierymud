@@ -367,7 +367,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_GROUP_LEADER(ch) (ch->group_master ? ch->group_master : ch)
 #define IS_IN_GROUP(ch, tch) (IS_GROUPED(ch) && IS_GROUPED(tch) && GET_GROUP_LEADER(ch) == GET_GROUP_LEADER(tch))
 
-#define VIEWED_ABIL(ch, abil) (LIMIT(MIN_ABILITY_VALUE, GET_ACTUAL_##abil(ch), MAX_ABILITY_VALUE))
+#define VIEWED_ABIL(ch, abil) (std::clamp(GET_ACTUAL_##abil(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE))
 
 #define GET_AFFECTED_STR(ch) ((ch)->affected_abils.str)
 #define GET_VIEWED_STR(ch) VIEWED_ABIL(ch, STR)
@@ -424,7 +424,6 @@ extern flagvector *ALL_FLAGS;
 #define GET_AGGR_LEV(ch) ((ch)->player_specials->aggressive)
 #define GET_FREEZE_LEV(ch) ((ch)->player_specials->freeze_level)
 #define GET_BAD_PWS(ch) ((ch)->player_specials->bad_pws)
-#define GET_TALK(ch, i) ((ch)->player_specials->talks[i])
 #define GET_LOG_VIEW(ch) ((ch)->player_specials->log_view)
 #define GET_POOFIN(ch) ((ch)->player_specials->poofin)
 #define GET_POOFOUT(ch) ((ch)->player_specials->poofout)

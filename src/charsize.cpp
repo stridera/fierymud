@@ -47,22 +47,22 @@ void set_init_height_weight(CharData *ch) {
     if (race >= 0 && race < NUM_RACES) {
         defsize = races[race].def_size;
         if (ch->player.sex == SEX_MALE) {
-            ch->player.base_weight = number(races[race].mweight_lo, races[race].mweight_hi);
-            ch->player.base_height = number(races[race].mheight_lo, races[race].mheight_hi);
+            ch->player.base_weight = random_number(races[race].mweight_lo, races[race].mweight_hi);
+            ch->player.base_height = random_number(races[race].mheight_lo, races[race].mheight_hi);
         } else if (ch->player.sex == SEX_FEMALE) {
-            ch->player.base_weight = number(races[race].fweight_lo, races[race].fweight_hi);
-            ch->player.base_height = number(races[race].fheight_lo, races[race].fheight_hi);
+            ch->player.base_weight = random_number(races[race].fweight_lo, races[race].fweight_hi);
+            ch->player.base_height = random_number(races[race].fheight_lo, races[race].fheight_hi);
         } else {
-            ch->player.base_weight = number(races[race].fweight_lo, races[race].mweight_hi);
-            ch->player.base_height = number(races[race].fheight_lo, races[race].mheight_hi);
+            ch->player.base_weight = random_number(races[race].fweight_lo, races[race].mweight_hi);
+            ch->player.base_height = random_number(races[race].fheight_lo, races[race].mheight_hi);
         }
     } else {
         if (GET_SIZE(ch) >= 0 && GET_SIZE(ch) < NUM_SIZES)
             defsize = GET_SIZE(ch);
         else
             defsize = SIZE_MEDIUM;
-        ch->player.base_weight = number(sizes[defsize].weight_min, sizes[defsize].weight_max);
-        ch->player.base_height = number(sizes[defsize].height_min, sizes[defsize].height_max);
+        ch->player.base_weight = random_number(sizes[defsize].weight_min, sizes[defsize].weight_max);
+        ch->player.base_height = random_number(sizes[defsize].height_min, sizes[defsize].height_max);
     }
 
     /* For prototyped mobs, base_size at this point contains the builder's
@@ -120,11 +120,11 @@ void reset_height_weight(CharData *ch) {
         return;
     }
 
-    GET_WEIGHT(ch) = MAX(1, sizes[asize].weight_min + (sizes[asize].weight_max - sizes[asize].weight_min) *
+    GET_WEIGHT(ch) = std::max(1, sizes[asize].weight_min + (sizes[asize].weight_max - sizes[asize].weight_min) *
                                                           (ch->player.base_weight - sizes[bsize].weight_min) /
                                                           (sizes[bsize].weight_max - sizes[bsize].weight_min));
 
-    GET_HEIGHT(ch) = MAX(1, sizes[asize].height_min + (sizes[asize].height_max - sizes[asize].height_min) *
+    GET_HEIGHT(ch) = std::max(1, sizes[asize].height_min + (sizes[asize].height_max - sizes[asize].height_min) *
                                                           (ch->player.base_height - sizes[bsize].height_min) /
                                                           (sizes[bsize].height_max - sizes[bsize].height_min));
 }
@@ -136,8 +136,8 @@ void reset_height_weight(CharData *ch) {
 void set_base_size(CharData *ch, int newsize) {
     ch->player.base_size = newsize;
     ch->player.natural_size = newsize;
-    ch->player.base_height = number(sizes[newsize].height_min, sizes[newsize].height_max);
-    ch->player.base_weight = number(sizes[newsize].weight_min, sizes[newsize].weight_max);
+    ch->player.base_height = random_number(sizes[newsize].height_min, sizes[newsize].height_max);
+    ch->player.base_weight = random_number(sizes[newsize].weight_min, sizes[newsize].weight_max);
     reset_height_weight(ch);
 }
 
