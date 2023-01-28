@@ -204,6 +204,12 @@ int value_obj_flags(CharData *ch, ObjData *obj) {
             case ITEM_ANTI_MONK:
             case ITEM_ANTI_BERSERKER:
             case ITEM_ANTI_BARD:
+            case ITEM_ANTI_THIEF:
+            case ITEM_ANTI_PYROMANCER:
+            case ITEM_ANTI_CRYOMANCER:
+            case ITEM_ANTI_ILLUSIONIST:
+            case ITEM_ANTI_PRIEST:
+            case ITEM_ANTI_DIABOLIST:
                 value -= 2;
                 break;
             }
