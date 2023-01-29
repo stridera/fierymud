@@ -1372,6 +1372,7 @@ void init_skills(void) {
     skillo(SKILL_HUNT, "hunt", false, 0);
     skillo(SKILL_INSTANT_KILL, "instant kill", true, TAR_CONTACT);
     skillo(SKILL_KICK, "kick", true, TAR_CONTACT);
+    skillo(SKILL_LURE, "lure", false, 0);
     skillo(SKILL_MAUL, "maul", false, TAR_CONTACT);
     skillo(SKILL_MEDITATE, "meditate", false, 0);
     skillo(SKILL_MISSILE, "missile weapons", true, TAR_DIRECT);

@@ -174,6 +174,7 @@ ACMD(do_level);
 ACMD(do_light);
 ACMD(do_linkload);
 ACMD(do_load);
+ACMD(do_lure);
 ACMD(do_meditate);
 ACMD(do_memorize);
 ACMD(do_create);
@@ -619,6 +620,7 @@ const CommandInfo cmd_info[] = {
     {"linkload", POS_PRONE, STANCE_DEAD, do_linkload, LVL_HEAD_C, 0, CMD_ANY ^ CMD_OLC},
     {"load", POS_PRONE, STANCE_DEAD, do_load, LVL_ATTENDANT, 0, CMD_ANY ^ CMD_OLC},
     {"love", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"lure", POS_STANDING, STANCE_ALERT, do_lure, 0, 0, CMD_HIDE | CMD_NOFIGHT},
 
     {"memorize", POS_PRONE, STANCE_RESTING, do_memorize, 0, 0, CMD_MEDITATE},
     {"maul", POS_STANDING, STANCE_ALERT, do_bash, 1, SCMD_MAUL, 0},
