@@ -1927,7 +1927,7 @@ int weapon_special(ObjData *wpn, CharData *ch) {
 }
 
 void hit(CharData *ch, CharData *victim, int type) {
-    int victim_ac, calc_thaco, dam, diceroll, weapon_position;
+    int victim_ac, calc_thaco, dam, diceroll, weapon_position, hidden;
     ObjData *weapon;
     int thac0_01 = 25;
     int thac0_00 = classes[(int)GET_CLASS(ch)].thac0;
@@ -1945,6 +1945,15 @@ void hit(CharData *ch, CharData *victim, int type) {
         log(LogSeverity::Error, LVL_GOD, "hit(): {} [{:d}] is not in the same room as {} [{:d}]", GET_NAME(ch),
             CH_RVNUM(ch), GET_NAME(victim), CH_RVNUM(victim));
         return;
+    }
+
+    /* If a Rogue, save hiddenness as a bonus to backstab */
+    if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {        
+        hidden = GET_HIDDENNESS(ch);
+        GET_HIDDENNESS(ch) = 0;
+    } else {
+        GET_HIDDENNESS(ch) = 0;
+        hidden = 0;
     }
 
     /* check if the character has a fight trigger */
@@ -2221,10 +2230,13 @@ void hit(CharData *ch, CharData *victim, int type) {
 
         dam = std::max(1, dam); /* at least 1 hp damage min per hit */
 
-        if (type == SKILL_BACKSTAB || type == SKILL_2BACK)
+        if (type == SKILL_BACKSTAB || type == SKILL_2BACK) {
             dam *= GET_SKILL(ch, SKILL_BACKSTAB) / 10 + 1;
 
-        else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
+            if (GET_CLASS(ch) == CLASS_ROGUE)
+                dam += hidden / 2;
+
+        } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                  EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);
 
