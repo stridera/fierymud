@@ -423,6 +423,7 @@ ACMD(do_assist) {
 
 ACMD(do_disengage) {
     ACMD(do_abort);
+    ACMD(do_hide);
 
     if (CASTING(ch)) {
         do_abort(ch, argument, 0, 0);
@@ -441,7 +442,11 @@ ACMD(do_disengage) {
 
     stop_fighting(ch);
     char_printf(ch, "You disengage from combat.\n");
-    WAIT_STATE(ch, PULSE_VIOLENCE);
+    if (GET_CLASS(ch) == CLASS_ROGUE || GET_CLASS(ch) == CLASS_THIEF) {
+        do_hide(ch, 0, 0, 0);
+    } else {
+        WAIT_STATE(ch, PULSE_VIOLENCE);
+    }
 }
 
 ACMD(do_hit) {
@@ -742,6 +747,8 @@ ACMD(do_backstab) {
     /* 6 seconds == 1.5 combat rounds, 12 seconds == 3 combat rounds. */
     if (GET_CLASS(ch) == CLASS_ILLUSIONIST) {
         SET_COOLDOWN(ch, CD_BACKSTAB, 12 * PULSE_COOLDOWN);
+    } else if (GET_CLASS(ch) == CLASS_THIEF) {
+        SET_COOLDOWN(ch, CD_BACKSTAB, 4 * PULSE_COOLDOWN);
     } else {
         SET_COOLDOWN(ch, CD_BACKSTAB, 6 * PULSE_COOLDOWN);
     }

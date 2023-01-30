@@ -144,9 +144,9 @@ ClassDef classes[NUM_CLASSES] = {
      100,
      1,
      100,
+     100,
      90,
-     100,
-     100,
+     90,
      100,
      80,
      {1019, 1022, 1025, 1027, 1012, -1}},
@@ -404,7 +404,7 @@ ClassDef classes[NUM_CLASSES] = {
      100,
      100,
      100,
-     80,
+     90,
      {1019, 1022, 1024, 1026, 1012, 1014, -1}},
 
     /* NECROMANCER */
@@ -660,7 +660,7 @@ ClassDef classes[NUM_CLASSES] = {
      100,
      100,
      100,
-     80,
+     90,
      {1019, 1022, 1025, 1027, 1012, -1}},
 
     /* BARD */
@@ -2447,7 +2447,6 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
-    skill_assign(SKILL_EYE_GOUGE, CLASS_ROGUE, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_ROGUE, 15);
     skill_assign(SKILL_CONCEAL, CLASS_ROGUE, 25);
     skill_assign(SKILL_TRACK, CLASS_ROGUE, 30);
@@ -2579,12 +2578,14 @@ void assign_class_skills(void) {
     skill_assign(SKILL_BACKSTAB, CLASS_THIEF, 1);
     skill_assign(SKILL_HIDE, CLASS_THIEF, 1);
     skill_assign(SKILL_DODGE, CLASS_THIEF, 1);
-    skill_assign(SKILL_PICK_LOCK, CLASS_THIEF, 6);
-    skill_assign(SKILL_STEAL, CLASS_THIEF, 6);
+    skill_assign(SKILL_PICK_LOCK, CLASS_THIEF, 1);
+    skill_assign(SKILL_STEAL, CLASS_THIEF, 10);
+    skill_assign(SKILL_EYE_GOUGE, CLASS_THIEF, 10);
     skill_assign(SKILL_CONCEAL, CLASS_THIEF, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_THIEF, 15);
     skill_assign(SKILL_PARRY, CLASS_THIEF, 30);
     skill_assign(SKILL_TRACK, CLASS_THIEF, 40);
+    skill_assign(SKILL_DISARM, CLASS_THIEF, 40);
     skill_assign(SKILL_STEALTH, CLASS_THIEF, 50);
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_THIEF, 75);
 

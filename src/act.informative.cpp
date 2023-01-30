@@ -3843,6 +3843,10 @@ ACMD(do_scan) {
     int from_room, to_room;
     Exit *exit;
 
+    if (GET_CLASS(ch) != CLASS_ROGUE) {
+        GET_HIDDENNESS(ch) = 0;
+    }
+
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (EFF_FLAGGED(ch, EFF_BLIND)) {
             char_printf(ch, YOU_ARE_BLIND);
