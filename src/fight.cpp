@@ -2234,7 +2234,7 @@ void hit(CharData *ch, CharData *victim, int type) {
             dam *= GET_SKILL(ch, SKILL_BACKSTAB) / 10 + 1;
 
             if (GET_CLASS(ch) == CLASS_ROGUE)
-                dam += hidden / 2;
+                dam += ((hidden / 2) * (GET_SKILL(ch, SKILL_SNEAK_ATTACK) / 100));
 
         } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                  EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))

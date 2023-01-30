@@ -748,6 +748,10 @@ ACMD(do_backstab) {
         GET_HIDDENNESS(ch) = hidden;
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_2BACK : SKILL_BACKSTAB);
     }
+    
+    if (hidden > 0)
+        improve_skill_offensively(ch, vict, SKILL_SNEAK_ATTACK);
+
     improve_skill_offensively(ch, vict, SKILL_BACKSTAB);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);

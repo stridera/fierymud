@@ -908,6 +908,7 @@
 #define SKILL_BREATHE_ACID 488
 #define SKILL_BREATHE_GAS 489
 #define SKILL_PERFORM 490
+#define SKILL_SNEAK_ATTACK 493
 
 /* IF THIS GETS PAST 499, update CharData for skill timers! */
 
