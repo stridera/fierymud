@@ -464,7 +464,7 @@
 #define EFF_VAMP_TOUCH 67
 #define EFF_RAY_OF_ENFEEB 68
 #define EFF_ANIMATED 69
-/* Room for future expansion 70 */
+#define EFF_EXPOSED 70
 #define EFF_SHADOWING 71
 #define EFF_CAMOUFLAGED 72
 #define EFF_SPIRIT_WOLF 73
@@ -908,6 +908,7 @@
 #define SKILL_BREATHE_ACID 488
 #define SKILL_BREATHE_GAS 489
 #define SKILL_PERFORM 490
+#define SKILL_REND 491
 
 /* IF THIS GETS PAST 499, update CharData for skill timers! */
 

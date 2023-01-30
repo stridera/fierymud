@@ -82,7 +82,7 @@ const char *effect_flags[NUM_EFF_FLAGS + 1] = {"BLIND", /* 0 */
                                                "VAMP",
                                                "ENFEEB",
                                                "ANIMATE",
-                                               "UNUSED", /* 70 */
+                                               "EXPOSED", /* 70 */
                                                "SHADOW",
                                                "CAMOUFLAGE",
                                                "SPIRIT_WOLF",

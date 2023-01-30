@@ -216,6 +216,7 @@ ACMD(do_recline);
 ACMD(do_rest);
 ACMD(do_reload);
 ACMD(do_remove);
+ACMD(do_rend);
 ACMD(do_report);
 ACMD(do_rescue);
 ACMD(do_reply);
@@ -712,6 +713,7 @@ const CommandInfo cmd_info[] = {
     {"rest", POS_PRONE, STANCE_RESTING, do_rest, 0, 0, CMD_MEDITATE},
     {"raise", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"read", POS_PRONE, STANCE_RESTING, do_read, 0, 0, 0},
+    {"rend", POS_STANDING, STANCE_ALERT, do_rend, 0, 0, 0},
     {"report", POS_PRONE, STANCE_RESTING, do_report, 0, SCMD_REPORT, 0},
     {"reply", POS_PRONE, STANCE_SLEEPING, do_reply, 0, 0, CMD_ANY},
     {"reload", POS_PRONE, STANCE_DEAD, do_reload, LVL_HEAD_C, 0, 0},

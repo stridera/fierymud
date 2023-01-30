@@ -53,6 +53,7 @@ int value_spell_effect(int flag) {
     case EFF_ON_FIRE:
     case EFF_DISEASE:
     case EFF_ANIMATED:
+    case EFF_EXPOSED:
         return -20;
     case EFF_CHARM:
     case EFF_TAMED:

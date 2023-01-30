@@ -493,7 +493,7 @@ EFFECTS = [
     "VAMP_TOUCH",  # 67
     "RAY_OF_ENFEEB",  # 68
     "ANIMATED",  # 69
-    "UNUSED",  # 70
+    "EXPOSED", # 70
     "SHADOWING",  # 71
     "CAMOUFLAGED",  # 72
     "SPIRIT_WOLF",  # 73
@@ -693,7 +693,7 @@ EFFECTS = [
     "EFF_VAMP_TOUCH",  # 67
     "EFF_RAY_OF_ENFEEB",  # 68
     "EFF_ANIMATED",  # 69
-    "UNDEFINED",  # /* Room for future expansion 70 * /
+    "EFF_EXPOSED", # 70
     "EFF_SHADOWING",  # 71
     "EFF_CAMOUFLAGED",  # 72
     "EFF_SPIRIT_WOLF",  # 73
@@ -705,4 +705,6 @@ EFFECTS = [
     "EFF_HEX",  # 79           /* The evil side of blessing, to hurt ether chars */
     "EFF_DETECT_POISON",  # 80 /* Char is sensitive to poison */
     "EFF_SONG_OF_REST",  # 81
+    "EFF_DISPLACEMENT", # 82
+    "EFF_GREATER_DISPLACEMENT", # 83
 ]

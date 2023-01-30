@@ -1363,6 +1363,7 @@ void init_skills(void) {
     skillo(SKILL_DOORBASH, "doorbash", false, 0);
     skillo(SKILL_DOUSE, "douse", false, 0);
     skillo(SKILL_ELECTRIFY, "electrify", false, TAR_DIRECT);
+    skillo(SKILL_REND, "rend", false, TAR_CONTACT);
     skillo(SKILL_FIRST_AID, "first aid", true, 0);
     skillo(SKILL_GROUND_SHAKER, "ground shaker", false, 0);
     skillo(SKILL_GROUP_RETREAT, "group retreat", false, 0);
