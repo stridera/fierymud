@@ -1350,6 +1350,7 @@ void init_skills(void) {
     skillo(SKILL_BREATHE_FIRE, "breathe fire", false, 0);
     skillo(SKILL_BREATHE_FROST, "breathe frost", false, 0);
     skillo(SKILL_BREATHE_LIGHTNING, "breathe lightning", false, 0);
+    skillo(SKILL_CARTWHEEL, "cartwheel", false, TAR_CONTACT);
     skillo(SKILL_CHANT, "chant", false, 0);
     skillo(SKILL_DOUBLE_ATTACK, "double attack", false, 0);
     skillo(SKILL_DUAL_WIELD, "dual wield", true, 0);

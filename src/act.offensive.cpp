@@ -2474,3 +2474,174 @@ ACMD(do_stomp) {
         improve_skill(ch, SKILL_GROUND_SHAKER);
     WAIT_STATE(ch, PULSE_VIOLENCE * 3);
 }
+
+ACMD(do_cartwheel) {
+    CharData *vict;
+    int percent, prob, dmg;
+    ObjData *weapon;
+
+    if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !CAN_SEE_IN_DARK(ch)) {
+        char_printf(ch, "It is too dark!&0\n");
+        return;
+    }
+
+    if (!GET_SKILL(ch, SKILL_CARTWHEEL)) {
+        char_printf(ch, "You'd better leave all the tumbling to the rogues.\n");
+        return;
+    }
+
+    if (EFF_FLAGGED(ch, EFF_IMMOBILIZED)) {
+        char_printf(ch, "You don't have the mobility!\n");
+        return;
+    }
+
+    one_argument(argument, arg);
+
+    if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+        if (FIGHTING(ch))
+            vict = FIGHTING(ch);
+        else {
+            char_printf(ch, "&0Cartwheel at whom?&0\n");
+            return;
+        }
+    }
+
+    if (vict == ch) {
+        char_printf(ch, "You can't cartwheel into yourself!\n");
+        return;
+    }
+
+    /* check pk/pets/shapeshifts */
+    if (!attack_ok(ch, vict, true))
+        return;
+
+    if (CONFUSED(ch))
+        vict = random_attack_target(ch, vict, true);
+
+    if (MOB_FLAGGED(vict, MOB_NOBASH)) {
+        act("You &3&bslam&0 into $N, but $E seems quite unmoved.", false, ch, 0, vict, TO_CHAR);
+        act("$n &3&bslams&0 into $N, who seems as solid as a rock!", false, ch, 0, vict, TO_NOTVICT);
+        act("$n &3&bslams&0 into you, attempting to knock you down.", false, ch, 0, vict, TO_VICT);
+        /* A pause... but you don't fall down. */
+        WAIT_STATE(ch, PULSE_VIOLENCE * 2);
+        set_fighting(vict, ch, false);
+        return;
+    }
+
+    if (GET_SIZE(vict) - GET_SIZE(ch) > 1) {
+        char_printf(ch, "&7&bYou fall over as you try to knock down someone so large!&0\n");
+        act("&7&b$n BOUNCES off $N, as $e tries to knock down $N's much larger size.&0", false, ch, 0, vict,
+            TO_NOTVICT);
+        act("&7&b$n BOUNCES off you as $e tries to knock down your much larger size.&0", false, ch, 0, vict,
+            TO_VICT);
+        percent = prob + 1;
+    } else if (GET_SIZE(ch) - GET_SIZE(vict) > 2) {
+        char_printf(ch, "&7&bYou fall over as you try to knock down someone with such small size.&0\n");
+        act("&7&b$n trips over $N, as $e tries to knock down $N's much smaller size.&0", false, ch, 0, vict,
+            TO_NOTVICT);
+        act("&7&b$n trips over you as $e tries to knock down your much smaller size.&0", false, ch, 0, vict,
+            TO_VICT);
+        percent = prob + 1;
+    }
+
+    prob = GET_SKILL(ch, SKILL_CARTWHEEL);
+    prob += (dex_app_skill[GET_DEX(ch)].traps / 2);
+    prob += int_app[GET_INT(ch)].bonus;
+    prob += GET_HITROLL(ch) - monk_weight_penalty(ch);
+    percent = random_number(1, 100);
+    percent += GET_SKILL(vict, SKILL_DODGE);
+
+    if (prob > percent) {
+        if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)) {
+            act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!", false, ch, 0,
+                vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR " cartwheels at $N" EVASIONCLR " but tumbles right on through!", false, ch, 0, vict,
+                TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR " cartwheels at you, but just passes through and hits the ground.", false, ch,
+                0, vict, TO_VICT);
+            /* You fall */
+            WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+            GET_POS(ch) = POS_SITTING;
+            GET_STANCE(ch) = STANCE_ALERT;
+            set_fighting(vict, ch, false);
+        } else {
+            act("&0&bYou spring into a cartwheel, knocking $N off balance.&0", false, ch, 0, vict, TO_CHAR);
+            act("&0&b$N springs into a cartwheel and knocks you down!&0", false, vict, 0, ch, TO_CHAR);
+            act("&0&b$N springs into a cartwheel, knocking down $n!&0", false, vict, 0, ch, TO_NOTVICT);
+            WAIT_STATE(ch, PULSE_VIOLENCE);
+
+            /* attack was successful, see if a backstab can be attempted */
+            weapon = GET_EQ(ch, WEAR_WIELD);
+            if (!weapon)
+                weapon = GET_EQ(ch, WEAR_WIELD2);
+            if (!weapon)
+                weapon = GET_EQ(ch, WEAR_2HWIELD);
+
+            if (weapon) {
+                /* If wielding something unsuitable in first hand, use weapon in second hand */
+                if (!IS_WEAPON_PIERCING(weapon) && GET_EQ(ch, WEAR_WIELD2))
+                    weapon = GET_EQ(ch, WEAR_WIELD2);
+
+                /* If piercing weapon found, use it */
+                if (IS_WEAPON_PIERCING(weapon)) {
+                    act("&0&bYou use the momentum to backstab $N!&0", false, ch, 0, vict, TO_CHAR);
+                    do_backstab(ch, arg, 0, 0);
+                }
+            }
+            
+            WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
+            if (AWAKE(vict) && IN_ROOM(ch) == IN_ROOM(vict)) {
+                abort_casting(vict);
+                GET_POS(vict) = POS_SITTING;
+                GET_STANCE(vict) = STANCE_ALERT;
+            }
+        }
+    } else if (percent > 0.95 * prob) {
+        act("&0&6You manage to take $N down but also &bfall down yourself!&0", false, ch, 0, vict, TO_CHAR);
+        act("&0&6$N cartwheels at you and knocks you down - &bbut falls in the process!&0", false, vict,
+            0, ch, TO_CHAR);
+        act("&0&6$N cartwheels at $n, knocking $m down and &bfalling in the process!&0", false, vict,
+            0, ch, TO_NOTVICT);
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
+
+        /* attempt was partially successful, so do backstab */
+        weapon = GET_EQ(ch, WEAR_WIELD);
+        if (!weapon)
+            weapon = GET_EQ(ch, WEAR_WIELD2);
+        if (!weapon)
+            weapon = GET_EQ(ch, WEAR_2HWIELD);
+
+        if (weapon) {
+            /* If wielding something unsuitable in first hand, use weapon in second hand */
+            if (!IS_WEAPON_PIERCING(weapon) && GET_EQ(ch, WEAR_WIELD2))
+                weapon = GET_EQ(ch, WEAR_WIELD2);
+
+            if (IS_WEAPON_PIERCING(weapon)) {
+                act("&0&bYou use the momentum to backstab $N!&0", false, ch, 0, vict, TO_CHAR);
+                do_backstab(ch, arg, 0, 0);
+            }
+        }
+        if (AWAKE(vict) && IN_ROOM(ch) == IN_ROOM(vict)) {
+            abort_casting(vict);
+            GET_POS(vict) = POS_SITTING;
+            GET_STANCE(vict) = STANCE_ALERT;
+        }
+        if (AWAKE(ch)) {
+            GET_POS(ch) = POS_SITTING;
+            GET_STANCE(ch) = STANCE_ALERT;
+        }
+    } else {
+        act("&0&6$N sidesteps your fancy cartwheel.&0", false, ch, 0, vict, TO_CHAR);
+        act("&0&6$N cartwheel charges at you but tumbles right past!&0", false, vict, 0, ch, TO_CHAR);
+        act("&0&6$N carthweel charges at $n but tumbles right past!&0", false, vict, 0, ch, TO_NOTVICT);
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        if (AWAKE(ch)) {
+            GET_POS(ch) = POS_SITTING;
+            GET_STANCE(ch) = STANCE_ALERT;
+        }
+        set_fighting(vict, ch, false);
+
+    improve_skill_offensively(ch, vict, SKILL_SPRINGLEAP);
+    }
+} /* end cartwheel */
