@@ -33,6 +33,7 @@ ACMD(do_eye_gouge);
 ACMD(do_kick);
 ACMD(do_steal);
 ACMD(do_throatcut);
+ACMD(do_rend);
 
 bool has_piercing_weapon(CharData *ch) {
     if (GET_EQ(ch, WEAR_WIELD) && IS_WEAPON_PIERCING(GET_EQ(ch, WEAR_WIELD)))
@@ -85,6 +86,11 @@ bool rogue_ai_action(CharData *ch, CharData *victim) {
 
     if (GET_SKILL(ch, SKILL_KICK)) {
         do_kick(ch, GET_NAME(victim), 0, 0);
+        return true;
+    }
+
+    if (GET_SKILL(ch, SKILL_REND)) {
+        do_rend(ch, GET_NAME(victim), 0, 0);
         return true;
     }
 

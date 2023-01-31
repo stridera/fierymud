@@ -2803,3 +2803,76 @@ ACMD(do_lure) {
     WAIT_STATE(ch, PULSE_VIOLENCE);
     return;
 }
+
+ACMD(do_rend) {
+    CharData *vict;
+    int percent, prob;
+    effect eff;
+
+    if (GET_SKILL(ch, SKILL_REND) == 0) {
+        char_printf(ch, "You have no idea how to rend armor.\n");
+        return;
+    }
+
+    one_argument(argument, arg);
+    
+    if (!arg || !*arg) {
+        if (FIGHTING(ch)) {
+            vict = FIGHTING(ch);
+        } else {
+            char_printf(ch, "Who's armor do you want to rend?\n");
+            return;
+        }
+    } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+        char_printf(ch, "Who's armor do you want to rend?\n");
+        return;
+    }
+
+    if (vict == ch) {
+        char_printf(ch, "You shouldn't rend your own defenses!\n");
+        return;
+    }
+
+    if (!attack_ok(ch, vict, true))
+        return;
+
+    if (EFF_FLAGGED(vict, EFF_EXPOSED)) {
+        act("You can't shred $S armor any more than it already is!", true, ch, 0, vict, TO_CHAR);
+        return;
+    }
+
+    if (CONFUSED(ch))
+        vict = random_attack_target(ch, vict, true);
+
+    /* Need to see whether this player is fighting already. Rend should not
+       allow for the player to switch without a switch probability being
+       calculated into the mix. */
+    WAIT_STATE(ch, PULSE_VIOLENCE);
+    if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
+        return;
+
+    percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + random_number(1, 101);
+    prob = (GET_SKILL(ch, SKILL_REND) + (dex_app_skill[GET_DEX(ch)].traps / 2) + (int_app[GET_INT(ch)].bonus));
+
+    if (percent > prob) {
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        act("&9&bYou can't open a weakness on $N's armor!&0", false, ch, 0, vict, TO_CHAR);
+        act("&9&b$n tries to rend $N's armor but can't make a mark.&0", false, ch, 0, vict, TO_NOTVICT);
+        act("&9&b$n tries to rent your armor but can't make a mark.&0", false, ch, 0, vict, TO_VICT);
+    } else {
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        act("&7&bYou shred $N's armor apart!&0", false, ch, 0, vict, TO_CHAR);
+        act("&7&b$n rends $N's armor apart.&0", false, ch, 0, vict, TO_NOTVICT);
+        act("&7&b$n rends your armor apart.&0", false, ch, 0, vict, TO_VICT);
+        memset(&eff, 0, sizeof(eff)); 
+        eff.type = SKILL_REND;
+        eff.duration = (GET_SKILL(ch, SKILL_REND) / 10);
+        eff.modifier = -1 - (GET_SKILL(ch, SKILL_REND) / 4) - (dex_app_skill[GET_DEX(ch)].traps / 2) - (int_app[GET_INT(ch)].bonus);
+        eff.location = APPLY_AC;
+        SET_FLAG(eff.flags, EFF_EXPOSED);
+        effect_to_char(vict, &eff);
+    }
+
+    set_fighting(vict, ch, true);
+    improve_skill_offensively(ch, vict, SKILL_REND);
+}
