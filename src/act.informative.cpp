@@ -597,6 +597,8 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
         act("&7$S image &1wavers&7 and &9&bshimmers&0&7 and is somewhat "
             "indistinct.&0",
             true, ch, 0, targ, TO_CHAR);
+    if (EFF_FLAGGED(targ, EFF_EXPOSED))
+        act("&9&bThere is a hole in $S armor!&0", true, ch, 0, targ, TO_CHAR);
 
     /* Miscellaneous spell effects */
     if (EFF_FLAGGED(targ, EFF_BLIND))
