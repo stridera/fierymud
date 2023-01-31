@@ -138,7 +138,7 @@ ClassDef classes[NUM_CLASSES] = {
      {95, 90, 100, 110, 110},
      8,
      1,
-     ITEM_ANTI_ROGUE,
+     ITEM_ANTI_THIEF,
      100,
      100,
      100,
@@ -554,7 +554,7 @@ ClassDef classes[NUM_CLASSES] = {
      {85, 110, 85, 115, 90},
      8,
      5,
-     ITEM_ANTI_CLERIC,
+     ITEM_ANTI_PRIEST,
      80,
      100,
      100,
@@ -586,7 +586,7 @@ ClassDef classes[NUM_CLASSES] = {
      {85, 110, 85, 115, 90},
      8,
      5,
-     ITEM_ANTI_CLERIC,
+     ITEM_ANTI_DIABOLIST,
      80,
      100,
      100,
@@ -714,7 +714,7 @@ ClassDef classes[NUM_CLASSES] = {
      {90, 85, 95, 105, 80},
      5,
      7,
-     ITEM_ANTI_SORCERER,
+     ITEM_ANTI_PYROMANCER,
      80,
      100,
      100,
@@ -746,7 +746,7 @@ ClassDef classes[NUM_CLASSES] = {
      {90, 85, 95, 105, 80},
      5,
      7,
-     ITEM_ANTI_SORCERER,
+     ITEM_ANTI_CRYOMANCER,
      80,
      100,
      100,
@@ -778,7 +778,7 @@ ClassDef classes[NUM_CLASSES] = {
      {90, 85, 95, 105, 80},
      5,
      7,
-     ITEM_ANTI_SORCERER,
+     ITEM_ANTI_ILLUSIONIST,
      80,
      100,
      100,
@@ -2445,6 +2445,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_HIDE, CLASS_ROGUE, 1);
     skill_assign(SKILL_DODGE, CLASS_ROGUE, 1);
     skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
+    skill_assign(SKILL_SNEAK_ATTACK, CLASS_ROGUE, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
     skill_assign(SKILL_EYE_GOUGE, CLASS_ROGUE, 10);

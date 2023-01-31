@@ -584,8 +584,9 @@ void quickdeath(CharData *victim, CharData *ch) {
 ACMD(do_backstab) {
     CharData *vict, *tch;
     effect eff;
-    int percent, prob, percent2, prob2;
+    int percent, prob, percent2, prob2, hidden;
     ObjData *weapon;
+
 
     if (GET_COOLDOWN(ch, CD_BACKSTAB)) {
         char_printf(ch, "Give yourself a chance to get back into position!\n");
@@ -606,6 +607,7 @@ ACMD(do_backstab) {
             char_printf(ch, "Backstab who?\n");
             return;
         }
+        
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
         char_printf(ch, "Backstab who?\n");
         return;
@@ -614,22 +616,6 @@ ACMD(do_backstab) {
     if (vict == ch) {
         char_printf(ch, "How can you sneak up on yourself?\n");
         return;
-    }
-
-    if (!attack_ok(ch, vict, true))
-        return;
-
-    /* You can backstab as long as you're not the tank */
-    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
-        if (FIGHTING(tch) == ch) {
-            if (FIGHTING(ch) == tch)
-                act("$N's facing the wrong way!\n", false, ch, 0, tch, TO_CHAR);
-            else if (FIGHTING(ch))
-                act("You're too busy fighting $N to backstab anyone!", false, ch, 0, FIGHTING(ch), TO_CHAR);
-            else
-                act("$N is coming in for the attack - you cannot backstab $M now.", false, ch, 0, tch, TO_CHAR);
-            return;
-        }
     }
 
     if (EFF_FLAGGED(ch, EFF_BLIND)) {
@@ -657,6 +643,31 @@ ACMD(do_backstab) {
     if (!IS_WEAPON_PIERCING(weapon)) {
         char_printf(ch, "Piercing weapons must be used to backstab.\n");
         return;
+    }
+
+    if (!attack_ok(ch, vict, true))
+        return;
+
+    /* going to use this to pass to the damage code, but still want hiddenness removed */
+    if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {
+        hidden = GET_HIDDENNESS(ch);
+        GET_HIDDENNESS(ch) = 0;
+    } else {
+        GET_HIDDENNESS(ch) = 0;
+        hidden = 0;
+    }
+
+    /* You can backstab as long as you're not the tank */
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
+        if (FIGHTING(tch) == ch) {
+            if (FIGHTING(ch) == tch)
+                act("$N's facing the wrong way!\n", false, ch, 0, tch, TO_CHAR);
+            else if (FIGHTING(ch))
+                act("You're too busy fighting $N to backstab anyone!", false, ch, 0, FIGHTING(ch), TO_CHAR);
+            else
+                act("$N is coming in for the attack - you cannot backstab $M now.", false, ch, 0, tch, TO_CHAR);
+            return;
+        }
     }
 
     if (CONFUSED(ch))
@@ -734,8 +745,13 @@ ACMD(do_backstab) {
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_DUAL_WIELD : TYPE_UNDEFINED);
     } else {
         /* Backstab succeeded */
+        GET_HIDDENNESS(ch) = hidden;
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_2BACK : SKILL_BACKSTAB);
     }
+    
+    if (hidden > 0)
+        improve_skill_offensively(ch, vict, SKILL_SNEAK_ATTACK);
+
     improve_skill_offensively(ch, vict, SKILL_BACKSTAB);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
