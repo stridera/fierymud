@@ -404,8 +404,10 @@ void load_con_app(void) {
             con_app[x].hitp = (sh_int)((((float)1 / 8) * (float)x) - 4);
         if (x <= 56 && x >= 25) /* zero */
             con_app[x].hitp = 0;
-        if (x <= 100 && x >= 57) /* linear from (57,1) to (100,5) */
-            con_app[x].hitp = (sh_int)((((float)4 / 43) * (float)x) - ((float)185 / 43));
+        if (x <= 100 && x >= 57) /* linear from (57,1) to (96,5) */
+            con_app[x].hitp = (sh_int)((((float)1 / 8) * (float)x) - ((float)121 / 20));
+        if (x > 96) /* five */
+            con_app[x].hitp = 5;
 
         /* system shock survival percentage */
         if (x <= 68 && x >= 0) /* linear from (0,20) to (68,97) */
