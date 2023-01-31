@@ -584,8 +584,9 @@ void quickdeath(CharData *victim, CharData *ch) {
 ACMD(do_backstab) {
     CharData *vict, *tch;
     effect eff;
-    int percent, prob, percent2, prob2;
+    int percent, prob, percent2, prob2, hidden;
     ObjData *weapon;
+
 
     if (GET_COOLDOWN(ch, CD_BACKSTAB)) {
         char_printf(ch, "Give yourself a chance to get back into position!\n");
@@ -606,6 +607,7 @@ ACMD(do_backstab) {
             char_printf(ch, "Backstab who?\n");
             return;
         }
+        
     } else if (!(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, buf)))) {
         char_printf(ch, "Backstab who?\n");
         return;
@@ -614,22 +616,6 @@ ACMD(do_backstab) {
     if (vict == ch) {
         char_printf(ch, "How can you sneak up on yourself?\n");
         return;
-    }
-
-    if (!attack_ok(ch, vict, true))
-        return;
-
-    /* You can backstab as long as you're not the tank */
-    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
-        if (FIGHTING(tch) == ch) {
-            if (FIGHTING(ch) == tch)
-                act("$N's facing the wrong way!\n", false, ch, 0, tch, TO_CHAR);
-            else if (FIGHTING(ch))
-                act("You're too busy fighting $N to backstab anyone!", false, ch, 0, FIGHTING(ch), TO_CHAR);
-            else
-                act("$N is coming in for the attack - you cannot backstab $M now.", false, ch, 0, tch, TO_CHAR);
-            return;
-        }
     }
 
     if (EFF_FLAGGED(ch, EFF_BLIND)) {
@@ -657,6 +643,31 @@ ACMD(do_backstab) {
     if (!IS_WEAPON_PIERCING(weapon)) {
         char_printf(ch, "Piercing weapons must be used to backstab.\n");
         return;
+    }
+
+    if (!attack_ok(ch, vict, true))
+        return;
+
+    /* going to use this to pass to the damage code, but still want hiddenness removed */
+    if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {
+        hidden = GET_HIDDENNESS(ch);
+        GET_HIDDENNESS(ch) = 0;
+    } else {
+        GET_HIDDENNESS(ch) = 0;
+        hidden = 0;
+    }
+
+    /* You can backstab as long as you're not the tank */
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
+        if (FIGHTING(tch) == ch) {
+            if (FIGHTING(ch) == tch)
+                act("$N's facing the wrong way!\n", false, ch, 0, tch, TO_CHAR);
+            else if (FIGHTING(ch))
+                act("You're too busy fighting $N to backstab anyone!", false, ch, 0, FIGHTING(ch), TO_CHAR);
+            else
+                act("$N is coming in for the attack - you cannot backstab $M now.", false, ch, 0, tch, TO_CHAR);
+            return;
+        }
     }
 
     if (CONFUSED(ch))
@@ -734,8 +745,13 @@ ACMD(do_backstab) {
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_DUAL_WIELD : TYPE_UNDEFINED);
     } else {
         /* Backstab succeeded */
+        GET_HIDDENNESS(ch) = hidden;
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_2BACK : SKILL_BACKSTAB);
     }
+    
+    if (hidden > 0)
+        improve_skill_offensively(ch, vict, SKILL_SNEAK_ATTACK);
+
     improve_skill_offensively(ch, vict, SKILL_BACKSTAB);
 
     WAIT_STATE(ch, PULSE_VIOLENCE);
@@ -2645,3 +2661,145 @@ ACMD(do_cartwheel) {
     improve_skill_offensively(ch, vict, SKILL_SPRINGLEAP);
     }
 } /* end cartwheel */
+
+ACMD(do_lure) {
+    int dir, was_in, to_room;
+    CharData *vict;
+    FollowType *k, *next_k;
+
+    argument = delimited_arg(argument, arg, '\'');
+    skip_spaces(&argument);
+    vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg));
+
+    if (!ch)
+        return;
+
+    if (IS_NPC(ch)) {
+        char_printf(ch, "NPCs can't lure things.\n");
+        return;
+    }
+
+    if (!GET_SKILL(ch, SKILL_LURE)) {
+        char_printf(ch, "You have no idea how to do that.\n");
+        return;
+    }
+
+    if (FIGHTING(ch)) {
+        char_printf(ch, "You can't lure someone while you're in combat!\n");
+        return;      
+    }
+
+    if (!*arg || !vict) {
+        char_printf(ch, "Lure who?!\n");
+        return;
+    }
+
+    if (vict == ch) {
+        char_printf(ch, "You can't lure yourself!\n");
+        return;      
+    }
+
+    if (!*argument) {
+        act("Lure $M where!?", false, ch, 0, vict, TO_CHAR);
+        return;
+    }
+
+    dir = searchblock(argument, dirs, false);
+
+    if (FIGHTING(vict)) {
+        char_printf(ch, "You can't lure someone away from combat!\n");
+        return;
+    }
+
+    /* check for paralysis */
+    if (EFF_FLAGGED(vict, EFF_IMMOBILIZED) || 
+        EFF_FLAGGED(vict, EFF_MAJOR_PARALYSIS) || 
+        EFF_FLAGGED(vict, EFF_MINOR_PARALYSIS) ||
+        EFF_FLAGGED(vict, EFF_MESMERIZED)) {
+        act("$N is unable to move!", false, ch, 0, vict, TO_CHAR);
+        return;
+    }
+
+    /* is that a valid direction? */
+    if (dir < 0 || !CH_DEST(ch, dir)) {
+        char_printf(ch, "You can't lure someone in that direction!\n");
+        return;
+    }
+
+    /* set a value for success */
+    int trick;
+    trick = random_number(0, 81);
+
+    /* high int helps */
+    trick -= int_app[GET_NATURAL_INT(ch)].bonus;
+            
+    /* Ventriloquate helps */
+    if (affected_by_spell(ch, SPELL_VENTRILOQUATE))
+        trick -= 10;
+
+    /* being confused makes it harder to ignore */
+    if (EFF_FLAGGED(vict, EFF_CONFUSION))
+        trick -= 15;
+
+    /* being insane make it harder to ignore */
+    if (EFF_FLAGGED(vict, EFF_INSANITY))
+        trick -= 15;
+
+    /* being silenced makes it very hard to succeed */
+    if (EFF_FLAGGED(ch, EFF_SILENCE))
+        trick += 20;
+
+    /* Must be undetectable */
+    if (!CAN_SEE(vict, ch)) {
+        /* Check the trick number */
+        if (GET_SKILL(ch, SKILL_LURE) > trick) {
+            /* Can't lure Sentinel mobs */
+            if (MOB_FLAGGED(vict, MOB_SENTINEL)) {
+                act("$N will not move from $S place!", false, ch, 0, vict, TO_CHAR);
+                return;
+            } else {
+                  for (k = vict->followers; k; k = k->next)
+                      k->can_see_master = CAN_SEE(k->follower, vict);
+
+                /* Success!  The mob can go that way */
+                if (CAN_GO(vict, dir)) {
+                    act("You cleverly lure $N away!", false, ch, 0, vict, TO_CHAR);
+                    sprintf(buf, "$n cleverly lures $N away!\n");
+                    act(buf, true, ch, 0, 0, TO_ROOM);
+                    perform_move(vict, dir, 1, false);
+
+                /* Mob should go, but there's a door in the way */
+                } else {
+                    act("You try to lure $N but the way is blocked!", false, ch, 0, vict, TO_CHAR);
+                }
+            }
+        /* Trick number failed */
+        } else {
+            /* Not invisible and the victim isn't blind */
+            if (!EFF_FLAGGED(ch, EFF_INVISIBLE) && EFF_FLAGGED(vict, EFF_BLIND)) {
+                GET_HIDDENNESS(ch) = 0;
+                act("$n accidentally catches $N's attention!", true, ch, 0, vict, TO_NOTVICT);
+                act("You notice $n trying trick you into leaving the room and attack!", false, ch, 0, vict, TO_VICT);
+                act("You accidentally grab $N's attention instead!", false, ch, 0, vict, TO_CHAR);  
+                attack(vict, ch);
+            /* Can't see because invis, blind, or other, just fail */
+            } else
+                act("$N isn't distracted enough to leave.", false, ch, 0, vict, TO_CHAR);
+        }
+    /* Can be seen! */
+    } else {
+        /* Character wasn't invisible but seen, so hide failed */
+        if (!(EFF_FLAGGED(ch, EFF_INVISIBLE)) || EFF_FLAGGED(ch, EFF_INVISIBLE) && EFF_FLAGGED(vict, EFF_DETECT_INVIS)) {
+            act("$n accidentally catches $N's attention!", true, ch, 0, vict, TO_NOTVICT);
+            act("You notice $n trying trick you into leaving the room and attack!", false, ch, 0, vict, TO_VICT);
+            act("You accidentally grab $N's attention instead!", false, ch, 0, vict, TO_CHAR);
+        } else {
+            act("$N can clearly see you and attacks!", false, ch, 0, vict, TO_CHAR);
+        }
+        attack(vict, ch);
+    }
+
+    improve_skill_offensively(ch, vict, SKILL_LURE);
+    WAIT_STATE(ch, PULSE_VIOLENCE);
+    return;
+}

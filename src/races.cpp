@@ -354,7 +354,7 @@ RaceDef races[NUM_RACES] = {
      nullptr,
      {0, 0}},
     /* HALF-ELF */
-    {"half-elf",
+    {"halfelf",
      "half-elf half elf",
      "&6&bHalf-&0&6&dElf&0",
      "&6&bHalf-&0&6&dElf&0",
@@ -1480,7 +1480,7 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
 
     if (!races[race].playable) {
         if (ch) {
-            char_printf(ch, "The {} race is not available to mortals.\n", races[race].name);
+            char_printf(ch, "The {} race is not available to mortals.\n", races[race].plainname);
         }
         return RACE_UNDEFINED;
     }

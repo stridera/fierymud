@@ -1373,6 +1373,7 @@ void init_skills(void) {
     skillo(SKILL_HUNT, "hunt", false, 0);
     skillo(SKILL_INSTANT_KILL, "instant kill", true, TAR_CONTACT);
     skillo(SKILL_KICK, "kick", true, TAR_CONTACT);
+    skillo(SKILL_LURE, "lure", false, 0);
     skillo(SKILL_MAUL, "maul", false, TAR_CONTACT);
     skillo(SKILL_MEDITATE, "meditate", false, 0);
     skillo(SKILL_MISSILE, "missile weapons", true, TAR_DIRECT);
@@ -1396,6 +1397,7 @@ void init_skills(void) {
     skillo(SKILL_RETREAT, "retreat", false, 0);
     skillo(SKILL_SHADOW, "shadow", false, 0);
     skillo(SKILL_SLASHING, "slashing weapons", true, TAR_CONTACT);
+    skillo(SKILL_SNEAK_ATTACK, "sneak attack", false, 0);
     skillo(SKILL_SPHERE_AIR, "sphere of air", false, 0);
     skillo(SKILL_SPHERE_DEATH, "sphere of death", false, 0);
     skillo(SKILL_SPHERE_DIVIN, "sphere of divination", false, 0);
@@ -1474,7 +1476,7 @@ void init_skills(void) {
      * song, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff
      */
 
-    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, true, TAR_IGNORE, true, MAG_AREA | MAG_UNAFFECT, 0,
+    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, 0,
           false, "Your nerves settle down as the terror leaves you.");
 
     songo(SONG_SONG_OF_REST, "song of rest", POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, 0, false,
@@ -1492,15 +1494,15 @@ void init_skills(void) {
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, false, TAR_IGNORE, false, MAG_GROUP, 0, true,
           "Your familiar disguise melts away.");
 
-    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_GROUP | MAG_UNAFFECT, 0,
+    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_GROUP, 0,
           false, "Your inspiration fades.");
 
-    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT | MAG_UNAFFECT, 0,
+    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, 0,
           false, "Your inspiration fades.");
 
     songo(SONG_JOYFUL_NOISE, "joyful noise", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_UNAFFECT, 0, false, nullptr);
 
-    songo(SONG_TERROR, "terror", POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT | MAG_UNAFFECT, 0,
+    songo(SONG_TERROR, "terror", POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT, 0,
           false, "Your nerves settle down as the terror leaves you.");
 
     /* Set up non-skill effects */
