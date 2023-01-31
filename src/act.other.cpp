@@ -10,6 +10,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
+#include "ai.hpp"
 #include "casting.hpp"
 #include "chars.hpp"
 #include "clan.hpp"
@@ -1109,7 +1110,11 @@ ACMD(do_hide) {
     skill = GET_SKILL(ch, SKILL_HIDE);
     lower_bound = -0.0008 * pow(skill, 3) + 0.1668 * pow(skill, 2) - 3.225 * skill;
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
-    GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
+
+    if (group_size(ch) > 1 && GET_RACE(ch) == RACE_HALFLING)
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + (dex_app_skill[GET_DEX(ch)].hide * ((GET_LEVEL(ch) / 30) + 1));
+    else
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
 
     GET_HIDDENNESS(ch) = std::max(GET_HIDDENNESS(ch), 0l);
 
