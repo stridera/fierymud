@@ -1950,11 +1950,11 @@ void hit(CharData *ch, CharData *victim, int type) {
     /* If a Rogue, save hiddenness as a bonus to backstab */
     if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {        
         hidden = GET_HIDDENNESS(ch);
-        GET_HIDDENNESS(ch) = 0;
     } else {
-        GET_HIDDENNESS(ch) = 0;
         hidden = 0;
     }
+
+    GET_HIDDENNESS(ch) = 0;
 
     /* check if the character has a fight trigger */
     fight_mtrigger(ch);
