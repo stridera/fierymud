@@ -1395,6 +1395,7 @@ void init_skills(void) {
     skillo(SKILL_RETREAT, "retreat", false, 0);
     skillo(SKILL_SHADOW, "shadow", false, 0);
     skillo(SKILL_SLASHING, "slashing weapons", true, TAR_CONTACT);
+    skillo(SKILL_SNEAK_ATTACK, "sneak attack", false, 0);
     skillo(SKILL_SPHERE_AIR, "sphere of air", false, 0);
     skillo(SKILL_SPHERE_DEATH, "sphere of death", false, 0);
     skillo(SKILL_SPHERE_DIVIN, "sphere of divination", false, 0);

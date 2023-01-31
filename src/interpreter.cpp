@@ -381,7 +381,7 @@ const CommandInfo cmd_info[] = {
        SCMD_AUCTION, 0 },*/
     {"ayt", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
 
-    {"backstab", POS_STANDING, STANCE_ALERT, do_backstab, 1, 0, 0},
+    {"backstab", POS_STANDING, STANCE_ALERT, do_backstab, 1, 0, CMD_HIDE},
     {"ban", POS_PRONE, STANCE_DEAD, do_ban, LVL_GRGOD, 0, CMD_ANY},
     {"bandage", POS_STANDING, STANCE_ALERT, do_bandage, 1, 0, CMD_NOFIGHT},
     {"balance", POS_STANDING, STANCE_ALERT, do_not_here, 1, 0, CMD_NOFIGHT},
