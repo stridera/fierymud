@@ -354,7 +354,7 @@ RaceDef races[NUM_RACES] = {
      nullptr,
      {0, 0}},
     /* HALF-ELF */
-    {"half_elf",
+    {"halfelf",
      "half-elf half elf",
      "&6&bHalf-&0&6&dElf&0",
      "&6&bHalf-&0&6&dElf&0",
