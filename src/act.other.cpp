@@ -1113,7 +1113,11 @@ ACMD(do_hide) {
 
     GET_HIDDENNESS(ch) = std::max(GET_HIDDENNESS(ch), 0l);
 
-    WAIT_STATE(ch, PULSE_VIOLENCE);
+    if (GET_CLASS(ch) == CLASS_THIEF) {
+        WAIT_STATE(ch, PULSE_VIOLENCE / 2);
+    } else {
+        WAIT_STATE(ch, PULSE_VIOLENCE);
+    }
 
     improve_skill(ch, SKILL_HIDE);
 

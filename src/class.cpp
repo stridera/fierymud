@@ -124,6 +124,7 @@ ClassDef classes[NUM_CLASSES] = {
     /* THIEF */
     {"thief",                                                           /* standard name */
      "",
+
      "&1&bThief&0",                                                     
      "Thief",                                                           /* name as found by triggers */
      "&1&bThief&0       ",                                              
@@ -140,7 +141,7 @@ ClassDef classes[NUM_CLASSES] = {
      {95, 90, 100, 110, 110},                                           /* saves: para, rod, petri, breath, spell */
      6,                                                                 /* static HP gain over level 30 */
      1,                                                                 /* THAC0 */
-     ITEM_ANTI_ROGUE,                                                   /* !class bit */
+     ITEM_ANTI_THIEF,                                                   /* !class bit */
      100,                                                               /* hp regen factor */
      100,                                                               /* mana regen factor */
      100,                                                               /* mv regen factor */
@@ -569,7 +570,7 @@ ClassDef classes[NUM_CLASSES] = {
      {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
      6,                                                                 /* static HP gain over level 30 */
      5,                                                                 /* THAC0 */
-     ITEM_ANTI_CLERIC,                                                  /* !class bit */
+     ITEM_ANTI_PRIEST,                                                  /* !class bit */
      80,                                                                /* hp regen factor */
      100,                                                               /* mana regen factor */
      100,                                                               /* mv regen factor */
@@ -602,7 +603,7 @@ ClassDef classes[NUM_CLASSES] = {
      {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
      6,                                                                 /* static HP gain over level 30 */
      5,                                                                 /* THAC0 */
-     ITEM_ANTI_CLERIC,                                                  /* !class bit */
+     ITEM_ANTI_DIABOLIST,                                                  /* !class bit */
      80,                                                                /* hp regen factor */
      100,                                                               /* mana regen factor */
      100,                                                               /* mv regen factor */
@@ -734,7 +735,7 @@ ClassDef classes[NUM_CLASSES] = {
      {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
      3,                                                                 /* static HP gain over level 30 */
      7,                                                                 /* THAC0 */
-     ITEM_ANTI_NECROMANCER,                                             /* !class bit */
+     ITEM_ANTI_PYROMANCER,                                             /* !class bit */
      80,                                                                /* hp regen factor */
      100,                                                               /* mana regen factor */
      100,                                                               /* mv regen factor */
@@ -767,7 +768,7 @@ ClassDef classes[NUM_CLASSES] = {
      {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
      3,                                                                 /* static HP gain over level 30 */
      7,                                                                 /* THAC0 */
-     ITEM_ANTI_NECROMANCER,                                             /* !class bit */
+     ITEM_ANTI_CRYOMANCER,                                             /* !class bit */
      80,                                                                /* hp regen factor */
      100,                                                               /* mana regen factor */
      100,                                                               /* mv regen factor */
@@ -800,7 +801,7 @@ ClassDef classes[NUM_CLASSES] = {
      {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
      3,                                                                 /* static HP gain over level 30 */
      7,                                                                 /* THAC0 */
-     ITEM_ANTI_NECROMANCER,                                             /* !class bit */
+     ITEM_ANTI_ILLUSIONIST,                                             /* !class bit */
      80,                                                                /* hp regen factor */
      100,                                                               /* mana regen factor */
      100,                                                               /* mv regen factor */
@@ -2502,7 +2503,6 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SNEAK_ATTACK, CLASS_ROGUE, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
-    skill_assign(SKILL_EYE_GOUGE, CLASS_ROGUE, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_ROGUE, 15);
     skill_assign(SKILL_CONCEAL, CLASS_ROGUE, 25);
     skill_assign(SKILL_TRACK, CLASS_ROGUE, 30);
@@ -2634,13 +2634,15 @@ void assign_class_skills(void) {
     skill_assign(SKILL_BACKSTAB, CLASS_THIEF, 1);
     skill_assign(SKILL_HIDE, CLASS_THIEF, 1);
     skill_assign(SKILL_DODGE, CLASS_THIEF, 1);
-    skill_assign(SKILL_PICK_LOCK, CLASS_THIEF, 6);
-    skill_assign(SKILL_STEAL, CLASS_THIEF, 6);
+    skill_assign(SKILL_PICK_LOCK, CLASS_THIEF, 1);
+    skill_assign(SKILL_STEAL, CLASS_THIEF, 10);
+    skill_assign(SKILL_EYE_GOUGE, CLASS_THIEF, 10);
     skill_assign(SKILL_CONCEAL, CLASS_THIEF, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_THIEF, 15);
     skill_assign(SKILL_PARRY, CLASS_THIEF, 30);
     skill_assign(SKILL_REND, CLASS_THIEF, 30);
     skill_assign(SKILL_TRACK, CLASS_THIEF, 40);
+    skill_assign(SKILL_DISARM, CLASS_THIEF, 40);
     skill_assign(SKILL_STEALTH, CLASS_THIEF, 50);
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_THIEF, 75);
 
