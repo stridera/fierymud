@@ -98,6 +98,7 @@ ACMD(do_disengage);
 ACMD(do_breathe);
 ACMD(do_buck);
 ACMD(do_call);
+ACMD(do_cartwheel);
 ACMD(do_cast);
 ACMD(do_camp);
 ACMD(do_clan);
@@ -174,6 +175,7 @@ ACMD(do_level);
 ACMD(do_light);
 ACMD(do_linkload);
 ACMD(do_load);
+ACMD(do_lure);
 ACMD(do_meditate);
 ACMD(do_memorize);
 ACMD(do_create);
@@ -216,6 +218,7 @@ ACMD(do_recline);
 ACMD(do_rest);
 ACMD(do_reload);
 ACMD(do_remove);
+ACMD(do_rend);
 ACMD(do_report);
 ACMD(do_rescue);
 ACMD(do_reply);
@@ -381,7 +384,7 @@ const CommandInfo cmd_info[] = {
        SCMD_AUCTION, 0 },*/
     {"ayt", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
 
-    {"backstab", POS_STANDING, STANCE_ALERT, do_backstab, 1, 0, 0},
+    {"backstab", POS_STANDING, STANCE_ALERT, do_backstab, 1, 0, CMD_HIDE},
     {"ban", POS_PRONE, STANCE_DEAD, do_ban, LVL_GRGOD, 0, CMD_ANY},
     {"bandage", POS_STANDING, STANCE_ALERT, do_bandage, 1, 0, CMD_NOFIGHT},
     {"balance", POS_STANDING, STANCE_ALERT, do_not_here, 1, 0, CMD_NOFIGHT},
@@ -414,6 +417,7 @@ const CommandInfo cmd_info[] = {
     {"bug", POS_PRONE, STANCE_DEAD, do_gen_write, 0, SCMD_BUG, CMD_ANY},
     {"bye", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
 
+    {"cartwheel", POS_STANDING, STANCE_ALERT, do_cartwheel, 0, 0, CMD_NOFIGHT},
     {"cast", POS_SITTING, STANCE_RESTING, do_cast, 1, SCMD_CAST, 0},
     {"cackle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"call", POS_PRONE, STANCE_RESTING, do_call, 0, 0, 0},
@@ -619,6 +623,7 @@ const CommandInfo cmd_info[] = {
     {"linkload", POS_PRONE, STANCE_DEAD, do_linkload, LVL_HEAD_C, 0, CMD_ANY ^ CMD_OLC},
     {"load", POS_PRONE, STANCE_DEAD, do_load, LVL_ATTENDANT, 0, CMD_ANY ^ CMD_OLC},
     {"love", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"lure", POS_STANDING, STANCE_ALERT, do_lure, 0, 0, CMD_HIDE | CMD_NOFIGHT},
 
     {"memorize", POS_PRONE, STANCE_RESTING, do_memorize, 0, 0, CMD_MEDITATE},
     {"maul", POS_STANDING, STANCE_ALERT, do_bash, 1, SCMD_MAUL, 0},
@@ -712,6 +717,7 @@ const CommandInfo cmd_info[] = {
     {"rest", POS_PRONE, STANCE_RESTING, do_rest, 0, 0, CMD_MEDITATE},
     {"raise", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"read", POS_PRONE, STANCE_RESTING, do_read, 0, 0, 0},
+    {"rend", POS_STANDING, STANCE_ALERT, do_rend, 0, 0, 0},
     {"report", POS_PRONE, STANCE_RESTING, do_report, 0, SCMD_REPORT, 0},
     {"reply", POS_PRONE, STANCE_SLEEPING, do_reply, 0, 0, CMD_ANY},
     {"reload", POS_PRONE, STANCE_DEAD, do_reload, LVL_HEAD_C, 0, 0},

@@ -2499,6 +2499,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_HIDE, CLASS_ROGUE, 1);
     skill_assign(SKILL_DODGE, CLASS_ROGUE, 1);
     skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
+    skill_assign(SKILL_SNEAK_ATTACK, CLASS_ROGUE, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
     skill_assign(SKILL_EYE_GOUGE, CLASS_ROGUE, 10);
@@ -2638,6 +2639,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_CONCEAL, CLASS_THIEF, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_THIEF, 15);
     skill_assign(SKILL_PARRY, CLASS_THIEF, 30);
+    skill_assign(SKILL_REND, CLASS_THIEF, 30);
     skill_assign(SKILL_TRACK, CLASS_THIEF, 40);
     skill_assign(SKILL_STEALTH, CLASS_THIEF, 50);
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_THIEF, 75);

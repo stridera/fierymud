@@ -362,7 +362,7 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
 
     /* HALF-ELF */
-    {"half-elf",                /* name as found by triggers */
+    {"halfelf",                /* name as found by triggers */
      "half-elf half elf",       /* all race keywords */
      "&6&bHalf-&0&6&dElf&0",    /* name as displayed at character creation, on who, and score */
      "&6&bHalf-&0&6&dElf&0",    /* name as displayed in show race command and when setting races */
@@ -1480,7 +1480,7 @@ int parse_race(CharData *ch, CharData *vict, char *arg) {
 
     if (!races[race].playable) {
         if (ch) {
-            char_printf(ch, "The {} race is not available to mortals.\n", races[race].name);
+            char_printf(ch, "The {} race is not available to mortals.\n", races[race].plainname);
         }
         return RACE_UNDEFINED;
     }

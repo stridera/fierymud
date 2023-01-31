@@ -186,11 +186,13 @@ const char *wear_bits[NUM_ITEM_WEAR_FLAGS + 1] = {
 
 /* ITEM_x (extra bits) */
 const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
-    "GLOW",         "HUM",       "!RENT",         "!BERSERKER", "!INVIS",      "INVISIBLE", "MAGIC",     "!DROP",
-    "PERMANENT",    "!GOOD",     "!EVIL",         "!NEUTRAL",   "!SORCERER",   "!CLERIC",   "!ROGUE",    "!WARRIOR",
-    "!SELL",        "!PALADIN",  "!ANTI_PALADIN", "!RANGER",    "!DRUID",      "!SHAMAN",   "!ASSASSIN", "!MERCENARY",
-    "!NECROMANCER", "!CONJURER", "!BURN",         "!LOCATE",    "DECOMPOSING", "FLOAT",     "!FALL",     "DISARMED",
-    "!MONK",        "!BARD",     "ELVEN",         "DWARVEN",    "\n"};
+    "GLOW",         "HUM",        "!RENT",          "!BERSERKER",   "!INVIS",       "INVISIBLE",    "MAGIC",        "!DROP",
+    "PERMANENT",    "!GOOD",      "!EVIL",          "!NEUTRAL",     "!SORCERER",    "!CLERIC",      "!ROGUE",       "!WARRIOR",
+    "!SELL",        "!PALADIN",   "!ANTI_PALADIN",  "!RANGER",      "!DRUID",       "!SHAMAN",      "!ASSASSIN",    "!MERCENARY",
+    "!NECROMANCER", "!CONJURER",  "!BURN",          "!LOCATE",      "DECOMPOSING",  "FLOAT",        "!FALL",        "DISARMED",
+    "!MONK",        "!BARD",      "ELVEN",          "DWARVEN",      "!THIEF",       "!PYROMANCER",  "!CRYOMANCER",  "!ILLUSIONIST",
+    "!PRIEST",      "!DIABOLIST", "!TINY",          "!SMALL",       "!MEDIUM",      "!LARGE",       "!HUGE",        "!GIANT",
+    "!GARGANTUAN",  "!COLOSSAL",  "!TITANIC",       "!MOUNTAINOUS", "\n"};
 
 /* APPLY_x */
 const char *apply_types[NUM_APPLY_TYPES + 1] = {
