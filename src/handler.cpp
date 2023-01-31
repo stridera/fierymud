@@ -806,16 +806,57 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         /* Check alignment restrictions. */
-        if ((OBJ_FLAGGED(obj, ITEM_ANTI_EVIL) && IS_EVIL(ch)) || (OBJ_FLAGGED(obj, ITEM_ANTI_GOOD) && IS_GOOD(ch)) ||
-            (OBJ_FLAGGED(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch)) ||
-            ((NOWEAR_CLASS(ch, obj) &&
-              (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
-              (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))))) {
+        if (OBJ_FLAGGED(obj, ITEM_ANTI_EVIL) && IS_EVIL(ch)) {
             if (sendmessage)
-                act("You can not use $p.", false, ch, obj, 0, TO_CHAR);
+                act("You are too evil to use $p.", false, ch, obj, 0, TO_CHAR);
             return false;
         }
 
+        if (OBJ_FLAGGED(obj, ITEM_ANTI_GOOD) && IS_GOOD(ch)) {
+            if (sendmessage)
+                act("You are too good to use $p.", false, ch, obj, 0, TO_CHAR);
+            return false;
+        }
+        
+        if (OBJ_FLAGGED(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch)) {
+            if (sendmessage)
+                act("You are too neutral to use $p.", false, ch, obj, 0, TO_CHAR);
+            return false;
+        }
+
+        /* Check size rescrictions */
+        if ((OBJ_FLAGGED(obj, ITEM_ANTI_TINY) && GET_SIZE(ch) == SIZE_TINY) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_SMALL) && GET_SIZE(ch) == SIZE_SMALL) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_MEDIUM) && GET_SIZE(ch) == SIZE_MEDIUM) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_LARGE) && GET_SIZE(ch) == SIZE_LARGE) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_HUGE) && GET_SIZE(ch) == SIZE_HUGE) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_GIANT) && GET_SIZE(ch) == SIZE_GIANT) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_GARGANTUAN) && GET_SIZE(ch) == SIZE_GARGANTUAN) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_COLOSSAL) && GET_SIZE(ch) == SIZE_COLOSSAL) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_TITANIC) && GET_SIZE(ch) == SIZE_TITANIC) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_MOUNTAINOUS) && GET_SIZE(ch) == SIZE_MOUNTAINOUS)) {
+            if (GET_OBJ_TYPE(obj) == ITEM_WEAPON) {
+                if (sendmessage)
+                    act("You cannot properly handle $p.", false, ch, obj, 0, TO_CHAR);
+                return false;
+            } else {
+                if (sendmessage)
+                    act("You cannot fit into $p.", false, ch, obj, 0, TO_CHAR);
+                return false;
+            }
+
+        }
+
+        /* Check class and override by race */
+        if ((NOWEAR_CLASS(ch, obj) &&
+            (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
+            (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR))))) {
+            if (sendmessage)
+                act("You cannot use $p.", false, ch, obj, 0, TO_CHAR);
+            return false;
+        }
+
+        /* Check weight of object */
         if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_EFFECTIVE_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
             if (sendmessage)
                 char_printf(ch, "It's too heavy for you to use.\n");
