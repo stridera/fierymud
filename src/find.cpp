@@ -868,7 +868,7 @@ CharData *get_random_char_around(CharData *ch, int mode) {
          * 33% chance to pick the third person (66% to keep one of first two),
          * etc...
          */
-        if (number(0, count++) == 0)
+        if (random_number(0, count++) == 0)
             vict = i;
     }
 

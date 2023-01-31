@@ -376,7 +376,7 @@ void get_random_object(GetContext *context) {
 
     for (obj = world[ch->in_room].contents; obj; obj = obj->next_content) {
         if (CAN_SEE_OBJ(ch, obj)) {
-            if (chosen == nullptr || number(0, count) == 0)
+            if (chosen == nullptr || random_number(0, count) == 0)
                 chosen = obj;
             count++;
         }
@@ -400,7 +400,7 @@ void get_from_room(CharData *ch, char *name, int amount) {
         return;
     }
 
-    if (CONFUSED(ch) && number(0, 1) == 0)
+    if (CONFUSED(ch) && random_number(0, 1) == 0)
         confused = true;
 
     dotmode = find_all_dots(&name);
@@ -545,13 +545,13 @@ ACMD(do_palm) {
                     continue;
                 if (CAN_SEE(ch, tch)) {
                     ++people;
-                    if (GET_PERCEPTION(tch) < roll - 50 + number(0, 50))
+                    if (GET_PERCEPTION(tch) < roll - 50 + random_number(0, 50))
                         continue;
                 } else if (GET_PERCEPTION(tch) < roll / 2)
                     continue;
                 if (!CAN_SEE(tch, ch))
                     continue;
-                if (!CAN_SEE_OBJ(tch, obj) && number(0, 1))
+                if (!CAN_SEE_OBJ(tch, obj) && random_number(0, 1))
                     continue;
                 act(buf, true, tch, obj, cont, TO_CHAR);
             }
@@ -602,9 +602,9 @@ ACMD(do_palm) {
                             continue;
                         if (!CAN_SEE(tch, ch))
                             continue;
-                        if (!CAN_SEE_OBJ(tch, obj) && number(0, 1))
+                        if (!CAN_SEE_OBJ(tch, obj) && random_number(0, 1))
                             continue;
-                        if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + number(0, 50))
+                        if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + random_number(0, 50))
                                              : (GET_PERCEPTION(tch) < roll / 2))
                             continue;
                         act(buf, true, tch, obj, cont, TO_CHAR);

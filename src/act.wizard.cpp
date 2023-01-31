@@ -52,6 +52,7 @@
 #include "utils.hpp"
 #include "weather.hpp"
 
+#include <algorithm>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -700,7 +701,8 @@ ACMD(do_load) {
         act("$n makes a quaint, magical gesture with one hand.", true, ch, 0, 0, TO_ROOM);
         act("$n has created $N!", false, ch, 0, mob, TO_ROOM);
         act("You create $N.", false, ch, 0, mob, TO_CHAR);
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} loads mob,  {}", GET_NAME(ch), GET_NAME(mob));
+        log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} loads mob,  {}", GET_NAME(ch),
+            GET_NAME(mob));
         load_mtrigger(mob);
     } else if (is_abbrev(buf, "obj")) {
         if ((r_num = real_object(number)) < 0) {
@@ -713,7 +715,7 @@ ACMD(do_load) {
         act("$n makes a strange magical gesture.", true, ch, 0, 0, TO_ROOM);
         act("$n has created $p!", true, ch, obj, 0, TO_ROOM);
         act("You create $p.", false, ch, obj, 0, TO_CHAR);
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} loads OBJ,  {}", GET_NAME(ch),
+        log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} loads OBJ,  {}", GET_NAME(ch),
             (obj)->short_description);
     } else
         char_printf(ch, "That'll have to be either 'obj' or 'mob'.\n");
@@ -855,11 +857,11 @@ ACMD(do_advance) {
     char_printf(ch, OK);
 
     if (newlevel < oldlevel)
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_LEVEL(ch)), "(GC) {} has demoted {} from level {:d} to {:d}.",
-            GET_NAME(ch), GET_NAME(victim), oldlevel, newlevel);
+        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_LEVEL(ch)),
+            "(GC) {} has demoted {} from level {:d} to {:d}.", GET_NAME(ch), GET_NAME(victim), oldlevel, newlevel);
     else
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_LEVEL(ch)), "(GC) {} has advanced {} to level {:d} (from {:d})",
-            GET_NAME(ch), GET_NAME(victim), newlevel, oldlevel);
+        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_LEVEL(ch)),
+            "(GC) {} has advanced {} to level {:d} (from {:d})", GET_NAME(ch), GET_NAME(victim), newlevel, oldlevel);
 
     gain_exp(victim, exp_next_level(newlevel - 1, GET_CLASS(victim)) - GET_EXP(victim) + 1, GAIN_IGNORE_ALL);
     save_player_char(victim);
@@ -877,9 +879,9 @@ void perform_restore(CharData *vict) {
     extern void dispel_harmful_magic(CharData * ch);
 
     dispel_harmful_magic(vict);
-    GET_HIT(vict) = MAX(GET_MAX_HIT(vict), GET_HIT(vict));
-    GET_MANA(vict) = MAX(GET_MAX_MANA(vict), GET_MANA(vict));
-    GET_MOVE(vict) = MAX(GET_MAX_MOVE(vict), GET_MOVE(vict));
+    GET_HIT(vict) = std::max(GET_MAX_HIT(vict), GET_HIT(vict));
+    GET_MANA(vict) = std::max(GET_MAX_MANA(vict), GET_MANA(vict));
+    GET_MOVE(vict) = std::max(GET_MAX_MOVE(vict), GET_MOVE(vict));
     cure_laryngitis(vict);
 
     /* Since we didn't call alter_hit, which calls hp_pos_check */
@@ -1022,16 +1024,16 @@ ACMD(do_poofset) {
     case SCMD_POOFIN:
         if (argument[0] != '\0') {
             GET_POOFIN(ch) = strdup(argument);
-            char_printf(ch, "Your poofin is now: %s\n", GET_POOFIN(ch));
+            char_printf(ch, "Your poofin is now: {}\n", GET_POOFIN(ch));
         } else
-            char_printf(ch, "Your poofin is: %s\n", GET_POOFIN(ch));
+            char_printf(ch, "Your poofin is: {}\n", GET_POOFIN(ch));
         break;
     case SCMD_POOFOUT:
         if (argument[0] != '\0') {
             GET_POOFOUT(ch) = strdup(argument);
-            char_printf(ch, "Your poofin is now: %s\n", GET_POOFOUT(ch));
+            char_printf(ch, "Your poofin is now: {}\n", GET_POOFOUT(ch));
         } else
-            char_printf(ch, "Your poofout is: %s\n", GET_POOFOUT(ch));
+            char_printf(ch, "Your poofout is: {}\n", GET_POOFOUT(ch));
         break;
     default:
         return;
@@ -1155,14 +1157,14 @@ ACMD(do_force) {
         else {
             char_printf(ch, OK);
             act(buf1, false, ch, nullptr, vict, TO_VICT);
-            log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced {} to {}", GET_NAME(ch),
+            log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced {} to {}", GET_NAME(ch),
                 GET_NAME(vict), to_force);
             command_interpreter(vict, to_force);
         }
     } else if (!strcasecmp("room", arg)) {
         char_printf(ch, OK);
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced room {:d} to {}", GET_NAME(ch),
-            world[ch->in_room].vnum, to_force);
+        log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced room {:d} to {}",
+            GET_NAME(ch), world[ch->in_room].vnum, to_force);
 
         for (vict = world[ch->in_room].people; vict; vict = next_force) {
             next_force = vict->next_in_room;
@@ -1173,7 +1175,8 @@ ACMD(do_force) {
         }
     } else { /* force all */
         char_printf(ch, OK);
-        log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced all to {}", GET_NAME(ch), to_force);
+        log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} forced all to {}", GET_NAME(ch),
+            to_force);
 
         for (i = descriptor_list; i; i = next_desc) {
             next_desc = i->next;
@@ -1197,8 +1200,10 @@ ACMD(do_wiznet) {
 
     if (!*argument) {
         char_printf(ch,
-                    "Usage: wiznet <text> | #<level> <text>\n "
-                    "       wiznet @<level> | wiz @\n");
+                    "Usage: \n"
+                    "   wiznet <text> - Send a message over wiznet to all gods.\n "
+                    "   wiznet #<level> <text> - Send message to all gods above <level>\n"
+                    "   wiznet @@ - Show online gods.\n");
         return;
     }
 
@@ -1207,9 +1212,9 @@ ACMD(do_wiznet) {
         one_argument(argument + 1, buf1);
         if (is_number(buf1)) {
             half_chop(argument + 1, buf1, argument);
-            level = MAX(atoi(buf1), 1);
+            level = std::max(atoi(buf1), 1);
             if (level > GET_LEVEL(ch)) {
-                char_printf(ch, "You can't wizline above your own level.\n");
+                char_printf(ch, "You can't wiznet above your own level.\n");
                 return;
             }
             explicit_level = true;
@@ -1442,7 +1447,7 @@ ACMD(do_name) {
         if (*arg) {
             if (atoi(arg) == 0) {
                 for (z = 0; z < 8; z++)
-                    char_printf(ch, "{}{%d}. {}\n", buf, z + 1, reasons[z]);
+                    char_printf(ch, "{}{:d}. {}\n", buf, z + 1, reasons[z]);
             }
         }
 
@@ -1483,7 +1488,7 @@ ACMD(do_zreset) {
         for (i = 0; i <= top_of_zone_table; i++)
             reset_zone(i, false);
         char_printf(ch, "Reset world.\n");
-        log(LogSeverity::Stat, MAX(LVL_GRGOD, GET_INVIS_LEV(ch)), "(GC) {} reset entire world.", GET_NAME(ch));
+        log(LogSeverity::Stat, std::max(LVL_GRGOD, GET_INVIS_LEV(ch)), "(GC) {} reset entire world.", GET_NAME(ch));
         return;
     } else if (!isdigit(*arg)) {
         char_printf(ch, "Usage: zreset [<zone-number>]\n");
@@ -1501,7 +1506,7 @@ ACMD(do_zreset) {
     if (i >= 0 && i <= top_of_zone_table) {
         reset_zone(i, false);
         char_printf(ch, "Reset zone {:d} (#{:d}): {}.\n", i, zone_table[i].number, zone_table[i].name);
-        log(LogSeverity::Stat, MAX(LVL_GRGOD, GET_INVIS_LEV(ch)), "(GC) {} reset zone {:d} ({})", GET_NAME(ch),
+        log(LogSeverity::Stat, std::max(LVL_GRGOD, GET_INVIS_LEV(ch)), "(GC) {} reset zone {:d} ({})", GET_NAME(ch),
             zone_table[i].number, zone_table[i].name);
     } else
         char_printf(ch, "Invalid zone number.\n");
@@ -1601,19 +1606,19 @@ ACMD(do_wizutil) {
             REMOVE_FLAG(PLR_FLAGS(vict), PLR_KILLER);
             char_printf(ch, "Pardoned.\n");
             char_printf(vict, "You have been pardoned by the Gods!\n");
-            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} pardoned by {}", GET_NAME(vict),
+            log(LogSeverity::Warn, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} pardoned by {}", GET_NAME(vict),
                 GET_NAME(ch));
             break;
         case SCMD_NOTITLE:
             result = PLR_TOG_CHK(vict, PLR_NOTITLE);
-            log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Notitle {} for {} by {}.", ONOFF(result),
-                GET_NAME(vict), GET_NAME(ch));
+            log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Notitle {} for {} by {}.",
+                ONOFF(result), GET_NAME(vict), GET_NAME(ch));
             char_printf(ch, "\n");
             break;
         case SCMD_SQUELCH:
             result = PLR_TOG_CHK(vict, PLR_NOSHOUT);
-            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Squelch {} for {} by {}.", ONOFF(result),
-                GET_NAME(vict), GET_NAME(ch));
+            log(LogSeverity::Warn, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Squelch {} for {} by {}.",
+                ONOFF(result), GET_NAME(vict), GET_NAME(ch));
             char_printf(ch, "\n");
             break;
         case SCMD_FREEZE:
@@ -1631,7 +1636,7 @@ ACMD(do_wizutil) {
                 vict, "A bitter wind suddenly rises and drains every erg of heat from your body!\nYou feel frozen!\n");
             char_printf(ch, "Frozen.\n");
             act("A sudden cold wind conjured from nowhere freezes $n!", false, vict, 0, 0, TO_ROOM);
-            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} frozen by {}.", GET_NAME(vict),
+            log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} frozen by {}.", GET_NAME(vict),
                 GET_NAME(ch));
             break;
         case SCMD_THAW:
@@ -1644,7 +1649,7 @@ ACMD(do_wizutil) {
                             GET_NAME(vict), HMHR(vict));
                 return;
             }
-            log(LogSeverity::Warn, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} un-frozen by {}.", GET_NAME(vict),
+            log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} un-frozen by {}.", GET_NAME(vict),
                 GET_NAME(ch));
             REMOVE_FLAG(PLR_FLAGS(vict), PLR_FROZEN);
             char_printf(vict, "A fireball suddenly explodes in front of you, melting the ice!\nYou feel thawed.\n");
@@ -1707,8 +1712,6 @@ ACMD(do_wizutil) {
         else if (off)                                                                                                  \
             REMOVE_FLAG(flagset, flags);                                                                               \
     } while (0)
-
-#define RANGE(low, high) (value = MAX((low), MIN((high), (value))))
 
 ACMD(do_set) {
     int i, l;
@@ -1803,6 +1806,7 @@ ACMD(do_set) {
                   {"lifeforce", LVL_GOD, BOTH, MISC},
                   {"composition", LVL_GOD, BOTH, MISC}, /*75 */
                   {"music", LVL_GAMEMASTER, PC, NUMBER},
+                  {"summon mount", LVL_GOD, PC, NUMBER},
                   {"\n", 0, BOTH, MISC}};
 
     half_chop(argument, name, buf);
@@ -1913,43 +1917,43 @@ ACMD(do_set) {
     case 4:
         /* Base hit is in a player special. Don't set for npcs */
         if (IS_NPC(vict))
-            GET_MAX_HIT(vict) = RANGE(1, 500000);
+            GET_MAX_HIT(vict) = std::clamp(value, 1, 500000);
         else {
-            GET_BASE_HIT(vict) = RANGE(1, 500000);
+            GET_BASE_HIT(vict) = std::clamp(value, 1, 500000);
             effect_total(vict);
         }
         break;
     case 5:
-        vict->points.max_mana = RANGE(1, 500000);
+        vict->points.max_mana = std::clamp(value, 1, 500000);
         effect_total(vict);
         break;
     case 6:
-        vict->points.max_move = RANGE(1, 500000);
+        vict->points.max_move = std::clamp(value, 1, 500000);
         effect_total(vict);
         break;
     case 7:
-        vict->points.hit = RANGE(-9, vict->points.max_hit);
+        vict->points.hit = std::clamp(value, -9, vict->points.max_hit);
         effect_total(vict);
         break;
     case 8:
-        vict->points.mana = RANGE(0, vict->points.max_mana);
+        vict->points.mana = std::clamp(value, 0, vict->points.max_mana);
         effect_total(vict);
         break;
     case 9:
-        vict->points.move = RANGE(0, vict->points.max_move);
+        vict->points.move = std::clamp(value, 0, vict->points.max_move);
         effect_total(vict);
         break;
     case 10:
-        GET_ALIGNMENT(vict) = RANGE(-1000, 1000);
+        GET_ALIGNMENT(vict) = std::clamp(value, -1000, 1000);
         effect_total(vict);
         break;
     case 11:
-        GET_NATURAL_STR(vict) = RANGE(MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_NATURAL_STR(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
     case 12:
         /*  This is no longer used --Gurlaek 6/23/1999
-           vict->view_abils.str_add = RANGE(0, 100);
+           vict->view_abils.str_add = std::clamp(value, 0, 100);
            vict->view_abils.str_add = value;
            if (value > 0)
            vict->view_abils.str = 100;
@@ -1958,19 +1962,19 @@ ACMD(do_set) {
         break;
         /*Edited by Proky,  values for intel */
     case 13:
-        GET_NATURAL_INT(vict) = RANGE(MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_NATURAL_INT(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
     case 14:
-        GET_NATURAL_WIS(vict) = RANGE(MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_NATURAL_WIS(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
     case 15:
-        GET_NATURAL_DEX(vict) = RANGE(MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_NATURAL_DEX(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
     case 16:
-        GET_NATURAL_CON(vict) = RANGE(MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_NATURAL_CON(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
     case 17:
@@ -1988,7 +1992,7 @@ ACMD(do_set) {
         }
         break;
     case 18:
-        GET_AC(vict) = RANGE(MIN_AC, MIN_AC);
+        GET_AC(vict) = std::clamp(value, MIN_AC, MIN_AC);
         effect_total(vict);
         break;
     case 19: {
@@ -2016,32 +2020,32 @@ ACMD(do_set) {
         }
     } break;
     case 20:
-        GET_COOLDOWN(vict, CD_INNATE_ASCEN) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_BRILL) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_CHAZ) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_SYLL) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_TASS) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_TREN) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_INVISIBLE) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_FEATHER_FALL) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_CREATE) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_DARKNESS) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_HARNESS) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_BREATHE) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_ILLUMINATION) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_INNATE_STATUE) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_ASCEN) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_BRILL) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_CHAZ) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_SYLL) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_TASS) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_TREN) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_INVISIBLE) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_FEATHER_FALL) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_CREATE) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_DARKNESS) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_HARNESS) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_BREATHE) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_ILLUMINATION) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_STATUE) = std::clamp(value, 0, 100);
         break;
     case 21:
-        vict->points.exp = RANGE(0, 299999999);
+        vict->points.exp = std::clamp(value, 0, 299999999);
         break;
     case 22:
-        GET_BASE_HITROLL(vict) = RANGE(MIN_DAMROLL, MAX_DAMROLL);
+        GET_BASE_HITROLL(vict) = std::clamp(value, MIN_DAMROLL, MAX_DAMROLL);
         effect_total(vict);
         break;
     case 23:
-        GET_BASE_DAMROLL(vict) = RANGE(MIN_DAMROLL, MAX_DAMROLL);
+        GET_BASE_DAMROLL(vict) = std::clamp(value, MIN_DAMROLL, MAX_DAMROLL);
         effect_total(vict);
         break;
     case 24:
@@ -2050,7 +2054,7 @@ ACMD(do_set) {
             save = false;
             break;
         }
-        GET_INVIS_LEV(vict) = RANGE(0, GET_LEVEL(vict));
+        GET_INVIS_LEV(vict) = std::clamp<int>(value, 0, GET_LEVEL(vict));
         break;
     case 25:
         if (GET_LEVEL(ch) < LVL_HEAD_C && ch != vict) {
@@ -2070,7 +2074,7 @@ ACMD(do_set) {
         break;
     case 27:
     case 28:
-        /* GET_PRACTICES(vict) = RANGE(0, 100); */
+        /* GET_PRACTICES(vict) = std::clamp(value, 0, 100); */
         break;
     case 29:
     case 30:
@@ -2080,7 +2084,7 @@ ACMD(do_set) {
             sprintf(buf, "%s's %s now off.\n", GET_NAME(vict), fields[l].cmd);
         } else if (is_number(val_arg)) {
             value = atoi(val_arg);
-            RANGE(0, 24);
+            std::clamp(value, 0, 24);
             GET_COND(vict, (l - 29)) = (char)value;
             sprintf(buf, "%s's %s set to %d.\n", GET_NAME(vict), fields[l].cmd, value);
         } else {
@@ -2104,7 +2108,7 @@ ACMD(do_set) {
         }
         if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
             GET_CLAN(vict)->power -= GET_LEVEL(vict);
-        RANGE(0, LVL_IMPL);
+        std::clamp(value, 0, LVL_IMPL);
         vict->player.level = (byte)value;
         if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
             GET_CLAN(vict)->power += GET_LEVEL(vict);
@@ -2201,7 +2205,7 @@ ACMD(do_set) {
         SET_OR_REMOVE(PLR_FLAGS(vict), PLR_NODELETE);
         break;
     case 47:
-        GET_NATURAL_CHA(vict) = RANGE(MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
+        GET_NATURAL_CHA(vict) = std::clamp(value, MIN_ABILITY_VALUE, MAX_ABILITY_VALUE);
         effect_total(vict);
         break;
     case 48:
@@ -2237,28 +2241,28 @@ ACMD(do_set) {
         /* GET_OLC5_ZONE(vict) = value; */
         break;
     case 53:
-        GET_PLATINUM(vict) = RANGE(0, 100000000);
+        GET_PLATINUM(vict) = std::clamp(value, 0, 100000000);
         break;
     case 54:
-        GET_GOLD(vict) = RANGE(0, 100000000);
+        GET_GOLD(vict) = std::clamp(value, 0, 100000000);
         break;
     case 55:
-        GET_SILVER(vict) = RANGE(0, 100000000);
+        GET_SILVER(vict) = std::clamp(value, 0, 100000000);
         break;
     case 56:
-        GET_COPPER(vict) = RANGE(0, 100000000);
+        GET_COPPER(vict) = std::clamp(value, 0, 100000000);
         break;
     case 57:
-        GET_BANK_PLATINUM(vict) = RANGE(0, 100000000);
+        GET_BANK_PLATINUM(vict) = std::clamp(value, 0, 100000000);
         break;
     case 58:
-        GET_BANK_GOLD(vict) = RANGE(0, 100000000);
+        GET_BANK_GOLD(vict) = std::clamp(value, 0, 100000000);
         break;
     case 59:
-        GET_BANK_SILVER(vict) = RANGE(0, 100000000);
+        GET_BANK_SILVER(vict) = std::clamp(value, 0, 100000000);
         break;
     case 60:
-        GET_BANK_COPPER(vict) = RANGE(0, 100000000);
+        GET_BANK_COPPER(vict) = std::clamp(value, 0, 100000000);
         break;
 
     case 61:
@@ -2279,7 +2283,7 @@ ACMD(do_set) {
         do_wiztitle(buf, vict, val_arg);
         break;
     case 67:
-        GET_COOLDOWN(vict, CD_CHANT) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_CHANT) = std::clamp(value, 0, 100);
         break;
     case 68:
         if (!*val_arg) {
@@ -2297,10 +2301,10 @@ ACMD(do_set) {
                 SIZE_DESC(vict));
         break;
     case 69:
-        GET_HIDDENNESS(vict) = RANGE(0, 1000);
+        GET_HIDDENNESS(vict) = std::clamp(value, 0, 1000);
         break;
     case 70:
-        GET_RAGE(vict) = RANGE(0, 1000);
+        GET_RAGE(vict) = std::clamp(value, 0, 1000);
         check_regen_rates(vict);
         break;
     case 71:
@@ -2371,13 +2375,16 @@ ACMD(do_set) {
         buf[0] = '\0';
         break;
     case 76: /* reset all bard music cooldowns */
-        GET_COOLDOWN(vict, CD_MUSIC_1) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_MUSIC_2) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_MUSIC_3) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_MUSIC_4) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_MUSIC_5) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_MUSIC_6) = RANGE(0, 100);
-        GET_COOLDOWN(vict, CD_MUSIC_7) = RANGE(0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_1) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_2) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_3) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_4) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_5) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_6) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_MUSIC_7) = std::clamp(value, 0, 100);
+        break;
+    case 77: /* summon mount for anti and paladin */
+        GET_COOLDOWN(vict, CD_SUMMON_MOUNT) = std::clamp(value, 0, 100);
         break;
     default:
         sprintf(buf, "Can't set that!\n");

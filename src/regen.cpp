@@ -90,9 +90,9 @@ EVENTFUNC(move_regen_event) {
     if (GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
         gain = move_gain(ch);
         if (GET_STANCE(ch) >= STANCE_SLEEPING && GET_POS(ch) < POS_STANDING)
-            GET_MOVE(ch) = MIN(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
+            GET_MOVE(ch) = std::min(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
         else
-            GET_MOVE(ch) = MIN(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
+            GET_MOVE(ch) = std::min(GET_MOVE(ch) + 1, GET_MAX_MOVE(ch));
 
         delay = gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain;
     }
@@ -108,9 +108,9 @@ EVENTFUNC(rage_event) {
     /* Berserking: diminish rage quickly. */
     if (EFF_FLAGGED(ch, EFF_BERSERK)) {
         if (EFF_FLAGGED(ch, EFF_WRATH))
-            GET_RAGE(ch) -= number(10, 15);
+            GET_RAGE(ch) -= random_number(10, 15);
         else
-            GET_RAGE(ch) -= number(20, 30);
+            GET_RAGE(ch) -= random_number(20, 30);
         if (GET_RAGE(ch) % 7 == 0 && FIGHTING(ch))
             improve_skill(ch, SKILL_BERSERK);
         if (!FIGHTING(ch))
@@ -120,14 +120,14 @@ EVENTFUNC(rage_event) {
 
     /* Meditating: increase rage quickly. */
     else if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        GET_RAGE(ch) += number(10, GET_SKILL(ch, SKILL_MEDITATE));
+        GET_RAGE(ch) += random_number(10, GET_SKILL(ch, SKILL_MEDITATE));
         if (GET_RAGE(ch) % 5 == 0)
             improve_skill(ch, SKILL_MEDITATE);
     }
 
     /* Otherwise diminish rage slowly. */
     else
-        GET_RAGE(ch) -= number(2, 4);
+        GET_RAGE(ch) -= random_number(2, 4);
 
     /* When you reach crazed rage, you are forced to start berserking. */
     if (GET_RAGE(ch) > RAGE_CRAZED && !EFF_FLAGGED(ch, EFF_BERSERK)) {
@@ -225,7 +225,7 @@ void alter_mana(CharData *ch, int amount) {
     if (ch->in_room <= NOWHERE)
         return;
 
-    GET_MANA(ch) = MIN(GET_MANA(ch) - amount, GET_MAX_MANA(ch));
+    GET_MANA(ch) = std::min(GET_MANA(ch) - amount, GET_MAX_MANA(ch));
 
     if (GET_MANA(ch) < GET_MAX_MANA(ch) && !EVENT_FLAGGED(ch, EVENT_REGEN_MANA))
         set_regen_event(ch, EVENT_REGEN_MANA);
@@ -236,7 +236,7 @@ void alter_move(CharData *ch, int amount) {
     if (ch->in_room <= NOWHERE)
         return;
 
-    GET_MOVE(ch) = MIN(GET_MOVE(ch) - amount, GET_MAX_MOVE(ch));
+    GET_MOVE(ch) = std::min(GET_MOVE(ch) - amount, GET_MAX_MOVE(ch));
 
     if (GET_MOVE(ch) < GET_MAX_MOVE(ch) && !EVENT_FLAGGED(ch, EVENT_REGEN_MOVE))
         set_regen_event(ch, EVENT_REGEN_MOVE);

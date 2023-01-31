@@ -48,7 +48,7 @@ int real_mobile(int);
 void half_chop(char *string, char *arg1, char *arg2);
 bool is_grouped(CharData *ch, CharData *tch);
 void add_follower(CharData *ch, CharData *leader);
-int dice(int number, int size);
+int roll_dice(int number, int size);
 int get_spell_duration(CharData *ch, int spellnum);
 int get_vitality_hp_gain(CharData *ch, int spellnum);
 char *get_vitality_vict_message(int spellnum);
@@ -168,7 +168,7 @@ CharData *check_guard(CharData *ch, CharData *victim, int gag_output) {
         GET_POS(victim->guarded_by) >= POS_STANDING && GET_STANCE(victim->guarded_by) >= STANCE_ALERT &&
         attack_ok(ch, victim->guarded_by, false)) {
         improve_skill(victim->guarded_by, SKILL_GUARD);
-        if (GET_ISKILL(victim->guarded_by, SKILL_GUARD) > number(1, 1100)) {
+        if (GET_ISKILL(victim->guarded_by, SKILL_GUARD) > random_number(1, 1100)) {
             if (!gag_output) {
                 act("$n jumps in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
                     TO_NOTVICT);
@@ -218,7 +218,7 @@ int mag_savingthrow(CharData *ch, int type) {
     }
 
     /* throwing a 0 is always a failure */
-    if (MAX(1, save) < number(0, 99))
+    if (std::max(1, save) < random_number(0, 99))
         return true;
 
     return false;
@@ -333,7 +333,7 @@ int mag_material(CharData *ch, int item0, int item1, int item2, int extract, int
     }
     if ((item0 > 0) || (item1 > 0) || (item2 > 0)) {
         if (verbose) {
-            switch (number(0, 2)) {
+            switch (random_number(0, 2)) {
             case 0:
                 char_printf(ch, "A wart sprouts on your nose.\n");
                 break;
@@ -404,24 +404,24 @@ int sorcerer_single_target(CharData *ch, int spell, int power) {
 
     switch (circle) {
     case 1:
-        return dice(4, 19) + pow(power, exponent);
+        return roll_dice(4, 19) + pow(power, exponent);
     case 2:
-        return dice(5, 16) + pow(power, exponent);
+        return roll_dice(5, 16) + pow(power, exponent);
     case 3:
-        return dice(4, 24) + pow(power, exponent);
+        return roll_dice(4, 24) + pow(power, exponent);
     case 4:
-        return dice(6, 20) + pow(power, exponent);
+        return roll_dice(6, 20) + pow(power, exponent);
     case 5:
-        return dice(8, 25) + pow(power, exponent);
+        return roll_dice(8, 25) + pow(power, exponent);
     case 6:
-        return dice(10, 24) + pow(power, exponent);
+        return roll_dice(10, 24) + pow(power, exponent);
     case 7:
-        return dice(15, 17) + pow(power, exponent);
+        return roll_dice(15, 17) + pow(power, exponent);
     case 8:
-        return dice(15, 18) + pow(power, exponent);
+        return roll_dice(15, 18) + pow(power, exponent);
     default:
         /* Circle 9 */
-        return dice(10, 35) + pow(power, exponent);
+        return roll_dice(10, 35) + pow(power, exponent);
     }
 }
 
@@ -467,11 +467,11 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
      *spell_dam_info
      *  - If you wish to have Differeng class Affects simply add a class and put
      *in its factor *results** pc vs pc - SD_PC_NO_DICE * SD_PC_NO_FACE + (if
-     *using bonus) MIN(SD_USE_BONUS, (int)lvl/4) pc vs npc - SD_NPC_NO_DICE *
-     *SD_NPC_NO_FACE + (if using bonus) MIN(SD_USE_BONUS, (int)lvl/2) npc vs npc -
-     *SD_NPC_NO_DICE * SD_NPC_NO_FACE + (if using bonus) MIN(SD_USE_BONUS,
+     *using bonus) std::min(SD_USE_BONUS, (int)lvl/4) pc vs npc - SD_NPC_NO_DICE *
+     *SD_NPC_NO_FACE + (if using bonus) std::min(SD_USE_BONUS, (int)lvl/2) npc vs npc -
+     *SD_NPC_NO_DICE * SD_NPC_NO_FACE + (if using bonus) std::min(SD_USE_BONUS,
      *(int)lvl/2) npc vs pc - SD_NPC_NO_DICE * SD_NPC_NO_FACE + (if using bonus)
-     *MIN(SD_USE_BONUS, (int)lvl/2) all npc vs x is also npc *
+     *std::min(SD_USE_BONUS, (int)lvl/2) all npc vs x is also npc *
      *SD_NPC_REDUCE_FACTOR Add Statics onto value Proky
      */
 
@@ -482,20 +482,20 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
     if (SD_INTERN_DAM(spellnum)) {
         if ((!IS_NPC(ch) && !IS_NPC(victim)) || EFF_FLAGGED(ch, EFF_CHARM)) {
             /* PC vs PC */
-            dam = dice(SD_PC_NO_DICE(spellnum), SD_PC_NO_FACE(spellnum)) + SD_PC_STATIC(spellnum);
+            dam = roll_dice(SD_PC_NO_DICE(spellnum), SD_PC_NO_FACE(spellnum)) + SD_PC_STATIC(spellnum);
 
             if (SD_USE_BONUS(spellnum))
-                dam += MIN(SD_BONUS(spellnum), skill / 4);
+                dam += std::min<int>(SD_BONUS(spellnum), skill / 4);
             else
-                dam += MIN(SD_BONUS(spellnum), skill * SD_LVL_MULT(spellnum));
+                dam += std::min<int>(SD_BONUS(spellnum), skill * SD_LVL_MULT(spellnum));
         } else {
             /* Not PC vs PC */
-            dam = dice(SD_NPC_NO_DICE(spellnum), SD_NPC_NO_FACE(spellnum)) + SD_NPC_STATIC(spellnum);
+            dam = roll_dice(SD_NPC_NO_DICE(spellnum), SD_NPC_NO_FACE(spellnum)) + SD_NPC_STATIC(spellnum);
 
             if (SD_USE_BONUS(spellnum))
-                dam += MIN(SD_BONUS(spellnum), skill / 2);
+                dam += std::min<int>(SD_BONUS(spellnum), skill / 2);
             else
-                dam += MIN(SD_BONUS(spellnum), skill * SD_LVL_MULT(spellnum));
+                dam += std::min<int>(SD_BONUS(spellnum), skill * SD_LVL_MULT(spellnum));
 
             if (IS_NPC(ch))
                 /* Reduce NPC damage */
@@ -549,11 +549,11 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_MAGIC_MISSILE:
     case SPELL_SPIRIT_ARROWS:
     case SPELL_ICE_DARTS:
-        dam = dice(4, 21);
+        dam = roll_dice(4, 21);
         reduction = true;
         break;
     case SPELL_FIRE_DARTS: /* <-- unique because min circle is 2, not 1 */
-        dam = dice(5, 18);
+        dam = roll_dice(5, 18);
         reduction = true;
         break; /* <-- end dart and missle spells */
 
@@ -585,7 +585,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_FROST_BREATH:
     case SPELL_GAS_BREATH:
     case SPELL_ACID_BREATH:
-        dam = skill + number(1, skill * 2);
+        dam = skill + random_number(1, skill * 2);
         break;
     case SPELL_ACID_FOG:
         /* spell hits 4 times */
@@ -608,7 +608,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* max dam 226 from 12d5+26 online */
         dam += (pow(skill, 2) * 7) / 500;
     case SPELL_CIRCLE_OF_FIRE:
-        dam = (skill / 2) + dice(2, 3);
+        dam = (skill / 2) + roll_dice(2, 3);
         break;
     case SPELL_CLOUD_OF_DAGGERS:
         /* spell hits 4 times */
@@ -620,7 +620,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         dam += (pow(skill, 2) * 1) / 200;
         break;
     case SPELL_DEGENERATION:
-        dam += dice(3, 40) + 300;
+        dam += roll_dice(3, 40) + 300;
         break;
     case SPELL_DESTROY_UNDEAD:
         if (GET_LIFEFORCE(victim) != LIFE_UNDEAD) {
@@ -723,7 +723,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
         /* Do you fall down?  Feather Fall and high dex prevent it */
-        if (!EFF_FLAGGED(victim, EFF_FEATHER_FALL) && number(1, 100) >= GET_DEX(victim) - temp) {
+        if (!EFF_FLAGGED(victim, EFF_FEATHER_FALL) && random_number(1, 100) >= GET_DEX(victim) - temp) {
             GET_POS(victim) = POS_SITTING;
             GET_STANCE(victim) = STANCE_ALERT;
         } else {
@@ -741,13 +741,11 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
         if (GET_ALIGNMENT(ch) >= 990 && skill - GET_LEVEL(victim) > 30 && !mag_savingthrow(victim, SAVING_SPELL) &&
-            number(1, 100) > 50) {
-            act("$N &7&blets out a massive &1howl&7 as $E is banished by $n's&7&b "
-                "command.&0",
-                false, ch, 0, victim, TO_ROOM);
-            act("$N &7&blets out a massive &1howl&7 as $E is banished by your holy "
-                "might.&0",
-                false, ch, 0, victim, TO_CHAR);
+            random_number(1, 100) > 50) {
+            act("$N &7&blets out a massive &1howl&7 as $E is banished by $n's&7&b command.&0", false, ch, 0, victim,
+                TO_ROOM);
+            act("$N &7&blets out a massive &1howl&7 as $E is banished by your holy might.&0", false, ch, 0, victim,
+                TO_CHAR);
             if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) { /* illusions don't really banish */
                 event_create(EVENT_EXTRACT, extract_event, victim, false, &(victim->events), 0);
                 GET_HIT(victim) = -50;
@@ -769,7 +767,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
            Now you lose some HP and MV for selling your soul to hurt the demons! */
         GET_HIT(ch) -= dam / 50;
         if (GET_MOVE(ch) > 45)
-            GET_MOVE(ch) = MAX(45, GET_MOVE(ch) - (dam / 10));
+            GET_MOVE(ch) = std::max(45, GET_MOVE(ch) - (dam / 10));
         act("You lose some life in libation of your holy allegiance!", false, ch, 0, victim, TO_CHAR);
         act("$n looks slightly diminished.", false, ch, 0, victim, TO_ROOM);
         break;
@@ -853,13 +851,11 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
         if (GET_ALIGNMENT(ch) >= 990 && skill - GET_LEVEL(victim) > 30 && !mag_savingthrow(victim, SAVING_SPELL) &&
-            number(1, 100) > 50) {
-            act("$N &7&blets out a massive howl as $E is banished by your holy "
-                "might.&0",
-                false, ch, 0, victim, TO_CHAR);
-            act("$N &7&blets out a massive howl as $E is banished by $n's&7&b "
-                "command.&0",
-                false, ch, 0, victim, TO_ROOM);
+            random_number(1, 100) > 50) {
+            act("$N &7&blets out a massive howl as $E is banished by your holy might.&0", false, ch, 0, victim,
+                TO_CHAR);
+            act("$N &7&blets out a massive howl as $E is banished by $n's&7&b command.&0", false, ch, 0, victim,
+                TO_ROOM);
             if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) { /* illusions don't really banish */
                 event_create(EVENT_EXTRACT, extract_event, victim, false, &(victim->events), 0);
                 GET_HIT(victim) = -50;
@@ -881,7 +877,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
            Now you lose some HP and MV for selling your soul to hurt the demons! */
         GET_HIT(ch) -= dam / 15;
         if (GET_MOVE(ch) > 25)
-            GET_MOVE(ch) = MAX(20, GET_MOVE(ch) - (dam / 50));
+            GET_MOVE(ch) = std::max(20, GET_MOVE(ch) - (dam / 50));
         act("$n looks slightly diminished.", false, ch, 0, 0, TO_ROOM);
         act("You lose some life in libation of your holy allegiance!", false, ch, 0, 0, TO_CHAR);
         break;
@@ -902,7 +898,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         dam += (pow(skill, 2) * 13) / 200;
         break;
     case SPELL_MOONBEAM:
-        dam += skill * 2 + number(20, 80);
+        dam += skill * 2 + random_number(20, 80);
         break;
     case SPELL_PHOSPHORIC_EMBERS:
         /* hits 4 times. */
@@ -951,9 +947,9 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             dam *= 1.25;
         break;
     case SPELL_VAMPIRIC_BREATH:
-        dam += dice(2, skill + 10);
+        dam += roll_dice(2, skill + 10);
         if (skill >= 95)
-            dam += number(0, 70);
+            dam += random_number(0, 70);
         GET_HIT(ch) += dam;
         break;
     case SPELL_WRITHING_WEEDS:
@@ -962,7 +958,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SKILL_ELECTRIFY:
-        dam = skill - number(0, 3);
+        dam = skill - random_number(0, 3);
         break;
 
     } /* <--- end mag_damage switch */
@@ -1001,11 +997,11 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     if (sus > 119) {
         /* Cry out if you're highly vulnerable */
-        if (number(1, 4) == 1)
+        if (random_number(1, 4) == 1)
             act("$n cries out in pain!", true, victim, 0, 0, TO_ROOM);
     } else if (sus > 104) {
         /* Express pain if you're very vulnerable */
-        if (number(1, 4) == 1)
+        if (random_number(1, 4) == 1)
             act("$n cringes with a pained look on $s face.", true, victim, 0, 0, TO_ROOM);
     }
 
@@ -1028,10 +1024,10 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* If not protected from fire, chance to catch on fire. */
         if (skills[spellnum].damage_type == DAM_FIRE && susceptibility(victim, DAM_FIRE) > 60 &&
             !EFF_FLAGGED(victim, EFF_ON_FIRE)) {
-            temp = MAX(1, MIN(90, (3 + skill - GET_LEVEL(victim)) * susceptibility(victim, DAM_FIRE) / 100));
-            if (temp > number(0, 100)) {
+            temp = std::clamp((3 + skill - GET_LEVEL(victim)) * susceptibility(victim, DAM_FIRE) / 100, 1, 90);
+            if (temp > random_number(0, 100)) {
                 SET_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
-                switch (number(1, 3)) {
+                switch (random_number(1, 3)) {
                 case 1:
                     act("&1$n bursts into flame!&0", false, victim, 0, 0, TO_ROOM);
                     char_printf(victim, "&1Your skin and clothes ignite into flame!&0\n");
@@ -1057,8 +1053,8 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             temp = skill + skills[spellnum].min_level[(int)GET_CLASS(ch)];
             temp = temp * susceptibility(victim, DAM_COLD) / 100;
             temp = temp - 2 * GET_LEVEL(victim) + 20;
-            if (temp > number(0, 500)) {
-                WAIT_STATE(victim, MAX(3, PULSE_VIOLENCE * (skill - GET_LEVEL(victim)) / 20));
+            if (temp > random_number(0, 500)) {
+                WAIT_STATE(victim, std::max(3, PULSE_VIOLENCE * (skill - GET_LEVEL(victim)) / 20));
                 act("&4&b$n&4&b freezes up!&0", true, victim, 0, 0, TO_ROOM);
                 char_printf(victim, "&4&bYour joints stiffen as the frost penetrates you!&0\n");
                 STOP_CASTING(victim);
@@ -1349,7 +1345,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Check for resistance due to high wis/dex.
          * Up to an additional 10% chance to evade. */
         i = (GET_DEX(victim) + GET_WIS(victim) - 100) / 10;
-        if (i > number(1, 100)) {
+        if (mag_savingthrow(victim, savetype) || i > random_number(1, 100)) {
             act("$n's eyes start to cross, but $e shakes it off.", true, victim, 0, 0, TO_ROOM);
             char_printf(ch, "Your eyes start to &5spin off&0 in different directions, but you manage\n");
             char_printf(ch, "to bring them back under control.\n");
@@ -1867,7 +1863,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
 
         /* A difficult spell to land with success */
-        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < number(0, 80)) {
+        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < random_number(0, 80)) {
             act("&2&bYour crop of ripe vines search in vain for $N.&0", false, ch, 0, victim, TO_CHAR);
             act("&2&bA crop of ripe vines snakes along the ground, unable to locate "
                 "you!&0",
@@ -1882,7 +1878,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
 
         /* Chance for major para increases with higher skill. */
-        if (skill >= 40 && number(0, 100) < 2 + (skill / 14)) {
+        if (skill >= 40 && random_number(0, 100) < 2 + (skill / 14)) {
             SET_FLAG(eff[0].flags, EFF_MAJOR_PARALYSIS);
             eff[0].duration = 2 + (skill > 95);
         } else {
@@ -2179,7 +2175,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (!attack_ok(ch, victim, true))
             return CAST_RESULT_CHARGE;
         /* Make success based on skill and saving throw -myc 17 Feb 2007 */
-        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < number(0, 70)) {
+        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < random_number(0, 70)) {
             act("&7&b$N resists your weak paralysis.&0", false, ch, 0, victim, TO_CHAR);
             act("&7&b$n tries to paralize you but fails!&0", false, ch, 0, victim, TO_VICT);
             act("&7&b$n squints at $N but nothing happens.&0", true, ch, 0, victim, TO_NOTVICT);
@@ -2301,7 +2297,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             char_printf(victim, "Only masters of hand to hand combat can gain this effect!\n");
             return 0;
         }
-        
+
         /* check if already affected by one of the enhancement types */
 
         if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
@@ -2337,8 +2333,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_NATURES_EMBRACE:
         SET_FLAG(eff[0].flags, EFF_CAMOUFLAGED);
         eff[0].duration = (skill / 3) + 1; /* range (1, 34) */
-        to_vict = "&9You phase into the landscape.&0";
-        to_room = "&9$n&9 phases into the landscape.&0";
+        to_vict = "&9&bYou phase into the landscape.&0";
+        to_room = "&9&b$n&9&b phases into the landscape.&0";
         break;
 
     case SPELL_NATURES_GUIDANCE:
@@ -2650,7 +2646,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         /* Make it based on skill/saving throw -myc 17 Feb 2007 */
         if ((IS_NPC(victim) && MOB_FLAGGED(victim, MOB_NOSLEEP)) || mag_savingthrow(victim, SAVING_PARA) ||
-            skill - GET_LEVEL(victim) < number(0, 100)) {
+            skill - GET_LEVEL(victim) < random_number(0, 100)) {
             act("$n can sing all $e wants, you aren't going to sleep.", false, ch, 0, victim, TO_VICT);
             act("$n tries to sing $N to sleep, but to no avail, uh oh.", true, ch, 0, victim, TO_NOTVICT);
             char_printf(ch, NOEFFECT);
@@ -2692,7 +2688,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             eff[1].duration = 0;
 
             to_char = "You temporarily choke $N with your column of smoke.";
-            to_vict = "&9You have been temporarily choked by $n's&9&b column of smoke!&0";
+            to_vict = "&9&bYou have been temporarily choked by $n's&9&b column of smoke!&0";
             to_room = "&9&b$N&9&b is slightly choked by $n's&9&b column of smoke!&0";
         } else {
             eff[0].location = APPLY_HITROLL;
@@ -2705,7 +2701,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             SET_FLAG(eff[1].flags, EFF_BLIND);
 
             to_room = "&9&b$N&9&b is blinded by $n's&9&b column of smoke!&0";
-            to_vict = "&9You have been blinded by $n's&9&b column of smoke&0";
+            to_vict = "&9&bYou have been blinded by $n's&9&b column of smoke&0";
             to_char = "&9&b$N&9&b is blinded by your column of smoke!&0";
         }
         break;
@@ -2829,7 +2825,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_WEB:
         if (!attack_ok(ch, victim, true))
             return CAST_RESULT_CHARGE;
-        if ((skill + mag_savingthrow(victim, SAVING_PARA) - GET_LEVEL(victim)) <= number(0, 40)) {
+        if ((skill + mag_savingthrow(victim, SAVING_PARA) - GET_LEVEL(victim)) <= random_number(0, 40)) {
             act("&2&bYou miss $N with a glowing &3&bweb&2&b!&0", false, ch, 0, victim, TO_CHAR);
             act("&2&b$n tries to tangle you in a glowing &3&bweb&2&b but misses!&0", false, ch, 0, victim, TO_VICT);
             act("&2&b$n throws a glowing &3&bweb&2&b at $N but misses.&0", true, ch, 0, victim, TO_NOTVICT);
@@ -2975,7 +2971,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[1].location = APPLY_DAMROLL;
         eff[1].modifier = skill / 25 + 1;
         eff[1].duration = skill / 25 + 1;
-        if (number(0, 1))
+        if (random_number(0, 1))
             to_vict = "Your heart beats with the rage of your fallen brothers.";
         else
             to_vict = "Your heart beats with the rage of your fallen sisters.";
@@ -3054,12 +3050,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[4].location = APPLY_SAVING_SPELL;
         /* same duration */
         eff[0].duration = eff[1].duration = eff[2].duration = eff[3].duration = eff[4].duration =
-            1 + (skill / 20);                         /* max 6 */
-        eff[0].modifier = (skill / 7) + number(0, 6); /* max 20 */
-        eff[1].modifier = (skill / 7) + number(0, 6); /* max 20 */
-        eff[2].modifier = (skill / 7) + number(0, 6); /* max 20 */
-        eff[3].modifier = (skill / 7) + number(0, 6); /* max 20 */
-        eff[4].modifier = (skill / 7) + number(0, 6); /* max 20 */
+            1 + (skill / 20);                                /* max 6 */
+        eff[0].modifier = (skill / 7) + random_number(0, 6); /* max 20 */
+        eff[1].modifier = (skill / 7) + random_number(0, 6); /* max 20 */
+        eff[2].modifier = (skill / 7) + random_number(0, 6); /* max 20 */
+        eff[3].modifier = (skill / 7) + random_number(0, 6); /* max 20 */
+        eff[4].modifier = (skill / 7) + random_number(0, 6); /* max 20 */
         to_char = "You fill $N with a sense of malaise!";
         to_vict = "Malaise fills the air, hampering your movements!";
         to_room = "$N contorts $S face briefly in anger and fear.";
@@ -3068,7 +3064,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_SPINECHILLER:
         if (!attack_ok(ch, victim, true))
             return CAST_RESULT_CHARGE;
-        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < number(0, 70)) {
+        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < random_number(0, 70)) {
             act("$N resists your neuroparalysis.", false, ch, 0, victim, TO_CHAR);
             act("$n tries to scramble your nerves, but fails!", false, ch, 0, victim, TO_VICT);
             act("$n grabs onto $N and squeezes.", true, ch, 0, victim, TO_ROOM);
@@ -3782,13 +3778,13 @@ CharData *create_undead(CharData *orig, CharData *caster, bool ISPC) {
     extern void roll_natural_abils(CharData *);
     extern void assign_triggers(void *, int);
 
-    if ((GET_LEVEL(orig) > 94) && IS_MAGIC_USER(orig) && !number(0, 250))
+    if ((GET_LEVEL(orig) > 94) && IS_MAGIC_USER(orig) && !random_number(0, 250))
         new_mob_type = MOB_LICH;
-    else if ((GET_LEVEL(orig) > 40) && IS_MAGIC_USER(orig) && !number(0, 6))
+    else if ((GET_LEVEL(orig) > 40) && IS_MAGIC_USER(orig) && !random_number(0, 6))
         new_mob_type = MOB_WRAITH;
-    else if ((GET_LEVEL(orig) > 25) && IS_ROGUE(orig) && !number(0, 4))
+    else if ((GET_LEVEL(orig) > 25) && IS_ROGUE(orig) && !random_number(0, 4))
         new_mob_type = MOB_SPECTRE;
-    else if (!number(0, 2))
+    else if (!random_number(0, 2))
         new_mob_type = MOB_SKELETON;
     else
         new_mob_type = MOB_ZOMBIE;
@@ -4254,7 +4250,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         duration = 2 + skill / 5;
 
         /* Choose one of our available mobs */
-        pvnum = phantasm_mobs[number(0, num_phantasm_mobs - 1)];
+        pvnum = phantasm_mobs[random_number(0, num_phantasm_mobs - 1)];
         if (real_mobile(pvnum) < 0)
             pvnum = 9001; /* Test mob = earle's doppelganger */
 
@@ -4406,35 +4402,35 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
 
     switch (spellnum) {
     case SPELL_CURE_LIGHT:
-        hit = dice(2, 8) + 1;
+        hit = roll_dice(2, 8) + 1;
         char_printf(victim, "You feel better.\n");
         break;
     case SPELL_CURE_SERIOUS:
-        hit = dice(4, 8) + 2;
+        hit = roll_dice(4, 8) + 2;
         char_printf(victim, "You feel much better!\n");
         break;
     case SPELL_CURE_CRITIC:
-        hit = dice(6, 8) + 3;
+        hit = roll_dice(6, 8) + 3;
         char_printf(victim, "You feel a lot better!\n");
         break;
     case SPELL_HEAL:
-        hit = dice(50, 2);
+        hit = roll_dice(50, 2);
         char_printf(victim, "A warm feeling floods your body.\n");
         break;
     case SPELL_FULL_HEAL:
-        hit = dice(100, 2) + 30;
+        hit = roll_dice(100, 2) + 30;
         char_printf(victim, "&7You have been FULLY healed!&0\n");
         break;
     case SPELL_VIGORIZE_LIGHT:
-        move = dice(3, 8) + 5;
+        move = roll_dice(3, 8) + 5;
         char_printf(victim, "You feel vigorized!\n");
         break;
     case SPELL_VIGORIZE_SERIOUS:
-        move = dice(5, 8) + 5;
+        move = roll_dice(5, 8) + 5;
         char_printf(victim, "You feel vigorized!\n");
         break;
     case SPELL_VIGORIZE_CRITIC:
-        move = dice(7, 8) + 5;
+        move = roll_dice(7, 8) + 5;
         char_printf(victim, "You feel vigorized!\n");
         break;
     case SPELL_NOURISHMENT:
@@ -4511,7 +4507,7 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
     if (thirst)
         gain_condition(victim, THIRST, thirst);
     if (hide)
-        GET_HIDDENNESS(victim) = MIN(GET_HIDDENNESS(victim) + hide, 1000);
+        GET_HIDDENNESS(victim) = std::min(GET_HIDDENNESS(victim) + hide, 1000l);
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
@@ -4676,14 +4672,23 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         }
         break;
     case SPELL_SANE_MIND:
-        if (!EFF_FLAGGED(victim, EFF_INSANITY))
-            return CAST_RESULT_CHARGE;
-        if (affected_by_spell(victim, SPELL_INSANITY))
-            spell = SPELL_INSANITY;
-        if (affected_by_spell(victim, SONG_CROWN_OF_MADNESS))
-            spell = SONG_CROWN_OF_MADNESS;
-        to_vict = "Your mind comes back to reality.";
-        to_room = "$n regains $s senses.";
+        if (affected_by_spell(victim, SPELL_INSANITY) || affected_by_spell(victim, SPELL_CONFUSION) ||
+            affected_by_spell(victim, SONG_CROWN_OF_MADNESS)) {
+            if (affected_by_spell(victim, SPELL_INSANITY))
+                spell = SPELL_INSANITY;
+            if (affected_by_spell(victim, SPELL_CONFUSION)) {
+                if (spell) /* If already removing a spell, remove it and set confusion now */
+                    effect_from_char(victim, spell);
+                spell = SPELL_CONFUSION;
+            }
+            if (affected_by_spell(victim, SONG_CROWN_OF_MADNESS)) {
+                if (spell) /* If already removing a spell, remove it and set crown of madness now */
+                    effect_from_char(victim, spell);
+                spell = SONG_CROWN_OF_MADNESS;
+            }
+            to_vict = "Your mind comes back to reality.";
+            to_room = "$n regains $s senses.";
+        }
         break;
     case SPELL_REDUCE:
         if (!EFF_FLAGGED(victim, EFF_ENLARGE))
@@ -5218,7 +5223,7 @@ int get_vitality_hp_gain(CharData *ch, int spellnum) {
     }
 
     /* I don't like nice even numbers.  Add some randomness into it. */
-    hp -= number(2, 10);
+    hp -= random_number(2, 10);
 
     return hp;
 }
@@ -5421,7 +5426,7 @@ bool wall_charge_check(CharData *ch, int dir) {
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         /* You're going to get hurt... */
 
-        chance = number(0, 101);
+        chance = random_number(0, 101);
         dam = ((chance / 10) * (GET_LEVEL(ch) / 10)) + GET_LEVEL(ch);
         /* But you won't die... */
         if (GET_HIT(ch) - dam < -5)
@@ -5445,8 +5450,8 @@ int get_fireshield_damage(CharData *attacker, CharData *victim, int dam) {
     if (EFF_FLAGGED(attacker, EFF_MAJOR_GLOBE))
         act("&1&bThe globe around your body absorbs the burning flames!&0", false, attacker, 0, 0, TO_CHAR);
     else {
-        int amount = MIN((GET_LEVEL(victim) / 2 + number(1, GET_LEVEL(victim) / 10)),
-                         dam / 3 + number(1, 1 + GET_LEVEL(victim) / 10));
+        int amount = std::min((GET_LEVEL(victim) / 2 + random_number(1, GET_LEVEL(victim) / 10)),
+                              dam / 3 + random_number(1, 1 + GET_LEVEL(victim) / 10));
         amount = dam_suscept_adjust(victim, attacker, nullptr, amount, DAM_FIRE);
         if (amount > 0) {
             act("&1Your limbs are seared by $N&0&1's shield of flames.&0 (&1$i&0)", false, attacker, amount, victim,
@@ -5467,8 +5472,8 @@ int get_coldshield_damage(CharData *attacker, CharData *victim, int dam) {
     if (EFF_FLAGGED(attacker, EFF_MAJOR_GLOBE))
         act("&4&bThe globe around your body absorbs the killing ice!&0", false, attacker, 0, 0, TO_CHAR);
     else {
-        int amount = MIN((GET_LEVEL(victim) / 2 + number(1, 1 + GET_LEVEL(victim) / 10)),
-                         dam / 3 + number(1, 1 + GET_LEVEL(victim) / 10));
+        int amount = std::min((GET_LEVEL(victim) / 2 + random_number(1, 1 + GET_LEVEL(victim) / 10)),
+                              dam / 3 + random_number(1, 1 + GET_LEVEL(victim) / 10));
         amount = dam_suscept_adjust(victim, attacker, nullptr, amount, DAM_COLD);
         if (amount > 0) {
             act("&4You are impaled on $N&0&4's shield of ice.&0 (&1$i&0)", false, attacker, amount, victim, TO_CHAR);
@@ -5484,8 +5489,8 @@ int get_coldshield_damage(CharData *attacker, CharData *victim, int dam) {
 
 int get_soulshield_damage(CharData *attacker, CharData *victim, int dam) {
     if ((IS_GOOD(attacker) && IS_EVIL(victim)) || (IS_EVIL(attacker) && IS_GOOD(victim))) {
-        int amount = MIN(2 * GET_LEVEL(victim) / 5 + number(1, 1 + GET_LEVEL(victim) / 10),
-                         3 * dam / 16 + number(1, 1 + GET_LEVEL(victim) / 10));
+        int amount = std::min(2 * GET_LEVEL(victim) / 5 + random_number(1, 1 + GET_LEVEL(victim) / 10),
+                              3 * dam / 16 + random_number(1, 1 + GET_LEVEL(victim) / 10));
         amount = dam_suscept_adjust(victim, attacker, nullptr, amount, DAM_ALIGN);
         if (amount > 0) {
             act("&7&b$n's soul suffers upon contact with your aura.&0 (&3$i&0)", true, attacker, amount, victim,

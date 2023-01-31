@@ -1689,7 +1689,7 @@ void display_classes(DescriptorData *d, int select) {
       char_printf(d->character, buf);
       char_printf(d->character, buf2);
       sprintf(buf, "\n&5");
-      for (x=0;x<MAX(MAX(MAX(WARRIOR_SUBCLASSES, CLERIC_SUBCLASSES),
+      for (x=0;x<std::max(std::max(std::max(WARRIOR_SUBCLASSES, CLERIC_SUBCLASSES),
       MAGE_SUBCLASSES), ROGUE_SUBCLASSES);x++) { if(warriorok) if (x <
       WARRIOR_SUBCLASSES) sprintf(buf, "%s%s%-15.15s ", buf,
                     class_ok_race[char_race][warrior_subclasses[x]] ? "*" : " ",
@@ -1921,7 +1921,7 @@ int perform_dupe_check(DescriptorData *d) {
     case RECON:
         string_to_output(d, "Reconnecting.\n");
         act("$n has reconnected.", true, d->character, 0, 0, TO_ROOM);
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
+        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
             GET_NAME(d->character), d->host);
         break;
     case USURP:
@@ -1929,12 +1929,12 @@ int perform_dupe_check(DescriptorData *d) {
         act("$n suddenly keels over in pain, surrounded by a white aura...\n"
             "$n's body has been taken over by a new spirit!",
             true, d->character, 0, 0, TO_ROOM);
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)),
+        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)),
             "{} has re-logged in ... disconnecting old socket.", GET_NAME(d->character));
         break;
     case UNSWITCH:
         string_to_output(d, "Reconnecting to unswitched char.");
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
+        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(d->character)), "{} [{}] has reconnected.",
             GET_NAME(d->character), d->host);
         break;
     }
@@ -1949,7 +1949,7 @@ int enter_player_game(DescriptorData *d) {
 
     reset_char(d->character);
     if (GET_AUTOINVIS(d->character) > -1)
-        GET_INVIS_LEV(d->character) = MIN(GET_LEVEL(d->character), GET_AUTOINVIS(d->character));
+        GET_INVIS_LEV(d->character) = std::min<int>(GET_LEVEL(d->character), GET_AUTOINVIS(d->character));
 
     if ((load_room = GET_LOADROOM(d->character)) != NOWHERE)
         load_room = real_room(load_room);
@@ -2370,8 +2370,8 @@ void nanny(DescriptorData *d, char *arg) {
             // Convert timestamp to string
             auto time = std::chrono::system_clock::from_time_t(d->character->player.time.logon);
             log(LogSeverity::Warn,
-                MAX(LVL_IMMORT,
-                    MIN(GET_LEVEL(d->character), MAX(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character)))),
+                std::min<int>(GET_LEVEL(d->character),
+                              std::max<int>(GET_AUTOINVIS(d->character), GET_INVIS_LEV(d->character))),
                 "{} [{}] has connected.  Last login: {:%c}.", GET_NAME(d->character), d->host, time);
             if (load_result) {
                 string_to_output(d, "\n\n\007\007\007 {}{:d} LOGIN FAILURE{} SINCE LAST SUCCESSFUL LOGIN.{}\n",
@@ -2888,33 +2888,33 @@ int bonus_stat(CharData *ch, char arg) {
     arg = LOWER(arg);
     switch (arg) {
     case 'w':
-        b = number(2, 6);
-        GET_NATURAL_WIS(ch) = MIN(100, (GET_NATURAL_WIS(ch) + b));
+        b = random_number(2, 6);
+        GET_NATURAL_WIS(ch) = std::min(100, (GET_NATURAL_WIS(ch) + b));
         a = true;
         break;
     case 'i':
-        b = number(2, 6);
-        GET_NATURAL_INT(ch) = MIN(100, (GET_NATURAL_INT(ch) + b));
+        b = random_number(2, 6);
+        GET_NATURAL_INT(ch) = std::min(100, (GET_NATURAL_INT(ch) + b));
         a = true;
         break;
     case 'm':
-        b = number(2, 6);
-        GET_NATURAL_CHA(ch) = MIN(100, (GET_NATURAL_CHA(ch) + b));
+        b = random_number(2, 6);
+        GET_NATURAL_CHA(ch) = std::min(100, (GET_NATURAL_CHA(ch) + b));
         a = true;
         break;
     case 'c':
-        b = number(2, 6);
-        GET_NATURAL_CON(ch) = MIN(100, (GET_NATURAL_CON(ch) + b));
+        b = random_number(2, 6);
+        GET_NATURAL_CON(ch) = std::min(100, (GET_NATURAL_CON(ch) + b));
         a = true;
         break;
     case 'd':
-        b = number(2, 6);
-        GET_NATURAL_DEX(ch) = MIN(100, (GET_NATURAL_DEX(ch) + b));
+        b = random_number(2, 6);
+        GET_NATURAL_DEX(ch) = std::min(100, (GET_NATURAL_DEX(ch) + b));
         a = true;
         break;
     case 's':
-        b = number(2, 6);
-        GET_NATURAL_STR(ch) = MIN(100, (GET_NATURAL_STR(ch) + b));
+        b = random_number(2, 6);
+        GET_NATURAL_STR(ch) = std::min(100, (GET_NATURAL_STR(ch) + b));
         a = true;
         break;
     default:

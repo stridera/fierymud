@@ -152,7 +152,7 @@ void init_flagvectors() {
     int i, max = 0;
 
     for (i = 0; i < sizeof(num_flags) / sizeof(int); ++i)
-        max = MAX(max, num_flags[i]);
+        max = std::max(max, num_flags[i]);
 
     if (ALL_FLAGS)
         free(ALL_FLAGS);
@@ -362,7 +362,7 @@ int load_modifier(CharData *ch) {
         else
             return 0;
     }
-    p = 100 - MAX(0, ((ccw - IS_CARRYING_W(ch)) * 100) / ccw);
+    p = 100 - std::max<int>(0, ((ccw - IS_CARRYING_W(ch)) * 100) / ccw);
     if (p < 20)
         return 25;
     if (p < 40)
@@ -460,35 +460,35 @@ int pick_random_gem_drop(CharData *ch) {
     if (!IS_NPC(ch) || ch->desc)
         return 0;
 
-    if (number(1, 100) > 7)
+    if (random_number(1, 100) > 7)
         return 0;
 
     if (GET_LEVEL(ch) > 60) {
-        slot = number(13, 15);
+        slot = random_number(13, 15);
         phase = 3;
     } else {
         slot = GET_LEVEL(ch) / 4;
         phase = GET_LEVEL(ch) / 20;
     }
 
-    roll = number(1, 100);
+    roll = random_number(1, 100);
 
     /* You win the shiny prize!  The shiny prize is rusted decayed armor. */
     if (roll > 74) {
 
-        int item = 4 - number(1, 7) + GET_LEVEL(ch);
+        int item = 4 - random_number(1, 7) + GET_LEVEL(ch);
 
         if (item < 0)
             item = 0;
         if (item > 76)
             /* If item is over 76 (worn robe), then reset the base to the first helm armor and roll random helm, arm,
              * leg, or chest */
-            item = 61 + number(1, 15);
+            item = 61 + random_number(1, 15);
 
         return armor_vnums[item];
     }
 
-    roll = number(1, 100);
+    roll = random_number(1, 100);
 
     if (roll < 20) {
         slot--;
@@ -499,7 +499,7 @@ int pick_random_gem_drop(CharData *ch) {
         /* If we're in the highest section of a phase, there's a chance of leg gems.
          */
         if (slot % 5 == 4) {
-            return number(leg_gem_vnums[phase][0], leg_gem_vnums[phase][1]);
+            return random_number(leg_gem_vnums[phase][0], leg_gem_vnums[phase][1]);
         }
 
         slot++;
@@ -511,7 +511,7 @@ int pick_random_gem_drop(CharData *ch) {
     if (slot > 14)
         slot = 14;
 
-    return number(common_gem_vnums[slot][0], common_gem_vnums[slot][1]);
+    return random_number(common_gem_vnums[slot][0], common_gem_vnums[slot][1]);
 }
 
 void perform_random_gem_drop(CharData *ch) {

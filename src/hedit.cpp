@@ -146,14 +146,13 @@ void hedit_disp_menu(DescriptorData *d) {
 
     help = OLC_HELP(d);
 
-    sprintf(buf,
-            "Keywords       : %s%s\n"
-            "%s1%s) Entry       :\n%s%s"
-            "%s2%s) Min Level   : %s%d\n"
-            "%sQ%s) Quit\n"
-            "Enter choice:\n",
-            yel, help->keyword, grn, nrm, yel, help->entry, grn, nrm, yel, help->min_level, grn, nrm);
-    char_printf(d->character, buf);
+    char_printf(d->character,
+                "Keywords       : {}{}\n"
+                "{}1{}) Entry       :\n{}{}"
+                "{}2{}) Min Level   : {}{:d}\n"
+                "{}Q{}) Quit\n"
+                "Enter choice:\n",
+                yel, help->keyword, grn, nrm, yel, help->entry, grn, nrm, yel, help->min_level, grn, nrm);
 
     OLC_MODE(d) = HEDIT_MAIN_MENU;
 }
@@ -184,8 +183,8 @@ void hedit_parse(DescriptorData *d, char *arg) {
             top_of_helpt = 0;
             index_boot(DB_BOOT_HLP);
 
-            log(LogSeverity::Debug, MAX(LVL_BUILDER, GET_INVIS_LEV(d->character)), "OLC: {} edits help for {}.",
-                GET_NAME(d->character), OLC_HELP(d)->keyword);
+            log(LogSeverity::Debug, std::max<int>(LVL_BUILDER, GET_INVIS_LEV(d->character)),
+                "OLC: {} edits help for {}.", GET_NAME(d->character), OLC_HELP(d)->keyword);
             /* do not free the strings.. just the structure */
             cleanup_olc(d, CLEANUP_STRUCTS);
             char_printf(d->character, "Help saved to memory.\n");
@@ -222,18 +221,16 @@ void hedit_parse(DescriptorData *d, char *arg) {
                     cleanup_olc(d, CLEANUP_ALL);
                     break;
                 }
-                sprintf(buf, "Do you wish to add help on '%s'?\n", OLC_STORAGE(d));
-                char_printf(d->character, buf);
+                char_printf(d->character, "Do you wish to add help on '{}'?\n", OLC_STORAGE(d));
                 OLC_MODE(d) = HEDIT_CONFIRM_ADD;
             } else {
-                sprintf(buf, "Do you wish to edit help on '%s'?\n", help_table[OLC_ZNUM(d)].keyword);
-                char_printf(d->character, buf);
+                char_printf(d->character, "Do you wish to edit help on '{}'?\n", help_table[OLC_ZNUM(d)].keyword);
                 OLC_MODE(d) = HEDIT_CONFIRM_EDIT;
             }
             break;
         default:
-            sprintf(buf, "Invalid choice!\nDo you wish to edit help on '%s'?\n", help_table[OLC_ZNUM(d)].keyword);
-            char_printf(d->character, buf);
+            char_printf(d->character, "Invalid choice!\nDo you wish to edit help on '{}'?\n",
+                        help_table[OLC_ZNUM(d)].keyword);
             break;
         }
         return;
@@ -251,8 +248,7 @@ void hedit_parse(DescriptorData *d, char *arg) {
             cleanup_olc(d, CLEANUP_ALL);
             break;
         default:
-            sprintf(buf, "Invalid choice!\nDo you wish to add help on '%s'?\n", OLC_STORAGE(d));
-            char_printf(d->character, buf);
+            char_printf(d->character, "Invalid choice!\nDo you wish to add help on '{}'?\n", OLC_STORAGE(d));
             break;
         }
         return;

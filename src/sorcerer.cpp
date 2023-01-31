@@ -50,7 +50,7 @@ bool sorcerer_ai_action(CharData *ch, CharData *victim) {
     victim_health = (100 * GET_HIT(victim)) / GET_MAX_HIT(victim);
 
     /* If mob has low health, maybe try to teleport. */
-    if (my_health < 10 && !PLAYERALLY(ch) && !number(0, 3) && mob_cast(ch, ch, nullptr, SPELL_TELEPORT))
+    if (my_health < 10 && !PLAYERALLY(ch) && !random_number(0, 3) && mob_cast(ch, ch, nullptr, SPELL_TELEPORT))
         return true;
 
     /* Check buff spells */
@@ -73,18 +73,18 @@ bool sorcerer_ai_action(CharData *ch, CharData *victim) {
 
     /* Sorcerers get 13% chance to cast harness. */
     if (GET_SKILL(ch, SPELL_HARNESS) && !EFF_FLAGGED(ch, EFF_HARNESS) && FIGHTING(ch) && victim_health > 75 &&
-        !number(0, 6) && mob_cast(ch, ch, nullptr, SPELL_HARNESS))
+        !random_number(0, 6) && mob_cast(ch, ch, nullptr, SPELL_HARNESS))
         return true;
 
     /* Necromancers get 10% chance to cast poison. */
-    if (GET_SKILL(ch, SPELL_POISON) && !EFF_FLAGGED(ch, EFF_POISON) && victim_health > 75 && !number(0, 9) &&
+    if (GET_SKILL(ch, SPELL_POISON) && !EFF_FLAGGED(ch, EFF_POISON) && victim_health > 75 && !random_number(0, 9) &&
         mob_cast(ch, victim, nullptr, SPELL_POISON))
         return true;
 
     /* Try and cast ray of enfeeblement! */
     if (GET_SKILL(ch, SPELL_RAY_OF_ENFEEB) && !EFF_FLAGGED(victim, EFF_RAY_OF_ENFEEB) &&
         /* Better chance to attempt if victim in good condition. */
-        !number(0, (victim_health > 80) ? 2 : 7) && mob_cast(ch, victim, nullptr, SPELL_RAY_OF_ENFEEB))
+        !random_number(0, (victim_health > 80) ? 2 : 7) && mob_cast(ch, victim, nullptr, SPELL_RAY_OF_ENFEEB))
         return true;
 
     counter = 0;
@@ -129,7 +129,7 @@ bool check_sorcerer_status(CharData *ch) {
         if (!valid_cast_stance(ch, i))
             continue;
         /* 20% chance to cancel if in combat. */
-        if (FIGHTING(ch) && number(0, 9) < 2)
+        if (FIGHTING(ch) && random_number(0, 9) < 2)
             return false;
         switch (mob_sorcerer_buffs[i].spell) {
         case SPELL_COLDSHIELD:

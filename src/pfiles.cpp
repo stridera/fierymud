@@ -163,7 +163,7 @@ bool write_objects(ObjData *obj, FILE *fl, int location) {
          * container in order to determine which container to re-place
          * them in when being loaded.
          */
-        write_objects(obj->contains, fl, MIN(0, location) - 1);
+        write_objects(obj->contains, fl, std::min(0, location) - 1);
     }
 
     return success;
@@ -364,7 +364,7 @@ static void list_objects(ObjData *list, CharData *ch, int indent, int last_inden
 
         /* This object or one like it can be seen by the char, so show it */
         if (num > 0) {
-            buf[pos = MIN(indent, sizeof(buf) - 1)] = '\0';
+            buf[pos = std::min<int>(indent, sizeof(buf) - 1)] = '\0';
             while (pos >= last_indent)
                 buf[--pos] = ' ';
             if (first_indent)
@@ -669,7 +669,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 else if (!strcasecmp(tag, "applies")) {
                     while (get_line(fl, line) && *line != '~' && apply < MAX_OBJ_APPLIES) {
                         sscanf(line, "%d %d", &num, &num2);
-                        obj->applies[apply].location = LIMIT(0, num, NUM_APPLY_TYPES - 1);
+                        obj->applies[apply].location = std::clamp(num, 0, NUM_APPLY_TYPES - 1);
                         obj->applies[apply].modifier = num2;
                         ++apply;
                     }
@@ -678,7 +678,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 break;
             case 'C':
                 if (!strcasecmp(tag, "cost"))
-                    GET_OBJ_COST(obj) = MAX(0, num);
+                    GET_OBJ_COST(obj) = std::max(0, num);
                 else
                     goto bad_tag;
                 break;
@@ -686,7 +686,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 if (!strcasecmp(tag, "desc"))
                     obj->description = strdup(line);
                 else if (!strcasecmp(tag, "decomp"))
-                    GET_OBJ_DECOMP(obj) = MAX(0, num);
+                    GET_OBJ_DECOMP(obj) = std::max(0, num);
                 else
                     goto bad_tag;
                 break;
@@ -713,7 +713,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 break;
             case 'H':
                 if (!strcasecmp(tag, "hiddenness"))
-                    GET_OBJ_HIDDENNESS(obj) = LIMIT(0, num, 1000);
+                    GET_OBJ_HIDDENNESS(obj) = std::clamp(num, 0, 1000);
                 else
                     goto bad_tag;
                 break;
@@ -721,7 +721,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 if (!strcasecmp(tag, "location"))
                     *location = num;
                 else if (!strcasecmp(tag, "level"))
-                    GET_OBJ_LEVEL(obj) = LIMIT(0, num, LVL_IMPL);
+                    GET_OBJ_LEVEL(obj) = std::clamp(num, 0, LVL_IMPL);
                 else
                     goto bad_tag;
                 break;
@@ -751,9 +751,9 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 break;
             case 'T':
                 if (!strcasecmp(tag, "type"))
-                    GET_OBJ_TYPE(obj) = LIMIT(0, num, NUM_ITEM_TYPES - 1);
+                    GET_OBJ_TYPE(obj) = std::clamp(num, 0, NUM_ITEM_TYPES - 1);
                 else if (!strcasecmp(tag, "timer"))
-                    GET_OBJ_TIMER(obj) = MAX(0, num);
+                    GET_OBJ_TIMER(obj) = std::max(0, num);
                 else if (!strcasecmp(tag, "triggers")) {
                     if (!SCRIPT(obj))
                         CREATE(SCRIPT(obj), ScriptData, 1);
@@ -788,7 +788,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 break;
             case 'W':
                 if (!strcasecmp(tag, "weight"))
-                    GET_OBJ_EFFECTIVE_WEIGHT(obj) = GET_OBJ_WEIGHT(obj) = MAX(0, f);
+                    GET_OBJ_EFFECTIVE_WEIGHT(obj) = GET_OBJ_WEIGHT(obj) = std::max<float>(0, f);
                 else if (!strcasecmp(tag, "wear"))
                     GET_OBJ_WEAR(obj) = num;
                 else
@@ -908,8 +908,8 @@ bool load_objects(CharData *ch) {
                         "\n@W********************* NOTICE *********************\n"
                         "There was a problem (error 02) loading your objects from disk.\n"
                         "Contact a God for assistance.@0\n");
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} entering game with no equipment. (error 02)",
-                GET_NAME(ch));
+            log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)),
+                "{} entering game with no equipment. (error 02)", GET_NAME(ch));
             return false;
         }
     }
@@ -931,7 +931,7 @@ static void read_objects(CharData *ch, FILE *fl) {
         if (!build_object(fl, &obj, &location))
             continue;
         location = auto_equip(ch, obj, location);
-        depth = MAX(0, -location);
+        depth = std::max(0, -location);
         for (i = MAX_CONTAINER_DEPTH - 1; i >= depth; --i)
             containers[i] = nullptr;
         containers[depth] = obj;
@@ -969,7 +969,8 @@ void load_quests(CharData *ch) {
                             "There was a problem loading your quests from disk.\n"
                             "Contact a God for assistance.\n");
             }
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} starting up with no quests.", GET_NAME(ch));
+            log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} starting up with no quests.",
+                GET_NAME(ch));
             ch->quests = (QuestList *)nullptr;
         } else {
             while (!feof(fl)) {
@@ -1433,12 +1434,12 @@ static int gen_receptionist(CharData *ch, CharData *recep, int cmd, char *arg, i
             "You begin to lose consciousness...",
             false, recep, 0, ch, TO_VICT);
         quit_mode = QUIT_CRYO;
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has cryo-rented.", GET_NAME(ch));
+        log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has cryo-rented.", GET_NAME(ch));
     } else {
         act("@W$n tells you, 'Rent?  Sure, come this way!'&0", false, recep, 0, ch, TO_VICT);
         act("@W$n stores your belongings and helps you into your private chamber.&0", false, recep, 0, ch, TO_VICT);
         quit_mode = QUIT_RENT;
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has rented in {} ({:d}).", GET_NAME(ch),
+        log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has rented in {} ({:d}).", GET_NAME(ch),
             world[ch->in_room].name, world[ch->in_room].vnum);
     }
 

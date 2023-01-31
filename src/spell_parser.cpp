@@ -223,7 +223,7 @@ int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, 
 
     /* A victim attacks back immediately, 80% of the time */
     if (SINFO.violent && cvict && IS_NPC(cvict) && !FIGHTING(cvict) && GET_STANCE(cvict) >= STANCE_RESTING &&
-        number(0, 4)) {
+        random_number(0, 4)) {
         event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(cvict, caster, 0), true, &(cvict->events), 0);
         remember(cvict, caster);
     }
@@ -600,7 +600,7 @@ char *random_scroll_mob_msg(void) {
     char *msg = "$n recites $p at $N."; /* Default message */
     int i = 0;
     for (; scroll_mob_msg[i]; i++) {
-        if (number(1, i) == 1)
+        if (random_number(1, i) == 1)
             msg = scroll_mob_msg[i];
     }
     return msg;
@@ -614,10 +614,10 @@ char *get_scroll_mob_msg(int spell1, int spell2, int spell3) {
 
     int chosenspell = spell1;
 
-    if (spell2 >= 1 && spell2 <= TOP_SKILL_DEFINE && number(1, 2) == 1)
+    if (spell2 >= 1 && spell2 <= TOP_SKILL_DEFINE && random_number(1, 2) == 1)
         chosenspell = spell2;
 
-    if (spell3 >= 1 && spell3 <= TOP_SKILL_DEFINE && number(1, 3) == 1)
+    if (spell3 >= 1 && spell3 <= TOP_SKILL_DEFINE && random_number(1, 3) == 1)
         chosenspell = spell3;
 
     switch (skills[chosenspell].sphere) {
@@ -1047,7 +1047,7 @@ int chant(CharData *ch, CharData *tch, ObjData *obj, int chantnum) {
     act("$n begins chanting in a deep voice.", false, ch, 0, 0, TO_ROOM);
     char_printf(ch, "You begin chanting in a deep voice.\n");
 
-    if (number(0, 101) > 50 + GET_SKILL(ch, SKILL_CHANT)) {
+    if (random_number(0, 101) > 50 + GET_SKILL(ch, SKILL_CHANT)) {
         char_printf(ch, "You choke and grunt a raspy wail of pain.\n");
         act("$n chokes on $s tears and coughs a raspy grunt.", true, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
@@ -1145,7 +1145,7 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
     act("$n puts on a spellbinding performance.", false, ch, 0, 0, TO_ROOM);
     char_printf(ch, "You put on a virtuosic performance.\n");
 
-    if (number(0, 101) > 50 + GET_SKILL(ch, SKILL_PERFORM)) {
+    if (random_number(0, 101) > 50 + GET_SKILL(ch, SKILL_PERFORM)) {
         char_printf(ch, "You choke and grunt a raspy wail of pain.\n");
         act("$n chokes on $s tears and coughs a raspy grunt.", true, ch, 0, 0, TO_ROOM);
         return CAST_RESULT_CHARGE;
@@ -1360,7 +1360,7 @@ ACMD(do_cast) {
         return;
 
     /* An injured throat makes it difficult to cast. */
-    if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
+    if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && random_number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         if (subcmd == SCMD_CHANT) {
             act("$n starts chanting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
             char_printf(ch,
@@ -1519,7 +1519,7 @@ ACMD(do_cast) {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
 
         /* Chance to quick chant. */
-        if (number(1, 102) < GET_SKILL(ch, SKILL_QUICK_CHANT))
+        if (random_number(1, 102) < GET_SKILL(ch, SKILL_QUICK_CHANT))
             ch->casting.casting_time /= 2;
         improve_skill(ch, SKILL_QUICK_CHANT);
 
@@ -1690,7 +1690,7 @@ void complete_spell(CharData *ch) {
         charge_mem(ch, ch->casting.spell);
 
         if (IS_NPC(ch) && skills[ch->casting.spell].violent && ch->casting.tch && IS_NPC(ch->casting.tch) &&
-            !FIGHTING(ch->casting.tch) && GET_STANCE(ch->casting.tch) >= STANCE_RESTING && number(0, 4)) {
+            !FIGHTING(ch->casting.tch) && GET_STANCE(ch->casting.tch) >= STANCE_RESTING && random_number(0, 4)) {
             attack(ch->casting.tch, ch);
             remember(ch->casting.tch, ch);
         }
@@ -1791,7 +1791,7 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         return false;
 
     /* An injured throat makes it difficult to cast. */
-    if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
+    if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && random_number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         act("$n starts casting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
         char_printf(ch,
                     "You begin casting, but your throat causes you to "
@@ -1821,7 +1821,7 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
     ch->casting.target_status = target_status;
 
     /* Quick chant for mobs --gurlaek 7/13/1999 */
-    if (number(1, 102) < GET_SKILL(ch, SKILL_QUICK_CHANT))
+    if (random_number(1, 102) < GET_SKILL(ch, SKILL_QUICK_CHANT))
         ch->casting.casting_time = (int)(SINFO.cast_time / 2);
     else
         ch->casting.casting_time = SINFO.cast_time;
@@ -1896,13 +1896,13 @@ void start_chant(CharData *ch) {
             if (circle > 1 && !spells_of_circle[(int)GET_LEVEL(gch)][circle - 1])
                 percent = 0;
 
-            if (number(0, 1))
+            if (random_number(0, 1))
                 improve_skill(gch, SKILL_KNOW_SPELL);
         }
 
         /* KNOW_SPELL skill check */
-        if (number(0, 101) > percent && GET_LEVEL(gch) < LVL_GOD) {
-            if (number(0, 100) < 20) {
+        if (random_number(0, 101) > percent && GET_LEVEL(gch) < LVL_GOD) {
+            if (random_number(0, 100) < 20) {
                 /* For really bad rolls, replace the spell with an incorrect one */
                 strcpy(spellbuf, skills[bad_guess(ch)].name);
                 bad = true;
@@ -1929,7 +1929,7 @@ void start_chant(CharData *ch) {
 
             /* Intelligence check to determine the target.  If we know the spell we
              * know the target */
-            if (number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) || (bad) ||
+            if (random_number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) || (bad) ||
                 GET_LEVEL(gch) >= LVL_GOD) {
                 if (ch->casting.tch == gch)
                     /* Target is the receiver of the message */
@@ -1965,14 +1965,14 @@ int bad_guess(CharData *ch) {
 
     if (MEM_MODE(ch) == MEMORIZE) {
         if (skills[ch->casting.spell].violent)
-            return bogus_mage_spells[number(1, 10)];
+            return bogus_mage_spells[random_number(1, 10)];
         else
-            return bogus_mage_spells[number(11, 20)];
+            return bogus_mage_spells[random_number(11, 20)];
     } else {
         if (skills[ch->casting.spell].violent)
-            return bogus_priest_spells[number(1, 10)];
+            return bogus_priest_spells[random_number(1, 10)];
         else
-            return bogus_priest_spells[number(11, 20)];
+            return bogus_priest_spells[random_number(11, 20)];
     }
 }
 

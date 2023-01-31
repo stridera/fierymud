@@ -341,7 +341,8 @@ static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument
         cache_grant(uncache, command, is_group, false);
         add_grant(list, command, GET_NAME(ch), level);
         cache_grant(cache, command, is_group, true);
-        char_printf(ch, "{} {} {} {} at level %d.\n", capitalize(past_action), arg, preposition, GET_NAME(vict), level);
+        char_printf(ch, "{} {} {} {} at level {:d}.\n", capitalize(past_action), arg, preposition, GET_NAME(vict),
+                    level);
     }
 }
 
@@ -496,7 +497,7 @@ static void read_player_grant_list(FILE *fl, GrantType **list, int (*cmd_lookup)
                 if (ptr) {
                     *(ptr++) = '\0';
                     grant->grantor = strdup(grant->grantor);
-                    grant->level = LIMIT(0, atoi(ptr), LVL_IMPL);
+                    grant->level = std::clamp(atoi(ptr), 0, LVL_IMPL);
                 } else
                     line_fail = 3;
             } else

@@ -162,7 +162,7 @@ static ObjData *load_corpse(int id) {
     while (!feof(fl)) {
         if (!build_object(fl, &obj, &location))
             break;
-        depth = MAX(0, -location);
+        depth = std::max(0, -location);
         for (i = MAX_CONTAINER_DEPTH - 1; i >= depth; --i)
             containers[i] = nullptr;
         containers[depth] = obj;

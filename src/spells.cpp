@@ -176,7 +176,7 @@ ASPELL(spell_banish) {
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
-    roll = number(0, 100) + skill - GET_LEVEL(victim);
+    roll = random_number(0, 100) + skill - GET_LEVEL(victim);
 
     /* Failure */
     if (roll < 50) {
@@ -216,7 +216,7 @@ ASPELL(spell_banish) {
         int zone = world[ch->in_room].zone;
         int tries = 100;
         do {
-            location = number(zone_table[zone].number * 100, zone_table[zone].top);
+            location = random_number(zone_table[zone].number * 100, zone_table[zone].top);
             tries--;
         } while (((to_room = real_room(location)) < 0 ||
                   ((ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH)) && tries)));
@@ -244,7 +244,7 @@ ASPELL(spell_banish) {
                 continue;
             if (MOB_FLAGGED(victim, MOB_STAY_ZONE) && world[victim->in_room].zone != world[to_room].zone)
                 continue;
-            if (number(0, 6 - i))
+            if (random_number(0, 6 - i))
                 continue;
             char_from_room(victim);
             char_to_room(victim, to_room);
@@ -292,10 +292,10 @@ ASPELL(spell_charm) {
         char_printf(ch, "You fail - shouldn't be doing it anyway.\n");
     else if (!attack_ok(ch, victim, false))
         char_printf(ch, "You fail - shouldn't be doing it anyway.\n");
-    else if (number(1, 100) > susceptibility(victim, DAM_MENTAL)) {
+    else if (random_number(1, 100) > susceptibility(victim, DAM_MENTAL)) {
         act("$N resists your charming magic.", false, ch, 0, victim, TO_CHAR);
         act("You resist $n's attempt to charm you.", false, ch, 0, victim, TO_VICT);
-    } else if (mag_savingthrow(victim, SAVING_SPELL) || skill - GET_LEVEL(victim) < number(0, 200))
+    } else if (mag_savingthrow(victim, SAVING_SPELL) || skill - GET_LEVEL(victim) < random_number(0, 200))
         char_printf(ch, "Your victim resists!\n");
     else {
         if (victim->master)
@@ -390,7 +390,7 @@ ASPELL(spell_color_spray) {
         if (DECEASED(vict))
             continue;
 
-        required = number(0, 25);
+        required = random_number(0, 25);
         switch (required) { /* choose color */
         case 1:
             effect = SPELL_MINOR_PARALYSIS;
@@ -410,7 +410,7 @@ ASPELL(spell_color_spray) {
         case 4:
             effect = SPELL_RAY_OF_ENFEEB;
             required = 41;
-            color = "&1screaming red";
+            color = "&1&bscreaming red";
             break;
         case 5:
             effect = SPELL_SILENCE;
@@ -420,7 +420,7 @@ ASPELL(spell_color_spray) {
         case 6:
             effect = SPELL_BLINDNESS;
             required = 56;
-            color = "&9black";
+            color = "&9&bblack";
             break;
         case 7:
             effect = SPELL_DISEASE;
@@ -430,17 +430,17 @@ ASPELL(spell_color_spray) {
         case 8:
             effect = SPELL_INSANITY;
             required = 73;
-            color = "&5rich violet";
+            color = "&5&brich violet";
             break;
         case 9:
             effect = SPELL_DISPEL_MAGIC;
             required = 81;
-            color = "&4blue";
+            color = "&4&bblue";
             break;
         case 10:
             effect = -1; /* knock down */
             required = 89;
-            color = "&3yellow";
+            color = "&3&bbrilliant yellow";
             break;
         default:
             /* always at least 64% chance to do nothing */
@@ -459,7 +459,7 @@ ASPELL(spell_color_spray) {
 
         /* Special case for knock down. */
         if (effect < 0) {
-            switch (number(0, 3)) {
+            switch (random_number(0, 3)) {
             case 1:
                 act("$n falls over, dazed!&0", false, vict, 0, 0, TO_ROOM);
                 break;
@@ -499,7 +499,7 @@ ASPELL(spell_create_water) {
 
     if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON) {
         amount =
-            MIN(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), 1 + 15 * skill / 2);
+            std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), 1 + 15 * skill / 2);
         if (amount <= 0) {
             act("$o seems to be full already.", false, ch, obj, 0, TO_CHAR);
         } else {
@@ -765,7 +765,7 @@ ASPELL(spell_energy_drain) {
         if (hp > 10)
             GET_HIT(ch) += hp;
         else
-            GET_HIT(ch) += number(5, 10);
+            GET_HIT(ch) += random_number(5, 10);
     }
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -943,11 +943,11 @@ ASPELL(spell_heavens_gate) {
     new_descr->next = portal->ex_description;
     portal->ex_description = new_descr;
     obj_to_room(portal, ch->in_room);
-    act("&7&b$n&7&b calls upon his deity...&0\n&6A soft &btunnel "
-        "of &7light&6 opens up near you, &0&6beckoning you to enter.",
+    act("&7&b$n&7&b calls upon his deity...&0\n"
+        "&6A soft &btunnel of &7light&6 opens up near you, &0&6beckoning you to enter.",
         true, ch, 0, 0, TO_ROOM);
-    act("&7&bYou call upon your deity...&0\n&6A soft &btunnel "
-        "of &7light &6opens up near you, &6beckoning you to enter.&0",
+    act("&7&bYou call upon your deity...&0\n"
+        "&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to enter.&0",
         true, ch, 0, 0, TO_CHAR);
     /* create the portal at the other end */
     tportal = read_object(OBJ_VNUM_HEAVENSGATE, VIRTUAL);
@@ -960,13 +960,8 @@ ASPELL(spell_heavens_gate) {
     new_tdescr->next = tportal->ex_description;
     tportal->ex_description = new_tdescr;
     obj_to_room(tportal, victim->in_room);
-    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to "
-        "enter.&0",
-        true, victim, 0, 0, TO_ROOM);
-    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to "
-        "enter.&0",
-        true, victim, 0, 0, TO_CHAR);
-
+    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to enter.&0", true, victim, 0, 0, TO_ROOM);
+    act("&6A soft &btunnel of &7light &6opens up near you, &6beckoning you to enter.&0", true, victim, 0, 0, TO_CHAR);
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
@@ -984,15 +979,12 @@ ASPELL(spell_hells_gate) {
         return 0;
     if ((ROOM_FLAGGED(ch->in_room, ROOM_NOWELL) || ROOM_FLAGGED(victim->in_room, ROOM_NOWELL)) ||
         PRF_FLAGGED(victim, PRF_NOFOLLOW)) {
-        act("&9&bThe ground begins to quake and open up, briefly revealing "
-            "&1hell&9, then closes.&0",
-            true, ch, 0, 0, TO_ROOM);
-        act("&9&bThe ground begins to quake and open up, briefly revealing "
-            "&1hell&9, then closes.&0",
-            true, ch, 0, 0, TO_CHAR);
-        act("&9&bThe ground begins to quake and open up, briefly revealing "
-            "&1hell&9, then closes.&0",
-            true, ch, 0, 0, TO_VICT);
+        act("&9&bThe ground begins to quake and open up, briefly revealing &1hell&9, then closes.&0", true, ch, 0, 0,
+            TO_ROOM);
+        act("&9&bThe ground begins to quake and open up, briefly revealing &1hell&9, then closes.&0", true, ch, 0, 0,
+            TO_CHAR);
+        act("&9&bThe ground begins to quake and open up, briefly revealing &1hell&9, then closes.&0", true, ch, 0, 0,
+            TO_VICT);
         return CAST_RESULT_CHARGE;
     }
     if ((portal = read_object(OBJ_VNUM_HELLGATE, VIRTUAL)) == nullptr) {
@@ -1261,7 +1253,7 @@ ASPELL(chant_ivory_symphony) {
             continue;
         if (MOB_FLAGGED(tch, MOB_SENTINEL) && mag_savingthrow(tch, SAVING_PARA))
             continue;
-        if (number(0, 100) > skill)
+        if (random_number(0, 100) > skill)
             continue;
 
         delayed_command(tch, "flee", 0, false);
@@ -1281,7 +1273,7 @@ ASPELL(spell_lightning_breath) {
         if (damage_evasion(victim, 0, 0, skills[spellnum].damage_type)) {
             act("$n is unaffected!", false, victim, 0, 0, TO_ROOM);
             act("You are unaffected!", false, victim, 0, 0, TO_CHAR);
-        } else if (number(0, 100) < GET_LEVEL(ch) && !mag_savingthrow(victim, SAVING_PARA)) {
+        } else if (random_number(0, 100) < GET_LEVEL(ch) && !mag_savingthrow(victim, SAVING_PARA)) {
             act("$n is stunned!", false, victim, 0, 0, TO_ROOM);
             act("You are stunned!", false, victim, 0, 0, TO_CHAR);
             GET_POS(victim) = POS_PRONE;
@@ -1305,17 +1297,17 @@ ASPELL(spell_magic_missile) {
      * This graduates the number of missiles cast based on prof of the sphere *
      */
 
-    if (skill >= 5 && number(1, 100) > 80)
+    if (skill >= 5 && random_number(1, 100) > 80)
         missiles++;
-    if (skill >= 14 && number(1, 100) > 75)
+    if (skill >= 14 && random_number(1, 100) > 75)
         missiles++;
-    if (skill >= 24 && number(1, 100) > 60)
+    if (skill >= 24 && random_number(1, 100) > 60)
         missiles++;
-    if (skill >= 34 && number(1, 100) > 55)
+    if (skill >= 34 && random_number(1, 100) > 55)
         missiles++;
-    if (skill >= 44 && number(1, 100) > 50)
+    if (skill >= 44 && random_number(1, 100) > 50)
         missiles++;
-    if (skill >= 74 && number(1, 100) > 25)
+    if (skill >= 74 && random_number(1, 100) > 25)
         missiles++;
 
     missiles += min_missiles;
@@ -1345,17 +1337,17 @@ ASPELL(spell_fire_darts) {
     /*
      * This graduates the number of missiles cast based on prof of the sphere
      */
-    if (skill >= 5 && number(1, 100) > 80)
+    if (skill >= 5 && random_number(1, 100) > 80)
         missiles++;
-    if (skill >= 12 && number(1, 100) > 75)
+    if (skill >= 12 && random_number(1, 100) > 75)
         missiles++;
-    if (skill >= 24 && number(1, 100) > 60)
+    if (skill >= 24 && random_number(1, 100) > 60)
         missiles++;
-    if (skill >= 34 && number(1, 100) > 55)
+    if (skill >= 34 && random_number(1, 100) > 55)
         missiles++;
-    if (skill >= 44 && number(1, 100) > 50)
+    if (skill >= 44 && random_number(1, 100) > 50)
         missiles++;
-    if (skill >= 74 && number(1, 100) > 25)
+    if (skill >= 74 && random_number(1, 100) > 25)
         missiles++;
 
     missiles += min_missiles;
@@ -1387,17 +1379,17 @@ ASPELL(spell_ice_darts) {
     /*
      * This graduates the number of missiles cast based on prof of the sphere *
      */
-    if (skill >= 5 && number(1, 100) > 80)
+    if (skill >= 5 && random_number(1, 100) > 80)
         missiles++;
-    if (skill >= 14 && number(1, 100) > 75)
+    if (skill >= 14 && random_number(1, 100) > 75)
         missiles++;
-    if (skill >= 24 && number(1, 100) > 60)
+    if (skill >= 24 && random_number(1, 100) > 60)
         missiles++;
-    if (skill >= 34 && number(1, 100) > 55)
+    if (skill >= 34 && random_number(1, 100) > 55)
         missiles++;
-    if (skill >= 44 && number(1, 100) > 50)
+    if (skill >= 44 && random_number(1, 100) > 50)
         missiles++;
-    if (skill >= 74 && number(1, 100) > 25)
+    if (skill >= 74 && random_number(1, 100) > 25)
         missiles++;
 
     missiles += min_missiles;
@@ -1427,17 +1419,17 @@ ASPELL(spell_spirit_arrows) {
      * This graduates the number of missiles cast based on prof of the sphere *
      */
 
-    if (skill >= 5 && number(1, 100) > 80)
+    if (skill >= 5 && random_number(1, 100) > 80)
         missiles++;
-    if (skill >= 14 && number(1, 100) > 75)
+    if (skill >= 14 && random_number(1, 100) > 75)
         missiles++;
-    if (skill >= 24 && number(1, 100) > 60)
+    if (skill >= 24 && random_number(1, 100) > 60)
         missiles++;
-    if (skill >= 34 && number(1, 100) > 55)
+    if (skill >= 34 && random_number(1, 100) > 55)
         missiles++;
-    if (skill >= 44 && number(1, 100) > 50)
+    if (skill >= 44 && random_number(1, 100) > 50)
         missiles++;
-    if (skill >= 74 && number(1, 100) > 25)
+    if (skill >= 74 && random_number(1, 100) > 25)
         missiles++;
 
     missiles += min_missiles;
@@ -2047,7 +2039,7 @@ ASPELL(spell_soul_tap_recur) {
         if (hp > 10)
             GET_HIT(ch) += hp;
         else
-            GET_HIT(ch) += number(5, 10);
+            GET_HIT(ch) += random_number(5, 10);
     }
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -2073,14 +2065,14 @@ ASPELL(spell_ventriloquate) {
     for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
         if (tch == ch)
             continue;
-        if (IS_PC(victim) || number(1, 8 * (skill + 24)) < GET_LEVEL(tch) + GET_VIEWED_WIS(tch) / 2) {
+        if (IS_PC(victim) || random_number(1, 8 * (skill + 24)) < GET_LEVEL(tch) + GET_VIEWED_WIS(tch) / 2) {
             if (tch == victim) {
                 act("Someone tried to make it sound like you said '$T'!", false, tch, 0, msg, TO_CHAR);
             } else {
                 sprintf(buf, "Someone tried to make it sound like $N said, '%s'!", msg);
                 act(buf, false, tch, 0, victim, TO_CHAR);
             }
-        } else if (number(1, 8 * (skill + 24)) < (GET_LEVEL(tch) + GET_VIEWED_WIS(tch)) / 4) {
+        } else if (random_number(1, 8 * (skill + 24)) < (GET_LEVEL(tch) + GET_VIEWED_WIS(tch)) / 4) {
             if (tch == victim) {
                 sprintf(buf, "$n tried to make it sound like you said '%s'!", msg);
                 act(buf, false, ch, 0, victim, TO_VICT);
@@ -2177,7 +2169,7 @@ ASPELL(spell_wizard_eye) {
         return CAST_RESULT_CHARGE;
     }
 
-    if (skill < number(1, 100)) {
+    if (skill < random_number(1, 100)) {
         char_printf(ch, "You failed.\n");
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
@@ -2482,7 +2474,7 @@ ASPELL(spell_dispel_magic) {
     if (obj) {
         switch (GET_OBJ_TYPE(obj)) {
         case ITEM_WALL:
-            if (GET_LEVEL(ch) >= LVL_IMMORT || (GET_OBJ_VAL(obj, VAL_WALL_DISPELABLE) && number(1, 100) > 60)) {
+            if (GET_LEVEL(ch) >= LVL_IMMORT || (GET_OBJ_VAL(obj, VAL_WALL_DISPELABLE) && random_number(1, 100) > 60)) {
                 destroy_opposite_wall(obj);
                 decay_object(obj);
                 return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -2490,7 +2482,7 @@ ASPELL(spell_dispel_magic) {
             break;
         default:
             if (OBJ_FLAGGED(obj, ITEM_INVISIBLE)) {
-                if (number(1, 50) + skill > GET_OBJ_LEVEL(obj)) {
+                if (random_number(1, 50) + skill > GET_OBJ_LEVEL(obj)) {
                     REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_INVISIBLE);
                     act("$p&0 fades into existence.", false, ch, obj, 0, TO_CHAR);
                     act("$p&0 fades into existence.", false, ch, obj, 0, TO_ROOM);
@@ -2564,7 +2556,7 @@ ASPELL(spell_world_teleport) {
         return 0;
 
     do {
-        to_room = number(0, top_of_world);
+        to_room = random_number(0, top_of_world);
     } while (ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH) ||
              ROOM_FLAGGED(to_room, ROOM_GODROOM));
 
@@ -2583,7 +2575,7 @@ ASPELL(spell_teleport) {
     bool wasdark;
 
     /* Check for success. */
-    if (number(1, 100) > 10 + skill * 2) {
+    if (random_number(1, 100) > 10 + skill * 2) {
         char_printf(ch, "&7The spell swirls about and dies away.&0\n");
         if (ch == victim)
             act("&7$n tries to teleport $mself, but fails.&0", false, ch, 0, victim, TO_NOTVICT);
@@ -2593,7 +2585,7 @@ ASPELL(spell_teleport) {
     }
 
     do {
-        location = number((zone_table[zone].number) * 100, zone_table[zone].top);
+        location = random_number((zone_table[zone].number) * 100, zone_table[zone].top);
         tries--;
     } while (((to_room = real_room(location)) < 0 ||
               (ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH))) &&
@@ -2646,7 +2638,7 @@ ASPELL(spell_summon) {
         return CAST_RESULT_CHARGE;
     }
 
-    if (GET_LEVEL(victim) > MIN(LVL_IMMORT, skill + 3)) {
+    if (GET_LEVEL(victim) > std::min(LVL_IMMORT, skill + 3)) {
         char_printf(ch, "You aren't proficient enough to summon such a powerful being.\n");
         return CAST_RESULT_CHARGE;
     }
@@ -2734,7 +2726,7 @@ ASPELL(spell_locate_object) {
     strcpy(name, ch->casting.misc);
 
     /* How many items can you locate with this casting strength? */
-    j = MIN(MAX_LOCATE_ITEMS, MAX(MAX_LOCATE_ITEMS * skill / 100, 1));
+    j = std::min(MAX_LOCATE_ITEMS, std::max(MAX_LOCATE_ITEMS * skill / 100, 1));
 
     /* Loop through every object in the game */
     for (o = object_list; o; o = o->next) {
@@ -2772,9 +2764,9 @@ ASPELL(spell_locate_object) {
          * If 4 levels above, 70% chance
          * Else 80% chance */
         if (GET_OBJ_LEVEL(o) - skill > 3) {
-            if (number(1, 10) >= 12 - GET_OBJ_LEVEL(o) + skill)
+            if (random_number(1, 10) >= 12 - GET_OBJ_LEVEL(o) + skill)
                 continue;
-        } else if (number(1, 10) < 3)
+        } else if (random_number(1, 10) < 3)
             continue;
 
         /* This object can be detected */
@@ -2786,9 +2778,9 @@ ASPELL(spell_locate_object) {
             items[found++] = o;
         else
             /* Already got j items.  Probability of storing this one is j/t */
-            if (number(1, t) <= j)
+            if (random_number(1, t) <= j)
                 /* Overwrite a random one of the objects already in the list */
-                items[number(0, j - 1)] = o;
+                items[random_number(0, j - 1)] = o;
     }
 
     if (!found) {
@@ -2798,8 +2790,8 @@ ASPELL(spell_locate_object) {
 
     /* Shuffle these around a bit!  */
     for (i = 0; i < (100 - skill) / 3; i++) {
-        t = number(0, found - 1);
-        k = number(0, found - 1);
+        t = random_number(0, found - 1);
+        k = random_number(0, found - 1);
         if (t != k) {
             tmp = items[t];
             items[t] = items[k];
@@ -3028,7 +3020,7 @@ ASPELL(spell_moonbeam) {
 
     /* Determine how many victims the spell can affect, given the
      * power of the casting */
-    numallowed = MIN(MAX(1, skill / 10), MAX_MOONBEAM_TARGETS);
+    numallowed = std::min(std::max(1, skill / 10), MAX_MOONBEAM_TARGETS);
 
     /* Select victims. */
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room) {
@@ -3053,8 +3045,8 @@ ASPELL(spell_moonbeam) {
         numconsidered++;
         if (numvicts < numallowed)
             victims[numvicts++] = vict;
-        else if (number(1, numconsidered) == 1)
-            victims[number(0, numallowed - 1)] = vict;
+        else if (random_number(1, numconsidered) == 1)
+            victims[random_number(0, numallowed - 1)] = vict;
     }
 
     if (numvicts == 0) {
@@ -3072,10 +3064,10 @@ ASPELL(spell_moonbeam) {
             continue;
 
         /* Paralysis/insanity? */
-        if (number(1, 100) > 4 + skill - GET_LEVEL(vict))
+        if (random_number(1, 100) > 4 + skill - GET_LEVEL(vict))
             continue;
 
-        if (number(1, 2) == 1) {
+        if (random_number(1, 2) == 1) {
             mag_affect(skill, ch, vict, SPELL_MINOR_PARALYSIS, SAVING_SPELL, CAST_SPELL);
         } else {
             mag_affect(skill, ch, vict, SPELL_INSANITY, SAVING_SPELL, CAST_SPELL);
@@ -3120,7 +3112,7 @@ int inflict_fear(CharData *ch, CharData *victim, int power, bool multi) {
         opos = WEAR_2HWIELD;
     }
 
-    if (number(0, 100) < MIN(80, 17 * (power - GET_LEVEL(victim)) / 10)) {
+    if (random_number(0, 100) < std::min(80, 17 * (power - GET_LEVEL(victim)) / 10)) {
         /* Minor paralysis */
         memset(&effect, 0, sizeof(effect));
         effect.type = SPELL_FEAR;
@@ -3139,7 +3131,7 @@ int inflict_fear(CharData *ch, CharData *victim, int power, bool multi) {
         if (FIGHTING(ch) == victim)
             stop_fighting(ch);
         remember(victim, ch);
-    } else if (weap && number(0, 100) < MIN(85, 1 + 18 * (power - GET_LEVEL(victim)) / 10)) {
+    } else if (weap && random_number(0, 100) < std::min(85, 1 + 18 * (power - GET_LEVEL(victim)) / 10)) {
         /* Drop weapon */
         act("You made $N drop $S $o!", false, ch, weap, victim, TO_CHAR);
         act("$n frightens you so badly that you forget to hold on to your $o!", false, ch, weap, victim, TO_VICT);
@@ -3149,7 +3141,7 @@ int inflict_fear(CharData *ch, CharData *victim, int power, bool multi) {
         STOP_CASTING(victim);
         WAIT_STATE(victim, (PULSE_VIOLENCE));
         fightback = true;
-    } else if (number(0, 100) < MIN(90, 3 + 19 * (power - GET_LEVEL(victim)) / 10)) {
+    } else if (random_number(0, 100) < std::min(90, 3 + 19 * (power - GET_LEVEL(victim)) / 10)) {
         /* Flee */
         stop_fighting(victim);
         STOP_CASTING(victim);
@@ -3164,7 +3156,7 @@ int inflict_fear(CharData *ch, CharData *victim, int power, bool multi) {
         delayed_command(victim, "flee", 0, false);
         WAIT_STATE(victim, (PULSE_VIOLENCE));
         remember(victim, ch);
-    } else if (number(0, 100) < MIN(95, 5 + 20 * (power - GET_LEVEL(victim)) / 10)) {
+    } else if (random_number(0, 100) < std::min(95, 5 + 20 * (power - GET_LEVEL(victim)) / 10)) {
         /* Falter */
         act("$N gets a scared look, but soldiers on.", false, ch, 0, victim, TO_CHAR);
         act("$n frightens you, but you recover.", false, ch, 0, victim, TO_VICT);

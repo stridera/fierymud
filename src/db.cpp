@@ -50,6 +50,7 @@
 #include "utils.hpp"
 #include "weather.hpp"
 
+#include <algorithm>
 #include <math.h>
 #include <sys/stat.h>
 
@@ -364,7 +365,7 @@ int get_set_dice(int level, int race, int class_num, int state)
     /*dice calculations */
     if (!state) {
         if (level < 10)
-            dice = MAX(1, (int)((level / 3) + .5));
+            dice = std::max(1, (int)((level / 3) + .5));
 
         else if (level < 30)
             dice = (int)((float)(level / 3) + .5); /*under 30 */
@@ -427,7 +428,7 @@ int get_copper(int i)
             return 0;
 
         /*copper calculations */
-        copper = (number(1, 150)) * mob_proto[i].player.level;
+        copper = (random_number(1, 150)) * mob_proto[i].player.level;
         sfactor = (int)((sfactor + cfactor + zfactor) / 3);
 
         copper = (int)((float)((sfactor / 100.0) * copper));
@@ -454,7 +455,7 @@ int get_ac(int level, int race, int class_num)
 
         /*ac calculations */
         ac = 90 - (int)(2 * level * (float)(sfactor / 100.0));
-        ac = MIN(100, MAX(-100, ac));
+        ac = std::clamp(ac, -100, 100);
         return ac;
 }
 
@@ -1335,7 +1336,7 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
         }
         GET_LEVEL(mob_proto + i) = t[0];
         /*  No negative hitroll bonus DO_NOT CHANGE -Banyal */
-        mob_proto[i].mob_specials.ex_hitroll = LIMIT(0, t[1], 20);
+        mob_proto[i].mob_specials.ex_hitroll = std::clamp(t[1], 0, 20);
 
         mob_proto[i].mob_specials.ex_armor = 10 * t[2];
         /*if ac onmedit is 0 then ignore it */
@@ -1422,8 +1423,8 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
         mob_proto[i].points.coins[COPPER] = j / COPPER_SCALE;
 
         mob_proto[i].points.coins[PLATINUM] =
-            MAX(0, mob_proto[i].points.coins[PLATINUM] + GET_EX_PLATINUM(mob_proto + i));
-        mob_proto[i].points.coins[GOLD] = MAX(0, mob_proto[i].points.coins[GOLD] + GET_EX_GOLD(mob_proto + i));
+            std::max(0, mob_proto[i].points.coins[PLATINUM] + GET_EX_PLATINUM(mob_proto + i));
+        mob_proto[i].points.coins[GOLD] = std::max(0, mob_proto[i].points.coins[GOLD] + GET_EX_GOLD(mob_proto + i));
 
         if ((mob_proto[i].mob_specials.ex_armor != 100))
             mob_proto[i].points.armor =
@@ -1451,8 +1452,8 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
             get_set_hd(GET_LEVEL(mob_proto + i), GET_RACE(mob_proto + i), GET_CLASS(mob_proto + i), 1);
         mob_proto[i].points.damroll += mob_proto[i].mob_specials.ex_damroll;
         /*  Changed to get rid of the -199 mobb hitrolls Do NOT change -Banyal */
-        mob_proto[i].points.hitroll =
-            LIMIT(10, get_set_hd(GET_LEVEL(mob_proto + i), GET_RACE(mob_proto + i), GET_CLASS(mob_proto + i), 0), 80);
+        mob_proto[i].points.hitroll = std::clamp<int>(
+            get_set_hd(GET_LEVEL(mob_proto + i), GET_RACE(mob_proto + i), GET_CLASS(mob_proto + i), 0), 10, 80);
         mob_proto[i].points.hitroll += mob_proto[i].mob_specials.ex_hitroll;
 
         mob_proto[i].mob_specials.damnodice =
@@ -1463,11 +1464,11 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
         mob_proto[i].mob_specials.damsizedice += mob_proto[i].mob_specials.ex_damsizedice;
 
         /*last check values above 0 */
-        mob_proto[i].mob_specials.damsizedice = MAX(0, mob_proto[i].mob_specials.damsizedice);
-        mob_proto[i].mob_specials.damnodice = MAX(0, mob_proto[i].mob_specials.damnodice);
-        mob_proto[i].points.hitroll = MAX(0, mob_proto[i].points.hitroll);
-        mob_proto[i].points.damroll = MAX(0, mob_proto[i].points.damroll);
-        mob_proto[i].points.armor = MIN(100, MAX(-100, mob_proto[i].points.armor));
+        mob_proto[i].mob_specials.damsizedice = std::max<sbyte>(0, mob_proto[i].mob_specials.damsizedice);
+        mob_proto[i].mob_specials.damnodice = std::max<sbyte>(0, mob_proto[i].mob_specials.damnodice);
+        mob_proto[i].points.hitroll = std::max(0, mob_proto[i].points.hitroll);
+        mob_proto[i].points.damroll = std::max(0, mob_proto[i].points.damroll);
+        mob_proto[i].points.armor = std::clamp(mob_proto[i].points.armor, -100, 100);
 
         for (j = 0; j <= NUM_SPELL_CIRCLES; ++j)
             GET_MOB_SPLBANK(&mob_proto[i], j) = spells_of_circle[(int)GET_LEVEL(&mob_proto[i])][j];
@@ -1493,7 +1494,6 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
  */
 
 #define CASE(test) if (!matched && !strcasecmp(keyword, test) && (matched = 1))
-#define RANGE(low, high) (num_arg = MAX((low), MIN((high), (num_arg))))
 /* modified for the 100 attrib scale */
 void interpret_espec(char *keyword, char *value, int i, int nr) {
         int num_arg, matched = 0;
@@ -1501,37 +1501,37 @@ void interpret_espec(char *keyword, char *value, int i, int nr) {
         num_arg = atoi(value);
 
         CASE("BareHandAttack") {
-            RANGE(0, 99);
+            num_arg = std::clamp(num_arg, 0, 99);
             mob_proto[i].mob_specials.attack_type = num_arg;
         }
 
         CASE("Str") {
-            RANGE(30, 100);
+            num_arg = std::clamp(num_arg, 30, 100);
             mob_proto[i].natural_abils.str = num_arg;
         }
 
         CASE("Int") {
-            RANGE(30, 100);
+            num_arg = std::clamp(num_arg, 30, 100);
             mob_proto[i].natural_abils.intel = num_arg;
         }
 
         CASE("Wis") {
-            RANGE(30, 100);
+            num_arg = std::clamp(num_arg, 30, 100);
             mob_proto[i].natural_abils.wis = num_arg;
         }
 
         CASE("Dex") {
-            RANGE(30, 100);
+            num_arg = std::clamp(num_arg, 30, 100);
             mob_proto[i].natural_abils.dex = num_arg;
         }
 
         CASE("Con") {
-            RANGE(30, 100);
+            num_arg = std::clamp(num_arg, 30, 100);
             mob_proto[i].natural_abils.con = num_arg;
         }
 
         CASE("Cha") {
-            RANGE(30, 100);
+            num_arg = std::clamp(num_arg, 30, 100);
             mob_proto[i].natural_abils.cha = num_arg;
         }
 
@@ -2029,7 +2029,7 @@ void load_help(FILE *fl) {
             if ((*line == '#') && (*(line + 1) != 0))
                 el.min_level = atoi((line + 1));
 
-            el.min_level = MAX(0, MIN(el.min_level, LVL_IMPL));
+            el.min_level = std::clamp(el.min_level, 0, LVL_IMPL);
 
             /* now, add the entry to the index with each keyword on the keyword line */
             el.duplicate = 0;
@@ -2119,10 +2119,10 @@ void setup_mob(CharData *mob) {
         init_char(mob);
 
         if (!mob->points.max_hit)
-            mob->points.max_hit =
-                MAX(0, MIN(32000, dice(mob->points.hit, mob->points.mana) + GET_EX_MAIN_HP(mob) + mob->points.move));
+            mob->points.max_hit = std::clamp(
+                roll_dice(mob->points.hit, mob->points.mana) + GET_EX_MAIN_HP(mob) + mob->points.move, 0, 32000);
         else
-            mob->points.max_hit = number(mob->points.hit, mob->points.mana);
+            mob->points.max_hit = random_number(mob->points.hit, mob->points.mana);
 
         mob->points.mana = mob->points.max_mana; /* rests mobs mana  */
         mob->points.max_move = natural_move(mob);

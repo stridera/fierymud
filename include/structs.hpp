@@ -244,14 +244,13 @@ struct PlayerSpecialData {
 
     /* List of the last X comms as defined in retained_comms.h */
     RetainedComms *comms;
-    bool talks[MAX_TONGUE]; /* PC s Tongues 0 for NPC                 */
-    int wimp_level;         /* Below this # of hit points, flee!      */
-    int aggressive;         /* Above this # of hit points, autoattack */
-    byte freeze_level;      /* Level of god who froze char, if any    */
-    byte autoinvis_level;   /* Level of invisibility to take when entering game */
-    byte invis_level;       /* level of invisibility                  */
-    room_num load_room;     /* Which room to place char in            */
-    room_num save_room;     /* Where the player was when saved        */
+    int wimp_level;       /* Below this # of hit points, flee!      */
+    int aggressive;       /* Above this # of hit points, autoattack */
+    byte freeze_level;    /* Level of god who froze char, if any    */
+    byte autoinvis_level; /* Level of invisibility to take when entering game */
+    int invis_level;      /* level of invisibility                  */
+    room_num load_room;   /* Which room to place char in            */
+    room_num save_room;   /* Where the player was when saved        */
     /* preference flags for PC's.             */
     flagvector pref[FLAGVECTOR_SIZE(NUM_PRF_FLAGS)];
     /* privilege flags for PC's */
@@ -283,6 +282,7 @@ struct PlayerSpecialData {
     char *long_descr;
     char *wiz_title;
     char *host;
+    std::string client{"Unknown"};
 };
 
 /* Specials used by NPCs, not PCs */

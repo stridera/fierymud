@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from enum import Enum, auto
 from typing import List
 import json
+from json import JSONEncoder
 import re
 
 from .mudfile import MudFile
@@ -41,7 +42,21 @@ class Dice:
         return f"{self.num}d{self.size}+{self.bonus}"
 
 
-class Base(ABC):
+class Encoder(JSONEncoder):
+    # Writing files
+    def default(self, obj):
+        """
+        Default method for converting the object to json
+        :param obj: The object to convert
+        :return: The converted object
+        """
+        if hasattr(obj, "json_repr"):
+            return obj.json_repr()
+
+        return obj.__dict__ if hasattr(obj, "__dict__") else str(obj)
+
+
+class Base(ABC, Encoder):
     """MUD Object Base Class"""
 
     def __init__(self, vnum: int, verbose: bool = False):
@@ -72,6 +87,9 @@ class Base(ABC):
             print(f"\nError parsing {cls.__name__} file: {e}")
             raise e
             return []
+
+    def json_repr(self):
+        return {"vnum": self.vnum, "stats": self.stats}
 
     @classmethod
     def from_data(cls, data: List[str]):
@@ -159,26 +177,6 @@ class Base(ABC):
         if flag >= len(flaglist):
             raise ValueError(f"Flag out of range! {flag} >= {len(flaglist)} ({flaglist})")
         return flaglist[flag]
-
-    # Writing files
-    def default(self, obj):
-        """
-        Default method for converting the object to json
-        :param obj: The object to convert
-        :return: The converted object
-        """
-        if hasattr(obj, "to_json"):
-            return obj.to_json()
-
-        return obj.__dict__ if hasattr(obj, "__dict__") else str(obj)
-
-    def to_json(self):
-        """
-        Converts the object to a json object
-        :return: The json object
-        """
-        response = {"vnum": self.vnum, "stats": self.stats}
-        return json.dumps(response, default=self.default)
 
     @staticmethod
     def decolor(str):

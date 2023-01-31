@@ -767,7 +767,7 @@ void change_alignment(CharData *ch, CharData *victim) {
         change *= (GET_LEVEL(ch) - GET_LEVEL(victim)) / 10;
 
     GET_ALIGNMENT(ch) += change;
-    GET_ALIGNMENT(ch) = LIMIT(MIN_ALIGNMENT, GET_ALIGNMENT(ch), MAX_ALIGNMENT);
+    GET_ALIGNMENT(ch) = std::clamp(GET_ALIGNMENT(ch), MIN_ALIGNMENT, MAX_ALIGNMENT);
 }
 
 void death_cry(CharData *ch) {
@@ -989,7 +989,7 @@ void die(CharData *ch, CharData *killer) {
 }
 
 static float exp_level_bonus(int level_diff) {
-    /* Can't use MAX() because it returns an int. */
+    /* Can't use std::max() because it returns an int. */
     if (level_diff > 0)
         return 1.0 + (0.015 * level_diff);
     else
@@ -1003,7 +1003,7 @@ static void receive_kill_credit(CharData *ch, CharData *vict, long exp) {
     /* Trophy decrease */
     exp *= exp_trophy_modifier(ch, vict);
 
-    exp = MAX(exp, 1);
+    exp = std::max(exp, 1l);
 
     char_printf(ch, "You receive your share of experience.\n");
 
@@ -1380,7 +1380,7 @@ void dam_message(int dam, CharData *ch, CharData *victim, int w_type) {
 
     /* this fixes the false message due to the rounding error --gurlaek 11/22/1999
      */
-    percent = MAX(percent, 1);
+    percent = std::max(percent, 1);
 
     if (dam == 0)
         percent = 0;
@@ -1484,7 +1484,7 @@ bool skill_message(int dam, CharData *ch, CharData *vict, int attacktype, bool d
 
     for (i = 0; i < MAX_MESSAGES; i++) {
         if (fight_messages[i].a_type == attacktype) {
-            nr = dice(1, fight_messages[i].number_of_attacks);
+            nr = roll_dice(1, fight_messages[i].number_of_attacks);
 
             for (j = 1, msg = fight_messages[i].msg; (j < nr) && msg; j++)
                 msg = msg->next;
@@ -1571,8 +1571,9 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
              * If this is a pet attacking, there is a chance the victim will
              * notice the master and switch targets.
              */
-            if (IS_NPC(ch) && IS_NPC(victim) && victim->master && !number(0, 100) && EFF_FLAGGED(victim, EFF_CHARM) &&
-                (victim->master->in_room == ch->in_room) && CAN_SEE(ch, victim->master)) {
+            if (IS_NPC(ch) && IS_NPC(victim) && victim->master && !random_number(0, 100) &&
+                EFF_FLAGGED(victim, EFF_CHARM) && (victim->master->in_room == ch->in_room) &&
+                CAN_SEE(ch, victim->master)) {
                 if (FIGHTING(ch))
                     stop_fighting(ch);
 
@@ -1661,7 +1662,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
         check_killer(ch, victim);
 
     /* Cap damage */
-    dam = MAX(MIN(dam, MAX_DAMAGE), 0);
+    dam = std::clamp(dam, 0, MAX_DAMAGE);
 
     /* illusory mobs still seem to be dealing damage below... */
     if (MOB_FLAGGED(ch, MOB_ILLUSORY))
@@ -1682,9 +1683,9 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
                 if (EFF_FLAGGED(ch, EFF_VAMP_TOUCH)) {
                     hurt_char(ch, nullptr, -dam, false);
                 } else if (GET_SKILL(ch, SKILL_VAMP_TOUCH) > 0) {
-                    if (GET_SKILL(ch, SKILL_VAMP_TOUCH) > number(0, 101))
+                    if (GET_SKILL(ch, SKILL_VAMP_TOUCH) > random_number(0, 101))
                         hurt_char(ch, nullptr, -dam / 2, true);
-                    if (number(0, 2))
+                    if (random_number(0, 2))
                         improve_skill(ch, SKILL_VAMP_TOUCH);
                 }
             }
@@ -1694,7 +1695,8 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
     /* You get some exp for doing damage (but not to players or illusions) */
     if (ch != victim && !IS_NPC(ch) && !MOB_FLAGGED(victim, MOB_ILLUSORY))
         gain_exp(ch,
-                 (GET_LEVEL(victim) * dam) / MAX(GET_LEVEL(ch) - GET_LEVEL(victim) > 10 ? 30 : 15, 50 - GET_LEVEL(ch)),
+                 (GET_LEVEL(victim) * dam) /
+                     std::max(GET_LEVEL(ch) - GET_LEVEL(victim) > 10 ? 30 : 15, 50 - GET_LEVEL(ch)),
                  GAIN_REGULAR);
 
     /*
@@ -1797,15 +1799,15 @@ bool riposte(CharData *ch, CharData *victim) {
     if (!GET_EQ(victim, WEAR_WIELD) && !GET_EQ(victim, WEAR_2HWIELD) && !GET_SKILL(victim, SKILL_BAREHAND))
         return false;
 
-    ch_hit = number(55, 200);
+    ch_hit = random_number(55, 200);
     ch_hit += GET_HITROLL(ch);
     ch_hit -= monk_weight_penalty(ch);
-    vict_riposte = number(20, 50);
+    vict_riposte = random_number(20, 50);
     vict_riposte += GET_LEVEL(victim) - GET_LEVEL(ch);
     vict_riposte -= dex_app[GET_DEX(victim)].defensive;
     vict_riposte += GET_SKILL(victim, SKILL_RIPOSTE) * 0.085;
 
-    if (number(1, 10) < 5)
+    if (random_number(1, 10) < 5)
         improve_skill_offensively(victim, ch, SKILL_RIPOSTE);
 
     if (vict_riposte <= ch_hit)
@@ -1839,14 +1841,14 @@ bool parry(CharData *ch, CharData *victim) {
     if (!GET_EQ(victim, WEAR_WIELD) && !GET_EQ(victim, WEAR_2HWIELD) && !GET_SKILL(victim, SKILL_BAREHAND))
         return false;
 
-    ch_hit = number(45, 181);
+    ch_hit = random_number(45, 181);
     ch_hit += GET_HITROLL(ch);
     ch_hit -= monk_weight_penalty(ch);
-    vict_parry = number(20, 50);
+    vict_parry = random_number(20, 50);
     vict_parry += GET_LEVEL(victim) - GET_LEVEL(ch);
     vict_parry -= dex_app[GET_DEX(victim)].defensive;
     vict_parry += GET_SKILL(victim, SKILL_PARRY) / 10;
-    if (number(1, 10) < 5)
+    if (random_number(1, 10) < 5)
         improve_skill_offensively(victim, ch, SKILL_PARRY);
 
     if (vict_parry <= ch_hit)
@@ -1875,14 +1877,14 @@ bool dodge(CharData *ch, CharData *victim) {
     if (GET_POS(victim) <= POS_SITTING)
         return false;
 
-    ch_hit = number(35, 171);
+    ch_hit = random_number(35, 171);
     ch_hit += GET_HITROLL(ch);
     ch_hit -= monk_weight_penalty(ch);
-    vict_dodge = number(20, 50);
+    vict_dodge = random_number(20, 50);
     vict_dodge += GET_LEVEL(victim) - GET_LEVEL(ch);
     vict_dodge -= dex_app[GET_DEX(victim)].defensive;
     vict_dodge += GET_SKILL(victim, SKILL_DODGE) / 10;
-    if (number(1, 10) < 5)
+    if (random_number(1, 10) < 5)
         improve_skill_offensively(victim, ch, SKILL_DODGE);
 
     if (vict_dodge <= ch_hit)
@@ -2078,13 +2080,13 @@ void hit(CharData *ch, CharData *victim, int type) {
                 GET_LEVEL(ch) / 10; /* neutral characters get a small bonus to attacking good or evil characters */
     }
     /* calc_thaco ranges from 290 to -290 */
-    diceroll = number(1, 200);
+    diceroll = random_number(1, 200);
 
     /* VALUES: 100 to -100 */
     victim_ac = GET_AC(victim);
     /* VALUES: 60 to -60 */
     victim_ac += dex_app[GET_DEX(victim)].defensive * 10;
-    victim_ac = MAX(-100, victim_ac); /* -100 is lowest */
+    victim_ac = std::max(-100, victim_ac); /* -100 is lowest */
     /* victim_ac ranges from 160 to -100 */
 
     /*
@@ -2115,12 +2117,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         mtype = type - TYPE_HIT; /* get the damage message */
 
         if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
-            if (number(1, 4) == 1) /* 25% chance to ignore damage */
+            if (random_number(1, 4) == 1) /* 25% chance to ignore damage */
                 displaced = true;
         }
 
         if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-            if (number(1, 2) == 1) /* 50% chance to ignore damage */
+            if (random_number(1, 2) == 1) /* 50% chance to ignore damage */
                 displaced = true;
         }
 
@@ -2145,12 +2147,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         mtype = type - TYPE_HIT; /* get the damage message */
 
         if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
-            if (number(1, 4) == 1) /* 25% chance to ignore damage */
+            if (random_number(1, 4) == 1) /* 25% chance to ignore damage */
                 displaced = true;
         }
 
         if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-            if (number(1, 2) == 1) /* 50% chance to ignore damage */
+            if (random_number(1, 2) == 1) /* 50% chance to ignore damage */
                 displaced = true;
         }
 
@@ -2195,13 +2197,13 @@ void hit(CharData *ch, CharData *victim, int type) {
 
         /* Mob barehand damage is always applied */
         if (IS_NPC(ch))
-            dam += dice(ch->mob_specials.damnodice, ch->mob_specials.damsizedice);
+            dam += roll_dice(ch->mob_specials.damnodice, ch->mob_specials.damsizedice);
         /* Apply weapon damage if there is one */
         if (weapon)
-            dam += dice(GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_SIZE));
+            dam += roll_dice(GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_SIZE));
         /* Apply player barehand damage if no weapon */
         else if (!IS_NPC(ch))
-            dam += number(0, 2); /* Yeah, you better wield a weapon. */
+            dam += random_number(0, 2); /* Yeah, you better wield a weapon. */
 
         /*
          * Include a damage multiplier if the victim isn't ready to fight.
@@ -2217,14 +2219,14 @@ void hit(CharData *ch, CharData *victim, int type) {
         if (GET_STANCE(victim) < STANCE_FIGHTING)
             dam *= 1 + (STANCE_FIGHTING - GET_STANCE(victim)) / 3;
 
-        dam = MAX(1, dam); /* at least 1 hp damage min per hit */
+        dam = std::max(1, dam); /* at least 1 hp damage min per hit */
 
         if (type == SKILL_BACKSTAB || type == SKILL_2BACK)
             dam *= GET_SKILL(ch, SKILL_BACKSTAB) / 10 + 1;
 
         else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                  EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
-            dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);
+            dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);
 
         else {
             /* Spirit of the bear increases the damage you do by up to 10%. */
@@ -2235,9 +2237,9 @@ void hit(CharData *ch, CharData *victim, int type) {
             if (EFF_FLAGGED(victim, EFF_BERSERK) || EFF_FLAGGED(ch, EFF_BERSERK))
                 dam *= 1.1;
 
-            if (EFF_FLAGGED(victim, EFF_STONE_SKIN) && number(0, 10) <= 9) {
+            if (EFF_FLAGGED(victim, EFF_STONE_SKIN) && random_number(0, 10) <= 9) {
                 decrease_modifier(victim, SPELL_STONE_SKIN);
-                dam = number(0, 3);
+                dam = random_number(0, 3);
             }
         }
 
@@ -2254,7 +2256,7 @@ void hit(CharData *ch, CharData *victim, int type) {
             decrease_modifier(victim, SPELL_BONE_CAGE);
 
         /* Do after the damage() so we don't send the wrong type. */
-        if (ALIVE(ch) && weapon && !number(0, 9) && (type = weapon_proficiency(weapon, weapon_position)) != -1) {
+        if (ALIVE(ch) && weapon && !random_number(0, 9) && (type = weapon_proficiency(weapon, weapon_position)) != -1) {
             improve_skill_offensively(ch, victim, type);
         }
     }
@@ -2352,24 +2354,24 @@ void perform_violence(void) {
         }
 
         if (GET_SKILL(ch, SKILL_BERSERK))
-            GET_RAGE(ch) += 10 + number(0, GET_SKILL(ch, SKILL_BERSERK) / 10);
+            GET_RAGE(ch) += 10 + random_number(0, GET_SKILL(ch, SKILL_BERSERK) / 10);
 
         /* Everybody gets at least one hit */
         hits = 1;
-        if (GET_SKILL(ch, SKILL_DOUBLE_ATTACK) && GET_SKILL(ch, SKILL_DOUBLE_ATTACK) >= number(1, 101))
+        if (GET_SKILL(ch, SKILL_DOUBLE_ATTACK) && GET_SKILL(ch, SKILL_DOUBLE_ATTACK) >= random_number(1, 101))
             hits *= 2;
         if (EFF_FLAGGED(ch, EFF_HASTE))
             hits += 1;
         if (EFF_FLAGGED(ch, EFF_BLUR))
             hits += 1;
-        if (EFF_FLAGGED(ch, EFF_SPIRIT_WOLF) && GET_LEVEL(ch) > number(0, 100))
+        if (EFF_FLAGGED(ch, EFF_SPIRIT_WOLF) && GET_LEVEL(ch) > random_number(0, 100))
             hits += 1;
 
         secondary_hits = 0;
         if (GET_EQ(ch, WEAR_WIELD2) && GET_SKILL(ch, SKILL_DUAL_WIELD) &&
-            GET_SKILL(ch, SKILL_DUAL_WIELD) >= number(1, 101)) {
+            GET_SKILL(ch, SKILL_DUAL_WIELD) >= random_number(1, 101)) {
             secondary_hits = 1;
-            if (GET_SKILL(ch, SKILL_DOUBLE_ATTACK) && GET_SKILL(ch, SKILL_DOUBLE_ATTACK) >= number(1, 101))
+            if (GET_SKILL(ch, SKILL_DOUBLE_ATTACK) && GET_SKILL(ch, SKILL_DOUBLE_ATTACK) >= random_number(1, 101))
                 secondary_hits *= 2;
             if (EFF_FLAGGED(ch, EFF_BLUR))
                 secondary_hits += 2;
@@ -2377,7 +2379,7 @@ void perform_violence(void) {
 
         /* Chance for NPCs to switch. */
         if (IS_NPC(ch) && GET_SKILL(ch, SKILL_SWITCH) && !EFF_FLAGGED(ch, EFF_BLIND) &&
-            !number(0, MAX(10, 30 - GET_LEVEL(ch)))) {
+            !random_number(0, std::max(10, 30 - GET_LEVEL(ch)))) {
             CharData *victim = nullptr, *tch;
 
             /* Find the player fighting this NPC who has the lowest hp in the room */
@@ -2397,7 +2399,7 @@ void perform_violence(void) {
 
         /* If you're confused, you may spontaneously switch.   But only once per
          * round, not once per hit. */
-        if (CONFUSED(ch) && number(0, 3) == 0) {
+        if (CONFUSED(ch) && random_number(0, 3) == 0) {
             newvict = random_attack_target(ch, FIGHTING(ch), true);
             if (newvict != FIGHTING(ch))
                 switch_target(ch, newvict);
@@ -2417,10 +2419,10 @@ void perform_violence(void) {
         if (!ALIVE(ch))
             continue;
 
-        if (GET_EQ(ch, WEAR_WIELD2) && GET_SKILL(ch, SKILL_DUAL_WIELD) && number(0, 9) < 3)
+        if (GET_EQ(ch, WEAR_WIELD2) && GET_SKILL(ch, SKILL_DUAL_WIELD) && random_number(0, 9) < 3)
             improve_skill_offensively(ch, FIGHTING(ch), SKILL_DUAL_WIELD);
 
-        if (GET_SKILL(ch, SKILL_DOUBLE_ATTACK) && number(0, 9) < 3)
+        if (GET_SKILL(ch, SKILL_DOUBLE_ATTACK) && random_number(0, 9) < 3)
             improve_skill_offensively(ch, FIGHTING(ch), SKILL_DOUBLE_ATTACK);
 
         if (MOB_FLAGGED(ch, MOB_SPEC) && mob_index[GET_MOB_RNUM(ch)].func != nullptr)

@@ -693,7 +693,8 @@ ACMD(do_boardadmin) {
         else {
             auto name = std::string(GET_NAME(ch));
             auto board_name = std::string(argument);
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} deleted board {}.", name, board_name);
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} deleted board {}.", name,
+                board_name);
         }
     }
 
@@ -705,8 +706,8 @@ ACMD(do_boardadmin) {
         else {
             board = new_board(argument);
             char_printf(ch, "New board created.\n");
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} created board {}.", GET_NAME(ch),
-                argument);
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} created board {}.",
+                GET_NAME(ch), argument);
         }
     }
 
@@ -718,8 +719,8 @@ ACMD(do_boardadmin) {
         else if (!reload_board(board))
             char_printf(ch, "Unable to reload board {}.\n", board->alias);
         else
-            log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} reloaded board {}.", GET_NAME(ch),
-                argument);
+            log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "(GC) {} reloaded board {}.",
+                GET_NAME(ch), argument);
     }
 
     else if (!strcasecmp(arg, "title")) {
@@ -763,11 +764,11 @@ ACMD(do_boardadmin) {
             char_printf(ch, "No such board: {}\n", argument);
         else {
             char_printf(ch,
-                        "Board          : " FYEL "{}" ANRM " (" FGRN "%d" ANRM
+                        "Board          : " FYEL "{}" ANRM " (" FGRN "{:d}" ANRM
                         ")\n"
                         "Title          : " FCYN "{}" ANRM
                         "\n"
-                        "Messages       : " FCYN "%d" ANRM
+                        "Messages       : " FCYN "{:d}" ANRM
                         "\n"
                         "Locked         : " FCYN "{}" ANRM
                         "\n"

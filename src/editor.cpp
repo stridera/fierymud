@@ -398,7 +398,7 @@ void editor_cleanup(DescriptorData *d) {
 }
 
 EDITOR_FUNC(editor_default_begin) {
-    desc_printf(edit->descriptor, "%s  (/s saves, /h for help)\n",
+    desc_printf(edit->descriptor, "{}  (/s saves, /h for help)\n",
                 edit->descriptor->editor->begin_string ? edit->descriptor->editor->begin_string
                                                        : "Write your message.");
 
@@ -450,10 +450,10 @@ EDITOR_FUNC(editor_default_format) {
         }
         break;
     }
-    first_line = MAX(1, first_line);
+    first_line = std::max(1, first_line);
 
     if (editor_format_text(&edit->string, indent, edit->max_length, first_line, last_line))
-        desc_printf(edit->descriptor, "Text formatted with%s indent.\n", indent ? "" : "out");
+        desc_printf(edit->descriptor, "Text formatted with{} indent.\n", indent ? "" : "out");
     else
         desc_printf(edit->descriptor, "Text format failed.\n");
 
@@ -671,10 +671,10 @@ EDITOR_FUNC(editor_default_replace) {
 
     replaced = editor_replace_string(&edit->string, search, replace, replace_all, edit->max_length);
     if (replaced > 0)
-        desc_printf(edit->descriptor, "Replaced %d occurance%s of '%s' with '%s'.\n", replaced,
+        desc_printf(edit->descriptor, "Replaced {:d} occurance{} of '{}' with '{}'.\n", replaced,
                     replaced == 1 ? "" : "s", search, replace);
     else if (replaced == 0)
-        desc_printf(edit->descriptor, "String '%s' not found.\n", search);
+        desc_printf(edit->descriptor, "String '{}' not found.\n", search);
     else
         desc_printf(edit->descriptor, "Replacement string causes buffer overflow: aborted replace.\n");
 
@@ -771,7 +771,7 @@ EDITOR_FUNC(editor_default_list) {
     }
 
     if (first_line > 1 || last_line < 99999)
-        desc_paging_printf(d, "Current buffer range [%d - %d]:\n", first_line, last_line);
+        desc_paging_printf(d, "Current buffer range [{:d} - {:d}]:\n", first_line, last_line);
 
     line = 1;
     lines = 0;
@@ -796,7 +796,7 @@ EDITOR_FUNC(editor_default_list) {
                 temp = *str;
                 *str = '\0';
             }
-            desc_paging_printf(d, "%4d: %s\n", line, start);
+            desc_paging_printf(d, "{:4d}: {}\n", line, start);
             if (str)
                 *str = temp;
         }
@@ -811,7 +811,7 @@ EDITOR_FUNC(editor_default_list) {
             temp = *str;
             *str = '\0';
         }
-        desc_paging_printf(d, "%s", start);
+        desc_paging_printf(d, start);
         if (str)
             *str = temp;
     }
@@ -1019,7 +1019,7 @@ static bool editor_format_text(char **string, int indent, size_t max_length, int
         formatted[max_length - 2] = '\n';
         formatted[max_length - 3] = '\r';
     }
-    RECREATE(*string, char, MIN(max_length, strlen(formatted) + 1));
+    RECREATE(*string, char, std::min(max_length, strlen(formatted) + 1));
     strcpy(*string, formatted);
     return 1;
 }

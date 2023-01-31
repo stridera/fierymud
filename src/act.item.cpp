@@ -59,7 +59,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
     int skill = GET_SKILL(ch, SKILL_CONCEAL);
     int lower_bound = -0.0008 * pow(skill, 3) + 0.1668 * pow(skill, 2) - 3.225 * skill;
     int upper_bound = 2000 * skill / (3 * GET_DEX(ch) + GET_INT(ch));
-    int roll = number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
+    int roll = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
 
     /* You can't conceal/palm/stow an item higher than your level. */
     if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch))
@@ -73,7 +73,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
         roll -= GET_OBJ_LEVEL(obj) - GET_LEVEL(ch);
     }
 
-    return MAX(0, roll);
+    return std::max(0, roll);
 }
 
 void perform_put(CharData *ch, ObjData *obj, ObjData *cont) {
@@ -241,7 +241,7 @@ ACMD(do_stow) {
                         continue;
                     if (!CAN_SEE(tch, ch))
                         continue;
-                    if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + number(0, 50))
+                    if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + random_number(0, 50))
                                          : (GET_PERCEPTION(tch) < roll / 2))
                         continue;
                     if (!*arg2)
@@ -320,7 +320,7 @@ ObjData *random_inventory_object(CharData *ch) {
 
     for (obj = ch->carrying; obj; obj = obj->next_content) {
         if (CAN_SEE_OBJ(ch, obj)) {
-            if (chosen == nullptr || number(0, count) == 0)
+            if (chosen == nullptr || random_number(0, count) == 0)
                 chosen = obj;
             count++;
         }
@@ -332,7 +332,7 @@ ObjData *random_inventory_object(CharData *ch) {
 ObjData *confused_inventory_switch(CharData *ch, ObjData *obj) {
     ObjData *chosen = obj;
 
-    if (CONFUSED(ch) && number(0, 1) == 0) {
+    if (CONFUSED(ch) && random_number(0, 1) == 0) {
         chosen = random_inventory_object(ch);
         if (chosen && obj != chosen) {
             act("&5Fumbling about, you grasp $p&0&5...&0", false, ch, chosen, 0, TO_CHAR);
@@ -436,7 +436,7 @@ ACMD(do_drop) {
             while (obj && amount > 0) {
                 next_obj = find_obj_in_list(obj->next_content, context);
                 --amount;
-                if (CONFUSED(ch) && number(0, 1) == 0) {
+                if (CONFUSED(ch) && random_number(0, 1) == 0) {
                     drop_random_object(ch);
                     /* Cannot continue loop; drop_random_object may drop next_obj */
                     break;
@@ -811,7 +811,7 @@ ACMD(do_drink) {
         amount = 1;
     }
 
-    amount = MIN(amount, GET_OBJ_VAL(temp, VAL_DRINKCON_REMAINING));
+    amount = std::min(amount, GET_OBJ_VAL(temp, VAL_DRINKCON_REMAINING));
 
     /* You can't subtract more than the object weighs */
     liquid_from_container(temp, amount);
@@ -846,7 +846,7 @@ ACMD(do_drink) {
 
     /* This will restore movement points, such that drinking the max
      * would restore 100% or 200, whichever is lower. */
-    alter_move(ch, -MIN(200, GET_MAX_MOVE(ch) * amount / MAX_THIRST));
+    alter_move(ch, -std::min(200, GET_MAX_MOVE(ch) * amount / MAX_THIRST));
 
     return;
 }
@@ -916,7 +916,7 @@ ACMD(do_eat) {
     }
     /* This will restore hit points, such that a meal of size 24
      * would restore 33% or 70, whichever is lower. */
-    hurt_char(ch, 0, -MIN(70, GET_MAX_HIT(ch) * amount / 72), true);
+    hurt_char(ch, 0, -std::min(70, GET_MAX_HIT(ch) * amount / 72), true);
 
     if (subcmd == SCMD_EAT)
         extract_obj(food);
@@ -1046,8 +1046,8 @@ ACMD(do_pour) {
     }
 
     /* how much to pour */
-    amount = MIN(GET_OBJ_VAL(to_obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(to_obj, VAL_DRINKCON_REMAINING),
-                 GET_OBJ_VAL(from_obj, VAL_DRINKCON_REMAINING));
+    amount = std::min(GET_OBJ_VAL(to_obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(to_obj, VAL_DRINKCON_REMAINING),
+                      GET_OBJ_VAL(from_obj, VAL_DRINKCON_REMAINING));
 
     liquid_to_container(to_obj, amount, GET_OBJ_VAL(from_obj, VAL_DRINKCON_LIQUID), IS_POISONED(from_obj));
 
@@ -1555,8 +1555,8 @@ bool check_get_disarmed_obj(CharData *ch, CharData *last_to_hold, ObjData *obj) 
                 act("$n nods briefly as you reach for $p.", true, last_to_hold, obj, ch, TO_VICT);
             } else if (GET_LEVEL(ch) >= LVL_IMMORT && GET_LEVEL(ch) >= GET_LEVEL(last_to_hold)) {
                 /* nothing */
-            } else if (number(1, 64) > 8) { /* darn, PC failed to grab it. now they pay. */
-                rand = number(1, 4);
+            } else if (random_number(1, 64) > 8) { /* darn, PC failed to grab it. now they pay. */
+                rand = random_number(1, 4);
 
                 if (rand == 1) {
                     act("$n makes a quick grab for $p!", false, ch, obj, 0, TO_ROOM);
@@ -1652,7 +1652,7 @@ ACMD(do_conceal) {
                     continue;
                 if (!CAN_SEE(tch, ch))
                     continue;
-                if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + number(0, 50))
+                if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + random_number(0, 50))
                                      : (GET_PERCEPTION(tch) < roll / 2))
                     continue;
                 if (GET_OBJ_HIDDENNESS(obj))
@@ -1666,11 +1666,11 @@ ACMD(do_conceal) {
 
         /* Failure. orz */
         else {
-            if (number(0, 100) <= 30) {
+            if (random_number(0, 100) <= 30) {
                 if (EFF_FLAGGED(ch, EFF_INVISIBLE))
                     appear(ch);
                 else if (IS_HIDDEN(ch))
-                    GET_HIDDENNESS(ch) = MAX(0, GET_HIDDENNESS(ch) - 100);
+                    GET_HIDDENNESS(ch) = std::max(0l, GET_HIDDENNESS(ch) - 100);
             }
             if (IS_FOREST(ch->in_room)) {
                 act("You drag $p under some bushes, but they don't quite cover it.", false, ch, obj, 0, TO_CHAR);

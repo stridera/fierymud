@@ -53,7 +53,7 @@ bool rogue_ai_action(CharData *ch, CharData *victim) {
     }
 
     /* Success in doing an action? */
-    roll = number(0, 101);
+    roll = random_number(0, 101);
     if (roll >= GET_LEVEL(ch))
         return false;
     roll *= 100 / GET_LEVEL(ch);
@@ -95,7 +95,7 @@ bool mob_steal(CharData *ch) {
     CharData *vict = get_random_char_around(ch, RAND_AGGRO | RAND_PLAYERS);
 
     if (vict && GET_LEVEL(ch) + 5 > GET_LEVEL(vict)) {
-        if (vict->carrying && CAN_SEE_OBJ(ch, vict->carrying) && number(0, 1))
+        if (vict->carrying && CAN_SEE_OBJ(ch, vict->carrying) && random_number(0, 1))
             sprintf(buf1, "%s %s", fname(vict->carrying->short_description), GET_NAME(vict));
         else
             sprintf(buf1, "%s %s", "coins", GET_NAME(vict));
@@ -124,7 +124,7 @@ bool bard_ai_action(CharData *ch, CharData *victim) {
     }
 
     /* Success in doing an action? */
-    roll = number(0, 101);
+    roll = random_number(0, 101);
     if (roll >= GET_LEVEL(ch))
         return false;
     roll *= 100 / GET_LEVEL(ch);
@@ -212,7 +212,7 @@ bool check_bard_status(CharData *ch) {
             if (mob_cast(ch, ch, nullptr, mob_bard_hindrances[i].remover))
                 return true;
         /* 10% chance to cancel if in combat. */
-        if (FIGHTING(ch) && !number(0, 9))
+        if (FIGHTING(ch) && !random_number(0, 9))
             return false;
     }
 

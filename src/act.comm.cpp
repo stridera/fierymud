@@ -40,8 +40,8 @@ void garble_text(char *string, int percent) {
     int i, len = strlen(string);
 
     for (i = 0; i < len; ++i)
-        if (isalpha(string[i]) && number(0, 1) && number(0, 100) > percent)
-            string[i] = letters[number(0, 12)];
+        if (isalpha(string[i]) && random_number(0, 1) && random_number(0, 100) > percent)
+            string[i] = letters[random_number(0, 12)];
 }
 
 //  Drunk structure and releated code to slur a players speech if they are drunk. Zantir 3/23/01
@@ -84,11 +84,11 @@ std::string drunken_speech(std::string speech, int drunkenness) {
     std::string drunkbuf;
     for (auto ch : speech) {
         if (isdigit(ch))
-            drunkbuf += '0' + number(0, 9);
+            drunkbuf += '0' + random_number(0, 9);
         else if (isalpha(ch)) {
             char temp = toupper(ch) - 'A';
             if (drunkenness > drunk_letters[temp].min_drunk_level) {
-                drunkbuf += drunk_letters[temp].replacements[number(0, drunk_letters[temp].replacement_count - 1)];
+                drunkbuf += drunk_letters[temp].replacements[random_number(0, drunk_letters[temp].replacement_count - 1)];
             } else {
                 drunkbuf += ch;
             }

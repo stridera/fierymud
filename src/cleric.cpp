@@ -223,7 +223,7 @@ bool check_cleric_status(CharData *ch) {
             if (mob_cast(ch, ch, nullptr, mob_cleric_hindrances[i].remover))
                 return true;
         /* 10% chance to cancel if in combat. */
-        if (FIGHTING(ch) && !number(0, 9))
+        if (FIGHTING(ch) && !random_number(0, 9))
             return false;
     }
 

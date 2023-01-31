@@ -60,12 +60,12 @@ static int min_value(ObjData *obj, int val) {
     case ITEM_WAND:
     case ITEM_STAFF:
         if (val == VAL_WAND_MAX_CHARGES)
-            min = MAX(min, GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT));
+            min = std::max(min, GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT));
         break;
     case ITEM_DRINKCON:
     case ITEM_FOUNTAIN:
         if (val == VAL_DRINKCON_CAPACITY)
-            min = MAX(min, GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING));
+            min = std::max(min, GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING));
         break;
     }
     return min;
@@ -95,12 +95,12 @@ static int max_value(ObjData *obj, int val) {
     case ITEM_WAND:
     case ITEM_STAFF:
         if (val == VAL_WAND_CHARGES_LEFT)
-            max = MIN(max, GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES));
+            max = std::min(max, GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES));
         break;
     case ITEM_DRINKCON:
     case ITEM_FOUNTAIN:
         if (val == VAL_DRINKCON_REMAINING)
-            max = MIN(max, GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY));
+            max = std::min(max, GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY));
         break;
     case ITEM_BOARD:
         if (val == VAL_BOARD_NUMBER)
@@ -115,7 +115,7 @@ bool is_value_within_bounds(ObjData *obj, int val) {
     if (!obj || val < 0 || val >= NUM_VALUES)
         return false;
 
-    return (GET_OBJ_VAL(obj, val) == LIMIT(min_value(obj, val), GET_OBJ_VAL(obj, val), max_value(obj, val)));
+    return (GET_OBJ_VAL(obj, val) == std::clamp(GET_OBJ_VAL(obj, val), min_value(obj, val), max_value(obj, val)));
 }
 
 void limit_obj_values(ObjData *obj) {
@@ -134,7 +134,7 @@ void limit_obj_values(ObjData *obj) {
      * to check it first.
      */
     for (i = NUM_VALUES - 1; i >= 0; --i)
-        GET_OBJ_VAL(obj, i) = LIMIT(min_value(obj, i), GET_OBJ_VAL(obj, i), max_value(obj, i));
+        GET_OBJ_VAL(obj, i) = std::clamp(GET_OBJ_VAL(obj, i), min_value(obj, i), max_value(obj, i));
 }
 
 int parse_obj_type(CharData *ch, char *arg) {
@@ -544,7 +544,7 @@ void liquid_from_container(ObjData *container, int amount) {
         return;
     }
 
-    loss = MIN(amount, GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING));
+    loss = std::min(amount, GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING));
     remaining = GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING) - loss;
 
     if (loss == 0) {
@@ -573,8 +573,8 @@ void liquid_to_container(ObjData *container, int amount, int liquid_type, bool p
     if (GET_OBJ_TYPE(container) == ITEM_FOUNTAIN)
         return;
 
-    final_amount =
-        MIN(amount + GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING), GET_OBJ_VAL(container, VAL_DRINKCON_CAPACITY));
+    final_amount = std::min(amount + GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING),
+                            GET_OBJ_VAL(container, VAL_DRINKCON_CAPACITY));
     change = final_amount - GET_OBJ_VAL(container, VAL_DRINKCON_REMAINING);
 
     if (change < 0) {

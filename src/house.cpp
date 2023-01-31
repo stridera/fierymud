@@ -61,7 +61,7 @@ int House_load(int vnum) {
     while (!feof(fl)) {
         if (!build_object(fl, &obj, &location))
             break;
-        depth = MAX(0, -location);
+        depth = std::max(0, -location);
         for (i = MAX_CONTAINER_DEPTH - 1; i >= depth; --i)
             containers[i] = nullptr;
         containers[depth] = obj;
@@ -405,8 +405,8 @@ void hcontrol_pay_house(CharData *ch, char *arg) {
     else if ((i = find_house(atoi(arg))) < 0)
         char_printf(ch, "Unknown house.\n");
     else {
-        log(LogSeverity::Stat, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), "Payment for house {} collected by {}.", arg,
-            GET_NAME(ch));
+        log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "Payment for house {} collected by {}.",
+            arg, GET_NAME(ch));
 
         house_control[i].last_payment = time(0);
         House_save_control();

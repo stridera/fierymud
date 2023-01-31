@@ -349,7 +349,7 @@ CharData *weakest_attacker(CharData *ch, CharData *victim) {
         if (victim) {
             if (GET_HIT(tch) >= GET_HIT(victim))
                 continue; /* Only switch targets if their hp is lower */
-            if (number(0, 60) > GET_LEVEL(ch))
+            if (random_number(0, 60) > GET_LEVEL(ch))
                 continue; /* Higher level mobs are better at switching targets */
         }
         victim = tch;
@@ -592,7 +592,7 @@ int appraise_opponent(CharData *ch, CharData *vict) {
     if (EFF_FLAGGED(vict, EFF_AWARE) && IS_ROGUE(ch))
         val *= 1.5;
     if (GET_LEVEL(vict) < 60)
-        val /= number(40 + GET_LEVEL(vict), 160 - GET_LEVEL(vict));
+        val /= random_number(40 + GET_LEVEL(vict), 160 - GET_LEVEL(vict));
     return val;
 }
 
@@ -600,7 +600,7 @@ void glorion_distraction(CharData *ch, CharData *glorion) {
     if (ch == glorion)
         return;
     /* Will the glorion be attacked? */
-    if (number(1, 100) < 3 && !PRF_FLAGGED(glorion, PRF_NOHASSLE) &&
+    if (random_number(1, 100) < 3 && !PRF_FLAGGED(glorion, PRF_NOHASSLE) &&
         /* check if the person being affected is a town guard or helper */
         !MOB_FLAGGED(ch, MOB_PEACEKEEPER) && !MOB_FLAGGED(ch, MOB_HELPER) && !MOB_FLAGGED(ch, MOB_PEACEFUL) &&
         !MOB_FLAGGED(ch, MOB_PROTECTOR)) {
@@ -611,7 +611,7 @@ void glorion_distraction(CharData *ch, CharData *glorion) {
         event_create(EVENT_QUICK_AGGRO, quick_aggro_event, mkgenericevent(ch, glorion, 0), true, &(ch->events), 0);
     } else {
         /* Glory wins: no attack. */
-        if (number(1, 8) == 1) {
+        if (random_number(1, 8) == 1) {
             act("$n looks upon $N with awe in $s eyes.", true, ch, 0, glorion, TO_NOTVICT);
             act("$n gazes at you in wonder.", true, ch, 0, glorion, TO_VICT);
             act("You are distracted by $N's unearthly beauty.", true, ch, 0, glorion, TO_CHAR);
@@ -649,7 +649,7 @@ CharData *find_aggr_target(CharData *ch) {
         return nullptr;
 
     /* Your intelligence determines how many targets you will evaluate. */
-    num_targets = MAX(1, GET_INT(ch) * MAX_TARGETS / 100);
+    num_targets = std::max(1, GET_INT(ch) * MAX_TARGETS / 100);
 
     /* Choose #num_targets characters at random */
     glorion_count = 0;
@@ -661,11 +661,11 @@ CharData *find_aggr_target(CharData *ch) {
         if (ch != tch && CAN_SEE(ch, tch)) {
             if (EFF_FLAGGED(tch, EFF_GLORY) && PLAYERALLY(tch)) {
                 glorion_count++;
-                if (number(1, glorion_count) == 1)
+                if (random_number(1, glorion_count) == 1)
                     glorion = tch;
             } else if (is_aggr_to(ch, tch)) {
                 if (i >= num_targets)
-                    j = number(0, i);
+                    j = random_number(0, i);
                 else
                     j = i;
                 if (j < num_targets) {
@@ -697,7 +697,7 @@ CharData *find_aggr_target(CharData *ch) {
 
     /* Players and illusions just choose at random. */
     if (!IS_NPC(ch) || MOB_FLAGGED(ch, MOB_PLAYER_PHANTASM))
-        return targets[number(0, chosen_targets - 1)].target;
+        return targets[random_number(0, chosen_targets - 1)].target;
 
     /* Normal mobiles choose the weakest enemy. */
 

@@ -136,7 +136,7 @@ void mobile_activity(void) {
         /*
          * Mobs on fire attempt to douse themselves (50% chance to attempt).
          */
-        if (EFF_FLAGGED(ch, EFF_ON_FIRE) && number(0, 1)) {
+        if (EFF_FLAGGED(ch, EFF_ON_FIRE) && random_number(0, 1)) {
             /* If the mob is flagged !CLASS_AI, then just douse, don't try to cast. */
             if (MOB_FLAGGED(ch, MOB_NO_CLASS_AI) ? true : !mob_cast(ch, ch, nullptr, SPELL_EXTINGUISH))
                 do_douse(ch, "", 0, 0);
@@ -181,7 +181,7 @@ void mobile_activity(void) {
                     do_hide(ch, "", 0, 0);
 
                 /* Attempt to steal something from a player in the room. */
-                if (GET_SKILL(ch, SKILL_STEAL) && number(0, 101) < GET_SKILL(ch, SKILL_STEAL))
+                if (GET_SKILL(ch, SKILL_STEAL) && random_number(0, 101) < GET_SKILL(ch, SKILL_STEAL))
                     if (mob_steal(ch))
                         continue;
 
@@ -252,7 +252,7 @@ void mobile_spec_activity(void) {
 
         /* If mob isn't fighting, just decrease wait state. */
         if (GET_MOB_WAIT(ch) > 0) {
-            WAIT_STATE(ch, MAX(GET_MOB_WAIT(ch) - PULSE_VIOLENCE, 0));
+            WAIT_STATE(ch, std::max(GET_MOB_WAIT(ch) - PULSE_VIOLENCE, 0));
             continue;
         }
 
@@ -328,7 +328,7 @@ void perform_mob_violence(void) {
 
             if (GET_MOB_WAIT(ch) > 0)
                 /* If the NPC is delayed, continue waiting */
-                WAIT_STATE(ch, MAX((GET_MOB_WAIT(ch) - (PULSE_VIOLENCE / 2)), 0));
+                WAIT_STATE(ch, std::max((GET_MOB_WAIT(ch) - (PULSE_VIOLENCE / 2)), 0));
             else {
                 /* This NPC is ready to perform actions */
                 if (GET_POS(ch) < POS_STANDING) {
@@ -344,7 +344,7 @@ void perform_mob_violence(void) {
 
 bool mob_movement(CharData *ch) {
     CharData *vict;
-    int door = number(0, 18);
+    int door = random_number(0, 18);
 
     if (door >= NUM_OF_DIRS || !CAN_GO(ch, door))
         return false;
@@ -370,12 +370,12 @@ bool mob_movement(CharData *ch) {
 
     /* Mobs with misdirection like to be sneaky */
     if (EFF_FLAGGED(ch, EFF_MISDIRECTION)) {
-        if (number(1, NUM_OF_DIRS) == 1) {
+        if (random_number(1, NUM_OF_DIRS) == 1) {
             /* Decided to stay but pretend to move */
             perform_move(ch, door, 1, true);
         } else {
             /* Decided to move */
-            perform_move(ch, number(0, NUM_OF_DIRS - 1), 1, true);
+            perform_move(ch, random_number(0, NUM_OF_DIRS - 1), 1, true);
             SET_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
             perform_move(ch, door, 1, false);
             REMOVE_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
@@ -404,7 +404,7 @@ bool mob_assist(CharData *ch) {
         if (GET_LEVEL(FIGHTING(vict)) <= 20)
             cvict = vict;
         else if (EFF_FLAGGED(FIGHTING(vict), EFF_FAMILIARITY) &&
-                 number(1, 100 + GET_CHA(FIGHTING(vict)) - GET_CHA(vict)) < 50) {
+                 random_number(1, 100 + GET_CHA(FIGHTING(vict)) - GET_CHA(vict)) < 50) {
             act("$n moves to join the fight, but gets a good look at $N and stops, "
                 "confused.",
                 true, ch, 0, FIGHTING(vict), TO_ROOM);
@@ -417,7 +417,7 @@ bool mob_assist(CharData *ch) {
         }
     }
     if (cvict) {
-        int chuckle = number(1, 10);
+        int chuckle = random_number(1, 10);
         if (chuckle == 1)
             act("$n watches the battle in amusement.", false, ch, 0, cvict, TO_ROOM);
         else if (chuckle == 2)
@@ -526,7 +526,7 @@ void mob_scavenge(CharData *ch) {
     ObjData *best_obj, *obj;
 
     /* If there's nothing to pick up, return.  50% chance otherwise. */
-    if (!world[ch->in_room].contents || !number(0, 1))
+    if (!world[ch->in_room].contents || !random_number(0, 1))
         return;
 
     best_value = 0;
@@ -664,7 +664,7 @@ void memory_attack_announce(CharData *ch, CharData *vict) {
         act("$n growls angrily at $N, and attacks!", false, ch, 0, vict, TO_NOTVICT);
         act("$n growls angrily at you, and attacks!", false, ch, 0, vict, TO_VICT);
     } else {
-        switch (number(1, 10)) {
+        switch (random_number(1, 10)) {
         case 1:
             act("$n growls, 'Thought you could walk away from a fight, eh?'", false, ch, 0, vict, TO_ROOM);
             break;
@@ -829,7 +829,7 @@ void remove_from_all_memories(CharData *ch) {
 }
 
 bool dragonlike_attack(CharData *ch) {
-    int roll = number(0, 150 - GET_LEVEL(ch));
+    int roll = random_number(0, 150 - GET_LEVEL(ch));
 
     /* At level 100, 10% chance to breath, 2% chance for each different type */
     /*

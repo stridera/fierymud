@@ -73,7 +73,7 @@ const char *exit_dest_desc(Exit *e) {
             if (e->general_description[nlpos] == '\r' || e->general_description[nlpos] == '\n') {
                 break;
             }
-        showlen = MIN(nlpos, SHOW_EXDESC_LEN) + 3;
+        showlen = std::min(nlpos, SHOW_EXDESC_LEN) + 3;
         snprintf(buf, showlen, "&3%s", e->general_description);
         if (showlen < nlpos + 3 || nlpos <= len - 3)
             sprintf(buf, "%s...&0", buf);

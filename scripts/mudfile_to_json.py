@@ -1,7 +1,7 @@
 import argparse
 import os
-
-from mud import MudFile
+import json
+from mud import Encoder, MudFile
 from mud import Mob, Obj, Zone, Shop, World
 
 
@@ -43,8 +43,9 @@ def main(filename: str, type: str, output: str = None):
             output_file = open(json_file, "w", encoding="ascii")
             print(f"Writing {json_file}...", end=" ")
 
-        for proto in protos:
-            output_file.write(proto.to_json() + "\n")
+        output_file.write(json.dumps(protos, cls=Encoder, indent=4))
+        output_file.write("\n")
+
         print("Done")
 
 

@@ -1555,15 +1555,15 @@ int natural_move(CharData *ch) {
 
         if (MOB_FLAGGED(ch, MOB_MOUNTABLE)) {
             if (GET_LEVEL(ch) > MAX_MOUNT_LEVEL)
-                return MOUNT_MAXMOVE + 2 * (GET_LEVEL(ch) - MAX_MOUNT_LEVEL) + number(0, 9);
+                return MOUNT_MAXMOVE + 2 * (GET_LEVEL(ch) - MAX_MOUNT_LEVEL) + random_number(0, 9);
             else
                 return (int)(MOUNT_MINMOVE + (MOUNT_MAXMOVE - MOUNT_MINMOVE) *
                                                  pow((GET_LEVEL(ch) - 1) / (double)(MAX_MOUNT_LEVEL - 1), 0.8)) +
-                       number(0, 9);
+                       random_number(0, 9);
         } else
             return mob_proto[GET_MOB_RNUM(ch)].points.max_move;
     } else {
-        return MAX(100, GET_CON(ch) * 2);
+        return std::max(100, GET_CON(ch) * 2);
     }
 }
 

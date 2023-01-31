@@ -78,7 +78,7 @@ bool senses_living(CharData *ch, CharData *vict, int basepct) {
      * and life is what this ability detects. Here we adjust the sensitivity
      * accordingly. */
     basepct = (susceptibility(vict, DAM_HEAL) * basepct) / 100;
-    return number(1, 100) < basepct;
+    return random_number(1, 100) < basepct;
 }
 
 /* This function will also determine whether you sense a creature, but it will
@@ -928,7 +928,7 @@ static int search_for_doors(CharData *ch, char *arg) {
             IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT ||
                 (CH_EXIT(ch, door)->keyword && arg && isname(arg, CH_EXIT(ch, door)->keyword)) ||
-                GET_INT(ch) > number(0, 200)) {
+                GET_INT(ch) > random_number(0, 200)) {
                 std::string kw{CH_EXIT(ch, door)->keyword ? CH_EXIT(ch, door)->keyword : "door"};
                 char_printf(ch, "You have found{} hidden {} {}.&0", isplural(kw.c_str()) ? "" : " a", kw,
                             dirpreposition[door]);
@@ -1008,7 +1008,7 @@ ACMD(do_search) {
                 GET_OBJ_HIDDENNESS(k) = orig_hide;
                 continue;
             }
-            GET_OBJ_HIDDENNESS(k) = MAX(0, orig_hide - number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
+            GET_OBJ_HIDDENNESS(k) = std::max(0l, orig_hide - random_number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
             if (GET_OBJ_HIDDENNESS(k) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                 GET_OBJ_HIDDENNESS(k) = 0;
                 if (!OBJ_FLAGGED(k, ITEM_WAS_DISARMED))
@@ -1039,7 +1039,8 @@ ACMD(do_search) {
                         continue;
                     }
                     // The searcher COULD see this character if it weren't hidden. Will  the searcher discover it?
-                    GET_HIDDENNESS(j) = MAX(0, orig_hide - number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
+                    GET_HIDDENNESS(j) =
+                        std::max(0l, orig_hide - random_number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
                     if (GET_HIDDENNESS(j) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                         GET_HIDDENNESS(j) = 0;
                         if (orig_hide <= GET_PERCEPTION(ch) && !IS_HIDDEN(j))
@@ -1047,7 +1048,7 @@ ACMD(do_search) {
                         else
                             act("You find $N lurking here!", false, ch, 0, j, TO_CHAR);
                         act("$n points out $N lurking here!", true, ch, 0, j, TO_NOTVICT);
-                        if (GET_PERCEPTION(j) + number(0, 200) > GET_PERCEPTION(ch))
+                        if (GET_PERCEPTION(j) + random_number(0, 200) > GET_PERCEPTION(ch))
                             act("You think $n has spotted you!", true, ch, 0, j, TO_VICT);
                         found_something = true;
                     }
@@ -1372,13 +1373,13 @@ static void do_farsee(CharData *ch, int dir) {
             break;
         }
 
-        char_printf(ch, "\n&0&6You extend your vision %s%s%s%s.&0\n", farsee_desc[distance],
+        char_printf(ch, "\n&0&6You extend your vision {}{}{}{}.&0\n", farsee_desc[distance],
                     (dir == UP || dir == DOWN) ? "" : "to the ", dirs[dir], (dir == UP || dir == DOWN) ? "wards" : "");
 
         print_room_to_char(ch->in_room, ch, true);
 
         /* Yes, spell casters will be able to see farther. */
-        if (!distance || number(1, 125) > GET_SKILL(ch, SKILL_SPHERE_DIVIN)) {
+        if (!distance || random_number(1, 125) > GET_SKILL(ch, SKILL_SPHERE_DIVIN)) {
             char_printf(ch, "You can't see any farther.\n");
             break;
         }
@@ -2015,7 +2016,7 @@ ACMD(do_who) {
             }
             /*end of ansi uncounting */
 
-            if (MAX(0, (b - c)) <= 45) {
+            if (std::max(0, (b - c)) <= 45) {
                 sprintf(buf2, "%s%c", buf2, a[b]);
             } else {
                 break;
@@ -2208,7 +2209,7 @@ static void sortc(int l, int u) {
 ACMD(do_users) {
     char line[200], line2[220], idletime[10], classname[20];
     char state[30], *timeptr, mode, hostnum[40];
-    char roomstuff[200], room[26], nametrun[11], position[17]; /* Changed position to 17 from 9 cuz
+    char roomstuff[200], room[26], nametrun[11], client[100]; /* Changed position to 17 from 9 cuz
                                                                   mortally wounded was over flowing */
     char ipbuf[MAX_STRING_LENGTH], userbuf[MAX_STRING_LENGTH];
     char name_search[MAX_INPUT_LENGTH], host_search[MAX_INPUT_LENGTH];
@@ -2285,12 +2286,8 @@ ACMD(do_users) {
         }
     } /* end while (parser) */
 
-    strcpy(line,
-           "Soc  Username    User's Host   Idl  Login        "
-           "RoomNo/RoomName      Position\n");
-    strcat(line,
-           "--- ---------- --------------- --- -------- "
-           "------------------------- ---------\n");
+    strcpy(line, "Soc  Username    User's Host   Idl  Login        RoomNo/RoomName      Client\n");
+    strcat(line, "--- ---------- --------------- --- -------- ------------------------- ---------\n");
     strcpy(userbuf, line);
 
     one_argument(argument, arg);
@@ -2348,7 +2345,7 @@ ACMD(do_users) {
         roomstuff[0] = '\0';
         room[0] = '\0';
         nametrun[0] = '\0';
-        position[0] = '\0';
+        client[0] = '\0';
 
         strcat(room, state);
 
@@ -2377,9 +2374,9 @@ ACMD(do_users) {
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
                 }
-                sprinttype(GET_POS(d->original), position_types, position);
+                strncpy(client, d->character->player_specials->client.c_str(), sizeof(client) - 1);
                 strncat(nametrun, GET_NAME(d->original), sizeof(nametrun) - 1);
-                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, position);
+                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
             } else {
                 if ((d->character->in_room != NOWHERE) && (d->connected == 0)) {
                     sprintf(roomstuff, "%d/%s", world[d->character->in_room].vnum,
@@ -2388,9 +2385,9 @@ ACMD(do_users) {
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
                 }
-                sprinttype(GET_POS(d->character), position_types, position);
+                strncpy(client, d->character->player_specials->client.c_str(), sizeof(client) - 1);
                 strncat(nametrun, GET_NAME(d->character), sizeof(nametrun) - 1);
-                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, position);
+                sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
             }
         } else
             sprintf(line, format, d->desc_num, "  ---   ", hostnum, idletime, timeptr, " At menu screen or Other ",
@@ -2931,7 +2928,7 @@ const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations
     int sub_grad_count, length_per_sub_grad, sub_distance;
     long current, total, next_level, exp_per_grad, exp_towards_next_grad;
 
-    length = MIN(80, MAX(length, 1));
+    length = std::clamp(length, 1, 80);
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         /* Get exp to level once, because it's actually expensive to calculate. */
@@ -2945,7 +2942,7 @@ const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations
         }
 
         /* No negative values, please */
-        current = MAX(total - next_level + GET_EXP(ch), 0);
+        current = std::max(total - next_level + GET_EXP(ch), 0l);
 
         grad_count = (length * current) / total;
         length_per_grad = length / gradations;
@@ -2984,7 +2981,7 @@ const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations
         distance = 0;
 
     /* Just in case. */
-    distance = MIN(length, MAX(distance, 0));
+    distance = std::clamp(distance, 0, length);
 
     memset(bar, '\0', sizeof(bar));
 
@@ -3040,7 +3037,7 @@ const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations,
     int i, grad_count, length_per_grad, distance, current, total;
     float percent = 0.0f;
 
-    length = MIN(80, MAX(length, 1));
+    length = std::clamp(length, 1, 80);
 
     current = GET_COOLDOWN(ch, cooldown);
     total = GET_COOLDOWN_MAX(ch, cooldown);
@@ -3054,7 +3051,7 @@ const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations,
     }
 
     /* Just in case. */
-    distance = MIN(length, MAX(distance, 0));
+    distance = std::clamp(distance, 0, length);
 
     memset(bar, '\0', sizeof(bar));
 
@@ -3204,7 +3201,7 @@ static void show_conditions(CharData *ch, CharData *tch, bool verbose) {
             strcat(buf, "You're a little bit intoxicated.\n");
     } else
         /* the number 0 looks like the letter O */
-        char_printf(ch, "Hunger: {:d}{}  Thirst: %d{}  Drunkenness: %d{}\n",
+        char_printf(ch, "Hunger: {:d}{}  Thirst: {:d}  Drunkenness: {:d}\n",
                     GET_COND(tch, FULL) < 0 ? 0 : 24 - GET_COND(tch, FULL), GET_COND(tch, FULL) < 0 ? "ff" : "",
                     GET_COND(tch, THIRST) < 0 ? 0 : 24 - GET_COND(tch, THIRST), GET_COND(tch, THIRST) < 0 ? "ff" : "",
                     GET_COND(tch, DRUNK) < 0 ? 0 : GET_COND(tch, DRUNK), GET_COND(tch, DRUNK) < 0 ? "ff" : "");
@@ -3262,7 +3259,7 @@ ACMD(do_score) {
     } else
         tch = ch;
 
-    buf = fmt::format("@0{:<{}}Character attributes for {}\n\n", "", MAX(0, (45 - ansi_strlen(GET_NAME(tch))) / 2),
+    buf = fmt::format("@0{:<{}}Character attributes for {}\n\n", "", std::max(0, (45 - ansi_strlen(GET_NAME(tch))) / 2),
                       GET_NAME(tch));
 
     if (EFF_FLAGGED(tch, EFF_ON_FIRE))
@@ -3475,7 +3472,7 @@ ACMD(do_spells) {
         tch = ch;
 
     /* Determine the maximum circle to be displayed */
-    max_vis_circle = MIN(NUM_SPELL_CIRCLES, (GET_LEVEL(tch) - 1) / 8 + 1);
+    max_vis_circle = std::min(NUM_SPELL_CIRCLES, (GET_LEVEL(tch) - 1) / 8 + 1);
 
     if (s_circle) {
         xcircle = atoi(s_circle);
@@ -3877,9 +3874,9 @@ ACMD(do_scan) {
     if (EFF_FLAGGED(ch, EFF_FARSEE)) {
         ++maxdis;
         /* Yes only casters will be able to scan really far from farsee. */
-        if (number(33, 75) <= GET_SKILL(ch, SKILL_SPHERE_DIVIN))
+        if (random_number(33, 75) <= GET_SKILL(ch, SKILL_SPHERE_DIVIN))
             ++maxdis;
-        if (number(75, 150) <= GET_SKILL(ch, SKILL_SPHERE_DIVIN))
+        if (random_number(75, 150) <= GET_SKILL(ch, SKILL_SPHERE_DIVIN))
             ++maxdis;
         if (GET_CLASS(ch) == CLASS_ASSASSIN || GET_CLASS(ch) == CLASS_ROGUE)
             ++maxdis;

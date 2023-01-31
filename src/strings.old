@@ -230,7 +230,7 @@ void strn_cat(char *buf, const char *str, size_t size) {
         str_update(token);
         if (SPACE_LEFT(token) > 0) {
             /* Using strncat because strncpy is stupid */
-            strncat(token->pos, str, MIN(SPACE_LEFT(token), size));
+            strncat(token->pos, str, std::min(SPACE_LEFT(token), size));
             str_update(token);
         }
     } else
@@ -267,7 +267,7 @@ void strn_catf(char *buf, size_t size, const char *format, ...) {
 
     if (token) {
         str_update(token);
-        size = MIN(SPACE_LEFT(token), size);
+        size = std::min(SPACE_LEFT(token), size);
         if (size > 0) {
             printed = vsnprintf(token->pos, size, format, args);
             token->pos += (printed > size ? size : printed);

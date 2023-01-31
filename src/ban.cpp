@@ -73,7 +73,7 @@ int isbanned(char *hostname) {
 
     for (banned_node = ban_list; banned_node; banned_node = banned_node->next)
         if (strcasestr(hostname, banned_node->site)) /* if hostname is a substring */
-            i = MAX(i, banned_node->type);
+            i = std::max(i, banned_node->type);
 
     return i;
 }
@@ -156,8 +156,8 @@ ACMD(do_ban) {
     ban_node->next = ban_list;
     ban_list = ban_node;
 
-    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "{} has banned {} for {} players.", GET_NAME(ch), site,
-        ban_types[ban_node->type]);
+    log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "{} has banned {} for {} players.", GET_NAME(ch),
+        site, ban_types[ban_node->type]);
     char_printf(ch, "Site banned.\n");
     write_ban_list();
 }
@@ -186,8 +186,8 @@ ACMD(do_unban) {
     }
     REMOVE_FROM_LIST(ban_node, ban_list, next);
     char_printf(ch, "Site unbanned.\n");
-    log(LogSeverity::Stat, MAX(LVL_GOD, GET_INVIS_LEV(ch)), "{} removed the {}-player ban on {}.", GET_NAME(ch),
-        ban_types[ban_node->type], ban_node->site);
+    log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "{} removed the {}-player ban on {}.",
+        GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
 
     free(ban_node);
     write_ban_list();
