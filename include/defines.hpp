@@ -908,7 +908,10 @@
 #define SKILL_BREATHE_ACID 488
 #define SKILL_BREATHE_GAS 489
 #define SKILL_PERFORM 490
-#define SKILL_REND 491
+#define SKILL_CARTWHEEL 491
+#define SKILL_LURE 492
+#define SKILL_SNEAK_ATTACK 493
+#define SKILL_REND 494
 
 /* IF THIS GETS PAST 499, update CharData for skill timers! */
 
@@ -1107,9 +1110,25 @@
 #define ITEM_WAS_DISARMED 31      /* Disarmed from mob             */
 #define ITEM_ANTI_MONK 32         /* Not usable by monks           */
 #define ITEM_ANTI_BARD 33
-#define ITEM_ELVEN 34   /* Item usable by Elves          */
-#define ITEM_DWARVEN 35 /* Item usable by Dwarves        */
-#define NUM_ITEM_FLAGS 36
+#define ITEM_ELVEN 34             /* Item usable by Elves          */
+#define ITEM_DWARVEN 35           /* Item usable by Dwarves        */
+#define ITEM_ANTI_THIEF 36
+#define ITEM_ANTI_PYROMANCER 37
+#define ITEM_ANTI_CRYOMANCER 38
+#define ITEM_ANTI_ILLUSIONIST 39
+#define ITEM_ANTI_PRIEST 40
+#define ITEM_ANTI_DIABOLIST 41
+#define ITEM_ANTI_TINY 42
+#define ITEM_ANTI_SMALL 43
+#define ITEM_ANTI_MEDIUM 44
+#define ITEM_ANTI_LARGE 45
+#define ITEM_ANTI_HUGE 46
+#define ITEM_ANTI_GIANT 47
+#define ITEM_ANTI_GARGANTUAN 48
+#define ITEM_ANTI_COLOSSAL 49
+#define ITEM_ANTI_TITANIC 50
+#define ITEM_ANTI_MOUNTAINOUS 51
+#define NUM_ITEM_FLAGS 52
 
 /* Modifier constants used with obj effects ('A' fields) */
 #define APPLY_NONE 0           /* No effect                       */
