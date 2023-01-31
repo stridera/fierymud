@@ -362,7 +362,7 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
 
     /* HALF-ELF */
-    {"half_elf",                /* name as found by triggers */
+    {"half-elf",                /* name as found by triggers */
      "half-elf half elf",       /* all race keywords */
      "&6&bHalf-&0&6&dElf&0",    /* name as displayed at character creation, on who, and score */
      "&6&bHalf-&0&6&dElf&0",    /* name as displayed in show race command and when setting races */
