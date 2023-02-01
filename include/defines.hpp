@@ -427,7 +427,7 @@
 #define EFF_MESMERIZED 30  /* Super fasciated by something */
 #define EFF_IMMOBILIZED 31 /* Char cannot move             */
 #define EFF_LIGHT 32
-/* Room for future expansion 33 */
+#define EFF_NIMBLE 33
 #define EFF_MINOR_PARALYSIS 34
 #define EFF_HURT_THROAT 35
 #define EFF_FEATHER_FALL 36
@@ -812,6 +812,7 @@
 #define SPELL_MONK_ACID 260
 #define SPELL_MONK_SHOCK 261
 #define SPELL_STATUE 262
+#define SPELL_NIMBLE 263
 
 /* Insert new spells here, up to MAX_SPELLS */
 
