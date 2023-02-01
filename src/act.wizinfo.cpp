@@ -1225,9 +1225,7 @@ void do_show_sectors(CharData *ch, char *argument) {
     const sectordef *s;
 
     paging_printf(ch, "Sector type     Mv  Camp  Wet  Notes\n");
-    paging_printf(ch,
-                  "--------------  --  ----  ---  "
-                  "----------------------------------------------\n");
+    paging_printf(ch, "--------------  --  ----  ---  ----------------------------------------------\n");
     for (i = 0; i < NUM_SECTORS; i++) {
         s = &sectors[i];
         paging_printf(ch, " {}{:<13s}&0  {:2d}  {}  {}  {}\n", s->color, s->name, s->mv,
