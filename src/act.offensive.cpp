@@ -2501,8 +2501,11 @@ ACMD(do_stomp) {
 
 ACMD(do_cartwheel) {
     CharData *vict;
-    int percent, prob, dmg;
+    int percent, prob, dmg, hidden;
     ObjData *weapon;
+
+    hidden = GET_HIDDENNESS(ch);
+    GET_HIDDENNESS(ch) = 0;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !CAN_SEE_IN_DARK(ch)) {
         char_printf(ch, "It is too dark!&0\n");
@@ -2541,6 +2544,11 @@ ACMD(do_cartwheel) {
 
     if (CONFUSED(ch))
         vict = random_attack_target(ch, vict, true);
+
+    if (GET_POS(vict) <= POS_SITTING) {
+        act("$E has already been knocked down.", false, ch, 0, vict, TO_CHAR);
+        return;
+    }
 
     if (MOB_FLAGGED(vict, MOB_NOBASH)) {
         act("You &3&bslam&0 into $N, but $E seems quite unmoved.", false, ch, 0, vict, TO_CHAR);
@@ -2595,6 +2603,7 @@ ACMD(do_cartwheel) {
             WAIT_STATE(ch, PULSE_VIOLENCE);
 
             /* attack was successful, see if a backstab can be attempted */
+            GET_HIDDENNESS(ch) = hidden;
             weapon = GET_EQ(ch, WEAR_WIELD);
             if (!weapon)
                 weapon = GET_EQ(ch, WEAR_WIELD2);
@@ -2610,7 +2619,8 @@ ACMD(do_cartwheel) {
                 if (IS_WEAPON_PIERCING(weapon)) {
                     act("&0&bYou use the momentum to backstab $N!&0", false, ch, 0, vict, TO_CHAR);
                     do_backstab(ch, arg, 0, 0);
-                }
+                } else
+                    set_fighting(ch, vict, false);
             }
             
             WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
@@ -2630,6 +2640,7 @@ ACMD(do_cartwheel) {
         WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
 
         /* attempt was partially successful, so do backstab */
+        GET_HIDDENNESS(ch) = hidden;
         weapon = GET_EQ(ch, WEAR_WIELD);
         if (!weapon)
             weapon = GET_EQ(ch, WEAR_WIELD2);
@@ -2644,7 +2655,8 @@ ACMD(do_cartwheel) {
             if (IS_WEAPON_PIERCING(weapon)) {
                 act("&0&bYou use the momentum to backstab $N!&0", false, ch, 0, vict, TO_CHAR);
                 do_backstab(ch, arg, 0, 0);
-            }
+            } else
+                set_fighting(ch, vict, false);
         }
         if (AWAKE(vict) && IN_ROOM(ch) == IN_ROOM(vict)) {
             abort_casting(vict);
@@ -2666,7 +2678,7 @@ ACMD(do_cartwheel) {
         }
         set_fighting(vict, ch, false);
 
-    improve_skill_offensively(ch, vict, SKILL_SPRINGLEAP);
+    improve_skill_offensively(ch, vict, SKILL_CARTWHEEL);
     }
 } /* end cartwheel */
 
