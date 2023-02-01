@@ -1619,6 +1619,26 @@ The acidic fog has no effect on $N.
 #
 #
 
+
+* Water Blast
+M
+ 263
+You &4&bBLAST&0 $N into a &4&bwatery grave!&0
+The world grows dark as $n &4&bBLASTS&0 you to a &4&bwatery grave!&0
+$n &4&bBLASTS&0 $N into a &4&bwatery grave!&0
+You throw a &4&bblast of water&0 at $N but miss by a mile.
+$n throws a &4&bblast of water&0 at you but misses by a mile.
+$n throws a &4&bblast of water&0 at $N but misses by a mile.
+You launch a &4&btorrent of water&0 at $N and watch $M start to drown!
+You start to drown as $n launches a &4&btorrent of water&0 at you!
+$N starts to drown as $n lauches a &4&btorrent of water&0 at $M!
+Trying to drown a god?!  How silly.
+$n annoyingly soaks you from head to toe.
+$n makes the stupid mistake of trying to drown a god.  Oops!
+#
+#
+#
+
 ***************************************************************************
 *                           Offensive Skills                              *
 ***************************************************************************

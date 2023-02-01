@@ -541,6 +541,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_ACID_BURST:
     case SPELL_DISINTEGRATE:
     case SPELL_ICEBALL:
+    case SPELL_WATER_BLAST:
         dam = sorcerer_single_target(ch, spellnum, skill);
         reduction = true;
         break; /* <-- End Sorcerer Single Target Switch */

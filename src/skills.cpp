@@ -1241,6 +1241,9 @@ void init_skills(void) {
     spello(SPELL_WANDERING_WOODS, "wandering woods", 0, 0, 0, POS_STANDING, false, TAR_IGNORE, false, MAG_MANUAL, C1,
            16, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "The woods around you shift back to their proper form.");
 
+    spello(SPELL_WATER_BLAST, "water blast", 40, 30, 2, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true,
+           MAG_DAMAGE, C1, CAST_SPEEDE, DAM_WATER, SKILL_SPHERE_WATER, 21, false, nullptr);
+
     spello(SPELL_WATERFORM, "waterform", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT,
            C1, CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_WATER, 27, true, "Your form solidifies into flesh once again.");
 

@@ -812,6 +812,7 @@
 #define SPELL_MONK_ACID 260
 #define SPELL_MONK_SHOCK 261
 #define SPELL_STATUE 262
+#define SPELL_WATER_BLAST 263
 
 /* Insert new spells here, up to MAX_SPELLS */
 
