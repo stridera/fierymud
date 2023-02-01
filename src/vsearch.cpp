@@ -1647,11 +1647,9 @@ ACMD(do_rsearch) {
         if (match) {
             if (!found) {
                 paging_printf(ch,
-                              "Index VNum    Title                              Sector   "
-                              "    Indoors Lit Exits\n");
+                              "Index VNum    Title                              Sector       Mv Indoors Lit Exits\n");
                 paging_printf(ch,
-                              "----- ------- ---------------------------------- "
-                              "------------ ------- --- -------\n");
+                              "----- ------- ---------------------------------- ------------ -- ------- --- -------\n");
             }
 #define MARK_EXIT(r, d)                                                                                                \
     (!(r).exits[d]                       ? "&0&9&b"                                                                    \
@@ -1659,17 +1657,15 @@ ACMD(do_rsearch) {
      : !EXIT_DEST((r).exits[d])          ? "&1&b"                                                                      \
      : EXIT_IS_DOOR((r).exits[d])        ? "&0&3"                                                                      \
                                          : "&0&2")
-#define ROOM_TITLE_LENGTH 34
-
-            paging_printf(
-                ch, "{:4d} [{}{:5d}{}] {} {}{}{}&0 {} {}{} {}{}{}{}{}{}{}{}{}{}{}&0\n", ++found, grn, world[nr].vnum,
-                nrm, ellipsis(world[nr].name, ROOM_TITLE_LENGTH), sectors[world[nr].sector_type].color,
-                sectors[world[nr].sector_type].name, sectors[world[nr].sector_type].mv,
-                ROOM_FLAGGED(nr, ROOM_INDOORS) ? "&3indoors&0 " : "        ",
-                ROOM_FLAGGED(nr, ROOM_ALWAYSLIT) || world[nr].sector_type == SECT_CITY ? "&3&blit&0" : "&9&bno &0",
-                MARK_EXIT(world[nr], NORTH), capdirs[NORTH], MARK_EXIT(world[nr], SOUTH), capdirs[SOUTH],
-                MARK_EXIT(world[nr], EAST), capdirs[EAST], MARK_EXIT(world[nr], WEST), capdirs[WEST],
-                MARK_EXIT(world[nr], UP), capdirs[UP], MARK_EXIT(world[nr], DOWN), capdirs[DOWN]);
+            paging_printf(ch, "{:4d} [{}{:5d}{}] {:<35} {}{:<12} {:2d}&0 {} {}{} {}{}{}{}{}{}{}{}{}{}{}&0\n", ++found,
+                          grn, world[nr].vnum, nrm, ellipsis(world[nr].name, 35), sectors[world[nr].sector_type].color,
+                          sectors[world[nr].sector_type].name, sectors[world[nr].sector_type].mv,
+                          ROOM_FLAGGED(nr, ROOM_INDOORS) ? "&3indoors&0 " : "        ",
+                          ROOM_FLAGGED(nr, ROOM_ALWAYSLIT) || world[nr].sector_type == SECT_CITY ? "&3&blit&0"
+                                                                                                 : "&9&bno &0",
+                          MARK_EXIT(world[nr], NORTH), capdirs[NORTH], MARK_EXIT(world[nr], SOUTH), capdirs[SOUTH],
+                          MARK_EXIT(world[nr], EAST), capdirs[EAST], MARK_EXIT(world[nr], WEST), capdirs[WEST],
+                          MARK_EXIT(world[nr], UP), capdirs[UP], MARK_EXIT(world[nr], DOWN), capdirs[DOWN]);
         }
     }
     if (found)
