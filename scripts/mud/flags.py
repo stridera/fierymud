@@ -262,6 +262,7 @@ SPELLS = [
     "MONK_ACID",  # 260
     "MONK_SHOCK",  # 261
     "STATUE",  # 262
+    "WATER_BLAST", # 263
 ]
 
 OBJECT_TYPES = [

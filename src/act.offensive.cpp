@@ -2913,7 +2913,9 @@ ACMD(do_tripup) {
         vict = FIGHTING(ch);
         if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
             char_printf(ch, "Trip up who?\n");
-            
+        }        
+    }
+    
     if (vict == ch) {
         char_printf(ch, "How can you make yourself fall down?\n");
         return;

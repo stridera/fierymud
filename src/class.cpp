@@ -1870,6 +1870,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_LIGHTNING_BOLT, CLASS_CRYOMANCER, CIRCLE_4);
     spell_assign(SPELL_RAY_OF_ENFEEB, CLASS_CRYOMANCER, CIRCLE_4);
     spell_assign(SPELL_TELEPORT, CLASS_CRYOMANCER, CIRCLE_4);
+    spell_assign(SPELL_WATER_BLAST, CLASS_CRYOMANCER, CIRCLE_4);
     spell_assign(SPELL_WORLD_TELEPORT, CLASS_CRYOMANCER, CIRCLE_4);
 
     spell_assign(SPELL_CONE_OF_COLD, CLASS_CRYOMANCER, CIRCLE_5);
@@ -2026,6 +2027,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_GREATER_ENDURANCE, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_HEAL, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_LIGHTNING_BOLT, CLASS_DRUID, CIRCLE_6);
+    spell_assign(SPELL_WATER_BLAST, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_WATERWALK, CLASS_DRUID, CIRCLE_6);
 
     spell_assign(SPELL_CALL_LIGHTNING, CLASS_DRUID, CIRCLE_7);
@@ -2490,6 +2492,8 @@ void assign_class_skills(void) {
     spell_assign(SPELL_LIGHTNING_BOLT, CLASS_RANGER, CIRCLE_8);
 
     spell_assign(SPELL_NATURES_GUIDANCE, CLASS_RANGER, CIRCLE_9);
+
+    spell_assign(SPELL_WATER_BLAST, CLASS_RANGER, CIRCLE_10);
 
     spell_assign(SPELL_BLUR, CLASS_RANGER, CIRCLE_11);
 
