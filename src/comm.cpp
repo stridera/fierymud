@@ -1060,16 +1060,6 @@ void record_usage(void) {
     }
 
     log("nusage: {:-3d} sockets connected, {:-3d} sockets playing", sockets_connected, sockets_playing);
-
-#ifdef RUSAGE
-    {
-        rusage ru;
-
-        getrusage(0, &ru);
-        log("rusage: user time: {} sec, system time: {} sec, max res size: {}", ru.ru_utime.tv_sec, ru.ru_stime.tv_sec,
-            ru.ru_maxrss);
-    }
-#endif
 }
 
 void offer_mssp(DescriptorData *d) {
