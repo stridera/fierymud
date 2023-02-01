@@ -2498,6 +2498,7 @@ ACMD(do_stomp) {
     WAIT_STATE(ch, PULSE_VIOLENCE * 3);
 }
 
+
 ACMD(do_cartwheel) {
     CharData *vict;
     int percent, prob, dmg;
@@ -2882,4 +2883,163 @@ ACMD(do_rend) {
 
     set_fighting(vict, ch, true);
     improve_skill_offensively(ch, vict, SKILL_REND);
+}
+
+
+ACMD(do_tripup) {
+    CharData *vict = nullptr, *tch;
+    int percent, prob;
+
+    if (GET_RACE(ch) != RACE_HALFLING) {
+        char_printf(ch, "Only halflings can pull that off!\n");
+        return;
+    }
+
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
+            char_printf(ch, "It's just too dark!&0\n");
+            return;
+        }
+
+        if (EFF_FLAGGED(ch, EFF_BLIND)) {
+            char_printf(ch, "You can't see a thing!\n");
+            return;
+        }
+    }
+
+    one_argument(argument, arg);
+    
+    if (!*arg || !(vict = find_char_in_room(&world[ch->in_room], find_vis_by_name(ch, arg)))) {
+        vict = FIGHTING(ch);
+        if (!vict || IN_ROOM(ch) != IN_ROOM(vict) || !CAN_SEE(ch, vict)) {
+            char_printf(ch, "Trip up who?\n");
+            
+    if (vict == ch) {
+        char_printf(ch, "How can you make yourself fall down?\n");
+        return;
+    }
+
+    if (!FIGHTING(vict)) {
+        char_printf(ch, "You can only trip things in combat with others!\n");
+        return;
+    }
+
+
+    if (vict == ch->guarding) {
+        act("You can't do that while you are guarding $M.", false, ch, 0, vict, TO_CHAR);
+        return;
+    }
+
+    /* check for pk/pets/shapeshifts */
+    if (!attack_ok(ch, vict, true))
+        return;
+    vict = check_guard(ch, vict, false);
+    if (!attack_ok(ch, vict, true))
+        return;
+
+    if (CONFUSED(ch))
+        vict = random_attack_target(ch, vict, true);
+
+    if (GET_POS(vict) <= POS_SITTING) {
+        act("$E has already been knocked down.", false, ch, 0, vict, TO_CHAR);
+        return;
+    }
+
+    if (GET_POS(vict) == POS_FLYING) {
+        char_printf(ch, "You can't trip up things in the air!\n");
+        return;
+    }
+
+    /* You can tripup as long as you're not the tank */
+    for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
+        if (FIGHTING(tch) == ch) {
+            if (FIGHTING(ch) == tch)
+                act("$N's already attacking you!\n", false, ch, 0, tch, TO_CHAR);
+            else if (FIGHTING(ch))
+                act("You're too busy fighting $N to trip up anyone!", false, ch, 0, FIGHTING(ch), TO_CHAR);
+            else
+                act("$N is coming in for the attack - you cannot trip $M up now.", false, ch, 0, tch, TO_CHAR);
+            return;
+        }
+    } 
+    
+
+    prob = random_number(1, 100); /* tripup uses random num instead of skill */
+    prob += GET_LEVEL(ch);
+    prob += GET_HITROLL(ch) - monk_weight_penalty(ch);
+    prob += int_app[GET_INT(ch)].bonus;
+    prob += dex_app[GET_DEX(ch)].reaction;
+    percent = random_number(1, 101);
+    percent += GET_SKILL(vict, SKILL_DODGE); 
+    percent += GET_LEVEL(vict);
+
+
+    if (GET_LEVEL(vict) >= LVL_IMMORT)
+        percent = prob + 1; /* insta-fail */
+
+    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
+        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))) {
+        act(EVASIONCLR "You slip right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
+        act(EVASIONCLR "$n" EVASIONCLR " slips right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
+        act(EVASIONCLR "$n" EVASIONCLR " slips right through you!&0", false, ch, 0, vict, TO_VICT);
+        char_printf(ch, "You fall down!\n");
+        act("$n falls down!", false, ch, 0, 0, TO_ROOM);
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        set_fighting(vict, ch, false);
+        GET_POS(ch) = POS_SITTING;
+        GET_STANCE(ch) = STANCE_ALERT;
+        return;
+    }
+
+    /* NO BASH - you fail. */
+    if (MOB_FLAGGED(vict, MOB_NOBASH)) {
+        act("You scurry through $N's legs, but $E seems quite unmoved.", false, ch, 0, vict, TO_CHAR);
+        act("$n scurries through $N's legs, who seems as stable as a rock!", false, ch, 0, vict, TO_NOTVICT);
+        act("$n scurries through your legs, attempting to trip you up.", false, ch, 0, vict, TO_VICT);
+        /* A pause... but you don't fall down. */
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        set_fighting(vict, ch, false);
+        return;
+    }
+    
+    /* Can affect targets up to four sizes larger */
+    if (GET_SIZE(vict) - GET_SIZE(ch) > 4) {
+        act("&7&bYou run right between $N's giant legs without any effect!&0", false, ch, 0, vict, TO_CHAR);
+        act("&7&b$n harmlessly runs right between $N's giant legs.&0", false, ch, 0, vict, TO_NOTVICT);
+        act("&7&b$n harmlessly runs between your towering legs like a little bug.&0", false, ch, 0, vict, TO_VICT);
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        set_fighting(vict, ch, false);
+        return;
+
+    /* Can only affect targets bigger than yourself */
+    } else if (GET_SIZE(ch) - GET_SIZE(vict) > 0) {
+        char_printf(ch, "&7&bYou can't trip someone so small.&0\n");
+        act("&7&b$n tries to trip up $N, but can't get under someone so small.&0", false, ch, 0, vict, TO_NOTVICT);
+        act("&7&b$n tries to trip you up, but can't under your legs to do it.&0", false, ch, 0, vict, TO_VICT);
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        set_fighting(vict, ch, false);
+        return;
+    }
+
+    if (prob > percent) { /* Success! */
+        WAIT_STATE(vict, PULSE_VIOLENCE * 2);
+        act("&7&bYou tangle $N in $S own legs, bringing them crashing down!&0", false, ch, 0, vict, TO_CHAR);
+        act("&7&b$n tangles $N in $S legs and trips $N.&0", false, ch, 0, vict, TO_NOTVICT);
+        act("&7&b$n makes you get tangled in your own legs and you fall on your face!&0", false, ch, 0, vict, TO_VICT);
+        set_fighting(ch, vict, false);
+        if (GET_POS(vict) > POS_SITTING)
+            alter_pos(vict, POS_SITTING, STANCE_ALERT);
+    } else {
+        act("You try to trip up $N but trip over $M instead.&0", false, ch, 0, vict, TO_CHAR);
+        act("$n tries to trip up $N, but trips over $M instead.&0", false, ch, 0, vict, TO_NOTVICT);
+        act("$n tries to trip you up, but trips over you instead.&0", false, ch, 0, vict, TO_VICT);
+        /* damage comes before alter_pos here. If alter_pos came first, then if
+         * the fight was started by this action, you might be in a sitting
+         * position when the fight began, which would make you automatically
+         * stand. We don't want that. */
+        set_fighting(vict, ch, false);
+        alter_pos(ch, POS_SITTING, STANCE_ALERT);
+    }
+
+    WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
 }

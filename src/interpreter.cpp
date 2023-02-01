@@ -268,6 +268,7 @@ ACMD(do_toggle);
 ACMD(do_touch);
 ACMD(do_track);
 ACMD(do_trans);
+ACMD(do_tripup);
 ACMD(do_unban);
 ACMD(do_unbind);
 ACMD(do_use);
@@ -869,6 +870,7 @@ const CommandInfo cmd_info[] = {
     {"trigedit", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_TRIGEDIT, 0},
     {"trigcopy", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_TRIGCOPY, 0},
     {"trip", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"tripup", POS_STANDING, STANCE_ALERT, do_tripup, 1, 0, TAR_CONTACT},
     {"trophy", POS_PRONE, STANCE_DEAD, do_trophy, 0, 0, CMD_ANY},
     {"tug", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"twibble", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
