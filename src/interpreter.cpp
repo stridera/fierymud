@@ -418,7 +418,7 @@ const CommandInfo cmd_info[] = {
     {"bug", POS_PRONE, STANCE_DEAD, do_gen_write, 0, SCMD_BUG, CMD_ANY},
     {"bye", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
 
-    {"cartwheel", POS_STANDING, STANCE_ALERT, do_cartwheel, 0, 0, CMD_NOFIGHT},
+    {"cartwheel", POS_STANDING, STANCE_ALERT, do_cartwheel, 0, 0, CMD_HIDE | CMD_NOFIGHT},
     {"cast", POS_SITTING, STANCE_RESTING, do_cast, 1, SCMD_CAST, 0},
     {"cackle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"call", POS_PRONE, STANCE_RESTING, do_call, 0, 0, 0},
