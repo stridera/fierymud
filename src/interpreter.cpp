@@ -755,7 +755,7 @@ const CommandInfo cmd_info[] = {
     {"'", POS_PRONE, STANCE_RESTING, do_say, 0, 0, CMD_MINOR_PARA | CMD_BOUND | CMD_OLC},
     {"save", POS_PRONE, STANCE_SLEEPING, do_save, LVL_GOD, 0, CMD_ANY ^ CMD_CAST},
     {"score", POS_PRONE, STANCE_DEAD, do_score, 0, 0, CMD_ANY},
-    {"scan", POS_STANDING, STANCE_ALERT, do_scan, 0, 0, CMD_NOFIGHT},
+    {"scan", POS_STANDING, STANCE_ALERT, do_scan, 0, 0, CMD_HIDE | CMD_NOFIGHT},
     {"salute", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"scribe", POS_PRONE, STANCE_RESTING, do_scribe, 0, 0, 0},
     {"scare", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
