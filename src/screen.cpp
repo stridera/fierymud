@@ -85,7 +85,30 @@ int ansi_strlen(std::string_view str) {
     if (str.empty())
         return 0;
 
-    return str.length() - count_color_chars(str);
+    return str.length() - count_color_chars(str) * 2;
 }
+
+int ansi_strnlen(std::string_view str, int n) {
+    if (str.empty())
+        return 0;
+
+    int len = str.length();
+    int color_chars = count_color_chars(str);
+
+    if (len - color_chars * 2 <= n)
+        return len;
+
+    int i = 0;
+    int j = 0;
+    for (; i < len && j < n; i++) {
+        if (str[i] == CREL || str[i] == CABS)
+            i++;
+        else
+            j++;
+    }
+
+    return i;
+}
+
 std::string strip_ansi(std::string_view string) { return process_colors(string, CLR_STRIP); }
 std::string escape_ansi(std::string_view string) { return process_colors(string, CLR_ESCAPE); }

@@ -24,6 +24,7 @@
 [[nodiscard]] std::string process_colors(std::string_view str, int mode);
 [[nodiscard]] int count_color_chars(std::string_view str) noexcept;
 [[nodiscard]] int ansi_strlen(std::string_view string);
+[[nodiscard]] int ansi_strnlen(std::string_view str, int n);
 [[nodiscard]] std::string strip_ansi(std::string_view string);
 [[nodiscard]] std::string escape_ansi(std::string_view string);
 

@@ -109,14 +109,10 @@ ACMD(do_ksearch);
 static char vbuf[VBUF_LEN];
 
 static void page_char_to_char(CharData *mob, CharData *ch, int nfound) {
-    int count;
-
-    /* Extra chars to account for: */
-    count = count_color_chars(RACE_ABBR(mob));
-
-    paging_printf(ch, "{:4d}. [{:s}{:5d}{:s}] {:s} {:s} {:3d} {:s} {:s}{:s}&0 {:s}{:s}&0\n", nfound, grn,
-                  GET_MOB_VNUM(mob), nrm, ellipsis(mob->player.short_descr, 39), CLASS_ABBR(mob), GET_LEVEL(mob),
-                  RACE_ABBR(mob), LIFEFORCE_COLOR(mob), capitalize((LIFEFORCE_NAME(mob))), COMPOSITION_COLOR(mob),
+    paging_printf(ch, "{:4d}. [{:s}{:5d}{:s}] {:<{}s} {:s} {:3d} {:s} {:s}{:s}&0 {:s}{:s}&0\n", nfound, grn,
+                  GET_MOB_VNUM(mob), nrm, ellipsis(mob->player.short_descr, 39),
+                  39 + count_color_chars(mob->player.short_descr) * 2, CLASS_ABBR(mob), GET_LEVEL(mob), RACE_ABBR(mob),
+                  LIFEFORCE_COLOR(mob), capitalize((LIFEFORCE_NAME(mob))), COMPOSITION_COLOR(mob),
                   capitalize((COMPOSITION_NAME(mob))));
 }
 
@@ -1072,12 +1068,12 @@ ACMD(do_msearch) {
         }
         if (match) {
             if (!found) {
-                paging_printf(ch,
-                              "Index  VNum   Mobile Short-Desc                       "
-                              "Class/Level/Race/Life Force/Composition\n");
-                paging_printf(ch,
-                              "----- ------- --------------------------------------- "
-                              "---------------------------------------\n");
+                paging_printf(
+                    ch,
+                    "Index  VNum   Mobile Short-Desc                       Class/Level/Race/Life Force/Composition\n");
+                paging_printf(
+                    ch,
+                    "----- ------- --------------------------------------- ---------------------------------------\n");
             }
             page_char_to_char(mob, ch, ++found);
         }
