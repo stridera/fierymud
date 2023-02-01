@@ -186,11 +186,13 @@ const char *wear_bits[NUM_ITEM_WEAR_FLAGS + 1] = {
 
 /* ITEM_x (extra bits) */
 const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
-    "GLOW",         "HUM",       "!RENT",         "!BERSERKER", "!INVIS",      "INVISIBLE", "MAGIC",     "!DROP",
-    "PERMANENT",    "!GOOD",     "!EVIL",         "!NEUTRAL",   "!SORCERER",   "!CLERIC",   "!ROGUE",    "!WARRIOR",
-    "!SELL",        "!PALADIN",  "!ANTI_PALADIN", "!RANGER",    "!DRUID",      "!SHAMAN",   "!ASSASSIN", "!MERCENARY",
-    "!NECROMANCER", "!CONJURER", "!BURN",         "!LOCATE",    "DECOMPOSING", "FLOAT",     "!FALL",     "DISARMED",
-    "!MONK",        "!BARD",     "ELVEN",         "DWARVEN",    "\n"};
+    "GLOW",         "HUM",        "!RENT",          "!BERSERKER",   "!INVIS",       "INVISIBLE",    "MAGIC",        "!DROP",
+    "PERMANENT",    "!GOOD",      "!EVIL",          "!NEUTRAL",     "!SORCERER",    "!CLERIC",      "!ROGUE",       "!WARRIOR",
+    "!SELL",        "!PALADIN",   "!ANTI_PALADIN",  "!RANGER",      "!DRUID",       "!SHAMAN",      "!ASSASSIN",    "!MERCENARY",
+    "!NECROMANCER", "!CONJURER",  "!BURN",          "!LOCATE",      "DECOMPOSING",  "FLOAT",        "!FALL",        "DISARMED",
+    "!MONK",        "!BARD",      "ELVEN",          "DWARVEN",      "!THIEF",       "!PYROMANCER",  "!CRYOMANCER",  "!ILLUSIONIST",
+    "!PRIEST",      "!DIABOLIST", "!TINY",          "!SMALL",       "!MEDIUM",      "!LARGE",       "!HUGE",        "!GIANT",
+    "!GARGANTUAN",  "!COLOSSAL",  "!TITANIC",       "!MOUNTAINOUS", "\n"};
 
 /* APPLY_x */
 const char *apply_types[NUM_APPLY_TYPES + 1] = {
@@ -404,8 +406,10 @@ void load_con_app(void) {
             con_app[x].hitp = (sh_int)((((float)1 / 8) * (float)x) - 4);
         if (x <= 56 && x >= 25) /* zero */
             con_app[x].hitp = 0;
-        if (x <= 100 && x >= 57) /* linear from (57,1) to (100,5) */
-            con_app[x].hitp = (sh_int)((((float)4 / 43) * (float)x) - ((float)185 / 43));
+        if (x <= 100 && x >= 57) /* linear from (57,1) to (96,5) */
+            con_app[x].hitp = (sh_int)((((float)1 / 8) * (float)x) - ((float)121 / 20));
+        if (x > 96) /* five */
+            con_app[x].hitp = 5;
 
         /* system shock survival percentage */
         if (x <= 68 && x >= 0) /* linear from (0,20) to (68,97) */
