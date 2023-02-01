@@ -1350,6 +1350,7 @@ void init_skills(void) {
     skillo(SKILL_BREATHE_FIRE, "breathe fire", false, 0);
     skillo(SKILL_BREATHE_FROST, "breathe frost", false, 0);
     skillo(SKILL_BREATHE_LIGHTNING, "breathe lightning", false, 0);
+    skillo(SKILL_CARTWHEEL, "cartwheel", false, TAR_CONTACT);
     skillo(SKILL_CHANT, "chant", false, 0);
     skillo(SKILL_DOUBLE_ATTACK, "double attack", false, 0);
     skillo(SKILL_DUAL_WIELD, "dual wield", true, 0);
@@ -1363,6 +1364,7 @@ void init_skills(void) {
     skillo(SKILL_DOORBASH, "doorbash", false, 0);
     skillo(SKILL_DOUSE, "douse", false, 0);
     skillo(SKILL_ELECTRIFY, "electrify", false, TAR_DIRECT);
+    skillo(SKILL_REND, "rend", false, TAR_CONTACT);
     skillo(SKILL_FIRST_AID, "first aid", true, 0);
     skillo(SKILL_GROUND_SHAKER, "ground shaker", false, 0);
     skillo(SKILL_GROUP_RETREAT, "group retreat", false, 0);
@@ -1372,6 +1374,7 @@ void init_skills(void) {
     skillo(SKILL_HUNT, "hunt", false, 0);
     skillo(SKILL_INSTANT_KILL, "instant kill", true, TAR_CONTACT);
     skillo(SKILL_KICK, "kick", true, TAR_CONTACT);
+    skillo(SKILL_LURE, "lure", false, 0);
     skillo(SKILL_MAUL, "maul", false, TAR_CONTACT);
     skillo(SKILL_MEDITATE, "meditate", false, 0);
     skillo(SKILL_MISSILE, "missile weapons", true, TAR_DIRECT);
@@ -1395,6 +1398,7 @@ void init_skills(void) {
     skillo(SKILL_RETREAT, "retreat", false, 0);
     skillo(SKILL_SHADOW, "shadow", false, 0);
     skillo(SKILL_SLASHING, "slashing weapons", true, TAR_CONTACT);
+    skillo(SKILL_SNEAK_ATTACK, "sneak attack", false, 0);
     skillo(SKILL_SPHERE_AIR, "sphere of air", false, 0);
     skillo(SKILL_SPHERE_DEATH, "sphere of death", false, 0);
     skillo(SKILL_SPHERE_DIVIN, "sphere of divination", false, 0);

@@ -56,804 +56,831 @@
 ClassDef classes[NUM_CLASSES] = {
 
     /* SORCERER */
-    {"sorcerer",
+    {"sorcerer",                                                        /* standard name */
      "",
-     "&5&bSorcerer&0",
-     "Sorcerer",
+     "&5&bSorcerer&0",                                                  
+     "Sorcerer",                                                        /* name as found by triggers */
      "&5&bSorcerer&0    ",
-     "&5&bSor&0",
-     "&5&b**&0",
-     true,
-     MEMORIZE,
-     true,
-     false,
-     CLASS_UNDEFINED,
-     45,
-     3046,
-     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {90, 85, 95, 105, 80},
-     5,
-     6,
-     ITEM_ANTI_SORCERER,
-     80,
-     100,
-     100,
-     1.2,
-     120,
-     80,
-     80,
-     60,
-     100,
-     75,
-     {1029, 1154, 38, 1003, 1027, 1012, -1}},
+     "&5&bSor&0",                                                       /* name as displayed on who */
+     "&5&b**&0",                                                        /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     false,                                                             /* is this a subclass? */
+     CLASS_UNDEFINED,                                                   /* base class, if a subclass */
+     45,                                                                /* max level to subclass */
+     3046,                                                              /* homeroom */
+     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
+     3,                                                                 /* static HP gain over level 30 */
+     6,                                                                 /* THAC0 */
+     ITEM_ANTI_SORCERER,                                                /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.2,                                                               /* exp needed to level factor */
+     120,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     60,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     75,                                                                /* AC factor for mobs */
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},                           /* starting equipment for newbies */
+     /*spellbook, quill, linen leggings, ebony hood, leather sandals, thin dagger*/
 
     /* CLERIC */
-    {"cleric",
+    {"cleric",                                                          /* standard name */
      "",
-     "&6Cleric&0",
-     "Cleric",
+     "&6Cleric&0",                                                      
+     "Cleric",                                                          /* name as found by triggers */
      "&6Cleric&0      ",
-     "&6Cle&0",
-     "&6**&0",
-     true,
-     PRAY,
-     true,
-     false,
-     CLASS_UNDEFINED,
-     45,
-     3003,
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {85, 110, 85, 115, 90},
-     8,
-     4,
-     ITEM_ANTI_CLERIC,
-     80,
-     100,
-     100,
-     1,
-     100,
-     80,
-     80,
-     70,
-     100,
-     100,
-     {1019, 1022, 1025, 1027, 1011, -1}},
+     "&6Cle&0",                                                         /* name as displayed on who */
+     "&6**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     PRAY,                                                              /* type of spell prep */
+     true,                                                              /* playable? */
+     false,                                                             /* is this a subclass? */
+     CLASS_UNDEFINED,                                                   /* base class, if a subclass */
+     45,                                                                /* max level to subclass */
+     3003,                                                              /* homeroom */
+     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     4,                                                                 /* THAC0 */
+     ITEM_ANTI_CLERIC,                                                  /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     70,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     100,                                                               /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1011, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, crude mace*/
 
     /* THIEF */
-    {"thief",
+    {"thief",                                                           /* standard name */
      "",
-     "&1&bThief&0",
-     "Thief",
-     "&1&bThief&0       ",
-     "&1&bThi&0",
-     "&1&b**&0",
-     false,
-     MEM_NONE,
-     true,
-     true,
-     CLASS_ROGUE,
-     -1,
-     3038,
-     {STAT_DEX, STAT_STR, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {95, 90, 100, 110, 110},
-     8,
-     1,
-     ITEM_ANTI_ROGUE,
-     100,
-     100,
-     100,
-     1,
-     100,
-     90,
-     100,
-     100,
-     100,
-     80,
-     {1019, 1022, 1025, 1027, 1012, -1}},
+
+     "&1&bThief&0",                                                     
+     "Thief",                                                           /* name as found by triggers */
+     "&1&bThief&0       ",                                              
+     "&1&bThi&0",                                                       /* name as displayed on who */
+     "&1&b**&0",                                                        /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_ROGUE,                                                       /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3038,                                                              /* homeroom */
+     {STAT_DEX, STAT_STR, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {95, 90, 100, 110, 110},                                           /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     1,                                                                 /* THAC0 */
+     ITEM_ANTI_THIEF,                                                   /* !class bit */
+     100,                                                               /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     90,                                                                /* hp factor for mobs */
+     100,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     80,                                                                /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1012, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, thin dagger*/
 
     /* WARRIOR */
-    {"warrior",
+    {"warrior",                                                         /* standard name */
      "",
      "&4&bWarrior&0",
-     "Warrior",
+     "Warrior",                                                         /* name as found by triggers */
      "&4&bWarrior&0     ",
-     "&4&bWar&0",
-     "&4&b**&0",
-     false,
-     MEM_NONE,
-     true,
-     false,
-     CLASS_UNDEFINED,
-     25,
-     3022,
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {105, 115, 100, 100, 110},
-     12,
-     -5,
-     ITEM_ANTI_WARRIOR,
-     100,
-     0,
-     100,
-     1.1,
-     100,
-     120,
-     120,
-     120,
-     100,
-     120,
-     {1019, 1022, 1024, 1026, 1014, -1}},
+     "&4&bWar&0",                                                       /* name as displayed on who */
+     "&4&b**&0",                                                        /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     false,                                                             /* is this a subclass? */
+     CLASS_UNDEFINED,                                                   /* base class, if a subclass */
+     25,                                                                /* max level to subclass */
+     3022,                                                              /* homeroom */
+     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {105, 115, 100, 100, 110},                                         /* saves: para, rod, petri, breath, spell */
+     10,                                                                /* static HP gain over level 30 */
+     -5,                                                                /* THAC0 */
+     ITEM_ANTI_WARRIOR,                                                 /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.1,                                                               /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     120,                                                               /* hp factor for mobs */
+     120,                                                               /* hitroll/damroll factor for mobs */
+     120,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     120,                                                               /* AC factor for mobs */
+     {1019, 1022, 1024, 1026, 1014, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, studded leather helmet, crude leather boots, crude longsword*/
 
     /* PALADIN */
-    {"paladin",
+    {"paladin",                                                         /* standard name */
      "",
      "Paladin&0",
-     "Paladin",
-     "Paladin&0     ",
-     "Pal&0",
-     "**&0",
-     true,
-     PRAY,
-     true,
-     true,
-     CLASS_WARRIOR,
-     -1,
-     3022,
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {95, 115, 100, 105, 90},
-     10,
-     -4,
-     ITEM_ANTI_PALADIN,
-     100,
-     50,
-     100,
-     1.15,
-     100,
-     120,
-     120,
-     120,
-     100,
-     120,
-     {1019, 1022, 1024, 1026, 1014, -1}},
+     "Paladin",                                                         /* name as found by triggers */
+     "Paladin&0     ",                                                  
+     "Pal&0",                                                           /* name as displayed on who */
+     "**&0",                                                            /* max level symbol */
+     true,                                                              /* spell casting? */
+     PRAY,                                                              /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_WARRIOR,                                                     /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3022,                                                              /* homeroom */
+     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {95, 115, 100, 105, 90},                                           /* saves: para, rod, petri, breath, spell */
+     8,                                                                 /* static HP gain over level 30 */
+     -4,                                                                /* THAC0 */
+     ITEM_ANTI_PALADIN,                                                 /* !class bit */
+     100,                                                               /* hp regen factor */
+     50,                                                                /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.15,                                                              /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     120,                                                               /* hp factor for mobs */
+     120,                                                               /* hitroll/damroll factor for mobs */
+     120,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     120,                                                               /* AC factor for mobs */
+     {1019, 1022, 1024, 1026, 1014, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, studded leather helmet, crude leather boots, crude longsword*/
 
     /* ANTI_PALADIN */
-    {"anti-paladin",
+    {"anti-paladin",                                                    /* standard name */
      "antipaladin",
      "&1&bAnti-&9Paladin&0",
-     "Anti-Paladin",
+     "Anti-Paladin",                                                    /* name as found by triggers */
      "&1&bAnti-&9Paladin&0",
-     "&1&bAnt&0",
-     "&1&b**&0",
-     true,
-     PRAY,
-     true,
-     true,
-     CLASS_WARRIOR,
-     -1,
-     3022,
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {95, 115, 100, 105, 90},
-     10,
-     -4,
-     ITEM_ANTI_ANTI_PALADIN,
-     100,
-     50,
-     100,
-     1.15,
-     100,
-     120,
-     120,
-     120,
-     100,
-     120,
-     {1019, 1022, 1024, 1026, 1014, -1}},
+     "&1&bAnt&0",                                                       /* name as displayed on who */
+     "&1&b**&0",                                                        /* max level symbol */
+     true,                                                              /* spell casting? */
+     PRAY,                                                              /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_WARRIOR,                                                     /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3022,                                                              /* homeroom */
+     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {95, 115, 100, 105, 90},                                           /* saves: para, rod, petri, breath, spell */
+     8,                                                                 /* static HP gain over level 30 */
+     -4,                                                                /* THAC0 */
+     ITEM_ANTI_ANTI_PALADIN,                                            /* !class bit */
+     100,                                                               /* hp regen factor */
+     50,                                                                /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.15,                                                              /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     120,                                                               /* hp factor for mobs */
+     120,                                                               /* hitroll/damroll factor for mobs */
+     120,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     120,                                                               /* AC factor for mobs */
+     {1019, 1022, 1024, 1026, 1014, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, studded leather helmet, crude leather boots, crude longsword*/
 
     /* RANGER */
-    {"ranger",
+    {"ranger",                                                          /* standard name */
      "",
-     "&2&bRanger&0",
-     "Ranger",
+     "&2&bRanger&0",                                                    
+     "Ranger",                                                          /* name as found by triggers */
      "&2&d&bRanger&0      ",
-     "&2&bRan&0",
-     "&2&b**&0",
-     true,
-     MEMORIZE,
-     true,
-     true,
-     CLASS_WARRIOR,
-     -1,
-     3022,
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_INT, STAT_WIS, STAT_CHA},
-     {95, 115, 100, 105, 90},
-     10,
-     -4,
-     ITEM_ANTI_RANGER,
-     100,
-     50,
-     100,
-     1.15,
-     100,
-     120,
-     120,
-     120,
-     100,
-     120,
-     {1019, 1022, 1024, 1026, 1014, -1}},
+     "&2&bRan&0",                                                       /* name as displayed on who */
+     "&2&b**&0",                                                        /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_WARRIOR,                                                     /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3022,                                                              /* homeroom */
+     {STAT_STR, STAT_DEX, STAT_CON, STAT_INT, STAT_WIS, STAT_CHA},      /* stat order preference for character creation */
+     {95, 115, 100, 105, 90},                                           /* saves: para, rod, petri, breath, spell */
+     8,                                                                 /* static HP gain over level 30 */
+     -4,                                                                /* THAC0 */
+     ITEM_ANTI_RANGER,                                                  /* !class bit */
+     100,                                                               /* hp regen factor */
+     50,                                                                /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.15,                                                              /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     120,                                                               /* hp factor for mobs */
+     120,                                                               /* hitroll/damroll factor for mobs */
+     120,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     120,                                                               /* AC factor for mobs */
+     {1019, 1022, 1024, 1026, 1014, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, studded leather helmet, crude leather boots, crude longsword*/
 
     /* DRUID */
-    {"druid",
+    {"druid",                                                           /* standard name */
      "",
      "&2Druid&0",
-     "Druid",
-     "&2Druid&0       ",
-     "&2Dru&0",
-     "&2**&0",
-     true,
-     PRAY,
-     true,
-     true,
-     CLASS_CLERIC,
-     -1,
-     3003,
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {85, 110, 85, 115, 90},
-     8,
-     5,
-     ITEM_ANTI_DRUID,
-     85,
-     100,
-     100,
-     1,
-     100,
-     80,
-     80,
-     70,
-     100,
-     100,
-     {1019, 1022, 1025, 1027, 1011, -1}},
+     "Druid",                                                           /* name as found by triggers */
+     "&2Druid&0       ",                    
+     "&2Dru&0",                                                         /* name as displayed on who */
+     "&2**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     PRAY,                                                              /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_CLERIC,                                                      /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3003,                                                              /* homeroom */
+     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     5,                                                                 /* THAC0 */
+     ITEM_ANTI_DRUID,                                                   /* !class bit */
+     85,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     70,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     100,                                                               /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1011, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, crude mace*/
 
     /* SHAMAN */
-    {"shaman",
+    {"shaman",                                                          /* standard name */
      "",
      "&6&bShaman&0",
-     "Shaman",
+     "Shaman",                                                          /* name as found by triggers */
      "&6&bShaman&0      ",
-     "&6&bSha&0",
-     "&6&b**&0",
-     true,
-     MEM_NONE,
-     false,
-     false,
-     CLASS_UNDEFINED,
-     -1,
-     3001,
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {105, 115, 105, 110, 110},
-     8,
-     6,
-     ITEM_ANTI_SHAMAN,
-     80,
-     100,
-     100,
-     1,
-     100,
-     100,
-     100,
-     100,
-     100,
-     100,
-     {1019, 1022, 1025, 1027, 1011, -1}},
+     "&6&bSha&0",                                                       /* name as displayed on who */
+     "&6&b**&0",                                                        /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     false,                                                             /* playable? */
+     false,                                                             /* is this a subclass? */
+     CLASS_UNDEFINED,                                                   /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3001,                                                              /* homeroom */
+     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {105, 115, 105, 110, 110},                                         /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     6,                                                                 /* THAC0 */
+     ITEM_ANTI_SHAMAN,                                                  /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     100,                                                               /* hp factor for mobs */
+     100,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     100,                                                               /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1011, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, crude mace*/
 
     /* ASSASSIN */
-    {"assassin",
+    {"assassin",                                                        /* standard name */
      "",
      "&1Assassin&0",
-     "Assassin",
+     "Assassin",                                                        /* name as found by triggers */
      "&1Assassin&0    ",
-     "&1Ass&0",
-     "&1**&0",
-     false,
-     MEM_NONE,
-     true,
-     true,
-     CLASS_ROGUE,
-     -1,
-     3038,
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {95, 90, 100, 110, 110},
-     8,
-     2,
-     ITEM_ANTI_ASSASSIN,
-     100,
-     0,
-     100,
-     1,
-     100,
-     90,
-     100,
-     100,
-     100,
-     80,
-     {1019, 1022, 1025, 1027, 1012, -1}},
+     "&1Ass&0",                                                         /* name as displayed on who */
+     "&1**&0",                                                          /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_ROGUE,                                                       /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3038,                                                              /* homeroom */
+     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {95, 90, 100, 110, 110},                                           /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     2,                                                                 /* THAC0 */
+     ITEM_ANTI_ASSASSIN,                                                /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     90,                                                                /* hp factor for mobs */
+     100,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     80,                                                                /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1012, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, thin dagger*/
 
     /* MERCENARY */
-    {"mercenary",
+    {"mercenary",                                                       /* standard name */
      "",
      "&3Mercenary&0",
-     "Mercenary",
+     "Mercenary",                                                       /* name as found by triggers */
      "&3Mercenary&0   ",
-     "&3Mer&0",
-     "&3**&0",
-     false,
-     MEM_NONE,
-     true,
-     true,
-     CLASS_ROGUE,
-     -1,
-     3038,
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_INT, STAT_WIS, STAT_CHA},
-     {95, 90, 100, 110, 110},
-     11,
-     2,
-     ITEM_ANTI_MERCENARY,
-     100,
-     0,
-     100,
-     1,
-     100,
-     90,
-     100,
-     100,
-     100,
-     80,
-     {1019, 1022, 1024, 1026, 1012, 1014, -1}},
+     "&3Mer&0",                                                         /* name as displayed on who */
+     "&3**&0",                                                          /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_ROGUE,                                                       /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3038,                                                              /* homeroom */
+     {STAT_STR, STAT_DEX, STAT_CON, STAT_INT, STAT_WIS, STAT_CHA},      /* stat order preference for character creation */
+     {95, 90, 100, 110, 110},                                           /* saves: para, rod, petri, breath, spell */
+     9,                                                                 /* static HP gain over level 30 */
+     2,                                                                 /* THAC0 */
+     ITEM_ANTI_MERCENARY,                                               /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     90,                                                                /* hp factor for mobs */
+     100,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     80,                                                                /* AC factor for mobs */
+     {1019, 1022, 1024, 1026, 1014, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, studded leather helmet, crude leather boots, crude longsword*/
 
     /* NECROMANCER */
-    {"necromancer",
+    {"necromancer",                                                     /* standard name */
      "",
      "&5Necromancer&0",
-     "Necromancer",
+     "Necromancer",                                                     /* name as found by triggers */
      "&5Necromancer&0 ",
-     "&5Nec&0",
-     "&5**&0",
-     true,
-     MEMORIZE,
-     true,
-     true,
-     CLASS_SORCERER,
-     -1,
-     3046,
-     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {90, 85, 95, 105, 80},
-     5,
-     7,
-     ITEM_ANTI_NECROMANCER,
-     80,
-     100,
-     100,
-     1.3,
-     120,
-     80,
-     80,
-     60,
-     100,
-     75,
-     {1029, 1154, 38, 1003, 26, 30, -1}},
+     "&5Nec&0",                                                         /* name as displayed on who */
+     "&5**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_SORCERER,                                                    /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3046,                                                              /* homeroom */
+     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
+     3,                                                                 /* static HP gain over level 30 */
+     7,                                                                 /* THAC0 */
+     ITEM_ANTI_NECROMANCER,                                             /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.3,                                                               /* exp needed to level factor */
+     120,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     60,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     75,                                                                /* AC factor for mobs */
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},                           /* starting equipment for newbies */
+     /*spellbook, quill, linen leggings, ebony hood, leather sandals, thin dagger*/
 
     /* CONJURER */
-    {"conjurer",
+    {"conjurer",                                                        /* standard name */
      "",
      "&3&bConjurer&0",
-     "Conjurer",
+     "Conjurer",                                                        /* name as found by triggers */
      "&3&bConjurer&0    ",
-     "&3&bCon&0",
-     "&3&b**&0",
-     true,
-     MEMORIZE,
-     false,
-     true,
-     CLASS_SORCERER,
-     -1,
-     3046,
-     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {90, 85, 95, 105, 80},
-     5,
-     7,
-     ITEM_ANTI_CONJURER,
-     80,
-     100,
-     100,
-     1,
-     120,
-     80,
-     80,
-     60,
-     100,
-     75,
-     {1029, 1154, 38, 1003, 1027, 1012, -1}},
+     "&3&bCon&0",                                                       /* name as displayed on who */
+     "&3&b**&0",                                                        /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     false,                                                             /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_SORCERER,                                                    /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3046,                                                              /* homeroom */
+     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
+     3,                                                                 /* static HP gain over level 30 */
+     7,                                                                 /* THAC0 */
+     ITEM_ANTI_CONJURER,                                                /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     120,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     60,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     75,                                                                /* AC factor for mobs */
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},                           /* starting equipment for newbies */
+     /*spellbook, quill, linen leggings, ebony hood, leather sandals, thin dagger*/
 
     /* MONK */
-    {"monk",
+    {"monk",                                                            /* standard name */
      "",
      "&9&bM&0&7on&9&bk&0",
-     "Monk",
+     "Monk",                                                            /* name as found by triggers */
      "&9&bM&0&7on&9&bk&0        ",
-     "&9&bMon&0",
-     "&9&b**&0",
-     false,
-     MEM_NONE,
-     true,
-     true,
-     CLASS_WARRIOR,
-     -1,
-     3022,
-     {STAT_CON, STAT_STR, STAT_DEX, STAT_WIS, STAT_INT, STAT_CHA},
-     {105, 115, 100, 100, 110},
-     10,
-     -4,
-     ITEM_ANTI_MONK,
-     100,
-     0,
-     200,
-     1.3,
-     100,
-     120,
-     120,
-     120,
-     100,
-     120,
-     {1019, 1022, 1024, 1026, 1014, -1}},
+     "&9&bMon&0",                                                       /* name as displayed on who */
+     "&9&b**&0",                                                        /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_WARRIOR,                                                     /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3022,                                                              /* homeroom */
+     {STAT_CON, STAT_STR, STAT_DEX, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {105, 115, 100, 100, 110},                                         /* saves: para, rod, petri, breath, spell */
+     8,                                                                 /* static HP gain over level 30 */
+     -4,                                                                /* THAC0 */
+     ITEM_ANTI_MONK,                                                    /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     200,                                                               /* mv regen factor */
+     1.3,                                                               /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     120,                                                               /* hp factor for mobs */
+     120,                                                               /* hitroll/damroll factor for mobs */
+     120,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     120,                                                               /* AC factor for mobs */
+     {1019, 1022, 1024, 1026, 1014, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, studded leather helmet, crude leather boots, crude longsword*/
 
     /* BERSERKER */
-    {"berserker",
+    {"berserker",                                                       /* standard name */
      "",
      "&9&bBer&1ser&9ker&0",
-     "Berserker",
+     "Berserker",                                                       /* name as found by triggers */
      "&9&bBer&1ser&9ker&0   ",
-     "&9&bBe&1r&0",
-     "&9&b**&0",
-     false,
-     MEM_NONE,
-     false,
-     true,
-     CLASS_WARRIOR,
-     -1,
-     3022,
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {105, 115, 100, 100, 110},
-     12,
-     -4,
-     ITEM_ANTI_BERSERKER,
-     100,
-     0,
-     100,
-     1.1,
-     100,
-     120,
-     120,
-     120,
-     100,
-     120,
-     {1019, 1022, 1024, 1026, 1014, -1}},
+     "&9&bBe&1r&0",                                                     /* name as displayed on who */
+     "&9&b**&0",                                                        /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     false,                                                             /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_WARRIOR,                                                     /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3022,                                                              /* homeroom */
+     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {105, 115, 100, 100, 110},                                         /* saves: para, rod, petri, breath, spell */
+     10,                                                                /* static HP gain over level 30 */
+     -4,                                                                /* THAC0 */
+     ITEM_ANTI_BERSERKER,                                               /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.1,                                                               /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     120,                                                               /* hp factor for mobs */
+     120,                                                               /* hitroll/damroll factor for mobs */
+     120,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     120,                                                               /* AC factor for mobs */
+     {1019, 1022, 1024, 1026, 1014, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, studded leather helmet, crude leather boots, crude longsword*/
 
     /* PRIEST */
-    {"priest",
+    {"priest",                                                          /* standard name */
      "",
      "&6&bPr&7ie&6st&0",
-     "Priest",
+     "Priest",                                                          /* name as found by triggers */
      "&6&bPr&7ie&6st&0      ",
-     "&6&bPr&7i&0",
-     "&6&b**&0",
-     true,
-     PRAY,
-     true,
-     true,
-     CLASS_CLERIC,
-     -1,
-     3003,
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {85, 110, 85, 115, 90},
-     8,
-     5,
-     ITEM_ANTI_CLERIC,
-     80,
-     100,
-     100,
-     1,
-     100,
-     80,
-     80,
-     70,
-     100,
-     100,
-     {1019, 1022, 1025, 1027, 1011, -1}},
+     "&6&bPr&7i&0",                                                     /* name as displayed on who */
+     "&6&b**&0",                                                        /* max level symbol */
+     true,                                                              /* spell casting? */
+     PRAY,                                                              /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_CLERIC,                                                      /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3003,                                                              /* homeroom */
+     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     5,                                                                 /* THAC0 */
+     ITEM_ANTI_PRIEST,                                                  /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     70,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     100,                                                               /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1011, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, crude mace*/
 
     /* DIABOLIST */
-    {"diabolist",
+    {"diabolist",                                                       /* standard name */
      "",
      "&5Dia&9&bbol&0&5ist&0",
-     "Diabolist",
+     "Diabolist",                                                       /* name as found by triggers */
      "&5Dia&9&bbol&0&5ist&0   ",
-     "&5Di&9&ba&0",
-     "&5**&0",
-     true,
-     PRAY,
-     true,
-     true,
-     CLASS_CLERIC,
-     -1,
-     3003,
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {85, 110, 85, 115, 90},
-     8,
-     5,
-     ITEM_ANTI_CLERIC,
-     80,
-     100,
-     100,
-     1,
-     100,
-     80,
-     80,
-     70,
-     100,
-     100,
-     {1019, 1022, 1025, 1027, 1011, -1}},
+     "&5Di&9&ba&0",                                                     /* name as displayed on who */
+     "&5**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     PRAY,                                                              /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_CLERIC,                                                      /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3003,                                                              /* homeroom */
+     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     5,                                                                 /* THAC0 */
+     ITEM_ANTI_DIABOLIST,                                                  /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     70,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     100,                                                               /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1011, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, crude mace*/
 
     /* MYSTIC */
-    {"mystic",
+    {"mystic",                                                          /* standard name */
      "",
      "&7&bM&0&7ys&9&bti&7c&0",
-     "Mystic",
+     "Mystic",                                                          /* name as found by triggers */
      "&7&bM&0&7ys&9&bti&7c&0      ",
-     "&7&bM&0&7ys&0",
-     "&7&b**&0",
-     true,
-     PRAY,
-     false,
-     true,
-     CLASS_CLERIC,
-     -1,
-     3003,
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {85, 110, 85, 115, 90},
-     8,
-     7,
-     ITEM_ANTI_CLERIC,
-     80,
-     100,
-     100,
-     1,
-     100,
-     80,
-     80,
-     70,
-     100,
-     100,
-     {1019, 1022, 1025, 1027, 1011, -1}},
+     "&7&bM&0&7ys&0",                                                   /* name as displayed on who */
+     "&7&b**&0",                                                        /* max level symbol */
+     true,                                                              /* spell casting? */
+     PRAY,                                                              /* type of spell prep */
+     false,                                                             /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_CLERIC,                                                      /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3003,                                                              /* homeroom */
+     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     7,                                                                 /* THAC0 */
+     ITEM_ANTI_CLERIC,                                                  /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     70,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     100,                                                               /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1011, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, crude mace*/
 
     /* ROGUE */
-    {"rogue",
+    {"rogue",                                                           /* standard name */
      "",
      "&9&bRogue&0",
-     "Rogue",
+     "Rogue",                                                           /* name as found by triggers */
      "&9&bRogue&0       ",
-     "&9&bRog&0",
-     "&9&b**&0",
-     false,
-     MEM_NONE,
-     true,
-     false,
-     CLASS_UNDEFINED,
-     25,
-     3038,
-     {STAT_DEX, STAT_STR, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {95, 90, 100, 110, 110},
-     8,
-     2,
-     ITEM_ANTI_ROGUE,
-     100,
-     0,
-     100,
-     1,
-     100,
-     90,
-     100,
-     100,
-     100,
-     80,
-     {1019, 1022, 1025, 1027, 1012, -1}},
+     "&9&bRog&0",                                                       /* name as displayed on who */
+     "&9&b**&0",                                                        /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     false,                                                             /* is this a subclass? */
+     CLASS_UNDEFINED,                                                   /* base class, if a subclass */
+     25,                                                                /* max level to subclass */
+     3038,                                                              /* homeroom */
+     {STAT_DEX, STAT_STR, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {95, 90, 100, 110, 110},                                           /* saves: para, rod, petri, breath, spell */
+     6,                                                                 /* static HP gain over level 30 */
+     2,                                                                 /* THAC0 */
+     ITEM_ANTI_ROGUE,                                                   /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     90,                                                                /* hp factor for mobs */
+     100,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     80,                                                                /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1012, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, thin dagger*/
 
     /* BARD */
-    {"bard",
+    {"bard",                                                            /* standard name */
      "",
      "&4B&9&bar&0&4d&0",
-     "Bard",
+     "Bard",                                                            /* name as found by triggers */
      "&4B&9&bar&0&4d&0        ",
-     "&4B&9&bar&0",
-     "&4**&0",
-     true,
-     MEMORIZE,
-     false,
-     true,
-     CLASS_ROGUE,
-     -1,
-     3038,
-     {STAT_DEX, STAT_STR, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {95, 90, 100, 110, 110},
-     9,
-     2,
-     ITEM_ANTI_BARD,
-     100,
-     100,
-     100,
-     1.2,
-     100,
-     90,
-     100,
-     100,
-     100,
-     80,
-     {1019, 1022, 1025, 1027, 1012, -1}},
+     "&4B&9&bar&0",                                                     /* name as displayed on who */
+     "&4**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_ROGUE,                                                       /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3038,                                                              /* homeroom */
+     {STAT_DEX, STAT_STR, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {95, 90, 100, 110, 110},                                           /* saves: para, rod, petri, breath, spell */
+     3,                                                                 /* static HP gain over level 30 */
+     2,                                                                 /* THAC0 */
+     ITEM_ANTI_BARD,                                                    /* !class bit */
+     100,                                                               /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.2,                                                               /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     90,                                                                /* hp factor for mobs */
+     100,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     80,                                                                /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1012, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, thin dagger*/
 
     /* PYROMANCER */
-    {"pyromancer",
+    {"pyromancer",                                                      /* standard name */
      "",
      "&1P&byr&0&1o&9&bma&0&7nc&9&ber&0",
-     "Pyromancer",
+     "Pyromancer",                                                      /* name as found by triggers */
      "&1P&byr&0&1o&9&bma&0&7nc&9&ber&0  ",
-     "&1P&byr&0",
-     "&1**&0",
-     true,
-     MEMORIZE,
-     true,
-     true,
-     CLASS_SORCERER,
-     -1,
-     3046,
-     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {90, 85, 95, 105, 80},
-     5,
-     7,
-     ITEM_ANTI_SORCERER,
-     80,
-     100,
-     100,
-     1.2,
-     120,
-     80,
-     80,
-     60,
-     100,
-     75,
-     {1029, 1154, 38, 1003, 1027, 1012, -1}},
+     "&1P&byr&0",                                                       /* name as displayed on who */
+     "&1**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_SORCERER,                                                    /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3046,                                                              /* homeroom */
+     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
+     3,                                                                 /* static HP gain over level 30 */
+     7,                                                                 /* THAC0 */
+     ITEM_ANTI_PYROMANCER,                                             /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.2,                                                               /* exp needed to level factor */
+     120,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     60,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     75,                                                                /* AC factor for mobs */
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},                           /* starting equipment for newbies */
+     /*spellbook, quill, linen leggings, ebony hood, leather sandals, thin dagger*/
 
     /* CRYOMANCER */
-    {"cryomancer",
+    {"cryomancer",                                                      /* standard name */
      "",
      "&4C&bry&0&4o&7ma&9&bnc&0&7er&0",
-     "Cryomancer",
+     "Cryomancer",                                                      /* name as found by triggers */
      "&4C&bry&0&4o&7ma&9&bnc&0&7er&0  ",
-     "&4C&bry&0",
-     "&4**&0",
-     true,
-     MEMORIZE,
-     true,
-     true,
-     CLASS_SORCERER,
-     -1,
-     3046,
-     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {90, 85, 95, 105, 80},
-     5,
-     7,
-     ITEM_ANTI_SORCERER,
-     80,
-     100,
-     100,
-     1.2,
-     120,
-     80,
-     80,
-     60,
-     100,
-     75,
-     {1029, 1154, 38, 1003, 1027, 1012, -1}},
+     "&4C&bry&0",                                                       /* name as displayed on who */
+     "&4**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_SORCERER,                                                    /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3046,                                                              /* homeroom */
+     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
+     3,                                                                 /* static HP gain over level 30 */
+     7,                                                                 /* THAC0 */
+     ITEM_ANTI_CRYOMANCER,                                             /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.2,                                                               /* exp needed to level factor */
+     120,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     60,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     75,                                                                /* AC factor for mobs */
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},                           /* starting equipment for newbies */
+     /*spellbook, quill, linen leggings, ebony hood, leather sandals, thin dagger*/
 
     /* ILLUSIONIST */
-    {"illusionist",
+    {"illusionist",                                                     /* standard name */
      "",
      "&4I&5l&4l&5u&4s&5i&4o&5n&4i&5s&4t&0",
-     "Illusionist",
+     "Illusionist",                                                     /* name as found by triggers */
      "&4I&5l&4l&5u&4s&5i&4o&5n&4i&5s&4t&0 ",
-     "&4I&5ll&0",
-     "&4**&0",
-     true,
-     MEMORIZE,
-     false,
-     true,
-     CLASS_SORCERER,
-     -1,
-     3046,
-     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},
-     {90, 85, 95, 105, 80},
-     5,
-     7,
-     ITEM_ANTI_SORCERER,
-     80,
-     100,
-     100,
-     1.2,
-     120,
-     80,
-     80,
-     60,
-     100,
-     75,
-     {1029, 1154, 38, 1003, 1027, 1012, -1}},
+     "&4I&5ll&0",                                                       /* name as displayed on who */
+     "&4**&0",                                                          /* max level symbol */
+     true,                                                              /* spell casting? */
+     MEMORIZE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_SORCERER,                                                    /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3046,                                                              /* homeroom */
+     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
+     3,                                                                 /* static HP gain over level 30 */
+     7,                                                                 /* THAC0 */
+     ITEM_ANTI_ILLUSIONIST,                                             /* !class bit */
+     80,                                                                /* hp regen factor */
+     100,                                                               /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1.2,                                                               /* exp needed to level factor */
+     120,                                                               /* exp reward factor for mobs*/
+     80,                                                                /* hp factor for mobs */
+     80,                                                                /* hitroll/damroll factor for mobs */
+     60,                                                                /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     75,                                                                /* AC factor for mobs */
+     {1029, 1154, 38, 1003, 1027, 1012, -1}},                           /* starting equipment for newbies */
+     /*spellbook, quill, linen leggings, ebony hood, leather sandals, thin dagger*/
 
     /* HUNTER */
-    {"hunter",
+    {"hunter",                                                          /* standard name */
      "",
      "&9&bHun&0&2te&9&br&0",
-     "Hunter",
+     "Hunter",                                                          /* name as found by triggers */
      "&9&bHun&0&2te&9&br&0      ",
-     "&9&bHun&0",
-     "&9&b**&0",
-     false,
-     MEM_NONE,
-     false,
-     true,
-     CLASS_ROGUE,
-     -1,
-     3038,
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},
-     {105, 115, 100, 100, 110},
-     10,
-     -4,
-     0,
-     100,
-     0,
-     100,
-     1,
-     100,
-     90,
-     100,
-     100,
-     100,
-     80,
-     {1019, 1022, 1025, 1027, 1012, -1}},
+     "&9&bHun&0",                                                       /* name as displayed on who */
+     "&9&b**&0",                                                        /* max level symbol */
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     true,                                                              /* playable? */
+     true,                                                              /* is this a subclass? */
+     CLASS_ROGUE,                                                       /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3038,                                                              /* homeroom */
+     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {105, 115, 100, 100, 110},                                         /* saves: para, rod, petri, breath, spell */
+     8,                                                                 /* static HP gain over level 30 */
+     -4,                                                                /* THAC0 */
+     0,                                                                 /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     100,                                                               /* exp reward factor for mobs*/
+     90,                                                                /* hp factor for mobs */
+     100,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     100,                                                               /* money factor for mob drops */
+     80,                                                                /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1012, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, thin dagger*/
 
     /* LAYMAN */
-    {"layman",
+    {"layman",                                                          /* standard name */
      "",
      "Layman",
-     "Layman",
+     "Layman",                                                          /* name as found by triggers */
      "Layman      ",
-     "Lay",
+     "Lay",                                                             /* name as displayed on who */
      "**",
-     false,
-     MEM_NONE,
-     false,
-     false,
-     CLASS_UNDEFINED,
-     -1,
-     3001,
-     {STAT_CHA, STAT_CON, STAT_DEX, STAT_STR, STAT_WIS, STAT_INT},
-     {100, 100, 100, 100, 100},
-     7,
-     0,
-     0,
-     100,
-     0,
-     100,
-     1,
-     80,
-     100,
-     130,
-     100,
-     75,
-     105,
-     {26, 27, 30, 38, -1}}};
+     false,                                                             /* spell casting? */
+     MEM_NONE,                                                          /* type of spell prep */
+     false,                                                             /* playable? */
+     false,                                                             /* is this a subclass? */
+     CLASS_UNDEFINED,                                                   /* base class, if a subclass */
+     -1,                                                                /* max level to subclass */
+     3001,                                                              /* homeroom */
+     {STAT_CHA, STAT_CON, STAT_DEX, STAT_STR, STAT_WIS, STAT_INT},      /* stat order preference for character creation */
+     {100, 100, 100, 100, 100},                                         /* saves: para, rod, petri, breath, spell */
+     5,                                                                 /* static HP gain over level 30 */
+     0,                                                                 /* THAC0 */
+     0,                                                                 /* !class bit */
+     100,                                                               /* hp regen factor */
+     0,                                                                 /* mana regen factor */
+     100,                                                               /* mv regen factor */
+     1,                                                                 /* exp needed to level factor */
+     80,                                                                /* exp reward factor for mobs*/
+     100,                                                               /* hp factor for mobs */
+     130,                                                               /* hitroll/damroll factor for mobs */
+     100,                                                               /* damage dice factor for mobs */
+     75,                                                                /* money factor for mob drops */
+     105,                                                               /* AC factor for mobs */
+     {1019, 1022, 1025, 1027, 1011, -1}},                               /* starting equipment for newbies */
+     /*crude leather pants, canvas sleeves, leather skullcap, leather sandals, crude mace*/
+};
 
 /* The newbie equipment
  *
@@ -1309,9 +1336,9 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_CONJURER:
     case CLASS_BARD:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(3, 8);
+            add_hp += random_number(1, 6);
         else
-            add_hp -= 8;
+            add_hp -= 3;
         break;
 
     case CLASS_CLERIC:
@@ -1320,53 +1347,53 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_DIABOLIST:
     case CLASS_MYSTIC:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(5, 10);
+            add_hp += random_number(3, 8);
         else
-            add_hp -= 10;
+            add_hp -= 5;
         break;
 
     case CLASS_DRUID:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(5, 11);
+            add_hp += random_number(3, 9);
         else
-            add_hp -= 11;
+            add_hp -= 6;
         break;
 
     case CLASS_ASSASSIN:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(7, 12);
+            add_hp += random_number(5, 10);
         else
-            add_hp -= 12;
+            add_hp -= 7;
         break;
 
     case CLASS_THIEF:
     case CLASS_ROGUE:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(7, 13);
+            add_hp += random_number(5, 11);
         else
-            add_hp -= 13;
+            add_hp -= 8;
         break;
 
     case CLASS_MERCENARY:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(7, 14);
+            add_hp += random_number(5, 12);
         else
-            add_hp -= 14;
+            add_hp -= 9;
         break;
 
     case CLASS_RANGER:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(9, 13);
+            add_hp += random_number(7, 11);
         else
-            add_hp -= 13;
+            add_hp -= 8;
         break;
 
     case CLASS_PALADIN:
     case CLASS_ANTI_PALADIN:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(9, 14);
+            add_hp += random_number(7, 12);
         else
-            add_hp -= 14;
+            add_hp -= 9;
         break;
 
     case CLASS_WARRIOR:
@@ -1374,16 +1401,16 @@ void advance_level(CharData *ch, enum level_action action) {
     case CLASS_BERSERKER:
     case CLASS_HUNTER:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(10, 15);
+            add_hp += random_number(8, 13);
         else
-            add_hp -= 14;
+            add_hp -= 9;
         break;
 
     default:
         if (action == LEVEL_GAIN)
-            add_hp += random_number(5, 10);
+            add_hp += random_number(3, 8);
         else
-            add_hp -= 9;
+            add_hp -= 6;
         log("SYSERR: Unrecognized class {:d} in advance_char", c);
     }
 
@@ -1409,16 +1436,44 @@ void advance_level(CharData *ch, enum level_action action) {
             add_hp = 0 - classes[c].hp_lev;
     }
 
+    /* Adjust by Con mod */
+    if (action == LEVEL_GAIN)
+        add_hp += con_app[GET_CON(ch)].hitp;
+    else
+        add_hp -= con_app[GET_CON(ch)].hitp;
+
     /* Add to natural hitpoints and then recalculate other hitpoints */
     ch->points.max_hit += add_hp;
     GET_BASE_HIT(ch) += add_hp;
     effect_total(ch);
+
 
     /* Calculate mana */
     if (GET_LEVEL(ch) > 10)
         ch->points.max_mana = (GET_LEVEL(ch) * GET_LEVEL(ch)) / 10;
     else
         ch->points.max_mana = 0;
+
+
+    /* Add MV to maxmove until level 50 */
+    if (GET_LEVEL(ch) <= 50) {
+        int add_mv = 2;
+        if (action == LEVEL_GAIN) {
+            if (GET_DEX(ch) >= 54 && GET_DEX(ch) <= 76)
+                add_mv += 1;
+            else if (GET_DEX(ch) > 76)
+                add_mv += 2;
+        } else {
+            add_mv = -2;
+            if (GET_DEX(ch) >= 54 && GET_DEX(ch) <= 76)
+                add_mv -= 1;
+            else if (GET_DEX(ch) > 76)
+                add_mv -= 2;
+        }
+
+        GET_MAX_MOVE(ch) += add_mv;
+        effect_total(ch);
+    }
 
     /* Give immortals special treatment */
     if (GET_LEVEL(ch) >= LVL_IMMORT) {
@@ -2445,9 +2500,9 @@ void assign_class_skills(void) {
     skill_assign(SKILL_HIDE, CLASS_ROGUE, 1);
     skill_assign(SKILL_DODGE, CLASS_ROGUE, 1);
     skill_assign(SKILL_SNEAK, CLASS_ROGUE, 1);
+    skill_assign(SKILL_SNEAK_ATTACK, CLASS_ROGUE, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
-    skill_assign(SKILL_EYE_GOUGE, CLASS_ROGUE, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_ROGUE, 15);
     skill_assign(SKILL_CONCEAL, CLASS_ROGUE, 25);
     skill_assign(SKILL_TRACK, CLASS_ROGUE, 30);
@@ -2579,12 +2634,15 @@ void assign_class_skills(void) {
     skill_assign(SKILL_BACKSTAB, CLASS_THIEF, 1);
     skill_assign(SKILL_HIDE, CLASS_THIEF, 1);
     skill_assign(SKILL_DODGE, CLASS_THIEF, 1);
-    skill_assign(SKILL_PICK_LOCK, CLASS_THIEF, 6);
-    skill_assign(SKILL_STEAL, CLASS_THIEF, 6);
+    skill_assign(SKILL_PICK_LOCK, CLASS_THIEF, 1);
+    skill_assign(SKILL_STEAL, CLASS_THIEF, 10);
+    skill_assign(SKILL_EYE_GOUGE, CLASS_THIEF, 10);
     skill_assign(SKILL_CONCEAL, CLASS_THIEF, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_THIEF, 15);
     skill_assign(SKILL_PARRY, CLASS_THIEF, 30);
+    skill_assign(SKILL_REND, CLASS_THIEF, 30);
     skill_assign(SKILL_TRACK, CLASS_THIEF, 40);
+    skill_assign(SKILL_DISARM, CLASS_THIEF, 40);
     skill_assign(SKILL_STEALTH, CLASS_THIEF, 50);
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_THIEF, 75);
 
