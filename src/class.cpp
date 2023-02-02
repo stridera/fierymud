@@ -2507,7 +2507,9 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SNEAK_ATTACK, CLASS_ROGUE, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
+    skill_assign(SKILL_CARTWHEEL, CLASS_ROGUE, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_ROGUE, 15);
+    skill_assign(SKILL_LURE, CLASS_ROGUE, 15);
     skill_assign(SKILL_CONCEAL, CLASS_ROGUE, 25);
     skill_assign(SKILL_TRACK, CLASS_ROGUE, 30);
     skill_assign(SKILL_PARRY, CLASS_ROGUE, 40);
