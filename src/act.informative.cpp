@@ -2366,7 +2366,7 @@ ACMD(do_users) {
         }
 
         /* Going to have to truncate room name and player names!! */
-
+        std::string clientStr = d->character->player_specials ? d->character->player_specials->client : "Unknown";
         if (d->character && GET_NAME(d->character)) {
             if (d->original) {
                 if ((d->original->in_room != NOWHERE) && (d->connected == 0)) {
@@ -2376,7 +2376,7 @@ ACMD(do_users) {
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
                 }
-                strncpy(client, d->character->player_specials->client.c_str(), sizeof(client) - 1);
+                strncpy(client, clientStr.c_str(), sizeof(client) - 1);
                 strncat(nametrun, GET_NAME(d->original), sizeof(nametrun) - 1);
                 sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
             } else {
@@ -2387,7 +2387,7 @@ ACMD(do_users) {
                     strncat(room, roomstuff, sizeof(room) - 1);
                     room[sizeof(room) - 1] = '\0';
                 }
-                strncpy(client, d->character->player_specials->client.c_str(), sizeof(client) - 1);
+                strncpy(client, clientStr.c_str(), sizeof(client) - 1);
                 strncat(nametrun, GET_NAME(d->character), sizeof(nametrun) - 1);
                 sprintf(line, format, d->desc_num, nametrun, hostnum, idletime, timeptr, room, client);
             }

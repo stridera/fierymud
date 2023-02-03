@@ -2297,9 +2297,7 @@ ACMD(do_csearch) {
             if (match) {
                 if (!found) {
                     paging_printf(ch, "Index RoomNum Zone Command\n");
-                    paging_printf(ch,
-                                  "----- ------- "
-                                  "----------------------------------------------------------\n");
+                    paging_printf(ch, "----- -------    ----------------------------------------------------------\n");
                 }
 
                 vbuflen = sprintf(vbuf, "%4d. [%s%5d%s] ", ++found, grn, world[cmd_room].vnum, nrm);
