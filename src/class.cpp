@@ -1457,7 +1457,9 @@ void advance_level(CharData *ch, enum level_action action) {
 
     /* Add MV to maxmove until level 50 */
     if (GET_LEVEL(ch) <= 50) {
-        int add_mv = 2;
+            int add_mv = 2;
+        if (GET_CLASS(ch) == CLASS_ROGUE || GET_CLASS(ch) == CLASS_CLERIC)
+            add_mv += 1;
         if (action == LEVEL_GAIN) {
             if (GET_DEX(ch) >= 54 && GET_DEX(ch) <= 76)
                 add_mv += 1;
