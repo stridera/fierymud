@@ -16,7 +16,7 @@
 #define DEFAULT_PROMPT 4
 
 constexpr char version[] = "FieryMUD.  Originally based on CircleMUD 3.0\n";
-constexpr char mudlet_client_version[] = "0.3";
+constexpr char mudlet_client_version[] = "0.4";
 constexpr char mudlet_client_url[] = "http://www.fierymud.org/mudlet/FierymudOfficial.mpackage";
 constexpr char mudlet_map_url[] = "http://www.fierymud.org/mudlet/default_map.dat";
 constexpr char discord_invite_url[] = "https://discord.gg/aqhapUCgFz";
