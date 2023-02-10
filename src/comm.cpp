@@ -1087,9 +1087,10 @@ void send_gmcp(DescriptorData *d, std::string_view package, json j) {
 }
 
 void offer_gmcp_services(DescriptorData *d) {
-    json client = {{"GUI", {{"version", std::string(mudlet_client_version)}, {"url", std::string(mudlet_client_url)}}},
-                   {"Map", {"url", std::string(mudlet_map_url)}}};
-    send_gmcp(d, "Client", client);
+    json client = {{"version", std::string(mudlet_client_version)}, {"url", std::string(mudlet_client_url)}};
+    send_gmcp(d, "Client.GUI", client);
+    send_gmcp(d, "Client.Map", {"url", std::string(mudlet_map_url)});
+
 }
 
 void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
