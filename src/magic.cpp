@@ -3626,9 +3626,10 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         found = true;
         if (damage == true)
             mag_damage(skill, ch, tch, spellnum, savetype);
-        else
+        else {
             mag_affect(skill, ch, tch, spellnum, savetype, casttype);
             mag_unaffect(skill, ch, tch, spellnum, savetype);
+        }
     }
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
