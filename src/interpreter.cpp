@@ -869,7 +869,6 @@ const CommandInfo cmd_info[] = {
     {"transfer", POS_PRONE, STANCE_DEAD, do_trans, LVL_GOD, 0, CMD_ANY},
     {"trigedit", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_TRIGEDIT, 0},
     {"trigcopy", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_TRIGCOPY, 0},
-    {"trip", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"tripup", POS_STANDING, STANCE_ALERT, do_tripup, 1, 0, TAR_CONTACT},
     {"trophy", POS_PRONE, STANCE_DEAD, do_trophy, 0, 0, CMD_ANY},
     {"tug", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},

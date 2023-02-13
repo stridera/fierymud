@@ -3995,6 +3995,8 @@ ACMD(do_innate) {
             char_printf(ch, " syll\n");
         if (GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_DUERGAR)
             char_printf(ch, " tass\n");
+        if (GET_RACE(ch) == RACE_HALFLING)
+            char_printf(ch, " tripup\n");
         if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_DUERGAR || GET_RACE(ch) == RACE_TROLL ||
             GET_RACE(ch) == RACE_OGRE || GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_SVERFNEBLIN)
             char_printf(ch, " ultravision*\n");
