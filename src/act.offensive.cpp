@@ -3034,7 +3034,7 @@ ACMD(do_tripup) {
     }
 
     if (prob > percent) { /* Success! */
-        WAIT_STATE(vict, PULSE_VIOLENCE * 2);
+        WAIT_STATE(vict, PULSE_VIOLENCE * 3);
         act("&7&bYou tangle $N in $S own legs, bringing them crashing down!&0", false, ch, 0, vict, TO_CHAR);
         act("&7&b$n tangles $N in $S legs and trips $N.&0", false, ch, 0, vict, TO_NOTVICT);
         act("&7&b$n makes you get tangled in your own legs and you fall on your face!&0", false, ch, 0, vict, TO_VICT);
