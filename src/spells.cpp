@@ -159,6 +159,11 @@ ASPELL(spell_banish) {
 
     if (!ch || !victim)
         return 0;
+
+    /* Is this attack allowed? */
+    if (!attack_ok(ch, victim, true))
+        return 0;
+
     if (ch == victim)
         return CAST_RESULT_CHARGE;
 
@@ -173,16 +178,15 @@ ASPELL(spell_banish) {
         act("You resist.", false, ch, 0, victim, TO_VICT);
         if (IS_NPC(victim) && !FIGHTING(victim))
             attack(victim, ch);
-        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
-    roll = random_number(0, 100) + skill - GET_LEVEL(victim);
+    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
+    roll = random_number(0, 100) + skill + cha_app[GET_CHA(ch)].music - GET_LEVEL(victim); 
 
     /* Failure */
     if (roll < 50) {
         act("Nothing happens.", false, ch, 0, victim, TO_ROOM);
         char_printf(ch, "Nothing happens.\n");
-        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
 
     act("$N disappears in a flash of light!", false, ch, 0, victim, TO_CHAR);
@@ -192,11 +196,12 @@ ASPELL(spell_banish) {
     wasdark = IS_DARK(victim->in_room) && !CAN_SEE_IN_DARK(victim);
     dismount_char(victim);
 
-    /* Such a high roll deserves an extraction. */
-    if (roll > 150) {
+    /* Success */
+    if (roll > 100) {
         if (IS_NPC(victim)) {
-            if (roll < 98)
-                extract_objects(ch);
+            roll = random_number (0, 100) + (wis_app[GET_WIS(ch)].bonus * 2); /* min: 0, max: 114 */
+            if (roll > 66) /* 66% chance to wipe victim eq, nears 50% at max wis */
+                extract_objects(victim);
             extract_char(victim);
         } else { /* Is a player */
             if ((to_room = real_room(GET_HOMEROOM(victim))) < 0) {
@@ -208,51 +213,7 @@ ASPELL(spell_banish) {
             act("&7&b$n&7&b appears in a flash of light!&0", true, victim, 0, 0, TO_ROOM);
             check_new_surroundings(victim, wasdark, true);
         }
-        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     }
-
-    /* Decent roll: let's teleport the victim. */
-    if (roll > 100) {
-        int zone = world[ch->in_room].zone;
-        int tries = 100;
-        do {
-            location = random_number(zone_table[zone].number * 100, zone_table[zone].top);
-            tries--;
-        } while (((to_room = real_room(location)) < 0 ||
-                  ((ROOM_FLAGGED(to_room, ROOM_PRIVATE) || ROOM_FLAGGED(to_room, ROOM_DEATH)) && tries)));
-        if (tries) {
-            char_from_room(victim);
-            char_to_room(victim, to_room);
-            act("&7&b$n&7&b appears in a flash of light!&0", true, victim, 0, 0, TO_ROOM);
-            check_new_surroundings(victim, wasdark, true);
-            return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
-        }
-    }
-
-    /*
-     * If we're still here, then knock 'em over a few rooms.
-     */
-    roll >>= 4; /* roll /= 16 */
-    ++roll;     /* minimum 1 */
-
-    while (roll-- > 0)
-        for (i = 0; i < NUM_OF_DIRS; ++i) {
-            if (!CAN_GO(victim, i))
-                continue;
-            to_room = CH_NDEST(victim, i);
-            if (ROOM_FLAGGED(to_room, ROOM_DEATH) || ROOM_FLAGGED(to_room, ROOM_NOMOB))
-                continue;
-            if (MOB_FLAGGED(victim, MOB_STAY_ZONE) && world[victim->in_room].zone != world[to_room].zone)
-                continue;
-            if (random_number(0, 6 - i))
-                continue;
-            char_from_room(victim);
-            char_to_room(victim, to_room);
-            break;
-        }
-    act("&7&b$n&7&b appears in a flash of light!&0", true, victim, 0, 0, TO_ROOM);
-    check_new_surroundings(victim, wasdark, true);
-
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 

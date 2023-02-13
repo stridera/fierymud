@@ -456,5 +456,11 @@ void load_cha_app(void) {
             cha_app[x].music = 1;
         if (x <= 100 && x >= 65) /* linear from (65,2) to (100,7) */
             cha_app[x].music = (sh_int)((((float)6 / 35) * (float)x) - ((float)75 / 7) + 1);
+
+        /* bonus to skills */
+        if (x <= 44 && x >= 0) /*  zero */
+            cha_app[x].bonus = 0;
+        if (x <= 100 && x >= 45) /* linear from (45,2) to (100,7) */
+            cha_app[x].bonus = (byte)((((float)1 / 11) * (float)x) - ((float)23 / 11));
     }
 }

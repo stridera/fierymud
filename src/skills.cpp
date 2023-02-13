@@ -498,7 +498,7 @@ void init_skills(void) {
            TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true, MAG_DAMAGE, C1, CAST_SPEEDE, DAM_UNDEFINED,
            SKILL_SPHERE_SUMMON, 25, false, nullptr);
 
-    spello(SPELL_BANISH, "banish", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_FIGHT_VICT, true,
+    spello(SPELL_BANISH, "banish", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_FIGHT_VICT, false,
            MAG_MANUAL, C1, CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, true, nullptr);
 
     spello(SPELL_BARKSKIN, "barkskin", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED2,
