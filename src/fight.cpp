@@ -2128,16 +2128,17 @@ void hit(CharData *ch, CharData *victim, int type) {
 
     /* adjust for additional effects like Displacement */
     if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-        int displaced, mtype;
+        int mtype;
+        bool displaced = false;
         mtype = type - TYPE_HIT; /* get the damage message */
 
         if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
-            if (random_number(1, 4) == 1) /* 25% chance to ignore damage */
+            if (random_number(1, 5) == 1) /* 20% chance to ignore damage */
                 displaced = true;
         }
 
         if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-            if (random_number(1, 2) == 1) /* 50% chance to ignore damage */
+            if (random_number(1, 3) == 1) /* 33% chance to ignore damage */
                 displaced = true;
         }
 
