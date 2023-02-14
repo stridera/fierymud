@@ -291,7 +291,10 @@ void show_rent(CharData *ch, char *argument) {
     }
 
     tch = create_char();
-    load_player(name, tch);
+    if (load_player(name, tch) == -1) {
+        char_printf(ch, "Error loading player.  Player not found in player index.\n");
+        return;
+    }
     char_to_room(tch, 0);
 
     read_objects(tch, fl);
