@@ -188,8 +188,8 @@ ACMD(do_breathe) {
             }
         } else {
             int seconds = GET_COOLDOWN(ch, CD_BREATHE) / 10;
-            char_printf(ch, "You will have rebuilt your energy in {:d} {}.\n",
-                        seconds, seconds == 1 ? "second" : "seconds");
+            char_printf(ch, "You will have rebuilt your energy in {:d} {}.\n", seconds,
+                        seconds == 1 ? "second" : "seconds");
             return;
         }
     }
@@ -1595,9 +1595,10 @@ ACMD(do_throatcut) {
 
     if (GET_COOLDOWN(ch, CD_THROATCUT)) {
         int seconds = GET_COOLDOWN(ch, CD_THROATCUT) / 10;
-        char_printf(ch, "You've drawn too much attention to yourself to throatcut now!\n"
-                        "You can attempt to throatcut again in {:d} {}.\n",
-                        seconds, seconds == 1 ? "second" : "seconds");
+        char_printf(ch,
+                    "You've drawn too much attention to yourself to throatcut now!\n"
+                    "You can attempt to throatcut again in {:d} {}.\n",
+                    seconds, seconds == 1 ? "second" : "seconds");
         return;
     }
 

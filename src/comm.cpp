@@ -1090,7 +1090,6 @@ void offer_gmcp_services(DescriptorData *d) {
     json client = {{"version", std::string(mudlet_client_version)}, {"url", std::string(mudlet_client_url)}};
     send_gmcp(d, "Client.GUI", client);
     send_gmcp(d, "Client.Map", {{"url", std::string(mudlet_map_url)}});
-
 }
 
 void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
@@ -2056,7 +2055,7 @@ int process_input(DescriptorData *t) {
                 errno = EAGAIN;
 #endif /* EWOULDBLOCK */
             if (errno != EAGAIN) {
-                log("process_input: about to lose connection");
+                log("process_input: about to lose connection [{}]", t->host);
                 return -1; /* some error condition was encountered on read */
             } else {
                 break; /* the read would have blocked: just means no data there but everything's okay */
