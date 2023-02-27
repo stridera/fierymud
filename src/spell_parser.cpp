@@ -1519,8 +1519,27 @@ ACMD(do_cast) {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
 
         /* Chance to quick chant. */
-        if (random_number(1, 102) < GET_SKILL(ch, SKILL_QUICK_CHANT))
+        if (random_number(1, 110) < (GET_SKILL(ch, SKILL_QUICK_CHANT) + int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus)) {
+            int maxcircle, *level_assignment, spellcircle;
+
+/*
+            *level_assignment = skills[spellnum].min_level[GET_CLASS(ch)];
+            *circle_assignment = level_to_circle(*level_assignment);
+*/
+
+            /* set basic quick chant at 1/2 casting time */
             ch->casting.casting_time /= 2;
+
+            /* get the current max circle */
+            maxcircle = level_to_circle(GET_LEVEL(ch));
+
+            /* get the circle of the spell for the class */
+            spellcircle = SPELL_CIRCLE(ch, spellnum);
+
+            /* adjust the time down by 1 for every 3 circles lower */
+            ch->casting.casting_time -= (maxcircle - spellcircle) / 3;
+
+        }
         improve_skill(ch, SKILL_QUICK_CHANT);
 
         /* Show chant messages. */
