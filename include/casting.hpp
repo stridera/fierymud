@@ -74,7 +74,7 @@
  * NOTE: These integers represent pulses, not seconds. if PULSE_VIOLENCE is
  * used, then each of the following is (n*2) seconds.
  */
-/* This is based on 4 second rounds. */
+/* This is based on 4 second rounds. There are no .25 rounds; values will round up to the nearest half round. */
 #define CAST_SPEED1 6  /* 1.5  rounds */
 #define CAST_SPEED2 7  /* 1.75 rounds */
 #define CAST_SPEED3 8  /* 2.0  rounds */
@@ -82,8 +82,10 @@
 #define CAST_SPEED5 10 /* 2.5  rounds */
 #define CAST_SPEED6 12 /* 3.0  rounds */
 #define CAST_SPEED7 14 /* 3.5  rounds */
+#define CAST_SPEED8 16 /* 4.0  rounds */
+#define CAST_SPEED9 18 /* 4.5  rounds */
 
-/* The following casting times are for offensive spells. */
+/* The following casting times are for combat spells. */
 
 #define CAST_SPEEDA 1
 #define CAST_SPEEDB 2
@@ -96,6 +98,10 @@
 #define CAST_SPEEDI 9
 #define CAST_SPEEDJ 10
 #define CAST_SPEEDK 11
+#define CAST_SPEEDL 12
+#define CAST_SPEEDM 14
+#define CAST_SPEEDN 16
+#define CAST_SPEEDO 18
 
 /* This is a target status to determine after do_cast what exactly the
    target is supposed to be. This fixes casting abort and crash bugs

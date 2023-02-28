@@ -1520,26 +1520,39 @@ ACMD(do_cast) {
 
         /* Chance to quick chant. */
         if (random_number(1, 110) < (GET_SKILL(ch, SKILL_QUICK_CHANT) + int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus)) {
-            int maxcircle, *level_assignment, spellcircle;
-
-/*
-            *level_assignment = skills[spellnum].min_level[GET_CLASS(ch)];
-            *circle_assignment = level_to_circle(*level_assignment);
-*/
+            int maxcircle, spellcircle;
 
             /* set basic quick chant at 1/2 casting time */
             ch->casting.casting_time /= 2;
 
-            /* get the current max circle */
+            /* get the caster's current max circle */
             maxcircle = level_to_circle(GET_LEVEL(ch));
 
             /* get the circle of the spell for the class */
             spellcircle = SPELL_CIRCLE(ch, spellnum);
 
-            /* adjust the time down by 1 for every 3 circles lower */
-            ch->casting.casting_time -= (maxcircle - spellcircle) / 3;
+            /* is this a damage, disabling, healing spell, or stone skin? */
+            if ((SINFO.damage_type != DAM_UNDEFINED) || SINFO.sphere == SKILL_SPHERE_HEALING || SINFO.violent == true || spellnum == SPELL_STONE_SKIN) {
+                if (ch->casting.casting_time > 1) {
 
+                    /* adjust the time down by 1* for every 3 circles lower */
+                    ch->casting.casting_time -= (maxcircle - spellcircle) / 3;
+                    
+                    /* adjust so casting time for long count spells is never less than (1/2 - 2) *'s */
+                    if ((SINFO.cast_time >= 10) && (ch->casting.casting_time < (SINFO.cast_time / 2) - 2))
+                        ch->casting.casting_time = (SINFO.cast_time / 2) - 2;
+
+                    /* adjust again so no casting time is less than 1* */
+                    if (ch->casting.casting_time < 1)
+                        ch->casting.casting_time = 1;
+                }
+
+            } else {
+                /* adjust the time down by 1* for every 2 circles greater the caster has access to */
+                ch->casting.casting_time -= (maxcircle - spellcircle) / 2;
+            }
         }
+
         improve_skill(ch, SKILL_QUICK_CHANT);
 
         /* Show chant messages. */
