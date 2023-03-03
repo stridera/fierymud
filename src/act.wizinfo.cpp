@@ -179,7 +179,7 @@ void stat_extra_descs(ExtraDescriptionData *ed, CharData *ch, char *buf, bool sh
         count = 0;
         for (desc = ed; desc; desc = desc->next)
             count++;
-        sprintf(buf, "Extra desc%s (%d):%s", ed->next ? "s" : "", count, CLR(ch, FCYN));
+        sprintf(buf, "Extra desc%s (%d):%s\n", ed->next ? "s" : "", count, CLR(ch, FCYN));
         for (desc = ed; desc; desc = desc->next) {
             if (desc != ed)
                 strcat(buf, ",");
@@ -219,9 +219,7 @@ void do_stat_room(CharData *ch, int rrnum) {
 
     resp += fmt::format("Ambient Light : {}\n", rm->light);
 
-    resp += "Description:\n";
-    resp += rm->description ? rm->description : "  None.\n";
-
+    resp += fmt::format("Description:\n{}\n", rm->description ? rm->description : "  None.");
     stat_extra_descs(rm->ex_description, ch, buf, false);
     resp += buf;
 
@@ -268,7 +266,7 @@ void do_stat_room(CharData *ch, int rrnum) {
                                 CLR(ch, ANRM), buf1, rm->exits[i]->key,
                                 rm->exits[i]->keyword ? rm->exits[i]->keyword : "None", buf2);
             if (rm->exits[i]->general_description)
-                resp += rm->exits[i]->general_description;
+                resp += fmt::format("Extra Desc: {}\n", rm->exits[i]->general_description);
         }
     }
 
@@ -1225,9 +1223,7 @@ void do_show_sectors(CharData *ch, char *argument) {
     const sectordef *s;
 
     paging_printf(ch, "Sector type     Mv  Camp  Wet  Notes\n");
-    paging_printf(ch,
-                  "--------------  --  ----  ---  "
-                  "----------------------------------------------\n");
+    paging_printf(ch, "--------------  --  ----  ---  ----------------------------------------------\n");
     for (i = 0; i < NUM_SECTORS; i++) {
         s = &sectors[i];
         paging_printf(ch, " {}{:<13s}&0  {:2d}  {}  {}  {}\n", s->color, s->name, s->mv,

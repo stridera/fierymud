@@ -33,8 +33,8 @@
 const char *nrm, *grn, *cyn, *yel, *blk, *red;
 OLCSaveInfo *olc_save_list;
 const char *save_info_msg[5] = {"Rooms", "Objects", "Zone info", "Mobiles", "Shops"};
-OLCSCommandData olc_scmd_info[] = {{"room", CON_REDIT},      {"object", CON_OEDIT}, {"room", CON_ZEDIT},
-                                   {"mobile", CON_MEDIT},    {"shop", CON_SEDIT},   {"help", CON_HEDIT},
+OLCSCommandData olc_scmd_info[] = {{"room", CON_REDIT},      {"room", CON_ZEDIT}, {"object", CON_OEDIT},
+                                   {"mobile", CON_MEDIT},    {"shop", CON_SEDIT}, {"help", CON_HEDIT},
                                    {"trigger", CON_TRIGEDIT}};
 
 //  External functions
@@ -366,8 +366,8 @@ ACMD(do_olc) {
             return;
         }
         char_printf(ch, "Saving all {}s in zone {:d}.\n", type, zone_table[OLC_ZNUM(d)].number);
-        log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves {} info for zone {:d}.", GET_NAME(ch),
-            type, zone_table[OLC_ZNUM(d)].number);
+        log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "OLC: {} saves {} info for zone {:d}.",
+            GET_NAME(ch), type, zone_table[OLC_ZNUM(d)].number);
 
         switch (subcmd) {
         case SCMD_OLC_REDIT:

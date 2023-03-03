@@ -73,6 +73,7 @@ EVENTFUNC(die_event);
 
 ACMD(do_get);
 ACMD(do_return);
+CharData *check_guard(CharData *ch, CharData *victim, int gag_output);
 void remove_from_all_memories(CharData *ch);
 void abort_casting(CharData *ch);
 void aggro_lose_spells(CharData *ch);
@@ -1979,6 +1980,11 @@ void hit(CharData *ch, CharData *victim, int type) {
 
     aggro_lose_spells(ch);
 
+    /* See if anyone is guarding the victim.
+     * But guarding doesn't apply if this NPC was already fighting the victim. */
+    if (FIGHTING(ch) != victim)
+        victim = check_guard(ch, victim, false);
+
     /*
      * This is a hack.   TYPE_UNDEFINED signifies to hit() that
      * we should figure out the damage type based on weapons
@@ -2122,16 +2128,17 @@ void hit(CharData *ch, CharData *victim, int type) {
 
     /* adjust for additional effects like Displacement */
     if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-        int displaced, mtype;
+        int mtype;
+        bool displaced = false;
         mtype = type - TYPE_HIT; /* get the damage message */
 
         if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
-            if (random_number(1, 4) == 1) /* 25% chance to ignore damage */
+            if (random_number(1, 5) == 1) /* 20% chance to ignore damage */
                 displaced = true;
         }
 
         if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-            if (random_number(1, 2) == 1) /* 50% chance to ignore damage */
+            if (random_number(1, 3) == 1) /* 33% chance to ignore damage */
                 displaced = true;
         }
 

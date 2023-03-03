@@ -537,6 +537,7 @@ struct con_app_type {
 
 struct cha_app_type {
     sh_int music; /* how many bardic music cooldowns one can have */
+    sh_int bonus; /* a bonus to skills */
 };
 
 struct weather_data {

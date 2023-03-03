@@ -1457,7 +1457,9 @@ void advance_level(CharData *ch, enum level_action action) {
 
     /* Add MV to maxmove until level 50 */
     if (GET_LEVEL(ch) <= 50) {
-        int add_mv = 2;
+            int add_mv = 2;
+        if (GET_CLASS(ch) == CLASS_ROGUE || GET_CLASS(ch) == CLASS_CLERIC)
+            add_mv += 1;
         if (action == LEVEL_GAIN) {
             if (GET_DEX(ch) >= 54 && GET_DEX(ch) <= 76)
                 add_mv += 1;
@@ -1870,6 +1872,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_LIGHTNING_BOLT, CLASS_CRYOMANCER, CIRCLE_4);
     spell_assign(SPELL_RAY_OF_ENFEEB, CLASS_CRYOMANCER, CIRCLE_4);
     spell_assign(SPELL_TELEPORT, CLASS_CRYOMANCER, CIRCLE_4);
+    spell_assign(SPELL_WATER_BLAST, CLASS_CRYOMANCER, CIRCLE_4);
     spell_assign(SPELL_WORLD_TELEPORT, CLASS_CRYOMANCER, CIRCLE_4);
 
     spell_assign(SPELL_CONE_OF_COLD, CLASS_CRYOMANCER, CIRCLE_5);
@@ -2026,6 +2029,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_GREATER_ENDURANCE, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_HEAL, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_LIGHTNING_BOLT, CLASS_DRUID, CIRCLE_6);
+    spell_assign(SPELL_WATER_BLAST, CLASS_DRUID, CIRCLE_6);
     spell_assign(SPELL_WATERWALK, CLASS_DRUID, CIRCLE_6);
 
     spell_assign(SPELL_CALL_LIGHTNING, CLASS_DRUID, CIRCLE_7);
@@ -2492,6 +2496,8 @@ void assign_class_skills(void) {
 
     spell_assign(SPELL_NATURES_GUIDANCE, CLASS_RANGER, CIRCLE_9);
 
+    spell_assign(SPELL_WATER_BLAST, CLASS_RANGER, CIRCLE_10);
+
     spell_assign(SPELL_BLUR, CLASS_RANGER, CIRCLE_11);
 
     /* ROGUE */
@@ -2504,7 +2510,9 @@ void assign_class_skills(void) {
     skill_assign(SKILL_SNEAK_ATTACK, CLASS_ROGUE, 1);
     skill_assign(SKILL_BACKSTAB, CLASS_ROGUE, 1);
     skill_assign(SKILL_PICK_LOCK, CLASS_ROGUE, 5);
+    skill_assign(SKILL_CARTWHEEL, CLASS_ROGUE, 10);
     skill_assign(SKILL_DUAL_WIELD, CLASS_ROGUE, 15);
+    skill_assign(SKILL_LURE, CLASS_ROGUE, 15);
     skill_assign(SKILL_CONCEAL, CLASS_ROGUE, 25);
     skill_assign(SKILL_TRACK, CLASS_ROGUE, 30);
     skill_assign(SKILL_PARRY, CLASS_ROGUE, 40);

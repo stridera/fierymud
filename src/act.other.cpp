@@ -10,6 +10,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ***************************************************************************/
 
+#include "ai.hpp"
 #include "casting.hpp"
 #include "chars.hpp"
 #include "clan.hpp"
@@ -526,11 +527,11 @@ ACMD(do_shapechange) {
     }
 
     if (GET_COOLDOWN(ch, CD_SHAPECHANGE) && GET_LEVEL(ch) < LVL_IMMORT) {
-        i = GET_COOLDOWN(ch, CD_SHAPECHANGE) / (1 MUD_HR) + 1;
+        i = GET_COOLDOWN(ch, CD_SHAPECHANGE) / (10);
         char_printf(ch,
                     "You are still drained from your last shapechange.\n"
                     "It will be another {:d} {} before you can change again.\n",
-                    i, i == 1 ? "hour" : "hours");
+                    i, i == 1 ? "second" : "seconds");
         return;
     }
 
@@ -1109,7 +1110,11 @@ ACMD(do_hide) {
     skill = GET_SKILL(ch, SKILL_HIDE);
     lower_bound = -0.0008 * pow(skill, 3) + 0.1668 * pow(skill, 2) - 3.225 * skill;
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
-    GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
+
+    if (group_size(ch) > 1 && GET_RACE(ch) == RACE_HALFLING)
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + (dex_app_skill[GET_DEX(ch)].hide * ((GET_LEVEL(ch) / 30) + 1));
+    else
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
 
     GET_HIDDENNESS(ch) = std::max(GET_HIDDENNESS(ch), 0l);
 
@@ -2261,12 +2266,12 @@ ACMD(do_summon_mount) {
             return;
         }
         if (GET_COOLDOWN(ch, CD_SUMMON_MOUNT)) {
-            i = GET_COOLDOWN(ch, CD_SUMMON_MOUNT) / (1 MUD_HR) + 1;
+            i = GET_COOLDOWN(ch, CD_SUMMON_MOUNT) / 10;
             if (i == 1)
-                strcpy(buf1, "hour");
+                strcpy(buf1, "second");
             else
-                sprintf(buf1, "%d hours", i);
-            char_printf(ch, "You must wait another {} before you can summon your mount.\n", buf1);
+                sprintf(buf1, "%d seconds", i);
+            char_printf(ch, "You must wait another {} before you can summon a mount again.\n", buf1);
             return;
         }
     }
@@ -2376,7 +2381,10 @@ ACMD(do_layhand) {
 
     /* Make sure we haven't already used it for the day */
     if (GET_COOLDOWN(ch, CD_LAY_HANDS)) {
-        char_printf(ch, "You need more rest before laying hands again.\n");
+        int seconds = GET_COOLDOWN(ch, CD_LAY_HANDS) / 10;
+        char_printf(ch, "You're still drained from laying hands recently!\n"
+                        "You'll be able to layhands again in another {:d} {}.\n",
+                        seconds, seconds == 1 ? "second" : "seconds");
         return;
     }
 
@@ -2556,7 +2564,10 @@ ACMD(do_first_aid) {
     }
 
     if (GET_COOLDOWN(ch, CD_FIRST_AID)) {
-        char_printf(ch, "You can only do this once per day.\n");
+        int seconds = GET_COOLDOWN(ch, CD_FIRST_AID) / 10;
+        char_printf(ch, "You can only do this once per day.\n"
+                        "You can perform first again again in {:d} {}.\n",
+                        seconds, seconds == 1 ? "second" : "seconds");
         return;
     }
 

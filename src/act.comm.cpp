@@ -88,7 +88,8 @@ std::string drunken_speech(std::string speech, int drunkenness) {
         else if (isalpha(ch)) {
             char temp = toupper(ch) - 'A';
             if (drunkenness > drunk_letters[temp].min_drunk_level) {
-                drunkbuf += drunk_letters[temp].replacements[random_number(0, drunk_letters[temp].replacement_count - 1)];
+                drunkbuf +=
+                    drunk_letters[temp].replacements[random_number(0, drunk_letters[temp].replacement_count - 1)];
             } else {
                 drunkbuf += ch;
             }
@@ -181,18 +182,18 @@ ACMD(do_gsay) {
     else
         k = ch;
 
-    sprintf(buf, "@g$n@g tells the group, '&0%s@g'@0", argument);
+    auto str = fmt::format("@g$n@g tells the group, '&0{}@g'@0", speech);
     if (k != ch)
-        act(buf, false, ch, nullptr, k, TO_VICT | TO_SLEEP | TO_OLC);
+        act(str, false, ch, nullptr, k, TO_VICT | TO_SLEEP | TO_OLC);
     for (f = k->groupees; f; f = f->next)
         if (f->groupee != ch)
-            act(buf, false, ch, nullptr, f->groupee, TO_VICT | TO_SLEEP | TO_OLC);
+            act(str, false, ch, nullptr, f->groupee, TO_VICT | TO_SLEEP | TO_OLC);
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
         char_printf(ch, OK);
     else {
-        sprintf(buf, "@gYou group say, '&0%s@g'@0", argument);
-        act(buf, false, ch, nullptr, nullptr, TO_CHAR | TO_SLEEP | TO_OLC);
+        str = fmt::format("@gYou group say, '&0{}@g'@0", speech);
+        act(str, false, ch, nullptr, nullptr, TO_CHAR | TO_SLEEP | TO_OLC);
     }
 }
 

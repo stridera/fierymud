@@ -1200,11 +1200,11 @@ ACMD(do_cast) {
             return;
         }
         if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, CD_CHANT)) {
-            int hours = GET_COOLDOWN(ch, CD_CHANT) / (1 MUD_HR);
+            int seconds = GET_COOLDOWN(ch, CD_CHANT) / 10;
             char_printf(ch,
                         "You're still out of breath from chanting recently!\n"
                         "You'll be able to chant again in another {:d} {}.\n",
-                        hours, hours == 1 ? "hour" : "hours");
+                        seconds, seconds == 1 ? "second" : "seconds");
             return;
         }
     }
@@ -1244,32 +1244,32 @@ ACMD(do_cast) {
             default:
                 char_printf(ch, "You're still drained from performing recently!\n");
                 if GET_COOLDOWN (ch, CD_MUSIC_1) {
-                    int hours = GET_COOLDOWN(ch, CD_MUSIC_1) / (1 MUD_HR);
-                    char_printf(ch, "Performance one will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
+                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_1) / 10;
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_2) {
-                    int hours = GET_COOLDOWN(ch, CD_MUSIC_2) / (1 MUD_HR);
-                    char_printf(ch, "Performance two will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
+                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_2) / 10;
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_3) {
-                    int hours = GET_COOLDOWN(ch, CD_MUSIC_3) / (1 MUD_HR);
-                    char_printf(ch, "Performance three will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
+                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_3) / 10;
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_4) {
-                    int hours = GET_COOLDOWN(ch, CD_MUSIC_4) / (1 MUD_HR);
-                    char_printf(ch, "Performance four will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
+                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_4) / 10;
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_5) {
-                    int hours = GET_COOLDOWN(ch, CD_MUSIC_5) / (1 MUD_HR);
-                    char_printf(ch, "Performance five will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
+                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_5) / 10;
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_6) {
-                    int hours = GET_COOLDOWN(ch, CD_MUSIC_6) / (1 MUD_HR);
-                    char_printf(ch, "Performance six will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
+                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_6) / 10;
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_7) {
-                    int hours = GET_COOLDOWN(ch, CD_MUSIC_7) / (1 MUD_HR);
-                    char_printf(ch, "Performance seven will refresh in {}.\n", hours, hours == 1 ? "hour" : "hours");
+                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_7) / 10;
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }

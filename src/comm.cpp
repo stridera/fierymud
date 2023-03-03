@@ -1060,16 +1060,6 @@ void record_usage(void) {
     }
 
     log("nusage: {:-3d} sockets connected, {:-3d} sockets playing", sockets_connected, sockets_playing);
-
-#ifdef RUSAGE
-    {
-        rusage ru;
-
-        getrusage(0, &ru);
-        log("rusage: user time: {} sec, system time: {} sec, max res size: {}", ru.ru_utime.tv_sec, ru.ru_stime.tv_sec,
-            ru.ru_maxrss);
-    }
-#endif
 }
 
 void offer_mssp(DescriptorData *d) {
@@ -1097,9 +1087,9 @@ void send_gmcp(DescriptorData *d, std::string_view package, json j) {
 }
 
 void offer_gmcp_services(DescriptorData *d) {
-    json client = {{"GUI", {{"version", std::string(mudlet_client_version)}, {"url", std::string(mudlet_client_url)}}},
-                   {"Map", {"url", std::string(mudlet_map_url)}}};
-    send_gmcp(d, "Client", client);
+    json client = {{"version", std::string(mudlet_client_version)}, {"url", std::string(mudlet_client_url)}};
+    send_gmcp(d, "Client.GUI", client);
+    send_gmcp(d, "Client.Map", {{"url", std::string(mudlet_map_url)}});
 }
 
 void handle_gmcp_request(DescriptorData *d, std::string_view txt) {
@@ -2065,7 +2055,7 @@ int process_input(DescriptorData *t) {
                 errno = EAGAIN;
 #endif /* EWOULDBLOCK */
             if (errno != EAGAIN) {
-                log("process_input: about to lose connection");
+                log("process_input: about to lose connection [{}]", t->host);
                 return -1; /* some error condition was encountered on read */
             } else {
                 break; /* the read would have blocked: just means no data there but everything's okay */

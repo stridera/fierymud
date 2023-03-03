@@ -541,6 +541,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_ACID_BURST:
     case SPELL_DISINTEGRATE:
     case SPELL_ICEBALL:
+    case SPELL_WATER_BLAST:
         dam = sorcerer_single_target(ch, spellnum, skill);
         reduction = true;
         break; /* <-- End Sorcerer Single Target Switch */
@@ -3634,9 +3635,10 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         found = true;
         if (damage == true)
             mag_damage(skill, ch, tch, spellnum, savetype);
-        else
+        else {
             mag_affect(skill, ch, tch, spellnum, savetype, casttype);
             mag_unaffect(skill, ch, tch, spellnum, savetype);
+        }
     }
     /* No skill improvement if there weren't any valid targets. */
     if (!found)

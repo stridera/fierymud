@@ -284,7 +284,10 @@ void effect_total(CharData *ch) {
         /* Perception bonus
          * It comes out to base 480 for a level 99 human with maxed int and wis.
          */
-        GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 30));
+        if (GET_RACE(ch) == RACE_HALFLING)
+            GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 20));   /* max 792 */
+        else         
+            GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 30));
     }
 
     /* Alrighty, add the equipment effects back in. */

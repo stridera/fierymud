@@ -109,14 +109,10 @@ ACMD(do_ksearch);
 static char vbuf[VBUF_LEN];
 
 static void page_char_to_char(CharData *mob, CharData *ch, int nfound) {
-    int count;
-
-    /* Extra chars to account for: */
-    count = count_color_chars(RACE_ABBR(mob));
-
-    paging_printf(ch, "{:4d}. [{:s}{:5d}{:s}] {:s} {:s} {:3d} {:s} {:s}{:s}&0 {:s}{:s}&0\n", nfound, grn,
-                  GET_MOB_VNUM(mob), nrm, ellipsis(mob->player.short_descr, 39), CLASS_ABBR(mob), GET_LEVEL(mob),
-                  RACE_ABBR(mob), LIFEFORCE_COLOR(mob), capitalize((LIFEFORCE_NAME(mob))), COMPOSITION_COLOR(mob),
+    paging_printf(ch, "{:4d}. [{:s}{:5d}{:s}] {:<{}s} {:s} {:3d} {:s} {:s}{:s}&0 {:s}{:s}&0\n", nfound, grn,
+                  GET_MOB_VNUM(mob), nrm, ellipsis(mob->player.short_descr, 39),
+                  39 + count_color_chars(mob->player.short_descr) * 2, CLASS_ABBR(mob), GET_LEVEL(mob), RACE_ABBR(mob),
+                  LIFEFORCE_COLOR(mob), capitalize((LIFEFORCE_NAME(mob))), COMPOSITION_COLOR(mob),
                   capitalize((COMPOSITION_NAME(mob))));
 }
 
@@ -1072,12 +1068,12 @@ ACMD(do_msearch) {
         }
         if (match) {
             if (!found) {
-                paging_printf(ch,
-                              "Index  VNum   Mobile Short-Desc                       "
-                              "Class/Level/Race/Life Force/Composition\n");
-                paging_printf(ch,
-                              "----- ------- --------------------------------------- "
-                              "---------------------------------------\n");
+                paging_printf(
+                    ch,
+                    "Index  VNum   Mobile Short-Desc                       Class/Level/Race/Life Force/Composition\n");
+                paging_printf(
+                    ch,
+                    "----- ------- --------------------------------------- ---------------------------------------\n");
             }
             page_char_to_char(mob, ch, ++found);
         }
@@ -1647,11 +1643,9 @@ ACMD(do_rsearch) {
         if (match) {
             if (!found) {
                 paging_printf(ch,
-                              "Index VNum    Title                              Sector   "
-                              "    Indoors Lit Exits\n");
+                              "Index VNum    Title                              Sector       Mv Indoors Lit Exits\n");
                 paging_printf(ch,
-                              "----- ------- ---------------------------------- "
-                              "------------ ------- --- -------\n");
+                              "----- ------- ---------------------------------- ------------ -- ------- --- -------\n");
             }
 #define MARK_EXIT(r, d)                                                                                                \
     (!(r).exits[d]                       ? "&0&9&b"                                                                    \
@@ -1659,17 +1653,15 @@ ACMD(do_rsearch) {
      : !EXIT_DEST((r).exits[d])          ? "&1&b"                                                                      \
      : EXIT_IS_DOOR((r).exits[d])        ? "&0&3"                                                                      \
                                          : "&0&2")
-#define ROOM_TITLE_LENGTH 34
-
-            paging_printf(
-                ch, "{:4d} [{}{:5d}{}] {} {}{}{}&0 {} {}{} {}{}{}{}{}{}{}{}{}{}{}&0\n", ++found, grn, world[nr].vnum,
-                nrm, ellipsis(world[nr].name, ROOM_TITLE_LENGTH), sectors[world[nr].sector_type].color,
-                sectors[world[nr].sector_type].name, sectors[world[nr].sector_type].mv,
-                ROOM_FLAGGED(nr, ROOM_INDOORS) ? "&3indoors&0 " : "        ",
-                ROOM_FLAGGED(nr, ROOM_ALWAYSLIT) || world[nr].sector_type == SECT_CITY ? "&3&blit&0" : "&9&bno &0",
-                MARK_EXIT(world[nr], NORTH), capdirs[NORTH], MARK_EXIT(world[nr], SOUTH), capdirs[SOUTH],
-                MARK_EXIT(world[nr], EAST), capdirs[EAST], MARK_EXIT(world[nr], WEST), capdirs[WEST],
-                MARK_EXIT(world[nr], UP), capdirs[UP], MARK_EXIT(world[nr], DOWN), capdirs[DOWN]);
+            paging_printf(ch, "{:4d} [{}{:5d}{}] {:<35} {}{:<12} {:2d}&0 {} {}{} {}{}{}{}{}{}{}{}{}{}{}&0\n", ++found,
+                          grn, world[nr].vnum, nrm, ellipsis(world[nr].name, 35), sectors[world[nr].sector_type].color,
+                          sectors[world[nr].sector_type].name, sectors[world[nr].sector_type].mv,
+                          ROOM_FLAGGED(nr, ROOM_INDOORS) ? "&3indoors&0 " : "        ",
+                          ROOM_FLAGGED(nr, ROOM_ALWAYSLIT) || world[nr].sector_type == SECT_CITY ? "&3&blit&0"
+                                                                                                 : "&9&bno &0",
+                          MARK_EXIT(world[nr], NORTH), capdirs[NORTH], MARK_EXIT(world[nr], SOUTH), capdirs[SOUTH],
+                          MARK_EXIT(world[nr], EAST), capdirs[EAST], MARK_EXIT(world[nr], WEST), capdirs[WEST],
+                          MARK_EXIT(world[nr], UP), capdirs[UP], MARK_EXIT(world[nr], DOWN), capdirs[DOWN]);
         }
     }
     if (found)
@@ -2305,9 +2297,7 @@ ACMD(do_csearch) {
             if (match) {
                 if (!found) {
                     paging_printf(ch, "Index RoomNum Zone Command\n");
-                    paging_printf(ch,
-                                  "----- ------- "
-                                  "----------------------------------------------------------\n");
+                    paging_printf(ch, "----- -------    ----------------------------------------------------------\n");
                 }
 
                 vbuflen = sprintf(vbuf, "%4d. [%s%5d%s] ", ++found, grn, world[cmd_room].vnum, nrm);

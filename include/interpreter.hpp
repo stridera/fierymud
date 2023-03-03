@@ -261,20 +261,20 @@ void free_aliases(AliasData *alias_list);
 
 /*. do_olc .*/
 #define SCMD_OLC_REDIT 0
-#define SCMD_OLC_OEDIT 1
-#define SCMD_OLC_ZEDIT 2
+#define SCMD_OLC_ZEDIT 1
+#define SCMD_OLC_OEDIT 2
 #define SCMD_OLC_MEDIT 3
 #define SCMD_OLC_SEDIT 4
-#define SCMD_OLC_SAVEINFO 5
-#define SCMD_OLC_HEDIT 6
-#define SCMD_OLC_TRIGEDIT 7
-#define SCMD_OLC_SDEDIT 8
-#define SCMD_OLC_RCOPY 9
-#define SCMD_OLC_OCOPY 10
-#define SCMD_OLC_ZCOPY 11
-#define SCMD_OLC_MCOPY 12
-#define SCMD_OLC_SCOPY 13
-#define SCMD_OLC_TRIGCOPY 14
+#define SCMD_OLC_HEDIT 5
+#define SCMD_OLC_TRIGEDIT 6
+#define SCMD_OLC_SDEDIT 7
+#define SCMD_OLC_RCOPY 8
+#define SCMD_OLC_OCOPY 9
+#define SCMD_OLC_ZCOPY 10
+#define SCMD_OLC_MCOPY 11
+#define SCMD_OLC_SCOPY 12
+#define SCMD_OLC_TRIGCOPY 13
+#define SCMD_OLC_SAVEINFO 14
 
 /* do_light */
 #define SCMD_LIGHT 0

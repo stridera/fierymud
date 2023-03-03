@@ -420,7 +420,7 @@ void init_skills(void) {
     /*
      * Arguments for spello calls:
      *
-     * spellnum, name, maxmana, minmana, manachng, minpos, targets, violent?,
+     * spellnum, name, maxmana, minmana, manachng, minpos, no_fight, targets, violent?,
      * routines, mem_time, cast_time, damage_type, sphere, pages, quest, wearoff
      *
      * spellnum:  Number of the spell.  Usually the symbolic name as defined in
@@ -441,6 +441,8 @@ void init_skills(void) {
      * minpos  :  Minimum position the caster must be in for the spell to work
      * (usually fighting or standing).
      *
+     * no_fighting : can the spell be cast during combat
+     * 
      * targets :  A "list" of the valid targets
      * for the spell, joined with bitwise OR ('|').
      *
@@ -496,7 +498,7 @@ void init_skills(void) {
            TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true, MAG_DAMAGE, C1, CAST_SPEEDE, DAM_UNDEFINED,
            SKILL_SPHERE_SUMMON, 25, false, nullptr);
 
-    spello(SPELL_BANISH, "banish", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_FIGHT_VICT, true,
+    spello(SPELL_BANISH, "banish", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_FIGHT_VICT, false,
            MAG_MANUAL, C1, CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, true, nullptr);
 
     spello(SPELL_BARKSKIN, "barkskin", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED2,
@@ -610,7 +612,7 @@ void init_skills(void) {
     spello(SPELL_CREMATE, "cremate", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED7, DAM_FIRE,
            SKILL_SPHERE_FIRE, 35, false, nullptr);
 
-    spello(SPELL_CURE_BLIND, "cure blind", 30, 5, 2, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_UNAFFECT, C1,
+    spello(SPELL_CURE_BLIND, "cure blind", 30, 5, 2, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_UNAFFECT, C1,
            CAST_SPEED2, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
 
     spello(SPELL_CURE_CRITIC, "cure critic", 30, 10, 2, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_POINT, C1,
@@ -1243,6 +1245,9 @@ void init_skills(void) {
 
     spello(SPELL_WANDERING_WOODS, "wandering woods", 0, 0, 0, POS_STANDING, false, TAR_IGNORE, false, MAG_MANUAL, C1,
            16, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "The woods around you shift back to their proper form.");
+
+    spello(SPELL_WATER_BLAST, "water blast", 40, 30, 2, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true,
+           MAG_DAMAGE, C1, CAST_SPEEDE, DAM_WATER, SKILL_SPHERE_WATER, 21, false, nullptr);
 
     spello(SPELL_WATERFORM, "waterform", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT,
            C1, CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_WATER, 27, true, "Your form solidifies into flesh once again.");

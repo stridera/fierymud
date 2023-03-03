@@ -268,6 +268,7 @@ ACMD(do_toggle);
 ACMD(do_touch);
 ACMD(do_track);
 ACMD(do_trans);
+ACMD(do_tripup);
 ACMD(do_unban);
 ACMD(do_unbind);
 ACMD(do_use);
@@ -417,11 +418,11 @@ const CommandInfo cmd_info[] = {
     {"bug", POS_PRONE, STANCE_DEAD, do_gen_write, 0, SCMD_BUG, CMD_ANY},
     {"bye", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
 
-    {"cartwheel", POS_STANDING, STANCE_ALERT, do_cartwheel, 0, 0, CMD_NOFIGHT},
     {"cast", POS_SITTING, STANCE_RESTING, do_cast, 1, SCMD_CAST, 0},
     {"cackle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"call", POS_PRONE, STANCE_RESTING, do_call, 0, 0, 0},
     {"camp", POS_STANDING, STANCE_ALERT, do_camp, 1, 0, CMD_NOFIGHT},
+    {"cartwheel", POS_STANDING, STANCE_ALERT, do_cartwheel, 0, 0, CMD_HIDE | CMD_NOFIGHT},
     {"chant", POS_STANDING, STANCE_ALERT, do_cast, 0, SCMD_CHANT, 0},
     {"chuckle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"check", POS_STANDING, STANCE_ALERT, do_not_here, 1, 0, CMD_NOFIGHT},
@@ -755,7 +756,7 @@ const CommandInfo cmd_info[] = {
     {"'", POS_PRONE, STANCE_RESTING, do_say, 0, 0, CMD_MINOR_PARA | CMD_BOUND | CMD_OLC},
     {"save", POS_PRONE, STANCE_SLEEPING, do_save, LVL_GOD, 0, CMD_ANY ^ CMD_CAST},
     {"score", POS_PRONE, STANCE_DEAD, do_score, 0, 0, CMD_ANY},
-    {"scan", POS_STANDING, STANCE_ALERT, do_scan, 0, 0, CMD_NOFIGHT},
+    {"scan", POS_STANDING, STANCE_ALERT, do_scan, 0, 0, CMD_HIDE | CMD_NOFIGHT},
     {"salute", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"scribe", POS_PRONE, STANCE_RESTING, do_scribe, 0, 0, 0},
     {"scare", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
@@ -868,7 +869,7 @@ const CommandInfo cmd_info[] = {
     {"transfer", POS_PRONE, STANCE_DEAD, do_trans, LVL_GOD, 0, CMD_ANY},
     {"trigedit", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_TRIGEDIT, 0},
     {"trigcopy", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_TRIGCOPY, 0},
-    {"trip", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
+    {"tripup", POS_STANDING, STANCE_ALERT, do_tripup, 1, 0, TAR_CONTACT},
     {"trophy", POS_PRONE, STANCE_DEAD, do_trophy, 0, 0, CMD_ANY},
     {"tug", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"twibble", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
