@@ -2157,36 +2157,6 @@ void hit(CharData *ch, CharData *victim, int type) {
         }
     }
 
-    /* adjust for additional effects like Displacement */
-    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-        int displaced, mtype;
-        mtype = type - TYPE_HIT; /* get the damage message */
-
-        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
-            if (random_number(1, 4) == 1) /* 25% chance to ignore damage */
-                displaced = true;
-        }
-
-        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-            if (random_number(1, 2) == 1) /* 50% chance to ignore damage */
-                displaced = true;
-        }
-
-        if (displaced == true) {
-            sprintf(buf, "&9&b$n takes a guess at $N's position but misses with $s %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_NOTVICT);
-            sprintf(buf, "&9&bYou take a guess at $N's position but miss with your %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_CHAR);
-            sprintf(buf, "&9&b$n takes a guess your position but misses with $s %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_VICT);
-            set_fighting(victim, ch, true);
-            return;
-        }
-    }
-
     /* The attacker missed the victim. */
     if (!dam) {
         damage(ch, victim, 0, type);
