@@ -45,6 +45,7 @@
 #define MTRIG_CAST (1u << 15u)     /* mob is target of cast      */
 #define MTRIG_LEAVE (1u << 16u)    /* someone leaves room seen   */
 #define MTRIG_DOOR (1u << 17u)     /* door manipulated in room   */
+#define MTRIG_LOOK (1u << 18u)     /* the mob is looked at       */
 #define MTRIG_TIME (1u << 19u)     /* trigger based on game hour */
 
 /* obj trigger types */
@@ -60,6 +61,7 @@
 #define OTRIG_WEAR (1u << 9u)     /* character tries to wear obj */
 #define OTRIG_DEATH (1u << 10u)   /* character dies             */
 #define OTRIG_REMOVE (1u << 11u)  /* character tries to remove obj */
+#define OTRIG_LOOK (1u << 12u)    /* object is looked at        */
 #define OTRIG_LOAD (1u << 14u)    /* the object is loaded       */
 #define OTRIG_CAST (1u << 15u)    /* object targeted by spell  */
 #define OTRIG_LEAVE (1u << 16u)   /* some leaves room seen      */
@@ -196,6 +198,9 @@ int door_wtrigger(CharData *actor, int subcmd, int dir);
 void time_mtrigger(CharData *ch);
 void time_otrigger(ObjData *obj);
 void time_wtrigger(RoomData *room);
+
+int look_otrigger(ObjData *obj, CharData *actor, const char *arg);
+int look_mtrigger(CharData *ch, CharData *actor, const char *arg);
 
 void reset_wtrigger(RoomData *room);
 

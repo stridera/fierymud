@@ -1311,6 +1311,8 @@ void look_at_target(CharData *ch, char *argument) {
 
     /* Is the target a character? */
     if (found_char) {
+        if (!look_mtrigger(found_char, ch, arg))
+            return;
         print_char_to_char(found_char, ch, SHOW_FULL_DESC);
         if (ch != found_char) {
             act("$n looks at you.", true, ch, 0, found_char, TO_VICT);
@@ -1326,21 +1328,30 @@ void look_at_target(CharData *ch, char *argument) {
 
     /* Does the argument match an extra desc in the char's equipment? */
     for (j = 0; j < NUM_WEARS; j++)
-        if (GET_EQ(ch, j) && CAN_SEE_OBJ(ch, GET_EQ(ch, j)))
+        if (GET_EQ(ch, j) && CAN_SEE_OBJ(ch, GET_EQ(ch, j))) {
+            if (!look_otrigger(obj, ch, arg))
+                return;
             if (consider_obj_exdesc(GET_EQ(ch, j), arg, ch, number))
                 return;
+        }
 
     /* Does the argument match an extra desc in the char's inventory? */
     for (obj = ch->carrying; obj; obj = obj->next_content)
-        if (CAN_SEE_OBJ(ch, obj))
+        if (CAN_SEE_OBJ(ch, obj)) {
+            if (!look_otrigger(obj, ch, arg))
+                return;
             if (consider_obj_exdesc(obj, arg, ch, number))
                 return;
+        }
 
     /* Does the argument match an extra desc of an object in the room? */
     for (obj = world[ch->in_room].contents; obj; obj = obj->next_content)
-        if (CAN_SEE_OBJ(ch, obj))
+        if (CAN_SEE_OBJ(ch, obj)) {
+            if (!look_otrigger(obj, ch, arg))
+                return;
             if (consider_obj_exdesc(obj, arg, ch, number))
                 return;
+        }
 
     /* If an object was found back in generic_find */
     if (bits)
@@ -1416,6 +1427,7 @@ ACMD(do_read) {
 }
 
 ACMD(do_look) {
+
     int look_type;
     char *orig_arg = argument;
 
@@ -1458,6 +1470,7 @@ ACMD(do_examine) {
         char_printf(ch, "Examine what?\n");
         return;
     }
+
     look_at_target(ch, arg);
 
     generic_find(arg, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_CHAR_ROOM | FIND_OBJ_EQUIP, ch, &vict, &obj);
