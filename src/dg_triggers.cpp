@@ -958,10 +958,6 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name) {
     } else
         str = name;
 
-            char_printf(actor, "str is {}.\n", str);
-            char_printf(actor, "name is {}.\n", name);
-            char_printf(actor, "object name is {}.\n", obj->name);
-
     for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
         if (GET_TRIG_ARG(t) && word_check(str, GET_TRIG_ARG(t)) || 
           (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) && isname(str, obj->name)) {
