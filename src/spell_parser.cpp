@@ -1599,6 +1599,10 @@ bool find_spell_target(int spellnum, CharData *ch, char *t, int *target_status, 
     if (IS_SET(SINFO.targets, TAR_IGNORE)) {
         *target_status = TARGET_ALL_ROOM;
         return true;
+    } else if (IS_SET(SINFO.targets, TAR_SELF_ONLY)) {
+        *tch = ch;
+        *target_status = TARGET_SELF;
+        return true;
     } else if (*t) {
         if ((IS_SET(SINFO.targets, TAR_CHAR_ROOM))) {
             if ((*tch = find_char_in_room(&world[ch->in_room], context)) != nullptr) {

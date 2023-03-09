@@ -458,7 +458,10 @@ void init_skills(void) {
      *
      * cast_time:
      *
-     * damage_type:
+     * damage_type:  Choose the damage type of the spell.  Note, this does not
+     * mean the spell actually does damage.  Spells with this field set to 
+     * 'undefined' and not SKILL_SPHERE_HEAL are able to be cast more quickly 
+     * under the Quick Chant check as they are assumed to be non-combat spells.
      *
      * sphere:
      *
@@ -697,6 +700,9 @@ void init_skills(void) {
     spello(SPELL_DISINTEGRATE, "disintegrate", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT,
            true, MAG_DAMAGE | MAG_MANUAL, C1, CAST_SPEEDF, DAM_ACID, SKILL_SPHERE_GENERIC, 27, false, nullptr);
 
+    spello(SPELL_DISPLACEMENT, "displacement", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_MENTAL, SKILL_SPHERE_PROT, 19, false, "&9&bYour image solidifies.&0");
+
     spello(SPELL_DIVINE_BOLT, "divine bolt", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT,
            true, MAG_DAMAGE, C1, CAST_SPEED3, DAM_ALIGN, SKILL_SPHERE_GENERIC, 5, false, nullptr);
 
@@ -816,6 +822,9 @@ void init_skills(void) {
     spello(SPELL_GREATER_ENDURANCE, "greater endurance", 50, 30, 5, POS_STANDING, false, TAR_CHAR_ROOM, false,
            MAG_AFFECT, C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 11, false,
            "Your endurance returns to normal.");
+
+    spello(SPELL_GREATER_DISPLACEMENT, "greater displacement", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false, MAG_AFFECT, C1,
+           CAST_SPEED6, DAM_MENTAL, SKILL_SPHERE_PROT, 19, true, "&9&bYour image solidifies.&0");
 
     spello(SPELL_GREATER_VITALITY, "greater vitality", 50, 30, 5, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT,
            C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 11, false, "Your magical vitality drains away.");
