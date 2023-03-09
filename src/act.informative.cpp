@@ -193,6 +193,8 @@ void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_ar
 
     case SHOW_BASIC_DESC:
     case SHOW_FULL_DESC:
+        if (!look_otrigger(obj, ch, arg))
+            return;
         if (obj->ex_description && !(GET_OBJ_TYPE(obj) == ITEM_BOARD && is_number(additional_args)))
             char_printf(ch, "{}\n", obj->ex_description->description);
         if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON)
@@ -1268,21 +1270,26 @@ static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *add
             /* First extra desc: show object normally */
             print_obj_to_char(obj, ch, SHOW_FULL_DESC, additional_args);
         else {
+            if (!look_otrigger(obj, ch, arg))
+                return false;
             /* For subsequent extra descs, suppress special object output */
             page_string(ch, desc);
             page_string(ch, "\r\n");
         }
     } else if (!isname(arg, obj->name))
         return false;
-    else if (GET_OBJ_TYPE(obj) == ITEM_NOTE)
+    else if (GET_OBJ_TYPE(obj) == ITEM_NOTE) {
         print_obj_to_char(obj, ch, SHOW_FULL_DESC, nullptr);
-    else if (GET_OBJ_TYPE(obj) == ITEM_BOARD) {
+    } else if (GET_OBJ_TYPE(obj) == ITEM_BOARD) {
         if (is_number(additional_args))
             read_message(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), atoi(additional_args));
         else
             look_at_board(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), obj);
-    } else
+    } else {
+        if (!look_otrigger(obj, ch, arg))
+            return false;
         act("You see nothing special about $p.", false, ch, obj, 0, TO_CHAR);
+    }
     return true;
 }
 
@@ -1313,6 +1320,7 @@ void look_at_target(CharData *ch, char *argument) {
     if (found_char) {
         if (!look_mtrigger(found_char, ch, arg))
             return;
+
         print_char_to_char(found_char, ch, SHOW_FULL_DESC);
         if (ch != found_char) {
             act("$n looks at you.", true, ch, 0, found_char, TO_VICT);
@@ -1329,8 +1337,6 @@ void look_at_target(CharData *ch, char *argument) {
     /* Does the argument match an extra desc in the char's equipment? */
     for (j = 0; j < NUM_WEARS; j++)
         if (GET_EQ(ch, j) && CAN_SEE_OBJ(ch, GET_EQ(ch, j))) {
-            if (!look_otrigger(obj, ch, arg))
-                return;
             if (consider_obj_exdesc(GET_EQ(ch, j), arg, ch, number))
                 return;
         }
@@ -1338,8 +1344,6 @@ void look_at_target(CharData *ch, char *argument) {
     /* Does the argument match an extra desc in the char's inventory? */
     for (obj = ch->carrying; obj; obj = obj->next_content)
         if (CAN_SEE_OBJ(ch, obj)) {
-            if (!look_otrigger(obj, ch, arg))
-                return;
             if (consider_obj_exdesc(obj, arg, ch, number))
                 return;
         }
@@ -1347,16 +1351,14 @@ void look_at_target(CharData *ch, char *argument) {
     /* Does the argument match an extra desc of an object in the room? */
     for (obj = world[ch->in_room].contents; obj; obj = obj->next_content)
         if (CAN_SEE_OBJ(ch, obj)) {
-            if (!look_otrigger(obj, ch, arg))
-                return;
             if (consider_obj_exdesc(obj, arg, ch, number))
                 return;
         }
 
     /* If an object was found back in generic_find */
-    if (bits)
+    if (bits) {
         print_obj_to_char(found_obj, ch, SHOW_FULL_DESC, number);
-    else
+    } else
         char_printf(ch, "You do not see that here.\n");
 }
 

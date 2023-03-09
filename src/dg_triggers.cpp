@@ -567,16 +567,14 @@ int look_mtrigger(CharData *ch, CharData *actor, const char *str) {
         return ret_val;
 
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
-        if ((!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) || is_substring(GET_TRIG_ARG(t), str)) {
-            if (TRIGGER_CHECK(t, OTRIG_LOOK) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
-                if (actor)
-                    ADD_UID_VAR(buf, t, actor, "actor");
-                if (str) {
-                    add_var(&GET_TRIG_VARS(t), "arg", str);
-                }
-                /* Don't allow a look to take place, if the mob is purged. */
-                ret_val = (script_driver(&ch, t, OBJ_TRIGGER, TRIG_NEW) && ch);
+        if (TRIGGER_CHECK(t, MTRIG_LOOK) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
+            if (actor)
+                ADD_UID_VAR(buf, t, actor, "actor");
+            if (str) {
+                add_var(&GET_TRIG_VARS(t), "arg", str);
             }
+            /* Don't allow a look to take place, if the mob is purged. */
+            ret_val = (script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW) && ch);
         }
     }
 
@@ -940,17 +938,33 @@ void time_otrigger(ObjData *obj) {
     }
 }
 
-int look_otrigger(ObjData *obj, CharData *actor, const char *str) {
+int look_otrigger(ObjData *obj, CharData *actor, char *name) {
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int ret_val = 1;
+    FindContext context;
+    const char *str;
+    int num;
+    char *pos;
 
     if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_LOOK))
         return ret_val;
 
+
+    if ((pos = strchr(name, '.'))) {
+        num = atoi(name);
+        name = ++pos;
+        str = name;
+    } else
+        str = name;
+
+            char_printf(actor, "str is {}.\n", str);
+            char_printf(actor, "name is {}.\n", name);
+            char_printf(actor, "object name is {}.\n", obj->name);
+
     for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
-        if (((!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) && (isname(str, obj->name))) ||
-            (GET_TRIG_ARG(t) && is_substring(GET_TRIG_ARG(t), str))) {
+        if (GET_TRIG_ARG(t) && word_check(str, GET_TRIG_ARG(t)) || 
+          (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t)) && isname(str, obj->name)) {
             if (TRIGGER_CHECK(t, OTRIG_LOOK) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
                 if (actor)
                     ADD_UID_VAR(buf, t, actor, "actor");
@@ -959,7 +973,7 @@ int look_otrigger(ObjData *obj, CharData *actor, const char *str) {
 
                 /* Don't allow a look to take place, if the object is purged. */
                 ret_val = (script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj);
-            }
+            }          
         } else
             continue;
     }
