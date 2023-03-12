@@ -1141,6 +1141,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
+
         eff[0].location = APPLY_AC;
         eff[0].modifier = 10 + (skill / 20); /* max 15 */
         eff[0].duration = 10 + (skill / 50); /* max 12 */
@@ -1152,6 +1159,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Check for other types of armor spells */
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         eff[0].location = APPLY_AC;
         eff[0].modifier = 7 + (skill / 9);  /* max 18 */
@@ -1268,6 +1282,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         eff[0].location = APPLY_AC;
         eff[0].modifier = 10 + (skill / 6);    /* max 25 */
@@ -1479,6 +1500,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         /* Alignement Check! */
         if (IS_GOOD(victim)) {
@@ -1980,6 +2008,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
+
         eff[0].location = APPLY_AC;
         eff[0].modifier = 15 + (skill / 16); /* max 21 */
         eff[0].duration = 5 + (skill / 14);  /* max 12 */
@@ -2027,6 +2062,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* check for exclusion of other armor spells */
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         eff[0].location = APPLY_AC;
         eff[0].modifier = 5 + (skill / 14); /* max 12 */
@@ -2204,6 +2246,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
          * well */
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         eff[0].location = APPLY_AC;
         eff[0].modifier = 5 + (skill / 16); /* max 11 */
