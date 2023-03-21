@@ -1630,6 +1630,10 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
         if (EFF_FLAGGED(victim, EFF_SANCTUARY) || EFF_FLAGGED(victim, EFF_STONE_SKIN))
             dam >>= 1;
 
+        /* Ranger players deal bonus damage for fighting with two weapons */
+        if (GET_CLASS(ch) == CLASS_RANGER && !IS_NPC(ch) && (GET_EQ(ch, WEAR_WIELD2) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON))
+            dam *= 1.2;
+
         /* Protection from evil/good takes 80% damage */
         if (EFF_FLAGGED(victim, EFF_PROTECT_EVIL) && GET_ALIGNMENT(ch) <= -500 && GET_ALIGNMENT(victim) >= 500)
             dam *= 0.8;
