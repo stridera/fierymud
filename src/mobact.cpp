@@ -440,13 +440,6 @@ void mob_attack(CharData *ch, CharData *victim) {
     if (EFF_FLAGGED(ch, EFF_MESMERIZED) || EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS))
         return;
 
-/*    /* See if anyone is guarding the victim.
-     * But guarding doesn't apply if this NPC was already fighting the victim.
-    if (FIGHTING(ch) != victim)
-        victim = check_guard(ch, victim, false);
-
-*/
-
     /* Mob should not execute any special mobile AI procedures. */
     if (!MOB_FLAGGED(ch, MOB_NO_CLASS_AI)) {
 
