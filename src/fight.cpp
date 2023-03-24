@@ -1978,13 +1978,6 @@ void hit(CharData *ch, CharData *victim, int type) {
         return;
     }
 
-    /* DO NOT DO THIS -- Caller should go through set_battling(), as noted at top of page.
-    Target switches should be checked in the individual command or function with switch_ok(), not here */
-
-    /* If you were fighting someone else, you're going to switch targets. 
-    if (ch->target && ch->target != victim)
-        stop_fighting(ch); */
-
     aggro_lose_spells(ch);
 
     /* See if anyone is guarding the victim.
