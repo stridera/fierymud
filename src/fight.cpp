@@ -1978,10 +1978,6 @@ void hit(CharData *ch, CharData *victim, int type) {
         return;
     }
 
-    /* If you were fighting someone else, you're going to switch targets. */
-    if (ch->target && ch->target != victim)
-        stop_fighting(ch);
-
     aggro_lose_spells(ch);
 
     /* See if anyone is guarding the victim.
@@ -2373,7 +2369,11 @@ void perform_violence(void) {
                 secondary_hits *= 2;
             if (EFF_FLAGGED(ch, EFF_BLUR))
                 secondary_hits += 2;
+            if (EFF_FLAGGED(ch, EFF_NIMBLE))
+                secondary_hits += 1;
         }
+
+
 
         /* Chance for NPCs to switch. */
         if (IS_NPC(ch) && GET_SKILL(ch, SKILL_SWITCH) && !EFF_FLAGGED(ch, EFF_BLIND) &&

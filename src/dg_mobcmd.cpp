@@ -36,6 +36,7 @@
 #include "chars.hpp"
 #include "comm.hpp"
 #include "conf.hpp"
+#include "constants.hpp"
 #include "damage.hpp"
 #include "db.hpp"
 #include "dg_scripts.hpp"
@@ -1101,4 +1102,124 @@ ACMD(do_mperform) {
     }
 
     call_magic(ch, victim, nullptr, songnum, level, SAVING_SPELL);
+}
+
+/* syntax: mroomflag <target> <flag> <on/off> */
+ACMD(do_mroomflag) {
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int target, flag;
+
+    if (!MOB_OR_IMPL(ch)) {
+        char_printf(ch, "Mob wants to flag: {}\n", argument);
+        return;
+    }
+    
+    argument = two_arguments(argument, arg1, arg2);
+    skip_spaces(&argument);
+
+    if (!*arg1 || !*arg2) {
+        mob_log(ch, "mroomflag: bad syntax");
+        return;
+    }
+
+    target = find_mob_target_room(ch, arg1);
+
+    if (target == NOWHERE)
+        mob_log(ch, "target is an invalid room");
+
+    flag = search_block(arg2, room_bits, false);
+
+    if (flag < 0) {
+        sprintf(buf, "mroomflag called with unknown flag '%s'", arg2);
+        mob_log(ch, buf);
+        return;
+    } else {
+        if (!strcasecmp(argument, "on"))
+            SET_FLAG(ROOM_FLAGS(target), flag);
+        else if (!strcasecmp(argument, "off"))
+            REMOVE_FLAG(ROOM_FLAGS(target), flag);
+    }
+}
+
+/* syntax: mobjflag <target> <flag> <on/off> */
+ACMD(do_mobjflag) {
+    ObjData *obj;
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int flag;
+
+    if (!MOB_OR_IMPL(ch)) {
+        char_printf(ch, "Mob wants to flag: {}\n", argument);
+        return;
+    }
+    
+    argument = two_arguments(argument, arg1, arg2);
+    skip_spaces(&argument);
+
+    if (!*arg1 || !*arg2) {
+        mob_log(ch, "mobjflag: bad syntax");
+        return;
+    }
+
+    if (!(obj = find_obj_for_mtrig(ch, arg1))) {
+        sprintf(buf, "mobjflag: victim (%s) not found", arg1);
+        mob_log(ch, buf);
+        return;
+    }
+
+    flag = search_block(arg2, extra_bits, false);
+
+    if (flag < 0) {
+        sprintf(buf, "mobjflag called with unknown flag '%s'", arg2);
+        mob_log(ch, buf);
+        return;
+    } else {
+        if (!strcasecmp(argument, "on"))
+            SET_FLAG(GET_OBJ_FLAGS(obj), flag);
+        else if (!strcasecmp(argument, "off"))
+            REMOVE_FLAG(GET_OBJ_FLAGS(obj), flag);
+    }
+}
+
+/* syntax: mmobflag <target> <flag> <on/off> */
+ACMD(do_mmobflag) {
+    CharData *victim;
+    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
+    int flag;
+
+    if (!MOB_OR_IMPL(ch)) {
+        char_printf(ch, "Mob wants to flag: {}\n", argument);
+        return;
+    }
+    
+    argument = two_arguments(argument, arg1, arg2);
+    skip_spaces(&argument);
+
+    if (!*arg1 || !*arg2) {
+        mob_log(ch, "mmobflag: bad syntax");
+        return;
+    }
+
+    if (!(victim = find_char_for_mtrig(ch, arg1))) {
+        sprintf(buf, "mmobflag: victim (%s) not found", arg1);
+        mob_log(ch, buf);
+        return;
+    }
+
+    if (!IS_NPC(victim)) {
+        sprintf(buf, "mmobflag: victim (%s) is not NPC", arg1);
+        mob_log(ch, buf);
+        return;
+    } else {
+        flag = search_block(arg2, action_bits, false);
+        if (flag < 0) {
+            sprintf(buf, "mmobflag called with unknown flag '%s'", arg2);
+            mob_log(ch, buf);
+            return;
+        } else {
+            if (!strcasecmp(argument, "on"))
+                SET_FLAG(MOB_FLAGS(victim), flag);
+            else if (!strcasecmp(argument, "off"))
+                REMOVE_FLAG(MOB_FLAGS(victim), flag);
+        }
+    }
 }

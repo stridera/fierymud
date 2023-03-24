@@ -445,6 +445,8 @@ extern flagvector *ALL_FLAGS;
 #define GET_EX_HIT(ch) ((ch)->mob_specials.ex_hit)
 #define GET_EX_MAX_HIT(ch) ((ch)->mob_specials.ex_max_hit)
 #define GET_EX_MAIN_HP(ch) ((ch)->mob_specials.ex_main_hp)
+#define GET_EX_COPPER(ch) ((ch)->mob_specials.ex_copper)
+#define GET_EX_SILVER(ch) ((ch)->mob_specials.ex_silver)
 #define GET_EX_GOLD(ch) ((ch)->mob_specials.ex_gold)
 #define GET_EX_PLATINUM(ch) ((ch)->mob_specials.ex_platinum)
 #define GET_EX_EXP(ch) ((ch)->mob_specials.ex_exp)

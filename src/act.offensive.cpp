@@ -2820,6 +2820,7 @@ ACMD(do_rend) {
     CharData *vict;
     int percent, prob;
     effect eff;
+    bool affected_by_armor_spells(CharData *vict);
 
     if (GET_SKILL(ch, SKILL_REND) == 0) {
         char_printf(ch, "You have no idea how to rend armor.\n");
@@ -2872,18 +2873,39 @@ ACMD(do_rend) {
         act("&9&b$n tries to rend $N's armor but can't make a mark.&0", false, ch, 0, vict, TO_NOTVICT);
         act("&9&b$n tries to rent your armor but can't make a mark.&0", false, ch, 0, vict, TO_VICT);
     } else {
+        int i, counter;
+        const int armor_spell[] = {SPELL_ARMOR,
+                                    SPELL_BARKSKIN,
+                                    SPELL_BONE_ARMOR,
+                                    SPELL_DEMONSKIN,
+                                    SPELL_GAIAS_CLOAK,
+                                    SPELL_ICE_ARMOR,
+                                    SPELL_MIRAGE,
+                                    0};
+
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-        act("&7&bYou shred $N's armor apart!&0", false, ch, 0, vict, TO_CHAR);
-        act("&7&b$n rends $N's armor apart.&0", false, ch, 0, vict, TO_NOTVICT);
-        act("&7&b$n rends your armor apart.&0", false, ch, 0, vict, TO_VICT);
-        memset(&eff, 0, sizeof(eff));
-        eff.type = SKILL_REND;
-        eff.duration = (GET_SKILL(ch, SKILL_REND) / 10);
-        eff.modifier = -1 - (GET_SKILL(ch, SKILL_REND) / 4) - (dex_app_skill[GET_DEX(ch)].traps / 2) -
-                       (int_app[GET_INT(ch)].bonus);
-        eff.location = APPLY_AC;
-        SET_FLAG(eff.flags, EFF_EXPOSED);
-        effect_to_char(vict, &eff);
+        if (affected_by_armor_spells(vict)) {
+            for (i = 0, counter = 0; armor_spell[i]; i++) {
+                if (affected_by_spell(vict, armor_spell[i])) {
+                    effect_from_char(vict, armor_spell[i]);
+                    act("&9&bYou rob $N of $S magical protection!&0", false, ch, 0, vict, TO_CHAR);
+                    act("&9&b$n robs $N of $S magical protection!&0", false, ch, 0, vict, TO_NOTVICT);
+                    act("&9&b$n robs you of your magical protection!&0", false, ch, 0, vict, TO_VICT);
+                }
+            }
+        } else {
+            act("&7&bYou shred $N's armor apart!&0", false, ch, 0, vict, TO_CHAR);
+            act("&7&b$n rends $N's armor apart.&0", false, ch, 0, vict, TO_NOTVICT);
+            act("&7&b$n rends your armor apart.&0", false, ch, 0, vict, TO_VICT);
+            memset(&eff, 0, sizeof(eff));
+            eff.type = SKILL_REND;
+            eff.duration = (GET_SKILL(ch, SKILL_REND) / 10);
+            eff.modifier = -1 - (GET_SKILL(ch, SKILL_REND) / 4) - (dex_app_skill[GET_DEX(ch)].traps / 2) -
+                          (int_app[GET_INT(ch)].bonus);
+            eff.location = APPLY_AC;
+            SET_FLAG(eff.flags, EFF_EXPOSED);
+            effect_to_char(vict, &eff);
+        }
     }
 
     set_fighting(vict, ch, true);

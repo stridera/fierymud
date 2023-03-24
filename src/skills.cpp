@@ -483,7 +483,10 @@ void init_skills(void) {
      * CAST_SPEEDN 16   8*
      * CAST_SPEEDO 18   9*
      *
-     * damage_type:
+     * damage_type:  Choose the damage type of the spell.  Note, this does not
+     * mean the spell actually does damage.  Spells with this field set to 
+     * 'undefined' and not SKILL_SPHERE_HEAL are able to be cast more quickly 
+     * under the Quick Chant check as they are assumed to be non-combat spells.
      *
      * sphere:
      *
@@ -718,6 +721,9 @@ void init_skills(void) {
     spello(SPELL_DISINTEGRATE, "disintegrate", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT,
            true, MAG_DAMAGE | MAG_MANUAL, C1, CAST_SPEEDF, DAM_ACID, SKILL_SPHERE_GENERIC, 27, false, nullptr);
 
+    spello(SPELL_DISPLACEMENT, "displacement", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false, MAG_AFFECT, C1,
+           CAST_SPEED3, DAM_MENTAL, SKILL_SPHERE_PROT, 19, false, "&9&bYour image solidifies.&0");
+
     spello(SPELL_DIVINE_BOLT, "divine bolt", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT,
            true, MAG_DAMAGE, C1, CAST_SPEEDH, DAM_ALIGN, SKILL_SPHERE_GENERIC, 5, false, nullptr);
 
@@ -837,6 +843,9 @@ void init_skills(void) {
     spello(SPELL_GREATER_ENDURANCE, "greater endurance", 50, 30, 5, POS_STANDING, false, TAR_CHAR_ROOM, false,
            MAG_AFFECT, C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 11, false,
            "Your endurance returns to normal.");
+
+    spello(SPELL_GREATER_DISPLACEMENT, "greater displacement", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false, MAG_AFFECT, C1,
+           CAST_SPEED6, DAM_MENTAL, SKILL_SPHERE_PROT, 19, true, "&9&bYour image solidifies.&0");
 
     spello(SPELL_GREATER_VITALITY, "greater vitality", 50, 30, 5, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT,
            C1, CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 11, false, "Your magical vitality drains away.");
@@ -1048,6 +1057,9 @@ void init_skills(void) {
 
     spello(SPELL_NIGHT_VISION, "night vision", 0, 0, 0, POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY, false,
            MAG_AFFECT, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "Your night vision fades out.");
+
+    spello(SPELL_NIMBLE, "nimble", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false, MAG_AFFECT, C1, CAST_SPEED3,
+           DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 19, false, "Your movements slow to normal.");
 
     spello(SPELL_NOURISHMENT, "nourishment", 0, 0, 0, POS_SITTING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false,
            MAG_POINT, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);

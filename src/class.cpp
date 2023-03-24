@@ -2104,6 +2104,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_SLEEP, CLASS_ILLUSIONIST, CIRCLE_5);
 
     spell_assign(SPELL_DIMENSION_DOOR, CLASS_ILLUSIONIST, CIRCLE_6);
+    spell_assign(SPELL_DISPLACEMENT, CLASS_ILLUSIONIST, CIRCLE_6);
     spell_assign(SPELL_ILLUMINATION, CLASS_ILLUSIONIST, CIRCLE_6);
     spell_assign(SPELL_ISOLATION, CLASS_ILLUSIONIST, CIRCLE_6);
 
@@ -2317,6 +2318,7 @@ void assign_class_skills(void) {
 
     spell_assign(SPELL_HOLY_WORD, CLASS_PALADIN, CIRCLE_10);
 
+
     /* PRIEST */
     skill_assign(SKILL_BLUDGEONING, CLASS_PRIEST, 1);
     skill_assign(SKILL_2H_BLUDGEONING, CLASS_PRIEST, 1);
@@ -2395,6 +2397,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_RESURRECT, CLASS_PRIEST, CIRCLE_11);
 
     spell_assign(SPELL_DRAGONS_HEALTH, CLASS_PRIEST, CIRCLE_12);
+
 
     /* PYROMANCER */
     spell_assign(SPELL_BURNING_HANDS, CLASS_PYROMANCER, CIRCLE_1);
@@ -2482,10 +2485,12 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CHILL_TOUCH, CLASS_RANGER, CIRCLE_3);
 
     spell_assign(SPELL_CURE_SERIOUS, CLASS_RANGER, CIRCLE_4);
+    spell_assign(SPELL_NIMBLE, CLASS_RANGER, CIRCLE_4);
 
     spell_assign(SPELL_SHOCKING_GRASP, CLASS_RANGER, CIRCLE_5);
 
     spell_assign(SPELL_CURE_CRITIC, CLASS_RANGER, CIRCLE_6);
+    spell_assign(SPELL_DISPLACEMENT, CLASS_RANGER, CIRCLE_6);
 
     spell_assign(SPELL_SENSE_LIFE, CLASS_RANGER, CIRCLE_7);
 
@@ -2496,6 +2501,8 @@ void assign_class_skills(void) {
     spell_assign(SPELL_WATER_BLAST, CLASS_RANGER, CIRCLE_10);
 
     spell_assign(SPELL_BLUR, CLASS_RANGER, CIRCLE_11);
+
+    spell_assign(SPELL_GREATER_DISPLACEMENT, CLASS_RANGER, CIRCLE_12);
 
     /* ROGUE */
     skill_assign(SKILL_BLUDGEONING, CLASS_ROGUE, 1);

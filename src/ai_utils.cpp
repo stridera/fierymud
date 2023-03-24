@@ -111,6 +111,7 @@ int value_spell_effect(int flag) {
         return 50;
     case EFF_HASTE:
     case EFF_DISPLACEMENT:
+    case EFF_NIMBLE:
         return 60;
     case EFF_MAJOR_GLOBE:
     case EFF_HARNESS:
