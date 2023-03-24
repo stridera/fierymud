@@ -3706,14 +3706,24 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
             continue;
 
         found = true;
-        if (damage == true)
-            mag_damage(skill, ch, tch, spellnum, savetype);
-        else {
+        if (damage == true) {
+            if (EFF_FLAGGED(ch, EFF_HARNESS)) {
+                effect eff;
+                mag_damage(skill, ch, tch, spellnum, savetype);
+                SET_FLAG(eff.flags, EFF_HARNESS);
+                eff.location = APPLY_NONE;
+                effect_to_char(ch, &eff);
+            } else
+                mag_damage(skill, ch, tch, spellnum, savetype);
+        } else {
             mag_affect(skill, ch, tch, spellnum, savetype, casttype);
             if (spellnum != SPELL_BLINDING_BEAUTY)
                 mag_unaffect(skill, ch, tch, spellnum, savetype);
         }
     }
+    if (damage == true)
+        effect_from_char(ch, EFF_HARNESS);
+        
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
         return CAST_RESULT_CHARGE;
