@@ -1559,6 +1559,30 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
         break;
 
+    case SPELL_DISPLACEMENT:
+    case SPELL_GREATER_DISPLACEMENT:
+
+        if (affected_by_spell(victim, SPELL_DISPLACEMENT) || affected_by_spell(victim, SPELL_GREATER_DISPLACEMENT)) {
+            if (victim != ch)
+                act("$N is already displaced into the shadows.", false, ch, 0, victim, TO_CHAR);
+            else
+                act("You are already displaced into the shadows.", false, ch, 0, victim, TO_CHAR);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (spellnum = SPELL_DISPLACEMENT)
+            SET_FLAG(eff[0].flags, EFF_DISPLACEMENT);
+        else if (spellnum = SPELL_GREATER_DISPLACEMENT)
+            SET_FLAG(eff[0].flags, EFF_GREATER_DISPLACEMENT);
+
+        eff[0].duration = (skill / 50) + ((int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus) / 7); /* max 4 */
+
+        refresh = false;
+        to_char = "&9&b$N's image blurs into the shadows!&0";
+        to_vict = "&9&bYour image blurs into the shadows!&0";
+        to_room = "&9&b$N's image blurs into the shadows!&0";
+        break;
+
     case SPELL_EARTH_BLESSING:
 
         if (GET_LEVEL(ch) < LVL_IMMORT && !IS_NEUTRAL(ch) && casttype == CAST_SPELL) {
