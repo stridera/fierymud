@@ -288,6 +288,8 @@ struct PlayerSpecialData {
 /* Specials used by NPCs, not PCs */
 struct MobSpecialData {
     long nr; /* Mob's rnum                              */
+    int ex_copper;
+    int ex_silver;
     int ex_platinum;
     int ex_gold;
     sbyte ex_face;

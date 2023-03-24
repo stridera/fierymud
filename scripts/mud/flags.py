@@ -659,7 +659,7 @@ EFFECTS = [
     "EFF_MESMERIZED",  # 30  /* Super fasciated by something */
     "EFF_IMMOBILIZED",  # 31 /* Char cannot move             */
     "EFF_LIGHT",  # 32
-    "UNDEFINED",  # Room for future expansion 33
+    "EFF_NIMBLE", # 33
     "EFF_MINOR_PARALYSIS",  # 34
     "EFF_HURT_THROAT",  # 35
     "EFF_FEATHER_FALL",  # 36
