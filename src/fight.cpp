@@ -1978,10 +1978,6 @@ void hit(CharData *ch, CharData *victim, int type) {
         return;
     }
 
-    /* If you were fighting someone else, you're going to switch targets. */
-    if (ch->target && ch->target != victim)
-        stop_fighting(ch);
-
     aggro_lose_spells(ch);
 
     /* See if anyone is guarding the victim.
