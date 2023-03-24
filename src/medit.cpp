@@ -548,17 +548,16 @@ void medit_save_to_disk(int zone_num) {
                     "%s~\n"
                     "%ld %ld %d E\n"
                     "%d %d %d %dd%d+%d %dd%d+%d\n"
-                    "%d %d %ld %d\n"
+                    "%d %d %d %d %ld %d\n"
                     "%d %d %d %d %d %d %d\n",
                     (GET_NAMELIST(mob) && *GET_NAMELIST(mob)) ? GET_NAMELIST(mob) : "undefined",
-                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", buf1, buf2, MOB_FLAGS(mob)[0],
-                    EFF_FLAGS(mob)[0], GET_ALIGNMENT(mob), GET_LEVEL(mob),
-                    20 - mob->mob_specials.ex_hitroll, /* Hitroll -> THAC0 */
-                    GET_EX_AC(mob) / 10, (mob)->mob_specials.ex_hpnumdice, (mob)->mob_specials.ex_hpsizedice,
-                    GET_MOVE(mob), (mob)->mob_specials.ex_damnodice, (mob)->mob_specials.ex_damsizedice,
-                    mob->mob_specials.ex_damroll, GET_EX_GOLD(mob), GET_EX_PLATINUM(mob), GET_EX_EXP(mob), zone,
-                    GET_POS(mob), GET_DEFAULT_POS(mob), GET_SEX(mob), GET_CLASS(mob), GET_RACE(mob),
-                    GET_RACE_ALIGN(mob), GET_SIZE(mob));
+                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", 
+                    buf1, 
+                    buf2, 
+                    MOB_FLAGS(mob)[0], EFF_FLAGS(mob)[0], GET_ALIGNMENT(mob), 
+                    GET_LEVEL(mob), 20 - mob->mob_specials.ex_hitroll, /* Hitroll -> THAC0 */ GET_EX_AC(mob) / 10, (mob)->mob_specials.ex_hpnumdice, (mob)->mob_specials.ex_hpsizedice, GET_MOVE(mob), (mob)->mob_specials.ex_damnodice, (mob)->mob_specials.ex_damsizedice, mob->mob_specials.ex_damroll, 
+                    GET_EX_COPPER(mob), GET_EX_SILVER(mob), GET_EX_GOLD(mob), GET_EX_PLATINUM(mob), GET_EX_EXP(mob), zone, 
+                    GET_POS(mob), GET_DEFAULT_POS(mob), GET_SEX(mob), GET_CLASS(mob), GET_RACE(mob), GET_RACE_ALIGN(mob), GET_SIZE(mob));
 
             /*
              * Deal with Extra stats in case they are there.
@@ -861,6 +860,8 @@ void medit_disp_menu(DescriptorData *d) {
                         GET_MOVE(mob));
     menu += fmt::format("&2&bH&0) Armor Class: (&6{:3}&0)+[&6&b{:3}&0]\t", GET_AC(mob), GET_EX_AC(mob));
     menu += fmt::format("&2&bI&0) Exp         : [&6&b{:9}&0]\n", GET_EX_EXP(mob));
+    menu += fmt::format("&2&bX&0) Copper     : [&6&b{:8}&0]\t&2&bY&0) Silver      : [&6&b{:9}&0]\n", GET_EX_COPPER(mob),
+                        GET_EX_SILVER(mob));
     menu += fmt::format("&2&bJ&0) Gold       : [&6&b{:8}&0]\t&2&bK&0) Platinum    : [&6&b{:9}&0]\n", GET_EX_GOLD(mob),
                         GET_EX_PLATINUM(mob));
     menu += fmt::format("&2&bL&0) Perception : [&6&b{:4}&0]\t\t&2&bM&0) Hiddenness  : [&6&b{:4}&0]\n",
@@ -1092,6 +1093,16 @@ void medit_parse(DescriptorData *d, char *arg) {
             OLC_SCRIPT_EDIT_MODE(d) = SCRIPT_MAIN_MENU;
             dg_script_menu(d);
             return;
+        case 'x':
+        case 'X':
+            OLC_MODE(d) = MEDIT_EX_COPPER;
+            i++;        
+            break;
+        case 'y':
+        case 'Y':
+            OLC_MODE(d) = MEDIT_EX_SILVER;
+            i++;       
+            break; 
         default:
             medit_disp_menu(d);
             return;
@@ -1233,6 +1244,16 @@ void medit_parse(DescriptorData *d, char *arg) {
         GET_EXP(OLC_MOB(d)) = get_set_exp(OLC_MOB(d)->player.class_num, OLC_MOB(d)->player.race,
                                           OLC_MOB(d)->player.level, GET_ZONE(OLC_MOB(d)));
         GET_EXP(OLC_MOB(d)) += GET_EX_EXP(OLC_MOB(d));
+        break;
+
+    case MEDIT_EX_COPPER:
+        GET_EX_COPPER(OLC_MOB(d)) = atol(arg);
+        GET_COPPER(OLC_MOB(d)) += GET_EX_COPPER(OLC_MOB(d));
+        break;
+
+    case MEDIT_EX_SILVER:
+        GET_EX_SILVER(OLC_MOB(d)) = atol(arg);
+        GET_SILVER(OLC_MOB(d)) += GET_EX_SILVER(OLC_MOB(d));
         break;
 
     case MEDIT_EX_GOLD:

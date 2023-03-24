@@ -1141,6 +1141,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
+
         eff[0].location = APPLY_AC;
         eff[0].modifier = 10 + (skill / 20); /* max 15 */
         eff[0].duration = 10 + (skill / 50); /* max 12 */
@@ -1152,6 +1159,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Check for other types of armor spells */
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         eff[0].location = APPLY_AC;
         eff[0].modifier = 7 + (skill / 9);  /* max 18 */
@@ -1268,6 +1282,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         eff[0].location = APPLY_AC;
         eff[0].modifier = 10 + (skill / 6);    /* max 25 */
@@ -1480,6 +1501,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
+
         /* Alignement Check! */
         if (IS_GOOD(victim)) {
             act("You can't protect an evil ally if they are GOOD!", false, ch, 0, 0, TO_CHAR);
@@ -1557,6 +1585,30 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             "overtakes you.\n"
             "You feel seriously ill!&0";
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
+        break;
+
+    case SPELL_DISPLACEMENT:
+    case SPELL_GREATER_DISPLACEMENT:
+
+        if (affected_by_spell(victim, SPELL_DISPLACEMENT) || affected_by_spell(victim, SPELL_GREATER_DISPLACEMENT)) {
+            if (victim != ch)
+                act("$N is already displaced into the shadows.", false, ch, 0, victim, TO_CHAR);
+            else
+                act("You are already displaced into the shadows.", false, ch, 0, victim, TO_CHAR);
+            return CAST_RESULT_CHARGE;
+        }
+
+        if (spellnum = SPELL_DISPLACEMENT)
+            SET_FLAG(eff[0].flags, EFF_DISPLACEMENT);
+        else if (spellnum = SPELL_GREATER_DISPLACEMENT)
+            SET_FLAG(eff[0].flags, EFF_GREATER_DISPLACEMENT);
+
+        eff[0].duration = (skill / 50) + ((int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus) / 7); /* max 4 */
+
+        refresh = false;
+        to_char = "&9&b$N's image blurs into the shadows!&0";
+        to_vict = "&9&bYour image blurs into the shadows!&0";
+        to_room = "&9&b$N's image blurs into the shadows!&0";
         break;
 
     case SPELL_EARTH_BLESSING:
@@ -1980,6 +2032,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
+
         eff[0].location = APPLY_AC;
         eff[0].modifier = 15 + (skill / 16); /* max 21 */
         eff[0].duration = 5 + (skill / 14);  /* max 12 */
@@ -2027,6 +2086,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* check for exclusion of other armor spells */
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
+
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
 
         eff[0].location = APPLY_AC;
         eff[0].modifier = 5 + (skill / 14); /* max 12 */
@@ -2205,6 +2271,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_armor_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
+        if (affected_by_spell(victim, SKILL_REND)) {
+            effect_from_char(victim, SKILL_REND);
+            to_vict = "&7&bThe gaps in your armor are restored.&0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            break; 
+        }
+
         eff[0].location = APPLY_AC;
         eff[0].modifier = 5 + (skill / 16); /* max 11 */
         eff[0].duration = 5 + (skill / 25); /* max 9 */
@@ -2361,6 +2434,15 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].duration = (skill / 21); /* max 4 */
         to_room = "$N's eyes glow a dim neon green.";
         to_vict = "&9&bYour vision sharpens a bit.";
+        break;
+
+    case SPELL_NIMBLE:
+
+        SET_FLAG(eff[0].flags, EFF_NIMBLE);
+        eff[0].duration = 2 + (skill / 21); /* max 6 */
+        to_char = "&1$N starts to move with uncanny grace!&0";
+        to_vict = "&1You start to move with uncanny grace!&0";
+        to_room = "&1$N starts to move with uncanny grace!&0";
         break;
 
     case SPELL_POISON:
@@ -3628,7 +3710,8 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
             mag_damage(skill, ch, tch, spellnum, savetype);
         else {
             mag_affect(skill, ch, tch, spellnum, savetype, casttype);
-            mag_unaffect(skill, ch, tch, spellnum, savetype);
+            if (spellnum != SPELL_BLINDING_BEAUTY)
+                mag_unaffect(skill, ch, tch, spellnum, savetype);
         }
     }
     /* No skill improvement if there weren't any valid targets. */
