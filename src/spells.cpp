@@ -623,6 +623,12 @@ ASPELL(spell_dimension_door) {
         char_printf(ch, "You failed.\n");
         return CAST_RESULT_CHARGE;
     }
+    if (victim->in_room == -1) {
+        char_printf(ch, "You failed.\n");
+        WAIT_STATE(ch, PULSE_VIOLENCE);
+        log("SYSERR: {} tried to dimension door to {} in room -1.", GET_NAME(ch), GET_NAME(victim));
+        return CAST_RESULT_CHARGE;
+    }
     czone = world[ch->in_room].zone;
     tzone = world[victim->in_room].zone;
     if (czone == tzone) {
@@ -884,6 +890,12 @@ ASPELL(spell_heavens_gate) {
     }
     if (victim->in_room == 0)
         return 0;
+    if (victim->in_room == -1) {
+        char_printf(ch, "You failed.\n");
+        WAIT_STATE(ch, PULSE_VIOLENCE);
+        log("SYSERR: {} tried to heavens gate to {} in room -1.", GET_NAME(ch), GET_NAME(victim));
+        return CAST_RESULT_CHARGE;
+    }
     if ((ROOM_FLAGGED(ch->in_room, ROOM_NOWELL) || ROOM_FLAGGED(victim->in_room, ROOM_NOWELL)) ||
         PRF_FLAGGED(victim, PRF_NOFOLLOW)) {
         act("&7A&0 &6&btunnel of &7light&0 &7 appears briefly, then vanishes.&0", true, ch, 0, 0, TO_ROOM);
@@ -938,6 +950,12 @@ ASPELL(spell_hells_gate) {
     }
     if (victim->in_room == 0)
         return 0;
+    if (victim->in_room == -1) {
+        char_printf(ch, "You failed.\n");
+        WAIT_STATE(ch, PULSE_VIOLENCE);
+        log("SYSERR: {} tried to hell gate to {} in room -1.", GET_NAME(ch), GET_NAME(victim));
+        return CAST_RESULT_CHARGE;
+    }
     if ((ROOM_FLAGGED(ch->in_room, ROOM_NOWELL) || ROOM_FLAGGED(victim->in_room, ROOM_NOWELL)) ||
         PRF_FLAGGED(victim, PRF_NOFOLLOW)) {
         act("&9&bThe ground begins to quake and open up, briefly revealing &1hell&9, then closes.&0", true, ch, 0, 0,
@@ -1483,6 +1501,12 @@ ASPELL(spell_moonwell) {
     }
     if (victim->in_room == 0)
         return 0;
+    if (victim->in_room == -1) {
+        char_printf(ch, "You failed.\n");
+        WAIT_STATE(ch, PULSE_VIOLENCE);
+        log("SYSERR: {} tried to moonwell to {} in room -1.", GET_NAME(ch), GET_NAME(victim));
+        return CAST_RESULT_CHARGE;
+    }
     if (GET_LEVEL(ch) < LVL_IMMORT &&
         (ROOM_FLAGGED(ch->in_room, ROOM_NOWELL) || ROOM_FLAGGED(victim->in_room, ROOM_NOWELL) ||
          PRF_FLAGGED(victim, PRF_NOFOLLOW))) {

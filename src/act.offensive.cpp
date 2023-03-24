@@ -2585,7 +2585,8 @@ ACMD(do_cartwheel) {
     percent = random_number(1, 100);
     percent += GET_SKILL(vict, SKILL_DODGE);
 
-    if (prob > percent) {
+    if (prob > 0.9 * percent) {
+        /* attack evaded */
         if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)) {
             act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!", false,
                 ch, 0, vict, TO_CHAR);
@@ -2598,13 +2599,31 @@ ACMD(do_cartwheel) {
             GET_POS(ch) = POS_SITTING;
             GET_STANCE(ch) = STANCE_ALERT;
             set_fighting(vict, ch, false);
+            return;
+        /* hits */
         } else {
-            act("&0&bYou spring into a cartwheel, knocking $N off balance.&0", false, ch, 0, vict, TO_CHAR);
-            act("&0&b$N springs into a cartwheel and knocks you down!&0", false, vict, 0, ch, TO_CHAR);
-            act("&0&b$N springs into a cartwheel, knocking down $n!&0", false, vict, 0, ch, TO_NOTVICT);
-            WAIT_STATE(ch, PULSE_VIOLENCE);
+            /* full success, knock down victim */
+            if (prob > percent) {
+                act("&0&bYou spring into a cartwheel, knocking $N off balance.&0", false, ch, 0, vict, TO_CHAR);
+                act("&0&b$N springs into a cartwheel and knocks you down!&0", false, vict, 0, ch, TO_CHAR);
+                act("&0&b$N springs into a cartwheel, knocking down $n!&0", false, vict, 0, ch, TO_NOTVICT);
+                WAIT_STATE(ch, PULSE_VIOLENCE);
 
-            /* attack was successful, see if a backstab can be attempted */
+            /* partial success, both fall down */
+            } else if (prob > 0.9 * percent) {
+                act("&0&6You manage to take $N down but also &bfall down yourself!&0", false, ch, 0, vict, TO_CHAR);
+                act("&0&6$N cartwheels at you and knocks you down - &bbut falls in the process!&0", false, vict, 0, ch,
+                    TO_CHAR);
+                act("&0&6$N cartwheels at $n, knocking $m down and &bfalling in the process!&0", false, vict, 0, ch,
+                    TO_NOTVICT);
+                WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+                if (AWAKE(ch)) {
+                    GET_POS(ch) = POS_SITTING;
+                    GET_STANCE(ch) = STANCE_ALERT;
+                }
+            }
+
+            /* attack was at least partially successful, see if a backstab can be attempted */
             GET_HIDDENNESS(ch) = hidden;
             weapon = GET_EQ(ch, WEAR_WIELD);
             if (!weapon)
@@ -2621,8 +2640,16 @@ ACMD(do_cartwheel) {
                 if (IS_WEAPON_PIERCING(weapon)) {
                     act("&0&bYou use the momentum to backstab $N!&0", false, ch, 0, vict, TO_CHAR);
                     do_backstab(ch, arg, 0, 0);
-                } else
                     set_fighting(ch, vict, false);
+                } else {
+                    /* no piercing weapon */
+                    damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants to stand back up */
+                    set_fighting(ch, vict, false);
+                }
+            } else {
+                /* no weapon */
+                damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants to stand back up */
+                set_fighting(ch, vict, false);
             }
 
             WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
@@ -2632,56 +2659,20 @@ ACMD(do_cartwheel) {
                 GET_STANCE(vict) = STANCE_ALERT;
             }
         }
-    } else if (percent > 0.95 * prob) {
-        act("&0&6You manage to take $N down but also &bfall down yourself!&0", false, ch, 0, vict, TO_CHAR);
-        act("&0&6$N cartwheels at you and knocks you down - &bbut falls in the process!&0", false, vict, 0, ch,
-            TO_CHAR);
-        act("&0&6$N cartwheels at $n, knocking $m down and &bfalling in the process!&0", false, vict, 0, ch,
-            TO_NOTVICT);
-        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-        WAIT_STATE(vict, (PULSE_VIOLENCE * 3) / 2);
-
-        /* attempt was partially successful, so do backstab */
-        GET_HIDDENNESS(ch) = hidden;
-        weapon = GET_EQ(ch, WEAR_WIELD);
-        if (!weapon)
-            weapon = GET_EQ(ch, WEAR_WIELD2);
-        if (!weapon)
-            weapon = GET_EQ(ch, WEAR_2HWIELD);
-
-        if (weapon) {
-            /* If wielding something unsuitable in first hand, use weapon in second hand */
-            if (!IS_WEAPON_PIERCING(weapon) && GET_EQ(ch, WEAR_WIELD2))
-                weapon = GET_EQ(ch, WEAR_WIELD2);
-
-            if (IS_WEAPON_PIERCING(weapon)) {
-                act("&0&bYou use the momentum to backstab $N!&0", false, ch, 0, vict, TO_CHAR);
-                do_backstab(ch, arg, 0, 0);
-            } else
-                set_fighting(ch, vict, false);
-        }
-        if (AWAKE(vict) && IN_ROOM(ch) == IN_ROOM(vict)) {
-            abort_casting(vict);
-            GET_POS(vict) = POS_SITTING;
-            GET_STANCE(vict) = STANCE_ALERT;
-        }
-        if (AWAKE(ch)) {
-            GET_POS(ch) = POS_SITTING;
-            GET_STANCE(ch) = STANCE_ALERT;
-        }
     } else {
-        act("&0&6$N sidesteps your fancy cartwheel.&0", false, ch, 0, vict, TO_CHAR);
+        act("&0&6$N sidesteps your fancy cartwheel and you land in a heap!&0", false, ch, 0, vict, TO_CHAR);
         act("&0&6$N cartwheel charges at you but tumbles right past!&0", false, vict, 0, ch, TO_CHAR);
         act("&0&6$N carthweel charges at $n but tumbles right past!&0", false, vict, 0, ch, TO_NOTVICT);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants to stand back up */
+        set_fighting(vict, ch, false);
         if (AWAKE(ch)) {
             GET_POS(ch) = POS_SITTING;
             GET_STANCE(ch) = STANCE_ALERT;
         }
-        set_fighting(vict, ch, false);
-
-        improve_skill_offensively(ch, vict, SKILL_CARTWHEEL);
     }
+
+    improve_skill_offensively(ch, vict, SKILL_CARTWHEEL);
 } /* end cartwheel */
 
 ACMD(do_lure) {
