@@ -932,6 +932,8 @@ static int search_for_doors(CharData *ch, char *arg) {
                 (CH_EXIT(ch, door)->keyword && arg && isname(arg, CH_EXIT(ch, door)->keyword)) ||
                 GET_INT(ch) > random_number(0, 200)) {
                 std::string kw{CH_EXIT(ch, door)->keyword ? CH_EXIT(ch, door)->keyword : "door"};
+                std::string::size_type pos = kw.find(" ");
+                kw = kw.substr(0, pos);
                 char_printf(ch, "You have found{} hidden {} {}.&0", isplural(kw.c_str()) ? "" : " a", kw,
                             dirpreposition[door]);
                 auto exit_str = fmt::format("$n has found{} hidden {} {}.", isplural(kw.c_str()) ? "" : " a", kw,
