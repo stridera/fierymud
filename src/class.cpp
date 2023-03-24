@@ -1675,9 +1675,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_INVISIBLE, CLASS_BARD, CIRCLE_5);
     spell_assign(SPELL_SANE_MIND, CLASS_BARD, CIRCLE_5);
 
-    spell_assign(SPELL_HARM, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_HASTE, CLASS_BARD, CIRCLE_6);
-    spell_assign(SPELL_HEAL, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_SILENCE, CLASS_BARD, CIRCLE_6);
     spell_assign(SPELL_VICIOUS_MOCKERY, CLASS_BARD, CIRCLE_6);
 
