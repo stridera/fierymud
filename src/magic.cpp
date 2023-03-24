@@ -3628,7 +3628,8 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
             mag_damage(skill, ch, tch, spellnum, savetype);
         else {
             mag_affect(skill, ch, tch, spellnum, savetype, casttype);
-            mag_unaffect(skill, ch, tch, spellnum, savetype);
+            if (spellnum != SPELL_BLINDING_BEAUTY)
+                mag_unaffect(skill, ch, tch, spellnum, savetype);
         }
     }
     /* No skill improvement if there weren't any valid targets. */
