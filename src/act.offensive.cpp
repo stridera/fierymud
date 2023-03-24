@@ -2890,7 +2890,7 @@ ACMD(do_rend) {
                     effect_from_char(vict, armor_spell[i]);
                     act("&9&bYou rob $N of $S magical protection!&0", false, ch, 0, vict, TO_CHAR);
                     act("&9&b$n robs $N of $S magical protection!&0", false, ch, 0, vict, TO_NOTVICT);
-                    act("&9&b$n robe you of your magical protection!&0", false, ch, 0, vict, TO_VICT);
+                    act("&9&b$n robs you of your magical protection!&0", false, ch, 0, vict, TO_VICT);
                 }
             }
         } else {
