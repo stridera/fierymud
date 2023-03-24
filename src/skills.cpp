@@ -486,7 +486,7 @@ void init_skills(void) {
            SKILL_SPHERE_GENERIC, 21, false, nullptr);
 
     spello(SPELL_ANIMATE_DEAD, "animate dead", 75, 15, 3, POS_STANDING, false, TAR_OBJ_ROOM, false, MAG_SUMMON, C1,
-           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_DEATH, 21, false, nullptr);
+           CAST_SPEED3, DAM_UNDEFINED, SKILL_SPHERE_DEATH, 21, false, "Your undead creation crumbles to dust.");
 
     spello(SPELL_ARMOR, "armor", 30, 15, 3, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED2,
            DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "You feel less protected.");
@@ -1032,7 +1032,7 @@ void init_skills(void) {
            MAG_POINT, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
 
     spello(SPELL_PHANTASM, "phantasm", 0, 0, 0, POS_STANDING, false, TAR_IGNORE, false, MAG_SUMMON, C1, CAST_SPEED4,
-           DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 12, false, nullptr);
+           DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 12, false, "Your illusion dissolves into tiny multicolored lights that float away.");
 
     spello(SPELL_PHOSPHORIC_EMBERS, "phosphoric embers", 0, 0, 0, POS_STANDING, true,
            TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true, MAG_MANUAL, C1, CAST_SPEEDE, DAM_FIRE, SKILL_SPHERE_FIRE,
@@ -1124,7 +1124,7 @@ void init_skills(void) {
            MAG_AFFECT, C1, CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "You can speak again.");
 
     spello(SPELL_SIMULACRUM, "simulacrum", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_SUMMON, C1,
-           CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 15, false, nullptr);
+           CAST_SPEED5, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 15, false, "Your illusion dissolves into tiny multicolored lights that float away.");
 
     spello(SPELL_SLEEP, "sleep", 40, 25, 5, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED4,
            DAM_MENTAL, SKILL_SPHERE_ENCHANT, 19, false, "You feel less tired.");
