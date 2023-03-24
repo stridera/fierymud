@@ -2482,6 +2482,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CHILL_TOUCH, CLASS_RANGER, CIRCLE_3);
 
     spell_assign(SPELL_CURE_SERIOUS, CLASS_RANGER, CIRCLE_4);
+    spell_assign(SPELL_NIMBLE, CLASS_RANGER, CIRCLE_4);
 
     spell_assign(SPELL_SHOCKING_GRASP, CLASS_RANGER, CIRCLE_5);
 

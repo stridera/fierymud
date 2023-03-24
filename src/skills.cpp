@@ -1028,6 +1028,9 @@ void init_skills(void) {
     spello(SPELL_NIGHT_VISION, "night vision", 0, 0, 0, POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY, false,
            MAG_AFFECT, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "Your night vision fades out.");
 
+    spello(SPELL_NIMBLE, "nimble", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false, MAG_AFFECT, C1, CAST_SPEED3,
+           DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 19, false, "Your movements slow to normal.");
+
     spello(SPELL_NOURISHMENT, "nourishment", 0, 0, 0, POS_SITTING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false,
            MAG_POINT, C1, CAST_SPEED4, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
 

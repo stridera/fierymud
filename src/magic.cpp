@@ -2363,6 +2363,15 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         to_vict = "&9&bYour vision sharpens a bit.";
         break;
 
+    case SPELL_NIMBLE:
+
+        SET_FLAG(eff[0].flags, EFF_NIMBLE);
+        eff[0].duration = 2 + (skill / 21); /* max 6 */
+        to_char = "&1$N starts to move with uncanny grace!&0";
+        to_vict = "&1You start to move with uncanny grace!&0";
+        to_room = "&1$N starts to move with uncanny grace!&0";
+        break;
+
     case SPELL_POISON:
     case SPELL_GAS_BREATH:
         if (!attack_ok(ch, victim, true))

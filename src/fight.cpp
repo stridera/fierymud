@@ -2373,7 +2373,11 @@ void perform_violence(void) {
                 secondary_hits *= 2;
             if (EFF_FLAGGED(ch, EFF_BLUR))
                 secondary_hits += 2;
+            if (EFF_FLAGGED(ch, EFF_NIMBLE))
+                secondary_hits += 1;
         }
+
+
 
         /* Chance for NPCs to switch. */
         if (IS_NPC(ch) && GET_SKILL(ch, SKILL_SWITCH) && !EFF_FLAGGED(ch, EFF_BLIND) &&
