@@ -578,6 +578,13 @@ void char_to_room(CharData *ch, int room) {
         log("SYSERR:handler.c:char_to_room() NULL char pointer");
     } else if (room < 0 || room > top_of_world) {
         log("SYSERR: char_to_room: name){} room){:d}", GET_NAME(ch), room);
+        
+        room = real_room(GET_HOMEROOM(ch));
+        ch->next_in_room = world[room].people;
+        world[room].people = ch;
+        ch->in_room = room;
+
+        world[room].light += char_lightlevel(ch);
     } else {
         ch->next_in_room = world[room].people;
         world[room].people = ch;

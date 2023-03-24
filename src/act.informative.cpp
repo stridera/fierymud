@@ -4261,24 +4261,29 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "faerie step")) {
-            vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
             if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
-                    if (!vict) {
-                        char_printf(ch, "Who are you trying to step to?\n");
-                        return;
+                if (*argument) {
+                    vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
+                    if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
+                        if (!vict) {
+                            char_printf(ch, "Who are you trying to step to?\n");
+                            return;
+                        } else {
+                            call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
+                            if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                                SET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP, 7 MUD_HR);
+                        }
                     } else {
-                        call_magic(ch, vict, 0, SPELL_DIMENSION_DOOR, GET_LEVEL(ch), CAST_SPELL);
-                        if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                            SET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP, 7 MUD_HR);
+                        int seconds = GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10;
+                        char_printf(ch, "You're too tired right now.\n",
+                                        "You can traverse the Reverie again in {:d} {}.\n",
+                                        seconds, seconds == 1 ? "second" : "seconds");
                     }
+                    return;
                 } else {
-                    int seconds = GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10;
-                    char_printf(ch, "You're too tired right now.\n",
-                                    "You can traverse the Reverie again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                      char_printf(ch, "Who are you trying to step to?\n");
+                      return;
                 }
-                return;
             }
         }
 
