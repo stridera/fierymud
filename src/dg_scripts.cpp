@@ -32,11 +32,11 @@
 /* mob trigger types */
 const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",      "Death", "Greet",
                             "Greet-All", "Entry",  "Receive", "Fight",  "HitPrcnt", "Bribe", "SpeechTo*",
-                            "Load",      "Cast",   "Leave",   "Door",   "UNUSED",   "Time",  "\n"};
+                            "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "\n"};
 
 /* obj trigger types */
 const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
-                             "Drop",   "Give",   "Wear",    "DEATH",  "Remove",  "UNUSED", "UNUSED",
+                             "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look", "UNUSED",
                              "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
 
 /* wld trigger types */

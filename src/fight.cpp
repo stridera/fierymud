@@ -2127,6 +2127,11 @@ void hit(CharData *ch, CharData *victim, int type) {
     if (damage_evasion(victim, ch, weapon, dtype)) {
         damage_evasion_message(ch, victim, weapon, dtype);
         set_fighting(victim, ch, true);
+
+        /* Process Triggers - added here so they still process even if the attack is evaded */
+        dam = 0;
+        attack_otrigger(ch, victim, dam);
+        hitprcnt_mtrigger(victim);
         return;
     }
 
