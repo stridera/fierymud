@@ -329,6 +329,9 @@ ACMD(do_mdamage);
 ACMD(do_mgold);
 ACMD(do_m_run_room_trig);
 ACMD(do_msave);
+ACMD(do_mobjflag);
+ACMD(do_mmobflag);
+ACMD(do_mroomflag);
 ACMD(do_layhand);
 ACMD(do_first_aid);
 ACMD(do_summon_mount);
@@ -972,8 +975,11 @@ const CommandInfo cmd_info[] = {
     {"mcast", POS_STANDING, STANCE_ALERT, do_mcast, -1, 0, CMD_ANY},
     {"mchant", POS_STANDING, STANCE_ALERT, do_mchant, -1, 0, CMD_ANY},
     {"mperform", POS_STANDING, STANCE_ALERT, do_mperform, -1, 0, CMD_ANY},
+    {"mmobflag", POS_STANDING, STANCE_ALERT, do_mmobflag, -1, 0, CMD_ANY},   
     {"mload", POS_PRONE, STANCE_DEAD, do_mload, -1, 0, CMD_ANY},
+    {"mobjflag", POS_STANDING, STANCE_ALERT, do_mobjflag, -1, 0, CMD_ANY},    
     {"mpurge", POS_PRONE, STANCE_DEAD, do_mpurge, -1, 0, CMD_ANY},
+    {"mroomflag", POS_STANDING, STANCE_ALERT, do_mroomflag, -1, 0, CMD_ANY},
     {"msave", POS_PRONE, STANCE_DEAD, do_msave, -1, 0, CMD_ANY},
     {"msend", POS_PRONE, STANCE_DEAD, do_msend, -1, 0, CMD_ANY},
     {"mskillset", POS_PRONE, STANCE_DEAD, do_mskillset, -1, 0, CMD_ANY},
