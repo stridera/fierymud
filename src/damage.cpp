@@ -197,13 +197,13 @@ void damage_evasion_message(CharData *ch, CharData *vict, ObjData *weapon, int d
             sprintf(buf, EVASIONCLR "You try to %s $N" EVASIONCLR ", but $E is completely unaffected!&0",
                     damtypes[damtype].verb1st);
         else
-            sprintf(buf, EVASIONCLR "Your %s has no effect on $N" EVASIONCLR "!", damtypes[damtype].action);
+            sprintf(buf, EVASIONCLR "Your %s has no effect on $N" EVASIONCLR "!&0", damtypes[damtype].action);
         act(buf, false, ch, 0, vict, TO_CHAR);
         if (random_number(1, 3) == 1)
             sprintf(buf, EVASIONCLR "$n" EVASIONCLR " tries to %s you, but you are completely unaffected!&0",
                     damtypes[damtype].verb1st);
         else
-            sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on you!", damtypes[damtype].action);
+            sprintf(buf, EVASIONCLR "$n" EVASIONCLR "'s %s has no effect on you!&0", damtypes[damtype].action);
         act(buf, false, ch, 0, vict, TO_VICT);
         break;
     }

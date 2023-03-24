@@ -2127,6 +2127,11 @@ void hit(CharData *ch, CharData *victim, int type) {
     if (damage_evasion(victim, ch, weapon, dtype)) {
         damage_evasion_message(ch, victim, weapon, dtype);
         set_fighting(victim, ch, true);
+
+        /* Process Triggers - added here so they still process even if the attack is evaded */
+        dam = 0;
+        attack_otrigger(ch, victim, dam);
+        hitprcnt_mtrigger(victim);
         return;
     }
 
@@ -2143,36 +2148,6 @@ void hit(CharData *ch, CharData *victim, int type) {
 
         if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
             if (random_number(1, 3) == 1) /* 33% chance to ignore damage */
-                displaced = true;
-        }
-
-        if (displaced == true) {
-            sprintf(buf, "&9&b$n takes a guess at $N's position but misses with $s %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_NOTVICT);
-            sprintf(buf, "&9&bYou take a guess at $N's position but miss with your %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_CHAR);
-            sprintf(buf, "&9&b$n takes a guess your position but misses with $s %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_VICT);
-            set_fighting(victim, ch, true);
-            return;
-        }
-    }
-
-    /* adjust for additional effects like Displacement */
-    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-        int displaced, mtype;
-        mtype = type - TYPE_HIT; /* get the damage message */
-
-        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
-            if (random_number(1, 4) == 1) /* 25% chance to ignore damage */
-                displaced = true;
-        }
-
-        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-            if (random_number(1, 2) == 1) /* 50% chance to ignore damage */
                 displaced = true;
         }
 

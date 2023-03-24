@@ -81,7 +81,6 @@ void appear(CharData *ch) {
             char_printf(ch, "You step out of the shadows.\n");
         } else {
             act("$n snaps into visibility.", false, ch, 0, 0, TO_ROOM);
-            char_printf(ch, "You fade back into view.\n");
         }
     } else
         act("You feel a strange presence as $n appears, seemingly from nowhere.", false, ch, 0, 0, TO_ROOM);
