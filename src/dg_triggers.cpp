@@ -407,11 +407,11 @@ void hitprcnt_mtrigger(CharData *ch) {
 
 int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj) {
     TrigData *t;
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_INPUT_LENGTH], vnum[20];
     int ret_val = 1;
 
-    std::string s = std::to_string(GET_OBJ_VNUM(obj));
-    const char *vnum = s.c_str(); 
+    sprintf(vnum, "%d", GET_OBJ_VNUM(obj));
+
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_RECEIVE) || !char_susceptible_to_triggers(actor) ||
         !char_susceptible_to_triggers(ch))
