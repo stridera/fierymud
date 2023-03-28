@@ -407,27 +407,34 @@ void hitprcnt_mtrigger(CharData *ch) {
 
 int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj) {
     TrigData *t;
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_INPUT_LENGTH], vnum[20];
+    int ret_val = 1;
+
+    sprintf(vnum, "%d", GET_OBJ_VNUM(obj));
+
 
     if (!MOB_PERFORMS_SCRIPTS(ch) || !SCRIPT_CHECK(ch, MTRIG_RECEIVE) || !char_susceptible_to_triggers(actor) ||
         !char_susceptible_to_triggers(ch))
-        return 1;
+        return ret_val;
 
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
         if (IS_SET(GET_TRIG_TYPE(t), MTRIG_RECEIVE)) {
-            if (GET_TRIG_DEPTH(t)) {
-                /* The receive trigger is currently executing */
-                act("$N isn't ready to accept $p.", false, actor, obj, ch, TO_CHAR);
-                return 0;
-            } else if (random_number(1, 100) <= GET_TRIG_NARG(t)) {
-                ADD_UID_VAR(buf, t, actor, "actor");
-                ADD_UID_VAR(buf, t, obj, "object");
-                return script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
+
+            if (GET_TRIG_ARG(t) && word_check(vnum, GET_TRIG_ARG(t)) || 
+              (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
+
+                if (random_number(1, 100) <= GET_TRIG_NARG(t)) {
+                    ADD_UID_VAR(buf, t, actor, "actor");
+                    ADD_UID_VAR(buf, t, obj, "object");
+                    ret_val = script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
+                    if (!ret_val)
+                        return ret_val;
+                }
             }
         }
     }
 
-    return 1;
+    return ret_val;
 }
 
 int death_mtrigger(CharData *ch, CharData *actor) {

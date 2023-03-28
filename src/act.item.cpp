@@ -640,7 +640,10 @@ ACMD(do_give) {
     CharData *vict;
     ObjData *obj, *next_obj, *ref_obj = nullptr;
     int cash[NUM_COIN_TYPES] = {0};
-    char *name = arg;
+    char *name = strdup(arg);
+    std::string item_list;
+    std::unordered_map<ObjData *,int> vnums;
+    int vnum;
 
     if (parse_money(&argument, cash)) {
         one_argument(argument, name);
@@ -696,6 +699,14 @@ ACMD(do_give) {
                 ++counter;
             else if (result == GIVE_FAIL_FULL)
                 break;
+            auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair){
+                return !strcmp(pair.first->short_description, obj->short_description);
+            });
+            if (it == vnums.end()) {
+                vnums.insert(std::make_pair(obj, 1));
+            } else {
+                it->second ++;
+            }
         }
     } else if (CONFUSED(ch)) {
         char_printf(ch, "You are too confused for such juggling.\n");
@@ -717,6 +728,14 @@ ACMD(do_give) {
                 if (result != GIVE_SUCCESS)
                     break;
                 ++counter;
+                auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair){
+                    return !strcmp(pair.first->short_description, obj->short_description);
+                });
+                if (it == vnums.end()) {
+                    vnums.insert(std::make_pair(obj, 1));
+                } else {
+                    it->second ++;
+                }
             }
         }
     }
@@ -728,17 +747,15 @@ ACMD(do_give) {
             else if (dotmode == FIND_ALL)
                 char_printf(ch, "You don't seem to be holding anything.\n");
         }
-    } else if (counter == 1) {
-        act("You give $p to $N.", false, ch, ref_obj, vict, TO_CHAR);
-        act("$n gives you $p.", false, ch, ref_obj, vict, TO_VICT);
-        act("$n gives $p to $N.", !HIGHLY_VISIBLE(ref_obj) || GET_INVIS_LEV(ch), ch, ref_obj, vict, TO_NOTVICT);
-    } else if (counter > 1) {
-        sprintf(buf, "You give $p to $N. (x%d)", counter);
-        act(buf, false, ch, ref_obj, vict, TO_CHAR);
-        sprintf(buf, "$n gives you $p. (x%d)", counter);
-        act(buf, false, ch, ref_obj, vict, TO_VICT);
-        act("$n gives $p to $N. (multiple)", !HIGHLY_VISIBLE(ref_obj) || GET_INVIS_LEV(ch), ch, ref_obj, vict,
-            TO_NOTVICT);
+    } else {
+        for (auto [obj_ref2, qty] : vnums) {
+            sprintf(buf, "You give $p to $N. (x%d)", qty);
+            act(buf, false, ch,(obj_ref2), vict, TO_CHAR);
+            sprintf(buf, "$n gives you $p. (x%d)", qty);
+            act(buf, false, ch,(obj_ref2), vict, TO_VICT);
+            act("$n gives $p to $N. (multiple)", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch,(obj_ref2), vict,
+                TO_NOTVICT);
+        }
     }
 }
 
