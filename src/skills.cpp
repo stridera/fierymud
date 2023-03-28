@@ -393,8 +393,8 @@ void clear_skill(int skill) {
     skills[skill].cast_time = 0;
 }
 
-#define skillo(skill, name, humanoid, targets)                                                                         \
-    dskill(skill, name, 0, 0, 0, 0, true, targets, 0, humanoid, 0, 0, 0, 0, 0, 0, 0, nullptr);
+#define skillo(skill, name, humanoid, targets, wearoff)                                                                         \
+    dskill(skill, name, 0, 0, 0, 0, true, targets, 0, humanoid, 0, 0, 0, 0, 0, 0, 0, wearoff);
 #define chanto(chant, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff)                   \
     dskill(chant, name, 0, 0, 0, minpos, ok_fighting, targets, violent, false, routines, 0, 0, damage, 0, 0, quest,    \
            wearoff)
@@ -1367,98 +1367,98 @@ void init_skills(void) {
      * them by default. Determines whether a skill is considered
      * "humanoid only". */
 
-    /* skillo(skill, name, humanoid, target mode) */
+    /* skillo(skill, name, humanoid, target mode, wear-off message) */
     /* target mode for skills is designed for use with TAR_CONTACT and TAR_DIRECT,
        which allow you to limit whether an attack may be caught by guard or not.
      */
-    skillo(SKILL_2H_BLUDGEONING, "2H bludgeoning weapons", true, TAR_CONTACT);
-    skillo(SKILL_2H_PIERCING, "2H piercing weapons", true, TAR_CONTACT);
-    skillo(SKILL_2H_SLASHING, "2H slashing weapons", true, TAR_CONTACT);
-    skillo(SKILL_BACKSTAB, "backstab", true, TAR_CONTACT);
-    skillo(SKILL_BANDAGE, "bandage", true, 0);
-    skillo(SKILL_BAREHAND, "barehand", false, TAR_CONTACT);
-    skillo(SKILL_BASH, "bash", false, TAR_CONTACT);
-    skillo(SKILL_BATTLE_HOWL, "battle howl", false, 0);
-    skillo(SKILL_BERSERK, "berserk", false, 0);
-    skillo(SKILL_BIND, "bind", true, TAR_CONTACT);
-    skillo(SKILL_BLUDGEONING, "bludgeoning weapons", true, TAR_CONTACT);
-    skillo(SKILL_BODYSLAM, "bodyslam", false, TAR_CONTACT);
-    skillo(SKILL_BREATHE_ACID, "breathe acid", false, 0);
-    skillo(SKILL_BREATHE_GAS, "breathe gas", false, 0);
-    skillo(SKILL_BREATHE_FIRE, "breathe fire", false, 0);
-    skillo(SKILL_BREATHE_FROST, "breathe frost", false, 0);
-    skillo(SKILL_BREATHE_LIGHTNING, "breathe lightning", false, 0);
-    skillo(SKILL_CARTWHEEL, "cartwheel", false, TAR_CONTACT);
-    skillo(SKILL_CHANT, "chant", false, 0);
-    skillo(SKILL_DOUBLE_ATTACK, "double attack", false, 0);
-    skillo(SKILL_DUAL_WIELD, "dual wield", true, 0);
-    skillo(SKILL_CIRCLE, "circle", false, TAR_CONTACT);
-    skillo(SKILL_CLAW, "claw", false, TAR_CONTACT);
-    skillo(SKILL_CONCEAL, "conceal", false, 0);
-    skillo(SKILL_CORNER, "corner", false, 0);
-    skillo(SKILL_DISARM, "disarm", true, TAR_CONTACT);
-    skillo(SKILL_EYE_GOUGE, "eye gouge", true, TAR_CONTACT);
-    skillo(SKILL_DODGE, "dodge", false, 0);
-    skillo(SKILL_DOORBASH, "doorbash", false, 0);
-    skillo(SKILL_DOUSE, "douse", false, 0);
-    skillo(SKILL_ELECTRIFY, "electrify", false, TAR_DIRECT);
-    skillo(SKILL_REND, "rend", false, TAR_CONTACT);
-    skillo(SKILL_FIRST_AID, "first aid", true, 0);
-    skillo(SKILL_GROUND_SHAKER, "ground shaker", false, 0);
-    skillo(SKILL_GROUP_RETREAT, "group retreat", false, 0);
-    skillo(SKILL_GUARD, "guard", false, 0);
-    skillo(SKILL_HIDE, "hide", false, 0);
-    skillo(SKILL_HITALL, "hitall", false, TAR_CONTACT);
-    skillo(SKILL_HUNT, "hunt", false, 0);
-    skillo(SKILL_INSTANT_KILL, "instant kill", true, TAR_CONTACT);
-    skillo(SKILL_KICK, "kick", true, TAR_CONTACT);
-    skillo(SKILL_LURE, "lure", false, 0);
-    skillo(SKILL_MAUL, "maul", false, TAR_CONTACT);
-    skillo(SKILL_MEDITATE, "meditate", false, 0);
-    skillo(SKILL_MISSILE, "missile weapons", true, TAR_DIRECT);
-    skillo(SKILL_MOUNT, "mount", false, 0);
-    skillo(SKILL_PARRY, "parry", true, 0);
-    skillo(SKILL_PECK, "peck", false, TAR_CONTACT);
-    skillo(SKILL_PERFORM, "perform", false, 0);
-    skillo(SKILL_PICK_LOCK, "pick lock", true, 0);
-    skillo(SKILL_PIERCING, "piercing weapons", true, TAR_CONTACT);
-    skillo(SKILL_PUNCH, "punch", true, TAR_CONTACT);
-    skillo(SKILL_QUICK_CHANT, "quick chant", false, 0);
-    skillo(SKILL_RESCUE, "rescue", false, 0);
-    skillo(SKILL_RIDING, "riding", false, 0);
-    skillo(SKILL_RIPOSTE, "riposte", true, 0);
-    skillo(SKILL_ROAR, "roar", false, 0);
-    skillo(SKILL_SAFEFALL, "safefall", false, 0);
-    skillo(SKILL_SCRIBE, "scribe", true, 0);
-    skillo(SKILL_SHAPECHANGE, "shapechange", false, 0);
-    skillo(SKILL_SNEAK, "sneak", false, 0);
-    skillo(SKILL_KNOW_SPELL, "spell knowledge", false, 0);
-    skillo(SKILL_RETREAT, "retreat", false, 0);
-    skillo(SKILL_SHADOW, "shadow", false, 0);
-    skillo(SKILL_SLASHING, "slashing weapons", true, TAR_CONTACT);
-    skillo(SKILL_SNEAK_ATTACK, "sneak attack", false, 0);
-    skillo(SKILL_SPHERE_AIR, "sphere of air", false, 0);
-    skillo(SKILL_SPHERE_DEATH, "sphere of death", false, 0);
-    skillo(SKILL_SPHERE_DIVIN, "sphere of divination", false, 0);
-    skillo(SKILL_SPHERE_EARTH, "sphere of earth", false, 0);
-    skillo(SKILL_SPHERE_ENCHANT, "sphere of enchantment", false, 0);
-    skillo(SKILL_SPHERE_FIRE, "sphere of fire", false, 0);
-    skillo(SKILL_SPHERE_GENERIC, "sphere of generic", false, 0);
-    skillo(SKILL_SPHERE_HEALING, "sphere of healing", false, 0);
-    skillo(SKILL_SPHERE_PROT, "sphere of protection", false, 0);
-    skillo(SKILL_SPHERE_SUMMON, "sphere of summoning", false, 0);
-    skillo(SKILL_SPHERE_WATER, "sphere of water", false, 0);
-    skillo(SKILL_SPRINGLEAP, "springleap", false, TAR_CONTACT);
-    skillo(SKILL_STEAL, "steal", true, TAR_CONTACT);
-    skillo(SKILL_STEALTH, "stealth", false, 0);
-    skillo(SKILL_SUMMON_MOUNT, "summon mount", true, 0);
-    skillo(SKILL_SWEEP, "sweep", false, TAR_CONTACT);
-    skillo(SKILL_SWITCH, "switch", false, TAR_CONTACT);
-    skillo(SKILL_TAME, "tame", false, 0);
-    skillo(SKILL_TANTRUM, "tantrum", false, TAR_CONTACT);
-    skillo(SKILL_THROATCUT, "throatcut", true, TAR_CONTACT);
-    skillo(SKILL_TRACK, "track", false, 0);
-    skillo(SKILL_VAMP_TOUCH, "vampiric touch", false, TAR_CONTACT);
+    skillo(SKILL_2H_BLUDGEONING, "2H bludgeoning weapons", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_2H_PIERCING, "2H piercing weapons", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_2H_SLASHING, "2H slashing weapons", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_BACKSTAB, "backstab", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_BANDAGE, "bandage", true, 0, nullptr);
+    skillo(SKILL_BAREHAND, "barehand", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_BASH, "bash", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_BATTLE_HOWL, "battle howl", false, 0, nullptr);
+    skillo(SKILL_BERSERK, "berserk", false, 0, nullptr);
+    skillo(SKILL_BIND, "bind", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_BLUDGEONING, "bludgeoning weapons", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_BODYSLAM, "bodyslam", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_BREATHE_ACID, "breathe acid", false, 0, nullptr);
+    skillo(SKILL_BREATHE_GAS, "breathe gas", false, 0, nullptr);
+    skillo(SKILL_BREATHE_FIRE, "breathe fire", false, 0, nullptr);
+    skillo(SKILL_BREATHE_FROST, "breathe frost", false, 0, nullptr);
+    skillo(SKILL_BREATHE_LIGHTNING, "breathe lightning", false, 0, nullptr);
+    skillo(SKILL_CARTWHEEL, "cartwheel", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_CHANT, "chant", false, 0, nullptr);
+    skillo(SKILL_DOUBLE_ATTACK, "double attack", false, 0, nullptr);
+    skillo(SKILL_DUAL_WIELD, "dual wield", true, 0, nullptr);
+    skillo(SKILL_CIRCLE, "circle", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_CLAW, "claw", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_CONCEAL, "conceal", false, 0, nullptr);
+    skillo(SKILL_CORNER, "corner", false, 0, nullptr);
+    skillo(SKILL_DISARM, "disarm", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_EYE_GOUGE, "eye gouge", true, TAR_CONTACT, "Your vision returns.");
+    skillo(SKILL_DODGE, "dodge", false, 0, nullptr);
+    skillo(SKILL_DOORBASH, "doorbash", false, 0, nullptr);
+    skillo(SKILL_DOUSE, "douse", false, 0, nullptr);
+    skillo(SKILL_ELECTRIFY, "electrify", false, TAR_DIRECT, nullptr);
+    skillo(SKILL_REND, "rend", false, TAR_CONTACT, "You patch your defenses.");
+    skillo(SKILL_FIRST_AID, "first aid", true, 0, nullptr);
+    skillo(SKILL_GROUND_SHAKER, "ground shaker", false, 0, nullptr);
+    skillo(SKILL_GROUP_RETREAT, "group retreat", false, 0, nullptr);
+    skillo(SKILL_GUARD, "guard", false, 0, nullptr);
+    skillo(SKILL_HIDE, "hide", false, 0, nullptr);
+    skillo(SKILL_HITALL, "hitall", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_HUNT, "hunt", false, 0, nullptr);
+    skillo(SKILL_INSTANT_KILL, "instant kill", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_KICK, "kick", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_LURE, "lure", false, 0, nullptr);
+    skillo(SKILL_MAUL, "maul", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_MEDITATE, "meditate", false, 0, nullptr);
+    skillo(SKILL_MISSILE, "missile weapons", true, TAR_DIRECT, nullptr);
+    skillo(SKILL_MOUNT, "mount", false, 0, nullptr);
+    skillo(SKILL_PARRY, "parry", true, 0, nullptr);
+    skillo(SKILL_PECK, "peck", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_PERFORM, "perform", false, 0, nullptr);
+    skillo(SKILL_PICK_LOCK, "pick lock", true, 0, nullptr);
+    skillo(SKILL_PIERCING, "piercing weapons", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_PUNCH, "punch", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_QUICK_CHANT, "quick chant", false, 0, nullptr);
+    skillo(SKILL_RESCUE, "rescue", false, 0, nullptr);
+    skillo(SKILL_RIDING, "riding", false, 0, nullptr);
+    skillo(SKILL_RIPOSTE, "riposte", true, 0, nullptr);
+    skillo(SKILL_ROAR, "roar", false, 0, nullptr);
+    skillo(SKILL_SAFEFALL, "safefall", false, 0, nullptr);
+    skillo(SKILL_SCRIBE, "scribe", true, 0, nullptr);
+    skillo(SKILL_SHAPECHANGE, "shapechange", false, 0, nullptr);
+    skillo(SKILL_SNEAK, "sneak", false, 0, nullptr);
+    skillo(SKILL_KNOW_SPELL, "spell knowledge", false, 0, nullptr);
+    skillo(SKILL_RETREAT, "retreat", false, 0, nullptr);
+    skillo(SKILL_SHADOW, "shadow", false, 0, nullptr);
+    skillo(SKILL_SLASHING, "slashing weapons", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_SNEAK_ATTACK, "sneak attack", false, 0, nullptr);
+    skillo(SKILL_SPHERE_AIR, "sphere of air", false, 0, nullptr);
+    skillo(SKILL_SPHERE_DEATH, "sphere of death", false, 0, nullptr);
+    skillo(SKILL_SPHERE_DIVIN, "sphere of divination", false, 0, nullptr);
+    skillo(SKILL_SPHERE_EARTH, "sphere of earth", false, 0, nullptr);
+    skillo(SKILL_SPHERE_ENCHANT, "sphere of enchantment", false, 0, nullptr);
+    skillo(SKILL_SPHERE_FIRE, "sphere of fire", false, 0, nullptr);
+    skillo(SKILL_SPHERE_GENERIC, "sphere of generic", false, 0, nullptr);
+    skillo(SKILL_SPHERE_HEALING, "sphere of healing", false, 0, nullptr);
+    skillo(SKILL_SPHERE_PROT, "sphere of protection", false, 0, nullptr);
+    skillo(SKILL_SPHERE_SUMMON, "sphere of summoning", false, 0, nullptr);
+    skillo(SKILL_SPHERE_WATER, "sphere of water", false, 0, nullptr);
+    skillo(SKILL_SPRINGLEAP, "springleap", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_STEAL, "steal", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_STEALTH, "stealth", false, 0, nullptr);
+    skillo(SKILL_SUMMON_MOUNT, "summon mount", true, 0, nullptr);
+    skillo(SKILL_SWEEP, "sweep", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_SWITCH, "switch", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_TAME, "tame", false, 0, nullptr);
+    skillo(SKILL_TANTRUM, "tantrum", false, TAR_CONTACT, nullptr);
+    skillo(SKILL_THROATCUT, "throatcut", true, TAR_CONTACT, nullptr);
+    skillo(SKILL_TRACK, "track", false, 0, nullptr);
+    skillo(SKILL_VAMP_TOUCH, "vampiric touch", false, TAR_CONTACT, nullptr);
 
     /* Set up monk/berserker chants */
     /*
