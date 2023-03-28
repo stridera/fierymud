@@ -4037,8 +4037,8 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "darkness")) {
-            if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_DARKNESS)) {
+            if (GET_RACE(ch) == RACE_DROW || GET_RACE(ch) == RACE_FAERIE_UNSEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_DARKNESS) || GET_LEVEL(ch) > LVL_IMMORT) {
                     if (*argument) {
                         if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, argument)))) {
                             obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, argument));
@@ -4076,10 +4076,10 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "invisible")) {
-            if (GET_RACE(ch) == RACE_DUERGAR) {
+            if (GET_RACE(ch) == RACE_DUERGAR || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (EFF_FLAGGED(ch, EFF_INVISIBLE))
                     char_printf(ch, "You already invisible.\n");
-                else if (!GET_COOLDOWN(ch, CD_INNATE_INVISIBLE)) {
+                else if (!GET_COOLDOWN(ch, CD_INNATE_INVISIBLE) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INVISIBLE, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_INVISIBLE, 9 MUD_HR);
@@ -4094,8 +4094,8 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "feather fall")) {
-            if (GET_RACE(ch) == RACE_DROW) {
-                if (EFF_FLAGGED(ch, EFF_FEATHER_FALL))
+            if (GET_RACE(ch) == RACE_DROW || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (EFF_FLAGGED(ch, EFF_FEATHER_FALL) || GET_LEVEL(ch) > LVL_IMMORT)
                     char_printf(ch, "You already levitating.\n");
                 else if (!GET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL)) {
                     call_magic(ch, ch, 0, SPELL_FEATHER_FALL, GET_LEVEL(ch), CAST_SPELL);
@@ -4117,8 +4117,8 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "chaz")) {
-            if (GET_RACE(ch) == RACE_ORC) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_CHAZ)) {
+            if (GET_RACE(ch) == RACE_ORC || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_CHAZ) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_CHAZ, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_CHAZ, 7 MUD_HR);
@@ -4135,8 +4135,8 @@ ACMD(do_innate) {
         /*new innates*/
 
         if (is_abbrev(arg, "syll")) {
-            if (GET_RACE(ch) == RACE_ELF) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_SYLL)) {
+            if (GET_RACE(ch) == RACE_ELF || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_SYLL) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_SYLL, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_SYLL, 7 MUD_HR);
@@ -4150,8 +4150,8 @@ ACMD(do_innate) {
             }
         }
         if (is_abbrev(arg, "brill")) {
-            if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_BRILL)) {
+            if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_BRILL) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_BRILL, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_BRILL, 7 MUD_HR);
@@ -4165,8 +4165,8 @@ ACMD(do_innate) {
             }
         }
         if (is_abbrev(arg, "tass")) {
-            if (GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_DUERGAR) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_TASS)) {
+            if (GET_RACE(ch) == RACE_DWARF || GET_RACE(ch) == RACE_DUERGAR || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_TASS) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_TASS, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_TASS, 7 MUD_HR);
@@ -4181,8 +4181,8 @@ ACMD(do_innate) {
         }
         /*
         if (is_abbrev(arg, "tren")) {
-            if (GET_RACE(ch) == RACE_ELF) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_TREN)) {
+            if (GET_RACE(ch) == RACE_ELF || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_TREN) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_TREN, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_TREN, 7 MUD_HR);
@@ -4197,8 +4197,8 @@ ACMD(do_innate) {
         }
         */
         if (is_abbrev(arg, "ascen")) {
-            if (GET_RACE(ch) == RACE_NYMPH) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_ASCEN)) {
+            if (GET_RACE(ch) == RACE_NYMPH || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_ASCEN) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_INN_ASCEN, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_ASCEN, 7 MUD_HR);
@@ -4213,8 +4213,8 @@ ACMD(do_innate) {
         }
         if (is_abbrev(arg, "harness")) {
             if (GET_RACE(ch) == RACE_ELF || GET_RACE(ch) == RACE_FAERIE_SEELIE ||
-                GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS)) {
+                GET_RACE(ch) == RACE_FAERIE_UNSEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_HARNESS) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_HARNESS, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_HARNESS, 10 MUD_HR);
@@ -4239,8 +4239,8 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "illumination")) {
-            if (GET_RACE(ch) == RACE_FAERIE_SEELIE) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION)) {
+            if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) || GET_LEVEL(ch) > LVL_IMMORT) {
                     if (!ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
                         if (*argument) {
                             if (!(obj = find_obj_in_list(ch->carrying, find_vis_by_name(ch, argument)))) {
@@ -4276,10 +4276,10 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "faerie step")) {
-            if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE) {
+            if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (*argument) {
                     vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
-                    if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP)) {
+                    if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) || GET_LEVEL(ch) > LVL_IMMORT) {
                         if (!vict) {
                             char_printf(ch, "Who are you trying to step to?\n");
                             return;
@@ -4303,8 +4303,8 @@ ACMD(do_innate) {
         }
 
         if (is_abbrev(arg, "blinding beauty")) {
-            if (GET_RACE(ch) == RACE_NYMPH) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY)) {
+            if (GET_RACE(ch) == RACE_NYMPH || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_BLINDING_BEAUTY, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY, 10 MUD_HR);
@@ -4318,8 +4318,8 @@ ACMD(do_innate) {
             return;
         }
         if (is_abbrev(arg, "statue")) {
-            if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN) {
-                if (!GET_COOLDOWN(ch, CD_INNATE_STATUE)) {
+            if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_STATUE) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_STATUE, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
                         SET_COOLDOWN(ch, CD_INNATE_STATUE, 10 MUD_HR);
