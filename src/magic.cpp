@@ -3706,7 +3706,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
             continue;
 
         found = true;
-        if (damage == true) {
+        if (damage) {
             if (EFF_FLAGGED(ch, EFF_HARNESS)) {
                 effect eff;
                 mag_damage(skill, ch, tch, spellnum, savetype);
@@ -3721,7 +3721,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
                 mag_unaffect(skill, ch, tch, spellnum, savetype);
         }
     }
-    if (damage == true)
+    if (damage)
         effect_from_char(ch, EFF_HARNESS);
         
     /* No skill improvement if there weren't any valid targets. */
