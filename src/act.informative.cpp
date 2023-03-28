@@ -4314,8 +4314,8 @@ ACMD(do_innate) {
                                     "You can blind with your beauty again in {:d} {}.\n",
                                     seconds, seconds == 1 ? "second" : "seconds");
                 }
+                return;
             }
-            return;
         }
         if (is_abbrev(arg, "statue")) {
             if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN || GET_LEVEL(ch) > LVL_IMMORT) {
