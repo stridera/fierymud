@@ -193,7 +193,7 @@ void print_obj_to_char(ObjData *obj, CharData *ch, int mode, char *additional_ar
 
     case SHOW_BASIC_DESC:
     case SHOW_FULL_DESC:
-        if (!look_otrigger(obj, ch, arg))
+        if (!look_otrigger(obj, ch, arg, additional_args))
             return;
         if (obj->ex_description && !(GET_OBJ_TYPE(obj) == ITEM_BOARD && is_number(additional_args)))
             char_printf(ch, "{}\n", obj->ex_description->description);
@@ -1272,7 +1272,7 @@ static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *add
             /* First extra desc: show object normally */
             print_obj_to_char(obj, ch, SHOW_FULL_DESC, additional_args);
         else {
-            if (!look_otrigger(obj, ch, arg))
+            if (!look_otrigger(obj, ch, arg, additional_args))
                 return false;
             /* For subsequent extra descs, suppress special object output */
             page_string(ch, desc);
@@ -1288,7 +1288,7 @@ static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *add
         else
             look_at_board(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), obj);
     } else {
-        if (!look_otrigger(obj, ch, arg))
+        if (!look_otrigger(obj, ch, arg, additional_args))
             return false;
         act("You see nothing special about $p.", false, ch, obj, 0, TO_CHAR);
     }
