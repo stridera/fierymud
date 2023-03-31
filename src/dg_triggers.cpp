@@ -945,7 +945,7 @@ void time_otrigger(ObjData *obj) {
     }
 }
 
-int look_otrigger(ObjData *obj, CharData *actor, char *name) {
+int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additional_args) {
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
     int ret_val = 1;
@@ -971,8 +971,8 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name) {
             if (TRIGGER_CHECK(t, OTRIG_LOOK) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
                 if (actor)
                     ADD_UID_VAR(buf, t, actor, "actor");
-                if (str)
-                    add_var(&GET_TRIG_VARS(t), "arg", str);
+                if (additional_args)
+                    add_var(&GET_TRIG_VARS(t), "arg", additional_args);
 
                 /* Don't allow a look to take place, if the object is purged. */
                 ret_val = (script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj);

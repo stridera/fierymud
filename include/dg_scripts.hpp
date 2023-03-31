@@ -199,7 +199,7 @@ void time_mtrigger(CharData *ch);
 void time_otrigger(ObjData *obj);
 void time_wtrigger(RoomData *room);
 
-int look_otrigger(ObjData *obj, CharData *actor, char *arg);
+int look_otrigger(ObjData *obj, CharData *actor, char *arg, const char *additional_args);
 int look_mtrigger(CharData *ch, CharData *actor, const char *arg);
 
 void reset_wtrigger(RoomData *room);
