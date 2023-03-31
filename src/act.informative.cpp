@@ -1289,7 +1289,7 @@ static bool consider_obj_exdesc(ObjData *obj, char *arg, CharData *ch, char *add
             look_at_board(ch, board(GET_OBJ_VAL(obj, VAL_BOARD_NUMBER)), obj);
     } else {
         if (!look_otrigger(obj, ch, arg, additional_args))
-            return false;
+            return true;
         act("You see nothing special about $p.", false, ch, obj, 0, TO_CHAR);
     }
     return true;
