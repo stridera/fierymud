@@ -948,7 +948,7 @@ void time_otrigger(ObjData *obj) {
 int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additional_args) {
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
-    int ret_val = 1;
+    int ret_val = 1, ret_val_0;
     FindContext context;
     const char *str;
     int num;
@@ -976,7 +976,11 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
 
                 /* Don't allow a look to take place, if the object is purged. */
                 ret_val = (script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj);
-            }          
+                if (!ret_val)
+                  ret_val_0 = 1;
+                if (ret_val_0)
+                  ret_val = 0;
+            }     
         } else
             continue;
     }
