@@ -902,9 +902,10 @@ ClassDef classes[NUM_CLASSES] = {
  * 1029   a spellbook                   mage
  * 1154   a feather quill               mage
  * 3090   a small map of mielikki       All
+ * 299    the quest journal             All
  */
 
-const int common_newbie_eq[] = {18, 19, 20, 23, 3090, -1};
+const int common_newbie_eq[] = {18, 19, 20, 23, 3090, 299, -1};
 
 static flagvector class_effects_mask[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
 void init_classes(void) {
