@@ -77,7 +77,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
 }
 
 void perform_put(CharData *ch, ObjData *obj, ObjData *cont) {
-    if (!drop_otrigger(obj, ch))
+    if (!drop_otrigger(obj, ch, cont) || !drop_otrigger(cont, ch, obj))
         return;
     if (GET_OBJ_EFFECTIVE_WEIGHT(cont) + GET_OBJ_EFFECTIVE_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
         act("$p won't fit in $P.", false, ch, obj, cont, TO_CHAR);
@@ -210,7 +210,7 @@ ACMD(do_stow) {
                 char_printf(ch, "You aren't carrying {} {}.\n", AN(arg1), arg1);
             else if (obj == cont)
                 char_printf(ch, "You attempt to fold it into itself, but fail.\n");
-            else if (!drop_otrigger(obj, ch))
+            else if (!drop_otrigger(obj, ch, cont))
                 return;
             else if (OBJ_FLAGGED(obj, ITEM_NODROP))
                 act("You can't stow $p in $P because it's CURSED!", false, ch, obj, cont, TO_CHAR);
@@ -283,7 +283,7 @@ void perform_drop(CharData *ch, ObjData *obj, byte mode, const char *verb) {
      * trigger to go off. */
 
     if (mode == SCMD_DROP || mode == SCMD_LETDROP) {
-        if (!drop_otrigger(obj, ch))
+        if (!drop_otrigger(obj, ch, nullptr))
             return;
         if (!drop_wtrigger(obj, ch))
             return;
