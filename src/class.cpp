@@ -2493,6 +2493,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_CURE_CRITIC, CLASS_RANGER, CIRCLE_6);
     spell_assign(SPELL_DISPLACEMENT, CLASS_RANGER, CIRCLE_6);
 
+    spell_assign(SPELL_HASTE, CLASS_RANGER, CIRCLE_7);
     spell_assign(SPELL_SENSE_LIFE, CLASS_RANGER, CIRCLE_7);
 
     spell_assign(SPELL_LIGHTNING_BOLT, CLASS_RANGER, CIRCLE_8);
