@@ -2758,7 +2758,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
 
         if (MOB_FLAGGED(victim, MOB_NOBLIND)) {
-            act("&9&b$N&9&b resists your&9&b column of smoke!&0", false, ch, 0, 0, TO_CHAR);
+            act("&9&b$N&9&b resists your&9&b column of smoke!&0", false, ch, 0, victim, TO_CHAR);
             act("&9&bYou&9&b resist $n's&9&b column of smoke!&0", false, ch, 0, victim, TO_VICT);
             act("&9&b$N&9&b resists $n's&9&b column of smoke!&0", true, ch, 0, victim, TO_NOTVICT);
             return CAST_RESULT_CHARGE;
