@@ -1801,6 +1801,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_GREATER_VITALITY, CLASS_CLERIC, CIRCLE_9);
 
     spell_assign(SPELL_GROUP_ARMOR, CLASS_CLERIC, CIRCLE_10);
+    spell_assign(SPELL_GROUP_RECALL, CLASS_CLERIC, CIRCLE_10);
 
     spell_assign(SPELL_RESURRECT, CLASS_CLERIC, CIRCLE_11);
 
