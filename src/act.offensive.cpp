@@ -2775,8 +2775,7 @@ ACMD(do_lure) {
                 /* Success!  The mob can go that way */
                 if (CAN_GO(vict, dir)) {
                     act("You cleverly lure $N away!", false, ch, 0, vict, TO_CHAR);
-                    sprintf(buf, "$n cleverly lures $N away!\n");
-                    act(buf, true, ch, 0, 0, TO_ROOM);
+                    act("$n cleverly lures $N away!", false, ch, 0, vict, TO_NOTVICT);
                     perform_move(vict, dir, 1, false);
 
                     /* Mob should go, but there's a door in the way */
