@@ -370,7 +370,7 @@ ACMD(do_sweep) {
             continue;
         if (damage_evasion(tch, ch, 0, DAM_CRUSH)) {
             act(EVASIONCLR "$N's" EVASIONCLR " tail passes right through you.&0", false, tch, 0, ch, TO_CHAR);
-            act(EVASIONCLR "$N's" EVASIONCLR " tail passes harmlessly through $n.&0", false, tch, 0, 0, TO_ROOM);
+            act(EVASIONCLR "$N's" EVASIONCLR " tail passes harmlessly through $n.&0", false, tch, 0, ch, TO_ROOM);
             set_fighting(tch, ch, true);
             continue;
         }
