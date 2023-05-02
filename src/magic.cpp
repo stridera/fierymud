@@ -3708,11 +3708,8 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         found = true;
         if (damage) {
             if (EFF_FLAGGED(ch, EFF_HARNESS)) {
-                effect eff;
                 mag_damage(skill, ch, tch, spellnum, savetype);
-                SET_FLAG(eff.flags, EFF_HARNESS);
-                eff.location = APPLY_NONE;
-                effect_to_char(ch, &eff);
+                SET_FLAG(EFF_FLAGS(ch), EFF_HARNESS);
             } else
                 mag_damage(skill, ch, tch, spellnum, savetype);
         } else {
@@ -3722,8 +3719,8 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         }
     }
     if (damage)
-        effect_from_char(ch, EFF_HARNESS);
-        
+        REMOVE_FLAG(EFF_FLAGS(ch), EFF_HARNESS);
+
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
         return CAST_RESULT_CHARGE;
