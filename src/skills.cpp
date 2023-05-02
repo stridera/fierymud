@@ -857,7 +857,7 @@ void init_skills(void) {
            DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, true, nullptr);
 
     spello(SPELL_GROUP_RECALL, "group recall", 50, 30, 2, POS_STANDING, true, TAR_IGNORE, false, MAG_GROUP, C1,
-           CAST_SPEED7, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, true, nullptr);
+           CAST_SPEED3, DAM_ALIGN, SKILL_SPHERE_SUMMON, 5, true, nullptr);
 
     spello(SPELL_HARM, "harm", 45, 15, 3, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_CONTACT, true,
            MAG_DAMAGE, C1, CAST_SPEEDJ, DAM_HEAL, SKILL_SPHERE_HEALING, 5, false, nullptr);
