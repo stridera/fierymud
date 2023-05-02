@@ -166,7 +166,7 @@ int entry_mtrigger(CharData *ch, int destination);
 int preentry_wtrigger(RoomData *room, CharData *actor, int dir);
 int postentry_wtrigger(CharData *actor, int dir);
 int timer_otrigger(ObjData *obj);
-int drop_otrigger(ObjData *obj, CharData *actor);
+int drop_otrigger(ObjData *obj, CharData *actor, ObjData *cont);
 int get_otrigger(ObjData *obj, CharData *actor);
 int drop_wtrigger(ObjData *obj, CharData *actor);
 int give_otrigger(ObjData *obj, CharData *actor, CharData *victim);
