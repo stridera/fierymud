@@ -975,8 +975,10 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
                     add_var(&GET_TRIG_VARS(t), "arg", additional_args);
 
                 /* Don't allow a look to take place, if the object is purged. */
-                ret_val = (script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj);
-            }          
+                if (!script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj)
+                  ret_val = 0;
+
+            }     
         } else
             continue;
     }
