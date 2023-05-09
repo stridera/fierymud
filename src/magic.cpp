@@ -1144,7 +1144,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
             break; 
         }
 
@@ -1163,7 +1163,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
             break; 
         }
 
@@ -1286,7 +1286,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
             break; 
         }
 
@@ -1504,7 +1504,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
             break; 
         }
 
@@ -2035,7 +2035,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
             break; 
         }
 
@@ -2090,7 +2090,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
             break; 
         }
 
@@ -2274,7 +2274,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.0";
+            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
             break; 
         }
 
