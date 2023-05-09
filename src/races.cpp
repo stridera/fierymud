@@ -707,7 +707,7 @@ RaceDef races[NUM_RACES] = {
      "&1&bDemon&0",             /* name as displayed at character creation, on who, and score */
      "&1&bDemon&0",             /* name as displayed in show race command and when setting races */
      "Demon",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* humanoid? */
+     false,                     /* playable? */
      true,                      /* humanoid? */
      RACE_ALIGN_EVIL,           /* race alignment */
      SIZE_LARGE,                /* default size */
@@ -741,7 +741,7 @@ RaceDef races[NUM_RACES] = {
      "&3Brownie&0",             /* name as displayed at character creation, on who, and score */
      "&3Brownie&0",             /* name as displayed in show race command and when setting races */
      "Brownie",                 /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* humanoid? */
+     false,                     /* playable? */
      true,                      /* humanoid? */
      RACE_ALIGN_GOOD,           /* race alignment */
      SIZE_SMALL,                /* default size */
