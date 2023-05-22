@@ -420,16 +420,15 @@ int receive_mtrigger(CharData *ch, CharData *actor, ObjData *obj) {
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
         if (IS_SET(GET_TRIG_TYPE(t), MTRIG_RECEIVE)) {
 
-            if (GET_TRIG_ARG(t) && word_check(vnum, GET_TRIG_ARG(t)) || 
+            if ((GET_TRIG_ARG(t) && word_check(vnum, GET_TRIG_ARG(t)) && GET_TRIG_NARG(t)) || 
+              ((GET_TRIG_ARG(t) && !word_check(vnum, GET_TRIG_ARG(t)) && !GET_TRIG_NARG(t))) ||
               (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
 
-                if (random_number(1, 100) <= GET_TRIG_NARG(t)) {
-                    ADD_UID_VAR(buf, t, actor, "actor");
-                    ADD_UID_VAR(buf, t, obj, "object");
-                    ret_val = script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
-                    if (!ret_val)
-                        return ret_val;
-                }
+                  ADD_UID_VAR(buf, t, actor, "actor");
+                  ADD_UID_VAR(buf, t, obj, "object");
+                  ret_val = script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
+                  if (!ret_val)
+                      return ret_val;
             }
         }
     }
