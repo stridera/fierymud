@@ -753,8 +753,10 @@ ACMD(do_give) {
             act(buf, false, ch,(obj_ref2), vict, TO_CHAR);
             sprintf(buf, "$n gives you $p. (x%d)", qty);
             act(buf, false, ch,(obj_ref2), vict, TO_VICT);
-            act("$n gives $p to $N. (multiple)", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch,(obj_ref2), vict,
-                TO_NOTVICT);
+            if (qty == 1)
+                act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch,(obj_ref2), vict, TO_NOTVICT);
+            else
+                act("$n gives $p to $N. (multiple)", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch,(obj_ref2), vict, TO_NOTVICT);
         }
     }
 }
