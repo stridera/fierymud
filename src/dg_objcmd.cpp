@@ -426,7 +426,12 @@ OCMD(do_odamage) {
     }
 
     t->damdone = dam;
-    sethurtevent(0, ch, dam);
+    if (obj->worn_by && (obj->worn_by != ch))
+        sethurtevent(obj->worn_by, ch, dam);
+    else if (obj->carried_by && (obj->carried_by != ch))
+        sethurtevent(obj->worn_by, ch, dam);
+    else
+        sethurtevent(0, ch, dam);
 }
 
 OCMD(do_ocast) {
