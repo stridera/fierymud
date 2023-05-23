@@ -466,7 +466,6 @@ void load_mtrigger(CharData *ch) {
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
         if (TRIGGER_CHECK(t, MTRIG_LOAD) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
             script_driver(&ch, t, MOB_TRIGGER, TRIG_NEW);
-            break;
         }
     }
 }

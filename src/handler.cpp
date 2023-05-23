@@ -626,6 +626,7 @@ void obj_to_char(ObjData *obj, CharData *ch) {
         if (PLAYERALLY(ch))
             stop_decomposing(obj);
         overweight_check(ch);
+        load_otrigger(obj);
     } else
         log("SYSERR:handler.c:obj_to_char() NULL obj or char");
 }
@@ -1016,6 +1017,8 @@ void obj_to_room(ObjData *obj, int room) {
             if (IS_PLR_CORPSE(obj))
                 update_corpse(obj);
         }
+
+        load_otrigger(obj);
     }
 }
 
@@ -1077,6 +1080,8 @@ void obj_to_obj(ObjData *obj, ObjData *obj_to) {
         if (PLAYERALLY(tmp_obj->worn_by))
             stop_decomposing(obj);
     }
+
+    load_otrigger(obj);
 }
 
 /* remove an object from an object */
