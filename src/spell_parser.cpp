@@ -237,6 +237,7 @@ int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, 
     case CAST_SCROLL:
     case CAST_POTION:
     case CAST_WAND:
+    case CAST_INSTRUMENT:
         savetype = SAVING_ROD;
         break;
     case CAST_SPELL:
@@ -637,10 +638,11 @@ char *get_scroll_mob_msg(int spell1, int spell2, int spell3) {
  * only be called by the 'quaff', 'use', 'recite', etc. routines.
  *
  * For reference, object values 0-3:
- * staff  - [0] skill [1] max charges [2] num charges [3] spell num
- * wand   - [0] skill [1] max charges [2] num charges [3] spell num
- * scroll - [0] skill [1] spell num   [2] spell num   [3] spell num
- * potion - [0] skill [1] spell num   [2] spell num   [3] spell num
+ * staff        - [0] skill [1] max charges [2] num charges [3] spell num
+ * instrument   - [0] skill [1] max charges [2] num charges [3] spell num
+ * wand         - [0] skill [1] max charges [2] num charges [3] spell num
+ * scroll       - [0] skill [1] spell num   [2] spell num   [3] spell num
+ * potion       - [0] skill [1] spell num   [2] spell num   [3] spell num
  *
  * Staves and wands will default to level 14 if the level is not specified;
  * the DikuMUD format did not specify staff and wand levels in the world
@@ -663,11 +665,26 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
 
     switch (GET_OBJ_TYPE(obj)) {
     case ITEM_STAFF:
-        act("You tap $p three times on the ground.", false, ch, obj, 0, TO_CHAR);
-        if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
-            act(obj->action_description, false, ch, obj, 0, TO_ROOM);
-        else
-            act("$n taps $p three times on the ground.", false, ch, obj, 0, TO_ROOM);
+    case ITEM_INSTRUMENT:
+        if (GET_OBJ_TYPE(obj) == ITEM_STAFF) {
+            act("You tap $p three times on the ground.", false, ch, obj, 0, TO_CHAR);
+            if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8))
+                act(obj->action_description, false, ch, obj, 0, TO_ROOM);
+            else
+                act("$n taps $p three times on the ground.", false, ch, obj, 0, TO_ROOM);
+
+        } else {
+            act("You play $p.", false, ch, obj, 0, TO_CHAR);
+            act("$n plays $p.", false, ch, obj, 0, TO_ROOM);
+
+            if (obj->action_description && strncasecmp(obj->action_description, "Nothing.", 8)) {
+                act(obj->action_description, false, ch, obj, 0, TO_ROOM);
+                act(obj->action_description, false, ch, obj, 0, TO_CHAR);
+            }
+        }
+
+        if (!use_otrigger(obj, nullptr, ch, nullptr))
+            return;
 
         if (GET_OBJ_VAL(obj, VAL_STAFF_CHARGES_LEFT) <= 0) {
             act("It seems powerless.", false, ch, obj, 0, TO_CHAR);
@@ -747,6 +764,9 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             return;
         }
 
+        if (!use_otrigger(obj, tobj, ch, tch))
+            return;
+
         if (GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT) <= 0) {
             act("It seems powerless.", false, ch, obj, 0, TO_CHAR);
             act("Nothing seems to happen.", false, ch, obj, 0, TO_ROOM);
@@ -818,6 +838,10 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
                             /* No target */
                             act("$n recites $p.", false, ch, obj, nullptr, TO_ROOM);
                         }
+
+                        if (!use_otrigger(obj, tobj, ch, tch))
+                            return;
+
                         WAIT_STATE(ch, PULSE_VIOLENCE);
                         misc = strdup(arg);
                         if (ch->casting.misc)
@@ -855,6 +879,9 @@ void mag_objectmagic(CharData *ch, ObjData *obj, char *argument) {
             act(obj->action_description, false, ch, obj, nullptr, TO_ROOM);
         else
             act("$n quaffs $p.", true, ch, obj, nullptr, TO_ROOM);
+
+        if (!use_otrigger(obj, nullptr, ch, nullptr))
+            return;
 
         WAIT_STATE(ch, PULSE_VIOLENCE);
         ch->casting.spell = 0;

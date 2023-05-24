@@ -28,6 +28,7 @@
 #define CAST_BREATH 5
 #define CAST_CHANT 6
 #define CAST_PERFORM 7
+#define CAST_INSTRUMENT 8
 
 #define CAST_RESULT_CHARGE (1 << 0)
 #define CAST_RESULT_IMPROVE (1 << 1)

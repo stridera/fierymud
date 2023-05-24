@@ -62,6 +62,7 @@
 #define OTRIG_DEATH (1u << 10u)   /* character dies             */
 #define OTRIG_REMOVE (1u << 11u)  /* character tries to remove obj */
 #define OTRIG_LOOK (1u << 12u)    /* object is looked at        */
+#define OTRIG_USE (1u << 13u)     /* object is used             */
 #define OTRIG_LOAD (1u << 14u)    /* the object is loaded       */
 #define OTRIG_CAST (1u << 15u)    /* object targeted by spell  */
 #define OTRIG_LEAVE (1u << 16u)   /* some leaves room seen      */
@@ -201,6 +202,8 @@ void time_wtrigger(RoomData *room);
 
 int look_otrigger(ObjData *obj, CharData *actor, char *arg, const char *additional_args);
 int look_mtrigger(CharData *ch, CharData *actor, const char *arg);
+
+int use_otrigger(ObjData *obj, ObjData *tobj, CharData *actor, CharData *victim);
 
 void reset_wtrigger(RoomData *room);
 

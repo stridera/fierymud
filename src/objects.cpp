@@ -59,6 +59,7 @@ static int min_value(ObjData *obj, int val) {
     switch (GET_OBJ_TYPE(obj)) {
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         if (val == VAL_WAND_MAX_CHARGES)
             min = std::max(min, GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT));
         break;
@@ -94,6 +95,7 @@ static int max_value(ObjData *obj, int val) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         if (val == VAL_WAND_CHARGES_LEFT)
             max = std::min(max, GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES));
         break;

@@ -391,6 +391,7 @@ void do_stat_object(CharData *ch, ObjData *j) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         resp += fmt::format("Spell: {} at level {}, {} (of {}) charges remaining\n",
                             skill_name(GET_OBJ_VAL(j, VAL_WAND_SPELL)), GET_OBJ_VAL(j, VAL_WAND_LEVEL),
                             GET_OBJ_VAL(j, VAL_WAND_CHARGES_LEFT), GET_OBJ_VAL(j, VAL_WAND_MAX_CHARGES));

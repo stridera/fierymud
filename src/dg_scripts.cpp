@@ -36,7 +36,7 @@ const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",  
 
 /* obj trigger types */
 const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
-                             "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look", "UNUSED",
+                             "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",   "Use",
                              "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
 
 /* wld trigger types */

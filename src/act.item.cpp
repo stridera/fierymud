@@ -1451,7 +1451,7 @@ ACMD(do_grab) {
             perform_wear(ch, obj, WEAR_HOLD, false);
         else {
             if (!CAN_WEAR(obj, ITEM_WEAR_HOLD) && GET_OBJ_TYPE(obj) != ITEM_WAND && GET_OBJ_TYPE(obj) != ITEM_STAFF &&
-                GET_OBJ_TYPE(obj) != ITEM_SCROLL && GET_OBJ_TYPE(obj) != ITEM_POTION)
+                GET_OBJ_TYPE(obj) != ITEM_SCROLL && GET_OBJ_TYPE(obj) != ITEM_POTION && GET_OBJ_TYPE(obj) != ITEM_INSTRUMENT)
                 char_printf(ch, "You can't hold that.\n");
             else {
                 perform_wear(ch, obj, WEAR_HOLD, false);
@@ -1780,6 +1780,7 @@ ACMD(do_compare) {
             break;
         case ITEM_WAND:
         case ITEM_STAFF:
+        case ITEM_INSTRUMENT:
             if (!EFF_FLAGGED(ch, EFF_DETECT_MAGIC))
                 char_printf(ch, "You can't tell anything about either item.\n");
             else if (GET_OBJ_VAL(obj1, VAL_WAND_CHARGES_LEFT) == GET_OBJ_VAL(obj2, VAL_WAND_CHARGES_LEFT))

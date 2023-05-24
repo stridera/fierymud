@@ -298,6 +298,7 @@ OBJECT_TYPES = [
     "WALL",  # 27,  # /* Blocks passage in one direction */
     "TOUCHSTONE",  # 28,  # /* Item sets homeroom when touched */
     "BOARD",  # 29,  # Bullitin board
+    "INSTRUMENT", # 30, # /* Item is a musical instrument */
 ]
 
 WEAR_FLAGS = [

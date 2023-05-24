@@ -1739,6 +1739,7 @@ void init_obj_proto(ObjData *obj) {
             verify_obj_spell(obj, VAL_WAND_SPELL, false);
             break;
         case ITEM_STAFF:
+        case ITEM_INSTRUMENT:
             verify_obj_spell(obj, VAL_STAFF_SPELL, false);
             break;
         case ITEM_POTION:

@@ -291,8 +291,9 @@ int appraise_item(CharData *ch, ObjData *obj) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         value = value_spell(GET_OBJ_VAL(obj, VAL_WAND_SPELL), true) * GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT);
-        if (GET_OBJ_TYPE(obj) == ITEM_STAFF)
+        if (GET_OBJ_TYPE(obj) == ITEM_STAFF || GET_OBJ_TYPE(obj) == ITEM_INSTRUMENT)
             value *= 3;
         value += GET_OBJ_VAL(obj, VAL_WAND_LEVEL);
         /* charges total (value 1) doesn't matter right now */

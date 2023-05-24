@@ -242,7 +242,7 @@ int trade_with(ObjData *item, int shop_nr) {
     for (counter = 0; SHOP_BUYTYPE(shop_nr, counter) != NOTHING; counter++)
         if (SHOP_BUYTYPE(shop_nr, counter) == GET_OBJ_TYPE(item)) {
             if ((GET_OBJ_VAL(item, VAL_WAND_CHARGES_LEFT) == 0) &&
-                ((GET_OBJ_TYPE(item) == ITEM_WAND) || (GET_OBJ_TYPE(item) == ITEM_STAFF)))
+                ((GET_OBJ_TYPE(item) == ITEM_WAND) || (GET_OBJ_TYPE(item) == ITEM_STAFF) || (GET_OBJ_TYPE(item) == ITEM_INSTRUMENT)))
                 return OBJECT_DEAD;
             else if (evaluate_expression(item, SHOP_BUYWORD(shop_nr, counter)))
                 return OBJECT_OK;
@@ -932,7 +932,7 @@ std::string list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, i
         buf += fmt::format(" of {}", LIQ_NAME(GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID)));
     if (!shop_producing(obj, shop_nr))
         buf += fmt::format(" (x{:2d})", cnt);
-    if ((GET_OBJ_TYPE(obj) == ITEM_WAND) || (GET_OBJ_TYPE(obj) == ITEM_STAFF))
+    if ((GET_OBJ_TYPE(obj) == ITEM_WAND) || (GET_OBJ_TYPE(obj) == ITEM_STAFF) || (GET_OBJ_TYPE(obj) == ITEM_INSTRUMENT))
         if (GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT) < GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES))
             buf += " (partially used)";
 

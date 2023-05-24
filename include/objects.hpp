@@ -465,6 +465,18 @@ const struct ObjectTypeDef item_types[NUM_ITEM_TYPES] = {
          {VAL_MIN, VAL_MAX},
          {VAL_MIN, VAL_MAX}},
     },
+
+    {
+        "INSTRUMENT",
+        "an instrument",
+        {{0, LVL_IMMORT},
+         {0, 20},
+         {0, 20},
+         {0, MAX_SPELLS},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX},
+         {VAL_MIN, VAL_MAX}},
+    },
 };
 
 const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
