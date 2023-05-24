@@ -635,7 +635,7 @@ WCMD(do_wrent) {
     remove_player_from_game(ch, QUIT_WRENT);
 }
 
-/* allow a mob to set ANY skill or spell based on targets class
+/* allow a room to set ANY skill or spell based on targets class
  * and level
  * syntax wskillset <plyrname> <name_skill_or_spell>
  */
