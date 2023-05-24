@@ -528,6 +528,46 @@ OCMD(do_ochant) {
     }
 }
 
+/* allow a mob to set ANY skill or spell based on targets class
+ * and level
+ * syntax oskillset <plyrname> <name_skill_or_spell>
+ */
+OCMD(do_oskillset) {
+    CharData *victim;
+    char arg[MAX_INPUT_LENGTH];
+    int skspnum;
+
+
+    argument = one_argument(argument, arg);
+
+    if (!*arg) {
+        obj_log(obj, t, "oskillset called with no arguments");
+        return;
+    }
+
+    if (!(victim = find_char_around_obj(obj, find_dg_by_name(arg)))) {
+        sprintf(buf, "oskillset: victim (%s) not found", arg);
+        obj_log(obj, t, buf);
+        return;
+    }
+    /*
+     * we have a victim, do we have a valid skill?
+     */
+    skip_spaces(&argument);
+    if ((skspnum = find_talent_num(argument, TALENT)) < 0) {
+        /* no such spell/skill */
+        sprintf(buf, "oskillset called with unknown skill/spell '%s'", argument);
+        obj_log(obj, t, buf);
+        return;
+    }
+
+    /*
+     * because we're nice really, we will give the player the max proficiency for
+     * their level at this skill..don't thank me just throw money..
+     */
+    SET_SKILL(victim, skspnum, return_max_skill(victim, skspnum));
+}
+
 /*
  * Object version of do_quest
  * note, we don't return anything regardless of success of fail (whats an object
@@ -554,6 +594,7 @@ const struct obj_command_info obj_cmd_info[] = {
     {"oheal", do_oheal, 0},
     {"quest", do_obj_quest, 0},
     {"ocast", do_ocast, 0},
+    {"oskillset", do_oskillset, 0},
     {"log", do_obj_log, 0},
     {"\n", 0, 0} /* this must be last */
 };

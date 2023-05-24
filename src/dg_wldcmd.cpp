@@ -635,6 +635,47 @@ WCMD(do_wrent) {
     remove_player_from_game(ch, QUIT_WRENT);
 }
 
+/* allow a mob to set ANY skill or spell based on targets class
+ * and level
+ * syntax wskillset <plyrname> <name_skill_or_spell>
+ */
+WCMD(do_wskillset) {
+    CharData *victim;
+    char arg[MAX_INPUT_LENGTH];
+    int skspnum;
+
+
+    argument = one_argument(argument, arg);
+
+    if (!*arg) {
+        wld_log(room, t, "wskillset called with no arguments");
+        return;
+    }
+
+    if (!(victim = find_char_around_room(room, find_dg_by_name(arg)))) {
+        sprintf(buf, "wskillset: victim (%s) not found", arg);
+        wld_log(room, t, buf);
+        return;
+    }
+    /*
+     * we have a victim, do we have a valid skill?
+     */
+    skip_spaces(&argument);
+    if ((skspnum = find_talent_num(argument, TALENT)) < 0) {
+        /* no such spell/skill */
+        sprintf(buf, "wskillset called with unknown skill/spell '%s'", argument);
+        wld_log(room, t, buf);
+        return;
+    }
+
+    /*
+     * because we're nice really, we will give the player the max proficiency for
+     * their level at this skill..don't thank me just throw money..
+     */
+    SET_SKILL(victim, skspnum, return_max_skill(victim, skspnum));
+}
+
+
 const WorldCommandInfo wld_cmd_info[] = {
     {"RESERVED", 0, 0}, /* this must be first -- for specprocs */
 
@@ -656,6 +697,7 @@ const WorldCommandInfo wld_cmd_info[] = {
     {"quest", do_wld_quest, 0},
     {"log", do_wld_log, 0},
     {"w_run_room_trig", do_w_run_room_trig, 0},
+    {"wskillset", do_wskillset, 0},
     {"\n", 0, 0} /* this must be last */
 };
 
