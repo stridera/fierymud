@@ -246,6 +246,7 @@ void free_aliases(AliasData *alias_list);
 #define SCMD_USE 0
 #define SCMD_QUAFF 1
 #define SCMD_RECITE 2
+#define SCMD_PLAY 3
 
 /* do_echo */
 #define SCMD_ECHO 0

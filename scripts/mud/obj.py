@@ -111,7 +111,7 @@ class Obj(Base):
                     'Spell 2': Obj.get_flag(args[2], SPELLS),
                     'Spell 3': Obj.get_flag(args[3], SPELLS),
                 }
-            case "WAND" | "STAFF":
+            case "WAND" | "STAFF" | "INSTRUMENT":
                 results = {
                     'Level': args[0],
                     'Max_Charges': args[1],

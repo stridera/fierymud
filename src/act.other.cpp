@@ -1947,6 +1947,7 @@ ACMD(do_use) {
             }
             break;
         case SCMD_USE:
+        case SCMD_PLAY:
             /* Item isn't in first hand, now check the second. */
             mag_item = GET_EQ(ch, WEAR_HOLD2);
             if (!mag_item || !isname(arg, mag_item->name)) {
@@ -1981,6 +1982,12 @@ ACMD(do_use) {
     case SCMD_USE:
         if ((GET_OBJ_TYPE(mag_item) != ITEM_WAND) && (GET_OBJ_TYPE(mag_item) != ITEM_STAFF)) {
             char_printf(ch, "You can't seem to figure out how to use it.\n");
+            return;
+        }
+        break;
+    case SCMD_PLAY:
+        if (GET_OBJ_TYPE(mag_item) != ITEM_INSTRUMENT) {
+            char_printf(ch, "You can't seem to figure out how to make sound with it.\n");
             return;
         }
         break;

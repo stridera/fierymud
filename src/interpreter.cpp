@@ -692,6 +692,7 @@ const CommandInfo cmd_info[] = {
     {"petition", POS_PRONE, STANCE_DEAD, do_petition, 0, 0, CMD_ANY},
     {"pfilemaint", POS_PRONE, STANCE_DEAD, do_pfilemaint, LVL_OVERLORD, 0, 0},
     {"pick", POS_STANDING, STANCE_ALERT, do_gen_door, 1, SCMD_PICK, CMD_HIDE | CMD_NOFIGHT},
+    {"play", POS_SITTING, STANCE_RESTING, do_use, 1, SCMD_PLAY, 0},
     {"players", POS_PRONE, STANCE_DEAD, do_players, LVL_HEAD_C, 0, CMD_ANY},
     {"point", POS_PRONE, STANCE_RESTING, do_point, 0, 0, 0},
     {"poke", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},

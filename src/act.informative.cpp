@@ -1545,6 +1545,7 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         char_printf(ch,
                     "This {} casts: {}\n"
                     "It has {} maximum charge{} and {} remaining.\n",

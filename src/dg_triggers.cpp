@@ -986,6 +986,36 @@ int look_otrigger(ObjData *obj, CharData *actor, char *name, const char *additio
     return ret_val;
 }
 
+int use_otrigger(ObjData *obj, ObjData *tobj, CharData *actor, CharData *victim) {
+    TrigData *t;
+    char buf[MAX_INPUT_LENGTH];
+    int ret_val = 1;
+
+
+    if (!char_susceptible_to_triggers(actor) || !SCRIPT_CHECK(obj, OTRIG_USE))
+        return ret_val;
+
+    if (victim && (victim != actor)) {
+        if (!char_susceptible_to_triggers(victim))
+            return ret_val;
+    }
+
+    for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
+        if (TRIGGER_CHECK(t, OTRIG_USE) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
+            ADD_UID_VAR(buf, t, actor, "actor");
+            if (tobj && (obj != tobj))
+                ADD_UID_VAR(buf, t, tobj, "object");
+            if (victim && (victim != actor))
+                ADD_UID_VAR(buf, t, victim, "victim");
+            ret_val = (script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj);
+            if (!ret_val)
+                return ret_val;
+        }
+    }
+
+    return ret_val;
+}
+
 /*
  *  world triggers
  */

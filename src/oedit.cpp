@@ -803,6 +803,7 @@ void oedit_disp_val1_menu(DescriptorData *d) {
     case ITEM_WAND:
     case ITEM_STAFF:
     case ITEM_POTION:
+    case ITEM_INSTRUMENT:
         char_printf(d->character, "Spell level:\n");
         break;
     case ITEM_WEAPON:
@@ -859,6 +860,7 @@ void oedit_disp_val2_menu(DescriptorData *d) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         char_printf(d->character, "Max number of charges:\n");
         break;
     case ITEM_WEAPON:
@@ -907,6 +909,7 @@ void oedit_disp_val3_menu(DescriptorData *d) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         char_printf(d->character, "Number of charges remaining:\n");
         break;
     case ITEM_WEAPON:
@@ -945,6 +948,7 @@ void oedit_disp_val4_menu(DescriptorData *d) {
     case ITEM_POTION:
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         oedit_disp_spells_menu(d);
         break;
     case ITEM_WEAPON:
@@ -1076,6 +1080,7 @@ void oedit_disp_obj_values(DescriptorData *d) {
         break;
     case ITEM_WAND:
     case ITEM_STAFF:
+    case ITEM_INSTRUMENT:
         sprintf(buf,
                 "         Spell : %s%s%s\n"
                 "   Spell Level : %s%d%s\n"
@@ -1544,6 +1549,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
         case ITEM_POTION:
         case ITEM_WAND:
         case ITEM_STAFF:
+        case ITEM_INSTRUMENT:
             GET_OBJ_VAL(OLC_OBJ(d), 3) = number;
             if (number < 0 || number > MAX_SPELLS || !strcasecmp(skills[number].name, "!UNUSED!")) {
                 oedit_disp_val4_menu(d);

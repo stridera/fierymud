@@ -1110,9 +1110,9 @@ const struct VSearchType vsearch_object_modes[] = {
     {17, "effflags", FLAGS, effect_flags},
     {18, "triggervnum", INTEGER},
     {19, "lasts", INTEGER},            /* light */
-    {20, "casts", SPLNAME},            /* wand, staff, potion, scroll */
-    {21, "chargesinitial", INTEGER},   /* staff, wand */
-    {22, "chargesremaining", INTEGER}, /* staff, wand */
+    {20, "casts", SPLNAME},            /* wand, staff, potion, scroll, instrument */
+    {21, "chargesinitial", INTEGER},   /* staff, wand, instrument */
+    {22, "chargesremaining", INTEGER}, /* staff, wand, instrument */
     {23, "damnodice", INTEGER},        /* weapon */
     {24, "damsizedice", INTEGER},      /* weapon */
     {25, "attacktype", STRING},        /* weapon */
@@ -1139,15 +1139,15 @@ const struct VSearchType vsearch_object_modes[] = {
     {0, nullptr, 0},
 };
 
-#define MAX_SEARCH_ITEM_TYPES 4
+#define MAX_SEARCH_ITEM_TYPES 5
 const struct vsearch_object_value_type {
     int type;
     int item_types[MAX_SEARCH_ITEM_TYPES];
 } value_types[] = {
     {19, {ITEM_LIGHT}},                                      /* lasts */
-    {20, {ITEM_WAND, ITEM_STAFF, ITEM_POTION, ITEM_SCROLL}}, /* casts */
-    {21, {ITEM_WAND, ITEM_STAFF}},                           /* chargesinitial */
-    {22, {ITEM_WAND, ITEM_STAFF}},                           /* chargesremaining */
+    {20, {ITEM_WAND, ITEM_STAFF, ITEM_POTION, ITEM_SCROLL, ITEM_INSTRUMENT}}, /* casts */
+    {21, {ITEM_WAND, ITEM_STAFF, ITEM_INSTRUMENT}},                           /* chargesinitial */
+    {22, {ITEM_WAND, ITEM_STAFF, ITEM_INSTRUMENT}},                           /* chargesremaining */
     {23, {ITEM_WEAPON}},                                     /* damnodice */
     {24, {ITEM_WEAPON}},                                     /* damsizedice */
     {25, {ITEM_WEAPON}},                                     /* attacktype */
@@ -1240,6 +1240,7 @@ ACMD(do_osearch) {
             break;
         case ITEM_WAND:
         case ITEM_STAFF:
+        case ITEM_INSTRUMENT:
             header_type = "Charges Left/Total, Spell";
             break;
         case ITEM_WEAPON:
@@ -1387,7 +1388,7 @@ ACMD(do_osearch) {
             match = numeric_compare(GET_OBJ_VAL(obj, 3), value, bound, compare);
             break;
         case 20:
-            if (GET_OBJ_TYPE(obj) == ITEM_STAFF || GET_OBJ_TYPE(obj) == ITEM_WAND)
+            if (GET_OBJ_TYPE(obj) == ITEM_STAFF || GET_OBJ_TYPE(obj) == ITEM_WAND || GET_OBJ_TYPE(obj) == ITEM_INSTRUMENT)
                 match = (GET_OBJ_VAL(obj, VAL_STAFF_SPELL) == value);
             else if (GET_OBJ_TYPE(obj) == ITEM_SCROLL || GET_OBJ_TYPE(obj) == ITEM_POTION)
                 match =
@@ -1476,6 +1477,7 @@ ACMD(do_osearch) {
                     break;
                 case ITEM_WAND:
                 case ITEM_STAFF:
+                case ITEM_INSTRUMENT:
                     vbuf += fmt::format("{:2d}/{:2d} {}{}{}", GET_OBJ_VAL(obj, VAL_WAND_CHARGES_LEFT),
                                         GET_OBJ_VAL(obj, VAL_WAND_MAX_CHARGES), cyn,
                                         skill_name(GET_OBJ_VAL(obj, VAL_WAND_SPELL)), nrm);

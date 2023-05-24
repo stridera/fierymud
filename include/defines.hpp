@@ -1052,7 +1052,8 @@
 #define ITEM_WALL 27       /* Blocks passage in one direction */
 #define ITEM_TOUCHSTONE 28 /* Item sets homeroom when touched */
 #define ITEM_BOARD 29
-#define NUM_ITEM_TYPES 30
+#define ITEM_INSTRUMENT 30 /* Item is a musical instrument    */
+#define NUM_ITEM_TYPES 31
 
 /* Take/Wear flags: used by ObjData.obj_flags.wear_flags */
 #define ITEM_WEAR_TAKE (1 << 0)     /* Item can be takes         */
