@@ -1178,7 +1178,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_BLESS:
 
-        if (GET_LEVEL(ch) < LVL_IMMORT && !IS_GOOD(ch) && casttype == CAST_SPELL) {
+        if (GET_LEVEL(ch) < LVL_IMMORT && IS_EVIL(ch) && casttype == CAST_SPELL) {
             char_printf(ch, "The gods have forsaken you in your evilness!\n");
             act("There is no effect.  $n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
@@ -1406,7 +1406,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_DARK_PRESENCE:
 
-        if (GET_LEVEL(ch) < LVL_IMMORT && !IS_EVIL(ch) && casttype == CAST_SPELL) {
+        if (GET_LEVEL(ch) < LVL_IMMORT && IS_GOOD(ch) && casttype == CAST_SPELL) {
             char_printf(ch, "In your goodness, the dark gods have forsaken you!\n");
             act("Nothing happens.  $n looks rather forlorn.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
