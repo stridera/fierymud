@@ -2430,7 +2430,7 @@ void nanny(DescriptorData *d, char *arg) {
         echo_on(d);
 
         if (STATE(d) == CON_CNFPASSWD) {
-            string_to_output(d, "\nWhat is your sex (M/F)? ");
+            string_to_output(d, "\nWhat is your sex ([M]ale/[F]emale/[N]onbinary)? ");
             STATE(d) = CON_QSEX;
         } else {
             save_player_char(d->character);
@@ -2452,10 +2452,14 @@ void nanny(DescriptorData *d, char *arg) {
         case 'F':
             d->character->player.sex = SEX_FEMALE;
             break;
+        case 'n':
+        case 'N':
+            d->character->player.sex = SEX_NONBINARY;
+            break;
         default:
             string_to_output(d,
                              "\nThat is not a sex!\n"
-                             "What IS your sex? (M/F) ");
+                             "What IS your sex? ([M]ale/[F]emale/[N]onbinary) ");
             return;
             break;
         }
@@ -2487,6 +2491,7 @@ void nanny(DescriptorData *d, char *arg) {
             GET_RACE(d->character) = load_result;
         STATE(d) = CON_QCLASS;
         display_classes(d, 1);
+        string_to_output(d, "\n\n [?] Class Help Menu ");
         break;
     case CON_NAME_CHECK: /* extended cases for arg with the or's RSD */
         switch (yesno_result(arg)) {
@@ -2554,12 +2559,16 @@ void nanny(DescriptorData *d, char *arg) {
                return;
                }
                break; */
-            /*    case '?':
-                  sprintf(buf2, "Class Help Menu\n-=-=-=-=-=-=-=-\n");
-                  for(i=0;i<NUM_CLASSES;i++)
-                    sprintf(buf2, "%s%s\n", buf2, class_display[i]);
-                  sprintf(buf2, "%s0) Back to Class Selection\n\nSelection:
-               ",buf2); page_string(d, buf2); STATE(d) = CON_CLASSHELP; return; */
+        case '?':
+            sprintf(buf2, "Class Help Menu\n-=-=-=-=-=-=-=-\n");
+
+            sprintf(buf, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue&0");
+            char_printf(d->character, buf);
+
+            STATE(d) = CON_CLASSHELP; 
+            return;
+
+            break;
         default:
             string_to_output(d, "\nInvalid selection.\nClass: ");
             return;
@@ -2586,6 +2595,44 @@ void nanny(DescriptorData *d, char *arg) {
 
         /* Here is some code to gracefully exit this state if it gets entered
          * by mistake. */
+
+        int chk, bot, top, mid, minlen;
+        char *argument;
+
+        switch (*arg) {
+        case 'w':
+            argument = "warrior";
+            break;
+        case 'c':
+            argument = "cleric";
+            break;
+        case 's':
+            argument = "sorcerer";
+            break;
+        case 'r':
+            argument = "rogue";
+            break;
+        default:
+            string_to_output(d, "\nInvalid selection.\nChoose a Class Help File: ");
+            return;
+        }
+
+        bot = 0;
+        top = top_of_helpt;
+        minlen = strlen(argument);
+
+        for (;;) {
+            mid = (bot + top) / 2;
+
+            if (!(chk = strncasecmp(argument, help_table[mid].keyword, minlen))) {
+                /* trace backwards to find first matching entry. Thanks Jeff Fink! */
+                while ((mid > 0) && (!(chk = strncasecmp(argument, help_table[mid - 1].keyword, minlen))))
+                    mid--;
+                    string_to_output(d, help_table[mid].entry);
+                return;
+        }
+
+        
         display_classes(d, 1);
         STATE(d) = CON_QCLASS;
         break;
@@ -2682,7 +2729,7 @@ void nanny(DescriptorData *d, char *arg) {
             for (i = 0; i < 6; i++) {
                 GET_ROLL(d->character, i) = 0;
             }
-            string_to_output(d, "\nWhat is your sex (M/F)? ");
+            string_to_output(d, "\nWhat is your sex ([M]ale/[F]emale/[N]onbinary)? ");
             STATE(d) = CON_QSEX;
             break;
         case YESNO_OTHER:
