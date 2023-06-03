@@ -707,6 +707,16 @@ ACMD(do_shapechange) {
     mob->desc = ch->desc;
     ch->desc = nullptr;
     ch->forward = mob;
+
+    /* Transfer hover slot items to new mob */
+    obj = GET_EQ(ch, WEAR_HOVER);
+
+    if (obj) {
+        unequip_char(ch, WEAR_HOVER);
+        obj_from_char(obj);
+        equip_char(mob, obj, WEAR_HOVER);
+    }
+
 }
 
 bool creature_allowed_skill(CharData *ch, int skill) {
