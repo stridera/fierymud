@@ -890,9 +890,32 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 ;
             break;
         case OBJ_TRIGGER:
-            if ((c = find_char_around_obj(obj, find_dg_by_name(name))))
+            while (obj->in_obj)
+                obj = obj->in_obj;
+
+            if ((o = find_obj_in_eq(obj->worn_by, nullptr, find_by_name(name))))
                 ;
-            else if ((o = find_obj_around_obj(obj, find_by_name(name))))
+            else if ((o = find_obj_in_eq(obj->carried_by, nullptr, find_by_name(name))))
+                ;
+            else if ((o = find_obj_in_list(obj->worn_by->carrying, find_by_name(name))))
+                ;
+            else if ((o = find_obj_in_list(obj->carried_by->carrying, find_by_name(name))))
+                ;
+            else if ((c = find_char_in_room(&world[obj->worn_by->in_room], find_by_name(name))))
+                ;
+            else if ((c = find_char_in_room(&world[obj->carried_by->in_room], find_by_name(name))))
+                ;
+            else if ((c = find_char_in_room(&world[obj->in_room], find_by_name(name))))
+                ;
+            else if ((o = find_obj_in_list(world[IN_ROOM(obj->worn_by)].contents, find_by_name(name))))
+                ;
+            else if ((o = find_obj_in_list(world[IN_ROOM(obj->carried_by)].contents, find_by_name(name))))
+                ;
+            else if ((o = find_obj_in_list(world[IN_ROOM(ch)].contents, find_by_name(name))))
+                ;
+            else if ((c = find_char_in_world(find_by_name(name))))
+                ;
+            else if ((o = find_obj_in_world(find_by_name(name))))
                 ;
             else if ((r = get_room(name)))
                 ;
