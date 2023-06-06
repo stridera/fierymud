@@ -1526,7 +1526,6 @@ void send_race_menu(DescriptorData *d) {
     char idx;
     int i;
 
-    string_to_output(d, "\nThe following races are available:\n");
     for (i = 0, idx = 'a'; i < NUM_RACES; i++) {
         if (races[i].playable && (evil_races_allowed || races[i].racealign == RACE_ALIGN_GOOD)) {
             sprintf(buf, "  &7%c)&0 %s\n", idx, races[i].fullname);

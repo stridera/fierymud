@@ -1740,6 +1740,8 @@ void display_classes(DescriptorData *d, int select) {
                 clericok ? " [&0&1&bc&0&6]leric" : "", mageok ? " [&0&1&bs&0&6]orcerer" : "",
                 rogueok ? " [&0&1&br&0&6]ogue" : "");
     char_printf(d->character, buf);
+        sprintf(buf, "\n\n(&6[&0&1&b?&0&6] Class Help Menu)");
+    char_printf(d->character, buf);
     char_printf(d->character, "&0");
 }
 
@@ -2430,7 +2432,7 @@ void nanny(DescriptorData *d, char *arg) {
         echo_on(d);
 
         if (STATE(d) == CON_CNFPASSWD) {
-            string_to_output(d, "\nWhat is your sex (M/F)? ");
+            string_to_output(d, "\nWhat is your sex ([M]ale/[F]emale/[N]onbinary)? ");
             STATE(d) = CON_QSEX;
         } else {
             save_player_char(d->character);
@@ -2452,16 +2454,23 @@ void nanny(DescriptorData *d, char *arg) {
         case 'F':
             d->character->player.sex = SEX_FEMALE;
             break;
+        case 'n':
+        case 'N':
+            d->character->player.sex = SEX_NONBINARY;
+            break;
         default:
             string_to_output(d,
                              "\nThat is not a sex!\n"
-                             "What IS your sex? (M/F) ");
+                             "What IS your sex? ([M]ale/[F]emale/[N]onbinary) ");
             return;
             break;
         }
         if (races_allowed) {
+            char_printf(d->character, race_descrip);
+            char_printf(d->character, race_descrip2);
             send_race_menu(d);
             string_to_output(d, "\nRace: ");
+            string_to_output(d, "\n\n&6([&0&1&b?&0&6] for more information on races)&0\n");
             STATE(d) = CON_QRACE;
             break;
         } else {
@@ -2477,16 +2486,134 @@ void nanny(DescriptorData *d, char *arg) {
         display_classes(d, 1);
         break;
     case CON_QRACE:
-        load_result = interpret_race_selection(*arg);
-        if (load_result == RACE_UNDEFINED) {
+        int race_result;
+
+        switch (*arg) {
+        case '?':
+            STATE(d) = CON_RACEHELP;
+            string_to_output(d, "\n\nRace Help Menu\n-=-=-=-=-=-=-=-\n");
+            send_race_menu(d);
+            string_to_output(d, "\nWhat race would you like more information on: ");
+            string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to race selection.)&0");
+            break;
+        default:
+            race_result = interpret_race_selection(*arg);
+            if (race_result == RACE_UNDEFINED) {
+                string_to_output(d, "\n&3Please choose by entering the letter next to the race of your choice.&0\n");
+                send_race_menu(d);
+                string_to_output(d, "\nRace: ");
+                return;
+            } else
+                GET_RACE(d->character) = race_result;
+            STATE(d) = CON_QCLASS;
+            display_classes(d, 1);
+        }
+        break;
+    case CON_RACEHELP:
+        /* Display the help files for the races that are being offered for starting players. */
+        switch (*arg) {
+        case 'x':
             string_to_output(d, "\n&3Please choose by entering the letter next to the race of your choice.&0\n");
             send_race_menu(d);
             string_to_output(d, "\nRace: ");
-            return;
-        } else
-            GET_RACE(d->character) = load_result;
-        STATE(d) = CON_QCLASS;
-        display_classes(d, 1);
+            string_to_output(d, "\n\n&6([&0&1&b?&0&6] for more information on races)&0\n");
+            STATE(d) = CON_QRACE;
+            break;
+        default:
+            int chk, bot, top, mid, minlen;
+            char *race;
+
+            race_result = interpret_race_selection(*arg);
+
+            switch (race_result) {
+            case RACE_HUMAN:
+                race = "human";
+                break;
+            case RACE_ELF:
+                race = "elf";
+                break;
+            case RACE_GNOME:
+                race = "gnome";
+                break;
+            case RACE_DWARF:
+                race = "dwarf";
+                break;
+            case RACE_TROLL:
+                race = "troll";
+                break;
+            case RACE_DROW:
+                race = "drow";
+                break;
+            case RACE_DUERGAR:
+                race = "duergar";
+                break;
+            case RACE_OGRE:
+                race = "ogre";
+                break;
+            case RACE_ORC:
+                race = "orc";
+                break;
+            case RACE_HALF_ELF:
+                race = "half-elf";
+                break;
+            case RACE_BARBARIAN:
+                race = "barbarian";
+                break;
+            case RACE_HALFLING:
+                race = "halfling";
+                break;
+            case RACE_DRAGONBORN_FIRE:
+            case RACE_DRAGONBORN_FROST:
+            case RACE_DRAGONBORN_ACID:
+            case RACE_DRAGONBORN_LIGHTNING:
+            case RACE_DRAGONBORN_GAS:
+                race = "dragonborn";
+                break;
+            case RACE_SVERFNEBLIN:
+                race = "sverfneblin";
+                break;
+            case RACE_FAERIE_SEELIE:
+                race = "seelie faerie";
+                break;
+            case RACE_FAERIE_UNSEELIE:
+                race = "unseelie faerie";
+                break;
+            case RACE_NYMPH:
+                race = "nymph";
+                break;
+            default:
+                string_to_output(d, "\n&3Please choose by entering the letter next to the race of your choice.&0\n");
+                send_race_menu(d);
+                string_to_output(d, "\nWhat race would you like more information on: ");
+                string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to race selection.)&0");
+                return;
+            }
+
+            bot = 0;
+            top = top_of_helpt;
+            minlen = strlen(race);
+
+            for (;;) {
+                mid = (bot + top) / 2;
+
+                if (!(chk = strncasecmp(race, help_table[mid].keyword, minlen))) {
+                    /* trace backwards to find first matching entry. Thanks Jeff Fink! */
+                    while ((mid > 0) && (!(chk = strncasecmp(race, help_table[mid - 1].keyword, minlen))))
+                        mid--;
+
+                    string_to_output(d, help_table[mid].entry);
+                    string_to_output(d, "\n");
+                    string_to_output(d, "\n\nPress ENTER to return to the race help menu or [X] to select a race.");
+                    return;
+                } else {
+                    if (chk > 0)
+                        bot = mid + 1;
+                    else
+                        top = mid - 1;
+                }
+            }
+        }
+
         break;
     case CON_NAME_CHECK: /* extended cases for arg with the or's RSD */
         switch (yesno_result(arg)) {
@@ -2505,89 +2632,142 @@ void nanny(DescriptorData *d, char *arg) {
         }
         break;
     case CON_QCLASS:
-        /*
-           load_result = parse_class(NULL, d->character, *arg);
-           if (load_result == CLASS_UNDEFINED) {
-           string_to_output(d, "\nInvalid selection.\nClass: ");
-           return;
-           } else
-           GET_CLASS(d->character) = load_result;
-         */
         switch (*arg) {
-        case 'w':
-            if (class_ok_race[(int)GET_RACE(d->character)][CLASS_WARRIOR])
-                load_result = CLASS_WARRIOR;
-            else {
-                string_to_output(d, "\nInvalid selection.\nClass: ");
-                return;
-            }
+        case '?':
+            STATE(d) = CON_CLASSHELP;
+            string_to_output(d, "\n\n&6Class Help Menu\n-=-=-=-=-=-=-=-&0\n");
+            string_to_output(d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+            string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection)\n&0");
             break;
-        case 'c':
-            if (class_ok_race[(int)GET_RACE(d->character)][CLASS_CLERIC])
-                load_result = CLASS_CLERIC;
-            else {
-                string_to_output(d, "\nInvalid selection.\nClass: ");
-                return;
-            }
-            break;
-        case 's':
-            if (class_ok_race[(int)GET_RACE(d->character)][CLASS_SORCERER])
-                load_result = CLASS_SORCERER;
-            else {
-                string_to_output(d, "\nInvalid selection.\nClass: ");
-                return;
-            }
-            break;
-        case 'r':
-            if (class_ok_race[(int)GET_RACE(d->character)][CLASS_ROGUE])
-                load_result = CLASS_ROGUE;
-            else {
-                string_to_output(d, "\nInvalid selection.\nClass: ");
-                return;
-            }
-            break;
-            /*   case 'h':
-               if (class_ok_race[(int)GET_RACE(d->character)][CLASS_SHAMAN])
-               load_result = CLASS_SHAMAN;
-               else {
-               string_to_output(d, "\nInvalid selection.\nClass: ");
-               return;
-               }
-               break; */
-            /*    case '?':
-                  sprintf(buf2, "Class Help Menu\n-=-=-=-=-=-=-=-\n");
-                  for(i=0;i<NUM_CLASSES;i++)
-                    sprintf(buf2, "%s%s\n", buf2, class_display[i]);
-                  sprintf(buf2, "%s0) Back to Class Selection\n\nSelection:
-               ",buf2); page_string(d, buf2); STATE(d) = CON_CLASSHELP; return; */
         default:
-            string_to_output(d, "\nInvalid selection.\nClass: ");
-            return;
+            /*
+              load_result = parse_class(NULL, d->character, *arg);
+              if (load_result == CLASS_UNDEFINED) {
+              string_to_output(d, "\nInvalid selection.\nClass: ");
+              return;
+              } else
+              GET_CLASS(d->character) = load_result;
+            */
+            switch (*arg) {
+            case 'w':
+                if (class_ok_race[(int)GET_RACE(d->character)][CLASS_WARRIOR])
+                    load_result = CLASS_WARRIOR;
+                else {
+                    string_to_output(d, "\nInvalid selection.\nClass: ");
+                    return;
+                }
+                break;
+            case 'c':
+                if (class_ok_race[(int)GET_RACE(d->character)][CLASS_CLERIC])
+                    load_result = CLASS_CLERIC;
+                else {
+                    string_to_output(d, "\nInvalid selection.\nClass: ");
+                    return;
+                }
+                break;
+            case 's':
+                if (class_ok_race[(int)GET_RACE(d->character)][CLASS_SORCERER])
+                    load_result = CLASS_SORCERER;
+                else {
+                    string_to_output(d, "\nInvalid selection.\nClass: ");
+                    return;
+                }
+                break;
+            case 'r':
+                if (class_ok_race[(int)GET_RACE(d->character)][CLASS_ROGUE])
+                    load_result = CLASS_ROGUE;
+                else {
+                    string_to_output(d, "\nInvalid selection.\nClass: ");
+                    return;
+                }
+                break;
+                /*   case 'h':
+                  if (class_ok_race[(int)GET_RACE(d->character)][CLASS_SHAMAN])
+                  load_result = CLASS_SHAMAN;
+                  else {
+                  string_to_output(d, "\nInvalid selection.\nClass: ");
+                  return;
+                  }
+                  break; */
+            default:
+                string_to_output(d, "\nInvalid selection.\nClass: ");
+                return;
+            }
+            GET_CLASS(d->character) = load_result;
+
+            /* Hometown selection disabled. Here is the code for when you
+            * DON'T ask about a hometown: */
+
+            GET_HOMEROOM(d->character) = classes[(int)GET_CLASS(d->character)].homeroom;
+
+            string_to_output(d, "\nPlease press ENTER to roll your attributes: ");
+            STATE(d) = CON_QROLLSTATS;
+
+            /* This is the place we'd ask about hometown selection. */
+            /* (code to display choices) */
+            /* STATE(d) = CON_QHOMETOWN; */
         }
-        GET_CLASS(d->character) = load_result;
 
-        /* Hometown selection disabled. Here is the code for when you
-         * DON'T ask about a hometown: */
-
-        GET_HOMEROOM(d->character) = classes[(int)GET_CLASS(d->character)].homeroom;
-
-        string_to_output(d, "\nPlease press ENTER to roll your attributes: ");
-        STATE(d) = CON_QROLLSTATS;
-
-        /* This is the place we'd ask about hometown selection. */
-        /* (code to display choices) */
-        /* STATE(d) = CON_QHOMETOWN; */
         break;
 
     case CON_CLASSHELP:
-        /* This state is not currently entered.  It would be useful.  This
-         * would be a nice place to describe the classes that are being offered
-         * for starting players. */
+        /* Display the help files for classes that are being offered for starting players. */
 
-        /* Here is some code to gracefully exit this state if it gets entered
-         * by mistake. */
-        display_classes(d, 1);
-        STATE(d) = CON_QCLASS;
+        switch (*arg) { 
+        case 'x':
+            STATE(d) = CON_QCLASS;
+            display_classes(d, 1);
+            break;
+        default:
+            int chk, bot, top, mid, minlen;
+            char *charclass;
+
+            switch (*arg) {
+            case 'w':
+                charclass = "warrior";
+                break;
+            case 'c':
+                charclass = "cleric";
+                break;
+            case 's':
+                charclass = "sorcerer";
+                break;
+            case 'r':
+                charclass = "rogue";
+                break;
+
+            default:
+                string_to_output(d, "\nInvalid selection. ");
+                string_to_output(d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+                string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection.)&0");
+                return;
+            }
+
+            bot = 0;
+            top = top_of_helpt;
+            minlen = strlen(charclass);
+
+            for (;;) {
+                mid = (bot + top) / 2;
+
+                if (!(chk = strncasecmp(charclass, help_table[mid].keyword, minlen))) {
+                    /* trace backwards to find first matching entry. Thanks Jeff Fink! */
+                    while ((mid > 0) && (!(chk = strncasecmp(charclass, help_table[mid - 1].keyword, minlen))))
+                        mid--;
+
+                    string_to_output(d, help_table[mid].entry);
+                    string_to_output(d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+                    string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection.)&0");
+                    return;
+                } else {
+                    if (chk > 0)
+                        bot = mid + 1;
+                    else
+                        top = mid - 1;
+                }
+            }
+        }
+
         break;
 
     case CON_QHOMETOWN:
@@ -2682,7 +2862,7 @@ void nanny(DescriptorData *d, char *arg) {
             for (i = 0; i < 6; i++) {
                 GET_ROLL(d->character, i) = 0;
             }
-            string_to_output(d, "\nWhat is your sex (M/F)? ");
+            string_to_output(d, "\nWhat is your sex ([M]ale/[F]emale/[N]onbinary)? ");
             STATE(d) = CON_QSEX;
             break;
         case YESNO_OTHER:

@@ -50,3 +50,28 @@ const char *subclass_descrip2 =
     "skills and spells thus altering your power within the realm.  Some\n"
     "classes will also be required to choose a deity in the future as "
     "well.&0\n";
+
+
+const char *race_descrip =
+    "\n"
+    "                    &1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&3&bMUD Race System&0\n"
+    "&1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&7&bMUD &0has many playable races "
+    "to choose from which offer a variety\n"
+    "of playstyles. Each race has unique powers, strengths, weaknesses,\n"
+    "and ability score limits. Your choice of race your character's\n"
+    "alignment will determine what classes and subclasses are available to\n"
+    "them. No one race can be all classes or subclasses. Class/subclass\n"
+    "restrictions, innate abilities, and rough ability score capacities\n"
+    "for each race can be found in the race's help file.\n\n";
+
+const char *race_descrip2 =
+    "Races are divided into two groups: the 'good' races and the 'evil'\n"
+    "races. However, individual character alignment is fluid and any race\n"
+    "can become any alignment. Creatures through the world may interact\n"
+    "with you differently depending on your character alignment and your\n"
+    "racial group. Players may choose from any of the 'good' races to\n"
+    "start from. Players may ask a god to create a character from an\n"
+    "'evil' race once they have demonstrated sufficient knowledge of the\n"
+    "realm. The 'evil' races are not necessarily stronger or more\n"
+    "complicated to play than the 'good' races, but the restriction is\n"
+    "often helpful for new players.\n\n";
