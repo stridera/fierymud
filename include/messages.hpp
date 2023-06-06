@@ -9,3 +9,5 @@ extern const char *NOPERSON;
 extern const char *NOEFFECT;
 extern const char *subclass_descrip;
 extern const char *subclass_descrip2;
+extern const char *race_descrip;
+extern const char *race_descrip2;
