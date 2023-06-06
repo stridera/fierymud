@@ -890,9 +890,9 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 ;
             break;
         case OBJ_TRIGGER:
-            if ((c = find_char_around_obj(obj, find_dg_by_name(name))))
+            if ((o = find_obj_around_obj(obj, find_by_name(name))))
                 ;
-            else if ((o = find_obj_around_obj(obj, find_by_name(name))))
+            else if ((c = find_char_around_obj(obj, find_dg_by_name(name))))
                 ;
             else if ((r = get_room(name)))
                 ;
