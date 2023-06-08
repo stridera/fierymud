@@ -39,7 +39,7 @@
 #include "utils.hpp"
 
 const char *stats_display =
-    "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\n"
+    "\n&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\n"
     "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\n"
     "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\n\n";
 

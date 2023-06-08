@@ -66,7 +66,7 @@ void personal_reboot_warning(CharData *ch);
 void display_question(DescriptorData *d);
 /*void rolls_display( CharData *ch, char *[], char *[]);*/
 void roll_natural_abils(CharData *ch);
-void new_rollor_display(CharData *ch, int[]);
+void new_roller_display(CharData *ch, int[]);
 int bonus_stat(CharData *ch, char arg);
 int parse_good_race(char arg); /* Put in until such time that all races are allowed */
 void set_innate(CharData *ch, char *arg);
@@ -2053,6 +2053,31 @@ void set_player_name(CharData *ch, char *name) {
         *s = tolower(*s);
 }
 
+void new_roller_display(CharData *ch, int word[6]) {
+    int statts[6];
+    int j;
+
+    statts[0] = GET_NATURAL_STR(ch);
+    statts[1] = GET_NATURAL_INT(ch);
+    statts[2] = GET_NATURAL_WIS(ch);
+    statts[3] = GET_NATURAL_DEX(ch);
+    statts[4] = GET_NATURAL_CON(ch);
+    statts[5] = GET_NATURAL_CHA(ch);
+
+    for (j = 0; j <= 5; j++) {
+        if (statts[j] > 90)
+            word[j] = 0;
+        else if (statts[j] > 80)
+            word[j] = 1;
+        else if (statts[j] > 62)
+            word[j] = 2;
+        else if (statts[j] > 52)
+            word[j] = 3;
+        else
+            word[j] = 4;
+    }
+}
+
 /* deal with newcomers and other non-playing sockets */
 void nanny(DescriptorData *d, char *arg) {
     int player_i, load_result;
@@ -2787,33 +2812,405 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_QROLLSTATS:
 
         switch (*arg) {
-        case 'y':
-        case 'Y':
-            if ((GET_NATURAL_STR(d->character)) > 0)
+        case '1':
+            if ((GET_NATURAL_STR(d->character)) > 0) {
+                STATE(d) = CON_QBONUS1;
+                string_to_output(d, "\n\n&0&7&bYou have three bonuses to use.&0\n");
+                string_to_output(d, "&0&7&bChoose the stat carefully.&0\n");
+                string_to_output(d, stats_display);
+                string_to_output(d, "\n&0&7&bPlease enter your first bonus selection:&0\n");
                 break;
-        case 'n':
-        case 'N':
+            }
+        case '2':
+            STATE(d) = CON_QASSIGNSTATS;
+            string_to_output(d, stats_display);
+            string_to_output(d, "\n\n&0&7&bPlease select the first stat you want to swap:&0\n");
+            break;
+        case '3':
         default:
 
             roll_natural_abils(d->character);
-            new_rollor_display(d->character, roll_table);
+            new_roller_display(d->character, roll_table);
             string_to_output(d,
                              "\n"
                              "        Con:  {}                Wis:  {}\n"
                              "        Str:  {}                Intel:{}\n"
                              "        Dex:  {}                Char: {}\n"
-                             "\n\nYou may keep these stats if you wish (&0&6Enter y&0),\n"
-                             "or if you wish you may try for better stats (&0&6Enter n&0)(y/n):",
+                             "\n\nYou may:\n"
+                             "[1] Keep these stats\n"
+                             "[2] Swap any two stats\n"
+                             "[3] or [Enter] Roll for new stats\n",
                              rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
                              rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
                              rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
             return;
         }
 
-        string_to_output(d, "\n\n&0&7&bYou have three bonus's to use choose the stat carefully:&0\n");
+        break;
+
+    case CON_QASSIGNSTATS:
+        int state;
+
+        switch (*arg) {
+            case 's':
+                state = CON_SWAP_STR;
+                break;
+            case 'i':
+                state = CON_SWAP_INT;
+                break;
+            case 'w':
+                state = CON_SWAP_WIS;
+                break;
+            case 'c':
+                state = CON_SWAP_CON;
+                break;
+            case 'd':
+                state = CON_SWAP_DEX;
+                break;
+            case 'm':
+                state = CON_SWAP_CHA;
+                break;
+            default:
+                string_to_output(d, "\n\n&0&7&bInvalid selection.&0\n");
+                string_to_output(d, "\n&0&7&bPlease select the first stat you want to swap:&0\n");
+                return;
+        }
+
+        STATE(d) = state;
         string_to_output(d, stats_display);
-        string_to_output(d, "\n&0&7&bPlease enter your first bonus selection:&0\n");
-        STATE(d) = CON_QBONUS1;
+        string_to_output(d, "\n&0&7&bPlease select the second stat you want to swap:&0\n");
+        break;
+    case CON_SWAP_STR:
+        int stat1, temp;
+
+        stat1 = GET_NATURAL_STR(d->character);
+
+        switch (*arg) {
+            case 's':
+                string_to_output(d, "\n\n&0&7&bYou are already swapping your Strength!&0\n");
+                string_to_output(d, "&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+            case 'i':
+                temp = GET_NATURAL_INT(d->character);
+                GET_NATURAL_INT(d->character) = stat1;
+                GET_NATURAL_STR(d->character) = temp;
+                break;
+            case 'w':
+                temp = GET_NATURAL_WIS(d->character);
+                GET_NATURAL_WIS(d->character) = stat1;
+                GET_NATURAL_STR(d->character) = temp;
+                break;
+            case 'c':
+                temp = GET_NATURAL_CON(d->character);
+                GET_NATURAL_CON(d->character) = stat1;
+                GET_NATURAL_STR(d->character) = temp;
+                break;
+            case 'd':
+                temp = GET_NATURAL_DEX(d->character);
+                GET_NATURAL_DEX(d->character) = stat1;
+                GET_NATURAL_STR(d->character) = temp;
+                break;
+            case 'm':
+                temp = GET_NATURAL_CHA(d->character);
+                GET_NATURAL_CHA(d->character) = stat1;
+                GET_NATURAL_STR(d->character) = temp;
+                break;
+            default:
+                string_to_output(d, "\n\n&0&7&bInvalid selection.&0\n");
+                string_to_output(d, "\n&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+        }
+
+        new_roller_display(d->character, roll_table);
+        string_to_output(d,
+                          "\n"
+                          "        Con:  {}                Wis:  {}\n"
+                          "        Str:  {}                Intel:{}\n"
+                          "        Dex:  {}                Char: {}\n"
+                          "\n\nYou may:\n"
+                          "[1] Keep these stats\n"
+                          "[2] Swap any two stats\n"
+                          "[3] or [Enter] Roll for new stats\n",
+                          rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
+                          rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
+                          rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
+        STATE(d) = CON_QROLLSTATS;
+        break;
+    case CON_SWAP_CON:
+        
+        stat1 = GET_NATURAL_CON(d->character);
+
+        switch (*arg) {
+            case 's':
+                temp = GET_NATURAL_CON(d->character);
+                GET_NATURAL_STR(d->character) = stat1;
+                GET_NATURAL_CON(d->character) = temp;
+                break;
+
+            case 'i':
+                temp = GET_NATURAL_INT(d->character);
+                GET_NATURAL_INT(d->character) = stat1;
+                GET_NATURAL_CON(d->character) = temp;
+                break;
+            case 'w':
+                temp = GET_NATURAL_WIS(d->character);
+                GET_NATURAL_WIS(d->character) = stat1;
+                GET_NATURAL_CON(d->character) = temp;
+                break;
+            case 'c':
+                string_to_output(d, "\n\n&0&7&bYou are already swapping your Constitution!&0\n");
+                string_to_output(d, "&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+            case 'd':
+                temp = GET_NATURAL_DEX(d->character);
+                GET_NATURAL_DEX(d->character) = stat1;
+                GET_NATURAL_CON(d->character) = temp;
+                break;
+            case 'm':
+                temp = GET_NATURAL_CHA(d->character);
+                GET_NATURAL_CHA(d->character) = stat1;
+                GET_NATURAL_CON(d->character) = temp;
+                break;
+            default:
+                string_to_output(d, "\n\n&0&7&bInvalid selection.&0\n");
+                string_to_output(d, "\n&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+        }
+
+        new_roller_display(d->character, roll_table);
+        string_to_output(d,
+                          "\n"
+                          "        Con:  {}                Wis:  {}\n"
+                          "        Str:  {}                Intel:{}\n"
+                          "        Dex:  {}                Char: {}\n"
+                          "\n\nYou may:\n"
+                          "[1] Keep these stats\n"
+                          "[2] Swap any two stats\n"
+                          "[3] or [Enter] Roll for new stats\n",
+                          rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
+                          rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
+                          rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
+        STATE(d) = CON_QROLLSTATS;
+        break;
+    case CON_SWAP_DEX:
+
+        stat1 = GET_NATURAL_DEX(d->character);
+
+        switch (*arg) {
+            case 's':
+                temp = GET_NATURAL_DEX(d->character);
+                GET_NATURAL_STR(d->character) = stat1;
+                GET_NATURAL_DEX(d->character) = temp;
+                break;
+            case 'i':
+                temp = GET_NATURAL_INT(d->character);
+                GET_NATURAL_INT(d->character) = stat1;
+                GET_NATURAL_DEX(d->character) = temp;
+                break;
+            case 'w':
+                temp = GET_NATURAL_WIS(d->character);
+                GET_NATURAL_WIS(d->character) = stat1;
+                GET_NATURAL_DEX(d->character) = temp;
+                break;
+            case 'c':
+                temp = GET_NATURAL_CON(d->character);
+                GET_NATURAL_CON(d->character) = stat1;
+                GET_NATURAL_DEX(d->character) = temp;
+                break;
+            case 'd':
+                string_to_output(d, "\n\n&0&7&bYou are already swapping your Dexterity!&0\n");
+                string_to_output(d, "&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+            case 'm':
+                temp = GET_NATURAL_CHA(d->character);
+                GET_NATURAL_CHA(d->character) = stat1;
+                GET_NATURAL_DEX(d->character) = temp;
+                break;
+            default:
+                string_to_output(d, "\n\n&0&7&bInvalid selection.&0\n");
+                string_to_output(d, "\n&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+        }
+
+        new_roller_display(d->character, roll_table);
+        string_to_output(d,
+                          "\n"
+                          "        Con:  {}                Wis:  {}\n"
+                          "        Str:  {}                Intel:{}\n"
+                          "        Dex:  {}                Char: {}\n"
+                          "\n\nYou may:\n"
+                          "[1] Keep these stats\n"
+                          "[2] Swap any two stats\n"
+                          "[3] or [Enter] Roll for new stats\n",
+                          rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
+                          rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
+                          rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
+        STATE(d) = CON_QROLLSTATS;
+        break;
+    case CON_SWAP_INT:
+
+        stat1 = GET_NATURAL_INT(d->character);
+
+        switch (*arg) {
+            case 's':
+                temp = GET_NATURAL_INT(d->character);
+                GET_NATURAL_STR(d->character) = stat1;
+                GET_NATURAL_INT(d->character) = temp;
+                break;
+            case 'i':
+                string_to_output(d, "\n\n&0&7&bYou are already swapping your Intelligence!&0\n");
+                string_to_output(d, "&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+            case 'w':
+                temp = GET_NATURAL_WIS(d->character);
+                GET_NATURAL_WIS(d->character) = stat1;
+                GET_NATURAL_INT(d->character) = temp;
+                break;
+            case 'c':
+                temp = GET_NATURAL_CON(d->character);
+                GET_NATURAL_CON(d->character) = stat1;
+                GET_NATURAL_INT(d->character) = temp;
+                break;
+            case 'd':
+                temp = GET_NATURAL_DEX(d->character);
+                GET_NATURAL_DEX(d->character) = stat1;
+                GET_NATURAL_INT(d->character) = temp;
+                break;
+            case 'm':
+                temp = GET_NATURAL_CHA(d->character);
+                GET_NATURAL_CHA(d->character) = stat1;
+                GET_NATURAL_INT(d->character) = temp;
+                break;
+            default:
+                string_to_output(d, "\n\n&0&7&bInvalid selection.&0\n");
+                string_to_output(d, "\n&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+        }
+
+        new_roller_display(d->character, roll_table);
+        string_to_output(d,
+                          "\n"
+                          "        Con:  {}                Wis:  {}\n"
+                          "        Str:  {}                Intel:{}\n"
+                          "        Dex:  {}                Char: {}\n"
+                          "\n\nYou may:\n"
+                          "[1] Keep these stats\n"
+                          "[2] Swap any two stats\n"
+                          "[3] or [Enter] Roll for new stats\n",
+                          rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
+                          rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
+                          rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
+        STATE(d) = CON_QROLLSTATS;
+        break;
+    case CON_SWAP_WIS:
+        
+        stat1 = GET_NATURAL_WIS(d->character);
+        
+        switch (*arg) {
+            case 's':
+                temp = GET_NATURAL_WIS(d->character);
+                GET_NATURAL_STR(d->character) = stat1;
+                GET_NATURAL_WIS(d->character) = temp;
+                break;
+            case 'i':
+                temp = GET_NATURAL_INT(d->character);
+                GET_NATURAL_INT(d->character) = stat1;
+                GET_NATURAL_WIS(d->character) = temp;
+                break;
+            case 'w':
+                string_to_output(d, "\n\n&0&7&bYou are already swapping your Wisdom!&0\n");
+                string_to_output(d, "&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+            case 'c':
+                temp = GET_NATURAL_CON(d->character);
+                GET_NATURAL_CON(d->character) = stat1;
+                GET_NATURAL_WIS(d->character) = temp;
+                break;
+            case 'd':
+                temp = GET_NATURAL_DEX(d->character);
+                GET_NATURAL_DEX(d->character) = stat1;
+                GET_NATURAL_WIS(d->character) = temp;
+                break;
+            case 'm':
+                temp = GET_NATURAL_CHA(d->character);
+                GET_NATURAL_CHA(d->character) = stat1;
+                GET_NATURAL_WIS(d->character) = temp;
+                break;
+            default:
+                string_to_output(d, "\n\n&0&7&bInvalid selection.&0\n");
+                string_to_output(d, "\n&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+        }
+
+        new_roller_display(d->character, roll_table);
+        string_to_output(d,
+                          "\n"
+                          "        Con:  {}                Wis:  {}\n"
+                          "        Str:  {}                Intel:{}\n"
+                          "        Dex:  {}                Char: {}\n"
+                          "\n\nYou may:\n"
+                          "[1] Keep these stats\n"
+                          "[2] Swap any two stats\n"
+                          "[3] or [Enter] Roll for new stats\n",
+                          rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
+                          rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
+                          rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
+        STATE(d) = CON_QROLLSTATS;
+        break;
+    case CON_SWAP_CHA:
+        
+        stat1 = GET_NATURAL_CHA(d->character);
+        
+        switch (*arg) {
+            case 's':
+                temp = GET_NATURAL_CHA(d->character);
+                GET_NATURAL_STR(d->character) = stat1;
+                GET_NATURAL_CHA(d->character) = temp;
+                break;
+            case 'i':
+                temp = GET_NATURAL_INT(d->character);
+                GET_NATURAL_INT(d->character) = stat1;
+                GET_NATURAL_CHA(d->character) = temp;
+                break;
+            case 'w':
+                temp = GET_NATURAL_WIS(d->character);
+                GET_NATURAL_WIS(d->character) = stat1;
+                GET_NATURAL_CHA(d->character) = temp;
+                break;
+            case 'c':
+                temp = GET_NATURAL_CON(d->character);
+                GET_NATURAL_CON(d->character) = stat1;
+                GET_NATURAL_CHA(d->character) = temp;
+                break;
+            case 'd':
+                temp = GET_NATURAL_DEX(d->character);
+                GET_NATURAL_DEX(d->character) = stat1;
+                GET_NATURAL_CHA(d->character) = temp;
+                break;
+            case 'm':
+                string_to_output(d, "\n\n&0&7&bYou are already swapping your Charisma!&0\n");
+                string_to_output(d, "&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+            default:
+                string_to_output(d, "\n\n&0&7&bInvalid selection.&0\n");
+                string_to_output(d, "\n&0&7&bPlease select the second stat you want to swap:&0\n");
+                return;
+        }
+
+        new_roller_display(d->character, roll_table);
+        string_to_output(d,
+                          "\n"
+                          "        Con:  {}                Wis:  {}\n"
+                          "        Str:  {}                Intel:{}\n"
+                          "        Dex:  {}                Char: {}\n"
+                          "\n\nYou may:\n"
+                          "[1] Keep these stats\n"
+                          "[2] Swap any two stats\n"
+                          "[3] or [Enter] Roll for new stats\n",
+                          rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
+                          rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
+                          rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
+        STATE(d) = CON_QROLLSTATS;
         break;
     case CON_QBONUS1:
         load_result = bonus_stat(d->character, *arg);
@@ -3048,31 +3445,6 @@ long max_exp_gain(CharData *ch) {
     current = (long)(0.2 * (float)total);
     // char_printf(ch, "max exp gain is {}, but total {}, percent 20\n", current, total);
     return current;
-}
-
-void new_rollor_display(CharData *ch, int word[6]) {
-    int statts[6];
-    int j;
-
-    statts[0] = GET_NATURAL_STR(ch);
-    statts[1] = GET_NATURAL_INT(ch);
-    statts[2] = GET_NATURAL_WIS(ch);
-    statts[3] = GET_NATURAL_DEX(ch);
-    statts[4] = GET_NATURAL_CON(ch);
-    statts[5] = GET_NATURAL_CHA(ch);
-
-    for (j = 0; j <= 5; j++) {
-        if (statts[j] > 90)
-            word[j] = 0;
-        else if (statts[j] > 80)
-            word[j] = 1;
-        else if (statts[j] > 62)
-            word[j] = 2;
-        else if (statts[j] > 52)
-            word[j] = 3;
-        else
-            word[j] = 4;
-    }
 }
 
 /* this addes a number from 2-6 to the stat but doesn't exceed 100 */
