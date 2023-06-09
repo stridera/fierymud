@@ -1367,12 +1367,15 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
             GET_EX_SILVER(mob_proto + i) = t[1];
             GET_EX_GOLD(mob_proto + i) = t[2];
             GET_EX_PLATINUM(mob_proto + i) = t[3];
+        } else if (sscanf(line, " %d %d %d %d", t, t + 1, t + 2, t + 3) > 3) {
+            GET_ZONE(mob_proto + i) = t[2];
+            GET_EX_GOLD(mob_proto + i) = t[0];
+            GET_EX_PLATINUM(mob_proto + i) = t[1];
         } else {
             GET_ZONE(mob_proto + i) = (nr / 100);
-            GET_EX_GOLD(mob_proto + i) = 0;
+            GET_EX_GOLD(mob_proto + i) = t[0];
             GET_EX_PLATINUM(mob_proto + i) = 0;
         }
-        GET_EX_GOLD(mob_proto + i) = t[0];
 
         get_line(mob_f, line);
         if ((sscanf(line, " %d %d %d %d %d %d %d %d ", t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7)) > 3) {
