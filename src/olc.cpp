@@ -408,10 +408,10 @@ ACMD(do_olc) {
                 char_printf(ch, "That help topic already exists.\n");
                 return;
             }
-            char_printf(ch, "Do you wish to add a help topic on '{}'? ", OLC_STORAGE(d));
+            char_printf(ch, "Do you wish to add a help topic on '{}'? \n", OLC_STORAGE(d));
             OLC_MODE(d) = HEDIT_CONFIRM_ADD;
         } else {
-            char_printf(ch, "Do you wish to edit the help topic on '{}'? ", help_table[OLC_ZNUM(d)].keyword);
+            char_printf(ch, "Do you wish to edit the help topic on '{}'? \n", help_table[OLC_ZNUM(d)].keyword);
             OLC_MODE(d) = HEDIT_CONFIRM_EDIT;
         }
     }
