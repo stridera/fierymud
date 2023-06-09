@@ -646,7 +646,7 @@ ACMD(do_shapechange) {
     char_to_room(mob, ch->in_room);
 
     /* Transfer hover slot items to new mob */
-    if GET_EQ (ch, WEAR_HOVER) {
+    if GET_EQ(ch, WEAR_HOVER) {
 
         obj = GET_EQ(ch, WEAR_HOVER);
         unequip_char(ch, WEAR_HOVER);
@@ -708,14 +708,7 @@ ACMD(do_shapechange) {
     ch->desc = nullptr;
     ch->forward = mob;
 
-    /* Transfer hover slot items to new mob */
-    obj = GET_EQ(ch, WEAR_HOVER);
 
-    if (obj) {
-        unequip_char(ch, WEAR_HOVER);
-        obj_from_char(obj);
-        equip_char(mob, obj, WEAR_HOVER);
-    }
 
 }
 
