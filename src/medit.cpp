@@ -1108,7 +1108,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             return;
         }
         if (i != 0) {
-            char_printf(d->character, i == 1    ? "\nEnter new value :\n "
+            char_printf(d->character, i == 1    ? "\nEnter new value : "
                                       : i == -1 ? "\nEnter new text :\n] "
                                                 : "\nOops...:\n");
             return;
