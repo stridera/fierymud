@@ -33,7 +33,7 @@
 
 /* Prototypes */
 void set_init_height_weight(CharData *ch);
-static flagvector race_effects_mask[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+
 
 /* races[]
  *
@@ -1423,10 +1423,6 @@ void init_races(void) {
         }
     }
 
-    CLEAR_FLAGS(race_effects_mask, NUM_EFF_FLAGS);
-    for (race = 0; race < NUM_RACES; ++race)
-        SET_FLAGS(race_effects_mask, races[race].effect_flags, NUM_EFF_FLAGS);
-
 #undef ADD_SKILL
 #undef PERM_EFF
 }
@@ -1626,9 +1622,6 @@ void update_char_race(CharData *ch) {
     }
 
     GET_RACE_ALIGN(ch) = races[(int)GET_RACE(ch)].racealign;
-
-    /* Any bits that might get set below should be cleared here first. */
-    REMOVE_FLAGS(EFF_FLAGS(ch), race_effects_mask, NUM_EFF_FLAGS);
 
     /* Reset effect flags for this race */
     SET_FLAGS(EFF_FLAGS(ch), races[(int)GET_RACE(ch)].effect_flags, NUM_EFF_FLAGS);
