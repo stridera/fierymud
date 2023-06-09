@@ -171,13 +171,13 @@
 #define CON_ISPELL_BOOT 38        /* Obligatory disconnect bad names */
 #define CON_GEDIT 39              /* OLC mode - grant group edit */
 #define CON_IEDIT 40              /*. OLC mode - iobject edit        .*/
-#define CON_QASSIGNSTATS 41       /* Choose how to swap stats */
-#define CON_SWAP_STR 42           /* Swap STR */
-#define CON_SWAP_CON 43           /* Swap CON */
-#define CON_SWAP_DEX 44
-#define CON_SWAP_INT 45
-#define CON_SWAP_WIS 46
-#define CON_SWAP_CHA 47
+#define CON_QSTAT_CNFRM 41        /* Confirm stat arrangement */
+#define CON_SELECT_STR 42         /* Set STR */
+#define CON_SELECT_CON 43         /* Set CON */
+#define CON_SELECT_DEX 44         /* Set DEX */
+#define CON_SELECT_INT 45         /* Set INT */
+#define CON_SELECT_WIS 46         /* Set WIS */
+#define CON_SELECT_CHA 47         /* Set CHA */
 #define NUM_CON_MODES 48
 
 /* Character equipment positions: used as index for CharData.equipment[] */
