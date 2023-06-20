@@ -1724,11 +1724,11 @@ void assign_class_skills(void) {
     skill_assign(SKILL_PARRY, CLASS_BERSERKER, 15);
     skill_assign(SKILL_DUAL_WIELD, CLASS_BERSERKER, 20);
     skill_assign(SKILL_CHANT, CLASS_BERSERKER, 25);
-    skill_assign(SKILL_MAUL, CLASS_BERSERKER, 30);
+    skill_assign(SKILL_BATTLE_HOWL, CLASS_BERSERKER, 30);
     skill_assign(SKILL_TANTRUM, CLASS_BERSERKER, 45);
     skill_assign(SKILL_MEDITATE, CLASS_BERSERKER, 50);
     skill_assign(SKILL_RIPOSTE, CLASS_BERSERKER, 50);
-    skill_assign(SKILL_BATTLE_HOWL, CLASS_BERSERKER, 65);
+    skill_assign(SKILL_MAUL, CLASS_BERSERKER, 65);
     skill_assign(SKILL_GROUND_SHAKER, CLASS_BERSERKER, 75);
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_BERSERKER, 85);
 
