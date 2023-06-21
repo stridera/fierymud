@@ -3947,6 +3947,8 @@ ACMD(do_innate) {
             char_printf(ch, " ascen\n");
             char_printf(ch, " blinding beauty\n");
         }
+        if (GET_RACE(ch) == RACE_ARBOREAN)
+            char_printf(ch, " barkskin\n");
         if (GET_SKILL(ch, SKILL_BODYSLAM))
             char_printf(ch, " bodyslam\n");
         if (GET_SKILL(ch, SKILL_BREATHE_FIRE))
@@ -4318,6 +4320,7 @@ ACMD(do_innate) {
                 return;
             }
         }
+
         if (is_abbrev(arg, "statue")) {
             if (GET_RACE(ch) == RACE_GNOME || GET_RACE(ch) == RACE_SVERFNEBLIN || GET_LEVEL(ch) > LVL_IMMORT) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_STATUE) || GET_LEVEL(ch) > LVL_IMMORT) {
@@ -4333,6 +4336,23 @@ ACMD(do_innate) {
                 return;
             }
         }
+
+        if (is_abbrev(arg, "barkskin")) {
+            if (GET_RACE(ch) == RACE_ARBOREAN || GET_LEVEL(ch) > LVL_IMMORT) {
+                if (!GET_COOLDOWN(ch, CD_INNATE_BARKSKIN) || GET_LEVEL(ch) > LVL_IMMORT) {
+                    call_magic(ch, ch, 0, SPELL_BARKSKIN, GET_LEVEL(ch), CAST_SPELL);
+                    if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
+                        SET_COOLDOWN(ch, CD_INNATE_BARKSKIN, (20 - con_app[GET_CON(ch)].hitp) MUD_HR);
+                } else {
+                    int seconds = GET_COOLDOWN(ch, CD_INNATE_BARKSKIN) / 10;
+                    char_printf(ch, "You're too tired right now.\n"
+                                    "You can armor yourself again in {:d} {}.\n",
+                                    seconds, seconds == 1 ? "second" : "seconds");
+                }
+                return;
+            }
+        }
+
         char_printf(ch, "You have no such innate.\n");
     }
 }

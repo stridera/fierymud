@@ -2036,6 +2036,7 @@ ACMD(do_set) {
         GET_COOLDOWN(vict, CD_INNATE_FAERIE_STEP) = std::clamp(value, 0, 100);
         GET_COOLDOWN(vict, CD_INNATE_BLINDING_BEAUTY) = std::clamp(value, 0, 100);
         GET_COOLDOWN(vict, CD_INNATE_STATUE) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_INNATE_BARKSKIN) = std::clamp(value, 0, 100);
         break;
     case 21:
         vict->points.exp = std::clamp(value, 0, 299999999);
