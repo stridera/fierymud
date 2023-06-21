@@ -673,9 +673,11 @@ ACMD(do_shapechange) {
         if (creatures[index].skills[i])
             SET_SKILL(mob, creatures[index].skills[i], roll_skill(mob, creatures[index].skills[i]));
 
+    /* Add up to 10% bonus max hp/max mv based on a player's Charisma. */
+    GET_MAX_HIT(mob) = random_number(creatures[index].minhp, creatures[index].maxhp) * (1 + (GET_CHA(ch) / 100));
+    GET_MAX_MOVE(mob) = random_number(creatures[index].minmv, creatures[index].maxmv) * (1 + (GET_CHA(ch) / 100));
+    
     /* Scale hp/mv based on player's current/max ratios. */
-    GET_MAX_HIT(mob) = random_number(creatures[index].minhp, creatures[index].maxhp);
-    GET_MAX_MOVE(mob) = random_number(creatures[index].minmv, creatures[index].maxmv);
     if (GET_MAX_HIT(ch) == 0)
         GET_HIT(mob) = GET_MAX_HIT(mob);
     else
