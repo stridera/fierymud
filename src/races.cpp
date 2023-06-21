@@ -1251,7 +1251,7 @@ RaceDef races[NUM_RACES] = {
      "&2Arborean&0",            /* name as displayed at character creation, on who, and score */
      "&2Arborean&0",            /* name as displayed in show race command and when setting races */
      "Arborean",                /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
+     false,                      /* playable? */
      true,                      /* humanoid? */
      RACE_ALIGN_GOOD,           /* race alignment */
      SIZE_LARGE,                /* default size */
