@@ -513,8 +513,12 @@ ACMD(do_shapechange) {
                 obj_to_char(obj, player);
             }
             for (i = 0; i < NUM_WEARS; ++i)
-                if (GET_EQ(ch, i))
-                    obj_to_char(unequip_char(ch, i), player);
+                if (GET_EQ(ch, i)) {
+                    if (i == WEAR_HOVER)
+                        equip_char(player, unequip_char(ch, i), WEAR_HOVER);
+                    else
+                        obj_to_char(unequip_char(ch, i), player);
+                }
             GET_PLATINUM(player) += GET_PLATINUM(ch);
             GET_GOLD(player) += GET_GOLD(ch);
             GET_SILVER(player) += GET_SILVER(ch);
@@ -649,8 +653,18 @@ ACMD(do_shapechange) {
      * clear ch's battle status. */
     transfer_battle(ch, mob);
 
-    /* Shuffle characters around. */
+    /* Move mob to room */
     char_to_room(mob, ch->in_room);
+
+    /* Transfer hover slot items to new mob */
+    if GET_EQ(ch, WEAR_HOVER) {
+
+        obj = GET_EQ(ch, WEAR_HOVER);
+        unequip_char(ch, WEAR_HOVER);
+        equip_char(mob, obj, WEAR_HOVER);
+    }
+
+    /* Move character from room to Void */
     char_from_room(ch);
     char_to_room(ch, 0);
 
@@ -699,6 +713,9 @@ ACMD(do_shapechange) {
     mob->desc = ch->desc;
     ch->desc = nullptr;
     ch->forward = mob;
+
+
+
 }
 
 bool creature_allowed_skill(CharData *ch, int skill) {
