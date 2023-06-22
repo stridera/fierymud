@@ -300,7 +300,7 @@ void perform_get_from_container(GetContext *context, ObjData *obj, ObjData *cont
     if (cont->carried_by == ch || cont->worn_by == ch || can_get_obj(context, obj)) {
         if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
             queue_message(context, obj, true, "$p: you can't hold any more items.", nullptr);
-        else if (get_otrigger(obj, ch)) {
+        else if (get_otrigger(obj, ch, cont)) {
             queue_message(context, obj, true, "You get $p from $P.", "$n gets $p from $P.");
             if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) {
                 obj_from_obj(obj);
@@ -358,7 +358,7 @@ void perform_get_from_room(GetContext *context, ObjData *obj) {
 
     if (!check_get_disarmed_obj(ch, obj->last_to_hold, obj))
         if (can_get_obj(context, obj))
-            if (get_otrigger(obj, ch)) {
+            if (get_otrigger(obj, ch, nullptr)) {
                 queue_message(context, obj, true, "You get $p.", "$n gets $p.");
                 if (!MOB_FLAGGED(ch, MOB_ILLUSORY)) {
                     obj_from_room(obj);
@@ -527,7 +527,7 @@ ACMD(do_palm) {
         if (!(obj = find_obj_in_list(world[ch->in_room].contents, find_vis_by_name(ch, arg1))))
             char_printf(ch, "You don't see {} {} here.\n", AN(arg1), arg1);
         else if (!check_get_disarmed_obj(ch, obj->last_to_hold, obj) && can_take_obj(ch, obj) &&
-                 get_otrigger(obj, ch)) {
+                 get_otrigger(obj, ch, nullptr)) {
             int people = 0;
             roll = conceal_roll(ch, obj);
             obj_from_room(obj);
@@ -583,7 +583,7 @@ ACMD(do_palm) {
             } else if (cont_mode == FIND_OBJ_INV || can_take_obj(ch, obj)) {
                 if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
                     act("$p: you can't hold any more items.", false, ch, obj, nullptr, TO_CHAR);
-                else if (get_otrigger(obj, ch)) {
+                else if (get_otrigger(obj, ch, cont)) {
 
                     if (SOLIDCHAR(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
                         roll = conceal_roll(ch, obj);
