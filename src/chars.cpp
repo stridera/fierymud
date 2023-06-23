@@ -88,6 +88,7 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* Seelie Faerie         */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
     /* Unseelie Faerie       */ {Y, Y, Y, N, N, N, N, Y, N, N, N, Y, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
     /* Nymph                 */ {Y, Y, N, Y, N, N, Y, Y, Y, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
+    /* Arborean              */ {N,	Y, N, Y, N,	N, Y, Y, Y,	N, N, N, N,	Y, N, N, N,	N, N, N, N,	N, N, Y},
 };
 
 ACMD(do_flee); /* act.offensive.c */
