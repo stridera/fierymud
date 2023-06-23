@@ -40,16 +40,16 @@ const char *subclass_descrip =
     "System&0\n"
     "&1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&7&bMUD &0has many various and complex "
     "classes for you to play.  All players\n"
-    "originate from four basic classes. Each of the basic classes\n"
-    "posses unknown growth potential throughout gameplay. As you explore \n"
-    "and the realm and advance your experience you may learn of ways to\n"
-    "specialize your skills and spells into a new subclass.  If you manage\n";
+    "start as one of four base classes. Each of the base classes\n"
+    "possess unknown growth potential throughout gameplay. As you explore \n"
+    "the realm and advance your experience you may learn of ways to\n"
+    "specialize your skills and spells into a new subclass.&0\n\n";
 
 const char *subclass_descrip2 =
-    "to learn of these ways your new class will posses new and different\n"
-    "skills and spells thus altering your power within the realm.  Some\n"
-    "classes will also be required to choose a deity in the future as "
-    "well.&0\n";
+    "If you manage to learn of these ways your new class will possess new\n"
+    "and different skills and spells, thus altering your power within the\n"
+    "realm. There is no multiclassing in &1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&7&bMUD&0. A character may only\n"
+    "ever be one class or subclass.&0\n";
 
 
 const char *race_descrip =

@@ -70,7 +70,7 @@ ClassDef classes[NUM_CLASSES] = {
      CLASS_UNDEFINED,                                                   /* base class, if a subclass */
      45,                                                                /* max level to subclass */
      3046,                                                              /* homeroom */
-     {STAT_INT, STAT_WIS, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {STAT_INT, STAT_CON, STAT_WIS, STAT_DEX, STAT_STR, STAT_CHA},      /* stat order preference for character creation */
      {90, 85, 95, 105, 80},                                             /* saves: para, rod, petri, breath, spell */
      3,                                                                 /* static HP gain over level 30 */
      6,                                                                 /* THAC0 */
@@ -103,7 +103,7 @@ ClassDef classes[NUM_CLASSES] = {
      CLASS_UNDEFINED,                                                   /* base class, if a subclass */
      45,                                                                /* max level to subclass */
      3003,                                                              /* homeroom */
-     {STAT_WIS, STAT_INT, STAT_STR, STAT_DEX, STAT_CON, STAT_CHA},      /* stat order preference for character creation */
+     {STAT_WIS, STAT_CON, STAT_INT, STAT_DEX, STAT_STR, STAT_CHA},      /* stat order preference for character creation */
      {85, 110, 85, 115, 90},                                            /* saves: para, rod, petri, breath, spell */
      6,                                                                 /* static HP gain over level 30 */
      4,                                                                 /* THAC0 */
@@ -170,7 +170,7 @@ ClassDef classes[NUM_CLASSES] = {
      CLASS_UNDEFINED,                                                   /* base class, if a subclass */
      25,                                                                /* max level to subclass */
      3022,                                                              /* homeroom */
-     {STAT_STR, STAT_DEX, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {STAT_CON, STAT_STR, STAT_DEX, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
      {105, 115, 100, 100, 110},                                         /* saves: para, rod, petri, breath, spell */
      10,                                                                /* static HP gain over level 30 */
      -5,                                                                /* THAC0 */
@@ -665,7 +665,7 @@ ClassDef classes[NUM_CLASSES] = {
      CLASS_UNDEFINED,                                                   /* base class, if a subclass */
      25,                                                                /* max level to subclass */
      3038,                                                              /* homeroom */
-     {STAT_DEX, STAT_STR, STAT_CON, STAT_WIS, STAT_INT, STAT_CHA},      /* stat order preference for character creation */
+     {STAT_DEX, STAT_CON, STAT_STR, STAT_INT, STAT_WIS, STAT_CHA},      /* stat order preference for character creation */
      {95, 90, 100, 110, 110},                                           /* saves: para, rod, petri, breath, spell */
      6,                                                                 /* static HP gain over level 30 */
      2,                                                                 /* THAC0 */
