@@ -618,7 +618,7 @@ int timer_otrigger(ObjData *obj) {
     return 1;
 }
 
-int get_otrigger(ObjData *obj, CharData *actor) {
+int get_otrigger(ObjData *obj, CharData *actor, ObjData *cont) {
     TrigData *t;
     char buf[MAX_INPUT_LENGTH];
 
@@ -628,6 +628,8 @@ int get_otrigger(ObjData *obj, CharData *actor) {
     for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
         if (TRIGGER_CHECK(t, OTRIG_GET) && (random_number(1, 100) <= GET_TRIG_NARG(t))) {
             ADD_UID_VAR(buf, t, actor, "actor");
+            if (cont)
+                ADD_UID_VAR(buf, t, cont, "container");
             /* Don't allow a get to take place, if the object is purged. */
             return (script_driver(&obj, t, OBJ_TRIGGER, TRIG_NEW) && obj);
         }
