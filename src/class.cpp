@@ -1764,6 +1764,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_ENDURANCE, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_POISON, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_PROT_FROM_EVIL, CLASS_CLERIC, CIRCLE_3);
+    spell_assign(SPELL_PROT_FROM_GOOD, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_REMOVE_POISON, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_VIGORIZE_SERIOUS, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_WORD_OF_RECALL, CLASS_CLERIC, CIRCLE_3);
