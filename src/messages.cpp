@@ -58,7 +58,7 @@ const char *race_descrip =
     "&1&bF&0&3&bi&0&1&be&0&3&br&0&1&by&0&7&bMUD &0has many playable races "
     "to choose from which offer a variety\n"
     "of playstyles. Each race has unique powers, strengths, weaknesses,\n"
-    "and ability score limits. Your choice of race your character's\n"
+    "and ability score limits. Your choice of race and your character's\n"
     "alignment will determine what classes and subclasses are available to\n"
     "them. No one race can be all classes or subclasses. Class/subclass\n"
     "restrictions, innate abilities, and rough ability score capacities\n"
