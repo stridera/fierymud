@@ -1736,6 +1736,7 @@ void assign_class_skills(void) {
 
     chant_assign(CHANT_SPIRIT_WOLF, CLASS_BERSERKER, 25);
     chant_assign(CHANT_SPIRIT_BEAR, CLASS_BERSERKER, 60);
+    chant_assign(CHANT_APOCALYPTIC_ANTHEM, CLASS_BERSERKER, 75);
     chant_assign(CHANT_INTERMINABLE_WRATH, CLASS_BERSERKER, 90);
 
     /* CLERIC */
