@@ -1714,6 +1714,9 @@ char *prompt_str(CharData *ch) {
             case 'x':
                 temp = CD_INNATE_BARKSKIN;
                 break;
+            case 'y':
+                temp = CD_INNATE_HARNESS;
+                break;
             case '1':
                 temp = CD_MUSIC_1;
                 break;
