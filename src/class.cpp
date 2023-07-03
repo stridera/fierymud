@@ -1461,6 +1461,8 @@ void advance_level(CharData *ch, enum level_action action) {
             int add_mv = 2;
         if (GET_CLASS(ch) == CLASS_ROGUE || GET_CLASS(ch) == CLASS_CLERIC)
             add_mv += 1;
+        if (GET_RACE(ch) == RACE_ARBOREAN)
+            add_mv -= 2;
         if (action == LEVEL_GAIN) {
             if (GET_DEX(ch) >= 54 && GET_DEX(ch) <= 76)
                 add_mv += 1;
@@ -1764,6 +1766,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_ENDURANCE, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_POISON, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_PROT_FROM_EVIL, CLASS_CLERIC, CIRCLE_3);
+    spell_assign(SPELL_PROT_FROM_GOOD, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_REMOVE_POISON, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_VIGORIZE_SERIOUS, CLASS_CLERIC, CIRCLE_3);
     spell_assign(SPELL_WORD_OF_RECALL, CLASS_CLERIC, CIRCLE_3);
