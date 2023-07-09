@@ -1463,7 +1463,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                     "$n seizes up in pain!"
                     "\n$n grabs $N, who is enraged by a dark presence.";
         }
-        SET_FLAG(eff[2].flags, EFF_HEX);
+        SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
         break;
 
@@ -4938,10 +4938,10 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
     case SPELL_DARK_PRESENCE:
         /* Skip all checks if godly */
         if (GET_LEVEL(ch) > LVL_IMMORT) {
-            if (OBJ_EFF_FLAGGED(obj, EFF_HEX)) {
+            if (OBJ_EFF_FLAGGED(obj, EFF_BLESS)) {
                 to_char = "It's already hexed.";
             } else {
-                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
+                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
                 SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
                 to_char = "$p is imbued with a dark aura.";
             }
@@ -4980,7 +4980,7 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
         )
             to_char = "The hex is repelled from $p.";
         else {
-            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
+            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
             SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
             to_char = "$p is imbued with a dark aura.";
             result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
