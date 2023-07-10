@@ -147,6 +147,7 @@ extern RaceDef races[NUM_RACES];
 extern const char *race_align_abbrevs[];
 
 void init_races(void);
+void assign_race_skills(void);
 int parse_race(CharData *ch, CharData *vict, char *arg);
 int race_by_menu(char arg);
 void send_race_menu(DescriptorData *d);

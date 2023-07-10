@@ -3509,16 +3509,6 @@ ACMD(do_spells) {
         }
     }
 
-    /* Is this character in a class with spells? */
-    if (MEM_MODE(tch) == MEM_NONE) {
-        if (tch == ch)
-            char_printf(ch, "You don't know any spells.\n");
-        else {
-            char_printf(ch, "Being a{} {}, {} has no spells.\n", startsvowel(CLASS_NAME(tch)) ? "n" : "",
-                        CLASS_NAME(tch), GET_NAME(tch));
-        }
-        return;
-    }
 
     /* Collect and count the spells known by the victim. */
 
@@ -3530,6 +3520,14 @@ ACMD(do_spells) {
             continue;
         if (skills[i].min_level[GET_CLASS(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0) {
             circle = (skills[i].min_level[GET_CLASS(tch)] - 1) / 8;
+            for (j = 0; circle_spells[circle][j] && j < MAX_SPELLS_PER_CIRCLE && circle < max_vis_circle; ++j)
+                ;
+            if (!xcircle || xcircle == circle + 1)
+                numspellsknown++;
+            circle_spells[circle][j] = i;
+
+        } else if (skills[i].min_race_level[GET_RACE(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0) {
+            circle = (skills[i].min_race_level[GET_RACE(tch)] - 1) / 8;
             for (j = 0; circle_spells[circle][j] && j < MAX_SPELLS_PER_CIRCLE && circle < max_vis_circle; ++j)
                 ;
             if (!xcircle || xcircle == circle + 1)
