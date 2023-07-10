@@ -576,8 +576,11 @@ void boot_db(void) {
     log("   Skills.");
     init_skills();
 
-    log("Assigning skills and spells to classes.");
-    assign_class_skills();
+        log("Assigning skills and spells to classes.");
+        assign_class_skills();
+
+        log("Assigning skills and spells to races.");
+        assign_race_skills();
 
     /* Command sorting needs to happen before many other loading
      * activities, because sorting the commands initializes the

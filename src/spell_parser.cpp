@@ -1314,7 +1314,7 @@ ACMD(do_cast) {
     }
 
     /* Can the caster actually cast this spell? */
-    if (GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] || !GET_SKILL(ch, spellnum)) {
+    if ((GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] && GET_LEVEL(ch) < SINFO.min_race_level[(int)GET_RACE(ch)]) || !GET_SKILL(ch, spellnum)) {
         if (subcmd == SCMD_CHANT)
             char_printf(ch, "You do not know that chant!\n");
         else if (subcmd == SCMD_PERFORM)

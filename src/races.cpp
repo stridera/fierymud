@@ -1383,10 +1383,15 @@ void init_races(void) {
     PERM_EFF(RACE_TROLL, EFF_ULTRAVISION);
 
     /*
-     * Add race skills to the switch below.
+     * Add innate race skills to the switch below.
+     * Primarily used for NPCs.
+     * These skills are available at level 1 at the skill level declared.
      * If a constant value is declared, the skill will always reset back to that value.
      * Use 'proficiency' or 'ROLL_SKILL_PROF' instead.
+     * The only spells that should be assigned here are the breath weapon spells.
+     * Skills and spells intended to be unlocked beyond level 1 must be added in the assign_race_skills() function below.
      */
+
     for (race = 0; race < NUM_RACES; ++race) {
         memset(races[race].skills, 0, sizeof(races[race].skills));
         pos = 0;
@@ -1483,6 +1488,102 @@ void init_races(void) {
 #undef ADD_SKILL
 #undef PERM_EFF
 }
+
+/* This is where to add race skills which unlock beyond level 1, or spells that should be castable through normal means. */
+
+#define race_spell_assign(spellnum, race_num, level) race_skill_assign(spellnum, race_num, level)
+#define race_chant_assign(chantnum, race_num, level) race_skill_assign(chantnum, race_num, level)
+#define race_song_assign(songnum, race_num, level) race_skill_assign(songnum, race_num, level)
+
+ void assign_race_skills(void) {
+
+    /* From here on down, the races are listed in alphabetical order.
+     * Within each race, skills should be sorted by level and spells
+     * tend to be grouped by circle. */
+
+    /* ANIMAL */
+
+    /* ARBOREAN */
+
+    /* BARBARIAN */
+
+    /* BROWNIE */
+
+    /* DEMON */
+
+    /* DRAGON - ACID */
+
+    /* DRAGON - FIRE */
+    
+    /* DRAGON - GAS */
+
+    /* DRAGON - GENERAL */
+
+    /* DRAGON - ICE */
+
+    /* DRAGON - LIGHTNING */
+
+    /* DRAGONBORN - ACID */
+    race_skill_assign(SKILL_BREATHE_ACID, RACE_DRAGONBORN_ACID, 1);
+
+    /* DRAGONBORN - FIRE */
+    race_skill_assign(SKILL_BREATHE_FIRE, RACE_DRAGONBORN_FIRE, 1);
+
+    /* DRAGONBORN - FROST */
+    race_skill_assign(SKILL_BREATHE_FROST, RACE_DRAGONBORN_FROST, 1);
+    
+    /* DRAGONBORN - GAS */
+    race_skill_assign(SKILL_BREATHE_GAS, RACE_DRAGONBORN_GAS, 1);
+
+    /* DRAGONBORN - LIGHTNING */
+    race_skill_assign(SKILL_BREATHE_LIGHTNING, RACE_DRAGONBORN_LIGHTNING, 1);
+
+    /* DROW */
+    race_skill_assign(SKILL_SLASHING, RACE_DROW, 1);
+
+    /* DWARF */
+
+    /* DUERGAR */
+
+    /* ELF */
+    race_skill_assign(SKILL_SLASHING, RACE_ELF, 1);
+
+    race_spell_assign(SPELL_MAGIC_MISSILE, RACE_ELF, CIRCLE_1);
+
+    /* GIANT */
+
+    /* GNOME */
+
+    /* GOBLIN */
+
+    /* HALF-ELF */
+
+    /* HALFLING */
+
+    /* HUMAN */
+
+    /* HUMANOID */
+
+    /* NYMPH */
+
+    /* OGRE */
+
+    /* ORC */
+
+    /* OTHER */
+
+    /* PLANT */
+
+    /* SEELIE FAERIE */
+
+    /* SVERFNEBLIN */
+
+    /* TROLL */
+
+    /* UNSEELIE FAERIE */
+
+ }
+
 
 /* parse_race
  *

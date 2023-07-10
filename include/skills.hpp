@@ -48,6 +48,7 @@ struct SkillDef {
     int pages; /* base number of pages for spell in spellbook */
     int quest; /* weather the spell is a quest spell or not   */
     const char *wearoff;
+    int min_race_level[NUM_RACES];
 };
 
 extern SkillDef skills[TOP_SKILL_DEFINE + 1];
@@ -79,6 +80,7 @@ void improve_skill(CharData *ch, int skill);
 void improve_skill_offensively(CharData *ch, CharData *victim, int skill);
 void update_skills(CharData *ch);
 void skill_assign(int skillnum, int class_code, int level);
+void race_skill_assign(int skillnum, int race_code, int level);
 int talent_type(int skill_num);
 bool get_spell_assignment_circle(CharData *ch, int spell, int *circle_assignment, int *level_assignment);
 

@@ -248,9 +248,9 @@ void update_skills(CharData *ch) {
          * skill of SKILL_SPHERE_GENERIC.
          */
 
-        if (skills[skill].min_level[(int)GET_CLASS(ch)] <= GET_LEVEL(ch) &&
+        if ((skills[skill].min_level[(int)GET_CLASS(ch)] <= GET_LEVEL(ch) || skills[skill].min_race_level[(int)GET_RACE(ch)] <= GET_LEVEL(ch)) &&
             !(skills[skill].humanoid && !(IS_HUMANOID(ch) || creature_allowed_skill(ch, skill)))) {
-            /* This skill is available because of your class, and you meet
+            /* This skill is available because of your class or your race beyond level 1, and you meet
              * the humanoid requirement, if any. */
 
             /* This is a talent that you do have, or could have. */
@@ -284,25 +284,40 @@ void update_skills(CharData *ch) {
                 }
             }
 
-        } else if ((prof = racial_skill_proficiency(skill, GET_RACE(ch), GET_LEVEL(ch)))) {
+        } else if (prof = racial_skill_proficiency(skill, GET_RACE(ch), GET_LEVEL(ch))) {
             /* This skill is available because of your race. */
-            if (prof == ROLL_SKILL_PROF) {
-                /* This skill improves as you gain levels. So we only want to give
-                 * you a "pre-improved" value if you're just now gaining it -
-                 * such as a spawned mob, or a person being switched to the race. */
-                if (GET_SKILL(ch, skill) == 0)
-                    SET_SKILL(ch, skill, roll_mob_skill(GET_LEVEL(ch)));
-            } else {
-                /* This skill has been given a static amount. Probably 1000. */
-                SET_SKILL(ch, skill, prof);
-            }
+            /* This is a talent that you do have, or could have. */
+            if (skills[skill].quest == false) {
+                if (prof == ROLL_SKILL_PROF) {
+                    /* This skill/spell you get because your level is high enough.
+                    * So: ensure that you have it. */
+                    if (GET_SKILL(ch, skill) <= 0) {
+                        /* You don't have it, so set the starting value.  Individual
+                        * spells and languages don't actually improve, so the value
+                        * is 1000. */
+                        if (IS_SPELL(skill))
+                            SET_SKILL(ch, skill, 1000);
+                        /* Barehand and safe fall don't improve either, though with
+                        * some improvements to the mud, they could. */
+                        else if (skill == SKILL_BAREHAND || skill == SKILL_SAFEFALL)
+                            SET_SKILL(ch, skill, 1000);
+                        else
+                            /* Skills, chants, and songs do improve. You get the low
+                            * starting value. */
+                            SET_SKILL(ch, skill, !IS_NPC(ch) ? 50 : roll_mob_skill(GET_LEVEL(ch)));
+                    }
+                } else {
+                    /* This skill has been given a static amount. Probably 1000. */
+                    SET_SKILL(ch, skill, prof);
+                }
 
-            /* Again, remember the spell-sphere skills. */
-            if (IS_SPELL(skill)) {
-                for (i = 0; i < NUM_SPHERE_SKILLS; i++) {
-                    if (spherecheck[i] == skills[skill].sphere || !spherecheck[i]) {
-                        spherecheck[i] = skills[skill].sphere;
-                        break;
+                /* Again, remember the spell-sphere skills. */
+                if (IS_SPELL(skill)) {
+                    for (i = 0; i < NUM_SPHERE_SKILLS; i++) {
+                        if (spherecheck[i] == skills[skill].sphere || !spherecheck[i]) {
+                            spherecheck[i] = skills[skill].sphere;
+                            break;
+                        }
                     }
                 }
             }
@@ -344,6 +359,8 @@ void dskill(int skill, char *name, int max_mana, int min_mana, int mana_change, 
 
     for (i = 0; i < NUM_CLASSES; i++)
         skills[skill].min_level[i] = LVL_IMMORT;
+    for (i = 0; i < NUM_RACES; i++)
+        skills[skill].min_race_level[i] = LVL_IMMORT;
     skills[skill].lowest_level = LVL_IMMORT;
 
     skills[skill].mana_max = max_mana;
@@ -372,6 +389,8 @@ void clear_skill(int skill) {
 
     for (i = 0; i < NUM_CLASSES; i++)
         skills[skill].min_level[i] = LVL_IMPL + 1;
+    for (i = 0; i < NUM_RACES; i++)
+        skills[skill].min_race_level[i] = LVL_IMPL + 1;
     skills[skill].lowest_level = LVL_IMPL + 1;
 
     skills[skill].mana_max = 0;
@@ -1633,4 +1652,29 @@ bool get_spell_assignment_circle(CharData *ch, int spell, int *circle_assignment
         }
     }
     return false;
+}
+
+
+void race_skill_assign(int skillnum, int race_num, int level) {
+    int okay = true;
+
+    if (skillnum < 0 || skillnum > TOP_SKILL_DEFINE) {
+        log("SYSERR: attempting assign to illegal talent num {:d}", skillnum);
+        return;
+    }
+
+    if (race_num < 0 || race_num >= NUM_RACES) {
+        log("SYSERR: assigning '{}' to illegal race_num {:d}", skill_name(skillnum), race_num);
+        okay = false;
+    }
+
+    if (level < 1 || level > LVL_IMPL) {
+        log("SYSERR: assigning '{}' to illegal level {:d}", skill_name(skillnum), level);
+        okay = false;
+    }
+
+    if (okay) {
+        skills[skillnum].min_race_level[race_num] = level;
+        skills[skillnum].lowest_level = std::min(skills[skillnum].lowest_level, level);
+    }
 }
