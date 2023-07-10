@@ -66,7 +66,7 @@ void personal_reboot_warning(CharData *ch);
 void display_question(DescriptorData *d);
 /*void rolls_display( CharData *ch, char *[], char *[]);*/
 void roll_natural_abils(CharData *ch);
-void new_rollor_display(CharData *ch, int[]);
+void new_roller_display(CharData *ch, int[]);
 int bonus_stat(CharData *ch, char arg);
 int parse_good_race(char arg); /* Put in until such time that all races are allowed */
 void set_innate(CharData *ch, char *arg);
@@ -2053,6 +2053,183 @@ void set_player_name(CharData *ch, char *name) {
         *s = tolower(*s);
 }
 
+void new_roller_display(CharData *ch, int word[6]) {
+    int statts[6];
+    int j;
+
+    statts[0] = GET_NATURAL_STR(ch);
+    statts[1] = GET_NATURAL_DEX(ch);
+    statts[2] = GET_NATURAL_CON(ch);
+    statts[3] = GET_NATURAL_INT(ch);
+    statts[4] = GET_NATURAL_WIS(ch);
+    statts[5] = GET_NATURAL_CHA(ch);
+
+    for (j = 0; j <= 5; j++) {
+        if (statts[j] > 90)
+            word[j] = 0;
+        else if (statts[j] > 80)
+            word[j] = 1;
+        else if (statts[j] > 62)
+            word[j] = 2;
+        else if (statts[j] > 52)
+            word[j] = 3;
+        else
+            word[j] = 4;
+    }
+}
+
+void display_manual_stat(CharData *ch, int word[6], int i) {
+    int statts[6];
+    int j, k = 1;
+
+    char_printf(ch, "&0&7&bRemaining stats:&0\n\n");
+    for (i; i < NUM_STATS; i++) {
+        statts[0] = GET_NATURAL_STR(ch);
+        statts[1] = GET_NATURAL_DEX(ch);
+        statts[2] = GET_NATURAL_CON(ch);
+        statts[3] = GET_NATURAL_INT(ch);
+        statts[4] = GET_NATURAL_WIS(ch);
+        statts[5] = GET_NATURAL_CHA(ch);
+
+        for (j = 0; j <= 5; j++) {
+            if (statts[j] > 90)
+                word[j] = 0;
+            else if (statts[j] > 80)
+                word[j] = 1;
+            else if (statts[j] > 62)
+                word[j] = 2;
+            else if (statts[j] > 52)
+                word[j] = 3;
+            else
+                word[j] = 4;
+        }
+
+        char_printf(ch, "{}:  {}\n", k, rolls_abils_result[roll_table[i]]);
+
+        k++;
+  }
+}
+
+void stat_swap(CharData *ch, int stat, int number) {
+    int temp;
+
+    switch (stat) {
+    case 0:
+        temp = GET_NATURAL_STR(ch);
+
+        switch (number) {
+        case 0:
+            return;
+        case 1:
+            GET_NATURAL_STR(ch) = GET_NATURAL_DEX(ch);
+            GET_NATURAL_DEX(ch) = temp;
+            break;
+        case 2:
+            GET_NATURAL_STR(ch) = GET_NATURAL_CON(ch);
+            GET_NATURAL_CON(ch) = temp;
+            break;
+        case 3:
+            GET_NATURAL_STR(ch) = GET_NATURAL_INT(ch);
+            GET_NATURAL_INT(ch) = temp;
+            break;
+        case 4:
+            GET_NATURAL_STR(ch) = GET_NATURAL_WIS(ch);
+            GET_NATURAL_WIS(ch) = temp;
+            break;
+        case 5:
+            GET_NATURAL_STR(ch) = GET_NATURAL_CHA(ch);
+            GET_NATURAL_CHA(ch) = temp;
+        }
+        break;
+
+    case 1:
+        temp = GET_NATURAL_DEX(ch);
+
+        switch (number) {
+        case 0:
+            return;
+        case 1:
+            GET_NATURAL_DEX(ch) = GET_NATURAL_CON(ch);
+            GET_NATURAL_CON(ch) = temp;
+            break;
+        case 2:
+            GET_NATURAL_DEX(ch) = GET_NATURAL_INT(ch);
+            GET_NATURAL_INT(ch) = temp;
+            break;
+        case 3:
+            GET_NATURAL_DEX(ch) = GET_NATURAL_WIS(ch);
+            GET_NATURAL_WIS(ch) = temp;
+            break;
+        case 4:
+            GET_NATURAL_DEX(ch) = GET_NATURAL_CHA(ch);
+            GET_NATURAL_CHA(ch) = temp;
+        }
+        break;
+
+    case 2:
+        temp = GET_NATURAL_CON(ch);
+
+        switch (number) {
+        case 0:
+            return;
+        case 1:
+            GET_NATURAL_CON(ch) = GET_NATURAL_INT(ch);
+            GET_NATURAL_INT(ch) = temp;
+            break;
+        case 2:
+            GET_NATURAL_CON(ch) = GET_NATURAL_WIS(ch);
+            GET_NATURAL_WIS(ch) = temp;
+            break;
+        case 3:
+            GET_NATURAL_CON(ch) = GET_NATURAL_CHA(ch);
+            GET_NATURAL_CHA(ch) = temp;
+        }
+        break;
+
+    case 3:
+        temp = GET_NATURAL_INT(ch);
+
+        switch (number) {
+        case 0:
+            return;
+        case 1:
+            GET_NATURAL_INT(ch) = GET_NATURAL_WIS(ch);
+            GET_NATURAL_WIS(ch) = temp;
+            break;
+        case 2:
+            GET_NATURAL_INT(ch) = GET_NATURAL_CHA(ch);
+            GET_NATURAL_CHA(ch) = temp;
+        }
+        break;
+
+    case 4:
+        temp = GET_NATURAL_WIS(ch);
+
+        switch (number) {
+        case 0:
+            return;
+        case 1:
+            GET_NATURAL_WIS(ch) = GET_NATURAL_CHA(ch);
+            GET_NATURAL_CHA(ch) = temp;
+        }
+    }
+}
+
+bool select_stat(CharData *ch, int stat, const char *choice) {
+    int number;
+    
+    number = atoi(choice);
+    number -= 1;
+
+    if (number < 0 || number > (NUM_STATS - stat)) {
+        char_printf(ch, "&0&7&bInvalid choice.&0\n");
+        return false;
+    }
+
+    stat_swap(ch, stat, number);
+    return true;
+}
+
 /* deal with newcomers and other non-playing sockets */
 void nanny(DescriptorData *d, char *arg) {
     int player_i, load_result;
@@ -2787,34 +2964,124 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_QROLLSTATS:
 
         switch (*arg) {
-        case 'y':
-        case 'Y':
-            if ((GET_NATURAL_STR(d->character)) > 0)
+        case '1':
+            if ((GET_NATURAL_STR(d->character)) > 0) {
+                STATE(d) = CON_QBONUS1;
+                string_to_output(d, "\n\n&0&7&bYou have three bonuses to use.&0\n");
+                string_to_output(d, "&0&7&bChoose the stat carefully.&0\n");
+                string_to_output(d, stats_display);
+                string_to_output(d, "\n&0&7&bPlease enter your first bonus selection:&0\n");
                 break;
-        case 'n':
-        case 'N':
+            }
+        case '2':
+            STATE(d) = CON_SELECT_STR;
+            display_manual_stat(d->character, roll_table, 0);
+            string_to_output(d, "\n\n&0&7&bPlease select your Strength:&0\n");
+            break;
+        case '3':
         default:
 
             roll_natural_abils(d->character);
-            new_rollor_display(d->character, roll_table);
+            new_roller_display(d->character, roll_table);
             string_to_output(d,
                              "\n"
-                             "        Con:  {}                Wis:  {}\n"
-                             "        Str:  {}                Intel:{}\n"
-                             "        Dex:  {}                Char: {}\n"
-                             "\n\nYou may keep these stats if you wish (&0&6Enter y&0),\n"
-                             "or if you wish you may try for better stats (&0&6Enter n&0)(y/n):",
-                             rolls_abils_result[roll_table[4]], rolls_abils_result[roll_table[2]],
-                             rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[1]],
-                             rolls_abils_result[roll_table[3]], rolls_abils_result[roll_table[5]]);
+                             "        Str:  {}                Int:  {}\n"
+                             "        Dex:  {}                Wis:  {}\n"
+                             "        Con:  {}                Cha:  {}\n"
+                             "\n\nYou may:\n"
+                             "[1] Keep these stats\n"
+                             "[2] Manually assign stats\n"
+                             "[3] or [Enter] Roll for new stats\n",
+                             rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[3]],
+                             rolls_abils_result[roll_table[1]], rolls_abils_result[roll_table[4]],
+                             rolls_abils_result[roll_table[2]], rolls_abils_result[roll_table[5]]);
             return;
         }
 
-        string_to_output(d, "\n\n&0&7&bYou have three bonus's to use choose the stat carefully:&0\n");
-        string_to_output(d, stats_display);
-        string_to_output(d, "\n&0&7&bPlease enter your first bonus selection:&0\n");
-        STATE(d) = CON_QBONUS1;
         break;
+
+    case CON_SELECT_STR:
+        const char *choice;
+
+        choice = arg;
+
+        if (select_stat(d->character, 0, choice)) {
+            STATE(d) = CON_SELECT_DEX;
+            display_manual_stat(d->character, roll_table, 1);
+            string_to_output(d, "\n\n&0&7&bPlease select your Dexterity:&0\n");
+            break;
+        }
+        string_to_output(d, "\n\n&0&7&bPlease select your Strength:&0\n");
+        
+        return;
+
+    case CON_SELECT_DEX:
+
+        choice = arg;
+
+        if (select_stat(d->character, 1, choice)) {
+            STATE(d) = CON_SELECT_CON;
+            display_manual_stat(d->character, roll_table, 2);
+            string_to_output(d, "\n\n&0&7&bPlease select your Constitution:&0\n");
+            break;
+        }
+        string_to_output(d, "\n\n&0&7&bPlease select your Dexterity:&0\n");
+        
+        return;
+
+    case CON_SELECT_CON:
+
+        choice = arg;
+
+        if (select_stat(d->character, 2, choice)) {
+            STATE(d) = CON_SELECT_INT;
+            display_manual_stat(d->character, roll_table, 3);
+            string_to_output(d, "\n\n&0&7&bPlease select your Intelligence:&0\n");
+            break;
+        }
+        string_to_output(d, "\n\n&0&7&bPlease select your Constitution:&0\n");
+        
+        return;
+
+    case CON_SELECT_INT:
+
+        choice = arg;
+
+        if (select_stat(d->character, 3, choice)) {
+            STATE(d) = CON_SELECT_WIS;
+            display_manual_stat(d->character, roll_table, 4);
+            string_to_output(d, "\n\n&0&7&bPlease select your Wisdom:&0\n");
+            break;
+        }
+        string_to_output(d, "\n\n&0&7&bPlease select your Intelligence:&0\n");
+        
+        return;
+
+    case CON_SELECT_WIS:
+
+        choice = arg;
+
+        if (select_stat(d->character, 4, choice)) {
+            STATE(d) = CON_QROLLSTATS;
+            new_roller_display(d->character, roll_table);
+            string_to_output(d,
+                              "\n"
+                              "        Str:  {}                Int:  {}\n"
+                              "        Dex:  {}                Wis:  {}\n"
+                              "        Con:  {}                Cha:  {}\n"
+                              "\n\nYou may:\n"
+                              "[1] Keep these stats\n"
+                              "[2] Manually assign stats\n"
+                              "[3] or [Enter] Roll for new stats\n",
+                              rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[3]],
+                              rolls_abils_result[roll_table[1]], rolls_abils_result[roll_table[4]],
+                              rolls_abils_result[roll_table[2]], rolls_abils_result[roll_table[5]]);
+            break;
+        }
+        string_to_output(d, "\n\n&0&7&bPlease select your Wisdom:&0\n");
+
+        return;
+
     case CON_QBONUS1:
         load_result = bonus_stat(d->character, *arg);
         if (!load_result) {
@@ -2868,7 +3135,7 @@ void nanny(DescriptorData *d, char *arg) {
         case YESNO_OTHER:
             string_to_output(d,
                              "\nPlease answer yes or no.\n"
-                             "&0&4&bDo you wish to keep this character (Y/n)?\n"
+                             "&0&4&bDo you wish to keep this character (y/n)?\n"
                              "(Answering 'n' will take you back to gender selection.)&0  ");
             break;
         default:
@@ -3048,31 +3315,6 @@ long max_exp_gain(CharData *ch) {
     current = (long)(0.2 * (float)total);
     // char_printf(ch, "max exp gain is {}, but total {}, percent 20\n", current, total);
     return current;
-}
-
-void new_rollor_display(CharData *ch, int word[6]) {
-    int statts[6];
-    int j;
-
-    statts[0] = GET_NATURAL_STR(ch);
-    statts[1] = GET_NATURAL_INT(ch);
-    statts[2] = GET_NATURAL_WIS(ch);
-    statts[3] = GET_NATURAL_DEX(ch);
-    statts[4] = GET_NATURAL_CON(ch);
-    statts[5] = GET_NATURAL_CHA(ch);
-
-    for (j = 0; j <= 5; j++) {
-        if (statts[j] > 90)
-            word[j] = 0;
-        else if (statts[j] > 80)
-            word[j] = 1;
-        else if (statts[j] > 62)
-            word[j] = 2;
-        else if (statts[j] > 52)
-            word[j] = 3;
-        else
-            word[j] = 4;
-    }
 }
 
 /* this addes a number from 2-6 to the stat but doesn't exceed 100 */

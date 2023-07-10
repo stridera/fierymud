@@ -39,7 +39,7 @@
 #include "utils.hpp"
 
 const char *stats_display =
-    "&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\n"
+    "\n&0&7&b[s]&0 Strength      &0&7&b[i]&0 Intelligence\n"
     "&0&7&b[w]&0 Wisdom        &0&7&b[c]&0 Constitution\n"
     "&0&7&b[d]&0 Dexterity     &0&7&b[m]&0 Charisma\n\n";
 
@@ -88,6 +88,7 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* Seelie Faerie         */ {Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
     /* Unseelie Faerie       */ {Y, Y, Y, N, N, N, N, Y, N, N, N, Y, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
     /* Nymph                 */ {Y, Y, N, Y, N, N, Y, Y, Y, N, N, N, Y, N, N, N, N, Y, Y, Y, Y, Y, Y, N},
+    /* Arborean              */ {N,	Y, N, Y, N,	N, Y, Y, Y,	N, N, N, N,	Y, N, N, N,	N, N, N, N,	N, N, Y},
 };
 
 ACMD(do_flee); /* act.offensive.c */

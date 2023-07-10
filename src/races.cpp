@@ -1243,7 +1243,42 @@ RaceDef races[NUM_RACES] = {
      100,                       /* AC factor for mobs */
      nullptr,                   /* verb for entering a room */
      nullptr,                   /* verb for walking out of a room */
-     {0, 0}}                   /* function numbers - always set as {0, 0}}, to close struct */
+     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+
+    /* ARBOREAN */
+    {"arborean",                /* name as found by triggers */
+     "arborean",                /* all race keywords */
+     "&2Arborean&0",            /* name as displayed at character creation, on who, and score */
+     "&2Arborean&0",            /* name as displayed in show race command and when setting races */
+     "Arborean",                /* name as displayed in medit vsearch stat and enlightenment */
+     false,                      /* playable? */
+     true,                      /* humanoid? */
+     RACE_ALIGN_GOOD,           /* race alignment */
+     SIZE_LARGE,                /* default size */
+     0,                         /* default alignment */
+     3,                         /* damroll bonus */
+     3,                         /* hitroll bonus */
+     LIFE_LIFE,                 /* default life force */
+     COMP_PLANT,                /* default composition */
+     140,                       /* male weight low */
+     260,                       /* male weight high */
+     72,                        /* male height low */
+     106,                       /* male height high */
+     140,                       /* female weight low */
+     260,                       /* female weight high */
+     72,                        /* female height low */
+     106,                       /* female height high */
+     {80, 62, 72, 80, 80, 72},  /* max stat: str, dex, int, wis, con, cha */
+     100,                       /* experience reward factor for mobs */
+     100,                       /* hp factor for mobs */
+     100,                       /* hitroll/damroll factor for mobs */
+     100,                       /* damage dice factor for mobs */
+     75,                        /* money drop factor for mobs */
+     100,                       /* AC factor for mobs */
+     nullptr,                   /* verb for entering a room */
+     nullptr,                   /* verb for walking out of a room */
+     {0, 0}}                    /* function numbers - always set as {0, 0}}, to close struct */
+
      };
      
 const char *race_align_abbrevs[] = {"&0&3&bGOOD&0", "&0&1&bEVIL&0"};
@@ -1324,6 +1359,10 @@ void init_races(void) {
         memset(races[race].skills, 0, sizeof(races[race].skills));
         pos = 0;
         switch (race) {
+        case RACE_ARBOREAN:
+            ADD_SKILL(SKILL_DOORBASH, 1000);
+            ADD_SKILL(SKILL_BODYSLAM, 1000);
+            break;
         case RACE_TROLL:
             ADD_SKILL(SKILL_DOORBASH, 1000);
             ADD_SKILL(SKILL_BODYSLAM, 1000);

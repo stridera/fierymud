@@ -56,9 +56,10 @@
 #define RACE_FAERIE_SEELIE 32
 #define RACE_FAERIE_UNSEELIE 33
 #define RACE_NYMPH 34
+#define RACE_ARBOREAN 35
 
 /* Make sure to update this number if you add a race. */
-#define NUM_RACES 35
+#define NUM_RACES 36
 
 #define DEFAULT_RACE RACE_OTHER
 
