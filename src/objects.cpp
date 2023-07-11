@@ -629,6 +629,7 @@ float calculate_object_weight(ObjData *obj) {
         if (weight_reduction > 0)
             weight -= GET_OBJ_EFFECTIVE_WEIGHT(obj) * (weight_reduction / 100.0);
     }
+    GET_OBJ_EFFECTIVE_WEIGHT(obj) = weight;
 
     return weight;
 }
