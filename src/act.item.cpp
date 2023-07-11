@@ -755,17 +755,17 @@ ACMD(do_give) {
     } else {
         for (auto [obj_ref2, qty] : vnums) {
             if (qty == 1) {
-                act("You give $p to $N.", false, ch, (obj_ref2), vict, TO_CHAR);
-                act("$n gives you $p.", false, ch, (obj_ref2), vict, TO_VICT);
-                act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, (obj_ref2), vict,
+                act("You give $p to $N.", false, ch, obj_ref2, vict, TO_CHAR);
+                act("$n gives you $p.", false, ch, obj_ref2, vict, TO_VICT);
+                act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, obj_ref2, vict,
                     TO_NOTVICT);
             } else {
                 sprintf(buf, "You give $p to $N. (x%d)", qty);
-                act(buf, false, ch, (obj_ref2), vict, TO_CHAR);
+                act(buf, false, ch, obj_ref2, vict, TO_CHAR);
                 sprintf(buf, "$n gives you $p. (x%d)", qty);
-                act(buf, false, ch, (obj_ref2), vict, TO_VICT);
+                act(buf, false, ch, obj_ref2, vict, TO_VICT);
                 sprintf(buf, "$n gives $p to $N. (x%d)", qty);
-                act(buf, !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, (obj_ref2), vict, TO_NOTVICT);
+                act(buf, !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, obj_ref2, vict, TO_NOTVICT);
             }
         }
     }
