@@ -13,11 +13,11 @@
 #pragma once
 
 #include "defines.hpp"
-#include "spell_mem.hpp"
 #include "sysdep.hpp"
 
 #include <list>
 #include <string>
+#include <vector>
 
 typedef int room_num;
 typedef int obj_num;
@@ -53,6 +53,12 @@ struct ExtraDescriptionData {
     char *keyword;              /* Keyword in look/examine          */
     char *description;          /* What to see                      */
     ExtraDescriptionData *next; /* Next in list                     */
+};
+
+/* This is the structure for keeping track of cast spells and how long ago. */
+struct SpellCast {
+    int spell_slot; // The slot the spell is memorized in.
+    int mem_time;   // Time required studying/praying/etc to clear this slot.  Determined by spell slot.
 };
 
 struct Casting {
@@ -393,7 +399,7 @@ struct CharData {
     /* Player stuff */
     int pfilepos; /* playerfile pos */
     QuestList *quests;
-    SpellMemory spell_memory;           /* Spell mem/scribe stuff */
+    std::vector<SpellCast> spellcasts;  /* Spell mem/scribe stuff */
     Scribing *scribe_list;              /* spells queued for scribing */
                                         /* Mobile stuff */
     TriggerPrototypeList *proto_script; /* list of default triggers */

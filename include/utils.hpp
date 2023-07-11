@@ -232,7 +232,7 @@ extern flagvector *ALL_FLAGS;
  */
 #define MOB_PERFORMS_SCRIPTS(ch) (IS_NPC(ch) && !MOB_FLAGGED(ch, MOB_NOSCRIPT) && !EFF_FLAGGED(ch, EFF_CHARM))
 
-#define MEMMING(ch) EVENT_FLAGGED((ch), EVENT_MEM)
+#define STUDYING(ch) EVENT_FLAGGED((ch), EVENT_STUDY)
 
 /* char utils ************************************************************/
 
@@ -433,7 +433,6 @@ extern flagvector *ALL_FLAGS;
 #define GET_LAST_TELL(ch) ((ch)->player_specials->last_tell)
 #define GET_ROLL(ch, id) ((ch)->player_specials->roll[id])
 #define GET_HOST(ch) ((ch)->player_specials->host)
-#define GET_SPELL_MEM(ch) ((ch)->spell_memory)
 #define GET_GRANT_CACHE(ch) ((ch)->player_specials->grant_cache)
 #define GET_REVOKE_CACHE(ch) ((ch)->player_specials->revoke_cache)
 #define GET_GRANTS(ch) ((ch)->player_specials->grants)

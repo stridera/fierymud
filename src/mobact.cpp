@@ -54,7 +54,7 @@ void perform_wear(CharData *ch, ObjData *obj, int where, bool collective = false
 int find_eq_pos(CharData *ch, ObjData *obj, char *arg);
 bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 void hunt_victim(CharData *ch);
-void start_memming(CharData *ch);
+void start_studying(CharData *ch);
 
 /* Local functions */
 bool check_mob_status(CharData *ch);
@@ -86,7 +86,7 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if (POSSESSED(ch) || MEMMING(ch))
+        if (POSSESSED(ch) || STUDYING(ch))
             continue;
 
         /* If lower than default position, get up. */
@@ -799,7 +799,7 @@ bool check_spellbank(CharData *ch) {
                 act(MEM_MODE(ch) == PRAY ? "$n begins praying to $s deity."
                                          : "$n takes out $s books and begins to study.",
                     true, ch, 0, 0, TO_ROOM);
-                start_memming(ch);
+                start_studying(ch);
                 return true;
             }
         }

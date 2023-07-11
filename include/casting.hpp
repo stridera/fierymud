@@ -52,8 +52,7 @@
 #define TYPE_UNDEFINED -1
 
 /* PLAYER SPELLS -- Numbered from 1 to MAX_SPELLS */
-/* enumerate the base mem time for each circle. PLEASE feel free to alter based
- * on practicality */
+/* enumerate the base mem time for each circle. PLEASE feel free to alter based on practicality */
 #define C1 30
 #define C2 33
 #define C3 36
@@ -70,10 +69,9 @@
 #define C14 60
 
 /*
- * spell casting time defines , ordinary ints can be used
- * for other values, but should be declared here...
- * NOTE: These integers represent pulses, not seconds. if PULSE_VIOLENCE is
- * used, then each of the following is (n*2) seconds.
+ * spell casting time defines , ordinary ints can be used for other values, but should be declared here...
+ * NOTE: These integers represent pulses, not seconds. if PULSE_VIOLENCE is used, then each of the following is (n*2)
+ * seconds.
  */
 /* This is based on 4 second rounds. There are no .25 rounds; values will round up to the nearest half round. */
 #define CAST_SPEED1 6  /* 1.5  rounds */
@@ -87,7 +85,6 @@
 #define CAST_SPEED9 18 /* 4.5  rounds */
 
 /* The following casting times are for combat spells. */
-
 #define CAST_SPEEDA 1
 #define CAST_SPEEDB 2
 #define CAST_SPEEDC 3

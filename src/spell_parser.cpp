@@ -35,7 +35,6 @@
 #include "utils.hpp"
 
 void charge_mem(CharData *ch, int spellnum);
-int check_spell_memory(CharData *ch, int spellnum);
 void complete_spell(CharData *ch);
 void start_chant(CharData *ch);
 void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
@@ -1390,19 +1389,13 @@ ACMD(do_cast) {
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && random_number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         if (subcmd == SCMD_CHANT) {
             act("$n starts chanting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            char_printf(ch,
-                        "You begin chanting, but your throat causes you to "
-                        "cough up blood!\n");
+            char_printf(ch, "You begin chanting, but your throat causes you to cough up blood!\n");
         } else if (subcmd == SCMD_PERFORM) {
             act("$n starts playing, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            char_printf(ch,
-                        "You begin playing, but your throat causes you to "
-                        "cough up blood!\n");
+            char_printf(ch, "You begin playing, but your throat causes you to cough up blood!\n");
         } else {
             act("$n starts casting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            char_printf(ch,
-                        "You begin casting, but your throat causes you to "
-                        "cough up blood!\n");
+            char_printf(ch, "You begin casting, but your throat causes you to cough up blood!\n");
         }
         WAIT_STATE(ch, PULSE_VIOLENCE);
         return;
@@ -1586,8 +1579,7 @@ ACMD(do_cast) {
         start_chant(ch);
         WAIT_STATE(ch, ch->casting.casting_time * PULSE_VIOLENCE / 2);
 
-        /* Gods instacast.  Start chant and then stop casting in order to
-         * display correct message. */
+        /* Gods instacast.  Start chant and then stop casting in order to display correct message. */
         if (GET_LEVEL(ch) >= LVL_GOD) {
             STOP_CASTING(ch);
             complete_spell(ch);
