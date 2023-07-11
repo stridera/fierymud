@@ -45,12 +45,11 @@ struct ObjectFlagData {
     long int wear_flags;   /* Where you can wear it            */
     /* If it hums, glows, etc.          */
     flagvector extra_flags[FLAGVECTOR_SIZE(NUM_ITEM_FLAGS)];
-    float weight;           /* Weight what else                 */
-    float effective_weight; /* Weight of contents + weight */
-    int cost;               /* Value when sold (gp.)            */
-    int level;              /* Level of the object              */
-    int timer;              /* Timer for object                 */
-    int decomp;             /* Decomposition timer              */
+    float weight; /* Weight what else                 */
+    int cost;     /* Value when sold (gp.)            */
+    int level;    /* Level of the object              */
+    int timer;    /* Timer for object                 */
+    int decomp;   /* Decomposition timer              */
     /* Object Spell effects             */
     flagvector effect_flags[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
     long hiddenness; /* How difficult it is to see obj   */
@@ -552,7 +551,6 @@ const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
 #define GET_OBJ_WEAR(obj) ((obj)->obj_flags.wear_flags)
 #define GET_OBJ_VAL(obj, val) ((obj)->obj_flags.value[(val)])
 #define GET_OBJ_WEIGHT(obj) ((obj)->obj_flags.weight)
-#define GET_OBJ_EFFECTIVE_WEIGHT(obj) ((obj)->obj_flags.effective_weight)
 #define GET_OBJ_TIMER(obj) ((obj)->obj_flags.timer)
 #define GET_OBJ_DECOMP(obj) ((obj)->obj_flags.decomp)
 #define GET_OBJ_HIDDENNESS(obj) ((obj)->obj_flags.hiddenness)
@@ -569,7 +567,7 @@ const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
  * beings will be noticed if they mess with such things. For example, you
  * couldn't drag a giant treasure chest out of a room without being noticed. */
 #define HIGHLY_VISIBLE(obj)                                                                                            \
-    (GET_OBJ_EFFECTIVE_WEIGHT(obj) > 6 || (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL((obj), VAL_LIGHT_LIT)) ||    \
+    (GET_OBJ_WEIGHT(obj) > 6 || (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL((obj), VAL_LIGHT_LIT)) ||              \
      OBJ_FLAGGED((obj), ITEM_GLOW))
 
 #define WEAPON_AVERAGE(obj)                                                                                            \

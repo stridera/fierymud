@@ -661,7 +661,7 @@ ObjData *make_corpse(CharData *ch, CharData *killer) {
         GET_OBJ_VAL(corpse, VAL_CONTAINER_CORPSE) = CORPSE_NPC;
 
     GET_OBJ_VAL(corpse, VAL_CONTAINER_BITS) = 0; /* not closable */
-    GET_OBJ_EFFECTIVE_WEIGHT(corpse) = GET_WEIGHT(ch) + IS_CARRYING_W(ch) + 100;
+    GET_OBJ_WEIGHT(corpse) = GET_WEIGHT(ch) + IS_CARRYING_W(ch) + 100;
     if (IS_NPC(ch))
         GET_OBJ_MOB_FROM(corpse) = GET_MOB_RNUM(ch);
     else

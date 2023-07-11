@@ -67,7 +67,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         /* Modify roll by weight. */
-        roll *= (MAX_CONCEAL_WEIGHT - GET_OBJ_EFFECTIVE_WEIGHT(obj)) / ((float)MAX_CONCEAL_WEIGHT);
+        roll *= (MAX_CONCEAL_WEIGHT - GET_OBJ_WEIGHT(obj)) / ((float)MAX_CONCEAL_WEIGHT);
 
         /* It is more difficult to conceal items of a level closer to your own. */
         roll -= GET_OBJ_LEVEL(obj) - GET_LEVEL(ch);
@@ -79,7 +79,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
 void perform_put(CharData *ch, ObjData *obj, ObjData *cont) {
     if (!drop_otrigger(obj, ch, cont) || !drop_otrigger(cont, ch, obj))
         return;
-    if (GET_OBJ_EFFECTIVE_WEIGHT(cont) + GET_OBJ_EFFECTIVE_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
+    if (GET_OBJ_WEIGHT(cont) + GET_OBJ_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
         act("$p won't fit in $P.", false, ch, obj, cont, TO_CHAR);
     else if (OBJ_FLAGGED(obj, ITEM_NODROP))
         act("You can't put $p in $P - it must be CURSED!", false, ch, obj, cont, TO_CHAR);
@@ -214,8 +214,7 @@ ACMD(do_stow) {
                 return;
             else if (OBJ_FLAGGED(obj, ITEM_NODROP))
                 act("You can't stow $p in $P because it's CURSED!", false, ch, obj, cont, TO_CHAR);
-            else if (cont && GET_OBJ_EFFECTIVE_WEIGHT(cont) + GET_OBJ_EFFECTIVE_WEIGHT(obj) >
-                                 GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
+            else if (cont && GET_OBJ_WEIGHT(cont) + GET_OBJ_WEIGHT(obj) > GET_OBJ_VAL(cont, VAL_CONTAINER_CAPACITY))
                 act("$p won't fit in $P.", false, ch, obj, cont, TO_CHAR);
             else {
                 int roll = conceal_roll(ch, obj);
@@ -642,7 +641,7 @@ ACMD(do_give) {
     int cash[NUM_COIN_TYPES] = {0};
     char *name = strdup(arg);
     std::string item_list;
-    std::unordered_map<ObjData *,int> vnums;
+    std::unordered_map<ObjData *, int> vnums;
     int vnum;
 
     if (parse_money(&argument, cash)) {
@@ -699,13 +698,13 @@ ACMD(do_give) {
                 ++counter;
             else if (result == GIVE_FAIL_FULL)
                 break;
-            auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair){
+            auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair) {
                 return !strcmp(pair.first->short_description, obj->short_description);
             });
             if (it == vnums.end()) {
                 vnums.insert(std::make_pair(obj, 1));
             } else {
-                it->second ++;
+                it->second++;
             }
         }
     } else if (CONFUSED(ch)) {
@@ -728,13 +727,13 @@ ACMD(do_give) {
                 if (result != GIVE_SUCCESS)
                     break;
                 ++counter;
-                auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair){
+                auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair) {
                     return !strcmp(pair.first->short_description, obj->short_description);
                 });
                 if (it == vnums.end()) {
                     vnums.insert(std::make_pair(obj, 1));
                 } else {
-                    it->second ++;
+                    it->second++;
                 }
             }
         }
@@ -750,14 +749,15 @@ ACMD(do_give) {
     } else {
         for (auto [obj_ref2, qty] : vnums) {
             if (qty == 1) {
-                act("You give $p to $N.", false, ch,(obj_ref2), vict, TO_CHAR);
-                act("$n gives you $p.", false, ch,(obj_ref2), vict, TO_VICT);
-                act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, (obj_ref2), vict, TO_NOTVICT);
+                act("You give $p to $N.", false, ch, (obj_ref2), vict, TO_CHAR);
+                act("$n gives you $p.", false, ch, (obj_ref2), vict, TO_VICT);
+                act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, (obj_ref2), vict,
+                    TO_NOTVICT);
             } else {
                 sprintf(buf, "You give $p to $N. (x%d)", qty);
-                act(buf, false, ch,(obj_ref2), vict, TO_CHAR);
+                act(buf, false, ch, (obj_ref2), vict, TO_CHAR);
                 sprintf(buf, "$n gives you $p. (x%d)", qty);
-                act(buf, false, ch,(obj_ref2), vict, TO_VICT);
+                act(buf, false, ch, (obj_ref2), vict, TO_VICT);
                 sprintf(buf, "$n gives $p to $N. (x%d)", qty);
                 act(buf, !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, (obj_ref2), vict, TO_NOTVICT);
             }
@@ -1304,8 +1304,8 @@ ACMD(do_wield) {
         return;
     }
 
-    if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
-        char_printf(ch, "It's too heavy for you to use.\n");
+    if (GET_OBJ_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
+        send_to_char("It's too heavy for you to use.\n", ch);
         return;
     }
 
@@ -1457,7 +1457,8 @@ ACMD(do_grab) {
             perform_wear(ch, obj, WEAR_HOLD, false);
         else {
             if (!CAN_WEAR(obj, ITEM_WEAR_HOLD) && GET_OBJ_TYPE(obj) != ITEM_WAND && GET_OBJ_TYPE(obj) != ITEM_STAFF &&
-                GET_OBJ_TYPE(obj) != ITEM_SCROLL && GET_OBJ_TYPE(obj) != ITEM_POTION && GET_OBJ_TYPE(obj) != ITEM_INSTRUMENT)
+                GET_OBJ_TYPE(obj) != ITEM_SCROLL && GET_OBJ_TYPE(obj) != ITEM_POTION &&
+                GET_OBJ_TYPE(obj) != ITEM_INSTRUMENT)
                 char_printf(ch, "You can't hold that.\n");
             else {
                 perform_wear(ch, obj, WEAR_HOLD, false);
@@ -1641,8 +1642,8 @@ ACMD(do_conceal) {
     else if (!CAN_WEAR(obj, ITEM_WEAR_TAKE) && GET_LEVEL(ch) < LVL_IMMORT) {
         act("You can't seem to shift $p's position.", false, ch, obj, 0, TO_CHAR);
         act("$n tugs at $p, unable to move it.", true, ch, obj, 0, TO_ROOM);
-    } else if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > MAX_CONCEAL_WEIGHT && GET_LEVEL(ch) < LVL_IMMORT) {
-        char_printf(ch, "You can't hide something that large!\n");
+    } else if (GET_OBJ_WEIGHT(obj) > MAX_CONCEAL_WEIGHT && GET_LEVEL(ch) < LVL_IMMORT) {
+        send_to_char("You can't hide something that large!\n", ch);
         act("$n drags $p around, trying to conceal it, but it's just too large.", true, ch, obj, 0, TO_ROOM);
     } else if (IS_WATER(IN_ROOM(ch)) && GET_LEVEL(ch) < LVL_IMMORT)
         char_printf(ch, "There's nowhere to hide it!\n");

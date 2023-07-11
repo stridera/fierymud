@@ -476,7 +476,7 @@ void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
             return;
         }
         price += STAMP_PRICE * .1;
-        price += GET_OBJ_EFFECTIVE_WEIGHT(obj) * 100;
+        price += GET_OBJ_WEIGHT(obj) * 100;
     } else if (*buf2) {
         char_printf(ch, "You don't seem to have a {} to mail.\n", buf2);
         return;
@@ -562,7 +562,7 @@ void postmaster_receive_mail(CharData *ch, CharData *mailman, int cmd, char *arg
 
         GET_OBJ_TYPE(obj) = ITEM_NOTE;
         GET_OBJ_WEAR(obj) = ITEM_WEAR_TAKE | ITEM_WEAR_HOLD;
-        GET_OBJ_WEIGHT(obj) = GET_OBJ_EFFECTIVE_WEIGHT(obj) = 1;
+        GET_OBJ_WEIGHT(obj) = 1;
         GET_OBJ_COST(obj) = 30;
         /* GET_OBJ_RENT(obj) = 10; */
         obj->action_description = read_delete(GET_IDNUM(ch), &obj_vnum);

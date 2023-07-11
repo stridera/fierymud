@@ -285,8 +285,8 @@ void effect_total(CharData *ch) {
          * It comes out to base 480 for a level 99 human with maxed int and wis.
          */
         if (GET_RACE(ch) == RACE_HALFLING)
-            GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 20));   /* max 792 */
-        else         
+            GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 20)); /* max 792 */
+        else
             GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 30));
     }
 
@@ -578,7 +578,7 @@ void char_to_room(CharData *ch, int room) {
         log("SYSERR:handler.c:char_to_room() NULL char pointer");
     } else if (room < 0 || room > top_of_world) {
         log("SYSERR: char_to_room: name){} room){:d}", GET_NAME(ch), room);
-        
+
         room = real_room(GET_HOMEROOM(ch));
         ch->next_in_room = world[room].people;
         world[room].people = ch;
@@ -618,7 +618,7 @@ void obj_to_char(ObjData *obj, CharData *ch) {
         if (GET_OBJ_TYPE(obj) == ITEM_LIGHT && GET_OBJ_VAL(obj, VAL_LIGHT_LIT))
             world[ch->in_room].light++;
         obj->in_room = NOWHERE;
-        IS_CARRYING_W(ch) += GET_OBJ_EFFECTIVE_WEIGHT(obj);
+        IS_CARRYING_W(ch) += GET_OBJ_WEIGHT(obj);
         IS_CARRYING_N(ch)++;
 
         if (!IS_NPC(ch))
@@ -649,7 +649,7 @@ void obj_from_char(ObjData *obj) {
     if (MORTALALLY(obj->carried_by))
         start_decomposing(obj);
 
-    IS_CARRYING_W(obj->carried_by) -= GET_OBJ_EFFECTIVE_WEIGHT(obj);
+    IS_CARRYING_W(obj->carried_by) -= GET_OBJ_WEIGHT(obj);
     IS_CARRYING_N(obj->carried_by)--;
     obj->carried_by = nullptr;
     obj->next_content = nullptr;
@@ -828,7 +828,7 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
                 act("You are too good to use $p.", false, ch, obj, 0, TO_CHAR);
             return false;
         }
-        
+
         if (OBJ_FLAGGED(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch)) {
             if (sendmessage)
                 act("You are too neutral to use $p.", false, ch, obj, 0, TO_CHAR);
@@ -836,15 +836,15 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
         }
 
         /* Check size rescrictions */
-        if ((OBJ_FLAGGED(obj, ITEM_ANTI_TINY) && GET_SIZE(ch) == SIZE_TINY) || 
-            (OBJ_FLAGGED(obj, ITEM_ANTI_SMALL) && GET_SIZE(ch) == SIZE_SMALL) || 
+        if ((OBJ_FLAGGED(obj, ITEM_ANTI_TINY) && GET_SIZE(ch) == SIZE_TINY) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_SMALL) && GET_SIZE(ch) == SIZE_SMALL) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_MEDIUM) && GET_SIZE(ch) == SIZE_MEDIUM) ||
-            (OBJ_FLAGGED(obj, ITEM_ANTI_LARGE) && GET_SIZE(ch) == SIZE_LARGE) || 
-            (OBJ_FLAGGED(obj, ITEM_ANTI_HUGE) && GET_SIZE(ch) == SIZE_HUGE) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_LARGE) && GET_SIZE(ch) == SIZE_LARGE) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_HUGE) && GET_SIZE(ch) == SIZE_HUGE) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_GIANT) && GET_SIZE(ch) == SIZE_GIANT) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_GARGANTUAN) && GET_SIZE(ch) == SIZE_GARGANTUAN) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_COLOSSAL) && GET_SIZE(ch) == SIZE_COLOSSAL) ||
-            (OBJ_FLAGGED(obj, ITEM_ANTI_TITANIC) && GET_SIZE(ch) == SIZE_TITANIC) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_TITANIC) && GET_SIZE(ch) == SIZE_TITANIC) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_MOUNTAINOUS) && GET_SIZE(ch) == SIZE_MOUNTAINOUS)) {
             if (GET_OBJ_TYPE(obj) == ITEM_WEAPON) {
                 if (sendmessage)
@@ -855,27 +855,26 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
                     act("You cannot fit into $p.", false, ch, obj, 0, TO_CHAR);
                 return false;
             }
-
         }
 
         /* Check class and override by race */
         if (((NOWEAR_CLASS(ch, obj) &&
-        
-            /* allow elf races to override class restrictions */
-            (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
 
-            /* allow dwarf races to override class restrictions */
-            (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))) ||
+              /* allow elf races to override class restrictions */
+              (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
 
-            /* Arboreans cannot use items that are both !druid and !ranger */
-            (OBJ_FLAGGED(obj, ITEM_ANTI_DRUID) && OBJ_FLAGGED(obj, ITEM_ANTI_RANGER) && GET_RACE(ch) == RACE_ARBOREAN))) {
+              /* allow dwarf races to override class restrictions */
+              (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))) ||
+
+             /* Arboreans cannot use items that are both !druid and !ranger */
+             (OBJ_FLAGGED(obj, ITEM_ANTI_DRUID) && OBJ_FLAGGED(obj, ITEM_ANTI_RANGER) &&
+              GET_RACE(ch) == RACE_ARBOREAN))) {
             if (sendmessage)
                 act("You cannot use $p.", false, ch, obj, 0, TO_CHAR);
             return false;
         }
 
-        /* Check weight of object */
-        if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_EFFECTIVE_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
+        if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
             if (sendmessage)
                 char_printf(ch, "It's too heavy for you to use.\n");
             return false;
@@ -929,7 +928,7 @@ enum equip_result equip_char(CharData *ch, ObjData *obj, int pos) {
 
     if (PLAYERALLY(ch))
         stop_decomposing(obj);
-    IS_CARRYING_W(ch) += GET_OBJ_EFFECTIVE_WEIGHT(obj);
+    IS_CARRYING_W(ch) += GET_OBJ_WEIGHT(obj);
     effect_total(ch);
     return EQUIP_RESULT_SUCCESS;
 }
@@ -955,7 +954,7 @@ ObjData *unequip_char(CharData *ch, int pos) {
         log("SYSERR: ch->in_room = NOWHERE when unequipping char.");
 
     GET_EQ(ch, pos) = nullptr;
-    IS_CARRYING_W(ch) -= GET_OBJ_EFFECTIVE_WEIGHT(obj);
+    IS_CARRYING_W(ch) -= GET_OBJ_WEIGHT(obj);
 
     /* Reapply all the racial effects in case they were removed above. */
     update_char(ch);
@@ -1068,22 +1067,22 @@ void obj_to_obj(ObjData *obj, ObjData *obj_to) {
     weight_reduction = GET_OBJ_VAL(obj_to, VAL_CONTAINER_WEIGHT_REDUCTION);
     reduction = 0.0f;
     if (weight_reduction > 0) {
-        reduction = GET_OBJ_EFFECTIVE_WEIGHT(obj) * (weight_reduction / 100.0);
+        reduction = GET_OBJ_WEIGHT(obj) * (weight_reduction / 100.0);
     }
 
     for (tmp_obj = obj->in_obj; tmp_obj->in_obj; tmp_obj = tmp_obj->in_obj) {
-        GET_OBJ_EFFECTIVE_WEIGHT(tmp_obj) += GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+        GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj) - reduction;
     }
 
     /* top level object.  Subtract weight from inventory if necessary. */
-    GET_OBJ_EFFECTIVE_WEIGHT(tmp_obj) += GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+    GET_OBJ_WEIGHT(tmp_obj) += GET_OBJ_WEIGHT(obj) - reduction;
 
     if (tmp_obj->carried_by) {
-        IS_CARRYING_W(tmp_obj->carried_by) += GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+        IS_CARRYING_W(tmp_obj->carried_by) += GET_OBJ_WEIGHT(obj) - reduction;
         if (PLAYERALLY(tmp_obj->carried_by))
             stop_decomposing(obj);
     } else if (tmp_obj->worn_by) {
-        IS_CARRYING_W(tmp_obj->worn_by) += GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+        IS_CARRYING_W(tmp_obj->worn_by) += GET_OBJ_WEIGHT(obj) - reduction;
         if (PLAYERALLY(tmp_obj->worn_by))
             stop_decomposing(obj);
     }
@@ -1109,19 +1108,19 @@ void obj_from_obj(ObjData *obj) {
     weight_reduction = GET_OBJ_VAL(obj_from, VAL_CONTAINER_WEIGHT_REDUCTION);
     reduction = 0.0f;
     if (weight_reduction > 0) {
-        reduction = GET_OBJ_EFFECTIVE_WEIGHT(obj) * (weight_reduction / 100.0);
+        reduction = GET_OBJ_WEIGHT(obj) * (weight_reduction / 100.0);
     }
 
     /* Subtract weight from containers container */
     for (temp = obj->in_obj; temp->in_obj; temp = temp->in_obj)
-        GET_OBJ_EFFECTIVE_WEIGHT(temp) -= GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+        GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj) - reduction;
 
     /* Subtract weight from char that carries the object */
-    GET_OBJ_EFFECTIVE_WEIGHT(temp) -= GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+    GET_OBJ_WEIGHT(temp) -= GET_OBJ_WEIGHT(obj) - reduction;
     if (temp->carried_by)
-        IS_CARRYING_W(temp->carried_by) -= GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+        IS_CARRYING_W(temp->carried_by) -= GET_OBJ_WEIGHT(obj) - reduction;
     else if (temp->worn_by)
-        IS_CARRYING_W(temp->worn_by) -= GET_OBJ_EFFECTIVE_WEIGHT(obj) - reduction;
+        IS_CARRYING_W(temp->worn_by) -= GET_OBJ_WEIGHT(obj) - reduction;
 
     obj->in_obj = nullptr;
     obj->next_content = nullptr;

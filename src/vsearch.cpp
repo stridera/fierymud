@@ -1144,32 +1144,32 @@ const struct vsearch_object_value_type {
     int type;
     int item_types[MAX_SEARCH_ITEM_TYPES];
 } value_types[] = {
-    {19, {ITEM_LIGHT}},                                      /* lasts */
+    {19, {ITEM_LIGHT}},                                                       /* lasts */
     {20, {ITEM_WAND, ITEM_STAFF, ITEM_POTION, ITEM_SCROLL, ITEM_INSTRUMENT}}, /* casts */
     {21, {ITEM_WAND, ITEM_STAFF, ITEM_INSTRUMENT}},                           /* chargesinitial */
     {22, {ITEM_WAND, ITEM_STAFF, ITEM_INSTRUMENT}},                           /* chargesremaining */
-    {23, {ITEM_WEAPON}},                                     /* damnodice */
-    {24, {ITEM_WEAPON}},                                     /* damsizedice */
-    {25, {ITEM_WEAPON}},                                     /* attacktype */
-    {26, {ITEM_WEAPON}},                                     /* average */
-    {27, {ITEM_ARMOR, ITEM_TREASURE}},                       /* armor */
-    {28, {ITEM_CONTAINER, ITEM_DRINKCON, ITEM_FOUNTAIN}},    /* capacity */
-    {29, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                    /* contains */
-    {30, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                    /* liquid */
-    {31, {ITEM_FOOD}},                                       /* fillingness */
-    {32, {ITEM_DRINKCON, ITEM_FOUNTAIN, ITEM_FOOD}},         /* poisoned */
-    {33, {ITEM_MONEY}},                                      /* platinum */
-    {34, {ITEM_MONEY}},                                      /* gold */
-    {35, {ITEM_MONEY}},                                      /* silver */
-    {36, {ITEM_MONEY}},                                      /* copper */
-    {37, {ITEM_PORTAL}},                                     /* targetroom */
-    {38, {ITEM_PORTAL}},                                     /* entrymessage */
-    {39, {ITEM_PORTAL}},                                     /* charmessage */
-    {40, {ITEM_PORTAL}},                                     /* exitmessage */
-    {41, {ITEM_WALL}},                                       /* direction */
-    {42, {ITEM_WALL}},                                       /* crumbles */
-    {43, {ITEM_TRAP}},                                       /* hitpoints */
-    {44, {ITEM_CONTAINER}},                                  /* key */
+    {23, {ITEM_WEAPON}},                                                      /* damnodice */
+    {24, {ITEM_WEAPON}},                                                      /* damsizedice */
+    {25, {ITEM_WEAPON}},                                                      /* attacktype */
+    {26, {ITEM_WEAPON}},                                                      /* average */
+    {27, {ITEM_ARMOR, ITEM_TREASURE}},                                        /* armor */
+    {28, {ITEM_CONTAINER, ITEM_DRINKCON, ITEM_FOUNTAIN}},                     /* capacity */
+    {29, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                                     /* contains */
+    {30, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                                     /* liquid */
+    {31, {ITEM_FOOD}},                                                        /* fillingness */
+    {32, {ITEM_DRINKCON, ITEM_FOUNTAIN, ITEM_FOOD}},                          /* poisoned */
+    {33, {ITEM_MONEY}},                                                       /* platinum */
+    {34, {ITEM_MONEY}},                                                       /* gold */
+    {35, {ITEM_MONEY}},                                                       /* silver */
+    {36, {ITEM_MONEY}},                                                       /* copper */
+    {37, {ITEM_PORTAL}},                                                      /* targetroom */
+    {38, {ITEM_PORTAL}},                                                      /* entrymessage */
+    {39, {ITEM_PORTAL}},                                                      /* charmessage */
+    {40, {ITEM_PORTAL}},                                                      /* exitmessage */
+    {41, {ITEM_WALL}},                                                        /* direction */
+    {42, {ITEM_WALL}},                                                        /* crumbles */
+    {43, {ITEM_TRAP}},                                                        /* hitpoints */
+    {44, {ITEM_CONTAINER}},                                                   /* key */
     {0, {0}},
 };
 
@@ -1323,7 +1323,7 @@ ACMD(do_osearch) {
             match = (CAN_WEAR(obj, flags[0]) == flags[0]);
             break;
         case 8:
-            match = numeric_compare(GET_OBJ_EFFECTIVE_WEIGHT(obj), value, bound, compare);
+            match = numeric_compare(GET_OBJ_WEIGHT(obj), value, bound, compare);
             break;
         case 9:
             match = numeric_compare(GET_OBJ_COST(obj), value, bound, compare);
@@ -1388,7 +1388,8 @@ ACMD(do_osearch) {
             match = numeric_compare(GET_OBJ_VAL(obj, 3), value, bound, compare);
             break;
         case 20:
-            if (GET_OBJ_TYPE(obj) == ITEM_STAFF || GET_OBJ_TYPE(obj) == ITEM_WAND || GET_OBJ_TYPE(obj) == ITEM_INSTRUMENT)
+            if (GET_OBJ_TYPE(obj) == ITEM_STAFF || GET_OBJ_TYPE(obj) == ITEM_WAND ||
+                GET_OBJ_TYPE(obj) == ITEM_INSTRUMENT)
                 match = (GET_OBJ_VAL(obj, VAL_STAFF_SPELL) == value);
             else if (GET_OBJ_TYPE(obj) == ITEM_SCROLL || GET_OBJ_TYPE(obj) == ITEM_POTION)
                 match =
@@ -1422,22 +1423,20 @@ ACMD(do_osearch) {
             // How many extra spaces do we need to pad the title to OBJ_TITLE_LENGTH?
             std::string short_desc = ellipsis(obj->short_description, OBJ_TITLE_LENGTH);
             briefmoney(buf, 6, GET_OBJ_COST(obj));
-            vbuf =
-                fmt::format("{:4d}. [{}{:5d}{}] {:<{}} {}{:<3d}&0  {}{:>4}&0 {:<{}}&0 ", ++found, grn,
-                            obj_index[nr].vnum, nrm, short_desc, OBJ_TITLE_LENGTH + count_color_chars(short_desc) * 2,
-                            GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
-                            : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
-                            : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
-                            : GET_OBJ_LEVEL(obj) > 101 ? "&4&b"
-                            : GET_OBJ_LEVEL(obj) > 100 ? "&1&b"
-                            : GET_OBJ_LEVEL(obj) > 99  ? "&3&b"
-                            : GET_OBJ_LEVEL(obj) > 89  ? "&5"
-                            : GET_OBJ_LEVEL(obj) > 74  ? "&6"
-                            : GET_OBJ_LEVEL(obj) > 49  ? "&2"
-                                                       : "",
-                            GET_OBJ_LEVEL(obj), GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? "&5" : "",
-                            GET_OBJ_EFFECTIVE_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_EFFECTIVE_WEIGHT(obj), buf,
-                            5 + count_color_chars(buf));
+            sprintf(vbuf, "%4d. [%s%5d%s] " ELLIPSIS_FMT " %s%3d&0 %s%5g&0 %*s " ANRM, ++found, grn, obj_index[nr].vnum,
+                    nrm, ELLIPSIS_STR(obj->short_description, OBJ_TITLE_LENGTH),
+                    GET_OBJ_LEVEL(obj) > 104   ? "&5&b"
+                    : GET_OBJ_LEVEL(obj) > 103 ? "&6&b"
+                    : GET_OBJ_LEVEL(obj) > 102 ? "&2&b"
+                    : GET_OBJ_LEVEL(obj) > 101 ? "&4&b"
+                    : GET_OBJ_LEVEL(obj) > 100 ? "&1&b"
+                    : GET_OBJ_LEVEL(obj) > 99  ? "&3&b"
+                    : GET_OBJ_LEVEL(obj) > 89  ? "&5"
+                    : GET_OBJ_LEVEL(obj) > 74  ? "&6"
+                    : GET_OBJ_LEVEL(obj) > 49  ? "&2"
+                                               : "",
+                    GET_OBJ_LEVEL(obj), GET_OBJ_WEIGHT(obj) > 9999 ? "&5" : "",
+                    GET_OBJ_WEIGHT(obj) > 9999 ? 9999 : GET_OBJ_WEIGHT(obj), 5 + count_color_chars(buf), buf);
             switch (subcmd) {
             case SCMD_VWEAR:
                 if ((GET_OBJ_TYPE(obj) == ITEM_ARMOR || GET_OBJ_TYPE(obj) == ITEM_TREASURE) &&
