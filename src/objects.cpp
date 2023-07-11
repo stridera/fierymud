@@ -616,7 +616,7 @@ ObjData *carried_key(CharData *ch, int keyvnum) {
 }
 
 float calculate_object_weight(ObjData *obj) {
-    float weight = GET_OBJ_WEIGHT(obj);
+    float weight = 0;
 
     if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON || GET_OBJ_TYPE(obj) == ITEM_FOUNTAIN)
         weight += LIQUID_MASS(GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID));
@@ -627,8 +627,10 @@ float calculate_object_weight(ObjData *obj) {
     if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER) {
         float weight_reduction = GET_OBJ_VAL(obj, VAL_CONTAINER_WEIGHT_REDUCTION);
         if (weight_reduction > 0)
-            weight -= GET_OBJ_EFFECTIVE_WEIGHT(obj) * (weight_reduction / 100.0);
+            weight -= weight * (weight_reduction / 100.0);
     }
+
+    weight += GET_OBJ_WEIGHT(obj);
     GET_OBJ_EFFECTIVE_WEIGHT(obj) = weight;
 
     return weight;
