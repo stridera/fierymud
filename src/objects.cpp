@@ -614,3 +614,21 @@ ObjData *carried_key(CharData *ch, int keyvnum) {
 
     return nullptr;
 }
+
+float calculate_object_weight(ObjData *obj) {
+    float weight = GET_OBJ_WEIGHT(obj);
+
+    if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON || GET_OBJ_TYPE(obj) == ITEM_FOUNTAIN)
+        weight += LIQUID_MASS(GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), GET_OBJ_VAL(obj, VAL_DRINKCON_LIQUID));
+
+    for (ObjData *tmp_obj = obj->contains; tmp_obj; tmp_obj = tmp_obj->next_content)
+        weight += calculate_object_weight(tmp_obj);
+
+    if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER) {
+        float weight_reduction = GET_OBJ_VAL(obj, VAL_CONTAINER_WEIGHT_REDUCTION);
+        if (weight_reduction > 0)
+            weight -= GET_OBJ_EFFECTIVE_WEIGHT(obj) * (weight_reduction / 100.0);
+    }
+
+    return weight;
+}

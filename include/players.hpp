@@ -31,6 +31,7 @@
 #define NUM_QUITTYPES 11
 #define VALID_QUITTYPE(s) ((s) >= 0 && (s) < NUM_QUITTYPES)
 
+void reset_weight(CharData *ch);
 void build_player_index(void);
 int create_player_index_entry(char *name);
 void save_player_index(void);
