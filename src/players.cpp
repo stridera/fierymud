@@ -157,13 +157,13 @@ int get_pfilename(const char *name, char *filename, int mode) {
 void reset_weight(CharData *ch) {
     int i;
 
-    GET_WEIGHT(ch) = ch->player.base_weight;
+    IS_CARRYING_W(ch) = 0;
     for (i = 0; i < NUM_WEARS; i++)
         if (GET_EQ(ch, i))
-            GET_WEIGHT(ch) += GET_OBJ_WEIGHT(GET_EQ(ch, i));
+            IS_CARRYING_W(ch) += GET_OBJ_WEIGHT(GET_EQ(ch, i));
 
     for (ObjData *obj = ch->carrying; obj; obj = obj->next_content)
-        GET_WEIGHT(ch) += calculate_object_weight(obj);
+        IS_CARRYING_W(ch) += calculate_object_weight(obj);
 }
 
 /* New version to build player index for ASCII Player Files. Generate index
