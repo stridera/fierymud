@@ -1214,6 +1214,7 @@ ACMD(do_wear) {
     two_arguments(argument, arg1, arg2);
 
     if (GET_RACE(ch) == RACE_ANIMAL) {
+        char_printf(ch, "Animals can't wear clothes!\n");
         return;
     }
 
@@ -1494,6 +1495,11 @@ ACMD(do_remove) {
     ObjData *obj;
     int where, dotmode, found;
     char *name = arg;
+
+    if (GET_RACE(ch) == RACE_ANIMAL) {
+        char_printf(ch, "Animals can't wear clothes!\n");
+        return;
+    }
 
     argument = one_argument(argument, name);
 
