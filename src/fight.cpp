@@ -379,7 +379,7 @@ bool mass_attack_ok(CharData *ch, CharData *victim, bool verbose) {
 }
 
 int blessed_blow(CharData *ch, ObjData *weapon) {
-    if (EFF_FLAGGED(ch, EFF_BLESS) || EFF_FLAGGED(ch, EFF_HEX)) {
+    if (EFF_FLAGGED(ch, EFF_BLESS)) {
         return true;
     }
     return false;
@@ -2077,7 +2077,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     }
 
     /* check for bless/hex - VALUES: 0 to 20 */
-    if (EFF_FLAGGED(ch, EFF_BLESS) || EFF_FLAGGED(ch, EFF_HEX)) {
+    if (EFF_FLAGGED(ch, EFF_BLESS)) {
         if (IS_GOOD(ch) && IS_EVIL(victim))
             calc_thaco -= GET_LEVEL(ch) / 5; /* good characters get a big bonus to attacking evil characters */
         if (IS_GOOD(ch) && IS_NEUTRAL(victim))
