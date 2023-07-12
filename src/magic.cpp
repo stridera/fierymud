@@ -1486,7 +1486,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                     "$n seizes up in pain!"
                     "\n$n grabs $N, who is enraged by a dark presence.";
         }
-        SET_FLAG(eff[2].flags, EFF_HEX);
+        SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
         break;
 
@@ -2265,8 +2265,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (!attack_ok(ch, victim, true))
             return CAST_RESULT_CHARGE;
         /* Make success based on skill and saving throw -myc 17 Feb 2007 */
-        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < random_number(0, 70)) {
-            act("&7&b$N resists your weak paralysis.&0", false, ch, 0, victim, TO_CHAR);
+        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+
+            if (MOB_FLAGGED(victim, MOB_NOCHARM))
+                act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
+            else
+                act("&7&b$N resists your attempt to paralyze $M.&0", false, ch, 0, victim, TO_CHAR);
+
             act("&7&b$n tries to paralize you but fails!&0", false, ch, 0, victim, TO_VICT);
             act("&7&b$n squints at $N but nothing happens.&0", true, ch, 0, victim, TO_NOTVICT);
 
@@ -2282,7 +2287,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_MINOR_PARALYSIS);
         eff[0].duration = 2 + (skill / 15); /* max 8 */
         refresh = false;
-        to_char = "You paralyze $N! WooHoo!";
+        to_char = "You temporarily paralyze $N!";
         to_vict = "&7&bAll motion in your body grinds to a halt.&0";
         to_room = "&7&bAll motion in $N&7&b's body grinds to a halt.&0";
         break;
@@ -4961,10 +4966,10 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
     case SPELL_DARK_PRESENCE:
         /* Skip all checks if godly */
         if (GET_LEVEL(ch) > LVL_IMMORT) {
-            if (OBJ_EFF_FLAGGED(obj, EFF_HEX)) {
+            if (OBJ_EFF_FLAGGED(obj, EFF_BLESS)) {
                 to_char = "It's already hexed.";
             } else {
-                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
+                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
                 SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
                 to_char = "$p is imbued with a dark aura.";
             }
@@ -5003,7 +5008,7 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
         )
             to_char = "The hex is repelled from $p.";
         else {
-            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_HEX);
+            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
             SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
             to_char = "$p is imbued with a dark aura.";
             result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;

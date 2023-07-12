@@ -27,6 +27,7 @@
 #include "logging.hpp"
 #include "math.hpp"
 #include "money.hpp"
+#include "objects.hpp"
 #include "olc.hpp"
 #include "pfiles.hpp"
 #include "privileges.hpp"
@@ -151,6 +152,18 @@ int get_pfilename(const char *name, char *filename, int mode) {
 
     sprintf(filename, "%s/%c/%c%s%s", prefix, UPPER(*name), UPPER(*name), name + 1, suffix);
     return 1;
+}
+
+void reset_weight(CharData *ch) {
+    int i;
+
+    IS_CARRYING_W(ch) = 0;
+    for (i = 0; i < NUM_WEARS; i++)
+        if (GET_EQ(ch, i))
+            IS_CARRYING_W(ch) += GET_OBJ_WEIGHT(GET_EQ(ch, i));
+
+    for (ObjData *obj = ch->carrying; obj; obj = obj->next_content)
+        IS_CARRYING_W(ch) += calculate_object_weight(obj);
 }
 
 /* New version to build player index for ASCII Player Files. Generate index
