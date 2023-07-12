@@ -976,9 +976,9 @@ const CommandInfo cmd_info[] = {
     {"mcast", POS_STANDING, STANCE_ALERT, do_mcast, -1, 0, CMD_ANY},
     {"mchant", POS_STANDING, STANCE_ALERT, do_mchant, -1, 0, CMD_ANY},
     {"mperform", POS_STANDING, STANCE_ALERT, do_mperform, -1, 0, CMD_ANY},
-    {"mmobflag", POS_STANDING, STANCE_ALERT, do_mmobflag, -1, 0, CMD_ANY},   
+    {"mmobflag", POS_STANDING, STANCE_ALERT, do_mmobflag, -1, 0, CMD_ANY},
     {"mload", POS_PRONE, STANCE_DEAD, do_mload, -1, 0, CMD_ANY},
-    {"mobjflag", POS_STANDING, STANCE_ALERT, do_mobjflag, -1, 0, CMD_ANY},    
+    {"mobjflag", POS_STANDING, STANCE_ALERT, do_mobjflag, -1, 0, CMD_ANY},
     {"mpurge", POS_PRONE, STANCE_DEAD, do_mpurge, -1, 0, CMD_ANY},
     {"mroomflag", POS_STANDING, STANCE_ALERT, do_mroomflag, -1, 0, CMD_ANY},
     {"msave", POS_PRONE, STANCE_DEAD, do_msave, -1, 0, CMD_ANY},
@@ -1740,7 +1740,7 @@ void display_classes(DescriptorData *d, int select) {
                 clericok ? " [&0&1&bc&0&6]leric" : "", mageok ? " [&0&1&bs&0&6]orcerer" : "",
                 rogueok ? " [&0&1&br&0&6]ogue" : "");
     char_printf(d->character, buf);
-        sprintf(buf, "\n\n(&6[&0&1&b?&0&6] Class Help Menu)");
+    sprintf(buf, "\n\n(&6[&0&1&b?&0&6] Class Help Menu)");
     char_printf(d->character, buf);
     char_printf(d->character, "&0");
 }
@@ -1960,8 +1960,7 @@ int perform_dupe_check(DescriptorData *d) {
 
 int enter_player_game(DescriptorData *d) {
     int load_result;
-    int load_room;
-    int i;
+    int load_room = NOWHERE;
 
     reset_char(d->character);
     if (GET_AUTOINVIS(d->character) > -1)
@@ -1996,6 +1995,7 @@ int enter_player_game(DescriptorData *d) {
             char_from_room(d->character);
             char_to_room(d->character, load_room);
         }
+    reset_weight(d->character);
     load_quests(d->character);
     load_pets(d->character);
 
@@ -2004,21 +2004,18 @@ int enter_player_game(DescriptorData *d) {
     d->character->next = character_list;
     character_list = d->character;
 
-    /* send_save_description() will use this actual, error-checked value for the
-     * load room */
+    // send_save_description() will use this actual, error-checked value for the load room
     GET_LOADROOM(d->character) = load_room == NOWHERE ? NOWHERE : world[load_room].vnum;
     send_save_description(d->character, nullptr, true);
     save_player_char(d->character);
     GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
 
-    /*
-     * A couple of hacks to reconnect things if the player logged out
-     * to the menu and then re-entered the game
-     */
+    // A couple of hacks to reconnect things if the player logged out to the menu and then re-entered the game
     if (GET_CLAN_MEMBERSHIP(d->character))
         GET_CLAN_MEMBERSHIP(d->character)->player = d->character;
-    /* restart cooldowns */
-    for (i = 0; i < NUM_COOLDOWNS; ++i)
+
+    // restart cooldowns
+    for (int i = 0; i < NUM_COOLDOWNS; ++i)
         if (GET_COOLDOWN(d->character, i)) {
             SET_COOLDOWN(d->character, i, GET_COOLDOWN(d->character, i));
             break;
@@ -2107,7 +2104,7 @@ void display_manual_stat(CharData *ch, int word[6], int i) {
         char_printf(ch, "{}:  {}\n", k, rolls_abils_result[roll_table[i]]);
 
         k++;
-  }
+    }
 }
 
 void stat_swap(CharData *ch, int stat, int number) {
@@ -2217,7 +2214,7 @@ void stat_swap(CharData *ch, int stat, int number) {
 
 bool select_stat(CharData *ch, int stat, const char *choice) {
     int number;
-    
+
     number = atoi(choice);
     number -= 1;
 
@@ -2813,7 +2810,8 @@ void nanny(DescriptorData *d, char *arg) {
         case '?':
             STATE(d) = CON_CLASSHELP;
             string_to_output(d, "\n\n&6Class Help Menu\n-=-=-=-=-=-=-=-&0\n");
-            string_to_output(d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+            string_to_output(
+                d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
             string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection)\n&0");
             break;
         default:
@@ -2873,7 +2871,7 @@ void nanny(DescriptorData *d, char *arg) {
             GET_CLASS(d->character) = load_result;
 
             /* Hometown selection disabled. Here is the code for when you
-            * DON'T ask about a hometown: */
+             * DON'T ask about a hometown: */
 
             GET_HOMEROOM(d->character) = classes[(int)GET_CLASS(d->character)].homeroom;
 
@@ -2890,7 +2888,7 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_CLASSHELP:
         /* Display the help files for classes that are being offered for starting players. */
 
-        switch (*arg) { 
+        switch (*arg) {
         case 'x':
             STATE(d) = CON_QCLASS;
             display_classes(d, 1);
@@ -2915,7 +2913,9 @@ void nanny(DescriptorData *d, char *arg) {
 
             default:
                 string_to_output(d, "\nInvalid selection. ");
-                string_to_output(d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+                string_to_output(
+                    d,
+                    "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
                 string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection.)&0");
                 return;
             }
@@ -2933,7 +2933,9 @@ void nanny(DescriptorData *d, char *arg) {
                         mid--;
 
                     string_to_output(d, help_table[mid].entry);
-                    string_to_output(d, "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, [&0&1&br&0&6]ogue:&0");
+                    string_to_output(d,
+                                     "\n&6Choose - [&0&1&bw&0&6]arrior, [&0&1&bc&0&6]leric, [&0&1&bs&0&6]orcerer, "
+                                     "[&0&1&br&0&6]ogue:&0");
                     string_to_output(d, "\n\n&6(Enter [&0&1&bX&0&6] to go back to class selection.)&0");
                     return;
                 } else {
@@ -3012,7 +3014,7 @@ void nanny(DescriptorData *d, char *arg) {
             break;
         }
         string_to_output(d, "\n\n&0&7&bPlease select your Strength:&0\n");
-        
+
         return;
 
     case CON_SELECT_DEX:
@@ -3026,7 +3028,7 @@ void nanny(DescriptorData *d, char *arg) {
             break;
         }
         string_to_output(d, "\n\n&0&7&bPlease select your Dexterity:&0\n");
-        
+
         return;
 
     case CON_SELECT_CON:
@@ -3040,7 +3042,7 @@ void nanny(DescriptorData *d, char *arg) {
             break;
         }
         string_to_output(d, "\n\n&0&7&bPlease select your Constitution:&0\n");
-        
+
         return;
 
     case CON_SELECT_INT:
@@ -3054,7 +3056,7 @@ void nanny(DescriptorData *d, char *arg) {
             break;
         }
         string_to_output(d, "\n\n&0&7&bPlease select your Intelligence:&0\n");
-        
+
         return;
 
     case CON_SELECT_WIS:
@@ -3065,17 +3067,17 @@ void nanny(DescriptorData *d, char *arg) {
             STATE(d) = CON_QROLLSTATS;
             new_roller_display(d->character, roll_table);
             string_to_output(d,
-                              "\n"
-                              "        Str:  {}                Int:  {}\n"
-                              "        Dex:  {}                Wis:  {}\n"
-                              "        Con:  {}                Cha:  {}\n"
-                              "\n\nYou may:\n"
-                              "[1] Keep these stats\n"
-                              "[2] Manually assign stats\n"
-                              "[3] or [Enter] Roll for new stats\n",
-                              rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[3]],
-                              rolls_abils_result[roll_table[1]], rolls_abils_result[roll_table[4]],
-                              rolls_abils_result[roll_table[2]], rolls_abils_result[roll_table[5]]);
+                             "\n"
+                             "        Str:  {}                Int:  {}\n"
+                             "        Dex:  {}                Wis:  {}\n"
+                             "        Con:  {}                Cha:  {}\n"
+                             "\n\nYou may:\n"
+                             "[1] Keep these stats\n"
+                             "[2] Manually assign stats\n"
+                             "[3] or [Enter] Roll for new stats\n",
+                             rolls_abils_result[roll_table[0]], rolls_abils_result[roll_table[3]],
+                             rolls_abils_result[roll_table[1]], rolls_abils_result[roll_table[4]],
+                             rolls_abils_result[roll_table[2]], rolls_abils_result[roll_table[5]]);
             break;
         }
         string_to_output(d, "\n\n&0&7&bPlease select your Wisdom:&0\n");
@@ -3273,7 +3275,7 @@ void nanny(DescriptorData *d, char *arg) {
                 delete_player(player_i);
             }
             sprintf(buf,
-                    "Character '%s' deleted!\n"
+                    "Character '%s' deleted.\n"
                     "Goodbye.\n",
                     GET_NAME(d->character));
             string_to_output(d, buf);

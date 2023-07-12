@@ -476,61 +476,65 @@ int check_container_give(ObjData *obj, CharData *ch, CharData *vict) {
 }
 
 int perform_give(CharData *ch, CharData *vict, ObjData *obj, int silent) {
-    if (OBJ_FLAGGED(obj, ITEM_NODROP) && GET_LEVEL(ch) < 100 &&
-        !(IS_NPC(ch) && (!(ch)->desc || GET_LEVEL(POSSESSOR(ch)) >= LVL_IMPL))) {
-        act("You can't let go of $p!!  Yeech!", false, ch, obj, 0, TO_CHAR);
-        return GIVE_FAIL;
-    }
-    if (IS_CARRYING_N(vict) >= CAN_CARRY_N(vict)) {
-        act("$N seems to have $S hands full.", false, ch, 0, vict, TO_CHAR);
-        return GIVE_FAIL_FULL;
-    }
-    if (!ADDED_WEIGHT_OK(vict, obj)) {
-        act("$E can't carry that much weight.", false, ch, 0, vict, TO_CHAR);
-        return GIVE_FAIL;
-    }
-    if (ADDED_WEIGHT_REFUSED(vict, obj)) {
-        act("$E doesn't look like $E could handle the additional weight.", false, ch, 0, vict, TO_CHAR);
-        return GIVE_FAIL;
-    }
-    if ((GET_OBJ_LEVEL(obj) > GET_LEVEL(vict) + 15) || (GET_OBJ_LEVEL(obj) > 99 && GET_LEVEL(vict) < 100)) {
-        act("$E isn't experienced enough to handle the awesome might of $p.", false, ch, obj, vict, TO_CHAR);
-        return GIVE_FAIL;
-    }
-    if (!give_otrigger(obj, ch, vict) || !receive_mtrigger(vict, ch, obj))
-        return GIVE_FAIL;
 
-    if (give_shopkeeper_reject(ch, vict, obj))
-        return GIVE_FAIL;
+    // If a god want's to give something, nothing should stop them.
+    if (GET_LEVEL(ch) < LVL_IMMORT || IS_NPC(ch)) {
 
-    if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER)
-        if (check_container_give(obj, ch, vict))
+        if (OBJ_FLAGGED(obj, ITEM_NODROP) && GET_LEVEL(ch) < 100 &&
+            !(IS_NPC(ch) && (!(ch)->desc || GET_LEVEL(POSSESSOR(ch)) >= LVL_IMPL))) {
+            act("You can't let go of $p!!  Yeech!", false, ch, obj, 0, TO_CHAR);
+            return GIVE_FAIL;
+        }
+        if (IS_CARRYING_N(vict) >= CAN_CARRY_N(vict)) {
+            act("$N seems to have $S hands full.", false, ch, 0, vict, TO_CHAR);
+            return GIVE_FAIL_FULL;
+        }
+        if (!ADDED_WEIGHT_OK(vict, obj)) {
+            act("$E can't carry that much weight.", false, ch, 0, vict, TO_CHAR);
+            return GIVE_FAIL;
+        }
+        if (ADDED_WEIGHT_REFUSED(vict, obj)) {
+            act("$E doesn't look like $E could handle the additional weight.", false, ch, 0, vict, TO_CHAR);
+            return GIVE_FAIL;
+        }
+        if ((GET_OBJ_LEVEL(obj) > GET_LEVEL(vict) + 15) || (GET_OBJ_LEVEL(obj) > 99 && GET_LEVEL(vict) < 100)) {
+            act("$E isn't experienced enough to handle the awesome might of $p.", false, ch, obj, vict, TO_CHAR);
+            return GIVE_FAIL;
+        }
+        if (!give_otrigger(obj, ch, vict) || !receive_mtrigger(vict, ch, obj))
             return GIVE_FAIL;
 
-    if (!RIGID(ch) && !RIGID(vict) && !MOB_FLAGGED(vict, MOB_ILLUSORY)) {
-        /* Between fluid persons, the transfer seems completely normal */
-    } else if (!RIGID(ch))
-        act("$p becomes solid again as it leaves your grasp.", false, ch, obj, 0, TO_CHAR);
+        if (give_shopkeeper_reject(ch, vict, obj))
+            return GIVE_FAIL;
 
-    /* When you give items to an illusory or fluid mob, they fall to the ground.
-     */
+        if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER)
+            if (check_container_give(obj, ch, vict))
+                return GIVE_FAIL;
 
-    if (SOLIDCHAR(ch) && !SOLIDCHAR(vict) && GET_LEVEL(ch) < LVL_IMMORT && GET_LEVEL(vict) < LVL_IMMORT) {
-        /* Note that "silent" only applies to success messages. */
-        act("$n gives you $p, but you can't hold onto it.", false, ch, obj, vict, TO_VICT);
-        if (IS_SPLASHY(IN_ROOM(vict))) {
-            act("You hand $p to $N, but it simply falls into the water.", false, ch, obj, vict, TO_CHAR);
-            act("$n gives $p to $N, but it falls into the water.", !HIGHLY_VISIBLE(obj) || GET_INVIS_LEV(ch), ch, obj,
-                vict, TO_NOTVICT);
-        } else {
-            act("You hand $p to $N, but it simply falls to the ground.", false, ch, obj, vict, TO_CHAR);
-            act("$n gives $p to $N, but it falls to the ground.", !HIGHLY_VISIBLE(obj) || GET_INVIS_LEV(ch), ch, obj,
-                vict, TO_NOTVICT);
+        if (!RIGID(ch) && !RIGID(vict) && !MOB_FLAGGED(vict, MOB_ILLUSORY)) {
+            /* Between fluid persons, the transfer seems completely normal */
+        } else if (!RIGID(ch))
+            act("$p becomes solid again as it leaves your grasp.", false, ch, obj, 0, TO_CHAR);
+
+        /* When you give items to an illusory or fluid mob, they fall to the ground.
+         */
+
+        if (SOLIDCHAR(ch) && !SOLIDCHAR(vict) && GET_LEVEL(ch) < LVL_IMMORT && GET_LEVEL(vict) < LVL_IMMORT) {
+            /* Note that "silent" only applies to success messages. */
+            act("$n gives you $p, but you can't hold onto it.", false, ch, obj, vict, TO_VICT);
+            if (IS_SPLASHY(IN_ROOM(vict))) {
+                act("You hand $p to $N, but it simply falls into the water.", false, ch, obj, vict, TO_CHAR);
+                act("$n gives $p to $N, but it falls into the water.", !HIGHLY_VISIBLE(obj) || GET_INVIS_LEV(ch), ch,
+                    obj, vict, TO_NOTVICT);
+            } else {
+                act("You hand $p to $N, but it simply falls to the ground.", false, ch, obj, vict, TO_CHAR);
+                act("$n gives $p to $N, but it falls to the ground.", !HIGHLY_VISIBLE(obj) || GET_INVIS_LEV(ch), ch,
+                    obj, vict, TO_NOTVICT);
+            }
+            perform_drop(ch, obj, SCMD_LETDROP, "release");
+            return GIVE_FAIL;
         }
-        perform_drop(ch, obj, SCMD_LETDROP, "release");
-        return GIVE_FAIL;
     }
-
     obj_from_char(obj);
     obj_to_char(obj, vict);
 
@@ -642,7 +646,7 @@ ACMD(do_give) {
     int cash[NUM_COIN_TYPES] = {0};
     char *name = strdup(arg);
     std::string item_list;
-    std::unordered_map<ObjData *,int> vnums;
+    std::unordered_map<ObjData *, int> vnums;
     int vnum;
 
     if (parse_money(&argument, cash)) {
@@ -699,13 +703,13 @@ ACMD(do_give) {
                 ++counter;
             else if (result == GIVE_FAIL_FULL)
                 break;
-            auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair){
+            auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair) {
                 return !strcmp(pair.first->short_description, obj->short_description);
             });
             if (it == vnums.end()) {
                 vnums.insert(std::make_pair(obj, 1));
             } else {
-                it->second ++;
+                it->second++;
             }
         }
     } else if (CONFUSED(ch)) {
@@ -728,13 +732,13 @@ ACMD(do_give) {
                 if (result != GIVE_SUCCESS)
                     break;
                 ++counter;
-                auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair){
+                auto it = std::find_if(vnums.begin(), vnums.end(), [&obj](const auto &pair) {
                     return !strcmp(pair.first->short_description, obj->short_description);
                 });
                 if (it == vnums.end()) {
                     vnums.insert(std::make_pair(obj, 1));
                 } else {
-                    it->second ++;
+                    it->second++;
                 }
             }
         }
@@ -750,16 +754,17 @@ ACMD(do_give) {
     } else {
         for (auto [obj_ref2, qty] : vnums) {
             if (qty == 1) {
-                act("You give $p to $N.", false, ch,(obj_ref2), vict, TO_CHAR);
-                act("$n gives you $p.", false, ch,(obj_ref2), vict, TO_VICT);
-                act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, (obj_ref2), vict, TO_NOTVICT);
+                act("You give $p to $N.", false, ch, obj_ref2, vict, TO_CHAR);
+                act("$n gives you $p.", false, ch, obj_ref2, vict, TO_VICT);
+                act("$n gives $p to $N.", !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, obj_ref2, vict,
+                    TO_NOTVICT);
             } else {
                 sprintf(buf, "You give $p to $N. (x%d)", qty);
-                act(buf, false, ch,(obj_ref2), vict, TO_CHAR);
+                act(buf, false, ch, obj_ref2, vict, TO_CHAR);
                 sprintf(buf, "$n gives you $p. (x%d)", qty);
-                act(buf, false, ch,(obj_ref2), vict, TO_VICT);
+                act(buf, false, ch, obj_ref2, vict, TO_VICT);
                 sprintf(buf, "$n gives $p to $N. (x%d)", qty);
-                act(buf, !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, (obj_ref2), vict, TO_NOTVICT);
+                act(buf, !HIGHLY_VISIBLE(obj_ref2) || GET_INVIS_LEV(ch), ch, obj_ref2, vict, TO_NOTVICT);
             }
         }
     }
@@ -1458,7 +1463,8 @@ ACMD(do_grab) {
             perform_wear(ch, obj, WEAR_HOLD, false);
         else {
             if (!CAN_WEAR(obj, ITEM_WEAR_HOLD) && GET_OBJ_TYPE(obj) != ITEM_WAND && GET_OBJ_TYPE(obj) != ITEM_STAFF &&
-                GET_OBJ_TYPE(obj) != ITEM_SCROLL && GET_OBJ_TYPE(obj) != ITEM_POTION && GET_OBJ_TYPE(obj) != ITEM_INSTRUMENT)
+                GET_OBJ_TYPE(obj) != ITEM_SCROLL && GET_OBJ_TYPE(obj) != ITEM_POTION &&
+                GET_OBJ_TYPE(obj) != ITEM_INSTRUMENT)
                 char_printf(ch, "You can't hold that.\n");
             else {
                 perform_wear(ch, obj, WEAR_HOLD, false);
