@@ -653,3 +653,4 @@ void name_to_drinkcon(ObjData *obj, int type);
 void liquid_from_container(ObjData *container, int amount);
 void liquid_to_container(ObjData *container, int amount, int liquid_type, bool poisoned);
 ObjData *carried_key(CharData *ch, int keyvnum);
+float calculate_object_weight(ObjData *obj);

@@ -163,10 +163,12 @@ static void print_obj_flags_to_char(ObjData *obj, CharData *ch) {
 
 /* Component function of print_obj_to_char */
 static void print_obj_auras_to_char(ObjData *obj, CharData *ch) {
-    if (OBJ_EFF_FLAGGED(obj, EFF_HEX))
-        char_printf(ch, "It is imbued with a &9&bdark aura&0.\n");
-    if (OBJ_EFF_FLAGGED(obj, EFF_BLESS))
-        char_printf(ch, "It is surrounded by a &6blessed aura&0.\n");
+    if (OBJ_EFF_FLAGGED(obj, EFF_BLESS)) {
+        if (OBJ_FLAGGED(obj, ITEM_ANTI_GOOD))
+            char_printf(ch, "It is imbued with a &9&bdark aura&0.\n");
+        else
+            char_printf(ch, "It is surrounded by a &6blessed aura&0.\n");
+    }
 }
 
 /* Show one of an obj's desc to a char; uses SHOW_ flags */

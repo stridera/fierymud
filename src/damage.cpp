@@ -59,7 +59,7 @@ bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype
     /* Ether mobs are not immune at all to blessed physical attacks. */
     if (attacker &&
         ((dtype == DAM_PIERCE || dtype == DAM_SLASH || dtype == DAM_CRUSH) && GET_COMPOSITION(ch) == COMP_ETHER)) {
-        return !(EFF_FLAGGED(attacker, EFF_BLESS) || EFF_FLAGGED(attacker, EFF_HEX));
+        return !(EFF_FLAGGED(attacker, EFF_BLESS));
     }
 
     s = susceptibility(ch, dtype);
