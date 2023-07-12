@@ -2242,8 +2242,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (!attack_ok(ch, victim, true))
             return CAST_RESULT_CHARGE;
         /* Make success based on skill and saving throw -myc 17 Feb 2007 */
-        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < random_number(0, 70)) {
-            act("&7&b$N resists your weak paralysis.&0", false, ch, 0, victim, TO_CHAR);
+        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+
+            if (MOB_FLAGGED(victim, MOB_NOCHARM))
+                act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
+            else
+                act("&7&b$N resists your attempt to paralyze $M.&0", false, ch, 0, victim, TO_CHAR);
+
             act("&7&b$n tries to paralize you but fails!&0", false, ch, 0, victim, TO_VICT);
             act("&7&b$n squints at $N but nothing happens.&0", true, ch, 0, victim, TO_NOTVICT);
 
@@ -2259,7 +2264,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_MINOR_PARALYSIS);
         eff[0].duration = 2 + (skill / 15); /* max 8 */
         refresh = false;
-        to_char = "You paralyze $N! WooHoo!";
+        to_char = "You temporarily paralyze $N!";
         to_vict = "&7&bAll motion in your body grinds to a halt.&0";
         to_room = "&7&bAll motion in $N&7&b's body grinds to a halt.&0";
         break;

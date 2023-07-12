@@ -1432,18 +1432,37 @@ ASPELL(spell_major_paralysis) {
 
     if (victim == nullptr || ch == nullptr)
         return 0;
-    if (mag_savingthrow(victim, SAVING_PARA))
+    if (!attack_ok(ch, victim, true))
+        return CAST_RESULT_CHARGE;
+    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+
+        if (MOB_FLAGGED(victim, MOB_NOCHARM))
+            act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
+        else
+            act("&7&b$N resists your attempt to paralyze $M.&0", false, ch, 0, victim, TO_CHAR);
+
+        act("&7&b$n tries to paralize you but fails!&0", false, ch, 0, victim, TO_VICT);
+        act("&7&b$n squints at $N but nothing happens.&0", true, ch, 0, victim, TO_NOTVICT);
+
+        /* start combat for failure */
+        if (!FIGHTING(victim)) {
+            attack(victim, ch);
+            remember(victim, ch);
+        }
+
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
+    }
 
     memset(&eff, 0, sizeof(eff));
     eff.type = SPELL_MAJOR_PARALYSIS;
-    eff.duration = GET_LEVEL(ch) / 20;
+    eff.duration = skill / 20;
     SET_FLAG(eff.flags, EFF_MAJOR_PARALYSIS);
     effect_to_char(victim, &eff);
     if (victim == ch)
         return CAST_RESULT_CHARGE;
-    act("&6PARALIZE $M.&0", false, ch, 0, victim, TO_CHAR);
-    act("&6$n PARALIZE!&0", false, ch, 0, victim, TO_VICT);
+    act("&6You totally paralyze $N's nervous system!&0", false, ch, 0, victim, TO_CHAR);
+    act("&6$n totally paralyzes your nervous system!&0", false, ch, 0, victim, TO_VICT);
+    act("&6$n totally paralyzes $N's nervous system!&0", true, ch, 0, victim, TO_ROOM);
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
 
