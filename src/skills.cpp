@@ -456,7 +456,8 @@ void init_skills(void) {
      *
      * mem_time:
      *
-     * cast_time:  Use CAST_SPEED6-7 for general spells, CAST_SPEED2-K for combat spells.
+     * cast_time: 
+     * CAST_SPEED1 1     1*
      * CAST_SPEED2 2     1* 
      * CAST_SPEED4 4     2*
      * CAST_SPEED6 6     3*
