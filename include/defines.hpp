@@ -222,7 +222,7 @@
 
 /* Levels of rage */
 #define RAGE_NONE 0
-#define RAGE_ANNOYED 250
+#define RAGE_ANNOYED 100
 #define RAGE_ANGRY 500
 #define RAGE_IRATE 750
 #define RAGE_CRAZED 1000

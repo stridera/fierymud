@@ -1263,6 +1263,11 @@ ACMD(do_rescue) {
         return;
     }
 
+    if (GET_SKILL(ch, SKILL_BERSERK) && !EFF_FLAGGED(ch, EFF_BERSERK)) {
+        act("You aren't angry enough to rescue $M!", false, ch, 0, vict, TO_CHAR);
+        return;
+    }
+
     /* Choose a random attacker from those fighting vict */
     attacker = vict->attackers;
     num = 1;
@@ -2426,7 +2431,7 @@ ACMD(do_berserk) {
         return;
     }
 
-    if (GET_RAGE(ch) < RAGE_ANGRY) {
+    if (GET_RAGE(ch) < RAGE_ANNOYED) {
         char_printf(ch, "You're not angry enough yet!\n");
         return;
     }

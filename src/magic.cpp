@@ -169,15 +169,38 @@ CharData *check_guard(CharData *ch, CharData *victim, int gag_output) {
         attack_ok(ch, victim->guarded_by, false)) {
         improve_skill(victim->guarded_by, SKILL_GUARD);
         if (GET_ISKILL(victim->guarded_by, SKILL_GUARD) > random_number(1, 1100)) {
-            if (!gag_output) {
-                act("$n jumps in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
-                    TO_NOTVICT);
-                act("$n jumps in front of you, shielding you from the assault.", false, victim->guarded_by, 0, victim,
-                    TO_VICT);
-                act("You jump in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
-                    TO_CHAR);
+            if (GET_ISKILL(victim->guarded_by, SKILL_BERSERK)) {
+                if (EFF_FLAGGED(victim->guarded_by, EFF_BERSERK)) {
+                    if (!gag_output) {
+                        act("$n jumps in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
+                            TO_NOTVICT);
+                        act("$n jumps in front of you, shielding you from the assault.", false, victim->guarded_by, 0, victim,
+                            TO_VICT);
+                        act("You jump in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
+                            TO_CHAR);
+                    }
+                    return victim->guarded_by;
+                } else {
+                    if (!gag_output) {
+                        act("$n looks to intercept the attack on $N, but isn't angry enough.", false, victim->guarded_by, 0, victim,
+                            TO_NOTVICT);
+                        act("$n looks to shield you from the attack, but isn't angry enough.", false, victim->guarded_by, 0, victim,
+                            TO_VICT);
+                        act("You look to shield $N, but aren't angry enough.", false, victim->guarded_by, 0, victim,
+                            TO_CHAR);
+                    }
+                }
+            } else {
+                if (!gag_output) {
+                    act("$n jumps in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
+                        TO_NOTVICT);
+                    act("$n jumps in front of you, shielding you from the assault.", false, victim->guarded_by, 0, victim,
+                        TO_VICT);
+                    act("You jump in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
+                        TO_CHAR);
+                }
+                return victim->guarded_by;
             }
-            return victim->guarded_by;
         } else if (!gag_output) {
             act("$n tries to intercept the attack on $N, but isn't quick enough.", false, victim->guarded_by, 0, victim,
                 TO_NOTVICT);
