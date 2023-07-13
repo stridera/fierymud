@@ -784,25 +784,30 @@ SPECIAL(frost_weapon) {
  *  by adding additional colors and indices.
  */
 
-int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument, int color) {
+int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument) {
     char arg_1[MAX_INPUT_LENGTH];
     char target[MAX_INPUT_LENGTH];
     char *tmp;
     CharData *targ;
     RecallEventObj *recall;
     int room;
-    char *color_names[] = {"red", "green", "blue", "gray"};
 
     if (!CMD_IS("recite"))
         return false;
 
+    /* Make sure an object was supplied, or else the script will automatically run. */
+
+    if (!argument || !*argument) {
+        return false;
+    }
+
     tmp = one_argument(argument, arg_1);
     one_argument(tmp, target);
 
-    /* Make sure the command given was "recite scroll" or "recite recall"
-     * (Not sure if this is at all necessary...) */
 
-    if (!is_abbrev(arg_1, "scroll") && !is_abbrev(arg_1, "recall") && !is_abbrev(arg_1, color_names[color])) {
+    /* Make sure the player specified one of the scroll names. */
+
+    if (obj != find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg_1))) {
         return false;
     }
 
@@ -841,17 +846,17 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument, int color) {
     /* Determine the destination room. */
 
     room = NOWHERE;
-    switch (color) {
-    case 0:
+    switch (GET_OBJ_VNUM(obj)) {
+    case 3056:
         room = red_recall_room(targ);
         break;
-    case 1:
+    case 3057:
         room = green_recall_room(targ);
         break;
-    case 2:
+    case 3058:
         room = blue_recall_room(targ);
         break;
-    case 3:
+    case 10010:
         room = gray_recall_room(targ);
         break;
     };
@@ -888,16 +893,16 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument, int color) {
 
 /*
  * The recalls are all done through a common function above.  It simplifies
- * things a lot, and should help out on keeping th code clean.
+ * things a lot, and should help out on keeping the code clean.
  */
 
-SPECIAL(gray_recall) { return do_recall(ch, (ObjData *)me, cmd, argument, 3); }
+SPECIAL(gray_recall) { return do_recall(ch, (ObjData *)me, cmd, argument); }
 
-SPECIAL(blue_recall) { return do_recall(ch, (ObjData *)me, cmd, argument, 2); }
+SPECIAL(blue_recall) { return do_recall(ch, (ObjData *)me, cmd, argument); }
 
-SPECIAL(green_recall) { return do_recall(ch, (ObjData *)me, cmd, argument, 1); }
+SPECIAL(green_recall) { return do_recall(ch, (ObjData *)me, cmd, argument); }
 
-SPECIAL(red_recall) { return do_recall(ch, (ObjData *)me, cmd, argument, 0); }
+SPECIAL(red_recall) { return do_recall(ch, (ObjData *)me, cmd, argument); }
 
 int red_recall_room(CharData *ch) {
     int room;
