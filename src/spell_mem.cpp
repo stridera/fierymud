@@ -541,6 +541,9 @@ void charge_mem(CharData *ch, int spellnum) {
         return;
     }
 
+    if (GET_LEVEL(ch) < LVL_IMMORT)
+        return;
+
     ch->spellcasts.push_back(SpellCast(spellnum, skills[spellnum].mem_time));
 
     if (!EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
