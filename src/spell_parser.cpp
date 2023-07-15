@@ -29,6 +29,7 @@
 #include "math.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "spell_mem.hpp"
 #include "spells.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
@@ -1271,31 +1272,38 @@ ACMD(do_cast) {
                 char_printf(ch, "You're still drained from performing recently!\n");
                 if GET_COOLDOWN (ch, CD_MUSIC_1) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_1) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_2) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_2) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_3) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_3) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_4) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_4) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_5) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_5) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_6) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_6) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_7) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_7) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -1345,9 +1353,9 @@ ACMD(do_cast) {
         return;
     }
 
-    /* Is the spell memorized?  PC's only. */
-    if (subcmd == SCMD_CAST && !IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT && !check_spell_memory(ch, spellnum)) {
-        char_printf(ch, "You do not have that spell memorized!\n");
+    /* Is the spell scribed in a book the PC is holding?  PC's only. */
+    if (subcmd == SCMD_CAST && !IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT && !find_spellbook_with_spell(ch, spellnum)) {
+        char_printf(ch, "You do not have a spell book with that spell in it!\n");
         return;
     }
 
@@ -1444,102 +1452,24 @@ ACMD(do_cast) {
         if (cha_app[GET_CHA(ch)].music == 0) {
             char_printf(ch, "Your Charisma is too low to perform!\n");
         }
-        for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
-            switch (i) {
-            case 1:
-                if (!GET_COOLDOWN(ch, CD_MUSIC_1)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_1, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                    }
-                    i = 8;
+        for (int i = 0; i < cha_app[GET_CHA(ch)].music; i++) {
+            if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
+                int cresult = perform(ch, tch, tobj, spellnum);
+                if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                    improve_skill(ch, SKILL_PERFORM);
+                if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                    SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                    WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
                 }
-                break;
-            case 2:
-                if (!GET_COOLDOWN(ch, CD_MUSIC_2)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_2, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                    }
-                    i = 8;
-                }
-                break;
-            case 3:
-                if (!GET_COOLDOWN(ch, CD_MUSIC_3)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_3, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                    }
-                    i = 8;
-                }
-                break;
-            case 4:
-                if (!GET_COOLDOWN(ch, CD_MUSIC_4)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_4, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                    }
-                    i = 8;
-                }
-                break;
-            case 5:
-                if (!GET_COOLDOWN(ch, CD_MUSIC_5)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_5, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                    }
-                    i = 8;
-                }
-                break;
-            case 6:
-                if (!GET_COOLDOWN(ch, CD_MUSIC_6)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_6, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                    }
-                    i = 8;
-                }
-                break;
-            case 7:
-                if (!GET_COOLDOWN(ch, CD_MUSIC_7)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_7, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                    }
-                    i = 8;
-                }
-                break;
-            default:
                 break;
             }
         }
-
     } else {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
 
         /* Chance to quick chant. */
-        if (random_number(1, 110) < (GET_SKILL(ch, SKILL_QUICK_CHANT) + int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus)) {
+        if (random_number(1, 110) <
+            (GET_SKILL(ch, SKILL_QUICK_CHANT) + int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus)) {
             int maxcircle, spellcircle;
 
             /* set basic quick chant at 1/2 casting time */
@@ -1552,12 +1482,13 @@ ACMD(do_cast) {
             spellcircle = SPELL_CIRCLE(ch, spellnum);
 
             /* is this a damage, disabling, healing spell, or stone skin? */
-            if ((SINFO.damage_type != DAM_UNDEFINED) || SINFO.sphere == SKILL_SPHERE_HEALING || SINFO.violent == true || spellnum == SPELL_STONE_SKIN) {
+            if ((SINFO.damage_type != DAM_UNDEFINED) || SINFO.sphere == SKILL_SPHERE_HEALING || SINFO.violent == true ||
+                spellnum == SPELL_STONE_SKIN) {
                 if (ch->casting.casting_time > 1) {
 
                     /* adjust the time down by 1* for every 3 circles lower */
                     ch->casting.casting_time -= (maxcircle - spellcircle) / 3;
-                    
+
                     /* adjust so casting time for long count spells is never less than (1/2 - 2) *'s */
                     if ((SINFO.cast_time >= 10) && (ch->casting.casting_time < (SINFO.cast_time / 2) - 2))
                         ch->casting.casting_time = (SINFO.cast_time / 2) - 2;
@@ -1640,7 +1571,6 @@ bool check_spell_target(int spellnum, CharData *ch, CharData *tch, ObjData *tobj
  */
 
 bool find_spell_target(int spellnum, CharData *ch, char *t, int *target_status, CharData **tch, ObjData **tobj) {
-
     FindContext context = find_vis_by_name(ch, t);
 
     *tch = nullptr;
@@ -1737,11 +1667,10 @@ void complete_spell(CharData *ch) {
     }
 
     if (cast_spell(ch, ch->casting.tch, ch->casting.obj, ch->casting.spell) & CAST_RESULT_CHARGE) {
-
         /* Lag the caster */
         WAIT_STATE(ch, PULSE_VIOLENCE);
 
-        /* Erase memorized spell */
+        /* Consume spell slot. */
         charge_mem(ch, ch->casting.spell);
 
         if (IS_NPC(ch) && skills[ch->casting.spell].violent && ch->casting.tch && IS_NPC(ch->casting.tch) &&
@@ -1984,8 +1913,8 @@ void start_chant(CharData *ch) {
 
             /* Intelligence check to determine the target.  If we know the spell we
              * know the target */
-            if (random_number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) || (bad) ||
-                GET_LEVEL(gch) >= LVL_GOD) {
+            if (random_number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) ||
+                (bad) || GET_LEVEL(gch) >= LVL_GOD) {
                 if (ch->casting.tch == gch)
                     /* Target is the receiver of the message */
                     sprintf(namebuf, " at &1&bYou&0!!!");

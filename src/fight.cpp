@@ -854,10 +854,10 @@ void perform_die(CharData *ch, CharData *killer) {
     }
     /* Everything beyond this point applies to normal, non-arena deaths */
 
-    /* Set all spells in the memory list to unmemorized, but don't remove. */
-    ch->cast
+    /* Clear cast spell memory. */
+    ch->spellcasts = {};
 
-        clear_cooldowns(ch);
+    clear_cooldowns(ch);
 
     /* Stop NPCs from hunting you */
     remove_from_all_memories(ch);

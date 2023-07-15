@@ -601,8 +601,6 @@ WCMD(do_wld_log) { wld_log(room, t, argument); }
 WCMD(do_wrent) {
     CharData *ch;
 
-    extern void rem_memming(CharData * ch);
-
     argument = any_one_arg(argument, arg);
 
     if (!*arg) {
@@ -644,7 +642,6 @@ WCMD(do_wskillset) {
     char arg[MAX_INPUT_LENGTH];
     int skspnum;
 
-
     argument = one_argument(argument, arg);
 
     if (!*arg) {
@@ -674,7 +671,6 @@ WCMD(do_wskillset) {
      */
     SET_SKILL(victim, skspnum, return_max_skill(victim, skspnum));
 }
-
 
 const WorldCommandInfo wld_cmd_info[] = {
     {"RESERVED", 0, 0}, /* this must be first -- for specprocs */

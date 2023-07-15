@@ -86,7 +86,7 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if (POSSESSED(ch) || STUDYING(ch))
+        if POSSESSED (ch)
             continue;
 
         /* If lower than default position, get up. */
@@ -790,8 +790,7 @@ bool check_mob_status(CharData *ch) {
 
 bool check_spellbank(CharData *ch) {
     int i;
-    /* If any spell circles are not fully charged, start memming and
-     * return true */
+    // If any spell circles are not fully charged, start memming and return true
     for (i = 1; i < NUM_SPELL_CIRCLES; ++i)
         if (GET_MOB_SPLBANK(ch, i) < spells_of_circle[(int)GET_LEVEL(ch)][i]) {
             do_sit(ch, nullptr, 0, 0);
@@ -799,7 +798,7 @@ bool check_spellbank(CharData *ch) {
                 act(MEM_MODE(ch) == PRAY ? "$n begins praying to $s deity."
                                          : "$n takes out $s books and begins to study.",
                     true, ch, 0, 0, TO_ROOM);
-                start_studying(ch);
+                // start_studying(ch);
                 return true;
             }
         }

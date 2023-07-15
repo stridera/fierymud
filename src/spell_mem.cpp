@@ -30,6 +30,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
+#include <algorithm>
 #include <fmt/format.h>
 
 #define MEM_INTERVAL PULSE_VIOLENCE / 4
@@ -37,7 +38,6 @@
 
 /* --------function prototypes ---------*/
 ACMD(do_meditate);
-ACMD(do_pray);
 ACMD(do_action);
 ACMD(do_scribe);
 
@@ -271,7 +271,7 @@ EVENTFUNC(memming_event) {
         return EVENT_FINISHED;
     }
 
-    ch->spellcasts.front().mem_time -= 1;
+    ch->spellcasts.front().ticks -= 1;
 
     /* check meditate skill */
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
@@ -308,12 +308,6 @@ EVENTFUNC(scribe_event) {
 
     if (GET_POS(ch) != POS_SITTING || GET_STANCE(ch) < STANCE_RESTING || GET_STANCE(ch) > STANCE_ALERT) {
         char_printf(ch, "You stop scribing.\n");
-        clear_scribing(ch);
-        return EVENT_FINISHED;
-    }
-
-    if (EVENT_FLAGGED(ch, EVENT_STUDY)) {
-        char_printf(ch, "You can't study and scribe at the same time!\n");
         clear_scribing(ch);
         return EVENT_FINISHED;
     }
@@ -426,36 +420,6 @@ EVENTFUNC(scribe_event) {
     return SCRIBE_INTERVAL;
 }
 
-ACMD(do_study) {
-    CharData *tch;
-
-    if (!ch || IS_NPC(ch))
-        return;
-
-    argument = delimited_arg_all(argument, arg, '\'');
-
-    if (GET_LEVEL(ch) >= LVL_IMMORT) {
-        if (!*arg)
-            char_printf(ch, "You don't need to pray for spells to cast them.\n");
-        else if (!(tch = find_char_around_char(ch, find_vis_by_name(ch, arg))))
-            char_printf(ch, NOPERSON);
-        else if (MEM_MODE(tch) != PRAY)
-            char_printf(ch, "{} does not pray for spells.\n", GET_NAME(tch));
-        else
-            show_spell_list(ch, tch);
-        return;
-    }
-
-    if (MEM_MODE(ch) != PRAY) {
-        do_action(ch, argument, cmd, subcmd);
-        return;
-    }
-
-    if (!STUDYING(ch))
-        act("$n begins praying to $s deity.", true, ch, 0, 0, TO_ROOM);
-    start_studying(ch);
-}
-
 /* set the meditate flag */
 ACMD(do_meditate) {
     if (IS_NPC(ch)) {
@@ -498,27 +462,73 @@ void free_scribe_list(CharData *ch) {
     }
 }
 
-void show_available_slots(CharData *ch, CharData *tch) {
-    std::string resp;
-    int circle, avail, found;
-
-    /* Display available spell slots for each circle */
-    resp += ch == tch ? "You" : GET_NAME(tch);
-    if (MEM_MODE(tch) == MEMORIZE)
-        resp += " can memorize";
-    else if (MEM_MODE(tch) == PRAY)
-        resp += " can pray for";
-
-    if (found)
-        resp += " circle";
-    else
-        resp += " no more";
-    resp += fmt::format(" spell{}\n", avail == 1 ? "" : "s");
-
-    char_printf(ch, resp.c_str());
+int spells_used_for_circle(CharData *ch, int circle) {
+    return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(),
+                         [ch, circle](const SpellCast &sc) { return circle == SPELL_CIRCLE(ch, sc.spellnum); });
 }
 
-int spell_slot_available(CharData *ch, int spell) { int circle = SPELL_CIRCLE(ch, spell); }
+void show_available_slots(CharData *ch, CharData *tch) {
+    if (IS_NPC(tch)) {
+        char_printf(ch, "NPCs don't have spell slots.\n");
+        return;
+    }
+
+    int restore_rate = get_spellslot_restore_rate(tch);
+
+    if (ch == tch) {
+        char_printf(ch, "You have the following spell slots available:\n");
+    } else {
+        char_printf(ch, "{} has the following spell slots available:\n", GET_NAME(tch));
+    }
+
+    for (int i = 1; i <= NUM_SPELL_CIRCLES; i++) {
+        int slots = spells_of_circle[GET_LEVEL(tch)][i] - spells_used_for_circle(tch, i);
+        if (slots > 0)
+            char_printf(ch, "Circle {}: {}\n", i, slots);
+    }
+
+    if (!tch->spellcasts.empty()) {
+        char_printf(ch, "\nRestoring:");
+        for (auto &sc : tch->spellcasts) {
+            if (sc.ticks > 0) {
+                char_printf(ch, " {}({})", skill_name(sc.spellnum), std::ceil(sc.ticks / restore_rate));
+            }
+        }
+    }
+}
+
+int spell_slot_available(CharData *ch, int spell) {
+    int circle = SPELL_CIRCLE(ch, spell);
+
+    if (circle < 1 || circle > NUM_SPELL_CIRCLES)
+        return 0;
+
+    if (IS_NPC(ch))
+        return GET_MOB_SPLBANK(ch, circle) > 0;
+
+    return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(), [ch, circle](const SpellCast &sc) {
+               return circle == SPELL_CIRCLE(ch, sc.spellnum);
+           }) < spells_of_circle[GET_LEVEL(ch)][circle];
+}
+
+int get_spellslot_restore_rate(CharData *ch) {
+    int rate = 1;
+
+    if (PLR_FLAGGED(ch, PLR_MEDITATE))
+        if (GET_SKILL(ch, SKILL_MEDITATE))
+            rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100) + 1;
+
+    return rate;
+}
+
+ACMD(do_study) {
+    CharData *tch;
+
+    if (!ch || IS_NPC(ch))
+        return;
+
+    show_available_slots(ch, ch);
+}
 
 void charge_mem(CharData *ch, int spellnum) {
     /*
@@ -531,14 +541,10 @@ void charge_mem(CharData *ch, int spellnum) {
         return;
     }
 
-    ch->spellcasts.push_back(SpellCast(spellnum, spell_mem_time(ch, spellnum)));
-}
+    ch->spellcasts.push_back(SpellCast(spellnum, skills[spellnum].mem_time));
 
-void start_studying(CharData *ch) {
-    if (!STUDYING(ch)) {
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_STUDY);
-        event_create(EVENT_STUDY, memming_event, ch, false, &(ch->events), MEM_INTERVAL);
-    }
+    if (!EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
+        set_regen_event(ch, EVENT_REGEN_SPELLSLOT);
 }
 
 void done_memming(CharData *ch) {
@@ -553,48 +559,11 @@ void done_memming(CharData *ch) {
 }
 
 void rem_memming(CharData *ch) {
-    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_STUDY);
-    cancel_event(GET_EVENTS(ch), EVENT_STUDY);
-
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         char_printf(ch, "You stop meditating.\n&0");
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
-}
-
-int spell_mem_time(CharData *ch, int spell) {
-    double mem_time;
-
-    mem_time = 9 - ((int)GET_LEVEL(ch) - skills[spell].min_level[(int)GET_CLASS(ch)]) / 2;
-
-    if (mem_time < 2)
-        mem_time = 2;
-
-    /* Now adjust it for meditation. */
-    if (PLR_FLAGGED(ch, PLR_MEDITATE))
-        mem_time *= 0.3 + 0.007 * (100 - GET_SKILL(ch, SKILL_MEDITATE));
-
-    return std::max((int)mem_time, 1);
-}
-
-int set_mem_time(CharData *ch, int spell) {
-    int mem_time;
-
-    mem_time = spell_mem_time(ch, spell);
-
-    if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        improve_skill(ch, SKILL_MEDITATE);
-
-        /* There's a 1-5% chance it will be a deep trance and take only 1 second. */
-        if (random_number(1, 100) <= 1 + GET_SKILL(ch, SKILL_MEDITATE) / 25) {
-            char_printf(ch, "You go into a deep trance...\n");
-            act("$n falls into a deep trance...", true, ch, 0, 0, TO_ROOM);
-            mem_time = 1;
-        }
-    }
-
-    return std::max((int)mem_time, 1);
 }
 
 /********************/

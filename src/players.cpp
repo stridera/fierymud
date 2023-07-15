@@ -989,13 +989,7 @@ void save_player_char(CharData *ch) {
         fprintf(fl, "0 0 0 0 0\n");
     }
 
-    if (GET_SPELL_MEM(ch).num_spells) {
-        MemorizedList *mem;
-        fprintf(fl, "mem:\n");
-        for (mem = GET_SPELL_MEM(ch).list_head; mem; mem = mem->next)
-            fprintf(fl, "%d %d %d\n", mem->spell, mem->can_cast, mem->mem_time);
-        fprintf(fl, "0 0 0\n");
-    }
+    // TODO: SAVE USED SPELL SLOT (Prevent renting and getting more spells)
 
     write_aliases_ascii(fl, ch);
 
@@ -1204,24 +1198,7 @@ static void read_aliases_ascii(FILE *file, CharData *ch) {
 }
 
 static void load_spell_mem(FILE *fl, CharData *ch) {
-    int spell, time, can_cast, scanned;
-    char line[MAX_INPUT_LENGTH + 1];
-    int mem_time;
-
-    int spell_mem_time(CharData * ch, int spell); /* spell_mem.c */
-
-    do {
-        get_line(fl, line);
-        scanned = sscanf(line, "%d %d %d", &spell, &can_cast, &time);
-
-        /* Compensate for a missing or corrupted time value: */
-        mem_time = spell_mem_time(ch, spell);
-        if (scanned < 3 || time > mem_time)
-            time = mem_time;
-
-        if (spell != 0)
-            add_spell(ch, spell, can_cast, time, false);
-    } while (spell != 0);
+    // TODO: Load cast spell memory
 }
 
 static void load_coins(char *line, int coins[]) {

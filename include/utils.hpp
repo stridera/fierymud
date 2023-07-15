@@ -232,8 +232,6 @@ extern flagvector *ALL_FLAGS;
  */
 #define MOB_PERFORMS_SCRIPTS(ch) (IS_NPC(ch) && !MOB_FLAGGED(ch, MOB_NOSCRIPT) && !EFF_FLAGGED(ch, EFF_CHARM))
 
-#define STUDYING(ch) EVENT_FLAGGED((ch), EVENT_STUDY)
-
 /* char utils ************************************************************/
 
 /* Identifier accessors */

@@ -29,3 +29,6 @@ extern int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)];
 
 /* Function prototypes */
 bool has_spellbook(CharData *ch);
+void rem_memming(CharData *ch);
+ObjData *find_spellbook_with_spell(CharData *ch, int spell);
+int get_spellslot_restore_rate(CharData *ch);

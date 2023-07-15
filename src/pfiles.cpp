@@ -939,7 +939,6 @@ static void read_objects(CharData *ch, FILE *fl) {
         if (location == WEAR_INVENTORY)
             obj_to_char(obj, ch);
     }
-    ch->obj_flags.weight = 0;
 }
 
 void load_quests(CharData *ch) {

@@ -57,8 +57,8 @@ struct ExtraDescriptionData {
 
 /* This is the structure for keeping track of cast spells and how long ago. */
 struct SpellCast {
-    int spell_slot; // The slot the spell is memorized in.
-    int mem_time;   // Time required studying/praying/etc to clear this slot.  Determined by spell slot.
+    int spellnum; // The spell that was cast.
+    int ticks;    // Time required studying/praying/etc to clear this slot.  Determined by spell slot.
 };
 
 struct Casting {

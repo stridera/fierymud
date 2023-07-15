@@ -1124,8 +1124,8 @@
 #define ITEM_WAS_DISARMED 31      /* Disarmed from mob             */
 #define ITEM_ANTI_MONK 32         /* Not usable by monks           */
 #define ITEM_ANTI_BARD 33
-#define ITEM_ELVEN 34             /* Item usable by Elves          */
-#define ITEM_DWARVEN 35           /* Item usable by Dwarves        */
+#define ITEM_ELVEN 34   /* Item usable by Elves          */
+#define ITEM_DWARVEN 35 /* Item usable by Dwarves        */
 #define ITEM_ANTI_THIEF 36
 #define ITEM_ANTI_PYROMANCER 37
 #define ITEM_ANTI_CRYOMANCER 38
