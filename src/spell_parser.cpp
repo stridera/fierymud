@@ -1354,7 +1354,8 @@ ACMD(do_cast) {
     }
 
     /* Is the spell scribed in a book the PC is holding?  PC's only. */
-    if (subcmd == SCMD_CAST && !IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT && !find_spellbook_with_spell(ch, spellnum)) {
+    if (subcmd == SCMD_CAST && !IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT && MEM_MODE(ch) == MEMORIZE &&
+        !find_spellbook_with_spell(ch, spellnum)) {
         char_printf(ch, "You do not have a spell book with that spell in it!\n");
         return;
     }
