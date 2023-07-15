@@ -1409,6 +1409,11 @@ ACMD(do_cast) {
         return;
     }
 
+    if (!spell_slot_available(ch, spellnum)) {
+        char_printf(ch, "You have no spell slots available for that spell.\n");
+        return;
+    }
+
     /* If this is an aggro cast, make the caster become visible. */
     if (target && SINFO.violent)
         aggro_lose_spells(ch);
