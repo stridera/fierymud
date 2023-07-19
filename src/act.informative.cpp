@@ -1590,11 +1590,6 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
         if (obj->applies[i].location != APPLY_NONE)
             char_printf(ch, "   Apply: {}\n", format_apply(obj->applies[i].location, obj->applies[i].modifier));
 
-    if (SCRIPT(obj)) {
-        for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
-            char_printf(ch, "   Special: {}\n", t->name);
-        }
-    }
 }
 
 ACMD(do_identify) {
