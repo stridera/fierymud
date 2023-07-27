@@ -53,6 +53,10 @@ int get_spell_duration(CharData *ch, int spellnum);
 int get_vitality_hp_gain(CharData *ch, int spellnum);
 char *get_vitality_vict_message(int spellnum);
 bool check_armor_spells(CharData *ch, CharData *victim, int spellnum);
+bool check_bless_spells(CharData *ch, CharData *victim, int spellnum);
+bool check_enhance_spells(CharData *ch, CharData *victim, int spellnum);
+bool check_monk_hand_spells(CharData *ch, CharData *victim, int spellnum);
+bool check_elemental_warding_spells(CharData *ch, CharData *victim, int spellnum);
 
 CharData *read_mobile(int, int);
 
@@ -1142,9 +1146,11 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_GREATER_VITALITY:
     case SPELL_DRAGONS_HEALTH:
 
-        if (affected_by_spell(victim, SPELL_LESSER_ENDURANCE) || affected_by_spell(victim, SPELL_ENDURANCE) ||
+        if ((affected_by_spell(victim, SPELL_LESSER_ENDURANCE) || affected_by_spell(victim, SPELL_ENDURANCE) ||
             affected_by_spell(victim, SPELL_GREATER_ENDURANCE) || affected_by_spell(victim, SPELL_VITALITY) ||
-            affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH)) {
+            affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH)) &&
+            !(affected_by_spell(victim, spellnum))) {
+
             char_printf(ch, "Nothing happens!\n");
             return CAST_RESULT_CHARGE;
         }
@@ -1200,26 +1206,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SPELL_BLESS:
-
         if (GET_LEVEL(ch) < LVL_IMMORT && IS_EVIL(ch) && casttype == CAST_SPELL) {
             char_printf(ch, "The gods have forsaken you in your evilness!\n");
             act("There is no effect.  $n adopts a dejected look.", true, ch, 0, 0, TO_ROOM);
             return CAST_RESULT_CHARGE;
         }
 
-        if (affected_by_spell(victim, SPELL_DARK_PRESENCE) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
-            affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION) ||
-            affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
-            act("$N is already blessed by some dark gods.", false, ch, 0, victim, TO_CHAR);
-            act("$n looks a little overprotective.", true, ch, 0, 0, TO_ROOM);
+        if (check_bless_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
-        }
-
-        if (affected_by_spell(victim, SPELL_EARTH_BLESSING)) {
-            act("$N is already blessed by nature.", false, ch, 0, victim, TO_CHAR);
-            act("$n looks a little overprotective.", true, ch, 0, 0, TO_ROOM);
-            return CAST_RESULT_CHARGE;
-        }
 
         /* Alignment Checks! */
         if (IS_EVIL(victim)) {
@@ -1234,31 +1228,28 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
         if (skill < 55) {
             to_char = "$N is inspired by your gods.";
-            to_vict = "Your inner angel is inspired by $n.\r\nYou feel righteous.";
-            if (ch == victim)
+            if (ch == victim) {
+                to_vict = "Your inner angel is inspired.\r\nYou feel righteous.";
                 to_room = "$n is inspired to do good.";
-            else
+            } else {
+                to_vict = "Your inner angel is inspired by $n.\r\nYou feel righteous.";
                 to_room = "$N is inspired to do good by $n.";
+            }
         } else {
             eff[1].location = APPLY_DAMROLL;
             eff[1].modifier = 1 + (skill > 95);
             eff[1].duration = eff[0].duration;
             to_char = "$N is inspired by your gods in divine euphoria!";
-            to_vict = "Your inner angel is inspired by $n.\r\nYou feel a wave of divine euphoria!";
-            if (ch == victim)
-                to_room =
-                    "$n is inspired to do good.\r"
-                    "\n$n is overcome with divine euphoria!";
-            else
-                to_room =
-                    "$N is inspired to do good by $n.\r"
-                    "\n$N is overcome with divine euphoria!";
+            if (ch == victim) {
+                to_vict = "Your inner angel is inspired.\r\nYou feel a wave of divine euphoria!";
+                to_room = "$n is inspired to do good.\r\n$n is overcome with divine euphoria!";
+            } else {
+                to_vict = "Your inner angel is inspired by $n.\r\nYou feel a wave of divine euphoria!";
+                to_room = "$N is inspired to do good by $n.\r\n$N is overcome with divine euphoria!";
+            }
         }
         SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
-        to_char = "$N is inspired by your gods.";
-        to_vict = "Your inner angel is inspired by $n.\nYou feel righteous.";
-        to_room = "$N is inspired to do good by $n.";
         break;
 
     case SPELL_BLINDNESS:
@@ -1389,6 +1380,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_CONFUSION:
         /* Check for resistance due to high wis/dex.
          * Up to an additional 10% chance to evade. */
+        refresh = false;
+
         i = (GET_DEX(victim) + GET_WIS(victim) - 100) / 10;
         if (mag_savingthrow(victim, savetype) || i > random_number(1, 100)) {
             act("$n's eyes start to cross, but $e shakes it off.", true, victim, 0, 0, TO_ROOM);
@@ -1460,31 +1453,27 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
         if (skill < 55) {
             to_char = "You summon allegiance from your dark gods to protect $N.";
-            to_vict = "&9&bA dark presence fills your mind.&0";
-            if (ch == victim)
-                to_room =
-                    "$n seizes up in pain!\n"
-                    "$n crosses $s arms on $s chest, and is surrounded by a dark "
-                    "presence.";
-            else
-                to_room =
-                    "$n seizes up in pain!\n"
-                    "$n grabs $N, who is surrounded by a dark presence.";
+            if (ch == victim) {
+                to_vict = "You summon allegiance from your dark gods to protect yourself.\n&9&bA dark presence fills your mind.&0";
+                to_room = "$n seizes up in pain!\n$n crosses $s arms on $s chest, and is surrounded by a dark presence.";
+            }
+            else {  
+                to_vict = "&9&bA dark presence fills your mind.&0";
+                to_room = "$n seizes up in pain!\n$n grabs $N, who is surrounded by a dark presence.";
+            }
         } else {
             eff[1].location = APPLY_DAMROLL;
             eff[1].modifier = 1 + (skill > 95);
             eff[1].duration = eff[0].duration;
             to_char = "You summon allegiance from your dark gods to protect and enrage $N.";
-            to_vict = "&9&bA dark presence fills your mind and body!&0";
-            if (ch == victim)
-                to_room =
-                    "$n seizes up in pain!"
-                    "\n$n crosses $s arms on $s chest, and is enraged by a dark "
-                    "presence.";
-            else
-                to_room =
-                    "$n seizes up in pain!"
-                    "\n$n grabs $N, who is enraged by a dark presence.";
+            if (ch == victim) {
+                to_vict = "You summon allegiance from your dark gods to protect and enrage yourself.\n&9&bA dark presence fills your mind and body!&0";
+                to_room = "$n seizes up in pain!\n$n crosses $s arms on $s chest, and is enraged by a dark presence.";
+            }
+            else {
+                to_vict = "&9&bA dark presence fills your mind and body!&0";
+                to_room = "$n seizes up in pain!\n$n grabs $N, who is enraged by a dark presence.";
+            }
         }
         SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
@@ -1493,10 +1482,15 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_DEMONIC_ASPECT:
     case SPELL_DEMONIC_MUTATION:
 
-        if (affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION)) {
+        if ((affected_by_spell(victim, SPELL_DEMONIC_ASPECT) && spellnum == SPELL_DEMONIC_MUTATION) || 
+            (affected_by_spell(victim, SPELL_DEMONIC_MUTATION) && spellnum == SPELL_DEMONIC_ASPECT)) {
+            
             char_printf(victim, "You're feeling pretty demonic already.\n");
             return CAST_RESULT_CHARGE;
         }
+
+        if (check_bless_spells(ch, victim, spellnum))
+            return CAST_RESULT_CHARGE;
 
         eff[0].location = APPLY_HIT;
         /* starts at (level / 5) and goes to (level / 1) */
@@ -1522,6 +1516,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_DEMONSKIN:
 
         if (check_armor_spells(ch, victim, spellnum))
+            return CAST_RESULT_CHARGE;
+
+        if (check_bless_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
         if (affected_by_spell(victim, SKILL_REND)) {
@@ -1604,8 +1601,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[1].duration = eff[0].duration;
         to_char = "Your diseased air infects $N!";
         to_vict =
-            "&3You choke and gasp on $n's foul air as a sick feeling "
-            "overtakes you.\n"
+            "&3You choke and gasp on $n's foul air as a sick feeling overtakes you.\n"
             "You feel seriously ill!&0";
         to_room = "&3$N&3 chokes and gasps on $n's foul air, $E looks seriously ill!";
         break;
@@ -1642,19 +1638,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        if (affected_by_spell(victim, SPELL_DARK_PRESENCE) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
-            affected_by_spell(victim, SPELL_DEMONIC_ASPECT) || affected_by_spell(victim, SPELL_DEMONIC_MUTATION) ||
-            affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
-            act("$N is already blessed by some dark gods.", false, ch, 0, victim, TO_CHAR);
-            act("$n looks a little overprotective.", true, ch, 0, 0, TO_ROOM);
+        if (check_bless_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
-        }
-
-        if (affected_by_spell(victim, SPELL_BLESS) || affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
-            act("$N is already blessed by some other gods.", false, ch, 0, victim, TO_CHAR);
-            act("$n looks a little overprotective.", true, ch, 0, 0, TO_ROOM);
-            return CAST_RESULT_CHARGE;
-        }
 
         /* Alignment Checks! */
         if (IS_EVIL(victim)) {
@@ -1676,34 +1661,35 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].duration = 10 + (skill / 7); /* 10-24 hrs */
         if (skill < 55) {
             to_char = "$N is imbued with the power of nature.";
-            to_vict = "$n imbues you with the power of nature.";
-            if (ch == victim)
+            if (ch == victim) {
+                to_vict = "You imbue yourself with the power of nature.";
                 to_room = "$N is imbued with the power of nature.";
-            else
+            } else {
+                to_vict = "$n imbues you with the power of nature.";
                 to_room = "$N is imbued with the power of nature by $n.";
+            }
         } else {
             eff[1].location = APPLY_DAMROLL;
             eff[1].modifier = 1 + (skill > 95);
             eff[1].duration = eff[0].duration;
             to_char = "$N is imbued with the glorious might of nature!";
-            to_vict = "$n imbues you with nature's glory!\r\nYou feel supernaturally mighty!";
-            if (ch == victim)
-                to_room =
-                    "$N is imbued with nature's glory!\r"
-                    "\n$n is bolstered with supernatural might!";
-            else
-                to_room =
-                    "$N is imbued with nature's glory by $n!\r"
-                    "\n$N is bolstered with supernatural might!";
+            if (ch == victim) {
+                to_vict = "You imbue yourself with nature's glory!\r\nYou feel supernaturally mighty!";
+                to_room = "$N is imbued with nature's glory!\r\n$n is bolstered with supernatural might!";
+            } else {
+                to_vict = "$n imbues you with nature's glory!\r\nYou feel supernaturally mighty!";
+                to_room = "$N is imbued with nature's glory by $n!\r\n$N is bolstered with supernatural might!";
+            }
         }
         SET_FLAG(eff[2].flags, EFF_BLESS);
         eff[2].duration = eff[0].duration;
-        to_char = "$N is imbued with the power of nature.";
-        to_vict = "$n imbues you with the power of nature.\nYou feel righteous.";
-        to_room = "$N is imbued with the power of nature by $n.";
         break;
 
     case SPELL_ELEMENTAL_WARDING:
+
+        if (check_elemental_warding_spells(ch, victim, spellnum)) {
+            return CAST_RESULT_CHARGE;
+        }
 
         if (is_abbrev(buf2, "fire")) {
             SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
@@ -1726,6 +1712,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return 0;
         }
 
+        /* If the character is already affected by Elemental Warding,
+         * remove the spell so the character doesn't gain protection
+         * from multiple elements. */
+
+        if (affected_by_spell(victim, spellnum))
+            effect_from_char(victim, SPELL_ELEMENTAL_WARDING);
+
+
         eff[0].duration = 5 + (skill / 14); /* max 12 */
         to_room = "&7&b$N&7&b glows briefly.&0";
         break;
@@ -1737,6 +1731,15 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
            RSD 3/27/00 */
 
         /* This is a re-work of the spell Strength */
+
+        /* Check if the player has another stat enhancement active.
+         * As long as the player is not under the affect of one of the 
+         * specific Enhance spells below Enhance Ability should be able
+         * to alter the stat currently being enhanced by recasting the spell.
+         */
+
+        if (check_enhance_spells(ch, victim, spellnum))
+            return CAST_RESULT_CHARGE;
 
         if (is_abbrev(buf2, "strength")) {
             eff[0].location = APPLY_STR;
@@ -1773,6 +1776,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return 0;
         }
 
+        /* If the character is already affected by Enhance Ability,
+         * remove the spell so the character doesn't gain multiple
+         * enhancements. */
+
+        if (affected_by_spell(victim, spellnum))
+            effect_from_char(victim, SPELL_ENHANCE_ABILITY);
+
         eff[0].modifier = 2 + (skill / 8);  /* max 14 */
         eff[0].duration = 5 + (skill / 14); /* max 12 */
         break;
@@ -1782,13 +1792,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
-            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
-            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            char_printf(victim, "You are already enhanced!\n");
-            return 0;
-        }
+        /* This spell cannot be used to override another ability enhancement */
+        if (check_enhance_spells(ch, victim, spellnum))
+            break;
 
         eff[0].location = APPLY_STR;
         to_vict = "You feel stronger!";
@@ -1804,13 +1810,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
-            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
-            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            char_printf(victim, "You are already enhanced!\n");
-            return 0;
-        }
+        /* This spell cannot be used to override another ability enhancement */
+        if (check_enhance_spells(ch, victim, spellnum)) 
+            break;
 
         eff[0].location = APPLY_DEX;
         to_vict = "You feel more dexterous!";
@@ -1826,13 +1828,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
-            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
-            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            char_printf(victim, "You are already enhanced!\n");
-            return 0;
-        }
+        /* This spell cannot be used to override another ability enhancement */
+        if (check_enhance_spells(ch, victim, spellnum))
+            break;
 
         eff[0].location = APPLY_CON;
         to_vict = "You feel healthier!";
@@ -1848,13 +1846,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
-            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
-            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            char_printf(victim, "You are already enhanced!\n");
-            return 0;
-        }
+        /* This spell cannot be used to override another ability enhancement */
+        if (check_enhance_spells(ch, victim, spellnum))
+            break;
 
         eff[0].location = APPLY_INT;
         to_vict = "You feel smarter!";
@@ -1870,13 +1864,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
-            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
-            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            char_printf(victim, "You are already enhanced!\n");
-            return 0;
-        }
+        /* This spell cannot be used to override another ability enhancement */
+        if (check_enhance_spells(ch, victim, spellnum))
+            break;
 
         eff[0].location = APPLY_WIS;
         to_vict = "You feel wiser!";
@@ -1892,13 +1882,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* This is copy-paste from the Enhance Ability spell above */
 
         /* First check if already affected by an enhancement */
-        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
-            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
-            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
-            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
-            char_printf(victim, "You are already enhanced!\n");
-            return 0;
-        }
+        /* This spell cannot be used to override another ability enhancement */
+        if (check_enhance_spells(ch, victim, spellnum))
+            break;
 
         eff[0].location = APPLY_CHA;
         to_vict = "You feel more charismatic!";
@@ -1927,10 +1913,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[2].modifier = 10;
         eff[2].duration = eff[0].duration;
 
-        refresh = true;
-        to_vict =
-            "&9&bYour skin starts to itch as you enlarge to twice your "
-            "normal size!&0";
+        to_vict = "&9&bYour skin starts to itch as you enlarge to twice your normal size!&0";
         to_room = "&9&b$N's skin ripples as $E enlarges to twice $S normal size!&0";
         break;
 
@@ -1941,9 +1924,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* A difficult spell to land with success */
         if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < random_number(0, 80)) {
             act("&2&bYour crop of ripe vines search in vain for $N.&0", false, ch, 0, victim, TO_CHAR);
-            act("&2&bA crop of ripe vines snakes along the ground, unable to locate "
-                "you!&0",
-                false, ch, 0, victim, TO_VICT);
+            act("&2&bA crop of ripe vines snakes along the ground, unable to locate you!&0", false, ch, 0, victim, TO_VICT);
             act("&2&bA crop of ripe vines searches in vain for $N.&0", true, ch, 0, victim, TO_NOTVICT);
             /* start combat for failure */
             if (!FIGHTING(victim)) {
@@ -1992,6 +1973,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case CHANT_HYMN_OF_SAINT_AUGUSTINE:
 
+        /* Check if fists are already enhanced.
+         * This chant should be able to swap elemental attunements.
+         * The singular barehand enhancement spells below cannot be used to swap attunements.
+         */
+        if (check_monk_hand_spells(ch, victim, spellnum))
+            break;
+
         if (is_abbrev(buf2, "fire")) {
             SET_FLAG(eff[0].flags, EFF_FIREHANDS);
             to_vict = "&1Your fists burn with inner fire.&0";
@@ -2013,6 +2001,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             char_printf(ch, "Fire, ice, lightning, or acid?\n");
             return 0;
         }
+
+        /* If the character is already affected by the Hymn,
+         * remove it so the character doesn't gain multiple
+         * element damage types. */
+
+        if (affected_by_spell(victim, spellnum))
+            effect_from_char(victim, CHANT_HYMN_OF_SAINT_AUGUSTINE);
+
         eff[0].duration = (skill / 10) + wis_app[GET_WIS(ch)].bonus; /* max 15 */
         break;
 
@@ -2335,12 +2331,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
 
         /* check if already affected by one of the enhancement types */
-
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
-            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            char_printf(victim, "You can only channel one element at a time.\n");
+        /* This spell cannot be used to override another barehand enhancement */
+        if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
         to_vict = "&3&bYou charge your hands with corrosive chi.&0";
@@ -2357,12 +2350,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
 
         /* check if already affected by one of the enhancement types */
-
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
-            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            char_printf(victim, "You can only channel one element at a time.\n");
+        /* This spell cannot be used to override another barehand enhancement */
+        if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_ICEHANDS);
         to_vict = "&4&bYou unleash the blizzard in your heart.&0";
@@ -2379,12 +2369,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
 
         /* check if already affected by one of the enhancement types */
-
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
-            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            char_printf(victim, "You can only channel one element at a time.\n");
+        /* This spell cannot be used to override another barehand enhancement */
+        if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_FIREHANDS);
         to_vict = "&1Your fists burn with inner fire.&0";
@@ -2401,12 +2388,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
 
         /* check if already affected by one of the enhancement types */
-
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
-            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK)) {
-            char_printf(victim, "You can only channel one element at a time.\n");
+        /* This spell cannot be used to override another barehand enhancement */
+        if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
         to_vict = "&6&bYour knuckles crackle with lightning.&0";
@@ -2555,13 +2539,10 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_PROTECT_ACID:
 
-        /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
-            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            char_printf(victim, "You can only be protected from one element at a time.\n");
+        /* is the target already warded? */
+        /* This spell cannot override other warding spells */
+        if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_PROT_EARTH);
         to_vict = "You are warded from &3earth&0.";
@@ -2573,12 +2554,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_PROTECT_COLD:
 
         /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
-            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            char_printf(victim, "You can only be protected from one element at a time.\n");
+        /* This spell cannot override other warding spells */
+        if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_PROT_COLD);
         to_vict = "You are warded from the &4cold&0.";
@@ -2590,12 +2568,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_PROTECT_FIRE:
 
         /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
-            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            char_printf(victim, "You can only be protected from one element at a time.\n");
+        /* This spell cannot override other warding spells */
+        if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
         to_vict = "You are warded from &1fire&0.";
@@ -2607,12 +2582,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_PROTECT_SHOCK:
 
         /* is the target already protected? */
-        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
-            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
-            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
-            char_printf(victim, "You can only be protected from one element at a time.\n");
+        /* This spell cannot override other warding spells */
+        if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
-        }
 
         SET_FLAG(eff[0].flags, EFF_PROT_AIR);
         to_vict = "You are warded from &6&bair&0.";
@@ -2960,20 +2932,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_WINGS_OF_HEAVEN:
 
-        if (affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
-            char_printf(victim, "You already have something sticking out of your back.\n");
+        if (check_bless_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
-        }
 
         SET_FLAG(eff[0].flags, EFF_FLY);
         eff[0].duration = 10 + (skill / 5); /* max 30 */
 
-        to_vict =
-            "&7&bBeautiful bright white wings unfurl behind you as you lift "
-            "into the air.&0";
-        to_room =
-            "&7&bBeautiful bright white wings unfurl from $n's&7&b back, "
-            "lifting $m into the air.&0";
+        to_vict = "&7&bBeautiful bright white wings unfurl behind you as you lift into the air.&0";
+        to_room = "&7&bBeautiful bright white wings unfurl from $n's&7&b back, lifting $m into the air.&0";
         if (AWAKE(victim)) {
             GET_STANCE(victim) = STANCE_ALERT;
             GET_POS(victim) = POS_FLYING;
@@ -2982,10 +2948,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_WINGS_OF_HELL:
 
-        if (affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
-            char_printf(victim, "You already have something sticking out of your back.\n");
+        if (check_bless_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
-        }
 
         SET_FLAG(eff[0].flags, EFF_FLY);
         eff[0].duration = 10 + (skill / 5);
@@ -3344,7 +3308,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     /* act() for the message buffers in mag_affect() */
 
-    if (!affected_by_spell(victim, spellnum)) {
+    if (!affected_by_spell(victim, spellnum) || spellnum == SPELL_ELEMENTAL_WARDING || spellnum == SPELL_ENHANCE_ABILITY || spellnum == CHANT_HYMN_OF_SAINT_AUGUSTINE) {
         /* Suppress this message when you are casting the spell on yourself. */
         if (to_char != nullptr && ch != victim)
             act(to_char, false, ch, 0, victim, TO_CHAR);
@@ -3355,6 +3319,24 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             if (to_char == nullptr && ch != victim)
                 act(to_room, false, ch, 0, victim, TO_CHAR);
         }
+    } else {
+        /* Add generic refresh message */
+        SkillDef *spell;
+        spell = &skills[spellnum];
+
+        sprintf(buf1, "You refresh &3&b%s&0 for $N.\n", skills[spellnum].name);
+        to_char = buf1;
+
+        if (ch != victim)
+            sprintf(buf2, "$n refreshes &3&b%s&0 for you.\n", skills[spellnum].name);
+        else
+            sprintf(buf2, "You refresh &3&b%s&0 for yourself.\n", skills[spellnum].name);
+        to_vict = buf2;
+
+        if (to_char != nullptr && ch != victim)
+            act(to_char, false, ch, 0, victim, TO_CHAR);
+        if (to_vict != nullptr)
+            act(to_vict, false, ch, 0, victim, TO_VICT);
     }
 
     for (i = 0; i < MAX_SPELL_EFFECTS; i++)
@@ -5353,11 +5335,23 @@ int get_vitality_hp_gain(CharData *ch, int spellnum) {
  * Check it at the beginning of any armor spell and immediately return
  * if it returns 1.
  */
-bool affected_by_armor_spells(CharData *victim) {
-    return affected_by_spell(victim, SPELL_ARMOR) || affected_by_spell(victim, SPELL_BARKSKIN) ||
-           affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
-           affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
-           affected_by_spell(victim, SPELL_MIRAGE);
+bool affected_by_armor_spells(CharData *victim, int spellnum) {
+    /* If the target is already affected by the spell being cast, 
+     * return false so mag_affect continues to cast the spell and 
+     * refresh the spell duration.
+     */
+    if (affected_by_spell(victim, spellnum)) {
+        return false;
+    /* If the target is not already affected by the spell being cast,
+     * but is affected by another armor spell, return true so mag_affect
+     * bails out and the character doesn't end up with two armor effects.
+     */
+    } else {
+        return affected_by_spell(victim, SPELL_ARMOR) || affected_by_spell(victim, SPELL_BARKSKIN) ||
+              affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+              affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
+              affected_by_spell(victim, SPELL_MIRAGE);
+    }
 }
 
 bool spell_suitable_for_fluid_characters(int spellnum) {
@@ -5403,16 +5397,150 @@ void remove_unsuitable_spells(CharData *ch) {
 }
 
 bool check_armor_spells(CharData *ch, CharData *victim, int spellnum) {
-    if (affected_by_armor_spells(victim)) {
-        if (ch == victim) {
-            act("You seem to be protected enough already!", false, ch, 0, 0, TO_CHAR);
-            act("$n looks a little overprotective.", true, ch, 0, 0, TO_ROOM);
-        } else {
-            act("$N seem to be protected enough already!", false, ch, 0, victim, TO_CHAR);
-            act("You seem to be protected enough already!", false, ch, 0, victim, TO_VICT);
-            act("$n looks a little overprotective.", true, ch, 0, victim, TO_NOTVICT);
-        }
+    /* Check if the target is already affected by an armor spell.
+     * If so, print a failure message, consume a charge, and do not place the spell.
+     */
+    if (affected_by_armor_spells(victim, spellnum)) {
+        if (ch != victim)
+            act("$N seems to be protected enough already!", false, ch, 0, victim, TO_CHAR);
+        act("You seem to be protected enough already!", false, ch, 0, victim, TO_VICT);
+        act("$n looks a little overprotective.", true, ch, 0, victim, TO_NOTVICT);
         return true;
+    }
+    return false;
+}
+
+bool affected_by_good_spells(CharData *ch, CharData *victim) {
+    /* Check if the target is currently affected by a "good" bless spell
+     * Note: Does not apply to the EFF_BLESS *flag* only the Bless *spell* */
+    if (affected_by_spell(victim, SPELL_BLESS) || affected_by_spell(victim, SPELL_WINGS_OF_HEAVEN)) {
+        if (ch != victim)
+            act("$N is already blessed by some other gods.", false, ch, 0, victim, TO_CHAR);
+        act("You are already blessed by some other gods.", false, ch, 0, victim, TO_VICT);
+        act("$n looks a little overzealous.", true, ch, 0, victim, TO_NOTVICT);
+        return true;
+    }
+    return false;
+}
+
+bool affected_by_neutral_spells(CharData *ch, CharData *victim) {
+    /* Check if the target is currently affected by a "neutral" bless spell */
+    if (affected_by_spell(victim, SPELL_EARTH_BLESSING)) {
+        if (ch != victim)
+            act("$N is already blessed by nature.", false, ch, 0, victim, TO_CHAR);
+        act("You are already blessed by nature.", false, ch, 0, victim, TO_VICT);
+        act("$n looks a little overzealous.", true, ch, 0, victim, TO_NOTVICT);
+        return true;
+    }
+    return false;
+}
+
+bool affected_by_evil_spells(CharData *ch, CharData *victim) {
+    /* Check if the target is currently affected by an "evil" bless spell
+     * Note: This list includes the armor-type spell Demonskin */
+    if (affected_by_spell(victim, SPELL_DARK_PRESENCE) || affected_by_spell(victim, SPELL_DEMONIC_ASPECT) ||
+        affected_by_spell(victim, SPELL_DEMONIC_MUTATION) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+        affected_by_spell(victim, SPELL_WINGS_OF_HELL)) {
+        if (ch != victim)
+            act("$N is already blessed by some dark gods.", false, ch, 0, victim, TO_CHAR);
+        act("You are already blessed by some dark gods.", false, ch, 0, victim, TO_VICT);
+        act("$n looks a little overzealous.", true, ch, 0, victim, TO_NOTVICT);
+        return true;
+    }
+    return false;
+}
+
+bool check_bless_spells(CharData *ch, CharData *victim, int spellnum) {
+    /* Bless-type spells are broken down into three categories: good, neutral, and evil.
+     * Switch on the spell to determine which groups to check, 
+     * ignoring all spells in the related alignment group.
+     * It shouldn't be possible for a player to be affected by spells from two different alignment groups,
+     * but to be safe and avoid two error messages being printed at the same time
+     * each group is broken out as a separate conditional within each case.
+     */
+    switch (spellnum) {
+    case SPELL_BLESS:
+    case SPELL_WINGS_OF_HEAVEN:
+        if (affected_by_evil_spells(ch, victim))
+            return true;
+        else if (affected_by_neutral_spells(ch, victim))
+            return true;
+
+        break;
+    case SPELL_EARTH_BLESSING:
+        if (affected_by_evil_spells(ch, victim)) 
+            return true;
+        else if (affected_by_good_spells(ch, victim))
+            return true;
+
+        break;
+    case SPELL_DARK_PRESENCE:
+    case SPELL_DEMONSKIN:
+    case SPELL_DEMONIC_ASPECT:
+    case SPELL_DEMONIC_MUTATION:
+    case SPELL_WINGS_OF_HELL:
+        if (affected_by_good_spells(ch, victim))
+            return true;
+        else if (affected_by_neutral_spells(ch, victim))
+            return true;
+    }
+
+    return false;
+}
+
+bool check_enhance_spells(CharData *ch, CharData *victim, int spellnum) {
+    /* If the target is already affected by the spell being cast, 
+     * return false so mag_affect continues to cast the spell and 
+     * refresh the spell duration.
+     * Note: the innate racial spells are not included in this group.
+     * They are intended to stack with other ability enhancement spells.
+     */
+    if (!affected_by_spell(victim, spellnum)) {
+        if (affected_by_spell(victim, SPELL_ENHANCE_ABILITY) || affected_by_spell(victim, SPELL_ENHANCE_STR) ||
+            affected_by_spell(victim, SPELL_ENHANCE_DEX) || affected_by_spell(victim, SPELL_ENHANCE_CON) ||
+            affected_by_spell(victim, SPELL_ENHANCE_INT) || affected_by_spell(victim, SPELL_ENHANCE_WIS) ||
+            affected_by_spell(victim, SPELL_ENHANCE_CHA)) {
+            if (ch != victim)
+                act("$N is already enhanced!\n", false, ch, 0, victim, TO_CHAR);
+            act("You are already enhanced!\n", false, ch, 0, victim, TO_VICT);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool check_monk_hand_spells(CharData *ch, CharData *victim, int spellnum) {
+    /* If the target is already affected by the spell being cast, 
+     * return false so mag_affect continues to cast the spell and 
+     * refresh the spell duration.
+     */
+    if (!affected_by_spell(victim, spellnum)) {
+        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
+            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK) ||
+            affected_by_spell(victim, CHANT_HYMN_OF_SAINT_AUGUSTINE)) {
+            if (ch != victim)
+                act("$N's fists are already enhanced!\n", false, ch, 0, victim, TO_CHAR);
+            act("Your fists are already enhanced!\n", false, ch, 0, victim, TO_VICT);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool check_elemental_warding_spells(CharData *ch, CharData *victim, int spellnum) {
+    /* If the target is already affected by the spell being cast, 
+     * return false so mag_affect continues to cast the spell and 
+     * refresh the spell duration.
+     */
+    if (!affected_by_spell(victim, spellnum)) {
+        if (affected_by_spell(victim, SPELL_ELEMENTAL_WARDING) || affected_by_spell(victim, SPELL_PROTECT_ACID) ||
+            affected_by_spell(victim, SPELL_PROTECT_COLD) || affected_by_spell(victim, SPELL_PROTECT_FIRE) ||
+            affected_by_spell(victim, SPELL_PROTECT_SHOCK)) {
+            if (ch != victim)
+                act("$N is already warded against an element.\n", false, ch, 0, victim, TO_CHAR);
+            act("You can only be protected from one element at a time.\n", false, ch, 0, victim, TO_VICT);
+            return true;
+        }
     }
     return false;
 }

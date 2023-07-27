@@ -2814,7 +2814,7 @@ ACMD(do_rend) {
     CharData *vict;
     int percent, prob;
     effect eff;
-    bool affected_by_armor_spells(CharData *vict);
+    bool affected_by_armor_spells(CharData *vict, int skill = SKILL_REND);
 
     if (GET_SKILL(ch, SKILL_REND) == 0) {
         char_printf(ch, "You have no idea how to rend armor.\n");
@@ -2878,7 +2878,7 @@ ACMD(do_rend) {
                                     0};
 
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-        if (affected_by_armor_spells(vict)) {
+        if (affected_by_armor_spells(vict, SKILL_REND)) {
             for (i = 0, counter = 0; armor_spell[i]; i++) {
                 if (affected_by_spell(vict, armor_spell[i])) {
                     effect_from_char(vict, armor_spell[i]);
