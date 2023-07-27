@@ -3233,25 +3233,33 @@ static void show_exp(CharData *ch, CharData *tch) {
 
 static void show_active_spells(CharData *ch, CharData *tch) {
     effect *eff;
+    std::string resp;
 
     if (tch->effects) {
-        strcpy(buf,
+        resp += fmt::format(
                "\n"
                "Active Spell/Status Effects\n"
                "===========================\n");
         for (eff = tch->effects; eff; eff = eff->next)
             if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
-                strcat(buf, "   ");
-                strcat(buf, skills[eff->type].name);
+                resp += "   ";
+                resp += fmt::format("{:<23}", skills[eff->type].name, CLR(ch, ANRM));
                 if (EFF_FLAGGED(ch, EFF_DETECT_MAGIC)) {
+                    /* Count the duration left */
+                    if (eff->duration < 1)
+                        resp += fmt::format(" ({:3} hr  remaining)", eff->duration + 1);
+                    else
+                        resp += fmt::format(" ({:3} hrs remaining)", eff->duration + 1);
+
+                    /* Describe the duration left */
                     if (eff->duration <= 1)
-                        strcat(buf, " (&1fading rapidly&0)");
+                        resp += fmt::format(" (&1fading rapidly&0)");
                     else if (eff->duration <= 3)
-                        strcat(buf, " (&1&bfading&0)");
+                        resp += " (&1&bfading&0)";
                 }
-                strcat(buf, "\n");
+                resp += "\n";
             }
-        char_printf(ch, buf);
+        char_printf(ch, resp.c_str());
     }
 }
 
