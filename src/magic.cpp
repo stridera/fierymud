@@ -1148,8 +1148,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if ((affected_by_spell(victim, SPELL_LESSER_ENDURANCE) || affected_by_spell(victim, SPELL_ENDURANCE) ||
             affected_by_spell(victim, SPELL_GREATER_ENDURANCE) || affected_by_spell(victim, SPELL_VITALITY) ||
-            affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH)) &&
-            !(affected_by_spell(victim, spellnum))) {
+            affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH))) {
 
             char_printf(ch, "Nothing happens!\n");
             return CAST_RESULT_CHARGE;
