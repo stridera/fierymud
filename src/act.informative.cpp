@@ -3259,7 +3259,7 @@ static void show_active_spells(CharData *ch, CharData *tch) {
                 }
                 resp += "\n";
             }
-        char_printf(ch, resp.c_str());
+        char_printf(ch, resp);
     }
 }
 
