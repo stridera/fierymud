@@ -477,7 +477,7 @@ int check_container_give(ObjData *obj, CharData *ch, CharData *vict) {
 
 int perform_give(CharData *ch, CharData *vict, ObjData *obj, int silent) {
 
-    // If a god want's to give something, nothing should stop them.
+    // If a god wants to give something, nothing should stop them.
     if (GET_LEVEL(ch) < LVL_IMMORT || IS_NPC(ch)) {
 
         if (OBJ_FLAGGED(obj, ITEM_NODROP) && GET_LEVEL(ch) < 100 &&
@@ -485,15 +485,15 @@ int perform_give(CharData *ch, CharData *vict, ObjData *obj, int silent) {
             act("You can't let go of $p!!  Yeech!", false, ch, obj, 0, TO_CHAR);
             return GIVE_FAIL;
         }
-        if (IS_CARRYING_N(vict) >= CAN_CARRY_N(vict)) {
+        if (IS_CARRYING_N(vict) >= CAN_CARRY_N(vict) && !(IS_NPC(ch) && !IS_NPC(vict))) {
             act("$N seems to have $S hands full.", false, ch, 0, vict, TO_CHAR);
             return GIVE_FAIL_FULL;
         }
-        if (!ADDED_WEIGHT_OK(vict, obj)) {
+        if (!ADDED_WEIGHT_OK(vict, obj) && !(IS_NPC(ch) && !IS_NPC(vict))) {
             act("$E can't carry that much weight.", false, ch, 0, vict, TO_CHAR);
             return GIVE_FAIL;
         }
-        if (ADDED_WEIGHT_REFUSED(vict, obj)) {
+        if (ADDED_WEIGHT_REFUSED(vict, obj) && !(IS_NPC(ch) && !IS_NPC(vict))) {
             act("$E doesn't look like $E could handle the additional weight.", false, ch, 0, vict, TO_CHAR);
             return GIVE_FAIL;
         }
