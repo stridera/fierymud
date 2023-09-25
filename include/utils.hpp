@@ -367,7 +367,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_GROUP_LEADER(ch) (ch->group_master ? ch->group_master : ch)
 #define IS_IN_GROUP(ch, tch) (IS_GROUPED(ch) && IS_GROUPED(tch) && GET_GROUP_LEADER(ch) == GET_GROUP_LEADER(tch))
 
-#define VIEWED_ABIL(ch, abil) (std::clamp(GET_ACTUAL_##abil(ch), MIN_ABILITY_VALUE, MAX_ABILITY_VALUE))
+#define VIEWED_ABIL(ch, abil) (std::max(GET_ACTUAL_##abil(ch), MIN_ABILITY_VALUE))
 
 #define GET_AFFECTED_STR(ch) ((ch)->affected_abils.str)
 #define GET_VIEWED_STR(ch) VIEWED_ABIL(ch, STR)
