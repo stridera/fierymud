@@ -487,11 +487,15 @@ void show_available_slots(CharData *ch, CharData *tch) {
     }
 
     if (!tch->spellcasts.empty()) {
-        char_printf(ch, "\nRestoring:\n");
-        for (auto &sc : tch->spellcasts) {
-            if (sc.ticks > 0) {
-                char_printf(ch, "  Circle {:>2}   ({:>3} sec)\n", sc.circle, std::ceil(sc.ticks / restore_rate));
+        if (restore_rate > 0) {
+            char_printf(ch, "\nRestoring:\n");
+            for (auto &sc : tch->spellcasts) {
+                if (sc.ticks > 0) {
+                    char_printf(ch, "  Circle {:>2}   ({:>3} sec)\n", sc.circle, std::ceil(sc.ticks / restore_rate));
+                }
             }
+        } else {
+            char_printf(ch, "\nYou focus is too low to restore any spell slots.\n");
         }
     }
 
