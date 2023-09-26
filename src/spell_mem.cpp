@@ -514,7 +514,7 @@ int spell_slot_available(CharData *ch, int spell) {
 }
 
 int get_spellslot_restore_rate(CharData *ch) {
-    double rate = GET_CLARITY(ch) / 100;
+    double rate = GET_CLARITY(ch) / 10;
 
     // Add Race and Class Bonuses
     rate *= races[(int)GET_RACE(ch)].bonus_clarity / 100.0;

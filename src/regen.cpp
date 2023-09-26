@@ -160,13 +160,6 @@ void set_regen_event(CharData *ch, int eventtype) {
         event_create(EVENT_REGEN_HP, hp_regen_event, ch, false, &(ch->events), time);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_HP);
     }
-    // if (eventtype == EVENT_REGEN_MANA && !EVENT_FLAGGED(ch, EVENT_REGEN_MANA) && GET_MANA(ch) < GET_MAX_MANA(ch) &&
-    //     false) {
-    //     gain = mana_gain(ch);
-    //     time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
-    //     event_create(EVENT_REGEN_HP, mana_regen_event, ch, false, &(ch->events), time);
-    //     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MANA);
-    // }
     if (eventtype == EVENT_REGEN_MOVE && !EVENT_FLAGGED(ch, EVENT_REGEN_MOVE) && GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
         gain = move_gain(ch);
         time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
