@@ -356,7 +356,7 @@ int load_player(const char *name, CharData *ch) {
     GET_AUTOINVIS(ch) = -1;
     ch->player.time.logon = time(0);
 
-    GET_CLARITY(ch) = 100 + races[(int)GET_RACE(ch)].bonus_clarity + classes[(int)GET_CLASS(ch)].bonus_clarity;
+    GET_CLARITY(ch) = 100;
 
     init_trophy(ch);
     init_retained_comms(ch);

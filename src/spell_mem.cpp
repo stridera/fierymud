@@ -514,7 +514,11 @@ int spell_slot_available(CharData *ch, int spell) {
 }
 
 int get_spellslot_restore_rate(CharData *ch) {
-    int rate = GET_CLARITY(ch) / 100;
+    double rate = GET_CLARITY(ch) / 100;
+
+    // Add Race and Class Bonuses
+    rate *= races[(int)GET_RACE(ch)].bonus_clarity / 100.0;
+    rate *= classes[(int)GET_CLASS(ch)].bonus_clarity / 100.0;
 
     // Add Meditate Bonus
     if (PLR_FLAGGED(ch, PLR_MEDITATE))
