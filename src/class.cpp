@@ -46,7 +46,7 @@
  *   fmtname, abbrev, stars,
  *   magical, mem_mode, active, is_subclass, subclass_of, max_subclass_level,
  * homeroom statorder saves hp_lev, thac0, nowear_flag, hit_regen_factor,
- * mana_regen_factor, mv_regen_factor, exp_gain_factor, exp_factor, hit_factor,
+ * mv_regen_factor, exp_gain_factor, exp_factor, hit_factor,
  * hd_factor, dice_factor, copper_factor, ac_factor, newbie_eq[]
  *
  * The is_subclass value of inactive classes (such as mystic) should be taken
@@ -76,7 +76,7 @@ ClassDef classes[NUM_CLASSES] = {
      6,                                                            /* THAC0 */
      ITEM_ANTI_SORCERER,                                           /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.2,                                                          /* exp needed to level factor */
      120,                                                          /* exp reward factor for mobs*/
@@ -109,7 +109,7 @@ ClassDef classes[NUM_CLASSES] = {
      4,                                                            /* THAC0 */
      ITEM_ANTI_CLERIC,                                             /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -143,7 +143,7 @@ ClassDef classes[NUM_CLASSES] = {
      1,                                                            /* THAC0 */
      ITEM_ANTI_THIEF,                                              /* !class bit */
      100,                                                          /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -176,7 +176,7 @@ ClassDef classes[NUM_CLASSES] = {
      -5,                                                           /* THAC0 */
      ITEM_ANTI_WARRIOR,                                            /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.1,                                                          /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -209,7 +209,7 @@ ClassDef classes[NUM_CLASSES] = {
      -4,                                                           /* THAC0 */
      ITEM_ANTI_PALADIN,                                            /* !class bit */
      100,                                                          /* hp regen factor */
-     50,                                                           /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.15,                                                         /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -242,7 +242,7 @@ ClassDef classes[NUM_CLASSES] = {
      -4,                                                           /* THAC0 */
      ITEM_ANTI_ANTI_PALADIN,                                       /* !class bit */
      100,                                                          /* hp regen factor */
-     50,                                                           /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.15,                                                         /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -275,7 +275,7 @@ ClassDef classes[NUM_CLASSES] = {
      -4,                                                           /* THAC0 */
      ITEM_ANTI_RANGER,                                             /* !class bit */
      100,                                                          /* hp regen factor */
-     50,                                                           /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.15,                                                         /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -308,7 +308,7 @@ ClassDef classes[NUM_CLASSES] = {
      5,                                                            /* THAC0 */
      ITEM_ANTI_DRUID,                                              /* !class bit */
      85,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -341,7 +341,7 @@ ClassDef classes[NUM_CLASSES] = {
      6,                                                            /* THAC0 */
      ITEM_ANTI_SHAMAN,                                             /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -374,7 +374,7 @@ ClassDef classes[NUM_CLASSES] = {
      2,                                                            /* THAC0 */
      ITEM_ANTI_ASSASSIN,                                           /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -407,7 +407,7 @@ ClassDef classes[NUM_CLASSES] = {
      2,                                                            /* THAC0 */
      ITEM_ANTI_MERCENARY,                                          /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -440,7 +440,7 @@ ClassDef classes[NUM_CLASSES] = {
      7,                                                            /* THAC0 */
      ITEM_ANTI_NECROMANCER,                                        /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.3,                                                          /* exp needed to level factor */
      120,                                                          /* exp reward factor for mobs*/
@@ -473,7 +473,7 @@ ClassDef classes[NUM_CLASSES] = {
      7,                                                            /* THAC0 */
      ITEM_ANTI_CONJURER,                                           /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      120,                                                          /* exp reward factor for mobs*/
@@ -506,7 +506,7 @@ ClassDef classes[NUM_CLASSES] = {
      -4,                                                           /* THAC0 */
      ITEM_ANTI_MONK,                                               /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      200,                                                          /* mv regen factor */
      1.3,                                                          /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -539,7 +539,7 @@ ClassDef classes[NUM_CLASSES] = {
      -4,                                                           /* THAC0 */
      ITEM_ANTI_BERSERKER,                                          /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.1,                                                          /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -572,7 +572,7 @@ ClassDef classes[NUM_CLASSES] = {
      5,                                                            /* THAC0 */
      ITEM_ANTI_PRIEST,                                             /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -605,7 +605,7 @@ ClassDef classes[NUM_CLASSES] = {
      5,                                                            /* THAC0 */
      ITEM_ANTI_DIABOLIST,                                          /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -638,7 +638,7 @@ ClassDef classes[NUM_CLASSES] = {
      7,                                                            /* THAC0 */
      ITEM_ANTI_CLERIC,                                             /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -671,7 +671,7 @@ ClassDef classes[NUM_CLASSES] = {
      2,                                                            /* THAC0 */
      ITEM_ANTI_ROGUE,                                              /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -704,7 +704,7 @@ ClassDef classes[NUM_CLASSES] = {
      2,                                                            /* THAC0 */
      ITEM_ANTI_BARD,                                               /* !class bit */
      100,                                                          /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.2,                                                          /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -737,7 +737,7 @@ ClassDef classes[NUM_CLASSES] = {
      7,                                                            /* THAC0 */
      ITEM_ANTI_PYROMANCER,                                         /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.2,                                                          /* exp needed to level factor */
      120,                                                          /* exp reward factor for mobs*/
@@ -770,7 +770,7 @@ ClassDef classes[NUM_CLASSES] = {
      7,                                                            /* THAC0 */
      ITEM_ANTI_CRYOMANCER,                                         /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.2,                                                          /* exp needed to level factor */
      120,                                                          /* exp reward factor for mobs*/
@@ -803,7 +803,7 @@ ClassDef classes[NUM_CLASSES] = {
      7,                                                            /* THAC0 */
      ITEM_ANTI_ILLUSIONIST,                                        /* !class bit */
      80,                                                           /* hp regen factor */
-     100,                                                          /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1.2,                                                          /* exp needed to level factor */
      120,                                                          /* exp reward factor for mobs*/
@@ -836,7 +836,7 @@ ClassDef classes[NUM_CLASSES] = {
      -4,                                                           /* THAC0 */
      0,                                                            /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      100,                                                          /* exp reward factor for mobs*/
@@ -869,7 +869,7 @@ ClassDef classes[NUM_CLASSES] = {
      0,                                                            /* THAC0 */
      0,                                                            /* !class bit */
      100,                                                          /* hp regen factor */
-     0,                                                            /* mana regen factor */
+     0,                                                            /* clarity bonus (/100) */
      100,                                                          /* mv regen factor */
      1,                                                            /* exp needed to level factor */
      80,                                                           /* exp reward factor for mobs*/

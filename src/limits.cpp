@@ -39,39 +39,6 @@ long exp_death_loss(CharData *ch, int level);
 
 ACMD(do_shapechange);
 
-/* manapoint gain pr. game hour */
-int mana_gain(CharData *ch) {
-    int gain;
-
-    if (IS_NPC(ch)) {
-        /* Neat and fast */
-        gain = GET_LEVEL(ch);
-    } else {
-        gain = std::min(ch->char_specials.managain, 100);
-
-        /* Position calculations    */
-        switch (GET_STANCE(ch)) {
-        case STANCE_SLEEPING:
-            gain <<= 1;
-            break;
-        case STANCE_RESTING:
-            gain += (gain >> 1); /* Divide by 2 */
-            break;
-        default:
-            if (GET_POS(ch) == POS_SITTING)
-                gain += (gain >> 2); /* Divide by 4 */
-            break;
-        }
-
-        gain = (gain * MANA_REGEN_FACTOR(ch)) / 100;
-    }
-
-    if (EFF_FLAGGED(ch, EFF_POISON))
-        gain >>= 2;
-
-    return (gain);
-}
-
 int hit_gain(CharData *ch)
 /* Hitpoint gain pr. game hour */
 {

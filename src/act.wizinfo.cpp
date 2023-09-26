@@ -667,10 +667,9 @@ void do_stat_character(CharData *ch, CharData *k) {
         GET_AFFECTED_INT(k), GET_AFFECTED_WIS(k), GET_AFFECTED_DEX(k), GET_AFFECTED_CON(k), GET_AFFECTED_CHA(k),
         CLR(ch, ANRM));
 
-    resp += fmt::format("HP: [{}{}/{}+{}{}]  MP: [{}{}/{}+{}{}]  MV: [{}{}/{}+{}{}]\n", CLR(ch, FGRN), GET_HIT(k),
-                        GET_MAX_HIT(k), hit_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_MANA(k), GET_MAX_MANA(k),
-                        mana_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k), move_gain(k),
-                        CLR(ch, ANRM));
+    resp += fmt::format("HP: [{}{}/{}+{}{}]  MV: [{}{}/{}+{}{}]  CLARITY: [{}{}{}]\n", CLR(ch, FGRN), GET_HIT(k),
+                        GET_MAX_HIT(k), hit_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k),
+                        move_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_CLARITY(k) / 100, CLR(ch, ANRM));
 
     resp += fmt::format(
         "Coins: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c], "

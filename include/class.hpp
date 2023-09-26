@@ -68,22 +68,19 @@ struct ClassDef {
     bool active;              /* Whether this class is available to mortals */
     bool is_subclass;         /* Is it a subclass of any other class? */
     int subclass_of;          /* The class that it's a subclass of */
-    int max_subclass_level;   /* Highest level at which you can subclass (if base
-                                 class) */
+    int max_subclass_level;   /* Highest level at which you can subclass (if base class) */
     int homeroom;             /* Room you'll start in.  Used in character creation only. */
-    int statorder[NUM_STATS]; /* When generating a new character, which stats
-                                 should be highest? */
+    int statorder[NUM_STATS]; /* When generating a new character, which stats should be highest? */
     int saves[NUM_SAVES];     /* Class-related base saving throws */
     int hp_lev;               /* How many hit points gained per level */
     int thac0;                /* How good you are at hitting people. Lower=better */
     int nowear_flag;          /* What ITEM_ flag will prevent wearing an object? */
     int hit_regen_factor;     /* Factor: 100 = normal regen */
-    int mana_regen_factor;
+    int bonus_clarity;        /* Bonus clarity (how quickly you recover spell slots) for your class */
     int mv_regen_factor;
     double exp_gain_factor; /* Exp factor: 1 = normal exp needed to gain a level */
 
-    /* The following values primarily adjust stats on mob prototypes.  See db.c.
-     */
+    /* The following values primarily adjust stats on mob prototypes.  See db.c. */
     int exp_factor;
     int hit_factor;
     int hd_factor;
@@ -91,8 +88,7 @@ struct ClassDef {
     int copper_factor;
     int ac_factor;
 
-    int newbie_eq[20]; /* Objects given to new player characters (in addition to
-                          common newbie eq */
+    int newbie_eq[20]; /* Objects given to new player characters (in addition to common newbie eq */
 
     /*
      * The following data members should come last in the struct so
@@ -116,7 +112,6 @@ extern ClassDef classes[NUM_CLASSES];
 #define MEM_MODE(ch) (VALID_CLASS(ch) ? classes[(int)GET_CLASS(ch)].mem_mode : MEM_NONE)
 
 #define HIT_REGEN_FACTOR(ch) (VALID_CLASS(ch) ? classes[(int)GET_CLASS(ch)].hit_regen_factor : 100)
-#define MANA_REGEN_FACTOR(ch) (VALID_CLASS(ch) ? classes[(int)GET_CLASS(ch)].mana_regen_factor : 100)
 #define MV_REGEN_FACTOR(ch) (VALID_CLASS(ch) ? classes[(int)GET_CLASS(ch)].mv_regen_factor : 100)
 #define EXP_GAIN_FACTOR(cls) (VALID_CLASSNUM(cls) ? classes[cls].exp_gain_factor : 1)
 

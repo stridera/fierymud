@@ -200,7 +200,7 @@ struct CharSpecialData {
     int carry_items;    /* Number of items carried               */
     int timer;          /* Inactivity timer for players          */
     int hitgain;        /* Bonus hit regen, from APPLY_HIT_REGEN */
-    int managain;       /* Bonus mana regen, from APPLY_MANA_REGEN */
+    int clarity;        /* Bonus to regenerate spell slots       */
     int rage;           /* For berserking                        */
 
     int alignment; /* +/- 1000 for alignment                */

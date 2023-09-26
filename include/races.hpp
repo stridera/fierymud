@@ -104,6 +104,7 @@ struct RaceDef {
     int def_align;           /* Default alignment */
     int bonus_damroll;
     int bonus_hitroll;
+    int bonus_clarity;   /* Bonus to clarity */
     int def_lifeforce;   /* Default life force */
     int def_composition; /* Default composition */
     int mweight_lo;      /* Minimum weight (male) */

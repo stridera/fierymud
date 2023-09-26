@@ -495,6 +495,8 @@ void show_available_slots(CharData *ch, CharData *tch) {
             }
         }
     }
+
+    char_printf(ch, "[DEBUG] Current Restore Rate: {}/tick.\n", restore_rate);
 }
 
 int spell_slot_available(CharData *ch, int spell) {
@@ -512,11 +514,12 @@ int spell_slot_available(CharData *ch, int spell) {
 }
 
 int get_spellslot_restore_rate(CharData *ch) {
-    int rate = 1;
+    int rate = GET_CLARITY(ch) / 100;
 
+    // Add Meditate Bonus
     if (PLR_FLAGGED(ch, PLR_MEDITATE))
         if (GET_SKILL(ch, SKILL_MEDITATE))
-            rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100) + 1;
+            rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
 
     return rate;
 }

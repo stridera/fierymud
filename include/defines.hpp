@@ -1172,7 +1172,7 @@
 #define APPLY_SAVING_SPELL 24  /* Apply to save throw: spells     */
 #define APPLY_SIZE 25          /* Apply to size                   */
 #define APPLY_HIT_REGEN 26
-#define APPLY_MANA_REGEN 27
+#define APPLY_CLARITY 27 /* Apply to clarity level */
 #define APPLY_PERCEPTION 28
 #define APPLY_HIDDENNESS 29
 #define APPLY_COMPOSITION 30
@@ -1316,3 +1316,5 @@
 #define NUM_VALUES 7
 
 #define MAX_OBJ_APPLIES 6
+
+#define MEDITATE_BONUS 10
