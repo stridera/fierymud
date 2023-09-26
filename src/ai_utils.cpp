@@ -68,7 +68,6 @@ int value_spell_effect(int flag) {
     case EFF_ENLARGE:
     case EFF_REDUCE:
     case EFF_BLESS:
-    case EFF_HEX:
         return 10;
     case EFF_TONGUES:
     case EFF_FEATHER_FALL:

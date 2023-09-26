@@ -78,29 +78,26 @@ bool switch_ok(CharData *ch) {
 const struct breath_type {
     const char *name;
     const int spell;
+    const int skill;
     const char *to_char;
     const char *to_room;
 } breath_info[] = {
-    {"fire", SPELL_FIRE_BREATH, "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0\n",
-     "&1$n&1 snorts and a gout of &bf&3i&7r&1e&0&1 shoots out of $s "
-     "nostrils!&0"},
-    {"gas", SPELL_GAS_BREATH,
-     "&2You heave and a &bnoxious gas&0&2 rolls rapidly out of your "
-     "nostrils!&0\n",
+    {"fire", SPELL_FIRE_BREATH, SKILL_BREATHE_FIRE, 
+     "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0\n",
+     "&1$n&1 snorts and a gout of &bf&3i&7r&1e&0&1 shoots out of $s nostrils!&0"},
+    {"gas", SPELL_GAS_BREATH, SKILL_BREATHE_GAS,
+     "&2You heave and a &bnoxious gas&0&2 rolls rapidly out of your nostrils!&0\n",
      "&2$n&2 rumbles and a &bnoxious gas&0&2 rolls out of $s nostrils!&0"},
-    {"frost", SPELL_FROST_BREATH,
-     "&7&bYou shiver as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from your "
-     "mouth!&0\n",
-     "&7&b$n&7&b shivers as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from $s "
-     "mouth!&0"},
-    {"acid", SPELL_ACID_BREATH,
-     "&9&bYou stomach heaves as a wash of &2&ba&0&2ci&bd&9 leaps from your "
-     "mouth!&0\n",
-     "&9&b$n&9&b looks pained as a wash of &2&ba&0&2ci&2&bd&9 leaps from $s "
-     "mouth!&0"},
-    {"lightning", SPELL_LIGHTNING_BREATH, "&4You open your mouth and bolts of &blightning&0&4 shoot out!&0\n",
+    {"frost", SPELL_FROST_BREATH, SKILL_BREATHE_FROST,
+     "&7&bYou shiver as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from your mouth!&0\n",
+     "&7&b$n&7&b shivers as a shaft of &0&4f&br&7o&4s&0&4t&7&b leaps from $s mouth!&0"},
+    {"acid", SPELL_ACID_BREATH, SKILL_BREATHE_ACID,
+     "&9&bYour stomach heaves as a wash of &2&ba&0&2ci&bd&9 leaps from your mouth!&0\n",
+     "&9&b$n&9&b looks pained as a wash of &2&ba&0&2ci&2&bd&9 leaps from $s mouth!&0"},
+    {"lightning", SPELL_LIGHTNING_BREATH, SKILL_BREATHE_LIGHTNING, 
+     "&4You open your mouth and bolts of &blightning&0&4 shoot out!&0\n",
      "&4$n&4 opens $s mouth and bolts of &blightning&0&4 shoot out!&0"},
-    {nullptr, 0, nullptr, nullptr},
+    {nullptr, 0, 0, nullptr, nullptr},
 };
 
 CharData *random_attack_target(CharData *ch, CharData *target, bool verbose) {
@@ -166,17 +163,7 @@ ACMD(do_breathe) {
         return;
     }
 
-    if ((GET_SKILL(ch, SKILL_BREATHE_FIRE) > 0) && (breath_info[type].spell == SPELL_FIRE_BREATH)) {
-        breath_energy = SKILL_BREATHE_FIRE;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_FROST) > 0) && (breath_info[type].spell == SPELL_FROST_BREATH)) {
-        breath_energy = SKILL_BREATHE_FROST;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_ACID) > 0) && (breath_info[type].spell == SPELL_ACID_BREATH)) {
-        breath_energy = SKILL_BREATHE_ACID;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_GAS) > 0) && (breath_info[type].spell == SPELL_GAS_BREATH)) {
-        breath_energy = SKILL_BREATHE_GAS;
-    } else if ((GET_SKILL(ch, SKILL_BREATHE_LIGHTNING) > 0) && (breath_info[type].spell == SPELL_LIGHTNING_BREATH)) {
-        breath_energy = SKILL_BREATHE_LIGHTNING;
-    } else {
+    if (!GET_SKILL(ch, breath_info[type].skill)) {
         char_printf(ch, "You cannot breathe that kind of energy!\n");
         return;
     }
@@ -211,7 +198,10 @@ ACMD(do_breathe) {
         /* Mobs don't hit other mobs, unless they're pets */
         if (!IS_PC(ch) && !IS_PC(tch) && !PLAYERALLY(ch) && !PLAYERALLY(tch))
             continue;
-        call_magic(ch, tch, 0, breath_info[type].spell, GET_LEVEL(ch), CAST_BREATH);
+        if (IS_NPC(ch))
+            call_magic(ch, tch, 0, breath_info[type].spell, GET_LEVEL(ch), CAST_BREATH);
+        else
+            call_magic(ch, tch, 0, breath_info[type].spell, GET_SKILL(ch, breath_info[type].skill), CAST_BREATH);
         if (!MOB_FLAGGED(tch, MOB_ILLUSORY))
             realvictims = true;
     }
@@ -221,7 +211,7 @@ ACMD(do_breathe) {
 
     */
     if (realvictims) {
-        improve_skill(ch, breath_energy);
+        improve_skill(ch, breath_info[type].skill);
     }
 
     if (GET_LEVEL(ch) < LVL_IMMORT)
@@ -1260,6 +1250,11 @@ ACMD(do_rescue) {
     }
     if (GET_SKILL(ch, SKILL_RESCUE) == 0) {
         char_printf(ch, "But only true warriors can do this!\n");
+        return;
+    }
+
+    if (GET_SKILL(ch, SKILL_BERSERK) && !EFF_FLAGGED(ch, EFF_BERSERK)) {
+        act("You aren't angry enough to rescue $M!", false, ch, 0, vict, TO_CHAR);
         return;
     }
 
@@ -2426,7 +2421,7 @@ ACMD(do_berserk) {
         return;
     }
 
-    if (GET_RAGE(ch) < RAGE_ANGRY) {
+    if (GET_RAGE(ch) < RAGE_ANNOYED) {
         char_printf(ch, "You're not angry enough yet!\n");
         return;
     }
@@ -2819,7 +2814,7 @@ ACMD(do_rend) {
     CharData *vict;
     int percent, prob;
     effect eff;
-    bool affected_by_armor_spells(CharData *vict);
+    bool affected_by_armor_spells(CharData *vict, int skill = SKILL_REND);
 
     if (GET_SKILL(ch, SKILL_REND) == 0) {
         char_printf(ch, "You have no idea how to rend armor.\n");
@@ -2883,7 +2878,7 @@ ACMD(do_rend) {
                                     0};
 
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-        if (affected_by_armor_spells(vict)) {
+        if (affected_by_armor_spells(vict, SKILL_REND)) {
             for (i = 0, counter = 0; armor_spell[i]; i++) {
                 if (affected_by_spell(vict, armor_spell[i])) {
                     effect_from_char(vict, armor_spell[i]);

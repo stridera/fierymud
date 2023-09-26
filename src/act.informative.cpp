@@ -163,10 +163,12 @@ static void print_obj_flags_to_char(ObjData *obj, CharData *ch) {
 
 /* Component function of print_obj_to_char */
 static void print_obj_auras_to_char(ObjData *obj, CharData *ch) {
-    if (OBJ_EFF_FLAGGED(obj, EFF_HEX))
-        char_printf(ch, "It is imbued with a &9&bdark aura&0.\n");
-    if (OBJ_EFF_FLAGGED(obj, EFF_BLESS))
-        char_printf(ch, "It is surrounded by a &6blessed aura&0.\n");
+    if (OBJ_EFF_FLAGGED(obj, EFF_BLESS)) {
+        if (OBJ_FLAGGED(obj, ITEM_ANTI_GOOD))
+            char_printf(ch, "It is imbued with a &9&bdark aura&0.\n");
+        else
+            char_printf(ch, "It is surrounded by a &6blessed aura&0.\n");
+    }
 }
 
 /* Show one of an obj's desc to a char; uses SHOW_ flags */
@@ -1556,8 +1558,9 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
     case ITEM_WEAPON:
         char_printf(ch,
                     "Damage Dice is '{}D{}' "
-                    "for an average per-round damage of {:.1f}.\n",
-                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj));
+                    "for an average per-round damage of {:.1f}.\n"
+                    "Damage Type is {}.\n",
+                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj)), GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE);
         break;
     case ITEM_ARMOR:
     case ITEM_TREASURE:
@@ -1588,11 +1591,6 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
         if (obj->applies[i].location != APPLY_NONE)
             char_printf(ch, "   Apply: {}\n", format_apply(obj->applies[i].location, obj->applies[i].modifier));
 
-    if (SCRIPT(obj)) {
-        for (t = TRIGGERS(SCRIPT(obj)); t; t = t->next) {
-            char_printf(ch, "   Special: {}\n", t->name);
-        }
-    }
 }
 
 ACMD(do_identify) {
@@ -3235,25 +3233,33 @@ static void show_exp(CharData *ch, CharData *tch) {
 
 static void show_active_spells(CharData *ch, CharData *tch) {
     effect *eff;
+    std::string resp;
 
     if (tch->effects) {
-        strcpy(buf,
+        resp += fmt::format(
                "\n"
                "Active Spell/Status Effects\n"
                "===========================\n");
         for (eff = tch->effects; eff; eff = eff->next)
             if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
-                strcat(buf, "   ");
-                strcat(buf, skills[eff->type].name);
+                resp += "   ";
+                resp += fmt::format("{:<23}", skills[eff->type].name, CLR(ch, ANRM));
                 if (EFF_FLAGGED(ch, EFF_DETECT_MAGIC)) {
+                    /* Count the duration left */
+                    if (eff->duration < 1)
+                        resp += fmt::format(" ({:3} hr  remaining)", eff->duration + 1);
+                    else
+                        resp += fmt::format(" ({:3} hrs remaining)", eff->duration + 1);
+
+                    /* Describe the duration left */
                     if (eff->duration <= 1)
-                        strcat(buf, " (&1fading rapidly&0)");
+                        resp += fmt::format(" (&1fading rapidly&0)");
                     else if (eff->duration <= 3)
-                        strcat(buf, " (&1&bfading&0)");
+                        resp += " (&1&bfading&0)";
                 }
-                strcat(buf, "\n");
+                resp += "\n";
             }
-        char_printf(ch, buf);
+        char_printf(ch, resp);
     }
 }
 

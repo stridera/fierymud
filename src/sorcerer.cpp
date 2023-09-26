@@ -36,7 +36,7 @@ bool check_sorcerer_status(CharData *ch);
 
 /* External functions */
 int mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
-bool affected_by_armor_spells(CharData *ch);
+bool affected_by_armor_spells(CharData *ch, int spellnum);
 
 bool sorcerer_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter;
@@ -148,7 +148,7 @@ bool check_sorcerer_status(CharData *ch) {
         case SPELL_ICE_ARMOR:
         case SPELL_BONE_ARMOR:
             /* Armor spells don't mix. */
-            if (affected_by_armor_spells(ch))
+            if (affected_by_armor_spells(ch, mob_sorcerer_buffs[i].spell))
                 continue;
             break;
         case SPELL_WATERFORM:

@@ -67,7 +67,7 @@ const int mob_cleric_heals[] = {SPELL_FULL_HEAL,    SPELL_HEAL,       SPELL_CURE
 
 /* External functions */
 int mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
-bool affected_by_armor_spells(CharData *victim);
+bool affected_by_armor_spells(CharData *victim, int spellnum);
 
 /*
  * cleric_ai_action
@@ -236,7 +236,7 @@ bool check_cleric_status(CharData *ch) {
             if (CH_INDOORS(ch) || SECT(ch->in_room) == SECT_UNDERWATER || SECT(ch->in_room) == SECT_UNDERDARK)
                 continue;
             /* The armor spells don't mix. */
-            if (affected_by_armor_spells(ch))
+            if (affected_by_armor_spells(ch, mob_cleric_buffs[i].spell))
                 continue;
             break;
         case SPELL_DEMONSKIN:
@@ -245,7 +245,7 @@ bool check_cleric_status(CharData *ch) {
         case SPELL_ARMOR:
         case SPELL_BARKSKIN:
             /* The armor spells don't mix. */
-            if (affected_by_armor_spells(ch))
+            if (affected_by_armor_spells(ch, mob_cleric_buffs[i].spell))
                 continue;
             break;
         case SPELL_DEMONIC_ASPECT:

@@ -1717,7 +1717,9 @@ void assign_class_skills(void) {
     skill_assign(SKILL_PARRY, CLASS_BERSERKER, 15);
     skill_assign(SKILL_DUAL_WIELD, CLASS_BERSERKER, 20);
     skill_assign(SKILL_CHANT, CLASS_BERSERKER, 25);
+    skill_assign(SKILL_GUARD, CLASS_BERSERKER, 25);
     skill_assign(SKILL_BATTLE_HOWL, CLASS_BERSERKER, 30);
+    skill_assign(SKILL_RESCUE, CLASS_BERSERKER, 35);
     skill_assign(SKILL_TANTRUM, CLASS_BERSERKER, 45);
     skill_assign(SKILL_MEDITATE, CLASS_BERSERKER, 50);
     skill_assign(SKILL_RIPOSTE, CLASS_BERSERKER, 50);
@@ -1727,6 +1729,7 @@ void assign_class_skills(void) {
 
     chant_assign(CHANT_SPIRIT_WOLF, CLASS_BERSERKER, 25);
     chant_assign(CHANT_SPIRIT_BEAR, CLASS_BERSERKER, 60);
+    chant_assign(CHANT_APOCALYPTIC_ANTHEM, CLASS_BERSERKER, 75);
     chant_assign(CHANT_INTERMINABLE_WRATH, CLASS_BERSERKER, 90);
 
     /* CLERIC */

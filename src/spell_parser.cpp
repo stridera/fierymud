@@ -1514,7 +1514,22 @@ ACMD(do_cast) {
 
         /* Show chant messages. */
         start_chant(ch);
-        WAIT_STATE(ch, ch->casting.casting_time * PULSE_VIOLENCE / 2);
+
+        /* Set spellcasting delay */
+        if (ch->casting.casting_time > 3)
+            WAIT_STATE(ch, ch->casting.casting_time * PULSE_VIOLENCE / 2);
+
+         /* 
+          * If casting_time is 0, 1, or 3, the formula above will create
+          * a wait_state that is too short for the length of the cast.
+          * If wait_state is too short, any spells a player attempts to 
+          * cast before the current cast is completed will be rejected.
+          * Wait_state is re-evaluated by complete_spell(), so wait_state
+          * can be longer than needed here, it just can't be shorter.
+          */
+
+        else
+            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
 
         /* Gods instacast.  Start chant and then stop casting in order to display correct message. */
         if (GET_LEVEL(ch) >= LVL_GOD) {

@@ -222,7 +222,7 @@
 
 /* Levels of rage */
 #define RAGE_NONE 0
-#define RAGE_ANNOYED 250
+#define RAGE_ANNOYED 100
 #define RAGE_ANGRY 500
 #define RAGE_IRATE 750
 #define RAGE_CRAZED 1000
@@ -482,12 +482,12 @@
 #define EFF_MISDIRECTION 76  /* Capable of performing misdirection */
 #define EFF_MISDIRECTING 77  /* Currently actually moving but misdirecting */
 #define EFF_BLESS 78         /* When blessed, your barehand attacks hurt ether chars */
-#define EFF_HEX 79           /* The evil side of blessing, to hurt ether chars */
+                             /* AVAILABLE */
 #define EFF_DETECT_POISON 80 /* Char is sensitive to poison */
 #define EFF_SONG_OF_REST 81
 #define EFF_DISPLACEMENT 82
 #define EFF_GREATER_DISPLACEMENT 83
-#define NUM_EFF_FLAGS 84 /* Keep me updated */
+#define NUM_EFF_FLAGS 84     /* Keep me updated */
 
 /* Preference flags: used by CharData.player_specials.pref */
 #define PRF_BRIEF 0       /* Room descs won't normally be shown */

@@ -25,6 +25,7 @@
 #include "math.hpp"
 #include "regen.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -195,39 +196,39 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* TROLL */
-    {"troll",                   /* name as found by triggers */
-     "swamp troll",             /* all race keywords */
-     "&2&dTroll&0",             /* name as displayed at character creation, on who, and score */
-     "&2&dTroll&0",             /* name as displayed in show race command and when setting races */
-     "Troll",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_LARGE,                /* default size */
-     -1000,                     /* default alignment */
-     4,                         /* damroll bonus */
-     4,                         /* hitroll bonus */
-     0,                         /* Clarity bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     130,                       /* male weight low */
-     290,                       /* male weight high */
-     72,                        /* male height low */
-     90,                        /* male height high */
-     130,                       /* female weight low */
-     290,                       /* female weight high */
-     72,                        /* female height low */
-     90,                        /* female height high */
-     {80, 72, 56, 56, 100, 64}, /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     110,                       /* hitroll/damroll factor for mobs */
-     110,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     "prowls in",               /* verb for entering a room */
-     "prowls",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"troll",                  /* name as found by triggers */
+     "swamp troll",            /* all race keywords */
+     "&2&dTroll&0",            /* name as displayed at character creation, on who, and score */
+     "&2&dTroll&0",            /* name as displayed in show race command and when setting races */
+     "Troll",                  /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_LARGE,               /* default size */
+     -1000,                    /* default alignment */
+     4,                        /* damroll bonus */
+     4,                        /* hitroll bonus */
+     0,                        /* Clarity bonus */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     130,                      /* male weight low */
+     290,                      /* male weight high */
+     72,                       /* male height low */
+     90,                       /* male height high */
+     130,                      /* female weight low */
+     290,                      /* female weight high */
+     72,                       /* female height low */
+     90,                       /* female height high */
+     {80, 72, 56, 56, 92, 64}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     130,                      /* hp factor for mobs */
+     110,                      /* hitroll/damroll factor for mobs */
+     110,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     "prowls in",              /* verb for entering a room */
+     "prowls",                 /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DROW */
     {"drow",                   /* name as found by triggers */
@@ -300,39 +301,39 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* OGRE */
-    {"ogre",                    /* name as found by triggers */
-     "ogre",                    /* all race keywords */
-     "&4Ogre&0",                /* name as displayed at character creation, on who, and score */
-     "&4Ogre&0",                /* name as displayed in show race command and when setting races */
-     "Ogre",                    /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_LARGE,                /* default size */
-     -1000,                     /* default alignment */
-     5,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     0,                         /* Clarity bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     390,                       /* male weight low */
-     530,                       /* male weight high */
-     93,                        /* male height low */
-     119,                       /* male height high */
-     390,                       /* female weight low */
-     530,                       /* female weight high */
-     93,                        /* female height low */
-     119,                       /* female height high */
-     {100, 64, 52, 60, 80, 60}, /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     110,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     120,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     85,                        /* AC factor for mobs */
-     "lumbers in",              /* verb for entering a room */
-     "lumbers",                 /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"ogre",                   /* name as found by triggers */
+     "ogre",                   /* all race keywords */
+     "&4Ogre&0",               /* name as displayed at character creation, on who, and score */
+     "&4Ogre&0",               /* name as displayed in show race command and when setting races */
+     "Ogre",                   /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_LARGE,               /* default size */
+     -1000,                    /* default alignment */
+     5,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     0,                        /* Clarity bonus */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     390,                      /* male weight low */
+     530,                      /* male weight high */
+     93,                       /* male height low */
+     119,                      /* male height high */
+     390,                      /* female weight low */
+     530,                      /* female weight high */
+     93,                       /* female height low */
+     119,                      /* female height high */
+     {92, 64, 52, 60, 80, 60}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     110,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     120,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     85,                       /* AC factor for mobs */
+     "lumbers in",             /* verb for entering a room */
+     "lumbers",                /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* ORC */
     {"orc",                    /* name as found by triggers */
@@ -1246,39 +1247,39 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                                         /* function numbers - always set as {0, 0}}, to close struct */
 
     /* NYMPH */
-    {"nymph",                   /* name as found by triggers */
-     "nymph",                   /* all race keywords */
-     "&3&bN&0&2ym&3&bph&0",     /* name as displayed at character creation, on who, and score */
-     "&3&bN&0&2ym&3&bph&0",     /* name as displayed in show race command and when setting races */
-     "Nymph",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     1000,                      /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     0,                         /* Clarity bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     90,                        /* male weight low */
-     160,                       /* male weight high */
-     59,                        /* male height low */
-     70,                        /* male height high */
-     68,                        /* female weight low */
-     160,                       /* female weight high */
-     59,                        /* female height low */
-     68,                        /* female height high */
-     {65, 72, 80, 80, 65, 100}, /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"nymph",                  /* name as found by triggers */
+     "nymph",                  /* all race keywords */
+     "&3&bN&0&2ym&3&bph&0",    /* name as displayed at character creation, on who, and score */
+     "&3&bN&0&2ym&3&bph&0",    /* name as displayed in show race command and when setting races */
+     "Nymph",                  /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     1000,                     /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     0,                        /* Clarity bonus */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     90,                       /* male weight low */
+     160,                      /* male weight high */
+     59,                       /* male height low */
+     70,                       /* male height high */
+     68,                       /* female weight low */
+     160,                      /* female weight high */
+     59,                       /* female height low */
+     68,                       /* female height high */
+     {65, 72, 80, 80, 65, 96}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* ARBOREAN */
     {"arborean",               /* name as found by triggers */
@@ -1417,61 +1418,46 @@ void init_races(void) {
             ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_ACID_BREATH, 1000);
-            ADD_SKILL(SPELL_FROST_BREATH, 1000);
-            ADD_SKILL(SPELL_GAS_BREATH, 1000);
-            ADD_SKILL(SPELL_FIRE_BREATH, 1000);
-            ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
         case RACE_DRAGON_FIRE:
             ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_FIRE_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_FIRE:
             ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_FIRE_BREATH, 1000);
             break;
         case RACE_DRAGON_FROST:
             ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_FROST_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_FROST:
             ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_FROST_BREATH, 1000);
             break;
         case RACE_DRAGON_ACID:
             ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_ACID_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_ACID:
             ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_ACID_BREATH, 1000);
             break;
         case RACE_DRAGON_LIGHTNING:
             ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_LIGHTNING:
             ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
         case RACE_DRAGON_GAS:
             ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_SWEEP, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_GAS_BREATH, 1000);
             break;
         case RACE_DRAGONBORN_GAS:
             ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_GAS_BREATH, 1000);
             break;
         case RACE_DEMON:
             ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
@@ -1480,11 +1466,6 @@ void init_races(void) {
             ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
-            ADD_SKILL(SPELL_ACID_BREATH, 1000);
-            ADD_SKILL(SPELL_FROST_BREATH, 1000);
-            ADD_SKILL(SPELL_GAS_BREATH, 1000);
-            ADD_SKILL(SPELL_FIRE_BREATH, 1000);
-            ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
         case RACE_BROWNIE:
             ADD_SKILL(SKILL_SNEAK, ROLL_SKILL_PROF);
@@ -1764,12 +1745,18 @@ void convert_race(CharData *ch, int newrace) {
 
 void scale_attribs(CharData *ch) {
     if (VALID_RACE(ch)) {
-        GET_AFFECTED_STR(ch) = (GET_VIEWED_STR(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_STR - 1]) / 100;
-        GET_AFFECTED_DEX(ch) = (GET_VIEWED_DEX(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_DEX - 1]) / 100;
-        GET_AFFECTED_INT(ch) = (GET_VIEWED_INT(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_INT - 1]) / 100;
-        GET_AFFECTED_WIS(ch) = (GET_VIEWED_WIS(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_WIS - 1]) / 100;
-        GET_AFFECTED_CON(ch) = (GET_VIEWED_CON(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CON - 1]) / 100;
-        GET_AFFECTED_CHA(ch) = (GET_VIEWED_CHA(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CHA - 1]) / 100;
+        GET_AFFECTED_STR(ch) = (std::min(
+            ((GET_VIEWED_STR(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_STR - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_DEX(ch) = (std::min(
+            ((GET_VIEWED_DEX(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_DEX - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_INT(ch) = (std::min(
+            ((GET_VIEWED_INT(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_INT - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_WIS(ch) = (std::min(
+            ((GET_VIEWED_WIS(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_WIS - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_CON(ch) = (std::min(
+            ((GET_VIEWED_CON(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CON - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_CHA(ch) = (std::min(
+            ((GET_VIEWED_CHA(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CHA - 1]) / 100), MAX_ABILITY_VALUE));
     } else {
         GET_AFFECTED_STR(ch) = GET_VIEWED_STR(ch) * 72 / 100;
         GET_AFFECTED_DEX(ch) = GET_VIEWED_DEX(ch) * 72 / 100;
