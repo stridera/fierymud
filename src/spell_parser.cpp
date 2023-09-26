@@ -35,7 +35,6 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void charge_mem(CharData *ch, int spellnum);
 void complete_spell(CharData *ch);
 void start_chant(CharData *ch);
 void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
@@ -1426,6 +1425,7 @@ ACMD(do_cast) {
     ch->casting.spell = spellnum;
     ch->casting.tch = tch;
     ch->casting.obj = tobj;
+    ch->casting.circle = SPELL_CIRCLE(ch, spellnum);
 
     /* Targets should only remember the caster for cast-type actions
      * that take time, like spells. If/when singing is implemented,
@@ -1519,14 +1519,14 @@ ACMD(do_cast) {
         if (ch->casting.casting_time > 3)
             WAIT_STATE(ch, ch->casting.casting_time * PULSE_VIOLENCE / 2);
 
-         /* 
-          * If casting_time is 0, 1, or 3, the formula above will create
-          * a wait_state that is too short for the length of the cast.
-          * If wait_state is too short, any spells a player attempts to 
-          * cast before the current cast is completed will be rejected.
-          * Wait_state is re-evaluated by complete_spell(), so wait_state
-          * can be longer than needed here, it just can't be shorter.
-          */
+        /*
+         * If casting_time is 0, 1, or 3, the formula above will create
+         * a wait_state that is too short for the length of the cast.
+         * If wait_state is too short, any spells a player attempts to
+         * cast before the current cast is completed will be rejected.
+         * Wait_state is re-evaluated by complete_spell(), so wait_state
+         * can be longer than needed here, it just can't be shorter.
+         */
 
         else
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
@@ -1692,7 +1692,7 @@ void complete_spell(CharData *ch) {
         WAIT_STATE(ch, PULSE_VIOLENCE);
 
         /* Consume spell slot. */
-        charge_mem(ch, ch->casting.spell);
+        charge_mem(ch, ch->casting.spell, ch->casting.circle);
 
         if (IS_NPC(ch) && skills[ch->casting.spell].violent && ch->casting.tch && IS_NPC(ch->casting.tch) &&
             !FIGHTING(ch->casting.tch) && GET_STANCE(ch->casting.tch) >= STANCE_RESTING && random_number(0, 4)) {

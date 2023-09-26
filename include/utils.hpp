@@ -287,7 +287,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_BASE_DAMROLL(ch) ((ch)->points.base_damroll)
 #define GET_DAMROLL(ch) ((ch)->points.damroll)
 
-#define GET_CLARITY(ch) ((ch)->char_specials.clarity)
+#define GET_FOCUS(ch) ((ch)->char_specials.focus)
 #define GET_POS(ch) ((ch)->char_specials.position)
 #define GET_STANCE(ch) ((ch)->char_specials.stance)
 #define AWAKE(ch) (GET_STANCE(ch) > STANCE_SLEEPING)

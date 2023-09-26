@@ -57,8 +57,8 @@ struct ExtraDescriptionData {
 
 /* This is the structure for keeping track of cast spells and how long ago. */
 struct SpellCast {
-    int spellnum; // The spell that was cast.
-    int ticks;    // Time required studying/praying/etc to clear this slot.  Determined by spell slot.
+    int circle; // The circle used to cast the spell.
+    int ticks;  // Time required studying/praying/etc to clear this slot.  Determined by spell slot.
 };
 
 struct Casting {
@@ -68,6 +68,7 @@ struct Casting {
     ObjData *obj;
     char *misc;
     int target_status;
+    int circle;
 };
 
 struct SpellPair {
@@ -200,7 +201,7 @@ struct CharSpecialData {
     int carry_items;    /* Number of items carried               */
     int timer;          /* Inactivity timer for players          */
     int hitgain;        /* Bonus hit regen, from APPLY_HIT_REGEN */
-    int clarity;        /* Bonus to regenerate spell slots       */
+    int focus;          /* Bonus to regenerate spell slots       */
     int rage;           /* For berserking                        */
 
     int alignment; /* +/- 1000 for alignment                */

@@ -1173,7 +1173,7 @@
 #define APPLY_SAVING_SPELL 24  /* Apply to save throw: spells     */
 #define APPLY_SIZE 25          /* Apply to size                   */
 #define APPLY_HIT_REGEN 26
-#define APPLY_CLARITY 27 /* Apply to clarity level */
+#define APPLY_FOCUS 27 /* Apply to focus level */
 #define APPLY_PERCEPTION 28
 #define APPLY_HIDDENNESS 29
 #define APPLY_COMPOSITION 30

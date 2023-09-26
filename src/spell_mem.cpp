@@ -44,7 +44,6 @@ ACMD(do_scribe);
 /* memorizing and praying */
 void show_spell_list(CharData *ch, CharData *tch);
 int rem_spell(CharData *ch, int spell);
-void charge_mem(CharData *ch, int spellnum);
 void update_spell_mem(void);
 void start_studying(CharData *ch);
 void rem_memming(CharData *ch);
@@ -464,7 +463,7 @@ void free_scribe_list(CharData *ch) {
 
 int spells_used_for_circle(CharData *ch, int circle) {
     return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(),
-                         [ch, circle](const SpellCast &sc) { return circle == SPELL_CIRCLE(ch, sc.spellnum); });
+                         [ch, circle](const SpellCast &sc) { return circle == sc.circle; });
 }
 
 void show_available_slots(CharData *ch, CharData *tch) {
@@ -484,14 +483,14 @@ void show_available_slots(CharData *ch, CharData *tch) {
     for (int i = 1; i <= NUM_SPELL_CIRCLES; i++) {
         int slots = spells_of_circle[GET_LEVEL(tch)][i] - spells_used_for_circle(tch, i);
         if (slots > 0)
-            char_printf(ch, "Circle {}: {}\n", i, slots);
+            char_printf(ch, "Circle {:>2}: {}\n", i, slots);
     }
 
     if (!tch->spellcasts.empty()) {
-        char_printf(ch, "\nRestoring:");
+        char_printf(ch, "\nRestoring:\n");
         for (auto &sc : tch->spellcasts) {
             if (sc.ticks > 0) {
-                char_printf(ch, " {}({})", skill_name(sc.spellnum), std::ceil(sc.ticks / restore_rate));
+                char_printf(ch, "  Circle {:>2}   ({:>3} sec)\n", sc.circle, std::ceil(sc.ticks / restore_rate));
             }
         }
     }
@@ -509,16 +508,16 @@ int spell_slot_available(CharData *ch, int spell) {
         return GET_MOB_SPLBANK(ch, circle) > 0;
 
     return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(), [ch, circle](const SpellCast &sc) {
-               return circle == SPELL_CIRCLE(ch, sc.spellnum);
+               return circle == sc.circle;
            }) < spells_of_circle[GET_LEVEL(ch)][circle];
 }
 
 int get_spellslot_restore_rate(CharData *ch) {
-    double rate = GET_CLARITY(ch) / 10;
+    double rate = GET_FOCUS(ch) / 10;
 
     // Add Race and Class Bonuses
-    rate *= races[(int)GET_RACE(ch)].bonus_clarity / 100.0;
-    rate *= classes[(int)GET_CLASS(ch)].bonus_clarity / 100.0;
+    rate *= races[(int)GET_RACE(ch)].bonus_focus / 100.0;
+    rate *= classes[(int)GET_CLASS(ch)].bonus_focus / 100.0;
 
     // Add Meditate Bonus
     if (PLR_FLAGGED(ch, PLR_MEDITATE))
@@ -537,7 +536,7 @@ ACMD(do_study) {
     show_available_slots(ch, ch);
 }
 
-void charge_mem(CharData *ch, int spellnum) {
+void charge_mem(CharData *ch, int spellnum, int circle = -1) {
     /*
      * Mobs don't memorize specific spells; they only recharge
      * slots in circles in their spell bank.
@@ -551,7 +550,10 @@ void charge_mem(CharData *ch, int spellnum) {
     if (GET_LEVEL(ch) < LVL_IMMORT)
         return;
 
-    ch->spellcasts.push_back(SpellCast(spellnum, skills[spellnum].mem_time));
+    if (circle == -1)
+        circle = SPELL_CIRCLE(ch, spellnum);
+
+    ch->spellcasts.push_back(SpellCast(circle, skills[spellnum].mem_time));
 
     if (!EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
         set_regen_event(ch, EVENT_REGEN_SPELLSLOT);

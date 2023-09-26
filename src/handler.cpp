@@ -171,8 +171,8 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
         GET_HEIGHT(ch) += mod;
         break;
 
-    case APPLY_CLARITY:
-        GET_CLARITY(ch) += mod;
+    case APPLY_FOCUS:
+        GET_FOCUS(ch) += mod;
         break;
 
     case APPLY_HIT:

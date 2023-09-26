@@ -201,7 +201,7 @@ const char *apply_types[NUM_APPLY_TYPES + 1] = {
     "NONE",         "STR",   "DEX",         "INT",         "WIS",         "CON",        "CHA",          "CLASS",
     "LEVEL",        "AGE",   "CHAR_WEIGHT", "CHAR_HEIGHT", "MAXMANA",     "HITPOINTS",  "MAXMOVE",      "GOLD",
     "EXP",          "ARMOR", "HITROLL",     "DAMROLL",     "SAVING_PARA", "SAVING_ROD", "SAVING_PETRI", "SAVING_BREATH",
-    "SAVING_SPELL", "SIZE",  "HIT_REGEN",   "CLARITY",     "PERCEPTION",  "HIDDENNESS", "COMPOSITION",  "\n"};
+    "SAVING_SPELL", "SIZE",  "HIT_REGEN",   "FOCUS",       "PERCEPTION",  "HIDDENNESS", "COMPOSITION",  "\n"};
 
 /* APPLY_x */
 const char *apply_abbrevs[NUM_APPLY_TYPES + 1] = {"none", "str",  "dex",   "int",    "wis",  "con",  "cha", "cls",

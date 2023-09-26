@@ -213,17 +213,6 @@ void hurt_char(CharData *ch, CharData *attacker, int amount, bool cap_amount) {
         set_regen_event(ch, EVENT_REGEN_HP);
 }
 
-// /* subtracts amount of mana from ch's current and starts points event */
-// void alter_mana(CharData *ch, int amount) {
-//     if (ch->in_room <= NOWHERE)
-//         return;
-
-//     GET_MANA(ch) = std::min(GET_MANA(ch) - amount, GET_MAX_MANA(ch));
-
-//     if (GET_MANA(ch) < GET_MAX_MANA(ch) && !EVENT_FLAGGED(ch, EVENT_REGEN_MANA))
-//         set_regen_event(ch, EVENT_REGEN_MANA);
-// }
-
 /* subtracts amount of moves from ch's current and starts points event */
 void alter_move(CharData *ch, int amount) {
     if (ch->in_room <= NOWHERE)

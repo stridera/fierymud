@@ -1334,7 +1334,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SPELL_CLARITY:
-        eff[0].location = APPLY_CLARITY;
+        eff[0].location = APPLY_FOCUS;
         eff[0].modifier = (1 + (skill > 95)) * 10;
         eff[0].duration = 10 + (skill / 10); /* 10-24 hrs */
         to_char = "You feel more clear-headed.";

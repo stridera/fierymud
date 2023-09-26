@@ -76,7 +76,7 @@ struct ClassDef {
     int thac0;                /* How good you are at hitting people. Lower=better */
     int nowear_flag;          /* What ITEM_ flag will prevent wearing an object? */
     int hit_regen_factor;     /* Factor: 100 = normal regen */
-    int bonus_clarity;        /* Bonus clarity (how quickly you recover spell slots) for your class */
+    int bonus_focus;          /* Bonus focus (how quickly you recover spell slots) for your class */
     int mv_regen_factor;
     double exp_gain_factor; /* Exp factor: 1 = normal exp needed to gain a level */
 

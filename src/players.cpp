@@ -356,7 +356,7 @@ int load_player(const char *name, CharData *ch) {
     GET_AUTOINVIS(ch) = -1;
     ch->player.time.logon = time(0);
 
-    GET_CLARITY(ch) = 10;
+    GET_FOCUS(ch) = 10;
 
     init_trophy(ch);
     init_retained_comms(ch);
@@ -1310,7 +1310,7 @@ void init_player(CharData *ch) {
     GET_MAX_HIT(ch) = GET_BASE_HIT(ch);
     GET_MAX_MOVE(ch) = natural_move(ch);
     GET_MOVE(ch) = GET_MAX_MOVE(ch);
-    GET_CLARITY(ch) = 10;
+    GET_FOCUS(ch) = 10;
     GET_AC(ch) = 100;
 
     player_table[GET_PFILEPOS(ch)].id = GET_IDNUM(ch) = ++top_idnum;

@@ -33,3 +33,4 @@ void rem_memming(CharData *ch);
 int spell_slot_available(CharData *ch, int spell);
 ObjData *find_spellbook_with_spell(CharData *ch, int spell);
 int get_spellslot_restore_rate(CharData *ch);
+void charge_mem(CharData *ch, int spellnum, int circle);

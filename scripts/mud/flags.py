@@ -420,7 +420,7 @@ AFFECTS = [
     "SAVING_SPELL",  # 24        /* Apply to save throw: spells     */
     "SIZE",  # 25        /* Apply to size                   */
     "HIT_REGEN",  # 26
-    "CLARITY",  # 27
+    "FOCUS",  # 27
     "PERCEPTION",  # 28
     "HIDDENNESS",  # 29
     "COMPOSITION",  # 30

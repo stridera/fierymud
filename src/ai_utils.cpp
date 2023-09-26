@@ -231,7 +231,7 @@ int value_effect(int location, int modifier) {
         break;
     case APPLY_HIT:
     case APPLY_MOVE:
-    case APPLY_CLARITY:
+    case APPLY_FOCUS:
         return modifier;
     case APPLY_AC:
         return 2 * modifier;

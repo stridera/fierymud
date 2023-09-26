@@ -584,8 +584,8 @@ void init_skills(void) {
            MAG_AFFECT, C1, CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false,
            "The circle of light above you fades out.");
 
-    spello(SPELL_CLARITY, "clarity", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, C1,
-           CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "Your mind returns to its normal state.");
+    spello(SPELL_CLARITY, "clarity", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED8,
+           DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "Your mind returns to its normal state.");
 
     spello(SPELL_CLONE, "clone", 80, 65, 5, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_SUMMON, C1,
            CAST_SPEED14, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 35, false, nullptr);

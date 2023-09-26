@@ -147,7 +147,7 @@ void spell_slot_restore_tick(CharData *ch) {
 
     ch->spellcasts.front().ticks -= get_spellslot_restore_rate(ch);
     if (ch->spellcasts.front().ticks <= 0) {
-        char_printf(ch, "You restore a spell slot for circle {}.\n", SPELL_CIRCLE(ch, ch->spellcasts.front().spellnum));
+        char_printf(ch, "You restore a spell slot for Circle {}.\n", ch->spellcasts.front().circle);
         ch->spellcasts.erase(ch->spellcasts.begin());
     }
 }
