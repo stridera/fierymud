@@ -393,7 +393,7 @@ void clear_skill(int skill) {
     skills[skill].cast_time = 0;
 }
 
-#define skillo(skill, name, humanoid, targets, wearoff)                                                                         \
+#define skillo(skill, name, humanoid, targets, wearoff)                                                                \
     dskill(skill, name, 0, 0, 0, 0, true, targets, 0, humanoid, 0, 0, 0, 0, 0, 0, 0, wearoff);
 #define chanto(chant, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff)                   \
     dskill(chant, name, 0, 0, 0, minpos, ok_fighting, targets, violent, false, routines, 0, 0, damage, 0, 0, quest,    \
@@ -442,7 +442,7 @@ void init_skills(void) {
      * (usually fighting or standing).
      *
      * no_fighting : can the spell be cast during combat
-     * 
+     *
      * targets :  A "list" of the valid targets
      * for the spell, joined with bitwise OR ('|').
      *
@@ -456,9 +456,9 @@ void init_skills(void) {
      *
      * mem_time:
      *
-     * cast_time: 
+     * cast_time:
      * CAST_SPEED1 1     1*
-     * CAST_SPEED2 2     1* 
+     * CAST_SPEED2 2     1*
      * CAST_SPEED4 4     2*
      * CAST_SPEED6 6     3*
      * CAST_SPEED8 8     4*
@@ -469,8 +469,8 @@ void init_skills(void) {
      * CAST_SPEED18 18   9*
      *
      * damage_type:  Choose the damage type of the spell.  Note, this does not
-     * mean the spell actually does damage.  Spells with this field set to 
-     * 'undefined' and not SKILL_SPHERE_HEAL are able to be cast more quickly 
+     * mean the spell actually does damage.  Spells with this field set to
+     * 'undefined' and not SKILL_SPHERE_HEAL are able to be cast more quickly
      * under the Quick Chant check as they are assumed to be non-combat spells.
      *
      * sphere:
@@ -584,6 +584,9 @@ void init_skills(void) {
            MAG_AFFECT, C1, CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false,
            "The circle of light above you fades out.");
 
+    spello(SPELL_CLARITY, "clarity", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, C1,
+           CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "Your mind returns to its normal state.");
+
     spello(SPELL_CLONE, "clone", 80, 65, 5, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_SUMMON, C1,
            CAST_SPEED14, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 35, false, nullptr);
 
@@ -600,8 +603,9 @@ void init_skills(void) {
     spello(SPELL_CONCEALMENT, "concealment", 0, 0, 0, POS_SITTING, false, TAR_CHAR_ROOM, false, MAG_POINT, C1,
            CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 13, false, "You fade back into view.");
 
-    spello(SPELL_CONE_OF_COLD, "cone of cold", 35, 15, 3, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, 
-          true, MAG_DAMAGE, C1, CAST_SPEED6, DAM_COLD, SKILL_SPHERE_WATER, 19, false, nullptr);
+    spello(SPELL_CONE_OF_COLD, "cone of cold", 35, 15, 3, POS_STANDING, true,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true, MAG_DAMAGE, C1, CAST_SPEED6, DAM_COLD, SKILL_SPHERE_WATER,
+           19, false, nullptr);
 
     spello(SPELL_CONFUSION, "confusion", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT,
            C1, CAST_SPEED10, DAM_MENTAL, SKILL_SPHERE_ENCHANT, 19, false, "You no longer feel so confused.");
@@ -621,8 +625,8 @@ void init_skills(void) {
     spello(SPELL_CREEPING_DOOM, "creeping doom", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_MANUAL, C1,
            CAST_SPEED14, DAM_CRUSH, SKILL_SPHERE_EARTH, 35, true, nullptr);
 
-    spello(SPELL_CREMATE, "cremate", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED14, DAM_FIRE,
-           SKILL_SPHERE_FIRE, 35, false, nullptr);
+    spello(SPELL_CREMATE, "cremate", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED14,
+           DAM_FIRE, SKILL_SPHERE_FIRE, 35, false, nullptr);
 
     spello(SPELL_CURE_BLIND, "cure blind", 30, 5, 2, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_UNAFFECT, C1,
            CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
@@ -637,7 +641,8 @@ void init_skills(void) {
            CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
 
     spello(SPELL_CURSE, "curse", 80, 50, 2, POS_STANDING, true, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, true,
-           MAG_AFFECT | MAG_ALTER_OBJ, C1, CAST_SPEED10, 0, SKILL_SPHERE_ENCHANT, 5, false, "You feel more optimistic.");
+           MAG_AFFECT | MAG_ALTER_OBJ, C1, CAST_SPEED10, 0, SKILL_SPHERE_ENCHANT, 5, false,
+           "You feel more optimistic.");
 
     spello(SPELL_DARK_FEAST, "dark feast", 0, 0, 0, POS_STANDING, false, TAR_OBJ_ROOM | TAR_CONTACT, false, MAG_MANUAL,
            C1, CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_GENERIC, 5, false, nullptr);
@@ -666,8 +671,9 @@ void init_skills(void) {
     spello(SPELL_DEMONSKIN, "demonskin", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED6,
            DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "Your skin reverts back to normal.");
 
-    spello(SPELL_DESTROY_UNDEAD, "destroy undead", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, 
-          true, MAG_DAMAGE, C1, CAST_SPEED8, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, false, nullptr);
+    spello(SPELL_DESTROY_UNDEAD, "destroy undead", 0, 0, 0, POS_STANDING, true,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true, MAG_DAMAGE, C1, CAST_SPEED8, DAM_ALIGN,
+           SKILL_SPHERE_DEATH, 5, false, nullptr);
 
     spello(SPELL_DETECT_ALIGN, "detect alignment", 20, 10, 2, POS_SITTING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1,
            CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 9, false, "You feel less aware.");
@@ -681,8 +687,9 @@ void init_skills(void) {
     spello(SPELL_DETECT_POISON, "detect poison", 15, 5, 1, POS_SITTING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1,
            CAST_SPEED6, DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 13, false, "You feel slightly less aware.");
 
-    spello(SPELL_DETONATION, "detonation", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_GROUND | TAR_OUTDOORS, 
-          true, MAG_DAMAGE, C1, CAST_SPEED6, DAM_CRUSH, SKILL_SPHERE_EARTH, 10, false, nullptr);
+    spello(SPELL_DETONATION, "detonation", 0, 0, 0, POS_STANDING, true,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_GROUND | TAR_OUTDOORS, true, MAG_DAMAGE, C1, CAST_SPEED6, DAM_CRUSH,
+           SKILL_SPHERE_EARTH, 10, false, nullptr);
 
     spello(SPELL_DIMENSION_DOOR, "dimension door", 75, 45, 3, POS_STANDING, false, TAR_CHAR_WORLD | TAR_NOT_SELF, false,
            MAG_MANUAL, C1, CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 15, false, nullptr);
@@ -690,8 +697,9 @@ void init_skills(void) {
     spello(SPELL_DISCORPORATE, "discorporate", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT,
            true, MAG_DAMAGE, C1, CAST_SPEED6, DAM_DISCORPORATE, SKILL_SPHERE_GENERIC, 14, false, nullptr);
 
-    spello(SPELL_DISPEL_MAGIC, "dispel magic", 0, 0, 0, POS_SITTING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_OBJ_ROOM | TAR_OBJ_INV, 
-          true, MAG_MANUAL, C1, CAST_SPEED10, DAM_DISPEL, SKILL_SPHERE_GENERIC, 15, false, nullptr);
+    spello(SPELL_DISPEL_MAGIC, "dispel magic", 0, 0, 0, POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_OBJ_ROOM | TAR_OBJ_INV, true, MAG_MANUAL, C1, CAST_SPEED10, DAM_DISPEL,
+           SKILL_SPHERE_GENERIC, 15, false, nullptr);
 
     spello(SPELL_DISPEL_EVIL, "dispel evil", 40, 25, 3, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true,
            MAG_DAMAGE, C1, CAST_SPEED8, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, false, nullptr);
@@ -829,8 +837,8 @@ void init_skills(void) {
            MAG_AFFECT, C1, CAST_SPEED12, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 11, false,
            "Your endurance returns to normal.");
 
-    spello(SPELL_GREATER_DISPLACEMENT, "greater displacement", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false, MAG_AFFECT, C1,
-           CAST_SPEED12, DAM_MENTAL, SKILL_SPHERE_PROT, 19, true, "&9&bYour image solidifies.&0");
+    spello(SPELL_GREATER_DISPLACEMENT, "greater displacement", 50, 25, 3, POS_STANDING, true, TAR_SELF_ONLY, false,
+           MAG_AFFECT, C1, CAST_SPEED12, DAM_MENTAL, SKILL_SPHERE_PROT, 19, true, "&9&bYour image solidifies.&0");
 
     spello(SPELL_GREATER_VITALITY, "greater vitality", 50, 30, 5, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT,
            C1, CAST_SPEED12, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 11, false, "Your magical vitality drains away.");
@@ -838,8 +846,8 @@ void init_skills(void) {
     spello(SPELL_GROUP_ARMOR, "group armor", 50, 30, 2, POS_STANDING, false, TAR_IGNORE, false, MAG_GROUP, C1,
            CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_PROT, 9, true, nullptr);
 
-    spello(SPELL_GROUP_HEAL, "group heal", 80, 60, 5, POS_STANDING, true, TAR_IGNORE, false, MAG_GROUP, C1, CAST_SPEED12,
-           DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, true, nullptr);
+    spello(SPELL_GROUP_HEAL, "group heal", 80, 60, 5, POS_STANDING, true, TAR_IGNORE, false, MAG_GROUP, C1,
+           CAST_SPEED12, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, true, nullptr);
 
     spello(SPELL_GROUP_RECALL, "group recall", 50, 30, 2, POS_STANDING, true, TAR_IGNORE, false, MAG_GROUP, C1,
            CAST_SPEED8, DAM_ALIGN, SKILL_SPHERE_SUMMON, 5, true, nullptr);
@@ -856,8 +864,8 @@ void init_skills(void) {
     spello(SPELL_HEAL, "heal", 60, 40, 3, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_POINT | MAG_UNAFFECT, C1,
            CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
 
-    spello(SPELL_HEAVENS_GATE, "heavens gate", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_MANUAL, C1, CAST_SPEED18,
-           DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, true, nullptr);
+    spello(SPELL_HEAVENS_GATE, "heavens gate", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_MANUAL, C1,
+           CAST_SPEED18, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, true, nullptr);
 
     spello(SPELL_HELL_BOLT, "hell bolt", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true,
            MAG_DAMAGE, C1, CAST_SPEED8, DAM_FIRE, SKILL_SPHERE_FIRE, 5, false, nullptr);
@@ -865,11 +873,11 @@ void init_skills(void) {
     spello(SPELL_HELLFIRE_BRIMSTONE, "hellfire and brimstone", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, false, MAG_AREA,
            C1, CAST_SPEED16, DAM_FIRE, SKILL_SPHERE_FIRE, 5, true, nullptr);
 
-    spello(SPELL_HELLS_GATE, "hell gate", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_MANUAL, C1, CAST_SPEED18,
-           DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, true, nullptr);
+    spello(SPELL_HELLS_GATE, "hell gate", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_MANUAL, C1,
+           CAST_SPEED18, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 5, true, nullptr);
 
-    spello(SPELL_HOLY_WORD, "holy word", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED1, DAM_ALIGN,
-           SKILL_SPHERE_DEATH, 5, false, nullptr);
+    spello(SPELL_HOLY_WORD, "holy word", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED1,
+           DAM_ALIGN, SKILL_SPHERE_DEATH, 5, false, nullptr);
 
     spello(SPELL_HYSTERIA, "hysteria", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_MANUAL, C1, CAST_SPEED10,
            DAM_MENTAL, SKILL_SPHERE_ENCHANT, 16, false, "Your courage returns to you.");
@@ -897,8 +905,9 @@ void init_skills(void) {
            MAG_MANUAL, C1, CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false,
            "The magical light fades away.&0");
 
-    spello(SPELL_ILLUSORY_WALL, "illusory wall", 0, 0, 0, POS_STANDING, false, TAR_STRING, false, MAG_MANUAL, C1, CAST_SPEED18,
-           DAM_UNDEFINED, SKILL_SPHERE_GENERIC, 27, true, "The wall dissolves into tiny motes of light...");
+    spello(SPELL_ILLUSORY_WALL, "illusory wall", 0, 0, 0, POS_STANDING, false, TAR_STRING, false, MAG_MANUAL, C1,
+           CAST_SPEED18, DAM_UNDEFINED, SKILL_SPHERE_GENERIC, 27, true,
+           "The wall dissolves into tiny motes of light...");
 
     spello(SPELL_IMMOLATE, "immolate", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true,
            MAG_MANUAL, C1, CAST_SPEED6, DAM_FIRE, SKILL_SPHERE_FIRE, 25, false, nullptr);
@@ -959,8 +968,8 @@ void init_skills(void) {
     spello(SPELL_LESSER_EXORCISM, "lesser exorcism", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true,
            MAG_DAMAGE, C1, CAST_SPEED10, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, false, nullptr);
 
-    spello(SPELL_FEATHER_FALL, "feather fall", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED8,
-           DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 13, false, "You float back to the ground.");
+    spello(SPELL_FEATHER_FALL, "feather fall", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1,
+           CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 13, false, "You float back to the ground.");
 
     spello(SPELL_LIGHTNING_BOLT, "lightning bolt", 30, 15, 1, POS_STANDING, true,
            TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true, MAG_DAMAGE, C1, CAST_SPEED4, DAM_SHOCK, SKILL_SPHERE_AIR,
@@ -1050,7 +1059,8 @@ void init_skills(void) {
            MAG_POINT, C1, CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
 
     spello(SPELL_PHANTASM, "phantasm", 0, 0, 0, POS_STANDING, false, TAR_IGNORE, false, MAG_SUMMON, C1, CAST_SPEED10,
-           DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 12, false, "Your illusion dissolves into tiny multicolored lights that float away.");
+           DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 12, false,
+           "Your illusion dissolves into tiny multicolored lights that float away.");
 
     spello(SPELL_PHOSPHORIC_EMBERS, "phosphoric embers", 0, 0, 0, POS_STANDING, true,
            TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true, MAG_MANUAL, C1, CAST_SPEED6, DAM_FIRE, SKILL_SPHERE_FIRE,
@@ -1142,7 +1152,8 @@ void init_skills(void) {
            MAG_AFFECT, C1, CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "You can speak again.");
 
     spello(SPELL_SIMULACRUM, "simulacrum", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_SUMMON, C1,
-           CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 15, false, "Your illusion dissolves into tiny multicolored lights that float away.");
+           CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 15, false,
+           "Your illusion dissolves into tiny multicolored lights that float away.");
 
     spello(SPELL_SLEEP, "sleep", 40, 25, 5, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1, CAST_SPEED10,
            DAM_MENTAL, SKILL_SPHERE_ENCHANT, 19, false, "You feel less tired.");
@@ -1176,8 +1187,8 @@ void init_skills(void) {
     spello(SPELL_SPIRIT_RAY, "spirit ray", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT,
            true, MAG_DAMAGE | MAG_AFFECT, C1, CAST_SPEED12, DAM_ALIGN, SKILL_SPHERE_DEATH, 5, false, nullptr);
 
-    spello(SPELL_STATUE, "statue", 0, 0, 0, POS_SITTING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, C1,
-           1, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 10, false, "Your statuesque disguise melts away.");
+    spello(SPELL_STATUE, "statue", 0, 0, 0, POS_SITTING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, C1, 1,
+           DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 10, false, "Your statuesque disguise melts away.");
 
     spello(SPELL_STONE_SKIN, "stone skin", 50, 25, 3, POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, C1,
            CAST_SPEED8, DAM_UNDEFINED, SKILL_SPHERE_PROT, 19, false, "&3&dYour skin softens and returns to normal.&0");
@@ -1210,14 +1221,14 @@ void init_skills(void) {
            MAG_DAMAGE | MAG_AFFECT, C1, CAST_SPEED12, DAM_FIRE, SKILL_SPHERE_FIRE, 5, false,
            "Your vision has returned.");
 
-    spello(SPELL_SUPERNOVA, "supernova", 100, 50, 3, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED16, DAM_FIRE,
-           SKILL_SPHERE_FIRE, 31, true, nullptr);
+    spello(SPELL_SUPERNOVA, "supernova", 100, 50, 3, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED16,
+           DAM_FIRE, SKILL_SPHERE_FIRE, 31, true, nullptr);
 
     spello(SPELL_TELEPORT, "teleport", 0, 0, 0, POS_STANDING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_MANUAL,
            C1, CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 11, false, nullptr);
 
-    spello(SPELL_UNHOLY_WORD, "unholy word", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED1, DAM_ALIGN,
-           SKILL_SPHERE_DEATH, 5, false, nullptr);
+    spello(SPELL_UNHOLY_WORD, "unholy word", 0, 0, 0, POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, C1, CAST_SPEED1,
+           DAM_ALIGN, SKILL_SPHERE_DEATH, 5, false, nullptr);
 
     spello(SPELL_URBAN_RENEWAL, "urban renewal", 0, 0, 0, POS_SITTING, false, TAR_IGNORE | TAR_OUTDOORS, false,
            MAG_ROOM, C1, CAST_SPEED12, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false,
@@ -1252,20 +1263,22 @@ void init_skills(void) {
     spello(SPELL_WALL_OF_FOG, "wall of fog", 50, 25, 5, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false,
            MAG_ROOM, C1, CAST_SPEED18, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 21, false, "The fog seems to clear out.");
 
-    spello(SPELL_WALL_OF_ICE, "wall of ice", 0, 0, 0, POS_STANDING, false, TAR_STRING, false, MAG_MANUAL, C1, CAST_SPEED18,
-           DAM_COLD, SKILL_SPHERE_WATER, 27, true, "The wall of ice melts away...");
+    spello(SPELL_WALL_OF_ICE, "wall of ice", 0, 0, 0, POS_STANDING, false, TAR_STRING, false, MAG_MANUAL, C1,
+           CAST_SPEED18, DAM_COLD, SKILL_SPHERE_WATER, 27, true, "The wall of ice melts away...");
 
     spello(SPELL_WALL_OF_STONE, "wall of stone", 0, 0, 0, POS_STANDING, false, TAR_STRING, false, MAG_MANUAL, C1,
            CAST_SPEED18, DAM_UNDEFINED, SKILL_SPHERE_SUMMON, 25, false, "The wall of stone crumbles into dust.");
 
     spello(SPELL_WANDERING_WOODS, "wandering woods", 0, 0, 0, POS_STANDING, false, TAR_IGNORE, false, MAG_MANUAL, C1,
-           CAST_SPEED16, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, "The woods around you shift back to their proper form.");
+           CAST_SPEED16, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false,
+           "The woods around you shift back to their proper form.");
 
-    spello(SPELL_WATER_BLAST, "water blast", 40, 30, 2, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT, true,
-           MAG_DAMAGE, C1, CAST_SPEED6, DAM_WATER, SKILL_SPHERE_WATER, 21, false, nullptr);
+    spello(SPELL_WATER_BLAST, "water blast", 40, 30, 2, POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT | TAR_DIRECT,
+           true, MAG_DAMAGE, C1, CAST_SPEED6, DAM_WATER, SKILL_SPHERE_WATER, 21, false, nullptr);
 
     spello(SPELL_WATERFORM, "waterform", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT,
-           C1, CAST_SPEED14, DAM_UNDEFINED, SKILL_SPHERE_WATER, 27, true, "Your form solidifies into flesh once again.");
+           C1, CAST_SPEED14, DAM_UNDEFINED, SKILL_SPHERE_WATER, 27, true,
+           "Your form solidifies into flesh once again.");
 
     spello(SPELL_WATERWALK, "waterwalk", 35, 5, 3, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, C1,
            CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 29, false, "Your feet seem less buoyant.");
@@ -1282,8 +1295,8 @@ void init_skills(void) {
            MAG_AFFECT, C1, CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false,
            "Your giant bat-like wings fold up and vanish.");
 
-    spello(SPELL_WIZARD_EYE, "wizard eye", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_MANUAL, C1, CAST_SPEED16,
-           DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 17, true, nullptr);
+    spello(SPELL_WIZARD_EYE, "wizard eye", 0, 0, 0, POS_STANDING, false, TAR_CHAR_WORLD, false, MAG_MANUAL, C1,
+           CAST_SPEED16, DAM_UNDEFINED, SKILL_SPHERE_DIVIN, 17, true, nullptr);
 
     spello(SPELL_WORD_OF_COMMAND, "word of command", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_MANUAL, C1,
            CAST_SPEED14, DAM_MENTAL, SKILL_SPHERE_GENERIC, 5, true, nullptr);
@@ -1500,8 +1513,8 @@ void init_skills(void) {
      * song, name, minpos, ok_fighting, targets, violent, routines, damage, quest, wearoff
      */
 
-    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, 0,
-          false, "Your nerves settle down as the terror leaves you.");
+    songo(SONG_BALLAD_OF_TEARS, "ballad of tears", POS_STANDING, true, TAR_IGNORE, true, MAG_AREA, 0, false,
+          "Your nerves settle down as the terror leaves you.");
 
     songo(SONG_SONG_OF_REST, "song of rest", POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT, 0, false,
           "The restful song fades from your memory.");
@@ -1518,16 +1531,16 @@ void init_skills(void) {
     songo(SONG_HEARTHSONG, "hearthsong", POS_STANDING, false, TAR_IGNORE, false, MAG_GROUP, 0, true,
           "Your familiar disguise melts away.");
 
-    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_GROUP, 0,
-          false, "Your inspiration fades.");
+    songo(SONG_HEROIC_JOURNEY, "heroic journey", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_GROUP, 0, false,
+          "Your inspiration fades.");
 
-    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, 0,
-          false, "Your inspiration fades.");
+    songo(SONG_INSPIRATION, "inspiration", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_AFFECT, 0, false,
+          "Your inspiration fades.");
 
     songo(SONG_JOYFUL_NOISE, "joyful noise", POS_STANDING, true, TAR_CHAR_ROOM, false, MAG_UNAFFECT, 0, false, nullptr);
 
-    songo(SONG_TERROR, "terror", POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT, 0,
-          false, "Your nerves settle down as the terror leaves you.");
+    songo(SONG_TERROR, "terror", POS_STANDING, true, TAR_CHAR_ROOM | TAR_FIGHT_VICT, true, MAG_AFFECT, 0, false,
+          "Your nerves settle down as the terror leaves you.");
 
     /* Set up non-skill effects */
     /* effect, name, wearoff */

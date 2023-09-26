@@ -1682,6 +1682,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_ENCHANT_WEAPON, CLASS_BARD, CIRCLE_9);
     spell_assign(SPELL_FAMILIARITY, CLASS_BARD, CIRCLE_9);
     spell_assign(SPELL_INVIGORATE, CLASS_BARD, CIRCLE_9);
+    spell_assign(SPELL_CLARITY, CLASS_BARD, CIRCLE_9);
 
     spell_assign(SPELL_MAJOR_PARALYSIS, CLASS_BARD, CIRCLE_10);
     spell_assign(SPELL_MASS_INVIS, CLASS_BARD, CIRCLE_10);
@@ -2116,6 +2117,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_MASS_INVIS, CLASS_ILLUSIONIST, CIRCLE_8);
 
     spell_assign(SPELL_FAMILIARITY, CLASS_ILLUSIONIST, CIRCLE_9);
+    spell_assign(SPELL_CLARITY, CLASS_ILLUSIONIST, CIRCLE_9);
 
     spell_assign(SPELL_SEVERANCE, CLASS_ILLUSIONIST, CIRCLE_10);
 
@@ -2214,6 +2216,7 @@ void assign_class_skills(void) {
 
     spell_assign(SPELL_FULL_HARM, CLASS_MYSTIC, CIRCLE_9);
     spell_assign(SPELL_INFRAVISION, CLASS_MYSTIC, CIRCLE_9);
+    spell_assign(SPELL_CLARITY, CLASS_MYSTIC, CIRCLE_9);
 
     spell_assign(SPELL_GROUP_ARMOR, CLASS_MYSTIC, CIRCLE_10);
 

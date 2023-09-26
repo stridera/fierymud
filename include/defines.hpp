@@ -487,7 +487,7 @@
 #define EFF_SONG_OF_REST 81
 #define EFF_DISPLACEMENT 82
 #define EFF_GREATER_DISPLACEMENT 83
-#define NUM_EFF_FLAGS 84     /* Keep me updated */
+#define NUM_EFF_FLAGS 84 /* Keep me updated */
 
 /* Preference flags: used by CharData.player_specials.pref */
 #define PRF_BRIEF 0       /* Room descs won't normally be shown */
@@ -825,6 +825,7 @@
 #define SPELL_DISPLACEMENT 264
 #define SPELL_GREATER_DISPLACEMENT 265
 #define SPELL_NIMBLE 266
+#define SPELL_CLARITY 267
 
 /* Insert new spells here, up to MAX_SPELLS */
 

@@ -496,7 +496,7 @@ void show_available_slots(CharData *ch, CharData *tch) {
         }
     }
 
-    char_printf(ch, "[DEBUG] Current Restore Rate: {}/tick.\n", restore_rate);
+    char_printf(ch, "\n[DEBUG] Current Restore Rate: {}.\n", restore_rate);
 }
 
 int spell_slot_available(CharData *ch, int spell) {
