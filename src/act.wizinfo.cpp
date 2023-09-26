@@ -669,7 +669,7 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     resp += fmt::format("HP: [{}{}/{}+{}{}]  MV: [{}{}/{}+{}{}]  CLARITY: [{}{}{}]\n", CLR(ch, FGRN), GET_HIT(k),
                         GET_MAX_HIT(k), hit_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k),
-                        move_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_CLARITY(k) / 100, CLR(ch, ANRM));
+                        move_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_CLARITY(k), CLR(ch, ANRM));
 
     resp += fmt::format(
         "Coins: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c], "
