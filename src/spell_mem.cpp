@@ -551,8 +551,9 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
         return;
     }
 
-    if (GET_LEVEL(ch) < LVL_IMMORT)
-        return;
+    // TODO: Uncomment this when testing is done.
+    // if (GET_LEVEL(ch) >= LVL_IMMORT)
+    //     return;
 
     if (circle == -1)
         circle = SPELL_CIRCLE(ch, spellnum);
