@@ -25,6 +25,7 @@
 #include "math.hpp"
 #include "regen.hpp"
 #include "skills.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
@@ -214,7 +215,7 @@ RaceDef races[NUM_RACES] = {
      290,                       /* female weight high */
      72,                        /* female height low */
      90,                        /* female height high */
-     {80, 72, 56, 56, 100, 64}, /* max stat: str, dex, int, wis, con, cha */
+     {80, 72, 56, 56, 92, 64}, /* max stat: str, dex, int, wis, con, cha */
      100,                       /* experience reward factor for mobs */
      130,                       /* hp factor for mobs */
      110,                       /* hitroll/damroll factor for mobs */
@@ -316,7 +317,7 @@ RaceDef races[NUM_RACES] = {
      530,                       /* female weight high */
      93,                        /* female height low */
      119,                       /* female height high */
-     {100, 64, 52, 60, 80, 60}, /* max stat: str, dex, int, wis, con, cha */
+     {92, 64, 52, 60, 80, 60}, /* max stat: str, dex, int, wis, con, cha */
      100,                       /* experience reward factor for mobs */
      110,                       /* hp factor for mobs */
      100,                       /* hitroll/damroll factor for mobs */
@@ -1166,7 +1167,7 @@ RaceDef races[NUM_RACES] = {
      10,                        /* female weight high */
      6,                         /* female height low */
      10,                        /* female height high */
-     {30, 95, 90, 90, 30, 95},  /* max stat: str, dex, int, wis, con, cha */
+     {30, 95, 90, 90, 30, 92},  /* max stat: str, dex, int, wis, con, cha */
      100,                       /* experience reward factor for mobs */
      80,                        /* hp factor for mobs */
      100,                       /* hitroll/damroll factor for mobs */
@@ -1200,7 +1201,7 @@ RaceDef races[NUM_RACES] = {
      10,                        /* female weight high */
      6,                         /* female height low */
      10,                        /* female height high */
-     {30, 95, 90, 90, 30, 95},  /* max stat: str, dex, int, wis, con, cha */
+     {30, 95, 90, 90, 30, 92},  /* max stat: str, dex, int, wis, con, cha */
      100,                       /* experience reward factor for mobs */
      80,                        /* hp factor for mobs */
      100,                       /* hitroll/damroll factor for mobs */
@@ -1234,7 +1235,7 @@ RaceDef races[NUM_RACES] = {
      160,                       /* female weight high */
      59,                        /* female height low */
      68,                        /* female height high */
-     {65, 72, 80, 80, 65, 100}, /* max stat: str, dex, int, wis, con, cha */
+     {65, 72, 80, 80, 65, 96}, /* max stat: str, dex, int, wis, con, cha */
      100,                       /* experience reward factor for mobs */
      100,                       /* hp factor for mobs */
      100,                       /* hitroll/damroll factor for mobs */
@@ -1707,12 +1708,12 @@ void convert_race(CharData *ch, int newrace) {
 
 void scale_attribs(CharData *ch) {
     if (VALID_RACE(ch)) {
-        GET_AFFECTED_STR(ch) = (GET_VIEWED_STR(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_STR - 1]) / 100;
-        GET_AFFECTED_DEX(ch) = (GET_VIEWED_DEX(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_DEX - 1]) / 100;
-        GET_AFFECTED_INT(ch) = (GET_VIEWED_INT(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_INT - 1]) / 100;
-        GET_AFFECTED_WIS(ch) = (GET_VIEWED_WIS(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_WIS - 1]) / 100;
-        GET_AFFECTED_CON(ch) = (GET_VIEWED_CON(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CON - 1]) / 100;
-        GET_AFFECTED_CHA(ch) = (GET_VIEWED_CHA(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CHA - 1]) / 100;
+        GET_AFFECTED_STR(ch) = (std::min(((GET_VIEWED_STR(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_STR - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_DEX(ch) = (std::min(((GET_VIEWED_DEX(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_DEX - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_INT(ch) = (std::min(((GET_VIEWED_INT(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_INT - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_WIS(ch) = (std::min(((GET_VIEWED_WIS(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_WIS - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_CON(ch) = (std::min(((GET_VIEWED_CON(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CON - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_CHA(ch) = (std::min(((GET_VIEWED_CHA(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CHA - 1]) / 100), MAX_ABILITY_VALUE));
     } else {
         GET_AFFECTED_STR(ch) = GET_VIEWED_STR(ch) * 72 / 100;
         GET_AFFECTED_DEX(ch) = GET_VIEWED_DEX(ch) * 72 / 100;
