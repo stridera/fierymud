@@ -518,10 +518,49 @@ int spell_slot_available(CharData *ch, int spell) {
 
 int get_spellslot_restore_rate(CharData *ch) {
     double rate = GET_FOCUS(ch) / 10;
+    int class_bonus;
 
-    // Add Race and Class Bonuses
+    // Add Race Bonuses
     rate *= races[(int)GET_RACE(ch)].bonus_focus / 100.0;
-    rate *= classes[(int)GET_CLASS(ch)].bonus_focus / 100.0;
+
+    
+    // Determine a bonus factor by class based on stats
+    // Uses ability score 72 as "full" value; scores greater than 72 will add above scale
+    switch (GET_CLASS(ch)) {
+    case CLASS_CLERIC:
+    case CLASS_DIABOLIST:
+    case CLASS_DRUID:
+    case CLASS_PRIEST:
+        // base 105; add approx 20% scale - 13% from Wis, 7% from Int         * max: 132.77 *
+        class_bonus = (13 * (GET_WIS(ch) / 72)) + (7 * (GET_INT(ch) / 72));
+        break;
+    case CLASS_CRYOMANCER:
+    case CLASS_ILLUSIONIST:
+    case CLASS_NECROMANCER:
+    case CLASS_PYROMANCER:
+    case CLASS_SORCERER:
+        // base 105; add approx 20% scale - 13% from Int, 7% from Wis         * max: 132.77 *
+        class_bonus = (13 * (GET_INT(ch) / 72)) + (7 * (GET_WIS(ch) / 72));
+        break;
+    case CLASS_ANTI_PALADIN:
+    case CLASS_PALADIN:
+        // base 110; add approx 10% scale - 7% from Wis, 3% from Int          * max: 123.88 *
+        class_bonus = (7 * (GET_WIS(ch) / 72)) + (3 * (GET_INT(ch) / 72));
+        break;
+    case CLASS_RANGER:
+        // base 110; add approx 10% scale - 7% from Int, 3% from Wis          * max: 123.88 *
+        class_bonus = (7 * (GET_INT(ch) / 72)) + (3 * (GET_WIS(ch) / 72));
+        break;
+    case CLASS_BARD:
+        // base 109; add approx 14% scale - 7% from Wis, 7% from Int          * max: 128.44 *
+        class_bonus = (7 * (GET_WIS(ch) / 72)) + (7 * (GET_INT(ch) / 72));
+        break;
+    }
+
+    // Add Class Bonuses = base class scale + bonus factor determined above
+    rate *= (classes[(int)GET_CLASS(ch)].bonus_focus + class_bonus) / 100.0;
+
+
 
     // Add Meditate Bonus
     if (PLR_FLAGGED(ch, PLR_MEDITATE))
