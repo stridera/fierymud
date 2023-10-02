@@ -86,7 +86,7 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if POSSESSED (ch)
+        if (POSSESSED (ch) || EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
             continue;
 
         /* If lower than default position, get up. */
