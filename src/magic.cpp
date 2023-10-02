@@ -5350,22 +5350,28 @@ int get_vitality_hp_gain(CharData *ch, int spellnum) {
  * if it returns 1.
  */
 bool affected_by_armor_spells(CharData *victim, int spellnum) {
-    /* If the target is already affected by the spell being cast,
-     * return false so mag_affect continues to cast the spell and
+    /* If the target is already affected by the spell being cast, 
+     * return false so mag_affect continues to cast the spell and 
      * refresh the spell duration.
      */
-    if (affected_by_spell(victim, spellnum)) {
+    if (!IS_NPC(victim) && affected_by_spell(victim, spellnum)) {
         return false;
-        /* If the target is not already affected by the spell being cast,
-         * but is affected by another armor spell, return true so mag_affect
-         * bails out and the character doesn't end up with two armor effects.
-         */
-    } else {
-        return affected_by_spell(victim, SPELL_ARMOR) || affected_by_spell(victim, SPELL_BARKSKIN) ||
-               affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
-               affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
-               affected_by_spell(victim, SPELL_MIRAGE);
+
+    } else if (affected_by_spell(victim, spellnum)) {
+        return true;
+        
+    /* If the target is not already affected by the spell being cast,
+     * but is affected by another armor spell, return true so mag_affect
+     * bails out and the character doesn't end up with two armor effects.
+     */
+    } else if (affected_by_spell(victim, SPELL_ARMOR) || affected_by_spell(victim, SPELL_BARKSKIN) ||
+        affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+        affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
+        affected_by_spell(victim, SPELL_MIRAGE)) {
+        return true;
     }
+
+    return false;
 }
 
 bool spell_suitable_for_fluid_characters(int spellnum) {
