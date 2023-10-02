@@ -103,7 +103,7 @@ RaceDef races[NUM_RACES] = {
      1000,                     /* default alignment */
      3,                        /* damroll bonus */
      3,                        /* hitroll bonus */
-     100,                      /* focus bonus / 100 */
+     110,                      /* focus bonus / 100 */
      LIFE_LIFE,                /* default life force */
      COMP_FLESH,               /* default composition */
      90,                       /* male weight low */
@@ -138,7 +138,7 @@ RaceDef races[NUM_RACES] = {
      1000,                     /* default alignment */
      2,                        /* damroll bonus */
      4,                        /* hitroll bonus */
-     100,                      /* focus bonus / 100 */
+     105,                      /* focus bonus / 100 */
      LIFE_LIFE,                /* default life force */
      COMP_FLESH,               /* default composition */
      40,                       /* male weight low */
@@ -243,7 +243,7 @@ RaceDef races[NUM_RACES] = {
      -1000,                    /* default alignment */
      3,                        /* damroll bonus */
      3,                        /* hitroll bonus */
-     100,                      /* focus bonus / 100 */
+     110,                      /* focus bonus / 100 */
      LIFE_LIFE,                /* default life force */
      COMP_FLESH,               /* default composition */
      90,                       /* male weight low */
@@ -383,7 +383,7 @@ RaceDef races[NUM_RACES] = {
      1000,                     /* default alignment */
      3,                        /* damroll bonus */
      3,                        /* hitroll bonus */
-     100,                      /* focus bonus / 100 */
+     105,                      /* focus bonus / 100 */
      LIFE_LIFE,                /* default life force */
      COMP_FLESH,               /* default composition */
      100,                      /* male weight low */
@@ -593,7 +593,7 @@ RaceDef races[NUM_RACES] = {
      0,                           /* default alignment */
      10,                          /* damroll bonus */
      4,                           /* hitroll bonus */
-     100,                         /* focus bonus / 100 */
+     130,                         /* focus bonus / 100 */
      LIFE_LIFE,                   /* default life force */
      COMP_FLESH,                  /* default composition */
      16000,                       /* male weight low */
@@ -733,7 +733,7 @@ RaceDef races[NUM_RACES] = {
      -1000,                     /* default alignment */
      6,                         /* damroll bonus */
      4,                         /* hitroll bonus */
-     100,                       /* focus bonus / 100 */
+     120,                       /* focus bonus / 100 */
      LIFE_DEMONIC,              /* default life force */
      COMP_FLESH,                /* default composition */
      130,                       /* male weight low */
@@ -768,7 +768,7 @@ RaceDef races[NUM_RACES] = {
      500,                      /* default alignment */
      1,                        /* damroll bonus */
      3,                        /* hitroll bonus */
-     100,                      /* focus bonus / 100 */
+     105,                      /* focus bonus / 100 */
      LIFE_LIFE,                /* default life force */
      COMP_FLESH,               /* default composition */
      20,                       /* male weight low */
@@ -803,7 +803,7 @@ RaceDef races[NUM_RACES] = {
      0,                           /* default alignment */
      10,                          /* damroll bonus */
      4,                           /* hitroll bonus */
-     100,                         /* focus bonus / 100 */
+     130,                         /* focus bonus / 100 */
      LIFE_LIFE,                   /* default life force */
      COMP_FLESH,                  /* default composition */
      16000,                       /* male weight low */
@@ -838,7 +838,7 @@ RaceDef races[NUM_RACES] = {
      0,                           /* default alignment */
      10,                          /* damroll bonus */
      4,                           /* hitroll bonus */
-     100,                         /* focus bonus / 100 */
+     130,                         /* focus bonus / 100 */
      LIFE_LIFE,                   /* default life force */
      COMP_FLESH,                  /* default composition */
      16000,                       /* male weight low */
@@ -873,7 +873,7 @@ RaceDef races[NUM_RACES] = {
      0,                           /* default alignment */
      10,                          /* damroll bonus */
      4,                           /* hitroll bonus */
-     100,                         /* focus bonus / 100 */
+     130,                         /* focus bonus / 100 */
      LIFE_LIFE,                   /* default life force */
      COMP_FLESH,                  /* default composition */
      16000,                       /* male weight low */
@@ -908,7 +908,7 @@ RaceDef races[NUM_RACES] = {
      0,                           /* default alignment */
      10,                          /* damroll bonus */
      4,                           /* hitroll bonus */
-     100,                         /* focus bonus / 100 */
+     130,                         /* focus bonus / 100 */
      LIFE_LIFE,                   /* default life force */
      COMP_FLESH,                  /* default composition */
      16000,                       /* male weight low */
@@ -943,7 +943,7 @@ RaceDef races[NUM_RACES] = {
      0,                           /* default alignment */
      10,                          /* damroll bonus */
      4,                           /* hitroll bonus */
-     100,                         /* focus bonus / 100 */
+     130,                         /* focus bonus / 100 */
      LIFE_LIFE,                   /* default life force */
      COMP_FLESH,                  /* default composition */
      16000,                       /* male weight low */
@@ -1153,7 +1153,7 @@ RaceDef races[NUM_RACES] = {
      -1000,                    /* default alignment */
      2,                        /* damroll bonus */
      4,                        /* hitroll bonus */
-     100,                      /* focus bonus / 100 */
+     105,                      /* focus bonus / 100 */
      LIFE_LIFE,                /* default life force */
      COMP_FLESH,               /* default composition */
      40,                       /* male weight low */
@@ -1188,7 +1188,7 @@ RaceDef races[NUM_RACES] = {
      1000,                          /* default alignment */
      0,                             /* damroll bonus */
      6,                             /* hitroll bonus */
-     100,                           /* focus bonus / 100 */
+     200,                           /* focus bonus / 100 */
      LIFE_LIFE,                     /* default life force */
      COMP_FLESH,                    /* default composition */
      5,                             /* male weight low */
@@ -1224,7 +1224,7 @@ RaceDef races[NUM_RACES] = {
      -1000,                                           /* default alignment */
      0,                                               /* damroll bonus */
      6,                                               /* hitroll bonus */
-     100,                                             /* focus bonus / 100 */
+     200,                                             /* focus bonus / 100 */
      LIFE_LIFE,                                       /* default life force */
      COMP_FLESH,                                      /* default composition */
      5,                                               /* male weight low */
@@ -1259,7 +1259,7 @@ RaceDef races[NUM_RACES] = {
      1000,                     /* default alignment */
      3,                        /* damroll bonus */
      3,                        /* hitroll bonus */
-     100,                      /* focus bonus / 100 */
+     105,                      /* focus bonus / 100 */
      LIFE_LIFE,                /* default life force */
      COMP_FLESH,               /* default composition */
      90,                       /* male weight low */
