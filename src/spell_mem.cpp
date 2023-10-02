@@ -567,6 +567,11 @@ int get_spellslot_restore_rate(CharData *ch) {
         if (GET_SKILL(ch, SKILL_MEDITATE))
             rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
 
+    // Reduce for resting NPCs
+    if (IS_NPC(ch) && GET_POS(ch) == POS_SITTING) {
+        rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
+    }
+
     return rate;
 }
 

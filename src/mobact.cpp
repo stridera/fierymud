@@ -86,7 +86,11 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if (POSSESSED (ch) || EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
+        if (POSSESSED (ch))
+            continue;
+
+        /* Don't do anything if recovering spells */
+        if (EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
             continue;
 
         /* If lower than default position, get up. */
@@ -795,9 +799,7 @@ bool check_spellbank(CharData *ch) {
         if (GET_MOB_SPLBANK(ch, i) < spells_of_circle[(int)GET_LEVEL(ch)][i]) {
             do_sit(ch, nullptr, 0, 0);
             if (GET_POS(ch) == POS_SITTING && GET_STANCE(ch) >= STANCE_RESTING && GET_STANCE(ch) <= STANCE_ALERT) {
-                act(MEM_MODE(ch) == PRAY ? "$n begins praying to $s deity."
-                                         : "$n takes out $s books and begins to study.",
-                    true, ch, 0, 0, TO_ROOM);
+                act("$n begins to meditate.", true, ch, 0, 0, TO_ROOM);
                 // start_studying(ch);
                 return true;
             }
