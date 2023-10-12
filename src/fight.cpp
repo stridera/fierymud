@@ -1973,8 +1973,6 @@ void hit(CharData *ch, CharData *victim, int type) {
 
     if (FIGHTING(ch) != victim && EFF_FLAGGED(ch, EFF_BLIND)) {
         char_printf(ch, "You cant see a thing!\n");
-        log(LogSeverity::Error, LVL_GOD, "hit(): {} is blind but tried to attack new target {} [room {:d}]",
-            GET_NAME(ch), GET_NAME(victim), CH_RVNUM(ch));
         return;
     }
 

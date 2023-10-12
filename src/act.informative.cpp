@@ -1561,7 +1561,7 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
                     "Damage Dice is '{}D{}' "
                     "for an average per-round damage of {:.1f}.\n"
                     "Damage Type is {}.\n",
-                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj), GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE));
+                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj), attack_hit_text[GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE)].singular);
         break;
     case ITEM_ARMOR:
     case ITEM_TREASURE:
@@ -1591,6 +1591,10 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
     for (i = 0; i < MAX_OBJ_APPLIES; i++)
         if (obj->applies[i].location != APPLY_NONE)
             char_printf(ch, "   Apply: {}\n", format_apply(obj->applies[i].location, obj->applies[i].modifier));
+
+    if (SCRIPT(obj) || (GET_OBJ_RNUM(obj) >= 0 && obj_index[GET_OBJ_RNUM(obj)].func)) {
+        char_printf(ch, "   You sense this item has hidden special properties!\n");
+    }
 
 }
 
