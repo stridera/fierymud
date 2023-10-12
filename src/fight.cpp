@@ -2240,6 +2240,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         if (type == TYPE_HIT && !dam)
             type = SKILL_PUNCH;
 
+        /* If the weapon is flagged to do a special kind of energy damage, alter it. */
+        if (weapon) {
+            dtype = convert_weapon_damage(weapon);
+            type = convert_weapon_type(weapon);
+        }
+
         /* Adjust damage for susceptibility */
         dam = dam_suscept_adjust(ch, victim, weapon, dam, dtype);
 

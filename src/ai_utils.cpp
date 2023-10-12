@@ -111,6 +111,12 @@ int value_spell_effect(int flag) {
     case EFF_HASTE:
     case EFF_DISPLACEMENT:
     case EFF_NIMBLE:
+    case EFF_ACID_WEAPON:
+    case EFF_FIRE_WEAPON:
+    case EFF_ICE_WEAPON:
+    case EFF_RADIANT_WEAPON:
+    case EFF_POISON_WEAPON:
+    case EFF_SHOCK_WEAPON:
         return 60;
     case EFF_MAJOR_GLOBE:
     case EFF_HARNESS:
