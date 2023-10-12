@@ -57,6 +57,7 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose);
 bool mass_attack_ok(CharData *ch, CharData *victim, bool verbose);
 void stop_fighting(CharData *ch);
 #define attack(ch, victim) hit(ch, victim, TYPE_UNDEFINED)
+bool displaced(CharData *ch, CharData *victim);
 
 /* Structures */
 extern CharData *combat_list;
