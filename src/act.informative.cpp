@@ -2502,16 +2502,16 @@ static void print_object_location(int num, ObjData *obj, CharData *ch, int recur
     if (num > 0)
         paging_printf(ch, "O{:3d}. {:<25} - ", num, strip_ansi(obj->short_description));
     else
-        paging_printf(ch, "{:<34}", " - ");
+        paging_printf(ch, "{:<34}", " ");
 
     if (obj->in_room > NOWHERE)
-        paging_printf(ch, "[{:5d}] {}\n", world[obj->in_room].vnum, world[obj->in_room].name);
+        paging_printf(ch, "{:5} [{:d}]\n", world[obj->in_room].name, world[obj->in_room].vnum);
     else if (obj->carried_by)
-        paging_printf(ch, "carried by {}\n", PERS(obj->carried_by, ch));
+        paging_printf(ch, "carried by {} at\n {:<33}{} [{}]\n", PERS(obj->carried_by, ch), " ", world[obj->carried_by->in_room].name, world[obj->carried_by->in_room].vnum);
     else if (obj->worn_by)
-        paging_printf(ch, "worn by {}\n", PERS(obj->worn_by, ch));
+        paging_printf(ch, "worn by {} at\n {:<33}{} [{}]\n", PERS(obj->worn_by, ch), " ", world[obj->worn_by->in_room].name, world[obj->worn_by->in_room].vnum);
     else if (obj->in_obj) {
-        paging_printf(ch, "inside {}{}\n", obj->in_obj->short_description, (recur ? ", which is" : " "));
+        paging_printf(ch, "inside {}{}\n", obj->in_obj->short_description, (recur ? " at" : " "));
         if (recur)
             print_object_location(0, obj->in_obj, ch, recur);
     } else
