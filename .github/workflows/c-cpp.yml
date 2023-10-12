@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-          build_type: "Release", cc: "gcc", cxx: "g++"
-
+      
     steps:
     - uses: actions/checkout@v1
 
@@ -137,7 +136,7 @@ jobs:
 
   publish:
     if: contains(github.ref, 'tags/v')
-    name: "Ubuntu Latest GCC"
+    name: "Publish Ubuntu Latest GCC"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
