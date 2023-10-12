@@ -3133,13 +3133,15 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
     else
         char_printf(ch, "Armor class: &3{:d}&0  ", GET_AC(tch) + 5 * monk_weight_penalty(tch));
 
+    char_printf(ch, "Focus: &5{:d}&0  ", GET_FOCUS(tch));
+
     if (verbose)
         char_printf(
-            ch, "Hitroll: &3{}&0 (&3{:d}&0)  Damroll: &3{}&0 (&3{:d}&0)\n",
+            ch, "Hitroll: &3{}&0 (&3{:d}&0)  Damroll: &3{}&0 (&3{:d}&0)  ",
             hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)), GET_HITROLL(tch) - monk_weight_penalty(tch),
             hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)), GET_DAMROLL(tch) - monk_weight_penalty(tch));
     else
-        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0 ", GET_HITROLL(tch) - monk_weight_penalty(tch),
+        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0  ", GET_HITROLL(tch) - monk_weight_penalty(tch),
                     GET_DAMROLL(tch) - monk_weight_penalty(tch));
 
     if (GET_RAGE(tch) || GET_SKILL(tch, SKILL_BERSERK))
