@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-cmake@v1
+      - uses: jwlawson/actions-setup-cmake@v1.13
         with:
           build-version: 3.22.0
       - run: cmake .
