@@ -1560,7 +1560,7 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
                     "Damage Dice is '{}D{}' "
                     "for an average per-round damage of {:.1f}.\n"
                     "Damage Type is {}.\n",
-                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj)), GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE);
+                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj), GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE));
         break;
     case ITEM_ARMOR:
     case ITEM_TREASURE:
