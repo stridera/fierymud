@@ -2217,8 +2217,6 @@ void hit(CharData *ch, CharData *victim, int type) {
         if (type == TYPE_HIT && !dam)
             type = SKILL_PUNCH;
 
-
-
         /* Adjust damage for susceptibility */
         dam = dam_suscept_adjust(ch, victim, weapon, dam, dtype);
 
@@ -2525,4 +2523,27 @@ ACMD(do_aggr) {
 /* new function to calculate thac0 for PCs instead of tabled data */
 int calc_thac0(int level, int thac0_01, int thac0_00) { return thac0_01 + level * (thac0_00 - thac0_01) / 100; }
 
+bool displaced(CharData *ch, CharData *victim) {
+    bool displaced = false;
 
+    /* adjust for additional effects like Displacement */
+    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+
+        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
+            displaced = (random_number(1, 5) == 1); /* 20% chance to ignore damage */
+        }
+
+        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+            displaced = (random_number(1, 3) == 1); /* 33% chance to ignore damage */
+        }
+
+        if (displaced == true) {
+            act("&9&b$n takes a guess at $N's position but misses!&0", false, ch, 0, victim, TO_NOTVICT);
+            act("&9&bYou take a guess at $N's position but miss!&0", false, ch, 0, victim, TO_CHAR);
+            act("&9&b$n takes a guess your position but misses!&0", false, ch, 0, victim, TO_VICT);
+            set_fighting(victim, ch, true);
+        }
+    }
+    
+    return displaced;
+}
