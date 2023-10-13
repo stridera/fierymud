@@ -2129,35 +2129,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         return;
     }
 
-    /* adjust for additional effects like Displacement */
-    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-        int mtype;
-        bool displaced = false;
-        mtype = type - TYPE_HIT; /* get the damage message */
-
-        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
-            if (random_number(1, 5) == 1) /* 20% chance to ignore damage */
-                displaced = true;
-        }
-
-        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
-            if (random_number(1, 3) == 1) /* 33% chance to ignore damage */
-                displaced = true;
-        }
-
-        if (displaced == true) {
-            sprintf(buf, "&9&b$n takes a guess at $N's position but misses with $s %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_NOTVICT);
-            sprintf(buf, "&9&bYou take a guess at $N's position but miss with your %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_CHAR);
-            sprintf(buf, "&9&b$n takes a guess your position but misses with $s %s!&0",
-                    attack_hit_text[mtype].singular);
-            act(buf, false, ch, 0, victim, TO_VICT);
-            set_fighting(victim, ch, true);
-            return;
-        }
+    if (displaced(ch, victim)) {
+        dam = 0;
+        /* Process Triggers */
+        attack_otrigger(ch, victim, dam);
+        hitprcnt_mtrigger(victim);
+        return;
     }
 
     /* The attacker missed the victim. */
@@ -2549,3 +2526,28 @@ ACMD(do_aggr) {
 
 /* new function to calculate thac0 for PCs instead of tabled data */
 int calc_thac0(int level, int thac0_01, int thac0_00) { return thac0_01 + level * (thac0_00 - thac0_01) / 100; }
+
+bool displaced(CharData *ch, CharData *victim) {
+    bool displaced = false;
+
+    /* adjust for additional effects like Displacement */
+    if (EFF_FLAGGED(victim, EFF_DISPLACEMENT) || EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+
+        if (EFF_FLAGGED(victim, EFF_DISPLACEMENT)) {
+            displaced = (random_number(1, 5) == 1); /* 20% chance to ignore damage */
+        }
+
+        if (EFF_FLAGGED(victim, EFF_GREATER_DISPLACEMENT)) {
+            displaced = (random_number(1, 3) == 1); /* 33% chance to ignore damage */
+        }
+
+        if (displaced == true) {
+            act("&9&b$n takes a guess at $N's position but misses!&0", false, ch, 0, victim, TO_NOTVICT);
+            act("&9&bYou take a guess at $N's position but miss!&0", false, ch, 0, victim, TO_CHAR);
+            act("&9&b$n takes a guess your position but misses!&0", false, ch, 0, victim, TO_VICT);
+            set_fighting(victim, ch, true);
+        }
+    }
+    
+    return displaced;
+}
