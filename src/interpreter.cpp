@@ -591,6 +591,7 @@ const CommandInfo cmd_info[] = {
     {"imotd", POS_PRONE, STANCE_DEAD, do_textview, LVL_IMMORT, SCMD_IMOTD, CMD_ANY},
     {"impale", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"innate", POS_PRONE, STANCE_DEAD, do_innate, 0, 0, CMD_ANY},
+    {"inspect", POS_STANDING, STANCE_ALERT, do_not_here, 0, 0, CMD_NOFIGHT},
     {"infodump", POS_PRONE, STANCE_DEAD, do_infodump, LVL_HEAD_C, 0, CMD_ANY},
     {"ignore", POS_PRONE, STANCE_DEAD, do_ignore, 0, 0, CMD_ANY},
     {"inctime", POS_PRONE, STANCE_DEAD, do_inctime, LVL_HEAD_C, 0, CMD_ANY},

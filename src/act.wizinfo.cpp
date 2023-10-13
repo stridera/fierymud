@@ -1036,7 +1036,7 @@ ACMD(do_olocate) {
             else if (obj->in_room != NOWHERE)
                 response += fmt::format("in room {:10} [{}]", world[obj->in_room].name, obj->in_room);
             else if (obj->in_obj)
-                response += fmt::format("inside {:10}", obj->in_obj->short_description);
+                response += fmt::format("inside {:10} at {} [{}]", obj->in_obj->short_description, world[obj->in_obj->in_room].name, obj->in_obj->in_room);
             else
                 response += fmt::format("in an unknown location");
             response += "\n";

@@ -41,6 +41,7 @@ bool is_grouped(CharData *ch, CharData *tch);
 void quickdeath(CharData *victim, CharData *ch);
 void abort_casting(CharData *ch);
 void appear(CharData *ch);
+bool displaced(CharData *ch, CharData *victim);
 
 void aggro_lose_spells(CharData *ch) {
     if (!EFF_FLAGGED(ch, EFF_REMOTE_AGGR)) {
@@ -1050,7 +1051,7 @@ ACMD(do_gretreat) {
 
 ACMD(do_bash) {
     CharData *vict = nullptr;
-    int percent, prob, skill, rounds;
+    int percent, prob, skill, rounds, message;
 
     switch (subcmd) {
     case SCMD_BODYSLAM:
@@ -1160,11 +1161,20 @@ ACMD(do_bash) {
     if (GET_LEVEL(vict) >= LVL_IMMORT)
         percent = prob + 1; /* insta-fail */
 
+    if (prob > percent || MOB_FLAGGED(vict, MOB_NOBASH) &&
+        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)))
+        message = 1;
+
     if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
-        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))) {
-        act(EVASIONCLR "You charge right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
-        act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", false, ch, 0, vict, TO_VICT);
+        (displaced(ch, vict)))
+        message = 2;
+
+    if (message == 1 || message == 2) {
+        if (message == 1) {
+            act(EVASIONCLR "You charge right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
+            act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", false, ch, 0, vict, TO_VICT);
+        }
         char_printf(ch, "You fall down!\n");
         act("$n falls down!", false, ch, 0, 0, TO_ROOM);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -1347,6 +1357,9 @@ ACMD(do_kick) {
         damage(ch, vict, 0, SKILL_KICK);
     } else {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        if (displaced(ch, vict))
+            return;
+            
         if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
             act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
             act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, vict,
@@ -1418,6 +1431,8 @@ ACMD(do_eye_gouge) {
     percent = random_number(1, 101);
     prob = GET_SKILL(ch, SKILL_EYE_GOUGE);
     WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+    if (displaced(ch, vict))
+        return;
     if (percent > prob && AWAKE(vict))
         damage(ch, vict, 0, SKILL_EYE_GOUGE); /* Miss message */
     else if (damage_evasion(vict, ch, 0, DAM_PIERCE)) {
@@ -1526,6 +1541,12 @@ ACMD(do_springleap) {
         act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.", false, ch,
             0, vict, TO_VICT);
         /* You fall */
+        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+        GET_POS(ch) = POS_SITTING;
+        GET_STANCE(ch) = STANCE_ALERT;
+        set_fighting(vict, ch, false);
+        return;
+    } else if (displaced(ch, vict)) {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         GET_POS(ch) = POS_SITTING;
         GET_STANCE(ch) = STANCE_ALERT;
@@ -1766,6 +1787,8 @@ ACMD(do_throatcut) {
             set_fighting(vict, ch, true);
             return;
         }
+        if (displaced(ch, vict))
+            return;
         /* Switch for dam %.   1 & 6: really goods, 2 & 5: decent, 3 & 4: common
          * shaving nicks, 7 mega, 8 miss penalty */
         switch (random) {
@@ -2303,7 +2326,9 @@ ACMD(do_peck) {
         damage_evasion_message(ch, vict, 0, DAM_PIERCE);
         set_fighting(vict, ch, true);
         return;
-    } else
+    } else if (displaced(ch, vict))
+        return;
+    else
         dam = random_number(GET_SKILL(ch, SKILL_PECK), GET_LEVEL(ch));
 
     damage(ch, vict, dam_suscept_adjust(ch, vict, 0, dam, DAM_PIERCE), SKILL_PECK);
@@ -2356,7 +2381,9 @@ ACMD(do_claw) {
         damage_evasion_message(ch, vict, 0, DAM_SLASH);
         set_fighting(vict, ch, true);
         return;
-    } else
+    } else if (displaced(ch, vict))
+        return;
+    else
         dam = random_number(GET_SKILL(ch, SKILL_CLAW), GET_LEVEL(ch));
 
     damage(ch, vict, dam_suscept_adjust(ch, vict, 0, dam, DAM_SLASH), SKILL_CLAW);
@@ -2500,7 +2527,7 @@ ACMD(do_stomp) {
 
 ACMD(do_cartwheel) {
     CharData *vict;
-    int percent, prob, dmg, hidden;
+    int percent, prob, dmg, hidden, message;
     ObjData *weapon;
 
     hidden = GET_HIDDENNESS(ch);
@@ -2582,13 +2609,19 @@ ACMD(do_cartwheel) {
 
     if (prob > 0.9 * percent) {
         /* attack evaded */
-        if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)) {
-            act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!", false,
-                ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR " cartwheels at $N" EVASIONCLR " but tumbles right on through!", false, ch,
-                0, vict, TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR " cartwheels at you, but just passes through and hits the ground.", false,
-                ch, 0, vict, TO_VICT);
+        if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)) 
+            message = 1;
+        if (displaced(ch, vict))
+            message == 2;
+        if (message == 1 || message == 2) {
+            if (message == 1) {
+                act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!", false,
+                    ch, 0, vict, TO_CHAR);
+                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at $N" EVASIONCLR " but tumbles right on through!", false, ch,
+                    0, vict, TO_NOTVICT);
+                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at you, but just passes through and hits the ground.", false,
+                    ch, 0, vict, TO_VICT);
+            }
             /* You fall */
             WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
             GET_POS(ch) = POS_SITTING;
@@ -2908,7 +2941,7 @@ ACMD(do_rend) {
 
 ACMD(do_tripup) {
     CharData *vict = nullptr, *tch;
-    int percent, prob;
+    int percent, prob, message;
 
     if (GET_RACE(ch) != RACE_HALFLING) {
         char_printf(ch, "Only halflings can pull that off!\n");
@@ -2998,7 +3031,14 @@ ACMD(do_tripup) {
         percent = prob + 1; /* insta-fail */
 
     if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
-        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))) {
+        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))) 
+        message = 1;
+        
+    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
+        displaced(ch, vict)) 
+        message = 2;
+
+    if (message == 1 || message == 2) {
         act(EVASIONCLR "You slip right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
         act(EVASIONCLR "$n" EVASIONCLR " slips right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
         act(EVASIONCLR "$n" EVASIONCLR " slips right through you!&0", false, ch, 0, vict, TO_VICT);
