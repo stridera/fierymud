@@ -96,4 +96,10 @@ const char *effect_flags[NUM_EFF_FLAGS + 1] = {"BLIND", /* 0 */
                                                "SONG_OF_REST",
                                                "DISPLACEMENT",
                                                "GREATER_DISPLACEMENT",
+                                               "FIRE_WEAPON",
+                                               "ICE_WEAPON", /* 85 */
+                                               "POISON_WEAPON",
+                                               "ACID_WEAPON",
+                                               "SHOCK_WEAPON",
+                                               "RADIANT_WEAPON",
                                                "\n"};

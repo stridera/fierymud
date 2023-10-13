@@ -55,6 +55,8 @@ extern DamageDef damtypes[NUM_DAMTYPES];
 int parse_damtype(CharData *ch, char *arg);
 
 int skill_to_dtype(int skill);
+int convert_weapon_damage(ObjData *weapon);
+int convert_weapon_type(ObjData *weapon);
 void damage_evasion_message(CharData *ch, CharData *vict, ObjData *weapon, int dtype);
 int weapon_damtype(ObjData *obj);
 int physical_damtype(CharData *ch);
