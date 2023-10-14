@@ -73,7 +73,9 @@ void set_innate(CharData *ch, char *arg);
 void trigedit_parse(DescriptorData *d, char *arg);
 char *diety_selection;
 void appear(CharData *ch);
+EVENTFUNC(name_approve_timeout);
 EVENTFUNC(name_timeout);
+EVENTFUNC(pass_timeout);
 bool ispell_name_check(char *);
 
 /* prototypes for all do_x functions. */
@@ -2275,6 +2277,11 @@ void nanny(DescriptorData *d, char *arg) {
     switch (STATE(d)) {
     case CON_GET_NAME:
 
+        if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+            SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+        event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
+        REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+
         /* They merely pressed enter... disconnect them. */
         if (!*arg) {
             close_socket(d);
@@ -2344,25 +2351,29 @@ void nanny(DescriptorData *d, char *arg) {
                 echo_off(d);
                 d->idle_tics = 0;
                 STATE(d) = CON_PASSWORD;
+                if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+                    SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+                event_create(EVENT_PASS_TIMEOUT, pass_timeout, d, false, nullptr, PASS_TIMEOUT);
+                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
             }
         } else {
             /* No player loaded: we might make a new character. */
 
-            if (ispell_name_check(tmp_name)) {
+//            if (ispell_name_check(tmp_name)) {
                 /* Take a character name that is a word in the dictionary or
                    closely resembles a word in the dictionary and make them
                    think it's a valid existing character name and boot the
                    connection.  Yes I'm evil - RSD 8/29/2002 <-- genius
                  */
-                log("{} is being ninja rejected by the name approval code.", tmp_name);
-                string_to_output(d,
-                                 "Welcome back!\n"
-                                 "Password: ");
-                echo_off(d);
-                d->idle_tics = 0;
-                STATE(d) = CON_ISPELL_BOOT;
-                return;
-            }
+//                log("{} is being ninja rejected by the name approval code.", tmp_name);
+//                string_to_output(d,
+//                                 "Welcome back!\n"
+//                                 "Password: ");
+//                echo_off(d);
+//                d->idle_tics = 0;
+//                STATE(d) = CON_ISPELL_BOOT;
+//                return;
+//            }
 
             if (!Valid_Name(tmp_name)) {
                 string_to_output(d,
@@ -2421,6 +2432,10 @@ void nanny(DescriptorData *d, char *arg) {
             string_to_output(d, "Okay, what IS it, then? ");
             clear_player_name(d->character);
             STATE(d) = CON_GET_NAME;
+            if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+                SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+            event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
+            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
             break;
         default:
             string_to_output(d, "Please answer yes or no: ");
@@ -2466,7 +2481,7 @@ void nanny(DescriptorData *d, char *arg) {
             string_to_output(d, "Now you must wait to be re-approved.\n");
             if (!PLR_FLAGGED(d->character, PLR_NAPPROVE))
                 SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
-            event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
+            event_create(EVENT_NAME_APPROVE_TIMEOUT, name_approve_timeout, d, false, nullptr, NAME_APPROVE_TIMEOUT);
             REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
             string_to_output(d,
                              "Now you must wait for your name to be approved by an immortal.\n"
@@ -2577,6 +2592,12 @@ void nanny(DescriptorData *d, char *arg) {
 
     case CON_NEWPASSWD:
     case CON_CHPWD_GETNEW:
+
+        if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+            SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+        event_create(EVENT_PASS_TIMEOUT, pass_timeout, d, false, nullptr, PASS_TIMEOUT);
+        REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+
         if (!*arg || strlen(arg) > MAX_PWD_LENGTH || strlen(arg) < 3 || !strcasecmp(arg, GET_NAME(d->character))) {
             string_to_output(d, "\nIllegal password.\n");
             string_to_output(d, "Password: ");
@@ -2596,6 +2617,10 @@ void nanny(DescriptorData *d, char *arg) {
     case CON_CNFPASSWD:
     case CON_CHPWD_VRFY:
         if (strncasecmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
+            if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+                SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+            event_create(EVENT_PASS_TIMEOUT, pass_timeout, d, false, nullptr, PASS_TIMEOUT);
+            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
             string_to_output(d, "\nPasswords don't match... start over.\n");
             string_to_output(d, "Password: ");
             if (STATE(d) == CON_CNFPASSWD)
@@ -2796,12 +2821,20 @@ void nanny(DescriptorData *d, char *arg) {
             sprintf(buf, "\nGive me a password for %s: ", GET_NAME(d->character));
             string_to_output(d, buf);
             echo_off(d);
+            if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+                SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+            event_create(EVENT_PASS_TIMEOUT, pass_timeout, d, false, nullptr, PASS_TIMEOUT);
+            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
             STATE(d) = CON_NEWPASSWD;
             break;
         default:
             tmp_name[0] = '\0';
             string_to_output(d, "\nPlease enter a different name: ");
             clear_player_name(d->character);
+            if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+                SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+            event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
+            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
             STATE(d) = CON_GET_NAME;
             break;
         }
@@ -3146,7 +3179,7 @@ void nanny(DescriptorData *d, char *arg) {
                 if (!PLR_FLAGGED(d->character, PLR_NAPPROVE)) {
                     SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
                 }
-                event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
+                event_create(EVENT_NAME_APPROVE_TIMEOUT, name_approve_timeout, d, false, nullptr, NAME_APPROVE_TIMEOUT);
                 REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
                 string_to_output(d,
                                  "\nNow you must wait for your name to be approved by an immortal.\n"
@@ -3176,6 +3209,12 @@ void nanny(DescriptorData *d, char *arg) {
         break;
 
     case CON_MENU: /* get selection from main menu  */
+
+        if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+            SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+        event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
+        REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+
         switch (*arg) {
         case '0':
             save_player_char(d->character);
@@ -3363,7 +3402,7 @@ int bonus_stat(CharData *ch, char arg) {
     return a;
 }
 
-EVENTFUNC(name_timeout) {
+EVENTFUNC(name_approve_timeout) {
     DescriptorData *d = (DescriptorData *)event_obj;
 
     if (STATE(d) != CON_NAME_WAIT_APPROVAL)
@@ -3405,6 +3444,64 @@ EVENTFUNC(name_timeout) {
 
     return EVENT_FINISHED;
 }
+
+EVENTFUNC(name_timeout) {
+    DescriptorData *d = (DescriptorData *)event_obj;
+
+    switch (STATE(d)) {
+    case CON_GET_NAME:
+    case CON_MENU:
+    case CON_NAME_CNFRM:
+    case CON_NAME_CHECK:
+        break;
+    default:
+        return EVENT_FINISHED;
+    }
+
+    if (d->character->desc == nullptr)
+        return EVENT_FINISHED;
+
+    if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+        SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+
+    if (PLR_FLAGGED(d->character, PLR_LOGIN))
+        REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+
+    echo_on(d);
+    desc_printf(d, "\nTimed out... goodbye.\n");
+    STATE(d) = CON_CLOSE;
+    return EVENT_FINISHED;
+}
+
+EVENTFUNC(pass_timeout) {
+    DescriptorData *d = (DescriptorData *)event_obj;
+
+    switch (STATE(d)) {
+    case CON_PASSWORD:
+    case CON_CHPWD_GETNEW:
+    case CON_NEWPASSWD:
+    case CON_CNFPASSWD:
+    case CON_CHPWD_VRFY:
+        break;
+    default:
+        return EVENT_FINISHED;
+    }
+
+    if (d->character->desc == nullptr)
+        return EVENT_FINISHED;
+
+    if (!PLR_FLAGGED(d->character, PLR_LOGIN))
+        SET_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+
+    if (PLR_FLAGGED(d->character, PLR_LOGIN))
+        REMOVE_FLAG(PLR_FLAGS(d->character), PLR_LOGIN);
+
+    echo_on(d);
+    desc_printf(d, "\nTimed out... goodbye.\n");
+    STATE(d) = CON_CLOSE;
+    return EVENT_FINISHED;
+}
+
 
 void sort_commands(void) {
     int a, b, tmp;

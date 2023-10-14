@@ -65,7 +65,8 @@
 #define PLR_REMOVING 23  /* player is being removed and doesn't need emergency save */
 #define PLR_SAVING 24    /* player is being saved to file and effect changes are not relevant */
 #define PLR_GOTSTARS 25  /* player has achieved ** already            */
-#define NUM_PLR_FLAGS 26
+#define PLR_LOGIN 26     /* player is logging in */
+#define NUM_PLR_FLAGS 27
 
 /* Privilege flags: used by CharData.player_specials.privileges */
 #define PRV_CLAN_ADMIN 0  /* clan administrator */
