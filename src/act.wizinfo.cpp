@@ -1326,7 +1326,7 @@ void do_show_player(CharData *ch, char *argument) {
     char_printf(ch,
                 "Coins held:    [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
                 "Coins banked:  [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
-                "Exp: {:-8ld}   Align: {:-5d}\n"
+                "Exp: {:-8}   Align: {:-5d}\n"
                 "Started: {}   Last: {}   Played: {:3d}h {:2d}m\n",
                 GET_PLATINUM(vict), GET_GOLD(vict), GET_SILVER(vict), GET_COPPER(vict), GET_BANK_PLATINUM(vict),
                 GET_BANK_GOLD(vict), GET_BANK_SILVER(vict), GET_BANK_COPPER(vict), GET_EXP(vict), GET_ALIGNMENT(vict),
