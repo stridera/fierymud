@@ -496,7 +496,7 @@ const CommandInfo cmd_info[] = {
     {"envy", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"equipment", POS_PRONE, STANCE_SLEEPING, do_equipment, 0, 0, CMD_ANY},
     {"exits", POS_PRONE, STANCE_RESTING, do_exits, 0, 0, CMD_HIDE | CMD_MEDITATE | CMD_OLC},
-    {"examine", POS_PRONE, STANCE_RESTING, do_examine, 0, 0, CMD_HIDE | CMD_OLC},
+    {"examine", POS_PRONE, STANCE_RESTING, do_examine, 0, 0, CMD_HIDE | CMD_OLC | CMD_MEDITATE},
     {"exchange", POS_STANDING, STANCE_ALERT, do_not_here, 1, 0, CMD_NOFIGHT},
     {"experience", POS_PRONE, STANCE_DEAD, do_experience, 0, 0, CMD_ANY},
     {"extinguish", POS_PRONE, STANCE_RESTING, do_light, 0, SCMD_EXTINGUISH, 0},
@@ -757,7 +757,7 @@ const CommandInfo cmd_info[] = {
     {"rstat", POS_PRONE, STANCE_DEAD, do_stat, LVL_ATTENDANT, SCMD_RSTAT, CMD_ANY},
     {"sstat", POS_PRONE, STANCE_DEAD, do_stat, LVL_ATTENDANT, SCMD_SSTAT, CMD_ANY},
 
-    {"say", POS_PRONE, STANCE_RESTING, do_say, 0, 0, CMD_MINOR_PARA | CMD_BOUND | CMD_OLC},
+    {"say", POS_PRONE, STANCE_RESTING, do_say, 0, 0, CMD_MINOR_PARA | CMD_BOUND | CMD_OLC | CMD_MEDITATE},
     {"'", POS_PRONE, STANCE_RESTING, do_say, 0, 0, CMD_MINOR_PARA | CMD_BOUND | CMD_OLC},
     {"save", POS_PRONE, STANCE_SLEEPING, do_save, LVL_GOD, 0, CMD_ANY ^ CMD_CAST},
     {"score", POS_PRONE, STANCE_DEAD, do_score, 0, 0, CMD_ANY},
