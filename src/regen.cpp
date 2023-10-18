@@ -92,6 +92,13 @@ EVENTFUNC(spellslot_restore_event) {
 
     if (!ch->spellcasts.empty()) {
         spell_slot_restore_tick(ch);
+
+        /* check meditate skill */
+        if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+            if (random_number(0, 20) > 17)
+                improve_skill(ch, SKILL_MEDITATE);
+        }
+        
         return 1 RL_SEC;
     } else {
         rem_memming(ch);

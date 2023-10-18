@@ -47,6 +47,7 @@ ACMD(do_track);
 ACMD(do_hide);
 ACMD(do_sneak);
 ACMD(do_douse);
+ACMD(do_meditate);
 bool update_inventory(CharData *ch, ObjData *obj, int where);
 CharData *check_guard(CharData *ch, CharData *victim, int gag_output);
 void get_check_money(CharData *ch, ObjData *obj);
@@ -86,11 +87,11 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if POSSESSED (ch)
+        if (POSSESSED (ch))
             continue;
-
+            
         /* If lower than default position, get up. */
-        if (GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) {
+        if ((GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) && !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
             switch (GET_DEFAULT_POS(ch)) {
             case POS_PRONE:
                 do_recline(ch, "", 0, 0);
@@ -791,17 +792,14 @@ bool check_mob_status(CharData *ch) {
 bool check_spellbank(CharData *ch) {
     int i;
     // If any spell circles are not fully charged, start memming and return true
-    for (i = 1; i < NUM_SPELL_CIRCLES; ++i)
-        if (GET_MOB_SPLBANK(ch, i) < spells_of_circle[(int)GET_LEVEL(ch)][i]) {
+    if (EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
+        if (GET_POS(ch) != POS_SITTING && GET_STANCE(ch) >= STANCE_RESTING && GET_STANCE(ch) <= STANCE_ALERT) {
             do_sit(ch, nullptr, 0, 0);
-            if (GET_POS(ch) == POS_SITTING && GET_STANCE(ch) >= STANCE_RESTING && GET_STANCE(ch) <= STANCE_ALERT) {
-                act(MEM_MODE(ch) == PRAY ? "$n begins praying to $s deity."
-                                         : "$n takes out $s books and begins to study.",
-                    true, ch, 0, 0, TO_ROOM);
-                // start_studying(ch);
-                return true;
-            }
+            do_meditate(ch, nullptr, 0, 0);
+            // start_studying(ch);
+            return true;
         }
+    }
     return false;
 }
 

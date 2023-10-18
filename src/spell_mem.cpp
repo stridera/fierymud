@@ -212,6 +212,7 @@ int mob_mem_time(CharData *ch, int circle) {
 
 EVENTFUNC(memming_event) {
     CharData *ch = (CharData *)event_obj;
+    MemorizedList *cur = 0;
     char buf[256];
     int i;
 
@@ -259,25 +260,48 @@ EVENTFUNC(memming_event) {
         return EVENT_FINISHED;
     }
 
-    if (ch->spellcasts.empty()) {
-        rem_memming(ch);
+    cur = GET_SPELL_MEM(ch).list_head;
+    while (cur && cur->can_cast)
+        cur = cur->next;
+    if (!cur) {
+        done_memming(ch);
         return EVENT_FINISHED;
+    } else {
+        if (MEM_MODE(ch) == MEMORIZE) {
+            if (!find_spellbook_with_spell(ch, cur->spell)) {
+                char_printf(ch, "You need a spellbook with that spell written in it.\n");
+                rem_memming(ch);
+                return EVENT_FINISHED;
+            }
+        }
+
+        /* using pulse violence, which means we only update every _2_ seconds
+           please do NOT change this, unless you change in comm.c to
+           pulse_violence/2  */
+        cur->mem_time -= 1;
+
+        /* check meditate skill */
+        if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+            if (random_number(0, 20) > 17)
+                improve_skill(ch, SKILL_MEDITATE);
+        }
+
+        if (cur->mem_time < 1) {
+            if (MEM_MODE(ch) == MEMORIZE)
+                char_printf(ch, "You have finished memorizing {}.\n", skill_name(cur->spell));
+            else if (MEM_MODE(ch) == PRAY)
+                char_printf(ch, "You have finished praying for {}.\n", skill_name(cur->spell));
+
+            /* reset so the guy has to remem after casting it. */
+            cur->mem_time = set_mem_time(ch, cur->spell);
+            cur->can_cast = true;
+            GET_SPELL_MEM(ch).num_memmed++;
+            if (GET_SPELL_MEM(ch).num_memmed == GET_SPELL_MEM(ch).num_spells || !cur->next) {
+                done_memming(ch);
+                return EVENT_FINISHED;
+            }
+        }
     }
-
-    if (!has_spellbook(ch)) {
-        char_printf(ch, "You need a spellbook to study spells.\n");
-        rem_memming(ch);
-        return EVENT_FINISHED;
-    }
-
-    ch->spellcasts.front().ticks -= 1;
-
-    /* check meditate skill */
-    if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        if (random_number(0, 20) > 17)
-            improve_skill(ch, SKILL_MEDITATE);
-    }
-
     return MEM_INTERVAL;
 }
 
@@ -421,10 +445,6 @@ EVENTFUNC(scribe_event) {
 
 /* set the meditate flag */
 ACMD(do_meditate) {
-    if (IS_NPC(ch)) {
-        char_printf(ch, "You don't need to meditate!\n");
-        return;
-    }
     if (GET_SKILL(ch, SKILL_MEDITATE) == 0) {
         char_printf(ch, "You just can't seem to focus your mind enough.\n");
         return;
@@ -564,6 +584,8 @@ int get_spellslot_restore_rate(CharData *ch) {
 
     // Add Meditate Bonus
     if (PLR_FLAGGED(ch, PLR_MEDITATE))
+        if (IS_NPC(ch))
+            rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
         if (GET_SKILL(ch, SKILL_MEDITATE))
             rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
 
@@ -580,15 +602,6 @@ ACMD(do_study) {
 }
 
 void charge_mem(CharData *ch, int spellnum, int circle = -1) {
-    /*
-     * Mobs don't memorize specific spells; they only recharge
-     * slots in circles in their spell bank.
-     */
-    if (IS_NPC(ch)) {
-        if (GET_MOB_SPLBANK(ch, SPELL_CIRCLE(ch, spellnum)) > 0)
-            GET_MOB_SPLBANK(ch, SPELL_CIRCLE(ch, spellnum))--;
-        return;
-    }
 
     // TODO: Uncomment this when testing is done.
     // if (GET_LEVEL(ch) >= LVL_IMMORT)
@@ -648,24 +661,21 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
         set_regen_event(ch, EVENT_REGEN_SPELLSLOT);
 }
 
+/*
 void done_memming(CharData *ch) {
-    if (MEM_MODE(ch) == MEMORIZE) {
-        char_printf(ch, "You have completed your studies.\n");
-        act("$n closes $s book and smiles.", true, ch, 0, 0, TO_ROOM);
-    } else if (MEM_MODE(ch) == PRAY) {
-        char_printf(ch, "Your prayers are complete.\n");
-        act("$n finishes praying to $s deity.", true, ch, 0, 0, TO_ROOM);
-    }
+    if (IS_NPC)
+        act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+    else
+        char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
     rem_memming(ch);
 }
+*/
 
 void rem_memming(CharData *ch) {
-    char_printf(ch, "You have recovered all your spell slots.\n");
-    if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+    if (IS_NPC(ch))
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-        char_printf(ch, "You stop meditating.\n&0");
-        REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
-    }
+    else
+        char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
 }
 
 /********************/
