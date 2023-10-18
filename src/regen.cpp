@@ -69,6 +69,27 @@ EVENTFUNC(hp_regen_event) {
 EVENTFUNC(spellslot_restore_event) {
     CharData *ch = (CharData *)event_obj;
 
+    if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+
+        if (FIGHTING(ch)) {
+            char_printf(ch, "Your meditation is rudely interrupted!\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+
+        if (IS_DRUNK(ch)) {
+            char_printf(ch, "You cannot meditate while intoxicated.\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+
+        if (GET_POS(ch) != POS_SITTING || GET_STANCE(ch) < STANCE_RESTING || GET_STANCE(ch) > STANCE_ALERT) {
+            char_printf(ch, "You stop meditating.\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+    }
+
     if (!ch->spellcasts.empty()) {
         spell_slot_restore_tick(ch);
 

@@ -607,10 +607,55 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
     // if (GET_LEVEL(ch) >= LVL_IMMORT)
     //     return;
 
+    int recover_time;
+
     if (circle == -1)
         circle = SPELL_CIRCLE(ch, spellnum);
+        if (skills[spellnum].mem_time == C1) {
+            switch (circle) {
+            case 1:
+                recover_time = 20;
+                break;
+            case 2:
+                recover_time = 25;
+                break;
+            case 3:
+                recover_time = 40;
+                break;
+            case 4:
+                recover_time = 55;
+                break;
+            case 5:
+                recover_time = 80;
+                break;
+            case 6:
+                recover_time = 95;
+                break;
+            case 7:
+                recover_time = 130;
+                break;
+            case 8:
+                recover_time = 145;
+                break;
+            case 9:
+                recover_time = 165;
+                break;
+            case 10:
+                recover_time = 210;
+                break;
+            case 11:
+                recover_time = 250;
+                break;
+            case 12:
+                recover_time = 290;
+                break;
+            case 13:
+                recover_time = 310;
+            }
+        } else
+            recover_time = skills[spellnum].mem_time;
 
-    ch->spellcasts.push_back(SpellCast(circle, skills[spellnum].mem_time));
+    ch->spellcasts.push_back(SpellCast(circle, recover_time));
 
     if (!EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
         set_regen_event(ch, EVENT_REGEN_SPELLSLOT);
