@@ -2359,21 +2359,21 @@ void nanny(DescriptorData *d, char *arg) {
         } else {
             /* No player loaded: we might make a new character. */
 
-//            if (ispell_name_check(tmp_name)) {
+            if (ispell_name_check(tmp_name)) {
                 /* Take a character name that is a word in the dictionary or
                    closely resembles a word in the dictionary and make them
                    think it's a valid existing character name and boot the
                    connection.  Yes I'm evil - RSD 8/29/2002 <-- genius
                  */
-//                log("{} is being ninja rejected by the name approval code.", tmp_name);
-//                string_to_output(d,
-//                                 "Welcome back!\n"
-//                                 "Password: ");
-//                echo_off(d);
-//                d->idle_tics = 0;
-//                STATE(d) = CON_ISPELL_BOOT;
-//                return;
-//            }
+                log("{} is being ninja rejected by the name approval code.", tmp_name);
+                string_to_output(d,
+                                 "Welcome back!\n"
+                                 "Password: ");
+                echo_off(d);
+                d->idle_tics = 0;
+                STATE(d) = CON_ISPELL_BOOT;
+                return;
+            }
 
             if (!Valid_Name(tmp_name)) {
                 string_to_output(d,
