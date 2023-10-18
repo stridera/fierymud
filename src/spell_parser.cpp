@@ -1386,6 +1386,11 @@ ACMD(do_cast) {
     if (!check_spell_target(spellnum, ch, tch, tobj))
         return;
 
+    if (tch == ch && SINFO.violent && spellnum != SPELL_DISPEL_MAGIC) {
+        char_printf(ch, "You can't cast deadly spells on yourself!!\n");
+        return;
+    }
+
     /* An injured throat makes it difficult to cast. */
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && random_number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         if (subcmd == SCMD_CHANT) {
