@@ -91,7 +91,7 @@ struct XName {
     XName *next;
 };
 #define NAME_APPROVE_TIMEOUT 30 RL_SEC
-#define NAME_TIMEOUT 300 RL_SEC /* 5 minutes */
+#define NAME_TIMEOUT 60 RL_SEC
 #define PASS_TIMEOUT 30 RL_SEC
 
 void free_alias(AliasData *alias);
