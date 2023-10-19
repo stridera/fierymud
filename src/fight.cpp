@@ -2218,7 +2218,8 @@ void hit(CharData *ch, CharData *victim, int type) {
         /* If the weapon is flagged to do a special kind of energy damage, alter it. */
         if (weapon) {
             dtype = convert_weapon_damage(weapon);
-            type = convert_weapon_type(weapon);
+            if (type != SKILL_BACKSTAB && type != SKILL_2BACK)
+                type = convert_weapon_type(weapon);
         }
 
         /* Adjust damage for susceptibility */
