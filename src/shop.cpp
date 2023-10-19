@@ -445,7 +445,12 @@ int buy_price(CharData *ch, CharData *keeper, ObjData *obj, int shop_nr) {
 int inspect_price(CharData *ch, CharData *keeper, ObjData *obj, int shop_nr) {
     int price;
 
-    return (price = buy_price(ch, keeper, obj, shop_nr) / 10);
+    price = buy_price(ch, keeper, obj, shop_nr) / 10;
+
+    if (price < 1)
+        price = 1;
+
+    return (price);
 }
 
 
@@ -467,9 +472,13 @@ void adjust_cash(CharData *ch) {
 void apply_cost(int cost, CharData *ch) {
     int haveP, haveG, haveS, haveC;
 
-    if (cost <= 0 || cost > GET_CASH(ch)) {
-        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch),
-            cost);
+    if (cost > GET_CASH(ch)) {
+        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch), cost);
+        return;
+    }
+
+    if (cost <= 0) {
+        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} for goods or services", GET_NAME(ch), cost);
         return;
     }
 
