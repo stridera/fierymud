@@ -2885,7 +2885,7 @@ const char *hp_regen_message(int regen) {
     if (regen >= 100)
         return "Awesome!";
 
-    return messages[regen / 20];
+    return messages[regen / 25];
 }
 
 long xp_percentage(CharData *ch) {
