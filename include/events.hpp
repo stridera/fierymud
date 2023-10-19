@@ -59,7 +59,7 @@ void delayed_command(CharData *ch, char *command, int delay, bool repeatable);
 #define EVENT_CAMP 2
 #define EVENT_HURT 3
 #define EVENT_MOB_QUIT 4
-#define EVENT_NAME_APPROVE_TIMEOUT 5
+#define EVENT_NAME_TIMEOUT 5
 #define EVENT_RECALL 6
 #define EVENT_ROOM_UNDO 7
 #define EVENT_SPELL 8
@@ -85,10 +85,8 @@ void delayed_command(CharData *ch, char *command, int delay, bool repeatable);
 #define EVENT_COMMAND 28
 #define EVENT_EDITOR_START 29
 #define EVENT_GET_MONEY 30
-#define EVENT_NAME_TIMEOUT 31
-#define EVENT_PASS_TIMEOUT 32
 /* Update MAX_EVENT to be last event value + 1, please */
-#define MAX_EVENT 33
+#define MAX_EVENT 31
 
 EVENTFUNC(extract_event);
 EVENTFUNC(hurt_event);

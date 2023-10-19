@@ -154,7 +154,6 @@ void free_help_table(void);
 void free_social_messages(void);
 void free_social_messages(void);
 void free_invalid_list(void);
-EVENTFUNC(name_timeout);
 
 /**********************************************************************
  *  main game loop and related stuff                                    *
@@ -1924,11 +1923,6 @@ void init_descriptor(DescriptorData *newd, int desc) {
     if (++last_desc == 1000)
         last_desc = 1;
     newd->desc_num = last_desc;
-
-    if (!PLR_FLAGGED(newd->character, PLR_LOGIN))
-        SET_FLAG(PLR_FLAGS(newd->character), PLR_LOGIN);
-    event_create(EVENT_NAME_APPROVE_TIMEOUT, name_timeout, newd, false, nullptr, NAME_TIMEOUT);
-    REMOVE_FLAG(PLR_FLAGS(newd->character), PLR_LOGIN);
 }
 
 int new_descriptor(int s) {
@@ -2365,13 +2359,16 @@ void check_idle_passwords(void) {
 
     for (d = descriptor_list; d; d = next_d) {
         next_d = d->next;
-        if (STATE(d) != CON_ISPELL_BOOT) {
+        if (STATE(d) != CON_PASSWORD && STATE(d) != CON_GET_NAME && STATE(d) != CON_MENU &&
+            STATE(d) != CON_ISPELL_BOOT) {
             continue;
         }
         if (!d->idle_tics) {
             d->idle_tics++;
             continue;
         } else {
+            if (d->character && STATE(d) == CON_MENU)
+                save_player_char(d->character);
             echo_on(d);
             desc_printf(d, "\nTimed out... goodbye.\n");
             STATE(d) = CON_CLOSE;

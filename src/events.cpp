@@ -38,7 +38,7 @@ const char *eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
                                          "camp",
                                          "hurt",
                                          "mob_quit",
-                                         "name_approve_timeout", /* 5 */
+                                         "name_timeout", /* 5 */
                                          "recall",
                                          "room_undo",
                                          "spell",
@@ -64,8 +64,6 @@ const char *eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
                                          "command",
                                          "start_editor",
                                          "get_money", /* 30 */
-                                         "name_timeout",
-                                         "pass_timeout",
                                          "\n"};
 
 /*************************************************************************/
