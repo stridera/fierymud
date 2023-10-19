@@ -1356,7 +1356,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         SET_FLAG(eff[0].flags, EFF_LIGHT);
         eff[0].duration = 5 + (skill / 2); /* max 55 */
-        refresh = false;
         to_vict = "&7&bA bright white circle of light begins hovering about your head.&0";
         to_room = "&7&bA bright white circle of light appears over $N's&7&b head.";
         break;
@@ -2061,7 +2060,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].modifier = 15 + (skill / 16); /* max 21 */
         eff[0].duration = 5 + (skill / 14);  /* max 12 */
 
-        refresh = false;
         to_room = "&2A cyclone of leaves and sticks twirls around $n&2, guarding $s body.&0";
         to_vict = "&2A cyclone of leaves and sticks twirls around you, guarding your body.&0";
         break;
@@ -2186,7 +2184,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         SET_FLAG(eff[0].flags, EFF_LIGHT);
         eff[0].duration = 5 + (skill / 2); /* max 55 */
-        refresh = false;
         to_vict = "&1A magical flame bursts into focus, lighting the area.&0";
         to_room = "&1A magical flame bursts into focus, lighting the area.&0";
         break;
@@ -2401,7 +2398,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         SET_FLAG(eff[0].flags, EFF_NEGATE_COLD);
         eff[0].duration = 2 + (skill / 20); /* max 7 */
-        refresh = false;
         to_vict = "&4&bYour body becomes impervious to the cold!&0";
         to_room = "&4$n&4's is protected by a &3&bwarm&0&4-looking magical field.&0";
         break;
@@ -2410,7 +2406,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         SET_FLAG(eff[0].flags, EFF_NEGATE_HEAT);
         eff[0].duration = 2 + (skill / 20); /* max 7 */
-        refresh = false;
         to_vict = "&6Your body becomes impervious to all forms of heat!&0";
         to_room = "&6$n&6 is surrounded by a frigid crystalline field.&0";
         break;
@@ -2664,7 +2659,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[2].modifier = -10;
         eff[2].duration = eff[0].duration;
 
-        refresh = true;
         to_vict =
             "&1&bYour skin starts to itch as you reduce to half your normal "
             "size.&0";
