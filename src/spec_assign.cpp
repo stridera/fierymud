@@ -231,9 +231,9 @@ void assign_objects(void) {
     SPECIAL(summon_dragon);
 
     ASSIGNOBJ(3056, red_recall);     /* Red scrolls of recall goodness! */
-    ASSIGNOBJ(3057, green_recall);   /* Red scrolls of recall goodness! */
-    ASSIGNOBJ(3058, blue_recall);    /* Red scrolls of recall goodness! */
-    ASSIGNOBJ(30010, gray_recall);   /* Red scrolls of recall goodness! */
+    ASSIGNOBJ(3057, green_recall);   /* Green scrolls of recall goodness! */
+    ASSIGNOBJ(3058, blue_recall);    /* Blue scrolls of recall goodness! */
+    ASSIGNOBJ(30010, gray_recall);   /* Gray scrolls of recall goodness! */
     ASSIGNOBJ(18890, summon_dragon); /* dragonhelm */
     ASSIGNOBJ(18891, summon_dragon); /* dragonhelm */
 
