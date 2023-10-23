@@ -71,6 +71,12 @@ EVENTFUNC(spellslot_restore_event) {
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
 
+        if (EFF_FLAGGED(ch, EFF_INSANITY)) {
+            char_printf(ch, "Your mind is too crazed to meditate!\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+
         if (FIGHTING(ch)) {
             char_printf(ch, "Your meditation is rudely interrupted!\n");
             act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
@@ -91,6 +97,9 @@ EVENTFUNC(spellslot_restore_event) {
     }
 
     if (!ch->spellcasts.empty()) {
+        if (EFF_FLAGGED(ch, EFF_INSANITY))
+            return 1 RL_SEC;
+
         spell_slot_restore_tick(ch);
 
         /* check meditate skill */
@@ -98,7 +107,7 @@ EVENTFUNC(spellslot_restore_event) {
             if (random_number(0, 20) > 17)
                 improve_skill(ch, SKILL_MEDITATE);
         }
-        
+
         return 1 RL_SEC;
     } else {
         rem_memming(ch);
