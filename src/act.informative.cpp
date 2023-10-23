@@ -30,6 +30,7 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "lifeforce.hpp"
+#include "limits.hpp"
 #include "logging.hpp"
 #include "math.hpp"
 #include "messages.hpp"
@@ -1562,8 +1563,8 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
                     "Damage Dice is '{}D{}' "
                     "for an average per-round damage of {:.1f}.\n"
                     "Damage Type is {}.\n",
-                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj)),
-            GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE);
+                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj),
+                    attack_hit_text[GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE)].singular);
         break;
     case ITEM_ARMOR:
     case ITEM_TREASURE:
@@ -2504,16 +2505,18 @@ static void print_object_location(int num, ObjData *obj, CharData *ch, int recur
     if (num > 0)
         paging_printf(ch, "O{:3d}. {:<25} - ", num, strip_ansi(obj->short_description));
     else
-        paging_printf(ch, "{:<34}", " - ");
+        paging_printf(ch, "{:<34}", " ");
 
     if (obj->in_room > NOWHERE)
-        paging_printf(ch, "[{:5d}] {}\n", world[obj->in_room].vnum, world[obj->in_room].name);
+        paging_printf(ch, "{:5} [{:d}]\n", world[obj->in_room].name, world[obj->in_room].vnum);
     else if (obj->carried_by)
-        paging_printf(ch, "carried by {}\n", PERS(obj->carried_by, ch));
+        paging_printf(ch, "carried by {} at\n {:<33}{} [{}]\n", PERS(obj->carried_by, ch), " ",
+                      world[obj->carried_by->in_room].name, world[obj->carried_by->in_room].vnum);
     else if (obj->worn_by)
-        paging_printf(ch, "worn by {}\n", PERS(obj->worn_by, ch));
+        paging_printf(ch, "worn by {} at\n {:<33}{} [{}]\n", PERS(obj->worn_by, ch), " ",
+                      world[obj->worn_by->in_room].name, world[obj->worn_by->in_room].vnum);
     else if (obj->in_obj) {
-        paging_printf(ch, "inside {}{}\n", obj->in_obj->short_description, (recur ? ", which is" : " "));
+        paging_printf(ch, "inside {}{}\n", obj->in_obj->short_description, (recur ? " at" : " "));
         if (recur)
             print_object_location(0, obj->in_obj, ch, recur);
     } else
@@ -2871,6 +2874,23 @@ const char *ability_message(int value) {
         return rolls_abils_result[4];
 }
 
+const char *hp_regen_message(int regen) {
+    const char *messages[] = {
+        "Bad",
+        "Average",
+        "Good",
+        "Very Good",
+    };
+
+    if (regen < 0)
+        return "Deathly!";
+
+    if (regen >= 100)
+        return "Awesome!";
+
+    return messages[regen / 25];
+}
+
 long xp_percentage(CharData *ch) {
     long current, total, next_level;
 
@@ -3133,7 +3153,11 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
     else
         char_printf(ch, "Armor class: &3{:d}&0  ", GET_AC(tch) + 5 * monk_weight_penalty(tch));
 
-    char_printf(ch, "Focus: &5{:d}&0  ", GET_FOCUS(tch));
+    if (verbose)
+        char_printf(ch, "HP Gain: &1&b{}&0  HP Regen Bonus: &1{}&0\n", hp_regen_message(hit_gain(tch)),
+                    hp_regen_message(tch->char_specials.hitgain));
+    else
+        char_printf(ch, "HP Gain: &1&b{}&0  HP Regen Bonus: &1{}&0\n", hit_gain(tch), tch->char_specials.hitgain);
 
     if (verbose)
         char_printf(
@@ -3141,11 +3165,11 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
             hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)), GET_HITROLL(tch) - monk_weight_penalty(tch),
             hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)), GET_DAMROLL(tch) - monk_weight_penalty(tch));
     else
-        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0  ", GET_HITROLL(tch) - monk_weight_penalty(tch),
+        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0\n", GET_HITROLL(tch) - monk_weight_penalty(tch),
                     GET_DAMROLL(tch) - monk_weight_penalty(tch));
 
     if (GET_RAGE(tch) || GET_SKILL(tch, SKILL_BERSERK))
-        char_printf(ch, "\nRage: &3&b{:d}&0 ", GET_RAGE(tch));
+        char_printf(ch, "Rage: &3&b{:d}&0 ", GET_RAGE(tch));
 
     char_printf(ch, "Perception: &3&b{}&0  Concealment: &3&b{}&0\n", GET_PERCEPTION(tch), GET_HIDDENNESS(tch));
 }

@@ -93,7 +93,8 @@ const char *connected_types[NUM_CON_MODES + 1] = {
     "Con ANSI",        "Object edit",     "Room edit",       "Zone edit",       "Mobile edit",     "Shop edit",
     "Rolling stats",   "Hometown choice", "Picking bonuses", "Picking bonuses", "Picking bonuses", "Confirm stats",
     "Help edit",       "Trigger Edit",    "Class Help",      "Spell dam edit",  "Name check",      "Name approval",
-    "Choose new name", "Select race",     "Bad name boot",   "Cmd group edit",  "Item edit",       "\n"};
+    "Choose new name", "Select race",     "Bad name boot",   "Cmd group edit",  "Item edit",       "Select str",
+    "Select dex",      "Select con",      "select int",      "Select wis",      "Select cha",      "\n"};
 
 /* WEAR_x - for eq list */
 const char *where[NUM_WEARS] = {

@@ -1393,6 +1393,11 @@ ACMD(do_cast) {
     if (!check_spell_target(spellnum, ch, tch, tobj))
         return;
 
+    if (tch == ch && SINFO.violent && spellnum != SPELL_DISPEL_MAGIC) {
+        char_printf(ch, "You can't cast deadly spells on yourself!!\n");
+        return;
+    }
+
     /* An injured throat makes it difficult to cast. */
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && random_number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         if (subcmd == SCMD_CHANT) {
@@ -1455,19 +1460,101 @@ ACMD(do_cast) {
         }
 
     } else if (subcmd == SCMD_PERFORM) {
-        if (cha_app[GET_CHA(ch)].music == 0) {
-            char_printf(ch, "Your Charisma is too low to perform!\n");
-        }
-        for (int i = 0; i < cha_app[GET_CHA(ch)].music; i++) {
-            if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
-                int cresult = perform(ch, tch, tobj, spellnum);
-                if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                    improve_skill(ch, SKILL_PERFORM);
-                if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                    SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                    WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+        if (GET_LEVEL(ch) >= LVL_GOD)
+            int cresult = perform(ch, tch, tobj, spellnum);
+        else {
+            if (cha_app[GET_CHA(ch)].music == 0) {
+                char_printf(ch, "Your Charisma is too low to perform!\n");
+            }
+            for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
+                switch (i) {
+                case 1:
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_1)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_1, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        i = 8;
+                    }
+                    break;
+                case 2:
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_2)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_2, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        i = 8;
+                    }
+                    break;
+                case 3:
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_3)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_3, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        i = 8;
+                    }
+                    break;
+                case 4:
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_4)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_4, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        i = 8;
+                    }
+                    break;
+                case 5:
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_5)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_5, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        i = 8;
+                    }
+                    break;
+                case 6:
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_6)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_6, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        i = 8;
+                    }
+                    break;
+                case 7:
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_7)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_7, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        i = 8;
+                    }
+                    break;
+                default:
+                    break;
                 }
-                break;
             }
         }
     } else {

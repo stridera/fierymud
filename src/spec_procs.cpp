@@ -327,6 +327,7 @@ void money_convert(CharData *ch, int amount) {
 }
 
 #define PET_PRICE(pet) ((GET_LEVEL(pet) * GET_LEVEL(pet)) + (3 * GET_LEVEL(pet)))
+#define PET_INSPECT_PRICE(pet) (((GET_LEVEL(pet) * GET_LEVEL(pet)) + (3 * GET_LEVEL(pet))) / 10)
 
 SPECIAL(pet_shop) {
     int ideal_mountlevel(CharData * ch);
@@ -409,6 +410,63 @@ SPECIAL(pet_shop) {
         act("$n buys $N as a pet.", false, ch, 0, pet, TO_ROOM);
 
         return 1;
+    } else if (CMD_IS("inspect")) {
+        argument = one_argument(argument, buf);
+        argument = one_argument(argument, pet_name);
+
+        if (!*buf) {
+            char_printf(ch, "Inspection Services                                              \n");
+            char_printf(ch, "Pet                                     Cost           Ridability\n");
+            char_printf(ch, "--------------------------------------  -------------  ----------\n");
+            for (pet = world[pet_room].people; pet; pet = pet->next_in_room) {
+                mountdiff = mountlevel(pet) - ideal_mountlevel(ch);
+                bp = PET_INSPECT_PRICE(pet);
+                temp = ((int)(bp) / 1000);
+                temp2 = ((int)((int)(bp / 100) - (temp * 10)));
+                temp3 = ((int)((((int)(bp / 10)) - (temp * 100)) - temp2 * 10));
+                temp4 = ((int)((((bp) - (temp * 1000)) - (temp2 * 100)) - (temp3 * 10)));
+                char_printf(ch, "{}{:d} {:<36}  &0&b&6{:3d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c    {}\n",
+                            found++ % 2 == 0 ? "&K" : "", found, GET_NAME(pet), temp, temp2, temp3, temp4,
+                            !MOB_FLAGGED(pet, MOB_MOUNTABLE) ? "n/a"
+                            : mountdiff > MOUNT_LEVEL_FUDGE  ? "impossible"
+                            : mountdiff < 1                  ? "good"
+                            : mountdiff < 2                  ? "fair"
+                            : mountdiff < 4                  ? "bad"
+                                                             : "awful");
+            }
+            return (true);
+        }
+
+        if (!(pet = find_char_in_room(&world[pet_room], find_by_name(buf)))) {
+            char_printf(ch, "There is no such pet!\n");
+            return (true);
+        }
+        if (GET_LEVEL(ch) < LVL_IMMORT) {
+            if (GET_CASH(ch) < PET_INSPECT_PRICE(pet)) {
+                char_printf(ch, "You don't have enough money!\n");
+                return true;
+            }
+            apply_cost(PET_INSPECT_PRICE(pet), ch);
+        }
+
+        pet = read_mobile(GET_MOB_RNUM(pet), REAL);
+        GET_EXP(pet) = 0;
+        GET_MAX_MOVE(pet) *= 15;
+        GET_MOVE(pet) = GET_MAX_MOVE(pet);
+        SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
+        SET_FLAG(MOB_FLAGS(pet), MOB_PET);
+
+        sprintf(buf, "Name: %s\n", GET_NAME(pet));
+        sprintf(buf, "%sLevel: %d, Hit Points: %d, Movement Points: %d\n", buf, GET_LEVEL(pet), GET_HIT(pet),
+                GET_MAX_MOVE(pet));
+        sprintf(buf, "%sAC: %d, Hitroll: %d, Damroll: %d\n", buf, GET_AC(pet), GET_HITROLL(pet), GET_DAMROLL(pet));
+        sprintf(buf, "%sStr: %d, Int: %d, Wis: %d, Dex: %d, Con: %d, Cha: %d\n", buf, GET_STR(pet), GET_INT(pet),
+                GET_WIS(pet), GET_DEX(pet), GET_CON(pet), GET_CHA(pet));
+        sprintf(buf, "%s$E is composed of %s%s&0, and $S nature is %s%s.", buf, COMPOSITION_COLOR(pet),
+                COMPOSITION_NAME(pet), LIFEFORCE_COLOR(pet), LIFEFORCE_NAME(pet));
+        act(buf, false, ch, 0, pet, TO_CHAR);
+
+        return (true);
     }
     /* All commands except list and buy */
     return 0;
@@ -804,7 +862,6 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument) {
     tmp = one_argument(argument, arg_1);
     one_argument(tmp, target);
 
-
     /* Make sure the player specified one of the scroll names. */
 
     if (obj != find_obj_in_list(ch->carrying, find_vis_by_name(ch, arg_1))) {
@@ -856,7 +913,7 @@ int do_recall(CharData *ch, ObjData *obj, int cmd, char *argument) {
     case 3058:
         room = blue_recall_room(targ);
         break;
-    case 10010:
+    case 30010:
         room = gray_recall_room(targ);
         break;
     };

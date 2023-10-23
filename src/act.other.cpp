@@ -800,7 +800,7 @@ ACMD(do_not_here) {
         char_printf(ch, HUH);
     else if (CMD_IS("mail") || CMD_IS("check") || CMD_IS("receive"))
         char_printf(ch, "Sorry, you can only do that in a post office!\n");
-    else if (CMD_IS("list") || CMD_IS("value") || CMD_IS("buy") || CMD_IS("sell"))
+    else if (CMD_IS("list") || CMD_IS("value") || CMD_IS("buy") || CMD_IS("sell") || CMD_IS("inspect"))
         char_printf(ch, "Sorry, you can only do that in a shop!\n");
     else if (CMD_IS("rent"))
         char_printf(ch, "Sorry, you can only do that in an inn!\n");

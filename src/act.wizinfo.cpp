@@ -667,10 +667,12 @@ void do_stat_character(CharData *ch, CharData *k) {
         GET_AFFECTED_INT(k), GET_AFFECTED_WIS(k), GET_AFFECTED_DEX(k), GET_AFFECTED_CON(k), GET_AFFECTED_CHA(k),
         CLR(ch, ANRM));
 
-    resp += fmt::format("HP: [{}{}/{}+{}{}]  MV: [{}{}/{}+{}{}]  Focus: [{}{}{}]\n", CLR(ch, FGRN), GET_HIT(k),
-                        GET_MAX_HIT(k), hit_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k),
-                        move_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), GET_FOCUS(k), CLR(ch, ANRM));
-
+    resp += fmt::format("HP: [{}{}/{}{}]  HP Gain: [{}{}{}] HP Regen Bonus: [{}{}{}]\n", CLR(ch, FGRN), GET_HIT(k),
+                        GET_MAX_HIT(k), CLR(ch, ANRM), CLR(ch, FGRN), hit_gain(k), CLR(ch, ANRM), CLR(ch, FGRN),
+                        k->char_specials.hitgain, CLR(ch, ANRM));
+    resp += fmt::format("MV: [{}{}/{}{}]  MV Gain: [{}{}{}]\n", CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k),
+                        CLR(ch, ANRM), CLR(ch, FGRN), move_gain(k), CLR(ch, ANRM));
+    resp += fmt::format("Focus:  Focus: [{}{}{}]\n", CLR(ch, FGRN), GET_FOCUS(k), CLR(ch, ANRM));
     resp += fmt::format(
         "Coins: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c], "
         "Bank: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c]\n",
@@ -1037,7 +1039,8 @@ ACMD(do_olocate) {
             else if (obj->in_room != NOWHERE)
                 response += fmt::format("in room {:10} [{}]", world[obj->in_room].name, obj->in_room);
             else if (obj->in_obj)
-                response += fmt::format("inside {:10}", obj->in_obj->short_description);
+                response += fmt::format("inside {:10} at {} [{}]", obj->in_obj->short_description,
+                                        world[obj->in_obj->in_room].name, obj->in_obj->in_room);
             else
                 response += fmt::format("in an unknown location");
             response += "\n";
@@ -1327,7 +1330,7 @@ void do_show_player(CharData *ch, char *argument) {
     char_printf(ch,
                 "Coins held:    [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
                 "Coins banked:  [{:7d}p / {:7d}g / {:7d}s / {:7d}c]\n"
-                "Exp: {:-8ld}   Align: {:-5d}\n"
+                "Exp: {:-8}   Align: {:-5d}\n"
                 "Started: {}   Last: {}   Played: {:3d}h {:2d}m\n",
                 GET_PLATINUM(vict), GET_GOLD(vict), GET_SILVER(vict), GET_COPPER(vict), GET_BANK_PLATINUM(vict),
                 GET_BANK_GOLD(vict), GET_BANK_SILVER(vict), GET_BANK_COPPER(vict), GET_EXP(vict), GET_ALIGNMENT(vict),

@@ -13,6 +13,7 @@
 
 #include "shop.hpp"
 
+#include "act.hpp"
 #include "chars.hpp"
 #include "class.hpp"
 #include "comm.hpp"
@@ -34,6 +35,9 @@
 #include "utils.hpp"
 
 #include <math.h>
+
+/* Extern functions */
+void identify_obj(ObjData *obj, CharData *ch, int location);
 
 /* Global Vars */
 int top_shop;
@@ -437,6 +441,19 @@ int buy_price(CharData *ch, CharData *keeper, ObjData *obj, int shop_nr) {
     return (price);
 }
 
+/* Intended to allow players to identify items in shops at 1/10th the purchase price */
+int inspect_price(CharData *ch, CharData *keeper, ObjData *obj, int shop_nr) {
+    int price;
+
+    price = buy_price(ch, keeper, obj, shop_nr) / 10;
+
+    if (price < 1)
+        price = 1;
+
+    return (price);
+}
+
+
 void apply_getcash(CharData *ch, int cash) {
     GET_PLATINUM(ch) += PLATINUM_PART(cash);
     GET_GOLD(ch) += GOLD_PART(cash);
@@ -455,9 +472,13 @@ void adjust_cash(CharData *ch) {
 void apply_cost(int cost, CharData *ch) {
     int haveP, haveG, haveS, haveC;
 
-    if (cost <= 0 || cost > GET_CASH(ch)) {
-        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch),
-            cost);
+    if (cost > GET_CASH(ch)) {
+        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch), cost);
+        return;
+    }
+
+    if (cost <= 0) {
+        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} for goods or services", GET_NAME(ch), cost);
         return;
     }
 
@@ -920,7 +941,7 @@ void shopping_value(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     return;
 }
 
-std::string list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, int index, int shop_nr) {
+std::string list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, int index, int shop_nr, int service) {
     std::string buf;
     char buf2[300], buf3[200];
     int bp;
@@ -939,7 +960,11 @@ std::string list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, i
     /* FUTURE: */
     /* Add glow/hum/etc */
 
-    bp = ((int)(buy_price(ch, keeper, obj, shop_nr)));
+    if (service == PURCHASE_PRICE)
+        bp = ((int)(buy_price(ch, keeper, obj, shop_nr)));
+    else if (service == SERVICE_PRICE)
+        bp = ((int)(inspect_price(ch, keeper, obj, shop_nr)));
+        
     return (fmt::format("{:<56}  &0&b&6{:3d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c\n", strip_ansi(buf.c_str()),
                         PLATINUM_PART(bp), GOLD_PART(bp), SILVER_PART(bp), COPPER_PART(bp)));
 }
@@ -974,7 +999,7 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
                 else {
                     index++;
                     if (!(*name) || isname(name, last_obj->name))
-                        paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr));
+                        paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr, PURCHASE_PRICE));
                     cnt = 1;
                     last_obj = obj;
                 }
@@ -987,9 +1012,106 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
         else
             paging_printf(ch, "Currently, there is nothing for sale.\n");
     } else if (!(*name) || isname(name, last_obj->name))
-        paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr));
+        paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr, PURCHASE_PRICE));
 
     start_paging(ch);
+}
+
+void shopping_inspect(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
+    char tempstr[200], buf[MAX_STRING_LENGTH], name[MAX_INPUT_LENGTH];
+    ObjData *obj, *last_obj = 0;
+    int copperamt = 0, cnt = 0, index = 0;;
+    bool amount = 0, any = false;
+    int counter;
+
+    if (!(is_ok(keeper, ch, shop_nr)))
+        return; /* Isn't a shopkeeper */
+
+    if (SHOP_SORT(shop_nr) < IS_CARRYING_N(keeper))
+        sort_keeper_objs(keeper, shop_nr);
+
+    /* Did player specify anything to inspect? */
+    if (!*arg) {
+        if (keeper->carrying)
+            for (obj = keeper->carrying; obj; obj = obj->next_content)
+                if ((!(*name) || isname(name, obj->name)) && CAN_SEE_OBJ(ch, obj) && (obj->obj_flags.cost > 0)) {
+                    if (!any) {
+                        any = true;
+                        paging_printf(ch, " ##  Lvl  Item                                              Cost\n");
+                        paging_printf(ch, "---  ---  ------------------------------------------------  -------------\n");
+                    }
+                    if (!last_obj) {
+                        last_obj = obj;
+                        cnt = 1;
+                    } else if (same_obj(last_obj, obj))
+                        cnt++;
+                    else {
+                        index++;
+                        if (!(*name) || isname(name, last_obj->name))
+                            paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr, SERVICE_PRICE));
+                        cnt = 1;
+                        last_obj = obj;
+                    }
+                }
+
+        index++;
+        if (!any) {
+            if (*name)
+                paging_printf(ch, "Presently, none of those are for sale.\n");
+            else
+                paging_printf(ch, "Currently, there is nothing for sale.\n");
+        } else if (!(*name) || isname(name, last_obj->name))
+            paging_printf(ch, list_object(keeper, last_obj, ch, cnt, index, shop_nr, SERVICE_PRICE));
+
+        start_paging(ch);
+        return;
+    }
+
+    /* Does shopkeeper have any of the desired item? */
+    if (!(obj = get_purchase_obj(ch, arg, keeper, shop_nr, true)))
+        return;
+
+    /* Can the buyer afford the item? */
+    if ((inspect_price(ch, keeper, obj, shop_nr) > GET_CASH(ch)) && !IS_GOD(ch)) {
+        sprintf(buf, shop_index[shop_nr].missing_cash2, GET_NAME(ch));
+        do_tell(keeper, buf, cmd_tell, 0);
+
+        switch (SHOP_BROKE_TEMPER(shop_nr)) {
+        case 0:
+            do_action(keeper, GET_NAME(ch), cmd_snicker, 0);
+            return;
+        case 1:
+            do_echo(keeper, strdup("smokes on his joint."), cmd_emote, SCMD_EMOTE);
+            return;
+        default:
+            return;
+        }
+    }
+
+    if (GET_LEVEL(ch) < LVL_IMMORT) {
+        apply_cost(inspect_price(ch, keeper, obj, shop_nr), ch);
+    }
+
+    copperamt += inspect_price(ch, keeper, obj, shop_nr);
+
+    identify_obj(obj, ch, 0);
+
+    if (GET_LEVEL(ch) < LVL_IMMORT)
+        apply_getcash(keeper, copperamt);
+
+    sprintf(buf, "$n inspects %s.", obj->short_description);
+    act(buf, false, ch, obj, 0, TO_ROOM);
+
+    if (SHOP_USES_BANK(shop_nr))
+        if (GET_CASH(keeper) > MAX_OUTSIDE_BANK) {
+            SHOP_BANK(shop_nr) += (GET_CASH(keeper) - MAX_OUTSIDE_BANK);
+            GET_PLATINUM(keeper) = 0;
+            GET_GOLD(keeper) = 0;
+            GET_SILVER(keeper) = 0;
+            GET_COPPER(keeper) = 0;
+            GET_COPPER(keeper) = MAX_OUTSIDE_BANK;
+            adjust_cash(keeper);
+        }
 }
 
 int ok_shop_room(int shop_nr, int room) {
@@ -1084,6 +1206,9 @@ SPECIAL(shop_keeper) {
         return (true);
     } else if (CMD_IS("list")) {
         shopping_list(argument, ch, keeper, shop_nr);
+        return (true);
+    } else if (CMD_IS("inspect")) {
+        shopping_inspect(argument, ch, keeper, shop_nr);
         return (true);
     }
     return (false);

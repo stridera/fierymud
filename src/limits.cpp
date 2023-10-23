@@ -53,10 +53,10 @@ int hit_gain(CharData *ch)
         gain = GET_MAX_HIT(ch) * .05;
 
         /* Max hitgain stat on a char is 100 */
-        gain = gain + std::min(ch->char_specials.hitgain, 100) + 2;
+        gain += ch->char_specials.hitgain + 2;
 
         if (GET_RACE(ch) == RACE_TROLL)
-            gain += gain * 2;
+            gain *= 2;
 
         /* Class/Level calculations */
 

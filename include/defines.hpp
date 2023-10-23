@@ -488,6 +488,13 @@
 #define EFF_DISPLACEMENT 82
 #define EFF_GREATER_DISPLACEMENT 83
 #define NUM_EFF_FLAGS 84 /* Keep me updated */
+#define EFF_FIRE_WEAPON 84
+#define EFF_ICE_WEAPON 85
+#define EFF_POISON_WEAPON 86
+#define EFF_ACID_WEAPON 87
+#define EFF_SHOCK_WEAPON 88
+#define EFF_RADIANT_WEAPON 89
+#define NUM_EFF_FLAGS 90 /* Keep me updated */
 
 /* Preference flags: used by CharData.player_specials.pref */
 #define PRF_BRIEF 0       /* Room descs won't normally be shown */

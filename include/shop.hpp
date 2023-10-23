@@ -72,6 +72,10 @@ struct ShopData {
 #define LIST_TRADE 1
 #define LIST_ROOM 2
 
+/* Types of prices */
+#define PURCHASE_PRICE 0
+#define SERVICE_PRICE 1
+
 /* Whom will we not trade with (bitvector for SHOP_TRADE_WITH()) */
 #define TRADE_NOGOOD 1
 #define TRADE_NOEVIL 2
