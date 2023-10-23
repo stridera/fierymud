@@ -192,6 +192,8 @@ int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)] = {
     {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0}  /* level 105 CIRCLE 14 */
 }; /* 11+11+11+11+11+11+11+11+11+11+8+7+6 = 131 = max_char_spells  */
 
+int circle_recover_time[(NUM_SPELL_CIRCLES + 1)] = {20, 25, 40, 55, 80, 95, 130, 145, 165, 210, 250, 290, 310};
+
 // Locals
 CharData *memming = 0; /* head of memming characters linked list */
 
@@ -514,48 +516,7 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
     if (circle == -1)
         circle = SPELL_CIRCLE(ch, spellnum);
 
-    switch (circle) {
-    case 1:
-        recover_time = 20;
-        break;
-    case 2:
-        recover_time = 25;
-        break;
-    case 3:
-        recover_time = 40;
-        break;
-    case 4:
-        recover_time = 55;
-        break;
-    case 5:
-        recover_time = 80;
-        break;
-    case 6:
-        recover_time = 95;
-        break;
-    case 7:
-        recover_time = 130;
-        break;
-    case 8:
-        recover_time = 145;
-        break;
-    case 9:
-        recover_time = 165;
-        break;
-    case 10:
-        recover_time = 210;
-        break;
-    case 11:
-        recover_time = 250;
-        break;
-    case 12:
-        recover_time = 290;
-        break;
-    case 13:
-        recover_time = 310;
-    }
-
-    recover_time += skills[spellnum].addl_mem_time;
+    recover_time = circle_recover_time[circle] + skills[spellnum].addl_mem_time;
 
     ch->spellcasts.push_back(SpellCast(circle, recover_time));
 
