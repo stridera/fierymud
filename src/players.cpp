@@ -47,6 +47,7 @@
 /* local functions */
 static void load_effects(FILE *fl, CharData *ch);
 static void load_skills(FILE *fl, CharData *ch);
+static void load_spellcasts(FILE *fl, CharData *ch);
 static void scan_slash(const char *line, int *cur, int *max);
 static void write_aliases_ascii(FILE *file, CharData *ch);
 static void read_aliases_ascii(FILE *file, CharData *ch);
@@ -588,6 +589,8 @@ int load_player(const char *name, CharData *ch) {
                 ch->player.base_size = std::clamp(num, 0, NUM_SIZES - 1);
             else if (!strcasecmp(tag, "skills"))
                 load_skills(fl, ch);
+            else if (!strcasecmp(tag, "spellcasts"))
+                load_spellcasts(fl, ch);
             else if (!strcasecmp(tag, "strength"))
                 GET_NATURAL_STR(ch) = num;
             else
@@ -677,8 +680,9 @@ int load_player(const char *name, CharData *ch) {
     }
 
     /*
-     * If you're not poisioned and you've been away for more than an hour of
-     * real time, we'll set your HMV back to full.
+     * Restore values if you've been away for more than an hour.
+     * - If you're not poisoned, get your health/move back
+     * - If your not insane, get your used spell slots back.
      *
      * However, note that equipment/spell effects have not yet been applied,
      * so the true maximum may be higher than GET_MAX_XXX might say here.
@@ -687,13 +691,19 @@ int load_player(const char *name, CharData *ch) {
      * before doing anything.
      */
 
-    if (!EFF_FLAGGED(ch, EFF_POISON) && (((long)(time(0) - ch->player.time.logon)) >= SECS_PER_REAL_HOUR)) {
-        if (GET_HIT(ch) < GET_MAX_HIT(ch))
-            GET_HIT(ch) = GET_MAX_HIT(ch);
-        if (GET_MOVE(ch) < GET_MAX_MOVE(ch))
-            GET_MOVE(ch) = GET_MAX_MOVE(ch);
-        if (GET_MANA(ch) < GET_MAX_MANA(ch))
-            GET_MANA(ch) = GET_MAX_MANA(ch);
+    if (((long)(time(0) - ch->player.time.logon)) >= SECS_PER_REAL_HOUR) {
+        if (!EFF_FLAGGED(ch, EFF_POISON)) {
+            if (GET_HIT(ch) < GET_MAX_HIT(ch))
+                GET_HIT(ch) = GET_MAX_HIT(ch);
+            if (GET_MOVE(ch) < GET_MAX_MOVE(ch))
+                GET_MOVE(ch) = GET_MAX_MOVE(ch);
+            if (GET_MANA(ch) < GET_MAX_MANA(ch))
+                GET_MANA(ch) = GET_MAX_MANA(ch);
+        }
+        if (!EFF_FLAGGED(ch, EFF_INSANITY)) {
+            if (!ch->spellcasts.empty())
+                ch->spellcasts.clear();
+        }
     }
 
     num = (time(0) - ch->player.time.logon) RL_SEC;
@@ -959,6 +969,13 @@ void save_player_char(CharData *ch) {
         fprintf(fl, "-1 0\n");
     }
 
+    if (!ch->spellcasts.empty()) {
+        fprintf(fl, "spellcasts:\n");
+        for (auto &spellcast : ch->spellcasts)
+            fprintf(fl, "%d %d\n", spellcast.circle, spellcast.ticks);
+        fprintf(fl, "0 0\n");
+    }
+
     /* Save skills */
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         fprintf(fl, "skills:\n");
@@ -1147,6 +1164,18 @@ static void load_skills(FILE *fl, CharData *ch) {
         if (skill != 0)
             SET_SKILL(ch, skill, proficiency);
     } while (skill != 0);
+}
+
+static void load_spellcasts(FILE *fl, CharData *ch) {
+    int circle = 0, ticks = 0;
+    char line[MAX_INPUT_LENGTH + 1];
+
+    do {
+        get_line(fl, line);
+        sscanf(line, "%d %d", &circle, &ticks);
+        if (circle != 0)
+            ch->spellcasts.emplace_back(circle, ticks);
+    } while (circle != 0);
 }
 
 static void scan_slash(const char *line, int *cur, int *max) {
