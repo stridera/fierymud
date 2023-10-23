@@ -1785,7 +1785,7 @@ void do_show_spell(CharData *ch, int spellnum) {
 
     char_printf(ch, "Mana        : max {:d}  min {:d}  chg {:d}\n", spell->mana_max, spell->mana_min,
                 spell->mana_change);
-    char_printf(ch, "Mem time    : {:d}\n", spell->mem_time);
+    char_printf(ch, "Mem time    : {:d}\n", spell->addl_mem_time);
     char_printf(ch, "Cast time   : {:d}\n", spell->cast_time);
     char_printf(ch, "Pages       : &3{:d}&0\n", spell->pages);
     char_printf(ch, "Quest       : {}\n", spell->quest ? "&2&bYes&0" : "&4&bNo&0");
@@ -1871,7 +1871,7 @@ void do_show_skill(CharData *ch, char *argument) {
             "Mem Time          : @c{}@0\n"
             "Cast Time         : @c{}@0\n"
             "Pages             : @c{}@0\n",
-            skill->mana_min, skill->mana_max, skill->mana_change, skill->mem_time, skill->cast_time, skill->pages);
+            skill->mana_min, skill->mana_max, skill->mana_change, skill->addl_mem_time, skill->cast_time, skill->pages);
     }
 
     sprintf(buf2, "(%s %d is lowest)", type == SPELL ? "circle" : "level",

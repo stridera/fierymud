@@ -51,25 +51,8 @@
 
 #define TYPE_UNDEFINED -1
 
-/* PLAYER SPELLS -- Numbered from 1 to MAX_SPELLS */
-/* enumerate the base mem time for each circle. PLEASE feel free to alter based on practicality */
-#define C1 30
-#define C2 33
-#define C3 36
-#define C4 39
-#define C5 42
-#define C6 45
-#define C7 48
-#define C8 51
-#define C9 54
-#define C10 57
-#define C11 60
-#define C12 60
-#define C13 60
-#define C14 60
-
 /*
- * spell casting time defines , ordinary ints can be used for other values, but should be declared here...
+ * spell casting time defines, ordinary ints can be used for other values, but should be declared here...
  * NOTE: These integers represent pulses, not seconds. if PULSE_VIOLENCE is used, then each of the following is (n*2)
  * seconds.
  */
@@ -191,7 +174,7 @@ void free_mem_list(CharData *ch);
 void free_scribe_list(CharData *ch);
 void init_mem_list(CharData *ch);
 void save_mem_list(CharData *ch);
-int add_spell(CharData *ch, int spell, int can_cast, int mem_time, bool verbose);
+int add_spell(CharData *ch, int spell, int can_cast, int addl_mem_time, bool verbose);
 
 #include "events.hpp"
 EVENTFUNC(delayed_cast_event);

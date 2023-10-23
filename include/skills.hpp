@@ -41,7 +41,7 @@ struct SkillDef {
     int routines;
     byte violent;
     int targets; /* See spells.h for use with TAR_XXX  */
-    int mem_time;
+    int addl_mem_time;
     int cast_time;
     int damage_type;
     int sphere;

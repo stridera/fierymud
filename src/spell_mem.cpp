@@ -485,12 +485,12 @@ int get_spellslot_restore_rate(CharData *ch) {
     rate *= (classes[(int)GET_CLASS(ch)].bonus_focus + class_bonus) / 100.0;
 
     // Add Meditate Bonus
-    if (PLR_FLAGGED(ch, PLR_MEDITATE))
+    if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         if (IS_NPC(ch))
             rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
-    if (GET_SKILL(ch, SKILL_MEDITATE))
-        rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
-
+        if (GET_SKILL(ch, SKILL_MEDITATE))
+            rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
+    }
     return rate;
 }
 
@@ -513,49 +513,49 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
 
     if (circle == -1)
         circle = SPELL_CIRCLE(ch, spellnum);
-    if (skills[spellnum].mem_time == C1) {
-        switch (circle) {
-        case 1:
-            recover_time = 20;
-            break;
-        case 2:
-            recover_time = 25;
-            break;
-        case 3:
-            recover_time = 40;
-            break;
-        case 4:
-            recover_time = 55;
-            break;
-        case 5:
-            recover_time = 80;
-            break;
-        case 6:
-            recover_time = 95;
-            break;
-        case 7:
-            recover_time = 130;
-            break;
-        case 8:
-            recover_time = 145;
-            break;
-        case 9:
-            recover_time = 165;
-            break;
-        case 10:
-            recover_time = 210;
-            break;
-        case 11:
-            recover_time = 250;
-            break;
-        case 12:
-            recover_time = 290;
-            break;
-        case 13:
-            recover_time = 310;
-        }
-    } else
-        recover_time = skills[spellnum].mem_time;
+
+    switch (circle) {
+    case 1:
+        recover_time = 20;
+        break;
+    case 2:
+        recover_time = 25;
+        break;
+    case 3:
+        recover_time = 40;
+        break;
+    case 4:
+        recover_time = 55;
+        break;
+    case 5:
+        recover_time = 80;
+        break;
+    case 6:
+        recover_time = 95;
+        break;
+    case 7:
+        recover_time = 130;
+        break;
+    case 8:
+        recover_time = 145;
+        break;
+    case 9:
+        recover_time = 165;
+        break;
+    case 10:
+        recover_time = 210;
+        break;
+    case 11:
+        recover_time = 250;
+        break;
+    case 12:
+        recover_time = 290;
+        break;
+    case 13:
+        recover_time = 310;
+    }
+
+    recover_time += skills[spellnum].addl_mem_time;
 
     ch->spellcasts.push_back(SpellCast(circle, recover_time));
 
