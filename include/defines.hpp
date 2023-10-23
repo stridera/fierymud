@@ -487,7 +487,6 @@
 #define EFF_SONG_OF_REST 81
 #define EFF_DISPLACEMENT 82
 #define EFF_GREATER_DISPLACEMENT 83
-#define NUM_EFF_FLAGS 84 /* Keep me updated */
 #define EFF_FIRE_WEAPON 84
 #define EFF_ICE_WEAPON 85
 #define EFF_POISON_WEAPON 86
