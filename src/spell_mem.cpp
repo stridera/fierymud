@@ -210,101 +210,6 @@ int mob_mem_time(CharData *ch, int circle) {
     return std::max(mem_time, 1);
 }
 
-EVENTFUNC(memming_event) {
-    CharData *ch = (CharData *)event_obj;
-    MemorizedList *cur = 0;
-    char buf[256];
-    int i;
-
-    if (FIGHTING(ch)) {
-        char_printf(ch,
-                    "Your studies are rudely interrupted!\n"
-                    "You abort your studies.\n");
-        rem_memming(ch);
-        return EVENT_FINISHED;
-    }
-
-    if (IS_DRUNK(ch)) {
-        char_printf(ch,
-                    "You cannot study while intoxicated.\n"
-                    "You abort your studies.\n");
-        rem_memming(ch);
-        return EVENT_FINISHED;
-    }
-
-    if (GET_POS(ch) != POS_SITTING || GET_STANCE(ch) < STANCE_RESTING || GET_STANCE(ch) > STANCE_ALERT) {
-        char_printf(ch, "You abort your studies.\n");
-        rem_memming(ch);
-        return EVENT_FINISHED;
-    }
-
-    if (EVENT_FLAGGED(ch, EVENT_SCRIBE)) {
-        char_printf(ch, "You can't memorize and scribe at the same time!\n");
-        rem_memming(ch);
-        return EVENT_FINISHED;
-    }
-
-    /* Mobs memorize spells differently than players */
-    if (IS_NPC(ch)) {
-        for (i = NUM_SPELL_CIRCLES; i > 0; --i)
-            if (GET_MOB_SPLBANK(ch, i) < spells_of_circle[(int)GET_LEVEL(ch)][i]) {
-                if (GET_MOB_SPLMEM_TIME(ch) >= 0)
-                    GET_MOB_SPLMEM_TIME(ch) -= 2;
-                else
-                    GET_MOB_SPLMEM_TIME(ch) = mob_mem_time(ch, i) - 2;
-                if (GET_MOB_SPLMEM_TIME(ch) <= 0)
-                    GET_MOB_SPLBANK(ch, i)++;
-                return MEM_INTERVAL;
-            }
-        rem_memming(ch);
-        return EVENT_FINISHED;
-    }
-
-    cur = GET_SPELL_MEM(ch).list_head;
-    while (cur && cur->can_cast)
-        cur = cur->next;
-    if (!cur) {
-        done_memming(ch);
-        return EVENT_FINISHED;
-    } else {
-        if (MEM_MODE(ch) == MEMORIZE) {
-            if (!find_spellbook_with_spell(ch, cur->spell)) {
-                char_printf(ch, "You need a spellbook with that spell written in it.\n");
-                rem_memming(ch);
-                return EVENT_FINISHED;
-            }
-        }
-
-        /* using pulse violence, which means we only update every _2_ seconds
-           please do NOT change this, unless you change in comm.c to
-           pulse_violence/2  */
-        cur->mem_time -= 1;
-
-        /* check meditate skill */
-        if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-            if (random_number(0, 20) > 17)
-                improve_skill(ch, SKILL_MEDITATE);
-        }
-
-        if (cur->mem_time < 1) {
-            if (MEM_MODE(ch) == MEMORIZE)
-                char_printf(ch, "You have finished memorizing {}.\n", skill_name(cur->spell));
-            else if (MEM_MODE(ch) == PRAY)
-                char_printf(ch, "You have finished praying for {}.\n", skill_name(cur->spell));
-
-            /* reset so the guy has to remem after casting it. */
-            cur->mem_time = set_mem_time(ch, cur->spell);
-            cur->can_cast = true;
-            GET_SPELL_MEM(ch).num_memmed++;
-            if (GET_SPELL_MEM(ch).num_memmed == GET_SPELL_MEM(ch).num_spells || !cur->next) {
-                done_memming(ch);
-                return EVENT_FINISHED;
-            }
-        }
-    }
-    return MEM_INTERVAL;
-}
-
 EVENTFUNC(scribe_event) {
     CharData *ch = (CharData *)event_obj;
     Scribing *cur, *next_scribing;
@@ -543,7 +448,6 @@ int get_spellslot_restore_rate(CharData *ch) {
     // Add Race Bonuses
     rate *= races[(int)GET_RACE(ch)].bonus_focus / 100.0;
 
-    
     // Determine a bonus factor by class based on stats
     // Uses ability score 72 as "full" value; scores greater than 72 will add above scale
     switch (GET_CLASS(ch)) {
@@ -580,14 +484,12 @@ int get_spellslot_restore_rate(CharData *ch) {
     // Add Class Bonuses = base class scale + bonus factor determined above
     rate *= (classes[(int)GET_CLASS(ch)].bonus_focus + class_bonus) / 100.0;
 
-
-
     // Add Meditate Bonus
     if (PLR_FLAGGED(ch, PLR_MEDITATE))
         if (IS_NPC(ch))
             rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
-        if (GET_SKILL(ch, SKILL_MEDITATE))
-            rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
+    if (GET_SKILL(ch, SKILL_MEDITATE))
+        rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
 
     return rate;
 }
@@ -611,49 +513,49 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
 
     if (circle == -1)
         circle = SPELL_CIRCLE(ch, spellnum);
-        if (skills[spellnum].mem_time == C1) {
-            switch (circle) {
-            case 1:
-                recover_time = 20;
-                break;
-            case 2:
-                recover_time = 25;
-                break;
-            case 3:
-                recover_time = 40;
-                break;
-            case 4:
-                recover_time = 55;
-                break;
-            case 5:
-                recover_time = 80;
-                break;
-            case 6:
-                recover_time = 95;
-                break;
-            case 7:
-                recover_time = 130;
-                break;
-            case 8:
-                recover_time = 145;
-                break;
-            case 9:
-                recover_time = 165;
-                break;
-            case 10:
-                recover_time = 210;
-                break;
-            case 11:
-                recover_time = 250;
-                break;
-            case 12:
-                recover_time = 290;
-                break;
-            case 13:
-                recover_time = 310;
-            }
-        } else
-            recover_time = skills[spellnum].mem_time;
+    if (skills[spellnum].mem_time == C1) {
+        switch (circle) {
+        case 1:
+            recover_time = 20;
+            break;
+        case 2:
+            recover_time = 25;
+            break;
+        case 3:
+            recover_time = 40;
+            break;
+        case 4:
+            recover_time = 55;
+            break;
+        case 5:
+            recover_time = 80;
+            break;
+        case 6:
+            recover_time = 95;
+            break;
+        case 7:
+            recover_time = 130;
+            break;
+        case 8:
+            recover_time = 145;
+            break;
+        case 9:
+            recover_time = 165;
+            break;
+        case 10:
+            recover_time = 210;
+            break;
+        case 11:
+            recover_time = 250;
+            break;
+        case 12:
+            recover_time = 290;
+            break;
+        case 13:
+            recover_time = 310;
+        }
+    } else
+        recover_time = skills[spellnum].mem_time;
 
     ch->spellcasts.push_back(SpellCast(circle, recover_time));
 
