@@ -83,8 +83,7 @@ const struct breath_type {
     const char *to_char;
     const char *to_room;
 } breath_info[] = {
-    {"fire", SPELL_FIRE_BREATH, SKILL_BREATHE_FIRE, 
-     "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0\n",
+    {"fire", SPELL_FIRE_BREATH, SKILL_BREATHE_FIRE, "&1You snort and &bf&3i&7r&1e&0&1 shoots out of your nostrils!&0\n",
      "&1$n&1 snorts and a gout of &bf&3i&7r&1e&0&1 shoots out of $s nostrils!&0"},
     {"gas", SPELL_GAS_BREATH, SKILL_BREATHE_GAS,
      "&2You heave and a &bnoxious gas&0&2 rolls rapidly out of your nostrils!&0\n",
@@ -95,7 +94,7 @@ const struct breath_type {
     {"acid", SPELL_ACID_BREATH, SKILL_BREATHE_ACID,
      "&9&bYour stomach heaves as a wash of &2&ba&0&2ci&bd&9 leaps from your mouth!&0\n",
      "&9&b$n&9&b looks pained as a wash of &2&ba&0&2ci&2&bd&9 leaps from $s mouth!&0"},
-    {"lightning", SPELL_LIGHTNING_BREATH, SKILL_BREATHE_LIGHTNING, 
+    {"lightning", SPELL_LIGHTNING_BREATH, SKILL_BREATHE_LIGHTNING,
      "&4You open your mouth and bolts of &blightning&0&4 shoot out!&0\n",
      "&4$n&4 opens $s mouth and bolts of &blightning&0&4 shoot out!&0"},
     {nullptr, 0, 0, nullptr, nullptr},
@@ -1051,7 +1050,7 @@ ACMD(do_gretreat) {
 
 ACMD(do_bash) {
     CharData *vict = nullptr;
-    int percent, prob, skill, rounds, message;
+    int percent, prob, skill, rounds, message = 0;
 
     switch (subcmd) {
     case SCMD_BODYSLAM:
@@ -1161,18 +1160,18 @@ ACMD(do_bash) {
     if (GET_LEVEL(vict) >= LVL_IMMORT)
         percent = prob + 1; /* insta-fail */
 
-    if (prob > percent || MOB_FLAGGED(vict, MOB_NOBASH) &&
-        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)))
-        message = 1;
-
-    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
-        (displaced(ch, vict)))
-        message = 2;
+    if (prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) {
+        if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))
+            message = 1;
+        else if (displaced(ch, vict))
+            message = 2;
+    }
 
     if (message == 1 || message == 2) {
         if (message == 1) {
             act(EVASIONCLR "You charge right through $N&7&b!&0", false, ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR " charges right through $N" EVASIONCLR "!&0", false, ch, 0, vict,
+                TO_NOTVICT);
             act(EVASIONCLR "$n" EVASIONCLR " charges right through you!&0", false, ch, 0, vict, TO_VICT);
         }
         char_printf(ch, "You fall down!\n");
@@ -1359,7 +1358,7 @@ ACMD(do_kick) {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         if (displaced(ch, vict))
             return;
-            
+
         if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
             act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
             act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, vict,
@@ -2609,18 +2608,18 @@ ACMD(do_cartwheel) {
 
     if (prob > 0.9 * percent) {
         /* attack evaded */
-        if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)) 
+        if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))
             message = 1;
         if (displaced(ch, vict))
             message == 2;
         if (message == 1 || message == 2) {
             if (message == 1) {
-                act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!", false,
-                    ch, 0, vict, TO_CHAR);
-                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at $N" EVASIONCLR " but tumbles right on through!", false, ch,
-                    0, vict, TO_NOTVICT);
-                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at you, but just passes through and hits the ground.", false,
-                    ch, 0, vict, TO_VICT);
+                act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!",
+                    false, ch, 0, vict, TO_CHAR);
+                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at $N" EVASIONCLR " but tumbles right on through!", false,
+                    ch, 0, vict, TO_NOTVICT);
+                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at you, but just passes through and hits the ground.",
+                    false, ch, 0, vict, TO_VICT);
             }
             /* You fall */
             WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -2628,7 +2627,7 @@ ACMD(do_cartwheel) {
             GET_STANCE(ch) = STANCE_ALERT;
             set_fighting(vict, ch, false);
             return;
-        /* hits */
+            /* hits */
         } else {
             /* full success, knock down victim */
             if (prob > percent) {
@@ -2637,7 +2636,7 @@ ACMD(do_cartwheel) {
                 act("&0&b$N springs into a cartwheel, knocking down $n!&0", false, vict, 0, ch, TO_NOTVICT);
                 WAIT_STATE(ch, PULSE_VIOLENCE);
 
-            /* partial success, both fall down */
+                /* partial success, both fall down */
             } else if (prob > 0.9 * percent) {
                 act("&0&6You manage to take $N down but also &bfall down yourself!&0", false, ch, 0, vict, TO_CHAR);
                 act("&0&6$N cartwheels at you and knocks you down - &bbut falls in the process!&0", false, vict, 0, ch,
@@ -2671,12 +2670,14 @@ ACMD(do_cartwheel) {
                     set_fighting(ch, vict, false);
                 } else {
                     /* no piercing weapon */
-                    damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants to stand back up */
+                    damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force
+                                                             combatants to stand back up */
                     set_fighting(ch, vict, false);
                 }
             } else {
                 /* no weapon */
-                damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants to stand back up */
+                damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants
+                                                         to stand back up */
                 set_fighting(ch, vict, false);
             }
 
@@ -2692,7 +2693,8 @@ ACMD(do_cartwheel) {
         act("&0&6$N cartwheel charges at you but tumbles right past!&0", false, vict, 0, ch, TO_CHAR);
         act("&0&6$N carthweel charges at $n but tumbles right past!&0", false, vict, 0, ch, TO_NOTVICT);
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-        damage(ch, vict, 0, SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants to stand back up */
+        damage(ch, vict, 0,
+               SKILL_CARTWHEEL); /* damage should always be 0; this is a hack to force combatants to stand back up */
         set_fighting(vict, ch, false);
         if (AWAKE(ch)) {
             GET_POS(ch) = POS_SITTING;
@@ -2847,7 +2849,7 @@ ACMD(do_rend) {
     CharData *vict;
     int percent, prob;
     effect eff;
-    bool affected_by_armor_spells(CharData *vict, int skill = SKILL_REND);
+    bool affected_by_armor_spells(CharData * vict, int skill = SKILL_REND);
 
     if (GET_SKILL(ch, SKILL_REND) == 0) {
         char_printf(ch, "You have no idea how to rend armor.\n");
@@ -2901,14 +2903,8 @@ ACMD(do_rend) {
         act("&9&b$n tries to rent your armor but can't make a mark.&0", false, ch, 0, vict, TO_VICT);
     } else {
         int i, counter;
-        const int armor_spell[] = {SPELL_ARMOR,
-                                    SPELL_BARKSKIN,
-                                    SPELL_BONE_ARMOR,
-                                    SPELL_DEMONSKIN,
-                                    SPELL_GAIAS_CLOAK,
-                                    SPELL_ICE_ARMOR,
-                                    SPELL_MIRAGE,
-                                    0};
+        const int armor_spell[] = {SPELL_ARMOR,       SPELL_BARKSKIN,  SPELL_BONE_ARMOR, SPELL_DEMONSKIN,
+                                   SPELL_GAIAS_CLOAK, SPELL_ICE_ARMOR, SPELL_MIRAGE,     0};
 
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         if (affected_by_armor_spells(vict, SKILL_REND)) {
@@ -2928,7 +2924,7 @@ ACMD(do_rend) {
             eff.type = SKILL_REND;
             eff.duration = (GET_SKILL(ch, SKILL_REND) / 10);
             eff.modifier = -1 - (GET_SKILL(ch, SKILL_REND) / 4) - (dex_app_skill[GET_DEX(ch)].traps / 2) -
-                          (int_app[GET_INT(ch)].bonus);
+                           (int_app[GET_INT(ch)].bonus);
             eff.location = APPLY_AC;
             SET_FLAG(eff.flags, EFF_EXPOSED);
             effect_to_char(vict, &eff);
@@ -3031,11 +3027,10 @@ ACMD(do_tripup) {
         percent = prob + 1; /* insta-fail */
 
     if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
-        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))) 
+        (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY)))
         message = 1;
-        
-    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) &&
-        displaced(ch, vict)) 
+
+    if ((prob > percent || MOB_FLAGGED(vict, MOB_NOBASH)) && displaced(ch, vict))
         message = 2;
 
     if (message == 1 || message == 2) {
