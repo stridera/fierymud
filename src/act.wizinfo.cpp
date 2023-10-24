@@ -672,7 +672,7 @@ void do_stat_character(CharData *ch, CharData *k) {
                         k->char_specials.hitgain, CLR(ch, ANRM));
     resp += fmt::format("MV: [{}{}/{}{}]  MV Gain: [{}{}{}]\n", CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k),
                         CLR(ch, ANRM), CLR(ch, FGRN), move_gain(k), CLR(ch, ANRM));
-    resp += fmt::format("Focus:  Focus: [{}{}{}]\n", CLR(ch, FGRN), GET_FOCUS(k), CLR(ch, ANRM));
+    resp += fmt::format("Focus: [{}{}{}]\n", CLR(ch, FGRN), GET_FOCUS(k), CLR(ch, ANRM));
     resp += fmt::format(
         "Coins: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c], "
         "Bank: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c]\n",
