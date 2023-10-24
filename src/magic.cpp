@@ -3731,7 +3731,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
                 mag_damage(skill, ch, tch, spellnum, savetype);
         } else {
             mag_affect(skill, ch, tch, spellnum, savetype, casttype);
-            if (spellnum != SPELL_BLINDING_BEAUTY)
+            if (spellnum != SPELL_BLINDING_BEAUTY && spellnum != SONG_CROWN_OF_MADNESS)
                 mag_unaffect(skill, ch, tch, spellnum, savetype);
         }
     }
