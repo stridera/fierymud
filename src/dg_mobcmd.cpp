@@ -49,6 +49,7 @@
 #include "limits.hpp"
 #include "logging.hpp"
 #include "math.hpp"
+#include "messages.hpp"
 #include "movement.hpp"
 #include "pfiles.hpp"
 #include "players.hpp"
@@ -123,7 +124,7 @@ ACMD(do_mdamage) {
     CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to damage {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -203,7 +204,7 @@ ACMD(do_mskillset) {
     int skspnum;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to skillset: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
     argument = one_argument(argument, arg);
@@ -242,7 +243,7 @@ ACMD(do_masound) {
     int door;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to make a sound: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -276,7 +277,7 @@ ACMD(do_mkill) {
     CharData *victim;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to kill: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -327,7 +328,7 @@ ACMD(do_mjunk) {
     ObjData *obj_next;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to junk: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -379,7 +380,7 @@ ACMD(do_mechoaround) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to echo around: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -410,7 +411,7 @@ ACMD(do_msend) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -439,7 +440,7 @@ ACMD(do_mecho) {
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to echo: {}", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -466,7 +467,7 @@ ACMD(do_m_run_room_trig) {
     ScriptData *sc;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -510,7 +511,7 @@ ACMD(do_mload) {
     ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -564,7 +565,7 @@ ACMD(do_mpurge) {
     ObjData *obj;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -620,7 +621,7 @@ ACMD(do_mgoto) {
     int location;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -650,7 +651,7 @@ ACMD(do_mat) {
     int original;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -694,7 +695,7 @@ ACMD(do_mteleport) {
     CharData *vict, *next_ch;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -751,7 +752,7 @@ ACMD(do_mforce) {
     char arg[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -804,7 +805,7 @@ ACMD(do_mexp) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -836,7 +837,7 @@ ACMD(do_mgold) {
     char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -870,7 +871,7 @@ ACMD(do_mob_log) {
     char errbuf[MAX_STRING_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -903,7 +904,7 @@ ACMD(do_quest) {
      * use this command too.
      */
     if (!MOB_OR_IMPL(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -927,7 +928,7 @@ ACMD(do_msave) {
     char arg[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "The mob wants to: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
 
@@ -986,6 +987,11 @@ ACMD(do_mcast) {
     CharData *victim;
     int spellnum, level = 0;
 
+    if (!MOB_OR_IMPL(ch)) {
+        char_printf(ch, HUH);
+        return;
+    }
+
     argument = delimited_arg(argument, spell_name, '\'');
     two_arguments(argument, name, spell_level_str);
 
@@ -1027,6 +1033,11 @@ ACMD(do_mchant) {
     CharData *victim;
     int chantnum, level = 0;
 
+    if (!MOB_OR_IMPL(ch)) {
+        char_printf(ch, HUH);
+        return;
+    }
+
     argument = delimited_arg(argument, chant_name, '\'');
     two_arguments(argument, name, spell_level_str);
 
@@ -1067,6 +1078,11 @@ ACMD(do_mperform) {
     char name[MAX_INPUT_LENGTH], spell_level_str[MAX_INPUT_LENGTH], song_name[MAX_INPUT_LENGTH];
     CharData *victim;
     int songnum, level = 0;
+
+    if (!MOB_OR_IMPL(ch)) {
+        char_printf(ch, HUH);
+        return;
+    }
 
     argument = delimited_arg(argument, song_name, '\'');
     two_arguments(argument, name, spell_level_str);
@@ -1110,10 +1126,10 @@ ACMD(do_mroomflag) {
     int target, flag;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to flag: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
-    
+
     argument = two_arguments(argument, arg1, arg2);
     skip_spaces(&argument);
 
@@ -1148,10 +1164,10 @@ ACMD(do_mobjflag) {
     int flag;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to flag: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
-    
+
     argument = two_arguments(argument, arg1, arg2);
     skip_spaces(&argument);
 
@@ -1187,10 +1203,10 @@ ACMD(do_mmobflag) {
     int flag;
 
     if (!MOB_OR_IMPL(ch)) {
-        char_printf(ch, "Mob wants to flag: {}\n", argument);
+        char_printf(ch, HUH);
         return;
     }
-    
+
     argument = two_arguments(argument, arg1, arg2);
     skip_spaces(&argument);
 
