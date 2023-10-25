@@ -808,11 +808,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
     case SPELL_FLAMESTRIKE:
         /* max dam 80 for neutral from max 8d9+8 online */
-        if (IS_EVIL(ch)) {
-            char_printf(ch, "You are not holy enough to cast that spell!\n");
-            return 0;
-        }
-        dam *= (GET_ALIGNMENT(ch) * 0.0007) + 0.8;
+        dam *= (GET_INT(ch) * 0.007) + 0.8;
         break;
     case SPELL_FLOOD:
         /* max dam 1200 from 50d10+50 online */

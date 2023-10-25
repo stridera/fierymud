@@ -110,6 +110,7 @@ EVENTFUNC(spellslot_restore_event) {
 
         return 1 RL_SEC;
     } else {
+        char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
         rem_memming(ch);
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_SPELLSLOT);
         return 0;

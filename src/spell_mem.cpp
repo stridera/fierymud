@@ -538,7 +538,7 @@ void rem_memming(CharData *ch) {
     if (IS_NPC(ch))
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
     else
-        char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
+        char_printf(ch, "You stop meditating.\n&0");
 }
 
 /********************/
