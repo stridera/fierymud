@@ -1272,31 +1272,38 @@ ACMD(do_cast) {
                 char_printf(ch, "You're still drained from performing recently!\n");
                 if GET_COOLDOWN (ch, CD_MUSIC_1) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_1) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_2) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_2) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance two will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_3) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_3) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance three will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_4) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_4) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance four will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_5) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_5) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance five will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_6) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_6) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance six will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 if GET_COOLDOWN (ch, CD_MUSIC_7) {
                     int seconds = GET_COOLDOWN(ch, CD_MUSIC_7) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch, "Performance seven will refresh in {}.\n", seconds,
+                                seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -1554,7 +1561,8 @@ ACMD(do_cast) {
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
 
         /* Chance to quick chant. */
-        if (random_number(1, 110) < (GET_SKILL(ch, SKILL_QUICK_CHANT) + int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus)) {
+        if (random_number(1, 110) <
+            (GET_SKILL(ch, SKILL_QUICK_CHANT) + int_app[GET_INT(ch)].bonus + wis_app[GET_WIS(ch)].bonus)) {
             int maxcircle, spellcircle;
 
             /* set basic quick chant at 1/2 casting time */
@@ -1567,12 +1575,13 @@ ACMD(do_cast) {
             spellcircle = SPELL_CIRCLE(ch, spellnum);
 
             /* is this a damage, disabling, healing spell, or stone skin? */
-            if ((SINFO.damage_type != DAM_UNDEFINED) || SINFO.sphere == SKILL_SPHERE_HEALING || SINFO.violent == true || spellnum == SPELL_STONE_SKIN) {
+            if ((SINFO.damage_type != DAM_UNDEFINED) || SINFO.sphere == SKILL_SPHERE_HEALING || SINFO.violent == true ||
+                spellnum == SPELL_STONE_SKIN) {
                 if (ch->casting.casting_time > 1) {
 
                     /* adjust the time down by 1* for every 3 circles lower */
                     ch->casting.casting_time -= (maxcircle - spellcircle) / 3;
-                    
+
                     /* adjust so casting time for long count spells is never less than (1/2 - 2) *'s */
                     if ((SINFO.cast_time >= 10) && (ch->casting.casting_time < (SINFO.cast_time / 2) - 2))
                         ch->casting.casting_time = (SINFO.cast_time / 2) - 2;
@@ -1597,14 +1606,14 @@ ACMD(do_cast) {
         if (ch->casting.casting_time > 3)
             WAIT_STATE(ch, ch->casting.casting_time * PULSE_VIOLENCE / 2);
 
-         /* 
-          * If casting_time is 0, 1, or 3, the formula above will create
-          * a wait_state that is too short for the length of the cast.
-          * If wait_state is too short, any spells a player attempts to 
-          * cast before the current cast is completed will be rejected.
-          * Wait_state is re-evaluated by complete_spell(), so wait_state
-          * can be longer than needed here, it just can't be shorter.
-          */
+        /*
+         * If casting_time is 0, 1, or 3, the formula above will create
+         * a wait_state that is too short for the length of the cast.
+         * If wait_state is too short, any spells a player attempts to
+         * cast before the current cast is completed will be rejected.
+         * Wait_state is re-evaluated by complete_spell(), so wait_state
+         * can be longer than needed here, it just can't be shorter.
+         */
 
         else
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
@@ -2015,8 +2024,8 @@ void start_chant(CharData *ch) {
 
             /* Intelligence check to determine the target.  If we know the spell we
              * know the target */
-            if (random_number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) || (bad) ||
-                GET_LEVEL(gch) >= LVL_GOD) {
+            if (random_number(0, 101) < GET_INT(gch) || !strcasecmp(spellbuf, skills[ch->casting.spell].name) ||
+                (bad) || GET_LEVEL(gch) >= LVL_GOD) {
                 if (ch->casting.tch == gch)
                     /* Target is the receiver of the message */
                     sprintf(namebuf, " at &1&bYou&0!!!");
