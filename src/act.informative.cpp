@@ -2891,6 +2891,23 @@ const char *hp_regen_message(int regen) {
     return messages[regen / 25];
 }
 
+const char *focus_message(int focus) {
+    const char *messages[] = {
+        "Bad",
+        "Average",
+        "Good",
+        "Very Good",
+    };
+
+    if (focus < 0)
+        return "Shattered!";
+
+    if (focus >= 100)
+        return "Awesome!";
+
+    return messages[focus / 25];
+}
+
 long xp_percentage(CharData *ch) {
     long current, total, next_level;
 
@@ -3160,13 +3177,16 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
         char_printf(ch, "HP Gain: &1&b{}&0  HP Regen Bonus: &1{}&0\n", hit_gain(tch), tch->char_specials.hitgain);
 
     if (verbose)
-        char_printf(
-            ch, "Hitroll: &3{}&0 (&3{:d}&0)  Damroll: &3{}&0 (&3{:d}&0)  ",
-            hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)), GET_HITROLL(tch) - monk_weight_penalty(tch),
-            hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)), GET_DAMROLL(tch) - monk_weight_penalty(tch));
+        char_printf(ch, "Hitroll: &3{}&0 (&3{:d}&0)  Damroll: &3{}&0 (&3{:d}&0)  Focus: &3{}&0 (&3{:d}&0)\n",
+                    hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)),
+                    GET_HITROLL(tch) - monk_weight_penalty(tch),
+                    hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)),
+                    GET_DAMROLL(tch) - monk_weight_penalty(tch), focus_message(GET_FOCUS(ch)), GET_FOCUS(ch));
+
     else
-        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0\n", GET_HITROLL(tch) - monk_weight_penalty(tch),
-                    GET_DAMROLL(tch) - monk_weight_penalty(tch));
+        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0  Focus: &3{:d}&0\n",
+                    GET_HITROLL(tch) - monk_weight_penalty(tch), GET_DAMROLL(tch) - monk_weight_penalty(tch),
+                    GET_FOCUS(ch));
 
     if (GET_RAGE(tch) || GET_SKILL(tch, SKILL_BERSERK))
         char_printf(ch, "Rage: &3&b{:d}&0 ", GET_RAGE(tch));
