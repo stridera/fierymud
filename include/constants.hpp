@@ -24,6 +24,7 @@ constexpr char discord_app_id[] = "998826809686765569";
 constexpr char fierymud_icon[] = "https://www.fierymud.org/images/fiery64.png";
 constexpr char fierymud_url[] = "https://www.fierymud.org";
 
+extern const char *number_words[];
 extern const char *minor_creation_items[];
 extern const char *exit_bits[];
 extern const char *genders[NUM_SEXES + 1];

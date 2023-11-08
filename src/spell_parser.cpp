@@ -1270,40 +1270,12 @@ ACMD(do_cast) {
                     break;
             default:
                 char_printf(ch, "You're still drained from performing recently!\n");
-                if GET_COOLDOWN (ch, CD_MUSIC_1) {
-                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_1) / 10;
-                    char_printf(ch, "Performance one will refresh in {}.\n", seconds,
-                                seconds == 1 ? "second" : "seconds");
-                }
-                if GET_COOLDOWN (ch, CD_MUSIC_2) {
-                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_2) / 10;
-                    char_printf(ch, "Performance two will refresh in {}.\n", seconds,
-                                seconds == 1 ? "second" : "seconds");
-                }
-                if GET_COOLDOWN (ch, CD_MUSIC_3) {
-                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_3) / 10;
-                    char_printf(ch, "Performance three will refresh in {}.\n", seconds,
-                                seconds == 1 ? "second" : "seconds");
-                }
-                if GET_COOLDOWN (ch, CD_MUSIC_4) {
-                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_4) / 10;
-                    char_printf(ch, "Performance four will refresh in {}.\n", seconds,
-                                seconds == 1 ? "second" : "seconds");
-                }
-                if GET_COOLDOWN (ch, CD_MUSIC_5) {
-                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_5) / 10;
-                    char_printf(ch, "Performance five will refresh in {}.\n", seconds,
-                                seconds == 1 ? "second" : "seconds");
-                }
-                if GET_COOLDOWN (ch, CD_MUSIC_6) {
-                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_6) / 10;
-                    char_printf(ch, "Performance six will refresh in {}.\n", seconds,
-                                seconds == 1 ? "second" : "seconds");
-                }
-                if GET_COOLDOWN (ch, CD_MUSIC_7) {
-                    int seconds = GET_COOLDOWN(ch, CD_MUSIC_7) / 10;
-                    char_printf(ch, "Performance seven will refresh in {}.\n", seconds,
-                                seconds == 1 ? "second" : "seconds");
+                for (int i = 0; i < CD_MUSIC_7 - CD_MUSIC_1 + 1; i++) {
+                    if GET_COOLDOWN (ch, CD_MUSIC_1 + i) {
+                        int seconds = GET_COOLDOWN(ch, CD_MUSIC_1 + i) / 10;
+                        char_printf(ch, "Performance {} will refresh in {}.\n", number_words[i], seconds,
+                                    seconds == 1 ? "second" : "seconds");
+                    }
                 }
                 return;
             }
@@ -1402,19 +1374,13 @@ ACMD(do_cast) {
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && random_number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         if (subcmd == SCMD_CHANT) {
             act("$n starts chanting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            char_printf(ch,
-                        "You begin chanting, but your throat causes you to "
-                        "cough up blood!\n");
+            char_printf(ch, "You begin chanting, but your throat causes you to cough up blood!\n");
         } else if (subcmd == SCMD_PERFORM) {
             act("$n starts playing, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            char_printf(ch,
-                        "You begin playing, but your throat causes you to "
-                        "cough up blood!\n");
+            char_printf(ch, "You begin playing, but your throat causes you to cough up blood!\n");
         } else {
             act("$n starts casting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-            char_printf(ch,
-                        "You begin casting, but your throat causes you to "
-                        "cough up blood!\n");
+            char_printf(ch, "You begin casting, but your throat causes you to cough up blood!\n");
         }
         WAIT_STATE(ch, PULSE_VIOLENCE);
         return;
@@ -1467,92 +1433,14 @@ ACMD(do_cast) {
                 char_printf(ch, "Your Charisma is too low to perform!\n");
             }
             for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
-                switch (i) {
-                case 1:
-                    if (!GET_COOLDOWN(ch, CD_MUSIC_1)) {
-                        int cresult = perform(ch, tch, tobj, spellnum);
-                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                            improve_skill(ch, SKILL_PERFORM);
-                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_1, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                        }
-                        i = 8;
+                if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
+                    int cresult = perform(ch, tch, tobj, spellnum);
+                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                        improve_skill(ch, SKILL_PERFORM);
+                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                        SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
                     }
-                    break;
-                case 2:
-                    if (!GET_COOLDOWN(ch, CD_MUSIC_2)) {
-                        int cresult = perform(ch, tch, tobj, spellnum);
-                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                            improve_skill(ch, SKILL_PERFORM);
-                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_2, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                        }
-                        i = 8;
-                    }
-                    break;
-                case 3:
-                    if (!GET_COOLDOWN(ch, CD_MUSIC_3)) {
-                        int cresult = perform(ch, tch, tobj, spellnum);
-                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                            improve_skill(ch, SKILL_PERFORM);
-                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_3, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                        }
-                        i = 8;
-                    }
-                    break;
-                case 4:
-                    if (!GET_COOLDOWN(ch, CD_MUSIC_4)) {
-                        int cresult = perform(ch, tch, tobj, spellnum);
-                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                            improve_skill(ch, SKILL_PERFORM);
-                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_4, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                        }
-                        i = 8;
-                    }
-                    break;
-                case 5:
-                    if (!GET_COOLDOWN(ch, CD_MUSIC_5)) {
-                        int cresult = perform(ch, tch, tobj, spellnum);
-                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                            improve_skill(ch, SKILL_PERFORM);
-                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_5, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                        }
-                        i = 8;
-                    }
-                    break;
-                case 6:
-                    if (!GET_COOLDOWN(ch, CD_MUSIC_6)) {
-                        int cresult = perform(ch, tch, tobj, spellnum);
-                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                            improve_skill(ch, SKILL_PERFORM);
-                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_6, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                        }
-                        i = 8;
-                    }
-                    break;
-                case 7:
-                    if (!GET_COOLDOWN(ch, CD_MUSIC_7)) {
-                        int cresult = perform(ch, tch, tobj, spellnum);
-                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                            improve_skill(ch, SKILL_PERFORM);
-                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_7, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
-                        }
-                        i = 8;
-                    }
-                    break;
-                default:
                     break;
                 }
             }
@@ -1618,8 +1506,7 @@ ACMD(do_cast) {
         else
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
 
-        /* Gods instacast.  Start chant and then stop casting in order to
-         * display correct message. */
+        /* Gods instacast.  Start chant and then stop casting in order to display correct message. */
         if (GET_LEVEL(ch) >= LVL_GOD) {
             STOP_CASTING(ch);
             complete_spell(ch);
