@@ -46,7 +46,6 @@ void show_spell_list(CharData *ch, CharData *tch);
 int rem_spell(CharData *ch, int spell);
 void update_spell_mem(void);
 void start_studying(CharData *ch);
-void rem_memming(CharData *ch);
 int set_mem_time(CharData *ch, int spell);
 void save_mem_list(CharData *ch);
 int restore_spells(CharData *ch, int spell, int state);
@@ -66,6 +65,7 @@ int add_spell_scribe(CharData *ch, int spell);
 int rem_spell_scribe(CharData *ch, int spell);
 int get_spell_pages(CharData *ch, int spell);
 int start_scribing_spell(CharData *ch, ObjData *spellbook, Scribing *scr);
+int spells_used_for_circle(CharData *ch, int circle);
 
 // Globals
 const char *circle_abbrev[NUM_SPELL_CIRCLES + 1] = {"!UNUSED!", " 1st", " 2nd", " 3rd", " 4th", " 5th", " 6th", " 7th",
@@ -388,11 +388,6 @@ void free_scribe_list(CharData *ch) {
     }
 }
 
-int spells_used_for_circle(CharData *ch, int circle) {
-    return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(),
-                         [ch, circle](const SpellCast &sc) { return circle == sc.circle; });
-}
-
 void show_available_slots(CharData *ch, CharData *tch) {
     if (IS_NPC(tch)) {
         char_printf(ch, "NPCs don't have spell slots.\n");
@@ -429,6 +424,15 @@ void show_available_slots(CharData *ch, CharData *tch) {
     char_printf(ch, "\n[DEBUG] Current Restore Rate: {}.\n", restore_rate);
 }
 
+int spells_used_for_circle(CharData *ch, int circle) {
+    return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(),
+                         [ch, circle](const SpellCast &sc) { return circle == sc.circle; });
+}
+
+int slots_available_for_circle(CharData *ch, int circle) {
+    return spells_of_circle[GET_LEVEL(ch)][circle] - spells_used_for_circle(ch, circle);
+}
+
 int spell_slot_available(CharData *ch, int spell) {
     int circle = SPELL_CIRCLE(ch, spell);
 
@@ -441,6 +445,25 @@ int spell_slot_available(CharData *ch, int spell) {
     return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(), [ch, circle](const SpellCast &sc) {
                return circle == sc.circle;
            }) < spells_of_circle[GET_LEVEL(ch)][circle];
+}
+
+int get_next_spell_slot_available(CharData *ch, int spell) {
+    int circle = SPELL_CIRCLE(ch, spell);
+
+    if (circle < 1 || circle > NUM_SPELL_CIRCLES)
+        return 0;
+
+    if (IS_NPC(ch))
+        return GET_MOB_SPLBANK(ch, circle) > 0;
+
+    for (int i = circle; i < NUM_SPELL_CIRCLES; i++) {
+        if (std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(), [ch, i](const SpellCast &sc) {
+                return i == sc.circle;
+            }) < spells_of_circle[GET_LEVEL(ch)][i]) {
+            return i;
+        }
+    }
+    return 0;
 }
 
 int get_spellslot_restore_rate(CharData *ch) {
@@ -522,23 +545,6 @@ void charge_mem(CharData *ch, int spellnum, int circle = -1) {
 
     if (!EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT))
         set_regen_event(ch, EVENT_REGEN_SPELLSLOT);
-}
-
-/*
-void done_memming(CharData *ch) {
-    if (IS_NPC)
-        act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-    else
-        char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
-    rem_memming(ch);
-}
-*/
-
-void rem_memming(CharData *ch) {
-    if (IS_NPC(ch))
-        act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-    else
-        char_printf(ch, "You stop meditating.\n&0");
 }
 
 /********************/

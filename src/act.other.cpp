@@ -53,7 +53,6 @@
 #include <sys/stat.h>
 
 EVENTFUNC(camp_event);
-void rem_memming(CharData *ch);
 void summon_mount(CharData *ch, int mob_vnum, int base_hp, int base_mv);
 void appear(CharData *ch);
 void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
@@ -926,9 +925,6 @@ EVENTFUNC(camp_event) {
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
         return EVENT_FINISHED;
     }
-
-    /* Yeah, let's not try to update characters who are about to be free'd, eh */
-    rem_memming(ch);
 
     /* So players don't get saved with the meditate flag and cause syserrs
        when they log back on. */

@@ -627,7 +627,6 @@ WCMD(do_wrent) {
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 
-    rem_memming(ch);
     log(LogSeverity::Stat, LVL_IMMORT, "{} rented by trigger {:d} in {} ({:d}).", GET_NAME(ch), GET_TRIG_VNUM(t),
         world[ch->in_room].name, world[ch->in_room].vnum);
     remove_player_from_game(ch, QUIT_WRENT);

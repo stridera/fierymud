@@ -111,7 +111,13 @@ EVENTFUNC(spellslot_restore_event) {
         return 1 RL_SEC;
     } else {
         char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
-        rem_memming(ch);
+        if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+            if (IS_NPC(ch))
+                act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            else
+                char_printf(ch, "You stop meditating.\n&0");
+            REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
         REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_SPELLSLOT);
         return 0;
     }

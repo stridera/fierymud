@@ -1198,7 +1198,7 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
 ACMD(do_cast) {
     CharData *tch = nullptr;
     ObjData *tobj = nullptr;
-    int spellnum, target = 0;
+    int spellnum, circle = 0, target = 0;
     int target_status = TARGET_NULL;
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
@@ -1414,9 +1414,13 @@ ACMD(do_cast) {
         return;
     }
 
-    if (!spell_slot_available(ch, spellnum)) {
+    circle = get_next_spell_slot_available(ch, spellnum);
+    if (!circle) {
         char_printf(ch, "You have no spell slots available for that spell.\n");
         return;
+    } else if (circle != SPELL_CIRCLE(ch, spellnum)) {
+        char_printf(ch, "{}Upcasting a circle {} spell into circle {}.  Abort to cancel.{}\n", CLRLV(ch, FRED, C_SPR),
+                    SPELL_CIRCLE(ch, spellnum), circle, CLRLV(ch, ANRM, C_SPR));
     }
 
     /* If this is an aggro cast, make the caster become visible. */
@@ -1430,7 +1434,7 @@ ACMD(do_cast) {
     ch->casting.spell = spellnum;
     ch->casting.tch = tch;
     ch->casting.obj = tobj;
-    ch->casting.circle = SPELL_CIRCLE(ch, spellnum);
+    ch->casting.circle = circle;
 
     /* Targets should only remember the caster for cast-type actions
      * that take time, like spells. If/when singing is implemented,
