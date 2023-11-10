@@ -375,7 +375,6 @@ ACMD(do_meditate) {
     }
 
     SET_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
-    WAIT_STATE(ch, PULSE_VIOLENCE * 2); /* stun time */
     improve_skill(ch, SKILL_MEDITATE);
 }
 
