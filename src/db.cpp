@@ -1350,6 +1350,11 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
        mob_proto[i].points.mana = t[4];
      */
 
+    if (mob_proto[i].mob_specials.ex_focus)
+        mob_proto[i].char_specials.focus = mob_proto[i].mob_specials.ex_focus;
+    else
+        mob_proto[i].char_specials.focus = mob_proto[i].player.level + 10;
+
     mob_proto[i].points.move = t[5];
     mob_proto[i].points.max_mana = 10;
     mob_proto[i].points.max_move = 200;

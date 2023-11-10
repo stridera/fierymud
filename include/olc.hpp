@@ -283,6 +283,7 @@ extern OLCSaveInfo *olc_save_list;
 #define MEDIT_STANCE 36
 #define MEDIT_EX_COPPER 37
 #define MEDIT_EX_SILVER 38
+#define MEDIT_EX_FOCUS 39
 
 /*. Submodes of SEDIT connectedness 	.*/
 #define SEDIT_MAIN_MENU 0
