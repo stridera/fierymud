@@ -324,6 +324,7 @@ struct MobSpecialData {
     int spell_mem_time;
     sh_int ex_armor;
     long mob2_flags;
+    sbyte ex_focus;
 };
 
 /* An effect structure. */
