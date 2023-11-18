@@ -1254,7 +1254,7 @@ void send_gmcp_prompt(DescriptorData *d) {
             {"copper", GET_BANK_COPPER(ch)}}}}},
         {"Effects", effects},
         {"Combat", combat},
-    };
+        {"SpellSlots", get_spell_slots_available(ch)}};
 
     send_gmcp(d, "Char", gmcp_data);
     write_to_descriptor(d->descriptor, ga_string);

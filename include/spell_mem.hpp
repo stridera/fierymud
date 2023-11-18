@@ -31,6 +31,7 @@ extern int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)];
 bool has_spellbook(CharData *ch);
 int get_next_spell_slot_available(CharData *ch, int spell);
 int spell_slot_available(CharData *ch, int spell);
+std::list<int> get_spell_slots_available(CharData *ch);
 ObjData *find_spellbook_with_spell(CharData *ch, int spell);
 int get_spellslot_restore_rate(CharData *ch);
 void charge_mem(CharData *ch, int spellnum, int circle);

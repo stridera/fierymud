@@ -51,7 +51,6 @@ static void load_spellcasts(FILE *fl, CharData *ch);
 static void scan_slash(const char *line, int *cur, int *max);
 static void write_aliases_ascii(FILE *file, CharData *ch);
 static void read_aliases_ascii(FILE *file, CharData *ch);
-static void load_spell_mem(FILE *file, CharData *ch);
 static void load_cooldowns(FILE *fl, CharData *ch);
 static void load_coins(char *line, int coins[]);
 static void load_clan(char *line, CharData *ch);
@@ -516,9 +515,11 @@ int load_player(const char *name, CharData *ch) {
                 scan_slash(line, &GET_MANA(ch), &GET_MAX_MANA(ch));
             else if (!strcasecmp(tag, "move"))
                 scan_slash(line, &GET_MOVE(ch), &GET_MAX_MOVE(ch));
-            else if (!strcasecmp(tag, "mem"))
-                load_spell_mem(fl, ch);
-            else
+            else if (!strcasecmp(tag, "mem")) {
+                // We no longer have memorized spells.  Just skip this section.
+                while (get_line(fl, line) && *line != '0')
+                    ;
+            } else
                 goto bad_tag;
             break;
 
@@ -953,10 +954,7 @@ void save_player_char(CharData *ch) {
     fprintf(fl, "quit_reason: %d\n", GET_QUIT_REASON(ch));
     fprintf(fl, "saveroom: %d\n", GET_SAVEROOM(ch));
 
-    /*
-     * Only save cooldowns if there are any that are in the saved
-     * list and nonzero.
-     */
+    // Only save cooldowns if there are any that are in the saved list and nonzero.
     for (i = 0; saved_cooldowns[i] >= 0; ++i)
         if (GET_COOLDOWN(ch, saved_cooldowns[i]))
             break;
@@ -1008,10 +1006,7 @@ void save_player_char(CharData *ch) {
         fprintf(fl, "0 0 0 0 0\n");
     }
 
-    // TODO: SAVE USED SPELL SLOT (Prevent renting and getting more spells)
-
     write_aliases_ascii(fl, ch);
-
     write_player_grants(fl, ch);
 
     if (fclose(fl)) {
@@ -1226,10 +1221,6 @@ static void read_aliases_ascii(FILE *file, CharData *ch) {
         alias->next = GET_ALIASES(ch);
         GET_ALIASES(ch) = alias;
     } while (strcasecmp(buf, "0")); /* while buf is not "0" */
-}
-
-static void load_spell_mem(FILE *fl, CharData *ch) {
-    // TODO: Load cast spell memory
 }
 
 static void load_coins(char *line, int coins[]) {

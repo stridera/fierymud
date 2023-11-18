@@ -136,9 +136,8 @@ int move_gain(CharData *ch)
 
 void spell_slot_restore_tick(CharData *ch) {
 
-    // TODO: This is for debugging to allow testing as imms.
-    // if (GET_LEVEL(ch) >= LVL_IMMORT)
-    //     return;
+    if (GET_LEVEL(ch) >= LVL_IMMORT)
+        return;
 
     if (ch->spellcasts.empty())
         return;

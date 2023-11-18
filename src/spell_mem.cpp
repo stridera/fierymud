@@ -446,6 +446,14 @@ int spell_slot_available(CharData *ch, int spell) {
            }) < spells_of_circle[GET_LEVEL(ch)][circle];
 }
 
+std::list<int> get_spell_slots_available(CharData *ch) {
+    std::list<int> slots;
+    for (int i = 1; i <= NUM_SPELL_CIRCLES; i++) {
+        slots.push_back(slots_available_for_circle(ch, i));
+    }
+    return slots;
+}
+
 int get_next_spell_slot_available(CharData *ch, int spell) {
     int circle = SPELL_CIRCLE(ch, spell);
 
@@ -529,9 +537,8 @@ ACMD(do_study) {
 
 void charge_mem(CharData *ch, int spellnum, int circle = -1) {
 
-    // TODO: Uncomment this when testing is done.
-    // if (GET_LEVEL(ch) >= LVL_IMMORT)
-    //     return;
+    if (GET_LEVEL(ch) >= LVL_IMMORT)
+        return;
 
     int recover_time;
 
