@@ -532,6 +532,11 @@ ACMD(do_study) {
     if (!ch || IS_NPC(ch))
         return;
 
+    if (MEM_MODE(ch) == MEM_NONE && GET_LEVEL(ch) < LVL_IMMORT) {
+        char_printf(ch, "You don't know any spells.\n");
+        return;
+    }
+
     show_available_slots(ch, ch);
 }
 
