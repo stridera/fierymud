@@ -192,7 +192,7 @@ int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)] = {
     {0, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 8, 7, 6, 0}  /* level 105 CIRCLE 14 */
 }; /* 11+11+11+11+11+11+11+11+11+11+8+7+6 = 131 = max_char_spells  */
 
-int circle_recover_time[(NUM_SPELL_CIRCLES + 1)] = {40, 50, 60, 70, 80, 95, 130, 145, 165, 210, 250, 290, 310};
+int circle_recover_time[(NUM_SPELL_CIRCLES + 1)] = {30, 35, 50, 65, 80, 95, 130, 145, 165, 210, 250, 290, 310};
 
 // Locals
 CharData *memming = 0; /* head of memming characters linked list */
