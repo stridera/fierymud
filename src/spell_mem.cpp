@@ -419,8 +419,6 @@ void show_available_slots(CharData *ch, CharData *tch) {
             char_printf(ch, "\nYou focus is too low to restore any spell slots.\n");
         }
     }
-
-    char_printf(ch, "\n[DEBUG] Current Restore Rate: {}.\n", restore_rate);
 }
 
 int spells_used_for_circle(CharData *ch, int circle) {
