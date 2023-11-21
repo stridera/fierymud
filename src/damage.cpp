@@ -16,13 +16,12 @@
 #include "composition.hpp"
 #include "conf.hpp"
 #include "db.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "skills.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 DamageDef damtypes[NUM_DAMTYPES] = {{"slash", "&3", "slash", "slashes", "slash"},
                                     {"pierce", "&3", "pierce", "pierces", "slash"},
@@ -63,38 +62,46 @@ bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype
     }
 
     /* Alignment-type damage is never subject to evasion */
-    if (attacker && weapon && OBJ_EFF_FLAGGED(weapon, EFF_RADIANT_WEAPON)) 
+    if (attacker && weapon && OBJ_EFF_FLAGGED(weapon, EFF_RADIANT_WEAPON))
         return false;
-    
+
     /* If the weapon is a physical weapon and also deals special damage, see what the best option is for evasion */
-    if (attacker && weapon && (OBJ_EFF_FLAGGED(weapon, EFF_FIRE_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_ICE_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_POISON_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_ACID_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_SHOCK_WEAPON))) {
+    if (attacker && weapon &&
+        (OBJ_EFF_FLAGGED(weapon, EFF_FIRE_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_ICE_WEAPON) ||
+         OBJ_EFF_FLAGGED(weapon, EFF_POISON_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_ACID_WEAPON) ||
+         OBJ_EFF_FLAGGED(weapon, EFF_SHOCK_WEAPON))) {
         if (OBJ_EFF_FLAGGED(weapon, EFF_FIRE_WEAPON))
-            s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)), susceptibility(ch, DAM_FIRE));
+            s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+                         susceptibility(ch, DAM_FIRE));
         if (OBJ_EFF_FLAGGED(weapon, EFF_ICE_WEAPON)) {
             if (s)
-                s = std::max(s, susceptibility(ch, DAM_COLD));   
+                s = std::max(s, susceptibility(ch, DAM_COLD));
             else
-                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)), susceptibility(ch, DAM_COLD));    
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+                             susceptibility(ch, DAM_COLD));
         }
         if (OBJ_EFF_FLAGGED(weapon, EFF_POISON_WEAPON)) {
             if (s)
-                s = std::max(s, susceptibility(ch, DAM_POISON));   
+                s = std::max(s, susceptibility(ch, DAM_POISON));
             else
-                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)), susceptibility(ch, DAM_POISON));    
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+                             susceptibility(ch, DAM_POISON));
         }
         if (OBJ_EFF_FLAGGED(weapon, EFF_ACID_WEAPON)) {
             if (s)
-                s = std::max(s, susceptibility(ch, DAM_ACID));   
+                s = std::max(s, susceptibility(ch, DAM_ACID));
             else
-                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)), susceptibility(ch, DAM_ACID));    
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+                             susceptibility(ch, DAM_ACID));
         }
         if (OBJ_EFF_FLAGGED(weapon, EFF_SHOCK_WEAPON)) {
             if (s)
-                s = std::max(s, susceptibility(ch, DAM_SHOCK));   
+                s = std::max(s, susceptibility(ch, DAM_SHOCK));
             else
-                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)), susceptibility(ch, DAM_SHOCK));    
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+                             susceptibility(ch, DAM_SHOCK));
         }
-    } else 
+    } else
         s = susceptibility(ch, dtype);
     return random_number(1, 1000000) > 1000000 - (100 - s) * (100 - s) * (100 - s);
 }
@@ -113,8 +120,10 @@ int convert_weapon_damage(ObjData *weapon) {
             return DAM_SHOCK;
         else if (OBJ_EFF_FLAGGED(weapon, EFF_ACID_WEAPON))
             return DAM_ACID;
+        else
+            return GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE);
     }
-    
+
     return DAM_CRUSH;
 }
 
