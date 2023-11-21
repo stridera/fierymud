@@ -115,7 +115,8 @@
 #define MOB_PEACEKEEPER 37     /* Attacks mobs with over 1350 align diff. Assists other PEACEKEEPERs */
 #define MOB_PROTECTOR 38       /* Assists players under attack, but not against PEACEKEEPER/PROTECTOR mobs */
 #define MOB_PET 39             /* Mob was purchased or tamed and is now a pet to a player. */
-#define NUM_MOB_FLAGS 40       /* Update this when you add a flag! */
+#define MOB_MEDITATE 40
+#define NUM_MOB_FLAGS 41 /* Update this when you add a flag! */
 
 /* Some mount stuff */
 #define MAX_MOUNT_LEVEL 27 /* The maximum level of mountable mobs */

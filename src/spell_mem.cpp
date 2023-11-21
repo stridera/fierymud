@@ -373,9 +373,12 @@ ACMD(do_meditate) {
         act("$n begins meditating to improve $s concentration.", true, ch, 0, 0, TO_ROOM);
         char_printf(ch, "You begin to meditate.\n");
     }
-
-    SET_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
-    improve_skill(ch, SKILL_MEDITATE);
+    if (IS_NPC(ch))
+        SET_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+    else {
+        SET_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        improve_skill(ch, SKILL_MEDITATE);
+    }
 }
 
 void free_scribe_list(CharData *ch) {
@@ -515,9 +518,10 @@ int get_spellslot_restore_rate(CharData *ch) {
     rate *= (classes[(int)GET_CLASS(ch)].bonus_focus + class_bonus) / 100.0;
 
     // Add Meditate Bonus
-    if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-        if (IS_NPC(ch))
-            rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
+    if (IS_NPC(ch) && MOB_FLAGGED(ch, MOB_MEDITATE))
+        rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
+        
+    else if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         if (GET_SKILL(ch, SKILL_MEDITATE))
             rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
     }
