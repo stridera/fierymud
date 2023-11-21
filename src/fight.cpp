@@ -1911,7 +1911,7 @@ bool dodge(CharData *ch, CharData *victim) {
 }
 
 int weapon_special(ObjData *wpn, CharData *ch) {
-    int (*name)(CharData * ch, void *me, int cmd, char *argument);
+    int (*name)(CharData *ch, void *me, int cmd, char *argument);
 
     SPECIAL(lightning_weapon);
     SPECIAL(frost_weapon);
@@ -2544,6 +2544,6 @@ bool displaced(CharData *ch, CharData *victim) {
             set_fighting(victim, ch, true);
         }
     }
-    
+
     return displaced;
 }
