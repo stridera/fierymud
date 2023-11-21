@@ -112,9 +112,8 @@ EVENTFUNC(spellslot_restore_event) {
     } else {
         char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
         if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-            if (IS_NPC(ch))
-                act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
-            else
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            if (!IS_NPC(ch))
                 char_printf(ch, "You stop meditating.\n&0");
             REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
         }
