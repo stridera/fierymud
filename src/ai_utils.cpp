@@ -19,6 +19,7 @@
 #include "fight.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "movement.hpp"
 #include "races.hpp"
@@ -26,8 +27,6 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
 
@@ -236,9 +235,9 @@ int value_effect(int location, int modifier) {
     case APPLY_CHA:
         return 3 * modifier;
         break;
-    case APPLY_MANA:
     case APPLY_HIT:
     case APPLY_MOVE:
+    case APPLY_FOCUS:
         return modifier;
     case APPLY_AC:
         return 2 * modifier;
@@ -254,7 +253,6 @@ int value_effect(int location, int modifier) {
     case APPLY_SIZE:
         return 10 * modifier;
     case APPLY_HIT_REGEN:
-    case APPLY_MANA_REGEN:
         return 2 * modifier;
     case APPLY_PERCEPTION:
     case APPLY_HIDDENNESS:
@@ -431,8 +429,7 @@ bool good_in_group(CharData *victim) {
 /*
  * group_size
  *
- * Returns the number of people in character's group who are also in
- * the same room.
+ * Returns the number of people in character's group who are also in the same room.
  */
 int group_size(CharData *ch) {
     CharData *k;

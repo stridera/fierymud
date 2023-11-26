@@ -176,20 +176,20 @@ CharData *check_guard(CharData *ch, CharData *victim, int gag_output) {
             if (GET_ISKILL(victim->guarded_by, SKILL_BERSERK)) {
                 if (EFF_FLAGGED(victim->guarded_by, EFF_BERSERK)) {
                     if (!gag_output) {
-                        act("$n jumps in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
-                            TO_NOTVICT);
-                        act("$n jumps in front of you, shielding you from the assault.", false, victim->guarded_by, 0, victim,
-                            TO_VICT);
-                        act("You jump in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
-                            TO_CHAR);
+                        act("$n jumps in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0,
+                            victim, TO_NOTVICT);
+                        act("$n jumps in front of you, shielding you from the assault.", false, victim->guarded_by, 0,
+                            victim, TO_VICT);
+                        act("You jump in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0,
+                            victim, TO_CHAR);
                     }
                     return victim->guarded_by;
                 } else {
                     if (!gag_output) {
-                        act("$n looks to intercept the attack on $N, but isn't angry enough.", false, victim->guarded_by, 0, victim,
-                            TO_NOTVICT);
-                        act("$n looks to shield you from the attack, but isn't angry enough.", false, victim->guarded_by, 0, victim,
-                            TO_VICT);
+                        act("$n looks to intercept the attack on $N, but isn't angry enough.", false,
+                            victim->guarded_by, 0, victim, TO_NOTVICT);
+                        act("$n looks to shield you from the attack, but isn't angry enough.", false,
+                            victim->guarded_by, 0, victim, TO_VICT);
                         act("You look to shield $N, but aren't angry enough.", false, victim->guarded_by, 0, victim,
                             TO_CHAR);
                     }
@@ -198,8 +198,8 @@ CharData *check_guard(CharData *ch, CharData *victim, int gag_output) {
                 if (!gag_output) {
                     act("$n jumps in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
                         TO_NOTVICT);
-                    act("$n jumps in front of you, shielding you from the assault.", false, victim->guarded_by, 0, victim,
-                        TO_VICT);
+                    act("$n jumps in front of you, shielding you from the assault.", false, victim->guarded_by, 0,
+                        victim, TO_VICT);
                     act("You jump in front of $N, shielding $M from the assault.", false, victim->guarded_by, 0, victim,
                         TO_CHAR);
                 }
@@ -1143,8 +1143,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_DRAGONS_HEALTH:
 
         if ((affected_by_spell(victim, SPELL_LESSER_ENDURANCE) || affected_by_spell(victim, SPELL_ENDURANCE) ||
-            affected_by_spell(victim, SPELL_GREATER_ENDURANCE) || affected_by_spell(victim, SPELL_VITALITY) ||
-            affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH))) {
+             affected_by_spell(victim, SPELL_GREATER_ENDURANCE) || affected_by_spell(victim, SPELL_VITALITY) ||
+             affected_by_spell(victim, SPELL_GREATER_VITALITY) || affected_by_spell(victim, SPELL_DRAGONS_HEALTH))) {
 
             char_printf(ch, "Nothing happens!\n");
             return CAST_RESULT_CHARGE;
@@ -1169,7 +1169,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
             to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
-            break; 
+            break;
         }
 
         eff[0].location = APPLY_AC;
@@ -1188,7 +1188,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
             to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
-            break; 
+            break;
         }
 
         eff[0].location = APPLY_AC;
@@ -1296,7 +1296,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
             to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
-            break; 
+            break;
         }
 
         eff[0].location = APPLY_AC;
@@ -1327,6 +1327,15 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (!IS_NPC(victim))
             eff[0].duration = 1;
         remember(victim, ch);
+        break;
+
+    case SPELL_CLARITY:
+        eff[0].location = APPLY_FOCUS;
+        eff[0].modifier = (1 + (skill > 95)) * 10;
+        eff[0].duration = 10 + (skill / 10); /* 10-24 hrs */
+        to_char = "You feel more clear-headed.";
+        to_vict = "You feel more clear-headed.";
+        to_room = "$N looks more clear-headed.";
         break;
 
     case SPELL_CHILL_TOUCH:
@@ -1448,10 +1457,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (skill < 55) {
             to_char = "You summon allegiance from your dark gods to protect $N.";
             if (ch == victim) {
-                to_vict = "You summon allegiance from your dark gods to protect yourself.\n&9&bA dark presence fills your mind.&0";
-                to_room = "$n seizes up in pain!\n$n crosses $s arms on $s chest, and is surrounded by a dark presence.";
-            }
-            else {  
+                to_vict =
+                    "You summon allegiance from your dark gods to protect yourself.\n&9&bA dark presence fills your "
+                    "mind.&0";
+                to_room =
+                    "$n seizes up in pain!\n$n crosses $s arms on $s chest, and is surrounded by a dark presence.";
+            } else {
                 to_vict = "&9&bA dark presence fills your mind.&0";
                 to_room = "$n seizes up in pain!\n$n grabs $N, who is surrounded by a dark presence.";
             }
@@ -1461,10 +1472,11 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             eff[1].duration = eff[0].duration;
             to_char = "You summon allegiance from your dark gods to protect and enrage $N.";
             if (ch == victim) {
-                to_vict = "You summon allegiance from your dark gods to protect and enrage yourself.\n&9&bA dark presence fills your mind and body!&0";
+                to_vict =
+                    "You summon allegiance from your dark gods to protect and enrage yourself.\n&9&bA dark presence "
+                    "fills your mind and body!&0";
                 to_room = "$n seizes up in pain!\n$n crosses $s arms on $s chest, and is enraged by a dark presence.";
-            }
-            else {
+            } else {
                 to_vict = "&9&bA dark presence fills your mind and body!&0";
                 to_room = "$n seizes up in pain!\n$n grabs $N, who is enraged by a dark presence.";
             }
@@ -1476,9 +1488,9 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     case SPELL_DEMONIC_ASPECT:
     case SPELL_DEMONIC_MUTATION:
 
-        if ((affected_by_spell(victim, SPELL_DEMONIC_ASPECT) && spellnum == SPELL_DEMONIC_MUTATION) || 
+        if ((affected_by_spell(victim, SPELL_DEMONIC_ASPECT) && spellnum == SPELL_DEMONIC_MUTATION) ||
             (affected_by_spell(victim, SPELL_DEMONIC_MUTATION) && spellnum == SPELL_DEMONIC_ASPECT)) {
-            
+
             char_printf(victim, "You're feeling pretty demonic already.\n");
             return CAST_RESULT_CHARGE;
         }
@@ -1519,7 +1531,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
             to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
-            break; 
+            break;
         }
 
         /* Alignement Check! */
@@ -1713,7 +1725,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, spellnum))
             effect_from_char(victim, SPELL_ELEMENTAL_WARDING);
 
-
         eff[0].duration = 5 + (skill / 14); /* max 12 */
         to_room = "&7&b$N&7&b glows briefly.&0";
         break;
@@ -1727,7 +1738,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* This is a re-work of the spell Strength */
 
         /* Check if the player has another stat enhancement active.
-         * As long as the player is not under the affect of one of the 
+         * As long as the player is not under the affect of one of the
          * specific Enhance spells below Enhance Ability should be able
          * to alter the stat currently being enhanced by recasting the spell.
          */
@@ -1805,7 +1816,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         /* First check if already affected by an enhancement */
         /* This spell cannot be used to override another ability enhancement */
-        if (check_enhance_spells(ch, victim, spellnum)) 
+        if (check_enhance_spells(ch, victim, spellnum))
             break;
 
         eff[0].location = APPLY_DEX;
@@ -1918,7 +1929,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* A difficult spell to land with success */
         if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) < random_number(0, 80)) {
             act("&2&bYour crop of ripe vines search in vain for $N.&0", false, ch, 0, victim, TO_CHAR);
-            act("&2&bA crop of ripe vines snakes along the ground, unable to locate you!&0", false, ch, 0, victim, TO_VICT);
+            act("&2&bA crop of ripe vines snakes along the ground, unable to locate you!&0", false, ch, 0, victim,
+                TO_VICT);
             act("&2&bA crop of ripe vines searches in vain for $N.&0", true, ch, 0, victim, TO_NOTVICT);
             /* start combat for failure */
             if (!FIGHTING(victim)) {
@@ -2049,7 +2061,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
             to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
-            break; 
+            break;
         }
 
         eff[0].location = APPLY_AC;
@@ -2103,7 +2115,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
             to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
-            break; 
+            break;
         }
 
         eff[0].location = APPLY_AC;
@@ -2253,7 +2265,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (!attack_ok(ch, victim, true))
             return CAST_RESULT_CHARGE;
         /* Make success based on skill and saving throw -myc 17 Feb 2007 */
-        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+        if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) ||
+            MOB_FLAGGED(victim, MOB_NOCHARM)) {
 
             if (MOB_FLAGGED(victim, MOB_NOCHARM))
                 act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
@@ -2291,7 +2304,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
             to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
-            break; 
+            break;
         }
 
         eff[0].location = APPLY_AC;
@@ -3194,14 +3207,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 eff[5].location = APPLY_SAVING_BREATH;
                 eff[6].location = APPLY_SAVING_SPELL;
                 eff[7].location = APPLY_AC;
-                eff[2].duration = eff[3].duration = eff[4].duration = eff[5].duration = eff[6].duration = eff[7].duration =
-                    skill / (15 - (GET_CHA(ch) / 20));                          /* same duration, max 10 */
+                eff[2].duration = eff[3].duration = eff[4].duration = eff[5].duration = eff[6].duration =
+                    eff[7].duration = skill / (15 - (GET_CHA(ch) / 20));               /* same duration, max 10 */
                 eff[2].modifier = -(skill / 7) + random_number(0, (GET_CHA(ch) / 20)); /* Paralysis max -19 */
                 eff[3].modifier = -(skill / 7) + random_number(0, (GET_CHA(ch) / 20)); /* Wand max -19 */
                 eff[4].modifier = -(skill / 7) + random_number(0, (GET_CHA(ch) / 20)); /* Petrification max -19 */
                 eff[5].modifier = -(skill / 7) + random_number(0, (GET_CHA(ch) / 20)); /* Breath max -19 */
                 eff[6].modifier = -(skill / 7) + random_number(0, (GET_CHA(ch) / 20)); /* Spell max -19 */
-                eff[7].modifier = (skill / 20) + (GET_CHA(ch) / 20);            /* AC max 10 */
+                eff[7].modifier = (skill / 20) + (GET_CHA(ch) / 20);                   /* AC max 10 */
                 if (GET_LEVEL(ch) >= 40) {
                     eff[8].location = APPLY_HIT;
                     eff[8].modifier = (skill + (GET_CHA(ch)) * 2);       /* HP max 400 */
@@ -3236,11 +3249,11 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             eff[2].location = APPLY_SAVING_SPELL;
             eff[3].location = APPLY_AC;
             eff[0].duration = eff[1].duration = eff[2].duration = eff[3].duration =
-                skill / (15 - (GET_CHA(ch) / 10));                           /* same duration, max 20 */
+                skill / (15 - (GET_CHA(ch) / 10));                                  /* same duration, max 20 */
             eff[0].modifier = ((skill / 7) + random_number(0, (GET_CHA(ch) / 20))); /* Paralysis max 19 */
             eff[1].modifier = ((skill / 7) + random_number(0, (GET_CHA(ch) / 20))); /* Rod max 19 */
             eff[2].modifier = ((skill / 7) + random_number(0, (GET_CHA(ch) / 20))); /* Spell max 19 */
-            eff[3].modifier = -(5 + ((skill / 10) - (GET_CHA(ch) / 20)));    /* AC max -10 */
+            eff[3].modifier = -(5 + ((skill / 10) - (GET_CHA(ch) / 20)));           /* AC max -10 */
             if (GET_LEVEL(ch) >= 30) {
                 eff[4].location = APPLY_CON;
                 eff[4].modifier = -(((skill + GET_CHA(ch)) / 4) * (GET_VIEWED_CON(victim) / 2)) / 100; /* Con max -25 */
@@ -3297,7 +3310,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     /* act() for the message buffers in mag_affect() */
 
-    if (!affected_by_spell(victim, spellnum) || spellnum == SPELL_ELEMENTAL_WARDING || spellnum == SPELL_ENHANCE_ABILITY || spellnum == CHANT_HYMN_OF_SAINT_AUGUSTINE) {
+    if (!affected_by_spell(victim, spellnum) || spellnum == SPELL_ELEMENTAL_WARDING ||
+        spellnum == SPELL_ENHANCE_ABILITY || spellnum == CHANT_HYMN_OF_SAINT_AUGUSTINE) {
         /* Suppress this message when you are casting the spell on yourself. */
         if (to_char != nullptr && ch != victim)
             act(to_char, false, ch, 0, victim, TO_CHAR);
@@ -4840,8 +4854,9 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         return CAST_RESULT_CHARGE;
     }
 
-    if (!affected_by_spell(victim, spell) && spellnum != SPELL_HEAL && spellnum != SPELL_FULL_HEAL && spellnum != SONG_INSPIRATION && spellnum != SONG_TERROR &&
-        spellnum != SONG_HEROIC_JOURNEY && spellnum != SONG_BALLAD_OF_TEARS) {
+    if (!affected_by_spell(victim, spell) && spellnum != SPELL_HEAL && spellnum != SPELL_FULL_HEAL &&
+        spellnum != SONG_INSPIRATION && spellnum != SONG_TERROR && spellnum != SONG_HEROIC_JOURNEY &&
+        spellnum != SONG_BALLAD_OF_TEARS) {
         char_printf(ch, NOEFFECT);
         return CAST_RESULT_CHARGE;
     }
@@ -5447,7 +5462,7 @@ bool affected_by_evil_spells(CharData *ch, CharData *victim) {
 
 bool check_bless_spells(CharData *ch, CharData *victim, int spellnum) {
     /* Bless-type spells are broken down into three categories: good, neutral, and evil.
-     * Switch on the spell to determine which groups to check, 
+     * Switch on the spell to determine which groups to check,
      * ignoring all spells in the related alignment group.
      * It shouldn't be possible for a player to be affected by spells from two different alignment groups,
      * but to be safe and avoid two error messages being printed at the same time
@@ -5463,7 +5478,7 @@ bool check_bless_spells(CharData *ch, CharData *victim, int spellnum) {
 
         break;
     case SPELL_EARTH_BLESSING:
-        if (affected_by_evil_spells(ch, victim)) 
+        if (affected_by_evil_spells(ch, victim))
             return true;
         else if (affected_by_good_spells(ch, victim))
             return true;
@@ -5484,8 +5499,8 @@ bool check_bless_spells(CharData *ch, CharData *victim, int spellnum) {
 }
 
 bool check_enhance_spells(CharData *ch, CharData *victim, int spellnum) {
-    /* If the target is already affected by the spell being cast, 
-     * return false so mag_affect continues to cast the spell and 
+    /* If the target is already affected by the spell being cast,
+     * return false so mag_affect continues to cast the spell and
      * refresh the spell duration.
      * Note: the innate racial spells are not included in this group.
      * They are intended to stack with other ability enhancement spells.
@@ -5505,8 +5520,8 @@ bool check_enhance_spells(CharData *ch, CharData *victim, int spellnum) {
 }
 
 bool check_monk_hand_spells(CharData *ch, CharData *victim, int spellnum) {
-    /* If the target is already affected by the spell being cast, 
-     * return false so mag_affect continues to cast the spell and 
+    /* If the target is already affected by the spell being cast,
+     * return false so mag_affect continues to cast the spell and
      * refresh the spell duration.
      */
     if (!affected_by_spell(victim, spellnum)) {
@@ -5523,8 +5538,8 @@ bool check_monk_hand_spells(CharData *ch, CharData *victim, int spellnum) {
 }
 
 bool check_elemental_warding_spells(CharData *ch, CharData *victim, int spellnum) {
-    /* If the target is already affected by the spell being cast, 
-     * return false so mag_affect continues to cast the spell and 
+    /* If the target is already affected by the spell being cast,
+     * return false so mag_affect continues to cast the spell and
      * refresh the spell duration.
      */
     if (!affected_by_spell(victim, spellnum)) {

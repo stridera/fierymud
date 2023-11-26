@@ -49,7 +49,7 @@ constexpr bool N = false;
 /* Do not change the order of the races as listed below or it will throw off every race in the game!!
 
    Races designated "NP" are "non-playable".  Anything with flag IS_NPC does not go through this function,
-   so while an entry is required to exist on the table in the order they do in races.h, the line should remain blank.  
+   so while an entry is required to exist on the table in the order they do in races.h, the line should remain blank.
    Players can be set to these races, but there will be unpredictable results. */
 int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /* RACE              CLASS: So Cl Th Wa Pa An Ra Dr Sh As Me Ne Co Mo Be Pr Di My Ro Ba Py Cr Il Hu */
@@ -70,7 +70,7 @@ int class_ok_race[NUM_RACES][NUM_CLASSES] = {
     /*NP - animal            */ {},
     /*NP - generic dragon    */ {},
     /*NP - giant             */ {},
-    /*NP - other             */ {}, 
+    /*NP - other             */ {},
     /*NP - goblin            */ {},
     /*NP - demon             */ {},
     /*NP - brownie           */ {},
@@ -173,7 +173,8 @@ void roll_natural_abils(CharData *ch) {
             rolls[j] = random_number(3, 10);
         /* sum the best 5 out of 6 */
         temp = rolls[0] + rolls[1] + rolls[2] + rolls[3] + rolls[4] + rolls[5] -
-               std::min(rolls[0], std::min(rolls[1], std::min(rolls[2], std::min(rolls[3], std::min(rolls[4], rolls[5])))));
+               std::min(rolls[0],
+                        std::min(rolls[1], std::min(rolls[2], std::min(rolls[3], std::min(rolls[4], rolls[5])))));
         /* multiply by 2 */
         temp = temp * 2;
         /* this arranges the rolls from lowest to highest in table[] */
@@ -318,10 +319,6 @@ int susceptibility(CharData *ch, int dtype) {
     case DAM_PIERCE:
         return compositions[GET_COMPOSITION(ch)].sus_pierce;
     case DAM_CRUSH:
-        if (EFF_FLAGGED(ch, EFF_NEGATE_EARTH))
-            return 0;
-        if (EFF_FLAGGED(ch, EFF_PROT_EARTH))
-            return compositions[GET_COMPOSITION(ch)].sus_crush * 75 / 100;
         return compositions[GET_COMPOSITION(ch)].sus_crush;
     case DAM_SHOCK:
         if (EFF_FLAGGED(ch, EFF_NEGATE_AIR))

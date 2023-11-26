@@ -69,9 +69,9 @@ void delayed_command(CharData *ch, char *command, int delay, bool repeatable);
 #define EVENT_BATTLE_PARALYSIS 12
 #define EVENT_CASTING 13
 #define EVENT_REGEN_HP 14
-#define EVENT_REGEN_MANA 15
+#define EVENT_REGEN_SPELLSLOT 15
 #define EVENT_REGEN_MOVE 16
-#define EVENT_MEM 17
+// #define EVENT_REGEN_MANA 17
 #define EVENT_SCRIBE 18
 #define EVENT_QUICK_AGGRO 19
 #define EVENT_DIE 20

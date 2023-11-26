@@ -1144,32 +1144,32 @@ const struct vsearch_object_value_type {
     int type;
     int item_types[MAX_SEARCH_ITEM_TYPES];
 } value_types[] = {
-    {19, {ITEM_LIGHT}},                                      /* lasts */
+    {19, {ITEM_LIGHT}},                                                       /* lasts */
     {20, {ITEM_WAND, ITEM_STAFF, ITEM_POTION, ITEM_SCROLL, ITEM_INSTRUMENT}}, /* casts */
     {21, {ITEM_WAND, ITEM_STAFF, ITEM_INSTRUMENT}},                           /* chargesinitial */
     {22, {ITEM_WAND, ITEM_STAFF, ITEM_INSTRUMENT}},                           /* chargesremaining */
-    {23, {ITEM_WEAPON}},                                     /* damnodice */
-    {24, {ITEM_WEAPON}},                                     /* damsizedice */
-    {25, {ITEM_WEAPON}},                                     /* attacktype */
-    {26, {ITEM_WEAPON}},                                     /* average */
-    {27, {ITEM_ARMOR, ITEM_TREASURE}},                       /* armor */
-    {28, {ITEM_CONTAINER, ITEM_DRINKCON, ITEM_FOUNTAIN}},    /* capacity */
-    {29, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                    /* contains */
-    {30, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                    /* liquid */
-    {31, {ITEM_FOOD}},                                       /* fillingness */
-    {32, {ITEM_DRINKCON, ITEM_FOUNTAIN, ITEM_FOOD}},         /* poisoned */
-    {33, {ITEM_MONEY}},                                      /* platinum */
-    {34, {ITEM_MONEY}},                                      /* gold */
-    {35, {ITEM_MONEY}},                                      /* silver */
-    {36, {ITEM_MONEY}},                                      /* copper */
-    {37, {ITEM_PORTAL}},                                     /* targetroom */
-    {38, {ITEM_PORTAL}},                                     /* entrymessage */
-    {39, {ITEM_PORTAL}},                                     /* charmessage */
-    {40, {ITEM_PORTAL}},                                     /* exitmessage */
-    {41, {ITEM_WALL}},                                       /* direction */
-    {42, {ITEM_WALL}},                                       /* crumbles */
-    {43, {ITEM_TRAP}},                                       /* hitpoints */
-    {44, {ITEM_CONTAINER}},                                  /* key */
+    {23, {ITEM_WEAPON}},                                                      /* damnodice */
+    {24, {ITEM_WEAPON}},                                                      /* damsizedice */
+    {25, {ITEM_WEAPON}},                                                      /* attacktype */
+    {26, {ITEM_WEAPON}},                                                      /* average */
+    {27, {ITEM_ARMOR, ITEM_TREASURE}},                                        /* armor */
+    {28, {ITEM_CONTAINER, ITEM_DRINKCON, ITEM_FOUNTAIN}},                     /* capacity */
+    {29, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                                     /* contains */
+    {30, {ITEM_DRINKCON, ITEM_FOUNTAIN}},                                     /* liquid */
+    {31, {ITEM_FOOD}},                                                        /* fillingness */
+    {32, {ITEM_DRINKCON, ITEM_FOUNTAIN, ITEM_FOOD}},                          /* poisoned */
+    {33, {ITEM_MONEY}},                                                       /* platinum */
+    {34, {ITEM_MONEY}},                                                       /* gold */
+    {35, {ITEM_MONEY}},                                                       /* silver */
+    {36, {ITEM_MONEY}},                                                       /* copper */
+    {37, {ITEM_PORTAL}},                                                      /* targetroom */
+    {38, {ITEM_PORTAL}},                                                      /* entrymessage */
+    {39, {ITEM_PORTAL}},                                                      /* charmessage */
+    {40, {ITEM_PORTAL}},                                                      /* exitmessage */
+    {41, {ITEM_WALL}},                                                        /* direction */
+    {42, {ITEM_WALL}},                                                        /* crumbles */
+    {43, {ITEM_TRAP}},                                                        /* hitpoints */
+    {44, {ITEM_CONTAINER}},                                                   /* key */
     {0, {0}},
 };
 
@@ -1388,7 +1388,8 @@ ACMD(do_osearch) {
             match = numeric_compare(GET_OBJ_VAL(obj, 3), value, bound, compare);
             break;
         case 20:
-            if (GET_OBJ_TYPE(obj) == ITEM_STAFF || GET_OBJ_TYPE(obj) == ITEM_WAND || GET_OBJ_TYPE(obj) == ITEM_INSTRUMENT)
+            if (GET_OBJ_TYPE(obj) == ITEM_STAFF || GET_OBJ_TYPE(obj) == ITEM_WAND ||
+                GET_OBJ_TYPE(obj) == ITEM_INSTRUMENT)
                 match = (GET_OBJ_VAL(obj, VAL_STAFF_SPELL) == value);
             else if (GET_OBJ_TYPE(obj) == ITEM_SCROLL || GET_OBJ_TYPE(obj) == ITEM_POTION)
                 match =
@@ -2466,7 +2467,7 @@ ACMD(do_ksearch) {
             match = IS_SET(skill->targets, flags[0]);
             break;
         case 15:
-            match = numeric_compare(skill->mem_time, value, bound, compare);
+            match = numeric_compare(skill->addl_mem_time, value, bound, compare);
             break;
         case 16:
             match = numeric_compare(skill->cast_time, value, bound, compare);

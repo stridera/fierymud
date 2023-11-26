@@ -601,8 +601,6 @@ WCMD(do_wld_log) { wld_log(room, t, argument); }
 WCMD(do_wrent) {
     CharData *ch;
 
-    extern void rem_memming(CharData * ch);
-
     argument = any_one_arg(argument, arg);
 
     if (!*arg) {
@@ -629,7 +627,6 @@ WCMD(do_wrent) {
         REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
     }
 
-    rem_memming(ch);
     log(LogSeverity::Stat, LVL_IMMORT, "{} rented by trigger {:d} in {} ({:d}).", GET_NAME(ch), GET_TRIG_VNUM(t),
         world[ch->in_room].name, world[ch->in_room].vnum);
     remove_player_from_game(ch, QUIT_WRENT);
@@ -643,7 +640,6 @@ WCMD(do_wskillset) {
     CharData *victim;
     char arg[MAX_INPUT_LENGTH];
     int skspnum;
-
 
     argument = one_argument(argument, arg);
 
@@ -674,7 +670,6 @@ WCMD(do_wskillset) {
      */
     SET_SKILL(victim, skspnum, return_max_skill(victim, skspnum));
 }
-
 
 const WorldCommandInfo wld_cmd_info[] = {
     {"RESERVED", 0, 0}, /* this must be first -- for specprocs */

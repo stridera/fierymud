@@ -48,7 +48,7 @@ const char *eventnames[MAX_EVENT + 1] = {"!INVALID EVENT!", /* 0 - reserved */
                                          "battle_paralysis",
                                          "casting",
                                          "regen_hp",
-                                         "regen_mana", /* 15 */
+                                         "regen_spell_slot", /* 15 */
                                          "regen_move",
                                          "memming",
                                          "scribing",

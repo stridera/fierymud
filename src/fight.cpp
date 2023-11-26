@@ -835,7 +835,6 @@ void arena_death(CharData *ch) {
 void perform_die(CharData *ch, CharData *killer) {
     CharData *real_char;
     ObjData *corpse = nullptr, *obj, *next_obj;
-    MemorizedList *cur;
 
     /*check for switched victim */
     real_char = REAL_CHAR(ch);
@@ -855,11 +854,8 @@ void perform_die(CharData *ch, CharData *killer) {
     }
     /* Everything beyond this point applies to normal, non-arena deaths */
 
-    /* Set all spells in the memory list to unmemorized, but don't remove. */
-    for (cur = GET_SPELL_MEM(ch).list_head; cur; cur = cur->next)
-        cur->can_cast = 0;
-    GET_SPELL_MEM(ch).num_memmed = 0;
-    GET_SPELL_MEM(ch).mem_status = false;
+    /* Clear cast spell memory. */
+    ch->spellcasts = {};
 
     clear_cooldowns(ch);
 
@@ -1631,7 +1627,8 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
             dam >>= 1;
 
         /* Ranger players deal bonus damage for fighting with two weapons */
-        if (GET_CLASS(ch) == CLASS_RANGER && !IS_NPC(ch) && (GET_EQ(ch, WEAR_WIELD2) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON))
+        if (GET_CLASS(ch) == CLASS_RANGER && !IS_NPC(ch) &&
+            (GET_EQ(ch, WEAR_WIELD2) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON))
             dam *= 1.2;
 
         /* Protection from evil/good takes 80% damage */
@@ -1914,7 +1911,7 @@ bool dodge(CharData *ch, CharData *victim) {
 }
 
 int weapon_special(ObjData *wpn, CharData *ch) {
-    int (*name)(CharData * ch, void *me, int cmd, char *argument);
+    int (*name)(CharData *ch, void *me, int cmd, char *argument);
 
     SPECIAL(lightning_weapon);
     SPECIAL(frost_weapon);
@@ -1953,7 +1950,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     }
 
     /* If a Rogue, save hiddenness as a bonus to backstab */
-    if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {        
+    if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {
         hidden = GET_HIDDENNESS(ch);
     } else {
         hidden = 0;
@@ -2194,7 +2191,7 @@ void hit(CharData *ch, CharData *victim, int type) {
                 dam += ((hidden / 2) * (GET_SKILL(ch, SKILL_SNEAK_ATTACK) / 100));
 
         } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
-                 EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
+                   EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);
 
         else {
@@ -2354,8 +2351,6 @@ void perform_violence(void) {
             if (EFF_FLAGGED(ch, EFF_NIMBLE))
                 secondary_hits += 1;
         }
-
-
 
         /* Chance for NPCs to switch. */
         if (IS_NPC(ch) && GET_SKILL(ch, SKILL_SWITCH) && !EFF_FLAGGED(ch, EFF_BLIND) &&
@@ -2549,6 +2544,6 @@ bool displaced(CharData *ch, CharData *victim) {
             set_fighting(victim, ch, true);
         }
     }
-    
+
     return displaced;
 }

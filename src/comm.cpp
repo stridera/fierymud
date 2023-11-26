@@ -1224,12 +1224,6 @@ void send_gmcp_prompt(DescriptorData *d) {
         combat["opponent"] = {{"name", PERS(vict, ch)}, {"hp_percent", 100 * GET_HIT(vict) / GET_MAX_HIT(vict)}};
     }
 
-    MemorizedList *mem;
-    auto memorized_spells = json::array();
-    for (mem = GET_SPELL_MEM(d->character).list_head; mem; mem = mem->next) {
-        memorized_spells.push_back(skills[mem->spell].name);
-    }
-
     /* Need to construct a json string.  Would be nice to get a module to do it
        for us, but the code base is too old to rely on something like that. */
     if (d->original)
@@ -1260,8 +1254,7 @@ void send_gmcp_prompt(DescriptorData *d) {
             {"copper", GET_BANK_COPPER(ch)}}}}},
         {"Effects", effects},
         {"Combat", combat},
-        {"Memorized", memorized_spells},
-    };
+        {"SpellSlots", get_spell_slots_available(ch)}};
 
     send_gmcp(d, "Char", gmcp_data);
     write_to_descriptor(d->descriptor, ga_string);

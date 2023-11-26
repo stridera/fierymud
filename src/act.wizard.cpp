@@ -865,14 +865,6 @@ ACMD(do_advance) {
 
     gain_exp(victim, exp_next_level(newlevel - 1, GET_CLASS(victim)) - GET_EXP(victim) + 1, GAIN_IGNORE_ALL);
     save_player_char(victim);
-
-    /*
-     * Normally, advance_level calls init_mem_list when losing levels,
-     * but since we start over from level 1 in do_advance, we need
-     * to call it ourselves.
-     */
-    if (newlevel < oldlevel)
-        init_mem_list(victim);
 }
 
 void perform_restore(CharData *vict) {

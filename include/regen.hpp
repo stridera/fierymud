@@ -21,3 +21,4 @@ void hurt_char(CharData *ch, CharData *attacker, int amount, bool cap_amount);
 void alter_mana(CharData *ch, int amount);
 void alter_move(CharData *ch, int amount);
 void check_regen_rates(CharData *ch);
+void set_regen_event(CharData *ch, int eventtype);

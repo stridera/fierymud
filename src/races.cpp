@@ -35,7 +35,6 @@
 /* Prototypes */
 void set_init_height_weight(CharData *ch);
 
-
 /* races[]
  *
  * The individual members of these struct definitions have been arranged
@@ -57,412 +56,424 @@ void set_init_height_weight(CharData *ch);
 
 RaceDef races[NUM_RACES] = {
     /* HUMAN */
-    {"human",                   /* name as found by triggers */
-     "human",                   /* all race keywords */
-     "&6Human&0",               /* name as displayed at character creation, on who, and score */
-     "&6Human&0",               /* name as displayed in show race command and when setting races */
-     "Human",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     120,                       /* male weight low */
-     180,                       /* male weight high */
-     60,                        /* male height low */
-     76,                        /* male height high */
-     95,                        /* female weight low */
-     150,                       /* female weight high */
-     60,                        /* female height low */
-     70,                        /* female height high */
-     {76, 76, 76, 76, 76, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"human",                  /* name as found by triggers */
+     "human",                  /* all race keywords */
+     "&6Human&0",              /* name as displayed at character creation, on who, and score */
+     "&6Human&0",              /* name as displayed in show race command and when setting races */
+     "Human",                  /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     0,                        /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     120,                      /* male weight low */
+     180,                      /* male weight high */
+     60,                       /* male height low */
+     76,                       /* male height high */
+     95,                       /* female weight low */
+     150,                      /* female weight high */
+     60,                       /* female height low */
+     70,                       /* female height high */
+     {76, 76, 76, 76, 76, 76}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* ELF */
-    {"elf",                     /* name as found by triggers */
-     "elf",                     /* all race keywords */
-     "Elf&0",                   /* name as displayed at character creation, on who, and score */
-     "Elf&0",                   /* name as displayed in show race command and when setting races */
-     "Elf",                     /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     1000,                      /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     90,                        /* male weight low */
-     160,                       /* male weight high */
-     60,                        /* male height low */
-     70,                        /* male height high */
-     90,                        /* female weight low */
-     160,                       /* female weight high */
-     59,                        /* female height low */
-     68,                        /* female height high */
-     {64, 80, 88, 86, 64, 78},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"elf",                    /* name as found by triggers */
+     "elf",                    /* all race keywords */
+     "Elf&0",                  /* name as displayed at character creation, on who, and score */
+     "Elf&0",                  /* name as displayed in show race command and when setting races */
+     "Elf",                    /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     1000,                     /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     110,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     90,                       /* male weight low */
+     160,                      /* male weight high */
+     60,                       /* male height low */
+     70,                       /* male height high */
+     90,                       /* female weight low */
+     160,                      /* female weight high */
+     59,                       /* female height low */
+     68,                       /* female height high */
+     {64, 80, 88, 86, 64, 78}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* GNOME */
-    {"gnome",                   /* name as found by triggers */
-     "gnome",                   /* all race keywords */
-     "&1&d&bGnome&0",           /* name as displayed at character creation, on who, and score */
-     "&1&d&bGnome&0",           /* name as displayed in show race command and when setting races */
-     "Gnome",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_SMALL,                /* default size */
-     1000,                      /* default alignment */
-     2,                         /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     40,                        /* male weight low */
-     90,                        /* male weight high */
-     26,                        /* male height low */
-     38,                        /* male height high */
-     40,                        /* female weight low */
-     90,                        /* female weight high */
-     26,                        /* female height low */
-     38,                        /* female height high */
-     {64, 76, 88, 84, 68, 80},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"gnome",                  /* name as found by triggers */
+     "gnome",                  /* all race keywords */
+     "&1&d&bGnome&0",          /* name as displayed at character creation, on who, and score */
+     "&1&d&bGnome&0",          /* name as displayed in show race command and when setting races */
+     "Gnome",                  /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_SMALL,               /* default size */
+     1000,                     /* default alignment */
+     2,                        /* damroll bonus */
+     4,                        /* hitroll bonus */
+     105,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     40,                       /* male weight low */
+     90,                       /* male weight high */
+     26,                       /* male height low */
+     38,                       /* male height high */
+     40,                       /* female weight low */
+     90,                       /* female weight high */
+     26,                       /* female height low */
+     38,                       /* female height high */
+     {64, 76, 88, 84, 68, 80}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DWARF */
-    {"dwarf",                   /* name as found by triggers */
-     "dwarf mountain",          /* all race keywords */
-     "&3Dwarf&0",               /* name as displayed at character creation, on who, and score */
-     "&3Dwarf&0",               /* name as displayed in show race command and when setting races */
-     "Dwarf",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     1000,                      /* default alignment */
-     4,                         /* damroll bonus */
-     5,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     170,                       /* male weight low */
-     200,                       /* male weight high */
-     38,                        /* female height low */
-     50,                        /* female height high */
-     150,                       /* female weight low */
-     190,                       /* female weight high */
-     38,                        /* female height low */
-     50,                        /* female height high */
-     {84, 76, 64, 86, 84, 68},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"dwarf",                  /* name as found by triggers */
+     "dwarf mountain",         /* all race keywords */
+     "&3Dwarf&0",              /* name as displayed at character creation, on who, and score */
+     "&3Dwarf&0",              /* name as displayed in show race command and when setting races */
+     "Dwarf",                  /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     1000,                     /* default alignment */
+     4,                        /* damroll bonus */
+     5,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     170,                      /* male weight low */
+     200,                      /* male weight high */
+     38,                       /* female height low */
+     50,                       /* female height high */
+     150,                      /* female weight low */
+     190,                      /* female weight high */
+     38,                       /* female height low */
+     50,                       /* female height high */
+     {84, 76, 64, 86, 84, 68}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* TROLL */
-    {"troll",                   /* name as found by triggers */
-     "swamp troll",             /* all race keywords */
-     "&2&dTroll&0",             /* name as displayed at character creation, on who, and score */
-     "&2&dTroll&0",             /* name as displayed in show race command and when setting races */
-     "Troll",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_LARGE,                /* default size */
-     -1000,                     /* default alignment */
-     4,                         /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     130,                       /* male weight low */
-     290,                       /* male weight high */
-     72,                        /* male height low */
-     90,                        /* male height high */
-     130,                       /* female weight low */
-     290,                       /* female weight high */
-     72,                        /* female height low */
-     90,                        /* female height high */
+    {"troll",                  /* name as found by triggers */
+     "swamp troll",            /* all race keywords */
+     "&2&dTroll&0",            /* name as displayed at character creation, on who, and score */
+     "&2&dTroll&0",            /* name as displayed in show race command and when setting races */
+     "Troll",                  /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_LARGE,               /* default size */
+     -1000,                    /* default alignment */
+     4,                        /* damroll bonus */
+     4,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     130,                      /* male weight low */
+     290,                      /* male weight high */
+     72,                       /* male height low */
+     90,                       /* male height high */
+     130,                      /* female weight low */
+     290,                      /* female weight high */
+     72,                       /* female height low */
+     90,                       /* female height high */
      {80, 72, 56, 56, 92, 64}, /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     110,                       /* hitroll/damroll factor for mobs */
-     110,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     "prowls in",               /* verb for entering a room */
-     "prowls",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     100,                      /* experience reward factor for mobs */
+     130,                      /* hp factor for mobs */
+     110,                      /* hitroll/damroll factor for mobs */
+     110,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     "prowls in",              /* verb for entering a room */
+     "prowls",                 /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DROW */
-    {"drow",                    /* name as found by triggers */
-     "drow",                    /* all race keywords */
-     "&5Drow&0",                /* name as displayed at character creation, on who, and score */
-     "&5Drow&0",                /* name as displayed in show race command and when setting races */
-     "Drow",                    /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     -1000,                     /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     90,                        /* male weight low */
-     160,                       /* male weight high */
-     60,                        /* male height low */
-     70,                        /* male height high */
-     90,                        /* female weight low */
-     160,                       /* female weight high */
-     60,                        /* female height low */
-     70,                        /* female height high */
-     {64, 80, 88, 80, 64, 72},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"drow",                   /* name as found by triggers */
+     "drow",                   /* all race keywords */
+     "&5Drow&0",               /* name as displayed at character creation, on who, and score */
+     "&5Drow&0",               /* name as displayed in show race command and when setting races */
+     "Drow",                   /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     -1000,                    /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     110,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     90,                       /* male weight low */
+     160,                      /* male weight high */
+     60,                       /* male height low */
+     70,                       /* male height high */
+     90,                       /* female weight low */
+     160,                      /* female weight high */
+     60,                       /* female height low */
+     70,                       /* female height high */
+     {64, 80, 88, 80, 64, 72}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DUERGAR */
-    {"duergar",                 /* name as found by triggers */
-     "duergar",                 /* all race keywords */
-     "&1Duergar&0",             /* name as displayed at character creation, on who, and score */
-     "&1Duergar&0",             /* name as displayed in show race command and when setting races */
-     "Duergar",                 /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     -1000,                     /* default alignment */
-     4,                         /* damroll bonus */
-     5,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     170,                       /* male weight low */
-     200,                       /* male weight high */
-     38,                        /* female height low */
-     50,                        /* female height high */
-     150,                       /* female weight low */
-     190,                       /* female weight high */
-     38,                        /* female height low */
-     50,                        /* female height high */
-     {84, 76, 68, 72, 84, 64},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     "skulks in",               /* verb for entering a room */
-     "skulks",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"duergar",                /* name as found by triggers */
+     "duergar",                /* all race keywords */
+     "&1Duergar&0",            /* name as displayed at character creation, on who, and score */
+     "&1Duergar&0",            /* name as displayed in show race command and when setting races */
+     "Duergar",                /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     -1000,                    /* default alignment */
+     4,                        /* damroll bonus */
+     5,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     170,                      /* male weight low */
+     200,                      /* male weight high */
+     38,                       /* female height low */
+     50,                       /* female height high */
+     150,                      /* female weight low */
+     190,                      /* female weight high */
+     38,                       /* female height low */
+     50,                       /* female height high */
+     {84, 76, 68, 72, 84, 64}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     "skulks in",              /* verb for entering a room */
+     "skulks",                 /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* OGRE */
-    {"ogre",                    /* name as found by triggers */
-     "ogre",                    /* all race keywords */
-     "&4Ogre&0",                /* name as displayed at character creation, on who, and score */
-     "&4Ogre&0",                /* name as displayed in show race command and when setting races */
-     "Ogre",                    /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_LARGE,                /* default size */
-     -1000,                     /* default alignment */
-     5,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     390,                       /* male weight low */
-     530,                       /* male weight high */
-     93,                        /* male height low */
-     119,                       /* male height high */
-     390,                       /* female weight low */
-     530,                       /* female weight high */
-     93,                        /* female height low */
-     119,                       /* female height high */
+    {"ogre",                   /* name as found by triggers */
+     "ogre",                   /* all race keywords */
+     "&4Ogre&0",               /* name as displayed at character creation, on who, and score */
+     "&4Ogre&0",               /* name as displayed in show race command and when setting races */
+     "Ogre",                   /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_LARGE,               /* default size */
+     -1000,                    /* default alignment */
+     5,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     390,                      /* male weight low */
+     530,                      /* male weight high */
+     93,                       /* male height low */
+     119,                      /* male height high */
+     390,                      /* female weight low */
+     530,                      /* female weight high */
+     93,                       /* female height low */
+     119,                      /* female height high */
      {92, 64, 52, 60, 80, 60}, /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     110,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     120,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     85,                        /* AC factor for mobs */
-     "lumbers in",              /* verb for entering a room */
-     "lumbers",                 /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     100,                      /* experience reward factor for mobs */
+     110,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     120,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     85,                       /* AC factor for mobs */
+     "lumbers in",             /* verb for entering a room */
+     "lumbers",                /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* ORC */
-    {"orc",                     /* name as found by triggers */
-     "orc",                     /* all race keywords */
-     "&9&bOrc&0",               /* name as displayed at character creation, on who, and score */
-     "&9&bOrc&0",               /* name as displayed in show race command and when setting races */
-     "Orc",                     /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     -1000,                     /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     90,                        /* male weight low */
-     150,                       /* male weight high */
-     58,                        /* male height low */
-     68,                        /* male height high */
-     90,                        /* female weight low */
-     150,                       /* female weight high */
-     58,                        /* female height low */
-     68,                        /* female height high */
-     {80, 72, 72, 72, 76, 68},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"orc",                    /* name as found by triggers */
+     "orc",                    /* all race keywords */
+     "&9&bOrc&0",              /* name as displayed at character creation, on who, and score */
+     "&9&bOrc&0",              /* name as displayed in show race command and when setting races */
+     "Orc",                    /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     -1000,                    /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     90,                       /* male weight low */
+     150,                      /* male weight high */
+     58,                       /* male height low */
+     68,                       /* male height high */
+     90,                       /* female weight low */
+     150,                      /* female weight high */
+     58,                       /* female height low */
+     68,                       /* female height high */
+     {80, 72, 72, 72, 76, 68}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* HALF-ELF */
     {"halfelf",                /* name as found by triggers */
-     "half-elf half elf",       /* all race keywords */
-     "&6&bHalf-&0&6&dElf&0",    /* name as displayed at character creation, on who, and score */
-     "&6&bHalf-&0&6&dElf&0",    /* name as displayed in show race command and when setting races */
-     "Half-Elf",                /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     1000,                      /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     100,                       /* male weight low */
-     170,                       /* male weight high */
-     60,                        /* male height low */
-     76,                        /* male height high */
-     94,                        /* female weight low */
-     155,                       /* female weight high */
-     60,                        /* female height low */
-     70,                        /* female height high */
-     {68, 76, 76, 76, 68, 84},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     "half-elf half elf",      /* all race keywords */
+     "&6&bHalf-&0&6&dElf&0",   /* name as displayed at character creation, on who, and score */
+     "&6&bHalf-&0&6&dElf&0",   /* name as displayed in show race command and when setting races */
+     "Half-Elf",               /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     1000,                     /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     105,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     100,                      /* male weight low */
+     170,                      /* male weight high */
+     60,                       /* male height low */
+     76,                       /* male height high */
+     94,                       /* female weight low */
+     155,                      /* female weight high */
+     60,                       /* female height low */
+     70,                       /* female height high */
+     {68, 76, 76, 76, 68, 84}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* BARBARIAN */
-    {"barbarian",               /* name as found by triggers */
-     "barbarian",               /* all race keywords */
-     "&4Barbarian&0",           /* name as displayed at character creation, on who, and score */
-     "&4Barbarian&0",           /* name as displayed in show race command and when setting races */
-     "Barbarian",               /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_LARGE,                /* default size */
-     0,                         /* default alignment */
-     5,                         /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     170,                       /* male weight low */
-     260,                       /* male weight high */
-     69,                        /* male height low */
-     88,                        /* male height high */
-     130,                       /* female weight low */
-     210,                       /* female height low */
-     69,                        /* female height low */
-     80,                        /* female height high */
-     {88, 68, 60, 60, 88, 64},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"barbarian",              /* name as found by triggers */
+     "barbarian",              /* all race keywords */
+     "&4Barbarian&0",          /* name as displayed at character creation, on who, and score */
+     "&4Barbarian&0",          /* name as displayed in show race command and when setting races */
+     "Barbarian",              /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_LARGE,               /* default size */
+     0,                        /* default alignment */
+     5,                        /* damroll bonus */
+     4,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     170,                      /* male weight low */
+     260,                      /* male weight high */
+     69,                       /* male height low */
+     88,                       /* male height high */
+     130,                      /* female weight low */
+     210,                      /* female height low */
+     69,                       /* female height low */
+     80,                       /* female height high */
+     {88, 68, 60, 60, 88, 64}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* HALFLING */
-    {"halfling",                /* name as found by triggers */
-     "halfling",                /* all race keywords */
-     "&3&dHalfling&0",          /* name as displayed at character creation, on who, and score */
-     "&3&dHalfling&0",          /* name as displayed in show race command and when setting races */
-     "Halfling",                /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_SMALL,                /* default size */
-     1000,                      /* default alignment */
-     3,                         /* damroll bonus */
-     6,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     90,                        /* male weight low */
-     160,                       /* male weight high */
-     35,                        /* male height low */
-     42,                        /* male height high */
-     90,                        /* female weight low */
-     160,                       /* female weight high */
-     35,                        /* female height low */
-     42,                        /* female height high */
-     {68, 96, 80, 80, 64, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"halfling",               /* name as found by triggers */
+     "halfling",               /* all race keywords */
+     "&3&dHalfling&0",         /* name as displayed at character creation, on who, and score */
+     "&3&dHalfling&0",         /* name as displayed in show race command and when setting races */
+     "Halfling",               /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_SMALL,               /* default size */
+     1000,                     /* default alignment */
+     3,                        /* damroll bonus */
+     6,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     90,                       /* male weight low */
+     160,                      /* male weight high */
+     35,                       /* male height low */
+     42,                       /* male height high */
+     90,                       /* female weight low */
+     160,                      /* female weight high */
+     35,                       /* female height low */
+     42,                       /* female height high */
+     {68, 96, 80, 80, 64, 76}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* PLANT */
     {"plant",                   /* name as found by triggers */
@@ -477,6 +488,7 @@ RaceDef races[NUM_RACES] = {
      0,                         /* default alignment */
      3,                         /* damroll bonus */
      3,                         /* hitroll bonus */
+     100,                       /* focus bonus / 100 */
      LIFE_LIFE,                 /* default life force */
      COMP_PLANT,                /* default composition */
      80,                        /* male weight low */
@@ -499,106 +511,109 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
 
     /* HUMANOID */
-    {"humanoid",                /* name as found by triggers */
-     "humanoid",                /* all race keywords */
-     "&7Humanoid&0",            /* name as displayed at character creation, on who, and score */
-     "&7Humanoid&0",            /* name as displayed in show race command and when setting races */
-     "Humanoid",                /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     120,                       /* male weight low */
-     180,                       /* male weight high */
-     60,                        /* male height low */
-     76,                        /* male height high */
-     95,                        /* female weight low */
-     150,                       /* female weight high */
-     60,                        /* female height low */
-     70,                        /* female height high */
-     {72, 72, 72, 72, 72, 72},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     100,                       /* money drop factor for mobs */
-     60,                        /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"humanoid",               /* name as found by triggers */
+     "humanoid",               /* all race keywords */
+     "&7Humanoid&0",           /* name as displayed at character creation, on who, and score */
+     "&7Humanoid&0",           /* name as displayed in show race command and when setting races */
+     "Humanoid",               /* name as displayed in medit vsearch stat and enlightenment */
+     false,                    /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     0,                        /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     120,                      /* male weight low */
+     180,                      /* male weight high */
+     60,                       /* male height low */
+     76,                       /* male height high */
+     95,                       /* female weight low */
+     150,                      /* female weight high */
+     60,                       /* female height low */
+     70,                       /* female height high */
+     {72, 72, 72, 72, 72, 72}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     100,                      /* money drop factor for mobs */
+     60,                       /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* ANIMAL */
-    {"animal",                  /* name as found by triggers */
-     "animal",                  /* all race keywords */
-     "&2Animal&0",              /* name as displayed at character creation, on who, and score */
-     "&2Animal&0",              /* name as displayed in show race command and when setting races */
-     "Animal",                  /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     120,                       /* male weight low */
-     180,                       /* male weight high */
-     60,                        /* male height low */
-     76,                        /* male height high */
-     95,                        /* female weight low */
-     150,                       /* female weight high */
-     60,                        /* female height low */
-     70,                        /* female height high */
-     {72, 72, 72, 72, 72, 72},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     0,                         /* money drop factor for mobs */
-     65,                        /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"animal",                 /* name as found by triggers */
+     "animal",                 /* all race keywords */
+     "&2Animal&0",             /* name as displayed at character creation, on who, and score */
+     "&2Animal&0",             /* name as displayed in show race command and when setting races */
+     "Animal",                 /* name as displayed in medit vsearch stat and enlightenment */
+     false,                    /* playable? */
+     false,                    /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     0,                        /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     120,                      /* male weight low */
+     180,                      /* male weight high */
+     60,                       /* male height low */
+     76,                       /* male height high */
+     95,                       /* female weight low */
+     150,                      /* female weight high */
+     60,                       /* female height low */
+     70,                       /* female height high */
+     {72, 72, 72, 72, 72, 72}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     0,                        /* money drop factor for mobs */
+     65,                       /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGON - GENERAL */
-    {"dragon_general",          /* name as found by triggers */
-     "dragon general",          /* all race keywords */
-     "&5&bDragon&0",            /* name as displayed at character creation, on who, and score */
-     "&5&bDragon&0",            /* name as displayed in show race command and when setting races */
-     "General Dragon",          /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_GARGANTUAN,           /* default size */
-     0,                         /* default alignment */
-     10,                        /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     16000,                     /* male weight low */
-     64000,                     /* male weight high */
-     768,                       /* male height low */
-     1536,                      /* male height high */
-     16000,                     /* female weight low */
-     64000,                     /* female weight high */
-     768,                       /* female height low */
-     1536,                      /* female height high */
+    {"dragon_general",            /* name as found by triggers */
+     "dragon general",            /* all race keywords */
+     "&5&bDragon&0",              /* name as displayed at character creation, on who, and score */
+     "&5&bDragon&0",              /* name as displayed in show race command and when setting races */
+     "General Dragon",            /* name as displayed in medit vsearch stat and enlightenment */
+     false,                       /* playable? */
+     false,                       /* humanoid? */
+     RACE_ALIGN_GOOD,             /* race alignment */
+     SIZE_GARGANTUAN,             /* default size */
+     0,                           /* default alignment */
+     10,                          /* damroll bonus */
+     4,                           /* hitroll bonus */
+     130,                         /* focus bonus / 100 */
+     LIFE_LIFE,                   /* default life force */
+     COMP_FLESH,                  /* default composition */
+     16000,                       /* male weight low */
+     64000,                       /* male weight high */
+     768,                         /* male height low */
+     1536,                        /* male height high */
+     16000,                       /* female weight low */
+     64000,                       /* female weight high */
+     768,                         /* female height low */
+     1536,                        /* female height high */
      {100, 72, 100, 72, 72, 100}, /* max stat: str, dex, int, wis, con, cha */
-     130,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     140,                       /* hitroll/damroll factor for mobs */
-     140,                       /* damage dice factor for mobs */
-     500,                       /* money drop factor for mobs */
-     140,                       /* AC factor for mobs */
-     "stomps in",               /* verb for entering a room */
-     "stomps",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     130,                         /* experience reward factor for mobs */
+     130,                         /* hp factor for mobs */
+     140,                         /* hitroll/damroll factor for mobs */
+     140,                         /* damage dice factor for mobs */
+     500,                         /* money drop factor for mobs */
+     140,                         /* AC factor for mobs */
+     "stomps in",                 /* verb for entering a room */
+     "stomps",                    /* verb for walking out of a room */
+     {0, 0}},                     /* function numbers - always set as {0, 0}}, to close struct */
 
     /* GIANT */
     {"giant",                   /* name as found by triggers */
@@ -613,6 +628,7 @@ RaceDef races[NUM_RACES] = {
      0,                         /* default alignment */
      7,                         /* damroll bonus */
      3,                         /* hitroll bonus */
+     100,                       /* focus bonus / 100 */
      LIFE_LIFE,                 /* default life force */
      COMP_FLESH,                /* default composition */
      1000,                      /* male weight low */
@@ -635,72 +651,74 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
 
     /* OTHER */
-    {"other",                   /* name as found by triggers */
-     "other",                   /* all race keywords */
-     "&4&bOther&0",             /* name as displayed at character creation, on who, and score */
-     "&4&bOther&0",             /* name as displayed in show race command and when setting races */
-     "Other",                   /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     120,                       /* male weight low */
-     180,                       /* male weight high */
-     60,                        /* male height low */
-     76,                        /* male height high */
-     95,                        /* female weight low */
-     150,                       /* female weight high */
-     60,                        /* female height low */
-     70,                        /* female height high */
-     {72, 72, 72, 72, 72, 72},  /* max stat: str, dex, int, wis, con, cha */
-     80,                        /* experience reward factor for mobs */
-     110,                       /* hp factor for mobs */
-     120,                       /* hitroll/damroll factor for mobs */
-     80,                        /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     105,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"other",                  /* name as found by triggers */
+     "other",                  /* all race keywords */
+     "&4&bOther&0",            /* name as displayed at character creation, on who, and score */
+     "&4&bOther&0",            /* name as displayed in show race command and when setting races */
+     "Other",                  /* name as displayed in medit vsearch stat and enlightenment */
+     false,                    /* playable? */
+     false,                    /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     0,                        /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     120,                      /* male weight low */
+     180,                      /* male weight high */
+     60,                       /* male height low */
+     76,                       /* male height high */
+     95,                       /* female weight low */
+     150,                      /* female weight high */
+     60,                       /* female height low */
+     70,                       /* female height high */
+     {72, 72, 72, 72, 72, 72}, /* max stat: str, dex, int, wis, con, cha */
+     80,                       /* experience reward factor for mobs */
+     110,                      /* hp factor for mobs */
+     120,                      /* hitroll/damroll factor for mobs */
+     80,                       /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     105,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* GOBLIN */
-    {"goblin",                  /* name as found by triggers */
-     "goblin",                  /* all race keywords */
-     "&4&bGoblin&0",            /* name as displayed at character creation, on who, and score */
-     "&4&bGoblin&0",            /* name as displayed in show race command and when setting races */
-     "Goblin",                  /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_SMALL,                /* default size */
-     -500,                      /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     60,                        /* male weight low */
-     90,                        /* male weight high */
-     30,                        /* male height low */
-     38,                        /* male height high */
-     55,                        /* female weight low */
-     80,                        /* female weight high */
-     30,                        /* female height low */
-     35,                        /* female height high */
-     {76, 72, 64, 72, 84, 64},  /* max stat: str, dex, int, wis, con, cha */
-     60,                        /* experience reward factor for mobs */
-     60,                        /* hp factor for mobs */
-     60,                        /* hitroll/damroll factor for mobs */
-     60,                        /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     90,                        /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"goblin",                 /* name as found by triggers */
+     "goblin",                 /* all race keywords */
+     "&4&bGoblin&0",           /* name as displayed at character creation, on who, and score */
+     "&4&bGoblin&0",           /* name as displayed in show race command and when setting races */
+     "Goblin",                 /* name as displayed in medit vsearch stat and enlightenment */
+     false,                    /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_SMALL,               /* default size */
+     -500,                     /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     60,                       /* male weight low */
+     90,                       /* male weight high */
+     30,                       /* male height low */
+     38,                       /* male height high */
+     55,                       /* female weight low */
+     80,                       /* female weight high */
+     30,                       /* female height low */
+     35,                       /* female height high */
+     {76, 72, 64, 72, 84, 64}, /* max stat: str, dex, int, wis, con, cha */
+     60,                       /* experience reward factor for mobs */
+     60,                       /* hp factor for mobs */
+     60,                       /* hitroll/damroll factor for mobs */
+     60,                       /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     90,                       /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DEMON */
     {"demon",                   /* name as found by triggers */
@@ -715,6 +733,7 @@ RaceDef races[NUM_RACES] = {
      -1000,                     /* default alignment */
      6,                         /* damroll bonus */
      4,                         /* hitroll bonus */
+     120,                       /* focus bonus / 100 */
      LIFE_DEMONIC,              /* default life force */
      COMP_FLESH,                /* default composition */
      130,                       /* male weight low */
@@ -737,551 +756,568 @@ RaceDef races[NUM_RACES] = {
      {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
 
     /* BROWNIE */
-    {"brownie",                 /* name as found by triggers */
-     "brownie",                 /* all race keywords */
-     "&3Brownie&0",             /* name as displayed at character creation, on who, and score */
-     "&3Brownie&0",             /* name as displayed in show race command and when setting races */
-     "Brownie",                 /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_SMALL,                /* default size */
-     500,                       /* default alignment */
-     1,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     20,                        /* male weight low */
-     30,                        /* male weight high */
-     20,                        /* male height low */
-     30,                        /* male height high */
-     20,                        /* female weight low */
-     30,                        /* female weight high */
-     20,                        /* female height low */
-     30,                        /* female height high */
-     {60, 80, 60, 78, 70, 72},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"brownie",                /* name as found by triggers */
+     "brownie",                /* all race keywords */
+     "&3Brownie&0",            /* name as displayed at character creation, on who, and score */
+     "&3Brownie&0",            /* name as displayed in show race command and when setting races */
+     "Brownie",                /* name as displayed in medit vsearch stat and enlightenment */
+     false,                    /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_SMALL,               /* default size */
+     500,                      /* default alignment */
+     1,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     105,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     20,                       /* male weight low */
+     30,                       /* male weight high */
+     20,                       /* male height low */
+     30,                       /* male height high */
+     20,                       /* female weight low */
+     30,                       /* female weight high */
+     20,                       /* female height low */
+     30,                       /* female height high */
+     {60, 80, 60, 78, 70, 72}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGON - FIRE */
-    {"dragon_fire",             /* name as found by triggers */
-     "dragon fire",             /* all race keywords */
-     "&1&bDragon&0",            /* name as displayed at character creation, on who, and score */
-     "&1&bDragon&0",            /* name as displayed in show race command and when setting races */
-     "Fire Dragon",             /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_GARGANTUAN,           /* default size */
-     0,                         /* default alignment */
-     10,                        /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     16000,                     /* male weight low */
-     64000,                     /* male weight high */
-     768,                       /* male height low */
-     1536,                      /* male height high */
-     16000,                     /* female weight low */
-     64000,                     /* female weight high */
-     768,                       /* female height low */
-     1536,                      /* female height high */
+    {"dragon_fire",               /* name as found by triggers */
+     "dragon fire",               /* all race keywords */
+     "&1&bDragon&0",              /* name as displayed at character creation, on who, and score */
+     "&1&bDragon&0",              /* name as displayed in show race command and when setting races */
+     "Fire Dragon",               /* name as displayed in medit vsearch stat and enlightenment */
+     false,                       /* playable? */
+     false,                       /* humanoid? */
+     RACE_ALIGN_GOOD,             /* race alignment */
+     SIZE_GARGANTUAN,             /* default size */
+     0,                           /* default alignment */
+     10,                          /* damroll bonus */
+     4,                           /* hitroll bonus */
+     130,                         /* focus bonus / 100 */
+     LIFE_LIFE,                   /* default life force */
+     COMP_FLESH,                  /* default composition */
+     16000,                       /* male weight low */
+     64000,                       /* male weight high */
+     768,                         /* male height low */
+     1536,                        /* male height high */
+     16000,                       /* female weight low */
+     64000,                       /* female weight high */
+     768,                         /* female height low */
+     1536,                        /* female height high */
      {100, 72, 100, 72, 72, 100}, /* max stat: str, dex, int, wis, con, cha */
-     130,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     140,                       /* hitroll/damroll factor for mobs */
-     140,                       /* damage dice factor for mobs */
-     500,                       /* money drop factor for mobs */
-     140,                       /* AC factor for mobs */
-     "stomps in",               /* verb for entering a room */
-     "stomps",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     130,                         /* experience reward factor for mobs */
+     130,                         /* hp factor for mobs */
+     140,                         /* hitroll/damroll factor for mobs */
+     140,                         /* damage dice factor for mobs */
+     500,                         /* money drop factor for mobs */
+     140,                         /* AC factor for mobs */
+     "stomps in",                 /* verb for entering a room */
+     "stomps",                    /* verb for walking out of a room */
+     {0, 0}},                     /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGON - ICE */
-    {"dragon_frost",            /* name as found by triggers */
-     "dragon frost",            /* all race keywords */
-     "&7&bDragon&0",            /* name as displayed at character creation, on who, and score */
-     "&7&bDragon&0",            /* name as displayed in show race command and when setting races */
-     "Frost Dragon",            /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_GARGANTUAN,           /* default size */
-     0,                         /* default alignment */
-     10,                        /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     16000,                     /* male weight low */
-     64000,                     /* male weight high */
-     768,                       /* male height low */
-     1536,                      /* male height high */
-     16000,                     /* female weight low */
-     64000,                     /* female weight high */
-     768,                       /* female height low */
-     1536,                      /* female height high */
+    {"dragon_frost",              /* name as found by triggers */
+     "dragon frost",              /* all race keywords */
+     "&7&bDragon&0",              /* name as displayed at character creation, on who, and score */
+     "&7&bDragon&0",              /* name as displayed in show race command and when setting races */
+     "Frost Dragon",              /* name as displayed in medit vsearch stat and enlightenment */
+     false,                       /* playable? */
+     false,                       /* humanoid? */
+     RACE_ALIGN_GOOD,             /* race alignment */
+     SIZE_GARGANTUAN,             /* default size */
+     0,                           /* default alignment */
+     10,                          /* damroll bonus */
+     4,                           /* hitroll bonus */
+     130,                         /* focus bonus / 100 */
+     LIFE_LIFE,                   /* default life force */
+     COMP_FLESH,                  /* default composition */
+     16000,                       /* male weight low */
+     64000,                       /* male weight high */
+     768,                         /* male height low */
+     1536,                        /* male height high */
+     16000,                       /* female weight low */
+     64000,                       /* female weight high */
+     768,                         /* female height low */
+     1536,                        /* female height high */
      {100, 72, 100, 72, 72, 100}, /* max stat: str, dex, int, wis, con, cha */
-     130,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     140,                       /* hitroll/damroll factor for mobs */
-     140,                       /* damage dice factor for mobs */
-     500,                       /* money drop factor for mobs */
-     140,                       /* AC factor for mobs */
-     "stomps in",               /* verb for entering a room */
-     "stomps",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     130,                         /* experience reward factor for mobs */
+     130,                         /* hp factor for mobs */
+     140,                         /* hitroll/damroll factor for mobs */
+     140,                         /* damage dice factor for mobs */
+     500,                         /* money drop factor for mobs */
+     140,                         /* AC factor for mobs */
+     "stomps in",                 /* verb for entering a room */
+     "stomps",                    /* verb for walking out of a room */
+     {0, 0}},                     /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGON - ACID */
-    {"dragon_acid",             /* name as found by triggers */
-     "dragon acid",             /* all race keywords */
-     "&9&bDragon&0",            /* name as displayed at character creation, on who, and score */
-     "&9&bDragon&0",            /* name as displayed in show race command and when setting races */
-     "Acid Dragon",             /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_GARGANTUAN,           /* default size */
-     0,                         /* default alignment */
-     10,                        /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     16000,                     /* male weight low */
-     64000,                     /* male weight high */
-     768,                       /* male height low */
-     1536,                      /* male height high */
-     16000,                     /* female weight low */
-     64000,                     /* female weight high */
-     768,                       /* female height low */
-     1536,                      /* female height high */
+    {"dragon_acid",               /* name as found by triggers */
+     "dragon acid",               /* all race keywords */
+     "&9&bDragon&0",              /* name as displayed at character creation, on who, and score */
+     "&9&bDragon&0",              /* name as displayed in show race command and when setting races */
+     "Acid Dragon",               /* name as displayed in medit vsearch stat and enlightenment */
+     false,                       /* playable? */
+     false,                       /* humanoid? */
+     RACE_ALIGN_GOOD,             /* race alignment */
+     SIZE_GARGANTUAN,             /* default size */
+     0,                           /* default alignment */
+     10,                          /* damroll bonus */
+     4,                           /* hitroll bonus */
+     130,                         /* focus bonus / 100 */
+     LIFE_LIFE,                   /* default life force */
+     COMP_FLESH,                  /* default composition */
+     16000,                       /* male weight low */
+     64000,                       /* male weight high */
+     768,                         /* male height low */
+     1536,                        /* male height high */
+     16000,                       /* female weight low */
+     64000,                       /* female weight high */
+     768,                         /* female height low */
+     1536,                        /* female height high */
      {100, 72, 100, 72, 72, 100}, /* max stat: str, dex, int, wis, con, cha */
-     130,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     140,                       /* hitroll/damroll factor for mobs */
-     140,                       /* damage dice factor for mobs */
-     500,                       /* money drop factor for mobs */
-     140,                       /* AC factor for mobs */
-     "stomps in",               /* verb for entering a room */
-     "stomps",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     130,                         /* experience reward factor for mobs */
+     130,                         /* hp factor for mobs */
+     140,                         /* hitroll/damroll factor for mobs */
+     140,                         /* damage dice factor for mobs */
+     500,                         /* money drop factor for mobs */
+     140,                         /* AC factor for mobs */
+     "stomps in",                 /* verb for entering a room */
+     "stomps",                    /* verb for walking out of a room */
+     {0, 0}},                     /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGON - LIGHTNING */
-    {"dragon_lightning",        /* name as found by triggers */
-     "dragon lightning",        /* all race keywords */
-     "&4&bDragon&0",            /* name as displayed at character creation, on who, and score */
-     "&4&bDragon&0",            /* name as displayed in show race command and when setting races */
-     "Lightning Dragon",        /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_GARGANTUAN,           /* default size */
-     0,                         /* default alignment */
-     10,                        /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     16000,                     /* male weight low */
-     64000,                     /* male weight high */
-     768,                       /* male height low */
-     1536,                      /* male height high */
-     16000,                     /* female weight low */
-     64000,                     /* female weight high */
-     768,                       /* female height low */
-     1536,                      /* female height high */
+    {"dragon_lightning",          /* name as found by triggers */
+     "dragon lightning",          /* all race keywords */
+     "&4&bDragon&0",              /* name as displayed at character creation, on who, and score */
+     "&4&bDragon&0",              /* name as displayed in show race command and when setting races */
+     "Lightning Dragon",          /* name as displayed in medit vsearch stat and enlightenment */
+     false,                       /* playable? */
+     false,                       /* humanoid? */
+     RACE_ALIGN_GOOD,             /* race alignment */
+     SIZE_GARGANTUAN,             /* default size */
+     0,                           /* default alignment */
+     10,                          /* damroll bonus */
+     4,                           /* hitroll bonus */
+     130,                         /* focus bonus / 100 */
+     LIFE_LIFE,                   /* default life force */
+     COMP_FLESH,                  /* default composition */
+     16000,                       /* male weight low */
+     64000,                       /* male weight high */
+     768,                         /* male height low */
+     1536,                        /* male height high */
+     16000,                       /* female weight low */
+     64000,                       /* female weight high */
+     768,                         /* female height low */
+     1536,                        /* female height high */
      {100, 72, 100, 72, 72, 100}, /* max stat: str, dex, int, wis, con, cha */
-     130,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     140,                       /* hitroll/damroll factor for mobs */
-     140,                       /* damage dice factor for mobs */
-     500,                       /* money drop factor for mobs */
-     140,                       /* AC factor for mobs */
-     "stomps in",               /* verb for entering a room */
-     "stomps",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     130,                         /* experience reward factor for mobs */
+     130,                         /* hp factor for mobs */
+     140,                         /* hitroll/damroll factor for mobs */
+     140,                         /* damage dice factor for mobs */
+     500,                         /* money drop factor for mobs */
+     140,                         /* AC factor for mobs */
+     "stomps in",                 /* verb for entering a room */
+     "stomps",                    /* verb for walking out of a room */
+     {0, 0}},                     /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGON - GAS */
-    {"dragon_gas",              /* name as found by triggers */
-     "dragon gas",              /* all race keywords */
-     "&2&bDragon&0",            /* name as displayed at character creation, on who, and score */
-     "&2&bDragon&0",            /* name as displayed in show race command and when setting races */
-     "Gas Dragon",              /* name as displayed in medit vsearch stat and enlightenment */
-     false,                     /* playable? */
-     false,                     /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_GARGANTUAN,           /* default size */
-     0,                         /* default alignment */
-     10,                        /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     16000,                     /* male weight low */
-     64000,                     /* male weight high */
-     768,                       /* male height low */
-     1536,                      /* male height high */
-     16000,                     /* female weight low */
-     64000,                     /* female weight high */
-     768,                       /* female height low */
-     1536,                      /* female height high */
+    {"dragon_gas",                /* name as found by triggers */
+     "dragon gas",                /* all race keywords */
+     "&2&bDragon&0",              /* name as displayed at character creation, on who, and score */
+     "&2&bDragon&0",              /* name as displayed in show race command and when setting races */
+     "Gas Dragon",                /* name as displayed in medit vsearch stat and enlightenment */
+     false,                       /* playable? */
+     false,                       /* humanoid? */
+     RACE_ALIGN_GOOD,             /* race alignment */
+     SIZE_GARGANTUAN,             /* default size */
+     0,                           /* default alignment */
+     10,                          /* damroll bonus */
+     4,                           /* hitroll bonus */
+     130,                         /* focus bonus / 100 */
+     LIFE_LIFE,                   /* default life force */
+     COMP_FLESH,                  /* default composition */
+     16000,                       /* male weight low */
+     64000,                       /* male weight high */
+     768,                         /* male height low */
+     1536,                        /* male height high */
+     16000,                       /* female weight low */
+     64000,                       /* female weight high */
+     768,                         /* female height low */
+     1536,                        /* female height high */
      {100, 72, 100, 72, 72, 100}, /* max stat: str, dex, int, wis, con, cha */
-     130,                       /* experience reward factor for mobs */
-     130,                       /* hp factor for mobs */
-     140,                       /* hitroll/damroll factor for mobs */
-     140,                       /* damage dice factor for mobs */
-     500,                       /* money drop factor for mobs */
-     140,                       /* AC factor for mobs */
-     "stomps in",               /* verb for entering a room */
-     "stomps",                  /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     130,                         /* experience reward factor for mobs */
+     130,                         /* hp factor for mobs */
+     140,                         /* hitroll/damroll factor for mobs */
+     140,                         /* damage dice factor for mobs */
+     500,                         /* money drop factor for mobs */
+     140,                         /* AC factor for mobs */
+     "stomps in",                 /* verb for entering a room */
+     "stomps",                    /* verb for walking out of a room */
+     {0, 0}},                     /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGONBORN - FIRE */
-    {"dragonborn_fire",         /* name as found by triggers */
-     "dragonborn fire",         /* all race keywords */
-     "&1Dr&ba&3g&1on&0&1b&1&bo&3r&1&bn&0",  /* name as displayed at character creation, on who, and score */
-     "&1Fire Dragonborn&0",     /* name as displayed in show race command and when setting races */
-     "Fire Dragonborn",         /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     180,                       /* male weight low */
-     370,                       /* male weight high */
-     70,                        /* male height low */
-     80,                        /* male height high */
-     180,                       /* female weight low */
-     370,                       /* female weight high */
-     70,                        /* female height low */
-     80,                        /* female height high */
-     {78, 64, 76, 72, 78, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"dragonborn_fire",                    /* name as found by triggers */
+     "dragonborn fire",                    /* all race keywords */
+     "&1Dr&ba&3g&1on&0&1b&1&bo&3r&1&bn&0", /* name as displayed at character creation, on who, and score */
+     "&1Fire Dragonborn&0",                /* name as displayed in show race command and when setting races */
+     "Fire Dragonborn",                    /* name as displayed in medit vsearch stat and enlightenment */
+     true,                                 /* playable? */
+     true,                                 /* humanoid? */
+     RACE_ALIGN_GOOD,                      /* race alignment */
+     SIZE_MEDIUM,                          /* default size */
+     0,                                    /* default alignment */
+     3,                                    /* damroll bonus */
+     3,                                    /* hitroll bonus */
+     100,                                  /* focus bonus / 100 */
+     LIFE_LIFE,                            /* default life force */
+     COMP_FLESH,                           /* default composition */
+     180,                                  /* male weight low */
+     370,                                  /* male weight high */
+     70,                                   /* male height low */
+     80,                                   /* male height high */
+     180,                                  /* female weight low */
+     370,                                  /* female weight high */
+     70,                                   /* female height low */
+     80,                                   /* female height high */
+     {78, 64, 76, 72, 78, 76},             /* max stat: str, dex, int, wis, con, cha */
+     100,                                  /* experience reward factor for mobs */
+     100,                                  /* hp factor for mobs */
+     100,                                  /* hitroll/damroll factor for mobs */
+     100,                                  /* damage dice factor for mobs */
+     75,                                   /* money drop factor for mobs */
+     100,                                  /* AC factor for mobs */
+     nullptr,                              /* verb for entering a room */
+     nullptr,                              /* verb for walking out of a room */
+     {0, 0}},                              /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGONBORN - FROST */
-    {"dragonborn_frost",        /* name as found by triggers */
-     "dragonborn frost",        /* all race keywords */
-     "&7&bDr&b&4ag&7&bonb&b&4or&7&bn&0",  /* name as displayed at character creation, on who, and score */
-     "&7&bFrost Dragonborn&0",  /* name as displayed in show race command and when setting races */
-     "Frost Dragonborn",        /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     180,                       /* male weight low */
-     370,                       /* male weight high */
-     70,                        /* male height low */
-     80,                        /* male height high */
-     180,                       /* female weight low */
-     370,                       /* female weight high */
-     70,                        /* female height low */
-     80,                        /* female height high */
-     {78, 64, 76, 72, 78, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"dragonborn_frost",                 /* name as found by triggers */
+     "dragonborn frost",                 /* all race keywords */
+     "&7&bDr&b&4ag&7&bonb&b&4or&7&bn&0", /* name as displayed at character creation, on who, and score */
+     "&7&bFrost Dragonborn&0",           /* name as displayed in show race command and when setting races */
+     "Frost Dragonborn",                 /* name as displayed in medit vsearch stat and enlightenment */
+     true,                               /* playable? */
+     true,                               /* humanoid? */
+     RACE_ALIGN_GOOD,                    /* race alignment */
+     SIZE_MEDIUM,                        /* default size */
+     0,                                  /* default alignment */
+     3,                                  /* damroll bonus */
+     3,                                  /* hitroll bonus */
+     100,                                /* focus bonus / 100 */
+     LIFE_LIFE,                          /* default life force */
+     COMP_FLESH,                         /* default composition */
+     180,                                /* male weight low */
+     370,                                /* male weight high */
+     70,                                 /* male height low */
+     80,                                 /* male height high */
+     180,                                /* female weight low */
+     370,                                /* female weight high */
+     70,                                 /* female height low */
+     80,                                 /* female height high */
+     {78, 64, 76, 72, 78, 76},           /* max stat: str, dex, int, wis, con, cha */
+     100,                                /* experience reward factor for mobs */
+     100,                                /* hp factor for mobs */
+     100,                                /* hitroll/damroll factor for mobs */
+     100,                                /* damage dice factor for mobs */
+     75,                                 /* money drop factor for mobs */
+     100,                                /* AC factor for mobs */
+     nullptr,                            /* verb for entering a room */
+     nullptr,                            /* verb for walking out of a room */
+     {0, 0}},                            /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGONBORN - ACID */
-    {"dragonborn_acid",         /* name as found by triggers */
-     "dragonborn acid",         /* all race keywords */
-     "&9&bDr&2a&0&2g&bo&9nb&2o&0&2r&b&9n&0",  /* name as displayed at character creation, on who, and score */
-     "&9&bAcid Dragonborn&0",   /* name as displayed in show race command and when setting races */
-     "Acid Dragonborn",         /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     180,                       /* male weight low */
-     370,                       /* male weight high */
-     70,                        /* male height low */
-     80,                        /* male height high */
-     180,                       /* female weight low */
-     370,                       /* female weight high */
-     70,                        /* female height low */
-     80,                        /* female height high */
-     {78, 64, 76, 72, 78, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"dragonborn_acid",                      /* name as found by triggers */
+     "dragonborn acid",                      /* all race keywords */
+     "&9&bDr&2a&0&2g&bo&9nb&2o&0&2r&b&9n&0", /* name as displayed at character creation, on who, and score */
+     "&9&bAcid Dragonborn&0",                /* name as displayed in show race command and when setting races */
+     "Acid Dragonborn",                      /* name as displayed in medit vsearch stat and enlightenment */
+     true,                                   /* playable? */
+     true,                                   /* humanoid? */
+     RACE_ALIGN_GOOD,                        /* race alignment */
+     SIZE_MEDIUM,                            /* default size */
+     0,                                      /* default alignment */
+     3,                                      /* damroll bonus */
+     3,                                      /* hitroll bonus */
+     100,                                    /* focus bonus / 100 */
+     LIFE_LIFE,                              /* default life force */
+     COMP_FLESH,                             /* default composition */
+     180,                                    /* male weight low */
+     370,                                    /* male weight high */
+     70,                                     /* male height low */
+     80,                                     /* male height high */
+     180,                                    /* female weight low */
+     370,                                    /* female weight high */
+     70,                                     /* female height low */
+     80,                                     /* female height high */
+     {78, 64, 76, 72, 78, 76},               /* max stat: str, dex, int, wis, con, cha */
+     100,                                    /* experience reward factor for mobs */
+     100,                                    /* hp factor for mobs */
+     100,                                    /* hitroll/damroll factor for mobs */
+     100,                                    /* damage dice factor for mobs */
+     75,                                     /* money drop factor for mobs */
+     100,                                    /* AC factor for mobs */
+     nullptr,                                /* verb for entering a room */
+     nullptr,                                /* verb for walking out of a room */
+     {0, 0}},                                /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGONBORN - LIGHTNING */
-    {"dragonborn_lightning",    /* name as found by triggers */
-     "dragonborn lightning",    /* all race keywords */
-     "&b&4Dr&6a&4go&6n&4b&6or&4n&0",  /* name as displayed at character creation, on who, and score */
-     "&b&4Lightning Dragonborn&0",    /* name as displayed in show race command and when setting races */
-     "Lightning Dragonborn",    /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     180,                       /* male weight low */
-     370,                       /* male weight high */
-     70,                        /* male height low */
-     80,                        /* male height high */
-     180,                       /* female weight low */
-     370,                       /* female weight high */
-     70,                        /* female height low */
-     80,                        /* female height high */
-     {78, 64, 76, 72, 78, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"dragonborn_lightning",         /* name as found by triggers */
+     "dragonborn lightning",         /* all race keywords */
+     "&b&4Dr&6a&4go&6n&4b&6or&4n&0", /* name as displayed at character creation, on who, and score */
+     "&b&4Lightning Dragonborn&0",   /* name as displayed in show race command and when setting races */
+     "Lightning Dragonborn",         /* name as displayed in medit vsearch stat and enlightenment */
+     true,                           /* playable? */
+     true,                           /* humanoid? */
+     RACE_ALIGN_GOOD,                /* race alignment */
+     SIZE_MEDIUM,                    /* default size */
+     0,                              /* default alignment */
+     3,                              /* damroll bonus */
+     3,                              /* hitroll bonus */
+     100,                            /* focus bonus / 100 */
+     LIFE_LIFE,                      /* default life force */
+     COMP_FLESH,                     /* default composition */
+     180,                            /* male weight low */
+     370,                            /* male weight high */
+     70,                             /* male height low */
+     80,                             /* male height high */
+     180,                            /* female weight low */
+     370,                            /* female weight high */
+     70,                             /* female height low */
+     80,                             /* female height high */
+     {78, 64, 76, 72, 78, 76},       /* max stat: str, dex, int, wis, con, cha */
+     100,                            /* experience reward factor for mobs */
+     100,                            /* hp factor for mobs */
+     100,                            /* hitroll/damroll factor for mobs */
+     100,                            /* damage dice factor for mobs */
+     75,                             /* money drop factor for mobs */
+     100,                            /* AC factor for mobs */
+     nullptr,                        /* verb for entering a room */
+     nullptr,                        /* verb for walking out of a room */
+     {0, 0}},                        /* function numbers - always set as {0, 0}}, to close struct */
 
     /* DRAGONBORN - GAS */
-    {"dragonborn_gas",          /* name as found by triggers */
-     "dragonborn gas",          /* all race keywords */
-     "&2&bDra&3g&2onb&3or&2n&0",  /* name as displayed at character creation, on who, and score */
-     "&2&bGas Dragonborn&0",    /* name as displayed in show race command and when setting races */
-     "Gas Dragonborn",          /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     180,                       /* male weight low */
-     370,                       /* male weight high */
-     70,                        /* male height low */
-     80,                        /* male height high */
-     180,                       /* female weight low */
-     370,                       /* female weight high */
-     70,                        /* female height low */
-     80,                        /* female height high */
-     {78, 64, 76, 72, 78, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"dragonborn_gas",           /* name as found by triggers */
+     "dragonborn gas",           /* all race keywords */
+     "&2&bDra&3g&2onb&3or&2n&0", /* name as displayed at character creation, on who, and score */
+     "&2&bGas Dragonborn&0",     /* name as displayed in show race command and when setting races */
+     "Gas Dragonborn",           /* name as displayed in medit vsearch stat and enlightenment */
+     true,                       /* playable? */
+     true,                       /* humanoid? */
+     RACE_ALIGN_GOOD,            /* race alignment */
+     SIZE_MEDIUM,                /* default size */
+     0,                          /* default alignment */
+     3,                          /* damroll bonus */
+     3,                          /* hitroll bonus */
+     100,                        /* focus bonus / 100 */
+     LIFE_LIFE,                  /* default life force */
+     COMP_FLESH,                 /* default composition */
+     180,                        /* male weight low */
+     370,                        /* male weight high */
+     70,                         /* male height low */
+     80,                         /* male height high */
+     180,                        /* female weight low */
+     370,                        /* female weight high */
+     70,                         /* female height low */
+     80,                         /* female height high */
+     {78, 64, 76, 72, 78, 76},   /* max stat: str, dex, int, wis, con, cha */
+     100,                        /* experience reward factor for mobs */
+     100,                        /* hp factor for mobs */
+     100,                        /* hitroll/damroll factor for mobs */
+     100,                        /* damage dice factor for mobs */
+     75,                         /* money drop factor for mobs */
+     100,                        /* AC factor for mobs */
+     nullptr,                    /* verb for entering a room */
+     nullptr,                    /* verb for walking out of a room */
+     {0, 0}},                    /* function numbers - always set as {0, 0}}, to close struct */
 
     /* SVERFNEBLIN */
-    {"sverfneblin",             /* name as found by triggers */
-     "sverfneblin",             /* all race keywords */
-     "&9&d&bSverfneblin&0",     /* name as displayed at character creation, on who, and score */
-     "&9&d&bSverfneblin&0",     /* name as displayed in show race command and when setting races */
-     "Sverfneblin",             /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_SMALL,                /* default size */
-     -1000,                     /* default alignment */
-     2,                         /* damroll bonus */
-     4,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     40,                        /* male weight low */
-     90,                        /* male weight high */
-     26,                        /* male height low */
-     38,                        /* male height high */
-     40,                        /* female weight low */
-     90,                        /* female weight high */
-     26,                        /* female height low */
-     38,                        /* female height high */
-     {64, 76, 88, 84, 68, 76},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"sverfneblin",            /* name as found by triggers */
+     "sverfneblin",            /* all race keywords */
+     "&9&d&bSverfneblin&0",    /* name as displayed at character creation, on who, and score */
+     "&9&d&bSverfneblin&0",    /* name as displayed in show race command and when setting races */
+     "Sverfneblin",            /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_EVIL,          /* race alignment */
+     SIZE_SMALL,               /* default size */
+     -1000,                    /* default alignment */
+     2,                        /* damroll bonus */
+     4,                        /* hitroll bonus */
+     105,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     40,                       /* male weight low */
+     90,                       /* male weight high */
+     26,                       /* male height low */
+     38,                       /* male height high */
+     40,                       /* female weight low */
+     90,                       /* female weight high */
+     26,                       /* female height low */
+     38,                       /* female height high */
+     {64, 76, 88, 84, 68, 76}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* FAERIE - SEELIE */
-    {"faerie_seelie",           /* name as found by triggers */
-     "faerie seelie",           /* all race keywords */
-     "&b&7F&3aeri&7e&0",        /* name as displayed at character creation, on who, and score */
+    {"faerie_seelie",               /* name as found by triggers */
+     "faerie seelie",               /* all race keywords */
+     "&b&7F&3aeri&7e&0",            /* name as displayed at character creation, on who, and score */
      "&b&7S&3eeli&7e F&3aeri&7e&0", /* name as displayed in show race command and when setting races */
-     "Seelie Faerie",           /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_TINY,                 /* default size */
-     1000,                      /* default alignment */
-     0,                         /* damroll bonus */
-     6,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     5,                         /* male weight low */
-     10,                        /* male weight high */
-     6,                         /* male height low */
-     10,                        /* male height high */
-     5,                         /* female weight low */
-     10,                        /* female weight high */
-     6,                         /* female height low */
-     10,                        /* female height high */
-     {30, 95, 90, 90, 30, 92},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     80,                        /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     "flutters in",             /* verb for entering a room */
-     "flutters",                /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     "Seelie Faerie",               /* name as displayed in medit vsearch stat and enlightenment */
+     true,                          /* playable? */
+     true,                          /* humanoid? */
+     RACE_ALIGN_GOOD,               /* race alignment */
+     SIZE_TINY,                     /* default size */
+     1000,                          /* default alignment */
+     0,                             /* damroll bonus */
+     6,                             /* hitroll bonus */
+     200,                           /* focus bonus / 100 */
+     LIFE_LIFE,                     /* default life force */
+     COMP_FLESH,                    /* default composition */
+     5,                             /* male weight low */
+     10,                            /* male weight high */
+     6,                             /* male height low */
+     10,                            /* male height high */
+     5,                             /* female weight low */
+     10,                            /* female weight high */
+     6,                             /* female height low */
+     10,                            /* female height high */
+     {30, 95, 90, 90, 30, 95},      /* max stat: str, dex, int, wis, con, cha */
+     100,                           /* experience reward factor for mobs */
+     80,                            /* hp factor for mobs */
+     100,                           /* hitroll/damroll factor for mobs */
+     100,                           /* damage dice factor for mobs */
+     75,                            /* money drop factor for mobs */
+     100,                           /* AC factor for mobs */
+     "flutters in",                 /* verb for entering a room */
+     "flutters",                    /* verb for walking out of a room */
+     {0, 0}},                       /* function numbers - always set as {0, 0}}, to close struct */
 
     /* FAERIE - UNSEELIE */
-    {"faerie_unseelie",         /* name as found by triggers */
-     "faerie unseelie",         /* all race keywords */
-     "&b&9F&0&5aeri&9&be&0",    /* name as displayed at character creation, on who, and score */
-     "&b&9U&0&5ns&b&9ee&0&5li&b&9e F&0&5aeri&9&be&0", /* name as displayed in show race command and when setting races */
-     "Unseelie Faerie",         /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_EVIL,           /* race alignment */
-     SIZE_TINY,                 /* default size */
-     -1000,                     /* default alignment */
-     0,                         /* damroll bonus */
-     6,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     5,                         /* male weight low */
-     10,                        /* male weight high */
-     6,                         /* male height low */
-     10,                        /* male height high */
-     5,                         /* female weight low */
-     10,                        /* female weight high */
-     6,                         /* female height low */
-     10,                        /* female height high */
-     {30, 95, 90, 90, 30, 92},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     80,                        /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     "flutters in",             /* verb for entering a room */
-     "flutters",                /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+    {"faerie_unseelie",                               /* name as found by triggers */
+     "faerie unseelie",                               /* all race keywords */
+     "&b&9F&0&5aeri&9&be&0",                          /* name as displayed at character creation, on who, and score */
+     "&b&9U&0&5ns&b&9ee&0&5li&b&9e F&0&5aeri&9&be&0", /* name as displayed in show race command and when setting races
+                                                       */
+     "Unseelie Faerie",                               /* name as displayed in medit vsearch stat and enlightenment */
+     true,                                            /* playable? */
+     true,                                            /* humanoid? */
+     RACE_ALIGN_EVIL,                                 /* race alignment */
+     SIZE_TINY,                                       /* default size */
+     -1000,                                           /* default alignment */
+     0,                                               /* damroll bonus */
+     6,                                               /* hitroll bonus */
+     200,                                             /* focus bonus / 100 */
+     LIFE_LIFE,                                       /* default life force */
+     COMP_FLESH,                                      /* default composition */
+     5,                                               /* male weight low */
+     10,                                              /* male weight high */
+     6,                                               /* male height low */
+     10,                                              /* male height high */
+     5,                                               /* female weight low */
+     10,                                              /* female weight high */
+     6,                                               /* female height low */
+     10,                                              /* female height high */
+     {30, 95, 90, 90, 30, 95},                        /* max stat: str, dex, int, wis, con, cha */
+     100,                                             /* experience reward factor for mobs */
+     80,                                              /* hp factor for mobs */
+     100,                                             /* hitroll/damroll factor for mobs */
+     100,                                             /* damage dice factor for mobs */
+     75,                                              /* money drop factor for mobs */
+     100,                                             /* AC factor for mobs */
+     "flutters in",                                   /* verb for entering a room */
+     "flutters",                                      /* verb for walking out of a room */
+     {0, 0}},                                         /* function numbers - always set as {0, 0}}, to close struct */
 
     /* NYMPH */
-    {"nymph",                   /* name as found by triggers */
-     "nymph",                   /* all race keywords */
-     "&3&bN&0&2ym&3&bph&0",     /* name as displayed at character creation, on who, and score */
-     "&3&bN&0&2ym&3&bph&0",     /* name as displayed in show race command and when setting races */
-     "Nymph",                   /* name as displayed in medit vsearch stat and enlightenment */
-     true,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_MEDIUM,               /* default size */
-     1000,                      /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_FLESH,                /* default composition */
-     90,                        /* male weight low */
-     160,                       /* male weight high */
-     59,                        /* male height low */
-     70,                        /* male height high */
-     68,                        /* female weight low */
-     160,                       /* female weight high */
-     59,                        /* female height low */
-     68,                        /* female height high */
+    {"nymph",                  /* name as found by triggers */
+     "nymph",                  /* all race keywords */
+     "&3&bN&0&2ym&3&bph&0",    /* name as displayed at character creation, on who, and score */
+     "&3&bN&0&2ym&3&bph&0",    /* name as displayed in show race command and when setting races */
+     "Nymph",                  /* name as displayed in medit vsearch stat and enlightenment */
+     true,                     /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_MEDIUM,              /* default size */
+     1000,                     /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     105,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_FLESH,               /* default composition */
+     90,                       /* male weight low */
+     160,                      /* male weight high */
+     59,                       /* male height low */
+     70,                       /* male height high */
+     68,                       /* female weight low */
+     160,                      /* female weight high */
+     59,                       /* female height low */
+     68,                       /* female height high */
      {65, 72, 80, 80, 65, 96}, /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}},                   /* function numbers - always set as {0, 0}}, to close struct */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}},                  /* function numbers - always set as {0, 0}}, to close struct */
 
     /* ARBOREAN */
-    {"arborean",                /* name as found by triggers */
-     "arborean",                /* all race keywords */
-     "&2Arborean&0",            /* name as displayed at character creation, on who, and score */
-     "&2Arborean&0",            /* name as displayed in show race command and when setting races */
-     "Arborean",                /* name as displayed in medit vsearch stat and enlightenment */
-     false,                      /* playable? */
-     true,                      /* humanoid? */
-     RACE_ALIGN_GOOD,           /* race alignment */
-     SIZE_LARGE,                /* default size */
-     0,                         /* default alignment */
-     3,                         /* damroll bonus */
-     3,                         /* hitroll bonus */
-     LIFE_LIFE,                 /* default life force */
-     COMP_PLANT,                /* default composition */
-     140,                       /* male weight low */
-     260,                       /* male weight high */
-     72,                        /* male height low */
-     106,                       /* male height high */
-     140,                       /* female weight low */
-     260,                       /* female weight high */
-     72,                        /* female height low */
-     106,                       /* female height high */
-     {80, 62, 72, 80, 80, 72},  /* max stat: str, dex, int, wis, con, cha */
-     100,                       /* experience reward factor for mobs */
-     100,                       /* hp factor for mobs */
-     100,                       /* hitroll/damroll factor for mobs */
-     100,                       /* damage dice factor for mobs */
-     75,                        /* money drop factor for mobs */
-     100,                       /* AC factor for mobs */
-     nullptr,                   /* verb for entering a room */
-     nullptr,                   /* verb for walking out of a room */
-     {0, 0}}                    /* function numbers - always set as {0, 0}}, to close struct */
+    {"arborean",               /* name as found by triggers */
+     "arborean",               /* all race keywords */
+     "&2Arborean&0",           /* name as displayed at character creation, on who, and score */
+     "&2Arborean&0",           /* name as displayed in show race command and when setting races */
+     "Arborean",               /* name as displayed in medit vsearch stat and enlightenment */
+     false,                    /* playable? */
+     true,                     /* humanoid? */
+     RACE_ALIGN_GOOD,          /* race alignment */
+     SIZE_LARGE,               /* default size */
+     0,                        /* default alignment */
+     3,                        /* damroll bonus */
+     3,                        /* hitroll bonus */
+     100,                      /* focus bonus / 100 */
+     LIFE_LIFE,                /* default life force */
+     COMP_PLANT,               /* default composition */
+     140,                      /* male weight low */
+     260,                      /* male weight high */
+     72,                       /* male height low */
+     106,                      /* male height high */
+     140,                      /* female weight low */
+     260,                      /* female weight high */
+     72,                       /* female height low */
+     106,                      /* female height high */
+     {80, 62, 72, 80, 80, 72}, /* max stat: str, dex, int, wis, con, cha */
+     100,                      /* experience reward factor for mobs */
+     100,                      /* hp factor for mobs */
+     100,                      /* hitroll/damroll factor for mobs */
+     100,                      /* damage dice factor for mobs */
+     75,                       /* money drop factor for mobs */
+     100,                      /* AC factor for mobs */
+     nullptr,                  /* verb for entering a room */
+     nullptr,                  /* verb for walking out of a room */
+     {0, 0}}                   /* function numbers - always set as {0, 0}}, to close struct */
 
-     };
-     
+};
+
 const char *race_align_abbrevs[] = {"&0&3&bGOOD&0", "&0&1&bEVIL&0"};
 
 void init_races(void) {
@@ -1305,7 +1341,7 @@ void init_races(void) {
     PERM_EFF(RACE_DRAGON_FIRE, EFF_FLY);
     PERM_EFF(RACE_DRAGON_FROST, EFF_FLY);
     PERM_EFF(RACE_DRAGON_GAS, EFF_FLY);
-    PERM_EFF(RACE_DRAGON_LIGHTNING, EFF_FLY);  
+    PERM_EFF(RACE_DRAGON_LIGHTNING, EFF_FLY);
     PERM_EFF(RACE_DRAGON_GENERAL, EFF_FLY);
 
     PERM_EFF(RACE_DRAGONBORN_FIRE, EFF_INFRAVISION);
@@ -1323,7 +1359,7 @@ void init_races(void) {
     PERM_EFF(RACE_DWARF, EFF_DETECT_POISON);
     PERM_EFF(RACE_DWARF, EFF_INFRAVISION);
     PERM_EFF(RACE_DWARF, EFF_ULTRAVISION);
-    
+
     PERM_EFF(RACE_ELF, EFF_INFRAVISION);
 
     PERM_EFF(RACE_FAERIE_SEELIE, EFF_FLY);
@@ -1342,7 +1378,7 @@ void init_races(void) {
 
     PERM_EFF(RACE_SVERFNEBLIN, EFF_INFRAVISION);
     PERM_EFF(RACE_SVERFNEBLIN, EFF_ULTRAVISION);
-    
+
     PERM_EFF(RACE_TROLL, EFF_INFRAVISION);
     PERM_EFF(RACE_TROLL, EFF_ULTRAVISION);
 
@@ -1437,7 +1473,8 @@ void init_races(void) {
             break;
         }
         if (pos > NUM_RACE_SKILLS) {
-            log("init_races: Too many skills assigned to race {}.  Increase NUM_RACE_SKILLS in races.h to at least {:d}",
+            log("init_races: Too many skills assigned to race {}.  Increase NUM_RACE_SKILLS in races.h to at least "
+                "{:d}",
                 races[race].name, pos);
             exit(1);
         }
@@ -1708,12 +1745,18 @@ void convert_race(CharData *ch, int newrace) {
 
 void scale_attribs(CharData *ch) {
     if (VALID_RACE(ch)) {
-        GET_AFFECTED_STR(ch) = (std::min(((GET_VIEWED_STR(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_STR - 1]) / 100), MAX_ABILITY_VALUE));
-        GET_AFFECTED_DEX(ch) = (std::min(((GET_VIEWED_DEX(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_DEX - 1]) / 100), MAX_ABILITY_VALUE));
-        GET_AFFECTED_INT(ch) = (std::min(((GET_VIEWED_INT(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_INT - 1]) / 100), MAX_ABILITY_VALUE));
-        GET_AFFECTED_WIS(ch) = (std::min(((GET_VIEWED_WIS(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_WIS - 1]) / 100), MAX_ABILITY_VALUE));
-        GET_AFFECTED_CON(ch) = (std::min(((GET_VIEWED_CON(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CON - 1]) / 100), MAX_ABILITY_VALUE));
-        GET_AFFECTED_CHA(ch) = (std::min(((GET_VIEWED_CHA(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CHA - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_STR(ch) = (std::min(
+            ((GET_VIEWED_STR(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_STR - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_DEX(ch) = (std::min(
+            ((GET_VIEWED_DEX(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_DEX - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_INT(ch) = (std::min(
+            ((GET_VIEWED_INT(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_INT - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_WIS(ch) = (std::min(
+            ((GET_VIEWED_WIS(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_WIS - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_CON(ch) = (std::min(
+            ((GET_VIEWED_CON(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CON - 1]) / 100), MAX_ABILITY_VALUE));
+        GET_AFFECTED_CHA(ch) = (std::min(
+            ((GET_VIEWED_CHA(ch) * races[(int)GET_RACE(ch)].attrib_scales[APPLY_CHA - 1]) / 100), MAX_ABILITY_VALUE));
     } else {
         GET_AFFECTED_STR(ch) = GET_VIEWED_STR(ch) * 72 / 100;
         GET_AFFECTED_DEX(ch) = GET_VIEWED_DEX(ch) * 72 / 100;

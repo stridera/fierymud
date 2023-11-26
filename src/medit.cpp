@@ -231,6 +231,7 @@ void init_mobile(CharData *mob) {
     (mob)->mob_specials.ex_hpsizedice = 0;
     GET_RACE(mob) = DEFAULT_RACE;
     GET_CLASS(mob) = CLASS_UNDEFINED;
+    GET_FOCUS(mob) = 10;
     GET_MAX_MANA(mob) = 100;
     GET_MAX_MOVE(mob) = 100;
     GET_NDD(mob) = 0;
@@ -551,13 +552,14 @@ void medit_save_to_disk(int zone_num) {
                     "%d %d %d %d %ld %d\n"
                     "%d %d %d %d %d %d %d\n",
                     (GET_NAMELIST(mob) && *GET_NAMELIST(mob)) ? GET_NAMELIST(mob) : "undefined",
-                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", 
-                    buf1, 
-                    buf2, 
-                    MOB_FLAGS(mob)[0], EFF_FLAGS(mob)[0], GET_ALIGNMENT(mob), 
-                    GET_LEVEL(mob), 20 - mob->mob_specials.ex_hitroll, /* Hitroll -> THAC0 */ GET_EX_AC(mob) / 10, (mob)->mob_specials.ex_hpnumdice, (mob)->mob_specials.ex_hpsizedice, GET_MOVE(mob), (mob)->mob_specials.ex_damnodice, (mob)->mob_specials.ex_damsizedice, mob->mob_specials.ex_damroll, 
-                    GET_EX_COPPER(mob), GET_EX_SILVER(mob), GET_EX_GOLD(mob), GET_EX_PLATINUM(mob), GET_EX_EXP(mob), zone, 
-                    GET_POS(mob), GET_DEFAULT_POS(mob), GET_SEX(mob), GET_CLASS(mob), GET_RACE(mob), GET_RACE_ALIGN(mob), GET_SIZE(mob));
+                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", buf1, buf2, MOB_FLAGS(mob)[0],
+                    EFF_FLAGS(mob)[0], GET_ALIGNMENT(mob), GET_LEVEL(mob), 20 - mob->mob_specials.ex_hitroll,
+                    /* Hitroll -> THAC0 */ GET_EX_AC(mob) / 10, (mob)->mob_specials.ex_hpnumdice,
+                    (mob)->mob_specials.ex_hpsizedice, GET_MOVE(mob), (mob)->mob_specials.ex_damnodice,
+                    (mob)->mob_specials.ex_damsizedice, mob->mob_specials.ex_damroll, GET_EX_COPPER(mob),
+                    GET_EX_SILVER(mob), GET_EX_GOLD(mob), GET_EX_PLATINUM(mob), GET_EX_EXP(mob), zone, GET_POS(mob),
+                    GET_DEFAULT_POS(mob), GET_SEX(mob), GET_CLASS(mob), GET_RACE(mob), GET_RACE_ALIGN(mob),
+                    GET_SIZE(mob));
 
             /*
              * Deal with Extra stats in case they are there.
@@ -846,8 +848,10 @@ void medit_disp_menu(DescriptorData *d) {
     menu = "";
     menu += fmt::format("&2&bA&0) Hitroll    : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->points.hitroll,
                         mob->mob_specials.ex_hitroll);
-    menu += fmt::format("&2&bB&0) Damroll     : (&6{:3}&0)+[&6&b{:3}&0]\n", mob->points.damroll,
+    menu += fmt::format("&2&bB&0) Damroll     : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->points.damroll,
                         mob->mob_specials.ex_damroll);
+    menu += fmt::format("&2&bZ&0) Focus     : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->char_specials.focus,
+                        mob->mob_specials.ex_focus);
     menu += fmt::format("&2&bC&0&0) # Dam Dice : (&6{:3}&0)+[&6&b{:3}&0]\t", mob->mob_specials.damnodice,
                         mob->mob_specials.ex_damnodice);
     menu += fmt::format("&2&bD&0) Size Dam Die: (&6{:3}&0)+[&6&b{:3}&0]    (ie. XdY + Z)\n",
@@ -1096,13 +1100,18 @@ void medit_parse(DescriptorData *d, char *arg) {
         case 'x':
         case 'X':
             OLC_MODE(d) = MEDIT_EX_COPPER;
-            i++;        
+            i++;
             break;
         case 'y':
         case 'Y':
             OLC_MODE(d) = MEDIT_EX_SILVER;
-            i++;       
-            break; 
+            i++;
+            break;
+        case 'z':
+        case 'Z':
+            OLC_MODE(d) = MEDIT_EX_FOCUS;
+            i++;
+            break;
         default:
             medit_disp_menu(d);
             return;
@@ -1336,6 +1345,9 @@ void medit_parse(DescriptorData *d, char *arg) {
         init_char_race(OLC_MOB(d));
         update_char_race(OLC_MOB(d));
         /* GET_RACE_ALIGN(OLC_MOB(d)) = ALIGN_OF_RACE(atoi(arg)); */
+        break;
+    case MEDIT_EX_FOCUS:
+        GET_EX_FOCUS(OLC_MOB(d)) = std::clamp(atoi(arg), -1000, 1000);
         break;
     case MEDIT_PURGE_MOBILE:
         switch (*arg) {

@@ -115,7 +115,8 @@
 #define MOB_PEACEKEEPER 37     /* Attacks mobs with over 1350 align diff. Assists other PEACEKEEPERs */
 #define MOB_PROTECTOR 38       /* Assists players under attack, but not against PEACEKEEPER/PROTECTOR mobs */
 #define MOB_PET 39             /* Mob was purchased or tamed and is now a pet to a player. */
-#define NUM_MOB_FLAGS 40       /* Update this when you add a flag! */
+#define MOB_MEDITATE 40
+#define NUM_MOB_FLAGS 41 /* Update this when you add a flag! */
 
 /* Some mount stuff */
 #define MAX_MOUNT_LEVEL 27 /* The maximum level of mountable mobs */
@@ -493,7 +494,7 @@
 #define EFF_ACID_WEAPON 87
 #define EFF_SHOCK_WEAPON 88
 #define EFF_RADIANT_WEAPON 89
-#define NUM_EFF_FLAGS 90     /* Keep me updated */
+#define NUM_EFF_FLAGS 90 /* Keep me updated */
 
 /* Preference flags: used by CharData.player_specials.pref */
 #define PRF_BRIEF 0       /* Room descs won't normally be shown */
@@ -831,6 +832,7 @@
 #define SPELL_DISPLACEMENT 264
 #define SPELL_GREATER_DISPLACEMENT 265
 #define SPELL_NIMBLE 266
+#define SPELL_CLARITY 267
 
 /* Insert new spells here, up to MAX_SPELLS */
 
@@ -1130,8 +1132,8 @@
 #define ITEM_WAS_DISARMED 31      /* Disarmed from mob             */
 #define ITEM_ANTI_MONK 32         /* Not usable by monks           */
 #define ITEM_ANTI_BARD 33
-#define ITEM_ELVEN 34             /* Item usable by Elves          */
-#define ITEM_DWARVEN 35           /* Item usable by Dwarves        */
+#define ITEM_ELVEN 34   /* Item usable by Elves          */
+#define ITEM_DWARVEN 35 /* Item usable by Dwarves        */
 #define ITEM_ANTI_THIEF 36
 #define ITEM_ANTI_PYROMANCER 37
 #define ITEM_ANTI_CRYOMANCER 38
@@ -1178,7 +1180,7 @@
 #define APPLY_SAVING_SPELL 24  /* Apply to save throw: spells     */
 #define APPLY_SIZE 25          /* Apply to size                   */
 #define APPLY_HIT_REGEN 26
-#define APPLY_MANA_REGEN 27
+#define APPLY_FOCUS 27 /* Apply to focus level */
 #define APPLY_PERCEPTION 28
 #define APPLY_HIDDENNESS 29
 #define APPLY_COMPOSITION 30
@@ -1322,3 +1324,5 @@
 #define NUM_VALUES 7
 
 #define MAX_OBJ_APPLIES 6
+
+#define MEDITATE_BONUS 10
