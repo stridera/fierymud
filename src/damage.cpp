@@ -121,7 +121,7 @@ int convert_weapon_damage(ObjData *weapon) {
         else if (OBJ_EFF_FLAGGED(weapon, EFF_ACID_WEAPON))
             return DAM_ACID;
         else
-            return GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE);
+            return skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT);
     }
 
     return DAM_CRUSH;
