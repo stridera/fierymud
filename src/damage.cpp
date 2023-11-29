@@ -74,19 +74,31 @@ bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype
             s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
                          susceptibility(ch, DAM_FIRE));
         if (OBJ_EFF_FLAGGED(weapon, EFF_ICE_WEAPON)) {
-            s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+            if (s)
+                s = std::max(s, susceptibility(ch, DAM_COLD));
+            else
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
                              susceptibility(ch, DAM_COLD));
         }
         if (OBJ_EFF_FLAGGED(weapon, EFF_POISON_WEAPON)) {
-            s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+            if (s)
+                s = std::max(s, susceptibility(ch, DAM_POISON));
+            else
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
                              susceptibility(ch, DAM_POISON));
         }
         if (OBJ_EFF_FLAGGED(weapon, EFF_ACID_WEAPON)) {
-            s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+            if (s)
+                s = std::max(s, susceptibility(ch, DAM_ACID));
+            else
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
                              susceptibility(ch, DAM_ACID));
         }
         if (OBJ_EFF_FLAGGED(weapon, EFF_SHOCK_WEAPON)) {
-            s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
+            if (s)
+                s = std::max(s, susceptibility(ch, DAM_SHOCK));
+            else
+                s = std::max(susceptibility(ch, skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT)),
                              susceptibility(ch, DAM_SHOCK));
         }
     } else
