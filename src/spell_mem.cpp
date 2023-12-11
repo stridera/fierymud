@@ -461,9 +461,6 @@ int get_next_spell_slot_available(CharData *ch, int spell) {
     if (circle < 1 || circle > NUM_SPELL_CIRCLES)
         return 0;
 
-    if (IS_NPC(ch))
-        return GET_MOB_SPLBANK(ch, circle) > 0;
-
     for (int i = circle; i < NUM_SPELL_CIRCLES; i++) {
         if (std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(), [ch, i](const SpellCast &sc) {
                 return i == sc.circle;
