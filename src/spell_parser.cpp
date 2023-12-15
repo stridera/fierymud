@@ -1607,7 +1607,7 @@ ACMD(do_cast) {
         start_chant(ch);
 
         /* Set spellcasting delay */
-        if (ch->casting.casting_time > 3)
+        if (ch->casting.casting_time > 4)
             WAIT_STATE(ch, ch->casting.casting_time * PULSE_VIOLENCE / 2);
 
         /*
