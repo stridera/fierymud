@@ -1343,17 +1343,23 @@ void init_skills(void) {
     spello(SPELL_PROTECT_SHOCK, "protection from air", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT,
            0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "You feel less protected from air.");
 
-    spello(SPELL_MONK_FIRE, "fires of saint augustine", 0, 0, 0, POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY,
-           false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "Your inner fire subsides.");
+    /* chants and songs can't be put into potions, so these four spells are to create portable versions of the elemental chants.  They must have a different name from those in the chanto section below.  */
 
-    spello(SPELL_MONK_COLD, "blizzards of saint augustine", 0, 0, 0, POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY,
-           false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "Your inner cold subsides.");
+    spello(SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE, "blizzards of st. augustine", 0, 0, 0, POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, true,
+           "Your inner cold subsides.");
 
-    spello(SPELL_MONK_ACID, "tremors of saint augustine", 0, 0, 0, POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY,
-           false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "Your inner earth subsides.");
+    spello(SPELL_FIRES_OF_SAINT_AUGUSTINE, "fires of st. augustine", 0, 0, 0, POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, true,
+           "Your inner fire subsides.");
 
-    spello(SPELL_MONK_SHOCK, "tempest of saint augustine", 0, 0, 0, POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY,
-           false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "Your inner storm subsides.");
+    spello(SPELL_TEMPEST_OF_SAINT_AUGUSTINE, "tempest of st. augustine", 0, 0, 0, POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, true,
+           "Your inner storm subsides.");
+
+    spello(SPELL_TREMORS_OF_SAINT_AUGUSTINE, "tremors of st. augustine", 0, 0, 0, POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, true,
+           "Your inner earth subsides.");
 
     /* Declaration of skills - sets skills up so that immortals can use
      * them by default. Determines whether a skill is considered
@@ -1499,6 +1505,20 @@ void init_skills(void) {
 
     chanto(CHANT_HYMN_OF_SAINT_AUGUSTINE, "hymn of saint augustine", POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY,
            false, MAG_AFFECT, 0, true, "Your inner elements subside.");
+
+    /* these names must be different from the spello versions above or else any command to use them will default to the spells rather than the chants */
+
+    chanto(CHANT_BLIZZARDS_OF_SAINT_AUGUSTINE, "blizzards of saint augustine", POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, true, "Your inner cold subsides.");
+
+    chanto(CHANT_FIRES_OF_SAINT_AUGUSTINE, "fires of saint augustine", POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, true, "Your inner fire subsides.");
+
+    chanto(CHANT_TEMPEST_OF_SAINT_AUGUSTINE, "tempest of saint augustine", POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, true, "Your inner storm subsides.");
+
+    chanto(CHANT_TREMORS_OF_SAINT_AUGUSTINE, "tremors of saint augustine", POS_SITTING, true,
+           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, true, "Your inner earth subsides.");
 
     /* Set up bard songs. */
 
