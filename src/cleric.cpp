@@ -220,7 +220,7 @@ bool cleric_ai_action(CharData *ch, CharData *victim) {
     }
 
     return false;
-    }
+}
 
 /*
  * check_cleric_status
