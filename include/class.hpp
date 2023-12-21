@@ -147,7 +147,7 @@ extern ClassDef classes[NUM_CLASSES];
          ? classes[(int)GET_CLASS(ch)].nowear_flag && OBJ_FLAGGED(obj, classes[(int)GET_CLASS(ch)].nowear_flag)        \
          : 0)
 
-    enum level_action { LEVEL_GAIN, LEVEL_LOSE };
+enum level_action { LEVEL_GAIN, LEVEL_LOSE };
 
 void init_classes(void);
 void assign_class_skills(void);
