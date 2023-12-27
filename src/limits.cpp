@@ -554,6 +554,24 @@ void decay_object(ObjData *obj) {
     extract_obj(obj);
 }
 
+/* Proc poison */
+
+void sick_update(void) {
+    CharData *i, *next_char;
+    ObjData *j;
+
+    /* characters */
+    for (i = character_list; i; i = next_char) {
+        next_char = i->next;
+
+        if (GET_STANCE(i) >= STANCE_STUNNED) {
+            /* Do damage with a maximum of 5.9% of HP minus 2x con bonus hp for PCs and 2% for NPCs */
+            if (EFF_FLAGGED(i, EFF_POISON))
+                damage(i, i, IS_NPC(i) ? (GET_MAX_HIT(i) / 50) : ((GET_MAX_HIT(i) / 17) - (con_app[GET_CON(i)].hitp) * 2), SPELL_POISON);
+        }
+    }
+}
+
 /* Update PCs, NPCs, and objects */
 void point_update(void) {
     CharData *i, *next_char;
@@ -564,8 +582,6 @@ void point_update(void) {
         next_char = i->next;
 
         if (GET_STANCE(i) >= STANCE_STUNNED) {
-            if (EFF_FLAGGED(i, EFF_POISON))
-                damage(i, i, GET_LEVEL(i) / 2, SPELL_POISON);
             if (GET_STANCE(i) == STANCE_DEAD)
                 continue;
             /* Do damage with a maximum of 5% of HP for PCs and 2% for NPCs,

@@ -2499,7 +2499,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_STR;
         eff[0].modifier = (-2 - (skill / 4) - (skill / 20)) * susceptibility(victim, DAM_POISON) / 100; /* max -32 */
         SET_FLAG(eff[0].flags, EFF_POISON);
-        eff[0].duration = 4 + (skill / 10); /* max 14 */
+        eff[0].duration = 2 + (skill / 25) + (wis_app[GET_WIS(ch)].bonus / 2); /* min 2, max 7 */
         eff[0].type = SPELL_POISON;
         to_vict = "You feel very sick.";
         to_room = "$N gets violently ill!";

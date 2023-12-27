@@ -138,6 +138,7 @@ void boot_world(void);
 void zone_update(void);
 void effect_update(void); /* In spells.c */
 void point_update(void);  /* In limits.c */
+void sick_update(void); /* In limits.c */
 void mobile_activity(void);
 void mobile_spec_activity(void);
 void string_add(DescriptorData *d, char *str);
@@ -970,6 +971,11 @@ void heartbeat(int pulse) {
     if (!(pulse % PASSES_PER_SEC)) {
         if (reboot_auto)
             check_auto_rebooting();
+    }
+
+    if (!(pulse % (PULSE_VIOLENCE * 6))) {
+        /* Check poison and disease every 6 rounds. */
+        sick_update();
     }
 
     if (!(pulse % (SECS_PER_MUD_HOUR * PASSES_PER_SEC))) {
