@@ -29,13 +29,12 @@
 #include "math.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
+#include "spell_mem.hpp"
 #include "spells.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-void charge_mem(CharData *ch, int spellnum);
-int check_spell_memory(CharData *ch, int spellnum);
 void complete_spell(CharData *ch);
 void start_chant(CharData *ch);
 void end_chant(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
@@ -1199,7 +1198,7 @@ int perform(CharData *ch, CharData *tch, ObjData *obj, int songnum) {
 ACMD(do_cast) {
     CharData *tch = nullptr;
     ObjData *tobj = nullptr;
-    int spellnum, target = 0;
+    int spellnum, circle = 0, target = 0;
     int target_status = TARGET_NULL;
 
     if (EFF_FLAGGED(ch, EFF_SILENCE)) {
@@ -1325,9 +1324,10 @@ ACMD(do_cast) {
         return;
     }
 
-    /* Is the spell memorized?  PC's only. */
-    if (subcmd == SCMD_CAST && !IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT && !check_spell_memory(ch, spellnum)) {
-        char_printf(ch, "You do not have that spell memorized!\n");
+    /* Is the spell scribed in a book the PC is holding?  PC's only. */
+    if (subcmd == SCMD_CAST && !IS_NPC(ch) && GET_LEVEL(ch) < LVL_IMMORT && MEM_MODE(ch) == MEMORIZE &&
+        !find_spellbook_with_spell(ch, spellnum)) {
+        char_printf(ch, "You do not have a spell book with that spell in it!\n");
         return;
     }
 
@@ -1386,6 +1386,15 @@ ACMD(do_cast) {
         return;
     }
 
+    circle = get_next_spell_slot_available(ch, spellnum);
+    if (!circle) {
+        char_printf(ch, "You have no spell slots available for that spell.\n");
+        return;
+    } else if (circle != SPELL_CIRCLE(ch, spellnum)) {
+        char_printf(ch, "{}Upcasting a circle {} spell into circle {}.  Abort to cancel.{}\n", CLRLV(ch, FRED, C_SPR),
+                    SPELL_CIRCLE(ch, spellnum), circle, CLRLV(ch, ANRM, C_SPR));
+    }
+
     /* If this is an aggro cast, make the caster become visible. */
     if (target && SINFO.violent)
         aggro_lose_spells(ch);
@@ -1397,6 +1406,7 @@ ACMD(do_cast) {
     ch->casting.spell = spellnum;
     ch->casting.tch = tch;
     ch->casting.obj = tobj;
+    ch->casting.circle = circle;
 
     /* Targets should only remember the caster for cast-type actions
      * that take time, like spells. If/when singing is implemented,
@@ -1491,7 +1501,7 @@ ACMD(do_cast) {
         start_chant(ch);
 
         /* Set spellcasting delay */
-        if (ch->casting.casting_time > 3)
+        if (ch->casting.casting_time > 4)
             WAIT_STATE(ch, ch->casting.casting_time * PULSE_VIOLENCE / 2);
 
         /*
@@ -1504,7 +1514,7 @@ ACMD(do_cast) {
          */
 
         else
-            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+            WAIT_STATE(ch, PULSE_VIOLENCE * 2);
 
         /* Gods instacast.  Start chant and then stop casting in order to display correct message. */
         if (GET_LEVEL(ch) >= LVL_GOD) {
@@ -1567,7 +1577,6 @@ bool check_spell_target(int spellnum, CharData *ch, CharData *tch, ObjData *tobj
  */
 
 bool find_spell_target(int spellnum, CharData *ch, char *t, int *target_status, CharData **tch, ObjData **tobj) {
-
     FindContext context = find_vis_by_name(ch, t);
 
     *tch = nullptr;
@@ -1664,12 +1673,11 @@ void complete_spell(CharData *ch) {
     }
 
     if (cast_spell(ch, ch->casting.tch, ch->casting.obj, ch->casting.spell) & CAST_RESULT_CHARGE) {
-
         /* Lag the caster */
         WAIT_STATE(ch, PULSE_VIOLENCE);
 
-        /* Erase memorized spell */
-        charge_mem(ch, ch->casting.spell);
+        /* Consume spell slot. */
+        charge_mem(ch, ch->casting.spell, ch->casting.circle);
 
         if (IS_NPC(ch) && skills[ch->casting.spell].violent && ch->casting.tch && IS_NPC(ch->casting.tch) &&
             !FIGHTING(ch->casting.tch) && GET_STANCE(ch->casting.tch) >= STANCE_RESTING && random_number(0, 4)) {

@@ -837,18 +837,10 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
         obj_index[GET_OBJ_RNUM(obj)].number++;
 
         proto = &obj_proto[GET_OBJ_RNUM(obj)];
-
-        /* What with object weights being recalibrated, we'll overwrite them from
-         * player files here. For a while...
-         * Once the weights are all updated, it would be a good idea to linkload
-         * and save everyone, to change all their object weights. */
         GET_OBJ_WEIGHT(obj) = GET_OBJ_WEIGHT(proto);
         GET_OBJ_EFFECTIVE_WEIGHT(obj) = GET_OBJ_EFFECTIVE_WEIGHT(proto);
-        /* We also need to fix the liquid container weights, since they will
-         * have been set to empty just now. */
         if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON)
             setup_drinkcon(obj, -1);
-        /* END of weight messing-around-with */
 
         CHECK_PROTO_STR(name);
         CHECK_PROTO_STR(description);

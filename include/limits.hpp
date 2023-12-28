@@ -18,6 +18,7 @@
 int mana_gain(CharData *ch);
 int hit_gain(CharData *ch);
 int move_gain(CharData *ch);
+void spell_slot_restore_tick(CharData *ch);
 void set_title(CharData *ch, char *title);
 void gain_exp(CharData *ch, long gain, unsigned int mode);
 void gain_condition(CharData *ch, int condition, int value);
@@ -25,3 +26,4 @@ void check_idling(CharData *ch);
 void point_update(void);
 void start_decomposing(ObjData *obj);
 void stop_decomposing(ObjData *obj);
+void sick_update(void);

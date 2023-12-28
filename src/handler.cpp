@@ -171,8 +171,8 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
         GET_HEIGHT(ch) += mod;
         break;
 
-    case APPLY_MANA:
-        GET_MAX_MANA(ch) += mod;
+    case APPLY_FOCUS:
+        GET_FOCUS(ch) += mod;
         break;
 
     case APPLY_HIT:
@@ -221,9 +221,7 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
     case APPLY_SAVING_SPELL:
         GET_SAVE(ch, SAVING_SPELL) += mod;
         break;
-    case APPLY_MANA_REGEN:
-        ch->char_specials.managain += mod;
-        break;
+
     case APPLY_HIT_REGEN:
         ch->char_specials.hitgain += mod;
         break;
@@ -285,8 +283,8 @@ void effect_total(CharData *ch) {
          * It comes out to base 480 for a level 99 human with maxed int and wis.
          */
         if (GET_RACE(ch) == RACE_HALFLING)
-            GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 20));   /* max 792 */
-        else         
+            GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 20)); /* max 792 */
+        else
             GET_PERCEPTION(ch) = (GET_LEVEL(ch) * ((GET_INT(ch) + GET_WIS(ch)) / 30));
     }
 
@@ -578,7 +576,7 @@ void char_to_room(CharData *ch, int room) {
         log("SYSERR:handler.c:char_to_room() NULL char pointer");
     } else if (room < 0 || room > top_of_world) {
         log("SYSERR: char_to_room: name){} room){:d}", GET_NAME(ch), room);
-        
+
         room = real_room(GET_HOMEROOM(ch));
         ch->next_in_room = world[room].people;
         world[room].people = ch;
@@ -828,7 +826,7 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
                 act("You are too good to use $p.", false, ch, obj, 0, TO_CHAR);
             return false;
         }
-        
+
         if (OBJ_FLAGGED(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch)) {
             if (sendmessage)
                 act("You are too neutral to use $p.", false, ch, obj, 0, TO_CHAR);
@@ -836,15 +834,15 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
         }
 
         /* Check size rescrictions */
-        if ((OBJ_FLAGGED(obj, ITEM_ANTI_TINY) && GET_SIZE(ch) == SIZE_TINY) || 
-            (OBJ_FLAGGED(obj, ITEM_ANTI_SMALL) && GET_SIZE(ch) == SIZE_SMALL) || 
+        if ((OBJ_FLAGGED(obj, ITEM_ANTI_TINY) && GET_SIZE(ch) == SIZE_TINY) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_SMALL) && GET_SIZE(ch) == SIZE_SMALL) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_MEDIUM) && GET_SIZE(ch) == SIZE_MEDIUM) ||
-            (OBJ_FLAGGED(obj, ITEM_ANTI_LARGE) && GET_SIZE(ch) == SIZE_LARGE) || 
-            (OBJ_FLAGGED(obj, ITEM_ANTI_HUGE) && GET_SIZE(ch) == SIZE_HUGE) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_LARGE) && GET_SIZE(ch) == SIZE_LARGE) ||
+            (OBJ_FLAGGED(obj, ITEM_ANTI_HUGE) && GET_SIZE(ch) == SIZE_HUGE) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_GIANT) && GET_SIZE(ch) == SIZE_GIANT) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_GARGANTUAN) && GET_SIZE(ch) == SIZE_GARGANTUAN) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_COLOSSAL) && GET_SIZE(ch) == SIZE_COLOSSAL) ||
-            (OBJ_FLAGGED(obj, ITEM_ANTI_TITANIC) && GET_SIZE(ch) == SIZE_TITANIC) || 
+            (OBJ_FLAGGED(obj, ITEM_ANTI_TITANIC) && GET_SIZE(ch) == SIZE_TITANIC) ||
             (OBJ_FLAGGED(obj, ITEM_ANTI_MOUNTAINOUS) && GET_SIZE(ch) == SIZE_MOUNTAINOUS)) {
             if (GET_OBJ_TYPE(obj) == ITEM_WEAPON) {
                 if (sendmessage)
@@ -855,20 +853,20 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
                     act("You cannot fit into $p.", false, ch, obj, 0, TO_CHAR);
                 return false;
             }
-
         }
 
         /* Check class and override by race */
         if (((NOWEAR_CLASS(ch, obj) &&
-        
-            /* allow elf races to override class restrictions */
-            (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
 
-            /* allow dwarf races to override class restrictions */
-            (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))) ||
+              /* allow elf races to override class restrictions */
+              (!OBJ_FLAGGED(obj, ITEM_ELVEN) || ((GET_RACE(ch) != RACE_ELF) && (GET_RACE(ch) != RACE_DROW))) &&
 
-            /* Arboreans cannot use items that are both !druid and !ranger */
-            (OBJ_FLAGGED(obj, ITEM_ANTI_DRUID) && OBJ_FLAGGED(obj, ITEM_ANTI_RANGER) && GET_RACE(ch) == RACE_ARBOREAN))) {
+              /* allow dwarf races to override class restrictions */
+              (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))) ||
+
+             /* Arboreans cannot use items that are both !druid and !ranger */
+             (OBJ_FLAGGED(obj, ITEM_ANTI_DRUID) && OBJ_FLAGGED(obj, ITEM_ANTI_RANGER) &&
+              GET_RACE(ch) == RACE_ARBOREAN))) {
             if (sendmessage)
                 act("You cannot use $p.", false, ch, obj, 0, TO_CHAR);
             return false;

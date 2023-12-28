@@ -667,9 +667,12 @@ void do_stat_character(CharData *ch, CharData *k) {
         GET_AFFECTED_INT(k), GET_AFFECTED_WIS(k), GET_AFFECTED_DEX(k), GET_AFFECTED_CON(k), GET_AFFECTED_CHA(k),
         CLR(ch, ANRM));
 
-    resp += fmt::format("HP: [{}{}/{}{}]  HP Gain: [{}{}{}] HP Regen Bonus: [{}{}{}]\n", 
-        CLR(ch, FGRN), GET_HIT(k), GET_MAX_HIT(k), CLR(ch, ANRM), CLR(ch, FGRN), hit_gain(k), CLR(ch, ANRM), CLR(ch, FGRN), k->char_specials.hitgain, CLR(ch, ANRM));
-    resp += fmt::format("MV: [{}{}/{}{}]  MV Gain: [{}{}{}]\n", CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k), CLR(ch, ANRM), CLR(ch, FGRN), move_gain(k), CLR(ch, ANRM));
+    resp += fmt::format("HP: [{}{}/{}{}]  HP Gain: [{}{}{}] HP Regen Bonus: [{}{}{}]\n", CLR(ch, FGRN), GET_HIT(k),
+                        GET_MAX_HIT(k), CLR(ch, ANRM), CLR(ch, FGRN), hit_gain(k), CLR(ch, ANRM), CLR(ch, FGRN),
+                        k->char_specials.hitgain, CLR(ch, ANRM));
+    resp += fmt::format("MV: [{}{}/{}{}]  MV Gain: [{}{}{}]\n", CLR(ch, FGRN), GET_MOVE(k), GET_MAX_MOVE(k),
+                        CLR(ch, ANRM), CLR(ch, FGRN), move_gain(k), CLR(ch, ANRM));
+    resp += fmt::format("Focus: [{}{}{}]\n", CLR(ch, FGRN), GET_FOCUS(k), CLR(ch, ANRM));
     resp += fmt::format(
         "Coins: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c], "
         "Bank: [{}{}{}p / {}{}{}g / {}{}{}s / {}{}{}c]\n",
@@ -1036,7 +1039,8 @@ ACMD(do_olocate) {
             else if (obj->in_room != NOWHERE)
                 response += fmt::format("in room {:10} [{}]", world[obj->in_room].name, obj->in_room);
             else if (obj->in_obj)
-                response += fmt::format("inside {:10} at {} [{}]", obj->in_obj->short_description, world[obj->in_obj->in_room].name, obj->in_obj->in_room);
+                response += fmt::format("inside {:10} at {} [{}]", obj->in_obj->short_description,
+                                        world[obj->in_obj->in_room].name, obj->in_obj->in_room);
             else
                 response += fmt::format("in an unknown location");
             response += "\n";
@@ -1784,7 +1788,7 @@ void do_show_spell(CharData *ch, int spellnum) {
 
     char_printf(ch, "Mana        : max {:d}  min {:d}  chg {:d}\n", spell->mana_max, spell->mana_min,
                 spell->mana_change);
-    char_printf(ch, "Mem time    : {:d}\n", spell->mem_time);
+    char_printf(ch, "Mem time    : {:d}\n", spell->addl_mem_time);
     char_printf(ch, "Cast time   : {:d}\n", spell->cast_time);
     char_printf(ch, "Pages       : &3{:d}&0\n", spell->pages);
     char_printf(ch, "Quest       : {}\n", spell->quest ? "&2&bYes&0" : "&4&bNo&0");
@@ -1870,7 +1874,7 @@ void do_show_skill(CharData *ch, char *argument) {
             "Mem Time          : @c{}@0\n"
             "Cast Time         : @c{}@0\n"
             "Pages             : @c{}@0\n",
-            skill->mana_min, skill->mana_max, skill->mana_change, skill->mem_time, skill->cast_time, skill->pages);
+            skill->mana_min, skill->mana_max, skill->mana_change, skill->addl_mem_time, skill->cast_time, skill->pages);
     }
 
     sprintf(buf2, "(%s %d is lowest)", type == SPELL ? "circle" : "level",

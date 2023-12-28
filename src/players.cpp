@@ -47,10 +47,10 @@
 /* local functions */
 static void load_effects(FILE *fl, CharData *ch);
 static void load_skills(FILE *fl, CharData *ch);
+static void load_spellcasts(FILE *fl, CharData *ch);
 static void scan_slash(const char *line, int *cur, int *max);
 static void write_aliases_ascii(FILE *file, CharData *ch);
 static void read_aliases_ascii(FILE *file, CharData *ch);
-static void load_spell_mem(FILE *file, CharData *ch);
 static void load_cooldowns(FILE *fl, CharData *ch);
 static void load_coins(char *line, int coins[]);
 static void load_clan(char *line, CharData *ch);
@@ -356,6 +356,8 @@ int load_player(const char *name, CharData *ch) {
     GET_AUTOINVIS(ch) = -1;
     ch->player.time.logon = time(0);
 
+    GET_FOCUS(ch) = 10;
+
     init_trophy(ch);
     init_retained_comms(ch);
 
@@ -513,9 +515,11 @@ int load_player(const char *name, CharData *ch) {
                 scan_slash(line, &GET_MANA(ch), &GET_MAX_MANA(ch));
             else if (!strcasecmp(tag, "move"))
                 scan_slash(line, &GET_MOVE(ch), &GET_MAX_MOVE(ch));
-            else if (!strcasecmp(tag, "mem"))
-                load_spell_mem(fl, ch);
-            else
+            else if (!strcasecmp(tag, "mem")) {
+                // We no longer have memorized spells.  Just skip this section.
+                while (get_line(fl, line) && *line != '0')
+                    ;
+            } else
                 goto bad_tag;
             break;
 
@@ -586,6 +590,8 @@ int load_player(const char *name, CharData *ch) {
                 ch->player.base_size = std::clamp(num, 0, NUM_SIZES - 1);
             else if (!strcasecmp(tag, "skills"))
                 load_skills(fl, ch);
+            else if (!strcasecmp(tag, "spellcasts"))
+                load_spellcasts(fl, ch);
             else if (!strcasecmp(tag, "strength"))
                 GET_NATURAL_STR(ch) = num;
             else
@@ -675,8 +681,9 @@ int load_player(const char *name, CharData *ch) {
     }
 
     /*
-     * If you're not poisioned and you've been away for more than an hour of
-     * real time, we'll set your HMV back to full.
+     * Restore values if you've been away for more than an hour.
+     * - If you're not poisoned, get your health/move back
+     * - If your not insane, get your used spell slots back.
      *
      * However, note that equipment/spell effects have not yet been applied,
      * so the true maximum may be higher than GET_MAX_XXX might say here.
@@ -685,13 +692,19 @@ int load_player(const char *name, CharData *ch) {
      * before doing anything.
      */
 
-    if (!EFF_FLAGGED(ch, EFF_POISON) && (((long)(time(0) - ch->player.time.logon)) >= SECS_PER_REAL_HOUR)) {
-        if (GET_HIT(ch) < GET_MAX_HIT(ch))
-            GET_HIT(ch) = GET_MAX_HIT(ch);
-        if (GET_MOVE(ch) < GET_MAX_MOVE(ch))
-            GET_MOVE(ch) = GET_MAX_MOVE(ch);
-        if (GET_MANA(ch) < GET_MAX_MANA(ch))
-            GET_MANA(ch) = GET_MAX_MANA(ch);
+    if (((long)(time(0) - ch->player.time.logon)) >= SECS_PER_REAL_HOUR) {
+        if (!EFF_FLAGGED(ch, EFF_POISON)) {
+            if (GET_HIT(ch) < GET_MAX_HIT(ch))
+                GET_HIT(ch) = GET_MAX_HIT(ch);
+            if (GET_MOVE(ch) < GET_MAX_MOVE(ch))
+                GET_MOVE(ch) = GET_MAX_MOVE(ch);
+            if (GET_MANA(ch) < GET_MAX_MANA(ch))
+                GET_MANA(ch) = GET_MAX_MANA(ch);
+        }
+        if (!EFF_FLAGGED(ch, EFF_INSANITY)) {
+            if (!ch->spellcasts.empty())
+                ch->spellcasts.clear();
+        }
     }
 
     num = (time(0) - ch->player.time.logon) RL_SEC;
@@ -941,10 +954,7 @@ void save_player_char(CharData *ch) {
     fprintf(fl, "quit_reason: %d\n", GET_QUIT_REASON(ch));
     fprintf(fl, "saveroom: %d\n", GET_SAVEROOM(ch));
 
-    /*
-     * Only save cooldowns if there are any that are in the saved
-     * list and nonzero.
-     */
+    // Only save cooldowns if there are any that are in the saved list and nonzero.
     for (i = 0; saved_cooldowns[i] >= 0; ++i)
         if (GET_COOLDOWN(ch, saved_cooldowns[i]))
             break;
@@ -955,6 +965,13 @@ void save_player_char(CharData *ch) {
                 fprintf(fl, "%d %d/%d\n", saved_cooldowns[i], GET_COOLDOWN(ch, saved_cooldowns[i]),
                         GET_COOLDOWN_MAX(ch, saved_cooldowns[i]));
         fprintf(fl, "-1 0\n");
+    }
+
+    if (!ch->spellcasts.empty()) {
+        fprintf(fl, "spellcasts:\n");
+        for (auto &spellcast : ch->spellcasts)
+            fprintf(fl, "%d %d\n", spellcast.circle, spellcast.ticks);
+        fprintf(fl, "0 0\n");
     }
 
     /* Save skills */
@@ -989,16 +1006,7 @@ void save_player_char(CharData *ch) {
         fprintf(fl, "0 0 0 0 0\n");
     }
 
-    if (GET_SPELL_MEM(ch).num_spells) {
-        MemorizedList *mem;
-        fprintf(fl, "mem:\n");
-        for (mem = GET_SPELL_MEM(ch).list_head; mem; mem = mem->next)
-            fprintf(fl, "%d %d %d\n", mem->spell, mem->can_cast, mem->mem_time);
-        fprintf(fl, "0 0 0\n");
-    }
-
     write_aliases_ascii(fl, ch);
-
     write_player_grants(fl, ch);
 
     if (fclose(fl)) {
@@ -1153,6 +1161,18 @@ static void load_skills(FILE *fl, CharData *ch) {
     } while (skill != 0);
 }
 
+static void load_spellcasts(FILE *fl, CharData *ch) {
+    int circle = 0, ticks = 0;
+    char line[MAX_INPUT_LENGTH + 1];
+
+    do {
+        get_line(fl, line);
+        sscanf(line, "%d %d", &circle, &ticks);
+        if (circle != 0)
+            ch->spellcasts.emplace_back(circle, ticks);
+    } while (circle != 0);
+}
+
 static void scan_slash(const char *line, int *cur, int *max) {
     int num1 = 0, num2 = 0;
 
@@ -1201,27 +1221,6 @@ static void read_aliases_ascii(FILE *file, CharData *ch) {
         alias->next = GET_ALIASES(ch);
         GET_ALIASES(ch) = alias;
     } while (strcasecmp(buf, "0")); /* while buf is not "0" */
-}
-
-static void load_spell_mem(FILE *fl, CharData *ch) {
-    int spell, time, can_cast, scanned;
-    char line[MAX_INPUT_LENGTH + 1];
-    int mem_time;
-
-    int spell_mem_time(CharData * ch, int spell); /* spell_mem.c */
-
-    do {
-        get_line(fl, line);
-        scanned = sscanf(line, "%d %d %d", &spell, &can_cast, &time);
-
-        /* Compensate for a missing or corrupted time value: */
-        mem_time = spell_mem_time(ch, spell);
-        if (scanned < 3 || time > mem_time)
-            time = mem_time;
-
-        if (spell != 0)
-            add_spell(ch, spell, can_cast, time, false);
-    } while (spell != 0);
 }
 
 static void load_coins(char *line, int coins[]) {
@@ -1331,6 +1330,7 @@ void init_player(CharData *ch) {
     GET_MAX_HIT(ch) = GET_BASE_HIT(ch);
     GET_MAX_MOVE(ch) = natural_move(ch);
     GET_MOVE(ch) = GET_MAX_MOVE(ch);
+    GET_FOCUS(ch) = 10;
     GET_AC(ch) = 100;
 
     player_table[GET_PFILEPOS(ch)].id = GET_IDNUM(ch) = ++top_idnum;

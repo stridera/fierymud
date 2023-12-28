@@ -53,7 +53,6 @@
 #include <sys/stat.h>
 
 EVENTFUNC(camp_event);
-void rem_memming(CharData *ch);
 void summon_mount(CharData *ch, int mob_vnum, int base_hp, int base_mv);
 void appear(CharData *ch);
 void check_new_surroundings(CharData *ch, bool old_room_was_dark, bool tx_obvious);
@@ -159,7 +158,6 @@ ACMD(do_subclass) {
     int rem_spell(CharData * ch, int spell);
     int subclass, anyvalid;
     QuestList *quest = nullptr;
-    MemorizedList *memorized, *last_mem;
     float old_exp;
     char *s;
     ClassDef *c;
@@ -237,15 +235,6 @@ ACMD(do_subclass) {
     if (quest->stage == QUEST_SUCCESS) {
         /* Leveled percentage */
         old_exp = GET_EXP(ch) / (double)exp_next_level(GET_LEVEL(ch), GET_CLASS(ch));
-
-        /* Clear spells the new class doesn't have */
-        memorized = GET_SPELL_MEM(ch).list_head;
-        while (memorized) {
-            last_mem = memorized;
-            memorized = memorized->next;
-            if (skills[last_mem->spell].min_level[subclass] > GET_LEVEL(ch))
-                rem_spell(ch, last_mem->spell);
-        }
 
         /* Change class and exp */
         GET_CLASS(ch) = subclass;
@@ -657,7 +646,7 @@ ACMD(do_shapechange) {
     char_to_room(mob, ch->in_room);
 
     /* Transfer hover slot items to new mob */
-    if GET_EQ(ch, WEAR_HOVER) {
+    if GET_EQ (ch, WEAR_HOVER) {
 
         obj = GET_EQ(ch, WEAR_HOVER);
         unequip_char(ch, WEAR_HOVER);
@@ -689,7 +678,7 @@ ACMD(do_shapechange) {
 
     GET_MAX_HIT(mob) = random_number(creatures[index].minhp, creatures[index].maxhp);
     GET_MAX_MOVE(mob) = random_number(creatures[index].minmv, creatures[index].maxmv);
-    
+
     /* Add up to 10% bonus max hp/max mv based on a player's Charisma. */
     GET_MAX_HIT(mob) *= (1 + (GET_CHA(ch)) / 100);
     GET_MAX_MOVE(mob) *= (1 + (GET_CHA(ch)) / 100);
@@ -718,9 +707,6 @@ ACMD(do_shapechange) {
     mob->desc = ch->desc;
     ch->desc = nullptr;
     ch->forward = mob;
-
-
-
 }
 
 bool creature_allowed_skill(CharData *ch, int skill) {
@@ -940,9 +926,6 @@ EVENTFUNC(camp_event) {
         return EVENT_FINISHED;
     }
 
-    /* Yeah, let's not try to update characters who are about to be free'd, eh */
-    rem_memming(ch);
-
     /* So players don't get saved with the meditate flag and cause syserrs
        when they log back on. */
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
@@ -1133,7 +1116,8 @@ ACMD(do_hide) {
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
 
     if (group_size(ch) > 1 && GET_RACE(ch) == RACE_HALFLING)
-        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + (dex_app_skill[GET_DEX(ch)].hide * ((GET_LEVEL(ch) / 30) + 1));
+        GET_HIDDENNESS(ch) =
+            random_number(lower_bound, upper_bound) + (dex_app_skill[GET_DEX(ch)].hide * ((GET_LEVEL(ch) / 30) + 1));
     else
         GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
 
@@ -2410,9 +2394,10 @@ ACMD(do_layhand) {
     /* Make sure we haven't already used it for the day */
     if (GET_COOLDOWN(ch, CD_LAY_HANDS)) {
         int seconds = GET_COOLDOWN(ch, CD_LAY_HANDS) / 10;
-        char_printf(ch, "You're still drained from laying hands recently!\n"
-                        "You'll be able to layhands again in another {:d} {}.\n",
-                        seconds, seconds == 1 ? "second" : "seconds");
+        char_printf(ch,
+                    "You're still drained from laying hands recently!\n"
+                    "You'll be able to layhands again in another {:d} {}.\n",
+                    seconds, seconds == 1 ? "second" : "seconds");
         return;
     }
 
@@ -2593,9 +2578,10 @@ ACMD(do_first_aid) {
 
     if (GET_COOLDOWN(ch, CD_FIRST_AID)) {
         int seconds = GET_COOLDOWN(ch, CD_FIRST_AID) / 10;
-        char_printf(ch, "You can only do this once per day.\n"
-                        "You can perform first again again in {:d} {}.\n",
-                        seconds, seconds == 1 ? "second" : "seconds");
+        char_printf(ch,
+                    "You can only do this once per day.\n"
+                    "You can perform first again again in {:d} {}.\n",
+                    seconds, seconds == 1 ? "second" : "seconds");
         return;
     }
 

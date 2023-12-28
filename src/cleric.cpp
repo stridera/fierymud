@@ -76,6 +76,7 @@ bool affected_by_armor_spells(CharData *victim, int spellnum);
  */
 bool cleric_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter, action = 0;
+    CharData *next_victim;
 
     if (!victim) {
         log("No victim in cleric AI action.");
@@ -143,15 +144,33 @@ bool cleric_ai_action(CharData *ch, CharData *victim) {
         }
     }
 
-    /* Try to cause an offensive affection. Only attempt one. */
+    /* Try to cause an offensive affection to main attacker up to 20 levels higher. Only attempt one spell. */
     for (i = 0; mob_cleric_hindrances[i].spell; i++) {
         if (!GET_SKILL(ch, mob_cleric_hindrances[i].spell))
             continue;
-        if (!has_effect(victim, &mob_cleric_hindrances[i])) {
+        if (!has_effect(victim, &mob_cleric_hindrances[i]) && GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
             if (mob_cast(ch, victim, nullptr, mob_cleric_hindrances[i].spell))
                 return true;
-            else
-                break;
+        }
+        else
+            break;
+    }
+
+
+    /* Try to debilitate enemy spellcasters up to 20 levels higher */
+    for (i = 0; mob_cleric_hindrances[i].spell; i++) {
+        if (!GET_SKILL(ch, mob_cleric_hindrances[i].spell))
+            continue;
+        switch (mob_cleric_hindrances[i].spell) {
+        case SPELL_INSANITY:
+        case SPELL_SILENCE:
+            for (victim = world[ch->in_room].people; victim; victim = next_victim) {
+                next_victim = victim->next_in_room;
+                if (IS_SPELLCASTER(victim) && FIGHTING(victim) == ch && !has_effect(victim, &mob_cleric_hindrances[i]) && GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
+                    if (mob_cast(ch, victim, nullptr, mob_cleric_hindrances[i].spell))
+                        return true;
+                }
+            }
         }
     }
 

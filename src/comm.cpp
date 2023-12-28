@@ -138,6 +138,7 @@ void boot_world(void);
 void zone_update(void);
 void effect_update(void); /* In spells.c */
 void point_update(void);  /* In limits.c */
+void sick_update(void); /* In limits.c */
 void mobile_activity(void);
 void mobile_spec_activity(void);
 void string_add(DescriptorData *d, char *str);
@@ -972,6 +973,11 @@ void heartbeat(int pulse) {
             check_auto_rebooting();
     }
 
+    if (!(pulse % (PULSE_VIOLENCE * 6))) {
+        /* Check poison and disease every 6 rounds. */
+        sick_update();
+    }
+
     if (!(pulse % (SECS_PER_MUD_HOUR * PASSES_PER_SEC))) {
         update_weather(pulse);
         increment_game_time(); /* Increment game time by an hour. */
@@ -1224,12 +1230,6 @@ void send_gmcp_prompt(DescriptorData *d) {
         combat["opponent"] = {{"name", PERS(vict, ch)}, {"hp_percent", 100 * GET_HIT(vict) / GET_MAX_HIT(vict)}};
     }
 
-    MemorizedList *mem;
-    auto memorized_spells = json::array();
-    for (mem = GET_SPELL_MEM(d->character).list_head; mem; mem = mem->next) {
-        memorized_spells.push_back(skills[mem->spell].name);
-    }
-
     /* Need to construct a json string.  Would be nice to get a module to do it
        for us, but the code base is too old to rely on something like that. */
     if (d->original)
@@ -1260,8 +1260,7 @@ void send_gmcp_prompt(DescriptorData *d) {
             {"copper", GET_BANK_COPPER(ch)}}}}},
         {"Effects", effects},
         {"Combat", combat},
-        {"Memorized", memorized_spells},
-    };
+        {"SpellSlots", get_spell_slots_available(ch)}};
 
     send_gmcp(d, "Char", gmcp_data);
     write_to_descriptor(d->descriptor, ga_string);

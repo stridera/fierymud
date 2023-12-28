@@ -583,6 +583,8 @@ static void print_char_spells_to_char(CharData *targ, CharData *ch) {
             act("A &3malevolent spell&0 is draining $S &1strength&0.", true, ch, 0, targ, TO_CHAR);
         if (affected_by_spell(targ, SPELL_CHILL_TOUCH))
             act("A &6weakening chill&0 circulates in $S&0 veins.", true, ch, 0, targ, TO_CHAR);
+        if (affected_by_spell(targ, SPELL_CLARITY))
+            act("A &3&bclarity&0 of mind surrounds $M.&0", true, ch, 0, targ, TO_CHAR);
     }
 
     /* AC protection spells */
@@ -1561,7 +1563,8 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
                     "Damage Dice is '{}D{}' "
                     "for an average per-round damage of {:.1f}.\n"
                     "Damage Type is {}.\n",
-                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj), attack_hit_text[GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE)].singular);
+                    GET_OBJ_VAL(obj, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE), WEAPON_AVERAGE(obj),
+                    attack_hit_text[GET_OBJ_VAL(obj, VAL_WEAPON_DAM_TYPE)].singular);
         break;
     case ITEM_ARMOR:
     case ITEM_TREASURE:
@@ -1591,11 +1594,6 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
     for (i = 0; i < MAX_OBJ_APPLIES; i++)
         if (obj->applies[i].location != APPLY_NONE)
             char_printf(ch, "   Apply: {}\n", format_apply(obj->applies[i].location, obj->applies[i].modifier));
-
-    if (SCRIPT(obj) || (GET_OBJ_RNUM(obj) >= 0 && obj_index[GET_OBJ_RNUM(obj)].func)) {
-        char_printf(ch, "   You sense this item has hidden special properties!\n");
-    }
-
 }
 
 ACMD(do_identify) {
@@ -2512,9 +2510,11 @@ static void print_object_location(int num, ObjData *obj, CharData *ch, int recur
     if (obj->in_room > NOWHERE)
         paging_printf(ch, "{:5} [{:d}]\n", world[obj->in_room].name, world[obj->in_room].vnum);
     else if (obj->carried_by)
-        paging_printf(ch, "carried by {} at\n {:<33}{} [{}]\n", PERS(obj->carried_by, ch), " ", world[obj->carried_by->in_room].name, world[obj->carried_by->in_room].vnum);
+        paging_printf(ch, "carried by {} at\n {:<33}{} [{}]\n", PERS(obj->carried_by, ch), " ",
+                      world[obj->carried_by->in_room].name, world[obj->carried_by->in_room].vnum);
     else if (obj->worn_by)
-        paging_printf(ch, "worn by {} at\n {:<33}{} [{}]\n", PERS(obj->worn_by, ch), " ", world[obj->worn_by->in_room].name, world[obj->worn_by->in_room].vnum);
+        paging_printf(ch, "worn by {} at\n {:<33}{} [{}]\n", PERS(obj->worn_by, ch), " ",
+                      world[obj->worn_by->in_room].name, world[obj->worn_by->in_room].vnum);
     else if (obj->in_obj) {
         paging_printf(ch, "inside {}{}\n", obj->in_obj->short_description, (recur ? " at" : " "));
         if (recur)
@@ -2876,7 +2876,10 @@ const char *ability_message(int value) {
 
 const char *hp_regen_message(int regen) {
     const char *messages[] = {
-        "Bad", "Average", "Good", "Very Good",
+        "Bad",
+        "Average",
+        "Good",
+        "Very Good",
     };
 
     if (regen < 0)
@@ -2886,6 +2889,23 @@ const char *hp_regen_message(int regen) {
         return "Awesome!";
 
     return messages[regen / 25];
+}
+
+const char *focus_message(int focus) {
+    const char *messages[] = {
+        "Bad",
+        "Average",
+        "Good",
+        "Very Good",
+    };
+
+    if (focus < 0)
+        return "Shattered!";
+
+    if (focus >= 100)
+        return "Awesome!";
+
+    return messages[focus / 25];
 }
 
 long xp_percentage(CharData *ch) {
@@ -3151,19 +3171,22 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
         char_printf(ch, "Armor class: &3{:d}&0  ", GET_AC(tch) + 5 * monk_weight_penalty(tch));
 
     if (verbose)
-        char_printf(ch, "HP Gain: &1&b{}&0  HP Regen Bonus: &1{}&0\n", hp_regen_message(hit_gain(tch)), hp_regen_message(tch->char_specials.hitgain));
+        char_printf(ch, "HP Gain: &1&b{}&0  HP Regen Bonus: &1{}&0\n", hp_regen_message(hit_gain(tch)),
+                    hp_regen_message(tch->char_specials.hitgain));
     else
         char_printf(ch, "HP Gain: &1&b{}&0  HP Regen Bonus: &1{}&0\n", hit_gain(tch), tch->char_specials.hitgain);
-    
 
     if (verbose)
-        char_printf(
-            ch, "Hitroll: &3{}&0 (&3{:d}&0)  Damroll: &3{}&0 (&3{:d}&0)\n",
-            hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)), GET_HITROLL(tch) - monk_weight_penalty(tch),
-            hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)), GET_DAMROLL(tch) - monk_weight_penalty(tch));
+        char_printf(ch, "Hitroll: &3{}&0 (&3{:d}&0)  Damroll: &3{}&0 (&3{:d}&0)  Focus: &3{}&0 (&3{:d}&0)\n",
+                    hitdam_message(GET_HITROLL(tch) - monk_weight_penalty(tch)),
+                    GET_HITROLL(tch) - monk_weight_penalty(tch),
+                    hitdam_message(GET_DAMROLL(tch) - monk_weight_penalty(tch)),
+                    GET_DAMROLL(tch) - monk_weight_penalty(tch), focus_message(GET_FOCUS(ch)), GET_FOCUS(ch));
+
     else
-        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0\n", GET_HITROLL(tch) - monk_weight_penalty(tch),
-                    GET_DAMROLL(tch) - monk_weight_penalty(tch));
+        char_printf(ch, "Hitroll: &3&b{:d}&0  Damroll: &3&b{:d}&0  Focus: &3{:d}&0\n",
+                    GET_HITROLL(tch) - monk_weight_penalty(tch), GET_DAMROLL(tch) - monk_weight_penalty(tch),
+                    GET_FOCUS(ch));
 
     if (GET_RAGE(tch) || GET_SKILL(tch, SKILL_BERSERK))
         char_printf(ch, "Rage: &3&b{:d}&0 ", GET_RAGE(tch));
@@ -3262,9 +3285,9 @@ static void show_active_spells(CharData *ch, CharData *tch) {
 
     if (tch->effects) {
         resp += fmt::format(
-               "\n"
-               "Active Spell/Status Effects\n"
-               "===========================\n");
+            "\n"
+            "Active Spell/Status Effects\n"
+            "===========================\n");
         for (eff = tch->effects; eff; eff = eff->next)
             if (eff->duration >= 0 && (!eff->next || eff->next->type != eff->type)) {
                 resp += "   ";
@@ -4095,9 +4118,10 @@ ACMD(do_innate) {
                     }
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_DARKNESS) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can create darkness again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can create darkness again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4119,9 +4143,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_INVISIBLE, 9 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_INVISIBLE) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can turn invisible again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can turn invisible again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4137,9 +4162,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL, 9 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_FEATHER_FALL) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can fall lightly again {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can fall lightly again {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4158,9 +4184,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_CHAZ, 7 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_CHAZ) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can bolster your strength again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can bolster your strength again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4176,9 +4203,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_SYLL, 7 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_SYLL) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can improve your grace again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can improve your grace again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4191,9 +4219,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_BRILL, 7 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_BRILL) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can boost your intelligence again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can boost your intelligence again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4206,9 +4235,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_TASS, 7 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_TASS) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can seek wisdom again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can seek wisdom again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4238,9 +4268,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_ASCEN, 7 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_ASCEN) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can enliven your charming nature again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can enliven your charming nature again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4254,9 +4285,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_HARNESS, 10 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_HARNESS) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can boost your magical abilities again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can boost your magical abilities again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4301,16 +4333,18 @@ ACMD(do_innate) {
                     }
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_ILLUMINATION) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can create light again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can create light again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
         }
 
         if (is_abbrev(arg, "faerie step")) {
-            if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE || GET_LEVEL(ch) > LVL_IMMORT) {
+            if (GET_RACE(ch) == RACE_FAERIE_SEELIE || GET_RACE(ch) == RACE_FAERIE_UNSEELIE ||
+                GET_LEVEL(ch) > LVL_IMMORT) {
                 if (*argument) {
                     vict = find_char_around_char(ch, find_vis_by_name(ch, argument));
                     if (!GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) || GET_LEVEL(ch) > LVL_IMMORT) {
@@ -4324,14 +4358,15 @@ ACMD(do_innate) {
                         }
                     } else {
                         int seconds = GET_COOLDOWN(ch, CD_INNATE_FAERIE_STEP) / 10;
-                        char_printf(ch, "You're too tired right now.\n"
-                                        "You can traverse the Reverie again in {:d} {}.\n",
-                                        seconds, seconds == 1 ? "second" : "seconds");
+                        char_printf(ch,
+                                    "You're too tired right now.\n"
+                                    "You can traverse the Reverie again in {:d} {}.\n",
+                                    seconds, seconds == 1 ? "second" : "seconds");
                     }
                     return;
                 } else {
-                      char_printf(ch, "Who are you trying to step to?\n");
-                      return;
+                    char_printf(ch, "Who are you trying to step to?\n");
+                    return;
                 }
             }
         }
@@ -4344,9 +4379,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY, 10 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_BLINDING_BEAUTY) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can blind with your beauty again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can blind with your beauty again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4360,9 +4396,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_STATUE, 10 MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_STATUE) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can disguise yourself again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can disguise yourself again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }
@@ -4376,9 +4413,10 @@ ACMD(do_innate) {
                         SET_COOLDOWN(ch, CD_INNATE_BARKSKIN, (20 - con_app[GET_CON(ch)].hitp) MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_BARKSKIN) / 10;
-                    char_printf(ch, "You're too tired right now.\n"
-                                    "You can armor yourself again in {:d} {}.\n",
-                                    seconds, seconds == 1 ? "second" : "seconds");
+                    char_printf(ch,
+                                "You're too tired right now.\n"
+                                "You can armor yourself again in {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
                 }
                 return;
             }

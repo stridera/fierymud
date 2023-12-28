@@ -13,11 +13,11 @@
 #pragma once
 
 #include "defines.hpp"
-#include "spell_mem.hpp"
 #include "sysdep.hpp"
 
 #include <list>
 #include <string>
+#include <vector>
 
 typedef int room_num;
 typedef int obj_num;
@@ -55,6 +55,12 @@ struct ExtraDescriptionData {
     ExtraDescriptionData *next; /* Next in list                     */
 };
 
+/* This is the structure for keeping track of cast spells and how long ago. */
+struct SpellCast {
+    int circle; // The circle used to cast the spell.
+    int ticks;  // Time required studying/praying/etc to clear this slot.  Determined by spell slot.
+};
+
 struct Casting {
     int spell;
     int casting_time;
@@ -62,6 +68,7 @@ struct Casting {
     ObjData *obj;
     char *misc;
     int target_status;
+    int circle;
 };
 
 struct SpellPair {
@@ -194,7 +201,7 @@ struct CharSpecialData {
     int carry_items;    /* Number of items carried               */
     int timer;          /* Inactivity timer for players          */
     int hitgain;        /* Bonus hit regen, from APPLY_HIT_REGEN */
-    int managain;       /* Bonus mana regen, from APPLY_MANA_REGEN */
+    int focus;          /* Bonus to regenerate spell slots       */
     int rage;           /* For berserking                        */
 
     int alignment; /* +/- 1000 for alignment                */
@@ -317,6 +324,7 @@ struct MobSpecialData {
     int spell_mem_time;
     sh_int ex_armor;
     long mob2_flags;
+    sbyte ex_focus;
 };
 
 /* An effect structure. */
@@ -393,7 +401,7 @@ struct CharData {
     /* Player stuff */
     int pfilepos; /* playerfile pos */
     QuestList *quests;
-    SpellMemory spell_memory;           /* Spell mem/scribe stuff */
+    std::vector<SpellCast> spellcasts;  /* Spell mem/scribe stuff */
     Scribing *scribe_list;              /* spells queued for scribing */
                                         /* Mobile stuff */
     TriggerPrototypeList *proto_script; /* list of default triggers */

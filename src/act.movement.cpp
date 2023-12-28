@@ -1729,6 +1729,15 @@ ACMD(do_drag) {
             act("&3$n&3 drags $N&3 behind $m.&0", true, ch, 0, tch, TO_NOTVICT);
         }
 
+        if (PLR_FLAGGED(ch, PLR_MEDITATE) || MOB_FLAGGED(ch, MOB_MEDITATE)) {
+            act("&3$n&3 stops meditating.&0", true, ch, 0, 0, TO_ROOM);
+            act("&3Your meditation is interrupted as %N grabs you.&0", false, ch, 0, 0, TO_CHAR);
+            if (IS_NPC(ch))
+                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+            else 
+                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+
         /* now display act() messages to the target room */
         char_from_room(ch);
         char_to_room(ch, to_room);
