@@ -1620,7 +1620,7 @@ ACMD(do_cast) {
          */
 
         else
-            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+            WAIT_STATE(ch, PULSE_VIOLENCE * 2);
 
         /* Gods instacast.  Start chant and then stop casting in order to display correct message. */
         if (GET_LEVEL(ch) >= LVL_GOD) {
