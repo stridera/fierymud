@@ -19,14 +19,13 @@
 #include "handler.hpp"
 #include "interpreter.hpp"
 #include "limits.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "races.hpp"
 #include "skills.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 void improve_skill(CharData *ch, int skill);
 void stop_berserking(CharData *ch);
@@ -67,20 +66,73 @@ EVENTFUNC(hp_regen_event) {
     return delay;
 }
 
-EVENTFUNC(mana_regen_event) {
+EVENTFUNC(spellslot_restore_event) {
     CharData *ch = (CharData *)event_obj;
-    int gain, delay = 0;
 
-    if (GET_MANA(ch) < GET_MAX_MANA(ch)) {
-        gain = mana_gain(ch);
-        /* Mana not actually used so we don't increase it */
-        delay = (gain < 1 || gain > PULSES_PER_MUD_HOUR ? 1 : PULSES_PER_MUD_HOUR / gain);
-        delay = 0; /* Mana not actually used so cancel the event */
+    if (PLR_FLAGGED(ch, PLR_MEDITATE) || MOB_FLAGGED(ch, MOB_MEDITATE)) {
+
+        if (EFF_FLAGGED(ch, EFF_INSANITY)) {
+            char_printf(ch, "Your mind is too crazed to meditate!\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            if (IS_NPC(ch))
+                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+            else REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+
+        if (FIGHTING(ch)) {
+            char_printf(ch, "Your meditation is rudely interrupted!\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            if (IS_NPC(ch))
+                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+            else
+                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+
+        if (IS_DRUNK(ch)) {
+            char_printf(ch, "You cannot meditate while intoxicated.\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            if (IS_NPC(ch))
+                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+            else
+                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
+
+        if (GET_POS(ch) != POS_SITTING || GET_STANCE(ch) < STANCE_RESTING || GET_STANCE(ch) > STANCE_ALERT) {
+            char_printf(ch, "You stop meditating.\n");
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            if (IS_NPC(ch))
+                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+            else
+                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        }
     }
 
-    if (!delay)
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MANA);
-    return delay;
+    if (!ch->spellcasts.empty()) {
+        if (EFF_FLAGGED(ch, EFF_INSANITY))
+            return 1 RL_SEC;
+
+        spell_slot_restore_tick(ch);
+
+        /* check meditate skill */
+        if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
+            if (random_number(0, 20) > 17)
+                improve_skill(ch, SKILL_MEDITATE);
+        }
+
+        return 1 RL_SEC;
+    } else {
+        char_printf(ch, "&3&bYou have recovered all your spell slots.&0\n&0");
+        if (PLR_FLAGGED(ch, PLR_MEDITATE) || MOB_FLAGGED(ch, MOB_MEDITATE)) {
+            act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
+            if (!IS_NPC(ch)) {
+                char_printf(ch, "You stop meditating.\n&0");
+                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+            } else
+                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+        }
+        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_SPELLSLOT);
+        return 0;
+    }
 }
 
 EVENTFUNC(move_regen_event) {
@@ -164,13 +216,6 @@ void set_regen_event(CharData *ch, int eventtype) {
         event_create(EVENT_REGEN_HP, hp_regen_event, ch, false, &(ch->events), time);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_HP);
     }
-    if (eventtype == EVENT_REGEN_MANA && !EVENT_FLAGGED(ch, EVENT_REGEN_MANA) && GET_MANA(ch) < GET_MAX_MANA(ch) &&
-        false) {
-        gain = mana_gain(ch);
-        time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
-        event_create(EVENT_REGEN_HP, mana_regen_event, ch, false, &(ch->events), time);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MANA);
-    }
     if (eventtype == EVENT_REGEN_MOVE && !EVENT_FLAGGED(ch, EVENT_REGEN_MOVE) && GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
         gain = move_gain(ch);
         time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
@@ -182,10 +227,14 @@ void set_regen_event(CharData *ch, int eventtype) {
         event_create(EVENT_RAGE, rage_event, ch, false, &(ch->events), 0);
         SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_RAGE);
     }
+
+    if (eventtype == EVENT_REGEN_SPELLSLOT && !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT) && !ch->spellcasts.empty()) {
+        event_create(EVENT_REGEN_SPELLSLOT, spellslot_restore_event, ch, false, &(ch->events), 1 RL_SEC);
+        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_SPELLSLOT);
+    }
 }
 
 /* subtracts amount of hitpoints from ch's current */
-
 void alter_hit(CharData *ch, int amount, bool cap_amount) {
     int old_hit = 0;
 
@@ -220,17 +269,6 @@ void hurt_char(CharData *ch, CharData *attacker, int amount, bool cap_amount) {
         set_regen_event(ch, EVENT_REGEN_HP);
 }
 
-/* subtracts amount of mana from ch's current and starts points event */
-void alter_mana(CharData *ch, int amount) {
-    if (ch->in_room <= NOWHERE)
-        return;
-
-    GET_MANA(ch) = std::min(GET_MANA(ch) - amount, GET_MAX_MANA(ch));
-
-    if (GET_MANA(ch) < GET_MAX_MANA(ch) && !EVENT_FLAGGED(ch, EVENT_REGEN_MANA))
-        set_regen_event(ch, EVENT_REGEN_MANA);
-}
-
 /* subtracts amount of moves from ch's current and starts points event */
 void alter_move(CharData *ch, int amount) {
     if (ch->in_room <= NOWHERE)
@@ -247,7 +285,7 @@ void check_regen_rates(CharData *ch) {
     if (ch->in_room <= NOWHERE)
         return;
     set_regen_event(ch, EVENT_REGEN_HP);
-    set_regen_event(ch, EVENT_REGEN_MANA);
+    set_regen_event(ch, EVENT_REGEN_SPELLSLOT);
     set_regen_event(ch, EVENT_REGEN_MOVE);
     set_regen_event(ch, EVENT_RAGE);
 }

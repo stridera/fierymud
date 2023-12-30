@@ -13,23 +13,7 @@
 #pragma once
 
 #include "defines.hpp"
-
-/* This structure is for memorized spells */
-struct MemorizedList {
-    int spell;
-    int mem_time;
-    bool can_cast;
-    MemorizedList *next;
-};
-
-struct SpellMemory {
-    MemorizedList *list_head; /* spells in mem queue */
-    MemorizedList *list_tail;
-    int num_spells;                        /* number of spells in mem list */
-    int num_memmed;                        /* hw many are currently memmed */
-    int num_circle[NUM_SPELL_CIRCLES + 1]; /* number of spells memmed from each circle */
-    int mem_status;                        /* is the PC memming now? */
-};
+#include "structs.hpp"
 
 /* This is the scructure for spells being scribed */
 struct Scribing {
@@ -42,3 +26,12 @@ struct Scribing {
 
 extern const char *circle_abbrev[NUM_SPELL_CIRCLES + 1];
 extern int spells_of_circle[(LVL_IMPL + 1)][(NUM_SPELL_CIRCLES + 1)];
+
+/* Function prototypes */
+bool has_spellbook(CharData *ch);
+int get_next_spell_slot_available(CharData *ch, int spell);
+int spell_slot_available(CharData *ch, int spell);
+std::list<int> get_spell_slots_available(CharData *ch);
+ObjData *find_spellbook_with_spell(CharData *ch, int spell);
+int get_spellslot_restore_rate(CharData *ch);
+void charge_mem(CharData *ch, int spellnum, int circle);

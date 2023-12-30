@@ -459,7 +459,7 @@ int check_container_give(ObjData *obj, CharData *ch, CharData *vict) {
     if (obj->contains) {
         cont = obj->contains;
         while (cont) {
-            if (GET_OBJ_LEVEL(cont) > GET_LEVEL(vict)) {
+            if (GET_OBJ_LEVEL(cont) > GET_LEVEL(vict) + 15) {
                 sprintf(buf, "%s isn't experienced enough to use $p that is in $P.", GET_NAME(vict));
                 act(buf, false, ch, cont, obj, TO_CHAR);
                 return 1;

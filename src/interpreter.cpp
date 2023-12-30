@@ -137,7 +137,6 @@ ACMD(do_flee);
 ACMD(do_fly);
 ACMD(do_follow);
 ACMD(do_force);
-ACMD(do_forget);
 ACMD(do_gecho);
 ACMD(do_gen_comm);
 ACMD(do_gen_door);
@@ -177,7 +176,6 @@ ACMD(do_linkload);
 ACMD(do_load);
 ACMD(do_lure);
 ACMD(do_meditate);
-ACMD(do_memorize);
 ACMD(do_create);
 ACMD(do_mob_log);
 ACMD(do_mount);
@@ -200,7 +198,6 @@ ACMD(do_players);
 ACMD(do_poofset);
 ACMD(do_pour);
 ACMD(do_practice);
-ACMD(do_pray);
 ACMD(do_prompt);
 ACMD(do_pscan);
 ACMD(do_ptell);
@@ -253,6 +250,7 @@ ACMD(do_stat);
 ACMD(do_steal);
 ACMD(do_stomp);
 ACMD(do_stow);
+ACMD(do_study);
 ACMD(do_subclass);
 ACMD(do_sweep);
 ACMD(do_switch);
@@ -517,7 +515,6 @@ const CommandInfo cmd_info[] = {
     {"fly", POS_STANDING, STANCE_ALERT, do_fly, 0, 0, CMD_HIDE},
     {"follow", POS_PRONE, STANCE_RESTING, do_follow, 0, SCMD_FOLLOW, 0},
     {"fool", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
-    {"forget", POS_PRONE, STANCE_RESTING, do_forget, 0, 0, CMD_MEDITATE},
     {"fondle", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"freeze", POS_PRONE, STANCE_DEAD, do_wizutil, LVL_FREEZE, SCMD_FREEZE, CMD_ANY},
     {"french", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
@@ -630,7 +627,7 @@ const CommandInfo cmd_info[] = {
     {"love", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"lure", POS_STANDING, STANCE_ALERT, do_lure, 0, 0, CMD_HIDE | CMD_NOFIGHT},
 
-    {"memorize", POS_PRONE, STANCE_RESTING, do_memorize, 0, 0, CMD_MEDITATE},
+    {"memorize", POS_PRONE, STANCE_RESTING, do_study, 0, 0, CMD_MEDITATE},
     {"maul", POS_STANDING, STANCE_ALERT, do_bash, 1, SCMD_MAUL, 0},
     {"moan", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"medit", POS_PRONE, STANCE_DEAD, do_olc, LVL_BUILDER, SCMD_OLC_MEDIT, 0},
@@ -704,7 +701,7 @@ const CommandInfo cmd_info[] = {
     {"pounce", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"pour", POS_STANDING, STANCE_ALERT, do_pour, 0, SCMD_POUR, CMD_NOFIGHT},
     {"pout", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
-    {"pray", POS_PRONE, STANCE_RESTING, do_pray, 0, 0, CMD_MEDITATE},
+    {"pray", POS_PRONE, STANCE_RESTING, do_study, 0, 0, CMD_MEDITATE},
     {"prompt", POS_PRONE, STANCE_DEAD, do_prompt, 0, 0, CMD_ANY},
     {"protect", POS_STANDING, STANCE_ALERT, do_action, 0, 0, 0},
     {"pscan", POS_PRONE, STANCE_DEAD, do_pscan, LVL_HEAD_C, 0, CMD_ANY},
@@ -832,6 +829,7 @@ const CommandInfo cmd_info[] = {
     {"stomp", POS_STANDING, STANCE_ALERT, do_stomp, 0, 0, 0},
     {"stroke", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"strut", POS_STANDING, STANCE_ALERT, do_action, 0, 0, CMD_NOFIGHT},
+    {"study", POS_PRONE, STANCE_RESTING, do_study, 0, 0, CMD_MEDITATE},
     {"sulk", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"summon", POS_STANDING, STANCE_ALERT, do_summon_mount, 0, 0, CMD_NOFIGHT},
     {"swat", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},

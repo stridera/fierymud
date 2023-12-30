@@ -232,8 +232,6 @@ extern flagvector *ALL_FLAGS;
  */
 #define MOB_PERFORMS_SCRIPTS(ch) (IS_NPC(ch) && !MOB_FLAGGED(ch, MOB_NOSCRIPT) && !EFF_FLAGGED(ch, EFF_CHARM))
 
-#define MEMMING(ch) EVENT_FLAGGED((ch), EVENT_MEM)
-
 /* char utils ************************************************************/
 
 /* Identifier accessors */
@@ -289,6 +287,7 @@ extern flagvector *ALL_FLAGS;
 #define GET_BASE_DAMROLL(ch) ((ch)->points.base_damroll)
 #define GET_DAMROLL(ch) ((ch)->points.damroll)
 
+#define GET_FOCUS(ch) ((ch)->char_specials.focus)
 #define GET_POS(ch) ((ch)->char_specials.position)
 #define GET_STANCE(ch) ((ch)->char_specials.stance)
 #define AWAKE(ch) (GET_STANCE(ch) > STANCE_SLEEPING)
@@ -433,7 +432,6 @@ extern flagvector *ALL_FLAGS;
 #define GET_LAST_TELL(ch) ((ch)->player_specials->last_tell)
 #define GET_ROLL(ch, id) ((ch)->player_specials->roll[id])
 #define GET_HOST(ch) ((ch)->player_specials->host)
-#define GET_SPELL_MEM(ch) ((ch)->spell_memory)
 #define GET_GRANT_CACHE(ch) ((ch)->player_specials->grant_cache)
 #define GET_REVOKE_CACHE(ch) ((ch)->player_specials->revoke_cache)
 #define GET_GRANTS(ch) ((ch)->player_specials->grants)
@@ -461,6 +459,7 @@ extern flagvector *ALL_FLAGS;
 #define MEMORY(ch) ((ch)->mob_specials.memory)
 #define GET_MOB_SPLBANK(ch, circle) ((ch)->mob_specials.spell_bank[(circle)])
 #define GET_MOB_SPLMEM_TIME(ch) ((ch)->mob_specials.spell_mem_time)
+#define GET_EX_FOCUS(ch) ((ch)->mob_specials.ex_focus)
 
 /* descriptor-based utils ************************************************/
 

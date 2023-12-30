@@ -51,42 +51,23 @@
 
 #define TYPE_UNDEFINED -1
 
-/* PLAYER SPELLS -- Numbered from 1 to MAX_SPELLS */
-/* enumerate the base mem time for each circle. PLEASE feel free to alter based
- * on practicality */
-#define C1 30
-#define C2 33
-#define C3 36
-#define C4 39
-#define C5 42
-#define C6 45
-#define C7 48
-#define C8 51
-#define C9 54
-#define C10 57
-#define C11 60
-#define C12 60
-#define C13 60
-#define C14 60
-
 /*
- * spell casting time defines , ordinary ints can be used
- * for other values, but should be declared here...
- * NOTE: These integers represent pulses, not seconds. if PULSE_VIOLENCE is
- * used, then each of the following is (n*2) seconds.
+ * spell casting time defines, ordinary ints can be used for other values, but should be declared here...
+ * NOTE: These integers represent pulses, not seconds. if PULSE_VIOLENCE is used, then each of the following is (n*2)
+ * seconds.
  */
 /* This is based on 4 second rounds. */
 
-#define CAST_SPEED1 1     /* 1*   .5 rounds -> reduces to 0 */
-#define CAST_SPEED2 2     /* 1*   .5 rounds   */
-#define CAST_SPEED4 4     /* 2*   1 round    */
-#define CAST_SPEED6 6     /* 3*   1.5 rounds */
-#define CAST_SPEED8 8     /* 4*   2 rounds   */
-#define CAST_SPEED10 10   /* 5*   2.5 rounds */
-#define CAST_SPEED12 12   /* 6*   3 rounds   */
-#define CAST_SPEED14 14   /* 7*   3.5 rounds */
-#define CAST_SPEED16 16   /* 8*   4 rounds   */
-#define CAST_SPEED18 18   /* 9*   4.5 rounds */
+#define CAST_SPEED1 1   /* 1*   .5 rounds -> reduces to 0 */
+#define CAST_SPEED2 2   /* 1*   .5 rounds   */
+#define CAST_SPEED4 4   /* 2*   1 round    */
+#define CAST_SPEED6 6   /* 3*   1.5 rounds */
+#define CAST_SPEED8 8   /* 4*   2 rounds   */
+#define CAST_SPEED10 10 /* 5*   2.5 rounds */
+#define CAST_SPEED12 12 /* 6*   3 rounds   */
+#define CAST_SPEED14 14 /* 7*   3.5 rounds */
+#define CAST_SPEED16 16 /* 8*   4 rounds   */
+#define CAST_SPEED18 18 /* 9*   4.5 rounds */
 
 /* This is a target status to determine after do_cast what exactly the
    target is supposed to be. This fixes casting abort and crash bugs
@@ -193,7 +174,7 @@ void free_mem_list(CharData *ch);
 void free_scribe_list(CharData *ch);
 void init_mem_list(CharData *ch);
 void save_mem_list(CharData *ch);
-int add_spell(CharData *ch, int spell, int can_cast, int mem_time, bool verbose);
+int add_spell(CharData *ch, int spell, int can_cast, int addl_mem_time, bool verbose);
 
 #include "events.hpp"
 EVENTFUNC(delayed_cast_event);
