@@ -64,12 +64,6 @@ SPECIAL(guild) {
     if (CMD_IS("level")) {
         skip_spaces(&argument);
 
-        if (!*argument)
-            return 0; /* process via the regular command */
-
-        if (strcasecmp(argument, "gain"))
-            return 0; /* process via the regular command */
-
         if (getbaseclass(GET_CLASS((CharData *)(me))) != getbaseclass(GET_CLASS(ch))) {
             act("$N tells you \"I can't raise you!  Find your own guildmaster.\"", false, ch, 0, (CharData *)me,
                 TO_CHAR);
