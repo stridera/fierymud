@@ -159,7 +159,7 @@ bool bard_ai_action(CharData *ch, CharData *victim) {
     /* Otherwise kill or harm in some fashion */
 
     /* If the victim is grouped, then try an area spell. */
-    if (group_size(victim) > 1) {
+    if (group_size(victim, true) > 1) {
         counter = 0;
         for (i = 0; mob_bard_area_spells[i]; i++) {
             if (!GET_SKILL(ch, mob_bard_area_spells[i]))
@@ -188,7 +188,8 @@ bool bard_ai_action(CharData *ch, CharData *victim) {
             switch (mob_bard_hindrances[i].spell) {
             case SPELL_INSANITY:
             case SPELL_SILENCE:
-                if (IS_SPELLCASTER(victim) && FIGHTING(victim) == ch && !has_effect(victim, &mob_bard_hindrances[i]) && GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
+                if (IS_SPELLCASTER(victim) && FIGHTING(victim) == ch && !has_effect(victim, &mob_bard_hindrances[i]) &&
+                    GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
                     if (mob_cast(ch, victim, nullptr, mob_bard_hindrances[i].spell))
                         return true;
                 }

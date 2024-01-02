@@ -431,7 +431,7 @@ bool good_in_group(CharData *victim) {
  *
  * Returns the number of people in character's group who are also in the same room.
  */
-int group_size(CharData *ch) {
+int group_size(CharData *ch, bool in_room_only) {
     CharData *k;
     GroupType *f;
     int counter = 0;
@@ -442,9 +442,11 @@ int group_size(CharData *ch) {
     /* Character IS grouped.  Find group master and count groupees. */
     k = (ch->group_master ? ch->group_master : ch);
     for (f = k->groupees; f; f = f->next)
-        if (f->groupee->in_room == ch->in_room)
+        if (!in_room_only || f->groupee->in_room == ch->in_room)
             counter++;
-    return counter + 1;
+    if (k != ch && (!in_room_only || k->in_room == ch->in_room))
+        counter++;
+    return counter;
 }
 
 /* Will this mob (ch) assist vict in battle? */

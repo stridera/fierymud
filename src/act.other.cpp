@@ -1115,7 +1115,7 @@ ACMD(do_hide) {
     lower_bound = -0.0008 * pow(skill, 3) + 0.1668 * pow(skill, 2) - 3.225 * skill;
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
 
-    if (group_size(ch) > 1 && GET_RACE(ch) == RACE_HALFLING)
+    if (group_size(ch, true) > 1 && GET_RACE(ch) == RACE_HALFLING)
         GET_HIDDENNESS(ch) =
             random_number(lower_bound, upper_bound) + (dex_app_skill[GET_DEX(ch)].hide * ((GET_LEVEL(ch) / 30) + 1));
     else

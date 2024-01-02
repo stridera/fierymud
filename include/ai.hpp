@@ -23,7 +23,7 @@
 bool try_cast(CharData *ch, CharData *victim, int spellnum);
 bool evil_in_group(CharData *victim);
 bool good_in_group(CharData *victim);
-int group_size(CharData *ch);
+int group_size(CharData *ch, bool only_in_room);
 bool is_tanking(CharData *ch);
 bool mob_heal_up(CharData *ch);
 CharData *weakest_attacker(CharData *ch, CharData *victim);

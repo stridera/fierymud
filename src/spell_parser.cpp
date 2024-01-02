@@ -1441,17 +1441,18 @@ ACMD(do_cast) {
         else {
             if (cha_app[GET_CHA(ch)].music == 0) {
                 char_printf(ch, "Your Charisma is too low to perform!\n");
-            }
-            for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
-                if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+            } else {
+                for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
