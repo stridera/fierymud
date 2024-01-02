@@ -444,7 +444,7 @@ int group_size(CharData *ch, bool in_room_only) {
     for (f = k->groupees; f; f = f->next)
         if (!in_room_only || f->groupee->in_room == ch->in_room)
             counter++;
-    if (k != ch && (!in_room_only || k->in_room == ch->in_room))
+    if (!in_room_only || k->in_room == ch->in_room)
         counter++;
     return counter;
 }
