@@ -508,7 +508,7 @@ int get_spellslot_restore_rate(CharData *ch) {
 
     // Add Meditate Bonus
     if (IS_NPC(ch) && MOB_FLAGGED(ch, MOB_MEDITATE))
-        rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
+        rate += (GET_LEVEL(ch) / 100 * (MEDITATE_BONUS * 4)) + 1;
 
     else if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         if (GET_SKILL(ch, SKILL_MEDITATE))
