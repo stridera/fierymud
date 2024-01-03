@@ -26,3 +26,4 @@ void check_idling(CharData *ch);
 void point_update(void);
 void start_decomposing(ObjData *obj);
 void stop_decomposing(ObjData *obj);
+void sick_update(void);

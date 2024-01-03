@@ -2326,7 +2326,8 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             "different directions.";
         break;
 
-    case SPELL_MONK_ACID:
+    case SPELL_TREMORS_OF_SAINT_AUGUSTINE:
+    case CHANT_TREMORS_OF_SAINT_AUGUSTINE:
         /* for potions and scrolls to turn monk punches to acid */
 
         /* block if no barehand skill */
@@ -2343,10 +2344,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
         to_vict = "&3&bYou charge your hands with corrosive chi.&0";
         to_room = "&3&b$N charges $S hands with corrosive chi.&0";
-        eff[0].duration = (skill / 10); /* max 10 */
+        if (spellnum == SPELL_TREMORS_OF_SAINT_AUGUSTINE)
+            eff[0].duration = (skill / 10); /* max 10 */
+        else
+            eff[0].duration = ((skill / 10) + (GET_WIS(ch) / 20)); /* max 15 */
         break;
 
-    case SPELL_MONK_COLD:
+    case SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE:
+    case CHANT_BLIZZARDS_OF_SAINT_AUGUSTINE:
         /* for potions and scrolls to turn monk punches to ice */
         /* block if no barehand skill */
         if (!GET_SKILL(victim, SKILL_BAREHAND)) {
@@ -2362,10 +2367,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_ICEHANDS);
         to_vict = "&4&bYou unleash the blizzard in your heart.&0";
         to_room = "&4&b$N unleashes the blizzard in $S heart.&0";
-        eff[0].duration = (skill / 10); /* max 10 */
+        if (spellnum == SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE)
+            eff[0].duration = (skill / 10); /* max 10 */
+        else
+            eff[0].duration = ((skill / 10) + (GET_WIS(ch) / 20)); /* max 15 */
         break;
 
-    case SPELL_MONK_FIRE:
+    case SPELL_FIRES_OF_SAINT_AUGUSTINE:
+    case CHANT_FIRES_OF_SAINT_AUGUSTINE:
         /* for potions and scrolls to turn monk punches to fire */
         /* block if no barehand skill */
         if (!GET_SKILL(victim, SKILL_BAREHAND)) {
@@ -2381,10 +2390,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_FIREHANDS);
         to_vict = "&1Your fists burn with inner fire.&0";
         to_room = "&1$N's fists burn with inner fire.&0";
-        eff[0].duration = (skill / 10); /* max 10 */
+        if (spellnum == SPELL_FIRES_OF_SAINT_AUGUSTINE)
+            eff[0].duration = (skill / 10); /* max 10 */
+        else
+            eff[0].duration = ((skill / 10) + (GET_WIS(ch) / 20)); /* max 15 */
         break;
 
-    case SPELL_MONK_SHOCK:
+    case SPELL_TEMPEST_OF_SAINT_AUGUSTINE:
+    case CHANT_TEMPEST_OF_SAINT_AUGUSTINE:
         /* for potions and scrolls to turn monk punches to lightning */
         /* block if no barehand skill */
         if (!GET_SKILL(victim, SKILL_BAREHAND)) {
@@ -2400,7 +2413,10 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
         to_vict = "&6&bYour knuckles crackle with lightning.&0";
         to_room = "&6&b$N's knuckles crackle with lightning.&0";
-        eff[0].duration = (skill / 10); /* max 10 */
+        if (spellnum == SPELL_TEMPEST_OF_SAINT_AUGUSTINE)
+            eff[0].duration = (skill / 10); /* max 10 */
+        else
+            eff[0].duration = ((skill / 10) + (GET_WIS(ch) / 20)); /* max 15 */
         break;
 
     case SPELL_NEGATE_COLD:
@@ -2483,7 +2499,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_STR;
         eff[0].modifier = (-2 - (skill / 4) - (skill / 20)) * susceptibility(victim, DAM_POISON) / 100; /* max -32 */
         SET_FLAG(eff[0].flags, EFF_POISON);
-        eff[0].duration = 4 + (skill / 10); /* max 14 */
+        eff[0].duration = 2 + (skill / 33) + (wis_app[GET_WIS(ch)].bonus / 2); /* min 2, max 8 */
         eff[0].type = SPELL_POISON;
         to_vict = "You feel very sick.";
         to_room = "$N gets violently ill!";
@@ -5525,9 +5541,15 @@ bool check_monk_hand_spells(CharData *ch, CharData *victim, int spellnum) {
      * refresh the spell duration.
      */
     if (!affected_by_spell(victim, spellnum)) {
-        if (affected_by_spell(victim, SPELL_MONK_ACID) || affected_by_spell(victim, SPELL_MONK_COLD) ||
-            affected_by_spell(victim, SPELL_MONK_FIRE) || affected_by_spell(victim, SPELL_MONK_SHOCK) ||
-            affected_by_spell(victim, CHANT_HYMN_OF_SAINT_AUGUSTINE)) {
+        if (affected_by_spell(victim, SPELL_TREMORS_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, SPELL_FIRES_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, SPELL_TEMPEST_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, CHANT_HYMN_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, CHANT_TREMORS_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, CHANT_BLIZZARDS_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, CHANT_FIRES_OF_SAINT_AUGUSTINE) ||
+            affected_by_spell(victim, CHANT_TEMPEST_OF_SAINT_AUGUSTINE)) {
             if (ch != victim)
                 act("$N's fists are already enhanced!\n", false, ch, 0, victim, TO_CHAR);
             act("Your fists are already enhanced!\n", false, ch, 0, victim, TO_VICT);

@@ -1,6 +1,7 @@
 
 #include "dg_scripts.hpp"
 
+#include "ai.hpp"
 #include "casting.hpp"
 #include "charsize.hpp"
 #include "clan.hpp"
@@ -35,9 +36,9 @@ const char *trig_types[] = {"Global",    "Random", "Command", "Speech", "Act",  
                             "Load",      "Cast",   "Leave",   "Door",   "Look",     "Time",  "\n"};
 
 /* obj trigger types */
-const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer",  "Get",
-                             "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",   "Use",
-                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",   "\n"};
+const char *otrig_types[] = {"Global", "Random", "Command", "Attack", "Defense", "Timer", "Get",
+                             "Drop",   "Give",   "Wear",    "Death",  "Remove",  "Look",  "Use",
+                             "Load",   "Cast",   "Leave",   "UNUSED", "Consume", "Time",  "\n"};
 
 /* wld trigger types */
 const char *wtrig_types[] = {"Global", "Random",    "Command", "Speech", "UNUSED", "Reset",  "Preentry",
@@ -56,7 +57,6 @@ void extract_trigger(TrigData *trig);
 int eval_lhs_op_rhs(char *expr, char *result, void *go, ScriptData *sc, TrigData *trig, int type);
 int find_zone(int num);
 int vnumargs(CharData *ch, char *argument, int *first, int *second);
-int group_size(CharData *ch);
 int find_talent_num(char *name, int should_restrict);
 
 /* function protos from this file */
@@ -1304,8 +1304,13 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 c = c->next_in_room;
             UID_VAR(str, c->next_in_room);
         } else if (!strcasecmp(field, "group_size"))
-            sprintf(str, "%d", group_size(c));
-        else if (!strcasecmp(field, "group_member")) {
+            sprintf(str, "%d", group_size(c, false));
+        else if (!strcasecmp(field, "group_size_in_room"))
+            sprintf(str, "%d", group_size(c, true));
+        else if (!strcasecmp(field, "group_leader")) {
+            ch = c->group_master ? c->group_master : c;
+            UID_VAR(str, ch);
+        } else if (!strcasecmp(field, "group_member")) {
             ch = c->group_master ? c->group_master : c;
 
             num = atoi(value);

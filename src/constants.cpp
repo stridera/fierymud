@@ -21,6 +21,9 @@
 
 // Globals
 
+// Utility
+const char *number_words[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+
 /* MINOR CREATION ITEMS */
 const char *minor_creation_items[] = {"backpack",                                                       /* 0  */
                                       "sack",      "robe",       "hood",       "lantern",   "torch",    /* 5  */
