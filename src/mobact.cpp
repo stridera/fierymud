@@ -279,7 +279,7 @@ void mobile_spec_activity(void) {
 
         /* Look for people I'd like to attack */
         if (!ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL) && !EFF_FLAGGED(ch, EFF_MESMERIZED) &&
-            (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
+           (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
             if ((vict = find_aggr_target(ch))) {
                 mob_attack(ch, vict);
                 continue;
@@ -439,6 +439,9 @@ void mob_attack(CharData *ch, CharData *victim) {
     /* Mesmerized or paralyzed mobs should not attack.
      * Mob memory attack seems to be by-passing attack_ok check */
     if (EFF_FLAGGED(ch, EFF_MESMERIZED) || EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS))
+        return;
+
+    if (victim == ch->master)
         return;
 
     /* Mob should not execute any special mobile AI procedures. */
