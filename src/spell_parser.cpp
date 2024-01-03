@@ -228,7 +228,7 @@ int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, 
     }
 
     if (IS_SPELL(spellnum) && cvict && evades_spell(caster, cvict, spellnum, skill))
-        return false;
+        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 
     /* determine the type of saving throw */
     switch (casttype) {
