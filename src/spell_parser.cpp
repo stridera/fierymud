@@ -228,7 +228,7 @@ int call_magic(CharData *caster, CharData *cvict, ObjData *ovict, int spellnum, 
     }
 
     if (IS_SPELL(spellnum) && cvict && evades_spell(caster, cvict, spellnum, skill))
-        return false;
+        return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 
     /* determine the type of saving throw */
     switch (casttype) {
@@ -1741,10 +1741,6 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         (!SINFO.fighting_ok && GET_STANCE(ch) == STANCE_FIGHTING))
         return false;
 
-    /* Check if mob has slots in this spell's circle in its spell bank */
-    if (GET_MOB_SPLBANK(ch, circle) <= 0)
-        return false;
-
     /* Find the target */
     if (IS_SET(SINFO.targets, TAR_IGNORE))
         target_status = TARGET_ALL_ROOM;
@@ -1789,12 +1785,22 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         return true; // makes caller think we cast a spell so they don't try again
     }
 
+    circle = get_next_spell_slot_available(ch, spellnum);
+    if (!circle)
+        return false;
+    else if (circle != SPELL_CIRCLE(ch, spellnum)) {
+        char_printf(ch, "{}Upcasting a circle {} spell into circle {}.  Abort to cancel.{}\n", CLRLV(ch, FRED, C_SPR),
+                    SPELL_CIRCLE(ch, spellnum), circle, CLRLV(ch, ANRM, C_SPR));
+    }
+
+
     /* Reveal hidden/invis/concealed attackers. */
     if (SINFO.violent)
         aggro_lose_spells(ch);
 
     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
     ch->casting.spell = spellnum;
+    ch->casting.circle = circle;
     ch->casting.tch = targ_ch;
     ch->casting.obj = targ_obj;
     targets_remember_caster(ch);

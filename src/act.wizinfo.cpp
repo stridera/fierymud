@@ -809,26 +809,19 @@ void do_stat_character(CharData *ch, CharData *k) {
     resp += fmt::format("EFF: {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
 
     /* NPC spell circle status */
-    if (IS_NPC(k) && MEM_MODE(ch) != MEM_NONE) {
+    if (IS_NPC(k) && MEM_MODE(k) != MEM_NONE) {
         const char *color;
-        resp += "Spellbank: ";
-        for (i = 1; i <= NUM_SPELL_CIRCLES; ++i)
-            if (spells_of_circle[(int)GET_LEVEL(k)][i]) {
-                a = (GET_MOB_SPLBANK(k, i) * 100) / spells_of_circle[(int)GET_LEVEL(k)][i];
-                if (a >= 90)
-                    color = AHGRN;
-                else if (a >= 75)
-                    color = AFGRN;
-                else if (a >= 60)
-                    color = AHYEL;
-                else if (a >= 40)
-                    color = AFYEL;
-                else if (a >= 20)
-                    color = AFRED;
-                else
-                    color = AHRED;
-                resp += fmt::format("{}({}{}@0) ", i, color, GET_MOB_SPLBANK(k, i));
-            }
+        resp += "Spell slots available: ";
+        auto slots = get_spell_slots_available(k);
+        for (auto &slot : slots) {
+            if (slot == 0)
+                color = CLR(ch, FRED);
+            else if (slot == 1)
+                color = CLR(ch, FYEL);
+            else
+                color = CLR(ch, FGRN);
+            resp += fmt::format("{}{}{} ", color, slot, CLR(ch, ANRM));
+        }
         resp += "\n";
     }
 

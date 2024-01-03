@@ -231,7 +231,7 @@ void init_mobile(CharData *mob) {
     (mob)->mob_specials.ex_hpsizedice = 0;
     GET_RACE(mob) = DEFAULT_RACE;
     GET_CLASS(mob) = CLASS_UNDEFINED;
-    GET_FOCUS(mob) = 10;
+    GET_FOCUS(mob) = 0;
     GET_MAX_MANA(mob) = 100;
     GET_MAX_MOVE(mob) = 100;
     GET_NDD(mob) = 0;

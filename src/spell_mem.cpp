@@ -391,11 +391,6 @@ void free_scribe_list(CharData *ch) {
 }
 
 void show_available_slots(CharData *ch, CharData *tch) {
-    if (IS_NPC(tch)) {
-        char_printf(ch, "NPCs don't have spell slots.\n");
-        return;
-    }
-
     int restore_rate = get_spellslot_restore_rate(tch);
 
     if (ch == tch) {
@@ -439,9 +434,6 @@ int spell_slot_available(CharData *ch, int spell) {
     if (circle < 1 || circle > NUM_SPELL_CIRCLES)
         return 0;
 
-    if (IS_NPC(ch))
-        return GET_MOB_SPLBANK(ch, circle) > 0;
-
     return std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(), [ch, circle](const SpellCast &sc) {
                return circle == sc.circle;
            }) < spells_of_circle[GET_LEVEL(ch)][circle];
@@ -460,9 +452,6 @@ int get_next_spell_slot_available(CharData *ch, int spell) {
 
     if (circle < 1 || circle > NUM_SPELL_CIRCLES)
         return 0;
-
-    if (IS_NPC(ch))
-        return GET_MOB_SPLBANK(ch, circle) > 0;
 
     for (int i = circle; i < NUM_SPELL_CIRCLES; i++) {
         if (std::count_if(ch->spellcasts.begin(), ch->spellcasts.end(), [ch, i](const SpellCast &sc) {
@@ -519,8 +508,8 @@ int get_spellslot_restore_rate(CharData *ch) {
 
     // Add Meditate Bonus
     if (IS_NPC(ch) && MOB_FLAGGED(ch, MOB_MEDITATE))
-        rate += (GET_LEVEL(ch) / 100 * MEDITATE_BONUS) + 1;
-        
+        rate += (GET_LEVEL(ch) / 100 * (MEDITATE_BONUS * 4)) + 1;
+
     else if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         if (GET_SKILL(ch, SKILL_MEDITATE))
             rate += (GET_SKILL(ch, SKILL_MEDITATE) / 100 * MEDITATE_BONUS) + 1;
@@ -531,7 +520,7 @@ int get_spellslot_restore_rate(CharData *ch) {
 ACMD(do_study) {
     CharData *tch;
 
-    if (!ch || IS_NPC(ch))
+    if (!ch)
         return;
 
     if (MEM_MODE(ch) == MEM_NONE && GET_LEVEL(ch) < LVL_IMMORT) {

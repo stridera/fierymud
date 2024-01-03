@@ -1353,7 +1353,7 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
     if (mob_proto[i].mob_specials.ex_focus)
         mob_proto[i].char_specials.focus = mob_proto[i].mob_specials.ex_focus;
     else
-        mob_proto[i].char_specials.focus = mob_proto[i].player.level + 10;
+        mob_proto[i].char_specials.focus = (mob_proto[i].player.level / 2) + 10;
 
     mob_proto[i].points.move = t[5];
     mob_proto[i].points.max_mana = 10;
@@ -1478,9 +1478,6 @@ void parse_simple_mob(FILE *mob_f, int i, int nr) {
     mob_proto[i].points.hitroll = std::max(0, mob_proto[i].points.hitroll);
     mob_proto[i].points.damroll = std::max(0, mob_proto[i].points.damroll);
     mob_proto[i].points.armor = std::clamp(mob_proto[i].points.armor, -100, 100);
-
-    for (j = 0; j <= NUM_SPELL_CIRCLES; ++j)
-        GET_MOB_SPLBANK(&mob_proto[i], j) = spells_of_circle[(int)GET_LEVEL(&mob_proto[i])][j];
 
     for (j = 0; j < 3; j++)
         GET_COND(mob_proto + i, j) = -1;
