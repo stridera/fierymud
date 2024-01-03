@@ -2359,7 +2359,7 @@ void perform_violence(void) {
 
             /* Find the player fighting this NPC who has the lowest hp in the room */
             for (tch = world[IN_ROOM(ch)].people; tch; tch = tch->next_in_room)
-                if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch))
+                if (FIGHTING(tch) == ch && !IS_NPC(tch) && CAN_SEE(ch, tch) && tch != ch->master)
                     if (victim == nullptr || GET_HIT(tch) < GET_HIT(victim))
                         victim = tch;
 
