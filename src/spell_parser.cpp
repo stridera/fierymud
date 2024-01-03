@@ -1785,6 +1785,15 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         return true; // makes caller think we cast a spell so they don't try again
     }
 
+    circle = get_next_spell_slot_available(ch, spellnum);
+    if (!circle)
+        return false;
+    else if (circle != SPELL_CIRCLE(ch, spellnum)) {
+        char_printf(ch, "{}Upcasting a circle {} spell into circle {}.  Abort to cancel.{}\n", CLRLV(ch, FRED, C_SPR),
+                    SPELL_CIRCLE(ch, spellnum), circle, CLRLV(ch, ANRM, C_SPR));
+    }
+
+
     /* Reveal hidden/invis/concealed attackers. */
     if (SINFO.violent)
         aggro_lose_spells(ch);
