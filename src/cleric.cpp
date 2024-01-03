@@ -115,7 +115,7 @@ bool cleric_ai_action(CharData *ch, CharData *victim) {
     /* Otherwise kill or harm in some fashion */
 
     /* Area effects first if the victim is grouped. */
-    if (group_size(victim) > 1) {
+    if (group_size(victim, true) > 1) {
         counter = 0;
         for (i = 0; mob_cleric_area_spells[i]; i++) {
             if (!GET_SKILL(ch, mob_cleric_area_spells[i]))
@@ -151,11 +151,9 @@ bool cleric_ai_action(CharData *ch, CharData *victim) {
         if (!has_effect(victim, &mob_cleric_hindrances[i]) && GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
             if (mob_cast(ch, victim, nullptr, mob_cleric_hindrances[i].spell))
                 return true;
-        }
-        else
+        } else
             break;
     }
-
 
     /* Try to debilitate enemy spellcasters up to 20 levels higher */
     for (i = 0; mob_cleric_hindrances[i].spell; i++) {
@@ -166,7 +164,8 @@ bool cleric_ai_action(CharData *ch, CharData *victim) {
         case SPELL_SILENCE:
             for (victim = world[ch->in_room].people; victim; victim = next_victim) {
                 next_victim = victim->next_in_room;
-                if (IS_SPELLCASTER(victim) && FIGHTING(victim) == ch && !has_effect(victim, &mob_cleric_hindrances[i]) && GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
+                if (IS_SPELLCASTER(victim) && FIGHTING(victim) == ch &&
+                    !has_effect(victim, &mob_cleric_hindrances[i]) && GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
                     if (mob_cast(ch, victim, nullptr, mob_cleric_hindrances[i].spell))
                         return true;
                 }

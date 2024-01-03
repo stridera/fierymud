@@ -58,7 +58,7 @@ bool sorcerer_ai_action(CharData *ch, CharData *victim) {
         return true;
 
     /* If the victim is grouped, try an area spell first. */
-    if (group_size(victim) > 1) {
+    if (group_size(victim, true) > 1) {
         counter = 0;
         for (i = 0; mob_sorcerer_area_spells[i]; i++) {
             if (!GET_SKILL(ch, mob_sorcerer_area_spells[i]))

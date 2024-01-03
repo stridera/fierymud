@@ -1441,17 +1441,18 @@ ACMD(do_cast) {
         else {
             if (cha_app[GET_CHA(ch)].music == 0) {
                 char_printf(ch, "Your Charisma is too low to perform!\n");
-            }
-            for (int i = 1; i <= cha_app[GET_CHA(ch)].music; i++) {
-                if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
-                    int cresult = perform(ch, tch, tobj, spellnum);
-                    if (IS_SET(cresult, CAST_RESULT_IMPROVE))
-                        improve_skill(ch, SKILL_PERFORM);
-                    if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                        SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
-                        WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+            } else {
+                for (int i = 0; i <= cha_app[GET_CHA(ch)].music; i++) {
+                    if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
+                        int cresult = perform(ch, tch, tobj, spellnum);
+                        if (IS_SET(cresult, CAST_RESULT_IMPROVE))
+                            improve_skill(ch, SKILL_PERFORM);
+                        if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
+                            SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - cha_app[GET_CHA(ch)].music) MUD_HR);
+                            WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -1783,12 +1784,9 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
     /* An injured throat makes it difficult to cast. */
     if (EFF_FLAGGED(ch, EFF_HURT_THROAT) && random_number(0, MAX_ABILITY_VALUE) > GET_VIEWED_CON(ch)) {
         act("$n starts casting, but stops abruptly, coughing up blood!", false, ch, 0, 0, TO_ROOM);
-        char_printf(ch,
-                    "You begin casting, but your throat causes you to "
-                    "cough up blood!\n");
+        char_printf(ch, "You begin casting, but your throat causes you to cough up blood!\n");
         WAIT_STATE(ch, PULSE_VIOLENCE);
-        return true; /* makes caller think we cast a spell so they don't try again
-                      */
+        return true; // makes caller think we cast a spell so they don't try again
     }
 
     /* Reveal hidden/invis/concealed attackers. */
