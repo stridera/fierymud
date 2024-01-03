@@ -457,7 +457,6 @@ extern flagvector *ALL_FLAGS;
 #define GET_MOB_WAIT(ch) ((ch)->mob_specials.wait_state)
 #define GET_DEFAULT_POS(ch) ((ch)->mob_specials.default_pos)
 #define MEMORY(ch) ((ch)->mob_specials.memory)
-#define GET_MOB_SPLBANK(ch, circle) ((ch)->mob_specials.spell_bank[(circle)])
 #define GET_MOB_SPLMEM_TIME(ch) ((ch)->mob_specials.spell_mem_time)
 #define GET_EX_FOCUS(ch) ((ch)->mob_specials.ex_focus)
 

@@ -1846,10 +1846,6 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
         (!SINFO.fighting_ok && GET_STANCE(ch) == STANCE_FIGHTING))
         return false;
 
-    /* Check if mob has slots in this spell's circle in its spell bank */
-    if (GET_MOB_SPLBANK(ch, circle) <= 0)
-        return false;
-
     /* Find the target */
     if (IS_SET(SINFO.targets, TAR_IGNORE))
         target_status = TARGET_ALL_ROOM;

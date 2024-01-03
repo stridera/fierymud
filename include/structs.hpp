@@ -319,8 +319,7 @@ struct MobSpecialData {
     sbyte damsizedice;   /* The size of the damage dice's           */
     sbyte ex_damnodice;
     sbyte ex_damsizedice;
-    int wait_state;                        /* Wait state for bashed mobs              */
-    int spell_bank[NUM_SPELL_CIRCLES + 1]; /* circle 0 is unused */
+    int wait_state; /* Wait state for bashed mobs              */
     int spell_mem_time;
     sh_int ex_armor;
     long mob2_flags;
