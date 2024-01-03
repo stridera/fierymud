@@ -53,7 +53,7 @@ int parse_damtype(CharData *ch, char *arg) {
  * probable. */
 
 bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype) {
-    int s;
+    int s = 0;
 
     /* Ether mobs are not immune at all to blessed physical attacks. */
     if (attacker &&
