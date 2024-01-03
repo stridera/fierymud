@@ -809,10 +809,10 @@ void do_stat_character(CharData *ch, CharData *k) {
     resp += fmt::format("EFF: {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
 
     /* NPC spell circle status */
-    if (IS_NPC(k) && MEM_MODE(ch) != MEM_NONE) {
+    if (IS_NPC(k) && MEM_MODE(k) != MEM_NONE) {
         const char *color;
         resp += "Spell slots available: ";
-        auto slots = get_spell_slots_available(ch);
+        auto slots = get_spell_slots_available(k);
         for (auto &slot : slots) {
             if (slot == 0)
                 color = CLR(ch, FRED);

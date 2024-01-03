@@ -1791,6 +1791,7 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
 
     SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
     ch->casting.spell = spellnum;
+    ch->casting.circle = circle;
     ch->casting.tch = targ_ch;
     ch->casting.obj = targ_obj;
     targets_remember_caster(ch);

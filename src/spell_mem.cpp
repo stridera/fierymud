@@ -391,11 +391,6 @@ void free_scribe_list(CharData *ch) {
 }
 
 void show_available_slots(CharData *ch, CharData *tch) {
-    if (IS_NPC(tch)) {
-        char_printf(ch, "NPCs don't have spell slots.\n");
-        return;
-    }
-
     int restore_rate = get_spellslot_restore_rate(tch);
 
     if (ch == tch) {
@@ -525,7 +520,7 @@ int get_spellslot_restore_rate(CharData *ch) {
 ACMD(do_study) {
     CharData *tch;
 
-    if (!ch || IS_NPC(ch))
+    if (!ch)
         return;
 
     if (MEM_MODE(ch) == MEM_NONE && GET_LEVEL(ch) < LVL_IMMORT) {
