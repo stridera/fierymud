@@ -1115,7 +1115,7 @@ void init_skills(void) {
     spello(SPELL_REMOVE_PARALYSIS, "remove paralysis", 45, 25, 5, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_MANUAL,
            0, CAST_SPEED10, DAM_UNDEFINED, SKILL_SPHERE_ENCHANT, 5, false, nullptr);
 
-    spello(SPELL_REMOVE_POISON, "remove poison", 40, 8, 4, POS_SITTING, false,
+    spello(SPELL_REMOVE_POISON, "remove poison", 40, 8, 4, POS_SITTING, true,
            TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, false, MAG_UNAFFECT | MAG_ALTER_OBJ, 0, CAST_SPEED8,
            DAM_UNDEFINED, SKILL_SPHERE_HEALING, 5, false, nullptr);
 
