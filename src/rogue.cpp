@@ -123,7 +123,7 @@ int mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum);
  */
 bool bard_ai_action(CharData *ch, CharData *victim) {
     int my_health, victim_health, i, counter, action = 0, roll;
-    CharData *next_victim;
+    CharData *next_victim, *victim2;
 
     if (!victim) {
         log(LogSeverity::Stat, LVL_GOD, "No victim in bard AI action.");
@@ -183,14 +183,14 @@ bool bard_ai_action(CharData *ch, CharData *victim) {
                 break;
         }
         /* Try to debilitate player spellcasters */
-        for (victim = world[ch->in_room].people; victim; victim = next_victim) {
-            next_victim = victim->next_in_room;
+        for (victim2 = world[ch->in_room].people; victim2; victim2 = next_victim) {
+            next_victim = victim2->next_in_room;
             switch (mob_bard_hindrances[i].spell) {
             case SPELL_INSANITY:
             case SPELL_SILENCE:
-                if (IS_SPELLCASTER(victim) && FIGHTING(victim) == ch && !has_effect(victim, &mob_bard_hindrances[i]) &&
-                    GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
-                    if (mob_cast(ch, victim, nullptr, mob_bard_hindrances[i].spell))
+                if (IS_SPELLCASTER(victim2) && FIGHTING(victim2) == ch && !has_effect(victim2, &mob_bard_hindrances[i]) &&
+                    GET_LEVEL(victim2) < (GET_LEVEL(ch) + 20)) {
+                    if (mob_cast(ch, victim2, nullptr, mob_bard_hindrances[i].spell))
                         return true;
                 }
                 break;
