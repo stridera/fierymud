@@ -302,6 +302,10 @@ bool attack_ok(CharData *ch, CharData *victim, bool verbose) {
     if (EFF_FLAGGED(ch, EFF_MINOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MAJOR_PARALYSIS) || EFF_FLAGGED(ch, EFF_MESMERIZED))
         return false;
 
+    /* prevent pets from attacking their masters */
+    if (victim == ch->master)
+        return false;
+
     if (ch != victim && (ROOM_FLAGGED(victim->in_room, ROOM_PEACEFUL) || ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL))) {
         if (verbose)
             char_printf(ch, "You feel ashamed trying to disturb the peace of this room.\n");
