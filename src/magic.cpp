@@ -4394,6 +4394,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         eff.location = APPLY_NONE;
         effect_to_char(new_mob, &eff);
         add_follower(new_mob, ch);
+        SET_FLAG(MOB_FLAGS(new_mob), MOB_NO_CLASS_AI);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_NEUTRAL);
@@ -4474,6 +4475,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         eff.location = APPLY_NONE;
         effect_to_char(new_mob, &eff);
         add_follower(new_mob, ch);
+        SET_FLAG(MOB_FLAGS(new_mob), MOB_NO_CLASS_AI);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD);
         REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_NEUTRAL);
