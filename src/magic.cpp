@@ -3369,9 +3369,11 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                         "up.",
                         false, victim, 0, 0, TO_ROOM);
                 } else if (IS_FLAGGED(eff[i].flags, EFF_MINOR_PARALYSIS) ||
-                           IS_FLAGGED(eff[i].flags, EFF_MAJOR_PARALYSIS) || IS_FLAGGED(eff[i].flags, EFF_MESMERIZED))
+                           IS_FLAGGED(eff[i].flags, EFF_MAJOR_PARALYSIS) || IS_FLAGGED(eff[i].flags, EFF_MESMERIZED)) {
                     /* Just silently stop the casting for paralysis */
                     STOP_CASTING(victim);
+                }
+
             }
             if ((IS_FLAGGED(eff[i].flags, EFF_MINOR_PARALYSIS) || IS_FLAGGED(eff[i].flags, EFF_MAJOR_PARALYSIS) ||
                  IS_FLAGGED(eff[i].flags, EFF_MESMERIZED))) {
