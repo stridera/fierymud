@@ -1933,12 +1933,13 @@ int weapon_special(ObjData *wpn, CharData *ch) {
 }
 
 void hit(CharData *ch, CharData *victim, int type) {
-    int victim_ac, calc_thaco, dam, diceroll, weapon_position, hidden, hit;
+    int victim_ac, calc_thaco, dam, diceroll, weapon_position, hidden;
     ObjData *weapon;
     int thac0_01 = 25;
     int thac0_00 = classes[(int)GET_CLASS(ch)].thac0;
     bool no_defense_check = false;
     int dtype;
+    bool to_hit;
 
     if (!ch || !victim || !event_target_valid(victim) || !event_target_valid(ch) || ch == victim) {
         if (ch && FIGHTING(ch))
@@ -2124,11 +2125,11 @@ void hit(CharData *ch, CharData *victim, int type) {
      *      191..200   = Automatic hit
      */
     if (diceroll > 190 || !AWAKE(victim))
-        hit = true;
+        to_hit = true;
     else if (diceroll < 11)
-        hit = false;
+        to_hit = false;
     else
-        hit = (calc_thaco - diceroll <= victim_ac);
+        to_hit = (calc_thaco - diceroll <= victim_ac);
 
     /* See if the victim evades damage due to non-susceptibility
      * (this applies when asleep, too!)
@@ -2171,9 +2172,8 @@ void hit(CharData *ch, CharData *victim, int type) {
          * starting with the damage bonuses: damroll and strength apply.
          */
         dam = GET_DAMROLL(ch);
+        dam += str_app[GET_STR(ch)].todam;
         if (type != SKILL_KICK) {
-            dam += str_app[GET_STR(ch)].todam;
-
             if (diceroll == 20)
                 dam += dam;
 
@@ -2188,10 +2188,7 @@ void hit(CharData *ch, CharData *victim, int type) {
                 dam += random_number(0, 2); /* Yeah, you better wield a weapon. */
         } else {
             dam += (GET_SKILL(ch, SKILL_KICK) / 2);
-            if (GET_CLASS(ch) == CLASS_MONK)
-                dam += str_app[GET_DEX(ch)].todam;
-            else
-                dam += str_app[GET_STR(ch)].todam;
+            dam += str_app[GET_DEX(ch)].todam;
         }
 
         /*
