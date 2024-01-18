@@ -1435,11 +1435,11 @@ ACMD(do_eye_gouge) {
     if (percent > prob && AWAKE(vict))
         damage(ch, vict, 0, SKILL_EYE_GOUGE); /* Miss message */
     else if (damage_evasion(vict, ch, 0, DAM_PIERCE)) {
-        act(EVASIONCLR "Your thumbs poke harmlessly at $N" EVASIONCLR ".   If $E even has eyes.", false, ch, 0, vict,
+        act(EVASIONCLR "Your thumbs poke harmlessly at $N" EVASIONCLR ".   If $E even has eyes.&0", false, ch, 0, vict,
             TO_CHAR);
-        act(EVASIONCLR "$n" EVASIONCLR " tries poking at $N's eyes, but nothing seems to happen.", false, ch, 0, vict,
+        act(EVASIONCLR "$n" EVASIONCLR " tries poking at $N's eyes, but nothing seems to happen.&0", false, ch, 0, vict,
             TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " pokes fruitlessly at you with $s thumbs.", false, ch, 0, vict, TO_VICT);
+        act(EVASIONCLR "$n" EVASIONCLR " pokes fruitlessly at you with $s thumbs.&0", false, ch, 0, vict, TO_VICT);
         set_fighting(vict, ch, true);
         return;
     } else if (GET_LEVEL(vict) >= LVL_IMMORT && GET_LEVEL(vict) > GET_LEVEL(ch)) {
@@ -1533,11 +1533,11 @@ ACMD(do_springleap) {
             GET_STANCE(ch) = STANCE_ALERT;
         }
     } else if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
-        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!", false, ch, 0,
+        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!&0", false, ch, 0,
             vict, TO_CHAR);
-        act(EVASIONCLR "$n" EVASIONCLR " leaps at $N" EVASIONCLR " but flies right on through!", false, ch, 0, vict,
+        act(EVASIONCLR "$n" EVASIONCLR " leaps at $N" EVASIONCLR " but flies right on through!&0", false, ch, 0, vict,
             TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.", false, ch,
+        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.&0", false, ch,
             0, vict, TO_VICT);
         /* You fall */
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -2614,11 +2614,11 @@ ACMD(do_cartwheel) {
             message == 2;
         if (message == 1 || message == 2) {
             if (message == 1) {
-                act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!",
+                act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!&0",
                     false, ch, 0, vict, TO_CHAR);
-                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at $N" EVASIONCLR " but tumbles right on through!", false,
+                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at $N" EVASIONCLR " but tumbles right on through!&0", false,
                     ch, 0, vict, TO_NOTVICT);
-                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at you, but just passes through and hits the ground.",
+                act(EVASIONCLR "$n" EVASIONCLR " cartwheels at you, but just passes through and hits the ground.&0",
                     false, ch, 0, vict, TO_VICT);
             }
             /* You fall */
