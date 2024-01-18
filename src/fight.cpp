@@ -1631,7 +1631,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
             dam >>= 1;
 
         /* Ranger players deal bonus damage for fighting with two weapons */
-        if (GET_CLASS(ch) == CLASS_RANGER && !IS_NPC(ch) &&
+        if (attacktype != SKILL_KICK && GET_CLASS(ch) == CLASS_RANGER && !IS_NPC(ch) &&
             (GET_EQ(ch, WEAR_WIELD2) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON))
             dam *= 1.2;
 
@@ -1933,7 +1933,7 @@ int weapon_special(ObjData *wpn, CharData *ch) {
 }
 
 void hit(CharData *ch, CharData *victim, int type) {
-    int victim_ac, calc_thaco, dam, diceroll, weapon_position, hidden;
+    int victim_ac, calc_thaco, dam, diceroll, weapon_position, hidden, hit;
     ObjData *weapon;
     int thac0_01 = 25;
     int thac0_00 = classes[(int)GET_CLASS(ch)].thac0;
@@ -1993,17 +1993,20 @@ void hit(CharData *ch, CharData *victim, int type) {
      * hand should be used.
      */
 
-    /* Figure out which weapon we want. */
     weapon_position = -1;
-    if (type == SKILL_DUAL_WIELD || type == SKILL_2BACK) {
-        if (GET_EQ(ch, WEAR_WIELD2) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON)
-            weapon_position = WEAR_WIELD2;
-    } else if (GET_EQ(ch, WEAR_WIELD) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD)) == ITEM_WEAPON)
-        weapon_position = WEAR_WIELD;
-    else if (GET_EQ(ch, WEAR_2HWIELD) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_2HWIELD)) == ITEM_WEAPON)
-        weapon_position = WEAR_2HWIELD;
+    if (type != SKILL_KICK) {
+        /* Figure out which weapon we want. */
+        if (type == SKILL_DUAL_WIELD || type == SKILL_2BACK) {
+            if (GET_EQ(ch, WEAR_WIELD2) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD2)) == ITEM_WEAPON)
+                weapon_position = WEAR_WIELD2;
+        } else if (GET_EQ(ch, WEAR_WIELD) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_WIELD)) == ITEM_WEAPON)
+            weapon_position = WEAR_WIELD;
+        else if (GET_EQ(ch, WEAR_2HWIELD) && GET_OBJ_TYPE(GET_EQ(ch, WEAR_2HWIELD)) == ITEM_WEAPON)
+            weapon_position = WEAR_2HWIELD;
 
-    weapon = weapon_position >= 0 ? GET_EQ(ch, weapon_position) : nullptr;
+        weapon = weapon_position >= 0 ? GET_EQ(ch, weapon_position) : nullptr;
+    } else
+        weapon = nullptr;
 
     /* If riposting, don't allow a defensive skill check. */
     if (type == SKILL_RIPOSTE)
@@ -2015,6 +2018,8 @@ void hit(CharData *ch, CharData *victim, int type) {
             dtype = skill_to_dtype(GET_OBJ_VAL(weapon, VAL_WEAPON_DAM_TYPE) + TYPE_HIT);
         else
             dtype = DAM_PIERCE;
+    } else if (type == SKILL_KICK) {
+        dtype == DAM_CRUSH;
     } else {
         if (type == TYPE_UNDEFINED || type == SKILL_RIPOSTE || type == SKILL_DUAL_WIELD || !type) {
             if (weapon)
@@ -2056,23 +2061,32 @@ void hit(CharData *ch, CharData *victim, int type) {
     /* VALUES: 240 to -50 */
     calc_thaco = calc_thac0(GET_LEVEL(ch), thac0_01, thac0_00) * 10;
     /* VALUES: -50 to 70 */
-    calc_thaco -= str_app[GET_STR(ch)].tohit * 10;
+    if (type == SKILL_KICK) {
+        /* use Dex to calc */
+        calc_thaco -= str_app[GET_DEX(ch)].tohit * 10;
+    } else {
+        /* use Str to calc */
+        calc_thaco -= str_app[GET_STR(ch)].tohit * 10;
+    }
     /* VALUES: 0 to 40    (max hitroll is 40) */
     calc_thaco -= GET_HITROLL(ch);
     /* VALUES: 0 to 40 */
     calc_thaco -= (4 * GET_INT(ch)) / 10; /* Int helps! */
     /* VALUES: 0 to 40 */
     calc_thaco -= (4 * GET_WIS(ch)) / 10; /* So does wis */
-    /* check for weapon skills */
-    if (weapon) {
-        if (weapon_proficiency(weapon, weapon_position)) {
+
+    if (type != SKILL_KICK) {
+        /* check for weapon skills */
+        if (weapon) {
+            if (weapon_proficiency(weapon, weapon_position)) {
+                /* VALUES: 0 to 100 */
+                calc_thaco -= (GET_SKILL(ch, weapon_proficiency(weapon, weapon_position)) / 2);
+            }
+            /* check if monk, if so add barehand */
+        } else if (GET_CLASS(ch) == CLASS_MONK) {
             /* VALUES: 0 to 100 */
-            calc_thaco -= (GET_SKILL(ch, weapon_proficiency(weapon, weapon_position)) / 2);
+            calc_thaco -= (GET_SKILL(ch, SKILL_BAREHAND) / 2);
         }
-        /* check if monk, if so add barehand */
-    } else if (GET_CLASS(ch) == CLASS_MONK) {
-        /* VALUES: 0 to 100 */
-        calc_thaco -= (GET_SKILL(ch, SKILL_BAREHAND) / 2);
     }
 
     /* check for bless/hex - VALUES: 0 to 20 */
@@ -2110,11 +2124,11 @@ void hit(CharData *ch, CharData *victim, int type) {
      *      191..200   = Automatic hit
      */
     if (diceroll > 190 || !AWAKE(victim))
-        dam = true;
+        hit = true;
     else if (diceroll < 11)
-        dam = false;
+        hit = false;
     else
-        dam = (calc_thaco - diceroll <= victim_ac);
+        hit = (calc_thaco - diceroll <= victim_ac);
 
     /* See if the victim evades damage due to non-susceptibility
      * (this applies when asleep, too!)
@@ -2139,7 +2153,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     }
 
     /* The attacker missed the victim. */
-    if (!dam) {
+    if (!hit) {
         damage(ch, victim, 0, type);
     }
 
@@ -2147,7 +2161,7 @@ void hit(CharData *ch, CharData *victim, int type) {
      * Some skills don't get a chance for riposte, parry, and dodge,
      * so short-circuit those function calls here.
      */
-    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || no_defense_check ||
+    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK || no_defense_check ||
              EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) || EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) ||
              EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
              (!riposte(ch, victim) && !parry(ch, victim) && !dodge(ch, victim) &&
@@ -2156,21 +2170,29 @@ void hit(CharData *ch, CharData *victim, int type) {
          * Okay, we know the guy has been hit.   Now calculate damage,
          * starting with the damage bonuses: damroll and strength apply.
          */
-        dam = str_app[GET_STR(ch)].todam;
-        dam += GET_DAMROLL(ch);
+        dam = GET_DAMROLL(ch);
+        if (type != SKILL_KICK) {
+            dam += str_app[GET_STR(ch)].todam;
 
-        if (diceroll == 20)
-            dam += dam;
+            if (diceroll == 20)
+                dam += dam;
 
-        /* Mob barehand damage is always applied */
-        if (IS_NPC(ch))
-            dam += roll_dice(ch->mob_specials.damnodice, ch->mob_specials.damsizedice);
-        /* Apply weapon damage if there is one */
-        if (weapon)
-            dam += roll_dice(GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_SIZE));
-        /* Apply player barehand damage if no weapon */
-        else if (!IS_NPC(ch))
-            dam += random_number(0, 2); /* Yeah, you better wield a weapon. */
+            /* Mob barehand damage is always applied */
+            if (IS_NPC(ch))
+                dam += roll_dice(ch->mob_specials.damnodice, ch->mob_specials.damsizedice);
+            /* Apply weapon damage if there is one */
+            if (weapon)
+                dam += roll_dice(GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_NUM), GET_OBJ_VAL(weapon, VAL_WEAPON_DICE_SIZE));
+            /* Apply player barehand damage if no weapon */
+            else if (!IS_NPC(ch))
+                dam += random_number(0, 2); /* Yeah, you better wield a weapon. */
+        } else {
+            dam += (GET_SKILL(ch, SKILL_KICK) / 2);
+            if (GET_CLASS(ch) == CLASS_MONK)
+                dam += str_app[GET_DEX(ch)].todam;
+            else
+                dam += str_app[GET_STR(ch)].todam;
+        }
 
         /*
          * Include a damage multiplier if the victim isn't ready to fight.

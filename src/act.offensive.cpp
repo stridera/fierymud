@@ -1349,27 +1349,20 @@ ACMD(do_kick) {
     if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
         return;
 
-    percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + random_number(1, 101);
-    prob = GET_SKILL(ch, SKILL_KICK);
-    if (percent > prob) {
-        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-        damage(ch, vict, 0, SKILL_KICK);
-    } else {
-        WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-        if (displaced(ch, vict))
-            return;
+    WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
+    if (displaced(ch, vict))
+        return;
 
-        if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
-            act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
-            act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, vict,
-                TO_NOTVICT);
-            act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
-                ch, 0, vict, TO_VICT);
-            set_fighting(vict, ch, true);
-            return;
-        }
-        damage(ch, vict, dam_suscept_adjust(ch, vict, 0, GET_LEVEL(ch) >> 1, DAM_CRUSH), SKILL_KICK);
+    if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
+        act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
+        act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, vict,
+            TO_NOTVICT);
+        act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
+            ch, 0, vict, TO_VICT);
+        set_fighting(vict, ch, true);
+        return;
     }
+    hit(ch, vict, SKILL_KICK);
     improve_skill_offensively(ch, vict, SKILL_KICK);
 }
 
