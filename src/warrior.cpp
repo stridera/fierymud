@@ -33,6 +33,7 @@ ACMD(do_bash);
 ACMD(do_hitall);
 ACMD(do_kick);
 ACMD(do_rescue);
+ACMD(do_roundhouse);
 
 /* External functions */
 bool has_piercing_weapon(CharData *ch);
@@ -103,6 +104,10 @@ bool warrior_ai_action(CharData *ch, CharData *victim) {
         }
         if (roll > 75 && GET_SKILL(ch, SKILL_HITALL) && FIGHTING(ch)) {
             do_hitall(ch, "", 0, SCMD_HITALL);
+            return true;
+        }
+        if (roll > 75 && GET_SKILL(ch, SKILL_ROUNDHOUSE) && FIGHTING(ch)) {
+            do_roundhouse(ch, "", 0, 0);
             return true;
         }
         /*

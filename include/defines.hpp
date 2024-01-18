@@ -933,6 +933,7 @@
 #define SKILL_LURE 492
 #define SKILL_SNEAK_ATTACK 493
 #define SKILL_REND 494
+#define SKILL_ROUNDHOUSE 495
 
 /* IF THIS GETS PAST 499, update CharData for skill timers! */
 
