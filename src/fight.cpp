@@ -2114,7 +2114,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     else if (diceroll < 11)
         dam = false;
     else
-        dam = calc_thaco - diceroll <= victim_ac;
+        dam = (calc_thaco - diceroll <= victim_ac);
 
     /* See if the victim evades damage due to non-susceptibility
      * (this applies when asleep, too!)
@@ -2160,7 +2160,7 @@ void hit(CharData *ch, CharData *victim, int type) {
         dam += GET_DAMROLL(ch);
 
         if (diceroll == 20)
-            dam *= 2;
+            dam += dam;
 
         /* Mob barehand damage is always applied */
         if (IS_NPC(ch))
