@@ -60,7 +60,7 @@ const int mob_cleric_offensives[] = {
     SPELL_DISPEL_GOOD,  SPELL_WRITHING_WEEDS, SPELL_HELL_BOLT,        SPELL_DIVINE_BOLT,
     SPELL_CAUSE_CRITIC, SPELL_CAUSE_SERIOUS,  SPELL_CAUSE_LIGHT,      0};
 
-const int mob_cleric_area_spells[] = {SPELL_HOLY_WORD, SPELL_UNHOLY_WORD, SPELL_EARTHQUAKE, 0};
+const int mob_cleric_area_spells[] = {SPELL_CHAIN_LIGHTNING, SPELL_HOLY_WORD, SPELL_UNHOLY_WORD, SPELL_EARTHQUAKE, 0};
 
 const int mob_cleric_heals[] = {SPELL_FULL_HEAL,    SPELL_HEAL,       SPELL_CURE_CRITIC,
                                 SPELL_CURE_SERIOUS, SPELL_CURE_LIGHT, 0};
