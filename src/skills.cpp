@@ -1432,6 +1432,7 @@ void init_skills(void) {
     skillo(SKILL_SNEAK, "sneak", false, 0, nullptr);
     skillo(SKILL_KNOW_SPELL, "spell knowledge", false, 0, nullptr);
     skillo(SKILL_RETREAT, "retreat", false, 0, nullptr);
+    skillo(SKILL_ROUNDHOUSE, "roundhouse", false, TAR_CONTACT, nullptr);
     skillo(SKILL_SHADOW, "shadow", false, 0, nullptr);
     skillo(SKILL_SLASHING, "slashing weapons", true, TAR_CONTACT, nullptr);
     skillo(SKILL_SNEAK_ATTACK, "sneak attack", false, 0, nullptr);

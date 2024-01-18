@@ -228,6 +228,7 @@ ACMD(do_rclone);
 ACMD(do_readlist);
 ACMD(do_rename);
 ACMD(do_roar);
+ACMD(do_roundhouse);
 ACMD(do_save);
 ACMD(do_say);
 ACMD(do_scribe);
@@ -744,6 +745,7 @@ const CommandInfo cmd_info[] = {
     {"rename", POS_PRONE, STANCE_DEAD, do_rename, LVL_GRGOD, 0, 0},
     {"revoke", POS_PRONE, STANCE_DEAD, do_grant, LVL_ADMIN, SCMD_REVOKE, CMD_ANY},
     {"roar", POS_STANDING, STANCE_ALERT, do_roar, 0, SCMD_ROAR, 0},
+    {"roundhouse", POS_STANDING, STANCE_ALERT, do_roundhouse, 0, 0, 0},
     {"rofl", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"roll", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},
     {"ready", POS_PRONE, STANCE_RESTING, do_action, 0, 0, 0},

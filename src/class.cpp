@@ -2162,6 +2162,7 @@ void assign_class_skills(void) {
     skill_assign(SKILL_DOUBLE_ATTACK, CLASS_MONK, 30);
     skill_assign(SKILL_SWITCH, CLASS_MONK, 40);
     skill_assign(SKILL_SPRINGLEAP, CLASS_MONK, 50);
+    skill_assign(SKILL_ROUNDHOUSE, CLASS_MONK, 65);
     skill_assign(SKILL_CORNER, CLASS_MONK, 80);
 
     chant_assign(CHANT_REGENERATION, CLASS_MONK, 15);
