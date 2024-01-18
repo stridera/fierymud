@@ -1344,10 +1344,14 @@ ACMD(do_kick) {
 
     /* Need to see whether this player is fighting already. Kick should not
        allow for the player to switch without a switch probability being
-       calculated into the mix. (DEMOLITUM) */
+       calculated into the mix. (DEMOLITUM) 
+       
+       Edited to allow kicks from roundhouse skill without switching (DAEDELA) */
     WAIT_STATE(ch, PULSE_VIOLENCE);
-    if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
-        return;
+    if (subcmd != SKILL_ROUNDHOUSE) {
+        if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
+            return;
+    }
 
     percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + random_number(1, 101);
     prob = GET_SKILL(ch, SKILL_KICK);
@@ -2221,9 +2225,10 @@ ACMD(do_hitall) {
         }
     }
 
-    if (success)
+    if (success) {
         if (orig_target)
             attack(ch, orig_target);
+    }
 
     if (realvictims)
         improve_skill(ch, subcmd == SCMD_TANTRUM ? SKILL_TANTRUM : SKILL_HITALL);
@@ -3098,3 +3103,73 @@ ACMD(do_tripup) {
 
     WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
 }
+
+ACMD(do_roundhouse) {
+    CharData *mob, *next_mob, *orig_target;
+    byte percent;
+    bool kick_all = false, realvictims = false, success = false;
+
+    if (!ch || ch->in_room == NOWHERE)
+        return;
+
+    if (!GET_SKILL(ch, SKILL_ROUNDHOUSE)) {
+        char_printf(ch, "You don't know how to.\n");
+        return;
+    }
+    if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
+        char_printf(ch, "You feel ashamed trying to disturb the peace of this room.\n");
+        return;
+    }
+    if (ROOM_FLAGGED(ch->in_room, ROOM_HOUSE)) {
+        char_printf(ch, "Sorry, it's too cramped here for nasty maneuvers!\n");
+        return;
+    }
+
+    if (FIGHTING(ch))
+        orig_target = FIGHTING(ch);
+
+    /* Find out whether to hit "all" or just aggressive monsters */
+    one_argument(argument, arg);
+    if (!strcasecmp(arg, "all"))
+        kick_all = 1;
+
+    /* Hit all aggressive monsters in room */
+
+    percent = random_number(1, 131);
+    WAIT_STATE(ch, PULSE_VIOLENCE);
+
+    act("$n unleashes a flying spin kick at everything nearby!", false, ch, 0, 0, TO_NOTVICT);
+    char_printf(ch, "You unleash a flying spin kick at everything nearby!\n");
+    if (GET_SKILL(ch, SKILL_ROUNDHOUSE) >= percent)
+        success = true;
+
+    for (mob = world[ch->in_room].people; mob; mob = next_mob) {
+        next_mob = mob->next_in_room;
+
+        /* Basic area attack check */
+        if (!area_attack_target(ch, mob))
+            continue;
+
+        /* If I just entered plain "hitall", don't attack bystanders who aren't
+         * aggro to me */
+        if (!battling_my_group(ch, mob) && !kick_all && !is_aggr_to(mob, ch))
+            continue;
+
+        if (!MOB_FLAGGED(mob, MOB_ILLUSORY))
+            realvictims = true;
+
+        if (success) {
+            if (mob != orig_target)
+                do_kick(ch, GET_NAME(mob), 0, SKILL_ROUNDHOUSE);
+        }
+    }
+
+    if (success) {
+        if (orig_target)
+            do_kick(ch, GET_NAME(orig_target), 0, SKILL_ROUNDHOUSE);
+    }
+
+    if (realvictims)
+        improve_skill(ch, SKILL_ROUNDHOUSE);
+}
+
