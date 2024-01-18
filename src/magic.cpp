@@ -1168,7 +1168,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, SKILL_REND)) {
             effect_from_char(victim, SKILL_REND);
             to_vict = "&7&bThe gaps in your armor are restored.&0";
-            to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
+            to_char = "&7&bYou magically restore the gaps in $N's armor.&0";
+            if (ch != victim) {
+                to_room = "&7&b$n magically restores the gaps in $N's armor.&0";
+            } else {
+                to_room = "&7&b$n magically restores the gaps in $s armor.&0";
+            }
             break;
         }
 
@@ -1176,7 +1181,11 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].modifier = 10 + (skill / 20); /* max 15 */
         eff[0].duration = 10 + (skill / 50); /* max 12 */
         to_vict = "You feel someone protecting you.";
-        to_room = "$n calls upon $s gods to protect $N.";
+        if (ch != victim) {
+            to_room = "$n calls upon $s gods to protect $N.";
+        } else {
+            to_room = "$n calls upon $s gods to protect $mself.";
+        }
         break;
 
     case SPELL_BARKSKIN:
