@@ -2129,7 +2129,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     else if (diceroll < 11)
         to_hit = false;
     else
-        to_hit = (calc_thaco - diceroll <= victim_ac);
+        to_hit = calc_thaco - diceroll <= victim_ac;
 
     /* See if the victim evades damage due to non-susceptibility
      * (this applies when asleep, too!)
@@ -2175,7 +2175,7 @@ void hit(CharData *ch, CharData *victim, int type) {
         dam += str_app[GET_STR(ch)].todam;
         if (type != SKILL_KICK) {
             if (diceroll == 20)
-                dam += dam;
+                dam *= 2;
 
             /* Mob barehand damage is always applied */
             if (IS_NPC(ch))
