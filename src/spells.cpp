@@ -181,7 +181,7 @@ ASPELL(spell_banish) {
     }
 
     /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
-    roll = random_number(0, 100) + skill + cha_app[GET_CHA(ch)].music - GET_LEVEL(victim); 
+    roll = random_number(0, 100) + skill + magic_stat[GET_CHA(ch)].bonus - GET_LEVEL(victim); 
 
     /* Failure */
     if (roll < 50) {
@@ -199,7 +199,7 @@ ASPELL(spell_banish) {
     /* Success */
     if (roll > 100) {
         if (IS_NPC(victim)) {
-            roll = random_number (0, 100) + (wis_app[GET_WIS(ch)].bonus * 2); /* min: 0, max: 114 */
+            roll = random_number (0, 100) + (magic_stat[GET_WIS(ch)].bonus * 2); /* min: 0, max: 114 */
             if (roll > 66) /* 66% chance to wipe victim eq, nears 50% at max wis */
                 extract_objects(victim);
             extract_char(victim);

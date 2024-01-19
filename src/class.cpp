@@ -1432,9 +1432,9 @@ void advance_level(CharData *ch, enum level_action action) {
 
     /* Adjust by Con mod */
     if (action == LEVEL_GAIN)
-        add_hp += con_app[GET_CON(ch)].hitp;
+        add_hp += HP_bonus[GET_CON(ch)].gain;
     else
-        add_hp -= con_app[GET_CON(ch)].hitp;
+        add_hp -= HP_bonus[GET_CON(ch)].gain;
 
     /* Add to natural hitpoints and then recalculate other hitpoints */
     ch->points.max_hit += add_hp;

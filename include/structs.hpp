@@ -509,44 +509,30 @@ struct message_list {
     message_type *msg;     /* List of messages.                        */
 };
 
-struct dex_skill_type {
-    sh_int p_pocket;
-    sh_int p_locks;
-    sh_int traps;
-    sh_int sneak;
-    sh_int hide;
+struct fight_bonus_type {
+    sh_int tohit;         /* To Hit (THAC0) Bonus/Penalty        */
+    sh_int todam;         /* Damage Bonus/Penalty                */
+    sh_int armor;         /* Armor Class Bonus/Penalty           */
 };
 
-struct dex_app_type {
-    sh_int reaction;
-    sh_int miss_att;
-    sh_int defensive;
+struct weight_limit_type {
+    sh_int carry;         /* Maximum weight that can be carrried */
+    sh_int wield;         /* Maximum weight that can be wielded  */
 };
 
-struct str_app_type {
-    sh_int tohit;   /* To Hit (THAC0) Bonus/Penalty        */
-    sh_int todam;   /* Damage Bonus/Penalty                */
-    sh_int carry_w; /* Maximum weight that can be carrried */
-    sh_int wield_w; /* Maximum weight that can be wielded  */
+struct magic_stat_type {
+    sh_int bonus;           /* Stat bonus to spells                */
 };
 
-struct wis_app_type {
-    byte bonus; /* how many practices player gains per lev */
+struct HP_bonus_type {
+    sh_int gain;          /* Bonus to HP gained at level         */
 };
 
-struct int_app_type {
-    byte learn; /* how many % a player learns a spell/skill */
-    byte bonus; /* bonus to skills */
-};
-
-struct con_app_type {
-    sh_int hitp;
-    sh_int shock;
-};
-
-struct cha_app_type {
-    sh_int music; /* how many bardic music cooldowns one can have */
-    sh_int bonus; /* a bonus to skills */
+struct skill_stat_bonus_type {
+    sh_int small;         /* Range -7 to 5 bonus to skills       */
+    sh_int medium;        /* Range -7 to 10 bonus to skills      */
+    sh_int large;         /* Range -7 to 15 bonus to skills      */
+    sh_int rogue_skills;  /* Bonus range for rogue-type skills   */
 };
 
 struct weather_data {

@@ -335,7 +335,7 @@ extern flagvector *ALL_FLAGS;
      (GET_OBJ_EFFECTIVE_WEIGHT(obj) <= CAN_CARRY_W(ch)))
 #define ADDED_WEIGHT_REFUSED(ch, obj) ((GET_OBJ_EFFECTIVE_WEIGHT(obj) + IS_CARRYING_W(ch) > MAXIMUM_FLIGHT_LOAD(ch)))
 #define IS_CARRYING_N(ch) ((ch)->char_specials.carry_items)
-#define CAN_CARRY_W(ch) (str_app[GET_STR(ch)].carry_w)
+#define CAN_CARRY_W(ch) (weight_limit[GET_STR(ch)].carry)
 #define CAN_CARRY_N(ch) (5 + (GET_DEX(ch) >> 1) + (GET_LEVEL(ch) >> 1))
 #define CURRENT_LOAD(ch)                                                                                               \
     (IS_CARRYING_W(ch) >= CAN_CARRY_W(ch) ? 100                                                                        \

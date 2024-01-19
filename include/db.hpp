@@ -172,13 +172,11 @@ extern QuestInfo *all_quests;
 
 extern TimeInfoData time_info;
 
-extern str_app_type str_app[101];
-extern dex_skill_type dex_app_skill[101];
-extern dex_app_type dex_app[101];
-extern con_app_type con_app[101];
-extern int_app_type int_app[101];
-extern wis_app_type wis_app[101];
-extern cha_app_type cha_app[101];
+extern fight_bonus_type fight_bonus[101];
+extern weight_limit_type weight_limit[101];
+extern magic_stat_type magic_stat[101];
+extern HP_bonus_type HP_bonus[101];
+extern skill_stat_bonus_type skill_stat_bonus[101];
 
 extern message_list fight_messages[MAX_MESSAGES];
 extern SpellDamage spell_dam_info[MAX_SPELLS + 1];

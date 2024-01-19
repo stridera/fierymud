@@ -873,7 +873,7 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
         }
 
         /* Check weight of object */
-        if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_EFFECTIVE_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
+        if (GET_OBJ_TYPE(obj) == ITEM_WEAPON && GET_OBJ_EFFECTIVE_WEIGHT(obj) > weight_limit[GET_STR(ch)].wield) {
             if (sendmessage)
                 char_printf(ch, "It's too heavy for you to use.\n");
             return false;

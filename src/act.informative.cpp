@@ -4410,7 +4410,7 @@ ACMD(do_innate) {
                 if (!GET_COOLDOWN(ch, CD_INNATE_BARKSKIN) || GET_LEVEL(ch) > LVL_IMMORT) {
                     call_magic(ch, ch, 0, SPELL_BARKSKIN, GET_LEVEL(ch), CAST_SPELL);
                     if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_NOMAGIC))
-                        SET_COOLDOWN(ch, CD_INNATE_BARKSKIN, (20 - con_app[GET_CON(ch)].hitp) MUD_HR);
+                        SET_COOLDOWN(ch, CD_INNATE_BARKSKIN, (20 - skill_stat_bonus[GET_CON(ch)].small) MUD_HR);
                 } else {
                     int seconds = GET_COOLDOWN(ch, CD_INNATE_BARKSKIN) / 10;
                     char_printf(ch,

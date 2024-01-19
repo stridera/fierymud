@@ -567,7 +567,7 @@ void sick_update(void) {
         if (GET_STANCE(i) >= STANCE_STUNNED) {
             /* Do damage with a maximum of 5.9% of HP minus 2x con bonus hp for PCs and 2% for NPCs */
             if (EFF_FLAGGED(i, EFF_POISON))
-                damage(i, i, IS_NPC(i) ? (GET_MAX_HIT(i) / 50) : ((GET_MAX_HIT(i) / 17) - (con_app[GET_CON(i)].hitp) * 2), SPELL_POISON);
+                damage(i, i, IS_NPC(i) ? (GET_MAX_HIT(i) / 50) : ((GET_MAX_HIT(i) / 17) - (skill_stat_bonus[GET_CON(i)].large)), SPELL_POISON);
         }
     }
 }
