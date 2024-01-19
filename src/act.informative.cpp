@@ -3583,7 +3583,7 @@ ACMD(do_spells) {
         i = skill_sort_info[k];
         if (!IS_SPELL(i))
             continue;
-        if (skills[i].min_level[GET_CLASS(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0) {
+        if (skills[i].min_level[GET_CLASS(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0 && skills[i].min_level[GET_CLASS(tch)] <= skills[i].min_race_level[GET_RACE(tch)]) {
             circle = (skills[i].min_level[GET_CLASS(tch)] - 1) / 8;
             for (j = 0; circle_spells[circle][j] && j < MAX_SPELLS_PER_CIRCLE && circle < max_vis_circle; ++j)
                 ;
