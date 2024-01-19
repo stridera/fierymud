@@ -1391,7 +1391,6 @@ void init_races(void) {
      * The only spells that should be assigned here are the breath weapon spells.
      * Skills and spells intended to be unlocked beyond level 1 must be added in the assign_race_skills() function below.
      */
-
     for (race = 0; race < NUM_RACES; ++race) {
         memset(races[race].skills, 0, sizeof(races[race].skills));
         pos = 0;
@@ -1399,9 +1398,6 @@ void init_races(void) {
         case RACE_ARBOREAN:
             ADD_SKILL(SKILL_DOORBASH, 1000);
             ADD_SKILL(SKILL_BODYSLAM, 1000);
-            break;
-        case RACE_ELF:
-            ADD_SKILL(SKILL_SLASHING, ROLL_SKILL_PROF);
             break;
         case RACE_TROLL:
             ADD_SKILL(SKILL_DOORBASH, 1000);
@@ -1430,7 +1426,7 @@ void init_races(void) {
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
             break;
         case RACE_DRAGONBORN_FIRE:
-            ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_FIRE_BREATH, 1000);
             break;
         case RACE_DRAGON_FROST:
             ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
@@ -1438,7 +1434,7 @@ void init_races(void) {
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
             break;
         case RACE_DRAGONBORN_FROST:
-            ADD_SKILL(SKILL_BREATHE_FROST, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_FROST_BREATH, 1000);
             break;
         case RACE_DRAGON_ACID:
             ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
@@ -1446,7 +1442,7 @@ void init_races(void) {
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
             break;
         case RACE_DRAGONBORN_ACID:
-            ADD_SKILL(SKILL_BREATHE_ACID, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_ACID_BREATH, 1000);
             break;
         case RACE_DRAGON_LIGHTNING:
             ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
@@ -1454,7 +1450,7 @@ void init_races(void) {
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
             break;
         case RACE_DRAGONBORN_LIGHTNING:
-            ADD_SKILL(SKILL_BREATHE_LIGHTNING, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_LIGHTNING_BREATH, 1000);
             break;
         case RACE_DRAGON_GAS:
             ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
@@ -1462,7 +1458,7 @@ void init_races(void) {
             ADD_SKILL(SKILL_ROAR, ROLL_SKILL_PROF);
             break;
         case RACE_DRAGONBORN_GAS:
-            ADD_SKILL(SKILL_BREATHE_GAS, ROLL_SKILL_PROF);
+            ADD_SKILL(SPELL_GAS_BREATH, 1000);
             break;
         case RACE_DEMON:
             ADD_SKILL(SKILL_BREATHE_FIRE, ROLL_SKILL_PROF);
