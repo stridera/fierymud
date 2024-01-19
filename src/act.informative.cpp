@@ -3563,6 +3563,17 @@ ACMD(do_spells) {
         }
     }
 
+    /* Is this character in a class or a race with spells? */
+    if (!IS_SPELLCASTER_CLASS(tch) && !IS_SPELLCASTER_RACE(tch)) {
+        if (tch == ch)
+            char_printf(ch, "You don't know any spells.\n");
+        else {
+            char_printf(ch, "Being a{} {}, {} has no spells.\n", startsvowel(CLASS_NAME(tch)) ? "n" : "",
+                        CLASS_NAME(tch), GET_NAME(tch));
+        }
+        return;
+    }
+
 
     /* Collect and count the spells known by the victim. */
 

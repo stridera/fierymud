@@ -58,7 +58,9 @@ extern SkillDef skills[TOP_SKILL_DEFINE + 1];
 int level_to_circle(int level);
 int circle_to_level(int circle);
 #define IS_QUEST_SPELL(spellnum) (skills[(spellnum)].quest)
-#define SKILL_LEVEL(ch, skillnum) (skills[(skillnum)].min_level[(int)GET_CLASS(ch)])
+#define SKILL_LEVEL(ch, skillnum)                                                                                      \
+    ((skills[(skillnum)].min_level[(int)GET_CLASS(ch)] <= skills[(skillnum)].min_race_level[(int)GET_RACE(ch)]) ?      \
+    skills[(skillnum)].min_level[(int)GET_CLASS(ch)] : skills[(skillnum)].min_race_level[(int)GET_RACE(ch)])
 #define SPELL_CIRCLE(ch, spellnum) (level_to_circle(SKILL_LEVEL(ch, spellnum)))
 #define CIRCLE_ABBR(ch, spellnum) (circle_abbrev[SPELL_CIRCLE((ch), (spellnum))])
 #define SKILL_IS_TARGET(skill, tartype)                                                                                \

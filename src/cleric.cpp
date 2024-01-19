@@ -164,7 +164,7 @@ bool cleric_ai_action(CharData *ch, CharData *victim) {
         case SPELL_SILENCE:
             for (victim = world[ch->in_room].people; victim; victim = next_victim) {
                 next_victim = victim->next_in_room;
-                if (IS_SPELLCASTER(victim) && FIGHTING(victim) == ch &&
+                if ((IS_SPELLCASTER_CLASS(victim) || IS_SPELLCASTER_RACE(victim)) && FIGHTING(victim) == ch &&
                     !has_effect(victim, &mob_cleric_hindrances[i]) && GET_LEVEL(victim) < (GET_LEVEL(ch) + 20)) {
                     if (mob_cast(ch, victim, nullptr, mob_cleric_hindrances[i].spell))
                         return true;

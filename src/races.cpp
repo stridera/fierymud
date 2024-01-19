@@ -42,7 +42,7 @@ void set_init_height_weight(CharData *ch);
  * this arrangement:
  *
  *   name, names, displayname, fullname, plainname,
- *   playable, humanoid, racealign, def_size, def_align, \
+ *   playable, humanoid, magical, racealign, def_size, def_align, \
  *     bonus_damroll, bonus_hitroll,
  *   def_lifeforce, def_composition,
  *   mweight_lo, mweight_hi, mheight_lo, mheight_hi, \
@@ -63,6 +63,7 @@ RaceDef races[NUM_RACES] = {
      "Human",                  /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      0,                        /* default alignment */
@@ -98,6 +99,7 @@ RaceDef races[NUM_RACES] = {
      "Elf",                    /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     true,                     /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      1000,                     /* default alignment */
@@ -133,6 +135,7 @@ RaceDef races[NUM_RACES] = {
      "Gnome",                  /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_SMALL,               /* default size */
      1000,                     /* default alignment */
@@ -168,6 +171,7 @@ RaceDef races[NUM_RACES] = {
      "Dwarf",                  /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      1000,                     /* default alignment */
@@ -203,6 +207,7 @@ RaceDef races[NUM_RACES] = {
      "Troll",                  /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_EVIL,          /* race alignment */
      SIZE_LARGE,               /* default size */
      -1000,                    /* default alignment */
@@ -238,6 +243,7 @@ RaceDef races[NUM_RACES] = {
      "Drow",                   /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_EVIL,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      -1000,                    /* default alignment */
@@ -273,6 +279,7 @@ RaceDef races[NUM_RACES] = {
      "Duergar",                /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_EVIL,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      -1000,                    /* default alignment */
@@ -308,6 +315,7 @@ RaceDef races[NUM_RACES] = {
      "Ogre",                   /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_EVIL,          /* race alignment */
      SIZE_LARGE,               /* default size */
      -1000,                    /* default alignment */
@@ -343,6 +351,7 @@ RaceDef races[NUM_RACES] = {
      "Orc",                    /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_EVIL,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      -1000,                    /* default alignment */
@@ -378,6 +387,7 @@ RaceDef races[NUM_RACES] = {
      "Half-Elf",               /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      1000,                     /* default alignment */
@@ -413,6 +423,7 @@ RaceDef races[NUM_RACES] = {
      "Barbarian",              /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_LARGE,               /* default size */
      0,                        /* default alignment */
@@ -448,6 +459,7 @@ RaceDef races[NUM_RACES] = {
      "Halfling",               /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_SMALL,               /* default size */
      1000,                     /* default alignment */
@@ -483,6 +495,7 @@ RaceDef races[NUM_RACES] = {
      "Plant",                   /* name as displayed in medit vsearch stat and enlightenment */
      false,                     /* playable? */
      false,                     /* humanoid? */
+     false,                     /* casts race spells? */
      RACE_ALIGN_GOOD,           /* race alignment */
      SIZE_MEDIUM,               /* default size */
      0,                         /* default alignment */
@@ -518,6 +531,7 @@ RaceDef races[NUM_RACES] = {
      "Humanoid",               /* name as displayed in medit vsearch stat and enlightenment */
      false,                    /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      0,                        /* default alignment */
@@ -553,6 +567,7 @@ RaceDef races[NUM_RACES] = {
      "Animal",                 /* name as displayed in medit vsearch stat and enlightenment */
      false,                    /* playable? */
      false,                    /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      0,                        /* default alignment */
@@ -588,6 +603,7 @@ RaceDef races[NUM_RACES] = {
      "General Dragon",            /* name as displayed in medit vsearch stat and enlightenment */
      false,                       /* playable? */
      false,                       /* humanoid? */
+     false,                       /* casts race spells? */
      RACE_ALIGN_GOOD,             /* race alignment */
      SIZE_GARGANTUAN,             /* default size */
      0,                           /* default alignment */
@@ -623,6 +639,7 @@ RaceDef races[NUM_RACES] = {
      "Giant",                   /* name as displayed in medit vsearch stat and enlightenment */
      false,                     /* playable? */
      true,                      /* humanoid? */
+     false,                     /* casts race spells? */
      RACE_ALIGN_GOOD,           /* race alignment */
      SIZE_HUGE,                 /* default size */
      0,                         /* default alignment */
@@ -658,6 +675,7 @@ RaceDef races[NUM_RACES] = {
      "Other",                  /* name as displayed in medit vsearch stat and enlightenment */
      false,                    /* playable? */
      false,                    /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      0,                        /* default alignment */
@@ -693,6 +711,7 @@ RaceDef races[NUM_RACES] = {
      "Goblin",                 /* name as displayed in medit vsearch stat and enlightenment */
      false,                    /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_EVIL,          /* race alignment */
      SIZE_SMALL,               /* default size */
      -500,                     /* default alignment */
@@ -728,6 +747,7 @@ RaceDef races[NUM_RACES] = {
      "Demon",                   /* name as displayed in medit vsearch stat and enlightenment */
      false,                     /* playable? */
      true,                      /* humanoid? */
+     false,                     /* casts race spells? */
      RACE_ALIGN_EVIL,           /* race alignment */
      SIZE_LARGE,                /* default size */
      -1000,                     /* default alignment */
@@ -763,6 +783,7 @@ RaceDef races[NUM_RACES] = {
      "Brownie",                /* name as displayed in medit vsearch stat and enlightenment */
      false,                    /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_SMALL,               /* default size */
      500,                      /* default alignment */
@@ -798,6 +819,7 @@ RaceDef races[NUM_RACES] = {
      "Fire Dragon",               /* name as displayed in medit vsearch stat and enlightenment */
      false,                       /* playable? */
      false,                       /* humanoid? */
+     false,                       /* casts race spells? */
      RACE_ALIGN_GOOD,             /* race alignment */
      SIZE_GARGANTUAN,             /* default size */
      0,                           /* default alignment */
@@ -833,6 +855,7 @@ RaceDef races[NUM_RACES] = {
      "Frost Dragon",              /* name as displayed in medit vsearch stat and enlightenment */
      false,                       /* playable? */
      false,                       /* humanoid? */
+     false,                       /* casts race spells? */
      RACE_ALIGN_GOOD,             /* race alignment */
      SIZE_GARGANTUAN,             /* default size */
      0,                           /* default alignment */
@@ -868,6 +891,7 @@ RaceDef races[NUM_RACES] = {
      "Acid Dragon",               /* name as displayed in medit vsearch stat and enlightenment */
      false,                       /* playable? */
      false,                       /* humanoid? */
+     false,                       /* casts race spells? */
      RACE_ALIGN_GOOD,             /* race alignment */
      SIZE_GARGANTUAN,             /* default size */
      0,                           /* default alignment */
@@ -903,6 +927,7 @@ RaceDef races[NUM_RACES] = {
      "Lightning Dragon",          /* name as displayed in medit vsearch stat and enlightenment */
      false,                       /* playable? */
      false,                       /* humanoid? */
+     false,                       /* casts race spells? */
      RACE_ALIGN_GOOD,             /* race alignment */
      SIZE_GARGANTUAN,             /* default size */
      0,                           /* default alignment */
@@ -938,6 +963,7 @@ RaceDef races[NUM_RACES] = {
      "Gas Dragon",                /* name as displayed in medit vsearch stat and enlightenment */
      false,                       /* playable? */
      false,                       /* humanoid? */
+     false,                       /* casts race spells? */
      RACE_ALIGN_GOOD,             /* race alignment */
      SIZE_GARGANTUAN,             /* default size */
      0,                           /* default alignment */
@@ -973,6 +999,7 @@ RaceDef races[NUM_RACES] = {
      "Fire Dragonborn",                    /* name as displayed in medit vsearch stat and enlightenment */
      true,                                 /* playable? */
      true,                                 /* humanoid? */
+     false,                                /* casts race spells? */
      RACE_ALIGN_GOOD,                      /* race alignment */
      SIZE_MEDIUM,                          /* default size */
      0,                                    /* default alignment */
@@ -1008,6 +1035,7 @@ RaceDef races[NUM_RACES] = {
      "Frost Dragonborn",                 /* name as displayed in medit vsearch stat and enlightenment */
      true,                               /* playable? */
      true,                               /* humanoid? */
+     false,                              /* casts race spells? */
      RACE_ALIGN_GOOD,                    /* race alignment */
      SIZE_MEDIUM,                        /* default size */
      0,                                  /* default alignment */
@@ -1043,6 +1071,7 @@ RaceDef races[NUM_RACES] = {
      "Acid Dragonborn",                      /* name as displayed in medit vsearch stat and enlightenment */
      true,                                   /* playable? */
      true,                                   /* humanoid? */
+     false,                                  /* casts race spells? */
      RACE_ALIGN_GOOD,                        /* race alignment */
      SIZE_MEDIUM,                            /* default size */
      0,                                      /* default alignment */
@@ -1078,6 +1107,7 @@ RaceDef races[NUM_RACES] = {
      "Lightning Dragonborn",         /* name as displayed in medit vsearch stat and enlightenment */
      true,                           /* playable? */
      true,                           /* humanoid? */
+     false,                          /* casts race spells? */
      RACE_ALIGN_GOOD,                /* race alignment */
      SIZE_MEDIUM,                    /* default size */
      0,                              /* default alignment */
@@ -1113,6 +1143,7 @@ RaceDef races[NUM_RACES] = {
      "Gas Dragonborn",           /* name as displayed in medit vsearch stat and enlightenment */
      true,                       /* playable? */
      true,                       /* humanoid? */
+     false,                      /* casts race spells? */
      RACE_ALIGN_GOOD,            /* race alignment */
      SIZE_MEDIUM,                /* default size */
      0,                          /* default alignment */
@@ -1148,6 +1179,7 @@ RaceDef races[NUM_RACES] = {
      "Sverfneblin",            /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_EVIL,          /* race alignment */
      SIZE_SMALL,               /* default size */
      -1000,                    /* default alignment */
@@ -1183,6 +1215,7 @@ RaceDef races[NUM_RACES] = {
      "Seelie Faerie",               /* name as displayed in medit vsearch stat and enlightenment */
      true,                          /* playable? */
      true,                          /* humanoid? */
+     false,                         /* casts race spells? */
      RACE_ALIGN_GOOD,               /* race alignment */
      SIZE_TINY,                     /* default size */
      1000,                          /* default alignment */
@@ -1219,6 +1252,7 @@ RaceDef races[NUM_RACES] = {
      "Unseelie Faerie",                               /* name as displayed in medit vsearch stat and enlightenment */
      true,                                            /* playable? */
      true,                                            /* humanoid? */
+     false,                                           /* casts race spells? */
      RACE_ALIGN_EVIL,                                 /* race alignment */
      SIZE_TINY,                                       /* default size */
      -1000,                                           /* default alignment */
@@ -1254,6 +1288,7 @@ RaceDef races[NUM_RACES] = {
      "Nymph",                  /* name as displayed in medit vsearch stat and enlightenment */
      true,                     /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_MEDIUM,              /* default size */
      1000,                     /* default alignment */
@@ -1289,6 +1324,7 @@ RaceDef races[NUM_RACES] = {
      "Arborean",               /* name as displayed in medit vsearch stat and enlightenment */
      false,                    /* playable? */
      true,                     /* humanoid? */
+     false,                    /* casts race spells? */
      RACE_ALIGN_GOOD,          /* race alignment */
      SIZE_LARGE,               /* default size */
      0,                        /* default alignment */
