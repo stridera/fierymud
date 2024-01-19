@@ -1225,14 +1225,6 @@ ACMD(do_cast) {
             char_printf(ch, "You imitate a monk chanting...Monkey see, monkey do?\n");
             return;
         }
-        if (GET_LEVEL(ch) < LVL_GOD && GET_COOLDOWN(ch, CD_CHANT)) {
-            int seconds = GET_COOLDOWN(ch, CD_CHANT) / 10;
-            char_printf(ch,
-                        "You're still out of breath from chanting recently!\n"
-                        "You'll be able to chant again in another {:d} {}.\n",
-                        seconds, seconds == 1 ? "second" : "seconds");
-            return;
-        }
     }
 
     if (subcmd == SCMD_PERFORM) {
@@ -1322,6 +1314,25 @@ ACMD(do_cast) {
         else
             char_printf(ch, "You do not know that spell!\n");
         return;
+    }
+
+    /* Chant cooldown moved here after chant determined: is the chant violent or not */
+    if (subcmd = SCMD_CHANT) {
+        if (GET_LEVEL(ch) < LVL_GOD) {
+            int seconds = 0;
+            if (SINFO.violent && GET_CLASS(ch) == CLASS_MONK && GET_COOLDOWN(ch, CD_OFFENSE_CHANT)) {
+                seconds = GET_COOLDOWN(ch, CD_OFFENSE_CHANT) / 10;
+            } else if (GET_COOLDOWN(ch, CD_DEFENSE_CHANT)) {
+                seconds = GET_COOLDOWN(ch, CD_DEFENSE_CHANT) / 10;
+            }
+            if (seconds) {
+                char_printf(ch,
+                            "You're still out of breath from chanting recently!\n"
+                            "You'll be able to chant again in another {:d} {}.\n",
+                            seconds, seconds == 1 ? "second" : "seconds");
+                return;
+            }
+        }
     }
 
     /* Is the spell scribed in a book the PC is holding?  PC's only. */
@@ -1429,9 +1440,12 @@ ACMD(do_cast) {
         if (IS_SET(cresult, CAST_RESULT_IMPROVE))
             improve_skill(ch, SKILL_CHANT);
         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-            SET_COOLDOWN(ch, CD_CHANT,
-                         (7 - (((wis_app[GET_WIS(ch)].bonus) * 3) / 4) + (((int_app[GET_INT(ch)].bonus) * 1) / 4))
-                             MUD_HR);
+            /* Monks get a second chant for debuffing/offensive chants */
+            if (SINFO.violent && GET_CLASS(ch) == CLASS_MONK) {
+                SET_COOLDOWN(ch, CD_OFFENSE_CHANT, (7 - (((wis_app[GET_WIS(ch)].bonus) * 3) / 4) + (((int_app[GET_INT(ch)].bonus) * 1) / 4)) MUD_HR);
+            } else {
+                SET_COOLDOWN(ch, CD_DEFENSE_CHANT, (7 - (((wis_app[GET_WIS(ch)].bonus) * 3) / 4) + (((int_app[GET_INT(ch)].bonus) * 1) / 4)) MUD_HR);
+            }
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
 
