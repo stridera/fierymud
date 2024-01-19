@@ -2508,6 +2508,7 @@ void assign_class_skills(void) {
     spell_assign(SPELL_WATER_BLAST, CLASS_RANGER, CIRCLE_10);
 
     spell_assign(SPELL_BLUR, CLASS_RANGER, CIRCLE_11);
+    spell_assign(SPELL_CHAIN_LIGHTNING, CLASS_RANGER, CIRCLE_11);
 
     spell_assign(SPELL_GREATER_DISPLACEMENT, CLASS_RANGER, CIRCLE_12);
 
