@@ -118,11 +118,7 @@ int top_of_helpt = 0;             /* top of help index table         */
 
 TimeInfoData time_info;
 
-fight_bonus_type fight_bonus[101];
-weight_limit_type weight_limit[101];
-magic_stat_type magic_stat[101];
-HP_bonus_type HP_bonus[101];
-skill_stat_bonus_type skill_stat_bonus[101];
+stat_bonus_type stat_bonus[101];
 
 int no_mail = 0; /* mail disabled?                 */
 
@@ -166,11 +162,7 @@ void boot_the_shops(FILE *shop_f, char *filename, int rec_count);
 int hsort(const void *a, const void *b);
 void boot_the_shops(FILE *shop_f, char *filename, int rec_count);
 void build_count(void);
-void load_fight_bonus(void);
-void load_weight_limit(void);
-void load_HP_bonus(void);
-void load_magic_stat(void);
-void load_skill_stat_bonus(void);
+void load_stat_bonus(void);
 void clear_memory(CharData *ch);
 
 #define READ_SIZE 256
@@ -507,11 +499,7 @@ void free_spell_dams(void) {
 
 void boot_world(void) {
     log("Loading attribute bonus tables.");
-    load_fight_bonus();
-    load_weight_limit();
-    load_magic_stat();
-    load_HP_bonus();
-    load_skill_stat_bonus();
+    load_stat_bonus();
 
     log("Loading zone table.");
     index_boot(DB_BOOT_ZON);

@@ -279,7 +279,8 @@ const char *default_prompts[][2] = {{"Basic", "&0%hhp %vmv>&0 "},
 /* to the 100 base system.  These functions closely approximate */
 /* the older 18 base hard coded arrays. -gurlaek 6/24/1999 */
 
-void load_fight_bonus(void) {
+
+void load_stat_bonus(void) {
     int x;
 
     for (x = 0; x <= 100; x++) {
@@ -288,118 +289,89 @@ void load_fight_bonus(void) {
 
         /* tohit bonus */
         if (x <= 28 && x >= 0) /* linear from (0,-5) to (28,-1) */
-            fight_bonus[x].tohit = (sh_int)((((float)1 / 7) * (float)x) - 5);
+            stat_bonus[x].tohit = (sh_int)((((float)1 / 7) * (float)x) - 5);
         if (x <= 64 && x >= 29) /* no bonus */
-            fight_bonus[x].tohit = 0;
+            stat_bonus[x].tohit = 0;
         if (x <= 100 && x >= 65) /* linear from (65,1) to (100,7) */
-            fight_bonus[x].tohit = (sh_int)((((float)6 / 35) * (float)x) - ((float)75 / 7));
+            stat_bonus[x].tohit = (sh_int)((((float)6 / 35) * (float)x) - ((float)75 / 7));
 
         /* todam bonus */
         if (x <= 20 && x >= 0) /* linear from (0,-4) to (20,-1) */
-            fight_bonus[x].todam = (sh_int)((((float)3 / 20) * (float)x) - 4);
+            stat_bonus[x].todam = (sh_int)((((float)3 / 20) * (float)x) - 4);
         if (x <= 60 && x >= 21) /* no bonus */
-            fight_bonus[x].todam = 0;
+            stat_bonus[x].todam = 0;
         if (x <= 100 && x >= 61) /* linear from (61,1) to (100,14) */
-            fight_bonus[x].todam = (sh_int)((((float)13 / 39) * (float)x) - ((float)754 / 39));
+            stat_bonus[x].todam = (sh_int)((((float)13 / 39) * (float)x) - ((float)754 / 39));
 
-        /* AC bonus */
+        /* defensive (mostly AC) bonus */
         if (x <= 24 && x >= 0) /* linear from (0,6) to (24,1) */
-            fight_bonus[x].armor = (sh_int)((((float)-5 / 24) * (float)x) + 6);
+            stat_bonus[x].defense = (sh_int)((((float)-5 / 24) * (float)x) + 6);
         if (x <= 56 && x >= 25) /* zero */
-            fight_bonus[x].armor = 0;
+            stat_bonus[x].defense = 0;
         if (x <= 100 && x >= 57) /* linear from (57,-1) to (100,-6) */
-            fight_bonus[x].armor = (sh_int)((((float)-5 / 43) * (float)x) + ((float)242 / 43));
-    }
-}
+            stat_bonus[x].defense = (sh_int)((((float)-5 / 43) * (float)x) + ((float)242 / 43));
 
-void load_weight_limit(void) {
 #define CARRY_100_STR 786.0
 #define CARRY_72_STR 300.0
-    int x;
 
-    for (x = 0; x <= 100; x++) {
         /* carry */
         if (x <= 72 && x >= 0)
-            weight_limit[x].carry = (sh_int)((CARRY_72_STR * x) / 72);
+            stat_bonus[x].carry = (sh_int)((CARRY_72_STR * x) / 72);
         if (x <= 100 && x >= 73)
-            weight_limit[x].carry = (sh_int)(CARRY_72_STR + ((CARRY_100_STR - CARRY_72_STR) * ((x - 72) / 28.0)));
+            stat_bonus[x].carry = (sh_int)(CARRY_72_STR + ((CARRY_100_STR - CARRY_72_STR) * ((x - 72) / 28.0)));
 
         /* wield */
         if (x <= 72 && x >= 0) /* linear from (0,0) to (72, 20) */
-            weight_limit[x].wield = (sh_int)((((float)5 / 18) * (float)x));
+            stat_bonus[x].wield = (sh_int)((((float)5 / 18) * (float)x));
         if (x <= 100 && x >= 73) /* linear from (73,40) (100,70) */
-            weight_limit[x].wield = (sh_int)((((float)30 / 27) * (float)x) - ((float)370 / 9));
-    }
-}
+            stat_bonus[x].wield = (sh_int)((((float)30 / 27) * (float)x) - ((float)370 / 9));
 
-void load_magic_stat(void) {
-    int x;
-
-    for (x = 0; x <= 100; x++) {
         /* bonus to spells */
         if (x <= 44 && x >= 0) /*  zero */
-            magic_stat[x].bonus = 0;
+            stat_bonus[x].magic = 0;
         if (x <= 100 && x >= 45) /* linear from (45,2) to (100,7) */
-            magic_stat[x].bonus = (sh_int)((((float)1 / 11) * (float)x) - ((float)23 / 11));
-    }
-}
-
-void load_HP_bonus(void) {
-    int x;
-
-    for (x = 0; x <= 100; x++) {
-        /* (x, bonus) where [bonus=Mx + B] is the notation used below */
-        /* M and B were determined from the old numbers */
+            stat_bonus[x].magic = (sh_int)((((float)1 / 11) * (float)x) - ((float)23 / 11));
 
         /* hit point bonus */
         if (x <= 24 && x >= 0) /* linear from (0,-4) to (24,-1) */
-            HP_bonus[x].gain = (sh_int)((((float)1 / 8) * (float)x) - 4);
+            stat_bonus[x].hpgain = (sh_int)((((float)1 / 8) * (float)x) - 4);
         if (x <= 56 && x >= 25) /* zero */
-            HP_bonus[x].gain = 0;
+            stat_bonus[x].hpgain = 0;
         if (x <= 100 && x >= 57) /* linear from (57,1) to (96,5) */
-            HP_bonus[x].gain = (sh_int)((((float)1 / 8) * (float)x) - ((float)121 / 20));
+            stat_bonus[x].hpgain = (sh_int)((((float)1 / 8) * (float)x) - ((float)121 / 20));
         if (x > 96) /* five */
-            HP_bonus[x].gain = 5;
-    }
-}
-
-void load_skill_stat_bonus(void) {
-    int x;
-
-    for (x = 0; x <= 100; x++) {
-        /* (x, bonus) where [bonus=Mx + B] is the notation used below */
-        /* M and B were determined from the old numbers */
+            stat_bonus[x].hpgain = 5;
 
         /* small bonus */
         if (x <= 44 && x >= 0) /* linear from (0,-7) to (44,-1) */
-            skill_stat_bonus[x].small = (sh_int)((((float)6 / 44) * (float)x) - 7);
+            stat_bonus[x].skill_small = (sh_int)((((float)6 / 44) * (float)x) - 7);
         if (x <= 59 && x >= 45) /* zero */
-            skill_stat_bonus[x].small = 0;
+            stat_bonus[x].skill_small = 0;
         if (x <= 100 && x >= 60) /* linear from (60,1) to (100,5) */
-            skill_stat_bonus[x].small = (sh_int)((((float)1 / 10) * (float)x) - 5);
+            stat_bonus[x].skill_small = (sh_int)((((float)1 / 10) * (float)x) - 5);
 
         /* medium bonus */
         if (x <= 44 && x >= 0) /* linear from (0,-18) to (44,-2) */
-            skill_stat_bonus[x].medium = (sh_int)((((float)3 / 8) * (float)x) - ((float)27 / 2));
+            stat_bonus[x].skill_medium = (sh_int)((((float)3 / 8) * (float)x) - ((float)27 / 2));
         if (x <= 54 && x >= 45) /* zero */
-            skill_stat_bonus[x].medium = 0;
+            stat_bonus[x].skill_medium = 0;
         if (x <= 100 && x >= 55) /* linear from (55,2) to (100,10) */
-            skill_stat_bonus[x].medium = (sh_int)((((float)89 / 500) * (float)x) - ((float)779 / 100));
+            stat_bonus[x].skill_medium = (sh_int)((((float)89 / 500) * (float)x) - ((float)779 / 100));
 
         /* large bonus */
         if (x <= 44 && x >= 0) /* linear from (0,-28) to (44,-1) */
-            skill_stat_bonus[x].large = (sh_int)((((float)5 / 8) * (float)x) - ((float)57 / 2));
+            stat_bonus[x].skill_large = (sh_int)((((float)5 / 8) * (float)x) - ((float)57 / 2));
         if (x <= 49 && x >= 45) /* zero */
-            skill_stat_bonus[x].large = 0;
+            stat_bonus[x].skill_large = 0;
         if (x <= 100 && x >= 50) /* linear from (50,3) to (100,15) */
-            skill_stat_bonus[x].large = (sh_int)((((float)6 / 25) * (float)x) - 9);
+            stat_bonus[x].skill_large = (sh_int)((((float)6 / 25) * (float)x) - 9);
 
         /* Rogue skills with big numbers like sneak, hide, pick pocket, etc. */
         if (x <= 48 && x >= 0) /* linear from (0,-99) to (48,-5) */
-            skill_stat_bonus[x].rogue_skills = (sh_int)((((float)47 / 24) * (float)x) - 99);
+            stat_bonus[x].rogue_skills = (sh_int)((((float)47 / 24) * (float)x) - 99);
         if (x <= 64 && x >= 49) /* zero */
-            skill_stat_bonus[x].rogue_skills = 0;
+            stat_bonus[x].rogue_skills = 0;
         if (x <= 100 && x >= 65) /* linear from (65,5) to (100,25) */
-            skill_stat_bonus[x].rogue_skills = (sh_int)((((float)4 / 7) * (float)x) - ((float)225 / 7));
+            stat_bonus[x].rogue_skills = (sh_int)((((float)4 / 7) * (float)x) - ((float)225 / 7));
     }
 }

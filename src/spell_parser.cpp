@@ -1245,7 +1245,7 @@ ACMD(do_cast) {
             return;
         }
         if (GET_LEVEL(ch) < LVL_GOD) {
-            switch (magic_stat[GET_CHA(ch)].bonus) {
+            switch (stat_bonus[GET_CHA(ch)].magic) {
             case 7:
                 if (!GET_COOLDOWN(ch, CD_MUSIC_7))
                     break;
@@ -1430,7 +1430,7 @@ ACMD(do_cast) {
             improve_skill(ch, SKILL_CHANT);
         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
             SET_COOLDOWN(ch, CD_CHANT,
-                         (7 - (((magic_stat[GET_WIS(ch)].bonus) * 3) / 4) + (((magic_stat[GET_INT(ch)].bonus) * 1) / 4))
+                         (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) + (((stat_bonus[GET_INT(ch)].magic) * 1) / 4))
                              MUD_HR);
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
@@ -1439,16 +1439,16 @@ ACMD(do_cast) {
         if (GET_LEVEL(ch) >= LVL_GOD)
             int cresult = perform(ch, tch, tobj, spellnum);
         else {
-            if (magic_stat[GET_CHA(ch)].bonus == 0) {
+            if (stat_bonus[GET_CHA(ch)].magic == 0) {
                 char_printf(ch, "Your Charisma is too low to perform!\n");
             } else {
-                for (int i = 0; i <= magic_stat[GET_CHA(ch)].bonus; i++) {
+                for (int i = 0; i <= stat_bonus[GET_CHA(ch)].magic; i++) {
                     if (!GET_COOLDOWN(ch, CD_MUSIC_1 + i)) {
                         int cresult = perform(ch, tch, tobj, spellnum);
                         if (IS_SET(cresult, CAST_RESULT_IMPROVE))
                             improve_skill(ch, SKILL_PERFORM);
                         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
-                            SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - magic_stat[GET_CHA(ch)].bonus) MUD_HR);
+                            SET_COOLDOWN(ch, CD_MUSIC_1 + i, (8 - stat_bonus[GET_CHA(ch)].magic) MUD_HR);
                             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
                         }
                         break;
@@ -1461,7 +1461,7 @@ ACMD(do_cast) {
 
         /* Chance to quick chant. */
         if (random_number(1, 110) <
-            (GET_SKILL(ch, SKILL_QUICK_CHANT) + magic_stat[GET_INT(ch)].bonus + magic_stat[GET_WIS(ch)].bonus)) {
+            (GET_SKILL(ch, SKILL_QUICK_CHANT) + stat_bonus[GET_INT(ch)].magic + stat_bonus[GET_WIS(ch)].magic)) {
             int maxcircle, spellcircle;
 
             /* set basic quick chant at 1/2 casting time */

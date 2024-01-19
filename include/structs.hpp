@@ -509,29 +509,17 @@ struct message_list {
     message_type *msg;     /* List of messages.                        */
 };
 
-struct fight_bonus_type {
+struct stat_bonus_type {
     sh_int tohit;         /* To Hit (THAC0) Bonus/Penalty        */
     sh_int todam;         /* Damage Bonus/Penalty                */
-    sh_int armor;         /* Armor Class Bonus/Penalty           */
-};
-
-struct weight_limit_type {
+    sh_int defense;       /* Armor Class Bonus/Penalty           */
     sh_int carry;         /* Maximum weight that can be carrried */
     sh_int wield;         /* Maximum weight that can be wielded  */
-};
-
-struct magic_stat_type {
-    sh_int bonus;           /* Stat bonus to spells                */
-};
-
-struct HP_bonus_type {
-    sh_int gain;          /* Bonus to HP gained at level         */
-};
-
-struct skill_stat_bonus_type {
-    sh_int small;         /* Range -7 to 5 bonus to skills       */
-    sh_int medium;        /* Range -7 to 10 bonus to skills      */
-    sh_int large;         /* Range -7 to 15 bonus to skills      */
+    sh_int magic;         /* Stat bonus to spells                */
+    sh_int hpgain;        /* Bonus to HP gained at level         */
+    sh_int skill_small;         /* Range -7 to 5 bonus to skills       */
+    sh_int skill_medium;        /* Range -7 to 10 bonus to skills      */
+    sh_int skill_large;         /* Range -7 to 15 bonus to skills      */
     sh_int rogue_skills;  /* Bonus range for rogue-type skills   */
 };
 

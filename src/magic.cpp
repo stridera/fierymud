@@ -1637,7 +1637,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         else if (spellnum = SPELL_GREATER_DISPLACEMENT)
             SET_FLAG(eff[0].flags, EFF_GREATER_DISPLACEMENT);
 
-        eff[0].duration = (skill / 50) + ((magic_stat[GET_INT(ch)].bonus + magic_stat[GET_WIS(ch)].bonus) / 7); /* max 4 */
+        eff[0].duration = (skill / 50) + ((stat_bonus[GET_INT(ch)].magic + stat_bonus[GET_WIS(ch)].magic) / 7); /* max 4 */
 
         refresh = false;
         to_char = "&9&b$N's image blurs into the shadows!&0";
@@ -2024,7 +2024,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (affected_by_spell(victim, spellnum))
             effect_from_char(victim, CHANT_HYMN_OF_SAINT_AUGUSTINE);
 
-        eff[0].duration = (skill / 10) + magic_stat[GET_WIS(ch)].bonus; /* max 15 */
+        eff[0].duration = (skill / 10) + stat_bonus[GET_WIS(ch)].magic; /* max 15 */
         break;
 
     case SPELL_FIRESHIELD:
@@ -2508,7 +2508,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_STR;
         eff[0].modifier = (-2 - (skill / 4) - (skill / 20)) * susceptibility(victim, DAM_POISON) / 100; /* max -32 */
         SET_FLAG(eff[0].flags, EFF_POISON);
-        eff[0].duration = 2 + (skill / 33) + (magic_stat[GET_WIS(ch)].bonus / 2); /* min 2, max 8 */
+        eff[0].duration = 2 + (skill / 33) + (stat_bonus[GET_WIS(ch)].magic / 2); /* min 2, max 8 */
         eff[0].type = SPELL_POISON;
         to_vict = "You feel very sick.";
         to_room = "$N gets violently ill!";

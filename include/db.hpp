@@ -172,11 +172,7 @@ extern QuestInfo *all_quests;
 
 extern TimeInfoData time_info;
 
-extern fight_bonus_type fight_bonus[101];
-extern weight_limit_type weight_limit[101];
-extern magic_stat_type magic_stat[101];
-extern HP_bonus_type HP_bonus[101];
-extern skill_stat_bonus_type skill_stat_bonus[101];
+extern stat_bonus_type stat_bonus[101];
 
 extern message_list fight_messages[MAX_MESSAGES];
 extern SpellDamage spell_dam_info[MAX_SPELLS + 1];
