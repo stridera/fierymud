@@ -59,7 +59,7 @@ int conceal_roll(CharData *ch, ObjData *obj) {
     int skill = GET_SKILL(ch, SKILL_CONCEAL);
     int lower_bound = -0.0008 * pow(skill, 3) + 0.1668 * pow(skill, 2) - 3.225 * skill;
     int upper_bound = 2000 * skill / (3 * GET_DEX(ch) + GET_INT(ch));
-    int roll = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
+    int roll = random_number(lower_bound, upper_bound) + stat_bonus[GET_DEX(ch)].rogue_skills;
 
     /* You can't conceal/palm/stow an item higher than your level. */
     if (GET_OBJ_LEVEL(obj) > GET_LEVEL(ch))
@@ -1310,7 +1310,7 @@ ACMD(do_wield) {
         return;
     }
 
-    if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > str_app[GET_STR(ch)].wield_w) {
+    if (GET_OBJ_EFFECTIVE_WEIGHT(obj) > stat_bonus[GET_STR(ch)].wield) {
         char_printf(ch, "It's too heavy for you to use.\n");
         return;
     }

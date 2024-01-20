@@ -1052,7 +1052,7 @@ ACMD(do_bind) {
             prob += GET_SKILL(ch, SKILL_BIND);
             prob += GET_LEVEL(ch);
             percent = random_number(50, 200);
-            percent += dex_app[GET_DEX(vict)].defensive;
+            percent += stat_bonus[GET_DEX(vict)].defense;
             percent += GET_LEVEL(vict);
 
             if (GET_STANCE(vict) < STANCE_SLEEPING)
@@ -1117,9 +1117,9 @@ ACMD(do_hide) {
 
     if (group_size(ch, true) > 1 && GET_RACE(ch) == RACE_HALFLING)
         GET_HIDDENNESS(ch) =
-            random_number(lower_bound, upper_bound) + (dex_app_skill[GET_DEX(ch)].hide * ((GET_LEVEL(ch) / 30) + 1));
+            random_number(lower_bound, upper_bound) + (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
     else
-        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + dex_app_skill[GET_DEX(ch)].hide;
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + stat_bonus[GET_DEX(ch)].rogue_skills;
 
     GET_HIDDENNESS(ch) = std::max(GET_HIDDENNESS(ch), 0l);
 
@@ -1186,9 +1186,9 @@ ACMD(do_steal) {
     }
 
     /* 101% is a complete failure */
-    percent = random_number(1, 101) - dex_app_skill[GET_DEX(ch)].p_pocket;
+    percent = random_number(1, 101) - stat_bonus[GET_DEX(ch)].rogue_skills;
     if (!CAN_SEE(vict, ch))
-        percent -= dex_app_skill[GET_DEX(ch)].p_pocket;
+        percent -= stat_bonus[GET_DEX(ch)].rogue_skills;
 
     /* Stealing from unconscious folks is always successful. */
     if (!AWAKE(vict))

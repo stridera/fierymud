@@ -118,13 +118,7 @@ int top_of_helpt = 0;             /* top of help index table         */
 
 TimeInfoData time_info;
 
-str_app_type str_app[101];
-dex_skill_type dex_app_skill[101];
-dex_app_type dex_app[101];
-con_app_type con_app[101];
-int_app_type int_app[101];
-wis_app_type wis_app[101];
-cha_app_type cha_app[101];
+stat_bonus_type stat_bonus[101];
 
 int no_mail = 0; /* mail disabled?                 */
 
@@ -168,13 +162,7 @@ void boot_the_shops(FILE *shop_f, char *filename, int rec_count);
 int hsort(const void *a, const void *b);
 void boot_the_shops(FILE *shop_f, char *filename, int rec_count);
 void build_count(void);
-void load_str_app(void);
-void load_thief_dex(void);
-void load_dex_app(void);
-void load_con_app(void);
-void load_int_app(void);
-void load_wis_app(void);
-void load_cha_app(void);
+void load_stat_bonus(void);
 void clear_memory(CharData *ch);
 
 #define READ_SIZE 256
@@ -511,13 +499,7 @@ void free_spell_dams(void) {
 
 void boot_world(void) {
     log("Loading attribute bonus tables.");
-    load_str_app();
-    load_thief_dex();
-    load_dex_app();
-    load_con_app();
-    load_int_app();
-    load_wis_app();
-    load_cha_app();
+    load_stat_bonus();
 
     log("Loading zone table.");
     index_boot(DB_BOOT_ZON);
