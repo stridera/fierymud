@@ -91,6 +91,9 @@
 #define RACE_DICEFACTOR(race) (VALID_RACENUM(race) ? races[race].dice_factor : 100)
 #define RACE_COPPERFACTOR(race) (VALID_RACENUM(race) ? races[race].copper_factor : 100)
 #define RACE_ACFACTOR(race) (VALID_RACENUM(race) ? races[race].ac_factor : 100)
+
+#define IS_SPELLCASTER_RACE(ch) (VALID_RACE(ch) ? races[(int)GET_RACE(ch)].magical : false)
+
 struct RaceDef {
     const char *name;        /* The basic name, uncapitalized and uncolored. */
     const char *names;       /* Additional names for searching purposes. */
@@ -99,6 +102,7 @@ struct RaceDef {
     const char *plainname;   /* The name with capitalization but no colors. */
     bool playable;           /* Available to mortals? */
     bool humanoid;           /* Is it humanoid? */
+    bool magical;            /* Does it have racial spells? */
     int racealign;           /* Is it considered a good or evil race? */
     int def_size;            /* The default size for a member of this race. */
     int def_align;           /* Default alignment */
@@ -149,6 +153,7 @@ extern RaceDef races[NUM_RACES];
 extern const char *race_align_abbrevs[];
 
 void init_races(void);
+void assign_race_skills(void);
 int parse_race(CharData *ch, CharData *vict, char *arg);
 int race_by_menu(char arg);
 void send_race_menu(DescriptorData *d);

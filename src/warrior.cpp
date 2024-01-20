@@ -130,7 +130,7 @@ bool warrior_ai_action(CharData *ch, CharData *victim) {
          * warrior opponent.)
          */
         if (CAN_SEE(ch, victim) &&
-            roll > (80 - GET_SKILL(ch, SKILL_BASH) / 2 - (classes[(int)GET_CLASS(victim)].magical ? 20 : 0)) &&
+            roll > (80 - GET_SKILL(ch, SKILL_BASH) / 2 - (IS_SPELLCASTER_CLASS(victim) ? 20 : 0)) &&
             GET_SKILL(ch, SKILL_BASH) && GET_EQ(ch, WEAR_SHIELD) && GET_POS(victim) >= POS_STANDING && i <= 2 &&
             i > -1 && !MOB_FLAGGED(victim, MOB_NOBASH)) {
             do_bash(ch, GET_NAME(victim), 0, SCMD_BASH);

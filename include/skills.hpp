@@ -48,6 +48,7 @@ struct SkillDef {
     int pages; /* base number of pages for spell in spellbook */
     int quest; /* weather the spell is a quest spell or not   */
     const char *wearoff;
+    int min_race_level[NUM_RACES];
 };
 
 extern SkillDef skills[TOP_SKILL_DEFINE + 1];
@@ -57,7 +58,9 @@ extern SkillDef skills[TOP_SKILL_DEFINE + 1];
 int level_to_circle(int level);
 int circle_to_level(int circle);
 #define IS_QUEST_SPELL(spellnum) (skills[(spellnum)].quest)
-#define SKILL_LEVEL(ch, skillnum) (skills[(skillnum)].min_level[(int)GET_CLASS(ch)])
+#define SKILL_LEVEL(ch, skillnum)                                                                                      \
+    ((skills[(skillnum)].min_level[(int)GET_CLASS(ch)] <= skills[(skillnum)].min_race_level[(int)GET_RACE(ch)]) ?      \
+    skills[(skillnum)].min_level[(int)GET_CLASS(ch)] : skills[(skillnum)].min_race_level[(int)GET_RACE(ch)])
 #define SPELL_CIRCLE(ch, spellnum) (level_to_circle(SKILL_LEVEL(ch, spellnum)))
 #define CIRCLE_ABBR(ch, spellnum) (circle_abbrev[SPELL_CIRCLE((ch), (spellnum))])
 #define SKILL_IS_TARGET(skill, tartype)                                                                                \
@@ -79,6 +82,7 @@ void improve_skill(CharData *ch, int skill);
 void improve_skill_offensively(CharData *ch, CharData *victim, int skill);
 void update_skills(CharData *ch);
 void skill_assign(int skillnum, int class_code, int level);
+void race_skill_assign(int skillnum, int race_code, int level);
 int talent_type(int skill_num);
 bool get_spell_assignment_circle(CharData *ch, int spell, int *circle_assignment, int *level_assignment);
 
