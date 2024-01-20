@@ -707,9 +707,6 @@ ACMD(do_shapechange) {
     mob->desc = ch->desc;
     ch->desc = nullptr;
     ch->forward = mob;
-
-
-
 }
 
 bool creature_allowed_skill(CharData *ch, int skill) {
