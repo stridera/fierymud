@@ -14,6 +14,7 @@
 
 #include "chars.hpp"
 #include "objects.hpp"
+#include "races.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -132,12 +133,9 @@ extern ClassDef classes[NUM_CLASSES];
 #define IS_WARRIOR(ch)                                                                                                 \
     (VALID_CLASS(ch) ? GET_CLASS(ch) == CLASS_WARRIOR || classes[(int)GET_CLASS(ch)].subclass_of == CLASS_WARRIOR      \
                      : false)
-#define IS_SPELLCASTER(ch)                                                                                             \
-    (VALID_CLASS(ch) ? GET_CLASS(ch) == CLASS_SORCERER || classes[(int)GET_CLASS(ch)].subclass_of == CLASS_SORCERER || \
-                       GET_CLASS(ch) == CLASS_CLERIC || classes[(int)GET_CLASS(ch)].subclass_of == CLASS_CLERIC ||     \
-                       GET_CLASS(ch) == CLASS_ANTI_PALADIN || GET_CLASS(ch) == CLASS_PALADIN ||                        \
-                       GET_CLASS(ch) == CLASS_RANGER || GET_CLASS(ch) == CLASS_SHAMAN || GET_CLASS(ch) == CLASS_BARD   \
-                     : false)
+
+#define IS_SPELLCASTER_CLASS(ch) (VALID_CLASS(ch) ? classes[(int)GET_CLASS(ch)].magical : false)
+#define IS_SPELLCASTER(ch) (IS_SPELLCASTER_CLASS(ch) || IS_SPELLCASTER_RACE(ch))
 
 /* Is this character prohibited from wearing this equipment due to a class
  * restriction?  Would return true if, for example, a warrior tried to wear
@@ -146,6 +144,7 @@ extern ClassDef classes[NUM_CLASSES];
     (VALID_CLASS(ch)                                                                                                   \
          ? classes[(int)GET_CLASS(ch)].nowear_flag && OBJ_FLAGGED(obj, classes[(int)GET_CLASS(ch)].nowear_flag)        \
          : 0)
+
 
 enum level_action { LEVEL_GAIN, LEVEL_LOSE };
 

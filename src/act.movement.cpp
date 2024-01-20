@@ -522,7 +522,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
         /* Chance for hiddenness to decrease with a bonus for dex apply
          * and for already sneaking. */
         else if (random_number(1, 101) >
-                 GET_SKILL(motivator, SKILL_SNEAK) + dex_app_skill[GET_DEX(motivator)].sneak + 15)
+                 GET_SKILL(motivator, SKILL_SNEAK) + stat_bonus[GET_DEX(motivator)].rogue_skills + 15)
             GET_HIDDENNESS(motivator) = std::max(0l, GET_HIDDENNESS(motivator) - GET_LEVEL(motivator) / 2);
         if (!IS_HIDDEN(motivator))
             effect_from_char(motivator, SPELL_NATURES_EMBRACE);
@@ -2277,7 +2277,7 @@ ACMD(do_follow) {
 
         if (subcmd == SCMD_SHADOW) {
             int chance = GET_SKILL(ch, SKILL_SHADOW);
-            chance += dex_app_skill[GET_DEX(ch)].sneak;
+            chance += stat_bonus[GET_DEX(ch)].rogue_skills;
 
             if (chance < random_number(1, 101)) {
                 REMOVE_FLAG(EFF_FLAGS(ch), EFF_SHADOWING);

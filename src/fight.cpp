@@ -1810,7 +1810,7 @@ bool riposte(CharData *ch, CharData *victim) {
     ch_hit -= monk_weight_penalty(ch);
     vict_riposte = random_number(20, 50);
     vict_riposte += GET_LEVEL(victim) - GET_LEVEL(ch);
-    vict_riposte -= dex_app[GET_DEX(victim)].defensive;
+    vict_riposte -= stat_bonus[GET_DEX(victim)].defense;
     vict_riposte += GET_SKILL(victim, SKILL_RIPOSTE) * 0.085;
 
     if (random_number(1, 10) < 5)
@@ -1852,7 +1852,7 @@ bool parry(CharData *ch, CharData *victim) {
     ch_hit -= monk_weight_penalty(ch);
     vict_parry = random_number(20, 50);
     vict_parry += GET_LEVEL(victim) - GET_LEVEL(ch);
-    vict_parry -= dex_app[GET_DEX(victim)].defensive;
+    vict_parry -= stat_bonus[GET_DEX(victim)].defense;
     vict_parry += GET_SKILL(victim, SKILL_PARRY) / 10;
     if (random_number(1, 10) < 5)
         improve_skill_offensively(victim, ch, SKILL_PARRY);
@@ -1888,7 +1888,7 @@ bool dodge(CharData *ch, CharData *victim) {
     ch_hit -= monk_weight_penalty(ch);
     vict_dodge = random_number(20, 50);
     vict_dodge += GET_LEVEL(victim) - GET_LEVEL(ch);
-    vict_dodge -= dex_app[GET_DEX(victim)].defensive;
+    vict_dodge -= stat_bonus[GET_DEX(victim)].defense;
     vict_dodge += GET_SKILL(victim, SKILL_DODGE) / 10;
     if (random_number(1, 10) < 5)
         improve_skill_offensively(victim, ch, SKILL_DODGE);
@@ -2064,10 +2064,10 @@ void hit(CharData *ch, CharData *victim, int type) {
     /* VALUES: -50 to 70 */
     if (type == SKILL_KICK) {
         /* use Dex to calc */
-        calc_thaco -= str_app[GET_DEX(ch)].tohit * 10;
+        calc_thaco -= stat_bonus[GET_DEX(ch)].tohit * 10;
     } else {
         /* use Str to calc */
-        calc_thaco -= str_app[GET_STR(ch)].tohit * 10;
+        calc_thaco -= stat_bonus[GET_STR(ch)].tohit * 10;
     }
     /* VALUES: 0 to 40    (max hitroll is 40) */
     calc_thaco -= GET_HITROLL(ch);
@@ -2114,7 +2114,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     /* VALUES: 100 to -100 */
     victim_ac = GET_AC(victim);
     /* VALUES: 60 to -60 */
-    victim_ac += dex_app[GET_DEX(victim)].defensive * 10;
+    victim_ac += stat_bonus[GET_DEX(victim)].defense * 10;
     victim_ac = std::max(-100, victim_ac); /* -100 is lowest */
     /* victim_ac ranges from 160 to -100 */
 
@@ -2172,7 +2172,7 @@ void hit(CharData *ch, CharData *victim, int type) {
          * starting with the damage bonuses: damroll and strength apply.
          */
         dam = GET_DAMROLL(ch);
-        dam += str_app[GET_STR(ch)].todam;
+        dam += stat_bonus[GET_STR(ch)].todam;
         if (type != SKILL_KICK) {
             if (diceroll == 20)
                 dam *= 2;
@@ -2188,7 +2188,7 @@ void hit(CharData *ch, CharData *victim, int type) {
                 dam += random_number(0, 2); /* Yeah, you better wield a weapon. */
         } else {
             dam += (GET_SKILL(ch, SKILL_KICK) / 2);
-            dam += str_app[GET_DEX(ch)].todam;
+            dam += stat_bonus[GET_DEX(ch)].todam;
         }
 
         /*

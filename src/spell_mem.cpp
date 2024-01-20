@@ -523,7 +523,7 @@ ACMD(do_study) {
     if (!ch)
         return;
 
-    if (MEM_MODE(ch) == MEM_NONE && GET_LEVEL(ch) < LVL_IMMORT) {
+    if (!IS_SPELLCASTER(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
         char_printf(ch, "You don't know any spells.\n");
         return;
     }

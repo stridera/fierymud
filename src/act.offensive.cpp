@@ -2003,7 +2003,7 @@ ACMD(do_disarm) {
      * - level difference
      */
 
-    chance = GET_SKILL(ch, SKILL_DISARM) + dex_app_skill[GET_DEX(ch)].p_pocket + (GET_LEVEL(ch) - GET_LEVEL(tch));
+    chance = GET_SKILL(ch, SKILL_DISARM) + stat_bonus[GET_DEX(ch)].rogue_skills + (GET_LEVEL(ch) - GET_LEVEL(tch));
 
     /* 1 - 35 extra points to account for superlative dex or xp diff */
     skl_bonus = (int)((chance - 69) / 2);
@@ -2258,7 +2258,7 @@ ACMD(do_corner) {
     }
 
     chance = GET_SKILL(ch, SKILL_CORNER);
-    chance += 3 * dex_app[GET_DEX(ch)].reaction;
+    chance += 3 * stat_bonus[GET_DEX(ch)].skill_small;
     chance += 10 * (GET_SIZE(ch) - GET_SIZE(vict));
     chance += (GET_LEVEL(ch) - GET_LEVEL(vict)) / 2;
     if (!CAN_SEE(vict, ch))
@@ -2598,8 +2598,8 @@ ACMD(do_cartwheel) {
     }
 
     prob = GET_SKILL(ch, SKILL_CARTWHEEL);
-    prob += (dex_app_skill[GET_DEX(ch)].traps / 2);
-    prob += int_app[GET_INT(ch)].bonus;
+    prob += (stat_bonus[GET_DEX(ch)].skill_large / 2);
+    prob += (stat_bonus[GET_INT(ch)].skill_large / 2);
     prob += GET_HITROLL(ch) - monk_weight_penalty(ch);
     percent = random_number(1, 100);
     percent += GET_SKILL(vict, SKILL_DODGE);
@@ -2770,7 +2770,7 @@ ACMD(do_lure) {
     trick = random_number(0, 81);
 
     /* high int helps */
-    trick -= int_app[GET_NATURAL_INT(ch)].bonus;
+    trick -= stat_bonus[GET_NATURAL_INT(ch)].skill_small;
 
     /* Ventriloquate helps */
     if (affected_by_spell(ch, SPELL_VENTRILOQUATE))
@@ -2892,7 +2892,7 @@ ACMD(do_rend) {
         return;
 
     percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + random_number(1, 101);
-    prob = (GET_SKILL(ch, SKILL_REND) + (dex_app_skill[GET_DEX(ch)].traps / 2) + (int_app[GET_INT(ch)].bonus));
+    prob = (GET_SKILL(ch, SKILL_REND) + (stat_bonus[GET_DEX(ch)].skill_large / 2) + (stat_bonus[GET_INT(ch)].skill_large / 2));
 
     if (percent > prob) {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -2921,8 +2921,8 @@ ACMD(do_rend) {
             memset(&eff, 0, sizeof(eff));
             eff.type = SKILL_REND;
             eff.duration = (GET_SKILL(ch, SKILL_REND) / 10);
-            eff.modifier = -1 - (GET_SKILL(ch, SKILL_REND) / 4) - (dex_app_skill[GET_DEX(ch)].traps / 2) -
-                           (int_app[GET_INT(ch)].bonus);
+            eff.modifier = -1 - (GET_SKILL(ch, SKILL_REND) / 4) - (stat_bonus[GET_DEX(ch)].skill_large / 2) -
+                           (stat_bonus[GET_INT(ch)].skill_large / 2);
             eff.location = APPLY_AC;
             SET_FLAG(eff.flags, EFF_EXPOSED);
             effect_to_char(vict, &eff);
@@ -3015,8 +3015,8 @@ ACMD(do_tripup) {
     prob = random_number(1, 100); /* tripup uses random num instead of skill */
     prob += GET_LEVEL(ch);
     prob += GET_HITROLL(ch) - monk_weight_penalty(ch);
-    prob += int_app[GET_INT(ch)].bonus;
-    prob += dex_app[GET_DEX(ch)].reaction;
+    prob += stat_bonus[GET_INT(ch)].skill_small;
+    prob += stat_bonus[GET_DEX(ch)].skill_small;
     percent = random_number(1, 101);
     percent += GET_SKILL(vict, SKILL_DODGE);
     percent += GET_LEVEL(vict);
