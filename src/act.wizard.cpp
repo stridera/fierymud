@@ -2276,7 +2276,8 @@ ACMD(do_set) {
         do_wiztitle(buf, vict, val_arg);
         break;
     case 67:
-        GET_COOLDOWN(vict, CD_CHANT) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_OFFENSE_CHANT) = std::clamp(value, 0, 100);
+        GET_COOLDOWN(vict, CD_DEFENSE_CHANT) = std::clamp(value, 0, 100);
         break;
     case 68:
         if (!*val_arg) {

@@ -1651,7 +1651,10 @@ char *prompt_str(CharData *ch) {
                 temp = CD_INNATE_BRILL;
                 break;
             case 'd':
-                temp = CD_CHANT;
+                temp = CD_DEFENSE_CHANT;
+                break;
+            case 'D':
+                temp = CD_OFFENSE_CHANT;
                 break;
             case 'e':
                 temp = CD_INNATE_CHAZ;

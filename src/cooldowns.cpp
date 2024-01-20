@@ -36,7 +36,7 @@ const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
                                             "eye gouge",
                                             "throatcut",
                                             "shapechange",
-                                            "chant",
+                                            "defense chant",
                                             "innate invis",
                                             "innate chaz",
                                             "innate darkness",
@@ -61,6 +61,7 @@ const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
                                             "innate blinding beauty",
                                             "innate statue",
                                             "innate barkskin",
+                                            "offense chant",
                                             "\n"};
 
 void cooldown_wearoff(CharData *ch, int cooldown) {
