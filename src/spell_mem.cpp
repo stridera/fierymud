@@ -523,7 +523,7 @@ ACMD(do_study) {
     if (!ch)
         return;
 
-    if (!IS_SPELLCASTER_CLASS(ch) && !IS_SPELLCASTER_RACE(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
+    if (!IS_SPELLCASTER(ch) && GET_LEVEL(ch) < LVL_IMMORT) {
         char_printf(ch, "You don't know any spells.\n");
         return;
     }

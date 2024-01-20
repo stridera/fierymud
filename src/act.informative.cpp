@@ -3564,7 +3564,7 @@ ACMD(do_spells) {
     }
 
     /* Is this character in a class or a race with spells? */
-    if (!IS_SPELLCASTER_CLASS(tch) && !IS_SPELLCASTER_RACE(tch)) {
+    if (!IS_SPELLCASTER(tch)) {
         if (tch == ch)
             char_printf(ch, "You don't know any spells.\n");
         else {

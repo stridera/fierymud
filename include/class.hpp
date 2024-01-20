@@ -14,6 +14,7 @@
 
 #include "chars.hpp"
 #include "objects.hpp"
+#include "races.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -134,6 +135,7 @@ extern ClassDef classes[NUM_CLASSES];
                      : false)
 
 #define IS_SPELLCASTER_CLASS(ch) (VALID_CLASS(ch) ? classes[(int)GET_CLASS(ch)].magical : false)
+#define IS_SPELLCASTER(ch) (IS_SPELLCASTER_CLASS(ch) || IS_SPELLCASTER_RACE(ch))
 
 /* Is this character prohibited from wearing this equipment due to a class
  * restriction?  Would return true if, for example, a warrior tried to wear
@@ -142,6 +144,7 @@ extern ClassDef classes[NUM_CLASSES];
     (VALID_CLASS(ch)                                                                                                   \
          ? classes[(int)GET_CLASS(ch)].nowear_flag && OBJ_FLAGGED(obj, classes[(int)GET_CLASS(ch)].nowear_flag)        \
          : 0)
+
 
 enum level_action { LEVEL_GAIN, LEVEL_LOSE };
 

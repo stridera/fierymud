@@ -188,7 +188,7 @@ bool bard_ai_action(CharData *ch, CharData *victim) {
             switch (mob_bard_hindrances[i].spell) {
             case SPELL_INSANITY:
             case SPELL_SILENCE:
-                if ((IS_SPELLCASTER_CLASS(victim2) || IS_SPELLCASTER_RACE(victim2)) && FIGHTING(victim2) == ch && !has_effect(victim2, &mob_bard_hindrances[i]) &&
+                if ((IS_SPELLCASTER(victim2)) && FIGHTING(victim2) == ch && !has_effect(victim2, &mob_bard_hindrances[i]) &&
                     GET_LEVEL(victim2) < (GET_LEVEL(ch) + 20)) {
                     if (mob_cast(ch, victim2, nullptr, mob_bard_hindrances[i].spell))
                         return true;
