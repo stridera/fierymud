@@ -1442,9 +1442,9 @@ ACMD(do_cast) {
         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
             /* Monks get a second chant for debuffing/offensive chants */
             if (SINFO.violent && GET_CLASS(ch) == CLASS_MONK) {
-                SET_COOLDOWN(ch, CD_OFFENSE_CHANT, (7 - (((wis_app[GET_WIS(ch)].bonus) * 3) / 4) + (((int_app[GET_INT(ch)].bonus) * 1) / 4)) MUD_HR);
+                SET_COOLDOWN(ch, CD_OFFENSE_CHANT, (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) + (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
             } else {
-                SET_COOLDOWN(ch, CD_DEFENSE_CHANT, (7 - (((wis_app[GET_WIS(ch)].bonus) * 3) / 4) + (((int_app[GET_INT(ch)].bonus) * 1) / 4)) MUD_HR);
+                SET_COOLDOWN(ch, CD_DEFENSE_CHANT, (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) + (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
             }
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
