@@ -3476,25 +3476,25 @@ ACMD(do_score) {
 
 const char *proficiency_message(int proficiency) {
     if (proficiency == 0)
-        return "not learned";
+        return "(not learned)";
     else if (proficiency <= 100)
-        return "awful";
+        return "(awful)";
     else if (proficiency <= 200)
-        return "bad";
+        return "(bad)";
     else if (proficiency <= 400)
-        return "poor";
+        return "(poor)";
     else if (proficiency <= 550)
-        return "average";
+        return "(average)";
     else if (proficiency <= 700)
-        return "fair";
+        return "(fair)";
     else if (proficiency <= 800)
-        return "good";
+        return "(good)";
     else if (proficiency <= 850)
-        return "very good";
+        return "(very good)";
     else if (proficiency <= 999)
-        return "superb";
+        return "(superb)";
     else
-        return "mastered";
+        return "(mastered)";
 }
 
 #define MAX_CIRCLE 14
@@ -3773,14 +3773,11 @@ ACMD(do_listspells) {
 
 ACMD(do_skills) {
     int level_max_skill(CharData * ch, int level, int skill);
-    const char *fullmastered = " &7-&b*&0&7-&0";
-    const char *mastered = "  * ";
-    const char *normal = "    ";
-    const char *mastery;
     int i, x;
     CharData *tch;
     char points[MAX_INPUT_LENGTH];
     bool godpeek;
+    std::string result;
 
     one_argument(argument, arg);
 
@@ -3794,16 +3791,13 @@ ACMD(do_skills) {
             char_printf(ch, "There's nobody here by that name.\n");
             return;
         }
-        sprintf(buf, "%s knows of the following skills:\n", GET_NAME(tch));
+        result = fmt::format("{} knows of the following skills:\n", GET_NAME(tch));
         godpeek = true;
     } else {
-        strcpy(buf, "You know of the following skills:\n");
+        result = "You know of the following skills:\n";
         tch = ch;
         godpeek = false;
     }
-
-    strcpy(buf2, buf);
-    points[0] = '\0';
 
     /* do_skills crashes when performed by non-switched mobs. */
     if (IS_NPC(ch) && !ch->desc)
@@ -3818,28 +3812,20 @@ ACMD(do_skills) {
         if (GET_SKILL(tch, i) <= 0)
             continue;
 
-        if (godpeek)
-            sprintf(points, " (%4d/%4d/%4d)", GET_ISKILL(tch, i), return_max_skill(tch, i),
-                    level_max_skill(tch, LVL_MAX_MORT, i));
-
-        /* Show a star if the skill is as good as possible. */
-        if (GET_ISKILL(tch, i) >= level_max_skill(tch, LVL_MAX_MORT, i))
-            mastery = fullmastered;
-        else if (GET_ISKILL(tch, i) >= return_max_skill(tch, i))
-            mastery = mastered;
-        else
-            mastery = normal;
-
         /* Show exact skill numbers of mobs when switched. */
-        sprintf(buf1, "(%s)", proficiency_message(GET_ISKILL(tch, i)));
+        result += fmt::format("{:<22} {:<15} ", skills[i].name, proficiency_message(GET_ISKILL(tch, i)));
         if (POSSESSED(tch) && GET_LEVEL(POSSESSOR(tch)) >= LVL_IMMORT) {
-            sprintf(buf, "%-22s %15s [%4d]%s%s\n", skills[i].name, buf1, GET_ISKILL(tch, i), mastery, points);
+            result += fmt::format("[{:4d}]", GET_ISKILL(tch, i));
         } else {
-            sprintf(buf, "%-22s %15s%s%s\n", skills[i].name, buf1, mastery, points);
+            result += progress_bar(GET_ISKILL(tch, i), return_max_skill(tch, i));
         }
-        strcat(buf2, buf);
+        if (godpeek) {
+            result += fmt::format("({:4d}/{:4d}/{:4d})", GET_ISKILL(tch, i), return_max_skill(tch, i),
+                                  level_max_skill(tch, LVL_MAX_MORT, i));
+        }
+        result += "\n";
     }
-    page_string(ch, buf2);
+    page_string(ch, result);
 }
 
 static int scan_chars(CharData *ch, int room, int dis, int dir, int seen_any) {

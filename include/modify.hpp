@@ -25,8 +25,8 @@ void parse_action(int command, char *string, DescriptorData *d);
 
 /* PAGING */
 /* page_string and page_string_desc will also start paging */
-void page_string(CharData *ch, const char *str);
-void page_string_desc(DescriptorData *d, const char *str);
+void page_string(CharData *ch, std::string_view str);
+void page_string_desc(DescriptorData *d, std::string_view str);
 
 /* paging_printf will collect data, but you must then call start_paging */
 template <typename... Args> void paging_printf(CharData *ch, std::string_view messg, Args &&...args) {

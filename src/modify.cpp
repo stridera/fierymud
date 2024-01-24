@@ -958,12 +958,12 @@ void start_paging(CharData *ch) {
         start_paging_desc(ch->desc);
 }
 
-void page_string(CharData *ch, const char *str) {
+void page_string(CharData *ch, std::string_view str) {
     if (ch->desc)
         page_string_desc(ch->desc, str);
 }
 
-void page_string_desc(DescriptorData *d, const char *str) {
+void page_string_desc(DescriptorData *d, std::string_view str) {
     paging_addstr(d, str);
     if (!d->page_outbuf->empty())
         start_paging_desc(d);
