@@ -183,3 +183,30 @@ bool matches_start(std::string_view lhs, std::string_view rhs) {
 //     auto haystack_low = haystack | std::ranges::views::transform(tolower);
 //     return !std::ranges::search(haystack_low, needle_low).empty();
 // }
+
+std::string progress_bar(int current, int wall, int max) {
+    double percentage = static_cast<double>(current) / max * 100;
+    double level_percentage = static_cast<double>(current) / wall * 100;
+
+    if (level_percentage < percentage || max < wall)
+        return "";
+
+    // Define progress bar lengths
+    const int bar_length = 40;
+
+    if (current >= max) {
+        return fmt::format("[{:#^{}}]", " MASTERED ", bar_length);
+    }
+
+    // Calculate filled portion for each bar
+    int fill = static_cast<int>(percentage / 100 * bar_length);
+    int wall_position = static_cast<int>(level_percentage / 100 * bar_length);
+
+    // Create progress bars
+    std::string progress_bar = "[" + std::string(fill, '#') + std::string(wall_position - fill, '=');
+    if (bar_length - wall_position > 0)
+        progress_bar += std::string(bar_length - wall_position, '-');
+    progress_bar += "]";
+
+    return progress_bar;
+}

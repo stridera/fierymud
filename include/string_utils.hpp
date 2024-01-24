@@ -38,3 +38,5 @@ bool is_equals(const std::string_view &lhs, const std::string_view &rhs);
 
 // // Is 'needle' contained inside 'haystack' case insensitively?
 // [[nodiscard]] bool matches_inside(std::string_view needle, std::string_view haystack);
+
+[[nodiscard]] std::string progress_bar(int current, int wall = 0, int max = 1000);
