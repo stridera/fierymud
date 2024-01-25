@@ -118,7 +118,6 @@ long xp_percentage(CharData *ch);
 const char *exp_message(CharData *ch);
 const char *exp_bar(CharData *ch, int length, int gradations, int sub_gradations, bool color);
 const char *cooldown_bar(CharData *ch, int cooldown, int length, int gradations, bool color);
-const char *proficiency_message(int proficiency);
 const char *hp_regen_message(int regen);
 const char *focus_message(int focus);
 

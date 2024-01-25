@@ -3474,29 +3474,6 @@ ACMD(do_score) {
     show_active_spells(ch, tch);
 }
 
-const char *proficiency_message(int proficiency) {
-    if (proficiency == 0)
-        return "(not learned)";
-    else if (proficiency <= 100)
-        return "(awful)";
-    else if (proficiency <= 200)
-        return "(bad)";
-    else if (proficiency <= 400)
-        return "(poor)";
-    else if (proficiency <= 550)
-        return "(average)";
-    else if (proficiency <= 700)
-        return "(fair)";
-    else if (proficiency <= 800)
-        return "(good)";
-    else if (proficiency <= 850)
-        return "(very good)";
-    else if (proficiency <= 999)
-        return "(superb)";
-    else
-        return "(mastered)";
-}
-
 #define MAX_CIRCLE 14
 #define MAX_SPELLS_PER_CIRCLE 30
 
@@ -3574,7 +3551,6 @@ ACMD(do_spells) {
         return;
     }
 
-
     /* Collect and count the spells known by the victim. */
 
     memset(&circle_spells, 0, sizeof(circle_spells));
@@ -3583,7 +3559,8 @@ ACMD(do_spells) {
         i = skill_sort_info[k];
         if (!IS_SPELL(i))
             continue;
-        if (skills[i].min_level[GET_CLASS(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0 && skills[i].min_level[GET_CLASS(tch)] <= skills[i].min_race_level[GET_RACE(tch)]) {
+        if (skills[i].min_level[GET_CLASS(tch)] < LVL_IMMORT && GET_SKILL(tch, i) > 0 &&
+            skills[i].min_level[GET_CLASS(tch)] <= skills[i].min_race_level[GET_RACE(tch)]) {
             circle = (skills[i].min_level[GET_CLASS(tch)] - 1) / 8;
             for (j = 0; circle_spells[circle][j] && j < MAX_SPELLS_PER_CIRCLE && circle < max_vis_circle; ++j)
                 ;
@@ -3813,7 +3790,7 @@ ACMD(do_skills) {
             continue;
 
         /* Show exact skill numbers of mobs when switched. */
-        result += fmt::format("{:<22} {:<15} ", skills[i].name, proficiency_message(GET_ISKILL(tch, i)));
+        result += fmt::format("{:<22} ", skills[i].name);
         if (POSSESSED(tch) && GET_LEVEL(POSSESSOR(tch)) >= LVL_IMMORT) {
             result += fmt::format("[{:4d}]", GET_ISKILL(tch, i));
         } else {
