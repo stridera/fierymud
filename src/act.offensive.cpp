@@ -2135,7 +2135,7 @@ ACMD(do_disarm) {
 }
 
 ACMD(do_hitall) {
-    CharData *mob, *next_mob, *orig_target;
+    CharData *mob, *next_mob, *orig_target = nullptr;
     byte percent;
     bool hit_all = false, realvictims = false, success = false;
 
@@ -3098,7 +3098,7 @@ ACMD(do_tripup) {
 }
 
 ACMD(do_roundhouse) {
-    CharData *mob, *next_mob, *orig_target;
+    CharData *mob, *next_mob, *orig_target = nullptr;
     byte percent;
     bool kick_all = false, realvictims = false, success = false;
 
@@ -3143,7 +3143,7 @@ ACMD(do_roundhouse) {
         if (!area_attack_target(ch, mob))
             continue;
 
-        /* If I just entered plain "hitall", don't attack bystanders who aren't
+        /* If I just entered plain "roundhouse", don't attack bystanders who aren't
          * aggro to me */
         if (!battling_my_group(ch, mob) && !kick_all && !is_aggr_to(mob, ch))
             continue;
@@ -3153,13 +3153,13 @@ ACMD(do_roundhouse) {
 
         if (success) {
             if (mob != orig_target)
-                do_kick(ch, GET_NAME(mob), 0, SKILL_ROUNDHOUSE);
+                do_kick(ch, GET_NAMELIST(mob), 0, SKILL_ROUNDHOUSE);
         }
     }
 
     if (success) {
         if (orig_target)
-            do_kick(ch, GET_NAME(orig_target), 0, SKILL_ROUNDHOUSE);
+            do_kick(ch, GET_NAMELIST(orig_target), 0, SKILL_ROUNDHOUSE);
     }
 
     if (realvictims)
