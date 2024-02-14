@@ -193,7 +193,7 @@ std::string progress_bar(int current, int level_max, int max) {
     const int bar_length = 50;
 
     if (current >= max) {
-        return fmt::format("[{:#^{}}]", " MASTERED ", bar_length);
+        return fmt::format("[{:-^{}}]", " Mastered ", bar_length);
     }
 
     // Calculate filled portion for each bar
@@ -201,7 +201,7 @@ std::string progress_bar(int current, int level_max, int max) {
     int level_fill = static_cast<int>(level_percentage / 100 * bar_length);
 
     // Create progress bars
-    std::string progress_bar = "[" + std::string(fill, '#') + std::string(level_fill - fill, '=');
+    std::string progress_bar = "[" + std::string(fill, '*') + std::string(level_fill - fill, '=');
     if (bar_length - level_fill > 0)
         progress_bar += std::string(bar_length - level_fill, '-');
     progress_bar += "]";
