@@ -1317,7 +1317,7 @@ ACMD(do_cast) {
     }
 
     /* Chant cooldown moved here after chant determined: is the chant violent or not */
-    if (subcmd = SCMD_CHANT) {
+    if (subcmd == SCMD_CHANT) {
         if (GET_LEVEL(ch) < LVL_GOD) {
             int seconds = 0;
             if (SINFO.violent && GET_CLASS(ch) == CLASS_MONK && GET_COOLDOWN(ch, CD_OFFENSE_CHANT)) {
