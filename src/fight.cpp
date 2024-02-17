@@ -1107,7 +1107,7 @@ static void append_damage_amount(char *b, const char *msg, int dam, int type) {
      * In comm.h, TO_ROOM is 1, TO_VICT is 2, TO_NOTVICT is 3, TO_CHAR is 4
      */
     const char *colors[6] = {
-        "", "&4", "&1", "&4", "&3", "&2", /* healing */
+        "", "&6", "&1", "&6", "&3", "&2", /* healing */
     };
     if (damage_amounts) {
         if (type != TO_VICT && type != TO_NOTVICT && type != TO_CHAR && type != TO_ROOM) {
