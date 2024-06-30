@@ -632,7 +632,7 @@ int load_player(const char *name, CharData *ch) {
             if (!strcasecmp(tag, "weight"))
                 GET_WEIGHT(ch) = num;
             else if (!strcasecmp(tag, "wimpy"))
-                GET_WIMP_LEV(ch) = std::clamp(num, 0, LVL_IMPL);
+                GET_WIMP_LEV(ch) = num;
             else if (!strcasecmp(tag, "wisdom"))
                 GET_NATURAL_WIS(ch) = num;
             else if (!strcasecmp(tag, "wiztitle"))
