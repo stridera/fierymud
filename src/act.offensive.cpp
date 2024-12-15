@@ -1344,14 +1344,11 @@ ACMD(do_kick) {
 
     /* Need to see whether this player is fighting already. Kick should not
        allow for the player to switch without a switch probability being
-       calculated into the mix. (DEMOLITUM) 
+       calculated into the mix. (DEMOLITUM) */
        
-       Edited to allow kicks from roundhouse skill without switching (DAEDELA) */
     WAIT_STATE(ch, PULSE_VIOLENCE);
-    if (subcmd != SKILL_ROUNDHOUSE) {
-        if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
-            return;
-    }
+    if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
+        return;
 
     WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
     if (displaced(ch, vict))
@@ -3113,13 +3110,16 @@ ACMD(do_roundhouse) {
         char_printf(ch, "You feel ashamed trying to disturb the peace of this room.\n");
         return;
     }
+
+    if (EFF_FLAGGED(ch, EFF_IMMOBILIZED)) {
+        char_printf(ch, "You can't lift your legs!\n");
+        return;
+    }
+
     if (ROOM_FLAGGED(ch->in_room, ROOM_HOUSE)) {
         char_printf(ch, "Sorry, it's too cramped here for nasty maneuvers!\n");
         return;
     }
-
-    if (FIGHTING(ch))
-        orig_target = FIGHTING(ch);
 
     /* Find out whether to hit "all" or just aggressive monsters */
     one_argument(argument, arg);
@@ -3129,7 +3129,7 @@ ACMD(do_roundhouse) {
     /* Hit all aggressive monsters in room */
 
     percent = random_number(1, 131);
-    WAIT_STATE(ch, PULSE_VIOLENCE);
+    WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
 
     act("$n unleashes a flying spin kick at everything nearby!", false, ch, 0, 0, TO_NOTVICT);
     char_printf(ch, "You unleash a flying spin kick at everything nearby!\n");
@@ -3152,14 +3152,22 @@ ACMD(do_roundhouse) {
             realvictims = true;
 
         if (success) {
-            if (mob != orig_target)
-                do_kick(ch, GET_NAMELIST(mob), 0, SKILL_ROUNDHOUSE);
-        }
-    }
+            if (displaced(ch, mob))
+                return;
 
-    if (success) {
-        if (orig_target)
-            do_kick(ch, GET_NAMELIST(orig_target), 0, SKILL_ROUNDHOUSE);
+            if (damage_evasion(mob, ch, 0, DAM_CRUSH)) {
+                act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, mob, TO_CHAR);
+                act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, mob,
+                    TO_NOTVICT);
+                act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
+                    ch, 0, mob, TO_VICT);
+                set_fighting(mob, ch, true);
+                return;
+            }
+
+            hit(ch, mob, SKILL_KICK);
+            improve_skill_offensively(ch, mob, SKILL_KICK);
+        }
     }
 
     if (realvictims)
