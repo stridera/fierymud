@@ -2020,7 +2020,16 @@ void hit(CharData *ch, CharData *victim, int type) {
         else
             dtype = DAM_PIERCE;
     } else if (type == SKILL_KICK) {
-        dtype == DAM_CRUSH;
+        if (EFF_FLAGGED(ch, EFF_FIREHANDS))
+            dtype = DAM_FIRE;
+        else if (EFF_FLAGGED(ch, EFF_ICEHANDS))
+            dtype = DAM_COLD;
+        else if (EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS))
+            dtype = DAM_SHOCK;
+        else if (EFF_FLAGGED(ch, EFF_ACIDHANDS))
+            dtype = DAM_ACID;
+        else
+            dtype = DAM_CRUSH;
     } else {
         if (type == TYPE_UNDEFINED || type == SKILL_RIPOSTE || type == SKILL_DUAL_WIELD || !type) {
             if (weapon)
@@ -2135,7 +2144,15 @@ void hit(CharData *ch, CharData *victim, int type) {
      * (this applies when asleep, too!)
      */
     if (damage_evasion(victim, ch, weapon, dtype)) {
-        damage_evasion_message(ch, victim, weapon, dtype);
+        if (type == SKILL_KICK) {
+            act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, victim, TO_CHAR);
+            act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, victim,
+            TO_NOTVICT);
+            act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
+            ch, 0, victim, TO_VICT);
+        } else
+            damage_evasion_message(ch, victim, weapon, dtype);
+            
         set_fighting(victim, ch, true);
 
         /* Process Triggers - added here so they still process even if the attack is evaded */
@@ -2186,9 +2203,6 @@ void hit(CharData *ch, CharData *victim, int type) {
             /* Apply player barehand damage if no weapon */
             else if (!IS_NPC(ch))
                 dam += random_number(0, 2); /* Yeah, you better wield a weapon. */
-        } else {
-            dam += (GET_SKILL(ch, SKILL_KICK) / 2);
-            dam += stat_bonus[GET_DEX(ch)].todam;
         }
 
         /*
@@ -2213,6 +2227,10 @@ void hit(CharData *ch, CharData *victim, int type) {
             if (GET_CLASS(ch) == CLASS_ROGUE)
                 dam += ((hidden / 2) * (GET_SKILL(ch, SKILL_SNEAK_ATTACK) / 100));
 
+        } else if (type == SKILL_KICK) {
+            dam += (GET_SKILL(ch, SKILL_KICK) / 2);
+            dam += stat_bonus[GET_DEX(ch)].todam;
+        
         } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                    EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);

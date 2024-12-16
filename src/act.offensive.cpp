@@ -1305,7 +1305,7 @@ ACMD(do_rescue) {
 
 ACMD(do_kick) {
     CharData *vict;
-    int percent, prob;
+    int percent, prob, dtype;
 
     if (GET_SKILL(ch, SKILL_KICK) == 0) {
         char_printf(ch, "You'd better leave all the martial arts to fighters.\n");
@@ -1351,18 +1351,7 @@ ACMD(do_kick) {
         return;
 
     WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
-    if (displaced(ch, vict))
-        return;
 
-    if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
-        act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, vict, TO_CHAR);
-        act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, vict,
-            TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
-            ch, 0, vict, TO_VICT);
-        set_fighting(vict, ch, true);
-        return;
-    }
     hit(ch, vict, SKILL_KICK);
     improve_skill_offensively(ch, vict, SKILL_KICK);
 }
@@ -3095,7 +3084,7 @@ ACMD(do_tripup) {
 }
 
 ACMD(do_roundhouse) {
-    CharData *mob, *next_mob, *orig_target = nullptr;
+    CharData *mob, *next_mob;
     byte percent;
     bool kick_all = false, realvictims = false, success = false;
 
@@ -3152,19 +3141,6 @@ ACMD(do_roundhouse) {
             realvictims = true;
 
         if (success) {
-            if (displaced(ch, mob))
-                return;
-
-            if (damage_evasion(mob, ch, 0, DAM_CRUSH)) {
-                act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, mob, TO_CHAR);
-                act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, mob,
-                    TO_NOTVICT);
-                act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
-                    ch, 0, mob, TO_VICT);
-                set_fighting(mob, ch, true);
-                return;
-            }
-
             hit(ch, mob, SKILL_KICK);
             improve_skill_offensively(ch, mob, SKILL_KICK);
         }
