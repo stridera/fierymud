@@ -559,15 +559,21 @@ void decay_object(ObjData *obj) {
 void sick_update(void) {
     CharData *i, *next_char;
     ObjData *j;
+    int pc_dam;
+
 
     /* characters */
     for (i = character_list; i; i = next_char) {
         next_char = i->next;
 
+        /* Do damage with a maximum of 6.25% of HP minus 2x con bonus hp min 2% for PCs and 2% for NPCs */
+        pc_dam = (GET_MAX_HIT(i) / 16) - (stat_bonus[GET_CON(i)].skill_large);
+        if (pc_dam < GET_MAX_HIT(i) / 50)
+            pc_dam = GET_MAX_HIT(i) / 50;
+
         if (GET_STANCE(i) >= STANCE_STUNNED) {
-            /* Do damage with a maximum of 5.9% of HP minus 2x con bonus hp for PCs and 2% for NPCs */
             if (EFF_FLAGGED(i, EFF_POISON))
-                damage(i, i, IS_NPC(i) ? (GET_MAX_HIT(i) / 50) : ((GET_MAX_HIT(i) / 17) - (stat_bonus[GET_CON(i)].skill_large)), SPELL_POISON);
+                damage(i, i, IS_NPC(i) ? (GET_MAX_HIT(i) / 50) : (pc_dam), SPELL_POISON);
         }
     }
 }
