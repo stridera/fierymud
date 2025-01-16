@@ -2124,8 +2124,8 @@ void hit(CharData *ch, CharData *victim, int type) {
     victim_ac = GET_AC(victim);
     /* VALUES: 60 to -60 */
     victim_ac += stat_bonus[GET_DEX(victim)].defense * 10;
-    victim_ac = std::max(-100, victim_ac); /* -100 is lowest */
-    /* victim_ac ranges from 160 to -100 */
+    victim_ac = std::min(100, victim_ac); /* 100 is worst */
+    /* victim_ac ranges from -160 to 100 */
 
     /*
      *    Victim asleep = hit, otherwise:
@@ -2171,7 +2171,7 @@ void hit(CharData *ch, CharData *victim, int type) {
     }
 
     /* The attacker missed the victim. */
-    if (!hit) {
+    if (!to_hit) {
         damage(ch, victim, 0, type);
     }
 
