@@ -1156,7 +1156,8 @@
 #define ITEM_ANTI_COLOSSAL 49
 #define ITEM_ANTI_TITANIC 50
 #define ITEM_ANTI_MOUNTAINOUS 51
-#define NUM_ITEM_FLAGS 52
+#define ITEM_ANTI_ARBOREAN 52   /* Not usable by Arboreans */
+#define NUM_ITEM_FLAGS 53
 
 /* Modifier constants used with obj effects ('A' fields) */
 #define APPLY_NONE 0           /* No effect                       */

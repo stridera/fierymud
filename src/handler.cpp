@@ -864,9 +864,8 @@ bool may_wear_eq(CharData *ch,    /* Who is trying to wear something */
               /* allow dwarf races to override class restrictions */
               (!OBJ_FLAGGED(obj, ITEM_DWARVEN) || ((GET_RACE(ch) != RACE_DWARF) && (GET_RACE(ch) != RACE_DUERGAR)))) ||
 
-             /* Arboreans cannot use items that are both !druid and !ranger */
-             (OBJ_FLAGGED(obj, ITEM_ANTI_DRUID) && OBJ_FLAGGED(obj, ITEM_ANTI_RANGER) &&
-              GET_RACE(ch) == RACE_ARBOREAN))) {
+             /* item restricted from Arboreans */
+             (OBJ_FLAGGED(obj, ITEM_ANTI_ARBOREAN) && GET_RACE(ch) == RACE_ARBOREAN))) {
             if (sendmessage)
                 act("You cannot use $p.", false, ch, obj, 0, TO_CHAR);
             return false;
