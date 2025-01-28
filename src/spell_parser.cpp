@@ -1320,17 +1320,20 @@ ACMD(do_cast) {
     if (subcmd == SCMD_CHANT) {
         if (GET_LEVEL(ch) < LVL_GOD) {
             int seconds = 0;
-            if (SINFO.violent && GET_CLASS(ch) == CLASS_MONK && GET_COOLDOWN(ch, CD_OFFENSE_CHANT)) {
-                seconds = GET_COOLDOWN(ch, CD_OFFENSE_CHANT) / 10;
-            } else if (GET_COOLDOWN(ch, CD_DEFENSE_CHANT)) {
-                seconds = GET_COOLDOWN(ch, CD_DEFENSE_CHANT) / 10;
-            }
-            if (seconds) {
-                char_printf(ch,
-                            "You're still out of breath from chanting recently!\n"
-                            "You'll be able to chant again in another {:d} {}.\n",
-                            seconds, seconds == 1 ? "second" : "seconds");
-                return;
+            if (GET_CLASS(ch) == CLASS_MONK) {
+                if (SINFO.violent && GET_COOLDOWN(ch, CD_OFFENSE_CHANT)) {
+                    seconds = GET_COOLDOWN(ch, CD_OFFENSE_CHANT) / 10;
+                } else if (!SINFO.violent && GET_COOLDOWN(ch, CD_DEFENSE_CHANT)) {
+                    seconds = GET_COOLDOWN(ch, CD_DEFENSE_CHANT) / 10;
+                }
+                
+                if (seconds) {
+                    char_printf(ch,
+                                "You're still out of breath from chanting recently!\n"
+                                "You'll be able to chant again in another {:d} {}.\n",
+                                seconds, seconds == 1 ? "second" : "seconds");
+                    return;
+                }
             }
         }
     }
