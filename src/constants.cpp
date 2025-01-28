@@ -198,7 +198,7 @@ const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
     "!FALL",         "DISARMED",    "!MONK",       "!BARD",        "ELVEN",       "DWARVEN",
     "!THIEF",        "!PYROMANCER", "!CRYOMANCER", "!ILLUSIONIST", "!PRIEST",     "!DIABOLIST",
     "!TINY",         "!SMALL",      "!MEDIUM",     "!LARGE",       "!HUGE",       "!GIANT",
-    "!GARGANTUAN",   "!COLOSSAL",   "!TITANIC",    "!MOUNTAINOUS", "\n"};
+    "!GARGANTUAN",   "!COLOSSAL",   "!TITANIC",    "!MOUNTAINOUS", "!ARBOREAN",   "\n"};
 
 /* APPLY_x */
 const char *apply_types[NUM_APPLY_TYPES + 1] = {
