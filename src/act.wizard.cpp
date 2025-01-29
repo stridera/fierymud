@@ -2077,7 +2077,7 @@ ACMD(do_set) {
             sprintf(buf, "%s's %s now off.\n", GET_NAME(vict), fields[l].cmd);
         } else if (is_number(val_arg)) {
             value = atoi(val_arg);
-            std::clamp(value, 0, 24);
+            value = std::clamp(value, 0, 24);
             GET_COND(vict, (l - 29)) = (char)value;
             sprintf(buf, "%s's %s set to %d.\n", GET_NAME(vict), fields[l].cmd, value);
         } else {
@@ -2101,7 +2101,7 @@ ACMD(do_set) {
         }
         if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
             GET_CLAN(vict)->power -= GET_LEVEL(vict);
-        std::clamp(value, 0, LVL_IMPL);
+        value = std::clamp(value, 0, LVL_IMPL);
         vict->player.level = (byte)value;
         if (GET_CLAN(vict) && IS_CLAN_MEMBER(vict))
             GET_CLAN(vict)->power += GET_LEVEL(vict);
