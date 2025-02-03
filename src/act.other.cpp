@@ -1265,8 +1265,8 @@ ACMD(do_steal) {
             /* Failed attempt to steal some coins */
             caught = true;
             act("Oops..", false, ch, 0, 0, TO_CHAR);
-            act("You discover that $n has $s hands in your wallet.", false, ch, 0, vict, TO_VICT);
-            act("$n tries to steal coins from $N.", true, ch, 0, vict, TO_NOTVICT);
+            act("&3&bYou discover that $n has $s hands in your wallet.&0", false, ch, 0, vict, TO_VICT);
+            act("&3&b$n tries to steal coins from $N.&0", true, ch, 0, vict, TO_NOTVICT);
             improve_skill(ch, SKILL_STEAL);
         } else {
             /* Successful theft of coins */
