@@ -993,7 +993,8 @@ const CommandInfo cmd_info[] = {
     {"qstat", POS_PRONE, STANCE_DEAD, do_qstat, LVL_ATTENDANT, 0, CMD_ANY},
     {"objupdate", POS_PRONE, STANCE_DEAD, do_objupdate, LVL_HEAD_C, 0, CMD_ANY},
 
-    {"\n", 0, 0, 0, 0, 0, CMD_HIDE}}; /* this must be last */
+    {"\n", 0, 0, 0, 0, 0, CMD_HIDE} /* this must be last */
+};
 
 const char *command_flags[] = {"MEDITATE", "MAJOR PARA", "MINOR PARA", "HIDE", "BOUND", "CAST", "OLC", "NOFIGHT", "\n"};
 
@@ -1071,7 +1072,7 @@ void command_interpreter(CharData *ch, char *argument) {
     }
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE) && !IS_SET(cmd_info[cmd].flags, CMD_MEDITATE)) {
-        REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        PLR_FLAGS(ch).reset(PLR_MEDITATE);
         act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         char_printf(ch, "You stop meditating.\n&0");
     }
@@ -1930,8 +1931,8 @@ int perform_dupe_check(DescriptorData *d) {
     d->original = nullptr;
     d->character->char_specials.timer = 0;
     d->character->forward = nullptr;
-    REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
-    REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
+    PLR_FLAGS(d->character).reset(PLR_WRITING);
+    PLR_FLAGS(d->character).reset(PLR_MAILING);
     STATE(d) = CON_PLAYING;
 
     switch (mode) {
@@ -2311,11 +2312,9 @@ void nanny(DescriptorData *d, char *arg) {
                 GET_PFILEPOS(d->character) = player_i;
 
                 if (color) {
-                    SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-                    SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
+                    PRF_FLAGS(d->character).set(PRF_COLOR_1 | PRF_COLOR_2);
                 } else {
-                    REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-                    REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
+                    PRF_FLAGS(d->character).reset(PRF_COLOR_1 | PRF_COLOR_2);
                 }
                 sprintf(buf, "\nDo you want to make a new character called %s? ", tmp_name);
                 string_to_output(d, buf);
@@ -2328,16 +2327,12 @@ void nanny(DescriptorData *d, char *arg) {
                     color = 1;
 
                 /* undo it just in case they are set */
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_CRYO);
+                PLR_FLAGS(d->character).reset(PLR_WRITING | PLR_MAILING | PLR_CRYO);
 
                 if (color) {
-                    SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-                    SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
+                    PRF_FLAGS(d->character).set(PRF_COLOR_1 | PRF_COLOR_2);
                 } else {
-                    REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-                    REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
+                    PRF_FLAGS(d->character).reset(PRF_COLOR_1 | PRF_COLOR_2);
                 }
 
                 string_to_output(d, "Password: ");
@@ -2465,9 +2460,9 @@ void nanny(DescriptorData *d, char *arg) {
 
             string_to_output(d, "Now you must wait to be re-approved.\n");
             if (!PLR_FLAGGED(d->character, PLR_NAPPROVE))
-                SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
+                PLR_FLAGS(d->character).set(PLR_NAPPROVE);
             event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
-            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
+            PLR_FLAGS(d->character).reset(PLR_NEWNAME);
             string_to_output(d,
                              "Now you must wait for your name to be approved by an immortal.\n"
                              "If no one is available, you will be granted entry in a VERY short "
@@ -3144,10 +3139,10 @@ void nanny(DescriptorData *d, char *arg) {
         default:
             if (approve_names && (top_of_p_table + 1) && napprove_pause) {
                 if (!PLR_FLAGGED(d->character, PLR_NAPPROVE)) {
-                    SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
+                    PLR_FLAGS(d->character).set(PLR_NAPPROVE);
                 }
                 event_create(EVENT_NAME_TIMEOUT, name_timeout, d, false, nullptr, NAME_TIMEOUT);
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
+                PLR_FLAGS(d->character).reset(PLR_NEWNAME);
                 string_to_output(d,
                                  "\nNow you must wait for your name to be approved by an immortal.\n"
                                  "If no one is available, you will be auto approved in a short time.\n");
@@ -3156,7 +3151,7 @@ void nanny(DescriptorData *d, char *arg) {
                 break;
             } else {
                 if (approve_names && !PLR_FLAGGED(d->character, PLR_NAPPROVE)) {
-                    SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
+                    PLR_FLAGS(d->character).set(PLR_NAPPROVE);
                 }
                 if (GET_PFILEPOS(d->character) < 0) {
                     GET_PFILEPOS(d->character) = create_player_index_entry(GET_NAME(d->character));
@@ -3381,27 +3376,27 @@ EVENTFUNC(name_timeout) {
     save_player_char(d->character);
 
     if (!PLR_FLAGGED(d->character, PLR_NAPPROVE))
-        SET_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
+        PLR_FLAGS(d->character).set(PLR_NAPPROVE);
 
     if (!PLR_FLAGGED(d->character, PLR_NEWNAME)) {
         /* This IF was placed here so players whose names had been
-           FREAKING DECLINED wouldn't sneak online anyway if they
-           sat at the prompt not choosing a new name. - RSD 11/11/2000
-         */
+            FREAKING DECLINED wouldn't sneak online anyway if they
+            sat at the prompt not choosing a new name. - RSD 11/11/2000
+            */
         string_to_output(d, "You have been auto-approved.\n");
         string_to_output(d, get_text(TEXT_MOTD));
         string_to_output(d, "\n\n*** PRESS RETURN: ");
         if (PLR_FLAGGED(d->character, PLR_NEWNAME)) {
             log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] has connected with a new name.", GET_NAME(d->character),
                 d->host);
-            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
+            PLR_FLAGS(d->character).reset(PLR_NEWNAME);
         } else {
             log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] new player.", GET_NAME(d->character), d->host);
         }
         STATE(d) = CON_RMOTD;
     }
     if (PLR_FLAGGED(d->character, PLR_NEWNAME))
-        REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
+        PLR_FLAGS(d->character).reset(PLR_NEWNAME);
 
     return EVENT_FINISHED;
 }

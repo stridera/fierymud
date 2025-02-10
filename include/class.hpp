@@ -18,6 +18,8 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
+#include <bitset>
+
 #define CLASS_UNDEFINED -1
 #define CLASS_SORCERER 0
 #define CLASS_CLERIC 1
@@ -98,8 +100,9 @@ struct ClassDef {
      */
 
     /* List of permanent effect flags */
-    flagvector effect_flags[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+    EffectFlags effect_flags;
 };
+;
 extern ClassDef classes[NUM_CLASSES];
 
 #define VALID_CLASSNUM(num) (num < NUM_CLASSES)
@@ -144,7 +147,6 @@ extern ClassDef classes[NUM_CLASSES];
     (VALID_CLASS(ch)                                                                                                   \
          ? classes[(int)GET_CLASS(ch)].nowear_flag && OBJ_FLAGGED(obj, classes[(int)GET_CLASS(ch)].nowear_flag)        \
          : 0)
-
 
 enum level_action { LEVEL_GAIN, LEVEL_LOSE };
 

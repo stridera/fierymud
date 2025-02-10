@@ -20,7 +20,7 @@
 /* handling the affected-structures */
 void effect_total(CharData *ch);
 void do_campout(CharData *ch);
-void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool add);
+void effect_modify(CharData *ch, byte loc, sh_int mod, EffectFlags flags, bool add);
 void effect_to_char(CharData *ch, effect *eff);
 void effect_remove(CharData *ch, effect *eff);
 void active_effect_remove(CharData *ch, effect *effect);

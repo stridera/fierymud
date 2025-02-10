@@ -265,12 +265,12 @@ EVENTFUNC(track_delayed_event) {
     track = track_event->track;
 
     if (!event_target_valid(ch) || !event_target_valid(victim)) {
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+        GET_EVENT_FLAGS(ch).reset(EVENT_TRACK);
         return EVENT_FINISHED;
     }
 
     if (!cause_single_track(track, ch, victim, track_room)) {
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+        GET_EVENT_FLAGS(ch).reset(EVENT_TRACK);
         return EVENT_FINISHED;
     }
 
@@ -327,7 +327,7 @@ ACMD(do_track) {
     if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
         char_printf(ch, "You stop tracking.\n");
         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+        GET_EVENT_FLAGS(ch).reset(EVENT_TRACK);
         return;
     }
 
@@ -421,7 +421,7 @@ ACMD(do_hunt) {
     if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
         char_printf(ch, "You stop tracking.\n");
         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+        GET_EVENT_FLAGS(ch).reset(EVENT_TRACK);
         return;
     }
 
@@ -477,7 +477,7 @@ ACMD(do_hunt) {
     if (EVENT_FLAGGED(ch, EVENT_TRACK)) {
         char_printf(ch, "You stop hunting.\n");
         cancel_event(GET_EVENTS(ch), EVENT_TRACK);
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+        GET_EVENT_FLAGS(ch).reset(EVENT_TRACK);
         return;
     }
 
@@ -591,7 +591,7 @@ bool call_track(bool hunt, TrackInfo track, CharData *ch, CharData *victim, bool
             track_event->track_room = victim->in_room;
 
         event_create(EVENT_TRACK, track_delayed_event, track_event, true, &(ch->events), track.speed);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_TRACK);
+        GET_EVENT_FLAGS(ch).set(EVENT_TRACK);
         return true;
     }
 }

@@ -70,9 +70,9 @@ bool can_travel_on_water(CharData *ch) {
 #define CANCEL_GRAVITY                                                                                                 \
     {                                                                                                                  \
         if (ch)                                                                                                        \
-            REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_GRAVITY);                                                           \
+            GET_EVENT_FLAGS(ch).reset(EVENT_GRAVITY);                                                                  \
         else                                                                                                           \
-            REMOVE_FLAG(GET_EVENT_FLAGS(obj), EVENT_GRAVITY);                                                          \
+            GET_EVENT_FLAGS(obj).reset(EVENT_GRAVITY);                                                                 \
         return EVENT_FINISHED;                                                                                         \
     }
 EVENTFUNC(gravity_event) {
@@ -192,7 +192,7 @@ void start_char_falling(CharData *ch) {
         event_obj->ch = ch;
         event_obj->start_room = IN_ROOM(ch);
         event_create(EVENT_GRAVITY, gravity_event, event_obj, true, &(ch->events), 0);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_GRAVITY);
+        GET_EVENT_FLAGS(ch).set(EVENT_GRAVITY);
     }
 }
 
@@ -203,7 +203,7 @@ void start_obj_falling(ObjData *obj) {
         event_obj->obj = obj;
         event_obj->start_room = IN_ROOM(obj);
         event_create(EVENT_GRAVITY, gravity_event, event_obj, true, &(obj->events), 0);
-        SET_FLAG(GET_EVENT_FLAGS(obj), EVENT_GRAVITY);
+        GET_EVENT_FLAGS(obj).set(EVENT_GRAVITY);
     }
 }
 
@@ -270,8 +270,9 @@ void falling_yell(CharData *ch) {
                 dirstr = buf2;
             }
 
-            sprintf(buf, "You hear a %s %s from %s, which quickly fades.", random_number(0, 10) < 5 ? "surprised" : "sudden",
-                    random_number(0, 10) < 6 ? "shriek" : "yelp", dirstr);
+            sprintf(buf, "You hear a %s %s from %s, which quickly fades.",
+                    random_number(0, 10) < 5 ? "surprised" : "sudden", random_number(0, 10) < 6 ? "shriek" : "yelp",
+                    dirstr);
 
             ch->in_room = EXIT_NDEST(world[was_in].exits[dir]);
             act(buf, false, ch, 0, 0, TO_ROOM);
@@ -378,7 +379,7 @@ void stop_follower(CharData *ch, int violent) {
     }
 
     if (EFF_FLAGGED(ch, EFF_CHARM)) {
-        REMOVE_FLAG(EFF_FLAGS(ch), EFF_CHARM);
+        EFF_FLAGS(ch).reset(EFF_CHARM);
 
         /* The following is necessary to prevent the sharing of summoned mounts.
          * If the mob were not removed from the game at this point, a paladin
@@ -393,7 +394,7 @@ void stop_follower(CharData *ch, int violent) {
             SET_COOLDOWN(ch->master, CD_SUMMON_MOUNT, 12 MUD_HR);
     }
 
-    REMOVE_FLAG(EFF_FLAGS(ch), EFF_SHADOWING);
+    EFF_FLAGS(ch).reset(EFF_SHADOWING);
     ch->master = nullptr;
 }
 
@@ -467,8 +468,8 @@ void disband_group(CharData *master, bool verbose, bool forceful) {
         g->groupee->group_master = nullptr;
         master->groupees = g->next;
         if (verbose)
-            act(forceful ? "&2The group has been disbanded.&0" : "&2$n &2has disbanded the group.&0", false,
-                master, 0, g->groupee, TO_VICT);
+            act(forceful ? "&2The group has been disbanded.&0" : "&2$n &2has disbanded the group.&0", false, master, 0,
+                g->groupee, TO_VICT);
         free(g);
     }
 }
@@ -534,8 +535,7 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
                     continue;
                 }
                 if (verbose)
-                    act(forceful ? "&2$n &2has been kicked out of your group!&0"
-                                 : "&2$n &2has left your group!&0",
+                    act(forceful ? "&2$n &2has been kicked out of your group!&0" : "&2$n &2has left your group!&0",
                         true, ch, 0, g->next->groupee, TO_VICT);
                 g = g->next;
             }
@@ -544,10 +544,10 @@ void ungroup(CharData *ch, bool verbose, bool forceful) {
             ch->group_master = nullptr;
 
             if (verbose) {
-                act(forceful ? "&2You have been kicked out of your group.&0" : "&2You have left your group!&0",
-                    false, ch, 0, 0, TO_CHAR);
-                act(forceful ? "&2You have kicked $n &2out of your group.&0" : "&2$n &2has left your group!&0",
-                    false, ch, 0, master, TO_VICT);
+                act(forceful ? "&2You have been kicked out of your group.&0" : "&2You have left your group!&0", false,
+                    ch, 0, 0, TO_CHAR);
+                act(forceful ? "&2You have kicked $n &2out of your group.&0" : "&2$n &2has left your group!&0", false,
+                    ch, 0, master, TO_VICT);
             }
         }
     } else

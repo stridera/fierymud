@@ -39,15 +39,6 @@ typedef unsigned char ubyte;
 typedef signed short int sh_int;
 typedef unsigned short int ush_int;
 
-/** Bitvector type for 32 bit unsigned long bitvectors. 'unsigned long long'
- * will give you at least 64 bits if you have GCC. You'll have to search
- * throughout the code for "bitvector_t" and change them yourself if you'd
- * like this extra flexibility. */
-typedef unsigned long int flagvector;
-#define FLAGBLOCK_SIZE (flagvector)32
-//((flagvector)8 * sizeof(flagvector)) /* 8 bits = 1 byte */
-#define FLAGVECTOR_SIZE(flags) (((flags)-1) / FLAGBLOCK_SIZE + 1)
-
 /* Extra description: used in objects, mobiles, and rooms */
 struct ExtraDescriptionData {
     char *keyword;              /* Keyword in look/examine          */
@@ -207,13 +198,13 @@ struct CharSpecialData {
     int alignment; /* +/- 1000 for alignment                */
     long idnum;    /* player's idnum; -1 for mobiles        */
     /* act flag for NPC; player flag for PC  */
-    flagvector act[FLAGVECTOR_SIZE(NUM_MOB_FLAGS > NUM_PLR_FLAGS ? NUM_MOB_FLAGS : NUM_PLR_FLAGS)];
+    PlayerOrMobFlags act;
 
     long perception;
     long hiddenness;
 
     /* Bitvectors for spells/skills effects  */
-    flagvector effects[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+    EffectFlags effects;
     sh_int apply_saving_throw[5]; /* Saving throw (Bonuses)                */
 
     sh_int skills[TOP_SKILL + 1]; /* array of skills plus skill 0          */
@@ -259,19 +250,19 @@ struct PlayerSpecialData {
     room_num load_room;   /* Which room to place char in            */
     room_num save_room;   /* Where the player was when saved        */
     /* preference flags for PC's.             */
-    flagvector pref[FLAGVECTOR_SIZE(NUM_PRF_FLAGS)];
+    PreferenceFlags pref;
     /* privilege flags for PC's */
-    flagvector privileges[FLAGVECTOR_SIZE(NUM_PRV_FLAGS)];
+    PrivilegeFlags privileges;
     ubyte bad_pws;       /* number of bad password attempts        */
     sbyte conditions[3]; /* Drunk, full, thirsty                   */
     TrophyNode *trophy;
     AliasData *aliases;
 
-    flagvector *grant_cache;  /* cache of granted commands              */
-    flagvector *revoke_cache; /* cache of revoked commands              */
-    GrantType *grants;        /* Commands granted to this player        */
-    GrantType *revokes;       /* Commands revoked from this player      */
-                              /* Groups of commands granted to this player */
+    CommandCache grant_cache;  /* cache of granted commands              */
+    CommandCache revoke_cache; /* cache of revoked commands              */
+    GrantType *grants;         /* Commands granted to this player        */
+    GrantType *revokes;        /* Commands revoked from this player      */
+                               /* Groups of commands granted to this player */
     GrantType *grant_groups;
     /* Groups of commands revoked from this player */
     GrantType *revoke_groups;
@@ -333,7 +324,7 @@ struct effect {
     int modifier;  /* This is added to apropriate ability      */
     byte location; /* Tells which ability to change(APPLY_XXX) */
     /* Tells which flags to set (EFF_XXX) */
-    flagvector flags[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+    EffectFlags flags;
 
     effect *next;
 };
@@ -414,7 +405,8 @@ struct CharData {
                                         /* Events */
     Casting casting;                    /* note this is NOT a pointer */
     Event *events;                      /* List of events related to this character */
-    int event_flags[EVENT_FLAG_FIELDS]; /* Bitfield of events active on this character */
+
+    EventFlags event_flags; /* Bitfield of events active on this character */
 };
 
 /* ====================================================================== */
@@ -510,17 +502,17 @@ struct message_list {
 };
 
 struct stat_bonus_type {
-    sh_int tohit;         /* To Hit (THAC0) Bonus/Penalty        */
-    sh_int todam;         /* Damage Bonus/Penalty                */
-    sh_int defense;       /* Armor Class Bonus/Penalty           */
-    sh_int carry;         /* Maximum weight that can be carrried */
-    sh_int wield;         /* Maximum weight that can be wielded  */
-    sh_int magic;         /* Stat bonus to spells                */
-    sh_int hpgain;        /* Bonus to HP gained at level         */
-    sh_int skill_small;         /* Range -7 to 5 bonus to skills       */
-    sh_int skill_medium;        /* Range -7 to 10 bonus to skills      */
-    sh_int skill_large;         /* Range -7 to 15 bonus to skills      */
-    sh_int rogue_skills;  /* Bonus range for rogue-type skills   */
+    sh_int tohit;        /* To Hit (THAC0) Bonus/Penalty        */
+    sh_int todam;        /* Damage Bonus/Penalty                */
+    sh_int defense;      /* Armor Class Bonus/Penalty           */
+    sh_int carry;        /* Maximum weight that can be carrried */
+    sh_int wield;        /* Maximum weight that can be wielded  */
+    sh_int magic;        /* Stat bonus to spells                */
+    sh_int hpgain;       /* Bonus to HP gained at level         */
+    sh_int skill_small;  /* Range -7 to 5 bonus to skills       */
+    sh_int skill_medium; /* Range -7 to 10 bonus to skills      */
+    sh_int skill_large;  /* Range -7 to 15 bonus to skills      */
+    sh_int rogue_skills; /* Bonus range for rogue-type skills   */
 };
 
 struct weather_data {

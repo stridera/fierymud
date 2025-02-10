@@ -47,8 +47,8 @@ void aggro_lose_spells(CharData *ch) {
     if (!EFF_FLAGGED(ch, EFF_REMOTE_AGGR)) {
         if (affected_by_spell(ch, SPELL_INVISIBLE) || affected_by_spell(ch, SPELL_NATURES_EMBRACE))
             appear(ch);
-        REMOVE_FLAG(EFF_FLAGS(ch), EFF_INVISIBLE);
-        REMOVE_FLAG(EFF_FLAGS(ch), EFF_CAMOUFLAGED);
+        EFF_FLAGS(ch).reset(EFF_INVISIBLE);
+        EFF_FLAGS(ch).reset(EFF_CAMOUFLAGED);
         if (EFF_FLAGGED(ch, EFF_GLORY))
             effect_from_char(ch, SPELL_GLORY);
         GET_HIDDENNESS(ch) = 0;
@@ -709,7 +709,7 @@ ACMD(do_backstab) {
             eff.duration = 2;
             eff.modifier = 0;
             eff.location = APPLY_NONE;
-            SET_FLAG(eff.flags, EFF_AWARE);
+            eff.flags.set(EFF_AWARE);
             effect_to_char(vict, &eff);
         }
         return;
@@ -770,7 +770,7 @@ ACMD(do_backstab) {
         eff.duration = 2;
         eff.modifier = 0;
         eff.location = APPLY_NONE;
-        SET_FLAG(eff.flags, EFF_AWARE);
+        eff.flags.set(EFF_AWARE);
         effect_to_char(vict, &eff);
     }
 
@@ -1345,7 +1345,7 @@ ACMD(do_kick) {
     /* Need to see whether this player is fighting already. Kick should not
        allow for the player to switch without a switch probability being
        calculated into the mix. (DEMOLITUM) */
-       
+
     WAIT_STATE(ch, PULSE_VIOLENCE);
     if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
         return;
@@ -1437,7 +1437,7 @@ ACMD(do_eye_gouge) {
             eff.duration = 1;
             eff.modifier = -2 - GET_SKILL(ch, SKILL_EYE_GOUGE) / 10;
             eff.location = APPLY_HITROLL;
-            SET_FLAG(eff.flags, EFF_BLIND);
+            eff.flags.set(EFF_BLIND);
             effect_to_char(vict, &eff);
         }
         damage(ch, vict, dam_suscept_adjust(ch, vict, 0, (GET_SKILL(ch, SKILL_EYE_GOUGE) + percent) / 4, DAM_PIERCE),
@@ -1516,12 +1516,12 @@ ACMD(do_springleap) {
             GET_STANCE(ch) = STANCE_ALERT;
         }
     } else if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
-        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!&0", false, ch, 0,
-            vict, TO_CHAR);
+        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!&0", false, ch,
+            0, vict, TO_CHAR);
         act(EVASIONCLR "$n" EVASIONCLR " leaps at $N" EVASIONCLR " but flies right on through!&0", false, ch, 0, vict,
             TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.&0", false, ch,
-            0, vict, TO_VICT);
+        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.&0", false,
+            ch, 0, vict, TO_VICT);
         /* You fall */
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         GET_POS(ch) = POS_SITTING;
@@ -1754,7 +1754,7 @@ ACMD(do_throatcut) {
     eff.duration = 5;
     eff.modifier = 0;
     eff.location = APPLY_NONE;
-    SET_FLAG(eff.flags, EFF_AWARE);
+    eff.flags.set(EFF_AWARE);
     effect_to_char(vict, &eff);
 
     if (chance > 95) {
@@ -1866,7 +1866,7 @@ ACMD(do_throatcut) {
         eff.duration = 2;
         eff.modifier = 0;
         eff.location = APPLY_NONE;
-        SET_FLAG(eff.flags, EFF_HURT_THROAT);
+        eff.flags.set(EFF_HURT_THROAT);
         effect_to_char(vict, &eff);
     }
 
@@ -2091,7 +2091,7 @@ ACMD(do_disarm) {
         /* items ONLY have this set when a MOB is successfuly disarmed */
         /* the item lies on the ground with this bit set, so when someone */
         /* attempts to get it, do_get() can handle it appropriately */
-        SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_WAS_DISARMED);
+        GET_OBJ_FLAGS(obj).set(ITEM_WAS_DISARMED);
 
         /* we must remember who last held this item, so the MOB scanning for its */
         /* disarmed item knows THAT is it. */
@@ -2404,7 +2404,7 @@ void start_berserking(CharData *ch) {
     eff.duration = 1000; /* arbitrarily long time */
     eff.modifier = 0;
     eff.location = APPLY_NONE;
-    SET_FLAG(eff.flags, EFF_BERSERK);
+    eff.flags.set(EFF_BERSERK);
     GET_STANCE(ch) = STANCE_ALERT;
     GET_POS(ch) = POS_STANDING;
     effect_to_char(ch, &eff);
@@ -2878,7 +2878,8 @@ ACMD(do_rend) {
         return;
 
     percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + random_number(1, 101);
-    prob = (GET_SKILL(ch, SKILL_REND) + (stat_bonus[GET_DEX(ch)].skill_large / 2) + (stat_bonus[GET_INT(ch)].skill_large / 2));
+    prob = (GET_SKILL(ch, SKILL_REND) + (stat_bonus[GET_DEX(ch)].skill_large / 2) +
+            (stat_bonus[GET_INT(ch)].skill_large / 2));
 
     if (percent > prob) {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -2910,7 +2911,7 @@ ACMD(do_rend) {
             eff.modifier = -1 - (GET_SKILL(ch, SKILL_REND) / 4) - (stat_bonus[GET_DEX(ch)].skill_large / 2) -
                            (stat_bonus[GET_INT(ch)].skill_large / 2);
             eff.location = APPLY_AC;
-            SET_FLAG(eff.flags, EFF_EXPOSED);
+            eff.flags.set(EFF_EXPOSED);
             effect_to_char(vict, &eff);
         }
     }
@@ -3149,4 +3150,3 @@ ACMD(do_roundhouse) {
     if (realvictims)
         improve_skill(ch, SKILL_ROUNDHOUSE);
 }
-

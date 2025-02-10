@@ -90,18 +90,13 @@ static void add_grant(GrantType **list, int grant, const char *grantor, int gran
 void cache_grants(CharData *ch) {
     int cmd;
 
-    if (!GET_GRANT_CACHE(ch))
-        CREATE(GET_GRANT_CACHE(ch), flagvector, FLAGVECTOR_SIZE(num_of_cmds));
-    if (!GET_REVOKE_CACHE(ch))
-        CREATE(GET_REVOKE_CACHE(ch), flagvector, FLAGVECTOR_SIZE(num_of_cmds));
-
     for (cmd = 1; cmd < num_of_cmds; ++cmd) {
         switch (command_grant_usability(ch, cmd)) {
         case CMD_GRANTED:
-            SET_FLAG(GET_GRANT_CACHE(ch), cmd);
+            GET_GRANT_CACHE(ch)[cmd] = true;
             break;
         case CMD_REVOKED:
-            SET_FLAG(GET_REVOKE_CACHE(ch), cmd);
+            GET_REVOKE_CACHE(ch)[cmd] = true;
             break;
         case CMD_NOT_GRANTED:
             /* do nothing */
@@ -148,7 +143,7 @@ static bool can_grant_group(CharData *ch, int group) {
         return (cmd_groups[group].minimum_level <= GET_LEVEL(ch));
 }
 
-static void cache_grant(flagvector *cache, int cmd, bool is_group, bool set) {
+static void cache_grant(CommandCache &cache, int cmd, bool is_group, bool set) {
     if (is_group) {
         if (cmd < num_cmd_groups) {
             int group = cmd, grp;
@@ -156,20 +151,14 @@ static void cache_grant(flagvector *cache, int cmd, bool is_group, bool set) {
                 if (grp_info[cmd].groups)
                     for (grp = 0; grp_info[cmd].groups[grp] >= 0; ++grp)
                         if (grp_info[cmd].groups[grp] == group) {
-                            if (set)
-                                SET_FLAG(cache, cmd);
-                            else
-                                REMOVE_FLAG(cache, cmd);
+                            cache[cmd] = set;
                             break;
                         }
         }
     }
 
     else if (cmd < num_of_cmds) {
-        if (set)
-            SET_FLAG(cache, cmd);
-        else
-            REMOVE_FLAG(cache, cmd);
+        cache[cmd] = set;
     }
 }
 
@@ -249,7 +238,7 @@ static void send_grant_usage(CharData *ch) {
 static void do_command_grant_revoke(CharData *ch, CharData *vict, char *argument, int subcmd, int type) {
     GrantType **list, **unlist, **temp;
     GrantType *grant;
-    flagvector *cache, *uncache;
+    CommandCache cache, uncache;
     CommandGroup *group;
     int level, command = 0;
     const char *past_action, *preposition;
@@ -373,9 +362,9 @@ static void do_clear_grants(CharData *ch, CharData *vict) {
     count += clear_grant_list(ch, &GET_REVOKES(vict));
     count += clear_grant_list(ch, &GET_GRANT_GROUPS(vict));
     count += clear_grant_list(ch, &GET_REVOKE_GROUPS(vict));
-    CLEAR_FLAGS(GET_GRANT_CACHE(vict), num_of_cmds);
-    CLEAR_FLAGS(GET_REVOKE_CACHE(vict), num_of_cmds);
-    CLEAR_FLAGS(PRV_FLAGS(vict), NUM_PRV_FLAGS);
+    GET_GRANT_CACHE(vict).clear();
+    GET_REVOKE_CACHE(vict).clear();
+    PRV_FLAGS(vict).reset();
     char_printf(ch, "{} grant{} cleared.\n", count, count == 1 ? "" : "s");
 }
 
@@ -394,12 +383,12 @@ static void do_flag_grant_revoke(CharData *ch, CharData *vict, char *argument, i
     } else if (prv_flags[flag].level > GET_LEVEL(ch))
         char_printf(ch, "You don't have the ability to set that flag.\n");
     else if (subcmd == SCMD_GRANT) {
-        SET_FLAG(PRV_FLAGS(vict), flag);
+        PRV_FLAGS(vict).set(flag);
         if (prv_flags[flag].update_func)
             (prv_flags[flag].update_func)(vict, flag);
         char_printf(ch, "Granted {} to {} at level {}.\n", prv_flags[flag].desc, GET_NAME(vict), prv_flags[flag].level);
     } else {
-        REMOVE_FLAG(PRV_FLAGS(vict), flag);
+        PRV_FLAGS(vict).reset(flag);
         if (prv_flags[flag].update_func)
             (prv_flags[flag].update_func)(vict, flag);
         char_printf(ch, "Ungranted {} from {} at level {}.\n", prv_flags[flag].desc, GET_NAME(vict),

@@ -114,7 +114,7 @@ EVENTFUNC(battle_paralysis_handler) {
     eff.modifier = 0;
     eff.location = 0;
     eff.duration = 2;
-    SET_FLAG(eff.flags, EFF_MINOR_PARALYSIS);
+    eff.flags.set(EFF_MINOR_PARALYSIS);
     effect_to_char(vict, &eff);
 
     return EVENT_FINISHED;
@@ -341,7 +341,7 @@ EVENTFUNC(falltoground_event) {
         act("$n falls to the ground.", false, ch, 0, 0, TO_ROOM);
     }
     alter_pos(ch, POS_STANDING, GET_STANCE(ch));
-    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_FALLTOGROUND);
+    GET_EVENT_FLAGS(ch).reset(EVENT_FALLTOGROUND);
 
     return EVENT_FINISHED;
 }

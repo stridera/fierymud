@@ -526,8 +526,8 @@ void postmaster_send_mail(CharData *ch, CharData *mailman, int cmd, char *arg) {
     act(buf, false, mailman, 0, ch, TO_VICT);
     money_convert(ch, price);
     GET_COPPER(ch) -= price;
-    SET_FLAG(PLR_FLAGS(ch), PLR_MAILING);
-    SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
+    PLR_FLAGS(ch).set(PLR_MAILING);
+    PLR_FLAGS(ch).set(PLR_WRITING);
 
     mail_write(ch->desc, nullptr, MAX_MAIL_SIZE, recipient);
 }

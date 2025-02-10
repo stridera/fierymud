@@ -54,6 +54,7 @@
 
 #include <algorithm>
 #include <fcntl.h>
+#include <fmt/ranges.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -837,17 +838,17 @@ ACMD(do_advance) {
 
     if (oldlevel >= LVL_IMMORT && newlevel < LVL_IMMORT) {
         /* If they are no longer an immortal, remove the immortal only flags. */
-        REMOVE_FLAG(PRF_FLAGS(victim), PRF_LOG1);
-        REMOVE_FLAG(PLR_FLAGS(victim), PRF_LOG2);
-        REMOVE_FLAG(PRF_FLAGS(victim), PRF_NOHASSLE);
-        REMOVE_FLAG(PLR_FLAGS(victim), PRF_HOLYLIGHT);
-        REMOVE_FLAG(PLR_FLAGS(victim), PRF_SHOWVNUMS);
-        REMOVE_FLAG(PLR_FLAGS(victim), PRF_ROOMVIS);
-        REMOVE_FLAG(PLR_FLAGS(victim), PRF_ROOMVIS);
+        PRF_FLAGS(victim).reset(PRF_LOG1);
+        PLR_FLAGS(victim).reset(PRF_LOG2);
+        PRF_FLAGS(victim).reset(PRF_NOHASSLE);
+        PLR_FLAGS(victim).reset(PRF_HOLYLIGHT);
+        PLR_FLAGS(victim).reset(PRF_SHOWVNUMS);
+        PLR_FLAGS(victim).reset(PRF_ROOMVIS);
+        PLR_FLAGS(victim).reset(PRF_ROOMVIS);
     } else if (oldlevel < LVL_IMMORT && newlevel >= LVL_IMMORT) {
-        SET_FLAG(PRF_FLAGS(victim), PRF_HOLYLIGHT);
-        SET_FLAG(PRF_FLAGS(victim), PRF_SHOWVNUMS);
-        SET_FLAG(PRF_FLAGS(victim), PRF_AUTOEXIT);
+        PRF_FLAGS(victim).set(PRF_HOLYLIGHT);
+        PRF_FLAGS(victim).set(PRF_SHOWVNUMS);
+        PRF_FLAGS(victim).set(PRF_AUTOEXIT);
         for (i = 1; i <= MAX_SKILLS; i++)
             SET_SKILL(victim, i, 100);
         /* Make sure they have an empty olc zone list */
@@ -1361,7 +1362,7 @@ ACMD(do_name) {
                     log(LogSeverity::Stat, LVL_IMMORT, "{} [{}] new player.", GET_NAME(d->character), d->host);
                 }
                 /* accept the players name */
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NAPPROVE);
+                PLR_FLAGS(d->character).reset(PLR_NAPPROVE);
                 save_player_char(d->character);
 
                 /* log the acceptance of the name */
@@ -1370,7 +1371,7 @@ ACMD(do_name) {
 
                 /* remove the choose new name flag */
                 if (PLR_FLAGGED(d->character, PLR_NEWNAME))
-                    REMOVE_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
+                    PLR_FLAGS(d->character).reset(PLR_NEWNAME);
 
                 /* check if the player is waiting approval or already auto approved */
                 if (STATE(d) == CON_NAME_WAIT_APPROVAL) {
@@ -1417,7 +1418,7 @@ ACMD(do_name) {
                 send_to_xnames(GET_NAME(d->character));
                 string_to_output(d, "That name has been rejected, because it breaks this rule:\n");
                 string_to_output(d, "{}\n", reasons[choice]);
-                SET_FLAG(PLR_FLAGS(d->character), PLR_NEWNAME);
+                PLR_FLAGS(d->character).set(PLR_NEWNAME);
                 if (STATE(d) == CON_NAME_WAIT_APPROVAL) {
                     string_to_output(d, "Please try another name.\n");
                     string_to_output(d, "Name: ");
@@ -1462,7 +1463,7 @@ ACMD(do_name) {
         break;
     default:
         break; /* maybe send an error to log here? */
-    }          /* end switch */
+    } /* end switch */
 }
 
 ACMD(do_zreset) {
@@ -1566,7 +1567,6 @@ void do_wiztitle(char *outbuf, CharData *vict, char *argument) {
 
 ACMD(do_wizutil) {
     CharData *vict;
-    long result;
 
     one_argument(argument, arg);
 
@@ -1594,23 +1594,23 @@ ACMD(do_wizutil) {
                 char_printf(ch, "Your victim is not flagged.\n");
                 return;
             }
-            REMOVE_FLAG(PLR_FLAGS(vict), PLR_THIEF);
-            REMOVE_FLAG(PLR_FLAGS(vict), PLR_KILLER);
+            PLR_FLAGS(vict).reset(PLR_THIEF);
+            PLR_FLAGS(vict).reset(PLR_KILLER);
             char_printf(ch, "Pardoned.\n");
             char_printf(vict, "You have been pardoned by the Gods!\n");
             log(LogSeverity::Warn, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} pardoned by {}", GET_NAME(vict),
                 GET_NAME(ch));
             break;
         case SCMD_NOTITLE:
-            result = PLR_TOG_CHK(vict, PLR_NOTITLE);
+            PLR_FLAGS(vict).flip(PLR_NOTITLE);
             log(LogSeverity::Stat, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Notitle {} for {} by {}.",
-                ONOFF(result), GET_NAME(vict), GET_NAME(ch));
+                ONOFF(PLR_FLAGS(vict).test(PLR_NOTITLE)), GET_NAME(vict), GET_NAME(ch));
             char_printf(ch, "\n");
             break;
         case SCMD_SQUELCH:
-            result = PLR_TOG_CHK(vict, PLR_NOSHOUT);
+            PLR_FLAGS(vict).flip(PLR_NOSHOUT);
             log(LogSeverity::Warn, std::max<int>(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) Squelch {} for {} by {}.",
-                ONOFF(result), GET_NAME(vict), GET_NAME(ch));
+                ONOFF(PLR_FLAGS(vict).test(PLR_NOTITLE)), GET_NAME(vict), GET_NAME(ch));
             char_printf(ch, "\n");
             break;
         case SCMD_FREEZE:
@@ -1622,7 +1622,7 @@ ACMD(do_wizutil) {
                 char_printf(ch, "Your victim is already pretty cold.\n");
                 return;
             }
-            SET_FLAG(PLR_FLAGS(vict), PLR_FROZEN);
+            PLR_FLAGS(vict).set(PLR_FROZEN);
             GET_FREEZE_LEV(vict) = GET_LEVEL(ch);
             char_printf(
                 vict, "A bitter wind suddenly rises and drains every erg of heat from your body!\nYou feel frozen!\n");
@@ -1643,7 +1643,7 @@ ACMD(do_wizutil) {
             }
             log(LogSeverity::Warn, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} un-frozen by {}.", GET_NAME(vict),
                 GET_NAME(ch));
-            REMOVE_FLAG(PLR_FLAGS(vict), PLR_FROZEN);
+            PLR_FLAGS(vict).reset(PLR_FROZEN);
             char_printf(vict, "A fireball suddenly explodes in front of you, melting the ice!\nYou feel thawed.\n");
             char_printf(ch, "Thawed.\n");
             act("A sudden fireball conjured from nowhere thaws $n!", false, vict, 0, 0, TO_ROOM);
@@ -1700,9 +1700,9 @@ ACMD(do_wizutil) {
 #define SET_OR_REMOVE(flagset, flags)                                                                                  \
     do {                                                                                                               \
         if (on)                                                                                                        \
-            SET_FLAG(flagset, flags);                                                                                  \
+            flagset.set(flags);                                                                                        \
         else if (off)                                                                                                  \
-            REMOVE_FLAG(flagset, flags);                                                                               \
+            flagset.reset(flags);                                                                                      \
     } while (0)
 
 ACMD(do_set) {
@@ -2882,8 +2882,8 @@ ACMD(do_rclone) {
         dest->description = strdup(src->description);
     if (src->name)
         dest->name = strdup(src->name);
-    if (src->room_flags)
-        for (i = 0; i < FLAGVECTOR_SIZE(NUM_ROOM_FLAGS); ++i)
+    if (src->room_flags.any())
+        for (i = 0; i < src->room_flags.size(); ++i)
             dest->room_flags[i] = src->room_flags[i];
     if (src->sector_type)
         dest->sector_type = src->sector_type;
@@ -2923,7 +2923,7 @@ ACMD(do_terminate) {
         /* delete and purge */
         if (GET_CLAN_MEMBERSHIP(victim))
             revoke_clan_membership(GET_CLAN_MEMBERSHIP(victim));
-        SET_FLAG(PLR_FLAGS(victim), PLR_DELETED);
+        PLR_FLAGS(victim).set(PLR_DELETED);
         save_player_char(victim);
         delete_player_obj_file(victim);
         if (victim->desc) {
@@ -2986,7 +2986,6 @@ ACMD(do_pfilemaint) {
         /* 4 weeks base plus 3 days per level */
         allowed_time = 28 + (player_table[i].level - 1) * 3;
 
-        bitfield = player_table[i].flags;
         /* assume no delete at first          */
         reason = 0;
 
@@ -3013,10 +3012,10 @@ ACMD(do_pfilemaint) {
             reason = 7;
         else {
             /* don't del frozen players */
-            if (IS_SET(bitfield, PINDEX_FROZEN))
+            if (player_table[i].flags.test(PINDEX_FROZEN))
                 reason = 0;
             /* don't del players pending new name */
-            if (IS_SET(bitfield, PINDEX_NEWNAME))
+            if (player_table[i].flags.test(PINDEX_NEWNAME))
                 reason = 0;
         }
 

@@ -101,29 +101,29 @@ int isname(const char *str, const char *namelist) {
     }
 }
 
-void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool add) {
+void effect_modify(CharData *ch, byte loc, sh_int mod, EffectFlags flags, bool add) {
     int i;
 
     if (add) {
         /* Special behaviors for aff flags. */
-        if (IS_FLAGGED(bitv, EFF_LIGHT) && ch->in_room != NOWHERE && !EFF_FLAGGED(ch, EFF_LIGHT))
+        if (flags.test(EFF_LIGHT) && ch->in_room != NOWHERE && !EFF_FLAGGED(ch, EFF_LIGHT))
             world[ch->in_room].light++;
 
         /* Add effect flags. */
         for (i = 0; i < NUM_EFF_FLAGS; ++i)
-            if (IS_FLAGGED(bitv, i))
-                SET_FLAG(EFF_FLAGS(ch), i);
+            if (flags.test(i))
+                EFF_FLAGS(ch).set(i);
     } else {
         /* Special behaviors for aff flags. */
-        if (IS_FLAGGED(bitv, EFF_LIGHT) && ch->in_room != NOWHERE && EFF_FLAGGED(ch, EFF_LIGHT))
+        if (flags.test(EFF_LIGHT) && ch->in_room != NOWHERE && EFF_FLAGGED(ch, EFF_LIGHT))
             world[ch->in_room].light--;
-        if (IS_FLAGGED(bitv, EFF_CAMOUFLAGED))
+        if (flags.test(EFF_CAMOUFLAGED))
             GET_HIDDENNESS(ch) = 0;
 
         /* Remove effect flags. */
         for (i = 0; i < NUM_EFF_FLAGS; ++i)
-            if (IS_FLAGGED(bitv, i))
-                REMOVE_FLAG(EFF_FLAGS(ch), i);
+            if (flags.test(i))
+                EFF_FLAGS(ch).reset(i);
 
         /* Negative modifier for !add. */
         mod = -mod;
@@ -345,7 +345,7 @@ void effect_total(CharData *ch) {
         } else if (GET_POS(ch) == POS_FLYING) {
             if (!EFF_FLAGGED(ch, EFF_FLY)) {
                 if (!EVENT_FLAGGED(ch, EVENT_FALLTOGROUND)) {
-                    SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_FALLTOGROUND);
+                    GET_EVENT_FLAGS(ch).set(EVENT_FALLTOGROUND);
                     event_create(EVENT_FALLTOGROUND, falltoground_event, ch, false, &(ch->events), 0);
                 }
             } else {
@@ -488,8 +488,8 @@ void effect_join(CharData *ch, effect *eff, bool add_dur, bool avg_dur, bool add
 
             /* copy effect flags from hjp to eff */
             for (i = 0; i < NUM_EFF_FLAGS; ++i)
-                if (IS_FLAGGED(hjp->flags, i))
-                    SET_FLAG(eff->flags, i);
+                if (hjp->flags.test(i))
+                    eff->flags.set(i);
 
             effect_remove(ch, hjp);
             effect_to_char(ch, eff);
@@ -620,7 +620,7 @@ void obj_to_char(ObjData *obj, CharData *ch) {
         IS_CARRYING_N(ch)++;
 
         if (!IS_NPC(ch))
-            SET_FLAG(PLR_FLAGS(ch), PLR_AUTOSAVE);
+            PLR_FLAGS(ch).set(PLR_AUTOSAVE);
         if (PLAYERALLY(ch))
             stop_decomposing(obj);
         overweight_check(ch);
@@ -643,7 +643,7 @@ void obj_from_char(ObjData *obj) {
     REMOVE_FROM_LIST(obj, obj->carried_by->carrying, next_content);
 
     if (!IS_NPC(obj->carried_by))
-        SET_FLAG(PLR_FLAGS(obj->carried_by), PLR_AUTOSAVE);
+        PLR_FLAGS(obj->carried_by).set(PLR_AUTOSAVE);
     if (MORTALALLY(obj->carried_by))
         start_decomposing(obj);
 
@@ -1014,7 +1014,7 @@ void obj_to_room(ObjData *obj, int room) {
                 start_obj_falling(obj);
 
             if (ROOM_FLAGGED(room, ROOM_HOUSE))
-                SET_FLAG(ROOM_FLAGS(room), ROOM_HOUSE_CRASH);
+                ROOM_FLAGS(room).set(ROOM_HOUSE_CRASH);
             /* if this is a player corpse, save the new room vnum to
                the corpse control record. This can later be optimized as
                a flag, much like houses  -  nechtrous */
@@ -1041,7 +1041,7 @@ void obj_from_room(ObjData *object) {
     REMOVE_FROM_LIST(object, world[object->in_room].contents, next_content);
 
     if (ROOM_FLAGGED(object->in_room, ROOM_HOUSE))
-        SET_FLAG(ROOM_FLAGS(object->in_room), ROOM_HOUSE_CRASH);
+        ROOM_FLAGS(object->in_room).set(ROOM_HOUSE_CRASH);
     object->in_room = NOWHERE;
     object->next_content = nullptr;
 }

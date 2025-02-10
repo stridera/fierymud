@@ -14,13 +14,12 @@
 #include "db.hpp"
 #include "directions.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "rooms.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 const char *cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
 
@@ -67,7 +66,7 @@ const char *exit_dest_desc(Exit *e) {
 
     if (!e)
         return "";
-    if (e->exit_info & EX_DESCRIPT) {
+    if (e->exit_info.test(EX_DESCRIPT)) {
         len = strlen(e->general_description);
         for (nlpos = 0; nlpos < len; nlpos++)
             if (e->general_description[nlpos] == '\r' || e->general_description[nlpos] == '\n') {

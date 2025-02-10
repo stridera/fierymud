@@ -19,6 +19,8 @@
 #include "sysdep.hpp"
 #include "weather.hpp"
 
+#include <bitset>
+
 /* WARNING: In the world files, NEVER set the bits marked "R" ("Reserved") */
 #define ROOM_DARK 0         /* Dark                           */
 #define ROOM_DEATH 1        /* Death trap                     */
@@ -49,6 +51,7 @@
 #define ROOM_ARENA 26       /* (safe) PK allowed in room      */
 #define ROOM_OBSERVATORY 27 /* see into adjacent ARENA rooms  */
 #define NUM_ROOM_FLAGS 28   /* Keep me updated! */
+typedef std::bitset<NUM_ROOM_FLAGS> RoomFlags;
 
 #define ROOM_EFF_FOG 0          /* Tough to see anything */
 #define ROOM_EFF_DARKNESS 1     /* Magically made dark */
@@ -57,6 +60,7 @@
 #define ROOM_EFF_CIRCLE_FIRE 4  /* This spell hurts people */
 #define ROOM_EFF_ISOLATION 5    /* Exits aren't visible */
 #define NUM_ROOM_EFF_FLAGS 6    /* Keep me updated! */
+typedef std::bitset<NUM_ROOM_EFF_FLAGS> RoomEffectFlags;
 
 #define ROOM_RNUM_TO_VNUM(rnum) (rnum >= 0 && rnum < top_of_world ? world[rnum].vnum : NOWHERE)
 
@@ -111,10 +115,10 @@ struct RoomData {
     Exit *exits[NUM_OF_DIRS];
 
     /* DEATH,DARK ... etc                 */
-    flagvector room_flags[FLAGVECTOR_SIZE(NUM_ROOM_FLAGS)];
+    RoomFlags room_flags;
 
     /* bitvector for spells/skills */
-    flagvector room_effects[FLAGVECTOR_SIZE(NUM_ROOM_EFF_FLAGS)];
+    RoomEffectFlags room_effects;
 
     int light; /* Number of light sources in room     */
     SPECIAL(*func);

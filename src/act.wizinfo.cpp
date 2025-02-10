@@ -211,10 +211,10 @@ void do_stat_room(CharData *ch, int rrnum) {
     resp += fmt::format("Zone: [{}], VNum: [{}{}{}], RNum: [{}], Sector: {}\n", rm->zone, CLR(ch, FGRN), rm->vnum,
                         CLR(ch, ANRM), rrnum, buf2);
 
-    sprintflag(buf2, rm->room_flags, NUM_ROOM_FLAGS, room_bits);
+    sprintflag(buf2, rm->room_flags, room_bits);
     resp += fmt::format("SpecProc: {}, Flags: {}\n", (rm->func == nullptr) ? "None" : "Exists", buf2);
 
-    sprintflag(buf2, rm->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
+    sprintflag(buf2, rm->room_effects, room_effects);
     resp += fmt::format("Room effects: {}\n", buf2);
 
     resp += fmt::format("Ambient Light : {}\n", rm->light);
@@ -261,7 +261,7 @@ void do_stat_room(CharData *ch, int rrnum) {
                 sprintf(buf1, " %sNONE%s", CLR(ch, FCYN), CLR(ch, ANRM));
             else
                 sprintf(buf1, "%s%5d%s", CLR(ch, FCYN), world[rm->exits[i]->to_room].vnum, CLR(ch, ANRM));
-            sprintbit(rm->exits[i]->exit_info, exit_bits, buf2);
+            sprintbit(rm->exits[i]->exit_info.to_ulong(), exit_bits, buf2);
             resp += fmt::format("Exit {}{:5}{}:  To: [{}], Key: [{:5}], Keywrd: {}, Type: {}\n", CLR(ch, FCYN), dirs[i],
                                 CLR(ch, ANRM), buf1, rm->exits[i]->key,
                                 rm->exits[i]->keyword ? rm->exits[i]->keyword : "None", buf2);
@@ -353,11 +353,11 @@ void do_stat_object(CharData *ch, ObjData *j) {
     sprintbit(j->obj_flags.wear_flags, wear_bits, buf1);
     resp += fmt::format("Can be worn on: {}{}{}\n", CLR(ch, FCYN), buf1, CLR(ch, ANRM));
 
-    sprintflag(buf1, GET_OBJ_FLAGS(j), NUM_ITEM_FLAGS, extra_bits);
+    sprintflag(buf1, GET_OBJ_FLAGS(j), extra_bits);
     resp += fmt::format("Extra flags   : {}{}{}\n", CLR(ch, FGRN), buf1, CLR(ch, ANRM));
 
     *buf1 = '\0';
-    sprintflag(buf1, GET_OBJ_EFF_FLAGS(j), NUM_EFF_FLAGS, effect_flags);
+    sprintflag(buf1, GET_OBJ_EFF_FLAGS(j), effect_flags);
     resp += fmt::format("Spell Effects : {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
 
     resp +=
@@ -727,14 +727,14 @@ void do_stat_character(CharData *ch, CharData *k) {
 
     /* Character flags. */
     if (IS_NPC(k)) {
-        sprintflag(buf1, MOB_FLAGS(k), NUM_MOB_FLAGS, action_bits);
+        sprintflag(buf1, MOB_FLAGS(k), action_bits);
         resp += fmt::format("NPC flags: {}{}{}\n", CLR(ch, FCYN), buf1, CLR(ch, ANRM));
     } else {
-        sprintflag(buf2, PLR_FLAGS(k), NUM_PLR_FLAGS, player_bits);
+        sprintflag(buf2, PLR_FLAGS(k), player_bits);
         resp += fmt::format("PLR: {}{}{}\n", CLR(ch, FCYN), buf2, CLR(ch, ANRM));
-        sprintflag(buf2, PRF_FLAGS(k), NUM_PRF_FLAGS, preference_bits);
+        sprintflag(buf2, PRF_FLAGS(k), preference_bits);
         resp += fmt::format("PRF: {}{}{}\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
-        sprintflag(buf2, PRV_FLAGS(k), NUM_PRV_FLAGS, privilege_bits);
+        sprintflag(buf2, PRV_FLAGS(k), privilege_bits);
         resp += fmt::format("PRV: {}{}{}\n", CLR(ch, FGRN), buf2, CLR(ch, ANRM));
     }
 
@@ -805,7 +805,7 @@ void do_stat_character(CharData *ch, CharData *k) {
                             k->cornered_by ? GET_NAME(k->cornered_by) : "<none>");
 
     /* Effect bitvectors */
-    sprintflag(buf1, EFF_FLAGS(k), NUM_EFF_FLAGS, effect_flags);
+    sprintflag(buf1, EFF_FLAGS(k), effect_flags);
     resp += fmt::format("EFF: {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
 
     /* NPC spell circle status */
@@ -834,8 +834,8 @@ void do_stat_character(CharData *ch, CharData *k) {
                                 CLR(ch, ANRM));
         if (eff->modifier)
             resp += fmt::format("{:+d} to {}", eff->modifier, apply_types[(int)eff->location]);
-        if (HAS_FLAGS(eff->flags, NUM_EFF_FLAGS)) {
-            sprintflag(buf1, eff->flags, NUM_EFF_FLAGS, effect_flags);
+        if (eff->flags.any()) {
+            sprintflag(buf1, eff->flags, effect_flags);
             resp += fmt::format("{}sets {}", eff->modifier ? ", " : "", buf1);
         }
         resp += "\n";
@@ -1151,13 +1151,11 @@ ACMD(do_players) {
                 break;
             }
 
-            bitfield = player_table[i].flags;
-
-            if (IS_SET(bitfield, PINDEX_FROZEN))
+            if (player_table[i].flags.test(PINDEX_FROZEN))
                 color = FCYN;
-            else if (IS_SET(bitfield, PINDEX_NEWNAME))
+            else if (player_table[i].flags.test(PINDEX_NEWNAME))
                 color = FRED;
-            else if (IS_SET(bitfield, PINDEX_NAPPROVE))
+            else if (player_table[i].flags.test(PINDEX_NAPPROVE))
                 color = FYEL;
             else
                 color = FGRN;
@@ -1521,7 +1519,7 @@ void do_show_races(CharData *ch, char *argument) {
             compositions[race->def_composition].name, race->bonus_damroll, race->bonus_hitroll, race->mweight_lo,
             race->mweight_hi, race->fweight_lo, race->fweight_hi, race->mheight_lo, race->mheight_hi, race->fheight_lo,
             race->fheight_hi);
-        sprintflag(buf2, race->effect_flags, NUM_EFF_FLAGS, effect_flags);
+        sprintflag(buf2, race->effect_flags, effect_flags);
         resp += fmt::format(
             "Attribute Scales  : Str  Dex  Int  Wis  Con  Cha\n"
             "                  : @c{:3}% {:3}% {:3}% {:3}% {:3}% {:3}%@0\n"

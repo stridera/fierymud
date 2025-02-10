@@ -246,7 +246,8 @@ int trade_with(ObjData *item, int shop_nr) {
     for (counter = 0; SHOP_BUYTYPE(shop_nr, counter) != NOTHING; counter++)
         if (SHOP_BUYTYPE(shop_nr, counter) == GET_OBJ_TYPE(item)) {
             if ((GET_OBJ_VAL(item, VAL_WAND_CHARGES_LEFT) == 0) &&
-                ((GET_OBJ_TYPE(item) == ITEM_WAND) || (GET_OBJ_TYPE(item) == ITEM_STAFF) || (GET_OBJ_TYPE(item) == ITEM_INSTRUMENT)))
+                ((GET_OBJ_TYPE(item) == ITEM_WAND) || (GET_OBJ_TYPE(item) == ITEM_STAFF) ||
+                 (GET_OBJ_TYPE(item) == ITEM_INSTRUMENT)))
                 return OBJECT_DEAD;
             else if (evaluate_expression(item, SHOP_BUYWORD(shop_nr, counter)))
                 return OBJECT_OK;
@@ -266,7 +267,7 @@ int same_obj(ObjData *obj1, ObjData *obj2) {
     if (GET_OBJ_COST(obj1) != GET_OBJ_COST(obj2))
         return (false);
 
-    if (!ALL_FLAGGED(GET_OBJ_FLAGS(obj1), GET_OBJ_FLAGS(obj2), NUM_ITEM_FLAGS))
+    if (!(GET_OBJ_FLAGS(obj1).all() && GET_OBJ_FLAGS(obj2).all()))
         return (false);
 
     for (index = 0; index < MAX_OBJ_APPLIES; index++)
@@ -453,7 +454,6 @@ int inspect_price(CharData *ch, CharData *keeper, ObjData *obj, int shop_nr) {
     return (price);
 }
 
-
 void apply_getcash(CharData *ch, int cash) {
     GET_PLATINUM(ch) += PLATINUM_PART(cash);
     GET_GOLD(ch) += GOLD_PART(cash);
@@ -473,7 +473,8 @@ void apply_cost(int cost, CharData *ch) {
     int haveP, haveG, haveS, haveC;
 
     if (cost > GET_CASH(ch)) {
-        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch), cost);
+        log(LogSeverity::Warn, LVL_GOD, "ERR: {} being charged {} but doesn't have that much money", GET_NAME(ch),
+            cost);
         return;
     }
 
@@ -964,7 +965,7 @@ std::string list_object(CharData *keeper, ObjData *obj, CharData *ch, int cnt, i
         bp = ((int)(buy_price(ch, keeper, obj, shop_nr)));
     else if (service == SERVICE_PRICE)
         bp = ((int)(inspect_price(ch, keeper, obj, shop_nr)));
-        
+
     return (fmt::format("{:<56}  &0&b&6{:3d}&0p,&b&3{:d}&0g,&0{:d}s,&0&3{:d}&0c\n", strip_ansi(buf.c_str()),
                         PLATINUM_PART(bp), GOLD_PART(bp), SILVER_PART(bp), COPPER_PART(bp)));
 }
@@ -1020,7 +1021,8 @@ void shopping_list(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
 void shopping_inspect(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
     char tempstr[200], buf[MAX_STRING_LENGTH], name[MAX_INPUT_LENGTH];
     ObjData *obj, *last_obj = 0;
-    int copperamt = 0, cnt = 0, index = 0;;
+    int copperamt = 0, cnt = 0, index = 0;
+    ;
     bool amount = 0, any = false;
     int counter;
 
@@ -1038,7 +1040,8 @@ void shopping_inspect(char *arg, CharData *ch, CharData *keeper, int shop_nr) {
                     if (!any) {
                         any = true;
                         paging_printf(ch, " ##  Lvl  Item                                              Cost\n");
-                        paging_printf(ch, "---  ---  ------------------------------------------------  -------------\n");
+                        paging_printf(ch,
+                                      "---  ---  ------------------------------------------------  -------------\n");
                     }
                     if (!last_obj) {
                         last_obj = obj;

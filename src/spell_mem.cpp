@@ -374,9 +374,9 @@ ACMD(do_meditate) {
         char_printf(ch, "You begin to meditate.\n");
     }
     if (IS_NPC(ch))
-        SET_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+        MOB_FLAGS(ch).set(MOB_MEDITATE);
     else {
-        SET_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        PLR_FLAGS(ch).set(PLR_MEDITATE);
         improve_skill(ch, SKILL_MEDITATE);
     }
 }
@@ -991,7 +991,7 @@ int start_scribing_spell(CharData *ch, ObjData *spellbook, Scribing *scr) {
 void clear_scribing(CharData *ch) {
     Scribing *scribe;
 
-    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_SCRIBE);
+    GET_EVENT_FLAGS(ch).reset(EVENT_SCRIBE);
 
     scribe = ch->scribe_list;
     while (scribe) {
@@ -1063,7 +1063,7 @@ int rem_spell_scribe(CharData *ch, int spell) {
 
 void start_scribing(CharData *ch) {
     if (!EVENT_FLAGGED(ch, EVENT_SCRIBE)) {
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_SCRIBE);
+        GET_EVENT_FLAGS(ch).set(EVENT_SCRIBE);
         event_create(EVENT_SCRIBE, scribe_event, ch, false, &(ch->events), SCRIBE_INTERVAL);
     }
 }

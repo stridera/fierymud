@@ -87,11 +87,12 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if (POSSESSED (ch))
+        if (POSSESSED(ch))
             continue;
-            
+
         /* If lower than default position, get up. */
-        if ((GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) && !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
+        if ((GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) &&
+            !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
             switch (GET_DEFAULT_POS(ch)) {
             case POS_PRONE:
                 do_recline(ch, "", 0, 0);
@@ -115,7 +116,7 @@ void mobile_activity(void) {
         if (MOB_PERFORMS_SCRIPTS(ch) && MOB_FLAGGED(ch, MOB_SPEC) && !no_specials) {
             if (mob_index[GET_MOB_RNUM(ch)].func == nullptr) {
                 log("{} (#{:d}): Attempting to call non-existing mob func", GET_NAME(ch), GET_MOB_VNUM(ch));
-                REMOVE_FLAG(MOB_FLAGS(ch), MOB_SPEC);
+                MOB_FLAGS(ch).reset(MOB_SPEC);
             } else if ((mob_index[GET_MOB_RNUM(ch)].func)(ch, ch, 0, ""))
                 /* If it executes okay, go on to the next mob. */
                 continue;
@@ -279,7 +280,7 @@ void mobile_spec_activity(void) {
 
         /* Look for people I'd like to attack */
         if (!ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL) && !EFF_FLAGGED(ch, EFF_MESMERIZED) &&
-           (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
+            (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
             if ((vict = find_aggr_target(ch))) {
                 mob_attack(ch, vict);
                 continue;
@@ -377,9 +378,9 @@ bool mob_movement(CharData *ch) {
         } else {
             /* Decided to move */
             perform_move(ch, random_number(0, NUM_OF_DIRS - 1), 1, true);
-            SET_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
+            EFF_FLAGS(ch).set(EFF_MISDIRECTING);
             perform_move(ch, door, 1, false);
-            REMOVE_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
+            EFF_FLAGS(ch).reset(EFF_MISDIRECTING);
         }
     } else
         perform_move(ch, door, 1, false);

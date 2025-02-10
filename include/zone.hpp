@@ -26,13 +26,13 @@ struct ResetCommand {
 
 /* zone definition structure. for the 'zone-table'   */
 struct ZoneData {
-    char *name;   /* name of this zone                  */
-    int lifespan; /* how long between resets (minutes)  */
-    int age;      /* current age of this zone (minutes) */
-    int top;      /* upper limit for rooms in this zone */
-    int zone_factor;
-    int reset_mode; /* conditions for reset (see below)   */
-    int number;     /* vnum of this zone	  */
+    char *name;      /* name of this zone                  */
+    int lifespan;    /* how long between resets (minutes)  */
+    int age;         /* current age of this zone (minutes) */
+    int top;         /* upper limit for rooms in this zone */
+    int zone_factor; /* Unused. */
+    int reset_mode;  /* conditions for reset (see below)   */
+    int number;      /* vnum of this zone	  */
 
     /* weather information */
     int hemisphere;

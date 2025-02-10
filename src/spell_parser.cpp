@@ -1306,7 +1306,9 @@ ACMD(do_cast) {
     }
 
     /* Can the caster actually cast this spell? */
-    if ((GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] && GET_LEVEL(ch) < SINFO.min_race_level[(int)GET_RACE(ch)]) || !GET_SKILL(ch, spellnum)) {
+    if ((GET_LEVEL(ch) < SINFO.min_level[(int)GET_CLASS(ch)] &&
+         GET_LEVEL(ch) < SINFO.min_race_level[(int)GET_RACE(ch)]) ||
+        !GET_SKILL(ch, spellnum)) {
         if (subcmd == SCMD_CHANT)
             char_printf(ch, "You do not know that chant!\n");
         else if (subcmd == SCMD_PERFORM)
@@ -1326,7 +1328,7 @@ ACMD(do_cast) {
                 } else if (!SINFO.violent && GET_COOLDOWN(ch, CD_DEFENSE_CHANT)) {
                     seconds = GET_COOLDOWN(ch, CD_DEFENSE_CHANT) / 10;
                 }
-                
+
                 if (seconds) {
                     char_printf(ch,
                                 "You're still out of breath from chanting recently!\n"
@@ -1445,9 +1447,13 @@ ACMD(do_cast) {
         if (IS_SET(cresult, CAST_RESULT_CHARGE)) {
             /* Monks get a second chant for debuffing/offensive chants */
             if (SINFO.violent && GET_CLASS(ch) == CLASS_MONK) {
-                SET_COOLDOWN(ch, CD_OFFENSE_CHANT, (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) + (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
+                SET_COOLDOWN(ch, CD_OFFENSE_CHANT,
+                             (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) +
+                              (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
             } else {
-                SET_COOLDOWN(ch, CD_DEFENSE_CHANT, (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) + (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
+                SET_COOLDOWN(ch, CD_DEFENSE_CHANT,
+                             (7 - (((stat_bonus[GET_WIS(ch)].magic) * 3) / 4) +
+                              (((stat_bonus[GET_INT(ch)].magic) * 1) / 4)) MUD_HR);
             }
             WAIT_STATE(ch, PULSE_VIOLENCE * 1.5);
         }
@@ -1474,7 +1480,7 @@ ACMD(do_cast) {
             }
         }
     } else {
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
+        GET_EVENT_FLAGS(ch).set(EVENT_CASTING);
 
         /* Chance to quick chant. */
         if (random_number(1, 110) <
@@ -1810,12 +1816,11 @@ bool mob_cast(CharData *ch, CharData *tch, ObjData *tobj, int spellnum) {
                     SPELL_CIRCLE(ch, spellnum), circle, CLRLV(ch, ANRM, C_SPR));
     }
 
-
     /* Reveal hidden/invis/concealed attackers. */
     if (SINFO.violent)
         aggro_lose_spells(ch);
 
-    SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);
+    GET_EVENT_FLAGS(ch).set(EVENT_CASTING);
     ch->casting.spell = spellnum;
     ch->casting.circle = circle;
     ch->casting.tch = targ_ch;

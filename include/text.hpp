@@ -46,6 +46,7 @@ char *filter_chars(char *buf, const char *src, const char *chars);
 #define SB_EXTERNAL 0
 #define SB_USE_CAPS 1
 #define NUM_SB_FLAGS 2
+typedef std::bitset<NUM_SB_FLAGS> ScreenBufFlags;
 
 #define SB_INITIAL_BUF_CAP 1000
 #define SB_INITIAL_LINES_CAP 10
@@ -54,7 +55,7 @@ struct ScreenBuf {
     char *buf;
     size_t capacity;
     size_t length;
-    flagvector flags[FLAGVECTOR_SIZE(NUM_SB_FLAGS)];
+    ScreenBufFlags flags;
 
     char **lines;
     size_t line_capacity;

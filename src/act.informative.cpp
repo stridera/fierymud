@@ -25,6 +25,7 @@
 #include "db.hpp"
 #include "dg_scripts.hpp"
 #include "directions.hpp"
+#include "effects.hpp"
 #include "events.hpp"
 #include "exits.hpp"
 #include "handler.hpp"
@@ -934,7 +935,7 @@ static int search_for_doors(CharData *ch, char *arg) {
     int door;
     for (door = 0; door < NUM_OF_DIRS; ++door)
         if (CH_EXIT(ch, door) && CH_EXIT(ch, door)->to_room != NOWHERE &&
-            IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
+            CH_EXIT(ch, door)->exit_info.test(EX_HIDDEN)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT ||
                 (CH_EXIT(ch, door)->keyword && arg && isname(arg, CH_EXIT(ch, door)->keyword)) ||
                 GET_INT(ch) > random_number(0, 200)) {
@@ -1095,7 +1096,7 @@ void print_room_to_char(room_num room_nr, CharData *ch, bool ignore_brief) {
 
     /* The lighted version */
     if (PRF_FLAGGED(ch, PRF_ROOMFLAGS)) {
-        sprintflag(buf, ROOM_FLAGS(room_nr), NUM_ROOM_FLAGS, room_bits);
+        sprintflag(buf, ROOM_FLAGS(room_nr), room_bits);
         sprintf(buf1, "%s%s", sectors[SECT(room_nr)].color, sectors[SECT(room_nr)].name);
         char_printf(ch, "@L[@0{:5}@L]@W {} @L[@0{}@0: {}@L]@0\n", world[room_nr].vnum, world[room_nr].name, buf1, buf);
     } else
@@ -1518,12 +1519,12 @@ void identify_obj(ObjData *obj, CharData *ch, int location) {
     }
 
     /* Describe extra flags (hum, !drop, class/align restrictions, etc.) */
-    sprintflag(buf, GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits);
+    sprintflag(buf, GET_OBJ_FLAGS(obj), extra_bits);
     char_printf(ch, "Item is: {}\n", buf);
 
     /* Tell about spell effects here */
-    if (HAS_FLAGS(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS)) {
-        sprintflag(buf, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags);
+    if (GET_OBJ_EFF_FLAGS(obj).any()) {
+        sprintflag(buf, GET_OBJ_EFF_FLAGS(obj), effect_flags);
         char_printf(ch, "Item provides: {}\n", buf);
     }
 
@@ -2687,12 +2688,11 @@ ACMD(do_color) {
         char_printf(ch, "Usage: color { Off | Sparse | Normal | Complete }\n");
         return;
     }
-    REMOVE_FLAG(PRF_FLAGS(ch), PRF_COLOR_1);
-    REMOVE_FLAG(PRF_FLAGS(ch), PRF_COLOR_2);
+    PRF_FLAGS(ch).reset(PRF_COLOR_1 | PRF_COLOR_2);
     if (IS_SET(tp, 1))
-        SET_FLAG(PRF_FLAGS(ch), PRF_COLOR_1);
+        PRF_FLAGS(ch).set(PRF_COLOR_1);
     if (IS_SET(tp, 2))
-        SET_FLAG(PRF_FLAGS(ch), PRF_COLOR_2);
+        PRF_FLAGS(ch).set(PRF_COLOR_2);
 
     char_printf(ch, "Your {}color{} is now {}.\n", CLRLV(ch, FRED, C_SPR), CLRLV(ch, ANRM, C_SPR), ctypes[tp]);
 }

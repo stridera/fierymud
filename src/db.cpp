@@ -416,7 +416,7 @@ int get_copper(int i)
         return 0;
 
     /*copper calculations */
-    copper = (random_number(1, 150)) * mob_proto[i].player.level;
+    copper = random_number(1, 150) * mob_proto[i].player.level;
     sfactor = (int)((sfactor + cfactor + zfactor) / 3);
 
     copper = (int)((float)((sfactor / 100.0) * copper));
@@ -557,7 +557,7 @@ void boot_db(void) {
 
     log("   Skills.");
     init_skills();
-	
+
     log("Assigning skills and spells to classes.");
     assign_class_skills();
 
@@ -1134,8 +1134,7 @@ void parse_room(FILE *fl, int virtual_nr) {
         exit(1);
     }
     /* t[0] is the zone number; ignored with the zone-file system */
-    /* room_flags is a flagvector array */
-    world[room_nr].room_flags[0] = asciiflag_conv(flags);
+    world[room_nr].room_flags = RoomFlags(asciiflag_conv(flags));
     world[room_nr].sector_type = t[2];
 
     world[room_nr].func = nullptr;
@@ -1260,7 +1259,7 @@ void renum_world(void) {
 
 #define ZCMD zone_table[zone].cmd[cmd_no]
 
-/* resulve vnums into rnums in the zone reset tables */
+/* resolve vnums into rnums in the zone reset tables */
 void renum_zone_table(void) {
     int zone, cmd_no, a, b;
 
@@ -1614,7 +1613,7 @@ void parse_mobile(FILE *mob_f, int nr) {
     get_line(mob_f, line);
     sscanf(line, "%s %s %d %c", f1, f2, t + 2, &letter);
     MOB_FLAGS(mob_proto + i)[0] = asciiflag_conv(f1);
-    SET_FLAG(MOB_FLAGS(mob_proto + i), MOB_ISNPC);
+    MOB_FLAGS(mob_proto + i).set(MOB_ISNPC);
     EFF_FLAGS(mob_proto + i)[0] = asciiflag_conv(f2);
     GET_ALIGNMENT(mob_proto + i) = t[2];
 
@@ -1714,7 +1713,7 @@ void init_obj_proto(ObjData *obj) {
         break;
     case ITEM_KEY:
         /* Prevent keys from being rented. */
-        SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_NORENT);
+        GET_OBJ_FLAGS(obj).set(ITEM_NORENT);
         break;
     case ITEM_SCROLL:
         verify_obj_spell(obj, VAL_SCROLL_SPELL_1, false);
@@ -1736,7 +1735,7 @@ void init_obj_proto(ObjData *obj) {
     }
 
     /* Remove flags we don't want on prototypes */
-    REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_WAS_DISARMED);
+    GET_OBJ_FLAGS(obj).reset(ITEM_WAS_DISARMED);
 }
 
 /* read all objects from obj file; generate index and prototypes */
@@ -2650,11 +2649,6 @@ void free_char(CharData *ch) {
         if (GET_HOST(ch))
             free(GET_HOST(ch));
 
-        if (GET_GRANT_CACHE(ch))
-            free(GET_GRANT_CACHE(ch));
-        if (GET_REVOKE_CACHE(ch))
-            free(GET_REVOKE_CACHE(ch));
-
         free(ch->player_specials);
     }
 
@@ -2788,7 +2782,7 @@ void reset_char(CharData *ch) {
 
     for (i = 0; i < NUM_WEARS; i++)
         GET_EQ(ch, i) = nullptr;
-    REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+    PLR_FLAGS(ch).reset(PLR_MEDITATE);
     CONSENT(ch) = nullptr;
     ch->scribe_list = nullptr;
     ch->followers = nullptr;

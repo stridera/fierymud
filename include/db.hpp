@@ -114,7 +114,7 @@ struct PlayerIndexElement {
     char *name;
     long id;
     int level;
-    int flags;
+    std::bitset<64> flags;
     time_t last;
 };
 

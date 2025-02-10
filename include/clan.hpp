@@ -37,6 +37,7 @@
 #define CPRIV_ALTS 13
 #define CPRIV_CHAT 14
 #define NUM_CLAN_PRIVS 15 /* Number of clan privileges */
+typedef std::bitset<NUM_CLAN_PRIVS> ClanPrivilegeSet;
 
 #define MIN_CLAN_RANKS 2
 #define MAX_CLAN_RANKS 100
@@ -77,7 +78,7 @@
 struct ClanMembership;
 struct ClanRank {
     char *title;
-    flagvector privileges[FLAGVECTOR_SIZE(NUM_CLAN_PRIVS)];
+    ClanPrivilegeSet privileges;
 };
 
 struct Clan {
@@ -163,7 +164,7 @@ const struct {
 #define GET_CLAN_RANK(ch) (GET_CLAN_MEMBERSHIP(ch) ? GET_CLAN_MEMBERSHIP(ch)->rank : RANK_NONE)
 #define GET_CLAN_TITLE(ch) (IS_CLAN_MEMBER(ch) ? GET_CLAN(ch)->ranks[GET_CLAN_RANK(ch) - 1].title : NULL)
 #define MEMBER_CAN(member, priv)                                                                                       \
-    (IS_MEMBER_RANK(member->rank) && IS_FLAGGED(member->clan->ranks[member->rank - 1].privileges, (priv)))
+    (IS_MEMBER_RANK(member->rank) && member->clan->ranks[member->rank - 1].privileges.test((priv)))
 #define HAS_CLAN_PRIV(ch, priv) (GET_CLAN_MEMBERSHIP(ch) ? MEMBER_CAN(GET_CLAN_MEMBERSHIP(ch), (priv)) : false)
 #define CAN_DO_PRIV(ch, priv) (IS_CLAN_ADMIN(ch) || IS_CLAN_SUPERADMIN(ch) || HAS_CLAN_PRIV((ch), (priv)))
 #define GET_CLAN_SNOOP(ch) ((ch)->player_specials->clan_snoop)

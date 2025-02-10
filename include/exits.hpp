@@ -15,32 +15,24 @@
 #include "structs.hpp"
 #include "sysdep.hpp"
 
-/* The EX_xxxx constants are used in exit_info. */
-#define EX_ISDOOR (1 << 0)    /* Exit is a door             */
-#define EX_CLOSED (1 << 1)    /* The door is closed         */
-#define EX_LOCKED (1 << 2)    /* The door is locked         */
-#define EX_PICKPROOF (1 << 3) /* Lock can't be picked       */
-#define EX_HIDDEN (1 << 4)    /* exit is hidden             */
-#define EX_DESCRIPT (1 << 5)  /* Just an extra description  */
-
 struct Exit {
     char *general_description; /* When look DIR.                     */
     char *keyword;             /* for open/close                     */
-    int exit_info;             /* Exit info                          */
+    ExitInfoFlags exit_info;   /* Exit info                          */
     obj_num key;               /* Key's vnum (-1 for no key)         */
     room_num to_room;          /* Where it leads (real number)       */
 };
 
 extern const char *cmd_door[];
 
-#define EXIT_IS_DOOR(e) ((e)->exit_info & EX_ISDOOR)
-#define EXIT_IS_CLOSED(e) ((e)->exit_info & EX_CLOSED)
-#define EXIT_IS_OPEN(e) (!EXIT_IS_DOOR(e) || !((e)->exit_info & EX_CLOSED))
-#define EXIT_IS_LOCKED(e) ((e)->exit_info & EX_LOCKED)
+#define EXIT_IS_DOOR(e) ((e)->exit_info.test(EX_ISDOOR))
+#define EXIT_IS_CLOSED(e) ((e)->exit_info.test(EX_CLOSED))
+#define EXIT_IS_OPEN(e) (!EXIT_IS_DOOR(e) || !((e)->exit_info.test(EX_CLOSED)))
+#define EXIT_IS_LOCKED(e) ((e)->exit_info.test(EX_LOCKED))
 #define EXIT_DOES_LOCK(e) ((e)->key != -1)
-#define EXIT_IS_PICKPROOF(e) ((e)->exit_info & EX_PICKPROOF)
-#define EXIT_IS_HIDDEN(e) ((e)->exit_info & EX_HIDDEN)
-#define EXIT_IS_DESCRIPTION(e) ((e)->exit_info & EX_DESCRIPT)
+#define EXIT_IS_PICKPROOF(e) ((e)->exit_info.test(EX_PICKPROOF))
+#define EXIT_IS_HIDDEN(e) ((e)->exit_info.test(EX_HIDDEN))
+#define EXIT_IS_DESCRIPTION(e) ((e)->exit_info.test(EX_DESCRIPT))
 
 #define EXIT_NDEST(e) ((e)->to_room)
 #define EXIT_DEST(e) (EXIT_NDEST(e) == NOWHERE ? NULL : &world[EXIT_NDEST(e)])

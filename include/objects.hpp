@@ -13,6 +13,7 @@
 #pragma once
 
 #include "effects.hpp"
+#include "events.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -44,7 +45,7 @@ struct ObjectFlagData {
     byte type_flag;        /* Type of item                     */
     long int wear_flags;   /* Where you can wear it            */
     /* If it hums, glows, etc.          */
-    flagvector extra_flags[FLAGVECTOR_SIZE(NUM_ITEM_FLAGS)];
+    ExtraObjectFlags extra_flags;
     float weight;           /* Weight what else                 */
     float effective_weight; /* Weight of contents + weight */
     int cost;               /* Value when sold (gp.)            */
@@ -52,7 +53,7 @@ struct ObjectFlagData {
     int timer;              /* Timer for object                 */
     int decomp;             /* Decomposition timer              */
     /* Object Spell effects             */
-    flagvector effect_flags[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+    EffectFlags effect_flags;
     long hiddenness; /* How difficult it is to see obj   */
 };
 
@@ -92,10 +93,9 @@ struct ObjData {
 
     SpellBookList *spell_book; /* list of all spells in book if obj is spellbook */
 
-    CharData *casters; /* Characters who are casting spells at this */
-    Event *events;     /* List of events related to this object */
-    int event_flags[EVENT_FLAG_FIELDS];
-    /* Bitfield of events active on this object */
+    CharData *casters;      /* Characters who are casting spells at this */
+    Event *events;          /* List of events related to this object */
+    EventFlags event_flags; /* Bitfield of events active on this object */
 };
 
 /*
@@ -560,8 +560,8 @@ const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
 #define GET_OBJ_RNUM(obj) ((obj)->item_number)
 #define GET_OBJ_VNUM(obj) (GET_OBJ_RNUM(obj) >= 0 ? obj_index[GET_OBJ_RNUM(obj)].vnum : -1)
 #define GET_OBJ_EFF_FLAGS(obj) ((obj)->obj_flags.effect_flags)
-#define OBJ_FLAGGED(obj, flag) (IS_FLAGGED(GET_OBJ_FLAGS(obj), (flag)))
-#define OBJ_EFF_FLAGGED(obj, f) (IS_FLAGGED(GET_OBJ_EFF_FLAGS(obj), (f)))
+#define OBJ_FLAGGED(obj, flag) (GET_OBJ_FLAGS(obj).test((flag)))
+#define OBJ_EFF_FLAGGED(obj, f) (GET_OBJ_EFF_FLAGS(obj).test((f)))
 #define GET_OBJ_SPEC(obj) ((obj)->item_number >= 0 ? (obj_index[(obj)->item_number].func) : NULL)
 #define CAN_WEAR(obj, part) (IS_SET(GET_OBJ_WEAR(obj), (part)))
 

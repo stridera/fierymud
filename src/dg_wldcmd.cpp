@@ -624,7 +624,7 @@ WCMD(do_wrent) {
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$N ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         char_printf(ch, "You stop meditating.\n&0");
-        REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        PLR_FLAGS(ch).reset(PLR_MEDITATE);
     }
 
     log(LogSeverity::Stat, LVL_IMMORT, "{} rented by trigger {:d} in {} ({:d}).", GET_NAME(ch), GET_TRIG_VNUM(t),

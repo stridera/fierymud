@@ -1151,9 +1151,9 @@ ACMD(do_mroomflag) {
         return;
     } else {
         if (!strcasecmp(argument, "on"))
-            SET_FLAG(ROOM_FLAGS(target), flag);
+            ROOM_FLAGS(target).set(flag);
         else if (!strcasecmp(argument, "off"))
-            REMOVE_FLAG(ROOM_FLAGS(target), flag);
+            ROOM_FLAGS(target).reset(flag);
     }
 }
 
@@ -1190,9 +1190,9 @@ ACMD(do_mobjflag) {
         return;
     } else {
         if (!strcasecmp(argument, "on"))
-            SET_FLAG(GET_OBJ_FLAGS(obj), flag);
+            GET_OBJ_FLAGS(obj).set(flag);
         else if (!strcasecmp(argument, "off"))
-            REMOVE_FLAG(GET_OBJ_FLAGS(obj), flag);
+            GET_OBJ_FLAGS(obj).reset(flag);
     }
 }
 
@@ -1233,9 +1233,9 @@ ACMD(do_mmobflag) {
             return;
         } else {
             if (!strcasecmp(argument, "on"))
-                SET_FLAG(MOB_FLAGS(victim), flag);
+                MOB_FLAGS(victim).set(flag);
             else if (!strcasecmp(argument, "off"))
-                REMOVE_FLAG(MOB_FLAGS(victim), flag);
+                MOB_FLAGS(victim).reset(flag);
         }
     }
 }

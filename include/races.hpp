@@ -143,7 +143,7 @@ struct RaceDef {
      */
 
     /* List of permanent effect flags */
-    flagvector effect_flags[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
+    EffectFlags effect_flags;
     struct {
         int skill;             /* Skill number */
         int proficiency;       /* Default proficiency (can be ROLL_SKILL_PROF) */

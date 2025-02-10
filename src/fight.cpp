@@ -530,7 +530,7 @@ void check_killer(CharData *ch, CharData *vict) {
 
     if (!PLR_FLAGGED(vict, PLR_KILLER) && !PLR_FLAGGED(vict, PLR_THIEF) && !PLR_FLAGGED(ch, PLR_KILLER) &&
         !IS_NPC(ch) && !IS_NPC(vict) && (ch != vict)) {
-        SET_FLAG(PLR_FLAGS(ch), PLR_KILLER);
+        PLR_FLAGS(ch).set(PLR_KILLER);
         log(LogSeverity::Warn, LVL_IMMORT, "PC Killer bit set on {} for initiating attack on {} at {}.", GET_NAME(ch),
             GET_NAME(vict), world[vict->in_room].name);
         char_printf(ch, "If you want to be a PLAYER KILLER, so be it...\n");
@@ -653,7 +653,7 @@ ObjData *make_corpse(CharData *ch, CharData *killer) {
     corpse->short_description = strdup(buf2);
 
     GET_OBJ_TYPE(corpse) = ITEM_CONTAINER;
-    SET_FLAG(GET_OBJ_FLAGS(corpse), ITEM_FLOAT);
+    GET_OBJ_FLAGS(corpse).set(ITEM_FLOAT);
     /* You can't store stuff in a corpse */
     GET_OBJ_VAL(corpse, VAL_CONTAINER_CAPACITY) = 0;
 
@@ -718,7 +718,7 @@ ObjData *make_corpse(CharData *ch, CharData *killer) {
     /* Ensure that the items inside aren't marked for decomposition. */
     stop_decomposing(corpse);
     /* And mark the corpse itself as decomposing. */
-    SET_FLAG(GET_OBJ_FLAGS(corpse), ITEM_DECOMP);
+    GET_OBJ_FLAGS(corpse).set(ITEM_DECOMP);
 
     obj_to_room(corpse, ch->in_room);
     if (!IS_NPC(ch)) {
@@ -958,11 +958,11 @@ void die(CharData *ch, CharData *killer) {
     }
 
     if (EFF_FLAGGED(ch, EFF_ON_FIRE))
-        REMOVE_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
+        EFF_FLAGS(ch).reset(EFF_ON_FIRE);
 
     if (!IS_NPC(ch)) {
-        REMOVE_FLAG(PLR_FLAGS(ch), PLR_KILLER);
-        REMOVE_FLAG(PLR_FLAGS(ch), PLR_THIEF);
+        PLR_FLAGS(ch).reset(PLR_KILLER);
+        PLR_FLAGS(ch).reset(PLR_THIEF);
         GET_COND(ch, THIRST) = 24;
         GET_COND(ch, FULL) = 24;
         GET_COND(ch, DRUNK) = 0;
@@ -1653,7 +1653,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
         act("Your blow disrupts the magic keeping $N frozen.", false, ch, 0, victim, TO_CHAR);
         effect_from_char(victim, SPELL_MINOR_PARALYSIS);
         effect_from_char(victim, SPELL_ENTANGLE);
-        REMOVE_FLAG(EFF_FLAGS(victim), EFF_MINOR_PARALYSIS);
+        EFF_FLAGS(victim).reset(EFF_MINOR_PARALYSIS);
     }
 
     if (EFF_FLAGGED(victim, EFF_MESMERIZED)) {
@@ -1661,7 +1661,7 @@ int damage(CharData *ch, CharData *victim, int dam, int attacktype) {
         act("$n attacks, jolting you out of your reverie!", false, ch, 0, victim, TO_VICT);
         act("You drew $N's attention from whatever $E was pondering.", false, ch, 0, victim, TO_CHAR);
         effect_from_char(victim, SPELL_MESMERIZE);
-        REMOVE_FLAG(EFF_FLAGS(victim), EFF_MESMERIZED);
+        EFF_FLAGS(victim).reset(EFF_MESMERIZED);
     }
 
     if (!pk_allowed)
@@ -2147,12 +2147,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         if (type == SKILL_KICK) {
             act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, victim, TO_CHAR);
             act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, victim,
-            TO_NOTVICT);
+                TO_NOTVICT);
             act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
-            ch, 0, victim, TO_VICT);
+                ch, 0, victim, TO_VICT);
         } else
             damage_evasion_message(ch, victim, weapon, dtype);
-            
+
         set_fighting(victim, ch, true);
 
         /* Process Triggers - added here so they still process even if the attack is evaded */
@@ -2179,9 +2179,9 @@ void hit(CharData *ch, CharData *victim, int type) {
      * Some skills don't get a chance for riposte, parry, and dodge,
      * so short-circuit those function calls here.
      */
-    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK || no_defense_check ||
-             EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) || EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) ||
-             EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
+    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK ||
+             no_defense_check || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
+             EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
              (!riposte(ch, victim) && !parry(ch, victim) && !dodge(ch, victim) &&
               (!weapon || !weapon_special(weapon, ch)))) {
         /*
@@ -2230,7 +2230,7 @@ void hit(CharData *ch, CharData *victim, int type) {
         } else if (type == SKILL_KICK) {
             dam += (GET_SKILL(ch, SKILL_KICK) / 2);
             dam += stat_bonus[GET_DEX(ch)].todam;
-        
+
         } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                    EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);
@@ -2462,7 +2462,7 @@ void pickup_dropped_weapon(CharData *ch) {
             else
                 act("$n eagerly reaches for $p.", false, ch, obj, 0, TO_ROOM);
 
-            REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_WAS_DISARMED);
+            GET_OBJ_FLAGS(obj).reset(ITEM_WAS_DISARMED);
 
             strncpy(arg, obj->name, sizeof(arg) - 1);
             do_wield(ch, arg, 0, 0);

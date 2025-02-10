@@ -34,10 +34,9 @@
 #include "sysdep.hpp"
 #include "weather.hpp"
 
+#include <bitset>
 #include <fmt/format.h>
 #include <sys/stat.h> /* For stat() */
-
-flagvector *ALL_FLAGS;
 
 int monk_weight_penalty(CharData *ch) {
     if (!IS_NPC(ch) && GET_CLASS(ch) == CLASS_MONK && GET_LEVEL(ch) >= 20) {
@@ -144,63 +143,6 @@ int touch(const char *path) {
     }
 }
 
-void init_flagvectors() {
-    const int num_flags[] = {
-        NUM_EFF_FLAGS,       NUM_MOB_FLAGS,  NUM_PLR_FLAGS,      NUM_PRF_FLAGS,  NUM_PRV_FLAGS, NUM_ITEM_FLAGS,
-        NUM_ITEM_WEAR_FLAGS, NUM_ROOM_FLAGS, NUM_ROOM_EFF_FLAGS, NUM_ITEM_FLAGS, MAX_EVENT,
-    };
-    int i, max = 0;
-
-    for (i = 0; i < sizeof(num_flags) / sizeof(int); ++i)
-        max = std::max(max, num_flags[i]);
-
-    if (ALL_FLAGS)
-        free(ALL_FLAGS);
-    CREATE(ALL_FLAGS, flagvector, FLAGVECTOR_SIZE(max));
-    for (i = 0; i < FLAGVECTOR_SIZE(max); ++i)
-        ALL_FLAGS[i] = ~0;
-}
-
-bool ALL_FLAGGED(const flagvector field[], const flagvector flags[], const int num_flags) {
-    int i;
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
-        if (flags[i] && !IS_SET(field[i], flags[i]))
-            return false;
-    return true;
-}
-
-bool ANY_FLAGGED(const flagvector field[], const flagvector flags[], const int num_flags) {
-    int i;
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
-        if (IS_SET(field[i], flags[i]))
-            return true;
-    return false;
-}
-
-void SET_FLAGS(flagvector field[], const flagvector flags[], const int num_flags) {
-    int i;
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
-        SET_BIT(field[i], flags[i]);
-}
-
-void REMOVE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags) {
-    int i;
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
-        REMOVE_BIT(field[i], flags[i]);
-}
-
-void TOGGLE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags) {
-    int i;
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
-        TOGGLE_BIT(field[i], flags[i]);
-}
-
-void COPY_FLAGS(flagvector field[], const flagvector flags[], const int num_flags) {
-    int i;
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i)
-        field[i] = flags[i];
-}
-
 /* Calculate the REAL time passed over the last t2-t1 centuries (secs) */
 TimeInfoData real_time_passed(time_t t2, time_t t1) {
     long secs;
@@ -277,7 +219,7 @@ EVENTFUNC(autodouse_event) {
     if (EFF_FLAGGED(ch, EFF_ON_FIRE)) {
         act("$n's flames go out with a hiss as $e enters the water.", false, ch, 0, 0, TO_ROOM);
         act("Your flames quickly go out as you enter the water.", false, ch, 0, 0, TO_CHAR);
-        REMOVE_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
+        EFF_FLAGS(ch).reset(EFF_ON_FIRE);
     }
 
     return EVENT_FINISHED;

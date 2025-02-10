@@ -180,8 +180,9 @@ ASPELL(spell_banish) {
             attack(victim, ch);
     }
 
-    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
-    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim); 
+    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of
+     * 108 */
+    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim);
 
     /* Failure */
     if (roll < 50) {
@@ -199,7 +200,7 @@ ASPELL(spell_banish) {
     /* Success */
     if (roll > 100) {
         if (IS_NPC(victim)) {
-            roll = random_number (0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
+            roll = random_number(0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
             if (roll > 66) /* 66% chance to wipe victim eq, nears 50% at max wis */
                 extract_objects(victim);
             extract_char(victim);
@@ -274,13 +275,13 @@ ASPELL(spell_charm) {
 
         eff.modifier = 0;
         eff.location = 0;
-        SET_FLAG(eff.flags, EFF_CHARM);
+        eff.flags.set(EFF_CHARM);
         effect_to_char(victim, &eff);
 
         act("Isn't $n just such a nice fellow?", false, ch, 0, victim, TO_VICT);
         if (IS_NPC(victim)) {
-            REMOVE_FLAG(MOB_FLAGS(victim), MOB_AGGRESSIVE);
-            REMOVE_FLAG(MOB_FLAGS(victim), MOB_SPEC);
+            MOB_FLAGS(victim).reset(MOB_AGGRESSIVE);
+            MOB_FLAGS(victim).reset(MOB_SPEC);
         }
 
         /* success! skip the mob attacking */
@@ -459,8 +460,8 @@ ASPELL(spell_create_water) {
         return 0;
 
     if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON) {
-        amount =
-            std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), 1 + 15 * skill / 2);
+        amount = std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING),
+                          1 + 15 * skill / 2);
         if (amount <= 0) {
             act("$o seems to be full already.", false, ch, obj, 0, TO_CHAR);
         } else {
@@ -554,7 +555,7 @@ ASPELL(spell_darkness) {
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_ILLUMINATION)) {
             act("You dispel the magical light.", true, ch, 0, 0, TO_CHAR);
             act("$n dispels the magical light.", true, ch, 0, 0, TO_ROOM);
-            REMOVE_FLAG(ROOM_EFFECTS(ch->in_room), ROOM_EFF_ILLUMINATION);
+            ROOM_EFFECTS(ch->in_room).reset(ROOM_EFF_ILLUMINATION);
             eff = 0;
             world[ch->in_room].light--;
         } else if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
@@ -578,7 +579,7 @@ ASPELL(spell_darkness) {
 
             /* set the affection */
             if (eff != 0)
-                SET_FLAG(ROOM_EFFECTS(reff->room), eff);
+                ROOM_EFFECTS(reff->room).set(eff);
         }
     }
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -667,8 +668,8 @@ ASPELL(spell_enchant_weapon) {
             if (obj->applies[i].location != APPLY_NONE)
                 return CAST_RESULT_CHARGE;
 
-        SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_MAGIC);
-        SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
+        GET_OBJ_FLAGS(obj).set(ITEM_MAGIC);
+        GET_OBJ_EFF_FLAGS(obj).set(EFF_BLESS);
 
         obj->applies[0].location = APPLY_HITROLL;
         obj->applies[0].modifier = 1 + (skill >= 18);
@@ -677,10 +678,10 @@ ASPELL(spell_enchant_weapon) {
         obj->applies[1].modifier = 1 + (skill >= 20);
 
         if (IS_GOOD(ch)) {
-            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_EVIL);
+            GET_OBJ_FLAGS(obj).set(ITEM_ANTI_EVIL);
             act("$p glows blue.", false, ch, obj, 0, TO_CHAR);
         } else if (IS_EVIL(ch)) {
-            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
+            GET_OBJ_FLAGS(obj).set(ITEM_ANTI_GOOD);
             act("$p glows red.", false, ch, obj, 0, TO_CHAR);
         } else {
             act("$p glows yellow.", false, ch, obj, 0, TO_CHAR);
@@ -1111,7 +1112,7 @@ ASPELL(spell_illumination) {
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS)) {
             act("Your magical light dispels the darkness.&0", false, ch, 0, 0, TO_CHAR);
             act("$n's magical light dispels the darkness.&0", false, ch, 0, 0, TO_ROOM);
-            REMOVE_FLAG(ROOM_EFFECTS(ch->in_room), ROOM_EFF_DARKNESS);
+            ROOM_EFFECTS(ch->in_room).reset(ROOM_EFF_DARKNESS);
             eff = 0;
             world[ch->in_room].light++;
 
@@ -1144,7 +1145,7 @@ ASPELL(spell_illumination) {
 
             /* set the affection */
             if (eff != 0)
-                SET_FLAG(ROOM_EFFECTS(reff->room), eff);
+                ROOM_EFFECTS(reff->room).set(eff);
         }
     }
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
@@ -1197,7 +1198,7 @@ ASPELL(spell_isolation) {
 
         room_effect_list = reff;
 
-        SET_FLAG(ROOM_EFFECTS(reff->room), ROOM_EFF_ISOLATION);
+        ROOM_EFFECTS(reff->room).set(ROOM_EFF_ISOLATION);
     }
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
@@ -1434,7 +1435,8 @@ ASPELL(spell_major_paralysis) {
         return 0;
     if (!attack_ok(ch, victim, true))
         return CAST_RESULT_CHARGE;
-    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) ||
+        MOB_FLAGGED(victim, MOB_NOCHARM)) {
 
         if (MOB_FLAGGED(victim, MOB_NOCHARM))
             act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
@@ -1456,7 +1458,7 @@ ASPELL(spell_major_paralysis) {
     memset(&eff, 0, sizeof(eff));
     eff.type = SPELL_MAJOR_PARALYSIS;
     eff.duration = skill / 20;
-    SET_FLAG(eff.flags, EFF_MAJOR_PARALYSIS);
+    eff.flags.set(EFF_MAJOR_PARALYSIS);
     effect_to_char(victim, &eff);
     if (victim == ch)
         return CAST_RESULT_CHARGE;
@@ -1754,14 +1756,14 @@ ASPELL(spell_rain) {
 
     /* Douse circle of fire in room */
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_CIRCLE_FIRE))
-        REMOVE_FLAG(ROOM_EFFECTS(ch->in_room), ROOM_EFF_CIRCLE_FIRE);
+        ROOM_EFFECTS(ch->in_room).reset(ROOM_EFF_CIRCLE_FIRE);
 
     /* Douse all people in room */
     for (vict = world[ch->in_room].people; vict; vict = next_vict) {
         next_vict = vict->next_in_room;
         if (GET_LEVEL(vict) >= LVL_IMMORT && !IS_NPC(vict))
             continue;
-        REMOVE_FLAG(EFF_FLAGS(vict), EFF_ON_FIRE);
+        EFF_FLAGS(vict).reset(EFF_ON_FIRE);
     }
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
@@ -1834,7 +1836,7 @@ ASPELL(spell_remove_curse) {
             if (victim->carrying)
                 for (object = victim->carrying; object; object = object->next_content) {
                     if (!found && OBJ_FLAGGED(object, ITEM_NODROP)) {
-                        REMOVE_FLAG(GET_OBJ_FLAGS(object), ITEM_NODROP);
+                        GET_OBJ_FLAGS(object).reset(ITEM_NODROP);
                         if (GET_OBJ_TYPE(object) == ITEM_WEAPON)
                             GET_OBJ_VAL(object, VAL_WEAPON_DICE_SIZE)++;
                         act("$p glows blue momentarily.", false, ch, object, victim, TO_ROOM);
@@ -1854,7 +1856,7 @@ ASPELL(spell_remove_curse) {
 
     if (obj) {
         if (OBJ_FLAGGED(obj, ITEM_NODROP)) {
-            REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_NODROP);
+            GET_OBJ_FLAGS(obj).reset(ITEM_NODROP);
             if (GET_OBJ_TYPE(obj) == ITEM_WEAPON) {
                 GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE)++;
             }
@@ -1905,7 +1907,7 @@ int reveal_contents(ObjData *container, CharData *ch) {
 
     for (k = container; k; k = k->next_content) {
         if (OBJ_FLAGGED(k, ITEM_INVISIBLE) || GET_OBJ_HIDDENNESS(k) > 0) {
-            REMOVE_FLAG(GET_OBJ_FLAGS(k), ITEM_INVISIBLE);
+            GET_OBJ_FLAGS(k).reset(ITEM_INVISIBLE);
             GET_OBJ_HIDDENNESS(k) = 0;
             act("You reveal $p!", false, ch, k, 0, TO_CHAR);
             act("$n reveals $p!", true, ch, k, 0, TO_ROOM);
@@ -1931,7 +1933,7 @@ static int search_for_doors(CharData *ch) {
 
     for (door = 0; door < NUM_OF_DIRS; ++door)
         if (CH_EXIT(ch, door) && CH_EXIT(ch, door)->to_room != NOWHERE &&
-            IS_SET(CH_EXIT(ch, door)->exit_info, EX_HIDDEN)) {
+            CH_EXIT(ch, door)->exit_info.test(EX_HIDDEN)) {
             sprintf(buf, "You have found%s hidden %s %s.&0",
                     CH_EXIT(ch, door)->keyword && isplural(CH_EXIT(ch, door)->keyword) ? "" : " a",
                     CH_EXIT(ch, door)->keyword ? "$F" : "door", dirpreposition[door]);
@@ -1960,7 +1962,7 @@ ASPELL(spell_reveal_hidden) {
         if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_FOG)) {
             act("&3&bYou dispel the fog!&0", false, ch, 0, victim, TO_CHAR);
             act("&3&b$n dispels the fog!&0", false, ch, 0, victim, TO_NOTVICT);
-            REMOVE_FLAG(ROOM_EFFECTS(ch->in_room), ROOM_EFF_FOG);
+            ROOM_EFFECTS(ch->in_room).reset(ROOM_EFF_FOG);
         }
     }
 
@@ -1973,7 +1975,7 @@ ASPELL(spell_reveal_hidden) {
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room)
         if (EFF_FLAGGED(vict, EFF_INVISIBLE) || IS_HIDDEN(vict)) {
             if (IS_NPC(vict) && !IS_IN_GROUP(ch, vict)) {
-                REMOVE_FLAG(EFF_FLAGS(vict), EFF_INVISIBLE);
+                EFF_FLAGS(vict).reset(EFF_INVISIBLE);
                 GET_HIDDENNESS(vict) = 0;
                 act("You reavel $N lurking here!", false, ch, 0, vict, TO_CHAR);
                 act("$n reveals $N lurking here!", true, ch, 0, vict, TO_NOTVICT);
@@ -2142,7 +2144,7 @@ ASPELL(spell_wandering_woods) {
             world[next_room].exits[dir2]->to_room = next_room;
         }
         changed = true;
-        SET_FLAG(ROOM_FLAGS(next_room), ROOM_ALT_EXIT);
+        ROOM_FLAGS(next_room).set(ROOM_ALT_EXIT);
         room_printf(next_room,
                     "&2The forest seems to come alive... Trees and shrubs move about, finally resting in different "
                     "locations.&0\n");
@@ -2263,9 +2265,9 @@ void create_magical_wall(int room, int power, int dir, int spell, char *material
     wall->short_description = strdup(buf);
 
     GET_OBJ_TYPE(wall) = ITEM_WALL;
-    SET_FLAG(GET_OBJ_FLAGS(wall), ITEM_FLOAT);
-    SET_FLAG(GET_OBJ_FLAGS(wall), ITEM_DECOMP);
-    SET_FLAG(GET_OBJ_FLAGS(wall), ITEM_MAGIC);
+    GET_OBJ_FLAGS(wall).set(ITEM_FLOAT);
+    GET_OBJ_FLAGS(wall).set(ITEM_DECOMP);
+    GET_OBJ_FLAGS(wall).set(ITEM_MAGIC);
     GET_OBJ_VAL(wall, VAL_WALL_DIRECTION) = dir;
     GET_OBJ_VAL(wall, VAL_WALL_DISPELABLE) = 250 + (power * 1750) / 100; /* 250-2000 hit points */
     GET_OBJ_VAL(wall, VAL_WALL_HITPOINTS) = GET_OBJ_VAL(wall, VAL_WALL_DISPELABLE);
@@ -2487,7 +2489,7 @@ ASPELL(spell_dispel_magic) {
         default:
             if (OBJ_FLAGGED(obj, ITEM_INVISIBLE)) {
                 if (random_number(1, 50) + skill > GET_OBJ_LEVEL(obj)) {
-                    REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_INVISIBLE);
+                    GET_OBJ_FLAGS(obj).reset(ITEM_INVISIBLE);
                     act("$p&0 fades into existence.", false, ch, obj, 0, TO_CHAR);
                     act("$p&0 fades into existence.", false, ch, obj, 0, TO_ROOM);
                 } else
@@ -3121,7 +3123,7 @@ int inflict_fear(CharData *ch, CharData *victim, int power, bool multi) {
         memset(&effect, 0, sizeof(effect));
         effect.type = SPELL_FEAR;
         effect.duration = 2 + (power / 30); /* max 5 */
-        SET_FLAG(effect.flags, EFF_MINOR_PARALYSIS);
+        effect.flags.set(EFF_MINOR_PARALYSIS);
         effect.modifier = 0;
         effect.location = APPLY_NONE;
         act("You frighten $N so bad that $E is frozen in terror!", false, ch, 0, victim, TO_CHAR);

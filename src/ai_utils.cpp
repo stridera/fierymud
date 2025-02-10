@@ -137,10 +137,10 @@ int value_spell_effect(int flag) {
     }
 }
 
-int value_spell_effects(flagvector flags[]) {
+int value_spell_effects(EffectFlags flags) {
     int i, value = 0;
     for (i = 0; i < NUM_EFF_FLAGS; ++i)
-        if (IS_FLAGGED(flags, i))
+        if (flags.test(i))
             value += value_spell_effect(i);
     return value;
 }

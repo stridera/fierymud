@@ -907,19 +907,15 @@ ClassDef classes[NUM_CLASSES] = {
 
 const int common_newbie_eq[] = {18, 19, 20, 23, 3090, 299, -1};
 
-static flagvector class_effects_mask[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
 void init_classes(void) {
-#define PERM_EFF(c, f) SET_FLAG(classes[(c)].effect_flags, (f))
-
-    PERM_EFF(CLASS_PRIEST, EFF_DETECT_ALIGN);
-    PERM_EFF(CLASS_DIABOLIST, EFF_DETECT_ALIGN);
-    PERM_EFF(CLASS_PALADIN, EFF_DETECT_ALIGN);
-    PERM_EFF(CLASS_PALADIN, EFF_PROTECT_EVIL);
-    PERM_EFF(CLASS_ANTI_PALADIN, EFF_DETECT_ALIGN);
-    PERM_EFF(CLASS_ANTI_PALADIN, EFF_PROTECT_GOOD);
-    PERM_EFF(CLASS_RANGER, EFF_FARSEE);
-
-#undef PERM_EFF
+    // Add Permanent Effects to Classes
+    classes[CLASS_PRIEST].effect_flags.set(EFF_DETECT_ALIGN);
+    classes[CLASS_DIABOLIST].effect_flags.set(EFF_DETECT_ALIGN);
+    classes[CLASS_PALADIN].effect_flags.set(EFF_DETECT_ALIGN);
+    classes[CLASS_PALADIN].effect_flags.set(EFF_PROTECT_EVIL);
+    classes[CLASS_ANTI_PALADIN].effect_flags.set(EFF_DETECT_ALIGN);
+    classes[CLASS_ANTI_PALADIN].effect_flags.set(EFF_PROTECT_GOOD);
+    classes[CLASS_RANGER].effect_flags.set(EFF_FARSEE);
 }
 
 /* parse_class
@@ -1298,8 +1294,7 @@ int level_max_skill(CharData *ch, int level, int skill) {
 
 int return_max_skill(CharData *ch, int skill) { return level_max_skill(ch, GET_LEVEL(ch), skill); }
 
-void init_char_class(CharData *ch) { /* Nothing much to do here. */
-}
+void init_char_class(CharData *ch) { /* Nothing much to do here. */ }
 
 void update_char_class(CharData *ch) {
     if (!VALID_CLASS(ch)) {
@@ -1308,11 +1303,8 @@ void update_char_class(CharData *ch) {
         return;
     }
 
-    /* Any bits that might get set below should be cleared here first. */
-    REMOVE_FLAGS(EFF_FLAGS(ch), class_effects_mask, NUM_EFF_FLAGS);
-
     /* Reset effect flags for this race */
-    SET_FLAGS(EFF_FLAGS(ch), classes[(int)GET_CLASS(ch)].effect_flags, NUM_EFF_FLAGS);
+    EFF_FLAGS(ch) = classes[(int)GET_CLASS(ch)].effect_flags;
 }
 
 /*
@@ -1476,7 +1468,7 @@ void advance_level(CharData *ch, enum level_action action) {
         GET_COND(ch, FULL) = (char)-1;
         GET_COND(ch, THIRST) = (char)-1;
         GET_COND(ch, DRUNK) = (char)-1;
-        SET_FLAG(PRF_FLAGS(ch), PRF_HOLYLIGHT);
+        PRF_FLAGS(ch).set(PRF_HOLYLIGHT);
     }
 
     /* Modify clan power */

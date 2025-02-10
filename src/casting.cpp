@@ -58,7 +58,7 @@ EVENTFUNC(room_undo_event) {
     room_printf(
         room,
         "&2The forest seems to come alive... Trees and shrubs move about, finally resting in different locations.&0\n");
-    REMOVE_FLAG(ROOM_FLAGS(room), ROOM_ALT_EXIT);
+    ROOM_FLAGS(room).reset(ROOM_ALT_EXIT);
     return EVENT_FINISHED;
 }
 
@@ -124,7 +124,7 @@ EVENTFUNC(delayed_cast_event) {
 
     /* Set REMOTE_AGGR flag so that aggr_lose_spells() won't take
      * off invis, etc. */
-    SET_FLAG(EFF_FLAGS(ch), EFF_REMOTE_AGGR);
+    EFF_FLAGS(ch).set(EFF_REMOTE_AGGR);
 
     if (IS_SET(routines, MAG_DAMAGE))
         mag_damage(skill, ch, victim, spellnum, savetype);
@@ -132,7 +132,6 @@ EVENTFUNC(delayed_cast_event) {
     if (victim && DECEASED(victim)) {
         wait = EVENT_FINISHED;
     } else {
-
         if (IS_SET(routines, MAG_AFFECT))
             mag_affect(skill, ch, victim, spellnum, savetype, CAST_SPELL);
 
@@ -159,7 +158,7 @@ EVENTFUNC(delayed_cast_event) {
 
         if (IS_SET(SINFO.routines, MAG_MANUAL)) {
             if (spellnum == SPELL_PYRE && wait == EVENT_FINISHED)
-                SET_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
+                EFF_FLAGS(ch).set(EFF_ON_FIRE);
             switch (spellnum) {
             case SPELL_PYRE:
                 spell_pyre_recur(spellnum, skill, ch, victim, nullptr, savetype);
@@ -176,7 +175,7 @@ EVENTFUNC(delayed_cast_event) {
         if (SINFO.violent && ch && victim && attack_ok(victim, ch, false))
             set_fighting(victim, ch, false);
     }
-    REMOVE_FLAG(EFF_FLAGS(ch), EFF_REMOTE_AGGR);
+    EFF_FLAGS(ch).reset(EFF_REMOTE_AGGR);
 
     return wait;
 }

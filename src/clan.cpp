@@ -199,9 +199,9 @@ CLANCMD(clan_set) {
         clan->ranks[clan->rank_count - 1].title = strdup("Member");
         for (i = 0; i < NUM_CLAN_PRIVS; ++i)
             if (clan_privileges[i].default_on)
-                SET_FLAG(clan->ranks[clan->rank_count - 1].privileges, i);
+                clan->ranks[clan->rank_count - 1].privileges.set(i);
             else
-                REMOVE_FLAG(clan->ranks[clan->rank_count - 1].privileges, i);
+                clan->ranks[clan->rank_count - 1].privileges.reset(i);
 
         char_printf(ch, "You add a new rank ({}) to {}.\n", clan->rank_count, clan->name);
         clan_notification(clan, ch, "%s adds a new rank to your clan.", GET_NAME(ch));
@@ -443,9 +443,9 @@ CLANCMD(clan_create) {
         clan->ranks[0].title = strdup("Leader");
         clan->ranks[1].title = strdup("Member");
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
-            SET_FLAG(clan->ranks[0].privileges, i);
+            clan->ranks[0].privileges.set(i);
             if (clan_privileges[i].default_on)
-                SET_FLAG(clan->ranks[1].privileges, i);
+                clan->ranks[1].privileges.set(i);
         }
 
         clan->people_count = 0;
@@ -617,15 +617,15 @@ CLANCMD(clan_priv) {
     }
 
     if (action == GRANT) {
-        if (IS_FLAGGED(clan->ranks[rank - 1].privileges, priv))
+        if (clan->ranks[rank - 1].privileges.test(priv))
             char_printf(ch, "Rank {} already has the {} privilege.\n", rank, clan_privileges[priv].desc);
         else {
-            SET_FLAG(clan->ranks[rank - 1].privileges, priv);
+            clan->ranks[rank - 1].privileges.set(priv);
             char_printf(ch, "Granted rank {} access to the {} privilege.\n", rank, clan_privileges[priv].desc);
         }
     } else if (action == REVOKE) {
-        if (IS_FLAGGED(clan->ranks[rank - 1].privileges, priv)) {
-            REMOVE_FLAG(clan->ranks[rank - 1].privileges, priv);
+        if (clan->ranks[rank - 1].privileges.test(priv)) {
+            clan->ranks[rank - 1].privileges.reset(priv);
             char_printf(ch, "Revoked rank {} access to the {} privilege.\n", rank, clan_privileges[priv].desc);
         } else
             char_printf(ch, "Rank {} doesn't have the {} privilege.\n", rank, clan_privileges[priv].desc);
@@ -678,8 +678,8 @@ static void show_clan_info(CharData *ch, const Clan *clan) {
         for (i = 0; i < NUM_CLAN_PRIVS; ++i) {
             paging_printf(ch, "\n{:<9}", clan_privileges[i].abbr);
             for (j = 0; j < clan->rank_count; ++j)
-                paging_printf(ch, "  {}{}" ANRM, IS_FLAGGED(clan->ranks[j].privileges, i) ? AFGRN : AFRED,
-                              IS_FLAGGED(clan->ranks[j].privileges, i) ? 'Y' : 'N');
+                paging_printf(ch, "  {}{}" ANRM, clan->ranks[j].privileges.test(i) ? AFGRN : AFRED,
+                              clan->ranks[j].privileges.test(i) ? 'Y' : 'N');
         }
         paging_printf(ch, "\n");
     }
@@ -735,7 +735,7 @@ static void show_clan_member_status(CharData *ch, CharData *tch) {
             paging_printf(ch, "  Rank: Applicant\n");
         paging_printf(ch, "  Member since: {}\n", buf);
         if (IS_CLAN_MEMBER(tch)) {
-            if (HAS_FLAGS(GET_CLAN(tch)->ranks[GET_CLAN_RANK(tch) - 1].privileges, NUM_CLAN_PRIVS)) {
+            if (GET_CLAN(tch)->ranks[GET_CLAN_RANK(tch) - 1].privileges.any()) {
                 ScreenBuf *sb = new_screen_buf();
                 int i, seen = 0;
                 const size_t len = strlen("  Privileges: ");

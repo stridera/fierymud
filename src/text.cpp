@@ -664,7 +664,7 @@ static void sb_compute_lines(ScreenBuf *sb) {
  * capacity afterwards.
  */
 static void sb_increase_buffer(ScreenBuf *sb, size_t how_much) {
-    if (!IS_FLAGGED(sb->flags, SB_EXTERNAL)) {
+    if (!sb->flags.test(SB_EXTERNAL)) {
         if (sb->buf) {
             char *buf = sb->buf;
             RECREATE(sb->buf, char, sb->capacity + how_much);
@@ -790,7 +790,7 @@ static void sb_compile_lines(ScreenBuf *sb, size_t start_line) {
 
             if (cap_next) {
                 cap_next = false;
-                if (IS_FLAGGED(sb->flags, SB_USE_CAPS))
+                if (sb->flags.test(SB_USE_CAPS))
                     *start = UPPER(*start);
             }
             /* Don't print a leading space if the last word printed was
@@ -874,12 +874,12 @@ void sb_use_buf(ScreenBuf *sb, char *buf, size_t buf_capacity) {
     *buf = '\0';
     if (sb->buf) {
         strncat(buf, sb->buf, buf_capacity); /* strncpy is stupid */
-        if (IS_FLAGGED(sb->flags, SB_EXTERNAL))
+        if (sb->flags.test(SB_EXTERNAL))
             free(sb->buf);
     }
     sb->buf = buf;
     sb->capacity = buf_capacity;
-    SET_FLAG(sb->flags, SB_EXTERNAL);
+    sb->flags.set(SB_EXTERNAL);
     sb_compute_lines(sb);
 }
 
@@ -921,11 +921,11 @@ void sb_set_other_indentation(ScreenBuf *sb, size_t indentation) {
 }
 
 void sb_use_capitalization(ScreenBuf *sb, bool use_caps) {
-    bool same = (IS_FLAGGED(sb->flags, SB_USE_CAPS) == use_caps);
+    bool same = (sb->flags.test(SB_USE_CAPS) == use_caps);
     if (use_caps)
-        SET_FLAG(sb->flags, SB_USE_CAPS);
+        sb->flags.set(SB_USE_CAPS);
     else
-        REMOVE_FLAG(sb->flags, SB_USE_CAPS);
+        sb->flags.reset(SB_USE_CAPS);
     if (!same && use_caps)
         sb_compile_lines(sb, 0);
 }
@@ -963,7 +963,7 @@ void sb_append(ScreenBuf *sb, const char *msg, ...) {
 }
 
 void free_screen_buf(ScreenBuf *sb) {
-    if (!IS_FLAGGED(sb->flags, SB_EXTERNAL))
+    if (!sb->flags.test(SB_EXTERNAL))
         free(sb->buf);
     free(sb->lines);
     free(sb);

@@ -110,47 +110,6 @@ void sprinttype(int type, const char *names[], char *result) {
     }
 }
 
-void sprintflag(char *result, flagvector flags[], int num_flags, const char *names[]) {
-    int i, nr = 0;
-    char *orig_pos = result;
-
-    for (i = 0; i < num_flags; ++i) {
-        if (IS_FLAGGED(flags, i)) {
-            if (*names[nr] != '\n')
-                strcpy(result, names[nr]);
-            else
-                strcpy(result, "UNDEFINED");
-            result += strlen(result);
-            *(result++) = ' ';
-        }
-        if (*names[nr] != '\n')
-            ++nr;
-    }
-
-    if (orig_pos == result)
-        strcpy(result, "NO FLAGS");
-    else
-        *(result - 1) = '\0'; /* Nul terminate */
-}
-
-int sprintascii(char *out, flagvector bits) {
-    int i, j = 0;
-    /* 32 bits, don't just add letters to try to get more unless flagvector is
-     * also as large. */
-    const char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
-
-    for (i = 0; flags[i]; ++i)
-        if (bits & (1 << i))
-            out[j++] = flags[i];
-
-    if (j == 0) /* Didn't write anything. */
-        out[j++] = '0';
-
-    /* Nul terminate the output string. */
-    out[j++] = '\0';
-    return j;
-}
-
 bool is_equals(const std::string_view &lhs, const std::string_view &rhs) {
     auto to_lower{std::ranges::views::transform(::tolower)};
     return std::ranges::equal(lhs | to_lower, rhs | to_lower);

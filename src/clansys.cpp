@@ -247,7 +247,7 @@ bool load_clan(const char *clan_num, Clan *clan) {
                         for (i = 0; i < NUM_CLAN_PRIVS; ++i)
                             if (!strcasecmp(clan_privileges[i].abbr, buf1)) {
                                 clan->rank_count = std::max<size_t>(clan->rank_count, num);
-                                SET_FLAG(clan->ranks[num - 1].privileges, i);
+                                clan->ranks[num - 1].privileges.set(i);
                                 break;
                             }
                         if (i >= NUM_CLAN_PRIVS)
@@ -410,7 +410,7 @@ static void perform_save_clan(const Clan *clan) {
         fprintf(fl, "title: %u %s\n", i + 1, clan->ranks[i].title);
         fprintf(fl, "privilege: %u", i + 1);
         for (j = 0; j < NUM_CLAN_PRIVS; ++j)
-            if (IS_FLAGGED(clan->ranks[i].privileges, j))
+            if (clan->ranks[i].privileges.test(j))
                 fprintf(fl, " %s", clan_privileges[j].abbr);
         fprintf(fl, "\n");
     }

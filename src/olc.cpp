@@ -547,7 +547,7 @@ ACMD(do_olc) {
     }
 
     act("$n starts using OLC.", true, d->character, 0, 0, TO_ROOM);
-    SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
+    PLR_FLAGS(ch).set(PLR_WRITING);
 }
 
 /*------------------------------------------------------------*\
@@ -752,7 +752,7 @@ void cleanup_olc(DescriptorData *d, byte cleanup_type) {
          * Restore descriptor playing status.
          */
         if (d->character) {
-            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
+            PLR_FLAGS(d->character).reset(PLR_WRITING);
             STATE(d) = CON_PLAYING;
             act("$n stops using OLC.", true, d->character, 0, 0, TO_ROOM);
         }
