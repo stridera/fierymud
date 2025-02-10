@@ -771,3 +771,196 @@ SHOP_TRADES_WITH = [
     "TRADE_NOTHIEF",  # 6
     "TRADE_NOWARRIOR",  # 7
 ]
+
+SEXES = [
+    "NEUTRAL",  # 0
+    "MALE",  # 1
+    "FEMALE",  # 2
+    "NONBINARY",  # 3
+]
+
+CLASSES = [
+    "SORCERER",  # 0
+    "CLERIC",  # 1
+    "THIEF",  # 2
+    "WARRIOR",  # 3
+    "PALADIN",  # 4
+    "ANTI_PALADIN",  # 5
+    "RANGER",  # 6
+    "DRUID",  # 7
+    "SHAMAN",  # 8
+    "ASSASSIN",  # 9
+    "MERCENARY",  # 10
+    "NECROMANCER",  # 11
+    "CONJURER",  # 12
+    "MONK",  # 13
+    "BERSERKER",  # 14
+    "PRIEST",  # 15
+    "DIABOLIST",  # 16
+    "MYSTIC",  # 17
+    "ROGUE",  # 18
+    "BARD",  # 19
+    "PYROMANCER",  # 20
+    "CRYOMANCER",  # 21
+    "ILLUSIONIST",  # 22
+    "HUNTER",  # 23
+    "LAYMAN",  # 24
+]
+
+RACES = [
+    "HUMAN",  # 0
+    "ELF",  # 1
+    "GNOME",  # 2
+    "DWARF",  # 3
+    "TROLL",  # 4
+    "DROW",  # 5
+    "DUERGAR",  # 6
+    "OGRE",  # 7
+    "ORC",  # 8
+    "HALF_ELF",  # 9
+    "BARBARIAN",  # 10
+    "HALFLING",  # 11
+    "PLANT",  # 12
+    "HUMANOID",  # 13
+    "ANIMAL",  # 14
+    "DRAGON_GENERAL",  # 15
+    "GIANT",  # 16
+    "OTHER",  # 17
+    "GOBLIN",  # 18
+    "DEMON",  # 19
+    "BROWNIE",  # 20
+    "DRAGON_FIRE",  # 21
+    "DRAGON_FROST",  # 22
+    "DRAGON_ACID",  # 23
+    "DRAGON_LIGHTNING",  # 24
+    "DRAGON_GAS",  # 25
+    "DRAGONBORN_FIRE",  # 26
+    "DRAGONBORN_FROST",  # 27
+    "DRAGONBORN_ACID",  # 28
+    "DRAGONBORN_LIGHTNING",  # 29
+    "DRAGONBORN_GAS",  # 30
+    "SVERFNEBLIN",  # 31
+    "FAERIE_SEELIE",  # 32
+    "FAERIE_UNSEELIE",  # 33
+    "NYMPH",  # 34
+    "ARBOREAN",  # 35
+]
+
+LIFEFORCES = [
+    "LIFE_LIFE",  # 0 /* normal folks */
+    "LIFE_UNDEAD",  # 1
+    "LIFE_MAGIC",  # 2     /* golems */
+    "LIFE_CELESTIAL",  # 3 /* angels */
+    "LIFE_DEMONIC",  # 4
+    "LIFE_ELEMENTAL",  # 5
+]
+
+COMPOSITIONS = [
+    "COMP_FLESH",  # 0
+    "COMP_EARTH",  # 1
+    "COMP_AIR",  # 2
+    "COMP_FIRE",  # 3
+    "COMP_WATER",  # 4
+    "COMP_ICE",  # 5
+    "COMP_MIST",  # 6
+    "COMP_ETHER",  # 7 /* Having no physical incorporation */
+    "COMP_METAL",  # 8
+    "COMP_STONE",  # 9 /* Like earth, but tougher */
+    "COMP_BONE",  # 10 /* Like flesh, but... */
+    "COMP_LAVA",  # 11
+    "COMP_PLANT",  # 12
+    "NUM_COMPOSITIONS",  # 13 /* keep updated */
+]
+
+PLAYER_FLAGS = [
+    "PLR_KILLER",  # 0     /* a player-killer                           */
+    "PLR_THIEF",  # 1      /* a player-thief                            */
+    "PLR_FROZEN",  # 2     /* is frozen                                 */
+    "PLR_DONTSET",  # 3    /* Don't EVER set (ISNPC bit)                */
+    "PLR_WRITING",  # 4    /* writing (board/mail/olc)                  */
+    "PLR_MAILING",  # 5    /* is writing mail                           */
+    "PLR_AUTOSAVE",  # 6   /* needs to be autosaved                     */
+    "PLR_SITEOK",  # 7     /* has been site-cleared                     */
+    "PLR_NOSHOUT",  # 8    /* not allowed to shout/goss                 */
+    "PLR_NOTITLE",  # 9    /* not allowed to set title       (not used) */
+    "PLR_DELETED",  # 10   /* deleted - space reusable       (not used) */
+    "PLR_LOADROOM",  # 11  /* uses nonstandard loadroom      (not used) */
+    "PLR_NOWIZLIST",  # 12 /* shouldn't be on wizlist        (not used) */
+    "PLR_NODELETE",  # 13  /* shouldn't be deleted           (may be used outside the server) */
+    "PLR_INVSTART",  # 14  /* should enter game wizinvis     (not used) */
+    "PLR_CRYO",  # 15      /* is cryo-saved (purge prog)     (not used) */
+    "PLR_MEDITATE",  # 16  /* meditating - improves spell memorization  */
+    "PLR_CASTING",  # 17   /* currently casting a spell      (not used) */
+    "PLR_BOUND",  # 18     /* tied up                        (not used) */
+    "PLR_SCRIBE",  # 19    /* scribing                       (not used) */
+    "PLR_TEACHING",  # 20  /* teaching a skill/spell         (not used) */
+    "PLR_NAPPROVE",  # 21  /* name not approved yet                     */
+    "PLR_NEWNAME",  # 22   /* needs to choose a new name                */
+    "PLR_REMOVING",  # 23  /* player is being removed and doesn't need emergency save */
+    "PLR_SAVING",  # 24    /* player is being saved to file and effect changes are not relevant */
+    "PLR_GOTSTARS",  # 25  /* player has achieved ** already            */
+    "NUM_PLR_FLAGS",  # 26
+]
+
+PREF_FLAGS = [
+    "PRF_BRIEF",  # 0       /* Room descs won't normally be shown */
+    "PRF_COMPACT",  # 1     /* No extra CRLF pair before prompts  */
+    "PRF_DEAF",  # 2        /* Can't hear shouts                  */
+    "PRF_NOTELL",  # 3      /* Can't receive tells                */
+    "PRF_OLCCOMM",  # 4     /* Can hear communication in OLC      */
+    "PRF_LINENUMS",  # 5    /* Autodisplay linenums in stringedit */
+    "PRF_AUTOLOOT",  # 6    /* Auto loot corpses when you kill    */
+    "PRF_AUTOEXIT",  # 7    /* Display exits in a room            */
+    "PRF_NOHASSLE",  # 8    /* Aggr mobs won't attack             */
+    "PRF_QUEST",  # 9       /* On quest                           */
+    "PRF_SUMMONABLE",  # 10 /* Can be summoned                    */
+    "PRF_NOREPEAT",  # 11   /* No repetition of comm commands     */
+    "PRF_HOLYLIGHT",  # 12  /* Can see in dark                    */
+    "PRF_COLOR_1",  # 13    /* Color (low bit)                    */
+    "PRF_COLOR_2",  # 14    /* Color (high bit)                   */
+    "PRF_NOWIZ",  # 15      /* Can't hear wizline                 */
+    "PRF_LOG1",  # 16       /* On-line System Log (low bit)       */
+    "PRF_LOG2",  # 17       /* On-line System Log (high bit)      */
+    "PRF_AFK",  # 18        /* away from keyboard                 */
+    "PRF_NOGOSS",  # 19     /* Can't hear gossip channel          */
+    "PRF_NOHINTS",  # 20    /* No hints when mistyping commands   */
+    "PRF_ROOMFLAGS",  # 21  /* Can see room flags (ROOM_x)        */
+    "PRF_NOPETI",  # 22     /* Can't hear petitions               */
+    "PRF_AUTOSPLIT",  # 23  /* Auto split coins from corpses      */
+    "PRF_NOCLANCOMM",  # 24 /* Can't hear clan communication      */
+    "PRF_ANON",  # 25       /* Anon flag                          */
+    "PRF_SHOWVNUMS",  # 26  /* Show Virtual Numbers               */
+    "PRF_NICEAREA",  # 27
+    "PRF_VICIOUS",  # 28
+    "PRF_PASSIVE",  # 29 /* char will not engage upon being cast on */
+    "PRF_ROOMVIS",  # 30
+    "PRF_NOFOLLOW",  # 31  /* Cannot follow / well to this player*/
+    "PRF_AUTOTREAS",  # 32 /* Automatically loots treasure from corpses */
+    "PRF_EXPAND_OBJS",  # 33
+    "PRF_EXPAND_MOBS",  # 34
+    "PRF_SACRIFICIAL",  # 35 /* Sacrificial spells autotarget self */
+    "PRF_PETASSIST",  # 36   /* Should your pet assist you as you fight */
+    "NUM_PRF_FLAGS",  # 37
+]
+
+PRIV_FLAGS = [
+    "PRV_CLAN_ADMIN",  # 0  /* clan administrator */
+    "PRV_TITLE",  # 1       /* can change own title */
+    "PRV_ANON_TOGGLE",  # 2 /* can toggle anon */
+    "PRV_AUTO_GAIN",  # 3   /* don't need to level gain */
+]
+
+QUIT_REASONS = [
+    "QUIT_UNDEF",
+    "QUIT_RENT",
+    "QUIT_CRYO",
+    "QUIT_TIMEOUT",
+    "QUIT_HOTBOOT",
+    "QUIT_QUITMORT",
+    "QUIT_QUITIMM",
+    "QUIT_CAMP",
+    "QUIT_WRENT",
+    "QUIT_PURGE",
+    "QUIT_AUTOSAVE",
+    "NUM_QUITTYPES",
+]

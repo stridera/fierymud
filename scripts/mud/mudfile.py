@@ -2,10 +2,8 @@ import os
 
 
 class MudFile:
-
     @classmethod
     def from_filename(cls, filename: str):
-        current = None
         index = filename.endswith("index")
         path = filename[:-5] if index else filename
 
@@ -27,25 +25,23 @@ class MudFile:
     def _player_files(cls, path: str, player: str):
         player_name = player[0].upper() + player[1:].lower()
         root = f"{path}/{player[0].upper()}/{player_name}"
-        results = {'name': player_name}
-        if os.path.exists(root):
-            results['plr_bin'] = root
-        if os.path.exists(root + '.plr'):
-            results['plr'] = root + '.plr'
-        if os.path.exists(root + '.objs'):
-            results['objs'] = root + '.objs'
-        if os.path.exists(root + '.pets'):
-            results['pets'] = root + '.pets'
-        if os.path.exists(root + '.quests'):
-            results['quests'] = root + '.quests'
-        if os.path.exists(root + '.notes'):
-            results['notes'] = root + '.notes'
-        return results
+        files = []
+        if os.path.exists(root + ".plr"):
+            files.append({"class": "Player", "filename": root + ".plr"})
+        if os.path.exists(root + ".objs"):
+            files.append({"class": "Objects", "filename": root + ".objs"})
+        if os.path.exists(root + ".pets"):
+            files.append({"class": "Pets", "filename": root + ".pets"})
+        if os.path.exists(root + ".quests"):
+            files.append({"class": "Quests", "filename": root + ".quests"})
+        if os.path.exists(root + ".notes"):
+            files.append({"class": "Notes", "filename": root + ".notes"})
+        return {"name": player_name, "root": root, "files": files}
 
     @classmethod
     def player_files(cls, path: str, player: str):
         if player is None:
-            for root, dirs, files in os.walk(path):
+            for _root, _dirs, files in os.walk(path):
                 for file in files:
                     if file.endswith(".plr"):
                         yield cls._player_files(path, file[:-4])

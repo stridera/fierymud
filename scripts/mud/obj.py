@@ -18,13 +18,13 @@ class Obj(Base):
 
         type_flag, extra_flags, wear_flags, level = data.pop(0).split()
         f1, f2, f3, f4, f5, f6, f7 = data.pop(0).split()
-        weight, cost, timer, aff1, _, _, aff2, aff3 = data.pop(0).split()
+        weight, cost, timer, eff1, _, _, eff2, eff3 = data.pop(0).split()
         item_types = self.get_flag(type_flag, OBJECT_TYPES)
         extra_flags_text = self.build_flags(extra_flags, EXTRA_OBJ_FLAGS)
         wear_flags_text = self.build_flags(wear_flags, WEAR_FLAGS)
         extra_stats = self.obj_val(item_types, f1, f2, f3, f4, f5, f6, f7)
-        affects = (int(aff3) << 26) | (int(aff2) << int(13)) | int(aff1)
-        obj_effects = self.build_flags(affects, EFFECTS)
+        effects = (int(eff3) << 26) | (int(eff2) << int(13)) | int(eff1)
+        obj_effects = self.build_flags(effects, EFFECTS)
 
         self.stats["type"] = item_types
         self.stats["wear_flags"] = wear_flags_text

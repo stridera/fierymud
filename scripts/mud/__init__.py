@@ -6,4 +6,8 @@ from .zone import Zone
 from .shop import Shop
 from .world import World
 
-from .plr_objs import PlayerObj
+from .player import Player
+from .player_objects import PlayerObj
+from .player_notes import PlayerNotes
+from .player_pets import PlayerPets
+from .player_quests import PlayerQuests

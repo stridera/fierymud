@@ -1,5 +1,5 @@
 from typing import DefaultDict
-from .base import Base, Dice, MudTypes
+from .base import Base, MudTypes
 from .flags import *
 from dataclasses import dataclass
 

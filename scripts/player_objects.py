@@ -1,6 +1,8 @@
 import argparse
 import os
+import json
 
+from mud import Encoder
 from mud import MudFile
 from mud import PlayerObj
 
@@ -19,20 +21,29 @@ def main(args):
         return
 
     for plrfiles in MudFile.player_files(args.path, args.player):
-        print(f"Processing {plrfiles['name']}...", end=" ")
+        print(f"Processing {plrfiles['name']}.", end=" ")
         if "objs" not in plrfiles:
             print("No objects file found.")
             continue
         mudfile = MudFile(plrfiles["objs"])
+        print(f" Processing {mudfile.filename}", end=" ")
         items = PlayerObj.from_mudfile(mudfile)
         if args.list:
             list_items(items)
+
+        if args.output is None:
+            output_file = os.path.splitext(mudfile.filename)[0] + ".json"
+        else:
+            output_file = args.output
+        with open(output_file, "w", encoding="ascii") as f:
+            f.write(json.dumps(items, cls=Encoder, indent=4))
+        print(f"---  Writing {output_file}")
 
 
 if __name__ == "__main__":
     # Parse command line arguments and get the filename to process
     parser = argparse.ArgumentParser(
-        description="Convert a mudfile file to JSON.",
+        description="Process player object files.",
         epilog="If the file is an index file, all files in the index will be converted.",
     )
     parser.add_argument(

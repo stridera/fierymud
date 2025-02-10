@@ -3,7 +3,6 @@
 from abc import ABC, abstractmethod
 from enum import Enum, auto
 from typing import List
-import json
 from json import JSONEncoder
 import re
 
@@ -22,8 +21,12 @@ class MudTypes(Enum):
     TRIGGER = auto()
     WORLD = auto()
     ZONE = auto()
+
     PLAYER = auto()
     PLAYER_OBJECTS = auto()
+    PLAYER_QUESTS = auto()
+    PLAYER_PETS = auto()
+    PLAYER_NOTES = auto()
 
 
 class Dice:
@@ -93,7 +96,6 @@ class Base(ABC, Encoder):
         except Exception as e:
             print(f"\nError parsing {cls.__name__} file: {e}")
             raise e
-            return []
 
     def json_repr(self):
         return {"vnum": self.vnum, "stats": self.stats}
@@ -133,7 +135,7 @@ class Base(ABC, Encoder):
     @abstractmethod
     def parse(self, data):
         """
-        Parses the data into the object
+        Parses the data into the object.  Used for World Mud Objects.
         :param data: The data to parse
         :return: None
         """
@@ -168,7 +170,7 @@ class Base(ABC, Encoder):
 
         bitflags = BitFlags(flags)
         for i, flag in enumerate(data_lst):
-            bitflags.set_flags(flag, 32 * (i + 1))
+            bitflags.set_flags(flag, 32 * i)
         return bitflags
 
     @staticmethod
