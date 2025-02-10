@@ -1,8 +1,8 @@
 """Mud Objects"""
+
 from abc import ABC, abstractmethod
 from enum import Enum, auto
 from typing import List
-import json
 from json import JSONEncoder
 import re
 
@@ -16,13 +16,17 @@ class MudTypes(Enum):
     """
 
     MOB = auto()
-    Obj = auto()
+    OBJ = auto()
     SHOP = auto()
     TRIGGER = auto()
     WORLD = auto()
     ZONE = auto()
+
     PLAYER = auto()
     PLAYER_OBJECTS = auto()
+    PLAYER_QUESTS = auto()
+    PLAYER_PETS = auto()
+    PLAYER_NOTES = auto()
 
 
 class Dice:
@@ -78,15 +82,20 @@ class Base(ABC, Encoder):
             for line in mudfile:
                 if line.startswith("#"):
                     if data:
-                        objects.append(cls.from_data(data))
+                        obj = cls.from_data(data)
+                        if obj:
+                            objects.append(obj)
                     data = [line]
                 else:
                     data.append(line)
+            if data:
+                obj = cls.from_data(data)
+                if obj:
+                    objects.append(obj)
             return objects
         except Exception as e:
             print(f"\nError parsing {cls.__name__} file: {e}")
             raise e
-            return []
 
     def json_repr(self):
         return {"vnum": self.vnum, "stats": self.stats}
@@ -98,7 +107,23 @@ class Base(ABC, Encoder):
         :param data: The data to read from
         :return: The object
         """
-        vnum = int(data.pop(0)[1:])
+        line = data.pop(0)
+        if line.startswith("$"):
+            # Empty file.
+            return None
+        elif line.startswith("CircleMUD v3.0 Shop File~"):
+            # Skip the shop file header
+            return None
+
+        if not line.startswith("#"):
+            print(f"Invalid data: {line}")
+            return None
+
+        if line.endswith("~"):
+            # Shop files have a ~ at the end of the shop vnum
+            line = line[:-1]
+
+        vnum = int(line[1:])
         obj = cls(vnum)
         try:
             obj.parse(data)
@@ -110,7 +135,7 @@ class Base(ABC, Encoder):
     @abstractmethod
     def parse(self, data):
         """
-        Parses the data into the object
+        Parses the data into the object.  Used for World Mud Objects.
         :param data: The data to parse
         :return: None
         """
@@ -145,7 +170,7 @@ class Base(ABC, Encoder):
 
         bitflags = BitFlags(flags)
         for i, flag in enumerate(data_lst):
-            bitflags.set_flags(flag, 32 * (i + 1))
+            bitflags.set_flags(flag, 32 * i)
         return bitflags
 
     @staticmethod
@@ -164,7 +189,8 @@ class Base(ABC, Encoder):
         flag = int(flag)
         if flag.bit_length() > len(flaglist):
             raise ValueError(
-                f"Flag out of range! {flag}({bin(flag)}:{flag.bit_length()} bits = {len(flaglist)} ({flaglist})")
+                f"Flag out of range! {flag}({bin(flag)}:{flag.bit_length()} bits = {len(flaglist)} ({flaglist})"
+            )
         for i in range(len(flaglist)):
             if flag & (1 << i + offset):
                 active.append(flaglist[i])

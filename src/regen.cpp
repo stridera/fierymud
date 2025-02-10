@@ -62,7 +62,7 @@ EVENTFUNC(hp_regen_event) {
     }
 
     if (!delay)
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_HP);
+        GET_EVENT_FLAGS(ch).reset(EVENT_REGEN_HP);
     return delay;
 }
 
@@ -75,35 +75,36 @@ EVENTFUNC(spellslot_restore_event) {
             char_printf(ch, "Your mind is too crazed to meditate!\n");
             act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
             if (IS_NPC(ch))
-                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
-            else REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+                MOB_FLAGS(ch).reset(MOB_MEDITATE);
+            else
+                PLR_FLAGS(ch).reset(PLR_MEDITATE);
         }
 
         if (FIGHTING(ch)) {
             char_printf(ch, "Your meditation is rudely interrupted!\n");
             act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
             if (IS_NPC(ch))
-                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+                MOB_FLAGS(ch).reset(MOB_MEDITATE);
             else
-                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+                PLR_FLAGS(ch).reset(PLR_MEDITATE);
         }
 
         if (IS_DRUNK(ch)) {
             char_printf(ch, "You cannot meditate while intoxicated.\n");
             act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
             if (IS_NPC(ch))
-                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+                MOB_FLAGS(ch).reset(MOB_MEDITATE);
             else
-                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+                PLR_FLAGS(ch).reset(PLR_MEDITATE);
         }
 
         if (GET_POS(ch) != POS_SITTING || GET_STANCE(ch) < STANCE_RESTING || GET_STANCE(ch) > STANCE_ALERT) {
             char_printf(ch, "You stop meditating.\n");
             act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
             if (IS_NPC(ch))
-                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+                MOB_FLAGS(ch).reset(MOB_MEDITATE);
             else
-                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+                PLR_FLAGS(ch).reset(PLR_MEDITATE);
         }
     }
 
@@ -126,11 +127,11 @@ EVENTFUNC(spellslot_restore_event) {
             act("$n ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
             if (!IS_NPC(ch)) {
                 char_printf(ch, "You stop meditating.\n&0");
-                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+                PLR_FLAGS(ch).reset(PLR_MEDITATE);
             } else
-                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
+                MOB_FLAGS(ch).reset(MOB_MEDITATE);
         }
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_SPELLSLOT);
+        GET_EVENT_FLAGS(ch).reset(EVENT_REGEN_SPELLSLOT);
         return 0;
     }
 }
@@ -150,7 +151,7 @@ EVENTFUNC(move_regen_event) {
     }
 
     if (!delay)
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MOVE);
+        GET_EVENT_FLAGS(ch).reset(EVENT_REGEN_MOVE);
     return delay;
 }
 
@@ -184,7 +185,7 @@ EVENTFUNC(rage_event) {
     /* When you reach crazed rage, you are forced to start berserking. */
     if (GET_RAGE(ch) > RAGE_CRAZED && !EFF_FLAGGED(ch, EFF_BERSERK)) {
         if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
-            REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+            PLR_FLAGS(ch).reset(PLR_MEDITATE);
             GET_POS(ch) = POS_STANDING;
         }
         start_berserking(ch);
@@ -198,7 +199,7 @@ EVENTFUNC(rage_event) {
     else {
         char_printf(ch, "Your rage recedes and you feel calmer.\n");
         stop_berserking(ch);
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_RAGE);
+        GET_EVENT_FLAGS(ch).reset(EVENT_RAGE);
         return EVENT_FINISHED;
     }
 }
@@ -214,23 +215,23 @@ void set_regen_event(CharData *ch, int eventtype) {
         gain = hit_gain(ch);
         time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
         event_create(EVENT_REGEN_HP, hp_regen_event, ch, false, &(ch->events), time);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_HP);
+        GET_EVENT_FLAGS(ch).set(EVENT_REGEN_HP);
     }
     if (eventtype == EVENT_REGEN_MOVE && !EVENT_FLAGGED(ch, EVENT_REGEN_MOVE) && GET_MOVE(ch) < GET_MAX_MOVE(ch)) {
         gain = move_gain(ch);
         time = PULSES_PER_MUD_HOUR / (gain ? gain : 1);
         event_create(EVENT_REGEN_MOVE, move_regen_event, ch, false, &(ch->events), time);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_MOVE);
+        GET_EVENT_FLAGS(ch).set(EVENT_REGEN_MOVE);
     }
     if (eventtype == EVENT_RAGE && !EVENT_FLAGGED(ch, EVENT_RAGE) &&
         (GET_RAGE(ch) > 0 || (GET_SKILL(ch, SKILL_BERSERK) && PLR_FLAGGED(ch, PLR_MEDITATE)))) {
         event_create(EVENT_RAGE, rage_event, ch, false, &(ch->events), 0);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_RAGE);
+        GET_EVENT_FLAGS(ch).set(EVENT_RAGE);
     }
 
     if (eventtype == EVENT_REGEN_SPELLSLOT && !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT) && !ch->spellcasts.empty()) {
         event_create(EVENT_REGEN_SPELLSLOT, spellslot_restore_event, ch, false, &(ch->events), 1 RL_SEC);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_REGEN_SPELLSLOT);
+        GET_EVENT_FLAGS(ch).set(EVENT_REGEN_SPELLSLOT);
     }
 }
 

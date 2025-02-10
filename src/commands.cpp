@@ -43,7 +43,7 @@ CommandGroupInfo *grp_info;
  * Private interface
  */
 #define VALID_GROUP_NUM(gg) ((gg) >= cmd_groups && (gg) < top_of_cmd_groups)
-#define GROUP_NUM(gg) ((gg)-cmd_groups)
+#define GROUP_NUM(gg) ((gg) - cmd_groups)
 static void gedit_setup_existing(DescriptorData *d, int group);
 static void gedit_setup_new(DescriptorData *d);
 static void gedit_save_internally(DescriptorData *d);
@@ -93,9 +93,9 @@ bool can_use_command(CharData *ch, int cmd) {
         return false;
     else if (IS_NPC(ch))
         return CMD_USEABLE_FOR_LEVEL(ch, cmd);
-    else if (IS_FLAGGED(GET_GRANT_CACHE(ch), cmd))
+    else if (GET_GRANT_CACHE(ch)[cmd])
         return true;
-    else if (IS_FLAGGED(GET_REVOKE_CACHE(ch), cmd))
+    else if (GET_REVOKE_CACHE(ch)[cmd])
         return false;
     else
         return CMD_USEABLE_FOR_LEVEL(ch, cmd);
@@ -148,7 +148,7 @@ ACMD(do_gedit) {
     STATE(d) = CON_GEDIT;
 
     act("$n starts using OLC.", true, d->character, 0, 0, TO_ROOM);
-    SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
+    PLR_FLAGS(ch).set(PLR_WRITING);
 }
 
 static void gedit_setup_existing(DescriptorData *d, int group) {

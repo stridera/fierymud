@@ -9,8 +9,44 @@
 
 void sprintbit(long vektor, const char *names[], char *result);
 void sprinttype(int type, const char *names[], char *result);
-void sprintflag(char *result, flagvector flags[], int num_flags, const char *names[]);
-int sprintascii(char *out, flagvector bits);
+
+template <std::size_t N> void sprintflag(char *result, const std::bitset<N> &flags, const char *names[]) {
+    char *orig_pos = result;
+
+    for (std::size_t i = 0; i < N; ++i) {
+        if (flags.test(i)) {
+            if (*names[i] != '\n')
+                strcpy(result, names[i]);
+            else
+                strcpy(result, "UNDEFINED");
+            result += strlen(result);
+            *(result++) = ' ';
+        }
+    }
+
+    if (orig_pos == result)
+        strcpy(result, "NO FLAGS");
+    else
+        *(result - 1) = '\0'; /* Nul terminate */
+}
+
+template <std::size_t N> int sprintascii(char *out, const std::bitset<N> &bits) {
+    int j = 0;
+    /* 32 bits, don't just add letters to try to get more unless std::bitset is also as large. */
+    const char *flags = "abcdefghijklmnopqrstuvwxyzABCDEF";
+
+    for (std::size_t i = 0; flags[i]; ++i)
+        if (bits.test(i))
+            out[j++] = flags[i];
+
+    if (j == 0) /* Didn't write anything. */
+        out[j++] = '0';
+
+    /* Nul terminate the output string. */
+    out[j++] = '\0';
+    return j;
+}
+
 bool is_equals(const std::string_view &lhs, const std::string_view &rhs);
 
 // Similar to matches() but checks if rhs starts with lhs, case insensitively.

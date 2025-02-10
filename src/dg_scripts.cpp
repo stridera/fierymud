@@ -1228,12 +1228,12 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
         else if (!strcasecmp(field, "flags")) {
             *str = '\0';
             if (IS_NPC(c)) /* ACT flags */
-                sprintflag(str, MOB_FLAGS(c), NUM_MOB_FLAGS, action_bits);
+                sprintflag(str, MOB_FLAGS(c), action_bits);
             else { /* concatenation of PLR and PRF flags */
-                if (HAS_FLAGS(PLR_FLAGS(c), NUM_PLR_FLAGS) || !HAS_FLAGS(PRF_FLAGS(c), NUM_PRF_FLAGS))
-                    sprintflag(str, PLR_FLAGS(c), NUM_PLR_FLAGS, player_bits);
-                if (HAS_FLAGS(PRF_FLAGS(c), NUM_PRF_FLAGS))
-                    sprintflag(str + strlen(str), PRF_FLAGS(c), NUM_PRF_FLAGS, preference_bits);
+                if (PLR_FLAGS(c).any() || !PRF_FLAGS(c).any())
+                    sprintflag(str, PLR_FLAGS(c), player_bits);
+                if (PRF_FLAGS(c).any())
+                    sprintflag(str + strlen(str), PRF_FLAGS(c), preference_bits);
             }
         } else if (!strcasecmp(field, "flagged")) {
             if (IS_NPC(c)) {
@@ -1256,7 +1256,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 }
             }
         } else if (!strcasecmp(field, "aff_flags") || !strcasecmp(field, "eff_flags"))
-            sprintflag(str, EFF_FLAGS(c), NUM_EFF_FLAGS, effect_flags);
+            sprintflag(str, EFF_FLAGS(c), effect_flags);
 
         else if (!strcasecmp(field, "aff_flagged") || !strcasecmp(field, "eff_flagged")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
@@ -1539,7 +1539,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
 
         /* Flags */
         else if (!strcasecmp(field, "flags"))
-            sprintflag(str, GET_OBJ_FLAGS(o), NUM_ITEM_FLAGS, extra_bits);
+            sprintflag(str, GET_OBJ_FLAGS(o), extra_bits);
         else if (!strcasecmp(field, "flagged")) {
             if ((num = search_block(value, extra_bits, false)) >= 0)
                 strcpy(str, OBJ_FLAGGED(o, num) ? "1" : "0");
@@ -1549,7 +1549,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
                 script_log(trig, buf2);
             }
         } else if (!strcasecmp(field, "spells"))
-            sprintflag(str, GET_OBJ_EFF_FLAGS(o), NUM_EFF_FLAGS, effect_flags);
+            sprintflag(str, GET_OBJ_EFF_FLAGS(o), effect_flags);
 
         else if (!strcasecmp(field, "has_spell")) {
             if ((num = search_block(value, effect_flags, false)) >= 0)
@@ -1619,20 +1619,20 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             strcpy(str, r->light > 0 ? "1" : "0");
 
         else if (!strcasecmp(field, "flags"))
-            sprintflag(str, r->room_flags, NUM_ROOM_FLAGS, room_bits);
+            sprintflag(str, r->room_flags, room_bits);
         else if (!strcasecmp(field, "flagged")) {
             if ((num = search_block(value, room_bits, false)) >= 0)
-                strcpy(str, IS_FLAGGED(r->room_flags, num) ? "1" : "0");
+                strcpy(str, r->room_flags.test(num) ? "1" : "0");
             else {
                 strcpy(str, "0");
                 sprintf(buf2, "unrecognized room flag '%s' to %%%s.flagged%%", value, var);
                 script_log(trig, buf2);
             }
         } else if (!strcasecmp(field, "effects") || !strcasecmp(field, "affects"))
-            sprintflag(str, r->room_effects, NUM_ROOM_EFF_FLAGS, room_effects);
+            sprintflag(str, r->room_effects, room_effects);
         else if (!strcasecmp(field, "has_effect") || !strcasecmp(field, "has_affect")) {
             if ((num = search_block(value, room_effects, false)) >= 0)
-                strcpy(str, IS_FLAGGED(r->room_effects, num) ? "1" : "0");
+                strcpy(str, r->room_effects.test(num) ? "1" : "0");
             else {
                 strcpy(str, "0");
                 sprintf(buf2, "unrecognized room effect flag '%s' to %%%s.has_effect%%", value, var);
@@ -1696,7 +1696,7 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             } else if (!strcasecmp(value, "key")) /* %room.DIR[key]% */
                 sprintf(str, "%d", r->exits[num]->key);
             else if (!strcasecmp(value, "bits")) /* %room.DIR[bits]% */
-                sprintbit(r->exits[num]->exit_info, exit_bits, str);
+                sprintbit(r->exits[num]->exit_info.to_ulong(), exit_bits, str);
             else
                 *str = '\0';
         }

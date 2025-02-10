@@ -185,7 +185,7 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
     fprintf(fl, "~\n");
 
     fprintf(fl, "flags: ");
-    write_ascii_flags(fl, GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS);
+    write_ascii_flags(fl, GET_OBJ_FLAGS(obj));
     fprintf(fl, "\n");
 
     /* Strings */
@@ -206,7 +206,7 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
         fprintf(fl, "decomp: %d\n", GET_OBJ_DECOMP(obj));
     fprintf(fl, "level: %d\n", GET_OBJ_LEVEL(obj));
     fprintf(fl, "effects: ");
-    write_ascii_flags(fl, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS);
+    write_ascii_flags(fl, GET_OBJ_EFF_FLAGS(obj));
     fprintf(fl, "\n");
     fprintf(fl, "wear: %ld\n", GET_OBJ_WEAR(obj));
     fprintf(fl, "hiddenness: %ld\n", GET_OBJ_HIDDENNESS(obj));
@@ -323,7 +323,7 @@ void show_rent(CharData *ch, char *argument) {
     extract_objects(tch);
 
     /* Set this so extract_char() doesn't try to do an emergency save */
-    SET_FLAG(PLR_FLAGS(tch), PLR_REMOVING);
+    PLR_FLAGS(tch).set(PLR_REMOVING);
     extract_char(tch);
 }
 
@@ -620,7 +620,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
             num = atoi(line);
 
             if (!strcasecmp(tag, "effects"))
-                load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
+                load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), line);
             else if (!strcasecmp(tag, "location"))
                 *location = atoi(line);
             else if (!strcasecmp(tag, "extradesc"))
@@ -649,7 +649,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                         GET_OBJ_VAL(obj, num++) = atoi(line);
                 limit_obj_values(obj);
             } else if (!strcasecmp(tag, "flags"))
-                load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
+                load_ascii_flags(GET_OBJ_FLAGS(obj), line);
         }
         return true;
     } else {
@@ -695,7 +695,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 break;
             case 'E':
                 if (!strcasecmp(tag, "effects"))
-                    load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, line);
+                    load_ascii_flags(GET_OBJ_EFF_FLAGS(obj), line);
                 else if (!strcasecmp(tag, "extradesc")) {
                     CREATE(desc, ExtraDescriptionData, 1);
                     desc->keyword = strdup(line);
@@ -710,7 +710,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                 break;
             case 'F':
                 if (!strcasecmp(tag, "flags"))
-                    load_ascii_flags(GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, line);
+                    load_ascii_flags(GET_OBJ_FLAGS(obj), line);
                 else
                     goto bad_tag;
                 break;
@@ -1103,8 +1103,8 @@ void load_pets(CharData *ch) {
                 GET_EXP(pet) = 0;
                 GET_MAX_MOVE(pet) *= 15;
                 GET_MOVE(pet) = GET_MAX_MOVE(pet);
-                SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
-                SET_FLAG(MOB_FLAGS(pet), MOB_PET);
+                EFF_FLAGS(pet).set(EFF_CHARM);
+                MOB_FLAGS(pet).set(MOB_PET);
 
                 /* Over kill, but we might want to add more abilities soon. */
                 while (get_line(fl, line)) {
@@ -1355,7 +1355,7 @@ void auto_save_all(void) {
         if (d->connected == CON_PLAYING && !IS_NPC(d->character) && PLR_FLAGGED(d->character, PLR_AUTOSAVE)) {
             GET_QUIT_REASON(d->character) = QUIT_AUTOSAVE;
             save_player(d->character);
-            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_AUTOSAVE);
+            PLR_FLAGS(d->character).reset(PLR_AUTOSAVE);
         }
     }
 }
@@ -1593,7 +1593,7 @@ void convert_single_player_obj_file(CharData *ch, char *name) {
 void save_player(CharData *ch) {
     int quit_mode;
 
-    REMOVE_FLAG(PLR_FLAGS(ch), PLR_AUTOSAVE);
+    PLR_FLAGS(ch).reset(PLR_AUTOSAVE);
     quit_mode = GET_QUIT_REASON(ch);
 
     switch (quit_mode) {
@@ -1640,7 +1640,7 @@ void save_player(CharData *ch) {
     }
 
     if (quit_mode == QUIT_CRYO) {
-        SET_FLAG(PLR_FLAGS(ch), PLR_CRYO);
+        PLR_FLAGS(ch).set(PLR_CRYO);
     }
 
     GET_QUIT_REASON(ch) = quit_mode;

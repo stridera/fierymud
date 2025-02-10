@@ -48,6 +48,7 @@
 #define MAG_BULK_OBJS (1 << 12)
 #define MAG_REPEAT (1 << 13)
 #define NUM_ROUTINE_TYPES 13
+typedef std::bitset<NUM_ROUTINE_TYPES> RoutineFlags;
 
 #define TYPE_UNDEFINED -1
 
@@ -145,7 +146,7 @@ void char_forget_casters(CharData *ch);
 #define CASTING(ch) (EVENT_FLAGGED(ch, EVENT_CASTING))
 
 #define STOP_CASTING(ch)                                                                                               \
-    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CASTING);                                                                   \
+    GET_EVENT_FLAGS(ch).reset(EVENT_CASTING);                                                                          \
     if ((ch)->casting.obj)                                                                                             \
         obj_forget_caster((ch)->casting.obj, ch);                                                                      \
     if ((ch)->casting.tch)                                                                                             \

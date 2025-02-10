@@ -868,7 +868,7 @@ ACMD(do_drink) {
         eff.duration = amount * 3;
         eff.modifier = 0;
         eff.location = APPLY_NONE;
-        SET_FLAG(eff.flags, EFF_POISON);
+        eff.flags.set(EFF_POISON);
         effect_join(ch, &eff, false, false, false, false, true);
     }
 
@@ -939,7 +939,7 @@ ACMD(do_eat) {
         eff.duration = amount * 2;
         eff.modifier = 0;
         eff.location = APPLY_NONE;
-        SET_FLAG(eff.flags, EFF_POISON);
+        eff.flags.set(EFF_POISON);
         effect_join(ch, &eff, false, false, false, false, true);
     }
     /* This will restore hit points, such that a meal of size 24
@@ -1625,7 +1625,7 @@ bool check_get_disarmed_obj(CharData *ch, CharData *last_to_hold, ObjData *obj) 
     }
 
     if (!retval)
-        REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_WAS_DISARMED);
+        GET_OBJ_FLAGS(obj).reset(ITEM_WAS_DISARMED);
 
     return retval;
 }

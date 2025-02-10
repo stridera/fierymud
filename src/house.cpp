@@ -92,7 +92,7 @@ void House_crashsave(int vnum) {
     }
     write_objects(world[rnum].contents, fp, WEAR_INVENTORY);
     fclose(fp);
-    REMOVE_FLAG(ROOM_FLAGS(rnum), ROOM_HOUSE_CRASH);
+    ROOM_FLAGS(rnum).reset(ROOM_HOUSE_CRASH);
 }
 
 /* Delete a house save file */
@@ -207,9 +207,8 @@ void House_boot(void) {
 
         house_control[num_of_houses++] = temp_house;
 
-        SET_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE);
-        SET_FLAG(ROOM_FLAGS(real_house), ROOM_PRIVATE);
-        SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
+        ROOM_FLAGS(real_house).set(ROOM_HOUSE | ROOM_PRIVATE);
+        ROOM_FLAGS(real_atrium).set(ROOM_ATRIUM);
         House_load(temp_house.vnum);
     }
 
@@ -343,9 +342,8 @@ void hcontrol_build_house(CharData *ch, char *arg) {
 
     house_control[num_of_houses++] = temp_house;
 
-    SET_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE);
-    SET_FLAG(ROOM_FLAGS(real_house), ROOM_PRIVATE);
-    SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
+    ROOM_FLAGS(real_house).set(ROOM_HOUSE | ROOM_PRIVATE);
+    ROOM_FLAGS(real_atrium).set(ROOM_ATRIUM);
     House_crashsave(virt_house);
 
     char_printf(ch, "House built.   Mazel tov!\n");
@@ -367,14 +365,12 @@ void hcontrol_destroy_house(CharData *ch, char *arg) {
     if ((real_atrium = real_room(house_control[i].atrium)) < 0)
         log("SYSERR: House had invalid atrium!");
     else
-        REMOVE_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
+        ROOM_FLAGS(real_atrium).reset(ROOM_ATRIUM);
 
     if ((real_house = real_room(house_control[i].vnum)) < 0)
         log("SYSERR: House had invalid vnum!");
     else {
-        REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE);
-        REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_PRIVATE);
-        REMOVE_FLAG(ROOM_FLAGS(real_house), ROOM_HOUSE_CRASH);
+        ROOM_FLAGS(real_house).reset(ROOM_HOUSE | ROOM_PRIVATE | ROOM_HOUSE_CRASH);
     }
 
     House_delete_file(house_control[i].vnum);
@@ -394,7 +390,7 @@ void hcontrol_destroy_house(CharData *ch, char *arg) {
      */
     for (i = 0; i < num_of_houses; i++)
         if ((real_atrium = real_room(house_control[i].atrium)) >= 0)
-            SET_FLAG(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
+            ROOM_FLAGS(real_atrium).set(ROOM_ATRIUM);
 }
 
 void hcontrol_pay_house(CharData *ch, char *arg) {

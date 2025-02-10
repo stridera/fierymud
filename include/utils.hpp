@@ -161,27 +161,24 @@ void drop_core(CharData *ch, const char *desc);
 #define TOGGLE_BIT(var, bit) ((var) = (var) ^ (bit))
 
 /* extended bitvector utils */
-#define FIELD(x) ((long)(x) / FLAGBLOCK_SIZE)
-#define FLAG(x) ((flagvector)1 << ((x) % FLAGBLOCK_SIZE))
 #define IS_FLAGGED(field, flag) (((field)[FIELD(flag)] & FLAG(flag)) ? 1 : 0)
 #define SET_FLAG(field, flag) ((field)[FIELD(flag)] |= FLAG(flag))
 #define REMOVE_FLAG(field, flag) ((field)[FIELD(flag)] &= ~FLAG(flag))
-#define TOGGLE_FLAG(field, flag) ((field)[FIELD(flag)] ^= FLAG(flag))
-bool ALL_FLAGGED(const flagvector field[], const flagvector flags[], const int num_flags);
-bool ANY_FLAGGED(const flagvector field[], const flagvector flags[], const int num_flags);
-void SET_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
-void REMOVE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
-void TOGGLE_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
-void COPY_FLAGS(flagvector field[], const flagvector flags[], const int num_flags);
 
-extern flagvector *ALL_FLAGS;
-#define HAS_FLAGS(field, num_flags) (ANY_FLAGGED((field), ALL_FLAGS, (num_flags)))
-#define CLEAR_FLAGS(field, num_flags) (REMOVE_FLAGS((field), ALL_FLAGS, (num_flags)))
-
+template <size_t N> inline bool ALL_FLAGGED(const std::bitset<N> &field, const std::bitset<N> &flags) {
+    return (field & flags) == flags;
+}
+template <size_t N> inline bool ANY_FLAGGED(const std::bitset<N> &field, const std::bitset<N> &flags) {
+    return (field & flags).any();
+}
+template <size_t N> inline void SET_FLAGS(std::bitset<N> &field, const std::bitset<N> &flags) { field |= flags; }
+template <size_t N> inline void REMOVE_FLAGS(std::bitset<N> &field, const std::bitset<N> &flags) { field &= ~flags; }
+template <size_t N> inline void TOGGLE_FLAGS(std::bitset<N> &field, const std::bitset<N> &flags) { field ^= flags; }
+template <size_t N> inline void COPY_FLAGS(std::bitset<N> &field, const std::bitset<N> &flags) { field = flags; }
 /* Event flags */
 #define GET_EVENTS(o) ((o)->events)
 #define GET_EVENT_FLAGS(o) ((o)->event_flags)
-#define EVENT_FLAGGED(o, flag) IS_FLAGGED(GET_EVENT_FLAGS(o), (flag))
+#define EVENT_FLAGGED(o, flag) GET_EVENT_FLAGS(o).test(flag)
 
 #define MOB_FLAGS(ch) ((ch)->char_specials.act)
 #define PLR_FLAGS(ch) ((ch)->char_specials.act)
@@ -191,7 +188,7 @@ extern flagvector *ALL_FLAGS;
 #define ROOM_FLAGS(loc) (world[(loc)].room_flags)
 #define ROOM_EFFECTS(loc) (world[(loc)].room_effects)
 
-#define IS_NPC(ch) IS_FLAGGED(MOB_FLAGS(ch), MOB_ISNPC)
+#define IS_NPC(ch) MOB_FLAGS(ch).test(MOB_ISNPC)
 #define IS_MOB(ch) (IS_NPC(ch) && ((ch)->mob_specials.nr > -1))
 #define POSSESSED(ch) ((ch)->desc && (ch)->desc->original)
 #define POSSESSOR(ch) ((ch)->desc && (ch)->desc->original ? (ch)->desc->original : NULL)
@@ -202,27 +199,23 @@ extern flagvector *ALL_FLAGS;
 #define PLAYERALLY(ch) (IS_PC(ch) || (EFF_FLAGGED(ch, EFF_CHARM) && (ch)->master && IS_PC((ch)->master)))
 #define IS_PET(ch) (PLAYERALLY(ch) && MOB_FLAGGED(ch, MOB_PET)) /* True if player bought/tamed mob only */
 
-/* MORTALALLY - same as PLAYERALLY except that the involved player
- * must be mortal for it to return true */
+/* MORTALALLY - same as PLAYERALLY except that the involved player must be mortal for it to return true */
 #define MORTALALLY(ch)                                                                                                 \
     ((!IS_NPC(REAL_CHAR(ch)) && GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT) ||                                              \
      (EFF_FLAGGED(ch, EFF_CHARM) && (ch)->master &&                                                                    \
       (!IS_NPC(REAL_CHAR(ch)) && GET_LEVEL(REAL_CHAR(ch)) < LVL_IMMORT)))
 
-#define MOB_FLAGGED(ch, flag) (IS_NPC(ch) && IS_FLAGGED(MOB_FLAGS(ch), (flag)))
-#define PLR_FLAGGED(ch, flag) (!IS_NPC(ch) && IS_FLAGGED(PLR_FLAGS(ch), (flag)))
-#define PRF_FLAGGED(ch, flag) IS_FLAGGED(PRF_FLAGS(REAL_CHAR(ch)), (flag))
-#define PRV_FLAGGED(ch, flag) IS_FLAGGED(PRV_FLAGS(REAL_CHAR(ch)), (flag))
-#define EFF_FLAGGED(ch, flag) IS_FLAGGED(EFF_FLAGS(ch), (flag))
-#define ROOM_FLAGGED(loc, flag) IS_FLAGGED(ROOM_FLAGS(loc), (flag))
-#define ROOM_EFF_FLAGGED(loc, eff) IS_FLAGGED(ROOM_EFFECTS(loc), (eff))
+#define MOB_FLAGGED(ch, flag) (IS_NPC(ch) && MOB_FLAGS(ch).test((flag)))
+#define PLR_FLAGGED(ch, flag) (!IS_NPC(ch) && PLR_FLAGS(ch).test((flag)))
+#define PRF_FLAGGED(ch, flag) PRF_FLAGS(REAL_CHAR(ch)).test((flag))
+#define PRV_FLAGGED(ch, flag) PRV_FLAGS(REAL_CHAR(ch)).test((flag))
+#define EFF_FLAGGED(ch, flag) EFF_FLAGS(ch).test((flag))
+#define ROOM_FLAGGED(loc, flag) ROOM_FLAGS(loc).test((flag))
+#define ROOM_EFF_FLAGGED(loc, eff) ROOM_EFFECTS(loc).test((eff))
 
 #define AGGR_TO_PLAYERS(ch)                                                                                            \
     (MOB_FLAGGED((ch), MOB_AGGR_EVIL) || MOB_FLAGGED((ch), MOB_AGGR_GOOD) || MOB_FLAGGED((ch), MOB_AGGR_NEUTRAL) ||    \
      MOB_FLAGGED((ch), MOB_AGGR_EVIL_RACE) || MOB_FLAGGED((ch), MOB_AGGR_GOOD_RACE))
-#define PLR_TOG_CHK(ch, flag) (TOGGLE_FLAG(PLR_FLAGS(ch), (flag)) & FLAG(flag))
-#define PRF_TOG_CHK(ch, flag) (TOGGLE_FLAG(PRF_FLAGS(ch), (flag)) & FLAG(flag))
-#define PRV_TOG_CHK(ch, flag) (TOGGLE_FLAG(PRV_FLAGS(ch), (flag)) & FLAG(flag))
 #define CONFUSED(ch) EFF_FLAGGED(ch, EFF_CONFUSION)
 
 /* Mob performs scripts?  (specprocs and triggers)

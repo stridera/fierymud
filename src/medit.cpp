@@ -248,7 +248,7 @@ void init_mobile(CharData *mob) {
     mob->natural_abils.cha = 11;
     mob->affected_abils = mob->natural_abils;
 
-    SET_FLAG(MOB_FLAGS(mob), MOB_ISNPC);
+    MOB_FLAGS(mob).set(MOB_ISNPC);
     mob->player_specials = &dummy_mob;
 }
 
@@ -552,8 +552,9 @@ void medit_save_to_disk(int zone_num) {
                     "%d %d %d %d %ld %d\n"
                     "%d %d %d %d %d %d %d\n",
                     (GET_NAMELIST(mob) && *GET_NAMELIST(mob)) ? GET_NAMELIST(mob) : "undefined",
-                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", buf1, buf2, MOB_FLAGS(mob)[0],
-                    EFF_FLAGS(mob)[0], GET_ALIGNMENT(mob), GET_LEVEL(mob), 20 - mob->mob_specials.ex_hitroll,
+                    (GET_SDESC(mob) && *GET_SDESC(mob)) ? GET_SDESC(mob) : "undefined", buf1, buf2,
+                    MOB_FLAGS(mob).to_ulong(), EFF_FLAGS(mob).to_ulong(), GET_ALIGNMENT(mob), GET_LEVEL(mob),
+                    20 - mob->mob_specials.ex_hitroll,
                     /* Hitroll -> THAC0 */ GET_EX_AC(mob) / 10, (mob)->mob_specials.ex_hpnumdice,
                     (mob)->mob_specials.ex_hpsizedice, GET_MOVE(mob), (mob)->mob_specials.ex_damnodice,
                     (mob)->mob_specials.ex_damsizedice, mob->mob_specials.ex_damroll, GET_EX_COPPER(mob),
@@ -579,9 +580,6 @@ void medit_save_to_disk(int zone_num) {
             if (GET_CHA(mob) != 11)
                 fprintf(mob_file, "Cha: %d\n", GET_CHA(mob));
 
-            fprintf(mob_file, "AFF2: %ld\n", EFF_FLAGS(mob)[1]);
-            fprintf(mob_file, "AFF3: %ld\n", EFF_FLAGS(mob)[2]);
-            fprintf(mob_file, "MOB2: %ld\n", MOB_FLAGS(mob)[1]);
             fprintf(mob_file, "PERC: %ld\n", GET_PERCEPTION(mob));
             fprintf(mob_file, "HIDE: %ld\n", GET_HIDDENNESS(mob));
             fprintf(mob_file, "Lifeforce: %d\n", GET_LIFEFORCE(mob));
@@ -726,7 +724,7 @@ void medit_disp_mob_flags(DescriptorData *d) {
         char_printf(d->character, strcat(buf, "\n"));
     }
 
-    sprintflag(buf1, MOB_FLAGS(OLC_MOB(d)), NUM_MOB_FLAGS, action_bits);
+    sprintflag(buf1, MOB_FLAGS(OLC_MOB(d)), action_bits);
     sprintf(buf, "\nCurrent flags : %s%s%s\nEnter mob flags (0 to quit) : ", cyn, buf1, nrm);
     char_printf(d->character, buf);
 }
@@ -782,7 +780,7 @@ void medit_disp_aff_flags(DescriptorData *d) {
         char_printf(d->character, strcat(buf, "\n"));
     }
 
-    sprintflag(buf1, EFF_FLAGS(OLC_MOB(d)), NUM_EFF_FLAGS, effect_flags);
+    sprintflag(buf1, EFF_FLAGS(OLC_MOB(d)), effect_flags);
     sprintf(buf, "\nCurrent flags   : %s%s%s\nEnter aff flags (0 to quit):\n", cyn, buf1, nrm);
     char_printf(d->character, buf);
 }
@@ -872,8 +870,8 @@ void medit_disp_menu(DescriptorData *d) {
                         GET_PERCEPTION(mob), GET_HIDDENNESS(mob));
     char_printf(d->character, menu.c_str());
 
-    sprintflag(buf1, MOB_FLAGS(mob), NUM_MOB_FLAGS, action_bits);
-    sprintflag(buf2, EFF_FLAGS(mob), NUM_EFF_FLAGS, effect_flags);
+    sprintflag(buf1, MOB_FLAGS(mob), action_bits);
+    sprintflag(buf2, EFF_FLAGS(mob), effect_flags);
 
     menu = "";
     menu += fmt::format("&2&bN&0) Life Force    : {}{}&0\n", LIFEFORCE_COLOR(mob), capitalize(LIFEFORCE_NAME(mob)));
@@ -908,7 +906,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         /*-------------------------------------------------------------------*/
     case MEDIT_CONFIRM_SAVESTRING:
         /*. Ensure mob has MOB_ISNPC set or things will go pair shaped . */
-        SET_FLAG(MOB_FLAGS(OLC_MOB(d)), MOB_ISNPC);
+        MOB_FLAGS(OLC_MOB(d)).set(MOB_ISNPC);
         switch (*arg) {
         case 'y':
         case 'Y':
@@ -1167,7 +1165,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         if ((i = atoi(arg)) == 0)
             break;
         else if (i > 0 && i <= NUM_MOB_FLAGS)
-            TOGGLE_FLAG(MOB_FLAGS(OLC_MOB(d)), i - 1);
+            MOB_FLAGS(OLC_MOB(d)).flip(i - 1);
         medit_disp_mob_flags(d);
         return;
         /*-------------------------------------------------------------------*/
@@ -1175,7 +1173,7 @@ void medit_parse(DescriptorData *d, char *arg) {
         if ((i = atoi(arg)) == 0)
             break;
         else if (i > 0 && i <= NUM_EFF_FLAGS)
-            TOGGLE_FLAG(EFF_FLAGS(OLC_MOB(d)), i - 1);
+            EFF_FLAGS(OLC_MOB(d)).flip(i - 1);
         medit_disp_aff_flags(d);
         return;
         /*-------------------------------------------------------------------*/

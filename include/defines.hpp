@@ -1,5 +1,8 @@
 #pragma once
 
+#include <bitset>
+#include <unordered_map>
+
 // Do not include files here, this is a header file for the defines only.
 
 #define NOWHERE -1 /* nil reference for room-database        */
@@ -73,6 +76,7 @@
 #define PRV_ANON_TOGGLE 2 /* can toggle anon */
 #define PRV_AUTO_GAIN 3   /* don't need to level gain */
 #define NUM_PRV_FLAGS 4
+typedef std::bitset<NUM_PRV_FLAGS> PrivilegeFlags;
 
 /* Mobile flags: used by CharData.char_specials.act */
 #define MOB_SPEC 0          /* Mob has a callable spec-proc       */
@@ -117,6 +121,13 @@
 #define MOB_PET 39             /* Mob was purchased or tamed and is now a pet to a player. */
 #define MOB_MEDITATE 40
 #define NUM_MOB_FLAGS 41 /* Update this when you add a flag! */
+
+#if NUM_MOB_FLAGS > NUM_PLR_FLAGS
+#define MAX_MOB_PLR_FLAGS NUM_MOB_FLAGS
+#else
+#define MAX_MOB_PLR_FLAGS NUM_PLR_FLAGS
+#endif
+typedef std::bitset<MAX_MOB_PLR_FLAGS> PlayerOrMobFlags;
 
 /* Some mount stuff */
 #define MAX_MOUNT_LEVEL 27 /* The maximum level of mountable mobs */
@@ -496,6 +507,7 @@
 #define EFF_SHOCK_WEAPON 88
 #define EFF_RADIANT_WEAPON 89
 #define NUM_EFF_FLAGS 90 /* Keep me updated */
+typedef std::bitset<NUM_EFF_FLAGS> EffectFlags;
 
 /* Preference flags: used by CharData.player_specials.pref */
 #define PRF_BRIEF 0       /* Room descs won't normally be shown */
@@ -536,6 +548,7 @@
 #define PRF_SACRIFICIAL 35 /* Sacrificial spells autotarget self */
 #define PRF_PETASSIST 36   /* Should your pet assist you as you fight */
 #define NUM_PRF_FLAGS 37
+typedef std::bitset<NUM_PRF_FLAGS> PreferenceFlags;
 
 #define CIRCLE_1 1
 #define CIRCLE_2 9
@@ -1156,8 +1169,9 @@
 #define ITEM_ANTI_COLOSSAL 49
 #define ITEM_ANTI_TITANIC 50
 #define ITEM_ANTI_MOUNTAINOUS 51
-#define ITEM_ANTI_ARBOREAN 52   /* Not usable by Arboreans */
+#define ITEM_ANTI_ARBOREAN 52 /* Not usable by Arboreans */
 #define NUM_ITEM_FLAGS 53
+typedef std::bitset<NUM_ITEM_FLAGS> ExtraObjectFlags;
 
 /* Modifier constants used with obj effects ('A' fields) */
 #define APPLY_NONE 0           /* No effect                       */
@@ -1333,3 +1347,49 @@
 #define MAX_OBJ_APPLIES 6
 
 #define MEDITATE_BONUS 10
+
+#define EVENT_AUTODOUSE 1
+#define EVENT_CAMP 2
+#define EVENT_HURT 3
+#define EVENT_MOB_QUIT 4
+#define EVENT_NAME_TIMEOUT 5
+#define EVENT_RECALL 6
+#define EVENT_ROOM_UNDO 7
+#define EVENT_SPELL 8
+#define EVENT_TRACK 9
+#define EVENT_TRIGGER_WAIT 10
+#define EVENT_SINK_AND_LOSE 11
+#define EVENT_BATTLE_PARALYSIS 12
+#define EVENT_CASTING 13
+#define EVENT_REGEN_HP 14
+#define EVENT_REGEN_SPELLSLOT 15
+#define EVENT_REGEN_MOVE 16
+// #define EVENT_REGEN_MANA 17
+#define EVENT_SCRIBE 18
+#define EVENT_QUICK_AGGRO 19
+#define EVENT_DIE 20
+#define EVENT_RAGE 21
+#define EVENT_EXTRACT 22 /* To extract a char, for whatever reason */
+#define EVENT_GRAVITY 23
+#define EVENT_COOLDOWN 24
+#define EVENT_FULLPURGE 25
+#define EVENT_OVERWEIGHT 26
+#define EVENT_FALLTOGROUND 27
+#define EVENT_COMMAND 28
+#define EVENT_EDITOR_START 29
+#define EVENT_GET_MONEY 30
+/* Update MAX_EVENT to be last event value + 1, please */
+#define MAX_EVENT 31
+typedef std::bitset<MAX_EVENT> EventFlags;
+
+typedef std::unordered_map<int, bool> CommandCache;
+
+/* The EX_xxxx constants are used in exit_info. */
+#define EX_ISDOOR 0    /* Exit is a door             */
+#define EX_CLOSED 1    /* The door is closed         */
+#define EX_LOCKED 2    /* The door is locked         */
+#define EX_PICKPROOF 3 /* Lock can't be picked       */
+#define EX_HIDDEN 4    /* exit is hidden             */
+#define EX_DESCRIPT 5  /* Just an extra description  */
+#define MAX_EXIT_INFO_FLAGS 6
+typedef std::bitset<MAX_EXIT_INFO_FLAGS> ExitInfoFlags;

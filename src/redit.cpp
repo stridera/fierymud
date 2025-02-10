@@ -311,7 +311,7 @@ void redit_save_to_disk(int zone_num) {
              * Forget making a buffer, lets just write the thing now.
              */
             fprintf(fp, "#%d\n%s~\n%s~\n%d %ld %d\n", counter, room->name ? room->name : "undefined", buf1,
-                    zone_table[room->zone].number, room->room_flags[0], room->sector_type);
+                    zone_table[room->zone].number, room->room_flags.to_ulong(), room->sector_type);
 
             /*
              * Handle exits.
@@ -332,12 +332,12 @@ void redit_save_to_disk(int zone_num) {
                     /*
                      * Figure out door flag.
                      */
-                    if (IS_SET(room->exits[counter2]->exit_info, EX_ISDOOR)) {
-                        if (IS_SET(room->exits[counter2]->exit_info, EX_PICKPROOF))
+                    if (room->exits[counter2]->exit_info.test(EX_ISDOOR)) {
+                        if (room->exits[counter2]->exit_info.test(EX_PICKPROOF))
                             temp_door_flag = 2;
                         else
                             temp_door_flag = 1;
-                    } else if (IS_SET(room->exits[counter2]->exit_info, EX_DESCRIPT)) {
+                    } else if (room->exits[counter2]->exit_info.test(EX_DESCRIPT)) {
                         temp_door_flag = 3;
                         room->exits[counter2]->to_room = -1;
                         room->exits[counter2]->key = -1;
@@ -463,10 +463,10 @@ void redit_disp_exit_menu(DescriptorData *d) {
 
     *buf2 = '\0';
     /* weird door handling! */
-    if (IS_SET(OLC_EXIT(d)->exit_info, EX_DESCRIPT))
+    if (OLC_EXIT(d)->exit_info.test(EX_DESCRIPT))
         strcat(buf2, "Description only ");
-    if (IS_SET(OLC_EXIT(d)->exit_info, EX_ISDOOR)) {
-        if (IS_SET(OLC_EXIT(d)->exit_info, EX_PICKPROOF))
+    if (OLC_EXIT(d)->exit_info.test(EX_ISDOOR)) {
+        if (OLC_EXIT(d)->exit_info.test(EX_PICKPROOF))
             strcat(buf2, "Pickproof");
         else
             strcat(buf2, "Is a door");
@@ -530,7 +530,7 @@ void redit_disp_flag_menu(DescriptorData *d) {
         char_printf(d->character, strcat(buf, "\n"));
     }
 
-    sprintflag(buf1, OLC_ROOM(d)->room_flags, NUM_ROOM_FLAGS, room_bits);
+    sprintflag(buf1, OLC_ROOM(d)->room_flags, room_bits);
     sprintf(buf,
             "\nRoom flags: %s%s%s\n"
             "Enter room flags, 0 to quit : ",
@@ -576,7 +576,7 @@ void redit_disp_menu(DescriptorData *d) {
     get_char_cols(d->character);
     room = OLC_ROOM(d);
 
-    sprintflag(buf1, room->room_flags, NUM_ROOM_FLAGS, room_bits);
+    sprintflag(buf1, room->room_flags, room_bits);
     sprintf(buf2, "%s", sectors[room->sector_type].name);
     sprintf(buf,
 #if defined(CLEAR_SCREEN)
@@ -747,7 +747,7 @@ void redit_parse(DescriptorData *d, char *arg) {
             /*
              * Toggle the bit.
              */
-            TOGGLE_FLAG(OLC_ROOM(d)->room_flags, number - 1);
+            OLC_ROOM(d)->room_flags.flip(number - 1);
             redit_disp_flag_menu(d);
         }
         return;

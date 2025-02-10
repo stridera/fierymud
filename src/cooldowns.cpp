@@ -15,12 +15,11 @@
 #include "comm.hpp"
 #include "conf.hpp"
 #include "fight.hpp"
+#include "logging.hpp"
 #include "skills.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 const char *cooldowns[NUM_COOLDOWNS + 1] = {"backstab",
                                             "bash",
@@ -101,7 +100,7 @@ EVENTFUNC(cooldown_handler) {
     if (found)
         return PULSE_COOLDOWN;
 
-    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_COOLDOWN);
+    GET_EVENT_FLAGS(ch).reset(EVENT_COOLDOWN);
     return EVENT_FINISHED;
 }
 
@@ -110,7 +109,7 @@ void SET_COOLDOWN(CharData *ch, int type, int amount) {
     GET_COOLDOWN_MAX(ch, type) = amount;
 
     if (amount && !EVENT_FLAGGED(ch, EVENT_COOLDOWN)) {
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_COOLDOWN);
+        GET_EVENT_FLAGS(ch).set(EVENT_COOLDOWN);
         event_create(EVENT_COOLDOWN, cooldown_handler, ch, false, &ch->events, PULSE_COOLDOWN);
     }
 }

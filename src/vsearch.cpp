@@ -332,8 +332,9 @@ bool parse_vlist_args(CharData *ch, char *argument, int *first, int *last) {
  * After the query, a vnum bound may be specified, which will be parsed
  * by parse_vlist_args.
  */
+template <size_t N>
 bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, const VSearchType *modes, int *value,
-                        int *bound, char **string, int *compare, flagvector *flags, int *first, int *last) {
+                        int *bound, char **string, int *compare, std::bitset<N> *flags, int *first, int *last) {
     int type, temp;
 
     if (!mode || !modes || !value || !bound || !string || !compare || !flags || !first || !last) {
@@ -349,10 +350,6 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
     *bound = 0;
     *string = nullptr;
     *compare = EQ;
-    *flags = 0;
-    *(flags + 1) = 0;
-    *(flags + 2) = 0;
-    *(flags + 3) = 0;
     *first = 0;
     *last = MAX_VNUM;
 
@@ -467,7 +464,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         if (modes[type].data == TYPE)
             break;
         else if (modes[type].data == APPLY) {
-            *flags = *value;
+            flags->set(*value);
             *value = 0;
             *compare = ANY;
             any_one_arg(argument, arg);
@@ -656,7 +653,7 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         }
         for (temp = 0; *arg; delimited_arg(argument, arg, '\'')) {
             if ((*value = search_block(arg, modes[type].lookup, false)) >= 0)
-                SET_FLAG(flags, *value);
+                flags->set(*value);
             else if (is_abbrev(arg, "from")) {
                 if (!temp) {
                     char_printf(ch, "No flags provided before vnum bound.\n");
@@ -699,11 +696,11 @@ bool parse_vsearch_args(CharData *ch, char *argument, int subcmd, int *mode, con
         }
         for (temp = 0; *arg; any_one_arg(argument, arg)) {
             if (*value == MOB_TRIGGER && (*bound = search_block(arg, trig_types, false)) >= 0)
-                *flags |= (1 << *bound);
+                flags->set(*bound);
             else if (*value == OBJ_TRIGGER && (*bound = search_block(arg, otrig_types, false)) >= 0)
-                *flags |= (1 << *bound);
+                flags->set(*bound);
             else if (*value == WLD_TRIGGER && (*bound = search_block(arg, wtrig_types, false)) >= 0)
-                *flags |= (1 << *bound);
+                flags->set(*bound);
             else if (is_abbrev(arg, "from")) {
                 if (!temp) {
                     char_printf(ch, "No types provided before vnum bound.\n");
@@ -917,7 +914,7 @@ const struct VSearchType vsearch_mobile_modes[] = {
 ACMD(do_msearch) {
     int mode, value, found = 0, compare, bound, nr, first, last, temp;
     char *string;
-    flagvector flags[4];
+    PlayerOrMobFlags flags;
     bool match;
     CharData *mob;
 
@@ -932,7 +929,7 @@ ACMD(do_msearch) {
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_mobile_modes, &value, &bound, &string, &compare,
-                                &flags[0], &first, &last))
+                                &flags, &first, &last))
             return;
         /* Special handling for 18: attack type */
         if (mode == 18) {
@@ -1054,10 +1051,10 @@ ACMD(do_msearch) {
             match = check_trigger_vnums(mob->proto_script, value, bound, compare);
             break;
         case 29:
-            match = ALL_FLAGGED(MOB_FLAGS(mob), flags, NUM_MOB_FLAGS);
+            match = ALL_FLAGGED(MOB_FLAGS(mob), flags);
             break;
         case 30:
-            match = ALL_FLAGGED(EFF_FLAGS(mob), flags, NUM_EFF_FLAGS);
+            // match = ALL_FLAGGED(EFF_FLAGS(mob), flags);
             break;
         case 31: /* COMPOSITION */
             match = GET_COMPOSITION(mob) == value;
@@ -1177,7 +1174,7 @@ ACMD(do_osearch) {
     int mode, value, found, compare, bound, nr, first, last, temp, temp_found, type = -1;
     char *string;
     const char *header_type;
-    flagvector flags[4];
+    ExtraObjectFlags flags;
     bool match;
     ObjData *obj;
     char header1[255], header2[255];
@@ -1193,7 +1190,7 @@ ACMD(do_osearch) {
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_object_modes, &value, &bound, &string, &compare,
-                                &flags[0], &first, &last))
+                                &flags, &first, &last))
             return;
 
         /* Special handling for 25: attack type */
@@ -1317,7 +1314,7 @@ ACMD(do_osearch) {
             match = (GET_OBJ_TYPE(obj) == value);
             break;
         case 6:
-            match = ALL_FLAGGED(GET_OBJ_FLAGS(obj), flags, NUM_ITEM_FLAGS);
+            match = ALL_FLAGGED(GET_OBJ_FLAGS(obj), flags);
             break;
         case 7:
             match = (CAN_WEAR(obj, flags[0]) == flags[0]);
@@ -1355,7 +1352,7 @@ ACMD(do_osearch) {
             break;
             /* case 16 is available */
         case 17:
-            match = ALL_FLAGGED(GET_OBJ_EFF_FLAGS(obj), flags, NUM_EFF_FLAGS);
+            // match = ALL_FLAGGED(GET_OBJ_EFF_FLAGS(obj), flags);
             break;
         case 18:
             match = check_trigger_vnums(obj->proto_script, value, bound, compare);
@@ -1594,7 +1591,7 @@ const struct VSearchType vsearch_room_modes[] = {
 ACMD(do_rsearch) {
     int mode, value, found = 0, compare, bound, nr, first, last;
     char *string;
-    flagvector flags[4];
+    RoomFlags flags;
     bool match;
 
     if (subcmd == SCMD_VLIST) {
@@ -1608,7 +1605,7 @@ ACMD(do_rsearch) {
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_room_modes, &value, &bound, &string, &compare,
-                                &flags[0], &first, &last))
+                                &flags, &first, &last))
             return;
     }
 
@@ -1637,7 +1634,7 @@ ACMD(do_rsearch) {
             match = check_extra_descs(world[nr].ex_description, string);
             break;
         case 5:
-            match = ALL_FLAGGED(ROOM_FLAGS(nr), flags, NUM_ROOM_FLAGS);
+            match = ALL_FLAGGED(ROOM_FLAGS(nr), flags);
             break;
         case 6:
             match = check_trigger_vnums(world[nr].proto_script, value, bound, compare);
@@ -1682,7 +1679,7 @@ const struct VSearchType vsearch_exit_modes[] = {
 ACMD(do_esearch) {
     int mode, value, found = 0, compare, bound, nr, first, last, dir;
     char *string;
-    flagvector flags[4];
+    ExitInfoFlags flags;
     bool match;
     Exit *exit;
 
@@ -1697,7 +1694,7 @@ ACMD(do_esearch) {
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_exit_modes, &value, &bound, &string, &compare,
-                                &flags[0], &first, &last))
+                                &flags, &first, &last))
             return;
     }
 
@@ -1723,7 +1720,7 @@ ACMD(do_esearch) {
                 match = (exit->general_description && string_find(string, exit->general_description, compare));
                 break;
             case 3:
-                match = (IS_SET(exit->exit_info, flags[0]) != 0);
+                match = ALL_FLAGGED(exit->exit_info, flags);
                 break;
             case 4:
                 match = numeric_compare(exit->key, value, bound, compare);
@@ -1747,7 +1744,7 @@ ACMD(do_esearch) {
                     sprintf(buf, "%s%s%s (key %d): ", grn, exit->keyword, nrm, exit->key);
                 else
                     sprintf(buf, "%s%s%s: ", grn, exit->keyword, nrm);
-                sprintbit(exit->exit_info, exit_bits, buf + strlen(buf));
+                sprintbit(exit->exit_info.to_ulong(), exit_bits, buf + strlen(buf));
                 buf[strlen(buf) - 1] = '\0'; /* remove trailing space */
                 paging_printf(ch, "{:4d}. {}{:<4s}{} at [{}{:5d}{}] {:<20s} [{}]\n", ++found, yel,
                               capitalize(dirs[dir]), nrm, grn, world[nr].vnum, nrm, world[nr].name, buf);
@@ -1773,7 +1770,7 @@ const struct VSearchType vsearch_shop_modes[] = {
 ACMD(do_ssearch) {
     int mode, value, found = 0, compare, bound, nr, first, last, temp;
     char *string;
-    flagvector flags[4];
+    std::bitset<4> flags;
     bool match;
 
     if (subcmd == SCMD_VLIST) {
@@ -1788,7 +1785,7 @@ ACMD(do_ssearch) {
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_shop_modes, &value, &bound, &string, &compare,
-                                &flags[0], &first, &last))
+                                &flags, &first, &last))
             return;
     }
 
@@ -1915,7 +1912,7 @@ char *t_listdisplay(int nr, int index) {
 ACMD(do_tsearch) {
     int mode, value, found = 0, compare, bound, nr, first, last;
     char *string;
-    flagvector flags[4];
+    std::bitset<64> flags;
     bool match;
     TrigData *trig;
     CmdlistElement *line;
@@ -1931,7 +1928,7 @@ ACMD(do_tsearch) {
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_trigger_modes, &value, &bound, &string, &compare,
-                                &flags[0], &first, &last))
+                                &flags, &first, &last))
             return;
 
         /* Special handling for 6: intention */
@@ -1965,7 +1962,7 @@ ACMD(do_tsearch) {
             match = string_find(string, GET_TRIG_NAME(trig), compare);
             break;
         case 2:
-            match = (trig->attach_type == value && (IS_SET(GET_TRIG_TYPE(trig), flags[0]) == flags[0]));
+            match = (trig->attach_type == value && (ALL_FLAGGED(std::bitset<64>(GET_TRIG_TYPE(trig)), flags)));
             break;
         case 3:
             match = string_find(string, GET_TRIG_ARG(trig), compare);
@@ -2023,7 +2020,7 @@ const struct VSearchType vsearch_zone_modes[] = {
 ACMD(do_zsearch) {
     int mode, value, found = 0, compare, bound, nr, first, last;
     char *string;
-    flagvector flags[4];
+    std::bitset<4> flags;
     bool match;
     ZoneData *zone;
 
@@ -2067,7 +2064,7 @@ ACMD(do_zsearch) {
             return;
         }
         if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_zone_modes, &value, &bound, &string, &compare,
-                                &flags[0], &first, &last))
+                                &flags, &first, &last))
             return;
     }
 
@@ -2164,7 +2161,7 @@ const struct VSearchType vsearch_zone_command_modes[] = {{1, "mobile", INTEGER},
 ACMD(do_csearch) {
     int mode, value, found = 0, compare, bound, nr, first, last, vbuflen, cnr, cmd_room = NOWHERE, cmd_mob = NOBODY;
     char *string;
-    flagvector flags[4];
+    std::bitset<4> flags;
     bool match;
     ResetCommand *com;
 
@@ -2173,7 +2170,7 @@ ACMD(do_csearch) {
             return;
         mode = 0;
     } else if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_zone_command_modes, &value, &bound, &string,
-                                   &compare, &flags[0], &first, &last))
+                                   &compare, &flags, &first, &last))
         return;
 
     get_char_cols(ch);
@@ -2256,7 +2253,7 @@ ACMD(do_csearch) {
                     break;
                 match = true;
                 for (value = 0; value < 4; ++value) {
-                    if (!IS_SET(flags[0], (1 << value)))
+                    if (!flags.test(value))
                         continue;
                     switch ((1 << value)) {
                     case DOOR_RESET_OPEN:
@@ -2390,7 +2387,7 @@ ACMD(do_ksearch) {
     int mode, value, found = 0, compare, bound, nr, first, last, temp;
     char *string;
     const char *color;
-    flagvector flags[4];
+    RoutineFlags flags;
     bool match;
     SkillDef *skill;
 
@@ -2398,7 +2395,7 @@ ACMD(do_ksearch) {
         char_printf(ch, HUH);
         return;
     } else if (!parse_vsearch_args(ch, argument, subcmd, &mode, vsearch_skill_modes, &value, &bound, &string, &compare,
-                                   flags, &first, &last))
+                                   &flags, &first, &last))
         return;
 
     /* See if the character is using color. */
@@ -2458,13 +2455,13 @@ ACMD(do_ksearch) {
             match = (skill->humanoid == value);
             break;
         case 12:
-            match = IS_SET(skill->routines, flags[0]);
+            match = IS_SET(skill->routines, flags.to_ulong());
             break;
         case 13:
             match = (skill->violent == value);
             break;
         case 14:
-            match = IS_SET(skill->targets, flags[0]);
+            match = IS_SET(skill->targets, flags.to_ulong());
             break;
         case 15:
             match = numeric_compare(skill->addl_mem_time, value, bound, compare);

@@ -317,7 +317,7 @@ void effect_update(void) {
                 world[(int)reff->room].light++;
             if (ROOM_EFF_FLAGGED(reff->room, ROOM_EFF_ILLUMINATION))
                 world[(int)reff->room].light--;
-            REMOVE_FLAG(world[(int)reff->room].room_effects, reff->effect);
+            world[(int)reff->room].room_effects.reset(reff->effect);
             REMOVE_FROM_LIST(reff, room_effect_list, next);
             free(reff);
         }
@@ -1050,7 +1050,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
             !EFF_FLAGGED(victim, EFF_ON_FIRE)) {
             temp = std::clamp((3 + skill - GET_LEVEL(victim)) * susceptibility(victim, DAM_FIRE) / 100, 1, 90);
             if (temp > random_number(0, 100)) {
-                SET_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
+                EFF_FLAGS(victim).test(EFF_ON_FIRE);
                 switch (random_number(1, 3)) {
                 case 1:
                     act("&1$n bursts into flame!&0", false, victim, 0, 0, TO_ROOM);
@@ -1252,7 +1252,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 to_room = "$N is inspired to do good by $n.\r\n$N is overcome with divine euphoria!";
             }
         }
-        SET_FLAG(eff[2].flags, EFF_BLESS);
+        eff[2].flags.set(EFF_BLESS);
         eff[2].duration = eff[0].duration;
         break;
 
@@ -1276,12 +1276,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_HITROLL;
         eff[0].modifier = -4;
         eff[0].duration = 2;
-        SET_FLAG(eff[0].flags, EFF_BLIND);
+        eff[0].flags.set(EFF_BLIND);
 
         eff[1].location = APPLY_AC;
         eff[1].modifier = -40;
         eff[1].duration = 2;
-        SET_FLAG(eff[1].flags, EFF_BLIND);
+        eff[1].flags.set(EFF_BLIND);
 
         to_char = "&9&b$N&9&b is blinded by you!&0";
         to_room = "&9&b$N&9&b is blinded by $n!&0";
@@ -1290,7 +1290,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_BLUR:
 
-        SET_FLAG(eff[0].flags, EFF_BLUR);
+        eff[0].flags.set(EFF_BLUR);
         eff[0].duration = 2 + (skill / 21); /* max 6 */
         to_vict = "&7The world seems to slow as you start moving with unnatural speed!&0";
         to_room = "&7$N's image blurs in unnatural speed!&0";
@@ -1329,7 +1329,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         to_vict = "$n conjures four magical bones which bind your legs!";
         to_room = "$n conjures four magical bones that lock around $N's legs!";
 
-        SET_FLAG(eff[0].flags, EFF_IMMOBILIZED);
+        eff[0].flags.set(EFF_IMMOBILIZED);
         eff[0].location = APPLY_NONE;
         eff[0].modifier = 4;
         eff[0].duration = 1 + skill / 25; /* 1-5 hours */
@@ -1368,7 +1368,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_CIRCLE_OF_LIGHT:
 
-        SET_FLAG(eff[0].flags, EFF_LIGHT);
+        eff[0].flags.set(EFF_LIGHT);
         eff[0].duration = 5 + (skill / 2); /* max 55 */
         to_vict = "&7&bA bright white circle of light begins hovering about your head.&0";
         to_room = "&7&bA bright white circle of light appears over $N's&7&b head.";
@@ -1382,7 +1382,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_COLDSHIELD);
+        eff[0].flags.set(EFF_COLDSHIELD);
         eff[0].duration = skill / 20; /* max 5 */
         refresh = false;
         to_vict = "&4A jagged formation of i&bc&7e sh&4ard&0&4s forms around you.&0";
@@ -1401,7 +1401,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             char_printf(ch, "to bring them back under control.\n");
             return CAST_RESULT_CHARGE;
         }
-        SET_FLAG(eff[0].flags, EFF_CONFUSION);
+        eff[0].flags.set(EFF_CONFUSION);
         eff[0].duration = 2 + skill / 40;
         to_vict = "&5You suddenly find it difficult to focus upon your foes.&0";
         to_room = "$N can't decide which way to cross $S eyes!";
@@ -1422,7 +1422,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_HITROLL;
         eff[0].duration = 5 + (skill / 14);  /* max 12 */
         eff[0].modifier = -1 - (skill / 50); /* max -3 */
-        SET_FLAG(eff[0].flags, EFF_CURSE);
+        eff[0].flags.set(EFF_CURSE);
         eff[1].location = APPLY_DAMROLL;
         eff[1].duration = eff[0].duration;
         eff[1].modifier = eff[0].modifier;
@@ -1490,7 +1490,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 to_room = "$n seizes up in pain!\n$n grabs $N, who is enraged by a dark presence.";
             }
         }
-        SET_FLAG(eff[2].flags, EFF_BLESS);
+        eff[2].flags.set(EFF_BLESS);
         eff[2].duration = eff[0].duration;
         break;
 
@@ -1499,7 +1499,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         if ((affected_by_spell(victim, SPELL_DEMONIC_ASPECT) && spellnum == SPELL_DEMONIC_MUTATION) ||
             (affected_by_spell(victim, SPELL_DEMONIC_MUTATION) && spellnum == SPELL_DEMONIC_ASPECT)) {
-
             char_printf(victim, "You're feeling pretty demonic already.\n");
             return CAST_RESULT_CHARGE;
         }
@@ -1553,12 +1552,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             eff[0].location = APPLY_AC;
             eff[0].modifier = 8;
             eff[0].duration = 5;
-            SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
+            eff[0].flags.set(EFF_PROT_FIRE);
         } else {
             eff[0].location = APPLY_AC;
             eff[0].modifier = 10 + (skill / 20);
             eff[0].duration = 10 + (skill / 50);
-            SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
+            eff[0].flags.set(EFF_PROT_FIRE);
         }
         to_vict = "&1Your skin toughens into a dark red hide.&0";
         to_room = "&1$N's&1 skin toughens into a dark red hide.&0";
@@ -1566,7 +1565,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_DETECT_ALIGN:
 
-        SET_FLAG(eff[0].flags, EFF_DETECT_ALIGN);
+        eff[0].flags.set(EFF_DETECT_ALIGN);
         eff[0].duration = 5 + (skill / 10); /* max 15 */
         to_char = "$N can determine alignment.";
         to_room = "&7&b$N&7&b glows briefly.&0";
@@ -1575,7 +1574,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_DETECT_INVIS:
 
-        SET_FLAG(eff[0].flags, EFF_DETECT_INVIS);
+        eff[0].flags.set(EFF_DETECT_INVIS);
         eff[0].location = APPLY_PERCEPTION;
         eff[0].modifier = 10;
         eff[0].duration = 5 + (skill / 10); /* max 15 */
@@ -1584,14 +1583,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_DETECT_MAGIC:
 
-        SET_FLAG(eff[0].flags, EFF_DETECT_MAGIC);
+        eff[0].flags.set(EFF_DETECT_MAGIC);
         eff[0].duration = 5 + (skill / 10); /* max 15 */
         to_vict = "Your eyes tingle.";
         break;
 
     case SPELL_DETECT_POISON:
 
-        SET_FLAG(eff[0].flags, EFF_DETECT_POISON);
+        eff[0].flags.set(EFF_DETECT_POISON);
         eff[0].duration = 5 + (skill / 10); /* max 15 */
         to_vict = "Your eyes tingle.";
         break;
@@ -1610,7 +1609,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_CON;
         eff[0].modifier = -10 - (skill / 10);
         eff[0].duration = 5 + (skill / 10);
-        SET_FLAG(eff[0].flags, EFF_DISEASE);
+        eff[0].flags.set(EFF_DISEASE);
         eff[1].location = APPLY_STR;
         eff[1].modifier = eff[0].modifier;
         eff[1].duration = eff[0].duration;
@@ -1633,11 +1632,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
 
         if (spellnum = SPELL_DISPLACEMENT)
-            SET_FLAG(eff[0].flags, EFF_DISPLACEMENT);
+            eff[0].flags.set(EFF_DISPLACEMENT);
         else if (spellnum = SPELL_GREATER_DISPLACEMENT)
-            SET_FLAG(eff[0].flags, EFF_GREATER_DISPLACEMENT);
+            eff[0].flags.set(EFF_GREATER_DISPLACEMENT);
 
-        eff[0].duration = (skill / 50) + ((stat_bonus[GET_INT(ch)].magic + stat_bonus[GET_WIS(ch)].magic) / 7); /* max 4 */
+        eff[0].duration =
+            (skill / 50) + ((stat_bonus[GET_INT(ch)].magic + stat_bonus[GET_WIS(ch)].magic) / 7); /* max 4 */
 
         refresh = false;
         to_char = "&9&b$N's image blurs into the shadows!&0";
@@ -1696,7 +1696,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                 to_room = "$N is imbued with nature's glory by $n!\r\n$N is bolstered with supernatural might!";
             }
         }
-        SET_FLAG(eff[2].flags, EFF_BLESS);
+        eff[2].flags.set(EFF_BLESS);
         eff[2].duration = eff[0].duration;
         break;
 
@@ -1707,19 +1707,19 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
 
         if (is_abbrev(buf2, "fire")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
+            eff[0].flags.set(EFF_PROT_FIRE);
             to_vict = "You are warded from &1fire&0.";
             to_char = "You protect $N from &1fire&0.";
         } else if (is_abbrev(buf2, "cold")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_COLD);
+            eff[0].flags.set(EFF_PROT_COLD);
             to_vict = "You are warded from the &4cold&0.";
             to_char = "You protect $N from the &4cold&0.";
         } else if (is_abbrev(buf2, "air")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_AIR);
+            eff[0].flags.set(EFF_PROT_AIR);
             to_vict = "You are warded from &6&bair&0.";
             to_char = "You protect $N from &6&bair&0.";
         } else if (is_abbrev(buf2, "earth")) {
-            SET_FLAG(eff[0].flags, EFF_PROT_EARTH);
+            eff[0].flags.set(EFF_PROT_EARTH);
             to_vict = "You are warded from &3earth&0.";
             to_char = "You protect $N from &3earth&0.";
         } else {
@@ -1916,7 +1916,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         eff[0].location = APPLY_SIZE;
         eff[0].modifier = 1;
-        SET_FLAG(eff[0].flags, EFF_ENLARGE);
+        eff[0].flags.set(EFF_ENLARGE);
         eff[0].duration = 1 + (skill / 40);
 
         eff[1].location = APPLY_CON;
@@ -1951,10 +1951,10 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         /* Chance for major para increases with higher skill. */
         if (skill >= 40 && random_number(0, 100) < 2 + (skill / 14)) {
-            SET_FLAG(eff[0].flags, EFF_MAJOR_PARALYSIS);
+            eff[0].flags.set(EFF_MAJOR_PARALYSIS);
             eff[0].duration = 2 + (skill > 95);
         } else {
-            SET_FLAG(eff[0].flags, EFF_MINOR_PARALYSIS);
+            eff[0].flags.set(EFF_MINOR_PARALYSIS);
             eff[0].duration = 2 + (skill / 24);
         }
         to_char =
@@ -1970,7 +1970,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SPELL_FAMILIARITY:
-        SET_FLAG(eff[0].flags, EFF_FAMILIARITY);
+        eff[0].flags.set(EFF_FAMILIARITY);
         eff[0].duration = skill / 5 + 4;
         to_vict = "&7&bAn aura of comfort and solidarity surrounds you.&0";
         to_room =
@@ -1980,7 +1980,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_FARSEE:
 
-        SET_FLAG(eff[0].flags, EFF_FARSEE);
+        eff[0].flags.set(EFF_FARSEE);
         eff[0].duration = 5 + (skill / 10); /* max 15 */
         to_vict = "Your sight improves dramatically.";
         to_room = "$N's pupils dilate rapidly for a second.";
@@ -1996,19 +1996,19 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             break;
 
         if (is_abbrev(buf2, "fire")) {
-            SET_FLAG(eff[0].flags, EFF_FIREHANDS);
+            eff[0].flags.set(EFF_FIREHANDS);
             to_vict = "&1Your fists burn with inner fire.&0";
             to_room = "&1$N's fists burn with inner fire.&0";
         } else if (is_abbrev(buf2, "ice")) {
-            SET_FLAG(eff[0].flags, EFF_ICEHANDS);
+            eff[0].flags.set(EFF_ICEHANDS);
             to_vict = "&4&bYou unleash the blizzard in your heart.&0";
             to_room = "&4&b$N unleashes the blizzard in $S heart.&0";
         } else if (is_abbrev(buf2, "lightning")) {
-            SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
+            eff[0].flags.set(EFF_LIGHTNINGHANDS);
             to_vict = "&6&bYour knuckles crackle with lightning.&0";
             to_room = "&6&b$N's knuckles crackle with lightning.&0";
         } else if (is_abbrev(buf2, "acid")) {
-            SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
+            eff[0].flags.set(EFF_ACIDHANDS);
             to_vict = "&3&bYou charge your hands with corrosive chi.&0";
             to_room = "&3&b$N charges $S hands with corrosive chi.&0";
         } else {
@@ -2035,7 +2035,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_FIRESHIELD);
+        eff[0].flags.set(EFF_FIRESHIELD);
         eff[0].duration = skill / 20; /* max 5 */
         refresh = false;
         to_vict = "&1A burning shield of f&bi&3r&7e&0&1 explodes from your body!&0";
@@ -2044,7 +2044,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_FLY:
 
-        SET_FLAG(eff[0].flags, EFF_FLY);
+        eff[0].flags.set(EFF_FLY);
         eff[0].duration = 5 + (skill / 10); /* max 15 */
         if (too_heavy_to_fly(victim)) {
             to_vict = "You feel somewhat lighter.";
@@ -2082,7 +2082,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SPELL_GLORY:
-        SET_FLAG(eff[0].flags, EFF_GLORY);
+        eff[0].flags.set(EFF_GLORY);
         eff[0].duration = 5 + skill / 20;
         eff[1].location = APPLY_CHA;
         eff[1].modifier = 50;
@@ -2098,7 +2098,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_HARNESS);
+        eff[0].flags.set(EFF_HARNESS);
         eff[0].duration = (skill >= 20); /* max 1 */
         refresh = false;
         to_vict = "&4&bYour veins begin to pulse with energy!&0";
@@ -2107,7 +2107,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_HASTE:
 
-        SET_FLAG(eff[0].flags, EFF_HASTE);
+        eff[0].flags.set(EFF_HASTE);
         eff[0].duration = 2 + (skill / 21); /* max 6 */
         to_char = "&1$N starts to move with uncanny speed!&0";
         to_vict = "&1You start to move with uncanny speed!&0";
@@ -2148,7 +2148,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_INFRAVISION);
+        eff[0].flags.set(EFF_INFRAVISION);
         eff[0].duration = 5 + (skill / 10); /* max 15 */
         to_char = "$N's eyes glow red.";
         to_vict = "Your eyes glow red.";
@@ -2168,7 +2168,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_INSANITY);
+        eff[0].flags.set(EFF_INSANITY);
         eff[0].location = APPLY_WIS;
         eff[0].modifier = -50;
         eff[0].duration = 5;
@@ -2183,14 +2183,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].modifier = 40;
         eff[0].duration = 9 + (skill / 9); /* max 20 */
         eff[0].location = APPLY_AC;
-        SET_FLAG(eff[0].flags, EFF_INVISIBLE);
+        eff[0].flags.set(EFF_INVISIBLE);
         to_vict = "You vanish.";
         to_room = "$N slowly fades out of existence.";
         break;
 
     case SPELL_FEATHER_FALL:
 
-        SET_FLAG(eff[0].flags, EFF_FEATHER_FALL);
+        eff[0].flags.set(EFF_FEATHER_FALL);
         eff[0].duration = 5 + (skill / 10);
         to_char = "&6$N&0&6 floats up into the air.&0";
         to_vict = "&6You float up into the air.&0";
@@ -2199,7 +2199,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_MAGIC_TORCH:
 
-        SET_FLAG(eff[0].flags, EFF_LIGHT);
+        eff[0].flags.set(EFF_LIGHT);
         eff[0].duration = 5 + (skill / 2); /* max 55 */
         to_vict = "&1A magical flame bursts into focus, lighting the area.&0";
         to_room = "&1A magical flame bursts into focus, lighting the area.&0";
@@ -2214,7 +2214,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_MAJOR_GLOBE);
+        eff[0].flags.set(EFF_MAJOR_GLOBE);
         eff[0].duration = 4 + (skill / 20); /* max 9 */
         refresh = false;
         to_char = "&1&bYour shimmering globe of force wraps around $N&1&b's body.&0";
@@ -2246,7 +2246,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         to_vict = "$n shows you a truly fascinating puzzle.  You simply must work it out.";
         to_char = "You weave a mesmerizing pattern before $N, and $E seems to be utterly absorbed by it.";
 
-        SET_FLAG(eff[0].flags, EFF_MESMERIZED);
+        eff[0].flags.set(EFF_MESMERIZED);
         eff[0].duration = 2 + skill / 16; /* 2-8 hours */
         if (!IS_NPC(victim))
             eff[0].duration = 2; /* Players: just 2 hours. */
@@ -2262,7 +2262,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_MINOR_GLOBE);
+        eff[0].flags.set(EFF_MINOR_GLOBE);
         eff[0].duration = skill / 20; /* max 5 */
         refresh = false;
         to_char = "&1Your shimmering globe wraps around $N&0&1's body.&0";
@@ -2276,7 +2276,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         /* Make success based on skill and saving throw -myc 17 Feb 2007 */
         if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) ||
             MOB_FLAGGED(victim, MOB_NOCHARM)) {
-
             if (MOB_FLAGGED(victim, MOB_NOCHARM))
                 act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
             else
@@ -2294,7 +2293,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_MINOR_PARALYSIS);
+        eff[0].flags.set(EFF_MINOR_PARALYSIS);
         eff[0].duration = 2 + (skill / 15); /* max 8 */
         refresh = false;
         to_char = "You temporarily paralyze $N!";
@@ -2328,7 +2327,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SPELL_MISDIRECTION:
-        SET_FLAG(eff[0].flags, EFF_MISDIRECTION);
+        eff[0].flags.set(EFF_MISDIRECTION);
         eff[0].duration = 2 + skill / 4;
         to_vict =
             "You feel like a stack of little illusions all pointing in "
@@ -2350,7 +2349,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_ACIDHANDS);
+        eff[0].flags.set(EFF_ACIDHANDS);
         to_vict = "&3&bYou charge your hands with corrosive chi.&0";
         to_room = "&3&b$N charges $S hands with corrosive chi.&0";
         if (spellnum == SPELL_TREMORS_OF_SAINT_AUGUSTINE)
@@ -2373,7 +2372,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_ICEHANDS);
+        eff[0].flags.set(EFF_ICEHANDS);
         to_vict = "&4&bYou unleash the blizzard in your heart.&0";
         to_room = "&4&b$N unleashes the blizzard in $S heart.&0";
         if (spellnum == SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE)
@@ -2396,7 +2395,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_FIREHANDS);
+        eff[0].flags.set(EFF_FIREHANDS);
         to_vict = "&1Your fists burn with inner fire.&0";
         to_room = "&1$N's fists burn with inner fire.&0";
         if (spellnum == SPELL_FIRES_OF_SAINT_AUGUSTINE)
@@ -2419,7 +2418,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_monk_hand_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_LIGHTNINGHANDS);
+        eff[0].flags.set(EFF_LIGHTNINGHANDS);
         to_vict = "&6&bYour knuckles crackle with lightning.&0";
         to_room = "&6&b$N's knuckles crackle with lightning.&0";
         if (spellnum == SPELL_TEMPEST_OF_SAINT_AUGUSTINE)
@@ -2430,7 +2429,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_NEGATE_COLD:
 
-        SET_FLAG(eff[0].flags, EFF_NEGATE_COLD);
+        eff[0].flags.set(EFF_NEGATE_COLD);
         eff[0].duration = 2 + (skill / 20); /* max 7 */
         to_vict = "&4&bYour body becomes impervious to the cold!&0";
         to_room = "&4$n&4's is protected by a &3&bwarm&0&4-looking magical field.&0";
@@ -2438,14 +2437,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_NEGATE_HEAT:
 
-        SET_FLAG(eff[0].flags, EFF_NEGATE_HEAT);
+        eff[0].flags.set(EFF_NEGATE_HEAT);
         eff[0].duration = 2 + (skill / 20); /* max 7 */
         to_vict = "&6Your body becomes impervious to all forms of heat!&0";
         to_room = "&6$n&6 is surrounded by a frigid crystalline field.&0";
         break;
 
     case SPELL_NATURES_EMBRACE:
-        SET_FLAG(eff[0].flags, EFF_CAMOUFLAGED);
+        eff[0].flags.set(EFF_CAMOUFLAGED);
         eff[0].duration = (skill / 3) + 1; /* range (1, 34) */
         to_vict = "&9&bYou phase into the landscape.&0";
         to_room = "&9&b$n&9&b phases into the landscape.&0";
@@ -2470,7 +2469,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_ULTRAVISION);
+        eff[0].flags.set(EFF_ULTRAVISION);
         eff[0].duration = (skill / 21); /* max 4 */
         to_room = "$N's eyes glow a dim neon green.";
         to_vict = "&9&bYour vision sharpens a bit.";
@@ -2478,7 +2477,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_NIMBLE:
 
-        SET_FLAG(eff[0].flags, EFF_NIMBLE);
+        eff[0].flags.set(EFF_NIMBLE);
         eff[0].duration = 2 + (skill / 21); /* max 6 */
         to_char = "&1$N starts to move with uncanny grace!&0";
         to_vict = "&1You start to move with uncanny grace!&0";
@@ -2507,7 +2506,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         }
         eff[0].location = APPLY_STR;
         eff[0].modifier = (-2 - (skill / 4) - (skill / 20)) * susceptibility(victim, DAM_POISON) / 100; /* max -32 */
-        SET_FLAG(eff[0].flags, EFF_POISON);
+        eff[0].flags.set(EFF_POISON);
         eff[0].duration = 2 + (skill / 33) + (stat_bonus[GET_WIS(ch)].magic / 2); /* min 2, max 8 */
         eff[0].type = SPELL_POISON;
         to_vict = "You feel very sick.";
@@ -2543,7 +2542,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_PROTECT_EVIL);
+        eff[0].flags.set(EFF_PROTECT_EVIL);
         eff[0].duration = 9 + (skill / 9); /* max 20 */
         to_vict = "You feel invulnerable!";
         to_char = "You surround $N with glyphs of holy warding.";
@@ -2559,7 +2558,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_PROTECT_GOOD);
+        eff[0].flags.set(EFF_PROTECT_GOOD);
         eff[0].duration = 9 + (skill / 9); /* max 20 */
         to_vict = "You feel invulnerable!";
         to_char = "You surround $N with glyphs of unholy warding.";
@@ -2572,7 +2571,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_PROT_EARTH);
+        eff[0].flags.set(EFF_PROT_EARTH);
         to_vict = "You are warded from &3earth&0.";
         to_char = "You protect $N from &3earth&0.";
         eff[0].duration = 5 + (skill / 14); /* max 12 */
@@ -2586,7 +2585,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_PROT_COLD);
+        eff[0].flags.set(EFF_PROT_COLD);
         to_vict = "You are warded from the &4cold&0.";
         to_char = "You protect $N from the &4cold&0.";
         eff[0].duration = 5 + (skill / 14); /* max 12 */
@@ -2600,7 +2599,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_PROT_FIRE);
+        eff[0].flags.set(EFF_PROT_FIRE);
         to_vict = "You are warded from &1fire&0.";
         to_char = "You protect $N from &1fire&0.";
         eff[0].duration = 5 + (skill / 14); /* max 12 */
@@ -2614,7 +2613,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_elemental_warding_spells(ch, victim, spellnum))
             return 0;
 
-        SET_FLAG(eff[0].flags, EFF_PROT_AIR);
+        eff[0].flags.set(EFF_PROT_AIR);
         to_vict = "You are warded from &6&bair&0.";
         to_char = "You protect $N from &6&bair&0.";
         eff[0].duration = 5 + (skill / 14); /* max 12 */
@@ -2640,7 +2639,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_STR;
         eff[0].duration = 8 + (skill / 20);   /* max 13 */
         eff[0].modifier = -15 - (skill / 10); /* max -25 */
-        SET_FLAG(eff[0].flags, EFF_RAY_OF_ENFEEB);
+        eff[0].flags.set(EFF_RAY_OF_ENFEEB);
         to_vict = "You feel the strength flow out of your body.";
         to_room = "$N turns pale and starts to sag.";
         to_char = "$N turns pale and starts to sag.";
@@ -2682,7 +2681,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
         eff[0].location = APPLY_SIZE;
         eff[0].modifier = -1;
-        SET_FLAG(eff[0].flags, EFF_REDUCE);
+        eff[0].flags.set(EFF_REDUCE);
         eff[0].duration = 1 + (skill / 40);
 
         eff[1].location = APPLY_CON;
@@ -2706,14 +2705,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
          */
 
         eff[0].duration = 4;
-        SET_FLAG(eff[0].flags, EFF_SANCTUARY);
+        eff[0].flags.set(EFF_SANCTUARY);
         to_vict = "This spell doesn't exist.  Ask no questions.";
         to_room = "Absolutely nothing happens to $N.";
         break;
 
     case SPELL_SENSE_LIFE:
 
-        SET_FLAG(eff[0].flags, EFF_SENSE_LIFE);
+        eff[0].flags.set(EFF_SENSE_LIFE);
         eff[0].duration = 17 + (skill / 3); /* max 50 */
         to_vict = "Your feel your awareness improve.";
         to_room = "$N seems more aware of $S surroundings.";
@@ -2735,7 +2734,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_SILENCE);
+        eff[0].flags.set(EFF_SILENCE);
         eff[0].duration = 2 + (skill / 15); /* max 8 */
         to_char = "You silence $N!";
         to_vict =
@@ -2768,7 +2767,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_SLEEP);
+        eff[0].flags.set(EFF_SLEEP);
         eff[0].duration = 9 + (skill / 9); /* max 20 */
         refresh = false;
 
@@ -2804,11 +2803,11 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             eff[0].location = APPLY_HITROLL;
             eff[0].modifier = -4;
             eff[0].duration = 2;
-            SET_FLAG(eff[0].flags, EFF_BLIND);
+            eff[0].flags.set(EFF_BLIND);
             eff[1].location = APPLY_AC;
             eff[1].modifier = -40;
             eff[1].duration = 2;
-            SET_FLAG(eff[1].flags, EFF_BLIND);
+            eff[1].flags.set(EFF_BLIND);
 
             to_room = "&9&b$N&9&b is blinded by $n's&9&b column of smoke!&0";
             to_vict = "&9&bYou have been blinded by $n's&9&b column of smoke&0";
@@ -2818,7 +2817,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_SOULSHIELD:
 
-        SET_FLAG(eff[0].flags, EFF_SOULSHIELD);
+        eff[0].flags.set(EFF_SOULSHIELD);
         eff[0].duration = 2 + (skill / 10); /* max 12 */
         refresh = false;
 
@@ -2836,7 +2835,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SPELL_STATUE:
-        SET_FLAG(eff[0].flags, EFF_FAMILIARITY);
+        eff[0].flags.set(EFF_FAMILIARITY);
         eff[0].duration = (skill / 5) + (GET_INT(ch) / 4);
         to_vict = "&9&bYou disguise yourself as a little statue.&0";
         to_room = "You realize $N has disappeared and been replaced by a statue!";
@@ -2852,7 +2851,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_NONE;
         eff[0].modifier = 7 + (skill / 16); /* max 13 */
         eff[0].duration = 2;
-        SET_FLAG(eff[0].flags, EFF_STONE_SKIN);
+        eff[0].flags.set(EFF_STONE_SKIN);
 
         refresh = false;
         to_char = "&9&b$N's skin hardens and turns to stone!&0";
@@ -2878,12 +2877,12 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         eff[0].location = APPLY_HITROLL;
         eff[0].modifier = -4;
         eff[0].duration = 2;
-        SET_FLAG(eff[0].flags, EFF_BLIND);
+        eff[0].flags.set(EFF_BLIND);
 
         eff[1].location = APPLY_AC;
         eff[1].modifier = -40;
         eff[1].duration = 2;
-        SET_FLAG(eff[1].flags, EFF_BLIND);
+        eff[1].flags.set(EFF_BLIND);
 
         to_char = "&9&bYou have blinded $N with your sunray!&0";
         to_room = "&9&b$N&9&b seems to be blinded!&0";
@@ -2926,7 +2925,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     case SPELL_WATERWALK:
 
-        SET_FLAG(eff[0].flags, EFF_WATERWALK);
+        eff[0].flags.set(EFF_WATERWALK);
         eff[0].duration = 35 + (skill / 4); /* max 60 */
         to_room = "$N sprouts webbing between $S toes!";
         to_vict = "You feel webbing between your toes.";
@@ -2949,7 +2948,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_IMMOBILIZED);
+        eff[0].flags.set(EFF_IMMOBILIZED);
         eff[0].duration = 2 + (skill / 50); /* max 4 */
         refresh = false;
         to_char = "&2&bYou tangle $N in a glowing &3&bweb&2&b!&0";
@@ -2962,7 +2961,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_bless_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
-        SET_FLAG(eff[0].flags, EFF_FLY);
+        eff[0].flags.set(EFF_FLY);
         eff[0].duration = 10 + (skill / 5); /* max 30 */
 
         to_vict = "&7&bBeautiful bright white wings unfurl behind you as you lift into the air.&0";
@@ -2978,7 +2977,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         if (check_bless_spells(ch, victim, spellnum))
             return CAST_RESULT_CHARGE;
 
-        SET_FLAG(eff[0].flags, EFF_FLY);
+        eff[0].flags.set(EFF_FLY);
         eff[0].duration = 10 + (skill / 5);
 
         to_vict = "&1&bHuge leathery &9bat-like&1 wings sprout from your back.&0";
@@ -3081,7 +3080,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case CHANT_INTERMINABLE_WRATH:
-        SET_FLAG(eff[0].flags, EFF_WRATH);
+        eff[0].flags.set(EFF_WRATH);
         eff[0].duration = (skill / 20); /* max 5 */
         to_vict = "A feeling of unforgiving wrath fills you.";
         to_room = "$n bristles with anger.";
@@ -3096,7 +3095,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
          * half their str and con based on the chanter's skill.
          */
 
-        SET_FLAG(eff[0].flags, EFF_DISEASE);
+        eff[0].flags.set(EFF_DISEASE);
         eff[0].location = APPLY_CON;
         eff[0].modifier = -(skill * GET_VIEWED_CON(victim) / 2) / 100;
         eff[0].duration = (skill / 20); /* max 5 */
@@ -3180,7 +3179,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
 
-        SET_FLAG(eff[0].flags, EFF_MINOR_PARALYSIS);
+        eff[0].flags.set(EFF_MINOR_PARALYSIS);
         eff[0].duration = 2 + (skill / 15); /* max 8 */
         refresh = false;
         to_char = "You grab $N and scramble $S nerves!";
@@ -3189,14 +3188,14 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case CHANT_SPIRIT_BEAR:
-        SET_FLAG(eff[0].flags, EFF_SPIRIT_BEAR);
+        eff[0].flags.set(EFF_SPIRIT_BEAR);
         eff[0].duration = (skill / 20); /* max 5 */
         to_vict = "The spirit of the bear consumes your body.";
         to_room = "$n shifts $s weight, seeming heavier and more dangerous.";
         break;
 
     case CHANT_SPIRIT_WOLF:
-        SET_FLAG(eff[0].flags, EFF_SPIRIT_WOLF);
+        eff[0].flags.set(EFF_SPIRIT_WOLF);
         eff[0].duration = (skill / 20); /* max 5 */
         to_vict = "You feel a wolf-like fury come over you.";
         to_room = "$n seems to take on a fearsome, wolf-like demeanor.";
@@ -3252,7 +3251,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
         break;
 
     case SONG_SONG_OF_REST: /* increases HP and MV recovery while sleeping, see limits.c */
-        SET_FLAG(eff[0].flags, EFF_SONG_OF_REST);
+        eff[0].flags.set(EFF_SONG_OF_REST);
         eff[0].duration = skill / (15 - (GET_CHA(ch) / 20)); /* max 10 */
         if (ch != victim) {
             to_char = "You sing $N a gentle lullaby to help $M rest.\n";
@@ -3309,7 +3308,7 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
      */
     if (IS_NPC(victim) && !affected_by_spell(victim, spellnum))
         for (i = 0; i < MAX_SPELL_EFFECTS; ++i)
-            if (ANY_FLAGGED(EFF_FLAGS(victim), eff[i].flags, NUM_EFF_FLAGS)) {
+            if (EFF_FLAGS(victim).any() && EFF_FLAGS(victim) == eff[i].flags) {
                 char_printf(ch, NOEFFECT);
                 return CAST_RESULT_CHARGE;
             }
@@ -3368,24 +3367,23 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
     }
 
     for (i = 0; i < MAX_SPELL_EFFECTS; i++)
-        if (HAS_FLAGS(eff[i].flags, NUM_EFF_FLAGS) || eff[i].location != APPLY_NONE) {
+        if (eff[i].flags.any() || eff[i].location != APPLY_NONE) {
             effect_join(victim, eff + i, accum_duration, false, accum_effect, false, refresh);
             if (CASTING(victim)) {
-                if (IS_FLAGGED(eff[i].flags, EFF_SILENCE)) {
+                if (eff[i].flags.test(EFF_SILENCE)) {
                     STOP_CASTING(victim);
                     act("Your spell collapses.", false, victim, 0, 0, TO_CHAR);
                     act("$n continues silently moving $s lips for a moment before giving "
                         "up.",
                         false, victim, 0, 0, TO_ROOM);
-                } else if (IS_FLAGGED(eff[i].flags, EFF_MINOR_PARALYSIS) ||
-                           IS_FLAGGED(eff[i].flags, EFF_MAJOR_PARALYSIS) || IS_FLAGGED(eff[i].flags, EFF_MESMERIZED)) {
+                } else if (eff[i].flags.test(EFF_MINOR_PARALYSIS) || eff[i].flags.test(EFF_MAJOR_PARALYSIS) ||
+                           eff[i].flags.test(EFF_MESMERIZED)) {
                     /* Just silently stop the casting for paralysis */
                     STOP_CASTING(victim);
                 }
-
             }
-            if ((IS_FLAGGED(eff[i].flags, EFF_MINOR_PARALYSIS) || IS_FLAGGED(eff[i].flags, EFF_MAJOR_PARALYSIS) ||
-                 IS_FLAGGED(eff[i].flags, EFF_MESMERIZED))) {
+            if ((eff[i].flags.test(EFF_MINOR_PARALYSIS) || eff[i].flags.test(EFF_MAJOR_PARALYSIS) ||
+                 eff[i].flags.test(EFF_MESMERIZED))) {
                 if (FIGHTING(victim))
                     stop_fighting(victim);
                 stop_attackers(victim);
@@ -3749,7 +3747,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         if (damage) {
             if (EFF_FLAGGED(ch, EFF_HARNESS)) {
                 mag_damage(skill, ch, tch, spellnum, savetype);
-                SET_FLAG(EFF_FLAGS(ch), EFF_HARNESS);
+                EFF_FLAGS(ch).set(EFF_HARNESS);
             } else
                 mag_damage(skill, ch, tch, spellnum, savetype);
         } else {
@@ -3759,7 +3757,7 @@ int mag_area(int skill, CharData *ch, int spellnum, int savetype) {
         }
     }
     if (damage)
-        REMOVE_FLAG(EFF_FLAGS(ch), EFF_HARNESS);
+        EFF_FLAGS(ch).reset(EFF_HARNESS);
 
     /* No skill improvement if there weren't any valid targets. */
     if (!found)
@@ -3780,13 +3778,13 @@ void mod_for_undead_type(CharData *mob, enum undead_type type) {
     GET_LIFEFORCE(mob) = LIFE_UNDEAD;
     GET_ALIGNMENT(mob) = -1000;
     GET_RACE_ALIGN(mob) = RACE_ALIGN_EVIL;
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_AGGRESSIVE);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_AGGR_EVIL);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_AGGR_GOOD);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_AGGR_NEUTRAL);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_AGGR_EVIL_RACE);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_AGGR_GOOD_RACE);
-    SET_FLAG(MOB_FLAGS(mob), MOB_ANIMATED);
+    MOB_FLAGS(mob).reset(MOB_AGGRESSIVE);
+    MOB_FLAGS(mob).reset(MOB_AGGR_EVIL);
+    MOB_FLAGS(mob).reset(MOB_AGGR_GOOD);
+    MOB_FLAGS(mob).reset(MOB_AGGR_NEUTRAL);
+    MOB_FLAGS(mob).reset(MOB_AGGR_EVIL_RACE);
+    MOB_FLAGS(mob).reset(MOB_AGGR_GOOD_RACE);
+    MOB_FLAGS(mob).set(MOB_ANIMATED);
 
     switch (type) {
     case MOB_ZOMBIE:
@@ -4000,7 +3998,7 @@ CharData *create_undead(CharData *orig, CharData *caster, bool ISPC) {
     assign_triggers(new_mob, 0);
     /* no more exp for killing your raised dead */
     GET_EXP(new_mob) = 0;
-    SET_FLAG(MOB_FLAGS(new_mob), MOB_NOSCRIPT); /* Prevent specprocs and triggers */
+    MOB_FLAGS(new_mob).set(MOB_NOSCRIPT); /* Prevent specprocs and triggers */
 
     return new_mob;
 }
@@ -4060,11 +4058,11 @@ CharData *load_summoned_mob(int vnum, int destroom) {
     GET_SILVER(mob) = 0;
     GET_COPPER(mob) = 0;
 
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_HELPER);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_NOSUMMON);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_PEACEFUL);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_PEACEKEEPER);
-    REMOVE_FLAG(MOB_FLAGS(mob), MOB_PROTECTOR);
+    MOB_FLAGS(mob).reset(MOB_HELPER);
+    MOB_FLAGS(mob).reset(MOB_NOSUMMON);
+    MOB_FLAGS(mob).reset(MOB_PEACEFUL);
+    MOB_FLAGS(mob).reset(MOB_PEACEKEEPER);
+    MOB_FLAGS(mob).reset(MOB_PROTECTOR);
     return mob;
 }
 
@@ -4129,7 +4127,7 @@ CharData *duplicate_char(CharData *model, int destroom) {
      * will always be tacked on */
     GET_DEFAULT_POS(new_mob) = -1;
     new_mob->char_specials.alignment = model->char_specials.alignment;
-    COPY_FLAGS(MOB_FLAGS(new_mob), MOB_FLAGS(model), NUM_MOB_FLAGS);
+    MOB_FLAGS(new_mob) = MOB_FLAGS(model);
     new_mob->char_specials.perception = model->char_specials.perception;
     new_mob->char_specials.hiddenness = model->char_specials.hiddenness;
     /* TODO: saving throw and skills */
@@ -4140,7 +4138,7 @@ CharData *duplicate_char(CharData *model, int destroom) {
     new_mob->mob_specials.memory = nullptr;
     /* END  mob_special_data */
 
-    REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
+    MOB_FLAGS(new_mob).reset(MOB_SPEC);
 
     return new_mob;
 }
@@ -4152,10 +4150,8 @@ CharData *copyplayer(CharData *ch, CharData *model) {
     if (!new_mob)
         return 0;
 
-    CLEAR_FLAGS(MOB_FLAGS(new_mob), NUM_MOB_FLAGS);
-    SET_FLAG(MOB_FLAGS(new_mob), MOB_ISNPC);
-    SET_FLAG(MOB_FLAGS(new_mob), MOB_SCAVENGER);
-    SET_FLAG(MOB_FLAGS(new_mob), MOB_MEMORY);
+    MOB_FLAGS(new_mob).reset();
+    MOB_FLAGS(new_mob).set(MOB_ISNPC | MOB_SCAVENGER | MOB_MEMORY);
 
     return new_mob;
 }
@@ -4170,14 +4166,14 @@ void phantasm_transform(CharData *ch, CharData *model, int life_hours) {
     char short_buf[160], long_buf[160], alias_buf[160];
     effect effect;
 
-    SET_FLAG(MOB_FLAGS(ch), MOB_ILLUSORY); /* Make it an illusion */
+    MOB_FLAGS(ch).set(MOB_ILLUSORY); /* Make it an illusion */
 
     /* Make it expire */
     if (life_hours > 0) {
         memset(&effect, 0, sizeof(effect));
         effect.type = SPELL_PHANTASM;
         effect.duration = life_hours;
-        SET_FLAG(effect.flags, EFF_ANIMATED);
+        effect.flags.set(EFF_ANIMATED);
         effect_to_char(ch, &effect);
     }
 
@@ -4225,7 +4221,7 @@ CharData *summon_phantasm(CharData *ch, int vnum, int life_hours) {
         return nullptr;
 
     phantasm_transform(new_mob, nullptr, life_hours);
-    SET_FLAG(MOB_FLAGS(new_mob), MOB_NOSCRIPT); /* Prevent specprocs and triggers */
+    MOB_FLAGS(new_mob).set(MOB_NOSCRIPT); /* Prevent specprocs and triggers */
 
     return new_mob;
 }
@@ -4327,7 +4323,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         memset(&eff, 0, sizeof(eff));
         eff.type = SPELL_ANIMATE_DEAD;
         eff.duration = (int)(base_duration * preserve_mult);
-        SET_FLAG(eff.flags, EFF_ANIMATED);
+        eff.flags.set(EFF_ANIMATED);
         eff.modifier = 0;
         eff.location = APPLY_NONE;
         effect_to_char(new_mob, &eff);
@@ -4337,23 +4333,23 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
             act("$n raises $N.", false, ch, 0, new_mob, TO_ROOM);
             eff.type = SPELL_CHARM;
             eff.duration = (int)(base_duration * preserve_mult) + 1;
-            SET_FLAG(eff.flags, EFF_CHARM);
+            eff.flags.set(EFF_CHARM);
             eff.modifier = 0;
             eff.location = APPLY_NONE;
             effect_to_char(new_mob, &eff);
             add_follower(new_mob, ch);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
+            MOB_FLAGS(new_mob).reset(MOB_AGGRESSIVE);
+            MOB_FLAGS(new_mob).reset(MOB_SPEC);
         } else { /* not able to control it */
             act("You raise $N, and $E doesn't seem too happy about it.", false, ch, 0, new_mob, TO_CHAR);
             act("$n raises $N, and $E doesn't seem too happy about it.", false, ch, 0, new_mob, TO_ROOM);
             /* we want it aggressive, but not against anything in particular */
-            SET_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_NEUTRAL);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL_RACE);
-            REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD_RACE);
+            MOB_FLAGS(new_mob).set(MOB_AGGRESSIVE);
+            MOB_FLAGS(new_mob).reset(MOB_AGGR_EVIL);
+            MOB_FLAGS(new_mob).reset(MOB_AGGR_GOOD);
+            MOB_FLAGS(new_mob).reset(MOB_AGGR_NEUTRAL);
+            MOB_FLAGS(new_mob).reset(MOB_AGGR_EVIL_RACE);
+            MOB_FLAGS(new_mob).reset(MOB_AGGR_GOOD_RACE);
 
             attack(new_mob, ch);
         }
@@ -4398,26 +4394,26 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
         memset(&eff, 0, sizeof(eff));
         eff.type = SPELL_CHARM;
         eff.duration = 1000;
-        SET_FLAG(eff.flags, EFF_CHARM);
+        eff.flags.set(EFF_CHARM);
         eff.modifier = 0;
         eff.location = APPLY_NONE;
         effect_to_char(new_mob, &eff);
         add_follower(new_mob, ch);
-        SET_FLAG(MOB_FLAGS(new_mob), MOB_NO_CLASS_AI);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_NEUTRAL);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL_RACE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD_RACE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_STAY_ZONE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PROTECTOR);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PEACEKEEPER);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_HELPER);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_MEMORY);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_WIMPY);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_NOSUMMON);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
+        MOB_FLAGS(new_mob).set(MOB_NO_CLASS_AI);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_EVIL);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_GOOD);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_NEUTRAL);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_EVIL_RACE);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_GOOD_RACE);
+        MOB_FLAGS(new_mob).reset(MOB_AGGRESSIVE);
+        MOB_FLAGS(new_mob).reset(MOB_STAY_ZONE);
+        MOB_FLAGS(new_mob).reset(MOB_PROTECTOR);
+        MOB_FLAGS(new_mob).reset(MOB_PEACEKEEPER);
+        MOB_FLAGS(new_mob).reset(MOB_HELPER);
+        MOB_FLAGS(new_mob).reset(MOB_MEMORY);
+        MOB_FLAGS(new_mob).reset(MOB_WIMPY);
+        MOB_FLAGS(new_mob).reset(MOB_NOSUMMON);
+        MOB_FLAGS(new_mob).reset(MOB_SPEC);
         GET_LIFEFORCE(new_mob) = LIFE_MAGIC;
 
         /* Feedback */
@@ -4462,7 +4458,7 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
 
             /* Set this so aggro mobs will still attack it, even though
              * it technically isn't a player. */
-            SET_FLAG(MOB_FLAGS(new_mob), MOB_PLAYER_PHANTASM);
+            MOB_FLAGS(new_mob).set(MOB_PLAYER_PHANTASM);
         } else {
             /* Making an illusory copy of an NPC. */
             new_mob = duplicate_char(vict, ch->in_room);
@@ -4473,32 +4469,32 @@ int mag_summon(int skill, CharData *ch, CharData *vict, ObjData *obj, int spelln
             }
             phantasm_transform(new_mob, vict, duration);
         }
-        SET_FLAG(MOB_FLAGS(new_mob), MOB_NOSCRIPT); /* Prevent specprocs and triggers */
+        MOB_FLAGS(new_mob).set(MOB_NOSCRIPT); /* Prevent specprocs and triggers */
 
         /* need to add charm flag */
         memset(&eff, 0, sizeof(eff));
         eff.type = SPELL_CHARM;
         eff.duration = 1000;
-        SET_FLAG(eff.flags, EFF_CHARM);
+        eff.flags.set(EFF_CHARM);
         eff.modifier = 0;
         eff.location = APPLY_NONE;
         effect_to_char(new_mob, &eff);
         add_follower(new_mob, ch);
-        SET_FLAG(MOB_FLAGS(new_mob), MOB_NO_CLASS_AI);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_NEUTRAL);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_EVIL_RACE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGR_GOOD_RACE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_AGGRESSIVE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_STAY_ZONE);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PROTECTOR);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_PEACEKEEPER);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_HELPER);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_WIMPY);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_MEMORY);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_NOSUMMON);
-        REMOVE_FLAG(MOB_FLAGS(new_mob), MOB_SPEC);
+        MOB_FLAGS(new_mob).set(MOB_NO_CLASS_AI);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_EVIL);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_GOOD);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_NEUTRAL);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_EVIL_RACE);
+        MOB_FLAGS(new_mob).reset(MOB_AGGR_GOOD_RACE);
+        MOB_FLAGS(new_mob).reset(MOB_AGGRESSIVE);
+        MOB_FLAGS(new_mob).reset(MOB_STAY_ZONE);
+        MOB_FLAGS(new_mob).reset(MOB_PROTECTOR);
+        MOB_FLAGS(new_mob).reset(MOB_PEACEKEEPER);
+        MOB_FLAGS(new_mob).reset(MOB_HELPER);
+        MOB_FLAGS(new_mob).reset(MOB_WIMPY);
+        MOB_FLAGS(new_mob).reset(MOB_MEMORY);
+        MOB_FLAGS(new_mob).reset(MOB_NOSUMMON);
+        MOB_FLAGS(new_mob).reset(MOB_SPEC);
         GET_LIFEFORCE(new_mob) = LIFE_MAGIC;
 
         /* Feedback */
@@ -4700,7 +4696,7 @@ int mag_unaffect(int skill, CharData *ch, CharData *victim, int spellnum, int ty
         to_vict = "You return to your normal size.&0";
         break;
     case SPELL_EXTINGUISH:
-        REMOVE_FLAG(EFF_FLAGS(victim), EFF_ON_FIRE);
+        EFF_FLAGS(victim).reset(EFF_ON_FIRE);
         char_printf(victim, "You are doused with a magical liquid.\n");
         return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
     case SONG_JOYFUL_NOISE:
@@ -4925,8 +4921,8 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
             if (OBJ_EFF_FLAGGED(obj, EFF_BLESS)) {
                 to_char = "It's already blessed.";
             } else {
-                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
-                SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_EVIL);
+                GET_OBJ_EFF_FLAGS(obj).set(EFF_BLESS);
+                GET_OBJ_FLAGS(obj).set(ITEM_ANTI_EVIL);
                 to_char = "$p glows briefly.";
             }
             break;
@@ -4960,19 +4956,18 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
             to_char = "$p doesn't seem receptive to the blessing.";
 
         /* Already has magical effects */
-        else if (HAS_FLAGS(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS) || i < 0 /* see obj->affected check, above */
-        )
+        else if (GET_OBJ_EFF_FLAGS(obj).any() || i < 0) { /* see obj->affected check, above */
             to_char = "The blessing is repelled from $p.";
-        else {
-            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
-            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_EVIL);
+        } else {
+            GET_OBJ_EFF_FLAGS(obj).set(EFF_BLESS);
+            GET_OBJ_FLAGS(obj).set(ITEM_ANTI_EVIL);
             to_char = "$p glows briefly.";
             result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
         break;
     case SPELL_CURSE:
         if (!OBJ_FLAGGED(obj, ITEM_NODROP)) {
-            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_NODROP);
+            GET_OBJ_FLAGS(obj).set(ITEM_NODROP);
             if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
                 GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE)--;
             to_char = "$p briefly glows red.";
@@ -4984,8 +4979,8 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
             if (OBJ_EFF_FLAGGED(obj, EFF_BLESS)) {
                 to_char = "It's already hexed.";
             } else {
-                SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
-                SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
+                GET_OBJ_EFF_FLAGS(obj).set(EFF_BLESS);
+                GET_OBJ_FLAGS(obj).set(ITEM_ANTI_GOOD);
                 to_char = "$p is imbued with a dark aura.";
             }
             break;
@@ -5019,12 +5014,11 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
             to_char = "$p doesn't seem receptive to the malediction.";
 
         /* Already has magical effects */
-        else if (HAS_FLAGS(GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS) || i < 0 /* see obj->affected check, above */
-        )
+        else if (GET_OBJ_EFF_FLAGS(obj).any() || i < 0) { /* see obj->affected check, above */
             to_char = "The hex is repelled from $p.";
-        else {
-            SET_FLAG(GET_OBJ_EFF_FLAGS(obj), EFF_BLESS);
-            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_ANTI_GOOD);
+        } else {
+            GET_OBJ_EFF_FLAGS(obj).set(EFF_BLESS);
+            GET_OBJ_FLAGS(obj).set(ITEM_ANTI_GOOD);
             to_char = "$p is imbued with a dark aura.";
             result = CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
         }
@@ -5046,7 +5040,7 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
         break;
     case SPELL_REMOVE_CURSE:
         if (OBJ_FLAGGED(obj, ITEM_NODROP)) {
-            REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_NODROP);
+            GET_OBJ_FLAGS(obj).reset(ITEM_NODROP);
             if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
                 GET_OBJ_VAL(obj, VAL_WEAPON_DICE_SIZE)++;
             to_char = "$p briefly glows blue.";
@@ -5076,7 +5070,7 @@ int mag_alter_obj(int skill, CharData *ch, ObjData *obj, int spellnum, int savet
         switch (spellnum) {
         case SPELL_INVISIBLE:
         case SPELL_MASS_INVIS:
-            SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_INVISIBLE);
+            GET_OBJ_FLAGS(obj).set(ITEM_INVISIBLE);
             break;
         }
 
@@ -5237,7 +5231,7 @@ int mag_room(int skill, CharData *ch, int spellnum) {
 
     /* set the affection */
     if (eff != -1)
-        SET_FLAG(ROOM_EFFECTS(reff->room), eff);
+        ROOM_EFFECTS(reff->room).set(eff);
 
     if (to_char == nullptr)
         char_printf(ch, NOEFFECT);
@@ -5369,8 +5363,8 @@ int get_vitality_hp_gain(CharData *ch, int spellnum) {
  * if it returns 1.
  */
 bool affected_by_armor_spells(CharData *victim, int spellnum) {
-    /* If the target is already affected by the spell being cast, 
-     * return false so mag_affect continues to cast the spell and 
+    /* If the target is already affected by the spell being cast,
+     * return false so mag_affect continues to cast the spell and
      * refresh the spell duration.
      */
     if (!IS_NPC(victim) && affected_by_spell(victim, spellnum)) {
@@ -5378,15 +5372,15 @@ bool affected_by_armor_spells(CharData *victim, int spellnum) {
 
     } else if (affected_by_spell(victim, spellnum)) {
         return true;
-        
-    /* If the target is not already affected by the spell being cast,
-     * but is affected by another armor spell, return true so mag_affect
-     * bails out and the character doesn't end up with two armor effects.
-     */
+
+        /* If the target is not already affected by the spell being cast,
+         * but is affected by another armor spell, return true so mag_affect
+         * bails out and the character doesn't end up with two armor effects.
+         */
     } else if (affected_by_spell(victim, SPELL_ARMOR) || affected_by_spell(victim, SPELL_BARKSKIN) ||
-        affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
-        affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
-        affected_by_spell(victim, SPELL_MIRAGE)) {
+               affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+               affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
+               affected_by_spell(victim, SPELL_MIRAGE)) {
         return true;
     }
 
@@ -5675,7 +5669,7 @@ bool wall_block_check(CharData *actor, CharData *motivator, int dir) {
             act("You spread yourself out on $p&0 and your flames go out in a "
                 "&bsizzle of steam&0.",
                 false, motivator, wall, 0, TO_CHAR);
-            REMOVE_FLAG(EFF_FLAGS(motivator), EFF_ON_FIRE);
+            EFF_FLAGS(motivator).reset(EFF_ON_FIRE);
         } else if (GET_OBJ_VAL(wall, VAL_WALL_SPELL) == SPELL_WALL_OF_ICE && EFF_FLAGGED(actor, EFF_ON_FIRE)) {
             act("$n&0 spreads $mself out on $p&0 and with a &bsizzle&0, $s flames "
                 "are put out.",
@@ -5683,7 +5677,7 @@ bool wall_block_check(CharData *actor, CharData *motivator, int dir) {
             act("You spread yourself out on $p&0 and your flames go out in a "
                 "&bsizzle of steam&0.",
                 false, actor, wall, 0, TO_CHAR);
-            REMOVE_FLAG(EFF_FLAGS(actor), EFF_ON_FIRE);
+            EFF_FLAGS(actor).reset(EFF_ON_FIRE);
 
             /* No flames being put out.  Is this a mounted situation? */
         } else if (actor && motivator && actor != motivator && RIDING(actor) == motivator) {

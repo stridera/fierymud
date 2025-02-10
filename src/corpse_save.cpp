@@ -175,7 +175,7 @@ static ObjData *load_corpse(int id) {
     /* Ensure that the items inside aren't marked for decomposition. */
     stop_decomposing(containers[0]);
     /* And mark the corpse itself as decomposing. */
-    SET_FLAG(GET_OBJ_FLAGS(containers[0]), ITEM_DECOMP);
+    GET_OBJ_FLAGS(containers[0]).set(ITEM_DECOMP);
 
     return containers[0];
 }

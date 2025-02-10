@@ -69,7 +69,8 @@ class BitFlags:
         """
         return self.__str__()
 
-    def to_json(self):
+    
+    def json_repr(self):
         return str(self)
 
 

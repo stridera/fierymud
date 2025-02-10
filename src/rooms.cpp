@@ -728,7 +728,7 @@ void send_full_exits(CharData *ch, int roomnum) {
                     else
                         sprintf(buf1, "%s&2%s&0 (key %d): ", buf1, exit->keyword, exit->key);
                 }
-                sprintbit(exit->exit_info, exit_bits, buf1 + strlen(buf1));
+                sprintbit(exit->exit_info.to_ulong(), exit_bits, buf1 + strlen(buf1));
                 strcat(buf1, "&9&b]&0");
                 sprintf(buf2, "%-5s - [%5d] %s%s\n", dirs[dir], dest->vnum, dest->name, buf1);
             } else {

@@ -12,6 +12,10 @@
 
 #pragma once
 
+#include "db.hpp"
+#include "interpreter.hpp"
+#include "logging.hpp"
+#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 
@@ -51,9 +55,35 @@ void start_player(CharData *ch);
 
 void add_perm_title(CharData *ch, char *line);
 
-void load_ascii_flags(flagvector flags[], int num_flags, char *line);
-void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags);
+template <size_t N> void load_ascii_flags(std::bitset<N> &flags, char *line) {
+    int i = 0;
 
+    skip_spaces(&line);
+
+    line = strtok(line, " ");
+
+    while (line && *line) {
+        if (flags.size() <= i) {
+            if (*line != '0') {
+                log("SYSERR: load_ascii_flags: attempting to read in flags for block {:d}, but only {} blocks allowed "
+                    "for std::bitset type",
+                    i, flags.size());
+            }
+        } else
+            flags[i] = asciiflag_conv(line);
+        line = strtok(nullptr, " ");
+        ++i;
+    }
+}
+
+template <size_t N> void write_ascii_flags(FILE *fl, const std::bitset<N> &flags) {
+    char flagbuf[flags.size() + 1];
+
+    for (int i = 0; i < flags.size(); ++i) {
+        sprintascii(flagbuf, flags);
+        fprintf(fl, "%s%s", i ? " " : "", flagbuf);
+    }
+}
 void remove_player_from_game(CharData *ch, int removal_mode);
 void send_save_description(CharData *ch, CharData *dest, bool entering);
 

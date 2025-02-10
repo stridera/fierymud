@@ -76,22 +76,22 @@ ACMD(do_textview) {
 ACMD(do_reload) {
     const int COLS = 7;
 
-    flagvector files[FLAGVECTOR_SIZE(NUM_TEXT_FILES)];
+    std::bitset<NUM_TEXT_FILES> files;
     unsigned long i;
     bool found, reload_help = false;
 
-    for (i = 0; i < FLAGVECTOR_SIZE(NUM_TEXT_FILES); ++i)
+    for (i = 0; i < NUM_TEXT_FILES; ++i)
         files[i] = 0;
 
     any_one_arg(argument, arg);
     if (!strcasecmp(arg, "all"))
-        SET_FLAGS(files, ALL_FLAGS, NUM_TEXT_FILES);
+        files.set();
     else
         for (argument = any_one_arg(argument, arg); *arg; argument = any_one_arg(argument, arg)) {
             found = false;
             for (i = 0; i < NUM_TEXT_FILES; ++i)
                 if (!strcasecmp(text_files[i].name, arg)) {
-                    SET_FLAG(files, i);
+                    files.set(i);
                     found = true;
                     break;
                 }
@@ -106,7 +106,7 @@ ACMD(do_reload) {
             }
         }
 
-    if (!reload_help && !HAS_FLAGS(files, NUM_TEXT_FILES)) {
+    if (!reload_help && !files.any()) {
         char_printf(ch, "No known text files given.  Text files available:\n");
         for (i = 0; i < NUM_TEXT_FILES; ++i)
             char_printf(ch, "{:<11s}{}", text_files[i].name, !((i + COLS) % 7) ? "\n" : "");
@@ -118,7 +118,7 @@ ACMD(do_reload) {
     }
 
     for (i = 0; i < NUM_TEXT_FILES; ++i)
-        if (IS_FLAGGED(files, i)) {
+        if (files.test(i)) {
             file_to_string_alloc(text_files[i].path, &text_files[i].text);
             text_files[i].last_update = file_last_update(text_files[i].path);
             char_printf(ch, "Reloaded {} text from file.\n", text_files[i].name);

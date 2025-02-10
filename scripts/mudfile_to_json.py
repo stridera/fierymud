@@ -9,8 +9,8 @@ def main(filename: str, type: str, output: str = None):
     cls = None
     if type is None:
         # Try to guess the type from the filename
-        if filename.split('/')[-2] in ['mob', 'obj', 'zon', 'shp', 'wld']:
-            type = filename.split('/')[-2]
+        if filename.split("/")[-2] in ["mob", "obj", "zon", "shp", "wld"]:
+            type = filename.split("/")[-2]
             print(f"Guessing type: {type}")
 
     if type == "mob":
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--type",
-        help="The type of file to convert.  Example: mob, obj, zone, shp, wld, zon",
+        help="The type of file to convert.  Example: mob, obj, zon, shp, wld, zon",
         type=str,
     )
     parser.add_argument(

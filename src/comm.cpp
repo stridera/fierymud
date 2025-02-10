@@ -138,7 +138,7 @@ void boot_world(void);
 void zone_update(void);
 void effect_update(void); /* In spells.c */
 void point_update(void);  /* In limits.c */
-void sick_update(void); /* In limits.c */
+void sick_update(void);   /* In limits.c */
 void mobile_activity(void);
 void mobile_spec_activity(void);
 void string_add(DescriptorData *d, char *str);
@@ -248,7 +248,6 @@ int main(int argc, char **argv) {
     }
 
     log("Initializing runtime game constants.");
-    init_flagvectors();
     // init_rules();
     init_races();
     init_classes();
@@ -337,8 +336,8 @@ void hotboot_recover() {
 
         if ((player_i = load_player(name, d->character)) >= 0) {
             if (!PLR_FLAGGED(d->character, PLR_DELETED)) {
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
+                PLR_FLAGS(d->character).reset(PLR_WRITING);
+                PLR_FLAGS(d->character).reset(PLR_MAILING);
             } else
                 fOld = false;
         } else
@@ -1163,12 +1162,12 @@ void handle_telopt_request(DescriptorData *d, char *txt) {
 
     d->character->player_specials->client = txt;
     if (supports_ansi(txt)) {
-        SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-        SET_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
+        PRF_FLAGS(d->character).set(PRF_COLOR_1);
+        PRF_FLAGS(d->character).set(PRF_COLOR_2);
         write_to_descriptor(d->descriptor, "Color is on.\r\n");
     } else {
-        REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_1);
-        REMOVE_FLAG(PRF_FLAGS(d->character), PRF_COLOR_2);
+        PRF_FLAGS(d->character).reset(PRF_COLOR_1);
+        PRF_FLAGS(d->character).reset(PRF_COLOR_2);
         write_to_descriptor(d->descriptor, "Color is off.\r\n");
     }
     if ((get_build_number() >= 0)) {
@@ -2303,7 +2302,7 @@ void close_socket(DescriptorData *d) {
         d->backstr = nullptr;
         d->str = nullptr;
         if (d->character)
-            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
+            PLR_FLAGS(d->character).reset(PLR_WRITING);
         d->connected = CON_PLAYING;
         break;
     default:

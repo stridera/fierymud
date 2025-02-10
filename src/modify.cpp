@@ -61,7 +61,7 @@ void string_write_limit(DescriptorData *d, char **writeto, size_t len, int maxli
         return;
 
     if (d->character && !IS_NPC(d->character))
-        SET_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
+        PLR_FLAGS(d->character).set(PLR_WRITING);
 
     /* A pointer to the actual string you are editing. */
     d->str = writeto;
@@ -300,9 +300,9 @@ void parse_action(int command, char *string, DescriptorData *d) {
             *s = temp;
         } else
             strcat(buf, t);
-            /*
-             * This is kind of annoying...but some people like it.
-             */
+        /*
+         * This is kind of annoying...but some people like it.
+         */
 #if 0
 	sprintf(buf, "%s\n%d line%sshown.\n", buf, total_len, ((total_len != 1) ? "s " : " "));
 #endif
@@ -736,8 +736,8 @@ void string_add(DescriptorData *d, char *str) {
             }
         }
         if (d->character && !IS_NPC(d->character)) {
-            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
-            REMOVE_FLAG(PLR_FLAGS(d->character), PLR_MAILING);
+            PLR_FLAGS(d->character).reset(PLR_WRITING);
+            PLR_FLAGS(d->character).reset(PLR_MAILING);
         }
         if (d->backstr)
             free(d->backstr);

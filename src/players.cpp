@@ -36,7 +36,6 @@
 #include "retain_comms.hpp"
 #include "screen.hpp"
 #include "skills.hpp"
-#include "string_utils.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "trophy.hpp"
@@ -438,7 +437,7 @@ int load_player(const char *name, CharData *ch) {
             if (!strcasecmp(tag, "experience"))
                 GET_EXP(ch) = atol(line);
             else if (!strcasecmp(tag, "effectflags"))
-                load_ascii_flags(EFF_FLAGS(ch), NUM_EFF_FLAGS, line);
+                load_ascii_flags(EFF_FLAGS(ch), line);
             else if (!strcasecmp(tag, "effects"))
                 load_effects(fl, ch);
             else
@@ -554,15 +553,15 @@ int load_player(const char *name, CharData *ch) {
             else if (!strcasecmp(tag, "password"))
                 strcpy(GET_PASSWD(ch), line);
             else if (!strcasecmp(tag, "playerflags"))
-                load_ascii_flags(PLR_FLAGS(ch), NUM_PLR_FLAGS, line);
+                load_ascii_flags(PLR_FLAGS(ch), line);
             else if (!strcasecmp(tag, "poofin"))
                 GET_POOFIN(ch) = strdup(line);
             else if (!strcasecmp(tag, "poofout"))
                 GET_POOFOUT(ch) = strdup(line);
             else if (!strcasecmp(tag, "prefflags"))
-                load_ascii_flags(PRF_FLAGS(ch), NUM_PRF_FLAGS, line);
+                load_ascii_flags(PRF_FLAGS(ch), line);
             else if (!strcasecmp(tag, "privflags"))
-                load_ascii_flags(PRV_FLAGS(ch), NUM_PRV_FLAGS, line);
+                load_ascii_flags(PRV_FLAGS(ch), line);
             else if (!strcasecmp(tag, "prompt"))
                 GET_PROMPT(ch) = strdup(line);
             else
@@ -656,11 +655,11 @@ int load_player(const char *name, CharData *ch) {
     }
 
     /* Remove some unwanted flags */
-    REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
-    REMOVE_FLAG(PLR_FLAGS(ch), PLR_REMOVING);
-    REMOVE_FLAG(PLR_FLAGS(ch), PLR_SAVING);
-    REMOVE_FLAG(EFF_FLAGS(ch), EFF_ANIMATED);
-    REMOVE_FLAG(EFF_FLAGS(ch), EFF_SHADOWING);
+    PLR_FLAGS(ch).reset(PLR_MEDITATE);
+    PLR_FLAGS(ch).reset(PLR_REMOVING);
+    PLR_FLAGS(ch).reset(PLR_SAVING);
+    EFF_FLAGS(ch).reset(EFF_ANIMATED);
+    EFF_FLAGS(ch).reset(EFF_SHADOWING);
 
     if (!GET_PAGE_LENGTH(ch))
         GET_PAGE_LENGTH(ch) = DEFAULT_PAGE_LENGTH;
@@ -786,7 +785,7 @@ void save_player_char(CharData *ch) {
     orig_pos = GET_POS(ch);
     /* Stop effect_total from making things happen in game due to effect changes
      */
-    SET_FLAG(PLR_FLAGS(ch), PLR_SAVING);
+    PLR_FLAGS(ch).set(PLR_SAVING);
 
     /* Unaffect everything a character can be affected by. */
     for (i = 0; i < NUM_WEARS; i++) {
@@ -806,7 +805,7 @@ void save_player_char(CharData *ch) {
             tmp_eff[i].duration = 0;
             tmp_eff[i].modifier = 0;
             tmp_eff[i].location = 0;
-            CLEAR_FLAGS(tmp_eff[i].flags, NUM_EFF_FLAGS);
+            tmp_eff[i].flags.reset();
             tmp_eff[i].next = 0;
         }
     }
@@ -860,19 +859,19 @@ void save_player_char(CharData *ch) {
     fprintf(fl, "alignment: %d\n", GET_ALIGNMENT(ch));
 
     fprintf(fl, "playerflags: ");
-    write_ascii_flags(fl, PLR_FLAGS(ch), NUM_PLR_FLAGS);
+    write_ascii_flags(fl, PLR_FLAGS(ch));
     fprintf(fl, "\n");
 
     fprintf(fl, "effectflags: ");
-    write_ascii_flags(fl, EFF_FLAGS(ch), NUM_EFF_FLAGS);
+    write_ascii_flags(fl, EFF_FLAGS(ch));
     fprintf(fl, "\n");
 
     fprintf(fl, "prefflags: ");
-    write_ascii_flags(fl, PRF_FLAGS(ch), NUM_PRF_FLAGS);
+    write_ascii_flags(fl, PRF_FLAGS(ch));
     fprintf(fl, "\n");
 
     fprintf(fl, "privflags: ");
-    write_ascii_flags(fl, PRV_FLAGS(ch), NUM_PRV_FLAGS);
+    write_ascii_flags(fl, PRV_FLAGS(ch));
     fprintf(fl, "\n");
 
     fprintf(fl, "savingthrows:");
@@ -1001,8 +1000,8 @@ void save_player_char(CharData *ch) {
                 continue;
             if (eff->type == SKILL_BERSERK)
                 continue;
-            fprintf(fl, "%d %d %d %d %ld %ld %ld\n", eff->type, eff->duration, eff->modifier, eff->location,
-                    eff->flags[0], eff->flags[1], eff->flags[2]);
+            fprintf(fl, "%d %d %d %d %ld\n", eff->type, eff->duration, eff->modifier, eff->location,
+                    eff->flags.to_ulong());
         }
         fprintf(fl, "0 0 0 0 0\n");
     }
@@ -1033,7 +1032,7 @@ void save_player_char(CharData *ch) {
     GET_POS(ch) = orig_pos;
     effect_total(ch);
 
-    REMOVE_FLAG(PLR_FLAGS(ch), PLR_SAVING);
+    PLR_FLAGS(ch).reset(PLR_SAVING);
     /* end char_to_store code */
 
     if ((id = get_ptable_by_name(GET_NAME(ch))) < 0)
@@ -1048,7 +1047,7 @@ void save_player_char(CharData *ch) {
         save_index = true;
         player_table[id].last = ch->player.time.logon;
     }
-    i = player_table[id].flags;
+    auto old_flags = player_table[id].flags;
     if (PLR_FLAGGED(ch, PLR_DELETED))
         SET_BIT(player_table[id].flags, PINDEX_DELETED);
     else
@@ -1063,7 +1062,7 @@ void save_player_char(CharData *ch) {
     else
         REMOVE_BIT(player_table[id].flags, PINDEX_FROZEN);
 
-    if (player_table[id].flags != i || save_index)
+    if (player_table[id].flags != old_flags || save_index)
         save_player_index();
 
     log("Saved player {}.", GET_NAME(ch));
@@ -1090,7 +1089,6 @@ void delete_player(int pfilepos) {
 
 void rename_player(CharData *victim, char *newname) {
     int pfilepos = get_ptable_by_name(GET_NAME(victim));
-    int i;
     char fname1[40], fname2[40];
 
     if (pfilepos < 0)
@@ -1103,7 +1101,7 @@ void rename_player(CharData *victim, char *newname) {
     player_table[pfilepos].name = strdup(newname);
 
     /* Rename all player-owned files */
-    for (i = 0; i < NUM_PLR_FILES; i++) {
+    for (int i = 0; i < NUM_PLR_FILES; i++) {
         if (get_pfilename(player_table[pfilepos].name, fname1, i))
             if (get_pfilename(newname, fname2, i))
                 rename(fname1, fname2);
@@ -1114,16 +1112,6 @@ void rename_player(CharData *victim, char *newname) {
     GET_NAME(victim) = strdup(newname);
 
     save_player(victim);
-}
-
-void write_ascii_flags(FILE *fl, flagvector flags[], int num_flags) {
-    int i;
-    char flagbuf[FLAGBLOCK_SIZE + 1];
-
-    for (i = 0; i < FLAGVECTOR_SIZE(num_flags); ++i) {
-        sprintascii(flagbuf, flags[i]);
-        fprintf(fl, "%s%s", i ? " " : "", flagbuf);
-    }
 }
 
 static void load_effects(FILE *fl, CharData *ch) {
@@ -1251,27 +1239,6 @@ static void load_cooldowns(FILE *fl, CharData *ch) {
     } while (time != 0);
 }
 
-void load_ascii_flags(flagvector flags[], int num_flags, char *line) {
-    int i = 0;
-
-    skip_spaces(&line);
-
-    line = strtok(line, " ");
-
-    while (line && *line) {
-        if (FLAGVECTOR_SIZE(num_flags) <= i) {
-            if (*line != '0') {
-                log("SYSERR: load_ascii_flags: attempting to read in flags for block {:d}, but only {} blocks allowed "
-                    "for flagvector type",
-                    i, FLAGVECTOR_SIZE(num_flags));
-            }
-        } else
-            flags[i] = asciiflag_conv(line);
-        line = strtok(nullptr, " ");
-        ++i;
-    }
-}
-
 static void load_clan(char *line, CharData *ch) {
     Clan *clan = find_clan(line);
     ch->player_specials->clan = find_clan_membership_in_clan(GET_NAME(ch), clan);
@@ -1339,7 +1306,7 @@ void init_player(CharData *ch) {
     for (i = 1; i < TOP_SKILL; ++i)
         SET_SKILL(ch, i, GET_LEVEL(ch) == LVL_IMPL ? 1000 : 0);
 
-    CLEAR_FLAGS(EFF_FLAGS(ch), NUM_EFF_FLAGS);
+    EFF_FLAGS(ch).reset();
 
     for (i = 0; i < NUM_SAVES; ++i)
         GET_SAVE(ch, i) = 0;
@@ -1353,8 +1320,8 @@ void init_player(CharData *ch) {
     GET_ALIASES(ch) = nullptr;
 
     /* Set default preferences */
-    SET_FLAG(PRF_FLAGS(ch), PRF_VICIOUS);  /* Finish off opponents */
-    SET_FLAG(PRF_FLAGS(ch), PRF_AUTOEXIT); /* Always show room exits */
+    PRF_FLAGS(ch).set(PRF_VICIOUS);  /* Finish off opponents */
+    PRF_FLAGS(ch).set(PRF_AUTOEXIT); /* Always show room exits */
     GET_PAGE_LENGTH(ch) = DEFAULT_PAGE_LENGTH;
 
     /* Set height, weight, size, lifeforce, composition to race defaults */
@@ -1405,7 +1372,7 @@ void remove_player_from_game(CharData *ch, int quit_mode) {
     extract_objects(ch);
 
     /* Set this so extract_char() doesn't try to do an emergency save */
-    SET_FLAG(PLR_FLAGS(ch), PLR_REMOVING);
+    PLR_FLAGS(ch).set(PLR_REMOVING);
     extract_char(ch);
 }
 

@@ -429,11 +429,11 @@ void oedit_save_to_disk(int zone_num) {
                     GET_OBJ_VNUM(obj), (obj->name && *obj->name) ? obj->name : "undefined",
                     (obj->short_description && *obj->short_description) ? obj->short_description : "undefined",
                     (obj->description && *obj->description) ? obj->description : "undefined", buf1, GET_OBJ_TYPE(obj),
-                    GET_OBJ_FLAGS(obj)[0], GET_OBJ_WEAR(obj), GET_OBJ_LEVEL(obj), GET_OBJ_VAL(obj, 0),
+                    GET_OBJ_FLAGS(obj).to_ulong(), GET_OBJ_WEAR(obj), GET_OBJ_LEVEL(obj), GET_OBJ_VAL(obj, 0),
                     GET_OBJ_VAL(obj, 1), GET_OBJ_VAL(obj, 2), GET_OBJ_VAL(obj, 3), GET_OBJ_VAL(obj, 4),
                     GET_OBJ_VAL(obj, 5), GET_OBJ_VAL(obj, 6), GET_OBJ_WEIGHT(obj), GET_OBJ_COST(obj),
-                    GET_OBJ_TIMER(obj), GET_OBJ_EFF_FLAGS(obj)[0], 0, 0, GET_OBJ_EFF_FLAGS(obj)[1],
-                    GET_OBJ_EFF_FLAGS(obj)[2]);
+                    GET_OBJ_TIMER(obj), GET_OBJ_EFF_FLAGS(obj).to_ulong(), 0, 0, GET_OBJ_EFF_FLAGS(obj).to_ulong(),
+                    GET_OBJ_EFF_FLAGS(obj).to_ulong());
 
             script_save_to_disk(fp, obj, OBJ_TRIGGER);
 
@@ -471,7 +471,7 @@ void oedit_save_to_disk(int zone_num) {
                 fprintf(fp, "H\n%ld\n", obj->obj_flags.hiddenness);
 
             if (GET_OBJ_FLAGS(obj)[1])
-                fprintf(fp, "X\n%ld\n", GET_OBJ_FLAGS(obj)[1]);
+                fprintf(fp, "X\n%ld\n", GET_OBJ_FLAGS(obj).to_ulong());
         }
     }
 
@@ -645,7 +645,7 @@ void oedit_disp_aff_flags(DescriptorData *d) {
     }
 
     *buf1 = '\0';
-    sprintflag(buf1, GET_OBJ_EFF_FLAGS(OLC_OBJ(d)), NUM_EFF_FLAGS, effect_flags);
+    sprintflag(buf1, GET_OBJ_EFF_FLAGS(OLC_OBJ(d)), effect_flags);
     sprintf(buf,
             "\nSpell flags: %s%s%s\n"
             "Enter spell flag, 0 to quit : ",
@@ -1018,7 +1018,7 @@ void oedit_disp_extra_menu(DescriptorData *d) {
         char_printf(d->character, strcat(buf, "\n"));
     }
 
-    sprintflag(buf1, GET_OBJ_FLAGS(OLC_OBJ(d)), NUM_ITEM_FLAGS, extra_bits);
+    sprintflag(buf1, GET_OBJ_FLAGS(OLC_OBJ(d)), extra_bits);
     sprintf(buf,
             "\nObject flags: %s%s%s\n"
             "Enter object extra flag (0 to quit):\n",
@@ -1180,7 +1180,7 @@ void oedit_disp_menu(DescriptorData *d) {
     get_char_cols(d->character);
 
     /*. Build buffers for first part of menu . */
-    sprintflag(buf2, GET_OBJ_FLAGS(obj), NUM_ITEM_FLAGS, extra_bits);
+    sprintflag(buf2, GET_OBJ_FLAGS(obj), extra_bits);
 
     /*
      * Build first half of menu.
@@ -1227,7 +1227,7 @@ void oedit_disp_menu(DescriptorData *d) {
     oedit_disp_obj_values(d);
 
     *buf1 = '\0';
-    sprintflag(buf1, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS, effect_flags);
+    sprintflag(buf1, GET_OBJ_EFF_FLAGS(obj), effect_flags);
     sprintf(buf,
             "%sE%s) Applies menu\n"
             "%sF%s) Extra descriptions menu\n"
@@ -1259,7 +1259,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
                 iedit_save_changes(d);
                 log(LogSeverity::Debug, std::max(LVL_GOD, GET_INVIS_LEV(d->character)), "OLC: {} edits unique obj {}",
                     GET_NAME(d->character), OLC_IOBJ(d)->short_description);
-                REMOVE_FLAG(PLR_FLAGS(d->character), PLR_WRITING);
+                PLR_FLAGS(d->character).reset(PLR_WRITING);
                 STATE(d) = CON_PLAYING;
             } else {
                 char_printf(d->character, "Saving object to memory.\n");
@@ -1444,9 +1444,9 @@ void oedit_parse(DescriptorData *d, char *arg) {
         } else if (number == 0)
             break;
         else {
-            TOGGLE_FLAG(GET_OBJ_FLAGS(OLC_OBJ(d)), number - 1);
+            GET_OBJ_FLAGS(OLC_OBJ(d)).flip(number - 1);
             /* This flag shouldn't be on object prototypes */
-            REMOVE_FLAG(GET_OBJ_FLAGS(OLC_OBJ(d)), ITEM_WAS_DISARMED);
+            GET_OBJ_FLAGS(OLC_OBJ(d)).reset(ITEM_WAS_DISARMED);
             oedit_disp_extra_menu(d);
             return;
         }
@@ -1616,7 +1616,7 @@ void oedit_parse(DescriptorData *d, char *arg) {
         if (number == 0)
             break;
         else if (number > 0 && number <= NUM_EFF_FLAGS)
-            TOGGLE_FLAG(GET_OBJ_EFF_FLAGS(OLC_OBJ(d)), number - 1);
+            GET_OBJ_EFF_FLAGS(OLC_OBJ(d)).flip(number - 1);
         else
             char_printf(d->character, "That's not a valid choice!\n");
         oedit_disp_aff_flags(d);
@@ -1783,7 +1783,7 @@ ACMD(do_iedit) {
     /* Setup OLC */
     CREATE(ch->desc->olc, OLCData, 1);
 
-    SET_FLAG(PLR_FLAGS(ch), PLR_WRITING);
+    PLR_FLAGS(ch).set(PLR_WRITING);
     iedit_setup_existing(ch->desc, obj);
 
     act("$n starts using OLC.", true, ch, 0, 0, TO_ROOM);

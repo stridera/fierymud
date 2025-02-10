@@ -34,7 +34,7 @@ ACMD(do_toggle) {
     struct set_struct {
         const char *cmd;
         int level;
-        int bitvector;
+        int flag;
     }
     /**********************
       These match SCMD defines in interpreter.h, to add or
@@ -222,7 +222,7 @@ ACMD(do_toggle) {
                 }
                 break;
             default:
-                set = 1 && PRF_FLAGGED(tch, fields[i].bitvector);
+                set = 1 && PRF_FLAGGED(tch, fields[i].flag);
                 strcpy(buf2, YESNO(set));
                 break;
             }
@@ -338,7 +338,8 @@ ACMD(do_toggle) {
         }
         return;
     default:
-        result = PRF_TOG_CHK(tch, fields[i].bitvector);
+        PRF_FLAGS(ch).flip(fields[i].flag);
+        result = PRF_FLAGGED(ch, fields[i].flag);
         break;
     }
 

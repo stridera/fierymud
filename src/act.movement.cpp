@@ -715,14 +715,14 @@ ACMD(do_move) {
 
         if (misdir > -1)
             perform_move(ch, misdir, 0, true);
-        SET_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
+        EFF_FLAGS(ch).set(EFF_MISDIRECTING);
         /* Send confused people off in a random direction. */
         if (CONFUSED(ch) && random_number(0, 1) == 0) {
             char_printf(ch, "&5You are confused!&0\n");
             subcmd = SCMD_STAY + random_number(1, 6);
         }
         perform_move(ch, subcmd - 1, 0, false);
-        REMOVE_FLAG(EFF_FLAGS(ch), EFF_MISDIRECTING);
+        EFF_FLAGS(ch).reset(EFF_MISDIRECTING);
         return;
     }
 
@@ -1238,7 +1238,7 @@ ACMD(do_enter) {
                 "tunnel, &1&bon fire!&0",
                 false, ch, obj, 0, TO_ROOM);
             damage(ch, ch, abs(GET_ALIGNMENT(ch)) / 10, TYPE_SUFFERING);
-            SET_FLAG(EFF_FLAGS(ch), EFF_ON_FIRE);
+            EFF_FLAGS(ch).set(EFF_ON_FIRE);
             return;
         }
     } else if (GET_OBJ_VNUM(obj) == OBJ_VNUM_HELLGATE) {
@@ -1334,7 +1334,7 @@ ACMD(do_leave) {
 
 ACMD(do_doorbash)
 #define EXITK(room, dir) (world[room].exits[dir])
-#define OPEN_DOORK(room, door) (TOGGLE_BIT(EXITK(room, door)->exit_info, EX_CLOSED))
+#define OPEN_DOORK(room, door) (EXITK(room, door)->exit_info.flip(EX_CLOSED))
 {
     char arg[MAX_INPUT_LENGTH];
     int dir = 0, chance, probability, dam;
@@ -1733,9 +1733,9 @@ ACMD(do_drag) {
             act("&3$n&3 stops meditating.&0", true, ch, 0, 0, TO_ROOM);
             act("&3Your meditation is interrupted as %N grabs you.&0", false, ch, 0, 0, TO_CHAR);
             if (IS_NPC(ch))
-                REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
-            else 
-                REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+                MOB_FLAGS(ch).reset(MOB_MEDITATE);
+            else
+                PLR_FLAGS(ch).reset(PLR_MEDITATE);
         }
 
         /* now display act() messages to the target room */
@@ -2271,7 +2271,7 @@ ACMD(do_follow) {
             stop_follower(ch, 0);
 
         if (subcmd == SCMD_SHADOW)
-            SET_FLAG(EFF_FLAGS(ch), EFF_SHADOWING);
+            EFF_FLAGS(ch).set(EFF_SHADOWING);
 
         add_follower(ch, leader);
 
@@ -2280,7 +2280,7 @@ ACMD(do_follow) {
             chance += stat_bonus[GET_DEX(ch)].rogue_skills;
 
             if (chance < random_number(1, 101)) {
-                REMOVE_FLAG(EFF_FLAGS(ch), EFF_SHADOWING);
+                EFF_FLAGS(ch).reset(EFF_SHADOWING);
                 act("You are noticed as you attempt to secretly follow $N.", false, ch, 0, leader, TO_CHAR);
                 act("$n attempts to secretly follow you, but you spot $m.", true, ch, 0, leader, TO_VICT);
                 act("$n attempts to follow $N secretly, but you notice $m.", true, ch, 0, leader, TO_NOTVICT);
@@ -2746,10 +2746,10 @@ ACMD(do_tame) {
     eff.duration = tame_duration;
     eff.modifier = 0;
     eff.location = APPLY_NONE;
-    SET_FLAG(eff.flags, EFF_TAMED);
+    eff.flags.set(EFF_TAMED);
 
     effect_to_char(vict, &eff);
-    SET_FLAG(MOB_FLAGS(vict), MOB_PET);
+    MOB_FLAGS(vict).set(MOB_PET);
 
     act("You tame $N.", false, ch, 0, vict, TO_CHAR);
     act("$n tames you.", false, ch, 0, vict, TO_VICT);

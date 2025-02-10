@@ -70,8 +70,8 @@ void appear(CharData *ch) {
 
     was_hidden = IS_HIDDEN(ch);
 
-    REMOVE_FLAG(EFF_FLAGS(ch), EFF_INVISIBLE);
-    REMOVE_FLAG(EFF_FLAGS(ch), EFF_CAMOUFLAGED);
+    EFF_FLAGS(ch).reset(EFF_INVISIBLE);
+    EFF_FLAGS(ch).reset(EFF_CAMOUFLAGED);
     GET_HIDDENNESS(ch) = 0;
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
@@ -646,8 +646,7 @@ ACMD(do_shapechange) {
     char_to_room(mob, ch->in_room);
 
     /* Transfer hover slot items to new mob */
-    if GET_EQ(ch, WEAR_HOVER) {
-
+    if (GET_EQ(ch, WEAR_HOVER)) {
         obj = GET_EQ(ch, WEAR_HOVER);
         unequip_char(ch, WEAR_HOVER);
         equip_char(mob, obj, WEAR_HOVER);
@@ -857,7 +856,7 @@ ACMD(do_camp) {
         ce->ch = ch;
         ce->was_in = ch->in_room;
         event_create(EVENT_CAMP, camp_event, ce, true, &(ch->events), GET_LEVEL(ch) >= LVL_IMMORT ? 5 : 350);
-        SET_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
+        GET_EVENT_FLAGS(ch).set(EVENT_CAMP);
         act("You start setting up camp.", false, ch, nullptr, nullptr, TO_CHAR);
         act("$n starts setting up camp.", true, ch, 0, 0, TO_ROOM);
     }
@@ -904,25 +903,25 @@ EVENTFUNC(camp_event) {
     now_in = ch->in_room;
 
     if (IS_NPC(ch) || !ch->desc) {
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
+        GET_EVENT_FLAGS(ch).reset(EVENT_CAMP);
         return EVENT_FINISHED;
     }
 
     if (RIDING(ch)) {
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
+        GET_EVENT_FLAGS(ch).reset(EVENT_CAMP);
         char_printf(ch, "You can't camp while mounted!\n");
         return EVENT_FINISHED;
     }
 
     if (FIGHTING(ch)) {
         act("You decide now is not the best time for camping.", false, ch, nullptr, nullptr, TO_CHAR);
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
+        GET_EVENT_FLAGS(ch).reset(EVENT_CAMP);
         return EVENT_FINISHED;
     }
 
     if (now_in != was_in) {
         act("You are no longer near where you began the campsite.", false, ch, nullptr, nullptr, TO_CHAR);
-        REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
+        GET_EVENT_FLAGS(ch).reset(EVENT_CAMP);
         return EVENT_FINISHED;
     }
 
@@ -931,7 +930,7 @@ EVENTFUNC(camp_event) {
     if (PLR_FLAGGED(ch, PLR_MEDITATE)) {
         act("$N ceases $s meditative trance.", true, ch, 0, 0, TO_ROOM);
         char_printf(ch, "You stop meditating.\n&0");
-        REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
+        PLR_FLAGS(ch).reset(PLR_MEDITATE);
     }
 
     act("You complete your campsite, and leave this world for a while.", false, ch, nullptr, nullptr, TO_CHAR);
@@ -941,7 +940,7 @@ EVENTFUNC(camp_event) {
     log(LogSeverity::Stat, std::max<int>(LVL_IMMORT, GET_INVIS_LEV(ch)), "{} has camped in {} ({:d}).", GET_NAME(ch),
         world[ch->in_room].name, world[ch->in_room].vnum);
 
-    REMOVE_FLAG(GET_EVENT_FLAGS(ch), EVENT_CAMP);
+    GET_EVENT_FLAGS(ch).reset(EVENT_CAMP);
     remove_player_from_game(ch, QUIT_CAMP);
     return EVENT_FINISHED;
 }
@@ -963,7 +962,7 @@ ACMD(do_unbind) {
         if (prob > percent) {
             char_printf(ch, "You break free from your binds!\n");
             act("$n breaks free from his binds", false, ch, 0, 0, TO_ROOM);
-            REMOVE_FLAG(PLR_FLAGS(ch), PLR_BOUND);
+            PLR_FLAGS(ch).reset(PLR_BOUND);
             WAIT_STATE(ch, PULSE_VIOLENCE);
             return;
         } else
@@ -980,14 +979,14 @@ ACMD(do_unbind) {
             if (prob > percent) {
                 char_printf(ch, "You break free from your binds!\n");
                 act("$n breaks free from his binds", false, ch, 0, 0, TO_ROOM);
-                REMOVE_FLAG(PLR_FLAGS(ch), PLR_BOUND);
+                PLR_FLAGS(ch).reset(PLR_BOUND);
                 WAIT_STATE(ch, PULSE_VIOLENCE);
                 return;
             } else
                 WAIT_STATE(ch, PULSE_VIOLENCE * 3);
             return;
         }
-        REMOVE_FLAG(PLR_FLAGS(vict), PLR_BOUND);
+        PLR_FLAGS(vict).reset(PLR_BOUND);
         WAIT_STATE(ch, PULSE_VIOLENCE);
         char_printf(vict, "You are free of your binds.\n");
     }
@@ -1042,7 +1041,7 @@ ACMD(do_bind) {
                 act("You tie $N up.... What next?", false, ch, 0, vict, TO_CHAR);
                 act("$n ties you up.... Hope he isnt the kinky type", false, ch, 0, vict, TO_VICT);
                 act("$n ties up $N.", false, ch, 0, vict, TO_NOTVICT);
-                SET_FLAG(PLR_FLAGS(vict), PLR_BOUND);
+                PLR_FLAGS(vict).set(PLR_BOUND);
                 extract_obj(held);
                 WAIT_STATE(ch, PULSE_VIOLENCE * 2);
                 return;
@@ -1062,7 +1061,7 @@ ACMD(do_bind) {
                 act("You tie $N up.... What next?", false, ch, 0, vict, TO_CHAR);
                 act("$n ties you up.... Hope he isnt the kinky type", false, ch, 0, vict, TO_VICT);
                 act("$n ties up $N.", false, ch, 0, vict, TO_NOTVICT);
-                SET_FLAG(PLR_FLAGS(vict), PLR_BOUND);
+                PLR_FLAGS(vict).set(PLR_BOUND);
                 extract_obj(held);
                 improve_skill(ch, SKILL_BIND);
                 WAIT_STATE(ch, PULSE_VIOLENCE * 3);
@@ -1116,8 +1115,8 @@ ACMD(do_hide) {
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
 
     if (group_size(ch, true) > 1 && GET_RACE(ch) == RACE_HALFLING)
-        GET_HIDDENNESS(ch) =
-            random_number(lower_bound, upper_bound) + (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
+        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) +
+                             (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
     else
         GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + stat_bonus[GET_DEX(ch)].rogue_skills;
 
@@ -1131,10 +1130,10 @@ ACMD(do_hide) {
 
     improve_skill(ch, SKILL_HIDE);
 
-    REMOVE_FLAG(EFF_FLAGS(ch), EFF_STEALTH);
+    EFF_FLAGS(ch).reset(EFF_STEALTH);
     if (GET_SKILL(ch, SKILL_STEALTH)) {
         if (GET_HIDDENNESS(ch) && GET_SKILL(ch, SKILL_STEALTH) > random_number(0, 101))
-            SET_FLAG(EFF_FLAGS(ch), EFF_STEALTH);
+            EFF_FLAGS(ch).set(EFF_STEALTH);
         improve_skill(ch, SKILL_STEALTH);
     }
 }
@@ -1516,7 +1515,7 @@ ACMD(do_douse) {
     }
 
     if (success)
-        REMOVE_FLAG(EFF_FLAGS(vict), EFF_ON_FIRE);
+        EFF_FLAGS(vict).reset(EFF_ON_FIRE);
     improve_skill(ch, SKILL_DOUSE);
     WAIT_STATE(ch, PULSE_VIOLENCE);
 }
@@ -2183,13 +2182,13 @@ ACMD(do_peace) {
             if (FIGHTING(vict))
                 stop_fighting(vict);
         }
-        SET_FLAG(ROOM_FLAGS(ch->in_room), ROOM_PEACEFUL);
+        ROOM_FLAGS(ch->in_room).set(ROOM_PEACEFUL);
     } else {
         act("&7$n &4&bglows&0&7 with a &1&bbright red aura&0&7 as $e waves $s mighty hand!&0", false, ch, 0, 0,
             TO_ROOM);
         room_printf(ch->in_room,
                     "&1&bThe peaceful feeling in the room subsides... You don't feel quite as safe anymore.&0\n");
-        REMOVE_FLAG(ROOM_FLAGS(ch->in_room), ROOM_PEACEFUL);
+        ROOM_FLAGS(ch->in_room).reset(ROOM_PEACEFUL);
     }
 }
 
@@ -2326,9 +2325,8 @@ void summon_mount(CharData *ch, int mob_vnum, int base_hp, int base_mv) {
 
     act("$N answers your summons!", true, ch, 0, mount, TO_CHAR);
     act("$N walks in, seemingly from nowhere, and nuzzles $n's face.", true, ch, 0, mount, TO_ROOM);
-    SET_FLAG(EFF_FLAGS(mount), EFF_CHARM);
-    SET_FLAG(EFF_FLAGS(mount), EFF_TAMED);
-    SET_FLAG(MOB_FLAGS(mount), MOB_SUMMONED_MOUNT);
+    EFF_FLAGS(mount).set(EFF_CHARM | EFF_TAMED);
+    MOB_FLAGS(mount).set(MOB_SUMMONED_MOUNT);
     add_follower(mount, ch);
 
     GET_LEVEL(mount) = 5;
@@ -2519,7 +2517,7 @@ $N.",false,ch,0,vict,TO_CHAR);
    act(to_char, false, ch, 0, vict, TO_CHAR);
    act(to_vict, false, ch, 0, vict, TO_VICT);
    act(to_room, true, ch, 0, vict, TO_NOTVICT);
-   SET_FLAG(MOB_FLAGS(vict), MOB_AGGRESSIVE);
+   (MOB_FLAGS(vict).set(MOB_AGGRESSIVE);
    attack(vict, ch);
    } else {
    to_char="$N starts to wither and falls under your control!";
@@ -2536,7 +2534,7 @@ $N.",false,ch,0,vict,TO_CHAR);
    af.modifier = 0;
    af.location = APPLY_NONE;
    affect_to_char(vict, &af);
-   SET_FLAG(MOB_FLAGS(vict), MOB_CONTROLLED);
+   (MOB_FLAGS(vict).set(MOB_CONTROLLED);
    af.type = SPELL_CHARM;
    af.duration = control_duration + 1;
    af.bitvector = EFF_CHARM;
@@ -2546,8 +2544,8 @@ $N.",false,ch,0,vict,TO_CHAR);
    af.location = APPLY_NONE;
    affect_to_char(vict, &af);
    add_follower(vict, ch);
-   REMOVE_FLAG(MOB_FLAGS(vict), MOB_AGGRESSIVE);
-   REMOVE_FLAG(MOB_FLAGS(vict), MOB_SPEC);
+   MOB_FLAGS(vict).reset(MOB_AGGRESSIVE);
+   MOB_FLAGS(vict).reset(MOB_SPEC);
    }
    }
    }

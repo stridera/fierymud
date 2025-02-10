@@ -386,8 +386,8 @@ SPECIAL(pet_shop) {
         GET_EXP(pet) = 0;
         GET_MAX_MOVE(pet) *= 15;
         GET_MOVE(pet) = GET_MAX_MOVE(pet);
-        SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
-        SET_FLAG(MOB_FLAGS(pet), MOB_PET);
+        EFF_FLAGS(pet).set(EFF_CHARM);
+        MOB_FLAGS(pet).set(MOB_PET);
 
         if (*pet_name) {
             sprintf(buf, "%s %s", GET_NAMELIST(pet), pet_name);
@@ -447,8 +447,8 @@ SPECIAL(pet_shop) {
         GET_EXP(pet) = 0;
         GET_MAX_MOVE(pet) *= 15;
         GET_MOVE(pet) = GET_MAX_MOVE(pet);
-        SET_FLAG(EFF_FLAGS(pet), EFF_CHARM);
-        SET_FLAG(MOB_FLAGS(pet), MOB_PET);
+        EFF_FLAGS(pet).set(EFF_CHARM);
+        MOB_FLAGS(pet).set(MOB_PET);
 
         sprintf(buf, "Name: %s\n", GET_NAME(pet));
         sprintf(buf, "%sLevel: %d, Hit Points: %d, Movement Points: %d\n", buf, GET_LEVEL(pet), GET_HIT(pet),

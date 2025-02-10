@@ -242,7 +242,7 @@ void gain_exp(CharData *ch, long gain, unsigned int mode) {
                     char_printf(ch, AFMAG "You got your {} " AFMAG "back again!\n" ANRM, CLASS_STARS(ch));
                     all_except_printf(ch, "{} regained {} {}!\n", GET_NAME(ch), HSHR(ch), CLASS_STARS(ch));
                 } else {
-                    SET_FLAG(PLR_FLAGS(ch), PLR_GOTSTARS);
+                    PLR_FLAGS(ch).set(PLR_GOTSTARS);
                     char_printf(ch, AFMAG "You have achieved {} " AFMAG "status in {}" AFMAG "!!\n" ANRM,
                                 CLASS_STARS(ch), CLASS_FULL(ch));
                     all_except_printf(ch, AFMAG "{} " AFMAG "has achieved {} " AFMAG "status in {}" AFMAG "!!\n" ANRM,
@@ -561,7 +561,6 @@ void sick_update(void) {
     ObjData *j;
     int pc_dam;
 
-
     /* characters */
     for (i = character_list; i; i = next_char) {
         next_char = i->next;
@@ -676,7 +675,7 @@ void start_decomposing(ObjData *obj) {
          * decomposition undesirably. */
         if (GET_OBJ_DECOMP(obj) < ticks)
             GET_OBJ_DECOMP(obj) = ticks;
-        SET_FLAG(GET_OBJ_FLAGS(obj), ITEM_DECOMP);
+        GET_OBJ_FLAGS(obj).set(ITEM_DECOMP);
     }
 
     /* The contents of corpses don't decompose. */
@@ -688,7 +687,7 @@ void start_decomposing(ObjData *obj) {
 void stop_decomposing(ObjData *obj) {
     ObjData *o;
 
-    REMOVE_FLAG(GET_OBJ_FLAGS(obj), ITEM_DECOMP);
+    GET_OBJ_FLAGS(obj).reset(ITEM_DECOMP);
     for (o = obj->contains; o; o = o->next_content)
         stop_decomposing(o);
 }
