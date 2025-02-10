@@ -262,9 +262,9 @@ SPELLS = [
     "MONK_ACID",  # 260
     "MONK_SHOCK",  # 261
     "STATUE",  # 262
-    "WATER_BLAST", # 263
-    "DISPLACEMENT", # 264
-    "GREATER DISPLACEMENT", #265
+    "WATER_BLAST",  # 263
+    "DISPLACEMENT",  # 264
+    "GREATER DISPLACEMENT",  # 265
 ]
 
 OBJECT_TYPES = [
@@ -298,7 +298,7 @@ OBJECT_TYPES = [
     "WALL",  # 27,  # /* Blocks passage in one direction */
     "TOUCHSTONE",  # 28,  # /* Item sets homeroom when touched */
     "BOARD",  # 29,  # Bullitin board
-    "INSTRUMENT", # 30, # /* Item is a musical instrument */
+    "INSTRUMENT",  # 30, # /* Item is a musical instrument */
 ]
 
 WEAR_FLAGS = [
@@ -497,7 +497,7 @@ EFFECTS = [
     "VAMP_TOUCH",  # 67
     "RAY_OF_ENFEEB",  # 68
     "ANIMATED",  # 69
-    "EXPOSED", # 70
+    "EXPOSED",  # 70
     "SHADOWING",  # 71
     "CAMOUFLAGED",  # 72
     "SPIRIT_WOLF",  # 73
@@ -580,7 +580,6 @@ LIQUIDS = [
     "LIQ_TYPES",  # 42
 ]
 
-
 # Mobile flags: used by char_data.char_specials.act
 MOB_FLAGS = [
     "MOB_SPEC",  # 0          /* Mob has a callable spec-proc       */
@@ -660,7 +659,7 @@ EFFECTS = [
     "EFF_MESMERIZED",  # 30  /* Super fasciated by something */
     "EFF_IMMOBILIZED",  # 31 /* Char cannot move             */
     "EFF_LIGHT",  # 32
-    "EFF_NIMBLE", # 33
+    "EFF_NIMBLE",  # 33
     "EFF_MINOR_PARALYSIS",  # 34
     "EFF_HURT_THROAT",  # 35
     "EFF_FEATHER_FALL",  # 36
@@ -697,7 +696,7 @@ EFFECTS = [
     "EFF_VAMP_TOUCH",  # 67
     "EFF_RAY_OF_ENFEEB",  # 68
     "EFF_ANIMATED",  # 69
-    "EFF_EXPOSED", # 70
+    "EFF_EXPOSED",  # 70
     "EFF_SHADOWING",  # 71
     "EFF_CAMOUFLAGED",  # 72
     "EFF_SPIRIT_WOLF",  # 73
@@ -709,6 +708,66 @@ EFFECTS = [
     "EFF_HEX",  # 79           /* The evil side of blessing, to hurt ether chars */
     "EFF_DETECT_POISON",  # 80 /* Char is sensitive to poison */
     "EFF_SONG_OF_REST",  # 81
-    "EFF_DISPLACEMENT", # 82
-    "EFF_GREATER_DISPLACEMENT", # 83
+    "EFF_DISPLACEMENT",  # 82
+    "EFF_GREATER_DISPLACEMENT",  # 83
+]
+
+ROOM_FLAGS = [
+    "ROOM_DARK",  # 0         /* Dark                           */
+    "ROOM_DEATH",  # 1        /* Death trap                     */
+    "ROOM_NOMOB",  # 2        /* MOBs not allowed               */
+    "ROOM_INDOORS",  # 3      /* Indoors                        */
+    "ROOM_PEACEFUL",  # 4     /* Violence not allowed           */
+    "ROOM_SOUNDPROOF",  # 5   /* Shouts, gossip blocked         */
+    "ROOM_NOTRACK",  # 6      /* Track won't go through         */
+    "ROOM_NOMAGIC",  # 7      /* Magic not allowed              */
+    "ROOM_TUNNEL",  # 8       /* room for only 2 pers           */
+    "ROOM_PRIVATE",  # 9      /* Can't teleport in              */
+    "ROOM_GODROOM",  # 10     /* LVL_GOD+ only allowed          */
+    "ROOM_HOUSE",  # 11       /* (R) Room is a house            */
+    "ROOM_HOUSE_CRASH",  # 12 /* (R) House needs saving         */
+    "ROOM_ATRIUM",  # 13      /* (R) The door to a house        */
+    "ROOM_OLC",  # 14         /* (R) Modifyable/!compress       */
+    "ROOM_BFS_MARK",  # 15    /* (R) breadth-first srch mrk     */
+    "ROOM_NOWELL",  # 16      /* No spell portals like moonwell */
+    "ROOM_NORECALL",  # 17    /* No recalling                   */
+    "ROOM_UNDERDARK",  # 18   /*                   (not used)   */
+    "ROOM_NOSUMMON",  # 19    /* Can't summon to or from. Can't banish here. */
+    "ROOM_NOSHIFT",  # 20     /* no plane shift    (not used)   */
+    "ROOM_GUILDHALL",  # 21   /*                   (not used)   */
+    "ROOM_NOSCAN",  # 22      /* Unable to scan to/from rooms   */
+    "ROOM_ALT_EXIT",  # 23    /* Room's exits are altered       */
+    "ROOM_MAP",  # 24         /* Room on surface map (unused)   */
+    "ROOM_ALWAYSLIT",  # 25   /* Makes the room lit             */
+    "ROOM_ARENA",  # 26       /* (safe) PK allowed in room      */
+    "ROOM_OBSERVATORY",  # 27 /* see into adjacent ARENA rooms  */
+]
+
+DIRECTIONS = ["NORTH", "EAST", "SOUTH", "WEST", "UP", "DOWN"]
+
+
+EXIT_FLAGS = [
+    "",
+    "EX_ISDOOR",  # 0    /* Exit is a door             */
+    "EX_CLOSED",  # 1    /* The door is closed         */
+    "EX_LOCKED",  # 2    /* The door is locked         */
+    "EX_PICKPROOF",  # 3 /* Lock can't be picked       */
+    "EX_HIDDEN",  # 4    /* exit is hidden             */
+    "EX_DESCRIPT",  # 5  /* Just an extra description  */
+]
+
+# Shop Related
+SHOP_FLAGS = [
+    "WILL_START_FIGHT",  # 1
+    "WILL_BANK_MONEY",  # 2
+]
+
+SHOP_TRADES_WITH = [
+    "TRADE_NOGOOD",  # 1
+    "TRADE_NOEVIL",  # 2
+    "TRADE_NONEUTRAL",  # 3
+    "TRADE_NOMAGIC_USER",  # 4
+    "TRADE_NOCLERIC",  # 5
+    "TRADE_NOTHIEF",  # 6
+    "TRADE_NOWARRIOR",  # 7
 ]

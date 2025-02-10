@@ -20,8 +20,9 @@ class Mob(Base):
         self.stats["effect_flags"] = self.read_flags(effect_flags, EFFECTS)
         self.stats["alignment"] = int(align)
 
-        (level, hitroll, ac, hp_num_dice, hp_size_dice, move, dam_num_dice,
-         dam_size_dice, dam_roll_bonus) = re.split(r"[ d+]", data.pop(0))
+        (level, hitroll, ac, hp_num_dice, hp_size_dice, move, dam_num_dice, dam_size_dice, dam_roll_bonus) = re.split(
+            r"[ d+]", data.pop(0)
+        )
         self.stats["level"] = int(level)
         self.stats["hitroll"] = int(hitroll)
         self.stats["ac"] = int(ac)
@@ -29,11 +30,15 @@ class Mob(Base):
         self.stats["move"] = int(move)
         self.stats["dam_dice"] = Dice(int(dam_num_dice), int(dam_size_dice), int(dam_roll_bonus))
 
-        gold, plat, exp, zone = data.pop(0).split()
-        self.stats["gold"] = int(gold)
-        self.stats["plat"] = int(plat)
-        self.stats["exp"] = int(exp)
-        self.stats["zone"] = int(zone)
+        fields = data.pop(0).split()
+        if len(fields) == 6:
+            self.stats["copper"] = int(fields[0])
+            self.stats["silver"] = int(fields[1])
+            self.stats["gold"] = int(fields[2])
+            self.stats["platinum"] = int(fields[3])
+        if len(fields) == 4:
+            self.stats["gold"] = int(fields[0])
+            self.stats["platinum"] = int(fields[1])
 
         (position, default_position, gender, class_num, race, race_align, size) = data.pop(0).split()
 
@@ -53,9 +58,8 @@ class Mob(Base):
                 self.stats["effect_flags"].set_flags(line.split()[1], 64)
             elif line.startswith("MOB2"):
                 self.stats["mob_flags"].set_flags(line.split()[1], 32)
-
             elif line.startswith("E"):
                 break
             else:
                 key, value = line.split()
-                self.stats[key[:-1]] = value
+                self.stats[key[:-1]] = int(value)
