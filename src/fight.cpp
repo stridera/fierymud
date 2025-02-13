@@ -1933,7 +1933,7 @@ int weapon_special(ObjData *wpn, CharData *ch) {
 }
 
 void hit(CharData *ch, CharData *victim, int type) {
-    int victim_ac, calc_thaco, dam, diceroll, weapon_position, hidden;
+    int victim_ac, calc_thaco, dam = 0, diceroll, weapon_position, hidden;
     ObjData *weapon;
     int thac0_01 = 25;
     int thac0_00 = classes[(int)GET_CLASS(ch)].thac0;
