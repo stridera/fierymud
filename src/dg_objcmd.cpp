@@ -99,9 +99,6 @@ int find_obj_target_room(ObjData *obj, char *rawroomstr) {
     if (ROOM_FLAGGED(location, ROOM_GODROOM) || ROOM_FLAGGED(location, ROOM_HOUSE))
         return NOWHERE;
 
-    if (ROOM_FLAGGED(location, ROOM_PRIVATE) && world[location].people && world[location].people->next_in_room)
-        return NOWHERE;
-
     return location;
 }
 
