@@ -1882,7 +1882,7 @@ ACMD(do_create) {
 
                 one_argument(argument, arg);
 
-                if (!(arg) || !*(arg)) {
+                if (!*(arg)) {
                     char_printf(ch, "What are you trying to create?\n");
                     return;
                 }

@@ -559,7 +559,7 @@ char *filter_chars(char *buf, const char *src, const char *chars) {
     if (!src)
         return "";
 
-    while (*dest = *src) {
+    while ((*dest = *src)) {
         if (!strchr(chars, *dest))
             ++dest;
         ++src;

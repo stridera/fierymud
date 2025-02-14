@@ -138,7 +138,7 @@ void boot_world(void);
 void zone_update(void);
 void effect_update(void); /* In spells.c */
 void point_update(void);  /* In limits.c */
-void sick_update(void); /* In limits.c */
+void sick_update(void);   /* In limits.c */
 void mobile_activity(void);
 void mobile_spec_activity(void);
 void string_add(DescriptorData *d, char *str);
@@ -2128,7 +2128,7 @@ int process_input(DescriptorData *t) {
                 if (telcmd == (char)WILL)
                     send_opt(t, (char)TELOPT_TTYPE);
                 else if (telcmd == (char)SB) {
-                    *ptr++; // Step past the null IS
+                    (void)*ptr++; // Step past the null IS
                     /* Start listening for the terminal type. */
                     write_cmd_point = telnet_opts;
                     *write_cmd_point = '\0';

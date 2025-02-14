@@ -596,7 +596,7 @@ ACMD(do_backstab) {
 
     one_argument(argument, buf);
 
-    if (!buf || !*buf) {
+    if (!*buf) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
@@ -1314,7 +1314,7 @@ ACMD(do_kick) {
 
     one_argument(argument, arg);
 
-    if (!arg || !*arg) {
+    if (!*arg) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
@@ -1345,7 +1345,7 @@ ACMD(do_kick) {
     /* Need to see whether this player is fighting already. Kick should not
        allow for the player to switch without a switch probability being
        calculated into the mix. (DEMOLITUM) */
-       
+
     WAIT_STATE(ch, PULSE_VIOLENCE);
     if (FIGHTING(ch) && FIGHTING(ch) != vict && !switch_ok(ch))
         return;
@@ -1516,12 +1516,12 @@ ACMD(do_springleap) {
             GET_STANCE(ch) = STANCE_ALERT;
         }
     } else if (damage_evasion(vict, ch, 0, DAM_CRUSH)) {
-        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!&0", false, ch, 0,
-            vict, TO_CHAR);
+        act(EVASIONCLR "You hurtle right through $N" EVASIONCLR " and land in a heap on the other side!&0", false, ch,
+            0, vict, TO_CHAR);
         act(EVASIONCLR "$n" EVASIONCLR " leaps at $N" EVASIONCLR " but flies right on through!&0", false, ch, 0, vict,
             TO_NOTVICT);
-        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.&0", false, ch,
-            0, vict, TO_VICT);
+        act(EVASIONCLR "$n" EVASIONCLR " comes flying at you, but just passes through and hits the ground.&0", false,
+            ch, 0, vict, TO_VICT);
         /* You fall */
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
         GET_POS(ch) = POS_SITTING;
@@ -2595,7 +2595,7 @@ ACMD(do_cartwheel) {
         if (damage_evasion(vict, ch, 0, DAM_CRUSH) || MOB_FLAGGED(vict, MOB_ILLUSORY))
             message = 1;
         if (displaced(ch, vict))
-            message == 2;
+            message = 2;
         if (message == 1 || message == 2) {
             if (message == 1) {
                 act(EVASIONCLR "You cartwheel right through $N" EVASIONCLR " and fall in a heap on the other side!&0",
@@ -2842,7 +2842,7 @@ ACMD(do_rend) {
 
     one_argument(argument, arg);
 
-    if (!arg || !*arg) {
+    if (!*arg) {
         if (FIGHTING(ch)) {
             vict = FIGHTING(ch);
         } else {
@@ -2878,7 +2878,8 @@ ACMD(do_rend) {
         return;
 
     percent = ((10 - ((GET_AC(vict) + (monk_weight_penalty(vict) * 5)) / 10)) << 1) + random_number(1, 101);
-    prob = (GET_SKILL(ch, SKILL_REND) + (stat_bonus[GET_DEX(ch)].skill_large / 2) + (stat_bonus[GET_INT(ch)].skill_large / 2));
+    prob = (GET_SKILL(ch, SKILL_REND) + (stat_bonus[GET_DEX(ch)].skill_large / 2) +
+            (stat_bonus[GET_INT(ch)].skill_large / 2));
 
     if (percent > prob) {
         WAIT_STATE(ch, (PULSE_VIOLENCE * 3) / 2);
@@ -3149,4 +3150,3 @@ ACMD(do_roundhouse) {
     if (realvictims)
         improve_skill(ch, SKILL_ROUNDHOUSE);
 }
-

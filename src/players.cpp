@@ -748,7 +748,7 @@ void save_player_char(CharData *ch) {
 
     /* If ch->desc is not null, then update session data before saving. */
     if (ch->desc) {
-        if (ch->desc->host && *ch->desc->host) {
+        if (*ch->desc->host) {
             if (!GET_HOST(ch))
                 GET_HOST(ch) = strdup(ch->desc->host);
             else if (GET_HOST(ch) && strcasecmp(GET_HOST(ch), ch->desc->host)) {
