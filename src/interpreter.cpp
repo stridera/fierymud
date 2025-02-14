@@ -1171,7 +1171,7 @@ void free_alias(AliasData *a) {
 
 void free_aliases(AliasData *alias_list) {
     AliasData *alias;
-    while (alias = alias_list) {
+    while ((alias = alias_list)) {
         alias_list = alias->next;
         free_alias(alias);
     }
@@ -2081,7 +2081,7 @@ void display_manual_stat(CharData *ch, int word[6], int i) {
     int j, k = 1;
 
     char_printf(ch, "&0&7&bRemaining stats:&0\n\n");
-    for (i; i < NUM_STATS; i++) {
+    for (; i < NUM_STATS; i++) {
         statts[0] = GET_NATURAL_STR(ch);
         statts[1] = GET_NATURAL_DEX(ch);
         statts[2] = GET_NATURAL_CON(ch);

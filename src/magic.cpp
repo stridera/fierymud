@@ -989,7 +989,7 @@ int mag_damage(int skill, CharData *ch, CharData *victim, int spellnum, int save
 
     /* For the balanced sorcerer spells, reduce damage from low-level NPCs. */
     if (reduction && IS_NPC(ch)) {
-        dmod = 0.3 + pow((skill / 100.0), 2) * 0.7, 1;
+        dmod = 0.3 + pow((skill / 100.0), 2) * 0.7;
         if (dmod < 0.3)
             dmod = 0.3;
         if (dmod > 1)
@@ -1632,12 +1632,13 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
             return CAST_RESULT_CHARGE;
         }
 
-        if (spellnum = SPELL_DISPLACEMENT)
+        if (spellnum == SPELL_DISPLACEMENT)
             SET_FLAG(eff[0].flags, EFF_DISPLACEMENT);
-        else if (spellnum = SPELL_GREATER_DISPLACEMENT)
+        else if (spellnum == SPELL_GREATER_DISPLACEMENT)
             SET_FLAG(eff[0].flags, EFF_GREATER_DISPLACEMENT);
 
-        eff[0].duration = (skill / 50) + ((stat_bonus[GET_INT(ch)].magic + stat_bonus[GET_WIS(ch)].magic) / 7); /* max 4 */
+        eff[0].duration =
+            (skill / 50) + ((stat_bonus[GET_INT(ch)].magic + stat_bonus[GET_WIS(ch)].magic) / 7); /* max 4 */
 
         refresh = false;
         to_char = "&9&b$N's image blurs into the shadows!&0";
@@ -3382,7 +3383,6 @@ int mag_affect(int skill, CharData *ch, CharData *victim, int spellnum, int save
                     /* Just silently stop the casting for paralysis */
                     STOP_CASTING(victim);
                 }
-
             }
             if ((IS_FLAGGED(eff[i].flags, EFF_MINOR_PARALYSIS) || IS_FLAGGED(eff[i].flags, EFF_MAJOR_PARALYSIS) ||
                  IS_FLAGGED(eff[i].flags, EFF_MESMERIZED))) {
@@ -5369,8 +5369,8 @@ int get_vitality_hp_gain(CharData *ch, int spellnum) {
  * if it returns 1.
  */
 bool affected_by_armor_spells(CharData *victim, int spellnum) {
-    /* If the target is already affected by the spell being cast, 
-     * return false so mag_affect continues to cast the spell and 
+    /* If the target is already affected by the spell being cast,
+     * return false so mag_affect continues to cast the spell and
      * refresh the spell duration.
      */
     if (!IS_NPC(victim) && affected_by_spell(victim, spellnum)) {
@@ -5378,15 +5378,15 @@ bool affected_by_armor_spells(CharData *victim, int spellnum) {
 
     } else if (affected_by_spell(victim, spellnum)) {
         return true;
-        
-    /* If the target is not already affected by the spell being cast,
-     * but is affected by another armor spell, return true so mag_affect
-     * bails out and the character doesn't end up with two armor effects.
-     */
+
+        /* If the target is not already affected by the spell being cast,
+         * but is affected by another armor spell, return true so mag_affect
+         * bails out and the character doesn't end up with two armor effects.
+         */
     } else if (affected_by_spell(victim, SPELL_ARMOR) || affected_by_spell(victim, SPELL_BARKSKIN) ||
-        affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
-        affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
-        affected_by_spell(victim, SPELL_MIRAGE)) {
+               affected_by_spell(victim, SPELL_BONE_ARMOR) || affected_by_spell(victim, SPELL_DEMONSKIN) ||
+               affected_by_spell(victim, SPELL_GAIAS_CLOAK) || affected_by_spell(victim, SPELL_ICE_ARMOR) ||
+               affected_by_spell(victim, SPELL_MIRAGE)) {
         return true;
     }
 

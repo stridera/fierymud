@@ -1675,7 +1675,7 @@ ACMD(do_equipment) {
                 char_printf(ch, "{}Something.\n", where[wear_order_index[i]]);
                 found = true;
             }
-        } else if (arg && is_equals(arg, "all")) {
+        } else if (is_equals(arg, "all")) {
             char_printf(ch, "{}&1Nothing.&0\n", where[wear_order_index[i]]);
             found = true;
         }
@@ -2025,7 +2025,7 @@ ACMD(do_who) {
             if (check[0] == CREL || check[0] == CABS) {
                 e = 49;
                 while (e < 58) {
-                    if ((check[1] == (char)e)) {
+                    if (check[1] == (char)e) {
                         c = c + 2;
                     }
                     e++;
@@ -2370,7 +2370,7 @@ ACMD(do_users) {
 
         strcat(room, state);
 
-        if (d->host && *d->host) {
+        if (*d->host) {
             strcat(hostnum, d->host);
             if (ipsort) {
                 strcpy(iplist[counter], hostnum);
@@ -2683,7 +2683,7 @@ ACMD(do_color) {
         char_printf(ch, "Your current color level is {}.\n", ctypes[COLOR_LEV(ch)]);
         return;
     }
-    if (((tp = searchblock(arg, ctypes, false)) == -1)) {
+    if ((tp = searchblock(arg, ctypes, false) == -1)) {
         char_printf(ch, "Usage: color { Off | Sparse | Normal | Complete }\n");
         return;
     }

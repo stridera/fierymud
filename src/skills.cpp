@@ -248,7 +248,8 @@ void update_skills(CharData *ch) {
          * skill of SKILL_SPHERE_GENERIC.
          */
 
-        if ((skills[skill].min_level[(int)GET_CLASS(ch)] <= GET_LEVEL(ch) || skills[skill].min_race_level[(int)GET_RACE(ch)] <= GET_LEVEL(ch)) &&
+        if ((skills[skill].min_level[(int)GET_CLASS(ch)] <= GET_LEVEL(ch) ||
+             skills[skill].min_race_level[(int)GET_RACE(ch)] <= GET_LEVEL(ch)) &&
             !(skills[skill].humanoid && !(IS_HUMANOID(ch) || creature_allowed_skill(ch, skill)))) {
             /* This skill is available because of your class or your race beyond level 1, and you meet
              * the humanoid requirement, if any. */
@@ -284,26 +285,26 @@ void update_skills(CharData *ch) {
                 }
             }
 
-        } else if (prof = racial_skill_proficiency(skill, GET_RACE(ch), GET_LEVEL(ch))) {
+        } else if ((prof = racial_skill_proficiency(skill, GET_RACE(ch), GET_LEVEL(ch)))) {
             /* This skill is available because of your race. */
             /* This is a talent that you do have, or could have. */
             if (skills[skill].quest == false) {
                 if (prof == ROLL_SKILL_PROF) {
                     /* This skill/spell you get because your level is high enough.
-                    * So: ensure that you have it. */
+                     * So: ensure that you have it. */
                     if (GET_SKILL(ch, skill) <= 0) {
                         /* You don't have it, so set the starting value.  Individual
-                        * spells and languages don't actually improve, so the value
-                        * is 1000. */
+                         * spells and languages don't actually improve, so the value
+                         * is 1000. */
                         if (IS_SPELL(skill))
                             SET_SKILL(ch, skill, 1000);
                         /* Barehand and safe fall don't improve either, though with
-                        * some improvements to the mud, they could. */
+                         * some improvements to the mud, they could. */
                         else if (skill == SKILL_BAREHAND || skill == SKILL_SAFEFALL)
                             SET_SKILL(ch, skill, 1000);
                         else
                             /* Skills, chants, and songs do improve. You get the low
-                            * starting value. */
+                             * starting value. */
                             SET_SKILL(ch, skill, !IS_NPC(ch) ? 50 : roll_mob_skill(GET_LEVEL(ch)));
                     }
                 } else {
@@ -1362,7 +1363,8 @@ void init_skills(void) {
     spello(SPELL_PROTECT_SHOCK, "protection from air", 0, 0, 0, POS_STANDING, false, TAR_CHAR_ROOM, false, MAG_AFFECT,
            0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, false, "You feel less protected from air.");
 
-    /* chants and songs can't be put into potions, so these four spells are to create portable versions of the elemental chants.  They must have a different name from those in the chanto section below.  */
+    /* chants and songs can't be put into potions, so these four spells are to create portable versions of the elemental
+     * chants.  They must have a different name from those in the chanto section below.  */
 
     spello(SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE, "blizzards of st. augustine", 0, 0, 0, POS_SITTING, true,
            TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, CAST_SPEED1, DAM_UNDEFINED, SKILL_SPHERE_PROT, 5, true,
@@ -1526,13 +1528,14 @@ void init_skills(void) {
     chanto(CHANT_HYMN_OF_SAINT_AUGUSTINE, "hymn of saint augustine", POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY,
            false, MAG_AFFECT, 0, true, "Your inner elements subside.");
 
-    /* these names must be different from the spello versions above or else any command to use them will default to the spells rather than the chants */
+    /* these names must be different from the spello versions above or else any command to use them will default to the
+     * spells rather than the chants */
 
     chanto(CHANT_BLIZZARDS_OF_SAINT_AUGUSTINE, "blizzards of saint augustine", POS_SITTING, true,
            TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, true, "Your inner cold subsides.");
 
-    chanto(CHANT_FIRES_OF_SAINT_AUGUSTINE, "fires of saint augustine", POS_SITTING, true,
-           TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, true, "Your inner fire subsides.");
+    chanto(CHANT_FIRES_OF_SAINT_AUGUSTINE, "fires of saint augustine", POS_SITTING, true, TAR_CHAR_ROOM | TAR_SELF_ONLY,
+           false, MAG_AFFECT, 0, true, "Your inner fire subsides.");
 
     chanto(CHANT_TEMPEST_OF_SAINT_AUGUSTINE, "tempest of saint augustine", POS_SITTING, true,
            TAR_CHAR_ROOM | TAR_SELF_ONLY, false, MAG_AFFECT, 0, true, "Your inner storm subsides.");
@@ -1653,7 +1656,6 @@ bool get_spell_assignment_circle(CharData *ch, int spell, int *circle_assignment
     }
     return false;
 }
-
 
 void race_skill_assign(int skillnum, int race_num, int level) {
     int okay = true;

@@ -2882,9 +2882,8 @@ ACMD(do_rclone) {
         dest->description = strdup(src->description);
     if (src->name)
         dest->name = strdup(src->name);
-    if (src->room_flags)
-        for (i = 0; i < FLAGVECTOR_SIZE(NUM_ROOM_FLAGS); ++i)
-            dest->room_flags[i] = src->room_flags[i];
+    for (i = 0; i < FLAGVECTOR_SIZE(NUM_ROOM_FLAGS); ++i)
+        dest->room_flags[i] = src->room_flags[i];
     if (src->sector_type)
         dest->sector_type = src->sector_type;
 

@@ -725,7 +725,7 @@ void quest_start(CharData *ch, CharData *vict, char *qname, char *error_string, 
         }
 
         /* Is the proposed class a subclass of the player's current class? */
-        if (!classes[subclass].is_subclass || !classes[subclass].subclass_of == GET_CLASS(vict)) {
+        if (!classes[subclass].is_subclass || !(classes[subclass].subclass_of == GET_CLASS(vict))) {
             if (ch) {
                 char_printf(ch, "Invalid subclass for {}'s class.\n", GET_NAME(vict));
             } else if (error_string) {
@@ -1040,7 +1040,8 @@ ACMD(do_qadd) {
             GET_NAME(ch), buf1);
         char_printf(ch, "New subclass&0 quest {} successfully added.\n", buf1);
     } else {
-        log(LogSeverity::Stat, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new quest {}.", GET_NAME(ch), buf1);
+        log(LogSeverity::Stat, std::max(LVL_GOD, GET_INVIS_LEV(ch)), "(GC) {} created a new quest {}.", GET_NAME(ch),
+            buf1);
         char_printf(ch, "New quest {} successfully added.\n", buf1);
     }
 }
