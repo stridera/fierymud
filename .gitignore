@@ -6,4 +6,5 @@ cmake-build-debug/*
 .vscode/
 build/
 .build
+.venv
 __pycache__

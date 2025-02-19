@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "fierymud-scripts"
+version = "0.1.0"
+description = ""
+authors = ["Matthew Jones <stridera@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+dataclasses-json = "^0.6.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,3 +1,7 @@
+"""
+Flags for the MUD.  These are all items that can be set via a bitflag.
+"""
+
 SPELLS = [
     "NONE",
     "ARMOR",  # 1
@@ -262,10 +266,409 @@ SPELLS = [
     "MONK_ACID",  # 260
     "MONK_SHOCK",  # 261
     "STATUE",  # 262
-    "WATER_BLAST", # 263
-    "DISPLACEMENT", # 264
-    "GREATER DISPLACEMENT", #265
+    "WATER_BLAST",  # 263
+    "DISPLACEMENT",  # 264
+    "GREATER DISPLACEMENT",  # 265
+    "NIMBLE",  # 266
+    "CLARITY",  # 267
 ]
+
+SKILLS = {
+    1: "SPELL_ARMOR",
+    2: "SPELL_TELEPORT",
+    3: "SPELL_BLESS",
+    4: "SPELL_BLINDNESS",
+    5: "SPELL_BURNING_HANDS",
+    6: "SPELL_CALL_LIGHTNING",
+    7: "SPELL_CHARM",
+    8: "SPELL_CHILL_TOUCH",
+    9: "SPELL_CLONE",
+    10: "SPELL_COLOR_SPRAY",
+    11: "SPELL_CONTROL_WEATHER",
+    12: "SPELL_CREATE_FOOD",
+    13: "SPELL_CREATE_WATER",
+    14: "SPELL_CURE_BLIND",
+    15: "SPELL_CURE_CRITIC",
+    16: "SPELL_CURE_LIGHT",
+    17: "SPELL_CURSE",
+    18: "SPELL_DETECT_ALIGN",
+    19: "SPELL_DETECT_INVIS",
+    20: "SPELL_DETECT_MAGIC",
+    21: "SPELL_DETECT_POISON",
+    22: "SPELL_DISPEL_EVIL",
+    23: "SPELL_EARTHQUAKE",
+    24: "SPELL_ENCHANT_WEAPON",
+    25: "SPELL_ENERGY_DRAIN",
+    26: "SPELL_FIREBALL",
+    27: "SPELL_HARM",
+    28: "SPELL_HEAL",
+    29: "SPELL_INVISIBLE",
+    30: "SPELL_LIGHTNING_BOLT",
+    31: "SPELL_LOCATE_OBJECT",
+    32: "SPELL_MAGIC_MISSILE",
+    33: "SPELL_POISON",
+    34: "SPELL_PROT_FROM_EVIL",
+    35: "SPELL_REMOVE_CURSE",
+    36: "SPELL_SANCTUARY",
+    37: "SPELL_SHOCKING_GRASP",
+    38: "SPELL_SLEEP",
+    39: "SPELL_ENHANCE_ABILITY",
+    40: "SPELL_SUMMON",
+    41: "SPELL_VENTRILOQUATE",
+    42: "SPELL_WORD_OF_RECALL",
+    43: "SPELL_REMOVE_POISON",
+    44: "SPELL_SENSE_LIFE",
+    45: "SPELL_ANIMATE_DEAD",
+    46: "SPELL_DISPEL_GOOD",
+    47: "SPELL_GROUP_ARMOR",
+    48: "SPELL_GROUP_HEAL",
+    49: "SPELL_GROUP_RECALL",
+    50: "SPELL_INFRAVISION",
+    51: "SPELL_WATERWALK",
+    52: "SPELL_STONE_SKIN",
+    53: "SPELL_FULL_HEAL",
+    54: "SPELL_FULL_HARM",
+    55: "SPELL_WALL_OF_FOG",
+    56: "SPELL_WALL_OF_STONE",
+    57: "SPELL_FLY",
+    58: "SPELL_SUMMON_DRACOLICH",
+    59: "SPELL_SUMMON_ELEMENTAL",
+    60: "SPELL_SUMMON_DEMON",
+    61: "SPELL_SUMMON_GREATER_DEMON",
+    62: "SPELL_DIMENSION_DOOR",
+    63: "SPELL_CREEPING_DOOM",
+    64: "SPELL_DOOM",
+    65: "SPELL_METEORSWARM",
+    66: "SPELL_BIGBYS_CLENCHED_FIST",
+    67: "SPELL_FARSEE",
+    68: "SPELL_HASTE",
+    69: "SPELL_BLUR",
+    70: "SPELL_GREATER_ENDURANCE",
+    71: "SPELL_MOONWELL",
+    72: "SPELL_INN_CHAZ",
+    73: "SPELL_DARKNESS",
+    74: "SPELL_ILLUMINATION",
+    75: "SPELL_COMPREHEND_LANG",
+    76: "SPELL_CONE_OF_COLD",
+    77: "SPELL_ICE_STORM",
+    78: "SPELL_ICE_SHARDS",
+    79: "SPELL_MAJOR_PARALYSIS",
+    80: "SPELL_VAMPIRIC_BREATH",
+    81: "SPELL_RESURRECT",
+    82: "SPELL_INCENDIARY_NEBULA",
+    83: "SPELL_MINOR_PARALYSIS",
+    84: "SPELL_CAUSE_LIGHT",
+    85: "SPELL_CAUSE_SERIOUS",
+    86: "SPELL_CAUSE_CRITIC",
+    87: "SPELL_PRESERVE",
+    88: "SPELL_CURE_SERIOUS",
+    89: "SPELL_VIGORIZE_LIGHT",
+    90: "SPELL_VIGORIZE_SERIOUS",
+    91: "SPELL_VIGORIZE_CRITIC",
+    92: "SPELL_SOULSHIELD",
+    93: "SPELL_DESTROY_UNDEAD",
+    94: "SPELL_SILENCE",
+    95: "SPELL_FLAMESTRIKE",
+    96: "SPELL_UNHOLY_WORD",
+    97: "SPELL_HOLY_WORD",
+    98: "SPELL_PLANE_SHIFT",
+    99: "SPELL_DISPEL_MAGIC",
+    100: "SPELL_MINOR_CREATION",
+    101: "SPELL_CONCEALMENT",
+    102: "SPELL_RAY_OF_ENFEEB",
+    103: "SPELL_FEATHER_FALL",
+    104: "SPELL_WIZARD_EYE",
+    105: "SPELL_FIRESHIELD",
+    106: "SPELL_COLDSHIELD",
+    107: "SPELL_MINOR_GLOBE",
+    108: "SPELL_MAJOR_GLOBE",
+    109: "SPELL_DISINTEGRATE",
+    110: "SPELL_HARNESS",
+    111: "SPELL_CHAIN_LIGHTNING",
+    112: "SPELL_MASS_INVIS",
+    113: "SPELL_RELOCATE",
+    114: "SPELL_FEAR",
+    115: "SPELL_CIRCLE_OF_LIGHT",
+    116: "SPELL_DIVINE_BOLT",
+    117: "SPELL_PRAYER",
+    118: "SPELL_ELEMENTAL_WARDING",
+    119: "SPELL_DIVINE_RAY",
+    120: "SPELL_LESSER_EXORCISM",
+    121: "SPELL_DECAY",
+    122: "SPELL_SPEAK_IN_TONGUES",
+    123: "SPELL_ENLIGHTENMENT",
+    124: "SPELL_EXORCISM",
+    125: "SPELL_SPINECHILLER",
+    126: "SPELL_WINGS_OF_HEAVEN",
+    127: "SPELL_BANISH",
+    128: "SPELL_WORD_OF_COMMAND",
+    129: "SPELL_DIVINE_ESSENCE",
+    130: "SPELL_HEAVENS_GATE",
+    131: "SPELL_DARK_PRESENCE",
+    132: "SPELL_DEMONSKIN",
+    133: "SPELL_DARK_FEAST",
+    134: "SPELL_HELL_BOLT",
+    135: "SPELL_DISEASE",
+    136: "SPELL_INSANITY",
+    137: "SPELL_DEMONIC_ASPECT",
+    138: "SPELL_HELLFIRE_BRIMSTONE",
+    139: "SPELL_STYGIAN_ERUPTION",
+    140: "SPELL_DEMONIC_MUTATION",
+    141: "SPELL_WINGS_OF_HELL",
+    142: "SPELL_SANE_MIND",
+    143: "SPELL_HELLS_GATE",
+    144: "SPELL_BARKSKIN",
+    145: "SPELL_NIGHT_VISION",
+    146: "SPELL_WRITHING_WEEDS",
+    147: "SPELL_CREATE_SPRING",
+    148: "SPELL_NOURISHMENT",
+    149: "SPELL_GAIAS_CLOAK",
+    150: "SPELL_NATURES_EMBRACE",
+    151: "SPELL_ENTANGLE",
+    152: "SPELL_INVIGORATE",
+    153: "SPELL_WANDERING_WOODS",
+    154: "SPELL_URBAN_RENEWAL",
+    155: "SPELL_SUNRAY",
+    156: "SPELL_ARMOR_OF_GAIA",
+    157: "SPELL_FIRE_DARTS",
+    158: "SPELL_MAGIC_TORCH",
+    159: "SPELL_SMOKE",
+    160: "SPELL_MIRAGE",
+    161: "SPELL_FLAME_BLADE",
+    162: "SPELL_POSITIVE_FIELD",
+    163: "SPELL_FIRESTORM",
+    164: "SPELL_MELT",
+    165: "SPELL_CIRCLE_OF_FIRE",
+    166: "SPELL_IMMOLATE",
+    167: "SPELL_SUPERNOVA",
+    168: "SPELL_CREMATE",
+    169: "SPELL_NEGATE_HEAT",
+    170: "SPELL_ACID_BURST",
+    171: "SPELL_ICE_DARTS",
+    172: "SPELL_ICE_ARMOR",
+    173: "SPELL_ICE_DAGGER",
+    174: "SPELL_FREEZING_WIND",
+    175: "SPELL_FREEZE",
+    176: "SPELL_WALL_OF_ICE",
+    177: "SPELL_ICEBALL",
+    178: "SPELL_FLOOD",
+    179: "SPELL_VAPORFORM",
+    180: "SPELL_NEGATE_COLD",
+    181: "SPELL_WATERFORM",
+    182: "SPELL_EXTINGUISH",
+    183: "SPELL_RAIN",
+    184: "SPELL_REDUCE",
+    185: "SPELL_ENLARGE",
+    186: "SPELL_IDENTIFY",
+    187: "SPELL_BONE_ARMOR",
+    188: "SPELL_SUMMON_CORPSE",
+    189: "SPELL_SHIFT_CORPSE",
+    190: "SPELL_GLORY",
+    191: "SPELL_ILLUSORY_WALL",
+    192: "SPELL_NIGHTMARE",
+    193: "SPELL_DISCORPORATE",
+    194: "SPELL_ISOLATION",
+    195: "SPELL_FAMILIARITY",
+    196: "SPELL_HYSTERIA",
+    197: "SPELL_MESMERIZE",
+    198: "SPELL_SEVERANCE",
+    199: "SPELL_SOUL_REAVER",
+    200: "SPELL_DETONATION",
+    201: "SPELL_FIRE_BREATH",
+    202: "SPELL_GAS_BREATH",
+    203: "SPELL_FROST_BREATH",
+    204: "SPELL_ACID_BREATH",
+    205: "SPELL_LIGHTNING_BREATH",
+    206: "SPELL_LESSER_ENDURANCE",
+    207: "SPELL_ENDURANCE",
+    208: "SPELL_VITALITY",
+    209: "SPELL_GREATER_VITALITY",
+    210: "SPELL_DRAGONS_HEALTH",
+    211: "SPELL_REBUKE_UNDEAD",
+    212: "SPELL_DEGENERATION",
+    213: "SPELL_SOUL_TAP",
+    214: "SPELL_NATURES_GUIDANCE",
+    215: "SPELL_MOONBEAM",
+    216: "SPELL_PHANTASM",
+    217: "SPELL_SIMULACRUM",
+    218: "SPELL_MISDIRECTION",
+    219: "SPELL_CONFUSION",
+    220: "SPELL_PHOSPHORIC_EMBERS",
+    221: "SPELL_RECALL",
+    222: "SPELL_PYRE",
+    223: "SPELL_IRON_MAIDEN",
+    224: "SPELL_FRACTURE",
+    225: "SPELL_FRACTURE_SHRAPNEL",
+    226: "SPELL_BONE_CAGE",
+    227: "SPELL_PYRE_RECOIL",
+    228: "SPELL_WORLD_TELEPORT",
+    229: "SPELL_INN_SYLL",
+    230: "SPELL_INN_TREN",
+    231: "SPELL_INN_TASS",
+    232: "SPELL_INN_BRILL",
+    233: "SPELL_INN_ASCEN",
+    234: "SPELL_SPIRIT_ARROWS",
+    235: "SPELL_PROT_FROM_GOOD",
+    236: "SPELL_ANCESTRAL_VENGEANCE",
+    237: "SPELL_CIRCLE_OF_DEATH",
+    238: "SPELL_BALEFUL_POLYMORPH",
+    239: "SPELL_SPIRIT_RAY",
+    240: "SPELL_VICIOUS_MOCKERY",
+    241: "SPELL_REMOVE_PARALYSIS",
+    242: "SPELL_CLOUD_OF_DAGGERS",
+    243: "SPELL_REVEAL_HIDDEN",
+    244: "SPELL_BLINDING_BEAUTY",
+    245: "SPELL_ACID_FOG",
+    246: "SPELL_WEB",
+    247: "SPELL_EARTH_BLESSING",
+    248: "SPELL_PROTECT_FIRE",
+    249: "SPELL_PROTECT_COLD",
+    250: "SPELL_PROTECT_ACID",
+    251: "SPELL_PROTECT_SHOCK",
+    252: "SPELL_ENHANCE_STR",
+    253: "SPELL_ENHANCE_DEX",
+    254: "SPELL_ENHANCE_CON",
+    255: "SPELL_ENHANCE_INT",
+    256: "SPELL_ENHANCE_WIS",
+    257: "SPELL_ENHANCE_CHA",
+    258: "SPELL_FIRES_OF_SAINT_AUGUSTINE",
+    259: "SPELL_BLIZZARDS_OF_SAINT_AUGUSTINE",
+    260: "SPELL_TREMORS_OF_SAINT_AUGUSTINE",
+    261: "SPELL_TEMPEST_OF_SAINT_AUGUSTINE",
+    262: "SPELL_STATUE",
+    263: "SPELL_WATER_BLAST",
+    264: "SPELL_DISPLACEMENT",
+    265: "SPELL_GREATER_DISPLACEMENT",
+    266: "SPELL_NIMBLE",
+    267: "SPELL_CLARITY",
+    # PLAYER SKILLS - Numbered from MAX_SPELLS+1 to MAX_SKILLS
+    401: "SKILL_BACKSTAB",
+    402: "SKILL_BASH",
+    403: "SKILL_HIDE",
+    404: "SKILL_KICK",
+    405: "SKILL_PICK_LOCK",
+    406: "SKILL_PUNCH",
+    407: "SKILL_RESCUE",
+    408: "SKILL_SNEAK",
+    409: "SKILL_STEAL",
+    410: "SKILL_TRACK",
+    411: "SKILL_DUAL_WIELD",
+    412: "SKILL_DOUBLE_ATTACK",
+    413: "SKILL_BERSERK",
+    414: "SKILL_SPRINGLEAP",
+    415: "SKILL_MOUNT",
+    416: "SKILL_RIDING",
+    417: "SKILL_TAME",
+    418: "SKILL_THROATCUT",
+    419: "SKILL_DOORBASH",
+    420: "SKILL_PARRY",
+    421: "SKILL_DODGE",
+    422: "SKILL_RIPOSTE",
+    423: "SKILL_MEDITATE",
+    424: "SKILL_QUICK_CHANT",
+    425: "SKILL_2BACK",
+    426: "SKILL_CIRCLE",
+    427: "SKILL_BODYSLAM",
+    428: "SKILL_BIND",
+    429: "SKILL_SHAPECHANGE",
+    430: "SKILL_SWITCH",
+    431: "SKILL_DISARM",
+    432: "SKILL_DISARM_FUMBLING_WEAP",
+    433: "SKILL_DISARM_DROPPED_WEAP",
+    434: "SKILL_GUARD",
+    435: "SKILL_BREATHE_LIGHTNING",
+    436: "SKILL_SWEEP",
+    437: "SKILL_ROAR",
+    438: "SKILL_DOUSE",
+    439: "SKILL_AWARE",
+    440: "SKILL_INSTANT_KILL",
+    441: "SKILL_HITALL",
+    442: "SKILL_HUNT",
+    443: "SKILL_BANDAGE",
+    444: "SKILL_FIRST_AID",
+    445: "SKILL_VAMP_TOUCH",
+    446: "SKILL_CHANT",
+    447: "SKILL_SCRIBE",
+    448: "SKILL_SAFEFALL",
+    449: "SKILL_BAREHAND",
+    450: "SKILL_SUMMON_MOUNT",
+    451: "SKILL_KNOW_SPELL",
+    452: "SKILL_SPHERE_GENERIC",
+    453: "SKILL_SPHERE_FIRE",
+    454: "SKILL_SPHERE_WATER",
+    455: "SKILL_SPHERE_EARTH",
+    456: "SKILL_SPHERE_AIR",
+    457: "SKILL_SPHERE_HEALING",
+    458: "SKILL_SPHERE_PROT",
+    459: "SKILL_SPHERE_ENCHANT",
+    460: "SKILL_SPHERE_SUMMON",
+    461: "SKILL_SPHERE_DEATH",
+    462: "SKILL_SPHERE_DIVIN",
+    463: "SKILL_BLUDGEONING",
+    464: "SKILL_PIERCING",
+    465: "SKILL_SLASHING",
+    466: "SKILL_2H_BLUDGEONING",
+    467: "SKILL_2H_PIERCING",
+    468: "SKILL_2H_SLASHING",
+    469: "SKILL_MISSILE",
+    470: "SPELL_ON_FIRE",
+    471: "SKILL_LAY_HANDS",
+    472: "SKILL_EYE_GOUGE",
+    473: "SKILL_RETREAT",
+    474: "SKILL_GROUP_RETREAT",
+    475: "SKILL_CORNER",
+    476: "SKILL_STEALTH",
+    477: "SKILL_SHADOW",
+    478: "SKILL_CONCEAL",
+    479: "SKILL_PECK",
+    480: "SKILL_CLAW",
+    481: "SKILL_ELECTRIFY",
+    482: "SKILL_TANTRUM",
+    483: "SKILL_GROUND_SHAKER",
+    484: "SKILL_BATTLE_HOWL",
+    485: "SKILL_MAUL",
+    486: "SKILL_BREATHE_FIRE",
+    487: "SKILL_BREATHE_FROST",
+    488: "SKILL_BREATHE_ACID",
+    489: "SKILL_BREATHE_GAS",
+    490: "SKILL_PERFORM",
+    491: "SKILL_CARTWHEEL",
+    492: "SKILL_LURE",
+    493: "SKILL_SNEAK_ATTACK",
+    494: "SKILL_REND",
+    495: "SKILL_ROUNDHOUSE",
+    # Bardic songs start at 551 and go to 600
+    551: "SONG_INSPIRATION",
+    552: "SONG_TERROR",
+    553: "SONG_ENRAPTURE",
+    554: "SONG_HEARTHSONG",
+    555: "SONG_CROWN_OF_MADNESS",
+    556: "SONG_SONG_OF_REST",
+    557: "SONG_BALLAD_OF_TEARS",
+    558: "SONG_HEROIC_JOURNEY",
+    559: "SONG_FREEDOM_SONG",
+    560: "SONG_JOYFUL_NOISE",
+    # Monk chants go from 601 to 650
+    601: "CHANT_REGENERATION",
+    602: "CHANT_BATTLE_HYMN",
+    603: "CHANT_WAR_CRY",
+    604: "CHANT_PEACE",
+    605: "CHANT_SHADOWS_SORROW_SONG",
+    606: "CHANT_IVORY_SYMPHONY",
+    607: "CHANT_ARIA_OF_DISSONANCE",
+    608: "CHANT_SONATA_OF_MALAISE",
+    609: "CHANT_APOCALYPTIC_ANTHEM",
+    610: "CHANT_SEED_OF_DESTRUCTION",
+    611: "CHANT_SPIRIT_WOLF",
+    612: "CHANT_SPIRIT_BEAR",
+    613: "CHANT_INTERMINABLE_WRATH",
+    614: "CHANT_HYMN_OF_SAINT_AUGUSTINE",
+    615: "CHANT_FIRES_OF_SAINT_AUGUSTINE",
+    616: "CHANT_BLIZZARDS_OF_SAINT_AUGUSTINE",
+    617: "CHANT_TREMORS_OF_SAINT_AUGUSTINE",
+    618: "CHANT_TEMPEST_OF_SAINT_AUGUSTINE",
+}
+
 
 OBJECT_TYPES = [
     "NOTHING",
@@ -298,7 +701,7 @@ OBJECT_TYPES = [
     "WALL",  # 27,  # /* Blocks passage in one direction */
     "TOUCHSTONE",  # 28,  # /* Item sets homeroom when touched */
     "BOARD",  # 29,  # Bullitin board
-    "INSTRUMENT", # 30, # /* Item is a musical instrument */
+    "INSTRUMENT",  # 30, # /* Item is a musical instrument */
 ]
 
 WEAR_FLAGS = [
@@ -326,70 +729,61 @@ WEAR_FLAGS = [
     "HOVER",  # /*Hovers above you    */
 ]
 
-WEAR_LOCATIONS = [
-    "WEAR_LIGHT",  # 0
-    "WEAR_FINGER_R",  # 1
-    "WEAR_FINGER_L",  # 2
-    "WEAR_NECK_1",  # 3
-    "WEAR_NECK_2",  # 4
-    "WEAR_BODY",  # 5
-    "WEAR_HEAD",  # 6
-    "WEAR_LEGS",  # 7
-    "WEAR_FEET",  # 8
-    "WEAR_HANDS",  # 9
-    "WEAR_ARMS",  # 10
-    "WEAR_SHIELD",  # 11
-    "WEAR_ABOUT",  # 12
-    "WEAR_WAIST",  # 13
-    "WEAR_WRIST_R",  # 14
-    "WEAR_WRIST_L",  # 15
-    "WEAR_WIELD",  # 16
-    "WEAR_WIELD2",  # 17
-    "WEAR_HOLD",  # 18
-    "WEAR_HOLD2",  # 19
-    "WEAR_2HWIELD",  # 20
-    "WEAR_EYES",  # 21
-    "WEAR_FACE",  # 22
-    "WEAR_LEAR",  # 23
-    "WEAR_REAR",  # 24
-    "WEAR_BADGE",  # 25
-    "WEAR_OBELT",  # 26
-    "WEAR_HOVER",  # 27
-]
 
-EXTRA_OBJ_FLAGS = [
-    "GLOW",  # 0,      # /* Item is glowing               */
-    "HUM",  # 1,      # /* Item is humming               */
-    "NORENT",  # 2,      # /* Item cannot be rented         */
-    "NODONATE",  # 3,      # /* Item cannot be donated        */
-    "NOINVIS",  # 4,      # /* Item cannot be made invis     */
-    "INVISIBLE",  # 5,      # /* Item is invisible             */
-    "MAGIC",  # 6,      # /* Item is magical               */
-    "NODROP",  # 7,      # /* Item can't be dropped         */
-    "PERMANENT",  # 8,      # /* Item doesn't decompose        */
-    "ANTI_GOOD",  # 9,      # /* Not usable by good people     */
-    "ANTI_EVIL",  # 10,     # /* Not usable by evil people     */
-    "ANTI_NEUTRAL",  # 11,     # /* Not usable by neutral people  */
-    "ANTI_SORCERER",  # 12,     # /* Not usable by sorcerers       */
-    "ANTI_CLERIC",  # 13,     # /* Not usable by clerics         */
-    "ANTI_ROGUE",  # 14,     # /* Not usable by rogues          */
-    "ANTI_WARRIOR",  # 15,     # /* Not usable by warriors        */
-    "NOSELL",  # 16,     # /* Shopkeepers won't touch it    */
-    "ANTI_PALADIN",  # 17,     # /* Not usable by paladins        */
-    "ANTI_ANTI_PALADIN",  # 18,     # /* Not usable by anti-paladins   */
-    "ANTI_RANGER",  # 19,     # /* Not usable by rangers         */
-    "ANTI_DRUID",  # 20,     # /* Not usable by druids          */
-    "ANTI_SHAMAN",  # 21,     # /* Not usable by shamans         */
-    "ANTI_ASSASSIN",  # 22,     # /* Not usable by assassins       */
-    "ANTI_MERCENARY",  # 23,     # /* Not usable by mercenaries     */
-    "ANTI_NECROMANCER",  # 24,     # /* Not usable by necromancers    */
-    "ANTI_CONJURER",  # 25,     # /* Not usable by conjurers       */
-    "NOBURN",  # 26,     # /* Not destroyed by purge/fire   */
-    "NOLOCATE",  # 27,     # /* Cannot be found by locate obj */
-    "DECOMP",  # 28,     # /* Item is currently decomposint */
-    "FLOAT",  # 29,     # /* Floats in water rooms         */
-    "NOFALL",  # 30,     # /* Doesn't fall - unaffected by gravity */
-    "WAS_DISARMED",  # 31,     # /* Disarmed from mob             */
+OBJECT_FLAGS = [
+    "GLOW",  # 0               /* Item is glowing               */
+    "HUM",  # 1                /* Item is humming               */
+    "NORENT",  # 2             /* Item cannot be rented         */
+    "ANTI_BERSERKER",  # 3     /* Not usable by berserkers      */
+    "NOINVIS",  # 4            /* Item cannot be made invis     */
+    "INVISIBLE",  # 5          /* Item is invisible             */
+    "MAGIC",  # 6              /* Item is magical               */
+    "NODROP",  # 7             /* Item can't be dropped         */
+    "PERMANENT",  # 8          /* Item doesn't decompose        */
+    "ANTI_GOOD",  # 9          /* Not usable by good people     */
+    "ANTI_EVIL",  # 10         /* Not usable by evil people     */
+    "ANTI_NEUTRAL",  # 11      /* Not usable by neutral people  */
+    "ANTI_SORCERER",  # 12     /* Not usable by sorcerers       */
+    "ANTI_CLERIC",  # 13       /* Not usable by clerics         */
+    "ANTI_ROGUE",  # 14        /* Not usable by rogues          */
+    "ANTI_WARRIOR",  # 15      /* Not usable by warriors        */
+    "NOSELL",  # 16            /* Shopkeepers won't touch it    */
+    "ANTI_PALADIN",  # 17      /* Not usable by paladins        */
+    "ANTI_ANTI_PALADIN",  # 18 /* Not usable by anti-paladins   */
+    "ANTI_RANGER",  # 19       /* Not usable by rangers         */
+    "ANTI_DRUID",  # 20        /* Not usable by druids          */
+    "ANTI_SHAMAN",  # 21       /* Not usable by shamans         */
+    "ANTI_ASSASSIN",  # 22     /* Not usable by assassins       */
+    "ANTI_MERCENARY",  # 23    /* Not usable by mercenaries     */
+    "ANTI_NECROMANCER",  # 24  /* Not usable by necromancers    */
+    "ANTI_CONJURER",  # 25     /* Not usable by conjurers       */
+    "NOBURN",  # 26            /* Not destroyed by purge/fire   */
+    "NOLOCATE",  # 27          /* Cannot be found by locate obj */
+    "DECOMP",  # 28            /* Item is currently decomposing */
+    "FLOAT",  # 29             /* Floats in water rooms         */
+    "NOFALL",  # 30            /* Doesn't fall - unaffected by gravity */
+    "WAS_DISARMED",  # 31      /* Disarmed from mob             */
+    "ANTI_MONK",  # 32         /* Not usable by monks           */
+    "ANTI_BARD",  # 33
+    "ELVEN",  # 34   /* Item usable by Elves          */
+    "DWARVEN",  # 35 /* Item usable by Dwarves        */
+    "ANTI_THIEF",  # 36
+    "ANTI_PYROMANCER",  # 37
+    "ANTI_CRYOMANCER",  # 38
+    "ANTI_ILLUSIONIST",  # 39
+    "ANTI_PRIEST",  # 40
+    "ANTI_DIABOLIST",  # 41
+    "ANTI_TINY",  # 42
+    "ANTI_SMALL",  # 43
+    "ANTI_MEDIUM",  # 44
+    "ANTI_LARGE",  # 45
+    "ANTI_HUGE",  # 46
+    "ANTI_GIANT",  # 47
+    "ANTI_GARGANTUAN",  # 48
+    "ANTI_COLOSSAL",  # 49
+    "ANTI_TITANIC",  # 50
+    "ANTI_MOUNTAINOUS",  # 51
+    "ANTI_ARBOREAN",  # 52 /* Not usable by Arboreans */
 ]
 
 AFFECTS = [
@@ -497,7 +891,7 @@ EFFECTS = [
     "VAMP_TOUCH",  # 67
     "RAY_OF_ENFEEB",  # 68
     "ANIMATED",  # 69
-    "EXPOSED", # 70
+    "EXPOSED",  # 70
     "SHADOWING",  # 71
     "CAMOUFLAGED",  # 72
     "SPIRIT_WOLF",  # 73
@@ -508,6 +902,15 @@ EFFECTS = [
     "BLESS",  # 78   /* When blessed,# our barehand attacks hurt ether chars */
     "HEX",  # 79   /* The evil side of blessing,# o hurt ether chars */
     "DETECT_POISON",  # 80   /* Char is sensitive to poison */
+    "SONG_OF_REST",  # 81
+    "DISPLACEMENT",  # 82
+    "GREATER_DISPLACEMENT",  # 83
+    "FIRE_WEAPON",  # 84
+    "ICE_WEAPON",  # 85
+    "POISON_WEAPON",  # 86
+    "ACID_WEAPON",  # 87
+    "SHOCK_WEAPON",  # 88
+    "RADIANT_WEAPON",  # 89
 ]
 
 DAMAGE_TYPES = [
@@ -577,138 +980,205 @@ LIQUIDS = [
     "VODKA",  # 39
     "TEQUILA",  # 40
     "ABSINTHE",  # 41
-    "LIQ_TYPES",  # 42
 ]
-
 
 # Mobile flags: used by char_data.char_specials.act
 MOB_FLAGS = [
-    "MOB_SPEC",  # 0          /* Mob has a callable spec-proc       */
-    "MOB_SENTINEL",  # 1      /* Mob should not move                */
-    "MOB_SCAVENGER",  # 2     /* Mob picks up stuff on the ground   */
-    "MOB_ISNPC",  # 3         /* (R) Automatically set on all Mobs  */
-    "MOB_AWARE",  # 4         /* Mob can't be backstabbed           */
-    "MOB_AGGRESSIVE",  # 5    /* Mob hits players in the room       */
-    "MOB_STAY_ZONE",  # 6     /* Mob shouldn't wander out of zone   */
-    "MOB_WIMPY",  # 7         /* Mob flees if severely injured      */
-    "MOB_AGGR_EVIL",  # 8     /* auto attack evil PC's              */
-    "MOB_AGGR_GOOD",  # 9     /* auto attack good PC's              */
-    "MOB_AGGR_NEUTRAL",  # 10 /* auto attack neutral PC's           */
-    "MOB_MEMORY",  # 11       /* remember attackers if attacked     */
-    "MOB_HELPER",  # 12       /* attack PCs fighting other NPCs     */
-    "MOB_NOCHARM",  # 13      /* Mob can't be charmed               */
-    "MOB_NOSUMMON",  # 14     /* Mob can't be summoned              */
-    "MOB_NOSLEEP",  # 15      /* Mob can't be slept                 */
-    "MOB_NOBASH",  # 16       /* Mob can't be bashed (e.g. trees)   */
-    "MOB_NOBLIND",  # 17      /* Mob can't be blinded               */
-    "MOB_MOUNTABLE",  # 18
-    "MOB_NO_EQ_RESTRICT",  # 19
-    "MOB_FAST_TRACK",  # 20
-    "MOB_SLOW_TRACK",  # 21
-    "MOB_CASTING",  # 22        /* mob casting            (not used)  */
-    "MOB_SUMMONED_MOUNT",  # 23 /* resets CD_SUMMON_MOUNT when extracted */
-    "MOB_AQUATIC",  # 24        /* Mob can't enter non-water rooms    */
-    "MOB_AGGR_EVIL_RACE",  # 25
-    "MOB_AGGR_GOOD_RACE",  # 26
-    "MOB_NOSILENCE",  # 27
-    "MOB_NOVICIOUS",  # 28
-    "MOB_TEACHER",  # 29
-    "MOB_ANIMATED",  # 30        /* mob is animated - die if no anim effect */
-    "MOB_PEACEFUL",  # 31        /* mob can't be attacked.             */
-    "MOB_NOPOISON",  # 32        /* Mob cannot be poisoned.            */
-    "MOB_ILLUSORY",  # 33        /* is an illusion: does no harm, leaves no corpse */
-    "MOB_PLAYER_PHANTASM",  # 34 /* illusion of player; mobs are aggro to */
-    "MOB_NO_CLASS_AI",  # 35     /* Mob does not execute class AI      */
-    "MOB_NOSCRIPT",  # 36        /* Mob does not execute triggers or specprocs */
-    "MOB_PEACEKEEPER",  # 37     /* Attacks mobs with over 1350 align diff. Assists other PEACEKEEPERs */
-    "MOB_PROTECTOR",  # 38       /* Assists players under attack, but not against PEACEKEEPER/PROTECTOR mobs */
-    "MOB_PET",  # 39             /* Mob was purchased or tamed and is now a pet to a player. */
+    "SPEC",  # 0          /* Mob has a callable spec-proc       */
+    "SENTINEL",  # 1      /* Mob should not move                */
+    "SCAVENGER",  # 2     /* Mob picks up stuff on the ground   */
+    "ISNPC",  # 3         /* (R) Automatically set on all Mobs  */
+    "AWARE",  # 4         /* Mob can't be backstabbed           */
+    "AGGRESSIVE",  # 5    /* Mob hits players in the room       */
+    "STAY_ZONE",  # 6     /* Mob shouldn't wander out of zone   */
+    "WIMPY",  # 7         /* Mob flees if severely injured      */
+    "AGGR_EVIL",  # 8     /* auto attack evil PC's              */
+    "AGGR_GOOD",  # 9     /* auto attack good PC's              */
+    "AGGR_NEUTRAL",  # 10 /* auto attack neutral PC's           */
+    "MEMORY",  # 11       /* remember attackers if attacked     */
+    "HELPER",  # 12       /* attack PCs fighting other NPCs     */
+    "NOCHARM",  # 13      /* Mob can't be charmed               */
+    "NOSUMMON",  # 14     /* Mob can't be summoned              */
+    "NOSLEEP",  # 15      /* Mob can't be slept                 */
+    "NOBASH",  # 16       /* Mob can't be bashed (e.g. trees)   */
+    "NOBLIND",  # 17      /* Mob can't be blinded               */
+    "MOUNTABLE",  # 18
+    "NO_EQ_RESTRICT",  # 19
+    "FAST_TRACK",  # 20
+    "SLOW_TRACK",  # 21
+    "CASTING",  # 22        /* mob casting            (not used)  */
+    "SUMMONED_MOUNT",  # 23 /* resets CD_SUMMON_MOUNT when extracted */
+    "AQUATIC",  # 24        /* Mob can't enter non-water rooms    */
+    "AGGR_EVIL_RACE",  # 25
+    "AGGR_GOOD_RACE",  # 26
+    "NOSILENCE",  # 27
+    "NOVICIOUS",  # 28
+    "TEACHER",  # 29
+    "ANIMATED",  # 30        /* mob is animated - die if no anim effect */
+    "PEACEFUL",  # 31        /* mob can't be attacked.             */
+    "NOPOISON",  # 32        /* Mob cannot be poisoned.            */
+    "ILLUSORY",  # 33        /* is an illusion: does no harm, leaves no corpse */
+    "PLAYER_PHANTASM",  # 34 /* illusion of player; mobs are aggro to */
+    "NO_CLASS_AI",  # 35     /* Mob does not execute class AI      */
+    "NOSCRIPT",  # 36        /* Mob does not execute triggers or specprocs */
+    "PEACEKEEPER",  # 37     /* Attacks mobs with over 1350 align diff. Assists other PEACEKEEPERs */
+    "PROTECTOR",  # 38       /* Assists players under attack, but not against PEACEKEEPER/PROTECTOR mobs */
+    "PET",  # 39             /* Mob was purchased or tamed and is now a pet to a player. */
 ]
 
-# /* Effect bits: used in char_data.char_specials.effects * /
-EFFECTS = [
-    "EFF_BLIND",  # 0         /* (R) Char is blind            */
-    "EFF_INVISIBLE",  # 1     /* Char is invisible            */
-    "EFF_DETECT_ALIGN",  # 2  /* Char is sensitive to align   */
-    "EFF_DETECT_INVIS",  # 3  /* Char can see invis chars     */
-    "EFF_DETECT_MAGIC",  # 4  /* Char is sensitive to magic   */
-    "EFF_SENSE_LIFE",  # 5    /* Char can sense hidden life   */
-    "EFF_WATERWALK",  # 6     /* Char can walk on water       */
-    "EFF_SANCTUARY",  # 7     /* Char protected by sanct.     */
-    "EFF_CONFUSION",  # 8     /* Char is confused             */
-    "EFF_CURSE",  # 9         /* Char is cursed               */
-    "EFF_INFRAVISION",  # 10  /* Char can see in dark         */
-    "EFF_POISON",  # 11       /* (R) Char is poisoned         */
-    "EFF_PROTECT_EVIL",  # 12 /* Char protected from evil     */
-    "EFF_PROTECT_GOOD",  # 13 /* Char protected from good     */
-    "EFF_SLEEP",  # 14        /* (R) Char magically asleep    */
-    "EFF_NOTRACK",  # 15      /* Char can't be tracked        */
-    "EFF_TAMED",  # 16        /* Tamed!                       */
-    "EFF_BERSERK",  # 17      /* Char is berserking           */
-    "EFF_SNEAK",  # 18        /* Char is sneaking             */
-    "EFF_STEALTH",  # 19      /* Char is using stealth        */
-    "EFF_FLY",  # 20          /* Char has the ability to fly  */
-    "EFF_CHARM",  # 21        /* Char is charmed              */
-    "EFF_STONE_SKIN",  # 22
-    "EFF_FARSEE",  # 23
-    "EFF_HASTE",  # 24
-    "EFF_BLUR",  # 25
-    "EFF_VITALITY",  # 26
-    "EFF_GLORY",  # 27
-    "EFF_MAJOR_PARALYSIS",  # 28
-    "EFF_FAMILIARITY",  # 29 /* Char is considered friend    */
-    "EFF_MESMERIZED",  # 30  /* Super fasciated by something */
-    "EFF_IMMOBILIZED",  # 31 /* Char cannot move             */
-    "EFF_LIGHT",  # 32
-    "EFF_NIMBLE", # 33
-    "EFF_MINOR_PARALYSIS",  # 34
-    "EFF_HURT_THROAT",  # 35
-    "EFF_FEATHER_FALL",  # 36
-    "EFF_WATERBREATH",  # 37
-    "EFF_SOULSHIELD",  # 38
-    "EFF_SILENCE",  # 39
-    "EFF_PROT_FIRE",  # 40
-    "EFF_PROT_COLD",  # 41
-    "EFF_PROT_AIR",  # 42
-    "EFF_PROT_EARTH",  # 43
-    "EFF_FIRESHIELD",  # 44
-    "EFF_COLDSHIELD",  # 45
-    "EFF_MINOR_GLOBE",  # 46
-    "EFF_MAJOR_GLOBE",  # 47
-    "EFF_HARNESS",  # 48
-    "EFF_ON_FIRE",  # 49
-    "EFF_FEAR",  # 50
-    "EFF_TONGUES",  # 51
-    "EFF_DISEASE",  # 52
-    "EFF_INSANITY",  # 53
-    "EFF_ULTRAVISION",  # 54
-    "EFF_NEGATE_HEAT",  # 55
-    "EFF_NEGATE_COLD",  # 56
-    "EFF_NEGATE_AIR",  # 57
-    "EFF_NEGATE_EARTH",  # 58
-    "EFF_REMOTE_AGGR",  # 59 /* Your aggro action won't remove invis/bless etc. */
-    "EFF_FIREHANDS",  # 60   /* Make Monks do burn damage with their hands */
-    "EFF_ICEHANDS",  # 61    /* Make Monks do cold damage with their hands */
-    "EFF_LIGHTNINGHANDS",  # 62 /* Make Monks do shock damage with their hands */
-    "EFF_ACIDHANDS",  # 63   /* Make Monks do acid damage with their hands */
-    "EFF_AWARE",  # 64
-    "EFF_REDUCE",  # 65
-    "EFF_ENLARGE",  # 66
-    "EFF_VAMP_TOUCH",  # 67
-    "EFF_RAY_OF_ENFEEB",  # 68
-    "EFF_ANIMATED",  # 69
-    "EFF_EXPOSED", # 70
-    "EFF_SHADOWING",  # 71
-    "EFF_CAMOUFLAGED",  # 72
-    "EFF_SPIRIT_WOLF",  # 73
-    "EFF_SPIRIT_BEAR",  # 74
-    "EFF_WRATH",  # 75
-    "EFF_MISDIRECTION",  # 76  /* Capable of performing misdirection */
-    "EFF_MISDIRECTING",  # 77  /* Currently actually moving but misdirecting */
-    "EFF_BLESS",  # 78         /* When blessed, your barehand attacks hurt ether chars */
-    "EFF_HEX",  # 79           /* The evil side of blessing, to hurt ether chars */
-    "EFF_DETECT_POISON",  # 80 /* Char is sensitive to poison */
-    "EFF_SONG_OF_REST",  # 81
-    "EFF_DISPLACEMENT", # 82
-    "EFF_GREATER_DISPLACEMENT", # 83
+ROOM_FLAGS = [
+    "DARK",  # 0         /* Dark                           */
+    "DEATH",  # 1        /* Death trap                     */
+    "NOMOB",  # 2        /* MOBs not allowed               */
+    "INDOORS",  # 3      /* Indoors                        */
+    "PEACEFUL",  # 4     /* Violence not allowed           */
+    "SOUNDPROOF",  # 5   /* Shouts, gossip blocked         */
+    "NOTRACK",  # 6      /* Track won't go through         */
+    "NOMAGIC",  # 7      /* Magic not allowed              */
+    "TUNNEL",  # 8       /* room for only 2 pers           */
+    "PRIVATE",  # 9      /* Can't teleport in              */
+    "GODROOM",  # 10     /* LVL_GOD+ only allowed          */
+    "HOUSE",  # 11       /* (R) Room is a house            */
+    "HOUSE_CRASH",  # 12 /* (R) House needs saving         */
+    "ATRIUM",  # 13      /* (R) The door to a house        */
+    "OLC",  # 14         /* (R) Modifyable/!compress       */
+    "BFS_MARK",  # 15    /* (R) breadth-first srch mrk     */
+    "NOWELL",  # 16      /* No spell portals like moonwell */
+    "NORECALL",  # 17    /* No recalling                   */
+    "UNDERDARK",  # 18   /*                   (not used)   */
+    "NOSUMMON",  # 19    /* Can't summon to or from. Can't banish here. */
+    "NOSHIFT",  # 20     /* no plane shift    (not used)   */
+    "GUILDHALL",  # 21   /*                   (not used)   */
+    "NOSCAN",  # 22      /* Unable to scan to/from rooms   */
+    "ALT_EXIT",  # 23    /* Room's exits are altered       */
+    "MAP",  # 24         /* Room on surface map (unused)   */
+    "ALWAYSLIT",  # 25   /* Makes the room lit             */
+    "ARENA",  # 26       /* (safe) PK allowed in room      */
+    "OBSERVATORY",  # 27 /* see into adjacent ARENA rooms  */
+]
+
+EXIT_FLAGS = [
+    "EX_ISDOOR",  # 0    /* Exit is a door             */
+    "EX_CLOSED",  # 1    /* The door is closed         */
+    "EX_LOCKED",  # 2    /* The door is locked         */
+    "EX_PICKPROOF",  # 3 /* Lock can't be picked       */
+    "EX_HIDDEN",  # 4    /* exit is hidden             */
+    "EX_DESCRIPT",  # 5  /* Just an extra description  */
+]
+
+# Shop Related
+SHOP_FLAGS = [
+    "WILL_START_FIGHT",  # 1
+    "WILL_BANK_MONEY",  # 2
+]
+
+SHOP_TRADES_WITH = [
+    "TRADE_NOGOOD",  # 1
+    "TRADE_NOEVIL",  # 2
+    "TRADE_NONEUTRAL",  # 3
+    "TRADE_NOMAGIC_USER",  # 4
+    "TRADE_NOCLERIC",  # 5
+    "TRADE_NOTHIEF",  # 6
+    "TRADE_NOWARRIOR",  # 7
+]
+
+TRIGGER_TYPES = [
+    "Global",  # 0 - check even if zone empty
+    "Random",  # 1 - checked randomly
+    "Command",  # 2 - character types a command
+    "Speech",  # 3 - a char says a word/phrase
+    "Act",  # 4 - word or phrase sent to act
+    "Death",  # 5 - character dies
+    "Greet",  # 6 - something enters room seen
+    "GreetAll",  # 7 - anything enters room
+    "Entry",  # 8 - the mob enters a room
+    "Receive",  # 9 - character is given obj
+    "Fight",  # 10 - each pulse while fighting
+    "HitPercentage",  # 11 - fighting and below some hp
+    "Bribe",  # 12 - coins are given to mob
+    "SpeechTo",  # 13 - ask/whisper/tell
+    "Load",  # 14 - the mob is loaded
+    "Cast",  # 15 - mob is target of cast
+    "Leave",  # 16 - someone leaves room seen
+    "Door",  # 17 - door manipulated in room
+    "Look",  # 18 - the mob is looked at
+    "Time",  # 19 - the mud hour changes
+]
+
+PLAYER_FLAGS = [
+    "PLR_KILLER",  # 0     /* a player-killer                           */
+    "PLR_THIEF",  # 1      /* a player-thief                            */
+    "PLR_FROZEN",  # 2     /* is frozen                                 */
+    "PLR_DONTSET",  # 3    /* Don't EVER set (ISNPC bit)                */
+    "PLR_WRITING",  # 4    /* writing (board/mail/olc)                  */
+    "PLR_MAILING",  # 5    /* is writing mail                           */
+    "PLR_AUTOSAVE",  # 6   /* needs to be autosaved                     */
+    "PLR_SITEOK",  # 7     /* has been site-cleared                     */
+    "PLR_NOSHOUT",  # 8    /* not allowed to shout/goss                 */
+    "PLR_NOTITLE",  # 9    /* not allowed to set title       (not used) */
+    "PLR_DELETED",  # 10   /* deleted - space reusable       (not used) */
+    "PLR_LOADROOM",  # 11  /* uses nonstandard loadroom      (not used) */
+    "PLR_NOWIZLIST",  # 12 /* shouldn't be on wizlist        (not used) */
+    "PLR_NODELETE",  # 13  /* shouldn't be deleted           (may be used outside the server) */
+    "PLR_INVSTART",  # 14  /* should enter game wizinvis     (not used) */
+    "PLR_CRYO",  # 15      /* is cryo-saved (purge prog)     (not used) */
+    "PLR_MEDITATE",  # 16  /* meditating - improves spell memorization  */
+    "PLR_CASTING",  # 17   /* currently casting a spell      (not used) */
+    "PLR_BOUND",  # 18     /* tied up                        (not used) */
+    "PLR_SCRIBE",  # 19    /* scribing                       (not used) */
+    "PLR_TEACHING",  # 20  /* teaching a skill/spell         (not used) */
+    "PLR_NAPPROVE",  # 21  /* name not approved yet                     */
+    "PLR_NEWNAME",  # 22   /* needs to choose a new name                */
+    "PLR_REMOVING",  # 23  /* player is being removed and doesn't need emergency save */
+    "PLR_SAVING",  # 24    /* player is being saved to file and effect changes are not relevant */
+    "PLR_GOTSTARS",  # 25  /* player has achieved ** already            */
+    "NUM_PLR_FLAGS",  # 26
+]
+
+PREFERENCE_FLAGS = [
+    "PRF_BRIEF",  # 0       /* Room descs won't normally be shown */
+    "PRF_COMPACT",  # 1     /* No extra CRLF pair before prompts  */
+    "PRF_DEAF",  # 2        /* Can't hear shouts                  */
+    "PRF_NOTELL",  # 3      /* Can't receive tells                */
+    "PRF_OLCCOMM",  # 4     /* Can hear communication in OLC      */
+    "PRF_LINENUMS",  # 5    /* Autodisplay linenums in stringedit */
+    "PRF_AUTOLOOT",  # 6    /* Auto loot corpses when you kill    */
+    "PRF_AUTOEXIT",  # 7    /* Display exits in a room            */
+    "PRF_NOHASSLE",  # 8    /* Aggr mobs won't attack             */
+    "PRF_QUEST",  # 9       /* On quest                           */
+    "PRF_SUMMONABLE",  # 10 /* Can be summoned                    */
+    "PRF_NOREPEAT",  # 11   /* No repetition of comm commands     */
+    "PRF_HOLYLIGHT",  # 12  /* Can see in dark                    */
+    "PRF_COLOR_1",  # 13    /* Color (low bit)                    */
+    "PRF_COLOR_2",  # 14    /* Color (high bit)                   */
+    "PRF_NOWIZ",  # 15      /* Can't hear wizline                 */
+    "PRF_LOG1",  # 16       /* On-line System Log (low bit)       */
+    "PRF_LOG2",  # 17       /* On-line System Log (high bit)      */
+    "PRF_AFK",  # 18        /* away from keyboard                 */
+    "PRF_NOGOSS",  # 19     /* Can't hear gossip channel          */
+    "PRF_NOHINTS",  # 20    /* No hints when mistyping commands   */
+    "PRF_ROOMFLAGS",  # 21  /* Can see room flags (ROOM_x)        */
+    "PRF_NOPETI",  # 22     /* Can't hear petitions               */
+    "PRF_AUTOSPLIT",  # 23  /* Auto split coins from corpses      */
+    "PRF_NOCLANCOMM",  # 24 /* Can't hear clan communication      */
+    "PRF_ANON",  # 25       /* Anon flag                          */
+    "PRF_SHOWVNUMS",  # 26  /* Show Virtual Numbers               */
+    "PRF_NICEAREA",  # 27
+    "PRF_VICIOUS",  # 28
+    "PRF_PASSIVE",  # 29 /* char will not engage upon being cast on */
+    "PRF_ROOMVIS",  # 30
+    "PRF_NOFOLLOW",  # 31  /* Cannot follow / well to this player*/
+    "PRF_AUTOTREAS",  # 32 /* Automatically loots treasure from corpses */
+    "PRF_EXPAND_OBJS",  # 33
+    "PRF_EXPAND_MOBS",  # 34
+    "PRF_SACRIFICIAL",  # 35 /* Sacrificial spells autotarget self */
+    "PRF_PETASSIST",  # 36   /* Should your pet assist you as you fight */
+    "NUM_PRF_FLAGS",  # 37
+]
+
+PRIVILEGE_FLAGS = [
+    "PRV_CLAN_ADMIN",  # 0  /* clan administrator */
+    "PRV_TITLE",  # 1       /* can change own title */
+    "PRV_ANON_TOGGLE",  # 2 /* can toggle anon */
+    "PRV_AUTO_GAIN",  # 3   /* don't need to level gain */
 ]
