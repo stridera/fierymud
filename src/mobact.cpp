@@ -87,11 +87,12 @@ void mobile_activity(void) {
             continue;
 
         /* Don't execute procs when someone is switched in. */
-        if (POSSESSED (ch))
+        if (POSSESSED(ch))
             continue;
-            
+
         /* If lower than default position, get up. */
-        if ((GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) && !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
+        if ((GET_MOB_WAIT(ch) <= 0 && GET_DEFAULT_POS(ch) > GET_POS(ch) && GET_STANCE(ch) >= STANCE_RESTING) &&
+            !EVENT_FLAGGED(ch, EVENT_REGEN_SPELLSLOT)) {
             switch (GET_DEFAULT_POS(ch)) {
             case POS_PRONE:
                 do_recline(ch, "", 0, 0);
@@ -178,7 +179,7 @@ void mobile_activity(void) {
                 /*
                  * Attempt to hide/sneak for those mobs who can do it.
                  */
-                if (GET_SKILL(ch, SKILL_HIDE) && GET_HIDDENNESS(ch) == 0)
+                if (GET_SKILL(ch, SKILL_HIDE) && GET_CONCEALMENT(ch) == 0)
                     do_hide(ch, "", 0, 0);
 
                 /* Attempt to steal something from a player in the room. */
@@ -279,7 +280,7 @@ void mobile_spec_activity(void) {
 
         /* Look for people I'd like to attack */
         if (!ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL) && !EFF_FLAGGED(ch, EFF_MESMERIZED) &&
-           (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
+            (!EFF_FLAGGED(ch, EFF_CHARM) || (ch->master && ch->master->in_room != ch->in_room))) {
             if ((vict = find_aggr_target(ch))) {
                 mob_attack(ch, vict);
                 continue;
@@ -650,7 +651,7 @@ bool mob_memory_check(CharData *ch) {
 
 void memory_attack_announce(CharData *ch, CharData *vict) {
     /* No announcement if the mob is trying to be sneaky. */
-    if (EFF_FLAGGED(ch, EFF_SNEAK) || GET_HIDDENNESS(ch) > 0)
+    if (EFF_FLAGGED(ch, EFF_SNEAK) || GET_CONCEALMENT(ch) > 0)
         return;
 
     /* No announcement if the room is peaceful or mesmerized. (Because there's no attack.) */

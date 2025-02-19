@@ -255,7 +255,7 @@ int value_effect(int location, int modifier) {
     case APPLY_HIT_REGEN:
         return 2 * modifier;
     case APPLY_PERCEPTION:
-    case APPLY_HIDDENNESS:
+    case APPLY_CONCEALMENT:
         return modifier / 2;
     case APPLY_NONE:
     case APPLY_CLASS:

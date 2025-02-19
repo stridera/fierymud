@@ -65,17 +65,48 @@ const char *player_bits[NUM_PLR_FLAGS + 1] = {"KILLER",     "THIEF",
                                               "\n"};
 
 /* MOB_x */
-const char *action_bits[NUM_MOB_FLAGS + 1] = {"SPEC",           "SENTINEL",       "SCAVENGER",       "ISNPC",
-                                              "AWARE",          "AGGR",           "STAY_ZONE",       "WIMPY",
-                                              "AGGR_EVIL",      "AGGR_GOOD",      "AGGR_NEUTRAL",    "MEMORY",
-                                              "HELPER",         "!CHARM",         "!SUMMN",          "!SLEEP",
-                                              "!BASH",          "!BLIND",         "MOUNTABLE",       "NO_EQ_RESTRICT",
-                                              "FAST_TRACK",     "SLOW_TRACK",     "CASTINGDONTUSE",  "SUMMONED_MOUNT",
-                                              "AQUATIC",        "AGGR_EVIL_RACE", "AGGR_GOOD_RACE",  "!SILENCE",
-                                              "NOVICIOUS",      "TEACHER",        "ANIMATED",        "PEACEFUL",
-                                              "!POISON",        "ILLUSORY",       "PLAYER_PHANTASM", "!CLASS_AI",
-                                              "!SCRIPT",        "PEACEKEEPER",    "PROTECTOR",       "PET",
-                                              "MEDITATEDONTUSE," "\n"};
+const char *action_bits[NUM_MOB_FLAGS + 1] = {"SPEC",
+                                              "SENTINEL",
+                                              "SCAVENGER",
+                                              "ISNPC",
+                                              "AWARE",
+                                              "AGGR",
+                                              "STAY_ZONE",
+                                              "WIMPY",
+                                              "AGGR_EVIL",
+                                              "AGGR_GOOD",
+                                              "AGGR_NEUTRAL",
+                                              "MEMORY",
+                                              "HELPER",
+                                              "!CHARM",
+                                              "!SUMMN",
+                                              "!SLEEP",
+                                              "!BASH",
+                                              "!BLIND",
+                                              "MOUNTABLE",
+                                              "NO_EQ_RESTRICT",
+                                              "FAST_TRACK",
+                                              "SLOW_TRACK",
+                                              "CASTINGDONTUSE",
+                                              "SUMMONED_MOUNT",
+                                              "AQUATIC",
+                                              "AGGR_EVIL_RACE",
+                                              "AGGR_GOOD_RACE",
+                                              "!SILENCE",
+                                              "NOVICIOUS",
+                                              "TEACHER",
+                                              "ANIMATED",
+                                              "PEACEFUL",
+                                              "!POISON",
+                                              "ILLUSORY",
+                                              "PLAYER_PHANTASM",
+                                              "!CLASS_AI",
+                                              "!SCRIPT",
+                                              "PEACEKEEPER",
+                                              "PROTECTOR",
+                                              "PET",
+                                              "MEDITATEDONTUSE,"
+                                              "\n"};
 
 /* PRF_x */
 const char *preference_bits[NUM_PRF_FLAGS + 1] = {
@@ -202,10 +233,12 @@ const char *extra_bits[NUM_ITEM_FLAGS + 1] = {
 
 /* APPLY_x */
 const char *apply_types[NUM_APPLY_TYPES + 1] = {
-    "NONE",         "STR",   "DEX",         "INT",         "WIS",         "CON",        "CHA",          "CLASS",
-    "LEVEL",        "AGE",   "CHAR_WEIGHT", "CHAR_HEIGHT", "MAXMANA",     "HITPOINTS",  "MAXMOVE",      "GOLD",
-    "EXP",          "ARMOR", "HITROLL",     "DAMROLL",     "SAVING_PARA", "SAVING_ROD", "SAVING_PETRI", "SAVING_BREATH",
-    "SAVING_SPELL", "SIZE",  "HIT_REGEN",   "FOCUS",       "PERCEPTION",  "HIDDENNESS", "COMPOSITION",  "\n"};
+    "NONE",         "STR",       "DEX",         "INT",        "WIS",          "CON",
+    "CHA",          "CLASS",     "LEVEL",       "AGE",        "CHAR_WEIGHT",  "CHAR_HEIGHT",
+    "MAXMANA",      "HITPOINTS", "MAXMOVE",     "GOLD",       "EXP",          "ARMOR",
+    "HITROLL",      "DAMROLL",   "SAVING_PARA", "SAVING_ROD", "SAVING_PETRI", "SAVING_BREATH",
+    "SAVING_SPELL", "SIZE",      "HIT_REGEN",   "FOCUS",      "PERCEPTION",   "concealment",
+    "COMPOSITION",  "\n"};
 
 /* APPLY_x */
 const char *apply_abbrevs[NUM_APPLY_TYPES + 1] = {"none", "str",  "dex",   "int",    "wis",  "con",  "cha", "cls",
@@ -278,7 +311,6 @@ const char *default_prompts[][2] = {{"Basic", "&0%hhp %vmv>&0 "},
 /* tables for attributes.  This was done for the conversion */
 /* to the 100 base system.  These functions closely approximate */
 /* the older 18 base hard coded arrays. -gurlaek 6/24/1999 */
-
 
 void load_stat_bonus(void) {
     int x;

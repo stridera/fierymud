@@ -1243,7 +1243,7 @@ void send_gmcp_prompt(DescriptorData *d) {
         {"exp_percent", xp_percentage(REAL_CHAR(ch))},
         {"alignment", GET_ALIGNMENT(ch)},
         {"position", position},
-        {"hiddenness", GET_HIDDENNESS(ch)},
+        {"concealment", GET_CONCEALMENT(ch)},
         {"level", GET_LEVEL(ch)},
         {"Vitals",
          {{"hp", GET_HIT(ch)}, {"max_hp", GET_MAX_HIT(ch)}, {"mv", GET_MOVE(ch)}, {"max_mv", GET_MAX_MOVE(ch)}}},
@@ -1451,7 +1451,7 @@ char *prompt_str(CharData *ch) {
                 break;
             case 'i':
             case 'I':
-                cur += sprintf(cur, "%ld", GET_HIDDENNESS(ch));
+                cur += sprintf(cur, "%ld", GET_CONCEALMENT(ch));
                 break;
             case 'a':
             case 'A':

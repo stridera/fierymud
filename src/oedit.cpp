@@ -467,8 +467,8 @@ void oedit_save_to_disk(int zone_num) {
                             "%d %d\n",
                             obj->applies[counter2].location, obj->applies[counter2].modifier);
 
-            if (obj->obj_flags.hiddenness)
-                fprintf(fp, "H\n%ld\n", obj->obj_flags.hiddenness);
+            if (obj->obj_flags.concealment)
+                fprintf(fp, "H\n%ld\n", obj->obj_flags.concealment);
 
             if (GET_OBJ_FLAGS(obj)[1])
                 fprintf(fp, "X\n%ld\n", GET_OBJ_FLAGS(obj)[1]);
@@ -1215,10 +1215,10 @@ void oedit_disp_menu(DescriptorData *d) {
             "%s9%s) Cost        : %s%d\n"
             "%sA%s) Timer       : %s%d\n"
             "%sB%s) Level       : %s%d\n"
-            "%sC%s) Hiddenness  : %s%ld\n"
+            "%sC%s) concealment  : %s%ld\n"
             "%sD%s) Values      : %s%d %d %d %d %d %d %d%s\n",
             grn, nrm, cyn, buf1, grn, nrm, cyn, GET_OBJ_WEIGHT(obj), grn, nrm, cyn, GET_OBJ_COST(obj), grn, nrm, cyn,
-            GET_OBJ_TIMER(obj), grn, nrm, cyn, GET_OBJ_LEVEL(obj), grn, nrm, cyn, GET_OBJ_HIDDENNESS(obj), grn, nrm,
+            GET_OBJ_TIMER(obj), grn, nrm, cyn, GET_OBJ_LEVEL(obj), grn, nrm, cyn, GET_OBJ_CONCEALMENT(obj), grn, nrm,
             cyn, GET_OBJ_VAL(obj, 0), GET_OBJ_VAL(obj, 1), GET_OBJ_VAL(obj, 2), GET_OBJ_VAL(obj, 3),
             GET_OBJ_VAL(obj, 4), GET_OBJ_VAL(obj, 5), GET_OBJ_VAL(obj, 6), nrm);
 
@@ -1341,8 +1341,8 @@ void oedit_parse(DescriptorData *d, char *arg) {
             break;
         case 'c':
         case 'C':
-            char_printf(d->character, "Enter hiddenness:\n");
-            OLC_MODE(d) = OEDIT_HIDDENNESS;
+            char_printf(d->character, "Enter concealment:\n");
+            OLC_MODE(d) = OEDIT_CONCEALMENT;
             break;
         case 'd':
         case 'D':
@@ -1480,8 +1480,8 @@ void oedit_parse(DescriptorData *d, char *arg) {
         GET_OBJ_LEVEL(OLC_OBJ(d)) = number;
         break;
 
-    case OEDIT_HIDDENNESS:
-        GET_OBJ_HIDDENNESS(OLC_OBJ(d)) = std::clamp(number, 0, 1000);
+    case OEDIT_CONCEALMENT:
+        GET_OBJ_CONCEALMENT(OLC_OBJ(d)) = std::clamp(number, 0, 1000);
         break;
 
     case OEDIT_VALUE_1:

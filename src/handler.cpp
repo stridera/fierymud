@@ -118,7 +118,7 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
         if (IS_FLAGGED(bitv, EFF_LIGHT) && ch->in_room != NOWHERE && EFF_FLAGGED(ch, EFF_LIGHT))
             world[ch->in_room].light--;
         if (IS_FLAGGED(bitv, EFF_CAMOUFLAGED))
-            GET_HIDDENNESS(ch) = 0;
+            GET_CONCEALMENT(ch) = 0;
 
         /* Remove effect flags. */
         for (i = 0; i < NUM_EFF_FLAGS; ++i)
@@ -228,8 +228,8 @@ void effect_modify(CharData *ch, byte loc, sh_int mod, flagvector bitv[], bool a
     case APPLY_PERCEPTION:
         GET_PERCEPTION(ch) += mod;
         break;
-    case APPLY_HIDDENNESS:
-        GET_HIDDENNESS(ch) = std::clamp(GET_HIDDENNESS(ch) + mod, 0l, 1000l);
+    case APPLY_CONCEALMENT:
+        GET_CONCEALMENT(ch) = std::clamp(GET_CONCEALMENT(ch) + mod, 0l, 1000l);
         break;
     case APPLY_COMPOSITION:
         if (mod >= 0)

@@ -158,7 +158,7 @@ void observe_char_leaving(CharData *observer, CharData *mover, CharData *mount, 
     } else if (!IS_HIDDEN(mover) && !OUTDOOR_SNEAK(mover) && !EFF_FLAGGED(mover, EFF_SNEAK))
         act(msg, false, mover, 0, observer, TO_VICT);
     else if (GET_LEVEL(observer) >= LVL_IMMORT ? GET_LEVEL(observer) >= GET_LEVEL(mover)
-                                               : GET_PERCEPTION(observer) >= GET_HIDDENNESS(mover))
+                                               : GET_PERCEPTION(observer) >= GET_CONCEALMENT(mover))
         act(msg, false, mover, 0, observer, TO_VICT);
     else
         /* Try sensing because mover is sneaking */
@@ -201,7 +201,7 @@ void observe_char_arriving(CharData *observer, CharData *mover, CharData *mount,
         /* No invisibility, darkness, or sneaking - mover is visible */
         act(stdmsg, false, mover, 0, observer, TO_VICT);
     else if (PRF_FLAGGED(observer, PRF_HOLYLIGHT) ? GET_LEVEL(observer) >= GET_LEVEL(mover)
-                                                  : GET_PERCEPTION(observer) >= GET_HIDDENNESS(mover))
+                                                  : GET_PERCEPTION(observer) >= GET_CONCEALMENT(mover))
         act(stdmsg, false, mover, 0, observer, TO_VICT);
     /* Not visible by any standard means - try to sense life */
     else
@@ -498,7 +498,7 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     if (EFF_FLAGGED(ch, EFF_CAMOUFLAGED) && INDOORS(CH_NDEST(actor, dir))) {
         char_printf(ch, "You reveal yourself as you step indoors.\n");
         effect_from_char(ch, SPELL_NATURES_EMBRACE);
-        GET_HIDDENNESS(ch) = 0;
+        GET_CONCEALMENT(ch) = 0;
     }
 
     alter_move(motivator, need_movement);
@@ -514,16 +514,16 @@ bool do_simple_move(CharData *ch, int dir, int need_specials_check) {
     if (IS_HIDDEN(motivator) || EFF_FLAGGED(motivator, EFF_SNEAK)) {
         if (EFF_FLAGGED(motivator, EFF_SNEAK)) {
             if (!IS_NPC(motivator))
-                GET_HIDDENNESS(motivator) = std::max(0l, GET_HIDDENNESS(motivator) - random_number(2, 5));
+                GET_CONCEALMENT(motivator) = std::max(0l, GET_CONCEALMENT(motivator) - random_number(2, 5));
         }
         /* Camouflage makes you lose minimal hide points per move */
         else if (EFF_FLAGGED(motivator, EFF_CAMOUFLAGED))
-            GET_HIDDENNESS(motivator) = std::max(0l, GET_HIDDENNESS(motivator) - random_number(3, 7));
-        /* Chance for hiddenness to decrease with a bonus for dex apply
+            GET_CONCEALMENT(motivator) = std::max(0l, GET_CONCEALMENT(motivator) - random_number(3, 7));
+        /* Chance for concealment to decrease with a bonus for dex apply
          * and for already sneaking. */
         else if (random_number(1, 101) >
                  GET_SKILL(motivator, SKILL_SNEAK) + stat_bonus[GET_DEX(motivator)].rogue_skills + 15)
-            GET_HIDDENNESS(motivator) = std::max(0l, GET_HIDDENNESS(motivator) - GET_LEVEL(motivator) / 2);
+            GET_CONCEALMENT(motivator) = std::max(0l, GET_CONCEALMENT(motivator) - GET_LEVEL(motivator) / 2);
         if (!IS_HIDDEN(motivator))
             effect_from_char(motivator, SPELL_NATURES_EMBRACE);
         if (GET_SKILL(motivator, SKILL_SNEAK))
@@ -1734,7 +1734,7 @@ ACMD(do_drag) {
             act("&3Your meditation is interrupted as %N grabs you.&0", false, ch, 0, 0, TO_CHAR);
             if (IS_NPC(ch))
                 REMOVE_FLAG(MOB_FLAGS(ch), MOB_MEDITATE);
-            else 
+            else
                 REMOVE_FLAG(PLR_FLAGS(ch), PLR_MEDITATE);
         }
 

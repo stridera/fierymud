@@ -29,10 +29,7 @@
 #include "sysdep.hpp"
 #include "utils.hpp"
 
-#define NULL_GCONTEXT                                                                                                  \
-    {                                                                                                                  \
-        nullptr, nullptr, { 0, 0, 0, 0 }                                                                               \
-    }
+#define NULL_GCONTEXT {nullptr, nullptr, {0, 0, 0, 0}}
 #define INIT_GCONTEXT(ctx, ch) (ctx).c##h = (ch);
 
 static const size_t MAX_POOL_SIZE = 25;
@@ -226,8 +223,8 @@ bool can_take_obj(CharData *ch, ObjData *obj) {
 }
 
 static void unhide_object(ObjData *obj) {
-    if (GET_OBJ_HIDDENNESS(obj)) {
-        GET_OBJ_HIDDENNESS(obj) = 0;
+    if (GET_OBJ_CONCEALMENT(obj)) {
+        GET_OBJ_CONCEALMENT(obj) = 0;
         if (!OBJ_FLAGGED(obj, ITEM_WAS_DISARMED))
             obj->last_to_hold = nullptr;
     }

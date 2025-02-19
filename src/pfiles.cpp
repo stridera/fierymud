@@ -21,7 +21,6 @@
 #include "dg_scripts.hpp"
 #include "handler.hpp"
 #include "interpreter.hpp"
-#include "legacy_structs.hpp"
 #include "logging.hpp"
 #include "math.hpp"
 #include "modify.hpp"
@@ -43,7 +42,6 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location);
 int delete_objects_file(char *name);
 static void read_objects(CharData *ch, FILE *fl);
 static void list_objects(ObjData *obj, CharData *ch, int indent, int last_indent, const char *first_indent);
-static bool load_binary_objects(CharData *ch);
 
 void save_player_objects(CharData *ch) {
     FILE *fl;
@@ -190,11 +188,11 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
 
     /* Strings */
     if (obj->name)
-        fprintf(fl, "name: %s\n", filter_chars(buf, obj->name, "\n"));
+        fprintf(fl, "name: %s\n", filter_chars(buf, obj->name, "\r\n"));
     if (obj->short_description)
-        fprintf(fl, "shortdesc: %s\n", filter_chars(buf, obj->short_description, "\n"));
+        fprintf(fl, "shortdesc: %s\n", filter_chars(buf, obj->short_description, "\r\n"));
     if (obj->description)
-        fprintf(fl, "desc: %s\n", filter_chars(buf, obj->description, "\n"));
+        fprintf(fl, "desc: %s\n", filter_chars(buf, obj->description, "\r\n"));
     if (obj->action_description)
         fprintf(fl, "adesc:\n%s~\n", filter_chars(buf, obj->action_description, "\r~"));
 
@@ -209,7 +207,7 @@ static bool write_object_record(ObjData *obj, FILE *fl, int location) {
     write_ascii_flags(fl, GET_OBJ_EFF_FLAGS(obj), NUM_EFF_FLAGS);
     fprintf(fl, "\n");
     fprintf(fl, "wear: %ld\n", GET_OBJ_WEAR(obj));
-    fprintf(fl, "hiddenness: %ld\n", GET_OBJ_HIDDENNESS(obj));
+    fprintf(fl, "concealment: %ld\n", GET_OBJ_CONCEALMENT(obj));
 
     for (i = 0; i < MAX_OBJ_APPLIES && !obj->applies[i].location; ++i)
         ;
@@ -286,7 +284,7 @@ void show_rent(CharData *ch, char *argument) {
     }
 
     if (!is_integer(buf)) {
-        char_printf(ch, "This file is in the obsolete binary format.  Please use 'objupdate' to fix it.\n");
+        char_printf(ch, "Invalid (possibly old) file type.  Unable to read.\n");
         return;
     }
 
@@ -609,7 +607,7 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
 
     if (num > -1) {
         *objp = obj = read_object(r_num, REAL);
-        GET_OBJ_HIDDENNESS(obj) = 0; /* If it's in your inventory, it's visible. */
+        GET_OBJ_CONCEALMENT(obj) = 0; /* If it's in your inventory, it's visible. */
 
         while (get_line(fl, line)) {
             /* Only thing we care about is location, lets throw away the rest.*/
@@ -715,8 +713,8 @@ bool build_object(FILE *fl, ObjData **objp, int *location) {
                     goto bad_tag;
                 break;
             case 'H':
-                if (!strcasecmp(tag, "hiddenness"))
-                    GET_OBJ_HIDDENNESS(obj) = std::clamp(num, 0, 1000);
+                if (!strcasecmp(tag, "concealment"))
+                    GET_OBJ_CONCEALMENT(obj) = std::clamp(num, 0, 1000);
                 else
                     goto bad_tag;
                 break;
@@ -891,22 +889,17 @@ bool load_objects(CharData *ch) {
 
     if (!(get_line(fl, line) && is_integer(line))) {
         /* Object file may be in the 'old' format.  Attempt to load thusly. */
-        sprintf(buf, "Invalid rent code for %s: attempting to load via legacy code...", GET_NAME(ch));
+        sprintf(buf, "Invalid rent code for %s.", GET_NAME(ch));
         log("%s", buf);
         fclose(fl);
-        if (load_binary_objects(ch)) {
-            log("   Success!");
-            return true;
-        } else {
-            log("   Failed!");
-            char_printf(ch,
-                        "\n@W********************* NOTICE *********************\n"
-                        "There was a problem (error 02) loading your objects from disk.\n"
-                        "Contact a God for assistance.@0\n");
-            log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)),
-                "{} entering game with no equipment. (error 02)", GET_NAME(ch));
-            return false;
-        }
+        log("   Failed!");
+        char_printf(ch,
+                    "\n@W********************* NOTICE *********************\n"
+                    "There was a problem (error 02) loading your objects from disk.\n"
+                    "Contact a God for assistance.@0\n");
+        log(LogSeverity::Stat, std::max(LVL_IMMORT, GET_INVIS_LEV(ch)),
+            "{} entering game with no equipment. (error 02)", GET_NAME(ch));
+        return false;
     }
 
     read_objects(ch, fl);
@@ -1129,226 +1122,6 @@ void load_pets(CharData *ch) {
     }
 }
 
-static ObjData *restore_binary_object(obj_file_elem *store, int *locate) {
-    ObjData *obj;
-    int j = 0, rnum;
-    char *list_parse, *spell_parse, *list;
-    SpellBookList *entry;
-
-    if ((rnum = real_object(store->item_number)) < 0)
-        return nullptr;
-
-    obj = read_object(store->item_number, VIRTUAL);
-    *locate = (int)store->locate;
-    GET_OBJ_VAL(obj, 0) = store->value[0];
-    GET_OBJ_VAL(obj, 1) = store->value[1];
-    GET_OBJ_VAL(obj, 2) = store->value[2];
-    GET_OBJ_VAL(obj, 3) = store->value[3];
-    GET_OBJ_FLAGS(obj)[0] = store->extra_flags;
-    GET_OBJ_WEIGHT(obj) = store->weight;
-    GET_OBJ_EFFECTIVE_WEIGHT(obj) = store->weight;
-    GET_OBJ_TIMER(obj) = store->timer;
-    GET_OBJ_HIDDENNESS(obj) = store->hiddenness;
-
-    /* Use the prototype's values for these, since they were usually saved in a
-     * corrupted state in binary files. */
-    GET_OBJ_EFF_FLAGS(obj)[0] = obj_proto[rnum].obj_flags.effect_flags[0];
-    GET_OBJ_EFF_FLAGS(obj)[1] = obj_proto[rnum].obj_flags.effect_flags[1];
-    GET_OBJ_EFF_FLAGS(obj)[2] = obj_proto[rnum].obj_flags.effect_flags[2];
-
-    /* Handling spellbooks
-     *
-     * The spells written in it have been stored as a string, which
-     * must be parsed so that the spell list can be restored.
-     */
-    if (GET_OBJ_TYPE(obj) == ITEM_SPELLBOOK) {
-        GET_OBJ_VAL(obj, VAL_SPELLBOOK_PAGES) = LEGACY_MAX_SPELLBOOK_PAGES;
-        if (store->spells_in_book[0]) {
-            list = store->spells_in_book;
-            CREATE(obj->spell_book, SpellBookList, 1);
-            entry = obj->spell_book;
-            while ((list_parse = strsep(&list, ",")) && strlen(store->spells_in_book)) {
-                if (list_parse && strlen(list_parse)) {
-                    if (j > 0) {
-                        CREATE(entry->next, SpellBookList, 1);
-                        entry = entry->next;
-                    }
-
-                    spell_parse = strsep(&list_parse, "_");
-                    if (!spell_parse || !*spell_parse) {
-                        /* Corrupt spell list - just put magic missile */
-                        entry->spell = SPELL_MAGIC_MISSILE;
-                        entry->length = 1;
-                        log("SYSERR: restore_binary_object() found corrupt spellbook list '{}'", store->spells_in_book);
-                    } else {
-                        entry->spell = atoi(spell_parse);
-                        spell_parse = strsep(&list_parse, "_");
-                        if (!spell_parse || !*spell_parse) {
-                            /* Length corrupt - just put 1 page */
-                            entry->length = 1;
-                            log("SYSERR: restore_binary_object() found corrupt spellbook list '{}'",
-                                store->spells_in_book);
-                        } else {
-                            entry->length = atoi(spell_parse);
-                        }
-                    }
-                    j++;
-                }
-            }
-        }
-    }
-
-    for (j = 0; j < LEGACY_MAX_OBJ_AFFECT; j++) {
-        obj->applies[j].location = store->affected[j].location;
-        obj->applies[j].modifier = store->affected[j].modifier;
-    }
-
-    return obj;
-}
-
-static bool load_binary_objects(CharData *ch) {
-    FILE *fl;
-    obj_file_elem object;
-    rent_info rent;
-    ObjData *obj;
-    int locate, j, eq = 0;
-    ObjData *obj1;
-    ObjData *cont_row[MAX_CONTAINER_DEPTH];
-
-    fl = open_player_obj_file(GET_NAME(ch), nullptr, false);
-    if (!fl)
-        return false;
-
-    if (!feof(fl))
-        fread(&rent, sizeof(rent_info), 1, fl);
-
-    for (j = 0; j < MAX_CONTAINER_DEPTH; j++)
-        cont_row[j] = nullptr; /* empty all cont lists (you never know ...) */
-
-    while (!feof(fl)) {
-        eq = 0;
-        fread(&object, sizeof(obj_file_elem), 1, fl);
-        if (ferror(fl)) {
-            perror("Reading object file: load_binary_objects()");
-            fclose(fl);
-            return true;
-        }
-
-        if (!feof(fl))
-            if ((obj = restore_binary_object(&object, &locate))) {
-                eq = binary_auto_equip(ch, obj, locate);
-                /* 5/5/01 - Zantir - Found a bug in the auto_equip code
-                   that would crash the mud if a player couldn't wear an
-                   container that the mud thought they were already
-                   wearing. So now the auto_equip function returns a value,
-                   if a 1 isn't returned the assume the item can't be
-                   reworn so set the locate value to 0. */
-                if (eq == 0)
-                    locate = 0;
-
-                /*
-                 * what to do with a new loaded item:
-                 *
-                 * if there's a list with <locate> less than 1 below this:
-                 * (equipped items are assumed to have <locate>==0 here) then its
-                 * container has disappeared from the file   *gasp*
-                 * -> put all the list back to ch's inventory
-                 *
-                 * if there's a list of contents with <locate> 1 below this:
-                 * check if it's a container
-                 * - if so: get it from ch, fill it, and give it back to ch (this way
-                 * the container has its correct weight before modifying ch)
-                 * - if not: the container is missing -> put all the list to ch's
-                 * inventory
-                 *
-                 * for items with negative <locate>:
-                 * if there's already a list of contents with the same <locate> put obj
-                 * to it if not, start a new list
-                 *
-                 * Confused? Well maybe you can think of some better text to be put here
-                 * ...
-                 *
-                 * since <locate> for contents is < 0 the list indices are switched to
-                 * non-negative
-                 */
-
-                if (locate > 0) { /* item equipped */
-                    for (j = MAX_CONTAINER_DEPTH - 1; j > 0; --j)
-                        if (cont_row[j]) { /* no container -> back to ch's inventory */
-                            for (; cont_row[j]; cont_row[j] = obj1) {
-                                obj1 = cont_row[j]->next_content;
-                                obj_to_char(cont_row[j], ch);
-                            }
-                            cont_row[j] = nullptr;
-                        }
-                    if (cont_row[0]) { /* content list existing */
-                        if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER) {
-                            /* rem item ; fill ; equip again */
-                            obj = unequip_char(ch, locate - 1);
-                            obj->contains = nullptr; /* should be empty - but who knows */
-                            for (; cont_row[0]; cont_row[0] = obj1) {
-                                obj1 = cont_row[0]->next_content;
-                                obj_to_obj(cont_row[0], obj);
-                            }
-                            equip_char(ch, obj, locate - 1);
-                        } else { /* object isn't container -> empty content list */
-                            for (; cont_row[0]; cont_row[0] = obj1) {
-                                obj1 = cont_row[0]->next_content;
-                                obj_to_char(cont_row[0], ch);
-                            }
-                            cont_row[0] = nullptr;
-                        }
-                    }
-                } else { /* locate <= 0 */
-                    for (j = MAX_CONTAINER_DEPTH - 1; j > -locate; --j)
-                        if (cont_row[j]) { /* no container -> back to ch's inventory */
-                            for (; cont_row[j]; cont_row[j] = obj1) {
-                                obj1 = cont_row[j]->next_content;
-                                obj_to_char(cont_row[j], ch);
-                            }
-                            cont_row[j] = nullptr;
-                        }
-
-                    if (j == -locate && cont_row[j]) { /* content list existing */
-                        if (GET_OBJ_TYPE(obj) == ITEM_CONTAINER) {
-                            /* take item ; fill ; give to char again */
-                            obj_from_char(obj);
-                            obj->contains = nullptr;
-                            for (; cont_row[j]; cont_row[j] = obj1) {
-                                obj1 = cont_row[j]->next_content;
-                                obj_to_obj(cont_row[j], obj);
-                            }
-                            obj_to_char(obj, ch); /* add to inv first ... */
-                        } else {                  /* object isn't container -> empty content list */
-                            for (; cont_row[j]; cont_row[j] = obj1) {
-                                obj1 = cont_row[j]->next_content;
-                                obj_to_char(cont_row[j], ch);
-                            }
-                            cont_row[j] = nullptr;
-                        }
-                    }
-
-                    if (locate < 0 && locate >= -MAX_CONTAINER_DEPTH) {
-                        /* let obj be part of content list
-                           but put it at the list's end thus having the items
-                           in the same order as before renting */
-                        obj_from_char(obj);
-                        if ((obj1 = cont_row[-locate - 1])) {
-                            while (obj1->next_content)
-                                obj1 = obj1->next_content;
-                            obj1->next_content = obj;
-                        } else
-                            cont_row[-locate - 1] = obj;
-                    }
-                }
-            }
-    }
-
-    fclose(fl);
-
-    return true;
-}
-
 void auto_save_all(void) {
     DescriptorData *d;
     for (d = descriptor_list; d; d = d->next) {
@@ -1474,116 +1247,6 @@ FILE *open_player_obj_file(const char *player_name, CharData *ch, bool quiet) {
         return nullptr;
     }
     return fl;
-}
-
-/* convert_player_obj_file
- *
- * The current player object file format is ASCII-based.
- * Sometimes, object files in the older format might be present due to
- * restoring players from backups.  This function is used to convert the old
- * file into the ASCII format.
- */
-bool convert_player_obj_file(char *player_name, CharData *ch) {
-    FILE *fl, *fnew;
-    char filename[MAX_INPUT_LENGTH];
-    char tempfilename[MAX_INPUT_LENGTH];
-    char line[MAX_INPUT_LENGTH];
-    rent_info rent;
-    obj_file_elem object;
-    ObjData *obj;
-    int locate;
-
-    fl = open_player_obj_file(player_name, ch, true);
-    if (!fl)
-        return false;
-
-    if (get_line(fl, line) && is_integer(line)) {
-        /* File is modern and doesn't need updating */
-        fclose(fl);
-        return false;
-    }
-
-    fclose(fl);
-    fl = open_player_obj_file(player_name, ch, true);
-    if (!fl) {
-        log(LogSeverity::Stat, LVL_GOD, "SYSERR: convert_player_file couldn't reopen object file!");
-        return false;
-    }
-
-    /* Prepare output file */
-    if (!get_pfilename(player_name, filename, OBJ_FILE)) {
-        log("SYSERR: Unable to construct filename to save objects for {}.", player_name);
-        fclose(fl);
-        return false;
-    }
-
-    snprintf(tempfilename, sizeof(tempfilename), "%s.temp", filename);
-    if (!(fnew = fopen(tempfilename, "w"))) {
-        log(LogSeverity::Stat, LVL_GOD, "SYSERR: Couldn't open player file {} for write", tempfilename);
-        fclose(fl);
-        return false;
-    }
-
-    if (feof(fl)) {
-        log("SYSERR: Object file for {} is too small", player_name);
-        fclose(fl);
-        fclose(fnew);
-        return false;
-    }
-
-    fread(&rent, sizeof(rent_info), 1, fl);
-    write_rent_code(fnew, rent.rentcode);
-
-    while (!feof(fl)) {
-        fread(&object, sizeof(obj_file_elem), 1, fl);
-        if (ferror(fl)) {
-            perror("Reading player object file: convert_player_obj_file()");
-            fclose(fl);
-            fclose(fnew);
-            return false;
-        }
-
-        if ((obj = restore_binary_object(&object, &locate))) {
-            /* Writing 0 for the location as I don't care to convert it */
-            /* Yes, the value we just read would not be correct... */
-            write_object_record(obj, fnew, WEAR_INVENTORY);
-            extract_obj(obj);
-        }
-    }
-
-    fclose(fl);
-    fclose(fnew);
-
-    if (rename(tempfilename, filename)) {
-        log(" * * * Error renaming {} to {}: {} * * *", tempfilename, filename, strerror(errno));
-        return false;
-    } else {
-        log("Player object file converted to ASCII format: {}", player_name);
-        if (ch) {
-            strcat(buf, "\n");
-            page_string(ch, buf);
-        }
-    }
-
-    return true;
-}
-
-void convert_player_obj_files(CharData *ch) {
-    int i;
-    int converted = 0;
-
-    for (i = 0; i <= top_of_p_table; ++i) {
-        if (convert_player_obj_file(player_table[i].name, ch))
-            converted++;
-    }
-
-    char_printf(ch, "Examined {:d} player object file{} and updated {:d}.\n", top_of_p_table + 1,
-                top_of_p_table + 1 == 1 ? "" : "s", converted);
-}
-
-void convert_single_player_obj_file(CharData *ch, char *name) {
-    if (!convert_player_obj_file(name, ch))
-        char_printf(ch, "The object file was not converted.\n");
 }
 
 /* save_player

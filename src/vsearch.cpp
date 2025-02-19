@@ -903,7 +903,7 @@ const struct VSearchType vsearch_mobile_modes[] = {
     {22, "silver", INTEGER},
     {23, "copper", INTEGER},
     {24, "perception", INTEGER},
-    {25, "hiddenness", INTEGER},
+    {25, "concealment", INTEGER},
     {26, "position", TYPE, position_types},
     {27, "defaultposition", TYPE, position_types},
     {28, "triggervnum", INTEGER},
@@ -1042,7 +1042,7 @@ ACMD(do_msearch) {
             match = numeric_compare(GET_PERCEPTION(mob), value, bound, compare);
             break;
         case 25:
-            match = numeric_compare(GET_HIDDENNESS(mob), value, bound, compare);
+            match = numeric_compare(GET_CONCEALMENT(mob), value, bound, compare);
             break;
         case 26:
             match = (GET_POS(mob) == value);
@@ -1102,7 +1102,7 @@ const struct VSearchType vsearch_object_modes[] = {
     /* 10 is unused */
     {11, "timer", INTEGER},
     {12, "level", INTEGER},
-    {13, "hiddenness", INTEGER},
+    {13, "concealment", INTEGER},
     {14, "apply", APPLY, apply_types},
     {15, "extradescs", STRING},
     /* 16 is available */
@@ -1338,7 +1338,7 @@ ACMD(do_osearch) {
             match = numeric_compare(GET_OBJ_LEVEL(obj), value, bound, compare);
             break;
         case 13:
-            match = numeric_compare(GET_OBJ_HIDDENNESS(obj), value, bound, compare);
+            match = numeric_compare(GET_OBJ_CONCEALMENT(obj), value, bound, compare);
             break;
         case 14:
             for (temp = 0; temp < MAX_OBJ_APPLIES; ++temp) {

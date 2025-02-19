@@ -135,9 +135,9 @@ static void print_obj_flags_to_char(ObjData *obj, CharData *ch) {
         response += " @y(&billuminated@y)&0";
     if (OBJ_FLAGGED(obj, ITEM_INVISIBLE))
         response += " (invisible)";
-    if (GET_OBJ_HIDDENNESS(obj) > 0) {
+    if (GET_OBJ_CONCEALMENT(obj) > 0) {
         if (GET_LEVEL(ch) >= LVL_IMMORT)
-            response += fmt::format(" (h{})", GET_OBJ_HIDDENNESS(obj));
+            response += fmt::format(" (h{})", GET_OBJ_CONCEALMENT(obj));
         else
             response += " (hidden)";
     }
@@ -393,7 +393,7 @@ static void print_char_flags_to_char(CharData *targ, CharData *ch) {
 
     if (IS_HIDDEN(targ)) {
         if (PRF_FLAGGED(ch, PRF_HOLYLIGHT))
-            resp += fmt::format(" (@Wh{}@0)", GET_HIDDENNESS(targ));
+            resp += fmt::format(" (@Wh{}@0)", GET_CONCEALMENT(targ));
         else
             resp += " (@Whiding@0)";
     }
@@ -1013,18 +1013,19 @@ ACMD(do_search) {
     }
 
     for (; k && (!found_something || GET_LEVEL(ch) >= LVL_IMMORT); k = k->next_content)
-        if ((orig_hide = GET_OBJ_HIDDENNESS(k)) > 0) {
-            GET_OBJ_HIDDENNESS(k) = 0;
+        if ((orig_hide = GET_OBJ_CONCEALMENT(k)) > 0) {
+            GET_OBJ_CONCEALMENT(k) = 0;
             if (!CAN_SEE_OBJ(ch, k)) {
-                GET_OBJ_HIDDENNESS(k) = orig_hide;
+                GET_OBJ_CONCEALMENT(k) = orig_hide;
                 continue;
             }
-            GET_OBJ_HIDDENNESS(k) = std::max(0l, orig_hide - random_number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
-            if (GET_OBJ_HIDDENNESS(k) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
-                GET_OBJ_HIDDENNESS(k) = 0;
+            GET_OBJ_CONCEALMENT(k) =
+                std::max(0l, orig_hide - random_number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
+            if (GET_OBJ_CONCEALMENT(k) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
+                GET_OBJ_CONCEALMENT(k) = 0;
                 if (!OBJ_FLAGGED(k, ITEM_WAS_DISARMED))
                     k->last_to_hold = nullptr;
-                if (orig_hide <= GET_PERCEPTION(ch) && !GET_OBJ_HIDDENNESS(k)) {
+                if (orig_hide <= GET_PERCEPTION(ch) && !GET_OBJ_CONCEALMENT(k)) {
                     act("You reveal $p!", false, ch, k, 0, TO_CHAR);
                     act("$n reveals $p!", true, ch, k, 0, TO_ROOM);
                 } else {
@@ -1043,17 +1044,17 @@ ACMD(do_search) {
                  j = j->next_in_room)
                 if (IS_HIDDEN(j) && j != ch && !IS_IN_GROUP(ch, j)) {
                     // Check whether the searcher could see this character if it weren't hidden.
-                    orig_hide = GET_HIDDENNESS(j);
-                    GET_HIDDENNESS(j) = 0;
+                    orig_hide = GET_CONCEALMENT(j);
+                    GET_CONCEALMENT(j) = 0;
                     if (!CAN_SEE(ch, j)) {
-                        GET_HIDDENNESS(j) = orig_hide;
+                        GET_CONCEALMENT(j) = orig_hide;
                         continue;
                     }
                     // The searcher COULD see this character if it weren't hidden. Will  the searcher discover it?
-                    GET_HIDDENNESS(j) =
+                    GET_CONCEALMENT(j) =
                         std::max(0l, orig_hide - random_number(GET_PERCEPTION(ch) / 2, GET_PERCEPTION(ch)));
-                    if (GET_HIDDENNESS(j) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
-                        GET_HIDDENNESS(j) = 0;
+                    if (GET_CONCEALMENT(j) <= GET_PERCEPTION(ch) || GET_LEVEL(ch) >= LVL_IMMORT) {
+                        GET_CONCEALMENT(j) = 0;
                         if (orig_hide <= GET_PERCEPTION(ch) && !IS_HIDDEN(j))
                             act("You point out $N lurking here!", false, ch, 0, j, TO_CHAR);
                         else
@@ -1991,7 +1992,7 @@ ACMD(do_who) {
             continue;
         }
         if (who_zone && (world[ch->in_room].zone != world[wch->in_room].zone ||
-                         (EFF_FLAGGED(wch, EFF_STEALTH) && GET_HIDDENNESS(wch)))) {
+                         (EFF_FLAGGED(wch, EFF_STEALTH) && GET_CONCEALMENT(wch)))) {
             continue;
         }
         if (who_room && (wch->in_room != ch->in_room)) {
@@ -2121,7 +2122,7 @@ ACMD(do_who) {
 
         if (IS_HIDDEN(wch)) {
             if (GET_LEVEL(ch) >= LVL_IMMORT)
-                sprintf(buf, "%s (h%ld)", buf, GET_HIDDENNESS(wch));
+                sprintf(buf, "%s (h%ld)", buf, GET_CONCEALMENT(wch));
             else
                 strcat(buf, " (hidden)");
         }
@@ -2842,20 +2843,20 @@ const char *perception_message(int perception) {
         return "all-seeing";
 }
 
-const char *hiddenness_message(int hiddenness) {
-    if (hiddenness <= 0)
+const char *concealment_message(int concealment) {
+    if (concealment <= 0)
         return "visible";
-    else if (hiddenness <= 150)
+    else if (concealment <= 150)
         return "unnoticeable";
-    else if (hiddenness <= 300)
+    else if (concealment <= 300)
         return "disguised";
-    else if (hiddenness <= 450)
+    else if (concealment <= 450)
         return "hidden";
-    else if (hiddenness <= 600)
+    else if (concealment <= 600)
         return "well hidden";
-    else if (hiddenness <= 750)
+    else if (concealment <= 750)
         return "nearly invisible";
-    else if (hiddenness <= 900)
+    else if (concealment <= 900)
         return "unseen";
     else
         return "godlike";
@@ -3191,7 +3192,7 @@ static void show_points(CharData *ch, CharData *tch, bool verbose) {
     if (GET_RAGE(tch) || GET_SKILL(tch, SKILL_BERSERK))
         char_printf(ch, "Rage: &3&b{:d}&0 ", GET_RAGE(tch));
 
-    char_printf(ch, "Perception: &3&b{}&0  Concealment: &3&b{}&0\n", GET_PERCEPTION(tch), GET_HIDDENNESS(tch));
+    char_printf(ch, "Perception: &3&b{}&0  Concealment: &3&b{}&0\n", GET_PERCEPTION(tch), GET_CONCEALMENT(tch));
 }
 
 static void show_alignment(CharData *ch, CharData *tch, bool verbose) {
@@ -3890,7 +3891,7 @@ ACMD(do_scan) {
     Exit *exit;
 
     if (GET_CLASS(ch) != CLASS_ROGUE) {
-        GET_HIDDENNESS(ch) = 0;
+        GET_CONCEALMENT(ch) = 0;
     }
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {

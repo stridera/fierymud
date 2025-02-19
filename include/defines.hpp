@@ -566,7 +566,6 @@
 #define SIZE_MOUNTAINOUS 9
 #define NUM_SIZES 10
 
-// Objects
 #define SPELL_ARMOR 1
 #define SPELL_TELEPORT 2
 #define SPELL_BLESS 3
@@ -1156,7 +1155,7 @@
 #define ITEM_ANTI_COLOSSAL 49
 #define ITEM_ANTI_TITANIC 50
 #define ITEM_ANTI_MOUNTAINOUS 51
-#define ITEM_ANTI_ARBOREAN 52   /* Not usable by Arboreans */
+#define ITEM_ANTI_ARBOREAN 52 /* Not usable by Arboreans */
 #define NUM_ITEM_FLAGS 53
 
 /* Modifier constants used with obj effects ('A' fields) */
@@ -1189,7 +1188,7 @@
 #define APPLY_HIT_REGEN 26
 #define APPLY_FOCUS 27 /* Apply to focus level */
 #define APPLY_PERCEPTION 28
-#define APPLY_HIDDENNESS 29
+#define APPLY_CONCEALMENT 29
 #define APPLY_COMPOSITION 30
 #define NUM_APPLY_TYPES 31
 

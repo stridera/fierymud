@@ -112,7 +112,7 @@ const char *align_message(int align);
 const char *hitdam_message(int value);
 const char *armor_message(int ac);
 const char *perception_message(int perception);
-const char *hiddenness_message(int hiddenness);
+const char *concealment_message(int concealment);
 const char *ability_message(int value);
 long xp_percentage(CharData *ch);
 const char *exp_message(CharData *ch);

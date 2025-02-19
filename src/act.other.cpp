@@ -72,7 +72,7 @@ void appear(CharData *ch) {
 
     REMOVE_FLAG(EFF_FLAGS(ch), EFF_INVISIBLE);
     REMOVE_FLAG(EFF_FLAGS(ch), EFF_CAMOUFLAGED);
-    GET_HIDDENNESS(ch) = 0;
+    GET_CONCEALMENT(ch) = 0;
 
     if (GET_LEVEL(ch) < LVL_IMMORT) {
         if (was_hidden) {
@@ -646,7 +646,7 @@ ACMD(do_shapechange) {
     char_to_room(mob, ch->in_room);
 
     /* Transfer hover slot items to new mob */
-    if GET_EQ(ch, WEAR_HOVER) {
+    if GET_EQ (ch, WEAR_HOVER) {
 
         obj = GET_EQ(ch, WEAR_HOVER);
         unequip_char(ch, WEAR_HOVER);
@@ -1116,12 +1116,12 @@ ACMD(do_hide) {
     upper_bound = skill * (3 * GET_DEX(ch) + GET_INT(ch)) / 40;
 
     if (group_size(ch, true) > 1 && GET_RACE(ch) == RACE_HALFLING)
-        GET_HIDDENNESS(ch) =
-            random_number(lower_bound, upper_bound) + (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
+        GET_CONCEALMENT(ch) = random_number(lower_bound, upper_bound) +
+                              (stat_bonus[GET_DEX(ch)].rogue_skills * ((GET_LEVEL(ch) / 30) + 1));
     else
-        GET_HIDDENNESS(ch) = random_number(lower_bound, upper_bound) + stat_bonus[GET_DEX(ch)].rogue_skills;
+        GET_CONCEALMENT(ch) = random_number(lower_bound, upper_bound) + stat_bonus[GET_DEX(ch)].rogue_skills;
 
-    GET_HIDDENNESS(ch) = std::max(GET_HIDDENNESS(ch), 0l);
+    GET_CONCEALMENT(ch) = std::max(GET_CONCEALMENT(ch), 0l);
 
     if (GET_CLASS(ch) == CLASS_THIEF) {
         WAIT_STATE(ch, PULSE_VIOLENCE / 2);
@@ -1133,7 +1133,7 @@ ACMD(do_hide) {
 
     REMOVE_FLAG(EFF_FLAGS(ch), EFF_STEALTH);
     if (GET_SKILL(ch, SKILL_STEALTH)) {
-        if (GET_HIDDENNESS(ch) && GET_SKILL(ch, SKILL_STEALTH) > random_number(0, 101))
+        if (GET_CONCEALMENT(ch) && GET_SKILL(ch, SKILL_STEALTH) > random_number(0, 101))
             SET_FLAG(EFF_FLAGS(ch), EFF_STEALTH);
         improve_skill(ch, SKILL_STEALTH);
     }
@@ -2677,12 +2677,12 @@ ACMD(do_point) {
         return;
     }
 
-    if (GET_HIDDENNESS(tch) == 0) {
+    if (GET_CONCEALMENT(tch) == 0) {
         act("You point at $N.", false, ch, 0, tch, TO_CHAR);
         act("$n points at $N.", true, ch, 0, tch, TO_NOTVICT);
         act("$n points at you.", false, ch, 0, tch, TO_VICT);
     } else {
-        GET_HIDDENNESS(tch) = 0;
+        GET_CONCEALMENT(tch) = 0;
         act("You point out $N's hiding place.", false, ch, 0, tch, TO_CHAR);
         act("$n points out $N who was hiding here!", true, ch, 0, tch, TO_NOTVICT);
         act("$n points out your hiding place!", true, ch, 0, tch, TO_VICT);

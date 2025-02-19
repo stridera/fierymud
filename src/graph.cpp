@@ -644,7 +644,7 @@ bool cause_single_track(TrackInfo track, CharData *ch, CharData *victim, int tra
     }
 
     /* Might lose the trail for stealthy people */
-    if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_HIDDENNESS(victim) > random_number(0, 500)) {
+    if (EFF_FLAGGED(victim, EFF_STEALTH) && GET_CONCEALMENT(victim) > random_number(0, 500)) {
         char_printf(ch, "You can't seem to find any more tracks.\n");
         return false;
     }

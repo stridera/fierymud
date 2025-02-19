@@ -583,7 +583,7 @@ void medit_save_to_disk(int zone_num) {
             fprintf(mob_file, "AFF3: %ld\n", EFF_FLAGS(mob)[2]);
             fprintf(mob_file, "MOB2: %ld\n", MOB_FLAGS(mob)[1]);
             fprintf(mob_file, "PERC: %ld\n", GET_PERCEPTION(mob));
-            fprintf(mob_file, "HIDE: %ld\n", GET_HIDDENNESS(mob));
+            fprintf(mob_file, "HIDE: %ld\n", GET_CONCEALMENT(mob));
             fprintf(mob_file, "Lifeforce: %d\n", GET_LIFEFORCE(mob));
             fprintf(mob_file, "Composition: %d\n", BASE_COMPOSITION(mob));
             fprintf(mob_file, "Stance: %d\n", GET_STANCE(mob));
@@ -868,8 +868,8 @@ void medit_disp_menu(DescriptorData *d) {
                         GET_EX_SILVER(mob));
     menu += fmt::format("&2&bJ&0) Gold       : [&6&b{:8}&0]\t&2&bK&0) Platinum    : [&6&b{:9}&0]\n", GET_EX_GOLD(mob),
                         GET_EX_PLATINUM(mob));
-    menu += fmt::format("&2&bL&0) Perception : [&6&b{:4}&0]\t\t&2&bM&0) Hiddenness  : [&6&b{:4}&0]\n",
-                        GET_PERCEPTION(mob), GET_HIDDENNESS(mob));
+    menu += fmt::format("&2&bL&0) Perception : [&6&b{:4}&0]\t\t&2&bM&0) concealment  : [&6&b{:4}&0]\n",
+                        GET_PERCEPTION(mob), GET_CONCEALMENT(mob));
     char_printf(d->character, menu.c_str());
 
     sprintflag(buf1, MOB_FLAGS(mob), NUM_MOB_FLAGS, action_bits);
@@ -1047,7 +1047,7 @@ void medit_parse(DescriptorData *d, char *arg) {
             break;
         case 'm':
         case 'M':
-            OLC_MODE(d) = MEDIT_HIDDENNESS;
+            OLC_MODE(d) = MEDIT_CONCEALMENT;
             i++;
             break;
         case 'n':
@@ -1279,8 +1279,8 @@ void medit_parse(DescriptorData *d, char *arg) {
         GET_PERCEPTION(OLC_MOB(d)) = std::clamp(atol(arg), 0l, 1000l);
         break;
 
-    case MEDIT_HIDDENNESS:
-        GET_HIDDENNESS(OLC_MOB(d)) = std::clamp(atol(arg), 0l, 1000l);
+    case MEDIT_CONCEALMENT:
+        GET_CONCEALMENT(OLC_MOB(d)) = std::clamp(atol(arg), 0l, 1000l);
         break;
 
     case MEDIT_LIFEFORCE:

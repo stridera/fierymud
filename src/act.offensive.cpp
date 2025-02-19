@@ -51,7 +51,7 @@ void aggro_lose_spells(CharData *ch) {
         REMOVE_FLAG(EFF_FLAGS(ch), EFF_CAMOUFLAGED);
         if (EFF_FLAGGED(ch, EFF_GLORY))
             effect_from_char(ch, SPELL_GLORY);
-        GET_HIDDENNESS(ch) = 0;
+        GET_CONCEALMENT(ch) = 0;
     }
 }
 
@@ -644,12 +644,12 @@ ACMD(do_backstab) {
     if (!attack_ok(ch, vict, true))
         return;
 
-    /* going to use this to pass to the damage code, but still want hiddenness removed */
-    if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {
-        hidden = GET_HIDDENNESS(ch);
-        GET_HIDDENNESS(ch) = 0;
+    /* going to use this to pass to the damage code, but still want concealment removed */
+    if (GET_CONCEALMENT(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {
+        hidden = GET_CONCEALMENT(ch);
+        GET_CONCEALMENT(ch) = 0;
     } else {
-        GET_HIDDENNESS(ch) = 0;
+        GET_CONCEALMENT(ch) = 0;
         hidden = 0;
     }
 
@@ -741,7 +741,7 @@ ACMD(do_backstab) {
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_DUAL_WIELD : TYPE_UNDEFINED);
     } else {
         /* Backstab succeeded */
-        GET_HIDDENNESS(ch) = hidden;
+        GET_CONCEALMENT(ch) = hidden;
         hit(ch, vict, weapon == GET_EQ(ch, WEAR_WIELD2) ? SKILL_2BACK : SKILL_BACKSTAB);
     }
 
@@ -2513,8 +2513,8 @@ ACMD(do_cartwheel) {
     int percent, prob, dmg, hidden, message;
     ObjData *weapon;
 
-    hidden = GET_HIDDENNESS(ch);
-    GET_HIDDENNESS(ch) = 0;
+    hidden = GET_CONCEALMENT(ch);
+    GET_CONCEALMENT(ch) = 0;
 
     if (ROOM_EFF_FLAGGED(ch->in_room, ROOM_EFF_DARKNESS) && !CAN_SEE_IN_DARK(ch)) {
         char_printf(ch, "It is too dark!&0\n");
@@ -2635,7 +2635,7 @@ ACMD(do_cartwheel) {
             }
 
             /* attack was at least partially successful, see if a backstab can be attempted */
-            GET_HIDDENNESS(ch) = hidden;
+            GET_CONCEALMENT(ch) = hidden;
             weapon = GET_EQ(ch, WEAR_WIELD);
             if (!weapon)
                 weapon = GET_EQ(ch, WEAR_WIELD2);
@@ -2801,7 +2801,7 @@ ACMD(do_lure) {
         } else {
             /* Not invisible and the victim isn't blind */
             if (!EFF_FLAGGED(ch, EFF_INVISIBLE) && EFF_FLAGGED(vict, EFF_BLIND)) {
-                GET_HIDDENNESS(ch) = 0;
+                GET_CONCEALMENT(ch) = 0;
                 act("$n accidentally catches $N's attention!", true, ch, 0, vict, TO_NOTVICT);
                 act("You notice $n trying trick you into leaving the room and attack!", false, ch, 0, vict, TO_VICT);
                 act("You accidentally grab $N's attention instead!", false, ch, 0, vict, TO_CHAR);

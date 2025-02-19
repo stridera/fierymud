@@ -1667,7 +1667,7 @@ ACMD(do_conceal) {
         int roll = conceal_roll(ch, obj);
 
         if (roll) {
-            if (GET_OBJ_HIDDENNESS(obj)) {
+            if (GET_OBJ_CONCEALMENT(obj)) {
                 if (IS_FOREST(ch->in_room))
                     act("You try to conceal $p under another bush.", false, ch, obj, 0, TO_CHAR);
                 else if (CH_OUTSIDE(ch))
@@ -1690,12 +1690,12 @@ ACMD(do_conceal) {
                 if (CAN_SEE(ch, tch) ? (GET_PERCEPTION(tch) < roll - 50 + random_number(0, 50))
                                      : (GET_PERCEPTION(tch) < roll / 2))
                     continue;
-                if (GET_OBJ_HIDDENNESS(obj))
+                if (GET_OBJ_CONCEALMENT(obj))
                     act("You notice $n trying to move $p!", false, ch, obj, tch, TO_VICT);
                 else
                     act("You spot $n concealing $p!", false, ch, obj, tch, TO_VICT);
             }
-            GET_OBJ_HIDDENNESS(obj) = roll;
+            GET_OBJ_CONCEALMENT(obj) = roll;
             obj->last_to_hold = ch;
         }
 
@@ -1705,7 +1705,7 @@ ACMD(do_conceal) {
                 if (EFF_FLAGGED(ch, EFF_INVISIBLE))
                     appear(ch);
                 else if (IS_HIDDEN(ch))
-                    GET_HIDDENNESS(ch) = std::max(0l, GET_HIDDENNESS(ch) - 100);
+                    GET_CONCEALMENT(ch) = std::max(0l, GET_CONCEALMENT(ch) - 100);
             }
             if (IS_FOREST(ch->in_room)) {
                 act("You drag $p under some bushes, but they don't quite cover it.", false, ch, obj, 0, TO_CHAR);

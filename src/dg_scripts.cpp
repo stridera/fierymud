@@ -1206,8 +1206,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%ld", GET_EXP(c));
         else if (!strcasecmp(field, "perception"))
             sprintf(str, "%ld", GET_PERCEPTION(c));
-        else if (!strcasecmp(field, "hiddenness"))
-            sprintf(str, "%ld", GET_HIDDENNESS(c));
+        else if (!strcasecmp(field, "concealment"))
+            sprintf(str, "%ld", GET_CONCEALMENT(c));
         else if (!strcasecmp(field, "align") || !strcasecmp(field, "alignment"))
             sprintf(str, "%d", GET_ALIGNMENT(c));
         else if (!strcasecmp(field, "composition"))
@@ -1527,8 +1527,8 @@ void find_replacement(void *go, ScriptData *sc, TrigData *trig, int type, char *
             sprintf(str, "%d", GET_OBJ_TIMER(o));
         else if (!strcasecmp(field, "decomp"))
             sprintf(str, "%d", GET_OBJ_DECOMP(o));
-        else if (!strcasecmp(field, "hiddenness"))
-            sprintf(str, "%ld", GET_OBJ_HIDDENNESS(o));
+        else if (!strcasecmp(field, "concealment"))
+            sprintf(str, "%ld", GET_OBJ_CONCEALMENT(o));
         else if (!strcasecmp(field, "affect") || !strcasecmp(field, "effect")) {
             if (!is_positive_integer(value) || (num = atoi(value)) > 5)
                 *str = '\0';

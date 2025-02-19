@@ -180,8 +180,9 @@ ASPELL(spell_banish) {
             attack(victim, ch);
     }
 
-    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of 108 */
-    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim); 
+    /* min val -99, max val 207; at max skill and max roll and max charisma against a max level victim gives a value of
+     * 108 */
+    roll = random_number(0, 100) + skill + stat_bonus[GET_CHA(ch)].magic - GET_LEVEL(victim);
 
     /* Failure */
     if (roll < 50) {
@@ -199,7 +200,7 @@ ASPELL(spell_banish) {
     /* Success */
     if (roll > 100) {
         if (IS_NPC(victim)) {
-            roll = random_number (0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
+            roll = random_number(0, 100) + (stat_bonus[GET_WIS(ch)].magic * 2); /* min: 0, max: 114 */
             if (roll > 66) /* 66% chance to wipe victim eq, nears 50% at max wis */
                 extract_objects(victim);
             extract_char(victim);
@@ -459,8 +460,8 @@ ASPELL(spell_create_water) {
         return 0;
 
     if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON) {
-        amount =
-            std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING), 1 + 15 * skill / 2);
+        amount = std::min(GET_OBJ_VAL(obj, VAL_DRINKCON_CAPACITY) - GET_OBJ_VAL(obj, VAL_DRINKCON_REMAINING),
+                          1 + 15 * skill / 2);
         if (amount <= 0) {
             act("$o seems to be full already.", false, ch, obj, 0, TO_CHAR);
         } else {
@@ -1434,7 +1435,8 @@ ASPELL(spell_major_paralysis) {
         return 0;
     if (!attack_ok(ch, victim, true))
         return CAST_RESULT_CHARGE;
-    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) || MOB_FLAGGED(victim, MOB_NOCHARM)) {
+    if (mag_savingthrow(victim, SAVING_PARA) || skill - GET_LEVEL(victim) > random_number(0, 70) ||
+        MOB_FLAGGED(victim, MOB_NOCHARM)) {
 
         if (MOB_FLAGGED(victim, MOB_NOCHARM))
             act("&7&b$N cannot be paralyzed!&0", false, ch, 0, victim, TO_CHAR);
@@ -1904,9 +1906,9 @@ int reveal_contents(ObjData *container, CharData *ch) {
     ObjData *k;
 
     for (k = container; k; k = k->next_content) {
-        if (OBJ_FLAGGED(k, ITEM_INVISIBLE) || GET_OBJ_HIDDENNESS(k) > 0) {
+        if (OBJ_FLAGGED(k, ITEM_INVISIBLE) || GET_OBJ_CONCEALMENT(k) > 0) {
             REMOVE_FLAG(GET_OBJ_FLAGS(k), ITEM_INVISIBLE);
-            GET_OBJ_HIDDENNESS(k) = 0;
+            GET_OBJ_CONCEALMENT(k) = 0;
             act("You reveal $p!", false, ch, k, 0, TO_CHAR);
             act("$n reveals $p!", true, ch, k, 0, TO_ROOM);
             found_something += 1;
@@ -1974,7 +1976,7 @@ ASPELL(spell_reveal_hidden) {
         if (EFF_FLAGGED(vict, EFF_INVISIBLE) || IS_HIDDEN(vict)) {
             if (IS_NPC(vict) && !IS_IN_GROUP(ch, vict)) {
                 REMOVE_FLAG(EFF_FLAGS(vict), EFF_INVISIBLE);
-                GET_HIDDENNESS(vict) = 0;
+                GET_CONCEALMENT(vict) = 0;
                 act("You reavel $N lurking here!", false, ch, 0, vict, TO_CHAR);
                 act("$n reveals $N lurking here!", true, ch, 0, vict, TO_NOTVICT);
                 found_something += 1;

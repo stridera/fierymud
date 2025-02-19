@@ -1954,14 +1954,14 @@ void hit(CharData *ch, CharData *victim, int type) {
         return;
     }
 
-    /* If a Rogue, save hiddenness as a bonus to backstab */
-    if (GET_HIDDENNESS(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {
-        hidden = GET_HIDDENNESS(ch);
+    /* If a Rogue, save concealment as a bonus to backstab */
+    if (GET_CONCEALMENT(ch) > 0 && GET_CLASS(ch) == CLASS_ROGUE) {
+        hidden = GET_CONCEALMENT(ch);
     } else {
         hidden = 0;
     }
 
-    GET_HIDDENNESS(ch) = 0;
+    GET_CONCEALMENT(ch) = 0;
 
     /* check if the character has a fight trigger */
     fight_mtrigger(ch);
@@ -2147,12 +2147,12 @@ void hit(CharData *ch, CharData *victim, int type) {
         if (type == SKILL_KICK) {
             act(EVASIONCLR "Your foot passes harmlessly through $N" EVASIONCLR "!&0", false, ch, 0, victim, TO_CHAR);
             act(EVASIONCLR "$n&7&b sends $s foot whistling right through $N" EVASIONCLR ".&0", false, ch, 0, victim,
-            TO_NOTVICT);
+                TO_NOTVICT);
             act(EVASIONCLR "$n" EVASIONCLR " tries to kick you, but $s foot passes through you harmlessly.&0", false,
-            ch, 0, victim, TO_VICT);
+                ch, 0, victim, TO_VICT);
         } else
             damage_evasion_message(ch, victim, weapon, dtype);
-            
+
         set_fighting(victim, ch, true);
 
         /* Process Triggers - added here so they still process even if the attack is evaded */
@@ -2179,9 +2179,9 @@ void hit(CharData *ch, CharData *victim, int type) {
      * Some skills don't get a chance for riposte, parry, and dodge,
      * so short-circuit those function calls here.
      */
-    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK || no_defense_check ||
-             EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) || EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) ||
-             EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
+    else if (type == SKILL_BACKSTAB || type == SKILL_2BACK || type == SKILL_BAREHAND || type == SKILL_KICK ||
+             no_defense_check || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
+             EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS) ||
              (!riposte(ch, victim) && !parry(ch, victim) && !dodge(ch, victim) &&
               (!weapon || !weapon_special(weapon, ch)))) {
         /*
@@ -2230,7 +2230,7 @@ void hit(CharData *ch, CharData *victim, int type) {
         } else if (type == SKILL_KICK) {
             dam += (GET_SKILL(ch, SKILL_KICK) / 2);
             dam += stat_bonus[GET_DEX(ch)].todam;
-        
+
         } else if (type == SKILL_BAREHAND || EFF_FLAGGED(ch, EFF_FIREHANDS) || EFF_FLAGGED(ch, EFF_ICEHANDS) ||
                    EFF_FLAGGED(ch, EFF_LIGHTNINGHANDS) || EFF_FLAGGED(ch, EFF_ACIDHANDS))
             dam += GET_SKILL(ch, SKILL_BAREHAND) / 4 + random_number(1, GET_LEVEL(ch) / 3) + (GET_LEVEL(ch) / 2);

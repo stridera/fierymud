@@ -4131,7 +4131,7 @@ CharData *duplicate_char(CharData *model, int destroom) {
     new_mob->char_specials.alignment = model->char_specials.alignment;
     COPY_FLAGS(MOB_FLAGS(new_mob), MOB_FLAGS(model), NUM_MOB_FLAGS);
     new_mob->char_specials.perception = model->char_specials.perception;
-    new_mob->char_specials.hiddenness = model->char_specials.hiddenness;
+    new_mob->char_specials.concealment = model->char_specials.concealment;
     /* TODO: saving throw and skills */
     /* END  char_special_data */
 
@@ -4641,7 +4641,7 @@ int mag_point(int skill, CharData *ch, CharData *victim, int spellnum, int savet
     if (thirst)
         gain_condition(victim, THIRST, thirst);
     if (hide)
-        GET_HIDDENNESS(victim) = std::min(GET_HIDDENNESS(victim) + hide, 1000l);
+        GET_CONCEALMENT(victim) = std::min(GET_CONCEALMENT(victim) + hide, 1000l);
 
     return CAST_RESULT_CHARGE | CAST_RESULT_IMPROVE;
 }
@@ -5669,20 +5669,16 @@ bool wall_block_check(CharData *actor, CharData *motivator, int dir) {
 
         /* See if a wall of ice will put out anyone's flames. */
         if (GET_OBJ_VAL(wall, VAL_WALL_SPELL) == SPELL_WALL_OF_ICE && EFF_FLAGGED(motivator, EFF_ON_FIRE)) {
-            act("$n&0 spreads $mself out on $p&0 and with a &bsizzle&0, $s flames "
-                "are put out.",
-                false, motivator, wall, 0, TO_ROOM);
-            act("You spread yourself out on $p&0 and your flames go out in a "
-                "&bsizzle of steam&0.",
-                false, motivator, wall, 0, TO_CHAR);
+            act("$n&0 spreads $mself out on $p&0 and with a &bsizzle&0, $s flames are put out.", false, motivator, wall,
+                0, TO_ROOM);
+            act("You spread yourself out on $p&0 and your flames go out in a &bsizzle of steam&0.", false, motivator,
+                wall, 0, TO_CHAR);
             REMOVE_FLAG(EFF_FLAGS(motivator), EFF_ON_FIRE);
         } else if (GET_OBJ_VAL(wall, VAL_WALL_SPELL) == SPELL_WALL_OF_ICE && EFF_FLAGGED(actor, EFF_ON_FIRE)) {
-            act("$n&0 spreads $mself out on $p&0 and with a &bsizzle&0, $s flames "
-                "are put out.",
-                false, actor, wall, 0, TO_ROOM);
-            act("You spread yourself out on $p&0 and your flames go out in a "
-                "&bsizzle of steam&0.",
-                false, actor, wall, 0, TO_CHAR);
+            act("$n&0 spreads $mself out on $p&0 and with a &bsizzle&0, $s flames are put out.", false, actor, wall, 0,
+                TO_ROOM);
+            act("You spread yourself out on $p&0 and your flames go out in a &bsizzle of steam&0.", false, actor, wall,
+                0, TO_CHAR);
             REMOVE_FLAG(EFF_FLAGS(actor), EFF_ON_FIRE);
 
             /* No flames being put out.  Is this a mounted situation? */
@@ -5751,9 +5747,8 @@ int get_fireshield_damage(CharData *attacker, CharData *victim, int dam) {
                 TO_CHAR);
             act("&1$n&0&1's limbs are seared by your shield of flames.&0 (&3$i&0)", false, attacker, amount, victim,
                 TO_VICT);
-            act("&1$n&0&1's limbs are seared by $N&0&1's shield of flames.&0 "
-                "(&4$i&0)",
-                false, attacker, amount, victim, TO_NOTVICT);
+            act("&1$n&0&1's limbs are seared by $N&0&1's shield of flames.&0 (&4$i&0)", false, attacker, amount, victim,
+                TO_NOTVICT);
         }
         return amount;
     }

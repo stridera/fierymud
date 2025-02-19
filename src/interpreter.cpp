@@ -302,7 +302,6 @@ ACMD(do_zstat);
 ACMD(do_game);
 ACMD(do_autoboot);
 ACMD(do_world);
-ACMD(do_objupdate);
 
 /* DG Script ACMD's */
 ACMD(do_attach);
@@ -991,7 +990,6 @@ const CommandInfo cmd_info[] = {
     {"qdel", POS_PRONE, STANCE_DEAD, do_qdel, LVL_HEAD_B, 0, CMD_ANY},
     {"qlist", POS_PRONE, STANCE_DEAD, do_qlist, LVL_ATTENDANT, 0, CMD_ANY},
     {"qstat", POS_PRONE, STANCE_DEAD, do_qstat, LVL_ATTENDANT, 0, CMD_ANY},
-    {"objupdate", POS_PRONE, STANCE_DEAD, do_objupdate, LVL_HEAD_C, 0, CMD_ANY},
 
     {"\n", 0, 0, 0, 0, 0, CMD_HIDE}}; /* this must be last */
 
@@ -1067,7 +1065,7 @@ void command_interpreter(CharData *ch, char *argument) {
 
     if (IS_HIDDEN(ch) && !IS_SET(cmd_info[cmd].flags, CMD_HIDE)) {
         effect_from_char(ch, SPELL_NATURES_EMBRACE);
-        GET_HIDDENNESS(ch) = 0;
+        GET_CONCEALMENT(ch) = 0;
     }
 
     if (PLR_FLAGGED(ch, PLR_MEDITATE) && !IS_SET(cmd_info[cmd].flags, CMD_MEDITATE)) {

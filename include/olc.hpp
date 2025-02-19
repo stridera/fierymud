@@ -204,7 +204,7 @@ extern OLCSaveInfo *olc_save_list;
 #define OEDIT_SPELL_APPLY 26
 #define OEDIT_SPELL_COMPONENT 27
 #define OEDIT_PURGE_OBJECT 28
-#define OEDIT_HIDDENNESS 29
+#define OEDIT_CONCEALMENT 29
 
 /* Submodes of REDIT connectedness */
 #define REDIT_MAIN_MENU 1
@@ -277,7 +277,7 @@ extern OLCSaveInfo *olc_save_list;
 #define MEDIT_EX_PLATINUM 30
 #define MEDIT_SIZE 31
 #define MEDIT_PERCEPTION 32
-#define MEDIT_HIDDENNESS 33
+#define MEDIT_CONCEALMENT 33
 #define MEDIT_LIFEFORCE 34
 #define MEDIT_COMPOSITION 35
 #define MEDIT_STANCE 36

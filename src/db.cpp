@@ -416,7 +416,7 @@ int get_copper(int i)
         return 0;
 
     /*copper calculations */
-    copper = (random_number(1, 150)) * mob_proto[i].player.level;
+    copper = (random_number(1, 150))*mob_proto[i].player.level;
     sfactor = (int)((sfactor + cfactor + zfactor) / 3);
 
     copper = (int)((float)((sfactor / 100.0) * copper));
@@ -557,7 +557,7 @@ void boot_db(void) {
 
     log("   Skills.");
     init_skills();
-	
+
     log("Assigning skills and spells to classes.");
     assign_class_skills();
 
@@ -1534,7 +1534,7 @@ void interpret_espec(char *keyword, char *value, int i, int nr) {
 
     CASE("PERC") { GET_PERCEPTION(mob_proto + i) = num_arg; }
 
-    CASE("HIDE") { GET_HIDDENNESS(mob_proto + i) = num_arg; }
+    CASE("HIDE") { GET_CONCEALMENT(mob_proto + i) = num_arg; }
 
     CASE("Lifeforce") { GET_LIFEFORCE(mob_proto + i) = num_arg; }
 
@@ -1864,10 +1864,10 @@ char *parse_object(FILE *obj_f, int nr) {
             j++;
             break;
 
-        case 'H': /* Hiddenness */
+        case 'H': /* concealment (was hiddenness) */
             get_line(obj_f, line);
             sscanf(line, "%d ", t);
-            obj_proto[i].obj_flags.hiddenness = t[0];
+            obj_proto[i].obj_flags.concealment = t[0];
             break;
         case 'T': /* DG triggers */
             dg_obj_trigger(line, &obj_proto[i]);

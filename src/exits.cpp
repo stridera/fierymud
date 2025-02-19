@@ -14,13 +14,12 @@
 #include "db.hpp"
 #include "directions.hpp"
 #include "handler.hpp"
+#include "logging.hpp"
 #include "math.hpp"
 #include "rooms.hpp"
 #include "structs.hpp"
 #include "sysdep.hpp"
 #include "utils.hpp"
-#include "logging.hpp"
-
 
 const char *cmd_door[] = {"open", "close", "unlock", "lock", "pick"};
 
@@ -31,6 +30,7 @@ Exit *create_exit(int dest_room) {
 
     e->key = -1;
     e->to_room = dest_room;
+    e->concealment = 0;
 
     return e;
 }

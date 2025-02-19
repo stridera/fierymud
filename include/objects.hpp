@@ -53,7 +53,7 @@ struct ObjectFlagData {
     int decomp;             /* Decomposition timer              */
     /* Object Spell effects             */
     flagvector effect_flags[FLAGVECTOR_SIZE(NUM_EFF_FLAGS)];
-    long hiddenness; /* How difficult it is to see obj   */
+    long concealment; /* How difficult it is to see obj   */
 };
 
 struct SpellBookList {
@@ -555,7 +555,7 @@ const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
 #define GET_OBJ_EFFECTIVE_WEIGHT(obj) ((obj)->obj_flags.effective_weight)
 #define GET_OBJ_TIMER(obj) ((obj)->obj_flags.timer)
 #define GET_OBJ_DECOMP(obj) ((obj)->obj_flags.decomp)
-#define GET_OBJ_HIDDENNESS(obj) ((obj)->obj_flags.hiddenness)
+#define GET_OBJ_CONCEALMENT(obj) ((obj)->obj_flags.concealment)
 #define GET_OBJ_MOB_FROM(obj) ((obj)->mob_from)
 #define GET_OBJ_RNUM(obj) ((obj)->item_number)
 #define GET_OBJ_VNUM(obj) (GET_OBJ_RNUM(obj) >= 0 ? obj_index[GET_OBJ_RNUM(obj)].vnum : -1)
@@ -618,7 +618,7 @@ const struct LiquidDef liquid_types[NUM_LIQ_TYPES] = {
  * General object visibility accessors.
  */
 #define OBJ_INVIS_TO_CHAR(obj, ch) (OBJ_FLAGGED((obj), ITEM_INVISIBLE) && !EFF_FLAGGED((ch), EFF_DETECT_INVIS))
-#define OBJ_HIDDEN_TO_CHAR(obj, ch) (GET_OBJ_HIDDENNESS(obj) > GET_PERCEPTION(ch) && (obj)->last_to_hold != (ch))
+#define OBJ_HIDDEN_TO_CHAR(obj, ch) (GET_OBJ_CONCEALMENT(obj) > GET_PERCEPTION(ch) && (obj)->last_to_hold != (ch))
 #define MORT_CAN_SEE_OBJ(ch, obj) (LIGHT_OK(ch) && !OBJ_INVIS_TO_CHAR(obj, ch) && !OBJ_HIDDEN_TO_CHAR(obj, ch))
 #define CAN_SEE_OBJ(ch, obj) (MORT_CAN_SEE_OBJ(ch, obj) || PRF_FLAGGED((ch), PRF_HOLYLIGHT))
 #define OBJS(obj, vict) (CAN_SEE_OBJ((vict), (obj)) ? (obj)->short_description : "something")

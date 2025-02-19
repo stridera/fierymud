@@ -360,10 +360,10 @@ void do_stat_object(CharData *ch, ObjData *j) {
     sprintflag(buf1, GET_OBJ_EFF_FLAGS(j), NUM_EFF_FLAGS, effect_flags);
     resp += fmt::format("Spell Effects : {}{}{}\n", CLR(ch, FYEL), buf1, CLR(ch, ANRM));
 
-    resp +=
-        fmt::format("Weight: {:.2f}, Effective Weight: {:.2f}, Value: {}, Timer: {}, Decomp time: {}, Hiddenness: {}\n",
-                    GET_OBJ_WEIGHT(j), GET_OBJ_EFFECTIVE_WEIGHT(j), GET_OBJ_COST(j), GET_OBJ_TIMER(j),
-                    GET_OBJ_DECOMP(j), GET_OBJ_HIDDENNESS(j));
+    resp += fmt::format(
+        "Weight: {:.2f}, Effective Weight: {:.2f}, Value: {}, Timer: {}, Decomp time: {}, concealment: {}\n",
+        GET_OBJ_WEIGHT(j), GET_OBJ_EFFECTIVE_WEIGHT(j), GET_OBJ_COST(j), GET_OBJ_TIMER(j), GET_OBJ_DECOMP(j),
+        GET_OBJ_CONCEALMENT(j));
 
     if (j->in_room == NOWHERE)
         strcpy(buf1, "Nowhere");
@@ -685,8 +685,8 @@ void do_stat_character(CharData *ch, CharData *k) {
                         GET_HITROLL(k) - monk_weight_penalty(k), GET_DAMROLL(k) - monk_weight_penalty(k));
     resp += fmt::format("Saving throws: [{}/{}/{}/{}/{}]\n", GET_SAVE(k, 0), GET_SAVE(k, 1), GET_SAVE(k, 2),
                         GET_SAVE(k, 3), GET_SAVE(k, 4));
-    resp += fmt::format("Perception: [{:4}], Hiddenness: [{:4}], Rage: [{:4}]\n", GET_PERCEPTION(k), GET_HIDDENNESS(k),
-                        GET_RAGE(k));
+    resp += fmt::format("Perception: [{:4}], concealment: [{:4}], Rage: [{:4}]\n", GET_PERCEPTION(k),
+                        GET_CONCEALMENT(k), GET_RAGE(k));
 
     /* Status data. */
     sprinttype(GET_POS(k), position_types, buf1);

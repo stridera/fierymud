@@ -29,7 +29,6 @@
 #include "handler.hpp"
 #include "house.hpp"
 #include "interpreter.hpp"
-#include "legacy_structs.hpp"
 #include "lifeforce.hpp"
 #include "limits.hpp"
 #include "logging.hpp"
@@ -1462,7 +1461,7 @@ ACMD(do_name) {
         break;
     default:
         break; /* maybe send an error to log here? */
-    }          /* end switch */
+    } /* end switch */
 }
 
 ACMD(do_zreset) {
@@ -1790,7 +1789,7 @@ ACMD(do_set) {
                   {"wiztitle", LVL_GOD, PC, MISC},
                   {"chant", LVL_GAMEMASTER, PC, NUMBER},
                   {"size", LVL_GOD, PC, MISC},
-                  {"hiddenness", LVL_GOD, BOTH, NUMBER},
+                  {"concealment", LVL_GOD, BOTH, NUMBER},
                   {"rage", LVL_GOD, BOTH, NUMBER}, /*70 */
                   {"ptitle", LVL_GAMEMASTER, PC, MISC},
                   {"height", LVL_GOD, BOTH, NUMBER},
@@ -2295,7 +2294,7 @@ ACMD(do_set) {
                 SIZE_DESC(vict));
         break;
     case 69:
-        GET_HIDDENNESS(vict) = std::clamp(value, 0, 1000);
+        GET_CONCEALMENT(vict) = std::clamp(value, 0, 1000);
         break;
     case 70:
         GET_RAGE(vict) = std::clamp(value, 0, 1000);
@@ -3276,33 +3275,6 @@ ACMD(do_pscan) {
     default:
         char_printf(ch, "Sorry, some kind of internal error happened.\n");
     }
-}
-
-ACMD(do_objupdate) {
-    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    half_chop(argument, arg1, arg2);
-
-    if (!*arg1) {
-        char_printf(ch, "Usage: objupdate <player>\n");
-        char_printf(ch, "Usage: objupdate all yes\n");
-        return;
-    }
-
-    if (!strncasecmp(arg1, "all", 4)) {
-        if (!*arg2) {
-            char_printf(ch, "If you really want to update all obsolete object files, type &2objupdate all yes&0\n");
-            return;
-        }
-        if (strncasecmp("yes", arg2, 4)) {
-            char_printf(ch, "I'm not sure you really mean it!\n");
-            return;
-        }
-
-        convert_player_obj_files(ch);
-        return;
-    }
-
-    convert_single_player_obj_file(ch, arg1);
 }
 
 ACMD(do_coredump) {

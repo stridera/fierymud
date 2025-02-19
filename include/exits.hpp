@@ -29,6 +29,7 @@ struct Exit {
     int exit_info;             /* Exit info                          */
     obj_num key;               /* Key's vnum (-1 for no key)         */
     room_num to_room;          /* Where it leads (real number)       */
+    int concealment;           /* How well hidden the exit is        */
 };
 
 extern const char *cmd_door[];

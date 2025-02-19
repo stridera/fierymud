@@ -300,8 +300,8 @@ extern flagvector *ALL_FLAGS;
 
 #define GET_QUIT_REASON(ch) ((ch)->char_specials.quit_reason)
 #define GET_PERCEPTION(ch) ((ch)->char_specials.perception)
-#define GET_HIDDENNESS(ch) ((ch)->char_specials.hiddenness)
-#define IS_HIDDEN(ch) (GET_HIDDENNESS(ch) > 0)
+#define GET_CONCEALMENT(ch) ((ch)->char_specials.concealment)
+#define IS_HIDDEN(ch) (GET_CONCEALMENT(ch) > 0)
 #define GET_IDNUM(ch) ((ch)->char_specials.idnum)
 #define GET_ID(x) ((x)->id)
 #define GET_SAVE(ch, i) ((ch)->char_specials.apply_saving_throw[(i)])
@@ -506,7 +506,7 @@ extern flagvector *ALL_FLAGS;
 
 #define INVIS_OK(sub, obj)                                                                                             \
     ((!EFF_FLAGGED((obj), EFF_INVISIBLE) || EFF_FLAGGED(sub, EFF_DETECT_INVIS)) &&                                     \
-     (GET_HIDDENNESS(obj) <= GET_PERCEPTION(sub)))
+     (GET_CONCEALMENT(obj) <= GET_PERCEPTION(sub)))
 
 #define MORT_CAN_SEE(sub, obj) (LIGHT_OK(sub) && INVIS_OK(sub, obj))
 
