@@ -58,8 +58,18 @@ bool damage_evasion(CharData *ch, CharData *attacker, ObjData *weapon, int dtype
     /* Ether mobs are not immune at all to blessed physical attacks. */
     if (attacker &&
         (GET_COMPOSITION(ch) == COMP_ETHER && 
-        ((dtype == DAM_PIERCE || dtype == DAM_SLASH || dtype == DAM_CRUSH) || 
-        (weapon && (!OBJ_EFF_FLAGGED(weapon, EFF_RADIANT_WEAPON))) && dtype != DAM_ALIGN))) {
+        /* Is the damage type physical? */
+        ((dtype == DAM_PIERCE || dtype == DAM_SLASH || dtype == DAM_CRUSH) && 
+
+        /* Is it a weapon that does some kind of energy damage? */
+        !(weapon && (OBJ_EFF_FLAGGED(weapon, EFF_RADIANT_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_FIRE_WEAPON) ||
+        OBJ_EFF_FLAGGED(weapon, EFF_ICE_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_SHOCK_WEAPON) ||
+        OBJ_EFF_FLAGGED(weapon, EFF_ACID_WEAPON) || OBJ_EFF_FLAGGED(weapon, EFF_POISON_WEAPON)))
+        
+
+        /* Or is the damage an energy type?
+        dtype != DAM_ALIGN && dtype != DAM_FIRE && dtype != DAM_COLD && dtype != DAM_ACID && dtype != DAM_DISPEL &&
+        dtype != DAM_MENTAL && dtype != DAM_DISCORPORATE && dtype != DAM_POISON */ ))) {
         return !(EFF_FLAGGED(attacker, EFF_BLESS));
     }
 
